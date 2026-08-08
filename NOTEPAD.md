@@ -6366,3 +6366,76 @@ Any successful extraction must add a new quantitative theorem about the
 continuous section, the quasicentral approximate unit, or the normalized
 rank of the fold-kernel witness.  Reindexing or choosing the inner coordinate
 after the outer parameter does not provide it.
+
+### Kazhdan extreme-point audit: component selection does not create an ergodic centralizer
+
+There is a tempting shortcut for Thom's finitely presented, Kazhdan,
+hyperlinear, non-residually-finite group `K`: start from a hypothetical sofic
+approximation, use property (T) to decompose it into expander components, keep
+one component, and hope that the resulting sofic representation is extreme.
+If this worked, the Hayes--Kunnawalkam Elayavalli centralizer condition and
+Alekseev--Thom would force `K` to be residually finite, a contradiction.
+
+The shortcut fails at a precise and already-open step.
+
+Păunescu's Theorem 4.8 in *Convex Structures Revisited* identifies an extreme
+point of the amplified diffuse sofic-representation space with ergodicity of
+the associated commutant full-group action.  The same paper explicitly says
+that existence of extreme points for an arbitrary sofic group remains open.
+This has not become automatic for Kazhdan groups.  Alekseev--Thom,
+arXiv:2608.05362, Theorem A, prove instead that a Kazhdan group admitting a
+sofic embedding whose permutation-ultraproduct centralizer acts ergodically
+is LEF, and is residually finite if finitely presented.  Their Theorem 3.1
+shows that after an essentially equivalent modification the centralizer is a
+metric ultraproduct of finite permutation groups; it does not assert
+ergodicity.  Their paper retains the Hayes--Kunnawalkam Elayavalli assertion
+as Conjecture 1.1.
+
+The finite obstruction behind this distinction is elementary.
+
+**Lemma (centralizer orbits of a transitive component).**  Let a finite group
+`H` act transitively on `X=H/L` by left translations.  Then
+
+`C_Sym(X)(H) = N_H(L)/L`,
+
+acting by right translations, and every centralizer orbit has cardinality
+`[N_H(L):L]`.  Consequently the centralizer is transitive on `X` if and only
+if `N_H(L)=H`, equivalently `L` is normal in `H`.  If the action of `H` on
+`H/L` is faithful, transitivity of the centralizer is equivalent to `L=1`,
+so the action is regular.
+
+**Proof.**  A centralizing permutation is determined by the image `aL` of the
+base point `L`.  Well-definedness of `gL -> gaL` is exactly
+`a in N_H(L)`, with two choices defining the same permutation exactly modulo
+`L`.  The orbit of `L` is therefore `N_H(L)/L`; conjugating by a left
+translation gives the same orbit size at every point.  It is all of `H/L`
+exactly when `N_H(L)=H`.  The kernel of the left action is the core of `L`;
+if `L` is normal and the action faithful, this core is `L=1`.  End proof.
+
+Thus Kun's expander decomposition only supplies connected expanding
+components.  Connectedness/transitivity of the generated finite action does
+not make its centralizer transitive; that would require the much stronger
+regular/finite-quotient geometry.  Amplifying a component creates
+permutations of identical copies but does not remove the internal
+centralizer-orbit partition.  Alekseev--Thom Lemma 2.8 expresses the
+ultraproduct version: ergodicity of a rigid centralizer forces a conull
+finite-level centralizer orbit, and Proposition 2.9 turns this into LEF.
+
+In particular, if Thom's `K` is sofic, then no sofic embedding of `K` can
+have an ergodic permutation centralizer, by Alekseev--Thom and finite
+presentability/non-residual-finiteness.  Subject to Păunescu's amplified
+full-group identification being used with its exact notion of equivalence,
+`Sof(K)` would therefore be nonempty but have no extreme point.  This is not
+a contradiction: the recent Munteanu--Păunescu work proves that minimal
+faces are extreme but also exhibits decreasing closed faces with empty
+intersection, so no Krein--Milman compactness argument supplies an extreme
+point.
+
+The rigorous consequence is negative but useful: property (T) plus expander
+component selection does not prove the HKE conjecture for `K`.  The route
+
+`K sofic -> extreme/ergodic-centralizer model -> LEF -> RF`
+
+still has its entire first implication open.  Any proof of it for this `K`
+would already prove `K` nonsofic; it cannot be treated as a routine selection
+lemma.
