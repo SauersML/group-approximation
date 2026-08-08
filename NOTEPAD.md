@@ -5854,3 +5854,98 @@ corner and an operator-norm-visible witness exist, but not
 `epsilon_n=o(delta_n(w))`.  Unlike the older square-root profile, this is now
 a one-element quantitative extraction problem; it is nonetheless genuinely
 new input rather than a reindexing of Theorem 10.
+
+### Ergodic-centralizer audit: the Thom-K shortcut remains conjectural
+
+Hayes--Kunnawalkam Elayavalli, *On sofic approximations of non amenable
+groups* (Math. Z. 307 (2024), Article 38), states the exact missing assertion
+as Conjecture 1: every sofic group admits a sofic embedding whose centralizer
+acts ergodically on the Loeb space.  Their Lemma 5, citing Paunescu Theorem
+2.13, proves the assertion for initially subamenable (LEA) groups.  It does
+not prove it for arbitrary sofic groups.
+
+Alekseev--Thom, arXiv:2608.05362, proves that a Kazhdan group admitting such
+an ergodic-centralizer embedding is LEF, and hence that a finitely presented
+Kazhdan group admitting one is residually finite.  Consequently Thom's
+finitely presented Kazhdan hyperlinear non-RF group `K` cannot simply be put
+in the known LEA case: if it were LEA, the preceding theorem would force it
+to be RF.  Thus
+
+`HKE Conjecture 1 + K sofic  =>  K RF`,
+
+and HKE would indeed prove that `K` is nonsofic, but this is a conditional
+route rather than a completed existence theorem.
+
+Munteanu--Paunescu, *On the Krein--Milman theorem for the space of sofic
+representations* (Groups Geom. Dyn. 20 (2026), 381--401), does not remove the
+condition.  It proves that minimal faces are extreme and constructs extreme
+points for free groups, but it also constructs a decreasing chain of closed
+faces with empty intersection and explicitly presents a free-group sofic
+representation believed to lie outside the closed convex hull of the extreme
+points.  Therefore neither a Zorn argument nor an ordinary Krein--Milman
+argument supplies an extreme/ergodic-centralizer embedding for an arbitrary
+sofic group, in particular not for `K`.
+
+### Fullness forces trace visibility, but the symmetric double has a fold
+
+The one-witness rank/defect condition has a purely ideal-theoretic sufficient
+condition that needs no dimension estimate.
+
+Let `phi_n:H->U(d_n)` be operator-norm almost-representations on exhausting
+windows, let `U_n=phi_n(w)`, and suppose there are a fixed integer `N` and
+uniformly bounded matrix words `X_(i,n),Y_(i,n)` such that
+
+`||1-sum_(i=1)^N X_(i,n)(U_n-1)Y_(i,n)||_op -> 0`.
+
+**Lemma (uniform algebraic visibility).**  The normalized Hilbert--Schmidt
+norms `||U_n-1||_2` are bounded away from zero.  Hence the normalized matrix
+traces give a hyperlinear trace detecting `w`, and in the Kun--Thom setting a
+hyperlinear nonsofic group exists.
+
+**Proof.**  Put
+
+`C=sum_i sup_n ||X_(i,n)|| ||Y_(i,n)|| < infinity`.
+
+The normalized Hilbert--Schmidt norm is an operator ideal norm, so
+
+`1-o(1) <= ||sum_i X_(i,n)(U_n-1)Y_(i,n)||_2`
+`         <= C ||U_n-1||_2`.
+
+Thus `liminf ||U_n-1||_2 >= 1/C`.  Operator-norm multiplicativity implies
+normalized-HS multiplicativity, so the tracial ultraproduct homomorphism
+sends `w` to something other than `1`.  The single-trace criterion then
+finishes.  End proof.
+
+In C*-language, if `A_q` is the unital MF Mautner corner and
+`a=q(rho(w)-1)`, the hypothesis holds whenever `a` is **full** in `A_q`:
+approximate the unit in norm by a finite sum `sum x_i a y_i` and lift the
+finitely many coefficients.  Therefore
+
+> fullness of the lamp deviation in one MF Mautner corner implies that a
+> hyperlinear nonsofic group exists.
+
+This does not follow from Shulman's theorem.  The primary statement is that
+for every separable MF C*-algebra `A` and every subalgebra `C`, the symmetric
+amalgam `A *_C A` is MF (Theorem 10 of arXiv:2603.13564).  It does not say
+that the reduced C*-algebra of the Kun--Thom free-lamp group is MF.  Moreover
+every symmetric amalgam has the fold homomorphism
+
+`A *_C A -> A`
+
+identifying the two copies.  In the free-lamp realization that fold kills the
+copy-difference/lamp witness.  Whenever the fold representation has a
+nonzero `q`-part, it gives a proper quotient of the Mautner corner killing
+`a`, so `a` is not full there.  This is the ideal-theoretic form of rank
+blindness: the nonsofic mechanism lies in the fold kernel, and Shulman's MF
+theorem supplies no tracial mass to that kernel.
+
+The exact new fork is consequently:
+
+1. find an MF model/quotient of the double in which the image of `a` is full;
+2. or construct a hyperlinear trace on the fold kernel which is nonzero on
+   `a`;
+3. or establish the weaker coordinate inequality
+   `epsilon_n=o(delta_n(w))` directly.
+
+The first alternative is stronger than necessary but dimension-free.  The
+canonical symmetric-double model does not satisfy it automatically.
