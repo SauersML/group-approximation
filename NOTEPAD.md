@@ -6643,3 +6643,77 @@ a `Gamma`-model to `G`, measured at one inverse-compressed element.  Exact
 finite-dimensional extensions are unique there by the lemma; a counterexample
 requires this uniqueness to fail only after passage to a tracial
 ultraproduct.
+
+### Faithfulness is free; an action-theoretic corollary
+
+The representation exhibiting strict commutant compression need not itself
+be faithful or have the regular group trace.
+
+**Lemma (faithful tensor completion).**  Suppose `G` is hyperlinear and
+`sigma:G->U(S)` is any homomorphism into a Connes-embeddable finite tracial
+von Neumann algebra.  If there are `v in U(sigma(Gamma)' intersect S)` and
+`gamma in Gamma` such that
+
+`[v,sigma(t^-1 gamma t)] != 1`,
+
+then a hyperlinear nonsofic group exists.
+
+**Proof.**  Let `rho_0:G->U(R^omega)` be a faithful hyperlinear embedding and
+put `rho(g)=rho_0(g) tensor sigma(g)`.  This is faithful.  The unitary
+`1 tensor v` commutes with `rho(Gamma)`, while
+
+`[1 tensor v,rho(t^-1 gamma t)]`
+` =1 tensor [v,sigma(t^-1 gamma t)]`
+
+is nontrivial.  Apply the strict-commutant/free-lamp image theorem in the
+Connes-embeddable tensor product.  End proof.
+
+Consequently one can search among arbitrary finite characters/representations
+of `G`; trace separation of `G` is supplied afterward by tensoring.
+
+There is an exact p.m.p.-action version.  Let `G` act trace-preservingly on an
+abelian finite algebra `A=L-infinity(X)`, and suppose the crossed product
+`A crossed G` is Connes-embeddable.  If
+
+`A^Gamma` is not contained in `A^(t^-1 Gamma t)`,
+
+then the main problem has a negative answer.  Indeed choose a unitary
+`v in A^Gamma` moved by some `t^-1 gamma t`; the canonical group unitaries and
+`v` satisfy the preceding lemma.  The quasi-regular Gaussian/generalized
+Bernoulli criterion recorded earlier is the special case in which the
+coordinate at `Gamma` is fixed by `Gamma` and moved by an element outside
+`Gamma`.
+
+This also states the exact obstruction to a cheap sofic-action proof.  A
+sofic model of such an action would make the crossed product Connes-embeddable
+and immediately yield the counterexample.  Kun--Thom's action rigidity rules
+out the coordinate/generalized-Bernoulli realization for their pair; an
+abstractly Connes-embeddable but nonsofic action remains sufficient and open.
+
+### Centralizer lifting does not finish Thom's K
+
+For a hypothetical sofic embedding of Thom's finitely presented Kazhdan
+group `K`, Alekseev--Thom Theorem 3.1 does allow, after an essentially
+equivalent modification, the permutation centralizer to be written as a
+metric ultraproduct of finite groups `A_n`.  Since the central Prüfer group
+of `K` lies in that centralizer, finite-order surgery can represent every
+fixed initial segment
+
+`C_p < C_(p^2) < ... < C_(p^m)`
+
+by coherent finite permutations at asymptotically zero cost, followed by a
+diagonal choice with `m->infinity`.
+
+This is not a contradiction.  The approximating permutations of the rest of
+`K` still form only an almost action on the quotient of the central orbits.
+Neither Theorem 3.1 nor its finite-groupoid correction turns that quotient
+model into a genuine finite group representation of `K/C_(p^m)`.  Doing so
+would require exactly the flexible P-stability/phase-factorization statement
+already isolated in the Thom lane.  The divisible central tower itself is
+perfectly compatible with a metric ultraproduct of finite groups (use cyclic
+groups of orders tending through powers of `p`).
+
+Thus the new centralizer theorem supplies finite-stage coordinates for the
+Prüfer tower but does not upgrade approximate multiplication of `K`.  It
+cannot be combined with finite-quotient collapse to prove `K` nonsofic
+without a genuinely new stability theorem.
