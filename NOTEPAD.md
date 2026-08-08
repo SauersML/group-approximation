@@ -6717,3 +6717,73 @@ Thus the new centralizer theorem supplies finite-stage coordinates for the
 Prüfer tower but does not upgrade approximate multiplication of `K`.  It
 cannot be combined with finite-quotient collapse to prove `K` nonsofic
 without a genuinely new stability theorem.
+
+### Lavi--Levit character rigidity cannot see strict commutant compression
+
+Lavi--Levit, Corollary 1.3 of arXiv:2007.15547, says that for a commutative
+Noetherian ring `R` and `d > max{sr(R),2}`, every extreme character of
+`EL_d(R)` is induced from a finite-dimensional representation of a particular
+normal subgroup.  Here "induced" means that the character is zero outside
+that subgroup.  It does **not** say that the character's GNS representation
+is finite-dimensional: inducing from an infinite-index normal subgroup is
+normally infinite-dimensional.  Dogon--Vigdorovich's 2025 implication from
+flexible Hilbert--Schmidt stability to character rigidity does not reverse
+this loss; its stability hypothesis is itself open in the relevant cases.
+
+More decisively, scalar character data are formally blind to the exact
+strict-commutant certificate.
+
+**Lemma (regular-character camouflage).**  Let `G` be hyperlinear and let
+
+`sigma:G -> U(S)`
+
+be any homomorphism into a Connes-embeddable finite tracial von Neumann
+algebra.  Let `lambda:G -> U(LG)` be the left regular representation and put
+
+`rho(g)=lambda(g) tensor sigma(g)`.
+
+Then the scalar character of `rho|Gamma` is the regular character
+
+`tau(rho(gamma)) = 1_(gamma=e)`
+
+independently of `sigma`.  Nevertheless, if
+
+`v in sigma(Gamma)' intersect S`
+
+fails to commute with `sigma(t^-1 gamma t)`, then `1 tensor v` belongs to
+`rho(Gamma)'` and fails to commute with `rho(t^-1 gamma t)`.  Hence `rho`
+has strict relative-commutant compression and produces a hyperlinear
+nonsofic image by the strict-compression theorem.
+
+**Proof.**  The trace factorizes, and `tau_LG(lambda(gamma))` is zero for
+`gamma != e`; this proves the character assertion.  The commutator identity
+
+`[1 tensor v, rho(h)]_group = 1 tensor [v,sigma(h)]_group`
+
+proves the relative assertion.  End proof.
+
+Thus even the strongest possible classification of the scalar trace on
+`Gamma` cannot decide the terminal free-lamp question: every auxiliary model,
+including a successful one, becomes the *same regular character* after the
+faithful tensor completion already required downstream.  What varies is the
+`Gamma`-bimodule multiplicity/relative commutant, not the character.
+
+There is a useful sterile subcase.  If the von Neumann algebra
+`W*(sigma(Gamma))` is finite-dimensional, then
+
+`Ad(sigma(t))(W*(sigma(Gamma))) <= W*(sigma(Gamma))`
+
+is equality by finite dimension, so the commutant is normalized and no
+strictness occurs.  Lavi--Levit's induced finite-dimensional source does not
+put a general GNS representation in this subcase.  In particular, the
+regular character is allowed and is exactly the sector in which the tensor
+camouflage lemma places every auxiliary construction.
+
+Conclusion: the character-only lane is closed.  It can become relevant only
+when paired with a genuinely stronger theorem controlling the relative
+commutant or decomposing the whole `Gamma`-bimodule (for example the open
+Alekseev--Thom centralizer-lifting problem).  Level-ideal or scalar-character
+classification alone supplies no arrow toward either equality or strictness
+of
+
+`rho(Gamma)' intersect M <= rho(t)(rho(Gamma)' intersect M)rho(t)^*`.
