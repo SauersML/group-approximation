@@ -6161,3 +6161,69 @@ must likewise concern the centered commutant covariance operator (or a
 positive-dimensional subspace of it), not one basis vector.  Wick expansion
 can then prove freeness once all centered translated overlaps vanish with a
 dimension-uniform normalization; it does not supply that hypothesis.
+
+### Exact Bogoljubov implementers versus the free trace
+
+Known permanence does not cover the Kun--Thom coset action.  Gao--Kunnawalkam
+Elayavalli--Patchell prove Connes embeddability of generalized and free
+generalized wreath products when the underlying action on the index set is
+sofic.  Kun--Thom Theorem A and Corollary D prove that the relevant action
+`G on G/Gamma` and its nontrivial generalized Bernoulli actions are not
+sofic.  Capraro--Paunescu cover profinite actions, which again identify the
+invisible cosets.  Results on unrestricted wreath products cover the opposite
+extension direction: the acting/quotient group must be amenable.  Here the
+lamp kernel is amenable but the quotient `G` is Kazhdan and nonamenable.
+
+The most natural direct free-Gaussian construction has a rigorous trace
+obstruction.  Let `H_R` have dimension `m>=3`, let
+
+`F_N=direct-sum_(k=0)^N H_C^(tensor k)`,
+
+and let `l_i^(N)` be the compressed left creation operators.  Orthogonal
+transformations of `H_R` are implemented **exactly** on every `F_N` by
+second quantization.  Put
+
+`S_N=sum_(i=1)^m (l_i^(N)+l_i^(N)*)`.
+
+**Lemma (truncated-Fock trace obstruction).**  No scalar rescaling of `S_N`
+can make both its second and fourth normalized matrix moments converge to
+the vacuum moments of the free Gaussian sum of `m` standard semicirculars.
+
+**Proof.**  In the word basis, `S_N` is the adjacency matrix of the rooted
+`m`-ary tree of depth `N`.  Its number of vertices is
+
+`D_N=1+m+...+m^N`.
+
+The number of edges is `D_N-1`, hence
+
+`tr_N(S_N^2)=2(D_N-1)/D_N -> 2`.
+
+For any finite tree with adjacency matrix `A`,
+
+`Tr(A^4)=2|E|+4 sum_v binom(deg(v),2)`:
+
+a closed walk of length four either traverses one edge twice or uses two
+distinct edges incident at its middle vertex.  In the rooted `m`-ary tree,
+the leaves have asymptotic vertex proportion `(m-1)/m` and degree `1`, while
+the non-leaf, non-root vertices have asymptotic proportion `1/m` and degree
+`m+1`; the root is negligible.  Therefore
+
+`tr_N(S_N^4) -> 2+4*(1/m)*binom(m+1,2)=2m+4`.
+
+The free Gaussian sum has second moment `m` and fourth moment `2m^2`.
+Matching the second moment forces a rescaling with square `m/2`; the resulting
+fourth moment is
+
+`(m^2/4)(2m+4)=m^2(m+2)/2`,
+
+which equals `2m^2` only for `m=2`, contrary to `m>=3`.  End proof.
+
+Thus finite Fock truncation gives exact covariance implementers but the wrong
+tracial state: uniform dimension is concentrated near the boundary of the
+tree, while the free trace is the vacuum state.  GUE/random-matrix models
+give the correct free trace, but a generic tuple has no coherent samplewise
+implementers for the quasi-regular action.  Projecting one GUE onto the
+finite-level `Gamma`-commutant is therefore not merely one ansatz among many;
+it is the direct way to combine the two requirements.  Its unresolved input
+is precisely a positive-profile centered-commutant overlap estimate, as in
+the corrected criterion above.
