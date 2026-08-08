@@ -7008,3 +7008,55 @@ The canonical group factor `L(G)` does not do this: the relevant group
 centralizers are trivial, so both commutants are scalar.  The missing object
 is therefore a nontrivial Connes-embeddable multiplicity/correspondence over
 the regular `Gamma`-factor, not a new scalar trace.
+
+### Thom's central free lamp: hyperlinearity is banked, nonsoficity is not
+
+Let
+
+`Ktilde=K_0(Z[1/p])`,  `C=Z <= Z(Ktilde)`,  `Q=Ktilde/C`.
+
+Here `Ktilde` is residually finite and `Q` is Thom's finitely presented
+hyperlinear Kazhdan group whose soficity is open.  Define the central
+free-lamp amalgam
+
+`H_c=Ktilde *_C (C x Z)`.
+
+**Lemma (central free-lamp normal form).**
+
+`H_c = (ast_(Q) Z) semidirect Ktilde`,
+
+where `Ktilde` permutes the free factors through its left action on
+`Ktilde/C=Q`.
+
+**Proof.**  Retract `H_c` to `Ktilde` by killing the second `Z`-factor.  The
+conjugate of that factor by `g in Ktilde` depends only on `gC`, because the
+lamp commutes with `C`.  Bass--Serre normal form says that conjugates indexed
+by distinct cosets freely generate the kernel.  End proof.
+
+Hyperlinearity of `H_c` is unconditional.  At the von Neumann algebra level,
+
+`L(H_c)=L(Ktilde) *_(L(C)) (L(C) tensorBar L(Z))`.
+
+Both factors are Connes-embeddable and `L(C)` is amenable, so the standard
+amenable-amalgam permanence theorem makes this free product Connes-embeddable.
+Thus proving `H_c` nonsofic would solve the main problem immediately.
+
+The nonsofic half is **not** supplied by the existing action results.  The
+forward permanence theorem of Gao--Kunnawalkam Elayavalli--Patchell says that
+a sofic action produces a sofic free generalized wreath product.  Its
+converse is their Question 4.4.  A sofic approximation of the abstract group
+`H_c` does not presently give a sofic model of the conjugation action on its
+free factors.  The coordinate reverse-transfer theorem recorded above starts
+only after such an automorphic/action model has been supplied; it does not
+construct one from group soficity.  This is exactly the quantifier gap noted
+by the authors in their discussion of Question 4.4.
+
+Consequently the central free lamp is a valid banked-hyperlinearity target,
+but its remaining nonsoficity problem is a special action-extraction/phase-
+factorization problem, not an already proved consequence of Thom's quotient.
+For the current record the three statements must remain separate:
+
+1. `H_c` is hyperlinear -- proved by amenable amalgamation;
+2. `Q` is non-LEF/non-initially-subamenable -- proved by Thom/de Cornulier;
+3. `H_c` is nonsofic -- open, and would require a new bridge from an arbitrary
+   sofic approximation of `H_c` to quotient/free-factor orbit data.
