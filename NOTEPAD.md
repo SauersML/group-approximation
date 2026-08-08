@@ -6570,3 +6570,76 @@ state.  A leak at one invisible letter is not enough for the older XCV
 one-number/image-quotient argument.  No propagation to all reduced words is
 needed once the aim is a hyperlinear nonsofic quotient rather than
 faithfulness of the whole free-lamp group.
+
+### Exact finite-dimensional relative uniqueness
+
+The two-extension criterion cannot be met by coordinatewise genuine
+finite-dimensional representations.
+
+**Lemma.**  Let `t Gamma t^-1 <= Gamma`, and let
+
+`pi_1,pi_2:G->U(d)`
+
+be genuine finite-dimensional representations satisfying
+`pi_1|Gamma=pi_2|Gamma`.  Then for every `gamma in Gamma`,
+
+`pi_1(t^-1 gamma t)=pi_2(t^-1 gamma t)`.
+
+**Proof.**  Let `W=C*(pi_1(Gamma))=C*(pi_2(Gamma))`.  Conjugation by either
+`pi_i(t)` sends `W` into itself, because `t Gamma t^-1<=Gamma`.  The image is
+unitarily conjugate to `W`, hence has the same finite vector-space dimension;
+therefore the inclusion is equality.  Thus
+
+`alpha_i=Ad(pi_i(t))|W`
+
+is an automorphism of `W`.  For every `delta in Gamma`,
+
+`alpha_i(pi_1(delta))=pi_i(t delta t^-1)`.
+
+Both the source matrices and the right-hand sides agree for `i=1,2`, since
+all involved group elements lie in `Gamma`.  The group matrices generate
+`W`, so `alpha_1=alpha_2`.  Applying the common inverse to the common matrix
+`pi_1(gamma)=pi_2(gamma)` proves the assertion.  End proof.
+
+Equivalently, the block-flip witness from the two-extension theorem is killed
+in every exact finite coordinate.  Any successful pair of extensions in a
+tracial matrix ultraproduct must therefore exploit normalized-HS defects on
+coordinate sets whose trace profile dominates those defects.  This is the
+same defect/rank interface as the one-number Haar criterion, now derived
+from exact relative uniqueness rather than from the free-lamp presentation.
+
+Alekseev--Thom Open Problem 6.2 is the closest published formulation of the
+remaining lifting issue.  For a Kazhdan group homomorphism into a tracial
+matrix ultraproduct it asks whether, after asymptotically negligible dimension
+changes, the relative commutant is an ultraproduct of finite-dimensional
+algebras, and more strongly whether these algebras can be taken as exact
+centralizers of lifts of a fixed generating set.  A sufficiently uniform
+positive answer, applied to the `Gamma`-restriction and combined with the
+finite-dimensional equality above, would force unitary centralizer
+normalization and close this free-lamp counterexample route.  A strict
+commutant-compression model would refute precisely that normalization
+phenomenon.  The published problem is open; it must not be used as an input.
+
+The two exact criteria above are in fact the same obstruction in different
+coordinates.  For a fixed tracial embedding `rho`, the following are
+equivalent:
+
+1. `P` is properly contained in `rho(t)P rho(t)^*`;
+2. for some `gamma in Gamma` and `v in U(P)`,
+   `[v,rho(t^-1 gamma t)] != 1`;
+3. the two embeddings `rho` and `Ad(v) o rho` agree pointwise on `Gamma` but
+   disagree on `t^-1 gamma t`.
+
+For `(1)=>(2)`, choose `y=rho(t)v rho(t)^*` in the larger commutant but not
+the smaller one, as in the strict-compression proof.  `(2)=>(3)` is
+immediate because `v` commutes with `rho(Gamma)`.  Conversely, `(2)` implies
+that `rho(t)v rho(t)^*` belongs to `rho(t)P rho(t)^*` but not to `P`, giving
+strictness.  The block-flip construction shows that an arbitrary pair of
+extensions as in the two-extension theorem can always be converted into
+this fixed-embedding form after passing to `M_2(M)`.
+
+So the terminal free-lamp question is exactly non-uniqueness of extension of
+a `Gamma`-model to `G`, measured at one inverse-compressed element.  Exact
+finite-dimensional extensions are unique there by the lemma; a counterexample
+requires this uniqueness to fail only after passage to a tracial
+ultraproduct.
