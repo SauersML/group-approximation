@@ -707,6 +707,31 @@ theorem hsDistSq_exteriorTensorMatrix_le
   change 2 - 2 * q ≤ Fintype.card Y * ε ^ 2 / 2 at hbase
   nlinarith
 
+/-- The same tensor defect bound without an artificial `ε ≤ 2` hypothesis:
+the distance between the two unitary inputs is itself at most `2`, so the
+previous estimate applies with `min ε 2`. -/
+theorem hsDistSq_exteriorTensorMatrix_le_of_nonneg
+    (Y : FiniteModel) [LinearOrder Y] [Nonempty Y]
+    {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
+    (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
+    (hε0 : 0 ≤ ε) (hnorm : ‖A - B‖ ≤ ε) (k : ℕ) :
+    hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
+        (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
+      k * (Fintype.card Y * ε ^ 2 / 2) := by
+  let ε' : ℝ := min ε 2
+  have hε'0 : 0 ≤ ε' := le_min hε0 (by norm_num)
+  have hε'2 : ε' ≤ 2 := min_le_right _ _
+  have hnorm2 : ‖A - B‖ ≤ 2 := opNorm_sub_le_two_of_unitary hA hB
+  have hnorm' : ‖A - B‖ ≤ ε' := le_min hnorm hnorm2
+  have hmain := hsDistSq_exteriorTensorMatrix_le Y hA hB
+    hε'0 hε'2 hnorm' k
+  have hsq : ε' ^ 2 ≤ ε ^ 2 := by
+    have hle : ε' ≤ ε := min_le_left _ _
+    nlinarith
+  calc
+    _ ≤ k * (Fintype.card Y * ε' ^ 2 / 2) := hmain
+    _ ≤ k * (Fintype.card Y * ε ^ 2 / 2) := by gcongr
+
 /-- Squaring a vanishing real sequence preserves vanishing. -/
 theorem vanishing_sq {a : ℕ → ℝ} (ha : Vanishing a) :
     Vanishing fun n ↦ a n ^ 2 := by
@@ -767,7 +792,6 @@ structure SqrtDimensionMFProfile (G : Type*) [Group G] where
   map : ∀ n, G → Matrix.unitaryGroup (model n) ℂ
   error : ℕ → ℝ
   error_nonneg : ∀ n, 0 ≤ error n
-  error_le_two : ∀ n, error n ≤ 2
   multiplicative : ∀ n g h,
     ‖(map n (g * h) : Matrix (model n) (model n) ℂ) -
       (map n g : Matrix (model n) (model n) ℂ) * map n h‖ ≤ error n
@@ -911,11 +935,10 @@ theorem isHyperlinear_of_profile [Countable G]
     exact exteriorTensorMatrix_mem_unitaryGroup (P.map n g).2 k
   · intro g hg h hh
     rw [← exteriorTensorMatrix_mul]
-    have hdef := hsDistSq_exteriorTensorMatrix_le Y
+    have hdef := hsDistSq_exteriorTensorMatrix_le_of_nonneg Y
       (P.map n (g * h)).2
       (mul_mem (P.map n g).2 (P.map n h).2)
-      (P.error_nonneg n) (P.error_le_two n)
-      (P.multiplicative n g h) k
+      (P.error_nonneg n) (P.multiplicative n g h) k
     have hsmall := hNmul n (le_max_left _ _)
     have hnonneg : 0 ≤ P.tensorExponent n * P.defectBudget n :=
       mul_nonneg (Nat.cast_nonneg _) (mul_nonneg (Nat.cast_nonneg _) (sq_nonneg _))
