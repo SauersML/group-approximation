@@ -7060,3 +7060,42 @@ For the current record the three statements must remain separate:
 2. `Q` is non-LEF/non-initially-subamenable -- proved by Thom/de Cornulier;
 3. `H_c` is nonsofic -- open, and would require a new bridge from an arbitrary
    sofic approximation of `H_c` to quotient/free-factor orbit data.
+
+### Shulman doubles cannot manufacture weak MF for the Leavitt witness
+
+The degree-zero/local-finite core and the Leavitt self-similarity suggest
+trying to embed
+
+`J=EL_4(L_(F_2)(1,2))`
+
+across the two factors of a symmetric amalgam or an HNN extension and then
+apply Shulman's weak-MF permanence theorem.  Property `(T)` rules out exactly
+that strategy.
+
+**Lemma (Bass--Serre confinement).**  Let `J` have property `(T)`.  Every
+homomorphism
+
+`J -> A *_C B`
+
+whose image is isomorphic to `J` has image conjugate into `A` or `B`.
+Likewise every embedding of `J` into an HNN extension is conjugate into the
+base group.
+
+**Proof.**  Property `(T)` implies Serre's property FA.  Let `J` act through
+the embedding on the Bass--Serre tree of the amalgam or HNN extension.  It
+fixes a vertex.  Vertex stabilizers are precisely conjugates of the vertex
+groups (the base group in the HNN case).  End proof.
+
+Consequently an embedding of the Leavitt witness into a Shulman symmetric
+double cannot use its two-factor geometry: one factor already contains the
+whole witness.  If that factor were locally finite or residually finite this
+would be impossible, since subgroups inherit residual finiteness and `J` is
+an infinite simple nonsofic group.  More generally, applying weak-MF
+permanence to the double would add nothing unless weak MF of a group already
+containing `J` had independently been established.
+
+Thus the Leavitt self-similarity may still help construct operator-norm
+microstates directly, but it cannot be converted into a nontrivial
+Bass--Serre decomposition and fed to the symmetric-double theorem.  This
+closes the proposed degree-zero-double/HNN shortcut without making any claim
+about the still-open direct weak-MF certificate for `J`.
