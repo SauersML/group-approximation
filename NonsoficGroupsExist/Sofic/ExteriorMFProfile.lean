@@ -1,6 +1,5 @@
 import NonsoficGroupsExist.Sofic.HyperlinearAmplification
 import NonsoficGroupsExist.Sofic.NormTraceGap
-import NonsoficGroupsExist.Matching.SlowThreshold
 import Mathlib.LinearAlgebra.ExteriorPower.Basis
 import Mathlib.LinearAlgebra.Matrix.Charpoly.Coeff
 import Mathlib.Analysis.Matrix.Order
@@ -639,7 +638,7 @@ theorem sq_div_two_le_hsDistSq_exteriorAdMatrix
     1 - δ ^ 2 / 4 at hdet
   linarith
 
-/-! ## Tensor amplification and slow scales -/
+/-! ## Tensor amplification -/
 
 /-- The `k`-fold tensor power of the phase-free exterior lift. -/
 def exteriorTensorMatrix (A : Matrix Y Y ℂ) (k : ℕ) :
@@ -757,46 +756,40 @@ theorem dimension_mul_error_sq_vanishing
   rw [mul_pow, Real.sq_sqrt (Nat.cast_nonneg (d n))]
   ring
 
-/-- A tensor exponent that diverges slowly enough for `kₙ aₙ → 0`. -/
-noncomputable def slowTensorPower (a : ℕ → ℝ) (n : ℕ) : ℕ :=
-  slowLevel a n + 1
-
-/-- The slow tensor exponent tends to infinity. -/
-theorem slowTensorPower_diverges {a : ℕ → ℝ} (ha : Vanishing a) :
-    ∀ k : ℕ, ∃ N : ℕ, ∀ n, N ≤ n → k ≤ slowTensorPower a n := by
-  intro k
-  obtain ⟨N, hN⟩ := slowLevel_diverges a ha k
-  exact ⟨N, fun n hn ↦ (hN n hn).trans (Nat.le_add_right _ 1)⟩
-
-/-- The same slow exponent kills its multiplication-error budget. -/
-theorem slowTensorPower_mul_vanishing {a : ℕ → ℝ}
-    (ha0 : ∀ n, 0 ≤ a n) (ha : Vanishing a) :
-    Vanishing fun n ↦ slowTensorPower a n * a n := by
-  have h := error_div_slowThreshold_vanishing a ha0 ha
-  refine Vanishing.congr h ?_
-  intro n
-  unfold slowTensorPower slowThreshold
-  field_simp
-  push_cast
-  ring
+/-- Finitely many eventual assertions depending on two natural parameters
+admit common lower bounds for both parameters. -/
+theorem eventually_finset_two_parameters {ι : Type*} (s : Finset ι)
+    (P : ι → ℕ → ℕ → Prop)
+    (h : ∀ i ∈ s, ∃ K N, ∀ k ≥ K, ∀ n ≥ N, P i k n) :
+    ∃ K N, ∀ k ≥ K, ∀ n ≥ N, ∀ i ∈ s, P i k n := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => exact ⟨0, 0, by simp⟩
+  | @insert i s hi ih =>
+      obtain ⟨Ki, Ni, hKi⟩ := h i (Finset.mem_insert_self i s)
+      obtain ⟨Ks, Ns, hKs⟩ := ih fun j hj ↦ h j (Finset.mem_insert_of_mem hj)
+      refine ⟨max Ki Ks, max Ni Ns, fun k hk n hn j hj ↦ ?_⟩
+      rw [Finset.mem_insert] at hj
+      rcases hj with rfl | hj
+      · exact hKi k ((le_max_left _ _).trans hk)
+          n ((le_max_left _ _).trans hn)
+      · exact hKs k ((le_max_right _ _).trans hk)
+          n ((le_max_right _ _).trans hn) j hj
 
 /-! ## The square-root MF-profile bridge -/
 
-/-- A sequential operator-norm MF profile whose multiplicative error is
-`o(d⁻¹ᐟ²)` and whose distinct group elements stay pointwise separated in
-operator norm.  The maps are defined on all of `G`; no uniform separation
-constant over the whole group is assumed. -/
+/-- A sequential, pointwise operator-norm MF profile.  For each fixed pair
+`g, h`, its own multiplicative defect is `o(dₙ⁻¹ᐟ²)`; there is no error bound
+uniform over all elements of `G`.  Distinct elements likewise have only
+pair-dependent eventual operator-norm separation. -/
 structure SqrtDimensionMFProfile (G : Type*) [Group G] where
   model : ℕ → FiniteModel
   modelNonempty : ∀ n, 0 < Fintype.card (model n)
   map : ∀ n, G → Matrix.unitaryGroup (model n) ℂ
-  error : ℕ → ℝ
-  error_nonneg : ∀ n, 0 ≤ error n
-  multiplicative : ∀ n g h,
+  multiplicative : ∀ g h, Vanishing fun n ↦
     ‖(map n (g * h) : Matrix (model n) (model n) ℂ) -
-      (map n g : Matrix (model n) (model n) ℂ) * map n h‖ ≤ error n
-  sqrt_profile : Vanishing fun n ↦
-    error n * Real.sqrt (Fintype.card (model n))
+      (map n g : Matrix (model n) (model n) ℂ) * map n h‖ *
+        Real.sqrt (Fintype.card (model n))
   separatedEventually : ∀ g h, g ≠ h →
     ∃ δ : ℝ, 0 < δ ∧ ∃ N, ∀ n ≥ N,
       δ ≤ ‖(map n g : Matrix (model n) (model n) ℂ) - map n h‖
@@ -805,34 +798,23 @@ namespace SqrtDimensionMFProfile
 
 variable {G : Type*} [Group G]
 
-/-- The dimension-weighted squared defect budget. -/
-noncomputable def defectBudget (P : SqrtDimensionMFProfile G) (n : ℕ) : ℝ :=
-  Fintype.card (P.model n) * P.error n ^ 2
+/-- The actual pointwise operator-norm multiplicative defect. -/
+noncomputable def multiplicativeError (P : SqrtDimensionMFProfile G)
+    (n : ℕ) (g h : G) : ℝ :=
+  ‖(P.map n (g * h) : Matrix (P.model n) (P.model n) ℂ) -
+    (P.map n g : Matrix (P.model n) (P.model n) ℂ) * P.map n h‖
 
-/-- The profile hypothesis says exactly that the defect budget vanishes. -/
-theorem defectBudget_vanishing (P : SqrtDimensionMFProfile G) :
-    Vanishing P.defectBudget := by
+/-- The dimension-weighted squared defect budget for one fixed pair. -/
+noncomputable def defectBudget (P : SqrtDimensionMFProfile G)
+    (n : ℕ) (g h : G) : ℝ :=
+  Fintype.card (P.model n) * P.multiplicativeError n g h ^ 2
+
+/-- Every fixed pair has a vanishing dimension-weighted defect budget. -/
+theorem defectBudget_vanishing (P : SqrtDimensionMFProfile G) (g h : G) :
+    Vanishing fun n ↦ P.defectBudget n g h := by
   exact dimension_mul_error_sq_vanishing
-    (fun n ↦ Fintype.card (P.model n)) P.error P.sqrt_profile
-
-/-- The canonical slowly increasing exterior tensor exponent. -/
-noncomputable def tensorExponent (P : SqrtDimensionMFProfile G) (n : ℕ) : ℕ :=
-  slowTensorPower P.defectBudget n
-
-/-- The exterior tensor exponent tends to infinity. -/
-theorem tensorExponent_diverges (P : SqrtDimensionMFProfile G) :
-    ∀ k : ℕ, ∃ N : ℕ, ∀ n, N ≤ n → k ≤ P.tensorExponent n :=
-  slowTensorPower_diverges P.defectBudget_vanishing
-
-/-- Despite diverging, the exterior tensor exponent preserves asymptotic
-multiplicativity. -/
-theorem tensorExponent_mul_defectBudget_vanishing
-    (P : SqrtDimensionMFProfile G) :
-    Vanishing fun n ↦ P.tensorExponent n * P.defectBudget n := by
-  apply slowTensorPower_mul_vanishing
-  · intro n
-    exact mul_nonneg (Nat.cast_nonneg _) (sq_nonneg _)
-  · exact P.defectBudget_vanishing
+    (fun n ↦ Fintype.card (P.model n))
+    (fun n ↦ P.multiplicativeError n g h) (P.multiplicative g h)
 
 /-- The normalized phase-free exterior character of two profile matrices. -/
 noncomputable def exteriorCharacter (P : SqrtDimensionMFProfile G)
@@ -841,14 +823,12 @@ noncomputable def exteriorCharacter (P : SqrtDimensionMFProfile G)
     (1 + (P.map n g : Matrix (P.model n) (P.model n) ℂ) *
       (P.map n h : Matrix (P.model n) (P.model n) ℂ)ᴴ)).det)
 
-/-- **Pointwise diagonal separation.**  The one slow exponent sequence works
-simultaneously for every fixed pair of distinct group elements: its amplified
-exterior character tends to zero.  Since the input maps are already global on
-`G`, this statement is stronger than a countable diagonalization and needs no
-countability assumption. -/
-theorem exteriorCharacter_pow_vanishing (P : SqrtDimensionMFProfile G)
-    {g h : G} (hgh : g ≠ h) :
-    Vanishing fun n ↦ (P.exteriorCharacter n g h) ^ P.tensorExponent n := by
+/-- For one separated pair and one target, sufficiently large *fixed* tensor
+powers make the exterior character small at every sufficiently late model. -/
+theorem exists_exteriorCharacter_pow_le (P : SqrtDimensionMFProfile G)
+    {g h : G} (hgh : g ≠ h) {η : ℝ} (hη : 0 < η) :
+    ∃ K N, ∀ k ≥ K, ∀ n ≥ N,
+      (P.exteriorCharacter n g h) ^ k ≤ η := by
   obtain ⟨δ, hδ, Nδ, hNδ⟩ := P.separatedEventually g h hgh
   have hδ2 : δ ≤ 2 := by
     letI : Nonempty (P.model Nδ) :=
@@ -859,10 +839,8 @@ theorem exteriorCharacter_pow_vanishing (P : SqrtDimensionMFProfile G)
   have hr0 : 0 ≤ r := by dsimp only [r]; nlinarith
   have hr1 : r ≤ 1 := by dsimp only [r]; nlinarith
   have hrlt : r < 1 := by dsimp only [r]; nlinarith
-  intro η hη
   obtain ⟨K, hK⟩ := exists_pow_lt_of_lt_one hη hrlt
-  obtain ⟨NK, hNK⟩ := P.tensorExponent_diverges K
-  refine ⟨max Nδ NK, fun n hn ↦ ?_⟩
+  refine ⟨K, Nδ, fun k hk n hn ↦ ?_⟩
   letI : Nonempty (P.model n) :=
     Fintype.card_pos_iff.mp (P.modelNonempty n)
   let A : Matrix (P.model n) (P.model n) ℂ := P.map n g
@@ -870,8 +848,7 @@ theorem exteriorCharacter_pow_vanishing (P : SqrtDimensionMFProfile G)
   let W : Matrix (P.model n) (P.model n) ℂ := A * Bᴴ
   have hW : W ∈ Matrix.unitaryGroup (P.model n) ℂ :=
     mul_mem (P.map n g).2 (conjTranspose_mem_unitaryGroup (P.map n h).2)
-  have hsep : δ ≤ ‖A - B‖ :=
-    hNδ n ((le_max_left _ _).trans hn)
+  have hsep : δ ≤ ‖A - B‖ := hNδ n hn
   have hsepW : δ ≤ ‖W - 1‖ := by
     rw [opNorm_mul_conjTranspose_sub_one (P.map n h).2]
     exact hsep
@@ -880,48 +857,55 @@ theorem exteriorCharacter_pow_vanishing (P : SqrtDimensionMFProfile G)
   have hq0 : 0 ≤ P.exteriorCharacter n g h := Complex.normSq_nonneg _
   have hqle' : P.exteriorCharacter n g h ≤ r := by
     exact hqle
-  have hpowbase : (P.exteriorCharacter n g h) ^ P.tensorExponent n ≤
-      r ^ P.tensorExponent n :=
+  have hpowbase : (P.exteriorCharacter n g h) ^ k ≤ r ^ k :=
     pow_le_pow_left₀ hq0 hqle' _
-  have hexp : K ≤ P.tensorExponent n :=
-    hNK n ((le_max_right _ _).trans hn)
-  have hpowexp : r ^ P.tensorExponent n ≤ r ^ K :=
-    pow_le_pow_of_le_one hr0 hr1 hexp
-  rw [abs_of_nonneg (pow_nonneg hq0 _)]
-  exact hpowbase.trans_lt (hpowexp.trans_lt hK)
+  have hpowexp : r ^ k ≤ r ^ K := pow_le_pow_of_le_one hr0 hr1 hk
+  exact (hpowbase.trans_lt (hpowexp.trans_lt hK)).le
 
-/-- **Exterior-amplification bridge.**  A countable group with operator-norm
-MF models of dimension `dₙ`, multiplicative error
-`εₙ = o(dₙ⁻¹ᐟ²)`, and eventual pointwise operator-norm separation is
-hyperlinear. -/
-theorem isHyperlinear_of_profile [Countable G]
+/-- **Exterior-amplification bridge with the local quantifiers.**  If every
+fixed multiplication pair has operator-norm defect `o(dₙ⁻¹ᐟ²)` and every
+distinct pair is eventually separated in operator norm, then the group is
+hyperlinear.  The proof chooses one tensor exponent for the requested finite
+test set and only then moves far enough along the profile. -/
+theorem isHyperlinear_of_profile
     (P : SqrtDimensionMFProfile G) : IsHyperlinear G := by
   classical
   intro F η hη
-  have hbudget := P.tensorExponent_mul_defectBudget_vanishing
-  obtain ⟨Nmul, hNmul⟩ := hbudget (2 * η) (by positivity)
   let pairs : Finset (G × G) := F ×ˢ F
-  have hpairs : ∀ p ∈ pairs, ∃ N, ∀ n ≥ N,
-      p.1 ≠ p.2 →
-        (P.exteriorCharacter n p.1 p.2) ^ P.tensorExponent n ≤ η / 2 := by
+  have hpairs : ∀ p ∈ pairs, ∃ K N, ∀ k ≥ K, ∀ n ≥ N,
+      p.1 ≠ p.2 → (P.exteriorCharacter n p.1 p.2) ^ k ≤ η / 2 := by
     intro p hp
     by_cases hne : p.1 = p.2
-    · exact ⟨0, fun _ _ h ↦ (h hne).elim⟩
-    · obtain ⟨N, hN⟩ := P.exteriorCharacter_pow_vanishing hne
-        (η / 2) (by positivity)
-      refine ⟨N, fun n hn _ ↦ ?_⟩
-      have hnonneg : 0 ≤ (P.exteriorCharacter n p.1 p.2) ^
-          P.tensorExponent n := pow_nonneg (Complex.normSq_nonneg _) _
-      have := hN n hn
-      rw [abs_of_nonneg hnonneg] at this
-      exact this.le
-  obtain ⟨Nsep, hNsep⟩ := eventually_finset pairs _ hpairs
+    · exact ⟨0, 0, fun _ _ _ _ h ↦ (h hne).elim⟩
+    · obtain ⟨K, N, hKN⟩ := P.exists_exteriorCharacter_pow_le hne
+        (show 0 < η / 2 by positivity)
+      exact ⟨K, N, fun k hk n hn _ ↦ hKN k hk n hn⟩
+  obtain ⟨K, Nsep, hNsep⟩ :=
+    eventually_finset_two_parameters pairs _ hpairs
+  let k : ℕ := K + 1
+  have hk0 : 0 < k := by dsimp only [k]; omega
+  have hmulPairs : ∀ p ∈ pairs, ∃ N, ∀ n ≥ N,
+      k * (P.defectBudget n p.1 p.2 / 2) ≤ η := by
+    intro p hp
+    obtain ⟨N, hN⟩ := P.defectBudget_vanishing p.1 p.2
+      (2 * η / k) (by positivity)
+    refine ⟨N, fun n hn ↦ ?_⟩
+    have hbudget0 : 0 ≤ P.defectBudget n p.1 p.2 :=
+      mul_nonneg (Nat.cast_nonneg _) (sq_nonneg _)
+    have hsmall := hN n hn
+    rw [abs_of_nonneg hbudget0] at hsmall
+    have hkR : (0 : ℝ) < k := by exact_mod_cast hk0
+    have hscaled := mul_lt_mul_of_pos_left hsmall hkR
+    have hcancel : (k : ℝ) * (2 * η / k) = 2 * η := by
+      field_simp
+    rw [hcancel] at hscaled
+    nlinarith
+  obtain ⟨Nmul, hNmul⟩ := eventually_finset pairs _ hmulPairs
   let n : ℕ := max Nmul Nsep
   let Y : FiniteModel := P.model n
   letI : Nonempty Y := Fintype.card_pos_iff.mp (P.modelNonempty n)
   letI : LinearOrder Y := LinearOrder.lift' (Fintype.equivFin Y)
     (Fintype.equivFin Y).injective
-  let k : ℕ := P.tensorExponent n
   refine ⟨{
     carrier := tensorModel (doubleModel (fockModel Y)) k
     nonempty := ?_
@@ -935,25 +919,24 @@ theorem isHyperlinear_of_profile [Countable G]
     exact exteriorTensorMatrix_mem_unitaryGroup (P.map n g).2 k
   · intro g hg h hh
     rw [← exteriorTensorMatrix_mul]
+    let ε : ℝ := P.multiplicativeError n g h
     have hdef := hsDistSq_exteriorTensorMatrix_le_of_nonneg Y
       (P.map n (g * h)).2
       (mul_mem (P.map n g).2 (P.map n h).2)
-      (P.error_nonneg n) (P.multiplicative n g h) k
-    have hsmall := hNmul n (le_max_left _ _)
-    have hnonneg : 0 ≤ P.tensorExponent n * P.defectBudget n :=
-      mul_nonneg (Nat.cast_nonneg _) (mul_nonneg (Nat.cast_nonneg _) (sq_nonneg _))
-    rw [abs_of_nonneg hnonneg] at hsmall
+      (norm_nonneg _) (le_refl ε) k
+    have hp : (g, h) ∈ pairs := Finset.mem_product.mpr ⟨hg, hh⟩
+    have hsmall := hNmul n (le_max_left _ _) (g, h) hp
     calc
-      _ ≤ k * (Fintype.card Y * P.error n ^ 2 / 2) := hdef
-      _ ≤ η := by
-        dsimp only [k, Y, defectBudget] at hsmall ⊢
-        linarith
+      _ ≤ k * (Fintype.card Y * ε ^ 2 / 2) := hdef
+      _ ≤ η := by simpa [ε, defectBudget, multiplicativeError, Y,
+        mul_div_assoc] using hsmall
   · intro g hg h hh hne
     rw [hsDistSq_exteriorTensorMatrix Y (P.map n g).2 (P.map n h).2 k]
     have hp : (g, h) ∈ pairs := Finset.mem_product.mpr ⟨hg, hh⟩
-    have hchar := hNsep n (le_max_right _ _) (g, h) hp hne
+    have hchar := hNsep k (by dsimp only [k]; omega)
+      n (le_max_right _ _) (g, h) hp hne
     change 2 - η ≤ 2 - 2 *
-      (P.exteriorCharacter n g h) ^ P.tensorExponent n
+      (P.exteriorCharacter n g h) ^ k
     linarith
 
 end SqrtDimensionMFProfile
