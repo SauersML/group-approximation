@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Sofic.Asymptotics
+import NonsoficGroupsExist.Sofic.ExteriorMFProfile
 import NonsoficGroupsExist.Sofic.AlmostAutomorphism
 import NonsoficGroupsExist.PropertyT.A2System
 import NonsoficGroupsExist.PropertyT.A2ClassTwoOrthogonality
