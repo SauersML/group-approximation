@@ -6439,3 +6439,134 @@ component selection does not prove the HKE conjecture for `K`.  The route
 still has its entire first implication open.  Any proof of it for this `K`
 would already prove `K` nonsofic; it cannot be treated as a routine selection
 lemma.
+
+### Exact commutant-compression dichotomy: the minimal free-lamp face
+
+The one-number finite-level criterion has an exact ultraproduct form with no
+rate, block-multiplicity, or freeness hypothesis.  Let `Gamma<G` be the
+Kun--Thom pair, let `t` be a strict compressor,
+
+`t Gamma t^-1 < Gamma`,
+
+and let `rho:G->U(M)` be an injective homomorphism into a Connes-embeddable
+finite tracial von Neumann algebra.  Put
+
+`N=W*(rho(Gamma))` and `P=N' intersect M`.
+
+Since `rho(t)N rho(t)^*` is contained in `N`, commutants reverse the
+inclusion:
+
+`P subset rho(t) P rho(t)^*`.
+
+**Theorem (strict commutant compression criterion).**  If this inclusion is
+strict for one compressor `t`, then a hyperlinear nonsofic group exists.
+
+**Proof.**  A proper inclusion of unital von Neumann algebras contains a
+unitary in the larger algebra but not the smaller one (unitaries linearly
+span a von Neumann algebra).  Choose
+
+`y in U(rho(t)P rho(t)^*) minus P`
+
+and put `v=rho(t)^* y rho(t) in U(P)`.  Because `y` is not in
+`P=N' intersect M`, it fails to commute with some group unitary
+`rho(gamma)`, `gamma in Gamma`.  Since `y` commutes with
+`rho(t Gamma t^-1)`, this `gamma` automatically lies outside
+`t Gamma t^-1`.
+
+By the amalgam universal property there is a homomorphism
+
+`eta:H_Z=G *_Gamma (Gamma x Z) -> U(M)`
+
+which restricts to `rho` on `G` and maps the free lamp generator `k` to
+`v`.  The Kun--Thom witness has image
+
+`eta([t k t^-1,gamma])=[y,rho(gamma)] != 1`.
+
+Let `Q=eta(H_Z)`.  It is hyperlinear because it is a countable subgroup of
+the unitary group of the Connes-embeddable finite algebra `M`.  It is
+nonsofic: a sofic embedding of `Q`, composed with `eta`, is faithful on the
+copy of `G`; Kun--Thom centralizer normalization then kills the displayed
+witness, contradicting its nontriviality in `Q`.  End proof.
+
+Thus the exact unitary analogue of Kun--Thom's permutation theorem is a
+dichotomy.  In every tracial embedding one automatically has the one-sided
+inclusion above.  Either it is strict somewhere, and the main question has a
+negative answer, or every compressor normalizes the relative commutant.  If
+the compressors generate `G`, the latter says that `rho(G)` normalizes
+`rho(Gamma)' intersect M`, exactly the rigidity statement that kills the
+free lamp in permutations.
+
+The finite-level number
+
+`Delta_n=dist_2(u_n(t)^*u_n(gamma)u_n(t),W_n)^2`
+
+is a coordinate form of strictness: a nonzero ultraproduct commutator gives
+a fixed positive trace gap while the relation defect tends to zero, so the
+earlier `epsilon_n/Delta_n` condition is automatic after passing to the
+ultraproduct witness.  Conversely liftable models have equality and
+`Delta_n=0` at the invisible letters.
+
+This criterion also scopes a tempting Popa route.  A factorial relative
+commutant is not enough: a factor can contain a proper unital copy of itself,
+and factoriality does not imply
+
+`(rho(L Gamma)' intersect R^omega)' intersect R^omega = rho(L Gamma)`.
+
+The Popa factorial-commutant embedding problem remains open for general
+property-(T) factors, and even a positive solution would not by itself give
+the bicommutant identity needed to force strictness here.
+
+### Two-extension criterion: relative non-uniqueness already suffices
+
+There is a second exact formulation which can be easier to attack than a
+relative commutant directly.
+
+**Theorem (two extensions of one Gamma-model).**  Let `M` be a
+Connes-embeddable finite tracial von Neumann algebra.  Suppose
+
+`rho_1,rho_2:G->U(M)`
+
+are injective trace-preserving group homomorphisms satisfying
+
+`rho_1(gamma)=rho_2(gamma)` for every `gamma in Gamma`,
+
+and for some compressor `t` and `gamma in Gamma` one has
+
+`rho_1(t^-1 gamma t) != rho_2(t^-1 gamma t)`.
+
+Then a hyperlinear nonsofic group exists.
+
+**Proof.**  In `M_2(M)` form
+
+`rho(g)=diag(rho_1(g),rho_2(g))`
+
+and let `v=[[0,1],[1,0]]`.  The equality of the restrictions says that `v`
+commutes with `rho(Gamma)`, so it defines the free lamp.  Put
+
+`y=rho(t)v rho(t)^*`.
+
+The upper-right corner of `[y,rho(gamma)]` vanishes exactly when
+
+`rho_1(t)^* rho_1(gamma) rho_1(t)`
+` =rho_2(t)^* rho_2(gamma) rho_2(t)`,
+
+which is precisely equality of the two images of `t^-1 gamma t` (the
+restrictions agree on `gamma`).  Hence the stated disagreement makes the
+Kun--Thom witness nontrivial.  Apply the preceding image-quotient argument.
+End proof.
+
+Equivalently, it is enough to find an automorphism of a Connes-embeddable
+ambient algebra which fixes `rho(Gamma)` pointwise but moves one invisible
+conjugate `rho(t^-1 gamma t)`.  In model-theoretic language, it is enough for
+that conjugate not to belong to the definable closure of `rho(Gamma)` in a
+sufficiently homogeneous ambient model.  This observation does not prove
+the needed non-uniqueness: definable closure in tracial von Neumann algebras
+can be strictly larger than the generated von Neumann algebra.  It identifies
+the exact remaining relative rigidity question.
+
+Finally, this corrects one statement in the supplied consolidated research
+state.  A leak at one invisible letter is not enough for the older XCV
+*full-amalgamated-freeness* hypothesis, but it **is** enough for the later
+one-number/image-quotient argument.  No propagation to all reduced words is
+needed once the aim is a hyperlinear nonsofic quotient rather than
+faithfulness of the whole free-lamp group.
