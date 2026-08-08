@@ -6939,3 +6939,72 @@ base algebras help only if the full implementing representation already
 creates a nonamenable crossed-product component.  It does not rule out a
 Connes-embeddable nonamenable `N`, such as a copy of `L(Gamma)`; that is now
 the exact surviving sector.
+
+### The nonamenable part reduces to the regular Laurent sector
+
+For the explicit Kun--Thom pair, character rigidity and the invariant-ideal
+theorem reduce the surviving nonamenable sector further.  Put
+
+`R=F_q[x_1^(+-1),...,x_d^(+-1)]`,
+
+`Lambda=EL_r(R) normal G`.
+
+Assume the Lavi--Levit stable-range hypothesis
+`r > max{sr(R),2}`.
+
+**Theorem (regular-sector reduction).**  Let `sigma:G -> U(S)` be a
+homomorphism into a finite tracial von Neumann algebra, and centrally
+decompose the trace of `sigma|Lambda` into extreme characters.  Almost every
+factor character occurring in this decomposition is of exactly one of the
+following two kinds:
+
+1. it factors through a finite quotient of `Lambda`;
+2. its level ideal is zero, and it is induced from the finite center of
+   `Lambda`, hence is a central twist of the regular character of `Lambda`.
+
+Consequently every amenable factor summand is finite-dimensional, while every
+possible diffuse nonamenable summand is a regular Laurent group-factor
+summand (up to the finite central twist).  Strict commutant compression, if it
+occurs at all, must occur on the restriction of one of these regular summands
+to the polynomial subgroup `Gamma`.
+
+**Proof.**  The trace of `sigma|Lambda` is invariant under conjugation by the
+`SL_d(Z)` factor of `G`.  Uniqueness of the Choquet/central decomposition
+therefore makes its representing probability measure on extreme characters
+`SL_d(Z)`-invariant.  Lavi--Levit attach equivariantly to every extreme
+character its level ideal.  Push the representing measure to the countable
+set of ideals of `R`.  Every invariant probability measure on a countable set
+is supported on finite orbits.
+
+Let `I` lie in such a finite orbit.  If `I != 0`, the intersection of its
+finite orbit is nonzero: `R` is a domain, and the product of the orbit ideals
+is a nonzero ideal contained in that intersection.  The intersection is
+`SL_d(Z)`-invariant.  By the invariant-ideal theorem proved above it has finite
+codimension over `F_q`; hence so does `I`.
+
+For a Lavi--Levit character with level ideal `I` and kernel ideal `K`, one has
+`K*=I`, so `I/K` is finite.  If `I` has finite codimension, then `R/K` is a
+finite ring.  Corollary 1.3 therefore makes the whole character factor through
+a finite group, giving case 1.
+
+The only alternative is `I=0`.  Here the normal subgroup from which the
+character is induced is the preimage of the center modulo the zero ideal,
+namely the finite scalar center of `Lambda`.  The character vanishes off that
+center and is a central twist there.  Its GNS factor is the corresponding
+twisted regular group factor of the central quotient, giving case 2.  End
+proof.
+
+On a regular/centrally twisted Laurent summand, restriction to `Gamma` is a
+multiple of the corresponding regular/centrally twisted representation of
+`Gamma` (decompose `ell^2(Lambda)` into left `Gamma`-cosets).  Thus the
+terminal exact problem can be stated without unknown level-ideal parameters:
+
+> Construct a Connes-embeddable finite extension of one of the finitely many
+> centrally twisted regular inclusions associated with
+> `Gamma <= Lambda`, in which a compressor implementation makes the
+> `Gamma`-commutant grow strictly.
+
+The canonical group factor `L(G)` does not do this: the relevant group
+centralizers are trivial, so both commutants are scalar.  The missing object
+is therefore a nontrivial Connes-embeddable multiplicity/correspondence over
+the regular `Gamma`-factor, not a new scalar trace.
