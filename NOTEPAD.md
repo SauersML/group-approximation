@@ -6787,3 +6787,76 @@ classification alone supplies no arrow toward either equality or strictness
 of
 
 `rho(Gamma)' intersect M <= rho(t)(rho(Gamma)' intersect M)rho(t)^*`.
+
+### The exact relative-cocycle formulation
+
+The two-extension criterion is precisely a relative first-cohomology problem.
+
+Fix a homomorphism `pi:G -> U(S)` into a Connes-embeddable finite tracial
+von Neumann algebra, and let `alpha_g=Ad(pi(g))`.  A unitary `alpha`-cocycle
+is a map `c:G -> U(S)` satisfying
+
+`c(gh)=c(g) alpha_g(c(h))`.
+
+It defines a second representation
+
+`pi_c(g)=c(g)pi(g)`.
+
+**Theorem (relative cocycle certificate).**  A hyperlinear nonsofic group
+exists if there are `pi` and `c` as above such that
+
+`c(gamma)=1` for every `gamma in Gamma`,
+
+but
+
+`c(t^-1 gamma t) != 1`
+
+for some compressor `t` and `gamma in Gamma`.  Conversely, every pair of
+extensions in the two-extension theorem gives such a cocycle, after replacing
+the common ambient algebra by `M_2(S)` if necessary.
+
+**Proof.**  The cocycle equation is exactly the assertion that `pi_c` is a
+homomorphism.  Triviality on `Gamma` says that `pi_c` and `pi` agree there,
+while the displayed inequality says that they disagree on the required
+inverse-compressed element.  Apply the two-extension theorem and faithful
+tensor completion.  Conversely, for two representations `pi_1,pi_2` put
+
+`c(g)=pi_2(g)pi_1(g)^*`.
+
+This is a cocycle for `Ad(pi_1)` and has the stated relative properties.
+End proof.
+
+The universal algebraic model of this cocycle is completely concrete.  Let
+
+`A=directSum_(G/Gamma) Z`
+
+with the permutation action, and define
+
+`b(g)=delta_(g Gamma)-delta_Gamma`.
+
+Then
+
+`b(gh)=b(g)+g b(h)`,  and  `b|Gamma=0`.
+
+Moreover `b(h) != 0` exactly when `h notin Gamma`.  Exponentiating the lamp
+coordinate places this cocycle in the generalized wreath/free-lamp models.
+Thus the relative cocycle certainly exists algebraically; the whole problem
+is to realize a nonzero image of it in a Connes-embeddable finite tracial
+target.
+
+The finite-dimensional uniqueness lemma says that every unitary cocycle in
+a genuine finite-dimensional representation which is trivial on `Gamma` is
+also trivial on every `t^-1 Gamma t`.  Equivalently, the universal coset
+cocycle dies in every finite `G`-module image.  This recovers the profinite
+invisibility obstruction in first-cohomology language and proves that any
+successful cocycle must be genuinely nonliftable/order-one.
+
+The quasi-regular Gaussian and free-Bogoliubov proposals are functorial
+realisations of this same cocycle.  Their crossed products are known to be
+Connes-embeddable in the regular/amenable representation cone.  For
+`ell^2(G/Gamma)`, weak containment in the regular representation is
+equivalent to amenability of `Gamma`, which fails for the Kun--Thom pair.
+No general Connes-embeddability theorem for an arbitrary free-Bogoliubov
+crossed product was located; asserting one here would already prove the
+desired counterexample.  Hence free Gaussian functoriality is a precise
+restatement of the certificate, not a completed permanence argument.
