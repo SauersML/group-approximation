@@ -6308,3 +6308,61 @@ element.  Shulman's norm-MF theorem forces `x_n` to escape `W_n` in operator
 norm somewhere, but permits that escape on trace fraction `o(epsilon_n)`.
 Thus the new theorem isolates the exact remaining rank-blindness without any
 extraneous free-probability conditions.
+
+### Quantifier audit of Shulman Theorem 10: no profile follows
+
+The primary proof has two independent asymptotic parameters.  The outer
+parameter `k` indexes asymptotic homomorphisms
+
+`Phi_k:A *_C A -> M_4(D)`,
+
+and controls operator-norm multiplicativity in the `D`-norm, hence uniformly
+over all inner matrix coordinates.  For each fixed `k`, the value
+`Phi_k(a)` is a sequence of matrices indexed by an inner coordinate `n`, and
+the quotient map `q:D->B(H)` records only its strong operator limit as
+`n->infinity`.  Faithfulness/separation is recovered only after taking this
+inner limit.
+
+Nothing in Lemmas 7--9 or Theorem 10 bounds the inner coordinate at which a
+fixed witness becomes separated in terms of the outer multiplicativity
+error.  The proof invokes an arbitrary continuous section of a quotient and
+an arbitrary quasicentral approximate unit.  Both are qualitative.  In
+particular, strong convergence permits an operator-norm-visible defect to
+have rank one at every finite coordinate.
+
+The logical insufficiency can be stated as an exact counterarray.  The
+estimates proved in the paper have the abstract form
+
+`epsilon_k -> 0`,
+
+uniformly in `n`, and, for every fixed `k`, eventual operator-norm separation
+of the witness as `n->infinity`.  They are compatible with
+
+`epsilon_k=1/k`,
+
+`d_(k,n)=n`,
+
+and a witness which is `c`-separated from the identity on only `r(n)`
+dimensions whenever `n>=exp(k^2)`, and is unseparated before that threshold,
+where `r(n)->infinity` arbitrarily slowly (for example
+`r(n)=floor(log log(n+e^e))`).  The increasing support is compatible with
+strong convergence even to an infinite-rank operator, while its normalized
+trace gap is only of order `r(n)/n`.  Consequently, already at the smallest
+separating coordinate,
+
+`epsilon_k / Delta_(k,n) >= exp(k^2)/(k r(exp(k^2)))`,
+
+and also `epsilon_k sqrt(d_(k,n))>=exp(k^2/2)/k`.  Thus neither the
+one-number Haar profile nor Agent Two's square-root profile is a logical
+consequence of the two qualitative limits.
+
+This counterarray is not a proof that no favorable choice of Shulman lifts
+exists.  It proves the exact scoped conclusion:
+
+> the published construction supplies no dimension/error dependency from
+> which either known MF-to-hyperlinear bridge can be deduced.
+
+Any successful extraction must add a new quantitative theorem about the
+continuous section, the quasicentral approximate unit, or the normalized
+rank of the fold-kernel witness.  Reindexing or choosing the inner coordinate
+after the outer parameter does not provide it.
