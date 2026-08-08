@@ -6,6 +6,397 @@ Each part is kept verbatim under its own banner.
 
 ---
 
+# The square-root loss is optimal for representation-functor conversions (2026-08-08)
+
+The exterior-amplification criterion below loses a factor `sqrt d`.  This is
+not an artifact of the full exterior algebra.  Let
+
+`Pi : U(d) -> U(D)`
+
+be any continuous finite-dimensional unitary representation, and write
+
+`ell_Pi(U)^2 = ||Pi(U)-1||_(2,D)^2
+             = 2 - 2 Re(tr_D(Pi(U)))`.
+
+Suppose the coordinate sign changes
+
+`r_j = diag(1,...,1,-1,1,...,1)`
+
+are all detected by `ell_Pi(r_j) >= a`.  (They are conjugate, so it is enough
+to assume this for one `j`.)  If
+
+`ell_Pi(exp(i t H)) <= L |t| ||H||_op + o(|t|)`
+
+at the identity for every diagonal self-adjoint `H`, then
+
+`L >= (a/2) sqrt d`.
+
+Proof.  Restrict `Pi` to the diagonal torus and let `mu` be its normalized
+weight distribution on `Z^d`.  Thus
+
+`tr_D(Pi(diag(exp(i t_1),...,exp(i t_d))))
+    = E_mu exp(i <m,t>)`.
+
+For `r_j`,
+
+`ell_Pi(r_j)^2 = 2(1-E_mu cos(pi m_j))
+                = 4 P_mu(m_j is odd)`.
+
+Hence `P_mu(m_j != 0) >= a^2/4` for every `j`, and therefore
+`E_mu ||m||_2^2 >= d a^2/4`.  Averaging over sign vectors
+`eps in {+1,-1}^d` gives
+
+`E_eps E_mu <m,eps>^2 = E_mu ||m||_2^2`.
+
+Choose one `eps` attaining at least this average and put
+`H=diag(eps_1,...,eps_d)`, so `||H||_op=1`.  The second-order character
+expansion gives
+
+`ell_Pi(exp(i t H))^2
+   = t^2 E_mu <m,eps>^2 + o(t^2)
+   >= t^2 d a^2/4 + o(t^2)`.
+
+Comparing first-order Lipschitz constants yields the claim.
+
+Consequences.  Any universal, continuous representation-functor conversion
+from operator-norm microstates to normalized-HS microstates which detects a
+single bad eigendirection necessarily turns an operator defect `epsilon` into
+an HS defect of order at least `epsilon sqrt d`.  The full exterior-algebra
+construction has exactly this scale and is optimal up to constants.  Thus the
+weak-MF free-lamp group cannot be made hyperlinear by a rate-free functor on
+`U(d)` alone.  One must use group-specific structure: a trace-visible
+Kazhdan/central corner, a quantitative MF profile with
+`epsilon sqrt d -> 0`, or a different witness with a finite normal detector.
+
+---
+
+# Square-root MF profile implies hyperlinearity: exterior amplification (2026-08-08)
+
+There is a dimension-sensitive route from operator-norm approximations to
+normalized-HS approximations which is stronger than naive tensor
+amplification.
+
+Let `phi_n:G -> U(d_n)` be unital maps which are multiplicative on exhausting
+windows with operator-norm error `epsilon_n`, and suppose every fixed
+`g != 1` is eventually operator-norm separated from `1` by some `c_g>0`.  If
+
+`epsilon_n * sqrt(d_n) -> 0`,
+
+then `G` is hyperlinear.
+
+For `U in U(d)`, let `Lambda(U)` be its action on the full exterior algebra
+`Lambda^*(C^d)`, of dimension `2^d`, and let
+
+`R_d(U) = Ad(Lambda(U))`
+
+on the Hilbert--Schmidt space of endomorphisms of that exterior algebra.  This
+is an exact homomorphism from `U(d)` to a unitary group.  The exterior character
+identity gives
+
+`tr_norm(R_d(U)) = | tr_norm(Lambda(U)) |^2
+                  = | det((I+U)/2) |^2`.
+
+If `W` is unitary and `||W-I||_op <= epsilon`, diagonalizing `W` gives
+
+`|det((I+W)/2)|^2
+   = product_j (1 - |lambda_j-1|^2/4)
+   >= 1 - d*epsilon^2/4`.
+
+Consequently
+
+`||R_d(W)-I||_(2,norm)^2 <= d*epsilon^2/2`.
+
+Thus the multiplicative defect of `R_d o phi_n` tends to zero under the stated
+square-root profile.  Conversely, if `||U-I||_op >= c`, at least one eigenvalue
+satisfies `|lambda_j-1|>=c`, and hence
+
+`tr_norm(R_d(U)) <= 1-c^2/4`,
+`||R_d(U)-I||_(2,norm)^2 >= c^2/2`.
+
+This supplies dimension-free HS separation from operator-norm separation.
+Finally take tensor powers `l_n -> infinity` sufficiently slowly that
+`l_n*epsilon_n*sqrt(d_n) -> 0`.  The nontrivial normalized characters are
+raised to the `l_n`-th power and therefore tend to zero, while multiplicative
+defects still tend to zero.  These are hyperlinear microstates with the
+canonical trace.
+
+Application target: the explicit weak-MF nonsofic free-lamp group recorded
+below becomes a hyperlinear nonsofic group as soon as Shulman's symmetric-double
+approximations are shown to admit `epsilon_n sqrt(d_n) -> 0`.  Her qualitative
+MF theorem does not state such a rate; extracting or disproving this profile is
+now a concrete quantitative subproblem.  The condition is not cosmetic:
+exterior amplification detects one bad eigenvalue with constant trace weight,
+and the same character formula shows why a full-rank error costs the factor
+`sqrt(d)`.
+
+---
+
+# The Hilbert-ultraproduct trap in defect-localized commutant pinning (2026-08-08)
+
+There is a seductive but invalid proof that property `(T)` forces commutant
+no-growth in every hyperlinear model.  Writing `U_n(g)` for a normalized-HS
+model of a compressed pair `Gamma < G`, let `A_n` be the averaging operator of
+the adjoint maps `Ad U_n(s)` on `L^2(M_{d_n})`, and let `V_n` be its low-spectral
+subspace.  The corresponding low-spectral subspace for `t Gamma t^{-1}` can be
+defined by conjugating `A_n` with `Ad U_n(t)`, so it has **exactly the same
+finite dimension** as `V_n`.  Since `t Gamma t^{-1} <= Gamma`, it is tempting to
+claim that `V_n` is almost contained in the conjugate space, apply
+`exists_mem_close_of_almost_le`, and conclude equality of the two commutants in
+the tracial ultraproduct.
+
+The containment claim is false at exactly one interface.  A group-relation
+defect `U_n(g)U_n(h)-U_n(gh)` that tends to zero in normalized HS norm acts
+negligibly by left/right multiplication on uniformly operator-norm-bounded
+vectors (in particular, on lamp unitaries).  It need not act negligibly on an
+arbitrary normalized vector of `L^2(M_{d_n})`, whose operator norm can be of
+order `sqrt(d_n)`.  The low-spectral spaces may contain such vectors.  They
+define vectors in the Hilbert-space ultraproduct, but need not define
+equiintegrable vectors in `L^2` of the **tracial** ultraproduct.  Property `(T)`
+of the exact ultraproduct representation controls the latter and says nothing
+about the former.  Thus an adversarial high-operator-norm subspace can carry the
+finite-dimensional rank discrepancy while every bounded lamp still sees only
+small relation defects.
+
+This explains simultaneously why:
+
+* the exact finite-dimensional commutant collapse is valid;
+* the same rank argument in a hyperlinear model is not valid;
+* an SOS/Kazhdan-Laplacian certificate alone does not repair it (its evaluated
+  identity is only HS-close as a superoperator and can fail on the same
+  non-equiintegrable directions);
+* the existing pinning lemmas are correct but do not supply the missing
+  localization theorem.
+
+A valid completion of this lane must prove an additional **equiintegrable
+spectral localization** statement: the portion of the low-spectrum needed for
+the equal-rank comparison must admit uniformly bounded representatives, or the
+non-equiintegrable portion must be shown incapable of carrying the rank balance.
+Without such a statement, invoking equal dimensions is invalid.  The Bernoulli
+shift inclusion `uNu* < N` in a `II_1` factor is the calibration showing that no
+abstract trace/dimension replacement can provide it.
+
+---
+
+# Automorphic hyperlinear-action charts cannot bypass the Kun--Thom set-action obstruction (2026-08-08)
+
+Let `X` be a `G`-set and let `Delta = directSum_X C_2`, with `G` acting by
+permuting the lamp coordinates.  If the induced action
+`G -> Aut(Delta)` is a sofic `C`-action in the sense of Alekseev--Bradford,
+Definition 4.23, for **any** class of target groups `C`, then the original
+set action `G curvearrowright X` is a sofic action.
+
+For finite `F subset G` and `Z subset X`, put in the automorphic test set
+`E subset Delta` the identity, the single lamps `delta_x` for `x in Z`, and
+the products needed by the finite covariance window.  An automorphic chart
+provides a finite permutation model `phi:G -> Sym(A)` and, on a large set of
+`s in A`, injective partial homomorphisms `pi_s:E -> Lambda`.  Define
+
+`iota_s(x) = pi_s(delta_x)`.
+
+The union of these finitely many images is a finite set `B`.  Injectivity of
+`pi_s` makes each `iota_s:Z -> B` injective, and exact local covariance gives
+
+`iota_(phi(g)s)(x) = iota_s(g^{-1}x)`
+
+whenever both sides occur in the window.  These are exactly the orbit charts
+of Alekseev--Bradford Definition 4.16.  Thus the set action is sofic.
+
+For the Kun--Thom coset action `G curvearrowright G/Gamma`, this rules out the
+apparently broader Alekseev--Bradford hyperlinear-action route.  If the set
+action were sofic, their Corollary 5.5 applied to a finite lamp would make the
+corresponding wreath product sofic, contradicting the Kun--Thom centralizer
+theorem.  Consequently neither ordinary sofic orbit charts nor sofic
+hyperlinear automorphic charts can produce the desired hyperlinear model.
+Any successful construction must act directly at the tracial-microstate level
+and cannot factor through those partial-homomorphism charts.
+
+# The stable Steinberg-cover route for the binary Leavitt witness is trivial (2026-08-08)
+
+For the binary Leavitt algebra `L = L_2(F_2)`, the graph-algebra K-theory exact
+sequence has structure map `1-2 = -1` on every algebraic K-group of `F_2`.
+It is therefore an isomorphism, and the stable algebraic K-groups of `L`
+vanish, in particular `K_2(L)=0`.  Hence the stable Steinberg central extension
+does not provide a nontrivial hyperlinear cover whose central quotient could
+be `EL(L)`.  This closes the tempting route "make the Steinberg cover
+hyperlinear, then invoke central-quotient closure."  The statement follows
+from the long exact sequence for Leavitt path algebras in
+Ara--Brustenga--Cortinas, arXiv:0903.0056 (and later general formulations such
+as Gabe--Ruiz--Tomforde--Whalen, arXiv:1407.5094).  An unstable-rank kernel
+would require a separate computation, but it cannot be justified by stable
+`K_2` and is incompatible with using the stable Steinberg extension as the
+proposed cover.
+
+---
+
+# The full-web Kazhdan obstruction to the one-unitary ansatz (2026-08-08)
+
+The exact `tau`-fixed stratum observed in the Heisenberg surrogate does not
+extend to the true Kun--Thom substitution web.  More strongly, its approximate
+version is quantitatively sterile.
+
+Let `S` be a Kazhdan set for `SL_d(Z)`, with constant `kappa > 0`, and let
+`theta_s = Ad(pi(s))` be any finite-dimensional tracial unitary action.  If a
+unitary `Z` satisfies
+
+`max_{s in S} ||theta_s(Z) - Z||_2 <= epsilon`,
+
+then the Kazhdan inequality for the conjugation representation gives
+
+`dist_2(Z, Fix(theta)) <= epsilon / kappa`.
+
+For the true Laurent substitution web, every element of `Fix(theta)` lying in
+the common-web commutant commutes with all the conjugates
+`A EL_r(F_q[x_1,...,x_d]) A^{-1}`.  Those conjugates generate
+`EL_r(F_q[x_1^{+-1},...,x_d^{+-1}])`: each Laurent root
+`e_ij(c x^v)` is a substitution conjugate of a positive-monomial root.  Hence
+the fixed algebra commutes with every invisible Laurent letter `lambda(g)`.
+If `Y` is the fixed-point projection of `Z`, then
+
+`||[Z, lambda(g)]||_2 <= 2 ||Z-Y||_2 <= 2 epsilon / kappa`.
+
+Consequently
+
+`||Z lambda(g) Z* - lambda(g)||_2 <= 2 epsilon / kappa`,
+
+so conditional expectation onto the Laurent/positive model algebra has norm
+at least `1 - 2 epsilon/kappa`.  In particular, any asymptotically exact
+one-unitary coboundary construction has absorption tending to `1`, never the
+order-one escape required by the hyperlinear counterexample route.
+
+Scope: this kills the global coboundary/joint-fixed ansatz only.  It does not
+kill genuinely non-coboundary, window-dependent approximate 1-cocycles
+`D_A` whose defect tends to zero without admitting a common transfer unitary
+`Z`.  That non-coboundary sector is the actual remaining gauge problem.
+
+# A monolithic finite-simple-lamp reduction (2026-08-08)
+
+For a finite nonabelian simple group `K`, put
+
+`B = directSum_(G/Gamma) K`,  `W = B semidirect G`.
+
+If the coset action is faithful and transitive, then `B` is a minimal nonzero
+normal subgroup of `W` and `C_W(B)=1`.  Indeed, a nonzero normal subgroup of
+`B` contains one simple coordinate, and transitivity supplies every
+coordinate.  An element centralizing `B` has trivial permutation part by
+faithfulness and trivial base part because `Z(K)=1`.
+
+It follows that every nontrivial normal subgroup of `W` meets `B`: if
+`N cap B = 1`, then `[N,B] <= N cap B`, so `N <= C_W(B)=1`.  Therefore any
+homomorphism from `W` to a tracial ultraproduct which is nontrivial on one
+lamp is automatically faithful.  The Kun--Thom centralizer argument proving
+nonsoficity works verbatim for every nontrivial lamp group, not only `Z/2`.
+Thus a negative solution can equivalently be obtained by constructing just
+one trace-visible lamp in this finite-simple-lamp generalized wreath product;
+canonical-trace control on every group word is unnecessary.  What remains is
+still substantive: no current operator-norm or Hilbert--Schmidt construction
+is known to force that one lamp to occupy positive normalized rank.
+
+---
+
+# Kazhdan-corner extraction for simple groups (2026-08-08)
+
+**Theorem.** Let `J` be a nontrivial simple group with Kazhdan property
+`(T)`. If `J` is weak-MF in the operator-norm sense, then `J` is
+hyperlinear.
+
+**Proof.** Weak-MF gives an injective homomorphism
+
+`rho:J -> U(B)`,  `B=(product_n M_(d_n))/(directSum_n M_(d_n))`,
+
+where the ideal is the operator-norm null ideal. By the universal property,
+`rho` extends to a unital star-homomorphism
+`Phi:C*_max(J)->B`. Let `p` be the central Kazhdan projection and put
+`q=1-p`. Since `u_g p=p` for every `g`, `Phi(q)` cannot vanish: otherwise
+all `rho(g)` would equal one, contradicting injectivity. Put `z=Phi(q)` and
+work in the nonzero unital corner `zBz`. The elements
+
+`psi(g)=z rho(g)`
+
+form a representation of `J` in `U(zBz)`. It is nontrivial; if every
+`psi(g)=z`, then again `rho(g)=Phi(p)+z=1` for every `g`.
+
+Lift `z` to projections `z_n` of ranks `r_n>0` and lift the `psi(g)` to
+unitaries in `z_n M_(d_n) z_n = M_(r_n)` (polar correction changes the
+lifts by operator-norm null sequences). Multiplicative defects tend to zero
+in operator norm and hence in normalized Hilbert--Schmidt norm on the
+`r_n`-corners.
+
+For a finite Kazhdan set `S`, the positive Kazhdan Laplacian
+
+`Delta=sum_(s in S) (u_s-1)*(u_s-1)`
+
+satisfies `q Delta q >= kappa q` in `C*_max(J)` for some `kappa>0`.
+Applying `Phi`, lifting, and taking the normalized corner traces gives
+
+`liminf sum_(s in S) ||psi_n(s)-1||_(2,r_n)^2 >= kappa`.
+
+Thus the resulting homomorphism from `J` into the tracial ultraproduct of the
+`M_(r_n)` is nontrivial. Its kernel is a proper normal subgroup of the
+simple group `J`, hence trivial. This is a hyperlinear embedding. End proof.
+
+This theorem defeats rank blindness by changing the normalization to the
+Kazhdan corner and then using the spectral-gap inequality to force positive
+trace mass there. It does **not** apply to the weak-MF Kun--Thom free-lamp
+group below: that amalgam is neither simple nor Kazhdan. It does apply to the
+simple Kazhdan Leavitt witness `EL_4(L_(F_2)(1,2))` conditional on the single
+presently open certificate that this group is weak-MF. No 2026 permanence
+theorem found in the audit supplies that certificate; Shulman's symmetric
+double theorem supplies weak-MF for the free-lamp amalgam, not for the
+Leavitt elementary group.
+
+### The leaf-truncation weak-MF ansatz has a uniform norm floor
+
+Let `H_N` be the span of binary words of lengths at most `N`, and compress the
+standard Leavitt/Fock creation and deletion operators to `H_N`.  Write the
+compressions as `S_i,T_i`.  On every word of length `N`, `S_i` vanishes, so
+
+`||(T_i S_i)-I||_op=1`.
+
+On the vacuum vector both deletion operators vanish, so also
+
+`||S_0 T_0+S_1 T_1-I||_op=1`.
+
+The bad spaces have small relative rank, but operator norm sees them with
+full strength.  Direct sums, amplification, and moving the boundary to a
+deeper leaf preserve this norm-one defect.
+
+There is a representation-independent bounded version.  Suppose
+`S_0,S_1,T_0,T_1` are square matrices of norm at most `M>=1` and
+
+`||T_0 S_0-I|| <= eps`, `||T_1 S_1-I|| <= eps`,
+`||T_0 S_1|| <= eps`.
+
+If `eps<1`, the first relation makes `S_0` invertible and gives
+
+`||T_0 y|| >= ((1-eps)/M)||y||`
+
+for every `y`: write `y=S_0x`, use
+`||T_0S_0x|| >= (1-eps)||x||`, and
+`||y||<=M||x||`.  The second relation similarly gives
+`||S_1v|| >= ((1-eps)/M)||v||`.  Hence for a unit vector `v`,
+
+`eps >= ||T_0S_1v|| >= (1-eps)^2/M^2`.
+
+Equivalently
+
+`eps >= ((M^2+2)-sqrt((M^2+2)^2-4))/2`.
+
+For contractions this is `(3-sqrt(5))/2`.  Thus no uniformly bounded
+approximate representation of the Leavitt generators can have vanishing
+operator-norm defect, even before the completeness relation is imposed.
+
+This closes the proposed Fock/leaf finite-section construction of weak-MF for
+`EL_4(L_(F_2)(1,2))`.  It does not yet prove that the *group* is not weak-MF:
+an arbitrary unitary microstate of the elementary group assigns unitaries to
+root elements, not bounded operators `S_i,T_i`.  To promote the norm floor to
+a group obstruction one would need a uniformly bounded interpretation of the
+Leavitt generators inside a fixed finite portion of the maximal group
+C-star-algebra, compatible with the Steinberg commutator multiplication.
+No such interpretation is presently established, and the existence of
+exotic group microstates remains exactly the weak-MF certificate.
+
+---
+
 # An explicit weak-MF nonsofic group (2026-08-08)
 
 Let `Γ < G` be any of the residually finite Kazhdan infranormal pairs in
@@ -51,6 +442,444 @@ does not extend to an automorphism of `SL₂(ℤ)`; it is a twisted amalgam, not
 the identical symmetric double in Shulman's automatic theorem.  Shulman's
 general compatibility criterion sends the problem back to the Iwahori
 compatibility question rather than removing it.
+
+## Quantitative audit of Shulman's double (2026-08-08)
+
+This section is deliberately confined to the Kun--Thom free lamp
+
+`H = G *_Γ (Γ × ℤ)`
+
+and does not concern Thom's central free lamp.  It records what Shulman's
+proof does and does not provide toward the proposed square-root MF profile.
+
+### The exact rate demanded by Lemma 9
+
+In Shulman's notation, write `X_tilde` for the cut-down lift and put, on the
+finite set being amalgamated,
+
+`a = max_i max(||[X_tilde,A_i]||, ||[X_tilde*,A_i]||)`,
+
+`b = max_i max(||[X_tilde X_tilde*,A_i]||,
+               ||[X_tilde* X_tilde,A_i]||)`.
+
+For the Halmos unitary
+
+`V = [[X_tilde, sqrt(1-X_tilde X_tilde*)],
+      [sqrt(1-X_tilde* X_tilde), -X_tilde*]]`,
+
+Pedersen's inequality gives the explicit estimate
+
+`||[diag(A_i,A_i),V]|| <= a + (5/4) sqrt(b)`.
+
+Consequently, at a selected matrix coordinate of dimension `d`, this step
+has the square-root profile only if
+
+`sqrt(d) a -> 0` and `d b -> 0`.
+
+The published proof supplies only qualitative convergence of `a` and `b`.
+The quasicentral approximate-unit choice in Lemma 9 gives no coordinate or
+rank modulus, the continuous section in Lemma 7 gives no Lipschitz modulus,
+and Theorem 4 selects a finite coordinate from strong convergence with no
+bound on that coordinate.  In the paper's outer parameter `k`, the displayed
+amalgamation error is `1/k`; after choosing an inner coordinate `n_k`, the
+desired estimate would require `n_k = o(k^2)` (as well as the analogous
+bounds for the other asymptotic-homomorphism defects).  No such estimate is
+present in the proof.
+
+This non-extraction is formal, not merely an absence of bookkeeping.  At
+the group-C*-algebra level every algebra in this application has the trivial
+character.  For each outer index `k`, replace the first `R_k` matrix
+coordinates of the lifted maps by the corresponding exact trivial
+representation, leaving the tail unchanged.  A finite-prefix change does
+not alter the strong limit under `q`; the new prefix has zero multiplicative
+and amalgamation defect, so none of the norm estimates worsens; but no
+operator-norm separating coordinate can occur before `R_k`.  Since `R_k`
+is arbitrary (take, for example, `R_k = k^4`), the proof's stated data are
+compatible with arbitrarily bad values of `sqrt(n_k)/k`.  Thus an
+`n_k = o(k^2)` conclusion requires genuinely new quantitative structure,
+not a different diagonal reading of the published proof.
+
+There is also a harmless constant slip in the displayed proof of Lemma 9:
+from `b <= epsilon^2/4`, Pedersen gives `(5/4)sqrt(b) <= 5 epsilon/8`, not
+`< epsilon/2` as printed.  Replacing that target by
+`b < 4 epsilon^2/25` (or shrinking all preliminary targets once more) repairs
+the qualitative theorem.  It does not supply a dimension modulus.
+
+### Finite-quotient profile obstruction
+
+The missing modulus cannot be obtained from the natural residual-finite
+specialization of the construction.
+
+**Lemma (Kazhdan square-root barrier for an exact ambient sector).**  Let
+`S` be a Kazhdan generating set for `Γ`, with Kazhdan constant `kappa`, and
+assume the compressor/infranormal hypotheses under which the already-proved
+finite-dimensional `commutant_no_growth` theorem holds.  Let
+`π : G -> U(d)` be a genuine representation and `V in U(d)`.  Put
+
+`epsilon = max_{s in S} ||[V,π(s)]||_op`.
+
+For the free-lamp witness
+
+`W = [π(t) V π(t)^*, π(gamma)]_grp`,
+
+one has
+
+`||W-1||_(2,normalized) <= 2 epsilon / kappa`.
+
+Consequently, if `||W-1||_op >= alpha`, then
+
+`epsilon sqrt(d) >= alpha kappa / 2`.
+
+**Proof.**  Apply property (T) to the genuine adjoint representation of
+`Γ` on `M_d` with its normalized Hilbert--Schmidt inner product.  Since
+operator norm dominates normalized Hilbert--Schmidt norm, there is
+`X in π(Γ)'` with `||V-X||_2 <= epsilon/kappa`.  The
+finite-dimensional commutant-no-growth theorem says that this commutant is
+`π(G)`-invariant.  Hence `π(t)Xπ(t)^*` still commutes with
+`π(gamma)`, and
+
+`||W-1||_2
+ = ||[π(t)Vπ(t)^*,π(gamma)]||_2
+ <= 2 ||V-X||_2
+ <= 2 epsilon/kappa`.
+
+On the other hand, for a `d`-dimensional matrix,
+`||Y||_2 >= ||Y||_op/sqrt(d)`.  Apply this to `Y=W-1`.  ∎
+
+Thus **no Shulman specialization in which the `G`-sector is represented
+exactly** can satisfy `epsilon sqrt(d) -> 0` while keeping the witness
+operator-norm visible.  This covers all literal finite-quotient models and
+shows that a favorable profile, if it exists, must spend defect inside the
+ambient `G`-sector itself; merely adding Shulman's almost-central unitary to
+exact residual-finite models cannot work.
+
+There is a quantitative version that identifies exactly how exotic that
+ambient defect must be.
+
+**Theorem (square-root profile forces ambient Frobenius instability).**
+Let `rho_n` be operator-norm microstates of the Kun--Thom free lamp, of
+dimensions `d_n`, with multiplicative defect `eta_n`, and assume the fixed
+free-lamp witness has operator-norm separation at least `alpha > 0`.  If
+
+`eta_n sqrt(d_n) -> 0`,
+
+then the restrictions `rho_n|_G`, viewed in the *unnormalized* Frobenius
+metric, stay a fixed positive distance from every genuine `d_n`-dimensional
+representation of `G` on a fixed finite window.  More precisely, for a
+window containing a Kazhdan set of `Γ` and the witness letters, there is
+`C = C(kappa,window)` such that for every genuine representation `pi_n`,
+
+`alpha <= C (sqrt(d_n) eta_n
+             + max_{g in window} ||rho_n(g)-pi_n(g)||_F)`.
+
+In particular, a square-root-profile realization proves that this explicit
+residually finite Kazhdan ambient group `G` is not Frobenius stable.
+
+**Proof.**  Write `V_n` for the lamp.  The relators `[V_n,rho_n(s)] = 1`
+for a Kazhdan set `s in S_Γ` hold in unnormalized Frobenius norm up to
+`O(sqrt(d_n) eta_n)`.  If `rho_n|_G` is `theta_n`-close in Frobenius norm to
+a genuine `pi_n`, then
+
+`max_s ||[V_n,pi_n(s)]||_F
+  <= O(sqrt(d_n) eta_n + theta_n)`.
+
+Property (T), applied to the genuine adjoint representation of `pi_n(Γ)`
+on the Frobenius Hilbert space `M_{d_n}`, puts `V_n` within
+`O((sqrt(d_n) eta_n+theta_n)/kappa)` of `pi_n(Γ)'`.  Exact
+finite-dimensional commutant-no-growth makes that commutant invariant under
+`pi_n(G)`, so the witness formed with `pi_n` is Frobenius-close to the
+identity by the same bound.  Replacing its finitely many `pi_n` letters by
+the `rho_n` letters and comparing with `rho_n` of the witness costs only
+`O(sqrt(d_n) eta_n+theta_n)`.  Finally, operator norm is bounded by
+unnormalized Frobenius norm, so witness separation gives the displayed lower
+bound.  ∎
+
+**Conditional corollary.**  If this particular ambient `G` is Frobenius
+stable (even only locally on the fixed window above), then Shulman's
+symmetric-double approximations cannot have the square-root MF profile.
+Conversely, producing the desired profile necessarily produces a concrete
+Frobenius-instability sequence for `G`.  Existing Frobenius-stability
+theorems for higher-rank semisimple lattices and for 2-Kazhdan groups do not
+currently apply to
+
+`EL_r(F_q[x_1^{+-1},...,x_d^{+-1}]) semidirect SL_d(Z)`.
+
+Thus the surviving model-production problem is no longer merely "choose the
+Shulman diagonal faster": it is to construct an operator-norm asymptotic
+representation of this `G` whose unnormalized-Frobenius defect tends to zero
+but which remains Frobenius-far from every genuine representation, while
+simultaneously carrying the separating lamp.
+
+The regular finite-quotient subclass satisfies a still stronger logarithmic
+barrier:
+
+**Lemma (regular finite-quotient obstruction).**  Let `S` be a fixed finite
+symmetric generating set of the Kazhdan group `Γ`.  Suppose `t` compresses
+`Γ`, so `t Γ t^-1 <= Γ`, and choose `gamma in Γ` with
+`t^-1 gamma t` outside `Γ`.  There is a constant `C_Γ` such that the
+following holds.  Let `q : G -> Q` be any finite quotient, let `U` be the
+left-regular representation of `Q` (or any multiple of it) on dimension
+`d`, and let `V` be a unitary.  Put
+
+`delta = max_{s in S} ||[V,U(q(s))]||`.
+
+If the free-lamp witness remains operator-norm visible,
+
+`||[U(q(t)) V U(q(t))^-1, U(q(gamma))]_grp - 1|| >= alpha`,
+
+then
+
+`delta >= alpha / (C_Γ (1 + log d))`.
+
+In particular, for fixed `alpha > 0`,
+
+`delta sqrt(d) -> infinity`.
+
+**Proof.**  Finiteness upgrades the compressed inclusion to equality:
+
+`q(t) q(Γ) q(t)^-1 = q(Γ)`.
+
+Thus `h = q(t)^-1 q(gamma) q(t)` belongs to `q(Γ)`.  Write `h` as an
+`S`-word of length `L`.  Telescoping commutators gives
+
+`||[V,U(h)]|| <= L delta`.
+
+Conjugating the displayed witness by `U(q(t))` shows that its distance from
+one is exactly `||[V,U(h)]||`.  Property (T) makes all finite Cayley graphs
+`Cay(q(Γ),q(S))` a uniform expander family; the elementary ball-growth
+bound for an expander gives
+
+`L <= diam Cay(q(Γ),q(S)) <= C_Γ (1 + log |q(Γ)|)`.
+
+For the regular representation (and its multiples), `|q(Γ)| <= d`.
+Combining the inequalities proves the claim.  (If the image of `Γ` is
+bounded, the same argument gives a fixed positive lower bound instead.)
+
+For a standard local almost-homomorphism whose pairwise multiplicativity
+error is `epsilon`, the relations `zs=sz` give
+`||[V,U(q(s))]|| <= 2 epsilon`; evaluating the fixed eight-letter witness
+adds only a fixed multiple of `epsilon`.  Hence the same conclusion holds,
+up to an inessential constant, with `epsilon` in place of `delta`.
+
+**Consequence.**  Shulman's theorem remains a valid qualitative weak-MF
+certificate, but its obvious RF/regular implementation provably has the
+wrong quantitative profile: its error is at best logarithmic in dimension,
+not `o(d^-1/2)`.  Any square-root-profile realization extracted from
+Shulman's abstract proof would therefore have to use genuinely non-liftable
+inner coordinates and a new quantitative modulus for both the
+quasicentral-unit step and the strong-limit coordinate selection.  Those
+data are not consequences of the published construction.
+
+### Final answer for the assigned Shulman-profile audit
+
+There are three logically different conclusions, and they should not be
+blurred together.
+
+1. **The primary proof has no extractable dimension/error rate.**  Its two
+   continuous-section uses, its quasicentral approximate-unit choice, and
+   the final strong-limit coordinate choice are qualitative.  The arbitrary
+   finite-prefix delay above proves that no rate can be inferred from those
+   data, even after repairing the harmless `5/8` constant slip.
+2. **The natural exact-factor realization has the wrong rate.**  Whenever
+   the copy of the Kun--Thom ambient group `G` is represented genuinely (in
+   particular, by finite quotients), property `(T)` plus finite-dimensional
+   commutant no-growth gives `epsilon * sqrt(d) >= c`; for regular quotient
+   models the stronger estimate `epsilon >= c/(1+log d)` holds.
+3. **An exotic realization is not ruled out, but it would be new
+   mathematics not supplied by Shulman.**  The displayed Frobenius
+   inequality shows that such a realization must keep the `G`-restriction a
+   fixed unnormalized-Frobenius distance from every genuine representation.
+   Thus the requested profile is at least as hard as producing an explicit
+   Frobenius-instability sequence for
+   `EL_r(F_q[x_1^{+-1},...,x_d^{+-1}]) semidirect SL_d(Z)`, coupled to the
+   lamp.  No cited stability or instability theorem currently decides this
+   group.
+
+This is a negative determination of the *published construction as a source
+of the square-root profile*, not a proof that no square-root-profile models
+of the free-lamp group exist.
+
+### Frobenius-stability status of the Kun--Thom ambient group (2026-08-08)
+
+Fix
+
+`R = F_q[x_1^{+-1},...,x_d^{+-1}]`,
+`N = EL_r(R)`, `Q = SL_d(Z)`, and `G = N semidirect Q`,
+
+with `d >= 4` and `r >= d+3`.  The Laurent ring is noetherian of Krull
+dimension `d`.  Weibel, *The K-book*, III.5.5, records that `St_r(R)` is the
+universal central extension of `EL_r(R)` for `r>=5` and that
+`K_2(r,R)=K_2(R)` for `r>=d+3`; hence
+`H_2(EL_r(R),Z)=K_2(R)` in the stated range.  Kun--Thom Theorem E allows
+arbitrary `r >= 3`, so choosing this stable-range instance loses nothing for
+the existence problem.
+
+**Normalization.**  Here Frobenius norm means the *unnormalized* norm
+
+`||A||_F = Tr(A^* A)^(1/2) = sqrt(matrix_dimension) ||A||_2`.
+
+A finitely generated group `L` is Frobenius stable if every sequence of maps
+`phi_n : L -> U(k_n)` satisfying
+
+`||phi_n(x) phi_n(y) - phi_n(xy)||_F -> 0`
+
+for every fixed `x,y` is pointwise Frobenius-close to genuine
+homomorphisms `pi_n : L -> U(k_n)`.  This is the normalization in
+Bader--Lubotzky--Sauer--Weinberger.  Their cited cohomological criterion is
+one-way: `[T_2]`, i.e. `H^1(L,V)=H^2(L,V)=0` for every unitary coefficient
+module `V`, implies Frobenius stability.  The disappearance of a scalar
+class by itself does not imply stability.
+
+**Theorem (exact LHS reduction).**  For the stable-range Kun--Thom ambient
+group above:
+
+1. `H^2(G,C)=0` for trivial complex coefficients.
+2. For every unitary `G`-module `V`, put `U=V^N` and
+   `W=U^perp`.  Then `H^2(G,U)=0`, and the Lyndon--Hochschild--Serre
+   spectral sequence gives a natural isomorphism
+
+   `H^2(G,W) = H^2(N,W)^Q`.
+
+   Consequently
+
+   `H^2(G,V) = H^2(N,(V^N)^perp)^Q`.
+
+3. Since `G` is Kazhdan, it follows that `G` has `[T_2]` exactly when
+
+   `H^2(N,W)^Q = 0`
+
+   for every unitary `G`-module `W` with `W^N=0`.  In particular, property
+   `(T_2)` for `N` is a sufficient (strictly stronger) missing theorem.
+
+**Proof.**  The elementary group `N` is perfect.  In the stable range its
+Schur multiplier is `K_2(R)`.  Iterating the fundamental theorem for the
+regular Laurent ring gives
+
+`K_2(R) = K_2(F_q) + K_1(F_q)^d + K_0(F_q)^(choose(d,2))
+         = (F_q^x)^d + Z^(choose(d,2))`.
+
+After tensoring with `C`, the free summand is naturally
+`exterior^2 C^d`, generated by the Steinberg symbols `{x_i,x_j}`; monomial
+substitution by `Q` is the exterior-square standard action.  Therefore
+
+`H^2(N,C)^Q = Hom_Q(exterior^2 C^d,C) = 0`.
+
+Also `Q=SL_d(Z)` has `[T_2]` for `d>=4`: it is the non-Hermitian real
+higher-rank lattice case of Bader--Sauer as used by
+Bader--Lubotzky--Sauer--Weinberger.  In the LHS spectral sequence for
+`1 -> N -> G -> Q -> 1`, perfectness gives `H^1(N,C)=0`; the only three
+total-degree-two terms are consequently zero, proving (1).
+
+For a general unitary `V`, normality of `N` makes `V^N` and its orthogonal
+complement `G`-invariant.  On `U=V^N`, the universal-coefficient theorem
+and perfectness give
+
+`H^2(N,U) = Hom(K_2(R),U)`.
+
+The torsion summand has no homomorphism to the additive Hilbert space.  A
+`Q`-fixed homomorphism on the free summand would give a `Q`-equivariant
+linear map `exterior^2 C^d -> U`.  If nonzero, irreducibility and Zariski
+density make it injective, and pulling back the Hilbert norm would
+unitarize the exterior-square standard representation.  This is impossible:
+a nontrivial elementary unipotent has unbounded powers, whereas a unitary
+operator does not.  Hence `H^2(N,U)^Q=0`; together with `[T_2]` for `Q`
+and `H^1(N,U)=0`, the LHS total-degree-two terms vanish and
+`H^2(G,U)=0`.
+
+On `W`, one has `H^0(N,W)=0`.  Property `(T)` of `N` gives
+`H^1(N,W)=0`.  Thus the only surviving total-degree-two LHS term is
+`E_2^(0,2)=H^2(N,W)^Q`; it has neither a nonzero incoming nor outgoing
+differential, proving (2).  Property `(T)` of `G` already supplies degree
+one vanishing, giving (3).  ∎
+
+**Exact status and consequence for Shulman's profile.**  The calculation
+unconditionally kills the scalar `K_2` obstruction; it does **not** prove
+Frobenius stability.  Existing higher-Kazhdan theorems for semisimple
+lattices genuinely give `[T_2]` for `Q`, but do not give the required
+coefficient-wise invariant vanishing for the universal Laurent elementary
+kernel `N`.  The explicit open subproblem left by current theory is:
+
+`For every unitary G-module W with W^N=0, is H^2(N,W)^Q zero?`
+
+An affirmative answer makes `G` Frobenius stable by the cited criterion and,
+by the square-root-profile obstruction above, rules out the desired
+Shulman profile.  A negative answer only supplies a cohomology class; since
+the stability criterion is not an equivalence, it does not by itself
+construct Frobenius instability or the free-lamp profile.  Thus current
+theory decides neither stability nor instability of this `G`, and this lane
+ends at the displayed coefficient-wise problem.
+
+### Why the 2026 strong-MF amalgam theorem does not bypass the obstruction
+
+Gao--Kunnawalkam Elayavalli--Manzoor--Patchell, arXiv:2603.24502, prove that
+
+`G *_H (H x L)`
+
+inherits their strong reduced-norm `MF/PMF/PFF` properties when `H` is
+separable in `G` (an intersection of finite-index subgroups), under their
+other exactness and residual-finiteness assumptions.  This theorem has
+exactly the free-lamp shape, but its separability hypothesis fails for the
+Kun--Thom pair for a structural reason.  Infranormality implies that the
+image of `Gamma` is normal in every finite quotient of `G`; hence the
+relative profinite closure of `Gamma` contains its normal closure.  Since
+`Gamma` is not normal, that closure is strictly larger than `Gamma`, so
+`Gamma` is not separable in `G`.
+
+The proof of arXiv:2603.24502 makes the failure transparent: it approximates
+using finite-index subgroups whose intersection is the amalgam.  For the
+Kun--Thom pair their intersection can only reach the larger profinite
+closure, so the limit identifies the invisible cosets and kills the
+free-lamp commutator witness.  Thus this newer strong-convergence theorem
+confirms, rather than removes, the same profinite-absorption obstruction.
+
+### Thom's central quotient is a separate route
+
+For clarity, the preceding conclusions concern only the Kun--Thom free lamp
+
+`G *_Gamma (Gamma x Z)`.
+
+Thom's banked-hyperlinear group is instead de Cornulier's
+
+`K = K_0(Z[1/p]) / Z`,
+
+where `K_0` is the four-block unipotent-by-`SL_3 x SL_3` matrix group and
+`Z` is the integral subgroup of its additive centre.  The non-Hopfian map is
+induced by the *outer* `GL_1`-scaling of the top-right block, not by an
+internal compressor in `K`.  The most obvious Kazhdan subgroup
+`K_0(Z)/Z` has algebraic centralizer equal to the surviving central group
+`Z[1/p]/Z`, which is normal.  Hence Kun--Thom centralizer normality gives no
+contradiction for this subgroup.  Natural Levi subgroups have larger
+centralizers, but their compression semigroups do not generate the
+unipotent radical.  No direct nonsoficity proof of `K` follows from that
+criterion.
+
+There is a general algebraic reason for this failure, with an essential
+component-group qualification.  Let an ambient
+finitely generated group be Zariski dense in a finite-dimensional algebraic
+group `A`, and let `H` be a subgroup.  If `g H g^-1 <= H`, then
+
+`g Zcl(H) g^-1 <= Zcl(H)`.
+
+Dimension alone would not imply equality for disconnected algebraic
+groups.  Here conjugacy gives both equal dimension and isomorphic component
+groups.  Under the inclusion, the identity components have equal dimension,
+so connectedness forces them to agree; the induced injection of the two
+finite component groups has equal cardinality and is therefore onto.  The
+inclusion is consequently equality.  Thus the compression semigroup of `H` lies in the
+normalizer of `Zcl(H)`.  If it generates the ambient group, Zariski density
+forces `Zcl(H)` to be normal in `A`.  Consequently its algebraic centralizer
+is normal, and
+
+`C_G(H) = G intersection C_A(Zcl(H))`
+
+is normal in `G`.  Hence Kun--Thom centralizer normality is automatically
+satisfied for every infranormal subgroup whose behavior is detected by a
+finite-dimensional algebraic envelope.  The explicit Kun--Thom Laurent
+semidirect products evade this observation because the substitution action
+does not admit such a fixed finite-dimensional algebraic envelope.  A
+centralizer attack on Thom's `K` would likewise need a genuinely
+non-algebraic subgroup; the obvious arithmetic and Levi candidates cannot
+work.
 
 ---
 
@@ -4232,3 +5061,476 @@ red in between.  `docs/CLAIM_MAP.md` is generated, so it follows on its own.
 | `KOne/` | `app:K1` | 59 |
 | `Covers/` | `sec:fp` | 2 |
 | `Endpoint/` | `sec:intro` | 3 |
+
+---
+
+## 2026-08-08 — Thom's monomial models: exact permutationization is impossible
+
+Let
+
+\[
+  K=K_0(\mathbf Z[1/p])/\mathbf Z
+\]
+
+be Thom's explicit hyperlinear group.  In the second proof of Proposition 3.2
+of Thom (arXiv:0810.2180), a finite window with denominators at most `p^k` is
+modelled through `K_0(Z/qZ)`, where `(p,q)=1`.  Put
+
+\[
+  c_q=\pi_q(1/p^k),\qquad z_q=\pi_q(1)
+\]
+
+in the cyclic central subgroup `Z/qZ`.  Then
+
+\[
+  c_q^{p^k}=z_q,\qquad c_q^q=1.
+\]
+
+### Fixed-support lemma
+
+If `s` is a permutation with `s^q=1` and `(a,q)=1`, then
+
+\[
+  \operatorname{Fix}(s^a)=\operatorname{Fix}(s).
+\]
+
+Indeed every cycle length `ell` of `s` divides `q`, hence `(a,ell)=1`; the
+power `s^a` acts transitively on exactly the same cycles as `s`.  Equivalently,
+choose `b` with `ab = 1 mod q`; then `s=(s^a)^b`, giving both fixed-set
+inclusions.
+
+### Consequence for Thom's finite models
+
+For every permutation representation
+
+\[
+  \rho:K_0(\mathbf Z/q\mathbf Z)\longrightarrow \operatorname{Sym}(X),
+\]
+
+the permutations `rho(c_q)` and `rho(z_q)` have exactly the same fixed points:
+
+\[
+  \operatorname{Fix}(\rho(c_q))
+   =\operatorname{Fix}(\rho(c_q)^{p^k})
+   =\operatorname{Fix}(\rho(z_q)).
+\]
+
+This remains true after arbitrary direct sums, inductions, product actions, or
+any other construction that is still an exact permutation representation of
+the finite quotient.  It applies in particular to the exact wreath-product
+untwisting of Thom's finite-order monomial phases.
+
+But a sofic approximation of `K` needs opposite asymptotics:
+
+* `z_q` represents the integer `1`, which is the identity in `K`, so its
+  fixed-point density must tend to `1`;
+* `c_q` represents `1/p^k + Z`, a nontrivial central element of `K`, so its
+  fixed-point density must tend to `0`.
+
+Thus **no exact/functorial permutationization of Thom's finite quotient models
+can prove that `K` is sofic**.  Removing the phase necessarily requires losing
+exact multiplicativity at the growing relation `c_q^q=1`.  This is stronger
+and more specific than the general pointwise-rounding obstruction in
+`Sofic/NoRounding.lean`: it rules out every exact permutation representation of
+the whole finite quotient, not merely pointwise maps from the circle.
+
+### Exact remaining construction problem
+
+One must perform `q`-scale cycle surgery: replace the coprime-order cycles of
+`c_q` by approximately `p^k`-torsion cycles so that
+
+\[
+  c^{p^k}\approx 1,\qquad d_{\rm Hamm}(c,1)\approx1,
+\]
+
+while preserving the multiplication table of the fixed `K`-window.  The long
+relation `c^q=1` is not in a fixed window as `q -> infinity`, so the fixed-set
+lemma does not itself obstruct such a deliberately inexact construction.
+What has to be controlled is the central cocycle of the regular action: after
+replacing its `Z/qZ`-valued phases by `Z/p^kZ`-valued shifts, the cocycle law
+must fail on only `o(1)` of the base points.  This is the precise phase-surgery
+problem; exact untwisting is now closed.
+
+### Route audit
+
+This is a rigorous obstruction/concentration result, not a solution of the
+main problem.  It closes the sublane "convert Thom's projective/monomial
+microstates without losing multiplicativity" and identifies the only escape:
+controlled failure of the growing finite-order relation.
+
+Subjective credence on `hyperlinear => sofic`: **47% true / 53% false**.
+Audited progress on this phase-conversion lane: **about 70%** (the exact route
+is closed; the inexact cycle-surgery problem remains).  Audited progress toward
+the main open problem: **about 20%**.
+
+### Quantitative strengthening: coordinatewise cycle surgery also fails
+
+The obvious inexact escape replaces the `Z/qZ` phase coordinate pointwise by a
+map
+
+\[
+  f:\mathbf Z/q\mathbf Z\longrightarrow \mathbf Z/p^k\mathbf Z,
+\]
+
+with `f(p^{-k}) != 0` but `f(1)=0`.  It cannot have vanishing Hamming defect.
+
+Write `r=p^{-k} mod q`, and set
+
+\[
+\begin{aligned}
+ \delta(f)&=\Pr_{x,y}[f(x+y)\ne f(x)+f(y)],\\
+ \tau_r(f)&=\Pr_x[f(x+r)\ne f(x)+f(r)].
+\end{aligned}
+\]
+
+**Lemma (uniform two-test obstruction, p-primary target).**  If `(p,q)=1`, the
+target is `Z/p^kZ`, and `f(r) != 0`, then
+
+\[
+  \max\{\delta(f),\tau_r(f)\}\ge 2/9.
+\]
+
+Proof.  If `delta(f) >= 2/9` there is nothing to prove.  Otherwise the
+Ben-Or--Coppersmith--Luby--Rubinfeld homomorphism-testing theorem gives a
+homomorphism `h: Z/qZ -> Z/p^kZ` differing from `f` on a proportion `eta`,
+where `eta` is the smaller root of
+
+\[
+  3\eta-6\eta^2=\delta(f).
+\]
+
+In particular `eta<0.212` (and `eta<delta(f)` in this range).  Coprimality makes
+`h=0`.  On every `x` for which both `f(x)=0` and `f(x+r)=0`, the translation
+test fails because `f(r) != 0`.  Hence
+
+\[
+  \tau_r(f)\ge1-2\eta>0.576>2/9.
+\]
+
+This proves the claim.  The cited homomorphism-testing statement is Theorem 1
+of Ben-Or, Coppersmith, Luby and Rubinfeld, *Non-Abelian homomorphism testing,
+and distributions close to their self-convolutions*, Random Structures &
+Algorithms 32 (2008), 49--70.
+
+There is a stronger form which removes the p-primary restriction and is the
+correct statement for arbitrary coordinatewise permutationizations.  For a
+map `f:Z/qZ -> B` into any finite abelian group, define also
+
+\[
+  \tau_1(f)=\Pr_x[f(x+1)\ne f(x)+f(1)].
+\]
+
+**Lemma (uniform three-test obstruction, arbitrary target).**  Suppose
+`f(1)=0` and `f(r) != 0`.  Then
+
+\[
+  \max\{\delta(f),\tau_r(f),\tau_1(f)\}\ge2/9.
+\]
+
+Indeed, if all three quantities were below `2/9`, BOCLR would give a
+homomorphism `h:Z/qZ -> B` differing from `f` on a set of density `eta`, with
+`eta <= delta(f)/2 < 1/9`.  For `a=r,1`, the intersection of the two sets on
+which `f(x)=h(x)` and `f(x+a)=h(x+a)` and the set on which the translation test
+at `a` passes has density at least `1-2 eta-tau_a>0`.  Evaluating at one point
+of that intersection gives
+
+\[
+  h(r)=f(r)\ne0,\qquad h(1)=f(1)=0.
+\]
+
+But `1=p^k r` in `Z/qZ`, while `q h(r)=0`; hence both `p^k h(r)=0` and
+`q h(r)=0`.  Bezout and `(p,q)=1` force `h(r)=0`, a contradiction.
+
+These two tests occur as **fixed multiplication relations inside Thom's actual
+block group**, rather than as artificial tests on the cyclic centre.  In the
+notation of the displayed definition of `K_0(R)` in section 3.1 of Thom:
+
+* choose two `a_12` root elements supported in the first and second coordinates.
+  On the regular `K_1(Z/qZ)` basis, their phase coordinates are the independent
+  uniform entries `(a_24)_1` and `(a_24)_2`.  Multiplying the two elements tests
+  `f(x+y)=f(x)+f(y)`, so its Hamming defect is exactly `delta(f)`;
+* choose the `a_12` root element with coefficient `r` and the `a_24` root
+  element with coefficient `1` in the matching coordinate.  Their product
+  picks up the central term `r`; on a uniform basis vector the relation tests
+  `f(x+r)=f(x)+f(r)`, so its Hamming defect is exactly `tau_r(f)`;
+* make the same choice with coefficient `1` in the `a_12` root.  The product
+  picks up the integer central term `1`, which is trivial in `K`; it tests
+  `f(x+1)=f(x)+f(1)` with `f(1)=0`, giving `tau_1(f)`.
+
+Thus a pointwise replacement of the finite cyclic phase has defect at least
+`2/9` on one of three fixed relations whenever it separates the central element
+`1/p^k + Z` and kills the integer centre.
+
+The same obstruction survives arbitrary block weights.  Let `s` be the total
+weight of blocks on which `f_l(r) != 0` and `f_l(1)=0`.  Then
+
+\[
+  D_{\rm add}+D_r+D_1\ge (2/9)s,
+  \qquad
+  \max(D_{\rm add},D_r,D_1)\ge (2/27)s.
+\]
+
+This is just weighted summation of the blockwise alternatives and then the
+pigeonhole principle; it allows unequal block dimensions and different target
+groups.  Sofic separation of `1/p^k+Z`, together with convergence of the
+integer `1` to the identity, forces `s -> 1`.  Hence one of the three fixed
+relations has asymptotic defect at least `2/27`.  For p-primary targets the
+two-test version retains the sharper `1/9` global bound.  Allowing a different
+pointwise rounding on every character block does not help.
+
+**Exact scope.**  This closes both exact untwisting and every coordinatewise
+cycle surgery `f_l` on Thom's published monomial microstates.  A successful
+conversion must couple different base points or different character blocks;
+equivalently it must be a genuinely nonlocal correction of the phase cocycle.
+That surviving nonlocal problem is the same normalized-Hamming cohomological
+quadrant encountered in the commutant-pinning and Frobenius audits.
+
+### The surviving nonlocal problem as a finite cochain problem
+
+Fix a finite presentation window with generator set `S`, and a congruence base
+`Q_q=K_1(Z/qZ)`.  A fibered permutation model on
+
+\[
+  Q_q\times \mathbf Z/p^k\mathbf Z
+\]
+
+has the form
+
+\[
+  T_s(x,j)=(\bar s x,\;j+d_s(x)),\qquad s\in S,
+\]
+
+for functions `d_s:Q_q -> Z/p^kZ`.  Thus `d` is a `1`-cochain on the directed
+Schreier graph.  If `w=s_1...s_t` is a relator/path, its fiber displacement is
+the path sum
+
+\[
+  (\partial d)_w(x)=
+  d_{s_t}(x)+d_{s_{t-1}}(\bar s_t x)+\cdots+
+  d_{s_1}(\bar s_2\cdots\bar s_t x).
+\]
+
+The normalized Hamming defect of the relation is exactly the density of base
+points on which this path sum differs from the prescribed central displacement.
+A fiber-coordinate change `(x,j) -> (x,j+b(x))` changes `d` by the coboundary
+of `b` and leaves every curvature/path-sum class unchanged.
+
+Consequently the nonlocal phase-conversion question for Thom's congruence
+microstates is equivalent to the following explicit finite problem.
+
+> **Thom congruence cocycle problem.**  For the presentation `2`-complexes over
+> `Q_q`, with `q` coprime to `p`, what is the normalized Hamming distance of the
+> central extension datum (read modulo `p^k` on a fixed denominator window)
+> from the space of `1`-coboundaries?  Is that distance bounded below uniformly,
+> or can it tend to zero along `q -> infinity`?
+
+Uniform positive distance rules out every fibered phase conversion through
+Thom's congruence bases.  Distance tending to zero gives the desired nonlocal
+phase correction and hence permutation microstates on that window.  Property
+(T) only supplies expansion of the `1`-skeleton; this is a `2`-dimensional
+cover/cosystolic-stability question.  The relevant general equivalence between
+near-cover stability and cosystolic expansion is Dinur--Meshulam, *Near
+Coverings and Cosystolic Expansion* (2019).  The arbitrary-finite-Abelian
+coefficient expansion technology of Gohla--Thom and of
+Oppenheim--Valentiner-Branth applies to their building/KMS complexes, not
+automatically to these Abels/de Cornulier congruence presentation complexes.
+
+This formulation does **not** classify all hypothetical sofic models of `K`;
+it is the exact endpoint of the published-microstate conversion lane.  A proof
+that every sofic model is asymptotically of this fibered congruence form would
+be an additional rigidity theorem and is not currently available.
+
+### Audit against arbitrary sofic approximations of K
+
+Fix `c_k=1/p^k+Z`, of order `m=p^k`, in the centre of `K`.  Starting from an
+arbitrary sofic approximation, finite-order surgery and finite-group
+normalizer/centralizer perturbation can, on a fixed window and at `o(1)` cost,
+put the model into the following weak wreath form on almost all points:
+
+\[
+  X_n\simeq Y_n\times \mathbf Z/m\mathbf Z,
+  \qquad
+  \sigma_n(g)(y,j)=(\bar\sigma_n(g)y,j+d_{g,n}(y)).
+\]
+
+This is the genuine consequence of centrality: the `c_k`-orbits can be made
+exact and almost all have length `m`, and the other window permutations can be
+made to commute with the fiber rotation.  It does **not** imply that the base
+action is a congruence-regular action, nor that the arbitrary functions
+`d_{g,n}` factor through Thom's standard central cocycle.
+
+The model-rigidity statement needed to apply the `2/9` obstruction is:
+
+> **Phase-factorization rigidity (required, presently open).**  Every sofic
+> approximation of `K`, after `o(1)` Hamming modification and discarding
+> `o(1)` of its points, decomposes into weighted blocks whose base actions are
+> regular congruence actions of `K_1(Z/qZ)` and on which there is a single map
+> `f_l:Z/qZ -> B_l` such that all window fiber displacements are
+> `d_g(y)=f_l(s_g(y))`, where `s_g(y)` is Thom's standard central cocycle
+> coordinate.
+
+The `2/9` theorem would contradict this statement's conclusion for a sofic
+model, and hence phase-factorization rigidity would prove that `K` is
+nonsofic.  Current tools stop strictly before it:
+
+* finite central order/normalizer surgery gives only the weak wreath form;
+* the Alekseev--Thom centralizer theorem gives liftability of the relevant
+  centralizer, not congruence regularity or pointwise cocycle factorization;
+* property (T) controls almost invariant vectors / graph expansion, not the
+  required two-dimensional phase factorization;
+* character rigidity determines limiting traces, which are already the
+  regular character in a sofic model, but does not classify the microstates;
+* cosystolic expansion can control a specified family of congruence complexes
+  after the model is known to lie in that family; it does not force an
+  arbitrary sofic model into that family;
+* P-stability or an ergodic-centralizer/LEF theorem strong enough to supply the
+  missing classification is itself open here and would already be close to the
+  desired nonsoficity conclusion.
+
+There is also a decisive local calibration: the root/Heisenberg subgroup on
+which the three tests live is amenable, hence sofic.  It therefore has
+non-coordinatewise finite models satisfying all three fixed relations and
+separating its central element.  Thus the three root relations alone cannot
+rigidify an arbitrary model; any successful rigidity theorem must use the
+global Kazhdan/block-group structure.
+
+**Lane verdict.**  The `2/9` theorem is a sharp obstruction to Thom's published
+monomial construction and to all coordinatewise phase surgeries of it.  No
+presently available model-rigidity mechanism promotes it to arbitrary sofic
+approximations.  This phase lane should be considered closed unless a new
+global phase-factorization/P-stability theorem appears.
+
+### Agent Two's exterior bridge: local-quantifier audit of the Shulman barrier
+
+`Sofic/ExteriorMFProfile.lean` now proves, with kernel audit, that a pointwise
+profile
+
+\[
+  \sqrt{d_n}\,\|\phi_n(gh)-\phi_n(g)\phi_n(h)\|_{op}\to0
+\]
+
+for every fixed pair, together with eventual pair-dependent operator-norm
+separation, implies hyperlinearity.  The Shulman/Kazhdan obstruction above is
+compatible with exactly these local quantifiers:
+
+1. choose the one fixed Kazhdan set, the finitely many lamp-commutation pairs,
+   and the finitely many multiplication pairs used to evaluate the fixed
+   nontrivial free-lamp witness;
+2. the maximum of the finitely many pairwise errors, multiplied by
+   `sqrt(d_n)`, still tends to zero;
+3. eventual separation for the single pair `(w,1)` supplies a fixed
+   `alpha_w>0` after one index;
+4. the property-(T) pinning estimate on this finite window then gives
+   `alpha_w <= C sqrt(d_n) epsilon_n`, contradicting the profile whenever the
+   ambient `G` sector is genuine, and gives the stated Frobenius-instability
+   alternative when it is only close to a genuine representation.
+
+No globally uniform error sequence over `G` is used.  Therefore the exact
+finite-quotient and locally Frobenius-stable subclasses are genuinely excluded
+under Agent Two's theorem.  What remains possible is a pointwise square-root
+profile with an ambient `G` restriction that is uniformly far, on that fixed
+window in unnormalized Frobenius norm, from every genuine representation.  The
+published Shulman proof supplies no rate, but this remains a nonexistence of an
+extractable rate, not a proof that such exotic pointwise profiles do not exist.
+
+### Halo-product permanence does not decide the Kun--Thom wreath group
+
+A primary-source audit of Alekseev--Bradford, arXiv:2601.18742, fixes the
+logical direction.  Definition 4.23 introduces a *sofic C-action* by means of
+finite permutation models and injective partial-homomorphism charts.  Their
+Proposition 4.26 pushes an ordinary sofic action on the coordinate set forward
+to such an automorphic action on a halo, and Theorem 5.1 / Corollary 5.2 then
+pushes that chart system forward to a metric approximation of the semidirect
+product.  None of these statements has a converse.
+
+For the lamp halo `Delta = directSum_(G/Gamma) C_2`, the converse at the chart
+level is in fact impossible for the Kun--Thom pair: the coordinate reverse
+transfer recorded above pulls any Definition-4.23 chart system back along
+`x |-> delta_x(1)`.  Hence a sofic hyperlinear-action chart would force the
+nonsofic coset action `G curvearrowright G/Gamma` to be sofic.  Thus the 2026
+halo theorem supplies neither a hidden construction nor a hidden obstruction
+to hyperlinearity of the wreath group.
+
+The exact remaining object is
+
+`M_KT = L^infty({-1,1}^{G/Gamma}) rtimes G
+      = L((directSum_(G/Gamma) C_2) rtimes G)`.
+
+The Kun--Thom group is hyperlinear iff `M_KT` is Connes embeddable.  Theorem
+3.8 of Gao--Kunnawalkam Elayavalli--Patchell and Corollary 5.5 of
+Alekseev--Bradford prove this embeddability under the additional hypothesis
+that the coordinate action is sofic; Kun--Thom proves that hypothesis false.
+Accordingly a successful model must embed the Bernoulli algebra *non-Cartanly*:
+it cannot arise from orbit charts, finite quotient coordinates, or any
+Definition-4.23 automorphic charts.  This is the direct tracial-microstate
+quadrant left open by `CoordinateTransfer.lean`, not another action-permanence
+problem.
+
+### Abstract versus Cartan-preserving embeddings: the exact lifting gap
+
+There are three distinct assertions for the Kun--Thom Bernoulli Cartan pair
+`A_KT subset M_KT`:
+
+1. an abstract trace-preserving embedding `M_KT -> product_omega M_(d_n)`;
+2. an embedding with `A_KT` in the diagonal ultraproduct and the canonical
+   group normalizers in the permutation ultraproduct;
+3. a theorem converting every embedding of type 1 into one of type 2.
+
+Păunescu, arXiv:1002.0605, Definition 1.4 defines a sofic action by the
+existence of an embedding of type 2.  Proposition 1.14 gives the corresponding
+Cartan-pair characterization.  Neither statement asserts 3.
+
+The first apparent lifting issue is harmless.
+
+**Lemma (abelian diagonalization in a matrix ultraproduct).**  Let `A` be a
+separable abelian finite von Neumann algebra and let
+`Theta:A -> product_omega M_(d_n)` be trace preserving.  There is a unitary
+`v` in the ultraproduct such that `v Theta(A) v*` is contained in
+`product_omega D_(d_n)`.
+
+**Proof.**  A separable abelian von Neumann algebra has a self-adjoint
+generator `a`.  Represent the self-adjoint `Theta(a)` by uniformly bounded
+self-adjoint matrices `a_n`, diagonalize each `a_n` by a unitary `v_n`, and
+put `v=(v_n)_omega`.  Trace preservation makes `Theta` normal, so
+`Theta(A)=W*(Theta(a))`; the conjugated algebra is therefore contained in the
+diagonal ultraproduct.  End proof.
+
+The normalizer lifting is the real obstruction, and it already fails
+quantitatively for a separable diagonal algebra.  Put `d_n=b_n m_n`, let
+`B_n subset D_(d_n)` be the algebra of diagonal matrices constant on each of
+`b_n` consecutive blocks of size `m_n`, and let
+
+`U_n = directSum_(j=1)^(b_n) F_(m_n)`,
+
+where `F_m` is the normalized Fourier matrix.  Then `U_n` centralizes `B_n`
+pointwise.  But for every monomial unitary `W_n`,
+
+`|tr(U_n* W_n)| <= 1/sqrt(m_n)`
+
+because a monomial selects one entry in each row and every nonzero Fourier
+entry has modulus `1/sqrt(m_n)`.  Consequently
+
+`||U_n-W_n||_2^2 >= 2-2/sqrt(m_n)`.
+
+Thus, as `m_n -> infinity`, the normalizing unitary is asymptotically
+`sqrt(2)` away from every monomial (hence every permutation) even though the
+abelian algebra is exactly diagonal.  The same example may be made diffuse
+in the ultraproduct by taking `b_n -> infinity`.
+
+Accordingly the precise missing theorem is:
+
+> **Invariant Cartan completion for the KT pair (open).**  Given an abstract
+> embedding `Theta:M_KT -> product_omega M_(d_n)`, after diagonalizing
+> `Theta(A_KT)`, there is a diagonal Cartan ultraproduct `D` containing
+> `Theta(A_KT)` which is normalized by all `Theta(u_g)`, `g in G`.
+
+If this held, the normalizers of `D` could be represented by monomials; the
+diagonal phases can be removed by the standard trace-amplification device,
+producing a Păunescu-sofic embedding and contradicting Kun--Thom Corollary D.
+Hence it would prove `M_KT` non-Connes-embeddable.  No cited result proves this
+completion.  Kun--Thom starts with permutation normalizers and proves a
+normalization theorem *inside that permutation ultraproduct*; it does not
+upgrade arbitrary unitary normalizers.  The Fourier-block calculation shows
+why the upgrade cannot follow from abelianness or finite-dimensional
+simultaneous diagonalization alone: all possible exoticity is stored in the
+growing multiplicity fibers.
