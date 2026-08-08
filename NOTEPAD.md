@@ -263,6 +263,23 @@ at least `1 - 2 epsilon/kappa`.  In particular, any asymptotically exact
 one-unitary coboundary construction has absorption tending to `1`, never the
 order-one escape required by the hyperlinear counterexample route.
 
+The estimate gives a sharp stopping rule for the proposed constrained
+optimization.  If
+
+`a_g(Z) = ||E_W(Z lambda(g) Z*)||_2`
+
+and `delta(Z)=max_(s in S)||theta_s(Z)-Z||_2`, then
+
+`a_g(Z) >= 1 - 2 delta(Z)/kappa`.
+
+Hence `a_g(Z) <= 1/2` forces `delta(Z) >= kappa/4`.  No penalty-constrained
+search inside the global-coboundary family can simultaneously drive
+coherence to zero and retain even fifty-percent mixing on the true web.  The
+observed surrogate trajectory (coherence decreasing while absorption rises
+toward one) is the predicted behavior, not merely an optimizer preference.
+Surrogates lacking the full Kazhdan substitution web cannot test this
+inequality.
+
 Scope: this kills the global coboundary/joint-fixed ansatz only.  It does not
 kill genuinely non-coboundary, window-dependent approximate 1-cocycles
 `D_A` whose defect tends to zero without admitting a common transfer unitary
@@ -5534,3 +5551,81 @@ upgrade arbitrary unitary normalizers.  The Fourier-block calculation shows
 why the upgrade cannot follow from abelianness or finite-dimensional
 simultaneous diagonalization alone: all possible exoticity is stored in the
 growing multiplicity fibers.
+
+### MF Mautner decomposition for an infranormal free lamp
+
+There is an operator-norm analogue of the localization above which is exact
+and does not require choosing traces.  Let `Gamma < G` be a Kazhdan
+infranormal pair, let
+
+`H_K = G *_Gamma (Gamma x K)`,
+
+and let `rho:H_K -> U(A)` be a homomorphism into a unital finite C*-algebra
+`A`.  Here *finite* means that every isometry in every matrix algebra over
+`A` is unitary.  This applies in particular to a norm matrix ultraproduct
+`product M_(d_n) / directSum M_(d_n)`: if bounded lifts `X_n,Y_n` satisfy
+`X_n Y_n -> 1` in operator norm, then `X_n` is eventually invertible with
+uniformly bounded inverse, and hence `Y_n X_n -> 1`; the same argument works
+in every matrix amplification.
+
+Let `p_Gamma in C*_max(Gamma)` be the Kazhdan projection and write
+`p=rho(p_Gamma)`, `q=1-p`.  (The inclusion of a subgroup induces an injective
+map on full group C*-algebras, for example by induced representations.)
+
+**Theorem (MF Mautner decomposition).**  The projection `q` commutes with
+`rho(H_K)`.  Moreover, for every free-lamp witness
+
+`w=[t k t^-1,gamma]`
+
+with `t^-1 gamma t` outside `Gamma`, one has `p(rho(w)-1)=0`.  Consequently,
+if `rho` is injective, then
+
+`q(rho(w)-1) != 0`.
+
+**Proof.**  Fix a compressor `t`, so `t Gamma t^-1 <= Gamma`, and put
+`U=rho(t)`.  In every unitary representation, `U^-1` maps the
+`Gamma`-fixed subspace into itself: if `xi` is fixed and `gamma in Gamma`,
+then
+
+`rho(gamma) U^-1 xi = U^-1 rho(t gamma t^-1) xi = U^-1 xi`.
+
+By the defining universal property of the Kazhdan projection this gives
+`U q U* <= q`.  The two projections `U q U*` and `q` are Murray--von Neumann
+equivalent.  Finiteness of `A` therefore upgrades the inclusion to equality,
+so `UqU*=q`.  The compressors generate `G`; hence `q` commutes with `rho(G)`.
+Every `k in K` centralizes `Gamma`, so `rho(k)` commutes with the spectral
+projection `p`, and therefore with `q`.  These elements generate `H_K`,
+proving centrality.
+
+On the `p`-corner every element of `Gamma` acts as the identity.  Since `p`
+is now also `G`-invariant, the displayed commutator `w` acts trivially on
+that corner.  Thus `p(rho(w)-1)=0`.  If `rho` is injective, Bass--Serre normal
+form gives `rho(w) != 1`, so its entire nonzero operator-norm deviation lies
+in the `q`-corner.  End proof.
+
+Applying this to Shulman's weak-MF embedding of `H_K` produces a canonical
+operator-norm exotic corner with all three properties forced by the prior
+heuristics: it has no `Gamma`-fixed vectors, it is invariant under the whole
+ambient group, and it detects the nonsofic witness in operator norm.  Thus
+the exotic sector is not merely a possible shape of Shulman's construction;
+it must actually occur.
+
+This does **not** finish hyperlinearity.  If `q_n` are finite-stage lifts and
+`r_n=rank(q_n)`, the nonzero norm of
+`q_n(rho_n(w)-1)q_n` may be supported on `o(r_n)` dimensions.  Normalizing the
+corner traces can therefore kill `w`.  Property `(T)` guarantees positive
+normalized-HS mass for at least one fixed generator of `Gamma`, but it does
+not transfer that mass to the free-lamp witness.  The remaining quantitative
+statement is exactly one of the following equivalent construction targets:
+
+* make the witness occupy positive rank inside this forced exotic corner;
+* give the corner maps Agent Two's pointwise square-root operator-norm
+  profile;
+* prove a character/normal-subgroup theorem forcing any tracial kernel that
+  is nontrivial on `Gamma` to retain a Kun--Thom witness.
+
+The first two are model-production questions.  The third is the only visible
+rigidity route around rank blindness; it is not supplied merely by the known
+classification of characters of elementary groups, because finite-congruence
+representations with their trivial summand removed have no invariant vectors
+and can still absorb the compression.
