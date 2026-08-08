@@ -5629,3 +5629,69 @@ rigidity route around rank blindness; it is not supplied merely by the known
 classification of characters of elementary groups, because finite-congruence
 representations with their trivial summand removed have no invariant vectors
 and can still absorb the compression.
+
+### Invariant ideals in the Laurent ambient are finite-codimensional
+
+The ideal side of the preceding character fork can nevertheless be made
+exact.  Put
+
+`R = F_q[x_1^(+-1),...,x_d^(+-1)]`, `d>=2`,
+
+with the monomial action of `SL_d(Z)`.
+
+**Theorem.**  Every nonzero `SL_d(Z)`-invariant ideal `I` of `R` has finite
+codimension over `F_q`.
+
+**Proof.**  Base-change to the algebraic closure `k` of `F_q`, and let `P` be
+a minimal prime over `I R_k`.  The group permutes the finitely many minimal
+primes, so a finite-index subgroup `Lambda<SL_d(Z)` stabilizes `P`.  There is
+an integer `N>=1` such that every elementary shear `E_ij(N)` belongs to
+`Lambda`.  Write `z_i` for the image of `x_i` in the fraction field of the
+domain `R_k/P`.
+
+Suppose some `z_j` has infinite multiplicative order.  For `i!=j`, write any
+`f in P` as
+
+`f=sum_m a_m x_i^m`
+
+with the coefficients independent of `x_i`.  Applying the powers
+`E_ij(Nn)`, `n=0,...,M-1`, and reducing modulo `P` gives
+
+`sum_m (a_m z_i^m) (z_j^(Nm))^n = 0`.
+
+The numbers `z_j^(Nm)` are pairwise distinct.  The Vandermonde matrix is
+therefore invertible over the fraction field, so every coefficient `a_m`
+already lies in `P`.  Doing this for every `i!=j` shows that `P` is the
+extension of `P intersect k[x_j^(+-1)]`: after successively taking homogeneous
+components in the other variables, each remaining Laurent monomial is a
+unit times a coefficient in the one-variable ring.  If this intersection is
+nonzero, primeness makes it `(x_j-a)` for some `a in k*`; but every element of
+the algebraic closure of a finite field has finite multiplicative order,
+contrary to the choice of `z_j`.  Hence the intersection is zero and `P=0`.
+This is impossible because `P` contains the nonzero ideal `I R_k`.
+
+Thus every `z_j` has finite order.  Some relations
+`x_j^(m_j)-1 in P` hold for all `j`, so `R_k/P` is finite-dimensional.
+Therefore every minimal prime over `I R_k` is maximal and the radical of
+`I R_k` has finite codimension.  Noetherianity gives
+`rad(I R_k)^a <= I R_k` for some `a`, hence `I R_k`, and then `I`, has finite
+codimension.  End proof.
+
+**Consequence for KT tracial kernels.**  Let
+`N=EL_r(R) normal G` be the Laurent elementary subgroup.  By the standard
+normal-subgroup/sandwich theorem, the level ideal of `ker(eta) intersect N`
+for any homomorphism `eta:G->U(M)` is `SL_d(Z)`-invariant.  Apart from the
+possible level-zero central kernel, there are only two cases:
+
+1. level zero, so the representation is faithful on every Laurent root
+   subgroup;
+2. nonzero level, so it factors on all root subgroups through a finite ring
+   quotient of `R`.
+
+This removes the possibility of an infinite-codimensional intermediate
+congruence kernel.  It still does not force the free-lamp witness to be
+trace-visible: a tracial model may be faithful on the ambient Laurent roots
+while killing the lamp commutator, or may use a finite-congruence component
+with its invariant summand removed.  The exact remaining issue is therefore
+not ideal classification but whether positive trace on the MF exotic corner
+can be forced onto the lamp ideal.
