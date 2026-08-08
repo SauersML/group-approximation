@@ -5695,3 +5695,162 @@ while killing the lamp commutator, or may use a finite-congruence component
 with its invariant summand removed.  The exact remaining issue is therefore
 not ideal classification but whether positive trace on the MF exotic corner
 can be forced onto the lamp ideal.
+
+### A single trace-visible lamp witness is enough
+
+The preceding target can be weakened substantially.  It is unnecessary to
+make the whole Shulman free-lamp group hyperlinear.
+
+Let `K` be any nontrivial hyperlinear group (one may take `C_2`), let
+
+`H_K = G *_Gamma (Gamma x K)`,
+
+and choose a Kun--Thom witness `w=[t k t^-1,gamma] != 1`.  Suppose there is
+**one** homomorphism `eta_1:H_K -> U(M)` into a Connes-embeddable finite
+tracial von Neumann algebra such that `eta_1(w) != 1`.  No faithfulness
+assumption on `eta_1` is needed.
+
+**Theorem (single-trace criterion).**  Under the Kun--Thom hypotheses on
+`Gamma<G`, the existence of `eta_1` implies that a hyperlinear nonsofic group
+exists.
+
+**Proof.**  The two factor maps
+
+`G -> G x K,       g |-> (g,1)`,
+
+`Gamma x K -> G x K,  (gamma,k) |-> (gamma,k)`
+
+agree on `Gamma`, and hence induce a homomorphism
+`eta_0:H_K -> G x K`.  Its restrictions to both `G` and the distinguished
+copy of `K` are injective.  Since `G` is residually finite and `K` is
+hyperlinear, `G x K` is hyperlinear.
+
+Let `Q` be the image of the diagonal homomorphism
+
+`eta_0 x eta_1 : H_K -> (G x K) x U(M)`.
+
+Then `Q` is hyperlinear, the visible copy of `G` embeds in `Q`, and the image
+of `w` is nontrivial because its second coordinate is `eta_1(w) != 1`.
+Assume that `Q` were sofic and take a sofic representation of it.  Its
+restriction to the embedded `G` is a sofic representation.  The image of `k`
+centralizes the image of `Gamma`; Kun--Thom Theorem 4.1 says that this
+centralizer is normalized by the image of `G`.  Hence the image of
+`t k t^-1` commutes with the image of `gamma`, forcing the nontrivial element
+`w in Q` to map to the identity.  This contradicts injectivity of the sofic
+representation.  Thus `Q` is hyperlinear and nonsofic.  End proof.
+
+Apply this to the MF Mautner decomposition.  Write `A_q=qAq` and
+`a=q(rho(w)-1)`, which is nonzero in operator norm.  The full open certificate
+is now exactly
+
+> find a Connes-embeddable (hyperlinear) tracial state `tau` on `A_q` with
+> `tau(a* a)>0`.
+
+Indeed its GNS representation is the required `eta_1`.  Equivalently, `a`
+must lie outside the **hyperlinear tracial radical**
+`intersection_(tau in T_hyp(A_q)) ker(pi_tau)`.  The restriction to
+hyperlinear traces is essential: an MF C*-algebra need not have every trace
+Connes-embeddable.  This formulation precisely
+identifies rank blindness: a matrix-norm ultraproduct may contain a nonzero
+compact-like ideal annihilated by every normalized matrix trace (the
+unitization of the compact operators is the calibration), so MF and
+stably-finite alone do not supply the desired trace.  But no canonical-trace
+or full-faithfulness construction is required; positive trace on this single
+lamp ideal already ends the main problem.
+
+### Correct corner visibility criterion: one witness and Cesaro tensors
+
+The first proposed tensor argument for the exotic corner needs two repairs.
+If a fraction `delta` of the spectrum of a unitary is `c`-far from `1`, the
+near-`1` subspace of its tensor power need not have fraction
+`(1-delta)^M`: eigenphases from different tensor factors can cancel.  Also,
+the absence of `Gamma`-fixed vectors does not prevent the witness from being
+nontrivial in operator norm on `o(r_n)` dimensions and invisible in normalized
+HS.  The absorption-one basin therefore remains available in trace even on
+the MF Mautner corner.
+
+There is, however, a cancellation-proof replacement which also weakens the
+hypothesis to a single witness.  Let
+
+`phi_n:H_K -> U(r_n)`
+
+be unital maps on exhausting windows, with maximum operator-norm
+multiplicative defect `epsilon_n` on the `n`th window.  Fix the one Kun--Thom
+witness `w`, put `U_n=phi_n(w)`, fix `c>0`, and let
+
+`delta_n = tr_(r_n)(1_[c,infinity)(|U_n-1|))`.
+
+**Theorem (one-witness rank/defect criterion).**  If
+
+`epsilon_n/delta_n -> 0`
+
+and `delta_n>0` eventually, then there is a homomorphism from `H_K` into a
+tracial matrix ultraproduct whose value on `w` is nontrivial.  Consequently,
+by the single-trace criterion, a hyperlinear nonsofic group exists.
+
+**Proof.**  Choose integers `L_n -> infinity` so slowly that
+
+`L_n epsilon_n -> 0`, `L_n delta_n -> infinity`.
+
+For `1<=j<=L_n`, use the tensor-power map
+
+`phi_n(h)^(tensor j) tensor 1_(r_n^(L_n-j))`
+
+on a block of dimension `r_n^L_n`, and take the direct sum of these `L_n`
+equal-sized blocks.  The `j`th block has operator-norm multiplicative defect
+at most `j epsilon_n`; hence the normalized-HS defect of the direct sum is at
+most `L_n epsilon_n -> 0`.
+
+Write `a_n=tr_(r_n)(U_n)`.  Since
+
+`1-Re(lambda)=|lambda-1|^2/2`
+
+on the unit circle,
+
+`Re(a_n) <= 1-(c^2/2)delta_n`,
+
+and therefore `|1-a_n| >= (c^2/2)delta_n`.  The normalized trace of the new
+model at `w` is the Cesaro geometric sum
+
+`(1/L_n) sum_(j=1)^L_n a_n^j`.
+
+For `|a_n|<=1` its modulus is at most
+
+`2/(L_n |1-a_n|) <= 4/(c^2 L_n delta_n) -> 0`.
+
+Thus the maps define a homomorphism into a tracial matrix ultraproduct and
+send `w` to a unitary of trace zero, in particular not to `1`.  The
+single-trace criterion finishes.  End proof.
+
+This is the exact quantitative summit on the Shulman/Mautner lane:
+
+`deviation rank fraction of one witness >> operator-norm defect`.
+
+No minimum over all nontrivial window elements is needed, no faithfulness of
+the corner representation is needed, and no assertion about tensor spectral
+supports is used.  Conversely, Theorem C's operator-norm separation alone
+only says `delta_n>=1/r_n`; it gives no comparison with `epsilon_n`.
+
+The proposed normal-subgroup escape can also be closed more simply and more
+rigorously than by claiming full connectivity of the lamp-identification
+graph.  The retraction `H_K -> G` kills every lamp and hence kills `w`, while
+the left regular representation of the residually finite group `G` is
+Connes-embeddable, faithful on `Gamma`, and has no nonzero `Gamma`-fixed
+vectors.  Therefore no theorem whose only input is "the tracial
+representation is nontrivial/fixed-vector-free on Gamma" can force `w` to
+survive.  Stronger claims about the entire normal closure of `w` require the
+orbit-graph connectivity calculation and are not needed for this no-go.
+
+Shulman's published double construction still does not provide the new
+one-witness modulus automatically.  At outer stage `k` its asymptotic lift
+has a uniform operator-norm defect tending to zero and converges strongly to
+a chosen faithful representation, but strong convergence controls each fixed
+finite-dimensional subspace rather than its density in the selected matrix
+coordinate.  Adding arbitrarily large exact-trivial blocks (or delaying the
+active block to an arbitrarily late coordinate) preserves the strong limit
+and every qualitative norm estimate while replacing `delta_n(w)` by an
+arbitrarily small rank fraction.  Thus the paper proves that the exotic
+corner and an operator-norm-visible witness exist, but not
+`epsilon_n=o(delta_n(w))`.  Unlike the older square-root profile, this is now
+a one-element quantitative extraction problem; it is nonetheless genuinely
+new input rather than a reindexing of Theorem 10.
