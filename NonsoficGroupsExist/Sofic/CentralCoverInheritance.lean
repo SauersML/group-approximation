@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.IsPerfect
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.KazhdanCorner
 
 /-!
 # Central-cover inheritance of Kun--Thom witnesses
@@ -506,5 +507,72 @@ theorem allCentralExtensions_not_isSofic_of_strictWitness
     (hstable E P) a ha hγ hstrict
 
 end CentralExtension
+
+/-! ## The Steinberg-target weak-MF endpoint -/
+
+/-- Every nontrivial quotient of `J` is nonsofic.  For a quasisimple
+universal central cover this follows once all of the intervening central
+covers of the simple base are known to be nonsofic. -/
+def EveryNontrivialQuotientIsNonsofic (J : Type) [Group J] : Prop :=
+  ∀ (Q : Type) (_ : Group Q) (q : J →* Q),
+    Function.Surjective q → (∃ g : J, q g ≠ 1) → ¬ IsSofic Q
+
+/-- A convenient group-theoretic formulation of quasisimplicity: the group
+is perfect, and every proper normal subgroup is central. -/
+def IsQuasisimple (J : Type) [Group J] : Prop :=
+  Group.IsPerfect J ∧
+    ∀ N : Subgroup J, N.Normal → N ≤ Subgroup.center J ∨ N = ⊤
+
+/-- If a quasisimple group's nontrivial central quotients are nonsofic, then
+all of its nontrivial quotients are nonsofic: the kernel of such a quotient
+cannot be the whole group, hence quasisimplicity makes it central. -/
+theorem everyNontrivialQuotientIsNonsofic_of_quasisimple
+    {J : Type} [Group J]
+    (hqs : IsQuasisimple J)
+    (hcentral : ∀ (Q : Type) (_ : Group Q) (q : J →* Q),
+      Function.Surjective q → (∃ g : J, q g ≠ 1) →
+        q.ker ≤ Subgroup.center J → ¬ IsSofic Q) :
+    EveryNontrivialQuotientIsNonsofic J := by
+  intro Q hQGroup q hsurj hnontrivial
+  letI : Group Q := hQGroup
+  rcases hqs.2 q.ker inferInstance with hker | htop
+  · exact hcentral Q hQGroup q hsurj hnontrivial hker
+  · obtain ⟨g, hg⟩ := hnontrivial
+    have hmem : g ∈ q.ker := htop ▸ Subgroup.mem_top g
+    exact (hg (by simpa [MonoidHom.mem_ker] using hmem)).elim
+
+/-- **Quasisimple-target Kazhdan-corner bridge.**  If every nontrivial
+quotient of a nontrivial Kazhdan group is nonsofic, then one weak-MF
+certificate produces a hyperlinear nonsofic group.  The produced group is
+the nontrivial hyperlinear quotient extracted by the Kazhdan corner.
+
+For the proposed Steinberg application, quasisimplicity plus the
+all-central-covers theorem supplies `EveryNontrivialQuotientIsNonsofic`. -/
+theorem hyperlinear_nonsofic_exists_of_kazhdan_weakMF_of_quotientObstruction
+    {J : Type} [Group J] [Nontrivial J]
+    (hT : HasKazhdanPropertyT.{0, 0} J)
+    (hMF : IsWeakMF J)
+    (hquot : EveryNontrivialQuotientIsNonsofic J) :
+    ∃ (Q : Type) (_ : Group Q), IsHyperlinear Q ∧ ¬ IsSofic Q := by
+  obtain ⟨Q, hQGroup, q, hsurj, hhyper, g, hg⟩ :=
+    hasNontrivialHyperlinearQuotient_of_kazhdan_weakMF hT hMF
+  letI : Group Q := hQGroup
+  exact ⟨Q, hQGroup, hhyper, hquot Q hQGroup q hsurj ⟨g, hg⟩⟩
+
+/-- **Quasisimple Kazhdan target, final abstract form.**  If all nontrivial
+central quotients of a quasisimple Kazhdan group are nonsofic, weak MF of
+that group yields a hyperlinear nonsofic group.  This is the exact logical
+endpoint used by the proposed `St₅(L_{𝔽₂}(1,2))` certificate. -/
+theorem hyperlinear_nonsofic_exists_of_quasisimple_kazhdan_weakMF
+    {J : Type} [Group J] [Nontrivial J]
+    (hT : HasKazhdanPropertyT.{0, 0} J)
+    (hMF : IsWeakMF J)
+    (hqs : IsQuasisimple J)
+    (hcentral : ∀ (Q : Type) (_ : Group Q) (q : J →* Q),
+      Function.Surjective q → (∃ g : J, q g ≠ 1) →
+        q.ker ≤ Subgroup.center J → ¬ IsSofic Q) :
+    ∃ (Q : Type) (_ : Group Q), IsHyperlinear Q ∧ ¬ IsSofic Q :=
+  hyperlinear_nonsofic_exists_of_kazhdan_weakMF_of_quotientObstruction
+    hT hMF (everyNontrivialQuotientIsNonsofic_of_quasisimple hqs hcentral)
 
 end NonsoficGroupsExist
