@@ -23243,3 +23243,129 @@ coordinates allowed to depend on the relation being tested.  Thus the
 surviving target is still direct HS microstates (equivalently, Connes
 embeddability of the negative Clifford crossed-product trace), not
 sofic-hyperlinear automorphic action permanence.
+
+# Compressor fibers are intrinsically LEF; the failure is ambient gluing (2026-08-09)
+
+The coinduced decomposition has a useful positive consequence.  In the
+polynomial/Laurent Kun--Thom pair, the strict compressed subgroup is
+separable inside `Gamma`, although its image equals the image of `Gamma` in
+every finite quotient of the ambient group `G`.  Thus the local compressor
+fiber is not itself the source of the nonsoficity.
+
+Fix a finite field `k`, put
+
+`R_+=k[x_1,...,x_d]`,
+
+and take `Gamma=EL_r(R_+)`, with `r>=3`.  Let the positive external shear
+`t` act by
+
+`x_i |-> x_i x_j`,  `x_l |-> x_l` for `l!=i`,
+
+and set `H=t Gamma t^(-1)<Gamma`.  Its coefficient ring is
+
+`R_t=k[x_i x_j,x_j,{x_l:l!=i,j}]`.
+
+**Theorem (intrinsic compressor separability).**  The subgroup `H` is
+separable in `Gamma`.
+
+**Proof.**  The monomials in `R_t` are exactly the monomials `x^a` whose
+`x_j`-exponent is at least their `x_i`-exponent.  Thus `R_t` is a polynomial
+ring (replace `x_i` by the algebraically independent variable `x_i x_j`).
+Suslin's theorem gives
+
+`SL_r(R_+)=EL_r(R_+)`,  `SL_r(R_t)=EL_r(R_t)`
+
+for `r>=3`.  Consequently, if a matrix `g in Gamma` has every entry in
+`R_t`, then `g in SL_r(R_t)=H`.  Hence every `g in Gamma-H` has an entry
+`f` outside `R_t`.
+
+Choose a monomial of `f` whose `x_i`-exponent is larger than its
+`x_j`-exponent, and choose `N` larger than every exponent appearing in
+`f`.  In the finite ring
+
+`A_N=k[x_1,...,x_d]/(x_1^N,...,x_d^N)`,
+
+the chosen monomial survives.  The image of `R_t` is still spanned only by
+monomials with `a_j>=a_i`, so the image of `f` is not in the image of
+`R_t`.  Under
+
+`Gamma -> EL_r(A_N)`,
+
+the selected entry of `g` therefore lies outside the coefficient subring
+containing every entry of the image of `H`.  Thus the image of `g` is not in
+the image of `H`.  This separates every element of `Gamma-H` in a finite
+quotient.  End proof.
+
+The use of Suslin is exact: A. A. Suslin, *On the structure of the special
+linear group over polynomial rings*, Math. USSR-Izv. 11 (1977), proves that
+`SL_r(k[y_1,...,y_m])` is elementary for every field `k` and `r>=3`.
+
+**Corollary (the local coset action is LEF).**  The action
+
+`Gamma action Gamma/H`
+
+is a LEF action.  Indeed, for a finite group window and a finite coset
+window, separability supplies finite quotients separating the finitely many
+non-`H` differences between chosen coset representatives.  Residual
+finiteness of `Gamma` supplies injectivity on the group window.  Taking the
+product of these finitely many quotients, the map
+
+`gH |-> q(g)q(H)`
+
+is injective on the coset window and exactly equivariant wherever the tested
+partial action is defined.
+
+This contrasts sharply with the ambient topology.  In the full Kun--Thom
+group, for every homomorphism `q:G->Q` to a finite group,
+
+`q(H)=q(t Gamma t^(-1))=q(Gamma)`.
+
+The inclusion gives one containment, while conjugacy gives equal finite
+cardinalities.  Hence `H` is intrinsically closed in `Gamma` but is
+indistinguishable from `Gamma` by every finite quotient that extends to
+`G`.
+
+There is a Clifford formulation which makes the localization literal.
+Work on `G/H` and let
+
+`p:G/H -> G/Gamma`,  `p(gH)=gGamma`.
+
+Join every two distinct vertices in the same fiber of `p`, and no vertices
+in different fibers.  Let `K_fib` be the corresponding Clifford lamp group:
+inside a fiber distinct coordinate involutions have commutator `z`, while
+coordinates in different fibers commute.  The graph is `G`-invariant, so
+form
+
+`E_fib=K_fib semidirect G`.
+
+The group `E_fib` is nonsofic by the same one-edge Kun--Thom argument.  The
+lamp at `t^(-1)H` centralizes `Gamma`; conjugating it by `t` gives the lamp at
+`H`.  For `gamma=e_(ab)(x_i) in Gamma-H`, the vertices `H` and `gamma H`
+are distinct but lie in the same `p`-fiber, and therefore
+
+`[a_H,gamma]^2=[a_H,a_(gamma H)]=z!=1`.
+
+Centralizer normalization in a hypothetical sofic model gives the opposite
+conclusion, exactly as for the sparse orbital cover.
+
+On the other hand, the **local** group
+
+`K_(Gamma/H,complete) semidirect Gamma`
+
+is LEF.  Use a finite LEF orbit chart for `Gamma/H`, put the chart labels in
+the finite complete Clifford `2`-group on the finite model set, and let the
+finite quotient of `Gamma` permute them.  Clifford normal forms give
+injectivity on every prescribed finite lamp window.  Thus even the entire
+local Clifford dynamics has exact finite models.
+
+Finally, every fiber `Gamma/H` is infinite (the cosets represented by
+`e_(ab)(x_i^n)` are pairwise distinct).  Its negative Clifford algebra is
+therefore the CAR algebra.  The global negative sector is
+
+`A_(fib,-)=tensor_bar_(G/Gamma) CAR(Gamma/H)`,
+
+with the tensor-coinduced `G`-action.  The sought hyperlinear-nonsofic
+example has now been localized more precisely: all individual compressor
+fibers, including their stabilizer actions, are LEF; the obstruction is the
+ambient coinduced assembly, which permits only finite quotients in which
+`H` and `Gamma` have already collapsed together.
