@@ -13149,6 +13149,181 @@ extension data.  What remains to check is that these induced models can be
 dimension-equalized without turning the nonautomorphic compressor into a
 common-quotient automorphism.
 
+### One-shot affine Fourier linearization of the whole congruence kernel
+
+The preceding layer-by-layer extension problem has an exact simultaneous
+model.  This removes the *cross-layer representation* ambiguity, although
+the noninvertible chamber-map problem below remains.
+
+Let `J` be a finite nilpotent associative `F_p`-algebra (not necessarily
+unital), let `U=1+J`, and put
+
+`f:U->J`,  `f(u)=u-1`.
+
+**Theorem (algebra-group affine Fourier model).**
+
+1. `f` is a bijective 1-cocycle for left multiplication:
+
+   `f(uv)=f(u)+u f(v)`.
+
+   Consequently the left regular representation of `U`, after identifying
+   `U` with the additive set of `J`, is the affine permutation action
+
+   `X |-> f(u)+uX`.
+
+2. Additive Fourier transform on `J` conjugates this whole regular
+   representation to a genuine monomial representation on `J^vee`.  More
+   explicitly, if `L_u(X)=uX` and
+
+   `e_chi=|J|^(-1/2) sum_X conjugate(chi(X)) e_X`,
+
+   then
+
+   `u e_chi = chi(L_u^(-1)f(u)) e_(chi after L_u^(-1))`.
+
+   Thus every product between different `M`-adic degrees is already present
+   in one honest representation; no choice of compatible layer extensions
+   or cross-layer Weil phases is required.
+
+3. More generally, if a finite group `B` acts on `J` by algebra
+   automorphisms, the quasi-regular representation of
+
+   `H=(1+J) semidirect B`
+
+   on `H/B ~= 1+J` becomes monomial under the same Fourier transform.  For
+   `h=(u,b)` its affine action is
+
+   `X |-> f(u)+L_u Ad_b(X)`,
+
+   and the displayed Fourier formula holds with linear part
+   `L_u Ad_b`.
+
+**Proof.**  Expanding `(1+X)(1+Y)` gives
+
+`f(uv)=X+Y+XY=X+(1+X)Y=f(u)+u f(v)`.
+
+Nilpotence makes `X|->1+X` a bijection from `J` to `U`.  Left
+multiplication therefore has the asserted affine form.  If `A(X)=a+LX`
+is any invertible affine map of the finite additive group and `P_A` is its
+permutation matrix, direct substitution in the Fourier basis gives
+
+`P_A e_chi=chi(L^(-1)a)e_(chi after L^(-1))`.
+
+This proves (2).  For (3), write a coset representative as `x in 1+J` and
+compute
+
+`(u,b)xB=u(bxb^(-1))B`;
+
+applying `f` gives `f(u)+L_u Ad_b(f(x))`.  End proof.
+
+Apply this with
+
+`J=Mat_r(M)`,  `U=1+Mat_r(M)`,  `B=GL_r(A_N)`.
+
+Because `M` is nilpotent and the reduction `T->A_N` splits,
+
+`GL_r(T)=(1+Mat_r(M)) semidirect GL_r(A_N)`.
+
+Hence the theorem gives one honest finite-dimensional representation of the
+entire filtered group `GL_r(T)`, and therefore of `EL_r(T)`, whose
+restriction simultaneously contains all higher-degree multiplication and
+all base conjugation.  In particular the representational extension-
+coherence question stated above is discharged: it was an artifact of
+linearizing one quotient `M^q/M^(q+1)` at a time.
+
+The theorem does **not** say that a noninvertible ring endomorphism is
+unitarily implemented.  Fourier transform replaces its additive linear map
+by the transpose map; it cannot change its rank.  This distinction exposes
+a quantitative obstruction in the equal-cutoff ring used above.
+
+### Correction: the equal-cutoff Frobenius flag has macroscopic shear loss
+
+Let
+
+`alpha_ij(xi_i)=xi_i xi_j`,  `alpha_ij(xi_k)=xi_k (k!=i)`
+
+on
+
+`T=A_N[xi_0,...,xi_3]/(xi_0^L,...,xi_3^L)`.
+
+**Lemma (exact shear rank).**  As an `F_p`-linear map,
+
+`rank(alpha_ij)/dim(T)=(L+1)/(2L)`.
+
+In particular its kernel has asymptotic dimension density `1/2`, not
+`O(1/L)`.
+
+**Proof.**  On the `(xi_i,xi_j)` monomial plane,
+
+`xi_i^a xi_j^b |-> xi_i^a xi_j^(a+b)`
+
+when `a+b<L`, and it maps to zero otherwise.  The nonzero images are
+distinct and their number is
+
+`sum_(a=0)^(L-1) (L-a)=L(L+1)/2`.
+
+The other two `xi` coordinates and the `A_N` coordinate contribute a common
+factor and cancel in the ratio.  End proof.
+
+The Frobenius adjoint makes the same obstruction explicit.  Put
+`T0=L-1`.  For a monomial `xi^b`,
+
+`alpha_ij^dagger(xi^b)=xi^(b+(T0-b_i)e_j)`  if `b_j<=b_i`,
+
+and it is zero if `b_j>b_i`.  Indeed pairing with a monomial `xi^a` at the
+top coefficient forces
+
+`a_i=T0-b_i`,  `a_j=b_i-b_j`,
+
+and all other `a_k=T0-b_k`.  Thus Fourier duality correctly turns the shear
+into the complementary-coordinate shear, but it retains the same
+macroscopic kernel.
+
+Consequently the paragraph above claiming that the only unmatched mass is
+the single `V_0,V_D` endpoint is false when the homogeneous layers are
+weighted by their actual dimensions.  Reverse-degree Frobenius duality and
+the one-shot affine Fourier theorem are exact, but neither converts a
+rank-one-half endomorphism into an almost-unitary chamber transition.
+
+### The corrected ring target is chamber-anisotropic
+
+For a total order `O` on the four moving variables, choose cutoffs
+
+`1 << L_(O,1) << L_(O,2) << L_(O,3) << L_(O,4)`
+
+and set
+
+`T_O=A_N[xi_0,...,xi_3]/(xi_i^(L_(O,i)))`,
+
+where earlier variables in `O` receive smaller cutoffs.  If `i<j` in `O`,
+the positive shear `xi_i|->xi_i xi_j` has exact rank ratio
+
+`1-(L_i-1)/(2L_j)`  when `L_i<=L_j`.
+
+This follows from summing `L_j-a` over `0<=a<L_i`.  Hence its linear rank
+loss is `O(L_i/L_j)`, which tends to zero for separated scales.  Mixed
+monomials and the common quotient `A_N` are retained.  Adjacent Weyl
+chambers merely interchange two neighboring cutoff scales, so their rings
+have equal total dimension and are perfectly paired by the cross-complement
+pairing
+
+`a_i+b_j=L_i-1`,  `a_j+b_i=L_j-1`
+
+on the swapped coordinates, with the other coordinates paired normally.
+
+This is the corrected finite-ring geometry for the twenty-four-chart
+atlas.  The remaining issue is not cross-layer multiplication: the affine
+Fourier theorem has solved that exactly.  It is the stronger operator
+statement that the quasi-regular `EL_r(T_O)` models and the
+cross-complement dual models for adjacent `O,O'` can be
+dimension-equalized on `1-o(1)` normalized Hilbert--Schmidt mass.  Linear
+rank loss alone is insufficient for the regular algebra-group model,
+because a kernel of small vector-space codimension can still contain
+exponentially many group elements.  A valid completion must either use a
+representation whose Hilbert dimension is linear in the coefficient space
+or prove a character-level stable-equivalence estimate for these
+quasi-regular models.  No such estimate is asserted here.
+
 ### Fiberwise Fourier transform solves non-split extension coherence
 
 Dimension equalization and a splitting of the elementary extension are in
