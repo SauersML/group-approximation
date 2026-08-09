@@ -234,6 +234,57 @@ structure HyperlinearApproximation (G : Type*) [Group G] where
   separatedEventually : ∀ g h : G, g ≠ h → ∃ N, ∀ n ≥ N,
     1 ≤ hsDistSq (model n) (map n g) (map n h)
 
+/-- Exact finite-dimensional unitary maps which are asymptotically
+multiplicative in normalized Hilbert--Schmidt distance.  No separation is
+required: the induced ultraproduct map may have a kernel, which is precisely
+what is needed when constructing a hyperlinear quotient. -/
+structure AsymptoticUnitaryRepresentation (G : Type*) [Group G] where
+  model : ℕ → FiniteModel
+  modelNonempty : ∀ n, 0 < Fintype.card (model n)
+  map : ∀ n, G → Matrix.unitaryGroup (model n) ℂ
+  asymptoticallyMultiplicative : ∀ g h : G, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+    hsDistSq (model n) (map n (g * h)) ((map n g :
+      Matrix (model n) (model n) ℂ) * map n h) ≤ ε
+
+/-- Asymptotically multiplicative exact unitaries induce a homomorphism to
+their tracial metric ultraproduct. -/
+theorem exists_hyperlinearHom_of_asymptoticUnitaryRepresentation
+    (S : AsymptoticUnitaryRepresentation G) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    Nonempty (G →* UniversalHyperlinear 𝒰 S.model S.modelNonempty) := by
+  classical
+  have hlen : ∀ (n : ℕ) (a b : Matrix.unitaryGroup (S.model n) ℂ),
+      hsLengthSq (S.model n) ((a⁻¹ * b : Matrix.unitaryGroup (S.model n) ℂ))
+        = hsDistSq (S.model n) b a := by
+    intro n a b
+    have hcoe : ((a⁻¹ * b : Matrix.unitaryGroup (S.model n) ℂ) :
+        Matrix (S.model n) (S.model n) ℂ) =
+          (a : Matrix (S.model n) (S.model n) ℂ)ᴴ * b := by
+      rw [← Matrix.star_eq_conjTranspose]
+      rfl
+    rw [hcoe]
+    exact hsLengthSq_conjTranspose_mul (S.model n) a.2 (S.modelNonempty n)
+  have hnull : ∀ g h : G,
+      (fun n ↦ S.map n g * S.map n h)⁻¹ * (fun n ↦ S.map n (g * h))
+        ∈ nullUnitarySubgroup 𝒰 S.model S.modelNonempty := by
+    intro g h ε hε
+    obtain ⟨N, hN⟩ := S.asymptoticallyMultiplicative g h (ε / 2) (by linarith)
+    refine eventually_of_atTop hcof N (fun n hn ↦ ?_)
+    show hsLengthSq (S.model n)
+      (((S.map n g * S.map n h)⁻¹ * S.map n (g * h) :
+        Matrix.unitaryGroup (S.model n) ℂ)) < ε
+    rw [hlen n (S.map n g * S.map n h) (S.map n (g * h))]
+    have hcoe : ((S.map n g * S.map n h : Matrix.unitaryGroup (S.model n) ℂ) :
+        Matrix (S.model n) (S.model n) ℂ) =
+          (S.map n g : Matrix (S.model n) (S.model n) ℂ) * S.map n h := rfl
+    rw [hcoe]
+    have := hN n hn
+    linarith
+  refine ⟨MonoidHom.mk' (fun g ↦ QuotientGroup.mk (fun n ↦ S.map n g)) ?_⟩
+  intro g h
+  rw [← QuotientGroup.mk_mul]
+  exact (QuotientGroup.eq.mpr (hnull g h)).symm
+
 /-- A closed inhabitant: the one-point models of the trivial group. -/
 noncomputable def trivialHyperlinearApproximation :
     HyperlinearApproximation PUnit where

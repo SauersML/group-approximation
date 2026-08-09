@@ -735,6 +735,39 @@ theorem norm_movingCompression_gram_sub_one_le
     (movingPredicate A S t n) (eigenbasisMicrostate A S n g)
       (eigenbasisMicrostate_star_mul_self A S n g)
 
+/-- A moving compression is a contraction. -/
+theorem norm_movingCompression_le_one (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
+    ‖movingCompression A S t n g‖ ≤ 1 := by
+  classical
+  exact (norm_principalBlock_le (movingPredicate A S t n)
+    (eigenbasisMicrostate A S n g)).trans_eq
+      (norm_eigenbasisMicrostate_eq_one A S n g)
+
+/-- Exact unitary obtained by polar-correcting a good moving compression. -/
+noncomputable def polarCorrectedMovingCompression
+    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (n : ℕ) (g : G) {delta : ℝ} (hdeltaHalf : delta ≤ 1 / 2)
+    (hclose : ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ delta) :
+    Matrix.unitaryGroup {i : A.model n // movingPredicate A S t n i} ℂ :=
+  polarCorrectUnitary (movingCompression A S t n g)
+    (cornerGram_isHermitian _) hdeltaHalf hclose
+
+/-- Polar correction moves a good compression by at most twice its Gram
+defect bound. -/
+theorem norm_polarCorrectedMovingCompression_sub_le
+    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (n : ℕ) (g : G) {delta : ℝ} (hdelta : 0 ≤ delta)
+    (hdeltaHalf : delta ≤ 1 / 2)
+    (hclose : ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ delta) :
+    ‖(polarCorrectedMovingCompression A S t n g hdeltaHalf hclose :
+        Matrix {i : A.model n // movingPredicate A S t n i}
+          {i : A.model n // movingPredicate A S t n i} ℂ) -
+      movingCompression A S t n g‖ ≤ 2 * delta := by
+  exact norm_polarCorrect_sub_le (movingCompression A S t n g)
+    (cornerGram_isHermitian _) (norm_movingCompression_le_one A S t n g)
+      hdelta hdeltaHalf hclose
+
 /-- Gram defects of all fixed compressed elements vanish. -/
 theorem movingCompression_gram_eventually_small
     {Q : Finset G} {epsilon : ℝ}
