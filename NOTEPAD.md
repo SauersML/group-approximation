@@ -15457,3 +15457,71 @@ finite and explicit: write the four-variable square-zero Weil gauges
 braid equations, including the regular-absorption multiplicity action.  A
 successful check closes moving holonomy; a noncentral braid product is the
 precise obstruction.
+
+### Explicit parity chart potentials solve the finite Weil compatibility system
+
+The twenty-four origin potentials can be written without choosing edge
+intertwiners independently.  Let `C_0` be the base total order, let `w_0`
+be the longest permutation (so `w_0 C_0` is the opposite order), and write
+every chamber uniquely as
+
+`C=w C_0`, `w in S_4`.
+
+Let `P_v` be the exact coordinate/depth relabeling for a permutation `v`.
+Let
+
+`F=R_omega F_K`
+
+be the audited full-kernel Fourier transform together with depth reversal,
+with its scalar and primal/dual identifications fixed once.  It maps the
+base primal model to the opposite dual model and satisfies
+
+`F pi^+(gamma)F^*=pi^-(gamma)`,
+
+`F U_(t_(ij)(a))^+ F^*=U_(t_(ji)(-a))^-`.
+
+Define
+
+`W_C=P_w` if `w` is even,
+
+`W_C=P_(w w_0) F` if `w` is odd.
+
+This has the correct chamber target in both cases.  In the odd case, `F`
+first sends `C_0` to `w_0 C_0`, and `P_(w w_0)` then sends that order to
+`w C_0` because `w_0^2=1`.  Notice that `w_0` has length six and is even,
+so adjacent chambers use opposite lines of the definition.
+
+For every adjacent pair put
+
+`J_(D,C;o)=W_D W_C^*`.
+
+Its formula contains exactly one full Fourier transform, conjugated by the
+appropriate coordinate relabelings.  The displayed Fourier covariance and
+functorial permutation covariance give the transverse opposite-root
+identity at the origin, including the parameter `-a`.  The five common
+root identities are imposed as moving bundle-arrow identities after native
+face propagation, not as commutation of a constant Fourier matrix.
+
+All Coxeter compatibility is now exact without asking that `C|->W_C` be a
+representation.  For any square, braid hexagon, or longer chamber loop,
+
+`(W_(C_0)W_(C_(l-1))^*)...(W_(C_1)W_(C_0)^*)=1`
+
+after orienting each ratio consistently; this is just cancellation of the
+fixed chart potentials.  Hence the finite origin system in the preceding
+section is a coboundary and has no noncentral braid obstruction.
+
+The negative parameter is not discarded.  It represents the inverse of
+the positive opposite-root unitary.  On a truncated depth/Følner chain,
+the inverse completed shift has the same boundary support as the forward
+completed shift, so it adds no new asymptotic bad set.  The fixed strict
+compressor remains evaluated in a chamber where its `+1` direction is
+native; other chart occurrences are transported through the `W_C`.
+
+Thus the moving-wall, pulled-back-factor, and atlas-holonomy constructions
+admit one simultaneous set of explicit chart gauges.  What is not yet
+automatic is the owner-transport multiplication problem: products of global
+letters native in different chambers must still satisfy their mixed group
+relations in one reference chart.  The chart potentials make their overlap
+operators consistent, but do not by themselves prove those cross-owner
+word identities.
