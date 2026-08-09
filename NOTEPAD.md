@@ -10395,3 +10395,88 @@ Hence the geometric Thom formulation and the Farrell formulation agree:
 This identification supplies a concrete candidate cocycle (an equivariant
 Thom/spin cocycle) and a concrete place to calculate the last boundary map;
 it does not yet assert that the required section exists.
+
+### Cyclic presentation curvature is removable; the maximal parabolic is sterile
+
+Two simplifications sharpen the remaining search.
+
+First, in the Conder--Robertson--Williams presentation, the three pure power
+relations can always be made exact simultaneously.
+
+**Lemma (orbitwise cyclic gauge).**  For any circle-valued transformation-
+groupoid multiplier on the finite `SL_3(Z)`-set, there are generator phases
+for which
+
+`x^3=y^3=z^2=1`
+
+on every coordinate.  These choices may be made simultaneously.
+
+**Proof.**  Let a generator `s` have order `m`, and decompose its permutation
+of the coordinate set into cycles of length `ell|m`.  On one such cycle the
+holonomy of `s^m` is a scalar `lambda`.  Multiplying the edge lifts around
+the cycle by phases whose product is `mu` changes that holonomy by
+`mu^(m/ell)`.  The circle is divisible, so choose
+
+`mu^(m/ell)=lambda^(-1)`.
+
+Do this independently on every cycle.  The phase variables for `x`, `y`,
+and `z` are disjoint, so the three constructions do not interfere.  End
+proof.
+
+Thus all genuine global curvature in this presentation can be placed on the
+five compatibility relations
+
+`(xz)^3, (yz)^3, (x^(-1)zxy)^2, (y^(-1)zyx)^2, (xy)^6`.
+
+This is also the correct scope of the numerical problem.  A constrained
+`p=5` audit killed the first three relators to machine precision before
+optimizing the remaining five.  Sparsity-weighted local optimization still
+settled at a broad residual, so the elementary smooth optimizer does not
+discover the Thom gauge.  This is not a lower bound; it only confirms that
+the five compatibility relations carry the hard class.
+
+Second, a tempting lower-index substitute for the adjoint stabilizer is
+impossible.  Let `P_p<SL_3(F_p)` be the maximal parabolic stabilizing a
+coordinate line.  Its index is `p^2+p+1`, and its Levi quotient is
+`GL_2(F_p)`, so it would align much better with the polynomial cone.  It has
+no order-two projective curvature.
+
+**Proposition (maximal-parabolic 2-primary sterility).**  For every prime
+`p>=5`,
+
+`H^2(P_p,T)_(2)=0`.
+
+**Proof.**  The unipotent radical of `P_p` has order `p^2`, which is odd.
+Restriction--transfer, or the Lyndon--Hochschild--Serre spectral sequence,
+therefore identifies the `2`-primary cohomology of `P_p` with that of its
+Levi `GL_2(F_p)`.
+
+The determinant sequence splits:
+
+`1 -> SL_2(F_p) -> GL_2(F_p) -> F_p^x -> 1`.
+
+For `p>=5`, `SL_2(F_p)` is perfect and is already the universal central
+extension of `PSL_2(F_p)`, so
+
+`H_1(SL_2(F_p),Z)=H_2(SL_2(F_p),Z)=0`.
+
+The quotient `F_p^x` is cyclic and has `H_2=0`.  The homological LHS
+spectral sequence consequently gives
+
+`H_2(GL_2(F_p),Z)=0`.
+
+Since `T` is divisible, universal coefficients now give
+`H^2(GL_2(F_p),T)=0`, proving the claim.  End proof.
+
+Hence no exact order-two Schur sector exists on the cone-preserving maximal
+parabolic.  The available finite stabilizer mechanisms remain genuinely
+different:
+
+* the row-vector Jacobi stabilizer, of index `Theta(p^3)`, carries
+  `p`-primary Heisenberg curvature and is geometrically compatible with a
+  polynomial direction; and
+* the adjoint `PSL_2` stabilizer, of index `Theta(p^5)`, carries the exact
+  order-two Schur sign but requires the fixed-flat/Steinberg assembly.
+
+Any hybrid must transfer information between these two stabilizers rather
+than replacing both by the maximal parabolic.
