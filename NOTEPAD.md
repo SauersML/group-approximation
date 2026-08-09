@@ -13148,3 +13148,91 @@ step, while the theorem shows that its adjacent-wall conjugate has the same
 extension data.  What remains to check is that these induced models can be
 dimension-equalized without turning the nonautomorphic compressor into a
 common-quotient automorphism.
+
+### Fiberwise Fourier transform solves non-split extension coherence
+
+Dimension equalization and a splitting of the elementary extension are in
+fact unnecessary.  The ordinary left regular representation contains the
+correct cocycle automatically.
+
+Let
+
+`1 -> K -> E -> B -> 1`
+
+be a finite group extension with `K` abelian.  Choose a set section
+`s:B->E`, write the `B`-action on `K` as `theta`, and write the extension
+cocycle additively as
+
+`s(b)s(c)=c(b,c)s(bc)`.
+
+The bijection `(k,b)|->k s(b)` identifies
+
+`ell^2(E)=ell^2(K) tensor ell^2(B)`.
+
+In these coordinates, left multiplication by `k_0 s(b_0)` is
+
+`(k,b)|->(k_0+theta_(b_0)(k)+c(b_0,b), b_0 b)`.
+
+Apply finite Fourier transform only in the `K` coordinate.  On
+`ell^2(K^vee) tensor ell^2(B)` the same honest regular representation now
+has the form
+
+* contragredient permutation
+  `chi |-> theta_(b_0)^(-vee)(chi)`;
+* base permutation `b|->b_0b`; and
+* the character multiplier obtained by evaluating `chi` on
+  `k_0+c(b_0,b)` (with the harmless inverse determined by the Fourier
+  convention).
+
+**Theorem (exact Fourier transform of an abelian extension).**  The
+preceding formula is unitary conjugation of `lambda_E`, hence is exactly
+multiplicative for every extension cocycle `c`.  Changing the set section
+changes the formula by a diagonal gauge.  In particular, no splitting of
+`E->B` and no projective correction is required: the nonsplit cocycle is
+precisely the Weyl multiplier on the dual fiber.
+
+**Proof.**  Substitute the displayed multiplication law into the finite
+Fourier sum.  An affine translation of `K` becomes evaluation by its
+character, and the linear automorphism `theta_(b_0)` becomes the
+contragredient permutation of `K^vee`.  Since the calculation is conjugation
+of the genuine representation `lambda_E`, all products are exact.  Replacing
+`s(b)` by `a(b)s(b)` changes `c` by the usual `K`-valued coboundary and the
+Fourier formula by multiplication by `chi(a(b))`.  End proof.
+
+Apply this theorem to each actual elementary extension
+
+`1 -> K_q -> EL_r(T_q) -> EL_r(B_q) -> 1`.
+
+Choose arbitrary sections and decompose its left regular representation
+fiberwise.  Fourier transform in `K_q`.  The resulting model is on the same
+Hilbert space and has the same dimension; it carries the full extension
+cocycle as a character multiplier.  The graded Steinberg self-duality
+theorem identifies that multiplier with the reverse-degree cocycle in
+`K_(D-q)`.  Therefore, assuming the base model at level `q-1` has already
+been transported, the fiberwise Fourier transform gives the transported
+model at level `q` exactly.  This is an induction on the filtration, not a
+stable-equivalence argument.
+
+Iterating the construction through
+
+`EL_r(T/M^2)<-...<-EL_r(T/M^(D+1))=EL_r(T)`
+
+retains every carry between degrees because each carry is part of the next
+extension cocycle.  The composition is one unitary on the full regular
+space, obtained by successive fiberwise Fourier transforms.  The odd-prime
+Weil normalization makes changes of polarization coherent, while section
+dependence is only diagonal gauge.
+
+This discharges the representation-theoretic extension-coherence problem
+for the paired interior layers.  The sole unmatched step remains the
+degree-zero/top-socle endpoint `V_0,V_D`; close it arbitrarily on one of the
+`D` flag blocks.  Thus the fixed-base mixed model has candidate adjacent-
+wall curvature support `1/D=O(1/L)` without passing through a common
+automorphic coefficient quotient.
+
+The next audit is global rather than layerwise: verify that the iterated
+Fourier unitary transports the five common root operators in every adjacent
+Weyl-chamber wall with one consistent choice of sections.  Section changes
+are diagonal gauges, so the occurrence-graph loops reduce to a scalar/Pauli
+coboundary, but that simultaneous finite-atlas calculation must still be
+written explicitly before the microstate theorem is claimed.
