@@ -10078,6 +10078,115 @@ must use window-dependent non-liftable polynomial-shear intertwiners; an
 exact representation of any finite quotient ring necessarily restores total
 absorption.
 
+### A positive-cone-compatible Schur source in rank four
+
+The rank-three binary-octahedral source is well aligned with Soulé's cell
+complex, but its signed permutation matrices invert some Laurent variables.
+There is a complementary rank-four source which is aligned instead with the
+polynomial shear construction.
+
+Let `A=A_4<SL_4(Z)` be the even permutation matrices, let
+`B=V_4 normal A` be the subgroup of double transpositions, and let
+`beta in H^2(A,T)` be the binary-tetrahedral Schur class
+
+`1 -> {+-1} -> 2.A_4 -> A_4 -> 1`.
+
+For every odd prime `p>3`, reduce `A` into `Q_p=SL_4(F_p)` and induce by
+Shapiro:
+
+`c_p in H^2(Q_p,T^(Q_p/A))`.
+
+**Theorem (rank-four Schur curvature has density `Theta(p^(-12))`).**  The
+restriction of `c_p` to `B` has a cocycle representative which is trivial on
+every non-fixed `B`-orbit in `Q_p/A`.  It is the nontrivial quaternion class
+on exactly
+
+`f_p=(p-1)^3/2`
+
+fixed cosets.  Since
+
+`|Q_p/A|=|SL_4(F_p)|/12=Theta(p^15)`,
+
+the forced support density is
+
+`6(p-1)^3/|SL_4(F_p)|=Theta(p^(-12))`.
+
+Consequently the two ordered multiplication defects at the fixed commuting
+pair generating `B` can simultaneously be made `O(p^(-6))`, while every
+gauge has their maximum `Omega(p^(-6))`.
+
+**Proof.**  Mackey--Shapiro decomposes the restriction over the `B`-orbits.
+A proper stabilizer in `B` is trivial or cyclic of order two, and
+`H^2(C_2,T)=0`, so the multiplier is a coboundary on every such orbit.  A
+coset `gA` is fixed precisely when `g^(-1) B g <= A`.  The group `A_4` has a
+unique Klein four subgroup, so this condition is equivalent to
+`g in N_(Q_p)(B)`.
+
+The permutation representation of `B` on four letters is its regular
+representation.  Since `p` is odd, it decomposes into four distinct
+one-dimensional character spaces.  Hence its centralizer in `SL_4(F_p)` is
+the determinant-one diagonal torus in that character basis, of order
+`(p-1)^3`.  Every automorphism of `B` permutes its three nontrivial character
+spaces and is realized by the normalizing `S_4`; a diagonal determinant
+correction puts the realizing matrix in `SL_4(F_p)`.  Therefore
+
+`|N_(Q_p)(B)|=6(p-1)^3`
+
+and the number of fixed cosets is its quotient by `|A|=12`.
+
+The inverse image of `B` in `2.A_4` is `Q_8`, so its projective commutator is
+`-1` on every fixed coordinate.  Orbitwise gauges give the upper bound.  On
+a fixed coordinate, if the two ordered cocycle values are `a,b`, then
+`a/b=-1` and
+
+`|a-1|^2+|b-1|^2=4`.
+
+After summing over the fixed coordinates and normalizing, at least one
+ordered defect is bounded below by a constant times the square root of the
+displayed density.  End proof.
+
+This source has an exact polynomial advantage.  The group `A_4` acts sharply
+two-transitively on the four variables, and every one of its matrices has
+nonnegative entries.  It therefore normalizes `Z[x_1,x_2,x_3,x_4]` and
+conjugates any chosen positive root compressor through all ordered root
+directions.
+
+For the same prime `p`, put
+
+`t_p=I+p E_(j i) in SL_4(Z)`,
+
+so that `alpha_(t_p)(x_i)=x_i x_j^p`.  This matrix reduces to the identity
+modulo `p`, hence belongs to the kernel of the finite quotient which carries
+the binary-tetrahedral class.  For every `L`, reduce coefficients modulo `p`
+and use
+
+`S_(p,L)=F_p[x_i,x_j]/(x_i^2,x_j^(pL+1))`,
+
+with the other variables specialized to zero.  Then
+
+`alpha_(t_p)^k(x_i)=x_i x_j^(pk)`
+
+and the nested coefficient images are
+
+`B_k=F_p[x_j]+x_i x_j^(pk) F_p[x_j]`,  `0<=k<=L`.
+
+Thus the orbit-chain theorem applies verbatim: it gives compressor defect at
+most `2/sqrt(L)` and a strict relative-commutant witness whose norm tends to
+`sqrt(2)`.  Conjugation by `A_4` supplies the same tower in every ordered
+root direction, while the Schur sign and the coefficient reduction use the
+same prime `p`.
+
+This proves exact **arithmetic and cone compatibility** between a shrinking
+order-two curvature source and the polynomial shear tower.  It does not yet
+assemble the root towers: an orthogonal sum over their substitution orbit is
+still excluded by the property-`(T)` finite-orbit concentration theorem.
+The remaining coupling problem is narrower than before: construct one
+nonorthogonal multiplicity fiber for the finite source `2.A_4` in which the
+conjugate `p`-shear chains satisfy the relations of the congruence kernel.
+No variable inversion is present in this formulation, and the unavoidable
+scalar relation defect is only `Theta(p^(-6))` on the detecting Klein-four
+pair.
+
 ### The varying Schur class transfers from one fixed quaternion source
 
 The Schur route becomes more rigid on the infinite progression
