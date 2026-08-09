@@ -20199,3 +20199,70 @@ orthogonal direction already has order-one unnormalized Frobenius cost.
 Thus the cover converts the terminal problem into a precise **relative
 square-root quasi-regular profile**, rather than solving it by exact
 finite-dimensional representation theory.
+
+### Correction: stable finiteness forbids the square-root profile
+
+The quantitative Clifford--Fell criterion is valid as a sufficient
+statement, but its displayed profile cannot occur for a Kun--Thom pair.
+The obstruction is stronger than finite-dimensional fixed-space counting.
+
+Let
+
+`A=product_n M_(d_n)(C) / directSum_n M_(d_n)(C)`
+
+be the norm matrix ultraproduct (the quotient by sequences converging to
+zero in operator norm).  This C-star algebra is stably finite.  Indeed, if
+`x^*x=1`, choose matrix lifts `x_n`.  Then
+
+`||x_n^*x_n-1|| ->0`.
+
+For large `n` the polar corrections
+
+`u_n=x_n(x_n^*x_n)^(-1/2)`
+
+are square unitaries and `||x_n-u_n||->0`.  Hence `x` is represented by
+unitaries and `xx^*=1`.  The same proof in every matrix amplification gives
+stable finiteness.
+
+Now let `Gamma` have property `(T)`, let `t Gamma t^(-1)<=Gamma`, and let
+
+`pi:G->U(A)`
+
+be any homomorphism into a stably finite unital C-star algebra.  Property
+`(T)` supplies the Kazhdan projection `p_Gamma in C^*_(max)(Gamma)`.  Let
+`P` be its image under `pi|Gamma`.  In every Hilbert-space representation,
+`P` projects onto the `pi(Gamma)`-fixed vectors.  The compressor calculation
+therefore gives
+
+`pi(t)^* P pi(t) <= P`.
+
+The two projections are unitarily equivalent.  Stable finiteness forbids a
+projection from being equivalent to a proper subprojection, so equality
+holds.  Thus `P` commutes with `pi(t)`.  For every `gamma in Gamma`,
+
+`pi(t^(-1) gamma t) P=P`.
+
+Apply this to orthogonal almost-representations `pi_n` satisfying the
+square-root profile.  Since
+
+`||D||_(op) <= ||D||_(Frob)`
+`             =sqrt(d_n)||D||_(2,d_n)`,
+
+their multiplicative defects vanish in operator norm and hence define a
+homomorphism `pi:G->U(A)`.  Any ultralimit of the vector states of `xi_n`
+descends to a state of `A`.  The coefficient condition on `Gamma` makes its
+GNS cyclic vector `Gamma`-fixed, hence contained in the range of `P`.  For
+the invisible element `h=t^(-1)gamma t`, the preceding identity forces
+
+`<pi_n(h)xi_n,xi_n> ->1`,
+
+contradicting the required quasi-regular limit `0`.
+
+Therefore exterior/Clifford amplification of an almost one-particle
+representation cannot finish the construction: precisely the defect rate
+which makes the exponential Clifford dimension harmless also promotes the
+model to a stably finite norm-ultraproduct representation, where Kazhdan
+fixed-space compression is reversible.  A viable CAR microstate must be
+constructed directly in normalized Hilbert--Schmidt geometry; it cannot
+factor through a one-particle model with vanishing unnormalized Frobenius
+defect.
