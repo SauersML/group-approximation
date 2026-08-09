@@ -11506,3 +11506,50 @@ are identified, the Curtis--Tits/Steinberg overlap has no residual finite-
 stage `K_2` holonomy at all.  The only remaining operator-level task is the
 shared-root identification itself; the previous relative-congruence kernel
 was an artifact of choosing `I+pE` rather than `I+E`.
+
+### Regular Heisenberg stabilization equalizes every shared root exactly
+
+The shared-root problem has no spectral or multiplicity obstruction.  Start
+with the finitely many unit-step Heisenberg-cell microstates needed for the
+`A_3` root system.  Their completed block translations are finite
+permutations.  Choose one integer `q` divisible by the orders of every root
+permutation in every cell, and let
+
+`H(q)=UT_3(Z/qZ)=<a,b,c : [a,b]=c, c central>`.
+
+Tensor each cell microstate with the left regular representation of `H(q)`,
+matching its three root operators with `lambda(a),lambda(b),lambda(c)` (and
+using the appropriate opposite orientation when necessary).
+
+**Lemma (regular shared-root stabilization).**  After this tensoring and a
+further scalar amplification, the restrictions of any two incident cells
+to their shared root cyclic group are exactly unitarily equivalent.  The
+normalized Hilbert--Schmidt defects of all cell relations and covariance
+relations are unchanged, and the strict relative-commutant lower bound is
+unchanged.
+
+**Proof.**  The restriction of the regular `H(q)`-representation to any one
+of its order-`q` root subgroups is a multiple of the regular representation
+of `C_q`.  If `T^q=1`, then for every finite-dimensional representation
+`T` of `C_q`,
+
+`T tensor lambda_(C_q) ~= dim(T) lambda_(C_q)`.
+
+This follows either from characters or by translating the uniform spectrum
+of `lambda_(C_q)`.  Hence each stabilized root operator is a multiple of the
+same regular cyclic operator.  Take a common multiple of the finitely many
+multiplicities.
+
+The `H(q)` factor is an exact representation of every Heisenberg relation,
+so tensoring preserves each normalized `2`-norm defect exactly.  A strict
+commutant unitary from the coefficient factor may be tensored with the
+identity; its commutator norm is unchanged.  End proof.
+
+Choose exact root intertwiners along a spanning tree of the finite incidence
+graph of `A_2` cells.  The lemma makes every tree identification exact.
+Every remaining cycle produces a holonomy lying in the commutant of a
+regular root action, rather than a mismatch of spectra or dimensions.  The
+unit-step `K_2(Z/p^nZ)=0` result shows that no **central Steinberg** holonomy
+survives.  The terminal overlap question is thereby reduced to killing the
+possibly noncentral commutant-valued holonomies around the finitely many
+incidence cycles while retaining polynomial covariance.
