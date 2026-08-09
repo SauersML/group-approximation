@@ -27200,3 +27200,50 @@ would contradict the strictly positive finite-dimensional energies in
 criterion.  Thus neither a convex mixture nor a nontrivial center of the
 internal coefficient algebra is needed.  A constructive attack may focus
 entirely on one full matrix factor at each stage.
+
+# Split wreath products cannot realize the Kazhdan counterexample architecture (2026-08-09)
+
+There is a tempting way to combine the Kun--Thom nonsoficity criterion with
+the Hayes--Sale hyperlinearity theorem: put a known hyperlinear group in the
+lamp, use an ordinary permutational wreath product over an infinite coset
+space, and try to choose the acting group and stabilizer so that the
+Kun--Thom compression hypotheses hold.  The property-`(T)` hypothesis makes
+this impossible before any approximation question is reached.
+
+**Theorem (split-wreath Kazhdan obstruction).**  Let `A` be nontrivial, let
+`B` act on an infinite set `X`, and suppose the permutational restricted
+wreath product
+
+`W=A wr_X B=(directSum_X A) semidirect B`
+
+is finitely generated.  Then `W` does not have property `FW`, and hence does
+not have property `(T)`.  In particular no such full split wreath product can
+serve as either `Gamma` or `G` in the property-`(T)` pair required by the
+Kun--Thom criterion.
+
+**Proof.**  Leemann--Schneeberger prove that a finitely generated
+permutational wreath product `A wr_X B` has property `FW` if and only if both
+factors have property `FW` and `X` is finite.  Here `X` is infinite, so `W`
+fails `FW`.  Property `(T)` implies `FW`, giving the conclusion.  End proof.
+
+This is exactly the boundary between the two available theorems.  Hayes--Sale
+prove hyperlinear permanence for ordinary restricted wreath products when the
+acting group is sofic and the lamp is hyperlinear.  But the split product to
+which that permanence theorem applies cannot have the Kazhdan geometry used
+by the nonsoficity theorem on an infinite coordinate set.  Property-`(T)`
+``wreath-like'' groups in the sense of Chifan--Ioana--Osin--Sun avoid the
+obstruction by being genuinely nonsplit extensions.  Their extension cocycle
+is therefore not cosmetic: it is exactly the datum that must simultaneously
+restore property `(T)` and admit tracial microstates.
+
+**Scope.**  The theorem concerns the full split permutational wreath product;
+it does not say that every subgroup of a wreath product fails property `(T)`.
+Nor does it rule out nonsplit wreath-like extensions.  It closes only the
+naive attempt to combine standard wreath-product hyperlinearity permanence
+with the Kun--Thom property-`(T)` architecture.
+
+Primary sources: Leemann--Schneeberger, *Property FW and wreath products of
+groups: a simple approach using Schreier graphs*, arXiv:2101.03817; Hayes--Sale,
+*Metric Approximations of Wreath Products*, arXiv:1608.02610; and
+Chifan--Ioana--Osin--Sun, *Wreath-like products of groups and their von
+Neumann algebras I*, arXiv:2111.04708.
