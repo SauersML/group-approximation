@@ -21787,3 +21787,47 @@ The word *trace* cannot be replaced here for free by *character* (extreme
 trace): extracting a factorial component is a quotient operation, and
 Connes embeddability is not available under arbitrary quotients.  Avoiding
 that invalid step is essential in exactly this problem.
+
+### The fork is exactly the hyperlinearity decision for the simple quotient
+
+The central-quotient permanence theorem sharpens the one-trace endpoint one
+last step.
+
+**Corollary.**  The six conditions in the one-trace endpoint are also
+equivalent to:
+
+7. `Q=EL_4(L_(F_2)(1,2))` is hyperlinear;
+8. the regular trace of `Q` is Connes embeddable.
+
+Consequently
+
+`U is HS-unstable  <=>  Q is hyperlinear (and nonsofic)`,
+
+while
+
+`U is HS-stable  <=>  Q is nonhyperlinear`.
+
+**Proof.**  Condition (4) gives a hyperlinear central cover `U/C` of `Q`.
+Thom's central-quotient theorem says that every quotient of a hyperlinear
+group by a central subgroup is hyperlinear.  Quotienting `U/C` by
+`Z(U)/C` therefore makes `Q` hyperlinear.  Conversely, if `Q` is
+hyperlinear, take `C=Z(U)` in condition (4).  The equivalence of (7) and
+(8) is the standard group/von-Neumann-algebra characterization of
+hyperlinearity.  Since `Q` is already proved nonsofic, the unstable side
+produces the desired example with no residual central kernel.  End proof.
+
+This formulation also checks both directions of the stability fork without
+any appeal to factorial decomposition.  A hyperlinear model of `Q`, pulled
+back along `U->Q`, is a nontrivial asymptotic representation of `U` and
+cannot be corrected to its only genuine finite-dimensional representation,
+the trivial one.  In the other direction, any HS-instability witness for
+`U` first produces a hyperlinear central quotient and then descends to `Q`
+by the central-quotient theorem.
+
+Thus HS stability is not merely one possible sufficient attack: for this
+canonical Steinberg cover it is exactly the yes/no analytic invariant that
+decides whether the already nonsofic simple group `Q` is hyperlinear.
+
+**Primary-source pin.**  Thom, *Examples of hyperlinear groups without
+factorization property*, Remark 3.5: every quotient of a hyperlinear group
+by a central subgroup is hyperlinear.
