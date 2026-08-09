@@ -8210,3 +8210,75 @@ Therefore Kazhdan-corner extraction works for the simple Kazhdan Leavitt
 witness but cannot be transplanted to the normal lamp kernel of either the
 commuting or Shulman free-lamp construction.  Any trace-visible-lamp proof
 must use the compressor geometry, not relative `(T)` of the whole base.
+
+### Finite central torsion gives a profile-free weak-MF bridge
+
+There is one setting in which a norm-visible element can always be made
+trace-visible without property `(T)` and without a dimension/error rate.
+
+**Theorem (central torsion corner).**  Let `H` be weak-MF in the
+operator-norm sense and let `z in Z(H)` have finite order `m>1`.  Then `H`
+has a hyperlinear quotient `Q` in which the image of `z` is nontrivial.
+
+Consequently, if every quotient of `H` in which `z` survives is nonsofic,
+then a hyperlinear nonsofic group exists.
+
+**Proof.**  Choose an injective homomorphism
+
+`rho:H -> U(A)`,  `A=(product_n M_(d_n))/(directSum_n M_(d_n))`,
+
+where the quotient is in operator norm.  Put `u=rho(z)` and
+
+`e=(1/m) sum_(j=0)^(m-1) u^j`,  `q=1-e`.
+
+Because `u^m=1`, `e` is the spectral projection of `u` for the eigenvalue
+`1`; hence `e` and `q` are projections.  Since `z` is central, `q` commutes
+with `rho(H)`.  Injectivity and `z!=1` imply `q!=0`: if `q=0`, then `e=1`,
+which forces the order-`m` unitary `u` to equal `1`.
+
+Work in the nonzero unital corner `qAq` and define
+
+`rho_q(h)=q rho(h)`.
+
+Let `Q=rho_q(H)`.  It is a group embedded in the unitary group of the norm
+matrix ultraproduct corner.  Lift `q` to projections `q_n` of positive ranks
+and lift the group unitaries to `q_n M_(d_n)q_n`.  Their operator-norm
+multiplicative defects tend to zero, and therefore so do their normalized-HS
+defects in the corner traces.  These maps define a homomorphism
+
+`eta:Q -> product_omega U(rank(q_n))`
+
+into a tracial matrix ultraproduct.
+
+This tracial homomorphism is nontrivial on `rho_q(z)`.  Indeed, in the finite
+dimensional C-star algebra of `C_m`, on the complement of the trivial
+spectral projection one has
+
+`(u-1)^*(u-1) >= c_m q`,
+
+where
+
+`c_m=min_{1<=j<m}|exp(2 pi i j/m)-1|^2>0`.
+
+The same inequality holds in `qAq` and hence, up to operator-norm null error,
+for the lifted matrices.  Taking normalized corner traces gives
+
+`liminf ||rho_(q,n)(z)-q_n||_2^2 >= c_m`.
+
+Thus `eta(rho_q(z))!=1`.  Its kernel is proper, and the image `eta(Q)` is a
+hyperlinear quotient of `H` retaining `z`; rename that image `Q`.  If every
+such quotient is nonsofic, this `Q` is the required hyperlinear nonsofic
+group.  End proof.
+
+This bridge isolates a new construction target.  It would suffice to build a
+weak-MF group with a finite central element `z` satisfying a
+**sofic-essentiality** condition:
+
+`z survives in a quotient  =>  that quotient is nonsofic`.
+
+The Kun--Thom witness already has the analogous essentiality property once
+the ambient copy of `G` remains embedded: their centralizer theorem kills
+that witness in every sofic representation.  What is missing is a weak-MF
+construction which makes such a witness central of finite order without
+collapsing `G`.  Unlike the square-root and one-witness rank criteria, the
+central-torsion corner would then complete the trace step automatically.
