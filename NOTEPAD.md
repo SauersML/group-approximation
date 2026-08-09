@@ -17343,6 +17343,62 @@ on the fusion Gram overlaps with `o(1)` normalized-HS error, and that adding
 their finitely many boundary projections leaves the macroscopic strict
 witness intact.  This is now the exact **row-torus overlap lemma**.
 
+### Full regular Heisenberg cells repair the missing base output locally
+
+The tangent-only no-go above rules out an irreducible Weyl pair whose
+commutator is scalar.  It does not rule out the full regular Heisenberg
+representation, and that representation supplies exactly the missing
+non-scalar base operator.
+
+Let
+
+`H_p=UT_3(F_p)=<a,b,c:[a,b]=c, c central, a^p=b^p=c^p=1>`.
+
+In its left regular representation,
+
+`[lambda(a),lambda(b)]=lambda(c)`
+
+exactly, and `tau(lambda(c))=0`.  The restriction of `lambda_Hp` to each of
+the three order-`p` root groups is a multiple of the regular
+representation of `C_p`.
+
+On the fixed-base jet side, every nontrivial elementary root with an
+`F_p`-line of coefficients also has order `p`.  The restriction of the
+left regular representation of the finite jet elementary group to that
+root `C_p` is again a multiple of `lambda_(C_p)`.  The regular shared-root
+stabilization lemma therefore gives exact intertwiners, after scalar
+amplification, for
+
+`lambda(a) <-> x_(ij)(x^v)`,
+
+`lambda(b) <-> x_(jk)(x^(-v))`,
+
+`lambda(c) <-> x_(ik)(1)`.
+
+Thus one antipodal `A_2` cell can be represented exactly with the correct
+base-factor output; no scalar cochain is asked to turn a tangent phase into
+a base translation.  Row-torus translates give the same statement for
+arbitrary antipodal monomial powers.  Finite products of regular
+Heisenberg factors simultaneously equalize any fixed finite collection of
+individual shared-root spectra.
+
+This is only a **local** discharge.  Identifying all shared roots exactly
+by taking the graph-of-groups amalgam of the finite relation cells would
+make every selected relator exact in one ordinary finite/virtually-free
+model.  Once a finite presentation of the Kazhdan coefficient group is
+included, its image in that virtually free group is finite; the
+finite-quotient absorption mechanism then kills the strict witness.  The
+successful assembly must therefore retain the full regular Heisenberg cell
+on a nonorthogonal fusion overlap with vanishing, but nonzero, mismatch.
+
+The remaining row-torus overlap lemma can now be stated more concretely:
+construct fusion projections for the strict jet charts and the regular
+`H_p` antipodal cells so that each of the three stabilized cyclic root
+intertwiners has `o(1)` Gram-overlap error, all constant and nonantipodal
+native cells retain their fixed-word relations, and the pulled-back strict
+commutator loses only `o(1)` energy.  The local non-scalar base obstruction
+is closed; simultaneous approximate gluing is the sole residue.
+
 ### Tangent Fourier commutators alone cannot supply the antipodal cell
 
 The most immediate proposed repair fails on the unchanged base factor.  In
