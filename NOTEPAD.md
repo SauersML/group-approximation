@@ -8493,6 +8493,52 @@ boundary*, not one supported on a small boundary component.  Cusp
 localization therefore requires an additional excision or connecting-map
 calculation and cannot presently be claimed as the sparse representative.
 
+The Bockstein of the explicit congruence class has a useful exact carry
+formula.  This identifies what a sparse representative would have to
+compress.
+
+**Lemma (the congruence Bockstein is a cup-product carry).**  Let `H` be a
+group, let `n` be odd, and let `x,y in Z^1(H,Z/n)` be homomorphisms.  Let
+`omega` be the alternating multiplier
+
+`omega(g,h)=exp((2 pi i)/(2n) (x(g)y(h)-y(g)x(h)))`.
+
+Choose integer lifts `X,Y in C^1(H,Z)` of `x,y`, and write
+
+`dX=nP`,  `dY=nQ`
+
+with integral `2`-cocycles `P,Q`.  Then the integral Bockstein of
+`[omega]` is
+
+`beta([omega])=[P cup Y-X cup Q] in H^3(H,Z)`.
+
+In particular it vanishes after restriction to any subgroup on which both
+`x` and `y` admit integral homomorphic lifts.
+
+**Proof.**  In `H^2(H,Z/n)`, graded commutativity and invertibility of `2`
+give
+
+`(1/2)([x cup y]-[y cup x])=[x cup y]`.
+
+Thus `[omega]` is the image of `[x cup y]` under
+`Z/n -> T`, `k |-> exp(2 pi i k/n)`.  A real lift of this circle cocycle is
+`A=(1/n) X cup Y`.  The cochain Leibniz identity gives
+
+`dA=P cup Y-X cup Q`,
+
+which is integral and, by definition, represents the Bockstein for
+`0->Z->R->T->0`.  If `x,y` lift to integral homomorphisms, choose `X,Y`
+closed, so `P=Q=0`.  End proof.
+
+For the congruence coordinates `x=X_12`, `y=X_34`, the scalar construction
+is therefore not an unspecified class in degree three: it is the interaction
+of the two integer **carry cocycles** `P,Q`.  Choosing residues in an interval
+makes each individual carry set thin in a cyclic direction, but the factors
+`X,Y` can have size `n`; thin support alone does not yet make the normalized
+integral `L2` norm small.  The remaining quantitative problem is to modify
+this representative by an integral coboundary so that support and coefficient
+size are simultaneously small in the fixed-resolution congruence covers.
+
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
 The preceding warning has an exact quantitative form.
