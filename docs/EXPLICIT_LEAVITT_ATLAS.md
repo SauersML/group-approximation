@@ -1377,6 +1377,56 @@ between some pair of real or imaginary block coefficients.  Its internal
 mixing cannot be asymptotically classical even in the weaker
 almost-commuting sense.
 
+Finally, the smooth potential has an explicit Euler--Lagrange equation.
+For each (s\in\bar{\mathcal S}), write its evaluated reduced word as
+
+\[
+ W_s(U)=A_{s,0}C_{s,1}A_{s,1}\cdots
+        C_{s,q_s}A_{s,q_s},
+ \qquad C_{s,l}=UB_{s,l}U^*,
+\]
+
+where the (A_{s,l}) and (B_{s,l}) are fixed chart matrices; empty
+endpoint factors are allowed.  Let (R_{s,l}(U)) be the cyclic product of
+all factors other than the displayed occurrence of (C_{s,l}), starting
+immediately after it, and set
+
+\[
+ G_k(U)=\sum_{s\in\bar{\mathcal S}}\sum_{l=1}^{q_s}
+          [C_{s,l},R_{s,l}(U)].                        \tag{62}
+\]
+
+For (X^*=-X) and (U_t=e^{tX}U), differentiation and cyclicity of trace
+give
+
+\[
+ \left.\frac d{dt}\right|_{t=0}\gamma_k(U_t)
+ =\frac1{|\bar{\mathcal S}|}
+    \operatorname{Re}\operatorname{tr}(XG_k(U)).      \tag{63}
+\]
+
+Indeed, (dot C_{s,l}=[X,C_{s,l}]), while an occurrence (PCQ)
+contributes
+
+\[
+ \operatorname{tr}(P[X,C]Q)=
+ \operatorname{tr}(X[C,QP]).
+\]
+
+Every maximizing relative unitary consequently satisfies the exact
+cyclic-gradient equation
+
+\[
+ G_k(U)=G_k(U)^*.                                     \tag{64}
+\]
+
+This is also sufficient for first-order stationarity, since
+(operatorname{Re}\operatorname{tr}(XG)=0) for every skew-adjoint
+(X) exactly when (G) is self-adjoint.  Equation (64) has degree bounded
+only by the fixed relator words and is preserved by amplification and
+block direct sum.  It gives a concrete algebraic locus containing all
+finite-dimensional optimizers.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of

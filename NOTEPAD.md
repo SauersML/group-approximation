@@ -27120,3 +27120,42 @@ merely a complicated commuting direct integral.
 to normalized Hilbert--Schmidt norm*, Theorem 4 (arXiv:1002.3082), proves
 the simultaneous dimension-free approximation for every fixed number of
 self-adjoint contractions used in `(COM1)`.
+
+### Exact Euler--Lagrange equation for the smooth atlas potential
+
+The maximizers defining `gamma_k` satisfy one explicit cyclic-gradient
+equation.  For each `s in Sbar`, fix its reduced factorization and write
+
+`W_s(U)=A_(s,0) C_(s,1) A_(s,1) ... C_(s,q_s) A_(s,q_s)`,
+
+where every `A_(s,l)` is a fixed first-chart matrix and
+
+`C_(s,l)=U B_(s,l) U^*`
+
+for a fixed second-chart matrix `B_(s,l)`.  Empty endpoint factors are
+allowed.  Let `R_(s,l)(U)` be the cyclic product of all factors of `W_s`
+other than `C_(s,l)`, beginning immediately after that occurrence.  Define
+
+`G_k(U)=sum_(s in Sbar) sum_(l=1)^(q_s)`
+`          [C_(s,l),R_(s,l)(U)]`.                      `(EL1)`
+
+If `U_t=exp(tX)U` with `X^*=-X`, then cyclicity of normalized trace gives
+
+`d/dt|_(t=0) gamma_k(U_t)`
+` = (1/|Sbar|) Re tr(X G_k(U))`.                       `(EL2)`
+
+Indeed `dot C_(s,l)=[X,C_(s,l)]`, and if `P C Q` is the
+corresponding occurrence in the word, then
+
+`tr(P[X,C]Q)=tr(X[C,QP])`.
+
+Therefore every maximizer `U_k` obeys the exact matrix equation
+
+`G_k(U_k)=G_k(U_k)^*`.                                 `(EL3)`
+
+Conversely `(EL3)` is precisely first-order stationarity, because
+`Re tr(XG)=0` for every skew-adjoint `X` if and only if `G` is
+self-adjoint.  Thus the thermodynamic endpoint can be searched among
+solutions of one finite cyclic-commutator equation at each multiplicity.
+The equation has degree bounded solely by the fixed relator words and is
+compatible with amplification and block direct sum.
