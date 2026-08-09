@@ -916,6 +916,63 @@ Thus a positive solution can always be represented by a coherent
 divisibility chain of regular amplifications; incompatible matrix sizes
 cannot be the obstruction.
 
+There is an exact finite-dimensional dual alternative.  Enumerate
+\(\bar{\mathcal S}=\{s_1,\ldots,s_m\}\), and form the compact trace body
+
+\[
+ \mathcal T=\overline{\bigcup_{k\geq1}
+   \left\{\bigl(\operatorname{tr}(\pi_U(s_1)),\ldots,
+                    \operatorname{tr}(\pi_U(s_m))\bigr):
+             U\in U(20160k)\right\}}
+ \subseteq\mathbb C^m.                                  \tag{45}
+\]
+
+This set is convex.  If \(U\) and \(V\) define canonical models at
+multiplicities \(k\) and \(l\), their block direct sum is canonical at
+multiplicity \(k+l\), and its trace vector is
+
+\[
+ \frac{k}{k+l}t(U)+\frac{l}{k+l}t(V).
+\]
+
+Rational convex combinations therefore occur exactly, and closure gives
+all real convex combinations.  The set is also invariant under coordinatewise
+complex conjugation, by conjugating a canonical model.
+
+**Theorem (trace-body alternative).**  Exactly one of the following holds.
+
+1. \((1,\ldots,1)\in\mathcal T\).  Then \(Q\) is hyperlinear and hence is
+   a hyperlinear nonsofic group.
+2. There are coefficients \(c_1,\ldots,c_m\in\mathbb C\) and
+   \(\eta>0\) such that, for every \(k\geq1\) and every
+   \(U\in U(20160k)\),
+
+   \[
+    \operatorname{Re}\sum_{j=1}^m c_j
+      \left(1-\operatorname{tr}_{20160k}(\pi_U(s_j))\right)
+      \geq\eta.                                        \tag{46}
+   \]
+
+**Proof.**  Membership of the all-ones vector gives a sequence with
+\(\operatorname{Re}\operatorname{tr}(\pi_U(s_j))\to1\) for every \(j\),
+and hence
+
+\[
+ \|\pi_U(s_j)-I\|_2^2
+  =2-2\operatorname{Re}\operatorname{tr}(\pi_U(s_j))\to0.
+\]
+
+The canonical criterion applies.  If the all-ones vector is absent, the
+strict separation theorem for a point and a compact convex subset of the
+finite-dimensional real vector space underlying \(\mathbb C^m\) gives
+(46).  The two alternatives are mutually exclusive.  \(\square\)
+
+Thus the constructive route and the obstruction route are finite duals.
+The constructive route seeks trace vectors converging to \((1,\ldots,1)\).
+The opposite route must prove one fixed dimension-free tracial polynomial
+inequality (46); a collection of dimension-dependent or relator-dependent
+lower bounds is insufficient.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
