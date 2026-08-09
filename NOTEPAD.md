@@ -11146,6 +11146,79 @@ towers; commutators such as
 explain exactly why the unresolved terms fall one step deeper in the
 congruence filtration.
 
+There is a small but necessary justification in the preceding finite-index
+reduction: infranormality is not inherited by an arbitrary finite-index
+restriction merely by terminology.  Here it holds for an explicit reason.
+The compression semigroup contains `Gamma`, the positive permutation group
+`B`, and all positive transvections `I+pE_(ij)`.  These generate `Lambda_p`
+as a group.  Their conjugates of `Gamma` generate the whole Laurent
+elementary group.  It is enough to produce every inverse variable.  For
+example, in the first two coordinates put
+
+`w=(p-1,p,0,0)`
+
+and
+
+`A=[[p+1,-p],[p,1-p]] direct_sum I_2`.
+
+Then `A in SL_4(Z)`, `A=I mod p`, and `Aw=-e_1`.  Thus `A in E_4(pZ)`
+(equivalently one may use the standard relative-elementary generation over
+`Z`), while `w in N^4`; hence a `Lambda_p`-translate of the positive monomial
+`x^w` is `x_1^(-1)`.  Coordinate permutations give every `x_i^(-1)`.
+Together with the positive polynomial ring these generate the Laurent ring,
+and the elementary additive relations finish the infranormality proof.
+
+### One coherent Pauli--Jacobi channel handles all three root orbits
+
+The pairwise fixed-prime Mackey channel extends without an additional trace
+loss to the complete three-compressor target.  For the three nonzero
+`delta in B`, choose conjugate local-ring Jacobi subgroups `K_(delta,n)`
+containing the corresponding root-unipotent directions, and put
+
+`X_0=Q_n/B`,  `X_delta=Q_n/K_(delta,n)`.
+
+On the product
+
+`X_0 x product_(delta!=0) X_delta`
+
+use the diagonal `Q_n`-action.
+
+**Theorem (simultaneous full Mackey channel).**  There is a `Q_n`-invariant
+union of product orbits `Omega_n^(3)` of relative size
+
+`1-O_p(p^(-3(n-1)))`
+
+on which the Pauli groupoid twist and all three Jacobi groupoid twists admit
+one coherent family of exact Morita intertwiners.
+
+**Proof.**  Represent a product orbit by relative elements `g_delta`.  Its
+isotropy is
+
+`J=B intersect intersection_delta g_delta K_(delta,n) g_delta^(-1)`.
+
+It is enough to retain the stronger good event
+
+`B intersect g_delta K_(delta,n) g_delta^(-1)=1`
+
+for every `delta`.  For each of the three factors, the fixed-prime Mackey
+estimate bounds the bad probability by `O_p(p^(-3(n-1)))`; the union bound
+preserves that order.
+
+On every retained orbit the common isotropy `J` is trivial.  Mackey--Shapiro
+therefore sends the restriction of each of the four transformation-groupoid
+classes to `H^2(1,T)=0`.  Trivialize each Jacobi class relative to the Pauli
+class, rather than choosing three unrelated pairwise gauges.  These three
+relative `1`-cochains give exact intertwiners with a common Pauli transport,
+so their pairwise comparisons are automatically coherent.  End proof.
+
+The projection boundary of this simultaneous channel still has normalized
+Hilbert--Schmidt size `O_p(p^(-3(n-1)/2))`.  Thus the projective/multiplicity
+compatibility of all three root directions is now solved at the required
+vanishing scale.  The remaining obstruction is no longer a gauge-coherence
+problem: it is precisely the polynomial covariance of the deeper Steinberg
+commutators, beginning with `e_(ik)(p^2)`, inside this common nonorthogonal
+fiber.
+
 ### One Mackey product aligns all rank-two fibers simultaneously
 
 Pairwise Pauli--Jacobi intertwiners do not need to be glued by hand.  The
