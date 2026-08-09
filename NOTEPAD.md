@@ -25297,6 +25297,41 @@ exact leaf-matrix calculation recorded above; Khanh--Thanh, Proposition
 8.3 and Remark 8.6, give `K_2(L_(F_2)(1,2))=0` and the meaning of stable
 vanishing.
 
+# The atlas kernel is already relatively perfect (2026-08-09)
+
+The finite superperfect atlas has no nontrivial deeper relative-central
+tower.  Retain its notation
+
+`P=H_1*...*H_s`, `R=ker(P->Q)`, `U_Q=P/[P,R]`,
+
+and put `N=[P,R]=ker(P->U_Q)`.  Then
+
+`N=[P,N]`.                                                   `(1)`
+
+Indeed, the five-term homology sequence for
+
+`1 -> N -> P -> U_Q -> 1`
+
+contains the exact segment
+
+`H_2(P,Z) -> H_2(U_Q,Z) -> N/[P,N] -> H_1(P,Z) -> H_1(U_Q,Z)`.
+
+Both `P` and `U_Q` are superperfect: this was proved for `P` by the
+free-product homology formula, and is automatic for a universal central
+extension.  Every term surrounding `N/[P,N]` therefore vanishes, proving
+`(1)`.  The Bass--Serre argument above also shows that `N` is a free group.
+Thus the atlas realizes the universal cover as a quotient of a finitely
+presented virtually free superperfect group by a free normal subgroup which
+is perfect relative to the ambient action.
+
+In particular, if `N_1=N` and `N_(k+1)=[P,N_k]`, then `N_k=N` for every
+`k>=1`.  Hence iterating quotients by successive relative commutators cannot
+produce an intermediate approximation to `U_Q`, a smaller central kernel,
+or a new hyperlinear overgroup: the process stabilizes immediately at
+`P/N=U_Q`.  Any positive use of the atlas must control its cross-chart
+relation module analytically, rather than by descending farther in this
+relative-central series.
+
 # Global `(TT)/T` for the Leavitt elementary group (2026-08-09)
 
 The missing bounded-generation input in the relative `(TT)/T` route can be
