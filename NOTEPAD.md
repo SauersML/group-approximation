@@ -19887,3 +19887,51 @@ nonextendability.  Thus finite-group/Fock constructions based on exact
 Nielsen actions on characteristic quotients are closed.  The remaining cell
 must implement the Nielsen relations only asymptotically while keeping the
 positive generator images noninvertible at the coefficient level.
+
+### The 2026 sofic-action permanence theorem cannot make the Kun--Thom lamp hyperlinear
+
+Alekseev--Bradford, *Sofic actions, halo products, and metric approximations
+of groups* (arXiv:2601.18742), prove that a semidirect product is hyperlinear
+when the acting group and base group are hyperlinear and the automorphism
+action is a sofic hyperlinear action in their Definition 4.23.  For a
+permutational wreath product they obtain this hypothesis from a sofic action
+on the underlying set.  The converse needed here is forced by the lamps.
+
+**Lemma (single lamps recover the set action).**  Let `G` act on a set `X`,
+put
+
+`D=directSum_X C_2`,
+
+and let `G` act on `D` by permuting coordinates.  If this automorphism action
+is a sofic `C`-action in the sense of Definition 4.23, for any class `C` of
+groups whatsoever, then the original action `G action X` is a sofic action
+on a set.
+
+**Proof.**  Fix finite `F subset G`, `Z subset X`, and `epsilon>0`.  In the
+automorphic-approximation definition take `E subset D` to contain the
+identity and every single-coordinate lamp `delta_z`, `z in Z` (and enlarge
+it by the finitely many products required for partial-homomorphism closure).
+Obtain a finite state set `A`, a good subset `S`, a group `Lambda in C`, and
+injective partial homomorphisms
+
+`pi_s:E->Lambda`,  `s in S`.
+
+Although `Lambda` need not be finite, the union
+
+`B=union_(s in S) pi_s({delta_z:z in Z})`
+
+is finite.  Define the set label
+
+`j_s(z)=pi_s(delta_z) in B`.
+
+Injectivity of `pi_s` makes `j_s:Z->B` injective.  Since the automorphism of
+`D` induced by `g` sends `delta_z` to `delta_(gz)`, the covariance equation
+of Definition 4.23 is exactly the orbit-approximation equation for the maps
+`j_s`.  The same approximately multiplicative permutation map on `A`
+witnesses soficity of `G action X`.  End proof.
+
+Kun--Thom prove that the coset action of their Kazhdan infranormal pair on
+`G/Gamma` is not sofic.  Hence the induced action on its `C_2` lamp group is
+not a sofic hyperlinear action, and the 2026 semidirect-product permanence
+theorem is inapplicable.  This closes the tempting direct route to proving
+the already-nonsofic Kun--Thom wreath product hyperlinear.
