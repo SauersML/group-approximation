@@ -8322,6 +8322,78 @@ the nested elementary-subgroup commutants.  Until both are proved, the
 unbounded congruence holonomy is a real source of curvature but not an
 assembly theorem.
 
+The phrase "`L2` cosystole in degree `2`" has a more precise integral form.
+Near the identity, the actual obstruction lives one degree higher.
+
+**Theorem (Bockstein--sparse-torsion equivalence).**  Let `Q` be of type
+`FP_4`, fix a finite partial free resolution through degree `4`, and give its
+cochain spaces with coefficients in a finite permutation module the
+normalized `L2` norms.  Assume:
+
+1. `H^2(Q,V)=0` for every real finite-dimensional permutation module `V`;
+2. there is a constant `C`, independent of the finite `Q`-set `X`, such that
+   every real `3`-coboundary `z=d a` with coefficients in `R^X` has a
+   primitive `a_0` satisfying `d a_0=z` and
+   `||a_0||_2 <= C ||z||_2`.
+
+For finite transitive `Q`-sets `X_n=Q/H_n`, the following are equivalent:
+
+* there are nonzero classes
+  `[c_n] in H^2(Q,T^(X_n))=H^2(H_n,T)` with cocycle representatives satisfying
+  `||c_n-1||_2 -> 0`;
+* there are nonzero torsion classes in
+  `H^3(Q,Z^(X_n))=H^3(H_n,Z)` represented by integral `3`-cocycles `z_n`
+  with `||z_n||_2 -> 0`.
+
+The forward implication automatically gives uniformly bounded integer
+coefficients, so `z_n` is supported on `o(|X_n|)` resolution cells.  In the
+reverse implication the resulting circle cocycles obey the quantitative
+bound
+
+`||c_n-1||_2 <= 2 pi C ||z_n||_2`.
+
+**Proof.**  Use the coefficient sequence
+
+`0 -> Z^(X) -> R^(X) -> T^(X) -> 0`.
+
+For a circle-valued `2`-cocycle `c`, take its coordinatewise principal
+argument `a` in `(-1/2,1/2]`, so `c=exp(2 pi i a)`.  Since `d c=1`,
+
+`z=d a`
+
+is an integral `3`-cocycle.  It represents the Bockstein `beta([c])`.
+The fixed resolution differential has uniformly bounded operator norm, so
+`||c-1||_2 -> 0` implies `||a||_2 -> 0` and then `||z||_2 -> 0`; principal
+arguments and the fixed integer differential also bound every coordinate of
+`z` by one constant.  Hypothesis 1 makes the Bockstein injective at degree
+`2`, hence a nonzero `[c]` gives a nonzero integral torsion class `[z]`.
+
+Conversely, let `z` represent a nonzero torsion class and have norm tending
+to zero.  Its image in real cohomology is zero, so it is a real coboundary.
+Hypothesis 2 gives `a` with `d a=z` and
+`||a||_2 <= C||z||_2`.  Then
+
+`c=exp(2 pi i a)`
+
+is a circle-valued `2`-cocycle, its Bockstein is `[z]`, and therefore it is
+nontrivial.  Finally `|exp(2 pi i t)-1|<=2 pi |t|` gives the displayed norm
+bound.  Shapiro's lemma supplies both stabilizer identifications.  End
+proof.
+
+For `Q=SL_d(Z)` in a sufficiently high stable rank, Bader--Sauer's unitary
+cohomology vanishing supplies hypothesis 1.  Hypothesis 2 is deliberately
+stated separately: it is the uniform upper-Laplacian/filling estimate, and
+must not be inferred from qualitative vanishing without checking closed
+range uniformly over the permutation modules.  Whenever that estimate is
+available (for example from a genuine higher spectral-gap theorem),
+unbounded order in `H^2(H_n,T)` is still not by itself the missing analytic
+certificate.  The exact question is whether its Bockstein has
+representatives of normalized integral `L2` norm tending to zero.  Positive
+integral `3`-cosystolic expansion would kill this scalar-permuted-block
+route; a sparse torsion sequence together with the uniform real filling
+bound would construct its locally small curvature.  Either outcome still
+has to be coupled to the off-diagonal shear intertwiners.
+
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
 The preceding warning has an exact quantitative form.
