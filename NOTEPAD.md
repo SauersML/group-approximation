@@ -27072,3 +27072,51 @@ grow: asymptotically all Hilbert-space weight of the internal coefficient
 algebra must escape every bounded matrix size.  Any construction with a
 positive-density classical, commutative, or bounded-quantum sector is
 therefore impossible.
+
+### A successful atlas has a uniformly noncommuting internal coefficient pair
+
+The commutative obstruction is stable under almost commutation.  For the
+`n by n` block matrix `U=(U_(x,y))`, let `H(U)` be the fixed family of
+`2n^2` self-adjoint contractions
+
+`Re U_(x,y), Im U_(x,y) in M_k(C)`,
+
+and define
+
+`c(U)=max_(H,K in H(U)) ||[H,K]||_(2,k)`.
+
+There is a dimension-free function `omega(t)->0` as `t->0` and a constant
+`C_n<infinity` such that
+
+`dist_(2,nk)(U,C_(k,1)) <= C_n omega(c(U))`.            `(COM1)`
+
+**Proof.**  Glebsky's simultaneous normalized-Hilbert--Schmidt theorem for
+a fixed finite family of self-adjoint contractions replaces `H(U)` by
+pairwise commuting self-adjoint contractions, each within `omega(c(U))`.
+Assemble the approximating real and imaginary parts into a block matrix
+`A in M_n(D)`, where `D<=M_k` is abelian.  Blockwise Hilbert--Schmidt
+orthogonality gives `||A-U||_(2,nk)<=C'_n omega(c(U))`.
+The operator norm of `A` is bounded by a constant depending only on the
+fixed `n`.  Hence `A^*A` is Hilbert--Schmidt close to `1`.  Polar rounding
+inside the finite-dimensional algebra `M_n(D)` gives a unitary
+`V in U(M_n(D))` with `||V-U||_2<=C_n omega(c(U))`.
+This is `(COM1)`.  End proof.
+
+Combining `(COM1)` with `(SUB2)` and the word-Lipschitz estimate gives
+
+`F_k(U) >= sqrt(E_1)-L C_n omega(c(U))`.                `(COM2)`
+
+In particular there is a fixed `c_0>0`, independent of `k`, such that
+
+`F_k(U)->0  implies  liminf_k c(U)>=c_0`.               `(COM3)`
+
+Equivalently, no certificate can have asymptotically commuting block
+coefficients.  At least one pair among the real and imaginary parts of its
+`20160^2` internal coefficients must retain an order-one normalized-HS
+commutator.  The required mixing is therefore quantitatively quantum, not
+merely a complicated commuting direct integral.
+
+**Primary-source pin.**  Glebsky, *Almost commuting matrices with respect
+to normalized Hilbert--Schmidt norm*, Theorem 4 (arXiv:1002.3082), proves
+the simultaneous dimension-free approximation for every fixed number of
+self-adjoint contractions used in `(COM1)`.

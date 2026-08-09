@@ -1320,6 +1320,63 @@ asymptotically all Hilbert-space weight must escape every bounded matrix
 size.  In particular, no positive-density classical, commutative, or
 bounded-quantum sector can survive in a certificate.
 
+The commutative case is stable under almost commutation.  Write the
+relative unitary as the (n\times n) block matrix
+\(U=(U_{x,y})\), and let
+
+\[
+ \mathcal H(U)=\{\operatorname{Re}U_{x,y},
+                  \operatorname{Im}U_{x,y}:x,y\in A_8\}.
+\]
+
+These are (2n^2) self-adjoint contractions.  Set
+
+\[
+ c(U)=\max_{H,K\in\mathcal H(U)}\|[H,K]\|_{2,k}.
+\]
+
+Glebsky's simultaneous normalized-Hilbert--Schmidt almost-commuting
+theorem, applied to this fixed finite family, supplies a
+dimension-independent function \(\omega(t)\to0\) and pairwise commuting
+self-adjoint contractions approximating the members of
+\(\mathcal H(U)\).  Assemble their real and imaginary parts into
+\(A\in M_n(D)\), where (D\leq M_k(\mathbb C)) is abelian.  Blockwise
+orthogonality gives
+
+\[
+ \|A-U\|_{2,nk}\leq C'_n\omega(c(U)).
+\]
+
+The operator norm of (A) is bounded in terms of the fixed (n), so
+\(A^*A\) is correspondingly close to (I\).  Polar decomposition, with
+the kernel completed inside the finite-dimensional algebra (M_n(D)),
+produces a unitary (V\in U(M_n(D))) and a fixed constant (C_n) such
+that
+
+\[
+ \operatorname{dist}_{2,nk}(U,\mathcal C_{k,1})
+ \leq C_n\omega(c(U)).                                \tag{59}
+\]
+
+Combining (59), (55) at (R=1), and the word-Lipschitz estimate (50)
+gives
+
+\[
+ F_k(U)\geq\sqrt{E_1}-LC_n\omega(c(U)).               \tag{60}
+\]
+
+It follows that there is (c_0>0), independent of the multiplicity, for
+which every certificate sequence obeys
+
+\[
+ \liminf_k c(U_k)\geq c_0.                            \tag{61}
+\]
+
+Thus a positive model must retain an order-one normalized-HS commutator
+between some pair of real or imaginary block coefficients.  Its internal
+mixing cannot be asymptotically classical even in the weaker
+almost-commuting sense.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
@@ -1338,3 +1395,7 @@ hyperlinearity.
 B. Collins and C. Male, *The strong asymptotic freeness of Haar and
 deterministic matrices*, Theorem 1.4, for the Haar-random atlas calculation
 in (52)--(53).
+
+L. Glebsky, *Almost commuting matrices with respect to normalized
+Hilbert--Schmidt norm*, Theorem 4, for the simultaneous approximation of a
+fixed family of almost commuting self-adjoint matrices used in (59)--(61).
