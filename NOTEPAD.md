@@ -22397,3 +22397,37 @@ the existence of a proper finite-factor endomorphism.
 Primary pin for the strengthened relative-commutant conclusion:
 Dudko--Medynets, *Finite Factor Representations of Higman--Thompson groups*,
 Theorems 2.9--2.10.
+
+### Audit of the Curtis--Tits/LLP shortcut
+
+Allcock's *Steinberg groups as amalgams* initially looks tailor-made for the
+LLP certificate: in the spherical case it identifies a Steinberg group with
+the direct limit of the groups attached to one- and two-node Dynkin
+subdiagrams.  It does **not** close the present problem, for two independent
+reasons.
+
+First, Allcock's theorem is stated for commutative coefficient rings, whereas
+the binary Leavitt algebra `L_(F_2)(1,2)` is noncommutative.  A type-`A`
+Curtis--Tits statement can still be recovered directly from the classical
+Steinberg relations, but its two-node pieces are copies of `St_3(L)`, not the
+finite positive `A_2` unipotent cells used in the local exactification lemma.
+The groups `St_3(L)` are infinite and already contain the opposite-root/ring
+holonomy.
+
+Second, a categorical direct limit over a cyclic diagram is not an iterated
+free product over finite-dimensional C-star algebras.  Choosing a spanning
+tree leaves coequalizer relations around the cycles; imposing those relations
+is a quotient operation, and LLP/LP is not preserved by arbitrary quotients.
+Enders--Shulman's current permanence theorem proves LP for full free products
+amalgamated over a finite-dimensional C-star subalgebra.  It supplies no
+theorem for the infinite `C^*_(max)(St_3(L))` pieces or for the remaining
+cycle coequalizers.
+
+Thus the Curtis--Tits language is a useful description of the gluing
+obstruction, not a proof that `C^*_(max)(Q)` has LLP.  To revive this route one
+would need either a noncommutative Leavitt-specific shelling by genuinely
+finite groups, or a new LLP theorem for the cyclic rank-two completion.
+
+Primary pins: Allcock, *Steinberg groups as amalgams*, Corollary 1.3 and its
+commutative-ring hypotheses; Enders--Shulman, *On the (Local) Lifting
+Property*, the finite-dimensional-amalgam LP theorem.
