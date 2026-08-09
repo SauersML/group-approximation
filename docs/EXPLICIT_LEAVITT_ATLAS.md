@@ -59,8 +59,12 @@ Then
 
 The two paths in (2) are prefix-incomparable: \(\gamma_i\) and
 \(\gamma_j\) are distinct leaves, and extending either path preserves
-prefix-incomparability.  Lemma 2.2 of Khanh--Thanh extends the pair to a
-finite leaf set \(D_{ij,a}\).  Relative to its matrix units,
+prefix-incomparability.  The pair extends to a particularly small leaf set.
+If \(a=1\), use \(C=\{\gamma_1,\gamma_2,\gamma_3\}\).  If
+\(a\in\{e,f\}\), replace \(\gamma_i\) in \(C\) by its two children.  If
+\(a=b^*\), replace \(\gamma_j\) by its two children.  The resulting leaf
+set \(D_{ij,a}\) has cardinality three or four and contains both paths in
+(2).  Relative to its matrix units,
 \(q_{ij,a}\) is the elementary scalar matrix
 
 \[
@@ -88,29 +92,30 @@ This is the uniform depth-\(r\) refinement of \(D\), of cardinality
                                                                \tag{4}
 \]
 
-It follows from (3)--(4) that \(q_{ij,a}\) belongs to the scalar
-leaf-matrix subgroup
+The uniform refinement (4) shows that the generator belongs to scalar
+charts of arbitrarily large suitable ranks.  A sharper uniform choice is
+available.  The leaf set \(D_{ij,a}\) has size three or four, and at least
+one of its leaves differs from both
+\(\alpha_{ij,a},\beta_{ij,a}\).  Expand only unused leaves until the leaf
+set has cardinality five.  The two distinguished leaves, and hence the
+single off-diagonal matrix unit in (3), remain unchanged.  This gives a
+concrete scalar leaf-matrix subgroup
 
 \[
-  H_{ij,a}:=\operatorname{GL}_{N_{ij,a}}(\mathbb F_2)
-  \le Q,
-  \qquad N_{ij,a}=|D_{ij,a}|2^{r_{ij,a}},                    \tag{5}
+  H_{ij,a}:=\operatorname{GL}_5(\mathbb F_2)\le Q          \tag{5}
 \]
 
-for every \(r_{ij,a}\ge0\).  Choose \(r_{ij,a}\) so that
-\(N_{ij,a}\ge5\).
-
-For \(N\ge5\),
+containing \(q_{ij,a}\).  Moreover,
 
 \[
-  \operatorname{GL}_N(\mathbb F_2)
-  =\operatorname{SL}_N(\mathbb F_2)
-  =\operatorname{PSL}_N(\mathbb F_2).
+  \operatorname{GL}_5(\mathbb F_2)
+  =\operatorname{SL}_5(\mathbb F_2)
+  =\operatorname{PSL}_5(\mathbb F_2).
 \]
 
 This finite group is nonabelian simple and has trivial Schur multiplier;
 hence it is superperfect.  Thus every generator in (1) lies in a specified
-finite superperfect subgroup of \(Q\).
+copy of the **same** finite superperfect group in \(Q\).
 
 ## 3. The explicit atlas source
 
@@ -118,7 +123,8 @@ Let \(\mathcal I\) be the set of the thirty triples \((i,j,a)\) above and
 define
 
 \[
-  P_{30}=*_{(i,j,a)\in\mathcal I}H_{ij,a}.                 \tag{6}
+  P_{30}=*_{(i,j,a)\in\mathcal I}H_{ij,a}
+  \cong *^{30}\operatorname{GL}_5(\mathbb F_2).           \tag{6}
 \]
 
 Map every free factor in (6) to its concrete scalar leaf-matrix subgroup
@@ -150,8 +156,9 @@ construction gives
 Consequently the exact-source character criterion and the one-witness
 certificate may be run with the fully specified source (6).  An exact
 finite-dimensional representation of this source is nothing more than an
-independent exact representation of each one of the thirty fixed finite
-groups in (5), with one relative conjugating unitary per factor.
+independent exact representation of the one fixed finite group
+\(\operatorname{GL}_5(\mathbb F_2)\) for each of thirty factors, with one
+relative conjugating unitary per factor.
 
 One can also choose the survivor explicitly.  For example,
 
