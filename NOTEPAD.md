@@ -22431,3 +22431,108 @@ finite groups, or a new LLP theorem for the cyclic rank-two completion.
 Primary pins: Allcock, *Steinberg groups as amalgams*, Corollary 1.3 and its
 commutative-ring hypotheses; Enders--Shulman, *On the (Local) Lifting
 Property*, the finite-dimensional-amalgam LP theorem.
+
+# A one-character amenable-near certificate for the Clifford target (2026-08-09)
+
+Kahl--Schneider, *Hyperlinearity via amenable near representations*,
+arXiv:2504.10988v2, gives a strictly weaker interface than embedding the full
+Kun--Thom Clifford crossed product.  Their Theorem 5.12 says that a group is
+hyperlinear exactly when it has an amenable near representation separated at
+every nonidentity element.  The proof localizes to a single character kernel.
+
+Let `E=K_(X,E_*) semidirect G` be the sparse orbital Clifford target recorded
+above, let `z` be its central Clifford involution, and let `r:E->G` be the
+retraction.  Recall that the copy of `G` is residually finite and hence
+hyperlinear.
+
+**Theorem (central amenable-near certificate).**  Suppose there are a Hilbert
+space `H`, a state `phi` on `B(H)`, and a `phi`-near representation
+
+`pi:E -> U(H)`
+
+in the sense of Kahl--Schneider, such that
+
+`phi((1-pi(z))^*(1-pi(z)))>0`.
+
+Then a hyperlinear nonsofic group exists.  No separation condition on any
+other element of `E` is required.
+
+**Proof.**  Kahl--Schneider Proposition 5.5 shows that
+
+`chi(g)=phi(pi(g))`
+
+is a character.  Put
+
+`N={g in E : 2-2 Re chi(g)=0}`.
+
+In the GNS representation of `chi`, this is the kernel: centrality of `chi`
+shows that an element fixing the cyclic vector fixes its whole cyclic orbit.
+Thus `N` is normal.  Choose a section of `E/N`.  Composing it with `pi` is
+again a `phi`-near representation modulo the `phi`-null seminorm, and every
+nonidentity coset has positive squared displacement.  Equivalently, apply
+the `(g)=>(a)` proof of Kahl--Schneider Theorem 5.12 to representatives: their
+Lemma 5.10 produces the required finite normalized-HS models with lengths
+converging to
+
+`(1/2) sqrt(phi((1-pi(g))^*(1-pi(g))))`.
+
+Hence `E/N` is hyperlinear.  The assumed inequality says `z notin N`.  Now
+map
+
+`E -> (E/N) x G`,  `e |-> (eN,r(e))`,
+
+and call its image `Q`.  The group `Q` is hyperlinear as a subgroup of a
+product of hyperlinear groups; its copy of `G` is faithful because the
+second coordinate is the identity there, and the image of `z` is nontrivial.
+The sparse-Clifford Kun--Thom argument applies verbatim: the base generator
+centralizes `Gamma`, centralizer normality would kill the compressor witness,
+and the square of that witness is the retained `z`.  Therefore `Q` is
+nonsofic.  End proof.
+
+For the canonical `z=-1` Clifford representation the displayed separation is
+automatic.  The new target is therefore only to make that representation
+amenable *near* the group law; it need not carry the canonical crossed-product
+trace, distinguish arbitrary lamps, or be faithful.  This is genuinely weaker
+than Connes embeddability of the full CAR crossed product and also weaker than
+the earlier tail-cocycle certificate, which asked for coherent implementers
+of the entire faithful Bogoljubov action.
+
+## The obvious exact Clifford representation is not amenable
+
+The weakening above does not make the canonical exact representation an
+immediate solution.  Let `pi_-` be the `z=-1` Clifford/Koopman representation
+of `E` on the tracial Clifford Hilbert space.  It is the negative central
+summand of the quasi-regular representation on
+
+`l2(E/G)=l2(K_(X,E_*))`.
+
+**Proposition.**  The representation `pi_-` is not amenable in Bekka's sense.
+
+**Proof.**  If `pi_-` were amenable, then the containing quasi-regular
+representation `lambda_(E/G)` would be amenable.  Thus `G` would be
+coamenable in `E`, giving an `E`-invariant mean on `E/G=K_(X,E_*)`.  Push it
+through the quotient of the Clifford lamp group onto
+
+`V=direct_sum_X F_2`.
+
+The result is a mean `m` on the finite subsets of `X`, invariant both under
+symmetric-difference translations by `V` and under `G`.  For every fixed
+`n`, the set `A_n={F:|F|<=n}` has `m(A_n)=0`: choose arbitrarily many finite
+sets `S_i` at pairwise symmetric-difference distance greater than `2n`; the
+translates `S_i+A_n` are disjoint and all have the same mean.
+
+For `f in l-infinity(X)`, define
+
+`M(f)=m(F |-> |F|^(-1) sum_(x in F) f(x))`,
+
+assigning any value at the empty set.  The preceding zero-measure statement
+makes `M` a probability mean, and `G`-invariance of `m` makes `M`
+`G`-invariant.  Hence the transitive action `G` on `X=G/Gamma` is amenable.
+But `G` has property `(T)`, so the quasi-regular representation would contain
+a nonzero invariant vector.  Since the strict compressor makes `X` infinite,
+no nonzero constant vector belongs to `l2(X)`.  Contradiction.  End proof.
+
+Thus the central amenable-near certificate must use a genuinely nonexact or
+noncanonical representation.  In concrete terms, it asks for a single
+`z=-1` near-character rather than a faithful CAR microstate.  This is the
+smallest positive target currently visible on the Kun--Thom lane.
