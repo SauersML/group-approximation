@@ -10589,3 +10589,114 @@ different:
 
 Any hybrid must transfer information between these two stabilizers rather
 than replacing both by the maximal parabolic.
+
+### Similitude homogenization makes the Jacobi sign full-trace
+
+Although the maximal parabolic has no scalar order-two multiplier, its
+matrix-valued Heisenberg sector has a useful exact structure which was
+hidden by choosing one central character.
+
+Let `U=F_p^2` with its standard alternating form `B`, and let
+
+`Heis_p=U x F_p`
+
+with commutator
+
+`[(u,0),(v,0)]=(0,B(u,v))`.
+
+The group `GL_2(F_p)` acts by Heisenberg similitudes,
+
+`g.(u,z)=(gu,det(g)z)`.
+
+Let `lambda` run through `F_p^x`, let `q_lambda` be the central Fourier
+projection in the left regular representation of `Heis_p`, and put
+
+`K_p=direct_sum_(lambda!=0) q_lambda l2(Heis_p)`.
+
+This is a `GL_2(F_p)`-invariant subspace of dimension `p^2(p-1)`; inside the
+full regular representation it has trace `1-1/p`.
+
+Fix `0!=k in F_p`.  For every `lambda!=0`, choose
+
+`D_lambda in GL_2(F_p)`,  `det(D_lambda)=k/lambda`,
+
+and define the Weyl operator on the `lambda` block by
+
+`W_lambda(v)=q_lambda L_(D_lambda v,0) q_lambda`.
+
+**Theorem (full-trace similitude homogenization).**  On `K_p`, put
+
+`W(v)=direct_sum_(lambda!=0) W_lambda(v)`.
+
+Then
+
+`[W(e_1),W(e_2)]=zeta_p^k I_(K_p)`.
+
+Moreover the permutation implementation `R_g` of every Heisenberg
+automorphism `g in GL_2(F_p)` is an exact representation on `K_p`.  It sends
+the `lambda` block to the `lambda'=lambda/det(g)` block and satisfies
+
+`R_g W_lambda(v) R_g^(-1)`
+`  =W_(lambda') (h_(g,lambda)v)`,
+
+where
+
+`h_(g,lambda)=D_(lambda')^(-1) g D_lambda in SL_2(F_p)`.
+
+**Proof.**  On the `lambda` central Fourier block, central translation by
+`z` acts as `zeta_p^(lambda z)`.  The Weyl commutator is therefore
+
+`zeta_p^(lambda B(D_lambda e_1,D_lambda e_2))`
+` =zeta_p^(lambda det(D_lambda))=zeta_p^k`,
+
+independent of `lambda`.
+
+The regular permutation operators implement Heisenberg automorphisms
+exactly.  Since an automorphism of similitude ratio `d=det(g)` sends the
+center coordinate `z` to `dz`, it sends central character `lambda` to
+`lambda'=lambda/d`.  Finally
+
+`det(D_(lambda')^(-1) g D_lambda)`
+` =(lambda'/k) d (k/lambda)=1`,
+
+so the displayed `h_(g,lambda)` belongs to `SL_2(F_p)`, and the covariance
+identity follows directly from `gD_lambda=D_(lambda')h_(g,lambda)`.  End
+proof.
+
+Take `k=k_p=(p-1)/2`.  The common commutator
+
+`zeta_p^(k_p) -> -1`,
+
+while its square differs from one by
+
+`|zeta_p^(2k_p)-1|=|zeta_p^(-1)-1|=O(1/p)`.
+
+Thus the whole nonzero-central sector, not a shrinking `1/p` character
+sector, asymptotically realizes the Clifford sign.  The central Fourier
+zero sector may simply be discarded because its complement is exactly
+`GL_2`-invariant.
+
+This does not contradict maximal-parabolic scalar sterility.  The
+construction is `p`-primary and matrix-valued: `GL_2` permutes the central
+Fourier blocks and changes the Weyl frame by the block-dependent
+`SL_2` cocycle `h_(g,lambda)`.  There is no nontrivial scalar class in
+`H^2(P_p,T)`.
+
+The consequence for assembly is concrete.  The row-vector Jacobi
+stabilizer can be enlarged to the cone-preserving maximal parabolic without
+losing the sign or sacrificing trace; the price is precisely a
+nonorthogonal, block-permuted multiplicity fiber.  This is the matrix-valued
+loophole left by the scalar-projective no-go theorem.
+
+It complements the collaborator's rank-four positive-cone construction:
+
+* the binary-tetrahedral `A_4` source has an exact `-1` sign and extremely
+  thin local curvature, while its `p`-shear lies in the congruence kernel;
+* the homogenized Jacobi source has sign error `O(1/p)` but exact parabolic
+  similitude covariance on trace `1-o(1)`.
+
+A hybrid fiber may therefore use the binary-tetrahedral sector to retain an
+exact order-two holonomy and the homogenized Heisenberg regular sector to
+transport the non-liftable `p`-shear chains through the maximal parabolic.
+The remaining task is to write the cross-stabilizer intertwiners and bound
+their five compatibility-relator defects.
