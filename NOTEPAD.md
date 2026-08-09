@@ -27247,3 +27247,40 @@ groups: a simple approach using Schreier graphs*, arXiv:2101.03817; Hayes--Sale,
 *Metric Approximations of Wreath Products*, arXiv:1608.02610; and
 Chifan--Ioana--Osin--Sun, *Wreath-like products of groups and their von
 Neumann algebras I*, arXiv:2111.04708.
+
+# Square-matrix Leavitt relations have a sharp dimension-free trace obstruction (2026-08-09)
+
+The explicit atlas cannot be solved by first constructing normalized-HS
+microstates for the ambient binary Leavitt algebra.  This follows from a
+three-line trace argument that is independent of dimension.
+
+**Theorem (ring-level Leavitt obstruction).**  For arbitrary square matrices
+`X_0,Y_0,X_1,Y_1 in M_d(C)`, with normalized Hilbert--Schmidt norm,
+
+`max{||X_0Y_0-I||_2, ||X_1Y_1-I||_2,`
+`    ||Y_0X_0+Y_1X_1-I||_2} >= 1/3`.                 `(RLO1)`
+
+**Proof.**  Write `tr_d=d^(-1)Tr`.  Cyclicity gives
+
+`tr_d(Y_0X_0+Y_1X_1-I)`
+` = 1 + tr_d(X_0Y_0-I) + tr_d(X_1Y_1-I)`.            `(RLO2)`
+
+If the three errors in `(RLO1)` are at most `delta`, then
+`|tr_d(Z)|<=||Z||_2` and the triangle inequality applied to `(RLO2)` give
+`1<=3 delta`.  Hence `delta>=1/3`.  End proof.
+
+The constant is sharp already for scalars: take `X_0=X_1=1` and
+`Y_0=Y_1=2/3`; then every error in `(RLO1)` equals `1/3`.
+
+The core defining relations of `L_(F_2)(1,2)` are of this form after matching
+the two generators and their formal adjoints.  The cross relations are not
+used, and no adjoint or operator-norm hypothesis is needed.  The same
+obstruction applies to square-matrix Cuntz approximants by imposing
+`X_i=Y_i^*`.
+
+This does not prove that the unit group `Q` is nonhyperlinear: a group
+microstate of `Q` need not extend to an additive or multiplicative
+microstate of the whole ring.  It instead sharply scopes the constructive
+problem.  Any positive certificate for the atlas endpoint must be genuinely
+group-level and cannot arise from finite-dimensional square-matrix
+approximations that retain the three core Leavitt/Cuntz relations.

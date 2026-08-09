@@ -1477,7 +1477,54 @@ Thus convex mixing and internal centers can be removed from the
 constructive problem; it suffices to search inside one full matrix factor
 at every stage.
 
-## 11. Primary sources
+## 11. Ring-level Leavitt microstates have a uniform trace obstruction
+
+The atlas problem is genuinely a group-representation problem; it cannot be
+solved by first approximating the ambient Leavitt algebra in square matrices.
+Indeed, let \(X_0,Y_0,X_1,Y_1\in M_d(\mathbb C)\), let
+\(\operatorname{tr}_d=d^{-1}\operatorname{Tr}\), and use the associated
+normalized Hilbert--Schmidt norm.  Then
+
+\[
+ \boxed{\max\bigl\{
+ \|X_0Y_0-I\|_2,\ \|X_1Y_1-I\|_2,
+ \ \|Y_0X_0+Y_1X_1-I\|_2
+ \bigr\}\geq \frac13.}                              \tag{67}
+\]
+
+To prove (67), cyclicity of the finite-dimensional trace gives the exact
+identity
+
+\[
+ \operatorname{tr}_d(Y_0X_0+Y_1X_1-I)
+ =1+\operatorname{tr}_d(X_0Y_0-I)
+   +\operatorname{tr}_d(X_1Y_1-I).                  \tag{68}
+\]
+
+Since \(|\operatorname{tr}_d(Z)|\leq\|Z\|_2\), if all three errors in
+(67) were at most \(\delta\), equation (68) and the triangle inequality
+would imply \(1\leq3\delta\).  This proves the claim.  Notice that neither
+the cross relations nor adjoints nor operator-norm bounds are needed.
+The constant is sharp: already in dimension one, take
+\(X_0=X_1=1\) and \(Y_0=Y_1=2/3\), for which all three errors equal
+\(1/3\).
+
+The defining module-type relations of the binary Leavitt algebra have
+exactly the form \(X_iY_i=I\) and
+\(Y_0X_0+Y_1X_1=I\) (after matching the standard generators and their
+formal adjoints).  Thus they admit no square-matrix normalized-HS
+microstates with vanishing error.  The same observation applies to a
+finite-dimensional attempt at the corresponding Cuntz relations by taking
+\(X_i=Y_i^*\).
+
+This does **not** obstruct hyperlinearity of \(Q=L_{\mathbb F_2}(1,2)^\times\):
+a group microstate for the unit group need not extend additively to the
+Leavitt algebra.  It does show that any positive atlas certificate must be
+intrinsically group-level.  In particular, a construction obtained by
+compressing or perturbing finite-dimensional Cuntz/Leavitt generators while
+retaining all three core ring relations cannot reach the endpoint in (66).
+
+## 12. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
