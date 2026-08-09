@@ -25675,3 +25675,125 @@ stability of `P` is not stability of the epimorphism `P->P/N`.
 
 A standalone proof is in `docs/ATLAS_HS_CRITERION.md`.  Primary source:
 Gerasimova--Shchepin, arXiv:2107.10032, Corollaries 3 and 4.
+
+# A finite exact-representation certificate with only one survivor (2026-08-09)
+
+The exact-source criterion can be weakened substantially for the actual
+goal.  Neither the whole quotient regular character nor infinitely many
+kernel tests are needed.
+
+Retain
+
+`P=H_1*...*H_s`, `R=ker(P->Q)`, `N=[P,R]`, `U=P/N`.
+
+The group `P` is finitely presented, and the Steinberg group `U` is finitely
+presented.  Therefore `N` is finitely normally generated in `P`.  Since
+`N=[P,R]`, choose a finite set
+
+`C={ [a_1,r_1],...,[a_m,r_m] } subset N`,  `a_j in P`, `r_j in R`, `(1)`
+
+whose normal closure in `P` is all of `N`.  To see that `(1)` is possible,
+start with finite normal generators of `N`, write each as a finite product
+of commutators from `[P,R]`, and retain all commutators occurring.  Their
+normal closure contains the original normal generators and is contained in
+`N`, hence equals `N`.
+
+Fix `p_0 in P` whose image in the simple quotient `Q` is nontrivial; one may
+take any nonidentity element of one finite atlas factor.  (For the forward
+sufficient implication below, merely `p_0 notin N` would be enough; the
+stronger choice makes the converse valid for this same fixed witness.)  Then
+the following finite certificate is sufficient to solve the main problem:
+
+there are exact finite-dimensional representations
+
+`pi_k:P->U(d_k)` such that
+
+`||pi_k(c)-1||_2 -> 0` for every `c in C`,                  `(2)`
+
+while
+
+`limsup_k ||pi_k(p_0)-1||_2 > 0`.                           `(3)`
+
+**Theorem.**  Conditions `(2)`--`(3)` imply that `Q` is hyperlinear and
+nonsofic.
+
+**Proof.**  Pass to a subsequence and an ultrafilter along which the lower
+bound in `(3)` is positive.  Because `C` normally generates `N`, exactness
+of each `pi_k` and bi-invariance of normalized Hilbert--Schmidt distance
+imply
+
+`||pi_k(n)-1||_2 -> 0` for every fixed `n in N`:
+
+write `n` as one fixed finite product of conjugates of elements of
+`C union C^(-1)` and use the triangle inequality.  Hence the ultraproduct
+homomorphism `P->prod_omega U(d_k)` kills `N` and factors as
+
+`Phi:U->prod_omega U(d_k)`.
+
+Condition `(3)` says that `Phi(p_0N)!=1`.  Its kernel is therefore a proper
+normal subgroup of `U`.  Since `U/Z(U)=Q` is simple and `U` is perfect,
+every proper normal subgroup of `U` is central: if a normal subgroup maps
+onto `Q`, then `U=K Z(U)` and perfectness gives
+`U=[U,U]=[K,K]<=K`.  Thus `ker(Phi)<=Z(U)`.  The image
+
+`U/ker(Phi)`
+
+is hyperlinear and is a central cover of `Q`.  Thom's central-quotient
+permanence now makes `Q` hyperlinear.  Its nonsoficity was already proved,
+so it is the desired hyperlinear nonsofic group.  End proof.
+
+Conversely, if `Q` is hyperlinear, pull a hyperlinear model back through
+`P->U->Q` and rectify it using normalized-HS stability of the virtually free
+group `P`; the resulting exact representations satisfy `(2)` and `(3)`.
+Consequently the existence of the finite certificate is equivalent to the
+desired endpoint.
+
+This is strictly smaller than the full character condition.  The remaining
+model-production problem is now one finite system of approximate
+**centrality** equations for exact representations of a fixed free product
+of finite superperfect groups, plus one scalar metric inequality.  Trace
+separation of every nonkernel element is supplied afterward by
+quasisimplicity and central descent, rather than imposed on the models.
+
+The certificate has an exact scalar optimization form.  Retain the fixed
+`p_0` with nontrivial image in `Q`, and fix `epsilon>0`.  For each `d>=1`,
+define
+
+`delta_d(epsilon)`
+
+to be the infimum of
+
+`max_(c in C) ||pi(c)-1||_(2,d)`
+
+over exact representations `pi:P->U(d)` satisfying
+
+`||pi(p_0)-1||_(2,d)>=epsilon`,
+
+with value `+infinity` if there is no such representation.  The
+representation space `Hom(P,U(d))` is compact, so this infimum is attained.
+Moreover
+
+`delta_d(epsilon)>0` for every fixed `d`.                        `(4)`
+
+Indeed, equality would give an exact representation killing `C`, hence
+factoring through `U=P/N`, while retaining `p_0`.  But every
+finite-dimensional representation of `U` is trivial.  This contradicts
+the defining inequality for `p_0`.
+
+The one-survivor theorem and compactness now give the exact equivalence
+
+`Q hyperlinear  <=>  exists epsilon>0 with inf_d delta_d(epsilon)=0`. `(5)`
+
+For the reverse implication, choose almost minimizers and apply the finite
+certificate.  For the forward implication, pull back a regular hyperlinear
+model of `Q` and rectify it through HS stability of `P`; for a nontrivial
+`p_0` its distance from `1` tends to `sqrt(2)`, so any fixed
+`epsilon<sqrt(2)` works.  By `(4)`, every sequence witnessing `(5)` has
+`d->infinity` after passing to a subsequence.
+
+Thus no finite-dimensional exact solution has been overlooked.  The whole
+open problem on the atlas lane is whether a sequence of strictly positive,
+explicit compact-optimization gaps has zero infimum at unbounded dimension.
+The finite-factor multiplicity/conjugating-unitary coordinates in
+`docs/ATLAS_HS_CRITERION.md` make each `delta_d(epsilon)` a concrete finite
+matrix optimization problem.

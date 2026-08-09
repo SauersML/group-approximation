@@ -296,7 +296,52 @@ The objective is the normalized \(2\)-norm of finitely many fixed word maps
 \(g(V_1,\ldots,V_s)\) away from the identity.  This is the minimal
 model-production face of the Leavitt route.
 
-## 5. Exact boundary
+## 5. Dimension-wise defect gaps
+
+Fix \(p_0\in P\) whose image in \(Q\) is nontrivial, a finite normal
+generating set \(\mathcal S\) of \(N\), and \(\varepsilon>0\).  Define
+
+\[
+ \delta_d(\varepsilon)=
+ \inf_{\substack{\pi\in\operatorname{Hom}(P,U(d))\\
+                  \|\pi(p_0)-1\|_{2,d}\geq\varepsilon}}
+ \max_{n\in\mathcal S}\|\pi(n)-1\|_{2,d},                 \tag{C}
+\]
+
+with value \(+\infty\) when the constraint set is empty.  The representation
+space is compact, so the infimum is attained.  For every fixed \(d\),
+
+\[
+  \delta_d(\varepsilon)>0.                                 \tag{D}
+\]
+
+Otherwise a minimizer with zero defect would kill the normal closure of
+\(\mathcal S\), factor through \(U_Q=P/N\), and remain nontrivial on
+\(p_0N\).  This contradicts the fact that every finite-dimensional unitary
+representation of \(U_Q\) is trivial.
+
+Combining compactness with the one-witness certificate gives
+
+\[
+ \boxed{
+ Q\text{ is hyperlinear}
+ \iff
+ \text{there is }\varepsilon>0\text{ with }
+ \inf_{d\geq1}\delta_d(\varepsilon)=0.
+ }
+\]
+
+For the forward implication, rectify a pulled-back regular hyperlinear
+model; the \(p_0\)-distance tends to \(\sqrt2\).  For the reverse implication,
+choose almost minimizers in (C) and apply the one-witness theorem.  Statement
+(D) forces the dimensions of any witnessing sequence to diverge.
+
+Thus each finite level has a genuine positive compactness gap.  The open
+problem is precisely whether these positive gaps decay to zero at unbounded
+dimension.  Section 4 supplies finite multiplicity and unitary coordinates
+for every optimization problem (C).
+
+## 6. Exact boundary
 
 Hilbert--Schmidt stability of \(P\) does **not** imply stability of the
 epimorphism \(P\to P/N\).  Proving that epimorphism stable would select the
@@ -310,7 +355,7 @@ simultaneously make every tested element of \(N\) nearly trivial while
 keeping every tested element outside \(N\) trace-invisible.  That is exactly
 the quotient trace problem.
 
-## 6. Primary sources
+## 7. Primary sources
 
 * M. Gerasimova and K. Shchepin, *Virtually free groups are
   \(p\)-Schatten stable*, arXiv:2107.10032, Corollaries 3 and 4.
