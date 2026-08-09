@@ -4,7 +4,7 @@ import Mathlib.Order.Filter.Ultrafilter.Defs
 import Mathlib.GroupTheory.QuotientGroup.Defs
 
 /-!
-# The unitary metric ultraproduct, and where its bridge is missing
+# The unitary metric ultraproduct
 
 `Sofic.SoficUltraproduct` builds `∏_𝒰 Sym(X i)`, the universal sofic group, and
 proves the bridge in both directions: an injective homomorphism into such a
@@ -23,16 +23,11 @@ three closure properties come from
 * `hsNormSq_mul_left` and `hsNormSq_mul_right`, unitary invariance on both
   sides, which give inverse- and conjugation-invariance of the length.
 
-What does **not** go through is the bridge.  `isSofic_of_soficEmbedding` runs on
-tensor amplification, and `Sofic.HyperlinearAmplification` proves that
-amplification is unavailable here: the `k`-th tensor power identifies unitaries
-differing by a `k`-th root of unity, and `1` and `i·1` are maximally separated
-with equal fourth powers.  So the unitary ultraproduct exists and is a group,
-but the passage from *an embedding* to *a model with separation `2 - ε`* is not
-elementary on this side.  It is available -- by Rădulescu's theorem, through
-`R^ω` -- and that is precisely the asymmetry recorded in
-`docs/PHASES.md`: the same statement, elementary in one category and a von
-Neumann algebra theorem in the other.
+The reverse bridge is proved separately in `HyperlinearUltraproductBridge`.
+Plain tensor powers cannot supply it because scalar phases can collapse.
+Instead, equal-size identity padding sends a relative trace `z` to
+`(z + 1) / 2`, pushing every positively separated pair off the unit circle;
+the conjugate-double amplification then applies.
 -/
 
 namespace NonsoficGroupsExist

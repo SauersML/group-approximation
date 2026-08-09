@@ -56,6 +56,7 @@ import NonsoficGroupsExist.PropertyT.ClassTwoOrthogonality
 import NonsoficGroupsExist.PropertyT.NormalEdgeCodistance
 import NonsoficGroupsExist.Kazhdan.KazhdanGenerators
 import NonsoficGroupsExist.Kazhdan.KazhdanOrthogonal
+import NonsoficGroupsExist.Kazhdan.KazhdanProjection
 import NonsoficGroupsExist.Kazhdan.KazhdanFiniteModel
 import NonsoficGroupsExist.Kazhdan.KazhdanGNS
 import NonsoficGroupsExist.Kun.KunFiniteMarkov
@@ -266,11 +267,18 @@ import NonsoficGroupsExist.Sofic.RationalCharacter
 import NonsoficGroupsExist.Sofic.UntwistSeparation
 import NonsoficGroupsExist.Sofic.HeisenbergCentre
 import NonsoficGroupsExist.Sofic.HyperlinearReduction
+import NonsoficGroupsExist.Sofic.HyperlinearWeakBridge
+import NonsoficGroupsExist.Sofic.HyperlinearUltraproductBridge
 import NonsoficGroupsExist.Sofic.ImplementerCocycle
 import NonsoficGroupsExist.Sofic.CoordinateTransfer
 import NonsoficGroupsExist.Sofic.DivisibleInvisible
 import NonsoficGroupsExist.Sofic.HyperlinearUltraproduct
 import NonsoficGroupsExist.Sofic.NormTraceGap
+import NonsoficGroupsExist.Sofic.WeakMFUltraproduct
+import NonsoficGroupsExist.Sofic.KazhdanCorner
+import NonsoficGroupsExist.Sofic.KazhdanCornerMatrices
+import NonsoficGroupsExist.Sofic.WeakMFVectorGNS
+import NonsoficGroupsExist.Sofic.KazhdanCornerModel
 import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
