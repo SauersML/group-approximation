@@ -11219,6 +11219,112 @@ problem: it is precisely the polynomial covariance of the deeper Steinberg
 commutators, beginning with `e_(ik)(p^2)`, inside this common nonorthogonal
 fiber.
 
+### A whole positive Steinberg triple has a strict Følner model
+
+The first deeper-congruence relation can be assembled exactly on the bulk;
+it is not itself an obstruction.  Fix distinct indices `i,j,k` and put
+
+`u=e_(ij)(p)`,  `v=e_(jk)(p)`,  `w=e_(ik)(p^2)`.
+
+Then `w` is central in `U=<u,v,w>` and
+
+`[u,v]=w`.
+
+All nonnegative powers of these matrices have nonnegative entries and hence
+compress the polynomial ring.  Use the positive normal form
+
+`s(a,b,c)=v^b u^a w^c`,  `a,b,c>=0`.
+
+The right multiplications are
+
+`(a,b,c)u=(a+1,b,c)`,
+
+`(a,b,c)v=(a,b+1,c+a)`,
+
+`(a,b,c)w=(a,b,c+1)`.
+
+For `M>=1`, let
+
+`F_M={0,...,M-1}^2 x {0,...,M^2-1}`.
+
+Each of the three partial right translations is defined on a
+`1-O(1/M)` fraction of `F_M`: for `v`, the additional central overflow has
+mean size `O(M)` inside an interval of length `M^2`.  Complete the partial
+translations arbitrarily to permutations of `F_M`.
+
+**Theorem (strict Heisenberg-cell microstates).**  Let
+
+`Gamma=EL_r(Z[x_1,...,x_4])`,  `r>=3`.
+
+There are genuine finite-dimensional representations `pi_M` of `Gamma` and
+unitaries `U_M,V_M,W_M` such that:
+
+1. the covariance relations for `u,v,w` have normalized Hilbert--Schmidt
+   defect `O(M^(-1/2))` on every fixed polynomial-group window;
+2. `U_M,V_M,W_M` satisfy every fixed word relation of the Heisenberg group,
+   in particular `[U_M,V_M]=W_M`, with defect `O(M^(-1/2))`; and
+3. for one fixed root element `gamma in Gamma`, there are
+   `z_M in pi_M(Gamma)'` with
+
+   `liminf ||[U_M z_M U_M^*,pi_M(gamma)]||_2 >= sqrt(2)`.
+
+Thus the relation `[e_(ij)(p),e_(jk)(p)]=e_(ik)(p^2)` is compatible with the
+strict polynomial-shear witness at vanishing defect.
+
+**Proof.**  Choose the monomial `x_j`, which is not in the image of the
+positive monoid under `u`: in exponent notation, `e_j` is not in
+`u N^4`.  Put `gamma=e_(12)(x_j)` (changing the elementary matrix indices if
+needed to keep them distinct from the substitution indices).
+
+For the finite set of matrices `s(a,b,c)` with `(a,b,c) in F_M`, choose
+`D_M` larger than the total degrees of all monomials which occur after
+applying those substitutions, the three one-step extensions, and the fixed
+group window.  Reduce coefficients modulo any fixed prime and use the finite
+ring
+
+`S_M=F_p[x_1,...,x_4]/(all monomials of total degree > D_M)`.
+
+Every nonnegative unimodular substitution preserves the truncation ideal,
+because it cannot decrease total degree.  Let `sigma_M` be the left regular
+representation of `EL_r(S_M)` and, on the block indexed by `x=(a,b,c)`, put
+
+`pi_(M,x)(g)=sigma_M(alpha_(s(x))(g))`.
+
+Their direct sum is a genuine representation `pi_M` of `Gamma`.
+
+Orient the completed block permutations so that a block `xh` is sent to
+`x` for `h=u,v,w`.  Whenever the partial right translation is defined,
+
+`pi_(M,xh)(g)=pi_(M,x)(alpha_h(g))`,
+
+so covariance is exact there.  A fixed word encounters only a fixed number
+of boundary translates.  Since their total rank fraction is `O(1/M)`, both
+covariance and the Heisenberg word relations have normalized Hilbert--Schmidt
+defect `O(M^(-1/2))`.
+
+It remains to verify strictness.  Write `H_x` for the finite image of
+`alpha_(s(x))(Gamma)`.  On every interior `u`-edge,
+
+`alpha_(s(x))(gamma) notin H_(xu)`.
+
+Indeed, before truncation this is the injective image under `s(x)` of
+`x_j notin alpha_u(R_+)`; the choice of `D_M` keeps the relevant monomials
+nonzero and distinct, so truncation creates no new membership.  In the
+regular representation, Haar averaging over `lambda(H_(xu))'` therefore
+gives a unitary `z_(xu)` commuting with `H_(xu)` whose squared commutator
+with `lambda(alpha_(s(x))(gamma))` is at least `2`.  Choose these block
+unitaries independently and put them into a block-diagonal `z_M`; use the
+identity on the boundary blocks.  Then `z_M in pi_M(Gamma)'`, while after
+conjugation by `U_M` the displayed lower bound holds on a `1-O(1/M)`
+fraction of the blocks.  Averaging proves (3).  End proof.
+
+The theorem removes every individual `A_2` root cell from the terminal gap.
+What remains is global overlap: choose the Heisenberg-cell Følner couplings
+for all root triples so that their shared root unitaries agree inside the
+single simultaneous Pauli--Jacobi channel.  This is a finite Curtis--Tits/
+Steinberg compatibility problem, not a defect-scale or single-commutator
+problem.
+
 ### One Mackey product aligns all rank-two fibers simultaneously
 
 Pairwise Pauli--Jacobi intertwiners do not need to be glued by hand.  The
@@ -11281,3 +11387,40 @@ intertwiner in every incident `A_2` fiber, and the resulting Steinberg
 central kernel must act trivially (or on a vanishing-trace complement).
 This isolates the next task as a Curtis--Tits/Steinberg overlap problem
 rather than a cocycle-gauge problem.
+
+### Correction to the explicit infranormality matrix
+
+The matrix used just above in the collaborator's finite-index audit,
+
+`[[p+1,-p],[p,1-p]]`,
+
+is congruent to the identity modulo `p`, but it is **not** in the raw
+elementary subgroup
+
+`E_4(pZ)=<e_(ij)(pa)>`.
+
+Indeed, modulo `p^2`, a product of level-`p` elementary matrices has
+first-order term with zero diagonal, whereas this matrix has first-order
+diagonal `(1,-1)`.  The intended positivity-to-inverse-variable argument is
+nevertheless valid with the following simpler word:
+
+`A=e_21(p)e_12(-p)`
+` =[[1,-p],[p,1-p^2]] direct_sum I_2`.
+
+This lies in `E_4(pZ)` by construction.  Its inverse has first column
+
+`(1-p^2,-p,0,0)^T`,
+
+so for the nonnegative exponent vector
+
+`w=(p^2-1,p,0,0)^T`
+
+one has exactly
+
+`Aw=-e_1`.
+
+Thus a `Lambda_p`-translate of the positive monomial `x^w` is
+`x_1^(-1)`, and the `B`-permutations supply every inverse variable.  This
+repairs the explicit infranormality witness without enlarging `Lambda_p` or
+appealing to equality between the raw and relative elementary congruence
+subgroups.
