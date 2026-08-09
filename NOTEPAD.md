@@ -16801,3 +16801,81 @@ ledger, and stable generator reduction remain useful, but descent across
 the two Steinberg kernels has reopened as a load-bearing gap.  No completion
 percentage should be increased until either the active toric symbol words
 are computed or the matched-character repair is made quantitative.
+
+### Balanced matched-character cancellation preserves the witness exactly
+
+The exact lemma above admits a quantitative strengthening which removes the
+trace-weight objection rather than merely flagging it.
+
+Let `X` be the finite character support of `pi|A`.  It is a union of
+`H`-orbits.  On an orbit `O`, normality and unitarity imply that
+
+`d_O=dim(V_chi)`
+
+is independent of `chi in O`.  Choose one integer `L` divisible by every
+nonzero `d_O`, and define the **balanced matched space**
+
+`W=directSum_O directSum_(chi in O)`
+`  (V_chi tensor conjugate(V_chi))^(directSum L/d_O)`.
+
+The diagonal tensor representation leaves `W` invariant and factors through
+`H/A` as before.  If `b` is any operator commuting with `pi(A)`, write
+`b=directSum b_chi` and put
+
+`bhat=directSum_(O,chi)`
+`  (b_chi tensor 1_(conjugate(V_chi)))^(directSum L/d_O)`.
+
+Then, for every `h in H`,
+
+`||[bhat,Pihat(h)]||_(2,W)=||[b,pi(h)]||_(2,V)`.
+
+Indeed the source-`chi` block of the commutator on the matched tensor is the
+source block of `[b,pi(h)]` tensored with a unitary on a `d_O`-dimensional
+space.  Its unnormalized squared Hilbert--Schmidt norm is multiplied by
+`d_O` and then by the repetition `L/d_O`, hence by exactly `L`.  Meanwhile
+
+`dim(W)=sum_(O,chi) (L/d_O)d_O^2=L dim(V)`.
+
+Dividing gives the displayed identity.  The same computation applies to a
+fixed unitary word in place of `pi(h)`.  Thus a relative-commutant witness
+which commutes with the kernel loses neither its `Gamma`-centralization nor
+its strict compressed commutator after balanced cancellation.
+
+There is also an immediate finite-stage approximate version.
+
+**Lemma (graded approximate descent).**  Suppose maps
+
+`u_n:H->U(V_n)`
+
+are asymptotically multiplicative on finite windows, their restrictions to
+`A` are honest representations, and every tested `u_n(h)` exactly carries
+the `chi`-space to the `h.chi`-space.  Form the balanced matched spaces and
+operators above.  Then the induced maps on `H/A` are asymptotically
+multiplicative.  If the original multiplication defect is `epsilon`, the
+conjugate-tensor expansion bounds the new defect by
+
+`2 epsilon+epsilon^2`
+
+in the balanced normalized norm.  Every tested element of `A` acts exactly
+as one, and the preceding commutator equality preserves a kernel-commuting
+witness.
+
+The proof is blockwise: exact covariance makes the matched subspace
+invariant, and the `L/d_O` balancing turns the sum of every blockwise defect
+into `L` times the original unnormalized defect sum.  The usual two linear
+and one quadratic tensor-error terms then give the bound.
+
+This sharpens the open task.  It is enough to upgrade the atlas model of
+`Gtilde_z` so that, at each finite window, the finitely many relevant
+`K_2(R) K_2(Z)` generators act through an honest finite character grading
+which the tested substitution operators permute exactly (or through a
+quantitatively correctable version of that condition).  Glebsky's
+normalized-Hilbert--Schmidt theorem can correct a finite family of almost
+commuting normal matrices to commuting ones, but it does not by itself
+correct the normalizer covariance.  The latter is the remaining equivariant
+spectral-grading problem.  For this particular kernel the action is explicit:
+on the fundamental-theorem decomposition it is the standard mod-two action
+on the `{-1,x_i}` terms and the exterior-square integral action on the six
+`{x_i,x_j}` terms.  Finite torsion character grids are invariant under these
+actions, so an atlas construction over such a grid is the natural next
+repair; no general amenable-normal-quotient closure claim is being assumed.
