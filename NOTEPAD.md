@@ -12841,3 +12841,98 @@ which mixed products survive through a full flag of ideals, or a stable-
 equivalence theorem showing that the relevant `EL_r(A_N)` base
 representations become unitarily equivalent on `1-o(1)` rank.  Until one of
 those is proved, the global coefficient overlap remains open.
+
+### A fixed-base iterated-nilpotent Frobenius candidate
+
+The first candidate can be made completely explicit at the ring level.  It
+is useful first to remove an artificial constraint in the Kun--Thom pair.
+Add one coefficient variable `z` which is fixed by the substitution group
+and is not Laurent-inverted.  Put
+
+`R_+=Z[z,x_0,x_1,x_2,x_3]`,
+
+`R=Z[z,x_0^(+-1),x_1^(+-1),x_2^(+-1),x_3^(+-1)]`,
+
+`Gamma_z=EL_r(R_+)`,  `G_z=EL_r(R) semidirect SL_4(Z)`,
+
+where `SL_4(Z)` fixes `z` and has its usual monomial action on the four
+`x`-variables.
+
+**Lemma (the fixed-base pair is still a Kun--Thom pair).**  For elementary
+rank chosen in the stable Kazhdan range, `Gamma_z<G_z` is residually finite,
+Kazhdan, infranormal, and nonnormal.
+
+**Proof.**  Both coefficient rings are finitely generated commutative
+domains, so the standard universal-lattice property-(T) and residual-
+finiteness arguments apply.  A positive unit transvection maps `R_+`
+properly into itself, proving nonnormality exactly as before.  The
+`SL_4(Z)` compression semigroup produces every positive and negative
+Laurent monomial in the `x`-variables.  Multiplying those monomials by
+arbitrary nonnegative powers of the fixed variable `z` gives all of `R`;
+hence the conjugates of `Gamma_z` generate the Laurent elementary factor,
+which is the same explicit infranormality argument as for the four-variable
+pair.  End proof.
+
+Now fix integers `N,L>=2` and define
+
+`A_N=F_p[y]/(y^N)`,
+
+`T_(N,L)=A_N[xi_0,xi_1,xi_2,xi_3]/(xi_0^L,xi_1^L,xi_2^L,xi_3^L)`.
+
+There is one chart-independent ring map
+
+`phi:F_p[z,x_0,x_1,x_2,x_3]->T_(N,L)`,
+
+`phi(z)=y`,  `phi(x_i)=xi_i`.
+
+The quotient by `M=(xi_0,xi_1,xi_2,xi_3)` is always the same base `A_N`,
+while every mixed coefficient survives until its genuine truncation; for
+example `phi(x_i x_j)=xi_i xi_j!=0` when `i!=j`.
+
+**Theorem (fixed-base Frobenius flag).**
+
+1. Every positive elementary monomial substitution
+   `x_i|->x_i x_j` descends to the endomorphism
+   `xi_i|->xi_i xi_j` of `T_(N,L)` and fixes the common quotient `A_N`.
+2. `T_(N,L)` is Frobenius, with functional extracting the coefficient of
+
+   `y^(N-1) product_i xi_i^(L-1)`.
+
+3. If `D=4(L-1)`, then for the relative maximal-ideal flag
+
+   `M^q=directSum_(xi-degree>=q) A_N xi^u`
+
+   one has the exact reverse-annihilator identity
+
+   `(M^q)^perp=M^(D-q+1)`,  `0<=q<=D+1`.
+
+   Every consecutive inclusion is strict.
+
+**Proof.**  The truncation relation `xi_i^L=0` remains zero after a positive
+shear because `(xi_i xi_j)^L` contains `xi_i^L`; mixed monomials are
+multiplied exactly, proving (1).  Complementary monomials
+
+`y^a xi^u` and `y^(N-1-a) xi^(T-u)`
+
+give a perfect pairing, proving (2).  The homogeneous piece of total
+`xi`-degree `d` pairs perfectly with degree `D-d`.  Therefore the
+orthogonal complement of all degrees at least `q` consists exactly of the
+degrees at least `D-q+1`.  Every degree between `0` and `D` occurs, proving
+strictness.  End proof.
+
+This simultaneously repairs the two failed easy fixes: the base quotient is
+independent of depth, the moving variables remain nonunits, and mixed
+products are not killed.  It also remains nonsterile: a positive shear is a
+proper endomorphism, not an automorphism of a finite Laurent quotient.
+
+What is not yet proved is the operator-level adjacent-wall theorem.  The
+new exact target is narrower than before: construct the Fourier--Weil
+intertwiner through the finite flag
+
+`T>M>M^2>...>M^(D+1)=0`
+
+and show that the regular `EL_r(T_(N,L))` models of the two positive
+monomial endomorphism chambers agree on their five-root overlap away from
+an `o(1)` collection of flag levels.  The base `EL_r(A_N)` action is now
+literally common, so finite Stone--von Neumann applies to the associated
+graded Heisenberg layers without the retracted depth-dependent-base step.
