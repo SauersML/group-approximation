@@ -7277,3 +7277,70 @@ single C*-sentence:
 
 This is stronger structural information than merely saying that a relative
 commutant should grow.  It does not yet produce the required representation.
+
+### Ordinary and local HS-instability cannot supply the infinite projection
+
+The failure of Hilbert--Schmidt stability for infinite hyperlinear Kazhdan
+groups is not, by itself, evidence for the strict-compression certificate.
+The standard Becker--Lubotzky/Fournier--Facio--Gerasimova--Spaas sequence is
+obtained by deleting one dimension from a genuine irreducible
+representation.  It becomes genuine again after a negligible-dimensional
+flexible enlargement.  Such models have normalized relative commutant.
+
+**Theorem (flexibly liftable models are compression-sterile).**  Let
+
+`phi_n:G -> U(d_n)`
+
+be asymptotic homomorphisms.  Suppose there are `D_n>=d_n` with
+
+`(D_n-d_n)/d_n -> 0`
+
+and genuine representations `pi_n:G->U(D_n)` such that, after the standard
+corner inclusions, `phi_n(g)` is asymptotically equal in normalized
+Hilbert--Schmidt norm to `pi_n(g)` on the original corner for every fixed
+`g`.  Then the induced tracial-ultraproduct representation `rho` satisfies
+
+`rho(Gamma)' = rho(t)(rho(Gamma)')rho(t)^*`
+
+inside the corresponding matrix tracial ultraproduct for every compressor
+`t`.  In particular it cannot satisfy the strict-commutant criterion.
+
+**Proof.**  Adding or deleting `o(d_n)` dimensions changes the normalized
+Hilbert--Schmidt class by zero, so the ultraproduct representation is
+unitarily equivalent to that represented by the genuine `pi_n`.  Put
+
+`C_n=pi_n(Gamma)'`.
+
+Exact finite-dimensional co-Hopfianity gives
+
+`pi_n(t) C_n pi_n(t)^*=C_n`:
+
+one inclusion follows from `t Gamma t^-1<=Gamma`, and equality follows because
+unitarily conjugate finite-dimensional algebras have the same dimension.
+
+Now let `v=(v_n)` commute with `rho(Gamma)`.  Apply the Kazhdan spectral gap
+to the adjoint representations on `M_(D_n)` with their normalized
+Hilbert--Schmidt norms.  The distance from `v_n` to the exact invariant space
+`C_n` tends to zero.  Choose `c_n in C_n` with
+
+`||v_n-c_n||_2 -> 0`.
+
+Since every `pi_n(t)` normalizes `C_n`, both conjugations by `rho(t)` and
+`rho(t)^*` preserve the ultraproduct relative commutant.  This proves
+equality.  End proof.
+
+Lemma 6.3 and Theorem 6.1 of *Local Hilbert--Schmidt stability* delete exactly
+one dimension, with relation defect `O(|w|/sqrt(d_n))`; hence their witness
+lies inside the theorem.  The same is true of the original
+Becker--Lubotzky instability construction.  They prove failure of
+(same-dimension) local stability, but they do **not** produce the
+non-stably-finite left--right envelope required here.
+
+Thus the terminal model must fail a substantially stronger property:
+
+> it must remain nonliftable after every asymptotically negligible change of
+> dimension.
+
+This is the flexible relative-lifting quadrant represented by
+Alekseev--Thom Open Problem 6.2, not the already-established failure of local
+HS-stability.
