@@ -18857,3 +18857,36 @@ that proof.  The terminal construction target is therefore sharper:
 
 This is exactly the flexible compressor--shear coupling problem, not an
 atlas-weighting problem.
+
+**Corollary (high-rank fusion is asymptotically a reference chart).**  Fix a
+finite generating window `S` and an atlas of fixed size `m`.  Suppose the
+preceding fusion synchronization hypotheses hold for every `g in S`, and
+write `U_(g,i)` for the occurrence of `g` in chart `i`.  If
+
+`max_(g,i,j)||E_(i,j)(g)||_2->0`
+
+and `epsilon->0`, then, for any reference chart `i_0`,
+
+`max_(g,i)||U_(g,i)-U_(g,i_0)||_2->0`.
+
+For a word `w=g_1^(e_1)...g_k^(e_k)`, the usual telescoping estimate gives
+
+`||w(U_(*,i))-w(U_(*,i_0))||_2`
+` <=sum_(a=1)^k ||U_(g_a,i)-U_(g_a,i_0)||_2`.
+
+Consequently, if each fixed relator has vanishing defect in any one owner
+chart, then it has vanishing defect in the reference chart as well.  If the
+local witnesses obey their overlap equations, the same is true of the
+strict commutator.  Thus the fused ultraproduct representation can be
+replaced, for the fixed window, by the tuple in an arbitrary reference
+chart without losing multiplicativity or strictness.
+
+This does not say the fusion identities are false.  It says that under the
+claimed `1-o(1)`-rank overlap assumptions they are a **bookkeeping and polar
+correction device**, not a source of order-one compatibility.  In
+particular nonorthogonal fusion cannot evade an order-one conflict between
+the native depth-shift compressor and the free-cycle strict compressor.  A
+successful proof must already construct, in one chart up to `o(1)`
+Hilbert--Schmidt error, a single compressor satisfying both sets of finite
+relations.  The atlas may then transport that solution, but cannot create
+it.
