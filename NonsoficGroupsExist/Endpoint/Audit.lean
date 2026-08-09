@@ -30,6 +30,9 @@ import NonsoficGroupsExist.Sofic.Normalization
 import NonsoficGroupsExist.Leavitt.FamilyVEmbedding
 import NonsoficGroupsExist.Sofic.FreeGroupResiduallyFinite
 import NonsoficGroupsExist.Endpoint.QuotientNonclosure
+import NonsoficGroupsExist.Steinberg.Basic
+import NonsoficGroupsExist.Steinberg.Perfect
+import NonsoficGroupsExist.Steinberg.BinaryLeavitt
 
 /-!
 # Human-readable axiom report
@@ -78,6 +81,12 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.CentralExtension.isQuasisimple_of_isPerfect_of_isSimpleGroup
 #print axioms NonsoficGroupsExist.finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
 #print axioms NonsoficGroupsExist.finitelyPresentedKazhdanSoficImageRigid_of_subcoverStrictWitness
+#print axioms NonsoficGroupsExist.SteinbergGroup.projection_surjective
+#print axioms NonsoficGroupsExist.SteinbergGroup.centralExtension
+#print axioms NonsoficGroupsExist.SteinbergGroup.fin_isPerfect
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.projection_surjective
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.isPerfect
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_certificates
 #print axioms NonsoficGroupsExist.hyperlinear_nonsofic_exists_of_quasisimple_kazhdan_weakMF
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.UniversalRankFour.witness_not_isLEF
