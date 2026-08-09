@@ -284,6 +284,7 @@ import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
 import NonsoficGroupsExist.Sofic.CentralFreeLampCover
+import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 import NonsoficGroupsExist.Sofic.CommutantPinning
 import NonsoficGroupsExist.Sofic.NearAction
 import NonsoficGroupsExist.Sofic.NearActionModel
