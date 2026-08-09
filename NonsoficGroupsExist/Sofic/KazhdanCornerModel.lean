@@ -85,7 +85,7 @@ theorem euclidean_norm_sq_general {Z : Type*} [Fintype Z]
 
 /-- General finite-type version of the operator-norm vector criterion. -/
 theorem l2_opNorm_le_of_sum_normSq_general
-    {R Z : Type*} [Fintype R] [Fintype Z] [DecidableEq R] [DecidableEq Z]
+    {R Z : Type*} [Fintype R] [Fintype Z] [DecidableEq Z]
     (C : Matrix R Z ℂ) {M : ℝ} (hM : 0 ≤ M)
     (h : ∀ x : Z → ℂ, ∑ i : R, Complex.normSq ((C *ᵥ x) i) ≤
       M ^ 2 * ∑ i : Z, Complex.normSq (x i)) :
@@ -365,6 +365,14 @@ theorem movingHermitianAverage_isHermitian (A : WeakMFApproximation G)
 def movingPredicate (A : WeakMFApproximation G) (S : Finset G)
     (t : ℝ) (n : ℕ) (i : A.model n) : Prop :=
   (movingHermitianAverage_isHermitian A S n).eigenvalues i ≤ t
+
+/-- Every eigen-coordinate belongs to the cutoff taken at its own eigenvalue;
+this is a closed satisfiability witness for the moving-coordinate predicate. -/
+theorem movingPredicate_at_eigenvalue (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (i : A.model n) :
+    movingPredicate A S
+      ((movingHermitianAverage_isHermitian A S n).eigenvalues i) n i :=
+  le_rfl
 
 noncomputable instance movingPredicate_decidable (A : WeakMFApproximation G)
     (S : Finset G) (t : ℝ) (n : ℕ) :

@@ -68,6 +68,23 @@ theorem exists_movingCornerSetup [Countable G]
     gap_lt_cutoff := hct
     cutoff_lt_one := htOne }⟩
 
+/-- Closed positive control: the setup certificate is inhabited for the
+trivial group. -/
+theorem movingCornerSetup_punit : Nonempty (MovingCornerSetup PUnit) := by
+  have hT : HasKazhdanPropertyT.{0, 0} PUnit := by
+    refine ⟨{1}, 1, by
+      refine ⟨by norm_num, ?_⟩
+      intro E _ _ _ rho x hx _
+      refine ⟨x, ?_, ?_⟩
+      · intro hzero
+        rw [hzero, norm_zero] at hx
+        norm_num at hx
+      · intro g
+        have hg : g = 1 := Subsingleton.elim _ _
+        rw [hg, map_one]
+        rfl⟩
+  exact exists_movingCornerSetup hT (isWeakMF_of_finite PUnit)
+
 /-- Every fixed compressed element has vanishing Gram defect. -/
 theorem MovingCornerSetup.gram_eventually_small (D : MovingCornerSetup G)
     (g : G) : ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
