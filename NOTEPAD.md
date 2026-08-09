@@ -20266,3 +20266,63 @@ fixed-space compression is reversible.  A viable CAR microstate must be
 constructed directly in normalized Hilbert--Schmidt geometry; it cannot
 factor through a one-particle model with vanishing unnormalized Frobenius
 defect.
+
+### The Clifford cover is itself nonsofic and has total finite-dimensional central collapse
+
+Two structural consequences sharpen the remaining direct-CAR target.
+
+**Proposition.**  The Clifford cover `H_Cl=C(X) semidirect G` is nonsofic.
+Moreover, every finite-dimensional unitary representation of `H_Cl` kills
+the central involution `z`.
+
+**Proof of nonsoficity.**  Suppose that `H_Cl` had a sofic embedding.  Its
+restriction to the faithful copy of `G` is a sofic representation.  The base
+lamp `a_o` centralizes `Gamma`.  Kun--Thom centralizer normality therefore
+forces `a_(t Gamma)=t a_o t^(-1)` to centralize `Gamma`.  Choose
+`gamma in Gamma` with `gamma t Gamma != t Gamma`.  In the Clifford lamp,
+
+`[a_(t Gamma),gamma]=a_(t Gamma) a_(gamma t Gamma)`
+
+and hence
+
+`[a_(t Gamma),gamma]^2=z`.
+
+The centralizer conclusion sends the left side to `1`, and therefore sends
+`z` to `1`, contradicting injectivity.
+
+For the finite-dimensional statement, let `rho:H_Cl->U(d)` and let
+`e_-=(1-rho(z))/2`.  If `e_-!=0`, restrict to its range, of dimension `m`.
+There the involutions `rho(a_x)` anticommute pairwise.  For every finite
+`F subset X` of cardinality `n`, they give a nonzero representation of the
+complex Clifford algebra on `n` generators.  Every such representation has
+dimension at least `2^(floor(n/2))`: pair the generators, or use the standard
+classification of finite complex Clifford algebras.  Since `X=G/Gamma` is
+infinite, choose `n` with `2^(floor(n/2))>m`, a contradiction.  Thus
+`e_-=0` and `rho(z)=1`.  End proof.
+
+Consequently `H_Cl` is an explicit finitely generated nonsofic, non-MAP
+group for which the central witness is killed by **every** exact
+finite-dimensional representation, not merely by every finite quotient.
+Any weak-MF model must keep `z` on a genuinely approximate operator-norm
+sector.  The finite-central spectral-corner theorem then turns weak MF of
+this one group into a hyperlinear nonsofic image, while a direct
+trace-preserving embedding of its `z=-1` CAR crossed-product sector makes
+`H_Cl` itself hyperlinear and solves the main problem.
+
+The combined audit leaves two distinct quantitative interfaces and rules
+out conflating them:
+
+* unnormalized-Frobenius/square-root control on a one-particle orthogonal
+  model is **too strong** and is forbidden by stable finiteness plus Kazhdan
+  compression;
+* normalized-Hilbert--Schmidt microstates for the CAR crossed product remain
+  possible because their errors may occupy growing rank while having
+  vanishing normalized trace.  Such microstates cannot be obtained by
+  exterior amplification of an operator-norm almost-representation.
+
+Thus the precise surviving certificate on this lane is
+
+`CAR(l2_R(G/Gamma)) crossed_(Bog) G is Connes embeddable`,
+
+or, more weakly, `H_Cl` is weak-MF.  Neither follows from the existing
+sofic-action, profinite-action, or Shulman-double permanence theorems.
