@@ -8136,6 +8136,157 @@ growing stabilizers, or approximate systems which do not define exact
 projective representations.  Those are now the precise surviving
 nonorthogonal sector.
 
+The permuted-central-block exception itself has an exact cohomological
+normal form.
+
+**Theorem (transitive block curvature is stabilizer cohomology).**  Let a
+group `Q` act transitively on a finite set `X`, fix `x_0 in X`, and put
+`H=Stab_Q(x_0)`.  Let
+
+`K=direct_sum_(x in X) K_x`
+
+with all `K_x` of the same finite dimension.  Suppose unitaries `V_g` send
+`K_x` onto `K_(gx)` and satisfy, for scalars `c(g,h,x) in T`,
+
+`V_g V_h |_K_x = c(g,h,x) V_(gh) |_K_x`.
+
+Then `c` is a `2`-cocycle of the transformation groupoid `Q action X`:
+
+`c(h,k,x)c(g,hk,x)=c(g,h,kx)c(gh,k,x)`.
+
+Changing the block phases of the `V_g` changes `c` by a groupoid
+coboundary, and restriction to the isotropy group at `x_0` induces an
+isomorphism
+
+`H^2(Q action X,T) = H^2(H,T)`.
+
+Moreover, with normalized trace on `B(K)`,
+
+`||V_g V_h-V_(gh)||_2^2`
+`  = (1/|X|) sum_(x in X) |c(g,h,x)-1|^2`.
+
+**Proof.**  Compute `V_gV_hV_k` on `K_x` in the two associative ways to get
+the displayed cocycle identity.  A phase change on each arrow gives exactly
+the usual groupoid coboundary formula.  Choose arrows `s_x` from `x_0` to
+`x`.  They identify the transitive groupoid with the isotropy group `H` up
+to a contractible pair groupoid; explicitly, every arrow from `x` to `y`
+has the unique isotropy coordinate
+
+`s_y^(-1) g s_x in H`.
+
+Restriction and transport along the `s_x` are inverse on cohomology.  The
+norm identity follows because the defect is scalar multiplication by
+`c(g,h,x)-1` on each equal-dimensional block.  End proof.
+
+This gives a concrete description of the last scalar loophole left by the
+fixed-block theorem.  A central-curvature assembly over growing finite
+orbits `Q/H_n` would require classes
+
+`[c_n] in H^2(H_n,T)`
+
+with finite-dimensional projective realizations and representatives whose
+groupoid cocycle values tend to one in the displayed mean-square sense on
+every fixed ambient multiplication pair.  It must simultaneously act
+nontrivially on the off-diagonal multiplicity intertwiners; on the diagonal
+block algebra scalar curvature disappears under conjugation.
+
+Congruence subgroups are the natural arithmetic source of such stabilizers.
+The needed unbounded projective classes already have an elementary
+construction; no stable-rank limit is necessary.
+
+**Theorem (congruence stabilizers supply unbounded projective holonomy).**
+Fix `d>=4`.  For every odd prime `p`, the principal congruence subgroup
+
+`H_p=ker(SL_d(Z)->SL_d(F_p))`
+
+has a nontrivial class of order `p` in `H^2(H_p,T)`.  The class may be chosen
+to factor through the finite abelian quotient
+
+`A_p=H_p/H_(p^2)=sl_d(F_p)`,
+
+where `H_(p^2)=ker(SL_d(Z)->SL_d(Z/p^2 Z))`,
+
+and consequently has a finite-dimensional projective unitary
+representation.
+
+**Proof.**  The standard first-congruence-quotient calculation gives
+
+`H_p/H_(p^2)=sl_d(F_p)`
+
+as additive groups, by sending `1+pX` to `X mod p`.  Multiplication becomes
+addition modulo `p^2`; the image is the trace-zero space because the
+determinant is one.  It contains a root vector and is invariant under the
+adjoint action of `SL_d(F_p)`, whose conjugates span the trace-zero matrices,
+so the map is onto.  In `H_p`, the two
+elements
+
+`a=1+p e_12` and `b=1+p e_34`
+
+commute.  Their commuting-pair bar cycle maps in `H_2(A_p,Z)` to the
+nonzero wedge `e_12 wedge e_34`.  Choose an alternating bilinear form `B` on
+`A_p` with `B(e_12,e_34)=1`.  Since `p` is odd, the scalar multiplier
+
+`omega_B(x,y)=exp(2 pi i (1/2) B(x,y)/p)`
+
+on `A_p` is a `2`-cocycle by bilinearity and has commutator bicharacter
+
+`omega_B(x,y) omega_B(y,x)^(-1)=exp(2 pi i B(x,y)/p)`.
+
+Evaluation on the displayed commuting-pair cycle is a primitive `p`-th
+root of unity.  Hence the pullback class in `H^2(H_p,T)` is nontrivial and
+has order `p`.  It factors through the finite group `A_p`; the twisted left
+regular representation of `A_p` is therefore a finite-dimensional
+projective realization.  End proof.
+
+There is a sharp reason this theorem does not itself contradict local
+mean-square smallness.  If a scalar `2`-cocycle `omega` evaluates to a
+primitive `p`-th root on an integral bar cycle
+
+`z=sum_i n_i [g_i|h_i]`,
+
+then the product inequality on the unit circle gives
+
+`2 sin(pi/p) <= sum_i |n_i| |omega(g_i,h_i)-1|`.
+
+Consequently some pair in the support of `z` has defect at least
+
+`2 sin(pi/p)/||z||_1`.
+
+For the two-term commuting-pair cycle above this is only `sin(pi/p)`, which
+tends to zero.  Moreover the detecting elements `1+p e_12` and `1+p e_34`
+leave every fixed word ball of `SL_d(Z)` as `p` grows (each fixed ball is
+finite).  Thus no fixed ambient multiplication pair witnesses a uniform
+defect.  Unbounded-order stabilizer holonomy is therefore compatible with
+the *necessary* pointwise scale for a locally trivial assembly; the missing
+work is to construct one representative which attains that scale
+simultaneously on every fixed pair.
+
+Calegari's much broader stable calculation is consistent with, and greatly
+enlarges, this elementary family: Corollary 3.4 of [*The stable homology of
+congruence subgroups*](https://arxiv.org/abs/1311.5190) gives, for `p>3` and
+sufficiently large rank,
+
+`dim_Fp H^2(Gamma(p),F_p)=choose(d^2-1,2)+1`.
+
+Thus two of the three required clauses are genuinely available, with orders
+tending to infinity as `p` grows.  What Calegari's calculation does **not**
+supply is a choice of induction sections/gauges for which the resulting
+transformation-groupoid multiplier is locally mean-square close to one, nor
+does it show that the holonomy acts on the particular off-diagonal
+intertwiners carrying the shear-chain witness.  The exact analytic
+subproblem is therefore:
+
+> Find finite-index `H_n<SL_d(Z)` and finite-dimensional projective
+> representations of `H_n` whose induced transformation-groupoid curvature
+> tends locally to one, while its holonomy acts nontrivially on the
+> multiplicity intertwiners of the polynomial quotient tower.
+
+The first half is an `L2` cosystole question for the finite Schreier
+`2`-complexes of `SL_d(Z)/H_n`; the second is a compatibility question with
+the nested elementary-subgroup commutants.  Until both are proved, the
+unbounded congruence holonomy is a real source of curvature but not an
+assembly theorem.
+
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
 The preceding warning has an exact quantitative form.
