@@ -20326,3 +20326,48 @@ Thus the precise surviving certificate on this lane is
 
 or, more weakly, `H_Cl` is weak-MF.  Neither follows from the existing
 sofic-action, profinite-action, or Shulman-double permanence theorems.
+
+### Automorphic-action charts also recover Clifford coordinate labels
+
+The Alekseev--Bradford automorphic-action permanence theorem cannot supply
+the direct tracial construction.  The earlier single-lamp converse is not
+special to commuting `C_2` lamps.
+
+Let a group `G` act on a group `D` by automorphisms and suppose that `D`
+contains pairwise distinct distinguished elements
+
+`a_x`,  `x in X`,
+
+which are permuted by the action: `alpha(g)(a_x)=a_(g x)`.  If this
+automorphism action is a sofic `C`-action in Definition 4.23, for any class
+of groups `C`, then the set action `G action X` is sofic.
+
+Indeed, for a finite coordinate window `Z subset X`, include all `a_z` in
+the automorphic test set `E`.  A Definition-4.23 chart provides injective
+partial homomorphisms
+
+`pi_s:E->Lambda`,  `s in S`.
+
+The finite set
+
+`B=union_(s in S) pi_s({a_z:z in Z})`
+
+contains the injective labels
+
+`j_s(z)=pi_s(a_z)`.
+
+The automorphic covariance equation is exactly
+
+`j_(phi(g)s)(z)=j_s(g^(-1)z)`
+
+whenever both sides are tested.  These are the orbit charts in the
+definition of a sofic set action.
+
+Apply this with `D=C(X)`, or with the sparse orbital Clifford lamp group.
+Their coordinate generators are distinct (the ordered-monomial normal form
+proves this), and every `g` permutes them.  Hence a sofic hyperlinear action
+on either Clifford lamp group would imply that the Kun--Thom action on
+`G/Gamma` is sofic, contrary to their theorem.  Noncommutative target labels
+do not create a loophole in Definition 4.23; a successful Clifford model
+must violate the chartwise partial-homomorphism architecture itself and be
+built only after passing to normalized-HS matrix microstates.
