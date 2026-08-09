@@ -74,5 +74,77 @@ theorem ringMap_surjective_of_surjective (f : R →+* S)
   change ringMap f (x i j hij a) = x i j hij (f a)
   exact ringMap_x f i j hij a
 
+section Index
+
+variable {J : Type*} [Fintype J] [DecidableEq J]
+
+/-- Apply an injection of index types to the endpoints of a Steinberg
+generator. -/
+def mapIndexGenerator (e : I ↪ J) (g : SteinbergGenerator I R) :
+    SteinbergGroup J R :=
+  x (e g.row) (e g.column) (e.injective.ne g.row_ne_column) g.coefficient
+
+omit [Fintype I] [DecidableEq I] in
+private theorem mapIndexGenerator_kills_relations (e : I ↪ J)
+    (w : FreeGroup (SteinbergGenerator I R))
+    (hw : w ∈ relations (I := I) (R := R)) :
+    FreeGroup.lift (mapIndexGenerator e) w = 1 := by
+  change IsRelation w at hw
+  cases hw with
+  | add i j hij a b =>
+      simp only [map_mul, map_inv, FreeGroup.lift_apply_of, mapIndexGenerator]
+      change x (e i) (e j) (e.injective.ne hij) a *
+        x (e i) (e j) (e.injective.ne hij) b *
+        (x (e i) (e j) (e.injective.ne hij) (a + b))⁻¹ = 1
+      rw [x_mul]
+      simp
+  | commute i j k l hij hkl hjk hli a b =>
+      simp only [map_commutatorElement, FreeGroup.lift_apply_of,
+        mapIndexGenerator]
+      change ⁅x (e i) (e j) (e.injective.ne hij) a,
+        x (e k) (e l) (e.injective.ne hkl) b⁆ = 1
+      exact (x_commute_of_ne (e i) (e j) (e k) (e l)
+        (e.injective.ne hij) (e.injective.ne hkl)
+        (e.injective.ne hjk) (e.injective.ne hli) a b).commutator_eq
+  | adjacent i j k hij hjk hik a b =>
+      simp only [map_mul, map_inv, map_commutatorElement,
+        FreeGroup.lift_apply_of, mapIndexGenerator]
+      change ⁅x (e i) (e j) (e.injective.ne hij) a,
+          x (e j) (e k) (e.injective.ne hjk) b⁆ *
+        (x (e i) (e k) (e.injective.ne hik) (a * b))⁻¹ = 1
+      rw [x_commutator]
+      simp
+      all_goals exact fun h ↦ hik (e.injective h)
+
+/-- The homomorphism of Steinberg groups induced by an injection of index
+types. -/
+def indexMap (e : I ↪ J) : SteinbergGroup I R →* SteinbergGroup J R :=
+  PresentedGroup.toGroup (f := mapIndexGenerator e)
+    (mapIndexGenerator_kills_relations e)
+
+@[simp] theorem indexMap_x (e : I ↪ J)
+    (i j : I) (hij : i ≠ j) (a : R) :
+    indexMap e (x i j hij a) =
+      x (e i) (e j) (e.injective.ne hij) a := by
+  exact PresentedGroup.toGroup.of _
+
+/-- A bijective index change induces an isomorphism of Steinberg groups. -/
+def reindexEquiv (e : I ≃ J) : SteinbergGroup I R ≃* SteinbergGroup J R := by
+  let f : I ↪ J := e.toEmbedding
+  let g : J ↪ I := e.symm.toEmbedding
+  refine MonoidHom.toMulEquiv (indexMap f) (indexMap g) ?_ ?_
+  · apply PresentedGroup.ext
+    rintro ⟨i, j, hij, a⟩
+    change indexMap g (indexMap f (x i j hij a)) = x i j hij a
+    simp only [indexMap_x]
+    simp [f, g]
+  · apply PresentedGroup.ext
+    rintro ⟨i, j, hij, a⟩
+    change indexMap f (indexMap g (x i j hij a)) = x i j hij a
+    simp only [indexMap_x]
+    simp [f, g]
+
+end Index
+
 end SteinbergGroup
 end NonsoficGroupsExist
