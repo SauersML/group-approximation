@@ -108,4 +108,110 @@ theorem existsUnique_lift
   exact ⟨f, hf, fun g hg ↦ P.hom_ext Q g f hg hf⟩
 
 end UniversalCentralExtension
+
+namespace CentralExtension
+
+variable {U H E : Type} [Group U] [Group H] [Group E]
+
+/-- The fiber product of two central extensions over the same base, viewed as
+a subgroup of the product of their covering groups. -/
+def pullbackSubgroup (P : CentralExtension U H)
+    (Q : CentralExtension E H) : Subgroup (U × E) where
+  carrier := {z | P.projection z.1 = Q.projection z.2}
+  one_mem' := by
+    change P.projection 1 = Q.projection 1
+    simp
+  mul_mem' := by
+    intro x y hx hy
+    change P.projection (x.1 * y.1) = Q.projection (x.2 * y.2)
+    rw [map_mul, map_mul]
+    rw [hx, hy]
+  inv_mem' := by
+    intro x hx
+    change P.projection x.1⁻¹ = Q.projection x.2⁻¹
+    rw [map_inv, map_inv]
+    rw [hx]
+
+/-- Projection of the fiber product to the first covering group. -/
+def pullbackProjection (P : CentralExtension U H)
+    (Q : CentralExtension E H) : P.pullbackSubgroup Q →* U where
+  toFun z := z.1.1
+  map_one' := rfl
+  map_mul' _ _ := rfl
+
+/-- Projection of the fiber product to the second covering group. -/
+def pullbackSecond (P : CentralExtension U H)
+    (Q : CentralExtension E H) : P.pullbackSubgroup Q →* E where
+  toFun z := z.1.2
+  map_one' := rfl
+  map_mul' _ _ := rfl
+
+@[simp] theorem pullback_condition (P : CentralExtension U H)
+    (Q : CentralExtension E H) (z : P.pullbackSubgroup Q) :
+    P.projection (P.pullbackProjection Q z) =
+      Q.projection (P.pullbackSecond Q z) :=
+  z.property
+
+/-- The fiber product projects to the first cover as a central extension. -/
+def pullback (P : CentralExtension U H)
+    (Q : CentralExtension E H) :
+    CentralExtension (P.pullbackSubgroup Q) U where
+  projection := P.pullbackProjection Q
+  surjective := by
+    intro u
+    obtain ⟨e, he⟩ := Q.surjective (P.projection u)
+    exact ⟨⟨(u, e), he.symm⟩, rfl⟩
+  ker_le_center := by
+    intro z hz
+    have hz1 : z.1.1 = 1 := MonoidHom.mem_ker.mp hz
+    have hz2ker : z.1.2 ∈ Q.projection.ker := by
+      rw [MonoidHom.mem_ker]
+      have hcondition : P.projection z.1.1 = Q.projection z.1.2 :=
+        z.property
+      rw [hz1, map_one] at hcondition
+      exact hcondition.symm
+    have hz2center : z.1.2 ∈ Subgroup.center E :=
+      Q.ker_le_center hz2ker
+    rw [Subgroup.mem_center_iff]
+    intro x
+    apply Subtype.ext
+    apply Prod.ext
+    · change x.1.1 * z.1.1 = z.1.1 * x.1.1
+      rw [hz1]
+      simp
+    · change x.1.2 * z.1.2 = z.1.2 * x.1.2
+      exact Subgroup.mem_center_iff.mp hz2center x.1.2
+
+end CentralExtension
+
+namespace UniversalCentralExtension
+
+variable {U H : Type} [Group U] [Group H]
+
+/-- Recognition theorem in the form needed for Steinberg groups: a central
+extension with perfect covering group is universal if every central extension
+of the covering group splits. -/
+noncomputable def of_every_centralExtension_splits
+    (P : CentralExtension U H) (hperfect : Group.IsPerfect U)
+    (hsplit : ∀ {E : Type} [Group E] (Q : CentralExtension E U),
+      ∃ s : U →* E, Q.projection.comp s = MonoidHom.id U) :
+    UniversalCentralExtension U H where
+  toCentralExtension := P
+  isPerfect := hperfect
+  exists_lift := by
+    intro E _ Q
+    let T : CentralExtension (P.pullbackSubgroup Q) U := P.pullback Q
+    obtain ⟨s, hs⟩ := hsplit T
+    let f : U →* E := (P.pullbackSecond Q).comp s
+    refine ⟨f, ?_⟩
+    apply MonoidHom.ext
+    intro u
+    change Q.projection (P.pullbackSecond Q (s u)) = P.projection u
+    rw [← P.pullback_condition Q (s u)]
+    have hsu : P.pullbackProjection Q (s u) = u := by
+      have := DFunLike.congr_fun hs u
+      exact this
+    rw [hsu]
+
+end UniversalCentralExtension
 end NonsoficGroupsExist

@@ -331,8 +331,8 @@ import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
 import NonsoficGroupsExist.Leavitt.FiniteTypeCountable
 import NonsoficGroupsExist.Leavitt.ShiftEndomorphism
-import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Sofic.UniversalCentralExtension
+import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
