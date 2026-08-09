@@ -17028,3 +17028,226 @@ This removes one half of the reopened kernel audit.  The sole algebraic
 descent problem is now the normal abelian Laurent kernel
 
 `K_2(R) normal (St_r(R) semidirect SL_4(Z))`.
+
+### Image-pair endpoint: neither `K_2` descent nor faithful completion is needed
+
+The last sentence is itself avoidable.  The Kun--Thom endpoint may be
+applied to the **image pair** of a nonfaithful tracial model.
+
+**Theorem (strict image-pair criterion).**  Let `Gamma<G` have property
+`(T)`, suppose its compression semigroup `P_Gamma` generates `G`, and let
+
+`sigma:G->U(M)`
+
+be any homomorphism into a tracial matrix ultraproduct.  Suppose there are
+`v in U(M)`, `t in P_Gamma`, and `gamma in Gamma` such that
+
+`v in sigma(Gamma)'`,
+
+`[v,sigma(t)^* sigma(gamma) sigma(t)]!=1`.
+
+Then
+
+`Q=<sigma(G),v> subset U(M)`
+
+is hyperlinear and nonsofic.
+
+**Proof.**  Put
+
+`Gbar=sigma(G)`,  `Gammabar=sigma(Gamma)`.
+
+Both are Kazhdan because property `(T)` passes to quotients.  For every
+`s in P_Gamma`,
+
+`sigma(s) Gammabar sigma(s)^(-1)<=Gammabar`,
+
+and these images generate `Gbar`; hence `Gammabar` is infranormal in
+`Gbar`.  The strict commutator says
+
+`sigma(t)^*sigma(gamma)sigma(t) notin Gammabar`,
+
+because `v` commutes with all of `Gammabar`.  Thus `Gammabar` is not normal
+in `Gbar`.
+
+The inclusion `Q subset U(M)` is an injective hyperlinear model of `Q`.
+If `Q` were sofic, choose an injective sofic representation of `Q` and
+restrict it to `Gbar`.  Kun--Thom's permutation-centralizer normalization
+theorem applies to the Kazhdan infranormal pair
+`Gammabar<Gbar`: the centralizer of the image of `Gammabar` is normalized
+by the image of `Gbar`.  Since the image of `v` is in that centralizer, this
+normalization forces it to commute with the image of
+`sigma(t)^*sigma(gamma)sigma(t)`, contradicting injectivity and the strict
+commutator.  End proof.
+
+The word "injective" in the hyperlinear sentence causes no issue: `Q` is
+defined as the concrete subgroup of `U(M)`, so its inclusion is faithful.
+If one insists on trace-`delta_e` microstates, the standard direct-sum/tensor
+power normalization applies afterwards.
+
+### Apply the image-pair criterion before quotienting the Steinberg group
+
+Return to the fixed-base rings
+
+`R_+=Z[z,x_0,x_1,x_2,x_3]`,
+
+`R=Z[z,x_0^(+-1),x_1^(+-1),x_2^(+-1),x_3^(+-1)]`.
+
+Define
+
+`Gtilde=St_r(R) semidirect SL_4(Z)`,
+
+and let
+
+`Gammatilde=im(St_r(R_+)->St_r(R))`.
+
+The `SL_4` action on `St_r(R)` is the honest functorial action induced by
+monomial ring automorphisms.
+
+1. **Kazhdan property.**  Ershov--Jaikin-Zapirain--Kassabov prove that
+   `St_r(S)` has property `(T)` for every finitely generated commutative
+   unital ring `S` and `r>=3` (type `A_(r-1)` has rank at least two).
+   Therefore `Gammatilde`, as an image of `St_r(R_+)`, is Kazhdan.
+   `St_r(R)` and `SL_4(Z)` are Kazhdan, so their semidirect product is
+   Kazhdan.
+2. **Compression.**  Every positive unit exponent transvection sends
+   `R_+` into itself, so its external element belongs to
+   `P_Gammatilde`.  Of course `Gammatilde` itself normalizes
+   `Gammatilde`.  The positive transvections generate `SL_4(Z)` as a
+   group.  Their conjugates of the positive root generators contain
+   `x_(ab)(z^k x^v)` for every Laurent exponent `v in Z^4`: write `v` as
+   a nonnegative multiple of a primitive vector and transport a positive
+   coordinate monomial by a unimodular matrix.  Root additivity then gives
+   every `x_(ab)(f)`, `f in R`.  These are the defining generators of
+   `St_r(R)`.  Hence `P_Gammatilde` generates all of `Gtilde`, including
+   its `K_2(R)` subgroup.
+3. **Strict element.**  For a positive shear `t` and
+   `gamma=x_(ab)(x_i)`, projection to `EL_r(R)` shows that
+   `gamma` is not in `t Gammatilde t^(-1)`: every matrix entry of the
+   latter lies in the proper subring `alpha_t(R_+)`, whereas `x_i` does
+   not.  More importantly, the atlas strict-witness estimate will certify
+   nonnormality again after taking the possibly nonfaithful image.
+
+The finite quantum atlas was built from root operators and the local
+same-root, commuting-root, and `A_2` Steinberg relations.  Those relations
+present `St_r(R)` itself.  Therefore its ordinary, scalar-corrected output
+already gives a homomorphism
+
+`sigma:Gtilde->U(M)`
+
+with a unitary `v` satisfying the two strict image-pair hypotheses.  No
+toric symbol word is supposed to become one: it represents an actual
+element of `Gtilde`.  No `K_2(R)` character grading, matched tensor, or
+descent to `EL_r(R)` is required.  The external factor is actual
+`SL_4(Z)`, so there is no external Steinberg kernel either.
+
+Applying the strict image-pair criterion immediately produces the concrete
+hyperlinear nonsofic group
+
+`Q=<sigma(Gtilde),v>`.
+
+This reroute removes the entire reopened `K_2` obstruction and also removes
+the earlier faithful-residually-finite tensor completion.  What remains of
+the candidate proof is exactly the finite-atlas analytic construction of a
+homomorphism of the Steinberg semidirect product with the strict witness;
+the algebraic descent layer is no longer part of the theorem.
+
+### Regular absorption makes a finite kernel grading exactly equivariant
+
+The normalizer-covariance part of matched descent has a canonical solution
+once the kernel action has been corrected to an honest finite quotient.  It
+does not require choosing or matching character orbits by hand.
+
+**Lemma (equivariant regular absorption).**  Let `A` be a finite group, let
+
+`rho:A->U(V)`
+
+be a unitary representation, and let an operator `U_h` implement an
+automorphism `alpha_h` of `A`:
+
+`U_h rho(a) U_h^*=rho(alpha_h(a))`.
+
+Let `lambda` be the left regular representation of `A`, and let
+
+`P_h delta_b=delta_(alpha_h(b))`.
+
+Define
+
+`T_rho:V tensor ell^2(A)->ell^2(A) tensor V`,
+
+`T_rho(v tensor delta_b)=delta_b tensor rho(b^(-1))v`.
+
+Then
+
+`T_rho (rho(a) tensor lambda(a)) T_rho^*=lambda(a) tensor 1`,
+
+`T_rho (U_h tensor P_h) T_rho^*=P_h tensor U_h`.
+
+If `z` commutes with `rho(A)`, then also
+
+`T_rho(z tensor 1)T_rho^*=1 tensor z`.
+
+**Proof.**  The first identity is the standard regular-absorption
+calculation.  For the second, start with `delta_b tensor v`.  Applying
+`T_rho^*`, then `U_h tensor P_h`, gives
+
+`rho(alpha_h(b))U_h v tensor delta_(alpha_h(b))`.
+
+The final application of `T_rho` cancels the first factor
+`rho(alpha_h(b))`, leaving `delta_(alpha_h(b)) tensor U_hv`.  The last
+identity follows from
+
+`rho(b^(-1))z rho(b)=z`.
+
+End proof.
+
+For
+
+`A=K_2(R)=K_2(Z) directSum (Z/2)^4 directSum Z^6`,
+
+use an `SL_4(Z)`-invariant finite quotient
+
+`A_q=(Z/2)^5 directSum (Z/qZ)^6`.
+
+The substitution action descends exactly: it is the standard mod-two action
+on the four `{-1,x_i}` terms and the exterior-square action modulo `q` on
+the six toric terms.  Therefore, after correcting the finite-stage kernel
+operators to an honest representation of `A_q`, tensoring by
+`lambda_(A_q)` and applying `T_rho` puts every stage in the canonical form
+
+`kernel: lambda_(A_q) tensor 1`,
+
+`substitution normalizer: P_h tensor U_h`.
+
+The character grading is now the fixed full torsion grid with equal
+multiplicities, and every tested normalizer permutes it exactly.  Balanced
+matched-character cancellation applies without any separate orbitwise
+dimension matching.  A kernel-commuting native witness becomes
+`1 tensor z`, so its normalized commutator norms on the multiplicity factor
+are unchanged before matched cancellation.  If a tested `U_h` satisfies the
+covariance identity only up to `epsilon`, then
+
+`T_rho(U_h tensor P_h)T_rho^*`
+
+is `epsilon`-close to the exact normalizing unitary `P_h tensor U_h`.
+Replace it by the latter.  The `P_h` form an exact permutation
+representation of the tested substitution matrices on `A_q`, so this
+replacement preserves the original multiplicative errors up to the same
+vanishing covariance corrections; no additional polar step or orbit
+matching is required.
+
+This removes the abstract equivariant-spectral-matching problem.  The two
+remaining finite-stage obligations are narrower:
+
+1. perturb the finitely many almost-commuting toric holonomy unitaries to an
+   honest representation of some invariant `A_q`, while keeping their
+   defining orders and the tested conjugation equations `o(1)`-accurate;
+2. choose the enlarged-commutant witness from the preceding membership
+   lemma, so it commutes with that corrected kernel representation and keeps
+   order-one strict energy.
+
+Glebsky supplies the simultaneous commuting perturbation in normalized
+Hilbert--Schmidt norm.  Spectral rounding supplies finite order, but the
+rounding scale must be chosen diagonally with the covariance error and its
+effect on the native tangent nonmembership must still be quantified.  These
+are genuine remaining estimates; the lemma above shows that no additional
+normalizer-orbit coherence theorem is needed after they are obtained.
