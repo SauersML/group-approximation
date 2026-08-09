@@ -13999,3 +13999,76 @@ and the primal/dual chart polarization, rather than proving the three
 marginal constructions on incompatible direct sums.  The next audit should
 write that block set as one explicit finite Cartesian/fiber product and
 define every generator permutation on it.
+
+### Correction: a single classical global depth block is impossible
+
+The proposed Cartesian/fiber-product audit does not merely remain to be
+written; in its classical form it is impossible.  This retracts the
+candidate microstate theorem and the universal bulk-word argument above,
+while leaving all fixed-base **local** jet identities intact.
+
+Let `Lambda=GL_4(Z)` act on the nonzero lattice `Z^4-{0}`.  Suppose there
+were finite block sets `X_n`, permutations `sigma_n(s)` for a finite
+generating set `s of Lambda`, and one global depth map
+
+`d_n:X_n->Z^4-{0}`
+
+such that
+
+`d_n(sigma_n(s)x)=s^T d_n(x)`
+
+outside `o(|X_n|)` blocks for every generator.  Let `mu_n` be the pushforward
+of uniform measure on `X_n` by `d_n`.  Then
+
+`||s_*mu_n-mu_n||_1->0`
+
+for every generator: couple the two measures using the permutation
+`sigma_n(s)` and discard precisely the exceptional blocks.  Therefore the
+unit vectors `sqrt(mu_n)` in
+
+`ell^2(Z^4-{0})`
+
+are almost invariant, since
+
+`||sqrt(s_*mu_n)-sqrt(mu_n)||_2^2`
+` <=||s_*mu_n-mu_n||_1`.
+
+But `GL_4(Z)` has property `(T)`, and its action on `Z^4-{0}` has no finite
+orbit.  Hence this quasi-regular representation has no invariant vector,
+contradicting property `(T)`.  End proof.
+
+The fixed compressor construction forces the depths to stay nonzero
+(`d_j=1`), so concentration on the fixed vector `0` cannot evade the
+argument.  Consequently there is no single classical block permutation
+model on which *all* substitution generators carry one coherent integer
+depth with vanishing boundary.
+
+This pinpoints the invalid inference in the candidate bulk-word theorem.
+The marginal chamber boxes, Pauli--flag blocks, and depth cycles cannot be
+combined by an ordinary Cartesian product whose prefixes are all
+permutations preserving one depth label.  The telescoping formula
+`W_(C,C')=J_(C')J_C^*` is an operator identity between chart
+polarizations, not a construction of such a classical block permutation.
+
+The valid residue is substantial:
+
+* the auxiliary-variable square-zero ring gives exact fixed-base covariance
+  in every chamber;
+* its strict chain and one fixed witness pass independent audit;
+* Fourier exactly couples the primal and dual tangent modules; and
+* the Pauli--flag free channel contracts every scalar cocycle.
+
+What is still missing is precisely the genuinely **nonorthogonal quantum
+incidence** anticipated earlier.  One needs projections `p_C` for the
+twenty-four chart polarizations inside a common matrix algebra, local depth
+models on each corner `p_C`, and Fourier intertwiners on their large
+nonorthogonal overlaps.  There must be no common diagonal algebra carrying
+all depths, or the preceding property-`(T)` argument applies.  The
+exceptional moving-corner ranks must tend to zero while the strict witness
+remains order one.
+
+This is now aligned with the collaborator's Kazhdan-corner formalization.
+The next constructive target is an operator-valued partition of unity for
+the chart corners, not a finite set partition: prove that the polar-
+corrected moving corners can carry the fixed-base jet representations and
+that their overlap transition is the exact kernel Fourier transform.
