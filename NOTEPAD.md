@@ -25868,3 +25868,63 @@ amplification converts that relative advantage into the absolute
 one-survivor model.  In finite-factor coordinates, the live constructive
 target is therefore a sequence of multiplicities and relative conjugators
 for which the finite word-map ratio `b/a` tends to zero.
+
+# Active-dimension form of the atlas target (2026-08-09)
+
+The explicit atlas makes the word-metric denominator in `(6)` completely
+concrete.  Work with `P=P_30` and the survivor
+
+`p_0=q_(12,1) in H_0:=H_(12,1)=GL_N(F_2)`,  `N>=5`.
+
+For an exact representation `pi:P->U(d)`, let `E_pi` be the orthogonal
+projection onto the complement of the `H_0`-fixed subspace of `C^d`, and put
+
+`r(pi)=rank(E_pi)`.
+
+There is a constant `lambda_0>0`, depending only on the fixed finite group
+`H_0` and `p_0`, such that every exact `pi` satisfies
+
+`lambda_0 r(pi)/d <= a(pi)^2 <= 4 r(pi)/d`.              `(7)`
+
+**Proof.**  Decompose `pi|_(H_0)` into irreducibles.  Since `H_0` is finite
+simple and `p_0!=1`, every nontrivial irreducible representation `sigma` is
+faithful and hence `sigma(p_0)!=1`.  There are only finitely many irreducible
+representations of `H_0`, so
+
+`lambda_0=min_(sigma nontrivial)
+  ||sigma(p_0)-1||_F^2/dim(sigma)>0`.
+
+The squared unnormalised Frobenius norm of `pi(p_0)-1` is the sum of these
+quantities, with multiplicity, over the nontrivial isotypic summands.  This
+gives the lower bound in `(7)`; the upper bound follows from
+`||u-1||_F^2<=4 dim(u)` for every unitary matrix `u`.  End proof.
+
+Consequently, for any sequence `pi_k` with `a(pi_k)>0`, the ratio condition
+
+`b(pi_k)/a(pi_k)->0`                                      `(8)`
+
+is equivalent to the unnormalised active-dimension condition
+
+`max_(c in C)||pi_k(c)-1||_F=o(sqrt(r(pi_k)))`.            `(9)`
+
+Indeed, after multiplying numerator and denominator by `sqrt(d_k)`, the
+denominator `||pi_k(p_0)-1||_F` is, by `(7)`, bounded above and below by
+fixed positive multiples of `sqrt(r(pi_k))`.
+
+This also rules out a purely dilutive construction.  If `1_z` denotes the
+`z`-dimensional trivial representation, then
+
+`b(pi directSum 1_z)/a(pi directSum 1_z)=b(pi)/a(pi)`      `(10)`
+
+whenever `a(pi)>0`: both normalized distances are multiplied by the same
+factor `sqrt(d/(d+z))`.  Thus adding arbitrarily many trivial dimensions can
+make all normalized defects and the survivor simultaneously small, but can
+never improve the decisive ratio.  A successful sparse construction must
+make the relator error genuinely sub-square-root in the number of dimensions
+on which the distinguished finite atlas factor acts nontrivially.
+
+This localization is useful because `r(pi)` is a discrete multiplicity
+parameter in the explicit finite-factor coordinates.  The remaining search
+is no longer obscured by ambient dimension: one must choose the other factor
+multiplicities and relative conjugating unitaries so that all words in `C`
+have Frobenius displacement `o(sqrt(r))`, while `H_0` has active rank `r>0`.
