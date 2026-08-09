@@ -24461,3 +24461,77 @@ relators have asymptotically scalar holonomy.  Scalar phases disappear under
 the coefficient algebra could then retain the strict Kun--Thom witness.  The
 missing condition is therefore projective approximate representability of
 the action, not mere pointwise approximate innerness.
+
+# Algebraic envelopes exclude every Proposition-2.3 witness (2026-08-09)
+
+The earlier Zariski-closure audit for Thom's hyperlinear Kazhdan group can be
+sharpened from a warning about the obvious subgroups to a complete no-go for
+the Kun--Thom/Proposition-2.3 criterion inside any finite-dimensional
+algebraic envelope.
+
+Let `K` admit a homomorphism `q:K->A` with central kernel, whose image is
+Zariski dense in a finite-dimensional algebraic group `A`.  Let `Gamma<K`,
+and suppose its compression semigroup
+
+`P_Gamma={g in K : g Gamma g^(-1)<=Gamma}`
+
+generates `K`.  Assume the standard finite-component hypothesis used above:
+an inclusion between two conjugate algebraic subgroups of `A` is equality.
+(It holds here because conjugacy preserves the dimension of the identity
+component and the cardinality of the finite component group.)
+
+**Theorem (central algebraic-envelope exclusion).**  Suppose `J<K` is
+finitely generated and `t in P_Gamma` satisfy
+
+`[Gamma,J]=1`,  and  `t J t^(-1)<=Gamma`.
+
+Then `J` is nilpotent of class at most two.  In particular `J` is residually
+finite and LEF, so these data can never give the non-LEF witness required by
+Proposition 2.3.
+
+**Proof.**  Put `B=Zcl_A(q(Gamma))`.  For every `g in P_Gamma`,
+
+`q(g) B q(g)^(-1)<=B`.
+
+The two algebraic subgroups are conjugate, so the component hypothesis turns
+the inclusion into equality.  Hence every compressor normalizes `B`, and
+compressor generation makes `B normal A` (first under the Zariski-dense
+subgroup `q(K)`, then after taking closure).
+
+Therefore its algebraic centralizer `C_A(B)` is normal in `A`, and
+
+`C_(q(K))(q(Gamma))=q(K) intersect C_A(B)`
+
+is normal in `q(K)`.  Since `[Gamma,J]=1`, one has
+`q(J)<=C_(q(K))(q(Gamma))`.  Normality then gives
+
+`q(t J t^(-1))<=C_(q(K))(q(Gamma))`.
+
+By the second hypothesis it is also contained in `Gamma`, so
+
+`q(t J t^(-1))<=q(Gamma) intersect C_(q(K))(q(Gamma))`
+`                <=Z(q(Gamma))`.
+
+Thus `q(J)` is abelian.  Since `ker(q)` is central, `[J,J]` is central in
+`J`; hence `J` is nilpotent of class at most two.  Every finitely generated
+nilpotent group is residually finite, and therefore LEF.  End proof.
+
+**Application to Thom's group.**  The group
+
+`K=K_0(Z[1/p])/Z`
+
+maps onto the Zariski-dense arithmetic subgroup
+
+`K_1(Z[1/p])<K_1(R)`
+
+of the finite-dimensional algebraic quotient, with central kernel
+`Z[1/p]/Z`.  Therefore the theorem applies to every infranormal core in
+Thom's group.  No choice of core, no exotic subgroup of its centralizer, and
+no alternative internal compressor can make this already-hyperlinear group
+nonsofic via Proposition 2.3.  The obstruction is structural, not a failure
+to locate the right Levi or unipotent block.
+
+This leaves Thom's group as a possible hyperlinear nonsofic example, but its
+nonsoficity would require a different rigidity mechanism--for example the
+global phase-factorization/cosystolic theorem isolated earlier--rather than
+the new centralizer-normalization criterion.
