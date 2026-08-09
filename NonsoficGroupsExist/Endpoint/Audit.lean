@@ -42,6 +42,9 @@ import NonsoficGroupsExist.Steinberg.RootFiltration
 import NonsoficGroupsExist.Steinberg.RootActions
 import NonsoficGroupsExist.Steinberg.RootPlane
 import NonsoficGroupsExist.Steinberg.RootPlaneFourier
+import NonsoficGroupsExist.Steinberg.RootCharacterValuationBase
+import NonsoficGroupsExist.Steinberg.RootCharacterValuation
+import NonsoficGroupsExist.Steinberg.FreePropertyT
 
 /-!
 # Human-readable axiom report
