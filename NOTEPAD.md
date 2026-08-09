@@ -14419,3 +14419,106 @@ the open problem solved, the next adversarial check must expand the claimed
 "exact common-good adjacent-wall covariance" for one wall on the **full
 regular elementary representation**, including the base factor and the
 strict-witness unitary, rather than only on the tangent Heisenberg kernel.
+
+### Full regular adjacent-wall covariance is exact
+
+This audit passes once the primal and dual depth labels are written with
+the correct reversal.
+
+Write
+
+`H_N=K_N semidirect H_(0,N)`
+
+and identify
+
+`ell^2(H_N)=ell^2(K_N) tensor ell^2(H_(0,N))`.
+
+In these coordinates the left regular action is
+
+`lambda(k,b)(delta_x tensor delta_a)`
+` =delta_(k+bxb^(-1)) tensor delta_(ba)`.
+
+Thus Fourier transform `F_K` in the whole finite abelian kernel coordinate
+conjugates the **full** regular representation, not only its tangent
+translations: kernel translations become character multipliers, base
+conjugation becomes the contragredient permutation of `K_N^vee`, and the
+second regular base factor is unchanged.
+
+Choose the elementary rank with `p` not dividing `r`.  Then the matrix-trace
+Frobenius form identifies `K_N^vee` with the dual tangent kernel without a
+scalar trace radical.  For example one may fix `r=7` and any prime `p>7`.
+
+Let the admissible depth interval be chosen so that
+
+`omega(d)=N*1-2h*1-d`
+
+is an involution.  On the direct sum over depths define
+
+`Pi^+(gamma)=directSum_d pi_d(gamma)`,
+
+`Pi^-(gamma)|_(depth omega(d))=F_K pi_d(gamma)F_K^*`.
+
+Let `R_omega` permute the depth blocks by `d|->omega(d)` and put
+
+`W=R_omega (directSum_d F_K)`.
+
+Then, for every `gamma in Gamma_z`, one has the exact full-operator identity
+
+`W Pi^+(gamma)W^*=Pi^-(gamma)`.
+
+This includes all base elementary matrices because `F_K` acts trivially on
+the `ell^2(H_(0,N))` coordinate.  It includes every mixed coefficient
+because `pi_d` is the genuine regular representation obtained from the
+ring map `Phi_(d,h)`, not a representation of its associated graded.
+
+If `C` is a chamber matrix, the ring automorphism `Chat_C` induces a
+permutation `P_C` of `H_N`.  The fixed-base identity gives
+
+`P_C pi_(C^T d)(gamma)P_C^*=pi_d(alpha_C(gamma))`.
+
+Conjugating by `F_K` gives the dual identity with
+
+`P_C^vee=F_K P_C F_K^*`.
+
+Hence a coordinate relabeling followed by `W` intertwines one complete
+adjacent chart representation with the other.  No unproved base
+stable-equivalence or layer-extension assertion occurs.
+
+The strict witness transports at the same time.  If
+
+`z_d in pi_d(Gamma_z)'`,
+
+define its dual block at depth `omega(d)` to be `F_K z_d F_K^*`.  It
+commutes with the dual `Gamma_z` representation exactly, and unitary
+conjugation preserves its commutator norm with the compressed fixed element
+`gamma`.  Thus the exact common-good wall isometry also intertwines the
+local witness.
+
+Finally every `A_2` or commuting Steinberg word inside either wall chart is
+exact because `pi_d` is a genuine representation; in the dual chart this
+is its unitary conjugate.  Along a multiwall gallery the chosen transports
+are `J_DJ_C^*`, so the internal chart factors telescope.  The free-good
+groupoid cochain already removes the remaining scalar multiplier.  After
+intersecting the finitely many transported native good projections needed
+for a fixed word, the noncommuting projection codimension bound
+
+`codim(intersection_j range(q_j))<=sum_j codim(range(q_j))`
+
+shows that the exact identities hold on `1-o(1)` rank.
+
+This supplies the raw adjacent-chart estimate required by the fusion
+argument:
+
+`max_(C,D)||U_(g,C)p_CBp_D-p_CBp_DU_(g,D)||_2->0`
+
+after choosing `sqrt(epsilon_n)/tau_n^2->0`.  Together with the fusion
+defect identities and transported-witness energy bound, all algebraic and
+finite-matrix inputs of the candidate microstate theorem are now present.
+
+The remaining audit is global logical assembly: check that the resulting
+ultraproduct homomorphism and strict commutant element feed the already
+proved faithful-tensor/centralizer criterion with the exact Kun--Thom
+compression-semigroup hypothesis.  The latter hypothesis is pinned in
+Kun--Thom Theorem A/4.1: `P_Gamma={g:gGamma g^(-1)<=Gamma}` must generate
+the ambient group.  The fixed-variable `GL_4` pair satisfies it by the
+positive transvections and coordinate permutations audited above.
