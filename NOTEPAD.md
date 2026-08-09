@@ -7839,6 +7839,73 @@ representation equivalences/multiplicities (the noncommutative analogue of
 the binary-tree compensation), not a scalar Folner truncation of the
 substitution orbit.
 
+### Property `(T)` kills orthogonal-block symmetrization of the chains
+
+The preceding warning has an exact quantitative form.
+
+**Lemma (finite-orbit concentration).**  Let a property-`(T)` group `Q` act
+on a countable set `X`.  Let `mu_n` be finitely supported probability
+measures on `X` such that, for a finite generating set `S` of `Q`,
+
+`max_(s in S) ||s_*mu_n-mu_n||_1 -> 0`.
+
+Then
+
+`mu_n(union of the finite Q-orbits in X) -> 1`.
+
+In particular, if the action has no finite orbit, no such sequence exists.
+
+**Proof.**  Put `xi_n(x)=sqrt(mu_n(x))` in `l2(X)`.  The elementary
+inequality
+
+`(sqrt(a)-sqrt(b))^2 <= |a-b|`
+
+gives
+
+`max_(s in S) ||s xi_n-xi_n||_2 -> 0`.
+
+Property `(T)` puts `xi_n` at `o(1)` distance from the invariant subspace of
+the permutation representation on `l2(X)`.  An invariant square-summable
+function is constant on every orbit and hence vanishes on every infinite
+orbit.  Therefore the squared norm of `xi_n` on the union of infinite
+orbits tends to zero.  This squared norm is exactly the `mu_n`-mass of that
+union.  End proof.
+
+**Corollary (orthogonal orbit-chain assembly is sterile).**  Consider a
+putative simultaneous assembly of the polynomial quotient towers in which:
+
+1. the finite-dimensional space is an orthogonal direct sum of quotient-
+   model blocks indexed by a countable `Q`-set `X` of transported charts;
+2. each substitution generator acts, up to `o(1)` normalized-HS error, by
+   matching those blocks according to the `Q`-action; and
+3. total block dimension defines the probability weight `mu_n` on `X`.
+
+Then asymptotic multiplicativity forces the hypothesis of the lemma: the
+unmatched dimension controls the total-variation defect of the block
+weights (with the usual square-root conversion between rank fraction and
+normalized-HS norm).  Hence asymptotically all dimension lies on finite
+`Q`-orbits.  In the quotient-block constructions under discussion, summing
+over such a finite orbit is precisely a genuine finite-dimensional ambient
+covariant system.  On every genuine finite-dimensional ambient system,
+conjugation sends `pi(Gamma)'` into itself and finite vector-space dimension
+upgrades that inclusion to equality.  Thus the strict commutant witness
+vanishes on the finite-orbit part, exactly as in the liftable control.
+
+Thus the explicit shear chain cannot be promoted to the full Kun--Thom
+ambient group by any of the following devices alone:
+
+* taking larger direct sums of conjugate chains;
+* weighting a truncated substitution orbit;
+* inducing the chain over a discrete `SL_d(Z)`-orbit; or
+* permuting mutually orthogonal representation-type blocks.
+
+The surviving assembly must violate hypothesis (1) or (2): its transported
+types must overlap nonorthogonally inside high-multiplicity matrix fibers.
+This is the precise point at which the unitary category can differ from the
+permutation category; it is also why the binary-tree asymmetric-near-
+inclusion lemma, rather than an ordinary Folner construction, remains the
+relevant local model.
+
 ### The polynomial subgroup is hyperfinitely Hilbert--Schmidt stable
 
 Let
