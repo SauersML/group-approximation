@@ -29,3 +29,21 @@ class IsFinitelyPresentedNC (k : Type u) (A : Type v)
       Nonempty (A ≃ₐ[k] RingQuot r)
 
 end Algebra
+
+namespace Ring
+
+universe u
+
+/-- An associative unital ring is finitely presented if it is a quotient of
+the free associative ring on finitely many generators by finitely many
+equations.  The free associative ring is expressed as a free `ℤ`-algebra so
+that characteristic relations, such as `2 = 0`, are part of the presentation
+rather than being hidden in a coefficient ring. -/
+class IsFinitelyPresentedNC (A : Type u) [Ring A] : Prop where
+  out : ∃ (n : ℕ)
+      (r : FreeAlgebra ℤ (Fin n) → FreeAlgebra ℤ (Fin n) → Prop),
+    Set.Finite
+        {p : FreeAlgebra ℤ (Fin n) × FreeAlgebra ℤ (Fin n) | r p.1 p.2} ∧
+      Nonempty (A ≃+* RingQuot r)
+
+end Ring

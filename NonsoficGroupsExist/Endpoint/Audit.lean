@@ -210,6 +210,12 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.BinaryLeavitt.binaryLeavittUnits_perfect
 #print axioms NonsoficGroupsExist.binaryLeavittRankTwo_not_isSofic
 
+-- The coefficient ring in the explicit Steinberg endpoint has an absolute
+-- associative-ring presentation: four generators, the five Leavitt
+-- equations, and the characteristic-two equation.  The equivalence is
+-- constructed in both directions rather than assumed.
+#print axioms NonsoficGroupsExist.BinaryLeavittAbsolute.ringEquiv
+
 -- `lem:fplef`, closed: finitely presented LEF groups are residually finite.
 #print axioms NonsoficGroupsExist.finitelyPresented_isLEF_residuallyFinite
 
