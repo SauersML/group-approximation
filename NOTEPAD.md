@@ -6718,6 +6718,71 @@ Prüfer tower but does not upgrade approximate multiplication of `K`.  It
 cannot be combined with finite-quotient collapse to prove `K` nonsofic
 without a genuinely new stability theorem.
 
+### The Prüfer tower alone does not force an ergodic centralizer
+
+There is a further tempting shortcut in the Thom--Alekseev lane.  The centre
+of Thom's group contains the coherent tower
+
+`c_1 <- c_2 <- ...`,  `c_(m+1)^p=c_m`,  `ord(c_m)=p^m`.
+
+In any sofic model, after the usual finite-order surgery, the permutation
+representing `c_m` consists almost entirely of `p^m`-cycles.  Since the centre
+lies in the permutation-ultraproduct centralizer, one might hope that letting
+`m` grow forces that centralizer to act ergodically and hence triggers
+Alekseev--Thom Theorem A.  This inference is false: freeness of the central
+Prüfer action controls cycle length, not the number of cycles.
+
+**Lemma (many-cycle Prüfer calibration).**  Let `b_n -> infinity` and
+`m_n -> infinity`, and put
+
+`X_n=(Z/p^(m_n)Z) x {1,...,b_n}`.
+
+There is an injective homomorphism
+
+`C_(p^infinity) -> product_omega Sym(X_n)`
+
+such that every nonidentity element moves every point eventually, but the
+action of this guaranteed central subgroup on the Loeb space is not
+ergodic.
+
+**Proof.**  Represent an element of order `p^r`, for `n` with `m_n>=r`, by
+translation by `p^(m_n-r)` in the first coordinate and leave the second
+coordinate fixed.  The root relations hold exactly and every nonzero element
+is fixed-point-free eventually, so the ultraproduct map is injective.  On the
+other hand, for any sets `B_n subset {1,...,b_n}` of asymptotic density
+`1/2`, the internal Loeb set
+
+`(Z/p^(m_n)Z) x B_n`
+
+has measure `1/2` and is invariant under every such translation.  Thus this
+central action is not ergodic.  End proof.
+
+This does not construct a sofic model of Thom's whole group: extra elements
+could in principle connect the cycle labels, and the *full* centralizer could
+be larger than the displayed central subgroup.  It proves the exact scoped
+point that the divisible central tower, coherent finite-order correction, and
+asymptotic freeness supply no ergodicity by themselves.  A proof of
+ergodicity must control the multiplicity/cycle-label action of the rest of
+the centralizer; that is precisely the content missing from the
+Hayes--Kunnawalkam Elayavalli conjecture, not a consequence of divisibility.
+
+### Primary-source status pin (2026-08-08)
+
+The August 2026 literature still treats the separation as open.  Thom's
+original paper proves that
+
+`K=K_0(Z[1/p])/Z`
+
+is finitely presented, non-Hopfian, Kazhdan, and hyperlinear (Proposition
+3.3), and explicitly says that its soficity is undecided.  Alekseev--Thom,
+arXiv:2608.05362, Theorem A, only obtains LEF from a sofic embedding whose
+centralizer action is additionally ergodic; their Conjecture 1.1 records that
+existence of such an embedding is unknown in general.  Shulman,
+arXiv:2603.13564, Theorem 10, proves operator-norm MF for symmetric full
+C-star amalgams, while its trace statement assumes the trace is already
+hyperlinear.  Hence none of these primary statements supplies either a proof
+that every hyperlinear group is sofic or a hyperlinear nonsofic witness.
+
 ### Lavi--Levit character rigidity cannot see strict commutant compression
 
 Lavi--Levit, Corollary 1.3 of arXiv:2007.15547, says that for a commutative
