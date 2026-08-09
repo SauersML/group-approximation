@@ -12429,6 +12429,78 @@ lemma, the only remaining verification is to assign the two chart types to
 the bulk root edges so that each rank-two Steinberg cell uses its containing
 chamber; the minimal two-chamber cover supplies exactly those local charts.
 
+### Chamber-orbit lifts make the rank-two incidence coherent
+
+The cycle-origin lemma is an edgewise statement.  Choosing the twelve root
+cycle origins independently does not by itself give one depth/polarization
+at each vertex for which an `A_2` commutator cell closes.  There is a
+coherent upgrade: choose origins for an entire maximal-unipotent orbit, not
+for its root cycles separately.
+
+Fix one of the two chamber types `O` and put
+
+`U_(O,n)=image(U_O(Z)->Q_n)`.
+
+On every good component `X` of `Omega_n^flag`, the action of `Q_n` is
+regular, hence the restricted action of `U_(O,n)` is free.  Choose one
+origin in each `U_(O,n)`-orbit.  If `F_M<U_O(Z)` is the weighted positive
+Malcev box, form the augmented chart blocks
+
+`Y_(O,n,M)=F_M x {chosen U_(O,n)-orbit origins}`
+
+and send `(u,x_0)` to `red_n(u)x_0 in X`.  Distinct augmented blocks are
+kept distinct even if their reductions coincide.
+
+**Lemma (coherent chamber lift).**  Complete the partial left translations
+of `F_M` by the six positive root generators arbitrarily on the boundary.
+Then:
+
+1. on every path which remains in `F_M`, the projected Pauli--flag block is
+   exactly the corresponding path in `X`;
+2. every same-root, commuting-root, and `A_2` Steinberg relation belonging
+   to `U_O` closes exactly on such a path; and
+3. for every fixed word `w`, the exceptional block fraction is
+   `O_w(1/M)`.
+
+**Proof.**  On an interior edge this is just
+
+`red_n(su)x_0=red_n(s)red_n(u)x_0`.
+
+An interior word is evaluated in the genuine group `U_O(Z)`, so all of its
+Steinberg relations hold before reduction and therefore on both the chart
+label and its projected flag block.  The weighted Malcev Følner estimate
+gives
+
+`|F_M triangle sF_M|/|F_M|=O_s(1/M)`;
+
+pull back the boundary before each letter and use the union bound.  End
+proof.
+
+Transport the chosen origins and boxes by `B`.  Since `B` acts freely on
+each of the two chamber orbits, this makes the construction exactly
+`B`-equivariant.  Use the jet depth attached to the affine decomposition
+
+`U_O ~= Z^3 semidirect UT_3`
+
+on each block.  The strict-star lemma handles the `Z^3` translations and
+the jet-covariance theorem handles the `UT_3` factor, so the entire
+coefficient functor is coherent on the same interior set.  Taking its
+annihilator-reflected copy gives the opposite polarization with exactly the
+same boundary fraction.
+
+This replaces the still-conditional phrase "any fiber system" in the
+cycle-origin bound for every relation lying in one selected chart.  It does
+not yet solve the switch between the `O_+` and `O_*` chart sheets: a root
+edge contained in one sheet must be routed there in a way which is
+consistent when the next rank-two cell uses the other sheet.  But there is
+now no independent-origin obstruction *inside* an `A_2` cell.  The terminal
+incidence problem is only the chart-switch groupoid, where the Fourier
+intertwiner and scalar-loop lemma apply, and its candidate curvature is
+
+`O_w(1/M)+O_p(p^(-4(n-1)))`
+
+before the switch-boundary term.
+
 ### The micro--macro carry cocycle gives exact depth covariance in each chamber
 
 There is a canonical way to combine the finite root cycles with the
