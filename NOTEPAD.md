@@ -18721,3 +18721,43 @@ occurrences that own the other semidirect covariance relators.  The free
 cycle shows that no spectral or joint-`L_0` obstruction remains in the
 strict cell; any remaining obstruction is precisely multi-cell fusion
 holonomy.
+
+### Audit: the full-image compressed-commutant gauge cannot exist on one exact block
+
+The preceding coset-gauge section is valid only after it is weakened to a
+finite incidence or a flexible multi-block edge.  As stated with exact
+covariance for every `delta in Gamma`, its first strict inclusion is
+impossible.
+
+Indeed put `H=pi(Gamma)` and suppose a finite-dimensional unitary `U_t`
+satisfies
+
+`U_t pi(delta) U_t^*=pi(t delta t^(-1))`
+
+for every `delta in Gamma`.  Then
+
+`H_0=pi(t Gamma t^(-1))=U_t H U_t^*`.
+
+Thus `H_0` and `H` are isomorphic finite subgroups and have the same order.
+If also `H_0<=H`, finiteness forces `H_0=H`, so
+
+`lambda(H_0)'=lambda(H)'`.
+
+There is no larger exact commutant in which to choose the proposed `W`.
+This is precisely the finite-dimensional no-growth theorem in group-image
+coordinates.
+
+The fixed-base compressor construction evades the equality only by using a
+chain of different depth blocks, unequal multiplicities, and a cyclic
+boundary; it does not give one unitary which conjugates the whole finite
+image onto a proper subgroup on an exact block.  A correct gauge equation
+must therefore be written in the flexible direct sum and include the
+boundary projections explicitly.  Alternatively it may be imposed exactly
+only on the small prime-field incidence `L_0`, as in the free-cycle lemma.
+
+Consequently the claimed equivalence with a vertex gauge in
+`lambda(H_0)'` is retracted at full-image scope.  What remains valid is the
+local algebraic identity `U_t'=WU_t` whenever `W` commutes with the actually
+tested forward images, plus the finite-incidence regularization above.  The
+missing theorem is still to spread that local gauge over the depth chain
+with vanishing boundary while retaining positive strict mass.
