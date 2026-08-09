@@ -9154,3 +9154,59 @@ arbitrary actions of a hyperlinear group on the hyperfinite factor are not
 known to preserve Connes embeddability.  The exact remaining analytic target
 is therefore this particular fermionic quasi-free action, not a general CAR
 or AF crossed product.
+
+### Sparse orbital Clifford lamps suffice
+
+The complete off-diagonal form used above is convenient but unnecessarily
+strong.  Fix a strict compressor `t` and
+`gamma in Gamma-t Gamma t^(-1)`.  Put
+
+`x_*=t Gamma`,  `y_*=gamma t Gamma`,
+
+and let `E_*` be the `G`-orbit of the unordered pair `{x_*,y_*}` in the set
+of two-element subsets of `X`.  Define the invariant alternating form
+
+`B_*(delta_x,delta_y)=1` if `{x,y} in E_*`,
+`B_*(delta_x,delta_y)=0` otherwise,
+
+and extend bilinearly over `F_2`.  Let `K_(X,E_*)` have generators
+`z,{a_x}` with
+
+`z^2=a_x^2=1`, `z` central,
+`[a_x,a_y]=z^(B_*(delta_x,delta_y))`.
+
+The usual ordered-monomial normal form, or the twisted left regular
+representation of `direct_sum_X F_2`, proves `z!=1`.  Every finitely
+generated subgroup is a finite `2`-group, so this sparse lamp group is still
+amenable.  Invariance of `B_*` lets `G` permute its generators.  Put
+
+`E_orb=K_(X,E_*) semidirect G`.
+
+**Corollary (sparse Clifford target).**  Every conclusion of the weak-MF
+Clifford-target theorem remains valid with `E_orb` in place of `E_Cl`.
+
+**Proof.**  The retraction to `G` is unchanged.  The base generator `a_o`
+centralizes `Gamma`.  Kun--Thom centralizer normality would force
+`a_(x_*)` to commute with `gamma`, so it kills
+
+`w=[a_(x_*),gamma]=a_(x_*)a_(y_*)`.
+
+But the defining orbital edge relation gives
+
+`w^2=[a_(x_*),a_(y_*)]=z`.
+
+Thus any homomorphic image which is faithful on `G` and retains `z` is
+nonsofic.  The central-torsion corner plus the retraction summand constructs
+exactly such a hyperlinear image from weak MF.  End proof.
+
+In the `z=-1` sector the lamp algebra is now the AF twisted group algebra
+
+`C_r^*(direct_sum_X F_2, (-1)^B_*)`,
+
+rather than the nondegenerate full CAR algebra.  Consequently it is enough
+to prove Connes embeddability of its Bogoljubov-type crossed product by `G`.
+This sparse version asks a matrix model to produce anticommutation only on
+the single orbital graph carrying the Kun--Thom witness and ordinary
+commutation off it.  It is therefore the minimal central-torsion deformation
+of the commuting-lamp obstruction, and is a strictly weaker analytic target
+than the complete Clifford system.
