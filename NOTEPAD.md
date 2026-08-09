@@ -12236,3 +12236,48 @@ remaining task is now purely the two-chamber incidence problem: attach the
 depth vectors in opposite annihilator order along the Pauli--flag channel
 and verify that every gallery switch uses the Fourier intertwiner away from
 an `o(1)` projection.
+
+### Stone--von Neumann kills every noncentral Fourier-gallery holonomy
+
+The square-zero jet bridge also removes the previously feared
+commutant-valued part of a gallery loop.  Let
+
+`K=K(J_N) ~= sl_r(A_N) tensor_(A_N) J_N`
+
+and let `K^vee` be its Frobenius dual.  On `ell^2(K^vee)`, let `K` act by
+character multiplication and let `K^vee` act by translations.  These give
+the finite Heisenberg representation with the fixed central character
+`psi`.
+
+**Lemma (finite Stone--von Neumann scalar-loop lemma).**
+
+1. The joint representation of `K` and `K^vee` on `ell^2(K^vee)` is
+   irreducible.
+2. Suppose each oriented edge `e` of a coefficient gallery is assigned a
+   unitary `W_e` which implements the prescribed linear or Fourier exchange
+   automorphism of `K directSum K^vee`.  If a gallery loop has trivial
+   induced automorphism of `K directSum K^vee`, then its operator holonomy
+
+   `W_(e_1)...W_(e_s)`
+
+   is scalar.
+
+**Proof.**  An operator commuting with all character multipliers is diagonal
+in the delta basis of `ell^2(K^vee)`.  If it also commutes with all
+translations, its diagonal function is translation-invariant and hence
+constant.  Thus the commutant is the scalars.  A loop inducing the identity
+automorphism conjugates every translation and multiplier to itself, so its
+operator product belongs to this commutant.  End proof.
+
+The linear changes `Chat`, their contragredients, and finite Fourier
+transform are precisely such Heisenberg automorphism implementers.
+Consequently, once the depth incidence is defined on the bulk, **no
+noncentral coefficient holonomy can survive a gallery relation**.  The only
+remaining loop datum is a scalar projective cocycle.  On the finite
+Steinberg quotient this scalar can be rephased using
+`K_2(4,Z/p^nZ)=0`; on the Pauli--flag good channel it can equivalently be
+matched to the Pauli multiplier by the already proved trivial-isotropy
+Mackey coboundary.  Thus the terminal construction no longer needs to solve
+a matrix-valued loop equation.  It needs only a finite incidence/lift of
+the three depth flags whose wrap projection is `o(1)`; Fourier--Weil
+uniqueness makes every bulk loop scalar automatically.
