@@ -10077,3 +10077,97 @@ congruence construction.  Any successful coupling to the sparse Schur class
 must use window-dependent non-liftable polynomial-shear intertwiners; an
 exact representation of any finite quotient ring necessarily restores total
 absorption.
+
+### The varying Schur class transfers from one fixed quaternion source
+
+The Schur route becomes more rigid on the infinite progression
+
+`p=5 mod 8`.
+
+These primes still satisfy `p=1 mod 4`, so the fixed integral Klein four
+subgroup `A=<q,r>` lies in the adjoint subgroup
+
+`H_p=PSL_2(F_p)<Q_p=SL_3(F_p)`
+
+and its inverse image in `SL_2(F_p)` is quaternionic.  In addition,
+
+`v_2(|H_p|)=v_2(p(p^2-1)/2)=2`.
+
+Thus `A` is a Sylow `2`-subgroup of `H_p`, and
+
+`[H_p:A]=p(p^2-1)/8`
+
+is odd.  Let `alpha_p in H^2(H_p,T)` be the Schur class and let
+`beta=res_A(alpha_p)`, the unique nonzero class in `H^2(A,T)`.  The ordinary
+restriction--corestriction identity gives
+
+`cor_A^(H_p)(beta)=[H_p:A] alpha_p=alpha_p`.
+
+Hence the full varying Schur class is not merely detected by the fixed Klein
+four group: it is transferred from its single, fixed quaternion multiplier.
+This removes every other `2`-local source from the construction.
+
+There is an exact coefficient-level version.  Put
+
+`M_A=T^(Q_p/A)`,       `M_H=T^(Q_p/H_p)`.
+
+The fiberwise norm
+
+`N_p:M_A -> M_H`,
+
+`(N_p f)(gH_p)=product_(hA in H_p/A) f(ghA)`,
+
+is `Q_p`-equivariant.  Naturality of Shapiro with respect to transfer says
+
+`N_(p,*) (sh_A^(-1)(beta))`
+`       =sh_(H_p)^(-1)(cor_A^(H_p)(beta))=c_p`.
+
+Thus the preferred class `c_p` factors exactly through the class induced
+from the fixed extension
+
+`1 -> {+-1} -> Q_8 -> A -> 1`.
+
+This factorization is quantitatively safe.  On `{+-1}`-valued cochains the
+norm multiplies the entries in each fiber of `Q_p/A -> Q_p/H_p`; a nontrivial
+target entry requires at least one nontrivial source entry.  Therefore the
+number of nontrivial coordinates cannot increase under `N_p`.  In
+particular, the following is now the precise global target.
+
+**Fixed-source sparsification lemma (open).**  On a fixed finite
+presentation of `SL_3(Z)`, the inflation of
+
+`sh_A^(-1)(beta) in H^2(Q_p,{+-1}^(Q_p/A))`
+
+admits a cocycle whose union of nontrivial presentation coordinates has
+size `O(p^2)`.
+
+If this lemma holds, applying `N_p` gives a representative of `c_p` with
+the same `O(p^2)` support in a module of size `Theta(p^5)`, hence normalized
+Hilbert--Schmidt presentation defect `O(p^(-3/2))`.  It is enough for the
+Schur--shear coupling.
+
+The scale `O(p^2)` is forced by geometry rather than guessed.  The fixed
+subgroup `A` has split-torus normalizer of order `Theta(p^2)` in `Q_p`.
+Mackey restriction to every finite cell stabilizer in the well-rounded
+retract is cohomologically trivial unless the relevant intersection contains
+a conjugate of `A`; all such exceptional cell-coordinate pairs lie in
+`O(p^2)` bounded-valence stars.  The unresolved point is to turn this local
+support statement into one global presentation gauge.  Soulé's published
+detection exact sequence only treats trivial coefficients, so it cannot be
+invoked for `M_A` without a new argument.
+
+Equivalently, the circle class may be shifted through
+
+`0 -> Z -> R -> T -> 0`
+
+to an integral order-two class in degree `3`, exactly the virtual
+cohomological dimension of `SL_3(Z)`.  A proof that the comparison to the
+`2`-singular/Farrell complex is injective on this fixed-source inflation
+class would prove the lemma.  General injectivity is neither known nor
+needed; only this transfer-generated cyclic summand must be controlled.
+
+This reduction meshes with the integral synchronization theorem above.  The
+prime `p=5 mod 8` may index both the Schur sector and coefficient reduction,
+while the actual compressor must remain the window-dependent, non-liftable
+polynomial-shear model: exact finite-ring images still collapse the Laurent
+layer.
