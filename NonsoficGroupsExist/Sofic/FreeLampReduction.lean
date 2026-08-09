@@ -379,6 +379,49 @@ theorem centralizerNormalization_top (G : Type) [Group G] :
   rw [hfix]
   exact hq g hg
 
+/-! ## A strict witness in any overgroup -/
+
+/-- **Strict image-pair reduction.**  Suppose an injective copy of `G` in a
+countable group `Q` contains an element `v` which centralizes the copy of
+`Γ`, but does not commute with one inverse conjugate `t⁻¹ γ t`.  If the pair
+`Γ ≤ G` satisfies Kun--Thom centralizer normalization, then `Q` is not
+sofic.
+
+This is the endpoint needed for nonfaithful tracial constructions: take `G`
+to be the concrete image of the original ambient group.  No faithful lift of
+the original group, and no descent through the kernel of that lift, is
+required. -/
+theorem not_isSofic_of_strictCentralizerWitness
+    {G : Type} {Q : Type*} [Group G] [Group Q] [Countable Q]
+    (Γ : Subgroup G) (hcn : CentralizerNormalization G Γ)
+    (ι : G →* Q) (hι : Function.Injective ι) (v : Q)
+    (hv : ∀ g ∈ Γ, Commute v (ι g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute v (ι (t⁻¹ * γ * t))) :
+    ¬ IsSofic Q := by
+  intro hsofic
+  obtain ⟨S⟩ := soficApproximation_of_isSofic hsofic
+  have hcof : ((Ultrafilter.of Filter.cofinite : Ultrafilter ℕ) : Filter ℕ)
+      ≤ Filter.cofinite := Ultrafilter.of_le _
+  set ρ := S.toUniversal (Ultrafilter.of Filter.cofinite) hcof
+  have hfaithful := S.toUniversal_metricallyFaithful
+    (Ultrafilter.of Filter.cofinite) hcof
+  have hσ := hfaithful.comp hι
+  have hq : ∀ g ∈ Γ, Commute (ρ v) ((ρ.comp ι) g) := by
+    intro g hg
+    exact (hv g hg).map ρ
+  have hc := hcn (Ultrafilter.of Filter.cofinite) S.model hcof
+    (ρ.comp ι) hσ (ρ v) hq t γ hγ
+  have himage : Commute (ρ v) (ρ (ι (t⁻¹ * γ * t))) := by
+    have hc' : Commute
+        (ρ (ι t) * ρ v * (ρ (ι t))⁻¹)
+        (ρ (ι t) * ρ (ι (t⁻¹ * γ * t)) * (ρ (ι t))⁻¹) := by
+      rw [show ρ (ι t) * ρ (ι (t⁻¹ * γ * t)) * (ρ (ι t))⁻¹ =
+          ρ (ι γ) by simp only [map_mul, map_inv]; group]
+      exact hc
+    exact (Commute.conj_iff (ρ (ι t))).mp hc'
+  exact hstrict (Commute.of_map hfaithful.injective himage)
+
 /-! ## The reduction -/
 
 /-- **The free-lamp reduction.**  If the pair `(G, Γ)` satisfies the

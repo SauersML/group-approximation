@@ -17034,8 +17034,9 @@ descent problem is now the normal abelian Laurent kernel
 The last sentence is itself avoidable.  The Kun--Thom endpoint may be
 applied to the **image pair** of a nonfaithful tracial model.
 
-**Theorem (strict image-pair criterion).**  Let `Gamma<G` have property
-`(T)`, suppose its compression semigroup `P_Gamma` generates `G`, and let
+**Theorem (strict image-pair criterion).**  Let `Gamma<G` be groups which
+both have property `(T)`, suppose its compression semigroup `P_Gamma`
+generates `G`, and let
 
 `sigma:G->U(M)`
 
@@ -17150,6 +17151,60 @@ the earlier faithful-residually-finite tensor completion.  What remains of
 the candidate proof is exactly the finite-atlas analytic construction of a
 homomorphism of the Steinberg semidirect product with the strict witness;
 the algebraic descent layer is no longer part of the theorem.
+
+### Stronger simplification: keep both Steinberg factors
+
+There is no advantage in descending the external factor either.  Use
+
+`Ghat=St_r(R) semidirect St_4(Z)`,
+
+where `St_4(Z)` acts through its canonical map to `SL_4(Z)`, and retain
+
+`Gammahat=im(St_r(R_+)->St_r(R))`.
+
+This is an honest semidirect product.  Both factors have property `(T)` by
+the Steinberg property-`(T)` theorem, so `Ghat` is Kazhdan; `Gammahat` is a
+Kazhdan quotient of `St_r(R_+)`.
+
+For each external positive root generator `x_(ij)(1) in St_4(Z)`, the
+induced positive exponent transvection preserves `R_+`, so the generator is
+in `P_Gammahat`.  These positive root generators generate `St_4(Z)` as a
+group: same-root additivity gives every integer parameter, including the
+negative ones.  Their conjugates of `Gammahat` generate every coefficient
+root `x_(ab)(f)`, `f in R`, exactly as in the preceding monomial argument.
+Thus `P_Gammahat` generates all of `Ghat`, including both Steinberg kernels.
+
+This choice removes several former proof obligations completely.  To model
+`Ghat`, it is enough to transfer:
+
+* same-root additivity;
+* commuting-root relations;
+* `A_2` commutator relations; and
+* the functorial semidirect covariance.
+
+Those are the defining presentations of the two Steinberg factors and their
+action.  There is no defining relation for an opposite-root pair in a
+Steinberg presentation.  Consequently the active signed-Weyl repair, its
+square/fourth-power relations, the toric symbol galleries, stable-rank
+`K_2` calculations, and descent across either `K_2` are all unnecessary for
+the final route.  A central word may survive in the ultraproduct; it is an
+actual element of `Ghat`, not a multiplicative defect.
+
+The Pauli/Weil chart implementation can still carry a scalar projective
+multiplier on the auxiliary finite groupoid.  Contract that scalar by the
+free-groupoid cochain, or use scalar conjugate cancellation, so that the
+three Steinberg relation families above hold in the ordinary matrix
+ultraproduct.  No claim that a nontrivial central word becomes one is made.
+
+The final endpoint is therefore:
+
+`sigma:Ghat->U(M)`,  `v in sigma(Gammahat)'`,
+
+`[v,sigma(t)^*sigma(gamma)sigma(t)]!=1`
+
+for one positive external root lift `t` and one positive coefficient root
+`gamma`.  The strict image-pair criterion then gives the hyperlinear
+nonsofic group `<sigma(Ghat),v>` directly.
 
 ### Regular absorption makes a finite kernel grading exactly equivariant
 

@@ -1,6 +1,7 @@
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.ManuscriptStatements
 import NonsoficGroupsExist.Sofic.SoficSequential
+import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
 import NonsoficGroupsExist.Sofic.FinitelyPresentedLEF
@@ -57,6 +58,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.KunDecomposition.exists_expanderDecomposition
 #print axioms NonsoficGroupsExist.KunSelectiveRepairExpansion.refined_bad_component_expands_at_every_positive_constant
 #print axioms NonsoficGroupsExist.KunThomTheorem.isLEF_of_exactProductExpansion
+#print axioms NonsoficGroupsExist.not_isSofic_of_strictCentralizerWitness
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.UniversalRankFour.witness_not_isLEF
 #print axioms NonsoficGroupsExist.ThompsonFObstruction.finite_image_generatorCommutator_eq_one
