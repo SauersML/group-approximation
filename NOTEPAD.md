@@ -15168,6 +15168,93 @@ fiber unitary arbitrarily; the exceptional fraction is the original
 unlisted cyclic consistency condition survives away from the already
 counted wrap.
 
+### The wall Fourier operator must move with the face coordinate
+
+The remaining flipped-root equation is not solved by asking one constant
+Fourier operator to fix the five common roots.  That demand caused the full
+kernel Fourier obstruction above.  A wall intertwiner is a bundle map, and
+its fiber is allowed (indeed forced) to move with the common-face coordinate.
+
+Here is the abstract local statement.  Let `H` be the common-face group and
+let `X_0` be a good component on which its partial left action is free.  Let
+
+`(pi_x^+,U_(h,x)^+)` and `(pi_x^-,U_(h,x)^-)`
+
+be two exact covariant `Gamma_z` bundles over `X_0`.  Fix an origin `o` and
+a unitary `J_o` intertwining `pi_o^+` with `pi_o^-`.  For `x=h o` put
+
+`J_x=U_(h,o)^- J_o (U_(h,o)^+)^*`.
+
+**Lemma (moving-wall propagation).**
+
+1. `J_x` is well defined and intertwines `pi_x^+` with `pi_x^-`.
+2. For every common-face arrow `s:x->sx`,
+
+   `J_(sx) U_(s,x)^+=U_(s,x)^- J_x`.
+
+3. Suppose `b^+:o->o'` and `b^-:o->o'` are the two transverse arrows at
+   the origin and
+
+   `J_(o') b^+=b^- J_o`.
+
+   Then the same equation holds for every simultaneous `H`-translate of
+   that transverse arrow contained in the good component.
+
+**Proof.**  Freeness gives a unique transporter `h` to each vertex.  More
+generally, if the component is presented by a Følner box rather than a
+literal free orbit, exact same-root, commuting-root, and `A_2` relations
+make the two native path operators equal, so the formula is path
+independent.  Covariance of the two bundles proves (1).  Cancelling the
+path operator in the definition proves (2).  For (3), conjugate the origin
+equation by the two native `H`-transporters.  The groupoid source and target
+identities turn the conjugated equation into the displayed equation at the
+translated arrow.  End proof.
+
+The required origin equation is exactly the part of full Fourier covariance
+which was never defective.  On the square-zero tangent kernel, Fourier
+conjugates the substitution root
+
+`t_(ij)(a)=1+aE_(ij)`
+
+to its contragredient
+
+`t_(ij)(a)^(-T)=1-aE_(ji)=t_(ji)(-a)`.
+
+Across the adjacent Weyl chambers, the sixth root is precisely the opposite
+root, with the parameter orientation reversed.  Thus the primal/dual full
+kernel Fourier transform `F_K`, followed by the already audited depth
+reversal, satisfies at the chosen transverse origin
+
+`J_(o') U_(ij)(a)^+=U_(ji)(-a)^- J_o`.
+
+The sign is harmless but must be kept: the negative parameter is the inverse
+element in the opposite root group.  At the same origin `F_K` conjugates the
+complete genuine `Gamma_z` representation to its dual genuine
+representation, including the unchanged regular base factor.  If regular
+absorption is used to equalize the two origin multiplicities, conjugate this
+origin Fourier equation by the two absorption maps; it remains exact and
+the pulled-back coefficient bundle from the preceding lemma propagates it
+without requiring an endomorphism of `K_0`.
+
+Apply the moving-wall lemma.  The five common roots are now fixed as
+**arrows of the bundle**, even though `F_K` does not commute with their
+individual origin matrices.  The flipped-root identity propagates from the
+single Fourier origin over every good transverse-arrow orbit.  Only arrows
+meeting the common-face boundary are completed arbitrarily, so the new loss
+is `O(1/M)` and is already in the atlas budget.
+
+This resolves the apparent conflict between full Fourier covariance and
+common-root covariance: the former is imposed once, on the transverse
+origin; the latter determines the moving wall operator everywhere else.
+It also explains why a constant block Fourier failed the adversarial audit.
+The remaining global check is finite and separate: after choosing these
+moving wall bundles on the fixed chamber spanning galleries, verify that
+their products on Coxeter loops are scalar (hence removable by the proved
+free-good-groupoid contraction), rather than a noncentral operator on the
+regular-absorption multiplicity.  The earlier parity argument for one
+constant involution does not by itself prove this stronger moving-bundle
+statement.
+
 ### Correction: a wall fixing the common face cannot exchange the two sixth roots
 
 The flipped-root equation isolated above is not merely absent; with the
@@ -15234,3 +15321,72 @@ non-native root through neighboring charts without path dependence, and
 verify both the local multiplication defects and the pairwise fusion
 overlap estimate.  Merely identifying the common face, even by nonsterile
 origin absorption, does not yet supply this global-letter extension.
+
+### Owner transport makes overlap tautological but leaves one reference-chart relation problem
+
+The global-letter problem separates cleanly into an overlap part and a
+multiplication part.  This prevents the two from being conflated again.
+
+Suppose the chamber atlas has partial good-subspace transports
+
+`J_(D,C):H_C->H_D`
+
+which are flat on the relevant good intersections:
+
+`J_(E,D)J_(D,C)=J_(E,C)`.
+
+For each global generator `g`, choose an owner chamber `o(g)` in which its
+depth move is native, and let `A_g` be that native partial unitary.  Define
+in every chart
+
+`U_(g,C)=J_(C,o(g)) A_g J_(o(g),C)`.
+
+Then flatness gives, identically on the common-good subspace,
+
+`J_(D,C)U_(g,C)=U_(g,D)J_(D,C)`.
+
+Thus a flat atlas does solve the pairwise overlap equation for the same
+global letter; it is unnecessary and usually wrong to compare that letter
+with the opposite root native to the neighboring chamber.
+
+This definition does **not** prove multiplication.  Fix a reference chamber
+`C_0`.  Flatness only reduces every word
+
+`w=g_1...g_k`
+
+in chart `C` to a conjugate of the single reference product
+
+`U_(g_1,C_0)...U_(g_k,C_0)`.
+
+Consequently all chartwise curvature is controlled by one finite list of
+cross-owner word defects in `C_0`, but those defects need an independent
+proof.  Native chamber relations prove only the words whose letters have a
+simultaneous native realization.  Regular absorption and wall flatness do
+not prove a relation involving letters imported from different owners.
+
+The first required test is an adjacent Weyl cell.  With `a,b,c,d` as in the
+preceding `A_2` calculation and with `s` the coordinate transposition of
+`1,2`, the actual global relations include
+
+`s^2=1`,
+
+`s a s^(-1)=c`, `s c s^(-1)=a`, and `s b s^(-1)=d`.
+
+A passive overlap map which identifies the same global `a,c` fixes their
+operators; the group operator representing `s` swaps them.  Hence these two
+maps cannot be silently identified.  There are two consistent conventions:
+
+1. keep the overlap map passive and construct a separate operator for `s`;
+   or
+2. let the wall map implement the coordinate relabeling by `s`, in which
+   case the local labels for the two common global roots must be swapped in
+   the target chart.
+
+Either convention avoids the impossible `b->d` while fixing `a,c`
+calculation.  The current notepad construction uses language from both
+conventions and has not yet written the corresponding reference-chart
+operators.  Therefore the next finite theorem must construct the adjacent
+Weyl operator together with the relative Fourier wall and verify the four
+displayed identities on `1-o(1)` rank.  Once that is done, owner transport
+reduces the rest of the fusion overlap audit to the remaining finite list
+of rank-two and commuting cross-owner words.
