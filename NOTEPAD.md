@@ -21741,3 +21741,49 @@ been selected.
   `(T;CE)` amenable-character lemma.
 * Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408v1, the conditional
   `qa`/`qc` separation.
+
+### Exact trace form of the unstable branch
+
+For this particular `U`, the negative-side certificate admits several
+equivalent formulations.
+
+**Theorem (one-trace endpoint).**  The following are equivalent:
+
+1. `U` is not Hilbert--Schmidt stable;
+2. `U` admits a nontrivial homomorphism into a tracial matrix ultraproduct;
+3. `U` has a nontrivial hyperlinear quotient;
+4. there is `C<=Z(U)` such that `U/C` is hyperlinear;
+5. `U` has a nontrivial Connes-embeddable trace;
+6. there is `C<=Z(U)` such that `U/C` is hyperlinear and nonsofic.
+
+**Proof.**  The implication `(1)=>(2)` is the unstable half of the fork:
+all genuine finite-dimensional representations are trivial, so a
+non-correctable asymptotic representation stays nontrivial in some tracial
+ultraproduct.  Its kernel is proper and hence central, which gives
+`(2)=>(3)=>(4)`.  Conversely, compose a hyperlinear approximation of a
+nontrivial quotient with the quotient map.  It cannot be corrected to
+genuine representations of `U`, because all of those are trivial; hence
+`(4)=>(1)`.
+
+A tracial-ultraproduct homomorphism gives a nontrivial Connes-embeddable
+trace, giving `(2)=>(5)`.  Conversely, the GNS representation of a
+nontrivial Connes-embeddable trace embeds into a tracial matrix ultraproduct,
+giving `(5)=>(2)`.  Finally every proper quotient kernel is central by
+quasisimplicity, and every resulting central extension of `Q` is nonsofic,
+so `(4)=>(6)`; `(6)=>(4)` is immediate.  End proof.
+
+Thus the remaining FALSE-side problem for the Steinberg endpoint is
+literally:
+
+`construct one nontrivial Connes-embeddable trace of U`.
+
+The hyperfinite theorem proves that this trace, if it exists, must be
+nonamenable.  The regular trace is the canonical candidate, so proving
+`L(U)` Connes embeddable is sufficient, but the theorem allows a central
+kernel and therefore asks for strictly less than faithfulness of the
+regular model.
+
+The word *trace* cannot be replaced here for free by *character* (extreme
+trace): extracting a factorial component is a quotient operation, and
+Connes embeddability is not available under arbitrary quotients.  Avoiding
+that invalid step is essential in exactly this problem.
