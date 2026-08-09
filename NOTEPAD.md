@@ -20466,6 +20466,74 @@ Accordingly the correct status is:
 All earlier occurrences of "the already weak-MF group `H_p`" or "explicit
 weak-MF nonsofic symmetric double" must be read subject to this correction.
 
+### Exact cocycle actions on one Clifford factor have only scalar curvature
+
+A tempting direct-CAR repair is to embed the tested Majoranas in a large
+matrix factor and allow the implementers of the external generators to fail
+the group law by unitaries in a large multiplicity commutant.  If those data
+form an exact cocycle action on one matrix factor, however, the apparently
+matrix-valued curvature is gauge-equivalent to a scalar multiplier.
+
+**Lemma (factor cocycle scalarization).**  Let `(alpha,u)` be a normalized
+cocycle action of a group `G` on `M_d(C)`:
+
+`alpha_g alpha_h=Ad(u(g,h)) alpha_(gh)`,
+
+`u(g,h)u(gh,k)=alpha_g(u(h,k))u(g,hk)`.
+
+Choose `w_g in U(d)` with `alpha_g=Ad(w_g)`.  There is a normalized scalar
+`2`-cocycle `omega:G x G->T` such that
+
+`w_g w_h=omega(g,h)u(g,h)w_(gh)`.
+
+Moreover the cocycle crossed product is canonically
+
+`M_d crossed_(alpha,u) G ~= M_d tensor C^*_(conjugate(omega))(G)`,
+
+and the same statement holds for the reduced/tracial completions.
+
+**Proof.**  The first cocycle-action identity says that `w_gw_h` and
+`u(g,h)w_(gh)` implement the same automorphism of the factor, so their ratio
+is a scalar `omega(g,h)`.  Comparing `(w_gw_h)w_k` with `w_g(w_hw_k)` and
+using the second cocycle-action identity gives
+
+`omega(g,h)omega(gh,k)=omega(h,k)omega(g,hk)`.
+
+In the cocycle crossed product let `U_g` be the canonical twisted
+implementers and put `V_g=w_g^*U_g`.  Then `V_g` commutes with `M_d`, and
+
+`V_g V_h=conjugate(omega(g,h))V_(gh)`.
+
+The factor and the `V_g` generate the crossed product, proving the tensor
+decomposition.  The regular conditional expectation is preserved, so the
+reduced and tracial versions follow as well.  End proof.
+
+For an even finite Clifford system its generated algebra is a full matrix
+factor.  Thus an exact finite-stage cocycle-action ansatz cannot hide the
+ambient relators in genuinely noncommutative curvature: after an inner
+gauge, all curvature is scalar.  For the explicit Kun--Thom ambient group,
+the previously proved finiteness of `H^2(G,T)` then applies.  Any sequence of
+such scalar multipliers converging pointwise to one is eventually
+cohomologically trivial and can be rephased away; the resulting genuine
+finite-dimensional ambient representations have sterile compressor
+commutants.
+
+This does not rule out direct CAR microstates.  It identifies exactly what
+they must do beyond the naive multiplicity proposal.  At least one of the
+following must occur:
+
+1. the finite algebras have growing nontrivial centers which are permuted by
+   the external generators;
+2. the implementer defects do not satisfy an exact cocycle-action identity
+   before passing to normalized Hilbert--Schmidt norm;
+3. the Clifford sector occupies a shrinking corner whose ambient error is
+   `o(sqrt(delta_n))`, as in the sparse central-sector theorem.
+
+In particular, Packer--Raeburn-style stabilization of an already exact
+cocycle action on a single finite Clifford factor does not furnish the
+missing quantum action.  The surviving freedom is approximate associativity
+or moving central blocks, not merely a large factor commutant.
+
 ---
 
 # Central covers cannot repair the Kun--Thom wreath obstruction (2026-08-09)
