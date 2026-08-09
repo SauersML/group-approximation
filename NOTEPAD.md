@@ -21859,3 +21859,55 @@ decides whether the already nonsofic simple group `Q` is hyperlinear.
 **Primary-source pin.**  Thom, *Examples of hyperlinear groups without
 factorization property*, Remark 3.5: every quotient of a hyperlinear group
 by a central subgroup is hyperlinear.
+
+### Normalized-HS stability audit: the available positive criteria stop short
+
+The exact equivalence above makes it important not to import a stability
+theorem in the wrong metric or under an impossible approximation hypothesis.
+Three currently tempting routes can be disposed of precisely.
+
+1. **Higher Kazhdan cohomology is the wrong normalization.**  The
+   de Chiffre--Glebsky--Lubotzky--Thom theorem says that a finitely presented
+   `2`-Kazhdan group is stable for the *unnormalized* Frobenius norm
+
+   `||A||_Frob=sqrt(Tr(A^*A))`.
+
+   It does not give stability for
+
+   `||A||_(2,d)=d^(-1/2)||A||_Frob`.
+
+   The missing factor `sqrt(d)` is exactly the rank-blindness exploited by a
+   possible hyperlinear model.  Thus even a future proof that `U` is
+   `2`-Kazhdan would not select the stable side of the normalized-HS fork.
+
+2. **The LLP+FD flexible-stability theorem has an impossible hypothesis
+   here.**  Fournier-Facio--Willett prove very flexible stability for groups
+   satisfying the local lifting property together with Lubotzky--Shalom
+   property FD.  But `U` cannot have property FD.  Every finite-image unitary
+   representation is finite dimensional and hence trivial by minimal almost
+   periodicity.  Property FD would therefore say that the singleton trivial
+   representation is dense in the unitary dual.  This is impossible for a
+   nontrivial group: a coefficient of the left regular representation takes
+   the value `0` at any fixed `g!=e`, whereas every coefficient of a direct
+   sum of trivial representations takes the value `1`.  Consequently the
+   2026 LLP+FD theorem cannot be specialized to `U`, regardless of whether
+   `C^*_(max)(U)` has LLP.
+
+3. **The available elementary-group character classifications do not cover
+   the coefficient ring.**  Lavi--Levit treat `EL_d(R)` for commutative
+   Noetherian `R` above stable range.  The binary Leavitt algebra is
+   noncommutative, non-Noetherian, and has infinite Bass stable rank.  No
+   located theorem classifies the characters or Connes-embeddable traces of
+   `EL_4(L)` or `St_5(L)`.
+
+What remains after this audit is not a generic cohomology or lifting-property
+check.  It is exactly one of the following genuinely new theorems:
+
+* prove directly that every normalized-HS asymptotic representation of `U`
+  collapses to the trivial representation; or
+* construct one nontrivial normalized-HS asymptotic representation, which by
+  central descent makes `Q` hyperlinear and nonsofic.
+
+Primary pins: de Chiffre--Glebsky--Lubotzky--Thom, Theorem 1.2;
+Fournier-Facio--Willett, arXiv:2603.18456v2; Lavi--Levit, *Characters of the
+group `EL_d(R)` for a commutative Noetherian ring `R`*.
