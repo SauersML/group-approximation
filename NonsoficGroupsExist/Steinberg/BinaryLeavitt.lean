@@ -69,7 +69,8 @@ theorem elementaryBase_not_isSofic {n : ℕ} (hn : 2 ≤ n) :
     (isSofic_of_injective e.symm.toMonoidHom e.symm.injective hsofic)
 
 /-- The canonical Steinberg projection as an isomorphism, conditional on
-the concrete `K₂`-vanishing certificate. -/
+vanishing of the **unstable** Steinberg kernel `K₂(n,L)`.  No such
+vanishing or stability theorem is proved here. -/
 noncomputable def projectionEquiv (n : ℕ)
     (hinj : Function.Injective
       (SteinbergGroup.projection :
@@ -78,10 +79,10 @@ noncomputable def projectionEquiv (n : ℕ)
   MulEquiv.ofBijective SteinbergGroup.projection
     ⟨hinj, projection_surjective n⟩
 
-/-- If the classical Steinberg kernel vanishes, property `(T)` of the
-elementary base transports across the canonical isomorphism.  Thus the
-property-`(T)` certificate can be reduced to the concrete `K₂`-vanishing
-statement rather than assumed independently. -/
+/-- If the unstable Steinberg kernel `K₂(n,L)` vanishes, property `(T)`
+of the elementary base transports across the canonical isomorphism.  This
+theorem is conditional: it does not prove unstable vanishing, nor derive it
+from stable algebraic `K₂(L)`. -/
 theorem hasKazhdanPropertyT_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
     (hinj : Function.Injective
       (SteinbergGroup.projection :
@@ -134,10 +135,11 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_certificates
   exact finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
     (centralExtension n hker) hall hfp hT
 
-/-- The shorter `K₂`-vanishing endpoint.  Injectivity identifies the
-Steinberg group with its simple elementary base.  Its nonsoficity therefore
-rules out every nontrivial quotient directly, with no all-central-covers
-stability premise. -/
+/-- A shorter endpoint conditional on **unstable** `K₂(n,L)=0`.
+Injectivity identifies the Steinberg group with its simple elementary base.
+Its nonsoficity therefore rules out every nontrivial quotient directly, with
+no all-central-covers stability premise.  The injectivity hypothesis remains
+an external certificate. -/
 theorem finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
     {n : ℕ} (hn : 3 ≤ n)
     (hinj : Function.Injective
