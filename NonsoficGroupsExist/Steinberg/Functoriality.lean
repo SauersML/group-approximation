@@ -74,6 +74,25 @@ theorem ringMap_surjective_of_surjective (f : R →+* S)
   change ringMap f (x i j hij a) = x i j hij (f a)
   exact ringMap_x f i j hij a
 
+/-- A coefficient-ring isomorphism induces an isomorphism of Steinberg
+groups. -/
+def coefficientEquiv (e : R ≃+* S) :
+    SteinbergGroup I R ≃* SteinbergGroup I S := by
+  refine MonoidHom.toMulEquiv (ringMap (I := I) e.toRingHom)
+    (ringMap (I := I) e.symm.toRingHom) ?_ ?_
+  · apply PresentedGroup.ext
+    rintro ⟨i, j, hij, a⟩
+    change ringMap (I := I) e.symm.toRingHom
+      (ringMap (I := I) e.toRingHom (x i j hij a)) = x i j hij a
+    simp only [ringMap_x]
+    exact congrArg (x i j hij) (e.symm_apply_apply a)
+  · apply PresentedGroup.ext
+    rintro ⟨i, j, hij, a⟩
+    change ringMap (I := I) e.toRingHom
+      (ringMap (I := I) e.symm.toRingHom (x i j hij a)) = x i j hij a
+    simp only [ringMap_x]
+    exact congrArg (x i j hij) (e.apply_symm_apply a)
+
 section Index
 
 variable {J : Type*} [Fintype J] [DecidableEq J]
