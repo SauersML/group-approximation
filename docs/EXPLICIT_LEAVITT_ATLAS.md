@@ -742,6 +742,47 @@ annihilated functorially either by \(\operatorname{Ad}\) or by the explicit
 conjugate tensor (36), without changing the two exact regular
 \(A_8\)-charts.
 
+The target is equivalently a scalar trace optimization.  For \(k\geq1\)
+define
+
+\[
+ \alpha_k=max_{U\in U(20160k)}
+   \min_{s\in\bar{\mathcal S}}
+   \left|\operatorname{tr}_{20160k}(\pi_U(s))\right|,    \tag{39}
+\]
+
+where \(\pi_U\) is the representation (25).  The maximum exists by
+compactness.  Formula (34) gives the exact equivalence
+
+\[
+ \boxed{\quad Q\text{ is hyperlinear}
+   \quad\Longleftrightarrow\quad
+   \sup_{k\geq1}\alpha_k=1.\quad}                       \tag{40}
+\]
+
+Moreover,
+
+\[
+ \alpha_k<1\qquad\text{for every fixed }k.              \tag{41}
+\]
+
+Indeed, equality in (39) would make every \(\pi_U(s)\) scalar and would
+give a nontrivial finite-dimensional projective representation of \(U_Q\):
+nontriviality again follows from the regular first chart.  Composing it
+with \(\operatorname{Ad}:PU(20160k)\to U((20160k)^2)\) would give a
+nontrivial finite-dimensional unitary representation of \(U_Q\), contrary
+to its minimal almost periodicity.  Thus the unresolved issue is the exact
+asymptotic behavior of a sequence of strictly subunit compact maxima:
+
+\[
+ 1-\alpha_k>0\text{ for every }k,
+ \qquad
+ \inf_k(1-\alpha_k)\stackrel{?}=0.                     \tag{42}
+\]
+
+An affirmative answer to (42) is a complete negative solution of
+hyperlinear-versus-sofic.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
