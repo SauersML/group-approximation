@@ -7746,3 +7746,79 @@ delete-one-dimension witnesses become genuine after a negligible enlargement.
 The remaining model-production question is exactly whether the polynomial
 elementary group admits a **flexibly nonliftable** asymptotic representation
 whose centralizer type graph contains the binary-tree overlap above.
+
+### The polynomial subgroup is hyperfinitely Hilbert--Schmidt stable
+
+Let
+
+`R = F_q[x_1,...,x_d]` and `Gamma = EL_r(R)`, with
+`r > max{sr(R),2}` (in particular, `r > d+2` is sufficient).  Then `Gamma`
+is **hyperfinitely Hilbert--Schmidt stable** in the sense of
+Dogon--Vigdorovich, Definition 6.1.
+
+This is a genuine stability theorem for the exact Kun--Thom polynomial
+subgroup, although it is strictly weaker than the flexible normalized-HS
+stability whose status remains decisive for the free-lamp route.
+
+**Proof.**  We use the general character criterion of Dogon--Vigdorovich,
+Theorem 6.2: a finitely generated group is hyperfinitely HS-stable if and
+only if each of its von Neumann amenable characters is a pointwise limit of
+normalized traces of finite-dimensional representations.
+
+It is enough first to treat an extremal von Neumann amenable character
+`chi`.  By Lavi--Levit, Corollary 1.3, there is a normal subgroup
+`N normal Gamma` and a finite-dimensional unitary representation `pi` of
+`N` such that `chi` is induced from `pi`; in particular `chi(g)=0` for
+`g notin N`.  We claim that `Gamma/N` is amenable.
+
+Indeed, form the product character `chi * conjugate(chi)`.  Its GNS algebra
+is represented inside the tensor product of the GNS algebra of `chi` with
+its opposite, and is therefore amenable.  On `N`, the finite-dimensional
+character `tr(pi) * conjugate(tr(pi))` is the character of
+`pi tensor conjugate(pi)`.  This representation contains the trivial
+representation with positive multiplicity (the identity intertwiner; after
+splitting `pi` into irreducibles, use any irreducible summand).  Extending
+the resulting invariant character decomposition by zero off `N` shows, as
+an identity of positive functionals on `C^*(Gamma)`, that
+`chi * conjugate(chi)` dominates a positive multiple of the quotient character
+
+`1_N(g) = 1 if g in N, and 0 otherwise`.
+
+By the noncommutative Radon--Nikodym theorem, the GNS representation
+of a positive functional dominated by an amenable tracial functional is a
+corner of an amplification of the latter GNS representation.  Consequently
+the GNS algebra of `1_N`, namely `L(Gamma/N)`, is amenable.  Thus `Gamma/N`
+is amenable.  Since `Gamma` has
+property `(T)`, so does its quotient; an amenable discrete property-`(T)`
+group is finite.  Hence `[Gamma:N] < infinity`, and the induced
+representation `Ind_N^Gamma(pi)` is finite-dimensional; its normalized trace
+is `chi` (the conjugation invariance already encoded by `chi` makes the usual
+finite-index induced-character average equal to the displayed trace on `N`).
+Thus every von Neumann amenable character is itself finite-dimensional.
+Dogon--Vigdorovich Theorem 6.2 now proves hyperfinite HS-stability.  End proof.
+
+**Source pins.**
+
+* O. Lavi and A. Levit, *Characters of the group EL_d(R) for a commutative
+  Noetherian ring R*, Corollary 1.3: every character in the stable range is
+  induced from a finite-dimensional representation of a specified normal
+  subgroup.
+* A. Dogon and I. Vigdorovich, *Hyperlinearity, stability and asymptotic
+  spectral gap of higher rank lattices*, Theorem 6.2 (the theorem itself is
+  stated for every finitely generated group, not only lattices).
+
+**Exact consequence for the main route.**  If the Kun--Thom free-lamp group
+is hyperlinear, the restriction of a strict model to `Gamma` cannot be both
+flexibly liftable (by the preceding finite-image/commutant theorem) and
+hyperfinite (by the theorem above, which corrects every hyperfinite
+asymptotic representation in the original dimension).  Thus the remaining
+certificate is narrower than mere flexible instability:
+
+`a non-hyperfinite, flexibly nonliftable normalized-HS model of Gamma`
+
+whose relative-centralizer overlap is strict.  The ordinary local-HS
+instability theorem for infinite hyperlinear property-`(T)` groups does not
+provide this: its Theorem 6.1 is non-flexible, and the standard deleted-small-
+rank witnesses are flexibly repairable.  Likewise, the unnormalized
+Frobenius `[T_2]` calculation above does not decide it because normalized-HS
+defect may be `sqrt(dimension)` times smaller.
