@@ -7988,6 +7988,154 @@ representation equivalences/multiplicities (the noncommutative analogue of
 the binary-tree compensation), not a scalar Folner truncation of the
 substitution orbit.
 
+### Scalar projective flux cannot assemble the shear chains
+
+There is a second exact restriction on the missing multiplicity-fiber
+construction.  In the stable-range instance, scalar projective phases cannot
+absorb the relations of the substitution sector.
+
+Put
+
+`R=F_q[x_1^(+-1),...,x_d^(+-1)]`,
+`N=EL_r(R)`, `Q=SL_d(Z)`, and `G=N semidirect Q`,
+
+where `d>=4` and `r>=d+3`.  These parameters are available in Kun--Thom
+Theorem E.
+
+**Theorem (finite Schur multiplier of the stable Kun--Thom ambient).**
+The group `H_2(G,Z)` is finite.  Consequently `H^2(G,T)` is finite, where
+`T` has the trivial `G`-action.
+
+**Proof.**  The group `N` is perfect, and stability identifies
+
+`H_2(N,Z)=K_2(R)`.
+
+The fundamental theorem for the regular Laurent ring gives
+
+`K_2(R)=(F_q^x)^d + exterior^2 Z^d`.
+
+The first summand is finite.  The coinvariants of the second summand under
+`Q` vanish.  Indeed, for distinct `i,j,k`, an elementary transvection which
+sends `e_i` to `e_i+e_k` gives, in the coinvariants,
+
+`e_k wedge e_j=0`.
+
+Since `d>=3`, this kills every basis wedge.  Hence
+
+`H_0(Q,H_2(N,Z))`
+
+is finite.  Also `H_1(N,Z)=0`.  The homological
+Lyndon--Hochschild--Serre spectral sequence for
+
+`1 -> N -> G -> Q -> 1`
+
+therefore shows that `H_2(G,Z)` has a finite filtration whose only possible
+total-degree-two subquotients come from
+
+`H_0(Q,H_2(N,Z))` and `H_2(Q,Z)`.
+
+The latter group is finite: `Q` is of type `FP_infinity`, so its second
+homology is finitely generated, while the `[T_2]` theorem for `SL_d(Z)`,
+`d>=4`, gives `H^2(Q,C)=0`, and hence zero rational second homology.  Thus
+`H_2(G,Z)` is finite.
+
+Finally the universal-coefficient sequence with coefficients in the
+divisible group `T` has no `Ext(H_1(G,Z),T)` term.  It identifies
+
+`H^2(G,T)=Hom(H_2(G,Z),T)`,
+
+which is finite.  End proof.
+
+**Theorem (asymptotically trivial scalar multipliers untwist).**  Let
+
+`omega_n:G x G -> T`
+
+be normalized scalar `2`-cocycles satisfying
+
+`omega_n(g,h) -> 1`
+
+for every fixed `g,h in G`.  Then `[omega_n]=0` in `H^2(G,T)` for all
+sufficiently large `n`.  Consequently every sequence of finite-dimensional
+projective representations
+
+`U_n(g)U_n(h)=omega_n(g,h)U_n(gh)`
+
+whose multiplicative defects tend pointwise to zero can be rephased, for all
+large `n`, into genuine finite-dimensional representations of `G`.
+
+**Proof.**  Choose finitely many integral bar `2`-cycles whose homology
+classes generate the finite group `H_2(G,Z)`.  Evaluation of `[omega_n]` on
+any one of these cycles is a finite product of fixed cocycle values and
+their inverses, and hence tends to one.  Under the identification
+
+`H^2(G,T)=Hom(H_2(G,Z),T)`,
+
+these finitely many evaluations determine the class.  There are only
+finitely many possible characters of `H_2(G,Z)`, so the identity character
+is isolated on this finite generating set.  It follows that `[omega_n]` is
+the identity for all sufficiently large `n`.  Write
+
+`omega_n(g,h)=b_n(g)b_n(h)b_n(gh)^(-1)`
+
+and replace `U_n(g)` by `b_n(g)^(-1)U_n(g)`.  End proof.
+
+The same argument is trace-uniform over arbitrarily many projective blocks.
+
+**Theorem (central block curvature is flexibly negligible).**  For each
+`n`, let
+
+`U_n=direct_sum_(a in A_n) U_(n,a)`
+
+be a block-diagonal map on a finite-dimensional Hilbert space, where each
+block is an exact scalar-projective representation of `G`, with multiplier
+`omega_(n,a)`.  Give the blocks their normalized dimension weights
+`lambda_(n,a)`.  Suppose
+
+`sum_a lambda_(n,a) |omega_(n,a)(g,h)-1|^2 -> 0`
+
+for every fixed `g,h`.  Then the total weight of blocks carrying a
+nontrivial class in `H^2(G,T)` tends to zero.  On the complementary
+`1-o(1)`-dimensional subspace, scalar rephasing turns `U_n` into a genuine
+representation of `G`.
+
+**Proof.**  Use the finite family of bar `2`-cycles from the preceding
+proof.  Evaluation of a multiplier on one such cycle is a product of a
+fixed finite list of multiplier values and inverses.  On the unit circle,
+the squared distance of that product from one is bounded by a constant times
+the sum of the squared distances of its factors from one.  Averaging with
+the weights `lambda_(n,a)` therefore shows that, for every chosen homology
+generator, the mean squared distance of the corresponding character value
+from one tends to zero.
+
+The finite character group `Hom(H_2(G,Z),T)` has a positive minimum, over
+its nonidentity characters, of the maximum distance from one on this finite
+generating set.  Hence the total weight of nonidentity characters tends to
+zero.  Every remaining multiplier is a coboundary and can be rephased
+blockwise.  End proof.
+
+**Corollary (projective assembly is sterile).**  An extension of the
+polynomial-shear orbit chains in which the entire failure of the ambient
+relations is carried by a scalar projective multiplier cannot retain the
+strict relative-commutant witness.  After rephasing it is a genuine
+finite-dimensional representation of the full ambient group.  In such a
+representation, for every compressor `t`,
+
+`pi(t) pi(Gamma)' pi(t)^*=pi(Gamma)'`:
+
+one inclusion follows from `t Gamma t^-1<=Gamma`, and equality follows from
+finite-dimensionality.  Scalar rephasing does not change conjugation in any
+case.
+
+Thus Pauli, Weil, metaplectic, clock--shift, or other projective ansatzes can
+contribute only if their surviving curvature is genuinely **noncentral and
+matrix-valued** on a positive trace fraction.  A scalar phase flux, even one
+presented in arbitrarily many large multiplicity blocks, is not the missing
+assembly mechanism.  The scope is important: the theorem does not eliminate
+matrix-valued cocycles, cocycles over **permuted** central blocks with
+growing stabilizers, or approximate systems which do not define exact
+projective representations.  Those are now the precise surviving
+nonorthogonal sector.
+
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
 The preceding warning has an exact quantitative form.
