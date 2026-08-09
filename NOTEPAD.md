@@ -17647,3 +17647,46 @@ Hilbert--Schmidt error and preserves strictness.  Inner stabilization does
 not by itself supply the identity: the elementary Weyl word for `D_d`
 contains both `u_i` and `u_i^(-1)`, so citing it without a no-wrap operator
 calculation would merely repackage the antipodal coefficient problem.
+
+### Sterility correction: full row-torus covariance cannot transport the witness
+
+There is a direct incompatibility hidden in the strongest formulation of
+the preceding target.  It is independent of the finite jet details.
+
+Suppose on a set of row-depth fibers of density `1-o(1)` one has
+
+`J_a(q) X_q(gamma) J_a(q)^*=X_(q+a)(delta_a(gamma))`
+
+for a fixed `gamma in Gamma`, and suppose the local witnesses are transported
+by the same potentials,
+
+`z_(q+a)=J_a(q) z_q J_a(q)^*`,  `[z_q,X_q(gamma)]=0`.
+
+Then on every good fiber
+
+`[z_(q+a),X_(q+a)(delta_a(gamma))]=0`.
+
+After direct sum and compression, the normalized Hilbert--Schmidt norm of
+this commutator is supported only on the row-depth boundary and fusion
+leakage, hence tends to zero.  If `delta_a(gamma)` is the selected invisible
+coefficient element, this is exactly the negation of the strict-witness
+condition.
+
+Thus the cyclic boundary estimate is correct, but its advertised
+simultaneous preservation of strictness applies only to translations which
+do **not** carry a centralized positive letter to the strict invisible
+letter.  Common-quotient regular absorption gives the same warning in a
+different form: making the full positive representation exactly equivalent
+along every relevant row-torus wall upgrades the inclusion to a finite
+normalizer and restores total absorption.
+
+The viable antipodal overlap must therefore be selective.  It may
+intertwine the three cyclic root occurrences needed by one regular
+Heisenberg relator cell, but it cannot simultaneously intertwine the whole
+positive coefficient representation and transport the witness on the same
+macroscopic corner.  In fusion language the strict witness must live in a
+multiplicity direction which approximately preserves the fusion range yet
+is not the covariant image of the positive commutant across the dangerous
+row-torus edge.  Constructing precisely such a selective nonorthogonal
+overlap, or proving it impossible by a dimension-free pinning theorem, is
+the corrected terminal lemma.
