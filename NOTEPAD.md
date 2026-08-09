@@ -24009,3 +24009,74 @@ What makes the theorem work is the combination of operator-norm defect,
 the adjoint norm-ultraproduct representation, the negative central corner,
 and stable finiteness.  Removing operator-norm control lands precisely back
 at the normalized-HS stability/commutant-lifting problem.
+
+# Rank-one root defects defeat every exact character amplification (2026-08-09)
+
+There is a simple Hamming-to-Hilbert--Schmidt amplifier which at first looks
+useful for the binary Leavitt/Steinberg models.  If an additive binary vector
+has `N` coordinates, sample sparse linear characters, each coordinate with
+probability of order `1/N`.  A bounded-support error is then invisible while
+a vector of linear Hamming support remains visible.  This cannot be made
+rank-sensitive for matrix coefficients.
+
+Put `V_N=M_N(F_2)` as an additive group and let
+
+`pi:V_N -> U(d)`
+
+be any genuine finite-dimensional unitary representation.  Use normalized
+Hilbert--Schmidt norm.
+
+**Theorem (rank-one character collapse).**  One has
+
+`sup_(C in V_N) ||pi(C)-1||_2^2`
+` <= 4 sup_(rank(A)=1) ||pi(A)-1||_2^2`.
+
+In particular, for a sequence `pi_N`, if every rank-one element tends to the
+identity uniformly, then **every** matrix element tends to the identity
+uniformly, including matrices of rank proportional to `N`.
+
+**Proof.**  The elementary abelian `2`-group `V_N` has only one-dimensional
+characters.  Using the nondegenerate trace pairing, decompose `pi` into
+
+`chi_B(A)=(-1)^(Tr(B^T A))`,  `B in V_N`.
+
+Let `mu(B)` be the normalized multiplicity distribution.  Then
+
+`||pi(A)-1||_2^2=4 P_(B~mu)[Tr(B^T A)=1]`.                 `(1)`
+
+Average `(1)` over rank-one matrices `A=u v^T`, where `u,v` are independent
+uniform nonzero vectors.  Fix `B!=0` of rank `s`.  The probability that
+`Bv!=0` is
+
+`(2^N-2^(N-s))/(2^N-1)`.
+
+Conditioned on `Bv!=0`, exactly `2^(N-1)` nonzero `u` satisfy
+`u^T Bv=1`.  Therefore
+
+`P_(u,v)[Tr(B^T u v^T)=1]`
+` >= (2^(N-1)/(2^N-1))^2 > 1/4`.                         `(2)`
+
+The zero character never contributes.  Equations `(1)`--`(2)` show that
+the average rank-one squared length is strictly larger than
+`mu(V_N-{0})`.  Hence
+
+`mu(V_N-{0}) <= sup_(rank(A)=1)||pi(A)-1||_2^2`.
+
+For arbitrary `C`, equation `(1)` is at most
+`4 mu(V_N-{0})`, proving the claim.  End proof.
+
+This is the exact finite Fourier obstruction behind the failed sparse-probe
+idea.  It is stronger than the earlier observation that normalized rank is
+not conditionally negative definite: no non-radial choice of characters and
+no choice of multiplicities can evade it.  Thus a construction which first
+represents the entire finite additive root group exactly and asks all
+rank-one truncation defects to be HS-small necessarily erases the
+macroscopic root element as well.
+
+The theorem does not rule out the active direct-HS route.  A viable model
+may represent only the tested partial root law, may use genuinely
+noncommuting matrix sectors, or may let the additive law itself have
+relation-dependent HS defects.  What is now excluded is the tempting
+two-stage recipe
+
+`finite rank-metric root model -> exact character representation -> HS model`.
