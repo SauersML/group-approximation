@@ -235,7 +235,9 @@ proper normal subgroup of the quasisimple group \(U_Q\), and so
 Consequently its image is a central quotient of \(U_Q\) which still maps
 onto the simple nonsofic group \(Q\).  The central-cover nonsoficity theorem
 makes this image nonsofic.  On the other hand, the image is a subgroup of a
-tracial matrix ultraproduct, hence hyperlinear.  This proves the claim.
+tracial matrix ultraproduct, hence hyperlinear.  Thom's central-quotient
+permanence then also makes \(Q\) hyperlinear.  Thus the already nonsofic
+group \(Q\) itself is a counterexample.  This proves the claim.
 
 The certificate is independent of the chosen finite normal generating set:
 normal generation and exact multiplicativity of each \(\pi_k\) propagate
@@ -253,7 +255,48 @@ This is weaker than the regular-character criterion in exactly the useful
 direction: no trace-zero condition is imposed on all words outside \(N\);
 one positive-distance witness is enough.
 
-## 4. Exact boundary
+## 4. Finite representation coordinates
+
+The one-witness certificate has no hidden approximate group law.  For each
+finite factor \(H_i\), choose representatives
+
+\[
+  \widehat H_i=\{\sigma_{i,1},\ldots,\sigma_{i,r_i}\}
+\]
+
+of its irreducible complex unitary representations.  Every
+\(d\)-dimensional representation of \(P=H_1*\cdots *H_s\) is obtained by
+choosing, for each \(i\), nonnegative multiplicities \(m_{i,a}\) satisfying
+
+\[
+  \sum_a m_{i,a}\dim\sigma_{i,a}=d,
+\]
+
+and a conjugating unitary \(V_i\in U(d)\), and setting
+
+\[
+  \pi|_{H_i}
+  =
+  \operatorname{Ad}(V_i)
+  \left(\bigoplus_a \sigma_{i,a}^{\oplus m_{i,a}}\right).
+\]
+
+There are no compatibility equations between distinct factors: the free
+product universal property assembles these restrictions uniquely.
+Consequently (A)--(B) are a sequence of finite matrix-feasibility problems
+whose variables are:
+
+* finitely many integer multiplicity vectors, one for each fixed finite
+  chart;
+* finitely many relative unitaries \(V_i\);
+* the common matrix size \(d\).
+
+The objective is the normalized \(2\)-norm of finitely many fixed word maps
+\(n_j(V_1,\ldots,V_s)\), subject to keeping one fixed word
+\(g(V_1,\ldots,V_s)\) away from the identity.  This is the minimal
+model-production face of the Leavitt route.
+
+## 5. Exact boundary
 
 Hilbert--Schmidt stability of \(P\) does **not** imply stability of the
 epimorphism \(P\to P/N\).  Proving that epimorphism stable would select the
@@ -267,7 +310,7 @@ simultaneously make every tested element of \(N\) nearly trivial while
 keeping every tested element outside \(N\) trace-invisible.  That is exactly
 the quotient trace problem.
 
-## 5. Primary sources
+## 6. Primary sources
 
 * M. Gerasimova and K. Shchepin, *Virtually free groups are
   \(p\)-Schatten stable*, arXiv:2107.10032, Corollaries 3 and 4.
