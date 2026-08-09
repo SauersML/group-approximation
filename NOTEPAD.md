@@ -17914,3 +17914,96 @@ finite cells by an ordinary graph of finite sets, a virtually free group, or
 a block-diagonal permutation model is a provable dead end.  The next
 synchronization lemma must be stated in fusion-Gram norm, not in Hamming
 agreement on a common block set.
+
+### Diagonal regular absorption protects the shear witness during passive matching
+
+The equivariant regular-absorption lemma above can be applied before fusion
+to separate the coefficient action from the strict multiplicity direction.
+This removes the direct conflict between exact passive identification of a
+finite positive image and transport of the witness.
+
+Let `A` be the finite image of `Gamma` in one fixed-base jet block, acting by
+a representation `rho:A->U(V)`.  Suppose a local antipodal cell on `V`
+contains native positive operators `rho(a),rho(c)`, a shear operator `B`, and
+a commutant witness `z`, with
+
+`[rho(a),B]=rho(c)`,  `[z,rho(A)]=1`,
+
+and `||[B,z]||_2>=kappa`.
+
+On `ell^2(A)` build the same orbitwise shear cell using the left regular
+positive roots `lambda(a),lambda(c)` and call its missing-root operator
+`B_reg`.  On
+
+`V tensor ell^2(A)`
+
+use the diagonal operators
+
+`A_diag=rho(a) tensor lambda(a)`,
+
+`C_diag=rho(c) tensor lambda(c)`,
+
+`B_diag=B tensor B_reg`,  `z_diag=z tensor 1`.
+
+Because the two factors carry the same Heisenberg relation,
+
+`[A_diag,B_diag]=C_diag`,
+
+and
+
+`||[B_diag,z_diag]||_2=||[B,z]||_2>=kappa`.
+
+Let
+
+`T_rho:V tensor ell^2(A)->ell^2(A) tensor V`
+
+be the regular-absorption unitary already calculated in the kernel section.
+After conjugating the whole cell by `T_rho`, one has
+
+`T_rho(rho(g) tensor lambda(g))T_rho^*=lambda(g) tensor 1`
+
+for every `g in A`, while
+
+`T_rho(z tensor 1)T_rho^*=1 tensor z`.
+
+Write `B_abs=T_rho B_diag T_rho^*`.  Unitary conjugation gives the exact
+identities
+
+`[lambda(a) tensor 1,B_abs]=lambda(c) tensor 1`,
+
+`[1 tensor z,lambda(A) tensor 1]=1`,
+
+`||[B_abs,1 tensor z]||_2>=kappa`.
+
+Thus the native positive coefficient representation is now entirely in the
+first factor, the strict witness entirely in the second factor, and the
+missing Laurent root is a genuinely coupled operator between them.  This is
+the non-scalar base transport which the tangent-only Fourier cell lacked.
+
+For incident cells which have first been placed over one common finite
+positive image `A`, scalar-amplify the regular first factors and identify
+them there; choose the chart potential to be the resulting first-factor
+unitary tensored with the identity on the protected witness factor.  This
+placement over a common `A` is still part of the coefficient-synchronization
+problem; it is not supplied by absorption.  Once it is available, the local
+witnesses agree exactly across the passive overlap, whereas the complete
+coupled operators `B_abs` are transported as global letters.  No row-torus
+map sends a positive commutant onto the invisible letter: the passive map
+acts on the first factor, while strictness is stored in the second-factor
+action of `B_abs`.
+
+This does not contradict finite-dimensional sterility.  The coupled
+`B_abs` normalizes only the finite root subgroup used by its local
+Heisenberg cell, not the full finite image `lambda(A)`.  If all remaining
+covariance relations were imposed exactly, finite normalizer rigidity would
+again force its second-factor action to preserve the commutant and kill the
+displayed escape.  Those global covariance defects must still be localized
+by the nonorthogonal atlas.
+
+The remaining synchronization problem is therefore no longer a
+witness-coherence problem.  It is to arrange that the first-factor passive
+identifications carry every occurrence of the same coupled `B_abs` to
+operators with `o(1)` fusion-Gram discrepancy while the finite list of local
+Steinberg cells stays exact.  Once that is achieved, `1 tensor z` already
+has exact passive coherence and the order-one lower bound passes through the
+existing fusion energy lemma.
