@@ -11021,3 +11021,69 @@ the twelve `B`-conjugate compressors) and verify their Steinberg/deeper-
 congruence relations while preserving the common Pauli fiber and the nested
 coefficient levels.  The theorem above does not yet assert that global
 compatibility.
+
+### The Pauli--Jacobi channel also improves at fixed congruence depth
+
+The asymptotically full cross-stabilizer channel has a fixed-prime local-
+ring version whose exceptional trace decays with `n`.  Retain
+
+`Q_n=SL_4(R_n)`,  `R_n=Z/p^n Z`,  `B=V_4`,
+
+and embed the row-vector Jacobi subgroup
+
+`K_n=R_n^2 semidirect SL_2(R_n)`
+
+in the first three coordinates of `Q_n`.  On
+
+`X_(B,n)=Q_n/B`,  `X_(K,n)=Q_n/K_n`,
+
+the diagonal-orbit stabilizer represented by `g` is
+
+`J_g=B intersect gK_n g^(-1)`.
+
+**Theorem (fixed-prime full Mackey channel).**  The union `Omega_n` of the
+product orbits with `J_g=1` is `Q_n`-invariant and
+
+`|Omega_n|/(|X_(B,n)||X_(K,n)|)=1-O_p(p^(-3(n-1)))`.
+
+On `Omega_n`, the inverse-Shapiro Pauli twist `c_n` and any chosen Jacobi-
+side transformation-groupoid twist differ by a coboundary.  In particular,
+after equalizing multiplicities, there is an exact phase/Morita intertwiner
+on a trace-`1-O_p(p^(-3(n-1)))` invariant channel.
+
+**Proof.**  For a uniform product block, the relative element `g` is uniform
+in `Q_n`.  A nontrivial `J_g` contains one of the three elements `1!=b in B`,
+so
+
+`Prob(J_g!=1)`
+` <=sum_(1!=b in B) |K_n||C_(Q_n)(b)|/|Q_n|`.
+
+At odd `p`, each such `b` is semisimple with two rank-two eigenspaces.  Its
+centralizer is the smooth group scheme `S(GL_2 x GL_2)` of dimension seven.
+The Jacobi subgroup has dimension five and `SL_4` has dimension fifteen.
+Consequently
+
+`|C_(Q_n)(b)|=p^(7(n-1))|C_(Q_1)(b)|`,
+
+`|K_n|=p^(5(n-1))|K_1|`,
+
+`|Q_n|=p^(15(n-1))|Q_1|`,
+
+which gives the asserted `O_p(p^(-3(n-1)))` bound.  On a good orbit the
+isotropy is trivial, so Mackey--Shapiro puts the difference class in
+`H^2(1,T)=0`; an orbitwise gauge is the required exact intertwiner.  End
+proof.
+
+Thus every quantitative loss in the local Pauli--shear package can now be
+driven to zero with one fixed prime:
+
+* Pauli curvature density: `Theta_p(p^(-12(n-1)))`;
+* Mackey-channel complement: `O_p(p^(-3(n-1)))`;
+* its projection-boundary Hilbert--Schmidt cost:
+  `O_p(p^(-3(n-1)/2))`; and
+* fixed-compressor wrap: `O(p^(-(n-1)/2)L^(-1/2))`.
+
+The bottleneck is therefore no longer an asymptotic scale mismatch.  It is
+the exact algebraic assembly of the three Jacobi/root fibers across their
+common Pauli channel, especially the commutators which land in successively
+deeper principal-congruence levels.
