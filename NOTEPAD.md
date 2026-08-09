@@ -9516,3 +9516,86 @@ orbital Clifford commutator, while the bulk sector factors through the
 retraction and supplies dimension at essentially no cost.  What remains is
 to couple such a torsion sector to the explicit polynomial shear
 intertwiners with the displayed profile inequality.
+
+### Rank-three finite parabolics have codimension-two Heisenberg curvature
+
+There is a second rank-three mechanism, complementary to the fixed-subgroup
+cuspidal class above.  Let `p` be an odd prime, put
+
+`Q_p=SL_3(F_p)`,  `X_p=F_p^3-{0}`,
+
+and let `H_p` be the stabilizer of the row vector `e_1`.  Then
+
+`H_p=F_p^2 semidirect SL_2(F_p)`,  `Q_p/H_p=X_p`,
+`[Q_p:H_p]=p^3-1`.
+
+The standard symplectic form on the unipotent radical `U_p=F_p^2` is
+`SL_2(F_p)`-invariant.  Its Heisenberg extension therefore extends to the
+Jacobi group over `H_p`; the Schrödinger--Weil construction gives a
+`p`-dimensional projective representation of `H_p` whose multiplier has
+order `p` and is nondegenerate on `U_p`.  Pulling `H_p` back through
+`SL_3(Z)->SL_3(F_p)` gives finite-dimensional stabilizer data without the
+virtual-divisibility question arising for a fixed integral `H^2` class.
+
+The apparent uniform curvature of the naive induction gauge is misleading.
+It can be localized exactly on a root subgroup.
+
+**Lemma (root restriction has density `1/(p^2+p+1)`).**  Let
+
+`A_p=<e_21(1),e_31(1)><Q_p`,
+
+so `A_p=F_p^2`, and restrict the induced Heisenberg class in
+`H^2(Q_p,T^(X_p))` to `A_p`.  This restriction has a cocycle representative
+which is trivial on every coordinate except the `p-1` points
+
+`{a e_1 : a in F_p^*}`.
+
+On each of these exceptional coordinates its restriction is a nondegenerate
+Heisenberg class.  Hence the unavoidable support density for this commuting
+root relation is
+
+`(p-1)/(p^3-1)=1/(p^2+p+1)`.
+
+**Proof.**  Write points of `X_p` as rows `v=(a,b,c)`.  Right multiplication
+by `e_21(s)e_31(t)` sends
+
+`(a,b,c) |-> (a+s b+t c,b,c)`.
+
+If `(b,c)!=(0,0)`, the `A_p`-orbit has size `p` and its stabilizer is the
+one-dimensional kernel of `(s,t)|->s b+t c`.  A multiplier on a cyclic
+group is a coboundary (`H^2(C_p,T)=0`), so by Shapiro the induced class is
+trivial on that orbit and can be gauged to one there.  If `b=c=0`, the point
+is fixed by all of `A_p`.  There are exactly `p-1` such points.  Conjugating
+the stabilizer at `a e_1` back to `H_p` rescales the two root coordinates by
+nonzero factors, so the alternating Heisenberg form remains nondegenerate.
+The direct product decomposition of the transformation groupoid over its
+orbits permits the gauges to be chosen independently, proving the support
+claim.  End proof.
+
+This also diagnoses a concrete computation.  With the elementary
+first-nonzero-coordinate section of `X_p`, the commuting square
+`e_21(1),e_31(1)` has mean squared scalar defect tending to `2` (checked for
+`p=3,5,7,11,17,31,53`).  The lemma proves that this broad defect is a gauge
+artifact: after orbitwise rephasing, the same restricted class lives on a
+fraction asymptotic to `p^(-2)`.
+
+Power the order-`p` central character by `k_p=(p-1)/2`.  Its distinguished
+phase `exp(2 pi i k_p/p)` tends to `-1`, while a bounded phase defect
+supported on the exceptional root coordinates has normalized
+Hilbert--Schmidt norm `O(1/p)`.  Thus odd-order finite Heisenberg blocks can
+asymptotically model the fixed order-two Clifford sign; using order `p`
+does not itself make the central element disappear.
+
+The remaining pin is global rather than local:
+
+> Choose one representative of the induced class on the finite presentation
+> `2`-complex of `SL_3(Z)` whose restriction to every fixed presentation
+> relator has support `o(|X_p|)` (ideally `O(p)` out of `p^3-1` blocks), while
+> preserving the powered Heisenberg holonomy on the polynomial shear
+> intertwiners.
+
+The lemma solves this localization simultaneously for all pairs inside one
+commuting root subgroup, but gauges chosen orbitwise for different root
+subgroups need not agree.  This is precisely where rank three may help:
+`SL_3(Z)` has property `(T)` but not the higher `(T_2)` input that, in rank
+at least four, converts the problem to an integral degree-three cosystole.
