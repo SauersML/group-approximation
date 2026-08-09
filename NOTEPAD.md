@@ -27045,3 +27045,30 @@ fibres cannot help.  Any positive construction must have internal block
 coefficients whose noncommutative representation dimension grows without
 bound, and must remain a fixed normalized-HS distance from every fixed
 subhomogeneous stratum.
+
+There is a quantitative version that applies to the exact coefficient
+algebra of every relative unitary.  Let
+
+`D(U)=C^*({U_(x,y):x,y in A_8}) <= M_k(C)`
+
+for the `n by n` block decomposition of `U`, and write
+
+`D(U) ~= directSum_j (M_(r_j)(C) tensor 1_(ell_j))`.
+
+Set
+
+`w_R(U)=sum_(j:r_j<=R) r_j ell_j/k`.
+
+The same direct-sum calculation, retaining only the small summands, gives
+
+`F_k(U)^2 >= e_R w_R(U)`.                              `(SUB4)`
+
+Consequently every certificate sequence satisfies
+
+`w_R(U_k) <= F_k(U_k)^2/e_R -> 0`                      `(SUB5)`
+
+for each fixed `R`.  It is not enough that the largest irreducible block
+grow: asymptotically all Hilbert-space weight of the internal coefficient
+algebra must escape every bounded matrix size.  Any construction with a
+positive-density classical, commutative, or bounded-quantum sector is
+therefore impossible.
