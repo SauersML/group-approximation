@@ -18975,6 +18975,54 @@ positivity issue remains: squared Hilbert--Schmidt relator energy cannot
 cancel between charts.  Any claimed quantum repair must exhibit where that
 energy goes, rather than appeal only to endpoint drift.
 
+### Audit: the all-depth coset frame has complete, not parent--child, coupling
+
+The nested-image construction above does give a tight frame, but it does
+**not** give the sparse path geometry claimed there.  Its nonzero Gram
+blocks include every ancestor--descendant pair.  More decisively, every
+basis vector `delta_h`, `h in H_0`, belongs to exactly one coset at each of
+the `L+1` depths.  The analysis isometry therefore sends it to
+
+`V delta_h=(L+1)^(-1/2) direct_sum_(j=0)^L delta_h^(j,H_j h)`.
+
+On this fiber the fusion range is the one-dimensional diagonal in
+`C^(L+1)`, so its orthogonal complement sees **all-depth variance**.  For
+scalar depth operators `U_j delta_h=a_j delta_h`, `|a_j|=1`, one has the
+exact identity
+
+`||(1-P) U V delta_h||^2`
+` =(1/(L+1)) sum_j |a_j-abar|^2`
+
+with `abar=(1/(L+1))sum_j a_j`.  Equivalently,
+
+`||(1-P) U V delta_h||^2`
+` =(1/(2(L+1)^2)) sum_(j,k)|a_j-a_k|^2`.
+
+Thus the effective overlap graph on every `h`-fiber is the complete graph
+on the depths, with spectral gap one.  Taking
+
+`a_j=exp(i j/L)`
+
+makes every adjacent difference `O(1/L)` while the displayed variance tends
+to a positive constant.  The proposed accumulated shear therefore has
+order-one fusion leakage in the all-depth coset frame.
+
+This retracts the claim that the projections
+`{p_(j,H_j h):0<=j<=L}` themselves realize only parent--child Dirichlet
+coupling.  Sparsity of the set-theoretic coset tree is insufficient because
+all comparable cosets overlap and the Parseval analysis duplicates each
+vector at every level.
+
+A viable repair must use the earlier **edge-incidence Hilbert space** (or a
+noncommutative analogue) in which a vector is copied only to the two
+endpoints of one parent--child edge.  Concretely, it must replace the single
+space `ell^2(H_0)` by a balanced direct sum of parent--child incidence
+spaces and prove that the group-letter operators transport those edge
+spaces with vanishing boundary.  Only then is the fusion energy the adjacent
+graph Dirichlet form rather than the complete-depth variance.  The finite
+subgroup tower supplies the edge labels and regular fibers, but not the
+sparse Parseval geometry for free.
+
 ### The one-compressor HNN shortcut loses ambient property (T)
 
 There is a tempting but invalid way to avoid the compressor--shear coupling:
@@ -19149,3 +19197,37 @@ the second is the compressor--shear equation, now repeated coherently on
 `L-o(L)` genuine subgroup incidences.  Unlike the retracted high-rank atlas,
 the ambient projections, their Gram matrix, and the level weights in this
 formulation are all explicit and exact.
+
+### Audit: the raw coset frame collapses inequivalent depth operators
+
+The preceding section constructs only the projections and weights.  The
+first operator check is indispensable.  If one inserts the depth models
+without transport, then for a fixed `g in Gamma` the level-`j` occurrence is
+
+`U_(g,j)=lambda(q(alpha^j(g)))`.
+
+Because `U_(g,j)` commutes with every level-`j` coset projection, direct
+substitution in the tight-frame formula gives
+
+`T_g=V^*(directSum_(j,c) U_(g,j)|_c)V`
+`   =(L+1)^(-1) sum_(j=0)^L U_(g,j)`.
+
+This average is generally very far from unitary.  For example, if the
+translations `h_j=q(alpha^j(g))` are pairwise distinct in `H_0`, orthogonality
+of distinct left-regular matrices gives
+
+`||T_g||_2^2=(L+1)^(-2) sum_(j,k) tau(lambda(h_j^(-1)h_k))`
+`           =1/(L+1)`.
+
+Hence even its `L^2` norm tends to zero instead of one.  Polar correction
+cannot repair a defect of this size while preserving the represented
+letters.
+
+The required edge transport must therefore align the restrictions of
+`lambda(h_j)` and `lambda(h_(j+1))` on the actual Gram incidences before
+fusion.  Exact alignment on the whole regular spaces would identify the
+depth algebras and trigger common-quotient sterility, so the alignment must
+be partial and coset-dependent: exact on the subgroup incidence owned by an
+edge, with the unmatched part charged to the sparse moving projections.
+This is the concrete content of the groupoid-cocycle item above; the raw
+coset tree alone does not provide it.
