@@ -7158,7 +7158,7 @@ centralizers are trivial, so both commutants are scalar.  The missing object
 is therefore a nontrivial Connes-embeddable multiplicity/correspondence over
 the regular `Gamma`-factor, not a new scalar trace.
 
-### Thom's central free lamp: hyperlinearity is banked, nonsoficity is not
+### Thom's central free lamp is sofic and cannot be the counterexample
 
 Let
 
@@ -7188,27 +7188,31 @@ Hyperlinearity of `H_c` is unconditional.  At the von Neumann algebra level,
 
 Both factors are Connes-embeddable and `L(C)` is amenable, so the standard
 amenable-amalgam permanence theorem makes this free product Connes-embeddable.
-Thus proving `H_c` nonsofic would solve the main problem immediately.
 
-The nonsofic half is **not** supplied by the existing action results.  The
-forward permanence theorem of Gao--Kunnawalkam Elayavalli--Patchell says that
-a sofic action produces a sofic free generalized wreath product.  Its
-converse is their Question 4.4.  A sofic approximation of the abstract group
-`H_c` does not presently give a sofic model of the conjugation action on its
-free factors.  The coordinate reverse-transfer theorem recorded above starts
-only after such an automorphic/action model has been supplied; it does not
-construct one from group soficity.  This is exactly the quantifier gap noted
-by the authors in their discussion of Question 4.4.
+More decisively, `H_c` is **sofic**.  Both vertex groups are sofic:
+`Ktilde` is residually finite, while `C x Z` is amenable.  The amalgamated
+subgroup `C=Z` is amenable.  Elek--Szabo, *Sofic representations of amenable
+groups*, Theorem 1 (arXiv:1010.3424), proves that the amalgamated free product
+of two sofic groups over an arbitrary amenable subgroup is sofic.  Applying
+that theorem gives
 
-Consequently the central free lamp is a valid banked-hyperlinearity target,
-but its remaining nonsoficity problem is a special action-extraction/phase-
-factorization problem, not an already proved consequence of Thom's quotient.
-For the current record the three statements must remain separate:
+`H_c=Ktilde *_C (C x Z) is sofic`.
 
-1. `H_c` is hyperlinear -- proved by amenable amalgamation;
-2. `Q` is non-LEF/non-initially-subamenable -- proved by Thom/de Cornulier;
-3. `H_c` is nonsofic -- open, and would require a new bridge from an arbitrary
-   sofic approximation of `H_c` to quotient/free-factor orbit data.
+Thus the earlier description of nonsoficity as an open action-extraction
+problem was too weak: this particular group is positively known to be sofic
+and cannot solve the main problem.  The free generalized-wreath converse gap
+is irrelevant here because the ordinary Bass--Serre amalgam presentation
+already lies inside the classical amenable-amalgam permanence theorem.
+
+The distinction from Thom's quotient remains essential.  The central
+quotient
+
+`H_c/C = Q * Z`
+
+contains the still-open group `Q`; soficity of `H_c` cannot be pushed through
+the central quotient because quotient closure is precisely unavailable.
+What survives from this lane is therefore only Thom's original question
+whether `Q` is sofic, not a free-lamp counterexample.
 
 ### Shulman doubles cannot manufacture weak MF for the Leavitt witness
 
