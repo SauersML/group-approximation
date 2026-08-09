@@ -18915,6 +18915,29 @@ vanishing of an `H^2` or `K_2` obstruction in the unnormalized theory proves
 nothing about this normalized relative problem without a new quantitative
 comparison theorem.
 
+There is a sharper reason the tempting contrapositive is unavailable.
+Becker--Lubotzky's deleted-coordinate mechanism starts with genuine
+finite-dimensional representations, removes a subspace of vanishing
+normalized rank, and polar-corrects the compressions.  The resulting maps
+can be bounded away from every genuine representation of the new dimension
+even though, after padding back to the original dimension, they differ from
+the starting genuine model by `o(1)` in normalized Hilbert--Schmidt norm.
+
+Consequently the deleted-coordinate maps and the original liftable maps
+define the **same tracial ultraproduct representation**.  For the present
+pair that representation still absorbs every element of the relative
+profinite closure of `Gamma`; its relative commutant has no strict escape.
+Thus the implication
+
+`normalized-HS instability => relative commutant escape`
+
+is false without a positive-rank/profile hypothesis.  Instability can be
+entirely supported on a trace-null corner while being dimensionwise far from
+every exact representation.  Any successful use of instability must
+produce order-one tracial displacement at an invisible word (or prove the
+existing defect/rank inequality); the abstract failure of stability
+supplies neither.
+
 Thus the stability literature neither kills nor completes the
 compressor--shear coupling.  The explicit open subproblem remains:
 
