@@ -7344,3 +7344,67 @@ Thus the terminal model must fail a substantially stronger property:
 This is the flexible relative-lifting quadrant represented by
 Alekseev--Thom Open Problem 6.2, not the already-established failure of local
 HS-stability.
+
+### A strict witness has a quantitative flexible-lifting gap
+
+The preceding qualitative obstruction has a fixed-window version with an
+explicit constant.  It is useful because it distinguishes the required
+exotic model from an arbitrary failure of stability.
+
+Fix a finite Kazhdan set `S` for `Gamma` and a constant `kappa>0` such that,
+for every unitary representation of `Gamma`,
+
+`dist(x,H^Gamma) <= kappa^-1 max_(s in S) ||s x-x||`
+
+for every vector `x`.  Let `t Gamma t^-1<=Gamma`, and fix `gamma in Gamma`.
+For a map `phi:G->U(d)` and `v in U(d)` put
+
+`a=max_(s in S)||[v,phi(s)]||_2`,
+
+`b=||[phi(t)v phi(t)^*,phi(gamma)]||_2`.
+
+**Theorem (quantitative flexible-lifting gap).**  If
+`pi:G->U(d)` is a genuine representation and
+
+`eta=max_(x in S union {t,gamma})||phi(x)-pi(x)||_2`,
+
+then
+
+`b <= 6 eta + 2(a+2 eta)/kappa`.
+
+Consequently, if `b>=beta` and `a` tends to zero, then every genuine
+representation stays at distance at least
+
+`(beta-o(1))/(6+4/kappa)`
+
+from `phi` on the fixed window `S union {t,gamma}`.  The same conclusion
+holds after adding `o(d)` dimensions to `phi`: pad both `phi` and `v` by
+identities and note that all displayed normalized Hilbert--Schmidt norms are
+multiplied by `sqrt(d/D)=1-o(1)`.
+
+**Proof.**  Put `C=pi(Gamma)'`.  In the adjoint representation of `Gamma`,
+the Kazhdan estimate gives a contraction `c in C` with
+
+`||v-c||_2 <= (a+2 eta)/kappa`.
+
+The term `2 eta` appears because replacing the two entries in a commutator
+with `phi(s)` by `pi(s)` costs at most `2 eta`.  Exact finite-dimensional
+co-Hopfianity gives
+
+`pi(t) C pi(t)^*=C`,
+
+so `y_0=pi(t)c pi(t)^*` commutes with `pi(gamma)`.  With
+`y=phi(t)v phi(t)^*`,
+
+`||y-y_0||_2 <= 2 eta+(a+2 eta)/kappa`.
+
+Comparing the commutator `[y,phi(gamma)]` with the zero commutator
+`[y_0,pi(gamma)]` costs twice this distance and another `2 eta` for the
+`gamma`-matrix.  This is exactly the asserted inequality.  End proof.
+
+In particular, a strict ultraproduct witness produces a **uniformly local,
+very-flexible instability sequence** for the ambient group: one fixed
+Kazhdan/compressor/witness window remains a positive distance from every
+genuine model even after negligible-dimensional enlargement.  Known local
+HS-instability only asserts failure before such enlargement, and therefore
+does not meet this quantitative requirement.
