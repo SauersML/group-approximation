@@ -16694,3 +16694,110 @@ conjugate tensoring cancels that scalar and leaves the coefficient witness
 as `v_coeff tensor 1`.  Thus neither the external nor coefficient `K_2`
 kernel leaves a noncentral obstruction after the chart-groupoid and phase
 separation audits.
+
+### Adversarial correction: a closed coefficient gallery does not by itself kill `K_2`
+
+The preceding `K_2` conclusion is not yet proved.  Two points must be kept
+separate.
+
+First, the fixed-base jet map
+
+`Phi_(d,h):F_p[z,x_0,x_1,x_2,x_3]->S_N`
+
+is deliberately only a map on the **polynomial** ring.  When `d_j>0`, its
+value `y^(d_j)(1+xi_j y^h)` is not a unit of `S_N`, so there is no extension
+of this map to the Laurent ring.  This is not by itself a contradiction:
+the construction represents `Gamma_z` locally and routes a Laurent letter
+through a chart in which that letter is polynomial.  It does mean, however,
+that no argument may silently apply one global finite-ring homomorphism to a
+Laurent relation word.
+
+Second, the inference
+
+`closed chart path + identity accumulated elementary matrix`
+` => identity coefficient operator`
+
+is precisely the inference obstructed by `K_2`.  In `St_r(R)`, a nontrivial
+Steinberg symbol is already a closed elementary word whose image in
+`EL_r(R)` is the identity.  Passive walls of the form `G_D G_C^*` telescope,
+but this only removes the passive factors.  It does not show that the
+interleaved active root operators have product one.  Applying that argument
+to `{-1,x_i}` or `{x_i,x_j}` without an additional active-word computation
+is circular: it assumes the descent from `St_r(R)` to `EL_r(R)` which the
+`K_2` audit was meant to prove.
+
+Accordingly the claims above that the Laurent `K_2(R)` kernel and the
+external `K_2(Z)` kernel are killed by closed coefficient galleries are
+regraded to **OPEN**.  The fundamental-theorem generator list remains
+useful: it reduces the missing computation to the base, `{-1,x_i}`, and
+`{x_i,x_j}` words.  But each active word must either be computed in the
+finite atlas or removed by a separate kernel-cancellation construction.
+
+### Exact matched-character cancellation lemma
+
+There is a possible repair which is stronger than scalar conjugate
+tensoring and which also identifies its own finite-stage obligation.
+
+**Lemma.**  Let `A normal H` be abelian and let
+
+`pi:H->U(V)`
+
+be an honest finite-dimensional unitary representation.  Decompose with
+respect to `A`:
+
+`V=directSum_(chi in X) V_chi`.
+
+Then
+
+`V_diag=directSum_(chi in X) V_chi tensor conjugate(V_chi)`
+
+is invariant under `pi tensor conjugate(pi)`, and the restricted
+representation factors through `H/A`.
+
+**Proof.**  Normality gives
+
+`pi(h)V_chi=V_(h.chi)`.
+
+Consequently the tensor action maps the `chi` diagonal summand to the
+`h.chi` diagonal summand.  If `a in A`, its action on that summand is
+
+`chi(a) tensor conjugate(chi(a))=1`.
+
+Thus all of `A` acts trivially.  End proof.
+
+This lemma applies algebraically to
+
+`A=K_2(R) K_2(Z) normal Gtilde_z`:
+
+the Laurent factor is abelian and normal even though `SL_4(Z)` permutes its
+characters.  It also explains why the unrestricted formula
+
+`u tensor conjugate(u)`
+
+is insufficient when the multiplier is only blockwise or objectwise
+scalar.  The full tensor contains cross summands
+
+`V_chi tensor conjugate(V_psi)`,
+
+on which a kernel element acts by `chi conjugate(psi)`, not by one.  One
+must first contract a genuinely free action groupoid cocycle, or use the
+matched diagonal space above.
+
+There are two quantitative cautions.  Squaring block dimensions changes
+trace weights from `dim(V_chi)` to `dim(V_chi)^2`; before diagonal tensoring,
+the nonzero character blocks must be multiplicity-equalized orbitwise (and,
+for witness preservation, across the finitely many relevant orbits).
+Moreover the atlas currently supplies approximate window maps, not honest
+finite-dimensional representations of `Gtilde_z`.  To invoke the lemma one
+must construct asymptotically invariant approximate spectral blocks for the
+normal abelian kernel and prove that the matched-diagonal compression keeps
+both multiplicative defect and the strict witness energy.  That is now a
+precise kernel-cancellation target; it is not supplied by the existing
+closed-gallery sentence.
+
+**Current consequence.**  The proposed hyperlinear-nonsofic construction
+is not yet a proof.  Its endpoint, structural Kun--Thom pair, fusion error
+ledger, and stable generator reduction remain useful, but descent across
+the two Steinberg kernels has reopened as a load-bearing gap.  No completion
+percentage should be increased until either the active toric symbol words
+are computed or the matched-character repair is made quantitative.
