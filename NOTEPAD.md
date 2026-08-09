@@ -8822,3 +8822,46 @@ finite-order element belongs to `ker(q)`.  Since `ker(q)` is a nontrivial
 normal subgroup, **no finite-order element of `D_p` can lie in every
 nontrivial normal subgroup**.  In particular, `D_p` has no finite central
 monolith of the kind required by the central-torsion corner criterion.
+
+### Exact free-by-Kazhdan normal form of the double
+
+The preceding fold kernel is not merely torsion-free; it is free with an
+explicit Nielsen action.  Write `X=G/Gamma`, choose `o=Gamma`, and use the
+free-lamp normal form
+
+`H_2 = (ast_(x in X) <a_x | a_x^2=1>) semidirect G`.
+
+The total-lamp parity kernel in the base is
+
+`N=ker(ast_X C_2 -> C_2)`.
+
+Kurosh's theorem already implies that `N` is free, since it meets every
+conjugate of every factor `C_2` trivially.  More precisely, Schreier rewriting
+with transversal `{1,a_o}` gives the free basis
+
+`b_x=a_x a_o`,  `x in X-{o}`.
+
+Thus the nonsofic symmetric double has the split normal form
+
+`D_2 = F({b_x:x != o}) semidirect G`.
+
+The action is completely explicit.  If one sets `b_o=1`, then
+
+`g b_x g^(-1)=a_(gx)a_(go)=b_(gx)b_(go)^(-1)`.
+
+This also re-proves that the fold kernel is free: in this normal form the
+fold `D_2->G` is the semidirect-product projection and its kernel is `N`.
+
+Consequently the main trace question for the double is equivalently
+
+> Is the crossed product
+> `L(F(X-{o})) crossed_(b_x -> b_(gx)b_(go)^(-1)) G`
+> Connes embeddable for the Kun--Thom coset action?
+
+Known extension permanence does not answer this.  It proves
+hyperlinear-by-amenable closure (hyperlinear normal subgroup and amenable
+quotient), whereas the quotient here is the nonamenable Kazhdan group `G`.
+Likewise, arbitrary semidirect-product closure would already imply the
+answer and is not available.  The explicit formula shows that the missing
+input is a tracial approximation of this one Nielsen action, not merely
+hyperlinearity of its free kernel and residual finiteness of its quotient.
