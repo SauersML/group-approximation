@@ -45,6 +45,8 @@ import NonsoficGroupsExist.Steinberg.RootPlaneFourier
 import NonsoficGroupsExist.Steinberg.RootCharacterValuationBase
 import NonsoficGroupsExist.Steinberg.RootCharacterValuation
 import NonsoficGroupsExist.Steinberg.FreePropertyT
+import NonsoficGroupsExist.Steinberg.Functoriality
+import NonsoficGroupsExist.Steinberg.FiniteTypePropertyT
 
 /-!
 # Human-readable axiom report
@@ -129,6 +131,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.everyCentralExtensionSplits
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.universalCentralExtension_of_kernel_central
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.hasKazhdanPropertyT_of_projection_injective
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.rankThree_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_certificates
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
 #print axioms NonsoficGroupsExist.hyperlinear_nonsofic_exists_of_quasisimple_kazhdan_weakMF

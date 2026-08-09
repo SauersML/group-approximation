@@ -1,5 +1,6 @@
 import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
+import NonsoficGroupsExist.Steinberg.FiniteTypePropertyT
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
@@ -44,6 +45,13 @@ rank at least three. -/
 theorem finitelyGenerated {n : ℕ} (hn : 3 ≤ n) :
     Group.FG (BinaryLeavittSteinberg n) :=
   SteinbergGroup.finitelyGenerated n (by omega)
+
+/-- The binary-Leavitt Steinberg group in rank three has property `(T)`
+directly.  Unlike `hasKazhdanPropertyT_of_projection_injective`, this result
+does not assume that the unstable Steinberg kernel vanishes. -/
+theorem rankThree_hasKazhdanPropertyT :
+    HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg 3) :=
+  finiteTypeSteinbergThree_hasKazhdanPropertyT
 
 /-- The elementary binary-Leavitt base has property `(T)` in every rank at
 least two.  Rank three is the finite-field EJZ theorem, and the explicit
