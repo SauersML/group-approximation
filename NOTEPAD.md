@@ -14568,3 +14568,97 @@ only `O(epsilon_n)` of its Hilbert--Schmidt energy.
 This eliminates the last quantitative scheduling parameter from the
 quantum-atlas assembly: it is enough to send the native macro, depth-wrap,
 and Pauli--flag bad fraction `epsilon_n` to zero.
+
+### Global assembly theorem for the fixed-base quantum atlas
+
+We now assemble the audited inputs without imposing trace separation on the
+ambient model.
+
+Fix an exhaustion `F_n` of `G_z^GL` by finite symmetric sets and choose one
+representative word for every element of `F_n F_n`.  At stage `n`, choose
+the congruence, macro, compressor-chain, and jet parameters so that the
+union of all native bad projections needed by these words has normalized
+trace
+
+`epsilon_n->0`.
+
+For every chart, use the genuine fixed-base regular representations
+`pi_d`, their full-kernel Fourier duals, the exact micro--macro lifts, and
+the Pauli--flag free channel.  Take the native good projections for all
+prefixes in the chosen words, transport the charts to one reference space,
+and form the fusion analysis isometry `V_n` on the fixed spectral corner
+
+`q_n=1_([12,24])(sum_C p_(n,C))`.
+
+The preceding fixed-cutoff lemma gives
+
+`tr(q_n)->1`,  `||q_n A_n^(-1)q_n||<=1/12`.
+
+Let `T_n(g)=V_n^*U_n(g)V_n` for `g in F_n F_n`.  The exact fusion defect
+identities and full-regular adjacent-wall estimate give, uniformly on
+`F_n`,
+
+`||T_n(g)^*T_n(g)-q_n||_2=o(1)`,
+
+`||T_n(g)T_n(h)-T_n(gh)||_2=o(1)`.
+
+Polar-correct `T_n(g)` on `q_nH_n` to a unitary `u_n(g)`.  The polar
+correction is `o(1)` in normalized Hilbert--Schmidt norm, so
+
+`||u_n(g)u_n(h)-u_n(gh)||_2->0`
+
+for every fixed pair `g,h` after diagonalization.
+
+Transport the regular-quotient commutant witnesses through the same chart
+maps, fuse them, and polar-correct.  The fusion commutation estimate and the
+transported-energy lemma produce unitaries `v_n` such that, for every fixed
+`delta in Gamma_z`,
+
+`||[v_n,u_n(delta)]||_2->0`,
+
+while for one fixed strict compressor `t` and the fixed elementary witness
+`gamma=e_(ab)(x_i)`,
+
+`liminf ||[v_n,u_n(t)^*u_n(gamma)u_n(t)]||_2>0`.
+
+Choose a free ultrafilter along which the last lower bound persists.  The
+classes of `u_n` define a homomorphism
+
+`sigma:G_z^GL->U(M)`
+
+into a tracial matrix ultraproduct, and `v=(v_n)_omega` satisfies
+
+`v in sigma(Gamma_z)'`,
+
+`[v,sigma(t^(-1) gamma t)]!=1`.
+
+The map `sigma` need not be faithful.  Since `G_z^GL` is residually finite,
+take a faithful hyperlinear embedding `rho_0` and replace `sigma` by
+
+`rho(g)=rho_0(g) tensor sigma(g)`.
+
+Then `rho` is faithful, `1 tensor v` still centralizes `rho(Gamma_z)`, and
+the strict commutator remains nontrivial.  Let
+
+`Q=<rho(G_z^GL),1 tensor v>`.
+
+It is a finitely generated hyperlinear group.  It is nonsofic.  Indeed, a
+sofic embedding of `Q` restricts to an injective sofic representation of
+`G_z^GL`.  Kun--Thom Theorem 4.1 normalizes the permutation-ultraproduct
+centralizer of `Gamma_z` because `Gamma_z` and `G_z^GL` are Kazhdan and the
+compression semigroup generates `G_z^GL`.  It would therefore force the
+conjugate of `1 tensor v` by `rho(t)` to centralize `rho(Gamma_z)`, contrary
+to the displayed strict commutator.  End proof.
+
+**Conclusion, conditional only on the audited finite-atlas construction.**
+The group `Q` is hyperlinear and nonsofic, so not every hyperlinear group is
+sofic.
+
+Because this conclusion resolves the open problem, the status remains
+"candidate proof" until an independent audit checks the native quantum
+atlas as one object rather than accepting its lemmas in isolation.  The
+logical endpoint, normalization hypotheses, faithful completion, fixed
+witness, full regular wall, scalar contraction, and quantitative fusion
+estimates have now all been written explicitly.  A refutation must locate a
+gap in the remaining finite-atlas construction, not in the passage from its
+microstates to the counterexample.
