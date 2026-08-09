@@ -14912,3 +14912,65 @@ changes the compressor commutant inclusion rather than acting on a
 decoupled multiplicity factor which the ambient root operators ignore.  If
 it is decoupled, the construction is sterile despite its nontrivial wall
 phase.
+
+### Correction: common regular absorption kills the macroscopic strict chain
+
+The adverse alternative occurs.  Regular absorption is valid as a wall
+intertwining device, but applying it on the common strict face erases the
+relative-commutant growth.
+
+**Lemma (absorbed depth chains are strict only at the wrap).**  Let
+`pi_0,...,pi_(L-1)` be the genuine finite-dimensional `Gamma` models along
+one compressor chain.  Suppose a finite quotient `K` dominates all of them
+and, after tensoring with `lambda_K` and scalar amplification, they are
+identified with one common representation
+
+`rho=lambda_K tensor 1_m`.
+
+Let `u` cyclically shift the `L` equal blocks and satisfy the compressor
+covariance on the `L-1` interior edges.  Then for every block-diagonal
+unitary
+
+`z=directSum_j z_j in (directSum_j rho(Gamma))'`,
+
+the commutator of `uzu^*` with the common `Gamma` algebra vanishes on every
+interior block.  Consequently any commutator with a fixed
+`rho(gamma)` is supported on the single wrap and has squared normalized
+Hilbert--Schmidt norm at most `4/L`.
+
+**Proof.**  On an interior edge the compressor sends the finite-dimensional
+algebra `W=C*(rho(Gamma))` into itself by unitary conjugation.  Its image is
+unitarily equivalent to `W`, hence has the same vector-space dimension;
+the inclusion is therefore equality.  Conjugation by the edge unitary
+normalizes `W'`.  Thus the transported `z_(j+1)` still lies in `W'` and
+commutes with every `rho(gamma)` on that block.  Only the arbitrarily closed
+edge can fail.  A commutator of unitaries has operator norm at most two, so
+one block among `L` contributes at most `4/L` to the squared normalized
+Hilbert--Schmidt norm.  End proof.
+
+For the proposed relative wall, take
+
+`K=Gamma_z/(ker(pi^+) intersect ker(pi^-))`
+
+after enlarging it to dominate the finitely many face vertices needed by
+the Følner box.  The regular-absorption identity makes every absorbed depth
+model a multiple of this same `lambda_K`.  The lemma applies to the common
+row-star compressor chain.  The extra operator
+`1 tensor mathcalF` lies in the multiplicity commutant and cannot restore
+strictness; its atlas connection is in fact a vertex gauge determined by
+chamber parity.
+
+Hence the relative-regular-absorption theorem cannot be combined with the
+macroscopic witness claimed in its item (4).  Item (4) preserves the norm of
+an individual pre-absorption witness under one unitary, but it does not
+preserve the **nested commutant comparison after all depth representations
+have been absorbed into one common regular sector**.  The latter is the
+quantity required by the endpoint.
+
+The global fixed-base candidate is therefore retracted again.  Its valid
+local ring covariance, fusion estimates, and endpoint remain available,
+but the adjacent wall must be intertwined without regularizing the common
+strict face into one finite quotient.  Equivalently, the wall needs a
+relative Fourier transform in a genuinely non-liftable multiplicity module
+whose `Gamma` representations remain inequivalent along the compressor
+depths.  Common-quotient regular absorption is now a proved closed method.
