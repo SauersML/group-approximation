@@ -84,6 +84,11 @@ variable {I R : Type*} [Fintype I] [DecidableEq I] [Ring R]
 def x (i j : I) (hij : i ≠ j) (a : R) : SteinbergGroup (I := I) (R := R) :=
   PresentedGroup.of (generator i j hij a)
 
+theorem x_eq_of (i j : I) (hij : i ≠ j) (a : R) :
+    x i j hij a = PresentedGroup.of
+      (⟨i, j, hij, a⟩ : SteinbergGenerator I R) :=
+  rfl
+
 /-- Additivity of each Steinberg root subgroup. -/
 theorem x_mul (i j : I) (hij : i ≠ j) (a b : R) :
     x i j hij a * x i j hij b = x i j hij (a + b) := by
@@ -103,6 +108,12 @@ theorem x_mul (i j : I) (hij : i ≠ j) (a b : R) :
   rw [zero_add] at h
   apply mul_left_cancel (a := x (R := R) i j hij 0)
   simpa only [mul_one] using h
+
+@[simp] theorem x_neg (i j : I) (hij : i ≠ j) (a : R) :
+    x i j hij (-a) = (x i j hij a)⁻¹ := by
+  apply eq_inv_of_mul_eq_one_right
+  rw [x_mul]
+  simp
 
 /-- Non-addable Steinberg roots commute. -/
 theorem x_commute_of_ne
@@ -165,6 +176,17 @@ def projection : SteinbergGroup (I := I) (R := R) →* elementaryGroup I R :=
 @[simp] theorem projection_x (i j : I) (hij : i ≠ j) (a : R) :
     projection (x i j hij a) = elementaryRoot i j hij a := by
   simp [projection, x, generatorImage, generator]
+
+/-- Each Steinberg root parametrization is injective.  This follows from
+the canonical projection, because elementary transvections remember their
+off-diagonal coefficient. -/
+theorem x_injective (i j : I) (hij : i ≠ j) :
+    Function.Injective (x (R := R) i j hij) := by
+  intro a b hab
+  have hp := congrArg (projection (I := I) (R := R)) hab
+  rw [projection_x, projection_x] at hp
+  exact elementaryUnit_injective i j hij
+    (congrArg Subtype.val hp)
 
 /-- The canonical Steinberg projection is onto the elementary group. -/
 theorem projection_surjective :

@@ -33,6 +33,7 @@ import NonsoficGroupsExist.Endpoint.QuotientNonclosure
 import NonsoficGroupsExist.Steinberg.Basic
 import NonsoficGroupsExist.Steinberg.Perfect
 import NonsoficGroupsExist.Steinberg.FinitelyGenerated
+import NonsoficGroupsExist.Steinberg.A2System
 import NonsoficGroupsExist.Steinberg.BinaryLeavitt
 
 /-!
@@ -86,6 +87,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.SteinbergGroup.centralExtension
 #print axioms NonsoficGroupsExist.SteinbergGroup.fin_isPerfect
 #print axioms NonsoficGroupsExist.SteinbergGroup.finitelyGenerated
+#print axioms NonsoficGroupsExist.SteinbergGroup.x_injective
+#print axioms NonsoficGroupsExist.SteinbergGroup.a2System
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.projection_surjective
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.isPerfect
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyGenerated
