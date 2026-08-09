@@ -9823,3 +9823,82 @@ global presentation defect `o(1)` is sufficient when the nontrivial central
 sector occupies full trace.  The experimentally suggested `O(p^2)` support
 on other relators would give the weaker but still adequate `O(p^(-1/2))`
 global rate.
+
+### Fixed finite-image coefficient classes are also Hecke-bounded
+
+A recent tempting alternative is now closed.  Brueck--Hughes--Kielak--
+Mizerka, [*Non-Vanishing Unitary Cohomology of Low-Rank Integral Special
+Linear Groups*](https://doi.org/10.1093/imrn/rnaf230), construct an explicit
+finite-image orthogonal representation `pi_3` such that
+
+`H^2(SL_3(Z),pi_3)=R^4`.
+
+It is induced from the nontrivial sign character of an
+`S_3 x S_3` subgroup of `SL_3(F_3)`, so it has an invariant integral lattice
+and no invariant vectors.  Scaling an integral cocycle by `1/n` appears to
+give exactly the missing locally small finite-dimensional curvature.  The
+same Hecke mechanism that closed the fixed cuspidal route also closes this
+one.
+
+**Theorem (finite-image coefficient divisibility is bounded).**  Put
+`Q=SL_3(Z)`.  Let `Lambda` be a finite-rank integral `Q`-module whose action
+has finite image, assume `(Lambda tensor Q)^Q=0`, and let
+
+`0!=alpha in H^2(Q,Lambda)`
+
+have infinite order.  There is `N_alpha` such that
+
+`res_L(alpha) in n H^2(L,Lambda)`
+
+for a finite-index arithmetic subgroup `L<Q` implies `n<=N_alpha`.
+Consequently no fixed nonzero class in the Brueck--Hughes--Kielak--Mizerka
+coefficient system supplies projectively realizable curvature at unbounded
+orders.
+
+**Proof.**  Pass to a normal congruence subgroup `Q_0` contained in the
+kernel of the finite action on `Lambda`.  Restriction is injective after
+tensoring with `Q`, by restriction--corestriction.  Since `Q_0` acts
+trivially on the coefficients,
+
+`H^2(Q_0,Lambda tensor Q)=H^2(Q_0,Q) tensor (Lambda tensor Q)`.
+
+Let `F=Q/Q_0`.  The restricted class is `F`-invariant for the diagonal
+action, and the absence of invariant vectors in `Lambda tensor Q` forces
+its ordinary-cohomology coordinate span to lie in nontrivial `F`-isotypic
+components of `H^2(Q_0,Q)`.
+
+Unramified Hecke operators away from the level commute with the deck group
+`F`.  The trivial spherical packet, on which a Hecke correspondence `T` acts
+by its degree `d(T)`, lies in the trivial `F`-component.  No automorphic
+packet occurring in the finite-dimensional nontrivial `F`-span above can
+have that same unramified character at every prime: strong multiplicity one
+would identify it with the trivial packet, contradicting its deck type.
+As in the fixed-cuspidal theorem, an integral linear combination of finitely
+many unramified Hecke operators therefore gives one `T` for which
+
+`T-d(T)`
+
+is invertible on the rational span of the coordinates of `res_(Q_0) alpha`.
+Let `D!=0` be its determinant on a full integral lattice.
+
+If a prime `ell` outside the finite bad set divides an admissible `n`, the
+reduction of `alpha` modulo `ell` dies after restriction and hence lies in
+the continuous-cohomology kernel in Hill's arithmetic-completion sequence.
+Continuous classes have the degree Hecke character, so
+`(T-d(T))alpha=0 mod ell`, impossible for `ell` not dividing `D`.  Only
+finitely many coefficient primes remain.  For each one, Hill's exact
+`ell`-adic injection and the absence of nonzero infinitely divisible
+elements bound the exponent exactly as in the fixed-prime divisibility
+lemma above.  Their product is `N_alpha`.  End proof.
+
+For the explicit `pi_3`, one can also see the deck type directly.  If `K`
+is the index-two kernel of the inducing sign character, then
+
+`R[Q/K]=R[Q/H] direct_sum pi_3`.
+
+After Shapiro, the `pi_3` class is the anti-invariant part of ordinary
+cohomology of the finite-index subgroup attached to `K`; the degree packet
+is invariant and therefore cannot contain it.  Thus the only live rank-three
+scalar route remains the **varying** finite-parabolic Jacobi class, whose
+coefficient system and order both change with `p` and hence evade every
+fixed-class Hecke bound.
