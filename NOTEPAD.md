@@ -22168,3 +22168,94 @@ already yield the one nontrivial normalized-HS asymptotic representation.
 
 Primary pin for the local step: Gowers--Hatami, *Inverse and stability
 theorems for approximate representations of finite groups*.
+
+### A weaker nonhyperlinearity certificate: LLP instead of HS stability
+
+There is a second exact bridge which is strictly weaker than proving flexible
+Hilbert--Schmidt stability.  Put again
+
+`Q=EL_4(L_(F_2)(1,2))`.
+
+**Theorem (LLP certificate).**  If the full group C-star algebra
+`C^*_(max)(Q)` has the local lifting property, then `Q` is nonhyperlinear.
+
+**Proof.**  Suppose that `Q` were hyperlinear.  The canonical trace of `Q`
+would then be Connes embeddable.  Kirchberg's LLP/hyperlinearity implication
+upgrades this trace to the factorization property.  Kirchberg's 1994 theorem
+says that a discrete property-`(T)` group with the factorization property is
+residually finite.  But `Q` is infinite and simple, hence it has no proper
+finite-index subgroup and is not residually finite.  This contradiction proves
+the claim.  End proof.
+
+Equivalently, the already proved facts give the useful falsifiable prediction
+
+`Q hyperlinear  ==>  C^*_(max)(Q) does not have LLP`.
+
+This is a genuinely smaller target for the nonhyperlinear branch.  Flexible
+HS stability asks to correct every normalized-HS approximate representation;
+LLP asks only for local completely positive lifts.  Either theorem would
+produce an explicit finitely presented Kazhdan nonhyperlinear group and would
+discharge the nonhyperlinear hypothesis in the `qa`-versus-`qc` gadget
+separation, but LLP alone does **not** prove the main hyperlinear-versus-sofic
+problem false: it selects the `Q nonhyperlinear` side of the fork.
+
+The root-cell analysis explains both the opportunity and the present gap.
+Full group C-star algebras of finite groups are finite dimensional, and LLP is
+well behaved under full free products and under the standard finite-dimensional
+amalgamation hypotheses.  The fixed positive Steinberg cells from the previous
+section are finite.  However, the complete Steinberg presentation is not an
+iterated tree amalgam of those positive cells: opposite-root/ring cycles carry
+the same global holonomy left over in the flexible-HS proof.  Rank-two
+Curtis--Tits pieces over the full Leavitt ring are themselves infinite, so
+Curtis--Tits does not by itself reduce `C^*_(max)(Q)` to a finite-dimensional
+amalgam.  Thus no LLP claim is made yet; the exact remaining subproblem is to
+construct compatible local ucp lifts around those cycles.
+
+Primary pins: Kirchberg, *Discrete groups with Kazhdan's property T and
+factorization property are residually finite* (Math. Ann. 299 (1994)); the
+standard LLP plus hyperlinear-trace implication is also summarized in Pisier's
+treatment of property `(T)` and group C-star algebras.
+
+### Character-rigidity route: exact criterion and scope
+
+Dudko--Medynets give another rigorous conditional route.  Let `R<G` be an ICC
+subgroup with only the identity and regular extreme characters.  If, for every
+`g!=1`, there are infinitely many distinct `R`-conjugates `g_i` whose pairwise
+quotients `g_i^(-1)g_j` lie in `R`, then every finite-factor representation of
+`G` is regular or factors through `G/N(R)`.
+
+Consequently, if such an `R` exists inside the simple group `Q`, then `Q` has
+only the trivial and regular extreme characters.  In that event **any**
+nontrivial Connes-embeddable trace on `Q` forces the regular trace to be Connes
+embeddable: the trace is a nontrivial convex combination of the trivial and
+regular characters, and the regular central summand is a corner of its
+Connes-embeddable GNS algebra.  Hence that criterion plus one nontrivial CE
+trace proves that `Q` is the desired hyperlinear nonsofic group.
+
+The binary Higman--Thompson group `V_(2,4)` embeds naturally as the
+prefix-permutation units in `M_4(L)` and has the required character rigidity.
+What is not established is the Dudko--Medynets conjugacy condition inside all
+of `EL_4(L)`.  General elementary transvections are not topological-full-group
+elements, and no published theorem makes the canonical `V_(2,4)` subgroup
+commensurated by the whole elementary group.  The tempting statement
+
+`V_(2,4) intersect g V_(2,4) g^(-1) is infinite for every g in Q`
+
+would in any case still require infinitely many cosets modulo the centralizer
+of `g` to produce distinct conjugates.  This is therefore logged as an exact
+character-rigidity certificate, not as a proved property of `Q`.
+
+Primary pin: Dudko--Medynets, *Finite Factor Representations of
+Higman--Thompson groups*, especially Theorems 2.9 and 2.10.
+
+### Source correction for arXiv:2604.01408
+
+The primary TeX of Culf--et al., arXiv:2604.01408, does not assert HS stability
+of the Leavitt Steinberg group.  Its unconditional `q`-versus-`qa` separation
+uses a hyperlinear solution group whose finite-dimensional representations
+kill a distinguished element, followed by a homogeneous-linear-system
+amalgamation that makes all finite-dimensional representations trivial.  Its
+`qa`-versus-`qc` separation remains conditional on the existence of a
+nonhyperlinear group.  Therefore the Steinberg HS-stability and LLP bridges
+above are new external ways to discharge that condition; they are not hidden
+lemmas from the cited paper.
