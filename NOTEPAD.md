@@ -18520,6 +18520,84 @@ incidences—matrix-root induction, prime-field owner matching, passive witness
 coherence, and atlas-size scheduling—have been reduced to exact finite
 calculations.
 
+### The compressor--shear cell is a finite compressed-commutant gauge equation
+
+The active compressor may be modified without disturbing any forward
+`Gamma` covariance, provided the modification is made in the correct
+relative commutant.
+
+On one interior fixed-base depth edge, write
+
+`H_0=pi(t Gamma t^(-1)) < H=pi(Gamma)`
+
+for the two finite image subgroups in the common regular jet block, and let
+`U_t` be the old edge unitary, so
+
+`U_t pi(delta) U_t^*=pi(t delta t^(-1)) in lambda(H_0)`
+
+for every `delta in Gamma`.  Choose
+
+`W in lambda(H_0)'`
+
+and replace the edge by
+
+`U_t'=W U_t`.
+
+Then every forward covariance identity remains exact:
+
+`U_t' pi(delta) U_t'^*`
+` =W pi(t delta t^(-1)) W^*`
+` =pi(t delta t^(-1))`.
+
+At the same time the invisible inverse conjugate changes to
+
+`B_W=U_t'^* pi(gamma) U_t'`
+` =U_t^* W^* pi(gamma) W U_t`.
+
+Put
+
+`v=U_t^* W U_t`.
+
+Because `W` commutes with `U_t pi(Gamma)U_t^*=pi(t Gamma t^(-1))`, the
+unitary `v` commutes with all of `pi(Gamma)`.  Thus the desired global
+centralizer witness is automatic, while
+
+`B_W=v^* (U_t^*pi(gamma)U_t)v`.
+
+The distinction between the two commutants is essential.  Taking
+`W in lambda(H)'` would preserve every commutator of the old invisible
+operator with positive root operators and could not repair the antipodal
+base output.  The larger algebra `lambda(H_0)'` may change precisely the
+letters in `H minus H_0`; the strict compression chain guarantees that this
+extra multiplicity is nonzero.
+
+In regular coordinates
+
+`ell^2(H)=ell^2(H_0 backslash H) tensor ell^2(H_0)`,
+
+the algebra `lambda(H_0)'` is the full matrix algebra on the coset
+multiplicity tensored with the right regular algebra of `H_0`.  Therefore
+choosing `W` is a finite bundle-gauge problem, not an abstract operator
+existence problem.
+
+The compressor--shear coupling lemma is equivalent to the following finite
+statement on every interior edge:
+
+> choose `W in lambda(H_0)'` so that `B_W`, after the diagonal ambient
+> absorption, is the orbitwise simple-root shear on the common
+> `L_0=N_beta(F_p)` incidence and has the prescribed native base output.
+
+The existing Haar/regular-quotient lemma proves that some `W` yields
+order-one noncommutation; the orbitwise shear lemma proves that the target
+operator exists and has the correct Steinberg cell.  What is still missing
+is membership of that target in the `lambda(H_0)'`-conjugacy orbit of the old
+invisible operator.  In finite terms, compare their systems of partial
+permutations between the left-`H_0` cosets and solve the resulting vertex
+gauge equations.  Once this orbit equation is solved, forward semidirect
+covariance, centrality of `v`, the antipodal relation, and strict energy all
+hold on the same edge; cyclic completion contributes only its already
+counted boundary.
+
 ### Audit: a negative simple-root shear does not descend to the jet image
 
 The infinite polynomial simple-root complement above is valid, but the
@@ -18573,3 +18651,73 @@ the prime-field repair globally still requires the stated sparse fusion and
 same-letter consistency estimates.  Other possible repairs are a partial
 cell with an `o(1)` top boundary, a cyclic/invertible selective factor whose
 sterility is broken elsewhere, or the square-zero Fourier dual boundary.
+
+### A free cycle regularizes the strict shear conjugacy cell
+
+The distinguished equation `t^(-1) gamma t=B_abs` has an exact finite
+solution once the orbitwise shear is given one cyclic coordinate.  This
+removes the joint-spectrum obstruction inside that one cell.
+
+Let `L` be finite, let `theta in Aut(L)` have order `m`, and let
+`P_theta` act on `ell^2(L)` by
+
+`P_theta delta_l=delta_(theta(l))`.
+
+Let `s_m` be the regular cyclic shift on `ell^2(C_m)`.  On
+
+`ell^2(L) tensor ell^2(C_m)` put
+
+`pi(l)=lambda_L(l) tensor 1`,
+
+`pi(a)=P_theta tensor s_m`,
+
+where `a` generates `C_m`.  Then `pi` is exactly the left regular
+representation of
+
+`S=L semidirect_theta C_m`.
+
+**Proof.**  Identify the standard basis with `S` by
+`delta_(l,a^j)=delta_l tensor delta_j`.  Left multiplication by `(h,1)` is
+`lambda_L(h) tensor 1`, while left multiplication by `(1,a)` sends
+`(l,j)` to `(theta(l),j+1)`, which is `P_theta tensor s_m`.  End proof.
+
+The same statement holds with any number of left-`L` cosets: the
+orbitwise-normalizer representation tensored with `s_m` is a direct sum of
+regular `S`-representations.  In particular it is jointly unitarily
+equivalent, on `L` and the cyclic generator, to any other equal-multiplicity
+regular model of the same finite semidirect group.
+
+Strictness is unchanged.  For `z=rho_L(r) tensor 1`,
+
+`[z,lambda_L(L) tensor 1]=1`,
+
+and
+
+`||[z,P_theta tensor s_m]||_2`
+` =||[rho_L(r),P_theta]||_2`.
+
+Thus the earlier right-regular averaging still gives the lower bound
+`2(1-1/|im(theta-1)|)` for the squared commutator, even though the shear
+generator now has the completely regular cyclic spectrum required for a
+unitary conjugacy.
+
+For the prime-field owner take `L=L_0` and `m=p`.  After the ambient regular
+absorptions, the native positive pair `(L_0,gamma)` and the strict pair
+`(L_0,B_abs tensor s_p)` are both multiples of the regular representation of
+`L_0 semidirect_theta C_p`.  Hence there is an explicit unitary `T_abs` on
+the strict relator cell with
+
+`T_abs^*(lambda(gamma) tensor 1)T_abs=B_abs tensor s_p`
+
+and with exact covariance on the whole prime-field incidence `L_0`, while
+the protected witness retains its order-one escape.
+
+This solves the compressor--shear coupling lemma **on the distinguished
+finite incidence**, which is the maximal statement compatible with finite
+normalizer rigidity.  It does not make the same `T_abs` covariant on the
+full finite jet image.  The remaining atlas obligation is to synchronize
+this occurrence of the global compressor `t` with the ordinary depth-shift
+occurrences that own the other semidirect covariance relators.  The free
+cycle shows that no spectral or joint-`L_0` obstruction remains in the
+strict cell; any remaining obstruction is precisely multi-cell fusion
+holonomy.
