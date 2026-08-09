@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Sofic.HyperlinearReduction
+import Mathlib.GroupTheory.QuotientGroup.Basic
 
 /-!
 # Local lifting through a central quotient
@@ -98,6 +99,51 @@ theorem isLocallyEmbeddableInto_of_iterate_kills_finite_kernel
     have hd := hm _ hdefect
     rw [map_mul, map_mul, map_inv] at hd
     exact (mul_inv_eq_one.mp hd).symm
+
+/-- Uniform death of the quotient kernel produces a genuine injective section
+over an iterate of the quotient endomorphism.  This is the abstract form of
+splitting the universal Steinberg cover over a sufficiently deep corner. -/
+theorem exists_injective_iterate_section
+    (p : U →* Q) (F : U →* U) (f : Q →* Q)
+    (hp : Function.Surjective p)
+    (hf : Function.Injective f)
+    (hcompat : p.comp F = f.comp p)
+    (hkill : ∃ m : ℕ, ∀ z : U, p z = 1 → iterateEnd F m z = 1) :
+    ∃ (m : ℕ) (s : Q →* U),
+      p.comp s = iterateEnd f m ∧ Function.Injective s := by
+  classical
+  obtain ⟨m, hm⟩ := hkill
+  have hker : p.ker ≤ (iterateEnd F m).ker := by
+    intro z hz
+    apply MonoidHom.mem_ker.mpr
+    exact hm z (MonoidHom.mem_ker.mp hz)
+  let qlift : U ⧸ p.ker →* U :=
+    QuotientGroup.lift p.ker (iterateEnd F m) hker
+  let e : U ⧸ p.ker ≃* Q :=
+    QuotientGroup.quotientKerEquivOfSurjective p hp
+  let s : Q →* U := qlift.comp e.symm.toMonoidHom
+  have hsection : p.comp s = iterateEnd f m := by
+    apply MonoidHom.ext
+    intro x
+    obtain ⟨u, rfl⟩ := hp x
+    have hinv : e.symm (p u) = QuotientGroup.mk u := by
+      apply e.injective
+      rw [e.apply_symm_apply]
+      change p u = QuotientGroup.kerLift p (QuotientGroup.mk u)
+      exact (QuotientGroup.kerLift_mk p u).symm
+    change p (qlift (e.symm (p u))) = iterateEnd f m (p u)
+    rw [hinv]
+    change p (iterateEnd F m u) = iterateEnd f m (p u)
+    exact iterateEnd_projection p F f hcompat m u
+  refine ⟨m, s, hsection, ?_⟩
+  intro x y hxy
+  apply iterateEnd_injective hf m
+  have hp_eq := congrArg p hxy
+  have hx := DFunLike.congr_fun hsection x
+  have hy := DFunLike.congr_fun hsection y
+  change p (s x) = iterateEnd f m x at hx
+  change p (s y) = iterateEnd f m y at hy
+  exact hx.symm.trans (hp_eq.trans hy)
 
 end LocalCentralQuotientLifting
 
