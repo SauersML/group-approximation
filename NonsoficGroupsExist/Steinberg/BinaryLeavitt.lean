@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Steinberg.FinitelyGenerated
+import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
@@ -112,12 +113,36 @@ def centralExtension (n : ℕ)
     CentralExtension (BinaryLeavittSteinberg n) (ElementaryBase n) :=
   SteinbergGroup.centralExtension hker
 
+/-- Every central extension of the concrete binary-Leavitt Steinberg group
+splits in rank at least five.  This is unconditional and does not assert
+anything about the kernel of the canonical map to the elementary group. -/
+theorem everyCentralExtensionSplits
+    {E : Type} [Group E] {n : ℕ} (hn : 5 ≤ n)
+    (P : CentralExtension E (BinaryLeavittSteinberg n)) :
+    ∃ s : BinaryLeavittSteinberg n →* E,
+      P.projection.comp s = MonoidHom.id _ :=
+  KervaireSteinberg.every_centralExtension_splits hn P
+
+/-- Conditional only on centrality of the canonical Steinberg kernel, the
+binary-Leavitt Steinberg projection is the universal central extension in
+rank at least five.  In particular, this theorem neither assumes nor proves
+injectivity of the projection. -/
+noncomputable def universalCentralExtension_of_kernel_central
+    {n : ℕ} (hn : 5 ≤ n)
+    (hker : (SteinbergGroup.projection :
+        BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
+      Subgroup.center (BinaryLeavittSteinberg n)) :
+    UniversalCentralExtension (BinaryLeavittSteinberg n)
+      (ElementaryBase n) :=
+  KervaireSteinberg.fin_universalCentralExtension hn hker
+
 /-- Concrete endpoint with the still-external classical certificates made
 explicit.  The group in the conclusion is the actual presented Steinberg
 group, not an abstract placeholder.
 
-The remaining hypotheses correspond to: centrality of the Steinberg kernel
-(Kervaire--Steinberg), simplicity of the elementary Leavitt base, the
+The remaining hypotheses correspond to: centrality of the canonical
+Steinberg kernel (separate from the Kervaire--Steinberg splitting theorem
+proved above), simplicity of the elementary Leavitt base, the
 all-central-covers Kun--Thom theorem, finite presentability
 (Krstić--McCool), and property `(T)` (Ershov--Jaikin-Zapirain). -/
 theorem finitelyPresentedKazhdanSoficImageRigid_of_certificates
