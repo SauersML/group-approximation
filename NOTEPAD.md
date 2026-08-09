@@ -24875,3 +24875,69 @@ implying Frobenius stability; Mimura, *Property `(TT)` modulo `(T)` and
 homomorphism superrigidity into mapping class groups*, for the scope of the
 comparison-map theorem; Ershov--Jaikin-Zapirain, *Property `(T)` for
 noncommutative universal lattices*, for the applicable degree-one result.
+
+# The entire Thompson prefix-mixer subgroup lifts with zero holonomy (2026-08-09)
+
+The corner-mixing audit has a decisive first simplification: none of the
+central holonomy comes from prefix permutations.
+
+Let `V<Q=L_(F_2)(1,2)^x` be the standard Thompson subgroup of binary prefix-
+replacement units.  Szymik--Wahl prove that Thompson's group `V=V_(2,1)` is
+integrally acyclic.  In particular,
+
+`H_1(V,Z)=H_2(V,Z)=0`.                                   `(1)`
+
+**Theorem (canonical prefix lift).**  Let
+
+`1 -> A -> E --p--> Q -> 1`
+
+be any central extension.  The inclusion `V->Q` has a unique homomorphic
+lift `V->E`.  In particular this holds for the universal Steinberg cover
+`U_Q->Q`.
+
+**Proof.**  Central extensions of `V` by the trivial `V`-module `A` are
+classified by `H^2(V,A)`.  The universal-coefficient sequence and `(1)` give
+
+`0 -> Ext(H_1(V,Z),A) -> H^2(V,A)`
+`  -> Hom(H_2(V,Z),A) -> 0`,
+
+so `H^2(V,A)=0`.  The pullback of `E` to `V` therefore splits.  Two sections
+differ by a homomorphism `V->A`; this is zero because `H_1(V,Z)=0`, proving
+uniqueness.  The section is injective because its composition with `p` is
+the inclusion.  End proof.
+
+Uniqueness forces exact compatibility with every prefix operation.  Let
+`v in V`, and let `vtilde in E` be its canonical lift.  Conjugation by
+`vtilde` is the unique lift of conjugation by `v`.  Hence whenever prefix
+insertion maps obey in `Q` a relation of the form
+
+`Ad(v) kappa_w = kappa_(v.w) Ad(v|w)`,                   `(2)`
+
+the functorial lifts of the maps in `(2)` obey the same relation in `E`
+with no central correction.  Equivalently, all finite-level symmetric-group
+actions permuting equal-depth corners act exactly on the lifted corner
+system.
+
+There is a useful conditional strengthening of the deep-corner theorem.
+If `(kappa_0^m)_*=0` on all of `H_2(Q,Z)`, then the universal extension
+splits not only over the block subgroup `Q^(2^m)` but over the whole finite
+prefix-wreath subgroup
+
+`Q^(2^m) semidirect Sym(2^m) < Q`.                        `(3)`
+
+Indeed, use the commuting corner sections already constructed on the base
+and the canonical Thompson lift on `Sym(2^m)`.  Relation `(2)` gives exact
+semidirect covariance, so their product is a section of `(3)`.
+
+**Consequence for the main obstruction.**  Tree-pair changes, unequal-depth
+prefix replacements, and finite permutations of arbitrarily deep corners
+all lift exactly through the Steinberg cover.  They cannot create the
+non-scalar relator holonomy isolated in the adjoint-amplification audit.  Any
+remaining holonomy must involve genuinely additive/off-diagonal Leavitt
+transvections--the part of `L^x` not contained in its prefix-monomial
+Thompson subgroup.  This removes the whole combinatorial prefix-mixer sector
+from the open compatibility problem.
+
+Primary pin: Markus Szymik--Nathalie Wahl, *The homology of the
+Higman--Thompson groups*, Invent. Math. 216 (2019), Theorem A and the
+specialization `V=V_(2,1)`: Thompson's `V` is acyclic.
