@@ -25928,3 +25928,71 @@ parameter in the explicit finite-factor coordinates.  The remaining search
 is no longer obscured by ambient dimension: one must choose the other factor
 multiplicities and relative conjugating unitaries so that all words in `C`
 have Frobenius displacement `o(sqrt(r))`, while `H_0` has active rank `r>0`.
+
+# Atlas compression: three rank-eight charts suffice (2026-08-09)
+
+The thirty-factor atlas can be reduced to three factors.  This incorporates
+the useful part of the newest shared atlas edit while correcting its proposed
+rank-five refinement.
+
+Retain the three-leaf code `C={gamma_1,gamma_2,gamma_3}` and, for
+`k in {1,2,3}`, let
+
+`D_k=(C\{gamma_k}) union {gamma_k e,gamma_k f}`.
+
+Thus `D_k` is a complete four-leaf code.  The thirty generators distribute
+among its three scalar charts exactly as follows:
+
+* `q_(ij,e)` and `q_(ij,f)` lie in the `D_i` chart;
+* `q_(ij,e*)` and `q_(ij,f*)` lie in the `D_j` chart;
+* `q_(ij,1)` lies in the `D_k` chart for the unique `k` outside `{i,j}`.
+
+For example, the first assertion uses the two leaves `gamma_i e` (or
+`gamma_i f`) and `gamma_j`; the second uses `gamma_i` and `gamma_j e` (or
+`gamma_j f`); the third uses the two unsplit leaves `gamma_i,gamma_j`.
+
+The four-leaf charts themselves are not suitable superperfect factors:
+`GL_4(F_2)~=A_8` has nontrivial Schur multiplier.  Moreover one cannot, as
+suggested in the shared draft, split a single supposedly unused leaf and
+obtain a five-leaf chart containing all generators assigned to `D_k` as
+scalar matrices.  Across those assigned generators every leaf of `D_k`
+occurs as a distinguished row or column.  Splitting only one endpoint of a
+matrix unit destroys the scalar leaf-matrix expression; there is no common
+unused leaf.
+
+Uniformly refine all four leaves once instead.  The resulting code
+
+`D_k^(1)={delta e,delta f : delta in D_k}`
+
+has eight leaves, and the identity
+
+`alpha beta* = alpha e (beta e)* + alpha f (beta f)*`
+
+embeds the whole `D_k` scalar chart diagonally in its refinement.  Hence all
+generators assigned above lie in a fixed subgroup
+
+`H_k~=GL_8(F_2)`.
+
+For rank eight this finite simple group has trivial Schur multiplier, so it
+is superperfect.  Consequently the surjection onto the Leavitt group can be
+replaced by the much smaller explicit atlas
+
+`P_3=H_1 * H_2 * H_3 ~= *^3 GL_8(F_2) ->> Q`.             `(11)`
+
+All universal-cover and exact-representation arguments apply verbatim:
+if `R_3` is the kernel, then
+
+`U_Q~=P_3/[P_3,R_3]`.
+
+The survivor `p_0=q_(12,1)` lies in `H_3`; under uniform refinement it is
+the product of the two commuting scalar transvections on the `e`- and
+`f`-descendants, and remains an involution.  Therefore the exact
+negative-eigenspace formula from the shared atlas note continues to apply.
+
+This is a material finite reduction: exact models now require three
+independent representation types of one fixed finite group and only two
+relative conjugating unitaries after a global conjugation, rather than
+thirty factor representations and twenty-nine relative unitaries.  What is
+still missing is an explicit finite normal generating list for
+`[P_3,R_3]`; it can in principle be obtained by the same finite-presentation
+Tietze translation already isolated for `P_30`.
