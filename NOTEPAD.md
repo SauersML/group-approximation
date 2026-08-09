@@ -14326,3 +14326,96 @@ one common matrix algebra with trace `1-o(1)` and control
 `||U_(g,C)p_CBp_D-p_CBp_DU_(g,D)||_2`
 
 uniformly over the finite atlas.
+
+### Native good subspaces construct the common quantum atlas
+
+The remaining projections and overlap estimates can be obtained from the
+local models without a new existence theorem.
+
+At stage `n`, and for each chamber `C`, let `H_(n,C)` be its native
+fixed-base jet/Pauli/macro Hilbert space.  Equalize dimensions by scalar
+amplification; there are only twenty-four charts.  For the first `n`
+enumerated group words, let `q_(n,C)` be the intersection of the native
+good projections on which:
+
+* all required macro and depth paths avoid their wraps;
+* the Pauli--flag isotropy is trivial; and
+* every adjacent-wall fixed-base Fourier formula used by those words is
+  exact.
+
+There are finitely many conditions at stage `n`.  If their union bad rank
+fraction is `epsilon_n`, then
+
+`tr(q_(n,C))>=1-O(epsilon_n)`
+
+uniformly in `C`, after choosing the depth, macro, and congruence parameters
+diagonally so that `epsilon_n->0`.
+
+For an adjacent wall `C--D`, the fixed-base Fourier--Weil operator gives an
+exact isometry between the corresponding common-good subspaces.  The
+source and target have the same rank because annihilator reversal and the
+Pauli free-orbit matching are bijective there.  Extend this partial isometry
+arbitrarily to a unitary
+
+`J_(D,C):H_(n,C)->H_(n,D)`.
+
+Its failure to intertwine any of the first `n` local generator operators is
+supported on a projection of rank `O(epsilon_n dim H)`.
+
+Fix a reference chart `C_0` and one path of length at most the fixed atlas
+diameter from `C_0` to every `C`.  Compose the wall unitaries to obtain
+
+`J_C:H_(n,C)->H_(n,C_0)`
+
+and transport
+
+`p_C=J_C q_(n,C)J_C^*`,
+
+`U_(g,C)=J_C U_(g,C)^native J_C^*`
+
+into the common reference space.
+
+**Theorem (finite quantum-atlas overlap estimate).**  For every fixed
+generator `g` among the first `n` conditions and every chart pair `C,D`,
+
+`rank( U_(g,C)p_Cp_D-p_Cp_DU_(g,D) )`
+` =O(epsilon_n dim H)`.
+
+Hence its normalized Hilbert--Schmidt norm is `O(sqrt(epsilon_n))`,
+uniformly over the finite atlas.  The same assertion holds for the
+transported local witnesses.
+
+**Proof.**  Along one adjacent wall the two operators agree on the
+common-good source/range by exact fixed-base Fourier covariance.  Therefore
+their difference factors through the sum of the two bad complements, whose
+rank is `O(epsilon_n dim H)`.  For arbitrary `C,D`, concatenate the fixed
+paths.  The atlas diameter is constant, so the union of all encountered bad
+subspaces still has that rank order.  Scalar amplification and unitary
+transport preserve normalized ranks.  The elementary inequality
+
+`||X||_2<=||X||_op sqrt(rank(supp X)/dim H)`
+
+gives the Hilbert--Schmidt estimate, with uniformly bounded operator norm.
+The witnesses were defined by the same transports, so the proof is
+identical.  End proof.
+
+Passing from `p_Cp_D` to `p_CBp_D` costs the spectral inverse factor from the
+preceding fusion estimate.  Choose the spectral threshold `tau_n->0` so
+slowly that
+
+`sqrt(epsilon_n)/tau_n^2->0`.
+
+Then the fusion-frame glued and polar-corrected operators form
+Hilbert--Schmidt microstates for `G_z^GL`, while the transported-witness
+energy lemma retains an order-one strict commutator.
+
+This restores the candidate microstate theorem in a genuinely quantum
+form.  It does not contradict the classical property-`(T)` no-go: the
+projections `p_C` are transported by Fourier and have nonzero off-diagonal
+frame overlaps, so there is no common depth-labelled permutation basis.
+
+The proposed proof is again at a completion boundary.  Before declaring
+the open problem solved, the next adversarial check must expand the claimed
+"exact common-good adjacent-wall covariance" for one wall on the **full
+regular elementary representation**, including the base factor and the
+strict-witness unitary, rather than only on the tangent Heisenberg kernel.
