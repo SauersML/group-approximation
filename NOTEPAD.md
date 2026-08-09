@@ -25424,3 +25424,49 @@ The proof deliberately avoids the invalid inference `GL=EL` implies
 bounded elementary width.  The width comes instead from the explicit
 strong-division pivot, and the final diagonal is absorbed wholesale by
 the rank-four subgroup.
+
+# Combined consequence: only bounded cross-copy gluing remains (2026-08-09)
+
+The zero-stabilization theorem and the uniform strong-division theorem fit
+together exactly.  Under the rank self-similarities, the subgroup
+
+`H=diag(E_4(L),1)<E_5(L)=Q`
+
+is a transported one-step corner copy of `Q`.  Hence the map
+
+`H_2(H,Z)->H_2(Q,Z)`
+
+induced by inclusion is zero, and the universal central extension of `Q`
+splits uniquely over `H`.  It consequently splits uniquely over each of
+the finitely many fixed coordinate conjugates `H_1,...,H_s` in `(BG)`.
+
+Since
+
+`Q=(H_1 union ... union H_s)^(41)`,                     `(1)`
+
+every element of `Q` is a product of at most `41` elements drawn from
+subgroups with canonical exact lifts to `U_Q`.  Thus one may choose a
+set-theoretic lift of every base element as a word of uniformly bounded
+length in exact subgroup sections.  All multiplication defects of this
+lift are central and arise solely when factors from different `H_i` are
+regrouped.  There are no within-copy defects and no defects caused by
+passing to deeper corners or by coordinate/prefix conjugation.
+
+This is the sharpest current interface for the analytic problem:
+
+* algebraic depth is `1`, not element-dependent;
+* factorization length is at most `41`, not element-dependent;
+* each factor subgroup and every fixed conjugator lifts exactly;
+* the only uncontrolled datum is the central cocycle created by the
+  finitely many **types** of cross-copy transition, evaluated on infinitely
+  many choices of elements inside those copies.
+
+Finitely many transition types do not by themselves make the central image
+finitely generated: the transition value can still vary with the elements,
+and asserting otherwise would incorrectly prove finite presentation of
+`Q`.  A valid final theorem would be, for example, a uniform projective
+microstate construction for these bounded products, or a proof that each
+cross-copy transition cocycle is a finite sum of homomorphisms from perfect
+source groups and therefore vanishes.  Neither assertion has yet been
+proved.  What `(1)` does establish is that no unbounded word-length or
+ever-deep stabilization phenomenon remains available as an obstruction.
