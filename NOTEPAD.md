@@ -10919,3 +10919,105 @@ from the cyclic subgroup `<tbar>` to the other fixed generators of
 `SL_4(Z)`.  The Schur--Jacobi Mackey channel above is `Q_p`-invariant, so it
 is compatible with discarding its `O(p^(-3))` exceptional complement before
 performing this extension.
+
+### A fixed-prime local-ring tower makes both Pauli support and wrap vanish
+
+The preceding fixed-compressor correction still varies the residue prime.
+The minimal `B=V_4` source gives a cleaner one-parameter tower in which the
+prime, the Pauli fiber, and the integral compressor are all fixed.
+
+Fix an odd prime `p>3`, put
+
+`R_n=Z/p^n Z`,  `Q_n=SL_4(R_n)`,
+
+and embed `B=V_4` by its regular permutation action on the four coordinates.
+Let `beta_B` be the quaternion multiplier and let
+
+`c_n in H^2(Q_n,T^(Q_n/B))`
+
+be its inverse Shapiro image.  Since `2` is invertible in `R_n`, the
+Hadamard character table diagonalizes the regular `B`-action.  Its
+centralizer in `Q_n` is the determinant-one diagonal torus in this basis,
+and every element of `Aut(B)=S_3` has a determinant-corrected monomial lift.
+Consequently
+
+`|N_(Q_n)(B)|=6 |R_n^x|^3`
+
+and the number of `B`-fixed outer blocks is
+
+`|N_(Q_n)(B)|/|B|=(3/2)|R_n^x|^3`.
+
+Because
+
+`|R_n^x|=p^(n-1)(p-1)`,
+
+`|Q_n|=p^(15(n-1)) |SL_4(F_p)|`,
+
+the detecting-pair support density is exactly
+
+`rho_n=6 |R_n^x|^3/|Q_n|`
+`     =(6(p-1)^3/|SL_4(F_p)|) p^(-12(n-1))`.
+
+Thus the scalar defect forced by the quaternion sign has normalized
+Hilbert--Schmidt size `Theta(p^(-6(n-1)))`.  This is the fixed-prime analogue
+of the `Theta(p^(-6))` field estimate, now decaying exponentially in the
+congruence depth.
+
+There is simultaneously an automatic long orbit for one fixed compressor.
+Fix
+
+`t=I+pE_(ji) in SL_4(Z)`.
+
+Its image `t_n` in `Q_n` has order
+
+`M_n=p^(n-1)`
+
+because `E_(ji)^2=0` and `t_n^m=I+mpE_(ji)`.  Moreover its action on
+`Q_n/B` is free: if a nonidentity power stabilized `gB`, then a nontrivial
+`p`-power-order element would be conjugate into the group `B` of order four.
+Hence every outer orbit has length exactly `M_n`.
+
+For the coefficient shear induced by this same fixed integral element,
+
+`alpha_t(x_i)=x_i x_j^p`,  `alpha_t^m(x_i)=x_i x_j^(pm)`.
+
+Add an optional macro-length `L` and unfold each free outer orbit through
+levels `0<=m<M_n L`.  In
+
+`S_(n,L)=F_p[x_i,x_j]/(x_i^2,x_j^(p M_n L+1))`
+
+use the nested coefficient rings
+
+`B_m=F_p[x_j]+x_i x_j^(pm) F_p[x_j]`.
+
+Every compressor transition is exact except the single closing wrap in each
+length-`M_n L` chain.  The normalized relation defect is therefore at most
+
+`2/sqrt(M_n L)=2/sqrt(p^(n-1)L)`.
+
+At every nonfinal level,
+
+`x_i x_j^(pm) in B_m \ B_(m+1)`,
+
+so the regular-quotient strict-commutant witness remains macroscopic and its
+conjugate by the same fixed `t` has commutator norm tending to `sqrt(2)` with
+the fixed root element `gamma=e_12(x_i)`.
+
+**Fixed-prime Pauli-tower conclusion.**  Along `n->infinity`, one obtains
+simultaneously
+
+* one fixed two-dimensional Pauli/quaternion source with exact central sign;
+* curvature support `Theta(p^(-12(n-1)))` and scalar Hilbert--Schmidt cost
+  `Theta(p^(-6(n-1)))`;
+* free outer cycles of length `p^(n-1)` for one fixed integral compressor;
+  and
+* orbit-chain wrap error `O(p^(-(n-1)/2)L^(-1/2))` with a macroscopic strict
+  relative-commutant witness.
+
+No varying prime, varying compressor, signed-variable inversion, or shrinking
+Pauli trace sector remains in this local construction.  The unresolved step
+is now sharply finite: combine the three `B`-orbits of ordered roots (hence
+the twelve `B`-conjugate compressors) and verify their Steinberg/deeper-
+congruence relations while preserving the common Pauli fiber and the nested
+coefficient levels.  The theorem above does not yet assert that global
+compatibility.
