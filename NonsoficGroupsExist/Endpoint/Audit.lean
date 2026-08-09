@@ -40,6 +40,7 @@ import NonsoficGroupsExist.Steinberg.FiniteControl
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Steinberg.RootFiltration
 import NonsoficGroupsExist.Steinberg.RootActions
+import NonsoficGroupsExist.Steinberg.RootPlane
 
 /-!
 # Human-readable axiom report
