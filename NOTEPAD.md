@@ -21523,3 +21523,117 @@ This result also corrects the motivation of the earlier stable-`K_2` note.
 Stable `K_2(L)=0` does not determine the unstable kernels `K_2(n,L)` and was
 never enough to compute `H_2(EL_4(L),Z)`.  No such computation is needed:
 property `(T)` of the relevant universal covers is the exact rigidity input.
+
+---
+
+# The Leavitt--Steinberg Hilbert--Schmidt stability fork (2026-08-09)
+
+Put
+
+`L=L_(F_2)(1,2)`, `Q=EL_4(L)`, and `U=St_5(L)`.
+
+The preceding results give the three exact inputs:
+
+1. `U` is finitely presented and has property `(T)`;
+2. `U` is quasisimple, with `U/Z(U)=Q`;
+3. every finite-dimensional complex unitary representation of `U` is
+   trivial, and every central extension of `Q` is nonsofic.
+
+These inputs turn the normalized Hilbert--Schmidt stability question for one
+explicit group into a win--win fork.
+
+**Theorem (HS-stability fork).**  Exactly one of the following alternatives
+holds.
+
+* If `U` is Hilbert--Schmidt stable, then `U` is nonhyperlinear.  Hence `U`
+  is an explicit finitely presented Kazhdan nonhyperlinear group.
+* If `U` is not Hilbert--Schmidt stable, then there is a central subgroup
+  `C<=Z(U)` such that `U/C` is hyperlinear and nonsofic.  Hence every
+  hyperlinear group is sofic is false.
+
+**Proof.**  In the stable case, suppose that `U` were hyperlinear.  Choose a
+trace-separating asymptotic representation
+
+`phi_n:U->U(d_n)`.
+
+Hilbert--Schmidt stability corrects `phi_n` pointwise in normalized
+Hilbert--Schmidt norm to genuine representations
+
+`rho_n:U->U(d_n)`.
+
+Every `rho_n` is trivial.  Thus `phi_n(g)->1` for every `g`, contradicting
+separation of any fixed `g!=1`.  Equivalently, this branch is the direct
+minimally-almost-periodic specialization of Becker--Lubotzky's theorem that
+an infinite hyperlinear property-`(T)` group is never normalized-HS stable.
+
+In the unstable case, since every genuine finite-dimensional representation
+of `U` is trivial, failure of stability supplies an asymptotic representation
+
+`phi_n:U->U(d_n)`
+
+and an element `g in U` for which `||phi_n(g)-1||_2` does not tend to zero.
+Pass to a subsequence and a nonprincipal ultrafilter on which this distance
+is bounded below.  The maps define a nontrivial homomorphism
+
+`Phi:U->prod_omega U(d_n)`.
+
+Let `C=ker(Phi)`.  This is a proper normal subgroup of the quasisimple group
+`U`, hence `C<=Z(U)`.  The image
+
+`Phi(U) ~= U/C`
+
+is hyperlinear, since it embeds in a metric ultraproduct of finite unitary
+groups.  Moreover
+
+`1 -> Z(U)/C -> U/C -> Q -> 1`
+
+is a central extension.  The central-cover nonsoficity theorem therefore
+makes `U/C` nonsofic.  End proof.
+
+The theorem is deliberately stronger than the one-way implication
+
+`U HS-stable => U nonhyperlinear`.
+
+It says that proving *instability* is not an adverse outcome: it produces the
+desired hyperlinear nonsofic group.  The only unresolved bit is which side of
+the fork `U` occupies.
+
+There is also an unconditional stability theorem on the largest currently
+accessible subclass of asymptotic representations.
+
+**Theorem (unconditional hyperfinite HS stability).**  The group `U` is
+hyperfinitely Hilbert--Schmidt stable in the sense of Dogon--Vigdorovich.
+
+**Proof.**  A von Neumann amenable character of a property-`(T)` group is
+finite-dimensional.  More explicitly, for its factorial GNS representation
+`pi`, amenability makes `pi tensor conjugate(pi)` have almost invariant
+vectors; property `(T)` supplies an invariant vector; the standard Bekka
+criterion gives a nonzero finite-dimensional subrepresentation of `pi`; and
+factoriality forces `pi` itself to be finite-dimensional.  For `U`, every
+finite-dimensional representation is trivial, so the only von Neumann
+amenable character is the trivial character.  It is already the normalized
+trace of a one-dimensional representation.  Dogon--Vigdorovich's character
+criterion for hyperfinite HS stability now applies.  End proof.
+
+Consequently any witness to the unstable branch must generate a genuinely
+nonamenable limiting von Neumann algebra.  Hyperfinite, AF, amenable-factor,
+and character-approximation constructions are completely closed for this
+group.  This is stronger than merely observing that honest finite-dimensional
+representations cannot work.
+
+Finally, arXiv:2604.01408 uses the existence of a nonhyperlinear group to
+separate `qa`- from `qc`-commutativity gadgets.  The stable branch above would
+remove that paper's conditional hypothesis, while the unstable branch would
+settle the hyperlinear-versus-sofic problem negatively.  The two outcomes
+must not be conflated: the fork is unconditional, but neither branch has yet
+been selected.
+
+**Primary-source pins.**
+
+* Becker--Lubotzky, *Group stability and Property (T)*, Theorem 1.3(ii).
+* Dogon--Vigdorovich, arXiv:2506.20843v2, Definition 6.1 and Theorem 6.2
+  (hyperfinite HS stability iff every von Neumann amenable character is a
+  limit of finite-dimensional traces), together with their property
+  `(T;CE)` amenable-character lemma.
+* Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408v1, the conditional
+  `qa`/`qc` separation.
