@@ -26357,13 +26357,18 @@ of the regular representation.  Replacing the `o(1)` remainder changes
 each fixed word by `o(1)`, giving the displayed canonical model.
 
 **Reverse direction.**  The relator limit gives a homomorphism
-`Psi:Vbar=Pbar/Nbar` into a tracial matrix ultraproduct.  Its central
-subgroup `C=Rbar/Nbar` maps to scalars.  The scalar preimage `K` has `K/C`
-normal in the simple group `Q=Vbar/C`.  A nonidentity transvection in a
-regular factor has projective normalized-HS distance exactly `sqrt(2)`, so
-it is not in `K`; hence `K/C` is proper and simplicity gives `K=C`.
-Therefore `ker(Psi)<=C`, the hyperlinear image `Psi(Vbar)` is a central
-extension of `Q`, and Thom's central-quotient permanence makes `Q`
+`Psi:Vbar=Pbar/Nbar` into a tracial matrix ultraproduct.  Put
+`C=Rbar/Nbar` and `K=C ker(Psi)`.  Then `K/C` is normal in the simple group
+`Q=Vbar/C`.  Choose a transvection `p` and an element `h` in the same
+`A_8` factor which does not commute with it.  The regular representation
+has
+
+`||[Psi(p),Psi(h)]-1||_2=sqrt(2)`.
+
+Thus `Psi(p)` is not central in the image, whereas every element of `C`
+has central image.  Hence `p notin K`; `K/C` is proper, and simplicity gives
+`K=C`.  Therefore `ker(Psi)<=C`, the hyperlinear image `Psi(Vbar)` is a
+central extension of `Q`, and Thom's central-quotient permanence makes `Q`
 hyperlinear.
 
 This is a strict improvement over the two-Schur-cover optimization: the

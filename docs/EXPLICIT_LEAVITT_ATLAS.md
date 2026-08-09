@@ -553,24 +553,25 @@ into a tracial matrix ultraproduct.  The subgroup
  C:=\bar R/\bar N
 \]
 
-is central in \(\bar V\), and \(\bar V/C\cong Q\).  The center of the
-ambient tracial matrix ultraproduct is scalar, so \(\Psi(C)\) is scalar.
-Let
+is central in \(\bar V\), and \(\bar V/C\cong Q\).  Let
 
 \[
- K=\{v\in\bar V:\Psi(v)\text{ is scalar}\}.
+ K=C\ker\Psi.
 \]
 
-Then \(K/C\) is a normal subgroup of the simple group \(Q\).  It is proper:
-the chosen nonidentity transvection \(p\) in either factor acts in the
-regular representation with trace zero, and hence
+Then \(K/C\) is a normal subgroup of the simple group \(Q\).  It is
+proper.  Indeed, choose a transvection \(p\) in the first factor and an
+element \(h\) of that factor which does not commute with \(p\).  Their
+commutator is nonidentity in \(A_8\), so the regular representation gives
 
 \[
- \inf_{\zeta\in\mathbb T}
- \|\Psi(p)-\zeta I\|_2=\sqrt2.                           \tag{28}
+ \|[\Psi(p),\Psi(h)]-I\|_2
+ =\|\lambda([p,h])-I\|_2=\sqrt2.                        \tag{28}
 \]
 
-Thus \(p\notin K\), so simplicity gives \(K=C\).  In particular
+Thus \(\Psi(p)\) is not central in \(\Psi(\bar V)\).  But every element of
+\(C\) has central image, so \(p\notin C\ker\Psi=K\).  Simplicity gives
+\(K=C\).  In particular
 \(\ker\Psi\le C\).  The image \(W=\Psi(\bar V)\) is hyperlinear and fits
 into a central extension
 
