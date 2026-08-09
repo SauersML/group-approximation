@@ -15390,3 +15390,70 @@ Weyl operator together with the relative Fourier wall and verify the four
 displayed identities on `1-o(1)` rank.  Once that is done, owner transport
 reduces the rest of the fusion overlap audit to the remaining finite list
 of rank-two and commuting cross-owner words.
+
+### Moving-wall holonomy vanishes exactly when the walls are chart coboundaries
+
+The moving-wall construction has a stronger and cleaner flatness criterion
+than the earlier constant-Fourier parity argument.
+
+Let `E_x` be one reference fiber over every good common-face vertex `x`.
+For each chamber `C`, choose a unitary chart potential
+
+`G_C(x):E_x->H_(C,x)`
+
+which is covariant along every common-face arrow `s:x->sx`:
+
+`U_(s,x)^C G_C(x)=G_C(sx)U_(s,x)^ref`.
+
+Define the moving wall by
+
+`J_(D,C;x)=G_D(x)G_C(x)^*`.
+
+Then the common-arrow equation is automatic:
+
+`J_(D,C;sx)U_(s,x)^C=U_(s,x)^D J_(D,C;x)`.
+
+More importantly, for every chamber gallery
+
+`C_0,C_1,...,C_l`
+
+at the same face vertex, the wall product telescopes pointwise:
+
+`J_(C_l,C_(l-1);x)...J_(C_1,C_0;x)`
+` =G_(C_l)(x)G_(C_0)(x)^*`.
+
+Thus every closed gallery has identity holonomy, including Coxeter squares
+and braid hexagons.  There is no scalar or noncentral multiplicity residue.
+The statement remains true with regular-absorption and Weil gauges inside
+the `G_C(x)`; internal factors cancel because they are vertex potentials,
+not independently chosen edge phases.
+
+Origin-only regular absorption naturally has this form.  Choose `G_C(o)`
+at one origin, including its absorption trivialization and native
+primal/dual Fourier gauge, and propagate it by the native common-face action:
+
+`G_C(ho)=U_(h,o)^C G_C(o)(U_(h,o)^ref)^*`.
+
+This is exactly the pulled-back-factor construction above.  The same-root,
+commuting-root, and `A_2` face relations make it well defined on the good
+component; Følner and compressor-wrap edges remain in the existing bad set.
+
+This reduces the collaborator's moving-holonomy question to a finite origin
+compatibility problem.  One must choose the twenty-four origin potentials
+`G_C(o)` so that for every adjacent transverse root arrow `b:C,o->C,o'`,
+
+`G_D(o')^* b^D G_D(o)=G_C(o')^* b^C G_C(o)`
+
+(with the contragredient opposite-root and parameter sign in the local
+coordinates).  If this simultaneous system holds, all translated
+transverse equations follow from moving-wall propagation and every atlas
+loop is already flat by the telescoping calculation.
+
+Choosing each adjacent absorption/Fourier intertwiner independently does
+not prove that system.  Equivalently, the finite family of desired origin
+edge intertwiners must be a groupoid coboundary.  The next audit is therefore
+finite and explicit: write the four-variable square-zero Weil gauges
+`G_C(o)` for all `C in S_4` and check the adjacent-transposition square and
+braid equations, including the regular-absorption multiplicity action.  A
+successful check closes moving holonomy; a noncentral braid product is the
+precise obstruction.
