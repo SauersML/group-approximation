@@ -18386,6 +18386,76 @@ incidences as sparse nonorthogonal fusion overlaps whose Gram errors vanish,
 while the full positive chart and the protected second-factor witness retain
 macroscopic trace.
 
+### A diagonal schedule absorbs the growing selective owner atlas
+
+The number of monomial owner cells need not be uniformly bounded.  At stage
+`n` it is finite—determined by the first `n` word derivations—and the fusion
+parameters may be chosen after that finite list is known.
+
+Let `m_n` be the number of positive charts, simple-root shear cells, and
+selective `L_0` incidence copies required at stage `n`.  Equalize their
+Hilbert dimensions by scalar amplification.  In each cell let `p_C` be the
+intersection of all native good projections for the stage-`n` words, and
+arrange
+
+`tr(1-p_C)<=epsilon_n`.
+
+Choose every passive edge as a ratio of vertex potentials, including the
+prime-field owner intertwiners and the already constructed Fourier--Weil
+chart potentials.  Thus gallery holonomy is exact on the common-good
+incidence; every failure of a same-global-letter overlap is supported on the
+union of the native bad projections.  After transporting to one reference
+space, put
+
+`A_n=sum_C p_C`,  `q_n=1_([m_n/2,m_n])(A_n)`.
+
+The fixed-cutoff argument is uniform in the atlas size:
+
+`tr(1-q_n)<=2 epsilon_n`,  `||q_n A_n^(-1)q_n||<=2/m_n`.
+
+The block expansion of the fusion commutator has `m_n^2` terms.  Every term
+is bounded by a fixed power of the inverse cutoff times the native
+Hilbert--Schmidt overlap error.  Consequently there is an absolute
+polynomial `P_n` in `m_n` and the maximum stage-`n` word length such that all
+stage-`n` multiplication and Gram defects are at most
+
+`P_n sqrt(epsilon_n)`.
+
+No uniform estimate for `P_n` is needed.  Having first fixed the finite word
+and cell list, choose the macro boxes, jet truncation, row-depth cycles, and
+Pauli--flag level so that
+
+`P_n sqrt(epsilon_n)<1/n`.
+
+All available bad fractions tend to zero independently as those parameters
+grow, so this diagonal choice is legitimate.
+
+Transport the absorbed witness `1 tensor z` to every owner cell.  Before
+fusion, add enough duplicate copies of the selected strict shear owner (with
+its complete owner-transported global-letter assignment) that strict copies
+form, say, at least half of the atlas.  Duplicating a chart adds no new
+relation or overlap type and changes `m_n` by at most a factor of two.  Every
+strict copy has the same lower bound
+
+`||[B_C,1 tensor z_C]||_2^2>=2(1-1/p)`.
+
+The fusion energy calculation sums over all diagonal cell blocks before
+dividing by the fused rank.  Because a fixed positive proportion of the
+blocks are strict copies, the factor `m_n` in the numerator cancels the atlas
+normalization.  Deleting `1-q_n` and the native bad sets loses only
+`O(epsilon_n)`, not `1/m_n`.  Hence the order-one strict lower bound survives
+even when `m_n->infinity`.
+
+This removes atlas cardinality and rate scheduling from the terminal gap.
+The remaining assertion is qualitative but concrete: on each selective
+incidence edge, verify that the same-global-letter difference really factors
+through the listed native bad projections.  For the `L_0` roots and the
+coupled missing root this is the exact regular-restriction calculation; for
+letters outside the incidence it must follow from the owner-transport
+definition.  Once that support statement is written without silently using
+full `Gamma` covariance, the existing fusion identities complete the
+finite-stage microstate construction.
+
 ### Audit: a negative simple-root shear does not descend to the jet image
 
 The infinite polynomial simple-root complement above is valid, but the
