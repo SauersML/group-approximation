@@ -20555,8 +20555,12 @@ elementary Steinberg commutator relations.
    hyperlinear and solve the main problem.  It rules out only the apparently
    cheaper route through a **sofic** finite cover.
 
-The only load-bearing external pin in the finite-kernel statement is the
-verbatim Kun--Thom centralizer-normalization theorem.
+The load-bearing external input in the finite-kernel statement is exactly
+Kun--Thom, arXiv:2608.06222v1, Theorem 4.1: for an infranormal Kazhdan pair
+`Gamma<G` and any sofic representation `sigma:G->S_U`, the permutation
+centralizer of `sigma(Gamma)` is normalized by `sigma(G)`.  Its hypotheses
+are inherited by the finite central pair used above; no separability,
+residual-finiteness, or exactification hypothesis is present.
 
 The finiteness restriction on `C` can in fact be removed once the ambient
 group is also put in the stable Kun--Thom range.
