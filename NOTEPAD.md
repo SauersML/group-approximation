@@ -24010,6 +24010,41 @@ the adjoint norm-ultraproduct representation, the negative central corner,
 and stable finiteness.  Removing operator-norm control lands precisely back
 at the normalized-HS stability/commutant-lifting problem.
 
+## Necessary shape of any tracial solution
+
+The same proof gives a positive structural statement about any hypothetical
+hyperlinear model.  Let `M` be a finite tracial von Neumann algebra and let
+
+`Theta:E->U(M)`
+
+be a homomorphism with `Theta(z)=-1`.  On `L2(M)` form the genuine adjoint
+representation
+
+`beta(g)(x)=Theta(g)xTheta(g)^*`,  `g in G`,
+
+and put `P=beta(p_Gamma)`.  Then
+
+`P<beta(t)Pbeta(t)^*`.                                      `(3)`
+
+Indeed the weak inequality is the universal compression inequality.  It is
+strict in this particular representation: `Theta(a_(t Gamma))` is fixed by
+`t Gamma t^(-1)`, while `gamma` moves it to
+`Theta(a_(gamma t Gamma))`; the two vectors have squared `L2`-distance `2`
+because they anticommute.  Hence the former vector belongs to the range of
+`beta(t)Pbeta(t)^*` but not to the range of `P`.
+
+Consequently the C-star algebra
+
+`C^*(beta(G)) subset B(L2(M))`
+
+contains an infinite Kazhdan projection and is not finite or stably finite.
+Thus any successful normalized-HS/CAR construction must produce a tracial
+ambient algebra whose **adjoint** C-star image is nonfinite.  There is no
+contradiction: although `M` is finite, its left-right action on `L2(M)` can
+generate an infinite operator algebra.  Operator-norm matrix models fail
+exactly because their adjoint images remain in a stably finite norm matrix
+quotient and cannot realize `(3)`.
+
 # Rank-one root defects defeat every exact character amplification (2026-08-09)
 
 There is a simple Hamming-to-Hilbert--Schmidt amplifier which at first looks
