@@ -18114,6 +18114,59 @@ obtained from its different positive coefficient owners must be transported
 to the same coupled operator in fusion-Gram norm without imposing full
 row-torus covariance on `Gamma`.
 
+### Finite central layers of Thom's tower are not an obstruction
+
+The non-Hopfian self-quotient of Thom's group suggests quotienting a
+hypothetical sofic approximation by one finite central layer.  This cannot
+produce a contradiction, for a general reason which is useful to keep
+separate from the open infinite-central-quotient problem.
+
+**Theorem (finite-normal quotients preserve soficity).**  If `G` is sofic and
+`F normal G` is finite, then `G/F` is sofic.
+
+**Proof.**  Work on a finite window and start with a sufficiently accurate
+sofic map `sigma:G->Sym(X)`.  Finite groups are P-stable in permutations, so
+after changing `sigma|F` on `o(|X|)` points it is an exact action of `F`.
+Since every `1!=f in F` has `o(|X|)` fixed points in the original sofic
+model, the union of the nonfree `F`-orbits is `o(|X|)`; discard it.  The
+relations
+
+`sigma(g) sigma(f) sigma(g)^(-1) approx sigma(g f g^(-1))`,
+
+for the finitely many tested `g` and all `f in F`, say that `sigma(g)` maps
+all but `o(|X|)` complete free `F`-orbits to complete free `F`-orbits and
+intertwines their `F`-actions.  Modify it on the exceptional orbits to an
+actual bijection of the orbit set.  It therefore induces a permutation
+`bar_sigma(g)` of `Y=X/F`.  Multiplication defects descend with only the
+discarded `o(1)` cost.
+
+It remains to check separation.  If `g notin F` and an `F`-orbit is fixed by
+`bar_sigma(g)`, then on that orbit `sigma(g)x=sigma(f)x` for some `f in F`.
+There are only `|F|` possibilities.  For each one, such points are fixed by
+the approximation to `f^(-1)g`, a nonidentity element of `G`, and hence have
+`o(|X|)` density.  Their finite union still has density `o(1)`.  Thus
+`bar_sigma(gF)` has vanishing fixed-point density, as required.  End proof.
+
+Apply this to the coherent central tower
+
+`C_p < C_(p^2) < ... < Z(K)`.
+
+If Thom's `K` were sofic, every finite central quotient `K/C_(p^m)` would be
+sofic.  De Cornulier's scaling endomorphism identifies these quotients with
+the corresponding non-Hopfian renormalizations of `K`; this is consistent,
+not contradictory.  Thom's first example is the essential calibration: it
+is a non-Hopfian Kazhdan group which is LEF and therefore sofic.
+
+Consequently no argument using only one fixed central layer, finite-order
+surgery, or the abstract non-Hopfian endomorphism can prove `K` nonsofic.
+The obstruction has to retain information uniformly through unbounded
+layers of the Prüfer tower.  In permutation coordinates this is exactly the
+previously isolated congruence-cocycle/phase-factorization problem; in
+centralizer coordinates it is the still-conjectural passage from coherent
+finite cyclic centralizers to an ergodic centralizer.  This closes the cheap
+finite-orbit renormalization shortcut without weakening either surviving
+route.
+
 ### A simple-root complement gives one joint shear for an entire chamber
 
 The canonical shear cell need not be assembled from separate `A_2`
