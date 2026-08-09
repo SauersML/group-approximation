@@ -10700,3 +10700,90 @@ exact order-two holonomy and the homogenized Heisenberg regular sector to
 transport the non-liftable `p`-shear chains through the maximal parabolic.
 The remaining task is to write the cross-stabilizer intertwiners and bound
 their five compatibility-relator defects.
+
+### The Schur and Jacobi twists have a `1-O(p^(-3))` Mackey channel
+
+The cross-stabilizer intertwiner exists on almost all of the natural product
+block space.  This is an exact finite-group statement, not a dimension
+heuristic.
+
+Embed a rank-three row-vector Jacobi subgroup in the first three coordinates
+of
+
+`Q_p=SL_4(F_p)`:
+
+`K_p=F_p^2 semidirect SL_2(F_p)`,  `|K_p|=Theta(p^5)`.
+
+Let `A=A_4<Q_p` be the even permutation group from the positive-cone Schur
+construction.  Write
+
+`X_A=Q_p/A`,  `X_K=Q_p/K_p`.
+
+The diagonal `Q_p`-orbits in `X_A x X_K` are indexed by double cosets
+`A\Q_p/K_p`.  The orbit represented by `g` has isotropy group
+
+`J_g=A intersect g K_p g^(-1)`.
+
+Let `c_A` be the binary-tetrahedral transformation-groupoid multiplier on
+`X_A`, and let `c_K` be the Jacobi multiplier on `X_K` (with its homogenized
+Heisenberg multiplicity fiber).  On the product orbit represented by `g`,
+Mackey--Shapiro identifies the isotropy class of their difference with
+
+`res_(J_g)(beta_A)-res_(J_g)(alpha_K)`.
+
+If `J_g=1`, this class is zero.  Hence the two twists differ by a groupoid
+coboundary on that entire orbit.  After harmless amplification to equalize
+block dimensions, the coboundary gives an exact phase intertwiner between
+the Schur and Jacobi block transports there.
+
+**Theorem (asymptotically full cross-stabilizer channel).**  The union
+`Omega_p` of the product orbits with `J_g=1` is `Q_p`-invariant and satisfies
+
+`|Omega_p|/(|X_A||X_K|)=1-O(p^(-3))`.
+
+On `Omega_p`, the Schur and Jacobi groupoid twists are exactly Morita-
+compatible.
+
+**Proof.**  For uniform independent cosets in `X_A` and `X_K`, the relative
+element `g` is uniform in `Q_p`.  A nontrivial intersection implies that for
+some `1!=a in A`,
+
+`g^(-1) a g in K_p`.
+
+For fixed `a`,
+
+`Prob(g^(-1)ag in K_p)`
+` =|a^(Q_p) intersect K_p|/|a^(Q_p)|`
+` <=|K_p| |C_(Q_p)(a)|/|Q_p|`.
+
+The nonidentity elements of `A_4` are three-cycles and double
+transpositions.  In the four-dimensional permutation representation, a
+three-cycle has centralizer of algebraic dimension `5` in `SL_4`, while a
+double transposition has `(+1)`- and `(-1)`-eigenspaces of dimension two and
+centralizer `S(GL_2 x GL_2)`, of dimension `7`.  Thus uniformly for
+`1!=a in A`,
+
+`|C_(Q_p)(a)|=O(p^7)`.
+
+Since `|Q_p|=Theta(p^15)` and `|K_p|=Theta(p^5)`, the displayed probability
+is `O(p^(-3))`.  Sum over the eleven nonidentity elements of `A`.  End
+proof.
+
+The estimate deliberately discards additional good double cosets.  If
+`J_g` is cyclic, both circle multipliers restrict trivially because
+`H^2(J_g,T)=0`, so those orbits also admit exact intertwiners.  Trivial
+intersection already gives the required `1-o(1)` trace.
+
+This supplies the previously missing **large nonorthogonal channel**:
+
+* the Schur side contributes the exact binary-tetrahedral sign;
+* the Jacobi side contributes the full-trace similitude-homogenized Weyl
+  system and the polynomial-shear multiplicity fiber; and
+* their projective block transports can be identified exactly off a trace
+  `O(p^(-3))` exceptional set.
+
+An operator supported on `Omega_p` incurs normalized Hilbert--Schmidt
+boundary cost `O(p^(-3/2))`, already tending to zero.  What remains is to
+place the orbit-chain strict-commutant witness inside this Morita channel
+and verify that the five fixed presentation compatibility relations only
+leave this exceptional boundary plus the `O(L^(-1/2))` shear-chain wrap.
