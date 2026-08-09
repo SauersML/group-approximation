@@ -605,7 +605,102 @@ contained in the single relative unitary \(U_n\).  Producing (25)--(26)
 would make the already nonsofic group \(Q\) hyperlinear and settle the main
 problem negatively.
 
-## 10. Primary sources
+## 10. Scalar flux is harmless: the projective regular-atlas criterion
+
+The identity target in (26) can be weakened to a scalar target.  This is a
+strictly larger finite-dimensional feasibility problem and removes every
+scalar cocycle or phase obstruction from the remaining construction.
+
+For \(V\in U(d)\), put
+
+\[
+ \ell_{\mathrm{pr}}(V)
+   :=\inf_{z\in\mathbb T}\|V-zI\|_2.
+\]
+
+**Theorem (projective canonical regular-atlas criterion).**  The following
+are equivalent.
+
+1. \(Q=L_{\mathbb F_2}(1,2)^\times\) is hyperlinear.
+2. There are integers \(k_n\geq1\) and unitaries
+   \(U_n\in U(20160k_n)\) for which the exact representations (25) satisfy
+
+   \[
+    \max_{s\in\bar{\mathcal S}}
+       \ell_{\mathrm{pr}}(\pi_n(s))\longrightarrow0.    \tag{31}
+   \]
+
+**Proof.**  The forward implication follows from the preceding theorem,
+which gives the stronger condition (26).
+
+Assume (31), and let \(d_n=20160k_n\).  Passing from \(U(d_n)\) to
+\(PU(d_n)\) and then to a metric ultraproduct gives a homomorphism
+
+\[
+ \bar\pi:\bar P\longrightarrow\prod_\omega PU(d_n).
+\]
+
+Every element of the finite normal generating set
+\(\bar{\mathcal S}\) dies by (31).  Hence its normal closure \(\bar N\)
+dies, and (22) gives a homomorphism
+
+\[
+ \Phi:U_Q\cong\bar P/\bar N
+       \longrightarrow\prod_\omega PU(d_n).            \tag{32}
+\]
+
+This homomorphism is nontrivial.  Choose \(p,h\in K_1\) with
+\([p,h]\ne1\).  Since a nonidentity element has trace zero in the regular
+representation,
+
+\[
+ \ell_{\mathrm{pr}}
+   \bigl((\lambda([p,h])\otimes I_{k_n})\bigr)=\sqrt2.  \tag{33}
+\]
+
+Thus \(\Phi([p,h])\ne1\).  Quasisimplicity of \(U_Q\) now implies
+\(\ker\Phi\leq Z(U_Q)\).
+
+It remains to note that every subgroup of the projective ultraproduct in
+(32) is hyperlinear.  The adjoint representation
+
+\[
+ \operatorname{Ad}:PU(d)\longrightarrow U(M_d(\mathbb C))\cong U(d^2)
+\]
+
+is faithful.  With normalized traces and Hilbert--Schmidt norms,
+
+\[
+ \begin{aligned}
+  \ell_{\mathrm{pr}}(V)^2
+    &=2-2|\operatorname{tr}_d(V)|,\\
+  \|\operatorname{Ad}(V)-I\|_{2,d^2}^2
+    &=2-2|\operatorname{tr}_d(V)|^2.
+ \end{aligned}                                          \tag{34}
+\]
+
+Consequently
+
+\[
+ \ell_{\mathrm{pr}}(V)^2
+ \leq \|\operatorname{Ad}(V)-I\|_{2,d^2}^2
+ \leq 2\ell_{\mathrm{pr}}(V)^2,                        \tag{35}
+\]
+
+so the adjoint representations induce an injective homomorphism from the
+projective metric ultraproduct into a tracial matrix ultraproduct.  The
+image \(J=\Phi(U_Q)\) is therefore hyperlinear.  Since
+\(\ker\Phi\leq Z(U_Q)\), the group \(J\) is a central extension of \(Q\).
+Thom's central-quotient permanence gives that \(Q\) is hyperlinear.
+\(\square\)
+
+In particular, no choice of compatible scalar phases is needed.  The only
+remaining finite-dimensional target is to make each of the finitely many
+matrices \(\pi_n(s)\) asymptotically scalar.  Any persistent scalar flux is
+annihilated functorially by \(\operatorname{Ad}\), without changing the
+two exact regular \(A_8\)-charts.
+
+## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
