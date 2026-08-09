@@ -120,7 +120,7 @@ This proves the lemma.  (square)
 
 ## Bounded generation in rank five
 
-Apply the lemma to (R=L) and (n=5).  It uses at most (40)
+Applying the full lemma to (R=L) and (n=5) uses at most (40)
 transvections.  The remaining diagonal belongs to (H), because
 
 \[
@@ -147,14 +147,29 @@ G=(H\cup N_+\cup N_-)^{41}. \tag{1}
 This is exactly the bounded-generation hypothesis absent from the general
 noncommutative case in Mimura's Proposition 9.2.8.
 
-There is also a subgroup-only form.  A root using coordinate (5) lies in
-a conjugate of (H) by a coordinate permutation which swaps (5) with a
-coordinate not used by that root.  Only finitely many such permutations
-are needed, and they belong to (GL_5(L)=E_5(L)).  Consequently there are
-fixed conjugates (H_1,\ldots,H_s) of (H) such that
+For the subgroup-only form, the full induction is unnecessary.  Perform
+only the first elimination stage and stop as soon as one coordinate has
+been isolated.  The residual complementary block is already an element of
+a coordinate conjugate of (H).  Moreover, instead of a three-transvection
+signed swap, if the ((1,1))-entry is zero one may add any column containing
+a nonzero entry of the first row to the first column.  This costs one
+transvection and makes the corner nonzero.  Thus the first rank-five stage
+uses at most
 
 \[
-G=(H_1\cup\cdots\cup H_s)^{41}. \tag{2}
+1+4+2(5-2)=11
+\]
+
+transvections, followed by one rank-four block.
+
+Every root transvection lies in a conjugate of (H): choose a coordinate
+outside the two indices used by the root and take the rank-four coordinate
+block omitting it.  Only five such blocks occur, and they are fixed
+conjugates of (H) by coordinate permutations in (GL_5(L)=E_5(L)).
+Consequently there are fixed conjugates (H_1,\ldots,H_5) of (H) such that
+
+\[
+G=(H_1\cup\cdots\cup H_5)^{12}. \tag{2}
 \]
 
 ## Consequences
@@ -170,7 +185,7 @@ The quotient of Mimura's relative theorem gives relative ((TT)/T) for
 without invariant vectors is bounded on (H).  It is then bounded on each
 fixed conjugate (H_i): expand (b(g_i h g_i^{-1})) and use the fixed
 values (b(g_i)), (b(g_i^{-1})) and the quasi-cocycle defect.  Equation
-(2), followed by the quasi-cocycle triangle inequality at most (40)
+(2), followed by the quasi-cocycle triangle inequality at most (11)
 times, bounds it on (G).  (square)
 
 Mimura's Theorem 8.1.7 and Proposition 9.2.8 give, with the same equation
