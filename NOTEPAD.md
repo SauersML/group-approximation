@@ -11507,6 +11507,48 @@ stage `K_2` holonomy at all.  The only remaining operator-level task is the
 shared-root identification itself; the previous relative-congruence kernel
 was an artifact of choosing `I+pE` rather than `I+E`.
 
+### Source audit of the unit-step Steinberg descent
+
+The two claims used in the preceding paragraph have now been checked against
+the standard sources.
+
+1. Weibel, *The K-book*, Theorem III.5.11.1 and Exercise III.5.13, gives
+   directly
+
+   `K_2(Z/p^n Z)=1`
+
+   for every odd prime `p`.  Thus the vanishing assertion is correct; no
+   appeal to an informal simultaneous “2-primary and p-primary” argument is
+   needed.
+
+2. Van der Kallen, *The K_2 of rings with many units*, Theorem 7.1, proves
+   that for a `3`-fold stable ring the maps
+
+   `K_2(m,R) -> K_2(R)`
+
+   are isomorphisms for every `m>=3`.  A semilocal ring is `k`-fold stable
+   exactly when all residue fields have at least `k+1` elements (loc. cit.,
+   5.4(3)).  Hence `R=Z/p^n Z` is `3`-fold stable for `p>=5`, and already
+
+   `K_2(4,Z/p^n Z)=K_2(Z/p^n Z)=1`.
+
+Therefore the map
+
+`St_4(Z/p^n Z) -> E_4(Z/p^n Z)=SL_4(Z/p^n Z)`
+
+is injective for `p>=5`, as required.  Taking `p>=7` is harmless but not
+needed for this pin.
+
+There is also a scope point which must remain explicit.  Trivial finite-stage
+`K_2` proves descent **after** one common family of root operators satisfies
+all Steinberg relations.  It does not itself construct that common family.
+Voronetsky's rank-two presentation theorem confirms that there is no further
+higher-rank relator once the shared-root problem is solved, but independently
+built `A_2` microstates cannot be identified merely because their projective
+Mackey cocycles are cohomologous.  Their coefficient-ring representations of
+the common nonamenable group `Gamma` must also be coupled.  This coefficient
+coupling, rather than `K_2`, is now the exact remaining global obstruction.
+
 ### Regular Heisenberg stabilization equalizes every shared root exactly
 
 The shared-root problem has no spectral or multiplicity obstruction.  Start
@@ -11623,3 +11665,64 @@ representatives `t_delta=I+E_(delta,0)` lie in one such maximal unipotent
 chamber.  The remaining global problem is only the compatibility between
 the four `B`-conjugate chambers.  In particular, no incidence holonomy
 internal to a positive chamber remains.
+
+### The full-flag channel couples Pauli curvature directly to positive chambers
+
+The Jacobi channel is not the closest geometric match to the maximal-
+unipotent cell.  Let `P_n<Q_n` be the standard Borel subgroup and let
+
+`X_(P,n)=Q_n/P_n`
+
+be the set of full flags in `R_n^4`, where `R_n=Z/p^nZ` and `p>=7`.  A point
+of `X_(P,n)` is precisely a finite-level positive-root chamber; its
+stabilizer contains the corresponding conjugate of `UT_4(R_n)`.
+
+Consider the diagonal action on
+
+`X_(B,n) x X_(P,n)=(Q_n/B) x (Q_n/P_n)`.
+
+The orbit represented by `g` has isotropy
+
+`J_g=B intersect gP_ng^(-1)`.
+
+**Theorem (asymptotically full Pauli--flag channel).**  The union
+`Omega_n^flag` of product orbits with `J_g=1` satisfies
+
+`|Omega_n^flag|/(|X_(B,n)||X_(P,n)|)`
+` =1-O_p(p^(-4(n-1)))`.
+
+On this invariant union, the inverse-Shapiro Pauli twist and every
+Borel/chamber-side transformation-groupoid twist differ by a coboundary.
+Thus an exact Morita phase intertwiner exists on a channel whose projection
+boundary has normalized Hilbert--Schmidt size
+
+`O_p(p^(-2(n-1)))`.
+
+**Proof.**  A bad relative flag is stabilized by one of the three
+nonidentity involutions `b in B`.  Since `2` is invertible, `b` splits
+`R_n^4` into rank-two `(+1)`- and `(-1)`-eigensummands.  A `b`-stable full
+flag is obtained by choosing a full flag in each rank-two summand and
+interleaving their two dimension jumps.  There are six possible shuffles,
+and every component is
+
+`Flag(R_n^2) x Flag(R_n^2)`.
+
+The full `SL_4` flag variety has relative dimension six, while this fixed-
+flag scheme has relative dimension two.  Smooth lifting from `F_p` to
+`R_n` therefore gives
+
+`|Fix_(X_(P,n))(b)|/|X_(P,n)|=O_p(p^(-4(n-1)))`.
+
+Sum over the three involutions.  On every retained orbit the isotropy is
+trivial, so transformation-groupoid `H^2` vanishes and the two twists are
+related by an orbitwise `1`-cochain.  End proof.
+
+This channel geometrizes the remaining four-chamber problem.  Attach the
+strict `UT_4` Følner model to the standard flag; its `Q_n`-translates are
+the models attached to all finite chambers.  The Pauli projective transport
+can be identified exactly with the flag transport away from an exponentially
+small invariant complement.  What is still unproved is the **coefficient
+functor across adjacent flags**: the regular-quotient representations on two
+chambers must be intertwined on their common root filtration so that a
+gallery loop acts trivially.  Projective phases and the size of the discarded
+set are no longer part of that obstruction.
