@@ -24731,3 +24731,76 @@ conjugates.  Accordingly, the argument above does not prove
 problem.  It isolates a much smaller missing statement: a compatibility or
 homological-injectivity theorem extending the coherent depth-corner section
 from the normally generating corner product to all of `Q`.
+
+# Local homological death makes the central quotient locally liftable (2026-08-09)
+
+Uniform nilpotence is not needed on a finite multiplication table.  This
+gives an unconditional local relation between the simple Leavitt group and
+its finitely presented universal Steinberg cover.
+
+**Theorem (local lifting through a universal central extension).**  Let `Q`
+be perfect, let `p:U_Q->Q` be its universal central extension, and let
+`f:Q->Q` be an injective endomorphism such that `f_*` is locally nilpotent on
+`H_2(Q,Z)`.  Then `Q` is locally embeddable into `U_Q`: for every finite
+`X subset Q`, there is a map
+
+`theta_X:X->U_Q`
+
+which is injective and satisfies
+
+`theta_X(x)theta_X(y)=theta_X(xy)`
+
+whenever `x,y,xy in X`.
+
+**Proof.**  Let `F:U_Q->U_Q` be the functorial lift of `f`.  Choose an
+arbitrary lift `uhat_x` of each `x in X`.  There are only finitely many
+multiplication defects
+
+`d_(x,y)=uhat_x uhat_y uhat_(xy)^(-1) in ker(p)=H_2(Q,Z)`
+
+with `x,y,xy in X`.  Local nilpotence gives one exponent `m` for which
+`F^m` kills every one of these defects.  Define
+
+`theta_X(x)=F^m(uhat_x)`.
+
+The killed defects give exact partial multiplicativity.  Moreover
+
+`p(theta_X(x))=f^m(x)`.
+
+Since `f` is injective, distinct elements of `X` have distinct projections,
+so `theta_X` is injective.  End proof.
+
+The same statement has a clean colimit form.  The maps `p` induce
+
+`colim(U_Q --F--> U_Q --F--> ...)`
+`  -> colim(Q --f--> Q --f--> ...)`.                       `(1)`
+
+This map is an isomorphism.  It is surjective stage by stage.  An element of
+its kernel is represented by some `u in U_Q`.  Its projection becomes trivial
+in the right-hand colimit; injectivity of `f` forces `p(u)=1`.  Thus
+`u in ker(p)=H_2(Q,Z)`, and local nilpotence kills it at a later stage,
+proving injectivity.  The unstable universal central kernel therefore
+evaporates exactly in the self-similar direct limit, not merely after
+applying an abstract stable-`K_2` functor.
+
+For `Q=L_(F_2)(1,2)^x` and `f=kappa_0`, the hypotheses were proved in the
+prefix-stabilization calculation.  Hence the explicit simple Kazhdan
+nonsofic group `Q` is locally embeddable in its finitely presented Kazhdan
+nonsofic universal cover `U_Q=St_5(L)` (after the established rank
+identifications), and `(1)` identifies their prefix-stabilized direct
+limits.
+
+**Approximation consequence.**  Every class of groups defined by finite
+metric approximations and closed under subgroups and metric ultraproducts is
+closed under local embeddability.  In particular,
+
+`U_Q hyperlinear  ==>  Q hyperlinear`,
+`U_Q sofic        ==>  Q sofic`.
+
+The second implication is vacuous here because both groups are already
+proved nonsofic.  The first is a genuine special-case quotient theorem:
+hyperlinearity is not known to pass to arbitrary central quotients, but it
+does pass from this universal Leavitt cover to its quotient because prefix
+stabilization locally kills every central cocycle defect.  It still does not
+establish the premise `U_Q hyperlinear`; that is exactly the analytic side
+of the existing Hilbert--Schmidt stability fork.
