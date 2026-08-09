@@ -8336,3 +8336,60 @@ differences cannot retain a central obstruction: it collapses the entire
 lamp orbit to one coordinate.  A viable central-torsion construction would
 need a genuinely non-coordinate central extension, not a quotient obtained
 by declaring the usual lamp witnesses central.
+
+The connectedness hypothesis can be removed for the actual elementary-root
+witnesses.
+
+**Lemma (one central edge gives a relative character).**  Keep the transitive
+setup, let `Gamma=Stab_G(x_0)`, fix `h in G`, and suppose
+
+`z=a_(h x_0)a_(x_0)^(-1)`
+
+is central in `H`.  Put `L=<Gamma,h>`.  Then
+
+`chi(l)=a_(l x_0)a_(x_0)^(-1)`
+
+is a well-defined homomorphism `L -> Z(H)`, with `chi|Gamma=1` and
+`chi(h)=z`.  In particular, if `h in [L,L]`, then `z=1`.
+
+**Proof.**  The assertion is clear on `Gamma` because it fixes `x_0`, and on
+`h` by hypothesis.  Conjugating the central equality
+
+`a_(h x_0)=z a_(x_0)`
+
+by a word in `Gamma` and `h` transports it to every `h`-edge in the
+`L`-orbit, with the same central multiplier `z`; stabilizer edges have
+multiplier one.  Induction on words therefore shows that every displayed
+`chi(l)` is central.  For `l_1,l_2 in L`, covariance now gives
+
+`chi(l_1 l_2)=chi(l_2)chi(l_1)=chi(l_1)chi(l_2)`.
+
+Thus `chi` is a homomorphism into the abelian centre.  It kills the derived
+subgroup of `L`, proving the last claim.  End proof.
+
+**Application to the Laurent elementary witness.**  In the Kun--Thom model,
+an inverse-compressed polynomial root has the form
+
+`h=e_ij(f)`
+
+for a Laurent monomial coefficient `f`, while `Gamma` contains all constant
+roots.  Choose an index `k` distinct from `i,j`.  The Steinberg commutator
+relations give
+
+`e_ik(f)=[e_ij(f),e_jk(1)] in <Gamma,h>`
+
+and then
+
+`h=e_ij(f)=[e_ik(f),e_kj(1)]`.
+
+Hence `h in [<Gamma,h>,<Gamma,h>]`.  The lemma says that declaring the single
+standard witness
+
+`a_(h Gamma)a_Gamma^(-1)`
+
+central already forces it to be the identity.  Imposing finite order cannot
+repair this collapse.  Therefore the profile-free central-torsion bridge is
+genuinely unavailable for the usual Kun--Thom lamp witness, even when its
+orbital graph is disconnected.  A successful use of that bridge would need
+a different nonsoficity mechanism whose essential central element is not a
+relative coordinate coboundary of a perfect/root-generated subgroup.
