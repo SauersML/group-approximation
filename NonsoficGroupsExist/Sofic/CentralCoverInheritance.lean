@@ -576,9 +576,43 @@ def AllCountableCentralExtensionsAreNonsofic
   ∀ (E : Type) (_ : Group E) (_ : Countable E),
     CentralExtension E H → ¬ IsSofic E
 
+/-- A nontrivial simple perfect group is centerless.  Simplicity makes the
+center either trivial or the whole group; the latter would make the group
+abelian, which is impossible for a nontrivial perfect group. -/
+theorem center_eq_bot_of_isPerfect_of_isSimpleGroup
+    (H : Type) [Group H] [Group.IsPerfect H] [IsSimpleGroup H] :
+    Subgroup.center H = ⊥ := by
+  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal
+      (Subgroup.center H) inferInstance with hbot | htop
+  · exact hbot
+  · exact (Group.IsPerfect.not_isMulCommutative H
+      (Subgroup.center_eq_top_iff.mp htop)).elim
+
 namespace CentralExtension
 
 variable {J H Q : Type} [Group J] [Group H] [Group Q]
+
+/-- Package the arbitrary-kernel subcover theorem in the form consumed by
+the quasisimple central-cover argument: one strict Kun--Thom witness and a
+good-subcover certificate make *every* countable central extension of the
+base nonsofic.
+
+This is deliberately the subcover, rather than full-preimage, formulation.
+For universal Steinberg covers, the classical stability input produces a
+single suitable subcover inside each central extension; it need not control
+the whole inverse image when the ambient central kernel is infinite. -/
+theorem allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (hstable : CentralSubcoverStableNormalization H G Γ)
+    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t))) :
+    AllCountableCentralExtensionsAreNonsofic H := by
+  intro E hEGroup hECountable P
+  letI : Group E := hEGroup
+  letI : Countable E := hECountable
+  exact allCentralExtensions_not_isSofic_of_subcoverStrictWitness
+    G Γ hstable a ha hγ hstrict P
 
 /-- The center of a central cover lies in its kernel when the base is
 centerless.  The reverse inclusion is part of `CentralExtension`, so in this
@@ -730,11 +764,13 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
     {J H : Type} [Group J] [Group H] [Countable J]
     [Group.IsPerfect J] [IsSimpleGroup H]
     (P : CentralExtension J H)
-    (hcenter : Subgroup.center H = ⊥)
     (hall : AllCountableCentralExtensionsAreNonsofic H)
     (hfp : Group.IsFinitelyPresented J)
     (hT : HasKazhdanPropertyT.{0, 0} J) :
     FinitelyPresentedKazhdanSoficImageRigid J := by
+  letI : Group.IsPerfect H := Group.IsPerfect.ofSurjective P.surjective
+  have hcenter : Subgroup.center H = ⊥ :=
+    center_eq_bot_of_isPerfect_of_isSimpleGroup H
   apply finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction hfp hT
   apply everyNontrivialQuotientIsNonsofic_of_quasisimple
     (P.isQuasisimple_of_isPerfect_of_isSimpleGroup)
@@ -745,6 +781,40 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
     P.center_le_ker_of_center_eq_bot hcenter
   exact hall Q hQGroup inferInstance
     (P.descendAlongSurjection q hsurj (hqcentral.trans hcenterker))
+
+/-- **Strict-witness Steinberg endpoint.**  A perfect central cover of a
+centerless simple base has the full advertised rigidity profile as soon as
+the base carries a strict Kun--Thom witness whose normalization survives in
+one suitable subcover of every countable central extension.
+
+This theorem composes the complete formal chain used by the proposed
+`St_n(L_{𝔽₂}(1,2))` application:
+
+* the strict witness makes every countable central extension of the
+  elementary base nonsofic;
+* perfectness over a simple base makes the Steinberg cover quasisimple;
+* every nontrivial quotient is therefore one of those central extensions;
+* hence every homomorphism to a sofic group is trivial.
+
+Only the concrete classical Steinberg/Leavitt certificates remain as
+premises; no quotient-closure assertion for soficity is used. -/
+theorem finitelyPresentedKazhdanSoficImageRigid_of_subcoverStrictWitness
+    {J H : Type} [Group J] [Group H] [Countable J]
+    [Group.IsPerfect J] [IsSimpleGroup H]
+    (P : CentralExtension J H)
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (hstable : CentralExtension.CentralSubcoverStableNormalization H G Γ)
+    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
+    (hfp : Group.IsFinitelyPresented J)
+    (hT : HasKazhdanPropertyT.{0, 0} J) :
+    FinitelyPresentedKazhdanSoficImageRigid J :=
+  finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
+    P
+      (CentralExtension.allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
+        G Γ hstable a ha hγ hstrict)
+    hfp hT
 
 /-- **Quasisimple-target Kazhdan-corner bridge.**  If every nontrivial
 quotient of a nontrivial Kazhdan group is nonsofic, then one weak-MF
