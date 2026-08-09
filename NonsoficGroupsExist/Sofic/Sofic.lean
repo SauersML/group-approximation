@@ -52,8 +52,11 @@ structure FiniteModel where
   decidableEq : DecidableEq carrier
 
 instance finiteModelCoeSort : CoeSort FiniteModel Type := ⟨FiniteModel.carrier⟩
-instance finiteModelFintype (Y : FiniteModel) : Fintype Y := Y.fintype
-instance finiteModelDecidableEq (Y : FiniteModel) : DecidableEq Y := Y.decidableEq
+@[reducible, instance] def finiteModelFintype (Y : FiniteModel) : Fintype Y :=
+  Y.fintype
+@[reducible, instance] def finiteModelDecidableEq
+    (Y : FiniteModel) : DecidableEq Y :=
+  Y.decidableEq
 
 /-- The vertices on which two permutations of a finite type disagree. -/
 def hammingDisagreement {Y : Type*} [Fintype Y] [DecidableEq Y]

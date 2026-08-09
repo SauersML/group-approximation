@@ -279,6 +279,7 @@ import NonsoficGroupsExist.Sofic.KazhdanCorner
 import NonsoficGroupsExist.Sofic.KazhdanCornerMatrices
 import NonsoficGroupsExist.Sofic.WeakMFVectorGNS
 import NonsoficGroupsExist.Sofic.KazhdanCornerModel
+import NonsoficGroupsExist.Sofic.KazhdanCornerDiagonal
 import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
