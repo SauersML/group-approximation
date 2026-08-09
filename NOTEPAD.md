@@ -12138,3 +12138,101 @@ sum of coordinate ideals, not the single reverse principal flag used in the
 one-variable proof.  Establishing a `UT_3`-equivariant lattice of such
 annihilators, with wrap confined to `o(1)` rank, is now the exact Fourier
 subproblem.
+
+### A single square-zero jet ring solves the mixed-monomial subproblem
+
+The preceding audit obstruction can be repaired without allowing products
+inside the square-zero ideal: retain the missing base terms.  Fix
+
+`A_N=F_p[y]/(y^N)`,  `J_N=A_N^3`,  `S_N=A_N semidirect J_N`,
+
+where `J_N^2=0`, and write its standard basis as `xi_1,xi_2,xi_3`.  For a
+depth vector `m=(m_1,m_2,m_3)` with `0<=m_j<=N`, define a unital ring map
+
+`phi_m:F_p[x_0,x_1,x_2,x_3]->S_N`
+
+by
+
+`phi_m(x_0)=y`,
+
+`phi_m(x_j)=y^(m_j)(1+xi_j)`  for `1<=j<=3`.
+
+Put
+
+`I_m=directSum_(j=1)^3 xi_j y^(m_j) A_N`.
+
+**Theorem (multivariate square-zero jet covariance).**
+
+1. `im(phi_m)=A_N semidirect I_m`.  In particular, if `m_j<N`, then
+   `im(phi_(m+e_j))` is a proper subring of `im(phi_m)`.
+2. Let `C in M_3(N)` have determinant one and let the associated positive
+   monomial substitution fix `x_0` and send
+
+   `x_j |-> product_k x_k^(C_(kj))`.
+
+   Let `Chat` fix `A_N` and act on `J_N` by
+
+   `Chat(xi_j)=sum_k C_(kj) xi_k`.
+
+   Reduction of `C` modulo `p` is invertible, so `Chat` is an automorphism
+   of `S_N`, and the exact ring identity
+
+   `phi_m after alpha_C = Chat after phi_(C^T m)`
+
+   holds whenever the displayed depths are at most `N`.
+3. With the coordinatewise Frobenius pairing against a dual module
+   `J_N^vee`,
+
+   `<sum_j xi_j a_j,sum_j xi_j^vee b_j>`
+   ` =psi(ell(sum_j a_j b_j))`,
+
+   one has the exact annihilator formula
+
+   `I_m^perp=directSum_j xi_j^vee y^(N-m_j) A_N`.
+
+   Moreover the dual of `Chat` is the contragredient matrix action, and
+   finite Fourier transform intertwines their permutation operators.
+
+**Proof.**  Since `y=phi_m(x_0)`, the base algebra `A_N` is in the image.
+Subtracting `y^(m_j)` from `phi_m(x_j)` gives
+`xi_j y^(m_j)`, and multiplication by `A_N` gives all of `I_m`.  Conversely
+every polynomial image lies in `A_N semidirect I_m`, because the ideal is
+square-zero.  This proves the image formula.  The element
+`xi_j y^(m_j)` is not in `I_(m+e_j)`, proving strictness.
+
+For a monomial substitution, square-zero binomial expansion gives
+
+`phi_m(product_k x_k^(C_(kj)))`
+` =y^(sum_k C_(kj)m_k)`
+`  (1+sum_k C_(kj)xi_k)`.
+
+This is exactly `Chat(phi_(C^T m)(x_j))`, generator by generator, proving
+the ring identity.  The determinant-one condition makes `Chat` invertible.
+Finally the one-variable Frobenius calculation applies independently in
+each direct summand of `J_N`; it gives the displayed annihilator.  The
+standard Fourier identity for a linear automorphism and its dual gives the
+last assertion.  End proof.
+
+This theorem fixes the precise defect in the naive three-factor proposal.
+For example,
+
+`phi_m(x_i x_j)=y^(m_i+m_j)(1+xi_i+xi_j)`,
+
+so mixed monomials survive and the complementary `UT_3` transformations are
+represented by one common ring automorphism on the tangent module.  Applying
+`EL_r` and the regular representation of the finite group `EL_r(S_N)` turns
+the ring identity into exact covariance on every bulk block.  The chain
+`m_j=0,...,N` retains the strict coefficient inclusions needed for the
+relative-commutant witness, while Fourier duality reverses all three flags
+simultaneously.
+
+There are two scope points.  First, this auxiliary specialization is very
+nonfaithful on the full polynomial ring; a faithful residually finite
+summand is still needed for the eventual group embedding.  Second, the
+theorem supplies the previously missing **coefficient functor on each bulk
+arrow**, but it does not by itself choose a finite block incidence on which
+both chamber monoids and all gallery relations have small boundary.  The
+remaining task is now purely the two-chamber incidence problem: attach the
+depth vectors in opposite annihilator order along the Pauli--flag channel
+and verify that every gallery switch uses the Fourier intertwiner away from
+an `o(1)` projection.
