@@ -13852,3 +13852,60 @@ particular audit the asserted semidirect decomposition of `EL_r(S_N)`, the
 regular-quotient witness in the quasi/regular split coordinates, and the
 compatibility of the `GL_4` enlargement with the exact Kun--Thom
 infranormality hypothesis.
+
+### First adversarial audit of the fixed-base assembly
+
+The three structural points isolated above survive direct checking.
+
+**(A) Split elementary kernel.**  The ring retraction
+
+`S_N=A_N semidirect J_N -> A_N`
+
+has a unital section.  Functoriality gives a split surjection
+
+`EL_r(S_N)->EL_r(A_N)`.
+
+Its kernel lies in `1+Mat_r(J_N)`.  Since `J_N^2=0`, multiplication there is
+`(1+X)(1+Y)=1+X+Y`; hence the kernel is abelian.  No claim that every
+trace-zero `J_N`-matrix occurs is needed for the split regular-coordinate
+argument.
+
+**(B) Strictness after the jet automorphism.**  Let `t=I+E_(ji)` and let
+`d'=d+e_i` with `d_j=1`.  The covariance identity compares the image at
+depth `d` with `Chat_t` of the image at depth `d'`.  On tangent ideals,
+
+`Chat_t(I_(d'))<I_d`.
+
+Indeed `Chat_t` only adds the `j`-component to the `i`-component (or the
+transpose convention equivalent), so every resulting `xi_i` coefficient
+is divisible by `y^(d_i+1+h)`, whereas
+
+`xi_i y^(d_i+h) in I_d`
+
+is not.  All added `xi_j` terms already lie in the shallower `j`-ideal.
+Thus the elementary root matrix with coefficient
+`xi_i y^(d_i+h)` belongs to the larger finite image subgroup and not the
+compressed one.  The regular action of a proper subgroup has a strictly
+larger commutant, which is exactly the hypothesis used by the established
+regular-quotient witness lemma.
+
+**(C) Infranormality after adjoining odd permutations.**  The compressors
+of `Gamma_z` in `G_z^GL` contain all positive unit transvections, which
+generate `SL_4(Z)`, and every coordinate permutation, which normalizes the
+polynomial ring in both directions.  One odd permutation together with
+`SL_4(Z)` generates `GL_4(Z)`.  As before, the `GL_4(Z)`-conjugates of the
+polynomial elementary subgroup contain elementary matrices with every
+Laurent monomial in the four moving variables; arbitrary powers of the
+fixed variable `z` remain available.  Hence the compressors generate all
+of `G_z^GL`.  A determinant-one sign change still sends one moving variable
+to its inverse, so `Gamma_z` remains nonnormal.
+
+The fixed-base proposal therefore passes its first internal audit.  The
+highest-risk unverified step is now not one of these three structural
+claims.  It is the global block construction implicit in the candidate
+microstate theorem: one must ensure that the same finite block set carries
+simultaneously the Pauli--flag action, the micro--macro depth coordinates,
+and the primal/dual chart polarization, rather than proving the three
+marginal constructions on incompatible direct sums.  The next audit should
+write that block set as one explicit finite Cartesian/fiber product and
+define every generator permutation on it.
