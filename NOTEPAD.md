@@ -22297,6 +22297,58 @@ nonhyperlinear group.  Therefore the Steinberg HS-stability and LLP bridges
 above are new external ways to discharge that condition; they are not hidden
 lemmas from the cited paper.
 
+### The gadget separation does not close the Steinberg fork by feedback
+
+There is a tempting but invalid way to overstate the HS-stability fork.  If
+`U=St_5(L_(F_2)(1,2))` is HS-stable, the fork proves that `U` is
+nonhyperlinear.  Since Culf--van Dobben de Bruyn--Zeman use the existence of
+a nonhyperlinear group in their conditional `qa`-versus-`qc` separation, one
+might hope to feed their output back into the free-lamp or central-cover
+construction and obtain a hyperlinear nonsofic group.  Their theorem does not
+do this.
+
+The exact conditional input and output are visible in their Theorems 8.6 and
+8.12.  Starting from a nonhyperlinear group, they construct a homogeneous
+linear relational structure whose solution group is noncommutative but whose
+image is trivial in **every Connes-embeddable representation**.  Theorem 8.1
+then turns that representation-theoretic separation into a separation of
+commutativity-gadget classes.  It supplies neither a nontrivial
+Connes-embeddable representation nor a hyperlinear group carrying the
+obstruction.  In fact, the stated output is deliberately sterile in every
+Connes-embeddable target.
+
+Therefore the two branches retain different consequences:
+
+`U flexibly HS-unstable  <=>  Q=EL_4(L_(F_2)(1,2)) is hyperlinear and nonsofic`,
+
+whereas
+
+`U flexibly HS-stable  ==>  U (and Q) is nonhyperlinear`.
+
+Only the first branch solves hyperlinear-versus-sofic.  The second branch is
+still a major theorem--an explicit finitely presented Kazhdan nonhyperlinear
+group and an unconditional `qa/qc` gadget separation--but no theorem in
+arXiv:2604.01408 converts it into a hyperlinear nonsofic group.
+
+This leaves the exact self-contained decision problem in its cleanest form.
+With normalized Hilbert--Schmidt norm, does every sequence of maps
+
+`phi_n:St_5(L_(F_2)(1,2))->U(d_n)`
+
+whose multiplicative defects tend to zero necessarily satisfy
+
+`||phi_n(g)-1||_2 -> 0` for every fixed group element `g`?
+
+A **no** answer immediately proves that the explicit nonsofic simple group
+`EL_4(L_(F_2)(1,2))` is hyperlinear.  A **yes** answer proves that this simple
+group and its Steinberg cover are nonhyperlinear.  This formulation asks only
+for collapse to the trivial representation; because every genuine
+finite-dimensional representation of the Steinberg group is trivial, it is
+equivalent here to flexible normalized-HS stability.
+
+Primary pin: Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408v1,
+Theorems 8.1, 8.6, and 8.12.
+
 ---
 
 # The two-compressor relations force a strict von Neumann self-compression tower (2026-08-09)
