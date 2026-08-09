@@ -8541,3 +8541,40 @@ genuinely unavailable for the usual Kun--Thom lamp witness, even when its
 orbital graph is disconnected.  A successful use of that bridge would need
 a different nonsoficity mechanism whose essential central element is not a
 relative coordinate coboundary of a perfect/root-generated subgroup.
+
+### Central-monolith criterion
+
+The central-torsion corner becomes a theorem about the original group, rather
+than an unspecified quotient, under one sharp normal-subgroup hypothesis.
+
+**Corollary (finite central monolith).**  Let `H` be weak-MF and suppose that
+there is a nonidentity finite-order element `z in Z(H)` which belongs to every
+nontrivial normal subgroup of `H`.  Then `H` is hyperlinear.  In particular,
+if such an `H` is nonsofic, a hyperlinear nonsofic group exists.
+
+**Proof.**  In the central-torsion-corner proof, the normalized corner traces
+produce a homomorphism `eta:H->product_omega U(d_n)` whose kernel does not
+contain `z`.  The kernel is normal.  If it were nontrivial, the monolith
+hypothesis would put `z` in it, a contradiction.  Hence `eta` is injective
+and `H` is hyperlinear.  End proof.
+
+A particularly concrete target is a perfect central extension
+
+`1 -> C_p -> H -> S -> 1`
+
+with `S` nonabelian simple.  Such an `H` has the required monolith.  Indeed,
+any proper normal subgroup maps either trivially or onto `S`.  In the first
+case it lies in `C_p`; in the second, its quotient in `H` is abelian of order
+dividing `p`, which perfectness forbids.  Thus the only nontrivial proper
+normal subgroup is `C_p`.
+
+This interfaces exactly with Ersoy's 2026 structure theorem: a minimal
+nonsofic group with a finitely generated residually finite maximal normal
+subgroup is a perfect central extension of a finitely generated nonamenable
+simple group.  If that maximal normal subgroup can be made `C_p` **and** the
+group can be obtained as a subgroup of a weak-MF group (weak-MF passes to
+subgroups), the main problem is solved by the corollary.  The published
+minimal-nonsofic construction does not supply either condition: its result is
+structural/conditional, and its Zorn or existentially-closed steps do not
+preserve weak-MF.  Thus this is a precise new target, not an application of
+the existing theorem.
