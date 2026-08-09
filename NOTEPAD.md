@@ -11553,3 +11553,73 @@ unit-step `K_2(Z/p^nZ)=0` result shows that no **central Steinberg** holonomy
 survives.  The terminal overlap question is thereby reduced to killing the
 possibly noncentral commutant-valued holonomies around the finitely many
 incidence cycles while retaining polynomial covariance.
+
+### A maximal positive chamber has one strict `UT_4` Følner model
+
+All `A_2` overlaps lying in one positive chamber can be assembled before any
+Curtis--Tits gluing.  Let `U^+<SL_4(Z)` be the upper (or lower, after a fixed
+relabeling) unitriangular group.  Choose Malcev coordinates ordered by root
+height:
+
+* three height-one coordinates for `(12),(23),(34)`;
+* two height-two coordinates for `(13),(24)`; and
+* one height-three coordinate for `(14)`.
+
+For `M>=1`, take the weighted box `F_M` in which the respective coordinate
+lengths are `M`, `M^2`, and `M^3`.  Standard collection in `UT_4` shows that
+right multiplication by any fixed element changes a height-`h` coordinate
+by a polynomial of weighted degree at most `h` in lower coordinates.
+Consequently
+
+`|F_M triangle F_M s|/|F_M|=O_s(1/M)`
+
+for every fixed `s in U^+`.
+
+**Theorem (strict maximal-unipotent cell).**  There are genuine finite-
+dimensional representations `pi_M` of
+
+`Gamma=EL_r(Z[x_1,...,x_4])`
+
+and completed block-permutation unitaries `U_(M,s)` for the six positive
+root generators such that:
+
+1. every fixed covariance relation between `Gamma` and `U^+` has defect
+   `O(M^(-1/2))`;
+2. every fixed Steinberg word relation inside `U^+` has defect
+   `O(M^(-1/2))`; and
+3. for any chosen simple positive root `u`, one can arrange a fixed
+   `gamma in Gamma` and `z_M in pi_M(Gamma)'` for which
+
+   `liminf ||[U_(M,u) z_M U_(M,u)^*,pi_M(gamma)]||_2 >=sqrt(2)`.
+
+**Proof.**  For each `s in F_M`, use the positive monomial substitution
+`alpha_s`.  All matrices in `U^+` have nonnegative entries.  As in the
+Heisenberg-cell theorem, choose a degree cutoff larger than every monomial
+appearing in the finite window and use
+
+`S_M=F_p[x_1,...,x_4]/(monomials of total degree>D_M)`.
+
+On the block `s`, put
+
+`pi_(M,s)(g)=lambda_(EL_r(S_M))(alpha_s(g))`.
+
+Complete the partial right translations of `F_M` arbitrarily to
+permutations.  Covariance and all collected `UT_4` relations are exact
+whenever the fixed word stays inside the box.  The weighted Følner estimate
+puts the exceptional rank fraction at `O(1/M)`, giving the first two
+Hilbert--Schmidt bounds.
+
+For a simple root `u=I+E_(ij)`, choose the variable monomial whose exponent
+vector is not in `u N^4`.  On every interior `u`-edge, its image belongs to
+the larger coefficient subgroup but not the next compressed subgroup.
+The regular-quotient commutant lemma supplies the same block unitary as in
+the rank-two construction.  Interior edges have density `1-O(1/M)`, so
+averaging gives (3).  End proof.
+
+This replaces all pairwise gluing **within one chamber** by a single
+nilpotent model and automatically identifies every shared height-two and
+height-three root.  Index the coordinates so that the three chosen Pauli
+representatives `t_delta=I+E_(delta,0)` lie in one such maximal unipotent
+chamber.  The remaining global problem is only the compatibility between
+the four `B`-conjugate chambers.  In particular, no incidence holonomy
+internal to a positive chamber remains.
