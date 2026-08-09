@@ -13023,3 +13023,58 @@ loop discrepancy is scalar by Stone--von Neumann; the issue is existence of
 the compatible semidirect action when the chamber endomorphism has a
 noninvertible map on the associated graded layer.  No rank estimate is owed
 until this coherence lemma is proved.
+
+### Odd-prime Weil linearity removes the layerwise scalar obstruction
+
+For each genuine relative layer `1<=q<=D-1`, set
+
+`W_q=K_q directSum K_q^vee`
+
+with symplectic form
+
+`omega((x,chi),(x',chi'))=chi'(x)-chi(x')`.
+
+This is a symplectic vector space over `F_p`.  Conjugation on `K_q` and the
+contragredient action on `K_q^vee` give a homomorphism from the relevant
+base elementary group into `Sp(W_q)`.
+
+**Theorem (genuine layerwise Weil transport, odd `p`).**  There is a
+genuine unitary representation
+
+`mu_q:Sp(W_q)->U(H_q)`
+
+which implements the action of `Sp(W_q)` on the irreducible Heisenberg
+representation with central character `psi`.  In particular, if `S_q` is
+the partial Fourier symplectic map for an adjacent wall, then
+
+`mu_q(S_q) Weyl(w) mu_q(S_q)^*=Weyl(S_q w)`
+
+for every `w in W_q`, and products of the `mu_q(S_q)` around a loop whose
+symplectic product is the identity equal the identity, not merely an
+unspecified scalar.
+
+**Justification.**  Over a finite field of odd characteristic, the
+metaplectic projective action has a linear Weil model after the Gauss-sum
+normalization.  Equivalently, the canonical intertwining kernels between
+all Lagrangian models are multiplicative.  This is the finite-field
+linearity theorem used in Gurevich--Hadani, *The categorical Weil
+representation* (arXiv:1108.0351), and in Henniart--Wang,
+*Weil representations over finite fields and Shintani lift*
+(arXiv:1303.5141).  Compose this linear representation with the base
+group's symplectic action.  End justification.
+
+Therefore no independent scalar rephasing problem survives **within one
+homogeneous layer**.  Taking the tensor product of the canonical `mu_q`
+also makes all layerwise adjacent-wall loops exactly flat whenever their
+symplectic maps are layer-preserving.
+
+This does not yet prove extension coherence.  The actual group
+`EL_r(T_q)` is an extension of `EL_r(B_q)` by `K_q`, generally with a
+nontrivial extension cocycle, and commutators of different filtration
+degrees land in higher degrees.  The Weil theorem linearizes the
+semidirect symplectic action; it does not by itself identify those ring-
+multiplication cocycles across `q`.  The remaining obstruction is therefore
+strictly algebraic and cross-layer: verify that the `EL_r(T_q)` extension
+cocycle is carried to the dual extension cocycle under the reverse-degree
+Frobenius pairing.  A scalar Maslov-index ambiguity is no longer part of
+that lemma at odd `p`.
