@@ -11864,3 +11864,63 @@ coefficient intertwiners so that their additional curvature stays on that
 scale, rather than on the full strict sector.  Thus the terminal statement is
 not “kill gallery holonomy”; it is “localize gallery curvature below the
 rank of the holonomy that separates the invisible layer.”
+
+### Minimal upgrade: two maximal-chamber orbits cover every Steinberg relation
+
+The six-type cover above compresses further.  Besides the base order
+
+`O_+=(0<1<2<3)`,
+
+take the single alternate order
+
+`O_*=(0<3<2<1)`.
+
+The four `B`-translates of `O_+` and the four `B`-translates of `O_*` cover
+all twenty-four oriented triples of distinct indices.  They also co-orient
+every pair of commuting roots.  Explicitly, `O_*` contains both missing
+triple representatives
+
+`0<2<1`,  `0<3<1`,
+
+and the missing commuting representative
+
+`0<1` together with `3<2`.
+
+Translation by `B` gives exactly the eight missing triples and the six
+missing commuting pairs listed above.  Thus the two Heisenberg types and
+three rectangle types can all be absorbed into the second maximal-
+unipotent chamber type.
+
+**Theorem (minimal two-chamber Steinberg cover).**  Every same-root,
+commuting-root, and `A_2` Steinberg relation for `SL_4` is contained in a
+`B`-translate of one of the two maximal unipotent groups determined by
+`O_+` and `O_*`.  One `B`-orbit of chambers cannot suffice, because it
+contains only sixteen of the twenty-four oriented triples; hence two is
+minimal.
+
+The intersection of the two base chambers is especially favorable:
+
+`U_(O_+) intersect U_(O_*)`
+` =<e_01(Z),e_02(Z),e_03(Z)> ~=Z^3`.
+
+These three root groups commute and are exactly the three chosen Pauli
+compressor directions `t_delta`.  Moreover each maximal unipotent splits as
+
+`Z^3 semidirect UT_3(Z)`,
+
+where the `Z^3` factor is this common star and the two `UT_3` factors use
+opposite orders on `{1,2,3}`.
+
+Consequently the coefficient problem is no longer six-way synchronization.
+It is a **two-cell amalgamation over one common abelian strict sector**.
+Both strict `UT_4` Følner models can be built with identical block data on
+the shared `Z^3` compression tower; only their two complementary `UT_3`
+directions require a nonautomorphic transition.  The Pauli--flag channel
+then carries the four `B`-translates coherently.
+
+This does not yet assert exact flatness (which would be sterile).  Its value
+is quantitative: all necessary coefficient curvature may be placed in the
+single transition between the two maximal-cell types, while the macroscopic
+strict witness lives in their common `Z^3` sector.  The remaining target is
+to make that one transition's curvature `eta_n` satisfy
+`sqrt(eta_n)=o(rho_n)`.
