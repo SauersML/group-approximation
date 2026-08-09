@@ -12936,3 +12936,90 @@ monomial endomorphism chambers agree on their five-root overlap away from
 an `o(1)` collection of flag levels.  The base `EL_r(A_N)` action is now
 literally common, so finite Stone--von Neumann applies to the associated
 graded Heisenberg layers without the retracted depth-dependent-base step.
+
+### The Frobenius flag is an exact square-zero Heisenberg tower
+
+The operator problem can be resolved one homogeneous layer at a time.  Keep
+`T=T_(N,L)`, `M=(xi_0,xi_1,xi_2,xi_3)`, and `D=4(L-1)`.  For
+`0<=q<=D`, put
+
+`V_q=M^q/M^(q+1)`,
+
+and for `1<=q<=D` put
+
+`T_q=T/M^(q+1)`,  `B_q=T/M^q`,
+so that `V_q` is the kernel of `T_q->B_q`.
+
+**Theorem (iterated square-zero resolution).**
+
+1. `T_q->B_q` is a split extension as an `A_N`-module with central
+   square-zero kernel `V_q`.
+2. Frobenius multiplication gives a perfect pairing
+
+   `V_q x V_(D-q) -> A_N`,
+
+   followed by the top-coefficient functional on `A_N`, for every
+   `0<=q<=D`.  In particular
+   `dim_Fp(V_q)=dim_Fp(V_(D-q))`.
+3. For elementary rank prime to `p` and `1<=q<=D`, the relative elementary kernel
+
+   `ker(EL_r(T_q)->EL_r(B_q))`
+
+   is the additive square-zero Lie layer
+
+   `K_q ~= sl_r(B_q) tensor_(B_q) V_q`.
+
+   For `1<=q<=D-1`, its Frobenius--trace dual is the corresponding relative
+   layer `K_(D-q)`, and finite Fourier transform exactly exchanges
+   translations by `K_q` with character multipliers indexed by
+   `K_(D-q)`.
+4. Every positive monomial chamber endomorphism preserves the whole
+   filtration `M^q`, so it induces compatible maps on every `B_q`, `T_q`,
+   and `V_q`.
+
+**Proof.**  Since `q>=1`,
+
+`(M^q/M^(q+1))^2 subset M^(2q)/M^(q+1)=0`.
+
+The ring is commutative, so the kernel is central.  Homogeneous monomials of
+`xi`-degree `q` pair bijectively with their complementary monomials of
+degree `D-q`; the independent Frobenius pairing in the `y` coordinate gives
+(2).  For a central square-zero ideal, elementary multiplication is
+
+`(1+X)(1+Y)=1+(X+Y)`
+
+inside the relative kernel, and the determinant-one condition removes the
+scalar trace direction; this is the standard `sl_r tensor V_q`
+identification.  Matrix trace times the ring Frobenius functional is
+perfect because `p` does not divide `r`, proving the Fourier assertion.
+Finally every positive shear sends each `xi_i` to a monomial of positive
+`xi`-degree and therefore cannot decrease the `M`-adic filtration.  End
+proof.
+
+Thus the adjacent-wall transition has a canonical layerwise form.  For
+`1<=q<=D-1`, pair level `q` in one polarization with level `D-q` in the
+opposite polarization, use the exact Fourier transform on `K_q`, and use
+the common base action on `B_q`.  The Hilbert spaces of paired Heisenberg
+layers have exactly equal dimension, not merely asymptotically equal
+dimension.  The mixed monomials are distributed among the layers rather
+than discarded.  The unmatched endpoint is exactly the pair `V_0,V_D`:
+`V_0=A_N` is the common base rather than a relative square-zero kernel.
+
+If these layerwise intertwiners can be chosen compatibly with the extension
+maps `B_(q+1)->B_q`, placing them around the cyclic list
+
+`q=1,2,...,D`
+
+uses the `V_0,V_D` endpoint as the one closing edge.  Its block fraction is
+`1/D=O(1/L)`, while all `D` consecutive ideal inclusions are strict.  This
+recovers, for the full mixed ring, the one-variable profile "macroscopic
+strictness versus one Fourier wrap."
+
+The exact remaining lemma is now a finite extension-coherence statement:
+show that the Weil implementer for `K_q` may be lifted through
+`EL_r(T_q)->EL_r(B_q)` so that its restriction to `B_(q-1)` agrees, up to a
+scalar, with the implementer already chosen at the preceding layer.  Any
+loop discrepancy is scalar by Stone--von Neumann; the issue is existence of
+the compatible semidirect action when the chamber endomorphism has a
+noninvertible map on the associated graded layer.  No rank estimate is owed
+until this coherence lemma is proved.
