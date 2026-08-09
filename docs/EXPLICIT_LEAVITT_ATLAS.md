@@ -694,11 +694,53 @@ image \(J=\Phi(U_Q)\) is therefore hyperlinear.  Since
 Thom's central-quotient permanence gives that \(Q\) is hyperlinear.
 \(\square\)
 
+There is also a constructive proof which stays inside the canonical atlas.
+The diagonal tensor-square of the regular representation satisfies
+
+\[
+ \lambda\otimes\overline\lambda
+   \cong \lambda^{\oplus |A_8|}.                        \tag{36}
+\]
+
+Indeed, its character is \(|A_8|^2\) at the identity and zero elsewhere,
+which is \(|A_8|\) times the regular character.  Equivalently, on
+\(\ell^2(A_8\times A_8)\) the change of variables
+\((x,y)\mapsto(x,x^{-1}y)\) conjugates the diagonal left action to the
+regular action on the first coordinate and the trivial action on the
+second.
+
+Fix once and for all a unitary \(W\) implementing (36).  From a canonical
+model \(\pi_n\) in (25), form
+
+\[
+ \pi_n^\#=W(\pi_n\otimes\overline{\pi_n})W^*.
+\]
+
+On each factor this is again a regular amplification.  Its multiplicity is
+
+\[
+ k_n'=|A_8|k_n^2=20160k_n^2,                            \tag{37}
+\]
+
+and its one relative unitary is obtained by conjugating
+\(U_n\otimes\overline{U_n}\) by the fixed regular intertwiner \(W\).
+If \(z\in\mathbb T\) and \(\|\pi_n(s)-zI\|_2\leq\delta\), expansion of
+\((zI+E)\otimes(\bar zI+\bar E)-I\) gives
+
+\[
+ \|\pi_n^\#(s)-I\|_2\leq2\delta+\delta^2.              \tag{38}
+\]
+
+Thus (31) directly produces (26), without passing to an ultraproduct or
+invoking central-quotient permanence.  Formulae (36)--(38) are an explicit
+phase-clearing operation on the final one-unitary optimization.
+
 In particular, no choice of compatible scalar phases is needed.  The only
 remaining finite-dimensional target is to make each of the finitely many
 matrices \(\pi_n(s)\) asymptotically scalar.  Any persistent scalar flux is
-annihilated functorially by \(\operatorname{Ad}\), without changing the
-two exact regular \(A_8\)-charts.
+annihilated functorially either by \(\operatorname{Ad}\) or by the explicit
+conjugate tensor (36), without changing the two exact regular
+\(A_8\)-charts.
 
 ## 11. Primary sources
 
