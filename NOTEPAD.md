@@ -25184,6 +25184,119 @@ leaf-chart generation and finite generation; the standard Schur multiplier
 formula for finite simple groups of type `A` (including the exceptional
 case `PSL_4(2)`, which is why the refinement above uses rank at least `5`).
 
+# Prefix stabilization kills the entire unstable multiplier in one step (2026-08-09)
+
+The earlier local-nilpotence statement can be upgraded to a uniform theorem
+with no finite-generation hypothesis.  The missing observation is that the
+explicit `GL_2` corner intertwiner makes prefix stabilization idempotent on
+homology.
+
+Continue to write `Q=L_(F_2)(1,2)^x`, and let
+
+`kappa(u)=s_0 u t_0+s_1t_1`.
+
+Let `j:Q->GL_2(L)` be standard stabilization,
+`j(u)=diag(u,1)`, and let
+
+`Theta:GL_2(L)->Q`,
+`Theta((a_ij))=sum_(i,j in {0,1}) s_i a_ij t_j`
+
+be binary matrix self-similarity.  The transported-stabilization identity
+already proved says
+
+`Theta j = kappa`.                                       `(1)`
+
+For the word `0`, the explicit invertible matrix
+
+`X_0=[[s_0,1-s_0t_0],[0,t_0]]`
+
+from the elementary `K_1` proof satisfies, for every `u in Q`,
+
+`X_0 diag(u,1) X_0^(-1)=diag(kappa(u),1)`.                `(2)`
+
+Thus the two homomorphisms `j` and `j kappa` from `Q` to `GL_2(L)` are
+conjugate by the *single fixed element* `X_0`.  Applying `Theta` to `(2)`
+and using `(1)` shows that the homomorphisms
+
+`kappa, kappa^2:Q->Q`
+
+are conjugate.  Inner conjugacy acts trivially on group homology, so in
+every positive degree, and in particular on the Schur multiplier,
+
+`kappa_* = kappa_*^2`.                                   `(3)`
+
+On the other hand, transported standard stabilization and
+`K_2(L)=0` gave
+
+`colim(H_2(Q,Z),kappa_*)=0`;                              `(4)`
+
+equivalently, `kappa_*` is locally nilpotent on `H_2(Q,Z)`.  An idempotent
+locally nilpotent endomorphism of an abelian group is zero: for any `z`,
+choose `m` with `kappa_*^m(z)=0`; by `(3)`, every positive power equals
+`kappa_*`, so `kappa_*(z)=0`.  We have therefore proved the unconditional
+identity
+
+`kappa_*=0 on H_2(Q,Z)`.                                 `(5)`
+
+This argument is insensitive to the choice of first-level corner.  The two
+corner maps are conjugate by the prefix swap, hence both induce zero on
+`H_2`.  Their commuting product, the canonical binary shift, also induces
+zero (agreeing with `sigma_*=2kappa_*`).
+
+**Corollary (unconditional first-corner splitting).**  Let
+
+`1 -> H_2(Q,Z) -> U_Q --p--> Q -> 1`
+
+be the universal central extension.  There is an injective homomorphism
+`s:Q->U_Q` with
+
+`p s=kappa`.                                              `(6)`
+
+The analogous sections over the `0`- and `1`-corners commute, so they give
+an injective lift
+
+`Q x Q -> U_Q`
+
+of the complete first-level block subgroup.  Together with the canonical
+lift of the prefix swap, they lift `Q^2 semidirect Sym(2)` exactly.  This
+lifted block subgroup normally generates `U_Q` by the perfectness argument
+recorded in the deep-corner theorem.
+
+**Proof.**  Let `F:U_Q->U_Q` be the functorial lift of `kappa`.  Its action
+on the central kernel is `kappa_*`, hence zero by `(5)`.  Therefore `F`
+factors through `p` as `F=s p`, and `p s=kappa`; injectivity of `s` follows
+from injectivity of `kappa`.  The commuting and prefix-equivariant claims
+are the already proved perfect-source commutator argument and the unique
+Thompson lift.  End proof.
+
+There is a useful exact description of the lifted endomorphism:
+
+`ker(F)=H_2(Q,Z)`, and `im(F)=s(Q) ~= Q`.                 `(7)`
+
+Indeed, `(5)` gives inclusion of the central kernel in `ker(F)`, while
+`F(u)=1` implies `kappa(p(u))=p(F(u))=1`; injectivity of `kappa` then gives
+`p(u)=1`.  This turns the universal cover into a group with an explicit
+endomorphism whose kernel is its entire centre and whose image is the
+nonsofic corner copy.
+
+**Impact and exact boundary.**  This removes the finite-generation/finite-
+presentation condition from every earlier deep-corner splitting statement:
+the required uniform exponent is `m=1`.  It does not force
+`H_2(Q,Z)=0`, because `(5)` is a zero map induced by a proper injective
+group endomorphism, not an injectivity statement.  Nor does the embedded
+copy `s(Q)<U_Q` prove hyperlinearity of either group.  What is now fully
+eliminated is central holonomy on every stabilized corner; any remaining
+analytic obstruction must concern how the normally generating lifted
+corners are glued in `U_Q`, not unstable classes surviving to deeper
+levels.
+
+Primary pins: the fixed intertwiner is Lemma A.8 of *Nonsofic groups exist*
+(also formally verified as `cornerIntertwiner_conj_diagUnit` in
+`Leavitt/LeavittDiagonalClass.lean`); transported stabilization is the
+exact leaf-matrix calculation recorded above; Khanh--Thanh, Proposition
+8.3 and Remark 8.6, give `K_2(L_(F_2)(1,2))=0` and the meaning of stable
+vanishing.
+
 # Global `(TT)/T` for the Leavitt elementary group (2026-08-09)
 
 The missing bounded-generation input in the relative `(TT)/T` route can be
@@ -25251,11 +25364,19 @@ transvections, so it preserves the count.  End proof.
 
 For `n=5`, the bound is `40`.  The residual diagonal
 `diag(u,1,1,1,1)` belongs to `H`, because its upper-left block is in
-`GL_4(R)=E_4(R)`.  Every elementary transvection in `G` belongs to one of
-finitely many **fixed** coordinate conjugates of `H`: those avoiding the
-fifth coordinate already lie in `H`; if a root uses coordinate `5`, swap
-`5` with one of the other three coordinates not used by the root.  The
-required coordinate swaps lie in `GL_5(R)=E_5(R)`.  Therefore
+`GL_4(R)=E_4(R)`.  Let `N_+` and `N_-` be the last-column and last-row
+elementary root families used in Mimura's setup.  Every elementary
+transvection avoiding coordinate `5` lies in `H`, and every remaining one
+lies in `N_+ union N_-`.  Therefore the exact missing hypothesis (v) of
+Mimura's Theorem 8.1.7 now holds:
+
+`G=(H union N_+ union N_-)^(41)`.                    `(BG-root)`
+
+There is also a useful subgroup-only form.  Every root transvection belongs
+to one of finitely many **fixed** coordinate conjugates of `H`: if a root
+uses coordinate `5`, swap `5` with one of the other three coordinates not
+used by the root.  The required coordinate swaps lie in
+`GL_5(R)=E_5(R)`.  Hence
 
 `G=(H_1 union ... union H_s)^(41)`                      `(BG)`
 
@@ -25284,6 +25405,20 @@ settles the comparison-map half of the `2`-Kazhdan program for every
 nontrivial unitary coefficient module.  It does **not** settle the bounded
 cohomology-vanishing half, Hilbert--Schmidt stability, hyperlinearity, or
 the main hyperlinear-versus-sofic question.
+
+The root-family form `(BG-root)` also closes the same globalization for
+Mimura's stronger Banach statements.  Proposition 9.2.8 gives relative
+`(FF_(L_p))/T` for the noncommutative universal pair in rank at least four;
+quotient permanence carries it to `R`, and Theorem 8.1.7 now has its
+previously missing condition (v).  Consequently, for every `1<p<infinity`,
+
+`E_5(L_(F_2)(1,2)) has (FF_(L_p))/T`.
+
+This Banach strengthening should be cited with Mimura, Proposition 9.2.8
+and Theorem 8.1.7, not inferred merely from the Hilbert theorem.  No full
+`F_(L_p)` statement is claimed here: unlike a Hilbert representation, a
+general isometric `L_p` representation need not provide an orthogonal
+invariant/complement splitting for that one-line inference.
 
 The proof deliberately avoids the invalid inference `GL=EL` implies
 bounded elementary width.  The width comes instead from the explicit
