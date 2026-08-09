@@ -229,6 +229,44 @@ theorem tailToRow_commute (F : CompleteMatrixFamily R κ)
       exact x_commute_of_ne _ _ _ _ (by simp) (by simp)
         (by simp) (by simp) _ _)
 
+/-- Multiplication by one right-family element extracts the corresponding
+ordinary singleton-to-tail root. -/
+theorem rowToTail_mul_right (F : CompleteMatrixFamily R κ)
+    (p : Fin 2) (j : κ) (a : R) :
+    rowToTail F p (a * F.right j) =
+      x (Sum.inl p) (Sum.inr j) (by simp) a := by
+  classical
+  unfold rowToTail
+  rw [← Finset.mul_noncommProd_erase Finset.univ (Finset.mem_univ j)]
+  rw [Finset.noncommProd_eq_pow_card _ _ _ 1]
+  · simp [mul_assoc, F.orthogonal]
+  · intro k hk
+    rw [show (a * F.right j) * F.left k = 0 by
+      simp [mul_assoc, F.orthogonal,
+        (Finset.ne_of_mem_erase hk).symm]]
+    exact x_zero _ _ _
+
+/-- Multiplication by one left-family element extracts the corresponding
+ordinary tail-to-singleton root. -/
+theorem tailToRow_mul_left (F : CompleteMatrixFamily R κ)
+    (p : Fin 2) (i : κ) (a : R) :
+    tailToRow F p (F.left i * a) =
+      x (Sum.inr i) (Sum.inl p) (by simp) a := by
+  classical
+  unfold tailToRow
+  rw [← Finset.mul_noncommProd_erase Finset.univ (Finset.mem_univ i)]
+  rw [Finset.noncommProd_eq_pow_card _ _ _ 1]
+  · rw [one_pow, mul_one]
+    congr 1
+    calc
+      F.right i * (F.left i * a) = (F.right i * F.left i) * a :=
+        (mul_assoc _ _ _).symm
+      _ = a := by rw [F.orthogonal i i]; simp
+  · intro k hk
+    rw [show F.right k * (F.left i * a) = 0 by
+      simp [← mul_assoc, F.orthogonal, Finset.ne_of_mem_erase hk]]
+    exact x_zero _ _ _
+
 @[simp] theorem rowToTail_neg (F : CompleteMatrixFamily R κ)
     (p : Fin 2) (a : R) : rowToTail F p (-a) = (rowToTail F p a)⁻¹ := by
   apply mul_left_cancel (a := rowToTail F p a)
@@ -271,6 +309,29 @@ def tailToRowSubgroup (F : CompleteMatrixFamily R κ) (p : Fin 2) :
 def smallRoot (p q : Fin 2) (hpq : p ≠ q) (a : R) :
     SteinbergGroup (Fin 2 ⊕ κ) R :=
   x (Sum.inl p) (Sum.inl q) (by simpa) a
+
+/-- A singleton root commutes with a singleton-to-tail root having the same
+source singleton. -/
+theorem smallRoot_rowToTail_commute (F : CompleteMatrixFamily R κ)
+    (p q : Fin 2) (hpq : p ≠ q) (a b : R) :
+    Commute (smallRoot (κ := κ) p q hpq a) (rowToTail F p b) := by
+  unfold smallRoot rowToTail
+  exact Finset.noncommProd_commute Finset.univ _
+    (rowToTail_pairwise F p b) _ fun j _ ↦
+      x_commute_of_ne _ _ _ _ (by simpa using hpq) (by simp)
+        (by simpa using hpq.symm) (by simp) _ _
+
+/-- A tail-to-singleton root commutes with a singleton root having the same
+target singleton. -/
+theorem tailToRow_smallRoot_commute (F : CompleteMatrixFamily R κ)
+    (p q : Fin 2) (hpq : p ≠ q) (a b : R) :
+    Commute (tailToRow F q a) (smallRoot (κ := κ) p q hpq b) := by
+  unfold smallRoot tailToRow
+  exact (Finset.noncommProd_commute Finset.univ _
+    (tailToRow_pairwise F q a) _ fun i _ ↦
+      x_commute_of_ne (Sum.inl p) (Sum.inl q) (Sum.inr i) (Sum.inl q)
+        (by simpa using hpq) (by simp) (by simp)
+        (by simpa using hpq.symm) _ _).symm
 
 /-- The adjacent commutator of a singleton root with a rectangular
 singleton-to-tail root. -/
