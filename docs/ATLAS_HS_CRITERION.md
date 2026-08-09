@@ -158,10 +158,11 @@ finite-dimensional representations of }P.
 }
 \]
 
-The first-corner splitting theorem gives an actual embedded copy
-\(Q\hookrightarrow U_Q\).  Hence the premise also implies that \(Q\) is
-hyperlinear.  The already proved nonsoficity of \(Q\) would then answer "is
-every hyperlinear group sofic?" negatively.
+Thom's central-quotient theorem implies that \(Q\) is hyperlinear whenever
+\(U_Q\) is hyperlinear.  The already proved nonsoficity of \(Q\) would then
+answer "is every hyperlinear group sofic?" negatively.  No splitting of
+\(U_Q\to Q\) is used or asserted: such a section would force the unstable
+kernel \(K_2(5,L)\) to vanish, which is not presently known.
 
 This criterion is strictly sharper than asking for arbitrary approximate
 representations of the Steinberg group.  A candidate model may be assumed,
@@ -233,11 +234,11 @@ proper normal subgroup of the quasisimple group \(U_Q\), and so
 \]
 
 Consequently its image is a central quotient of \(U_Q\) which still maps
-onto the simple nonsofic group \(Q\).  The central-cover nonsoficity theorem
-makes this image nonsofic.  On the other hand, the image is a subgroup of a
-tracial matrix ultraproduct, hence hyperlinear.  Thom's central-quotient
-permanence then also makes \(Q\) hyperlinear.  Thus the already nonsofic
-group \(Q\) itself is a counterexample.  This proves the claim.
+onto \(Q\).  The image is a subgroup of a tracial matrix ultraproduct, hence
+hyperlinear.  Its kernel over \(Q\) is central, so Thom's central-quotient
+permanence makes \(Q\) hyperlinear.  Thus the already nonsofic group \(Q\)
+itself is a counterexample.  This proof does not need a separate theorem
+asserting that all central covers of \(Q\) are nonsofic.
 
 The certificate is independent of the chosen finite normal generating set:
 normal generation and exact multiplicativity of each \(\pi_k\) propagate
@@ -341,7 +342,71 @@ problem is precisely whether these positive gaps decay to zero at unbounded
 dimension.  Section 4 supplies finite multiplicity and unitary coordinates
 for every optimization problem (C).
 
-## 6. Exact boundary
+## 6. Tensor-amplified ratio criterion
+
+The seed representations need not keep \(p_0\) a fixed distance from the
+identity.  For an exact finite-dimensional representation \(\pi\) of \(P\),
+put
+
+\[
+ a(\pi)=\|\pi(p_0)-1\|_2,\qquad
+ b(\pi)=\max_{n\in\mathcal S}\|\pi(n)-1\|_2.
+\]
+
+Then
+
+\[
+ \boxed{
+ Q\text{ is hyperlinear}
+ \iff
+ \inf_{\substack{\pi:P\to U(d),\,d\geq1\\a(\pi)>0}}
+ \frac{b(\pi)}{a(\pi)}=0.
+ }                                                        \tag{E}
+\]
+
+Only the reverse implication needs proof.  Choose \(\pi_k\) with
+\(a_k>0\) and \(b_k/a_k\to0\).  Replace it by
+\(\pi_k^\#=\pi_k\oplus\overline{\pi_k}\).  This preserves all normalized
+\(2\)-distances and makes every normalized character value real:
+
+\[
+ \operatorname{tr}(\pi_k^\#(w))
+ =1-\frac12\|\pi_k(w)-1\|_2^2.                            \tag{F}
+\]
+
+If \(a_k\) is bounded below on a subsequence, the one-witness theorem applies
+directly.  Otherwise take \(a_k\to0\), put
+\(m_k=\lfloor a_k^{-2}\rfloor\), and set
+\(\rho_k=(\pi_k^\#)^{\otimes m_k}\).  Formula (F) gives
+
+\[
+ \|\rho_k(p_0)-1\|_2^2
+ =2\left(1-(1-a_k^2/2)^{m_k}\right)
+ \longrightarrow2(1-e^{-1/2})>0.
+\]
+
+For \(n\in\mathcal S\), let
+\(x_{k,n}=\|\pi_k(n)-1\|_2^2/2\).  Eventually \(0\leq x_{k,n}\leq1\), and
+
+\[
+\begin{aligned}
+ \|\rho_k(n)-1\|_2^2
+ &=2\left(1-(1-x_{k,n})^{m_k}\right)\\
+ &\leq2m_kx_{k,n}
+ \leq m_kb_k^2
+ \longrightarrow0,
+\end{aligned}
+\]
+
+because \(\sqrt{m_k}b_k\leq b_k/a_k\to0\).  Thus the tensor powers satisfy
+the one-witness certificate.
+
+Criterion (E) permits sparse seeds: the survivor may itself vanish in
+normalized \(2\)-norm, provided the finite relation defects vanish at a
+strictly faster rate.  Tensor powers convert that relative advantage into
+constant separation.
+
+## 7. Exact boundary
 
 Hilbert--Schmidt stability of \(P\) does **not** imply stability of the
 epimorphism \(P\to P/N\).  Proving that epimorphism stable would select the
@@ -355,7 +420,7 @@ simultaneously make every tested element of \(N\) nearly trivial while
 keeping every tested element outside \(N\) trace-invisible.  That is exactly
 the quotient trace problem.
 
-## 7. Primary sources
+## 8. Primary sources
 
 * M. Gerasimova and K. Shchepin, *Virtually free groups are
   \(p\)-Schatten stable*, arXiv:2107.10032, Corollaries 3 and 4.

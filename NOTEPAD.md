@@ -25797,3 +25797,74 @@ explicit compact-optimization gaps has zero infimum at unbounded dimension.
 The finite-factor multiplicity/conjugating-unitary coordinates in
 `docs/ATLAS_HS_CRITERION.md` make each `delta_d(epsilon)` a concrete finite
 matrix optimization problem.
+
+# Atlas audit: no first-corner section is needed (2026-08-09)
+
+The sentence that a "first-corner splitting theorem" embeds `Q` in its
+universal central cover `U_Q` was incorrect and has been removed from the
+standalone atlas note.  A section of `U_Q -> Q` would split a central
+extension of a perfect group and hence force its unstable kernel
+`K_2(5,L)` to vanish; that vanishing is explicitly still open.  The valid
+argument is both simpler and stronger: Thom, *Examples of hyperlinear groups
+without factorization property*, Lemma 3.3 and Remark 3.4, proves that a
+quotient of a hyperlinear group by a central subgroup is hyperlinear.
+
+Therefore a nontrivial ultraproduct representation of the quasisimple
+`U_Q` has central kernel, its image is hyperlinear, and its central quotient
+`Q` is hyperlinear.  Since `Q` is already nonsofic, this completes the
+one-witness implication without either a section `Q -> U_Q` or a theorem
+that every central cover of `Q` is nonsofic.  The exact-atlas certificate is
+unchanged; one unsupported intermediate assertion has been eliminated.
+
+The fixed-separation constraint can itself be removed by tensor
+amplification.  For an exact representation `pi:P->U(d)`, put
+
+`a(pi)=||pi(p_0)-1||_(2,d)`,
+
+`b(pi)=max_(c in C)||pi(c)-1||_(2,d)`.
+
+Then
+
+`Q hyperlinear  <=>  inf_(pi:a(pi)>0) b(pi)/a(pi)=0`,       `(6)`
+
+where the infimum ranges over exact finite-dimensional representations of
+`P` of arbitrary dimension.
+
+**Proof of the nontrivial implication.**  Choose `pi_k` with
+`a_k=a(pi_k)>0` and `b_k/a_k->0`.  Replace `pi_k` by
+`pi_k directSum conjugate(pi_k)`.  This leaves every normalized
+Hilbert--Schmidt distance unchanged and makes every normalized character
+value real:
+
+`tr(pi_k^#(w))=Re tr(pi_k(w))=1-||pi_k(w)-1||_2^2/2`.       `(7)`
+
+If `a_k` is bounded below along a subsequence, these representations
+already satisfy the one-survivor certificate.  Otherwise pass to
+`a_k->0`, choose `m_k=floor(a_k^(-2))`, and take the exact tensor-power
+representations
+
+`rho_k=(pi_k^#)^(tensor m_k)`.
+
+Writing `t_k=1-a_k^2/2`, formula `(7)` gives
+
+`||rho_k(p_0)-1||_2^2=2(1-t_k^(m_k))`
+
+which tends to `2(1-exp(-1/2))>0`.  For `c in C`, put
+`x_(k,c)=||pi_k(c)-1||_2^2/2`.  Eventually `0<=x_(k,c)<=1`, and
+
+`||rho_k(c)-1||_2^2`
+` =2(1-(1-x_(k,c))^(m_k))`
+` <=2 m_k x_(k,c)`
+` <=m_k b_k^2 ->0`,
+
+because `sqrt(m_k)b_k<=b_k/a_k->0`.  Thus `rho_k` satisfies the finite
+certificate and makes `Q` hyperlinear nonsofic.  The reverse implication
+to `(6)` is immediate from a fixed-separation certificate.  End proof.
+
+Criterion `(6)` is useful because a seed construction may now be extremely
+sparse: both the desired signal and all relation errors may vanish, provided
+the relation errors vanish at a strictly faster normalized-HS rate.  Tensor
+amplification converts that relative advantage into the absolute
+one-survivor model.  In finite-factor coordinates, the live constructive
+target is therefore a sequence of multiplicities and relative conjugators
+for which the finite word-map ratio `b/a` tends to zero.
