@@ -20032,6 +20032,92 @@ now packaged as one central-extension problem.  The remaining theorem is
 concrete: construct normalized-HS microstates for `H_Cl` with
 `z |-> -1` (or another trace-separated central involution).
 
+### Finite-rank invariant Clifford forms cannot see the strict edge
+
+The earlier sparse-orbital variant cannot be simplified to a fixed
+finite-rank symplectic quotient.  This follows directly from relative
+profinite invisibility.
+
+Let `V=directSum_X F_2`, let `o=Gamma`, and let `B:V x V->F_2` be a
+`G`-invariant alternating form of finite rank.  Put
+
+`W=V/rad(B)`.
+
+Then `W` is a finite-dimensional `F_2`-space and the `G`-action gives a
+homomorphism
+
+`q_B:G->GL(W)`
+
+with finite image.  The class `[delta_o]` is fixed by `q_B(Gamma)`.  If
+`h` belongs to the relative profinite closure of `Gamma`, then in this
+finite image there is `gamma in Gamma` with `q_B(h)=q_B(gamma)`.  Hence
+
+`[delta_(h o)]=q_B(h)[delta_o]`
+`             =q_B(gamma)[delta_o]=[delta_o]`.
+
+Thus `delta_(h o)+delta_o` lies in `rad(B)`, and alternation gives
+
+`B(delta_(h o),delta_o)=0`.
+
+For the strict Kun--Thom element `h=t^(-1) gamma t notin Gamma`, the
+finite-quotient-collapse argument proves precisely that `h` is in this
+relative profinite closure.  Therefore no finite-rank invariant alternating
+form can put a Clifford edge between `o` and `h o`.  In particular, the
+orbital form carrying the witness necessarily has infinite rank, and every
+exhausting family of nondegenerate quotients retaining that edge must have
+unbounded symplectic rank.
+
+This closes exact fixed-size Pauli modules, a fixed extraspecial quotient,
+and any attempt to make the orbital Clifford action factor through one
+finite symplectic group.  A surviving sparse construction must use growing
+rank while keeping its covariance defects small relative to that rank.
+
+### Spin trace amplification makes coordinate patching discrete
+
+The complete Clifford system has an additional sharp obstruction which is
+stronger than ordinary boundary amplification.  Let `N` be even and realize
+`N` anticommuting Majorana generators in the irreducible complex Clifford
+representation of dimension `2^(N/2)`.  If `P in O(N)` and `U_P` is either
+Pin lift implementing `P`, then the normalized spin character satisfies
+
+`|tr(U_P)|^2 = det((1+P)/2)`.
+
+For a coordinate permutation `p`, an even cycle contributes an eigenvalue
+`-1`, so the right side is zero.  If every nontrivial cycle is odd, a cycle
+of length `l>=3` contributes
+
+`product_(k=1)^(l-1) |(1+exp(2 pi i k/l))/2| = 2^(-(l-1))`
+
+to the determinant, hence `2^(-(l-1)/2)` to `|tr(U_p)|`.
+Consequently every nonidentity coordinate permutation
+satisfies
+
+`|tr(U_p)| <= 1/2`,
+
+and therefore
+
+`min_(lambda in T) ||U_p-lambda 1||_2^2`
+`  =2-2|tr(U_p)| >=1`.
+
+The estimate is independent of `N` and of the fraction of coordinates moved.
+Thus extending each local partial coset map to an arbitrary permutation of
+a large finite label set cannot yield Clifford microstates.  If a fixed
+relator closes only on the active labels but its completed permutation is
+nontrivial anywhere else, the corresponding product of Pin lifts remains
+at normalized-HS distance at least `1` from the required scalar.  For a
+finite presentation, vanishing relator error in this monomial ansatz forces
+the completed coordinate permutations eventually to form an exact finite
+action; relative profinite collapse then kills the strict Clifford edge.
+
+This does not close general Bogoljubov microstates: non-monomial orthogonal
+transports can have all rotation angles small, and a sparse degenerate form
+can quotient away much of a permutation defect.  It does close the naive
+proposal "embed the finite lamp window and extend every partial action by a
+permutation."  The surviving Clifford target is now narrower: a sequence of
+growing-rank sparse symplectic spaces, with non-coordinate transports whose
+spin determinant defect tends to zero while the distinguished commutator
+remains `-1`.
+
 ### Clifford--Fell criterion and its exact finite-dimensional obstruction
 
 The Clifford cover has a clean sufficient microstate criterion.  Suppose
