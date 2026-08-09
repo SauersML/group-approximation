@@ -18925,6 +18925,56 @@ compressor--shear coupling.  The explicit open subproblem remains:
 This is strictly stronger than generic normalized-HS instability and is not
 covered by the published Frobenius criteria.
 
+### Sparse fusion can spread generator drift, but cannot hide positive-mass relator failure
+
+The bipartite sparse Parseval frame above is a valid escape from all-pairs
+synchronization, but it does not by itself solve owner-only relation gluing.
+In its exact edge-fiber form the limitation is transparent.
+
+Keep `H=ell^2(E) tensor K`, with the commuting incidence projections `p_x`
+and `q_y` and frame constant `A=2`.  Suppose, for simplicity, that every
+local occurrence `U_(g,x)` or `U_(g,y)` preserves each incident edge fiber
+and that on the fiber `e=(x,y)` the two occurrences agree; call the common
+operator `U_(g,e)`.  Then the fused compression is not merely close to a
+fiber model: it is exactly
+
+`T_g=direct_sum_(e in E) U_(g,e)`.
+
+Indeed the analysis isometry places `xi_e/sqrt(2)` in each of its two
+endpoint slots, and the adjoint adds the two equal outputs with the same
+factor.  Therefore, for every word `w`,
+
+`||w(T)-1||_2^2`
+` =(1/|E|) sum_(e in E)||w(U_(*,e))-1||_(2,K)^2`.
+
+The analogous identity holds for a blockwise witness and its strict
+commutator.  With `o(1)` edge-overlap errors the identities acquire only the
+usual fixed-word `o(1)` Lipschitz term.
+
+Consequently a transition supported on `o(|E|)` edges may absorb an
+order-one jump between two generator assignments, but a positive-weight
+region on which one fixed group relator has order-one defect still gives an
+order-one fused defect.  If the fused relator defects vanish and the fused
+strict energy stays at least `kappa>0`, then, after discarding an edge set of
+vanishing weight, positive strict energy remains on edge fibers on which
+**all of the finitely many tested relators are simultaneously good**.
+
+Thus the sparse architecture changes the synchronization geometry but not
+the terminal mathematical demand.  It can connect two already valid local
+models through a thin wall; it cannot turn a strict cell that violates an
+ordinary covariance relator on positive mass into a global microstate.
+The proposed branching schedule must therefore establish, on a
+positive-weight collection of edge fibers, the full compressor--shear
+coupling tuple itself.  Merely accumulating the free-cycle shear along a
+long path is insufficient unless every fixed relator remains small on the
+strict side of that path.
+
+For genuinely noncommuting incidence projections the displayed direct-sum
+identity is replaced by the fusion leakage estimates, but the same
+positivity issue remains: squared Hilbert--Schmidt relator energy cannot
+cancel between charts.  Any claimed quantum repair must exhibit where that
+energy goes, rather than appeal only to endpoint drift.
+
 ### The one-compressor HNN shortcut loses ambient property (T)
 
 There is a tempting but invalid way to avoid the compressor--shear coupling:
