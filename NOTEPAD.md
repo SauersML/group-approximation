@@ -13078,3 +13078,73 @@ strictly algebraic and cross-layer: verify that the `EL_r(T_q)` extension
 cocycle is carried to the dual extension cocycle under the reverse-degree
 Frobenius pairing.  A scalar Maslov-index ambiguity is no longer part of
 that lemma at odd `p`.
+
+### Frobenius cyclicity identifies every cross-layer Steinberg tensor
+
+Write `G_a=M^a/M^(a+1)` for the homogeneous `xi`-degree-`a` piece.  The
+coefficient part of every extension cocycle is one of the multiplication
+maps
+
+`mu_(a,b):G_a tensor_(A_N) G_b -> G_(a+b)`.
+
+Let `tau` be the scalar Frobenius functional on `T`.  If
+`a+b+c=D`, then
+
+`tau(uvw)=tau(vwu)=tau(wuv)`
+
+for `u in G_a`, `v in G_b`, `w in G_c`.  Equivalently,
+
+`<mu_(a,b)(u,v),w>=<u,mu_(b,c)(v,w)>`.
+
+Thus multiplication into degree `a+b` is exactly the transpose, under the
+reverse-degree Frobenius pairings, of multiplication out of the
+complementary degree.
+
+The matrix form is even more useful.  On homogeneous trace-zero matrices
+put
+
+`<X,Y>=tau(tr(XY))`.
+
+For degrees summing to `D`, associativity and cyclicity of matrix trace give
+
+`<[X,Y],Z>=<X,[Y,Z]>`.
+
+Because `p` does not divide `r`, this trace form is nondegenerate on the
+trace-zero layers.
+
+**Theorem (graded Steinberg self-duality).**  Under the identifications
+
+`K_q^vee ~= K_(D-q)`,
+
+every structure tensor occurring in a same-root, commuting-root, or `A_2`
+Steinberg relation is carried to the contragredient structure tensor in the
+reverse Frobenius layer.  In particular, all commutators between different
+filtration degrees, including those which land in a third higher degree,
+are compatible with the layerwise Fourier--Weil transports.
+
+**Proof.**  Same-root additivity is linear and self-dual.  A commuting-root
+tensor is zero on both sides.  For an oriented triple of matrix roots,
+
+`[e_(ij)(u),e_(jk)(v)]=e_(ik)(uv)`.
+
+Pair its coefficient `uv` with a complementary coefficient `w`; the
+displayed Frobenius identity moves `v` across the pairing and gives exactly
+the reversed/contragredient `A_2` tensor.  The minimal chamber cover contains
+every noncommuting and commuting Steinberg tensor, so these cases exhaust
+the local presentation.  End proof.
+
+This discharges the **algebraic** part of the cross-layer coherence lemma:
+there is no unmatched multiplication cocycle hiding between degrees.  The
+remaining task is representational rather than ring-theoretic.  One must
+choose a simultaneous model of the filtered elementary group whose
+restriction to every `K_q` is the canonical Heisenberg model and whose
+successive quotient maps realize the above invariant tensors.  A natural
+candidate is induction along the filtration
+
+`EL_r(T/M^2)<-EL_r(T/M^3)<-...<-EL_r(T)`;
+
+Clifford theory supplies an honest induced representation at each finite
+step, while the theorem shows that its adjacent-wall conjugate has the same
+extension data.  What remains to check is that these induced models can be
+dimension-equalized without turning the nonautomorphic compressor into a
+common-quotient automorphism.
