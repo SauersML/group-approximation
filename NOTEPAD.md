@@ -25506,6 +25506,65 @@ source groups and therefore vanishes.  Neither assertion has yet been
 proved.  What `(1)` does establish is that no unbounded word-length or
 ever-deep stabilization phenomenon remains available as an obstruction.
 
+# The ordinary-wreath quotient kernel cannot be centralised nontrivially (2026-08-09)
+
+The Kun--Thom generalized wreath product is an amenable-kernel quotient of
+an ordinary wreath product, but Thom's central-quotient permanence cannot be
+inserted between them.  The obstruction is exact: the identification kernel
+is already equal to its commutator with the whole ordinary wreath product.
+
+Let `k=F_2`, let `Gamma<G` be a Kun--Thom pair, and write the two left
+permutation modules as
+
+`B=k^(G)=Ind_1^G(k)`,  `A=k^(G/Gamma)=Ind_Gamma^G(k)`.
+
+The natural summation-on-right-cosets map `pi:B->A` is a surjective
+`kG`-module map.  Put `K=ker(pi)`.  It induces the familiar quotient
+
+`W=B semidirect G  ->  Lambda=A semidirect G`,                 `(1)`
+
+whose kernel is the abelian group `K`.  Then
+
+`K_G=K/[G,K]=0`, and consequently `[W,K]=K`.                  `(2)`
+
+**Proof.**  Apply group homology to
+
+`0 -> K -> B -> A -> 0`.
+
+The relevant exact segment is
+
+`H_1(G,B;k) -> H_1(G,A;k) -> H_0(G,K;k)`
+`             -> H_0(G,B;k) -> H_0(G,A;k) -> 0`.
+
+Shapiro gives
+
+`H_1(G,B;k)=H_1(1,k)=0`,
+`H_1(G,A;k)=H_1(Gamma,k)`.
+
+Both permutation modules are transitive, so the last displayed map is the
+identity `k->k`.  Exactness therefore identifies
+
+`K_G ~= H_1(Gamma,k)`.
+
+The polynomial elementary group `Gamma` is perfect, hence
+`H_1(Gamma,k)=Gamma_ab tensor k=0`.  This proves the first equality in
+`(2)`.  Since `B` is abelian, commutators of `K` with `W=B semidirect G`
+are exactly its commutators with `G`, proving the second.  End proof.
+
+Thus if `N normal W`, `N<=K`, and `K/N` is central in `W/N`, then
+`[W,K]<=N`; by `(2)` this forces `N=K`.  Equivalently, every quotient of
+the ordinary wreath product in which the lamp-identification kernel becomes
+central already factors through `Lambda` and leaves no nonzero central
+kernel.  Therefore one cannot prove hyperlinearity of the nonsofic
+generalized wreath product by placing between `(1)` a nontrivial central
+quotient of the sofic ordinary wreath product.  Any positive amenable-kernel
+descent must remain genuinely noncentral and analytic.
+
+This is the wreath analogue of the finite-atlas equality `N=[P,N]` proved
+above: in both leading candidates, the most natural kernel has no surviving
+central coinvariants, so central-quotient permanence cannot be applied by a
+formal intermediate construction.
+
 # Rank-uniform global `(TT)/T` for the binary Leavitt family (2026-08-09)
 
 The rank-five theorem globalizes without any further input.  Put
