@@ -38,6 +38,8 @@ import NonsoficGroupsExist.Steinberg.A2Kazhdan
 import NonsoficGroupsExist.Steinberg.BinaryLeavitt
 import NonsoficGroupsExist.Steinberg.FiniteControl
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
+import NonsoficGroupsExist.Steinberg.RootFiltration
+import NonsoficGroupsExist.Steinberg.RootActions
 
 /-!
 # Human-readable axiom report

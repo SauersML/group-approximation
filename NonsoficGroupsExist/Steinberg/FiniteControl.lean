@@ -1,6 +1,7 @@
 import NonsoficGroupsExist.Steinberg.A2Kazhdan
+import NonsoficGroupsExist.Steinberg.RootFiltration
+import NonsoficGroupsExist.Steinberg.RootActions
 import NonsoficGroupsExist.PropertyT.ClassTwoNormalForm
-import NonsoficGroupsExist.PropertyT.FreeAlgebraDegree
 
 /-!
 # Finite root control in the rank-three Steinberg group
