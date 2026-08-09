@@ -11924,3 +11924,110 @@ single transition between the two maximal-cell types, while the macroscopic
 strict witness lives in their common `Z^3` sector.  The remaining target is
 to make that one transition's curvature `eta_n` satisfy
 `sqrt(eta_n)=o(rho_n)`.
+
+### Square-zero Fourier duality gives the nonautomorphic two-cell transition
+
+The common abelian strict sector admits an explicit transition which is not
+a sterile common-quotient automorphism.
+
+Fix `N>=2` and put
+
+`A_N=F_p[y]/(y^N)`,
+
+`S_N=A_N directSum J_N`,  `J_N=xi A_N`,  `J_N^2=0`.
+
+Thus `S_N` is the trivial square-zero extension.  Give `A_N` its Frobenius
+functional
+
+`ell(sum a_d y^d)=a_(N-1)`
+
+and pair `J_N` with a dual copy `J_N^vee` by
+
+`<xi a,xi^vee b>=psi(ell(ab))`,
+
+where `psi:F_p->T` is a fixed nontrivial additive character.  For the ideal
+flag
+
+`I_m=xi y^m A_N`,  `0<=m<=N`,
+
+one has the exact annihilator identity
+
+`I_m^perp=I_(N-m)^vee`.
+
+Indeed, products with `y^(N-m)` vanish modulo `y^N`; conversely a term of
+degree `<N-m` pairs nontrivially with a suitable term of degree at least
+`m`.
+
+Take the elementary rank `r` prime to `p` (for example `r=4`).  The split
+reduction
+
+`EL_r(S_N) -> EL_r(A_N)`
+
+has abelian kernel
+
+`K(J_N) ~= sl_r(A_N) tensor_(A_N) J_N`.
+
+The matrix trace combined with `ell` gives a perfect pairing between
+`K(J_N)` and `K(J_N^vee)`, and
+
+`K(I_m)^perp=K(I_(N-m)^vee)`.
+
+Let `F_N:ell^2(K(J_N))->ell^2(K(J_N^vee))` be the finite Fourier transform.
+Then
+
+`F_N lambda(k) F_N^*=M_(<k,->)`,
+
+and the averaging projection onto `K(I_m)`-invariant vectors is carried to
+the multiplication projection supported on `K(I_(N-m)^vee)`.  Thus Fourier
+duality turns the descending nonautomorphic compression flag
+
+`I_0>I_1>...>I_N=0`
+
+into the reverse annihilator flag.  It does **not** turn multiplication by
+`y` into an automorphism of one common quotient: translations become
+character multipliers.  The transition holonomy is therefore genuinely
+matrix-valued/Weyl, precisely outside the scalar-sterility theorem.
+
+There is also exact covariance.  If `g` is a linear action on `J_N` and
+`g^vee` is its contragredient action on `J_N^vee`, their permutation
+unitaries satisfy
+
+`F_N P_g=P_(g^vee) F_N`.
+
+The two complementary `UT_3` factors in the orders `O_+` and `O_*` are
+contragredient after reversing `{1,2,3}`.  Hence their actions on the
+square-zero kernel are Fourier-intertwined on every level where the
+truncated monomial action stays inside the flag.
+
+**Quantitative bridge.**  Put one regular-quotient block at each level
+`0<=m<N`, use multiplication by `y` for the forward chamber, its Fourier-
+dual reverse shift for the opposite chamber, and close the final level
+arbitrarily.  All transition and annihilator identities are exact except at
+one wrap.  Therefore
+
+* coefficient curvature has rank fraction at most `1/N` and normalized
+  Hilbert--Schmidt size at most `2/sqrt(N)`;
+* every interior inclusion `I_(m+1)<I_m` is strict, so the regular-quotient
+  commutant witness occupies a fraction `1-1/N`; and
+* Fourier conjugation preserves the witness norm while moving it from the
+  translation realization to the dual multiplication realization.
+
+Tensor three copies for the common star `Z^3`.  The union of their wrap sets
+has rank fraction at most `3/N`, while any selected root witness remains
+macroscopic.  Taking, for example,
+
+`N=p^(8n)`
+
+along the local-ring Pauli--flag tower gives total candidate curvature
+
+`eta_n=O_p(p^(-4(n-1)))+O(p^(-8n))`
+
+and strict rank `rho_n=1-o(1)`, hence
+
+`sqrt(eta_n)=o(rho_n)`.
+
+The remaining verification is now concrete rather than existential: build
+the multivariate truncated square-zero module so that the two `UT_3`
+monomial actions are contragredient on the bulk and check all `Gamma`
+elementary covariance relations there.  The one-variable Fourier bridge,
+its annihilator flags, and the required scale separation are exact.
