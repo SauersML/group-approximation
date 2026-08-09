@@ -190,8 +190,69 @@ question remains whether exact representations of \(P_{30}\) can make all
 words in (11) tend to the identity in normalized Hilbert--Schmidt norm while
 keeping (10) a fixed positive distance from the identity.
 
-## 5. Primary source
+## 5. Exact negative-rank form
+
+The chosen survivor \(p_0=q_{12,1}\) is an involution.  For an exact
+representation \(\pi:P_{30}\to U(d)\), put
+
+\[
+  r_-(\pi)=\dim\ker(\pi(p_0)+1).
+\]
+
+The unitary \(\pi(p_0)\) is a self-adjoint involution, and therefore
+
+\[
+  \|\pi(p_0)-1\|_{2,d}
+  =2\sqrt{\frac{r_-(\pi)}d}.                              \tag{12}
+\]
+
+Let \(\|T\|_{\mathrm F}=\operatorname{Tr}(T^*T)^{1/2}\) denote the
+unnormalized Frobenius norm.  The tensor-amplified ratio criterion and
+(12) give the exact reformulation
+
+\[
+\boxed{
+ Q\text{ is hyperlinear}
+ \iff
+ \inf_{\substack{\pi:P_{30}\to U(d)\\r_-(\pi)>0}}
+ \frac{\max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}}
+      {\sqrt{r_-(\pi)}}=0.
+}                                                           \tag{13}
+\]
+
+Indeed, if \(a(\pi)=\|\pi(p_0)-1\|_{2,d}\) and
+\(b(\pi)=\max_{n\in\mathcal S}\|\pi(n)-1\|_{2,d}\), then
+
+\[
+  \frac{b(\pi)}{a(\pi)}
+  =\frac{\max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}}
+         {2\sqrt{r_-(\pi)}}.                              \tag{14}
+\]
+
+Thus the ambient dimension cancels completely.  A construction proving the
+main problem false needs relation-defect energy
+\(o(\sqrt{r_-(\pi)})\).  The opposite conclusion would follow from one
+constant \(c>0\) such that every exact representation satisfies
+
+\[
+  \max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}
+  \ge c\sqrt{r_-(\pi)}.                                   \tag{15}
+\]
+
+In particular, a dimension-independent Frobenius-stability theorem for
+\(U_Q\), correcting the finite presentation to its only
+finite-dimensional representation (the trivial one), would imply (15).
+Conversely, violations of every estimate (15) give (13), hence make the
+already nonsofic group \(Q\) hyperlinear.  Formula (13) is the exact
+active-eigenspace interface between the two outcomes; it does not establish
+either one.
+
+## 6. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
 Proposition 3.4, Corollary 4.4, and Theorem 5.3.
+
+A. Thom, *Examples of hyperlinear groups without factorization property*,
+Lemma 3.3 and Remark 3.4, for central-quotient permanence of
+hyperlinearity.
