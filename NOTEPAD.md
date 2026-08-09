@@ -7099,3 +7099,102 @@ microstates directly, but it cannot be converted into a nontrivial
 Bass--Serre decomposition and fed to the symmetric-double theorem.  This
 closes the proposed degree-zero-double/HNN shortcut without making any claim
 about the still-open direct weak-MF certificate for `J`.
+
+### The compressor has infinite index; regular tensor sectors are rigid
+
+There are two tempting ways to turn the regular-sector reduction into a
+finite correspondence: use the Jones basic construction for the compressed
+subgroup, or tensor several regular/projectively regular sectors until a
+relative commutant appears.  Neither works.
+
+Fix the explicit compressor `t=t_(u_12)` from Kun--Thom Theorem E.  Its ring
+image is
+
+`S=F_q[x_1,x_1 x_2,x_3,...,x_d] < R_+=F_q[x_1,...,x_d]`,
+
+and put `H=t Gamma t^-1=EL_r(S)`.
+
+**Lemma (the compressed subgroup has infinite index).**
+
+`[Gamma:H]=infinity`.
+
+**Proof.**  The cosets
+
+`e_12(x_2^n) H`,  `n>=1`,
+
+are pairwise distinct.  Indeed, equality of the `m`th and `n`th cosets would
+put
+
+`e_12(x_2^m+x_2^n)`
+
+in `EL_r(S)`.  Every entry of a matrix in `EL_r(S)` belongs to `S`, whereas
+`x_2^m+x_2^n` does not: every monomial `x_1^a x_2^b` occurring in `S` has
+`a>=b`, while the displayed polynomial has positive `x_2`-degree and zero
+`x_1`-degree.  End proof.
+
+Consequently
+
+`[L(Gamma):L(H)]=infinity`.
+
+The Jones basic construction for `L(H)<L(Gamma)` is therefore semifinite,
+not a finite Connes-embeddable extension supplying the desired unitary.  This
+does not rule out a more elaborate finite correspondence, but closes the
+finite-index shortcut.
+
+The tensor shortcut admits a general Fourier no-go.  Let
+
+`Lambda=EL_r(F_q[x_1^(+-1),...,x_d^(+-1)])`.
+
+Use the standard normal-subgroup/sandwich theorem for elementary groups over
+the commutative domain `R_+`: every noncentral normal subgroup of `Gamma` in
+rank at least three contains `E_r(R_+,I)` for a nonzero ideal `I`.
+
+**Lemma (relative FC-centre).**  For every `m>=1`, an element of `Lambda^m`
+with finite conjugacy orbit under the diagonal copy of `Gamma` belongs to
+`Z(Lambda)^m`.
+
+**Proof.**  If `a=(a_1,...,a_m)` has finite orbit, its stabilizer in `Gamma`
+has finite index.  Its normal core `K` still has finite index and centralizes
+every `a_j`.  The group `K` is noncentral (otherwise the infinite group
+`Gamma` would be finite-by-centre), so the sandwich theorem supplies a
+nonzero ideal `I` with `E_r(R_+,I)<=K`.
+
+Regard `a_j` as a matrix over the Laurent domain.  For every `i!=k` and every
+`s in I`, it commutes with `e_ik(s)=1+sE_ik`.  Choose one nonzero `s in I`.
+The domain property cancels `s` from
+
+`s(a_j E_ik-E_ik a_j)=0`,
+
+so `a_j` commutes with every off-diagonal matrix unit.  The simultaneous
+centralizer of these matrix units consists of scalar matrices.  Hence
+`a_j in Z(Lambda)` for every `j`.  End proof.
+
+**Theorem (regular tensor-sector rigidity).**  Embed `Gamma` diagonally in
+`L(Lambda) tensorBar ... tensorBar L(Lambda)` (`m` factors).  Then
+
+`L(diag Gamma)' intersect L(Lambda^m) = L(Z(Lambda)^m)`.
+
+The same conclusion, with possibly a smaller finite-dimensional right-hand
+side, holds for finite tensor products of centrally twisted regular Laurent
+factors.  In particular every monomial substitution normalizes this relative
+commutant, so no compressor gives strict commutant growth in any such finite
+tensor sector.
+
+**Proof.**  Write an element of `L(Lambda^m)` in its Fourier expansion.  If it
+commutes with diagonal `Gamma`, conjugation permutes its Fourier coefficients.
+The absolute values of the coefficients are constant on every diagonal
+conjugacy orbit.  Square summability forces the coefficient to vanish on
+every infinite orbit.  The relative FC-centre lemma confines the support to
+`Z(Lambda)^m`, and the reverse inclusion is immediate.  In a cocycle-twisted
+group factor conjugation also multiplies coefficients by phases; their
+absolute values are still constant on orbits, so the identical support
+argument applies.  The scalar centre is preserved by every ring
+substitution.  End proof.
+
+Thus the regular-sector reduction cannot be completed by taking tensor
+powers, contragredient pairs, projective twists, or their finite direct sums.
+The missing object really is an **external Connes-embeddable
+`L(Gamma)`-correspondence** with nontrivial multiplicity.  Its strictness
+cannot be visible in the Fourier support of any finite product of the regular
+Laurent sector.  This is a rigorous restriction on the terminal certificate,
+not a construction of it.
