@@ -20476,9 +20476,7 @@ theorem."  For the stable polynomial/Laurent Kun--Thom pair, **no central
 cover can be sofic**, even when its central kernel is infinite.
 
 Let `Gamma<G` be a Kun--Thom pair to which their centralizer-normalization
-theorem applies, and assume in addition that `Gamma` is superperfect:
-
-`H_1(Gamma,Z)=H_2(Gamma,Z)=0`.
+theorem applies, and assume in addition that `Gamma` is perfect.
 
 Let `A` be a nontrivial coordinate lamp group, let
 
@@ -20500,30 +20498,23 @@ property `(T)`.  Every compressor of `Gamma` lifts to a compressor of
 compressor semigroup generates `Gtilde`, so the Kun--Thom infranormal
 hypothesis is inherited by `Gammatilde<Gtilde`.
 
-The restricted central extension
-
-`1 -> C -> Gammatilde -> Gamma -> 1`
-
-splits.  Indeed, the universal-coefficient sequence for trivial coefficients
-gives
-
-`0 -> Ext(H_1(Gamma,Z),C) -> H^2(Gamma,C)`
-`  -> Hom(H_2(Gamma,Z),C) -> 0`,
-
-and both outer groups vanish.  Fix a section `s:Gamma->Gammatilde`.
-
 Choose a nonidentity base lamp `a` at `Gamma` and a lift `atilde` in
 `Wtilde`.  Since `a` centralizes `Gamma` in `W`, the commutators
 
-`[atilde,s(gamma)] in C`
+`[atilde,x] in C`,  `x in Gammatilde`,
 
 are central.  The commutator identities therefore make
 
-`gamma |-> [atilde,s(gamma)]`
+`x |-> [atilde,x]`
 
-a homomorphism from `Gamma` to the abelian group `C`.  Superperfectness (in
-fact perfectness) makes it trivial.  The lift `atilde` also commutes with
-`C`, so it centralizes all of `Gammatilde=s(Gamma) C`.
+a homomorphism from `Gammatilde` to the abelian group `C`.  It vanishes on
+`C`, because `C` is central, and on `[Gammatilde,Gammatilde]`.  Perfectness
+of the quotient `Gamma` gives
+
+`Gammatilde=C [Gammatilde,Gammatilde]`.
+
+Therefore this homomorphism is trivial and `atilde` centralizes all of
+`Gammatilde`.  No splitting and no `H_2(Gamma,Z)` computation is needed.
 
 Suppose now that `Wtilde` had a sofic embedding `rho`.  Its restriction to
 the faithful copy of `Gtilde` is a sofic representation.  Kun--Thom
@@ -20537,25 +20528,18 @@ lift `ttilde`, the element
 `rho(ttilde atilde ttilde^(-1))`
 
 centralizes `rho(Gammatilde)`.  Choose `gamma in Gamma` for which the two
-lamp sites `t Gamma` and `gamma t Gamma` differ, and use `s(gamma)` as its
-lift.  The commutator
+lamp sites `t Gamma` and `gamma t Gamma` differ, and choose any lift
+`gammatilde in Gammatilde`.  The commutator
 
-`wtilde=[ttilde atilde ttilde^(-1),s(gamma)]`
+`wtilde=[ttilde atilde ttilde^(-1),gammatilde]`
 
 maps to the nontrivial ordinary lamp commutator in `W`; hence `wtilde!=1`.
 But centralizer normalization sends `rho(wtilde)` to `1`, contradicting
 injectivity.  Therefore `Wtilde` is nonsofic.  End proof.
 
-The superperfect hypothesis is available in the stable Kun--Thom family.
-For
-
-`Gamma=EL_r(F_q[x_1,...,x_d])`
-
-in the stable range, elementary perfectness gives `H_1=0`, stability gives
-`H_2(Gamma,Z)=K_2(F_q[x_1,...,x_d])`, Quillen homotopy invariance reduces
-this to `K_2(F_q)`, and Quillen's computation of finite-field K-theory gives
-`K_2(F_q)=0`.  One may increase `r` within the Kun--Thom construction to
-stay in this range.
+The perfectness hypothesis is automatic for the polynomial elementary
+stabilizer `Gamma=EL_r(F_q[x_1,...,x_d])` in the ranks used here, by the
+elementary Steinberg commutator relations.
 
 **Consequences and scope.**
 
@@ -20571,16 +20555,14 @@ stay in this range.
    hyperlinear and solve the main problem.  It rules out only the apparently
    cheaper route through a **sofic** finite cover.
 
-External pins required before publication are the exact stable range for
-`H_2(EL_r(R),Z)=K_2(R)` and the verbatim Kun--Thom centralizer-normalization
-theorem.  The cohomological and lifting argument above is independent of
-those citation choices.
+The only load-bearing external pin in the finite-kernel statement is the
+verbatim Kun--Thom centralizer-normalization theorem.
 
 The finiteness restriction on `C` can in fact be removed once the ambient
 group is also put in the stable Kun--Thom range.
 
-**Theorem (all-central-cover rigidity).**  Assume that `Gamma` is
-superperfect, that `G` is perfect, and that `H_2(G,Z)` is finite.  Then for
+**Theorem (all-central-cover rigidity).**  Assume that `Gamma` and `G` are
+perfect and that `H_2(G,Z)` is finite.  Then for
 **every** central extension
 
 `1 -> C -> Wtilde -> W -> 1`,
@@ -20603,12 +20585,10 @@ It too is a finite central extension and has property `(T)`.  Compressors
 lift, and their lifted semigroup generates `Ghat` because its finite central
 kernel is contained in `Gammahat`.
 
-The extension `Gammahat -> Gamma` splits because `Gamma` is superperfect,
-exactly as in the preceding proof.  A lift `atilde` of the base lamp
-centralizes the splitting copy of `Gamma`: its commutators define a character
-of the perfect group `Gamma` into `C`.  It also centralizes the finite kernel
-of `Gammahat -> Gamma`, because that kernel lies in the central kernel `C` of
-`Wtilde -> W`.  Hence `atilde` centralizes all of `Gammahat`.
+A lift `atilde` of the base lamp centralizes `Gammahat` by the elementary
+perfect-quotient argument in the preceding proof: the commutator character
+on `Gammahat` kills both `[Gammahat,Gammahat]` and its central kernel, and
+these two subgroups generate `Gammahat`.
 
 If `Wtilde` were sofic, restrict a faithful sofic representation first to
 `Ghat`, apply Kun--Thom centralizer normalization to
@@ -20622,8 +20602,8 @@ For the stable polynomial/Laurent Kun--Thom ambient,
 
 perfectness follows from perfectness of both factors in the chosen ranks,
 and the finite-Schur-multiplier computation recorded earlier gives
-`H_2(G,Z)` finite.  The polynomial stabilizer `Gamma` is superperfect by the
-`K_2` computation above.  Therefore the all-central-cover theorem applies
+`H_2(G,Z)` finite.  The polynomial stabilizer `Gamma` is perfect.  Therefore
+the all-central-cover theorem applies
 to the actual stable family.
 
 This closes the **entire sofic-central-cover strategy** for the Kun--Thom
@@ -20639,3 +20619,31 @@ The result is deliberately one-sided.  It proves that no such cover is
 **sofic**.  A hyperlinear (necessarily nonsofic) central cover would still
 make `W` hyperlinear by Thom's central-quotient theorem and would itself
 already solve the main problem.
+
+The proof uses no commutativity relation among different lamps.  It has the
+following abstract form.
+
+**Corollary (central-cover inheritance of a Kun--Thom witness).**  Under the
+hypotheses of the all-central-cover theorem, let `H` be any group containing
+`G` and an element `a` such that
+
+`[a,Gamma]=1`
+
+and, for some compressor `t` and some `gamma in Gamma`,
+
+`[t a t^(-1),gamma]!=1`.
+
+Then every central extension of `H` is nonsofic.
+
+Indeed, the universal-central-extension image `Ghat` and its subgroup
+`Gammahat` are constructed inside the inverse image of `G` exactly as above.
+The perfect-quotient commutator argument makes every lift of `a` centralize
+`Gammahat`, while the displayed witness remains nontrivial after projection.
+Kun--Thom normalization gives the same contradiction.
+
+Consequently the theorem applies simultaneously to the original commuting
+Kun--Thom wreath product, the free-lamp amalgams, and the Clifford central
+cover.  Passing to another central cover of any of these groups can never
+turn it sofic.  What distinguishes the open hyperlinearity constructions is
+therefore not the group-theoretic central cover but the possibility of a
+trace-visible nonsofic central sector.
