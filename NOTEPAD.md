@@ -26146,6 +26146,102 @@ relative conjugating unitary after global conjugation.  This supersedes the
 rank-eight and three-factor sources while leaving every universal-cover and
 tensor-ratio argument unchanged.
 
+# One-sided central-sector reduction for the two-cover atlas (2026-08-09)
+
+The two-factor source has extra rigidity which removes half of the remaining
+discrete mixing.  Write
+
+`P_2=H_1*H_2`,  `H_i~=2.A_8`,
+
+and let `z_i` be the central involution of `H_i`.  Both `z_i` map to the
+identity in the scalar chart `A_8<Q`, hence `z_i in R_2`.  In particular
+
+`[z_1,H_2] subset [P_2,R_2]=N_2`.                        `(15)`
+
+Retain the involutory survivor `p_0 in H_2` from the two-factor atlas and
+put `r(pi)=dim ker(pi(p_0)+1)`.
+
+**Theorem (one-sided central-sector reduction).**  The active-rank infimum
+is zero if and only if it is zero along exact representations for which
+
+`pi(z_1)=epsilon I`,  `epsilon in {+1,-1}`.               `(16)`
+
+After passing to a subsequence the sign is fixed.  Thus the first Schur-cover
+factor may be restricted either entirely to quotient-type irreducibles or
+entirely to genuine spin irreducibles.  No mixture of those two types is
+needed.
+
+**Quantitative correction lemma.**  Let `H` be a fixed finite group,
+`rho:H->U(d)` an exact representation, and `P` an orthogonal projection.  If
+
+`max_(h in H)||[P,rho(h)]||_F=eta`,                       `(17)`
+
+then, after adding `O_H(eta^2+1)` trivial dimensions if necessary, there is
+a projection `Q in rho(H)'` of the same rank as the stabilized `P` and a
+unitary `V` such that
+
+`VPV*=Q`,  `||V-I||_F=O_H(eta+1)`.                       `(18)`
+
+If `eta->0`, no stabilization is eventually needed and the additive `1` in
+`(18)` may be omitted.
+
+To prove the lemma, average
+
+`A=|H|^(-1) sum_(h in H) rho(h)P rho(h)* in rho(H)'`.
+
+Then `||A-P||_F<=eta`.  Spectral rounding at `1/2` produces an invariant
+projection within `2 eta` of `P`, and its rank differs from `rank(P)` by at
+most `4 eta^2`.  If the rounded rank is too large, omit whole isotypic
+multiplicity blocks until it is no larger than `rank(P)`; the additional
+rank loss is bounded by the largest irreducible degree of the fixed group.
+Add exactly the remaining rank deficit as trivial `H`-coordinates and put
+them into the invariant projection.  The resulting projection has the same
+rank as the stabilized `P` and is `O_H(eta+1)` away.  The standard
+two-projection rotation gives `(18)`.  If `eta<1/4`, the original rounded
+projection already has the same rank, proving the last assertion.
+
+**Proof of the theorem.**  Start with exact representations `pi_k` satisfying
+
+`max_(n in S)||pi_k(n)-1||_F=o(sqrt(r_k))`,  `r_k>0`.      `(19)`
+
+Every fixed word in `N_2` has the same `o(sqrt(r_k))`
+displacement: express it as a fixed product of conjugates of the finite
+normal generators `S` and use the Frobenius triangle inequality.  Hence
+`(15)` and
+
+`P_k=(1-pi_k(z_1))/2`
+
+give `(17)` with `eta_k=o(sqrt(r_k))` for the representation of `H_2`.
+Apply the correction lemma, pad both free-factor representations trivially,
+and conjugate the entire `H_1` representation by the resulting unitary.
+This preserves exactness on both free factors, does not change
+`pi_k(p_0)` or `r_k`, and makes `pi_k(z_1)` commute exactly with the whole
+image of `H_2`.  The conjugation changes every fixed-word Frobenius defect
+by only `o(sqrt(r_k))`: if `r_k->infinity`, this follows from `(18)` and
+`eta_k=o(sqrt(r_k))`; if `r_k` is bounded, then `eta_k->0` and the sharper
+last clause of the lemma applies.
+
+The corrected representation splits into its two `z_1`-eigenspaces, both
+invariant under `H_1` and `H_2`.  Let `r_(k,+),r_(k,-)` be the survivor
+negative ranks and put
+
+`D_(k,epsilon)^2=sum_(n in S)
+  ||pi_(k,epsilon)(n)-1||_F^2`.
+
+Orthogonality gives
+
+`D_(k,+)^2+D_(k,-)^2=o(r_(k,+)+r_(k,-))`.                `(20)`
+
+Therefore one sign with positive survivor rank has
+`D_(k,epsilon)^2/r_(k,epsilon)->0`.  Pass to a subsequence with fixed sign
+and discard the other sector.  This proves `(16)` and the active-rank
+criterion on that sector.  The converse is immediate.  End proof.
+
+The analogous reduction may of course be run with the roles of the factors
+reversed if the survivor is chosen in `H_1`.  Simultaneously scalarizing
+both centers should also be possible, but requires a congruence-sensitive
+stabilization inside a fixed spin sector; it is not claimed here.
+
 ### The Schur-center relation stratum exactifies (2026-08-09)
 
 Let `z_i` be the central involution of the two factors
@@ -26189,3 +26285,89 @@ In the one-unitary parameterization, this means the two multiplicity vectors
 may be restricted to irreducibles of `2.A_8` with prescribed central
 characters.  The hard atlas problem now lives in only four discrete sectors;
 the entire cross-Schur-center relation layer has been removed exactly.
+
+### The survivor has normal width two on the explicit Leavitt generators (2026-08-09)
+
+Put `q_0=q_(13,1)`, the image of the chosen involution `p_0`.  For every
+Khanh--Thanh generator `q_(ij,a)`, choose `k` distinct from `i,j`.  The
+Steinberg relation gives
+
+`q_(ij,a)=[q_(ik,a),q_(kj,1)]`.
+
+All scalar unit transvections `q_(uv,1)` are conjugate inside the scalar
+copy of `GL_3(F_2)` in `Q`.  Hence, writing `q_(kj,1)=g q_0 g^(-1)` and
+using `q_0^2=1`,
+
+`q_(ij,a)=(q_(ik,a)g)q_0(q_(ik,a)g)^(-1) . gq_0g^(-1)`.
+
+Thus every one of the thirty explicit generators is a product of exactly
+two conjugates of the one survivor.  For every homomorphism from `Q` into a
+group with a bi-invariant metric,
+
+`max_(i!=j,a) d(phi(q_(ij,a)),1) <= 2 d(phi(q_0),1)`.
+
+The same statement holds in `PU(d)` with quotient normalized-HS metric.
+This is stronger than qualitative normal generation: the one-witness atlas
+loses no uncontrolled constant when its survivor is propagated to the
+entire explicit generating window.  It does not construct the certificate,
+but it rules out a hidden propagation gap in the reduction.
+
+### Canonical regular-A8 criterion: only one unitary remains (2026-08-09)
+
+For the main hyperlinearity decision, the Schur covers, their four central
+sign sectors, and both irreducible-multiplicity vectors can all be removed.
+Let
+
+`Pbar=K_1*K_2 ~= A_8*A_8 ->> Q`,
+
+`Rbar=ker(Pbar->Q)`, and `Nbar=[Pbar,Rbar]`.  Since `Pbar` and `Q` are
+finitely presented, choose finite normal generators `T` for `Rbar` and a
+finite generating set `X` for `Pbar`.  Then
+
+`Sbar={[x,t]:x in X,t in T}`
+
+normally generates `Nbar`: after killing these commutators every `t` is
+central, its conjugates equal itself, and hence all of `Rbar` is central.
+
+Let `lambda` be the left regular representation of `A_8`, of dimension
+`20160`.  Then `Q` is hyperlinear if and only if there are `k_n>=1` and
+one unitary `U_n in U(20160 k_n)` such that the exact free-product
+representation
+
+`pi_n|K_1=lambda tensor 1_(k_n)`,
+
+`pi_n|K_2=U_n(lambda tensor 1_(k_n))U_n^*`
+
+satisfies
+
+`max_(s in Sbar)||pi_n(s)-1||_2 ->0`.
+
+**Forward direction.**  Pull a trace-preserving hyperlinear model of `Q`
+back to `Pbar`.  Finite-group HS stability corrects the two factor
+restrictions to exact `A_8` representations, with `o(d_n)` flexible padding
+and then common padding of the two factors.  Their normalized characters
+converge to `delta_1`.  Character orthogonality therefore gives, for every
+irrep `sigma`,
+
+`m_(sigma,n)/d_n -> dim(sigma)/|A_8|`.
+
+After taking `|A_8|` direct-sum copies, each factor representation has a
+common subrepresentation of relative dimension `1-o(1)` with `d_n` copies
+of the regular representation.  Replacing the `o(1)` remainder changes
+each fixed word by `o(1)`, giving the displayed canonical model.
+
+**Reverse direction.**  The relator limit gives a homomorphism
+`Psi:Vbar=Pbar/Nbar` into a tracial matrix ultraproduct.  Its central
+subgroup `C=Rbar/Nbar` maps to scalars.  The scalar preimage `K` has `K/C`
+normal in the simple group `Q=Vbar/C`.  A nonidentity transvection in a
+regular factor has projective normalized-HS distance exactly `sqrt(2)`, so
+it is not in `K`; hence `K/C` is proper and simplicity gives `K=C`.
+Therefore `ker(Psi)<=C`, the hyperlinear image `Psi(Vbar)` is a central
+extension of `Q`, and Thom's central-quotient permanence makes `Q`
+hyperlinear.
+
+This is a strict improvement over the two-Schur-cover optimization: the
+entire constructive problem is one sequence of unitaries `U_n` between two
+fixed regular `A_8` amplifications.  Constructing that sequence makes the
+known nonsofic `Q` hyperlinear and resolves hyperlinear-versus-sofic in the
+negative.

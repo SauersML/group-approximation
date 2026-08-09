@@ -365,7 +365,57 @@ sector therefore preserves vanishing normalized relator defects.  Passing
 to a subsequence fixes the same sign pair.  The constructive search may
 accordingly be performed in one of four exact central-sign sectors.
 
-## 7. One-unitary optimization form
+## 7. Quantitative normal generation by the survivor
+
+The survivor in (12) is quantitatively complete.  Put
+
+\[
+ q_0=q_{13,1}=\rho(p_0).
+\]
+
+**Proposition.**  Every generator \(q_{ij,a}\) in (1) is a product of two
+conjugates of \(q_0\) in \(Q\).  Consequently, if \(\varphi:Q\to M\) is a
+homomorphism into a group equipped with a bi-invariant metric \(d\), then
+
+\[
+ \max_{i\ne j,\ a\in S\cup\{1\}}
+ d(\varphi(q_{ij,a}),1)
+ \le 2d(\varphi(q_0),1).                                \tag{18}
+\]
+
+**Proof.**  Choose \(k\) distinct from \(i,j\).  The Steinberg relation
+gives
+
+\[
+ q_{ij,a}=[q_{ik,a},q_{kj,1}].                          \tag{19}
+\]
+
+All scalar unit transvections \(q_{uv,1}\), \(u\ne v\), are conjugate
+inside the scalar subgroup
+\(\operatorname{GL}_3(\mathbb F_2)\le Q\): permutation matrices send one
+ordered pair of coordinates to any other, and in characteristic two no
+sign correction is needed.  Write
+\(q_{kj,1}=gq_0g^{-1}\).  Since \(q_0\) is an involution, (19) becomes
+
+\[
+ q_{ij,a}
+ =(q_{ik,a}g)q_0(q_{ik,a}g)^{-1}\;gq_0g^{-1},
+\]
+
+a product of two conjugates of \(q_0\).  Bi-invariance and the triangle
+inequality give (18).  \(\square\)
+
+In particular, \(q_0\) normally generates \(Q\), with normal width two on
+the displayed generating set.  This strengthens the one-witness reduction:
+in any exact metric model of \(Q\), separation of the thirty-generator
+window is bounded above by twice the separation of \(q_0\).  The same
+statement holds for projective unitary representations after passing to
+\(PU(d)\) with its quotient normalized-Hilbert--Schmidt metric.  It does
+not by itself construct the required models, but it removes any possible
+loss from propagating the chosen survivor to the explicit generating
+window.
+
+## 8. One-unitary optimization form
 
 Let \(\widehat H\) be the finite set of irreducible complex representations
 of \(H=2.A_8\).  Every exact representation
@@ -375,7 +425,7 @@ of \(H=2.A_8\).  Every exact representation
  \pi|_{H_1}=\bigoplus_{\sigma\in\widehat H}
                     \sigma^{\oplus m_\sigma},\qquad
  \pi|_{H_2}=U\left(\bigoplus_{\sigma\in\widehat H}
-                    \sigma^{\oplus n_\sigma}\right)U^*,  \tag{18}
+                    \sigma^{\oplus n_\sigma}\right)U^*,  \tag{20}
 \]
 
 where \(m_\sigma,n_\sigma\in\mathbb N\), the two displayed dimensions
@@ -389,7 +439,7 @@ If \(r_-(\sigma)\) is the multiplicity of \(-1\) for the chosen involution
 in the irreducible representation \(\sigma\), then
 
 \[
- r_-(\pi)=\sum_{\sigma\in\widehat H}n_\sigma r_-(\sigma). \tag{19}
+ r_-(\pi)=\sum_{\sigma\in\widehat H}n_\sigma r_-(\sigma). \tag{21}
 \]
 
 After the exactification in Section 6, one fixes
@@ -405,7 +455,140 @@ conjugating matrices remain.  Proving that the infimum of the resulting
 ratios is zero settles the main problem negatively; a uniform positive
 lower bound proves that the explicit Steinberg cover is nonhyperlinear.
 
-## 8. Primary sources
+## 9. Canonical regular-\(A_8\) criterion
+
+For deciding hyperlinearity of \(Q\), even the multiplicity vectors and the
+four Schur-center sectors can be removed.  Let
+
+\[
+ \bar P=K_1*K_2\cong A_8*A_8,
+ \qquad \bar\rho:\bar P\twoheadrightarrow Q,
+\]
+
+and put \(\bar R=\ker\bar\rho\) and
+\(\bar N=[\bar P,\bar R]\).  Since \(\bar P\) and \(Q\) are finitely
+presented, choose a finite normal generating set \(T\) for \(\bar R\).
+If \(X\) is a finite generating set for \(\bar P\), then
+
+\[
+ \bar{\mathcal S}=\{[x,t]:x\in X,\ t\in T\}             \tag{22}
+\]
+
+normally generates \(\bar N\).  Indeed, in the quotient by the normal
+closure of (22), every \(t\in T\) is central; its conjugates equal itself,
+so all of \(\bar R\) is central.
+
+Let \(\lambda:A_8\to U(20160)\) be the left regular representation.
+
+**Theorem (canonical regular-atlas criterion).**  The following are
+equivalent.
+
+1. \(Q=L_{\mathbb F_2}(1,2)^\times\) is hyperlinear.
+2. There are integers \(k_n\ge1\) and unitaries
+   \(U_n\in U(20160k_n)\) such that the exact representations
+   \(\pi_n:\bar P\to U(20160k_n)\) defined by
+
+   \[
+   \begin{aligned}
+    \pi_n(h)&=\lambda(h)\otimes I_{k_n} &&(h\in K_1),\\
+    \pi_n(h)&=U_n(\lambda(h)\otimes I_{k_n})U_n^*
+       &&(h\in K_2)
+   \end{aligned}                                        \tag{23}
+   \]
+
+   satisfy
+
+   \[
+    \max_{s\in\bar{\mathcal S}}
+       \|\pi_n(s)-I\|_{2}\longrightarrow0.              \tag{24}
+   \]
+
+**Proof of \(1\Rightarrow2\).**  Pull a trace-preserving hyperlinear model
+of \(Q\) back along \(\bar\rho\).  Its restrictions to the two finite
+factors are approximate representations of \(A_8\).  Finite-group
+Hilbert--Schmidt stability corrects them to exact representations
+\(\alpha_{i,n}\), allowing \(o(d_n)\) padding and then padding the two
+factor models to one common dimension.  This does not change any normalized
+Hilbert--Schmidt limit.  For every \(h\ne1\) in either factor,
+
+\[
+ \operatorname{tr}(\alpha_{i,n}(h))\longrightarrow0,     \tag{25}
+\]
+
+because the finite subgroup embeds in \(Q\) and the hyperlinear trace is
+the group trace.
+
+Condition (25) forces the normalized irreducible multiplicities of
+\(\alpha_{i,n}\) to converge to Plancherel multiplicities.  Explicitly, if
+\(m_{\sigma,n}\) is the multiplicity of
+\(\sigma\in\widehat{A_8}\) in a \(d_n\)-dimensional factor
+representation, character orthogonality gives
+
+\[
+ \frac{m_{\sigma,n}}{d_n}
+ \longrightarrow\frac{\dim\sigma}{|A_8|}.               \tag{26}
+\]
+
+Replace the whole model by the direct sum of \(|A_8|\) copies.  Its
+dimension is \(|A_8|d_n\), while \(d_n\) copies of \(\lambda\) have the
+same dimension.  By (26), the two representations have a common
+subrepresentation of relative dimension tending to one.  After a unitary
+conjugacy they therefore differ on each group element by normalized
+Hilbert--Schmidt norm tending to zero.  Perform this replacement
+independently on both free factors.  The resulting exact free-product
+representation has the form (23), and every fixed word changes by
+\(o(1)\).  Since the original pulled-back models kill \(\bar R\), they kill
+(22) asymptotically, proving (24).
+
+**Proof of \(2\Rightarrow1\).**  Condition (24) gives a homomorphism
+
+\[
+ \Psi:\bar V:=\bar P/\bar N
+       \longrightarrow\prod_\omega U(20160k_n)           \tag{27}
+\]
+
+into a tracial matrix ultraproduct.  The subgroup
+
+\[
+ C:=\bar R/\bar N
+\]
+
+is central in \(\bar V\), and \(\bar V/C\cong Q\).  The center of the
+ambient tracial matrix ultraproduct is scalar, so \(\Psi(C)\) is scalar.
+Let
+
+\[
+ K=\{v\in\bar V:\Psi(v)\text{ is scalar}\}.
+\]
+
+Then \(K/C\) is a normal subgroup of the simple group \(Q\).  It is proper:
+the chosen nonidentity transvection \(p\) in either factor acts in the
+regular representation with trace zero, and hence
+
+\[
+ \inf_{\zeta\in\mathbb T}
+ \|\Psi(p)-\zeta I\|_2=\sqrt2.                           \tag{28}
+\]
+
+Thus \(p\notin K\), so simplicity gives \(K=C\).  In particular
+\(\ker\Psi\le C\).  The image \(W=\Psi(\bar V)\) is hyperlinear and fits
+into a central extension
+
+\[
+ 1\longrightarrow C/\ker\Psi\longrightarrow W
+   \longrightarrow Q\longrightarrow1.
+\]
+
+Hyperlinearity passes to central quotients, so \(Q\) is hyperlinear.
+\(\square\)
+
+This criterion is the minimal analytic face of the Leavitt route.  The two
+finite-factor representations no longer vary at all: every unknown is
+contained in the single relative unitary \(U_n\).  Producing (23)--(24)
+would make the already nonsofic group \(Q\) hyperlinear and settle the main
+problem negatively.
+
+## 10. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
