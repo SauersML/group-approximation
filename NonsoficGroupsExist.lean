@@ -333,6 +333,7 @@ import NonsoficGroupsExist.Leavitt.FiniteTypeCountable
 import NonsoficGroupsExist.Leavitt.ShiftEndomorphism
 import NonsoficGroupsExist.Sofic.UniversalCentralExtension
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
+import NonsoficGroupsExist.Steinberg.BinaryLeavittFinitePresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
