@@ -12679,3 +12679,165 @@ common root occurrences to itself in the transported chart.  Once that
 calculation is supplied, the occurrence connectivity above and the scalar-
 loop lemma give the genuine global root family.  The number of added charts
 is fixed, so no asymptotic error exponent changes.
+
+### Polarization transport discharges the full adjacent-wall operator check
+
+The adjacent-wall calculation is most transparent on the whole finite
+Heisenberg phase space, not root by root.  Put
+
+`W_N=K(J_N) directSum K(J_N)^vee`
+
+with its canonical symplectic form, and let `Heis(W_N)` act in the finite
+Schrodinger representation.  The translation copy
+
+`L_+=K(J_N) directSum 0`
+
+is a Lagrangian.  A chamber coefficient map lands in a subspace of this
+translation Lagrangian; after crossing a wall, the partial Fourier
+symplectic map `S_i` sends it into the Lagrangian `S_i L_+`.
+
+**Lemma (full polarization transport).**  Let `L<W_N` be a Lagrangian and
+let `S in Sp(W_N)`.  There is a unitary `mu(S)`, unique up to scalar, such
+that
+
+`mu(S) W(w) mu(S)^*=W(Sw)`  for every `w in W_N`.
+
+Consequently:
+
+1. the Weyl operators attached to `S L` commute exactly, so the transported
+   square-zero kernel is still an honest representation of its abelian
+   additive group;
+2. if a group `H` acts symplectically on `W_N` and preserves `L`, then the
+   semidirect representation of `L semidirect H` is transported by `mu(S)`
+   to the corresponding representation of
+   `S L semidirect S H S^(-1)`; and
+3. every coefficient element common to two adjacent chamber charts is
+   intertwined on the **full** semidirect representation, including its
+   base `EL_r(A_N)` action and all mixed square-zero coefficients.
+
+**Proof.**  The Schrödinger representation of the finite Heisenberg group
+with fixed nontrivial central character is irreducible.  Precomposing it by
+`S` gives another irreducible representation with the same central
+character, so finite Stone--von Neumann supplies `mu(S)`, unique up to
+scalar.  Weyl commutators are the symplectic pairing; this pairing vanishes
+on the Lagrangian `SL`, proving (1).  Conjugating the displayed covariance
+relations proves (2).  For (3), the jet ring identity maps every mixed
+coefficient into the same square-zero kernel before polarization.  Applying
+`S` to that entire kernel element, rather than separately Fourier
+transforming its monomial summands, gives exactly the adjacent chart's Weyl
+operator.  The base action is the conjugated symplectic action in (2).
+End proof.
+
+For an adjacent transposition in the type-`A_3` chamber graph, take `S_i`
+to exchange the relevant translation coordinate with its Frobenius-dual
+multiplier coordinate and fix the symplectic complement.  This is the
+one-variable Fourier bridge.  The lemma shows that the five common root
+occurrences and their complete `Gamma` coefficient representations are
+intertwined, while the flipped root changes polarization.  Thus the final
+audit item in the preceding section is discharged: the twenty-four-chart
+Weyl atlas supplies a global family of root operators on the bulk, and its
+loop ambiguity is scalar by uniqueness.
+
+What is not yet claimed in this paragraph is the final ultraproduct
+conclusion.  One must still assemble the faithful residual-finite summand,
+retain a positive strict-witness corner, and check the quantitative passage
+from the resulting presentation microstates to the relative
+Clifford/free-lamp quotient.  The coefficient-overlap obstruction itself,
+however, has now been reduced to standard finite Stone--von Neumann
+transport and is no longer an open matrix-intertwining problem.
+
+### Faithfulness is tensorial; the exotic atlas only needs one order-one escape
+
+The earlier terminal checklist unnecessarily asks a faithful
+residual-finite *summand* not to dilute the witness.  The faithful tensor
+completion theorem already removes that issue after passage to the
+ultraproduct.
+
+**Lemma (finite atlas to strict tracial compression).**  Suppose `u_n` are
+unitary models of exhausting finite windows in `G` such that every fixed
+group relator has normalized Hilbert--Schmidt defect tending to zero.  Let
+`pi_n=u_n|Gamma` be genuine representations, and suppose there are unitaries
+
+`v_n in pi_n(Gamma)'`
+
+and fixed `t in G`, `gamma in Gamma` for which
+
+`liminf_n ||[v_n,u_n(t)^* pi_n(gamma) u_n(t)]||_2 >0`.
+
+Then a hyperlinear nonsofic group exists.  No trace-separation or
+faithfulness hypothesis on the models `u_n` is required.
+
+**Proof.**  The classes of `u_n(g)` define a homomorphism
+
+`sigma:G->product_omega M_(d_n)`
+
+for any ultrafilter along which the displayed lower bound persists.  The
+class `v=(v_n)_omega` belongs to `sigma(Gamma)'`, while
+
+`[v,sigma(t^(-1) gamma t)]!=1`.
+
+Tensor `sigma` with an arbitrary faithful hyperlinear embedding of the
+residually finite group `G`.  The unitary `1 tensor v` still commutes with
+`Gamma`, and its commutator norm with the invisible conjugate is unchanged.
+The faithful tensor-completion/strict-commutant theorem therefore gives a
+hyperlinear nonsofic image.  End proof.
+
+For the present atlas the candidate relation curvature support is
+
+`eta_(n,M)=O(1/M)+O(p^(-n))+O_p(p^(-4(n-1)))`.
+
+Hence every fixed relation defect is `O(sqrt(eta_(n,M)))=o(1)` after, for
+example, first choosing `M=M_n->infinity`.  The strict jet inclusion occupies
+`1-O(1/M)-O(p^(-n))` of the chamber blocks, so its commutator remains
+order one.  In this macroscopic regime no stronger comparison such as
+`sqrt(eta_n)=o(rho_n)` is needed: that rate is required only when the
+nontrivial witness itself lives on a shrinking corner.
+
+Consequently the only unresolved construction step between the current
+atlas and the exact strict-compression criterion is the adjacent-wall
+operator identity isolated above (including a simultaneous scalar
+rephasing on its finite occurrence graph).  Once that identity is proved,
+faithfulness and the Kun--Thom quotient passage are automatic.
+
+### Correction: polarization transport does not move the depth-dependent base
+
+The abstract polarization lemma above is correct, but its asserted
+application to the full jet coefficient representation is not.  Under
+
+`phi_m(x_j)=y^(m_j)(1+xi_j)`,
+
+reduction modulo the square-zero ideal is
+
+`x_j |-> y^(m_j) in A_N`.
+
+Thus the base `EL_r(A_N)` representation itself depends on `m`.  Finite
+Stone--von Neumann transports the abelian kernel `K(J_N)` and its dual, and
+it conjugates a **fixed** base action on that phase space, but it does not
+intertwine the distinct base ring maps
+
+`F_p[x_0,x_1,x_2,x_3] -> A_N`,
+`x_j |-> y^(m_j)`.
+
+Consequently item (3) of the full-polarization lemma applies only after a
+common base representation has independently been identified.  That
+identification is precisely part of the coefficient-overlap problem, so
+the paragraph claiming it was discharged is retracted.  The subsequent
+faithful tensor-completion lemma remains valid as a conditional last step,
+but its atlas hypothesis has not yet been constructed globally.
+
+This also clarifies why the easy fixes conflict:
+
+* sending all three compressed variables purely into one square-zero ideal
+  keeps the base fixed but kills mixed products `x_i x_j`;
+* adding the base term `y^(m_j)` preserves mixed products but makes the base
+  depth-dependent.
+
+The valid residue is still useful: the jet theorem gives exact mixed
+covariance within a chamber, the annihilator formula controls its kernel,
+and every loop holonomy on that kernel is scalar.  The outstanding adjacent-
+wall theorem must additionally handle the varying base pieces.  Two honest
+candidates remain: an iterated nilpotent commutative Frobenius algebra in
+which mixed products survive through a full flag of ideals, or a stable-
+equivalence theorem showing that the relevant `EL_r(A_N)` base
+representations become unitarily equivalent on `1-o(1)` rank.  Until one of
+those is proved, the global coefficient overlap remains open.
