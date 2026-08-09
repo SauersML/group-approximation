@@ -7728,10 +7728,109 @@ nonextendable finite quotient can see the strict inclusion
 
 `sigma(alpha(Gamma)) < sigma(Gamma)`.
 
+**Theorem (macroscopic strictness on the orbit chain).**  In the preceding
+theorem, suppose that for every `L` there are a finite quotient
+`q_L:Gamma->Q_L` and an element `gamma in Gamma` such that
+
+`q_L(alpha^j(gamma)) notin q_L(alpha^(j+1)(Gamma))`
+
+for every `0<=j<L`.  Take `sigma_L` to be the left regular representation of
+`Q_L` and build `pi_L,u_L` from the orbit chain.  Then there are unitaries
+
+`z_L in pi_L(Gamma)'`
+
+such that
+
+`liminf_L ||[u_L z_L u_L^*, pi_L(gamma)]||_2 >= sqrt(2)`.
+
+Thus the tracial-ultraproduct representation of the one-compressor HNN
+relations has a strict relative commutant, despite its restriction to
+`Gamma` being genuine at every finite stage.
+
+**Proof.**  Put
+
+`H_j=q_L(alpha^j(Gamma)) <= Q_L`,  `g_j=q_L(alpha^j(gamma))`.
+
+On the regular space `l2(Q_L)`, let `lambda` denote the left regular
+representation.  Haar averaging over the unitary group of `lambda(H_j)'`
+gives, for `g notin H_j`,
+
+`integral v lambda(g) v^* dv = E_(lambda(H_j)'')(lambda(g)) = 0`.
+
+Consequently
+
+`integral ||[v,lambda(g)]||_2^2 dv = 2`.
+
+For each `1<=j<L`, choose a unitary
+
+`z_j in lambda(H_j)'`
+
+with
+
+`||[z_j,lambda(g_(j-1))]||_2^2 >= 2`,
+
+and put `z_0=1`.  The block diagonal unitary
+
+`z_L=diag(z_0,...,z_(L-1))`
+
+commutes with `pi_L(Gamma)`, because its `j`-th block commutes with
+`lambda(q_L(alpha^j(Gamma)))`.  With the block-cycle orientation fixed in
+the preceding proof, the `j`-th interior block of `u_L z_L u_L^*` is
+`z_(j+1)`.  Its commutator with the `j`-th block
+`lambda(q_L(alpha^j(gamma)))` of `pi_L(gamma)` has squared normalized norm at
+least `2`.  Averaging over the `L` equal blocks gives
+
+`||[u_L z_L u_L^*,pi_L(gamma)]||_2^2 >= 2(L-1)/L`.
+
+The result follows.  End proof.
+
+**Corollary (the polynomial shear supplies the quotient tower).**  Let
+
+`Gamma=EL_r(F_q[x_1,...,x_d])`,  `r,d>=3`,
+
+and let `alpha` be the monomial shear
+
+`alpha(x_1)=x_1 x_2`,  `alpha(x_2)=x_2`,  `alpha(x_i)=x_i (i>2)`.
+
+The hypotheses of the macroscopic-strictness theorem hold with
+
+`gamma=e_12(x_1)`.
+
+**Proof.**  For each `L`, specialize `x_i=0` for `i>2` and use the finite
+quotient ring
+
+`S_L=F_q[x_1,x_2]/(x_1^2,x_2^(L+1))`.
+
+Let `q_L` be the resulting quotient of `Gamma` into `EL_r(S_L)`.  The image
+of the coefficient ring under `alpha^j` is
+
+`B_j=F_q[x_2] + x_1 x_2^j F_q[x_2] <= S_L`.
+
+Hence
+
+`q_L(alpha^j(Gamma))=EL_r(B_j)`.
+
+For `0<=j<L`, the matrix `q_L(alpha^j(gamma))` has `(1,2)` entry
+`x_1 x_2^j`, which is nonzero and does not belong to `B_(j+1)`.  Every
+matrix in `EL_r(B_(j+1))` has all entries in `B_(j+1)`, so this elementary
+matrix is not in that subgroup.  This proves the required strictness at
+every level.  End proof.
+
+This is the first fully explicit realization of the binary-tree/rank-spiky
+compensation by genuine representations of the actual polynomial subgroup:
+
+* compressor-relation defect is at most `2/sqrt(L)`;
+* the lamp precursor commutes with `Gamma` exactly;
+* its compressed conjugate has commutator norm asymptotic to `sqrt(2)`.
+
+No flexible instability of `Gamma` is required.  The sole unresolved
+assembly issue is now genuinely ambient: impose all relations of the full
+`SL_d(Z)` substitution sector while retaining this orbit-chain overlap.
+
 There are now two separate remaining problems.  First, the block-cycle
-boundary occupies only `1/L` of the trace, so by itself it does not give a
-macroscopic strict relative-commutant witness; the rank-spiky binary-tree
-overlap must be inserted along the orbit chain.  Second, the actual
+boundary occupies only `1/L` of the trace, but the theorem above shows that
+the nested commutants make the witness macroscopic throughout the interior.
+The remaining problem is that the actual
 Kun--Thom ambient group contains the full substitution group
 `SL_d(Z)`, not one ascending HNN letter.  A simultaneous orbit-indexing set
 for all substitutions cannot be an ordinary Folner set, because
