@@ -17870,3 +17870,47 @@ translation group per stage, so their orbitwise normalizers satisfy the full
 Steinberg word window with only boundary error.  Unlike the separate
 `H_p`-cell proposal, that target already includes the correct base output,
 joint root compatibility, and a quantitative strict witness.
+
+### The orbitwise shear cannot be globalized by a purely permutation atlas
+
+The preceding cell is deliberately local.  All of its operators
+`lambda(h)`, `P_theta`, and `rho(r)` are permutations, which imposes a sharp
+ceiling on any proposed global assembly.
+
+Suppose a sequence of purely permutation-valued stages made all relations of
+the Steinberg image pair asymptotically exact in Hamming distance and retained
+the displayed order-one commutator.  Passing to the metric permutation
+ultraproduct would give
+
+`sigma:Ghat->S_U`,  `v in sigma(Gammahat)'`,
+
+with the strict commutator nontrivial.  Let
+
+`Q=<sigma(Ghat),v>`.
+
+As a countable subgroup of a metric ultraproduct of finite symmetric groups,
+`Q` is sofic.  Indeed every nonidentity element has positive ultralimit
+Hamming length by the definition of the metric quotient; diagonal
+amplification of finitely many copies pushes the lengths of a fixed finite
+set arbitrarily close to one while preserving multiplication.  This is the
+standard normalization from an injective metric-ultraproduct embedding to a
+sofic approximation.
+
+On the other hand, the strict image-pair theorem already formalized in
+`FreeLampReduction.lean`, together with Kun--Thom normalization for the
+Kazhdan image pair, says that this same `Q` is not sofic.  Contradiction.
+
+Equivalently, a completely classical synchronization of the orbitwise shear
+cells must fail in one of two ways: some fixed relation retains positive
+Hamming defect, or the strict commutator tends to zero.  This conclusion is
+not a defect of the local calculation; it is forced by the desired theorem.
+
+Therefore the regular shear should replace the missing **local base
+transport** inside the existing quantum atlas, but it cannot replace that
+atlas.  The nonorthogonal fusion compression and its polar correction must
+turn the compatible local permutations into genuinely non-permutation
+unitaries before the ultraproduct limit.  In particular, assembling the
+finite cells by an ordinary graph of finite sets, a virtually free group, or
+a block-diagonal permutation model is a provable dead end.  The next
+synchronization lemma must be stated in fusion-Gram norm, not in Hamming
+agreement on a common block set.
