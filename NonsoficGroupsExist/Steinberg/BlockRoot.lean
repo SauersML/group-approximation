@@ -22,7 +22,7 @@ namespace NonsoficGroupsExist
 namespace SteinbergBlockRoot
 
 open SteinbergGroup
-open scoped commutatorElement
+open scoped BigOperators commutatorElement
 
 variable {R κ : Type*} [Ring R] [Fintype κ] [DecidableEq κ]
 
@@ -39,6 +39,91 @@ theorem commute_noncommProd_noncommProd
     (t.noncommProd g hg) fun i hi ↦ ?_).symm
   exact (Finset.noncommProd_commute t g hg (f i)
     (fun j hj ↦ hcross i hi j hj)).symm
+
+/-- A commutator with a commuting product is the corresponding commuting
+product of elementary commutators when all source factors commute with all
+result factors. -/
+theorem noncommProd_commutator_right
+    {G α : Type*} [Group G] (s : Finset α) (f w : α → G)
+    (hf : (s : Set α).Pairwise (Function.onFun Commute f))
+    (hw : (s : Set α).Pairwise (Function.onFun Commute w))
+    (hcross : ∀ i ∈ s, ∀ j ∈ s, Commute (f i) (w j))
+    (c : G) (hbase : ∀ i ∈ s, ⁅f i, c⁆ = w i) :
+    ⁅s.noncommProd f hf, c⁆ = s.noncommProd w hw := by
+  classical
+  induction s using Finset.cons_induction_on with
+  | empty => simp
+  | cons a s ha ih =>
+      rw [Finset.noncommProd_cons, Finset.noncommProd_cons,
+        commutatorElement_mul_left_eq_conj_mul]
+      rw [ih
+        (hf.mono fun _ ↦ Finset.mem_cons.2 ∘ .inr)
+        (hw.mono fun _ ↦ Finset.mem_cons.2 ∘ .inr)
+        (fun i hi j hj ↦ hcross i (Finset.mem_cons_of_mem hi)
+          j (Finset.mem_cons_of_mem hj))
+        (fun i hi ↦ hbase i (Finset.mem_cons_of_mem hi)),
+        hbase a (Finset.mem_cons_self a s)]
+      have hcomm : Commute (f a)
+          (s.noncommProd w
+            (hw.mono fun _ ↦ Finset.mem_cons.2 ∘ .inr)) :=
+        Finset.noncommProd_commute s w
+          (hw.mono fun _ ↦ Finset.mem_cons.2 ∘ .inr) (f a)
+          (fun j hj ↦ hcross a (Finset.mem_cons_self a s)
+            j (Finset.mem_cons_of_mem hj))
+      rw [hcomm.mul_inv_cancel]
+      exact (Finset.noncommProd_commute s w
+        (hw.mono fun _ ↦ Finset.mem_cons.2 ∘ .inr) (w a)
+        (fun j hj ↦ hw.of_refl (Finset.mem_cons_self a s)
+          (Finset.mem_cons_of_mem hj))).eq.symm
+
+/-- The commutator of two commuting products whose only nontrivial
+cross-commutators occur at matching indices is the product of those diagonal
+commutators. -/
+theorem noncommProd_commutator_diagonal
+    {G α : Type*} [Group G] (s : Finset α) (f g w : α → G)
+    (hf : (s : Set α).Pairwise (Function.onFun Commute f))
+    (hg : (s : Set α).Pairwise (Function.onFun Commute g))
+    (hw : (s : Set α).Pairwise (Function.onFun Commute w))
+    (hfw : ∀ i ∈ s, ∀ j ∈ s, Commute (f i) (w j))
+    (hdiag : ∀ i ∈ s, ⁅f i, g i⁆ = w i)
+    (hoff : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → Commute (f i) (g j)) :
+    ⁅s.noncommProd f hf, s.noncommProd g hg⁆ =
+      s.noncommProd w hw := by
+  classical
+  apply noncommProd_commutator_right s f w hf hw hfw
+  intro i hi
+  rw [← Finset.mul_noncommProd_erase s hi g hg,
+    commutatorElement_mul_right_eq_mul_conj, hdiag i hi]
+  have hrest : Commute (f i)
+      ((s.erase i).noncommProd g fun _ hj _ hk hjk ↦
+        hg (Finset.mem_of_mem_erase hj) (Finset.mem_of_mem_erase hk) hjk) :=
+    Finset.noncommProd_commute (s.erase i) g _ (f i) fun j hj ↦
+      hoff i hi j (Finset.mem_of_mem_erase hj)
+        (Finset.ne_of_mem_erase hj).symm
+  rw [commutatorElement_eq_one_iff_mul_comm.mpr hrest.eq]
+  simp
+
+/-- A finite family contained in one Steinberg root subgroup commutes
+pairwise. -/
+theorem x_pairwise (s : Finset κ) (i j : Fin 2 ⊕ κ) (hij : i ≠ j)
+    (c : κ → R) :
+    (s : Set κ).Pairwise
+      (Function.onFun Commute fun k ↦ x i j hij (c k)) := by
+  intro k _ l _ _
+  change Commute (x i j hij (c k)) (x i j hij (c l))
+  rw [commute_iff_eq, x_mul, x_mul, add_comm]
+
+/-- A commuting product in one Steinberg root subgroup is the root element
+whose coefficient is the corresponding sum. -/
+theorem x_noncommProd (s : Finset κ) (i j : Fin 2 ⊕ κ) (hij : i ≠ j)
+    (c : κ → R) :
+    s.noncommProd (fun k ↦ x i j hij (c k)) (x_pairwise s i j hij c) =
+      x i j hij (∑ k ∈ s, c k) := by
+  classical
+  induction s using Finset.cons_induction_on with
+  | empty => simp
+  | cons k s hk ih =>
+      rw [Finset.noncommProd_cons, ih, Finset.sum_cons hk, x_mul]
 
 /-- The roots from singleton block `p` to the tail commute pairwise. -/
 theorem rowToTail_pairwise (F : CompleteMatrixFamily R κ)
@@ -226,6 +311,73 @@ theorem smallRoot_rowToTail_commutator (F : CompleteMatrixFamily R κ)
   apply Finset.noncommProd_congr rfl
   intro j _
   exact congrFun hconj j
+
+/-- The adjacent commutator of a rectangular tail-to-singleton root with
+an ordinary singleton root. -/
+theorem tailToRow_smallRoot_commutator (F : CompleteMatrixFamily R κ)
+    (p q : Fin 2) (hpq : p ≠ q) (a b : R) :
+    ⁅tailToRow F p a, smallRoot (κ := κ) p q hpq b⁆ =
+      tailToRow F q (a * b) := by
+  classical
+  unfold tailToRow smallRoot
+  apply noncommProd_commutator_right
+  · intro i _ j _
+    exact x_commute_of_ne _ _ _ _ (by simp) (by simp)
+      (by simp) (by simp) _ _
+  · intro i _
+    rw [x_commutator (Sum.inr i) (Sum.inl p) (Sum.inl q)
+      (by simp) (by simpa using hpq) (by simp)]
+    congr 1
+    exact mul_assoc _ _ _
+
+/-- The commutator of the two rectangular roots through the tail block is
+the ordinary root between the singleton blocks.  The coefficient calculation
+is exactly the completeness relation `∑ i, F.left i * F.right i = 1`. -/
+theorem rowToTail_tailToRow_commutator (F : CompleteMatrixFamily R κ)
+    (p q : Fin 2) (hpq : p ≠ q) (a b : R) :
+    ⁅rowToTail F p a, tailToRow F q b⁆ =
+      smallRoot (κ := κ) p q hpq (a * b) := by
+  classical
+  let f : κ → SteinbergGroup (Fin 2 ⊕ κ) R := fun i ↦
+    x (Sum.inl p) (Sum.inr i) (by simp) (a * F.left i)
+  let g : κ → SteinbergGroup (Fin 2 ⊕ κ) R := fun i ↦
+    x (Sum.inr i) (Sum.inl q) (by simp) (F.right i * b)
+  let w : κ → SteinbergGroup (Fin 2 ⊕ κ) R := fun i ↦
+    x (Sum.inl p) (Sum.inl q) (by simpa) ((a * F.left i) * (F.right i * b))
+  have hdiag : ⁅(Finset.univ.noncommProd f (rowToTail_pairwise F p a)),
+      (Finset.univ.noncommProd g (tailToRow_pairwise F q b))⁆ =
+      Finset.univ.noncommProd w
+        (x_pairwise Finset.univ (Sum.inl p) (Sum.inl q) (by simpa) fun i ↦
+          (a * F.left i) * (F.right i * b)) := by
+    apply noncommProd_commutator_diagonal
+    · intro i _ j _
+      dsimp only [f, w]
+      exact x_commute_of_ne _ _ _ _ (by simp) (by simpa using hpq)
+        (by simp) (by simpa using hpq.symm) _ _
+    · intro i _
+      dsimp only [f, g, w]
+      exact x_commutator (Sum.inl p) (Sum.inr i) (Sum.inl q)
+        (by simp) (by simp) (by simpa using hpq) _ _
+    · intro i _ j _ hij
+      dsimp only [f, g]
+      exact x_commute_of_ne _ _ _ _ (by simp) (by simp)
+        (by simpa using hij) (by simpa using hpq.symm) _ _
+  change ⁅Finset.univ.noncommProd f (rowToTail_pairwise F p a),
+      Finset.univ.noncommProd g (tailToRow_pairwise F q b)⁆ = _
+  rw [hdiag]
+  rw [x_noncommProd]
+  unfold smallRoot
+  congr 1
+  calc
+    (∑ i, (a * F.left i) * (F.right i * b)) =
+        (∑ i, a * (F.left i * F.right i)) * b := by
+      rw [Finset.sum_mul]
+      apply Finset.sum_congr rfl
+      intro i _
+      simp only [mul_assoc]
+    _ = (a * ∑ i, F.left i * F.right i) * b := by
+      rw [Finset.mul_sum]
+    _ = a * b := by rw [F.complete]; simp
 
 end SteinbergBlockRoot
 end NonsoficGroupsExist
