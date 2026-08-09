@@ -25505,3 +25505,44 @@ cross-copy transition cocycle is a finite sum of homomorphisms from perfect
 source groups and therefore vanishes.  Neither assertion has yet been
 proved.  What `(1)` does establish is that no unbounded word-length or
 ever-deep stabilization phenomenon remains available as an obstruction.
+
+# Rank-uniform global `(TT)/T` for the binary Leavitt family (2026-08-09)
+
+The rank-five theorem globalizes without any further input.  Put
+
+`G_n=GL_n(L)=E_n(L)`, `H_n=diag(GL_(n-1)(L),1)`,
+
+where `L=L_(F_2)(1,2)` and `n>=3`.  Run only the first stage of the
+strong-division elimination.  If the first pivot is zero, adding a column
+containing a nonzero entry of the first row costs one transvection.  The
+pivot construction costs four transvections and clearing the distinguished
+row and column costs `2(n-2)`.  The remaining complementary block is one
+element of a coordinate copy of `H_n`.  Thus the first stage has length at
+most
+
+`1+4+2(n-2)=2n+1`.
+
+Every root transvection belongs to one of the `n` fixed coordinate copies
+`H_(n,i)` of `H_n`: omit an index different from the row and column of the
+root.  Since `GL_m(L)=E_m(L)` for every `m>=2`, all these are copies of the
+relative subgroup in Mimura's theorem.  Consequently
+
+`G_n=(union_(i=1)^n H_(n,i))^(2n+2)`.                 `(BG_n)`
+
+Mimura Proposition 9.2.8 gives relative `(TT)/T` for
+`E_n(A)>=E_(n-1)(A)` when `n>=3`, and relative `(FF_(L_p))/T` when `n>=4`,
+for a finite free noncommutative ring `A`.  Quotienting `A` onto `L` and
+using `(BG_n)` therefore proves:
+
+* `E_n(L_(F_2)(1,2))` has global `(TT)/T` for every `n>=3`;
+* it has global `(FF_(L_p))/T` for every `n>=4` and `1<p<infinity`.
+
+For every `n>=5`, the Kazhdan universal central cover `St_n(L)` inherits
+`(TT)/T` by the central-cover theorem.  Every central quotient
+`St_n(L)/C`, `C<=Z(St_n(L))`, is again Kazhdan and inherits `(TT)/T` as
+well.  Hence the whole canonical family of nonsofic Leavitt central covers,
+not just the rank-five witness, has global quasi-cocycle rigidity.
+
+This is unconditional and rank-uniform.  It still does not prove ordinary
+degree-two cohomology vanishing, normalized-HS stability,
+nonhyperlinearity, hyperlinearity, or the main problem.

@@ -118,7 +118,7 @@ transvections.  Hence the total is at most
 
 This proves the lemma.  (square)
 
-## Bounded generation in rank five
+## Bounded generation, uniformly in the rank
 
 Applying the full lemma to (R=L) and (n=5) uses at most (40)
 transvections.  The remaining diagonal belongs to (H), because
@@ -172,29 +172,57 @@ Consequently there are fixed conjugates (H_1,\ldots,H_5) of (H) such that
 G=(H_1\cup\cdots\cup H_5)^{12}. \tag{2}
 \]
 
+The subgroup-only argument is rank-independent.  For (n\geq3), put
+
+\[
+G_n=GL_n(L)=E_n(L),\qquad
+H_n=\operatorname{diag}(GL_{n-1}(L),1).
+\]
+
+The first elimination stage uses at most
+
+\[
+1+4+2(n-2)=2n+1
+\]
+
+transvections and leaves one element of a coordinate copy of (H_n).  Every
+root transvection belongs to a coordinate copy of (H_n), since one can omit
+an index different from its row and column.  Thus, for the (n) fixed
+coordinate copies (H_{n,1},\ldots,H_{n,n}),
+
+\[
+G_n=(H_{n,1}\cup\cdots\cup H_{n,n})^{2n+2}. \tag{3}
+\]
+
+No rank-stability theorem is hidden here: equation (3) is obtained by one
+explicit pivot and the identities (GL_m(L)=E_m(L)) already proved for every
+(m\geq2).
+
 ## Consequences
 
 ### Theorem
 
-The group (E_5(L_{\mathbf F_2}(1,2))) has property ((TT)/T).
+For every (n\geq3), the group
+
+\[
+E_n(L_{\mathbf F_2}(1,2))
+\]
+
+has property ((TT)/T).  For every (n\geq4) and (1<p<\infty), it also has
+Mimura's property ((FF_{L_p})/T).
 
 ### Proof
 
-The quotient of Mimura's relative theorem gives relative ((TT)/T) for
-(G\geq H).  Equivalently, a quasi-cocycle into a unitary representation
-without invariant vectors is bounded on (H).  It is then bounded on each
-fixed conjugate (H_i): expand (b(g_i h g_i^{-1})) and use the fixed
-values (b(g_i)), (b(g_i^{-1})) and the quasi-cocycle defect.  Equation
-(2), followed by the quasi-cocycle triangle inequality at most (11)
-times, bounds it on (G).  (square)
+Fix (n\geq3).  The quotient of Mimura's relative theorem gives relative
+((TT)/T) for (G_n\geq H_n).  Equivalently, a quasi-cocycle into a unitary
+representation without invariant vectors is bounded on (H_n).  It is then
+bounded on each fixed conjugate (H_{n,i}): expand
+(b(g_i h g_i^{-1})) and use the fixed values (b(g_i)), (b(g_i^{-1})) and
+the quasi-cocycle defect.  Equation (3), followed by the quasi-cocycle
+triangle inequality at most (2n+1) times, bounds it on (G_n).
 
-Mimura's Theorem 8.1.7 and Proposition 9.2.8 give, with the same equation
-(1), the Banach strengthening
-
-\[
-E_5(L_{\mathbf F_2}(1,2))\text{ has }(FF_{L_p})/T
-\quad(1<p<\infty).
-\]
+For (n\geq4), Mimura's relative ((FF_{L_p})/T) theorem and the same root
+bounded-generation argument give the Banach conclusion.  (square)
 
 Finally, property ((TT)/T) is invariant under central quotients and under
 central extensions whose total group has property ((T)).  Hence the
@@ -205,6 +233,12 @@ St_5(L)\longrightarrow E_5(L)
 \]
 
 also has property ((TT)/T).
+
+More generally, for every (n\geq5), (St_n(L)\to E_n(L)) is the universal
+central extension and (St_n(L)) has property ((T)).  Therefore (St_n(L))
+and every quotient (St_n(L)/C), (C\leq Z(St_n(L))), have property
+((TT)/T).  These quotients include the entire canonical family of
+nonsofic central covers established elsewhere in the project.
 
 ## Exact remaining frontier
 
