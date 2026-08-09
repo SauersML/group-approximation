@@ -48,8 +48,7 @@ theorem finitelyGenerated {n : ℕ} (hn : 3 ≤ n) :
   SteinbergGroup.finitelyGenerated n (by omega)
 
 /-- The binary-Leavitt Steinberg group in rank three has property `(T)`
-directly.  Unlike `hasKazhdanPropertyT_of_projection_injective`, this result
-does not assume that the unstable Steinberg kernel vanishes. -/
+directly, without assuming that the unstable Steinberg kernel vanishes. -/
 theorem rankThree_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg 3) :=
   finiteTypeSteinbergThree_hasKazhdanPropertyT
@@ -113,18 +112,6 @@ noncomputable def projectionEquiv (n : ℕ)
   MulEquiv.ofBijective SteinbergGroup.projection
     ⟨hinj, projection_surjective n⟩
 
-/-- If the unstable Steinberg kernel `K₂(n,L)` vanishes, property `(T)`
-of the elementary base transports across the canonical isomorphism.  This
-theorem is conditional: it does not prove unstable vanishing, nor derive it
-from stable algebraic `K₂(L)`. -/
-theorem hasKazhdanPropertyT_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
-    (hinj : Function.Injective
-      (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n)) :
-    HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n) := by
-  exact HasKazhdanPropertyT.of_mulEquiv (projectionEquiv n hinj)
-    (elementaryBase_hasKazhdanPropertyT hn)
-
 /-- Vanishing of the Steinberg kernel also transports the established
 nonsoficity of the elementary base to the Steinberg group. -/
 theorem not_isSofic_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
@@ -173,25 +160,23 @@ noncomputable def universalCentralExtension_of_kernel_central
 explicit.  The group in the conclusion is the actual presented Steinberg
 group, not an abstract placeholder.
 
-The remaining hypotheses correspond to: centrality of the canonical
-Steinberg kernel (separate from the Kervaire--Steinberg splitting theorem
-proved above), simplicity of the elementary Leavitt base, the
-all-central-covers Kun--Thom theorem, finite presentability
-(Krstić--McCool), and property `(T)` (Ershov--Jaikin-Zapirain). -/
+The remaining hypotheses correspond to centrality of the canonical
+Steinberg kernel, simplicity of the elementary Leavitt base, the
+all-central-covers Kun--Thom theorem, and finite presentability.  Property
+`(T)` is discharged internally by `hasKazhdanPropertyT`. -/
 theorem finitelyPresentedKazhdanSoficImageRigid_of_certificates
-    {n : ℕ} (hn : 3 ≤ n)
+    {n : ℕ} (hn : 5 ≤ n)
     (hker : (SteinbergGroup.projection :
         BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
       Subgroup.center (BinaryLeavittSteinberg n))
     [IsSimpleGroup (ElementaryBase n)]
     (hall : AllCountableCentralExtensionsAreNonsofic (ElementaryBase n))
-    (hfp : Group.IsFinitelyPresented (BinaryLeavittSteinberg n))
-    (hT : HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n)) :
+    (hfp : Group.IsFinitelyPresented (BinaryLeavittSteinberg n)) :
     FinitelyPresentedKazhdanSoficImageRigid
       (BinaryLeavittSteinberg n) := by
-  letI : Group.IsPerfect (BinaryLeavittSteinberg n) := isPerfect hn
+  letI : Group.IsPerfect (BinaryLeavittSteinberg n) := isPerfect (by omega)
   exact finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
-    (centralExtension n hker) hall hfp hT
+    (centralExtension n hker) hall hfp (hasKazhdanPropertyT hn)
 
 /-- A shorter endpoint conditional on **unstable** `K₂(n,L)=0`.
 Injectivity identifies the Steinberg group with its simple elementary base.
@@ -199,7 +184,7 @@ Its nonsoficity therefore rules out every nontrivial quotient directly, with
 no all-central-covers stability premise.  The injectivity hypothesis remains
 an external certificate. -/
 theorem finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
-    {n : ℕ} (hn : 3 ≤ n)
+    {n : ℕ} (hn : 5 ≤ n)
     (hinj : Function.Injective
       (SteinbergGroup.projection :
         BinaryLeavittSteinberg n →* ElementaryBase n))
@@ -210,7 +195,7 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
   letI : IsSimpleGroup (BinaryLeavittSteinberg n) :=
     (projectionEquiv n hinj).isSimpleGroup
   exact finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction
-    hfp (hasKazhdanPropertyT_of_projection_injective (by omega) hinj)
+    hfp (hasKazhdanPropertyT hn)
     (everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
       (not_isSofic_of_projection_injective (by omega) hinj))
 
