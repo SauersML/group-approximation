@@ -21912,6 +21912,112 @@ Primary pins: de Chiffre--Glebsky--Lubotzky--Thom, Theorem 1.2;
 Fournier-Facio--Willett, arXiv:2603.18456v2; Lavi--Levit, *Characters of the
 group `EL_d(R)` for a commutative Noetherian ring `R`*.
 
+### The explicit simple witness is omega-nonsofic
+
+Ersoy's preprint on minimal nonsofic and `omega`-nonsofic groups suggests a
+structural question that can be answered completely for the binary-Leavitt
+witness.  Let `L=L_(F_2)(1,2)`, with
+
+`t_i s_j = delta_(ij)` and `s_0 t_0+s_1 t_1=1`,
+
+and let `Q=EL_4(L)`.  Define the binary shift
+
+`sigma(a)=s_0 a t_0+s_1 a t_1`.
+
+**Theorem.**  `sigma` is a proper injective unital ring endomorphism of `L`.
+Entrywise application induces a proper injective group endomorphism
+`Sigma:Q->Q`.  Hence
+
+`Q > Sigma(Q) > Sigma^2(Q) > ...`
+
+is a strictly descending chain of nonsofic subgroups, every term isomorphic
+to `Q`.  In Ersoy's terminology, the first explicit simple nonsofic group is
+therefore `omega`-nonsofic.
+
+**Proof.**  Additivity is immediate, and the Leavitt relations give
+
+`sigma(a)sigma(b)=sum_(i,j) s_i a(t_i s_j)b t_j
+                 =sum_i s_i(ab)t_i=sigma(ab)`
+
+and `sigma(1)=1`.  Moreover
+
+`t_0 sigma(a) s_0=a`,
+
+so `sigma` is injective.  It is not onto: every element in its range obeys
+
+`t_0 sigma(a) s_1=0`,
+
+whereas `t_0 s_0 s_1=s_1!=0` (the latter follows from `t_1s_1=1` and
+nontriviality of `L`).  Thus `s_0` is not in the range.
+
+The matrix map is injective entrywise and carries
+`x_(ij)(a)` to `x_(ij)(sigma(a))`, so it restricts to an injective
+endomorphism of `Q`.  It is proper because `x_(12)(s_0)` cannot be in its
+image: equality of matrices would put the `(1,2)` coefficient `s_0` in
+`sigma(L)`.  An injective map carries a proper inclusion to a proper
+inclusion, so all iterated images are strict; each is a copy of the already
+nonsofic `Q`.  End proof.
+
+This is a genuinely new structural consequence, but it does **not** settle
+hyperlinearity: hyperlinearity passes to subgroups, so making an ascending
+HNN extension or direct-limit telescope from `Sigma` cannot make the unknown
+hyperlinearity of `Q` easier by a routine permanence theorem.  Any
+hyperlinear ambient telescope would already prove `Q` hyperlinear.
+
+### Audit of the locally graded route
+
+The same preprint's locally graded theorem does not apply to `Q`.  In fact an
+infinite finitely generated simple group cannot be locally graded: a proper
+finite-index subgroup would give a finite coset action; its core is normal,
+and simplicity makes the core either trivial (embedding the infinite group
+in a finite symmetric group) or the whole group (forcing the subgroup to be
+the whole group).  Both alternatives are impossible.
+
+There is also a small repair needed in the displayed proof of the preprint's
+locally graded theorem.  From a proper finite-index subgroup of a stabilized
+term `K=L_n`, one first takes its core in `K`; this is normal in `K`, not yet
+automatically normal in `H`.  Since `K normal H` and `[H:K]<infinity`, there
+are only finitely many `H`-conjugates, and intersecting those conjugates gives
+a proper finite-index normal subgroup of `H` contained in `K`.  That repaired
+subgroup contradicts the definition of the profinite residual.  The theorem
+survives, but it supplies no hyperlinear model for the explicit simple
+witness.
+
+The preprint's other minimal-nonsofic restrictions (finite generation,
+perfectness, absence of amenable quotients, and centrality of finitely
+generated residually finite maximal normal subgroups) are consistent with
+`Q` but do not sharpen its analytic endpoint: for the simple group `Q`, the
+maximal-normal-subgroup statement specializes to the tautological kernel
+`1`.
+
+### Exact new 2026 centralizer boundary
+
+Alekseev--Thom, arXiv:2608.05362 (5 August 2026), prove a permutation-model
+centralizer rigidity theorem for Kazhdan groups: after an asymptotically
+negligible change of model, the centralizer of a sofic embedding is a metric
+ultraproduct of finite permutation groups.  With ergodic centralizer action
+this forces LEF, and finite presentation then forces residual finiteness.
+
+Their Open Problem 6.2 asks for exactly the missing unitary analogue.  For a
+homomorphism
+
+`pi:G -> U(prod_U M_(d_n)(C))`
+
+of a Kazhdan group, it asks whether, after changing dimensions by
+`m_n/d_n -> 1`, there are finite-dimensional star-subalgebras
+`A_n<=M_(m_n)(C)` whose tracial ultraproduct is precisely the commutant of
+`pi(G)`, and whether the `A_n` may be taken as exact centralizers of chosen
+lifts of the generators.
+
+This pins the current Steinberg fork against the newest literature.  The
+permutation theorem cannot be transferred to normalized Hilbert--Schmidt
+models: its unitary counterpart is explicitly open, and even a positive
+answer to part (a) alone would only model the commutant by finite-dimensional
+algebras; it would not turn the approximate generators into genuine
+finite-dimensional representations.  Thus it does not prove HS stability of
+`U`, but it identifies the precise centralizer-lifting mechanism a direct
+attack would have to add.
+
 ### The stability target can be weakened to flexible normalized-HS stability
 
 The same dichotomy does not require same-dimension correction.  Use the
