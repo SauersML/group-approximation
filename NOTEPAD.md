@@ -13236,3 +13236,83 @@ Weyl-chamber wall with one consistent choice of sections.  Section changes
 are diagonal gauges, so the occurrence-graph loops reduce to a scalar/Pauli
 coboundary, but that simultaneous finite-atlas calculation must still be
 written explicitly before the microstate theorem is claimed.
+
+### Separate compressor depth from Fourier depth, then telescope the atlas
+
+The filtration index `q` is not itself the strict compressor chain.  The
+two indices must be kept separate.
+
+Fix a root compressor `t=I+E_(ji)`, so
+
+`alpha_t(x_i)=x_i x_j`.
+
+In the fixed-base ring `T_(N,L)`, its `m`-th iterate satisfies
+
+`alpha_t^m(xi_i)=xi_i xi_j^m`,
+
+`alpha_t^m(xi_k)=xi_k` for `k!=i`.
+
+For `0<=m<L`, let `C_m` be the image subring.  Then
+
+`C_(m+1)<C_m`
+
+is proper: the monomial `xi_i xi_j^m` belongs to `C_m` and cannot belong to
+`C_(m+1)`, because every image monomial involving `xi_i` has `xi_j`-
+exponent at least `m+1`.  This is the strict chain which supplies the
+relative-commutant escape.  It has one cyclic closing edge of density
+`1/L`.
+
+Independently, use `q=1,...,D` for the Frobenius-layer Fourier transport,
+with its degree-zero/top-socle closing edge of density `1/D`.  Put one
+coefficient block at each pair `(m,q)`.  The two wrap sets have union density
+
+`1/L+1/D=O(1/L)`,
+
+while the compressor inclusion is strict on a fraction `1-1/L` of the
+blocks.  Thus the wall transition can be repaired in the `q` direction
+without consuming the macroscopic witness in the `m` direction.
+
+Now let `Ch` be the twenty-four total-order chambers.  Fix a reference
+chamber `C_0`.  For every `C in Ch`, choose one path from `C_0` to `C` in
+the adjacent-wall graph and let `J_C` be the composition, on all interior
+`q`-blocks, of the exact fiberwise Fourier transforms, Weil normalizations,
+and diagonal section gauges along that path.  Define the wall transport by
+
+`W_(C,C')=J_(C') J_C^*`.
+
+**Theorem (telescoping Weyl atlas).**  On the complement of the `q`-wrap:
+
+1. `W_(C,C')` transports the full filtered coefficient representation from
+   chart `C` to chart `C'`;
+2. for every gallery loop `C_0,C_1,...,C_s=C_0`,
+
+   `W_(C_(s-1),C_s)...W_(C_0,C_1)=1`;
+
+3. the local occurrences of each fixed root glue to one global root
+   operator; and
+4. every same-root, commuting-root, and `A_2` Steinberg word is exact on the
+   bulk.
+
+**Proof.**  Item (1) is the iterated extension-coherence theorem.  Item (2)
+telescopes by definition, independently of path choices or section gauges.
+For a fixed root, the subgraph of chambers containing it is connected, so
+(1) and (2) identify all its occurrences.  The two-chamber relation cover
+places every Steinberg word in one chamber, where the genuine filtered
+elementary representation makes it exact.  End proof.
+
+This removes the simultaneous finite-atlas calculation as a separate
+obstruction.  Exact flatness on the interior is not sterile because the
+two cyclic endpoints are deliberately not flattened; they have vanishing
+rank, while the strict compressor witness occupies `1-o(1)` rank.
+
+Combining this with the macro chamber incidence and the Pauli--flag good
+channel gives the candidate total curvature support
+
+`eta_(n,M,L)=O(1/M)+O(1/L)+O(p^(-n))+O_p(p^(-4(n-1)))`.
+
+The next proof obligation is the final presentation audit: list a finite
+generating presentation for `G_z`, assign the block operators just
+constructed, and check generator-by-generator that the auxiliary fixed
+variable `z`, the elementary coefficient generators, the `SL_4` roots, and
+the `B`-transports incur only the displayed wrap sets.  Once this audit is
+complete, the finite-atlas-to-strict-compression lemma applies directly.
