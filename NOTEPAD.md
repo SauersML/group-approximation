@@ -19776,6 +19776,41 @@ Any tensor construction would still need a genuinely nonclassical local
 implementation of the Nielsen relator cells; that is the same external
 synchronization problem that fusion exposed, not a way around it.
 
+### Thom's hyperlinear non-LEF group does not enter the criterion by a wreath shortcut
+
+There is a tempting way to reuse Thom's group `K`, whose hyperlinearity and
+non-LEF property are already known, as the auxiliary group `J` in the
+Kun--Thom criterion.  The simplest construction almost works.  In
+
+`G_0=(K x K) semidirect C_2`,
+
+with `C_2` swapping the factors, put `Gamma_0=K x {1}` and
+`J={1} x K`.  Then `G_0` is hyperlinear and Kazhdan, `J` centralizes
+`Gamma_0`, and the swap sends `J` onto `Gamma_0`.  But it also sends
+`Gamma_0` onto `J`, so the indispensable hypothesis
+
+`t Gamma_0 t^(-1) <= Gamma_0`
+
+fails.
+
+An infinite shift repairs that inclusion only by moving to a permutational
+wreath product.  This loses property `(T)`.  Neuhauser's complete
+property-`(T)` criterion for permutational wreath products (Math. Z. 251
+(2005), 167--177) implies, in the present nontrivial setting, that the
+relevant acting orbits must be finite.  On a finite orbit a bijective shift
+cannot strictly compress an invariant coordinate region: inclusion is
+equality.  Thus finite products provide property `(T)` but no strict
+compression, while infinite shifts provide strict compression but no
+property `(T)`.
+
+The analogous amenable-amalgam repair also cannot work: a nontrivial amalgam
+or HNN extension has a fixed-point-free Bass--Serre tree action and hence
+fails property `(FA)`, therefore property `(T)`.  Consequently the standard
+hyperlinearity permanence operations do not turn Thom's non-LEF group into a
+new ambient group satisfying the Kun--Thom criterion.  A successful envelope
+would need a genuinely Kazhdan self-compression, exactly the structure the
+Leavitt and substitution constructions were built to supply.
+
 ### Spectral gap rules out every scalar-weight repair of the tensor tree
 
 The failure is not specific to the uniform level weights.  Let `S` be a
