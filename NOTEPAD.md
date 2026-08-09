@@ -22248,6 +22248,43 @@ character-rigidity certificate, not as a proved property of `Q`.
 Primary pin: Dudko--Medynets, *Finite Factor Representations of
 Higman--Thompson groups*, especially Theorems 2.9 and 2.10.
 
+### New explicit nonsofic generalized wreath products (Kun--Thom, 2026)
+
+Kun--Thom, *Nonsofic wreath products of residually finite groups*
+(arXiv:2608.06222), gives a second concrete family worth testing for
+hyperlinearity.  Their Theorem A says that if `Gamma < G` is infranormal but
+nonnormal and both groups are Kazhdan, then
+
+`Lambda = (direct_sum_(G/Gamma) Z/2) semidirect G`
+
+is nonsofic.  Their explicit Theorem E takes `Gamma=EL_r(F_q[x_1,...,x_d])`
+and `G=EL_r(F_q[x_1^+/-1,...,x_d^+/-1]) semidirect SL_d(Z)` for `r,d >= 3`;
+both input groups are residually finite and Kazhdan.  Thus the obstruction to
+soficity is not hidden in a non-residually-finite acting group: it is produced
+by the generalized coset action itself.
+
+This is an important new candidate but not yet the desired theorem.  Its group
+von Neumann algebra is the generalized Bernoulli crossed product
+
+`L-infinity({+/-1}^(G/Gamma)) crossed_product G`.
+
+Hyperlinearity of `Lambda` is exactly Connes embeddability of that crossed
+product.  The standard theorem proving embeddability for a hyperlinear group
+acting sofically does not apply, because Kun--Thom's point is precisely that
+the coset action is nonsofic.  Nor may one invoke a general
+amenable-kernel-by-residually-finite closure theorem: such a theorem would
+already imply soficity here and contradict their result.  The viable question
+is narrower and operator-algebraic: can this Bernoulli crossed product have
+matrix microstates after forgetting its Cartan/diagonal model even though the
+underlying action has no permutation models?  A positive answer would give an
+explicit hyperlinear nonsofic group.
+
+This is currently the most promising second lane alongside the Leavitt
+Steinberg trace/stability fork.  The main proof remains incomplete; a fair
+vibes estimate is about 43 percent, because the endpoints and several exact
+certificates are isolated but neither candidate yet has the required
+Connes-embeddable nontrivial trace.
+
 ### Source correction for arXiv:2604.01408
 
 The primary TeX of Culf--et al., arXiv:2604.01408, does not assert HS stability
