@@ -24640,3 +24640,94 @@ so `(kappa_0)_*` is injective” is invalid.  A genuinely new theorem proving
 injectivity of `(kappa_0)_*` would, together with `(2)`, force
 `K_2(n,L)=0`; absent that theorem, the calculation is an exact obstruction,
 not a solution of the HS-stability fork.
+
+# Uniform homological death splits the universal cover over deep corners (2026-08-09)
+
+The locally nilpotent prefix-stabilization calculation has a stronger group-
+theoretic consequence than merely killing individual multiplier classes.  It
+produces honest sections of the universal central extension over deep proper
+self-copies as soon as the unstable multiplier is finitely generated.
+
+**Lemma (endomorphism section).**  Let `Q` be perfect, let
+
+`p:U_Q -> Q`
+
+be its universal central extension, and let `f:Q->Q` be an injective
+endomorphism.  If
+
+`(f^m)_*:H_2(Q,Z)->H_2(Q,Z)`
+
+is zero, then there is an injective homomorphism `s_m:Q->U_Q` such that
+
+`p s_m=f^m`.                                               `(1)`
+
+Equivalently, the restriction of the universal central extension to the
+proper self-copy `f^m(Q)` splits.
+
+**Proof.**  Functoriality of universal central extensions gives a unique
+lift `F:U_Q->U_Q` satisfying `pF=fp`.  Under the canonical identification
+
+`ker(p)=H_2(Q,Z)`,
+
+the restriction of `F` to `ker(p)` is exactly `f_*`.  Hence `F^m` kills
+`ker(p)` and factors through `p`: there is a homomorphism `s_m:Q->U_Q` with
+`F^m=s_m p`.  Applying `p` gives `(1)`.  If `s_m(x)=1`, then
+`f^m(x)=1`; injectivity of `f` gives `x=1`.  End proof.
+
+**Application to the binary Leavitt witness.**  Put `Q=L^x`, identified
+with any relevant `E_n(L)` and hence with the earlier simple nonsofic group
+`EL_4(L)`.  If the unstable multiplier `H_2(Q,Z)` is finitely generated,
+local nilpotence of `(kappa_0)_*` supplies one `m` such that
+
+`(kappa_0^m)_*=0`.
+
+The lemma therefore embeds `Q` into its universal central extension `U_Q`
+and identifies its projection with the depth-`m` corner `kappa_0^m(Q)`.
+This hypothesis is exactly the still-open finite-presentation condition in
+Khanh--Thanh's Theorem 8.2: for the binary Leavitt algebra over the finite
+field, finite generation of this unstable `K_2` is equivalent to finite
+presentability of `L^x` (and of the corresponding elementary group).
+
+There is a simultaneous version.  For every binary word `w` of length `m`,
+let
+
+`kappa_w(g)=s_w g t_w+(1-s_wt_w)`
+
+be insertion into the `w`-corner.  The maps `kappa_w` are conjugate, so each
+has zero map on `H_2` and the universal extension splits over every
+`kappa_w(Q)`.  The sections for distinct words automatically commute.  In
+fact their images commute modulo the central kernel; consequently their
+commutator is central.  Holding one variable fixed makes this commutator a
+homomorphism from the other section image to the center.  That image is a
+copy of the perfect group `Q`, so the homomorphism is trivial.  Repeating in
+the other variable proves exact commutation.
+
+It follows that the block-corner embedding
+
+`beta_m: product_(|w|=m) Q -> Q`,
+`beta_m((g_w))=product_(|w|=m) kappa_w(g_w)`,
+
+lifts to a homomorphism into `U_Q`.  The lift is injective because its
+composition with `p` is `beta_m`, and `beta_m` is injective: compression by
+`t_w(-)s_w` recovers the `w`-coordinate.  Thus, conditionally on finite
+generation of the unstable multiplier, `U_Q` contains a faithfully lifted
+copy of `Q^(2^m)` over the complete depth-`m` corner decomposition.
+
+This lifted subgroup normally generates `U_Q`.  Indeed, if `N` is its normal
+closure, then `p(N)` is a nontrivial normal subgroup of the simple group
+`Q`, hence `p(N)=Q`.  Therefore `U_Q=N ker(p)`.  Since `ker(p)` is central
+and `U_Q` is perfect,
+
+`U_Q=[U_Q,U_Q]=[N ker(p),N ker(p)]=[N,N]<=N`.
+
+So `N=U_Q`.
+
+**Exact remaining obstruction.**  A central extension can split over a
+proper subgroup which normally generates the base without splitting over
+the whole base.  Normal generation supplies conjugates, but it supplies no
+well-defined compatibility between the chosen sections on overlapping
+conjugates.  Accordingly, the argument above does not prove
+`H_2(Q,Z)=0`, does not make `Q` hyperlinear, and does not settle the main
+problem.  It isolates a much smaller missing statement: a compatibility or
+homological-injectivity theorem extending the coherent depth-corner section
+from the normally generating corner product to all of `Q`.
