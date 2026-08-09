@@ -23065,3 +23065,124 @@ non-local games*, J. Ecole polytechnique Math. 12 (2025), Theorem 1.4 and
 Lemma 1.7.  Lemma 2.2 and Corollaries 2.3--2.4 give the complementary
 dimension-free conditional-expectation estimates for commuting finite root
 groups.
+
+# The sparse Clifford target is a coinduced tensor action (2026-08-09)
+
+The single orbital Clifford edge has substantially more structure than an
+arbitrary invariant graph.  This gives a new action-level formulation of the
+remaining hyperlinearity problem.
+
+Let `Gamma<G` be the Kun--Thom pair, let
+
+`H=t Gamma t^(-1)<Gamma`,
+
+and choose `gamma in Gamma-H`.  Recall that the sparse Clifford graph on
+`X=G/Gamma` is the `G`-orbit of
+
+`{t Gamma,gamma t Gamma}`.
+
+There is a `G`-equivariant bijection
+
+`beta:G/H -> G/Gamma`,  `beta(gH)=g t Gamma`.
+
+Under this bijection the sparse edge set becomes
+
+`E_*={{gH,g gamma H}:g in G}`.
+
+Put `L=<H,gamma><=Gamma`.  The connected components of this graph are
+exactly the fibers of
+
+`p:G/H -> G/L`,  `p(gH)=gL`.
+
+**Proof.**  The formula for `beta` is well-defined because the stabilizer of
+`t Gamma` is `t Gamma t^(-1)=H`; equivariance and bijectivity follow from
+orbit--stabilizer.  An edge incident to `kH` has other endpoint either
+`k h gamma H` or `k h gamma^(-1)H` for some `h in H`.  Hence every path from
+`kH` remains in `kL/H`.  Conversely words in `H` and `gamma^(+-1)` give
+paths of this form, so the component is exactly `kL/H`.  End proof.
+
+For the fixed-variable polynomial pair recorded above one may take
+`gamma=e_(ab)(x_i)`, where the compressor sends
+`x_i|->x_i x_j`.  Then `L=Gamma`.  Indeed the compressed coefficient ring
+contains every generator except the missing `x_i`, adjoining `x_i`
+generates the full polynomial ring, and the elementary additive and
+`A_2` commutator relations generate `EL_r` over the generated ring.  Thus
+the sparse graph consists of copies of the connected orbital graph
+
+`Gamma/H`,
+
+indexed by `G/Gamma`.
+
+Let `V=direct_sum_(G/H) F_2` and let `B_*` be the sparse alternating form.
+The component calculation gives an orthogonal direct sum
+
+`(V,B_*)=direct_sum_(c in G/L) (V_c,B_c)`.
+
+Consequently the sparse Clifford lamp group is the central product, over
+its common involution `z`, of the component Clifford groups.  In the
+`z=-1` tracial sector this becomes an ordinary tensor product:
+
+`A_- = tensor_bar_(c in G/L) A_(0,c)`,
+
+where `A_0` is the finite/AF twisted group algebra attached to the local
+orbital graph `L/H`.  After choosing a section of `G/L`, the `G`-action is
+exactly the tensor-coinduced action of the local `L`-action on `A_0`; the
+usual section cocycle
+
+`s(gc)^(-1) g s(c) in L`
+
+acts inside the factor moved from `c` to `gc`.  Hence the negative crossed
+product has the intrinsic form
+
+`(tensor_bar_(G/L) A_0) crossed_(CoInd_L^G) G`.
+
+For the explicit witness `L=Gamma`.  This shows that the Clifford twist is
+not spread arbitrarily over `G/Gamma`: all anticommutation is internal to
+the compressor fibers `Gamma/(t Gamma t^(-1))`, and different outer cosets
+commute tensorially.
+
+## Exact action-permanence boundary
+
+Alekseev--Bradford, *Sofic actions, halo products, and metric approximations
+of groups*, arXiv:2601.18742, Corollary 5.2, applies to hyperlinear groups:
+if an action by automorphisms is a sofic hyperlinear action in their sense,
+then its semidirect product is hyperlinear.  Since both the locally finite
+Clifford lamp group and the residually finite ambient `G` are hyperlinear,
+we obtain a sharply packaged sufficient condition:
+
+> If the permutation-induced action
+> `G -> Aut(K_(G/Gamma,E_*))` is a sofic hyperlinear action, then
+> `K_(G/Gamma,E_*) semidirect G` is hyperlinear and nonsofic.
+
+Thus this one action would answer the main question.  Its nonsoficity is
+already unconditional by the sparse Clifford Kun--Thom witness.
+
+The word *hyperlinear* in the action condition is load-bearing.  The
+underlying graph action is not a sofic permutation action.  More generally,
+if the action of `G` on `(G/H,E_*)` admitted finite graph-orbit
+approximations, then the sparse Clifford semidirect product would be sofic:
+on every good finite orbit chart, send the finitely many lamp generators to
+the corresponding generators of the finite Clifford `2`-group of the model
+graph, send the common `z` diagonally, and let the finite permutation model
+act by graph automorphisms.  Normal forms in the finite Clifford group give
+separation, while the bad chart fraction gives the multiplicative error.
+This contradicts the already proved nonsoficity of the sparse Clifford
+semidirect product.
+
+Hence the construction supplies an explicit nonsofic graph action of a
+residually finite Kazhdan group.  The desired counterexample is equivalently
+approached by proving that its induced Clifford automorphism action is
+sofic at the **unitary/hyperlinear** action level even though the underlying
+graph action is not sofic at the permutation level.  This is precisely what
+the Pauli--Schur and nonorthogonal fusion constructions are trying to
+realize; the coinduced tensor decomposition identifies the local quantum
+fiber on which such an action approximation must be built.
+
+The unrestricted-wreath/Kaloujnine--Krasner shortcut does not remove this
+condition.  A section of `G/L` produces an `L`-valued cocycle with generally
+infinite support.  Because the strict compression has
+`t Gamma t^(-1)` of infinite index in `Gamma`, no commensurated-transversal
+argument puts these cocycle coordinates in a restricted regular wreath
+product.  Alekseev--Bradford's halo permanence theorem likewise assumes a
+sofic underlying set/graph action, which the preceding contradiction rules
+out here.
