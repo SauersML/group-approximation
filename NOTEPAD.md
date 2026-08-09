@@ -18890,3 +18890,106 @@ successful proof must already construct, in one chart up to `o(1)`
 Hilbert--Schmidt error, a single compressor satisfying both sets of finite
 relations.  The atlas may then transport that solution, but cannot create
 it.
+
+### The one-compressor HNN shortcut loses ambient property (T)
+
+There is a tempting but invalid way to avoid the compressor--shear coupling:
+discard the other substitution generators and use only the ascending orbit
+chain for one strict compressor.  The orbit-chain calculation really does
+handle every relation visible in that one direction.  On an interior block,
+
+`pi_j(delta)=sigma(alpha^j(delta))`,
+
+and
+
+`U_t^* pi_j(gamma) U_t=sigma(alpha^(j-1)(gamma))`.
+
+Thus any relation between `t^(-1) gamma t` and positive letters becomes,
+after conjugation by a sufficiently large positive power of `t`, an honest
+relation among elements of `Gamma`; the genuine finite quotient of `Gamma`
+then satisfies it exactly.  This explains why the antipodal coefficient
+problem is not intrinsic to one orbit chain.  It appears when the other
+substitution directions and their relations are imposed simultaneously.
+
+The shortcut nevertheless cannot feed the Kun--Thom endpoint.  In the
+concrete monomial semidirect product, put `H=<Gamma,t>`.  Projection to the
+substitution factor sends `Gamma` to one and `t` to the infinite-order
+unipotent matrix `I+E_(ji)`.  Hence it gives a surjection
+
+`H -> <t> ~= Z`.
+
+Therefore `H` does not have property `(T)`.  The same obstruction is visible
+for the abstract ascending HNN extension: stable-letter exponent is a
+surjection to `Z`.  Kun--Thom centralizer normalization requires both the
+subgroup and the ambient image group to have property `(T)`, so it cannot be
+applied to this one-compressor ambient group.  The remaining external
+relations are not optional bookkeeping; they are precisely what kills the
+infinite cyclic quotient and makes the ambient group Kazhdan.
+
+### Sparse incidence frames are the only fusion escape left
+
+The fusion-synchronization lemma uses the hypothesis that every chart
+projection has trace `1-o(1)`.  There is an exact sparse Parseval model in
+which this hypothesis fails and only neighboring charts synchronize.
+
+Let `E` be a finite bipartite multigraph with vertex classes `X,Y`, and put
+
+`H=ell^2(E) tensor K`
+
+for an arbitrary finite-dimensional fiber `K`.  For `x in X`, let `p_x` be
+the projection onto the edges incident to `x`; for `y in Y`, let `q_y` be
+the analogous projection.  Then
+
+`sum_(x in X) p_x=1`,  `sum_(y in Y) q_y=1`,
+
+so the combined frame operator is exactly
+
+`A=sum_x p_x+sum_y q_y=2`.
+
+Consequently the fusion analysis map
+
+`V xi=2^(-1/2)((p_x xi)_x,(q_y xi)_y)`
+
+is an isometry with no spectral cutoff and no lost trace.  Its cross Gram
+blocks are
+
+`K_(x,y)=p_x A^(-1)q_y=(1/2)p_x q_y`.
+
+They vanish unless `x` and `y` are adjacent.  On an edge fiber
+`e=(x,y)`, the overlap equation for local operators `U_x,U_y` is simply
+
+`(U_x-U_y)|_(ell^2({e}) tensor K)=o(1)`.
+
+Thus fusion imposes a graph Dirichlet condition, not all-pairs
+synchronization.  On a path of length `L`, for example, scalar vertex
+potentials
+
+`U_k=exp(i k/L) 1_K`
+
+have adjacent overlap defect `O(1/L)` while the two endpoint operators stay
+a fixed distance apart.  More relevantly, replace every depth-`k` edge of a
+binary tree by `2^(L-k)` parallel copies.  Each of the `L` levels then has
+the same total trace weight.  A change accumulated over the depth can occupy
+order-one total trace even though every individual edge change tends to
+zero.  This is the frame version of the earlier rank-spiky binary-tree
+coupling.
+
+Hence the high-rank atlas and its duplication argument are closed, but
+fusion itself is not.  The surviving architecture must have all three
+features:
+
+1. a growing sparse overlap graph (equivalently, vanishing overlap spectral
+   gap), rather than finitely many almost-full projections;
+2. edgewise compressor gauges whose defects tend to zero but whose product
+   accumulates the free-cycle shear over diverging depth; and
+3. level-balanced multiplicities so the strict energy occupies a positive
+   trace fraction while the root and wrap levels have vanishing trace.
+
+The missing constructive statement is now sharper than "synchronize the
+atlas": populate this sparse Parseval frame with the fixed-base positive-web
+representations and prime-field shear intertwiners so that every group
+relator has graph-Dirichlet energy `o(1)`, while the compressor/witness
+energy stays bounded below.  The displayed bipartite model proves that the
+fusion-rigidity theorem does not rule this out; it also identifies the
+precise branching/multiplicity data that a successful construction must
+supply.
