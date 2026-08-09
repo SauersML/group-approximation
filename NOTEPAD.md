@@ -18240,3 +18240,76 @@ this joint cell to all root indices.  The residual gap is purely between
 different **row-weight/coefficient owners** of the same Laurent letter.  The
 joint chamber cell removes the need to synchronize separate left-input,
 right-input, and output shears before addressing that overlap.
+
+### Regular restriction gives the exact row-owner matching criterion
+
+There is an exact synchronization lemma once different row-weight owners
+contain isomorphic copies of one finite nilpotent complement.  State that
+common-copy hypothesis explicitly; it is not automatic for a truncated
+polynomial jet.
+
+Let `L_0` be a finite quotient of `N_beta(R_+)`, with an automorphism
+`theta` induced by `Ad(x_beta(1))`.  Suppose every admissible row-weight
+owner `d` under consideration is equipped with an injective homomorphism
+
+`iota_d:L_0->H_N`
+
+whose image is `L_d`, and the missing-root shear on `L_d` is the transport of
+the same `theta`.  Choose a left-`L_d` transversal `T_d` in `H_N`.  Since all
+`L_d` have the same order, all transversals have the same cardinality.  A
+choice of bijections between the `T_d` gives a unitary
+
+`J_(e,d):ell^2(H_N)->ell^2(H_N)`
+
+defined on basis vectors by
+
+`J_(e,d) delta_(iota_d(ell)t)`
+` =delta_(iota_e(ell)j_(e,d)(t))`.
+
+**Lemma (selective row-owner intertwiner).**  For every `ell in L_0`,
+
+`J_(e,d) lambda(iota_d(ell)) J_(e,d)^*`
+` =lambda(iota_e(ell))`,
+
+and, if the orbitwise shear transversals are the displayed `T_d`,
+
+`J_(e,d) P_(theta,d) J_(e,d)^*=P_(theta,e)`.
+
+The `J_(e,d)` may be chosen as vertex-potential ratios, so their products
+around every finite owner gallery telescope exactly.
+
+**Proof.**  In the coordinates `H_N=L_d T_d`, left translation changes only
+the `ell` coordinate, and the orbitwise shear applies `theta` only to that
+same coordinate.  The displayed basis bijection preserves both operations.
+Choosing one identification from every owner to a reference owner makes
+every transition a ratio and gives exact telescoping.  End proof.
+
+Under the common-copy hypothesis, apply this after ambient diagonal
+absorption, on the first factor only.  The
+protected witness `1 tensor z` is fixed exactly.  Define the coupled
+missing-root operator at every owner by transporting one reference
+`B_abs` through `J_(e,d) tensor 1`; all of its chamber relations with
+`L_d` and its strict commutator norm are then identical.
+
+This is deliberately a **selective** equivalence.  `J_(e,d)` intertwines the
+nilpotent complement required by the native relator; it does not intertwine
+the full depth image of `Gamma`.  Therefore finite normalizer sterility does
+not follow.
+
+The hypothesis deserves an audit warning.  A degree-truncated polynomial
+model need not supply the `iota_d`: multiplication by different monomial
+row shifts can have different kernels at the truncation boundary, even when
+the tested word ball is injective.  Ordinary finite Laurent evaluation makes
+the shifts invertible and gives common copies, but is sterile if used for the
+whole positive representation.  It is safe only as the selective
+`N_beta`-incidence factor above.  Thus the remaining construction has two
+precise parts:
+
+1. choose a selective finite quotient `L_0` which embeds into every required
+   owner cell while retaining the nonliftable jet factor separately; and
+2. attach each relator cell to the main positive chart along its `L_d`
+   incidence and prove the sparse pairwise fusion-Gram estimate.
+
+Once (1) holds, the lemma removes coefficient spectra and transversal
+holonomy exactly; once (2) holds, the existing fixed-word fusion identity
+propagates the local relations and the protected witness energy.
