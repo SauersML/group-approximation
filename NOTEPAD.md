@@ -8539,6 +8539,115 @@ integral `L2` norm small.  The remaining quantitative problem is to modify
 this representative by an integral coboundary so that support and coefficient
 size are simultaneously small in the fixed-resolution congruence covers.
 
+### Rank three: scalable real holonomy is exactly virtual divisibility
+
+The substitution rank need only be `3` for the Kun--Thom ambient group to
+have property `(T)`.  This removes the higher `(T_2)` input used above.
+Congruence subgroups of `SL_3(Z)` can have nonzero inner/cuspidal real
+cohomology in degree `2`; for instance the computed cuspidal classes for
+`Gamma_0(3,521)` in degree `3` have dual inner classes in degree `2`, and
+passing to a torsion-free finite-index subgroup preserves a nonzero rational
+class by transfer.  A primitive integral class in that rational line can be
+scaled to circle classes converging to zero.  The remaining finite-dimensional
+realizability condition has the following exact profinite form.
+
+**Theorem (virtual divisibility equals projective realizability).**  Let `H`
+be finitely generated, let `alpha in H^2(H,Z)`, choose an integral cocycle
+representative `A`, and fix `n>=2`.  Put
+
+`omega_n(g,h)=exp(2 pi i A(g,h)/n)`
+
+and let
+
+`1 -> mu_n -> E_n -> H -> 1`
+
+be its finite central extension.  The following are equivalent.
+
+1. There is a finite-index subgroup `L<H` such that
+   `res_L(alpha)` is divisible by `n` in `H^2(L,Z)`.
+2. The `mu_n`-valued multiplier `omega_n|_(L x L)` is a
+   `mu_n`-valued coboundary for some finite-index `L<H`.
+3. The extension `E_n` virtually splits: it has a finite-index subgroup
+   meeting `mu_n` trivially.
+4. There is a finite quotient of `E_n` in which `mu_n` injects.
+5. There is a finite-dimensional `omega_n`-projective unitary
+   representation of `H` whose corresponding representation of `E_n` is
+   faithful on `mu_n`.
+
+When these conditions hold, the projective representation in item 5 may be
+chosen monomial.
+
+**Proof.**  Items 1 and 2 follow from the exact coefficient sequence
+
+`0 -> Z --n--> Z -> Z/n -> 0`.
+
+The reduction of `res_L(alpha)` in `H^2(L,Z/n)` vanishes exactly when the
+integral class is divisible by `n`, and after identifying `Z/n` with
+`mu_n` this reduction is represented by `omega_n`.  It is important here
+that the trivializing cochain be `mu_n`-valued.  Vanishing only after
+enlarging coefficients to the circle can have an additional
+`H^1(L,T)` Bockstein ambiguity and is not equivalent in general.
+
+If item 2 holds, rephase the canonical lift of `L` in `E_n`; it becomes a
+homomorphic section, giving item 3.  Conversely a subgroup of `E_n`
+disjoint from `mu_n` projects isomorphically onto a finite-index subgroup of
+`H`, so the restricted extension splits.
+
+For item 3 to item 4, let `M<E_n` be finite index with
+`M intersect mu_n=1`.  The left action of `E_n` on `E_n/M` has kernel
+`core_(E_n)(M)`, which is contained in `M`; hence its finite permutation
+quotient is injective on `mu_n`.  Conversely, the kernel of a finite quotient
+injective on `mu_n` gives item 3.
+
+Under item 4, take the regular representation of the finite quotient and
+restrict to the isotypic space of a faithful character of the central
+`mu_n`.  Removing the scalar central action gives the desired projective
+representation of `H`; in the coset model it is monomial.  Finally, item 5
+gives a representation of `E_n` whose finitely generated linear image is
+residually finite by Malcev.  A product of finitely many finite quotients of
+that image separates every nonidentity element of `mu_n`, proving item 4.
+End proof.
+
+**Corollary (rank-three locally flat stabilizer curvature).**  Let
+`H<Q=SL_3(Z)` be finite index and let `alpha in H^2(H,Z)` be primitive in
+the free quotient.  Suppose the equivalent conditions above hold for an
+unbounded sequence `n_j`.  Then there are finite-dimensional projective
+representations of `H` whose induced transitive block models for `Q` have
+nontrivial curvature and, for every fixed `g,h in Q`,
+
+`||V_j(g)V_j(h)-V_j(gh)||_op = O_(g,h)(1/n_j)`.
+
+In particular their normalized Hilbert--Schmidt defects tend to zero.
+
+**Proof.**  The finite set `Q/H` is fixed.  In the induction formula, a
+fixed pair `g,h` samples only finitely many pairs of stabilizer carries
+`kappa(g,hx),kappa(h,x)`.  The integer cocycle `A` is bounded on this finite
+set, while its exponential is divided by `n_j`; hence every block defect is
+`O_(g,h)(1/n_j)`.  Primitivity makes `[omega_(n_j)]` nonzero for all
+`n_j>1`, and the theorem supplies the finite-dimensional projective blocks.
+End proof.
+
+This is the clean rank-three alternative to sparse integral degree-three
+torsion in rank at least four.  It is also an honest new pin, not a solved
+one: one must find a primitive inner `H^2` class of a finite-index subgroup
+of `SL_3(Z)` whose reductions become divisible on deeper finite-index
+subgroups for unbounded `n`.  Equivalently, the corresponding finite central
+extensions must retain their centers in finite quotients.  Hill's
+[*Non-residually finite extensions of arithmetic
+groups*](https://arxiv.org/abs/1807.11449) identifies the obstruction as the
+image in the direct-limit arithmetic cohomology
+`bar H^2(Z/n)`: a nonzero image is precisely non-residual finiteness.  Thus
+cuspidal nonvanishing alone does not finish the construction; the exact next
+question is whether one computed `SL_3` inner class has zero reductions in
+these direct limits for unbounded levels.  If yes, the scalar stabilizer
+curvature clause is solved with the stronger operator-norm rate above.
+
+Sources for the existence side are Porat,
+[*Computations Directly on the Cuspidal Cohomology of Congruence Subgroups
+of SL(3,Z)*](https://arxiv.org/abs/2410.02734), which records nonzero prime
+levels including `521`, and the standard inner-cohomology duality between
+degrees `2` and `3` for these arithmetic quotients.
+
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
 The preceding warning has an exact quantitative form.
