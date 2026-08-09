@@ -12428,3 +12428,69 @@ is one edge per **actual long root cycle**, simultaneously and
 lemma, the only remaining verification is to assign the two chart types to
 the bulk root edges so that each rank-two Steinberg cell uses its containing
 chamber; the minimal two-chamber cover supplies exactly those local charts.
+
+### The micro--macro carry cocycle gives exact depth covariance in each chamber
+
+There is a canonical way to combine the finite root cycles with the
+unbounded jet depth, avoiding the false uniform-cube wrap estimate.  Put
+`L=p^n`, let
+
+`s:(Z/LZ)^3->{0,...,L-1}^3 subset Z^3`
+
+be the coordinate section, and for an integral matrix `C` define its carry
+
+`c_C(v)=(C^T s(v)-s(C^T v))/L in Z^3`.
+
+Here the second occurrence of `C^T v` is reduced modulo `L` before applying
+`s`.
+
+**Lemma (exact micro--macro lift).**  For every `v in (Z/LZ)^3` and
+`k in Z^3`, if
+
+`m=s(v)+Lk`,
+
+then
+
+`C^T m=s(C^T v)+L(C^T k+c_C(v))`.
+
+The carries obey the exact composition identity (for first applying `C^T`
+and then `D^T`)
+
+`c_(CD)(v)=D^T c_C(v)+c_D(C^T v)`,
+
+since `(CD)^T=D^T C^T`.  For every fixed finite set of
+matrices, all coordinates of `c_C(v)` are bounded by a constant depending
+only on that set, uniformly in `L` and `v`.
+
+**Proof.**  The first formula is the definition of `c_C` after adding
+`L C^T k`.  Apply it twice and compare with the formula for the product to
+obtain the cocycle identity.  Since every coordinate of `s(v)` lies between
+`0` and `L-1`, division by `L` bounds the carry by the sum of the absolute
+values in the corresponding fixed row of `C`.  End proof.
+
+This is exactly compatible with the square-zero jet theorem:
+
+`phi_m after alpha_C = Chat after phi_(C^T m)`.
+
+On a regular `Q_n`-orbit restricted to one affine parabolic, the translation
+coordinate supplies `v`; the macro coordinate `k` is placed in the weighted
+Følner box for the relevant upper or lower `UT_3` chamber.  A fixed chamber
+generator acts on `k` by its ordinary triangular map plus the uniformly
+bounded carry `c_C(v)`.  The weighted Følner estimate is uniform under such
+bounded affine perturbations, so the exceptional macro fraction remains
+`O(1/M)`.  On its complement the combined integer depth transforms **exactly**,
+and hence so does every polynomial coefficient under the jet ring map.
+
+The carry cocycle identity also shows that every chamber relation has zero
+depth holonomy on the bulk; no independent choice of cycle origins enters
+there.  The two opposite chambers use their two weighted macro boxes and are
+identified by the annihilator/Fourier transition.  Thus the finite-depth
+incidence losses available at this stage are
+
+`O(1/M)+O(p^(-n))+O_p(p^(-4(n-1)))`,
+
+coming respectively from the macro Følner boundary, the cyclic reset, and
+the discarded Pauli--flag channel.  The remaining global check is reduced
+to the finite overlap graph of the eight `B`-translated occurrences of the
+two chamber types; all vertex relations and all depth carries on that graph
+are now exact off these displayed projections.
