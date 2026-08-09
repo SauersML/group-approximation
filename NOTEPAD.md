@@ -15255,6 +15255,81 @@ regular-absorption multiplicity.  The earlier parity argument for one
 constant involution does not by itself prove this stronger moving-bundle
 statement.
 
+### Moving wall bundles have exact, not merely scalar, atlas holonomy
+
+For the fixed-base construction the origin spaces do not actually require
+regular absorption: every chamber uses the same full left-regular space
+`ell^2(H_N)` (with the same depth and macro amplifications).  Choose a
+reference polarization and, for each of the twenty-four chambers `C`, fix
+one concrete Fourier--Weil/coordinate unitary
+
+`W_C:H_ref->H_C`
+
+which implements its origin primal/dual polarization.  Its scalar is chosen
+once and for all; no multiplicativity of the assignment `C|->W_C` is
+required.  Define the origin wall ratio by
+
+`J_(D,C,o)=W_D W_C^*`.
+
+For a good common-face vertex `x`, choose the unique native transporter from
+the face origin and put
+
+`G_(C,x)=U_(C,x) W_C`,
+
+where `U_(C,x)` is the genuine native common-face path operator in chart
+`C`.  The moving wall from `C` to `D` is then simply
+
+`J_(D,C,x)=G_(D,x) G_(C,x)^*`.
+
+This is the preceding propagation formula.  It gives the common-root arrow
+identity by cancellation of successive native path operators.  At a
+transverse origin, the relative ratio `W_DW_C^*` is exactly the appropriate
+Fourier contragredient transform, so the flipped-root calculation above
+applies.  Its simultaneous common-face translates follow from moving-wall
+propagation.
+
+**Lemma (pair-groupoid flatness).**  On every common-good atlas fiber and
+for every gallery `C_0,...,C_l`,
+
+`J_(C_l,C_(l-1),x)...J_(C_1,C_0,x)`
+` =G_(C_l,x)G_(C_0,x)^*`.
+
+In particular every closed gallery has identity holonomy.
+
+**Proof.**  Substitute `J_(D,C,x)=G_(D,x)G_(C,x)^*`; every intermediate
+factor cancels.  End proof.
+
+Thus no noncentral regular-absorption holonomy exists.  Even the scalar
+metaplectic ambiguity is absent after the individual `W_C` have been fixed,
+because edge maps are defined as ratios of those fixed lifts.  If the Pauli
+channel uses independently chosen projective lifts, its remaining scalar
+ratio is still removed by the already proved free-good-groupoid
+contraction.
+
+The formula also closes the path-dependence concern.  On the good component,
+the native common-face path operator is independent of its word by exact
+same-root, commuting-root, and `A_2` relations.  On a literal free good
+orbit it is unique without invoking relations.  A prefix meeting a face or
+compressor-wrap boundary is placed in the existing bad projection, whose
+density is `O(|w|/M)+O(|w|/L)` for a fixed word.
+
+Finally, strictness is unchanged.  If `z_C` is the native commutant witness
+in chart `C`, transport it to the reference fiber as
+
+`z_(C,x)^ref=G_(C,x)^* z_(C,x) G_(C,x)`.
+
+The wall identity identifies these transported witnesses by construction,
+and every relevant commutator is a unitary conjugate of the native one.
+Deleting the already counted bad boundary and the fixed fusion-cutoff
+complement loses `o(1)` normalized Hilbert--Schmidt energy only.  Hence the
+order-one strict commutator survives the flat moving atlas.
+
+This replaces the flawed constant-wall and origin-absorption arguments by a
+single chart-gauge construction.  Conditional on the previously audited
+native origin Fourier equation and fixed-base local models, the adjacent
+wall, atlas holonomy, and strict-witness requirements of the fusion theorem
+are now simultaneous.
+
 ### Correction: a wall fixing the common face cannot exchange the two sixth roots
 
 The flipped-root equation isolated above is not merely absent; with the
@@ -15390,6 +15465,180 @@ Weyl operator together with the relative Fourier wall and verify the four
 displayed identities on `1-o(1)` rank.  Once that is done, owner transport
 reduces the rest of the fusion overlap audit to the remaining finite list
 of rank-two and commuting cross-owner words.
+
+### The active adjacent Weyl cell is the exact coordinate-permutation operator
+
+The four displayed identities do have an exact active solution, but it is
+not the passive Fourier wall.  Let `s` be the coordinate permutation
+interchanging `1` and `2`.  On the fixed-base jet ring it fixes `A_N`,
+permutes `xi_1,xi_2`, and permutes the corresponding depth coordinates.
+Let `P_s` be its permutation unitary on the full split regular space
+`ell^2(H_N)`, and on the depth sum define
+
+`S(delta_d tensor v)=delta_(s^T d) tensor P_s v`.
+
+The fixed-base covariance theorem, with `s^2=1`, gives
+
+`S^2=1`,
+
+`S Pi(gamma) S^*=Pi(alpha_s(gamma))`
+
+on every depth block which remains in the macro good set.  In particular,
+for
+
+`a=e_(01)(1), b=e_(12)(1), c=e_(02)(1), d=e_(21)(1)`, 
+
+one has exactly
+
+`SaS^*=c`,  `ScS^*=a`,  and  `SbS^*=d`.
+
+There is no contradiction with `[a,b]=c`, because `S` moves `a` at the
+same time that it moves `b`.  These identities are just functoriality of
+the ring automorphism induced by `s`; they hold on the complete regular
+coefficient representation, not merely on the tangent kernel.  The same
+coordinate permutation transports the native strict witness unitarily, so
+its commutator norm is unchanged.
+
+This fixes the convention cleanly:
+
+* `J_(D,C)` is a passive overlap map and compares the **same global
+  operator** after owner transport; it must not be interpreted as the group
+  element `s`.
+* `S` is the active matrix assigned to the global Weyl generator `s`; it
+  permutes the common-root labels and the transverse-root label together.
+
+The reference-chart cross-owner relations involving one adjacent Weyl
+generator are therefore exact on the good set.  Besides `S^2=1`, conjugation
+of every elementary substitution root is the literal matrix identity
+
+`s t_(ij)(a) s^(-1)=t_(s(i),s(j))(a)`.
+
+For a fixed word, failure can occur only when a depth/macro prefix leaves
+the chosen good set, already bounded by the prefix-union estimate.  Thus the
+first rank-two cross-owner test requested above passes without a relative
+Fourier calculation: relative Fourier belongs to the passive quantum
+polarization/overlap channel, while the active Weyl relation is carried by
+`P_s`.
+
+What remains in the reference chart is now the finite list of relations
+among positive transvections owned by different chambers.  On a common
+positive cone these are the exact commuting-root and `A_2` matrix
+identities; when a word changes cones, the active `S` operators above move
+all labels simultaneously.  A final bulk-word proof must state this
+owner-change induction explicitly rather than assuming that passive wall
+maps are group letters.
+
+### Correction: owner change cannot be proved on one classical macro-depth set
+
+The tempting global induction through a single macro-depth point is exactly
+the construction ruled out by the property-`(T)` depth-map no-go above.  If
+all global transvections and permutations acted on one finite block set and
+updated one integer depth equivariantly outside `o(1)` blocks, pushing
+uniform measure forward by that depth would give almost invariant vectors
+in `ell^2(Z^4-{0})`.  This is impossible.
+
+Thus the active Weyl lemma is a valid **local chart** theorem, but it cannot
+be used to declare global owner transport multiplicative before fusion.
+The passive overlaps live between nonorthogonal chart projections, and
+there is deliberately no common depth label on their fusion space.
+
+The correct remaining estimate is operator-valued.  In a reference fusion
+corner define each global root from an owner chart by passive transport.
+Flatness makes the pairwise overlap equation tautological.  For a relation
+word `w`, however, one must bound the compressed cross-owner curvature
+
+`V^*(U_(g_1)...U_(g_k)-1)V`
+
+using the nonorthogonal Gram operators `p_Cp_D`, the exact local active-Weyl
+cell above, and the native commuting/`A_2` relations.  It is not legitimate
+to replace this by a pointwise path on a global block set.
+
+This leaves a finite quantum calculation: for the adjacent `A_2` cell,
+insert the active permutation `S` whenever the owner changes and the passive
+moving-wall ratio whenever the chart copy changes, then show that the
+resulting relation curvature factors through the already estimated fusion
+leakage `(1-P)` plus the native bad projections.  If that factorization
+holds for the Coxeter, commuting-root, and `A_2` owner-change cells, the
+existing fusion identity extends it to every fixed word.  No new classical
+macro-depth construction is allowed.
+
+### Relation transfer through nonorthogonal chart fusion
+
+The required factorization is an abstract finite-matrix estimate.  Let
+`C` range over a fixed finite atlas.  In chart `C`, let `p_C` be its native
+good projection and let `A_(g,C)` be the local operator assigned to a global
+letter `g`.  Assume that on every relevant pairwise good intersection the
+passive wall maps give
+
+`||J_(D,C) A_(g,C) p_Cp_D-A_(g,D)J_(D,C)p_Cp_D||_2<=epsilon`.
+
+After transporting all charts to one reference space, this says that the
+two copies of a global letter differ by `O(epsilon)` on their Gram overlap.
+Let `V` be the fixed-cutoff fusion analysis isometry and `P=VV^*`.
+
+**Lemma (native-relator transfer).**  Suppose a relation word
+`r=g_1...g_k=1` has an owner chart `C(r)` on which
+
+`||(A_(g_1,C(r))...A_(g_k,C(r))-1)p_(C(r))||_2<=delta`.
+
+Then the corresponding polar-corrected fused operators satisfy
+
+`||u(g_1)...u(g_k)-1||_2`
+` <=O_k(delta+epsilon+sqrt(eta))`,
+
+where `eta=max_C tr(1-p_C)` plus the native prefix-boundary fraction.  The
+constant depends only on the fixed number of charts and the fixed fusion
+cutoff.
+
+**Proof.**  Before polar correction, replace each chart occurrence of
+`A_(g_j,C)` successively by the passive transport of the owner-chart
+operator.  The telescoping difference is a sum of `k` overlap errors; left
+and right multiplication by contractions does not increase the normalized
+Hilbert--Schmidt norm.  The owner product is the identity off its native bad
+projection, contributing `delta+O(sqrt(eta))`.  Compress by `V`.  Between
+successive compressed factors insert `P=VV^*`; every resulting term with
+`1-P` is a fusion-range leakage term, controlled by the same pairwise Gram
+estimates and the fixed inverse bound
+
+`||q A^(-1) q||<=2/24`.
+
+The exact corrected fusion identity
+
+`T_gT_h-T_(gh)`
+` =V^*(U_gU_h-U_(gh))V-V^*U_g(1-P)U_hV`
+
+is the two-letter instance.  Iterating it gives at most `k-1` leakage
+terms.  Finally the polar corrections are `o(1)` because the fused
+operators are asymptotically unitary on the macroscopic cutoff corner.
+This proves the estimate.  End proof.
+
+The hypothesis is available relation by relation, not globally on one
+classical block set:
+
+* internal `Gamma_z` relations hold because each `pi_d` is a genuine
+  representation;
+* same-root, commuting-root, and `A_2` elementary relations have owner
+  charts by the proved two-chamber Steinberg cover;
+* adjacent permutation/Coxeter relations and their conjugation action on
+  roots have the active coordinate-permutation owner constructed above;
+* the semidirect coefficient covariance is the exact fixed-base jet
+  identity in a chart where the corresponding substitution is positive.
+
+For an arbitrary fixed word equal to one, choose a finite derivation from
+these relation families.  Such a derivation is finite by the definition of
+the presented group, even when one does not choose a finite presentation.
+Apply the lemma to each relator occurrence and telescope through that fixed
+derivation.  Its length may depend on the word but not on the matrix stage,
+so the defect still tends to zero.
+
+This is the quantum replacement for the invalid global owner-depth
+induction.  It reduces the finite-atlas audit to two concrete hypotheses
+only: the passive overlap estimate for the same global letter, and the
+claim that the displayed relation families really present the fixed-base
+semidirect group (or at least derive every word in the chosen exhaustion).
+The first is the moving-wall/owner-transport construction.  The second is
+now the next adversarial target; it is algebraic, not an additional matrix
+gluing problem.
 
 ### Moving-wall holonomy vanishes exactly when the walls are chart coboundaries
 
