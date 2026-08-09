@@ -10787,3 +10787,99 @@ boundary cost `O(p^(-3/2))`, already tending to zero.  What remains is to
 place the orbit-chain strict-commutant witness inside this Morita channel
 and verify that the five fixed presentation compatibility relations only
 leave this exceptional boundary plus the `O(L^(-1/2))` shear-chain wrap.
+
+### Fixed-compressor correction: unfold the outer order-`p` cycles
+
+The positive-cone construction above used
+
+`t_p=I+pE_(ji)`.
+
+Taken literally along `p->infinity`, this is not enough for the Kun--Thom
+contradiction: the strict compressor in the limiting group must be one fixed
+element, not a sequence of different elements.  There is an exact repair
+which improves the chain defect at the same time.
+
+Fix once and for all
+
+`t=I+E_(ji) in SL_4(Z)`.
+
+Its reduction `tbar` modulo `p` has order exactly `p`.  On the binary-
+tetrahedral outer block set
+
+`X_p=SL_4(F_p)/A_4`,
+
+the action of `tbar` is free for every prime `p>3`.
+
+**Lemma (free outer root cycles).**  Every `tbar`-orbit in `X_p` has length
+`p`.
+
+**Proof.**  If `tbar^m gA_4=gA_4` for some `0<m<p`, then
+
+`g^(-1)tbar^m g in A_4`.
+
+The left side has order `p`, whereas `|A_4|=12` is prime to `p`.  This is
+impossible.  End proof.
+
+Choose one origin in each outer `p`-cycle and write its points as
+
+`x_(r)=tbar^r x_(0)`,  `0<=r<p`.
+
+Add a macro-index `0<=k<L` and assign the polynomial orbit-chain level
+
+`n=r+pk`
+
+to the block `(x_(r),k)`.  Implement the **fixed** compressor `t` by
+
+`(r,k) |-> (r+1,k)` for `r<p-1`,
+
+`(p-1,k) |-> (0,k+1)` for `k<L-1`,
+
+and close the final block `(p-1,L-1)` back to `(0,0)`.  Thus the outer
+order-`p` permutation supplies the micro-index, while only the single final
+wrap closes the length-`pL` chain.
+
+**Theorem (fixed-compressor Schur--shear chain).**  Use
+
+`S_(p,L)=F_p[x_i,x_j]/(x_i^2,x_j^(pL+1))`
+
+and specialize the other variables to zero.  For
+`alpha=alpha_t`,
+
+`alpha^n(x_i)=x_i x_j^n`,
+
+and the nested coefficient images are
+
+`B_n=F_p[x_j]+x_i x_j^n F_p[x_j]`,  `0<=n<=pL`.
+
+On every outer `tbar`-cycle the preceding unfolding gives genuine
+representations of the polynomial subgroup at all finite stages, represents
+the same fixed compressor `t`, and has compressor-relation defect at most
+
+`2/sqrt(pL)`.
+
+With `gamma=e_12(x_i)`, the regular-quotient construction gives a unitary in
+the polynomial-subgroup commutant whose conjugate by this fixed `t` has
+commutator norm tending to `sqrt(2)` with `gamma`.  The estimate remains
+macroscopic after summing over all outer cycles.
+
+**Proof.**  At level `n`, use the left regular representation of the finite
+image over `B_n`.  Every transition except the final one identifies level
+`n` with `n+1` exactly under `alpha`.  Only one block out of each `pL`-cycle
+is mismatched, giving the displayed Hilbert--Schmidt bound.
+
+For every `0<=n<pL`, the coefficient `x_i x_j^n` lies in `B_n` but not in
+`B_(n+1)`.  Hence the strictness hypothesis of the macroscopic orbit-chain
+theorem holds at every micro-level.  Its blockwise commutant unitaries give
+squared commutator norm at least `2(pL-1)/(pL)`.  End proof.
+
+This correction is essential: it turns the congruence-invisible macro-step
+`t^p` into an actual micro-model of the fixed Kun--Thom compressor `t`.
+The parameters may now tend jointly to infinity with, for example,
+`L=p`; the wrap error is then `O(1/p)`, while the strict witness is attached
+to the same fixed elements `t` and `gamma` at every stage.
+
+The remaining full-substitution assembly must extend this unfolded chain
+from the cyclic subgroup `<tbar>` to the other fixed generators of
+`SL_4(Z)`.  The Schur--Jacobi Mackey channel above is `Q_p`-invariant, so it
+is compatible with discarding its `O(p^(-3))` exceptional complement before
+performing this extension.
