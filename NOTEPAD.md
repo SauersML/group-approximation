@@ -15167,3 +15167,70 @@ fiber unitary arbitrarily; the exceptional fraction is the original
 `O(1/M)`.  Thus no common quotient is imposed on the depth chain, and no
 unlisted cyclic consistency condition survives away from the already
 counted wrap.
+
+### Correction: a wall fixing the common face cannot exchange the two sixth roots
+
+The flipped-root equation isolated above is not merely absent; with the
+literal native sixth-root labels it is impossible.  This is already forced
+by the `A_2` Steinberg relations.
+
+Take the adjacent orders
+
+`0<1<2` and `0<2<1`
+
+and write
+
+`a=e_(01)(1)`, `b=e_(12)(1)`, `c=e_(02)(1)`, `d=e_(21)(1)`.
+
+The two common positive roots are `a,c`.  In the first chamber,
+
+`[a,b]=c`,
+
+whereas the opposite sixth root of the second chamber satisfies
+
+`[a,d]=1`.
+
+Therefore there is no unitary `J` such that
+
+`JaJ^*=a`, `JcJ^*=c`, and `JbJ^*=d`.
+
+Indeed conjugating `[a,b]=c` by such a `J` would give `1=c`.  The same
+argument is quantitative.  If all three intertwining errors were `o(1)` in
+normalized Hilbert--Schmidt norm, the Lipschitz bound for a commutator word
+would give `||c-1||_2=o(1)`.  In a regular finite-group block, a nonidentity
+left translation has trace zero and hence distance `sqrt(2)` from the
+identity.  Removing an `o(1)`-rank bad corner does not change that fixed
+lower bound.
+
+Consequently the relative-absorption wall theorem proves exactly what its
+construction proves: it identifies `Gamma_z` and the five common-face root
+operators, while preserving the strict witness.  Its statement that the
+multiplicity Fourier "carries the transition associated with the sixth
+root" cannot mean conjugating `b` to `d`.  The two are different global
+group elements and obey different relations with the common face.
+
+This also retracts the flipped-root equation at the end of the preceding
+section when `b_C,b_D` denote these two opposite native roots.  The correct
+overlap question must keep the **global group element** fixed.  For example,
+the operator representing global `e_(12)(1)` in the second chart cannot be
+its native `e_(21)(1)` operator; it must be obtained by a separate chart-
+transport rule.
+
+That rule is still missing from the fusion proof.  The fusion leakage bound
+requires, for each fixed global generator `g`,
+
+`U_(g,C) p_C B p_D ~= p_C B p_D U_(g,D)`
+
+for every chart pair.  Common-face propagation proves this only for the
+five roots shared by an adjacent pair.  It does not prove it for the sixth
+global root, and the opposite native root cannot be substituted by the
+argument above.  Thus the earlier native quantum-atlas assertion that an
+adjacent wall intertwines *every* enumerated local generator is unsupported
+at precisely this letter.
+
+The remaining constructive target is now sharper: define operators
+`U_(g,C)` indexed by the same global `g` in every chart, transporting a
+non-native root through neighboring charts without path dependence, and
+verify both the local multiplication defects and the pairwise fusion
+overlap estimate.  Merely identifying the common face, even by nonsterile
+origin absorption, does not yet supply this global-letter extension.
