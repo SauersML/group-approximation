@@ -26670,6 +26670,43 @@ ultraproduct or dimension-changing tensor trick: they are uniformly
 equivalent at each identical multiplicity.  In particular every `d_k` is
 positive, while the main question is exactly whether `inf_k d_k=0`.
 
+### The ordinary defect floor has a thermodynamic limit
+
+The direct-sum operation is stronger than divisibility monotonicity.  For
+all `k,l>=1`,
+
+`(k+l)d_(k+l)^2 <= k d_k^2+l d_l^2`.                    `(TR6)`
+
+Indeed, take minimizing canonical models at multiplicities `k` and `l`
+and form their block direct sum.  This is again canonical at multiplicity
+`k+l`, with relative unitary `U directSum V`.  For each fixed relator `s`,
+normalized Hilbert--Schmidt orthogonality gives
+
+`||pi_(U directSum V)(s)-1||_2^2`
+` = (k/(k+l))||pi_U(s)-1||_2^2`
+`   +(l/(k+l))||pi_V(s)-1||_2^2`
+` <= (k d_k^2+l d_l^2)/(k+l)`.
+
+Taking the maximum over `s` proves `(TR6)`.  Hence the sequence
+
+`a_k=k d_k^2`
+
+is subadditive.  Fekete's lemma gives the exact limit
+
+`lim_(k->infinity)d_k^2 = inf_(k>=1)d_k^2`.              `(TR7)`
+
+Combining `(TR2)`, `(TR5)`, and `(TR7)` yields a sharp dichotomy:
+
+* either `Q` is hyperlinear and `d_k->0` through **all** sufficiently large
+  multiplicities, not merely a selected subsequence;
+* or `lim_k d_k=d_infinity>0`, giving one dimension-free positive atlas
+  gap.
+
+Thus oscillation between good and bad dimensions, lack of divisibility,
+and sparse exceptional multiplicities are all impossible explanations for
+the open problem.  The remaining scalar is the single asymptotic defect
+density `d_infinity` and the goal is to prove `d_infinity=0`.
+
 ## Relative perfectness quantitatively kills all scalar atlas flux
 
 For the ordinary two-chart source one has
@@ -26716,3 +26753,32 @@ equivalent after an adjoint or conjugate-tensor amplification.  They are
 dimension-free quantitatively equivalent **at the same multiplicity**.
 Every scalar phase on the normal relators is forced to converge to `1`.
 The only live obstruction is the non-scalar component.
+
+## The canonical atlas has a finite convex primal/dual alternative
+
+Enumerate `Sbar={s_1,...,s_m}` and let `T` be the closure in `C^m` of all
+trace vectors
+
+`(tr(pi_U(s_1)),...,tr(pi_U(s_m)))`
+
+over all canonical multiplicities and relative unitaries.  Block direct sums
+realize rational convex combinations exactly, so `T` is compact and convex;
+complex conjugation of models makes it conjugation invariant.
+
+The main FALSE endpoint is equivalent to
+
+`(1,...,1) in T`.
+
+Indeed, such trace convergence gives ordinary relator convergence by
+`||v-1||_2^2=2-2 Re tr(v)`, and the canonical atlas theorem then makes the
+known nonsofic `Q` hyperlinear.  If the all-ones vector is absent, finite-
+dimensional strict separation supplies fixed coefficients `c_j in C` and
+`eta>0` such that for every multiplicity and every relative unitary,
+
+`Re sum_j c_j(1-tr(pi_U(s_j))) >= eta`.
+
+Thus the remaining construction problem has an exact dual: either produce
+trace vectors converging to one, or prove one dimension-free tracial
+polynomial inequality.  Dimension-dependent inequalities or unrelated
+per-relator gaps cannot settle it.  The full proof is in
+`docs/EXPLICIT_LEAVITT_ATLAS.md`, Section 10.
