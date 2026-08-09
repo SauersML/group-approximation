@@ -19231,3 +19231,81 @@ be partial and coset-dependent: exact on the subgroup incidence owned by an
 edge, with the unmatched part charged to the sparse moving projections.
 This is the concrete content of the groupoid-cocycle item above; the raw
 coset tree alone does not provide it.
+
+### Quotient intertwiners have an exact kernel-rank ceiling
+
+An adjacent compressor edge has two different structures which must not be
+conflated.  There is a proper inclusion of finite image groups
+
+`H_(j+1)<H_j`,
+
+which creates the larger relative commutant, but the coefficient
+endomorphism also induces a surjection
+
+`beta_j:H_j ->> H_(j+1)`,
+
+`beta_j(q(alpha^j(g)))=q(alpha^(j+1)(g))`.
+
+The latter is well-defined for the nested polynomial-shear and fixed-base
+quotients because the depth-`j` kernel is contained in the depth-`j+1`
+kernel.  Put `K_j=ker(beta_j)`.
+
+**Lemma (quotient-overlap ceiling).**  Let `H,H'` be finite groups,
+`beta:H->>H'`, and `K=ker(beta)`.  Suppose a partial isometry
+
+`J:ell^2(H) -> ell^2(H') tensor C^m`
+
+intertwines the left regular source with a multiple of the quotient regular
+representation:
+
+`J lambda_H(h)=(lambda_(H')(beta(h)) tensor 1_m)J`.
+
+Then its initial projection is dominated by the `K`-fixed projection
+
+`e_K=|K|^(-1) sum_(k in K) lambda_H(k)`,
+
+and hence
+
+`rank(J^*J)/|H| <=1/|K|`.
+
+**Proof.**  For `k in K`, the intertwining equation gives
+`J lambda_H(k)=J`.  Averaging over `K` gives `J=J e_K`, so
+`J^*J<=e_K`.  The range of `e_K` is the space of functions constant on left
+`K`-cosets and has dimension `|H/K|=|H|/|K|`.  End proof.
+
+Thus no transporter which literally realizes the compressor quotient can
+occupy a `1-o(1)` corner when the kernel layer is nontrivial.  Amplifying the
+target does not change the ceiling.  This gives an algebraic explanation
+for both failures already observed: the identity transport in the raw coset
+frame averages inequivalent depth operators, while common regular absorption
+can align them only by erasing the kernel layer which carries strictness.
+
+For the fixed-base square-zero tower the kernels are finite abelian
+`F_p`-modules.  Their Fourier idempotents split the whole source regular
+space into character sectors
+
+`1=sum_(chi in K_j^vee) e_chi`,
+
+each of normalized rank `1/|K_j|`; the trivial sector is exactly `e_K`.
+The ceiling therefore does not prescribe trace loss.  It prescribes
+**branching**: a full-trace edge model must use all kernel characters, with
+the nontrivial sectors transported to twisted/dual target fibers rather than
+silently forced through `beta_j`.  The finite Fourier transform exchanges
+these character labels with the coset-multiplicity coordinate, and the
+prime-field shear acts on that same coordinate.
+
+The corrected adjacent-edge target is consequently finite and explicit:
+
+1. use the trivial character sector for the honest quotient regular
+   intertwiner;
+2. use the `|K_j|-1` nontrivial sectors for Fourier-dual, matrix-valued
+   transports carrying the native kernel action; and
+3. arrange the external compressor to permute these sectors with the
+   free-cycle shear on the selected `L_0` quotient.
+
+All character sectors together have full trace, while any failure confined
+to a bounded number of sectors has weight `O(1/|K_j|)`.  What remains is to
+write the nontrivial-sector transport formula and check its multiplication
+law under the base-group conjugation action.  The rank ceiling proves that
+such a Fourier-branched formula is necessary, not merely one possible
+choice of atlas.
