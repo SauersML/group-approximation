@@ -854,6 +854,41 @@ asymptotic behavior of a sequence of strictly subunit compact maxima:
 An affirmative answer to (42) is a complete negative solution of
 hyperlinear-versus-sofic.
 
+The compact maxima have a useful amplification calculus.  For all
+\(k,l,m\geq1\),
+
+\[
+ \alpha_{mk}\geq\alpha_k,
+ \qquad
+ \alpha_{20160kl}\geq\alpha_k\alpha_l.                 \tag{43}
+\]
+
+For the first inequality, amplify a canonical model by \(I_m\); this
+preserves every normalized trace.  For the second, tensor optimizers at
+levels \(k\) and \(l\).  On each factor the resulting representation is
+again a regular amplification because
+
+\[
+ \lambda\otimes\lambda
+ \cong\lambda^{\oplus20160},
+\]
+
+and normalized traces multiply on tensor products.  After the fixed
+regular intertwiner, the relative unitary is \(U\otimes V\), so taking the
+minimum over \(s\in\bar{\mathcal S}\) gives the second inequality in (43).
+
+In particular, if \(\alpha_{k_j}\to1\) along arbitrary dimensions, set
+\(K_j=\operatorname{lcm}(k_1,\ldots,k_j)\).  Then
+\(K_j\mid K_{j+1}\) and the first inequality gives
+
+\[
+ \alpha_{K_j}\geq\max_{i\leq j}\alpha_{k_i}\longrightarrow1. \tag{44}
+\]
+
+Thus a positive solution can always be represented by a coherent
+divisibility chain of regular amplifications; incompatible matrix sizes
+cannot be the obstruction.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
