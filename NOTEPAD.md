@@ -22296,3 +22296,104 @@ amalgamation that makes all finite-dimensional representations trivial.  Its
 nonhyperlinear group.  Therefore the Steinberg HS-stability and LLP bridges
 above are new external ways to discharge that condition; they are not hidden
 lemmas from the cited paper.
+
+---
+
+# The two-compressor relations force a strict von Neumann self-compression tower (2026-08-09)
+
+The exact Leavitt configuration gives a sharper finite-factor obstruction than
+the generic phrase "centralizer lifting" suggests.  Retain the notation of the
+nonsoficity proof:
+
+`Q=EL_D(L_(F_2)(1,2))`, `Gamma=EL_alpha(L)`, `J=V_(1000)`,
+
+with prefix replacements `u,v` satisfying
+
+`u Gamma u^(-1)=v Gamma v^(-1)=:Gamma_0<Gamma`,
+
+`u J u^(-1)<=Gamma`, `[Gamma,J]=1`, and
+`Q=<Gamma,u,v>`.
+
+**Theorem (strict self-compression tower).**  Let
+
+`pi:Q->U(M)`
+
+be an injective homomorphism into a finite von Neumann algebra.  Put
+
+`N=W*(pi(Gamma))`, `alpha=Ad(pi(u))|_N`, and
+`P=W*(pi(u J u^(-1)))`.  Then
+
+1. `alpha(N)<N` is a strict unital inclusion;
+2. `P<=alpha(N)' intersect N`, and `P` has a nonzero summand isomorphic
+   to `L(J)`; in particular its relative-commutant contribution is
+   nonamenable and diffuse;
+3. for every `k>=0`,
+   `alpha^(k+1)(N)<alpha^k(N)` and
+   `alpha^k(P)<=alpha^(k+1)(N)' intersect alpha^k(N)`;
+4. `pi(v)^* pi(u)` normalizes `N`.
+
+**Proof.**  The group inclusions give
+
+`alpha(N)=W*(pi(Gamma_0))<=N`.
+
+Conjugating `[Gamma,J]=1` by `u` shows that `uJu^(-1)` commutes with
+`Gamma_0`, while `uJu^(-1)<=Gamma`; hence
+
+`P<=alpha(N)' intersect N`.
+
+The inclusion cannot be equality.  Indeed, equality would put `P` in
+`N' intersect N=Z(N)`.  But `Gamma` is a nonabelian simple elementary
+Leavitt group, so a nonidentity element of the nontrivial subgroup
+`uJu^(-1)<=Gamma` fails to commute with some element of `Gamma`.  Injectivity
+of `pi` preserves that nontrivial commutator, contradicting centrality in
+`N`.
+
+The character theorem of Dudko--Medynets says that the only extreme
+characters of the simple Higman--Thompson group `J` are the trivial and
+regular characters.  Thus the trace induced by `pi|_J` is
+
+`a*1+(1-a)*delta_e`.
+
+Injectivity forces `a<1`: if `a=1`, then every `pi(j)` has trace one and
+hence is the identity in the finite von Neumann algebra.  The GNS algebra of
+the displayed trace consequently has a nonzero regular central summand
+`L(J)`.  Since `J` is nonamenable, this is a nonamenable diffuse summand of
+`P`.  (The weaker diffuseness conclusion also follows directly from the fact
+that every finite-dimensional representation of the finitely generated
+infinite simple group `J` is trivial, by Malcev residual finiteness.)
+
+Applying the injective endomorphism `alpha` repeatedly preserves strictness
+and the relative-commutant inclusions, proving (3).  Finally
+
+`pi(u) N pi(u)^*=pi(v) N pi(v)^*`,
+
+so conjugation by `pi(v)^*pi(u)` preserves `N`, proving (4).  End proof.
+
+For the regular representation this is an entirely concrete tower inside
+`L(Q)`, with `P=L(uJu^(-1))`.  Consequently
+
+`Q hyperlinear`
+
+would place this whole trace-preserving tower inside `R^omega`.  This is the
+smallest configuration-specific operator-algebraic target now visible: rule
+out, in `R^omega`, the displayed strict self-embedding of the Kazhdan-generated
+algebra together with its diffuse Higman--Thompson relative-commutant sector
+and the second normalizing frame.
+
+The theorem also explains the finite-dimensional collapse without any
+approximation rhetoric.  In a finite-dimensional von Neumann algebra,
+`alpha(N)` is unitarily conjugate to `N`, so the two algebras have equal vector
+space dimension.  The inclusion `alpha(N)<=N` is therefore equality, which
+the theorem shows is incompatible with injectivity.  In a II1 factor equal
+trace of the units does not prevent a proper self-embedding, and that single
+continuous-dimension escape is exactly what a normalized-HS model may use.
+
+This does not yet prove nonhyperlinearity: `R^omega` is large enough to admit
+proper self-embeddings with diffuse relative commutants in general.  A closing
+theorem must use the full package--Kazhdan rigidity of `Gamma`, the nonamenable
+`V` sector in every layer, and the common second frame `v`--rather than merely
+the existence of a proper finite-factor endomorphism.
+
+Primary pin for the strengthened relative-commutant conclusion:
+Dudko--Medynets, *Finite Factor Representations of Higman--Thompson groups*,
+Theorems 2.9--2.10.
