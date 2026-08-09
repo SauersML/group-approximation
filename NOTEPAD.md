@@ -8282,3 +8282,57 @@ that witness in every sofic representation.  What is missing is a weak-MF
 construction which makes such a witness central of finite order without
 collapsing `G`.  Unlike the square-root and one-witness rank criteria, the
 central-torsion corner would then complete the trace step automatically.
+
+### Perfectness obstructs centralizing a lamp-difference witness
+
+The most direct attempt to meet the central-torsion target is algebraically
+sterile.  Let `G` act transitively on `X`, choose `x_0 in X`, and let a group
+`H` contain elements `a_x`, `x in X`, satisfying
+
+`g a_x g^(-1)=a_(g x)`.
+
+This includes both the free and commuting generalized lamp groups.  A
+Kun--Thom witness is a coordinate difference `a_y a_x^(-1)`.
+
+**Lemma (central differences are characters).**  Suppose all coordinate
+differences `a_x a_(x_0)^(-1)` are central in `H`.  Then
+
+`chi(g)=a_(g x_0) a_(x_0)^(-1)`
+
+is a homomorphism `G -> Z(H)`, trivial on the stabilizer of `x_0`.  If `G`
+has trivial abelianization, then all `a_x` are equal and every lamp-difference
+witness is trivial.
+
+**Proof.**  Write `b_x=a_x a_(x_0)^(-1) in Z(H)`.  Covariance and centrality
+give
+
+`b_(g x)=g a_x g^(-1) a_(x_0)^(-1)`
+`       =b_x a_(g x_0) a_(x_0)^(-1)=b_x chi(g)`.
+
+Taking `x=x_0` and then composing two group elements yields
+
+`chi(gh)=chi(h)chi(g)=chi(g)chi(h)`.
+
+Thus `chi` is a homomorphism into the abelian group `Z(H)`.  A stabilizer
+element fixes `x_0`, so lies in its kernel.  If `G_ab=1`, then `chi=1`.
+The displayed transport identity makes `b_x` constant on the transitive
+`G`-set, and `b_(x_0)=1`; hence every `b_x=1`.  End proof.
+
+There is a local version relevant when one centralizes only selected
+witnesses.  Give `X` the `G`-invariant graph whose edges are all translates
+of the selected coordinate pairs.  If every selected difference is central,
+then products along paths show that `a_y a_x^(-1)` is central whenever `x`
+and `y` lie in the same connected component.  If this orbital graph is
+connected, the lemma applies and all selected witnesses die for perfect
+`G`.  Equivalently, for pairs `(x_0,h_i x_0)`, connectedness is the condition
+
+`<Stab_G(x_0),h_1,...,h_s>=G`.
+
+The Kun--Thom Laurent ambient groups are perfect in the stable elementary
+range used here (and in any case have finite/trivial abelian quotients after
+passing to the appropriate derived finite-index subgroup).  Therefore a
+construction that centralizes a connected generating family of their lamp
+differences cannot retain a central obstruction: it collapses the entire
+lamp orbit to one coordinate.  A viable central-torsion construction would
+need a genuinely non-coordinate central extension, not a quotient obtained
+by declaring the usual lamp witnesses central.
