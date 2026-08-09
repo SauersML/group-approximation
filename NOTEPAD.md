@@ -21632,6 +21632,63 @@ uniform bound away from one for every noncentral element.
 
 # The Leavitt--Steinberg Hilbert--Schmidt stability fork (2026-08-09)
 
+## Direct tracial approximations of the coefficient ring have a sharp defect floor
+
+The most literal attempt to select the unstable side of the fork cannot
+work.  This obstruction is stronger than the earlier operator-norm leaf
+floor and uses no boundedness assumption.
+
+**Theorem (normalized-HS Leavitt trace floor).**  Let `(M,tau)` be any
+finite tracial von Neumann algebra and let `S_0,S_1,T_0,T_1 in M`.  With
+`||x||_2=tau(x^*x)^(1/2)`, put
+
+`e_i=||T_i S_i-1||_2` for `i=0,1`, and
+
+`e_c=||S_0 T_0+S_1 T_1-1||_2`.
+
+Then
+
+`e_0+e_1+e_c >= 1`.
+
+In particular at least one of the three displayed Leavitt relations has
+normalized-HS defect at least `1/3`.  The same conclusion holds in every
+matrix algebra, independently of its dimension and without assuming that
+the four matrices are contractions or approximate adjoints.
+
+**Proof.**  Traciality gives
+
+`tau(S_0T_0+S_1T_1-1)`
+` = tau(T_0S_0-1)+tau(T_1S_1-1)+1`.
+
+Therefore, using `|tau(x)|<=||x||_2`,
+
+`1 <= |tau(S_0T_0+S_1T_1-1)|`
+`     +|tau(T_0S_0-1)|+|tau(T_1S_1-1)|`
+`  <= e_c+e_0+e_1`.
+
+End proof.
+
+**Consequence.**  No normalized-HS asymptotic representation of
+`St_5(L_(F_2)(1,2))` can be obtained by first producing an approximate
+unital ring representation of the binary Leavitt algebra in the same
+finite tracial algebra and then applying the elementary-matrix functor.
+The obstruction already occurs before the orthogonality relations
+`T_iS_j=0`, `i!=j`, are used.  It also rules out all square-matrix Fock,
+Toeplitz, leaf-truncation, polar-correction, and direct-sum versions of that
+ring-first construction in normalized HS norm, not merely operator norm.
+
+This does **not** prove HS stability of the Steinberg group.  In the group
+presentation coefficient multiplication is encoded by commutators between
+different root subgroups, not by multiplication of four reconstructed
+operators in one finite algebra.  Finite Heisenberg root cells can satisfy
+those commutator identities exactly even though the displayed ring
+relations cannot hold approximately in a finite trace.  Thus a successful
+unstable model must be genuinely group-level/projective, while a proof of
+the stable branch would need a new global coordinatization theorem turning
+the full rank-five Steinberg web--not one positive root cell--back into
+approximate coefficient operators.  The trace floor identifies the exact
+contradiction such a coordinatization theorem would trigger.
+
 Put
 
 `L=L_(F_2)(1,2)`, `Q=EL_4(L)`, and `U=St_5(L)`.
