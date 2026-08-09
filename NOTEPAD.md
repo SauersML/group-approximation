@@ -9599,3 +9599,63 @@ commuting root subgroup, but gauges chosen orbitwise for different root
 subgroups need not agree.  This is precisely where rank three may help:
 `SL_3(Z)` has property `(T)` but not the higher `(T_2)` input that, in rank
 at least four, converts the problem to an integral degree-three cosystole.
+
+Unlike the fixed-subgroup cuspidal route, this finite-parabolic route has no
+projective-realizability pin.  If
+
+`Htilde_p=red_p^(-1)(H_p)<SL_3(Z)`
+
+and `omega_p` is the inflated Jacobi multiplier, then
+`omega_p|_(Gamma(p) x Gamma(p))=1` for the principal congruence kernel
+`Gamma(p)=ker(red_p)`.  Thus its finite central extension actually splits on
+an explicit finite-index subgroup, and the virtual-divisibility/projective-
+realizability theorem above applies automatically.  Hill's direct-limit
+non-residual-finiteness obstruction is zero for these particular classes.
+The only pin is how economically the resulting finite multiplier can be
+represented on the fixed `SL_3(Z)` presentation complex.
+
+There is encouraging finite-presentation evidence.  Use the three-generator
+presentation
+
+`SL_3(Z)=<x,y,z | x^3,y^3,z^2,(xz)^3,(yz)^3,`
+`                     (x^(-1)zxy)^2,(y^(-1)zyx)^2,(xy)^6>`,
+
+with the standard integral `3 x 3` matrices for `x,y,z`.  For every oriented
+generator edge and every `v in X_p`, introduce one circle rephasing variable.
+Each relator cell then gives a sparse linear equation: its coboundary must
+cancel the explicitly transported Jacobi multiplier.  This is the exact
+finite-dimensional form of the global gauge problem.
+
+A direct computation with the first-nonzero-coordinate induction section
+gave the following diagnostics.
+
+* Requiring zero curvature on every relator cell whose whole boundary stays
+  in the dense torus `{abc!=0}` is too strong: the real linear system is
+  inconsistent for `p=5,7` (although the accidental `p=3` system is
+  consistent).  Thus one dense coordinate chart alone is not a proof.
+* Greedily releasing cells with the largest consistency residual makes the
+  remaining real system solvable to machine precision after releasing `18`
+  cells for `p=5` and `140` cells for `p=7`, out of respectively `8(5^3-1)`
+  and `8(7^3-1)` total presentation cells.  The released cells concentrate
+  on the torsion and composite relators and have size compatible with
+  `O(p^2)`, hence density `O(1/p)`.
+* Rephasing only by `mu_p` is artificially restrictive.  For example a
+  fixed point of the relation `x^3` produces an equation `3 theta=c/p`,
+  which is always soluble in `T` but may be insoluble over `F_p`.  The
+  correct sparse-cosystole problem therefore uses circle-valued `1`-cochains,
+  even though the original multiplier is `mu_p`-valued.
+
+These computations are evidence, not a proof: two small primes do not
+establish an asymptotic support bound, and greedy floating-point elimination
+does not identify an algebraic gauge.  They do, however, reject the naive
+dense-torus gauge while supporting a sharper cusp/fixed-stratum ansatz:
+
+> Find an explicit circle `1`-cochain whose residual presentation curvature
+> is supported on the union of finitely many rational fixed subspaces (or
+> Borel--Serre boundary strata), each containing `O(p^2)` points of `X_p`.
+
+Such a formula would give ambient normalized Hilbert--Schmidt defect
+`O(p^(-1/2))` after powering the central character toward `-1`, enough for
+the full central sector (`delta_p=1`).  It would solve the scalar substitution
+assembly clause; the remaining task would then be to make the same powered
+holonomy act on the nonorthogonal polynomial-shear intertwiners.
