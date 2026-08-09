@@ -23716,6 +23716,61 @@ Accordingly the safe conclusion is sharp:
 This closes one tempting use of the new symmetric-double theorem without
 mistaking a C-star obstruction for a group-level non-MF result.
 
+## Precision correction and the two MF notions
+
+The preceding theorem proves that `p` is an **infinite** projection.  It
+does not, from the displayed data alone, prove that `p` is properly infinite:
+proper infiniteness requires two orthogonal subprojections of `p`, each
+Murray--von Neumann equivalent to `p`.  The single strict compression only
+provides one proper equivalent subprojection.  Thus the section title's word
+"properly" should be read as "stably" or simply omitted.  All stated
+consequences--failure of finiteness, stable finiteness, RFD, and MF for the
+maximal C-star algebra--use only infiniteness and remain valid.
+
+There is also a load-bearing terminology distinction in the 2026 MF
+literature.
+
+* Shulman Definition 3, following Carrion--Dadarlat--Eckhardt, calls a group
+  weak/operator-norm MF when it embeds in
+  `U(prod M_n / direct-sum M_n)`.  Separation is only in operator norm.
+* Schafhauser Definition 1.1 uses the stronger trace-controlled/reduced-norm
+  property: the normalized traces converge to the regular character and the
+  norms of tested group-ring polynomials converge to their reduced norms.
+  Schafhauser explicitly notes that this is a priori stronger than the first
+  notion.  This stronger property implies hyperlinearity immediately; the
+  weak notion does not currently supply that implication.
+
+The rank-visibility issue is real even for an exact homomorphism.  Fix an
+irrational angle `theta` and represent `Z` in `U(n)` by
+
+`1 |-> diag(exp(i theta),1,...,1)`.
+
+These exact representations give an operator-norm faithful embedding of
+`Z` in the norm quotient, while the same sequence converges to the identity
+in normalized Hilbert--Schmidt norm.  This example does not say that `Z` is
+not hyperlinear--it is sofic--but it proves that one cannot obtain a
+hyperlinear embedding merely by changing the metric on a given weak-MF
+embedding.
+
+Consequently, even a separate proof of Shulman's introductory group-level
+sentence
+
+`G weak-MF  ==>  G *_H G weak-MF`
+
+would not by itself solve the active problem.  One would still need trace
+visibility, such as a finite central monolith/corner forcing mechanism.  For
+the Kun--Thom symmetric double the fold kernel is free and torsion-free, so
+the already proved finite-central shortcut is absent.  The genuinely useful
+strong version would instead be trace-MF of the double, or Connes
+embeddability of its canonical/fold-sensitive trace; neither follows from
+Shulman Theorem 10.
+
+Primary pins checked: Shulman, arXiv:2603.13564v2, Definition 3 and Theorem
+10; Carrion--Dadarlat--Eckhardt, *On groups with quasidiagonal C-star
+algebras*, Definition 2.7; Schafhauser, *Finite-dimensional approximations
+of certain amalgamated free products of groups*, Definition 1.1 and the
+paragraph immediately following it.
+
 # The quasi-regular Gaussian action has entropy minus infinity (2026-08-09)
 
 The Gaussian construction does not provide a hidden Cartan-preserving route
