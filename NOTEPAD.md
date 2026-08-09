@@ -9902,3 +9902,100 @@ is invariant and therefore cannot contain it.  Thus the only live rank-three
 scalar route remains the **varying** finite-parabolic Jacobi class, whose
 coefficient system and order both change with `p` and hence evade every
 fixed-class Hecke bound.
+
+### A stronger varying class: sparse Schur curvature from `PSL_2(F_p)`
+
+The Jacobi class is not the only varying finite-subgroup class, and another
+one has two advantages: its center has order exactly `2`, and its forced
+support has codimension three rather than two.
+
+For an odd prime `p`, use the adjoint (equivalently symmetric-square)
+embedding
+
+`H_p=PSL_2(F_p) < Q_p=SL_3(F_p)`.
+
+The Schur cover
+
+`1 -> {+-1} -> SL_2(F_p) -> PSL_2(F_p) -> 1`
+
+gives a finite-dimensional projective unitary representation of `H_p` in
+which the central kernel acts by `-1`.  Concretely, take the `(-1)`-isotypic
+space of the regular representation of `SL_2(F_p)`.  No defining-
+characteristic representation is being regarded as a complex one here.
+The outer block set has size
+
+`|Q_p/H_p|=2 p^2(p^3-1)=Theta(p^5)`.
+
+For primes `p=1 mod 4`, the adjoint subgroup contains a fixed Klein four
+group `A=<q,r>` obtained from two anticommuting square roots of `-1` in
+`SL_2(F_p)`.  In a fixed integral basis of the adjoint representation, `q`
+and `r` are commuting order-two signed permutation matrices in `SL_3(Z)`;
+their lifts to `SL_2(F_p)` anticommute.  Thus the Schur multiplier restricted
+to `A` has projective commutator exactly `-1`.
+
+**Theorem (Schur curvature localizes at density `Theta(p^(-3))`).**  Induce
+the Schur class from `H_p` to
+
+`c_p in H^2(Q_p,T^(Q_p/H_p))`.
+
+After restriction to the fixed subgroup `A`, the class has a circle cocycle
+representative which is trivial on every `A`-orbit except the fixed points
+of `A` on `Q_p/H_p`.  The number `f_p` of those fixed points is
+`Theta(p^2)`.  Consequently both ordered defects at `(q,r)` and `(r,q)` can
+be made at most
+
+`2 sqrt(f_p/(2 p^2(p^3-1)))=O(p^(-3/2))`,
+
+whereas every gauge satisfies
+
+`max{defect(q,r),defect(r,q)} >= sqrt(f_p/(2 p^2(p^3-1)))`
+`                                      =Omega(p^(-3/2))`.
+
+**Proof.**  Mackey--Shapiro decomposes the restriction to `A` over the
+`A`-orbits of `Q_p/H_p`.  An orbit stabilizer is a subgroup of the Klein
+four group.  If it is proper, it is trivial or cyclic of order two, and
+`H^2(C_2,T)=0`; the multiplier can therefore be gauged to one on that orbit.
+If the stabilizer is all of `A`, the orbit is a fixed point and the inverse
+image of the corresponding Klein four subgroup in `SL_2(F_p)` is a
+non-split group of order eight.  Its projective commutator is `-1`, so the
+class remains nontrivial there.
+
+It remains to count fixed points.  A coset `gH_p` is fixed exactly when
+`g^(-1) A g <= H_p`.  The centralizer of `A` in `SL_3(F_p)` is the split
+diagonal torus, and its normalizer has order `6(p-1)^2`.  Inside `H_p`, the
+normalizer of a Klein four subgroup has order between `4` and `24`, since
+its quotient by `A` embeds in `Aut(A)=S_3`; there are only boundedly many
+`H_p`-conjugacy classes of such subgroups.  Double counting the conjugators
+therefore gives `f_p=Theta(p^2)`.
+
+The orbitwise gauges give the upper bound.  At each fixed coordinate, let
+`u` and `v` be the two ordered chordal defects.  Their quotient is the
+gauge-invariant commutator `-1`, so
+
+`u^2+v^2 >= (1/2)|-1-1|^2=2`.
+
+Sum over the `f_p` fixed coordinates and normalize by
+`2p^2(p^3-1)`.  One of the two global squared defects is at least
+`f_p/(2p^2(p^3-1))`, which is the lower bound.  End proof.
+
+This improves the varying-parabolic target substantially:
+
+* the central sign is exactly the order-two sign required by the orbital
+  Clifford lamp, rather than a powered `p`-th root approaching `-1`;
+* the forced local relation error is `Theta(p^(-3/2))` rather than
+  `Theta(p^(-1))`; and
+* finite-dimensional projective realizability is automatic, because the
+  multiplier comes from a finite Schur cover and becomes trivial on the
+  principal congruence kernel.
+
+The same global caveat remains.  Orbitwise gauges for the Klein four
+restriction do not yet give one gauge on the full fixed presentation of
+`SL_3(Z)`.  The sharpened target is now:
+
+> Prove that the induced Schur classes admit global presentation cocycles
+> of normalized `L2` norm `o(1)`, and couple their exact `-1` holonomy to the
+> polynomial shear intertwiners.
+
+Because `H_p` has order `Theta(p^3)` inside a group of order `Theta(p^8)`,
+this class is geometrically supported on a much thinner algebraic locus than
+the mirabolic class.  It is therefore the preferred varying-curvature route.
