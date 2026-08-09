@@ -16879,3 +16879,53 @@ on the `{-1,x_i}` terms and the exterior-square integral action on the six
 `{x_i,x_j}` terms.  Finite torsion character grids are invariant under these
 actions, so an atlas construction over such a grid is the natural next
 repair; no general amenable-normal-quotient closure claim is being assumed.
+
+### The matched-character repair also needs kernel commutation of the witness
+
+The balanced lemma has a second hypothesis which is not yet supplied by the
+atlas.  The operator `bhat` is defined blockwise only because
+
+`b pi(A)=pi(A)b`.
+
+Without this, `b` has off-diagonal components
+
+`b_(psi,chi):V_chi->V_psi`,
+
+and `b tensor 1` does not preserve the matched space
+`directSum_chi V_chi tensor conjugate(V_chi)`.  Compressing it to the matched
+space discards every off-diagonal component.  There is no general lower
+bound showing that the strict commutator energy survives that discard.
+
+For the current construction, the ultraproduct witness is proved to
+centralize `Gamma_z`.  This makes it commute with coefficient words from the
+positive-base kernel `K_2(R_+)`, because those words use only fixed elements
+of `Gamma_z`.  It does **not** yet make it commute with the toric Laurent
+kernel generators `{-1,x_i}` and `{x_i,x_j}`: their owner words contain
+ambient Laurent letters, and centralizing `Gamma_z` says nothing about the
+possibly nontrivial coefficient holonomy of those words.
+
+Conditional expectation onto `pi(A)'` does not solve this formally.  Even
+though the fixed strict element and the lifted coefficient group commute
+with the central Laurent kernel inside `St_r(R)`, the norm of
+
+`[E_(pi(A)')(b),pi(t)^*pi(gamma)pi(t)]`
+
+may be much smaller than the norm of the original commutator; all energy
+could a priori lie in off-diagonal character blocks.
+
+Hence matched-character descent has two independent finite-stage targets:
+
+1. an honest (or correctable) `A`-character grading with equivariant
+   normalizer covariance; and
+2. an `o(1)`-perturbation of the strict witness which preserves that grading,
+   with an order-one lower bound after restriction to the balanced matched
+   space.
+
+The second target would follow if the explicit native witness were shown to
+commute with every toric holonomy operator before fusion (for example because
+the former is a transported right-regular operator and the latter belongs to
+the corresponding left coefficient algebra), and if this commutation were
+retained by the pulled-back-corner and polar corrections.  No such
+left/right-algebra calculation has yet been written.  Thus an equivariant
+torsion grid alone is not sufficient; it must be coupled to this witness
+commutation audit.
