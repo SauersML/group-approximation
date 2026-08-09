@@ -20902,3 +20902,104 @@ cover.  Passing to another central cover of any of these groups can never
 turn it sofic.  What distinguishes the open hyperlinearity constructions is
 therefore not the group-theoretic central cover but the possibility of a
 trace-visible nonsofic central sector.
+
+---
+
+# Induced characters force hyperfinite HS-stability (2026-08-09)
+
+The character argument previously recorded only for the polynomial Kun--Thom
+stabilizer has a general form.  It applies to all stable elementary groups
+over finitely generated commutative Noetherian rings.
+
+**Theorem (induced-character criterion).**  Let `Lambda` be a finitely
+generated property-`(T)` group.  Assume that every character `chi` of
+`Lambda` has the following form: there are a normal subgroup `N normal
+Lambda` and a finite-dimensional unitary representation `pi:N->U(d)` such
+that
+
+`chi(g)=tr_d(pi(g))` for `g in N`, and `chi(g)=0` for `g notin N`.
+
+Then every von Neumann amenable character of `Lambda` is itself the
+normalized trace of a finite-dimensional representation of `Lambda`.
+Consequently `Lambda` is hyperfinitely Hilbert--Schmidt stable.
+
+**Proof.**  Let `chi` be a von Neumann amenable character and choose `N,pi`
+as in the hypothesis.  Put `psi=chi conjugate(chi)`.  The GNS von Neumann
+algebra of `psi` is contained in
+
+`M_chi tensor M_chi^op`,
+
+so it is amenable.  On `N`, the function `psi` is the normalized character
+of `pi tensor conjugate(pi)`.  This representation contains the trivial
+representation with multiplicity
+
+`m=dim End_N(pi)>=1`.
+
+Writing `c=m/d^2`, the finite-dimensional decomposition of
+`pi tensor conjugate(pi)` therefore gives an inequality of positive
+functionals on `C^*(Lambda)`
+
+`psi >= c 1_N`,
+
+where `1_N(g)=1` on `N` and `0` off `N`.  To justify the extension by zero,
+partition any finite matrix `(f(g_i^(-1)g_j))_(i,j)` by the right `N`-cosets
+of the `g_i`: it is block diagonal, and each nonzero block is a positive
+matrix for the corresponding positive-definite function on `N`.  The
+difference `psi-c 1_N` is conjugation invariant because both summands are.
+
+A positive functional dominated by a functional with amenable GNS algebra
+has amenable GNS algebra: by the noncommutative Radon--Nikodym theorem its
+GNS representation is a corner of an amplification of the dominating one,
+and amenability passes to amplifications and corners.  Hence the GNS algebra
+of `1_N` is amenable.  That algebra is exactly `L(Lambda/N)`, so the quotient
+`Lambda/N` is amenable.  Property `(T)` passes to quotients, and a discrete
+amenable property-`(T)` group is finite.  Thus `[Lambda:N]<infinity`.
+
+The induced representation `Ind_N^Lambda(pi)` is now finite-dimensional and
+has normalized character `chi`.  Indeed, an element outside the normal
+subgroup `N` fixes no coset in `Lambda/N`, while for `g in N` its normalized
+trace is the average of `tr_d(pi(s^(-1)gs))` over `sN in Lambda/N`; this is
+`chi(g)` because `chi` is conjugation invariant.  Therefore every von
+Neumann amenable character is already finite-dimensional.  Dogon--
+Vigdorovich, Theorem 4.2, characterizes hyperfinite Hilbert--Schmidt
+stability of a finitely generated group by approximation of all its von
+Neumann amenable characters by finite-dimensional traces.  The criterion
+applies, with constant sequences of traces.  End proof.
+
+**Corollary (stable elementary groups).**  Let `R` be a finitely generated
+commutative Noetherian unital ring and let
+
+`n>max{sr(R),2}`.
+
+Then `EL_n(R)` is hyperfinitely Hilbert--Schmidt stable.
+
+**Proof.**  Lavi--Levit, Corollary 1.3, gives exactly the induced-character
+hypothesis above: every character of `EL_n(R)` is zero off a specified normal
+subgroup and restricts there to the normalized character of a
+finite-dimensional representation.  Ershov--Jaikin-Zapirain prove property
+`(T)` for `EL_n(R)` whenever `n>=3` and `R` is a finitely generated
+associative unital ring.  The group is finitely generated, so the theorem
+applies.  End proof.
+
+In particular this includes the exact Kun--Thom polynomial stabilizers
+
+`EL_n(F_q[x_1,...,x_d])`
+
+in the Lavi--Levit stable range.  This is stronger than merely saying that
+one obstruction class vanishes: every hyperfinite normalized-HS asymptotic
+representation of the stabilizer is correctable.  It still does **not** give
+full or flexible HS-stability.  A trace-normalized model relevant to the
+hyperlinear-versus-sofic problem restricts to the regular character of this
+nonamenable stabilizer, whose von Neumann algebra is nonamenable and hence is
+outside the hyperfinite hypothesis.  Thus the corollary closes all
+hyperfinite/AF model-production routes for the stabilizer but deliberately
+leaves the required nonhyperfinite exotic sector open.
+
+**Primary-source pins.**
+
+* O. Lavi and A. Levit, *Characters of the group `EL_d(R)` for a
+  commutative Noetherian ring `R`*, Corollary 1.3.
+* A. Dogon and I. Vigdorovich, *Hyperlinearity, stability and asymptotic
+  spectral gap of higher rank lattices*, arXiv:2506.20843v2, Theorem 4.2.
+* M. Ershov and A. Jaikin-Zapirain, *Property `(T)` for noncommutative
+  universal lattices*, Theorem 1.1.
