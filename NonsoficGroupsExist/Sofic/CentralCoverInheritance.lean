@@ -261,6 +261,32 @@ theorem not_isSofic_of_centralExtension_strictWitness
       ((G.subtype t)⁻¹ * G.subtype γ * G.subtype t)
     simpa only [map_mul, map_inv, haLift, htProj, hgammaProj] using hmapped
 
+/-- The exact external stability certificate needed to turn the one-cover
+inheritance theorem into a statement about *all* central covers.  For a
+stable Kun--Thom pair this is supplied by applying the cited normalization
+theorem to every lifted pair.  Keeping it named prevents that citation from
+being silently conflated with the algebraic inheritance proof. -/
+def CentralCoverStableNormalization (H : Type) [Group H]
+    (G : Subgroup H) (Γ : Subgroup G) : Prop :=
+  ∀ (E : Type) [Group E] [Countable E] (P : CentralExtension E H),
+    CentralizerNormalization (P.preimage G) (P.liftedSubgroup G Γ)
+
+/-- **All-central-covers form.**  A strict witness for a perfect pair whose
+Kun--Thom normalization is stable under central covers makes every countable
+central extension nonsofic.  No finiteness assumption is imposed on the
+central kernel. -/
+theorem allCentralExtensions_not_isSofic_of_strictWitness
+    {H : Type} [Group H]
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (hstable : CentralCoverStableNormalization H G Γ)
+    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
+    {E : Type} [Group E] [Countable E] (P : CentralExtension E H) :
+    ¬ IsSofic E :=
+  P.not_isSofic_of_centralExtension_strictWitness G Γ
+    (hstable E P) a ha hγ hstrict
+
 end CentralExtension
 
 end NonsoficGroupsExist

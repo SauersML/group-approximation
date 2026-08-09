@@ -63,6 +63,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.commute_of_perfect_quotient
 #print axioms NonsoficGroupsExist.CentralExtension.lift_centralizes_perfect_preimage
 #print axioms NonsoficGroupsExist.CentralExtension.not_isSofic_of_centralExtension_strictWitness
+#print axioms NonsoficGroupsExist.CentralExtension.allCentralExtensions_not_isSofic_of_strictWitness
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.UniversalRankFour.witness_not_isLEF
 #print axioms NonsoficGroupsExist.ThompsonFObstruction.finite_image_generatorCommutator_eq_one
