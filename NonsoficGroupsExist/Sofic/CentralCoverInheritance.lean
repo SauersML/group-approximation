@@ -553,6 +553,24 @@ theorem everyNontrivialQuotientIsNonsofic_of_hasNoNontrivialSoficImage
   intro Q hQGroup q _ ⟨g, hg⟩ hQ
   exact hg (himage Q hQGroup hQ q g)
 
+/-- A simple nonsofic group has no nontrivial sofic quotient.  Simplicity
+forces the kernel of a nontrivial quotient map to be trivial, so the source
+would embed in any purported sofic target. -/
+theorem everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
+    {J : Type} [Group J] [IsSimpleGroup J]
+    (hnonsofic : ¬ IsSofic J) :
+    EveryNontrivialQuotientIsNonsofic J := by
+  intro Q hQGroup q _ hnontrivial hQ
+  letI : Group Q := hQGroup
+  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal q.ker inferInstance with
+    hbot | htop
+  · apply hnonsofic
+    exact isSofic_of_injective q
+      ((MonoidHom.ker_eq_bot_iff q).mp hbot) hQ
+  · obtain ⟨g, hg⟩ := hnontrivial
+    have hmem : g ∈ q.ker := htop ▸ Subgroup.mem_top g
+    exact (hg (MonoidHom.mem_ker.mp hmem)).elim
+
 /-- The two useful formulations of quotient rigidity are equivalent:
 every nontrivial quotient is nonsofic exactly when every homomorphism into a
 sofic group is trivial. -/

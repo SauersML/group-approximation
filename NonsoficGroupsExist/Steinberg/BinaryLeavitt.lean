@@ -1,6 +1,7 @@
 import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
+import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
 import NonsoficGroupsExist.PropertyT.FiniteFieldElementaryPropertyT
 
 /-!
@@ -54,6 +55,29 @@ theorem elementaryBase_hasKazhdanPropertyT {n : ℕ} (hn : 2 ≤ n) :
   exact finiteFieldElementaryThree_hasKazhdanPropertyT
     (k := ZMod 2) (A := UniversalLeavitt.BinaryLeavittAlgebra)
 
+/-- Every elementary binary-Leavitt rank at least two is nonsofic.  The
+rank-four compression theorem supplies the obstruction, and the explicit
+Leavitt rank equivalences transport it to arbitrary rank. -/
+theorem elementaryBase_not_isSofic {n : ℕ} (hn : 2 ≤ n) :
+    ¬ IsSofic (ElementaryBase n) := by
+  obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
+  let e : ElementaryBase (m + 1) ≃*
+      FiniteFieldLeavitt.Ambient (ZMod 2) :=
+    (UniversalLeavitt.family).rankSuccEquiv m 3 (by omega) (by omega)
+  intro hsofic
+  exact FiniteFieldLeavitt.ambient_not_isSofic (ZMod 2)
+    (isSofic_of_injective e.symm.toMonoidHom e.symm.injective hsofic)
+
+/-- The canonical Steinberg projection as an isomorphism, conditional on
+the concrete `K₂`-vanishing certificate. -/
+noncomputable def projectionEquiv (n : ℕ)
+    (hinj : Function.Injective
+      (SteinbergGroup.projection :
+        BinaryLeavittSteinberg n →* ElementaryBase n)) :
+    BinaryLeavittSteinberg n ≃* ElementaryBase n :=
+  MulEquiv.ofBijective SteinbergGroup.projection
+    ⟨hinj, projection_surjective n⟩
+
 /-- If the classical Steinberg kernel vanishes, property `(T)` of the
 elementary base transports across the canonical isomorphism.  Thus the
 property-`(T)` certificate can be reduced to the concrete `K₂`-vanishing
@@ -63,11 +87,20 @@ theorem hasKazhdanPropertyT_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
       (SteinbergGroup.projection :
         BinaryLeavittSteinberg n →* ElementaryBase n)) :
     HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n) := by
-  let e : BinaryLeavittSteinberg n ≃* ElementaryBase n :=
-    MulEquiv.ofBijective SteinbergGroup.projection
-      ⟨hinj, projection_surjective n⟩
-  exact HasKazhdanPropertyT.of_mulEquiv e
+  exact HasKazhdanPropertyT.of_mulEquiv (projectionEquiv n hinj)
     (elementaryBase_hasKazhdanPropertyT hn)
+
+/-- Vanishing of the Steinberg kernel also transports the established
+nonsoficity of the elementary base to the Steinberg group. -/
+theorem not_isSofic_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
+    (hinj : Function.Injective
+      (SteinbergGroup.projection :
+        BinaryLeavittSteinberg n →* ElementaryBase n)) :
+    ¬ IsSofic (BinaryLeavittSteinberg n) := by
+  intro hsofic
+  exact elementaryBase_not_isSofic hn
+    (isSofic_of_injective (projectionEquiv n hinj).symm.toMonoidHom
+      (projectionEquiv n hinj).symm.injective hsofic)
 
 /-- A centrality certificate for the canonical kernel produces the exact
 `CentralExtension` consumed by the quotient-rigidity theorem. -/
@@ -101,27 +134,25 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_certificates
   exact finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
     (centralExtension n hker) hall hfp hT
 
-/-- The same concrete endpoint with both centrality and property `(T)`
-discharged from injectivity of the canonical Steinberg projection.  The
-remaining injectivity premise is precisely the classical `K₂`-vanishing
-certificate for the binary Leavitt algebra. -/
+/-- The shorter `K₂`-vanishing endpoint.  Injectivity identifies the
+Steinberg group with its simple elementary base.  Its nonsoficity therefore
+rules out every nontrivial quotient directly, with no all-central-covers
+stability premise. -/
 theorem finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
     {n : ℕ} (hn : 3 ≤ n)
     (hinj : Function.Injective
       (SteinbergGroup.projection :
         BinaryLeavittSteinberg n →* ElementaryBase n))
     [IsSimpleGroup (ElementaryBase n)]
-    (hall : AllCountableCentralExtensionsAreNonsofic (ElementaryBase n))
     (hfp : Group.IsFinitelyPresented (BinaryLeavittSteinberg n)) :
     FinitelyPresentedKazhdanSoficImageRigid
       (BinaryLeavittSteinberg n) := by
-  have hker : (SteinbergGroup.projection :
-      BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
-      Subgroup.center (BinaryLeavittSteinberg n) := by
-    rw [MonoidHom.ker_eq_bot SteinbergGroup.projection hinj]
-    exact bot_le
-  exact finitelyPresentedKazhdanSoficImageRigid_of_certificates hn hker
-    hall hfp (hasKazhdanPropertyT_of_projection_injective (by omega) hinj)
+  letI : IsSimpleGroup (BinaryLeavittSteinberg n) :=
+    (projectionEquiv n hinj).isSimpleGroup
+  exact finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction
+    hfp (hasKazhdanPropertyT_of_projection_injective (by omega) hinj)
+    (everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
+      (not_isSofic_of_projection_injective (by omega) hinj))
 
 end BinaryLeavittSteinberg
 end NonsoficGroupsExist
