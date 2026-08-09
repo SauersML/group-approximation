@@ -14072,3 +14072,94 @@ The next constructive target is an operator-valued partition of unity for
 the chart corners, not a finite set partition: prove that the polar-
 corrected moving corners can carry the fixed-base jet representations and
 that their overlap transition is the exact kernel Fourier transform.
+
+### Fusion-frame gluing is the exact quantum replacement for block incidence
+
+There is a canonical operator-valued gluing mechanism for the twenty-four
+chart corners.  Let `C` range over the finite chamber atlas.  Put all local
+chart models on equal-dimensional Hilbert spaces `H_C ~=H`, let `p_C` be
+the good/nonwrap projection in chart `C`, and transport them into one
+reference copy of `H` using the fixed-base Fourier--Weil intertwiners.  Set
+
+`A=sum_C p_C`.
+
+Choose a spectral corner `q=1_([tau,infinity))(A)` on which `A` is
+invertible, and work on `qH`.  Define the analysis isometry
+
+`V:qH -> directSum_C H_C`,
+
+`V xi=(p_C A^(-1/2) q xi)_C`.
+
+Indeed
+
+`V^*V=q A^(-1/2)(sum_C p_C)A^(-1/2)q=q`.
+
+Let `P=VV^*` be its range projection.  If
+
+`U_g=directSum_C U_(g,C)`
+
+is the block-diagonal family of local fixed-base jet operators, define the
+glued compression
+
+`T_g=V^* U_g V`  on `qH`.
+
+**Lemma (exact fusion-frame defect identities).**  Whenever the local
+operators are unitary and satisfy `U_gU_h=U_(gh)`,
+
+`T_g T_h-T_(gh)=-V^* U_g (1-P) U_h V`,
+
+and
+
+`T_g^*T_g-q=-V^* U_g^* (1-P) U_g V`.
+
+**Proof.**  Insert `P=VV^*` between the two compressed factors and use
+`V^*V=q`; the second identity is the same calculation with `g^(-1),g`.
+End proof.
+
+Thus every multiplicative and Gram defect is controlled by one geometric
+quantity: how close the frame range `P` is to invariant under the local
+block operators.  In chart blocks,
+
+`P_(C,D)=p_C A^(-1) p_D`.
+
+Consequently the required near-invariance is exactly the overlap identity
+
+`U_(g,C) p_C A^(-1) p_D`
+` ~= p_C A^(-1) p_D U_(g,D)`.
+
+The fixed-base Fourier theorem supplies this identity on the good overlap
+of adjacent charts; the macro/depth and Pauli complements supply its small
+error projection.  The moving-corner compression and polar-correction
+lemmas already formalized in Lean then turn `T_g` into genuine corner
+unitaries without changing the asymptotic multiplicative profile.
+
+This construction genuinely escapes the property-`(T)` block no-go.  The
+matrix `P_(C,D)` is nonzero for `C!=D`; the chart types are not orthogonal
+summands and there is no pushforward probability measure on a discrete
+depth orbit.
+
+There is also a simple rank guarantee for the spectral corner.  Normalize
+the frame operator as `bar A=A/|C|`, so `0<=bar A<=1`.  If every chart good
+projection has normalized trace at least `1-epsilon`, then
+
+`tr(bar A)>=1-epsilon`.
+
+For `q=1_([tau,1])(bar A)`,
+
+`tr(q)>=(1-epsilon-tau)/(1-tau)`
+
+whenever `tau<1-epsilon`.  Hence choosing `tau=sqrt(epsilon)` gives
+`tr(q)=1-o(1)`.  The quantum gluing corner can therefore retain a
+macroscopic strict witness.
+
+The remaining theorem has two quantitative parts:
+
+1. bound the normalized Hilbert--Schmidt norm of
+   `(1-P)U_gV` from the pairwise fixed-base Fourier overlap errors; and
+2. construct compatible local commutant witnesses `z_C` so that
+   `Z=directSum_C z_C` almost preserves `range(V)`, while the compressed
+   `V^*ZV` retains the order-one compressor commutator after polar
+   correction.
+
+Both are finite-atlas matrix inequalities.  They no longer ask for an
+impossible Følner measure on the `GL_4` depth orbit.
