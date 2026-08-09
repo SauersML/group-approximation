@@ -1214,6 +1214,79 @@ unitaries that asymptotically liberates the two regular chart algebras, and
 for any random ensemble with that property; Haar measure is just the
 canonical example.
 
+There is also a no-go theorem for bounded internal noncommutative
+complexity.  Write (n=20160) and regard
+
+\[
+ M_{nk}(\mathbb C)=M_n(\mathbb C)\otimes M_k(\mathbb C).
+\]
+
+For (R\geq1), let \(\mathcal C_{k,R}\) be the set of relative
+unitaries lying in (U(M_n(D))), for some unital (C^*)-subalgebra
+\(D\leq M_k(\mathbb C)\) whose irreducible representations all have
+dimension at most (R).  Define
+
+\[
+ e_R=\min_{1\leq r\leq R}E_r>0.                       \tag{54}
+\]
+
+Then
+
+\[
+ F_k(U)^2\geq e_R\qquad(U\in\mathcal C_{k,R}).        \tag{55}
+\]
+
+Indeed, after unitary conjugacy inside the multiplicity tensor factor,
+
+\[
+ D\cong\bigoplus_j\bigl(M_{r_j}(\mathbb C)\otimes
+                         I_{\ell_j}\bigr),
+ \qquad r_j\leq R,
+ \qquad\sum_jr_j\ell_j=k.
+\]
+
+Consequently
+
+\[
+ U\cong\bigoplus_j(U_j\otimes I_{\ell_j}),
+ \qquad U_j\in U(nr_j),
+\]
+
+and its canonical atlas model is the corresponding direct sum of
+multiplicity-(r_j) models.  Hence
+
+\[
+ \begin{aligned}
+ \frac1{|\bar{\mathcal S}|}\sum_s
+       \|\pi_U(s)-I\|_2^2
+ &=\sum_j\frac{r_j\ell_j}{k}
+      \left(\frac1{|\bar{\mathcal S}|}\sum_s
+       \|\pi_{U_j}(s)-I\|_2^2\right)\\
+ &\geq\sum_j\frac{r_j\ell_j}{k}E_{r_j}
+ \geq e_R.
+ \end{aligned}
+\]
+
+The maximum squared defect dominates this average, proving (55).
+Positivity in (54) follows from the already proved fixed-dimensional
+strict inequalities (E_r>0).
+
+Combining (55) with the word-Lipschitz estimate (50), every prospective
+certificate (F_k(U_k)\to0) satisfies, for each fixed (R),
+
+\[
+ \liminf_k\operatorname{dist}_2
+       (U_k,\mathcal C_{k,R})\geq\frac{\sqrt{e_R}}L.   \tag{56}
+\]
+
+For (R=1), this excludes arbitrary direct-integral mixtures of scalar
+(20160)-dimensional atlas models: commuting internal block coefficients
+cannot help, even when each scalar fibre uses an arbitrary dense unitary.
+For general (R), it excludes every uniformly subhomogeneous internal
+algebra.  A successful construction must therefore develop unbounded
+internal noncommutative representation dimension and remain a fixed
+normalized-HS distance from each bounded-subhomogeneity stratum.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of

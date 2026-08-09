@@ -26989,3 +26989,59 @@ The same proof is deterministic: any sequence `U_k` for which the two
 regular chart algebras become asymptotically free satisfies `(HAAR1)` and
 cannot be a certificate.  Thus the excluded class includes all
 asymptotically liberating relative-unitary ensembles, not only Haar measure.
+
+### Bounded internal noncommutative complexity has a uniform gap
+
+The fixed outer dimension gives another exact obstruction which is
+independent of permutations.  Write `n=20160` and
+
+`M_(nk)(C)=M_n(C) tensor M_k(C)`.
+
+For `R>=1`, let `C_(k,R)` consist of the relative unitaries `U` which lie
+in `U(M_n(D))` for some unital star-subalgebra `D<=M_k(C)` all of whose
+irreducible representations have dimension at most `R`.  Put
+
+`e_R=min_(1<=r<=R) E_r > 0`,                           `(SUB1)`
+
+where the fixed-multiplicity smooth energies `E_r` are defined in `(TR8)`.
+Then every `U in C_(k,R)` satisfies
+
+`F_k(U)^2 >= e_R`.                                     `(SUB2)`
+
+**Proof.**  A finite-dimensional star-subalgebra of `M_k` has, after a
+unitary change of basis, the form
+
+`D ~= directSum_j (M_(r_j)(C) tensor 1_(ell_j))`,
+
+where `r_j<=R` and `sum_j r_j ell_j=k`.  Accordingly
+
+`U ~= directSum_j (U_j tensor 1_(ell_j))`
+
+with `U_j in U(n r_j)`.  The corresponding canonical atlas model is the
+same direct sum of the multiplicity-`r_j` atlas models, repeated `ell_j`
+times.  Normalized Hilbert--Schmidt orthogonality therefore gives
+
+`(1/|Sbar|) sum_s ||pi_U(s)-1||_2^2`
+` = sum_j (r_j ell_j/k)`
+`     *((1/|Sbar|) sum_s ||pi_(U_j)(s)-1||_2^2)`
+` >= sum_j (r_j ell_j/k) E_(r_j) >= e_R`.
+
+The maximum squared relator defect dominates the mean, proving `(SUB2)`.
+Strict positivity in `(SUB1)` follows because every fixed `E_r>0`; equality
+would give a forbidden nontrivial finite-dimensional representation of
+`U_Q`.  End proof.
+
+This too is robust.  With the dimension-free word-Lipschitz constant `L`
+from `(BLK2)`, any sequence satisfying `F_k(U_k)->0` must obey, for every
+fixed `R`,
+
+`liminf_k dist_2(U_k,C_(k,R)) >= sqrt(e_R)/L`.          `(SUB3)`
+
+The case `R=1` rules out arbitrary measurable/direct-sum mixtures of
+scalar `20160`-dimensional atlas models: commuting internal block
+coefficients cannot help even though each scalar fibre may use an arbitrary
+dense unitary rather than a monomial one.  More generally, bounded matrix
+fibres cannot help.  Any positive construction must have internal block
+coefficients whose noncommutative representation dimension grows without
+bound, and must remain a fixed normalized-HS distance from every fixed
+subhomogeneous stratum.
