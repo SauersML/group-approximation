@@ -19027,3 +19027,75 @@ energy stays bounded below.  The displayed bipartite model proves that the
 fusion-rigidity theorem does not rule this out; it also identifies the
 precise branching/multiplicity data that a successful construction must
 supply.
+
+### The nested image tower supplies a canonical sparse tight frame
+
+The sparse graph need not be invented.  It is already present in every
+finite quotient used by the compressor orbit chain.  Let
+
+`H_0>H_1>...>H_L`
+
+be a strictly nested chain of finite groups, such as the images
+`q(alpha^j(Gamma))` in the polynomial-shear quotient or the fixed-base jet
+images.  On `ell^2(H_0)`, for every left coset `c=H_j h`, let `p_(j,c)` be
+the coordinate projection onto `ell^2(c)`.
+
+For each fixed `j`, the cosets partition `H_0`, so
+
+`sum_(c in H_j backslash H_0) p_(j,c)=1`.
+
+Summing over all depths gives the exact scalar frame operator
+
+`A=sum_(j=0)^L sum_c p_(j,c)=(L+1)1`.
+
+Hence
+
+`V xi=(L+1)^(-1/2)(p_(j,c)xi)_(j,c)`
+
+is an isometry with no cutoff.  Its Gram block between `(j,c)` and `(k,d)`
+is
+
+`K_((j,c),(k,d))=(L+1)^(-1)p_(j,c)p_(k,d)`.
+
+Because the subgroup chain is nested, two cosets are either disjoint or the
+finer one is contained in the coarser one.  Thus the nonzero Gram blocks are
+exactly the ancestor incidences of the rooted coset tree.  In particular the
+adjacent-depth blocks give the sparse parent--child graph required in the
+preceding section.
+
+This frame has the correct trace accounting automatically.  Every complete
+depth level contributes exactly `1/(L+1)` of the analysis-space norm.  A
+single root or cyclic-wrap level is therefore negligible, whereas a
+property holding on `L-o(L)` levels has asymptotically full weight.  No
+ad-hoc duplication of a strict chart is involved.
+
+It is also representation-theoretically native.  The left action of `H_j`
+preserves each coset `H_j h`, and on that fiber is a copy of its regular
+representation.  Therefore every `p_(j,c)` commutes with `lambda(H_j)`, and
+the full relative commutant has the familiar form
+
+`lambda(H_j)' ~=B(ell^2(H_j backslash H_0)) tensor rho(H_j)`
+
+after choosing transversals.  The transversal shear permutation from the
+regular antipodal cell consequently acts on actual parent--child
+multiplicity fibers of the compressor tower.  If
+`gamma_j in H_(j-1) minus H_j`, Haar averaging in this commutant still gives
+a unitary with squared commutator at least `2` against
+`lambda(gamma_j)`, exactly as in the orbit-chain strictness lemma.
+
+This closes the *frame and weight* part of the sparse construction.  Two
+operator checks remain before it is a microstate:
+
+1. orient the parent--child edge intertwiners so that a global positive
+   generator moves the coset projections according to its native left
+   action, instead of comparing the inequivalent representations at depths
+   `j` and `j+1` by the identity; and
+2. on the prime-field quotient of each strict edge, identify that native
+   transporter with the free-cycle shear transporter, while all other
+   tested letters have total graph-Dirichlet defect `o(1)`.
+
+The first item is a concrete groupoid-cocycle calculation on the coset tree;
+the second is the compressor--shear equation, now repeated coherently on
+`L-o(L)` genuine subgroup incidences.  Unlike the retracted high-rank atlas,
+the ambient projections, their Gram matrix, and the level weights in this
+formulation are all explicit and exact.
