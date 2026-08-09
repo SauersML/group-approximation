@@ -23437,3 +23437,80 @@ no choice of larger intrinsic finite quotient repairs it.  A successful
 global Clifford model must again use genuinely nonmultiplicative
 normalized-HS geometry, rather than exact finite-dimensional
 representations with increasingly accurate local orbit data.
+
+## The obstruction has a nontrivial profinite kernel
+
+The preceding contrast can be packaged as one exact compact-group object.
+Let `G` and `Gamma` be residually finite, retain the strict compressor
+
+`alpha=Ad(t)|Gamma : Gamma -> Gamma`,  `alpha(Gamma)=H<Gamma`,
+
+and assume, as proved above for the polynomial pair, that `H` is separable
+in `Gamma`.  Let
+
+`C=closure_(Ghat)(Gamma)`
+
+inside the profinite completion of `G`, and let
+
+`rho:Gammahat -> C`
+
+be the canonical continuous surjection from the intrinsic profinite
+completion.
+
+**Theorem (profinite compression kernel).**  The kernel
+
+`K=ker(rho)`
+
+is nontrivial.  The endomorphism `alpha` extends continuously to
+
+`alphahat:Gammahat -> Gammahat`,
+
+with proper image
+
+`im(alphahat)=closure_(Gammahat)(H)<Gammahat`,
+
+whereas its quotient action on `C` is the automorphism induced by
+conjugation by `t`.  Equivalently,
+
+`Gammahat=K im(alphahat)`
+
+even though `im(alphahat)` is proper.
+
+**Proof.**  The compact image of `alphahat` is the closure of
+`alpha(Gamma)=H`.  Separability says that this closure is proper, since it
+does not contain any chosen `gamma in Gamma-H`.
+
+For every finite quotient `q:G->Q`, one has
+
+`q(H)=q(Gamma)`.
+
+Therefore conjugation by `q(t)` is an automorphism of `q(Gamma)`, and the
+image of `H` is already the whole image of `Gamma`.  Passing to the inverse
+limit gives
+
+`rho(im(alphahat))=C`
+
+and identifies the induced endomorphism of `C` with conjugation by the image
+of `t`; in particular it is invertible.  Thus
+`Gammahat=K im(alphahat)`.  If `K` were trivial, the compact-to-Hausdorff
+bijection `rho` would be a homeomorphism and could not map the proper compact
+subset `im(alphahat)` onto all of `C`.  Hence `K!=1`.  End proof.
+
+For any `gamma in Gamma-H`, the factorization statement gives
+
+`gamma=k alphahat(eta)`
+
+for some `eta in Gammahat` and some nontrivial `k in K`; nontriviality follows
+because `gamma` is outside the closed image of `alphahat`.  Thus the strict
+edge is carried by an actual element of a profinite kernel, not by an
+informal failure of quotient compatibility.
+
+This suggests a more algebraic formulation of the quantum correction.  All
+finite quotients extending to `G` kill `K` and make the compressor
+invertible.  Intrinsic finite quotients of `Gamma` detect finite quotients of
+`K` and retain strictness, but do not carry the external action.  A
+Pauli/Schur construction must represent a finite quotient of this kernel in
+matrix multiplicity space while implementing the induced automorphism on
+`C`; scalarizing or killing that kernel recovers the sterile ambient finite
+models.  This does not yet construct the required HS microstates, but it
+identifies their nonclassical curvature in one canonical profinite object.
