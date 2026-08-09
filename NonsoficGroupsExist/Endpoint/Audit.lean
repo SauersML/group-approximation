@@ -32,6 +32,7 @@ import NonsoficGroupsExist.Sofic.FreeGroupResiduallyFinite
 import NonsoficGroupsExist.Endpoint.QuotientNonclosure
 import NonsoficGroupsExist.Steinberg.Basic
 import NonsoficGroupsExist.Steinberg.Perfect
+import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.BinaryLeavitt
 
 /-!
@@ -84,8 +85,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.SteinbergGroup.projection_surjective
 #print axioms NonsoficGroupsExist.SteinbergGroup.centralExtension
 #print axioms NonsoficGroupsExist.SteinbergGroup.fin_isPerfect
+#print axioms NonsoficGroupsExist.SteinbergGroup.finitelyGenerated
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.projection_surjective
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.isPerfect
+#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyGenerated
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_certificates
 #print axioms NonsoficGroupsExist.hyperlinear_nonsofic_exists_of_quasisimple_kazhdan_weakMF
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT

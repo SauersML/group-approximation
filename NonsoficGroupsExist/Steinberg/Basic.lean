@@ -97,6 +97,13 @@ theorem x_mul (i j : I) (hij : i ≠ j) (a b : R) :
   simpa only [x, PresentedGroup.of, map_mul, map_inv] using
     (PresentedGroup.one_of_mem hrel)
 
+@[simp] theorem x_zero (i j : I) (hij : i ≠ j) :
+    x (R := R) i j hij 0 = 1 := by
+  have h := x_mul (R := R) i j hij 0 0
+  rw [zero_add] at h
+  apply mul_left_cancel (a := x (R := R) i j hij 0)
+  simpa only [mul_one] using h
+
 /-- Non-addable Steinberg roots commute. -/
 theorem x_commute_of_ne
     (i j k l : I) (hij : i ≠ j) (hkl : k ≠ l)

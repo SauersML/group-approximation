@@ -1,4 +1,4 @@
-import NonsoficGroupsExist.Steinberg.Perfect
+import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Endpoint.MainResults
 
 /-!
@@ -34,6 +34,12 @@ three. -/
 theorem isPerfect {n : ℕ} (hn : 3 ≤ n) :
     Group.IsPerfect (BinaryLeavittSteinberg n) :=
   SteinbergGroup.fin_isPerfect hn
+
+/-- The concrete binary-Leavitt Steinberg group is finitely generated in
+rank at least three. -/
+theorem finitelyGenerated {n : ℕ} (hn : 3 ≤ n) :
+    Group.FG (BinaryLeavittSteinberg n) :=
+  SteinbergGroup.finitelyGenerated n (by omega)
 
 /-- A centrality certificate for the canonical kernel produces the exact
 `CentralExtension` consumed by the quotient-rigidity theorem. -/
