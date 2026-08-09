@@ -6828,6 +6828,45 @@ cycle-multiplicity spaces.  The remaining datum is again the action on those
 multiplicity fibers, precisely the part not controlled by central-order
 surgery.
 
+### Central-orbit descent and the exact p^m error loss
+
+The action on the multiplicity fibers admits an exact fixed-point formula.
+
+**Lemma (finite central-orbit descent).**  Let a group `H` act on a finite set
+`X`, and let a finite central subgroup `F<=H` act freely.  The action descends
+to `H/F` on the orbit set `Y=X/F`.  For every `g in H`,
+
+`|Fix_Y(gF)|/|Y| = sum_(f in F) |Fix_X(f^(-1)g)|/|X|`.
+
+In particular, if every `f^(-1)g`, `f in F`, is nonidentity and has
+fixed-point density at most `epsilon`, then the quotient permutation has
+fixed-point density at most `|F| epsilon`.
+
+**Proof.**  Since `F` is central and free, every `F`-orbit is an `F`-torsor.
+If `g` preserves such an orbit setwise, its restriction to that orbit is
+translation by a unique element `f in F`; equivalently `f^(-1)g` fixes every
+point of the orbit.  If `g` does not preserve the orbit, none of the elements
+`f^(-1)g` fixes a point in it.  Thus each fixed orbit contributes exactly
+`|F|` fixed points to exactly one summand on the right.  Divide by
+`|X|=|F||Y|`.  End proof.
+
+The same bookkeeping applies to a finite sofic window after finite-order and
+centralizer surgery: the quotient multiplication defect is bounded by a
+window constant times `|F|` times the upstairs defect.  For Thom's group take
+`F=F_m=C_(p^m)`.  Since `K/F_m~=K`, any hypothetical sufficiently accurate
+sofic model of `K` descends to another model of `K` on `|X|/p^m` points, with
+accuracy loss of order `p^m`.
+
+This recursive descent gives no contradiction.  For each *fixed* `m`, the
+sofic quantifiers allow the upstairs error to be chosen much smaller than
+`p^(-m)`, while the model dimension is unrestricted and may have arbitrarily
+large multiplicity `|X|/p^m`.  Taking `m` with the model would require a
+uniform quantitative bound relating approximation error, dimension, and the
+largest coherently repaired central subgroup.  No such bound follows from
+soficity or property `(T)`.  Thus the non-Hopfian route terminates at a
+concrete profile question rather than an algebraic contradiction: control
+the growth of the central-cycle multiplicity relative to the accuracy.
+
 ### Lavi--Levit character rigidity cannot see strict commutant compression
 
 Lavi--Levit, Corollary 1.3 of arXiv:2007.15547, says that for a commutative
