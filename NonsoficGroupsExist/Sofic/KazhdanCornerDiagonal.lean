@@ -224,9 +224,7 @@ noncomputable def MovingCornerSchedule.code [Nontrivial G]
 noncomputable abbrev MovingCornerSchedule.model [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D) (n : ℕ) :
     FiniteModel :=
-  ⟨{i : D.approximation.model (R.stage n) //
-      movingPredicate D.approximation D.S D.cutoff (R.stage n) i},
-    inferInstance, inferInstance⟩
+  weakMFMovingModel D.approximation D.S D.cutoff (R.stage n)
 
 theorem MovingCornerSchedule.model_nonempty [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D) (n : ℕ) :
@@ -274,6 +272,81 @@ theorem MovingCornerSchedule.map_eventually_close [Nontrivial G]
           2 * diagonalTolerance n := by
   refine ⟨R.code g, fun n hn ↦ ?_⟩
   exact R.map_close_of_code_le n g hn
+
+/-- On all sufficiently late scheduled stages, the total real normalized
+trace of the corrected generator blocks is bounded by the spectral cutoff,
+up to the polar-correction error. -/
+theorem MovingCornerSchedule.generator_trace_eventually_le
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D) :
+    ∃ N, ∀ n ≥ N,
+      ∑ g ∈ D.S, (normTrace (R.model n) (R.map n g)).re ≤
+        (D.S.card : ℝ) * D.cutoff +
+          (D.S.card : ℝ) * (2 * diagonalTolerance n) := by
+  classical
+  obtain ⟨N, hN⟩ := eventually_finset D.S (fun g n ↦ R.code g ≤ n)
+    (fun g _ ↦ ⟨R.code g, fun n hn ↦ hn⟩)
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have hactive : ∀ g ∈ D.S, R.code g ≤ n := hN n hn
+  have hmodel : 0 < Fintype.card (R.model n) := R.model_nonempty n
+  have hterm (g : G) (hg : g ∈ D.S) :
+      (normTrace (R.model n) (R.map n g)).re ≤
+      (normTrace (R.model n)
+          (movingCompression D.approximation D.S D.cutoff (R.stage n) g)).re +
+            2 * diagonalTolerance n := by
+    let C : Matrix (R.model n) (R.model n) ℂ :=
+      movingCompression D.approximation D.S D.cutoff (R.stage n) g
+    have htrace := re_normTrace_le_add_l2_opNorm (R.model n) hmodel
+      (R.map n g) C
+    have hclose := R.map_close_of_code_le n g (hactive g hg)
+    dsimp only [C] at htrace ⊢
+    linarith
+  have hsum := Finset.sum_le_sum fun g hg ↦ hterm g hg
+  have hcorner := sum_re_normTrace_movingCompression_le D.approximation D.S
+    D.one_mem D.cutoff (R.stage n) (R.moving_nonempty n)
+  rw [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul] at hsum
+  nlinarith
+
+/-- Squared Hilbert--Schmidt displacement of a unitary is `2 - 2 Re(τ)`. -/
+theorem hsLengthSq_eq_two_sub_two_re_normTrace (Y : FiniteModel)
+    (hY : 0 < Fintype.card Y) (u : Matrix.unitaryGroup Y ℂ) :
+    hsLengthSq Y u = 2 - 2 * (normTrace Y u).re := by
+  have hone : (1 : Matrix Y Y ℂ) ∈ Matrix.unitaryGroup Y ℂ :=
+    Submonoid.one_mem _
+  change hsDistSq Y (u : Matrix Y Y ℂ) 1 = _
+  rw [hsDistSq_of_unitary Y u.2 hone hY, Matrix.conjTranspose_one,
+    Matrix.mul_one]
+
+/-- Eventually the average corrected generator trace stays uniformly below
+one. -/
+theorem MovingCornerSchedule.generator_trace_eventually_below_one
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D) :
+    ∃ N, ∀ n ≥ N,
+      ∑ g ∈ D.S, (normTrace (R.model n) (R.map n g)).re ≤
+        (D.S.card : ℝ) * ((1 + D.cutoff) / 2) := by
+  obtain ⟨Ntrace, htrace⟩ := R.generator_trace_eventually_le
+  obtain ⟨Ntol, htol⟩ := diagonalTolerance_eventually_le
+    (show 0 < (1 - D.cutoff) / 4 by linarith [D.cutoff_lt_one])
+  refine ⟨max Ntrace Ntol, fun n hn ↦ ?_⟩
+  have ht := htrace n ((le_max_left _ _).trans hn)
+  have hd := htol n ((le_max_right _ _).trans hn)
+  have hcard : (0 : ℝ) ≤ D.S.card := Nat.cast_nonneg _
+  nlinarith
+
+/-- The exact scheduled generators retain a fixed positive total tracial
+displacement. -/
+theorem MovingCornerSchedule.generator_hsLengthSq_eventually_ge
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D) :
+    ∃ N, ∀ n ≥ N,
+      (D.S.card : ℝ) * (1 - D.cutoff) ≤
+        ∑ g ∈ D.S, hsLengthSq (R.model n) (R.map n g) := by
+  obtain ⟨N, hN⟩ := R.generator_trace_eventually_below_one
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have htrace := hN n hn
+  simp_rw [hsLengthSq_eq_two_sub_two_re_normTrace
+    (R.model n) (R.model_nonempty n)]
+  rw [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul,
+    ← Finset.mul_sum]
+  nlinarith
 
 /-- The scheduled exact unitaries are asymptotically multiplicative in
 operator norm. -/

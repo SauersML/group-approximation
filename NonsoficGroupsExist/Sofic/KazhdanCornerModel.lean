@@ -457,6 +457,164 @@ theorem norm_eigenbasisMicrostate_mul_defect_eq
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
           (A.map n h : Matrix (A.model n) (A.model n) ℂ))
 
+/-- In its eigenbasis, the Hermitian average is the diagonal matrix of its
+real eigenvalues. -/
+theorem eigenbasis_movingHermitianAverage_eq_diagonal
+    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) :
+    let hH := movingHermitianAverage_isHermitian A S n
+    let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+    Uᴴ * movingHermitianAverage A S n * U =
+      Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hUU : Uᴴ * U = 1 :=
+    Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  have hspec : movingHermitianAverage A S n =
+      U * Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) * Uᴴ := by
+    calc
+      movingHermitianAverage A S n =
+          Unitary.conjStarAlgAut ℂ _ hH.eigenvectorUnitary
+            (Matrix.diagonal (RCLike.ofReal ∘ hH.eigenvalues)) :=
+        hH.spectral_theorem
+      _ = U * Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) * Uᴴ := by
+        rfl
+  change Uᴴ * movingHermitianAverage A S n * U =
+    Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ))
+  calc
+    Uᴴ * movingHermitianAverage A S n * U =
+        Uᴴ * (U * Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) * Uᴴ) * U :=
+      congrArg (fun H : Matrix (A.model n) (A.model n) ℂ ↦ Uᴴ * H * U) hspec
+    _ =
+        (Uᴴ * U) * Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) *
+          (Uᴴ * U) := by noncomm_ring
+    _ = Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) := by
+      rw [hUU, Matrix.one_mul, Matrix.mul_one]
+
+/-- The weak-MF orbit average written in the Hermitian eigenbasis. -/
+noncomputable def eigenbasisAverage (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) : Matrix (A.model n) (A.model n) ℂ :=
+  ((S.card : ℂ)⁻¹) • ∑ g ∈ S, eigenbasisMicrostate A S n g
+
+/-- Conjugating the original orbit average gives the average of the
+conjugated microstates. -/
+theorem eigenbasisAverage_eq (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) :
+    let U : Matrix (A.model n) (A.model n) ℂ :=
+      (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
+    eigenbasisAverage A S n = Uᴴ * matrixAverage A S n * U := by
+  let U : Matrix (A.model n) (A.model n) ℂ :=
+    (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
+  change ((S.card : ℂ)⁻¹) • ∑ g ∈ S,
+      Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U =
+    Uᴴ * (((S.card : ℂ)⁻¹) •
+      (∑ g ∈ S, (A.map n g : Matrix (A.model n) (A.model n) ℂ))) * U
+  rw [Matrix.mul_smul, Matrix.smul_mul]
+  simp only [Finset.mul_sum, Finset.sum_mul]
+
+/-- The Hermitian average in its eigenbasis is the exact Hermitian
+symmetrization of `eigenbasisAverage`. -/
+theorem eigenbasis_movingHermitianAverage_eq_symmetrized
+    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) :
+    let hH := movingHermitianAverage_isHermitian A S n
+    let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+    Uᴴ * movingHermitianAverage A S n * U =
+      (2 : ℂ)⁻¹ • (eigenbasisAverage A S n + (eigenbasisAverage A S n)ᴴ) := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hE : eigenbasisAverage A S n = Uᴴ * matrixAverage A S n * U := by
+    simpa only using eigenbasisAverage_eq A S n
+  change Uᴴ * ((2 : ℂ)⁻¹ •
+      (matrixAverage A S n + (matrixAverage A S n)ᴴ)) * U = _
+  rw [Matrix.mul_smul, Matrix.smul_mul]
+  rw [hE, Matrix.conjTranspose_mul, Matrix.conjTranspose_mul,
+    Matrix.conjTranspose_conjTranspose]
+  noncomm_ring
+
+/-- Each Hermitian-average eigenvalue is the average real diagonal entry of
+the conjugated microstates. -/
+theorem movingEigenvalue_eq_average_re (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (i : A.model n) :
+    (movingHermitianAverage_isHermitian A S n).eigenvalues i =
+      ((S.card : ℝ)⁻¹) * ∑ g ∈ S, (eigenbasisMicrostate A S n g i i).re := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  have hdiag := eigenbasis_movingHermitianAverage_eq_diagonal A S n
+  have hsym := eigenbasis_movingHermitianAverage_eq_symmetrized A S n
+  have hmatrix : Matrix.diagonal (fun j ↦ (hH.eigenvalues j : ℂ)) =
+      (2 : ℂ)⁻¹ • (eigenbasisAverage A S n + (eigenbasisAverage A S n)ᴴ) :=
+    hdiag.symm.trans hsym
+  have hii := congrArg (fun M : Matrix (A.model n) (A.model n) ℂ ↦ M i i) hmatrix
+  have hre := congrArg Complex.re hii
+  simp [eigenbasisAverage] at hre
+  rw [Matrix.sum_apply i i S (fun g ↦ eigenbasisMicrostate A S n g),
+    Complex.re_sum] at hre
+  ring_nf at hre
+  simpa only [hH] using hre
+
+/-- Clearing the nonzero generator-cardinality denominator in the preceding
+eigenvalue identity. -/
+theorem sum_re_eigenbasisMicrostate_diagonal_eq
+    (A : WeakMFApproximation G) (S : Finset G) (hone : 1 ∈ S)
+    (n : ℕ) (i : A.model n) :
+    ∑ g ∈ S, (eigenbasisMicrostate A S n g i i).re =
+      (S.card : ℝ) *
+        (movingHermitianAverage_isHermitian A S n).eigenvalues i := by
+  rw [movingEigenvalue_eq_average_re A S n i]
+  have hcard : (S.card : ℝ) ≠ 0 := by
+    exact_mod_cast Finset.card_ne_zero.mpr ⟨1, hone⟩
+  field_simp
+
+/-- The canonical finite model carried by the moving coordinate subtype. -/
+noncomputable abbrev weakMFMovingModel (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) : FiniteModel :=
+  ⟨{i : A.model n // movingPredicate A S t n i}, inferInstance,
+    inferInstance⟩
+
+/-- Real normalized trace is the average of the real diagonal entries. -/
+theorem re_normTrace_eq_average_diagonal (Y : FiniteModel)
+    (C : Matrix Y Y ℂ) :
+    (normTrace Y C).re =
+      ((Fintype.card Y : ℝ)⁻¹) * ∑ i : Y, (C i i).re := by
+  simp only [normTrace, Matrix.trace, div_eq_mul_inv, Complex.mul_re,
+    Complex.re_sum, Complex.inv_re, Complex.inv_im, Complex.natCast_re,
+    Complex.natCast_im, Complex.normSq_natCast, Matrix.diag_apply]
+  by_cases hcard : (Fintype.card Y : ℝ) = 0
+  · simp [hcard]
+  · field_simp
+    ring
+
+/-- Normalized trace is contractive for the matrix `ℓ²` operator norm. -/
+theorem norm_normTrace_le_l2_opNorm (Y : FiniteModel)
+    (hY : 0 < Fintype.card Y) (C : Matrix Y Y ℂ) :
+    ‖normTrace Y C‖ ≤ ‖C‖ := by
+  have hentry (i : Y) : ‖C i i‖ ≤ ‖C‖ := by
+    have hs := normSq_entry_le_sq_l2_opNorm Y C i i
+    rw [Complex.normSq_eq_norm_sq] at hs
+    nlinarith [norm_nonneg (C i i), norm_nonneg C]
+  have htrace : ‖Matrix.trace C‖ ≤ (Fintype.card Y : ℝ) * ‖C‖ := by
+    calc
+      ‖Matrix.trace C‖ = ‖∑ i : Y, C i i‖ := rfl
+      _ ≤ ∑ i : Y, ‖C i i‖ := norm_sum_le _ _
+      _ ≤ ∑ _i : Y, ‖C‖ := Finset.sum_le_sum fun i _ ↦ hentry i
+      _ = (Fintype.card Y : ℝ) * ‖C‖ := by
+        rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+  have hcard : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
+  rw [normTrace, norm_div, Complex.norm_natCast, div_le_iff₀ hcard]
+  simpa only [mul_comm] using htrace
+
+/-- The real normalized trace changes by at most the operator norm of a
+matrix perturbation. -/
+theorem re_normTrace_le_add_l2_opNorm (Y : FiniteModel)
+    (hY : 0 < Fintype.card Y) (W C : Matrix Y Y ℂ) :
+    (normTrace Y W).re ≤ (normTrace Y C).re + ‖W - C‖ := by
+  have hre : (normTrace Y W - normTrace Y C).re ≤
+      ‖normTrace Y W - normTrace Y C‖ := Complex.re_le_norm _
+  change (normTrace Y W).re - (normTrace Y C).re ≤
+    ‖normTrace Y W - normTrace Y C‖ at hre
+  have hnorm : ‖normTrace Y W - normTrace Y C‖ ≤ ‖W - C‖ := by
+    rw [← normTrace_sub]
+    exact norm_normTrace_le_l2_opNorm Y hY (W - C)
+  linarith
+
 /-- Principal compression of a weak-MF microstate to the moving eigenspace. -/
 noncomputable def movingCompression (A : WeakMFApproximation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
@@ -465,6 +623,45 @@ noncomputable def movingCompression (A : WeakMFApproximation G)
   principalBlock
     (movingPredicate A S t n)
     (eigenbasisMicrostate A S n g)
+
+/-- The average real normalized trace of the moving generator blocks is at
+most the spectral cutoff. -/
+theorem sum_re_normTrace_movingCompression_le
+    (A : WeakMFApproximation G) (S : Finset G) (hone : 1 ∈ S)
+    (t : ℝ) (n : ℕ)
+    (hY : Nonempty {i : A.model n // movingPredicate A S t n i}) :
+    ∑ g ∈ S, (normTrace (weakMFMovingModel A S t n)
+      (movingCompression A S t n g)).re ≤ (S.card : ℝ) * t := by
+  classical
+  let Y := weakMFMovingModel A S t n
+  have hcardY : 0 < Fintype.card Y := Fintype.card_pos_iff.mpr hY
+  have hpoint (i : Y) :
+      ∑ g ∈ S, (movingCompression A S t n g i i).re ≤
+        (S.card : ℝ) * t := by
+    have heq := sum_re_eigenbasisMicrostate_diagonal_eq A S hone n (i : A.model n)
+    have hi : (movingHermitianAverage_isHermitian A S n).eigenvalues i ≤ t :=
+      i.2
+    simp only [movingCompression, principalBlock, coordinateBlock,
+      Matrix.toBlock_apply] at ⊢
+    rw [heq]
+    exact mul_le_mul_of_nonneg_left hi (Nat.cast_nonneg _)
+  have hsum :
+      ∑ i : Y, ∑ g ∈ S, (movingCompression A S t n g i i).re ≤
+        ∑ _i : Y, (S.card : ℝ) * t :=
+    Finset.sum_le_sum fun i _ ↦ hpoint i
+  simp_rw [re_normTrace_eq_average_diagonal]
+  rw [← Finset.mul_sum]
+  rw [Finset.sum_comm]
+  calc
+    ((Fintype.card Y : ℝ)⁻¹) *
+        ∑ i : Y, ∑ g ∈ S, (movingCompression A S t n g i i).re ≤
+      ((Fintype.card Y : ℝ)⁻¹) *
+        ∑ _i : Y, (S.card : ℝ) * t :=
+      mul_le_mul_of_nonneg_left hsum (inv_nonneg.mpr (Nat.cast_nonneg _))
+    _ = (S.card : ℝ) * t := by
+      rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+      have hcard : (Fintype.card Y : ℝ) ≠ 0 := by exact_mod_cast hcardY.ne'
+      field_simp
 
 /-- In the Hermitian eigenbasis, the residual on the top coordinates is
 unitarily conjugate to `topSpectralDisplacement`. -/
