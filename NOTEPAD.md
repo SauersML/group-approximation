@@ -19309,3 +19309,53 @@ write the nontrivial-sector transport formula and check its multiplication
 law under the base-group conjugation action.  The rank ceiling proves that
 such a Fourier-branched formula is necessary, not merely one possible
 choice of atlas.
+
+### Orientation correction: the orbit-chain edge is not a quotient intertwiner
+
+The quotient-overlap ceiling is correct as an abstract lemma, but its
+application to the native compressor edge is misoriented.  In the orbit
+chain put
+
+`a_j(g)=sigma(alpha^j(g))`,
+
+`pi_L(g)=diag(a_0(g),...,a_(L-1)(g))`.
+
+Choose the block cycle so that
+
+`u_L pi_L(g)u_L^*=diag(a_1(g),...,a_(L-1)(g),a_0(g))`.
+
+On the interior edge from input depth `j+1` to output depth `j`, the source
+operator is `a_(j+1)(g)`.  The target operator required by
+`pi_L(alpha(g))` on output depth `j` is also
+
+`a_j(alpha(g))=a_(j+1)(g)`.
+
+Thus the fiber transporter is the identity between **identical matrices**.
+It does not intertwine `lambda_(H_j)` with a representation factoring
+through `beta_j:H_j->H_(j+1)`.  No `K_j`-fixed rank ceiling is paid in the
+forward covariance relation.
+
+The kernel layer appears in the inverse conjugate.  On input depth `j+1`,
+
+`u_L^* pi_L(gamma)u_L`
+
+contains `a_j(gamma)`, which may lie in `H_j minus H_(j+1)` and therefore
+fail to commute with a unitary in `lambda(H_(j+1))'`.  That is precisely the
+macroscopic strictness mechanism.  Replacing the native depth shift by a
+literal quotient intertwiner would erase the mechanism and is not what the
+proved orbit-chain theorem does.
+
+Accordingly the proposed Fourier branching over `ker(beta_j)` is not
+necessary for the **one-compressor forward edge**.  The abstract ceiling
+remains useful as a no-go for any attempted common-block quotient
+replacement.  The actual multi-compressor problem is different: synchronize
+several complete orbit chains, each with its correctly oriented block shift,
+under the relations of the external Kazhdan substitution group.  Any sparse
+fusion construction must keep internal depth blocks distinct and must not
+identify `a_j(g)` with `a_(j+1)(g)` as two chart copies of the same operator.
+
+This also reframes the raw-coset averaging failure.  Averaging
+`a_0(g),...,a_L(g)` was never the desired one-chain representation; their
+direct sum is.  Sparsity is needed between different substitution-chain
+charts, while the depth direction inside one chain remains the exact
+orthogonal orbit-cycle construction.
