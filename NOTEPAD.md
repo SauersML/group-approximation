@@ -10187,6 +10187,42 @@ No variable inversion is present in this formulation, and the unavoidable
 scalar relation defect is only `Theta(p^(-6))` on the detecting Klein-four
 pair.
 
+The finite source can be reduced further.  Use `B=V_4` itself as the
+stabilizer and let `beta_B in H^2(B,T)` be the quaternion multiplier.  Its
+inverse Shapiro image
+
+`c_(B,p) in H^2(Q_p,T^(Q_p/B))`
+
+has the same support density.  Indeed, its restriction to `B` is nontrivial
+only on fixed cosets, of which there are
+
+`|N_(Q_p)(B)|/|B|=(3/2)(p-1)^3`,
+
+inside `|Q_p|/4` outer blocks.  The ratio is again
+`6(p-1)^3/|Q_p|`, and the optimal detecting-pair defect remains
+`Theta(p^(-6))`.  Since `[A_4:B]=3`, the fiberwise norm from `Q_p/B` to
+`Q_p/A_4` carries this class to the preceding binary-tetrahedral class and
+cannot increase coordinate support.
+
+This `B`-source is the minimal cone-compatible formulation.  Its projective
+representation is the two-dimensional Pauli representation of `Q_8`.  View
+the four variables as the regular `B`-set.  Translation by `B` has exactly
+three orbits on ordered pairs of distinct variables, indexed by the three
+nonzero differences in `B`; each orbit has four elements and includes both
+orientations of two disjoint edges.  Choose one positive root compressor
+`I+pE_(j i)` from each orbit.  Their `B`-conjugates are all twelve positive
+root compressors.  Hence the entire finite source needed on the polynomial
+side is now:
+
+* one Pauli/quaternion fiber of dimension two;
+* three `p`-shear orbit towers; and
+* the relations among the twelve conjugate root compressors modulo the
+  deeper congruence subgroup.
+
+This does not solve those deeper relations, but it removes all signed-variable
+inversions and all unnecessary stabilizer representation theory from the
+coupling problem.
+
 ### The varying Schur class transfers from one fixed quaternion source
 
 The Schur route becomes more rigid on the infinite progression
