@@ -11145,3 +11145,66 @@ towers; commutators such as
 
 explain exactly why the unresolved terms fall one step deeper in the
 congruence filtration.
+
+### One Mackey product aligns all rank-two fibers simultaneously
+
+Pairwise Pauli--Jacobi intertwiners do not need to be glued by hand.  The
+transformation-groupoid classification gives a simultaneous version.
+
+For `a=1,...,m`, let `K_(a,n)<Q_n` be any fixed finite list of conjugates of
+the rank-two Jacobi subgroup, chosen so that their root triples cover the
+Steinberg relations needed for the three `B`-root orbits.  Put
+
+`Y_n=(Q_n/B) x product_(a=1)^m (Q_n/K_(a,n))`
+
+with the diagonal `Q_n`-action.  A product orbit represented by
+`(g_1,...,g_m)` has isotropy
+
+`J_(g_1,...,g_m)`
+` =B intersect g_1K_(1,n)g_1^(-1) intersect ...`
+`       intersect g_mK_(m,n)g_m^(-1)`.
+
+**Theorem (simultaneous full Pauli channel).**  There is a `Q_n`-invariant
+union `Omega_n^(m)` of product orbits such that
+
+`|Omega_n^(m)|/|Y_n|=1-O_p(p^(-3(n-1)))`,
+
+and on `Omega_n^(m)` the pullbacks of the Pauli twist and of all `m` Jacobi
+twists are simultaneously cohomologous.  Thus, after one common
+amplification, gauges may be chosen which identify every rank-two projective
+transport with the same Pauli transport exactly on this channel.
+
+**Proof.**  Take `Omega_n^(m)` to be the union of orbits with trivial full
+isotropy.  If the full isotropy is nontrivial, then already
+
+`B intersect g_1K_(1,n)g_1^(-1) !=1`.
+
+The first-factor local-ring centralizer estimate therefore bounds the bad
+proportion by `O_p(p^(-3(n-1)))`, independently of the number of additional
+factors.  On a good transitive orbit, every pulled-back transformation-
+groupoid twist is classified by its restriction to
+`H^2(J_(g_1,...,g_m),T)=H^2(1,T)=0`.  Choose a coboundary from each Jacobi
+twist to the Pauli twist and take a common multiple of the fiber dimensions.
+End proof.
+
+For `Lambda_p`, it is enough to take a fixed finite collection of `A_2`
+root triples.  The elementary relations are rank at most two:
+
+`e_(ij)(a)e_(ij)(b)=e_(ij)(a+b)`,
+
+`[e_(ij)(a),e_(kl)(b)]=1` when `i!=l` and `j!=k`,
+
+`[e_(ij)(a),e_(jk)(b)]=e_(ik)(ab)`.
+
+Thus all noncommuting root pairs, including their depth-raising `p^2`
+commutators, can be placed in exact Jacobi/Heisenberg fibers and phase-
+aligned on one invariant `1-o(1)` channel.  Adding more rank-two fibers does
+not worsen the exponent of the discarded trace.
+
+What remains after this theorem is **not** projective phase compatibility.
+It is the operator-level compatibility of the coefficient-ring
+representations on overlaps: a shared root subgroup must act by the same
+intertwiner in every incident `A_2` fiber, and the resulting Steinberg
+central kernel must act trivially (or on a vanishing-trace complement).
+This isolates the next task as a Curtis--Tits/Steinberg overlap problem
+rather than a cocycle-gauge problem.
