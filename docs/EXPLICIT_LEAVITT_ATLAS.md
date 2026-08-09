@@ -1173,6 +1173,41 @@ distance from the entire fibrewise unitary wreath-product ansatz.  It must
 genuinely mix the regular fibres, rather than merely rotate within and
 permute them.
 
+Haar-random mixing lies at the opposite extreme and also fails.  Let
+\(U_k\) be Haar distributed in \(U(20160k)\).  For every fixed
+nonidentity \(s\in\bar N\), the standard Haar-unitary asymptotic-freeness
+theorem gives
+
+\[
+ \operatorname{tr}(\pi_{U_k}(s))\longrightarrow0       \tag{52}
+\]
+
+in probability, and in fact in \(L^2\).  To see the limiting value, the
+deterministic matrices \(\lambda(a)\otimes I_k\) have their fixed regular
+trace distribution, and Haar conjugation makes the second copy
+asymptotically free from the first.  Both charts embed in \(U_Q\), so a
+nonidentity member of \(\bar N\) is a nontrivial reduced word in
+\(A_8*A_8\).  Every nonidentity syllable has regular trace zero, and the
+free-product trace of the reduced alternating word is therefore zero.
+
+Delete the identity from \(\bar{\mathcal S}\), if it was included; this
+does not change its normal closure.  Since \(\bar{\mathcal S}\) is finite,
+(52) holds simultaneously for all its members.  It follows that
+
+\[
+ \|\pi_{U_k}(s)-I\|_2^2\longrightarrow2
+ \quad(s\in\bar{\mathcal S}),
+ \qquad F_k(U_k)\longrightarrow\sqrt2.                \tag{53}
+\]
+
+Equivalently, the random smooth potential tends to \(0\) and its mean
+energy tends to \(2\), while the desired endpoint is potential \(1\) and
+energy \(0\).  Generic quantum mixing is thus maximally far from a
+certificate.  Together with (51), this pins any possible positive
+construction to a structured intermediate regime: uniformly separated
+from block-monomial fibre transport, but also far from asymptotic
+freeness.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
@@ -1187,3 +1222,7 @@ products of disjoint transpositions.
 A. Thom, *Examples of hyperlinear groups without factorization property*,
 Lemma 3.3 and Remark 3.4, for central-quotient permanence of
 hyperlinearity.
+
+B. Collins and C. Male, *The strong asymptotic freeness of Haar and
+deterministic matrices*, Theorem 1.4, for the Haar-random atlas calculation
+in (52)--(53).

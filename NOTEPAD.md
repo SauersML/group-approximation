@@ -26938,3 +26938,49 @@ products of unitaries telescope isometrically.  Combining `(BLK1)` and
 So a successful atlas cannot even approach a fibrewise arbitrary
 block-permutation model.  It must remain a fixed normalized-HS distance
 from the full wreath-product ansatz and genuinely mix the regular fibres.
+
+### Haar-random relative position converges to the wrong endpoint
+
+Let `U_k` be Haar distributed in `U(20160k)` and form the canonical model
+`pi_(U_k)`.  Then for every fixed nonidentity `s in Nbar`,
+
+`tr(pi_(U_k)(s)) -> 0`                                 `(HAAR1)`
+
+in probability (indeed in `L^2`).  We harmlessly delete the identity from
+the finite normal generating set `Sbar`.  Consequently, simultaneously for
+all `s in Sbar`,
+
+`||pi_(U_k)(s)-1||_2^2 -> 2`,
+
+and hence
+
+`F_k(U_k)=max_(s in Sbar)||pi_(U_k)(s)-1||_2 -> sqrt(2)` `(HAAR2)`
+
+in probability.
+
+**Proof.**  The deterministic first-factor matrices
+`lambda(a) tensor 1_k` have a fixed limiting star-distribution, and Haar
+conjugation makes the second copy asymptotically free from the first.
+This is the standard Haar-unitary asymptotic-freeness theorem (the
+second-moment/Weingarten form gives `L^2` convergence for each fixed word).
+The regular trace of every nonidentity `a in A_8` is zero.  Each
+nonidentity `s in Nbar` is a nontrivial reduced word in `A_8*A_8`: the
+kernel meets either free factor trivially because both charts embed in
+`U_Q`.  Its limiting free-product trace is therefore zero, proving
+`(HAAR1)`.  The identity
+
+`||V-1||_2^2=2-2 Re tr(V)`
+
+and finiteness of `Sbar` give `(HAAR2)`.  End proof.
+
+In terms of the smooth potential, Haar-random relative positions have
+`gamma(U_k)->0` and mean energy `E(U_k)->2`, whereas the desired endpoint
+is `gamma->1` and `E->0`.  Generic quantum mixing is therefore maximally
+far from a certificate.  Combined with `(BLK3)`, any successful relative
+unitary must occupy a structured intermediate regime: uniformly far from
+block-monomial fibre transport, but also very far from asymptotic freeness.
+
+**Primary-source pin.**  Collins--Male, *The strong asymptotic freeness of
+Haar and deterministic matrices*, Theorem 1.4 (arXiv:1105.4345), gives the
+Haar-plus-deterministic convergence used above; ordinary convergence of
+normalized traces already suffices here.
