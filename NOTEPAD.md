@@ -8637,16 +8637,125 @@ extensions must retain their centers in finite quotients.  Hill's
 groups*](https://arxiv.org/abs/1807.11449) identifies the obstruction as the
 image in the direct-limit arithmetic cohomology
 `bar H^2(Z/n)`: a nonzero image is precisely non-residual finiteness.  Thus
-cuspidal nonvanishing alone does not finish the construction; the exact next
-question is whether one computed `SL_3` inner class has zero reductions in
-these direct limits for unbounded levels.  If yes, the scalar stabilizer
-curvature clause is solved with the stronger operator-norm rate above.
+cuspidal nonvanishing alone does not finish the construction.  The next
+subsection decides the resulting virtual-divisibility question negatively
+for every fixed cuspidal class.
 
 Sources for the existence side are Porat,
 [*Computations Directly on the Cuspidal Cohomology of Congruence Subgroups
 of SL(3,Z)*](https://arxiv.org/abs/2410.02734), which records nonzero prime
 levels including `521`, and the standard inner-cohomology duality between
 degrees `2` and `3` for these arithmetic quotients.
+
+### Hecke separation closes the fixed cuspidal-class tower
+
+The virtual-divisibility pin above can in fact be decided negatively for a
+fixed cuspidal class.  There are two ingredients.  The first one already
+rules out a tower over one coefficient prime.
+
+**Lemma (fixed-prime divisibility is bounded).**  Let `Gamma` be an
+arithmetic subgroup of `SL_3(Q)` and let `0 != alpha in H^2(Gamma,Z)` have
+infinite order.  For every prime `ell` there is an exponent
+`r_0(alpha,ell)` such that, for `r>=r_0`, the restriction of `alpha` to no
+finite-index arithmetic subgroup is divisible by `ell^r`.
+
+**Proof.**  Let `L` be the arithmetic-completion level defining `Gamma`.
+Hill's exact `ell`-adic sequence, after tensoring with `Q_ell`, contains
+
+`0 -> H^2(Gamma,Q_ell) -> bar H^2(Q_ell)^L`.
+
+The zero on the left is Whitehead's vanishing
+`H^2_Lie(sl_3(Q_ell),Q_ell)=0`.  Thus the image `sigma` of `alpha` in
+`bar H^2(Z_ell)` is nonzero: its rationalization is the nonzero image of
+`alpha` in the displayed injection.  Hill also proves that
+`bar H^2(Z_ell)` has no nonzero infinitely `ell`-divisible element and that
+
+`bar H^2(Z_ell)=lim_r bar H^2(Z/ell^r)`.
+
+If `res_(Gamma') alpha` were divisible by `ell^r`, its reduction modulo
+`ell^r` would vanish after passing to the arithmetic subgroup `Gamma'`.
+Equivalently, the image of `sigma` in `bar H^2(Z/ell^r)` would be zero, so
+the coefficient exact sequence would put `sigma` in
+`ell^r bar H^2(Z_ell)`.  This cannot happen for unbounded `r`.  End proof.
+
+The second ingredient excludes all but finitely many coefficient primes.
+Write `d(T)` for the eigenvalue of an integral unramified Hecke
+correspondence `T` on the trivial spherical packet; geometrically this is
+the degree of the correspondence.
+
+**Lemma (continuous classes have the degree character).**  Fix an
+unramified rational prime `q` and a Hecke correspondence `T_q` supported at
+`q`.  For every coefficient prime `ell` outside a finite set depending on
+`q`, `T_q` acts as multiplication by `d(T_q)` on the image
+
+`H^2_cts(L,F_ell) -> H^2(Gamma,F_ell)`.
+
+**Proof.**  At `q` the arithmetic completion splits as
+`L^(q) x K_q`, with `K_q` an open subgroup of `SL_3(Z_q)`.  Exclude
+`ell=q` and the finitely many `ell` dividing the order of the finite
+reductive quotient of `K_q` (and the finite congruence kernel, if present).
+The pro-`q` congruence kernel and that finite quotient then have no positive
+degree continuous cohomology with `F_ell` coefficients.  Thus every
+degree-two continuous class is pulled back from `L^(q)`.  The Hecke
+correspondence is the identity away from `q`; on degree-zero cohomology of
+the `q`-factor its restriction--corestriction composite is multiplication
+by the number of sheets, namely `d(T_q)`.  Naturality gives the assertion.
+End proof.
+
+**Theorem (no scalable virtually split cuspidal curvature).**  Let `C` be
+an integral Hecke-stable lattice in a rational cuspidal/inner subspace of
+`H^2(Gamma,Q)`, and let `0 != alpha in C`.  There is a constant
+`N_alpha` such that
+
+`res_(Gamma') alpha in n H^2(Gamma',Z)`
+
+for a finite-index arithmetic subgroup `Gamma'<Gamma` implies
+`n<=N_alpha`.  Consequently the rank-three locally flat stabilizer
+curvature corollary above cannot be obtained from one fixed cuspidal
+class.
+
+**Proof.**  The unramified Hecke algebra acts semisimply on the finite
+dimensional cuspidal space.  No cuspidal eigenpacket has the trivial
+spherical Hecke character.  By strong multiplicity one, and then by taking
+a generic integral linear combination of finitely many separating Hecke
+operators, choose an integral `T` such that
+
+`T-d(T)`
+
+is invertible on `C tensor Q`.  Let `D` be the nonzero integer determinant
+of this operator on a full integral lattice.
+
+Suppose first that a prime `ell` divides `n` and that the reduction of
+`alpha` modulo `ell` is nonzero.  Divisibility after restriction says that
+this reduction dies in Hill's direct limit `bar H^2(F_ell)`.  The low-degree
+exact sequence in Hill's arithmetic-completion spectral sequence identifies
+the kernel of
+
+`H^2(Gamma,F_ell) -> bar H^2(F_ell)^L`
+
+with the image of `H^2_cts(L,F_ell)`.  Outside the finite exceptional set
+of the preceding lemma, the Hecke action therefore gives
+
+`(T-d(T)) alpha = 0 mod ell`.
+
+This is impossible when `ell` does not divide `D`.  Primitivity in the free
+integral lattice ensures that the reduction of `alpha` is nonzero outside
+another finite set.  Hence only finitely many primes can divide such an
+`n`.
+
+For each of those finitely many primes, the fixed-prime lemma bounds the
+exponent with which it can divide `n`.  The product of these prime-power
+bounds is `N_alpha`.  End proof.
+
+For Porat's level-`521` packet the tabulated unramified Hecke data make the
+separation completely explicit (already the operator at `q=2` has cuspidal
+eigenvalue different from the degree character), but no numerical input is
+needed for the theorem.  The conclusion is structural: real cuspidal
+cohomology supplies locally small circle multipliers, but arithmetic Hecke
+rigidity prevents their finite-dimensional projective realizations from
+persisting at unbounded orders.  Rank three remains live only through the
+varying finite-parabolic/Heisenberg construction recorded below, not through
+a fixed real `H^2` class.
 
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
