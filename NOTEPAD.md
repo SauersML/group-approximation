@@ -7624,3 +7624,96 @@ fixed group-relation defect stays on the vanishing boundary level.  A mere
 long chain is insufficient: its inverse ambiguity is confined to one level
 and has vanishing trace.  Branching is what accumulates order-one reverse
 ambiguity from an `o(1)` forward boundary.
+
+### Exact polynomial-elementary restrictions are compression-sterile
+
+The tree certificate cannot be realized by keeping the restriction to the
+polynomial elementary subgroup exact.  This follows from representation
+rigidity, not merely from residual finiteness.
+
+**Theorem (finite image of finite-dimensional unitary representations).**
+Let
+
+`Gamma=EL_r(F_q[x_1,...,x_d])`,  with `r>=3`.
+
+Every finite-dimensional unitary representation of `Gamma` has finite image.
+
+**Proof.**  Choose a finite presentation of `F_q` over its prime field and
+write `F_q[x_1,...,x_d]` as a quotient of a polynomial ring
+
+`Z[X_1,...,X_m]`.
+
+Elementary generators lift, so `Gamma` is a quotient of the corresponding
+universal lattice `SL_r(Z[X_1,...,X_m])` (equivalently its elementary
+subgroup in this range).  Pull a finite-dimensional unitary representation
+of `Gamma` back along this quotient.  It is semisimple.  Shenfeld's theorem
+on semisimple representations of universal lattices says that, on a
+finite-index subgroup, it is a direct sum of tensor products of rational
+representations obtained from complex specializations of the variables.
+
+The pulled-back representation kills every elementary matrix `e_ij(pf)`,
+where `p=char(F_q)`.  Intersect the finite-index subgroup with the cyclic
+constant root subgroup `e_ij(Z)`.  For some `N>=1`, all matrices
+
+`e_ij(k p N)`,  `k in Z`,
+
+belong to that finite-index subgroup and are killed.  Under every complex
+specialization these are the points `kpN` of the algebraic root subgroup
+`G_a(C)`.  That infinite set is Zariski dense.  Hence the resulting rational
+representation is trivial on the entire root subgroup.  This holds for
+every root, and the root subgroups generate `SL_r(C)`, so every standard
+factor in Shenfeld's description is trivial.  The original representation
+is therefore trivial on a finite-index subgroup and has finite image.  End
+proof.
+
+The only external input is Daniel K. Shenfeld, *On semisimple
+representations of universal lattices*, Groups Geom. Dyn. 4 (2010),
+179--193: every semisimple complex representation of
+`SL_r(Z[X_1,...,X_m])`, `r>=3`, has the stated standard description on a
+finite-index subgroup.
+
+**Theorem (exact-on-`Gamma` microstates are sterile).**  Let
+
+`alpha(gamma)=t gamma t^-1`
+
+be a Kun--Thom compressor.  Suppose maps `phi_n:G->U(d_n)` are asymptotically
+multiplicative on the compressor relations and their restrictions
+
+`pi_n=phi_n|_Gamma`
+
+are genuine representations.  Then, in the tracial ultraproduct,
+
+`phi(Gamma)'=phi(t) phi(Gamma)' phi(t)^*`.
+
+In particular these maps cannot satisfy the strict-commutant certificate.
+
+**Proof.**  Put `A_n=pi_n(Gamma)'`.  By the preceding theorem the image of
+`pi_n` is finite.  Kun--Thom's finite-quotient argument says that the image
+of `alpha(Gamma)` equals the image of `Gamma`: compression inclusion becomes
+equality in every finite group.  Consequently
+
+`pi_n(alpha(Gamma))'=A_n`.
+
+Fix a Kazhdan set `S` for `Gamma`.  The compressor relations give
+
+`max_(s in S) ||phi_n(t)pi_n(s)phi_n(t)^*-pi_n(alpha(s))||_2 -> 0`.
+
+The two maps in this display are genuine representations of `Gamma` up to
+the displayed unitary conjugacy.  If `a_n` is in the unit ball of `A_n`, its
+commutators with the conjugated representation tend uniformly to zero.
+The Kazhdan spectral-gap estimate for the adjoint representation therefore
+puts `a_n` at `o(1)` distance from
+
+`phi_n(t)A_n phi_n(t)^*`.
+
+Conversely, a unit-ball element of the conjugated algebra has commutators
+`o(1)` with `pi_n(alpha(S))`; the same Kazhdan estimate, together with
+`pi_n(alpha(Gamma))'=A_n`, puts it at `o(1)` distance from `A_n`.  Thus the
+two bounded ultraproduct algebras coincide.  End proof.
+
+The statement persists if `phi_n|_Gamma` is flexibly close to genuine
+representations after an `o(d_n)` enlargement, by the same padding and
+Kazhdan-pinning argument used above.  Hence a successful tree-overlap model
+must already lie in the flexibly nonliftable normalized-Hilbert--Schmidt
+quadrant for `Gamma` itself.  Approximation error confined only to the
+compressor or the ambient `SL_d(Z)` sector cannot work.
