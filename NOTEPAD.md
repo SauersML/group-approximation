@@ -25047,14 +25047,22 @@ in `V^Z` are exactly the `G`-invariant vectors, hence zero.  Property
 
 Consequently, for the Steinberg central cover `U->Q`, global `(TT)/T` of
 `U` is *exactly* global `(TT)/T` of `Q`; unstable `K_2` creates no extra
-quasi-cocycle obstruction.  The relative proposition above bounds every
-quasi-cocycle on one proper self-copy `H congruent Q`.  Global boundedness
-still requires either:
+quasi-cocycle obstruction.  The same proof has a relative form: if
+`P>=H` has relative `(TT)/T`, then `G>=p^(-1)(H)` has relative `(TT)/T`.
+Indeed the `W`-component is already bounded on all of `G`, while the
+`V^Z`-component descends and is bounded on `H`.  Therefore the relative
+proposition above proves, without any additional Steinberg argument, that
+
+`U >= p^(-1)(diag(E_4(L),1))`
+
+has relative `(TT)/T` for **all** unitary coefficients, including
+nontrivial central characters.  Global boundedness still requires either:
 
 1. a valid bounded-generation theorem for `Q` by `H` and the cross roots;
 2. a different globalization theorem from the large intersections
    `H intersect gHg^(-1)`; or
-3. a direct Steinberg relative-`(TT)/T` proof plus such globalization.
+3. another globalization principle for this now-established relative
+   Steinberg pair.
 
 Thus the result removes the center (including nontrivial central characters)
 and proves rigidity on one proper self-similar rank-four block, but it does **not** prove `(TT)/T`,
