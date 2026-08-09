@@ -21003,3 +21003,57 @@ leaves the required nonhyperfinite exotic sector open.
   spectral gap of higher rank lattices*, arXiv:2506.20843v2, Theorem 4.2.
 * M. Ershov and A. Jaikin-Zapirain, *Property `(T)` for noncommutative
   universal lattices*, Theorem 1.1.
+
+---
+
+# Relative profinite invisibility survives every full inverse-image extension
+
+The separability hypothesis in the 2026 MF amalgamation theorem cannot be
+restored by replacing the Kun--Thom ambient group with a central or other
+extension and taking the full inverse image of the stabilizer.
+
+**Lemma (pullback of profinite closure).**  Let `Gamma<G`, let
+`p:E->G` be a surjective homomorphism, and put
+
+`Gammatilde=p^(-1)(Gamma)`.
+
+If `h` belongs to the profinite closure of `Gamma` in `G`, then every lift
+`htilde in p^(-1)(h)` belongs to the profinite closure of `Gammatilde` in
+`E`.
+
+**Proof.**  Let `q:E->F` be any homomorphism to a finite group and put
+`K=ker(p)`.  The subgroup `q(K)` is normal in `q(E)`, and the induced map
+
+`G=E/K -> q(E)/q(K)`
+
+is a homomorphism to a finite group.  Since `h` is in the profinite closure
+of `Gamma`, its image in this quotient lies in the image of `Gamma`.
+Therefore
+
+`q(htilde) in q(Gammatilde)q(K)`.
+
+But `K subset Gammatilde`, so `q(K) subset q(Gammatilde)` and the right-hand
+side is just `q(Gammatilde)`.  This holds in every finite quotient `q`, which
+is exactly the assertion.  End proof.
+
+For a strict Kun--Thom compressor there is
+
+`h=t^(-1)gamma t notin Gamma`
+
+which lies in the profinite closure of `Gamma`.  Hence `Gammatilde` is not
+separable in `E` for **any** extension surjecting onto `G`.  In particular,
+Gao--Kunnawalkam Elayavalli--Manzoor--Patchell cannot be applied to
+
+`E *_(Gammatilde) (Gammatilde x K)`
+
+by choosing a more residually finite or MF cover `E`.
+
+One could instead choose a complement `H<Gammatilde` which maps onto
+`Gamma` but omits part of `ker(p)`.  That evades the lemma, but it loses the
+central-quotient bridge: in `E *_H(H x K)` the omitted kernel has no relation
+forcing it to commute with the new lamp `K`, so its normal closure is not a
+central kernel of the map to the Kun--Thom amalgam.  Thus the two desired
+features--separable amalgam and central quotient onto the nonsofic target--
+pull in opposite directions.  Any rescue along this line needs a new MF
+permanence theorem that allows the nonseparable full inverse image, not a
+change of cover.
