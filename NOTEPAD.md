@@ -8316,6 +8316,44 @@ subproblem is therefore:
 > tends locally to one, while its holonomy acts nontrivially on the
 > multiplicity intertwiners of the polynomial quotient tower.
 
+Rephasing the projective stabilizer representation itself cannot provide
+the local smallness.
+
+**Lemma (Heisenberg stabilizer curvature has a uniform floor).**  Let
+`A=F_p^2`, let `B` be its standard nondegenerate alternating form, and let
+`omega:A x A -> T` be any multiplier whose commutator bicharacter is
+
+`omega(x,y) omega(y,x)^(-1)=exp(2 pi i B(x,y)/p)`.
+
+Then, for uniform `x,y in A`,
+
+`E |omega(x,y)-1|^2 >= (1/2)(1-p^(-2))`.
+
+In particular the lower bound holds for every cocycle cohomologous to the
+congruence multiplier.
+
+**Proof.**  Put `u=|omega(x,y)-1|`, `v=|omega(y,x)-1|`, and let `w` be the
+distance from one of the displayed commutator.  The triangle inequality on
+the circle gives `u+v>=w`, hence
+
+`u^2+v^2 >= w^2/2`.
+
+After averaging, the two terms on the left have the same expectation.  For
+`x!=0`, nondegeneracy makes `B(x,y)` uniform in `F_p` as `y` varies, and
+
+`E_(t in F_p) |exp(2 pi i t/p)-1|^2=2`.
+
+For `x=0` it is zero.  Therefore `E w^2=2(1-p^(-2))`, and division by four
+gives the claim.  A scalar coboundary does not change the commutator
+bicharacter.  End proof.
+
+Thus the finite-dimensional Weyl/Heisenberg realization is deliberately
+*not* an almost representation of the stabilizer on its uniform measure.
+The only surviving possibility is dilution by the induction geometry: for
+each fixed ambient pair, the two stabilizer carries sampled over `Q/H_n`
+must have asymptotically negligible symplectic pairing.  This is a property
+of sections and Schreier cells, not of the projective representation alone.
+
 The first half is an `L2` cosystole question for the finite Schreier
 `2`-complexes of `SL_d(Z)/H_n`; the second is a compatibility question with
 the nested elementary-subgroup commutants.  Until both are proved, the
