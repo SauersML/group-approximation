@@ -61,6 +61,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.KunThomTheorem.isLEF_of_exactProductExpansion
 #print axioms NonsoficGroupsExist.not_isSofic_of_strictCentralizerWitness
 #print axioms NonsoficGroupsExist.commute_of_perfect_quotient
+#print axioms NonsoficGroupsExist.subgroup_eq_top_of_surjects_mod_central
 #print axioms NonsoficGroupsExist.CentralExtension.lift_centralizes_perfect_preimage
 #print axioms NonsoficGroupsExist.CentralExtension.not_isSofic_of_centralExtension_strictWitness
 #print axioms NonsoficGroupsExist.CentralExtension.not_isSofic_of_centralExtension_subcoverWitness

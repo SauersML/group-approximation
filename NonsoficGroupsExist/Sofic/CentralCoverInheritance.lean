@@ -183,6 +183,56 @@ theorem commute_of_perfect_quotient [Group.IsPerfect Γ]
 
 end PerfectCentralizer
 
+section PerfectCentralQuotient
+
+variable {A B : Type*} [Group A] [Group B]
+
+/-- A subgroup of a perfect group which still surjects through a central
+quotient is the whole group.  This is the algebraic step used in the
+universal-cover argument: lifted compressors generate a subgroup mapping
+onto the base, and perfectness removes the remaining central factor. -/
+theorem subgroup_eq_top_of_surjects_mod_central [Group.IsPerfect A]
+    (f : A →* B) (L : Subgroup A)
+    (hL : ∀ b : B, ∃ l : L, f l = b)
+    (hker : f.ker ≤ Subgroup.center A) : L = ⊤ := by
+  have hdecomp : ∀ g : A, ∃ l : L, ∃ z : A,
+      z ∈ Subgroup.center A ∧ g = (l : A) * z := by
+    intro g
+    obtain ⟨l, hl⟩ := hL (f g)
+    let z : A := (l : A)⁻¹ * g
+    have hzker : z ∈ f.ker := by
+      rw [MonoidHom.mem_ker]
+      dsimp [z]
+      rw [map_mul, map_inv, hl]
+      simp
+    have hzcenter : z ∈ Subgroup.center A := hker hzker
+    have hg : g = (l : A) * z := by
+      dsimp [z]
+      group
+    exact ⟨l, z, hzcenter, hg⟩
+  apply top_unique
+  have hcomm : commutator A ≤ L := by
+    rw [commutator_eq_closure, Subgroup.closure_le]
+    rintro _ ⟨g, h, rfl⟩
+    obtain ⟨l, z, hz, rfl⟩ := hdecomp g
+    obtain ⟨m, w, hw, rfl⟩ := hdecomp h
+    have hzc : Commute z ((m : A) * w) :=
+      (Subgroup.mem_center_iff.mp hz ((m : A) * w)).symm
+    have hwc : Commute (l : A) w :=
+      Subgroup.mem_center_iff.mp hw (l : A)
+    rw [commutatorElement_mul_left_eq_conj_mul, hzc.commutator_eq]
+    simp only [mul_one, mul_inv_cancel, one_mul]
+    rw [commutatorElement_mul_right_eq_mul_conj,
+      hwc.commutator_eq]
+    simp only [mul_one, mul_inv_cancel_right]
+    change (l : A) * m * (l : A)⁻¹ * m⁻¹ ∈ L
+    exact L.mul_mem
+      (L.mul_mem (L.mul_mem l.property m.property) (L.inv_mem l.property))
+      (L.inv_mem m.property)
+  simpa using hcomm
+
+end PerfectCentralQuotient
+
 namespace CentralExtension
 
 variable {E H : Type} [Group E] [Group H]
