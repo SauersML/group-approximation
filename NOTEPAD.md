@@ -18494,11 +18494,18 @@ and there is no induced automorphism of the finite image `L_(b,N)`.  Making
 `N` larger only moves the same counterexample to the new top degree.
 
 The selective-owner lemma is correct under its newly explicit common-copy
-hypothesis, but the proposed jet image does not supply that hypothesis or
-the finite shear automorphism.  The obstruction is exactly the old
-nonautomorphic-boundary problem in sharper coordinates: negative Laurent
-transport pulls the killed top layer back into the visible jet.  A repair
-must use a partial cell with an `o(1)` top boundary, a cyclic/invertible
-selective factor whose sterility is broken elsewhere, or the square-zero
-Fourier dual boundary.  Thus the orbitwise formula and strictness estimate
-remain valid, while the exact finite joint chamber is regraded to **OPEN**.
+hypothesis, but the **full shifted-complement jet image** does not supply
+that hypothesis or the asserted descended automorphism.  The obstruction is
+exactly the old nonautomorphic-boundary problem in sharper coordinates:
+negative Laurent transport pulls the killed top layer back into the visible
+jet.
+
+The preceding prime-field subgroup repair is not affected: its finite group
+`L_0=N_beta(F_p)` is inserted injectively and its automorphism is transported
+from `L_0`, rather than descended through the non-invariant truncation
+kernel.  It can therefore own the fixed monomial incidences claimed there.
+What is regraded to **OPEN** is the stronger full-complement chamber; using
+the prime-field repair globally still requires the stated sparse fusion and
+same-letter consistency estimates.  Other possible repairs are a partial
+cell with an `o(1)` top boundary, a cyclic/invertible selective factor whose
+sterility is broken elsewhere, or the square-zero Fourier dual boundary.
