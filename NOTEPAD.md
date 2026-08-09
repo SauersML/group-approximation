@@ -22933,3 +22933,135 @@ the regular representation it is exactly the assertion that `EL_4(L)` is
 nonhyperlinear.  Thus any viable version must add a genuinely checkable
 structural hypothesis on the representation, not just finite-factor or
 Connes-embeddable target language.
+
+# Relative flexible correction for a finite Steinberg cell (2026-08-09)
+
+Independent exactification of finite root cells normally loses the common
+root subgroup.  The loss can be repaired, with no asymptotic dimension cost.
+This is the precise local gluing statement needed before confronting the
+global Steinberg holonomy.
+
+**Theorem (relative finite-cell correction).**  Let `F` be a finite group and
+`H <= F`.  For every `n`, let
+
+`phi_n : F -> U(V_n)`
+
+be a map, and suppose that `U_n := phi_n|H` is a genuine representation.
+Assume, pointwise (equivalently uniformly, since `F` is finite),
+
+`||phi_n(gh)-phi_n(g)phi_n(h)||_2 -> 0`
+
+for all `g,h in F`.  Then there are finite-dimensional genuine
+representations
+
+`rho_n : F -> U(K_n)`
+
+and isometries `W_n : V_n -> K_n` such that
+
+`dim(K_n)/dim(V_n) -> 1`,
+
+`W_n U_n(h) = rho_n(h) W_n` for every `h in H`,
+
+and
+
+`||phi_n(g)-W_n^*rho_n(g)W_n||_2 -> 0`
+
+for every `g in F`.  Thus the corrected finite-cell model agrees **exactly**
+with the prescribed overlap representation, not merely up to a second
+near-unitary conjugacy.
+
+**Proof.**  First enforce exact left `H`-covariance.  Choose a left-coset
+transversal and replace
+
+`phi_n(hr)` by `U_n(h)phi_n(r)`.
+
+This changes every value by `o(1)` and preserves asymptotic
+multiplicativity, because `F` is fixed and finite.
+
+Apply de la Salle's finite-group stability theorem (Theorem 1.4 in
+*Spectral gap and stability for groups and non-local games*) to the modified
+map.  It gives a genuine representation
+
+`pi_n : F -> U(P_n)`
+
+and an isometry `w_n : V_n -> P_n` with
+
+`dim(P_n)/dim(V_n) -> 1`
+
+and compressed pointwise convergence.  Lemma 1.7 of the same paper uses the
+exact left `H`-covariance to give convergence on the whole overlap.  The
+dimension estimate also says that the complementary projection
+
+`q_n=1-w_nw_n^*`
+
+has normalized rank `o(1)`.  Hence
+
+`||pi_n(h)w_n-w_nU_n(h)||_2 -> 0`
+
+uniformly for `h in H`: compressing to `w_nV_n` gives the Lemma 1.7 term,
+and the component in `q_nP_n` has squared norm at most the normalized rank of
+`q_n`.
+
+Average the almost-intertwiner:
+
+`T_n = |H|^(-1) sum_(h in H) pi_n(h)w_nU_n(h)^*`.
+
+Then `T_n U_n(h)=pi_n(h)T_n` exactly and `||T_n-w_n||_2 -> 0`.  Write
+`T_n=s_n|T_n|`.  Its initial support `e_n=s_n^*s_n` commutes with `U_n(H)`,
+its final support commutes with `pi_n(H)`, and
+
+`rank(1-e_n)/dim(V_n) -> 0`.
+
+The last assertion follows already by restricting `T_n-w_n` to `ker(T_n)`;
+polar decomposition also gives `||s_ne_n-w_ne_n||_2 -> 0`.
+
+It remains to complete the small lost summand rather than discard it.  Put
+
+`U_n^0=U_n|(1-e_n)V_n`
+
+and form the genuine induced representation
+
+`Ind_H^F(U_n^0)`.
+
+Its restriction to `H` contains a canonical copy of `U_n^0` (the identity
+coset).  Let `j_n` denote that equivariant inclusion, set
+
+`rho_n = pi_n direct_sum Ind_H^F(U_n^0)`,
+
+and define
+
+`W_n = s_ne_n direct_sum j_n(1-e_n)`.
+
+This is an isometry and is exactly `H`-equivariant.  Moreover
+
+`dim(K_n) <= dim(P_n)+[F:H]dim((1-e_n)V_n)`,
+
+so its dimension ratio tends to one.  If `w_n` is viewed in the first
+summand of `K_n`, then `||W_n-w_n||_2 -> 0`; the compressed convergence for
+all of `F` follows by a two-term triangle inequality.  End proof.
+
+**Steinberg consequence.**  Every fixed finite additive root subgroup and
+every fixed finite class-two/Heisenberg root cell can therefore be corrected
+relative to an already-correct common root subgroup.  Along a spanning tree
+of cells, overlap loss is not an obstruction.  What remains is exactly the
+cycle problem: after returning to an already visited cell, the two exact
+overlap identifications can differ by a non-scalar unitary in the overlap
+commutant.  Kervaire--Steinberg splitting removes central scalar extension
+classes, but not this adjoint-valued holonomy.
+
+This identifies the genuinely sufficient next theorem.  A dimension-free
+degree-two contraction for the rank-five Steinberg root complex would kill
+the commutant-valued cycle cocycle and prove flexible normalized-HS
+stability of `St_5(L)`, hence give the explicit nonhyperlinear endpoint.
+Conversely, failure witnessed by a persistent normalized cocycle produces
+the nontrivial asymptotic representation on the other side of the exact
+Steinberg fork.  Existing root-graded property `(T)` theorems control degree
+one only; the available higher-dimensional-expander results concern finite
+field Kac--Moody quotients and do not supply this contraction for the
+noncommutative binary Leavitt algebra.
+
+Primary pin: Mikael de la Salle, *Spectral gap and stability for groups and
+non-local games*, J. Ecole polytechnique Math. 12 (2025), Theorem 1.4 and
+Lemma 1.7.  Lemma 2.2 and Corollaries 2.3--2.4 give the complementary
+dimension-free conditional-expectation estimates for commuting finite root
+groups.
