@@ -298,6 +298,39 @@ module, of the first arrow in (4).  This finite-generator
 relation-module problem is the algebraic interface between the atlas and
 the cohomological correction route.
 
+This module also has a relator-free Bass--Serre model.  The kernel \(N\)
+acts freely on the Bass--Serre tree of \(A*B\), because its quotient map is
+injective on both factors.  The quotient graph has one edge orbit and two
+vertex orbits, giving an exact sequence of \(\mathbb Z[U]\)-modules
+
+\[
+ 0\longrightarrow M\longrightarrow\mathbb Z[U]
+ \longrightarrow\mathbb Z[U/A]\oplus\mathbb Z[U/B]
+ \longrightarrow\mathbb Z\longrightarrow0.             \tag{5}
+\]
+
+If
+
+\[
+ e_A=|A|^{-1}\sum_{a\in A}a,
+ \qquad e_B=|B|^{-1}\sum_{b\in B}b,
+\]
+
+then, after complexification,
+
+\[
+ M_{\mathbb C}
+ \cong\{x\in\mathbb C[U]:xe_A=xe_B=0\}.                \tag{6}
+\]
+
+In a unitary representation the two averaging elements act as the
+orthogonal projections onto \(V^A\) and \(V^B\).  Thus (4)--(6) reduce the
+remaining cohomology to an extension problem from one simultaneous
+averaging kernel.  A spectral projection in a group \(C^*\)-completion is
+not by itself enough: the maps in (4) are algebraic equivariant maps and
+need not extend continuously.  What would suffice is an algebraic splitting
+at \(M\), or a uniform bounded-extension theorem for all maps in (4).
+
 ## Exact remaining frontier
 
 For the Steinberg cover (U=St_5(L)), superperfectness handles trivial
