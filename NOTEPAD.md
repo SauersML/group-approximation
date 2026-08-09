@@ -14974,3 +14974,55 @@ strict face into one finite quotient.  Equivalently, the wall needs a
 relative Fourier transform in a genuinely non-liftable multiplicity module
 whose `Gamma` representations remain inequivalent along the compressor
 depths.  Common-quotient regular absorption is now a proved closed method.
+
+### Retraction of the application: origin-only absorption preserves strictness
+
+The preceding lemma is correct, but its application to the proposed wall
+overreached.  The relative-wall theorem absorbs the two chart
+representations at **one face origin** and propagates that one intertwiner;
+it does not require a quotient `K` dominating every depth representation.
+
+Let
+
+`K_0=Gamma_z/(ker(pi_0^+) intersect ker(pi_0^-))`
+
+at the chosen origin and tensor both entire chart models with
+`lambda_(K_0)`.  At the origin, regular absorption supplies the desired
+intertwiner.  At another depth `d`, the representation is
+
+`pi_d^(+-) tensor lambda_(K_0)`.
+
+There is no reason for `pi_d^(+-)` to factor through `K_0`: its kernel is
+obtained from the origin kernel by a noninvertible compressor pullback.
+Consequently regular absorption does **not** identify all depth algebras
+with one `lambda_(K_0)` sector, and the hypothesis of the absorbed-chain
+no-go fails.
+
+The strict witness is preserved literally.  If
+
+`z_d in pi_(d+1)(Gamma_z)'`
+
+and
+
+`||[z_d,pi_d(gamma)]||_2>=c`,
+
+then
+
+`z_d tensor 1 in (pi_(d+1) tensor lambda_(K_0))(Gamma_z)'`
+
+and
+
+`||[z_d tensor 1,pi_d(gamma) tensor lambda_(K_0)]||_2=c`.
+
+Propagating the origin wall intertwiner by the two native common-face
+actions transports this tensor witness unitarily, so the norm remains `c`
+on every interior edge.  Only the original compressor wrap is exceptional.
+
+Thus the common-regular-absorption no-go closes the stronger strategy
+"absorb every depth into one quotient," but it does not close origin-only
+face absorption.  The global fixed-base candidate is reinstated at its
+prior conditional status.  The remaining check is now precise: choose one
+absorbed origin on each common-face orbit, propagate it through the full
+Følner component, and verify that returning through a cyclic compressor
+wrap is charged only to the already counted `O(1/L)` boundary rather than
+silently replacing `K_0` by a quotient common to the whole cycle.
