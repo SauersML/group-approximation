@@ -22432,6 +22432,99 @@ Primary pins: Allcock, *Steinberg groups as amalgams*, Corollary 1.3 and its
 commutative-ring hypotheses; Enders--Shulman, *On the (Local) Lifting
 Property*, the finite-dimensional-amalgam LP theorem.
 
+---
+
+# The compressor contains a bilateral Thompson--Bernoulli shift (2026-08-09)
+
+The strict self-compression tower above has a completely explicit internal
+form.  This both strengthens the theorem and prevents us from mistaking the
+one-compressor part for the missing obstruction.
+
+Keep the prefix tables from `official/counterexample.tex`, and put
+
+`J=V_(1000)` and `J_k=u^(k+1) J u^(-(k+1))` for `k in Z`.
+
+**Theorem (wandering-cylinder/wreath decomposition).**  There are pairwise
+incomparable binary words `c_k`, `k in Z`, such that
+
+`J_k=V_(c_k)` and `u([c_k])=[c_(k+1)]`.
+
+Explicitly,
+
+`c_k=0^(k+3)1` for `k>=0`, and `c_(-m)=1^m 000` for `m>=1`.
+
+Consequently the groups `J_k` commute pairwise, every finite product is a
+direct product, and
+
+`<J,u> = (direct_sum_(k in Z) J_k) semidirect Z ~= V wr Z`,
+
+where `u` acts by the bilateral shift.
+
+**Proof.**  The table for `u` sends the source leaf `beta_1=1000` to
+`alpha_1 1=0001`.  On the `alpha_1` cylinder it inserts one zero after
+`alpha_1=000`, giving successively
+
+`0001, 00001, 000001, ...`.
+
+In the reverse direction, `1000=zeta_1 0` pulls back to
+`nu_1 0=11000`; thereafter the `zeta_3=11` branch pulls back through
+`nu_3=111`, giving
+
+`1000, 11000, 111000, 1111000, ...`.
+
+These are exactly the displayed `c_k`.  Two different words in the list are
+incomparable, so their cylinders are disjoint.  Prefix-supported Thompson
+groups on disjoint cylinders commute and intersect trivially.  Finally, no
+nonzero power of `u` lies in their restricted direct sum, since it translates
+all the cylinders while an element of the direct sum preserves every
+cylinder and is nontrivial on only finitely many coordinates.  This proves
+the semidirect-product description.  End proof.
+
+The group-von-Neumann-algebra consequence is sharper still.  In the canonical
+trace representation set
+
+`A_- = tensorbar_(k<0) L(J_k)` and
+`A_+ = tensorbar_(k>=0) L(J_k)`.
+
+All negative cylinders lie in `[1]`, whereas `Gamma` is supported in `[0]`;
+all nonnegative `J_k` lie in `Gamma`, by `uJu^(-1)<=Gamma` and
+`uGamma u^(-1)<=Gamma`.  Hence
+
+`A_- <= L(Gamma)' intersect L(Q)` and `A_+ <= L(Gamma)`.
+
+Moreover `L(<J,u>)` is the Bernoulli crossed product
+
+`(tensorbar_(k in Z) L(V)) crossed_product_shift Z`,
+
+and `Ad(u)` moves the boundary factor `L(J_(-1))` from the commutant side
+onto `L(J_0)` inside `L(Gamma)`.  Thus a hypothetical hyperlinear embedding
+of `Q` must realize a bilateral nonamenable Thompson--Bernoulli shift split
+across the Kazhdan algebra `L(Gamma)`.
+
+This gives an important scoped no-go.  The one-compressor tower by itself is
+standard Bernoulli-shift geometry, not a Connes-embedding contradiction.
+Replacing `V` by any known hyperlinear nonamenable group produces the same
+tensor-shift configuration in a Connes-embeddable crossed product.  Any
+closing theorem must therefore use the **second frame** `v` (equivalently
+`w=v^(-1)u`, which fixes `[0]` pointwise and hence centralizes `Gamma`) and
+its incompatible placement of the outside Thompson coordinate.  Property
+`(T)` plus the existence of the unilateral tower, without this second-frame
+data, is not the right statement to prove.
+
+This reformulates the remaining finite-factor problem as a boundary-crossing
+rigidity question:
+
+> Can a Connes-embeddable finite factor contain a Kazhdan group algebra `N`,
+> a split bilateral tensor shift of nonamenable factors with its negative
+> half in `N'` and positive half in `N`, and two unitaries `u,v` implementing
+> the same proper compression of `N` while placing the boundary coordinate
+> on opposite sides of `N`?
+
+The first compressor supplies the tensor shift exactly; the published
+permutation-centralizer theorem says the two-frame configuration has no
+sofic model.  The normalized-HS/Connes-embedding version of that last
+two-frame statement is still open.
+
 # A one-character amenable-near certificate for the Clifford target (2026-08-09)
 
 Kahl--Schneider, *Hyperlinearity via amenable near representations*,
