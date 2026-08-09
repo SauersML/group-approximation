@@ -19756,3 +19756,40 @@ plain weighted tensor tree does not globalize the one-compressor models.
 Any tensor construction would still need a genuinely nonclassical local
 implementation of the Nielsen relator cells; that is the same external
 synchronization problem that fusion exposed, not a way around it.
+
+### Spectral gap rules out every scalar-weight repair of the tensor tree
+
+The failure is not specific to the uniform level weights.  Let `S` be a
+finite symmetric generating set of `Lambda=SAut(F_d)`.  Since `Lambda` is
+nonamenable (indeed Kazhdan), its left regular representation has a spectral
+gap: there is `lambda>0` such that every finitely supported scalar function
+`f:Lambda->C` satisfies
+
+`lambda sum_x |f(x)|^2`
+` <=sum_(s in S) sum_x |f(sx)-f(x)|^2`.
+
+Consider any tensor-tree ansatz in which the active compressor/shear sector
+at the factor labelled by `x` has scalar amplitude `f(x)` (or trace weight
+`|f(x)|^2`), and in which an external generator transports active sectors
+only by the corresponding Cayley shift.  After optimal block alignment, the
+sum of the squared local covariance errors dominates, up to the fixed
+active/sterile separation constant, the Dirichlet form on the right-hand
+side.  The total strict commutator energy is bounded by a constant times
+
+`sum_x |f(x)|^2`.
+
+Therefore vanishing tensor covariance error forces the strict energy to
+vanish.  Conversely, normalizing the distributed strict energy to be
+order one forces an order-one defect for at least one fixed external
+generator.  The same argument applies on finite congruence quotients using
+their uniform expander gap, after removing the constant sector; the constant
+sector cannot encode a preferred strict compressor edge.
+
+This closes scalar radial weights, altered branching numbers, longer collars,
+and smoother block proportions in one statement.  Tensor correlations still
+offer a valid way to accumulate many small **matrix-valued** strict cells,
+but the local active data must carry a noncommutative representation of the
+Nielsen relator groupoid.  It cannot be a scalar function on the Cayley tree
+or graph.  For the free-word pair the surviving target is thus a finite
+Fourier/Fock contextual cell implementing the Gersten relators while its
+regular multiplicity retains the non-scalar shear witness.
