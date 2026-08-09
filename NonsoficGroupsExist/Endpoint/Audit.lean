@@ -36,6 +36,7 @@ import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.A2System
 import NonsoficGroupsExist.Steinberg.A2Kazhdan
 import NonsoficGroupsExist.Steinberg.BinaryLeavitt
+import NonsoficGroupsExist.Steinberg.FiniteControl
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 
 /-!
