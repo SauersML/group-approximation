@@ -14662,3 +14662,28 @@ witness, full regular wall, scalar contraction, and quantitative fusion
 estimates have now all been written explicitly.  A refutation must locate a
 gap in the remaining finite-atlas construction, not in the passage from its
 microstates to the counterexample.
+
+### Correction: fusion multiplicativity has one local-curvature term
+
+The exact fusion identity above was stated under the hypothesis
+`U_gU_h=U_(gh)`.  Native chart operators in the actual construction are
+completed arbitrarily on their macro/depth/Pauli boundary, so the identity
+used in the assembly is instead
+
+`T_gT_h-T_(gh)`
+` =V^*(U_gU_h-U_(gh))V-V^*U_g(1-P)U_hV`.
+
+This follows by inserting `P=VV^*` between the first two compressed factors
+and then adding and subtracting `V^*U_gU_hV`.
+
+The second term is the fusion-range leakage already bounded by the pairwise
+overlap estimates.  The first term is not zero, but every diagonal chart
+block of `U_gU_h-U_(gh)` vanishes on the native common-good projection.
+Its support rank is therefore `O(epsilon_n dim H)` for each fixed pair, and
+its normalized Hilbert--Schmidt norm is `O(sqrt(epsilon_n))`.  Compression
+by the isometry `V` does not increase the unnormalized Frobenius norm; the
+fusion corner has asymptotically full rank, so the normalized estimate is
+unchanged up to a fixed factor.
+
+Hence the omitted local-curvature term also tends to zero.  The global
+assembly theorem remains valid with this corrected two-term estimate.
