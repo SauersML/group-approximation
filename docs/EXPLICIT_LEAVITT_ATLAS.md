@@ -466,17 +466,45 @@ four Schur-center sectors can be removed.  Let
 \]
 
 and put \(\bar R=\ker\bar\rho\) and
-\(\bar N=[\bar P,\bar R]\).  Since \(\bar P\) and \(Q\) are finitely
-presented, choose a finite normal generating set \(T\) for \(\bar R\).
-If \(X\) is a finite generating set for \(\bar P\), then
+\(\bar N=[\bar P,\bar R]\).  This source still presents the same universal
+central extension:
 
 \[
- \bar{\mathcal S}=\{[x,t]:x\in X,\ t\in T\}             \tag{22}
+ \bar P/\bar N\cong U_Q.                                \tag{22}
 \]
 
-normally generates \(\bar N\).  Indeed, in the quotient by the normal
-closure of (22), every \(t\in T\) is central; its conjugates equal itself,
-so all of \(\bar R\) is central.
+Indeed, embed each chart \(K_i\cong A_8\) into a uniformly refined scalar
+leaf chart \(G_i\cong\operatorname{GL}_{N_i}(\mathbb F_2)\), where
+\(N_i\ge5\).  The group \(G_i\) is superperfect.  Therefore the map
+\(H_2(K_i,\mathbb Z)\to H_2(Q,\mathbb Z)\) factors through zero.  By the
+free-product homology formula,
+
+\[
+ H_2(\bar P,\mathbb Z)\longrightarrow H_2(Q,\mathbb Z)
+ \quad\text{is zero}.                                   \tag{23}
+\]
+
+The five-term sequence identifies
+\(\bar R/[\bar P,\bar R]\) with \(H_2(Q,\mathbb Z)\).  The quotient
+\(\bar P/\bar N\) is perfect and central over \(Q\).  It is universal:
+the pullback of any central extension of \(Q\) to \(\bar P\) has zero
+cohomology class by (23), and its splitting is unique because \(\bar P\)
+is perfect.  This proves (22).
+
+The same argument shows that the two Schur centers in \(P_2\) map
+trivially, rather than merely centrally, in \(U_Q\).  A central extension
+of \(Q\) splits uniquely over each superperfect \(G_i\); restricting that
+split lift to \(K_i\) and using uniqueness of the lift from \(2.A_8\)
+forces its central involution to die.  Thus only the \((+,+)\) sector of
+Section 6 can satisfy all the \(N_2\)-relations.
+
+Both \(\bar P\) and \(U_Q\) are finitely presented, so (22) implies that
+\(\bar N\) is finitely normally generated in \(\bar P\).  Fix a finite
+normal generating set
+
+\[
+ \bar{\mathcal S}\subseteq\bar N.                       \tag{24}
+\]
 
 Let \(\lambda:A_8\to U(20160)\) be the left regular representation.
 
@@ -493,14 +521,14 @@ equivalent.
     \pi_n(h)&=\lambda(h)\otimes I_{k_n} &&(h\in K_1),\\
     \pi_n(h)&=U_n(\lambda(h)\otimes I_{k_n})U_n^*
        &&(h\in K_2)
-   \end{aligned}                                        \tag{23}
+   \end{aligned}                                        \tag{25}
    \]
 
    satisfy
 
    \[
     \max_{s\in\bar{\mathcal S}}
-       \|\pi_n(s)-I\|_{2}\longrightarrow0.              \tag{24}
+       \|\pi_n(s)-I\|_{2}\longrightarrow0.              \tag{26}
    \]
 
 **Proof of \(1\Rightarrow2\).**  Pull a trace-preserving hyperlinear model
@@ -512,13 +540,13 @@ factor models to one common dimension.  This does not change any normalized
 Hilbert--Schmidt limit.  For every \(h\ne1\) in either factor,
 
 \[
- \operatorname{tr}(\alpha_{i,n}(h))\longrightarrow0,     \tag{25}
+ \operatorname{tr}(\alpha_{i,n}(h))\longrightarrow0,     \tag{27}
 \]
 
 because the finite subgroup embeds in \(Q\) and the hyperlinear trace is
 the group trace.
 
-Condition (25) forces the normalized irreducible multiplicities of
+Condition (27) forces the normalized irreducible multiplicities of
 \(\alpha_{i,n}\) to converge to Plancherel multiplicities.  Explicitly, if
 \(m_{\sigma,n}\) is the multiplicity of
 \(\sigma\in\widehat{A_8}\) in a \(d_n\)-dimensional factor
@@ -526,57 +554,45 @@ representation, character orthogonality gives
 
 \[
  \frac{m_{\sigma,n}}{d_n}
- \longrightarrow\frac{\dim\sigma}{|A_8|}.               \tag{26}
+ \longrightarrow\frac{\dim\sigma}{|A_8|}.               \tag{28}
 \]
 
 Replace the whole model by the direct sum of \(|A_8|\) copies.  Its
 dimension is \(|A_8|d_n\), while \(d_n\) copies of \(\lambda\) have the
-same dimension.  By (26), the two representations have a common
+same dimension.  By (28), the two representations have a common
 subrepresentation of relative dimension tending to one.  After a unitary
 conjugacy they therefore differ on each group element by normalized
 Hilbert--Schmidt norm tending to zero.  Perform this replacement
 independently on both free factors.  The resulting exact free-product
-representation has the form (23), and every fixed word changes by
+representation has the form (25), and every fixed word changes by
 \(o(1)\).  Since the original pulled-back models kill \(\bar R\), they kill
-(22) asymptotically, proving (24).
+(24) asymptotically, proving (26).
 
-**Proof of \(2\Rightarrow1\).**  Condition (24) gives a homomorphism
-
-\[
- \Psi:\bar V:=\bar P/\bar N
-       \longrightarrow\prod_\omega U(20160k_n)           \tag{27}
-\]
-
-into a tracial matrix ultraproduct.  The subgroup
+**Proof of \(2\Rightarrow1\).**  Condition (26) and (22) give a homomorphism
 
 \[
- C:=\bar R/\bar N
+ \Psi:U_Q\cong\bar P/\bar N
+       \longrightarrow\prod_\omega U(20160k_n)           \tag{29}
 \]
 
-is central in \(\bar V\), and \(\bar V/C\cong Q\).  Let
-
-\[
- K=C\ker\Psi.
-\]
-
-Then \(K/C\) is a normal subgroup of the simple group \(Q\).  It is
-proper.  Indeed, choose a transvection \(p\) in the first factor and an
-element \(h\) of that factor which does not commute with \(p\).  Their
-commutator is nonidentity in \(A_8\), so the regular representation gives
+into a tracial matrix ultraproduct.  Choose a transvection \(p\) in the
+first factor and an element \(h\) of that factor which does not commute
+with \(p\).  Their commutator is nonidentity in \(A_8\), so the regular
+representation gives
 
 \[
  \|[\Psi(p),\Psi(h)]-I\|_2
- =\|\lambda([p,h])-I\|_2=\sqrt2.                        \tag{28}
+ =\|\lambda([p,h])-I\|_2=\sqrt2.                        \tag{30}
 \]
 
-Thus \(\Psi(p)\) is not central in \(\Psi(\bar V)\).  But every element of
-\(C\) has central image, so \(p\notin C\ker\Psi=K\).  Simplicity gives
-\(K=C\).  In particular
-\(\ker\Psi\le C\).  The image \(W=\Psi(\bar V)\) is hyperlinear and fits
+Thus \(\Psi\) is nontrivial.  The universal central extension \(U_Q\) is
+quasisimple: it is perfect, its quotient by its center is the simple group
+\(Q\), and every proper normal subgroup is central.  Hence
+\(\ker\Psi\le Z(U_Q)\).  The image \(W=\Psi(U_Q)\) is hyperlinear and fits
 into a central extension
 
 \[
- 1\longrightarrow C/\ker\Psi\longrightarrow W
+ 1\longrightarrow Z(U_Q)/\ker\Psi\longrightarrow W
    \longrightarrow Q\longrightarrow1.
 \]
 
@@ -585,7 +601,7 @@ Hyperlinearity passes to central quotients, so \(Q\) is hyperlinear.
 
 This criterion is the minimal analytic face of the Leavitt route.  The two
 finite-factor representations no longer vary at all: every unknown is
-contained in the single relative unitary \(U_n\).  Producing (23)--(24)
+contained in the single relative unitary \(U_n\).  Producing (25)--(26)
 would make the already nonsofic group \(Q\) hyperlinear and settle the main
 problem negatively.
 

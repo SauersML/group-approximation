@@ -26320,14 +26320,31 @@ Let
 
 `Pbar=K_1*K_2 ~= A_8*A_8 ->> Q`,
 
-`Rbar=ker(Pbar->Q)`, and `Nbar=[Pbar,Rbar]`.  Since `Pbar` and `Q` are
-finitely presented, choose finite normal generators `T` for `Rbar` and a
-finite generating set `X` for `Pbar`.  Then
+`Rbar=ker(Pbar->Q)`, and `Nbar=[Pbar,Rbar]`.  One must not assume that `Q`
+itself is finitely presented.  Instead, the two-chart source presents the
+finitely presented universal central extension directly:
 
-`Sbar={[x,t]:x in X,t in T}`
+`Pbar/Nbar ~= U_Q`.
 
-normally generates `Nbar`: after killing these commutators every `t` is
-central, its conjugates equal itself, and hence all of `Rbar` is central.
+For each chart `K_i~=A_8`, uniformly refine its four leaves to obtain an
+inclusion into `G_i~=GL_8(F_2)`.  The latter is superperfect.  Hence
+`H_2(K_i,Z)->H_2(Q,Z)` factors through zero.  Free-product homology gives
+
+`H_2(Pbar,Z)->H_2(Q,Z) = 0`.
+
+Both groups are perfect.  The five-term sequence therefore identifies
+`Rbar/[Pbar,Rbar]` with `H_2(Q,Z)`, and the resulting perfect central
+extension is universal.  Equivalently, pullbacks of central extensions of
+`Q` split over `Pbar`; the splitting is unique because `Pbar` is perfect.
+
+This also forces both Schur centers in the earlier source
+`P_2=(2.A_8)*(2.A_8)` to die in `U_Q`, not merely become central.  The
+pullback over each `K_i` splits through the superperfect refined chart, and
+uniqueness of the `2.A_8` lift kills its central involution.  Thus only the
+`(+,+)` sector can satisfy the full relation list.
+
+Now `Pbar` and `U_Q=St_5(L)` are finitely presented, so `Nbar` is finitely
+normally generated.  Fix a finite normal generating set `Sbar`.
 
 Let `lambda` be the left regular representation of `A_8`, of dimension
 `20160`.  Then `Q` is hyperlinear if and only if there are `k_n>=1` and
@@ -26357,22 +26374,92 @@ of the regular representation.  Replacing the `o(1)` remainder changes
 each fixed word by `o(1)`, giving the displayed canonical model.
 
 **Reverse direction.**  The relator limit gives a homomorphism
-`Psi:Vbar=Pbar/Nbar` into a tracial matrix ultraproduct.  Put
-`C=Rbar/Nbar` and `K=C ker(Psi)`.  Then `K/C` is normal in the simple group
-`Q=Vbar/C`.  Choose a transvection `p` and an element `h` in the same
-`A_8` factor which does not commute with it.  The regular representation
-has
+`Psi:U_Q~=Pbar/Nbar` into a tracial matrix ultraproduct.  Choose a
+transvection `p` and an element `h` in the same `A_8` factor which does not
+commute with it.  The regular representation has
 
 `||[Psi(p),Psi(h)]-1||_2=sqrt(2)`.
 
-Thus `Psi(p)` is not central in the image, whereas every element of `C`
-has central image.  Hence `p notin K`; `K/C` is proper, and simplicity gives
-`K=C`.  Therefore `ker(Psi)<=C`, the hyperlinear image `Psi(Vbar)` is a
-central extension of `Q`, and Thom's central-quotient permanence makes `Q`
-hyperlinear.
+Thus `Psi` is nontrivial.  The universal cover `U_Q` is quasisimple, so its
+proper normal subgroup `ker(Psi)` is central.  Therefore the hyperlinear
+image `Psi(U_Q)` is a central extension of `Q`, and Thom's central-quotient
+permanence makes `Q` hyperlinear.
 
 This is a strict improvement over the two-Schur-cover optimization: the
 entire constructive problem is one sequence of unitaries `U_n` between two
 fixed regular `A_8` amplifications.  Constructing that sequence makes the
 known nonsofic `Q` hyperlinear and resolves hyperlinear-versus-sofic in the
 negative.
+
+### Audit and repair: the ordinary `A_8*A_8` source already presents the universal cover (2026-08-09)
+
+The preceding criterion had a real gap in its finite-relator justification:
+it invoked finite presentability of `Q`, which is not known on the current
+inputs.  The reverse proof was repaired in commit `22d000c`, but there is a
+stronger homological repair which both supplies the finite list and collapses
+all four Schur sectors.
+
+Let `Pbar=A_8*A_8 ->> Q`, `Rbar=ker(Pbar->Q)`, and
+`Nbar=[Pbar,Rbar]`.  Each chart `A_8=K_i<Q` embeds, by uniform leaf
+refinement, into some
+
+`G_i=GL_(N_i)(F_2)<Q`,  `N_i>=5`.
+
+The refined group `G_i` is superperfect.  Therefore the homology map
+
+`H_2(K_i,Z) -> H_2(Q,Z)`
+
+factors through `H_2(G_i,Z)=0`.  Since
+
+`H_2(Pbar,Z)=H_2(K_1,Z) directSum H_2(K_2,Z)`,            `(1)`
+
+the full map `H_2(Pbar,Z)->H_2(Q,Z)` is zero.  The five-term sequence for
+`1->Rbar->Pbar->Q->1` now gives an isomorphism
+
+`H_2(Q,Z) ~= Rbar/[Pbar,Rbar]`.                           `(2)`
+
+Moreover `Pbar/Nbar` is perfect and central over `Q`.  It is the universal
+central extension.  Indeed, for any central extension of `Q` by an abelian
+group `A`, its pullback class in `H^2(Pbar,A)` is zero: because `Pbar` is
+perfect, the universal-coefficient sequence identifies this cohomology with
+`Hom(H_2(Pbar,Z),A)`, and the pullback is precomposition with the zero map
+in `(1)`.  The pullback therefore splits, uniquely because
+`Hom(Pbar,A)=0`, and the splitting kills `[Pbar,Rbar]`.  Hence
+
+`Pbar/Nbar ~= U_Q`.                                      `(3)`
+
+This fixes the finite-list issue without asserting that `Q` is finitely
+presented.  Both `Pbar` and the already established Steinberg cover `U_Q`
+are finitely presented, so the kernel `Nbar` in `(3)` is finitely normally
+generated.  Choose any finite normal generating set `Sbar subset Nbar`.
+The canonical regular-`A_8` criterion uses this `Sbar`; it need not and
+currently cannot be obtained from finite normal generators of `Rbar`.
+
+There is also a discrete collapse hidden in `(3)`.  The canonical lift of
+each Schur cover `2.A_8` to `U_Q` agrees, by uniqueness, with the composite
+through the honest lifted chart `A_8<K_i<G_i`.  It consequently kills the
+Schur central involution.  Thus both centers `z_1,z_2` already lie in
+`N_2=ker(P_2->U_Q)`: among the four exactified central-character sectors,
+only `(+,+)` can have vanishing full `N_2`-defect.  Passing directly to
+`A_8*A_8` loses no certificate.
+
+Finally, the safest reverse implication is quasisimplicity.  A limiting
+regular-atlas model gives a nontrivial homomorphism `Psi:U_Q` into a tracial
+matrix ultraproduct: a noncommuting pair inside either regular `A_8` factor
+has commutator distance `sqrt(2)` from the identity.  Since `U_Q` is perfect
+and `U_Q/Z(U_Q)=Q` is simple, every proper normal subgroup of `U_Q` is
+central.  Hence `ker(Psi)<=Z(U_Q)`, its hyperlinear image is a central
+extension of `Q`, and central-quotient permanence gives hyperlinearity of
+`Q`.
+
+The corrected exact decision boundary is therefore genuinely finite and
+one-unitary:
+
+`Q is hyperlinear`
+
+iff there are `k_n>=1` and `U_n in U(20160 k_n)` such that the two fixed
+regular `A_8` amplifications, glued by `U_n`, send every element of one
+fixed finite normal generating set `Sbar` of `Nbar` to `1+o_(||.||_2)(1)`.
+
+This remains a reduction, not a construction of the required unitaries and
+not a proof that `Q` is hyperlinear.
