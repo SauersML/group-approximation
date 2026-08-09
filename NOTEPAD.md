@@ -25005,20 +25005,59 @@ Kazhdan inequality on a representation with no invariant vectors gives
 bound.  End proof.
 
 For `U=St_5(L)` this shows that an unbounded quasi-cocycle cannot hide on
-the unstable central kernel `K_2(5,L)`.  If its representation is trivial
-on that kernel, the quasi-cocycle descends, up to a uniformly bounded
-section error, to `Q`; the relative proposition then bounds it on the full
-preimage of `H`.  Representations with nontrivial central character require
-a projective-coefficient version of the relative theorem, and global
-boundedness still requires either:
+the unstable central kernel `K_2(5,L)`.  In fact the projective-character
+issue can also be removed completely.
+
+**Theorem (`(TT)/T` is invariant under Kazhdan central covers).**  Let `G`
+have property `(T)`, let `Z <= Z(G)`, and put `P=G/Z`.  Then
+
+`G has (TT)/T  iff  P has (TT)/T`.
+
+**Proof.**  The forward implication passes to quotients: pull a
+representation and quasi-cocycle of `P` back to `G`.
+
+Conversely, suppose `P` has `(TT)/T`.  Let `pi` be a unitary representation
+of `G` without invariant vectors and `b` a `pi`-quasi-cocycle.  Decompose
+
+`V=V^Z directSum W`
+
+and project `b=b_0+b_1`.  The central-boundedness lemma gives one constant
+`C` with `||b_i(z)||<=C` for all `z in Z` and `i=0,1`.
+
+On `W`, compare the two quasi-cocycle expansions of `gz=zg`.  If the defect
+is `D`, then for every `g in G` and `z in Z`,
+
+`||(pi(z)-1)b_1(g)|| <= 2D+2C`.                       `(1)`
+
+For any unitary `Z`-representation, the orthogonal projection onto the
+fixed vectors belongs to the strong closure of convex combinations of the
+operators `pi(z)`.  Hence for `xi in W`,
+
+`||xi|| <= sup_(z in Z)||(pi(z)-1)xi||`.
+
+Applied to `(1)`, this bounds `b_1` on all of `G`.
+
+On `V^Z`, the representation factors through `P`.  Choose any section
+`sigma:P->G` and put `beta(p)=b_0(sigma(p))`.  The multiplication defect of
+`sigma` lies in `Z`; since `b_0` is bounded on `Z` and `Z` acts trivially on
+`V^Z`, `beta` is a quasi-cocycle of `P`.  Moreover the `P`-invariant vectors
+in `V^Z` are exactly the `G`-invariant vectors, hence zero.  Property
+`(TT)/T` of `P` bounds `beta`.  Writing every `g` as `z sigma(p)` now bounds
+`b_0(g)`, so `b` is bounded.  End proof.
+
+Consequently, for the Steinberg central cover `U->Q`, global `(TT)/T` of
+`U` is *exactly* global `(TT)/T` of `Q`; unstable `K_2` creates no extra
+quasi-cocycle obstruction.  The relative proposition above bounds every
+quasi-cocycle on one proper self-copy `H congruent Q`.  Global boundedness
+still requires either:
 
 1. a valid bounded-generation theorem for `Q` by `H` and the cross roots;
 2. a different globalization theorem from the large intersections
    `H intersect gHg^(-1)`; or
 3. a direct Steinberg relative-`(TT)/T` proof plus such globalization.
 
-Thus the result removes the center and proves rigidity on one proper
-self-similar rank-four block, but it does **not** prove `(TT)/T`,
+Thus the result removes the center (including nontrivial central characters)
+and proves rigidity on one proper self-similar rank-four block, but it does **not** prove `(TT)/T`,
 `2`-Kazhdan, Hilbert--Schmidt stability, nonhyperlinearity, or the main
 problem.
 
