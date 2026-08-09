@@ -21231,6 +21231,134 @@ automatically a nonsofic central cover.
 * Preusser, arXiv:1912.11386, Theorem 3: the exact sandwich theorem for
   `E_n(R)`-normalized subgroups over exchange rings, `n>=3`.
 
+---
+
+# The regular Bernoulli/CAR reservoir has no stabilizer-fixed tail (2026-08-09)
+
+The nonlinear-tail loophole in the CAR cocycle formulation cannot be supplied
+by embedding the coset CAR algebra into the ultrapower of the ordinary regular
+Bernoulli or regular CAR action.  This obstruction allows arbitrary Clifford
+degree and therefore strictly extends the preceding no-Pin-coboundary theorem.
+
+**Lemma (spectral-gap fixed-tail obstruction).**  Let `Gamma` be a
+nonamenable subgroup of a countable group `G`.  Let
+
+`R_reg=CAR(l2_R(G))''`
+
+with its canonical trace and the Bogoljubov action `beta` induced by left
+translation.  Then
+
+`(R_reg^omega)^(beta(Gamma))=C`.
+
+The same conclusion holds for the ordinary diffuse Bernoulli factor over
+`G`.
+
+**Proof.**  The standard Clifford monomials form an orthonormal basis of
+`L2(R_reg)`, indexed, up to the harmless ordering sign, by finite subsets of
+`G`.  After removing the empty subset, the Koopman representation is the
+orthogonal sum over `Gamma`-orbits of nonempty finite subsets `F`.
+
+The stabilizer
+
+`K_F={gamma in Gamma:gamma F=F}`
+
+is finite: choosing `f in F`, the map `gamma |-> gamma f` injects `K_F`
+into the finite set `F`.  On the orbit of `F`, the ordering signs give at
+most a one-dimensional character `chi_F` of `K_F`, so the corresponding
+Koopman summand is
+
+`Ind_(K_F)^Gamma chi_F`.
+
+Because `K_F` is finite and hence amenable, this representation is weakly
+contained in the regular representation of `Gamma`.  Therefore the entire
+Koopman representation on `L2(R_reg) minus C1` is weakly contained in
+`lambda_Gamma`.  Nonamenability says that the trivial representation is not
+weakly contained in `lambda_Gamma`; equivalently, there are a finite
+`S subset Gamma` and `kappa>0` such that
+
+`sum_(s in S) ||beta_s(x)-x||_2^2 >= kappa ||x||_2^2`
+
+for every trace-zero `x in R_reg`.  If a bounded sequence `(x_n)` represents
+a `Gamma`-fixed element of `R_reg^omega`, apply this inequality to
+`x_n-tau(x_n)1`.  Its `L2` norm tends to zero along `omega`, so the ultrapower
+element is scalar.  The ordinary Bernoulli proof is identical: its
+mean-zero tensor-word basis is indexed by finitely supported nontrivial
+labels, whose translation stabilizers are finite.  End proof.
+
+**Corollary (no regular-reservoir coset lamp).**  Put `X=G/Gamma`.  There is
+no unital trace-preserving `G`-equivariant homomorphism
+
+`CAR(l2_R(X))'' -> R_reg^omega`.
+
+Indeed, the base Majorana `c_(Gamma)` is fixed by `Gamma`, so its image would
+belong to the scalar fixed algebra above.  But it is a trace-zero
+self-adjoint unitary, impossible for a scalar.  Even without invoking its
+trace, a scalar image cannot anticommute with the image of a distinct
+Majorana.
+
+Consequently the missing nonlinear cochain cannot be manufactured by
+passing from the coset modes to high-degree monomials in a known regular
+Bernoulli/regular-CAR Connes-embeddable action.  Any viable tracial reservoir
+must simultaneously have
+
+1. a nontrivial `Gamma`-fixed ultrapower sector, and
+2. an ambient element `h=t^(-1) gamma t` that acts nontrivially on that
+   sector.
+
+Regular Bernoulli reservoirs fail the first condition.  Profinite
+reservoirs fail the second by relative profinite invisibility.  Thus a
+successful reservoir must be genuinely nonprofinite and nonspectral-gap
+relative to `Gamma`; this sharply narrows the remaining nonlinear-tail CAR
+route.
+
+---
+
+# The canonical Leavitt Steinberg witness is minimally almost periodic (2026-08-09)
+
+The central-cover theorem and quasisimplicity argument above have a further
+unconditional consequence that is useful independently of the main problem.
+
+**Theorem.**  Let
+
+`L=L_(F_2)(1,2)` and `U=St_5(L)`.
+
+Every finite-dimensional complex unitary representation of `U` is trivial.
+In particular `U` is a finitely presented, Kazhdan, minimally almost periodic
+nonsofic group.
+
+**Proof.**  Let `rho:U->U(d)` be a representation and put `N=ker(rho)`.
+Suppose its image is nontrivial.  Then `N` is a proper normal subgroup of
+the quasisimple group `U`, so
+
+`N <= Z(U)=ker(U->Q)`,  where `Q=EL_4(L)`.
+
+Thus `U/N` is a central extension of `Q`.  The universal-cover central
+rigidity theorem proves that every such countable central extension is
+nonsofic.
+
+On the other hand, `U/N` is isomorphic to the finitely generated linear
+group `rho(U)<=GL_d(C)`.  Malcev's theorem makes every finitely generated
+linear group in characteristic zero residually finite, and every residually
+finite group is sofic.  This contradiction shows that `rho(U)` must be
+trivial.  End proof.
+
+The same proof applies to every central quotient `U/C` that is still a
+central extension of `Q`: any nontrivial finite-dimensional representation
+would produce a further nontrivial finitely generated linear central cover
+of `Q`, contradicting central-cover nonsoficity.
+
+Therefore the conditional certificate
+
+`U weak-MF  ==>  hyperlinear nonsofic exists`
+
+cannot be realized by perturbing, amplifying, or diagonally combining honest
+finite-dimensional representations of `U`; there are none except the
+trivial one.  Any separating operator-norm microstates must carry a
+genuinely non-Ulam-stable sector whose dimensions diverge.  In particular,
+proving operator-norm Ulam stability for this one Steinberg group would
+close the weak-MF lane negatively, while proving weak MF would
+simultaneously exhibit an explicit failure of operator-norm Ulam stability.
+
 This result also corrects the motivation of the earlier stable-`K_2` note.
 Stable `K_2(L)=0` does not determine the unstable kernels `K_2(n,L)` and was
 never enough to compute `H_2(EL_4(L),Z)`.  No such computation is needed:
