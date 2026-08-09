@@ -15026,3 +15026,57 @@ absorbed origin on each common-face orbit, propagate it through the full
 Følner component, and verify that returning through a cyclic compressor
 wrap is charged only to the already counted `O(1/L)` boundary rather than
 silently replacing `K_0` by a quotient common to the whole cycle.
+
+### The absorbed factor must be pulled back along the face
+
+There is one necessary refinement.  A constant tensor factor
+`lambda_(K_0)` need not extend to the common-face semidirect action, because
+a compressor endomorphism of `Gamma_z` need not preserve `ker(K_0)`.  The
+correct propagation is a bundle of pulled-back regular representations.
+
+Choose an origin in one common-face Følner component.  For every interior
+vertex `x`, choose its native common-root word and let
+
+`alpha_x:Gamma_z->Gamma_z`
+
+be the corresponding composition of compressor endomorphisms.  Put
+
+`kappa_x=lambda_(K_0) after alpha_x`.
+
+Use the path convention for which an interior edge `x->sx` satisfies
+
+`alpha_(sx)=alpha_x after alpha_s`.
+
+Then
+
+`kappa_(sx)(gamma)=kappa_x(alpha_s(gamma))`.
+
+Hence the identity map on the fixed Hilbert space `ell^2(K_0)` implements
+the required coefficient covariance from the `x` fiber to the `sx` fiber.
+No action of `alpha_s` on the finite quotient `K_0` is asserted or needed.
+
+**Lemma (origin absorption propagates without becoming liftable).**  Tensor
+the native chart representation at `x` with `kappa_x`, and use the identity
+on the second factor along every interior common-face edge.  Then:
+
+1. all `Gamma_z` covariance relations are exact on the Følner interior;
+2. two interior paths to the same vertex give the same pulled-back factor,
+   because the common nilpotent face relations give the same endomorphism
+   of `Gamma_z`;
+3. the two adjacent charts have identical pulled-back factors on their
+   common face; and
+4. tensoring by `kappa_x` preserves every normalized Hilbert--Schmidt
+   commutator norm of the native strict witness.
+
+**Proof.**  The displayed identity proves (1).  Functoriality of the actual
+common-root action proves (2), and the two charts use the same common-root
+words, proving (3).  For (4), tensor the commutator by the identity and use
+`||X tensor 1||_2=||X||_2`.  End proof.
+
+At the origin `kappa_1=lambda_(K_0)`, so regular absorption still supplies
+the relative wall intertwiner.  Propagate it using the two native face
+actions and the pulled-back factor above.  On a boundary edge complete the
+fiber unitary arbitrarily; the exceptional fraction is the original
+`O(1/M)`.  Thus no common quotient is imposed on the depth chain, and no
+unlisted cyclic consistency condition survives away from the already
+counted wrap.
