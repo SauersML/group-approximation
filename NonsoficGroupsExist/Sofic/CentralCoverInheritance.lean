@@ -261,6 +261,174 @@ theorem not_isSofic_of_centralExtension_strictWitness
       ((G.subtype t)⁻¹ * G.subtype γ * G.subtype t)
     simpa only [map_mul, map_inv, haLift, htProj, hgammaProj] using hmapped
 
+/-! ## A good subcover inside an arbitrary central extension -/
+
+/-- The projection of a subgroup of the full inverse image onto the base
+subgroup.  Surjectivity is an extra hypothesis: it is the property supplied
+by the image of a universal or stem cover. -/
+def subcoverProjection (P : CentralExtension E H) (G : Subgroup H)
+    (L : Subgroup (P.preimage G)) : L →* G :=
+  (P.preimageProjection G).comp L.subtype
+
+/-- The inverse image of `Γ` in a chosen subcover `L`. -/
+def subcoverLiftedSubgroup (P : CentralExtension E H) (G : Subgroup H)
+    (Γ : Subgroup G) (L : Subgroup (P.preimage G)) : Subgroup L :=
+  Γ.comap (P.subcoverProjection G L)
+
+/-- The quotient map from the lifted subgroup in a subcover onto `Γ`. -/
+def subcoverLiftedProjection (P : CentralExtension E H) (G : Subgroup H)
+    (Γ : Subgroup G) (L : Subgroup (P.preimage G)) :
+    P.subcoverLiftedSubgroup G Γ L →* Γ where
+  toFun x := ⟨P.subcoverProjection G L x, x.property⟩
+  map_one' := by
+    apply Subtype.ext
+    exact (P.subcoverProjection G L).map_one
+  map_mul' x y := Subtype.ext ((P.subcoverProjection G L).map_mul x y)
+
+@[simp] theorem subcoverLiftedProjection_apply
+    (P : CentralExtension E H) (G : Subgroup H) (Γ : Subgroup G)
+    (L : Subgroup (P.preimage G)) (x : P.subcoverLiftedSubgroup G Γ L) :
+    ((P.subcoverLiftedProjection G Γ L x : Γ) : G) =
+      P.subcoverProjection G L x := by
+  change P.subcoverProjection G L (x : L) = P.subcoverProjection G L x
+  rfl
+
+theorem subcoverLiftedProjection_surjective
+    (P : CentralExtension E H) (G : Subgroup H) (Γ : Subgroup G)
+    (L : Subgroup (P.preimage G))
+    (hL : Function.Surjective (P.subcoverProjection G L)) :
+    Function.Surjective (P.subcoverLiftedProjection G Γ L) := by
+  intro γ
+  obtain ⟨x, hx⟩ := hL γ
+  refine ⟨⟨x, ?_⟩, ?_⟩
+  · change P.subcoverProjection G L x ∈ Γ
+    rw [hx]
+    exact γ.property
+  · apply Subtype.ext
+    simpa only [subcoverLiftedProjection_apply] using hx
+
+/-- Inclusion of a chosen subcover into the ambient central extension. -/
+def subcoverInclusion (P : CentralExtension E H) (G : Subgroup H)
+    (L : Subgroup (P.preimage G)) : L →* E :=
+  (P.preimage G).subtype.comp L.subtype
+
+@[simp] theorem projection_subcoverInclusion
+    (P : CentralExtension E H) (G : Subgroup H)
+    (L : Subgroup (P.preimage G)) (x : L) :
+    P.projection (P.subcoverInclusion G L x) =
+      G.subtype (P.subcoverProjection G L x) := by
+  change P.projection (x : E) =
+    G.subtype (P.preimageProjection G (x : P.preimage G))
+  rfl
+
+/-- A lift of a centralizer downstairs centralizes the lifted perfect
+subgroup in every surjective subcover. -/
+theorem lift_centralizes_perfect_subcover (P : CentralExtension E H)
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (L : Subgroup (P.preimage G))
+    (hL : Function.Surjective (P.subcoverProjection G L))
+    (a : E)
+    (ha : ∀ g : G, g ∈ Γ → Commute (P.projection a) (G.subtype g)) :
+    ∀ x : P.subcoverLiftedSubgroup G Γ L,
+      Commute a (P.subcoverInclusion G L x) := by
+  apply commute_of_perfect_quotient
+      (P.subcoverLiftedProjection G Γ L)
+      (P.subcoverLiftedProjection_surjective G Γ L hL)
+      ((P.subcoverInclusion G L).comp
+        (P.subcoverLiftedSubgroup G Γ L).subtype) a
+  · intro x
+    apply P.commutator_mem_center
+    simpa using ha (P.subcoverLiftedProjection G Γ L x)
+      (P.subcoverLiftedProjection G Γ L x).property
+  · intro x hx
+    have hpx : P.projection (P.subcoverInclusion G L x) = 1 := by
+      have hx' := congrArg (fun y : Γ ↦ G.subtype (y : G)) hx
+      simpa using hx'
+    have hcenter : P.subcoverInclusion G L x ∈ Subgroup.center E :=
+      P.ker_le_center (MonoidHom.mem_ker.mpr hpx)
+    exact Subgroup.mem_center_iff.mp hcenter a
+
+/-- **Subcover form of central-cover inheritance.**  An arbitrary countable
+central extension is nonsofic as soon as it contains a surjective subcover
+whose lifted pair has Kun--Thom centralizer normalization.  This is the form
+used with the finite image of a universal/stem cover; the ambient central
+kernel can still be infinite. -/
+theorem not_isSofic_of_centralExtension_subcoverWitness
+    (P : CentralExtension E H) [Countable E]
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (L : Subgroup (P.preimage G))
+    (hL : Function.Surjective (P.subcoverProjection G L))
+    (hcn : CentralizerNormalization L (P.subcoverLiftedSubgroup G Γ L))
+    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t))) :
+    ¬ IsSofic E := by
+  obtain ⟨aLift, haLift⟩ := P.surjective a
+  obtain ⟨tLift, htLift⟩ := hL t
+  obtain ⟨gammaLift, hgammaLift⟩ :=
+    P.subcoverLiftedProjection_surjective G Γ L hL ⟨γ, hγ⟩
+  apply not_isSofic_of_strictCentralizerWitness
+      (P.subcoverLiftedSubgroup G Γ L) hcn
+      (P.subcoverInclusion G L) (by
+        intro x y hxy
+        apply Subtype.ext
+        apply Subtype.ext
+        exact hxy)
+      aLift (t := tLift) (γ := (gammaLift : L))
+  · intro x hx
+    exact P.lift_centralizes_perfect_subcover G Γ L hL aLift
+      (by
+        intro g hg
+        rw [haLift]
+        exact ha g hg)
+      ⟨x, hx⟩
+  · exact gammaLift.property
+  · intro hcomm
+    apply hstrict
+    have hmapped := hcomm.map P.projection
+    have htProj : P.projection (P.subcoverInclusion G L tLift) = G.subtype t := by
+      rw [projection_subcoverInclusion]
+      exact congrArg G.subtype htLift
+    have hgammaProj :
+        P.projection (P.subcoverInclusion G L (gammaLift : L)) =
+          G.subtype γ := by
+      rw [projection_subcoverInclusion]
+      have h := congrArg (fun g : Γ ↦ G.subtype (g : G)) hgammaLift
+      simpa only [subcoverLiftedProjection_apply] using h
+    change Commute a
+      ((G.subtype t)⁻¹ * G.subtype γ * G.subtype t)
+    simpa only [map_mul, map_inv, haLift, htProj, hgammaProj] using hmapped
+
+/-- The universal/stem-cover certificate: every countable central extension
+contains some subgroup surjecting onto `G` for which the lifted pair has the
+Kun--Thom normalization property.  In the intended application, `L` is the
+finite image of a universal central extension, and finiteness of the Schur
+multiplier is used only to produce this certificate. -/
+def CentralSubcoverStableNormalization (H : Type) [Group H]
+    (G : Subgroup H) (Γ : Subgroup G) : Prop :=
+  ∀ (E : Type) [Group E] [Countable E] (P : CentralExtension E H),
+    ∃ L : Subgroup (P.preimage G),
+      Function.Surjective (P.subcoverProjection G L) ∧
+        CentralizerNormalization L (P.subcoverLiftedSubgroup G Γ L)
+
+/-- **Arbitrary-kernel subcover theorem.**  A strict witness for a perfect
+pair, together with the universal/stem-cover certificate, makes every
+countable central extension nonsofic.  Unlike the full-preimage formulation,
+normalization is required only on one good subcover; this is what permits an
+arbitrary infinite ambient central kernel. -/
+theorem allCentralExtensions_not_isSofic_of_subcoverStrictWitness
+    {H : Type} [Group H]
+    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
+    (hstable : CentralSubcoverStableNormalization H G Γ)
+    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
+    {t γ : G} (hγ : γ ∈ Γ)
+    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
+    {E : Type} [Group E] [Countable E] (P : CentralExtension E H) :
+    ¬ IsSofic E := by
+  obtain ⟨L, hL, hcn⟩ := hstable E P
+  exact P.not_isSofic_of_centralExtension_subcoverWitness
+    G Γ L hL hcn a ha hγ hstrict
+
 /-- The exact external stability certificate needed to turn the one-cover
 inheritance theorem into a statement about *all* central covers.  For a
 stable Kun--Thom pair this is supplied by applying the cited normalization
