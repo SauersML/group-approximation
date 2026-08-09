@@ -13601,3 +13601,96 @@ for `G_z^GL` and check that the partial Fourier wall operator fixes the
 common base elementary matrices while carrying every tangent elementary
 coefficient by `Chat_C^vee`.  Unlike the retracted full-polarization claim,
 all terms in that statement now live over one literal base representation.
+
+### Generator covariance on the full split regular model
+
+Let
+
+`H_N=EL_r(S_N)`,  `H_(0,N)=EL_r(A_N)`,
+
+and let `K_N` be the kernel of `H_N->H_(0,N)`.  Since the square-zero ring
+extension is split and `A_N` is local,
+
+`H_N=K_N semidirect H_(0,N)`
+
+with `K_N` abelian.  Choose the split coordinates
+
+`ell^2(H_N)=ell^2(K_N) tensor ell^2(H_(0,N))`
+
+for the left regular representation.  Let `F_K` be Fourier transform in the
+first coordinate only.
+
+For every allowed depth `d`, define the genuine `Gamma_z` representation
+
+`pi_d=lambda_(H_N) after EL_r(Phi_(d,h))`.
+
+If `C` is a positive chamber matrix, let `P_C` be the permutation unitary of
+`ell^2(H_N)` induced by the ring automorphism `Chat_C`.  The fixed-base jet
+identity gives, for every `g in Gamma_z`,
+
+`P_C pi_(C^T d)(g) P_C^*=pi_d(alpha_C(g))`.
+
+This is exact, not an asymptotic character comparison.
+
+**Theorem (primal/dual generator audit).**
+
+1. On primal chamber blocks, the depth permutation `d|->C^T d` together
+   with fiber unitary `P_C` implements every coefficient covariance
+   relation exactly whenever the depth stays in the macro box.
+2. Put
+
+   `pi_d^vee=(F_K tensor 1) pi_d (F_K tensor 1)^*`.
+
+   Then `pi_d^vee` is a genuine representation of `Gamma_z`.  The common
+   base group `H_(0,N)` acts by its permutation action on `K_N^vee` and by
+   the unchanged regular base factor, while `K_N` acts by character
+   multipliers.
+3. Fourier covariance
+
+   `(F_K tensor 1)P_C=P_(C^vee)(F_K tensor 1)`
+
+   makes the same generator identity exact on dual chamber blocks.
+4. A coordinate permutation in `GL_4(Z)` acts by an exact permutation of
+   the four tangent summands, the depth coordinates, and the polynomial
+   variables, so every Weyl-atlas relabeling is exact on both polarizations.
+
+**Proof.**  Item (1) is the displayed ring identity followed by functoriality
+of `EL_r` and of the left regular representation.  Item (2) is unitary
+conjugation of a genuine representation.  In split coordinates, the base
+acts on the kernel by conjugation and on itself by left multiplication;
+Fourier turns the first action contragredient and leaves the second factor
+unchanged.  Linear Fourier covariance proves (3).  Coordinate permutation
+commutes with the componentwise Frobenius pairing, proving (4).  End proof.
+
+The use of the **full** regular representation is now harmless.  The earlier
+exponential rank-amplification problem arose because the nilpotent shear
+itself had a kernel.  Here `Chat_C` is an automorphism of `K_N`, so `P_C`
+and its Fourier conjugate are permutations of every kernel character; no
+character mass is lost.
+
+For the fixed compressor with `d_j=1`, the image ideals
+
+`I_m=directSum_k xi_k y^(d_k(m)+h)A_N`
+
+form the strict nested chain in the `i` component.  The established regular-
+quotient commutant lemma therefore supplies block unitaries
+`v_m in pi_m(Gamma_z)'` whose transported conjugates fail to commute with
+one fixed elementary coefficient by a norm tending to `sqrt(2)` on every
+nonfinal depth edge.  Tensoring with the unchanged base factor and applying
+`F_K` preserve this norm.
+
+Thus the generator-level relation losses are exactly:
+
+* macro-depth boundary `O(1/M)`;
+* one compressor-chain wrap `O(1/N)` (or the unfolded `O(p^(-n)L^(-1))`);
+* the Pauli--flag discarded fraction `O_p(p^(-4(n-1)))`; and
+* no additional base, tangent-rank, Weyl-permutation, or Fourier loss.
+
+What remains before invoking the strict-compression endpoint is one finite
+word audit: choose a generating set of `Gamma_z` by elementary matrices over
+`1,z,x_0,...,x_3`, add the positive unit transvections and coordinate
+permutations generating `GL_4(Z)`, and verify that each defining word either
+lies in one positive chamber or is transported through the telescoping
+Weyl atlas.  The theorem above proves every coefficient covariance letter;
+the chamber cover proves the local Steinberg letters.  Only the bookkeeping
+of their combined block permutations remains.
