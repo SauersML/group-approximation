@@ -19359,3 +19359,73 @@ This also reframes the raw-coset averaging failure.  Averaging
 direct sum is.  Sparsity is needed between different substitution-chain
 charts, while the depth direction inside one chain remains the exact
 orthogonal orbit-cycle construction.
+
+### Root-cycle incidence is the correctly oriented sparse frame
+
+There is a canonical sparse frame between complete compressor chains.  Let
+`X_n` be one of the finite outer `Q_n`-sets on the Pauli--flag good channel,
+and let `t_r,t_s` be two fixed root compressors.  On the good part, both act
+freely with the same long order `M_n`.  Write `C_r` and `C_s` for their
+respective sets of orbits in `X_n`.
+
+On
+
+`H_n=ell^2(X_n) tensor K_n`,
+
+let `p_C` project onto one whole `t_r`-orbit `C in C_r`, and let `q_D`
+project onto one whole `t_s`-orbit `D in C_s`.  Then
+
+`sum_(C in C_r) p_C=1`,  `sum_(D in C_s) q_D=1`,
+
+so the combined frame operator is exactly `2`.  Its cross Gram block is
+
+`(1/2)p_C q_D`,
+
+the projection onto `ell^2(C intersect D) tensor K_n`.  Equivalently, form
+the bipartite multigraph whose left vertices are the `t_r`-cycles, whose
+right vertices are the `t_s`-cycles, and whose edge labelled by `x in X_n`
+joins the two cycles containing `x`.  This is precisely the sparse incidence
+model above, now derived from the external group action.
+
+The orientation problem disappears.  Inside a left vertex `C`, retain the
+entire ordinary `t_r` orbit chain
+
+`directSum_(j in Z/M_n Z) sigma(alpha_r^j(-))`;
+
+the compressor moves from the `j+1` block to the `j` block with the identity
+fiber transporter on every nonwrap edge.  Do the same, independently, for
+`t_s` on each right vertex.  No two consecutive depths of one chain are
+fused or averaged.  Fusion is used only at a shared outer point `x`, between
+the depth `j_r(x)` fiber of the `r`-chain and the depth `j_s(x)` fiber of the
+`s`-chain.
+
+For the twelve ordered roots, use the corresponding twelve orbit
+partitions.  Their combined frame operator is the scalar `12`, and the
+nonzero Gram blocks are the hypergraph incidences at common points of
+`X_n`.  Each individual compressor wrap still has density `1/M_n`, and the
+strict orbit-chain witness still occupies `1-1/M_n` of its native cycles.
+Thus the outer action supplies the sparse projections and the correct trace
+weights without disturbing the proved one-compressor theorem.
+
+This reduces cross-root assembly to one point-fiber equation.  After choices
+of cycle origins, the occurrence of `g in Gamma` at `x` in the `r`-chart is
+
+`sigma(alpha_r^(j_r(x))(g))`,
+
+while in the `s`-chart it is
+
+`sigma(alpha_s^(j_s(x))(g))`.
+
+One needs a fiber unitary `J_(r,s,x)` which intertwines the tested global
+letters between these two models, with failures supported only on the
+native jet/Pauli bad projections, and which obeys the cocycle law on every
+triangle of root partitions through `x`.  On the selected strict incidence,
+the same `J_(r,s,x)` must identify the ordinary inverse-conjugate with the
+free-cycle shear cell.  The Pauli--flag trivial-stabilizer calculation can
+remove scalar triangle holonomy, but the non-scalar fiber equation remains.
+
+This is not yet a solution: the sparse-relator-energy audit says the point
+fibers of positive total weight must each satisfy the whole tested tuple.
+It is, however, the correctly oriented finite problem.  The false coset
+depth averaging has been removed; every native chain, wrap estimate, and
+strict commutant remains exactly the already proved orbit-chain one.
