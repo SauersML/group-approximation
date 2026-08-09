@@ -9080,3 +9080,77 @@ infinite coset action.  Unlike scalar phase flux, the relation
 itself is scalar in an irreducible sector.  It therefore lands precisely in
 the matrix-valued/nonorthogonal loophole left by the projective-block
 no-go theorems.
+
+### Clifford-sector decomposition and the exact tracial target
+
+The Clifford lamp has a useful intrinsic normal-subgroup structure.  Let
+`V=direct_sum_X F_2=K_X/<z>`.  The commutator form is
+
+`B(f,h)=(sum_x f(x))(sum_x h(x))+sum_x f(x)h(x) in F_2`.
+
+For basis vectors it is `0` on the diagonal and `1` off the diagonal, so it
+is exactly the form encoded by the presentation of `K_X`.  When `X` is
+infinite it is nondegenerate: if `B(f,delta_y)=0` for every `y`, choose `y`
+outside the finite support of `f` to get `sum f=0`, and then choose every
+`y` in the support to get `f(y)=0`.  Consequently
+
+`Z(K_X)=<z>`.
+
+Every noncentral `k in K_X` has some `l in K_X` with `[k,l]=z`.  Hence every
+nontrivial normal subgroup of `K_X` contains `z`.  More generally, let
+
+`C=core_G(Gamma)`,
+
+the kernel of `G action X`.  If `M normal E_Cl` and `M intersect K_X=1`, then
+every element of `M` centralizes `K_X`: its commutator with `K_X` lies in
+that trivial intersection.  Writing an element as `kg`, this says that the
+permutation action of `g` on `V` is inner.  Inner automorphisms of the
+class-two group `K_X` act trivially on `V`, so `g in C`.  Thus, when the
+coset action is faithful, `<z>` is a finite central monolith of `E_Cl`.
+For the actual arithmetic pair a possible finite central core is harmless
+for the preceding retraction-summand theorem, which did not assume a
+monolith.
+
+There is also an exact C-star decomposition.  The central projections
+
+`e_+=(1+z)/2`,  `e_-=(1-z)/2`
+
+are `G`-invariant.  In the `e_+` sector the lamps commute, while in the
+`e_-` sector distinct lamp generators anticommute.  Therefore
+
+`C_r^*(E_Cl)e_+`
+`  = C({-1,1}^X) crossed_r G`,
+
+the generalized Bernoulli sector, and
+
+`C_r^*(E_Cl)e_-`
+`  = CAR(l2_R(X)) crossed_(Bog),r G`.
+
+Here `CAR(l2_R(X))` is the infinite complex Clifford algebra, equivalently
+the `2^infinity` UHF algebra, and `G` acts by the Bogoljubov automorphisms
+coming from its quasi-regular orthogonal representation on `l2_R(X)`.
+
+**Corollary (one CAR trace suffices).**  If the canonical trace of
+
+`CAR(l2_R(G/Gamma)) crossed_(Bog),r G`
+
+is Connes embeddable, then `E_Cl` has a hyperlinear image which is nonsofic;
+in fact the canonical `e_-` representation already keeps `z=-1` and is
+faithful on the copy of `G`.
+
+**Proof.**  The Clifford monomials remain distinct in the infinite Clifford
+algebra, and reduced-crossed-product Fourier coefficients distinguish the
+`G` coordinate.  Thus the group map into the unitary group of the `e_-`
+sector is injective.  A trace-preserving embedding of its tracial von
+Neumann closure into `R^omega` makes `E_Cl` hyperlinear.  Its nonsoficity is
+the same Kun--Thom argument in the preceding theorem, now with `z` sent to
+the scalar `-1`.  End proof.
+
+The available crossed-product permanence results do not already prove this
+corollary.  Isometric-action quasidiagonality applies to equicontinuous
+actions on compact spaces; the infinite quasi-regular Bogoljubov action has
+an infinite norm-separated orbit of each Clifford generator.  Likewise,
+arbitrary actions of a hyperlinear group on the hyperfinite factor are not
+known to preserve Connes embeddability.  The exact remaining analytic target
+is therefore this particular fermionic quasi-free action, not a general CAR
+or AF crossed product.
