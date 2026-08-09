@@ -23369,3 +23369,71 @@ example has now been localized more precisely: all individual compressor
 fibers, including their stabilizer actions, are LEF; the obstruction is the
 ambient coinduced assembly, which permits only finite quotients in which
 `H` and `Gamma` have already collapsed together.
+
+## A sharp finite-dimensional extension gap at the compressor fiber
+
+The intrinsic/ambient contrast has an exact representation-theoretic form.
+It is stronger than merely saying that the finite quotients used above do
+not extend.
+
+**Theorem (local quasi-regular coefficients do not extend).**  Let
+
+`H=t Gamma t^(-1)<Gamma<G`
+
+be a strict compressor.  Then:
+
+1. the characteristic function `1_H` is a pointwise limit of matrix
+   coefficients of finite permutation representations of `Gamma`, with the
+   distinguished vectors fixed by `H`;
+2. in every finite-dimensional unitary representation `pi` of `G`,
+
+   `Fix(pi(H))=Fix(pi(Gamma))`.
+
+Consequently, if `gamma in Gamma-H`, no net of finite-dimensional
+representations of `G` with `H`-fixed distinguished vectors can converge to
+the pointed quasi-regular representation
+
+`(lambda_(Gamma/H),delta_H)`.
+
+**Proof.**  For (1), exhaust `Gamma-H` by finite sets.  Separability of `H`
+gives finite quotients `q_n:Gamma->Q_n` such that, eventually for each fixed
+`g`,
+
+`q_n(g) in q_n(H)` if and only if `g in H`.
+
+Let `pi_n` be the permutation representation on `Q_n/q_n(H)` and let
+`xi_n=delta_(q_n(H))`.  Then `xi_n` is `H`-fixed and
+
+`<pi_n(g)xi_n,xi_n>=1_(q_n(g) in q_n(H)) -> 1_H(g)`.
+
+For (2), conjugacy gives
+
+`Fix(pi(H))=pi(t)Fix(pi(Gamma))`,
+
+so the two fixed spaces have the same finite dimension.  Since `H<Gamma`,
+one also has `Fix(pi(Gamma))<=Fix(pi(H))`.  Equality follows.  Thus every
+`H`-fixed vector in a finite-dimensional `G`-representation is fixed by the
+chosen `gamma in Gamma-H`, whereas
+
+`<lambda_(Gamma/H)(gamma)delta_H,delta_H>=0`.
+
+This proves the nonextension claim.  End proof.
+
+There is a uniform approximate version.  Since `H` has property `(T)`, fix
+a finite Kazhdan set `S_H` and a constant `kappa>0` such that
+
+`dist(xi,Fix(pi(H))) <= kappa^(-1) max_(s in S_H)||pi(s)xi-xi||`
+
+for every unitary representation.  In a finite-dimensional representation
+of `G`, the fixed-space equality then gives, for every `gamma in Gamma`,
+
+`||pi(gamma)xi-xi||`
+` <=2 kappa^(-1) max_(s in S_H)||pi(s)xi-xi||`.
+
+The local finite permutation models have the left side equal to `sqrt(2)`
+for `gamma in Gamma-H` while the right-side maximum is zero.  Hence their
+failure to extend to `G` is separated by a dimension-independent constant;
+no choice of larger intrinsic finite quotient repairs it.  A successful
+global Clifford model must again use genuinely nonmultiplicative
+normalized-HS geometry, rather than exact finite-dimensional
+representations with increasingly accurate local orbit data.
