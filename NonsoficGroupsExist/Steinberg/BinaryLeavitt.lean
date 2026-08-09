@@ -1,6 +1,7 @@
 import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Steinberg.FiniteTypePropertyT
+import NonsoficGroupsExist.Steinberg.HigherRankPropertyT
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
@@ -52,6 +53,30 @@ does not assume that the unstable Steinberg kernel vanishes. -/
 theorem rankThree_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg 3) :=
   finiteTypeSteinbergThree_hasKazhdanPropertyT
+
+/-- The binary-Leavitt Steinberg group has property `(T)` in every rank at
+least five.  The proof uses the explicit complete left-comb matrix family
+inside the coefficient ring and the unconditional higher-rank block-root
+theorem; it does not use the canonical projection to the elementary group. -/
+theorem hasKazhdanPropertyT {n : ℕ} (hn : 5 ≤ n) :
+    HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n) := by
+  obtain ⟨m, rfl⟩ : ∃ m, n = m + 3 := ⟨n - 3, by omega⟩
+  letI : CharP UniversalLeavitt.BinaryLeavittAlgebra 2 :=
+    charP_of_injective_algebraMap (R := ZMod 2)
+      (RingHom.injective
+        (algebraMap (ZMod 2) UniversalLeavitt.BinaryLeavittAlgebra)) 2
+  let F : CompleteMatrixFamily UniversalLeavitt.BinaryLeavittAlgebra
+      (Fin (m + 1)) :=
+    UniversalLeavitt.family.prefixMatrixFamily (leftCombCode m)
+      (UniversalLeavitt.family.leftCombCode_complete m)
+  have hblock : HasKazhdanPropertyT
+      (SteinbergGroup (Fin 2 ⊕ Fin (m + 1))
+        UniversalLeavitt.BinaryLeavittAlgebra) :=
+    finiteTypeBlockSteinberg_hasKazhdanPropertyT F (by simp)
+  let e : (Fin 2 ⊕ Fin (m + 1)) ≃ Fin (m + 3) :=
+    finSumFinEquiv.trans (finCongr (by omega))
+  exact HasKazhdanPropertyT.of_mulEquiv
+    (SteinbergGroup.reindexEquiv e).symm hblock
 
 /-- The elementary binary-Leavitt base has property `(T)` in every rank at
 least two.  Rank three is the finite-field EJZ theorem, and the explicit
