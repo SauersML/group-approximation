@@ -24804,3 +24804,74 @@ does pass from this universal Leavitt cover to its quotient because prefix
 stabilization locally kills every central cocycle defect.  It still does not
 establish the premise `U_Q hyperlinear`; that is exactly the analytic side
 of the existing Hilbert--Schmidt stability fork.
+
+# The `2`-Kazhdan route reduces to the nontrivial coefficient sector (2026-08-09)
+
+There is a precise cohomological route to the stable side of the
+Leavitt--Steinberg fork, but ordinary property `(T)` does not complete it.
+Let
+
+`U=St_5(L_(F_2)(1,2))`.
+
+The Kervaire--Steinberg central-closure theorem already recorded above says
+that `U` is perfect and every central extension of `U` splits.  Equivalently,
+
+`H_1(U,Z)=H_2(U,Z)=0`.                                    `(1)`
+
+Thus `U` is superperfect.  If `pi:U->U(H)` is a unitary representation,
+write
+
+`H=H^U directSum H_0`,
+
+where `H_0` has no invariant vectors.  Group cohomology respects this
+orthogonal direct sum.  On `H^U` the action is trivial, and the universal
+coefficient sequence together with `(1)` gives
+
+`H^2(U,H^U)=0`.                                           `(2)`
+
+Property `(T)` gives `H^1(U,pi)=0` for every unitary `pi`.  Consequently:
+
+**Proposition (exact `2`-Kazhdan reduction).**  The group `U` is
+`2`-Kazhdan if and only if
+
+`H^2(U,H_pi)=0`
+
+for every unitary representation `pi` with `H_pi^U=0`.  In particular, a
+proof of this one nontrivial-coefficient statement would make `U`
+Frobenius/Hilbert--Schmidt stable by de Chiffre--Glebsky--Lubotzky--Thom.
+Since every finite-dimensional representation of `U` is trivial, the
+stability theorem would then make `U` an explicit finitely presented
+Kazhdan nonhyperlinear group.
+
+There is a useful two-input sufficient condition.  For every unitary `pi`
+without invariant vectors, it is enough to prove both
+
+`H_b^2(U,H_pi)=0`                                         `(3)`
+
+and injectivity of the comparison map
+
+`H_b^2(U,H_pi) -> H^2(U,H_pi)`.                          `(4)`
+
+Indeed `(3)` and `(4)` force the target of `(4)` to vanish, and `(2)`
+handles the invariant part.
+
+**Citation audit / stopping point.**  The known property `(TT)/T` results
+for commutative universal lattices establish the comparison-map side `(4)`;
+they do not establish `(3)`.  Moreover their stated coefficient-ring
+hypotheses do not include the noncommutative binary Leavitt algebra.  The
+root-graded theorem of Ershov--Jaikin-Zapirain--Kassabov that does apply to
+finitely generated associative rings proves property `(T)`, not
+`2`-Kazhdan or bounded degree-two vanishing.  Therefore neither result may
+be cited as HS stability of `U`.
+
+This eliminates the trivial coefficient sector completely and leaves an
+exact open theorem rather than a vague stability request:
+
+`for every pi with H_pi^U=0, prove H^2(U,H_pi)=0`.
+
+Primary pins: de Chiffre--Glebsky--Lubotzky--Thom, *Stability,
+cohomology vanishing, and non-approximable groups*, for `2`-Kazhdan
+implying Frobenius stability; Mimura, *Property `(TT)` modulo `(T)` and
+homomorphism superrigidity into mapping class groups*, for the scope of the
+comparison-map theorem; Ershov--Jaikin-Zapirain, *Property `(T)` for
+noncommutative universal lattices*, for the applicable degree-one result.
