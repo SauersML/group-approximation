@@ -18007,3 +18007,58 @@ operators with `o(1)` fusion-Gram discrepancy while the finite list of local
 Steinberg cells stays exact.  Once that is achieved, `1 tensor z` already
 has exact passive coherence and the order-one lower bound passes through the
 existing fusion energy lemma.
+
+### One ambient absorption trivializes every positive chart at a fixed stage
+
+The common-positive-image qualification can be met uniformly for the
+fixed-base model.  At stage `N`, all depth maps land in the same finite jet
+group
+
+`H_N=EL_r(S_N)`;
+
+only their image subgroups `H_(N,d)=im(EL_r(Phi_(d,h)))` vary.  Therefore take
+`A=H_N` in the preceding absorption, not the smaller depth image.  Use the
+left regular representation `rho=lambda_(H_N)` on the native jet factor and
+tensor it with a second copy of `lambda_(H_N)`.  The single absorption unitary
+`T_N` then gives, for every depth and every `gamma in Gamma`,
+
+`T_N(lambda(Phi_d(gamma)) tensor lambda(Phi_d(gamma)))T_N^*`
+` =lambda(Phi_d(gamma)) tensor 1`.
+
+Thus every positive chart lives on the literal common Hilbert space
+
+`ell^2(H_N) tensor ell^2(H_N)`,
+
+with all coefficient action in the first factor.  If `Chat_C` is one of the
+audited fixed-base ring automorphisms, its permutation unitary `P_C` satisfies
+
+`(P_C tensor 1)(lambda(h) tensor 1)(P_C tensor 1)^*`
+` =lambda(Chat_C(h)) tensor 1`.
+
+Hence the passive `SL_4` chamber potentials may be chosen on the first factor
+only.  A witness `1 tensor rho_right(r)` is then fixed exactly by every
+passive chart map and commutes with every depth image of `Gamma`.
+
+For an antipodal owner cell, construct the two orbitwise shear copies before
+absorption and let
+
+`B_(abs,d)=T_N(B_d tensor B_d)T_N^*`.
+
+Its native `A_2` relation has output `lambda(Phi_d(c)) tensor 1`, and the
+right-regular averaging bound supplies `r=r(d,B)` with
+
+`||[B_(abs,d),1 tensor rho_right(r)]||_2^2>=2(1-1/p)`.
+
+Transport the complete coupled `B_(abs,d)` through `P_C tensor 1`; its
+relation and strict energy are unchanged.  The witness no longer has a
+chart-coherence cost at all.
+
+This closes three formerly entangled issues at once: varying depth-image
+dimensions, passive positive-chart equivalence, and witness transport.  It
+does not identify two independently constructed shear operators assigned to
+the same global Laurent root.  The sole remaining local-to-global condition
+is now **missing-root synchronization**: choose one owner for each tested
+Laurent root and prove that all of its other Steinberg-cell occurrences are
+fusion-Gram close to the passive transports of that one coupled operator.
+No additional regular absorption or witness matching is required after that
+condition is proved.
