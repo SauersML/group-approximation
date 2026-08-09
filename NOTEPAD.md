@@ -26468,3 +26468,97 @@ and hence the known unnormalized Frobenius-stability consequence for
 for normalized-HS nonhyperlinearity.  Conversely, a concrete failure
 supplies a nonzero unitary-coefficient `H^2` class but does not by itself
 construct the normalized-HS certificate.
+
+# Scalar atlas flux is harmless (2026-08-09)
+
+The canonical regular-`A_8` criterion can be weakened from ordinary relator
+convergence to **projective** relator convergence.  For `V in U(d)` put
+
+`ell_pr(V)=inf_(z in T)||V-z1||_2`.
+
+Then `Q=L_(F_2)(1,2)^x` is hyperlinear if and only if there are
+`k_n>=1` and relative unitaries `U_n in U(20160 k_n)` such that the exact
+free-product representations
+
+`pi_n|K_1=lambda tensor 1_(k_n)`,
+
+`pi_n|K_2=U_n(lambda tensor 1_(k_n))U_n^*`
+
+satisfy
+
+`max_(s in Sbar) ell_pr(pi_n(s))->0`.
+
+The forward implication is the already proved ordinary canonical criterion.
+For the reverse implication, pass to the projective metric ultraproduct.
+The finite normal generators `Sbar` die there, so the representation factors
+as
+
+`Phi:U_Q=Pbar/Nbar -> product_omega PU(20160 k_n)`.
+
+It is nontrivial: for noncommuting `p,h` in the first `A_8` chart, the
+regular matrix of `[p,h]!=1` has trace zero and projective distance `sqrt(2)`
+from the identity.  Quasisimplicity therefore makes `ker(Phi)` central.
+
+The projective image is hyperlinear by a dimension-free exact embedding.
+The adjoint representation
+
+`Ad:PU(d)->U(M_d(C))=U(d^2)`
+
+obeys, with normalized traces,
+
+`ell_pr(V)^2=2-2|tr_d(V)|`,
+
+`||Ad(V)-1||_(2,d^2)^2=2-2|tr_d(V)|^2`.
+
+Hence
+
+`ell_pr(V)^2 <= ||Ad(V)-1||_2^2 <= 2 ell_pr(V)^2`,
+
+and `Ad` induces an injection of projective metric ultraproducts into
+tracial matrix ultraproducts.  The image of `U_Q` is a hyperlinear central
+extension of `Q`; Thom's central-quotient theorem makes `Q` hyperlinear.
+
+Thus the final finite-dimensional construction owes no scalar phase choice
+at all.  Every central Schur, Weil, metaplectic, or atlas flux may persist as
+an arbitrary stage-dependent scalar on each finite normal relator.  Only
+the non-scalar relation-module component must be contracted.  The complete
+proof is recorded in `docs/EXPLICIT_LEAVITT_ATLAS.md`, Section 10.
+
+## Bass--Serre realization: two averaging projections control the module
+
+There is no need to extract the finite relator list in order to describe
+`M` abstractly.  Let `T` be the Bass--Serre tree of `Pbar=A*B`.  The kernel
+`Nbar` meets every conjugate of `A` and `B` trivially, because both chart
+groups embed in `U_Q`.  Hence `Nbar` acts freely on `T`, the quotient
+`X=Nbar\T` is a connected graph with `pi_1(X)=Nbar`, and `U_Q` acts on
+`X` with one edge orbit and two vertex orbits.  Its cellular sequence is
+
+`0 -> M -> Z[U_Q] -> Z[U_Q/A] directSum Z[U_Q/B] -> Z -> 0`. `(RM4)`
+
+With an orientation from the `A`-vertex to the `B`-vertex, the middle map
+sends the basis edge `g` to `(-gA,gB)`.  Exactness on the left is precisely
+`M=H_1(X,Z)=Nbar_ab`.
+
+Over `C`, put
+
+`e_A=|A|^(-1) sum_(a in A) a`,  `e_B=|B|^(-1) sum_(b in B) b`.
+
+Identifying `C[U_Q/A]` with `C[U_Q]e_A` and similarly for `B`, `(RM4)`
+gives the explicit simultaneous-averaging kernel
+
+`M tensor C ~= {x in C[U_Q] : x e_A=0 and x e_B=0}`.     `(RM5)`
+
+For a unitary representation `pi`, the operators `pi(e_A)` and `pi(e_B)`
+are exactly the orthogonal projections onto `V^A` and `V^B`.  Thus `(RM2)`
+and `(RM5)` locate all possible nonzero `H^2(U_Q,V)` in the failure of
+equivariant maps out of this simultaneous kernel to extend across the
+regular module.  In particular the cohomological frontier is governed by
+the relative position, over every unitary representation, of only the two
+finite-subgroup averaging projections.
+
+One must not infer algebraic projectivity of `M` merely from a spectral
+projection in a group `C^*`-completion: an algebraic equivariant map on
+`M` need not extend continuously to that completion.  A valid next theorem
+would need either an algebraic splitting of `(RM4)` at `M`, or a uniform
+bounded-extension result for all the finitely generated equivariant maps
+appearing in `(RM2)`.  Neither has been proved here.
