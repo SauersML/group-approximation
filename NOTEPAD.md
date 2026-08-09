@@ -18456,6 +18456,70 @@ definition.  Once that support statement is written without silently using
 full `Gamma` covariance, the existing fusion identities complete the
 finite-stage microstate construction.
 
+### Semidirect audit: the coupled shear must equal the compressor conjugate
+
+The last support statement has one distinguished incidence which owner
+transport cannot define away.  For the strict witness, the selected missing
+Laurent root is not an arbitrary Steinberg generator.  It is
+
+`B=t^(-1) gamma t`
+
+for the fixed positive external compressor `t` and `gamma in Gamma`.  Hence
+the final microstate must satisfy
+
+`U_t^* U_gamma U_t ~= B_abs`.
+
+The orbitwise construction proves the Steinberg relations and the strict
+commutator for `B_abs`; it does not yet construct `U_t` with this displayed
+semidirect covariance.  Conversely, the old fixed-base orbit chain constructs
+an active `U_t` with exact positive covariance on its interior, but its
+invisible conjugate was the operator whose antipodal base-output relation
+remained unresolved.  These are complementary halves, not yet one cell.
+
+Matching only the spectra of `U_t^*U_gamma U_t` and `B_abs` is insufficient,
+for the same reason that three cyclic spectra did not glue the Heisenberg
+cell.  A conjugator which matches this one order-`p` operator must also obey
+the tested covariance equations
+
+`U_t^* U_delta U_t ~=U_(t^(-1) delta t)`
+
+for the finite positive `Gamma` window.  If it obeyed the whole finite image
+exactly, finite-dimensional relative uniqueness would make it a normalizer
+of the positive commutant and kill strictness.  The mismatch must remain on
+the existing macro/depth boundary while the selected conjugacy equation and
+the order-one escape hold on the bulk.
+
+The ambient-absorption picture makes the required operator explicit.  On
+
+`ell^2(H_N) tensor ell^2(H_N)`
+
+one needs a coupled compressor `T_abs` such that on the native good sector
+
+`T_abs^*(lambda(Phi_d(gamma)) tensor 1)T_abs=B_(abs,d)`,
+
+while for every other tested positive letter its conjugation agrees with the
+fixed-base depth update up to the scheduled boundary.  At the same time
+
+`[1 tensor z,lambda(Phi_d(Gamma)) tensor 1]=1`
+
+and
+
+`||[B_(abs,d),1 tensor z]||_2>=kappa`.
+
+This is the exact **compressor--shear coupling lemma**.  It should be built
+by replacing the fiber transition on each interior compressor edge with the
+regular-absorption conjugate of the orbitwise shear intertwiner, and then
+checking the remaining positive generators on the nilpotent complement.
+The cyclic macro completion may absorb the edge boundary only after that
+fiber calculation is exact.
+
+Accordingly the growing-atlas scheduling theorem is valid conditional on
+this one cell, but the finite-stage microstate construction is not complete
+until the compressor--shear coupling lemma is proved.  All other new
+incidences—matrix-root induction, prime-field owner matching, passive witness
+coherence, and atlas-size scheduling—have been reduced to exact finite
+calculations.
+
 ### Audit: a negative simple-root shear does not descend to the jet image
 
 The infinite polynomial simple-root complement above is valid, but the
