@@ -24535,3 +24535,108 @@ This leaves Thom's group as a possible hyperlinear nonsofic example, but its
 nonsoficity would require a different rigidity mechanism--for example the
 global phase-factorization/cosystolic theorem isolated earlier--rather than
 the new centralizer-normalization criterion.
+
+# Prefix insertion is the exact unstable-`K_2` stabilization map (2026-08-09)
+
+The matrix self-similarity does not make standard stabilization inner, but it
+does identify it with a concrete endomorphism.  This gives a sharper form of
+Khanh--Thanh's warning that the isomorphisms `M_n(L) ~= L` do not imply
+stability.
+
+Let `L=L_(F_2)(1,2)`.  For a complete ordered binary prefix code
+
+`C=(gamma_1,...,gamma_n)`,
+
+write
+
+`Theta_C((a_ij))=sum_(i,j) s_(gamma_i) a_ij t_(gamma_j)`.
+
+Prefix every leaf of `C` by `0` and append the leaf `1`:
+
+`D=(0 gamma_1,...,0 gamma_n,1)`.
+
+Then `D` is a complete code of size `n+1`.  Define the proper corner-insertion
+endomorphism of the unit group by
+
+`kappa_0(u)=s_0 u t_0+s_1t_1`.
+
+**Theorem (transported stabilization).**  For every `A in GL_n(L)`,
+
+`Theta_D(diag(A,1))=kappa_0(Theta_C(A))`.                 `(1)`
+
+Thus the square
+
+`GL_n(L) --diag(-,1)--> GL_(n+1)(L)`
+
+`  |Theta_C                 |Theta_D`
+
+`  v                        v`
+
+`L^x --------kappa_0------> L^x`
+
+commutes exactly.  Over `F_2`, where the relevant general linear and
+elementary groups agree, the same statement transports the standard
+elementary stabilization tower.
+
+**Proof.**  The code `D` is complete because the `0`-cylinder is partitioned
+by the cylinders `0 gamma_i` and its complement is the `1`-cylinder.  The
+definition of `Theta_D` gives
+
+`Theta_D(diag(A,1))`
+` =sum_(i,j) s_0 s_(gamma_i) a_ij t_(gamma_j)t_0+s_1t_1`
+` =s_0 Theta_C(A)t_0+s_1t_1`.
+
+This is `(1)`.  End proof.
+
+The formula also proves immediately that the transported map is not inner:
+`kappa_0` is proper.  Indeed every element of its range is the identity on
+the `1`-cylinder; algebraically,
+
+`t_1 kappa_0(u)s_1=1`
+
+for every `u`, a condition not obeyed by all units.  Hence self-similarity
+cannot turn the standard inclusions into automorphisms.
+
+There is a useful homological consequence.  For `n>=5`, identify
+
+`K_2(n,L)=H_2(E_n(L),Z)`
+
+through the universal Steinberg extension, and use `(1)` at every stage.
+Khanh--Thanh's computation `K_2(L)=0` is then exactly
+
+`colim(H_2(L^x,Z), (kappa_0)_*)=0`.                       `(2)`
+
+Consequently `(kappa_0)_*` is **locally nilpotent**: for each unstable
+Schur-multiplier class `z`, some iterate `(kappa_0)_*^m(z)` is zero.  If the
+unstable `K_2` group is finitely generated, one exponent kills the whole
+group.
+
+The same conclusion can be expressed using the canonical binary shift
+
+`sigma(u)=s_0ut_0+s_1ut_1`.
+
+The two corner insertions `kappa_0,kappa_1` are conjugate by the prefix swap,
+their images commute, and `sigma(u)=kappa_0(u)kappa_1(u)`.  Since `L^x` is
+perfect, the Kunneth formula has no `H_1 tensor H_1` cross term, so pointwise
+multiplication of commuting homomorphisms adds their maps on `H_2`.  It
+follows that
+
+`sigma_*=2(kappa_0)_*`,
+
+and at depth `m`,
+
+`(sigma^m)_*=2^m(kappa_0)_*^m`.                           `(3)`
+
+Thus the canonical shift acts locally nilpotently on every unstable
+`K_2` class; under finite generation, one iterate acts as zero on all of
+`K_2(n,L)`.
+
+**Exact scope.**  This does not compute the unstable kernel.  An injective
+group endomorphism need not induce an injection on `H_2`, and no retraction
+of `kappa_0(L^x)` can exist inside the simple group `L^x` (a nontrivial
+retraction would have normal kernel and force the proper image to be the
+whole group).  Therefore the tempting final step “`kappa_0` is injective,
+so `(kappa_0)_*` is injective” is invalid.  A genuinely new theorem proving
+injectivity of `(kappa_0)_*` would, together with `(2)`, force
+`K_2(n,L)=0`; absent that theorem, the calculation is an exact obstruction,
+not a solution of the HS-stability fork.
