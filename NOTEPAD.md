@@ -27457,6 +27457,125 @@ with property (T)*, Theorem 2.2, Lemma 3.4, Corollary 3.5 and Proposition
 Sun, *Wreath-like products of groups and their von Neumann algebras I*,
 Theorems 4.20 and 6.9.
 
+# The unrestricted tail is an intrinsic corona cocycle (2026-08-09)
+
+The special-decomposition tails in the preceding section are not an artifact
+of a bad section.  Their classes modulo restricted functions form an
+intrinsic cocycle, and its vanishing is exactly the split-wreath boundary.
+
+Let `G in WR(A,B)` be a regular wreath-like product.  Use Chifan--Drimbe--
+Ioana Lemma 2.13 to write
+
+`G ~= A^(B) semidirect_(alpha,v) B`,
+
+`alpha_b=Ad(rho_b) sigma_b`,
+`v_(b,c)=rho_b sigma_b(rho_c) rho_(bc)^(-1) in A^(B)`,  `(COR1)`
+
+where `rho_b in A^B`, `rho_e=1`, and `sigma` is the Bernoulli shift.  The
+restricted direct sum `A^(B)` is normal in the unrestricted direct product
+`A^B`, so put
+
+`Q_A=A^B/A^(B)`.
+
+**Theorem (corona-cocycle/splitting criterion).**  The classes
+
+`q_b=[rho_b] in Q_A`                                      `(COR2)`
+
+satisfy the nonabelian `1`-cocycle identity
+
+`q_(bc)=q_b sigma_b(q_c)`.                               `(COR3)`
+
+Changing the section used in the special decomposition changes each
+`rho_b` by a restricted function and hence leaves `(COR2)` unchanged (up
+to the simultaneous coordinate gauge coming from changing the initial
+factor identifications).  The following are equivalent:
+
+1. `q_b=1` for every `b in B`;
+2. `q_s=1` on one generating set of `B`;
+3. the special embedding of Corollary 2.15 lands in the restricted wreath
+   product `A^(B) semidirect B`;
+4. `G` is the ordinary wreath product `A wr B` after the corresponding
+   coordinate identification.
+
+**Proof.**  Reducing `(COR1)` modulo `A^(B)` gives `(COR3)`.  Replacing a
+lift `k_b` of `b` by `d_b k_b`, with `d_b in A^(B)`, left-multiplies the
+tail by a restricted function, proving section independence.  The cocycle
+identity shows that vanishing on generators implies vanishing everywhere.
+
+For the last two assertions, the special embedding is
+
+`lambda(a,b)=(a rho_b,b) in A^B semidirect B`.
+
+It contains the entire restricted base `A^(B)`.  If `rho_b` is restricted,
+then `(rho_b^(-1),e)` also lies in the image, and multiplying it by
+`(rho_b,b)` produces the pure lift `(1,b)`.  Pure lifts for a generating
+set produce every `(1,b)`, so the image is the full restricted wreath
+product.  The converse is immediate by choosing `rho_b=1`.  End proof.
+
+Thus a nontrivial property-`(T)` regular wreath-like product with infinite
+acting group has a nonzero corona cocycle.  Indeed, if the class vanished,
+the theorem would identify it with the full ordinary wreath product; the
+Leemann--Schneeberger property-`FW` criterion rules out property `(T)` for
+that infinite-orbit split product.  In particular, no change of section can
+turn all generator tails into finitely supported functions.  The
+unrestricted tail found in the analytic audit is forced algebraically.
+
+For abelian `A` this invariant is exactly the usual extension class.  The
+short exact sequence of `B`-modules
+
+`0 -> A^(B) -> A^B -> Q_A -> 0`                         `(COR4)`
+
+has coinduced middle term `A^B=Coind_1^B(A)`.  Shapiro's lemma gives
+`H^n(B,A^B)=0` for `n>=1`, so the connecting map is an isomorphism
+
+`delta:H^1(B,Q_A) ~= H^2(B,A^(B))`.                    `(COR5)`
+
+Under `(COR5)`, the class of `(q_b)` maps to the factor-set class represented
+by `(v_(b,c))` in `(COR1)`.  Hence the CIOS abelian-lamp property-`(T)`
+examples necessarily carry a nonzero class in the right side of `(COR5)`.
+
+**Impact on the main problem.**  Existing restricted-wreath hyperlinearity
+theorems apply precisely to the zero class and therefore precisely to the
+case property `(T)` excludes.  A successful positive theorem must
+microstate a nonzero corona class.  Equivalently in the abelian case, it
+must give finite-dimensional tracial models for a nonzero induced-module
+`H^2` class, rather than merely approximate the abstract acting group.  This
+is a sharper invariant formulation of the labelled-tail boundary and gives
+a concrete cohomology class on which to test profinite, projective, or
+Clifford constructions.
+
+There is an exact operator-algebraic version of this target.  If `A` is
+abelian, Fourier transform identifies
+
+`L(A^(B)) = L^infinity(hat(A)^B)`.
+
+The inner part `Ad(rho_b)` in `(COR1)` disappears on the abelian base, so
+the action is the ordinary Bernoulli shift.  The extension class survives as
+the scalar cylinder cocycle
+
+`omega_(b,c)(x)=x(v_(b,c))`,  `x in hat(A)^B`,           `(COR6)`
+
+and
+
+`L(G) ~= L^infinity(hat(A)^B) crossed_(sigma,omega) B`. `(COR7)`
+
+Thus if `B` is sofic, Elek--Lippner makes the *underlying* Bernoulli orbit
+relation sofic.  Their untwisted embedding theorem alone does not remove
+the nonzero cocycle `(COR6)`: the needed positive statement is Connes
+embeddability of this particular cocycle-twisted relation algebra.  Since
+every `v_(b,c)` has finite support, `(COR6)` is a cylinder cocycle; if `A`
+has finite exponent, it is even finite-valued.  This gives a particularly
+concrete next theorem: finite-dimensional twisted groupoid models for
+finite-valued cylinder `2`-cocycles on sofic Bernoulli relations.  Such a
+theorem would make the corresponding finite-abelian-lamp CIOS groups
+hyperlinear whenever their quotient `B` is sofic.  It would not by itself
+prove those groups nonsofic, so the Kun--Thom geometry would still have to
+be installed separately.
+
+Primary pin: Chifan--Drimbe--Ioana, *Embedding universality for II1 factors
+with property (T)*, Lemma 2.13 and Corollary 2.15; Elek--Lippner, *Sofic
+equivalence relations*, for the untwisted relation theorem.
+
 ## Hyperbolically embedded stabilizers cannot be Kun--Thom cores
 
 The nonregular Cohen--Lyndon construction does not evade the preceding
