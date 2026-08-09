@@ -20534,6 +20534,189 @@ cocycle action on a single finite Clifford factor does not furnish the
 missing quantum action.  The surviving freedom is approximate associativity
 or moving central blocks, not merely a large factor commutant.
 
+### The direct CAR target is a tail `H^2`-vanishing problem
+
+There is a more precise formulation of the genuinely approximate escape in
+item (2).  It separates local Bogoljubov covariance, which is automatic, from
+the one remaining global obstruction.
+
+Let `R_CAR` be the tracial von Neumann closure of
+`CAR(l2_R(X))`, with `X=G/Gamma`, and let `alpha` be the permutation
+Bogoljubov action.  Choose exhausting finite coordinate sets and, for every
+fixed `g in G`, extend the corresponding finite partial coordinate map to an
+arbitrary permutation of a larger finite set.  Let `U_(g,n)` be a Pin lift in
+the associated even finite Clifford factor `M_(d_n)`.  A diagonal schedule
+ensures that for every local `a in R_CAR`,
+
+`Ad(U_(g,n))(a) = alpha_g(a)`
+
+for all sufficiently large `n` after identifying `a` with its finite-stage
+copy.  Put
+
+`M=product_omega M_(d_n)`,
+
+let `iota:R_CAR->M` be the diagonal tracial embedding, and write `U_g` for
+the ultraproduct unitary.  Then
+
+`Ad(U_g) o iota=iota o alpha_g`
+
+exactly.  The spin-discreteness calculation says that the `U_g` need not
+form a representation.  Instead define
+
+`c(g,h)=U_g U_h U_(gh)^*`.
+
+Both sides implement the same automorphism of `iota(R_CAR)`, so
+
+`c(g,h) in N:=iota(R_CAR)' intersect M`.
+
+If `beta_g=Ad(U_g)|N`, associativity gives the exact cocycle-action
+identities
+
+`beta_g beta_h=Ad(c(g,h)) beta_(gh)`,
+
+`c(g,h)c(gh,k)=beta_g(c(h,k))c(g,hk)`.
+
+Thus arbitrary coordinate completions do not lose their relator errors; they
+package them as one nonabelian `2`-cocycle in the CAR tail relative
+commutant.
+
+**Theorem (tail-cocycle certificate).**  A hyperlinear nonsofic group exists
+if there are unitaries `v_g in N`, for `g in G`, satisfying
+
+`v_g beta_g(v_h)c(g,h)v_(gh)^*=1`
+
+for every `g,h`.  Conversely, for the fixed diagonal embedding and chosen
+local implementers, any coherent inner implementation of `alpha` in `M`
+gives such a trivialization.
+
+**Proof.**  Set `W_g=v_gU_g`.  Since `v_g` commutes with
+`iota(R_CAR)`, `Ad(W_g)` still implements `alpha_g`.  The displayed
+equation gives
+
+`W_gW_h=v_g beta_g(v_h)c(g,h)U_(gh)=v_(gh)U_(gh)=W_(gh)`.
+
+Hence the Clifford generators in `iota(R_CAR)`, together with the genuine
+representation `g |-> W_g`, define a homomorphism
+
+`eta:H_Cl->U(M)`
+
+which sends the central Clifford involution to the scalar `-1`.  No
+faithfulness or crossed-product Fourier-trace identity is assumed in this
+algebraic certificate.
+Take the block sum of `eta` with a faithful hyperlinear representation of
+the retract `G`, exactly as in the weak-MF Clifford theorem.  Its image is
+hyperlinear, faithful on `G`, retains `z`, and is nonsofic by Kun--Thom
+centralizer normalization.
+
+Conversely, if coherent implementers `W_g in M` implement the same action,
+put `v_g=W_gU_g^*`.  Then `v_g in N`, and expanding `W_gW_h=W_(gh)` gives
+the displayed coboundary equation.  End proof.
+
+**Scope correction (Popa's equivalence).**  For a free action on the
+hyperfinite factor, this target is *not* analytically weaker than Connes
+embeddability of the canonical crossed product.  Popa, *On the vanishing
+cohomology problem for cocycle actions of groups on II_1 factors*,
+Proposition 6.3, proves that the canonical tail cocycle in
+`R' intersect R^omega` vanishes if and only if `R crossed G` embeds in
+`R^omega`.  Equivalently, proper outerness forces a coherent inner
+implementation to have the canonical crossed-product trace.  Our certificate
+does not need to impose the Fourier identities separately, but they become
+automatic in the free case.  A genuine weakening can occur only after
+allowing a nonfaithful/nonfree quotient action, which is sufficient for the
+block-sum Kun--Thom argument provided `z` survives.
+
+The formulation still explains exactly why naive permutation completion
+fails.  For a nontrivial tail permutation the Pin defect has order-one
+Hilbert--Schmidt distance from scalars, but it is nevertheless central
+relative to every fixed local CAR observable.  The missing operation is
+therefore not to make that defect small directly; it is to absorb its
+nonabelian cohomology class by unitaries in the large tail factor `N`.
+
+Known cohomology-vanishing theorems do not immediately apply.  Ocneanu-type
+vanishing is available for amenable acting groups, whereas the Kun--Thom
+ambient is Kazhdan.  Packer--Raeburn stabilization uses a properly infinite
+regular factor and does not preserve the finite tracial target.  The useful
+new reduction is that one may now attack this **specific tail cocycle**, not
+arbitrary CAR crossed-product microstates and not the impossible
+operator-norm one-particle profile.
+
+### A tail trivialization cannot remain Bogoljubov
+
+The tail-cocycle certificate genuinely needs the full unitary group of the
+relative commutant.  Correcting the arbitrary coordinate completions by
+additional tail Pin/Bogoljubov unitaries would fall back into the forbidden
+one-particle profile.
+
+**Theorem (no Bogoljubov tail coboundary).**  Use the finite coordinate
+completions `P_(g,n) in O(V_n)` and Pin lifts `U_(g,n)` from the preceding
+section.  Suppose a putative trivializing cochain `v_g in N` has
+representatives `v_(g,n)` which are Pin lifts of orthogonal maps
+`R_(g,n) in O(V_n)`, and suppose their tail property is Bogoljubov in the
+literal sense
+
+`||R_(g,n)e_x-e_x|| ->0`
+
+for every fixed coordinate vector `e_x`.  Then the coboundary equations
+cannot hold.
+
+**Proof.**  Put
+
+`W_(g,n)=v_(g,n)U_(g,n)` and
+`Q_(g,n)=R_(g,n)P_(g,n)`.
+
+Thus `W_(g,n)` is a Pin lift of `Q_(g,n)`.  If the tail cocycle were
+trivialized, then for every fixed `g,h`,
+
+`||W_(g,n)W_(h,n)-W_(gh,n)||_2 ->0`.
+
+The defect unitary on the left is a Pin lift of
+
+`D_(g,h,n)=Q_(g,n)Q_(h,n)Q_(gh,n)^(-1)`.
+
+Its normalized trace tends to one.  The spin character identity gives
+
+`|tr(W_g W_h W_(gh)^*)|^2=det((1+D_(g,h,n))/2) ->1`.
+
+Write the nontrivial eigenangles of the real orthogonal matrix `D` as
+`theta_j` (including the standard treatment of real `-1` eigenvalues).  The
+determinant is the product of the factors
+
+`cos^2(theta_j/2)`.
+
+Since `product_j (1-s_j)->1`, with
+`s_j=sin^2(theta_j/2)`, one has `sum_j s_j->0`; for example use
+`product_j(1-s_j)<=exp(-sum_j s_j)`.  Consequently
+
+`||D_(g,h,n)-I||_(Frob)^2=O(sum_j s_j)->0`.
+
+Thus the maps `Q_(.,n):G->O(V_n)` have multiplicative defect tending to
+zero in **unnormalized** Frobenius norm, equivalently
+
+`sqrt(dim V_n)||D_(g,h,n)-I||_(2,V_n)->0`.
+
+The coordinate completions satisfy `P_(g,n)e_o=e_(go)` on every fixed
+window.  The tail hypothesis on `R_(g,n)` therefore gives
+
+`<Q_(g,n)e_o,e_o> -> 1_(g in Gamma)`.
+
+In particular `e_o` is asymptotically `Gamma`-fixed and detects every fixed
+coset outside `Gamma`.  This is precisely the relative square-root
+quasi-regular profile ruled out by the stable-finiteness/Kazhdan-projection
+theorem above.  Contradiction.  End proof.
+
+The hypothesis on fixed coordinate vectors is automatic if
+`v_g in iota(R_CAR)' intersect M` and the chosen representatives normalize
+the finite-stage one-particle Majorana spaces: commutation with each local
+Majorana in Clifford `L2` norm is exactly convergence
+`R_(g,n)e_x-e_x ->0`.  Hence a successful cochain cannot be chosen inside
+the asymptotic Pin normalizer of the tail modes.
+
+This identifies the genuinely fermionic loophole.  The correcting unitaries
+must mix Clifford degrees--for example, send one-particle Majoranas into
+higher odd monomials--while asymptotically centralizing every fixed local
+observable.  Merely replacing tail permutations by soft tail rotations,
+even arbitrary non-coordinate rotations, cannot solve the cocycle.
+
 ---
 
 # Central covers cannot repair the Kun--Thom wreath obstruction (2026-08-09)
