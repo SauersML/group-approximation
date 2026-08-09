@@ -10327,3 +10327,71 @@ nonzero local minimum, so this is neither a lower bound nor an asymptotic
 claim.  It only shows that genuine circle phases improve the elementary
 gauge substantially while leaving the algebraic quadratic-support problem
 unresolved.
+
+### The Schur Bockstein is the normal Euler class of the fixed flat
+
+The remaining Steinberg pin has a concrete geometric form.  Write
+
+`A=(C_2)^2`
+
+and let `x,y in H^1(A,F_2)` be the two coordinate characters.  The standard
+oriented rotation representation of `A` is the sum of its three nontrivial
+real sign lines,
+
+`V=L_x + L_y + L_(x+y)`.
+
+Its Stiefel--Whitney classes are
+
+`w_2(V)=x^2+xy+y^2`,
+
+`w_3(V)=xy(x+y)`.
+
+The central extension `Spin_3 -> SO_3` restricted to `A` is
+`Q_8 -> A`, so `w_2(V)` is precisely its mod-two lifting obstruction.  The
+integral Bockstein satisfies
+
+`rho_2(beta(w_2(V)))=Sq^1(w_2(V))=xy(x+y)=w_3(V)`.
+
+Since `H^3(A,Z)=C_2`, this nonzero class is the integral Euler class
+`e(V)`.  Under `H^2(A,T)=H^3(A,Z)`, it is exactly the Bockstein of the
+circle-valued quaternion/Schur multiplier used above.
+
+This representation is visible in the symmetric space
+
+`X=SL_3(R)/SO(3)`.
+
+The fixed set `X^A` is the two-dimensional diagonal flat.  Its normal bundle
+has rank three, with fibers the off-diagonal symmetric matrices; conjugation
+by the determinant-one diagonal sign changes gives exactly the three
+characters `x,y,x+y`.  Thus the Schur Bockstein is the equivariant normal
+Euler class of `X^A`.
+
+In the level-`p` cover, the Mackey/normalizer calculation produces
+`Theta(p^2)` translates of this fixed-flat stratum.  A support-controlled
+equivariant Thom construction on bounded neighborhoods of those strata
+would therefore give the desired quadratic cocycle directly, and the
+quadratic lower bound shows that this is the correct geometry.
+
+There is still a genuine extension obstruction.  Let
+
+`L_p=Gamma(p) semidirect A`
+
+and form the oriented flat `3`-plane bundle over the corresponding orbifold
+from the retraction `L_p->A`.  Its Euler class is the specified inflation
+class.  Localizing it to the fixed-flat neighborhoods is equivalent to
+constructing an `A`-equivariant nonvanishing section on their complement;
+at the circle-cocycle level one needs a support-controlled spin
+trivialization there.  Proper cyclic isotropy causes no local obstruction,
+because the pushed-out circle extension splits over every proper subgroup
+of `A`.  A global obstruction on the complement, however, is exactly the
+top Steinberg-homology ambiguity isolated above.
+
+Hence the geometric Thom formulation and the Farrell formulation agree:
+
+> prove that the normal Euler/spin obstruction of the diagonal fixed flats
+> has no residual top-Steinberg component away from their `Theta(p^2)`
+> bounded stars.
+
+This identification supplies a concrete candidate cocycle (an equivariant
+Thom/spin cocycle) and a concrete place to calculate the last boundary map;
+it does not yet assert that the required section exists.
