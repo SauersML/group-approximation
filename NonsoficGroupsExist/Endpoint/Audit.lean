@@ -36,6 +36,7 @@ import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.A2System
 import NonsoficGroupsExist.Steinberg.A2Kazhdan
 import NonsoficGroupsExist.Steinberg.BinaryLeavitt
+import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 
 /-!
 # Human-readable axiom report
@@ -91,6 +92,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.SteinbergGroup.x_injective
 #print axioms NonsoficGroupsExist.SteinbergGroup.a2System
 #print axioms NonsoficGroupsExist.SteinbergGroup.binaryLeavitt_exists_rootSet_isKazhdan
+#print axioms NonsoficGroupsExist.KervaireSteinberg.commutator_commutes_of_commutators_mem_center
+#print axioms NonsoficGroupsExist.KervaireSteinberg.lifts_commute_of_spare_index
+#print axioms NonsoficGroupsExist.KervaireSteinberg.fin_lifts_commute
 #print axioms NonsoficGroupsExist.everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.projection_surjective
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.isPerfect
