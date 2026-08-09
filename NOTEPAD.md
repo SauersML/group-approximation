@@ -8131,3 +8131,82 @@ is non-flexible, and the standard deleted-small-rank witnesses are flexibly
 repairable.  Likewise, the unnormalized Frobenius `[T_2]` calculation above
 does not decide normalized-HS behavior because the two defects differ by a
 factor `sqrt(dimension)`.
+
+### The normal lamp kernel has no Kazhdan projection
+
+The monolithic-lamp and MF-Mautner reductions suggest a tempting way to
+remove rank blindness.  Let `X=G/Gamma` be infinite and transitive, let `K`
+be a nontrivial finite group, and put
+
+`B_sum=directSum_X K`,  `W=B_sum semidirect G`.
+
+If the pair `(W,B_sum)` had relative property `(T)`, the projection onto the
+`B_sum`-fixed vectors would be a central Kazhdan projection for every
+representation of `W`.  Cutting a faithful weak-MF representation by its
+nonfixed corner would then give a trace normalization on which one lamp is
+visible; transitivity would make every conjugate lamp equally visible.  This
+would finish the monolithic finite-simple-lamp route.  The required relative
+property `(T)` is false for a reason independent of the ambient Kazhdan
+group.
+
+**Theorem (Bernoulli failure of relative `(T)`).**  If `X` is infinite and
+`K` is a nontrivial finite group, then `(W,B_sum)` does not have relative
+property `(T)`.  The same is true for the free-lamp group
+
+`H_free=(*_X K) semidirect G`
+
+and its normal free-product lamp kernel `B_free=*_X K`.
+
+**Proof.**  Let `chi_K` be the normalized character of the zero-sum
+subrepresentation of the left regular representation of `K`; it has no
+nonzero `K`-invariant vector.  For `0<delta<1`, let
+
+`varphi_delta=(1-delta) 1_K + delta chi_K`
+
+and form the infinite tensor-product state
+
+`Phi_delta(b)=product_(x in X) varphi_delta(b_x)`
+
+on `B_sum`; the product is finite on each group element.  It is invariant
+under every permutation of `X`, hence under `G`.  Its GNS representation
+therefore extends to `W`, with cyclic vector `xi_delta` fixed by `G`.
+For every element `k` in the distinguished coordinate,
+
+`||pi_delta(k)xi_delta-xi_delta||^2`
+` =2-2 Re(varphi_delta(k)) <= 4 delta`.
+
+Since `G` together with that one coordinate generates `W`, the vectors
+`xi_delta` are almost `W`-invariant as `delta->0`.
+
+They live in representations with no nonzero `B_sum`-invariant vector.  To
+see this, for a finite `E subset X` let `P_E` be the product of the averaging
+projections onto the `K`-fixed subspaces in the coordinates of `E`.  These
+projections decrease strongly to the projection `P_B` onto the
+`B_sum`-fixed subspace.  On the cyclic vector,
+
+`||P_E xi_delta||^2=(1-delta)^|E| -> 0`.
+
+The same limit holds on the dense set obtained by applying finitely
+supported lamp words: choose the new coordinates in `E` outside the finite
+support of the word.  Hence `P_B=0`.  This proves failure of relative `(T)`
+for `(W,B_sum)`.
+
+There is a quotient homomorphism
+
+`H_free -> W`
+
+which is the identity on `G` and sends each free factor `K_x` to the
+corresponding commuting coordinate.  Pull back the preceding
+representations.  Their `B_free`-fixed vectors are exactly their
+`B_sum`-fixed vectors, hence zero, while the same cyclic vectors remain
+almost invariant.  Thus `(H_free,B_free)` also fails relative `(T)`.  End
+proof.
+
+**Consequence.**  Neither property `(T)` of `G` nor normal generation of the
+lamp kernel by a single finite subgroup supplies a norm-continuous projection
+onto the nontrivial lamp sector.  The nonfixed sector can drift to zero trace
+through the Bernoulli parameter `delta`, exactly reproducing rank blindness.
+Therefore Kazhdan-corner extraction works for the simple Kazhdan Leavitt
+witness but cannot be transplanted to the normal lamp kernel of either the
+commuting or Shulman free-lamp construction.  Any trace-visible-lamp proof
+must use the compressor geometry, not relative `(T)` of the whole base.
