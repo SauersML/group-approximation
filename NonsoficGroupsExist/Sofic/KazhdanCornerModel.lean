@@ -236,6 +236,13 @@ omit [Fintype Y] [DecidableEq Y] in
   rfl
 
 omit [Fintype Y] [DecidableEq Y] in
+@[simp] theorem coordinateBlock_conjTranspose (p q : Y → Prop)
+    [DecidablePred p] [DecidablePred q] (C : Matrix Y Y ℂ) :
+    (coordinateBlock p q C)ᴴ = coordinateBlock q p Cᴴ := by
+  ext i j
+  rfl
+
+omit [Fintype Y] [DecidableEq Y] in
 @[simp] theorem principalBlock_sub (p : Y → Prop) [DecidablePred p]
     (C D : Matrix Y Y ℂ) :
     principalBlock p (C - D) = principalBlock p C - principalBlock p D := by
@@ -277,6 +284,65 @@ theorem norm_coordinateBlock_disjoint_le_residual
   rw [heq]
   exact norm_coordinateBlock_le p q _
 
+/-- Generic principal-compression multiplicativity estimate. -/
+theorem norm_principalBlock_mul_defect_le (p : Y → Prop) [DecidablePred p]
+    (A B C : Matrix Y Y ℂ) :
+    ‖principalBlock p A - principalBlock p B * principalBlock p C‖ ≤
+      ‖A - B * C‖ +
+        ‖coordinateBlock p (fun i ↦ ¬p i) B‖ *
+          ‖coordinateBlock (fun i ↦ ¬p i) p C‖ := by
+  have hsplit : principalBlock p A - principalBlock p B * principalBlock p C =
+      principalBlock p (A - B * C) +
+        coordinateBlock p (fun i ↦ ¬p i) B *
+          coordinateBlock (fun i ↦ ¬p i) p C := by
+    rw [principalBlock_sub, principalBlock_mul_eq_add_cross]
+    abel
+  rw [hsplit]
+  calc
+    ‖principalBlock p (A - B * C) +
+        coordinateBlock p (fun i ↦ ¬p i) B *
+          coordinateBlock (fun i ↦ ¬p i) p C‖ ≤
+      ‖principalBlock p (A - B * C)‖ +
+        ‖coordinateBlock p (fun i ↦ ¬p i) B *
+          coordinateBlock (fun i ↦ ¬p i) p C‖ := norm_add_le _ _
+    _ ≤ ‖A - B * C‖ +
+        ‖coordinateBlock p (fun i ↦ ¬p i) B‖ *
+          ‖coordinateBlock (fun i ↦ ¬p i) p C‖ :=
+      add_le_add (norm_principalBlock_le p _)
+        (Matrix.l2_opNorm_mul _ _)
+
+/-- Generic Gram-defect estimate for a principal compression of a unitary. -/
+theorem norm_principalBlock_gram_sub_one_le (p : Y → Prop)
+    [DecidablePred p] (V : Matrix Y Y ℂ) (hV : Vᴴ * V = 1) :
+    ‖cornerGram (principalBlock p V) - 1‖ ≤
+      ‖coordinateBlock (fun i ↦ ¬p i) p V‖ ^ 2 := by
+  have hdecomp := principalBlock_mul_eq_add_cross p Vᴴ V
+  rw [hV, principalBlock_one] at hdecomp
+  have heq : cornerGram (principalBlock p V) - 1 =
+      -(coordinateBlock p (fun i ↦ ¬p i) Vᴴ *
+        coordinateBlock (fun i ↦ ¬p i) p V) := by
+    simp only [cornerGram, principalBlock_conjTranspose]
+    rw [hdecomp]
+    abel
+  rw [heq, norm_neg]
+  calc
+    ‖coordinateBlock p (fun i ↦ ¬p i) Vᴴ *
+        coordinateBlock (fun i ↦ ¬p i) p V‖ ≤
+      ‖coordinateBlock p (fun i ↦ ¬p i) Vᴴ‖ *
+        ‖coordinateBlock (fun i ↦ ¬p i) p V‖ := Matrix.l2_opNorm_mul _ _
+    _ = ‖coordinateBlock (fun i ↦ ¬p i) p V‖ ^ 2 := by
+      rw [← coordinateBlock_conjTranspose,
+        Matrix.l2_opNorm_conjTranspose, pow_two]
+
+/-- Conjugation by a unitary transports a multiplication defect exactly. -/
+theorem unitaryConjugation_mul_defect_eq
+    {U A B C : Matrix Y Y ℂ} (hU : U * Uᴴ = 1) :
+    Uᴴ * A * U - (Uᴴ * B * U) * (Uᴴ * C * U) =
+      Uᴴ * (A - B * C) * U := by
+  rw [show (Uᴴ * B * U) * (Uᴴ * C * U) =
+      Uᴴ * B * (U * Uᴴ) * C * U by noncomm_ring, hU]
+  noncomm_ring
+
 /-! ## Weak-MF moving coordinates -/
 
 section WeakMF
@@ -295,16 +361,31 @@ theorem movingHermitianAverage_isHermitian (A : WeakMFApproximation G)
     (movingHermitianAverage A S n).IsHermitian :=
   hermitianAverage_conjTranspose A S n
 
-/-- The honest finite coordinate type of the moving spectral corner. -/
-abbrev WeakMFMovingIndex (A : WeakMFApproximation G) (S : Finset G)
-    (t : ℝ) (n : ℕ) :=
-  MovingIndex (movingHermitianAverage A S n)
-    (movingHermitianAverage_isHermitian A S n) t
+/-- Predicate cutting out the moving eigen-coordinates. -/
+def movingPredicate (A : WeakMFApproximation G) (S : Finset G)
+    (t : ℝ) (n : ℕ) (i : A.model n) : Prop :=
+  (movingHermitianAverage_isHermitian A S n).eigenvalues i ≤ t
 
-/-- A finite moving-corner matrix model. -/
-noncomputable def weakMFMovingModel (A : WeakMFApproximation G)
-    (S : Finset G) (t : ℝ) (n : ℕ) : FiniteModel :=
-  ⟨WeakMFMovingIndex A S t n, inferInstance, Classical.decEq _⟩
+noncomputable instance movingPredicate_decidable (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) :
+    DecidablePred (movingPredicate A S t n) := Classical.decPred _
+
+/-- The honest finite coordinate type of the moving spectral corner.  This is
+opaque so later matrix-instance synthesis does not repeatedly normalize the
+full spectral theorem proof stored in its defining predicate. -/
+noncomputable def WeakMFMovingIndex (A : WeakMFApproximation G) (S : Finset G)
+    (t : ℝ) (n : ℕ) :=
+  {i : A.model n // movingPredicate A S t n i}
+
+noncomputable instance weakMFMovingIndexFintype (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) :
+    Fintype (WeakMFMovingIndex A S t n) := by
+  unfold WeakMFMovingIndex
+  infer_instance
+
+noncomputable instance weakMFMovingIndexDecidableEq (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) :
+    DecidableEq (WeakMFMovingIndex A S t n) := Classical.decEq _
 
 /-- Conjugate a microstate into the eigenbasis of the Hermitian average. -/
 noncomputable def eigenbasisMicrostate (A : WeakMFApproximation G)
@@ -314,13 +395,366 @@ noncomputable def eigenbasisMicrostate (A : WeakMFApproximation G)
     (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
   Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U
 
+/-- Eigenbasis conjugation preserves membership in the unitary group. -/
+theorem eigenbasisMicrostate_mem_unitaryGroup (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (g : G) :
+    eigenbasisMicrostate A S n g ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  change Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U ∈
+    Matrix.unitaryGroup (A.model n) ℂ
+  exact mul_mem (mul_mem hUstar (A.map n g).2) hH.eigenvectorUnitary.2
+
+/-- The eigenbasis microstate has exact Gram matrix one. -/
+theorem eigenbasisMicrostate_star_mul_self (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (g : G) :
+    (eigenbasisMicrostate A S n g)ᴴ * eigenbasisMicrostate A S n g = 1 := by
+  have hunit := eigenbasisMicrostate_mem_unitaryGroup A S n g
+  rw [Matrix.mem_unitaryGroup_iff', Matrix.star_eq_conjTranspose] at hunit
+  exact hunit
+
+/-- The multiplication defect in the Hermitian eigenbasis is the unitary
+conjugate of the original weak-MF defect. -/
+theorem eigenbasisMicrostate_mul_defect_eq (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (g h : G) :
+    eigenbasisMicrostate A S n (g * h) -
+        eigenbasisMicrostate A S n g * eigenbasisMicrostate A S n h =
+      let U : Matrix (A.model n) (A.model n) ℂ :=
+        (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
+      Uᴴ * ((A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h) * U := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hU : U * Uᴴ = 1 :=
+    Unitary.mul_star_self_of_mem hH.eigenvectorUnitary.2
+  change Uᴴ * (A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) * U -
+      (Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U) *
+        (Uᴴ * (A.map n h : Matrix (A.model n) (A.model n) ℂ) * U) = _
+  exact unitaryConjugation_mul_defect_eq hU
+
+/-- Eigenbasis conjugation preserves the norm of the weak-MF
+multiplication defect. -/
+theorem norm_eigenbasisMicrostate_mul_defect_eq
+    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) (g h : G) :
+    ‖eigenbasisMicrostate A S n (g * h) -
+        eigenbasisMicrostate A S n g * eigenbasisMicrostate A S n h‖ =
+      ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ := by
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  rw [eigenbasisMicrostate_mul_defect_eq]
+  simpa only [Matrix.conjTranspose_conjTranspose] using
+    norm_unitary_conjugate hUstar
+      (D := (A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          (A.map n h : Matrix (A.model n) (A.model n) ℂ))
+
 /-- Principal compression of a weak-MF microstate to the moving eigenspace. -/
 noncomputable def movingCompression (A : WeakMFApproximation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
-    Matrix (weakMFMovingModel A S t n) (weakMFMovingModel A S t n) ℂ :=
+    Matrix {i : A.model n // movingPredicate A S t n i}
+      {i : A.model n // movingPredicate A S t n i} ℂ :=
   principalBlock
-    (fun i ↦ (movingHermitianAverage_isHermitian A S n).eigenvalues i ≤ t)
+    (movingPredicate A S t n)
     (eigenbasisMicrostate A S n g)
+
+/-- In the Hermitian eigenbasis, the residual on the top coordinates is
+unitarily conjugate to `topSpectralDisplacement`. -/
+theorem eigenbasis_top_residual_eq (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
+    (eigenbasisMicrostate A S n g - 1) *
+        Matrix.diagonal (fun i ↦
+          if ¬movingPredicate A S t n i then (1 : ℂ) else 0) =
+      let U : Matrix (A.model n) (A.model n) ℂ :=
+        (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
+      Uᴴ * topSpectralDisplacement A S t n g * U := by
+  classical
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  let D : Matrix (A.model n) (A.model n) ℂ :=
+    Matrix.diagonal (fun i ↦ if t < hH.eigenvalues i then 1 else 0)
+  have hUU : Uᴴ * U = 1 :=
+    Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  have hUUD : Uᴴ * (U * D) = D := by
+    rw [← Matrix.mul_assoc, hUU, Matrix.one_mul]
+  simp only [eigenbasisMicrostate, topSpectralDisplacement, spectralAbove,
+    movingPredicate, movingHermitianAverage, not_le]
+  change (Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U - 1) *
+      D = Uᴴ * (((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        (U * D * Uᴴ)) * U
+  symm
+  calc
+    Uᴴ * (((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        (U * D * Uᴴ)) * U =
+      Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        U * D * (Uᴴ * U) := by noncomm_ring
+    _ = Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        U * D := by rw [hUU, Matrix.mul_one]
+    _ = (Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U - 1) *
+        D := by
+      rw [show Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
+          U * D = Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U * D -
+            Uᴴ * (U * D) by noncomm_ring, hUUD]
+      noncomm_ring
+
+/-- The moving-to-top off-diagonal block is controlled by the already
+formalized top displacement. -/
+theorem norm_movingToTopBlock_le (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
+    ‖coordinateBlock (movingPredicate A S t n)
+        (fun i ↦ ¬movingPredicate A S t n i)
+        (eigenbasisMicrostate A S n g)‖ ≤
+      ‖topSpectralDisplacement A S t n g‖ := by
+  classical
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  calc
+    ‖coordinateBlock (movingPredicate A S t n)
+        (fun i ↦ ¬movingPredicate A S t n i)
+        (eigenbasisMicrostate A S n g)‖ ≤
+      ‖(eigenbasisMicrostate A S n g - 1) *
+        Matrix.diagonal (fun i ↦
+          if ¬movingPredicate A S t n i then (1 : ℂ) else 0)‖ :=
+      norm_coordinateBlock_disjoint_le_residual _ _
+        (fun i hi hni ↦ hni hi) _
+    _ = ‖Uᴴ * topSpectralDisplacement A S t n g * U‖ := by
+      rw [eigenbasis_top_residual_eq]
+    _ = ‖topSpectralDisplacement A S t n g‖ := by
+      simpa only [Matrix.conjTranspose_conjTranspose] using
+        norm_unitary_conjugate hUstar
+          (D := topSpectralDisplacement A S t n g)
+
+/-- The opposite off-diagonal block is controlled by the inverse top
+displacement, up to the weak-MF inverse defect. -/
+theorem norm_topToMovingBlock_le (A : WeakMFApproximation G)
+    (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
+    ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+        (movingPredicate A S t n)
+        (eigenbasisMicrostate A S n g)‖ ≤
+      ‖topSpectralDisplacement A S t n g⁻¹‖ +
+        ‖(A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ‖ := by
+  classical
+  let hH := movingHermitianAverage_isHermitian A S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
+  let Vstar : Matrix (A.model n) (A.model n) ℂ :=
+    (eigenbasisMicrostate A S n g)ᴴ
+  let Vinv : Matrix (A.model n) (A.model n) ℂ :=
+    eigenbasisMicrostate A S n g⁻¹
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
+  have hblockStar :
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+          (movingPredicate A S t n) (eigenbasisMicrostate A S n g)‖ =
+        ‖coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) Vstar‖ := by
+    rw [← coordinateBlock_conjTranspose]
+    exact (Matrix.l2_opNorm_conjTranspose
+      (coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+        (movingPredicate A S t n) (eigenbasisMicrostate A S n g))).symm
+  have hdiff : Vstar - Vinv =
+      Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+        (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ)) * U := by
+    simp only [Vstar, Vinv, eigenbasisMicrostate, Matrix.conjTranspose_mul,
+      Matrix.conjTranspose_conjTranspose]
+    noncomm_ring
+  have hnormdiff : ‖Uᴴ *
+      ((A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+        (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ)) * U‖ =
+      ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+        (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ)‖ := by
+    simpa only [Matrix.conjTranspose_conjTranspose] using
+      norm_unitary_conjugate hUstar
+        (D := (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+          (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ))
+  rw [hblockStar]
+  have hsplit : coordinateBlock (movingPredicate A S t n)
+      (fun i ↦ ¬movingPredicate A S t n i) Vstar =
+      coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) Vinv +
+        coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) (Vstar - Vinv) := by
+    ext i j
+    simp [coordinateBlock, Matrix.toBlock_apply]
+  rw [hsplit]
+  calc
+    ‖coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) Vinv +
+        coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) (Vstar - Vinv)‖ ≤
+      ‖coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) Vinv‖ +
+        ‖coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i) (Vstar - Vinv)‖ :=
+      norm_add_le _ _
+    _ ≤ ‖topSpectralDisplacement A S t n g⁻¹‖ + ‖Vstar - Vinv‖ :=
+      add_le_add (norm_movingToTopBlock_le A S t n g⁻¹)
+        (norm_coordinateBlock_le _ _ _)
+    _ = ‖topSpectralDisplacement A S t n g⁻¹‖ +
+        ‖(A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ‖ := by
+      rw [hdiff, hnormdiff, show
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ - A.map n g⁻¹ =
+          -((A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+            (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ) by abel,
+        norm_neg]
+
+/-- Both off-diagonal blocks vanish for every group element. -/
+theorem offDiagonalBlocks_eventually_small_of_generates
+    {Q : Finset G} {epsilon : ℝ}
+    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
+    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hgen : Subgroup.closure (S : Set G) = ⊤)
+    (A : WeakMFApproximation G) {t : ℝ}
+    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g : G) :
+    ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
+      ‖coordinateBlock (movingPredicate A S t n)
+          (fun i ↦ ¬movingPredicate A S t n i)
+          (eigenbasisMicrostate A S n g)‖ ≤ eta ∧
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+          (movingPredicate A S t n)
+          (eigenbasisMicrostate A S n g)‖ ≤ eta := by
+  intro eta heta
+  have hdisp (k : G) := topSpectralDisplacement_vanishing_of_generates
+    hQ S hQS hone hepsilonOne hsymm hgen A ht k
+  obtain ⟨Ng, hNg⟩ := hdisp g eta heta
+  obtain ⟨Ni, hNi⟩ := hdisp g⁻¹ (eta / 2) (by linarith)
+  obtain ⟨Nv, hNv⟩ := map_inv_vanishing A g (eta / 2) (by linarith)
+  refine ⟨max Ng (max Ni Nv), fun n hn ↦ ⟨?_, ?_⟩⟩
+  · exact (norm_movingToTopBlock_le A S t n g).trans
+      (hNg n ((le_max_left _ _).trans hn))
+  · calc
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+          (movingPredicate A S t n) (eigenbasisMicrostate A S n g)‖ ≤
+        ‖topSpectralDisplacement A S t n g⁻¹‖ +
+          ‖(A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+            (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ‖ :=
+        norm_topToMovingBlock_le A S t n g
+      _ ≤ eta / 2 + eta / 2 := add_le_add
+        (hNi n (le_trans (le_trans (le_max_left Ni Nv)
+          (le_max_right Ng (max Ni Nv))) hn))
+        (hNv n (le_trans (le_trans (le_max_right Ni Nv)
+          (le_max_right Ng (max Ni Nv))) hn))
+      _ = eta := by ring
+
+/-- Eigenbasis conjugation preserves the norm-one property of a microstate. -/
+theorem norm_eigenbasisMicrostate_eq_one (A : WeakMFApproximation G)
+    (S : Finset G) (n : ℕ) (g : G) :
+    ‖eigenbasisMicrostate A S n g‖ = 1 := by
+  letI : Nonempty (A.model n) :=
+    Fintype.card_pos_iff.mp (A.modelNonempty n)
+  exact CStarRing.norm_of_mem_unitary
+    (eigenbasisMicrostate_mem_unitaryGroup A S n g)
+
+/-- Pointwise multiplicativity estimate for the uncorrected moving
+compression. -/
+theorem norm_movingCompression_mul_defect_le
+    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (n : ℕ) (g h : G) :
+    ‖movingCompression A S t n (g * h) -
+        movingCompression A S t n g * movingCompression A S t n h‖ ≤
+      ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ +
+      ‖coordinateBlock (movingPredicate A S t n)
+        (fun i ↦ ¬movingPredicate A S t n i)
+        (eigenbasisMicrostate A S n g)‖ *
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+        (movingPredicate A S t n)
+        (eigenbasisMicrostate A S n h)‖ := by
+  classical
+  have hbound := norm_principalBlock_mul_defect_le
+    (movingPredicate A S t n)
+    (eigenbasisMicrostate A S n (g * h))
+    (eigenbasisMicrostate A S n g)
+    (eigenbasisMicrostate A S n h)
+  rw [norm_eigenbasisMicrostate_mul_defect_eq A S n g h] at hbound
+  exact hbound
+
+/-- The uncorrected moving compressions are asymptotically multiplicative in
+operator norm. -/
+theorem movingCompression_multiplicative_eventually
+    {Q : Finset G} {epsilon : ℝ}
+    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
+    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hgen : Subgroup.closure (S : Set G) = ⊤)
+    (A : WeakMFApproximation G) {t : ℝ}
+    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g h : G) :
+    ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
+      ‖movingCompression A S t n (g * h) -
+        movingCompression A S t n g * movingCompression A S t n h‖ ≤ eta := by
+  intro eta heta
+  obtain ⟨Nm, hNm⟩ := A.asymptoticallyMultiplicative g h (eta / 2) (by linarith)
+  obtain ⟨No, hNo⟩ := offDiagonalBlocks_eventually_small_of_generates
+    hQ S hQS hone hepsilonOne hsymm hgen A ht g (eta / 2) (by linarith)
+  refine ⟨max Nm No, fun n hn ↦ ?_⟩
+  have hright : ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+      (movingPredicate A S t n) (eigenbasisMicrostate A S n h)‖ ≤ 1 := by
+    exact (norm_coordinateBlock_le _ _ _).trans_eq
+      (norm_eigenbasisMicrostate_eq_one A S n h)
+  calc
+    ‖movingCompression A S t n (g * h) -
+        movingCompression A S t n g * movingCompression A S t n h‖ ≤
+      ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ +
+      ‖coordinateBlock (movingPredicate A S t n)
+        (fun i ↦ ¬movingPredicate A S t n i) (eigenbasisMicrostate A S n g)‖ *
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+        (movingPredicate A S t n) (eigenbasisMicrostate A S n h)‖ :=
+      norm_movingCompression_mul_defect_le A S t n g h
+    _ ≤ eta / 2 + (eta / 2) * 1 := add_le_add
+      (hNm n ((le_max_left _ _).trans hn))
+      (mul_le_mul (hNo n ((le_max_right _ _).trans hn)).1 hright
+        (norm_nonneg _) (by linarith))
+    _ = eta := by ring
+
+/-- Pointwise Gram-defect estimate for the moving compression. -/
+theorem norm_movingCompression_gram_sub_one_le
+    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (n : ℕ) (g : G) :
+    ‖cornerGram (movingCompression A S t n g) - 1‖ ≤
+      ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
+        (movingPredicate A S t n) (eigenbasisMicrostate A S n g)‖ ^ 2 := by
+  classical
+  exact norm_principalBlock_gram_sub_one_le
+    (movingPredicate A S t n) (eigenbasisMicrostate A S n g)
+      (eigenbasisMicrostate_star_mul_self A S n g)
+
+/-- Gram defects of all fixed compressed elements vanish. -/
+theorem movingCompression_gram_eventually_small
+    {Q : Finset G} {epsilon : ℝ}
+    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
+    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hgen : Subgroup.closure (S : Set G) = ⊤)
+    (A : WeakMFApproximation G) {t : ℝ}
+    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g : G) :
+    ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
+      ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ eta := by
+  intro eta heta
+  obtain ⟨N, hN⟩ := offDiagonalBlocks_eventually_small_of_generates
+    hQ S hQS hone hepsilonOne hsymm hgen A ht g (Real.sqrt eta)
+      (Real.sqrt_pos.2 heta)
+  refine ⟨N, fun n hn ↦ (norm_movingCompression_gram_sub_one_le A S t n g).trans ?_⟩
+  have hb := (hN n hn).2
+  nlinarith [norm_nonneg (coordinateBlock
+    (fun i ↦ ¬movingPredicate A S t n i) (movingPredicate A S t n)
+    (eigenbasisMicrostate A S n g)), Real.sq_sqrt heta.le]
 
 /-- If every Hermitian eigenvalue lies above the threshold, the top spectral
 cutoff is the identity. -/
