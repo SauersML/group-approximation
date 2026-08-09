@@ -21788,6 +21788,34 @@ trace): extracting a factorial component is a quotient operation, and
 Connes embeddability is not available under arbitrary quotients.  Avoiding
 that invalid step is essential in exactly this problem.
 
+### The center does not presently collapse
+
+It is tempting to replace the central-quotient language above by the single
+group `Q`, using stable `K_2(L)=0`.  The July 2026 computation of
+Khanh--Thanh shows exactly why this is not licensed.  For
+
+`L=L_(F_2)(1,2)`
+
+one indeed has `K_2(L)=0`, but the center of `U=St_5(L)` is the unstable
+group `K_2(5,L)`.  The stabilization map
+
+`K_2(5,L) -> K_2(L)=0`
+
+is not known to be injective.  The usual stability theorem is unavailable
+because the Bass stable rank of `L` is infinite.  Khanh--Thanh, Theorem 8.2
+and Corollary 8.5, instead identify finite generation of `K_2(5,L)` with
+finite presentability of the corresponding unit/elementary group; they do
+not compute the unstable kernel or prove it vanishes.
+
+Thus `U/C` in the stability fork is essential, not cosmetic.  Determining
+`K_2(5,L)` would sharpen the identity of the witness but is not needed for
+the fork, because quasisimplicity and central-cover nonsoficity already
+handle every possible `C<=Z(U)`.
+
+Primary pin: H. V. Khanh and V. H. Thanh, *Matrix generators for the unit
+groups of `L_K(1,d)`*, arXiv:2607.10351, Theorem 8.2, Proposition 8.3,
+Corollary 8.5, and Remark 8.6.
+
 ### The fork is exactly the hyperlinearity decision for the simple quotient
 
 The central-quotient permanence theorem sharpens the one-trace endpoint one
