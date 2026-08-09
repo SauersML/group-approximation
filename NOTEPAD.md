@@ -18062,3 +18062,54 @@ Laurent root and prove that all of its other Steinberg-cell occurrences are
 fusion-Gram close to the passive transports of that one coupled operator.
 No additional regular absorption or witness matching is required after that
 condition is proved.
+
+### Finite induction removes matrix-root synchronization exactly
+
+The missing-root condition has two components: matrix-root indices and
+Laurent coefficients.  The first is finite and can be removed without any
+asymptotic gluing.
+
+Let a finite group `K` act on the finite jet group `H` by automorphisms, let
+`L<=H` be `K`-invariant, and suppose a family of shears satisfies
+
+`alpha_k theta_b alpha_k^(-1)=theta_(k b)`.
+
+A transversal-based permutation `P_(theta_b)` need not satisfy the analogous
+identity because the chosen left-`L` transversal need not be `K`-invariant.
+Replace the cell by the direct sum of `|K|` copies indexed by `k in K`; in
+copy `k`, use the transported transversal `alpha_k(T)`.  Let `R_h` send copy
+`k` to copy `hk` and act on its `H`-basis by `alpha_h`.
+
+**Lemma (equivariant transversal induction).**  On the amplified cell,
+
+`R_h P_b R_h^*=P_(h b)`
+
+exactly, while every native left translation is carried to the translation
+prescribed by `alpha_h`.  All local Steinberg relations remain exact.  A
+block-diagonal right-regular witness transported in the same way has exactly
+the original normalized commutator energy.
+
+**Proof.**  The map `alpha_h` carries the unique decomposition
+`ell t`, `t in alpha_k(T)`, to the unique decomposition
+`alpha_h(ell) alpha_h(t)` with `alpha_h(t) in alpha_(hk)(T)`.  The orbitwise
+normalizer formula therefore commutes with the copy permutation on every
+basis vector.  Direct sums of unitarily conjugate blocks preserve normalized
+Hilbert--Schmidt norms.  End proof.
+
+Apply this first to the stabilizer in `S_r` of one ordered matrix root, after
+putting all remaining-index input/output root groups into the canonical
+shear cell.  Then induce from that stabilizer to `S_r`.  Matrix-index
+permutation is an exact automorphism of the type-`A` Steinberg presentation,
+so one canonical `A_2` shear, its reversed-input version, and the finitely
+many commuting-root representatives propagate to every matrix-root
+occurrence.  Stabilizer ambiguity is absorbed by the first finite induction;
+there is no choice of Weyl word and no `K_2` holonomy.
+
+The amplification factor depends only on the fixed elementary rank and is
+constant across stages.  It neither changes vanishing defects nor the
+`2(1-1/p)` strict lower bound.  Hence matrix-root synchronization is not part
+of the terminal analytic gap.  What remains is coefficient synchronization:
+for one fixed global Laurent coefficient `b`, the multiplication shears
+obtained from its different positive coefficient owners must be transported
+to the same coupled operator in fusion-Gram norm without imposing full
+row-torus covariance on `Gamma`.
