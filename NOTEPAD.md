@@ -17753,3 +17753,120 @@ or construct a coherent three-leg incidence whose tripod holonomy tends to
 one and prove the displayed Lipschitz transfer directly.  Calling the three
 marginal intertwiners a simultaneous regular Heisenberg stabilization skips
 exactly this load-bearing step.
+
+### Orbitwise shear normalizers put the Heisenberg cell inside the jet regular block
+
+There is a stronger local construction which avoids the marginal-gluing
+problem.  Instead of building a separate regular `H_p` block, build its
+missing root as a permutation normalizer of two root groups already present
+in the strict jet block.
+
+Let `H` be a finite group, let `L<=H`, and choose a right transversal `T` for
+the left `L`-cosets, so every `x in H` is uniquely `x=ell t`.  For
+`theta in Aut(L)` define a permutation of `H` by
+
+`P_theta(delta_(ell t))=delta_(theta(ell)t)`.
+
+**Lemma (orbitwise normalizer).**  In the left regular representation,
+
+`P_theta lambda(ell) P_theta^*=lambda(theta(ell))`
+
+for every `ell in L`, and
+
+`P_theta P_phi=P_(theta phi)`.
+
+**Proof.**  Both identities follow by applying the two sides to the unique
+basis vector `delta_(ell t)`.  The same fixed transversal is used for every
+automorphism, so there is no cocycle.  End proof.
+
+Now take elementary abelian `p`-groups `U,W`, put `L=U directSum W`, and let
+`b|->M_b` be an additive family of linear maps `U->W`.  Define
+
+`theta_b(u,w)=(u,w-M_b(u))`,
+
+`A_u=lambda(u,0)`,  `C_w=lambda(0,w)`,  `B_b=P_(theta_b)`.
+
+Then, with the commutator convention used throughout the notebook,
+
+`[A_u,B_b]=C_(M_b(u))`,
+
+`[C_w,B_b]=1`,  and  `B_b B_(b')=B_(b+b')`.
+
+Indeed `theta_b` fixes `W`, the `theta_b` add because the shear maps add,
+and
+
+`A_u B_b A_u^(-1) B_b^(-1)`
+` =lambda((u,0)+theta_b(-u,0))=lambda(0,M_b(u))`.
+
+This is the full regular Heisenberg relation, but its two native translation
+groups are literally the chosen subgroups of `lambda_H`; there is no unitary
+which must simultaneously match three marginal spectra.
+
+Apply this to a fixed-base finite jet image.  If the two native roots are
+`x_(ij)(U)` and `x_(ik)(W)`, they commute and inject as
+`U directSum W` in the finite elementary group.  Restricting the full left
+regular representation to this subgroup gives the required multiple of
+`lambda_L`, on every left `L`-orbit at once.  For a missing Laurent
+coefficient `b`, let `M_b` be multiplication by `b` on the finite tested
+coefficient labels.  The orbitwise permutation `B_b` is then the operator
+assigned to the missing root, and the `A_2` output is the actual native base
+translation `C_(ub)`, not a tangent scalar.
+
+Every antipodal monomial `A_2` cell has such a choice of two native labels.
+If `w=-qv` with `q>0`, then among
+
+`v`,  `w`,  `v+w`
+
+the output and one input lie on the same closed ray: use `v,v+w` when
+`q<=1`, and `w,v+w` when `q>=1` (at `q=1` the output is the constant
+coefficient).  Choose the positive chart containing that ray and realize the
+remaining input by the shear normalizer, reversing the orientation or taking
+an inverse shear when necessary.  Nonantipodal cells retain their ordinary
+positive owner.  Thus the base-output obstruction is locally removed without
+row-torus covariance across the whole positive representation.
+
+The construction also contains a canonical strictness mechanism.  Let
+`rho` be the right regular representation of `H`; every `rho(r)` commutes
+with `lambda(H)`, hence with the entire finite jet image of `Gamma`.  Let
+`E_lambda` be the trace-preserving conditional expectation onto the left
+group algebra `lambda(H)`, the fixed algebra of conjugation by `rho(H)`.
+For the shear permutation above,
+
+`||E_lambda(P_theta)||_2^2=1/|im(theta-1)|`.
+
+To see this, expand in the orthonormal basis `{lambda(h):h in H}`.  The
+coefficient at `lambda(h)` is zero for `h notin L`.  For `h in L`, the
+equation
+
+`theta(ell)=h ell`
+
+has `|ker(theta-1)|` solutions exactly when `h in im(theta-1)`.  Its fixed
+point fraction is therefore `1/|im(theta-1)|`; summing the squared
+coefficients over that image gives the displayed formula.
+
+Hilbert-space averaging now gives
+
+`(1/|H|) sum_(r in H) ||[P_theta,rho(r)]||_2^2`
+` =2(1-||E_lambda(P_theta)||_2^2)`
+` =2(1-1/|im(theta-1)|)`.
+
+For a nontrivial `F_p`-shear, `|im(theta-1)|>=p`.  Hence some right
+translation `v=rho(r)` centralizes the complete jet `Gamma`-image while
+
+`||[P_theta,v]||_2^2>=2(1-1/p)`.
+
+This is an order-one strict witness in the same block as the native positive
+roots.  It is not transported through the dangerous row-torus covariance,
+so the sterility correction does not apply.
+
+The global task is correspondingly sharper and smaller.  For every tested
+missing root, the same operator `B_b` must be used consistently across all
+its `A_2`, commuting-root, additivity, and external-covariance cells.  The
+orbitwise lemma handles an entire additive family of shears on one common
+`L`, but different native pairs may require different transversals and
+larger coefficient spaces.  The remaining theorem is to place all finitely
+many required multiplication maps `M_b` into one compatible nilpotent
+translation group per stage, so their orbitwise normalizers satisfy the full
+Steinberg word window with only boundary error.  Unlike the separate
+`H_p`-cell proposal, that target already includes the correct base output,
+joint root compatibility, and a quantitative strict witness.
