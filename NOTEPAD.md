@@ -12281,3 +12281,150 @@ Mackey coboundary.  Thus the terminal construction no longer needs to solve
 a matrix-valued loop equation.  It needs only a finite incidence/lift of
 the three depth flags whose wrap projection is `o(1)`; Fourier--Weil
 uniqueness makes every bulk loop scalar automatically.
+
+### Orient the common star into the jet-depth chain
+
+There is an orientation issue in applying the jet theorem to the previously
+chosen compressor representatives.  Our substitution convention is
+
+`t=I+E_(ji)  implies  alpha_t(x_i)=x_i x_j`.
+
+Thus the earlier representative `I+E_(delta,0)` changes `x_0`, whereas the
+strict jet inclusion changes the depth of `x_delta`.  This is repaired at
+no cost by choosing instead
+
+`s_delta=I+E_(0,delta)`.
+
+The two matrices are in the same `B`-conjugacy orbit: translation by
+`delta in B` exchanges the ordered roots `(delta,0)` and `(0,delta)`.
+Therefore the free Pauli cycles, the three root-orbit cover, and generation
+of all twelve unit roots are unchanged.  This orientation also agrees with
+the common row-star
+
+`<e_01(Z),e_02(Z),e_03(Z)>`
+
+in the two-chamber intersection.
+
+**Lemma (exact strict-star incidence).**  For the jet maps `phi_m` above,
+
+`phi_m after alpha_(s_delta)=phi_(m+e_delta)`
+
+whenever `m_delta<N`.
+
+**Proof.**  The substitution fixes `x_0` and all `x_k` with
+`k!=delta`, while
+
+`x_delta |-> x_delta x_0`.
+
+Hence its image is
+
+`y^(m_delta)(1+xi_delta)y`
+` =y^(m_delta+1)(1+xi_delta)`,
+
+which is exactly the `delta` component of `phi_(m+e_delta)`.  End proof.
+
+So all three macroscopic strict directions really are the three coordinate
+increments of one depth vector; this was not true with the previous choice
+of representatives.
+
+The annihilator reversal also exposes the precise incidence law still to
+be implemented.  Write
+
+`omega_N(m)=N*1-m`.
+
+If a complementary positive substitution with exponent matrix `C` sends
+the primal depth to `C^T m`, then the dual depth is not transformed merely
+linearly.  It satisfies the exact affine identity
+
+`omega_N(C^T m)`
+` =C^T omega_N(m)+(I-C^T)(N*1)`.
+
+Thus the depth-block permutation must retain the translation
+`(I-C^T)(N*1)`, while the fiber operator carries `Chat^vee` and Fourier
+exchange.  Omitting this affine term would again restrict the construction
+to the sterile affine parabolic.  Keeping it makes the block permutation
+and the Heisenberg fiber jointly implement the full adjoint arrow.
+
+This affine term does not create a new bulk boundary by itself.  On any
+primal incidence set `D` contained in `[0,N]^3`, the map `omega_N` is a
+bijection from `D` to its dual incidence set.  Conjugating every partial
+primal arrow by `omega_N` gives exactly the displayed affine dual arrow, so
+the primal and dual exceptional block sets have identical cardinality.
+In particular, a weighted positive-`UT_4` Malcev box with boundary
+`O(1/M)` may be placed at depths `o(N)` and reflected to depths `N*1-o(N)`;
+Fourier switching does not enlarge its block-rank boundary.
+
+What remains is the global identification, on the four `B`-translated
+Pauli--flag channels, between these reflected affine arrows and the actual
+`O_*` chamber arrows.  Once that finite incidence check is made, the
+Stone--von Neumann lemma reduces its bulk gallery holonomy to the already
+controlled scalar cocycle.
+
+### Equivariant long-cycle lifts solve the finite incidence boundary
+
+The depth flags should not be put on a uniform cube.  They should be put on
+the actual root cycles in the free Pauli--flag channel.  Keep
+
+`Q_n=SL_4(Z/p^nZ)`,  `B=(F_2)^2`,
+
+and the invariant good union `Omega_n^flag` from the Pauli--flag theorem.
+Every transitive component of this union has stabilizer
+
+`B intersect gP_ng^(-1)=1`,
+
+so it is a regular `Q_n`-set.  Let `R` be the twelve ordered roots and write
+`t_r=I+E_r`.  Every `t_r` has order `L_n=p^n` and acts freely on each good
+component.  Translation by `B` acts freely on `R`, with three orbits of
+four roots.
+
+**Lemma (equivariant cycle-origin lemma).**  On every good component there
+are level functions
+
+`ell_r:Omega_n^flag -> Z/L_n Z`,  `r in R`,
+
+such that
+
+`ell_r(t_r x)=ell_r(x)+1`,
+
+and
+
+`ell_(b r)(b x)=ell_r(x)`  for every `b in B`.
+
+After choosing the representatives `0,...,L_n-1`, the reset set
+
+`W_r={x:ell_r(x)=L_n-1}`
+
+has relative size exactly `1/L_n` on each component, and
+`bW_r=W_(br)`.
+
+**Proof.**  For one representative in each of the three free `B`-orbits of
+roots, choose an origin on every orbit of the cyclic group `<t_r>` in the
+regular `Q_n`-set and number that cycle.  Transport the origins and
+numberings by `B`.  No ambiguity occurs because the `B`-stabilizer of an
+ordered root is trivial.  Each free cycle has one point of every level,
+which proves the reset count.  End proof.
+
+**Sparse-reset word bound.**  Let `w=s_1...s_k` be a fixed word in `B` and
+the unit roots.  The proportion of starting blocks for which its path uses
+a reset edge is at most
+
+`(# of root letters in w)/p^n`.
+
+Indeed, before each letter the preceding prefix is a permutation of the
+good component, so the pullback of that letter's reset set still has measure
+`1/p^n`; apply the union bound.
+
+Consequently any fiber system which realizes the polynomial covariance and
+the two-chamber Fourier transition exactly away from the reset edges has,
+for every fixed relation word, curvature support
+
+`O_w(p^(-n))+O_p(p^(-4(n-1)))`,
+
+the second term being the discarded Pauli--flag complement.  Its normalized
+Hilbert--Schmidt defect is the square root of this quantity.  This is the
+incidence statement that a uniform depth cube could not provide: the wrap
+is one edge per **actual long root cycle**, simultaneously and
+`B`-equivariantly.  Together with the jet covariance and the scalar-loop
+lemma, the only remaining verification is to assign the two chart types to
+the bulk root edges so that each rank-two Steinberg cell uses its containing
+chamber; the minimal two-chamber cover supplies exactly those local charts.
