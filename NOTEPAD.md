@@ -12566,3 +12566,65 @@ the discarded Pauli--flag channel.  The remaining global check is reduced
 to the finite overlap graph of the eight `B`-translated occurrences of the
 two chamber types; all vertex relations and all depth carries on that graph
 are now exact off these displayed projections.
+
+### The eight-chart overlap graph has only one Fourier edge type
+
+Write the two chamber orbits as
+
+`P_b=b O_+`,  `S_b=b O_*`,  `b in B`.
+
+Both base orders begin with `0`, so their intersection is the outgoing
+row-star at `0`.  Translating gives the exact formula
+
+`U_(P_b) intersect U_(S_b)`
+` =<e_(b,b+delta)(Z):0!=delta in B> ~=Z^3`.
+
+Every ordered root `(i,j)` occurs in exactly one of these four displayed
+stars: take `b=i` and `delta=i+j` in the additive notation on `B`.  Thus all
+twelve strict root directions are already carried by the four **aligned**
+overlaps `P_b--S_b`.  There is no need to construct Fourier intertwiners for
+all sixteen cross-type pairs.
+
+**Theorem (one-transition overlap reduction).**  Form a graph with the
+eight vertices `{P_b,S_b:b in B}`, horizontal edges given by exact
+`B`-transport within each chamber orbit, and the four vertical edges
+`P_b--S_b` given by the annihilator/Fourier jet transition.  Then:
+
+1. the graph is connected and `B` acts transitively on its vertical edges;
+2. every root generator is represented on a vertical overlap;
+3. every Steinberg relation may be evaluated in one vertex chamber; and
+4. every change from the chosen chart of one relation to the chosen chart
+   of the next factors into exact `B`-transport and copies of the one base
+   Fourier transition `P_0--S_0`.
+
+**Proof.**  The first two assertions are the preceding row-star formula.
+The minimal two-chamber cover says that every oriented `A_2` triple and
+every commuting pair lies in a `B`-translate of `O_+` or `O_*`; same-root
+additivity lies in any chamber containing that root.  This proves (3).
+For (4), move horizontally to the required `b`, cross the aligned vertical
+edge if the chamber type changes, and move horizontally again.  End proof.
+
+Choose a spanning tree of this graph and fix the edge phases there.  On the
+bulk supplied by the micro--macro carry construction, transport every root
+operator to the chamber selected for its defining relation.  A relation
+word then traces a gallery loop whose induced automorphism of
+`K directSum K^vee` is the identity: inside each vertex this is the exact
+jet covariance, horizontal edges are conjugacies, and vertical edges are
+Fourier dualities.  The finite Stone--von Neumann lemma makes its residual
+operator holonomy scalar.  On the Pauli--flag good channel the
+trivial-isotropy Mackey coboundary rephases that scalar; equivalently, after
+the unit Steinberg relations have been assembled, the verified vanishing
+of `K_2(4,Z/p^nZ)` removes the finite-stage scalar Steinberg ambiguity.
+
+Hence the finite overlap graph introduces no new matrix-valued curvature
+and no new asymptotic edge type.  For a fixed presentation word, its bulk
+path uses only boundedly many horizontal and vertical edges, so the union
+bound preserves the candidate curvature support
+
+`eta_(n,M)=O(1/M)+O(p^(-n))+O_p(p^(-4(n-1)))`.
+
+The remaining check is no longer combinatorial coverage.  It is analytic:
+choose the edge rephasings simultaneously for the finite presentation,
+verify that the faithful residual-finite summand does not dilute the
+strict commutant escape, and pass these microstates through the relative
+Clifford/Kun--Thom quotient criterion.
