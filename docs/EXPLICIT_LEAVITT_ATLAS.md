@@ -59,12 +59,8 @@ Then
 
 The two paths in (2) are prefix-incomparable: \(\gamma_i\) and
 \(\gamma_j\) are distinct leaves, and extending either path preserves
-prefix-incomparability.  The pair extends to a particularly small leaf set.
-If \(a=1\), use \(C=\{\gamma_1,\gamma_2,\gamma_3\}\).  If
-\(a\in\{e,f\}\), replace \(\gamma_i\) in \(C\) by its two children.  If
-\(a=b^*\), replace \(\gamma_j\) by its two children.  The resulting leaf
-set \(D_{ij,a}\) has cardinality three or four and contains both paths in
-(2).  Relative to its matrix units,
+prefix-incomparability.  Lemma 2.2 of Khanh--Thanh extends the pair to a
+finite leaf set \(D_{ij,a}\).  Relative to its matrix units,
 \(q_{ij,a}\) is the elementary scalar matrix
 
 \[
@@ -93,95 +89,113 @@ This is the uniform depth-\(r\) refinement of \(D\), of cardinality
 \]
 
 The uniform refinement (4) shows that the generator belongs to scalar
-charts of arbitrarily large suitable ranks.  A sharper uniform choice is
-available.  The leaf set \(D_{ij,a}\) has size three or four, and at least
-one of its leaves differs from both
-\(\alpha_{ij,a},\beta_{ij,a}\).  Expand only unused leaves until the leaf
-set has cardinality five.  The two distinguished leaves, and hence the
-single off-diagonal matrix unit in (3), remain unchanged.  This gives a
-concrete scalar leaf-matrix subgroup
+charts of arbitrarily large suitable ranks.  A much smaller common atlas is
+available.  For \(k\in\{1,2,3\}\), let
 
 \[
-  H_{ij,a}:=\operatorname{GL}_5(\mathbb F_2)\le Q          \tag{5}
+  D_k=(C\setminus\{\gamma_k\})
+      \cup\{\gamma_ke,\gamma_kf\}.                        \tag{5}
 \]
 
-containing \(q_{ij,a}\).  Moreover,
+This is a four-leaf set.  The thirty generators distribute among these
+three charts as follows:
+
+* \(q_{ij,e}\) and \(q_{ij,f}\) belong to the \(D_i\)-chart;
+* \(q_{ij,e^*}\) and \(q_{ij,f^*}\) belong to the \(D_j\)-chart;
+* \(q_{ij,1}\) belongs to the \(D_k\)-chart for the unique
+  \(k\notin\{i,j\}\).
+
+Every leaf of a fixed \(D_k\) occurs as a row or column endpoint among the
+generators allocated to that chart, so no single leaf can be split while
+retaining the whole scalar chart.  Uniformly refine all four leaves once:
 
 \[
-  \operatorname{GL}_5(\mathbb F_2)
-  =\operatorname{SL}_5(\mathbb F_2)
-  =\operatorname{PSL}_5(\mathbb F_2).
+  D_k^{(1)}=\{\delta e,\delta f:\delta\in D_k\}.
+\]
+
+Equation (4) identifies the entire scalar \(D_k\)-chart with the diagonal
+copy \(M\mapsto M\otimes I_2\) in the eight-leaf chart.  In particular,
+every generator allocated above remains in that common refined chart.  Let
+
+\[
+  H_k\cong\operatorname{GL}_8(\mathbb F_2)\le Q
+\]
+
+be the resulting scalar leaf-matrix subgroup.  The allocation above shows
+that \(H_1,H_2,H_3\) together contain all thirty generators (1).  Moreover,
+
+\[
+  \operatorname{GL}_8(\mathbb F_2)
+  =\operatorname{SL}_8(\mathbb F_2)
+  =\operatorname{PSL}_8(\mathbb F_2).
 \]
 
 This finite group is nonabelian simple and has trivial Schur multiplier;
-hence it is superperfect.  Thus every generator in (1) lies in a specified
-copy of the **same** finite superperfect group in \(Q\).
+hence it is superperfect.
 
 ## 3. The explicit atlas source
 
-Let \(\mathcal I\) be the set of the thirty triples \((i,j,a)\) above and
-define
+Define
 
 \[
-  P_{30}=*_{(i,j,a)\in\mathcal I}H_{ij,a}
-  \cong *^{30}\operatorname{GL}_5(\mathbb F_2).           \tag{6}
+  P_3=H_1*H_2*H_3
+  \cong *^3\operatorname{GL}_8(\mathbb F_2).              \tag{6}
 \]
 
 Map every free factor in (6) to its concrete scalar leaf-matrix subgroup
 of \(Q\).  The induced homomorphism
 
 \[
-  \rho:P_{30}\twoheadrightarrow Q                         \tag{7}
+  \rho:P_3\twoheadrightarrow Q                            \tag{7}
 \]
 
-is surjective because its image contains all the generators (1).  Repeated
-charts may be merged, so thirty is an upper bound, not a minimality claim.
+is surjective because its image contains all the generators (1).
 
-Each free factor is finite and superperfect.  Therefore \(P_{30}\) is a
+Each free factor is finite and superperfect.  Therefore \(P_3\) is a
 finitely generated virtually free superperfect group: its abelianization
 is the direct sum of the factor abelianizations, and its second homology is
 the direct sum of their second homologies.  Put
 
 \[
-  R_{30}=\ker\rho,qquad N_{30}=[P_{30},R_{30}].            \tag{8}
+  R_3=\ker\rho,\qquad N_3=[P_3,R_3].                       \tag{8}
 \]
 
 The standard superperfect-cover form of the universal-central-extension
 construction gives
 
 \[
-  U_Q\cong P_{30}/N_{30}.                                  \tag{9}
+  U_Q\cong P_3/N_3.                                       \tag{9}
 \]
 
 Consequently the exact-source character criterion and the one-witness
 certificate may be run with the fully specified source (6).  An exact
-finite-dimensional representation of this source is nothing more than an
-independent exact representation of the one fixed finite group
-\(\operatorname{GL}_5(\mathbb F_2)\) for each of thirty factors, with one
-relative conjugating unitary per factor.
+finite-dimensional representation of this source is nothing more than
+three independent exact representations of the one fixed finite group
+\(\operatorname{GL}_8(\mathbb F_2)\), with two relative conjugating
+unitaries after fixing the basis for one factor.
 
 One can also choose the survivor explicitly.  For example,
 
 \[
-  p_0=q_{12,1}\in H_{12,1}\le P_{30}.                      \tag{10}
+  p_0=q_{12,1}\in H_3\le P_3.                             \tag{10}
 \]
 
-Its image in \(Q\) is nontrivial, so \(p_0\notin R_{30}\), and therefore
-\(p_0\notin N_{30}\).
+Its image in \(Q\) is nontrivial, so \(p_0\notin R_3\), and therefore
+\(p_0\notin N_3\).
 
 ## 4. Exact remaining boundary
 
-The group \(P_{30}\) is finitely presented.  The group
+The group \(P_3\) is finitely presented.  The group
 \(U_Q\cong\operatorname{St}_5(L)\) is finitely presented because \(L\) is
 a finitely presented unital ring and the Krsti\'c--McCool theorem applies in
-rank at least four.  Hence \(N_{30}\) is finitely normally generated in
-\(P_{30}\).  This proves the existence of a finite list of word constraints
+rank at least four.  Hence \(N_3\) is finitely normally generated in
+\(P_3\).  This proves the existence of a finite list of word constraints
 
 \[
-  \mathcal S=\{n_1,\ldots,n_m\}\subseteq N_{30}.           \tag{11}
+  \mathcal S=\{n_1,\ldots,n_m\}\subseteq N_3.              \tag{11}
 \]
 
-The source cited above does **not** print (11) in the thirty-factor
+The source cited above does **not** print (11) in the three-factor
 coordinates.  Extracting such a list requires two effective Tietze steps:
 
 1. write a concrete finite Krsti\'c--McCool presentation of
@@ -193,14 +207,14 @@ coordinates.  Extracting such a list requires two effective Tietze steps:
 Thus the atlas itself, its finite factors, the quotient map, and a survivor
 are now explicit.  The finite normal-relator list is known to exist but has
 not yet been extracted.  Even after it is extracted, the decisive analytic
-question remains whether exact representations of \(P_{30}\) can make all
+question remains whether exact representations of \(P_3\) can make all
 words in (11) tend to the identity in normalized Hilbert--Schmidt norm while
 keeping (10) a fixed positive distance from the identity.
 
 ## 5. Exact negative-rank form
 
 The chosen survivor \(p_0=q_{12,1}\) is an involution.  For an exact
-representation \(\pi:P_{30}\to U(d)\), put
+representation \(\pi:P_3\to U(d)\), put
 
 \[
   r_-(\pi)=\dim\ker(\pi(p_0)+1).
@@ -221,7 +235,7 @@ unnormalized Frobenius norm.  The tensor-amplified ratio criterion and
 \boxed{
  Q\text{ is hyperlinear}
  \iff
- \inf_{\substack{\pi:P_{30}\to U(d)\\r_-(\pi)>0}}
+ \inf_{\substack{\pi:P_3\to U(d)\\r_-(\pi)>0}}
  \frac{\max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}}
       {\sqrt{r_-(\pi)}}=0.
 }                                                           \tag{13}
