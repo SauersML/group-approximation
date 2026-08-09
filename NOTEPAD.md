@@ -16078,3 +16078,47 @@ not enough: on an `alpha tensor beta` block the central phase is
 Thus the next audit may choose either an exact active signed-Weyl cell or a
 blockwise matched `K_2` cancellation, but it must write one of them
 explicitly and preserve strict energy.
+
+### Keep coefficient transport and the projective phase in separate factors
+
+The risky matched-central-summand reweighting is unnecessary if the finite
+model is organized according to the factors already present in the
+construction.
+
+* The fixed-base coefficient factor is the full regular `EL_r(S_N)` model.
+  Choose the chart transports as actual potentials `G_(C,x)` and define
+  passive walls by their ratios.  The pair-groupoid calculation then makes
+  every coefficient/multiplicity gallery loop the identity, not merely a
+  central operator.
+* Put the Pauli/Weil correction in a separate irreducible finite Heisenberg
+  factor with one fixed nontrivial central character.  Stone--von Neumann
+  makes every residual projective loop a **single scalar on this entire
+  factor**.  Repeat this same irreducible factor for scalar amplification;
+  do not replace it by a regular representation containing multiple central
+  characters.
+
+Consequently the finite-stage operator has the tensor form
+
+`u(g)=u_coeff(g) tensor u_phase(g)`
+
+with exact coefficient chart holonomy and a global circle multiplier
+`c(g,h)` in the second factor.  The strict commutant witness has the form
+
+`v=v_coeff tensor 1_phase`.
+
+Now ordinary full conjugate tensoring cancels the multiplier:
+
+`uhat(g)=u(g) tensor conjugate(u(g))`,
+`vhat=v tensor 1`.
+
+There is no off-diagonal central-summand issue, and
+
+`||[vhat,uhat(t)^*uhat(gamma)uhat(t)]||_2`
+` =||[v,u(t)^*u(gamma)u(t)]||_2`.
+
+This discharges the quantitative energy condition in the blockwise
+alternative, provided the coefficient walls are indeed ratios of the fixed
+chart potentials on the fusion good corner.  That hypothesis is exactly
+the moving-wall flatness theorem above.  Thus the central Steinberg/Weil
+kernel does not require selecting or reweighting any part of the strict
+regular coefficient representation.
