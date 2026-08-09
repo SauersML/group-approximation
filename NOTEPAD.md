@@ -21526,6 +21526,110 @@ property `(T)` of the relevant universal covers is the exact rigidity input.
 
 ---
 
+# Uniform character gaps forbid hyperlinearizing finite-field rank models by exact representations (2026-08-09)
+
+There is a rigorous obstruction to the most natural conversion of
+finite-field matrix models into unitary microstates.  It is stronger than the
+failure of the Schoenberg transform recorded above: allowing an arbitrary
+complex representation of the entire finite linear group still cannot work
+for the Leavitt--Steinberg target.
+
+**Theorem (finite-Lie representation conversion no-go).**  Let
+
+`Lambda=<S | R>`
+
+be a finitely presented group with no nontrivial finite quotient.  For each
+`n`, let `m_n>=3`, choose arbitrary labels
+
+`sigma_n:S -> SL_(m_n)(F_2)`,
+
+and let
+
+`rho_n:SL_(m_n)(F_2)->U(k_n)`
+
+be an arbitrary finite-dimensional complex unitary representation.  Extend
+`sigma_n` to words in the free group on `S`.  If
+
+`||rho_n(sigma_n(r))-1||_2 ->0` for every `r in R`,
+
+then
+
+`||rho_n(sigma_n(s))-1||_2 ->0` for every `s in S`.
+
+In particular, postcomposing arbitrary approximate finite-field models by
+exact representations of their ambient finite special linear groups can never
+give a separating hyperlinear approximation of `Lambda`.
+
+**Proof.**  Gluck's uniform character-ratio theorem for finite groups of Lie
+type gives a numerical constant `c<1`, independent of `m`, such that for every
+nonprincipal irreducible complex character `chi` of `SL_m(F_2)` and every
+`1!=x in SL_m(F_2)`,
+
+`|chi(x)|/chi(1) <= c`.
+
+One may take `c=19/20`: Gluck gives `3/4` for nonidentity unipotent elements
+over fields of size at most four and `19/20` for nonunipotent elements.  The
+groups `SL_m(F_2)` have trivial center and are perfect for `m>=3`, so their only
+linear character is the principal one.
+
+Let `a_n` be the normalized dimension of the trivial isotypic subspace of
+`rho_n`.  For every `1!=x in SL_(m_n)(F_2)`, decomposition into irreducibles
+and the character bound give
+
+`Re tr_(k_n)(rho_n(x)) <= a_n+c(1-a_n)`.
+
+Consequently
+
+`||rho_n(x)-1||_2^2`
+` =2-2 Re tr_(k_n)(rho_n(x))`
+` >=2(1-c)(1-a_n).`
+
+If all relator values `sigma_n(r)` were the identity, the labels on `S` would
+extend to a homomorphism `Lambda->SL_(m_n)(F_2)`, which must be trivial by the
+finite-quotient hypothesis.  Thus, whenever some generator label is
+nonidentity, at least one relator value is nonidentity.  Since `R` is finite,
+the assumed convergence is uniform over `R`.  Along every subsequence on
+which some generator label is nonidentity, choose such a nonidentity relator
+value `x_n`.  The displayed lower bound and the relator convergence force
+
+`a_n->1`.
+
+But every `rho_n(y)` is the identity on the trivial isotypic subspace, so for
+all `y in SL_(m_n)(F_2)` one has the uniform estimate
+
+`||rho_n(y)-1||_2^2 <=4(1-a_n)->0`.
+
+This applies in particular to every generator label.  On the complementary
+indices all generator labels were already the identity.  Hence every
+generator image converges to the identity, as claimed.  End proof.
+
+**Application.**  Both
+
+`Q=EL_4(L_(F_2)(1,2))` and `U=St_5(L_(F_2)(1,2))`
+
+are finitely presented and have no nontrivial finite quotient: `Q` is infinite
+simple, while the minimally-almost-periodic theorem above applies to `U`.
+Therefore neither target can be made hyperlinear by the pipeline
+
+`finite-field/rank labels -> exact complex representation of SL_m(F_2)`.
+
+This rules out all permutation, regular, irreducible-character, Weil, tensor,
+or mixed exact-representation choices at the final conversion step at once.
+The size of the rank defect is irrelevant: a single nonzero relator defect in
+the finite linear group already has a uniform character gap in every
+nontrivial exact sector.  A viable weak-MF or Hilbert--Schmidt construction
+must therefore use genuinely approximate unitary operators which do **not**
+extend to an exact representation of the ambient finite linear group.
+
+**Primary-source pin.**  D. Gluck, *Sharper character value estimates for
+groups of Lie type*, J. Algebra 174 (1995), 229--266: the uniform `19/20`
+bound for nonunipotent elements and `3/4` bound for unipotent elements when
+`q<=4`.  Larsen--Tiep, *Uniform Character Bounds for Finite Classical Groups*,
+Theorem A and its introduction, explicitly identify Gluck's result as the
+uniform bound away from one for every noncentral element.
+
+---
+
 # The Leavitt--Steinberg Hilbert--Schmidt stability fork (2026-08-09)
 
 Put
