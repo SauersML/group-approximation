@@ -14841,3 +14841,74 @@ or leaves a noncentral holonomy not removed by the free Pauli groupoid
 cochain.  Stone--von Neumann controls scalar holonomy, but regular
 absorption enlarges the multiplicity commutant; that loop must be checked
 before reinstating the global assembly theorem unconditionally.
+
+### One involutive multiplicity Fourier transform kills all atlas holonomy
+
+The enlarged multiplicity commutant can be made globally flat by using the
+same Fourier involution on every adjacent wall.
+
+First choose the common multiplicity dimension even.  Take `L` of even
+`F_p`-dimension and, on the finite symplectic phase space
+`L directSum L^vee`, choose an invertible skew identification
+`A:L^vee->L`.  The symplectic map
+
+`S_A(x,chi)=(A chi,-A^(-T)x)`
+
+exchanges the two Lagrangians and satisfies `S_A^2=1` because
+`A^T=-A`.  Odd-prime Weil linearity supplies an implementing unitary
+`mathcalF`; multiply it by a scalar so that
+
+`mathcalF^2=1`.
+
+For each chamber `C`, choose one regular-absorption trivialization `T_C` of
+its finite `Gamma_z` representation into the common model
+
+`lambda_K tensor 1_M`.
+
+For an adjacent wall `C--D`, use the relative-face propagation from the
+preceding theorem, with origin operator
+
+`J_(D,C)=T_D^*(1 tensor mathcalF)T_C`.
+
+**Theorem (flat multiplicity connection on the chamber atlas).**  Products
+of the `J_(D,C)` around every chamber-gallery loop are the identity on the
+common-good subspace.  In particular no noncentral multiplicity holonomy
+survives regular absorption.
+
+**Proof.**  Along a path
+
+`C_0,C_1,...,C_l`,
+
+the internal absorption maps telescope and the product is
+
+`T_(C_l)^*(1 tensor mathcalF^l)T_(C_0)`.
+
+The chamber graph is the Cayley graph of `S_4` by adjacent transpositions.
+Every closed path has even length because permutation parity is bipartite.
+Therefore `mathcalF^l=1`.  Equivalently, the Coxeter two-step, commuting-
+square, and braid-hexagon loops contribute respectively
+`mathcalF^2`, `mathcalF^4`, and `mathcalF^6`, all equal to one.  End proof.
+
+The same calculation works after propagation over each common-face Følner
+box: on interior cells the common-root unitaries cancel, and only the
+`O(1/M)` face boundary remains.  Scalar Pauli/Weil gauges may be multiplied
+into the `T_C`; the free-good groupoid contraction makes them telescope as
+well.
+
+Using one identical `mathcalF` on all walls is sufficient.  Its role is not
+to encode which root is flipped—that information is carried by the two
+native chamber models on either side.  Its role is to put a nontrivial
+primal/dual exchange in the relative multiplicity commutant while the five
+common roots have already been identified.  The strict witness is placed in
+the same multiplicity factor and transported by `mathcalF`, so its norm is
+unchanged.
+
+This discharges the remaining atlas-loop audit conditional on the relative
+face-absorption theorem.  Combining it with the fixed fusion cutoff and
+local-curvature correction reinstates the global assembly theorem.  The
+next adversarial target is now the one subtle local point in regular
+absorption: verify that the origin Fourier `1 tensor mathcalF` genuinely
+changes the compressor commutant inclusion rather than acting on a
+decoupled multiplicity factor which the ambient root operators ignore.  If
+it is decoupled, the construction is sterile despite its nontrivial wall
+phase.
