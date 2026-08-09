@@ -25996,3 +25996,46 @@ thirty factor representations and twenty-nine relative unitaries.  What is
 still missing is an explicit finite normal generating list for
 `[P_3,R_3]`; it can in principle be obtained by the same finite-presentation
 Tietze translation already isolated for `P_30`.
+
+### Optimal Schur-cover compression of the Leavitt atlas (2026-08-09)
+
+The rank-eight refinement above is valid but unnecessary.  Each unrefined
+four-leaf chart is
+
+`K_k ~= GL_4(F_2) ~= A_8`.
+
+Take its universal central cover `H_k=2.A_8 ->> K_k` instead.  Every `H_k`
+is finite and superperfect, and the three composites `H_k -> K_k -> Q`
+still cover the thirty Khanh--Thanh generators.  Hence the exact source can
+be reduced further to
+
+`P_3=H_1*H_2*H_3 ~= *^3(2.A_8) ->> Q`.                  `(12)`
+
+The number three is optimal among scalar leaf charts.  For a scalar chart
+containing `1+alpha beta*`, the two cylinder projections `alpha alpha*` and
+`beta beta*` have equal finite matrix rank.  Fix `i!=j`.  Containment of
+`q_(ij,1)`, `q_(ij,e)`, and `q_(ij,e*)`, respectively, forces
+
+`m(gamma_i)=m(gamma_j)`,
+`m(gamma_i e)=m(gamma_j)`,
+`m(gamma_i)=m(gamma_j e)`.
+
+Any two are incompatible because each parent cylinder has two nonempty
+child cylinders.  Thus one chart contains at most one of these three
+generators, while the charts `D_1,D_2,D_3` attain the lower bound.
+
+The survivor may still be involutory.  A transvection in `GL_4(F_2)` lies
+in its unique class of size `(2^4-1)(2^3-1)=105`; under `GL_4(F_2)~=A_8`
+this is the class of products of four disjoint transpositions.  In the
+standard Schur double-cover presentation, the square of a product of four
+disjoint transposition lifts is `z^(binom(4,2))` times either `1` or `z^4`,
+hence is `1`.  Choosing a lift `p_0 in H_3` of `q_(12,1)` therefore retains
+the exact formula
+
+`||pi(p_0)-1||_2=2 sqrt(r_-(pi)/d)`.
+
+Accordingly the full active-rank certificate now concerns exact
+representations of only three copies of the fixed group `2.A_8`, with two
+relative conjugating unitaries after global conjugation.  This supersedes
+the rank-eight source while leaving every universal-cover and tensor-ratio
+argument unchanged.

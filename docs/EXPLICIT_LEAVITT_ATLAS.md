@@ -70,68 +70,59 @@ finite leaf set \(D_{ij,a}\).  Relative to its matrix units,
 
 In particular, \(q_{ij,a}\ne1\) and \(q_{ij,a}^2=1\).
 
-## 2. Refinement into finite superperfect charts
+## 2. Three finite Schur-cover charts
 
-For a leaf set \(D\) and \(r\ge0\), let
-
-\[
-  D^{(r)}=\{\delta\mu:\delta\in D,
-                         \ \mu\in\{e,f\}^r\}.
-\]
-
-This is the uniform depth-\(r\) refinement of \(D\), of cardinality
-\(|D|2^r\).  Lemma 2.3 gives
-
-\[
-  \alpha\beta^*
-   =\sum_{\mu\in\{e,f\}^r}(\alpha\mu)(\beta\mu)^*.
-                                                               \tag{4}
-\]
-
-The uniform refinement (4) shows that the generator belongs to scalar
-charts of arbitrarily large suitable ranks.  A much smaller common atlas is
-available.  For \(k\in\{1,2,3\}\), let
+For \(k\in\{1,2,3\}\), let
 
 \[
   D_k=(C\setminus\{\gamma_k\})
-      \cup\{\gamma_ke,\gamma_kf\}.                        \tag{5}
+      \cup\{\gamma_ke,\gamma_kf\}.                        \tag{4}
 \]
 
-This is a four-leaf set.  The thirty generators distribute among these
-three charts as follows:
+This is a four-leaf set and determines a scalar subgroup
+
+\[
+  K_k=\operatorname{GL}(D_k,\mathbb F_2)
+     \cong\operatorname{GL}_4(\mathbb F_2)
+     \cong A_8.                                           \tag{5}
+\]
+
+The thirty generators distribute among these three subgroups as follows:
 
 * \(q_{ij,e}\) and \(q_{ij,f}\) belong to the \(D_i\)-chart;
 * \(q_{ij,e^*}\) and \(q_{ij,f^*}\) belong to the \(D_j\)-chart;
 * \(q_{ij,1}\) belongs to the \(D_k\)-chart for the unique
   \(k\notin\{i,j\}\).
 
-Every leaf of a fixed \(D_k\) occurs as a row or column endpoint among the
-generators allocated to that chart, so no single leaf can be split while
-retaining the whole scalar chart.  Uniformly refine all four leaves once:
+These three scalar charts are minimal in number.  Indeed, if a finite
+scalar leaf chart contains \(1+\alpha\beta^*\), then the two cylinder
+projections \(\alpha\alpha^*\) and \(\beta\beta^*\) have the same matrix
+rank in that chart.  For fixed \(i\ne j\), write \(m(\alpha)\) for the
+number of chart leaves below the path \(\alpha\).  Containment of
+\(q_{ij,1}\), \(q_{ij,e}\), and \(q_{ij,e^*}\), respectively, forces
 
 \[
-  D_k^{(1)}=\{\delta e,\delta f:\delta\in D_k\}.
+ m(\gamma_i)=m(\gamma_j),\qquad
+ m(\gamma_i e)=m(\gamma_j),\qquad
+ m(\gamma_i)=m(\gamma_j e).
 \]
 
-Equation (4) identifies the entire scalar \(D_k\)-chart with the diagonal
-copy \(M\mapsto M\otimes I_2\) in the eight-leaf chart.  In particular,
-every generator allocated above remains in that common refined chart.  Let
+Because both child cylinders below every \(\gamma_i\) are nonempty, any
+two of these three equalities are incompatible.  Thus one scalar chart
+contains at most one of these three generators, and at least three charts
+are required.  The allocation above attains the lower bound.
+
+The groups \(K_k\cong A_8\) are perfect but not superperfect.  Instead of
+enlarging their leaf sets, take their universal central covers.  For each
+\(k\), let
 
 \[
-  H_k\cong\operatorname{GL}_8(\mathbb F_2)\le Q
+  \eta_k:H_k\twoheadrightarrow K_k,
+  \qquad H_k\cong 2.A_8.
 \]
 
-be the resulting scalar leaf-matrix subgroup.  The allocation above shows
-that \(H_1,H_2,H_3\) together contain all thirty generators (1).  Moreover,
-
-\[
-  \operatorname{GL}_8(\mathbb F_2)
-  =\operatorname{SL}_8(\mathbb F_2)
-  =\operatorname{PSL}_8(\mathbb F_2).
-\]
-
-This finite group is nonabelian simple and has trivial Schur multiplier;
-hence it is superperfect.
+The finite group \(H_k\) is superperfect, and the composites
+\(H_k\to K_k\hookrightarrow Q\) still cover all thirty generators (1).
 
 ## 3. The explicit atlas source
 
@@ -139,11 +130,11 @@ Define
 
 \[
   P_3=H_1*H_2*H_3
-  \cong *^3\operatorname{GL}_8(\mathbb F_2).              \tag{6}
+  \cong *^3(2.A_8).                                      \tag{6}
 \]
 
-Map every free factor in (6) to its concrete scalar leaf-matrix subgroup
-of \(Q\).  The induced homomorphism
+Map every free factor in (6) through its Schur covering map and then to its
+concrete scalar leaf-matrix subgroup of \(Q\).  The induced homomorphism
 
 \[
   \rho:P_3\twoheadrightarrow Q                            \tag{7}
@@ -171,17 +162,26 @@ Consequently the exact-source character criterion and the one-witness
 certificate may be run with the fully specified source (6).  An exact
 finite-dimensional representation of this source is nothing more than
 three independent exact representations of the one fixed finite group
-\(\operatorname{GL}_8(\mathbb F_2)\), with two relative conjugating
+\(2.A_8\), with two relative conjugating
 unitaries after fixing the basis for one factor.
 
 One can also choose the survivor explicitly.  For example,
 
 \[
-  p_0=q_{12,1}\in H_3\le P_3.                             \tag{10}
+  p_0\in H_3\le P_3,
+  \qquad \rho(p_0)=q_{12,1}.                              \tag{10}
 \]
 
-Its image in \(Q\) is nontrivial, so \(p_0\notin R_3\), and therefore
-\(p_0\notin N_3\).
+The transvections of \(\operatorname{GL}_4(\mathbb F_2)\) form a class of
+size \((2^4-1)(2^3-1)=105\).  Under
+\(\operatorname{GL}_4(\mathbb F_2)\cong A_8\), this is the class of
+fixed-point-free involutions, the products of four disjoint
+transpositions.  Their lifts to \(2.A_8\) are involutions: in either
+standard Schur double-cover presentation of \(S_8\), four mutually
+disjoint transposition lifts have square
+\(z^{\binom42}\) times either \(1\) or \(z^4\), hence square to \(1\).
+Choose either lift as \(p_0\).  Its image in \(Q\) is nontrivial, so
+\(p_0\notin R_3\), and therefore \(p_0\notin N_3\).
 
 ## 4. Exact remaining boundary
 
@@ -213,7 +213,7 @@ keeping (10) a fixed positive distance from the identity.
 
 ## 5. Exact negative-rank form
 
-The chosen survivor \(p_0=q_{12,1}\) is an involution.  For an exact
+The chosen survivor \(p_0\), lifting \(q_{12,1}\), is an involution.  For an exact
 representation \(\pi:P_3\to U(d)\), put
 
 \[
@@ -273,6 +273,11 @@ either one.
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
 Proposition 3.4, Corollary 4.4, and Theorem 5.3.
+
+C. Lassueur and N. Mazza, *Endotrivial modules for the Schur covers of the
+symmetric and alternating groups*, for the standard presentations of
+\(2^\pm.S_n\), their common restriction \(2.A_n\), and lift orders of
+products of disjoint transpositions.
 
 A. Thom, *Examples of hyperlinear groups without factorization property*,
 Lemma 3.3 and Remark 3.4, for central-quotient permanence of
