@@ -13853,6 +13853,96 @@ regular-quotient witness in the quasi/regular split coordinates, and the
 compatibility of the `GL_4` enlargement with the exact Kun--Thom
 infranormality hypothesis.
 
+### First adversarial audit of the fixed-base candidate
+
+Three load-bearing algebraic checks survive, with one finite-quotient
+notation correction.
+
+**Lemma (the split elementary kernel is exactly additive).**  Let `A` be a
+finite commutative local ring, let `J` be a finite free `A`-module with
+`J^2=0`, and put `S=A semidirect J`.  For `r>=3`, reduction and the constant
+section give
+
+`EL_r(S)=K(J) semidirect EL_r(A)`,
+
+where
+
+`K(J)={1+X:X in Mat_r(J), tr(X)=0}`
+
+is abelian under `(1+X)(1+Y)=1+(X+Y)`.
+
+**Proof.**  Reduction is split on elementary generators.  Its kernel in
+`SL_r(S)` has the displayed form because
+
+`det(1+X)=1+tr(X)`
+
+when `J^2=0`.  A commutative local ring has `SL_r=EL_r` in this range, so
+the same is the kernel inside `EL_r(S)`.  Square-zero multiplication makes
+it additive and abelian.  End proof.
+
+For `I_d=directSum_j xi_j y^(d_j+h)A_N`, the jet map is onto the split
+subring `A_N semidirect I_d`; hence
+
+`pi_d(Gamma_z)=EL_r(A_N semidirect I_d)`
+
+inside the left regular representation of `EL_r(S_N)`.  This justifies the
+split regular coordinates used above, rather than merely giving an
+inclusion into an unknown relative elementary kernel.
+
+**Lemma (one fixed witness works along the whole depth chain).**  Fix a
+compressor with `d_j=1` and which sends `d_i` to `d_i+1`.  Let
+
+`gamma=e_(ab)(x_i) in Gamma_z`.
+
+On the block of depth `m=d_i`, its coefficient is
+
+`y^m(1+xi_i y^h)`.
+
+This belongs to `A_N semidirect I_m` but not to
+`A_N semidirect I_(m+1)`: subtracting its base term `y^m`, which belongs to
+both subrings, leaves `xi_i y^(m+h)`, and this is not divisible by
+`y^(m+h+1)`.  Therefore
+
+`pi_m(gamma) notin pi_(m+1)(Gamma_z)`
+
+for every nonfinal depth.  Haar averaging in
+`lambda(pi_(m+1)(Gamma_z))'` then gives a unitary whose squared commutator
+with `pi_m(gamma)` is at least `2`.  Thus the element detecting strictness is
+indeed one fixed group element; it does not vary with the block depth.
+
+The `GL_4` finite channel needs the following notation correction.  For odd
+`p`, reduction of `GL_4(Z)` does not fill `GL_4(Z/p^n Z)`: its determinant
+is only `+1` or `-1`.  The correct finite group is
+
+`Q_n^(+-)={g in GL_4(Z/p^n Z):det(g) in {+1,-1}}`.
+
+It contains `SL_4(Z/p^n Z)` with index two, and it is this group to which
+the Pauli--flag channel is induced.  All counting statements remain
+unchanged: the second determinant coset is the translate of the first by a
+fixed odd permutation, so it has the same free-good density and the same
+flag stabilizers.
+
+Finally, adjoining the fixed variable and the index-two substitution
+extension preserves the structural Kun--Thom hypotheses.  The polynomial
+and Laurent coefficient rings remain finitely generated domains; the usual
+universal-lattice and congruence arguments give property `(T)` and residual
+finiteness.  A positive unit transvection still compresses the polynomial
+ring properly.  The `GL_4(Z)`-conjugates of the polynomial elementary group
+generate the Laurent elementary group: for every Laurent exponent
+`v in Z^4`, write `v=a w` with `a>=0` and primitive `w`, extend `w` to an
+integral unimodular basis, and transport the positive monomial `x_0^a` to
+`x^v`; powers of the fixed `z` are untouched.  Hence the same infranormal
+generation argument applies.
+
+These checks do not yet certify the candidate theorem.  The remaining
+adversarial item is the global block assignment itself: verify, without
+using a path-dependent definition twice, that every Laurent elementary
+letter occurring in a fixed word receives the same transported operator on
+all bulk chart occurrences.  The telescoping atlas is designed to prove
+exactly this; the next audit must expand that assertion for one adjacent
+wall and one nontrivial `A_2` word before the universal bulk-word induction
+is accepted.
+
 ### First adversarial audit of the fixed-base assembly
 
 The three structural points isolated above survive direct checking.
