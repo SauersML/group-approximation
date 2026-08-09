@@ -23563,3 +23563,35 @@ quotients (or a genuinely diffuse limit) while making the external
 multi-compressor holonomy negligible in normalized Hilbert--Schmidt norm.
 The unbounded-rank feature of the existing Pauli/Schur atlas is therefore
 forced by the profinite geometry, not an artifact of that construction.
+
+### Compression annihilates the entire kernel homogeneous space
+
+Put
+
+`L=K intersect closure(H)`.
+
+The extended compressor satisfies
+
+`alphahat(K)<=L`.
+
+Indeed `alphahat(K)<=K` because
+`rho alphahat=beta rho`, while
+`alphahat(K)<=im(alphahat)=closure(H)`.  Together with the preceding
+homeomorphism
+
+`K/L ~= Gammahat/closure(H)`,
+
+this says that `alphahat` induces the **constant map** on the whole infinite
+intrinsic coset completion: every kernel coset is sent to the base coset.
+After quotienting by `K`, the very same endomorphism becomes the ambient
+automorphism `beta` of `C`.
+
+Thus the relative finite-quotient blindness has an exact branching picture.
+The inverse compressor must recreate the infinite profinite fiber `K/L`,
+whereas every ambient finite quotient deletes that fiber before making the
+compressor invertible.  Finite orbit-chain models are precisely finite
+approximations to this branching: their branching degrees must tend to
+infinity, and a unitary closure can only move the failure into a boundary or
+matrix-valued holonomy sector.  This explains, without reference to a chosen
+ring truncation, why a one-dimensional scalar phase cannot repair strict
+compression.
