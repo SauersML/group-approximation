@@ -14244,3 +14244,85 @@ local commutator block matrix itself preserves `range(V)`, and its fused
 compression has the same normalized norm up to `o(1)`.  Proving this
 transported-witness invariance is the last finite-matrix lemma in the
 fusion route.
+
+### Transported witnesses preserve the frame range and cannot cancel
+
+There is an exact propagation lemma behind the sufficient condition just
+stated.
+
+**Lemma (overlap transport propagates through the frame inverse).**  Suppose
+`z_C` commutes with `p_C` and
+
+`z_C p_Cp_D=p_Cp_D z_D`
+
+for all chart pairs.  Then for every polynomial `f`,
+
+`z_C p_C f(A) p_D=p_C f(A)p_D z_D`.
+
+The same holds for `f(A)=qA^(-1)q` by uniform polynomial approximation on
+the spectral set `{0} union [tau,m]`.  Consequently
+
+`[directSum_C z_C,P]=0`.
+
+**Proof.**  For one factor `A=sum_E p_E`, expand
+
+`z_C p_C A p_D=sum_E z_C p_Cp_Ep_D`.
+
+Move `z_C` across `p_Cp_E`, commute `z_E` with `p_E`, and then move `z_E`
+across `p_Ep_D`.  This gives `p_CAp_Dz_D`.  Induct on the power of `A` and
+take linear combinations.  Continuous functional calculus on the stated
+spectral set gives the inverse.  End proof.
+
+The argument is stable: `o(tau^k)` pairwise overlap errors give `o(1)` in
+the inverse identity after choosing the spectral threshold slowly enough.
+
+Apply the lemma simultaneously to transported local coefficient operators,
+compressor operators, and witnesses.  Then the block-diagonal local escape
+
+`D=directSum_C [U_(t,C)z_CU_(t,C)^*,U_(gamma,C)]`
+
+preserves `range(P)`.  Its fused escape is
+
+`d=V^*DV`,
+
+and, because `V` is an isometry onto `range(P)`,
+
+`||d||_(2,qH)^2=tr_(qH)(V^*D^*DPV)`.
+
+This is a positive energy and admits a direct lower bound.  Since
+`0<A<=m` on `qH`,
+
+`B=qA^(-1)q >=(1/m)q`.
+
+Assume the transported regular-quotient construction is chosen so that on
+each chart good projection
+
+`tr_H(p_C D_C^*D_C p_C)>=c^2 tr_H(p_C)`
+
+with one fixed `c>0` (the audited chain gives `c` arbitrarily close to
+`sqrt(2)`).  The diagonal blocks of `P` are `p_CBp_C`, so positivity gives
+
+`Tr(D^*DP)`
+` =sum_C Tr(D_C^*D_C p_CBp_C)`
+` >=(1/m) sum_C Tr(D_C^*D_C p_C q p_C)`.
+
+Because `tr(q)->1` and every `p_C` has trace `1-o(1)`, replacing `p_Cqp_C`
+by `p_C` loses only `o(d)` for uniformly bounded `D_C`.  The sum over the
+`m` conjugate charts cancels the factor `1/m`, while `rank(q)~d`.  Hence
+
+`liminf ||d||_(2,qH)>=c`.
+
+Polar corrections of the glued generators and witness are `o(1)` in
+normalized Hilbert--Schmidt norm, so the same positive lower bound survives
+for the final corner unitaries.
+
+Thus witness cancellation is not an additional obstruction.  The fusion
+route is reduced to constructing projections `p_C` and local transports
+which satisfy the pairwise overlap identities with errors small relative to
+the spectral threshold.  The fixed-base Fourier formula gives the fiber
+identity; the still-open quantitative point is to realize all `p_C` inside
+one common matrix algebra with trace `1-o(1)` and control
+
+`||U_(g,C)p_CBp_D-p_CBp_DU_(g,D)||_2`
+
+uniformly over the finite atlas.
