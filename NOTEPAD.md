@@ -16276,3 +16276,45 @@ noncentral Steinberg relations have been transferred.  The separated
 irreducible phase factor and conjugate cancellation remove it as above.
 Thus the active signed-Weyl repair survives, but only with the quantum
 relator-transfer proof; the earlier successive-depth proof is retracted.
+
+### The external `K_2(Z)` generator is a closed coefficient gallery
+
+The remaining external central kernel has an explicit coefficient audit.
+In the Steinberg group over `Z`, take the signed-Weyl lift
+
+`wtilde_(ij)=x_(ij)(1)x_(ji)(-1)x_(ij)(1)`.
+
+Its fourth power lies in the central kernel of
+
+`St_4(Z)->EL_4(Z)=SL_4(Z)`
+
+and represents the standard order-two `K_2(Z)` class.  Its matrix image is
+the identity because the signed quarter-turn satisfies `w_(ij)^4=1`.
+
+Realize the twelve root letters of `wtilde_(ij)^4` in their native owner
+charts and insert passive moving-wall arrows whenever the owner changes.
+This gives a closed path in the coefficient chart groupoid:
+
+* the accumulated exponent matrix is `w_(ij)^4=1`, so the depth and base
+  coefficient data return to their starting values;
+* the native fixed-base ring maps compose functorially to the identity; and
+* every passive wall is a ratio `G_DG_C^*`, so all chart potentials cancel
+  around the closed gallery.
+
+Intersect the finitely many pulled-back prefix-good projections as above.
+On that intersection the complete regular coefficient operator of
+`wtilde_(ij)^4` is exactly one.  Its complement has trace `O(epsilon_n)`,
+so the coefficient Hilbert--Schmidt defect is `O(sqrt(epsilon_n))`.
+
+Since `K_2(Z)` has order two in the stable external rank, this kills the
+whole external Steinberg kernel in the coefficient ultraproduct.  The
+calculation is compatible with the return to active `SL_4(Z)`; odd
+permutations occur only as passive coordinate gauges and do not add group
+relations.
+
+Any residual value of this closed word belongs solely to the separated
+irreducible Pauli/Weil phase factor, where it is one global scalar.  Full
+conjugate tensoring cancels that scalar and leaves the coefficient witness
+as `v_coeff tensor 1`.  Thus neither the external nor coefficient `K_2`
+kernel leaves a noncentral obstruction after the chart-groupoid and phase
+separation audits.
