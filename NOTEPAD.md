@@ -22716,11 +22716,19 @@ Hilbert--Schmidt displacement at most `sqrt(delta)`; the invariant
 Hilbert--Schmidt operator is within `O(sqrt(delta)/kappa)`, and functional
 calculus changes it to `q` with the same order of error.
 
-This theorem does **not** extend to the amenable-near certificate.  There the
-maps `pi|G` are multiplicative only in the seminorm selected by `phi`, so
-conjugation on Hilbert--Schmidt operators is not a genuine representation to
-which property `(T)` can be applied.  Turning that near action into a genuine
-one is exactly the normalized-HS stability/centralizer-lifting problem.  The
-surviving target is therefore now exact:
+This theorem does **not** automatically extend to the amenable-near
+certificate.  For a general near map, conjugation on Hilbert--Schmidt
+operators is not a genuine representation to which property `(T)` can be
+applied.  Even if the near map happens to be genuine on `G`, the lamp and
+covariance defects vanish only in the seminorm selected by the possibly
+singular state `phi`; Bekka's existence of Folner projections does not by
+itself say that those same projections realize this prescribed null ideal.
+Bridging those two approximations is another form of the normalized-HS
+centralizer-lifting problem.
 
-`an amenable near representation separating z must be genuinely nonexact on G`.
+The rigorously justified surviving statement is therefore:
+
+`an amenable near representation separating z cannot be a genuine representation of E`.
+
+Whether it may keep `G` exact and place all nonexactness in the Clifford
+covariance is a sharper open subproblem.
