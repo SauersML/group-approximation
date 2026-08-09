@@ -19444,6 +19444,36 @@ model must use prefix/Fock or Fourier branching rather than an ordinary
 Følner truncation.  The pair is a new, rigorously valid candidate, not a
 solution claim.
 
+The proved one-compressor orbit chain transfers verbatim to this pair.  For
+`t=R_(1,2)`, quotient `A_+` onto the finite commutative algebra
+
+`S_L=F_q[x_1,x_2]/(x_1^2,x_2^(L+1))`
+
+by sending the other free generators to zero.  Although the source is
+noncommutative, this is a legitimate ring quotient, and
+
+`t^j(x_1)=x_1 x_2^j`.
+
+The image subrings are
+
+`B_j=F_q[x_2]+x_1 x_2^j F_q[x_2]`,
+
+and the fixed root `gamma=x_(ab)(x_1)` has image in
+`EL_r(B_j) minus EL_r(B_(j+1))` for every `0<=j<L`.  Hence the
+endomorphism-orbit-chain and macroscopic-strictness theorems give exact
+`Gamma` representations, compressor defect at most `2/sqrt(L)`, and a
+relative-commutant witness with limiting commutator norm at least `sqrt(2)`.
+
+Thus the free-word pair begins at the same advanced point as the
+commutative pair: the strict one-compressor model is complete.  Its external
+assembly problem is to impose the finite Gersten/Nielsen relations of
+`SAut(F_d)` simultaneously.  Those relations involve only finitely many
+left/right Nielsen moves and boundedly many basis letters, while coefficient
+words retain unique reduced normal forms.  Whether this yields a simpler
+Fourier/contextual cell than the `SL_4(Z)` chamber atlas is open, but it is a
+different, explicitly delimited construction problem rather than a change
+of notation.
+
 ### Root-cycle incidence is the correctly oriented sparse frame
 
 There is a canonical sparse frame between complete compressor chains.  Let
@@ -19623,3 +19653,82 @@ prime-field `L_0` incidence.  Neither theorem currently supplies both lines
 on the same full fiber.  Thus the mutually-unbiased frame gives the correct
 geometry but does not by itself close the coupling; it reduces it exactly to
 this joint Fourier-conjugacy statement.
+
+### Weighted tensor trees preserve distributed strictness
+
+The free-word pair suggests a different globalization mechanism from fusion.
+Tensor products do not average a small strict sector away: their trace
+correlations multiply.
+
+Let `(M_i,tau_i)` be finite matrix algebras and let `A_i,B_i` be unitaries.
+Assume, after pairing each factor with its contragredient if necessary, that
+
+`c_i=tau_i(A_i^* B_i) in [0,1]`.
+
+Then in the tensor product,
+
+`||tensor_i A_i-tensor_i B_i||_2^2`
+` =2(1-product_i c_i)`.
+
+Writing `e_i^2=||A_i-B_i||_2^2=2(1-c_i)`, one gets
+
+`||tensor_i A_i-tensor_i B_i||_2^2`
+` =2(1-product_i(1-e_i^2/2))`
+` <=sum_i e_i^2`.
+
+For relator comparisons, the nonnegative-correlation hypothesis can be
+enforced by replacing a factor with its tensor product with the
+complex-conjugate factor: the new correlation is
+`|tau_i(A_i^*B_i)|^2`.  One must not use this trick on a witness whose escape
+is only a scalar phase, because the conjugate factor would cancel it.  The
+regular shear witness is designed to avoid that problem: its correlation is
+the real fixed-point fraction of a permutation and already lies in `[0,1]`.
+
+Now take a rooted `b`-ary positive-word tree of depth `L`.  At every vertex
+of depth `k`, put a local matrix factor which is a block sum of a sterile
+sector and an active compressor/shear sector of normalized weight
+
+`w_k=1/(L b^k)`.
+
+There are `b^k` vertices at that depth, so the total active weight per level
+is `1/L`.  If an active local witness has squared commutator energy at least
+`kappa^2`, its block extension by the identity has local energy at least
+`kappa^2 w_k`.  Take the tensor product of these block witnesses over all
+vertices.  It centralizes the tensor-product positive subgroup exactly.
+Its commutator correlation with the tensor-product invisible letter is at
+most
+
+`product_(k,v)(1-kappa^2 w_k/2)`
+
+Since
+
+`sum_(k=0)^(L-1) sum_(|v|=k) w_k=1`,
+
+the global squared commutator stays bounded below by a positive constant; in
+the equal-energy model it tends to
+
+`2(1-exp(-kappa^2/2))>0`.
+
+At the same time, a relator defect supported on one root or terminal level
+has total squared tensor error `O(1/L)` by the preceding inequality.  Thus
+the exact relations may hold on every interior tree edge, the arbitrary
+completion may be confined to the root/wrap levels, and strictness can be
+spread over all `L` levels without dilution.  This is the tensor analogue of
+the rank-spiky binary-tree coupling, with the decisive improvement that no
+single small block must carry the final witness norm.
+
+For the new free-word pair, the candidate instantiation is direct:
+
+* vertices are positive Nielsen words;
+* active factors are the proved one-compressor quotient chains, conjugated
+  to the Nielsen edge labelling that vertex;
+* the unique reduced-word normal form owns the local Steinberg cells; and
+* left/right Nielsen generators permute the tensor factors along tree edges,
+  with only the truncated root and leaf levels completed arbitrarily.
+
+This is not yet a microstate theorem.  The load-bearing finite check is that
+the Gersten/Nielsen relators act identically on all interior tensor factors,
+so their mismatch is genuinely confined to `O(1)` weighted levels rather
+than repeated throughout the tree.  If that check holds, the correlation
+lemma gives vanishing normalized-HS relator defect and an order-one strict
+witness simultaneously; no fusion cutoff or chart duplication is needed.
