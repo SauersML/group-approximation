@@ -517,6 +517,51 @@ def EveryNontrivialQuotientIsNonsofic (J : Type) [Group J] : Prop :=
   ∀ (Q : Type) (_ : Group Q) (q : J →* Q),
     Function.Surjective q → (∃ g : J, q g ≠ 1) → ¬ IsSofic Q
 
+/-- Every homomorphism from `J` to a sofic group is trivial.  Unlike a
+statement merely forbidding embeddings, this rules out every nontrivial
+sofic image of `J`. -/
+def HasNoNontrivialSoficImage (J : Type) [Group J] : Prop :=
+  ∀ (S : Type) (_ : Group S), IsSofic S →
+    ∀ (f : J →* S) (g : J), f g = 1
+
+/-- If every nontrivial quotient of `J` is nonsofic, then every map from `J`
+to a sofic group is trivial: its range is both a quotient of `J` and a
+subgroup of the sofic target. -/
+theorem hasNoNontrivialSoficImage_of_everyNontrivialQuotientIsNonsofic
+    {J : Type} [Group J]
+    (hquot : EveryNontrivialQuotientIsNonsofic J) :
+    HasNoNontrivialSoficImage J := by
+  intro S hSGroup hS f g
+  letI : Group S := hSGroup
+  by_contra hfg
+  have hgne : f.rangeRestrict g ≠ 1 := by
+    intro hg
+    apply hfg
+    exact congrArg Subtype.val hg
+  have hrange : IsSofic f.range :=
+    isSofic_of_injective f.range.subtype Subtype.val_injective hS
+  exact (hquot f.range inferInstance f.rangeRestrict
+    f.rangeRestrict_surjective ⟨g, hgne⟩) hrange
+
+/-- Conversely, absence of nontrivial sofic images makes every nontrivial
+quotient nonsofic, since a quotient map itself would otherwise be a
+nontrivial map to a sofic group. -/
+theorem everyNontrivialQuotientIsNonsofic_of_hasNoNontrivialSoficImage
+    {J : Type} [Group J]
+    (himage : HasNoNontrivialSoficImage J) :
+    EveryNontrivialQuotientIsNonsofic J := by
+  intro Q hQGroup q _ ⟨g, hg⟩ hQ
+  exact hg (himage Q hQGroup hQ q g)
+
+/-- The two useful formulations of quotient rigidity are equivalent:
+every nontrivial quotient is nonsofic exactly when every homomorphism into a
+sofic group is trivial. -/
+theorem everyNontrivialQuotientIsNonsofic_iff_noNontrivialSoficImage
+    {J : Type} [Group J] :
+    EveryNontrivialQuotientIsNonsofic J ↔ HasNoNontrivialSoficImage J :=
+  ⟨hasNoNontrivialSoficImage_of_everyNontrivialQuotientIsNonsofic,
+    everyNontrivialQuotientIsNonsofic_of_hasNoNontrivialSoficImage⟩
+
 /-- A convenient group-theoretic formulation of quasisimplicity: the group
 is perfect, and every proper normal subgroup is central. -/
 def IsQuasisimple (J : Type) [Group J] : Prop :=
@@ -540,6 +585,40 @@ theorem everyNontrivialQuotientIsNonsofic_of_quasisimple
   · obtain ⟨g, hg⟩ := hnontrivial
     have hmem : g ∈ q.ker := htop ▸ Subgroup.mem_top g
     exact (hg (by simpa [MonoidHom.mem_ker] using hmem)).elim
+
+/-- **Quasisimple sofic-image rigidity.**  If all nontrivial central
+quotients of a quasisimple group are nonsofic, then every homomorphism from
+the group into an arbitrary sofic group is trivial.  This is the mapping
+form of the Steinberg-target conclusion. -/
+theorem hasNoNontrivialSoficImage_of_quasisimple
+    {J : Type} [Group J]
+    (hqs : IsQuasisimple J)
+    (hcentral : ∀ (Q : Type) (_ : Group Q) (q : J →* Q),
+      Function.Surjective q → (∃ g : J, q g ≠ 1) →
+        q.ker ≤ Subgroup.center J → ¬ IsSofic Q) :
+    HasNoNontrivialSoficImage J :=
+  hasNoNontrivialSoficImage_of_everyNontrivialQuotientIsNonsofic
+    (everyNontrivialQuotientIsNonsofic_of_quasisimple hqs hcentral)
+
+/-- The exact abstract profile advertised for the Steinberg targets:
+finite presentability, Kazhdan's property `(T)`, and total rigidity of maps
+into sofic groups. -/
+structure FinitelyPresentedKazhdanSoficImageRigid
+    (J : Type) [Group J] : Prop where
+  finitelyPresented : Group.IsFinitelyPresented J
+  propertyT : HasKazhdanPropertyT.{0, 0} J
+  noNontrivialSoficImage : HasNoNontrivialSoficImage J
+
+/-- Package the three advertised conclusions once finite presentation and
+property `(T)` have been supplied together with the quotient obstruction. -/
+theorem finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction
+    {J : Type} [Group J]
+    (hfp : Group.IsFinitelyPresented J)
+    (hT : HasKazhdanPropertyT.{0, 0} J)
+    (hquot : EveryNontrivialQuotientIsNonsofic J) :
+    FinitelyPresentedKazhdanSoficImageRigid J :=
+  ⟨hfp, hT,
+    hasNoNontrivialSoficImage_of_everyNontrivialQuotientIsNonsofic hquot⟩
 
 /-- **Quasisimple-target Kazhdan-corner bridge.**  If every nontrivial
 quotient of a nontrivial Kazhdan group is nonsofic, then one weak-MF
