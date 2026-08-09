@@ -24116,6 +24116,76 @@ two-stage recipe
 
 `finite rank-metric root model -> exact character representation -> HS model`.
 
+# A single separable compressor gives a sofic wreath product (2026-08-09)
+
+The loss of ambient property `(T)` in the one-compressor shortcut is not the
+only problem.  For the polynomial compressor, the corresponding generalized
+wreath product is actually sofic.  Thus the simultaneous external shear
+directions are exactly where the classical obstruction begins.
+
+Let `Gamma` be residually finite, let `alpha:Gamma->Gamma` be injective, and
+form the ascending HNN extension
+
+`E=<Gamma,t | t gamma t^(-1)=alpha(gamma)>`.
+
+Put `Gamma_m=t^(-m) Gamma t^m`; these form an increasing chain and
+
+`N=union_(m>=0) Gamma_m=ker(E->Z)`.
+
+Assume that every nested subgroup `Gamma_i<=Gamma_j` is separable in
+`Gamma_j`.  This holds for the polynomial monomial compressor: after
+identifying `Gamma_j` with `EL_r(F_q[N^d])`, the subgroup `Gamma_i` is the
+elementary group over an iterated compressed monomial subring, and the same
+truncated-monomial argument used above separates it.
+
+**Theorem (one-compressor calibration).**  Under these hypotheses,
+
+`W=(direct_sum_(E/Gamma) C_2) semidirect E`
+
+is sofic.
+
+**Proof.**  The height map gives
+
+`1 -> K -> W -> Z -> 1`,
+
+where
+
+`K=(direct_sum_(E/Gamma) C_2) semidirect N`.
+
+It suffices to prove that `K` is locally LEF.  Take a finitely generated
+subgroup of `K`.  Its finitely many `N`-coordinates lie in one `Gamma_m`,
+and its lamp generators are supported at finitely many points of `E/Gamma`.
+Enlarge `m` so that the chosen representatives also lie in `Gamma_m` after
+their heights have been fixed.
+
+The subgroup generated is contained in the generalized wreath product for
+the action of `Gamma_m` on the finite union of its orbits through those
+points.  Each such orbit has the form
+
+`Gamma_m / n Gamma_k n^(-1)`
+
+for some nested `Gamma_k<=Gamma_m` and `n in Gamma_m` (or is a singleton).
+Its stabilizer is separable in `Gamma_m`.  Residual finiteness of `Gamma_m`
+and stabilizer separability give a LEF model of each coset action: on any
+finite window, take a product of finite quotients separating all required
+non-stabilizer differences.  A further finite product handles the finitely
+many orbits simultaneously.
+
+Put the lamp labels into the finite direct sum of `C_2` over that finite
+action model.  This gives exact finite models of every prescribed finite
+window in the generalized wreath product.  Hence the containing group is
+LEF, and the original finitely generated subgroup is sofic.  Therefore `K`
+is a directed union of sofic groups and is sofic.  Since `W/K=Z` is
+amenable, extension permanence proves that `W` is sofic.  End proof.
+
+For the Kun--Thom polynomial example, keeping all positive elementary
+substitutions changes the stable-letter quotient from the amenable height
+direction to the nonamenable `SL_d(Z)` coupling.  The local nested fibers
+remain LEF, as proved above, but they can no longer be assembled by the
+amenable-extension theorem.  This formally isolates the multi-compressor
+gluing as the load-bearing source of nonsoficity rather than an artifact of
+the chosen proof.
+
 # Clifford multiplicity defeats every local adjoint-rank bound (2026-08-09)
 
 The norm-MF Clifford obstruction above cannot be promoted to normalized-HS
