@@ -26393,3 +26393,78 @@ entire constructive problem is one sequence of unitaries `U_n` between two
 fixed regular `A_8` amplifications.  Constructing that sequence makes the
 known nonsofic `Q` hyperlinear and resolves hyperlinear-versus-sofic in the
 negative.
+
+# Exact relation-module form of the remaining unitary `H^2` problem (2026-08-09)
+
+The ordinary two-chart presentation makes the missing half of the
+`2`-Kazhdan route completely algebraic.  Retain
+
+`Pbar=A*B`,  `A~=B~=A_8`,
+
+`1 -> Nbar -> Pbar -> U_Q -> 1`,
+
+where the preceding audit proved `Nbar=[Pbar,Rbar]` and
+`Pbar/Nbar~=U_Q`.  Put
+
+`M=Nbar/[Nbar,Nbar]`,
+
+viewed as a left `Z[U_Q]`-module by conjugation.  If `V` is any unitary
+`U_Q`-module, inflation makes it a `Pbar`-module on which `Nbar` acts
+trivially.  Therefore
+
+`H^1(Nbar,V)^(U_Q) = Hom_(Z[U_Q])(M,V)`.                 `(RM1)`
+
+**Theorem (two-chart relation-module sequence).**  For every unitary
+`U_Q`-module `V` there is a natural short exact sequence
+
+`0 -> V/(V^A+V^B)`
+
+`  -> Hom_(Z[U_Q])(M,V) -> H^2(U_Q,V) -> 0`.             `(RM2)`
+
+Here the first arrow sends a vector class to the restriction to `Nbar` of
+the `Pbar`-cocycle which is zero on `A` and is the coboundary of that vector
+on `B` (changing the sign convention only changes this arrow by `-1`).
+
+**Proof.**  The Lyndon--Hochschild--Serre five-term sequence for
+`1->Nbar->Pbar->U_Q->1` contains
+
+`0 -> H^1(U_Q,V) -> H^1(Pbar,V)`
+
+`  -> H^1(Nbar,V)^(U_Q) -> H^2(U_Q,V) -> H^2(Pbar,V)`.
+
+Property `(T)` of `U_Q` gives `H^1(U_Q,V)=0`.  The Bass--Serre
+Mayer--Vietoris sequence for `Pbar=A*B`, together with averaging over the
+two finite factors, gives
+
+`H^2(Pbar,V)=0`
+
+and
+
+`H^1(Pbar,V) ~= V/(V^A+V^B)`.                           `(RM3)`
+
+Indeed, every cocycle on either finite factor is a coboundary.  After one
+global coboundary correction a cocycle may be made zero on `A`; its
+restriction to `B` is `b |-> pi(b)v-v`, and two choices of `v` give the
+same cohomology class exactly modulo `V^A+V^B`.  Substitution of `(RM1)`
+and `(RM3)` in the five-term sequence proves `(RM2)`.  End proof.
+
+Since `Nbar` is finitely normally generated, `M` is finitely generated as
+a `Z[U_Q]`-module.  Thus the remaining vanishing statement
+
+`H^2(U_Q,V)=0 for every unitary V`
+
+is equivalent to one finite-generator relation-module assertion: every
+equivariant map `M->V` must be the restriction of the displayed
+one-vector cocycle on `A_8*A_8`.  Superperfectness gives this automatically
+for the trivial representation because `M_(U_Q)=0`; the unresolved content
+is exactly the nontrivial unitary spectrum.
+
+This is compatible with, but stronger in specificity than, the global
+`(TT)/T` theorem.  That theorem proves injectivity of the bounded-to-ordinary
+comparison map; it does not prove surjectivity of the first arrow in
+`(RM2)`.  A uniform proof of that surjectivity would give `2`-Kazhdan,
+and hence the known unnormalized Frobenius-stability consequence for
+`U_Q`.  It would still not by itself give the active-rank lower bound needed
+for normalized-HS nonhyperlinearity.  Conversely, a concrete failure
+supplies a nonzero unitary-coefficient `H^2` class but does not by itself
+construct the normalized-HS certificate.

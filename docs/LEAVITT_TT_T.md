@@ -240,6 +240,64 @@ and every quotient (St_n(L)/C), (C\leq Z(St_n(L))), have property
 ((TT)/T).  These quotients include the entire canonical family of
 nonsofic central covers established elsewhere in the project.
 
+## Relation-module form of the missing cohomology
+
+The two-chart atlas gives a precise description of the ordinary second
+cohomology which remains uncontrolled.  Write
+
+\[
+ P=A*B,\qquad A\cong B\cong A_8,
+\]
+
+and let
+
+\[
+ 1\longrightarrow N\longrightarrow P\longrightarrow U\longrightarrow1
+\]
+
+be the presentation of the universal Steinberg cover proved in
+`docs/EXPLICIT_LEAVITT_ATLAS.md`.  Put
+
+\[
+ M=N/[N,N],
+\]
+
+with its conjugation action by \(U\).  For every unitary \(U\)-module \(V\), the
+Lyndon--Hochschild--Serre five-term sequence and Bass--Serre
+Mayer--Vietoris sequence give a natural short exact sequence
+
+\[
+ 0\longrightarrow V/(V^A+V^B)
+ \longrightarrow \operatorname{Hom}_{\mathbb Z[U]}(M,V)
+ \longrightarrow H^2(U,V)\longrightarrow0.             \tag{4}
+\]
+
+Indeed, property \((T)\) gives \(H^1(U,V)=0\).  Averaging over the two finite
+factors gives \(H^j(A,V)=H^j(B,V)=0\) for \(j>0\), whence
+
+\[
+ H^2(P,V)=0,
+ \qquad H^1(P,V)\cong V/(V^A+V^B).
+\]
+
+Since \(N\) acts trivially on \(V\), the middle term in the five-term sequence
+is
+
+\[
+ H^1(N,V)^U=\operatorname{Hom}_{\mathbb Z[U]}(M,V),
+\]
+
+which proves (4).  The first arrow is explicit: a vector \(v\) defines the
+\(P\)-cocycle which vanishes on \(A\) and restricts to
+\(b\mapsto\pi(b)v-v\) on \(B\), and one then restricts this cocycle to \(N\).
+
+The kernel \(N\) is finitely normally generated, so \(M\) is finitely
+generated as a \(\mathbb Z[U]\)-module.  Consequently the missing
+\(2\)-Kazhdan assertion is exactly the surjectivity, for every unitary
+module, of the first arrow in (4).  This finite-generator
+relation-module problem is the algebraic interface between the atlas and
+the cohomological correction route.
+
 ## Exact remaining frontier
 
 For the Steinberg cover (U=St_5(L)), superperfectness handles trivial
