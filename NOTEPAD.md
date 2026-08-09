@@ -16232,3 +16232,47 @@ pair: after native-relator transfer, no non-scalar `K_2(R)` holonomy remains.
 This audit also corrects every earlier illustrative choice `r=7` used for
 the trace pairing: the construction may and should use `r=9` (or any larger
 stable rank prime to the fixed odd `p`).
+
+### Correction: the active signed-Weyl cell is exact only in the chart groupoid
+
+The signed-Weyl word is the right active object, but the proof above cannot
+apply three native jet covariances successively on one prefix-good depth
+block.  The letters `x_(ij)(1)` and `x_(ji)(-1)` have opposite owner
+chambers.  A common classical macro-depth realization of those successive
+updates is precisely what the property-`(T)` no-go forbids.
+
+The valid replacement uses the Steinberg derivation and the fusion-transfer
+lemma.  Define on the final fused corner
+
+`W_(ij)=X_(ij) X_(ji)^* X_(ij)`
+
+as before.  In the abstract Steinberg group, the word
+
+`w_(ij)=x_(ij)(1)x_(ji)(-1)x_(ij)(1)`
+
+has the standard signed-Weyl conjugation formulas on every root subgroup.
+Each step in a finite derivation of those formulas is a same-root,
+commuting-root, or `A_2` relation involving no opposite pair, hence has a
+native owner chamber.  Transfer that finite derivation through the
+nonorthogonal atlas.  The pulled-back-cell intersection and fixed-word
+fusion identity give
+
+`||W_(ij) X_(kl)(a) W_(ij)^*`
+` -X_(w_(ij)(k),w_(ij)(l))(+-a)||_2->0`,
+
+with the sign prescribed by the integer matrix action.  The defect is a
+finite sum of native bad-corner and `(1-P)` leakage terms.
+
+Likewise `D_(ij)=W_(ij)^2` is a legitimate definition, and its conjugation
+action is asymptotically that of `diag(-1,-1)` by the same transferred
+Steinberg calculation.  These assertions are asymptotic after fusion, not
+exact on an intersection of three classical depth prefixes.  That is fully
+sufficient for the ultraproduct homomorphism and for the coefficient toric
+loop calculation.
+
+Any difference between the signed-Weyl word and a chosen finite Weil lift
+of the same phase-space automorphism is then central/projective after the
+noncentral Steinberg relations have been transferred.  The separated
+irreducible phase factor and conjugate cancellation remove it as above.
+Thus the active signed-Weyl repair survives, but only with the quantum
+relator-transfer proof; the earlier successive-depth proof is retracted.
