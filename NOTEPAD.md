@@ -10264,3 +10264,66 @@ coordinates of the eight relators respectively: essentially density
 one-half everywhere.  Thus the desired quadratic localization cannot come
 from the elementary transversal.  This computation is only a diagnostic,
 not asymptotic evidence or a proof.
+
+### The degree-three comparison leaves one Steinberg pin
+
+The precise scope of torsion-subcomplex localization can now be stated
+without a coefficient-general leap.  Let `z_p` be the integral Bockstein of
+the binary-octahedral circle class.  Then
+
+`z_p in H^3(SL_3(Z),Z^(Q_p/S_4))`
+
+has order two.  Its restriction to the fixed `S_4` coordinate is the
+nonzero degree-three class classifying `2.S_4`, so its image under the
+ordinary-to-Farrell comparison
+
+`j_p:H^3 -> Hhat^3`
+
+is nonzero: restriction to a finite subgroup commutes with comparison, and
+ordinary and Farrell cohomology agree on that finite subgroup.  In
+particular, `j_p` is injective on the cyclic subgroup `<z_p>`.
+
+The `2`-primary Farrell image is computed on the `2`-torsion subcomplex.
+For the varying permutation coefficient, the only nontrivial
+cell-coordinate summands are those whose Mackey intersection contains a
+conjugate of the fixed Klein four `A`.  The normalizer count and the bounded
+Soulé quotient give only `O(p^2)` such bounded-valence summands.  Thus the
+**Farrell image** has a quadratic-support model.
+
+This still falls one chain-level step short of the desired ordinary
+cocycle.  At `vcd(SL_3(Z))=3`, ordinary cohomology is not generally equal to
+Farrell cohomology.  The comparison exact sequence has a boundary kernel
+controlled by top Steinberg homology (equivalently, coinvariants of the
+Steinberg dualizing module).  A sparse representative of `j_p(z_p)` in the
+singular complex need not come with a support-controlled lift representing
+the specified ordinary class `z_p`; another lift can differ by that
+Steinberg kernel.  Abstract injectivity on `<z_p>` does not itself construct
+a bounded-support chain section.
+
+The scalar gauge theorem is therefore reduced further to either one of two
+equivalent quantitative statements:
+
+1. the `2`-primary Steinberg kernel vanishes on the binary-octahedral
+   inflation summand, with a chain contraction bounded uniformly in `p`; or
+2. the torsion-subcomplex representative of `j_p(z_p)` has an ordinary
+   lift through the fixed Soulé resolution with support `O(p^2)` and whose
+   restriction to the congruence kernel is zero.
+
+The last clause in (2) pins down the original finite-inflated class and
+preserves finite-dimensional projective realizability.  Torsion-subcomplex
+reduction as published computes Farrell cohomology (and ordinary cohomology
+above the virtual cohomological dimension); it does not supply this boundary
+lift automatically.
+
+A circle-valued numerical audit confirms that the gauge problem is not an
+artifact of restricting phases to `{+-1}`.  For `p=5`, periodic optimization
+of
+
+`sum_cells 4 sin^2(pi (d theta-c))`
+
+over all `3*6200` generator-edge phases reduced the naive total squared
+chordal defect from `101120` to about `8766.8`.  The optimizer stopped at a
+nonzero local minimum, so this is neither a lower bound nor an asymptotic
+claim.  It only shows that genuine circle phases improve the elementary
+gauge substantially while leaving the algebraic quadratic-support problem
+unresolved.
