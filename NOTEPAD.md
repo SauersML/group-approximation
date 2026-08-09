@@ -11772,6 +11772,66 @@ chambers must be intertwined on their common root filtration so that a
 gallery loop acts trivially.  Projective phases and the size of the discarded
 set are no longer part of that obstruction.
 
+### Exact finite relation cover: one chamber, two `A_2` cells, three rectangles
+
+The cross-chamber coefficient problem does not require an arbitrary flag
+atlas.  Its root-relation incidence has only six `B`-orbit types.
+
+Label the regular `B=(F_2)^2`-set by `0,1,2,3`, with translation written as
+bitwise addition.  Start from the total order
+
+`0<1<2<3`
+
+and its four `B`-translates.  The corresponding four maximal-unipotent
+chambers cover sixteen of the twenty-four oriented triples of distinct
+indices.  The eight uncovered triples are
+
+`(0,2,1),(1,3,0),(2,0,3),(3,1,2)`
+
+and
+
+`(0,3,1),(1,2,0),(2,1,3),(3,0,2)`.
+
+These are exactly two `B`-orbits, represented by `(0,2,1)` and `(0,3,1)`.
+Attach one strict Heisenberg-cell model to each representative and take its
+`B`-translates.  This covers every missing noncommuting Steinberg relation
+
+`[e_(ij)(1),e_(jk)(1)]=e_(ik)(1)`.
+
+There are also six commuting pairs not co-oriented in the four maximal
+chambers or those triple cells.  They split into the following three
+`B`-orbits:
+
+`{((0,1),(3,2)), ((1,0),(2,3))}`,
+
+`{((0,2),(3,1)), ((1,3),(2,0))}`,
+
+`{((0,3),(2,1)), ((1,2),(3,0))}`.
+
+Each consists of two disjoint root directions.  A rectangular Følner box
+for `Z^2` gives their commuting coefficient model with boundary
+`O(1/M)` and Hilbert--Schmidt defect `O(M^(-1/2))`.
+
+**Finite-cover conclusion.**  Up to `B`-conjugacy, all rank-four Steinberg
+relations are contained in precisely:
+
+* one maximal `UT_4` cell;
+* two transverse Heisenberg `A_2` cells; and
+* three abelian `A_1 x A_1` rectangles.
+
+Same-root additivity occurs in any cell containing that root.  Opposite-root
+relations need not be added to the Steinberg presentation; after all root
+additivity and commutator relations are represented, the verified equality
+`K_2(4,Z/p^nZ)=0` gives descent to `SL_4(Z/p^nZ)`.
+
+The enumeration converts the remaining coefficient coupling into a finite
+six-type synchronization problem.  The Pauli--flag/Mackey product can carry
+all six types simultaneously with the same exponentially small discarded
+trace, while regular root stabilization handles their pairwise spectra.
+What remains is to localize the nonautomorphic compression-chain mismatch
+on overlaps of these six cell types without passing to a sterile common
+finite quotient.
+
 ### Exact gallery flatness is sterile: the required target is quantitative
 
 The last sentence above must not be read as asking for an exact coefficient
