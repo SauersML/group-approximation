@@ -24837,11 +24837,14 @@ Property `(T)` gives `H^1(U,pi)=0` for every unitary `pi`.  Consequently:
 `H^2(U,H_pi)=0`
 
 for every unitary representation `pi` with `H_pi^U=0`.  In particular, a
-proof of this one nontrivial-coefficient statement would make `U`
-Frobenius/Hilbert--Schmidt stable by de Chiffre--Glebsky--Lubotzky--Thom.
-Since every finite-dimensional representation of `U` is trivial, the
-stability theorem would then make `U` an explicit finitely presented
-Kazhdan nonhyperlinear group.
+proof of this one nontrivial-coefficient statement would make `U` stable
+for the **unnormalized Frobenius norm** by
+de Chiffre--Glebsky--Lubotzky--Thom.  It would not by itself give normalized
+Hilbert--Schmidt stability or make `U` nonhyperlinear: a normalized-HS
+microstate may have Frobenius defect tending to infinity while its
+normalized defect tends to zero.  The additional active-rank estimate in
+the later atlas criterion is exactly what would be needed to bridge that
+gap.
 
 There is a useful two-input sufficient condition.  For every unitary `pi`
 without invariant vectors, it is enough to prove both
@@ -26707,6 +26710,56 @@ and sparse exceptional multiplicities are all impossible explanations for
 the open problem.  The remaining scalar is the single asymptotic defect
 density `d_infinity` and the goal is to prove `d_infinity=0`.
 
+### A single smooth trace potential has the same limit
+
+Let `m=|Sbar|` and define the mean-square energy
+
+`E_k=min_U (1/m) sum_(s in Sbar)||pi_U(s)-1||_2^2`,     `(TR8)`
+
+and the smooth trace maximum
+
+`gamma_k=max_U Re((1/m) sum_(s in Sbar)tr(pi_U(s)))`.   `(TR9)`
+
+For a unitary `W`,
+
+`||W-1||_2^2=2-2 Re tr(W)`,
+
+so the two quantities satisfy the exact identity
+
+`E_k=2(1-gamma_k)`.                                    `(TR10)`
+
+They are quantitatively equivalent to the max defect:
+
+`E_k <= d_k^2 <= m E_k`.                               `(TR11)`
+
+The first inequality evaluates the average at a minimizer for `d_k`; the
+second evaluates the maximum at a minimizer for `E_k` and uses
+`max_s x_s<=sum_s x_s` for nonnegative squared defects.
+
+Block direct sums give
+
+`(k+l)E_(k+l) <= k E_k+l E_l`,                          `(TR12)`
+
+or equivalently
+
+`(k+l)gamma_(k+l) >= k gamma_k+l gamma_l`.              `(TR13)`
+
+Thus `k gamma_k` is superadditive and Fekete's lemma yields
+
+`lim_(k->infinity) gamma_k=sup_k gamma_k`.              `(TR14)`
+
+The full decision boundary is now one smooth compact optimization:
+
+`Q is hyperlinear iff lim_k gamma_k=1`.                 `(TR15)`
+
+For every fixed `k`, one has `gamma_k<1`; equality would force every
+relator matrix to equal the identity and give a forbidden nontrivial
+finite-dimensional representation of `U_Q`.  Unlike the min--max defining
+`d_k` or the absolute traces defining `alpha_k`, `(TR9)` is the maximum of
+one real smooth word-trace polynomial on `U(20160k)`.  This opens standard
+Euler--Lagrange, invariant-theory, and large-`k` variational tools without
+changing the endpoint.
+
 ## Relative perfectness quantitatively kills all scalar atlas flux
 
 For the ordinary two-chart source one has
@@ -26782,3 +26835,46 @@ trace vectors converging to one, or prove one dimension-free tracial
 polynomial inequality.  Dimension-dependent inequalities or unrelated
 per-relator gaps cannot settle it.  The full proof is in
 `docs/EXPLICIT_LEAVITT_ATLAS.md`, Section 10.
+
+## Monomial relative unitaries have a uniform positive gap
+
+Let `d_k^mon` be the same minimum as `d_k`, but restrict the relative
+unitary `U` to the monomial subgroup of `U(20160k)` (one nonzero unit-modulus
+entry in every row and column).  Then
+
+`inf_k d_k^mon > 0`.                                    `(MON1)`
+
+**Proof.**  Suppose instead that monomial canonical models `pi_n` have
+full relator defect tending to zero.  Projection of a monomial matrix to
+its underlying permutation is a homomorphism.  The first regular `A_8`
+factor projects to its regular permutation representation, while conjugacy
+by a monomial relative unitary projects to permutation conjugacy of the
+second factor.  Hence projection gives exact homomorphisms
+
+`sigma_n:Pbar=A_8*A_8 -> Sym(20160k_n)`.
+
+If a monomial unitary `V` has underlying permutation `sigma(V)`, then
+
+`d_Hamm(sigma(V),1) <= (1/2)||V-1||_2^2`.               `(MON2)`
+
+Indeed, every moved coordinate contributes exactly `2` to the
+unnormalized squared Frobenius norm, while fixed coordinates contribute a
+nonnegative phase term.  Thus every element of `Sbar` dies in the
+permutation metric ultraproduct.  Since `Sbar` normally generates `Nbar`,
+the maps factor as
+
+`Phi:U_Q=Pbar/Nbar -> product_omega Sym(20160k_n)`.
+
+This homomorphism is nontrivial: a nonidentity element of the first regular
+`A_8` factor moves every point.  Quasisimplicity of `U_Q` therefore gives
+`ker(Phi)<=Z(U_Q)`.  Its image is a countable central extension of the
+simple Leavitt group `Q` and is simultaneously a subgroup of a permutation
+ultraproduct, hence sofic.  This contradicts the proved theorem that every
+countable central extension of `Q` is nonsofic.  Therefore `(MON1)` holds.
+End proof.
+
+The direct-sum/Fekete argument applies inside the monomial class, so the
+restricted defects actually converge to a positive limit.  Diagonal phases
+cannot repair the classical permutation obstruction: a successful
+gap-collapsing sequence must use relative unitaries with genuinely
+delocalized rows and quantum interference.

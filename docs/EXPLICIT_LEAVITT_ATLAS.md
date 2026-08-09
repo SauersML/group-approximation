@@ -1039,6 +1039,62 @@ The opposite route must prove one fixed dimension-free tracial polynomial
 inequality (46); a collection of dimension-dependent or relator-dependent
 lower bounds is insufficient.
 
+### Monomial relative unitaries cannot close the gap
+
+Let \(d_k^{\mathrm{mon}}\) be the minimum defining \(d_k\), with the
+relative unitary restricted to the monomial subgroup of
+\(U(20160k)\).  Then
+
+\[
+ \inf_{k\geq1}d_k^{\mathrm{mon}}>0.                    \tag{47}
+\]
+
+Suppose otherwise.  Choose monomial canonical models whose full relator
+defect tends to zero.  Sending a monomial unitary to its underlying
+permutation is a homomorphism.  Under this map, the first regular
+\(A_8\)-chart becomes its regular permutation representation, and
+monomial conjugacy of the second chart becomes permutation conjugacy.
+We therefore obtain exact homomorphisms
+
+\[
+ \sigma_n:\bar P=A_8*A_8\longrightarrow
+             \operatorname{Sym}(20160k_n).
+\]
+
+If a monomial unitary \(V\) has underlying permutation \(\sigma(V)\),
+then
+
+\[
+ d_{\mathrm{Hamm}}(\sigma(V),1)
+ \leq \frac12\|V-I\|_2^2.                            \tag{48}
+\]
+
+Indeed, each moved coordinate contributes exactly two to the
+unnormalized squared Frobenius norm of \(V-I\), while each fixed
+coordinate contributes a nonnegative phase term.  Thus every member of
+the finite normal generating set \(\bar{\mathcal S}\) dies in the metric
+ultraproduct, and normal generation produces a homomorphism
+
+\[
+ \Phi:U_Q=\bar P/\bar N\longrightarrow
+       \prod_\omega\operatorname{Sym}(20160k_n).
+\]
+
+This homomorphism is nontrivial: a nonidentity element of the first
+regular \(A_8\)-chart moves every point.  Quasisimplicity of \(U_Q\)
+therefore gives \(\ker\Phi\leq Z(U_Q)\).  Its image is consequently a
+countable central extension of \(Q\).  Every such central extension was
+proved nonsofic, whereas this image is a subgroup of a permutation metric
+ultraproduct and is therefore sofic.  This contradiction proves (47).
+
+Direct sums stay inside the monomial class, so the argument proving
+(42b)--(42c) also shows that \((d_k^{\mathrm{mon}})^2\) converges to its
+strictly positive infimum.  Diagonal phases cannot repair the classical
+permutation obstruction.  Any successful sequence must use relative
+unitaries with genuinely delocalized rows; quantum interference is a
+necessary feature of a positive construction, not merely one possible
+ansatz.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
