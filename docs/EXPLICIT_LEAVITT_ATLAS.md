@@ -1,0 +1,197 @@
+# An explicit finite superperfect atlas for the binary Leavitt unit group
+
+This note makes the finite source in the exact-atlas Hilbert--Schmidt
+criterion concrete.  Put
+
+\[
+  L=L_{\mathbb F_2}(1,2),\qquad Q=L^\times.
+\]
+
+Write the two real edges as \(e,f\), and put
+
+\[
+  (\gamma_1,\gamma_2,\gamma_3)=(ee,ef,f),
+  \qquad S=\{e,f,e^*,f^*\}.
+\]
+
+## 1. Thirty explicit generators
+
+For \(i\ne j\) in \(\{1,2,3\}\) and
+\(a\in S\cup\{1\}\), define
+
+\[
+  q_{ij,a}=1+\gamma_i a\gamma_j^*\in Q.                 \tag{1}
+\]
+
+There are \(6\cdot5=30\) such elements.
+
+**Proposition.**  The elements in (1) generate \(Q\).
+
+**Proof.**  The set \(S\) generates \(L\) as a unital ring.  Khanh--Thanh,
+Theorem 5.3, applied to the ordered leaf set
+\(C=(ee,ef,f)\), says that
+
+\[
+  \Theta_C(x_{ij}(a))=1+\gamma_i a\gamma_j^*
+  \quad(i\ne j,\ a\in S\cup\{1\})
+\]
+
+generates
+\(\Theta_C(E_3(L))=L^\times\).  These are precisely the elements (1).
+\(\square\)
+
+Every \(q_{ij,a}\) is a scalar leaf transvection.  More explicitly, set
+
+\[
+(\alpha_{ij,a},\beta_{ij,a})=
+\begin{cases}
+  (\gamma_i,\gamma_j),&a=1,\\
+  (\gamma_i a,\gamma_j),&a\in\{e,f\},\\
+  (\gamma_i,\gamma_j b),&a=b^*,\ b\in\{e,f\}.
+\end{cases}                                               \tag{2}
+\]
+
+Then
+
+\[
+  q_{ij,a}=1+\alpha_{ij,a}\beta_{ij,a}^*.
+\]
+
+The two paths in (2) are prefix-incomparable: \(\gamma_i\) and
+\(\gamma_j\) are distinct leaves, and extending either path preserves
+prefix-incomparability.  Lemma 2.2 of Khanh--Thanh extends the pair to a
+finite leaf set \(D_{ij,a}\).  Relative to its matrix units,
+\(q_{ij,a}\) is the elementary scalar matrix
+
+\[
+  I+E_{\alpha_{ij,a},\beta_{ij,a}}
+  \in \operatorname{GL}_{|D_{ij,a}|}(\mathbb F_2).        \tag{3}
+\]
+
+In particular, \(q_{ij,a}\ne1\) and \(q_{ij,a}^2=1\).
+
+## 2. Refinement into finite superperfect charts
+
+For a leaf set \(D\) and \(r\ge0\), let
+
+\[
+  D^{(r)}=\{\delta\mu:\delta\in D,
+                         \ \mu\in\{e,f\}^r\}.
+\]
+
+This is the uniform depth-\(r\) refinement of \(D\), of cardinality
+\(|D|2^r\).  Lemma 2.3 gives
+
+\[
+  \alpha\beta^*
+   =\sum_{\mu\in\{e,f\}^r}(\alpha\mu)(\beta\mu)^*.
+                                                               \tag{4}
+\]
+
+It follows from (3)--(4) that \(q_{ij,a}\) belongs to the scalar
+leaf-matrix subgroup
+
+\[
+  H_{ij,a}:=\operatorname{GL}_{N_{ij,a}}(\mathbb F_2)
+  \le Q,
+  \qquad N_{ij,a}=|D_{ij,a}|2^{r_{ij,a}},                    \tag{5}
+\]
+
+for every \(r_{ij,a}\ge0\).  Choose \(r_{ij,a}\) so that
+\(N_{ij,a}\ge5\).
+
+For \(N\ge5\),
+
+\[
+  \operatorname{GL}_N(\mathbb F_2)
+  =\operatorname{SL}_N(\mathbb F_2)
+  =\operatorname{PSL}_N(\mathbb F_2).
+\]
+
+This finite group is nonabelian simple and has trivial Schur multiplier;
+hence it is superperfect.  Thus every generator in (1) lies in a specified
+finite superperfect subgroup of \(Q\).
+
+## 3. The explicit atlas source
+
+Let \(\mathcal I\) be the set of the thirty triples \((i,j,a)\) above and
+define
+
+\[
+  P_{30}=*_{(i,j,a)\in\mathcal I}H_{ij,a}.                 \tag{6}
+\]
+
+Map every free factor in (6) to its concrete scalar leaf-matrix subgroup
+of \(Q\).  The induced homomorphism
+
+\[
+  \rho:P_{30}\twoheadrightarrow Q                         \tag{7}
+\]
+
+is surjective because its image contains all the generators (1).  Repeated
+charts may be merged, so thirty is an upper bound, not a minimality claim.
+
+Each free factor is finite and superperfect.  Therefore \(P_{30}\) is a
+finitely generated virtually free superperfect group: its abelianization
+is the direct sum of the factor abelianizations, and its second homology is
+the direct sum of their second homologies.  Put
+
+\[
+  R_{30}=\ker\rho,qquad N_{30}=[P_{30},R_{30}].            \tag{8}
+\]
+
+The standard superperfect-cover form of the universal-central-extension
+construction gives
+
+\[
+  U_Q\cong P_{30}/N_{30}.                                  \tag{9}
+\]
+
+Consequently the exact-source character criterion and the one-witness
+certificate may be run with the fully specified source (6).  An exact
+finite-dimensional representation of this source is nothing more than an
+independent exact representation of each one of the thirty fixed finite
+groups in (5), with one relative conjugating unitary per factor.
+
+One can also choose the survivor explicitly.  For example,
+
+\[
+  p_0=q_{12,1}\in H_{12,1}\le P_{30}.                      \tag{10}
+\]
+
+Its image in \(Q\) is nontrivial, so \(p_0\notin R_{30}\), and therefore
+\(p_0\notin N_{30}\).
+
+## 4. Exact remaining boundary
+
+The group \(P_{30}\) is finitely presented.  The group
+\(U_Q\cong\operatorname{St}_5(L)\) is finitely presented because \(L\) is
+a finitely presented unital ring and the Krsti\'c--McCool theorem applies in
+rank at least four.  Hence \(N_{30}\) is finitely normally generated in
+\(P_{30}\).  This proves the existence of a finite list of word constraints
+
+\[
+  \mathcal S=\{n_1,\ldots,n_m\}\subseteq N_{30}.           \tag{11}
+\]
+
+The source cited above does **not** print (11) in the thirty-factor
+coordinates.  Extracting such a list requires two effective Tietze steps:
+
+1. write a concrete finite Krsti\'c--McCool presentation of
+   \(\operatorname{St}_5(L)\) for the four-generator finite ring
+   presentation of \(L\);
+2. express its Steinberg generators as words in lifts of the thirty
+   elements (1), and translate the presentation across (7).
+
+Thus the atlas itself, its finite factors, the quotient map, and a survivor
+are now explicit.  The finite normal-relator list is known to exist but has
+not yet been extracted.  Even after it is extracted, the decisive analytic
+question remains whether exact representations of \(P_{30}\) can make all
+words in (11) tend to the identity in normalized Hilbert--Schmidt norm while
+keeping (10) a fixed positive distance from the identity.
+
+## 5. Primary source
+
+H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
+\(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
+Proposition 3.4, Corollary 4.4, and Theorem 5.3.
