@@ -22018,6 +22018,15 @@ finite-dimensional representations.  Thus it does not prove HS stability of
 `U`, but it identifies the precise centralizer-lifting mechanism a direct
 attack would have to add.
 
+**Formalization update.**  `Leavitt/ShiftEndomorphism.lean` now kernel-checks
+the shift ring homomorphism, its explicit left inverse and omitted generator,
+and the proper injective endomorphism it induces on rank-four `EL`.  The file
+passes Lean independently and is imported by the root module.  A simultaneous
+whole-repository build reached and successfully built this new module; the
+only failure was in the collaborator's still-uncommitted
+`Steinberg/FinitelyGenerated.lean` (`DecidableEq` elaboration), so no change
+was made to that live work.
+
 ### The stability target can be weakened to flexible normalized-HS stability
 
 The same dichotomy does not require same-dimension correction.  Use the

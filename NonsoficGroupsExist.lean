@@ -330,6 +330,7 @@ import NonsoficGroupsExist.KOne.WhiteheadQuotient
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
 import NonsoficGroupsExist.Leavitt.FiniteTypeCountable
+import NonsoficGroupsExist.Leavitt.ShiftEndomorphism
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
