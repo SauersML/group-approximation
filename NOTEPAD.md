@@ -10171,3 +10171,96 @@ prime `p=5 mod 8` may index both the Schur sector and coefficient reduction,
 while the actual compressor must remain the window-dependent, non-liftable
 polynomial-shear model: exact finite-ring images still collapse the Laurent
 layer.
+
+### Binary-octahedral transfer aligns the source with a Soulé vertex
+
+There is an even better progression for the fixed-source formulation.  Take
+
+`p=9 mod 16`.
+
+There are infinitely many such primes.  Both `-1` and `2` are squares in
+`F_p`, so the fixed rotational signed-permutation subgroup
+
+`S=SO_3(Z) intersect {signed permutation matrices} = S_4`
+
+lies in the adjoint image `H_p=PSL_2(F_p)`.  Its inverse image in
+`SL_2(F_p)` is the binary octahedral group `2.S_4`: in quaternion notation
+the `Q_8` lifts use a square root of `-1`, and the additional octahedral
+lifts use a square root of `2`.  Moreover
+
+`v_2(|H_p|)=3=v_2(|S_4|)`,
+
+because `v_2(p-1)=3` and `v_2(p+1)=1`.  Hence
+
+`[H_p:S_4]=p(p^2-1)/48`
+
+is odd.  If `gamma=res_(S_4)(alpha_p)` is the binary-octahedral Schur class,
+restriction--corestriction again gives
+
+`cor_(S_4)^(H_p)(gamma)=alpha_p`.
+
+With
+
+`M_S=T^(Q_p/S_4)`
+
+and the fiberwise norm `N_(S,p):M_S->M_H`, naturality of Shapiro yields the
+exact factorization
+
+`c_p=N_(S,p,*) (sh_(S_4)^(-1)(gamma))`.
+
+As before, this norm cannot increase coordinate support.  The advantage over
+the Klein-four factorization is geometric: `S_4` is literally a vertex
+stabilizer in Soulé's proper cocompact `SL_3(Z)` complex.  Bárcenas--
+Velásquez's account of Soulé's calculation identifies its inverse image in
+`St_3(Z)` as `S_4^*`, the binary octahedral group, and shows that the two
+degree-three twistings of `SL_3(Z)` are detected on the three `S_4` vertex
+stabilizers.  Thus the finite source of the varying Schur class is now
+aligned with the published cell structure, not merely with a subgroup of a
+cell stabilizer.
+
+This does not by itself prove sparsity: compatibility away from the vertex
+can spread a local twisting.  It does, however, reduce the missing theorem
+to the following coefficient-specific, cell-aligned statement.
+
+> For `p=9 mod 16`, the class induced from the fixed binary-octahedral
+> twisting on the `S_4` vertex admits a representative on the fixed
+> `SL_3(Z)` presentation with `O(p^2)` nontrivial cell coordinates.
+
+The exponent `2` here is optimal.
+
+**Proposition (global presentation support is at least quadratic).**  Fix
+any finite presentation of `SL_3(Z)` and fixed words for the commuting
+integral matrices `q,r` used in the Klein-four restriction.  If a
+representative of `c_p` is nontrivial on a union of `m_p` presentation
+cell-coordinates, then
+
+`m_p=Omega(p^2)`.
+
+**Proof.**  Fix once and for all a van Kampen diagram over the presentation
+for the word `[q,r]`; let its area be `C`.  Evaluating a coefficient cocycle
+on this diagram expresses the commutator holonomy as a product of `C`
+translates of defining-relator holonomies.  Consequently its coordinate
+support has size at most `C m_p`.  On the other hand, the Mackey calculation
+for `A=<q,r>` forces commutator `-1` on
+
+`f_p=Theta(p^2)`
+
+coordinates of `Q_p/H_p`, independently of gauge.  Thus
+`C m_p>=f_p`, proving the claim.  End proof.
+
+Therefore an `O(p^2)` construction would close the scalar gauge problem at
+the exact cosystolic scale; no `O(1)` localization at the `S_4` vertex is
+possible.  The quadratic spread is forced by the split-torus normalizer of
+its Klein four subgroup.
+
+As a sanity check, an exact enumeration at `p=5` used the Conder--Robertson--
+Williams three-generator, eight-relator presentation, the actual
+symmetric-square copy `PSL_2(F_5)<SL_3(F_5)`, and a canonical transversal of
+the `6200` outer blocks.  The naive induced gauge was nontrivial on
+
+`3004, 3189, 3398, 3111, 3076, 3166, 3068, 3268`
+
+coordinates of the eight relators respectively: essentially density
+one-half everywhere.  Thus the desired quadratic localization cannot come
+from the elementary transversal.  This computation is only a diagnostic,
+not asymptotic evidence or a proof.
