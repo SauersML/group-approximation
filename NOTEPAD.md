@@ -8865,3 +8865,49 @@ Likewise, arbitrary semidirect-product closure would already imply the
 answer and is not available.  The explicit formula shows that the missing
 input is a tracial approximation of this one Nielsen action, not merely
 hyperlinearity of its free kernel and residual finiteness of its quotient.
+
+### The first abelian shadow is already nonsofic
+
+The free kernel does not hide the obstruction only at deep commutator level.
+Let
+
+`A_0={f in direct_sum_X F_2 : sum_x f(x)=0}`
+
+with the coordinate-permutation action of `G`.  Abelianizing `N` and then
+reducing modulo `2` sends
+
+`b_x |-> delta_x+delta_o`
+
+and gives a `G`-equivariant quotient `N -> A_0`.  Therefore `D_2` has the
+quotient
+
+`W_0=A_0 semidirect G`.
+
+This is the even-parity index-two subgroup of the Kun--Thom commuting-lamp
+group
+
+`W=(direct_sum_X C_2) semidirect G`.
+
+It is nonsofic.  Indeed, if `W_0` were sofic, its finite extension `W` would
+be sofic, contradicting Kun--Thom.  Thus the symmetric double maps onto an
+explicit nonsofic amenable-by-residually-finite group before any higher
+nilpotent information in its free kernel is used.
+
+This does **not** prove hyperlinearity of `W_0`.  The standard extension
+permanence theorem has the opposite orientation: it preserves hyperlinearity
+when the normal subgroup is hyperlinear and the quotient is amenable.
+Here the normal subgroup `A_0` is amenable but the quotient `G` is
+nonamenable Kazhdan.  Proving arbitrary amenable-by-sofic hyperlinearity, or
+even proving it for this single permutation module, is exactly the
+generalized-Bernoulli crossed-product problem already isolated above.
+
+The quotient nevertheless closes a tempting residual argument.  Although
+`N` is residually nilpotent and every `N/gamma_c(N)` is amenable, the
+semidirect quotients
+
+`(N/gamma_c(N)) semidirect G`
+
+are not covered by amenable-extension permanence; the failure is present
+already in the displayed abelian mod-`2` quotient.  Residual nilpotence of
+the kernel alone therefore supplies neither sofic nor hyperlinear models of
+the full semidirect product.
