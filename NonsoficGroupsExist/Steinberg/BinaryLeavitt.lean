@@ -5,6 +5,7 @@ import NonsoficGroupsExist.Steinberg.HigherRankPropertyT
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
+import NonsoficGroupsExist.Leavitt.FinitePresentation
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.PropertyT.FiniteFieldElementaryPropertyT
 
