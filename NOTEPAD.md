@@ -23514,3 +23514,52 @@ matrix multiplicity space while implementing the induced automorphism on
 `C`; scalarizing or killing that kernel recovers the sterile ambient finite
 models.  This does not yet construct the required HS microstates, but it
 identifies their nonclassical curvature in one canonical profinite object.
+
+### The profinite compression kernel is infinite
+
+The kernel `K` is not merely a source of one hidden finite sign.  It has to
+carry the whole infinite intrinsic coset space.
+
+**Theorem (kernel transitivity).**  With the notation above, multiplication
+induces a homeomorphism of profinite homogeneous spaces
+
+`K/(K intersect closure(H))  ~=  Gammahat/closure(H)`.
+
+In particular `K` is infinite.  Hence its finite continuous quotients have
+unbounded order.
+
+**Proof.**  We already proved
+
+`Gammahat=K closure(H)`.
+
+Therefore every right coset of `closure(H)` has a representative in `K`.
+Two elements of `K` give the same coset precisely when their quotient lies
+in `K intersect closure(H)`.  This gives a continuous bijection from the
+compact left-hand homogeneous space to the Hausdorff right-hand space, and
+hence a homeomorphism.
+
+Separability gives
+
+`Gamma intersect closure(H)=H`.
+
+Consequently the natural map
+
+`Gamma/H -> Gammahat/closure(H)`
+
+is injective; it also has dense image because `Gamma` is dense in
+`Gammahat`.  For the polynomial compressor, `Gamma/H` is infinite: the
+cosets represented by `e_(ab)(x_i^n)` are pairwise distinct, since their
+pairwise differences have a matrix entry outside the compressed monomial
+subring.  Thus `Gammahat/closure(H)`, and therefore `K`, is infinite.  An
+infinite profinite group has finite continuous quotients of unbounded order,
+since otherwise its inverse system would stabilize to a finite group.  End
+proof.
+
+This sharpens the finite-model requirement.  A fixed extraspecial group, a
+fixed Schur cover, or any other correction factoring through one fixed
+finite quotient of `K` cannot encode exhausting intrinsic compressor
+cosets.  Any successful matrix construction must use growing kernel
+quotients (or a genuinely diffuse limit) while making the external
+multi-compressor holonomy negligible in normalized Hilbert--Schmidt norm.
+The unbounded-rank feature of the existing Pauli/Schur atlas is therefore
+forced by the profinite geometry, not an artifact of that construction.
