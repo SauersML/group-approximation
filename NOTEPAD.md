@@ -22629,3 +22629,98 @@ Thus the central amenable-near certificate must use a genuinely nonexact or
 noncanonical representation.  In concrete terms, it asks for a single
 `z=-1` near-character rather than a faithful CAR microstate.  This is the
 smallest positive target currently visible on the Kun--Thom lane.
+
+## Every genuine amenable representation kills the Clifford sign
+
+The preceding canonical calculation can be upgraded to all exact unitary
+representations.  This pins down why the word **near** in the certificate is
+load-bearing.
+
+**Theorem (exact amenable sterility).**  Let `E` be either the full Clifford
+cover or the sparse orbital Clifford cover of the explicit Kun--Thom pair,
+and let `z` be its central Clifford involution.  If
+
+`pi:E -> U(H)`
+
+is a genuine amenable unitary representation and `phi` is a `pi`-invariant
+state on `B(H)`, then
+
+`phi((1-pi(z))^*(1-pi(z)))=0`.
+
+Equivalently, no genuine amenable representation separates `z` in its
+amenability state.
+
+**Proof.**  Suppose otherwise.  The central projection
+
+`e_-=(1-pi(z))/2`
+
+has positive `phi`-mass.  Compressing to `e_- H` and normalizing the state
+preserves amenability and makes `pi(z)=-1` exactly.
+
+Let `S` be a Kazhdan set for the ambient group `G`.  Bekka's Folner
+criterion supplies, with arbitrarily small relative trace-norm error, a
+nonzero finite-rank projection `p` which is almost invariant under
+`pi(S)`, the required compressor, and the finitely many lamp generators in
+the fixed Clifford witness.  In Hilbert--Schmidt norm,
+
+`||pi(s)p pi(s)^* - p||_2 / ||p||_2 -> 0` for `s in S`.
+
+Apply property `(T)` to the genuine conjugation representation of `G` on
+the Hilbert--Schmidt operators.  The orthogonal projection of `p` onto the
+`G`-invariant Hilbert--Schmidt operators is close to `p`; taking a spectral
+projection above `1/2` gives a nonzero finite-rank projection `q` such that
+
+`[q,pi(G)]=0` and `||q-p||_2=o(||p||_2)`.
+
+The ranks of `p` and `q` are asymptotic.  Consequently `q` still almost
+commutes, in normalized Hilbert--Schmidt norm on `qH`, with every selected
+lamp.  Compress the base Clifford involution `a_o` to `qH` and use polar
+correction to obtain a self-adjoint unitary `A_o`.  Since both `q` and
+`pi(a_o)` commute with `pi(Gamma)`, the corrected `A_o` commutes exactly
+with the genuine finite-dimensional representation
+
+`sigma=pi|_(qH)` of `Gamma`.
+
+The image `sigma(Gamma)` is finite: every finite-dimensional unitary
+representation of the polynomial elementary group `Gamma` has finite image,
+by the Shenfeld/universal-lattice theorem recorded above.  For a strict
+compressor `t`,
+
+`sigma(t) sigma(Gamma) sigma(t)^* <= sigma(Gamma)`.
+
+The two finite groups have the same cardinality, so this inclusion is
+equality.  Thus
+
+`A_(t o)=sigma(t) A_o sigma(t)^*`
+
+commutes with all of `sigma(Gamma)`.  Choose the fixed
+`gamma in Gamma` for which `t o != gamma t o`.  It follows that
+
+`sigma(gamma) A_(t o) sigma(gamma)^*=A_(t o)`.
+
+On the other hand, exact covariance in `pi`, the fact that `q` commutes with
+`pi(G)`, and the polar-correction estimate say that the left side is
+arbitrarily close to the corrected lamp `A_(gamma t o)`.  The selected
+Clifford edge and `pi(z)=-1` say that `A_(t o)` and
+`A_(gamma t o)` asymptotically anticommute.  We have therefore produced a
+self-adjoint unitary which is asymptotically anticommuting with itself:
+
+`||2*1_(qH)||_(2,qH) -> 0`,
+
+an impossibility.  Hence the negative central corner has zero `phi`-mass.
+End proof.
+
+The spectral-correction step is dimension-free.  If `kappa` is a Kazhdan
+constant, choosing the Bekka trace-norm defect `delta` makes the normalized
+Hilbert--Schmidt displacement at most `sqrt(delta)`; the invariant
+Hilbert--Schmidt operator is within `O(sqrt(delta)/kappa)`, and functional
+calculus changes it to `q` with the same order of error.
+
+This theorem does **not** extend to the amenable-near certificate.  There the
+maps `pi|G` are multiplicative only in the seminorm selected by `phi`, so
+conjugation on Hilbert--Schmidt operators is not a genuine representation to
+which property `(T)` can be applied.  Turning that near action into a genuine
+one is exactly the normalized-HS stability/centralizer-lifting problem.  The
+surviving target is therefore now exact:
+
+`an amenable near representation separating z must be genuinely nonexact on G`.
