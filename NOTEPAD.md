@@ -25565,6 +25565,34 @@ above: in both leading candidates, the most natural kernel has no surviving
 central coinvariants, so central-quotient permanence cannot be applied by a
 formal intermediate construction.
 
+There is also a useful positive corollary.  Let
+
+`A_0=ker(A->k)`
+
+be the even-lamp augmentation module and put
+
+`Lambda_0=A_0 semidirect G`.
+
+Then `Lambda_0` is a perfect nonsofic subgroup of index `2` in `Lambda`.
+Indeed, the homology sequence for
+
+`0 -> A_0 -> A -> k -> 0`
+
+shows `H_0(G,A_0)=0`: one has `H_1(G,k)=0` because the elementary ambient
+group `G` is perfect, while `H_0(G,A)->H_0(G,k)` is again the identity
+`k->k`.  Hence `[G,A_0]=A_0`, and with `[G,G]=G` this gives
+
+`[Lambda_0,Lambda_0]=Lambda_0`.
+
+If `Lambda_0` were sofic, its finite extension `Lambda` would be sofic, so
+`Lambda_0` is nonsofic.  Moreover
+
+`Lambda_0 hyperlinear  <=>  Lambda hyperlinear`: the forward implication is
+finite/amenable-quotient extension permanence, and the reverse implication
+is subgroup permanence.  Thus the main problem on this lane may equivalently
+be posed for the explicit **perfect** group `Lambda_0`, making its universal
+central extension available without altering the desired endpoint.
+
 # Rank-uniform global `(TT)/T` for the binary Leavitt family (2026-08-09)
 
 The rank-five theorem globalizes without any further input.  Put
@@ -25605,3 +25633,45 @@ not just the rank-five witness, has global quasi-cocycle rigidity.
 This is unconditional and rank-uniform.  It still does not prove ordinary
 degree-two cohomology vanishing, normalized-HS stability,
 nonhyperlinearity, hyperlinearity, or the main problem.
+# Exact-source character criterion for the finite Leavitt atlas (2026-08-09)
+
+Let `P` be a finitely generated normalized-HS-stable group, let `N normal P`,
+and put `U=P/N`.  Then `U` is hyperlinear if and only if the quotient regular
+character
+
+`1_N(p)=1 if p in N, and 0 otherwise`
+
+is a pointwise limit of normalized characters of finite-dimensional **exact**
+representations of `P`.
+
+The forward direction pulls a trace-normalized hyperlinear model of `U` back
+to `P` and uses HS stability to rectify it, without changing its limiting
+character.  Conversely, exact representations `pi_k:P->U(d_k)` with
+`tr(pi_k(p))->1_N(p)` give a tracial-ultraproduct homomorphism with kernel
+exactly `N`, hence an embedding of `P/N`.  Equivalently, for every finite
+`F subset P` and `epsilon>0`, one needs an exact finite-dimensional `pi` with
+
+`||pi(n)-1||_2<epsilon` for `n in F intersect N`, and
+`|tr(pi(p))|<epsilon` for `p in F-N`.
+
+Apply this to the finite superperfect atlas
+
+`P=H_1*...*H_s`, `R=ker(P->Q)`, `N=[P,R]`,
+`U_Q=P/N`.
+
+The group `P` is finitely generated virtually free and therefore normalized-
+HS stable by Gerasimova--Shchepin.  Hence
+
+`U_Q hyperlinear iff 1_[P,R] is approximable by exact finite-dimensional`
+`characters of the fixed virtually free atlas group P`.
+
+All leaf charts and all multiplication inside the atlas source may therefore
+be made exact at every stage; the only asymptotic requirement is killing
+`[P,R]` in normalized HS while keeping its complement trace-invisible.  This
+is a strict reduction from arbitrary Steinberg almost-representations to one
+relative character-approximation problem.  It does not solve that problem:
+residual finiteness of `P` separates elements in the wrong direction, and HS
+stability of `P` is not stability of the epimorphism `P->P/N`.
+
+A standalone proof is in `docs/ATLAS_HS_CRITERION.md`.  Primary source:
+Gerasimova--Shchepin, arXiv:2107.10032, Corollaries 3 and 4.

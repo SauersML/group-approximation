@@ -1,0 +1,276 @@
+# The finite-atlas character criterion
+
+This note isolates the normalized Hilbert--Schmidt model-production problem
+for the universal central cover of the binary Leavitt unit group.  The point
+is that the source of the finite atlas is virtually free and hence
+Hilbert--Schmidt stable.  Consequently, no genuinely approximate maps of the
+atlas source are needed: all approximation is concentrated in the normal
+subgroup defining the quotient.
+
+## 1. General rectification theorem
+
+Let \(P\) be a finitely generated Hilbert--Schmidt stable group, let
+\(N\triangleleft P\), and put \(U=P/N\).  Write
+
+\[
+  1_N(p)=
+  \begin{cases}
+  1,&p\in N,\\
+  0,&p\notin N.
+  \end{cases}
+\]
+
+This is the pullback to \(P\) of the regular character of \(U\).
+
+**Theorem (exact-source character criterion).**  The following are
+equivalent.
+
+1. \(U\) is hyperlinear.
+2. There are finite-dimensional unitary representations
+   \(
+     \pi_k:P\to U(d_k)
+   \)
+   such that
+   \[
+     \operatorname{tr}_{d_k}(\pi_k(p))\longrightarrow 1_N(p)
+     \qquad(p\in P).
+   \]
+3. For every finite set \(F\subset P\) and every \(\varepsilon>0\), there
+   is a finite-dimensional unitary representation
+   \(
+     \pi:P\to U(d)
+   \)
+   such that
+   \[
+   \begin{aligned}
+     \|\pi(n)-1\|_{2,d}&<\varepsilon
+       &&(n\in F\cap N),\\
+     |\operatorname{tr}_d(\pi(p))|&<\varepsilon
+       &&(p\in F\setminus N).
+   \end{aligned}
+   \]
+
+Here \(\operatorname{tr}_d=d^{-1}\operatorname{Tr}\) and
+\(\|x\|_{2,d}=\operatorname{tr}_d(x^*x)^{1/2}\).
+
+### Proof
+
+Assume first that \(U\) is hyperlinear.  Choose a trace-normalized
+hyperlinear model
+
+\[
+  \varphi_k:U\longrightarrow U(d_k)
+\]
+
+whose multiplicative defects tend to zero and for which
+
+\[
+  \operatorname{tr}_{d_k}(\varphi_k(u))\longrightarrow
+  \begin{cases}1,&u=1,\\0,&u\ne1.\end{cases}
+\]
+
+Pull it back along the quotient map \(q:P\to U\).  Hilbert--Schmidt
+stability of \(P\) supplies genuine representations
+
+\[
+  \pi_k:P\longrightarrow U(d_k)
+\]
+
+which are pointwise \(2\)-norm close to
+\(\varphi_k\circ q\).  (It is enough to obtain closeness on a fixed finite
+generating set; asymptotic multiplicativity propagates it to each fixed
+word.)  Since normalized trace is \(2\)-norm Lipschitz,
+
+\[
+  \operatorname{tr}_{d_k}(\pi_k(p))
+  \longrightarrow \delta_{q(p),1}=1_N(p).
+\]
+
+This proves \(1\Rightarrow2\).  Equivalently, this implication follows from
+Gerasimova--Shchepin's theorem that every embeddable character of a finitely
+generated virtually free group is a pointwise limit of traces of
+finite-dimensional representations.
+
+The implication \(2\Rightarrow3\) is immediate after taking \(k\) large.
+For \(n\in N\), use
+
+\[
+  \|\pi_k(n)-1\|_{2,d_k}^2
+  =2-2\operatorname{Re}\operatorname{tr}_{d_k}(\pi_k(n)).
+\]
+
+For \(3\Rightarrow2\), exhaust the countable group \(P\) by finite sets and
+diagonalize, replacing the requested tolerance by its square when needed
+for the preceding identity.
+
+Finally suppose \(2\) holds.  In the tracial matrix ultraproduct, define
+
+\[
+  \Pi(p)=(\pi_k(p))_\omega.
+\]
+
+This is a homomorphism because every \(\pi_k\) is a homomorphism.  If
+\(n\in N\), then the character limit and the displayed norm identity give
+\(\Pi(n)=1\), so \(N\subseteq\ker\Pi\).  If \(p\notin N\), then
+
+\[
+  \tau_\omega(\Pi(p))=0,
+\]
+
+and hence \(\Pi(p)\ne1\).  Thus \(\ker\Pi=N\), and \(\Pi\) induces an
+embedding of \(U=P/N\) into a tracial matrix ultraproduct.  Therefore \(U\)
+is hyperlinear.  This proves \(2\Rightarrow1\) and completes the proof.
+
+## 2. Application to the binary Leavitt atlas
+
+Put
+
+\[
+  Q=L_{\mathbb F_2}(1,2)^\times
+\]
+
+and let \(U_Q\to Q\) be its universal central extension.  Choose finitely
+many finite superperfect scalar leaf-matrix subgroups
+\(H_1,\ldots,H_s\) which generate \(Q\), and put
+
+\[
+  P=H_1*\cdots *H_s,\qquad R=\ker(P\to Q),\qquad
+  N=[P,R].
+\]
+
+The finite-atlas calculation gives
+
+\[
+  U_Q\cong P/N.
+\]
+
+The group \(P\) is a finitely generated virtually free group.  By
+Gerasimova--Shchepin it is stable for every normalized \(p\)-Schatten norm,
+in particular for normalized Hilbert--Schmidt norm.  The theorem therefore
+specializes to
+
+\[
+\boxed{
+U_Q\text{ is hyperlinear}
+\iff
+1_{[P,R]}\text{ is a pointwise limit of normalized characters of
+finite-dimensional representations of }P.
+}
+\]
+
+The first-corner splitting theorem gives an actual embedded copy
+\(Q\hookrightarrow U_Q\).  Hence the premise also implies that \(Q\) is
+hyperlinear.  The already proved nonsoficity of \(Q\) would then answer "is
+every hyperlinear group sofic?" negatively.
+
+This criterion is strictly sharper than asking for arbitrary approximate
+representations of the Steinberg group.  A candidate model may be assumed,
+without loss, to have all of the following exact at every finite stage:
+
+* each finite leaf chart is represented exactly;
+* the different charts assemble through the free-product universal
+  property to one exact representation of \(P\);
+* only the quotient condition remains asymptotic, namely
+  \(\pi_k(n)\to1\) in normalized \(2\)-norm for \(n\in[P,R]\).
+
+The separating condition is equally explicit: every
+\(p\notin[P,R]\) must have normalized trace tending to zero.  Thus the final
+model-production problem is a relative character approximation problem for
+a fixed virtually free group, not a general almost-multiplication problem.
+
+## 3. The one-witness certificate for the main problem
+
+For the purpose of producing *some* hyperlinear nonsofic group, the regular
+character requirement can be weakened substantially.
+
+The universal cover \(U_Q\) is the finitely presented Steinberg group
+\(\operatorname{St}_5(L_{\mathbb F_2}(1,2))\), while \(P\) is finitely
+presented.  Hence \(N=[P,R]\) is normally generated in \(P\) by a finite set;
+fix one such set
+
+\[
+  \mathcal S=\{n_1,\ldots,n_m\}\subset N.
+\]
+
+**Theorem (one-witness exact-atlas certificate).**  Suppose that there are
+finite-dimensional exact representations
+
+\[
+  \pi_k:P\longrightarrow U(d_k)
+\]
+
+and one element \(g\in P\) such that
+
+\[
+  \max_{1\le j\le m}\|\pi_k(n_j)-1\|_{2,d_k}\longrightarrow0
+  \tag{A}
+\]
+
+but
+
+\[
+  \liminf_k\|\pi_k(g)-1\|_{2,d_k}>0.
+  \tag{B}
+\]
+
+Then a hyperlinear nonsofic group exists.
+
+### Proof
+
+Let \(\Pi:P\to\prod_\omega U(d_k)\) be the homomorphism defined by the exact
+representations.  Condition (A) kills the normal closure of
+\(\mathcal S\), which is \(N\).  Thus \(\Pi\) factors through a homomorphism
+
+\[
+  \overline\Pi:U_Q=P/N\longrightarrow\prod_\omega U(d_k).
+\]
+
+Condition (B) makes this homomorphism nontrivial.  Its kernel is therefore a
+proper normal subgroup of the quasisimple group \(U_Q\), and so
+
+\[
+  \ker\overline\Pi\subseteq Z(U_Q).
+\]
+
+Consequently its image is a central quotient of \(U_Q\) which still maps
+onto the simple nonsofic group \(Q\).  The central-cover nonsoficity theorem
+makes this image nonsofic.  On the other hand, the image is a subgroup of a
+tracial matrix ultraproduct, hence hyperlinear.  This proves the claim.
+
+The certificate is independent of the chosen finite normal generating set:
+normal generation and exact multiplicativity of each \(\pi_k\) propagate
+(A) to every fixed element of \(N\).
+
+Conversely, failure of normalized-HS stability of \(U_Q\) produces such a
+sequence.  Pull an instability witness back to \(P\), rectify it using
+Hilbert--Schmidt stability of the virtually free group \(P\), and retain a
+generator on which it stays away from the only genuine
+finite-dimensional representation of \(U_Q\), namely the trivial one.
+Thus the open analytic bit can be stated entirely inside the exact
+finite-dimensional representation theory of \(P\).
+
+This is weaker than the regular-character criterion in exactly the useful
+direction: no trace-zero condition is imposed on all words outside \(N\);
+one positive-distance witness is enough.
+
+## 4. Exact boundary
+
+Hilbert--Schmidt stability of \(P\) does **not** imply stability of the
+epimorphism \(P\to P/N\).  Proving that epimorphism stable would select the
+nonhyperlinear side; constructing the characters above would select the
+hyperlinear-nonsofic side.  The theorem therefore does not resolve the main
+question by itself.
+
+Nor may residual finiteness of \(P\) be used to manufacture the required
+characters.  Residual finiteness separates elements of \(P\); here one must
+simultaneously make every tested element of \(N\) nearly trivial while
+keeping every tested element outside \(N\) trace-invisible.  That is exactly
+the quotient trace problem.
+
+## 5. Primary sources
+
+* M. Gerasimova and K. Shchepin, *Virtually free groups are
+  \(p\)-Schatten stable*, arXiv:2107.10032, Corollaries 3 and 4.
+* H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
+  \(L_K(1,d)\)*, arXiv:2607.10351, for generation by scalar leaf-matrix
+  subgroups and the unstable-\(K_2\) discussion.
