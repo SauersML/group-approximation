@@ -19732,3 +19732,27 @@ so their mismatch is genuinely confined to `O(1)` weighted levels rather
 than repeated throughout the tree.  If that check holds, the correlation
 lemma gives vanishing normalized-HS relator defect and an order-one strict
 witness simultaneously; no fusion cutoff or chart duplication is needed.
+
+### Audit: the free-word tensor tree does not pass the relator check
+
+The proposed instantiation above fails at its load-bearing finite check.  A
+relation in `SAut(F_d)` is a loop only after quotienting the free word graph
+by the Nielsen/Gersten relations.  It is not a loop in the rooted free word
+tree on the chosen generators.
+
+Precisely, let `w=s_1...s_l` be a nonempty freely reduced word which is a
+relation in `SAut(F_d)`.  On a depth-`L` free-word tree, the partial shift
+defined by `w` sends every vertex `v` of depth at most `L-l` to the distinct
+vertex `vw`; the identity fixes `v`.  Thus the relator permutation disagrees
+with the identity on every interior level, not merely on the root and leaf
+levels.  With total active weight `1/L` at each level, its bulk error has
+order-one total weight.  The tensor correlation estimate is valid, but it
+therefore bounds an order-one relator defect rather than a vanishing one.
+
+Passing from the word tree to the actual Cayley graph makes the relators
+close, but then boundary smallness is exactly a Følner condition.  It is
+unavailable for the Kazhdan nonamenable external group.  Consequently a
+plain weighted tensor tree does not globalize the one-compressor models.
+Any tensor construction would still need a genuinely nonclassical local
+implementation of the Nielsen relator cells; that is the same external
+synchronization problem that fusion exposed, not a way around it.
