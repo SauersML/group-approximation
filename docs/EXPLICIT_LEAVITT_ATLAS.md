@@ -94,7 +94,8 @@ The thirty generators distribute among these three subgroups as follows:
 * \(q_{ij,1}\) belongs to the \(D_k\)-chart for the unique
   \(k\notin\{i,j\}\).
 
-These three scalar charts are minimal in number.  Indeed, if a finite
+Three scalar charts are necessary if every generator in (1) must itself
+belong to one of the charts.  Indeed, if a finite
 scalar leaf chart contains \(1+\alpha\beta^*\), then the two cylinder
 projections \(\alpha\alpha^*\) and \(\beta\beta^*\) have the same matrix
 rank in that chart.  For fixed \(i\ne j\), write \(m(\alpha)\) for the
@@ -110,7 +111,8 @@ number of chart leaves below the path \(\alpha\).  Containment of
 Because both child cylinders below every \(\gamma_i\) are nonempty, any
 two of these three equalities are incompatible.  Thus one scalar chart
 contains at most one of these three generators, and at least three charts
-are required.  The allocation above attains the lower bound.
+are required to cover (1) elementwise.  The allocation above attains that
+covering lower bound.
 
 The groups \(K_k\cong A_8\) are perfect but not superperfect.  Instead of
 enlarging their leaf sets, take their universal central covers.  For each
@@ -121,55 +123,82 @@ enlarging their leaf sets, take their universal central covers.  For each
   \qquad H_k\cong 2.A_8.
 \]
 
-The finite group \(H_k\) is superperfect, and the composites
-\(H_k\to K_k\hookrightarrow Q\) still cover all thirty generators (1).
+The finite group \(H_k\) is superperfect.
 
 ## 3. The explicit atlas source
+
+Only two of the three chart groups are needed to generate \(Q\).  The
+Steinberg commutator identity
+
+\[
+ [q_{ij,a},q_{jk,b}]=q_{ik,ab}
+ \qquad(i,j,k\text{ distinct})                            \tag{6}
+\]
+
+gives, for \(s\in\{e,f\}\),
+
+\[
+\begin{aligned}
+ q_{31,s}&=[q_{32,1},q_{21,s}],&
+ q_{32,s}&=[q_{31,1},q_{12,s}],\\
+ q_{13,s^*}&=[q_{12,s^*},q_{23,1}],&
+ q_{23,s^*}&=[q_{21,s^*},q_{13,1}],\\
+ q_{12,1}&=[q_{13,1},q_{32,1}],&
+ q_{21,1}&=[q_{23,1},q_{31,1}].
+\end{aligned}                                             \tag{7}
+\]
+
+Every entry on the right side of (7) belongs to \(K_1\cup K_2\), while
+the left sides are precisely the ten generators in (1) allocated to
+\(K_3\).  Hence \(\langle K_1,K_2\rangle\) contains all thirty generators
+and equals \(Q\).
 
 Define
 
 \[
-  P_3=H_1*H_2*H_3
-  \cong *^3(2.A_8).                                      \tag{6}
+  P_2=H_1*H_2
+  \cong (2.A_8)*(2.A_8).                                 \tag{8}
 \]
 
-Map every free factor in (6) through its Schur covering map and then to its
+Map every free factor in (8) through its Schur covering map and then to its
 concrete scalar leaf-matrix subgroup of \(Q\).  The induced homomorphism
 
 \[
-  \rho:P_3\twoheadrightarrow Q                            \tag{7}
+  \rho:P_2\twoheadrightarrow Q                            \tag{9}
 \]
 
-is surjective because its image contains all the generators (1).
+is surjective by (7).  Two is the smallest possible number of finite chart
+groups in such a generating atlas, since a single finite subgroup cannot
+generate the infinite group \(Q\).
 
-Each free factor is finite and superperfect.  Therefore \(P_3\) is a
+Each free factor is finite and superperfect.  Therefore \(P_2\) is a
 finitely generated virtually free superperfect group: its abelianization
 is the direct sum of the factor abelianizations, and its second homology is
 the direct sum of their second homologies.  Put
 
 \[
-  R_3=\ker\rho,\qquad N_3=[P_3,R_3].                       \tag{8}
+  R_2=\ker\rho,\qquad N_2=[P_2,R_2].                      \tag{10}
 \]
 
 The standard superperfect-cover form of the universal-central-extension
 construction gives
 
 \[
-  U_Q\cong P_3/N_3.                                       \tag{9}
+  U_Q\cong P_2/N_2.                                      \tag{11}
 \]
 
 Consequently the exact-source character criterion and the one-witness
-certificate may be run with the fully specified source (6).  An exact
+certificate may be run with the fully specified source (8).  An exact
 finite-dimensional representation of this source is nothing more than
-three independent exact representations of the one fixed finite group
-\(2.A_8\), with two relative conjugating
-unitaries after fixing the basis for one factor.
+two independent exact representations of the one fixed finite group
+\(2.A_8\), with one relative conjugating unitary after fixing the basis
+for one factor.
 
 One can also choose the survivor explicitly.  For example,
 
 \[
-  p_0\in H_3\le P_3,
-  \qquad \rho(p_0)=q_{12,1}.                              \tag{10}
+  p_0\in H_2\le P_2,
+  \qquad \rho(p_0)=q_{13,1}.                              \tag{12}
 \]
 
 The transvections of \(\operatorname{GL}_4(\mathbb F_2)\) form a class of
@@ -181,40 +210,40 @@ standard Schur double-cover presentation of \(S_8\), four mutually
 disjoint transposition lifts have square
 \(z^{\binom42}\) times either \(1\) or \(z^4\), hence square to \(1\).
 Choose either lift as \(p_0\).  Its image in \(Q\) is nontrivial, so
-\(p_0\notin R_3\), and therefore \(p_0\notin N_3\).
+\(p_0\notin R_2\), and therefore \(p_0\notin N_2\).
 
 ## 4. Exact remaining boundary
 
-The group \(P_3\) is finitely presented.  The group
+The group \(P_2\) is finitely presented.  The group
 \(U_Q\cong\operatorname{St}_5(L)\) is finitely presented because \(L\) is
 a finitely presented unital ring and the Krsti\'c--McCool theorem applies in
-rank at least four.  Hence \(N_3\) is finitely normally generated in
-\(P_3\).  This proves the existence of a finite list of word constraints
+rank at least four.  Hence \(N_2\) is finitely normally generated in
+\(P_2\).  This proves the existence of a finite list of word constraints
 
 \[
-  \mathcal S=\{n_1,\ldots,n_m\}\subseteq N_3.              \tag{11}
+  \mathcal S=\{n_1,\ldots,n_m\}\subseteq N_2.             \tag{13}
 \]
 
-The source cited above does **not** print (11) in the three-factor
+The source cited above does **not** print (13) in the two-factor
 coordinates.  Extracting such a list requires two effective Tietze steps:
 
 1. write a concrete finite Krsti\'c--McCool presentation of
    \(\operatorname{St}_5(L)\) for the four-generator finite ring
    presentation of \(L\);
 2. express its Steinberg generators as words in lifts of the thirty
-   elements (1), and translate the presentation across (7).
+   elements (1), and translate the presentation across (9), using (7).
 
 Thus the atlas itself, its finite factors, the quotient map, and a survivor
 are now explicit.  The finite normal-relator list is known to exist but has
 not yet been extracted.  Even after it is extracted, the decisive analytic
-question remains whether exact representations of \(P_3\) can make all
-words in (11) tend to the identity in normalized Hilbert--Schmidt norm while
-keeping (10) a fixed positive distance from the identity.
+question remains whether exact representations of \(P_2\) can make all
+words in (13) tend to the identity in normalized Hilbert--Schmidt norm while
+keeping (12) a fixed positive distance from the identity.
 
 ## 5. Exact negative-rank form
 
-The chosen survivor \(p_0\), lifting \(q_{12,1}\), is an involution.  For an exact
-representation \(\pi:P_3\to U(d)\), put
+The chosen survivor \(p_0\), lifting \(q_{13,1}\), is an involution.  For
+an exact representation \(\pi:P_2\to U(d)\), put
 
 \[
   r_-(\pi)=\dim\ker(\pi(p_0)+1).
@@ -224,21 +253,21 @@ The unitary \(\pi(p_0)\) is a self-adjoint involution, and therefore
 
 \[
   \|\pi(p_0)-1\|_{2,d}
-  =2\sqrt{\frac{r_-(\pi)}d}.                              \tag{12}
+  =2\sqrt{\frac{r_-(\pi)}d}.                              \tag{14}
 \]
 
 Let \(\|T\|_{\mathrm F}=\operatorname{Tr}(T^*T)^{1/2}\) denote the
 unnormalized Frobenius norm.  The tensor-amplified ratio criterion and
-(12) give the exact reformulation
+(14) give the exact reformulation
 
 \[
 \boxed{
  Q\text{ is hyperlinear}
  \iff
- \inf_{\substack{\pi:P_3\to U(d)\\r_-(\pi)>0}}
+ \inf_{\substack{\pi:P_2\to U(d)\\r_-(\pi)>0}}
  \frac{\max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}}
       {\sqrt{r_-(\pi)}}=0.
-}                                                           \tag{13}
+}                                                           \tag{15}
 \]
 
 Indeed, if \(a(\pi)=\|\pi(p_0)-1\|_{2,d}\) and
@@ -247,7 +276,7 @@ Indeed, if \(a(\pi)=\|\pi(p_0)-1\|_{2,d}\) and
 \[
   \frac{b(\pi)}{a(\pi)}
   =\frac{\max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}}
-         {2\sqrt{r_-(\pi)}}.                              \tag{14}
+         {2\sqrt{r_-(\pi)}}.                              \tag{16}
 \]
 
 Thus the ambient dimension cancels completely.  A construction proving the
@@ -257,14 +286,14 @@ constant \(c>0\) such that every exact representation satisfies
 
 \[
   \max_{n\in\mathcal S}\|\pi(n)-1\|_{\mathrm F}
-  \ge c\sqrt{r_-(\pi)}.                                   \tag{15}
+  \ge c\sqrt{r_-(\pi)}.                                   \tag{17}
 \]
 
 In particular, a dimension-independent Frobenius-stability theorem for
 \(U_Q\), correcting the finite presentation to its only
-finite-dimensional representation (the trivial one), would imply (15).
-Conversely, violations of every estimate (15) give (13), hence make the
-already nonsofic group \(Q\) hyperlinear.  Formula (13) is the exact
+finite-dimensional representation (the trivial one), would imply (17).
+Conversely, violations of every estimate (17) give (15), hence make the
+already nonsofic group \(Q\) hyperlinear.  Formula (15) is the exact
 active-eigenspace interface between the two outcomes; it does not establish
 either one.
 
