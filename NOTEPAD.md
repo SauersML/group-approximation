@@ -17269,6 +17269,51 @@ forcing total absorption is precisely the unresolved operator step.  Until
 this cell is supplied, the atlas does **not** yet define the claimed
 homomorphism `sigma:Ghat->U(M)`.
 
+### Tangent Fourier commutators alone cannot supply the antipodal cell
+
+The most immediate proposed repair fails on the unchanged base factor.  In
+the split finite regular model write
+
+`H_N=K_N semidirect H_(0,N)`,
+
+`ell^2(H_N)=ell^2(K_N) tensor ell^2(H_(0,N))`.
+
+After Fourier transform in `K_N`, a primal tangent root acts by a
+translation and its dual tangent root acts by a character multiplier.  Their
+commutator is a scalar Weyl phase on `ell^2(K_N^vee)` tensored with the
+identity on the base regular factor.  This is the familiar finite
+Heisenberg calculation.
+
+The required output in the basic antipodal relation is instead
+
+`x_(ac)(1)`.
+
+Its image belongs to the base elementary group `H_(0,N)`.  In the full
+split regular representation it acts nontrivially on
+`ell^2(H_(0,N))` by left translation (and also by its conjugation
+permutation on the tangent characters).  In particular its regular trace is
+zero, so it stays a fixed normalized Hilbert--Schmidt distance from every
+global scalar after deleting an `o(1)` corner.
+
+Therefore a tangent translation--multiplier commutator, even with the
+correct Frobenius pairing and depth reversal, cannot equal the constant-root
+operator merely by adjusting the Pauli/Weil scalar cochain.  The full
+antipodal cell must contain an additional **base-factor transport** whose
+commutator produces the native `x_(ac)(1)` action, while the tangent Fourier
+part handles the reversed strict flag.  Alternatively one needs a different
+polarized coefficient representation in which the constant output root is
+represented consistently by the same central character across every
+relation involving it.  No such global representation has yet been
+constructed.
+
+This rules out the naive scalar-Heisenberg repair but not a mixed
+base--tangent cell.  The load-bearing calculation is now exact: write the
+two antipodal owner operators on
+`ell^2(K_N^vee) tensor ell^2(H_(0,N))`, including their base cocycles, and
+show that their complete commutator is the transported constant-root
+operator plus boundary/fusion leakage.  A proof which computes only the
+tangent Weyl phase is insufficient.
+
 ### Regular absorption makes a finite kernel grading exactly equivariant
 
 The normalizer-covariance part of matched descent has a canonical solution
