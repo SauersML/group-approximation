@@ -23715,3 +23715,93 @@ Accordingly the safe conclusion is sharp:
 
 This closes one tempting use of the new symmetric-double theorem without
 mistaking a C-star obstruction for a group-level non-MF result.
+
+# The quasi-regular Gaussian action has entropy minus infinity (2026-08-09)
+
+The Gaussian construction does not provide a hidden Cartan-preserving route
+to the Kun--Thom crossed product.  In fact the two relevant primary results
+combine to determine its model-existence side exactly.
+
+Let `Gamma<G` be a Kun--Thom infranormal nonnormal Kazhdan pair and put
+
+`rho=lambda_(G/Gamma,R)`.
+
+Let `G` act on the Gaussian probability space `(X_rho,mu_rho)` associated to
+`rho`.
+
+**Theorem (Gaussian minus-infinity barrier).**  For every sofic
+approximation `Sigma` of `G`,
+
+`h_(Sigma,mu_rho)(X_rho,G)=-infinity`.
+
+In particular the quasi-regular Gaussian action admits no probability-space
+microstate sequence for any sofic approximation of `G`.
+
+**Proof.**  The standard basis of `l2_R(G/Gamma)` is permuted by `G`.
+Functoriality and orthogonal direct sums in the Gaussian construction
+therefore identify its Gaussian action with the generalized Bernoulli action
+
+`G acts on (R,nu)^(G/Gamma)`,
+
+where `nu` is a nondegenerate Gaussian measure.
+
+Kun--Thom prove that, for this infranormal Kazhdan pair, the
+`Gamma`-fixed algebra of every sofic probability-measure-preserving action of
+`G` is `G`-invariant.  This generalized Bernoulli action cannot have that
+property.  Indeed, take a nonconstant bounded function `f` of the coordinate
+at the base coset `Gamma`.  Then `f` is `Gamma`-fixed.  Choose a strict
+compressor `t` and `gamma in Gamma` with
+
+`gamma t Gamma != t Gamma`.
+
+The translate `t.f` is a nonconstant function of the `t Gamma` coordinate,
+whereas `gamma.(t.f)` is the corresponding function of the distinct
+`gamma t Gamma` coordinate.  Independence of distinct Bernoulli coordinates
+gives
+
+`||gamma.(t.f)-t.f||_2>0`.
+
+Thus the `Gamma`-fixed algebra is not `G`-invariant, and Kun--Thom's theorem
+says that the action is not sofic.
+
+If Hayes's microstate spaces for some fixed `Sigma` were nonempty through an
+increasing exhaustion of the finite tests, a diagonal choice of microstates
+would give precisely a sofic probability-measure-preserving model of the
+action.  Therefore some finite test is eventually empty.  By the definition
+of sofic measure entropy this is exactly
+
+`h_(Sigma,mu_rho)=-infinity`.
+
+As a consistency check with Hayes's Gaussian entropy theorem, `rho` is
+singular to the real regular representation.  Frobenius reciprocity gives
+
+`Hom_G(Ind_Gamma^G(1),lambda_G)
+  = Hom_Gamma(1,lambda_G restricted to Gamma)=0`,
+
+because `Gamma` is infinite and `lambda_G|Gamma` is a multiple of
+`lambda_Gamma`, which has no invariant vector.  Polar decomposition of an
+intertwiner upgrades the vanishing of this Hom-space to mutual singularity.
+Hayes hence gives the preliminary alternative `{0,-infinity}`; the
+Kun--Thom fixed-algebra theorem selects `-infinity`.  End proof.
+
+## Exact scope
+
+This closes the direct Gaussian-microstate idea, not the abstract
+Connes-embedding problem.  A trace-preserving embedding of the generalized
+Bernoulli crossed product into a matrix tracial ultraproduct need not send
+the Bernoulli algebra to the diagonal ultraproduct or its normalizers to
+permutations.  The Fourier-block normalizer example above shows why such a
+Cartan completion cannot be assumed.  Consequently:
+
+* every Gaussian covariance construction which supplies full Wick moments
+  and approximate equivariance would contradict the theorem above;
+* a mere one-vector or second-moment profile is not ruled out unless it can
+  be Gaussianized with concentration;
+* any successful embedding of this crossed product must be genuinely
+  non-Cartan.  This is exactly the multiplicity-fiber/relative-commutant
+  quadrant already isolated by the free-lamp and Clifford programs.
+
+Primary inputs: Hayes, *Sofic Entropy of Gaussian Actions*,
+arXiv:1509.07835, especially Corollary 4.15 and the Gaussian entropy formula;
+Kun--Thom, arXiv:2608.06222, the theorem that the `Gamma`-fixed algebra of a
+sofic pmp action is `G`-invariant for an infranormal Kazhdan pair.
