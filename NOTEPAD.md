@@ -15864,3 +15864,81 @@ that the chosen finite diagram scheme covers the substitution/permutation
 letters in each enumerated ambient word and that the native bad projection
 is invariant enough for the stated cell-union bound; it must not be replaced
 by a global depth map.
+
+### Correction: the listed owner cells omit the opposite-root Weyl relation
+
+The algebraic presentation audit finds one concrete missing relation family.
+Same-root, commuting-root, and `A_2` Steinberg cells cover pairs of roots
+which occur together in a positive chamber.  They do not cover an opposite
+pair.
+
+In the `i,j` coordinate plane put
+
+`x=x_(ij)(1)=I+E_(ij)`, `y=x_(ji)(1)=I+E_(ji)`.
+
+Direct `2 by 2` multiplication gives
+
+`x y^(-1) x=w_(ij)`,
+
+where on that plane
+
+`w_(ij)=[[0,1],[-1,0]]`.
+
+This is a signed Weyl matrix.  It is not the pure coordinate transposition
+
+`s_(ij)=[[0,1],[1,0]]`;
+
+rather `w_(ij)=s_(ij) diag(-1,1)` on the displayed plane, and
+
+`w_(ij)^2=diag(-1,-1)`.
+
+Therefore the active coordinate-permutation cell `S` proved above does not
+verify the rank-one relation between the two opposite transvections.  No
+total-order positive chamber contains both `x_(ij)(1)` and
+`x_(ji)(-1)=y^(-1)` as native forward directions.  This is exactly a
+cross-owner word, not a native commuting or `A_2` cell.
+
+The omission also appears at the presentation level.  The elementary
+Steinberg commutator relations first present the Steinberg group; descending
+to the actual elementary linear group requires killing the appropriate
+Weyl/torus (and central `K_2`) kernel.  It is therefore not enough to say
+that an arbitrary ambient identity has a derivation from only the previously
+listed relation families.
+
+The native-relator fusion-transfer lemma remains correct.  Its claimed
+application to every ambient word is conditional on adding an owner chart
+for this rank-one Weyl cell or proving its fused defect directly.  The full
+Fourier transform is suggestive because it implements a signed Weyl action
+on the tangent phase space, but the passive wall ratio cannot be reclassified
+as the active group operator without checking:
+
+1. the complete regular base and `Gamma_z` covariance;
+2. the depth reversal and the inverse-root boundary;
+3. the equality with the product `x y^(-1) x` after fusion; and
+4. the square relation `w_(ij)^2=diag(-1,-1)` and its action on every other
+   root subgroup.
+
+This is now the smallest load-bearing algebraic target.  If the active
+signed-Weyl/Fourier cell passes, coordinate conjugacy supplies all opposite-
+root pairs and the native-relator transfer can plausibly cover the ambient
+word exhaustion.  Until then, the global multiplication theorem remains
+conditional despite the completed passive-overlap and leakage estimates.
+
+There is a second possible discharge, using the conjugate-cancellation lemma
+immediately above.  If the owner-transported external root operators satisfy
+all Steinberg relations for nonopposite roots, they define a representation
+of the external Steinberg group in the ultraproduct.  The discrepancy of a
+word trivial in `EL_4(Z)` then lies in the central `K_2(Z)` kernel.  It is
+enough to prove that this central action is blockwise scalar and to take a
+**matched** conjugate tensor on each central summand; exact active Fourier
+realization of `w_(ij)` would then be unnecessary.
+
+This alternative still has one quantitative condition.  The matched
+central summands must be amplified/reweighted so that the summands carrying
+the order-one strict witness retain positive normalized trace.  Tensoring
+the whole reducible representation with its conjugate without matching is
+not enough: on an `alpha tensor beta` block the central phase is
+`c_alpha conjugate(c_beta)`, which need not be one when `alpha!=beta`.
+Thus the next audit may choose either an exact active signed-Weyl cell or a
+blockwise matched `K_2` cancellation, but it must write one of them
+explicitly and preserve strict energy.
