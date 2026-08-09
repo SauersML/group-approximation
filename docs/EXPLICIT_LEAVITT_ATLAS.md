@@ -1095,6 +1095,84 @@ unitaries with genuinely delocalized rows; quantum interference is a
 necessary feature of a positive construction, not merely one possible
 ansatz.
 
+There is a stronger fibrewise version with an explicit bound.  Use the
+canonical decomposition
+
+\[
+ \mathbb C^{20160k}=\ell^2(A_8)\otimes\mathbb C^k,
+\]
+
+and let
+
+\[
+ \mathcal W_k=U(k)\wr\operatorname{Sym}(A_8)
+ \leq U(20160k)
+\]
+
+be the block-monomial subgroup.  Thus an element of \(\mathcal W_k\) may
+apply an arbitrary \(k\)-dimensional unitary inside each of the 20,160
+regular fibres and then permute those fibres.  If
+\(d_k^{\mathrm{blk}}\) is the minimum defining \(d_k\), restricted to
+\(\mathcal W_k\), then
+
+\[
+ d_k^{\mathrm{blk}}\geq\sqrt{\frac4{20160}}
+ =\frac1{\sqrt{5040}}.                                \tag{49}
+\]
+
+Projection \(\mathcal W_k\to\operatorname{Sym}(A_8)\) is a
+homomorphism.  Both canonical charts are block monomial, and they project
+to the regular \(A_8\)-action and a permutation conjugate of it.  Thus a
+block-monomial relative unitary defines an exact homomorphism
+
+\[
+ \rho_U:\bar P=A_8*A_8\longrightarrow
+          \operatorname{Sym}(20160).
+\]
+
+At least one \(s\in\bar{\mathcal S}\) has \(\rho_U(s)\neq1\).
+Otherwise normal generation would factor \(\rho_U\) through a nontrivial
+finite permutation representation of \(U_Q\), nontriviality following
+from the first regular chart.  This contradicts minimal almost
+periodicity of \(U_Q\).  A nonidentity permutation moves at least two
+blocks.  If a block-monomial unitary \(V\) moves a proportion \(h\) of
+the blocks, then its diagonal blocks vanish at those positions and
+
+\[
+ \|V-I\|_2^2\geq2h.
+\]
+
+The selected relator therefore has squared defect at least
+\(2(2/20160)=4/20160\), proving (49).
+
+The result is robust.  Set
+
+\[
+ F_k(U)=\max_{s\in\bar{\mathcal S}}\|\pi_U(s)-I\|_2.
+\]
+
+There is a constant \(L<\infty\), independent of \(k\), for which
+
+\[
+ |F_k(U)-F_k(V)|\leq L\|U-V\|_2.                      \tag{50}
+\]
+
+Indeed, if \(q_s\) counts the letters from the second free factor in the
+fixed reduced word for \(s\), one may take
+\(L=2\max_s q_s\): a conjugated second-chart letter changes by at most
+\(2\|U-V\|_2\), and products telescope.  Consequently every sequence
+with \(F_k(U_k)\to0\) obeys
+
+\[
+ \liminf_k\operatorname{dist}_2(U_k,\mathcal W_k)
+ \geq\frac1{L\sqrt{5040}}.                            \tag{51}
+\]
+
+Any positive construction must therefore stay a fixed normalized-HS
+distance from the entire fibrewise unitary wreath-product ansatz.  It must
+genuinely mix the regular fibres, rather than merely rotate within and
+permute them.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
