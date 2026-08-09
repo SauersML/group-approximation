@@ -19812,3 +19812,43 @@ Nielsen relator groupoid.  It cannot be a scalar function on the Cayley tree
 or graph.  For the free-word pair the surviving target is thus a finite
 Fourier/Fock contextual cell implementing the Gersten relators while its
 regular multiplicity retains the non-scalar shear witness.
+
+### Every finite ambient free-word quotient collapses positive and inverse words
+
+The free-word advantage is unavailable in any genuine finite quotient of
+the ambient coefficient ring.
+
+**Lemma (finite-unit collapse).**  Let
+
+`A_+=F_q<x_1,...,x_d> <= A=F_q[F_d]`
+
+and let `phi:A->B` be a unital homomorphism to a finite ring.  Then
+
+`phi(A_+)=phi(A)`.
+
+**Proof.**  Each `u_i=phi(x_i)` is a unit of the finite ring `B`.  Its order
+in the finite group `B^x` is some `m_i`, so
+
+`phi(x_i^(-1))=u_i^(-1)=u_i^(m_i-1)=phi(x_i^(m_i-1))`.
+
+The right-hand side belongs to `phi(A_+)`.  Since the `x_i` and
+`x_i^(-1)` generate `A`, the two images are equal.  End proof.
+
+The same conclusion holds for a homomorphism into any finite-dimensional
+algebra over a field: Cayley--Hamilton expresses the inverse of each
+invertible image `u_i` as a polynomial in `u_i` with scalar coefficients.
+
+Consequently a finite quotient of `St_r(A)` cannot distinguish the positive
+coefficient image from the Laurent/free-group coefficient image.  In
+particular no model obtained from a finite characteristic quotient of
+`F_d`, a finite matrix evaluation of the free generators, or a finite group
+algebra can carry the strict relative commutant.  This is the free-word
+version of finite-quotient sterility, now at the coefficient-ring level.
+
+The proved one-compressor chain avoids the lemma because it is a quotient of
+`A_+` which does **not** extend to `A`: the image of `x_1` is nilpotent, not a
+unit.  Any genuinely noncommutative replacement must retain that same
+nonextendability.  Thus finite-group/Fock constructions based on exact
+Nielsen actions on characteristic quotients are closed.  The remaining cell
+must implement the Nielsen relations only asymptotically while keeping the
+positive generator images noninvertible at the coefficient level.
