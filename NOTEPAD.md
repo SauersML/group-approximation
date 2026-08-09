@@ -19429,3 +19429,64 @@ fibers of positive total weight must each satisfy the whole tested tuple.
 It is, however, the correctly oriented finite problem.  The false coset
 depth averaging has been removed; every native chain, wrap estimate, and
 strict commutant remains exactly the already proved orbit-chain one.
+
+### Commuting cycle incidence is still classical; one partition must be Fourier
+
+The root-cycle frame above is correctly oriented but, with literal coordinate
+projections, it cannot itself create the exotic point-fiber tuple.  All
+`p_C` and `q_D` commute.  If their local generator occurrences agree on
+`C intersect D`, the exact sparse-fusion calculation gives
+
+`T_g=directSum_(x in X_n) U_(g,x)`.
+
+With `o(1)` overlap error the fused tuple is still `o(1)` from such a
+pointwise direct sum.  The sparse-relator-energy identity then says that a
+positive-weight collection of the point fibers must already satisfy all
+tested relators and carry the strict witness.  In other words, commuting
+cycle incidence reorganizes the bookkeeping but does not manufacture the
+compressor--shear coupling.
+
+The minimal genuinely quantum modification is explicit.  On
+`ell^2(F_p)`, let
+
+`p_x=|delta_x><delta_x|`,  `q_eta=|hat(delta_eta)><hat(delta_eta)|`,
+
+where `hat` is the finite Fourier transform.  Then
+
+`sum_x p_x=sum_eta q_eta=1`,  `A=sum_x p_x+sum_eta q_eta=2`,
+
+but the two resolutions do not commute.  Their cross Gram blocks have
+constant size:
+
+`p_x q_eta=p^(-1/2) zeta^(x eta)|delta_x><hat(delta_eta)|`,
+
+and, for normalized trace on `M_p`,
+
+`||p_x q_eta||_2^2=1/p^2`.
+
+Thus every position chart meets every momentum chart through a small
+nonorthogonal overlap; the total of the `p^2` overlap weights is one.  Local
+drift can now be matrix-valued and distributed across all overlaps instead
+of reducing to a direct sum over classical edges.  This is the finite
+phase-space version of the required sparse frame.
+
+Using only this irreducible Weyl block is nevertheless insufficient.  Its
+Heisenberg commutator is a scalar central phase, whereas the antipodal
+Steinberg relation requires a non-scalar base translation.  The frame must
+therefore be placed in the regular Heisenberg cell already constructed:
+decompose the regular block over its central characters, apply the
+position/Fourier pair in each character sector, and retain the central
+translation as an operator across the sector multiplicity.  The right
+regular witness then commutes with the positive left translations but not
+with the shear permutation, with the established lower bound
+`2(1-1/p)`.
+
+Consequently the surviving cross-root substrate is not the commuting
+bipartite cycle graph by itself.  It is its Fourier--Weil rotation on the
+prime-field quotient, tensored with the unchanged long orbit-chain depth.
+The remaining calculation is now precise: write the analysis projection of
+this regular-Heisenberg mutually-unbiased frame and verify that the ordinary
+depth compressor preserves its range up to the single chain wrap, while the
+Fourier-rotated occurrence is exactly the free-cycle shear on the selected
+`L_0` incidence.  A commuting replacement is proved incapable of doing
+this.
