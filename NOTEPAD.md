@@ -24378,3 +24378,86 @@ Any successful tracial contradiction must therefore use the **global
 compressor/covariance web** to control multiplicity, or obtain a quantitative
 defect-versus-rank profile.  Clifford relations and property `(T)` alone
 cannot remove normalized-HS rank blindness.
+
+# Adjoint amplification does not dilute commutant-valued relator holonomy (2026-08-09)
+
+There is a tempting route from the explicit crossed-product targets.  Pull the
+action back along a free presentation `F -> G`.  Since automorphisms of the
+hyperfinite factor are approximately inner and `F` has no relators, implement
+the free generators in a finite matrix over-algebra.  A relator acts trivially
+on the coefficient algebra, so its implementing word lies approximately in
+the coefficient commutant.  One might then pass to adjoint representations,
+hoping that a very large coefficient block makes this residual holonomy
+negligible.  The following exact calculation shows that this last step fails.
+
+Let
+
+`D=M_k(C) tensor M_m(C)`
+
+with normalized trace, and put `A=M_k(C) tensor 1`.  If `w in U(D)` commutes
+with `A`, then `w=1 tensor v` for a unique `v in U(m)`.  Regard `Ad(w)` as a
+unitary on the Hilbert space `L2(D)`, whose dimension is `(km)^2`, and equip
+its endomorphism algebra with normalized Hilbert--Schmidt norm.
+
+**Theorem (commutant holonomy survives adjoint amplification).**  One has
+
+`||Ad(w)-1||_(2,End(L2(D)))^2 = 2-2 |tr_m(v)|^2`.       `(1)`
+
+In particular the right-hand side is independent of the coefficient size
+`k`.  Adjoint amplification kills the holonomy exactly when `v` is scalar;
+an arbitrary matrix-valued commutant holonomy is not diluted by taking
+`k -> infinity`.
+
+**Proof.**  Under the standard vectorization
+
+`L2(D) ~= C^(km) tensor conjugate(C^(km))`,
+
+the adjoint unitary is `w tensor conjugate(w)`.  Its normalized trace is
+
+`tr_(End)(Ad(w))=tr_D(w) conjugate(tr_D(w))=|tr_D(w)|^2`.
+
+Since `w=1 tensor v`, this is `|tr_m(v)|^2`.  For any unitary `U`,
+
+`||U-1||_2^2=2-2 Re tr(U)`.
+
+The displayed trace is real and nonnegative, giving `(1)`.  Finally,
+`|tr_m(v)|=1` holds for a unitary precisely when all its eigenvalues have the
+same phase, that is, precisely when `v` is scalar.  End proof.
+
+There is a useful approximate form.  Let `E_(A')` be the trace-preserving
+conditional expectation onto `A'=1 tensor M_m(C)`.  Haar averaging over
+`U(A)` gives
+
+`E_(A')(x)=integral_(u in U(A)) u x u^* du`
+
+and hence
+
+`||x-E_(A')(x)||_2`
+` <= integral ||[x,u]||_2 du`
+` <= sup_(u in U(A)) ||[x,u]||_2`.                     `(2)`
+
+Thus control of commutators with the whole coefficient block puts a relator
+implementer close to `1 tensor v`, but `(1)` says that this alone gives no
+adjoint multiplicativity.  What is additionally required is
+
+`|tr_m(v)| -> 1`,
+
+equivalently `inf_(lambda in T)||v-lambda 1||_2 -> 0`.
+
+**Consequence for the free-presentation construction.**  Approximate
+innerness of the individual action generators only converts group relators
+into multiplicity-algebra holonomies.  Passing to the adjoint representation
+converts the original problem into **scalarization of every relator
+holonomy**; it does not solve it.  Tensoring with larger coefficient matrix
+algebras is powerless because formula `(1)` sees only the normalized trace
+of the multiplicity holonomy.  This is the finite-dimensional algebraic form
+of the global noncentral-holonomy obstruction already encountered in the
+Steinberg/Clifford atlases.
+
+The theorem leaves a sharply defined positive target: it would suffice to
+construct approximately inner action implementers for which all defining
+relators have asymptotically scalar holonomy.  Scalar phases disappear under
+`Ad`, yielding a normalized-HS representation of `G`; a nontrivial action on
+the coefficient algebra could then retain the strict Kun--Thom witness.  The
+missing condition is therefore projective approximate representability of
+the action, not mere pointwise approximate innerness.
