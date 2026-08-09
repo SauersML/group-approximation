@@ -14663,6 +14663,69 @@ estimates have now all been written explicitly.  A refutation must locate a
 gap in the remaining finite-atlas construction, not in the passage from its
 microstates to the counterexample.
 
+### Correction: full kernel Fourier does not fix adjacent common roots
+
+The remaining finite-atlas audit finds a concrete gap in the claimed full
+regular adjacent-wall theorem.  The identity
+
+`W Pi^+(gamma)W^*=Pi^-(gamma)`
+
+for `gamma in Gamma_z` is correct: it is unitary conjugation of the complete
+coefficient representation.  What was not checked is the stronger identity
+for the **external substitution-root operators** shared by two adjacent
+chambers.
+
+On the tangent kernel, a chamber matrix `C` acts linearly by `Chat_C`.
+Fourier conjugation sends its permutation operator to the contragredient
+action
+
+`C^vee=C^(-T)`.
+
+For a unit root `t_(ij)=I+E_(ij)`, this is
+
+`t_(ij)^(-T)=I-E_(ji)`,
+
+the inverse of the positive opposite root, not the same common positive
+root.
+
+The defect is already visible in one `A_2` subsystem.  Compare the adjacent
+orders
+
+`0<1<2`  and  `0<2<1`.
+
+Their common positive roots are `(0,1)` and `(0,2)`.  Full Fourier sends
+their tangent actions to the negative opposite roots `(1,0)` and `(2,0)`.
+No coordinate permutation sends both of those ordered pairs back to
+`(0,1)` and `(0,2)` simultaneously: doing so would have to send the common
+target `0` to both `1` and `2`.  Thus "coordinate relabeling followed by
+`W`" does not provide an adjacent-wall intertwiner which fixes the two
+common root occurrences.
+
+This does not invalidate the fixed-base square-zero covariance, the strict
+witness, the fusion estimates, or the global strict-compression endpoint.
+It invalidates the assertion that the native chart partial isometry has
+already been constructed.  The global assembly theorem remains
+conditional.
+
+The exact missing rank-two statement is now:
+
+> For the two `A_2` chambers above, construct a unitary `J_wall` between
+> their amplified fixed-base regular models such that `J_wall` intertwines
+> `Gamma_z`, fixes the common root operators `U_01,U_02` on `1-o(1)` rank,
+> and transports the strict depth polarization needed to introduce the
+> alternate root `U_21`.
+
+It cannot be the full Fourier transform on `K_N`.  It must be a **relative
+Fourier transform in a multiplicity space on which the two common roots
+already agree**, likely after the regular shared-root Heisenberg
+stabilization.  Equivalently, first make the common `A_2` face action
+identical, then Fourier-transform only its relative commutant.  This is the
+one local operator theorem still needed by the fusion-frame route.
+
+The fixed-cutoff fusion lemma and the global ultraproduct argument remain
+valid conditional consequences of this relative wall theorem.  They must
+not be cited as an unconditional proof until it is supplied.
+
 ### Correction: fusion multiplicativity has one local-curvature term
 
 The exact fusion identity above was stated under the hypothesis
