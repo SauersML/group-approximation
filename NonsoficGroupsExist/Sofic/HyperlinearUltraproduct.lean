@@ -246,12 +246,12 @@ structure AsymptoticUnitaryRepresentation (G : Type*) [Group G] where
     hsDistSq (model n) (map n (g * h)) ((map n g :
       Matrix (model n) (model n) ℂ) * map n h) ≤ ε
 
-/-- Asymptotically multiplicative exact unitaries induce a homomorphism to
-their tracial metric ultraproduct. -/
-theorem exists_hyperlinearHom_of_asymptoticUnitaryRepresentation
+/-- The canonical homomorphism induced by asymptotically multiplicative exact
+unitaries. -/
+noncomputable def AsymptoticUnitaryRepresentation.toUltraproductHom
     (S : AsymptoticUnitaryRepresentation G) {𝒰 : Ultrafilter ℕ}
     (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
-    Nonempty (G →* UniversalHyperlinear 𝒰 S.model S.modelNonempty) := by
+    G →* UniversalHyperlinear 𝒰 S.model S.modelNonempty := by
   classical
   have hlen : ∀ (n : ℕ) (a b : Matrix.unitaryGroup (S.model n) ℂ),
       hsLengthSq (S.model n) ((a⁻¹ * b : Matrix.unitaryGroup (S.model n) ℂ))
@@ -280,10 +280,23 @@ theorem exists_hyperlinearHom_of_asymptoticUnitaryRepresentation
     rw [hcoe]
     have := hN n hn
     linarith
-  refine ⟨MonoidHom.mk' (fun g ↦ QuotientGroup.mk (fun n ↦ S.map n g)) ?_⟩
+  refine MonoidHom.mk' (fun g ↦ QuotientGroup.mk (fun n ↦ S.map n g)) ?_
   intro g h
   rw [← QuotientGroup.mk_mul]
   exact (QuotientGroup.eq.mpr (hnull g h)).symm
+
+@[simp] theorem AsymptoticUnitaryRepresentation.toUltraproductHom_apply
+    (S : AsymptoticUnitaryRepresentation G) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) (g : G) :
+    S.toUltraproductHom hcof g = QuotientGroup.mk (fun n ↦ S.map n g) := rfl
+
+/-- Asymptotically multiplicative exact unitaries induce a homomorphism to
+their tracial metric ultraproduct. -/
+theorem exists_hyperlinearHom_of_asymptoticUnitaryRepresentation
+    (S : AsymptoticUnitaryRepresentation G) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    Nonempty (G →* UniversalHyperlinear 𝒰 S.model S.modelNonempty) :=
+  ⟨S.toUltraproductHom hcof⟩
 
 /-- A closed inhabitant: the one-point models of the trivial group. -/
 noncomputable def trivialHyperlinearApproximation :

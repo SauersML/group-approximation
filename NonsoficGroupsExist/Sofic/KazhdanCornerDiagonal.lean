@@ -14,7 +14,7 @@ correction and all original eventual estimates remain available.
 namespace NonsoficGroupsExist
 namespace KazhdanCornerMatrices
 
-open Matrix
+open Filter Matrix
 open scoped Matrix.Norms.L2Operator
 
 variable {G : Type} [Group G]
@@ -435,14 +435,79 @@ noncomputable def MovingCornerSchedule.toAsymptoticUnitaryRepresentation
         nlinarith [norm_nonneg E, Real.sqrt_nonneg eta]
       _ = eta := Real.sq_sqrt heta.le
 
+/-- The canonical homomorphism represented by the scheduled polar-corrected
+unitaries. -/
+noncomputable def MovingCornerSchedule.hyperlinearHom
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D)
+    {𝒰 : Ultrafilter ℕ} (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    G →* UniversalHyperlinear 𝒰 R.model R.model_nonempty :=
+  R.toAsymptoticUnitaryRepresentation.toUltraproductHom hcof
+
+@[simp] theorem MovingCornerSchedule.hyperlinearHom_apply
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D)
+    {𝒰 : Ultrafilter ℕ} (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite)
+    (g : G) :
+    R.hyperlinearHom hcof g = QuotientGroup.mk (fun n ↦ R.map n g) := rfl
+
 /-- The diagonal moving corner therefore induces a homomorphism into its
 tracial matrix ultraproduct. -/
 theorem MovingCornerSchedule.exists_hyperlinearHom
     [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D)
     {𝒰 : Ultrafilter ℕ} (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
     Nonempty (G →* UniversalHyperlinear 𝒰 R.model R.model_nonempty) :=
-  exists_hyperlinearHom_of_asymptoticUnitaryRepresentation
-    R.toAsymptoticUnitaryRepresentation hcof
+  ⟨R.hyperlinearHom hcof⟩
+
+/-- The induced ultraproduct homomorphism is nontrivial on at least one
+Kazhdan generator. -/
+theorem MovingCornerSchedule.exists_generator_hyperlinearHom_ne_one
+    [Nontrivial G] {D : MovingCornerSetup G} (R : MovingCornerSchedule D)
+    {𝒰 : Ultrafilter ℕ} (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    ∃ g ∈ D.S, R.hyperlinearHom hcof g ≠ 1 := by
+  classical
+  by_contra htrivial
+  push Not at htrivial
+  have hnull (g : G) (hg : g ∈ D.S) :
+      IsNullUnitarySeq 𝒰 R.model (fun n ↦ R.map n g) := by
+    have heq : (1 : UniversalHyperlinear 𝒰 R.model R.model_nonempty) =
+        QuotientGroup.mk (fun n ↦ R.map n g) := by
+      rw [← R.hyperlinearHom_apply hcof g]
+      exact (htrivial g hg).symm
+    change QuotientGroup.mk
+      (1 : ∀ n, Matrix.unitaryGroup (R.model n) ℂ) =
+        QuotientGroup.mk (fun n ↦ R.map n g) at heq
+    have hmem := QuotientGroup.eq.mp heq
+    have hmem' : (fun n ↦ R.map n g) ∈
+        nullUnitarySubgroup 𝒰 R.model R.model_nonempty := by
+      simpa only [inv_one, one_mul] using hmem
+    exact hmem'
+  let eta : ℝ := (1 - D.cutoff) / 2
+  have heta : 0 < eta := by dsimp [eta]; linarith [D.cutoff_lt_one]
+  have hallSmall : ∀ᶠ n in (𝒰 : Filter ℕ), ∀ g ∈ D.S,
+      hsLengthSq (R.model n) (R.map n g) < eta := by
+    rw [Finset.eventually_all]
+    intro g hg
+    exact hnull g hg eta heta
+  have hsumSmall : ∀ᶠ n in (𝒰 : Filter ℕ),
+      ∑ g ∈ D.S, hsLengthSq (R.model n) (R.map n g) <
+        (D.S.card : ℝ) * (1 - D.cutoff) / 2 := by
+    filter_upwards [hallSmall] with n hn
+    calc
+      ∑ g ∈ D.S, hsLengthSq (R.model n) (R.map n g) <
+          ∑ _g ∈ D.S, eta :=
+        Finset.sum_lt_sum_of_nonempty ⟨1, D.one_mem⟩ hn
+      _ = (D.S.card : ℝ) * (1 - D.cutoff) / 2 := by
+        rw [Finset.sum_const, nsmul_eq_mul]
+        dsimp [eta]
+        ring
+  obtain ⟨N, hN⟩ := R.generator_hsLengthSq_eventually_ge
+  have hsumLarge : ∀ᶠ n in (𝒰 : Filter ℕ),
+      (D.S.card : ℝ) * (1 - D.cutoff) ≤
+        ∑ g ∈ D.S, hsLengthSq (R.model n) (R.map n g) :=
+    eventually_of_atTop hcof N hN
+  obtain ⟨n, hnLarge, hnSmall⟩ := (hsumLarge.and hsumSmall).exists
+  have hcard : (0 : ℝ) < D.S.card := by
+    exact_mod_cast Finset.card_pos.mpr ⟨1, D.one_mem⟩
+  nlinarith [D.cutoff_lt_one]
 
 end KazhdanCornerMatrices
 end NonsoficGroupsExist
