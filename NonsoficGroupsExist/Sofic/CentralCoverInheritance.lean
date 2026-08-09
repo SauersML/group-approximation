@@ -568,6 +568,104 @@ def IsQuasisimple (J : Type) [Group J] : Prop :=
   Group.IsPerfect J ∧
     ∀ N : Subgroup J, N.Normal → N ≤ Subgroup.center J ∨ N = ⊤
 
+/-- Every countable central extension of `H` is nonsofic.  This is the
+external Kun--Thom stability input in the form consumed by the universal
+central-cover argument. -/
+def AllCountableCentralExtensionsAreNonsofic
+    (H : Type) [Group H] : Prop :=
+  ∀ (E : Type) (_ : Group E) (_ : Countable E),
+    CentralExtension E H → ¬ IsSofic E
+
+namespace CentralExtension
+
+variable {J H Q : Type} [Group J] [Group H] [Group Q]
+
+/-- The center of a central cover lies in its kernel when the base is
+centerless.  The reverse inclusion is part of `CentralExtension`, so in this
+case the kernel is exactly the center. -/
+theorem center_le_ker_of_center_eq_bot (P : CentralExtension J H)
+    (hcenter : Subgroup.center H = ⊥) :
+    Subgroup.center J ≤ P.projection.ker := by
+  intro z hz
+  rw [MonoidHom.mem_ker]
+  have hpz : P.projection z ∈ Subgroup.center H := by
+    rw [Subgroup.mem_center_iff]
+    intro h
+    obtain ⟨x, rfl⟩ := P.surjective h
+    have hx := congrArg P.projection (Subgroup.mem_center_iff.mp hz x)
+    simpa only [map_mul] using hx
+  rw [hcenter] at hpz
+  exact Subgroup.mem_bot.mp hpz
+
+/-- Descend the projection of a central extension along a surjective
+quotient whose kernel is killed by that projection. -/
+noncomputable def descendProjection (P : CentralExtension J H)
+    (q : J →* Q) (hq : Function.Surjective q)
+    (hker : q.ker ≤ P.projection.ker) : Q →* H :=
+  q.liftOfSurjective hq ⟨P.projection, hker⟩
+
+@[simp] theorem descendProjection_comp_apply (P : CentralExtension J H)
+    (q : J →* Q) (hq : Function.Surjective q)
+    (hker : q.ker ≤ P.projection.ker) (g : J) :
+    P.descendProjection q hq hker (q g) = P.projection g := by
+  simp [descendProjection]
+
+/-- A quotient of a central cover by a central subgroup contained in the
+covering kernel is again a central extension of the same base. -/
+noncomputable def descendAlongSurjection (P : CentralExtension J H)
+    (q : J →* Q) (hq : Function.Surjective q)
+    (hker : q.ker ≤ P.projection.ker) : CentralExtension Q H where
+  projection := P.descendProjection q hq hker
+  surjective := by
+    intro h
+    obtain ⟨g, rfl⟩ := P.surjective h
+    exact ⟨q g, P.descendProjection_comp_apply q hq hker g⟩
+  ker_le_center := by
+    intro x hx
+    obtain ⟨g, rfl⟩ := hq x
+    have hgker : g ∈ P.projection.ker := by
+      rw [MonoidHom.mem_ker]
+      have hx' := hx
+      rw [MonoidHom.mem_ker] at hx'
+      simpa using hx'
+    have hgcenter : g ∈ Subgroup.center J := P.ker_le_center hgker
+    rw [Subgroup.mem_center_iff]
+    intro y
+    obtain ⟨k, rfl⟩ := hq y
+    have hk := congrArg q (Subgroup.mem_center_iff.mp hgcenter k)
+    simpa only [map_mul] using hk
+
+/-- A perfect central extension of a simple group is quasisimple.  If a
+normal subgroup maps trivially to the simple base it is central; if it maps
+onto the base, perfectness removes the residual central factor. -/
+theorem isQuasisimple_of_isPerfect_of_isSimpleGroup
+    (P : CentralExtension J H) [Group.IsPerfect J] [IsSimpleGroup H] :
+    IsQuasisimple J := by
+  refine ⟨inferInstance, ?_⟩
+  intro N hN
+  letI : N.Normal := hN
+  letI : (N.map P.projection).Normal :=
+    Subgroup.Normal.map hN P.projection P.surjective
+  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal
+      (N.map P.projection) inferInstance with hbot | htop
+  · left
+    intro g hg
+    apply P.ker_le_center
+    rw [MonoidHom.mem_ker]
+    have hmem : P.projection g ∈ N.map P.projection :=
+      ⟨g, hg, rfl⟩
+    rw [hbot] at hmem
+    exact Subgroup.mem_bot.mp hmem
+  · right
+    apply subgroup_eq_top_of_surjects_mod_central P.projection N
+    · intro h
+      have hmem : h ∈ N.map P.projection := htop ▸ Subgroup.mem_top h
+      obtain ⟨g, hg, hgh⟩ := hmem
+      exact ⟨⟨g, hg⟩, hgh⟩
+    · exact P.ker_le_center
+
+end CentralExtension
+
 /-- If a quasisimple group's nontrivial central quotients are nonsofic, then
 all of its nontrivial quotients are nonsofic: the kernel of such a quotient
 cannot be the whole group, hence quasisimplicity makes it central. -/
@@ -619,6 +717,34 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction
     FinitelyPresentedKazhdanSoficImageRigid J :=
   ⟨hfp, hT,
     hasNoNontrivialSoficImage_of_everyNontrivialQuotientIsNonsofic hquot⟩
+
+/-- **Perfect central-cover target theorem.**  Let `J → H` be a countable
+perfect central extension of a centerless simple group.  If every countable
+central extension of `H` is nonsofic, then finite presentation and property
+`(T)` of `J` give the full Steinberg-target profile: every map from `J` to a
+sofic group is trivial.
+
+For `J = St_n(L_{𝔽₂}(1,2))` and `H = EL_n(L_{𝔽₂}(1,2))`, the remaining
+premises are precisely the classical Steinberg/Leavitt inputs. -/
+theorem finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
+    {J H : Type} [Group J] [Group H] [Countable J]
+    [Group.IsPerfect J] [IsSimpleGroup H]
+    (P : CentralExtension J H)
+    (hcenter : Subgroup.center H = ⊥)
+    (hall : AllCountableCentralExtensionsAreNonsofic H)
+    (hfp : Group.IsFinitelyPresented J)
+    (hT : HasKazhdanPropertyT.{0, 0} J) :
+    FinitelyPresentedKazhdanSoficImageRigid J := by
+  apply finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction hfp hT
+  apply everyNontrivialQuotientIsNonsofic_of_quasisimple
+    (P.isQuasisimple_of_isPerfect_of_isSimpleGroup)
+  intro Q hQGroup q hsurj _ hqcentral
+  letI : Group Q := hQGroup
+  letI : Countable Q := hsurj.countable
+  have hcenterker : Subgroup.center J ≤ P.projection.ker :=
+    P.center_le_ker_of_center_eq_bot hcenter
+  exact hall Q hQGroup inferInstance
+    (P.descendAlongSurjection q hsurj (hqcentral.trans hcenterker))
 
 /-- **Quasisimple-target Kazhdan-corner bridge.**  If every nontrivial
 quotient of a nontrivial Kazhdan group is nonsofic, then one weak-MF
