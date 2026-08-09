@@ -31,6 +31,22 @@ namespace CentralExtension
 
 variable {E H : Type*} [Group E] [Group H]
 
+/-- Transport a central extension across an isomorphism of its base. -/
+def postcompEquiv {K : Type*} [Group K] (P : CentralExtension E H)
+    (e : H ≃* K) : CentralExtension E K where
+  projection := e.toMonoidHom.comp P.projection
+  surjective := e.surjective.comp P.surjective
+  ker_le_center := by
+    intro x hx
+    apply P.ker_le_center
+    rw [MonoidHom.mem_ker]
+    have hx' : e (P.projection x) = 1 := by
+      change e.toMonoidHom (P.projection x) = 1
+      exact MonoidHom.mem_ker.mp hx
+    apply e.injective
+    rw [map_one]
+    exact hx'
+
 theorem commutator_mem_center (P : CentralExtension E H) {x y : E}
     (h : Commute (P.projection x) (P.projection y)) :
     ⁅x, y⁆ ∈ Subgroup.center E := by
@@ -593,6 +609,17 @@ def AllCountableCentralExtensionsAreNonsofic
     (H : Type) [Group H] : Prop :=
   ∀ (E : Type) (_ : Group E) (_ : Countable E),
     CentralExtension E H → ¬ IsSofic E
+
+/-- The assertion that every countable central extension is nonsofic is
+invariant under isomorphism of the base group. -/
+theorem allCountableCentralExtensionsAreNonsofic_of_mulEquiv
+    {H K : Type} [Group H] [Group K] (e : H ≃* K)
+    (hK : AllCountableCentralExtensionsAreNonsofic K) :
+    AllCountableCentralExtensionsAreNonsofic H := by
+  intro E hEGroup hECountable P
+  letI : Group E := hEGroup
+  letI : Countable E := hECountable
+  exact hK E hEGroup hECountable (P.postcompEquiv e)
 
 /-- A nontrivial simple perfect group is centerless.  Simplicity makes the
 center either trivial or the whole group; the latter would make the group
