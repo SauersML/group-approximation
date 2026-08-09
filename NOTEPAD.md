@@ -7717,3 +7717,32 @@ Kazhdan-pinning argument used above.  Hence a successful tree-overlap model
 must already lie in the flexibly nonliftable normalized-Hilbert--Schmidt
 quadrant for `Gamma` itself.  Approximation error confined only to the
 compressor or the ambient `SL_d(Z)` sector cannot work.
+
+**Corollary (the free-lamp cost is flexible instability of `Gamma`).**  Let
+`H_free=G *_Gamma (Gamma x Z)` for the Kun--Thom polynomial/Laurent pair.  If
+`H_free` is hyperlinear, then `Gamma` is not flexibly Hilbert--Schmidt stable.
+More precisely, a hyperlinear model of `H_free` restricts to an asymptotic
+representation of `Gamma` which stays a fixed positive distance, on one
+finite window, from every genuine representation after every `o(d_n)`
+dimensional enlargement.
+
+**Proof.**  The free generator `z` commutes with `Gamma`.  The nontrivial
+free-lamp commutator supplies `tzt^-1` whose commutator with a fixed
+`gamma in Gamma minus tGamma t^-1` has positive normalized `L2`-norm.  Thus the
+restricted `G`-model satisfies the quantitative strict-witness inequalities
+`a_n->0` and `b_n>=beta>0` recorded in the flexible-lifting-gap theorem.
+If its restriction to `Gamma` were flexibly close to genuine
+representations, the exact-on-`Gamma` sterility theorem (or directly the
+same Kazhdan estimate after padding) would force `b_n->0`, a contradiction.
+End proof.
+
+Consequently this candidate now has a precise independent price:
+
+`H_free hyperlinear  =>  Gamma flexibly HS-unstable`.
+
+The known failure of local Hilbert--Schmidt stability for infinite
+hyperlinear property-`(T)` groups does not pay that price: its standard
+delete-one-dimension witnesses become genuine after a negligible enlargement.
+The remaining model-production question is exactly whether the polynomial
+elementary group admits a **flexibly nonliftable** asymptotic representation
+whose centralizer type graph contains the binary-tree overlap above.
