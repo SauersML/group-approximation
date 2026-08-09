@@ -21603,12 +21603,14 @@ This applies in particular to every generator label.  On the complementary
 indices all generator labels were already the identity.  Hence every
 generator image converges to the identity, as claimed.  End proof.
 
-**Application.**  Both
+**Application.**  The group `U=St_5(L_(F_2)(1,2))` is finitely presented,
+and both
 
-`Q=EL_4(L_(F_2)(1,2))` and `U=St_5(L_(F_2)(1,2))`
+`Q=EL_4(L_(F_2)(1,2))` and `U`
 
-are finitely presented and have no nontrivial finite quotient: `Q` is infinite
-simple, while the minimally-almost-periodic theorem above applies to `U`.
+have no nontrivial finite quotient: `Q` is infinite simple, while the
+minimally-almost-periodic theorem above applies to `U`.  Finite presentability
+of `Q` is **not** currently banked; see the correction below.
 Therefore neither target can be made hyperlinear by the pipeline
 
 `finite-field/rank labels -> exact complex representation of SL_m(F_2)`.
@@ -21627,6 +21629,38 @@ bound for nonunipotent elements and `3/4` bound for unipotent elements when
 `q<=4`.  Larsen--Tiep, *Uniform Character Bounds for Finite Classical Groups*,
 Theorem A and its introduction, explicitly identify Gluck's result as the
 uniform bound away from one for every noncentral element.
+
+### Correction: finite presentability belongs to the Steinberg cover
+
+The ledger previously called both `U=St_5(L)` and `Q=EL_4(L)` finitely
+presented.  Only the first assertion is unconditional.  Khanh--Thanh,
+*Matrix generators for the unit groups of `L_K(1,d)`*, Theorem 8.2, prove
+for a finite field `K` and every admissible `n>=5` that
+
+`L_d^x is finitely presented`
+` <=> E_n(L_d) is finitely presented`
+` <=> K_2(n,L_d) is finitely generated`.
+
+For `K=F_2` and `d=2`, their Corollary 8.5 identifies
+
+`L^x ~= E_n(L)`
+
+and computes the stable group `K_2(L)=0`, but Remark 8.6 explicitly warns
+that this does not determine the unstable `K_2(n,L)`: the Bass stable rank
+of `L` is infinite, so the usual stabilization theorem is unavailable.
+Consequently finite presentability of `Q`, which is rank-isomorphic to this
+unit group, is equivalent to finite generation of the relevant unstable
+Steinberg kernel and remains open on the cited inputs.
+
+This correction does not damage the HS-stability fork.  Its finitely
+presented candidate is the cover `U`; quasisimplicity and descent from a
+nontrivial HS asymptotic representation to a hyperlinear nonsofic central
+quotient do not require `Q` to be finitely presented.  The accurate current
+description is: `Q` is explicit, finitely generated, simple, Kazhdan, and
+nonsofic, while `U` is additionally finitely presented.
+
+Primary pin: Huynh Viet Khanh--Vo Hoang Thanh, arXiv:2607.10351v1,
+Theorem 8.2, Proposition 8.4, Corollary 8.5, and Remark 8.6.
 
 ---
 
