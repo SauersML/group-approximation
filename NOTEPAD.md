@@ -8178,6 +8178,35 @@ Restriction and transport along the `s_x` are inverse on cohomology.  The
 norm identity follows because the defect is scalar multiplication by
 `c(g,h,x)-1` on each equal-dimensional block.  End proof.
 
+**Corollary (every stabilizer multiplier has the required block model).**
+Let `omega` be a scalar multiplier on `H` and let
+
+`sigma:H->U(m)`
+
+be a finite-dimensional `omega`-projective representation.  Then there are
+unitaries `V_g` on `direct_sum_(x in Q/H) C^m` satisfying the hypotheses of
+the theorem, and their groupoid curvature represents the class induced by
+`[omega]` under
+
+`H^2(H,T)=H^2(Q action Q/H,T)`.
+
+**Proof.**  Choose coset representatives `s_x` with `s_x H=x`, and put
+
+`kappa(g,x)=s_(gx)^(-1) g s_x in H`.
+
+Identify every block with `C^m` and define the block map from `K_x` to
+`K_(gx)` to be `sigma(kappa(g,x))`.  The identity
+
+`kappa(g,hx) kappa(h,x)=kappa(gh,x)`
+
+and projective multiplicativity give
+
+`V_g V_h |_K_x`
+` = omega(kappa(g,hx),kappa(h,x)) V_(gh) |_K_x`.
+
+Thus the curvature is precisely the transported stabilizer multiplier.  End
+proof.
+
 This gives a concrete description of the last scalar loophole left by the
 fixed-block theorem.  A central-curvature assembly over growing finite
 orbits `Q/H_n` would require classes
