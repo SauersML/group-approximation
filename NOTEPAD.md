@@ -9768,3 +9768,58 @@ Such a formula would give ambient normalized Hilbert--Schmidt defect
 the full central sector (`delta_p=1`).  It would solve the scalar substitution
 assembly clause; the remaining task would then be to make the same powered
 holonomy act on the nonorthogonal polynomial-shear intertwiners.
+
+The root-localized rate can be calibrated exactly; it is not merely an
+upper bound.  Restrict to primes `p=2 mod 3`, and retain the notation
+
+`q=e_21(1)`,  `r=e_31(1)`,  `k_p=(p-1)/2`.
+
+**Proposition (the optimal root-pair defect is `Theta(1/p)`).**  Among all
+circle gauges of the powered induced Jacobi class restricted to `A_p`, there
+is a representative for which both ordered multiplication defects at
+`(q,r)` and `(r,q)` are at most
+
+`2/sqrt(p^2+p+1)`
+
+in normalized Hilbert--Schmidt norm.  Conversely every representative has
+
+`max{defect(q,r),defect(r,q)} >= sqrt(p/(2(p^3-1)))`.
+
+Thus the best scale is exactly `Theta(1/p)`.
+
+**Proof.**  The root-localization lemma gauges the cocycle to one off the
+`p-1` fixed points `a e_1`; the scalar defect on a remaining block is at
+most `2`.  Since all outer blocks have equal dimension, this gives the
+displayed upper bound.
+
+At `a e_1`, use the determinant-one section
+
+`s_a=diag(a,a^(-1),1)`.
+
+Conjugating `q` and `r` into the base stabilizer rescales their unipotent
+coordinates by `a^(-2)` and `a^(-1)`, respectively.  Their symplectic
+pairing is therefore `a^(-3)`, so the gauge-invariant projective commutator
+on this block is
+
+`zeta_p^(k_p a^(-3))`.
+
+If the two ordered scalar defects on that block have chordal lengths `u_a`
+and `v_a`, the circle triangle inequality gives
+
+`u_a^2+v_a^2 >= (1/2)|zeta_p^(k_p a^(-3))-1|^2`.
+
+Because `p=2 mod 3`, cubing permutes `F_p^*`; multiplication by the nonzero
+`k_p` does too.  Hence
+
+`sum_(a in F_p^*) |zeta_p^(k_p a^(-3))-1|^2=2p`.
+
+After division by the total number `p^3-1` of equal outer blocks, the sum of
+the squared global defects is at least `p/(p^3-1)`.  One of the two is at
+least half this sum, proving the lower bound.  End proof.
+
+This proposition supplies a useful design constraint for the global gauge.
+It cannot beat `1/p` on the distinguished root pair, but it need not: any
+global presentation defect `o(1)` is sufficient when the nontrivial central
+sector occupies full trace.  The experimentally suggested `O(p^2)` support
+on other relators would give the weaker but still adequate `O(p^(-1/2))`
+global rate.
