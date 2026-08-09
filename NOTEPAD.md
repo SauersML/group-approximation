@@ -22732,3 +22732,98 @@ The rigorously justified surviving statement is therefore:
 
 Whether it may keep `G` exact and place all nonexactness in the Clifford
 covariance is a sharper open subproblem.
+
+## The near model cannot keep the Kazhdan ambient group exact
+
+Kahl--Schneider's Stinespring construction closes the sharper subproblem
+just stated.
+
+**Theorem (ambient-exact near sterility).**  Let `E` and `z` be as above.
+Suppose that `phi` is a state on `B(H)` and
+
+`pi:E -> U(H)`
+
+is a `phi`-near representation whose restriction to the distinguished copy
+of the ambient Kun--Thom group `G` is a genuine homomorphism.  Then
+
+`phi((1-pi(z))^*(1-pi(z)))=0`.
+
+Thus every amenable near representation separating the Clifford sign has
+nonzero multiplicative defect already on `G`.
+
+**Proof.**  Assume that the displayed number is positive.  Apply the proof
+of Kahl--Schneider Lemma 5.10, with error tending to zero, to a fixed finite
+set containing Kazhdan sets for `G` and `Gamma`, the compressor `t`, the base
+lamp `a_o`, the element `gamma` from the Clifford witness, the witness word,
+and `z`.  Lemma 5.9 gives a ucp map from the centralizer C-star algebra of
+`phi`, and Stinespring writes it as
+
+`sigma(a)=V^* rho(a) V`.
+
+Put `p=VV^*`.  The estimates in equations (13)--(18) of their proof say that
+`p` is almost invariant under the selected `rho(pi(g))` and that compression
+by `p` realizes both the prescribed `phi`-lengths and every selected
+near-multiplication relation.
+
+Because `pi|G` is a genuine homomorphism, so is
+
+`g |-> rho(pi(g))`.
+
+Apply property `(T)` of `G` to its conjugation representation on the
+Hilbert--Schmidt operators.  Exactly as in the preceding theorem, replace
+`p` by a nonzero finite-rank projection `q` commuting with all of
+`rho(pi(G))`, with
+
+`||p-q||_2=o(||p||_2)` and `rank(q)/rank(p)->1`.
+
+All Stinespring estimates survive compression by `q`.  In particular the
+restriction
+
+`sigma_q(g)=rho(pi(g))|_(qK)`,  `g in G`,
+
+is now a genuine finite-dimensional representation of `G`, while the polar
+correction `A_o` of the compressed base lamp almost commutes with the fixed
+Kazhdan set of `sigma_q(Gamma)`.  Apply property `(T)` of `Gamma` to the
+genuine conjugation representation on `B_2(qK)`: conditional expectation
+onto `sigma_q(Gamma)'`, followed by polar correction, replaces `A_o` by a
+self-adjoint unitary
+
+`B_o in sigma_q(Gamma)'`
+
+at `o(1)` normalized-HS cost.
+
+The group `sigma_q(Gamma)` is finite by the finite-image theorem for
+finite-dimensional representations of the polynomial elementary group.
+Since `t Gamma t^(-1)<=Gamma`,
+
+`sigma_q(t) sigma_q(Gamma) sigma_q(t)^* <= sigma_q(Gamma)`.
+
+Equality follows from finiteness.  Hence
+
+`B_(t o)=sigma_q(t) B_o sigma_q(t)^*`
+
+also commutes with `sigma_q(Gamma)`, and in particular with
+`sigma_q(gamma)`.  The corrected image of the Kun--Thom commutator witness
+is therefore exactly `1`.
+
+On the other hand, the Stinespring estimates realize the near covariance
+and word relations selected above, and both spectral corrections cost
+`o(1)`.  The Clifford relation says that the square of this witness is `z`.
+Consequently the corrected finite model sends `z` to `1+o(1)`.  Equation
+(15) and the last part of Lemma 5.10 say simultaneously that
+
+`||1-psi(z)||_2 -> phi((1-pi(z))^*(1-pi(z)))^(1/2)>0`,
+
+a contradiction.  End proof.
+
+This is stronger than the exact-representation theorem: the lamp map and
+all covariance relations may be genuinely near.  What is forbidden is
+putting all nonexactness outside `G`.  The remaining positive certificate
+has therefore been localized to an unavoidable defect on the rigid acting
+group itself:
+
+`z-separated amenable near model  ==>  pi|G is not a homomorphism`.
+
+That defect can vanish in the `phi`-seminorm, but it cannot vanish as an
+operator identity.  This is the same normalized-HS wall as the Steinberg
+stability fork, now obtained from the Clifford side by a different argument.
