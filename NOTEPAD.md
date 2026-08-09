@@ -7403,7 +7403,7 @@ Comparing the commutator `[y,phi(gamma)]` with the zero commutator
 `gamma`-matrix.  This is exactly the asserted inequality.  End proof.
 
 In particular, a strict ultraproduct witness produces a **uniformly local,
-very-flexible instability sequence** for the ambient group: one fixed
+flexible-instability sequence** for the ambient group: one fixed
 Kazhdan/compressor/witness window remains a positive distance from every
 genuine model even after negligible-dimensional enlargement.  Known local
 HS-instability only asserts failure before such enlargement, and therefore
