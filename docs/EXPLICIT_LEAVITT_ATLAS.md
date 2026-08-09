@@ -1481,7 +1481,9 @@ at every stage.
 
 The atlas problem is genuinely a group-representation problem; it cannot be
 solved by first approximating the ambient Leavitt algebra in square matrices.
-Indeed, let \(X_0,Y_0,X_1,Y_1\in M_d(\mathbb C)\), let
+The following is the matrix specialization of the finite-tracial Leavitt
+trace floor recorded in the main notebook.  Let
+\(X_0,Y_0,X_1,Y_1\in M_d(\mathbb C)\), let
 \(\operatorname{tr}_d=d^{-1}\operatorname{Tr}\), and use the associated
 normalized Hilbert--Schmidt norm.  Then
 

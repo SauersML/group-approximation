@@ -27248,39 +27248,102 @@ groups: a simple approach using Schreier graphs*, arXiv:2101.03817; Hayes--Sale,
 Chifan--Ioana--Osin--Sun, *Wreath-like products of groups and their von
 Neumann algebras I*, arXiv:2111.04708.
 
-# Square-matrix Leavitt relations have a sharp dimension-free trace obstruction (2026-08-09)
+# Nonabelian Cohen--Lyndon lamps and the finite-support core obstruction (2026-08-09)
 
-The explicit atlas cannot be solved by first constructing normalized-HS
-microstates for the ambient binary Leavitt algebra.  This follows from a
-three-line trace argument that is independent of dimension.
+The split-wreath obstruction does not exhaust the algebraic construction.
+Cohen--Lyndon fillings naturally produce nonsplit wreath-like quotients with
+an arbitrary, possibly nonabelian lamp if one kills only cross-factor
+commutators rather than the whole derived subgroup.  However, the same
+calculation reveals a precise obstruction to using a lamp-base subgroup as
+the Kazhdan core in Proposition 2.3.
 
-**Theorem (ring-level Leavitt obstruction).**  For arbitrary square matrices
-`X_0,Y_0,X_1,Y_1 in M_d(C)`, with normalized Hilbert--Schmidt norm,
+**Theorem (nonabelian Cohen--Lyndon quotient).**  Let `H<=G`, let `N normal H`,
+and assume the triple `(G,H,N)` has the Cohen--Lyndon property.  Thus, putting
+`K=<<N>>_G`, there is a set `I` and a free-product decomposition
 
-`max{||X_0Y_0-I||_2, ||X_1Y_1-I||_2,`
-`    ||Y_0X_0+Y_1X_1-I||_2} >= 1/3`.                 `(RLO1)`
+`K = freeProduct_(i in I) N_i`,                         `(CL1)`
 
-**Proof.**  Write `tr_d=d^(-1)Tr`.  Cyclicity gives
+where every `N_i` is a `G`-conjugate of `N`, and `G/K` acts transitively on
+the conjugacy classes of the factors.  Let `C` be the normal closure in `K`
+of
 
-`tr_d(Y_0X_0+Y_1X_1-I)`
-` = 1 + tr_d(X_0Y_0-I) + tr_d(X_1Y_1-I)`.            `(RLO2)`
+`[N_i,N_j]`,  `i!=j`.                                  `(CL2)`
 
-If the three errors in `(RLO1)` are at most `delta`, then
-`|tr_d(Z)|<=||Z||_2` and the triangle inequality applied to `(RLO2)` give
-`1<=3 delta`.  Hence `delta>=1/3`.  End proof.
+Then `C normal G`,
 
-The constant is sharp already for scalars: take `X_0=X_1=1` and
-`Y_0=Y_1=2/3`; then every error in `(RLO1)` equals `1/3`.
+`K/C ~= directSum_(i in I) N_i`,                       `(CL3)`
 
-The core defining relations of `L_(F_2)(1,2)` are of this form after matching
-the two generators and their formal adjoints.  The cross relations are not
-used, and no adjoint or operator-norm hypothesis is needed.  The same
-obstruction applies to square-matrix Cuntz approximants by imposing
-`X_i=Y_i^*`.
+and there is a wreath-like extension
 
-This does not prove that the unit group `Q` is nonhyperlinear: a group
-microstate of `Q` need not extend to an additive or multiplicative
-microstate of the whole ring.  It instead sharply scopes the constructive
-problem.  Any positive certificate for the atlas endpoint must be genuinely
-group-level and cannot arise from finite-dimensional square-matrix
-approximations that retain the three core Leavitt/Cuntz relations.
+`1 -> directSum_I N -> G/C -> G/K -> 1`.               `(CL4)`
+
+In particular, if `G` has property `(T)`, then the nonsplit wreath-like
+quotient `G/C` has property `(T)` as well.
+
+**Proof.**  Quotienting the free product in `(CL1)` by the normal closure of
+all commutators between distinct free factors has the direct sum in `(CL3)`
+as its presentation.  It remains only to check that `C` is `G`-normal.
+Conjugation by an element of `G` permutes the conjugacy classes of the free
+factors.  Modulo `C`, every factor `N_i` is normal in the direct sum, and
+distinct factors commute.  Therefore the conjugate of each generator in
+`(CL2)` is trivial modulo `C`.  This gives `gCg^(-1)<=C`; applying the same
+argument to `g^(-1)` gives equality.  The quotient action permutes the factor
+subgroups, so `(CL4)` is precisely a wreath-like extension.  Property `(T)`
+passes to quotients.  End proof.
+
+Sun's/Chifan--Ioana--Osin--Sun's standard quotient uses `[K,K]` instead of
+`C`.  That additionally kills `[N_i,N_i]`, replacing every lamp by `N_ab`.
+Thus `(CL2)` is the exact modification that retains nonabelian lamps.  For
+example, if a sufficiently deep normal subgroup `N` is chosen hyperlinear
+and non-LEF, `(CL4)` produces a property-`(T)` wreath-like group with a
+hyperlinear non-LEF coordinate subgroup.  Hyperlinearity of the whole
+nonsplit extension is not automatic and remains a load-bearing analytic
+condition.
+
+There is nevertheless a complete no-go for the most obvious choice of
+Kazhdan core.
+
+**Theorem (finite-support core exclusion).**  Let
+
+`1 -> D=directSum_(i in I) A_i -> W -> B -> 1`          `(CL5)`
+
+be any wreath-like product, with all `A_i` nontrivial, and suppose every
+`B`-orbit in `I` is infinite.  There is no nontrivial finitely generated
+subgroup `Gamma<=D` and finite family `t_1,...,t_m in W` such that
+
+`t_j Gamma t_j^(-1) <= Gamma` for every `j`, and
+`W=<Gamma,t_1,...,t_m>`.                               `(CL6)`
+
+Consequently no property-`(T)` subgroup contained in the lamp base can be
+the core in Proposition 2.3.
+
+**Proof.**  For `x in D`, let `supp(x)` be its finite coordinate support.
+Since `Gamma` is finitely generated, the union
+
+`S=union_(gamma in Gamma) supp(gamma)`                 `(CL7)`
+
+is a nonempty finite set: it is enough to take the union over a finite
+generating set because multiplication and inversion never create support
+outside that union.  If `b` is the image in `B` of `w in W`, the wreath-like
+conjugation rule gives
+
+`supp(w gamma w^(-1)) = b supp(gamma)`.                `(CL8)`
+
+Thus `w Gamma w^(-1)<=Gamma` implies `bS<=S`.  Since `b` is a permutation
+and `S` is finite, in fact `bS=S`.  Applied to all `t_j`, this says that the
+subgroup of `B` generated by their images preserves `S`.  But `(CL6)` and
+`Gamma<=D` say that these images generate all of `B`.  Hence `S` is a
+nonempty finite `B`-invariant subset, contradicting the hypothesis that all
+orbits are infinite.  End proof.
+
+This sharpens the split-wreath lane closure.  Nonsplitting can restore
+property `(T)` and nonabelian Cohen--Lyndon lamps are algebraically
+available, but any Proposition-2.3 realization must use a Kazhdan core with
+nontrivial image in the acting quotient.  Merely placing a known
+hyperlinear non-LEF Kazhdan group in one or finitely many lamp coordinates
+cannot work.
+
+Primary source for the Cohen--Lyndon input and the abelianized construction:
+Bin Sun, *Cohomology of group theoretic Dehn fillings I: Cohen--Lyndon type
+theorems*, and Chifan--Ioana--Osin--Sun, *Wreath-like products of groups and
+their von Neumann algebras I*, Theorem 2.7.
