@@ -21359,6 +21359,166 @@ proving operator-norm Ulam stability for this one Steinberg group would
 close the weak-MF lane negatively, while proving weak MF would
 simultaneously exhibit an explicit failure of operator-norm Ulam stability.
 
+There is a von Neumann strengthening.  The same argument first shows that
+`Q=EL_4(L)` is minimally almost periodic: a nontrivial finite-dimensional
+representation of the simple group `Q` would be faithful, making `Q` a
+finitely generated linear and hence residually finite/sofic group.  More
+generally, no nontrivial central cover in the theorem has a nontrivial
+finite-dimensional representation.
+
+If a property-`(T)` group has an amenable finite factor representation, the
+standard Bekka argument supplies a nonzero finite-dimensional
+subrepresentation: amenability gives almost invariant vectors in
+`pi tensor conjugate(pi)`, property `(T)` makes one invariant, and the
+corresponding nonzero Hilbert--Schmidt intertwiner yields a finite-rank
+spectral projection in the commutant.  In a factor representation its
+central support is one, forcing the factor to be finite-dimensional.
+Consequently every amenable finite factor representation of `Q`, `U`, or
+one of the displayed central covers is trivial.  Any eventual hyperlinear
+model must generate a genuinely nonamenable separable subfactor of the
+matrix ultraproduct; an AF/hyperfinite generated-image certificate is
+impossible.
+
+---
+
+# Audit of the torsion-free small-cancellation nonsofic family (2026-08-09)
+
+Fournier-Facio's *A torsion-free non-sofic group* supplies an important new
+source of examples from the same Kun--Thom criterion, but it does not supply
+a hyperlinearity certificate.
+
+The construction begins with a universal finitely presented torsion-free
+group `U`, embeds it into a finitely presented torsion-free Kazhdan group
+`P`, forms a double HNN extension `E`, and finally takes a torsion-free
+common small-cancellation quotient
+
+`pi:E->G`
+
+which is also a quotient of a hyperbolic Kazhdan group.  The resulting
+subgroups `Gamma=pi(P)` and `J=t_1^(-1)pi(S)t_1` satisfy the strict
+compression criterion, proving `G` nonsofic.
+
+Neither load-bearing quotient is an approximation permanence operation.
+Hyperlinearity and weak MF are not known to pass to arbitrary quotients, and
+the kernels imposed by the Osin/Hull common-quotient steps are not central or
+amenable.  The fact that the input simple group `S` may itself be chosen
+hyperlinear does not produce a representation of the whole quotient `G`.
+Likewise, `E` is an HNN extension over the nonamenable Kazhdan group `P`, so
+the amenable-edge hyperlinearity theorem does not apply; moreover `E` has a
+nontrivial Bass--Serre action and cannot itself have property `(T)`.
+
+Thus the new paper genuinely broadens nonsoficity (finitely presented and
+torsion-free) but leaves the same terminal issue:
+
+`prove the final Kazhdan common quotient G hyperlinear (or weak-MF)`.
+
+No cited small-cancellation theorem controls normalized Hilbert--Schmidt or
+operator-norm microstates through that quotient.  Treating the quotient as
+hyperlinear would assume exactly the missing quotient permanence and is not
+a valid route.  A possible future gain would require modifying the final
+kernel to be central, or proving a new approximation-preserving Dehn-filling
+theorem; neither property is present in the supplied construction.
+
+### What Proposition 2.3 adds, and exactly where the unitary analogue fails
+
+Andreas Thom's expert summary of the proof identifies the new mechanism more
+precisely.  Kun's theorem first decomposes a sofic approximation of the
+Kazhdan stabilizer `Gamma` into expander components, but their sizes may
+vary.  If `C(z)` is the component of a vertex and `m` is the vertex-weighted
+median component size, the bounded function
+
+`f(z)=|C(z)|/(|C(z)|+m)`
+
+has median `1/2`.  Compression gives a one-sided estimate
+
+`f(t_i z)>=f(z)-o(1)`
+
+off a negligible set.  Since `t_i` is represented by a permutation, the
+total signed change of `f` is zero, so the one-sided estimate upgrades to
+small `L1` variation.  Ambient property `(T)` and the coarea inequality then
+force `f` to be `L1`-close to `1/2`.  Hence almost all `Gamma`-components in
+one ambient component have asymptotically equal sizes.  A transported
+component occupies a strict majority of its matched original component, so
+two transported components cannot match the same one.  This asymptotic
+injectivity makes the `J`-action preserve the component partition; selecting
+one typical component reduces to the older Kun--Thom single-expander theorem
+and forces `J` to be LEF.
+
+This isolates both the creative idea and the hyperlinear loophole.  The
+argument uses two genuinely permutation-specific inputs:
+
+1. Kun's correction of a sofic Kazhdan approximation to a disjoint union of
+   finite expander components;
+2. integer component cardinality plus majority matching.
+
+There is no corresponding decomposition theorem for normalized-Hilbert--
+Schmidt almost representations of a Kazhdan group.  Such a theorem would be
+a strong form of Hilbert--Schmidt stability, which is exactly open for the
+ambient groups under consideration.  In a finite von Neumann algebra the
+replacement for component size is continuous projection dimension, and a
+proper finite-index or self-similar subfactor can have the same normalized
+unit.  The permutation matching step therefore does not transfer formally.
+
+This agrees with the exact strict-commutant criterion already proved above:
+the unitary counterexample exists precisely when the one-sided compressor
+inclusion of relative commutants stays proper in a Connes-embeddable tracial
+model.  Finite permutation components force equality after the
+median/matching argument; diffuse nonamenable tracial multiplicity is the
+surviving place where equality can fail.  Thus Proposition 2.3 explains
+nonsoficity without threatening the target hyperlinear construction and
+points directly at the missing quantum datum, rather than supplying a
+unitary obstruction.
+
+The minor lazy-random-walk correction mentioned in the discussion concerns
+an implication in Kun's older theorem not used by the construction; the
+equivalent clauses actually invoked remain the stated input.
+
+---
+
+# Minimal-nonsofic structure supports the central-cover endpoint, but supplies no microstates (2026-08-09)
+
+Ersoy's *On minimal non-sofic and omega-non-sofic groups* is structurally
+consistent with the new Leavitt--Steinberg endpoint.  Its main conditional
+theorem says that if a minimal nonsofic group has a finitely generated
+residually finite maximal normal subgroup `M`, then `M` is central and the
+group is a perfect central extension of a finitely generated nonamenable
+simple group.  The proof is short: `Aut(M)` is residually finite, hence so is
+the conjugation image `G/C_G(M)`; a minimal nonsofic group has no nontrivial
+amenable, and therefore no nontrivial finite, quotient; the residually finite
+image is consequently trivial.
+
+This is exactly the abstract shape now available unconditionally in our
+candidate family:
+
+`St_5(L_(F_2)(1,2)) -> EL_4(L_(F_2)(1,2))`,
+
+with perfect/quasisimple total group and simple nonamenable base.  Our result
+is stronger on nonsoficity: every central cover of the base is nonsofic,
+without assuming minimal nonsoficity or finite generation of the central
+kernel.  Ersoy's theorem therefore independently validates central covers
+as a natural terminal class rather than producing a new candidate.
+
+The paper's other operations do not advance hyperlinearity.  Passing to
+minimal nonsofic subgroups, descending chains, profinite residuals, or
+existentially closed envelopes gives no Connes-embeddability permanence.
+An existentially closed group containing a known nonsofic group could be
+hyperlinear only if that subgroup were already hyperlinear.  Likewise the
+locally graded descending-chain theorem produces further nonsofic subgroups,
+not tracial microstates for them.
+
+There is one minor proof repair in the supplied locally graded argument.  A
+proper finite-index normal subgroup of `L_n` is not automatically normal in
+`H`.  Since `L_n normal H` and `[H:L_n]<infinity`, take the intersection of
+its finitely many `H`-conjugates.  This `H`-core remains finite index and is
+proper and contained in `L_n`, giving the stated contradiction with the
+profinite residual.  Thus the theorem survives, but the core step must be
+included.
+
+For the active problem the conclusion is deliberately narrow: external
+minimal-nonsofic structure reinforces the quasisimple central-cover strategy,
+while the only missing arrow remains analytic--weak MF of the Steinberg
+cover, or a direct Connes-embeddable strict-commutant/CAR representation.
+
 This result also corrects the motivation of the earlier stable-`K_2` note.
 Stable `K_2(L)=0` does not determine the unstable kernels `K_2(n,L)` and was
 never enough to compute `H_2(EL_4(L),Z)`.  No such computation is needed:
