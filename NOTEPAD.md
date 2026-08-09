@@ -24941,3 +24941,198 @@ from the open compatibility problem.
 Primary pin: Markus Szymik--Nathalie Wahl, *The homology of the
 Higman--Thompson groups*, Invent. Math. 216 (2019), Theorem A and the
 specialization `V=V_(2,1)`: Thompson's `V` is acyclic.
+
+# A proper Leavitt self-copy has relative `(TT)/T`; central quasi-cocycles are bounded (2026-08-09)
+
+The cohomological stability route has a stronger unconditional relative
+statement than the previous audit recorded.  Put
+
+`L=L_(F_2)(1,2)`, `Q=E_5(L)`, and
+`H=diag(E_4(L),1)<Q`.
+
+The rank self-similarities and `GL_n(L)=E_n(L)` proved above identify both
+`Q` and `H` abstractly with `L^x`; the displayed inclusion is nevertheless
+proper (for example, a cross-root transvection is not block diagonal).
+
+**Proposition (relative `(TT)/T` on the Leavitt self-copy).**  The pair
+
+`Q >= H`
+
+has relative property `(TT)/T`: for every unitary representation `pi` of
+`Q` with no `Q`-invariant vectors, every `pi`-quasi-cocycle is bounded on
+`H`.
+
+**Proof.**  Choose a finite noncommutative polynomial ring
+`R_0=Z<z_1,...,z_k>` mapping onto the finitely presented ring `L` (the
+kernel includes `2` and the four Leavitt relations).  Mimura's Proposition
+9.2.8 states that
+
+`E_5(R_0) >= E_4(R_0)`
+
+has relative `(TT)/T`.  The root generators show that the ring quotient
+induces surjections `E_5(R_0)->E_5(L)` and `E_4(R_0)->E_4(L)`.  Pulling a
+representation and quasi-cocycle of `Q` back through the first surjection
+does not change its invariant subspace, and boundedness on `E_4(R_0)` is
+exactly boundedness on its image `H`.  End proof.
+
+This is quotient permanence of the *relative* theorem; it does not assert
+global `(TT)/T`.  Mimura's globalization theorem requires bounded
+generation by `H` and the cross-root families.  The kernel-checked
+factorization in `KOne/FactorizationCertificate.lean` deliberately proves
+only existence of a finite elementary word and explicitly supplies no
+uniform length bound.  Therefore `GL_n(L)=EL_n(L)` cannot be substituted
+for Mimura's bounded-generation hypothesis.
+
+There is a second exact simplification which applies directly to the
+Steinberg cover.
+
+**Lemma (Kazhdan central boundedness).**  Let `G` have property `(T)`, fix a
+finite Kazhdan set `S` with constant `kappa>0`, let `pi` be a unitary
+representation with no invariant vectors, and let `b:G->H_pi` be a
+quasi-cocycle of defect `D`.  Then `b` is uniformly bounded on `Z(G)`.
+More precisely, if `M=max_(s in S)||b(s)||`, then
+
+`sup_(z in Z(G)) ||b(z)|| <= (2D+2M)/kappa`.
+
+**Proof.**  For `s in S` and central `z`, expand the equal element `sz=zs`
+in the two orders.  The two quasi-cocycle errors give
+
+`||(pi(s)-1)b(z) - (pi(z)-1)b(s)|| <= 2D`.
+
+Since `pi(z)` is unitary, the second term has norm at most `2M`.  The
+Kazhdan inequality on a representation with no invariant vectors gives
+`max_(s in S)||(pi(s)-1)b(z)|| >= kappa||b(z)||`, proving the displayed
+bound.  End proof.
+
+For `U=St_5(L)` this shows that an unbounded quasi-cocycle cannot hide on
+the unstable central kernel `K_2(5,L)`.  If its representation is trivial
+on that kernel, the quasi-cocycle descends, up to a uniformly bounded
+section error, to `Q`; the relative proposition then bounds it on the full
+preimage of `H`.  Representations with nontrivial central character require
+a projective-coefficient version of the relative theorem, and global
+boundedness still requires either:
+
+1. a valid bounded-generation theorem for `Q` by `H` and the cross roots;
+2. a different globalization theorem from the large intersections
+   `H intersect gHg^(-1)`; or
+3. a direct Steinberg relative-`(TT)/T` proof plus such globalization.
+
+Thus the result removes the center and proves rigidity on one proper
+self-similar rank-four block, but it does **not** prove `(TT)/T`,
+`2`-Kazhdan, Hilbert--Schmidt stability, nonhyperlinearity, or the main
+problem.
+
+Primary pin: Masato Mimura, *Rigidity theorems for universal and
+symplectic universal lattices*, Proposition 9.2.8 and Theorem 8.1.7.
+
+# A finite superperfect leaf atlas presents the universal cover (2026-08-09)
+
+The residual central holonomy can be isolated more sharply than merely
+saying that it lies outside the Thompson subgroup.  It is exactly the
+relation module gluing finitely many finite, superperfect leaf-matrix
+charts.
+
+Put `L=L_(F_2)(1,2)` and `Q=L^x`.  If
+`C=(gamma_1,...,gamma_r)` is an ordered binary leaf set, write
+
+`H_C={sum_(i,j) m_(ij) gamma_i gamma_j^* : M=(m_(ij)) in GL_r(F_2)}`.
+
+Thus `H_C` is a copy of `GL_r(F_2)`.  Uniformly refining every leaf by all
+binary words of length `k` gives
+
+`C^(k)=(gamma_i w : 1<=i<=r, w in {0,1}^k)`.
+
+The Cuntz relation gives the exact identity
+
+`gamma_i gamma_j^* = sum_(|w|=k) gamma_i w (gamma_j w)^*`. `(1)`
+
+Consequently the inclusion `H_C < H_(C^(k))` is the scalar matrix embedding
+`M |-> M tensor I_(2^k)`.  Choose `k` with `N=r 2^k>=5`.  Then
+
+`H_(C^(k)) ~= GL_N(F_2)=SL_N(F_2)=PSL_N(F_2)`.
+
+This finite group is perfect and has trivial Schur multiplier.  Here the
+first two equalities use `F_2^x={1}` and the trivial scalar centre, and the
+last assertion is the standard type-`A` Schur-multiplier formula
+`H_2(PSL_N(q),Z)=Z/gcd(N,q-1)` away from its listed small exceptions; for
+`q=2`, the only relevant exceptional ranks are below `5`.  Thus every leaf
+chart is contained in a finite **superperfect** leaf chart.
+
+**Lemma (unique local chart lift).**  For every central extension
+
+`1 -> A -> E -> Q -> 1`
+
+and every superperfect refined chart `H_C`, the inclusion `H_C<Q` has a
+unique homomorphic lift `H_C->E`.
+
+**Proof.**  The restriction class belongs to `H^2(H_C,A)`.  Since
+`H_1(H_C,Z)=H_2(H_C,Z)=0`, the universal-coefficient sequence makes this
+cohomology group zero, so a section exists.  Two sections differ by an
+element of `Hom(H_C,A)=0`, so it is unique.  Its composite with `E->Q` is
+injective, hence so is the lift.  End proof.
+
+Khanh--Thanh's Theorem 4.3 says that `Q` is generated by the union of its
+scalar leaf charts, and their Theorem 5.3 says that `Q` is finitely
+generated over `F_2`.  Hence finitely many superperfect refined charts
+`H_1,...,H_s` generate `Q`: express a finite generating set of `Q` as words
+in leaf-chart elements, retain the finitely many charts occurring in those
+words, and refine each as above.  Let
+
+`P=H_1 * ... * H_s`, `rho:P->Q`, and `R=ker(rho)`.          `(2)`
+
+The free-product homology formula gives
+
+`H_1(P,Z)=H_2(P,Z)=0`,                                   `(3)`
+
+so `P` is a finitely presented superperfect virtually free group.
+
+**Theorem (finite-atlas presentation of the universal central cover).**
+There is a canonical isomorphism over `Q`
+
+`U_Q ~= P/[P,R] -> Q`,                                   `(4)`
+
+where `U_Q->Q` is the universal central extension.  In particular,
+
+`H_2(Q,Z) ~= R/[P,R]`.                                   `(5)`
+
+**Proof.**  The quotient in `(4)` is a central extension because its kernel
+is `R/[P,R]`.  Let `E->Q` be any central extension.  Its pullback to `P`
+splits because `H^2(P,A)=0` by `(3)`, and the splitting is unique because
+`Hom(P,A)=0`.  Equivalently, `rho` has a unique lift `P->E`.  Its value on
+`R` is central, so it kills `[P,R]` and factors uniquely through
+`P/[P,R]`.  This is precisely the universal property of the universal
+central extension, proving `(4)`.  Its kernel is the Schur multiplier,
+which proves `(5)`.  End proof.
+
+The canonical lift `P->U_Q` used here can also be seen chart by chart using
+the preceding lemma.  It is surjective: its image `I` maps onto `Q`, so
+`U_Q=I Z(U_Q)`; since `U_Q` is perfect and `Z(U_Q)` is central,
+`U_Q=[I Z(U_Q),I Z(U_Q)]=[I,I] <= I`.
+
+There is also a useful Bass--Serre description.  Both `R` and `[P,R]` are
+free groups.  Indeed, a torsion element of the free product of finite
+groups `P` is conjugate into a factor, while both quotient maps in `(4)`
+are injective on every factor; hence their kernels are torsion-free
+subgroups of the virtually free group `P`, and therefore free.
+
+**Exact localization of the obstruction.**  Formula `(5)` says that every
+unstable `K_2` class is represented by a relation alternating between the
+finitely many superperfect charts.  No relation internal to one chart can
+contribute: each chart lifts uniquely.  The preceding Thompson result says
+that conjugating or rearranging these charts by prefix replacements also
+introduces no central correction.  Thus the only possible holonomy is the
+cross-chart gluing module `R/[P,R]` for incompatible additive leaf charts.
+
+This is a real reduction, but not yet hyperlinearity: hyperlinearity is not
+known to pass from the superperfect virtually free group `P` to its quotient
+`P/[P,R]`.  The next exact target is now combinatorial.  Describe the map
+induced by prefix stabilization on `R/[P,R]` and prove either that a uniform
+iterate kills it, or that this abelian group is finitely generated.  Local
+nilpotence, already proved from stable `K_2(L)=0`, would then give the needed
+uniform death and the deep-corner splitting theorem would apply.
+
+Primary pins: Huynh Viet Khanh--Vo Hoang Thanh, *Matrix generators for the
+unit groups of `L_K(1,d)`*, arXiv:2607.10351v1, Theorems 4.3 and 5.3, for
+leaf-chart generation and finite generation; the standard Schur multiplier
+formula for finite simple groups of type `A` (including the exceptional
+case `PSL_4(2)`, which is why the refinement above uses rank at least `5`).
