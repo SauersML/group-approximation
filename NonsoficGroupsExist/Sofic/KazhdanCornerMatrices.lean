@@ -26,6 +26,14 @@ def OpNormVanishing (A : WeakMFApproximation G)
     (x : ∀ n, Matrix (A.model n) (A.model n) ℂ) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N, ‖x n‖ ≤ ε
 
+theorem OpNormVanishing.congr {A : WeakMFApproximation G}
+    {x y : ∀ n, Matrix (A.model n) (A.model n) ℂ}
+    (hx : OpNormVanishing A x) (hxy : ∀ n, x n = y n) :
+    OpNormVanishing A y := by
+  intro ε hε
+  obtain ⟨N, hN⟩ := hx ε hε
+  exact ⟨N, fun n hn ↦ by rw [← hxy n]; exact hN n hn⟩
+
 theorem opNormVanishing_zero (A : WeakMFApproximation G) :
     OpNormVanishing A (fun n ↦ (0 : Matrix (A.model n) (A.model n) ℂ)) := by
   intro ε hε
