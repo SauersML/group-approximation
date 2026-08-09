@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Sofic.HyperlinearReduction
+import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 import Mathlib.GroupTheory.QuotientGroup.Basic
 
 /-!
@@ -144,6 +145,46 @@ theorem exists_injective_iterate_section
   change p (s x) = iterateEnd f m x at hx
   change p (s y) = iterateEnd f m y at hy
   exact hx.symm.trans (hp_eq.trans hy)
+
+/-- A faithfully projected lifted copy normally generates a perfect central
+cover of a nontrivial simple group.  This packages the final group-theoretic
+step in the deep-corner argument. -/
+theorem normalClosure_range_eq_top_of_injective_projection
+    [Group.IsPerfect U] [IsSimpleGroup Q]
+    (P : CentralExtension U Q) (s : Q →* U)
+    (hs : Function.Injective (P.projection.comp s)) :
+    Subgroup.normalClosure (Set.range s) = ⊤ := by
+  let N : Subgroup U := Subgroup.normalClosure (Set.range s)
+  have hNnormal : N.Normal := Subgroup.normalClosure_normal
+  have hmapnormal : (N.map P.projection).Normal :=
+    hNnormal.map P.projection P.surjective
+  have hmap : N.map P.projection = ⊤ := by
+    rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal
+        (N.map P.projection) hmapnormal with hbot | htop
+    · exfalso
+      obtain ⟨q, hq⟩ := exists_ne (1 : Q)
+      have hsq : s q ∈ N :=
+        Subgroup.subset_normalClosure ⟨q, rfl⟩
+      have hpsq : P.projection (s q) ∈ N.map P.projection :=
+        ⟨s q, hsq, rfl⟩
+      rw [hbot] at hpsq
+      have hproj : P.projection (s q) = 1 := Subgroup.mem_bot.mp hpsq
+      apply hq
+      apply hs
+      simpa using hproj
+    · exact htop
+  have hsup : N ⊔ P.projection.ker = ⊤ := by
+    rw [← Subgroup.comap_map_eq (f := P.projection) N, hmap,
+      Subgroup.comap_top]
+  letI : IsMulCommutative P.projection.ker := ⟨⟨by
+    intro a b
+    apply Subtype.ext
+    exact (Subgroup.mem_center_iff.mp (P.ker_le_center a.property) b).symm⟩⟩
+  have hcomm : commutator U ≤ N :=
+    hNnormal.commutator_le_of_self_sup_commutative_eq_top hsup inferInstance
+  apply top_unique
+  intro u _
+  exact hcomm (Group.IsPerfect.mem_commutator (G := U) (g := u))
 
 end LocalCentralQuotientLifting
 
