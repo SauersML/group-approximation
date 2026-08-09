@@ -7584,3 +7584,43 @@ the compressed image equals the original image and the type dynamics is a
 permutation.  The missing object is therefore a flexibly nonliftable
 approximate representation whose `Gamma`-type Bratteli diagram contains
 binary-tree regions of diverging depth.
+
+**Corollary (tree-overlap strictness certificate).**  Let
+
+`phi_n:G -> U(d_n)`
+
+be an asymptotic representation, let `u_n=phi_n(t)`, and suppose that
+finite-dimensional algebras `C_n` lift the `Gamma`-relative commutant.  Put
+
+`D_n=u_n^* C_n u_n`.
+
+Assume that, after cutting by central projections whose total trace tends to
+one, the overlap of `C_n` and `D_n` contains the binary-tree coupling in the
+theorem with depths `L_n -> infinity`; equivalently, there are
+self-adjoint unitaries `a_n in C_n` with
+
+`dist_2(a_n,D_n) -> 1`,
+
+while every bounded element of `D_n` has distance `o(1)` from `C_n`.  Then in
+the tracial ultraproduct
+
+`P=phi(Gamma)'`
+
+satisfies
+
+`u^* P u < P`,  equivalently  `P < u P u^*`.
+
+Indeed `a=(a_n)` lies in `P` but not in `u^*Pu`; the one-sided near inclusion
+puts the bounded ultraproduct of `D_n` inside `P`.  Consequently
+`u a u^*` belongs to `uPu^*` but not to `P`.  By the strict-commutant theorem,
+after tensoring with a faithful hyperlinear representation if necessary,
+this single tree overlap produces a hyperlinear nonsofic image of the
+associated free-lamp group.
+
+This does not construct the required `phi_n`.  It reduces model production
+to a concrete spectral-combinatorial task: realize a long branching overlap
+in the multiplicity/type decomposition of the `Gamma`-centralizer while the
+fixed group-relation defect stays on the vanishing boundary level.  A mere
+long chain is insufficient: its inverse ambiguity is confined to one level
+and has vanishing trace.  Branching is what accumulates order-one reverse
+ambiguity from an `o(1)` forward boundary.
