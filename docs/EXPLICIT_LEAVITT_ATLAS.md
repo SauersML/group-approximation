@@ -854,6 +854,33 @@ asymptotic behavior of a sequence of strictly subunit compact maxima:
 An affirmative answer to (42) is a complete negative solution of
 hyperlinear-versus-sofic.
 
+This trace gap is quantitatively equivalent, at the same multiplicity, to
+the original ordinary relator gap.  Define
+
+\[
+ d_k=\min_{U\in U(20160k)}
+       \max_{s\in\bar{\mathcal S}}\|\pi_U(s)-I\|_2.
+\]
+
+The trace formula in (34) gives
+
+\[
+ \min_U\max_s\ell_{\mathrm{pr}}(\pi_U(s))
+ =\sqrt{2(1-\alpha_k)}.
+\]
+
+Since projective distance is at most distance to the identity, while
+(31a) supplies the reverse comparison, one obtains
+
+\[
+ \sqrt{2(1-\alpha_k)}\leq d_k
+ \leq C_{\bar{\mathcal S}}\sqrt{2(1-\alpha_k)}.         \tag{42a}
+\]
+
+Thus every \(d_k\) is positive, and the unresolved assertion is exactly
+\(\inf_k d_k=0\).  No dimension change or ultraproduct is needed for this
+equivalence.
+
 The compact maxima have a useful amplification calculus.  For all
 \(k,l,m\geq1\),
 

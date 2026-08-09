@@ -26651,6 +26651,25 @@ matrix sizes is not an obstruction.  The unresolved question is still
 whether the positive fixed-size gaps `1-alpha_k` have a uniform lower
 bound.
 
+The trace gap is quantitatively the original relator gap.  Define
+
+`d_k=min_(U in U(20160k)) max_(s in Sbar)||pi_U(s)-1||_2`.
+
+Formula `ell_pr(V)^2=2-2|tr(V)|` gives exactly
+
+`min_U max_s ell_pr(pi_U(s))=sqrt(2(1-alpha_k))`.
+
+Projective distance is at most distance to the identity, while `(PR2)`
+gives the reverse inequality with the fixed constant `C_S`.  Therefore
+
+`sqrt(2(1-alpha_k)) <= d_k`
+` <= C_S sqrt(2(1-alpha_k))`.                            `(TR5)`
+
+Thus `alpha_k->1` and `d_k->0` are not merely equivalent after an
+ultraproduct or dimension-changing tensor trick: they are uniformly
+equivalent at each identical multiplicity.  In particular every `d_k` is
+positive, while the main question is exactly whether `inf_k d_k=0`.
+
 ## Relative perfectness quantitatively kills all scalar atlas flux
 
 For the ordinary two-chart source one has
