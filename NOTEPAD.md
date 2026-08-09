@@ -14163,3 +14163,84 @@ The remaining theorem has two quantitative parts:
 
 Both are finite-atlas matrix inequalities.  They no longer ask for an
 impossible Følner measure on the `GL_4` depth orbit.
+
+### Pairwise overlap error controls the entire fusion corner
+
+Keep the fusion-frame notation and let `m=|C|=24`.  Put
+
+`B=q A^(-1) q`
+
+on the spectral corner, so the range projection has blocks
+
+`P_(C,D)=p_C B p_D`.
+
+For a block-diagonal local unitary `U=directSum_C U_C`, define
+
+`E_(C,D)=U_C p_C B p_D-p_C B p_D U_D`.
+
+Then `[U,P]` has exactly the blocks `E_(C,D)`.
+
+**Lemma (finite-atlas fusion estimate).**  Let `r=rank(q)` and
+`d=dim(H)`.  In normalized Hilbert--Schmidt norms,
+
+`||(1-P)UV||_(2,qH)^2`
+` <=(m d/r) ||[U,P]||_(2,directSum H)^2`
+
+` =(1/r) sum_(C,D) ||E_(C,D)||_F^2`.
+
+In particular, if `r/d` is bounded below and
+
+`max_(C,D) ||E_(C,D)||_(2,H)<=delta`,
+
+then the glued Gram defect and every glued multiplication defect are
+`O_m(delta)`.
+
+**Proof.**  Since `PV=V`,
+
+`(1-P)UV=(1-P)UPV=(1-P)[U,P]V`.
+
+The unnormalized Frobenius norm does not increase under multiplication by
+contractions, giving the first inequality after converting the two
+normalizations.  Frobenius norm squared of a block matrix is the sum of the
+squared Frobenius norms of its blocks.  The exact fusion-frame defect
+identities then give the last assertion.  End proof.
+
+The spectral cutoff contributes a controlled price.  On `qH`,
+
+`||B||<=1/tau`
+
+when `q=1_([tau,infinity))(A)`.  Hence an overlap intertwining estimate for
+`p_Cp_D` and an estimate for the transported frame operator propagate to
+`p_C Bp_D` with at most a polynomial loss in `tau^(-1)` (the inverse map is
+operator-Lipschitz on `[tau,m]`).  Because the raw bad projection has trace
+`epsilon_n->0`, one may choose, for example, a threshold satisfying
+
+`epsilon_n^(1/4)<<tau_n<<1`
+
+after first arranging the raw overlap error to be `o(tau_n^2)`.  Then
+`rank(q_n)/d_n->1` and the fusion defects still vanish.
+
+The same estimate applies to a block-diagonal local witness
+
+`Z=directSum_C z_C`.
+
+If the fixed-base Fourier transports are used to define
+`z_D=J_(D,C)z_CJ_(D,C)^*` on good overlaps, then the blocks of `[Z,P]` have
+the same support and bounds as the generator overlap errors.  Therefore
+`R=V^*ZV` has vanishing Gram defect and may be polar-corrected to a unitary
+`v` on `qH`.  Local commutation of every `z_C` with the corresponding
+`Gamma_z` representation then gives
+
+`||[v,T_gamma]||_2->0`
+
+for each fixed `gamma in Gamma_z`.
+
+The remaining lower-bound issue is cancellation: show that the local
+order-one commutators after the compressor have compatible phase on the
+frame overlaps, so compression by `V` cannot cancel them.  A sufficient
+condition is to choose the regular-quotient witnesses by transporting one
+base projection/unitary through the same `J_(D,C)` used in `P`; then the
+local commutator block matrix itself preserves `range(V)`, and its fused
+compression has the same normalized norm up to `o(1)`.  Proving this
+transported-witness invariance is the last finite-matrix lemma in the
+fusion route.
