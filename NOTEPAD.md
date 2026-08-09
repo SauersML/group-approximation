@@ -7408,3 +7408,90 @@ Kazhdan/compressor/witness window remains a positive distance from every
 genuine model even after negligible-dimensional enlargement.  Known local
 HS-instability only asserts failure before such enlargement, and therefore
 does not meet this quantitative requirement.
+
+### What Alekseev--Thom Open Problem 6.2(a) would still leave open
+
+The exact wording of Alekseev--Thom Open Problem 6.2 is weaker than one
+sentence used earlier in this ledger.  Part (a) asks whether, after a
+negligible change of dimensions, the relative commutant can be written as
+
+`P=product_U A_n`
+
+for finite-dimensional subalgebras `A_n`.  Part (b) asks whether the `A_n`
+can be chosen as exact centralizers of arbitrary lifts of a fixed generating
+set.  It does **not** ask that those lifts form genuine representations.
+
+Consequently, a positive answer to (a) does not formally imply normalization
+under a compressor.  The missing step would be a tracial co-Hopfian statement
+for coordinate ultraproducts of finite-dimensional algebras.  The following
+principal-angle calculation identifies the only possible failure of that
+step.
+
+Represent the compressor by unitaries `u_n` and let `p_n` be the orthogonal
+projection
+
+`L2(M_(d_n)) -> L2(A_n)`.
+
+On `L2(M_(d_n))` put
+
+`V_n(x)=u_n x u_n^*`,  and  `q_n=V_n^* p_n V_n`.
+
+The projections `p_n` and `q_n` have the same finite rank.  In the bounded
+tracial ultraproduct, the automatic one-sided commutant inclusion is
+
+`q<=p`.
+
+**Theorem (rank-spiky compensation).**  Assume `P=product_U A_n` and that
+`q<p` on `L2` of the bounded tracial ultraproduct.  Then there are a constant
+`delta>0` and unit `L2`-vectors
+
+`xi_n in q_n L2(M_(d_n))`
+
+such that
+
+`||(1-p_n)xi_n||_2>=delta`,
+
+but every such choice of vectors has
+
+`||xi_n||_infinity ->_U infinity`.
+
+**Proof.**  Properness supplies a unitary `v=(v_n) in P` whose component in
+`p-q` is nonzero.  After passing to an ultrafilter-large set, there is
+`delta>0` with
+
+`||(1-q_n)v_n||_2>=delta`,
+
+where `v_n in U(A_n)` and hence `||v_n||_infinity=1`.  Thus the largest
+singular value of
+
+`(1-q_n)p_n:p_nH_n -> (1-q_n)H_n`
+
+is at least `delta`.
+
+For two projections of equal finite rank, the nonzero singular values of
+`(1-q_n)p_n` and `(1-p_n)q_n` agree: they are the sines of the same principal
+angles between `p_nH_n` and `q_nH_n`.  Hence there is a unit vector
+`xi_n in q_nH_n` satisfying the displayed lower bound.
+
+If such `xi_n` could be chosen with uniformly bounded operator norm, it would
+define an element of the bounded tracial ultraproduct lying in `qH` but not
+in `pH`, contradicting `q<=p`.  Therefore its operator norm must diverge
+along the ultrafilter.  The same argument applies to every choice with a
+fixed positive lower bound.  End proof.
+
+So even coordinatewise liftability of the commutant leaves exactly one
+loophole: finite-dimensional rank balance can be paid for by `L2`-unit
+vectors concentrated on smaller and smaller matrix support.  Those vectors
+are absent from the bounded tracial ultraproduct.  This is the precise
+operator-algebraic form of normalized-HS rank blindness at the terminal
+certificate.
+
+A useful strengthened target is therefore:
+
+> prove uniform integrability of the principal-angle vectors for the
+> compressor and the lifted Kazhdan centralizers.
+
+That statement, together with Open Problem 6.2(a), would force `q=p` and
+close the strict-compression route.  Conversely any successful
+counterexample must manufacture the displayed operator-norm blow-up while
+retaining a bounded unitary witness on the opposite principal-angle side.
