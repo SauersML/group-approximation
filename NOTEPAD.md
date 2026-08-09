@@ -16216,6 +16216,23 @@ realizations.
 3. `{x_i,x_j}` is the commutator of the two corresponding toric inversion
    galleries.
 
+Explicitly, in `St_r(R)` fix coefficient-root indices `a!=b` and write
+
+`w_(ab)(u)=x_(ab)(u)x_(ba)(-u^(-1))x_(ab)(u)`,
+
+`h_(ab)(u)=w_(ab)(u)w_(ab)(-1)`.
+
+The standard Steinberg-symbol words are products of
+
+`h_(ab)(u)h_(ab)(v)h_(ab)(uv)^(-1)`
+
+(with the conventional inverse/order choice, which does not affect the
+closed-gallery argument).  For `u=-1,x_i` and `v=x_j`, every occurrence of
+`u^(-1)` or `v^(-1)` is routed through the corresponding opposite Laurent
+chart.  Hence these are finite concatenations of the active signed-Weyl
+cells and passive owner changes already audited.  Their accumulated ring
+matrix is the identity in `EL_r(R)` and their chart path is closed.
+
 For (2) and (3), the start and end coefficient chart are the same.  Because
 every passive coefficient wall is the ratio of fixed chart potentials, the
 coefficient part of either loop telescopes to the identity on the
