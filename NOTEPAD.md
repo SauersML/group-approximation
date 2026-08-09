@@ -20031,3 +20031,85 @@ non-scalar Pauli phenomenon sought in the compressor--shear construction,
 now packaged as one central-extension problem.  The remaining theorem is
 concrete: construct normalized-HS microstates for `H_Cl` with
 `z |-> -1` (or another trace-separated central involution).
+
+### Clifford--Fell criterion and its exact finite-dimensional obstruction
+
+The Clifford cover has a clean sufficient microstate criterion.  Suppose
+there are finite-dimensional real orthogonal representations
+
+`pi_n:G->O(V_n)`
+
+and unit vectors `xi_n in V_n` such that `xi_n` is fixed by `Gamma` and
+
+`<pi_n(g)xi_n,xi_n> -> 1_(g in Gamma)`
+
+for every `g`.  Then `H_Cl` is hyperlinear.
+
+Indeed, in the complex Clifford algebra `Cl(V_n)` let `c(v)` denote the
+Majorana involution.  On the Hilbert space `L^2(Cl(V_n))`, left
+multiplication by `c(v)` is unitary.  Every `pi_n(g)` induces a trace-
+preserving Clifford automorphism, hence an **honest** unitary representation
+`A_n(g)` on `L^2(Cl(V_n))`; no choice of spin lift and no projective cocycle
+is required.  Put
+
+`a_(g Gamma) |-> L(c(pi_n(g)xi_n))`,  `z |-> -1`,
+
+and let `g` act by `A_n(g)`.  Gamma-fixity makes the lamp definition
+well-defined and covariance is exact.  For unit vectors `v,w`, the Clifford
+identity gives
+
+`||(c(v)c(w))^2+1||_2=2 |<v,w>|`.
+
+Thus distinct tested lamps asymptotically anticommute.  Clifford Wick traces
+show that every fixed nonempty reduced lamp monomial has trace tending to
+zero as its Gram matrix tends to the identity.  Tensoring the external
+operators with any faithful hyperlinear model of the residually finite `G`
+makes the `G`-part faithful.  Hence the metric-ultraproduct map is injective;
+standard Cesaro tensor/direct-sum normalization gives the canonical
+hyperlinear trace if desired.
+
+This criterion cannot hold for a Kun--Thom compression pair.  More generally,
+in **every** finite-dimensional unitary representation `pi` of such a pair,
+the subspace `Fix(pi(Gamma))` is fixed by every element of
+`t^(-1) Gamma t` for every compressor `t`.  To see this, compression gives
+
+`pi(t)^* Fix(pi(Gamma)) subset Fix(pi(Gamma))`:
+
+for `v` fixed by `Gamma` and `gamma in Gamma`, use
+`t gamma t^(-1) in Gamma` to check that `pi(gamma)pi(t)^*v=pi(t)^*v`.
+
+The two finite-dimensional spaces have equal dimension, so the inclusion is
+equality.  Since the compressors group-generate `G`, their operators
+normalize the fixed subspace.  Conjugating the pointwise trivial action of
+`Gamma` on that subspace proves the assertion.  In particular, for the
+fixed invisible `h=t^(-1)gamma t notin Gamma`, every exact Gamma-fixed unit
+vector satisfies
+
+`<pi(h)xi,xi>=1`,
+
+whereas the quasi-regular coefficient is zero.  Property `(T)` of `Gamma`
+also upgrades an almost-Gamma-fixed vector to a nearby exact one, so the
+coefficient `1_Gamma` is uniformly separated from the finite-dimensional
+dual.  Lubotzky--Shalom property FD, or any relative-FD substitute, cannot
+supply the Clifford microstates.
+
+There is a quantitative approximate version.  If maps
+`pi_n:G->O(V_n)` have the quasi-regular coefficient above and multiplicative
+defect, then the induced operators on the full exterior/Clifford space have
+character
+
+`2^(-dim V_n) Tr(Lambda^*(Q))=det((1+Q)/2)`.
+
+Consequently their normalized-HS multiplication defect tends to zero under
+the square-root profile
+
+`sqrt(dim V_n) ||pi_n(gh)-pi_n(g)pi_n(h)||_(2,V_n) -> 0`
+
+(operator-norm control with the same dimension factor is more than enough).
+Under that hypothesis the preceding Clifford construction still proves
+`H_Cl` hyperlinear and the central quotient gives a hyperlinear nonsofic
+group.  Ordinary boundary truncations do not meet this rate: one bad
+orthogonal direction already has order-one unnormalized Frobenius cost.
+Thus the cover converts the terminal problem into a precise **relative
+square-root quasi-regular profile**, rather than solving it by exact
+finite-dimensional representation theory.
