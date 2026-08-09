@@ -16233,6 +16233,17 @@ This audit also corrects every earlier illustrative choice `r=7` used for
 the trace pairing: the construction may and should use `r=9` (or any larger
 stable rank prime to the fixed odd `p`).
 
+**Source pin.**  Weibel, *The K-book*, Remark III.5.5.2 states that for a
+noetherian ring of dimension `d`,
+
+`K_2(n,R)->K_2(R)`
+
+is an isomorphism for `n>=d+3`.  Theorem V.8.2 gives the canonically split
+Laurent fundamental exact sequence, and Theorem V.6.3 supplies homotopy
+invariance for regular noetherian rings.  Iterating these with `n=2` gives
+exactly the displayed `K_2(A)`, four `K_1(A)`, and six `K_0(A)` summands;
+there are no Nil or negative-`K` summands for the regular base.
+
 ### Correction: the active signed-Weyl cell is exact only in the chart groupoid
 
 The signed-Weyl word is the right active object, but the proof above cannot
@@ -16276,6 +16287,229 @@ noncentral Steinberg relations have been transferred.  The separated
 irreducible phase factor and conjugate cancellation remove it as above.
 Thus the active signed-Weyl repair survives, but only with the quantum
 relator-transfer proof; the earlier successive-depth proof is retracted.
+
+### Finite-stage coefficient/phase bookkeeping produces an ordinary model after conjugation
+
+The pieces can now be assembled without identifying their central
+extensions prematurely.  Let `Gtilde_z` be the group obtained by using the
+stable Steinberg group for the Laurent elementary factor and the standard
+Steinberg lift of the `SL_4(Z)` root generators.  It maps centrally onto
+`G_z`.  Fix, on each finite window, one set-theoretic section
+
+`s:G_z->Gtilde_z`.
+
+At stage `n` form the chart fibers
+
+`H_(C,x)=H_coeff(C,x) tensor H_phase(x)`.
+
+Here `H_coeff(C,x)` is the amplified full regular fixed-base jet model and
+`H_phase(x)` is one fixed-central-character irreducible Heisenberg/Weil
+fiber.  Equalize the finitely many dimensions by scalar amplification.
+Choose the passive coefficient transports as ratios of the fixed moving
+chart potentials and the phase transports from the free Pauli groupoid.
+
+For the first `n` window words, intersect all pulled-back native good
+projections and form the fixed-cutoff fusion isometry `V_n`.  The native
+relator-transfer and fixed-word leakage lemmas give unitaries (after polar
+correction)
+
+`utilde_n(a)`,  `a in s(F_n) subset Gtilde_z`,
+
+such that every fixed multiplication pair satisfies
+
+`||utilde_n(s(g))utilde_n(s(h))`
+` -c_n(g,h)utilde_n(s(gh))||_2->0`.
+
+The coefficient component of `c_n(g,h)` is one: positive-base relations are
+genuine and the Laurent toric chart loops telescope through the fixed chart
+potentials.  The phase component is circle-valued on each free Pauli
+groupoid orbit.  Rephase it by the explicit free-groupoid cochain; or,
+without making any coherent phase choice, take the matched diagonal
+conjugate tensor on each orbit.  In the latter notation put
+
+`u_n(g)=utilde_n(s(g)) tensor conjugate(utilde_n(s(g)))`.
+
+Then for every fixed `g,h in G_z`, the conjugate-cancellation estimate gives
+
+`||u_n(g)u_n(h)-u_n(gh)||_2->0`.
+
+Thus the section and all central Steinberg/Weil multipliers disappear in
+the ordinary matrix ultraproduct.
+
+The witness is synchronized at every operation.  On each native coefficient
+chart take the regular-quotient commutant witness and tensor it with the
+identity phase operator.  Transport it by the same chart potentials,
+compress by `V_n`, and polar-correct; call the result `vtilde_n`.  The
+transported-energy theorem gives
+
+`||[vtilde_n,utilde_n(s(delta))]||_2->0`
+
+for each fixed `delta in Gamma_z`, while for the fixed positive compressor
+`t` and the fixed elementary coefficient witness `gamma`,
+
+`liminf ||[vtilde_n,`
+` utilde_n(s(t))^*utilde_n(s(gamma))utilde_n(s(t))]||_2>=c>0`.
+
+Finally set
+
+`v_n=vtilde_n tensor 1`.
+
+Tensoring the other operator with its conjugate is an isometry for the
+first-factor commutator, so the two displayed centralization/strictness
+statements hold with `u_n,v_n` and the same lower bound `c`.
+
+**Finite-stage conclusion.**  Subject only to the already enumerated native
+jet/Pauli boundary estimates, the construction gives ordinary normalized-
+Hilbert--Schmidt models of `G_z` and a relative-commutant witness satisfying
+the hypotheses of the finite-atlas-to-strict-compression lemma.  No common
+classical depth set, finite-dimensional exact representation of `G_z`, or
+trace separation of this exotic model is used.
+
+The remaining adversarial audit is now extremely concrete: check that the
+central extension denoted `Gtilde_z` can be chosen so that the substitution
+action lifts to the Laurent Steinberg group and that its kernel acts only in
+the separated phase factor.  Functoriality of `St_r` gives the lift; the
+nontrivial point is whether the semidirect-product coherence contributes a
+noncentral kernel beyond the two `K_2` factors already canceled.
+
+### The Steinberg semidirect lift has no additional coherence kernel
+
+Take explicitly
+
+`Gtilde_z=St_r(R) semidirect St_4(Z)`.
+
+The action is the composite
+
+`St_4(Z)->SL_4(Z)->Aut(R)->Aut(St_r(R))`.
+
+The last arrow is functoriality of the Steinberg group under ring
+automorphisms.  Since this is an honest group action, the displayed
+semidirect product is associative and introduces no mixed coherence
+kernel.  There is a surjection
+
+`Gtilde_z -> EL_r(R) semidirect SL_4(Z)=G_z`.
+
+Its kernel consists of the Laurent kernel `K_2(R)` in the first factor and
+the external kernel `K_2(Z)` in the second.  The first is central inside
+`St_r(R)` but is acted on by `SL_4(Z)`; thus it is not generally central in
+the full semidirect product.  This is harmless only because the coefficient
+atlas kills it, rather than trying to scalar-cancel it.  The explicit
+fundamental-theorem generator audit above proves that its base generators
+are killed by genuine local `EL` representations and its toric generators
+are killed by telescoping chart potentials.  Therefore every fixed element
+of `K_2(R)` maps to one in the coefficient ultraproduct.
+
+The external `K_2(Z)` lies in the kernel of the action on `R`, hence is
+central in all of `Gtilde_z`.  Its finite model acts only through the
+separated irreducible phase factor and is scalar.  Conjugate tensoring kills
+it.  Consequently the projective model descends asymptotically first across
+the noncentral Laurent kernel and then across the scalar external kernel,
+with no residual semidirect cocycle.
+
+This discharges the final structural condition in the finite-stage
+bookkeeping theorem.  The next audit is quantitative rather than
+cohomological: trace every error through conjugate tensoring, fusion polar
+correction, and the fixed witness lower bound with one common normalization,
+then compare the result directly to the hypotheses of the Kun--Thom
+centralizer endpoint.
+
+### One normalized error ledger reaches the Kun--Thom endpoint
+
+Let `eta_n` be the maximum native bad rank fraction after pulling back all
+cells required by the first `n` window words.  Choose the macro, reset,
+congruence, and Pauli parameters diagonally so that `eta_n->0`.  The atlas
+size is fixed (`24`), and use the fixed fusion cutoff
+
+`q_n=1_([12,24])(sum_C p_(n,C))`.
+
+Then, with constants depending only on a fixed word and not on `n`:
+
+1. `tr(1-q_n)=O(eta_n)` and
+   `||q_n A_n^(-1)q_n||<=1/12`.
+2. Native-relator and passive-overlap errors are `O(sqrt(eta_n))` in
+   normalized Hilbert--Schmidt norm, by the pulled-back-corner rank bound.
+3. The finite-atlas fusion estimate and fixed inverse bound give
+
+   `||T_n(g)^*T_n(g)-q_n||_2=O(sqrt(eta_n))`,
+
+   `||T_n(g)T_n(h)-c_n(g,h)T_n(gh)||_2`
+   ` =O(sqrt(eta_n))`.
+
+4. If `u_n(g)` is a unitary polar correction of `T_n(g)`, then
+
+   `||u_n(g)-T_n(g)||_2=O(sqrt(eta_n))`.
+
+   Indeed for every singular value `s>=0`,
+   `|s-1|<=|s^2-1|`; complete the polar partial isometry arbitrarily on
+   its kernel.
+5. Conjugate tensoring cancels `c_n(g,h)` and changes the ordinary
+   multiplicative bound to at most
+
+   `2 O(sqrt(eta_n))+O(eta_n)=o(1)`.
+
+All norms here are normalized by `rank(q_n)`.  Since
+`rank(q_n)/dim(H_n)->1`, conversion from the native normalization costs a
+factor tending to one.  On the conjugate tensor square the identities
+
+`||X tensor U||_2=||X||_2`,
+`||X tensor Y||_2=||X||_2||Y||_2`
+
+hold exactly for normalized Hilbert--Schmidt norms.
+
+For the witness, the transported-energy theorem gives before polar
+correction
+
+`||[R_n,T_n(delta)]||_2=O(sqrt(eta_n))`
+
+for every fixed `delta in Gamma_z`, and
+
+`||[R_n,T_n(t)^*T_n(gamma)T_n(t)]||_2>=c-o(1)`
+
+for one fixed `t,gamma`, with `c>0` (the native regular quotient gives a
+constant as large as `sqrt(2)`).  The witness Gram defect is also
+`O(sqrt(eta_n))`, so its polar correction `v_n` is that close in `2`-norm.
+The commutator word is Lipschitz in each unitary variable; replacing `R_n`
+and the `T_n`'s by their polar corrections changes either displayed norm by
+`O(sqrt(eta_n))`.  Tensoring the group matrices with their conjugates and
+the witness with the identity leaves these commutator norms unchanged.
+
+Choose an ultrafilter along a subsequence on which the lower bound is at
+least `c/2`.  The matrix classes give a homomorphism
+
+`sigma:G_z->U(M)`
+
+into a tracial matrix ultraproduct and a unitary `v in M` with
+
+`v in sigma(Gamma_z)'`,
+
+`[v,sigma(t)^*sigma(gamma)sigma(t)]!=1`.
+
+The exotic homomorphism need not be faithful.  The fixed-base group `G_z`
+is residually finite, hence has a faithful hyperlinear embedding `rho_0`.
+Set
+
+`rho(g)=rho_0(g) tensor sigma(g)`,  `v'=1 tensor v`.
+
+Then `rho` is faithful, `v' in rho(Gamma_z)'`, and the same strict
+commutator is nontrivial.  The group
+
+`Q=<rho(G_z),v'>`
+
+is hyperlinear.
+
+It is nonsofic.  If it admitted an injective sofic embedding, restriction
+to the faithful copy of `G_z` would be a sofic representation.  Kun--Thom
+Theorem 4.1 says that the permutation-ultraproduct centralizer of
+`Gamma_z` is normalized by `G_z`, because both groups are Kazhdan and the
+compression semigroup generates `G_z`.  It would force
+
+`[v',rho(t)^*rho(gamma)rho(t)]=1`,
+
+contrary to construction.
+
+Therefore, once the finite coefficient/phase bookkeeping theorem above is
+accepted, `Q` is a hyperlinear nonsofic group and the answer to "is every
+hyperlinear group sofic?" is **no**.
 
 ### The external `K_2(Z)` generator is a closed coefficient gallery
 
