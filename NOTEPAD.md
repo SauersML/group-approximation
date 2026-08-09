@@ -23596,7 +23596,7 @@ matrix-valued holonomy sector.  This explains, without reference to a chosen
 ring truncation, why a one-dimensional scalar phase cannot repair strict
 compression.
 
-# Strict Kazhdan compression makes the full group C-star algebra properly infinite (2026-08-09)
+# Strict Kazhdan compression makes the full group C-star algebra infinite (2026-08-09)
 
 The primary-source audit of Shulman's symmetric-double theorem exposes a
 canonical C-star obstruction which is stronger than the earlier warning
@@ -23860,3 +23860,152 @@ Primary inputs: Hayes, *Sofic Entropy of Gaussian Actions*,
 arXiv:1509.07835, especially Corollary 4.15 and the Gaussian entropy formula;
 Kun--Thom, arXiv:2608.06222, the theorem that the `Gamma`-fixed algebra of a
 sofic pmp action is `G`-invariant for an infranormal Kazhdan pair.
+
+# The Clifford sign is invisible in every norm-matrix model (2026-08-09)
+
+The operator-norm Clifford route admits a complete obstruction.  The
+load-bearing move is to cut to the negative central corner *before*
+normalizing Hilbert--Schmidt norm, and then apply the universal compression
+projection to the adjoint representation.
+
+Let `Gamma<G` have property `(T)`, let `t in G` satisfy
+
+`t Gamma t^(-1)<=Gamma`,
+
+and choose `gamma in Gamma` for which
+
+`gamma t Gamma != t Gamma`.
+
+Let `E` be either the complete Clifford semidirect product on `G/Gamma` or
+the sparse orbital Clifford semidirect product whose edge set contains
+
+`{t Gamma,gamma t Gamma}`.
+
+Write `z` for the central Clifford involution and `a_x` for its coordinate
+involutions.
+
+**Theorem (norm-MF Clifford sterility).**  Let
+
+`A=product_n M_(d_n)(C) / directSum_n M_(d_n)(C)`
+
+be a norm matrix quotient.  Every homomorphism
+
+`Theta:E->U(A)`
+
+satisfies `Theta(z)=1`.  Consequently neither the complete nor the sparse
+Clifford semidirect product is weak/operator-norm MF.
+
+**Proof.**  Suppose `Theta(z)!=1` and put
+
+`e=(1-Theta(z))/2`.
+
+This is a nonzero projection commuting with `Theta(E)`.  Projections lift
+through the matrix product modulo the norm-null ideal: lift any
+self-adjoint representative and apply the spectral cut at `1/2`.  Since
+`e!=0`, there is an infinite subsequence on which the resulting projections
+`e_n` are nonzero.  Restrict the entire representation to that subsequence
+and write `r_n=rank(e_n)`.  The corner is then another norm matrix quotient,
+
+`eAe ~= product_n M_(r_n)(C) / directSum_n M_(r_n)(C)`.
+
+The corner homomorphism
+
+`Theta_-(g)=e Theta(g)`
+
+is unital with unit `e` and sends `z` to `-e`.
+
+Choose unitary matrix lifts `U_(g,n)` of `Theta_-(g)`; polar correction of
+arbitrary lifts gives such unitary lifts because the elements are unitary
+in the quotient.  On the normalized
+Hilbert--Schmidt space
+
+`K_n=L2(M_(r_n),tr_(r_n))`
+
+let
+
+`beta_n(g)(x)=U_(g,n) x U_(g,n)^*`.
+
+Operator-norm multiplicative defects for the `U_(g,n)` give operator-norm
+multiplicative defects for `beta_n`.  Hence they define a genuine
+homomorphism
+
+`beta:G -> U(B)`,
+
+where
+
+`B=product_n B(K_n) / directSum_n B(K_n)`
+
+is again a stably finite norm matrix quotient.  For completeness, if an
+element of such a quotient is an isometry, arbitrary matrix lifts satisfy
+`||x_n^*x_n-1||->0`; their polar unitaries are norm-close to `x_n`, so
+`||x_nx_n^*-1||->0`.  The same argument in every matrix amplification gives
+stable finiteness.
+
+Let `p_Gamma` be the Kazhdan projection of `Gamma` and let
+
+`P=beta(p_Gamma) in B`.
+
+The universal compression-projection theorem above gives
+
+`P<=beta(t) P beta(t)^*`.
+
+The two projections are unitarily equivalent.  Stable finiteness of `B`
+therefore forces equality:
+
+`beta(t)P beta(t)^*=P`.                                      `(1)`
+
+Fix a free ultrafilter on the retained subsequence and let `K_omega` be the
+Hilbert-space ultraproduct of the `K_n`.  The algebra `B` acts on `K_omega`;
+in this representation `P` is
+the orthogonal projection onto the `Gamma`-fixed vectors for `beta`.
+
+Let `xi_o in K_omega` be represented by unitary lifts of
+`Theta_-(a_Gamma)`.  Since `a_Gamma` centralizes `Gamma`, the vector `xi_o`
+is `Gamma`-fixed, so `P xi_o=xi_o`.  Equation `(1)` implies that
+
+`xi_t=beta(t)xi_o`,
+
+the vector represented by `Theta_-(a_(t Gamma))`, is also `Gamma`-fixed.
+In particular
+
+`beta(gamma)xi_t=xi_t`.
+
+But the left side is represented by
+`Theta_-(a_(gamma t Gamma))`.  We have proved
+
+`||Theta_-(a_(gamma t Gamma))-Theta_-(a_(t Gamma))||_(2,omega)=0`. `(2)`
+
+The two sites form a Clifford edge and `Theta_-(z)=-e`; their self-adjoint
+unitaries therefore anticommute.  For any tracial state and anticommuting
+self-adjoint unitaries `A,B`,
+
+`||A-B||_2^2=tr(2-AB-BA)=2`.
+
+This contradicts `(2)`.  Hence `e=0`, which is `Theta(z)=1`.
+
+A weak-MF embedding is injective, while `z!=1` in the Clifford normal form,
+so no such embedding exists.  End proof.
+
+## What the argument does and does not prove
+
+This closes the conditional implication
+
+`sparse Clifford group weak-MF  ==>  hyperlinear nonsofic group`:
+
+its hypothesis is false.  It also rules out every stronger MF notion whose
+models have vanishing operator-norm multiplicative defect.
+
+The proof does **not** obstruct normalized-Hilbert--Schmidt microstates.
+There the adjoint maps are multiplicative only in normalized
+Hilbert--Schmidt norm and do not define a representation into the stably
+finite norm quotient `B`; the Kazhdan projection cannot be evaluated by the
+argument above.  Thus the direct tracial CAR target remains exactly
+
+`CAR(l2_R(G/Gamma)) crossed_(Bog) G is Connes embeddable`.
+
+This also identifies the flaw in a naive appeal to property `(T)`: property
+`(T)` alone does not correct arbitrary finite-stage almost-representations.
+What makes the theorem work is the combination of operator-norm defect,
+the adjoint norm-ultraproduct representation, the negative central corner,
+and stable finiteness.  Removing operator-norm control lands precisely back
+at the normalized-HS stability/commutant-lifting problem.
