@@ -25183,3 +25183,109 @@ unit groups of `L_K(1,d)`*, arXiv:2607.10351v1, Theorems 4.3 and 5.3, for
 leaf-chart generation and finite generation; the standard Schur multiplier
 formula for finite simple groups of type `A` (including the exceptional
 case `PSL_4(2)`, which is why the refinement above uses rank at least `5`).
+
+# Global `(TT)/T` for the Leavitt elementary group (2026-08-09)
+
+The missing bounded-generation input in the relative `(TT)/T` route can be
+proved directly.  It does **not** require finite stable rank or bounded
+elementary width.  The point is that the strong two-sided division property
+gives a uniformly bounded Gaussian reduction to one rank-four block.
+
+Put `R=L_(F_2)(1,2)`,
+
+`G=GL_5(R)=E_5(R)`,
+
+and
+
+`H=diag(GL_4(R),1)=diag(E_4(R),1)`.
+
+The equalities `GL_m(R)=E_m(R)` for `m>=2` and the strong division property
+
+`x != 0  implies  exists p,q, p x q=1`
+
+are already kernel-checked in `KOne/AllRanksElementary.lean` and
+`Leavitt/LeavittSimplicity.lean`, respectively.
+
+**Lemma (uniform strong-division elimination).**  Let `R` be any nonzero
+ring such that every nonzero `x` admits `p,q` with `pxq=1`.  Every
+`A in GL_n(R)`, `n>=2`, can be written
+
+`A=e_1 ... e_r diag(u,1,...,1)`
+
+up to placing elementary factors on both sides (and hence, after inversion,
+in the displayed one-sided form), where the `e_i` are elementary
+transvections, `u in R^x`, and
+
+`r <= n^2+4n-5`.
+
+**Proof.**  Induct on `n`.  A row of an invertible matrix is nonzero.  A
+signed column swap, which is a product of three elementary transvections,
+makes the `(1,1)` entry `a` nonzero.  Put `b=A_(1,2)` and choose `p,q` with
+`paq=1`.  Right multiplication by
+
+`t_(1,2)(rho)`,  `rho=q(1-pb)`,
+
+makes the new `(1,2)` entry `b'=a rho+b` satisfy `p b'=1`.  If `d'` is the
+new `(2,2)` entry, left multiplication by
+
+`t_(2,1)((1-d')p)`
+
+makes `(2,2)` equal to `1`.  Left multiplication by `t_(1,2)(-b')` and
+right multiplication by `t_(2,1)(-c')`, with `c'` the then-current
+`(2,1)` entry, clear positions `(1,2)` and `(2,1)`.
+
+Now clear the rest of row `2` first: for `j>=3`, right multiply by
+`t_(2,j)(-A_(2,j))`.  Since `(2,2)=1`, this makes row `2` equal to the
+second standard row.  Then clear the rest of column `2`: for `i>=3`, left
+multiply by `t_(i,2)(-A_(i,2))`.  These latter operations do not change the
+complementary block.  The result is `B directSum 1`, where `B in
+GL_(n-1)(R)` on coordinates `1,3,...,n`.  Recurse on `B`.
+
+At size `m` this used at most
+
+`3+4+2(m-2)=2m+3`
+
+transvections.  Summing from `m=2` through `n` gives
+`n^2+4n-5`.  Moving the left factors across the equality only inverts
+transvections, so it preserves the count.  End proof.
+
+For `n=5`, the bound is `40`.  The residual diagonal
+`diag(u,1,1,1,1)` belongs to `H`, because its upper-left block is in
+`GL_4(R)=E_4(R)`.  Every elementary transvection in `G` belongs to one of
+finitely many **fixed** coordinate conjugates of `H`: those avoiding the
+fifth coordinate already lie in `H`; if a root uses coordinate `5`, swap
+`5` with one of the other three coordinates not used by the root.  The
+required coordinate swaps lie in `GL_5(R)=E_5(R)`.  Therefore
+
+`G=(H_1 union ... union H_s)^(41)`                      `(BG)`
+
+for finitely many fixed conjugates `H_i` of `H` (five suffice).
+
+**Theorem.**  `E_5(L_(F_2)(1,2))` has property `(TT)/T`.
+
+**Proof.**  The earlier relative theorem gives that `G>=H` has relative
+`(TT)/T`.  Let `b` be a quasi-cocycle into a unitary representation of `G`
+with no invariant vectors.  It is bounded on `H`.  For each of the finitely
+many fixed conjugators `g_i`, the quasi-cocycle identity bounds `b` on
+`g_i H g_i^(-1)` by a constant depending only on the bound on `H`, the
+defect, and the two fixed values `b(g_i),b(g_i^(-1))`.  Thus `b` is bounded
+on the finite union in `(BG)`.  Applying the quasi-cocycle inequality at
+most `40` times bounds it on all of `G`.  End proof.
+
+By invariance of `(TT)/T` under Kazhdan central covers, the universal
+Steinberg cover
+
+`St_5(L_(F_2)(1,2)) -> E_5(L_(F_2)(1,2))`
+
+also has `(TT)/T`.
+
+This is a new global rigidity theorem, not merely another reduction.  It
+settles the comparison-map half of the `2`-Kazhdan program for every
+nontrivial unitary coefficient module.  It does **not** settle the bounded
+cohomology-vanishing half, Hilbert--Schmidt stability, hyperlinearity, or
+the main hyperlinear-versus-sofic question.
+
+The proof deliberately avoids the invalid inference `GL=EL` implies
+bounded elementary width.  The width comes instead from the explicit
+strong-division pivot, and the final diagonal is absorbed wholesale by
+the rank-four subgroup.
