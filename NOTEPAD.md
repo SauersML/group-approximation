@@ -19490,3 +19490,52 @@ depth compressor preserves its range up to the single chain wrap, while the
 Fourier-rotated occurrence is exactly the free-cycle shear on the selected
 `L_0` incidence.  A commuting replacement is proved incapable of doing
 this.
+
+### The two-basis leakage is exactly the Fourier intertwining defect
+
+The mutually-unbiased frame has no hidden averaging gain.  Identify the
+position analysis space with `H` and the momentum analysis space with a
+second copy of `H`.  For a unitary `F` carrying the second basis to the
+first, the analysis isometry and its range projection are
+
+`V=2^(-1/2) [1; F^*]`,
+
+`P=VV^*=(1/2) [[1,F],[F^*,1]]`.
+
+Let the two chart occurrences of one global letter be `U_+` and `U_-`, and
+put `mathcalU=diag(U_+,U_-)`.  The orthogonal complement of the frame range
+is the range of
+
+`V_perp=2^(-1/2) [1; -F^*]`.
+
+Direct multiplication gives
+
+`V_perp^* mathcalU V=(1/2)(U_+-F U_- F^*)`.
+
+Consequently
+
+`||(1-P)mathcalU V||_2^2`
+` =(1/4)||U_+-F U_- F^*||_2^2`.
+
+The same formula, with a fixed-word Lipschitz constant, controls every
+generator and relator.  In particular the frame range is exactly invariant
+if and only if the two local tuples are conjugate by the **same** `F`; small
+rank-one Gram blocks do not weaken this joint requirement after their total
+weight is summed.
+
+Applied to the proposed root incidence, the remaining equation is therefore
+
+`T_depth ~=F T_shear F^*`
+
+together with
+
+`pi_depth(g) ~=F pi_shear(g) F^*`
+
+for every tested positive letter `g`, using one common `F`, while the
+transported witnesses retain their strict commutator.  The fixed-base
+Fourier theorem supplies the second line on the tangent positive web, and
+the free-cycle regularization supplies the first line on the selected
+prime-field `L_0` incidence.  Neither theorem currently supplies both lines
+on the same full fiber.  Thus the mutually-unbiased frame gives the correct
+geometry but does not by itself close the coupling; it reduces it exactly to
+this joint Fourier-conjugacy statement.
