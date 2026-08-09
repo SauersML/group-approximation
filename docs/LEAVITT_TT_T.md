@@ -331,6 +331,35 @@ not by itself enough: the maps in (4) are algebraic equivariant maps and
 need not extend continuously.  What would suffice is an algebraic splitting
 at \(M\), or a uniform bounded-extension theorem for all maps in (4).
 
+Property \((T)\) does remove one possible analytic pathology in (4).  The
+finite generating set \(A\cup B\) is a Kazhdan set; let \(\kappa>0\) be a
+Kazhdan constant.  If unit vectors
+
+\[
+ \xi\in V^A\ominus V^U,
+ \qquad \eta\in V^B\ominus V^U
+\]
+
+are phased so that \(\langle\xi,\eta\rangle\geq0\), then
+
+\[
+ \kappa\leq
+ \max_{s\in A\cup B}\|\pi(s)\xi-\xi\|
+ \leq2\|\xi-\eta\|.
+\]
+
+It follows that
+
+\[
+ |\langle\xi,\eta\rangle|\leq1-\kappa^2/8.             \tag{7}
+\]
+
+Thus \(V^A+V^B\) is closed, with a uniform angle bound over all unitary
+representations.  The left term of (4) is therefore a uniformly
+well-conditioned Hilbert quotient.  The unresolved issue is genuinely
+extension from the simultaneous kernel (6), not closure of the sum of the
+two fixed subspaces.
+
 ## Exact remaining frontier
 
 For the Steinberg cover (U=St_5(L)), superperfectness handles trivial

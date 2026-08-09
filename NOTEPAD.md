@@ -26562,3 +26562,39 @@ projection in a group `C^*`-completion: an algebraic equivariant map on
 would need either an algebraic splitting of `(RM4)` at `M`, or a uniform
 bounded-extension result for all the finitely generated equivariant maps
 appearing in `(RM2)`.  Neither has been proved here.
+
+## Property `(T)` closes the two-chart denominator uniformly
+
+The quotient `V/(V^A+V^B)` in `(RM2)` has no hidden non-Hausdorff
+pathology.  Since the finite set `A union B` generates `U_Q` and `U_Q` has
+property `(T)`, it is a Kazhdan set: fix `kappa>0` such that every unitary
+representation without invariant vectors satisfies
+
+`max_(s in A union B)||pi(s)xi-xi|| >= kappa||xi||`.     `(ANG1)`
+
+(Starting from any finite Kazhdan set, express it by words of uniformly
+bounded length in `A union B`.)
+
+Let `V_0=(V^(U_Q))^perp`, take unit vectors
+`xi in V^A intersect V_0` and `eta in V^B intersect V_0`, and multiply
+`eta` by a scalar so that `<xi,eta>` is nonnegative real.  Since `xi` is
+`A`-fixed and `eta` is `B`-fixed,
+
+`max_(s in A union B)||pi(s)xi-xi|| <= 2||xi-eta||`.
+
+Equation `(ANG1)` gives `||xi-eta||>=kappa/2`, and hence
+
+`|<xi,eta>| <= 1-kappa^2/8`.                            `(ANG2)`
+
+Thus the Friedrichs angle between `V^A` and `V^B`, after removing their
+intersection `V^(U_Q)`, is bounded away from zero uniformly over all
+unitary representations.  Standard two-subspace geometry now shows that
+
+`V^A+V^B`
+
+is closed, with a uniform bound for the inverse of the addition map modulo
+its kernel.  Consequently the left term of `(RM2)` is a genuine Hilbert
+quotient with representation-independent conditioning.  Any failure of
+`H^2(U_Q,V)=0` must occur in extension from the simultaneous averaging
+kernel `(RM5)`, not in closure of the two fixed-space sum.  This still does
+not supply that extension.
