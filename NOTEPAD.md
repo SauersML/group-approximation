@@ -8418,19 +8418,80 @@ nontrivial.  Finally `|exp(2 pi i t)-1|<=2 pi |t|` gives the displayed norm
 bound.  Shapiro's lemma supplies both stabilizer identifications.  End
 proof.
 
-For `Q=SL_d(Z)` in a sufficiently high stable rank, Bader--Sauer's unitary
-cohomology vanishing supplies hypothesis 1.  Hypothesis 2 is deliberately
-stated separately: it is the uniform upper-Laplacian/filling estimate, and
-must not be inferred from qualitative vanishing without checking closed
-range uniformly over the permutation modules.  Whenever that estimate is
-available (for example from a genuine higher spectral-gap theorem),
-unbounded order in `H^2(H_n,T)` is still not by itself the missing analytic
-certificate.  The exact question is whether its Bockstein has
-representatives of normalized integral `L2` norm tending to zero.  Positive
-integral `3`-cosystolic expansion would kill this scalar-permuted-block
-route; a sparse torsion sequence together with the uniform real filling
-bound would construct its locally small curvature.  Either outcome still
-has to be coupled to the off-diagonal shear intertwiners.
+For `Q=SL_d(Z)`, `d>=4`, both analytic hypotheses are in fact theorems.  The
+uniformity in hypothesis 2 is not merely qualitative vanishing; it follows
+from the ultrapower/closed-range part of Bader--Sauer.
+
+**Corollary (the congruence criterion is unconditionally integral).**  Let
+`d>=4`, put `Q=SL_d(Z)`, and fix one finite rational free resolution of the
+trivial module through degree `4`.  There is a constant `C_Q` such that, for
+every finite `Q`-set `X` and every real `3`-coboundary `z` with coefficients
+in `R^X`, there is `a` with
+
+`d a=z`,  `||a||_2<=C_Q ||z||_2`.
+
+Moreover `H^2(Q,R^X)=0`.  Consequently, for arbitrary finite-index
+subgroups `H_n<Q`, nonzero locally `L2`-small classes in
+
+`H^2(Q,T^(Q/H_n))=H^2(H_n,T)`
+
+exist if and only if `H^3(H_n,Z)` contains nonzero torsion classes with
+integral `3`-cocycle representatives of normalized `L2` norm tending to
+zero.
+
+**Proof.**  The arithmetic group `Q` is of type `FP_infinity(Q)`.  By the
+main higher-Kazhdan theorem of Bader--Sauer, the lattice `SL_d(Z)` has
+property `(T_(d-2))`, hence property `(T_2)`.  Their closed-range theorem,
+applied with `n=3`, says that `H^3(Q,V)` is Hausdorff for every unitary
+`Q`-representation `V`.  In the fixed finite resolution this says that
+
+`d^2:C^2(Q,V)->C^3(Q,V)`
+
+has closed range for every `V`.
+
+The corresponding inverse bounds are uniform over all unitary `V`.  If
+not, choose `V_j` and unit vectors `a_j` orthogonal to `ker(d^2)` with
+`||d^2 a_j||_2->0`.  For the Hilbert direct sum `V=direct_sum_j V_j`, the
+vectors supported in the `j`-th summand show that `d^2` has nonclosed range,
+contradicting the same Bader--Sauer theorem for `V`.  Apply this uniform
+bound to the finite permutation representations `R^X` to obtain `C_Q`.
+
+For the degree-two vanishing, decompose
+
+`R^X=(R^X)^Q direct_sum ((R^X)^Q)^perp`.
+
+Property `(T_2)` kills `H^2` on the second summand.  On the invariant
+summand the coefficient action is trivial, while
+`H^2(SL_d(Z),R)=0` for `d>=4`: by the lattice comparison below the real rank
+this is `H_c^2(SL_d(R),R)`, which vanishes.  Thus hypothesis 1 of the
+Bockstein theorem also holds.  The last assertion is now exactly that
+theorem.  End proof.
+
+The relevant primary-source statements are Theorem A (higher property
+`(T_(d-2))` for `SL_d(R)` and its lattices), Theorem 3.11 (property
+`(T_(n-1))` plus `FP_n` makes degree-`n` unitary cohomology Hausdorff), and
+Theorem C (lattice comparison below the real rank) in Bader--Sauer,
+[*Higher Kazhdan property and unitary cohomology of arithmetic
+groups*](https://arxiv.org/abs/2308.06517), version 3.
+
+Thus unbounded order in `H^2(H_n,T)` is still not by itself the missing
+analytic certificate, but there is no longer an unproved real-filling pin.
+The exact remaining scalar question is purely integral: whether its
+Bockstein has representatives of normalized integral `L2` norm tending to
+zero.  Positive integral `3`-cosystolic expansion would kill this
+scalar-permuted-block route; a sparse torsion sequence would construct its
+locally small curvature.  Either outcome still has to be coupled to the
+off-diagonal shear intertwiners.
+
+The tempting shortcut through one Borel--Serre cusp does not follow merely
+from the long exact sequence.  On any subgroup where the two congruence
+coordinates lift to integral homomorphisms, the alternating circle class
+has a real lift, so its integral Bockstein restricts to zero.  Hence the
+Bockstein belongs to the kernel of boundary restriction there, i.e. to a
+relative/interior group; exactness gives a cocycle vanishing *on the
+boundary*, not one supported on a small boundary component.  Cusp
+localization therefore requires an additional excision or connecting-map
+calculation and cannot presently be claimed as the sparse representative.
 
 ### Property `(T)` kills orthogonal-block symmetrization of the chains
 
@@ -9248,3 +9309,55 @@ the single orbital graph carrying the Kun--Thom witness and ordinary
 commutation off it.  It is therefore the minimal central-torsion deformation
 of the commuting-lamp obstruction, and is a strictly weaker analytic target
 than the complete Clifford system.
+
+### Sparse central-sector profile: the exact HS threshold
+
+Weak MF is sufficient for the orbital Clifford target but not necessary.
+There is a quantitative tracial version which matches the sparse-torsion
+curvature program.
+
+**Theorem (shrinking Clifford sector).**  Let `phi_n` be unitary
+Hilbert--Schmidt almost-representations of `E_orb` on exhausting finite
+windows, with normalized multiplicative defect `epsilon_n`.  Assume, after
+an asymptotically negligible functional-calculus correction, that
+
+`phi_n(z)^2=1`,
+
+and put
+
+`q_n=(1-phi_n(z))/2`,  `delta_n=tr(q_n)`.
+
+If `delta_n>0` and
+
+`epsilon_n/sqrt(delta_n) -> 0`,
+
+then a hyperlinear nonsofic group exists.
+
+**Proof.**  Centrality of `z` and approximate multiplicativity give, on
+each fixed window,
+
+`||[q_n,phi_n(g)]||_(2,d_n)=O(epsilon_n)`.
+
+Compress `phi_n(g)` to `q_n C^(d_n)` and take its polar unitary there.  The
+standard almost-invariant-corner estimates bound both the polar correction
+and the compressed multiplicative defect, in the corner's normalized
+Hilbert--Schmidt norm, by
+
+`O(epsilon_n/sqrt(delta_n))=o(1)`.
+
+On the corner, `z` is exactly `-1`.  Hence the corner maps define a
+homomorphism `eta` from `E_orb` to a tracial matrix ultraproduct with
+`eta(z)!=1`.  As in the weak-MF Clifford theorem, take a block sum with a
+faithful hyperlinear embedding of the retract `G`.  The resulting image is
+hyperlinear, is faithful on `G`, and retains `z`; the Kun--Thom argument
+therefore makes it nonsofic.  End proof.
+
+Equivalently, if a block construction puts the nontrivial order-two
+curvature on a dimension fraction `delta_n`, its ambient relation error need
+only be little-oh of the square root of that fraction.  The curvature may
+therefore be trace-sparse.  This is the direct interface with the
+Bockstein/sparse-torsion criterion: a sparse projective sector can carry the
+orbital Clifford commutator, while the bulk sector factors through the
+retraction and supplies dimension at essentially no cost.  What remains is
+to couple such a torsion sector to the explicit polynomial shear
+intertwiners with the displayed profile inequality.
