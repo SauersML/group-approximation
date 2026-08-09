@@ -26878,3 +26878,63 @@ restricted defects actually converge to a positive limit.  Diagonal phases
 cannot repair the classical permutation obstruction: a successful
 gap-collapsing sequence must use relative unitaries with genuinely
 delocalized rows and quantum interference.
+
+### Even block-monomial regular-fibre rotations have an explicit gap
+
+Use the canonical tensor decomposition
+
+`C^(20160k)=ell^2(A_8) tensor C^k`,
+
+so the first chart is `lambda tensor 1_k`.  Let `W_k` be the wreath-product
+subgroup
+
+`U(k) wr Sym(A_8) <= U(20160k)`
+
+of block-monomial unitaries: these may apply an arbitrary unitary from
+`U(k)` inside every regular fibre and may permute the `20160` fibres.  If
+`d_k^blk` denotes the canonical max-relator minimum restricted to `W_k`,
+then the explicit uniform estimate
+
+`d_k^blk >= sqrt(4/20160)=1/sqrt(5040)`                 `(BLK1)`
+
+holds for every `k`.
+
+Indeed, projection `W_k->Sym(A_8)` is a homomorphism.  Both canonical
+charts lie in `W_k`; their projections are the regular `A_8` action and a
+permutation conjugate of that action.  Hence every block-monomial relative
+unitary gives an exact homomorphism
+
+`rho_U:Pbar=A_8*A_8 -> Sym(20160)`.
+
+Some `s in Sbar` must have `rho_U(s)!=1`.  Otherwise normal generation
+would factor `rho_U` through a nontrivial finite permutation representation
+of `U_Q`; it is nontrivial on the first `A_8` chart, contradicting minimal
+almost periodicity of `U_Q`.  A nonidentity permutation moves at least two
+of the `20160` blocks.  If a block-monomial unitary `V` moves a proportion
+`h` of the blocks, its diagonal blocks vanish at those positions and
+
+`||V-1||_2^2 >= 2h`.
+
+Thus the selected relator has squared defect at least
+`2*(2/20160)=4/20160`, proving `(BLK1)`.
+
+This obstruction is robust.  Put
+
+`F_k(U)=max_(s in Sbar)||pi_U(s)-1||_2`.
+
+Because `Sbar` is fixed, telescoping its word evaluations gives a constant
+`L<infinity`, independent of `k`, such that
+
+`|F_k(U)-F_k(V)| <= L||U-V||_2`.                        `(BLK2)`
+
+For example one may take `L=2 max_s q_s`, where `q_s` is the number of
+letters from the second free factor in the chosen reduced word for `s`:
+each conjugated second-chart letter changes by at most `2||U-V||_2`, and
+products of unitaries telescope isometrically.  Combining `(BLK1)` and
+`(BLK2)`, every sequence with `F_k(U_k)->0` satisfies
+
+`liminf_k dist_2(U_k,W_k) >= 1/(L sqrt(5040))`.         `(BLK3)`
+
+So a successful atlas cannot even approach a fibrewise arbitrary
+block-permutation model.  It must remain a fixed normalized-HS distance
+from the full wreath-product ansatz and genuinely mix the regular fibres.
