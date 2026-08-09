@@ -6783,6 +6783,51 @@ C-star amalgams, while its trace statement assumes the trace is already
 hyperlinear.  Hence none of these primary statements supplies either a proof
 that every hyperlinear group is sofic or a hyperlinear nonsofic witness.
 
+### Thom's non-Hopfian map gives compatible self-similar corners
+
+De Cornulier's construction makes the finite kernel of the non-Hopfian map
+explicit.  Conjugation by the outer scalar `p` is an automorphism of
+`K_0(Z[1/p])` sending the integral central subgroup `Z` onto `pZ`.  It induces
+a surjective endomorphism
+
+`psi:K=K_0(Z[1/p])/Z -> K`
+
+with central kernel `F_1=(p^(-1)Z)/Z = C_p`.  Its `m`-th iterate has central
+kernel
+
+`F_m=(p^(-m)Z)/Z = C_(p^m)`,
+
+and hence `K/F_m` is isomorphic to `K`.
+
+This self-quotient does not by itself contradict a tracial or permutation
+model.  Put
+
+`e_m=(1/p^m) sum_(f in F_m) lambda(f) in L(K)`.
+
+Then `e_m` is a central projection, `tau(e_m)=p^(-m)`, and
+
+`e_m L(K) e_m ~= L(K/F_m) ~= L(K)`
+
+after normalizing the corner trace and using the isomorphism induced by
+`psi^m`.  Moreover `e_(m+1)<=e_m`.  Thus the non-Hopfian self-similarity is
+represented inside the already hyperlinear group algebra by a nested tower
+of proper central corners; finiteness of the ambient trace does not prohibit
+such central corner isomorphisms.
+
+The permutation calibration is exact.  If `c_m` is represented by a disjoint
+union of free `p^m`-cycles on `X`, then
+
+`E_m=(1/p^m) sum_(j=0)^(p^m-1) sigma(c_m)^j`
+
+is the orthogonal projection onto the cycle-constant vectors and has
+normalized rank exactly `1/p^m`, matching `tau(e_m)`.  Coherent roots give
+the nested projections.  Therefore neither the finite kernel, the equality
+`K/F_m=K`, nor normalized-dimension scaling can obstruct soficity without an
+additional rigidity theorem controlling how the rest of `K` acts on the
+cycle-multiplicity spaces.  The remaining datum is again the action on those
+multiplicity fibers, precisely the part not controlled by central-order
+surgery.
+
 ### Lavi--Levit character rigidity cannot see strict commutant compression
 
 Lavi--Levit, Corollary 1.3 of arXiv:2007.15547, says that for a commutative
