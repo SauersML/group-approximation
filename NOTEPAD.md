@@ -18761,3 +18761,99 @@ local algebraic identity `U_t'=WU_t` whenever `W` commutes with the actually
 tested forward images, plus the finite-incidence regularization above.  The
 missing theorem is still to spread that local gauge over the depth chain
 with vanishing boundary while retaining positive strict mass.
+
+### Fusion rigidity: a high-rank atlas cannot average incompatible compressors
+
+The proposed duplication of a strict shear owner does not by itself preserve
+strictness through fusion.  In a high-rank fusion frame, the overlap equations
+force all local representatives of the **same global letter** to be close.
+This is quantitative and does not depend on commutativity of the chart
+projections.
+
+Let `p_1,...,p_m` be projections in `M_d` with normalized trace
+
+`tr(1-p_i)<=epsilon`,
+
+put `A=sum_i p_i`, `q=1_([m/2,m])(A)`, and
+
+`B=q A^(-1) q`.
+
+For two local unitaries `U_i,U_j`, put
+
+`K_(i,j)=p_i B p_j`,
+
+`E_(i,j)=U_i K_(i,j)-K_(i,j)U_j`.
+
+**Lemma (fusion synchronization).**  In normalized Hilbert--Schmidt norm,
+
+`||U_i-U_j||_2`
+` <=m ||E_(i,j)||_2+2(4+sqrt(2))sqrt(epsilon)`.
+
+In particular, for a fixed atlas, vanishing native bad fraction and
+vanishing pairwise fusion-Gram error force every two chart occurrences of a
+global generator to be Hilbert--Schmidt asymptotic.
+
+**Proof.**  Write `D=m-A=sum_i(1-p_i)`.  It is positive,
+`||D||<=m`, and `tr(D)<=m epsilon`, hence
+
+`||A-m||_2=||D||_2<=m sqrt(epsilon)`.
+
+On `q`, the scalar inequality
+
+`|a^(-1)-m^(-1)|<=(2/m^2)(m-a)`,  `m/2<=a<=m`,
+
+gives
+
+`||(B-m^(-1)q)||_2<=2 sqrt(epsilon)/m`.
+
+Moreover `A<m/2` on `1-q`, so `D>m/2` there and Markov gives
+`tr(1-q)<=2epsilon`.  Therefore
+
+`||B-m^(-1)||_2<=(2+sqrt(2))sqrt(epsilon)/m`.
+
+Finally
+
+`||1-p_i p_j||_2`
+` <=||1-p_i||_2+||p_i(1-p_j)||_2`
+` <=2sqrt(epsilon)`,
+
+so
+
+`||K_(i,j)-m^(-1)||_2`
+` <=(4+sqrt(2))sqrt(epsilon)/m`.
+
+Subtract `(1/m)(U_i-U_j)` from `E_(i,j)` and use unitary invariance:
+
+`m^(-1)||U_i-U_j||_2`
+` <=||E_(i,j)||_2`
+`   +2||K_(i,j)-m^(-1)||_2`.
+
+This is the claimed bound.  End proof.
+
+The same observation applies to transported witnesses.  If local witnesses
+`z_i,z_j` satisfy the corresponding overlap equation, then they too are
+Hilbert--Schmidt close.  Consequently
+
+`| ||[U_i,z_i]||_2-||[U_j,z_j]||_2 |`
+` <=2||U_i-U_j||_2+2||z_i-z_j||_2`.
+
+Thus a strict compressor cell and an ordinary depth-shift cell cannot be
+assigned incompatible local `t` operators and then rescued merely by adding
+many duplicate strict charts.  If the ordinary chart has asymptotically
+zero strict commutator, every fusion-compatible strict chart does too.
+Conversely, a genuine order-one strict compressor must propagate to all
+charts carrying `t` while those charts still satisfy their native covariance
+relations.
+
+This retracts the sentence in the growing selective atlas section claiming
+that a positive proportion of strict duplicates alone makes the strict
+energy survive.  Duplication controls normalization only **after**
+same-global-letter synchronization has been proved; it cannot substitute for
+that proof.  The terminal construction target is therefore sharper:
+
+> build one fusion-compatible, order-one exotic compressor on the whole
+> growing atlas, with the free-cycle shear as its exact `L_0` restriction and
+> the fixed-base depth update as its asymptotic positive-web restriction.
+
+This is exactly the flexible compressor--shear coupling problem, not an
+atlas-weighting problem.
