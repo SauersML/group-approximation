@@ -20371,3 +20371,41 @@ on either Clifford lamp group would imply that the Kun--Thom action on
 do not create a loophole in Definition 4.23; a successful Clifford model
 must violate the chartwise partial-homomorphism architecture itself and be
 built only after passing to normalized-HS matrix microstates.
+
+### Normalized rank has no Schoenberg bridge to Hilbert--Schmidt geometry
+
+The direct Leavitt lane has rank-metric matrix models available, so one might
+try to convert them into unitary models by proving that the rank length on
+finite general linear groups is conditionally negative definite and then
+applying Schoenberg.  This fails in the smallest nontrivial case.
+
+Identify `GL_2(F_2)` with `S_3`.  For
+
+`ell(g)=rank_(F_2)(g-I)`,
+
+one has `ell(e)=0`, `ell(g)=1` on the three transpositions, and `ell(g)=2`
+on the two `3`-cycles.  Put `c_g=sgn(g)`.  Then
+
+`sum_g c_g=0`,
+
+but, using that the sign is a character,
+
+`sum_(g,h) c_g c_h ell(g^(-1)h)`
+` =|S_3| sum_k ell(k) sgn(k)`
+` =6(-3+4)=6>0`.
+
+This violates the defining nonpositivity inequality for a conditionally
+negative definite length.  The same calculation is unchanged after dividing
+`ell` by the matrix dimension.  Consequently neither
+
+`exp(-t rank(A-B))`
+
+nor its normalized-rank analogue is positive definite for every `t>0`;
+there is no dimension-uniform Schoenberg/GNS conversion from linear-sofic
+rank microstates to hyperlinear microstates.
+
+This is an exact obstruction, not merely a failure of one estimate.  It
+closes the tempting route "Leavitt is linear-sofic, therefore exponentiate
+the rank metric to obtain unitary characters."  A successful conversion of
+the Leavitt witness must use additional algebraic structure of its particular
+models, rather than the rank metric alone.
