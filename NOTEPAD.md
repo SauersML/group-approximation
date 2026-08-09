@@ -26145,3 +26145,47 @@ representations of only two copies of the fixed group `2.A_8`, with one
 relative conjugating unitary after global conjugation.  This supersedes the
 rank-eight and three-factor sources while leaving every universal-cover and
 tensor-ratio argument unchanged.
+
+### The Schur-center relation stratum exactifies (2026-08-09)
+
+Let `z_i` be the central involution of the two factors
+`H_i=2.A_8` in `P_2=H_1*H_2`.  Both lie in
+`R_2=ker(P_2->Q)`.  Hence
+
+`C_0=normalClosure({[z_1,h]:h in H_2} union {[z_2,h]:h in H_1})`
+
+is contained in `N_2=[P_2,R_2]`.
+
+The quotient `U_0=P_2/C_0` is the universal central extension of
+`A_8*A_8`.  Indeed, a central extension of the free product restricts to a
+central extension of each `A_8`; the universal properties of the two
+copies of `2.A_8` give unique factor lifts, and their Schur centers land in
+the central kernel, so the free-product lift kills exactly the displayed
+cross-center commutators.  Its central kernel is
+
+`H_2(A_8*A_8,Z) ~= (Z/2)^2`.
+
+Thus `U_0` is a finite central extension of a virtually free group, hence
+virtually free and normalized-HS stable.
+
+**Exactification consequence.**  Any ratio certificate may first be
+tensor-amplified to fixed survivor separation.  Its `C_0` defects then tend
+to zero, so HS stability of `U_0` corrects it to exact finite-dimensional
+representations of `U_0` without losing survivor separation or the
+vanishing of any fixed remaining `N_2/C_0` relator.  Conversely such
+`U_0` representations are allowed `P_2` representations.  Therefore the
+search can impose the two Schur centers as exactly global-central from the
+outset.
+
+An exact `U_0` representation decomposes into four sectors
+`(z_1,z_2)=(epsilon_1,epsilon_2)`, `epsilon_i in {+1,-1}`.  Squared
+normalized HS norms are weighted sector sums.  From a fixed-separation
+certificate, one sector has survivor contribution at least one quarter of
+the total, hence dimension weight bounded below and survivor displacement
+bounded below; its normalized relator defects still vanish.  Passing to a
+subsequence fixes one sign pair.
+
+In the one-unitary parameterization, this means the two multiplicity vectors
+may be restricted to irreducibles of `2.A_8` with prescribed central
+characters.  The hard atlas problem now lives in only four discrete sectors;
+the entire cross-Schur-center relation layer has been removed exactly.

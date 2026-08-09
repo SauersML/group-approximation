@@ -299,7 +299,73 @@ already nonsofic group \(Q\) hyperlinear.  Formula (15) is the exact
 active-eigenspace interface between the two outcomes; it does not establish
 either one.
 
-## 6. One-unitary optimization form
+## 6. Exactification of the Schur-center stratum
+
+Let \(z_i\) be the central involution of \(H_i\cong2.A_8\).  Since the
+covering maps kill \(z_i\), both \(z_1,z_2\) belong to \(R_2\).  Define
+
+\[
+ C_0=\left\langle\!\left\langle
+       [z_1,h]\ (h\in H_2),\ [z_2,h]\ (h\in H_1)
+     \right\rangle\!\right\rangle_{P_2}.
+\]
+
+Then \(C_0\le [P_2,R_2]=N_2\).  Moreover
+
+\[
+ U_0:=P_2/C_0
+\]
+
+is the universal central extension of \(A_8*A_8\).  Indeed, every central
+extension of \(A_8*A_8\) restricts over each free factor; the universal
+property of \(2.A_8\to A_8\) gives unique lifts of both factors, and the
+two lifted Schur centers are central, so the induced map from
+\((2.A_8)*(2.A_8)\) kills exactly the cross-center commutators above.
+This also proves uniqueness of the resulting lift.  Equivalently, the
+central kernel is
+
+\[
+ H_2(A_8*A_8,\mathbb Z)
+ \cong H_2(A_8,\mathbb Z)^{\oplus2}
+ \cong (\mathbb Z/2)^{2}.
+\]
+
+The group \(U_0\) is a finite central extension of the virtually free group
+\(A_8*A_8\), hence is itself virtually free.  In particular, it is
+normalized-Hilbert--Schmidt stable.
+
+This makes the Schur-center constraints exact without losing the desired
+certificate.  Starting with a ratio sequence for (15), tensor amplification
+first gives a sequence with fixed positive displacement of \(p_0\) and
+vanishing \(N_2\)-defect.  In particular, the finite defining
+cross-center relations of \(U_0\) vanish.  Stability of \(U_0\) corrects
+the sequence to exact finite-dimensional representations of \(U_0\).
+The correction tends to zero on the fixed generators, so the displacement
+of \(p_0\) remains positive and every fixed word from \(N_2/C_0\) still
+tends to the identity.  Conversely, such exact \(U_0\)-representations are
+already exact \(P_2\)-representations.  Thus the fixed-separation atlas
+certificate is equivalent to one in which both Schur centers are exactly
+central from the start.
+
+Every exact representation of \(U_0\) splits into the four joint central
+characters
+
+\[
+ (\pi(z_1),\pi(z_2))=(\varepsilon_1 I,\varepsilon_2 I),
+ \qquad \varepsilon_i\in\{1,-1\}.
+\]
+
+At least one sector retains a certificate.  Indeed, squared normalized
+Hilbert--Schmidt norms are weighted sums over these four orthogonal
+sectors.  If the total survivor displacement is at least \(\varepsilon\),
+one sector contributes at least \(\varepsilon^2/4\) to its square.  Its
+dimension weight is then at least \(\varepsilon^2/16\), while its own
+survivor displacement is at least \(\varepsilon/2\); restriction to that
+sector therefore preserves vanishing normalized relator defects.  Passing
+to a subsequence fixes the same sign pair.  The constructive search may
+accordingly be performed in one of four exact central-sign sectors.
+
+## 7. One-unitary optimization form
 
 Let \(\widehat H\) be the finite set of irreducible complex representations
 of \(H=2.A_8\).  Every exact representation
@@ -326,6 +392,12 @@ in the irreducible representation \(\sigma\), then
  r_-(\pi)=\sum_{\sigma\in\widehat H}n_\sigma r_-(\sigma). \tag{19}
 \]
 
+After the exactification in Section 6, one fixes
+\((\varepsilon_1,\varepsilon_2)\in\{\pm1\}^2\) and restricts
+\(m_\sigma\) (respectively \(n_\sigma\)) to irreducibles on which the
+central involution acts by \(\varepsilon_1\) (respectively
+\(\varepsilon_2\)).
+
 Consequently (15) is exactly a sequence of compact one-unitary
 optimizations, indexed only by two finite integer multiplicity vectors.
 No approximate factor representations, chart choices, or additional
@@ -333,7 +405,7 @@ conjugating matrices remain.  Proving that the infimum of the resulting
 ratios is zero settles the main problem negatively; a uniform positive
 lower bound proves that the explicit Steinberg cover is nonhyperlinear.
 
-## 7. Primary sources
+## 8. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
