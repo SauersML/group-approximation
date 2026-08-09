@@ -23186,3 +23186,60 @@ argument puts these cocycle coordinates in a restricted regular wreath
 product.  Alekseev--Bradford's halo permanence theorem likewise assumes a
 sofic underlying set/graph action, which the preceding contradiction rules
 out here.
+
+# Correction: the coinduced tensor decomposition does not open the automorphic-chart route (2026-08-09)
+
+The component and tensor-coinduction calculations in the preceding section
+are valid, but its proposed Alekseev--Bradford target is impossible.  The
+sentence suggesting that the Clifford automorphism action might be a sofic
+hyperlinear action while the underlying coordinate action is nonsofic
+contradicts the earlier label-recovery lemma in this notebook.
+
+Indeed, this obstruction does not use commutativity, the Clifford form, or
+the target class.  If a group `G` acts on `D` and `D` contains distinct
+elements `a_x`, indexed by a `G`-set `X`, with
+
+`alpha(g)(a_x)=a_(g x)`,
+
+then every sofic `C`-action structure on `G action D` in the sense of
+Alekseev--Bradford Definition 4.23 forces `G action X` to be a sofic set
+action.  For a finite coordinate window `Y`, put all `a_y` in the finite
+automorphic test set.  If
+
+`pi_s:E -> Lambda`
+
+are the injective partial-homomorphism charts, then
+
+`j_s(y)=pi_s(a_y)`
+
+takes values in the finite union of all chart images, is injective on `Y`,
+and satisfies exactly
+
+`j_(phi(g)s)(y)=j_s(g^(-1)y)`
+
+whenever the Definition-4.23 covariance equation is required.  These are
+the orbit charts of Definition 4.16.  For Clifford lamps, ordered-monomial
+normal form makes the coordinate elements distinct, so the lemma applies
+verbatim to both the complete and sparse lamps.
+
+Kun--Thom's coset action `G action G/Gamma` is nonsofic.  Therefore the
+induced automorphism action on the sparse Clifford lamp is **not** a sofic
+hyperlinear action.  Alekseev--Bradford Corollary 5.2 remains a correct
+sufficient theorem, but its antecedent is provably false for this target.
+The newly proved decomposition
+
+`A_- = tensor_bar_(G/L) A_0`
+
+still localizes the analytic problem to a compressor fiber, but it cannot be
+fed into an exact-chart permanence theorem.
+
+This also specifies what a genuinely quantum chart must change.  It cannot
+consist of exact injective partial homomorphisms into one auxiliary
+hyperlinear group: those exact labels automatically reconstruct the
+forbidden classical orbit charts before any matrix approximation is used.
+The lamp relations, covariance, and acting-group law must instead hold only
+after passage to normalized Hilbert--Schmidt matrices, with their exceptional
+coordinates allowed to depend on the relation being tested.  Thus the
+surviving target is still direct HS microstates (equivalently, Connes
+embeddability of the negative Clifford crossed-product trace), not
+sofic-hyperlinear automorphic action permanence.
