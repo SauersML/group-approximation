@@ -18891,6 +18891,40 @@ Hilbert--Schmidt error, a single compressor satisfying both sets of finite
 relations.  The atlas may then transport that solution, but cannot create
 it.
 
+### Stability-source audit: the available Frobenius theorems are in the wrong norm
+
+There is no existing cohomological stability theorem which corrects the
+remaining one-chart model in normalized Hilbert--Schmidt norm.  The
+terminology must be kept precise:
+
+* De Chiffre--Glebsky--Lubotzky--Thom and the higher-rank lattice
+  cohomological criteria concern the **unnormalized** Frobenius/Schatten
+  metrics (or submultiplicative norms).  Their constants do not survive the
+  factor `dim^(-1/2)` needed for normalized Hilbert--Schmidt microstates.
+* Becker--Lubotzky, *Group stability and Property (T)*, Theorem 1.3(ii),
+  proves in the opposite direction that every infinite hyperlinear
+  property-`(T)` group is **not** stable for normalized Hilbert--Schmidt
+  distance.  The later local version strengthens this to failure of local
+  HS stability.
+
+The fixed-base ambient group is residually finite, hence hyperlinear, and is
+infinite Kazhdan.  Therefore normalized-HS instability is available, but it
+only supplies unspecified exotic almost representations.  It does not
+force the relative-commutant strictness required here.  Conversely the
+vanishing of an `H^2` or `K_2` obstruction in the unnormalized theory proves
+nothing about this normalized relative problem without a new quantitative
+comparison theorem.
+
+Thus the stability literature neither kills nor completes the
+compressor--shear coupling.  The explicit open subproblem remains:
+
+> produce a normalized-HS asymptotic representation of the fixed-base
+> Kazhdan semidirect product whose restriction to the polynomial subgroup
+> has a relative commutant not normalized by the compressor image.
+
+This is strictly stronger than generic normalized-HS instability and is not
+covered by the published Frobenius criteria.
+
 ### The one-compressor HNN shortcut loses ambient property (T)
 
 There is a tempting but invalid way to avoid the compressor--shear coupling:
