@@ -11087,3 +11087,61 @@ The bottleneck is therefore no longer an asymptotic scale mismatch.  It is
 the exact algebraic assembly of the three Jacobi/root fibers across their
 common Pauli channel, especially the commutators which land in successively
 deeper principal-congruence levels.
+
+### Finite-index reduction: the three Pauli root orbits are the whole target
+
+There is no need to extend the construction to every generator of
+`SL_4(Z)`.  Fix the same prime `p>3` and write
+
+`E_4(pZ)=< e_(ij)(pa) : i!=j, a in Z >`.
+
+This elementary congruence subgroup is finite index in `SL_4(Z)`.  Let
+
+`Lambda_p=<B,E_4(pZ)>`.
+
+Index the four coordinates by the regular `B=(F_2)^2`-set.  For each of the
+three nonzero differences `delta in B`, choose
+
+`t_delta=I+pE_(delta,0)`.
+
+Translation by `b in B` sends this root to `(b+delta,b)`.  As `b` varies,
+these are precisely the four ordered roots of difference `delta`; because
+`delta=-delta`, both orientations occur.  Therefore
+
+`Lambda_p=<B,t_delta : 0!=delta in B>`.
+
+In particular, the Pauli source plus the three shear towers is not merely a
+convenient fragment of the substitution group: it generates a finite-index
+substitution subgroup.
+
+This reduction preserves the Kun--Thom hypotheses.  If
+
+`G=EL_r(Z[x_1^(+-1),...,x_4^(+-1)]) semidirect SL_4(Z)`
+
+is the original ambient group and
+
+`G_p=EL_r(Z[x_1^(+-1),...,x_4^(+-1)]) semidirect Lambda_p`,
+
+then `G_p` is finite index in `G`, hence remains residually finite and
+Kazhdan.  The polynomial subgroup
+
+`Gamma=EL_r(Z[x_1,...,x_4])`
+
+is unchanged, so it remains residually finite and Kazhdan.  Infranormality
+is inherited on restriction from `G` to `G_p`.  It is still nonnormal:
+for every chosen `t_delta`, the associated positive monomial substitution
+maps the polynomial ring properly into itself, while its inverse requires a
+negative exponent.
+
+Hence a hyperlinear nonsofic quotient may be sought using the fixed pair
+`Gamma<G_p`.  The only substitution unitaries which must be assembled are
+the exact Pauli action of `B` and the three fixed compressors `t_delta`.
+All other root directions are their `B`-conjugates.  The remaining relators
+are correspondingly the finite relations of `B`, its conjugation rules on
+the three towers, and the elementary commutator relations among those
+towers; commutators such as
+
+`[e_(ij)(p),e_(jk)(p)]=e_(ik)(p^2)`
+
+explain exactly why the unresolved terms fall one step deeper in the
+congruence filtration.
