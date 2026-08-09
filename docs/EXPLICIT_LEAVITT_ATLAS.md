@@ -605,11 +605,13 @@ contained in the single relative unitary \(U_n\).  Producing (25)--(26)
 would make the already nonsofic group \(Q\) hyperlinear and settle the main
 problem negatively.
 
-## 10. Scalar flux is harmless: the projective regular-atlas criterion
+## 10. Scalar flux vanishes: the projective regular-atlas criterion
 
 The identity target in (26) can be weakened to a scalar target.  This is a
-strictly larger finite-dimensional feasibility problem and removes every
-scalar cocycle or phase obstruction from the remaining construction.
+pointwise weaker finite-dimensional feasibility problem, but relative
+perfectness of the atlas kernel makes the two defects quantitatively
+equivalent.  In particular, there is no scalar cocycle or phase obstruction
+in the remaining construction.
 
 For \(V\in U(d)\), put
 
@@ -630,8 +632,78 @@ are equivalent.
        \ell_{\mathrm{pr}}(\pi_n(s))\longrightarrow0.    \tag{31}
    \]
 
+In fact, after fixing \(\bar{\mathcal S}\), there is a constant
+\(C_{\bar{\mathcal S}}<\infty\) such that every exact representation
+\(\pi:\bar P\to U(d)\) satisfies
+
+\[
+ \max_{s\in\bar{\mathcal S}}\|\pi(s)-I\|_2
+ \leq C_{\bar{\mathcal S}}
+       \max_{s\in\bar{\mathcal S}}
+          \ell_{\mathrm{pr}}(\pi(s)).                  \tag{31a}
+\]
+
 **Proof.**  The forward implication follows from the preceding theorem,
 which gives the stronger condition (26).
+
+We first prove (31a).  The kernel \(\bar N\) is relatively perfect:
+
+\[
+ \bar N=[\bar P,\bar N].                                \tag{31b}
+\]
+
+Indeed, the five-term homology sequence for
+\(1\to\bar N\to\bar P\to U_Q\to1\) contains
+
+\[
+ H_2(U_Q,\mathbb Z)\longrightarrow
+ \bar N/[\bar P,\bar N]\longrightarrow
+ H_1(\bar P,\mathbb Z).
+\]
+
+The first outer group vanishes because a universal central extension is
+superperfect, and the second vanishes because \(A_8*A_8\) is perfect.  This
+proves (31b).
+
+For each \(s\in\bar{\mathcal S}\), fix an expression
+
+\[
+ s=\prod_{j=1}^{m_s}[p_{s,j},n_{s,j}],
+ \qquad p_{s,j}\in\bar P,\quad n_{s,j}\in\bar N.       \tag{31c}
+\]
+
+Since \(\bar{\mathcal S}\) normally generates \(\bar N\), also fix an
+expression of every \(n_{s,j}\) as a product of \(L_{s,j}\) conjugates of
+elements of \(\bar{\mathcal S}^{\pm1}\).  Projective length is
+subadditive and conjugacy invariant, so, writing
+
+\[
+ \delta=\max_{r\in\bar{\mathcal S}}
+               \ell_{\mathrm{pr}}(\pi(r)),
+\]
+
+we have \(\ell_{\mathrm{pr}}(\pi(n_{s,j}))\le L_{s,j}\delta\).
+If a unitary \(v\) is within \(\varepsilon\) of a scalar, then
+
+\[
+ \|[u,v]-I\|_2
+  =\|uvu^{-1}-v\|_2\le2\varepsilon                     \tag{31d}
+\]
+
+for every unitary \(u\).  Applying (31d) to (31c) and telescoping gives
+
+\[
+ \|\pi(s)-I\|_2
+ \le2\sum_{j=1}^{m_s}L_{s,j}\delta.
+\]
+
+Thus (31a) holds with
+\(C_{\bar{\mathcal S}}=2\max_s\sum_jL_{s,j}\).
+Condition (31) now implies (26) directly, proving the reverse implication
+by the preceding canonical criterion.  \(\square\)
+
+For completeness, there are two independent ways to see why projective
+models suffice even without the quantitative relative-perfectness argument.
 
 Assume (31), and let \(d_n=20160k_n\).  Passing from \(U(d_n)\) to
 \(PU(d_n)\) and then to a metric ultraproduct gives a homomorphism
@@ -692,7 +764,6 @@ projective metric ultraproduct into a tracial matrix ultraproduct.  The
 image \(J=\Phi(U_Q)\) is therefore hyperlinear.  Since
 \(\ker\Phi\leq Z(U_Q)\), the group \(J\) is a central extension of \(Q\).
 Thom's central-quotient permanence gives that \(Q\) is hyperlinear.
-\(\square\)
 
 There is also a constructive proof which stays inside the canonical atlas.
 The diagonal tensor-square of the regular representation satisfies
@@ -735,12 +806,12 @@ Thus (31) directly produces (26), without passing to an ultraproduct or
 invoking central-quotient permanence.  Formulae (36)--(38) are an explicit
 phase-clearing operation on the final one-unitary optimization.
 
-In particular, no choice of compatible scalar phases is needed.  The only
-remaining finite-dimensional target is to make each of the finitely many
-matrices \(\pi_n(s)\) asymptotically scalar.  Any persistent scalar flux is
-annihilated functorially either by \(\operatorname{Ad}\) or by the explicit
-conjugate tensor (36), without changing the two exact regular
-\(A_8\)-charts.
+In particular, no choice of compatible scalar phases is needed.  More
+strongly, (31a) says that asymptotic scalarity of the finitely many matrices
+\(\pi_n(s)\) forces asymptotic identity at the same dimension.  The adjoint
+and conjugate-tensor arguments remain useful general phase-clearing
+mechanisms, but the relatively perfect Leavitt atlas has no persistent
+scalar flux for them to remove.
 
 The target is equivalently a scalar trace optimization.  For \(k\geq1\)
 define

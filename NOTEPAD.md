@@ -26518,11 +26518,11 @@ and `Ad` induces an injection of projective metric ultraproducts into
 tracial matrix ultraproducts.  The image of `U_Q` is a hyperlinear central
 extension of `Q`; Thom's central-quotient theorem makes `Q` hyperlinear.
 
-Thus the final finite-dimensional construction owes no scalar phase choice
-at all.  Every central Schur, Weil, metaplectic, or atlas flux may persist as
-an arbitrary stage-dependent scalar on each finite normal relator.  Only
-the non-scalar relation-module component must be contracted.  The complete
-proof is recorded in `docs/EXPLICIT_LEAVITT_ATLAS.md`, Section 10.
+Thus the final finite-dimensional construction owes no scalar phase choice.
+The stronger relative-perfectness audit below shows that such phase flux
+cannot in fact persist: projective relator convergence forces ordinary
+relator convergence at the same dimension.  The complete corrected proof is
+recorded in `docs/EXPLICIT_LEAVITT_ATLAS.md`, Section 10.
 
 ## Bass--Serre realization: two averaging projections control the module
 
@@ -26598,3 +26598,102 @@ quotient with representation-independent conditioning.  Any failure of
 `H^2(U_Q,V)=0` must occur in extension from the simultaneous averaging
 kernel `(RM5)`, not in closure of the two fixed-space sum.  This still does
 not supply that extension.
+
+# Compact trace-max formulation and its amplification calculus (2026-08-09)
+
+The projective atlas criterion is equivalently a scalar trace maximization.
+For `k>=1`, let
+
+`alpha_k=max_(U in U(20160k)) min_(s in Sbar)|tr(pi_U(s))|`, `(TR1)`
+
+where both factors of `pi_U` are `k` copies of the regular `A_8`
+representation and `U` is their relative unitary.  Compactness gives the
+maximum, and
+
+`Q is hyperlinear iff sup_k alpha_k=1`.                 `(TR2)`
+
+Every fixed-dimensional maximum is strictly below one.  Otherwise all
+finite normal relators would be scalar in `PU(20160k)`, producing a
+nontrivial finite-dimensional projective representation of `U_Q`; its
+adjoint would contradict the minimal almost periodicity of `U_Q`.
+
+The maxima satisfy two exact closure inequalities.
+
+1. **Amplification:** for every `m>=1`,
+
+   `alpha_(mk) >= alpha_k`.                              `(TR3)`
+
+   Indeed, replace `pi_U` by `pi_U tensor 1_m`; normalized traces are
+   unchanged and both factor representations become `mk` regular copies.
+
+2. **Tensor product:** for all `k,l>=1`,
+
+   `alpha_(20160kl) >= alpha_k alpha_l`.                 `(TR4)`
+
+   The tensor product of two canonical models is again canonical because
+
+   `lambda tensor lambda ~= lambda^(directSum 20160)`.
+
+   Its relative unitary is `U tensor V` after the fixed regular
+   intertwiner, and for every relator `s`,
+
+   `|tr((pi_U tensor pi_V)(s))|`
+   ` = |tr(pi_U(s))| |tr(pi_V(s))|`.
+
+In particular, if `(TR2)` holds along arbitrary indices `k_j`, it holds
+along the divisibility chain
+
+`K_j=lcm(k_1,...,k_j)`,
+
+because `(TR3)` gives
+`alpha_(K_j)>=max_(i<=j)alpha_(k_i)->1`.  Thus lack of coherence between
+matrix sizes is not an obstruction.  The unresolved question is still
+whether the positive fixed-size gaps `1-alpha_k` have a uniform lower
+bound.
+
+## Relative perfectness quantitatively kills all scalar atlas flux
+
+For the ordinary two-chart source one has
+
+`Nbar=[Pbar,Nbar]`.                                      `(PR1)`
+
+The five-term sequence for `1->Nbar->Pbar->U_Q->1` contains
+
+`H_2(U_Q,Z) -> Nbar/[Pbar,Nbar] -> H_1(Pbar,Z)`.
+
+Both outer groups vanish: `U_Q` is a universal central extension and hence
+superperfect, while `Pbar=A_8*A_8` is perfect.  This proves `(PR1)`.
+
+Fix the finite normal generating set `Sbar` of `Nbar`.  For each
+`s in Sbar`, choose once and for all
+
+`s=product_(j=1)^(m_s) [p_(s,j),n_(s,j)]`
+
+with `p_(s,j) in Pbar`, `n_(s,j) in Nbar`, and express each `n_(s,j)` as
+a product of `L_(s,j)` conjugates of elements of `Sbar^(+-1)`.  If `pi` is
+any exact finite-dimensional representation of `Pbar` and
+
+`delta_pr(pi)=max_(r in Sbar) inf_(z in T)||pi(r)-z1||_2`,
+
+then projective subadditivity gives
+
+`ell_pr(pi(n_(s,j)))<=L_(s,j) delta_pr(pi)`.
+
+For unitaries `u,v`, if `v` is within `epsilon` of a scalar, then
+
+`||[u,v]-1||_2=||uvu^(-1)-v||_2<=2 epsilon`.
+
+Consequently
+
+`max_(s in Sbar)||pi(s)-1||_2`
+` <= C_S delta_pr(pi)`,                                  `(PR2)`
+
+where
+
+`C_S=2 max_(s in Sbar) sum_j L_(s,j)<infinity`.
+
+Thus the projective and ordinary canonical atlas criteria are not merely
+equivalent after an adjoint or conjugate-tensor amplification.  They are
+dimension-free quantitatively equivalent **at the same multiplicity**.
+Every scalar phase on the normal relators is forced to converge to `1`.
+The only live obstruction is the non-scalar component.
