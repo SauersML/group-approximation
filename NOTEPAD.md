@@ -13694,3 +13694,161 @@ lies in one positive chamber or is transported through the telescoping
 Weyl atlas.  The theorem above proves every coefficient covariance letter;
 the chamber cover proves the local Steinberg letters.  Only the bookkeeping
 of their combined block permutations remains.
+
+### The bulk-word estimate avoids a finite-presentation bottleneck
+
+It is unnecessary to choose or verify a finite presentation.  Fix a finite
+generating set consisting of elementary generators of `Gamma_z`, positive
+unit transvections, and coordinate permutations.  For every group element
+choose one representative word.  At finite stage, complete all partial
+block permutations arbitrarily on their boundary sets.
+
+Let `Bad(s)` be the exceptional starting-block set for a generator letter
+`s`: macro overflow, depth wrap, or the discarded Pauli--flag complement.
+For a fixed word
+
+`w=s_1...s_k`,
+
+put
+
+`Bad(w)=union_(j=1)^k (s_1...s_(j-1))^(-1) Bad(s_j)`.
+
+Every prefix is a permutation of the total block set, so
+
+`tr(1_(Bad(w)))<=sum_j tr(1_(Bad(s_j)))`.
+
+**Theorem (bulk-word identity).**  If `w=1` in `G_z^GL`, then on the
+orthogonal complement of `Bad(w)` the finite-stage operator assigned to
+`w` is exactly the identity.  Consequently
+
+`||u_n(w)-1||_2 <=2 sqrt(tr(1_(Bad(w))))`.
+
+**Proof.**  Starting outside `Bad(w)`, every depth update is the exact
+micro--macro lift, every fiber update is the functorial identity
+
+`Phi_(d,h) after alpha_C=Chat_C after Phi_(C^T d,h)`,
+
+and every polarization or chart switch is one of the exact Fourier,
+contragredient, or coordinate-permutation transports.  Induction on the
+prefix length therefore identifies the accumulated fiber operator with the
+finite-ring image of the accumulated group word.  If `w=1` in the actual
+semidirect product, that image is the identity; this automatically includes
+all coefficient elementary/K-theoretic relations, not only a selected
+Steinberg presentation.  Telescoping chart gauges and the good-channel
+Pauli coboundary close the auxiliary path.  On the bad projection the
+difference of two unitaries has operator norm at most two, giving the
+displayed normalized Hilbert--Schmidt estimate.  End proof.
+
+The same argument applied to the fixed representative words for `g`, `h`,
+and `gh` shows
+
+`||u_n(g)u_n(h)-u_n(gh)||_2->0`
+
+for every fixed pair once the parameters diverge.  Thus the classes of
+`u_n(g)` define a homomorphism into a tracial matrix ultraproduct without
+finite presentability.
+
+### Extend the Pauli--flag channel across the index-two `GL_4` enlargement
+
+The Pauli source may remain inside `SL_4`.  Induce its finite channel across
+
+`SL_4(Z/p^n Z)<GL_4(Z/p^n Z)`.
+
+This takes two equal copies, with an odd permutation exchanging them.  The
+good-channel condition `B intersect gP_ng^(-1)=1` and its complement density
+are unchanged, because both determinant cosets are translates of one
+another and the fixed-flag count is identical.  The odd coordinate
+permutations act exactly on the fixed-base jet ring, so this induction adds
+no curvature.  Hence the `GL_4` bulk-word estimate retains
+
+`eta_(n,M,L)=O(1/M)+O(1/(p^n L))+O_p(p^(-4(n-1)))`.
+
+For example, take fixed `p>=7`, `M_n=p^n`, `L_n=p^n`, and choose the jet
+truncation `N_n` larger than every micro--macro depth and every coefficient
+degree in the first `n` chosen group words.  Then `eta_(n,M_n,L_n)->0`.
+The strict compressor chain has nonfinal density `1-O(p^(-2n))`, so the
+blockwise regular-quotient witnesses `v_n` satisfy
+
+`v_n in u_n(Gamma_z)'`
+
+and, for fixed `t,gamma`,
+
+`liminf ||[v_n,u_n(t)^*u_n(gamma)u_n(t)]||_2 >=sqrt(2)`.
+
+Subject only to the just-used good-channel Pauli coboundary being chosen
+simultaneously with the telescoping chart gauges, the bulk-word theorem and
+the finite-atlas-to-strict-compression lemma now produce a hyperlinear
+nonsofic image.  The final audit target is therefore extremely specific:
+write the two-copy induced Pauli cochain and verify on each adjacent chart
+edge that its scalar multiplier is the same one appearing in the
+Fourier--Weil transport.  All non-scalar coefficient and depth terms have
+already been checked exactly.
+
+### The free good-channel groupoid contracts the final scalar exactly
+
+Let `Omega` be one transitive component of the Pauli--flag good channel.
+Its `Q_n`-stabilizer is trivial, so after choosing `x_0 in Omega`, every
+`x in Omega` has a unique transporter `r_x in Q_n` with
+
+`x=r_x x_0`.
+
+Let `c` be the ratio of the Pauli scalar multiplier and the scalar
+multiplier produced by the Fourier--Weil chart transports.  It is a
+normalized circle-valued `2`-cocycle on the action groupoid
+`Q_n semidirect Omega`.
+
+**Lemma (explicit free-groupoid contraction).**  There is a scalar
+`1`-cochain `a` on the arrows of `Q_n semidirect Omega` such that
+
+`delta a=c`.
+
+It may be chosen independently on each good component and transported
+across the second determinant coset in the induced `GL_4` channel.
+
+**Proof.**  Identify the free transitive groupoid with the pair groupoid on
+`Omega`: there is exactly one arrow between every ordered pair of objects.
+Fix the arrows from `x_0` as a spanning tree.  Set the phase on those tree
+arrows to one and, for the unique arrow `x->y`, define its phase using the
+value of `c` on the triangle `x_0->x->y`.  The cocycle identity on a
+tetrahedron shows that the coboundary of this phase equals `c` on every
+composable pair.  Do this on each component.  Left translation by one fixed
+odd permutation transports the construction to the other determinant
+coset.  End proof.
+
+Multiply the Pauli/chart edge unitary by `a` on each good orbit.  Scalar
+rephasing does not alter conjugation of any coefficient operator, the
+Fourier annihilator identity, block support, or the strict commutator norm.
+After rephasing, every good-channel scalar relation agrees exactly with the
+Fourier--Weil relation.  On the discarded complement complete the operators
+arbitrarily.
+
+**Candidate microstate theorem for the fixed-base pair.**  With the
+parameters chosen above, there are maps
+
+`u_n:G_z^GL->U(d_n)`
+
+and unitaries `v_n in u_n(Gamma_z)'` such that
+
+1. `||u_n(g)u_n(h)-u_n(gh)||_2->0` for every fixed `g,h in G_z^GL`;
+2. for one fixed compressor `t` and fixed `gamma in Gamma_z`,
+
+   `liminf ||[v_n,u_n(t)^*u_n(gamma)u_n(t)]||_2>0`.
+
+**Assembly.**  Use the induced two-coset Pauli--flag blocks, the exact
+micro--macro depth lift, the fixed-base square-zero representations
+`pi_d`, the primal/dual Fourier polarizations, the telescoping Weyl atlas,
+and the contracted scalar phases.  The bulk-word theorem proves (1) with
+bad support bounded by `eta_(n,M_n,L_n)->0`.  The strict nested image chain
+and the regular-quotient commutant lemma prove (2) on all nonfinal depth
+blocks.  End assembly.
+
+If every input theorem in this assembly survives independent audit, the
+finite-atlas-to-strict-compression lemma applies to its ultraproduct
+homomorphism.  Faithful tensor completion then gives a hyperlinear image
+which is nonsofic by the Kun--Thom centralizer argument.  This is now a
+complete proposed route, but because it would settle the open problem, the
+next task is adversarial verification rather than declaration: in
+particular audit the asserted semidirect decomposition of `EL_r(S_N)`, the
+regular-quotient witness in the quasi/regular split coordinates, and the
+compatibility of the `GL_4` enlargement with the exact Kun--Thom
+infranormality hypothesis.
