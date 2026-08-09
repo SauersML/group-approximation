@@ -12628,3 +12628,54 @@ choose the edge rephasings simultaneously for the finite presentation,
 verify that the faithful residual-finite summand does not dilute the
 strict commutant escape, and pass these microstates through the relative
 Clifford/Kun--Thom quotient criterion.
+
+### Correction: the eight-chart graph does not identify internal root occurrences
+
+The preceding one-transition theorem overstates what the eight-vertex graph
+proves.  It represents every ordered root on *some* aligned vertical star,
+but a horizontal `B`-transport changes the root label.  Consequently it
+does not identify an internal occurrence of a fixed root with that star
+occurrence.  Direct enumeration gives, for example,
+
+`(0,1): P_0,P_2,S_0,S_3`.
+
+The aligned edge `P_0--S_0` connects only the two star occurrences; the
+internal occurrences in `P_2` and `S_3` remain in separate occurrence
+components under horizontal relabeling and aligned vertical edges.  Thus
+item (4) above is insufficient for a global common root operator.
+
+The repair has finite cost: retain the eight chambers as the relation cover,
+but use all twenty-four total orders on `{0,1,2,3}` as transition charts.
+Join two charts when their orders differ by one adjacent transposition.
+
+**Lemma (Weyl-atlas root connectivity).**
+
+1. Adjacent chambers have positive-root sets differing by exactly one
+   oriented root; the other five root groups occur in both charts.
+2. For every fixed ordered root `(i,j)`, the subgraph of chambers containing
+   `i<j` is connected.
+3. Hence local root operators which are intertwined across every adjacent
+   chamber overlap determine one global operator for each of the twelve
+   ordered roots (up to the scalar loop ambiguity from finite
+   Stone--von Neumann).
+
+**Proof.**  The first assertion is immediate from total orders.  For the
+second, the relevant chambers are precisely the linear extensions of the
+two-element poset with relation `i<j`.  Any two linear extensions are joined
+by adjacent swaps of incomparable elements: bubble the entries into the
+target order, never swapping `i` past `j`.  The last assertion follows by
+transport along this connected occurrence graph.  End proof.
+
+An adjacent wall needs only the one-dimensional Fourier bridge for the root
+whose orientation is reversed.  The multivariate jet identity retains the
+mixed coefficients: in a rank-two subsystem the shared mixed root is
+
+`y^(m_i+m_j)(1+xi_i+xi_j)`,
+
+so it is not erased by square-zero specialization.  What is still owed is
+the explicit adjacent-wall calculation on the full `EL_r(S_N)`
+representation showing that the Fourier operator carries each of the five
+common root occurrences to itself in the transported chart.  Once that
+calculation is supplied, the occurrence connectivity above and the scalar-
+loop lemma give the genuine global root family.  The number of added charts
+is fixed, so no asymptotic error exponent changes.
