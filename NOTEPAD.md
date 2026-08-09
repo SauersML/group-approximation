@@ -24115,3 +24115,53 @@ relation-dependent HS defects.  What is now excluded is the tempting
 two-stage recipe
 
 `finite rank-metric root model -> exact character representation -> HS model`.
+
+# Clifford multiplicity defeats every local adjoint-rank bound (2026-08-09)
+
+The norm-MF Clifford obstruction above cannot be promoted to normalized-HS
+geometry merely by using more Clifford generators.  There is no positive
+lower bound, depending only on a finite Clifford window, for the normalized
+dimension of the corresponding adjoint fixed space--even when the fixing
+group has property `(T)`.
+
+Fix an even integer `N` and let `c_1,...,c_N` be the canonical self-adjoint
+anticommuting unitaries in the irreducible complex Clifford algebra
+
+`Cl_N ~= M_s(C)`,  `s=2^(N/2)`.
+
+Let `Lambda` be any group with an irreducible unitary representation
+
+`sigma:Lambda->U(m)`
+
+and put, on `C^s tensor C^m`,
+
+`A_i=c_i tensor 1`,  `pi(lambda)=1 tensor sigma(lambda)`.
+
+Then all `A_i` anticommute and are fixed exactly by the adjoint action of
+`pi(Lambda)`.  Schur's lemma nevertheless gives
+
+`Fix(Ad pi(Lambda))=pi(Lambda)'=M_s(C) tensor C 1`.
+
+As a subspace of `M_(sm)(C)`, its normalized dimension is
+
+`dim(M_s)/(sm)^2=s^2/(s^2 m^2)=1/m^2`.                 `(1)`
+
+Thus the fixed-space fraction tends to zero with the multiplicity dimension
+although the whole prescribed Clifford window remains fixed exactly.
+
+This phenomenon persists for a fixed Kazhdan group.  For example, pull back
+irreducible representations of growing dimension from finite congruence
+quotients of `SL_3(Z)`.  Property `(T)` controls distance to the fixed space;
+it supplies no lower bound on that space's normalized rank.
+
+Consequently the following proposed shortcut is invalid:
+
+`many exact Clifford lamps in Fix(H)`
+`  ==> a dimension-free trace of p_H-p_Gamma`.
+
+Arbitrary multiplicity can store the group representation while the
+Clifford fixed algebra occupies trace `1/m^2` in the adjoint matrix algebra.
+Any successful tracial contradiction must therefore use the **global
+compressor/covariance web** to control multiplicity, or obtain a quantitative
+defect-versus-rank profile.  Clifford relations and property `(T)` alone
+cannot remove normalized-HS rank blindness.
