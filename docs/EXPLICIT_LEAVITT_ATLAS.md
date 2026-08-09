@@ -135,6 +135,8 @@ Steinberg commutator identity
  \qquad(i,j,k\text{ distinct})                            \tag{6}
 \]
 
+(with \([x,y]=xyx^{-1}y^{-1}\))
+
 gives, for \(s\in\{e,f\}\),
 
 \[
@@ -297,7 +299,41 @@ already nonsofic group \(Q\) hyperlinear.  Formula (15) is the exact
 active-eigenspace interface between the two outcomes; it does not establish
 either one.
 
-## 6. Primary sources
+## 6. One-unitary optimization form
+
+Let \(\widehat H\) be the finite set of irreducible complex representations
+of \(H=2.A_8\).  Every exact representation
+\(\pi:P_2=H_1*H_2\to U(d)\), after a global conjugation, has the form
+
+\[
+ \pi|_{H_1}=\bigoplus_{\sigma\in\widehat H}
+                    \sigma^{\oplus m_\sigma},\qquad
+ \pi|_{H_2}=U\left(\bigoplus_{\sigma\in\widehat H}
+                    \sigma^{\oplus n_\sigma}\right)U^*,  \tag{18}
+\]
+
+where \(m_\sigma,n_\sigma\in\mathbb N\), the two displayed dimensions
+are equal, and \(U\in U(d)\).  Conversely, every choice in (18) defines an
+exact representation of the free product.  Thus, after the finite relator
+list \(\mathcal S\) is printed, every numerator in (15) is the Frobenius
+norm of an explicit fixed word-polynomial in the entries of the single
+matrix \(U\) and \(U^*\).
+
+If \(r_-(\sigma)\) is the multiplicity of \(-1\) for the chosen involution
+in the irreducible representation \(\sigma\), then
+
+\[
+ r_-(\pi)=\sum_{\sigma\in\widehat H}n_\sigma r_-(\sigma). \tag{19}
+\]
+
+Consequently (15) is exactly a sequence of compact one-unitary
+optimizations, indexed only by two finite integer multiplicity vectors.
+No approximate factor representations, chart choices, or additional
+conjugating matrices remain.  Proving that the infimum of the resulting
+ratios is zero settles the main problem negatively; a uniform positive
+lower bound proves that the explicit Steinberg cover is nonhyperlinear.
+
+## 7. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
 \(L_K(1,d)\)*, arXiv:2607.10351, especially Lemmas 2.2--2.3,
