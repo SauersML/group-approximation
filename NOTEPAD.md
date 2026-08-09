@@ -27456,3 +27456,55 @@ with property (T)*, Theorem 2.2, Lemma 3.4, Corollary 3.5 and Proposition
 4.4 (source labels `wreath`, `special`, and `extend`); Chifan--Ioana--Osin--
 Sun, *Wreath-like products of groups and their von Neumann algebras I*,
 Theorems 4.20 and 6.9.
+
+## Hyperbolically embedded stabilizers cannot be Kun--Thom cores
+
+The nonregular Cohen--Lyndon construction does not evade the preceding
+boundary by replacing the regular action with a coset action having an
+infinite Kazhdan stabilizer.  Its stabilizer geometry is incompatible with
+the compressor hypothesis before any approximation issue is reached.
+
+**Theorem (almost-malnormal compressor exclusion).**  Let `Delta<=B` be an
+infinite almost malnormal subgroup: for every `b notin Delta`,
+
+`Delta intersect b Delta b^(-1)`
+
+is finite.  Then
+
+`{b in B : b Delta b^(-1) <= Delta}=Delta`.            `(AM1)`
+
+Consequently, if this compression semigroup generates `B`, then
+`B=Delta`; in particular `Delta` cannot be the nonnormal core in the
+Kun--Thom criterion.
+
+**Proof.**  Every element of `Delta` belongs to the set in `(AM1)`.  If
+`b Delta b^(-1)<=Delta`, then
+
+`Delta intersect b Delta b^(-1)=b Delta b^(-1)`
+
+is infinite.  Almost malnormality forces `b in Delta`, proving `(AM1)`.
+The generation conclusion is immediate.  End proof.
+
+Every infinite hyperbolically embedded subgroup is almost malnormal.
+Moreover, the Dehn-filling theorem used in the CIOS/Sun construction keeps
+the filled peripheral quotient `H/N` hyperbolically embedded in
+`G/<<N>>` (after the standard avoidance condition).  Therefore an infinite
+stabilizer `H/N` produced by that construction cannot simultaneously be the
+strictly compressed subgroup whose compression semigroup generates the
+acting quotient.  The standard loxodromic CIOS construction is even farther
+away: its stabilizers are finite virtually cyclic groups.
+
+This closes a specific proposed splice:
+
+`Cohen--Lyndon property-(T) wreath-like extension`
+` + Kun--Thom nonsofic coset action`
+
+cannot use the Dehn-filling peripheral subgroup as the Kun--Thom core.  A
+successful nonsplit construction would have to obtain its Kazhdan core from
+a different, non-peripheral subgroup with nontrivial image in the acting
+quotient, in agreement with the finite-support core exclusion above.
+
+Primary pin: Dahmani--Guirardel--Osin, the almost-malnormality of
+hyperbolically embedded subgroups and the Dehn-filling preservation theorem;
+Chifan--Ioana--Osin--Sun, Theorem 2.6/2.7 in the published numbering and the
+proof of their wreath-like Dehn-filling theorem.
