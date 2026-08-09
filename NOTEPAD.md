@@ -14522,3 +14522,49 @@ compression-semigroup hypothesis.  The latter hypothesis is pinned in
 Kun--Thom Theorem A/4.1: `P_Gamma={g:gGamma g^(-1)<=Gamma}` must generate
 the ambient group.  The fixed-variable `GL_4` pair satisfies it by the
 positive transvections and coordinate permutations audited above.
+
+### A fixed fusion cutoff removes every inverse-loss issue
+
+The slowly vanishing spectral threshold used above is unnecessary.  Let
+`m=24`, let `p_C` be the transported native good projections in the common
+reference space, and suppose
+
+`tr(p_C)>=1-epsilon`
+
+for every chart.  Put `A=sum_C p_C` and
+
+`q=1_([m/2,m])(A)`.
+
+**Lemma (macroscopic well-conditioned frame corner).**
+
+`tr(1-q)<=2 epsilon`,  and  `||qA^(-1)q||<=2/m`.
+
+**Proof.**  Since `0<=A<=m` and
+
+`tr(m-A)=sum_C tr(1-p_C)<=m epsilon`,
+
+the spectral subspace on which `A<m/2` contributes at least `m/2` per unit
+trace to `m-A`.  Markov's inequality gives
+
+`(m/2)tr(1-q)<=m epsilon`.
+
+The inverse bound is immediate from the definition of `q`.  End proof.
+
+Thus the fusion corner has rank `1-O(epsilon)` with an inverse bound
+independent of `n`.  Passing from the raw adjacent overlap
+
+`p_Cp_D`
+
+to
+
+`p_C qA^(-1)q p_D`
+
+costs only a fixed atlas constant, rather than `tau_n^(-2)`.  The
+`O(sqrt(epsilon_n))` full-regular wall estimates therefore make every fused
+Gram and multiplicative defect tend to zero directly.  The same constant
+bound applies to the transported witness, while deleting `1-q` removes
+only `O(epsilon_n)` of its Hilbert--Schmidt energy.
+
+This eliminates the last quantitative scheduling parameter from the
+quantum-atlas assembly: it is enough to send the native macro, depth-wrap,
+and Pauli--flag bad fraction `epsilon_n` to zero.
