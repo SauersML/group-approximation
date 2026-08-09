@@ -17690,3 +17690,66 @@ is not the covariant image of the positive commutant across the dangerous
 row-torus edge.  Constructing precisely such a selective nonorthogonal
 overlap, or proving it impossible by a dimension-free pinning theorem, is
 the corrected terminal lemma.
+
+### Marginal cyclic spectra do not supply the selective Heisenberg overlap
+
+The full regular `H_p` cell is a correct standalone realization of the
+antipodal `A_2` relation.  Its proposed connection to the strict jet chart,
+however, uses more than the shared-root regular stabilization lemma proves.
+
+Separate equivalences of the three restrictions
+
+`lambda(a) <-> A`,  `lambda(b) <-> B`,  `lambda(c) <-> C`
+
+do not give one unitary which intertwines the triple.  This is visible with
+no jet geometry.  On `ell^2(F_p^2)`, let `A` and `B` be translations in the
+two coordinates and let `C` be a nontrivial translation in the first
+coordinate.  Each of `A,B,C` has order `p` and is a multiple of the regular
+representation of `C_p`, exactly like the three cyclic restrictions of
+`lambda_(H_p)`.  Nevertheless
+
+`[A,B]=1 != C`.
+
+Thus the three marginal cyclic spectra contain no information about the
+joint Heisenberg commutator.
+
+The obstruction persists quantitatively on a large overlap.  Suppose one
+isometry `J` and one projection `p` of trace `1-epsilon` intertwine the three
+`H_p` generators with `A,B,C`, with normalized Hilbert--Schmidt errors at
+most `delta`, and the tested operators move `p` by at most `delta`.  The
+fixed-word Lipschitz estimate applied to
+
+`[a,b]c^(-1)=1`
+
+gives
+
+`||([A,B]C^(-1)-1)p||_2 <= O(delta+sqrt(epsilon))`.
+
+Hence a joint `1-o(1)` overlap already transfers the whole missing relation.
+For the unchanged tangent-only jet triple this contradicts the audited
+base-output lower bound: `[A,B]` is scalar on the tangent factor, whereas
+`C=x_(ik)(1)` is a trace-zero base translation and remains a fixed distance
+away after deleting `o(1)` rank.
+
+Three nominally different large overlaps do not avoid the issue by
+themselves.  For projections `p_a,p_b,p_c` in one matrix algebra,
+
+`codim(range(p_a) intersect range(p_b) intersect range(p_c))`
+` <=codim(p_a)+codim(p_b)+codim(p_c)`.
+
+Thus three `1-o(1)` corners still have a `1-o(1)` common corner.  If their
+three stabilization maps agree there, the preceding word argument applies.
+If they do not agree, their discrepancy is a non-scalar tripod holonomy;
+controlling it is precisely the missing selective fusion theorem.  Scalar
+amplification and tensoring regular factors equalize multiplicities but do
+not force this joint compatibility.
+
+Consequently the local `H_p` cell closes only the existence of a finite
+relation owner with the correct non-scalar output.  It does not close its
+overlap with the strict fixed-base chart.  A valid completion must either
+modify the jet owner operators on a macroscopic sector so that their full
+commutator already contains the base translation while strictness survives,
+or construct a coherent three-leg incidence whose tripod holonomy tends to
+one and prove the displayed Lipschitz transfer directly.  Calling the three
+marginal intertwiners a simultaneous regular Heisenberg stabilization skips
+exactly this load-bearing step.
