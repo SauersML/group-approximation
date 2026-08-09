@@ -26984,3 +26984,8 @@ block-monomial fibre transport, but also very far from asymptotic freeness.
 Haar and deterministic matrices*, Theorem 1.4 (arXiv:1105.4345), gives the
 Haar-plus-deterministic convergence used above; ordinary convergence of
 normalized traces already suffices here.
+
+The same proof is deterministic: any sequence `U_k` for which the two
+regular chart algebras become asymptotically free satisfies `(HAAR1)` and
+cannot be a certificate.  Thus the excluded class includes all
+asymptotically liberating relative-unitary ensembles, not only Haar measure.

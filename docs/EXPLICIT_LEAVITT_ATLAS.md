@@ -1208,6 +1208,12 @@ construction to a structured intermediate regime: uniformly separated
 from block-monomial fibre transport, but also far from asymptotic
 freeness.
 
+Only the asymptotic-freeness conclusion was used in (52).  Hence the same
+no-go statement holds deterministically for every sequence of relative
+unitaries that asymptotically liberates the two regular chart algebras, and
+for any random ensemble with that property; Haar measure is just the
+canonical example.
+
 ## 11. Primary sources
 
 H. V. Khanh and V. H. Thanh, *Matrix generators for the unit groups of
