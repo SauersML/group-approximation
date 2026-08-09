@@ -15525,3 +15525,93 @@ letters native in different chambers must still satisfy their mixed group
 relations in one reference chart.  The chart potentials make their overlap
 operators consistent, but do not by themselves prove those cross-owner
 word identities.
+
+### Fixed owner words factor into native curvature plus fusion leakage
+
+The remaining operator-valued estimate has a general fixed-word identity.
+It does not require a classical global depth set.
+
+Let `U_1,...,U_k` be the block-diagonal owner-transported local operators on
+the direct sum of chart spaces, let `P=VV^*`, and put
+
+`T_i=V^*U_iV`.
+
+Then
+
+`T_1...T_k-q`
+` =V^*(U_1...U_k-1)V+L_k`,
+
+where `L_k` is a sum of `k-1` terms, each obtained by replacing one of the
+intermediate copies of `P` in
+
+`V^*U_1 P U_2 P...P U_kV`
+
+by `P-1`.  Consequently, if
+
+`max_i ||[U_i,P]||_2<=delta`
+
+in the fixed fusion normalization, then
+
+`||L_k||_2<=O(k delta)`.
+
+**Proof.**  The displayed product formula follows from `P=VV^*`.  Remove
+the `k-1` intermediate copies of `P` one at a time and telescope.  Since
+`PV=V`, a factor `(1-P)` next to a prefix or suffix can be moved to a
+commutator with the neighboring `U_i`; all remaining factors are
+contractions.  End proof.
+
+Thus fusion does not need pointwise multiplication on a common macro-depth
+set.  It needs only:
+
+1. pairwise chart overlap, which bounds `[U_i,P]`; and
+2. a blockwise owner-word defect `U_1...U_k-1` supported on the native bad
+   projections.
+
+The second item is naturally checked in the **chart groupoid**, before
+fusion.  Rewrite a reference-chart owner product by inserting its passive
+transports:
+
+`A_1 J_(C_1,C_2) A_2 ... J_(C_(k-1),C_k) A_k`.
+
+Here every `A_i` is a native arrow in its owner chart and every `J` is a
+passive moving-wall arrow.  On the common-good component, the wall squares,
+active coordinate-permutation cells, native commuting-root cells, and
+native `A_2` cells are exact.  A fixed relation word has a finite diagram
+made from these cells.  Sliding its passive walls through that diagram and
+cancelling the chart potentials reduces its boundary operator to the native
+identity.  If a cell meets a depth, face, macro, or Pauli boundary, put its
+starting fiber in `Bad(w)`.  The usual prefix/cell union bound gives
+
+`tr(Bad(w))=O_w(epsilon_n)`.
+
+Therefore
+
+`||U_1...U_k-1||_2=O_w(sqrt(epsilon_n))`.
+
+The adjacent `A_2` owner-change cell can be checked without an abstract
+diagram.  In the notation above, the active permutation satisfies
+
+`SaS^*=c`, `SbS^*=d`, and `ScS^*=a`.
+
+Conjugating the native relation `[a,b]=c` gives
+
+`[c,d]=a`.
+
+Thus the two chamber relations are the same active-coordinate cell; the
+passive Fourier wall only identifies their chart copies and never appears
+as a group letter.  Commuting-root cells behave identically under active
+coordinate conjugation.  This proves the previously isolated adjacent
+rank-two owner-change calculation on the good groupoid.
+
+Combining the two estimates yields, for every fixed relation word,
+
+`||T_1...T_k-q||_2`
+` <=O_w(sqrt(epsilon_n))+O_w(delta_n)`.
+
+After the fixed fusion cutoff, both terms tend to zero by the existing
+overlap estimates.  This supplies the exact curvature factorization missing
+from the classical owner-change attempt.  The next audit must still verify
+that the chosen finite diagram scheme covers the substitution/permutation
+letters in each enumerated ambient word and that the native bad projection
+is invariant enough for the stated cell-union bound; it must not be replaced
+by a global depth map.
