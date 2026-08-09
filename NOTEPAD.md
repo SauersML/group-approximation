@@ -21911,3 +21911,61 @@ check.  It is exactly one of the following genuinely new theorems:
 Primary pins: de Chiffre--Glebsky--Lubotzky--Thom, Theorem 1.2;
 Fournier-Facio--Willett, arXiv:2603.18456v2; Lavi--Levit, *Characters of the
 group `EL_d(R)` for a commutative Noetherian ring `R`*.
+
+### The stability target can be weakened to flexible normalized-HS stability
+
+The same dichotomy does not require same-dimension correction.  Use the
+standard flexible normalized-HS convention: an asymptotic representation
+
+`phi_n:U -> U(d_n)`
+
+may be stabilized to dimension `D_n>=d_n`, with `D_n/d_n -> 1`, and compared
+to a genuine representation
+
+`rho_n:U -> U(D_n)`
+
+after replacing `phi_n(g)` by `phi_n(g) direct_sum I_(D_n-d_n)`.
+
+**Theorem (flexible stability decision).**  The following are equivalent:
+
+1. `U` is not flexibly Hilbert--Schmidt stable;
+2. `U` has a nontrivial homomorphism into a tracial matrix ultraproduct;
+3. `Q=EL_4(L_(F_2)(1,2))` is hyperlinear;
+4. a hyperlinear nonsofic group exists, witnessed by this specific `Q`.
+
+Equivalently,
+
+`U flexibly HS-stable  <=>  Q nonhyperlinear`.
+
+**Proof.**  Suppose first that `U` is flexibly HS-stable and let `phi_n` be
+any asymptotic representation.  Every correcting `rho_n` is trivial.  Hence,
+for every fixed `g`,
+
+`||phi_n(g) direct_sum I - I_(D_n)||_(2,D_n) -> 0`.
+
+The exact rescaling identity is
+
+`||phi_n(g)-I_(d_n)||_(2,d_n)^2`
+` = (D_n/d_n) ||phi_n(g) direct_sum I-I_(D_n)||_(2,D_n)^2`.
+
+Since `D_n/d_n->1`, every asymptotic representation collapses pointwise to
+the trivial one.  Thus no nontrivial tracial-ultraproduct homomorphism exists.
+
+Conversely, if flexible stability fails, an offending asymptotic
+representation cannot converge pointwise to the trivial representation:
+otherwise the trivial same-dimension representations would already correct
+it, without stabilization.  Passing to a subsequence and ultrafilter gives a
+nontrivial tracial-ultraproduct homomorphism.  The one-trace endpoint and
+central-quotient permanence then make `Q` hyperlinear.  If `Q` is
+hyperlinear, pulling its microstates back along `U->Q` gives the reverse
+failure: no stabilization can make a trace-separated element close to a
+genuine representation, since every genuine representation of `U` in every
+dimension is trivial.  Finally `Q` is already nonsofic.  End proof.
+
+This is a genuine reduction in the positive branch.  Gowers--Hatami
+exactification of finite root cells naturally changes dimension, so a future
+local-to-global gluing theorem only needs to prove **flexible** HS stability
+of the Steinberg presentation.  Ordinary HS stability would be stronger than
+necessary.  The LLP+FD theorem still does not apply, because `U` fails FD as
+proved above; the point is that a direct root-complex argument may use
+flexibility without property FD.
