@@ -38,7 +38,7 @@ theorem x_pow_char (p : ℕ) [CharP R p]
 /-- Every element of a Steinberg root subgroup has exponent dividing the
 characteristic. -/
 theorem rootSubgroup_pow_char (p : ℕ) [CharP R p]
-    (i j : Fin 3) (hij : i ≠ j) (g : SteinbergGroup (Fin 3) R)
+    (i j : I) (hij : i ≠ j) (g : SteinbergGroup I R)
     (hg : g ∈ rootSubgroup i j hij) :
     g ^ p = 1 := by
   obtain ⟨a, rfl⟩ := hg

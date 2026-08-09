@@ -14,11 +14,11 @@ namespace SteinbergGroup
 
 open scoped commutatorElement
 
-variable {R : Type*} [Ring R]
+variable {I R : Type*} [Fintype I] [DecidableEq I] [Ring R]
 
 /-- The additive Steinberg root subgroup `Xᵢⱼ`. -/
-def rootSubgroup (i j : Fin 3) (hij : i ≠ j) :
-    Subgroup (SteinbergGroup (Fin 3) R) where
+def rootSubgroup (i j : I) (hij : i ≠ j) :
+    Subgroup (SteinbergGroup I R) where
   carrier := Set.range (x i j hij)
   one_mem' := ⟨0, x_zero i j hij⟩
   mul_mem' := by
@@ -28,19 +28,20 @@ def rootSubgroup (i j : Fin 3) (hij : i ≠ j) :
     rintro _ ⟨a, rfl⟩
     exact ⟨-a, x_neg i j hij a⟩
 
-theorem mem_rootSubgroup_iff (i j : Fin 3) (hij : i ≠ j)
-    (g : SteinbergGroup (Fin 3) R) :
+theorem mem_rootSubgroup_iff (i j : I) (hij : i ≠ j)
+    (g : SteinbergGroup I R) :
     g ∈ rootSubgroup i j hij ↔ ∃ a : R, x i j hij a = g :=
   Iff.rfl
 
-/-- The union of the six Steinberg root subgroups. -/
-def rootSet : Set (SteinbergGroup (Fin 3) R) :=
-  {g | ∃ (i j : Fin 3) (hij : i ≠ j), g ∈ rootSubgroup i j hij}
+/-- The union of all Steinberg root subgroups. -/
+def rootSet : Set (SteinbergGroup I R) :=
+  {g | ∃ (i j : I) (hij : i ≠ j), g ∈ rootSubgroup i j hij}
 
-/-- The six root subgroups generate the full presented Steinberg group. -/
-theorem rootSet_generate : Subgroup.closure (rootSet (R := R)) = ⊤ := by
+/-- The root subgroups generate the full presented Steinberg group. -/
+theorem rootSet_generate :
+    Subgroup.closure (rootSet (I := I) (R := R)) = ⊤ := by
   have hgen := PresentedGroup.closure_range_of
-    (relations (I := Fin 3) (R := R))
+    (relations (I := I) (R := R))
   rw [← hgen]
   congr 1
   ext g
@@ -55,7 +56,7 @@ theorem rootSet_generate : Subgroup.closure (rootSet (R := R)) = ⊤ := by
 /-- The strongly graded `A₂` system inside `St₃(R)`. -/
 def a2System : A2System (SteinbergGroup (Fin 3) R) where
   root := fun i j hij ↦ rootSubgroup i j hij
-  generate := rootSet_generate
+  generate := rootSet_generate (I := Fin 3)
   commute := by
     intro i j k l hij hkl hjk hli u hu v hv
     obtain ⟨a, rfl⟩ := hu
