@@ -41,6 +41,7 @@ import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Steinberg.RootFiltration
 import NonsoficGroupsExist.Steinberg.RootActions
 import NonsoficGroupsExist.Steinberg.RootPlane
+import NonsoficGroupsExist.Steinberg.RootPlaneFourier
 
 /-!
 # Human-readable axiom report
