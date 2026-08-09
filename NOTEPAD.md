@@ -7198,3 +7198,82 @@ The missing object really is an **external Connes-embeddable
 cannot be visible in the Fourier support of any finite product of the regular
 Laurent sector.  This is a rigorous restriction on the terminal certificate,
 not a construction of it.
+
+### Strict compression is an infinite Kazhdan projection in the left--right envelope
+
+The word "external" in the preceding conclusion has a precise C*-algebraic
+meaning.  Let
+
+`sigma:G -> U(S)`
+
+be a homomorphism into a finite tracial von Neumann algebra, and let `H=L2(S)`.
+The adjoint representation is
+
+`Ad_sigma(g)=L(sigma(g)) R(sigma(g)^*)`.
+
+Let `p_Gamma in C*_max(Gamma)` be the Kazhdan projection and denote its image
+under `Ad_sigma` by `p in B(H)`.  Thus
+
+`pH=L2(sigma(Gamma)' intersect S)`.
+
+Put `V=Ad_sigma(t)` for a compressor `t Gamma t^-1<=Gamma`.
+
+**Theorem (left--right infiniteness criterion).**
+
+`sigma(Gamma)' intersect S < sigma(t)(sigma(Gamma)' intersect S)sigma(t)^*`
+
+if and only if
+
+`V^* p V < p`.
+
+In that event `p` is an infinite projection in the unital C*-algebra
+
+`A_lr=C*(Ad_sigma(G),p) <= C*(L(sigma(G)),R(sigma(G))) <= B(L2(S))`:
+
+the proper subprojection `V^*pV` is Murray--von Neumann equivalent to `p`.
+Consequently `A_lr` is not finite, not stably finite, and not MF.
+
+**Proof.**  If `xi` is fixed by `Gamma`, then for every `gamma in Gamma`,
+
+`Ad_sigma(gamma)V^*xi`
+` =V^* Ad_sigma(t gamma t^-1)xi=V^*xi`.
+
+Hence `V^*(pH)<=pH`, which is equivalent to `V^*pV<=p`.  The range of
+`VpV^*` is the space fixed by `t Gamma t^-1`; on bounded vectors this is
+
+`L2(sigma(t)(sigma(Gamma)' intersect S)sigma(t)^*)`.
+
+Thus equality of the two projections is exactly equality of the two relative
+commutants, and properness is equivalent on both sides.  Finally
+`V^*p=(V^*pV)V^*` is a partial isometry implementing Murray--von Neumann
+equivalence of `p` and `V^*pV`.  End proof.
+
+This theorem recovers several earlier no-go results at once.  In a genuine
+finite-dimensional representation the left--right envelope is finite, so
+the inclusion cannot be strict.  If the left--right representation factors
+through a spatial tensor product of finite von Neumann algebras, its image is
+finite and again strictness is impossible.  In particular this is the real
+mechanism behind the amenable-sector theorem: for an amenable generated
+factor the multiplication representation is spatial/min-continuous, whereas
+for a nonamenable factor the left and right actions can generate an infinite
+algebra (indeed all of `B(L2(S))` in the factorial standard form).
+
+The criterion also identifies the exact relation with Kirchberg
+factorization phenomena.  A strict Connes-embeddable model must have a
+finite ambient algebra `S` but a **non-stably-finite left--right C*-envelope**.
+Therefore no proof which first embeds both left and right copies into a finite
+spatial tensor product can succeed.  Hyperlinearity of `S` alone does not
+prevent this: Thom's examples show that hyperlinear Kazhdan groups can fail
+the factorization property.  What is still missing is a representation of
+the specific compressed pair for which this failure is carried by the
+displayed Kazhdan projection and the compressor makes it properly infinite.
+
+Equivalently, the remaining counterexample certificate may be stated in a
+single C*-sentence:
+
+> Find a Connes-embeddable tracial representation of the Kun--Thom ambient
+> group such that the adjoint Kazhdan projection of `Gamma` is infinite in
+> its left--right envelope, with `V^*pV<p` for one compressor.
+
+This is stronger structural information than merely saying that a relative
+commutant should grow.  It does not yet produce the required representation.
