@@ -8195,66 +8195,67 @@ The needed unbounded projective classes already have an elementary
 construction; no stable-rank limit is necessary.
 
 **Theorem (congruence stabilizers supply unbounded projective holonomy).**
-Fix `d>=4`.  For every odd prime `p`, the principal congruence subgroup
+Fix `d>=4`.  For every odd integer `n>=3`, the principal congruence subgroup
 
-`H_p=ker(SL_d(Z)->SL_d(F_p))`
+`H_n=ker(SL_d(Z)->SL_d(Z/n Z))`
 
-has a nontrivial class of order `p` in `H^2(H_p,T)`.  The class may be chosen
+has a nontrivial class of order `n` in `H^2(H_n,T)`.  The class may be chosen
 to factor through the finite abelian quotient
 
-`A_p=H_p/H_(p^2)=sl_d(F_p)`,
+`A_n=H_n/H_(n^2)`,
 
-where `H_(p^2)=ker(SL_d(Z)->SL_d(Z/p^2 Z))`,
+where `H_(n^2)=ker(SL_d(Z)->SL_d(Z/n^2 Z))`, and consequently has a
+finite-dimensional projective unitary representation.
 
-and consequently has a finite-dimensional projective unitary
-representation.
+**Proof.**  Writing an element of `H_n` modulo `n^2` as `1+nX` defines an
+injective homomorphism
 
-**Proof.**  The standard first-congruence-quotient calculation gives
+`A_n -> sl_d(Z/n Z)`.
 
-`H_p/H_(p^2)=sl_d(F_p)`
+Indeed multiplication becomes addition modulo `n^2`, the determinant-one
+condition gives `tr(X)=0 mod n`, and the kernel is exactly `H_(n^2)`.  We do
+not need surjectivity onto all trace-zero matrices.  The coordinate maps
+`X |-> X_12` and `X |-> X_34` are homomorphisms on `A_n`; hence
 
-as additive groups, by sending `1+pX` to `X mod p`.  Multiplication becomes
-addition modulo `p^2`; the image is the trace-zero space because the
-determinant is one.  It contains a root vector and is invariant under the
-adjoint action of `SL_d(F_p)`, whose conjugates span the trace-zero matrices,
-so the map is onto.  In `H_p`, the two
-elements
+`B(X,Y)=X_12 Y_34-X_34 Y_12 mod n`
 
-`a=1+p e_12` and `b=1+p e_34`
+is an alternating bilinear form on `A_n`.  In `H_n`, the elements
 
-commute.  Their commuting-pair bar cycle maps in `H_2(A_p,Z)` to the
-nonzero wedge `e_12 wedge e_34`.  Choose an alternating bilinear form `B` on
-`A_p` with `B(e_12,e_34)=1`.  Since `p` is odd, the scalar multiplier
+`a=1+n e_12` and `b=1+n e_34`
 
-`omega_B(x,y)=exp(2 pi i (1/2) B(x,y)/p)`
+commute.  Their commuting-pair bar cycle maps in `H_2(A_n,Z)` to the
+nonzero wedge `e_12 wedge e_34`, and the displayed `B` takes value one on
+that pair.  Since `n` is odd, the scalar multiplier
 
-on `A_p` is a `2`-cocycle by bilinearity and has commutator bicharacter
+`omega_B(x,y)=exp(2 pi i (1/2) B(x,y)/n)`
 
-`omega_B(x,y) omega_B(y,x)^(-1)=exp(2 pi i B(x,y)/p)`.
+on `A_n` is a `2`-cocycle by bilinearity and has commutator bicharacter
 
-Evaluation on the displayed commuting-pair cycle is a primitive `p`-th
-root of unity.  Hence the pullback class in `H^2(H_p,T)` is nontrivial and
-has order `p`.  It factors through the finite group `A_p`; the twisted left
-regular representation of `A_p` is therefore a finite-dimensional
+`omega_B(x,y) omega_B(y,x)^(-1)=exp(2 pi i B(x,y)/n)`.
+
+Evaluation on the displayed commuting-pair cycle is a primitive `n`-th
+root of unity.  Hence the pullback class in `H^2(H_n,T)` is nontrivial and
+has order `n`.  It factors through the finite group `A_n`; the twisted left
+regular representation of `A_n` is therefore a finite-dimensional
 projective realization.  End proof.
 
 There is a sharp reason this theorem does not itself contradict local
 mean-square smallness.  If a scalar `2`-cocycle `omega` evaluates to a
-primitive `p`-th root on an integral bar cycle
+primitive `n`-th root on an integral bar cycle
 
 `z=sum_i n_i [g_i|h_i]`,
 
 then the product inequality on the unit circle gives
 
-`2 sin(pi/p) <= sum_i |n_i| |omega(g_i,h_i)-1|`.
+`2 sin(pi/n) <= sum_i |n_i| |omega(g_i,h_i)-1|`.
 
 Consequently some pair in the support of `z` has defect at least
 
-`2 sin(pi/p)/||z||_1`.
+`2 sin(pi/n)/||z||_1`.
 
-For the two-term commuting-pair cycle above this is only `sin(pi/p)`, which
-tends to zero.  Moreover the detecting elements `1+p e_12` and `1+p e_34`
-leave every fixed word ball of `SL_d(Z)` as `p` grows (each fixed ball is
+For the two-term commuting-pair cycle above this is only `sin(pi/n)`, which
+tends to zero.  Moreover the detecting elements `1+n e_12` and `1+n e_34`
+leave every fixed word ball of `SL_d(Z)` as `n` grows (each fixed ball is
 finite).  Thus no fixed ambient multiplication pair witnesses a uniform
 defect.  Unbounded-order stabilizer holonomy is therefore compatible with
 the *necessary* pointwise scale for a locally trivial assembly; the missing
@@ -8268,8 +8269,9 @@ sufficiently large rank,
 
 `dim_Fp H^2(Gamma(p),F_p)=choose(d^2-1,2)+1`.
 
-Thus two of the three required clauses are genuinely available, with orders
-tending to infinity as `p` grows.  What Calegari's calculation does **not**
+Thus two of the three required clauses are genuinely available, even along
+the nested tower `n=p^m` for one fixed odd prime.  What Calegari's
+calculation does **not**
 supply is a choice of induction sections/gauges for which the resulting
 transformation-groupoid multiplier is locally mean-square close to one, nor
 does it show that the holonomy acts on the particular off-diagonal
