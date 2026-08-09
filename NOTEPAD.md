@@ -19474,6 +19474,25 @@ Fourier/contextual cell than the `SL_4(Z)` chamber atlas is open, but it is a
 different, explicitly delimited construction problem rather than a change
 of notation.
 
+**Scope correction: the displayed orbit chain itself has no free-word
+advantage.**  Its quotient `A_+ -> S_L` factors through the commutative
+polynomial ring.  Hence every positive Nielsen substitution on this chart is
+seen only through its action on abelianization, namely the corresponding
+elementary matrix in `SL_d(Z)`.  In particular the IA-kernel of
+`SAut(F_d) -> SL_d(Z)` acts trivially on this quotient, and Gersten's
+commuting and `A_2` relators reduce to the same elementary-matrix cells as in
+the original commutative pair.  The primary presentation is Gersten's finite
+presentation by Nielsen generators: disjoint-support commutators, the
+`[E_(ab),E_(bc)]=E_(ac)` relations, and the finite monomial relations.
+
+Therefore the current one-compressor model does **not** make external
+assembly simpler.  To exploit unique reduced words one would need a genuinely
+noncommutative finite quotient (for example a truncated free-word algebra).
+But positive Nielsen substitution then has exponentially large boundary, and
+the plain weighted-word-tree repair fails by the audit below.  The free-word
+pair remains a valid alternative candidate, while its presently constructed
+chain is an abelianized copy of the existing synchronization problem.
+
 ### Root-cycle incidence is the correctly oriented sparse frame
 
 There is a canonical sparse frame between complete compressor chains.  Let
