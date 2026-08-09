@@ -881,6 +881,72 @@ Thus every \(d_k\) is positive, and the unresolved assertion is exactly
 \(\inf_k d_k=0\).  No dimension change or ultraproduct is needed for this
 equivalence.
 
+The ordinary defect floors obey the stronger direct-sum inequality
+
+\[
+ (k+l)d_{k+l}^2\leq k d_k^2+l d_l^2.                  \tag{42b}
+\]
+
+To prove it, take minimizing canonical models at multiplicities \(k\) and
+\(l\) and form their block direct sum.  This is canonical at multiplicity
+\(k+l\).  For each relator, squared normalized Hilbert--Schmidt norms split
+as the dimension-weighted sum of the two squared norms, and each summand is
+bounded by the corresponding maximum defining \(d_k\) or \(d_l\).
+
+Thus \(a_k=kd_k^2\) is subadditive.  Fekete's lemma gives
+
+\[
+ \lim_{k\to\infty}d_k^2=\inf_{k\geq1}d_k^2.            \tag{42c}
+\]
+
+Consequently there are only two possibilities: either \(d_k\to0\) through
+all large multiplicities and \(Q\) is hyperlinear, or \(d_k\) converges to
+one positive dimension-free gap.  Sparse good dimensions and oscillatory
+behavior cannot occur.
+
+There is an equivalent formulation using one smooth trace potential.  Put
+\(m=|\bar{\mathcal S}|\) and define
+
+\[
+ \begin{aligned}
+ E_k&=\min_U\frac1m\sum_{s\in\bar{\mathcal S}}
+                   \|\pi_U(s)-I\|_2^2,\\
+ \gamma_k&=\max_U\operatorname{Re}\left(
+          \frac1m\sum_{s\in\bar{\mathcal S}}
+                   \operatorname{tr}(\pi_U(s))\right).
+ \end{aligned}                                         \tag{42d}
+\]
+
+The unitary identity
+\(\|W-I\|_2^2=2-2\operatorname{Re}\operatorname{tr}(W)\)
+gives
+
+\[
+ E_k=2(1-\gamma_k),
+ \qquad E_k\leq d_k^2\leq mE_k.                        \tag{42e}
+\]
+
+Direct sums give
+
+\[
+ (k+l)E_{k+l}\leq kE_k+lE_l,
+\]
+
+equivalently, \(k\gamma_k\) is superadditive.  Hence
+
+\[
+ \lim_{k\to\infty}\gamma_k=\sup_k\gamma_k,
+ \qquad
+ Q\text{ is hyperlinear}\Longleftrightarrow
+ \lim_{k\to\infty}\gamma_k=1.                        \tag{42f}
+\]
+
+Each fixed \(\gamma_k<1\), since equality would force every relator matrix
+to be the identity and produce a forbidden nontrivial finite-dimensional
+representation of \(U_Q\).  Formula (42d) replaces the nonsmooth min--max
+problem by the maximum of one real smooth word-trace polynomial on a
+compact unitary group.
+
 The compact maxima have a useful amplification calculus.  For all
 \(k,l,m\geq1\),
 
