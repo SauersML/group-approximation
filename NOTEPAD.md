@@ -22827,3 +22827,109 @@ group itself:
 That defect can vanish in the `phi`-seminorm, but it cannot vanish as an
 operator identity.  This is the same normalized-HS wall as the Steinberg
 stability fork, now obtained from the Clifford side by a different argument.
+
+## The near certificate forces flexible HS instability of the ambient group
+
+The preceding Stinespring argument has a finite-dimensional consequence that
+is stronger than merely saying that the original near map is not exact on
+`G`.
+
+**Theorem (ambient flexible-instability certificate).**  Suppose that the
+central amenable-near certificate exists: there are `H`, a state `phi` on
+`B(H)`, and a `phi`-near representation
+
+`pi:E -> U(H)`
+
+such that
+
+`c:=phi((1-pi(z))^*(1-pi(z)))^(1/2)>0`.
+
+Then `G` is not flexibly Hilbert--Schmidt stable.  More precisely,
+Kahl--Schneider Lemma 5.10 produces asymptotic representations
+
+`psi_n:E -> U(d_n)`
+
+with `||1-psi_n(z)||_2 -> c`, and there are a fixed finite subset `F<=G` and
+`eta>0` such that the restrictions `psi_n|G` remain at distance at least
+`eta` on `F` from every genuine finite-dimensional representation of `G`,
+even after stabilization to dimensions `D_n>=d_n` with `D_n/d_n->1`.
+
+**Proof.**  Apply Lemma 5.10 to an increasing sequence of finite subsets of
+`E`, including the fixed finite witness used in ambient-exact near sterility,
+with errors tending to zero.  Its equations (13)--(18) give both asymptotic
+multiplicativity and the displayed convergence at `z`.
+
+Suppose the asserted fixed-window separation failed.  Diagonalizing over an
+increasing exhaustion of `G`, and using the negation of the conclusion, one
+could pass to a subsequence and find genuine representations
+
+`rho_n:G -> U(D_n)`,  `D_n/d_n->1`,
+
+such that
+
+`psi_n(g) direct_sum I_(D_n-d_n) - rho_n(g) -> 0`
+
+in normalized Hilbert--Schmidt norm for every fixed `g in G`.  Pad every
+lamp matrix and `psi_n(z)` by the identity on the same negligible-dimensional
+summand.  All group-law, covariance, and Clifford-relation defects remain
+`o(1)`, while the central-sign length is multiplied by
+`sqrt(d_n/D_n)=1-o(1)` and therefore still tends to `c`.
+
+Now repeat the finite part of the ambient-exact sterility proof with `rho_n`
+in place of the exact Stinespring-corner representation.  Property `(T)` of
+`Gamma` corrects the padded base lamp into `rho_n(Gamma)'`.  Every
+finite-dimensional representation of `Gamma` has finite image, and
+
+`t Gamma t^(-1)<=Gamma`
+
+therefore becomes equality after applying `rho_n`.  The corrected compressor
+witness is `1`; the `o(1)` comparison with the padded near model forces its
+square, hence the padded image of `z`, to tend to `1`.  This contradicts its
+length tending to `c>0`.
+
+Only finitely many entries are used in this contradiction: a Kazhdan set of
+`Gamma`, `t`, `gamma`, the base lamp, the witness word, and `z`.  Therefore a
+compactness/contrapositive argument supplies one fixed `F` and one uniform
+`eta>0`, rather than merely pointwise non-correctability.  End proof.
+
+Consequently
+
+`G flexibly HS-stable  ==>  every amenable near representation of E kills z`.
+
+This is a necessary-condition theorem, not a construction of the near
+certificate.  Since a `z`-separating certificate already yields a hyperlinear
+nonsofic group, the implication must not be presented as progress beyond the
+main certificate.  Its value is that it locates the required nonexactness on
+one fixed Kazhdan/compressor window of the already classical group `G`, and
+shows that negligible dimension changes cannot hide it.
+
+**Primary-source audit.**  Kahl--Schneider, arXiv:2504.10988v2, Definition
+5.3(c), Lemma 5.9, and Lemma 5.10, especially equations (13)--(18).  The
+centralizer algebra in their proof is
+
+`A={a in B(H): phi(ab)=phi(ba) for every b in B(H)}`,
+
+and `pi(E)<=U(A)`.  Hence an exact restriction `pi|G` remains an exact
+representation after the Stinespring `*-homomorphism`; this validates the
+property-`(T)` correction used above.  Replacing the Stinespring projection
+by its invariant spectral correction changes its rank and every selected
+normalized-HS estimate by `o(1)`, so the prescribed singular-state length at
+`z` is genuinely retained.
+
+## A finite-factor reconstruction shortcut is circular
+
+The proper infiniteness of `L=L_(F_2)(1,2)` suggests trying to prove that a
+nontrivial homomorphism
+
+`EL_4(L) -> U(M)`
+
+into a finite von Neumann algebra reconstructs a unital ring embedding of
+`L` into `M` or its affiliated operators, which would contradict finiteness.
+This cannot hold for arbitrary finite `M`: the left regular representation
+embeds every group, including `EL_4(L)`, into the unitary group of its finite
+group von Neumann algebra.  Restricting the proposed statement to
+Connes-embeddable `M` does not make it an independent shortcut; applied to
+the regular representation it is exactly the assertion that `EL_4(L)` is
+nonhyperlinear.  Thus any viable version must add a genuinely checkable
+structural hypothesis on the representation, not just finite-factor or
+Connes-embeddable target language.
