@@ -7495,3 +7495,92 @@ That statement, together with Open Problem 6.2(a), would force `q=p` and
 close the strict-compression route.  Conversely any successful
 counterexample must manufacture the displayed operator-norm blow-up while
 retaining a bounded unitary witness on the opposite principal-angle side.
+
+### Rank-spiky compensation already occurs for diagonal algebras
+
+There is no dimension-free theorem saying that a one-sided normalized-`L2`
+near inclusion between unitarily conjugate finite-dimensional algebras is
+automatically symmetric.  The obstruction above is real even for
+commutative algebras.
+
+**Theorem (binary-tree asymmetric near inclusion).**  For every `L>=1`
+there are two unitarily conjugate diagonal subalgebras `A_L,B_L` of a matrix
+algebra with normalized trace such that
+
+`sup_(b in (B_L)_1) dist_2(b,A_L) <= 2/sqrt(L+1)`,
+
+but there is a self-adjoint unitary `a_L in A_L` satisfying
+
+`dist_2(a_L,B_L)=sqrt(L/(L+1))`.
+
+Moreover there is an `L2`-unit vector `xi_L in B_L` with
+
+`E_(A_L)(xi_L)=0`  and  `||xi_L||_infinity=sqrt(L+1)`.
+
+**Proof.**  Let `T_L` be the rooted binary tree with levels `0,...,L`, and
+give a vertex `v` at depth `k` the probability
+
+`mu(v)=1/((L+1)2^k)`.
+
+Every level has total mass `1/(L+1)`, so this is a probability measure.  We
+construct identically distributed random variables `X,Y` with values in
+`T_L`.  If `X` is a non-root vertex, set `Y=parent(X)`.  If `X` is the root,
+choose `Y` uniformly among the `2^L` leaves.  The law of `Y` is again `mu`:
+the two children of every non-leaf vertex have total mass equal to the mass
+of that vertex, while the root mass is redistributed uniformly over the
+leaves.
+
+All probabilities are integer multiples of
+
+`1/N_L`,  where  `N_L=(L+1)2^L`.
+
+Thus `X,Y` may be realized on a uniform set of `N_L` points.  Put
+
+`A_L=L_infinity(X)`  and  `B_L=L_infinity(Y)`
+
+inside the diagonal algebra of `M_(N_L)`.  The `X`- and `Y`-atoms have the
+same multiset of cardinalities, so a permutation unitary conjugates `A_L`
+onto `B_L`.
+
+Let `f` send every non-root vertex to its parent and fix the root.  Then
+`Y=f(X)` except on the event `X=root`, of probability `1/(L+1)`.  For every
+`b in (B_L)_1`, the element `b(f(X))` lies in `A_L`, and the two functions
+differ by at most `2` only on that event.  Hence
+
+`dist_2(b,A_L) <= 2/sqrt(L+1)`.
+
+Choose signs `s(v) in {+1,-1}` so that the two children of every non-leaf
+vertex have opposite signs, and set `a_L=s(X)`.  Conditional on every
+non-leaf value of `Y`, the variable `X` is uniformly distributed over two
+children with opposite signs.  Conditional on a leaf value of `Y`, one has
+`X=root`.  Therefore `E_(B_L)(a_L)` vanishes on all non-leaf `Y`-atoms and
+has modulus one on the leaves.  Since the non-leaf levels have total mass
+`L/(L+1)`,
+
+`||a_L-E_(B_L)(a_L)||_2^2=L/(L+1)`.
+
+Finally choose mean-zero signs on the leaves and define `xi_L(Y)` to be
+`sqrt(L+1)` times those signs on the leaf atoms and zero elsewhere.  Its
+`L2`-norm is one.  Given `X=root`, its conditional mean is zero, and for
+every other value of `X` it vanishes; hence `E_(A_L)(xi_L)=0`.  Its operator
+norm is `sqrt(L+1)`.  End proof.
+
+This example exactly realizes the principal-angle pathology.  In the
+tracial ultraproduct, the bounded part of `B_L` is contained in the bounded
+part of `A_L`, and the inclusion is proper, witnessed by the bounded
+unitaries `a_L`.  Equal finite-dimensional ranks are restored in the reverse
+direction only by the vectors `xi_L`, whose operator norms diverge.  Thus a
+positive answer to Alekseev--Thom Open Problem 6.2(a) would not, on its own,
+normalize a compressor.  Any rigidity theorem closing the strict-commutant
+route must use the Kazhdan/representation structure of the lifted algebras,
+not merely finite dimensionality, conjugacy, or commutativity.
+
+The construction also supplies a useful positive blueprint.  A strict
+model should have a long branching tower of `Gamma`-types under pullback by
+the compressor.  Only one boundary level should violate the transport
+relations, while ambiguity in the inverse pullback accumulates over all
+levels.  Exact finite-quotient representations cannot exhibit this tower:
+the compressed image equals the original image and the type dynamics is a
+permutation.  The missing object is therefore a flexibly nonliftable
+approximate representation whose `Gamma`-type Bratteli diagram contains
+binary-tree regions of diverging depth.
