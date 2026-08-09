@@ -17269,6 +17269,80 @@ forcing total absorption is precisely the unresolved operator step.  Until
 this cell is supplied, the atlas does **not** yet define the claimed
 homomorphism `sigma:Ghat->U(M)`.
 
+### Row-torus reduction closes the algebraic half of the antipodal gap
+
+The antipodal relations do not require a new family of algebraic relators.
+They are all translates of constant-coefficient cells by auxiliary
+root-dependent torus automorphisms.
+
+For `d=(d_1,...,d_r) in (Z^4)^r`, define on Steinberg generators
+
+`delta_d(x_(ij)(n z^k x^v))`
+` =x_(ij)(n z^k x^(v+d_i-d_j))`.
+
+**Lemma (row-torus automorphisms).**  The displayed formula extends to an
+automorphism of `St_r(R)`, with inverse `delta_(-d)`.
+
+**Proof.**  Same-root additivity is unchanged.  In an `A_2` relation the
+two exponent shifts telescope:
+
+`(d_i-d_j)+(d_j-d_k)=d_i-d_k`.
+
+The commuting-root relations are unchanged as well.  Hence every defining
+Steinberg relation is preserved, and replacing `d` by `-d` gives the
+inverse.  End proof.
+
+Given arbitrary monomial coefficients `x^v,x^w` in an `A_2` triple, set
+
+`d_j=0`,  `d_i=v`,  `d_k=-w`.
+
+Then `delta_d` sends the constant relation
+
+`[x_(ij)(1),x_(jk)(1)]=x_(ik)(1)`
+
+to
+
+`[x_(ij)(x^v),x_(jk)(x^w)]=x_(ik)(x^(v+w))`.
+
+This includes `w=-v`; the impossible positive-cone step has disappeared.
+Likewise, for two distinct commuting matrix roots, prescribe the two edge
+differences `d_i-d_j=v` and `d_k-d_l=w`.  The resulting two-edge system is
+consistent: its only possible inconsistent directed cycle would be an
+opposite-root pair, which is excluded by the Steinberg commuting-root
+hypothesis.  Thus every distinct-root commuting relation is a row-torus
+translate of its constant-coefficient version.
+
+The remaining same-root commutation is a consequence when `r>=4`.  For
+four distinct indices `i,j,k,l`, write
+
+`x_(ij)(a)=[x_(ik)(a),x_(kj)(1)]`,
+
+`x_(ij)(b)=[x_(il)(b),x_(lj)(1)]`.
+
+Every generator in the first bracket commutes with every generator in the
+second bracket.  These are distinct-root commuting relations, already
+covered by row-torus translates of constant cells.  Therefore the two
+commutators commute.  Root additivity for arbitrary Laurent polynomials is
+then obtained by taking the canonical product of their finitely many
+integer-monomial summands.
+
+Hence the full coefficient presentation reduces to:
+
+1. constant-coefficient same-root, commuting-root, and `A_2` cells; and
+2. covariance under the auxiliary automorphisms `delta_d` for finitely many
+   row weights in each word window.
+
+The second item is the sole new operator lemma.  Unlike exponent-linear
+`SL_4(Z)` chart changes, the `delta_d` form the amenable lattice
+`(Z^4)^r/diagonal`.  Their desired finite implementation is a collection of
+row-depth translations with Følner boundary.  They are auxiliary chart
+gauges, not group letters, so their gallery holonomy may be made exactly
+telescoping by choosing vertex potentials.  What remains to prove is that
+these row-depth translations intertwine the fixed-base jet root operators
+on the fusion Gram overlaps with `o(1)` normalized-HS error, and that adding
+their finitely many boundary projections leaves the macroscopic strict
+witness intact.  This is now the exact **row-torus overlap lemma**.
+
 ### Tangent Fourier commutators alone cannot supply the antipodal cell
 
 The most immediate proposed repair fails on the unchanged base factor.  In
