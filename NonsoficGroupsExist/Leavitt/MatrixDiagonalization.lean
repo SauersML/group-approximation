@@ -50,14 +50,21 @@ theorem elementaryUnit10_val (t : R) :
   fin_cases i <;> fin_cases j <;>
     simp [elementaryUnit, Matrix.single]
 
-/-- The auxiliary reduction, assuming the corner entry is nonzero. -/
-theorem exists_elementary_mul_diag_of_corner_ne_zero
+/-- **Four-move strong-division elimination.**  If the upper-left corner is
+nonzero, four explicitly displayed transvections reduce an invertible
+two-by-two matrix to `diag(u, 1)`.  Unlike closure membership, this statement
+retains the uniform word-length information needed by higher-rank bounded
+generation. -/
+theorem exists_four_move_diag_of_corner_ne_zero
     (hdiv : ∀ x : R, x ≠ 0 → ∃ p q : R, p * x * q = 1)
     (A : (Matrix (Fin 2) (Fin 2) R)ˣ)
     (hA : (A : Matrix (Fin 2) (Fin 2) R) 0 0 ≠ 0) :
-    ∃ (E F : (Matrix (Fin 2) (Fin 2) R)ˣ) (u : Rˣ),
-      E ∈ elementaryGroup (Fin 2) R ∧ F ∈ elementaryGroup (Fin 2) R ∧
-      E * A * F = diagUnit u := by
+    ∃ ρ w b' c₃ : R, ∃ u : Rˣ,
+      elementaryUnit (0 : Fin 2) 1 (by decide) (-b') *
+          elementaryUnit (1 : Fin 2) 0 (by decide) w * A *
+            (elementaryUnit (0 : Fin 2) 1 (by decide) ρ *
+              elementaryUnit (1 : Fin 2) 0 (by decide) (-c₃)) =
+        diagUnit u := by
   set a := (A : Matrix (Fin 2) (Fin 2) R) 0 0 with ha
   set b := (A : Matrix (Fin 2) (Fin 2) R) 0 1 with hb
   set c := (A : Matrix (Fin 2) (Fin 2) R) 1 0 with hc
@@ -138,19 +145,34 @@ theorem exists_elementary_mul_diag_of_corner_ne_zero
   set u : Rˣ :=
     ⟨v, ((Z⁻¹ : (Matrix (Fin 2) (Fin 2) R)ˣ) :
       Matrix (Fin 2) (Fin 2) R) 0 0, hright, hleft⟩ with hu
-  refine ⟨E₂ * E₁, F₁ * F₂, u, ?_, ?_, ?_⟩
+  refine ⟨ρ, w, b', c₃, u, ?_⟩
+  apply Units.ext
+  have hassoc : E₂ * E₁ * A * (F₁ * F₂) = Z := by
+    rw [hZ]
+    group
+  rw [hassoc, hval]
+  rfl
+
+/-- The membership-valued form of four-move elimination. -/
+theorem exists_elementary_mul_diag_of_corner_ne_zero
+    (hdiv : ∀ x : R, x ≠ 0 → ∃ p q : R, p * x * q = 1)
+    (A : (Matrix (Fin 2) (Fin 2) R)ˣ)
+    (hA : (A : Matrix (Fin 2) (Fin 2) R) 0 0 ≠ 0) :
+    ∃ (E F : (Matrix (Fin 2) (Fin 2) R)ˣ) (u : Rˣ),
+      E ∈ elementaryGroup (Fin 2) R ∧ F ∈ elementaryGroup (Fin 2) R ∧
+      E * A * F = diagUnit u := by
+  obtain ⟨ρ, w, b', c₃, u, h⟩ :=
+    exists_four_move_diag_of_corner_ne_zero hdiv A hA
+  refine ⟨elementaryUnit (0 : Fin 2) 1 (by decide) (-b') *
+      elementaryUnit (1 : Fin 2) 0 (by decide) w,
+    elementaryUnit (0 : Fin 2) 1 (by decide) ρ *
+      elementaryUnit (1 : Fin 2) 0 (by decide) (-c₃), u, ?_, ?_, h⟩
   · exact Subgroup.mul_mem _
       (elementaryUnit_mem (0 : Fin 2) 1 (by decide) (-b'))
       (elementaryUnit_mem (1 : Fin 2) 0 (by decide) w)
   · exact Subgroup.mul_mem _
       (elementaryUnit_mem (0 : Fin 2) 1 (by decide) ρ)
       (elementaryUnit_mem (1 : Fin 2) 0 (by decide) (-c₃))
-  · apply Units.ext
-    have hassoc : E₂ * E₁ * A * (F₁ * F₂) = Z := by
-      rw [hZ]
-      group
-    rw [hassoc, hval]
-    rfl
 
 /-- **Elementary diagonalization** (checkpoint `B3`, the GE property in
 the form used): over a nontrivial ring with two-sided division of the
