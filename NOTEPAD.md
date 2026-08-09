@@ -17544,3 +17544,106 @@ rounding scale must be chosen diagonally with the covariance error and its
 effect on the native tangent nonmembership must still be quantified.  These
 are genuine remaining estimates; the lemma above shows that no additional
 normalizer-orbit coherence theorem is needed after they are obtained.
+
+### Cyclic row-depth gauges remove the quantitative half of the row-torus gap
+
+The row-torus overlap lemma has a general finite-dimensional part which is
+independent of the fixed-base jet formula.  This part is exact and costs only
+a Følner boundary.
+
+Let `D=Z^m`, let `E subset D` be a fixed finite set of required row-weight
+translations, and put `T_N=(Z/NZ)^m`.  Choose the centered representatives
+of `T_N`.  For `a in E`, let `Good_N(a)` be the representatives for which
+addition by `a` does not cross a face of the centered box.  Then
+
+`1-|Good_N(a)|/|T_N| <= 2 ||a||_1/N`.
+
+Suppose equal-dimensional fibers `H_q`, `q in T_N`, carry local operators
+`X_q(g)`, and on `Good_N(a)` there are exact fiber intertwiners satisfying
+
+`J_a(q) X_q(g) J_a(q)^*=X_(q+a)(delta_a(g))`.
+
+Choose arbitrary vertex potentials `G_q:H_0->H_q` and take
+
+`J_a(q)=G_(q+a)G_q^*`.
+
+Define the cyclic row-depth unitary on `directSum_q H_q` by
+
+`U_a(delta_q tensor xi)=delta_(q+a) tensor J_a(q)xi`.
+
+**Lemma (cyclic row-depth boundary estimate).**  The `U_a` are genuine
+unitaries and satisfy
+
+`U_a U_b=U_(a+b)`
+
+exactly, including across the cyclic wrap.  If the displayed fiber covariance
+holds on `Good_N(a)` and all operators are contractions, then
+
+`||U_a X(g) U_a^*-X(delta_a(g))||_2`
+` <=2 sqrt(2 ||a||_1/N)`.
+
+For a fixed word, intersecting the good sets of its finitely many prefixes
+gives the same estimate with the sum of the prefix translation lengths in
+place of `||a||_1`.
+
+**Proof.**  Unitarity follows because `q|->q+a` is a permutation and every
+fiber map is unitary.  In a product, the middle vertex potentials cancel:
+
+`G_(q+a+b)G_(q+a)^* G_(q+a)G_q^*=G_(q+a+b)G_q^*`.
+
+Thus the gauge law is exact.  The covariance defect vanishes on the direct
+sum of the good fibers.  On its complement it is a difference of two
+contractions, so its operator norm is at most two.  Normalized
+Hilbert--Schmidt norm is therefore at most twice the square root of the bad
+fiber density.  The box estimate is the union of at most `2|a_i|` boundary
+slices in coordinate `i`; the fixed-word assertion is the prefix union
+bound.  End proof.
+
+The same construction preserves the strict witness.  If `z_q` are
+transported by the same vertex potentials and the squared normalized
+commutator energy is at least `kappa^2` on all but an `eta_N` fraction of
+the fibers, then the block sum has energy at least
+
+`kappa^2(1-eta_N)`.
+
+Deleting the row-depth boundary therefore cannot destroy an order-one
+witness when `eta_N->0`.  Since only finitely many row weights occur in the
+stage-`n` word window, choose `N_n` after that window so that the union
+boundary tends to zero.  There is no new scheduling conflict with the fixed
+fusion cutoff.
+
+There is also a useful algebraic stabilization.  For
+`d=(d_1,...,d_r) in (Z^4)^r`, put `u_i=x^(d_i)` and
+
+`u_(r+1)=(product_i u_i)^(-1)`.
+
+Then
+
+`D_d=diag(u_1,...,u_r,u_(r+1)) in SL_(r+1)(R)`
+
+is elementary: split it into the usual two-coordinate diagonal matrices
+`diag(u_i,u_i^(-1))`, each of which is a product of elementary Weyl words.
+Conjugation by `D_d` on the upper-left `r` root groups is exactly
+
+`x_(ij)(a)|->x_(ij)(u_i a u_j^(-1))=delta_d(x_(ij)(a))`.
+
+Hence after one harmless rank stabilization every row-torus automorphism is
+inner.  A Steinberg lift is unique only up to the central kernel, but its
+conjugation action is unambiguous.  This removes any separate outer-action
+or mixed-holonomy coherence requirement: vertex-potential telescoping gives
+the finite gauges, and central scalar holonomy is already covered by the
+matched conjugate-cancellation channel.
+
+What this does **not** yet prove is the load-bearing fixed-base fiber
+identity.  In the notation of the row-torus section it is now isolated as
+
+`J_a(q) U_q(x_(ij)(n z^k x^v)) J_a(q)^*`
+` =U_(q+a)(x_(ij)(n z^k x^(v+a_i-a_j)))`
+
+on the no-wrap corner, simultaneously for the full split regular base and
+the tangent jet action.  The cyclic lemma proves that this exact identity,
+once constructed, automatically globalizes with vanishing normalized
+Hilbert--Schmidt error and preserves strictness.  Inner stabilization does
+not by itself supply the identity: the elementary Weyl word for `D_d`
+contains both `u_i` and `u_i^(-1)`, so citing it without a no-wrap operator
+calculation would merely repackage the antipodal coefficient problem.
