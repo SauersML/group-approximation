@@ -28006,3 +28006,23 @@ embedding need not equal the fold-sensitive trace detected by the quotient
 onto `L(G *_Gamma G)`.  The remaining exact target is Connes embeddability of
 that trace, or another trace-visible quotient retaining the Kun--Thom
 witness.  Full proof: `docs/WEAK_MF_NONSOFIC_DOUBLE.md`, commit `3bcdd61`.
+
+The argument gives a family, not just one double.  Shulman's finite-factor
+lemma plus the same GNS detector proves every finite iterated amalgam
+
+`G *_Gamma G *_Gamma ... *_Gamma G`
+
+weak-MF.  Weak-MF is closed under finite extensions by the exact induced
+matrix representation over a finite-index normal subgroup.  For finite
+`K!=1`, the kernel of
+
+`G *_Gamma (Gamma x K) -> K`
+
+is the star-shaped Bass--Serre cover consisting of `|K|` copies of `G`
+amalgamated over the common `Gamma`.  Therefore every finite-lamp group
+
+`G *_Gamma (Gamma x K)`
+
+for the Kun--Thom pair is weak-MF and nonsofic.  This strengthens the single
+separation to an explicit family; it still supplies operator-norm rather than
+canonical-trace visibility.

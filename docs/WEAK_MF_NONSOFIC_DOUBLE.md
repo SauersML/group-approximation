@@ -151,6 +151,34 @@ irrational scalar representation of \(\mathbb Z\) generates only
 profinite regular completion cannot fold in this way because (3) also
 provides the detecting quotient (9)--(10).
 
+The same proof and Shulman's finite-many-factors lemma give a useful
+strengthening.  For every finite \(r\geq2\),
+
+\[
+ \underbrace{G *_\Gamma G *_\Gamma\cdots *_\Gamma G}_{r\text{ copies}}
+ \quad\text{is weak-MF}.                               \tag{11}
+\]
+
+Indeed, the C*-algebra obtained by amalgamating \(r\) copies of \(A\) over
+the same \(C\) is MF, and its GNS-detecting quotient is the corresponding
+reduced von Neumann amalgam, namely the group von Neumann algebra of the
+iterated group amalgam.
+
+We will also use the elementary fact that weak-MF is closed under finite
+extensions.  If \(N\triangleleft H\) has finite index \(r\) and
+\(N\hookrightarrow U(A)\) with \(A\) MF, choose coset representatives for
+\(H/N\).  The usual induced-representation matrices give an injective
+homomorphism
+
+\[
+ H\longrightarrow U(M_r(A)).
+\]
+
+The entries are the images of the associated \(N\)-valued Schreier
+cocycles.  A nonidentity element either moves a coset or has a nonidentity
+diagonal cocycle entry, so the induced homomorphism is injective.  Since
+matrix amplifications of MF algebras are MF, \(H\) is weak-MF.
+
 ## 3. Application to the Kun--Thom pair
 
 Let \(\Gamma<G\) be the explicit residually finite Kazhdan infranormal pair
@@ -158,7 +186,7 @@ of Kun--Thom.  Choose a strict compressor \(t\) and
 \(\gamma\in\Gamma\) such that
 
 \[
- h=t^{-1}\gamma t\notin\Gamma.                          \tag{11}
+ h=t^{-1}\gamma t\notin\Gamma.                          \tag{12}
 \]
 
 Put
@@ -183,7 +211,7 @@ the second.  The Kun--Thom witness is
 
 \[
  w=[tkt^{-1},\gamma]
-   =t[k,h]t^{-1}.                                      \tag{12}
+   =t[k,h]t^{-1}.                                      \tag{13}
 \]
 
 Abstract Bass--Serre normal form gives \([k,h]\neq1\) because
@@ -193,7 +221,7 @@ If \(E\) were sofic, restrict a sofic embedding to the first copy of
 \(G\).  Kun--Thom's centralizer-normalization theorem says that the
 permutation-ultraproduct centralizer of the image of \(\Gamma\) is
 normalized by the image of \(G\).  Since \(k\) centralizes \(\Gamma\), so
-does \(tkt^{-1}\).  It would follow that the nontrivial word \(w\) in (12)
+does \(tkt^{-1}\).  It would follow that the nontrivial word \(w\) in (13)
 maps to the identity, contradicting injectivity.  Therefore \(E\) is
 nonsofic.
 
@@ -202,13 +230,43 @@ would be sofic.  Thus \(E\) would be sofic, a contradiction.  We have
 proved:
 
 \[
- \boxed{D=G*_\Gamma G\text{ is weak-MF and nonsofic}.}  \tag{13}
+ \boxed{D=G*_\Gamma G\text{ is weak-MF and nonsofic}.}  \tag{14}
+\]
+
+There is a finite-lamp family version.  Let \(K\neq1\) be finite and put
+
+\[
+ H_K=G *_\Gamma(\Gamma\times K).
+\]
+
+The retraction \(H_K\to K\), trivial on \(G\) and equal to the second
+coordinate on \(\Gamma\times K\), has kernel
+
+\[
+ \ker(H_K\to K)
+ \cong \underbrace{G *_\Gamma\cdots *_\Gamma G}_{|K|\text{ copies}}.
+ \tag{15}
+\]
+
+This is the Bass--Serre covering with one central \(\Gamma\)-vertex and
+\(|K|\) outer \(G\)-vertices.  Its kernel is weak-MF by (11), and \(H_K\)
+is weak-MF by finite-extension closure.  The same Kun--Thom
+centralizer-normalization argument, using any \(1\neq k\in K\), proves
+\(H_K\) nonsofic.  Consequently
+
+\[
+ \boxed{
+   K\neq1\text{ finite}
+   \quad\Longrightarrow\quad
+   G *_\Gamma(\Gamma\times K)
+   \text{ is weak-MF and nonsofic}.
+ }                                                       \tag{16}
 \]
 
 This is a genuine separation of weak/operator-norm MF from soficity.  It
 does **not** yet separate hyperlinearity from soficity: Shulman's MF
 embedding supplies operator-norm separation, but its normalized traces need
-not retain the fold-kernel witness (12).  The remaining main-problem
+not retain the fold-kernel witness (13).  The remaining main-problem
 certificate is a trace-visibility theorem for this particular profinite
 regular amalgam, or a pointwise square-root profile for Shulman's lifts.
 
