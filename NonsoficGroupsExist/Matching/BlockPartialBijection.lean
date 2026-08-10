@@ -16,7 +16,7 @@ namespace NonsoficGroupsExist
 variable {Y : FiniteModel}
 
 /-- A distinctly indexed block, bundled as a finite model. -/
-abbrev indexedBlockModel (P : BlockStructure Y) (C : BlockIndex P) : FiniteModel where
+abbrev overlapBlockModel (P : BlockStructure Y) (C : BlockIndex P) : FiniteModel where
   carrier := C.block
   fintype := inferInstance
   decidableEq := inferInstance
@@ -26,7 +26,7 @@ namespace BlockIndex
 /-- Restriction of `q` from `C` to the part of its image lying in `D`. -/
 noncomputable def overlapPartialBijection (P : BlockStructure Y)
     (q : Equiv.Perm Y) (C D : BlockIndex P) :
-    FinitePartialBijection (indexedBlockModel P C) (indexedBlockModel P D) where
+    FinitePartialBijection (overlapBlockModel P C) (overlapBlockModel P D) where
   source := Finset.univ.filter fun x ↦ q x.1 ∈ D.block
   target := Finset.univ.filter fun y ↦ q⁻¹ y.1 ∈ C.block
   equiv :=
@@ -55,7 +55,7 @@ noncomputable def overlapPartialBijection (P : BlockStructure Y)
 
 @[simp] theorem overlapPartialBijection_apply (P : BlockStructure Y)
     (q : Equiv.Perm Y) (C D : BlockIndex P)
-    (x : indexedBlockModel P C)
+    (x : overlapBlockModel P C)
     (hx : x ∈ (overlapPartialBijection P q C D).source) :
     (overlapPartialBijection P q C D).apply x hx = q x.1 := rfl
 
@@ -96,8 +96,8 @@ variable (D : ExpanderDecomposition S T)
 /-- The overlap arrow from a component to its chosen dominant target. -/
 noncomputable def refinementPartialBijection (q : Equiv.Perm (S.model n))
     (C : D.componentIndex n) :
-    FinitePartialBijection (indexedBlockModel (D.blocks n) C)
-      (indexedBlockModel (D.blocks n) (D.refineIndex q C)) :=
+    FinitePartialBijection (overlapBlockModel (D.blocks n) C)
+      (overlapBlockModel (D.blocks n) (D.refineIndex q C)) :=
   BlockIndex.overlapPartialBijection (D.blocks n) q C (D.refineIndex q C)
 
 /-- Its missing source mass is exactly the existing component-leakage
