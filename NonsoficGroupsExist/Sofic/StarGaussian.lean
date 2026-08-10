@@ -72,7 +72,7 @@ theorem normTrace_starMatrix {D : ℕ} (v : Fin D → ℝ) :
 theorem starScale_sq (D : ℕ) :
     starScale D ^ 2 = (D + 1 : ℝ) / 2 := by
   unfold starScale
-  rw [sq_sqrt]
+  rw [Real.sq_sqrt]
   positivity
 
 /-- Exact unnormalized covariance of two star matrices. -/
@@ -81,7 +81,6 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
       ((D + 1 : ℝ) * starDot v w : ℝ) := by
   unfold Matrix.trace starDot
   rw [Fintype.sum_sum_type]
-  simp only [Matrix.mul_apply]
   simp [starMatrix, Fintype.sum_sum_type, starScale_sq]
   push_cast
   ring
@@ -94,9 +93,10 @@ theorem normTrace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
   rw [trace_starMatrix_mul]
   simp only [starModel, StarIndex, Fintype.card_sum, Fintype.card_unique,
     Fintype.card_fin]
-  have h : ((D + 1 : ℕ) : ℂ) ≠ 0 := by
-    exact_mod_cast Nat.succ_ne_zero D
   push_cast
-  field_simp
+  have h : (1 + (D : ℂ)) ≠ 0 := by
+    simpa [add_comm] using
+      (Nat.cast_ne_zero (R := ℂ).mpr (Nat.succ_ne_zero D))
+  field_simp [h]
 
 end NonsoficGroupsExist
