@@ -18,6 +18,16 @@ universe u
 
 variable {K F Q : Type u} [Group K] [Group F] [Group Q]
 
+/-- A semidirect product of finite groups is finite, via its two coordinates.
+The group law is irrelevant to this finiteness construction. -/
+instance finiteSemidirectProduct [Finite F] [Finite Q]
+    (alpha : Q →* MulAut F) : Finite (F ⋊[alpha] Q) := by
+  apply Finite.of_injective (fun p : F ⋊[alpha] Q ↦ (p.left, p.right))
+  intro x y hxy
+  apply SemidirectProduct.ext
+  · exact congrArg Prod.fst hxy
+  · exact congrArg Prod.snd hxy
+
 /-- A group with exactly two elements has no nonidentity automorphism. -/
 theorem subsingleton_mulAut_of_natCard_eq_two (hcard : Nat.card F = 2) :
     Subsingleton (MulAut F) := by
@@ -70,7 +80,8 @@ theorem finite_normal_subgroup_commute [Finite N]
 /-- Typeclass form of `finite_normal_subgroup_commute`. -/
 theorem finite_normal_subgroup_isMulCommutative [Finite N]
     (hN : N ≤ soficResidual K) : IsMulCommutative N :=
-  ⟨fun x y ↦ (finite_normal_subgroup_commute N hN x y).eq⟩
+  IsMulCommutative.of_comm fun x y ↦
+    (finite_normal_subgroup_commute N hN x y).eq
 
 /-- If a normal subgroup has no nontrivial automorphisms, it is central in the
 ambient group.  This applies in particular to a subgroup of order two. -/
@@ -170,15 +181,15 @@ theorem not_kernel_range_le_soficResidual_of_split_equiv
     exact DFunLike.congr_fun hbase f
   have hleft := congrArg SemidirectProduct.left hkilled
   apply hf
-  simpa only [detector, MonoidHom.coe_comp, Function.comp_apply, heq,
-    finiteActionDetector_inl, SemidirectProduct.left_inl,
-    SemidirectProduct.one_left] using hleft
+  dsimp only [detector, MonoidHom.coe_comp, Function.comp_apply] at hleft
+  rw [heq, finiteActionDetector_inl] at hleft
+  simpa using hleft
 
 end SplitExtensions
 
 section ResidualExtension
 
-variable (N : Subgroup K) [N.Normal] [Finite N] [Nontrivial N]
+variable (N : Subgroup K) [Finite N] [Nontrivial N]
 
 /-- **Finite residual kernels do not split.**  If `N` is a nontrivial finite
 normal subgroup contained in the sofic residual, there is no semidirect-product
@@ -195,6 +206,7 @@ theorem finite_normal_residual_kernel_has_no_split_equiv
 
 /-- An order-two finite residual kernel is central and nonsplit. -/
 theorem order_two_residual_kernel_central_and_nonsplit
+    [N.Normal]
     (hN : N ≤ soficResidual K) (hcard : Nat.card N = 2) :
     N ≤ Subgroup.center K ∧
       ∀ (alpha : Q →* MulAut N) (e : K ≃* (N ⋊[alpha] Q)),
