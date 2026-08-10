@@ -34922,6 +34922,58 @@ and then prove weak MF of that changed group.  Merely choosing finitely many
 normal generators of the existing free radical cannot produce the central
 spectral projection used in `(IRG7)`.
 
+## A finite subgroup of the sofic radical is abelian and essentially nonsplit
+
+The finite-radical target in `(IRG21)` cannot be made easier by replacing the
+central shear with a split finite extension.
+
+**Proposition.**  Let `K` be a group and let
+
+`1 != F normal K`,  `F` finite,  `F <= Rad_sof(K)`.          `(FRE1)`
+
+Then:
+
+1. `F` is abelian;
+2. the conjugation action of `K` on `F` factors through
+   `K/Rad_sof(K)`;
+3. the extension `1 -> F -> K -> K/F -> 1` does not split; and
+4. if `F` is cyclic of order two, then `F <= Z(K)`.
+
+**Proof.**  Conjugation gives a homomorphism
+
+`c:K -> Aut(F)`.                                           `(FRE2)`
+
+The target is finite and hence sofic.  By the definition of the full sofic
+radical, `(FRE2)` kills `Rad_sof(K)`.  This proves (2).  In particular it
+kills `F`; but the restriction of `(FRE2)` to `F` is the inner-automorphism
+map.  Hence every element of `F` centralizes every other element of `F`,
+which proves (1).
+
+Suppose the extension split.  Write
+
+`K = F semidirect_alpha Q`,  `Q isomorphic K/F`.            `(FRE3)`
+
+Since `F` is finite, the image `alpha(Q)<=Aut(F)` is finite.  The map
+
+`F semidirect_alpha Q -> F semidirect alpha(Q)`,
+`(f,q) |-> (f,alpha(q))`                                  `(FRE4)`
+
+is a homomorphism to a finite group and is injective on `F`.  This
+contradicts `(FRE1)`, proving (3).  Finally `Aut(C_2)=1`, so a normal
+involution is central, proving (4).  End proof.
+
+**Consequence for TRUE.**  The internal-radical gap bridge applies to every
+nontrivial finite normal radical, not only to a central one.  The proposition
+shows, however, that every such target is a finite **abelian** kernel carried
+by an essentially nonsplit extension class.  For an involution it is exactly
+the central-shear situation.  Thus a semidirect product, finite-index orbit
+doubling, or an ordinary action on a finite lamp cannot solve the remaining
+weak-MF problem: `(FRE4)` would itself be a finite quotient detecting the
+lamp.  A successful construction must realize a genuinely projective finite
+extension in norm microstates (the corona covariance `(CRC4)`), or avoid the
+finite-radical route altogether via a Connes-embeddable trace on the direct
+double.
+
 # A relative Julia lift for an involutive edge intertwiner (2026-08-10)
 
 The proof of Shulman's symmetric-amalgam theorem uses a Julia unitary to
