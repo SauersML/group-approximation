@@ -17,7 +17,9 @@ matrix corner is constructed from the given weak-MF approximation.
 namespace NonsoficGroupsExist
 namespace InternalRadicalGap
 
-open Matrix
+set_option maxHeartbeats 800000
+
+open Filter Matrix
 open scoped Matrix.Norms.L2Operator
 
 variable {H : Type} [Group H]
@@ -48,10 +50,12 @@ theorem norm_coordinateBlock_le_inv_mul_of_diagonal_gap
     simp [Dinv, R, KazhdanCornerMatrices.coordinateBlock,
       Matrix.toBlock_apply, hdne i]
   have hDinv : ‖Dinv‖ ≤ c⁻¹ := by
-    rw [Dinv, Matrix.l2_opNorm_diagonal]
+    change ‖Matrix.diagonal (fun i : {i // p i} ↦ (d i)⁻¹)‖ ≤ c⁻¹
+    rw [Matrix.l2_opNorm_diagonal]
     refine (pi_norm_le_iff_of_nonneg (inv_nonneg.mpr hc.le)).2 fun i ↦ ?_
     rw [norm_inv]
-    exact inv_le_inv₀ hc (hd i i.property)
+    have hdi : 0 < ‖d i‖ := hc.trans_le (hd i i.property)
+    exact (inv_le_inv₀ hdi hc).2 (hd i i.property)
   rw [hfactor]
   calc
     ‖Dinv * R‖ ≤ ‖Dinv‖ * ‖R‖ := Matrix.l2_opNorm_mul _ _
@@ -124,7 +128,8 @@ theorem subgroupTopSpectralDisplacement_vanishing
 /-- Conjugation by an ambient element, regarded as an element of a normal
 subgroup. -/
 def normalConjugate (N : Subgroup H) [N.Normal] (g : H) (x : N) : N :=
-  ⟨g⁻¹ * x * g, Subgroup.Normal.conj_mem' inferInstance x x.property g⟩
+  ⟨g⁻¹ * x * g,
+    (inferInstance : N.Normal).conj_mem' (x : H) x.property g⟩
 
 @[simp]
 theorem normalConjugate_coe (N : Subgroup H) [N.Normal] (g : H) (x : N) :
@@ -159,15 +164,30 @@ theorem subgroup_displacement_mul_ambient_top_vanishing
     A (s : H) g).mul_right_of_norm_le_one P hP
   have hgx := (KazhdanCornerMatrices.multiplicativeDefect_vanishing
     A g (x : H)).mul_right_of_norm_le_one P hP
+  have hmapNorm : ∀ n,
+      ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)‖ ≤ 1 := fun n ↦ by
+    letI : Nonempty (A.model n) :=
+      Fintype.card_pos_iff.mp (A.modelNonempty n)
+    exact (CStarRing.norm_of_mem_unitary (A.map n g).2).le
   have hx := (subgroupTopSpectralDisplacement_vanishing A N D x).mul_left_of_norm_le_one
-    (fun n ↦ (A.map n g : Matrix (A.model n) (A.model n) ℂ))
-    (fun n ↦ (CStarRing.norm_of_mem_unitary (A.map n g).2).le)
+    (fun n ↦ (A.map n g : Matrix (A.model n) (A.model n) ℂ)) hmapNorm
+  change KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+    (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+      (((A.map n (x : H) : Matrix (A.model n) (A.model n) ℂ) - 1) * P n)) at hx
   have htotal := hx.add hgx |>.sub hsg
   exact htotal.congr fun n ↦ by
     have hgroup : (s : H) * g = g * (x : H) := by
       simp only [x, normalConjugate_coe]
       simp [mul_assoc]
-    simp only [P, KazhdanCornerMatrices.topSpectralDisplacement] at htotal ⊢
+    change
+      (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          (((A.map n (x : H) : Matrix (A.model n) (A.model n) ℂ) - 1) * P n) +
+        ((A.map n (g * (x : H)) : Matrix (A.model n) (A.model n) ℂ) -
+          A.map n g * A.map n (x : H)) * P n -
+        ((A.map n ((s : H) * g) : Matrix (A.model n) (A.model n) ℂ) -
+          A.map n (s : H) * A.map n g) * P n =
+      ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        A.map n g * P n
     rw [hgroup]
     noncomm_ring
 
@@ -206,12 +226,15 @@ theorem matrixAverage_sub_one_mul_ambient_top_vanishing
     change ((D.S.card : ℂ)⁻¹) •
         (∑ s ∈ D.S,
           ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
-            (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n) = _
-    rw [KazhdanCornerMatrices.matrixAverage]
+            (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n) =
+      (((D.S.card : ℂ)⁻¹) •
+          (∑ s ∈ D.S,
+            (A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ)) - 1) *
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n
     have hones : ((D.S.card : ℂ)⁻¹) •
         (∑ _s ∈ D.S, (1 : Matrix (A.model n) (A.model n) ℂ)) = 1 := by
-      ext i j
-      simp [hcard]
+      rw [Finset.sum_const, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul,
+        inv_mul_cancel₀ hcard, one_smul]
     rw [show (∑ s ∈ D.S,
           ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
             (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n) =
@@ -220,8 +243,8 @@ theorem matrixAverage_sub_one_mul_ambient_top_vanishing
             ∑ _s ∈ D.S, 1) *
           (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n by
       simp_rw [sub_mul, Finset.sum_sub_distrib, Finset.sum_mul]
-      noncomm_ring]
-    rw [smul_mul_assoc, smul_mul_assoc, smul_sub, hones]
+      ]
+    rw [← smul_mul_assoc, ← smul_mul_assoc, smul_sub, hones]
 
 /-- Replacing the weak-MF orbit average by its exact Hermitian part preserves
 ambient top-corner invariance. -/
@@ -248,6 +271,8 @@ theorem hermitianAverage_sub_one_mul_ambient_top_vanishing
   let GP : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
     (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n
   have hGP : ∀ n, ‖GP n‖ ≤ 1 := fun n ↦ by
+    letI : Nonempty (A.model n) :=
+      Fintype.card_pos_iff.mp (A.modelNonempty n)
     calc
       ‖GP n‖ ≤ ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)‖ * ‖P n‖ :=
         Matrix.l2_opNorm_mul _ _
@@ -268,8 +293,9 @@ theorem hermitianAverage_sub_one_mul_ambient_top_vanishing
 model. -/
 noncomputable abbrev MovingIndex (A : WeakMFApproximation H)
     (N : Subgroup H) (D : Setup A N) (n : ℕ) :=
-  KazhdanCornerMatrices.WeakMFMovingIndex
-    (restrictedApproximation A N) D.S D.cutoff n
+  {i : A.model n //
+    KazhdanCornerMatrices.movingPredicate
+      (restrictedApproximation A N) D.S D.cutoff n i}
 
 /-- The subgroup spectral compression of an ambient element.  This is the
 matrix whose asymptotic multiplicativity will follow from normality. -/
@@ -376,15 +402,35 @@ theorem norm_ambientMovingToTopBlock_le_residual
             (restrictedApproximation A N) D.S n)
           D.cutoff = U * Dtop * Uᴴ := by
     rfl
+  have hsub :
+      KazhdanCornerMatrices.hermitianAverage
+          (restrictedApproximation A N) D.S n - 1 =
+        U * (L - 1) * Uᴴ := by
+    rw [hHdiag]
+    calc
+      U * L * Uᴴ - 1 = U * L * Uᴴ - U * Uᴴ := by rw [hUUstar]
+      _ = U * (L - 1) * Uᴴ := by noncomm_ring
   have hconj : Uᴴ * R * U = (L - 1) * W * Dtop := by
-    simp only [R, W, ambientEigenbasisMicrostate]
-    rw [hHdiag, hPdiag]
-    rw [show U * L * Uᴴ - 1 = U * (L - 1) * Uᴴ by
-      rw [show (1 : Matrix (A.model n) (A.model n) ℂ) = U * Uᴴ by
-        exact hUUstar.symm]
-      noncomm_ring]
-    rw [hUU]
-    noncomm_ring
+    change Uᴴ *
+      ((KazhdanCornerMatrices.hermitianAverage
+          (restrictedApproximation A N) D.S n - 1) *
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          KazhdanCornerMatrices.spectralAbove
+            (KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n)
+            (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+              (restrictedApproximation A N) D.S n) D.cutoff) * U = _
+    rw [hsub, hPdiag]
+    calc
+      Uᴴ * (U * (L - 1) * Uᴴ *
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          (U * Dtop * Uᴴ)) * U =
+        (Uᴴ * U) * (L - 1) *
+          (Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U) *
+          Dtop * (Uᴴ * U) := by noncomm_ring
+      _ = (L - 1) * W * Dtop := by
+        simp only [hUU, one_mul, mul_one]
+        rfl
   have hblockD :
       KazhdanCornerMatrices.coordinateBlock p q ((L - 1) * W) =
         KazhdanCornerMatrices.coordinateBlock p q ((L - 1) * W * Dtop) := by
@@ -411,20 +457,22 @@ theorem norm_ambientMovingToTopBlock_le_residual
         (KazhdanCornerMatrices.norm_coordinateBlock_le p q _)
         (inv_nonneg.mpr hc.le)
     _ = (1 - D.cutoff)⁻¹ * ‖R‖ := by
-      rw [KazhdanCornerMatrices.norm_unitary_conjugate hUstar]
+      rw [show ‖Uᴴ * R * U‖ = ‖R‖ by
+        simpa only [Matrix.conjTranspose_conjTranspose] using
+          KazhdanCornerMatrices.norm_unitary_conjugate hUstar (D := R)]
 
 /-- Normality and the subgroup spectral gap make the ambient moving-to-top
 off-diagonal block vanish in operator norm. -/
 theorem ambientMovingToTopBlock_vanishing
     (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
     (D : Setup A N) (g : H) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
-      KazhdanCornerMatrices.coordinateBlock
+    ∀ eta : ℝ, 0 < eta → ∃ stage, ∀ n ≥ stage,
+      ‖KazhdanCornerMatrices.coordinateBlock
         (KazhdanCornerMatrices.movingPredicate
           (restrictedApproximation A N) D.S D.cutoff n)
         (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
           (restrictedApproximation A N) D.S D.cutoff n i)
-        (ambientEigenbasisMicrostate A N D n g)) := by
+        (ambientEigenbasisMicrostate A N D n g)‖ ≤ eta := by
   have hres := hermitianAverage_sub_one_mul_ambient_top_vanishing A N D g
   intro eta heta
   have hgap : 0 < 1 - D.cutoff := by linarith [D.cutoff_lt_one]
@@ -458,13 +506,13 @@ moving-to-top estimate to the inverse microstate. -/
 theorem ambientTopToMovingBlock_vanishing
     (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
     (D : Setup A N) (g : H) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
-      KazhdanCornerMatrices.coordinateBlock
+    ∀ eta : ℝ, 0 < eta → ∃ stage, ∀ n ≥ stage,
+      ‖KazhdanCornerMatrices.coordinateBlock
         (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
           (restrictedApproximation A N) D.S D.cutoff n i)
         (KazhdanCornerMatrices.movingPredicate
           (restrictedApproximation A N) D.S D.cutoff n)
-        (ambientEigenbasisMicrostate A N D n g)) := by
+        (ambientEigenbasisMicrostate A N D n g)‖ ≤ eta := by
   intro eta heta
   obtain ⟨Nmove, hmove⟩ := ambientMovingToTopBlock_vanishing A N D g⁻¹
     (eta / 2) (by linarith)
@@ -502,7 +550,14 @@ theorem ambientTopToMovingBlock_vanishing
   have hnormdiff : ‖Wstar - Winv‖ =
       ‖(A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ‖ := by
-    rw [hdiff, KazhdanCornerMatrices.norm_unitary_conjugate hUstar]
+    rw [hdiff]
+    rw [show ‖Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+        A.map n g⁻¹) * U‖ =
+      ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ - A.map n g⁻¹‖ by
+        simpa only [Matrix.conjTranspose_conjTranspose] using
+          KazhdanCornerMatrices.norm_unitary_conjugate hUstar
+            (D := (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+              (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ))]
     rw [show (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ - A.map n g⁻¹ =
       -((A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ) by abel, norm_neg]
@@ -657,6 +712,8 @@ theorem ambientMovingCompression_mul_defect_eventually_small
   obtain ⟨Nblock, hblock⟩ := ambientMovingToTopBlock_vanishing A N D g
     (eta / 2) (by linarith)
   refine ⟨max Ndef Nblock, fun n hn ↦ ?_⟩
+  letI : Nonempty (A.model n) :=
+    Fintype.card_pos_iff.mp (A.modelNonempty n)
   have hother :
       ‖KazhdanCornerMatrices.coordinateBlock
         (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
@@ -731,15 +788,16 @@ theorem eventually_nonempty_movingIndex
     (A : WeakMFApproximation H) (N : Subgroup H) [Nontrivial N]
     (D : Setup A N) :
     ∃ stage : ℕ, ∀ n ≥ stage, Nonempty (MovingIndex A N D n) := by
-  simpa only [MovingIndex] using
+  simpa only [MovingIndex, KazhdanCornerMatrices.WeakMFMovingIndex] using
     KazhdanCornerMatrices.eventually_nonempty_weakMFMovingIndex
       D.kazhdan D.S (by rfl) D.one_mem D.epsilon_le_one D.symmetric
       D.generates (restrictedApproximation A N) D.gap_lt_cutoff
 
 /-- A cofinal schedule on which the moving corner is nonempty and the first
 `n + 1` ambient elements all have controlled Gram defect. -/
-structure AmbientMovingCornerSchedule [Nontrivial N]
-    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N) where
+structure AmbientMovingCornerSchedule
+    (A : WeakMFApproximation H) (N : Subgroup H) [Nontrivial N]
+    (D : Setup A N) where
   enumerate : ℕ → H
   enumerate_surjective : Function.Surjective enumerate
   stage : ℕ → ℕ
@@ -791,27 +849,31 @@ theorem exists_ambientMovingCornerSchedule
     (Finset.mem_image.mpr ⟨k, by simp only [Finset.mem_range]; omega, rfl⟩)
 
 /-- A chosen enumeration index for an ambient element. -/
-noncomputable def AmbientMovingCornerSchedule.code [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+noncomputable def AmbientMovingCornerSchedule.code
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (g : H) : ℕ :=
   Classical.choose (R.enumerate_surjective g)
 
 @[simp]
-theorem AmbientMovingCornerSchedule.enumerate_code [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+theorem AmbientMovingCornerSchedule.enumerate_code
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (g : H) :
     R.enumerate (R.code g) = g :=
   Classical.choose_spec (R.enumerate_surjective g)
 
 /-- The selected ambient moving-corner matrix model. -/
-noncomputable abbrev AmbientMovingCornerSchedule.model [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+noncomputable abbrev AmbientMovingCornerSchedule.model
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (n : ℕ) : FiniteModel :=
   KazhdanCornerMatrices.weakMFMovingModel
     (restrictedApproximation A N) D.S D.cutoff (R.stage n)
 
-theorem AmbientMovingCornerSchedule.model_nonempty [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+theorem AmbientMovingCornerSchedule.model_nonempty
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (n : ℕ) :
     0 < Fintype.card (R.model n) := by
   rw [Fintype.card_pos_iff]
@@ -819,23 +881,31 @@ theorem AmbientMovingCornerSchedule.model_nonempty [Nontrivial N]
 
 /-- Exact scheduled unitary obtained by polar correction once an ambient
 element is active. -/
-noncomputable def AmbientMovingCornerSchedule.map [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+noncomputable def AmbientMovingCornerSchedule.map
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (n : ℕ) (g : H) :
     Matrix.unitaryGroup (R.model n) ℂ := by
   by_cases hg : R.code g ≤ n
   · have hclose := R.gram_close n (R.code g) hg
     rw [R.enumerate_code g] at hclose
+    have hclose' :
+        ‖KazhdanCornerMatrices.cornerGram
+            (ambientMovingCompression A N D (R.stage n) g) -
+          (1 : Matrix (R.model n) (R.model n) ℂ)‖ ≤
+            KazhdanCornerMatrices.diagonalTolerance n := by
+      simpa only using hclose
     exact KazhdanCornerMatrices.polarCorrectUnitary
       (ambientMovingCompression A N D (R.stage n) g)
       (KazhdanCornerMatrices.cornerGram_isHermitian _)
-      (KazhdanCornerMatrices.diagonalTolerance_le_half n) hclose
+      (KazhdanCornerMatrices.diagonalTolerance_le_half n) hclose'
   · exact 1
 
 /-- Active scheduled unitaries remain close to their uncorrected ambient
 moving compressions. -/
-theorem AmbientMovingCornerSchedule.map_close_of_code_le [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+theorem AmbientMovingCornerSchedule.map_close_of_code_le
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (n : ℕ) (g : H)
     (hg : R.code g ≤ n) :
     ‖(R.map n g : Matrix (R.model n) (R.model n) ℂ) -
@@ -854,8 +924,8 @@ theorem AmbientMovingCornerSchedule.map_close_of_code_le [Nontrivial N]
 /-- The scheduled exact unitaries are asymptotically multiplicative in
 operator norm. -/
 theorem AmbientMovingCornerSchedule.map_multiplicative_eventually_op
-    [N.Normal] [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    {A : WeakMFApproximation H} {N : Subgroup H} [N.Normal] [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) (g h : H) :
     ∀ eta : ℝ, 0 < eta → ∃ stage, ∀ n ≥ stage,
       ‖(R.map n (g * h) : Matrix (R.model n) (R.model n) ℂ) -
@@ -923,8 +993,8 @@ theorem AmbientMovingCornerSchedule.map_multiplicative_eventually_op
 /-- The ambient scheduled polar corrections form an asymptotic unitary
 representation. -/
 noncomputable def AmbientMovingCornerSchedule.toAsymptoticUnitaryRepresentation
-    [N.Normal] [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    {A : WeakMFApproximation H} {N : Subgroup H} [N.Normal] [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) :
     AsymptoticUnitaryRepresentation H where
   model := R.model
@@ -950,8 +1020,8 @@ noncomputable def AmbientMovingCornerSchedule.toAsymptoticUnitaryRepresentation
 /-- The ambient homomorphism represented by scheduled polar-corrected
 normal corners. -/
 noncomputable def AmbientMovingCornerSchedule.hyperlinearHom
-    [N.Normal] [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    {A : WeakMFApproximation H} {N : Subgroup H} [N.Normal] [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) {𝒰 : Ultrafilter ℕ}
     (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
     H →* UniversalHyperlinear 𝒰 R.model R.model_nonempty :=
@@ -959,12 +1029,173 @@ noncomputable def AmbientMovingCornerSchedule.hyperlinearHom
 
 @[simp]
 theorem AmbientMovingCornerSchedule.hyperlinearHom_apply
-    [N.Normal] [Nontrivial N]
-    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    {A : WeakMFApproximation H} {N : Subgroup H} [N.Normal] [Nontrivial N]
+    {D : Setup A N}
     (R : AmbientMovingCornerSchedule A N D) {𝒰 : Ultrafilter ℕ}
     (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) (g : H) :
     R.hyperlinearHom hcof g = QuotientGroup.mk (fun n ↦ R.map n g) :=
   rfl
+
+/-- The corrected subgroup generators retain the moving-corner trace
+deficit inside the ambient schedule. -/
+theorem AmbientMovingCornerSchedule.generator_trace_eventually_le
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) :
+    ∃ stage, ∀ n ≥ stage,
+      ∑ s ∈ D.S, (normTrace (R.model n) (R.map n (s : H))).re ≤
+        (D.S.card : ℝ) * D.cutoff +
+          (D.S.card : ℝ) *
+            (2 * KazhdanCornerMatrices.diagonalTolerance n) := by
+  classical
+  obtain ⟨stage, hstage⟩ := eventually_finset D.S
+    (fun s n ↦ R.code (s : H) ≤ n)
+    (fun s _ ↦ ⟨R.code (s : H), fun n hn ↦ hn⟩)
+  refine ⟨stage, fun n hn ↦ ?_⟩
+  have hactive : ∀ s ∈ D.S, R.code (s : H) ≤ n := hstage n hn
+  have hmodel : 0 < Fintype.card (R.model n) := R.model_nonempty n
+  have hterm (s : N) (hs : s ∈ D.S) :
+      (normTrace (R.model n) (R.map n (s : H))).re ≤
+        (normTrace (R.model n)
+          (ambientMovingCompression A N D (R.stage n) (s : H))).re +
+            2 * KazhdanCornerMatrices.diagonalTolerance n := by
+    have htrace := KazhdanCornerMatrices.re_normTrace_le_add_l2_opNorm
+      (R.model n) hmodel (R.map n (s : H))
+      (ambientMovingCompression A N D (R.stage n) (s : H))
+    have hclose := R.map_close_of_code_le n (s : H) (hactive s hs)
+    linarith
+  have hsum := Finset.sum_le_sum fun s hs ↦ hterm s hs
+  have hcorner :=
+    KazhdanCornerMatrices.sum_re_normTrace_movingCompression_le
+      (restrictedApproximation A N) D.S D.one_mem D.cutoff (R.stage n)
+      (R.moving_nonempty n)
+  simp only [ambientMovingCompression_subgroup_eq] at hsum
+  rw [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul] at hsum
+  nlinarith
+
+/-- Eventually the corrected subgroup-generator trace average is uniformly
+below one. -/
+theorem AmbientMovingCornerSchedule.generator_trace_eventually_below_one
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) :
+    ∃ stage, ∀ n ≥ stage,
+      ∑ s ∈ D.S, (normTrace (R.model n) (R.map n (s : H))).re ≤
+        (D.S.card : ℝ) * ((1 + D.cutoff) / 2) := by
+  obtain ⟨Ntrace, htrace⟩ := R.generator_trace_eventually_le
+  obtain ⟨Ntol, htol⟩ :=
+    KazhdanCornerMatrices.diagonalTolerance_eventually_le
+      (show 0 < (1 - D.cutoff) / 4 by linarith [D.cutoff_lt_one])
+  refine ⟨max Ntrace Ntol, fun n hn ↦ ?_⟩
+  have ht := htrace n ((le_max_left _ _).trans hn)
+  have hd := htol n ((le_max_right _ _).trans hn)
+  have hcard : (0 : ℝ) ≤ D.S.card := Nat.cast_nonneg _
+  nlinarith
+
+/-- The corrected subgroup generators retain a fixed total tracial
+displacement. -/
+theorem AmbientMovingCornerSchedule.generator_hsLengthSq_eventually_ge
+    {A : WeakMFApproximation H} {N : Subgroup H} [Nontrivial N]
+    {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) :
+    ∃ stage, ∀ n ≥ stage,
+      (D.S.card : ℝ) * (1 - D.cutoff) ≤
+        ∑ s ∈ D.S, hsLengthSq (R.model n) (R.map n (s : H)) := by
+  obtain ⟨stage, hstage⟩ := R.generator_trace_eventually_below_one
+  refine ⟨stage, fun n hn ↦ ?_⟩
+  have htrace := hstage n hn
+  simp_rw [KazhdanCornerMatrices.hsLengthSq_eq_two_sub_two_re_normTrace
+    (R.model n) (R.model_nonempty n)]
+  rw [Finset.sum_sub_distrib, Finset.sum_const, nsmul_eq_mul,
+    ← Finset.mul_sum]
+  nlinarith
+
+/-- At least one subgroup generator survives under the ambient tracial
+ultraproduct homomorphism. -/
+theorem AmbientMovingCornerSchedule.exists_generator_hyperlinearHom_ne_one
+    {A : WeakMFApproximation H} {N : Subgroup H} [N.Normal] [Nontrivial N]
+    {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    ∃ s ∈ D.S, R.hyperlinearHom hcof (s : H) ≠ 1 := by
+  classical
+  by_contra htrivial
+  push Not at htrivial
+  have hnull (s : N) (hs : s ∈ D.S) :
+      IsNullUnitarySeq 𝒰 R.model (fun n ↦ R.map n (s : H)) := by
+    have heq : (1 : UniversalHyperlinear 𝒰 R.model R.model_nonempty) =
+        QuotientGroup.mk (fun n ↦ R.map n (s : H)) := by
+      rw [← R.hyperlinearHom_apply hcof (s : H)]
+      exact (htrivial s hs).symm
+    change QuotientGroup.mk
+      (1 : ∀ n, Matrix.unitaryGroup (R.model n) ℂ) =
+        QuotientGroup.mk (fun n ↦ R.map n (s : H)) at heq
+    have hmem := QuotientGroup.eq.mp heq
+    have hmem' : (fun n ↦ R.map n (s : H)) ∈
+        nullUnitarySubgroup 𝒰 R.model R.model_nonempty := by
+      simpa only [inv_one, one_mul] using hmem
+    exact hmem'
+  let eta : ℝ := (1 - D.cutoff) / 2
+  have heta : 0 < eta := by dsimp [eta]; linarith [D.cutoff_lt_one]
+  have hallSmall : ∀ᶠ n in (𝒰 : Filter ℕ), ∀ s ∈ D.S,
+      hsLengthSq (R.model n) (R.map n (s : H)) < eta := by
+    rw [Finset.eventually_all]
+    intro s hs
+    exact hnull s hs eta heta
+  have hsumSmall : ∀ᶠ n in (𝒰 : Filter ℕ),
+      ∑ s ∈ D.S, hsLengthSq (R.model n) (R.map n (s : H)) <
+        (D.S.card : ℝ) * (1 - D.cutoff) / 2 := by
+    filter_upwards [hallSmall] with n hn
+    calc
+      ∑ s ∈ D.S, hsLengthSq (R.model n) (R.map n (s : H)) <
+          ∑ _s ∈ D.S, eta :=
+        Finset.sum_lt_sum_of_nonempty ⟨1, D.one_mem⟩ hn
+      _ = (D.S.card : ℝ) * (1 - D.cutoff) / 2 := by
+        rw [Finset.sum_const, nsmul_eq_mul]
+        dsimp [eta]
+        ring
+  obtain ⟨stage, hstage⟩ := R.generator_hsLengthSq_eventually_ge
+  have hsumLarge : ∀ᶠ n in (𝒰 : Filter ℕ),
+      (D.S.card : ℝ) * (1 - D.cutoff) ≤
+        ∑ s ∈ D.S, hsLengthSq (R.model n) (R.map n (s : H)) :=
+    eventually_of_atTop hcof stage hstage
+  obtain ⟨n, hnLarge, hnSmall⟩ := (hsumLarge.and hsumSmall).exists
+  have hcard : (0 : ℝ) < D.S.card := by
+    exact_mod_cast Finset.card_pos.mpr ⟨1, D.one_mem⟩
+  nlinarith [D.cutoff_lt_one]
+
+/-- **Internal-radical gap bridge.**  If a countable weak-MF group contains
+a nontrivial normal property-`(T)` subgroup inside its sofic residual, then
+there exists a hyperlinear nonsofic group.
+
+The witness is the range of the ambient normal-corner homomorphism into a
+tracial matrix ultraproduct.  No faithfulness or trace-selection hypothesis
+is required. -/
+theorem exists_hyperlinear_nonsofic_of_normal_kazhdan_soficResidual
+    [Countable H] (hMF : IsWeakMF H) (N : Subgroup H) [N.Normal]
+    [Nontrivial N] (hT : HasKazhdanPropertyT.{0, 0} N)
+    (hresidual : N ≤ soficResidual H) :
+    ∃ (Q : Type) (_ : Group Q), IsHyperlinear Q ∧ ¬IsSofic Q := by
+  classical
+  obtain ⟨separation, hseparation, happroximation⟩ := hMF
+  let A : WeakMFApproximation H :=
+    Classical.choice
+      (exists_weakMFApproximation hseparation happroximation)
+  obtain ⟨D⟩ := exists_setup A N hT
+  obtain ⟨R⟩ := exists_ambientMovingCornerSchedule A N D
+  let 𝒰 : Ultrafilter ℕ := Ultrafilter.of Filter.cofinite
+  have hcof : ((𝒰 : Ultrafilter ℕ) : Filter ℕ) ≤ Filter.cofinite :=
+    Ultrafilter.of_le Filter.cofinite
+  let rho := R.hyperlinearHom hcof
+  obtain ⟨s, hsS, hsDetect⟩ :=
+    R.exists_generator_hyperlinearHom_ne_one hcof
+  have hsResidual : (s : H) ∈ soficResidual H := hresidual s.property
+  have hrange : IsHyperlinear rho.range :=
+    isHyperlinear_of_hyperlinearUltraproductEmbedding
+      𝒰 R.model R.model_nonempty rho.range.subtype Subtype.val_injective
+  have hnsofic : ¬IsSofic rho.range :=
+    not_isSofic_range_of_soficInvisible hsResidual rho hsDetect
+  exact ⟨rho.range, inferInstance, hrange, hnsofic⟩
 
 end InternalRadicalGap
 end NonsoficGroupsExist
