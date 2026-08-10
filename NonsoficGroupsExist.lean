@@ -276,12 +276,14 @@ import NonsoficGroupsExist.Sofic.DivisibleInvisible
 import NonsoficGroupsExist.Sofic.HyperlinearUltraproduct
 import NonsoficGroupsExist.Sofic.NormTraceGap
 import NonsoficGroupsExist.Sofic.WeakMFUltraproduct
+import NonsoficGroupsExist.Sofic.WeakMFTransfer
 import NonsoficGroupsExist.Sofic.KazhdanCorner
 import NonsoficGroupsExist.Sofic.KazhdanCornerMatrices
 import NonsoficGroupsExist.Sofic.WeakMFVectorGNS
 import NonsoficGroupsExist.Sofic.KazhdanCornerModel
 import NonsoficGroupsExist.Sofic.KazhdanCornerDiagonal
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
 import NonsoficGroupsExist.Sofic.CentralFreeLampCover

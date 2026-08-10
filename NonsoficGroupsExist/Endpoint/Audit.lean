@@ -2,6 +2,7 @@ import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.ManuscriptStatements
 import NonsoficGroupsExist.Sofic.SoficSequential
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
@@ -255,3 +256,11 @@ the entire project namespace and fails on anything beyond classical Lean.
 -- The exterior-amplification bridge from square-root-profile operator-norm
 -- MF models to hyperlinearity.
 #print axioms NonsoficGroupsExist.SqrtDimensionMFProfile.isHyperlinear_of_profile
+
+-- The operator-norm separation endpoint.  The C*-amalgamation and flip
+-- permanence statements remain explicit hypotheses; the local weak-MF
+-- transfer and the Kun--Thom/Bass--Serre deduction contain no hidden axiom.
+#print axioms NonsoficGroupsExist.isWeakMF_of_injective
+#print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
+#print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_symmetricDouble_of_analytic_inputs
+#print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_freeLamp_of_analytic_input
