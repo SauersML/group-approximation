@@ -45,6 +45,31 @@ agree.  Proofs of membership carry no additional data. -/
       apply Subtype.ext
       exact happly y.1 y.2
 
+/-- There are only finitely many partial bijections between two finite
+models.  Exposing this instance lets quotient cluster presentations inherit
+finite Hom-sets automatically. -/
+noncomputable instance finite : Finite (FinitePartialBijection Y Z) := by
+  classical
+  let encode : FinitePartialBijection Y Z →
+      Finset Y × Finset Z × Finset (Y × Z) := fun b ↦
+    (b.source, b.target, Finset.univ.filter fun p ↦
+      ∃ hy : p.1 ∈ b.source, b.apply p.1 hy = p.2)
+  apply Finite.of_injective encode
+  intro b c hbc
+  have hs : b.source = c.source := congrArg (fun p ↦ p.1) hbc
+  have ht : b.target = c.target := congrArg (fun p ↦ p.2.1) hbc
+  apply ext hs ht
+  intro y hy
+  have hyc : y ∈ c.source := hs ▸ hy
+  have hg := congrArg (fun p ↦ p.2.2) hbc
+  have hbmem : (y, b.apply y hy) ∈
+      (encode b).2.2 := by
+    simp [encode, hy]
+  have hcmem : (y, b.apply y hy) ∈ (encode c).2.2 := hg ▸ hbmem
+  simp only [encode, Finset.mem_filter, Finset.mem_univ, true_and] at hcmem
+  obtain ⟨hyc', hval⟩ := hcmem
+  simpa only [proof_irrel_heq] using hval.symm
+
 theorem apply_mem_target (b : FinitePartialBijection Y Z)
     (y : Y) (hy : y ∈ b.source) : b.apply y hy ∈ b.target :=
   (b.equiv ⟨y, hy⟩).2

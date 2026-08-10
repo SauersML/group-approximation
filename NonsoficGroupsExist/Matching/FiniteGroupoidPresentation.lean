@@ -73,6 +73,18 @@ instance [DecidableEq I] : DecidableEq P.Obj := fun X Y ↦
 instance : Quiver P.Obj where
   Hom X Y := Quotient (P.rel X.val Y.val)
 
+/-- A quotient Hom-set is finite whenever its representative type is finite.
+This is the bridge from a finite cluster presentation to the counting
+theorems for finite groupoids. -/
+instance homFinite {X Y : P.Obj} [Finite (P.Rep X.val Y.val)] :
+    Finite (X ⟶ Y) :=
+  Finite.of_surjective
+    (@Quotient.mk _ (P.rel X.val Y.val)) Quotient.mk_surjective
+
+noncomputable instance homFintype {X Y : P.Obj}
+    [Finite (P.Rep X.val Y.val)] : Fintype (X ⟶ Y) :=
+  Fintype.ofFinite _
+
 instance : CategoryTheory.Category P.Obj where
   id X := @Quotient.mk _ (P.rel X.val X.val) (P.one X.val)
   comp {X Y Z} f g := Quotient.liftOn₂ f g

@@ -64,5 +64,20 @@ theorem map_pullbackBisection_hom [Fintype C]
         exact (e.apply_symm_apply _).symm) := by
   exact F.map_preimage _
 
+/-- The complete finite counting step: cardinal preservation first upgrades
+a faithful object-injective endofunctor to a full functor, after which every
+bisection pulls back.  No fullness hypothesis remains in the interface. -/
+noncomputable def pullbackBisectionOfCardinalPreserving [Fintype C]
+    [∀ X Y : C, Fintype (X ⟶ Y)]
+    (F : C ⥤ C) [F.Faithful]
+    (hobj : Function.Injective F.obj)
+    (horbit : ∀ X, (orbit X).card = (orbit (F.obj X)).card)
+    (hvertex : ∀ X,
+      Fintype.card (X ⟶ X) = Fintype.card (F.obj X ⟶ F.obj X))
+    (β : Bisection C) : Bisection C := by
+  letI : F.Full :=
+    fullOfFaithfulOfCardinalPreserving F hobj horbit hvertex
+  exact pullbackBisection F hobj β
+
 end FiniteGroupoid
 end NonsoficGroupsExist

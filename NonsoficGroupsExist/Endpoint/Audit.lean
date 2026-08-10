@@ -255,5 +255,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.asymptoticPartialGroupoidPresentation
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.refinementAsymptoticPartialBijection
 #print axioms NonsoficGroupsExist.FiniteGroupoid.fullOfFaithfulOfCardinalPreserving
+#print axioms NonsoficGroupsExist.GroupoidPresentation.homFintype
+#print axioms NonsoficGroupsExist.FiniteGroupoid.pullbackBisectionOfCardinalPreserving
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection
