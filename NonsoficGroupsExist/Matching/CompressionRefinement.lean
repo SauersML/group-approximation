@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Matching.ExternalCompressorCrossing
+import NonsoficGroupsExist.Matching.DecompositionRefinement
 import NonsoficGroupsExist.Criterion.LocalCriterion
 import NonsoficGroupsExist.Matching.ComponentDivergence
 
@@ -87,6 +88,26 @@ theorem compressorLeakage_negligible
     exact hrefine
   apply div_le_div_of_nonneg_right hle
   positivity
+
+/-- For every compressor, components whose chosen target fails to contain a
+strict majority of the transported source carry negligible total vertex
+mass. -/
+theorem compressorMajorityLeakageBadMass_negligible
+    (D : ExpanderDecomposition (C.gammaApproximation S) C.generatorsΓ)
+    (q : G) (hq : q ∈ C.compressors) :
+    Negligible (fun n ↦
+      (Fintype.card ((C.gammaApproximation S).model n) : ℝ))
+      fun n ↦ D.majorityLeakageBadMass (S.map n q) := by
+  have hleak := C.compressorLeakage_negligible S D q hq
+  have htwice := Negligible.const_mul 2 hleak
+  refine Vanishing.squeeze
+    (fun n ↦ div_nonneg (by
+      unfold ExpanderDecomposition.majorityLeakageBadMass
+      positivity) (by positivity))
+    (fun n ↦ ?_) htwice
+  apply div_le_div_of_nonneg_right
+  · exact D.majorityLeakageBadMass_le (S.map n q)
+  · positivity
 
 end CompressionSetup
 end NonsoficGroupsExist

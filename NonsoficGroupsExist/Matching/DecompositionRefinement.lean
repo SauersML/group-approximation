@@ -121,6 +121,57 @@ theorem overlap_refineIndex_add_componentLeakage
   rw [D.refineIndex_block] at hsplit ⊢
   omega
 
+/-- Components on which at least half of the transported source is lost
+before reaching the chosen target. -/
+noncomputable def majorityLeakageBad (q : Equiv.Perm (S.model n)) :
+    Finset (D.componentIndex n) :=
+  Finset.univ.filter fun C ↦
+    C.block.card ≤ 2 * D.componentLeakage (D.blocks n) q C
+
+/-- Vertex mass carried by components without a strict majority in their
+chosen overlap target. -/
+noncomputable def majorityLeakageBadMass (q : Equiv.Perm (S.model n)) : ℝ :=
+  (D.majorityLeakageBad q).sum fun C ↦ (C.block.card : ℝ)
+
+/-- The non-majority component mass costs at most twice the total one-sided
+leakage. -/
+theorem majorityLeakageBadMass_le (q : Equiv.Perm (S.model n)) :
+    D.majorityLeakageBadMass q ≤
+      2 * ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) q C : ℝ) := by
+  classical
+  unfold majorityLeakageBadMass majorityLeakageBad
+  calc
+    ∑ C ∈ Finset.univ.filter (fun C : D.componentIndex n ↦
+        C.block.card ≤ 2 * D.componentLeakage (D.blocks n) q C),
+        (C.block.card : ℝ) ≤
+      ∑ C ∈ Finset.univ.filter (fun C : D.componentIndex n ↦
+        C.block.card ≤ 2 * D.componentLeakage (D.blocks n) q C),
+        (2 * (D.componentLeakage (D.blocks n) q C : ℝ)) := by
+          apply Finset.sum_le_sum
+          intro C hC
+          exact_mod_cast (Finset.mem_filter.mp hC).2
+    _ ≤ ∑ C : D.componentIndex n,
+        (2 * (D.componentLeakage (D.blocks n) q C : ℝ)) := by
+          exact Finset.sum_le_sum_of_subset_of_nonneg
+            (Finset.filter_subset _ _) (fun _ _ _ ↦ by positivity)
+    _ = 2 * ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) q C : ℝ) := by
+          rw [Finset.mul_sum]
+
+/-- Outside `majorityLeakageBad`, the chosen target contains a strict
+majority of the transported source component. -/
+theorem two_mul_overlap_gt_card_of_not_mem_majorityLeakageBad
+    (q : Equiv.Perm (S.model n)) (C : D.componentIndex n)
+    (hC : C ∉ D.majorityLeakageBad q) :
+    C.block.card < 2 * BlockIndex.overlap (D.blocks n) q C (D.refineIndex q C) := by
+  classical
+  have hgood : 2 * D.componentLeakage (D.blocks n) q C < C.block.card := by
+    simpa only [majorityLeakageBad, Finset.mem_filter, Finset.mem_univ, true_and,
+      not_le] using hC
+  have hsplit := D.overlap_refineIndex_add_componentLeakage q C
+  omega
+
 /-- The target-block label on the whole edited model graph. -/
 def transportedTargetLabel (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (x : S.model n) : Finset (S.model n) :=
