@@ -150,14 +150,16 @@ introduce the central involution $z$, and put
 Again $\alpha$ is involutive.  Put
 
 \[
- K_\infty=A\rtimes_\alpha C_2,
+ K_\infty=A\rtimes_\alpha \mathbb Z,
  \qquad J_\infty(H,x)=(H\times C_2)*_A K_\infty.       \tag{5}
 \]
 
 The proof of Theorems 1 and 2 applies verbatim: $z=[s,x]$ is central,
 nontrivial, and belongs to the sofic radical, while weak MF of
 $J_\infty(H,x)$ produces a hyperlinear nonsofic central corner.  Here
-$K_\infty$ is virtually abelian.
+$K_\infty$ is virtually abelian, because the action of its infinite cyclic
+factor on $A$ has order two.  Using an infinite cyclic stable letter avoids
+an unnecessary finite-stage constraint $s^2=1$.
 
 Now take
 
@@ -226,6 +228,62 @@ weak-MF group and one virtually abelian group over an amenable subgroup.
 On the $z=-1$ sector, its exact obstruction is spectral rather than merely
 dimensional: the image of $x$ must be unitarily equivalent to its negative.
 The desired central sign is already forced into the sofic radical by (3).
+
+## 7. The exact antipodal-profile certificate
+
+The compatibility in (8) has a concrete local form.  Call a norm-matrix
+model $\phi_n$ of $H$ **antipodal at $x$** if there are unitaries $S_n$ such
+that
+
+\[
+ \|S_n\phi_n(x)S_n^*+\phi_n(x)\|\longrightarrow0.       \tag{9}
+\]
+
+For the amalgam argument one also needs the same regular detector used in
+the repaired symmetric-double proof: after the two vertex models are put
+in compatible block form, their strong limits on the vertices and edge
+must be the corresponding amplified left regular representations.  This
+prevents the C*-amalgam from folding a Bass--Serre reduced word.  Merely
+asking that the $H$-block have regular strong limit is not enough; the
+$K_\infty$ block and the edge identifications must be part of the detector.
+
+**Theorem 3 (antipodal regular compatible lift suffices).**  Suppose the
+explicit free-lamp group $H$ above has an operator-norm asymptotic lift
+which is antipodal at the witness $x$ in the sense of (9), and suppose the
+compatible two-vertex block construction below has the regular detector
+just specified.  Then $J_\infty(H,x)$ is weak-MF.  Consequently a
+hyperlinear nonsofic group exists.
+
+**Proof.**  Use two summands.  On the first, take the faithful weak-MF model
+of $H$, put $z=1$, and let the stable generator of $K_\infty$ act by a
+generic scalar.  Since $xz=x$ on this summand, all edge relations hold;
+the scalar can be chosen outside the countable set which would create a
+relation between the infinite-order image of $x$ and the stable generator.
+This summand separates $H$ and the $z=1$ quotient of $K_\infty$.
+
+On the second summand use $\phi_n$, put $z=-1$, and send the stable
+generator to $S_n$.  Equation (9) is precisely
+
+\[
+ S_n\phi_n(x)S_n^*\simeq\phi_n(xz),
+\]
+
+while $z$ is fixed.  Thus the two vertex models agree on $A$ and give
+compatible embeddings into one norm matrix ultraproduct.  Shulman's
+general amalgamation criterion makes the associated C*-amalgam MF.  The
+regular strong-limit representation of the two vertex models gives a
+quotient onto the reduced group amalgam, exactly as in the repaired
+symmetric-double argument; hence the abstract Bass--Serre copy of
+$J_\infty(H,x)$ is not folded.  It is therefore weak-MF.  Theorem 2
+finishes. $\square$
+
+This isolates a local quantitative target together with a no-fold audit.
+It does not ask for trace visibility or a dimension/error profile.  It asks
+whether Shulman's regular asymptotic lift can be chosen so that the one
+bilateral-shift word $x$ is antipodally symmetric in operator norm, while
+retaining the regular detector on the completed graph of groups.  Arbitrary
+weak-MF lifts do not have this property: full spectrum alone does not
+control finite-stage spectral multiplicities.
 
 ## References
 

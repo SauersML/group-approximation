@@ -30134,6 +30134,34 @@ centralizer of one primitive hyperbolic radical word; the group-theoretic
 central-radical statement and the group/C*-subalgebra intersection are both
 unconditional.
 
+## Antipodal profile refinement of the infinite-order shear
+
+For the earlier free-lamp shear, use
+
+    K_infinity=(Z x C2) semidirect Z,
+
+where the stable Z acts through the involution x |-> xz. This is still
+virtually abelian and removes the unnecessary relation s^2=1. A sufficient
+local certificate is an antipodal compatible lift: matrix models phi_n and
+unitaries S_n with
+
+    ||S_n phi_n(x) S_n^* + phi_n(x)|| -> 0.
+
+One z=+1 block carries the faithful weak-MF model and separates H; one
+z=-1 block carries the antipodal relation and retains the central sign.
+For the C*-amalgam not to fold, the completed compatible block model must
+also have amplified left-regular strong limits on both vertices and the
+edge. Regular limit only on the H block is not enough. This exact
+antipodal-plus-detector certificate is recorded in
+docs/CENTRAL_RADICAL_SHEAR_GADGET.md.
+
+The centralizer-twisted symmetric shear (IS1)--(IS8) added above is sharper:
+it uses the already weak-MF symmetric double as both identical vertices and
+localizes the same antipodal issue to the centralizer of one primitive
+hyperbolic radical word. Future work should prefer IS8 over the asymmetric
+free-lamp shear unless the latter's explicit virtually-abelian vertex is
+needed.
+
 ## The twisted double and the shear-vertex amalgam are finite-index twins
 
 Let the abstract data `B,A,alpha` be as above and put
