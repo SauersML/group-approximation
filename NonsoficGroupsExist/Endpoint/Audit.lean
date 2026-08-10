@@ -376,3 +376,4 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.RelationPartialClusterRepair.card_hammingDisagreement_repair_le
 #print axioms NonsoficGroupsExist.RelationPartialClusterRepair.card_badArcs_repair_le
 #print axioms NonsoficGroupsExist.RelationPartialClusterRepair.repair_candidate_and_close_of_bounds
+#print axioms NonsoficGroupsExist.PartialClusterSystem.ofRelationRepairs

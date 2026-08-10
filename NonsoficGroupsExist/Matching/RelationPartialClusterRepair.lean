@@ -1,5 +1,6 @@
 import NonsoficGroupsExist.Kazhdan.KazhdanImprovement
 import NonsoficGroupsExist.Matching.PartialSwapEquivariance
+import NonsoficGroupsExist.Matching.PartialClusterPresentation
 
 /-!
 # Partial-cluster repair from an arbitrary finite relation
@@ -165,4 +166,62 @@ theorem repair_candidate_and_close_of_bounds
     simpa only [repair, p] using hclose
 
 end RelationPartialClusterRepair
+
+universe u
+
+namespace PartialClusterSystem
+
+open RelationPartialClusterRepair
+
+variable {I : Type u} [Fintype I]
+variable {L : Type*} [Fintype L] [DecidableEq L]
+
+/-- Build a partial cluster system from finite relation improvements.  This
+constructor isolates the exact remaining obligation in the approximate-action
+case: for each composite candidate, produce one relation satisfying the three
+explicit numerical bounds.  The conversion of that relation into an improved
+candidate is entirely internal. -/
+noncomputable def ofRelationRepairs
+    (model : I → FiniteModel)
+    (act : ∀ X, L → Equiv.Perm (model X))
+    (h : ℝ) (h_pos : 0 < h) (scale : ℕ) (scale_pos : 0 < scale)
+    (expands : ∀ X,
+      FinitePartialBijection.HasTaggedExpansionAtScale
+        (act X) h scale)
+    (size : ∀ X, 17 * scale ≤ Fintype.card (model X))
+    (relationExists : ∀ {X Y Z}
+      (f : FinitePartialBijection (model X) (model Y)),
+      f.IsClusterCandidate (act X) (act Y) h scale →
+      ∀ (g : FinitePartialBijection (model Y) (model Z)),
+      g.IsClusterCandidate (act Y) (act Z) h scale →
+        ∃ U : Finset (((model X) ⊕ (model Z)) ×
+            ((model X) ⊕ (model Z))),
+          let b := f.trans g
+          b.sourceDefect + b.targetDefect +
+              2 * disagreementBudget b U < 2 * scale ∧
+            ((2 * (Fintype.card L *
+                (b.sourceDefect + disagreementBudget b U)) +
+              Fintype.card L * badArcBudget (act X) (act Z) b U : ℕ) : ℝ) <
+                h * scale / 2 ∧
+            ((2 * (Fintype.card L *
+                (b.targetDefect + disagreementBudget b U)) +
+              Fintype.card L * badArcBudget (act X) (act Z) b U : ℕ) : ℝ) <
+                h * scale / 2) :
+    PartialClusterSystem I L where
+  model := model
+  act := act
+  h := h
+  h_pos := h_pos
+  scale := scale
+  scale_pos := scale_pos
+  expands := expands
+  size := size
+  improveExists := by
+    intro X Y Z f hf g hg
+    obtain ⟨U, hself, hforward, hbackward⟩ := relationExists f hf g hg
+    exact ⟨RelationPartialClusterRepair.repair U,
+      repair_candidate_and_close_of_bounds
+        (act X) (act Z) (f.trans g) U hself hforward hbackward⟩
+
+end PartialClusterSystem
 end NonsoficGroupsExist
