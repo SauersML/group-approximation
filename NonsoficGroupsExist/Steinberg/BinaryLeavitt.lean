@@ -2,10 +2,12 @@ import NonsoficGroupsExist.Steinberg.FinitelyGenerated
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Steinberg.FiniteTypePropertyT
 import NonsoficGroupsExist.Steinberg.HigherRankPropertyT
+import NonsoficGroupsExist.Steinberg.RootKernelRigidity
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
 import NonsoficGroupsExist.Leavitt.FinitePresentation
+import NonsoficGroupsExist.Leavitt.LeavittSimplicity
 import NonsoficGroupsExist.PropertyT.FiniteFieldElementaryPropertyT
 
 /-!
@@ -47,6 +49,20 @@ rank at least three. -/
 theorem finitelyGenerated {n : ℕ} (hn : 3 ≤ n) :
     Group.FG (BinaryLeavittSteinberg n) :=
   SteinbergGroup.finitelyGenerated n (by omega)
+
+/-- Every nontrivial homomorphism out of the binary-Leavitt Steinberg group
+in rank at least five is injective on every root subgroup.  This is proved
+solely from the presented Steinberg relations and the internally established
+strong two-sided division theorem for the binary Leavitt algebra. -/
+theorem map_root_injective_of_ne_one
+    {Q : Type*} [Group Q] {n : ℕ} (hn : 5 ≤ n)
+    (φ : BinaryLeavittSteinberg n →* Q) (hφ : φ ≠ 1)
+    (i j : Fin n) (hij : i ≠ j) :
+    Function.Injective (fun a : UniversalLeavitt.BinaryLeavittAlgebra ↦
+      φ (SteinbergGroup.x i j hij a)) :=
+  SteinbergGroup.map_x_injective_of_ne_one
+    (fun _ ha ↦ BinaryLeavitt.exists_mul_mul_eq_one (ZMod 2) ha)
+    (SteinbergGroup.fin_exists_spare_four hn) φ hφ i j hij
 
 /-- The binary-Leavitt Steinberg group in rank three has property `(T)`
 directly, without assuming that the unstable Steinberg kernel vanishes. -/
