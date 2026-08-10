@@ -54,6 +54,46 @@ noncomputable def agreement (b c : FinitePartialBijection Y Z) : Finset Y :=
   classical
   simp [equivarianceDefect]
 
+/-- Every missing source point contributes one equivariance defect for every
+label.  This lower bound is useful when small labelled defect must force a
+partial bijection to be co-large. -/
+theorem card_mul_sourceDefect_le_card_equivarianceDefect
+    (b : FinitePartialBijection Y Z)
+    (actY : L → Equiv.Perm Y) (actZ : L → Equiv.Perm Z) :
+    Fintype.card L * b.sourceDefect ≤
+      (b.equivarianceDefect actY actZ).card := by
+  classical
+  let Missing := {y // y ∈ Finset.univ \ b.source}
+  let charge : L × Missing →
+      {p // p ∈ b.equivarianceDefect actY actZ} := fun p ↦ by
+    refine ⟨(p.1, p.2.1), ?_⟩
+    rw [mem_equivarianceDefect]
+    intro hy
+    exact ((Finset.mem_sdiff.mp p.2.2).2 hy).elim
+  have hcharge : Function.Injective charge := by
+    intro p q hpq
+    apply Prod.ext
+    · exact congrArg (fun x ↦ x.1.1) hpq
+    · apply Subtype.ext
+      exact congrArg (fun x ↦ x.1.2) hpq
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  have hmissing : (Finset.univ \ b.source).card = b.sourceDefect := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ b.source)]
+    simp [FinitePartialBijection.sourceDefect]
+  dsimp only [Missing] at hcard
+  simpa only [Fintype.card_prod, Fintype.card_coe, hmissing] using hcard
+
+/-- Backward equivariance defects likewise contain every missing target for
+every label. -/
+theorem card_mul_targetDefect_le_card_symm_equivarianceDefect
+    (b : FinitePartialBijection Y Z)
+    (actY : L → Equiv.Perm Y) (actZ : L → Equiv.Perm Z) :
+    Fintype.card L * b.targetDefect ≤
+      (b.symm.equivarianceDefect actZ actY).card := by
+  simpa only [sourceDefect_symm] using
+    card_mul_sourceDefect_le_card_equivarianceDefect
+      b.symm actZ actY
+
 /-- Every labeled boundary arc of the agreement set is an equivariance
 failure of one of the two partial maps. -/
 theorem taggedBoundary_agreement_subset_equivarianceDefect_union

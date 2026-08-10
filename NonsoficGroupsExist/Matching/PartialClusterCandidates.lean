@@ -24,6 +24,57 @@ structure IsClusterCandidate
   backwardSmall : ((f.symm.equivarianceDefect actZ actY).card : ℝ) < h * m / 2
 
 omit [DecidableEq L] in
+/-- With at least one label and expansion constant at most two, the forward
+candidate inequality alone forces fewer than `m` missing source points. -/
+theorem IsClusterCandidate.sourceDefect_lt_scale
+    {actY : L → Equiv.Perm Y} {actZ : L → Equiv.Perm Z}
+    {h : ℝ} {m : ℕ} {f : FinitePartialBijection Y Z}
+    (hf : f.IsClusterCandidate actY actZ h m)
+    (hL : Nonempty L) (hh : h ≤ 2) : f.sourceDefect < m := by
+  letI : Nonempty L := hL
+  have hlabels : 1 ≤ Fintype.card L := Fintype.card_pos
+  have hdefectNat : f.sourceDefect ≤
+      (f.equivarianceDefect actY actZ).card := by
+    calc
+      f.sourceDefect = 1 * f.sourceDefect := by omega
+      _ ≤ Fintype.card L * f.sourceDefect :=
+        Nat.mul_le_mul_right f.sourceDefect hlabels
+      _ ≤ (f.equivarianceDefect actY actZ).card :=
+        card_mul_sourceDefect_le_card_equivarianceDefect f actY actZ
+  have hdefect : (f.sourceDefect : ℝ) ≤
+      ((f.equivarianceDefect actY actZ).card : ℝ) := by
+    exact_mod_cast hdefectNat
+  have hm0 : 0 ≤ (m : ℝ) := by positivity
+  have hsourceReal : (f.sourceDefect : ℝ) < m := by
+    nlinarith [hf.forwardSmall]
+  exact_mod_cast hsourceReal
+
+omit [DecidableEq L] in
+/-- The inverse candidate inequality gives the matching target estimate. -/
+theorem IsClusterCandidate.targetDefect_lt_scale
+    {actY : L → Equiv.Perm Y} {actZ : L → Equiv.Perm Z}
+    {h : ℝ} {m : ℕ} {f : FinitePartialBijection Y Z}
+    (hf : f.IsClusterCandidate actY actZ h m)
+    (hL : Nonempty L) (hh : h ≤ 2) : f.targetDefect < m := by
+  letI : Nonempty L := hL
+  have hlabels : 1 ≤ Fintype.card L := Fintype.card_pos
+  have hdefectNat : f.targetDefect ≤
+      (f.symm.equivarianceDefect actZ actY).card := by
+    calc
+      f.targetDefect = 1 * f.targetDefect := by omega
+      _ ≤ Fintype.card L * f.targetDefect :=
+        Nat.mul_le_mul_right f.targetDefect hlabels
+      _ ≤ (f.symm.equivarianceDefect actZ actY).card :=
+        card_mul_targetDefect_le_card_symm_equivarianceDefect f actY actZ
+  have hdefect : (f.targetDefect : ℝ) ≤
+      ((f.symm.equivarianceDefect actZ actY).card : ℝ) := by
+    exact_mod_cast hdefectNat
+  have hm0 : 0 ≤ (m : ℝ) := by positivity
+  have htargetReal : (f.targetDefect : ℝ) < m := by
+    nlinarith [hf.backwardSmall]
+  exact_mod_cast htargetReal
+
+omit [DecidableEq L] in
 theorem IsClusterCandidate.symm
     {actY : L → Equiv.Perm Y} {actZ : L → Equiv.Perm Z}
     {h : ℝ} {m : ℕ} {f : FinitePartialBijection Y Z}
