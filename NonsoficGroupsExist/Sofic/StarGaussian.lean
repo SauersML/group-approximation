@@ -81,7 +81,7 @@ theorem starMatrix_mul_hub_hub {D : ℕ} (v w : Fin D → ℝ) :
       (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) := by
   rw [Matrix.mul_apply, Fintype.sum_sum_type]
   simp [starMatrix, starDot, Finset.mul_sum]
-  ring
+  ring_nf
 
 /-- Each spoke diagonal entry of a product comes only from the hub path. -/
 theorem starMatrix_mul_spoke_spoke {D : ℕ} (v w : Fin D → ℝ)
@@ -101,7 +101,6 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
   rw [Fintype.sum_unique]
   simp only [Matrix.diag_apply]
   rw [starMatrix_mul_hub_hub]
-  simp only [Matrix.diag_apply]
   simp_rw [starMatrix_mul_spoke_spoke]
   rw [← Finset.mul_sum]
   change (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) +

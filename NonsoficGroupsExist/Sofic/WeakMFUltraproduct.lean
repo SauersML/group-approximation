@@ -60,7 +60,7 @@ namespace WeakMFApproximation
 /-- Pull a sequential weak-MF approximation back along an injective
 homomorphism.  The finite matrix models are unchanged; only the group
 elements fed to the maps are restricted. -/
-def comap {H : Type*} [Group H] (A : WeakMFApproximation G)
+abbrev comap {H : Type*} [Group H] (A : WeakMFApproximation G)
     (ι : H →* G) (hι : Function.Injective ι) : WeakMFApproximation H where
   separation := A.separation
   separation_pos := A.separation_pos
