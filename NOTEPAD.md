@@ -35392,3 +35392,119 @@ order one.  Thus finite subgroup averages cannot manufacture the desired
 Connes-embeddable quotient trace.  A successful construction needs genuinely
 diffuse/non-subgroup constraint projections, or must return to a different
 FALSE certificate.
+
+## Property (T) rules out every shrinking diagonal constraint corner
+
+The last sentence above can be strengthened: diffuse diagonal projections do
+not evade `(FCC3)--(FCC4)` for the Kun--Thom parent.  The obstruction is the
+Koopman spectral gap.
+
+Let `C` be a nontrivial finite abelian group, let `X` be an infinite
+transitive `G`-set, and let `A<=C^(X)` be a `G`-submodule with the property
+that every nonzero element of `A` has an infinite `G`-orbit.  This holds for
+`A=C^(X)` and for its augmentation submodule: a finite orbit would have a
+finite union of supports, hence a finite nonempty `G`-invariant subset of
+`X`.
+
+Put `Y=dual(A)` with Haar probability.  Fourier transform identifies
+
+`L2(Y)=ell^2(A)`.                                         `(SDC1)`
+
+The only finite orbit in the Fourier basis is the zero character.  Hence the
+action `G on Y` is ergodic.
+
+**Theorem (small diagonal corner gap).**  Assume `G` has property `(T)`.
+There are a finite set `S subset G` and `kappa>0` such that every projection
+`p in L-infinity(Y)` of trace `t` satisfies
+
+`sum_(s in S)||u_s p u_s^*-p||_2^2`
+` >=kappa^2 t(1-t)`.                                     `(SDC2)`
+
+In particular, when `0<t<=1/2`,
+
+`t^(-1) sum_(s in S)||u_s p u_s^*-p||_2^2`
+` >=kappa^2/2`.                                          `(SDC3)`
+
+Thus no sequence of nonzero diagonal projections with trace tending to zero
+can be asymptotically central after normalization by its corner trace.
+
+**Proof.**  Ergodicity says that the Koopman representation on
+`L2(Y) minus C1` has no invariant vector.  Choose a Kazhdan pair `(S,kappa)`.
+For `xi=p-t1`,
+
+`||xi||_2^2=t(1-t)`,                                     `(SDC4)`
+
+and constants cancel from every displacement.  The Kazhdan inequality for
+`xi` is exactly `(SDC2)`, and `(SDC3)` follows.  End proof.
+
+Now let `0!=J<=A` be a `G`-submodule.  It is infinite by the orbit
+hypothesis.  Its annihilator
+
+`Y_J={eta in Y:eta(j)=1 for every j in J}`               `(SDC5)`
+
+has Haar measure `1/|J|=0`.  Any nested diagonal conditioning scheme whose
+supports shrink to `(SDC5)`--the canonical way to enforce successively all
+quotient relations `j=1`--therefore has traces tending to zero by continuity
+from above.  Equations `(SDC2)--(SDC3)` show that such projections cannot
+simultaneously become covariant under the fixed Kazhdan set.
+
+Applied to the quotient presentation `(RAG9)`, this closes Cartan constraint-
+corner recoveries obtained by shrinking to the exact annihilator inside the
+sofic restricted-lamp parent, not only the finite subgroup averages `(FCC2)`.
+The term
+``non-Cartan'' is therefore a proved geometric requirement here: a positive
+FALSE construction cannot be a shrinking measurable neighborhood of the
+annihilator inside the parent Bernoulli Cartan.  It must use matrix
+multiplicity directions absent from that Cartan, or a different certificate.
+
+# The co-hyperlinear-subgroup shortcut is excluded (2026-08-10)
+
+The group-theoretic sufficient conditions for RE/C in Gao--Junge--Gao do
+not bypass `(RER7)`.  In fact the Kun--Thom subgroup is not even
+co-hyperlinear in the sense of their Definition 4.1.
+
+**Proposition.**  Let `Gamma<G` have property `(T)`, and suppose there are
+`t in G` and `gamma in Gamma` such that
+
+`t Gamma t^(-1) <= Gamma`,
+`h=t^(-1) gamma t notin Gamma`.                            `(RER8)`
+
+Then `Gamma` is neither co-hyperlinear nor sigma-co-hyperlinear in `G`.
+
+**Proof.**  If `Gamma` were co-hyperlinear, there would be decreasing
+subgroups `G_i` and `H_i` such that
+
+`intersection_i G_i=Gamma`, `H_i<=G_i`, `H_i normal G`,
+`G/H_i` hyperlinear, and `G_i/H_i` amenable.              `(RER9)`
+
+Because `Gamma<=G_i`, its image
+
+`Gamma H_i/H_i <= G_i/H_i`                               `(RER10)`
+
+is both a quotient of a property-`(T)` group and amenable.  It is therefore
+finite.  In `G/H_i`, the first relation in `(RER8)` gives
+
+`q_i(t) q_i(Gamma) q_i(t)^(-1) <= q_i(Gamma)`.            `(RER11)`
+
+Conjugation is injective and `q_i(Gamma)` is finite, so `(RER11)` is an
+equality.  Conjugating the equality back shows
+
+`q_i(h)=q_i(t)^(-1)q_i(gamma)q_i(t) in q_i(Gamma)`.       `(RER12)`
+
+Thus `h in Gamma H_i<=G_i` for every `i`.  Hence
+`h in intersection_i G_i=Gamma`, contradicting `(RER8)`.
+
+For sigma-co-hyperlinearity, take increasing `Gamma_i<=G_i` with unions
+`Gamma` and `G`, and with each `Gamma_i` co-hyperlinear in `G_i`.
+The Kun--Thom groups `Gamma` and `G` are finitely generated.  Therefore a
+large enough `Gamma_i` contains a fixed finite generating set of `Gamma`
+and equals `Gamma`; similarly a large enough `G_i` equals `G`.  At such a
+stage co-hyperlinearity of `Gamma_i` in `G_i` contradicts the first part.
+End proof.
+
+Consequently Theorem 4.2 and the approximate-retraction package of
+Gao--Junge--Gao cannot establish `(RER2)` for the compression pair: their
+co-hyperlinearity hypothesis already fails before the operator-algebraic
+step.  The proof is stronger than failure of subgroup separability.  It
+rules out every co-hyperlinear filtration, even one using infinite
+hyperlinear quotients rather than finite quotients.
