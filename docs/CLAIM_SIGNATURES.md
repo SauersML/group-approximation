@@ -1724,14 +1724,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   HasKazhdanPropertyT G →
     HasKazhdanPropertyT ↥Γ →
       Infinite ↥Γ →
-        Group.FG ↥Γ →
-          Group.FG ↥J →
-            J ≤ Γ →
-              Subgroup.closure (↑Γ ∪ ↑Q) = ⊤ →
-                (∀ q ∈ Q, ∀ g ∈ Γ, q * g * q⁻¹ ∈ Γ) →
-                  q₀ ∈ Q →
-                    (∀ x ∈ Manuscript.conjSubgroup q₀ Γ, ∀ y ∈ J, x * y = y * x) →
-                      Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
+        Group.FG ↥J →
+          J ≤ Γ →
+            Subgroup.closure (↑Γ ∪ ↑Q) = ⊤ →
+              (∀ q ∈ Q, ∀ g ∈ Γ, q * g * q⁻¹ ∈ Γ) →
+                q₀ ∈ Q →
+                  (∀ x ∈ Manuscript.conjSubgroup q₀ Γ, ∀ y ∈ J, x * y = y * x) →
+                    Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
 ```
 
 ## `NonsoficGroupsExist.MatchingCertificate`

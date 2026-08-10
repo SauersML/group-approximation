@@ -202,7 +202,7 @@ example {G : Type} [Group G]
     (Γ J : Subgroup G) (Q : Finset G) (q₀ : G)
     (hTG : HasKazhdanPropertyT.{0, 0} G)
     (hTΓ : HasKazhdanPropertyT.{0, 0} ↥Γ)
-    (hΓinf : Infinite ↥Γ) (hΓfg : Group.FG ↥Γ) (hJfg : Group.FG ↥J)
+    (hΓinf : Infinite ↥Γ) (hJfg : Group.FG ↥J)
     (hJΓ : J ≤ Γ)
     (hgen : Subgroup.closure ((Γ : Set G) ∪ (Q : Set G)) = ⊤)
     (hcompress : ∀ q ∈ Q, ∀ g ∈ Γ, q * g * q⁻¹ ∈ Γ)
@@ -210,7 +210,7 @@ example {G : Type} [Group G]
     (hcent : ∀ x ∈ conjSubgroup q₀ Γ, ∀ y ∈ J, x * y = y * x)
     (hdisj : conjSubgroup q₀ Γ ⊓ J = ⊥)
     (hS : IsSofic G) : IsLEF ↥J :=
-  theoremD_subgroups Γ J Q q₀ hTG hTΓ hΓinf hΓfg hJfg hJΓ hgen hcompress
+  theoremD_subgroups Γ J Q q₀ hTG hTΓ hΓinf hJfg hJΓ hgen hcompress
     hq₀ hcent hdisj hS
 
 example (k A : Type) [Field k] [Finite k] [Ring A] [Nontrivial A]

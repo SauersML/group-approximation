@@ -323,14 +323,17 @@ end TheoremD
 
 /-- **Theorem D (Kazhdan compression--centralizer criterion), subgroup form.**
 
-Let `G` be a property-`(T)` group, `Γ ≤ G` an infinite finitely generated
-property-`(T)` subgroup, `Q ⊆ G` a finite set with `G = ⟨Γ, Q⟩` and
+Let `G` be a property-`(T)` group, `Γ ≤ G` an infinite property-`(T)`
+subgroup, `Q ⊆ G` a finite set with `G = ⟨Γ, Q⟩` and
 `q Γ q⁻¹ ≤ Γ` for every `q ∈ Q`.  Fix `q₀ ∈ Q`, put `K = q₀ Γ q₀⁻¹`, and let
 `J ≤ Γ` be finitely generated with `[K, J] = 1` and `K ∩ J = {1}`.  If `G` is
 sofic, then `J` is LEF.
 
 Two notes on the hypotheses, both explained in the module docstring.  Finite
-generation of `G` is omitted because it follows from `hgen` and `hΓfg`.  The
+generation is a hypothesis only for `J`: property `(T)` makes `Γ` finitely
+generated, through
+`KazhdanFiniteGeneration.exists_symmetric_generating_finset`, and finite
+generation of `G` then follows from `hgen` and finiteness of `Q`.  The
 `IsSofic`/`IsLEF` predicates carry no countability restriction, and
 countability of `G` is no hypothesis either: property `(T)` makes
 `G` finitely generated, hence countable, and the proof takes that route through
@@ -340,7 +343,7 @@ theorem theoremD_subgroups {G : Type} [Group G]
     (Γ J : Subgroup G) (Q : Finset G) (q₀ : G)
     (hTG : HasKazhdanPropertyT.{0, 0} G)
     (hTΓ : HasKazhdanPropertyT.{0, 0} ↥Γ)
-    (hΓinf : Infinite ↥Γ) (hΓfg : Group.FG ↥Γ) (hJfg : Group.FG ↥J)
+    (hΓinf : Infinite ↥Γ) (hJfg : Group.FG ↥J)
     (hJΓ : J ≤ Γ)
     (hgen : Subgroup.closure ((Γ : Set G) ∪ (Q : Set G)) = ⊤)
     (hcompress : ∀ q ∈ Q, ∀ g ∈ Γ, q * g * q⁻¹ ∈ Γ)
@@ -351,7 +354,10 @@ theorem theoremD_subgroups {G : Type} [Group G]
   classical
   haveI : Countable G :=
     GeneralCornerTheorem.countable_of_hasKazhdanPropertyT hTG
-  haveI : Group.FG ↥Γ := hΓfg
+  haveI : Group.FG ↥Γ := by
+    obtain ⟨SΓT, -, -, hSΓTgen⟩ :=
+      KazhdanFiniteGeneration.exists_symmetric_generating_finset ↥Γ hTΓ
+    exact ⟨⟨SΓT, hSΓTgen⟩⟩
   haveI : Group.FG ↥J := hJfg
   haveI : Countable ↥Γ := Subtype.countable
   haveI : Countable ↥J := Subtype.countable
