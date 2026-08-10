@@ -32324,3 +32324,57 @@ them.  Hence a valid finish must construct `(CRC5)` in the norm matrix
 corona itself (or produce the projective radical model `(PRD1)--(PRD2)` by a
 different route), not merely in an infinite-dimensional quotient
 representation.
+
+# The Julia minus sign is fold-invisible (2026-08-10)
+
+There is no hidden antipodal source in the `-X^*` entry of Shulman's Julia
+unitary.  This can be ruled out before making any coordinate choices.
+
+In the proof of Shulman's symmetric-amalgam theorem, let
+
+`T_k(a)=phi_k(a) directSum phi_k(a)`
+
+and let `V_k` be the Julia unitary.  The two vertex lifts are
+
+`phi_k^(2)(a)=T_k(a)`,
+`phi_k^(1)(a)=V_k^* T_k(a) V_k`.                     `(JFI1)`
+
+Write `J=diag(1,-1)` on the two outer stabilization blocks.  Then
+
+`[J,T_k(a)]=0` for every `a`.                         `(JFI2)`
+
+The minus sign in the quotient lift
+
+`q(V_k)=diag(u,-u^*)`
+
+is exactly the left grading factor in
+
+`diag(u,-u^*)=J diag(u,u^*)`.                        `(JFI3)`
+
+**Lemma (Julia grading cancellation).**  If `T` commutes with a unitary
+`J`, then for every unitary `V`
+
+`(JV)^* T (JV)=V^* T V`.                             `(JFI4)`
+
+Consequently replacing `V_k` by `JV_k` removes the stabilizing minus sign
+from its quotient while leaving the entire first vertex lift in `(JFI1)`
+unchanged.  In particular the fold-difference at a unitary `a`,
+
+`T_k(a) phi_k^(1)(a)^*=T_k(a)V_k^*T_k(a)^*V_k`,      `(JFI5)`
+
+is unchanged as well.
+
+**Proof.**  Equation `(JFI4)` is
+
+`V^*J^*TJ V=V^*TV`.
+
+Apply `(JFI2)`.  The formula `(JFI5)` then follows directly from `(JFI1)`.
+End proof.
+
+This closes a tempting shortcut: the `-u^*` block in Shulman's Lemma 9 is
+an index-cancelling stabilization device, not an antipodal spectral block
+for the group double.  Any successful antipodal model must therefore use a
+grading that **does not commute** with the vertex profile of the radical
+word.  Equivalently, the required sign must be built into the relative
+edge multiplicities themselves; it cannot be harvested from the universal
+Julia stabilization.
