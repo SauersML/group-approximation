@@ -1,4 +1,4 @@
-# A weak-MF nonsofic symmetric double
+# A proposed weak-MF nonsofic symmetric double
 
 ## Status of Question 1.6 on sofic doubles
 
@@ -51,13 +51,14 @@ proposition.
 The weak-MF conclusion discussed below is additional and is not needed for a
 negative answer once the missing group-theoretic inputs are closed.
 
-The additional weak/operator-norm MF conclusion proves
+Conditionally on the missing inputs, the additional weak/operator-norm MF
+conclusion would prove
 
 \[
  \text{MF groups}\not\subseteq\text{sofic groups}.
 \]
 
-This settles one inclusion in Andrew James Schneider's broader Question 8
+This would settle one inclusion in Andrew James Schneider's broader Question 8
 in his 2016 Purdue dissertation, *Finite dimensional approximations and
 deformations of group C*-algebras*: “What is the relationship between the
 class of MF groups, the class of sofic groups, and the class hyperlinear
