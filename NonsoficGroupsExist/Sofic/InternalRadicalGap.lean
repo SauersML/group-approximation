@@ -24,7 +24,7 @@ variable {H : Type} [Group H]
 
 /-- Restrict one fixed sequential approximation of `H` to a subgroup.  It is
 important that this uses the same matrices as the ambient approximation. -/
-def restrictedApproximation (A : WeakMFApproximation H) (N : Subgroup H) :
+abbrev restrictedApproximation (A : WeakMFApproximation H) (N : Subgroup H) :
     WeakMFApproximation N :=
   A.comap N.subtype Subtype.val_injective
 
@@ -149,11 +149,12 @@ theorem norm_ambientEigenbasisMicrostate_mul_defect_eq
         (Uᴴ * (A.map n h : Matrix (A.model n) (A.model n) ℂ) * U) = _
     exact KazhdanCornerMatrices.unitaryConjugation_mul_defect_eq hU
   rw [hEq]
-  exact KazhdanCornerMatrices.norm_unitary_conjugate
+  simpa only [Matrix.conjTranspose_conjTranspose] using
+    KazhdanCornerMatrices.norm_unitary_conjugate
     (show Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ by
       rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
         Matrix.conjTranspose_conjTranspose]
-      exact Unitary.star_mul_self_of_mem hAvg.eigenvectorUnitary.2) _
+      exact Unitary.star_mul_self_of_mem hAvg.eigenvectorUnitary.2)
 
 /-- Compress an ambient microstate to the subgroup moving spectral corner. -/
 noncomputable def ambientMovingCompression (A : WeakMFApproximation H)
@@ -169,6 +170,8 @@ theorem norm_ambientMovingCompression_le_one
     (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N)
     (n : ℕ) (g : H) : ‖ambientMovingCompression A N D n g‖ ≤ 1 := by
   classical
+  letI : Nonempty (A.model n) :=
+    Fintype.card_pos_iff.mp (A.modelNonempty n)
   exact (KazhdanCornerMatrices.norm_principalBlock_le
     (KazhdanCornerMatrices.movingPredicate
       (restrictedApproximation A N) D.S D.cutoff n)
@@ -206,7 +209,7 @@ theorem norm_ambientMovingCompression_mul_defect_le
     (ambientEigenbasisMicrostate A N D n g)
     (ambientEigenbasisMicrostate A N D n h)
   rw [norm_ambientEigenbasisMicrostate_mul_defect_eq A N D n g h] at hbound
-  exact hbound
+  simpa only [ambientMovingCompression] using hbound
 
 end InternalRadicalGap
 end NonsoficGroupsExist
