@@ -86,9 +86,10 @@ noncomputable def ambientEigenbasisMicrostate (A : WeakMFApproximation H)
     Matrix (A.model n) (A.model n) ℂ :=
   let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
     A (ambientGenerators N D) n
-  hAvg.eigenvectorUnitaryᴴ *
+  let U : Matrix (A.model n) (A.model n) ℂ := hAvg.eigenvectorUnitary
+  Uᴴ *
     (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
-      hAvg.eigenvectorUnitary
+      U
 
 /-- Ambient eigenbasis conjugation preserves unitarity exactly. -/
 theorem ambientEigenbasisMicrostate_mem_unitaryGroup
@@ -193,7 +194,20 @@ theorem norm_ambientMovingCompression_mul_defect_le
     (ambientEigenbasisMicrostate A N D n g)
     (ambientEigenbasisMicrostate A N D n h)
   rw [norm_ambientEigenbasisMicrostate_mul_defect_eq A N D n g h] at hbound
-  simpa only [ambientMovingCompression] using hbound
+  change
+    ‖KazhdanCornerMatrices.principalBlock
+          (KazhdanCornerMatrices.movingPredicate
+            A (ambientGenerators N D) D.cutoff n)
+          (ambientEigenbasisMicrostate A N D n (g * h)) -
+        KazhdanCornerMatrices.principalBlock
+            (KazhdanCornerMatrices.movingPredicate
+              A (ambientGenerators N D) D.cutoff n)
+            (ambientEigenbasisMicrostate A N D n g) *
+          KazhdanCornerMatrices.principalBlock
+            (KazhdanCornerMatrices.movingPredicate
+              A (ambientGenerators N D) D.cutoff n)
+            (ambientEigenbasisMicrostate A N D n h)‖ ≤ _
+  exact hbound
 
 end InternalRadicalGap
 end NonsoficGroupsExist

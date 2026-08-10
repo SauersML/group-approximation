@@ -104,8 +104,10 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
   simp_rw [starMatrix_mul_spoke_spoke]
   simp_rw [mul_assoc]
   rw [← Finset.mul_sum]
-  change (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) +
-      (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) = _
+  have hdot : ∑ i, (v i : ℂ) * (w i : ℂ) = (starDot v w : ℂ) := by
+    unfold starDot
+    push_cast
+  rw [hdot]
   rw [← ofReal_pow, starScale_sq]
   norm_num
   push_cast
