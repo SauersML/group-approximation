@@ -1,5 +1,5 @@
 import NonsoficGroupsExist.Matching.ComponentRefinement
-import NonsoficGroupsExist.Matching.BlockIndex
+import NonsoficGroupsExist.Matching.BlockTransport
 
 /-!
 # Refinement supplied by an expander decomposition
@@ -76,6 +76,20 @@ noncomputable def refineBlock (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (C : D.componentIndex n) :=
   D.refineAt Q q (D.componentRepresentative n C)
 
+/-- When source and target use the same component partition, bundle the
+chosen dominant target as an index in that finite component type. -/
+noncomputable def refineIndex (q : Equiv.Perm (S.model n))
+    (C : D.componentIndex n) : D.componentIndex n := by
+  let R := D.refineBlock (D.blocks n) q C
+  refine ⟨R.target, ?_⟩
+  obtain ⟨y, hy⟩ := R.target_isBlock
+  exact ((D.blocks n).mem_blocksFinset R.target).mpr ⟨y, hy⟩
+
+@[simp] theorem refineIndex_block (q : Equiv.Perm (S.model n))
+    (C : D.componentIndex n) :
+    (D.refineIndex q C).block =
+      (D.refineBlock (D.blocks n) q C).target := rfl
+
 /-- The leakage estimate, now indexed over each source component exactly once. -/
 theorem refineBlock_leakage (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (C : D.componentIndex n) :
@@ -91,6 +105,21 @@ theorem refineBlock_leakage (Q : BlockStructure (S.model n))
 noncomputable def componentLeakage (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (C : D.componentIndex n) : ℕ :=
   (C.block.image q \ (D.refineBlock Q q C).target).card
+
+/-- For a self-refinement, overlap with the chosen target and one-sided
+leakage partition the transported source block exactly. -/
+theorem overlap_refineIndex_add_componentLeakage
+    (q : Equiv.Perm (S.model n)) (C : D.componentIndex n) :
+    BlockIndex.overlap (D.blocks n) q C (D.refineIndex q C) +
+        D.componentLeakage (D.blocks n) q C = C.block.card := by
+  classical
+  have hsplit := Finset.card_sdiff_add_card_inter
+    (C.block.image q) (D.refineIndex q C).block
+  have himage : (C.block.image q).card = C.block.card :=
+    Finset.card_image_of_injective C.block q.injective
+  unfold BlockIndex.overlap componentLeakage
+  rw [D.refineIndex_block] at hsplit ⊢
+  omega
 
 /-- The target-block label on the whole edited model graph. -/
 def transportedTargetLabel (Q : BlockStructure (S.model n))
