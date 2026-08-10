@@ -30162,7 +30162,7 @@ hyperbolic radical word. Future work should prefer IS8 over the asymmetric
 free-lamp shear unless the latter's explicit virtually-abelian vertex is
 needed.
 
-## The twisted double and the shear-vertex amalgam are finite-index twins
+## The twisted double and the involutory shear-vertex amalgam are finite-index twins
 
 Let the abstract data `B,A,alpha` be as above and put
 
@@ -30184,15 +30184,24 @@ Equivalently, the shear generator exchanges the two vertices of `J` and
 
 `L isomorphic J semidirect C_2`.                      `(IS11)`
 
-Consequently
+Consequently, for this `C_2`-stable-letter version,
 
 `L is weak MF iff J is weak MF`:                      `(IS12)`
 
 one implication uses closure under subgroups, and the other closure under
-finite extensions.  Thus the infinite-order shear-vertex endpoint recorded
-immediately before `(IS1)` and the twisted-symmetric endpoint are two
-finite-index presentations of the same compatibility obstruction (when
-formed from the same `H,r,A`).  The twisted presentation is useful for
-comparison with Shulman's symmetric theorem; the shear-vertex presentation
-is useful because the central-radical commutator is explicit.  They should
-not be counted as independent analytic routes.
+finite extensions.  Thus the **involutory** shear-vertex endpoint and the
+twisted-symmetric endpoint are two finite-index presentations of the same
+compatibility obstruction (when formed from the same `H,r,A`).  The twisted
+presentation is useful for comparison with Shulman's symmetric theorem;
+the shear-vertex presentation is useful because the central-radical
+commutator is explicit.
+
+This does not identify the currently preferred endpoint in
+`docs/CENTRAL_RADICAL_SHEAR_GADGET.md`, which uses
+`K_infinity=A semidirect_alpha Z`.  There the stable generator has infinite
+order, its action on `A` merely factors through `C_2`, and the kernel of the
+map to `Z` is an infinite line of vertex groups rather than the two-vertex
+twisted double.  The infinite-cyclic version deliberately avoids requiring
+the finite-stage antipodal conjugator to square to one and may therefore be
+strictly easier analytically.  Only the `C_2` variant is covered by
+`(IS9)--(IS12)`.
