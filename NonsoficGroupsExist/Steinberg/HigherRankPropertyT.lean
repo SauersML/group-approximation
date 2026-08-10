@@ -81,7 +81,7 @@ theorem quotientControlSet_controls_rootSet
 displacements of its factors. -/
 theorem norm_noncommProd_displacement_le
     {G E α : Type*} [Group G] [NormedAddCommGroup E]
-    [InnerProductSpace ℝ E] [CompleteSpace E]
+    [InnerProductSpace ℝ E]
     (rho : G →* (E ≃ₗᵢ[ℝ] E)) (z : E) (s : Finset α) (u : α → G)
     (hu : (s : Set α).Pairwise (Function.onFun Commute u)) :
     ‖rho (s.noncommProd u hu) z - z‖ ≤

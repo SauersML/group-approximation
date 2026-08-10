@@ -464,7 +464,7 @@ least `1 - d ε²/4`. -/
 theorem one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
     (hY : Nonempty Y) {W : Matrix Y Y ℂ}
     (hW : W ∈ Matrix.unitaryGroup Y ℂ)
-    {ε : ℝ} (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖W - 1‖ ≤ ε) :
+    {ε : ℝ} (hε2 : ε ≤ 2) (hnorm : ‖W - 1‖ ≤ ε) :
     1 - Fintype.card Y * ε ^ 2 / 4 ≤
       Complex.normSq ((((2 : ℂ)⁻¹) • (1 + W)).det) := by
   letI : Nonempty Y := hY
@@ -603,7 +603,7 @@ theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
     (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
-    (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε) :
+    (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε) :
     hsDistSq (doubleModel (fockModel Y))
         (exteriorAdMatrix A) (exteriorAdMatrix B) ≤
       Fintype.card Y * ε ^ 2 / 2 := by
@@ -615,7 +615,7 @@ theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
     rw [opNorm_mul_conjTranspose_sub_one hB]
     exact hnorm
   have hdet := one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
-    hY hW hε0 hε2 hnormW
+    hY hW hε2 hnormW
   rw [hsDistSq_exteriorAdMatrix Y hA hB]
   change 1 - Fintype.card Y * ε ^ 2 / 4 ≤
     Complex.normSq ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det) at hdet
@@ -697,7 +697,7 @@ theorem hsDistSq_exteriorTensorMatrix_le
     (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
-    (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε)
+    (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε)
     (k : ℕ) :
     hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
         (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
@@ -705,7 +705,7 @@ theorem hsDistSq_exteriorTensorMatrix_le
   letI : Nonempty Y := hY
   let q : ℝ := Complex.normSq
     ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det)
-  have hbase := hsDistSq_exteriorAdMatrix_le Y hY hA hB hε0 hε2 hnorm
+  have hbase := hsDistSq_exteriorAdMatrix_le Y hY hA hB hε2 hnorm
   have hq0 : 0 ≤ q := Complex.normSq_nonneg _
   have hbern := one_add_mul_sub_le_pow (a := q) (by linarith) k
   rw [hsDistSq_exteriorTensorMatrix Y hA hB k]
@@ -721,18 +721,19 @@ theorem hsDistSq_exteriorTensorMatrix_le_of_nonneg
     (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
-    (hε0 : 0 ≤ ε) (hnorm : ‖A - B‖ ≤ ε) (k : ℕ) :
+    (hnorm : ‖A - B‖ ≤ ε) (k : ℕ) :
     hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
         (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
       k * (Fintype.card Y * ε ^ 2 / 2) := by
   letI : Nonempty Y := hY
+  have hε0 : 0 ≤ ε := (norm_nonneg (A - B)).trans hnorm
   let ε' : ℝ := min ε 2
   have hε'0 : 0 ≤ ε' := le_min hε0 (by norm_num)
   have hε'2 : ε' ≤ 2 := min_le_right _ _
   have hnorm2 : ‖A - B‖ ≤ 2 := opNorm_sub_le_two_of_unitary hY hA hB
   have hnorm' : ‖A - B‖ ≤ ε' := le_min hnorm hnorm2
   have hmain := hsDistSq_exteriorTensorMatrix_le Y hY hA hB
-    hε'0 hε'2 hnorm' k
+    hε'2 hnorm' k
   have hsq : ε' ^ 2 ≤ ε ^ 2 := by
     have hle : ε' ≤ ε := min_le_left _ _
     nlinarith
