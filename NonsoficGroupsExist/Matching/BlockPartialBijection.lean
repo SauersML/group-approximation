@@ -123,5 +123,25 @@ theorem refinementPartialBijection_targetDefect
     BlockIndex.card_overlapPartialBijection_target]
   simp only [Fintype.card_coe]
 
+/-- On a reciprocal component for an exact involution, the range defect of
+the overlap arrow is exactly the leakage of its target component. -/
+theorem refinementPartialBijection_targetDefect_of_involution
+    (q : Equiv.Perm (S.model n)) (hsq : q * q = 1)
+    (C : D.componentIndex n)
+    (hrecip : D.refineIndex q (D.refineIndex q C) = C) :
+    (D.refinementPartialBijection q C).targetDefect =
+      D.componentLeakage (D.blocks n) q (D.refineIndex q C) := by
+  let E := D.refineIndex q C
+  have hsplit := D.overlap_refineIndex_add_componentLeakage q E
+  have hchosen : D.refineIndex q E = C := by
+    simpa [E] using hrecip
+  rw [hchosen] at hsplit
+  have hsymm := BlockIndex.overlap_comm_of_sq (D.blocks n) q hsq C E
+  rw [D.refinementPartialBijection_targetDefect q C]
+  change E.block.card - BlockIndex.overlap (D.blocks n) q C E =
+    D.componentLeakage (D.blocks n) q E
+  rw [hsymm]
+  omega
+
 end ExpanderDecomposition
 end NonsoficGroupsExist
