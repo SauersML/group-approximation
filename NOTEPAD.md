@@ -35143,3 +35143,79 @@ module.  A successful proof that `K_omega` is hyperlinear must therefore
 handle the coinduced/nonrestricted tail of the gauge and its nonsplit
 central character; no ordinary wreath-product permanence theorem can close
 the endpoint.
+
+# The direct-double trace gate is exactly relative embeddability (2026-08-10)
+
+The reduced-amalgam endpoint has an exact converse, not merely a sufficient
+commuting-square condition.  Keep the binary Kun--Thom pair
+
+`Gamma=EL_r(F_2[x_1,...,x_d]) <`
+`G=EL_r(F_2[x_1^(+-1),...,x_d^(+-1)]) semidirect SL_d(Z)`
+
+and put
+
+`D=G *_Gamma G`, `N=L(Gamma) < M=L(G)`.                 `(RER1)`
+
+**Proposition (exact relative-embedding gate).**
+
+`D is hyperlinear  iff  N<M is RE/C`.                   `(RER2)`
+
+Here `RE/C` is relative embeddability in the sense of Gao--Junge--Gao:
+there is a tracial embedding of `M` into an ultraproduct of QWEP finite von
+Neumann algebras such that `N` lands in ultraproducts of hyperfinite
+subalgebras and the resulting square of trace-preserving conditional
+expectations commutes.
+
+**Proof.**  Gao--Junge--Gao, *Relative Embeddability of von Neumann
+Algebras and Amalgamated Free Products*, Theorem 7.1, says that for a finite
+factor `N_1`, RE/`N_1` of `N<M` implies embeddability of `M *_N M` into
+`(R tensor N_1)^omega`.  The converse holds provided there is a unitary
+`u in M` with
+
+`E_N(u^n)=0` for every nonzero integer `n`.               `(RER3)`
+
+Take an infinite-order matrix `A in SL_d(Z)` and let `a=(1,A) in G`.
+The projection `G->SL_d(Z)` is trivial on `Gamma`, whereas the projection
+of `a^n` is `A^n!=1` for `n!=0`.  Hence `a^n notin Gamma`, and the group
+conditional expectation gives `(RER3)` for `u=lambda(a)`.
+
+The canonical tracial amalgam satisfies
+
+`M *_N M = L(G *_Gamma G)=L(D)`.                          `(RER4)`
+
+Taking `N_1=C` in Theorem 7.1 and using the equivalence between
+Connes embeddability of `L(D)` and hyperlinearity of `D` proves `(RER2)`.
+End proof.
+
+This theorem also identifies rigorously why the residual-finite models of
+the vertex group cannot witness `(RER2)`.  Let `p_i:G->Q_i` be arbitrary
+finite quotients and put
+
+`B_i=L(p_i(Gamma)) < A_i=L(Q_i)`.                         `(RER5)`
+
+Choose a strict compressor `t` and `gamma in Gamma` with
+
+`h=t^(-1) gamma t notin Gamma`.                           `(RER6)`
+
+In every finite quotient, `p_i(Gamma)` is normal in `p_i(G)`: the
+one-sided compressor inclusions become equalities in a finite group, and
+the compressors generate `G` together with `Gamma`.  Therefore
+
+`p_i(h) in p_i(Gamma)`, hence `lambda(p_i(h)) in B_i`.    `(RER7)`
+
+But a commuting-square witness for RE/C would require
+
+`E_(B_i)(lambda(p_i(h))) -> lambda(E_N(lambda(h)))=0`
+
+in normalized `L^2`, while `(RER7)` makes the left side equal to the unitary
+itself, of norm one.  Thus no ultraproduct assembled from finite-quotient
+regular representations of `G`, with the canonical edge algebras `(RER5)`,
+can prove relative embeddability.
+
+The remaining TRUE-side problem is consequently a precise **quantum
+commuting-square** construction: build RE/C coordinates for
+`L(Gamma)<L(G)` which are not finite group-quotient coordinates.  By
+`(RER2)` this is neither stronger nor weaker than the direct-double
+hyperlinearity gate; it is exactly equivalent.  The weak-MF construction
+already supplies operator-norm escape from `(RER7)`, but not the tracial
+commuting-square mass needed here.
