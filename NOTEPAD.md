@@ -28360,6 +28360,112 @@ trace choice.  Likewise, QWEP of the auxiliary amalgam would finish via its
 reduced quotient, but MF does not imply QWEP.  Full proof:
 `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`.
 
+## The complete sofic residual of the double and free lamp
+
+The single-element result `(SR1)--(SR3)` admits an exact strengthening.  It
+does not merely put one fold difference in the sofic residual: for the
+explicit Laurent Kun--Thom pair it computes that residual completely.
+
+Use the `q=2` notation above and put
+
+`N=EL_r(F_2[x_1^(+-1),...,x_d^(+-1)]) normal G`,
+`Q=G/N=SL_d(Z)`,
+
+so that `Gamma<=N` and `G=N semidirect Q`.  The normal closure of `Gamma` in
+`G` is exactly `N`.  Indeed it is contained in `N`, while the `Q`-conjugates
+of `Gamma` contain every Laurent root element: if `v in Z^d`, write
+`v=m u` with `m>=0` and `u` primitive, choose `A in SL_d(Z)` with
+`A e_1=u`, and conjugate `e_ij(x_1^m) in Gamma` by `A`.  Laurent root
+elements generate `N`.
+
+Let `i_1,i_2:G->D=G *_Gamma G` be the vertex embeddings, and set
+
+`K_N=normal closure_D {i_2(n)i_1(n)^(-1):n in N}`.       `(CSR1)`
+
+**Theorem (complete sofic residual of the double).**
+
+`Rad_sof(D)=K_N`,                                      `(CSR2)`
+
+and the maximal residually sofic quotient is in fact residually finite:
+
+`D/K_N = G *_N G <= G times (Q*Q)`.                    `(CSR3)`
+
+Here the embedding sends the first vertex element `g` to
+`(g,j_1(gN))` and the second to `(g,j_2(gN))`.
+
+**Proof.**  First let `phi:D->S` be any homomorphism to a sofic group.
+As in `(SR3)`, symmetrize `phi` under the flip and add the fold coordinate:
+
+`Psi=(phi,phi o flip,r):D->S times S times G`.
+
+Its image is sofic, contains a faithful common copy of `G`, and its kernel
+is flip invariant.  Hence the flip descends, and adjoining its order-two
+implementer `k` gives a sofic finite extension.  The element `k` centralizes
+the faithful copy of `Gamma`.  Kun--Thom centralizer normalization says that
+`C(Gamma)` is normalized by `G`.  Consequently `k` commutes with every
+`g^(-1) Gamma g`: for `c in Gamma`, the assertion
+`g k g^(-1) in C(Gamma)` is equivalent to
+`[k,g^(-1)c g]=1`.  Thus `k` centralizes the normal closure `N`.
+
+But conjugation by `k` exchanges the two vertex copies.  Therefore
+
+`Psi(i_2(n))=Psi(i_1(n))` for every `n in N`.
+
+The first coordinate shows the same equality for `phi`, so every homomorphism
+to a sofic group kills `K_N`.  This proves `K_N<=Rad_sof(D)`.
+
+Adding the relations in `(CSR1)` changes the original amalgam over `Gamma`
+into the amalgam `G *_N G`, proving the first equality in `(CSR3)`.  The
+displayed map into `G times (Q*Q)` is injective by amalgam normal form: after
+moving all `N`-letters to the left, any nontrivial alternating normal form
+has a nontrivial reduced word in the second coordinate; if no alternating
+letters remain, the first coordinate detects the remaining `N`-letter.
+Both `G` and `Q` are residually finite, and free products of residually
+finite groups are residually finite.  Hence `G times (Q*Q)` and its subgroup
+`D/K_N` are residually finite.  The quotient map to this sofic group gives
+`Rad_sof(D)<=K_N`, completing `(CSR2)`.  End proof.
+
+There is an equally exact lamp statement.  Let `K` be any nontrivial
+countable residually finite group, put
+
+`H_K=G *_Gamma (Gamma times K)`,
+
+and let
+
+`L_(N,K)=normal closure_(H_K) {[k,n]:k in K,n in N}`.  `(CSR4)`
+
+**Theorem (complete sofic residual of the free lamp).**
+
+`Rad_sof(H_K)=L_(N,K)`,                                `(CSR5)`
+
+and
+
+`H_K/L_(N,K) = G *_N (N times K) <= G times (Q*K)`     `(CSR6)`
+
+is residually finite.
+
+**Proof.**  Given `phi:H_K->S` with `S` sofic, combine it with the retraction
+`r:H_K->G` killing `K`.  Its image in `S times G` is sofic and contains `G`
+faithfully.  The image of each `k in K` centralizes `Gamma`; Kun--Thom
+normalization and the same conjugate calculation show that it centralizes
+the normal closure `N`.  Thus every such `phi` kills `(CSR4)`.
+
+After imposing these commutators, the second vertex enlarges from
+`Gamma times K` to `N times K`, giving the first equality in `(CSR6)`.  The
+embedding sends `g in G` to `(g,gN)` in the `Q` free factor and `(n,k)` to
+`(n,k)` in the `K` free factor.  The same normal-form argument proves
+injectivity.  Since `G`, `Q`, and `K` are residually finite, so is the target
+product and hence the quotient.  This gives the reverse radical inclusion.
+End proof.
+
+Thus the weak-MF/nonsofic examples now come with an explicitly computed
+approximation radical.  In particular, the obstruction is exactly the
+failure of sofic targets to distinguish the Laurent normal subgroup across
+the fold (or to let a lamp fail to commute with that subgroup); no additional
+elements are invisibly forced.  Any Connes-embeddable representation that
+violates precisely one of these relations automatically supplies the desired
+hyperlinear nonsofic quotient.
+
 ### The fold trace is outside the reduced dual
 
 The trace mismatch above is now exact rather than qualitative.  Let
