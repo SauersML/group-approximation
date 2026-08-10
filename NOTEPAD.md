@@ -29945,3 +29945,34 @@ conditional bridge but not a remaining certificate whose hypothesis could
 hold.  No further work should attempt to prove weak MF of this Clifford
 cover.  The direct normalized-HS canonical CAR trace and the integral
 small-phase Heisenberg construction remain the live tracial targets.
+
+## 2026-08-09: finite central-radical shear gadget
+
+Let H contain a nontrivial involution x in its full sofic radical. Add a
+central involution z, set A=<x,z>, and let the order-eight group K be
+A semidirect C2, where the new involution s acts by x |-> xz and fixes z.
+The amalgam
+
+    J(H,x) = (H x C2) *_A K
+
+has z central and nontrivial, with [s,x]=z. Every homomorphism from J(H,x)
+to a sofic group kills x and hence z. Thus z lies in the full sofic radical
+of J(H,x), so J(H,x) is nonsofic.
+
+If J(H,x) is weak/operator-norm MF, compression to the central z=-1 corner
+and renormalization of the corner traces produces a hyperlinear quotient in
+which z survives. This quotient cannot be sofic, because every map from
+J(H,x) to a sofic group kills z. Hence weak MF of this single amalgam would
+answer hyperlinear-versus-sofic negatively, with no dimension/rank profile.
+
+Apply this to the binary Kun--Thom commuting-lamp group W and its explicit
+radical involution w. The exact remaining certificate is
+
+    (W x C2) *_(C2 x C2) D8 is weak MF.
+
+This does not follow from the presently available amalgamation theorems.
+The finite D8 vertex forces equality of the two z=-1 edge multiplicities
+(x=+1 and x=-1). A generic weak-MF model of W need not have this balance.
+The reduction and the exact compatibility obstruction are recorded in
+docs/CENTRAL_RADICAL_SHEAR_GADGET.md. This route is independent of the
+now-closed weak-MF Clifford-cover route.

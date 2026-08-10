@@ -560,23 +560,23 @@ profile-free corner extraction is available.
 For this explicit cover, however, the hypothesis of Theorem 7 cannot hold.
 
 **Proposition 8 (operator-norm sterility of the even cover).**  Every
-homomorphism from (E_{\mathrm{Cl},0}) to a norm matrix ultraproduct kills
-(z).  In particular (E_{\mathrm{Cl},0}) is not weak MF.
+homomorphism from \(E_{\mathrm{Cl},0}\) to a norm matrix ultraproduct kills
+\(z\).  In particular \(E_{\mathrm{Cl},0}\) is not weak MF.
 
-**Proof.**  If (z) survives, cut to the central (z=-1) corner and take
+**Proof.**  If \(z\) survives, cut to the central \(z=-1\) corner and take
 the adjoint action on the normalized matrix Hilbert spaces.  Operator-norm
 multiplicativity gives a representation into a stably finite norm matrix
 ultraproduct.  The Kazhdan projection argument then says that every strict
-compressor (t) normalizes the subspace of \(\Gamma\)-fixed vectors.
+compressor \(t\) normalizes the subspace of \(\Gamma\)-fixed vectors.
 
-Let (o=\Gamma), (x=t^{-1}\Gamma), and
+Let \(o=\Gamma\), \(x=t^{-1}\Gamma\), and
 
 \[
  w=\delta_o+\delta_x\in I_X.
 \]
 
-Both (o) and (x) are fixed by \(\Gamma\), the latter because
-(t\Gamma t^{-1}\leq\Gamma).  Hence a Clifford lift of (w) is fixed in
+Both \(o\) and \(x\) are fixed by \(\Gamma\), the latter because
+\(t\Gamma t^{-1}\leq\Gamma\).  Hence a Clifford lift of \(w\) is fixed in
 the adjoint representation, and normalization makes a lift of
 
 \[
@@ -584,11 +584,11 @@ the adjoint representation, and normalization makes a lift of
 \]
 
 fixed as well.  Choose
-(\gamma\in\Gamma\setminus t\Gamma t^{-1}).  Fixedness identifies the
-lifts of (tw) and \(\gamma tw\) in normalized Hilbert--Schmidt norm.  But
-their supports meet exactly at (o), so their symplectic pairing is one.
+\(\gamma\in\Gamma\setminus t\Gamma t^{-1}\).  Fixedness identifies the
+lifts of \(tw\) and \(\gamma tw\) in normalized Hilbert--Schmidt norm.  But
+their supports meet exactly at \(o\), so their symplectic pairing is one.
 In the negative Clifford corner the two lifts anticommute, and therefore
-have squared normalized Hilbert--Schmidt distance (2), a contradiction.
+have squared normalized Hilbert--Schmidt distance \(2\), a contradiction.
 \(\square\)
 
 Thus (27) is a useful general central-corner mechanism, but its first
