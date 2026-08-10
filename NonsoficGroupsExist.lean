@@ -116,6 +116,7 @@ import NonsoficGroupsExist.Matching.MedianNormalization
 import NonsoficGroupsExist.Sofic.LEF
 import NonsoficGroupsExist.Sofic.FinitelyPresentedLEF
 import NonsoficGroupsExist.Sofic.ThompsonFObstruction
+import NonsoficGroupsExist.Sofic.AugmentationExtension
 import NonsoficGroupsExist.Criterion.Scheme
 import NonsoficGroupsExist.Criterion.Criterion
 import NonsoficGroupsExist.Matching.BlockEnumeration
