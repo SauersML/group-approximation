@@ -28585,18 +28585,19 @@ products makes this wreath product residually finite because `Z/m Z` is
 finite and `Q` is residually finite.  Thus `(AB5)` is residually finite, and
 its quotient map supplies the reverse inclusion in `(AB4)`.  End proof.
 
-**Finite-module blindness.**  The `F_p G`-module `R_p` has no nonzero finite
-`G`-module quotient.  Indeed, if `R_p->V` were a nonzero equivariant quotient
-with `V` finite, the action map `G->Aut(V)` would have finite image and the
-induced homomorphism
+**Finite-module blindness.**  Every `G`-equivariant homomorphism from the
+ambient module `I_X/p I_X` to a finite `G`-module kills `R_p`.  Indeed, if
+`f:I_X/p I_X->V` were such a map and survived on `R_p`, it would induce
 
-`M_p -> V semidirect image(G)`
+`M_p -> V semidirect G`,  `(a,g) |-> (f(a),g)`.
 
-would send some element of `R_p` nontrivially into a finite, hence sofic,
-group, contradicting `(AB4)`.  Thus every hyperlinear construction retaining
-the obstruction must be genuinely asymptotic and unbounded-dimensional even
-at the level of its elementary-abelian normal subgroup; no exact finite
-module chart can see it.
+The target is a finite extension of the residually finite, hence sofic,
+group `G`, so it is sofic.  This contradicts `(AB4)`.  Equivalently, `R_p`
+lies in the intersection of the kernels of all finite equivariant module
+charts of the ambient augmentation module.  Thus every hyperlinear
+construction retaining the obstruction must be genuinely asymptotic and
+unbounded-dimensional; no exact finite module chart on the whole candidate
+can see it.
 
 This is a substantially simpler standalone nonsofic example than the full
 double: the only non-residually-finite layer is an explicit cyclically
