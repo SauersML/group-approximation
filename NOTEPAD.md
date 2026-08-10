@@ -31184,3 +31184,135 @@ keeping every fixed multiplication cell one order smaller.  The classical
 finite-quotient models fail exactly at this threshold: the invisible edge is
 collapsed and the associated Heisenberg/Weyl commutator has a first-order,
 not little-oh, curvature floor `(FQW2)--(FQW3)`.
+
+# Clifford central-limit quantization closes the additive heat problem (2026-08-10)
+
+The infinitesimal heat target `(THA1)--(THA2)` has two logically distinct
+parts: quantizing the abelian path coordinate, and implementing its covariance
+under `Q`.  The first part admits an explicit finite-dimensional solution with
+the required little-oh scale.  Thus all remaining difficulty is covariance.
+
+Let `H` be a finite-dimensional real Hilbert space and let `Cl(H)` be its
+complex Clifford algebra with canonical trace `tr_Cl` and self-adjoint Clifford
+field
+
+`c(v)c(w)+c(w)c(v)=2 <v,w> 1`.
+
+In `Cl(H)^(tensor m)` put
+
+`X_m(v)=m^(-1/2) sum_(j=1)^m c_j(v)`,
+`W_(m,t)(v)=exp(i sqrt(2t) X_m(v))`.                 `(CCT1)`
+
+Here `c_j(v)` denotes `c(v)` in the `j`th tensor factor.
+
+**Theorem (Clifford central-limit tangent quantization).**  For all
+`v,w in H` and `t>=0`:
+
+1. `X_m` is real-linear, self-adjoint, and
+
+   `tr_Cl(X_m(v)X_m(w))=<v,w>`;                       `(CCT2)`
+
+2. its failure to commute is
+
+   `||[X_m(v),X_m(w)]||_2`
+   ` =2 sqrt(||v||^2||w||^2-<v,w>^2)/sqrt(m)`;        `(CCT3)`
+
+3. the exponentials are additive to first order with
+
+   `||W_(m,t)(v)W_(m,t)(w)-W_(m,t)(v+w)||_2`
+   ` <=2t ||v|| ||w||/sqrt(m)`;                       `(CCT4)`
+
+4. their normalized traces are exactly
+
+   `tr_Cl(W_(m,t)(v))`
+   ` =cos(sqrt(2t)||v||/sqrt(m))^m`,                  `(CCT5)`
+
+   and hence, uniformly for `v` in a fixed bounded set,
+
+   `tr_Cl(W_(m,t)(v))=exp(-t||v||^2)+O(t^2||v||^4/m)` `(CCT6)`
+
+   whenever `2t||v||^2/m` stays bounded away from the first zero of cosine.
+
+In particular, for any `t_n->0` and any `m_n->infinity`, `(CCT4)` is
+`o(t_n)` and `(CCT6)` is `o(t_n)`.  No Weyl curvature floor remains in the
+additive path group.
+
+**Proof.**  Distinct tensor factors commute and are orthogonal in canonical
+`L^2`.  The Clifford trace kills every non-scalar monomial, so `(CCT2)` is
+immediate.  Cross terms in the commutator sum are likewise orthogonal, while
+
+`||[c(v),c(w)]||_2^2`
+` =4(||v||^2||w||^2-<v,w>^2)`.
+
+This proves `(CCT3)`.  For self-adjoint `A,B`, the Duhamel identity in any
+unitarily invariant norm gives
+
+`||exp(isA)exp(isB)-exp(is(A+B))||_2`
+` <=(s^2/2)||[A,B]||_2`.                              `(CCT7)`
+
+Apply `(CCT7)` with `s=sqrt(2t)` and `(CCT3)` to obtain `(CCT4)`.
+
+For fixed `v`, the `m` operators `c_j(v)` commute, and each normalized
+`c_j(v)/||v||` is a trace-zero self-adjoint involution.  Factorization of the
+tensor trace therefore gives `(CCT5)`.  Finally
+
+`log cos x=-x^2/2+O(x^4)`
+
+on a fixed neighborhood of zero.  Substituting
+`x=sqrt(2t)||v||/sqrt(m)` and multiplying by `m` proves `(CCT6)`.  End proof.
+
+There is also exact orthogonal covariance with no Pin/projective ambiguity.
+Every `T in O(H)` induces a trace-preserving automorphism `alpha_T` of
+`Cl(H)^(tensor m)`.  On its finite-dimensional `L^2` space the Koopman
+unitary
+
+`V_T(a)=alpha_T(a)`
+
+is an honest representation of `O(H)` and satisfies
+
+`V_T L_(W_(m,t)(v)) V_T^*=L_(W_(m,t)(Tv))`.           `(CCT8)`
+
+Moreover the normalized matrix trace of left multiplication is
+
+`Tr_norm(L_b)=tr_Cl(b)`.                              `(CCT9)`
+
+Thus an exact finite orthogonal model of the `Q`-action, together with an
+equivariant linear map `J:Z[Y]->H`, turns `(CCT1)` into finite matrix models
+of the semidirect product.  Tensoring the quotient sector with the regular
+representation of its finite image makes every nontrivial quotient
+coordinate have trace zero.  The only errors are `(CCT4)` and the failure of
+`J` to preserve the desired path norms.
+
+The familiar profinite obstruction now becomes an exact endpoint rather than
+a vague warning.  Suppose the orthogonal model factors through a finite
+quotient `theta:Q->F`, and `J` is exactly equivariant.  Put `o=Gamma in Y`
+and `xi=J(delta_o)`.  Since `delta_o` is fixed by `Gamma`, `xi` is fixed by
+`theta(Gamma)`.  For the primitive invisible element `h in N-Gamma`, relative
+profinite closure gives
+
+`theta(h) in theta(Gamma)`.
+
+Consequently
+
+`J(delta_(h Gamma)-delta_Gamma)`
+` =pi(theta(h))xi-xi=0`.                              `(CCT10)`
+
+The required squared energy is `2`, so every exact finite-quotient
+specialization still has trace `1` on the radical word rather than
+`exp(-2t)`.  Therefore `(CCT1)--(CCT9)` prove a sharp separation:
+
+* Gaussian trace manufacture: solved quantitatively at `o(t)`;
+* approximate commutativity of the path coordinates: solved quantitatively
+  at `o(t)`;
+* honest orthogonal covariance and projective-lift ambiguity: solved once an
+  orthogonal action is supplied;
+* production of a **non-profinite covariant orthogonal model** which retains
+  the invisible path norm: the single remaining input.
+
+This is useful for both construction and rejection.  A future candidate no
+longer needs a separate Weyl/Heisenberg quantization argument: it only has to
+produce, on each window, orthogonal covariance whose multiplicative and
+equivariance defects survive Clifford second quantization at `o(t)`, and for
+which the primitive path has norm tending to `sqrt(2)`.  Conversely, any
+candidate factoring through a genuine finite `Q`-set or finite quotient is
+eliminated immediately by `(CCT10)`.
