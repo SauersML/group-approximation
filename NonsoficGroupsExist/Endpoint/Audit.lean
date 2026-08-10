@@ -37,6 +37,7 @@ import NonsoficGroupsExist.Matching.EditedGeneratorExpansion
 import NonsoficGroupsExist.Matching.ComponentLabelCompletion
 import NonsoficGroupsExist.Matching.ComponentClusterScale
 import NonsoficGroupsExist.Matching.PartialClusterCandidates
+import NonsoficGroupsExist.Matching.PartialEquivarianceComposition
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -273,5 +274,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.componentLabelEditBudget_sum_negligible
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.badClusterComponentMass_negligible
 #print axioms NonsoficGroupsExist.FinitePartialBijection.IsClusterCandidate.gap
+#print axioms NonsoficGroupsExist.FinitePartialBijection.card_equivarianceDefect_trans_le
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection
