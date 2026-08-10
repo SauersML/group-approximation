@@ -34814,3 +34814,49 @@ double has `(IRG1)--(IRG3)`.  It banks a new sufficient mechanism and
 explains exactly why finite central torsion and quasisimple Kazhdan covers
 were the two successful-looking endpoints: both force operator-norm mass to
 occupy positive normalized trace inside a radical corner.
+
+## The finite fixed-set hypothesis forces finite generation
+
+The last calibration cannot hold for the free radical of the symmetric
+double.  In fact `(IRG2)` is much stronger than finite *normal* generation.
+
+**Lemma (quasi-regular test).**  Let `N normal H` and let `F subset N` be
+finite.  If
+
+`Fix(pi(F))=Fix(pi(N))`                                      `(IRG18)`
+
+for every unitary representation `pi` of `H`, then
+
+`N=<F>`                                                     `(IRG19)`
+
+as an ordinary subgroup.  In particular `N` is finitely generated.
+
+**Proof.**  Put `L=<F>` and use the quasi-regular representation of `H` on
+`ell^2(H/L)`.  The basis vector `delta_L` is fixed by every element of `F`,
+and hence by `(IRG18)` it is fixed by `N`.  But an element `n in N` fixes
+`delta_L` exactly when `nL=L`, equivalently `n in L`.  Thus `N<=L`; the
+reverse inclusion follows from `F subset N`.  End proof.
+
+**Corollary (the symmetric-double radical has no internal gap).**  For the
+Kun--Thom symmetric double
+
+`D=G *_Gamma G`, `R=Rad_sof(D)=ker(D->G *_N G)`,             `(IRG20)`
+
+no nontrivial subgroup `N_0 normal D` contained in `R` can satisfy
+`(IRG1)--(IRG3)`.
+
+Indeed, the Bass--Serre calculation already recorded above makes `R` a free
+group of infinite rank.  If a nontrivial `N_0 normal D` satisfied `(IRG2)`,
+the lemma would make `N_0` finitely generated.  Since `N_0 normal D` and
+`N_0<=R normal D`, it is normal in `R`.  A nontrivial finitely generated
+normal subgroup of a free group has finite index.  This is impossible here:
+a finite-index subgroup of the infinite-rank free group `R` again has
+infinite rank (equivalently, if a free group has a finitely generated
+finite-index subgroup, then it is finitely generated).  Hence `N_0=1`.
+
+This closes the direct application of the internal-radical gap bridge to the
+banked weak-MF double.  It also sharpens the live endpoint.  One must first
+change the radical algebraically--for example by the finite-central shear--
+and then prove weak MF of that changed group.  Merely choosing finitely many
+normal generators of the existing free radical cannot produce the central
+spectral projection used in `(IRG7)`.
