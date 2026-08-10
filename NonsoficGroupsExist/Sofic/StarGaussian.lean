@@ -111,7 +111,6 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
   rw [hdot]
   rw [← Complex.ofReal_pow, starScale_sq]
   norm_num
-  push_cast
   ring
 
 /-- **Exact normalized covariance.**  The star normalization makes the
