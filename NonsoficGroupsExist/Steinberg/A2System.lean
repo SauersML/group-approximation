@@ -48,7 +48,7 @@ theorem rootSet_generate :
   constructor
   · rintro ⟨i, j, hij, a, ha⟩
     refine ⟨⟨i, j, hij, a⟩, ?_⟩
-    simpa only [x_eq_of] using ha
+    simpa only [x] using ha
   · rintro ⟨q, rfl⟩
     rcases q with ⟨i, j, hij, a⟩
     exact ⟨i, j, hij, a, rfl⟩

@@ -26,7 +26,11 @@ def IsLocallyEmbeddableInto (G H : Type*) [Group G] [Group H] : Prop :=
 theorem isLocallyEmbeddableInto_self (G : Type*) [Group G] :
     IsLocallyEmbeddableInto G G := by
   intro s
-  exact ⟨id, Set.injOn_id, fun _ _ _ _ _ _ ↦ rfl⟩
+  refine ⟨id, ?_, ?_⟩
+  · intro x _ y _ hxy
+    exact hxy
+  · intro x _ y _ _
+    rfl
 
 namespace LocalCentralQuotientLifting
 

@@ -85,11 +85,6 @@ variable {I R : Type*} [Fintype I] [DecidableEq I] [Ring R]
 def x (i j : I) (hij : i ≠ j) (a : R) : SteinbergGroup (I := I) (R := R) :=
   PresentedGroup.of (generator i j hij a)
 
-@[simp] theorem x_eq_of (i j : I) (hij : i ≠ j) (a : R) :
-    x i j hij a = PresentedGroup.of
-      (⟨i, j, hij, a⟩ : SteinbergGenerator I R) :=
-  rfl
-
 /-- Additivity of each Steinberg root subgroup. -/
 theorem x_mul (i j : I) (hij : i ≠ j) (a b : R) :
     x i j hij a * x i j hij b = x i j hij (a + b) := by

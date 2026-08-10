@@ -33,7 +33,7 @@ noncomputable def UnitVectorSequence.coordinate
   vec n := EuclideanSpace.single
     (Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))) 1
   norm_eq_one n := by
-    rw [EuclideanSpace.norm_single]
+    rw [PiLp.norm_single]
     norm_num
 
 /-- The unitary assigned to a group element, acting on its Euclidean model. -/

@@ -468,6 +468,7 @@ theorem one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
     1 - Fintype.card Y * ε ^ 2 / 4 ≤
       Complex.normSq ((((2 : ℂ)⁻¹) • (1 + W)).det) := by
   letI : Nonempty Y := hY
+  have hε0 : 0 ≤ ε := (norm_nonneg (W - 1)).trans hnorm
   rw [normSq_det_midpoint_eq_prod hW]
   let D : Matrix Y Y ℂ := W - 1
   let hH : (D * Dᴴ).IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
