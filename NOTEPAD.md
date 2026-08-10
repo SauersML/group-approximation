@@ -30396,3 +30396,122 @@ Primary closure pins: Holt--Rees, *Some closure results for
 C-approximable groups*, Pacific J. Math. 287 (2017), and Brude--Sasyk,
 *Metric approximations of unrestricted wreath products when the acting
 group is amenable*, Comm. Algebra 50 (2022).
+
+# Abelianizing the complete double radical (2026-08-09)
+
+The complete-radical calculation `(SDR2)` has a stronger abelian shadow
+than the earlier fold-kernel calculation `(AB1)--(AB5)`: one can abelianize
+the **entire** sofic radical without killing the primitive radical word.
+
+Retain
+
+`D=D_Gamma=G *_Gamma G`,  `D_N=G *_N G`,
+
+and the quotient
+
+`q:D->D_N`,  `R=ker(q)=Rad_sof(D)`.                  `(ARD1)`
+
+Let
+
+`D_abR=D/[R,R]`,  `A=R/[R,R]`.
+
+**Theorem (free-abelian full radical).**  There is a natural
+`Z D_N`-module isomorphism
+
+`A = ker(Z[D_N/Gamma] -> Z[D_N/N])`,                 `(ARD2)`
+
+where the displayed map is induced by `d Gamma |-> d N`.  Moreover
+
+`Rad_sof(D_abR)=A`,                                  `(ARD3)`
+
+and
+
+`D_abR/A = D_N`                                      `(ARD4)`
+
+is residually finite.  In particular, `D_abR` is a finitely generated
+nonsofic group with free-abelian full sofic radical and residually finite
+maximal sofic quotient.
+
+**Proof of the module calculation.**  Let `T` be the Bass--Serre tree of
+`D=G *_Gamma G`.  The subgroup `R` acts freely on `T`: its intersection
+with either vertex group is trivial because `q` is injective on both
+vertex copies of `G`, and normality gives the same statement for every
+conjugate vertex stabilizer.  Therefore
+
+`R = pi_1(X)`,  where `X=R\T`,                        `(ARD5)`
+
+and `A=H_1(X,Z)`.
+
+The quotient `D/R=D_N` identifies the two types of vertices and the edges
+of `X` as
+
+`V(X)=D_N/G disjointUnion D_N/G`,
+`E(X)=D_N/Gamma`.                                    `(ARD6)`
+
+Compare this with the Bass--Serre tree `T_N` of `D_N=G *_N G`:
+
+`V(T_N)=D_N/G disjointUnion D_N/G`,
+`E(T_N)=D_N/N`.                                      `(ARD7)`
+
+Thus there is a `D_N`-equivariant graph map `X->T_N` which is the identity
+on vertices and sends `d Gamma` to `d N` on edges.  Geometrically, every
+edge of `T_N` is replaced in `X` by a parallel bundle indexed by `N/Gamma`.
+
+On finitely supported cellular chains, the boundary map of `X` factors as
+
+`Z[D_N/Gamma] -> Z[D_N/N] ->`
+`Z[D_N/G] directSum Z[D_N/G]`.                       `(ARD8)`
+
+The second arrow is the boundary map of the tree `T_N`, hence is
+injective.  Since a graph has no cellular 2-chains, `(ARD8)` gives
+
+`H_1(X,Z)=ker(Z[D_N/Gamma]->Z[D_N/N])`,
+
+and all maps are `D_N`-equivariant.  This proves `(ARD2)`.
+
+More explicitly, for `n in N` the two edges `Gamma` and `n Gamma` have
+the same endpoints in `X`, and the corresponding two-edge cycle is the
+class of
+
+`x_n=i_2(n)i_1(n)^(-1) in R`.
+
+Under `(ARD2)` its homology class is, up to the global orientation choice,
+
+`[x_n]=delta_(n Gamma)-delta_Gamma`.                  `(ARD9)`
+
+For the strict Kun--Thom witness `h in N minus Gamma`, this is nonzero.
+Consequently the original primitive radical word
+
+`x=i_2(h)i_1(h)^(-1)`
+
+survives in `A`; in fact it is one of the elementary parallel-edge cycles.
+
+**Proof of the exact radical statement.**  Let `psi:D_abR->S` be any
+homomorphism to a sofic group.  Its composite with `D->D_abR` must kill
+`R=Rad_sof(D)`.  Hence `psi` kills the image `A` of `R`, proving
+
+`A subset Rad_sof(D_abR)`.                           `(ARD10)`
+
+Conversely, quotienting `D_abR` by `A` gives `D/R=D_N`.  The group `D_N`
+is residually finite by `(SDR4)--(SDR5)`, hence sofic, so this single
+quotient map shows
+
+`Rad_sof(D_abR) subset A`.                           `(ARD11)`
+
+This proves `(ARD3)--(ARD4)`.  The group `D_abR` is finitely generated
+because it is a quotient of the finitely generated group `D`.  It is
+nonsofic because its full sofic radical `A` is nontrivial by `(ARD9)`.
+End proof.
+
+This is structurally sharper than merely producing an
+abelian-by-residually-finite nonsofic group: **all** failure of sofic
+separation is concentrated in a completely explicit free-abelian
+`D_N`-module, and the quotient by precisely that module is residually
+finite.  It is also a cleaner TRUE-side target than the original double.
+The remaining question is whether the particular extension
+
+`1 -> ker(Z[D_N/Gamma]->Z[D_N/N]) -> D_abR -> D_N -> 1` `(ARD12)`
+
+has a Connes-embeddable trace seeing one parallel-edge cycle.  General
+amenable-kernel/sofic-quotient permanence is not available, so `(ARD12)`
+is a reduction, not yet a proof of hyperlinearity.
