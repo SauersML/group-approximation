@@ -34441,6 +34441,117 @@ construct a Connes-embeddable trace on the finite central gauge corner (or
 on the regularized algebraic crossed product) which sees the radical
 coordinate.  The automorphic-action packaging does not lower that gate.
 
+## One strict compressor has an exact sofic automorphic dilation
+
+The local compressor--shear cell can be solved without any matrix
+approximation.  This separates the genuinely global Kazhdan obstruction from
+the one-endomorphism geometry.
+
+Let `Gamma` be a countable sofic group, let
+
+`alpha:Gamma->Gamma`
+
+be an injective endomorphism with proper image, and assume that every coset
+action
+
+`Gamma action Gamma/alpha^n(Gamma)`, `n>=0`,            `(OSD1)`
+
+is sofic.  Put
+
+`Y=disjointUnion_(n>=0) Gamma/alpha^n(Gamma)`.          `(OSD2)`
+
+The level-zero summand is the singleton `Gamma/Gamma`; denote its point by
+`o`.  There is an injective map
+
+`j:Y->Y`,
+`j(g alpha^n(Gamma))=alpha(g) alpha^(n+1)(Gamma)`,      `(OSD3)`
+
+from level `n` to level `n+1`.  It is well defined and injective because
+`alpha` is injective, and it is semiequivariant:
+
+`j(g y)=alpha(g)j(y)`.                                 `(OSD4)`
+
+Fix a nontrivial finite group `A` (one may take `C_2`) and form the
+permutational restricted wreath product
+
+`L=(directSum_Y A) semidirect Gamma`.                  `(OSD5)`
+
+For nonabelian `A`, use the coordinatewise direct sum; no commutativity is
+needed below.  Equations `(OSD3)--(OSD4)` define an injective endomorphism
+
+`Theta:L->L`                                           `(OSD6)`
+
+by sending the lamp at `y` to the lamp at `j(y)` and sending `g in Gamma`
+to `alpha(g)`.  Let `L_infinity` be the direct limit of
+
+`L --Theta--> L --Theta--> ...`.
+
+The direct-limit shift is an automorphism `Theta_infinity` of `L_infinity`.
+Define
+
+`K_alpha=L_infinity semidirect_(Theta_infinity) Z`,    `(OSD7)`
+
+and let `t` be the positive generator of the `Z` factor, with convention
+
+`t x t^(-1)=Theta_infinity(x)`.                        `(OSD8)`
+
+**Theorem (one-compressor sofic dilation).**  The group `K_alpha` is sofic.
+It contains the ascending HNN extension
+
+`H_alpha=<Gamma,t | t g t^(-1)=alpha(g)>`,             `(OSD9)`
+
+and a nontrivial finite-order element `a` such that
+
+`[a,Gamma]=1`,
+`[t a t^(-1),gamma_0]!=1`                              `(OSD10)`
+
+for every `gamma_0 in Gamma setminus alpha(Gamma)`.
+
+**Proof.**  A countable disjoint union of sofic actions is sofic: for a
+finite action window, only finitely many summands occur, and their orbit
+models can be repeated to a common size and put side by side.  Thus
+`Gamma action Y` is sofic by `(OSD1)`.  Standard sofic-action wreath
+permanence makes `(OSD5)` sofic.  Direct limits of sofic groups are sofic,
+so `L_infinity` is sofic.  Finally `(OSD7)` is an extension of a sofic
+normal subgroup by the amenable group `Z`, and is therefore sofic.
+
+The copies of `Gamma` in the direct system, together with `t`, give the
+standard direct-limit realization of the ascending HNN extension, proving
+the embedding in `(OSD9)`.  Choose `1!=a_0 in A` and let `a` be the lamp
+with value `a_0` at the level-zero point `o`.  Since `o` is fixed by all of
+`Gamma`, the first equation in `(OSD10)` holds.  By `(OSD3)`, `t a t^(-1)`
+is the lamp at the base coset
+
+`alpha(Gamma) in Gamma/alpha(Gamma)`.
+
+If `gamma_0 notin alpha(Gamma)`, this point is moved to the distinct coset
+`gamma_0 alpha(Gamma)`.  Conjugation by `gamma_0` therefore sends the lamp
+to a different coordinate, so its commutator with `gamma_0` is nontrivial.
+This is `(OSD10)`.  End proof.
+
+For the polynomial compressor
+
+`Gamma=EL_r(k[x_1,...,x_d])`,
+`alpha(Gamma)=t Gamma t^(-1)`,                         `(OSD11)`
+
+the hypothesis `(OSD1)` holds: every iterated monomial coefficient subring
+is separable inside the polynomial elementary group by the coefficient
+specialization argument recorded in the compressor-fiber section, and a
+coset action with separable stabilizer is LEF, hence sofic.  Thus `(OSD7)`
+is an entirely explicit sofic realization of the strict commutant pattern
+used by the Kun--Thom witness.
+
+The theorem is a useful calibration, not the final counterexample.
+`K_alpha` maps onto `Z`, so it cannot have property `(T)`.  Kun--Thom
+centralizer normalization therefore does not apply, and there is no
+contradiction with its soficity.  Conversely, if the construction could be
+made simultaneously compatible with all compressor relations in the full
+Kazhdan ambient group `G`, the same element `a` would give the nonsofic
+free-lamp witness inside a tracial model.  The remaining obstruction is
+therefore precisely **multi-compressor Kazhdan gluing**; neither the local
+endomorphism, the strict commutant inclusion, nor trace visibility of the
+lamp is missing.
+
 ## Correction: the star profile is forbidden for the Kun--Thom vector
 
 The quantization theorem `(RSG1)--(RSG18)` is correct, but its relative
