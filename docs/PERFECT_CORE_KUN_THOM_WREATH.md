@@ -496,6 +496,67 @@ Any proposed near-character, singular-state, or noncanonical joining route
 which sees \(z\) automatically yields this canonical trace after central
 compression and tensoring with the regular retraction.
 
+## 7. Operator-norm endpoint: weak MF of the cover is enough
+
+The central sign also converts operator-norm visibility into the character
+in Theorem 6.  This conversion uses neither an error--dimension rate nor a
+preassigned trace.
+
+**Theorem 7 (weak-MF Clifford endpoint).**  If
+\(E_{\mathrm{Cl},0}\) is weak/operator-norm MF, then the canonical trace
+\(\tau_{\mathrm{can}}\) in (24) is Connes-embeddable.  Consequently there
+exists a hyperlinear nonsofic group.
+
+**Proof.**  Let
+
+\[
+ \rho:E_{\mathrm{Cl},0}\longrightarrow
+ U\!\left(\prod_n M_{d_n}/\bigoplus_n M_{d_n}\right)
+\]
+
+be an injective operator-norm ultraproduct representation.  Write
+\(u=\rho(z)\).  Since \(z^2=1\), the element
+
+\[
+ q=\frac{1-u}{2}
+\]
+
+is a central projection in the norm ultraproduct.  Injectivity and
+\(z\ne1\) imply \(q\ne0\).  Lift \(q\), after discarding finitely many
+coordinates, to projections \(q_n\in M_{d_n}\) of positive ranks
+\(r_n\).  Compression by \(q_n\), followed by polar correction of the
+compressed unitary lifts, gives asymptotically multiplicative maps
+
+\[
+ E_{\mathrm{Cl},0}\longrightarrow U(q_nM_{d_n}q_n)
+ \cong U(r_n).
+\]
+
+Centrality of \(q\) makes the compression defect tend to zero in operator
+norm, hence also in normalized Hilbert--Schmidt norm on each corner; this
+estimate is independent of the possibly vanishing ratio \(r_n/d_n\).
+On these corners \(z\) converges in operator norm to \(-1\).  The resulting
+tracial-ultraproduct homomorphism therefore supplies a
+Connes-embeddable character \(\chi_-\) with \(\chi_-(z)=-1\).
+Theorem 6 now gives Connes embeddability of \(\tau_{\mathrm{can}}\), and
+Theorem 4 gives a hyperlinear nonsofic image. \(\square\)
+
+Thus the fixed-sign route has two rigorously ordered sufficient
+certificates:
+
+\[
+ E_{\mathrm{Cl},0}\text{ weak-MF}
+ \Longrightarrow
+ \tau_{\mathrm{can}}\text{ Connes-embeddable}
+ \Longrightarrow
+ \text{a hyperlinear nonsofic group exists}.            \tag{27}
+\]
+
+The first arrow is special to the isolated finite-order central spectrum.
+For a general noncentral weak-MF witness, operator-norm separation may be
+confined to a subspace of vanishing normalized rank, and no such
+profile-free corner extraction is available.
+
 ## References
 
 * A. Thom, *Examples of hyperlinear groups without factorization property*,
