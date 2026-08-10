@@ -28,6 +28,7 @@ import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.Kazhdan.ShalomFinitePresentation
 import NonsoficGroupsExist.Covers.KazhdanCover
 import NonsoficGroupsExist.Leavitt.FamilyRankFour
+import NonsoficGroupsExist.Matching.AsymptoticPartialBijection
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
 import NonsoficGroupsExist.Leavitt.RawSwapCompressors
@@ -242,3 +243,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 -- Internally proved operator-norm MF transfer mechanisms.
 #print axioms NonsoficGroupsExist.isWeakMF_of_injective
 #print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
+
+-- Cluster-groupoid carrier: composition and negligible-disagreement setoid
+-- are derived from concrete finite partial bijections.
+#print axioms NonsoficGroupsExist.FinitePartialBijection.sourceDefect_trans_le
+#print axioms NonsoficGroupsExist.FinitePartialBijection.trans_assoc
+#print axioms NonsoficGroupsExist.AsymptoticPartialBijection.near_trans
+#print axioms NonsoficGroupsExist.AsymptoticPartialBijection.trans_assoc
