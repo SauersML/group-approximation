@@ -271,6 +271,7 @@ import NonsoficGroupsExist.Matching.Localization
 import NonsoficGroupsExist.Leavitt.MatrixSelfSimilarity
 import NonsoficGroupsExist.Matching.PermutationConservation
 import NonsoficGroupsExist.Sofic.Sofic
+import NonsoficGroupsExist.Sofic.MultiplicativeApproximation
 import NonsoficGroupsExist.Sofic.SoficAmplification
 import NonsoficGroupsExist.Sofic.SoficUltraproduct
 import NonsoficGroupsExist.Sofic.HyperlinearMetric
@@ -369,7 +370,6 @@ import NonsoficGroupsExist.Leavitt.FiniteTypeCountable
 import NonsoficGroupsExist.Leavitt.ShiftEndomorphism
 import NonsoficGroupsExist.Sofic.LocalCentralQuotientLifting
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
-import NonsoficGroupsExist.Steinberg.BinaryLeavittFinitePresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
