@@ -20,11 +20,30 @@ structure FinitePartialBijection (Y Z : FiniteModel) where
 
 namespace FinitePartialBijection
 
-variable {Y Z W : FiniteModel}
+variable {Y Z W V : FiniteModel}
 
 /-- Value of a partial bijection at a point with a source-membership proof. -/
 def apply (b : FinitePartialBijection Y Z) (y : Y) (hy : y ∈ b.source) : Z :=
   (b.equiv ⟨y, hy⟩).1
+
+/-- Two partial bijections are equal when their source, target, and values
+agree.  Proofs of membership carry no additional data. -/
+@[ext (iff := false)] theorem ext {b c : FinitePartialBijection Y Z}
+    (hsource : b.source = c.source) (htarget : b.target = c.target)
+    (happly : ∀ y (hy : y ∈ b.source),
+      b.apply y hy = c.apply y (hsource ▸ hy)) : b = c := by
+  cases b with
+  | mk bsource btarget bequiv =>
+    cases c with
+    | mk csource ctarget cequiv =>
+      dsimp only at hsource htarget happly
+      subst csource
+      subst ctarget
+      congr
+      apply Equiv.ext
+      intro y
+      apply Subtype.ext
+      exact happly y.1 y.2
 
 theorem apply_mem_target (b : FinitePartialBijection Y Z)
     (y : Y) (hy : y ∈ b.source) : b.apply y hy ∈ b.target :=
@@ -67,6 +86,9 @@ def symm (b : FinitePartialBijection Y Z) : FinitePartialBijection Z Y where
   cases b
   rfl
 
+@[simp] theorem symm_refl_apply (y : Y) (hy : y ∈ (refl Y).symm.source) :
+    (refl Y).symm.apply y hy = y := rfl
+
 @[simp] theorem symm_apply_apply (b : FinitePartialBijection Y Z)
     (y : Y) (hy : y ∈ b.source) :
     b.symm.apply (b.apply y hy) (b.apply_mem_target y hy) = y := by
@@ -76,6 +98,35 @@ def symm (b : FinitePartialBijection Y Z) : FinitePartialBijection Z Y where
     (z : Z) (hz : z ∈ b.target) :
     b.apply (b.symm.apply z hz) (b.symm.apply_mem_target z hz) = z := by
   exact congrArg Subtype.val (b.equiv.apply_symm_apply ⟨z, hz⟩)
+
+/-- The source and pointwise values determine a partial bijection; its target
+is necessarily the image of its source. -/
+theorem ext_source {b c : FinitePartialBijection Y Z}
+    (hsource : b.source = c.source)
+    (happly : ∀ y (hy : y ∈ b.source),
+      b.apply y hy = c.apply y (hsource ▸ hy)) : b = c := by
+  have htarget : b.target = c.target := by
+    ext z
+    constructor
+    · intro hz
+      let y := b.symm.apply z hz
+      have hyb : y ∈ b.source := b.symm.apply_mem_target z hz
+      have hyc : y ∈ c.source := hsource ▸ hyb
+      have hmem : c.apply y hyc ∈ c.target := c.apply_mem_target y hyc
+      have hval : b.apply y hyb = c.apply y hyc := by
+        simpa only [proof_irrel_heq] using happly y hyb
+      rw [← b.apply_symm_apply z hz, hval]
+      exact hmem
+    · intro hz
+      let y := c.symm.apply z hz
+      have hyc : y ∈ c.source := c.symm.apply_mem_target z hz
+      have hyb : y ∈ b.source := hsource.symm ▸ hyc
+      have hmem : b.apply y hyb ∈ b.target := b.apply_mem_target y hyb
+      have hval : b.apply y hyb = c.apply y hyc := by
+        simpa only [proof_irrel_heq] using happly y hyb
+      rw [← c.apply_symm_apply z hz, ← hval]
+      exact hmem
+  exact ext hsource htarget happly
 
 /-- A source point at which `b` may be followed by `c`. -/
 def ComposableAt (b : FinitePartialBijection Y Z)
@@ -123,6 +174,128 @@ noncomputable def trans (b : FinitePartialBijection Y Z)
       right_inv := fun w ↦ by
         apply Subtype.ext
         simp } }
+
+@[simp] theorem mem_trans_source (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (y : Y) :
+    y ∈ (b.trans c).source ↔
+      ∃ hy : y ∈ b.source, b.apply y hy ∈ c.source := by
+  classical
+  simp only [trans, Finset.mem_filter, ComposableAt]
+  constructor
+  · rintro ⟨_, h⟩
+    exact h
+  · rintro ⟨hy, h⟩
+    exact ⟨hy, hy, h⟩
+
+@[simp] theorem mem_trans_target (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (w : W) :
+    w ∈ (b.trans c).target ↔
+      ∃ hw : w ∈ c.target, c.symm.apply w hw ∈ b.target := by
+  classical
+  simp only [trans, Finset.mem_filter, BackComposableAt]
+  constructor
+  · rintro ⟨_, h⟩
+    exact h
+  · rintro ⟨hw, h⟩
+    exact ⟨hw, hw, h⟩
+
+@[simp] theorem trans_apply (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (y : Y)
+    (hy : y ∈ (b.trans c).source) :
+    (b.trans c).apply y hy =
+      c.apply (b.apply y ((b.mem_trans_source c y).mp hy).choose)
+        ((b.mem_trans_source c y).mp hy).choose_spec := rfl
+
+@[simp] theorem refl_trans (b : FinitePartialBijection Y Z) :
+    (refl Y).trans b = b := by
+  classical
+  have hs : ((refl Y).trans b).source = b.source := by
+    ext y
+    constructor
+    · intro hy
+      obtain ⟨_, h⟩ := ((refl Y).mem_trans_source b y).mp hy
+      simpa using h
+    · intro hy
+      exact ((refl Y).mem_trans_source b y).mpr
+        ⟨Finset.mem_univ _, by simpa using hy⟩
+  have ht : ((refl Y).trans b).target = b.target := by
+    ext z
+    constructor
+    · intro hz
+      exact (((refl Y).mem_trans_target b z).mp hz).choose
+    · intro hz
+      exact ((refl Y).mem_trans_target b z).mpr
+        ⟨hz, Finset.mem_univ _⟩
+  exact FinitePartialBijection.ext hs ht (by
+    intro y hy
+    simp)
+
+@[simp] theorem trans_refl (b : FinitePartialBijection Y Z) :
+    b.trans (refl Z) = b := by
+  classical
+  have hs : (b.trans (refl Z)).source = b.source := by
+    ext y
+    constructor
+    · intro hy
+      exact ((b.mem_trans_source (refl Z) y).mp hy).choose
+    · intro hy
+      exact (b.mem_trans_source (refl Z) y).mpr
+        ⟨hy, Finset.mem_univ _⟩
+  have ht : (b.trans (refl Z)).target = b.target := by
+    ext z
+    constructor
+    · intro hz
+      obtain ⟨_, h⟩ := (b.mem_trans_target (refl Z) z).mp hz
+      simpa using h
+    · intro hz
+      exact (b.mem_trans_target (refl Z) z).mpr
+        ⟨Finset.mem_univ _, by simpa using hz⟩
+  exact FinitePartialBijection.ext hs ht (by
+    intro y hy
+    simp)
+
+/-- Composition of finite partial bijections is associative. -/
+theorem trans_assoc (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (d : FinitePartialBijection W V) :
+    (b.trans c).trans d = b.trans (c.trans d) := by
+  classical
+  have hs : ((b.trans c).trans d).source =
+      (b.trans (c.trans d)).source := by
+    ext y
+    constructor
+    · intro hy
+      obtain ⟨hybc, hyd⟩ := ((b.trans c).mem_trans_source d y).mp hy
+      obtain ⟨hyb, hyc⟩ := (b.mem_trans_source c y).mp hybc
+      apply (b.mem_trans_source (c.trans d) y).mpr
+      refine ⟨hyb, (c.mem_trans_source d (b.apply y hyb)).mpr ?_⟩
+      refine ⟨hyc, ?_⟩
+      simpa only [trans_apply, proof_irrel_heq] using hyd
+    · intro hy
+      obtain ⟨hyb, hycd⟩ := (b.mem_trans_source (c.trans d) y).mp hy
+      obtain ⟨hyc, hyd⟩ :=
+        (c.mem_trans_source d (b.apply y hyb)).mp hycd
+      apply ((b.trans c).mem_trans_source d y).mpr
+      have hybc : y ∈ (b.trans c).source :=
+        (b.mem_trans_source c y).mpr ⟨hyb, hyc⟩
+      refine ⟨hybc, ?_⟩
+      simpa only [trans_apply, proof_irrel_heq] using hyd
+  exact ext_source hs (by
+    intro y hy
+    simp only [trans_apply])
+
+/-- Reversing a composite reverses the order of its factors. -/
+theorem symm_trans (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) :
+    (b.trans c).symm = c.symm.trans b.symm := by
+  classical
+  have hs : (b.trans c).symm.source = (c.symm.trans b.symm).source := by
+    ext w
+    rw [symm_source, b.mem_trans_target c w]
+    rw [c.symm.mem_trans_source b.symm w]
+    rfl
+  exact ext_source hs (by
+    intro w hw
+    rfl)
 
 /-- Graph of the partial bijection. -/
 noncomputable def graph (b : FinitePartialBijection Y Z) : Finset (Y × Z) :=
