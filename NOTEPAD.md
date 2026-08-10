@@ -34022,3 +34022,129 @@ stable exactly when all residue fields have more than `k` elements.  Since
 `A_M` in `(IMG2)` is local with residue field `F_p` and `p>5`, the
 hypothesis holds exactly as used; `(IMG4)` therefore defines a character
 of stable Quillen `K_2`, not only of Milnor `K_2`.
+
+## A bounded root commutator closes all finite-index induced sectors
+
+The scalar-invariance hypothesis in `(KIC1)--(KIC12)` can be removed for
+the actual polynomial/Laurent Kun--Thom pair.  The key is that every finite
+collision of one fixed invisible Laurent root is a commutator with a
+**single** element of the polynomial congruence kernel.
+
+Let
+
+`R_+=k[x_1,...,x_d]`, `R=k[x_1^(+-1),...,x_d^(+-1)]`, `(BRC1)`
+
+let `r>=3`, and put
+
+`Gamma=EL_r(R_+) <= EL_r(R) <= G`.                    `(BRC2)`
+
+The ambient group `G` may also contain substitution matrices; only
+normality under `EL_r(R)` is used below.  Fix
+
+`h=e_12(x_1^(-1))`, `g=e_13(x_1^(-1))`.              `(BRC3)`
+
+**Lemma (bounded root collision).**  For every finite-index normal subgroup
+`K normal G` there are `p_K in R_+` and
+
+`gamma_K=e_12(p_K) in Gamma`,
+`ell_K=e_32(1-x_1 p_K) in K intersect Gamma`          `(BRC4)`
+
+such that
+
+`gamma_K^(-1)h=[g,ell_K] in K`.                      `(BRC5)`
+
+**Proof.**  Define the level
+
+`I_K={a in R : e_ij(a) in K for every i!=j}`.        `(BRC6)`
+
+It is a finite-index ideal of `R`.  Additivity follows from
+`e_ij(a+b)=e_ij(a)e_ij(b)`.  For distinct indices, the Steinberg
+commutator relation
+
+`[e_ij(a),e_jq(b)]=e_iq(ab)`                         `(BRC7)`
+
+and normality of `K` prove closure under multiplication by arbitrary
+`b in R`; elementary Weyl conjugations move the resulting level element
+between root subgroups.  Finite index follows because each additive root
+map has finite image in `G/K`, and there are only finitely many root pairs.
+
+The image of `x_1` is a unit in the finite ring `R/I_K`, hence has finite
+multiplicative order, say `M_K`.  Take
+
+`p_K=x_1^(M_K-1)`.                                   `(BRC8)`
+
+Then `d_K=x_1^(-1)-p_K` belongs to `I_K`, so
+
+`gamma_K^(-1)h=e_12(d_K) in K`.                      `(BRC9)`
+
+Moreover `x_1d_K=1-x_1p_K` belongs to `I_K intersect R_+`, proving the
+membership assertion for `ell_K` in `(BRC4)`.  Finally `(BRC7)` gives
+
+`[e_13(x_1^(-1)),e_32(x_1d_K)]`
+` =e_12(x_1^(-1)x_1d_K)=e_12(d_K)`,                 `(BRC10)`
+
+which is `(BRC5)`.  End proof.
+
+Now allow completely arbitrary matrix-valued fibers.  For a
+finite-dimensional unitary representation
+
+`sigma_K:K->U(m_K)`                                  `(BRC11)`
+
+put, on equal-dimensional spaces,
+
+`U_K=Ind_K^G(1_(m_K))`, `V_K=Ind_K^G(sigma_K)`.      `(BRC12)`
+
+No invariance or irreducibility is assumed for `sigma_K`.
+
+**Theorem (finite-index induction no-go).**  Assume `Gamma` has property
+`(T)`, with finite Kazhdan set `S`.  Let `K_j normal G` be finite-index
+subgroups, let `sigma_j` be arbitrary finite-dimensional representations,
+and let `U_j,V_j` be `(BRC12)`.  There is no sequence of unitaries `W_j`
+such that
+
+`max_(s in S)||W_jV_j(s)W_j^*-U_j(s)||_2->0`          `(BRC13)`
+
+and simultaneously
+
+`liminf_j ||W_jV_j(h)W_j^*-U_j(h)||_2>0`.            `(BRC14)`
+
+In fact `(BRC13)` forces the difference in `(BRC14)` to tend to zero.
+
+**Proof.**  Replace `V_j` by `W_jV_jW_j^*`.  Both restrictions to `Gamma`
+are honest representations.  The Kazhdan intertwiner estimate
+`(KPU12)--(KPU14)` gives
+
+`sup_(gamma in Gamma)||V_j(gamma)-U_j(gamma)||_2->0`. `(BRC15)`
+
+Every element of `K_j` acts trivially in `U_j`.  For the element `ell_j`
+from `(BRC4)`, equations `(BRC15)` and `ell_j in K_j intersect Gamma`
+therefore give
+
+`||V_j(ell_j)-1||_2->0`.                             `(BRC16)`
+
+For unitaries `A,B`,
+
+`||[A,B]-1||_2<=2||B-1||_2`.                         `(BRC17)`
+
+Using `(BRC5)--(BRC17)` in the honest representation `V_j` yields
+
+`||V_j(gamma_j^(-1)h)-1||_2->0`.                    `(BRC18)`
+
+The same kernel element is exactly one in `U_j`, so
+`U_j(h)=U_j(gamma_j)`.  Since
+`h=gamma_j(gamma_j^(-1)h)`, equations `(BRC15)` and `(BRC18)` give
+
+`||V_j(h)-U_j(h)||_2`
+` <=||V_j(gamma_j)-U_j(gamma_j)||_2`
+`   +||V_j(gamma_j^(-1)h)-1||_2 ->0`.                `(BRC19)`
+
+This contradicts `(BRC14)` and proves the theorem.  End proof.
+
+This closes every finite-index induction construction based on the
+invisible root `(BRC3)`, including arbitrary high-multiplicity and
+noncommutative kernel fibers.  The obstruction is stronger than scalar
+holonomy collapse: finite congruence makes the collision a bounded
+commutator of one polynomial-kernel element, and property `(T)` controls
+that growing element uniformly.  A surviving FALSE construction must
+therefore be genuinely non-induced/non-finite-cover, or use an approximate
+ambient representation for which `(BRC5)` is not respected exactly.
