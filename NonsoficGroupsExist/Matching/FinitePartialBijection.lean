@@ -38,6 +38,19 @@ theorem apply_injective (b : FinitePartialBijection Y Z)
     exact Subtype.ext hxy
   exact congrArg Subtype.val hsub
 
+/-- The full identity partial bijection. -/
+def refl (Y : FiniteModel) : FinitePartialBijection Y Y where
+  source := Finset.univ
+  target := Finset.univ
+  equiv :=
+    { toFun := fun y ↦ ⟨y.1, Finset.mem_univ _⟩
+      invFun := fun y ↦ ⟨y.1, Finset.mem_univ _⟩
+      left_inv := fun y ↦ by cases y; rfl
+      right_inv := fun y ↦ by cases y; rfl }
+
+@[simp] theorem refl_apply (y : Y) (hy : y ∈ (refl Y).source) :
+    (refl Y).apply y hy = y := rfl
+
 /-- Reverse a finite partial bijection. -/
 def symm (b : FinitePartialBijection Y Z) : FinitePartialBijection Z Y where
   source := b.target
@@ -53,6 +66,63 @@ def symm (b : FinitePartialBijection Y Z) : FinitePartialBijection Z Y where
 @[simp] theorem symm_symm (b : FinitePartialBijection Y Z) : b.symm.symm = b := by
   cases b
   rfl
+
+@[simp] theorem symm_apply_apply (b : FinitePartialBijection Y Z)
+    (y : Y) (hy : y ∈ b.source) :
+    b.symm.apply (b.apply y hy) (b.apply_mem_target y hy) = y := by
+  exact congrArg Subtype.val (b.equiv.symm_apply_apply ⟨y, hy⟩)
+
+@[simp] theorem apply_symm_apply (b : FinitePartialBijection Y Z)
+    (z : Z) (hz : z ∈ b.target) :
+    b.apply (b.symm.apply z hz) (b.symm.apply_mem_target z hz) = z := by
+  exact congrArg Subtype.val (b.equiv.apply_symm_apply ⟨z, hz⟩)
+
+/-- A source point at which `b` may be followed by `c`. -/
+def ComposableAt (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (y : Y) : Prop :=
+  ∃ hy : y ∈ b.source, b.apply y hy ∈ c.source
+
+/-- A target point having a preimage through both `b` and `c`. -/
+def BackComposableAt (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) (w : W) : Prop :=
+  ∃ hw : w ∈ c.target, c.symm.apply w hw ∈ b.target
+
+/-- Composition of partial bijections, restricted to the points at which the
+first map lands in the source of the second. -/
+noncomputable def trans (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) : FinitePartialBijection Y W := by
+  classical
+  exact
+   { source := b.source.filter (ComposableAt b c)
+     target := c.target.filter (BackComposableAt b c)
+     equiv :=
+    { toFun := fun y ↦ by
+        have hyb : y.1 ∈ b.source := (Finset.mem_filter.mp y.2).1
+        have hyc : b.apply y.1 hyb ∈ c.source := by
+          obtain ⟨hyb', hyc⟩ := (Finset.mem_filter.mp y.2).2
+          simpa only [proof_irrel_heq] using hyc
+        refine ⟨c.apply (b.apply y.1 hyb) hyc, ?_⟩
+        rw [Finset.mem_filter]
+        refine ⟨c.apply_mem_target _ _, ?_⟩
+        refine ⟨c.apply_mem_target _ _, ?_⟩
+        simpa only [symm_apply_apply] using b.apply_mem_target y.1 hyb
+      invFun := fun w ↦ by
+        have hwc : w.1 ∈ c.target := (Finset.mem_filter.mp w.2).1
+        have hwb : c.symm.apply w.1 hwc ∈ b.target := by
+          obtain ⟨hwc', hwb⟩ := (Finset.mem_filter.mp w.2).2
+          simpa only [proof_irrel_heq] using hwb
+        refine ⟨b.symm.apply (c.symm.apply w.1 hwc) hwb, ?_⟩
+        rw [Finset.mem_filter]
+        refine ⟨b.symm.apply_mem_target _ _, ?_⟩
+        refine ⟨b.symm.apply_mem_target _ _, ?_⟩
+        simpa only [symm_target, apply_symm_apply] using
+          c.symm.apply_mem_target w.1 hwc
+      left_inv := fun y ↦ by
+        apply Subtype.ext
+        simp
+      right_inv := fun w ↦ by
+        apply Subtype.ext
+        simp } }
 
 /-- Graph of the partial bijection. -/
 noncomputable def graph (b : FinitePartialBijection Y Z) : Finset (Y × Z) :=
