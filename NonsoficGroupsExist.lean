@@ -287,6 +287,7 @@ import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.SoficFiniteSemidirect
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
+import NonsoficGroupsExist.Sofic.LineDouble
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
 import NonsoficGroupsExist.Sofic.CentralFreeLampCover

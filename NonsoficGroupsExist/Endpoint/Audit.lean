@@ -4,6 +4,7 @@ import NonsoficGroupsExist.Sofic.SoficSequential
 import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
+import NonsoficGroupsExist.Sofic.LineDouble
 import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
@@ -148,6 +149,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.freeLampMulEquivSymmetricDoubleFlip
 #print axioms NonsoficGroupsExist.not_isSofic_symmetricDouble_of_centralizerNormalization
 #print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_symmetricDouble_of_centralizerNormalization
+#print axioms NonsoficGroupsExist.doubleToLine_injective
+#print axioms NonsoficGroupsExist.not_isSofic_lineDouble_of_centralizerNormalization
 #print axioms NonsoficGroupsExist.isSofic_multiplicative_int
 #print axioms NonsoficGroupsExist.isSofic_iff_productRestricted
 #print axioms NonsoficGroupsExist.isSofic_of_soficApproximation
