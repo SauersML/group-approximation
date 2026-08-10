@@ -92,6 +92,11 @@ def swapPerm (b : FinitePartialBijection Y Z) :
     b.swapPerm (Sum.inr z) = Sum.inr z := by
   simp [swapPerm, hz]
 
+@[simp] theorem swapPerm_inv_inr_of_mem
+    (b : FinitePartialBijection Y Z) (z : Z) (hz : z ∈ b.target) :
+    b.swapPerm⁻¹ (Sum.inr z) = Sum.inl (b.symm.apply z hz) := by
+  simp [swapPerm, hz]
+
 theorem swapPerm_mul_self (b : FinitePartialBijection Y Z) :
     b.swapPerm * b.swapPerm = 1 := by
   apply Equiv.ext

@@ -282,5 +282,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.PartialClusterSystem.presentation
 #print axioms NonsoficGroupsExist.FinitePartialBijection.card_swapEquivarianceDefect_le
 #print axioms NonsoficGroupsExist.FinitePartialBijection.extractCrossing_swapPerm
+#print axioms NonsoficGroupsExist.FinitePartialBijection.twoSidedDisagreement_extractCrossing_le_self_add_two_mul
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection

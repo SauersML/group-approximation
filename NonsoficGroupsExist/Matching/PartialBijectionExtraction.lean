@@ -129,5 +129,177 @@ recovers the original partial bijection exactly. -/
     (swapPerm_inl_of_mem b y hyb)
   simpa only [proof_irrel_heq] using h
 
+/-- On the source side, extracting crossings from a perturbed swap costs at
+most the original missing source mass plus the permutation disagreement. -/
+theorem card_disagreement_extractCrossing_le
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    (b.disagreement (extractCrossing p)).card ≤ b.sourceDefect +
+      (hammingDisagreement b.swapPerm p).card := by
+  classical
+  let charge :
+      {y // y ∈ b.disagreement (extractCrossing p)} →
+        {y // y ∈ Finset.univ \ b.source} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm p} := fun y ↦ by
+    by_cases hyb : y.1 ∈ b.source
+    · apply Sum.inr
+      refine ⟨Sum.inl y.1, ?_⟩
+      rw [mem_hammingDisagreement]
+      intro heq
+      have hpmap : p (Sum.inl y.1) = Sum.inr (b.apply y.1 hyb) := by
+        calc
+          p (Sum.inl y.1) = b.swapPerm (Sum.inl y.1) := heq.symm
+          _ = Sum.inr (b.apply y.1 hyb) := swapPerm_inl_of_mem b y.1 hyb
+      let hyp : y.1 ∈ (extractCrossing p).source :=
+        mem_extractCrossing_source_of_apply_eq p y.1 (b.apply y.1 hyb) hpmap
+      have happ : (extractCrossing p).apply y.1 hyp = b.apply y.1 hyb :=
+        extractCrossing_apply_eq_of_apply_eq p y.1 (b.apply y.1 hyb) hpmap
+      have hne := (mem_disagreement b (extractCrossing p) y.1).mp y.2 hyb hyp
+      exact hne happ.symm
+    · exact Sum.inl ⟨y.1, Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hyb⟩⟩
+  let forget :
+      {y // y ∈ Finset.univ \ b.source} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm p} → Option Y
+    | Sum.inl y => some y.1
+    | Sum.inr x => match x.1 with
+      | Sum.inl y => some y
+      | Sum.inr _ => none
+  have hforget (y : {y // y ∈ b.disagreement (extractCrossing p)}) :
+      forget (charge y) = some y.1 := by
+    dsimp only [charge]
+    split
+    · rfl
+    · rfl
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Option.some.inj (by rw [← hforget x, hxy, hforget y])
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  have hcompl : (Finset.univ \ b.source).card = b.sourceDefect := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ b.source)]
+    simp [FinitePartialBijection.sourceDefect]
+  simpa only [Fintype.card_coe, Fintype.card_sum, hcompl] using hcard
+
+/-- The analogous target-side estimate is charged to disagreement of the
+inverse permutations. -/
+theorem card_symm_disagreement_extractCrossing_le
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    (b.symm.disagreement (extractCrossing p).symm).card ≤ b.targetDefect +
+      (hammingDisagreement b.swapPerm⁻¹ p⁻¹).card := by
+  classical
+  let charge :
+      {z // z ∈ b.symm.disagreement (extractCrossing p).symm} →
+        {z // z ∈ Finset.univ \ b.target} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm⁻¹ p⁻¹} := fun z ↦ by
+    by_cases hzb : z.1 ∈ b.target
+    · apply Sum.inr
+      refine ⟨Sum.inr z.1, ?_⟩
+      rw [mem_hammingDisagreement]
+      intro heq
+      let y := b.symm.apply z.1 hzb
+      have hpInv : p⁻¹ (Sum.inr z.1) = Sum.inl y := by
+        calc
+          p⁻¹ (Sum.inr z.1) = b.swapPerm⁻¹ (Sum.inr z.1) := heq.symm
+          _ = Sum.inl y := swapPerm_inv_inr_of_mem b z.1 hzb
+      have hpmap : p (Sum.inl y) = Sum.inr z.1 := by
+        calc
+          p (Sum.inl y) = p (p⁻¹ (Sum.inr z.1)) := congrArg p hpInv.symm
+          _ = Sum.inr z.1 := p.apply_symm_apply _
+      let hy : y ∈ (extractCrossing p).source :=
+        mem_extractCrossing_source_of_apply_eq p y z.1 hpmap
+      have hforward : (extractCrossing p).apply y hy = z.1 :=
+        extractCrossing_apply_eq_of_apply_eq p y z.1 hpmap
+      have htarget : z.1 ∈ (extractCrossing p).symm.source :=
+        by
+          have hm := (extractCrossing p).apply_mem_target y hy
+          rw [hforward] at hm
+          exact hm
+      have hbackward : (extractCrossing p).symm.apply z.1 htarget = y := by
+        have hinv := (extractCrossing p).symm_apply_apply y hy
+        simpa only [proof_irrel_heq, hforward] using hinv
+      have hne := (mem_disagreement b.symm (extractCrossing p).symm z.1).mp
+        z.2 hzb htarget
+      exact hne (by
+        simpa only [y, proof_irrel_heq] using hbackward.symm)
+    · exact Sum.inl ⟨z.1, Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hzb⟩⟩
+  let forget :
+      {z // z ∈ Finset.univ \ b.target} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm⁻¹ p⁻¹} → Option Z
+    | Sum.inl z => some z.1
+    | Sum.inr x => match x.1 with
+      | Sum.inl _ => none
+      | Sum.inr z => some z
+  have hforget (z : {z // z ∈ b.symm.disagreement (extractCrossing p).symm}) :
+      forget (charge z) = some z.1 := by
+    dsimp only [charge]
+    split
+    · rfl
+    · rfl
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Option.some.inj (by rw [← hforget x, hxy, hforget y])
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  have hcompl : (Finset.univ \ b.target).card = b.targetDefect := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ b.target)]
+    simp [FinitePartialBijection.targetDefect]
+  simpa only [Fintype.card_coe, Fintype.card_sum, hcompl] using hcard
+
+/-- Two-sided partial disagreement is controlled by the intrinsic missing
+mass of the original arrow and the forward and inverse permutation edits. -/
+theorem twoSidedDisagreement_extractCrossing_le
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    b.twoSidedDisagreement (extractCrossing p) ≤
+      b.sourceDefect + b.targetDefect +
+        (hammingDisagreement b.swapPerm p).card +
+          (hammingDisagreement b.swapPerm⁻¹ p⁻¹).card := by
+  have hs := card_disagreement_extractCrossing_le b p
+  have ht := card_symm_disagreement_extractCrossing_le b p
+  unfold twoSidedDisagreement
+  omega
+
+/-- Inverting both finite permutations preserves the number of disagreement
+points; this elementary finite bijection is kept local to the extraction
+layer to avoid importing any analytic matrix development. -/
+theorem card_hammingDisagreement_inv
+    (p q : Equiv.Perm (sumModel Y Z)) :
+    (hammingDisagreement p⁻¹ q⁻¹).card =
+      (hammingDisagreement p q).card := by
+  classical
+  refine Finset.card_bij (fun y _ ↦ p⁻¹ y) ?_ ?_ ?_
+  · intro y hy
+    rw [mem_hammingDisagreement] at hy ⊢
+    intro hcon
+    apply hy
+    have hy' : p (p⁻¹ y) = y := by simp
+    rw [hy'] at hcon
+    have hstep : q⁻¹ y = p⁻¹ y := by
+      conv_lhs => rw [hcon]
+      simp
+    exact hstep.symm
+  · intro a _ b _ hab
+    have := congrArg (fun z ↦ p z) hab
+    simpa using this
+  · intro x hx
+    rw [mem_hammingDisagreement] at hx
+    refine ⟨p x, ?_, by simp⟩
+    rw [mem_hammingDisagreement]
+    intro hcon
+    apply hx
+    have hxx : p⁻¹ (p x) = x := by simp
+    rw [hxx] at hcon
+    have := congrArg (fun z ↦ q z) hcon
+    simpa using this.symm
+
+/-- A single permutation edit budget controls both sides of the extracted
+partial arrow. -/
+theorem twoSidedDisagreement_extractCrossing_le_self_add_two_mul
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    b.twoSidedDisagreement (extractCrossing p) ≤
+      b.sourceDefect + b.targetDefect +
+        2 * (hammingDisagreement b.swapPerm p).card := by
+  have h := twoSidedDisagreement_extractCrossing_le b p
+  rw [card_hammingDisagreement_inv b.swapPerm p] at h
+  omega
+
 end FinitePartialBijection
 end NonsoficGroupsExist
