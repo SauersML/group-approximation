@@ -30605,3 +30605,62 @@ is that the extension class is now completely explicit: the only remaining
 analytic issue is Connes embeddability of the path subgroup `P` (or of the
 ambient generalized wreath product), and not an unknown abstract
 `H^2(D_N,A)` class.
+
+# A faithful transitive nonsofic action of a residually finite group (2026-08-09)
+
+The Magnus--path embedding has a major standalone consequence for sofic
+actions on sets.  Put
+
+`Q=D_N=G *_N G`,  `Y=Q/Gamma`,
+
+and let `beta:Q acts Y` be left translation.  Recall that `Q` is residually
+finite by `(SDR4)--(SDR5)`.  Form the integral generalized wreath product
+
+`W_Y=Z^(Y) semidirect Q`.                              `(NSA1)`
+
+**Theorem.**  The action `beta` is a faithful transitive nonsofic action of
+the residually finite group `Q`.  In particular, not every action of a
+sofic group on a countable set is sofic.
+
+**Proof.**  Transitivity is immediate.  The path group
+
+`P=image(D_abR) <= Z[Q/Gamma] semidirect Q=W_Y`
+
+from `(MPC2)--(MPC3)` is nonsofic by `(ARD3)`.  Therefore `W_Y` itself is
+nonsofic, since subgroups of sofic groups are sofic.
+
+Gao--Kunnawalkam Elayavalli--Patchell, *Soficity for group actions on sets
+and applications*, Research in the Mathematical Sciences 12 (2025),
+Theorem 3.6, prove that if a countable group action on a set is sofic and
+both the lamp and acting groups are sofic, then the corresponding
+generalized wreath product is sofic.  Here the lamp `Z` is amenable and
+`Q` is residually finite.  If `beta` were sofic, their theorem would make
+`W_Y` sofic, contradicting the preceding paragraph.  Hence `beta` is not
+sofic.
+
+It remains to check faithfulness.  Its kernel is
+
+`core_Q(Gamma)=intersection_(q in Q) q Gamma q^(-1)`. `(NSA2)`
+
+Any subgroup normal in `Q` and contained in `Gamma` is, in particular,
+normal under the first vertex copy of `G`.  For the binary Laurent pair,
+the polynomial subgroup has trivial core in `G`: the explicit Laurent
+conjugation argument recorded in `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`,
+Lemma 1, proves
+
+`core_G(Gamma)=1`.                                    `(NSA3)`
+
+Thus `(NSA2)` is contained in `(NSA3)` and is trivial.  This proves
+faithfulness.  End proof.
+
+This resolves negatively the general question highlighted in the
+introduction of Gao--Kunnawalkam Elayavalli--Patchell: a sofic (indeed
+residually finite) group can have a nonsofic action.  The example is
+especially rigid: the action is faithful and transitive, and the acting
+group's residual finiteness is explicit rather than inherited abstractly.
+
+The same conclusion already follows from the original Kun--Thom
+generalized wreath product using `G acts G/Gamma`; the path construction
+adds a second formulation in which the nonsofic subgroup `P`, its entire
+free-abelian sofic radical, and the residually finite quotient are all
+explicit simultaneously.
