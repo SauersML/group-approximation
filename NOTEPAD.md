@@ -33919,6 +33919,72 @@ two genuinely different asymptotic sectors or a non-finite/non-Cartan
 character; it cannot be obtained from one finite projective sector by an
 almost-central conjugation.
 
+## The gauge action is an explicit action-level hyperlinear-versus-sofic test
+
+The 2026 framework of Alekseev--Bradford, *Sofic actions, halo products,
+and metric approximations of groups* (arXiv:2601.18742), packages the
+remaining gauge problem more sharply than the crossed-product formulation
+`(RGC1)--(RGC6)`.
+
+Retain the finite gauge cover and write additively
+
+`Delta=Bbar=B_omega/Z`, `beta:G->Aut(Delta)`,
+`Kbar=Delta semidirect_beta G`.                       `(AHG1)`
+
+The group `Delta` is locally finite of exponent `m`, and `G` is residually
+finite.  In particular both are sofic and hyperlinear.  Alekseev--Bradford
+Corollary 5.2 says, for either approximation class `C`,
+
+`beta is a sofic C-action`
+`  ==> Delta semidirect_beta G belongs to C`.          `(AHG2)`
+
+Here ``sofic `C`-action'' is their finite-window automorphic approximation
+property; for `C=hyperlinear` its auxiliary approximating groups carry
+normalized Hilbert--Schmidt microstates rather than permutation
+microstates.
+
+**Theorem (action-level separation criterion).**
+
+1. The action `beta` in `(AHG1)` is not a sofic action in the permutation/
+   sofic class.
+2. If `beta` is a sofic action in the hyperlinear class, then `Kbar` is a
+   hyperlinear nonsofic group.  Hence not every hyperlinear group is sofic.
+
+**Proof.**  The cocycle `c(g)=b_gZ` gives two homomorphisms
+
+`j_1(g)=(0,g)`, `j_2(g)=(c(g),g)`                    `(AHG3)`
+
+from `G` to `Kbar`, agreeing on `Gamma`.  They induce
+
+`J:D=G *_Gamma G -> Kbar`.                            `(AHG4)`
+
+Choose `n in N` with `c(n)!=0`.  The full radical element
+
+`x_n=i_2(n)i_1(n)^(-1)`
+
+maps under `(AHG4)` to `c(n)`.  Therefore `Kbar` is nonsofic: if it were
+sofic, the defining property of `Rad_sof(D)` would force this image to be
+zero.
+
+If `beta` were a permutation-sofic action, `(AHG2)` with `C=sofic` would
+make `Kbar` sofic, a contradiction.  This proves item 1.  If instead beta
+is hyperlinear-sofic, `(AHG2)` with `C=hyperlinear` makes `Kbar`
+hyperlinear, while the preceding paragraph still makes it nonsofic.  This
+proves item 2.  End proof.
+
+Thus a complete sufficient finish for this explicit candidate is the
+strict separation between two action-approximation notions:
+
+`beta is hyperlinear-sofic but not permutation-sofic`. `(AHG5)`
+
+The negative half of `(AHG5)` is already proved, not conjectural.  The
+positive half is a finite-window matrix-covariance problem.  It is weaker
+than hyperlinearity of the central gauge cover `K_omega`, avoids choosing a
+crossed-product trace, and is designed to admit non-Cartan matrix models.
+Finite-module invisibility explains why the same action cannot have
+permutation/finite-module models, but it does not rule out the
+Hilbert--Schmidt automorphic approximations required by `(AHG5)`.
+
 ## Kazhdan collapse also closes invariant induced-character sectors
 
 The last sentence above suggested that the honest induced representations
