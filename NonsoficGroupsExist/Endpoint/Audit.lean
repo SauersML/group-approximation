@@ -28,7 +28,7 @@ import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.Kazhdan.ShalomFinitePresentation
 import NonsoficGroupsExist.Covers.KazhdanCover
 import NonsoficGroupsExist.Leavitt.FamilyRankFour
-import NonsoficGroupsExist.Matching.AsymptoticPartialBijection
+import NonsoficGroupsExist.Matching.AsymptoticPartialGroupoid
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
 import NonsoficGroupsExist.Leavitt.RawSwapCompressors
@@ -250,3 +250,4 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.FinitePartialBijection.trans_assoc
 #print axioms NonsoficGroupsExist.AsymptoticPartialBijection.near_trans
 #print axioms NonsoficGroupsExist.AsymptoticPartialBijection.trans_assoc
+#print axioms NonsoficGroupsExist.asymptoticPartialGroupoidPresentation
