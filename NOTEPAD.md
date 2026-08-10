@@ -30515,3 +30515,93 @@ The remaining question is whether the particular extension
 has a Connes-embeddable trace seeing one parallel-edge cycle.  General
 amenable-kernel/sofic-quotient permanence is not available, so `(ARD12)`
 is a reduction, not yet a proof of hyperlinearity.
+
+# The abelianized radical is the canonical path subgroup (2026-08-09)
+
+The extension cocycle in `(ARD12)` has an exact geometric formula.  It is
+not necessary to choose a section of `D_N`; the Bass--Serre tree produces a
+canonical crossed homomorphism.
+
+Keep `D`, `R`, `D_N`, `X=R\T`, and `A=H_1(X,Z)` as in `(ARD1)--(ARD8)`.
+Choose a type-one vertex `v` of `X`.  Give every geometric edge of `X` one
+orientation and put
+
+`C_1=Z[E(X)]=Z[D_N/Gamma]`,
+`C_0=Z[D_N/G] directSum Z[D_N/G]`.
+
+For `d in D`, let `[v_tilde,d v_tilde]` be the oriented geodesic chain in
+the Bass--Serre tree `T`, where `v_tilde` is a lift of `v`, and let `c(d)`
+be its image in `C_1(X)`.
+
+**Theorem (Magnus--path model).**  The map
+
+`d |-> (c(d),q(d))`                                  `(MPC1)`
+
+is a homomorphism
+
+`D -> C_1 semidirect D_N`.
+
+Its kernel is `[R,R]`.  It therefore induces an embedding
+
+`D_abR -> Z[D_N/Gamma] semidirect D_N`,              `(MPC2)`
+
+whose image is exactly
+
+`P={ (a,s) : boundary(a)=s v-v }`.                   `(MPC3)`
+
+In particular `(ARD12)` becomes split after the coefficient inclusion
+
+`A=ker(Z[D_N/Gamma]->Z[D_N/N]) -> Z[D_N/Gamma]`.     `(MPC4)`
+
+**Proof.**  In a tree, the oriented chain of a concatenated path is the
+sum of the two path chains: cancellation of backtracking edges is literal
+cancellation in `C_1(T)`.  Hence
+
+`c(de)=c(d)+q(d)c(e)`,                               `(MPC5)`
+
+which proves that `(MPC1)` is a homomorphism.
+
+If `d` lies in its kernel then `d in R`.  For `r in R`, the projected path
+is a loop in `X`; under the identification `R=pi_1(X)` its chain is exactly
+the Hurewicz image of `r` in `H_1(X,Z)`.  A graph has no cellular
+two-chains, so this image vanishes exactly on `[R,R]`.  This proves the
+kernel statement and `(MPC2)`.
+
+Every path chain satisfies
+
+`boundary(c(d))=q(d)v-v`,                            `(MPC6)`
+
+so the image is contained in `P`.  Conversely, fix `(a,s) in P` and choose
+`d in D` with `q(d)=s`.  Then `a-c(d)` is a cycle.  Since
+
+`A=H_1(X,Z)=ker(boundary)`
+
+and `R_ab -> H_1(X,Z)` is onto, choose `r in R` with
+`c(r)=a-c(d)`.  Equation `(MPC5)` gives
+
+`c(rd)=a`,  `q(rd)=s`,
+
+which proves `(MPC3)`.  Finally the translation kernel in `P` is exactly
+`ker(boundary)=A`; its inclusion into the ambient split semidirect product
+is `(MPC4)`.  End proof.
+
+For the parallel-edge radical word `x=i_2(h)i_1(h)^(-1)`, `(MPC1)` gives
+
+`x |-> (delta_(h Gamma)-delta_Gamma,1)`              `(MPC7)`
+
+up to the global orientation choice.  Thus the required trace detector is
+literally one lamp difference.
+
+**Scope.**  The ambient split group in `(MPC2)` is the generalized
+permutational wreath product over the action
+
+`D_N acts on D_N/Gamma`.
+
+It is not covered by the standard restricted-wreath permanence theorem:
+that theorem uses the regular `D_N`-set, whereas this coset action contains
+the original Kun--Thom nonsofic action on restriction to a vertex copy of
+`G`.  Consequently `(MPC2)` is not yet a hyperlinear embedding.  Its value
+is that the extension class is now completely explicit: the only remaining
+analytic issue is Connes embeddability of the path subgroup `P` (or of the
+ambient generalized wreath product), and not an unknown abstract
+`H^2(D_N,A)` class.
