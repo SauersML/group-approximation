@@ -22,6 +22,41 @@ open scoped Matrix.Norms.L2Operator
 
 variable {H : Type} [Group H]
 
+/-- A rectangular block is controlled by a diagonally row-scaled residual
+when every retained row has a uniform gap from zero. -/
+theorem norm_coordinateBlock_le_inv_mul_of_diagonal_gap
+    {Y : Type} [Fintype Y] [DecidableEq Y]
+    (p q : Y → Prop) [DecidablePred p] [DecidablePred q]
+    (d : Y → ℂ) (W : Matrix Y Y ℂ) (c : ℝ) (hc : 0 < c)
+    (hd : ∀ i, p i → c ≤ ‖d i‖) :
+    ‖KazhdanCornerMatrices.coordinateBlock p q W‖ ≤
+      c⁻¹ * ‖KazhdanCornerMatrices.coordinateBlock p q
+        (Matrix.diagonal d * W)‖ := by
+  classical
+  let Dinv : Matrix {i // p i} {i // p i} ℂ :=
+    Matrix.diagonal fun i ↦ (d i)⁻¹
+  let R : Matrix {i // p i} {i // q i} ℂ :=
+    KazhdanCornerMatrices.coordinateBlock p q (Matrix.diagonal d * W)
+  have hdne (i : {i // p i}) : d i ≠ 0 := by
+    intro hzero
+    have := hd i i.property
+    simp [hzero] at this
+    linarith
+  have hfactor :
+      KazhdanCornerMatrices.coordinateBlock p q W = Dinv * R := by
+    ext i j
+    simp [Dinv, R, KazhdanCornerMatrices.coordinateBlock,
+      Matrix.toBlock_apply, hdne i]
+  have hDinv : ‖Dinv‖ ≤ c⁻¹ := by
+    rw [Dinv, Matrix.l2_opNorm_diagonal]
+    refine (pi_norm_le_iff_of_nonneg (inv_nonneg.mpr hc.le)).2 fun i ↦ ?_
+    rw [norm_inv]
+    exact inv_le_inv₀ hc (hd i i.property)
+  rw [hfactor]
+  calc
+    ‖Dinv * R‖ ≤ ‖Dinv‖ * ‖R‖ := Matrix.l2_opNorm_mul _ _
+    _ ≤ c⁻¹ * ‖R‖ := mul_le_mul_of_nonneg_right hDinv (norm_nonneg R)
+
 /-- Finite spectral data for a prescribed ambient weak-MF approximation,
 restricted to a property-`(T)` subgroup. -/
 structure Setup (A : WeakMFApproximation H) (N : Subgroup H) where
@@ -265,6 +300,236 @@ theorem ambientEigenbasisMicrostate_mem_unitaryGroup
     Matrix.unitaryGroup (A.model n) ℂ
   exact mul_mem (mul_mem hUstar (A.map n g).2) hAvg.eigenvectorUnitary.2
 
+/-- A uniform spectral gap controls the ambient moving-to-top block by the
+Hermitian invariance residual. -/
+theorem norm_ambientMovingToTopBlock_le_residual
+    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N)
+    (n : ℕ) (g : H) :
+    ‖KazhdanCornerMatrices.coordinateBlock
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (ambientEigenbasisMicrostate A N D n g)‖ ≤
+      (1 - D.cutoff)⁻¹ *
+        ‖(KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n - 1) *
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+            KazhdanCornerMatrices.spectralAbove
+              (KazhdanCornerMatrices.hermitianAverage
+                (restrictedApproximation A N) D.S n)
+              (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+                (restrictedApproximation A N) D.S n)
+              D.cutoff‖ := by
+  classical
+  let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
+    (restrictedApproximation A N) D.S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hAvg.eigenvectorUnitary
+  let L : Matrix (A.model n) (A.model n) ℂ :=
+    Matrix.diagonal (fun i ↦ (hAvg.eigenvalues i : ℂ))
+  let d : A.model n → ℂ := fun i ↦ (hAvg.eigenvalues i : ℂ) - 1
+  let p : A.model n → Prop := fun i ↦ hAvg.eigenvalues i ≤ D.cutoff
+  let q : A.model n → Prop := fun i ↦ ¬p i
+  let W : Matrix (A.model n) (A.model n) ℂ :=
+    ambientEigenbasisMicrostate A N D n g
+  let Dtop : Matrix (A.model n) (A.model n) ℂ :=
+    Matrix.diagonal (fun i ↦ if D.cutoff < hAvg.eigenvalues i then 1 else 0)
+  let R : Matrix (A.model n) (A.model n) ℂ :=
+    (KazhdanCornerMatrices.hermitianAverage
+          (restrictedApproximation A N) D.S n - 1) *
+      (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+        KazhdanCornerMatrices.spectralAbove
+          (KazhdanCornerMatrices.hermitianAverage
+            (restrictedApproximation A N) D.S n)
+          (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+            (restrictedApproximation A N) D.S n)
+          D.cutoff
+  have hc : 0 < 1 - D.cutoff := by linarith [D.cutoff_lt_one]
+  have hd : ∀ i, p i → 1 - D.cutoff ≤ ‖d i‖ := by
+    intro i hi
+    rw [show d i = ((hAvg.eigenvalues i - 1 : ℝ) : ℂ) by
+      simp [d]]
+    rw [Complex.norm_real, Real.norm_eq_abs,
+      abs_of_nonpos (by linarith [hi])]
+    linarith [hi]
+  have hgap := norm_coordinateBlock_le_inv_mul_of_diagonal_gap
+    p q d W (1 - D.cutoff) hc hd
+  have hdiag : Matrix.diagonal d = L - 1 := by
+    ext i j
+    by_cases hij : i = j
+    · subst j
+      simp [d, L]
+    · simp [d, L, hij]
+  have hUU : Uᴴ * U = 1 :=
+    Unitary.star_mul_self_of_mem hAvg.eigenvectorUnitary.2
+  have hUUstar : U * Uᴴ = 1 :=
+    Unitary.mul_star_self_of_mem hAvg.eigenvectorUnitary.2
+  have hHdiag :
+      KazhdanCornerMatrices.hermitianAverage
+          (restrictedApproximation A N) D.S n = U * L * Uᴴ := by
+    exact hAvg.spectral_theorem
+  have hPdiag :
+      KazhdanCornerMatrices.spectralAbove
+          (KazhdanCornerMatrices.hermitianAverage
+            (restrictedApproximation A N) D.S n)
+          (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+            (restrictedApproximation A N) D.S n)
+          D.cutoff = U * Dtop * Uᴴ := by
+    rfl
+  have hconj : Uᴴ * R * U = (L - 1) * W * Dtop := by
+    simp only [R, W, ambientEigenbasisMicrostate]
+    rw [hHdiag, hPdiag]
+    rw [show U * L * Uᴴ - 1 = U * (L - 1) * Uᴴ by
+      rw [show (1 : Matrix (A.model n) (A.model n) ℂ) = U * Uᴴ by
+        exact hUUstar.symm]
+      noncomm_ring]
+    rw [hUU]
+    noncomm_ring
+  have hblockD :
+      KazhdanCornerMatrices.coordinateBlock p q ((L - 1) * W) =
+        KazhdanCornerMatrices.coordinateBlock p q ((L - 1) * W * Dtop) := by
+    ext i j
+    have hj : D.cutoff < hAvg.eigenvalues j := lt_of_not_ge j.property
+    simp [KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
+      Dtop, hj, Matrix.mul_diagonal]
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact hUU
+  change ‖KazhdanCornerMatrices.coordinateBlock p q W‖ ≤ _
+  calc
+    ‖KazhdanCornerMatrices.coordinateBlock p q W‖ ≤
+        (1 - D.cutoff)⁻¹ *
+          ‖KazhdanCornerMatrices.coordinateBlock p q
+            (Matrix.diagonal d * W)‖ := hgap
+    _ = (1 - D.cutoff)⁻¹ *
+          ‖KazhdanCornerMatrices.coordinateBlock p q ((L - 1) * W * Dtop)‖ := by
+      rw [hdiag, hblockD]
+    _ ≤ (1 - D.cutoff)⁻¹ * ‖Uᴴ * R * U‖ := by
+      rw [hconj]
+      exact mul_le_mul_of_nonneg_left
+        (KazhdanCornerMatrices.norm_coordinateBlock_le p q _)
+        (inv_nonneg.mpr hc.le)
+    _ = (1 - D.cutoff)⁻¹ * ‖R‖ := by
+      rw [KazhdanCornerMatrices.norm_unitary_conjugate hUstar]
+
+/-- Normality and the subgroup spectral gap make the ambient moving-to-top
+off-diagonal block vanish in operator norm. -/
+theorem ambientMovingToTopBlock_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) :
+    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+      KazhdanCornerMatrices.coordinateBlock
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (ambientEigenbasisMicrostate A N D n g)) := by
+  have hres := hermitianAverage_sub_one_mul_ambient_top_vanishing A N D g
+  intro eta heta
+  have hgap : 0 < 1 - D.cutoff := by linarith [D.cutoff_lt_one]
+  obtain ⟨stage, hstage⟩ := hres (eta * (1 - D.cutoff))
+    (mul_pos heta hgap)
+  refine ⟨stage, fun n hn ↦ ?_⟩
+  calc
+    ‖KazhdanCornerMatrices.coordinateBlock
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (ambientEigenbasisMicrostate A N D n g)‖ ≤
+      (1 - D.cutoff)⁻¹ *
+        ‖(KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n - 1) *
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+            KazhdanCornerMatrices.spectralAbove
+              (KazhdanCornerMatrices.hermitianAverage
+                (restrictedApproximation A N) D.S n)
+              (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+                (restrictedApproximation A N) D.S n)
+              D.cutoff‖ :=
+        norm_ambientMovingToTopBlock_le_residual A N D n g
+    _ ≤ (1 - D.cutoff)⁻¹ * (eta * (1 - D.cutoff)) :=
+      mul_le_mul_of_nonneg_left (hstage n hn) (inv_nonneg.mpr hgap.le)
+    _ = eta := by field_simp
+
+/-- The opposite ambient off-diagonal block also vanishes, by applying the
+moving-to-top estimate to the inverse microstate. -/
+theorem ambientTopToMovingBlock_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) :
+    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+      KazhdanCornerMatrices.coordinateBlock
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (ambientEigenbasisMicrostate A N D n g)) := by
+  intro eta heta
+  obtain ⟨Nmove, hmove⟩ := ambientMovingToTopBlock_vanishing A N D g⁻¹
+    (eta / 2) (by linarith)
+  obtain ⟨Ninv, hinv⟩ := KazhdanCornerMatrices.map_inv_vanishing A g
+    (eta / 2) (by linarith)
+  refine ⟨max Nmove Ninv, fun n hn ↦ ?_⟩
+  classical
+  let p := KazhdanCornerMatrices.movingPredicate
+    (restrictedApproximation A N) D.S D.cutoff n
+  let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
+    (restrictedApproximation A N) D.S n
+  let U : Matrix (A.model n) (A.model n) ℂ := hAvg.eigenvectorUnitary
+  let Wstar : Matrix (A.model n) (A.model n) ℂ :=
+    (ambientEigenbasisMicrostate A N D n g)ᴴ
+  let Winv : Matrix (A.model n) (A.model n) ℂ :=
+    ambientEigenbasisMicrostate A N D n g⁻¹
+  have hblockStar :
+      ‖KazhdanCornerMatrices.coordinateBlock (fun i ↦ ¬p i) p
+          (ambientEigenbasisMicrostate A N D n g)‖ =
+        ‖KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i) Wstar‖ := by
+    rw [← KazhdanCornerMatrices.coordinateBlock_conjTranspose]
+    exact (Matrix.l2_opNorm_conjTranspose
+      (KazhdanCornerMatrices.coordinateBlock (fun i ↦ ¬p i) p
+        (ambientEigenbasisMicrostate A N D n g))).symm
+  have hdiff : Wstar - Winv =
+      Uᴴ * ((A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ -
+        (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ)) * U := by
+    simp only [Wstar, Winv, ambientEigenbasisMicrostate,
+      Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
+    noncomm_ring
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hAvg.eigenvectorUnitary.2
+  have hnormdiff : ‖Wstar - Winv‖ =
+      ‖(A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ‖ := by
+    rw [hdiff, KazhdanCornerMatrices.norm_unitary_conjugate hUstar]
+    rw [show (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ - A.map n g⁻¹ =
+      -((A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ) by abel, norm_neg]
+  rw [hblockStar]
+  have hsplit :
+      KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i) Wstar =
+        KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i) Winv +
+          KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i)
+            (Wstar - Winv) := by
+    ext i j
+    simp [KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply]
+  rw [hsplit]
+  calc
+    ‖KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i) Winv +
+        KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i)
+          (Wstar - Winv)‖ ≤
+      ‖KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i) Winv‖ +
+        ‖KazhdanCornerMatrices.coordinateBlock p (fun i ↦ ¬p i)
+          (Wstar - Winv)‖ := norm_add_le _ _
+    _ ≤ eta / 2 + eta / 2 := add_le_add
+      (hmove n ((le_max_left _ _).trans hn))
+      ((KazhdanCornerMatrices.norm_coordinateBlock_le p (fun i ↦ ¬p i)
+        (Wstar - Winv)).trans (by
+          rw [hnormdiff]
+          exact hinv n ((le_max_right _ _).trans hn)))
+    _ = eta := by ring
+
 /-- Conjugating into the subgroup spectral basis preserves the ambient
 weak-MF multiplication defect exactly. -/
 theorem norm_ambientEigenbasisMicrostate_mul_defect_eq
@@ -365,6 +630,90 @@ theorem norm_ambientMovingCompression_mul_defect_le
               (restrictedApproximation A N) D.S D.cutoff n)
             (ambientEigenbasisMicrostate A N D n h)‖ ≤ _
   exact hbound
+
+/-- Ambient moving-corner compressions are asymptotically multiplicative.
+This is the finite-dimensional normal-corner statement needed before polar
+correction. -/
+theorem ambientMovingCompression_mul_defect_eventually_small
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g h : H) (eta : ℝ) (heta : 0 < eta) :
+    ∃ stage : ℕ, ∀ n ≥ stage,
+      ‖ambientMovingCompression A N D n (g * h) -
+        ambientMovingCompression A N D n g *
+          ambientMovingCompression A N D n h‖ ≤ eta := by
+  obtain ⟨Ndef, hdef⟩ := A.asymptoticallyMultiplicative g h
+    (eta / 2) (by linarith)
+  obtain ⟨Nblock, hblock⟩ := ambientMovingToTopBlock_vanishing A N D g
+    (eta / 2) (by linarith)
+  refine ⟨max Ndef Nblock, fun n hn ↦ ?_⟩
+  have hother :
+      ‖KazhdanCornerMatrices.coordinateBlock
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (ambientEigenbasisMicrostate A N D n h)‖ ≤ 1 := by
+    calc
+      _ ≤ ‖ambientEigenbasisMicrostate A N D n h‖ :=
+        KazhdanCornerMatrices.norm_coordinateBlock_le _ _ _
+      _ = 1 := CStarRing.norm_of_mem_unitary
+        (ambientEigenbasisMicrostate_mem_unitaryGroup A N D n h)
+  calc
+    ‖ambientMovingCompression A N D n (g * h) -
+        ambientMovingCompression A N D n g *
+          ambientMovingCompression A N D n h‖ ≤
+      ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ +
+      ‖KazhdanCornerMatrices.coordinateBlock
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (ambientEigenbasisMicrostate A N D n g)‖ *
+      ‖KazhdanCornerMatrices.coordinateBlock
+        (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n i)
+        (KazhdanCornerMatrices.movingPredicate
+          (restrictedApproximation A N) D.S D.cutoff n)
+        (ambientEigenbasisMicrostate A N D n h)‖ :=
+      norm_ambientMovingCompression_mul_defect_le A N D n g h
+    _ ≤ eta / 2 + (eta / 2) * 1 := add_le_add
+      (hdef n ((le_max_left _ _).trans hn))
+      (mul_le_mul
+        (hblock n ((le_max_right _ _).trans hn)) hother
+        (norm_nonneg _) (by linarith))
+    _ = eta := by ring
+
+/-- Ambient moving-corner compressions are asymptotically unitary before
+polar correction. -/
+theorem ambientMovingCompression_gram_eventually_small
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) (eta : ℝ) (heta : 0 < eta) :
+    ∃ stage : ℕ, ∀ n ≥ stage,
+      ‖KazhdanCornerMatrices.cornerGram
+          (ambientMovingCompression A N D n g) - 1‖ ≤ eta := by
+  obtain ⟨stage, hstage⟩ := ambientTopToMovingBlock_vanishing A N D g
+    (Real.sqrt eta) (Real.sqrt_pos.2 heta)
+  refine ⟨stage, fun n hn ↦ ?_⟩
+  let p := KazhdanCornerMatrices.movingPredicate
+    (restrictedApproximation A N) D.S D.cutoff n
+  have hunitary :
+      (ambientEigenbasisMicrostate A N D n g)ᴴ *
+        ambientEigenbasisMicrostate A N D n g = 1 := by
+    have hmem := ambientEigenbasisMicrostate_mem_unitaryGroup A N D n g
+    rw [Matrix.mem_unitaryGroup_iff', Matrix.star_eq_conjTranspose] at hmem
+    exact hmem
+  calc
+    ‖KazhdanCornerMatrices.cornerGram
+        (ambientMovingCompression A N D n g) - 1‖ ≤
+      ‖KazhdanCornerMatrices.coordinateBlock (fun i ↦ ¬p i) p
+        (ambientEigenbasisMicrostate A N D n g)‖ ^ 2 :=
+      KazhdanCornerMatrices.norm_principalBlock_gram_sub_one_le
+        p (ambientEigenbasisMicrostate A N D n g) hunitary
+    _ ≤ (Real.sqrt eta) ^ 2 := by
+      exact sq_le_sq₀ (norm_nonneg _)
+        (Real.sqrt_nonneg _) |>.2 (hstage n hn)
+    _ = eta := Real.sq_sqrt heta.le
 
 end InternalRadicalGap
 end NonsoficGroupsExist
