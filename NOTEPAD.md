@@ -29810,6 +29810,48 @@ geometry.  A successful chamber/local-system construction should therefore
 be audited first in the averaged form `(WS5)`, rather than by paying a
 small-phase spectral gap on each clock and shift generator.
 
+**Critical monomial audit.**  The last recommendation is too strong for the
+Kun--Thom radical if `(WS5)` is realized by coherent permutations
+`rho_g` of the Weyl labels.  In that case the label system itself is a
+classical finite affine model.
+
+More precisely, let `M` be the augmentation module and suppose there are
+finite abelian groups `V_n`, label maps `q_n:M->V_n`, and almost-actions
+`rho_n(g)` by automorphisms of `V_n` such that, on every fixed window,
+
+`q_n(a+b)=q_n(a)+q_n(b)`,
+`q_n(g a)=rho_n(g)q_n(a)`,
+`rho_n(g)rho_n(h)=rho_n(gh)`
+
+outside a vanishing Hamming fraction (or eventually exactly when the maps
+are algebraic), while a fixed radical vector `u` has `q_n(u)!=0` on a
+nonvanishing component.  Then
+
+`(a,g):x |-> q_n(a)+rho_n(g)x`                         `(WS7)`
+
+gives finite permutation approximations of `M semidirect G`.  A nonzero
+translation moves every point of `V_n`, so `(WS7)` separates `u`; tensoring
+with faithful finite-quotient approximations of the residually finite
+ambient `G` supplies separation on `G`.  Hence the generated image is
+sofic.  For the exact Kun--Thom augmentation radical this is impossible.
+
+The same conclusion follows directly from full Weyl covariance: distinct
+Weyl labels are orthogonal in normalized Hilbert--Schmidt norm.  If one
+unitary approximately sends `W_v` both to the labels prescribed by
+`rho_g rho_h` and by `rho_(gh)`, those labels agree for almost every `v`.
+Thus `(WS5)` plus coherent label maps recovers precisely the almost-action
+needed in `(WS7)`.
+
+Therefore `(WS4)` remains a correct and useful scalarization identity, but
+its dimension-free hypothesis cannot coexist with a trace-visible
+Kun--Thom radical in a monomial Weyl model.  The viable loophole must be
+nonmonomial: covariance only on a controlled generator frame, or
+operator-valued multiplicity fibers in which no global permutation
+`rho_g:V_n->V_n` can be extracted.  This returns the construction to the
+generatorwise profile `(WS3)` and the noncommuting fiber equation, but now
+with an exact explanation of why the tempting full-twirl shortcut would
+collapse back to soficity.
+
 # Historical scope of the weak-MF nonsofic double (2026-08-09)
 
 The proved symmetric-double theorem
