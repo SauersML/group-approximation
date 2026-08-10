@@ -300,6 +300,7 @@ import NonsoficGroupsExist.Sofic.SoficPositiveControl
 import NonsoficGroupsExist.Sofic.SemanticPositiveControls
 import NonsoficGroupsExist.Sofic.SoficErrors
 import NonsoficGroupsExist.Sofic.Normalization
+import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.Whitehead
 import NonsoficGroupsExist.Covers.KazhdanCover
 import NonsoficGroupsExist.Covers.TableCover
