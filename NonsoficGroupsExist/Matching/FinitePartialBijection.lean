@@ -497,6 +497,17 @@ theorem disagreement_self (b : FinitePartialBijection Y Z) :
   · intro hy hb
     exact (hy hb).elim
 
+theorem disagreement_reflOn_refl (s : Finset Y) :
+    (reflOn s).disagreement (refl Y) = Finset.univ \ s := by
+  classical
+  ext y
+  simp only [mem_disagreement, Finset.mem_sdiff, Finset.mem_univ, true_and]
+  constructor
+  · intro h hy
+    exact h hy (Finset.mem_univ _) rfl
+  · intro hy hs
+    exact (hy hs).elim
+
 /-- Pointwise triangle inclusion for disagreement sets. -/
 theorem disagreement_subset_union (b c d : FinitePartialBijection Y Z) :
     b.disagreement d ⊆ b.disagreement c ∪ c.disagreement d := by
@@ -530,6 +541,118 @@ theorem card_disagreement_le (b c d : FinitePartialBijection Y Z) :
     _ ≤ (b.disagreement c).card + (c.disagreement d).card :=
       Finset.card_union_le _ _
 
+/-- Source points of `a` whose images lie in the disagreement of two possible
+second arrows. -/
+def PullsDisagreement (a : FinitePartialBijection Y Z)
+    (b c : FinitePartialBijection Z W) (y : Y) : Prop :=
+  ∃ ha : y ∈ a.source, a.apply y ha ∈ b.disagreement c
+
+noncomputable def pulledDisagreement (a : FinitePartialBijection Y Z)
+    (b c : FinitePartialBijection Z W) : Finset Y := by
+  classical
+  exact a.source.filter (PullsDisagreement a b c)
+
+noncomputable def pulledDisagreementImage (a : FinitePartialBijection Y Z)
+    (b c : FinitePartialBijection Z W) : Finset Z := by
+  classical
+  exact (a.pulledDisagreement b c).attach.map
+    ⟨fun y ↦ a.apply y.1
+        (Finset.mem_filter.mp (show y.1 ∈ a.source.filter
+          (PullsDisagreement a b c) by
+            simp only [pulledDisagreement]
+            exact y.2)).1, by
+      intro x y h
+      apply Subtype.ext
+      apply a.apply_injective
+          (Finset.mem_filter.mp (show x.1 ∈ a.source.filter
+            (PullsDisagreement a b c) by
+              simp only [pulledDisagreement]
+              exact x.2)).1
+          (Finset.mem_filter.mp (show y.1 ∈ a.source.filter
+            (PullsDisagreement a b c) by
+              simp only [pulledDisagreement]
+              exact y.2)).1
+      exact h⟩
+
+@[simp] theorem card_pulledDisagreementImage
+    (a : FinitePartialBijection Y Z) (b c : FinitePartialBijection Z W) :
+    (a.pulledDisagreementImage b c).card =
+      (a.pulledDisagreement b c).card := by
+  classical
+  simp [pulledDisagreementImage]
+
+theorem pulledDisagreementImage_subset
+    (a : FinitePartialBijection Y Z) (b c : FinitePartialBijection Z W) :
+    a.pulledDisagreementImage b c ⊆ b.disagreement c := by
+  classical
+  intro z hz
+  rw [pulledDisagreementImage, Finset.mem_map] at hz
+  obtain ⟨y, hy, rfl⟩ := hz
+  obtain ⟨ha, hdis⟩ := (Finset.mem_filter.mp y.2).2
+  change a.apply y.1 _ ∈ b.disagreement c
+  simpa only [proof_irrel_heq] using hdis
+
+theorem card_pulledDisagreement_le
+    (a : FinitePartialBijection Y Z) (b c : FinitePartialBijection Z W) :
+    (a.pulledDisagreement b c).card ≤ (b.disagreement c).card := by
+  rw [← a.card_pulledDisagreementImage b c]
+  exact Finset.card_le_card (a.pulledDisagreementImage_subset b c)
+
+/-- A disagreement between composites comes either from the first arrows or
+from a second-arrow disagreement pulled back through the first arrow. -/
+theorem disagreement_trans_subset
+    (a a' : FinitePartialBijection Y Z)
+    (b b' : FinitePartialBijection Z W) :
+    (a.trans b).disagreement (a'.trans b') ⊆
+      a.disagreement a' ∪ a.pulledDisagreement b b' := by
+  classical
+  intro y hy
+  by_contra hnot
+  have hnaa' : y ∉ a.disagreement a' := by
+    intro h
+    exact hnot (Finset.mem_union_left _ h)
+  have hpull : y ∉ a.pulledDisagreement b b' := by
+    intro h
+    exact hnot (Finset.mem_union_right _ h)
+  rw [mem_disagreement] at hnaa' hy
+  push Not at hnaa'
+  obtain ⟨ha, ha', haa'⟩ := hnaa'
+  have hnotbb' : a.apply y ha ∉ b.disagreement b' := by
+    intro h
+    apply hpull
+    rw [pulledDisagreement, Finset.mem_filter]
+    exact ⟨ha, ha, h⟩
+  rw [mem_disagreement] at hnotbb'
+  push Not at hnotbb'
+  obtain ⟨hb, hb', hbb'⟩ := hnotbb'
+  have hleft : y ∈ (a.trans b).source :=
+    (a.mem_trans_source b y).mpr ⟨ha, hb⟩
+  have hb'' : a'.apply y ha' ∈ b'.source := by simpa [haa'] using hb'
+  have hright : y ∈ (a'.trans b').source :=
+    (a'.mem_trans_source b' y).mpr ⟨ha', hb''⟩
+  apply hy hleft hright
+  simp only [trans_apply]
+  calc
+    b.apply (a.apply y _) _ = b'.apply (a.apply y ha) hb' := hbb'
+    _ = b'.apply (a'.apply y _) _ := by
+      simp only [haa']
+
+/-- Cardinal error bound showing that composition is Lipschitz for finite
+partial disagreement. -/
+theorem card_disagreement_trans_le
+    (a a' : FinitePartialBijection Y Z)
+    (b b' : FinitePartialBijection Z W) :
+    ((a.trans b).disagreement (a'.trans b')).card ≤
+      (a.disagreement a').card + (b.disagreement b').card := by
+  calc
+    ((a.trans b).disagreement (a'.trans b')).card ≤
+        (a.disagreement a' ∪ a.pulledDisagreement b b').card :=
+      Finset.card_le_card (disagreement_trans_subset a a' b b')
+    _ ≤ (a.disagreement a').card + (a.pulledDisagreement b b').card :=
+      Finset.card_union_le _ _
+    _ ≤ (a.disagreement a').card + (b.disagreement b').card :=
+      Nat.add_le_add_left (a.card_pulledDisagreement_le b b') _
+
 /-- The cardinality of self-disagreement is the source defect. -/
 @[simp] theorem card_disagreement_self (b : FinitePartialBijection Y Z) :
     (b.disagreement b).card = b.sourceDefect := by
@@ -537,6 +660,61 @@ theorem card_disagreement_le (b c d : FinitePartialBijection Y Z) :
   rw [disagreement_self, sourceDefect]
   rw [Finset.card_sdiff]
   simp
+
+/-- Disagreement counted in both source and target coordinates.  This is the
+inverse-invariant error used for quotient groupoid arrows. -/
+noncomputable def twoSidedDisagreement (b c : FinitePartialBijection Y Z) : ℕ :=
+  (b.disagreement c).card + (b.symm.disagreement c.symm).card
+
+@[simp] theorem twoSidedDisagreement_self (b : FinitePartialBijection Y Z) :
+    b.twoSidedDisagreement b = b.sourceDefect + b.targetDefect := by
+  rw [twoSidedDisagreement, card_disagreement_self,
+    card_disagreement_self, sourceDefect_symm]
+
+theorem twoSidedDisagreement_reflOn_refl (s : Finset Y) :
+    (reflOn s).twoSidedDisagreement (refl Y) =
+      2 * (Fintype.card Y - s.card) := by
+  rw [twoSidedDisagreement]
+  have hforward := disagreement_reflOn_refl s
+  have hbackward : (reflOn s).symm.disagreement (refl Y).symm =
+      Finset.univ \ s := by
+    ext y
+    simp only [mem_disagreement, Finset.mem_sdiff, Finset.mem_univ, true_and]
+    constructor
+    · intro h hy
+      exact h hy (Finset.mem_univ _) rfl
+    · intro hy hs
+      exact (hy hs).elim
+  rw [hforward, hbackward, Finset.card_sdiff]
+  simp
+  omega
+
+theorem twoSidedDisagreement_comm (b c : FinitePartialBijection Y Z) :
+    b.twoSidedDisagreement c = c.twoSidedDisagreement b := by
+  simp only [twoSidedDisagreement, disagreement_comm]
+
+@[simp] theorem twoSidedDisagreement_symm (b c : FinitePartialBijection Y Z) :
+    b.symm.twoSidedDisagreement c.symm = b.twoSidedDisagreement c := by
+  simp [twoSidedDisagreement, Nat.add_comm]
+
+theorem twoSidedDisagreement_le (b c d : FinitePartialBijection Y Z) :
+    b.twoSidedDisagreement d ≤
+      b.twoSidedDisagreement c + c.twoSidedDisagreement d := by
+  unfold twoSidedDisagreement
+  have h₁ := card_disagreement_le b c d
+  have h₂ := card_disagreement_le b.symm c.symm d.symm
+  omega
+
+theorem twoSidedDisagreement_trans_le
+    (a a' : FinitePartialBijection Y Z)
+    (b b' : FinitePartialBijection Z W) :
+    (a.trans b).twoSidedDisagreement (a'.trans b') ≤
+      a.twoSidedDisagreement a' + b.twoSidedDisagreement b' := by
+  unfold twoSidedDisagreement
+  have h₁ := card_disagreement_trans_le a a' b b'
+  rw [a.symm_trans b, a'.symm_trans b']
+  have h₂ := card_disagreement_trans_le b.symm b'.symm a.symm a'.symm
+  omega
 
 /-- Failures of equivariance, counting a missing source endpoint as a
 failure, for a finite family of labels. -/

@@ -128,29 +128,75 @@ theorem symm_trans (hN : ∀ n, 0 ≤ N n)
   funext n
   exact (a.map n).symm_trans (b.map n)
 
+theorem trans_symm (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z) :
+    a.trans hN a.symm =
+      reflOn (fun n ↦ (a.map n).source) a.source_negligible := by
+  apply ext
+  funext n
+  exact (a.map n).trans_symm
+
+theorem symm_trans_self (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z) :
+    a.symm.trans hN a =
+      reflOn (fun n ↦ (a.map n).target) a.target_negligible := by
+  apply ext
+  funext n
+  exact (a.map n).symm_trans_self
+
 /-- Two asymptotic partial bijections are near when the density of vertices
 where they cannot be compared or disagree tends to zero. -/
 def Near (a b : AsymptoticPartialBijection N Y Z) : Prop :=
-  Negligible N (fun n ↦ ((a.map n).disagreement (b.map n) |>.card : ℝ))
+  Negligible N (fun n ↦ ((a.map n).twoSidedDisagreement (b.map n) : ℝ))
 
 theorem near_refl (a : AsymptoticPartialBijection N Y Z) : Near a a := by
-  apply Negligible.congr a.source_negligible
+  apply Negligible.congr
+    (Negligible.add a.source_negligible a.target_negligible)
   intro n
-  exact_mod_cast (a.map n).card_disagreement_self.symm
+  exact_mod_cast (a.map n).twoSidedDisagreement_self.symm
 
 theorem near_symm {a b : AsymptoticPartialBijection N Y Z}
     (h : Near a b) : Near b a := by
   apply Negligible.congr h
   intro n
-  rw [(b.map n).disagreement_comm (a.map n)]
+  exact_mod_cast ((b.map n).twoSidedDisagreement_comm (a.map n)).symm
 
 theorem near_trans (hN : ∀ n, 0 ≤ N n)
     {a b c : AsymptoticPartialBijection N Y Z}
     (hab : Near a b) (hbc : Near b c) : Near a c := by
   have hsum := Negligible.add hab hbc
   apply Negligible.mono_nonneg hN (fun _ ↦ by positivity) (fun n ↦ ?_) hsum
+  exact_mod_cast FinitePartialBijection.twoSidedDisagreement_le
+    (a.map n) (b.map n) (c.map n)
+
+/-- Composition respects negligible disagreement in both arguments. -/
+theorem trans_near_congr (hN : ∀ n, 0 ≤ N n)
+    {a a' : AsymptoticPartialBijection N Y Z}
+    {b b' : AsymptoticPartialBijection N Z W}
+    (haa' : Near a a') (hbb' : Near b b') :
+    Near (a.trans hN b) (a'.trans hN b') := by
+  have hsum := Negligible.add haa' hbb'
+  apply Negligible.mono_nonneg hN (fun _ ↦ by positivity) (fun n ↦ ?_) hsum
+  exact_mod_cast FinitePartialBijection.twoSidedDisagreement_trans_le
+    (a.map n) (a'.map n) (b.map n) (b'.map n)
+
+/-- Reversal respects negligible disagreement definitionally because the
+error is counted in both directions. -/
+theorem symm_near_congr {a b : AsymptoticPartialBijection N Y Z}
+    (h : Near a b) : Near a.symm b.symm := by
+  apply Negligible.congr h
+  intro n
+  exact_mod_cast ((a.map n).twoSidedDisagreement_symm (b.map n)).symm
+
+theorem reflOn_near_refl (s : ∀ n, Finset (Y n))
+    (hmissing : Negligible N
+      (fun n ↦ ((Fintype.card (Y n) - (s n).card : ℕ) : ℝ))) :
+    Near (reflOn s hmissing) (refl N Y) := by
+  have htwo := Negligible.const_mul 2 hmissing
+  apply Negligible.congr htwo
+  intro n
   exact_mod_cast
-    FinitePartialBijection.card_disagreement_le (a.map n) (b.map n) (c.map n)
+    (FinitePartialBijection.twoSidedDisagreement_reflOn_refl (s n)).symm
 
 /-- Negligible disagreement is an actual equivalence relation on candidates
 once the common normalizing scale is nonnegative. -/

@@ -130,6 +130,7 @@ import NonsoficGroupsExist.Matching.FiniteGroupoidCounting
 import NonsoficGroupsExist.Matching.FiniteGroupoidPresentation
 import NonsoficGroupsExist.Matching.FinitePartialBijection
 import NonsoficGroupsExist.Matching.AsymptoticPartialBijection
+import NonsoficGroupsExist.Matching.AsymptoticPartialGroupoid
 import NonsoficGroupsExist.Matching.BlockPartialBijection
 import NonsoficGroupsExist.Matching.EdgeEditing
 import NonsoficGroupsExist.Matching.GeneratorCrossing
