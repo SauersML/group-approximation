@@ -32823,3 +32823,76 @@ Berlai--Finn-Sell--Glebsky Theorems A and B, and Brude--Sasyk Theorem 1.1,
 require the **acting** group to be amenable.  Here the acting quotient `G` is
 Kazhdan and nonamenable.  A successful hyperlinear model of `K_omega` must
 therefore be genuinely nonperiodic/non-Cartan in the gauge direction.
+
+# The finite gauge cover is not residually finite (2026-08-10)
+
+The finite-module invisibility theorem has a stronger consequence than was
+recorded above: the central gauge cover itself cannot be residually finite.
+Thus congruence persistence cannot close `(FGC10)` by ordinary finite
+quotients.
+
+Retain `(FGC1)--(FGC10)` and the complete-double-radical hypothesis.  Choose
+`n in N` for which
+
+`b=b_n notin Z`.                                      `(FGR1)`
+
+Such an `n` exists by the proof of `(FGC8)`.  Regard `B_omega` as a discrete
+`G`-module and let `p:B_omega -> F` be any equivariant homomorphism to a
+finite `G`-module.  The fixed subgroup `p(Z)` is `G`-invariant, and hence
+
+`q:B_omega/Z -> F/p(Z)`, `q(aZ)=p(a)p(Z)`             `(FGR2)`
+
+is a well-defined equivariant homomorphism.  Finite-module invisibility
+applied to `q` gives
+
+`p(b) in p(Z)`.                                       `(FGR3)`
+
+Equivalently, the nonempty set
+
+`S_p={z in Z : p(b)=p(z)}`                            `(FGR4)`
+
+records the central phases to which `p` collapses `b`.
+
+**Theorem (central-phase compactness).**  There is a single `z_0 in Z` such
+that
+
+`p(b z_0^(-1))=1`                                    `(FGR5)`
+
+for every equivariant homomorphism from `B_omega` to a finite `G`-module.
+Consequently
+
+`1 != b z_0^(-1)`                                    `(FGR6)`
+
+lies in the equivariant profinite residual of `B_omega`, and
+
+`K_omega=B_omega semidirect G` is not residually finite. `(FGR7)`
+
+**Proof.**  For any finite family `p_1,...,p_k`, apply `(FGR3)` to the product
+map
+
+`p=(p_1,...,p_k):B_omega -> product_i F_i`.
+
+There is a single `z in Z` with `p(b)=p(z)`, so
+
+`intersection_i S_(p_i) != empty`.                   `(FGR8)`
+
+The family of subsets `S_p` of the finite set `Z` therefore has the finite
+intersection property.  Its total intersection is nonempty; choose `z_0`
+in it.  This proves `(FGR5)`.  Equation `(FGR1)` implies `(FGR6)` for every
+constant `z_0`.
+
+It remains only to pass from the module statement to the semidirect product.
+If `f:K_omega -> Q` is a homomorphism to a finite group, then
+`p=f|B_omega` is equivariant for the `G`-action on the finite abelian group
+`f(B_omega)` induced by conjugation through `f(G)`.  Hence `(FGR5)` gives
+`f(b z_0^(-1))=1`.  The nonidentity element `(FGR6)` is killed by every
+finite quotient of `K_omega`, proving `(FGR7)`.  End proof.
+
+**Scope.**  This does not obstruct soficity or hyperlinearity: both allow
+genuinely nonperiodic models.  It does eliminate the most tempting positive
+finish of `(FGC10)`.  In particular, no arithmetic theorem saying that the
+multiplier persists through sufficiently many congruence quotients can make
+the gauge cover residually finite; finite quotients necessarily choose one
+central phase globally and erase `(FGR6)`.  Any successful model must retain
+the finite-character corner through non-Cartan microstates rather than
+through finite gauge orbits.
