@@ -27627,3 +27627,196 @@ Primary pin: Dahmani--Guirardel--Osin, the almost-malnormality of
 hyperbolically embedded subgroups and the Dehn-filling preservation theorem;
 Chifan--Ioana--Osin--Sun, Theorem 2.6/2.7 in the published numbering and the
 proof of their wreath-like Dehn-filling theorem.
+
+# Finite phase charts for the twisted Bernoulli target (2026-08-09)
+
+The corona calculation reduces the abelian-lamp lane to a concrete finite
+model problem.  The reduction can be made exact, and it also reveals a new
+constraint: phases in a fixed finite alphabet cannot create a
+hyperlinear/nonsofic gap.
+
+Let `A` be a nontrivial finite abelian group, written additively, let `B` be
+countable, and let
+
+`D=A^(B)`.
+
+Suppose that a regular wreath-like extension is represented by a normalized
+factor set
+
+`v_(b,c) in D`,
+
+so that
+
+`(d,b)(e,c)=(d+b.e+v_(b,c),bc)`.                       `(PH1)`
+
+Put `X=hat(A)^B`, with product Haar measure, and write
+
+`chi_d(x)=product_(z in B) x_z(d_z)`
+
+for the cylinder character associated to `d in D`.  The scalar cocycle of
+the preceding section is
+
+`omega_(b,c)(x)=chi_(v_(b,c))(x)`.                     `(PH2)`
+
+Fix a sofic approximation `sigma_n:B->Sym(Y_n)`.  A labelling
+`a_n:Y_n->hat(A)` produces a rooted configuration at `y` by
+
+`x_(n,y)(z)=a_n(sigma_n(z)^(-1)y)`.                    `(PH3)`
+
+Call the labellings **Bernoulli-generic** when, for every finite coordinate
+set, the empirical distribution of the rooted patterns `(x_(n,y))`, with
+`y` uniform in `Y_n`, tends to product Haar measure.  Independent uniform
+labellings have this property after passing to a deterministic realization:
+the expectation is correct on the points where the relevant sofic chart is
+injective, and the dependency graph for a fixed cylinder has uniformly
+bounded degree, so its empirical variance tends to zero.
+
+For `b,c in B`, abbreviate
+
+`omega_(b,c,n)(y)=chi_(v_(b,c))(x_(n,y))`.             `(PH4)`
+
+**Theorem (twisted Bernoulli phase-chart criterion).**  Assume there are a
+sofic approximation `sigma_n`, Bernoulli-generic labellings `a_n`, and phase
+functions
+
+`theta_(b,n):Y_n->T`, `theta_(1,n)=1`,
+
+such that, for every fixed `b,c in B`,
+
+`(1/|Y_n|) sum_y |theta_(b,n)(y)
+ theta_(c,n)(sigma_n(b)^(-1)y)
+ -omega_(b,c,n)(y) theta_(bc,n)(y)|^2 -> 0`.           `(PH5)`
+
+Then the group in `(PH1)` is hyperlinear.  More precisely, it has
+trace-preserving microstates by monomial unitaries whose permutation parts
+are the prescribed sofic approximation.  Conversely, any microstates of
+this chart-compatible monomial form force `(PH5)`.
+
+**Proof.**  On `ell^2(Y_n)`, let
+
+`P_(b,n) delta_y=delta_(sigma_n(b)y)`
+
+and let `D(f)` denote multiplication by `f`.  Define
+
+`U_(b,n)=D(theta_(b,n))P_(b,n)`,
+`M_(d,n)=D(y |-> chi_d(x_(n,y)))`.                     `(PH6)`
+
+On all but `o(|Y_n|)` coordinates, the radius needed by a fixed calculation
+is an honest labelled `B`-chart.  On those coordinates `(PH3)` gives the
+covariance relation
+
+`P_(b,n) M_(d,n) P_(b,n)^* = M_(b.d,n)`.              `(PH7)`
+
+Also
+
+`U_(b,n)U_(c,n)
+ =D(theta_(b,n)(theta_(c,n) o sigma_n(b)^(-1)))
+   P_(b,n)P_(c,n)`.                                   `(PH8)`
+
+The permutation part in `(PH8)` differs from `P_(bc,n)` on `o(|Y_n|)`
+columns.  On the remaining columns, `(PH5)` says exactly that `(PH8)`
+differs in normalized Hilbert--Schmidt norm by `o(1)` from
+
+`M_(v_(b,c),n)U_(bc,n)`.                              `(PH9)`
+
+Equations `(PH7)`--`(PH9)` prove asymptotic multiplicativity of
+
+`(d,b) |-> M_(d,n)U_(b,n)`
+
+according to `(PH1)`.  If `b!=1`, its normalized trace tends to zero because
+`sigma_n(b)` has `o(|Y_n|)` fixed points.  If `b=1` and `d!=0`, its trace is
+the empirical average of the nontrivial Bernoulli character `chi_d`, hence
+tends to zero by genericity.  Thus the canonical group trace is obtained,
+which is the microstate criterion for hyperlinearity.
+
+Conversely, every monomial unitary over `P_(b,n)` has a unique diagonal
+phase factor on the good columns.  Multiplying two such matrices gives
+`(PH8)`.  The squared normalized Hilbert--Schmidt defect on columns where
+the permutations agree is precisely the average in `(PH5)`, while the bad
+permutation columns have vanishing density.  Therefore chart-compatible
+monomial multiplicativity implies `(PH5)`.  End proof.
+
+Thus the analytic question is the asymptotic coboundary problem
+
+`delta theta_n ~= omega_n` in `L^2`                   `(PH10)`
+
+on finite labelled sofic charts.  This is strictly more data than a sofic
+approximation of `B`: it asks for phases trivializing the pulled-back twist,
+not merely unlabelled Cayley balls.
+
+There is a decisive restriction on possible solutions of `(PH10)`.
+
+**Theorem (finite-alphabet monomial collapse).**  Let `K<=T` be a fixed
+finite subgroup.  Suppose a countable group `H` has trace-preserving
+hyperlinear microstates all of whose matrices lie in
+
+`Mon_K(n)=K^n semidirect Sym(n)`.
+
+Then `H` is sofic.
+
+**Proof.**  Let a monomial matrix `T=D(a)P_sigma` act on
+
+`Omega_n={1,...,n} times K`
+
+by the corresponding permutation
+
+`(i,k) |-> (sigma(i),a_i k)`                           `(PH11)`
+
+(changing `a_i` to the harmless reindexed convention makes `(PH11)` an
+exact homomorphism).  Two monomial matrices disagree on a proportion `r`
+of their basis columns exactly when their permutations in `(PH11)` disagree
+on proportion `r` of `Omega_n`.  Column by column,
+
+`||T-S||_2^2 >= c_K r`,
+
+where
+
+`c_K=min(2,min{|z-w|^2:z,w in K,z!=w})>0`.             `(PH12)`
+
+Indeed different target rows contribute `2`, and equal target rows with
+different phases contribute at least the second quantity.  Hence vanishing
+Hilbert--Schmidt multiplication defect gives vanishing Hamming
+multiplication defect after `(PH11)`.
+
+It remains to check separation.  The fixed points in `(PH11)` are exactly
+the pairs above indices `i` for which `sigma(i)=i` and `a_i=1`.  If their
+proportion among indices is `r`, then
+
+`r <= |tr_n(T)|+(1-r)`,
+
+because every other diagonal contribution to the monomial trace has total
+absolute value at most `1-r`.  Consequently
+
+`r <= (1+|tr_n(T)|)/2`.                                `(PH13)`
+
+For the microstate of a nonidentity group element, `tr_n(T)->0`, so the
+permutations `(PH11)` move at least `1/2-o(1)` of the points.  A fixed
+positive separation is an equivalent sofic approximation condition; or,
+explicitly, take diagonal product powers to amplify the moved proportion
+to `1-o(1)` while choosing the multiplication error to go to zero faster.
+Thus `H` is sofic.  End proof.
+
+**Consequences for the proposed witness.**
+
+1. Although `(PH2)` takes values in the fixed finite group of
+   `exp(A)`-th roots of unity, a nonsofic group cannot satisfy `(PH5)` with
+   all `theta_(b,n)` in any fixed finite phase alphabet.  Any successful
+   monomial hyperlinear model must create phases of unbounded order and
+   genuinely increasing resolution.
+2. The most obvious profinite construction does not yield the desired
+   quantum/classical gap.  If a finite quotient `Q_n` and cochains
+   `r_(b,n) in A^(Q_n)` exactly trivialize the pushed-forward factor set,
+   then the phases `theta_(b,n)(x)=x(r_(b,n))` lie in the fixed
+   `exp(A)`-th-root alphabet.  If these models are trace separating, the
+   preceding theorem makes the group sofic.
+3. Therefore the viable phase-chart target is not exact finite-module
+   trivialization.  It is an `L^2`-approximate trivialization whose phases
+   have unbounded resolution and which cannot be rounded, after gauge, to a
+   fixed finite alphabet.  A uniform cocycle-stability theorem forcing such
+   rounding would rule out the entire monomial lane; a sequence of genuinely
+   non-roundable near-flat phases would supply the missing hyperlinear input.
+
+This does not yet construct the required phases.  It converts the vague
+"twisted sofic relation" question into the quantitative defect `(PH5)` and
+shows exactly why finite-group/profinite cochains, despite matching the
+finite-valued cocycle, are too classical to solve the main problem.
