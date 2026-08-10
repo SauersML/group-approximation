@@ -30231,3 +30231,64 @@ different global Bass--Serre bookkeeping, but it is not analytically easier
 at the one obstruction that matters. Together with `(IS9)--(IS12)`, this
 makes the centralizer-twisted symmetric endpoint `(IS8)` the preferred one.
 Full proof: `docs/CENTRAL_RADICAL_SHEAR_GADGET.md`, Lemma 4.
+
+# Antipodal norm models directly solve TRUE (2026-08-09)
+
+The shear-amalgam endpoint contains a much smaller certificate.  The
+regular detector and the completed graph of groups are unnecessary once an
+antipodal model of the radical word has actually been produced.
+
+**Theorem (spectral-rotation trace extraction).**  Let `H` be countable and
+let `x in Rad_sof(H)`.  Suppose there are operator-norm asymptotic
+homomorphisms
+
+`phi_n:H->U(d_n)`
+
+and unitaries `S_n` such that, for one fixed
+`omega in T minus {1}`,
+
+`||S_n phi_n(x) S_n^* - omega phi_n(x)|| -> 0`.        `(AR1)`
+
+Then a hyperlinear nonsofic group exists.  In fact the tracial-ultraproduct
+image of `H` under the `phi_n` is already hyperlinear and nonsofic.
+
+**Proof.**  Operator-norm multiplicative defects tend to zero, hence so do
+their normalized Hilbert--Schmidt norms.  Thus
+
+`Phi(h)=[phi_n(h)]_2`
+
+is a homomorphism from `H` into a tracial matrix ultraproduct.  Normalized
+trace is invariant under unitary conjugacy, so `(AR1)` gives
+
+`|(1-omega) tau_n(phi_n(x))| -> 0`.
+
+Because `omega!=1`, one has `tau_n(phi_n(x))->0`.  Consequently
+
+`||phi_n(x)-1||_2^2`
+` =2-2 Re tau_n(phi_n(x)) ->2`,                        `(AR2)`
+
+and `Phi(x)!=1`.  Let `Q=Phi(H)`.  It is hyperlinear.  If `Q` were sofic,
+the quotient homomorphism `H->Q` would kill `x`, by the definition of the
+full sofic radical, contradicting `(AR2)`.  End proof.
+
+The antipodal case in the shear notes is `omega=-1`.  Therefore the local
+condition
+
+`||S_n phi_n(x) S_n^*+phi_n(x)||->0`                 `(AR3)`
+
+alone finishes the main problem.  One does **not** need:
+
+* faithfulness of the norm models;
+* a regular strong-limit detector;
+* weak MF of the shear amalgam; or
+* retention of its Bass--Serre normal form.
+
+Those extra conditions are needed only if one insists on first proving the
+larger shear group weak MF.  For TRUE, `(AR3)` directly supplies the one
+Connes-embeddable character detecting the radical word.
+
+This also clarifies the remaining difficulty.  Antipodal symmetry is not
+merely an operator-norm compatibility convenience: it enforces positive
+normalized-HS mass for `x` and thereby performs the missing norm-to-trace
+conversion.  Any construction of the compatible `z=-1` edge block has
+already crossed the central analytic bottleneck.
