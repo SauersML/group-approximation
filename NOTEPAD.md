@@ -34215,6 +34215,190 @@ that growing element uniformly.  A surviving FALSE construction must
 therefore be genuinely non-induced/non-finite-cover, or use an approximate
 ambient representation for which `(BRC5)` is not respected exactly.
 
+# Rank-one star fields remove the Clifford spin-determinant obstruction (2026-08-10)
+
+The Clifford tangent quantization `(CCT1)--(CCB7)` has exact orthogonal
+covariance, but its Koopman/Pin implementers amplify even a one-dimensional
+orthogonal defect to order one.  There is a different finite-dimensional
+Gaussian field which trades that discrete spin loss for the ordinary
+square-root dimension profile.
+
+Let `H` be a real Hilbert space of dimension `D`, put `n=D+1`, and write
+
+`K=C e_0 directSum H_C`.                              `(RSG1)`
+
+For `v in H` define the self-adjoint rank-two star matrix
+
+`S_D(v)=sqrt(n/2)( |e_0><v|+|v><e_0| ) in B(K)`.     `(RSG2)`
+
+On `B(K)^(tensor m)` put
+
+`Y_(D,m)(v)=m^(-1/2) sum_(j=1)^m S_D(v)_(j)`,
+`W_(D,m,t)(v)=exp(i sqrt(2t) Y_(D,m)(v))`.            `(RSG3)`
+
+All matrix traces and Hilbert--Schmidt norms below are normalized.
+
+**Theorem (rank-one star Gaussian quantization).**  For all `v,w in H`:
+
+1. `Y_(D,m)` is real-linear, self-adjoint, and
+
+   `tr(Y_(D,m)(v)Y_(D,m)(w))=<v,w>`;                 `(RSG4)`
+
+2. one has the exact commutator formula
+
+   `||[Y_(D,m)(v),Y_(D,m)(w)]||_2^2`
+   ` =(D+1)/(2m) (||v||^2||w||^2-<v,w>^2)`;         `(RSG5)`
+
+3. consequently
+
+   `||W(v)W(w)-W(v+w)||_2`
+   ` <=t sqrt((D+1)/(2m)) ||v|| ||w||`;              `(RSG6)`
+
+4. the normalized trace is exactly
+
+   `tr(W_(D,m,t)(v))`
+   ` =[1+(2/(D+1))`
+   `     (cos(sqrt(t(D+1)/m)||v||)-1)]^m`;           `(RSG7)`
+
+5. if `(D+1)/m->0`, then, uniformly for `t` and `v` in fixed bounded
+   sets,
+
+   `tr(W_(D,m,t)(v))`
+   ` =exp(-t||v||^2)+O(t^2 (D+1)||v||^4/m)`.         `(RSG8)`
+
+Every `T in O(H)` has the honest implementer
+
+`R_D(T)=1_C directSum T_C`,
+`R_(D,m)(T)=R_D(T)^(tensor m)`,                       `(RSG9)`
+
+and
+
+`R_(D,m)(T) W(v) R_(D,m)(T)^*=W(Tv)`.               `(RSG10)`
+
+Finally, if `P,Q in O(H)`, put
+
+`eta=||P-Q||_(2,H)`.
+
+Whenever `eta` is small enough that the scalar below is nonnegative,
+
+`||R_(D,m)(P)-R_(D,m)(Q)||_2`
+` <=sqrt(mD/(D+1)) eta <=sqrt(m) eta`.               `(RSG11)`
+
+**Proof.**  Direct block multiplication in `(RSG2)` gives
+
+`tr(S_D(v)S_D(w))=<v,w>`.
+
+Different tensor legs are centered and orthogonal, proving `(RSG4)`.  The
+scalar corner cancels from the commutator and the `H_C` corner is
+
+`((D+1)/2)(|v><w|-|w><v|)`.
+
+The unnormalized Hilbert--Schmidt norm squared of
+`|v><w|-|w><v|` is
+
+`2(||v||^2||w||^2-<v,w>^2)`.
+
+After division by `D+1`, and then orthogonal summation over the `m` tensor
+legs, this is exactly `(RSG5)`.  The Duhamel estimate
+
+`||exp(isA)exp(isB)-exp(is(A+B))||_2`
+` <=(s^2/2)||[A,B]||_2`
+
+with `s=sqrt(2t)` proves `(RSG6)`.
+
+The matrix `S_D(v)` has eigenvalues
+
+`+sqrt((D+1)/2)||v||`, `-sqrt((D+1)/2)||v||`
+
+and zero with multiplicity `D-1`.  The tensor legs in `(RSG3)` commute, so
+their exponential traces multiply.  This gives `(RSG7)`.  Expanding
+
+`cos x=1-x^2/2+O(x^4)`, `log(1+u)=u+O(u^2)`
+
+with `x^2=t(D+1)||v||^2/m` gives `(RSG8)`.
+
+Equations `(RSG9)--(RSG10)` are immediate from the block formula.  For
+`Z=P^*Q`, normalized trace on one tensor leg gives the real scalar
+
+`c=(1+Tr(Z))/(D+1)=1-(D/(2(D+1)))eta^2`.             `(RSG12)`
+
+The normalized inner product of the two `m`-fold implementers is `c^m`.
+For `0<=c<=1`,
+
+`||R(P)-R(Q)||_2^2=2-2c^m`
+` <=2m(1-c)=mD/(D+1) eta^2`,
+
+which is `(RSG11)`.  End proof.
+
+## Relative square-root profile certificate
+
+The star field gives a direct replacement for the Clifford covariance
+budget.  Retain the integral path/heat group from `(THA1)--(THA5)`, with
+residually finite acting group `Q`, subgroup `Gamma`, and primitive path
+energy which detects the full sofic radical.  Suppose that, on growing
+finite windows, there are
+
+* real spaces `H_n`, `D_n=dim(H_n)`;
+* normalized maps `pi_n:Q->O(H_n)`, `pi_n(1)=1`, with
+  normalized-Hilbert--Schmidt multiplicative defect `eta_n->0`;
+* linear maps `J_n` on the tested path coordinates whose equivariance
+  defect is `delta_n->0` and whose tested squared norms converge to the
+  required path energies;
+
+such that
+
+`eta_n sqrt(D_n)->0`.                                 `(RSG13)`
+
+Then the heat character has matrix microstates and a hyperlinear nonsofic
+group exists.
+
+**Proof.**  Condition `(RSG13)` permits a choice of integers `m_n` with
+
+`D_n/m_n->0`, `m_n eta_n^2->0`.                      `(RSG14)`
+
+For example choose any scale strictly between `D_n` and `eta_n^(-2)`.
+Put
+
+`e_n=sqrt(m_n)eta_n->0`.
+
+Choose `t_n->0` sufficiently slowly that
+
+`e_n=o(t_n)`, `delta_n=o(sqrt(t_n))`.                 `(RSG15)`
+
+Let `theta_n:Q->F_n` be finite quotients separating the nonidentity
+`Q`-coordinates in the current window, and let `lambda_n` be their regular
+representations.  Define
+
+`phi_n(a,q)=W_(D_n,m_n,t_n)(J_n(a))`
+`             R_(D_n,m_n)(pi_n(q))`
+`             tensor lambda_n(theta_n(q))`.          `(RSG16)`
+
+Equation `(RSG10)` transports the path field.  The three multiplication
+errors in `(RSG16)` are bounded respectively by
+
+`O(t_n sqrt(D_n/m_n))`, `O(sqrt(t_n)delta_n)`,
+`O(sqrt(m_n)eta_n)`.                                  `(RSG17)`
+
+They are all `o(t_n)` by `(RSG14)--(RSG15)`.  The regular factor makes the
+trace exactly zero on every tested nontrivial `Q`-coordinate.  On the path
+kernel, `(RSG8)`, `(RSG14)`, and norm convergence of `J_n` give
+
+`tr(phi_n(a,1))=exp(-t_n||a||^2)+o(t_n)`.             `(RSG18)`
+
+Thus `(THA1)--(THA2)` hold.  Tangent heat amplification produces the
+positive-time Connes-embeddable trace, and the already proved radical
+argument makes its hyperlinear image nonsofic.  End proof.
+
+This criterion is distinct from the exterior-amplification theorem.  It
+does not ask for operator-norm separation of a group model and does not
+turn an arbitrary MF profile into hyperlinearity.  It asks for one relative
+orthogonal vector profile: approximate covariance must retain the primitive
+path norm.  Its gain over Clifford second quantization is exact and scoped:
+a finite-rank orthogonal defect is no longer automatically order one after
+quantization; its loss is the square-root factor in `(RSG11)`.  Exact
+finite-dimensional covariance is still sterile by `(LSP1)--(LSP3)`, so the
+remaining construction must be both nonprofinite and genuinely approximate.
+
 ## Separation of Alekseev--Bradford target classes is already the desired group separation
 
 The action-level criterion `(AHG1)--(AHG5)` is correct, but it is not a
