@@ -31563,6 +31563,97 @@ so it is the desired hyperlinear nonsofic group.
 Thus free stabilization removes all group-theoretic complexity from the
 balanced-lift problem.  The surviving obstruction is purely the spectral
 rank profile of one primitive infinite-order unitary.
+
+# Torsion central-extension classes admit trace-visible small phases (2026-08-10)
+
+There is a positive small-phase theorem which avoids every matrix rank
+profile.  The relevant finiteness is not finite order of the central element,
+but finite order of the extension class.
+
+Consider a central extension
+
+`1 -> <z> isomorphic Z -> E -> K -> 1`                 `(TCE1)`
+
+and suppose `K` is weak/operator-norm MF.  Choose a normalized section
+`s:K->E` and write
+
+`s(k)s(l)=z^(c(k,l))s(kl)`                            `(TCE2)`
+
+for its integral `2`-cocycle `c`.
+
+**Theorem (torsion-class small-phase lift).**  If the class
+
+`[c] in H^2(K,Z)`
+
+has finite order `m>=1`, then for every `theta in R` there is a homomorphism
+
+`Phi_theta:E -> U(prod M_(d_n)/I_2)`                 `(TCE3)`
+
+to a tracial matrix ultraproduct such that
+
+`Phi_theta(z)=exp(i theta)1`.                         `(TCE4)`
+
+In particular, if `z!=1` belongs to `Rad_sof(E)`, the image of `(TCE3)` for
+`theta notin 2 pi Z` is a hyperlinear nonsofic group.
+
+**Proof.**  Since `m[c]=0`, after fixing signs there is an integer-valued
+`1`-cochain `b:K->Z`, with `b(1)=0`, such that
+
+`b(k)+b(l)-b(kl)=m c(k,l)`.                           `(TCE5)`
+
+Let
+
+`rho_n:K->U(d_n)`
+
+be operator-norm asymptotic representations.  Denote their multiplication
+errors on each fixed pair by `delta_n(k,l)->0`.  Pass to a diagonal sequence
+and choose `epsilon_n>0` tending to zero so slowly that
+
+`delta_n(k,l)=o_(k,l)(epsilon_n)`                     `(TCE6)`
+
+for every fixed pair.  For `g=z^a s(k)` define
+
+`phi_n(g)=exp(i epsilon_n (m a+b(k)))
+          rho_n(k)^(tensor m)`.                       `(TCE7)`
+
+The scalar part is exactly multiplicative.  Indeed, `(TCE2)` says that the
+central exponent in the product is `a+a'+c(k,l)`, and `(TCE5)` gives
+
+`m a+b(k)+m a'+b(l)`
+` =m(a+a'+c(k,l))+b(kl)`.
+
+The only remaining multiplication error in `(TCE7)` comes from the `m`th
+tensor power of `rho_n`; tensor telescoping bounds it by
+
+`m delta_n(k,l)=o_(k,l)(epsilon_n)`.                  `(TCE8)`
+
+Also
+
+`phi_n(z)=exp(i m epsilon_n)1`.                       `(TCE9)`
+
+Now put `L_n=floor(theta/(m epsilon_n))` (changing the sign convention when
+`theta<0`) and take the `L_n`th tensor power of `(TCE7)`.  Equations
+`(TCE8)--(TCE9)` and tensor telescoping show that the multiplication defects
+tend to zero while the image of `z` tends to `exp(i theta)1`.  This proves
+`(TCE3)--(TCE4)`.
+
+If the image were sofic, the homomorphism from `E` to that sofic image would
+kill every element of `Rad_sof(E)`, in particular `z`, contradicting
+`(TCE4)`.  The image is a subgroup of a tracial matrix ultraproduct and hence
+hyperlinear.  End proof.
+
+This theorem identifies a new purely algebraic finish line:
+
+> construct a central infinite-order radical element whose quotient is weak
+> MF and whose integral extension class is torsion.
+
+It also explains why the existing integral shear does not automatically
+finish.  Its edge character `ell:C->Z` enters through the Mayer--Vietoris
+connecting map and appears to give an infinite-order class; then `(TCE5)` is
+unavailable and the first-order scalar curvature cannot be removed.  By
+contrast, any `m`-torsion variant would solve the analytic problem with the
+explicit formula `(TCE7)`, without antipodal multiplicity balance, Clifford
+covariance, or a dimension/error profile.
 # Virtually cyclic radical-shear edge (2026-08-10)
 
 The centralizer-shear endpoint can be reduced from a nonamenable edge to an
