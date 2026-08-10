@@ -167,8 +167,8 @@ This implication is valid even when the Schur multiplier is infinite.  What
 (13) does not provide is hyperlinearity of the cover; that remains a
 substantive projective model-production problem.
 
-There is also a canonical finite quotient of this universal cover which
-isolates exactly the Clifford sector already present in the project.  On
+There is also a canonical finite-kernel quotient of this universal cover
+which isolates exactly the Clifford sector already present in the project.  On
 \(I_X\), put
 
 \[
@@ -195,12 +195,19 @@ The quotient \(C(X)/\langle z\rangle\) is \(A\).  Let
  E_{\mathrm{Cl},0}=C_0(X)\rtimes G.
 \]
 
+For lifts \(\widetilde u,\widetilde v\in C_0(X)\), the defining relations
+give
+
+\[
+ [\widetilde u,\widetilde v]=z^{\beta(u,v)}.          \tag{15}
+\]
+
 The permutation action of \(G\) preserves the presentation, and hence
 
 \[
  1\longrightarrow\langle z\rangle\cong\mathbb Z/2
  \longrightarrow E_{\mathrm{Cl},0}
- \longrightarrow P_2\longrightarrow1                 \tag{15}
+ \longrightarrow P_2\longrightarrow1                 \tag{16}
 \]
 
 is a central extension.  It is perfect.  Indeed, its derived subgroup maps
@@ -212,20 +219,159 @@ the even vectors
 \]
 
 satisfy \(\beta(u,v)=1\); therefore the commutator of any corresponding
-lifts is \(z\).  Thus the kernel in (15) also lies in the derived subgroup.
+lifts is \(z\).  Thus the kernel in (16) also lies in the derived subgroup.
 
-By the universal property, (15) receives a surjection
+By the universal property, (16) receives a surjection
 
 \[
- \widetilde P_2\twoheadrightarrow E_{\mathrm{Cl},0}.  \tag{16}
+ \widetilde P_2\twoheadrightarrow E_{\mathrm{Cl},0}.  \tag{17}
 \]
 
 So the even Clifford cover is not an ad hoc extension: it is a distinguished
-finite central quotient of the universal central extension.  Either
+finite-kernel central quotient of the universal central extension.  Either
 \(\widetilde P_2\) or \(E_{\mathrm{Cl},0}\) being hyperlinear would make
 \(P_2\) hyperlinear and nonsofic.  Existing exact finite-dimensional and
 operator-norm models kill \(z\), so the remaining issue is specifically a
 normalized-Hilbert--Schmidt/projective microstate problem.
+
+## 5. The perfect Clifford core
+
+Let
+
+\[
+ E_{\mathrm{Cl}}=C(X)\rtimes G
+\]
+
+be the full Clifford--Kun--Thom group.  The even cover in (16) is intrinsic
+to it.
+
+**Theorem 3.**  If \(G\) is perfect and acts transitively on the infinite
+set \(X\), then
+
+\[
+ \boxed{[E_{\mathrm{Cl}},E_{\mathrm{Cl}}]
+        =E_{\mathrm{Cl},0}.}                          \tag{18}
+\]
+
+In particular, \(E_{\mathrm{Cl},0}\) is a perfect subgroup of index two.
+For the Kun--Thom action it is nonsofic.  Moreover, every finite-dimensional
+unitary representation of \(E_{\mathrm{Cl},0}\) kills \(z\).
+
+**Proof.**  Parity of a Clifford word gives a homomorphism
+
+\[
+ E_{\mathrm{Cl}}\longrightarrow\mathbb F_2
+\]
+
+whose kernel is \(E_{\mathrm{Cl},0}\), so the derived subgroup is contained
+in the latter.  Conversely, \([G,G]=G\), and
+\(z=[a_x,a_y]\) belongs to the derived subgroup for distinct \(x,y\).
+Modulo \(z\), commutators of lamps with \(G\) are the vectors
+
+\[
+ \delta_{gx}+\delta_x,
+\]
+
+which span \(I_X\) by transitivity.  Since the derived subgroup already
+contains \(z\), it therefore contains the whole inverse image \(C_0(X)\).
+This proves (18).  Perfectness was proved above, and the index is two.
+
+For the Kun--Thom action, the full group \(E_{\mathrm{Cl}}\) is nonsofic.
+If its index-two subgroup were sofic, finite-extension permanence would
+make \(E_{\mathrm{Cl}}\) sofic.  Hence
+\(E_{\mathrm{Cl},0}\) is nonsofic.
+
+Finally, let \(\rho:E_{\mathrm{Cl},0}\to U(m)\), and suppose that the
+negative spectral projection
+
+\[
+ e_-=(1-\rho(z))/2
+\]
+
+is nonzero.  Restrict to its range.  Choose arbitrarily many pairwise
+disjoint triples \((x_i,y_i,t_i)\) and put
+
+\[
+ u_i=\delta_{x_i}+\delta_{y_i},\qquad
+ v_i=\delta_{x_i}+\delta_{t_i}.
+\]
+
+The form in (14) satisfies
+
+\[
+ \beta(u_i,v_j)=\delta_{ij},\qquad
+ \beta(u_i,u_j)=\beta(v_i,v_j)=0.                    \tag{19}
+\]
+
+After harmless scalar rescaling, the images of lifts of these vectors give
+arbitrarily many commuting Pauli pairs: the two members of each pair
+anticommute, while operators from different pairs commute.  The algebra
+they generate contains \(M_{2^n}(\mathbb C)\) for every \(n\), so any
+nonzero representation has dimension at least \(2^n\) for every \(n\), a
+contradiction.  Therefore \(e_-=0\), and \(\rho(z)=1\). \(\square\)
+
+Consequently the FALSE-side target can be stated without an index-two
+abelianization and without an arbitrary extension:
+
+\[
+ \boxed{
+ E_{\mathrm{Cl},0}\text{ is a finitely generated perfect nonsofic group,}
+ }
+\]
+
+with one central involution \(z\) killed by every exact finite-dimensional
+unitary representation.
+
+**Theorem 4 (one-character endpoint).**  Suppose that
+\(E_{\mathrm{Cl},0}\) has a Connes-embeddable character \(\chi\) with
+\(\chi(z)\ne1\).  Then there exists a hyperlinear nonsofic group.
+
+**Proof.**  Let
+
+\[
+ \eta:E_{\mathrm{Cl},0}\longrightarrow U(M)
+\]
+
+be the associated homomorphism into a tracial matrix ultraproduct.  The
+condition on \(\chi\) says \(\eta(z)\ne1\).  Combine \(\eta\) with a
+faithful hyperlinear representation of the residually finite group \(G\),
+pulled back through the retraction
+\(r:E_{\mathrm{Cl},0}\to G\).  Write \(K\) for the kernel of the resulting
+map.  Then
+
+\[
+ K\cap G=1,\qquad z\notin K,                         \tag{20}
+\]
+
+and \(E_{\mathrm{Cl},0}/K\) is hyperlinear.
+
+It remains to see that this image cannot be sofic.  Conjugation by one odd
+lamp, say \(a_o\), defines an involutive automorphism \(\alpha\) of the
+index-two normal subgroup \(E_{\mathrm{Cl},0}\).  Put
+
+\[
+ K_0=K\cap\alpha(K).
+\]
+
+The quotient \(E_{\mathrm{Cl},0}/K_0\) embeds in the product of the two
+quotients by \(K\) and \(\alpha(K)\).  Hence it would be sofic if
+\(E_{\mathrm{Cl},0}/K\) were sofic.  But \(K_0\) is normal in the full
+group \(E_{\mathrm{Cl}}\), and
+
+\[
+ K_0\cap G=1,\qquad z\notin K_0.                    \tag{21}
+\]
+
+Finite-extension permanence would then make
+\(E_{\mathrm{Cl}}/K_0\) sofic.  This contradicts the Kun--Thom
+centralizer argument: in any sofic representation faithful on \(G\), the
+base Clifford lamp centralizing \(\Gamma\) forces the strict translated
+Clifford edge, and hence \(z\), to vanish.  Thus
+\(E_{\mathrm{Cl},0}/K\) is hyperlinear and nonsofic. \(\square\)
+
+The open construction is therefore smaller than hyperlinearity of the
+whole cover: it is enough to produce one Connes-embeddable character which
+sees the single central sign.
 
 ## References
 
