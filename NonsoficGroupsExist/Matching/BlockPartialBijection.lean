@@ -138,5 +138,27 @@ theorem refinementPartialBijection_targetDefect_of_involution
   rw [hsymm]
   omega
 
+/-- For an exact inverse pair, reciprocity identifies the range defect of the
+`q` overlap arrow with the one-sided leakage of the inverse arrow at its
+target component. -/
+theorem refinementPartialBijection_targetDefect_of_inverse
+    (q r : Equiv.Perm (S.model n)) (hr : r = q⁻¹)
+    (C : D.componentIndex n)
+    (hrecip : D.refineIndex r (D.refineIndex q C) = C) :
+    (D.refinementPartialBijection q C).targetDefect =
+      D.componentLeakage (D.blocks n) r (D.refineIndex q C) := by
+  subst r
+  let E := D.refineIndex q C
+  have hsplit := D.overlap_refineIndex_add_componentLeakage q⁻¹ E
+  have hchosen : D.refineIndex q⁻¹ E = C := by
+    simpa [E] using hrecip
+  rw [hchosen] at hsplit
+  have hreverse := BlockIndex.overlap_inv_comm (D.blocks n) q C E
+  rw [D.refinementPartialBijection_targetDefect q C]
+  change E.block.card - BlockIndex.overlap (D.blocks n) q C E =
+    D.componentLeakage (D.blocks n) q⁻¹ E
+  rw [hreverse]
+  omega
+
 end ExpanderDecomposition
 end NonsoficGroupsExist
