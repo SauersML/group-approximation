@@ -341,12 +341,6 @@ One entry per declaration named by a manuscript margin note, in the order of `do
 (k : Type) → [Field k] → Type
 ```
 
-## `NonsoficGroupsExist.CentralizerNormalization`
-
-```lean
-(G : Type) → [inst : Group G] → Subgroup G → Prop
-```
-
 ## `NonsoficGroupsExist.CompleteMatrixFamily.matrixAlgEquiv`
 
 ```lean
@@ -769,14 +763,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 
 ```lean
 (G : Type u_2) → [Group G] → Prop
-```
-
-## `NonsoficGroupsExist.IsMetricallyFaithful`
-
-```lean
-{ι : Type u_1} →
-  (𝒰 : Ultrafilter ι) →
-    (X : ι → FiniteModel) → {H : Type u_2} → [inst : Group H] → (H →* UniversalSofic 𝒰 X) → Prop
 ```
 
 ## `NonsoficGroupsExist.IsNormApproximable`
@@ -2094,15 +2080,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         ↑(smallBlockVertices (P n) M).card
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.toUniversal`
-
-```lean
-{H : Type u_2} →
-  [inst : Group H] →
-    (S : SoficApproximation H) →
-      (𝒰 : Ultrafilter ℕ) → ↑𝒰 ≤ Filter.cofinite → H →* UniversalSofic 𝒰 S.model
-```
-
 ## `NonsoficGroupsExist.SoficApproximation.wordDisagreement_negligible`
 
 ```lean
@@ -2436,12 +2413,6 @@ Group.FG ↥UniversalRankFour.Ambient ∧
           (normTrace Y (monomialMatrix Y d σ)).re ≤ ε →
             2 * ↑{y | σ y = y ∧ d y = 1}.card ≤
               ↑{y | σ y = y}.card + ε * ↑(Fintype.card Y.carrier)
-```
-
-## `NonsoficGroupsExist.centralizerNormalization_top`
-
-```lean
-∀ (G : Type) [inst : Group G], CentralizerNormalization G ⊤
 ```
 
 ## `NonsoficGroupsExist.charEval_add`
@@ -2862,15 +2833,6 @@ CountableNonsoficGroupExists
     Subgroup.closure S = ⊤ →
       ∀ (π : FreeLamp G Γ' K →* V ≃ₗ[k] V) {t γ : G},
         γ ∈ Γ' → t⁻¹ * γ * t ∉ Γ' → ∀ {k' : K}, k' ≠ 1 → ¬Function.Injective ⇑π
-```
-
-## `NonsoficGroupsExist.freeLamp_not_isSofic`
-
-```lean
-∀ (G : Type) [inst : Group G] (Γ : Subgroup G) (K : Type) [inst_1 : Group K] [Countable G]
-  [Countable K],
-  CentralizerNormalization G Γ →
-    ∀ {t γ : G}, γ ∈ Γ → t⁻¹ * γ * t ∉ Γ → ∀ {k : K}, k ≠ 1 → ¬IsSofic (FreeLamp G Γ K)
 ```
 
 ## `NonsoficGroupsExist.halfOrbit`
