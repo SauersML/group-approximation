@@ -35325,3 +35325,70 @@ cannot be made nuclear by passing to an amenable invariant subsystem.  A
 successful central-fiber trace must be Connes embeddable for a genuinely
 nonamenable action.  Exactness of `G`, its amenable boundary, and nuclearity
 of boundary crossed products cannot close the gauge endpoint.
+
+## Finite constraint corners have a quantized covariance defect
+
+There is another canonical way one might try to obtain the quotient trace.
+The gauge quotient `(RAG9)` has the form
+
+`(A/J) semidirect G`,                                     `(FCC1)`
+
+where `A=I_X` is a restricted finite-exponent lamp module and `J` is a
+`G`-submodule.  The parent `A semidirect G` is sofic.  For a finite subgroup
+`F<=J`, the averaging projection
+
+`p_F=|F|^(-1) sum_(f in F) u_f in L(A)`                  `(FCC2)`
+
+imposes the relations `f=1`, `f in F`, on its corner.  It is tempting to
+let `F` grow through `J` and hope that these corners approximate the quotient
+by `J`.  The covariance defect of this scheme is discrete and cannot tend to
+zero.
+
+**Theorem (quantized finite-constraint defect).**  Let a group `G` act on a
+discrete abelian group `A`, let `F<=A` be finite, and let `g in G`.  In
+`L(A semidirect G)`,
+
+`||u_g p_F u_g^*-p_F||_2^2`
+` =2/|F|-2/|F+gF|`.                                     `(FCC3)`
+
+After normalization by the corner trace `tau(p_F)=1/|F|`,
+
+`tau(p_F)^(-1)||u_g p_F u_g^*-p_F||_2^2`
+` =2(1-|F|/|F+gF|)`.                                    `(FCC4)`
+
+It is zero when `gF=F`, and it is at least `1` otherwise.  Consequently, if
+`G` is finitely generated and finite subgroups `F_n<=J` give asymptotically
+central constraint corners in their normalized `2`-norm, then `F_n` is
+`G`-invariant for all sufficiently large `n`.
+
+**Proof.**  The coefficient of the identity in `p_F p_(gF)` is
+
+`|F intersect gF|/(|F||gF|)=1/|F+gF|`.                 `(FCC5)`
+
+Since `|F|=|gF|`, expanding the square gives `(FCC3)` and `(FCC4)`.  If
+`F!=gF`, the finite group `F+gF` contains `F` with index at least two, so
+`|F|/|F+gF|<=1/2`.  For a finite generating set of `G`, an error below one
+eventually forces invariance under every generator.  End proof.
+
+**Corollary (no finite invariant constraints in a transitive restricted
+lamp).**  Let `X` be an infinite transitive `G`-set and let
+
+`A=C^(X)`                                                 `(FCC6)`
+
+for a finite abelian coefficient group `C`.  Then `A` has no nonzero finite
+`G`-invariant subgroup.  Hence no nonzero submodule `J<=A` can be exhausted,
+or even locally detected, by nontrivial finite constraint groups whose
+normalized corner projections asymptotically commute with a finite
+generating set of `G`.
+
+Indeed, if `F<=A` were finite and `G`-invariant, the union of the finite
+supports of its elements would be a finite `G`-invariant subset of `X`.
+Transitivity and infinitude force that union to be empty, so `F=0`.
+
+Applied to `A=I_X<=C^(X)`, this rules out the most direct quotient-of-sofic
+finish for `(RAG9)`.  The obstruction is stronger than vanishing corner
+mass: after renormalizing the corner, one incorrect translate already costs
+order one.  Thus finite subgroup averages cannot manufacture the desired
+Connes-embeddable quotient trace.  A successful construction needs genuinely
+diffuse/non-subgroup constraint projections, or must return to a different
+FALSE certificate.
