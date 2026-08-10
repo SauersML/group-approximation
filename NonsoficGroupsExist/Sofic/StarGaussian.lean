@@ -107,8 +107,9 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
   have hdot : ∑ i, (v i : ℂ) * (w i : ℂ) = (starDot v w : ℂ) := by
     unfold starDot
     push_cast
+    rfl
   rw [hdot]
-  rw [← ofReal_pow, starScale_sq]
+  rw [← Complex.ofReal_pow, starScale_sq]
   norm_num
   push_cast
   ring
