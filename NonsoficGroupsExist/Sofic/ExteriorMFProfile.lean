@@ -692,7 +692,7 @@ theorem hsDistSq_exteriorTensorMatrix (Y : FiniteModel) [LinearOrder Y]
 /-- Tensoring `k` exterior lifts costs at most the factor `k` in the exact
 finite-dimensional defect bound. -/
 theorem hsDistSq_exteriorTensorMatrix_le
-    (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
+    (Y : FiniteModel) [LinearOrder Y]
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
     (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε)
@@ -700,7 +700,6 @@ theorem hsDistSq_exteriorTensorMatrix_le
     hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
         (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
       k * (Fintype.card Y * ε ^ 2 / 2) := by
-  letI : Nonempty Y := hY
   let q : ℝ := Complex.normSq
     ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det)
   have hbase := hsDistSq_exteriorAdMatrix_le Y hA hB hε2 hnorm
@@ -730,7 +729,7 @@ theorem hsDistSq_exteriorTensorMatrix_le_of_nonneg
   have hε'2 : ε' ≤ 2 := min_le_right _ _
   have hnorm2 : ‖A - B‖ ≤ 2 := opNorm_sub_le_two_of_unitary hY hA hB
   have hnorm' : ‖A - B‖ ≤ ε' := le_min hnorm hnorm2
-  have hmain := hsDistSq_exteriorTensorMatrix_le Y hY hA hB
+  have hmain := hsDistSq_exteriorTensorMatrix_le Y hA hB
     hε'2 hnorm' k
   have hsq : ε' ^ 2 ≤ ε ^ 2 := by
     have hle : ε' ≤ ε := min_le_left _ _
