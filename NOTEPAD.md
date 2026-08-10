@@ -31593,9 +31593,6 @@ to a tracial matrix ultraproduct such that
 
 `Phi_theta(z)=exp(i theta)1`.                         `(TCE4)`
 
-In particular, if `z!=1` belongs to `Rad_sof(E)`, the image of `(TCE3)` for
-`theta notin 2 pi Z` is a hyperlinear nonsofic group.
-
 **Proof.**  Since `m[c]=0`, after fixing signs there is an integer-valued
 `1`-cochain `b:K->Z`, with `b(1)=0`, such that
 
@@ -31637,23 +31634,38 @@ Now put `L_n=floor(theta/(m epsilon_n))` (changing the sign convention when
 tend to zero while the image of `z` tends to `exp(i theta)1`.  This proves
 `(TCE3)--(TCE4)`.
 
-If the image were sofic, the homomorphism from `E` to that sofic image would
-kill every element of `Rad_sof(E)`, in particular `z`, contradicting
-`(TCE4)`.  The image is a subgroup of a tracial matrix ultraproduct and hence
-hyperlinear.  End proof.
+End proof.
 
-This theorem identifies a new purely algebraic finish line:
+This is an obstruction, not a possible finish line.
 
-> construct a central infinite-order radical element whose quotient is weak
-> MF and whose integral extension class is torsion.
+**Corollary (torsion classes cannot carry an infinite radical center).**  In
+the situation `(TCE1)`, if `[c]` has finite order, then
 
-It also explains why the existing integral shear does not automatically
-finish.  Its edge character `ell:C->Z` enters through the Mayer--Vietoris
-connecting map and appears to give an infinite-order class; then `(TCE5)` is
-unavailable and the first-order scalar curvature cannot be removed.  By
-contrast, any `m`-torsion variant would solve the analytic problem with the
-explicit formula `(TCE7)`, without antipodal multiplicity balance, Clifford
-covariance, or a dimension/error profile.
+`z notin Rad_sof(E)`.                                 `(TCE10)`
+
+**Proof.**  Equation `(TCE5)` makes the integer in the scalar exponent an
+honest homomorphism:
+
+`L:E->Z`,  `L(z^a s(k))=m a+b(k)`.                    `(TCE11)`
+
+The same calculation used below `(TCE7)` proves multiplicativity, and
+`L(z)=m!=0`.  Since `Z` is sofic, `(TCE11)` is a sofic image which does not
+kill `z`.  This proves `(TCE10)`.  End proof.
+
+Thus `(TCE7)` is, at its scalar core, merely exponentiation of the character
+`L`; weak MF of the quotient is only used to carry an additional matrix
+factor.  No torsion-class variant can solve the main problem, because the
+desired full-sofic-radical hypothesis contradicts `(TCE11)`.
+
+The existing integral shear must therefore have infinite-order extension
+class.  Its edge character `ell:C->Z` enters through the Mayer--Vietoris
+connecting map, and the absence of `(TCE5)` is forced by radicality rather
+than an accident of the presentation.  Equivalently:
+
+> every infinite central radical construction necessarily carries
+> non-torsion integral curvature, so a successful small-phase model must
+> cancel curvature analytically; it cannot remove it by a finite tensor
+> coboundary.
 # Virtually cyclic radical-shear edge (2026-08-10)
 
 The centralizer-shear endpoint can be reduced from a nonamenable edge to an
