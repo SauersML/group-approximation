@@ -150,6 +150,39 @@ theorem totalCommutationDefect_swap_le_partialTotalDefect
   exact card_swapEquivarianceDefect_le b
     (fun _ : Unit ↦ σY q) (fun _ : Unit ↦ σZ q)
 
+/-- Retaining every element of `Q` as a distinct label costs at most a
+factor `|Q|` relative to the bad-arc set indexed by the finite image of the
+action.  The explicit first coordinate makes the charge injective even when
+two group elements induce the same finite permutation. -/
+theorem card_taggedSumCommutationDefect_le_card_mul_badArcs
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (Q : Finset G) (p : Equiv.Perm (sumModel Y Z)) :
+    (sumCommutationDefect p
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card ≤
+      Q.card *
+        (AlmostAutomorphism.badArcs (sumModel Y Z)
+          (Q.image (sumActionHom σY σZ)) p).card := by
+  classical
+  let charge :
+      {d // d ∈ sumCommutationDefect p
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)} →
+        ↥Q × {a // a ∈ AlmostAutomorphism.badArcs (sumModel Y Z)
+          (Q.image (sumActionHom σY σZ)) p} := fun d ↦ by
+    refine ⟨d.1.1, ⟨(sumAction σY σZ d.1.1.1, d.1.2), ?_⟩⟩
+    rw [AlmostAutomorphism.mem_badArcs]
+    refine ⟨Finset.mem_image.mpr ⟨d.1.1.1, d.1.1.2, ?_⟩, ?_⟩
+    · rfl
+    · exact (mem_sumCommutationDefect p
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) d.1).mp d.2
+  have hcharge : Function.Injective charge := by
+    intro d e hde
+    apply Subtype.ext
+    apply Prod.ext
+    · exact congrArg (fun x ↦ x.1) hde
+    · exact congrArg (fun x ↦ x.2.1.2) hde
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  simpa only [Fintype.card_coe, Fintype.card_prod] using hcard
+
 /-- The repaired arrow is close to the original partial arrow.  The intrinsic
 missing source and target masses are retained explicitly; every additional
 disagreement is controlled by the Kazhdan repair of the swap permutation. -/
@@ -253,6 +286,65 @@ theorem kazhdan_mul_card_badArcs_repairedSwap_le
           (sumActionHom σY σZ) Q b.swapPerm : ℝ) :=
   kazhdan_mul_card_badArcs_roundedDiagonalPermutation_le
     hQ (sumActionHom σY σZ) b.swapPerm
+
+/-- Forward `Q`-tagged commutation defects of the repaired swap, with no
+loss of labels that happen to act by the same finite permutation. -/
+theorem kazhdan_mul_card_taggedSumCommutationDefect_repaired_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    ε ^ 2 *
+        ((sumCommutationDefect
+          (roundedDiagonalPermutation
+            (sumActionHom σY σZ) b.swapPerm)
+          (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card : ℝ) ≤
+      8 * (Q.card : ℝ) ^ 2 *
+        (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have htagNat :=
+    card_taggedSumCommutationDefect_le_card_mul_badArcs σY σZ Q p
+  have htag :
+      ((sumCommutationDefect p
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card : ℝ) ≤
+        (Q.card : ℝ) *
+          (AlmostAutomorphism.badArcs (sumModel Y Z)
+            (Q.image (sumActionHom σY σZ)) p).card := by
+    exact_mod_cast htagNat
+  have hbad := kazhdan_mul_card_badArcs_repairedSwap_le hQ σY σZ b
+  have hscaled := mul_le_mul_of_nonneg_left htag (sq_nonneg ε)
+  have hQ0 : 0 ≤ (Q.card : ℝ) := by positivity
+  nlinarith
+
+/-- The inverse repaired permutation has the same bad-arc cardinality, so
+the identical quantitative bound controls backward tagged defects. -/
+theorem kazhdan_mul_card_taggedSumCommutationDefect_repaired_inv_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    ε ^ 2 *
+        ((sumCommutationDefect
+          (roundedDiagonalPermutation
+            (sumActionHom σY σZ) b.swapPerm)⁻¹
+          (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card : ℝ) ≤
+      8 * (Q.card : ℝ) ^ 2 *
+        (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have htagNat :=
+    card_taggedSumCommutationDefect_le_card_mul_badArcs σY σZ Q p⁻¹
+  have htag :
+      ((sumCommutationDefect p⁻¹
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card : ℝ) ≤
+        (Q.card : ℝ) *
+          (AlmostAutomorphism.badArcs (sumModel Y Z)
+            (Q.image (sumActionHom σY σZ)) p⁻¹).card := by
+    exact_mod_cast htagNat
+  have hbad := kazhdan_mul_card_badArcs_repairedSwap_le hQ σY σZ b
+  rw [AlmostAutomorphism.card_badArcs_inv] at htag
+  have hscaled := mul_le_mul_of_nonneg_left htag (sq_nonneg ε)
+  have hQ0 : 0 ≤ (Q.card : ℝ) := by positivity
+  nlinarith
 
 end ExactPartialKazhdanRepair
 end NonsoficGroupsExist
