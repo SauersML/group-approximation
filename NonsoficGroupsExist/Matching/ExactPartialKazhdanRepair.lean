@@ -47,6 +47,45 @@ noncomputable def repair
   extractCrossing
     (roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm)
 
+/-- Repair introduces at most one new missing source for each point where the
+rounded permutation differs from the original swap. -/
+theorem sourceDefect_repair_le
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    (repair σY σZ b).sourceDefect ≤ b.sourceDefect +
+      (hammingDisagreement b.swapPerm
+        (roundedDiagonalPermutation
+          (sumActionHom σY σZ) b.swapPerm)).card := by
+  exact sourceDefect_extractCrossing_le b
+    (roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm)
+
+/-- The same edit budget controls new missing targets. -/
+theorem targetDefect_repair_le
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    (repair σY σZ b).targetDefect ≤ b.targetDefect +
+      (hammingDisagreement b.swapPerm
+        (roundedDiagonalPermutation
+          (sumActionHom σY σZ) b.swapPerm)).card := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have h := targetDefect_extractCrossing_le b p
+  rw [card_hammingDisagreement_inv b.swapPerm p] at h
+  exact h
+
+/-- Both missing-endpoint budgets after repair are controlled by the original
+missing mass and twice the rounded-permutation edit count. -/
+theorem missingMass_repair_le
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    (repair σY σZ b).sourceDefect + (repair σY σZ b).targetDefect ≤
+      b.sourceDefect + b.targetDefect +
+        2 * (hammingDisagreement b.swapPerm
+          (roundedDiagonalPermutation
+            (sumActionHom σY σZ) b.swapPerm)).card := by
+  have hs := sourceDefect_repair_le σY σZ b
+  have ht := targetDefect_repair_le σY σZ b
+  omega
+
 /-- The original forward and backward partial-equivariance defects, summed
 with generator labels retained.  `Unit` packages one label at a time so no
 collision between equal finite permutations can erase multiplicity. -/
@@ -140,6 +179,44 @@ theorem kazhdan_mul_twoSidedDisagreement_repair_le
   rw [← hsymm] at hham
   have hscaled := mul_le_mul_of_nonneg_left htwo (sq_nonneg ε)
   change ε ^ 2 * (b.twoSidedDisagreement (extractCrossing p) : ℝ) ≤ _
+  nlinarith
+
+/-- Quantitative preservation of co-large source and target sets under the
+same exact Kazhdan repair. -/
+theorem kazhdan_mul_missingMass_repair_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    ε ^ 2 *
+        ((repair σY σZ b).sourceDefect +
+          (repair σY σZ b).targetDefect : ℕ) ≤
+      ε ^ 2 * (b.sourceDefect + b.targetDefect : ℕ) +
+        16 * (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have hmissingNat := missingMass_repair_le σY σZ b
+  have hmissing :
+      ((repair σY σZ b).sourceDefect +
+          (repair σY σZ b).targetDefect : ℕ) ≤
+        (b.sourceDefect + b.targetDefect : ℕ) +
+          2 * ((hammingDisagreement b.swapPerm p).card : ℕ) := by
+    simpa only [p] using hmissingNat
+  have hmissingReal :
+      (((repair σY σZ b).sourceDefect +
+          (repair σY σZ b).targetDefect : ℕ) : ℝ) ≤
+        (b.sourceDefect + b.targetDefect : ℕ) +
+          2 * ((hammingDisagreement b.swapPerm p).card : ℕ) := by
+    exact_mod_cast hmissing
+  have hsymm :
+      hammingDisagreement b.swapPerm p =
+        hammingDisagreement p b.swapPerm := by
+    ext x
+    simp [hammingDisagreement, ne_comm]
+  have hham :=
+    kazhdan_mul_card_hammingDisagreement_roundedDiagonalPermutation_le
+      hQ (sumActionHom σY σZ) b.swapPerm
+  rw [← hsymm] at hham
+  have hscaled := mul_le_mul_of_nonneg_left hmissingReal (sq_nonneg ε)
   nlinarith
 
 /-- The same distance estimate expressed entirely in the native forward and

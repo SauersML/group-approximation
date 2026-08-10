@@ -150,6 +150,115 @@ recovers the original partial bijection exactly. -/
     (swapPerm_inl_of_mem b y hyb)
   simpa only [proof_irrel_heq] using h
 
+/-- The source missing from an extracted crossing map is charged either to
+source mass already missing from the original partial bijection or to a
+left-layer edit of its swap permutation. -/
+theorem sourceDefect_extractCrossing_le
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    (extractCrossing p).sourceDefect ≤ b.sourceDefect +
+      (hammingDisagreement b.swapPerm p).card := by
+  classical
+  let charge :
+      {y // y ∈ Finset.univ \ (extractCrossing p).source} →
+        {y // y ∈ Finset.univ \ b.source} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm p} := fun y ↦ by
+    by_cases hyb : y.1 ∈ b.source
+    · apply Sum.inr
+      refine ⟨Sum.inl y.1, ?_⟩
+      rw [mem_hammingDisagreement]
+      intro heq
+      have hpmap : p (Sum.inl y.1) = Sum.inr (b.apply y.1 hyb) := by
+        calc
+          p (Sum.inl y.1) = b.swapPerm (Sum.inl y.1) := heq.symm
+          _ = Sum.inr (b.apply y.1 hyb) := swapPerm_inl_of_mem b y.1 hyb
+      have hcross : y.1 ∈ (extractCrossing p).source :=
+        mem_extractCrossing_source_of_apply_eq p y.1 (b.apply y.1 hyb) hpmap
+      exact (Finset.mem_sdiff.mp y.2).2 hcross
+    · exact Sum.inl ⟨y.1, Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hyb⟩⟩
+  let forget :
+      {y // y ∈ Finset.univ \ b.source} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm p} → Option Y
+    | Sum.inl y => some y.1
+    | Sum.inr x => match x.1 with
+      | Sum.inl y => some y
+      | Sum.inr _ => none
+  have hforget (y : {y // y ∈ Finset.univ \ (extractCrossing p).source}) :
+      forget (charge y) = some y.1 := by
+    dsimp only [charge]
+    split <;> rfl
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Option.some.inj (by rw [← hforget x, hxy, hforget y])
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  have hsource :
+      (Finset.univ \ (extractCrossing p).source).card =
+        (extractCrossing p).sourceDefect := by
+    rw [Finset.card_sdiff_of_subset
+      (Finset.subset_univ (extractCrossing p).source)]
+    simp [FinitePartialBijection.sourceDefect]
+  have hbsource : (Finset.univ \ b.source).card = b.sourceDefect := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ b.source)]
+    simp [FinitePartialBijection.sourceDefect]
+  simpa only [Fintype.card_coe, Fintype.card_sum, hsource, hbsource] using hcard
+
+/-- The target analogue, charged through edits of the inverse swap
+permutation on the right layer. -/
+theorem targetDefect_extractCrossing_le
+    (b : FinitePartialBijection Y Z) (p : Equiv.Perm (sumModel Y Z)) :
+    (extractCrossing p).targetDefect ≤ b.targetDefect +
+      (hammingDisagreement b.swapPerm⁻¹ p⁻¹).card := by
+  classical
+  let charge :
+      {z // z ∈ Finset.univ \ (extractCrossing p).target} →
+        {z // z ∈ Finset.univ \ b.target} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm⁻¹ p⁻¹} := fun z ↦ by
+    by_cases hzb : z.1 ∈ b.target
+    · apply Sum.inr
+      refine ⟨Sum.inr z.1, ?_⟩
+      rw [mem_hammingDisagreement]
+      intro heq
+      let y := b.symm.apply z.1 hzb
+      have hpInv : p⁻¹ (Sum.inr z.1) = Sum.inl y := by
+        calc
+          p⁻¹ (Sum.inr z.1) = b.swapPerm⁻¹ (Sum.inr z.1) := heq.symm
+          _ = Sum.inl y := swapPerm_inv_inr_of_mem b z.1 hzb
+      have hpmap : p (Sum.inl y) = Sum.inr z.1 := by
+        calc
+          p (Sum.inl y) = p (p⁻¹ (Sum.inr z.1)) := congrArg p hpInv.symm
+          _ = Sum.inr z.1 := p.apply_symm_apply _
+      have hcross : z.1 ∈ (extractCrossing p).target := by
+        change z.1 ∈ crossingTarget p
+        exact (mem_crossingTarget p z.1).mpr ⟨y, hpmap⟩
+      exact (Finset.mem_sdiff.mp z.2).2 hcross
+    · exact Sum.inl ⟨z.1, Finset.mem_sdiff.mpr ⟨Finset.mem_univ _, hzb⟩⟩
+  let forget :
+      {z // z ∈ Finset.univ \ b.target} ⊕
+          {x // x ∈ hammingDisagreement b.swapPerm⁻¹ p⁻¹} → Option Z
+    | Sum.inl z => some z.1
+    | Sum.inr x => match x.1 with
+      | Sum.inl _ => none
+      | Sum.inr z => some z
+  have hforget (z : {z // z ∈ Finset.univ \ (extractCrossing p).target}) :
+      forget (charge z) = some z.1 := by
+    dsimp only [charge]
+    split <;> rfl
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Option.some.inj (by rw [← hforget x, hxy, hforget y])
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  have htarget :
+      (Finset.univ \ (extractCrossing p).target).card =
+        (extractCrossing p).targetDefect := by
+    rw [Finset.card_sdiff_of_subset
+      (Finset.subset_univ (extractCrossing p).target)]
+    simp [FinitePartialBijection.targetDefect]
+  have hbtarget : (Finset.univ \ b.target).card = b.targetDefect := by
+    rw [Finset.card_sdiff_of_subset (Finset.subset_univ b.target)]
+    simp [FinitePartialBijection.targetDefect]
+  simpa only [Fintype.card_coe, Fintype.card_sum, htarget, hbtarget] using hcard
+
 /-- On the source side, extracting crossings from a perturbed swap costs at
 most the original missing source mass plus the permutation disagreement. -/
 theorem card_disagreement_extractCrossing_le
