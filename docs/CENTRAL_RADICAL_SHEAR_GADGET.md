@@ -1,4 +1,4 @@
-# A finite shear gadget for centralizing a sofic-radical involution
+# A shear gadget for centralizing a sofic-radical element
 
 ## 1. Abstract construction
 
@@ -101,7 +101,7 @@ The theorem is profile-free: the negative spectral space of $z$ may have
 arbitrarily small rank in the original norm models, because the trace is
 renormalized after compression.
 
-## 4. Application to the Kun--Thom involution
+## 4. Conditional finite application to the Kun--Thom involution
 
 For the binary Kun--Thom commuting-lamp group
 
@@ -117,9 +117,9 @@ involution
 \]
 
 which normally generates $\operatorname{Rad}_{\mathrm{sof}}(W)$.
-The repaired symmetric-double argument in
-`WEAK_MF_NONSOFIC_DOUBLE.md` proves that $W$ is weak-MF.  Hence the
-single group
+Weak MF of $W$ is **not** known.  The repaired symmetric-double argument in
+`WEAK_MF_NONSOFIC_DOUBLE.md` proves weak MF for the free-lamp amalgam, not
+for this commuting-lamp wreath product.  Therefore the single group
 
 \[
  \boxed{J(W,w)=
@@ -128,15 +128,68 @@ single group
 \]
 
 is a nonsofic group with a central involution in its full sofic radical,
-and weak MF of (4) would settle the main problem negatively.
+and weak MF of (4) would settle the main problem negatively.  This is a
+valid certificate, but it is stronger than the already-open assertion that
+$W$ itself is weak-MF; it must not be advertised as a finite permanence
+upgrade of a banked weak-MF input.
 
 This turns the Clifford-cover certificate into a finite graph-of-groups
-certificate: one weak-MF vertex, one eight-element vertex, and a
-four-element edge group.
+certificate, but its nonfinite vertex is not presently known to be weak-MF.
 
-## 5. Exact remaining permanence question
+## 5. A banked weak-MF input and an infinite-order shear
 
-Weak MF of (4) does **not** follow formally from the current amalgamation
+There is a version which starts from an actually proved weak-MF nonsofic
+group.  Let $x\in\operatorname{Rad}_{\mathrm{sof}}(H)$ have infinite order,
+introduce the central involution $z$, and put
+
+\[
+ A=\langle x,z\rangle\cong\mathbb Z\times C_2,
+ \qquad \alpha(x)=xz,\quad\alpha(z)=z.
+\]
+
+Again $\alpha$ is involutive.  Put
+
+\[
+ K_\infty=A\rtimes_\alpha C_2,
+ \qquad J_\infty(H,x)=(H\times C_2)*_A K_\infty.       \tag{5}
+\]
+
+The proof of Theorems 1 and 2 applies verbatim: $z=[s,x]$ is central,
+nontrivial, and belongs to the sofic radical, while weak MF of
+$J_\infty(H,x)$ produces a hyperlinear nonsofic central corner.  Here
+$K_\infty$ is virtually abelian.
+
+Now take
+
+\[
+ H=G*_{\Gamma}(\Gamma\times C_2).
+\]
+
+This free-lamp group is weak-MF by the repaired symmetric-double argument.
+If $k$ denotes the nontrivial lamp, choose a strict compressor $t$ and
+$\gamma\in\Gamma\setminus t\Gamma t^{-1}$, and set
+
+\[
+ x=[tkt^{-1},\gamma].                                  \tag{6}
+\]
+
+Every homomorphism $H\to S$ to a sofic group kills $x$: pair it with the
+retraction $H\to G$, so that the restriction to $G$ becomes injective, and
+apply Kun--Thom centralizer normalization.  Moreover $x$ has infinite
+order.  Indeed, it is the product of the two distinct involutory lamps at
+$t\Gamma$ and $\gamma t\Gamma$ in the free product of the lamp factors;
+the product of the two canonical generators of $C_2*C_2$ has infinite
+order.
+
+Thus (5), with this explicit $(H,x)$, has a weak-MF nonsofic first vertex,
+a virtually abelian second vertex, and an amenable edge
+$\mathbb Z\times C_2$.  Its weak-MF status is a sharper live permanence
+question than (4), because the only unbanked step is compatibility across
+the edge.
+
+## 6. Exact remaining permanence questions
+
+Weak MF of either shear amalgam does **not** follow formally from the current amalgamation
 theorems.  Shulman's symmetric theorem proves $D*_C D$ MF when the two
 embeddings of $C$ are the same.  Her general theorem characterizes
 $D_1*_{C}D_2$ by the existence of compatible embeddings of both vertex
@@ -151,18 +204,28 @@ $(z=-1,x=-1)$ multiplicities agree.  A generic weak-MF model of $W$
 need not have this balance.  That multiplicity equality is the precise
 compatibility condition still to manufacture.
 
-Thus the open subproblem is:
+The finite version is:
 
 \[
  \boxed{
   (W\times C_2)*_{C_2\times C_2}K\text{ is weak-MF?}
- }                                                       \tag{5}
+ }                                                       \tag{7}
 \]
 
-It is strictly more structured than arbitrary finite-central-extension
-closure: all new groups in the graph of groups are finite, the edge
-embedding is explicit, and the desired central sign is already forced into
-the sofic radical by (3).
+The version with a banked weak-MF first vertex is:
+
+\[
+ \boxed{
+ J_\infty\!\left(G*_{\Gamma}(\Gamma\times C_2),
+ [tkt^{-1},\gamma]\right)\text{ is weak-MF?}
+ }                                                       \tag{8}
+\]
+
+Question (8) is an explicit compatibility problem between one proved
+weak-MF group and one virtually abelian group over an amenable subgroup.
+On the $z=-1$ sector, its exact obstruction is spectral rather than merely
+dimensional: the image of $x$ must be unitarily equivalent to its negative.
+The desired central sign is already forced into the sofic radical by (3).
 
 ## References
 

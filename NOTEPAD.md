@@ -29970,9 +29970,33 @@ radical involution w. The exact remaining certificate is
 
     (W x C2) *_(C2 x C2) D8 is weak MF.
 
+Correction: weak MF of W is not banked. The symmetric-double proof applies
+to the free-lamp amalgam, not to the commuting-lamp wreath product. Thus
+this finite certificate is valid but stronger than the already-open weak-MF
+problem for W.
+
 This does not follow from the presently available amalgamation theorems.
 The finite D8 vertex forces equality of the two z=-1 edge multiplicities
 (x=+1 and x=-1). A generic weak-MF model of W need not have this balance.
 The reduction and the exact compatibility obstruction are recorded in
 docs/CENTRAL_RADICAL_SHEAR_GADGET.md. This route is independent of the
 now-closed weak-MF Clifford-cover route.
+
+There is a more relevant infinite-order version starting from a proved
+weak-MF nonsofic group. Take the free-lamp group
+
+    H = G *_Gamma (Gamma x C2)
+
+and x=[t k t^(-1),gamma]. Every map from H to a sofic group kills x, by
+pairing it with the retraction to G and invoking Kun--Thom centralizer
+normalization. The element x has infinite order because it is the product
+of two distinct involutory free lamps. Set A=<x,z> = Z x C2 and let
+K_infinity=A semidirect C2 act by x |-> xz, z |-> z. Then
+
+    J_infinity(H,x) = (H x C2) *_A K_infinity
+
+has the same central-radical and corner consequences. Here H is banked
+weak-MF, K_infinity is virtually abelian, and A is amenable. Weak MF of
+this explicit shear amalgam is the exact remaining compatibility question;
+on its z=-1 sector the image of x must be unitarily equivalent to its
+negative.
