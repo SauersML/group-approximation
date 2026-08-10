@@ -36148,22 +36148,23 @@ construct the genuinely operator-algebraic commuting square identified in
 # The homogeneous solution-group completion preserves the soficity question
 
 Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408, Theorems 8.6 and
-8.11, provide a genuinely approximate reservoir which is not covered by the
+8.11, propose a genuinely approximate reservoir which is not covered by the
 finite-image collapse `(FIC1)--(FIC11)`.  They start with a finite linear
 system `A_0` whose solution group
 
 `S=Gamma(A_0)`                                           `(HSC1)`
 
-is noncommutative and hyperlinear, and whose distinguished central
-involution `J` is killed by every finite-dimensional unitary representation.
-Their homogeneous completion constructs a finitely presented group
+has a noncommutative Connes-embeddable image (the image of `J` is nontrivial),
+and whose distinguished central involution `J` is killed by every
+finite-dimensional unitary representation.  Their homogeneous completion
+constructs a finitely presented group
 
 `K=Gamma_H(B)`                                           `(HSC2)`
 
-which contains `S`, is hyperlinear, is noncommutative, and is killed in its
-entirety by every finite-dimensional unitary representation.  At first sight
-`K` looks like a stronger candidate than `S` for the TRUE problem.  In fact
-the completion preserves the soficity question exactly.
+which contains `S`, has a noncommutative Connes-embeddable image, and is killed
+in its entirety by every finite-dimensional unitary representation.  At first
+sight `K` looks like a stronger candidate than `S` for the TRUE problem.  In
+fact the completion preserves the soficity question exactly.
 
 **Theorem (soficity-neutral homogeneous completion).**  For the groups in
 `(HSC1)--(HSC2)`,
@@ -36185,14 +36186,11 @@ same permanence theorem, applied finitely many times, makes `K` sofic.  This
 proves `(HSC3)`.  End proof.
 
 The same argument applies to every approximation class closed under
-subgroups and amalgamation over finite groups, including hyperlinearity; it
-also gives an independent structural proof of the hyperlinearity assertion
-in Theorem 8.11 once `(HSC1)` is known.
+subgroups and amalgamation over finite groups, including hyperlinearity, but
+only once membership of the seed group itself is known.
 
-There is a sharp dichotomy.  If `S` is nonsofic, then `(HSC1)` itself is a
-hyperlinear nonsofic group and solves the main problem.  If `S` is sofic,
-then `K` is an explicit finitely presented, noncommutative, hyperlinear and
-sofic group with no nontrivial finite-dimensional unitary representation.
+If `S` is sofic, then `K` is an explicit finitely presented, noncommutative
+and sofic group with no nontrivial finite-dimensional unitary representation.
 In that branch `K` is minimally almost periodic and not LEF: a nontrivial
 finite quotient would give a nontrivial finite-dimensional permutation
 representation, while a finitely presented LEF group is residually finite.
@@ -36210,3 +36208,56 @@ for the required approximate-permutation statement.
 Primary source audited directly: Culf--van Dobben de Bruyn--Zeman,
 arXiv:2604.01408v1, Theorem 8.6 and Lemmas 8.7--8.10, especially the explicit
 finite amalgams in Lemmas 8.9 and 8.10.
+
+## Source correction: one surviving element is not a hyperlinear group
+
+The stronger group-level hyperlinearity wording in arXiv:2604.01408,
+Theorems 8.6 and 8.11, is not supplied by the cited Slofstra results.
+Slofstra, *The set of quantum correlations is not closed*, Proposition 5.1,
+proves precisely that there is a solution group `S=Gamma(A_0)` for which
+
+`J is trivial in every finite-dimensional representation`,
+`J is nontrivial in finite-dimensional approximate representations`. `(HSC4)`
+
+It does **not** prove that every nonidentity element of `S` survives in an
+approximate representation, which is what hyperlinearity of the abstract
+group requires.  The construction starts from the explicitly sofic HNN group
+
+`K_0=<x,y,a,b | a^2=b^2=1, [a,b]=1,`
+`                 yay^(-1)=a, yby^(-1)=ab, xyx^(-1)=y^2>`, `(HSC5)`
+
+but the passage from `K_0` to the solution group is only an
+`fa`-embedding: it preserves approximate visibility of the selected element.
+It does not assert approximate faithfulness of the target solution group.
+Slofstra's 2020 universal embedding theorem gives group embeddings into
+solution groups, but likewise does not make the whole target hyperlinear.
+
+What `(HSC4)` does give is a homomorphism
+
+`S -> product_omega U(d_n)` with `J` nontrivial.          `(HSC6)`
+
+Its image is a noncommutative hyperlinear group.  The map need not be
+injective.  This weaker statement is enough for the `q` versus `qa`
+commutativity-gadget separation: that argument needs one noncommutative
+Connes-embeddable representation, not a faithful representation of the whole
+solution group.  The homogeneous completion similarly forces all exact
+finite-dimensional representations to be trivial while retaining a
+noncommutative Connes-embeddable **image**; it does not thereby prove the
+abstract completion group hyperlinear.
+
+Accordingly `(HSC3)` remains a correct algebraic statement about soficity of
+the two abstract groups, but it no longer supplies a TRUE-side dichotomy.
+The viable candidate is the image in `(HSC6)`.  To prove it nonsofic one must
+show that `J` belongs to the full sofic radical of `S`; exact
+finite-dimensional invisibility alone does not imply this.  Thus this source
+audit removes a false shortcut and identifies the precise missing assertion:
+
+`every homomorphism S -> a sofic group kills J`.          `(HSC7)`
+
+Primary pins checked line by line: Slofstra, arXiv:1703.08618v2,
+Definition 2.5 and Proposition 5.1 (only elementwise approximate visibility),
+and arXiv:1606.03140, Theorem 3.1 (universal group embedding, without
+hyperlinearity of the target).  The main gadget separation in
+arXiv:2604.01408 can be repaired by replacing ``hyperlinear group'' with
+``group admitting a noncommutative Connes-embeddable image'' wherever that
+is all the proof consumes.
