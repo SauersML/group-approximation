@@ -31801,3 +31801,55 @@ The cyclic balanced-lift route still needs an original defect/rank budget
 of the form `epsilon=o(rho)`, or a genuinely dimension-growing mechanism;
 no fixed word in finitely many auxiliary free generators can bypass rank
 blindness.
+
+# The double radical has no nonzero central quotient (2026-08-10)
+
+There is no shortcut which takes the banked weak-MF double and simply
+centralizes its full sofic radical before applying the central-corner
+argument.  The relevant coinvariant module vanishes.
+
+Keep the binary Laurent Kun--Thom notation
+
+`D=G *_Gamma G`,  `D_N=G *_N G`,
+`R=ker(D->D_N)=Rad_sof(D)`.
+
+Recall the `Z[D_N]`-module calculation
+
+`R_ab ~= A:=ker(Z[D_N/Gamma] -> Z[D_N/N])`.             `(RCQ1)`
+
+Both `Gamma` and `N` are perfect elementary groups.  Apply group homology
+to
+
+`0 -> A -> Z[D_N/Gamma] -> Z[D_N/N] -> 0`.              `(RCQ2)`
+
+Shapiro's lemma identifies the relevant degree-one terms as
+
+`H_1(D_N,Z[D_N/Gamma]) ~= H_1(Gamma,Z)=0`,
+`H_1(D_N,Z[D_N/N]) ~= H_1(N,Z)=0`.                      `(RCQ3)`
+
+The two permutation modules in `(RCQ2)` are transitive, so their
+coinvariants are both `Z`, and the induced map on coinvariants is the
+identity.  The long exact homology sequence therefore gives
+
+`A_(D_N)=0`.                                             `(RCQ4)`
+
+Since conjugation by `R` is trivial on `R_ab`, the action on `R_ab` factors
+through `D_N`; hence
+
+`R/[R,D] ~= (R_ab)_(D_N)=0`.                            `(RCQ5)`
+
+**Theorem (centralization kills the radical).**  If `f:D->K` is any
+homomorphism for which `f(R)` is central in `f(D)`, then `f(R)=1`.
+
+**Proof.**  Centrality kills every commutator `[R,D]`, so `f|R` factors
+through `R/[R,D]`.  Equation `(RCQ5)` makes that quotient trivial.  End
+proof.
+
+In particular, the universal quotient `D/[R,D]` is just the maximal sofic
+quotient `D_N`; it contains no central remnant of the radical.  Thus the
+central-corner strategy cannot be obtained by a quotient of the known
+weak-MF double.  A successful central witness must instead be created by a
+genuinely twisted extension (as in the shear construction), or arise one
+homological degree higher from an extension class.  This explains
+structurally why every attempted untwisted centralization collapses before
+any matrix-rank issue is reached.
