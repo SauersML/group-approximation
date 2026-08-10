@@ -87,6 +87,34 @@ theorem quotient_root_injective
     (fun _ hx ↦ BinaryLeavitt.exists_mul_mul_eq_one (ZMod 2) hx)
     (SteinbergGroup.fin_exists_spare_four hn) N hN i j hij
 
+/-- Every proper normal quotient of the binary-Leavitt Steinberg group is
+infinite. -/
+theorem quotient_infinite
+    {n : ℕ} (hn : 5 ≤ n)
+    (N : Subgroup (BinaryLeavittSteinberg n)) [N.Normal] (hN : N ≠ ⊤) :
+    Infinite (BinaryLeavittSteinberg n ⧸ N) := by
+  let i : Fin n := ⟨0, by omega⟩
+  let j : Fin n := ⟨1, by omega⟩
+  exact Infinite.of_injective
+    (fun a : UniversalLeavitt.BinaryLeavittAlgebra ↦
+      (QuotientGroup.mk' N)
+        (SteinbergGroup.x i j (by simp [i, j]) a))
+    (quotient_root_injective hn N hN i j (by simp [i, j]))
+
+/-- Every homomorphism from the binary-Leavitt Steinberg group to a finite
+group is trivial. -/
+theorem hom_eq_one_of_finite
+    {Q : Type*} [Group Q] [Finite Q] {n : ℕ} (hn : 5 ≤ n)
+    (φ : BinaryLeavittSteinberg n →* Q) :
+    φ = 1 := by
+  by_contra hφ
+  let i : Fin n := ⟨0, by omega⟩
+  let j : Fin n := ⟨1, by omega⟩
+  have hinjective := map_root_injective_of_ne_one hn φ hφ i j (by simp [i, j])
+  have : Finite UniversalLeavitt.BinaryLeavittAlgebra :=
+    Finite.of_injective _ hinjective
+  exact not_finite UniversalLeavitt.BinaryLeavittAlgebra
+
 /-- The binary-Leavitt Steinberg group in rank three has property `(T)`
 directly, without assuming that the unstable Steinberg kernel vanishes. -/
 theorem rankThree_hasKazhdanPropertyT :
