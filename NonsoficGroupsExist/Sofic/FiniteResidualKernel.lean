@@ -41,7 +41,7 @@ theorem conjNormal_eq_one_of_mem_soficResidual [Finite N]
     {x : K} (hx : x ∈ soficResidual K) :
     MulAut.conjNormal (H := N) x = 1 := by
   exact map_eq_one_of_mem_soficResidual
-    (isSofic_of_finite (MulAut N)) (MulAut.conjNormal (H := N)) hx
+    (isSofic_of_finite' (MulAut N)) (MulAut.conjNormal (H := N)) hx
 
 /-- Equivalently, the entire sofic residual lies in the kernel of the finite
 conjugation action.  This is the precise algebraic meaning of saying that the
@@ -70,7 +70,7 @@ theorem finite_normal_subgroup_commute [Finite N]
 /-- Typeclass form of `finite_normal_subgroup_commute`. -/
 theorem finite_normal_subgroup_isMulCommutative [Finite N]
     (hN : N ≤ soficResidual K) : IsMulCommutative N :=
-  ⟨finite_normal_subgroup_commute N hN⟩
+  ⟨fun x y ↦ (finite_normal_subgroup_commute N hN x y).eq⟩
 
 /-- If a normal subgroup has no nontrivial automorphisms, it is central in the
 ambient group.  This applies in particular to a subgroup of order two. -/
@@ -125,13 +125,14 @@ def finiteActionDetector :
 in a finite group.  Hence it cannot lie in the full sofic residual. -/
 theorem inl_not_mem_soficResidual_of_ne_one [Finite F]
     {f : F} (hf : f ≠ 1) :
-    SemidirectProduct.inl (phi := alpha) f ∉ soficResidual (F ⋊[alpha] Q) := by
+    (SemidirectProduct.inl : F →* F ⋊[alpha] Q) f ∉
+      soficResidual (F ⋊[alpha] Q) := by
   intro hres
   let T := F ⋊[actionRangeAction alpha] alpha.range
   have hkilled : finiteActionDetector alpha
-      (SemidirectProduct.inl (phi := alpha) f) = 1 :=
+      ((SemidirectProduct.inl : F →* F ⋊[alpha] Q) f) = 1 :=
     map_eq_one_of_mem_soficResidual
-      (isSofic_of_finite T) (finiteActionDetector alpha) hres
+      (isSofic_of_finite' T) (finiteActionDetector alpha) hres
   apply hf
   have hleft := congrArg SemidirectProduct.left hkilled
   simpa using hleft
@@ -143,7 +144,7 @@ theorem not_inl_range_le_soficResidual [Finite F] [Nontrivial F] :
   intro hle
   obtain ⟨f, hf⟩ := exists_ne (1 : F)
   exact inl_not_mem_soficResidual_of_ne_one alpha hf
-    (hle (Subgroup.mem_range_self (SemidirectProduct.inl (phi := alpha)) f))
+    (hle ⟨f, rfl⟩)
 
 /-- Coordinate-free nonsplitting criterion.  If a proposed kernel inclusion
 is carried to the canonical finite base by an isomorphism with a semidirect
@@ -157,14 +158,15 @@ theorem not_kernel_range_le_soficResidual_of_split_equiv
   intro hle
   obtain ⟨f, hf⟩ := exists_ne (1 : F)
   have hres : i f ∈ soficResidual K :=
-    hle (Subgroup.mem_range_self i f)
+    hle ⟨f, rfl⟩
   let detector : K →* F ⋊[actionRangeAction alpha] alpha.range :=
     (finiteActionDetector alpha).comp e.toMonoidHom
   have hkilled : detector (i f) = 1 :=
     map_eq_one_of_mem_soficResidual
-      (isSofic_of_finite (F ⋊[actionRangeAction alpha] alpha.range))
+      (isSofic_of_finite' (F ⋊[actionRangeAction alpha] alpha.range))
       detector hres
-  have heq : e (i f) = SemidirectProduct.inl (phi := alpha) f := by
+  have heq : e (i f) =
+      (SemidirectProduct.inl : F →* F ⋊[alpha] Q) f := by
     exact DFunLike.congr_fun hbase f
   have hleft := congrArg SemidirectProduct.left hkilled
   apply hf
