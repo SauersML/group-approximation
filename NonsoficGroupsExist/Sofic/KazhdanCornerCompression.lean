@@ -452,6 +452,62 @@ theorem topSpectralDisplacement_vanishing
   have hK : ‖K‖ ≤ eta ^ 2 := hN n hn
   nlinarith [norm_nonneg X]
 
+/-- Generator control propagates to every element of the subgroup generated
+by the symmetric finite set.  Unlike the top-level specialization below,
+this statement does not require the set to generate the ambient group. -/
+theorem topSpectralDisplacement_vanishing_of_mem_closure
+    {Q : Finset G} {epsilon : ℝ}
+    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
+    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
+    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (A : WeakMFApproximation G) {t : ℝ}
+    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) {g : G}
+    (hg : g ∈ Subgroup.closure (S : Set G)) :
+    OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n g) := by
+  classical
+  let P : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
+    spectralAbove (hermitianAverage A S n)
+      (hermitianAverage_conjTranspose A S n) t
+  have hP : ∀ n, ‖P n‖ ≤ 1 := fun n ↦ norm_spectralAbove_le_one _ _ _
+  let good : G → Prop := fun k ↦
+    OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n k)
+  have hgoodS : ∀ k ∈ (S : Set G), good k := by
+    intro k hk
+    exact topSpectralDisplacement_vanishing
+      hQ S hQS hone hepsilonOne hsymm A ht hk
+  have hgoodOne : good 1 := by
+    have h := (map_one_vanishing A).mul_right_of_norm_le_one P hP
+    exact h.congr fun n ↦ by rfl
+  have hgoodMul : ∀ a b, good a → good b → good (a * b) := by
+    intro a b ha hb
+    have hdef :=
+      (multiplicativeDefect_vanishing A a b).mul_right_of_norm_le_one P hP
+    have hb' := hb.mul_left_of_norm_le_one
+      (fun n ↦ (A.map n a : Matrix (A.model n) (A.model n) ℂ))
+      (fun n ↦ by
+        letI : Nonempty (A.model n) :=
+          Fintype.card_pos_iff.mp (A.modelNonempty n)
+        rw [CStarRing.norm_of_mem_unitary (A.map n a).2])
+    exact (hdef.add (hb'.add ha)).congr fun n ↦ by
+      simp only [topSpectralDisplacement, P]
+      noncomm_ring
+  have hSinv : (S : Set G)⁻¹ ⊆ (S : Set G) := by
+    intro k hk
+    rw [Set.mem_inv] at hk
+    have hk' : k⁻¹ ∈ S := by simpa using hk
+    simpa using hsymm k⁻¹ hk'
+  have hunion : (S : Set G) ∪ (S : Set G)⁻¹ = (S : Set G) :=
+    Set.union_eq_left.mpr hSinv
+  have hmclosure :
+      Submonoid.closure (S : Set G) =
+        (Subgroup.closure (S : Set G)).toSubmonoid := by
+    rw [Subgroup.closure_toSubmonoid, hunion]
+  have hg' : g ∈ Submonoid.closure (S : Set G) := by
+    rw [hmclosure]
+    exact hg
+  exact Submonoid.closure_induction hgoodS hgoodOne
+    (fun a b _ha _hb ↦ hgoodMul a b) hg'
+
 /-- Generator control propagates to every group element when the symmetric
 finite set generates the group. -/
 theorem topSpectralDisplacement_vanishing_of_generates
