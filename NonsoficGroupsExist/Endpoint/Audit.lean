@@ -40,6 +40,7 @@ import NonsoficGroupsExist.Matching.PartialClusterCandidates
 import NonsoficGroupsExist.Matching.PartialEquivarianceComposition
 import NonsoficGroupsExist.Matching.PartialClusterPresentation
 import NonsoficGroupsExist.Matching.PartialBijectionSwap
+import NonsoficGroupsExist.Matching.PartialSwapEquivariance
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -279,5 +280,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.FinitePartialBijection.card_equivarianceDefect_trans_le
 #print axioms NonsoficGroupsExist.PartialClusterSystem.presentation
 #print axioms NonsoficGroupsExist.FinitePartialBijection.secondSwap_mul_firstSwap_apply
+#print axioms NonsoficGroupsExist.FinitePartialBijection.card_swapEquivarianceDefect_le
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection

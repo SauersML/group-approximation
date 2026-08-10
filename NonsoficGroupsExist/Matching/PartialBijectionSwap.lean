@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Matching.FinitePartialBijection
+import Mathlib.Data.Fintype.Sum
 
 /-!
 # Encoding a partial bijection by an involution
