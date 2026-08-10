@@ -219,5 +219,33 @@ theorem sum_overlap (P : BlockStructure Y) (q : Equiv.Perm Y)
     _ = C.block.card := by
       exact_mod_cast Finset.card_image_of_injective C.block q.injective
 
+/-- A transported component has at most one target component containing a
+strict majority of its vertices. -/
+theorem eq_of_two_mul_overlap_gt_card (P : BlockStructure Y)
+    (q : Equiv.Perm Y) (C D E : BlockIndex P)
+    (hD : C.block.card < 2 * overlap P q C D)
+    (hE : C.block.card < 2 * overlap P q C E) : D = E := by
+  classical
+  by_contra hDE
+  have hdisj : Disjoint D.block E.block :=
+    P.blocksFinset_pairwise_disjoint D.2 E.2
+      (Subtype.coe_injective.ne hDE)
+  let U := C.block.image q
+  have hparts : Disjoint (U ∩ D.block) (U ∩ E.block) :=
+    Finset.disjoint_of_subset_right Finset.inter_subset_right
+      (Finset.disjoint_of_subset_left Finset.inter_subset_right hdisj)
+  have hsub : (U ∩ D.block) ∪ (U ∩ E.block) ⊆ U := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · exact (Finset.mem_inter.mp hx).1
+    · exact (Finset.mem_inter.mp hx).1
+  have hcard := Finset.card_le_card hsub
+  rw [Finset.card_union_of_disjoint hparts] at hcard
+  have hU : U.card = C.block.card :=
+    Finset.card_image_of_injective C.block q.injective
+  unfold overlap at hD hE
+  dsimp only [U] at hcard hU
+  omega
+
 end BlockIndex
 end NonsoficGroupsExist

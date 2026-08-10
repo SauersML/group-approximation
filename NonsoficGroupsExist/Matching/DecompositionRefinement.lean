@@ -172,6 +172,18 @@ theorem two_mul_overlap_gt_card_of_not_mem_majorityLeakageBad
   have hsplit := D.overlap_refineIndex_add_componentLeakage q C
   omega
 
+/-- On every good component, `refineIndex` is the unique target with strict
+majority overlap. -/
+theorem refineIndex_eq_of_two_mul_overlap_gt_card
+    (q : Equiv.Perm (S.model n)) (C E : D.componentIndex n)
+    (hC : C ∉ D.majorityLeakageBad q)
+    (hE : C.block.card <
+      2 * BlockIndex.overlap (D.blocks n) q C E) :
+    D.refineIndex q C = E :=
+  BlockIndex.eq_of_two_mul_overlap_gt_card (D.blocks n) q C
+    (D.refineIndex q C) E
+      (D.two_mul_overlap_gt_card_of_not_mem_majorityLeakageBad q C hC) hE
+
 /-- The target-block label on the whole edited model graph. -/
 def transportedTargetLabel (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (x : S.model n) : Finset (S.model n) :=
