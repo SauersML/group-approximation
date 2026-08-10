@@ -28530,6 +28530,19 @@ abelian and whose quotient is the explicit residually finite Kazhdan group
 `G`.  Notice that this is the reverse orientation from the classical
 permanence theorem for a sofic normal subgroup and amenable quotient.
 
+The kernel can even be made locally finite of prescribed bounded exponent.
+For every integer `m>=2`, reduce `(AB1)` modulo `m` and put
+
+`M_m=(reduced Z[G/Gamma]/m reduced Z[G/Gamma]) semidirect G`.
+
+The vector `[h Gamma]-[Gamma]` remains nonzero modulo `m`, so the quotient
+map `D->M_m` still sees `x`.  Hence `M_m` is nonsofic by the same radical
+argument.  It is finitely generated, its normal subgroup is an abelian group
+of exponent `m` (locally finite because it is a direct sum of finite cyclic
+groups), and its quotient is the residually finite Kazhdan group `G`.  In
+particular one may take an elementary abelian `2`-group as the amenable
+kernel.
+
 This is a substantially simpler standalone nonsofic example than the full
 double: the only non-residually-finite layer is an explicit cyclically
 generated permutation module.  It is also a sharp TRUE-side candidate for
