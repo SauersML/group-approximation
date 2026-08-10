@@ -33267,7 +33267,7 @@ may ignore every other gauge direction.
 There is a direct projective-microstate endpoint which bypasses the gauge
 cover and explains exactly how finite congruence models could evade
 exact-projective sterility.  Let `Gamma<=G`, let
-`D=G *_Gamma G`, and fix `n in Rad_sof(D)` of the form
+`D=G *_Gamma G`, and fix `h in N=normalClosure_G(Gamma)` such that
 
 `x_h=i_2(h)i_1(h)^(-1)`, `h in N=normalClosure_G(Gamma)`. `(PST1)`
 
@@ -33278,9 +33278,9 @@ properties on every fixed finite window.
 
    `||U_k(g)U_k(l)-U_k(gl)||_2 -> 0`.                 `(PST2)`
 
-2. `V_k` is asymptotically projective:
+2. `V_k` is asymptotically multiplicative:
 
-   `ell_pr(V_k(g)V_k(l)V_k(gl)^*) -> 0`.              `(PST3)`
+   `||V_k(g)V_k(l)-V_k(gl)||_2 -> 0`.                 `(PST3)`
 
 3. Their restrictions become equal on `Gamma`:
 
@@ -33306,39 +33306,32 @@ that there is a hyperlinear nonsofic group.
 `B_k(g)=diag(U_k(g),V_k(g))`.                         `(PST7)`
 
 Equation `(PST2)` makes `A_k` asymptotically multiplicative.  For `B_k`,
-the defect is block diagonal with one block tending to `1` and the other
-block tending to a scalar by `(PST3)`.  If the scalar in `(PST3)` is
-`lambda_k(g,l)`, multiplication of the second block of `V_k` by a scalar
-one-cochain on the finite window (or, equivalently, choosing the scalar
-representatives in the projective ultraproduct) makes both blocks have the
-same limiting scalar.  More invariantly, the pair `(A_k,B_k)` defines maps
-to `PU(2d_k)` provided the projective defect of
-`diag(U_k,V_k)` tends to scalars.  Thus the load-bearing hypothesis should
-be recorded explicitly as
+the defect is block diagonal, and both blocks tend to `1` by
+`(PST2)--(PST3)`.  Thus both maps define honest homomorphisms into the
+tracial unitary ultraproduct.  This is the load-bearing correction: merely
+requiring the second defect to approach an arbitrary scalar would not make
+the block diagonal defect projectively scalar, and a scalar one-cochain
+cannot in general repair that incompatibility.
 
-`ell_pr(diag(U_k(g)U_k(l)U_k(gl)^*,`
-`                 V_k(g)V_k(l)V_k(gl)^*)) -> 0`.      `(PST3')`
-
-In the important exact-sector application below the first defect is `1` and
-the second scalar multiplier tends to `1`, so `(PST3')` is automatic.
-
-Equation `(PST4)` says that the two projective vertex maps agree on
+Equation `(PST4)` says that the two vertex maps agree on
 `Gamma` in the ultraproduct.  They therefore induce
 
-`Phi:D -> product_omega PU(2d_k)`.                    `(PST8)`
+`Phi:D -> product_omega U(2d_k)`.                     `(PST8)`
 
 For the radical word `(PST1)`, `(PST5)` gives
 
 `Phi(x_h)=[diag(1,theta_k 1)]`.                       `(PST9)`
 
-With equal block weights,
+Its squared normalized Hilbert--Schmidt distance from the identity tends
+along a subsequence to
 
-`|tr(diag(1,theta_k 1))|=|(1+theta_k)/2|`.
+`(1/2)|theta-1|^2>0`.
 
-After passing to a subsequence, `(PST6)` makes the right side uniformly
-smaller than one; hence `(PST9)` is nontrivial in the projective tracial
-ultraproduct.  Apply `(PRD3)--(PRD4)`: the image of `Phi` is hyperlinear and
-cannot be sofic because it retains `x_h in Rad_sof(D)`.  End proof.
+Thus `(PST9)` is nontrivial in the tracial ultraproduct.  The image of
+`Phi` is hyperlinear because it is a subgroup of that ultraproduct.  It
+cannot be sofic: otherwise the quotient homomorphism from `D` to this image
+would kill every element of `Rad_sof(D)`, contrary to survival of `x_h`.
+End proof.
 
 The theorem's decisive feature is that each sector separately may be
 completely scalar on the collision.  The order-one structure is the
@@ -33354,7 +33347,8 @@ A concrete sufficient package for `(PST2)--(PST6)` is the following.  Let
 and let `lambda_k`, `lambda_(omega_k)` be the ordinary and twisted regular
 representations on `ell^2(Q_k)`.  After diagonal gauge changes, require
 
-`||lambda_(omega_k)(g)-lambda_k(g)||_2 -> 0`
+`||W_k lambda_(omega_k)(pi_k(gamma)) W_k^*`
+`       -lambda_k(pi_k(gamma))||_2 -> 0`
 `  for every fixed gamma in Gamma`,                  `(PST10)`
 
 and
@@ -33365,10 +33359,15 @@ and
 If `pi_k(h)=pi_k(gamma_k)` for some (necessarily growing-word)
 `gamma_k in Gamma`, but the two lifts satisfy
 
-`lambda_(omega_k)(h) lambda_k(h)^* -> theta_k 1`
-`  modulo the gauge aligning Gamma`,                 `(PST12)`
+`W_k lambda_(omega_k)(pi_k(h)) W_k^*`
+`       lambda_k(pi_k(h))^* -> theta_k 1`,            `(PST12)`
 
-with `(PST6)`, then `(PST7)` solves the main problem.
+where the same diagonal gauge `W_k` is used in `(PST10)`,
+
+with `(PST6)`, then `(PST7)` solves the main problem.  Indeed the twisted
+regular defect is the scalar `omega_k(pi_k(g),pi_k(l))`, so `(PST11)` is
+exactly the genuine multiplicativity condition `(PST3)`, not merely a
+projective substitute for it.
 
 The cyclic model explains the required scale.  A central extension of a
 cycle of length `M` has a section whose carry cocycle is supported only when
