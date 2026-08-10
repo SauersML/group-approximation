@@ -214,6 +214,14 @@ theorem exists_symmetric_generating_finset
     have := mul_mem houtS (hHle hmemH)
     simpa using this
 
+/-- Every group with property `(T)` is finitely generated.  The proof is the
+coset-`ℓ²` argument above; this endpoint only packages its generating finset
+as Mathlib's `Group.FG` proposition. -/
+theorem fg_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{u, u} G) : Group.FG G := by
+  obtain ⟨S, _, _, hS⟩ := exists_symmetric_generating_finset G hT
+  exact Group.fg_def.mpr ⟨S, hS⟩
+
 end KazhdanFiniteGeneration
 
 end NonsoficGroupsExist

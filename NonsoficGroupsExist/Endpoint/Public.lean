@@ -8,6 +8,7 @@ import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
 import NonsoficGroupsExist.Kazhdan.KazhdanTextbook
+import NonsoficGroupsExist.Kazhdan.KazhdanFiniteGeneration
 
 /-!
 # The public results
