@@ -126,4 +126,37 @@ theorem Subgroup.quotientMapSubgroupOfOfLe_injective
       (QuotientGroup.quotientMapSubgroupOfOfLe (le_refl N) hKL) := by
   exact (Subgroup.quotientSubgroupOfEmbeddingOfLE N hKL).injective
 
+/-- Simultaneously include an intersection subgroup into each member of a
+family and quotient by the corresponding ambient-normal subgroup. -/
+noncomputable def Subgroup.quotientSubgroupIInfHom
+    {I : Type*} (N K : I → Subgroup G) [∀ i, (N i).Normal] :
+    (↑(⨅ i, K i) ⧸ Subgroup.subgroupOf (⨅ i, N i) (⨅ i, K i)) →*
+      ∀ i, K i ⧸ (N i).subgroupOf (K i) :=
+  MonoidHom.pi fun i ↦
+    QuotientGroup.quotientMapSubgroupOfOfLe (iInf_le N i) (iInf_le K i)
+
+/-- The simultaneous quotient-inclusion map is injective. -/
+theorem Subgroup.quotientSubgroupIInfHom_injective
+    {I : Type*} (N K : I → Subgroup G) [∀ i, (N i).Normal] :
+    Function.Injective (quotientSubgroupIInfHom N K) := by
+  intro q
+  refine QuotientGroup.induction_on q fun x ↦ ?_
+  intro r
+  refine QuotientGroup.induction_on r fun y ↦ ?_
+  intro hxy
+  rw [QuotientGroup.eq]
+  rw [Subgroup.mem_subgroupOf, Subgroup.mem_iInf]
+  intro i
+  have hi := congrFun hxy i
+  change
+    QuotientGroup.quotientMapSubgroupOfOfLe (iInf_le N i) (iInf_le K i)
+        (QuotientGroup.mk x) =
+      QuotientGroup.quotientMapSubgroupOfOfLe (iInf_le N i) (iInf_le K i)
+        (QuotientGroup.mk y) at hi
+  rw [
+    QuotientGroup.quotientMapSubgroupOfOfLe_mk,
+    QuotientGroup.quotientMapSubgroupOfOfLe_mk, QuotientGroup.eq] at hi
+  simpa only [Subgroup.mem_subgroupOf, Subgroup.coe_mul, Subgroup.coe_inv,
+    Subgroup.coe_inclusion] using hi
+
 end NonsoficGroupsExist
