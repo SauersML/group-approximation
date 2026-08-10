@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Kazhdan.DiagonalInvariantRelation
+import NonsoficGroupsExist.Matching.PartialBijectionRelation
 import NonsoficGroupsExist.Matching.PartialSwapEquivariance
 import NonsoficGroupsExist.Matching.PartialEquivarianceComposition
 
@@ -18,6 +19,7 @@ namespace ExactPartialKazhdanRepair
 
 open DiagonalInvariantRelation
 open FinitePartialBijection
+open KazhdanImprovement
 
 universe u
 
@@ -40,6 +42,56 @@ def sumActionHom (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z) :
     (g : G) (x : Y ⊕ Z) :
     sumActionHom σY σZ g x = Sum.map (σY g) (σZ g) x := by
   cases x <;> rfl
+
+/-- The left-to-right part of a relation on a disjoint union. -/
+def crossingRelation (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) :
+    Finset (Y × Z) :=
+  Finset.univ.filter fun p ↦ (Sum.inl p.1, Sum.inr p.2) ∈ U
+
+@[simp] theorem mem_crossingRelation
+    (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) (y : Y) (z : Z) :
+    (y, z) ∈ crossingRelation U ↔ (Sum.inl y, Sum.inr z) ∈ U := by
+  simp [crossingRelation]
+
+/-- Singleton rows of a relation remain right-unique after restricting to
+left-to-right crossings. -/
+theorem crossingRelation_relationCore_right_unique
+    (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) :
+    ∀ {y z w}, (y, z) ∈ crossingRelation (relationCore (sumModel Y Z) U) →
+      (y, w) ∈ crossingRelation (relationCore (sumModel Y Z) U) → z = w := by
+  intro y z w hyz hyw
+  rw [mem_crossingRelation] at hyz hyw
+  have h := relationCore_right_unique (sumModel Y Z) U hyz hyw
+  exact Sum.inr.inj h
+
+/-- Singleton columns of a relation remain left-unique after restricting to
+left-to-right crossings. -/
+theorem crossingRelation_relationCore_left_unique
+    (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) :
+    ∀ {y x z}, (y, z) ∈ crossingRelation (relationCore (sumModel Y Z) U) →
+      (x, z) ∈ crossingRelation (relationCore (sumModel Y Z) U) → y = x := by
+  intro y x z hyz hxz
+  rw [mem_crossingRelation] at hyz hxz
+  have h := relationCore_left_unique (sumModel Y Z) U hyz hxz
+  exact Sum.inl.inj h
+
+/-- The partial bijection carried by the singleton-fiber left-to-right core
+of a relation.  Unlike `repairRelation`, this performs no arbitrary
+completion, so exact invariance of the core can be retained. -/
+noncomputable def coreCrossing
+    (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) : FinitePartialBijection Y Z :=
+  ofBiuniqueRelation
+    (crossingRelation (relationCore (sumModel Y Z) U))
+    (crossingRelation_relationCore_right_unique U)
+    (crossingRelation_relationCore_left_unique U)
+
+/-- The graph of `coreCrossing` is literally the crossing part of the
+singleton-fiber core. -/
+theorem graph_coreCrossing
+    (U : Finset ((Y ⊕ Z) × (Y ⊕ Z))) :
+    (coreCrossing U).graph =
+      crossingRelation (relationCore (sumModel Y Z) U) := by
+  exact graph_ofBiuniqueRelation _ _ _
 
 /-- Repair the swap permutation and extract its crossing partial map. -/
 noncomputable def repair
