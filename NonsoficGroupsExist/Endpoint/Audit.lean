@@ -24,6 +24,7 @@ import NonsoficGroupsExist.KunThom.KunThomTheorem
 import NonsoficGroupsExist.PropertyT.FreeElementaryPropertyT
 import NonsoficGroupsExist.Kazhdan.KazhdanComplex
 import NonsoficGroupsExist.Kazhdan.KazhdanUniverse
+import NonsoficGroupsExist.Kazhdan.InvariantSubsetRounding
 import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.Kazhdan.ShalomFinitePresentation
 import NonsoficGroupsExist.Covers.KazhdanCover
@@ -300,3 +301,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.FinitePartialBijection.twoSidedDisagreement_extractCrossing_le_self_add_two_mul
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection
+
+-- Exact finite Kazhdan rounding: invariant projection followed by thresholding
+-- produces an exactly invariant subset, quantitatively controlled by its
+-- labelled boundary.
+#print axioms NonsoficGroupsExist.KazhdanInvariantRounding.roundedInvariantSet_map
+#print axioms NonsoficGroupsExist.KazhdanInvariantRounding.card_symmDiff_roundedInvariantSet_le
+#print axioms NonsoficGroupsExist.KazhdanInvariantRounding.kazhdan_mul_card_symmDiff_rounded_le_boundary
