@@ -17,10 +17,10 @@ namespace KazhdanInvariantRounding
 
 open scoped InnerProductSpace symmDiff
 
-universe u
+universe u v
 
 variable {G : Type u} [Group G]
-variable {Y : Type u} [Fintype Y] [DecidableEq Y]
+variable {Y : Type v} [Fintype Y] [DecidableEq Y]
 
 /-- Orthogonal projection of a characteristic vector onto the invariant
 subspace of an exact finite permutation action. -/
@@ -137,7 +137,7 @@ theorem card_symmDiff_roundedInvariantSet_le
 vector to its invariant projection by the total labelled boundary of the
 set. -/
 theorem kazhdan_mul_projectionError_le_boundary
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, u} G Q ε)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, v} G Q ε)
     (σ : G →* Equiv.Perm Y) (U : Finset Y) :
     ε ^ 2 *
         ‖KazhdanFiniteModel.indicator U - projectedIndicator σ U‖ ^ 2 ≤
@@ -197,7 +197,7 @@ theorem kazhdan_mul_projectionError_le_boundary
 set differs from the original set by at most `4/ε²` times its total labelled
 boundary, stated without division so it remains valid uniformly. -/
 theorem kazhdan_mul_card_symmDiff_rounded_le_boundary
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, u} G Q ε)
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, v} G Q ε)
     (σ : G →* Equiv.Perm Y) (U : Finset Y) :
     ε ^ 2 * (((U ∆ roundedInvariantSet σ U).card : ℕ) : ℝ) ≤
       4 * ∑ q ∈ Q,

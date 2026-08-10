@@ -25,6 +25,7 @@ import NonsoficGroupsExist.PropertyT.FreeElementaryPropertyT
 import NonsoficGroupsExist.Kazhdan.KazhdanComplex
 import NonsoficGroupsExist.Kazhdan.KazhdanUniverse
 import NonsoficGroupsExist.Kazhdan.InvariantSubsetRounding
+import NonsoficGroupsExist.Kazhdan.DiagonalInvariantRelation
 import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.Kazhdan.ShalomFinitePresentation
 import NonsoficGroupsExist.Covers.KazhdanCover
@@ -308,3 +309,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.KazhdanInvariantRounding.roundedInvariantSet_map
 #print axioms NonsoficGroupsExist.KazhdanInvariantRounding.card_symmDiff_roundedInvariantSet_le
 #print axioms NonsoficGroupsExist.KazhdanInvariantRounding.kazhdan_mul_card_symmDiff_rounded_le_boundary
+#print axioms NonsoficGroupsExist.DiagonalInvariantRelation.roundedDiagonalRelation_map
+#print axioms NonsoficGroupsExist.DiagonalInvariantRelation.kazhdan_mul_card_graph_symmDiff_rounded_le_defect
