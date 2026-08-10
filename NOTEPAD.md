@@ -33040,3 +33040,65 @@ Primary source pins for publication: the stable Steinberg extension and
 fundamental theorem (Bass--Heller--Swan/Quillen) for regular rings; and the
 functoriality of universal central extensions (equivalently, uniqueness of
 lifts of automorphisms of a perfect group to its universal central cover).
+
+# One Connes-embeddable gauge character is enough (2026-08-10)
+
+Hyperlinearity of the whole gauge cover in `(FGC10)` is unnecessarily
+strong.  Retain `(FGC1)--(FGC9)`, fix the tautological character
+`chi:Z=mu_m->T`, and choose `n in N` with `b_n notin Z`.
+
+**Theorem (one-character gauge criterion).**  Suppose `tau` is a
+Connes-embeddable character of `K_omega` such that
+
+`tau(z)=chi(z)` for every `z in Z`,                    `(OCG1)`
+
+and
+
+`|tau(b_n)|<1`.                                       `(OCG2)`
+
+Then there is a hyperlinear nonsofic group.  Neither faithfulness of `tau`
+nor Connes embeddability of the canonical regular trace of `K_omega` is
+required.
+
+**Proof.**  Let `(pi_tau,M_tau,xi_tau)` be the tracial GNS representation.
+Since `z` is central and `|tau(z)|=1`,
+
+`||pi_tau(z)-chi(z)1||_2^2`
+` =2-2 Re(conjugate(chi(z)) tau(z))=0`;               `(OCG3)`
+
+thus `pi_tau(z)=chi(z)1` in `M_tau`.
+
+Define, exactly as in `(FGC9)`,
+
+`U_1(g)=pi_tau(1,g)`,
+`U_2(g)=pi_tau(b_g,g)`.                               `(OCG4)`
+
+Equation `(FGC4)` and `(OCG3)` show that `U_2` is a projective
+representation with multiplier `omega`, while `U_1` is honest.  They agree
+on `Gamma`, so they induce
+
+`Psi_tau:D=G *_Gamma G -> PU(M_tau)`.                 `(OCG5)`
+
+For `x_n=i_2(n)i_1(n)^(-1)` one has
+
+`Psi_tau(x_n)=[pi_tau(b_n)]`,
+`ell_pr(pi_tau(b_n))^2=2-2|tau(b_n)|>0`.              `(OCG6)`
+
+Connes embeddability of `tau` embeds `M_tau` into a tracial matrix
+ultraproduct.  Compose `(OCG5)` with adjoint representations as in
+`(PRD3)--(PRD4)`.  Its image is hyperlinear and `(OCG6)` says that the full
+sofic-radical element `x_n` survives.  Therefore the image cannot be sofic.
+End proof.
+
+The canonical central-corner trace used in `(FGC8)` satisfies `(OCG1)` and
+has `tau(b_n)=0`; hence `(OCG1)--(OCG2)` strictly generalize the old gate.
+The new exact question is only:
+
+> Does `K_omega` have one Connes-embeddable character in the central fiber
+> `chi` which is nonmultiplicative on the single gauge element `b_n`?
+
+Finite-dimensional characters cannot do this.  Indeed every exact
+finite-dimensional image is sofic, so its projective image of `D` kills
+`x_n`; equivalently `(OCG6)` forces `|tau(b_n)|=1`.  Thus a positive
+character must be genuinely asymptotic, but it may have a large kernel and
+may ignore every other gauge direction.
