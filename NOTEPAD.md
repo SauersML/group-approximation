@@ -32698,3 +32698,42 @@ as far from the identity in normalized Hilbert--Schmidt norm as either input
 is from its nearest scalar.  Thus the free stabilization remains useful for
 the algebraic cyclic-centralizer theorem, but it cannot be the missing
 norm-to-trace mechanism.
+
+The same argument closes every fixed-word version of this idea, not only the
+commutator.
+
+**Corollary (fixed-word spectral rotation is trace-circular).**  Let
+`w=w(x,a_1,...,a_s)` be a fixed group word such that
+
+`w(1,a_1,...,a_s)=1`
+
+identically, and let `L_x(w)` be the number of occurrences of `x^(+-1)`.
+Suppose `x in Rad_sof(H)` and operator-norm asymptotic models of
+`H*F(a_1,...,a_s)` satisfy, for some fixed `omega!=1`,
+
+`||S_n phi_n(w) S_n^*-omega phi_n(w)||_op -> 0`.       `(CSRK6)`
+
+Then the restrictions to `H` already have a tracial-ultraproduct image which
+detects `x`, and hence already give a hyperlinear nonsofic group.
+
+Let `e_x(w)` be the exponent sum of `x`.  Since the word left after setting
+`x=1` is identically trivial, centrality of a scalar gives
+
+`w(lambda 1,A_1,...,A_s)=lambda^(e_x(w)) 1`.
+
+Telescoping the `L_x(w)` occurrences gives
+
+`||w(U,A)-lambda^(e_x(w)) 1||_2`
+` <= L_x(w)||U-lambda 1||_2`.                          `(CSRK7)`
+
+Condition `(CSRK6)` forces `tr(w(U_n,A_n))->0`.  Its distance from every
+unit scalar, in particular `lambda^(e_x(w))`, therefore tends to `sqrt(2)`.
+Thus
+
+`liminf_n inf_(lambda in T)||phi_n(x)-lambda 1||_2`
+` >= sqrt(2)/L_x(w)>0`.                               `(CSRK8)`
+
+In particular `phi_n(x)` stays away from `1` in normalized Hilbert--Schmidt
+norm.  The radical argument in the theorem finishes.  This strengthens the
+rank estimate `(FWR1)--(FWR5)`: no rank hypothesis is needed, and the
+conclusion identifies the original trace-visible radical element directly.
