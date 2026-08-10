@@ -140,5 +140,65 @@ theorem complete_hom_of_mem (X : C) (hX : X ∈ a.source) :
   simp only [complete, hX, dite_true]
 
 end PartialBisection
+
+/-- An equivalence restricts to an equivalence between a finite set and its
+image. -/
+noncomputable def finsetImageEquiv (e : C ≃ C) (s : Finset C) :
+    ↑s ≃ ↑(s.map e.toEmbedding) where
+  toFun X := ⟨e X.1, Finset.mem_map.mpr ⟨X.1, X.2, rfl⟩⟩
+  invFun Y := by
+    obtain ⟨X, hX, hXY⟩ := Finset.mem_map.mp Y.2
+    exact ⟨e.symm Y.1, by simpa [hXY] using hX⟩
+  left_inv X := by apply Subtype.ext; simp
+  right_inv Y := by apply Subtype.ext; simp
+
+/-- Pull back a bisection on only a chosen good set of objects.  Orbit and
+isotropy cardinal preservation are required only at those sources.  The
+existing finite counting theorem makes the functor surjective on each needed
+Hom-set; no global fullness instance is introduced. -/
+noncomputable def partialPullbackBisectionOfCardinalPreserving
+    [∀ X Y : C, Fintype (X ⟶ Y)]
+    (F : C ⟶ C) [F.Faithful]
+    (hobj : Function.Injective F.obj)
+    (good : Finset C)
+    (horbit : ∀ X ∈ good,
+      (orbit X).card = (orbit (F.obj X)).card)
+    (hvertex : ∀ X ∈ good,
+      Fintype.card (X ⟶ X) = Fintype.card (F.obj X ⟶ F.obj X))
+    (β : Bisection C) : PartialBisection C := by
+  let e := objectEquivOfInjective F hobj
+  let p : C ≃ C := e.trans (β.objEquiv.trans e.symm)
+  refine
+    { source := good
+      target := good.map p.toEmbedding
+      objEquiv := finsetImageEquiv p good
+      hom := ?_ }
+  intro X
+  let Y := p X.1
+  have htarget : F.obj Y = β.objEquiv (F.obj X.1) := by
+    change e Y = β.objEquiv (F.obj X.1)
+    exact e.apply_symm_apply _
+  let arrow : F.obj X.1 ⟶ F.obj Y :=
+    β.hom (F.obj X.1) ≫ eqToHom htarget.symm
+  obtain ⟨g : X.1 ⟶ Y⟩ := nonempty_hom_of_map_nonempty
+    F hobj (horbit X.1 X.2) ⟨arrow⟩
+  exact (map_surjective_of_faithful_of_vertexGroup_card_eq
+    F g (hvertex X.1 X.2)) arrow |>.choose
+
+/-- The local cardinal-preserving pullback extends to a total bisection by
+the componentwise finite completion theorem. -/
+noncomputable def completePartialPullbackBisectionOfCardinalPreserving
+    [∀ X Y : C, Fintype (X ⟶ Y)]
+    (F : C ⟶ C) [F.Faithful]
+    (hobj : Function.Injective F.obj)
+    (good : Finset C)
+    (horbit : ∀ X ∈ good,
+      (orbit X).card = (orbit (F.obj X)).card)
+    (hvertex : ∀ X ∈ good,
+      Fintype.card (X ⟶ X) = Fintype.card (F.obj X ⟶ F.obj X))
+    (β : Bisection C) : Bisection C :=
+  (partialPullbackBisectionOfCardinalPreserving
+    F hobj good horbit hvertex β).complete
+
 end FiniteGroupoid
 end NonsoficGroupsExist

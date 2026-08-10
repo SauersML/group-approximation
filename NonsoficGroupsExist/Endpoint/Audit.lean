@@ -381,3 +381,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.FiniteGroupoid.PartialBisection.completionObjEquiv_apply_of_mem
 #print axioms NonsoficGroupsExist.FiniteGroupoid.PartialBisection.complete
 #print axioms NonsoficGroupsExist.FiniteGroupoid.PartialBisection.complete_hom_of_mem
+#print axioms NonsoficGroupsExist.FiniteGroupoid.partialPullbackBisectionOfCardinalPreserving
+#print axioms NonsoficGroupsExist.FiniteGroupoid.completePartialPullbackBisectionOfCardinalPreserving
