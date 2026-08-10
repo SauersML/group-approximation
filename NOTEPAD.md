@@ -30807,3 +30807,92 @@ cannot prove the path group hyperlinear.  A successful FALSE-side model must
 retain a nonmixing `K_h`-fixed sector while making its `h`-translate genuinely
 different--equivalently, it must solve the relative normalized-HS
 instability problem rather than hide it in a regular amplification.
+
+# The canonical faithful Gaussian trace on the path group (2026-08-09)
+
+Although the detector cannot enter the regular representation cone, the
+orthogonal permutation geometry of the path module gives a completely
+explicit trace which sees it.  This removes the phrase "find some trace" from
+the endpoint.
+
+Retain the embedded path group
+
+`P<Z[Y] semidirect Q`,  `Y=Q/Gamma`,
+
+from `(MPC2)--(MPC3)`.  Give `R[Y]` its standard Hilbert norm, for which the
+point masses are orthonormal.  For `t>=0` define
+
+`tau_t(a,s)=1_(s=1) exp(-t ||a||_2^2)`               `(GTP1)`
+
+for `(a,s) in P`.
+
+**Theorem (Gaussian trace endpoint).**
+
+1. `tau_t` is a tracial positive-definite function on `P` for every `t>=0`.
+2. For every `t>0`, its GNS homomorphism is faithful.
+3. On the primitive radical word `x`,
+
+   `tau_t(x)=exp(-2t)`.                               `(GTP2)`
+
+4. If `tau_t` is Connes embeddable for one `t>0`, then `P` is hyperlinear and
+   nonsofic, so not every hyperlinear group is sofic.
+5. The diagonal tensor-power identity is
+
+   `tau_t(g)^m=tau_(m t)(g)`                          `(GTP3)`
+
+   for every `g in P`.  Hence Connes embeddability of one positive-time
+   Gaussian trace gives Connes embeddability of `tau_(mt)` for every `m`, and
+   the latter converge pointwise to the regular trace as `m->infinity`.
+
+**Proof.**  For the free abelian group `Z[Y]`, Schoenberg's Gaussian function
+
+`a |-> exp(-t ||a||_2^2)`
+
+is positive definite: equivalently it is the Fourier transform of the
+centered product Gaussian/heat-kernel probability measure `mu_t` on the
+compact dual of `Z[Y]`.  The permutation action of `Q` on `Y` is orthogonal,
+so `mu_t` is `Q`-invariant.  The canonical trace on the crossed-product GNS
+algebra
+
+`L-infinity(dual(Z[Y]),mu_t) crossed_product Q`
+
+restricts to `(GTP1)` on `P`.  This proves positive definiteness.  It is
+tracial also directly: conjugation preserves whether the `Q`-coordinate is
+trivial, and on the kernel it replaces `a` by `q a`, which has the same
+Hilbert norm.
+
+For a group element `(a,s)`, the GNS unitary equals the identity only if its
+distance from the identity is zero, equivalently `Re(tau_t(a,s))=1`.  If
+`s!=1`, `(GTP1)` is zero.  If `s=1` and `a!=0`, then `t>0` gives
+`exp(-t||a||^2)<1`.  Thus only the identity is killed, proving faithfulness.
+
+By `(MPC7)`, the radical word is
+
+`x=(delta_(h Gamma)-delta_Gamma,1)`.
+
+The two point masses are distinct and orthonormal, so its squared norm is
+`2`, proving `(GTP2)`.  If the trace is Connes embeddable, its faithful GNS
+homomorphism embeds `P` in a tracial matrix ultraproduct.  Standard trace
+amplification then makes `P` hyperlinear, while `(ARD3)` says it is nonsofic.
+
+Finally, both sides of `(GTP3)` vanish when the quotient coordinate is
+nontrivial; on the kernel the identity is the scalar equality
+
+`exp(-t||a||^2)^m=exp(-mt||a||^2)`.
+
+Tensor powers preserve Connes embeddability.  As `m->infinity`, `(GTP3)` tends
+to `0` for every nonidentity element and stays `1` at the identity, which is
+the regular trace.  End proof.
+
+**Exact remaining analytic statement.**  The `t=0` trace factors through the
+residually finite quotient `Q` and is Connes embeddable.  The unresolved jump
+is whether the heat deformation leaves the Connes-embeddable trace cone at
+every `t>0`, or at none.  It is enough to prove, for one fixed value such as
+`t=1`, that
+
+`L-infinity(dual(Z[Q/Gamma]),mu_1) crossed_product Q`
+
+is Connes embeddable on the path subgroup.  Unlike the full generalized
+Bernoulli trace, this formulation is radial and has the exact tensor scaling
+`(GTP3)`; unlike regular-cone attempts, it deliberately retains the
+nonmixing `K_h`-fixed detector identified in `(MCO1)`.
