@@ -57,6 +57,29 @@ structure WeakMFApproximation (G : Type u) [Group G] where
 
 namespace WeakMFApproximation
 
+/-- Pull a sequential weak-MF approximation back along an injective
+homomorphism.  The finite matrix models are unchanged; only the group
+elements fed to the maps are restricted. -/
+def comap {H : Type*} [Group H] (A : WeakMFApproximation G)
+    (ι : H →* G) (hι : Function.Injective ι) : WeakMFApproximation H where
+  separation := A.separation
+  separation_pos := A.separation_pos
+  model := A.model
+  modelNonempty := A.modelNonempty
+  map n h := A.map n (ι h)
+  asymptoticallyMultiplicative g h ε hε := by
+    simpa only [map_mul] using A.asymptoticallyMultiplicative (ι g) (ι h) ε hε
+  separatedEventually g h hne :=
+    A.separatedEventually (ι g) (ι h) (hι.ne hne)
+
+@[simp] theorem comap_model {H : Type*} [Group H]
+    (A : WeakMFApproximation G) (ι : H →* G) (hι : Function.Injective ι)
+    (n : ℕ) : (A.comap ι hι).model n = A.model n := rfl
+
+@[simp] theorem comap_map {H : Type*} [Group H]
+    (A : WeakMFApproximation G) (ι : H →* G) (hι : Function.Injective ι)
+    (n : ℕ) (h : H) : (A.comap ι hι).map n h = A.map n (ι h) := rfl
+
 /-- Reindex a weak-MF approximation along a pointwise cofinal map.  The
 inequality `n ≤ φ n` is exactly what is needed to preserve all eventual
 operator-norm estimates. -/
