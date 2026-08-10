@@ -336,6 +336,7 @@ import NonsoficGroupsExist.Leavitt.ThompsonVWitness
 import NonsoficGroupsExist.Leavitt.ThompsonWitness
 import NonsoficGroupsExist.Matching.MatchedComponents
 import NonsoficGroupsExist.Sofic.SoficTransfer
+import NonsoficGroupsExist.Sofic.HyperlinearResidualDetector
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.StructuralProfile
 import NonsoficGroupsExist.Leavitt.UnitsGLProfile
