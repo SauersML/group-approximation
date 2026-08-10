@@ -268,5 +268,67 @@ theorem card_hammingDisagreement_roundedDiagonalPermutation_le
   simpa [roundedDiagonalPermutation, hammingDisagreement, U] using
     hcard.trans hmissing
 
+/-- Combined quantitative centralizer repair: after multiplying by the
+Kazhdan constant squared, the repaired commutation defect is bounded by the
+original labelled defect with the explicit factor `8 |Q|`. -/
+theorem kazhdan_mul_card_badArcs_roundedDiagonalPermutation_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σ : G →* Equiv.Perm Y) (c : Equiv.Perm Y) :
+    ε ^ 2 *
+        ((AlmostAutomorphism.badArcs Y (Q.image σ)
+          (roundedDiagonalPermutation σ c)).card : ℝ) ≤
+      8 * (Q.card : ℝ) * (totalCommutationDefect σ Q c : ℝ) := by
+  have hbadNat := card_badArcs_roundedDiagonalPermutation_le σ Q c
+  have hbad :
+      ((AlmostAutomorphism.badArcs Y (Q.image σ)
+        (roundedDiagonalPermutation σ c)).card : ℝ) ≤
+      ((Q.image σ).card : ℝ) *
+        ((permutationGraph Y c ∆
+          roundedDiagonalRelation σ (permutationGraph Y c)).card : ℝ) := by
+    exact_mod_cast hbadNat
+  have hround := kazhdan_mul_card_graph_symmDiff_rounded_le_defect hQ σ c
+  have himage : ((Q.image σ).card : ℝ) ≤ Q.card := by
+    exact_mod_cast Finset.card_image_le
+  have hε : 0 ≤ ε ^ 2 := sq_nonneg ε
+  have himage0 : 0 ≤ ((Q.image σ).card : ℝ) := by positivity
+  have hdefect0 : 0 ≤ (8 : ℝ) * totalCommutationDefect σ Q c := by positivity
+  calc
+    ε ^ 2 *
+        ((AlmostAutomorphism.badArcs Y (Q.image σ)
+          (roundedDiagonalPermutation σ c)).card : ℝ) ≤
+      ε ^ 2 * (((Q.image σ).card : ℝ) *
+        ((permutationGraph Y c ∆
+          roundedDiagonalRelation σ (permutationGraph Y c)).card : ℝ)) :=
+        mul_le_mul_of_nonneg_left hbad hε
+    _ = ((Q.image σ).card : ℝ) *
+        (ε ^ 2 * ((permutationGraph Y c ∆
+          roundedDiagonalRelation σ (permutationGraph Y c)).card : ℝ)) := by ring
+    _ ≤ ((Q.image σ).card : ℝ) *
+        (8 * (totalCommutationDefect σ Q c : ℝ)) :=
+      mul_le_mul_of_nonneg_left hround himage0
+    _ ≤ (Q.card : ℝ) *
+        (8 * (totalCommutationDefect σ Q c : ℝ)) :=
+      mul_le_mul_of_nonneg_right himage hdefect0
+    _ = 8 * (Q.card : ℝ) *
+        (totalCommutationDefect σ Q c : ℝ) := by ring
+
+/-- The same Kazhdan repair changes the original permutation on at most the
+corresponding explicit graph-edit budget. -/
+theorem kazhdan_mul_card_hammingDisagreement_roundedDiagonalPermutation_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σ : G →* Equiv.Perm Y) (c : Equiv.Perm Y) :
+    ε ^ 2 *
+        ((hammingDisagreement (roundedDiagonalPermutation σ c) c).card : ℝ) ≤
+      8 * (totalCommutationDefect σ Q c : ℝ) := by
+  have hcardNat :=
+    card_hammingDisagreement_roundedDiagonalPermutation_le σ c
+  have hcard :
+      ((hammingDisagreement (roundedDiagonalPermutation σ c) c).card : ℝ) ≤
+        ((permutationGraph Y c ∆
+          roundedDiagonalRelation σ (permutationGraph Y c)).card : ℝ) := by
+    exact_mod_cast hcardNat
+  have hround := kazhdan_mul_card_graph_symmDiff_rounded_le_defect hQ σ c
+  exact (mul_le_mul_of_nonneg_left hcard (sq_nonneg ε)).trans hround
+
 end DiagonalInvariantRelation
 end NonsoficGroupsExist
