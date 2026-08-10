@@ -31,6 +31,22 @@ and the resulting reduction in
 and finite-extension permanence remain explicit inputs at the current Lean
 boundary; they are not silently treated as kernel-checked facts.
 
+The additional weak/operator-norm MF conclusion proves
+
+\[
+ \text{MF groups}\not\subseteq\text{sofic groups}.
+\]
+
+This settles one inclusion in Andrew James Schneider's broader Question 8
+in his 2016 Purdue dissertation, *Finite dimensional approximations and
+deformations of group C*-algebras*: “What is the relationship between the
+class of MF groups, the class of sofic groups, and the class hyperlinear
+groups?”  This is the appropriate narrow attribution; the dissertation does
+not, on the evidence currently recorded, state the verbatim separately
+numbered question “Is every MF group sofic?”  Here MF has Shulman's
+operator-norm meaning, not the stronger property that has also appeared
+under the same name.
+
 This note repairs the group-level application of Shulman's symmetric
 amalgamation theorem for the explicit Kun--Thom pair.  An arbitrary
 weak-MF embedding of a group need not retain the abstract Bass--Serre normal
