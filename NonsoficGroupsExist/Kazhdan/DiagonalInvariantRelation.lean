@@ -180,5 +180,93 @@ theorem kazhdan_mul_card_graph_symmDiff_rounded_le_defect
     exact_mod_cast hboundary
   nlinarith
 
+/-! ## Returning from invariant relations to permutations -/
+
+/-- Membership in the rounded relation is preserved in both directions by
+every diagonal group element. -/
+theorem mem_roundedDiagonalRelation_iff_action
+    (σ : G →* Equiv.Perm Y) (U : Finset (Y × Y)) (g : G) (p : Y × Y) :
+    p ∈ roundedDiagonalRelation σ U ↔
+      diagonalAction Y (σ g) p ∈ roundedDiagonalRelation σ U := by
+  constructor
+  · intro hp
+    rw [← roundedDiagonalRelation_map σ U g]
+    exact Finset.mem_map.mpr ⟨p, hp, rfl⟩
+  · intro hp
+    rw [← roundedDiagonalRelation_map σ U g⁻¹]
+    refine Finset.mem_map.mpr
+      ⟨diagonalAction Y (σ g) p, hp, ?_⟩
+    change diagonalAction Y (σ g⁻¹) (diagonalAction Y (σ g) p) = p
+    simp [diagonalAction]
+
+/-- Consequently the tagged diagonal boundary of the rounded relation is
+literally empty for the image of any finite label set. -/
+theorem relationBoundary_roundedDiagonalRelation_eq_empty
+    (σ : G →* Equiv.Perm Y) (Q : Finset G) (U : Finset (Y × Y)) :
+    relationBoundary Y (Q.image σ) (roundedDiagonalRelation σ U) = ∅ := by
+  ext p
+  simp only [Finset.notMem_empty, iff_false]
+  intro hp
+  have hpdata := (mem_relationBoundary Y (Q.image σ)
+    (roundedDiagonalRelation σ U) p).1 hp
+  rw [Finset.mem_image] at hpdata
+  obtain ⟨g, hgQ, hg⟩ := hpdata.1
+  have hiff := mem_roundedDiagonalRelation_iff_action σ U g p.2
+  rw [hg] at hiff
+  rcases hpdata.2 with hout | hin
+  · exact hout.2 (hiff.mp hout.1)
+  · exact hin.1 (hiff.mpr hin.2)
+
+/-- Extend the part of the original permutation graph retained by the
+rounded invariant relation to a genuine permutation. -/
+noncomputable def roundedDiagonalPermutation
+    (σ : G →* Equiv.Perm Y) (c : Equiv.Perm Y) : Equiv.Perm Y :=
+  roundRelation Y
+    (roundedDiagonalRelation σ (permutationGraph Y c)) c
+
+/-- The repaired permutation's labelled commutation defect is charged only
+to the relation edits, because the rounded relation itself has zero diagonal
+boundary. -/
+theorem card_badArcs_roundedDiagonalPermutation_le
+    (σ : G →* Equiv.Perm Y) (Q : Finset G) (c : Equiv.Perm Y) :
+    (AlmostAutomorphism.badArcs Y (Q.image σ)
+      (roundedDiagonalPermutation σ c)).card ≤
+      (Q.image σ).card *
+        ((permutationGraph Y c ∆
+          roundedDiagonalRelation σ (permutationGraph Y c)).card) := by
+  let U := roundedDiagonalRelation σ (permutationGraph Y c)
+  have hbase := card_badArcs_roundRelation_le Y (Q.image σ) U c
+  have hboundary : relationBoundary Y (Q.image σ) U = ∅ :=
+    relationBoundary_roundedDiagonalRelation_eq_empty σ Q
+      (permutationGraph Y c)
+  have hedits :
+      (permutationGraph Y c \ U).card +
+          (U \ permutationGraph Y c).card =
+        (permutationGraph Y c ∆ U).card := by
+    rw [Finset.symmDiff_def,
+      Finset.card_union_of_disjoint (by
+        simp only [Finset.disjoint_left, Finset.mem_sdiff]
+        aesop)]
+  rw [hboundary, Finset.card_empty, zero_add, hedits] at hbase
+  simpa [roundedDiagonalPermutation, U] using hbase
+
+/-- The repaired permutation differs from the original only at graph points
+discarded by the rounded relation. -/
+theorem card_hammingDisagreement_roundedDiagonalPermutation_le
+    (σ : G →* Equiv.Perm Y) (c : Equiv.Perm Y) :
+    (hammingDisagreement (roundedDiagonalPermutation σ c) c).card ≤
+      (permutationGraph Y c ∆
+        roundedDiagonalRelation σ (permutationGraph Y c)).card := by
+  let U := roundedDiagonalRelation σ (permutationGraph Y c)
+  have hsubset := roundRelation_disagreement_subset_missingSources Y U c
+  have hcard := Finset.card_le_card hsubset
+  rw [card_missingSources] at hcard
+  have hsdiff : permutationGraph Y c \ U ⊆ permutationGraph Y c ∆ U := by
+    intro p hp
+    exact (Finset.mem_symmDiff).2 (Or.inl (Finset.mem_sdiff.mp hp))
+  have hmissing := Finset.card_le_card hsdiff
+  simpa [roundedDiagonalPermutation, hammingDisagreement, U] using
+    hcard.trans hmissing
+
 end DiagonalInvariantRelation
 end NonsoficGroupsExist
