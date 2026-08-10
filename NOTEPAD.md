@@ -28007,6 +28007,114 @@ onto `L(G *_Gamma G)`.  The remaining exact target is Connes embeddability of
 that trace, or another trace-visible quotient retaining the Kun--Thom
 witness.  Full proof: `docs/WEAK_MF_NONSOFIC_DOUBLE.md`, commit `3bcdd61`.
 
+## Only one Connes-embeddable fold-difference is needed
+
+The repaired weak-MF double admits a substantially weaker tracial endpoint
+than Connes embeddability of its canonical trace.
+
+Retain the profinite completion
+
+`A=C*(rho(G))`, `C=C*(rho(Gamma))`, `B=A *_C A`,
+
+and denote the two embeddings of `A` by `i_1,i_2`.  Choose the strict
+Kun--Thom invisible element
+
+`h=t^(-1) gamma t in G-Gamma`
+
+and put
+
+`x=i_2(rho(h)) i_1(rho(h))^(-1) in U(B)`.              `(FD1)`
+
+The profinite-trace faithfulness argument proves `x!=1` in `B`.  Let
+
+`a=(x-1)^*(x-1)>=0`.                                   `(FD2)`
+
+**Theorem (one-CE-trace fold criterion).**  If there is a
+Connes-embeddable trace `sigma` on `B` such that
+
+`sigma(a)>0`,                                           `(FD3)`
+
+then a hyperlinear nonsofic group exists.
+
+Equivalently, it is enough to prove that `a` does not belong to the common
+`2`-kernel of all Connes-embeddable traces on `B`.  The trace need not be
+faithful, need not restrict to the profinite regular trace on either copy of
+`A`, and need not be the reduced amalgam trace.
+
+**Proof.**  First replace `sigma` by
+
+`sigma'=(sigma+sigma o flip)/2`.                        `(FD4)`
+
+Connes-embeddable traces are closed under finite convex combinations by
+block direct sums.  Thus `sigma'` is Connes embeddable and flip invariant;
+moreover `sigma'(a)>=sigma(a)/2>0`, since `flip(a)` is positive.
+
+The GNS/tracial-ultraproduct map of `sigma'` gives a homomorphism
+
+`eta:G *_Gamma G -> product_omega U(d_n)`              `(FD5)`
+
+for which `eta(x)!=1`.  It need not be faithful on either vertex group.
+Repair that without changing the fold difference.  The original ambient
+group `G` is residually finite, so choose a faithful hyperlinear embedding
+
+`theta:G -> product_omega U(e_n)`.
+
+Let
+
+`r:G *_Gamma G -> G`                                   `(FD6)`
+
+be the fold homomorphism and form the block-sum homomorphism
+
+`Phi=eta directSum (theta o r)`.                        `(FD7)`
+
+After harmless repetitions of the two matrix sequences, the blocks may be
+taken with asymptotically positive weights.  Thus neither nonzero
+`2`-distance is washed out in the direct sum.  Its image `Q` is hyperlinear.
+Both copies of `G` map faithfully in `Q`
+because of the second summand, while `(FD1)` survives because its fold image
+is `1` and its first component `eta(x)` is nontrivial.
+
+Flip invariance of `sigma'` makes the kernel of `eta` flip invariant; the
+fold summand is also flip invariant.  Hence the flip of the double descends
+to an automorphism of `Q`.  Form `Q semidirect C_2`, with flip element `k`.
+In this extension
+
+`[k,Phi(i_1(rho(h)))]=Phi(x)`                           `(FD8)`
+
+up to the harmless orientation convention, so it is nontrivial.  On the
+other hand, if `Q` were sofic, then its finite extension by `C_2` would be
+sofic.  Restrict such a sofic embedding to the faithful first copy of `G`.
+The Kun--Thom centralizer-normalization theorem applies because `k`
+centralizes the faithful image of `Gamma`.  It says that `tkt^(-1)` also
+centralizes that image.  Since `h=t^(-1) gamma t`, this gives
+
+`t[k,Phi(i_1(rho(h)))]t^(-1)=[tkt^(-1),Phi(i_1(rho(gamma)))]=1`,
+
+and hence forces the fixed witness `(FD8)` to be trivial.
+This contradiction proves that `Q` is nonsofic.  End proof.
+
+This theorem changes the trace target from
+
+`the canonical trace of L(G *_Gamma G) is CE`
+
+to the one-positive-element statement `(FD3)`.  Shulman's proof of Theorem
+10 does not supply `(FD3)`: it starts from an arbitrary faithful Hilbert-space
+representation and constructs norm-ultraproduct lifts, with no control of
+normalized ranks or of the resulting traces.  The regular GNS quotient used
+in the collaborator's faithfulness proof certifies `a!=0` in `B`, but it does
+not force an MF trace to see `a`; a nonzero element of an MF algebra may lie
+in every tracial kernel, as compact-ideal examples show.
+
+Still, `(FD3)` is strictly weaker than every previously stated tracial
+amalgamation target.  It permits an arbitrary CE trace and delegates
+faithfulness of `G` to the separate fold summand.  Thus the exact remaining
+question on the now-unconditional weak-MF nonsofic candidate is:
+
+`Does the fold-difference a survive in one CE trace of B?`              `(FD9)`
+
+Any trace-production argument can now ignore all other reduced words and all
+other trace moments.
+
 The argument gives a family, not just one double.  Shulman's finite-factor
 lemma plus the same GNS detector proves every finite iterated amalgam
 
