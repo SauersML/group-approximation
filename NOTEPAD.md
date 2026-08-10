@@ -30372,3 +30372,27 @@ trivially and hence acts freely on the tree.  Thus this is a standalone
 structural result: the nonsofic symmetric double has a fully computed free
 sofic radical, and its maximal sofic quotient singled out by this
 calculation is the residually finite group `G *_N G`.
+
+**Extension-permanence audit.**  Formula `(SDR2)` makes `D_Gamma` a
+free-by-residually-finite group, but this does not currently imply
+hyperlinearity.  The standard proved permanence theorem is
+
+`hyperlinear kernel + amenable quotient => hyperlinear extension`,
+
+via Kaloujnine--Krasner and amenable unrestricted wreath products.  It does
+not allow an arbitrary sofic or residually finite quotient.  Here
+
+`D_N isomorphic N semidirect (Q*Q)`
+
+has the nonamenable quotient `Q*Q`, so the amenable-extension theorem does
+not apply.  Likewise, the general restricted-wreath approximation theorem
+does not supply the unrestricted wreath product needed to embed an
+arbitrary extension with this nonamenable quotient.  Thus `(SDR2)` is not a
+back-door proof of TRUE; it exposes a particularly rigid free-by-RF
+counterexample candidate whose extension cocycle remains the analytic
+obstruction.
+
+Primary closure pins: Holt--Rees, *Some closure results for
+C-approximable groups*, Pacific J. Math. 287 (2017), and Brude--Sasyk,
+*Metric approximations of unrestricted wreath products when the acting
+group is amenable*, Comm. Algebra 50 (2022).
