@@ -114,6 +114,47 @@ theorem permutationAugmentation_smul (g : G) (f : X →₀ ℤ) :
   simp only [permutationAugmentation_apply, Finsupp.comapSMul_def]
   exact Finsupp.sum_mapDomain_index (fun _ ↦ rfl) (fun _ _ _ ↦ rfl)
 
+/-- The additive permutation action on the full integral permutation lattice. -/
+def permutationAddEquiv (g : G) : (X →₀ ℤ) ≃+ (X →₀ ℤ) where
+  toFun f := g • f
+  invFun f := g⁻¹ • f
+  left_inv f := by simp
+  right_inv f := by simp
+  map_add' f h := by simp
+
+/-- The multiplicative permutation action used to form the full semidirect
+product. -/
+def permutationAction : G →* MulAut (Multiplicative (X →₀ ℤ)) where
+  toFun g := (permutationAddEquiv G g).toMultiplicative
+  map_one' := by
+    ext f
+    simp [permutationAddEquiv]
+  map_mul' g h := by
+    ext f
+    simp [permutationAddEquiv, mul_smul]
+
+/-- The full integral permutation-lattice extension associated to `G ↷ X`. -/
+abbrev PermutationExtension :=
+  Multiplicative (X →₀ ℤ) ⋊[permutationAction G] G
+
+/-- Total coefficient sum on the full permutation extension.  The acting
+group maps trivially, and invariance of augmentation makes this a homomorphism. -/
+def permutationExtensionAugmentation :
+    PermutationExtension (X := X) G →* Multiplicative ℤ where
+  toFun x := Multiplicative.ofAdd
+    (permutationAugmentation X (Multiplicative.toAdd x.left))
+  map_one' := by simp
+  map_mul' x y := by
+    apply Multiplicative.toAdd.injective
+    change permutationAugmentation X
+        (Multiplicative.toAdd
+          (x.left * permutationAction G x.right y.left)) =
+      permutationAugmentation X (Multiplicative.toAdd x.left) +
+        permutationAugmentation X (Multiplicative.toAdd y.left)
+    change permutationAugmentation X
+        (Multiplicative.toAdd x.left + x.right • Multiplicative.toAdd y.left) = _
+    rw [map_add, permutationAugmentation_smul]
+
 /-- The restricted additive action on the reduced permutation lattice. -/
 def reducedPermutationAddEquiv (g : G) :
     ReducedPermutationLattice X ≃+ ReducedPermutationLattice X where
@@ -143,9 +184,24 @@ def reducedPermutationAction :
     ext f
     simp [reducedPermutationAddEquiv, mul_smul]
 
+/-- Inclusion of the reduced lattice into the full integral permutation
+lattice, in multiplicative notation. -/
+def reducedLatticeEmbedding :
+    Multiplicative (ReducedPermutationLattice X) →* Multiplicative (X →₀ ℤ) :=
+  AddMonoidHom.toMultiplicative (permutationAugmentation X).ker.subtype
+
 /-- The reduced permutation extension associated to `G ↷ X`. -/
 abbrev ReducedPermutationExtension :=
   Multiplicative (ReducedPermutationLattice X) ⋊[reducedPermutationAction G] G
+
+/-- The reduced permutation extension embeds canonically into the full
+permutation extension. -/
+def reducedPermutationExtensionHom :
+    ReducedPermutationExtension (X := X) G →* PermutationExtension (X := X) G :=
+  SemidirectProduct.map (reducedLatticeEmbedding (X := X)) (MonoidHom.id G) (by
+    intro g
+    ext f
+    rfl)
 
 /-- The based edge difference. -/
 def orbitDifference (o : X) (g : G) : ReducedPermutationLattice X :=
@@ -334,6 +390,70 @@ theorem reducedPermutationExtension_isPerfect [Nonempty X]
   exact Subgroup.mul_mem _
     (by simpa using inl_mem_commutator G (Multiplicative.toAdd x.left))
     (inr_mem_commutator G x.right)
+
+/-- The canonical image of the reduced extension lies in the commutator
+subgroup of the full permutation extension. -/
+theorem reducedPermutationExtensionHom_mem_commutator [Nonempty X]
+    [MulAction.IsPretransitive G X] [Group.IsPerfect G]
+    (x : ReducedPermutationExtension (X := X) G) :
+    reducedPermutationExtensionHom (X := X) G x ∈
+      commutator (PermutationExtension (X := X) G) := by
+  letI : Group.IsPerfect (ReducedPermutationExtension (X := X) G) :=
+    reducedPermutationExtension_isPerfect G
+  have hx : x ∈ commutator (ReducedPermutationExtension (X := X) G) :=
+    Group.IsPerfect.mem_commutator
+  have hmap := Subgroup.mem_map_of_mem
+    (reducedPermutationExtensionHom (X := X) G) hx
+  rw [_root_.commutator_def, Subgroup.map_commutator] at hmap
+  exact Subgroup.commutator_mono le_top le_top hmap
+
+/-- The canonical reduced extension is precisely the augmentation kernel in
+the full permutation extension. -/
+theorem reducedPermutationExtensionHom_range_eq_augmentation_ker :
+    (reducedPermutationExtensionHom (X := X) G).range =
+      (permutationExtensionAugmentation (X := X) G).ker := by
+  apply le_antisymm
+  · rintro _ ⟨x, rfl⟩
+    change permutationAugmentation X (x.left.toAdd : X →₀ ℤ) = 0
+    exact x.left.toAdd.property
+  · intro x hx
+    have hsum : permutationAugmentation X (Multiplicative.toAdd x.left) = 0 := by
+      have h := MonoidHom.mem_ker.mp hx
+      change Multiplicative.ofAdd
+          (permutationAugmentation X (Multiplicative.toAdd x.left)) =
+        Multiplicative.ofAdd 0 at h
+      exact Multiplicative.ofAdd.injective h
+    let f : ReducedPermutationLattice X := ⟨Multiplicative.toAdd x.left, hsum⟩
+    refine ⟨⟨Multiplicative.ofAdd f, x.right⟩, ?_⟩
+    ext <;> rfl
+
+/-- For a perfect group acting transitively, the derived subgroup of the full
+integral permutation extension is exactly the augmentation-kernel extension. -/
+theorem permutationExtension_commutator_eq_augmentation_ker [Nonempty X]
+    [MulAction.IsPretransitive G X] [Group.IsPerfect G] :
+    commutator (PermutationExtension (X := X) G) =
+      (permutationExtensionAugmentation (X := X) G).ker := by
+  apply le_antisymm
+  · exact Abelianization.commutator_subset_ker _
+  · intro x hx
+    have hsum : permutationAugmentation X (Multiplicative.toAdd x.left) = 0 := by
+      have h := MonoidHom.mem_ker.mp hx
+      change Multiplicative.ofAdd
+          (permutationAugmentation X (Multiplicative.toAdd x.left)) =
+        Multiplicative.ofAdd 0 at h
+      exact Multiplicative.ofAdd.injective h
+    let f : ReducedPermutationLattice X := ⟨Multiplicative.toAdd x.left, hsum⟩
+    rw [← SemidirectProduct.inl_left_mul_inr_right x]
+    apply Subgroup.mul_mem
+    · have h := reducedPermutationExtensionHom_mem_commutator G
+          (SemidirectProduct.inl (G := G) (φ := reducedPermutationAction G)
+            (Multiplicative.ofAdd f))
+      simpa [reducedPermutationExtensionHom, reducedLatticeEmbedding, f] using h
+    · have h := reducedPermutationExtensionHom_mem_commutator G
+          (SemidirectProduct.inr
+            (N := Multiplicative (ReducedPermutationLattice X))
+            (φ := reducedPermutationAction G) x.right)
+      simpa [reducedPermutationExtensionHom] using h
 
 end Action
 
