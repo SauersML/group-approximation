@@ -271,7 +271,6 @@ import NonsoficGroupsExist.Matching.Localization
 import NonsoficGroupsExist.Leavitt.MatrixSelfSimilarity
 import NonsoficGroupsExist.Matching.PermutationConservation
 import NonsoficGroupsExist.Sofic.Sofic
-import NonsoficGroupsExist.Sofic.MultiplicativeApproximation
 import NonsoficGroupsExist.Sofic.SoficAmplification
 import NonsoficGroupsExist.Sofic.SoficUltraproduct
 import NonsoficGroupsExist.Sofic.HyperlinearMetric
