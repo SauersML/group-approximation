@@ -31,6 +31,7 @@ import NonsoficGroupsExist.Leavitt.FamilyRankFour
 import NonsoficGroupsExist.Matching.AsymptoticPartialGroupoid
 import NonsoficGroupsExist.Matching.AsymptoticBlockArrow
 import NonsoficGroupsExist.Matching.FinitePartialClusterGroupoid
+import NonsoficGroupsExist.Matching.PartialEquivarianceBoundary
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -259,5 +260,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.GroupoidPresentation.homFintype
 #print axioms NonsoficGroupsExist.FiniteGroupoid.pullbackBisectionOfCardinalPreserving
 #print axioms NonsoficGroupsExist.FinitePartialClusterData.presentation
+#print axioms NonsoficGroupsExist.FinitePartialBijection.agreement_or_disagreement_small
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.repairedComponentBisection
 #print axioms NonsoficGroupsExist.ExpanderDecomposition.normalizedCentralizer_componentBisection
