@@ -35219,3 +35219,109 @@ commuting-square** construction: build RE/C coordinates for
 hyperlinearity gate; it is exactly equivalent.  The weak-MF construction
 already supplies operator-norm escape from `(RER7)`, but not the tracial
 commuting-square mass needed here.
+
+# Fourier orbit form of the central gauge fiber, and the amenable-action no-go (2026-08-10)
+
+The regularized central-fiber endpoint `(RGC1)--(RGC6)` has a completely
+explicit Koopman decomposition.  This identifies the representation-theoretic
+datum carried by the nonsplit module extension, while also showing why
+approximating the Koopman representation one orbit at a time does not by
+itself approximate the crossed product.
+
+Let
+
+`0 -> Z -> B -> A -> 0`                                  `(FOG1)`
+
+be an exact sequence of discrete abelian `G`-modules, assume that `G` fixes
+the finite group `Z` pointwise, and fix `chi in dual(Z)`.  Put
+
+`X_chi={eta in dual(B):eta|Z=chi}`.                       `(FOG2)`
+
+It is a compact torsor for `dual(A)` and carries its Haar probability.  Fix
+an arbitrary normalized set section `s:A->B`.  For `a in A` define
+
+`e_a(eta)=eta(s(a))`.                                    `(FOG3)`
+
+Changing the section only multiplies each `e_a` by a scalar.  After choosing
+one base point of the torsor, `(FOG3)` is the ordinary Fourier basis of
+`L2(X_chi)`.
+
+**Theorem (Fourier-orbit decomposition of a central fiber).**  Define
+
+`kappa(g,a)=chi(g s(a)-s(g a))`.                         `(FOG4)`
+
+For the Koopman representation `U` of `G` on `L2(X_chi)`, with the
+corresponding inverse convention adjusted if necessary,
+
+`U_g e_a=kappa(g,a)e_(g a)`.                            `(FOG5)`
+
+The scalars satisfy
+
+`kappa(gh,a)=kappa(g,h a)kappa(h,a)`.                   `(FOG6)`
+
+Consequently, for every `G`-orbit `O=G a` in `A`, the space
+`H_O=closure(span{e_c:c in O})` is invariant.  If `G_a` is the stabilizer
+of `a`, then
+
+`nu_a(h)=kappa(h,a)`, `h in G_a`,                       `(FOG7)`
+
+is a character and
+
+`H_O isomorphic Ind_(G_a)^G(nu_a)`                      `(FOG8)`
+
+as a monomial representation.
+
+**Proof.**  Since `g s(a)-s(g a)` lies in `Z`, evaluating `e_a` after the
+dual action gives `(FOG5)`.  Applying `(FOG5)` twice gives `(FOG6)`.  On a
+stabilizer `(FOG6)` is the character identity, and the standard coset basis
+identifies the orbit representation with `(FOG8)`.  End proof.
+
+For the gauge extension `(NRG11)`, `(FOG4)` is not removable phase
+bookkeeping.  A `G`-equivariant choice of section would make every
+`kappa(g,a)` equal to one and would split `(NRG11)`, contradicting the
+restricted-gauge obstruction.  Thus the same scalar flux appears in three
+equivalent coordinates: the connecting class `[omega]`, the affine central
+fiber, and the monomial transport-phase system `(FOG4)--(FOG7)`.  Depending
+on the orbit stabilizers, the obstruction need not be visible in one
+individual character `(FOG7)`; it is the global phase system which cannot be
+gauged to one.
+
+There is an important limitation.  The multiplication law
+
+`e_a e_b=chi(s(a)+s(b)-s(a+b)) e_(a+b)`                 `(FOG9)`
+
+couples different `G`-orbits in `A`.  Hence separate finite-dimensional
+approximations of the induced representations `(FOG8)` do **not** imply
+Connes embeddability of
+
+`L-infinity(X_chi) crossed G`;                           `(FOG10)`
+
+one must approximate `(FOG5)` and `(FOG9)` simultaneously.  This is the
+Fourier form of the non-Cartan covariance gate, not a way around it.
+
+There is also no nuclear boundary shortcut.
+
+**Proposition (invariant probability excludes topological amenability).**
+Let a countable group `G` act topologically amenably on a compact space `Y`.
+If `Y` carries a `G`-invariant Borel probability measure, then `G` is
+amenable.
+
+**Proof.**  Let `m_i:Y->Prob(G)` be the approximate equivariant means for
+the action and let `mu` be invariant.  The probabilities
+
+`bar(m)_i=integral_Y m_i(y)dmu(y)`                       `(FOG11)`
+
+satisfy, for every fixed `g`,
+
+`||g bar(m)_i-bar(m)_i||_1`
+` <=integral_Y ||g m_i(y)-m_i(g y)||_1 dmu(y) ->0`.      `(FOG12)`
+
+Reiter's criterion makes `G` amenable.  End proof.
+
+The symplectic Kun--Thom ambient group is nonamenable (indeed Kazhdan), and
+the measures in `(RGC2)` are invariant.  Therefore no such measure can live
+on a topologically amenable compact model, and the reduced crossed product
+cannot be made nuclear by passing to an amenable invariant subsystem.  A
+successful central-fiber trace must be Connes embeddable for a genuinely
+nonamenable action.  Exactness of `G`, its amenable boundary, and nuclearity
+of boundary crossed products cannot close the gauge endpoint.
