@@ -12,6 +12,7 @@ import NonsoficGroupsExist.Matching.MaximalCutRepair
 import NonsoficGroupsExist.Sofic.SoficPositiveControl
 import NonsoficGroupsExist.Covers.TableCover
 import NonsoficGroupsExist.Leavitt.UniversalLeavitt
+import NonsoficGroupsExist.Steinberg.RootCharacterValuationBase
 
 /-!
 # Semantic positive controls
@@ -393,6 +394,36 @@ theorem unit_constantTrue_isPlaneCharacterSign :
       0 1 2 (by decide) (by decide) (by decide) 0 (fun _ ↦ true) := by
   intro g h
   simp [FreeRootPlaneFourier.planeEigenvalue]
+
+/-- The Steinberg-root valuation has the same concrete degree-zero detector. -/
+theorem steinbergUnit_hasDetectionAtDegreeZero :
+    SteinbergRootCharacterValuation.HasDetectionAtDegree Unit
+      (n := 0) (fun _ ↦ (-1 : ℝ)) 0 := by
+  refine ⟨1, ?_⟩
+  have hlen : FreeAlgebraDegree.freeWordLength Unit (1 : FreeMonoid Unit) = 0 :=
+    (FreeAlgebraDegree.freeWordLength_eq_zero_iff Unit 1).2 rfl
+  exact ⟨hlen, by omega, rfl⟩
+
+/-- The constant-positive assignment is also a genuine character for the
+Steinberg-root plane. -/
+theorem steinbergUnit_constantTrue_isPlaneCharacterSign :
+    SteinbergRootCharacterValuation.IsPlaneCharacterSign Unit
+      0 1 2 (by decide) (by decide) (by decide) 0 (fun _ ↦ true) := by
+  intro g h
+  simp [SteinbergRootPlaneFourier.planeEigenvalue]
+
+/-- The Steinberg presentation's additivity relation has an explicit
+nonempty instance. -/
+theorem steinberg_add_relation_exists :
+    SteinbergGroup.IsRelation
+      (FreeGroup.of (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
+          0 1 (by decide) 0) *
+        FreeGroup.of (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
+          0 1 (by decide) 0) *
+        (FreeGroup.of
+          (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
+            0 1 (by decide) (0 + 0)))⁻¹) :=
+  SteinbergGroup.IsRelation.add (I := Fin 2) (R := ℤ) 0 1 (by decide) 0 0
 
 /-- The universal Leavitt relation family has a concrete member. -/
 theorem universalLeavitt_t0_s0_relation :

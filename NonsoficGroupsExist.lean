@@ -29,7 +29,6 @@ import NonsoficGroupsExist.PropertyT.ClassTwoApproximation
 import NonsoficGroupsExist.Matching.DirectedCoarea
 import NonsoficGroupsExist.Kazhdan.KazhdanImprovement
 import NonsoficGroupsExist.Kazhdan.Kazhdan
-import NonsoficGroupsExist.Kazhdan.QuasiCocycleRigidity
 import NonsoficGroupsExist.Kazhdan.HilbertComplexification
 import NonsoficGroupsExist.Kazhdan.KazhdanComplex
 import NonsoficGroupsExist.Kazhdan.KazhdanUniverse

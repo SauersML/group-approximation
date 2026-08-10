@@ -22,6 +22,12 @@ def IsLocallyEmbeddableInto (G H : Type*) [Group G] [Group H] : Prop :=
     Set.InjOn θ (s : Set G) ∧
       ∀ x ∈ s, ∀ y ∈ s, x * y ∈ s → θ (x * y) = θ x * θ y
 
+/-- Every group locally embeds into itself via the identity map. -/
+theorem isLocallyEmbeddableInto_self (G : Type*) [Group G] :
+    IsLocallyEmbeddableInto G G := by
+  intro s
+  exact ⟨id, Set.injOn_id, fun _ _ _ _ _ _ ↦ rfl⟩
+
 namespace LocalCentralQuotientLifting
 
 variable {U Q : Type*} [Group U] [Group Q]
