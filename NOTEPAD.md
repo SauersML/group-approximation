@@ -34685,3 +34685,132 @@ lamp through genuinely noncommutative multiplicity fibers.  It cannot first
 construct a diagonal `G/E` coordinate algebra and then hide that algebra in
 a tracial ultraproduct.  In the terminology of the free-lamp program, the
 missing multi-compressor Kazhdan gluing is necessarily **non-Cartan**.
+
+# An internal radical spectral gap converts weak MF to hyperlinear nonsofic
+
+There is a general norm-to-trace bridge which strictly contains both the
+finite-central-corner argument and the usual Kazhdan-projection argument.
+It identifies a structural way to finish from the already proved weak-MF
+nonsofic groups without requiring a dimension/error profile.
+
+Let `H` be countable and let `N normal H`.  Say that `N` has an **internal
+relative spectral gap in `H`** if there are a finite symmetric set
+
+`F subset N`                                                   `(IRG1)`
+
+and `kappa>0` such that, in every unitary representation `pi` of `H`,
+
+`Fix(pi(F))=Fix(pi(N))`,                                      `(IRG2)`
+
+and on the orthogonal complement of this common fixed space,
+
+`sum_(f in F)||pi(f)xi-xi||^2 >= kappa^2 ||xi||^2`.           `(IRG3)`
+
+Condition `(IRG2)` holds, for example, if `F` generates `N`; the point of
+the terminology is that the Kazhdan set itself lies inside the subgroup
+which must remain invisible to every sofic quotient.
+
+**Theorem (internal-radical gap bridge).**  Suppose that
+
+`H is weak/operator-norm MF`,
+`1!=N <= Rad_sof(H)`,                                         `(IRG4)`
+
+and `N` has an internal relative spectral gap in `H`.  Then there exists a
+hyperlinear nonsofic group.
+
+**Proof.**  Put in the maximal group C-star-algebra
+
+`Delta=sum_(f in F)(u_f-1)^*(u_f-1)`.                        `(IRG5)`
+
+Equations `(IRG2)--(IRG3)` say that in every representation the spectrum
+of `Delta` is contained in
+
+`{0} union [kappa^2,infinity)`,                               `(IRG6)`
+
+and that its zero space is exactly the `N`-fixed space.  Continuous
+functional calculus therefore gives a projection
+
+`p=1_{ {0} }(Delta) in C*_max(H)`.                            `(IRG7)`
+
+Because `N` is normal, the `N`-fixed space is invariant under `H` in every
+unitary representation.  Hence `p` is central, and
+
+`u_n p=p` for every `n in N`.                                `(IRG8)`
+
+Choose an injective weak-MF homomorphism
+
+`rho:H->U(Q_norm)`,
+`Q_norm=product_j M_(d_j)/directSum_j M_(d_j)`.               `(IRG9)`
+
+It extends to a star-homomorphism on `C*_max(H)`.  Write
+
+`e=rho(p)`, `q=1-e`.                                         `(IRG10)`
+
+The projection `q` commutes with `rho(H)`.  Moreover `q!=0`: choose
+`1!=n in N`.  Injectivity gives `rho(n)-1!=0`, while `(IRG8)` gives
+
+`(rho(n)-1)e=0`,
+
+so `rho(n)-1` is supported on the `q` corner.
+
+Lift `q` to matrix projections `q_j`.  Since `(IRG10)` is central modulo
+the norm-direct-sum ideal, the compressed matrices
+
+`q_j rho_j(h) q_j`                                           `(IRG11)`
+
+are asymptotically unitary and operator-norm multiplicative on every fixed
+window.  Replacing them by their polar unitaries gives maps
+
+`v_j:H->U(q_j M_(d_j) q_j)`                                  `(IRG12)`
+
+with pointwise operator-norm multiplicative defect tending to zero.
+Discard zero corners.  Repeating a bounded-dimensional corner if necessary
+causes no problem, so `(IRG12)` defines a homomorphism
+
+`v:H->product_omega U(rank(q_j))`                             `(IRG13)`
+
+into a tracial matrix ultraproduct.
+
+The gap cannot disappear after renormalizing the corner.  Functional
+calculus and `(IRG6)` give in the norm quotient
+
+`q rho(Delta)q >= kappa^2 q`.                                `(IRG14)`
+
+Taking normalized corner traces in lifts of `(IRG14)` yields
+
+`liminf_j sum_(f in F)||v_j(f)-1||_(2,q_j)^2 >= kappa^2`      `(IRG15)`
+
+along the chosen ultrafilter (after an inessential arbitrarily small loss
+from the polar corrections).  Since `F` is finite, pass to a subsequence
+and choose one fixed `f_0 in F` such that
+
+`liminf_j ||v_j(f_0)-1||_(2,q_j)>0`.                          `(IRG16)`
+
+Let `K=v(H)`.  It is hyperlinear by `(IRG13)`, and `(IRG16)` says that the
+quotient map `H->K` does not kill `f_0`.  But
+
+`f_0 in F subset N subset Rad_sof(H)`.                        `(IRG17)`
+
+If `K` were sofic, every element of `Rad_sof(H)` would lie in the kernel of
+`H->K`, contradicting `(IRG16)`.  Thus `K` is hyperlinear and nonsofic.
+End proof.
+
+**Calibrations.**
+
+1. If `N` is a nontrivial finite central subgroup, take `F=N`; the theorem
+   is exactly the finite-central spectral-corner argument.
+2. If `H` has property `(T)` and every nontrivial quotient of `H` is
+   nonsofic, take `N=H` and a Kazhdan set; this is the Leavitt--Steinberg
+   weak-MF certificate.
+3. For the weak-MF symmetric double, the complete sofic radical is known
+   explicitly.  The new structural target is therefore precise: find a
+   nontrivial finitely generated normal subgroup of that radical satisfying
+   `(IRG2)--(IRG3)`, or build a weak-MF central/shear cover in which the
+   radical gains such a gap.  This target is representation-theoretic and
+   contains no matrix rank rate.
+
+The theorem does not assert that the free complete radical of the current
+double has `(IRG1)--(IRG3)`.  It banks a new sufficient mechanism and
+explains exactly why finite central torsion and quasisimple Kazhdan covers
+were the two successful-looking endpoints: both force operator-norm mass to
+occupy positive normalized trace inside a radical corner.
