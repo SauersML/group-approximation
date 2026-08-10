@@ -34815,6 +34815,67 @@ explains exactly why finite central torsion and quasisimple Kazhdan covers
 were the two successful-looking endpoints: both force operator-norm mass to
 occupy positive normalized trace inside a radical corner.
 
+## For normal subgroups the internal gap is exactly property `(T)`
+
+The hypothesis `(IRG1)--(IRG3)` has a clean intrinsic interpretation; it is
+not a new intermediate rigidity notion.
+
+**Proposition.**  Let `N normal H`.  Then `N` has an internal relative
+spectral gap in `H` if and only if `N` has property `(T)`.
+
+**Proof.**  If `N` has property `(T)`, choose a finite Kazhdan set
+`F subset N`.  Restrict any unitary representation of `H` to `N`.  Its
+`N`-fixed space is exactly `Fix(F)`, and the Kazhdan inequality on the
+orthogonal complement is `(IRG3)`.
+
+Conversely, assume `(IRG1)--(IRG3)` and let `sigma` be any unitary
+representation of `N` without invariant vectors.  Form
+
+`pi=Ind_N^H(sigma)`.                                          `(IRG18)`
+
+Normality of `N` gives
+
+`Res_N^H(pi)=directSum_(hN in H/N) sigma^h`,                  `(IRG19)`
+
+where every `sigma^h` is obtained from `sigma` by an automorphism of `N`.
+Thus `(IRG19)` has no `N`-fixed vector.  Embed a unit vector `xi` of the
+original `sigma` in the summand supported on the identity coset.  For
+`f in F`, its displacement under `(IRG18)` is exactly
+
+`||sigma(f)xi-xi||`.                                         `(IRG20)`
+
+Applying `(IRG3)` to this vector proves
+
+`sum_(f in F)||sigma(f)xi-xi||^2 >= kappa^2||xi||^2`.
+
+Hence `F` is a Kazhdan set for `N`, proving property `(T)`.  End proof.
+
+The bridge theorem therefore has the simpler formulation:
+
+> If a weak/operator-norm MF group has a nontrivial normal property-`(T)`
+> subgroup contained in its full sofic radical, then a hyperlinear
+> nonsofic group exists.                                      `(IRG21)`
+
+This also locates the limitation of `(IRG21)` on the current symmetric
+double.  Its complete sofic radical acts freely on the Bass--Serre tree and
+is a free, torsion-free group.  A subgroup of it is free; a nontrivial free
+torsion-free group cannot have property `(T)` (free groups have the Haagerup
+property, and Haagerup plus property `(T)` forces finiteness).  Thus the
+weak-MF double itself cannot satisfy `(IRG21)`.
+
+The bridge is nevertheless live for exactly the two construction targets
+already isolated independently:
+
+1. a finite central/shear radical, since every finite group has property
+   `(T)`; or
+2. a Leavitt--Steinberg/quasisimple weak-MF cover, whose entire noncentral
+   Kazhdan image lies in the sofic radical.
+
+So the direct-double trace problem and the radical-gap bridge are genuinely
+complementary rather than duplicate approaches.  The former must produce a
+CE trace on a free radical; the latter says that adding Kazhdan rigidity to
+the radical removes the trace-selection problem completely.
+
 ## The finite fixed-set hypothesis forces finite generation
 
 The last calibration cannot hold for the free radical of the symmetric
