@@ -33827,6 +33827,98 @@ is already cohomologically trivial on the finite polynomial image, or use
 honest induced sectors/non-regular representations not covered by
 `(KDF1)--(KDF4)`.
 
+## The normal closure centralizes every finite projective commutant, quantitatively
+
+There is another possible use of the primitive multiplier which at first
+appears to evade `(KDF5)`: cancel it exactly by tensoring a projective
+representation with a conjugate projective representation.  The full
+sofic-radical theorem and property `(T)` together rule out this escape as
+well.
+
+Let `Gamma<=G`, put `N=normalClosure_G(Gamma)`, and assume, as for the
+Kun--Thom pair, that
+
+`x_n=i_2(n)i_1(n)^(-1) in Rad_sof(G *_Gamma G)`       `(PCC1)`
+
+for every `n in N`.  Let
+
+`U_g U_h=omega(g,h)U_(gh)`                            `(PCC2)`
+
+be any finite-dimensional exact projective unitary representation of `G`,
+and put
+
+`C=U(Gamma)' <= M_d(C)`.                              `(PCC3)`
+
+**Theorem (projective commutant centralization).**  Every `U_n`, `n in N`,
+centralizes `C` pointwise:
+
+`[U_n,T]=0` for all `T in C`.                         `(PCC4)`
+
+If `Gamma` has property `(T)` and `(S,kappa)` is a Kazhdan pair, then every
+unitary `W in U(d)` satisfies
+
+`||[W,U_n]||_2`
+` <= (2/kappa) max_(s in S)||[W,U_s]||_2`             `(PCC5)`
+
+for every `n in N`.
+
+**Proof.**  It is enough first to take a unitary `W in C`.  The two
+projective maps
+
+`g |-> U_g`, `g |-> WU_gW^*`
+
+have the same multiplier.  Tensor each with the conjugate of the first
+sector and define honest representations
+
+`rho_1(g)=U_g tensor conjugate(U_g)`,
+`rho_2(g)=WU_gW^* tensor conjugate(U_g)`.              `(PCC6)`
+
+The scalar multipliers cancel exactly.  Since `W` commutes with
+`U(Gamma)`, the two honest representations agree on `Gamma` and hence give
+a homomorphism
+
+`G *_Gamma G -> U(d^2)`.                              `(PCC7)`
+
+Its image is a finitely generated linear group and is therefore residually
+finite, hence sofic.  Equation `(PCC1)` says that `(PCC7)` kills `x_n`.
+Its value there is
+
+`(WU_nW^*U_n^*) tensor 1`,
+
+so `WU_nW^*U_n^*=1`.  Thus `U_n` commutes with every unitary of `C`, and
+the unitaries linearly span the finite-dimensional C*-algebra `C`.  This
+proves `(PCC4)`.
+
+For the estimate, let `E_C` be normalized-Hilbert--Schmidt orthogonal
+projection onto `C`.  Conjugation
+
+`Pi(g)T=U_g T U_g^*`
+
+is an honest unitary representation of `Gamma` on `M_d(C)`, with invariant
+space `C`.  The Kazhdan inequality on its orthogonal complement gives
+
+`||W-E_C(W)||_2`
+` <= kappa^(-1) max_(s in S)||[W,U_s]||_2`.           `(PCC8)`
+
+By `(PCC4)`, `U_n` commutes with `E_C(W)`.  Therefore
+
+`||[W,U_n]||_2 <=2||W-E_C(W)||_2`,
+
+and `(PCC5)` follows from `(PCC8)`.  End proof.
+
+**Consequence.**  Suppose one tries to set
+
+`A_g=U_g`, `B_g=W_kU_gW_k^*`
+
+with the same large multiplier, cancel that multiplier by the tensor trick
+`(PCC6)`, make `W_k` almost commute with the polynomial subgroup, and make
+it rotate one Laurent radical witness by a fixed scalar.  Equation `(PCC5)`
+forces the last commutator to tend to one.  Thus exact tensor cancellation
+does not rescue the finite Weyl sector.  A positive construction must use
+two genuinely different asymptotic sectors or a non-finite/non-Cartan
+character; it cannot be obtained from one finite projective sector by an
+almost-central conjugation.
+
 ## Kazhdan collapse also closes invariant induced-character sectors
 
 The last sentence above suggested that the honest induced representations
