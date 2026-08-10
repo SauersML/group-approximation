@@ -54,6 +54,7 @@ import NonsoficGroupsExist.Matching.FiniteGroupoidPartialBisection
 import NonsoficGroupsExist.Matching.FiniteGroupoidFunctor
 import NonsoficGroupsExist.Matching.PartialBijectionSandwich
 import NonsoficGroupsExist.Matching.PartialClusterBridgeFunctor
+import NonsoficGroupsExist.Matching.FiniteNormalizedPartialClusterGroupoid
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -396,3 +397,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.PartialClusterBridgeData.map_reflects
 #print axioms NonsoficGroupsExist.PartialClusterBridgeData.toFunctorData
 #print axioms NonsoficGroupsExist.PartialClusterBridgeData.faithful
+#print axioms NonsoficGroupsExist.FiniteNormalizedPartialClusterData.near_trans
+#print axioms NonsoficGroupsExist.FiniteNormalizedPartialClusterData.presentation
