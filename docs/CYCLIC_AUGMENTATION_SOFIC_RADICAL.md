@@ -238,3 +238,51 @@ The second factor is a subgroup of
 base is finite and \(G/N\) is residually finite.  Thus the displayed quotient
 is residually finite and supplies the reverse radical inclusion.  Cyclicity
 follows by reducing (11) modulo \(m\). \(\square\)
+
+## 5. The relative-Kazhdan shortcut is unavailable
+
+The cyclicity in (10) might suggest proving relative property \((T)\) for
+the pair \((P,M)\), cutting a weak-MF model by the relative Kazhdan
+projection, and thereby forcing a tracial corner to see \(v\).  The premise
+is false.
+
+**Proposition 5.**  Neither \((P,M)\) nor \((P_m,M_m)\), for \(m\geq2\),
+has relative property \((T)\).
+
+**Proof.**  We give the finite-exponent argument; the integral argument is
+the same with circle-valued random variables concentrated near \(1\).
+Characters of \(I_X/mI_X\) are restrictions of configurations in
+\((\mathbb Z/m\mathbb Z)^X\).  For \(0<t<1\), choose independently at every
+coordinate the value \(0\) with probability \(1-t\) and the value \(1\)
+with probability \(t\).  The resulting product measure is invariant under
+every permutation of \(X\), hence under \(G\).  Restricting the random
+character to \(M_m\) gives a \(G\)-invariant probability measure
+\(\nu_t\) on \(\widehat{M_m}\), and \(\nu_t\to\delta_1\) weakly as
+\(t\to0\).
+
+The restriction is the trivial character exactly when the random
+configuration is constant on every fiber of \(X\to G/N\).  Each fiber is a
+translate of \(N/\Gamma\), which is infinite: the cosets
+\(e_{12}(x_1^{-k})\Gamma\), \(k\geq1\), are distinct, since the difference
+of two distinct negative powers is not in \(R_+\).  An iid nonconstant Bernoulli
+configuration is constant on an infinite fiber with probability zero.
+Consequently
+
+\[
+ \nu_t(\{1\})=0\qquad(0<t<1).                          \tag{14}
+\]
+
+The standard dual criterion for relative property \((T)\) of an abelian
+normal subgroup says that (14), together with
+\(\nu_t\to\delta_1\), is precisely an obstruction to relative property
+\((T)\).  This proves the assertion for \((P_m,M_m)\).
+
+For \(M\), replace the Bernoulli values \(0,1\) by iid circle variables whose
+laws are non-atomic and converge to the point mass at \(1\).  Restriction to
+\(M\) is again almost surely nontrivial and its laws converge to the trivial
+character. \(\square\)
+
+Thus property \((T)\) of the ambient Kun--Thom groups cannot by itself turn
+operator-norm visibility of \(v\) into positive normalized trace.  Any
+successful model must use genuinely nonliftable trace geometry rather than a
+relative Kazhdan projection.

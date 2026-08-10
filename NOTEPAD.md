@@ -28721,3 +28721,19 @@ radical of `(reduced Z[G/Gamma]/m) semidirect G` is cyclic over
 residually finite through the finite-base wreath product over `G/N`.
 
 Full proof: `docs/CYCLIC_AUGMENTATION_SOFIC_RADICAL.md`.
+
+**Relative-`(T)` audit.**  The tempting shortcut
+
+`weak MF of P + relative (T) for (P,M) -> a tracial corner seeing v`
+
+is unavailable: `(P,M)` and every bounded-exponent pair `(P_m,M_m)` fail
+relative property `(T)`.  On the dual of `I_(G/Gamma)/m`, take iid Bernoulli
+coordinate characters with density `t`.  Their restrictions to `M_m` give
+`G`-invariant probability measures converging to the trivial character as
+`t->0`.  They have zero mass at the trivial character, because triviality on
+`M_m` means that the configuration is constant on every fiber of
+`G/Gamma -> G/N`, while each fiber `N/Gamma` is infinite.  Non-atomic circle
+variables concentrated near `1` give the integral version.  By the dual
+criterion this disproves relative `(T)`.  Thus ambient Kazhdan rigidity does
+not automatically cure rank blindness; a FALSE-side model must retain the
+single vector `v` by genuinely nonliftable trace geometry.
