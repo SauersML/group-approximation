@@ -30205,3 +30205,29 @@ twisted double.  The infinite-cyclic version deliberately avoids requiring
 the finite-stage antipodal conjugator to square to one and may therefore be
 strictly easier analytically.  Only the `C_2` variant is covered by
 `(IS9)--(IS12)`.
+
+## The cyclic shear has no antipodal advantage
+
+The last possible analytic distinction between the two shear presentations
+collapses after one matrix doubling. If unitaries U_n,S_n satisfy
+
+`||S_n U_n S_n^* + U_n|| = epsilon_n -> 0`,
+
+put
+
+`Utilde_n=diag(U_n,U_n)` and
+`T_n=[[0,S_n^*],[S_n,0]]`.
+
+Then `T_n=T_n^*`, `T_n^2=1`, and
+
+`||T_n Utilde_n T_n^* + Utilde_n||<=epsilon_n`.
+
+Indeed the two diagonal blocks are `S_n^* U_n S_n` and
+`S_n U_n S_n^*`; conjugating the original estimate by `S_n^*` gives the
+same bound for the first. Thus every antipodal model for the infinite-Z
+stable letter involutivizes with zero multiplicativity cost and only a
+factor-two dimension increase. The infinite cyclic version may still have
+different global Bass--Serre bookkeeping, but it is not analytically easier
+at the one obstruction that matters. Together with `(IS9)--(IS12)`, this
+makes the centralizer-twisted symmetric endpoint `(IS8)` the preferred one.
+Full proof: `docs/CENTRAL_RADICAL_SHEAR_GADGET.md`, Lemma 4.

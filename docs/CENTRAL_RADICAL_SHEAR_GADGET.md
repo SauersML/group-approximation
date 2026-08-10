@@ -285,6 +285,55 @@ retaining the regular detector on the completed graph of groups.  Arbitrary
 weak-MF lifts do not have this property: full spectrum alone does not
 control finite-stage spectral multiplicities.
 
+## 8. Involutivization: the infinite stable letter gives no analytic gain
+
+The use of an infinite cyclic stable letter above avoids writing $s^2=1$,
+but it does not weaken the actual antipodal-profile requirement.
+
+**Lemma 4 (involutivization by doubling).**  Let $U_n,S_n$ be unitaries and
+suppose
+
+\[
+ \varepsilon_n=\|S_nU_nS_n^*+U_n\|\longrightarrow0.
+\]
+
+On the doubled space put
+
+\[
+ \widetilde U_n=U_n\oplus U_n,
+ \qquad
+ T_n=
+ \begin{pmatrix}
+ 0&S_n^*\\ S_n&0
+ \end{pmatrix}.
+\]
+
+Then $T_n=T_n^*$ and $T_n^2=1$, while
+
+\[
+ \|T_n\widetilde U_nT_n^*+\widetilde U_n\|
+ \leq\varepsilon_n.                                  \tag{10}
+\]
+
+**Proof.**  The first two assertions are immediate.  Also
+
+\[
+ T_n\widetilde U_nT_n^*
+ =S_n^*U_nS_n\oplus S_nU_nS_n^*.
+\]
+
+The second block has error $\varepsilon_n$ by hypothesis.  Conjugating the
+hypothesis by $S_n^*$ shows
+$\|S_n^*U_nS_n+U_n\|=\varepsilon_n$, proving (10).
+$\square$
+
+Consequently the $C_2$-stable-letter shear and the infinite-cyclic shear
+have the same local matrix certificate after a harmless factor-two
+amplification.  Combined with the finite-index calculation recorded as
+(IS9)--(IS12) in `NOTEPAD.md`, this means the centralizer-twisted symmetric
+double is the preferred endpoint: it loses no antipodal flexibility and is
+the form closest to Shulman's symmetric-amalgam theorem.
+
 ## References
 
 * T. Shulman, *The MF property for amalgamated free products*,
