@@ -32095,3 +32095,25 @@ Small-phase tensor amplification would then accumulate `(SKT3)` to an
 order-one central phase, and the Kun--Thom one-character argument would
 produce a hyperlinear nonsofic image.  Unlike the previous scalar-flux
 proposal, this target is not ruled out by the ambient Schur multiplier.
+
+**Exact-projective sterility remains.**  Let `U_g` be any exact
+finite-dimensional projective representation of an infranormal pair, with
+arbitrary scalar multiplier.  Put `C=U(Gamma)'`.  For a compressor `t`,
+scalar factors disappear under conjugation and give
+
+`U_t C U_t^* = U(t Gamma t^(-1))' >= U(Gamma)'=C`.      `(SKT6)`
+
+The two outer algebras in `(SKT6)` are unitarily conjugate and therefore
+have the same finite vector-space dimension.  The inclusion is equality.
+Since the compressors generate `G`, every exact projective model normalizes
+`C` and kills the strict-commutant/free-lamp witness exactly as an honest
+representation does.
+
+Thus `(SKT3)` does not make exact finite-dimensional sectors useful by
+itself.  Its precise role is to absorb the **scalar holonomy** of a
+rank-spiky approximate assembly.  A successful family must still retain a
+noncentral matrix boundary defect on vanishing relation error; if all
+defects scalarize exactly, `(SKT6)` restores the liftable corner.  The live
+target is consequently a mixed object:
+
+`nontrivial small scalar H2 flux + matrix-valued strict-commutant boundary`.
