@@ -30665,6 +30665,78 @@ adds a second formulation in which the nonsofic subgroup `P`, its entire
 free-abelian sofic radical, and the residually finite quotient are all
 explicit simultaneously.
 
+# Every tempered Hilbert quotient kills the abelian radical (2026-08-09)
+
+The Magnus module admits a natural Gaussian representation, but no
+regular/Bernoulli-factor version of that construction can retain the
+radical edge.  This is forced already by property `(T)`.
+
+Keep
+
+`Q=D_N`,  `A=ker(Z[Q/Gamma]->Z[Q/N])`,
+
+and view the normal Laurent elementary subgroup `N` as a subgroup of the
+first vertex copy of `G<=Q`.  For `n in N`, put
+
+`e_n=delta_(n Gamma)-delta_Gamma in A`.               `(THQ1)`
+
+These vectors obey
+
+`e_(mn)=e_m+m e_n`,  `e_gamma=0` for `gamma in Gamma`. `(THQ2)`
+
+**Theorem (tempered Hilbert-quotient blindness).**  Let `pi` be a unitary
+representation of `Q` weakly contained in the left regular representation
+`lambda_Q`.  Every `Q`-equivariant additive map
+
+`T:A->H_pi`                                           `(THQ3)`
+
+is zero.  In particular, no `Q`-invariant positive-semidefinite Hilbert
+quotient of `A` whose resulting representation is tempered can give
+positive norm to the radical vector `e_h`.
+
+**Proof.**  Define
+
+`b(n)=T(e_n)`,  `n in N`.
+
+Equivariance and `(THQ2)` give
+
+`b(mn)=b(m)+pi(m)b(n)`,                               `(THQ4)`
+
+so `b` is a 1-cocycle for `pi|N`.  The Laurent elementary group `N` has
+property `(T)`.  Hence every Hilbert 1-cocycle is a coboundary: there is
+`xi in H_pi` such that
+
+`b(n)=pi(n)xi-xi`.                                    `(THQ5)`
+
+Since `e_gamma=0`, formula `(THQ5)` makes `xi` invariant under `Gamma`.
+
+Weak containment restricts to subgroups.  Because `N` is a subgroup of
+`Q`, the restriction `lambda_Q|N` is a multiple of `lambda_N`; restricting
+again to `Gamma`, `lambda_N|Gamma` is a multiple of `lambda_Gamma`.
+Thus
+
+`pi|Gamma weaklyContained lambda_Gamma^(infinity)`.   `(THQ6)`
+
+If `xi` were nonzero, `(THQ6)` would make the trivial representation of
+`Gamma` weakly contained in its regular representation.  By Hulanicki's
+criterion this would make `Gamma` amenable, contradicting that the infinite
+Kazhdan group `Gamma` is nonamenable.  Therefore `xi=0`, so `b=0`.
+
+The elements `e_n`, and their `Q`-translates, generate `A`: this is the
+fiber-augmentation description in `(ARD2)`.  Equivariance now gives
+`T=0`.  End proof.
+
+There is a useful conceptual reformulation.  Applying a `Q`-equivariant
+real Hilbert quotient to the path cocycle and then the Gaussian/Weyl functor
+produces the positive-definite path function one would normally try to
+combine with the regular character of `Q`.  The theorem says that if the
+orthogonal representation is weakly regular, this Gaussian detector is
+identically blind on the full radical.  Hence the desired CE character
+cannot be obtained as a factor of the ordinary regular Bernoulli/Gaussian
+reservoir.  It must use a genuinely non-tempered representation of `Q` and
+still admit finite matrix microstates.  This precisely separates the live
+"quantum stabilizer" route from the classical/tempered one.
+
 # The radical detector cannot enter the regular/mixing cone (2026-08-09)
 
 The Magnus--path model also gives an exact no-go theorem for the most tempting
