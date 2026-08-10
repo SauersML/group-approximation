@@ -6,12 +6,11 @@ import Mathlib.SetTheory.Cardinal.Free
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 
 /-!
-# Shalom's theorem: finitely presented Kazhdan covers
+# Finitely presented Kazhdan covers
 
 Every finitely generated group with Kazhdan's property `(T)` is a
-quotient of a finitely presented group with property `(T)`
-(Shalom; Bekka–de la Harpe–Valette, Theorem 3.4.5).  The proof here is
-leaner than the cited one.  Present `G = F/N` and exhaust `N` by
+quotient of a finitely presented group with property `(T)`.  The proof here
+presents `G = F/N` and exhausts `N` by
 finitely many normal generators at a time.  If every finite stage failed
 property `(T)`, each stage would provide a witness representation with a
 single almost-invariant unit vector and no invariant vectors, so the

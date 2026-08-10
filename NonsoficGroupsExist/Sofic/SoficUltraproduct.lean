@@ -5,13 +5,8 @@ import Mathlib.GroupTheory.QuotientGroup.Defs
 /-!
 # Sofic embeddings into metric ultraproducts of symmetric groups
 
-The literature that this development's negative results feed into states
-soficity a third way: a countable group is sofic when it embeds into a
-*universal sofic group*, the metric ultraproduct
-`∏_𝒰 Sym(X i)` of finite symmetric groups along a nonprincipal ultrafilter.
-That is the formulation used for sofic approximations of Kazhdan groups and
-their centralizers, for sofic actions, and for the Loeb-space picture.  This
-file connects it to `IsSofic`.
+This file constructs metric ultraproducts of finite symmetric groups and
+connects injective homomorphisms into them directly to `IsSofic`.
 
 The ultraproduct is built here directly: `IsNullSeq` picks out the sequences of
 permutations whose normalized Hamming length tends to zero along `𝒰`, these
@@ -27,10 +22,9 @@ pair — never the `1 - ε` that `IsSofic` asks for.  That is precisely the
 hypothesis `IsSoficWeakLocal` of `Sofic.SoficAmplification`, which tensor powers
 upgrade.
 
-`no_soficEmbedding_of_not_isSofic` is the contrapositive, and is the form in
-which the nonsoficity endpoints are read by that literature: the witness admits
-no injective homomorphism into any metric ultraproduct of finite symmetric
-groups, over any index type and any ultrafilter.
+`no_soficEmbedding_of_not_isSofic` is the contrapositive: a nonsofic group
+admits no injective homomorphism into any such metric ultraproduct, over any
+index type and any ultrafilter.
 -/
 
 namespace NonsoficGroupsExist

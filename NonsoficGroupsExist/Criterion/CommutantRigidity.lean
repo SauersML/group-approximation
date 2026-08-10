@@ -4,10 +4,9 @@ import NonsoficGroupsExist.Criterion.ExactCompression
 # The commutant does not grow under compression
 
 `ExactCompression` shows that a one-sided compression `tΓt⁻¹ ≤ Γ` acts *onto*
-the `Γ`-fixed points of a finite set or a finite-dimensional space.  The form
-the approximation-theoretic literature consumes is about *commutants*: for a
-genuine finite-dimensional representation `π` and a compressor `t`, does the
-commutant grow when `Γ` is replaced by its compressed copy?
+the `Γ`-fixed points of a finite set or a finite-dimensional space.  For a
+genuine finite-dimensional representation `π` and a compressor `t`, the
+corresponding commutant question is:
 
   `π(tΓt⁻¹)′ = π(Γ)′ ?`
 

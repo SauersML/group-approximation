@@ -4,12 +4,10 @@ import Mathlib.Algebra.Ring.Subring.Defs
 /-!
 # The Heisenberg group over a ring, and its centre
 
-Remark `rem:thomK` rests on a group whose centre is a copy of the coefficient
-ring, so that quotienting by a copy of `ℤ` inside it leaves a *divisible* centre
--- the Prüfer group, invisible to every finite quotient by
-`prufer_map_eq_zero`.  That structure is quoted there from de Cornulier and
-Thom.  This file builds the simplest group with it, from scratch, so that the
-shape of the argument does not depend on the literature.
+This file constructs directly a group whose centre is a copy of the
+coefficient ring.  Quotienting by a copy of `ℤ` inside it can therefore leave
+a divisible centre, invisible to every finite quotient by
+`prufer_map_eq_zero`.
 
 For a commutative ring `R` the Heisenberg group `Heis R` is `R³` with
 

@@ -38,32 +38,14 @@ theorem exists_localCriterionData
 
 /-! ## How much of property `(T)` the criterion actually uses
 
-The ambient hypothesis is stronger than the proof consumes.  Property `(T)` of
-`Γ` enters *twice* -- once through Kun's theorem, to decompose the restricted
-approximation into uniform expanders, and once more at the very end, to supply
-the Kazhdan pair that the Kun--Thom obstruction needs.  Property `(T)` of the
-*ambient* group `G` enters only *once*, and only to produce the ambient
-expander decomposition.
+The ambient hypothesis is stronger than the proof consumes.  Property `(T)`
+of `Γ` enters twice: first to decompose the restricted approximation into
+uniform expanders, and then to supply a Kazhdan pair.  Property `(T)` of the
+ambient group `G` enters only to produce the ambient expander decomposition.
 
-So the ambient hypothesis can be replaced by its consequence.  The criterion
-below asks for the ambient decomposition directly and never mentions ambient
-`(T)`; `exists_localCriterionData` is then the special case in which Kun's
-theorem supplies it.  This matters because the ambient hypothesis is exactly
-the one the follow-up literature asks about: whether a compression obstruction
-needs the ambient group to be Kazhdan, or only needs its approximations to
-decompose.  The answer here is the second.
-
-Two honest caveats about how much that buys.  First, the per-approximation
-form `isLEF_of_ambientDecomposition` is genuinely weaker: it asks for a
-decomposition of the *one* approximation at hand.  Second, the nonsoficity
-endpoint quantifies over *all* approximations of `G`, and whether that
-quantified property is strictly weaker than `(T)` is **not settled here**.
-Kun's theorem gives `(T)` implies it; the converse is not proved in this
-development and, as far as the sources cited go, is not known -- Kun's
-four-way equivalence is a statement about sequences of graphs, not about
-groups.  What is established is the direction of dependence: the proof
-consumes the decomposition and nothing else about the ambient group, so any
-future sufficient condition for the decomposition slots in unchanged. -/
+The criterion below therefore asks for that decomposition directly and never
+mentions ambient `(T)`.  `exists_localCriterionData` is the specialization in
+which the internally proved decomposition theorem supplies it. -/
 
 /-- **The criterion without ambient `(T)`.**  Only the ambient *decomposition*
 is required; the ambient group itself need not be Kazhdan.  Property `(T)` of

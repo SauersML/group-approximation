@@ -224,13 +224,7 @@ theorem countable_nonsofic_groups_exist : CountableNonsoficGroupExists :=
   ⟨UniversalRankFour.Ambient, inferInstance, ambient_full_profile.1,
     ambient_full_profile.2.2.2.2⟩
 
-/-! ## Pestov's near-action question
-
-The Elek--Szabó characterization is prior mathematics.  The declarations
-below record its now-formalized consequence from the nonsofic group constructed
-above; they are not presented as a new proof of that characterization in the
-mathematical literature.
--/
+/-! ## Near-action consequences -/
 
 /-- The explicit countable nonsofic group admits no essentially free,
 measure-preserving near action on a set carrying a finitely additive

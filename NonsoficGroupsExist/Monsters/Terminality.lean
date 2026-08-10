@@ -12,13 +12,10 @@ every proper quotient of it is sofic, so a simple nonsofic group is
 quotient-minimal among nonsofic groups.
 
 Everything here is two lines from simplicity together with the one permanence
-property of soficity that `Sofic/SoficTransfer` already proves --
-`isSofic_of_injective`.  No small-cancellation input is involved, and nothing
-in this file is specific to any particular construction: the hypotheses are
-`IsSimpleGroup` and `¬ IsSofic`, so the conclusions apply to any simple
-nonsofic group, however obtained.  No such group is constructed in this
-library; the small-cancellation constructions that produce them are
-paper-only.
+property of soficity that `Sofic/SoficTransfer` already proves:
+`isSofic_of_injective`.  Nothing in this file is specific to a particular
+construction; the hypotheses are `IsSimpleGroup` and `¬ IsSofic`, so the
+conclusions apply to any simple nonsofic group.
 
 The soficity of finite groups, used for the finite-quotient and
 quotient-minimality statements, is the positive control

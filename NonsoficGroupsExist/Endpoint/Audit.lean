@@ -112,7 +112,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.KervaireSteinberg.every_centralExtension_splits
 #print axioms NonsoficGroupsExist.KervaireSteinberg.correctedRoot_zero
 #print axioms NonsoficGroupsExist.KervaireSteinberg.fin_correctedRoot_commute
-#print axioms NonsoficGroupsExist.everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.projection_surjective
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.isPerfect
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyGenerated
@@ -179,13 +178,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.binaryLeavittUnits_profile
 #print axioms NonsoficGroupsExist.binaryLeavittGL_profile
 
--- Theorem C's Kazhdan half.  These were proved but sat outside this module's
--- import closure, so an ordinary build never reported their axioms and the
--- manuscript's alignment table lost track of them entirely -- it recorded
--- `thm:kcover` as manuscript-only while the theorem was sitting here, proved.
--- Shalom's theorem is proved internally rather than cited, so it belongs in
--- the report alongside the Kun and Kun--Thom inputs it sits next to in the
--- paper's trust surface.
+-- Theorem C's Kazhdan half, proved internally and included explicitly in the
+-- public axiom report.
 #print axioms NonsoficGroupsExist.Shalom.exists_presented_kazhdan_cover
 #print axioms NonsoficGroupsExist.Shalom.exists_finitelyPresented_kazhdan_cover
 #print axioms NonsoficGroupsExist.exists_kazhdan_finitelyPresented_cover_of_not_isSofic

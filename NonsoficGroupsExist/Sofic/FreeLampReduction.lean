@@ -5,9 +5,8 @@ import Mathlib.Tactic.Group
 /-!
 # Free-lamp amalgams
 
-This file gives the algebraic construction and normal form needed for
-free-lamp amalgams.  It contains no approximation-theoretic input or theorem
-transcribed from the literature.  What is proved:
+This file gives the algebraic construction and normal form for free-lamp
+amalgams.  What is proved:
 
 * the free-lamp amalgam `FreeLamp G Γ K`, built on Mathlib's `PushoutI`, with
   its two canonical embeddings `inAmbient` and `inLamp`;
@@ -89,8 +88,7 @@ theorem inLamp_commute_inAmbient (k : K) {g : G} (hg : g ∈ Γ) :
 /-! ## The witness commutator and its nontriviality -/
 
 /-- The witness: the commutator of the transported lamp `t k t⁻¹` against
-`γ`.  Kun--Thom normalization forces its image to die in every sofic
-representation; the amalgam normal form keeps it alive in the group. -/
+`γ`. -/
 def lampWitness (t γ : G) (k : K) : FreeLamp G Γ K :=
   (inAmbient G Γ K t * inLamp G Γ K k * (inAmbient G Γ K t)⁻¹)
     * inAmbient G Γ K γ

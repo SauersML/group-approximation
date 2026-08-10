@@ -148,9 +148,8 @@ in one place.
 It may be taken finitely generated, by the reduction above.  It is not locally
 embeddable into finite groups, since `isSofic_of_isLEF` would make it sofic; a
 fortiori it is not residually finite, by `isLEF_of_residuallyFinite`; and it is
-infinite, a finite group being residually finite.  What it must *also* be is
-non-amenable, since amenable groups are sofic -- that step is quoted, not proved
-here, and it is the one that puts the known candidate constructions out of reach.
+infinite, a finite group being residually finite.  These are exactly the
+constraints assembled below.
 -/
 
 /-- Residual finiteness implies soficity, through local embeddability. -/
@@ -238,10 +237,8 @@ theorem isHyperlinear_of_forall_small (h : ∀ (F : Finset G) (n : ℕ),
 
 `isSofic_iff_productRestricted` records that requiring multiplicativity for all
 pairs in the test set is the same as requiring it only when the product remains
-in the set -- the textbook convention -- because one may enlarge `F` by `F * F`.
-The hyperlinear side had no such statement, and it should, since the manuscript's
-results are stated against the unrestricted convention while the literature uses
-the restricted one.
+in the set, because one may enlarge `F` by `F * F`.  The same comparison is
+proved here for the hyperlinear definitions.
 
 The argument is the sofic one verbatim: nothing about the metric enters, only
 that enlarging the test set makes the hypothesis stronger and the products
@@ -311,19 +308,11 @@ immaterial: `isSofic_iff_weak` shows that pinning separation at any fixed
 `δ ∈ (0,1)` gives the same class, tensor powers driving a fixed separation to the
 maximum while multiplying the defect only by the number of factors.
 
-On the unitary side only one direction is available here, and that is not an
-omission.  The easy direction is below.  Its converse is exactly what
-amplification would supply, and `tensorPow_phase_collapse` shows amplification
-cannot: `1` and `i·1` are unitary, maximally separated, and have equal fourth
-tensor powers, so the tensor power does not preserve separation of unitaries at
-all.  The converse does hold -- by Rădulescu's theorem, via the embedding of the
-group von Neumann algebra into `R^ω` -- but that is a von Neumann algebra
-theorem, quoted and not proved here.
-
-So the definitional API is asymmetric, and the asymmetry is the one this
-development is about: the multiplicativity convention is immaterial on both
-sides, the separation constant is immaterial on the sofic side, and on the
-unitary side it is immaterial only by a theorem no elementary argument replaces.
+On the unitary side only one direction is established here.  The easy
+direction is below.  `tensorPow_phase_collapse` shows why the permutation
+amplification argument does not transfer: `1` and `i·1` are unitary,
+maximally separated, and have equal fourth tensor powers.  Accordingly the
+formal API records only the direction proved in this corpus.
 -/
 
 /-- A hyperlinear model with separation pinned at a constant `δ` rather than

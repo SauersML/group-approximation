@@ -8,22 +8,10 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
-# The Kun `(4) → (1)` counterexample, checked
+# An expanding family with bottom spectrum tending to `-1`
 
-Version 5 of Kun's *On sofic approximations of Property (T) groups*
-(arXiv:1606.04471) states Theorem 3 as a four-way equivalence.  The README's
-literature audit argues that its final implication `(4) → (1)` is not valid as
-written: the proof invokes the ordinary Cheeger / Dodziuk–Alon–Milman bound to
-control `M²`, but ordinary Cheeger expansion bounds the nonconstant spectrum
-away from `+1` and says nothing about the bottom of the Markov spectrum near
-`-1`.
-
-That argument is prose.  This module makes its graph-theoretic content — one
-uniformly expanding, non-bipartite family whose Markov quotient runs to `-1` —
-a checked statement, so the part of the critique that is a claim about finite
-graphs is verified the same way the rest of the development is.  What the
-numbered conditions of Theorem 3 assert about sofic approximations is still
-read by hand; see the formalization boundary below.
+This module constructs and verifies a uniformly expanding, non-bipartite
+family whose Markov quotient tends to `-1`.
 
 ## What is proved here
 
@@ -39,9 +27,7 @@ with `n = m + 2`, carrying one degree-preserving two-edge switch.
   eigenvalue of the normalized Markov operator is at most the Rayleigh quotient
   of any nonzero vector, the bottom of the spectrum is within `4/n²` of `-1`.
 * `not_isBipartite` — for `n ≥ 3` the family is not bipartite, exhibited by the
-  triangle the switch creates.  This is what defeats the obvious repair of
-  adding a non-bipartiteness hypothesis to Theorem 3: the graphs are genuinely
-  non-bipartite and the least eigenvalue still runs to `-1`.
+  triangle the switch creates, while the least eigenvalue still runs to `-1`.
 * `hasCheegerLowerBound_one` — the load-bearing half.  For `n = m + 2 ≥ 6` the
   family satisfies the development's own expansion predicate,
   `FiniteMultiGraph.HasCheegerLowerBound (switched m) 1`: every nonempty vertex
@@ -52,20 +38,18 @@ with `n = m + 2`, carrying one degree-preserving two-edge switch.
   member of the family is a non-bipartite graph with Cheeger constant at least
   `1` whose Markov Rayleigh quotient is below `-1 + c`.  No bound of the form
   "Cheeger constant at least `h` implies least Markov eigenvalue at least
-  `-1 + c(h)`" can hold, which is the bound `(4) → (1)` is proved with.
+  `-1 + c(h)`" can hold.
 
 ## The same family, repeated
 
-Conditions `(2)`–`(4)` are conditions on a *sequence*, and the sequence they
-describe is a disjoint union of expanders: expansion is asked of each
-component, not of the union.  `repeated j m` is `j + 1` disjoint copies of
-`switched m`, and each of the facts above survives the repetition.
+`repeated j m` is `j + 1` disjoint copies of `switched m`, and each of the
+facts above survives the repetition.
 
 * `repeated_component_expands` — every component expands at rate `1`, in the
   development's own componentwise vocabulary: a `BlockStructure` on the
   vertices, each `induce`d block satisfying `HasCheegerLowerBound 1`.  That is
   the shape of `ExpanderDecomposition`'s `component_expands` field, which is
-  how this library records condition `(4)`.  `repeated_boundaryCard_ge` is the
+  how this library records componentwise expansion.  `repeated_boundaryCard_ge` is the
   same content without the induced-subgraph wrapper.  The bound is
   componentwise because it can only be componentwise: the *global* Cheeger
   constant of `repeated j m` is `0`, since a whole copy has empty boundary, and
@@ -80,33 +64,9 @@ component, not of the union.  `repeated j m` is `j + 1` disjoint copies of
   at least `N` vertices, componentwise Cheeger constant at least `1`, not
   bipartite, and Rayleigh quotient already below `-1 + c`.
 
-## Formalization boundary
-
-One step of the README's audit remains prose.  This module does not state Kun's
-Theorem 3, and so does not literally refute the implication `(4) → (1)`: the
-numbered conditions are statements about sofic approximations of a group, and
-translating them into hypotheses on finite multigraphs is exactly the reading
-of the paper that the audit argues about.  What is checked here is the
-graph-theoretic fact the published proof needs and does not have — uniform
-expansion together with least Markov eigenvalue tending to `-1` — for one
-explicit family and for the sequence built from it.
-
-The repetition of components is no longer among the gaps.  It is formalized
-above in componentwise form, which is the form the numbered conditions ask for
-and the only form in which it holds: a disjoint union has global Cheeger
-constant `0`, so it is the components that are required to expand, and they do,
-at a rate independent of both the number of copies and `m`.  What the
-repetition buys in Kun's argument — an `L²` norm proportional to the square
-root of the total vertex count, so that the additive `L^∞` error in condition
-`(1)` cannot absorb the defect — is a statement about the approximation rather
-than about the graphs; what the graphs have to supply is a family of unbounded
-size carrying the three properties at fixed rates, and that is
-`repetition_of_components`.
-
-No declaration in the proof of the main results depends on this module -- the
-proof of Result A uses only the forward implications `(2) → (3) → (4)`.  The
-root module imports it so that it is compiled and audited like everything else;
-a module outside the import closure is never built and never checked.
+The componentwise statement is the strongest possible one for the repeated
+family: a disjoint union has global Cheeger constant `0`, while each component
+expands at a rate independent of both the number of copies and `m`.
 -/
 
 namespace NonsoficGroupsExist

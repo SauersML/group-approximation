@@ -17,13 +17,8 @@ Two unconditional layers of the integral story:
   family, with the **raw two-word compressor set** `{u, w·u}` of
   `RawSwapCompressors` — no sign correction, no order-two relation, no `K₁`.
 
-This module carries no conditional theorem.  What remains open over `ℤ` is
-exactly Ershov–Jaikin-Zapirain's theorem (*Property (T) for noncommutative
-universal lattices*, Invent. Math. 179 (2010)) at finitely generated rings:
-a formalization of that input would combine with the unconditional corner
-theorem `GeneralCornerTheorem.corner_not_isSofic` — which takes the two
-`(T)` statements as its printed hypotheses — to close the integral case,
-with no further work in this file.
+This module exports only these two algebraic layers; it does not expose a
+conditional property-`(T)` endpoint.
 -/
 
 namespace NonsoficGroupsExist

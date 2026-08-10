@@ -196,13 +196,12 @@ theorem hsDistSq_le_sq_l2_opNorm (Y : FiniteModel) (A B : Matrix Y Y ℂ) :
 /-! ## Operator-norm models
 
 The operator-norm analogue of `HyperlinearModel`: unitary matrices,
-multiplicativity and separation both measured in operator norm.  This is the
-shape of matricial approximation the weak-MF literature quantifies over, in
-the same local finite-test-set format as every other model in this
-development.  `δ` is the separation constant and `ε` the multiplicative
-accuracy; the separation is pinned at a constant because the operator norm,
-unlike the Hilbert–Schmidt norm on unitaries, has no canonical maximal
-separation to normalize to.
+multiplicativity and separation both measured in operator norm, in the same
+local finite-test-set format as the other models in this development.  `δ` is
+the separation constant and `ε` the multiplicative accuracy; the separation
+is pinned at a constant because the operator norm, unlike the
+Hilbert–Schmidt norm on unitaries, has no canonical maximal separation to
+normalize to.
 -/
 
 /-- A finite unitary model with both laws measured in operator norm. -/

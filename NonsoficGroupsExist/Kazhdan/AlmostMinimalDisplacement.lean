@@ -150,9 +150,8 @@ whose `M`-neighbours have displacement more than one half.  A
 counterexample would halve displacement within a scale-invariant
 distance; iterating from the witness produces a geometric Cauchy
 sequence whose limit is a nonzero invariant vector.  Requiring only one
-witness rather than almost-invariant vectors of every tolerance
-strengthens the cited lemma and lets each finite quotient in Shalom's
-argument supply its own witness representation directly. -/
+witness rather than almost-invariant vectors of every tolerance lets each
+finite quotient supply its own witness representation directly. -/
 theorem exists_displacement_one_of_witness [CompleteSpace E]
     (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (Q : Finset G) (hQ : Q.Nonempty)
     (hgen : Subgroup.closure (Q : Set G) = ⊤)
@@ -290,9 +289,8 @@ theorem exists_displacement_one_of_witness [CompleteSpace E]
     linarith
   linarith
 
-/-- The cited form of Bekka–de la Harpe–Valette Lemma 3.2.5: with
-almost-invariant unit vectors of every tolerance, every isolation radius
-is realized by some displacement-one vector. -/
+/-- With almost-invariant unit vectors of every tolerance, every isolation
+radius is realized by some displacement-one vector. -/
 theorem exists_displacement_one_of_almost_invariant [CompleteSpace E]
     (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (Q : Finset G) (hQ : Q.Nonempty)
     (hgen : Subgroup.closure (Q : Set G) = ⊤)

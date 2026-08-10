@@ -5,8 +5,7 @@ import Mathlib.GroupTheory.PushoutI
 
 This file defines the symmetric double `G *_Γ G` and proves its elementary
 structural interface.  It contains no approximation-theoretic endpoint:
-such an endpoint requires additional mathematics and is not represented by
-a literature-backed theorem parameter.
+only the algebraic construction established below is exported.
 -/
 
 namespace NonsoficGroupsExist

@@ -35,9 +35,8 @@ Main results:
   allowed to depend on the test set, which is the form
   `Sofic.SoficUltraproduct` needs.
 
-Nothing in the proof of the main results depends on this module; it is here to
-close the last gap between the formalized `IsSofic` and the conventions in the
-literature.
+These results prove internally that the fixed-separation and sharp-separation
+definitions agree.
 -/
 
 namespace NonsoficGroupsExist

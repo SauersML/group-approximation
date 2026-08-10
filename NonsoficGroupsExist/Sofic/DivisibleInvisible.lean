@@ -241,13 +241,9 @@ homomorphism to a finite group kills it, so no finite quotient separates any of
 its elements from the identity.  Nothing about centres or about the ambient
 group is used.
 
-So for a group to fail residual finiteness -- which it must, to be a candidate,
-since residually finite groups are sofic -- it is enough to plant a divisible
-subgroup, and a divisible centre is the cheapest way.  That is what Thom's `K`
-does and what `Heis ℤ[1/p] / ℤ` does.  What such a group must *also* be is
-non-amenable, since amenable groups are sofic; and that is the expensive
-ingredient, the one Cornulier's Kazhdan property supplies and a Heisenberg group
-cannot.  The second half is quoted, not proved here.
+Thus a nontrivial divisible subgroup gives a direct obstruction to residual
+finiteness.  The declarations below state only that finite-quotient
+obstruction.
 -/
 
 /-- **A divisible subgroup is invisible to every finite quotient of the ambient

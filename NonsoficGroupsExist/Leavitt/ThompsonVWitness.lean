@@ -626,10 +626,9 @@ theorem toPerm_mem_thompsonV_of_mem_witness (x : (BinaryLeavittAlgebra k)ˣ)
       exact Subgroup.inv_mem _ ihy
 
 /-- **Proposition `prop:vnotlef`, unconditionally** (checkpoint `D4`):
-Thompson's group `V` is not LEF.  The manuscript derives this from the
-cited simplicity and finite presentability of `V`; here it follows
-kernel-checked from the finite-obstruction witness, which embeds into `V`
-through the faithful stream action, since LEF passes to subgroups. -/
+Thompson's group `V` is not LEF.  It follows from the finite-obstruction
+witness, which embeds into `V` through the faithful stream action, since LEF
+passes to subgroups. -/
 theorem thompsonV_not_isLEF : ¬ IsLEF ↥thompsonV := by
   intro hLEF
   refine (family (ZMod 2)).not_isLEF_cornerWitnessSubgroup ?_
