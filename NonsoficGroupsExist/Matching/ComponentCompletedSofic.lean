@@ -202,5 +202,71 @@ noncomputable def completedSoficApproximation
       (D.completedAmbientPerm n g)] at htriangle
     linarith
 
+/-- The same completed approximation on its native tagged disjoint union.
+Unlike the transported version, this presentation exposes exact component
+preservation definitionally. -/
+noncomputable def completedComponentSoficApproximation
+    (hsymm : ∀ t ∈ T, t⁻¹ ∈ T)
+    (hgen : Subgroup.closure (T : Set G) = ⊤) : SoficApproximation G where
+  model := D.completedComponentModel
+  map := D.completedComponentPerm
+  card_tendsToInfinity := by
+    intro M
+    obtain ⟨N, hN⟩ := S.card_tendsToInfinity M
+    refine ⟨N, fun n hn ↦ ?_⟩
+    rw [D.card_completedComponentModel n]
+    exact hN n hn
+  asymptoticallyMultiplicative := by
+    intro g h ε hε
+    have hnegligible :=
+      D.completedComponentPerm_multiplicationError_negligible hsymm hgen g h
+    unfold Negligible Vanishing at hnegligible
+    obtain ⟨N, hN⟩ := hnegligible ε hε
+    refine ⟨N, fun n hn ↦ ?_⟩
+    have h := hN n hn
+    unfold hammingDistance at h ⊢
+    rw [abs_of_nonneg (div_nonneg (by positivity) (by positivity))] at h
+    exact h
+  asymptoticallyFaithful := by
+    intro g hg ε hε
+    have hhalf : 0 < ε / 2 := half_pos hε
+    obtain ⟨N₁, hN₁⟩ := S.asymptoticallyFaithful g hg (ε / 2) hhalf
+    have hcloseNeg := Negligible.congr
+      (D.componentCompletedAction_disagreement_sum_negligible hsymm hgen g)
+      (fun n ↦ (D.completedComponentPerm_ambient_disagreement_card n g).symm)
+    unfold Negligible Vanishing at hcloseNeg
+    obtain ⟨N₂, hN₂⟩ := hcloseNeg (ε / 2) hhalf
+    refine ⟨max N₁ N₂, fun n hn ↦ ?_⟩
+    have hfaith := hN₁ n ((le_max_left N₁ N₂).trans hn)
+    have hclose := hN₂ n ((le_max_right N₁ N₂).trans hn)
+    have hambfaith : 1 - ε / 2 < hammingDistance
+        (D.completedComponentModel n) (D.ambientComponentPerm n g) 1 := by
+      have htransport := hammingDistance_permCongr
+        (D.completedComponentEquiv n).symm (S.map n g) 1
+      rw [← htransport] at hfaith
+      have hone : (D.completedComponentEquiv n).symm.permCongr
+          (1 : Equiv.Perm (S.model n)) = 1 := by
+        ext y
+        simp only [Equiv.permCongr_apply, Equiv.Perm.one_apply,
+          Equiv.apply_symm_apply]
+      rw [hone] at hfaith
+      exact hfaith
+    have hclose' : hammingDistance (D.completedComponentModel n)
+        (D.completedComponentPerm n g) (D.ambientComponentPerm n g) < ε / 2 := by
+      unfold hammingDistance
+      rw [D.card_completedComponentModel n]
+      rw [abs_of_nonneg (div_nonneg (by positivity) (by positivity))] at hclose
+      exact hclose
+    have htriangle := hammingDistance_triangle (D.completedComponentModel n)
+      (D.ambientComponentPerm n g) (D.completedComponentPerm n g) 1
+    rw [hammingDistance_comm (D.completedComponentModel n)
+      (D.ambientComponentPerm n g) (D.completedComponentPerm n g)] at htriangle
+    linarith
+
+/-- Every completed group label preserves its component tag exactly. -/
+@[simp] theorem completedComponentPerm_fst (n : ℕ) (g : G)
+    (x : D.completedComponentModel n) :
+    (D.completedComponentPerm n g x).1 = x.1 := rfl
+
 end ExpanderDecomposition
 end NonsoficGroupsExist
