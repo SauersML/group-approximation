@@ -29399,3 +29399,141 @@ fixed-sign certificate remains:
 `the canonical trace on CAR(I_X,beta) crossed_product G is CE`.
 
 Full proof: `docs/PERFECT_CORE_KUN_THOM_WREATH.md`, Lemma 5 and Theorem 6.
+
+# Finite-quotient Weyl models have an exact first-order curvature floor (2026-08-09)
+
+Let `X=G/Gamma`, let `o=Gamma`, and let `x=h Gamma`, where
+`h notin Gamma` lies in the relative profinite closure of `Gamma`.  Thus
+every map of `G`-sets from `X` to a finite `G`-set identifies `x` and `o`.
+Put
+
+`u=delta_x-delta_o in I`.
+
+Choose a third point `y` distinct from `o,x` and put
+
+`v=delta_x-delta_y in I`.
+
+Then `<u,v>=1`, so in the integral Heisenberg cover
+
+`[((u,0),0),((0,v),0)]=z`.                            `(FQW1)`
+
+Now let `p:X->Y` be any map to a finite `G`-set.  Its fiber-sum map
+`p_*:Z^(X)->Z^(Y)` kills `u`, because `p(x)=p(o)`.  In the finite Weyl
+model induced by `p_*`, the first element in `(FQW1)` is therefore the
+identity.  Its represented commutator is exactly `1`, whereas the required
+right-hand side in a sector with `z |-> exp(i epsilon)` is
+`exp(i epsilon)`.  Consequently the defect on this fixed relation is
+
+`|1-exp(i epsilon)|=epsilon+O(epsilon^3)`,             `(FQW2)`
+
+and in particular its ratio to `epsilon` tends to `1`.
+
+This is a sharp obstruction to the small-phase tensor-amplification lemma:
+no classical finite-quotient Weyl model can have `o(epsilon)` defects.
+The radical translation `u` must remain nontrivial in the quantum model
+even though every finite `G`-set quotient kills its underlying coordinate
+difference.
+
+There is also a model-independent quantitative version.  If a unitary map
+`phi` has multiplication error at most `delta` on all partial products
+needed to evaluate `[a,b]=z`, then a fixed telescoping calculation gives
+
+`||[phi(a),phi(b)]-phi(z)||_2 <= C delta`
+
+for an absolute constant `C` (one may take `C=7` with the unreduced word
+evaluation).  If additionally `||phi(a)-1||_2<=eta` and
+`||phi(z)-exp(i epsilon)1||_2<=eta`, then
+
+`|1-exp(i epsilon)| <= 3 eta + C delta`.               `(FQW3)`
+
+Hence any construction which collapses the radical edge to
+`eta=o(epsilon)` necessarily has `delta=Omega(epsilon)`.  The remaining
+TRUE-side task is therefore not merely to improve estimates on a
+finite-quotient model: it must use a genuinely nonclassical approximate
+covariance mechanism which retains `u` at first order.
+
+# Fourier-odd curvature cancels while the Heisenberg phase doubles (2026-08-09)
+
+The integral cover has an exact symmetry which distinguishes useful phase
+balancing from conjugate tensor cancellation.  On
+
+`Heis(I directSum I)={(u,v,a)}`
+
+with multiplication
+
+`(u,v,a)(u',v',b)`
+` =(u+u',v+v',a+b+<u,v'>)`,
+
+define
+
+`F(u,v,a)=(v,-u,a-<u,v>)`.                            `(FOC1)`
+
+**Lemma (integral Fourier quarter-turn).**  Formula `(FOC1)` defines an
+automorphism of `Heis(I directSum I)`.  It commutes with the diagonal
+`G`-action, fixes `z=(0,0,1)`, and satisfies
+
+`F^2(u,v,a)=(-u,-v,a)`,  `F^4=id`.                    `(FOC2)`
+
+**Proof.**  The central coordinate of `F((u,v,a)(u',v',b))` is
+
+`a+b-<u,v>-<u',v'>-<u',v>`,
+
+after expansion.  The central coordinate of
+`F(u,v,a)F(u',v',b)` is the same, because its cocycle contribution is
+`<v,-u'>=-<u',v>`.  This proves multiplicativity.  The inverse follows
+from `(FOC2)`.  The dot product is `G`-invariant, so `F` commutes with `G`,
+and all remaining assertions are immediate.  Thus `F` extends to an
+automorphism of `E_Z` acting trivially on `G`.  End proof.
+
+This symmetry gives a sharp sufficient condition for the desired
+small-phase maps.  For a map `phi_t:E_Z->U(d_t)`, write its multiplicative
+defect unitary as
+
+`D_t(g,h)=phi_t(g)phi_t(h)phi_t(gh)^*`.
+
+**Theorem (Fourier-odd curvature cancellation).**  Suppose `t->0` and
+there are real functions `c_t(g,h)` such that, for every fixed `g,h`,
+
+`||D_t(g,h)-exp(i t c_t(g,h))1||_2=O_(g,h)(t^2)`,       `(FOC3)`
+
+`c_t(Fg,Fh)=-c_t(g,h)+O_(g,h)(t)`,                    `(FOC4)`
+
+and
+
+`||phi_t(z)-exp(i t)1||_2=O(t^2)`.                    `(FOC5)`
+
+Then there is a Connes-embeddable character of `E_Z` which does not kill
+`z`, and hence there is a hyperlinear nonsofic group.
+
+**Proof.**  Put
+
+`Psi_t(g)=phi_t(g) tensor phi_t(Fg)`.
+
+Its defect unitary is `D_t(g,h) tensor D_t(Fg,Fh)`.  Equations
+`(FOC3)--(FOC4)` and tensor telescoping give
+
+`||Psi_t(g)Psi_t(h)-Psi_t(gh)||_2=O_(g,h)(t^2)`.
+
+Since `F(z)=z`, equation `(FOC5)` gives
+
+`||Psi_t(z)-exp(2 i t)1||_2=O(t^2)`.
+
+Apply the small-phase tensor-amplification lemma with central phase
+`epsilon=2t`.  It produces a tracial-ultraproduct homomorphism detecting
+`z`; the one-character integral Weyl endpoint then gives a hyperlinear
+nonsofic image.  End proof.
+
+The sign pattern is the important point.  Ordinary conjugate tensoring
+replaces both curvature and central phase by their negatives, so it removes
+the witness together with the error.  The Fourier automorphism instead
+fixes `z`.  Therefore an `F`-odd first-order covariance curvature cancels
+between the two polarizations while the desired phase doubles.
+
+There is also an exact adversarial constraint on any attempted proof of
+`(FOC4)`: the radical commutator `(FQW1)` shows that a chart in which the
+first-polarization radical translation is collapsed cannot be paired only
+with another collapsed chart.  In the Fourier mate that translation becomes
+a genuine second-polarization modulation.  Thus the next finite calculation
+is concrete: construct a one-polarization Weyl/chamber map, compute its
+first-order Egorov curvature, and verify that the position--momentum swap
+`(FOC1)` makes that curvature odd on the fixed exhaustion.
