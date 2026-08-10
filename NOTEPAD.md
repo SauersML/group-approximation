@@ -31715,3 +31715,49 @@ not automatically prove the twisted double MF, but the balanced relative
 lift has been reduced to a finite-kernel type plus one `p`-fold cyclic
 spectral rotation.  Full proof and scope audit:
 `docs/VIRTUALLY_CYCLIC_RADICAL_SHEAR.md`.
+
+# The radical shear cannot extend to a vertex automorphism (2026-08-10)
+
+The free-stabilized cyclic edge `(FCS3)--(FCS7)` is the preferred shear
+endpoint: it improves the unstabilized virtually-cyclic construction above
+to an exactly cyclic centralizer.  There is, however, no automorphism trick
+which turns that twisted double into Shulman's untwisted symmetric double.
+
+**Lemma (finite-factor radical formula).**  For every group `B` and every
+finite sofic group `F`,
+
+`Rad_sof(B times F)=Rad_sof(B) times {1}`.             `(FRA1)`
+
+**Proof.**  If `(b,f)` belongs to the radical, projection to the sofic group
+`F` gives `f=1`.  If `b` is not in `Rad_sof(B)`, choose a homomorphism from
+`B` to a sofic group which does not kill `b`; its product with the identity
+map of `F` detects `(b,1)` in a sofic target.  This proves both inclusions.
+End proof.
+
+The full sofic radical is characteristic: an automorphism merely permutes
+all homomorphisms to sofic groups.  Hence `(FRA1)` gives the following
+obstruction.
+
+**Corollary (nonextendability of a radical shear).**  Let
+
+`1!=r in Rad_sof(B)` and `1!=z in C_p`.
+
+There is no automorphism `beta` of `B times C_p` satisfying
+
+`beta(r,1)=(r,z)`.                                    `(FRA2)`
+
+Indeed `(r,1)` lies in the characteristic radical in `(FRA1)`, whereas
+`(r,z)` does not.  More generally, no automorphism of any vertex group whose
+finite sofic quotient detects `z` can extend an edge shear which multiplies
+a radical element by `z`.
+
+Consequently the automorphism
+
+`alpha(r^n,z^e)=(r^n,z^(e+n mod p))`
+
+on the cyclic shear edge cannot extend to either vertex.  If it did, the
+twisted double would be isomorphic to an untwisted double and Shulman's
+Theorem 10 would prove it MF automatically.  `(FRA2)` rules out exactly this
+shortcut.  The remaining cyclic spectral balance is therefore genuine; it
+cannot be removed by free stabilization, a Nielsen transformation, or a
+vertex reparametrization.
