@@ -27,16 +27,6 @@ namespace SoficApproximation
 
 variable {H Γ : Type} [Group H] [Group Γ]
 
-/-- For a restricted approximation, external conjugacy by the model
-permutation of an element centralizing `Γ` is literally the ambient
-commutation error. -/
-theorem externalConjugacyError_comap_id_eq_commutationError
-    (A : SoficApproximation H) (ι : Γ →* H) (hι : Function.Injective ι)
-    (k : H) (n : ℕ) (g : Γ) :
-    ((A.comap ι hι).externalConjugacyError n (A.map n k) id g) =
-      A.commutationError n k (ι g) := by
-  rfl
-
 /-- Normalizing at a nontrivial group involution assigns it an exact
 involutive permutation on every finite model. -/
 theorem normalize_involution_map_mul_self (A : SoficApproximation H)
@@ -71,7 +61,6 @@ theorem normalizedCentralizer_crossing_negligible
     apply Negligible.congr
       ((A.normalize {k}).commutationError_negligible k (ι g) (hcomm g))
     intro n
-    rw [SoficApproximation.externalConjugacyError_comap_id_eq_commutationError]
     rfl
   · exact D.all_almost_invariant hsymm hgen
 

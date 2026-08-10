@@ -33,6 +33,23 @@ structure GroupoidPresentation (I : Type u) where
   inv_comp : ∀ {X Y} (f : Rep X Y), rel Y Y (comp (inv f) f) (one Y)
   comp_inv : ∀ {X Y} (f : Rep X Y), rel X X (comp f (inv f)) (one X)
 
+/-- The one-object, one-arrow presentation.  Besides being the terminal
+finite example, this records that the presentation axioms are jointly
+satisfiable without importing any groupoid theorem. -/
+def unitGroupoidPresentation : GroupoidPresentation Unit where
+  Rep := fun _ _ ↦ Unit
+  rel := fun _ _ ↦ ⟨Eq, Eq.refl, Eq.symm, Eq.trans⟩
+  one := fun _ ↦ ()
+  comp := fun _ _ ↦ ()
+  inv := fun _ ↦ ()
+  comp_respects := by intros; rfl
+  inv_respects := by intros; rfl
+  one_comp := by intros; rfl
+  comp_one := by intros; rfl
+  assoc := by intros; rfl
+  inv_comp := by intros; rfl
+  comp_inv := by intros; rfl
+
 namespace GroupoidPresentation
 
 /-- Objects of the quotient groupoid.  The wrapper keeps the category

@@ -65,6 +65,13 @@ inductive IsRelation : FreeGroup (SteinbergGenerator I R) → Prop
 def relations : Set (FreeGroup (SteinbergGenerator I R)) :=
   {w | IsRelation w}
 
+/-- The word expressing additivity in a Steinberg root subgroup. -/
+def addRelationWord (i j : I) (hij : i ≠ j) (a b : R) :
+    FreeGroup (SteinbergGenerator I R) :=
+  FreeGroup.of (generator i j hij a) *
+    FreeGroup.of (generator i j hij b) *
+    (FreeGroup.of (generator i j hij (a + b)))⁻¹
+
 end SteinbergGroup
 
 /-- The Steinberg group `St_I(R)`. -/
