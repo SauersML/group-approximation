@@ -48,7 +48,8 @@ theorem rootSet_generate :
   constructor
   · rintro ⟨i, j, hij, a, ha⟩
     refine ⟨⟨i, j, hij, a⟩, ?_⟩
-    simpa only [x] using ha
+    change SteinbergGroup.x i j hij a = g
+    exact ha
   · rintro ⟨q, rfl⟩
     rcases q with ⟨i, j, hij, a⟩
     exact ⟨i, j, hij, a, rfl⟩

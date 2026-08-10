@@ -462,12 +462,11 @@ omit [LinearOrder Y] in
 identity in operator norm (with `0 ≤ ε ≤ 2`), its exterior character is at
 least `1 - d ε²/4`. -/
 theorem one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
-    (hY : Nonempty Y) {W : Matrix Y Y ℂ}
+    {W : Matrix Y Y ℂ}
     (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {ε : ℝ} (hε2 : ε ≤ 2) (hnorm : ‖W - 1‖ ≤ ε) :
     1 - Fintype.card Y * ε ^ 2 / 4 ≤
       Complex.normSq ((((2 : ℂ)⁻¹) • (1 + W)).det) := by
-  letI : Nonempty Y := hY
   have hε0 : 0 ≤ ε := (norm_nonneg (W - 1)).trans hnorm
   rw [normSq_det_midpoint_eq_prod hW]
   let D : Matrix Y Y ℂ := W - 1
@@ -616,7 +615,7 @@ theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
     rw [opNorm_mul_conjTranspose_sub_one hB]
     exact hnorm
   have hdet := one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
-    hY hW hε2 hnormW
+    hW hε2 hnormW
   rw [hsDistSq_exteriorAdMatrix Y hA hB]
   change 1 - Fintype.card Y * ε ^ 2 / 4 ≤
     Complex.normSq ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det) at hdet
