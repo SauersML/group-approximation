@@ -4,6 +4,7 @@ import NonsoficGroupsExist.Sofic.SoficTransfer
 import NonsoficGroupsExist.Matching.ExternalCompressorCrossing
 import NonsoficGroupsExist.Matching.DecompositionRefinement
 import NonsoficGroupsExist.Matching.ComponentDivergence
+import NonsoficGroupsExist.Matching.RepairedComponentBisection
 
 /-!
 # Involutions in approximate centralizers act on expander components
@@ -96,6 +97,27 @@ theorem normalizedCentralizer_nonreciprocalMass_negligible
   · exact fun n ↦ A.normalize_involution_map_mul_self hk hsq n
   · exact normalizedCentralizer_leakage_negligible
       A ι hι k hcomm hsymm hgen D
+
+/-- The normalized centralizing involution acts by a genuine bisection of
+the asymptotic component groupoid.  The object permutation is the exact
+involutive repair of the dominant-target map; its arrows are restrictions of
+the model involution on reciprocal components and identities on the
+negligible exceptional component mass. -/
+noncomputable def normalizedCentralizer_componentBisection
+    (hk : k ≠ 1) (hsq : k * k = 1)
+    (hcomm : ∀ g : Γ, Commute k (ι g))
+    (hsymm : ∀ g ∈ T, g⁻¹ ∈ T)
+    (hgen : Subgroup.closure (T : Set Γ) = ⊤)
+    (D : ExpanderDecomposition ((A.normalize {k}).comap ι hι) T) :
+    FiniteGroupoid.Bisection
+      (asymptoticPartialGroupoidPresentation D.ComponentSequence
+        (fun n ↦ (Fintype.card (((A.normalize {k}).comap ι hι).model n) : ℝ))
+        (fun _ ↦ by positivity) D.componentSequenceModel).Obj :=
+  D.repairedComponentBisection
+    (fun n ↦ (A.normalize {k}).map n k)
+    (fun n ↦ A.normalize_involution_map_mul_self hk hsq n)
+    (normalizedCentralizer_leakage_negligible
+      A ι hι k hcomm hsymm hgen D)
 
 end ExpanderDecomposition
 end NonsoficGroupsExist
