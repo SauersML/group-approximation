@@ -102,38 +102,6 @@ theorem elementaryBase_not_isSofic {n : ℕ} (hn : 2 ≤ n) :
   exact FiniteFieldLeavitt.ambient_not_isSofic (ZMod 2)
     (isSofic_of_injective e.symm.toMonoidHom e.symm.injective hsofic)
 
-/-- The canonical Steinberg projection as an isomorphism, conditional on
-vanishing of the **unstable** Steinberg kernel `K₂(n,L)`.  No such
-vanishing or stability theorem is proved here. -/
-noncomputable def projectionEquiv (n : ℕ)
-    (hinj : Function.Injective
-      (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n)) :
-    BinaryLeavittSteinberg n ≃* ElementaryBase n :=
-  MulEquiv.ofBijective SteinbergGroup.projection
-    ⟨hinj, projection_surjective n⟩
-
-/-- Vanishing of the Steinberg kernel also transports the established
-nonsoficity of the elementary base to the Steinberg group. -/
-theorem not_isSofic_of_projection_injective {n : ℕ} (hn : 2 ≤ n)
-    (hinj : Function.Injective
-      (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n)) :
-    ¬ IsSofic (BinaryLeavittSteinberg n) := by
-  intro hsofic
-  exact elementaryBase_not_isSofic hn
-    (isSofic_of_injective (projectionEquiv n hinj).symm.toMonoidHom
-      (projectionEquiv n hinj).symm.injective hsofic)
-
-/-- A centrality certificate for the canonical kernel produces the exact
-`CentralExtension` consumed by the quotient-rigidity theorem. -/
-def centralExtension (n : ℕ)
-    (hker : (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
-      Subgroup.center (BinaryLeavittSteinberg n)) :
-    CentralExtension (BinaryLeavittSteinberg n) (ElementaryBase n) :=
-  SteinbergGroup.centralExtension hker
-
 /-- Every central extension of the concrete binary-Leavitt Steinberg group
 splits in rank at least five.  This is unconditional and does not assert
 anything about the kernel of the canonical map to the elementary group. -/
@@ -143,19 +111,6 @@ theorem everyCentralExtensionSplits
     ∃ s : BinaryLeavittSteinberg n →* E,
       P.projection.comp s = MonoidHom.id _ :=
   KervaireSteinberg.every_centralExtension_splits hn P
-
-/-- Conditional only on centrality of the canonical Steinberg kernel, the
-binary-Leavitt Steinberg projection is the universal central extension in
-rank at least five.  In particular, this theorem neither assumes nor proves
-injectivity of the projection. -/
-noncomputable def universalCentralExtension_of_kernel_central
-    {n : ℕ} (hn : 5 ≤ n)
-    (hker : (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
-      Subgroup.center (BinaryLeavittSteinberg n)) :
-    UniversalCentralExtension (BinaryLeavittSteinberg n)
-      (ElementaryBase n) :=
-  KervaireSteinberg.fin_universalCentralExtension hn hker
 
 end BinaryLeavittSteinberg
 end NonsoficGroupsExist

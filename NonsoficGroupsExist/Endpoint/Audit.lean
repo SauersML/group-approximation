@@ -120,7 +120,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.elementaryBase_not_isSofic
 #print axioms NonsoficGroupsExist.LeavittStrictCentralCoverWitness.witness_strict
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.everyCentralExtensionSplits
-#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.universalCentralExtension_of_kernel_central
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.rankThree_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
