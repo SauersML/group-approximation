@@ -36049,3 +36049,98 @@ Primary representation-rigidity pin: I. Rapinchuk, *On linear
 representations of Chevalley groups over commutative rings*, arXiv:1005.0422,
 Main Theorem, reductive-closure case.  The `SL_d(Z)` compact-target statement
 is the standard superrigidity corollary.
+
+# Co-hyperlinear subgroups are closed under arbitrary intersections
+
+The exact RE/C gate `(RER1)--(RER12)` leaves a superficially different use
+of Gao--Junge--Gao Theorem 4.1: write the Kun--Thom edge as an intersection
+of larger subgroups, prove relative embeddability for each larger inclusion,
+and then pass to the intersection.  When the larger inclusions are obtained
+from the paper's group-theoretic co-hyperlinearity criterion, this route is
+also impossible.  The obstruction is a closure property which does not seem
+to have been stated explicitly there.
+
+**Theorem (intersection closure).**  Let `G` be a countable group.  An
+arbitrary intersection of subgroups which are co-hyperlinear in `G` is again
+co-hyperlinear in `G`.
+
+**Proof.**  The empty intersection is `G`, which is co-hyperlinear in itself
+(take both constant sequences equal to `G`).  First consider a nonempty
+countable family `(K^j)_(j>=1)`.  For every
+`j`, choose decreasing sequences `(G_i^j,H_i^j)` witnessing
+co-hyperlinearity:
+
+`intersection_i G_i^j=K^j`, `H_i^j<=G_i^j`,
+`H_i^j normal G`, `G/H_i^j hyperlinear`,
+`G_i^j/H_i^j amenable`.                                  `(CHI1)`
+
+Put
+
+`P_n=intersection_(1<=j<=n) G_n^j`,
+`L_n=intersection_(1<=j<=n) H_n^j`.                      `(CHI2)`
+
+These are decreasing, `L_n<=P_n`, and `L_n normal G`.  The diagonal map
+
+`G/L_n -> product_(1<=j<=n) G/H_n^j`                     `(CHI3)`
+
+is injective.  Finite products and subgroups of hyperlinear groups are
+hyperlinear, so `G/L_n` is hyperlinear.  Similarly,
+
+`P_n/L_n -> product_(1<=j<=n) G_n^j/H_n^j`               `(CHI4)`
+
+is injective, and the target is amenable.  Thus `P_n/L_n` is amenable.
+Finally,
+
+`intersection_n P_n=intersection_j K^j`.                 `(CHI5)`
+
+Indeed, if `g` is outside the right-hand side, choose `j` with `g notin K^j`
+and then `i` with `g notin G_i^j`; every
+`n>=max(i,j)` excludes `g` from `P_n`.  Equations `(CHI1)--(CHI5)` are the
+definition of co-hyperlinearity.
+
+For an arbitrary family with intersection `K`, enumerate the countable set
+`G-K`.  For each enumerated element choose one member of the family which
+excludes it.  This produces a countable subfamily with the same intersection,
+and the first part applies.  End proof.
+
+There is a useful sigma-version for the present finitely generated ambient.
+
+**Corollary.**  Suppose `G` and `Gamma` are finitely generated.  If `Gamma`
+is an intersection of subgroups which are sigma-co-hyperlinear in `G`, then
+`Gamma` is co-hyperlinear in `G`.
+
+**Proof.**  For each `g notin Gamma`, choose a sigma-co-hyperlinear overgroup
+`K_g` of `Gamma` which excludes `g`.  In the increasing approximation from
+Definition 4.3 of Gao--Junge--Gao, a sufficiently large subgroup on the
+ambient side equals `G`, because `G` is finitely generated, and a sufficiently
+large subgroup on the edge side contains a fixed finite generating set of
+`Gamma`.  At a common sufficiently large stage we therefore obtain a subgroup
+
+`Gamma<=J_g<=K_g`, `g notin J_g`,                       `(CHI6)`
+
+which is co-hyperlinear in `G`.  Now
+`Gamma=intersection_(g notin Gamma) J_g`, and the theorem applies.  End proof.
+
+**Application to the compression edge.**  Let `Gamma<G` have property `(T)`
+and suppose there are `t in G`, `gamma in Gamma` with
+
+`t Gamma t^(-1)<=Gamma`,
+`t^(-1) gamma t notin Gamma`.                            `(CHI7)`
+
+The compressor argument `(RER8)--(RER12)` proves that `Gamma` is not
+co-hyperlinear in `G`.  The theorem and corollary now imply:
+
+* `Gamma` is not an intersection of co-hyperlinear overgroups in `G`;
+* when `G,Gamma` are finitely generated, it is not an intersection of
+  sigma-co-hyperlinear overgroups either.
+
+Consequently Gao--Junge--Gao Theorem 4.1, combined with their Theorem 4.2
+and tensor/intersection permanence, cannot prove
+
+`L(Gamma)<L(G) is RE/C`                                  `(CHI8)`
+
+by first replacing `Gamma` with any family of group-theoretically easy
+co-hyperlinear overgroups.  This closes the last unused group-subgroup route
+in that paper.  It does **not** decide `(CHI8)`: a positive proof must still
+construct the genuinely operator-algebraic commuting square identified in
+`(RER2)`, rather than assemble it from co-hyperlinear subgroup filtrations.
