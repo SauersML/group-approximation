@@ -32627,3 +32627,74 @@ the finite group `mu_m`, but every gauge realization relative to the
 nonseparable subgroup carries infinitely many nonconstant translates.  A
 finite-dimensional or finite-orbit gauge would erase the same relative
 class that detects the double radical.
+
+# The free-stabilized cyclic shear cannot repair rank blindness (2026-08-10)
+
+The preferred cyclic-centralizer reduction `(FCS1)--(FCS7)` is algebraically
+clean, but its antipodal certificate is not analytically weaker than detecting
+the original radical element.  This follows from a dimension-free commutator
+estimate.
+
+Let `H` be a countable group, let `r_0 in H`, put
+
+`H^sharp=H * <a>` and `r=[r_0,a]`.
+
+Suppose `phi_n:H^sharp->U(d_n)` are operator-norm asymptotic homomorphisms and
+there are unitaries `S_n` such that
+
+`||S_n phi_n(r) S_n^*+phi_n(r)||_op -> 0`.             `(CSRK1)`
+
+**Theorem (commutator-shear rank obstruction).**  Writing
+
+`U_n=phi_n(r_0)` and `A_n=phi_n(a)`, one has
+
+`liminf_n inf_(lambda in T) ||U_n-lambda 1||_2 >= 1/sqrt(2)`. `(CSRK2)`
+
+In particular, if `1!=r_0 in Rad_sof(H)`, then `(CSRK1)` already implies the
+existence of a hyperlinear nonsofic group using only the restrictions
+`phi_n|H`; the free stabilization and the twisted amalgam add no analytic
+leverage.
+
+**Proof.**  Put `W_n=phi_n(r)`.  Taking normalized traces in `(CSRK1)` and
+using conjugacy invariance gives
+
+`2 |tr_n(W_n)| <= ||S_n W_n S_n^*+W_n||_2 -> 0`.
+
+Consequently
+
+`||W_n-1||_2^2=2-2 Re tr_n(W_n) -> 2`.                `(CSRK3)`
+
+Asymptotic multiplicativity on the fixed reduced word
+`r=r_0 a r_0^(-1) a^(-1)` gives
+
+`||W_n-U_n A_n U_n^* A_n^*||_2 -> 0`.                 `(CSRK4)`
+
+For every scalar `lambda in T`, unitary invariance and the triangle
+inequality give the exact estimate
+
+`||U_n A_n U_n^* A_n^*-1||_2`
+` =||U_n A_n-A_n U_n||_2`
+` <=||(U_n-lambda)A_n||_2+||A_n(U_n-lambda)||_2`
+` =2||U_n-lambda||_2`.                                `(CSRK5)`
+
+Combine `(CSRK3)--(CSRK5)` and take the infimum over `lambda` to obtain
+`(CSRK2)`.
+
+The restrictions `phi_n|H` define a homomorphism
+
+`Phi:H -> product_omega U(d_n)`
+
+into a tracial matrix ultraproduct, because operator-norm defects dominate
+normalized Hilbert--Schmidt defects.  Taking `lambda=1` in `(CSRK2)` shows
+`Phi(r_0)!=1`.  If the image `Phi(H)` were sofic, the quotient map from `H`
+to this image would kill `r_0` by the definition of the full sofic radical,
+a contradiction.  Hence `Phi(H)` is hyperlinear and nonsofic.  End proof.
+
+This result is stronger than the earlier observation `(AR1)--(AR3)` that an
+antipodal model of `r` solves the main problem: it shows *where the required
+trace mass must already live*.  The commutator with the free generator cannot
+spread a vanishing-rank defect.  Quantitatively, a commutator is at most twice
+as far from the identity in normalized Hilbert--Schmidt norm as either input
+is from its nearest scalar.  Thus the free stabilization remains useful for
+the algebraic cyclic-centralizer theorem, but it cannot be the missing
+norm-to-trace mechanism.
