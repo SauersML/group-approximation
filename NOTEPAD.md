@@ -31317,6 +31317,93 @@ which the primitive path has norm tending to `sqrt(2)`.  Conversely, any
 candidate factoring through a genuine finite `Q`-set or finite quotient is
 eliminated immediately by `(CCT10)`.
 
+## Exact covariance budget for composing with tangent amplification
+
+The preceding construction gives a useful quantitative interface.  It also
+decides whether the older Pauli/jet atlas can be reused.
+
+Fix a growing finite window in `P<Z[Y] semidirect Q`.  Suppose at stage `n`
+we have:
+
+* a finite-dimensional real Hilbert space `H_n` and a linear map
+  `J_n:Z[Y]->H_n` on the tested path coordinates;
+* orthogonal maps `pi_n(q)` and finite-matrix Koopman implementers `V_n(q)`
+  satisfying `(CCT8)` for the tested vectors;
+* an exact finite quotient `theta_n:Q->F_n` separating every nonidentity
+  quotient element in the current window.
+
+Write, on each fixed window,
+
+`epsilon_n=max ||V_n(q)V_n(r)-V_n(qr)||_2`,           `(CCB1)`
+
+`delta_n=max ||pi_n(q)J_n(a)-J_n(q a)||`,             `(CCB2)`
+
+`kappa_n=max | ||J_n(a)||^2-||a||_2^2 |`.            `(CCB3)`
+
+Use `(CCT1)` on `H_n`, let `lambda_n` be the regular representation of
+`F_n`, and define
+
+`phi_n(a,q)=L_(W_(m_n,t_n)(J_n(a))) V_n(q)`
+`             tensor lambda_n(theta_n(q))`.           `(CCB4)`
+
+**Proposition (covariance budget).**  If
+
+`epsilon_n=o(t_n)`,  `delta_n=o(sqrt(t_n))`,
+`kappa_n=o(1)`,  `m_n->infinity`,                      `(CCB5)`
+
+then `(CCB4)` satisfies `(THA1)--(THA2)` on the growing windows.  Therefore
+the main problem has a negative answer.
+
+**Proof.**  The regular factor makes the trace exactly zero whenever the
+tested `Q`-coordinate is nontrivial.  On the kernel, `(CCT5)--(CCT6)` and
+`(CCB3)` give
+
+`tr(phi_n(a,1))`
+` =exp(-t_n||J_n(a)||^2)+o(t_n)`
+` =exp(-t_n||a||^2)+o(t_n)`.                          `(CCB6)`
+
+For multiplication, move the second Clifford field through `V_n(q)` by
+`(CCT8)`.  The additive error is `O(t_n/sqrt(m_n))` by `(CCT4)`.  The
+exponential Lipschitz estimate
+
+`||exp(isA)-exp(isB)||_2<=|s| ||A-B||_2`              `(CCB7)`
+
+turns `(CCB2)` into `O(sqrt(t_n) delta_n)=o(t_n)`.
+Finally `(CCB1)` contributes `o(t_n)` directly.  These three terms prove
+`(THA1)`, and `(CCB6)` proves `(THA2)`.  Tangent heat amplification finishes.
+End proof.
+
+The rates in `(CCB5)` impose no modulus beyond qualitative convergence.  If
+`epsilon_n->0` and `delta_n->0`, pass to a subsequence and choose, for
+example, `t_n` tending to zero slowly enough that simultaneously
+
+`epsilon_n/t_n->0`,  `delta_n/sqrt(t_n)->0`.
+
+Thus a genuine finite-window orthogonal covariance construction with
+vanishing defects would be enough, regardless of its published rate.
+
+This re-audits the long Pauli/jet attempt cleanly.  Its native square-zero,
+Frobenius, Pauli, and local owner-cell calculations may still supply pieces
+of `J_n` and preserve order-one local path energy.  But the later audit at
+the headings
+
+* `Sterility correction: full row-torus covariance cannot transport the witness`,
+* `Audit: the full-image compressed-commutant gauge cannot exist on one exact block`,
+* `Fusion rigidity: a high-rank atlas cannot average incompatible compressors`,
+
+retracted the claimed full-complement assembly: a fixed positive-mass cell
+retains an order-one covariance or relator defect.  Such a defect does not
+tend to zero and can satisfy neither part of `(CCB5)` for any `t_n->0`.
+Therefore Clifford tangent quantization does **not** resurrect the retracted
+global atlas.  It does, however, lower its missing deliverable to one exact
+statement:
+
+> construct non-profinite orthogonal covariance with merely vanishing
+> finite-window defects and order-one primitive path energy.
+
+No square-root dimension profile, fixed-time Haar freeness, or separate
+Gaussian moment calculation is then required.
+
 # Profinite closure defeats every exact finite-dimensional linear detector (2026-08-10)
 
 The last sentence above can be strengthened substantially: an exact finite
