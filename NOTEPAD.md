@@ -28996,9 +28996,31 @@ central extension
 
 `1 -> H_2(P_2,Z) -> Ptilde_2 -> P_2 -> 1`
 
-exists, and hyperlinearity of `Ptilde_2` would imply hyperlinearity of the
-nonsofic central quotient `P_2`.  This does not yet construct its
-microstates, but it replaces an ad hoc Clifford cover by a canonical
-projective target.
+exists.  Thom's central-quotient theorem (arXiv:0810.2180, Remark 3.4)
+confirms that hyperlinearity of `Ptilde_2` would imply hyperlinearity of the
+nonsofic central quotient `P_2`.
+
+The even Clifford cover is itself canonical.  On `I` the invariant form
+
+`beta(u,v)=sum_x u_x v_x mod 2`
+
+is alternating and nondegenerate.  If `C_0(X)` is the inverse image of `I`
+in the complete Clifford lamp group, then
+
+`1 -> <z> ~= C_2 -> E_(Cl,0)=C_0(X) semidirect G -> P_2 -> 1`
+
+is a perfect central extension.  Perfectness follows because its derived
+group maps onto perfect `P_2`, while for three distinct sites `x,y,t` the
+even vectors `delta_x+delta_y` and `delta_x+delta_t` have beta-pairing one,
+so their lifts have commutator `z`.  Universality therefore gives a
+surjection
+
+`Ptilde_2 ->> E_(Cl,0)`.
+
+Thus the even Clifford group is a distinguished finite central quotient of
+the universal cover, rather than an ad hoc auxiliary group.  Hyperlinearity
+of either cover would solve the main problem.  This does not yet construct
+microstates: the exact finite-dimensional/operator-norm sectors kill `z`,
+so the open certificate remains normalized-HS/projective.
 
 Full proof: `docs/PERFECT_CORE_KUN_THOM_WREATH.md`.
