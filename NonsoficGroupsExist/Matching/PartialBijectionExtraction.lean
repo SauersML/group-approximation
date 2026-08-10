@@ -90,6 +90,27 @@ theorem extractCrossing_apply_spec (p : Equiv.Perm (sumModel Y Z))
     p (Sum.inl y) = Sum.inr ((extractCrossing p).apply y hy) :=
   crossingValue_spec p y hy
 
+/-- The inverse permutation realizes the inverse extracted partial map on
+every crossing target. -/
+theorem extractCrossing_inv_apply_spec (p : Equiv.Perm (sumModel Y Z))
+    (z : Z) (hz : z ∈ (extractCrossing p).symm.source) :
+    p⁻¹ (Sum.inr z) =
+      Sum.inl ((extractCrossing p).symm.apply z hz) := by
+  let y := (extractCrossing p).symm.apply z hz
+  have hy : y ∈ (extractCrossing p).source :=
+    (extractCrossing p).symm.apply_mem_target z hz
+  have hforward := extractCrossing_apply_spec p y hy
+  have hvalue := (extractCrossing p).apply_symm_apply z hz
+  have hp : p (Sum.inl y) = Sum.inr z := by
+    calc
+      p (Sum.inl y) = Sum.inr ((extractCrossing p).apply y hy) := hforward
+      _ = Sum.inr z := congrArg Sum.inr (by
+        simpa only [y, proof_irrel_heq] using hvalue)
+  calc
+    p⁻¹ (Sum.inr z) = p⁻¹ (p (Sum.inl y)) :=
+      congrArg (fun x ↦ p⁻¹ x) hp.symm
+    _ = Sum.inl y := p.symm_apply_apply _
+
 theorem mem_extractCrossing_source_of_apply_eq
     (p : Equiv.Perm (sumModel Y Z)) (y : Y) (z : Z)
     (h : p (Sum.inl y) = Sum.inr z) : y ∈ (extractCrossing p).source :=
