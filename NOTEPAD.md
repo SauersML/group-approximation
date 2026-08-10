@@ -28240,6 +28240,73 @@ subalgebras of equal dimension cannot be properly nested.  The surviving
 target is therefore genuinely diffuse but may factor through a drastic
 quotient of `G`.
 
+## The fold witness lies in the full sofic residual
+
+The fold repair is not merely a device for tracial representations.  It
+determines the fixed witness under every homomorphism to a sofic group.
+
+For a group `L`, write
+
+`Rad_sof(L)=intersection_(phi:L->S, S sofic) ker(phi)`.  `(SR1)`
+
+No injectivity or finite generation is imposed on the target homomorphisms.
+
+**Theorem (explicit sofic-radical element).**  For the Kun--Thom symmetric
+double `D=G *_Gamma G`, the nonidentity element
+
+`x=i_2(h)i_1(h)^(-1)`,  `h=t^(-1)gamma t notin Gamma`,
+
+belongs to `Rad_sof(D)`.  More generally, in the finite or infinite
+free-lamp group
+
+`H_K=G *_Gamma (Gamma times K)`,
+
+every Kun--Thom witness
+
+`w_k=[t k t^(-1),gamma]`,  `k!=1`,                    `(SR2)`
+
+belongs to `Rad_sof(H_K)`.
+
+**Proof for the double.**  Let `phi:D->S` be a homomorphism to a sofic
+group.  Suppose `phi(x)!=1`.  Make its kernel flip invariant by setting
+
+`phi_s=(phi,phi o flip):D->S times S`,
+
+and combine this with the fold retraction:
+
+`Psi=(phi_s,r):D->S times S times G`.                  `(SR3)`
+
+Let `Q=Psi(D)`.  The group `Q` is sofic because `S` and the residually
+finite group `G` are sofic and soficity passes to finite products and
+subgroups.  The fold coordinate makes both copies of `G` faithful, while
+the first coordinate keeps `x` nontrivial.  The kernel of `(SR3)` is flip
+invariant, so flip descends to `Q`; its finite extension
+`Q semidirect C_2` is again sofic.  The flip generator centralizes the
+faithful common `Gamma`, but its commutator with the first copy of `h` is
+the surviving image of `x`.  Kun--Thom centralizer-normalization forces
+that commutator to be trivial, a contradiction.  Hence `phi(x)=1`.
+
+**Proof for the free lamp.**  Let `phi:H_K->S` have sofic target and suppose
+`phi(w_k)!=1`.  Combine `phi` with the retraction `r:H_K->G` that kills
+`K`, and let `Q` be the image in `S times G`.  Again `Q` is sofic, its copy
+of `G` is faithful, and `(SR2)` survives.  The image of `k` centralizes the
+faithful `Gamma`, so Kun--Thom normalization kills `(SR2)`, a contradiction.
+End proof.
+
+The weak-MF theorem proves `x!=1` in `D`, while `(SR1)` proves that no sofic
+quotient can see it.  Thus the symmetric double is not residually sofic for
+one completely explicit reason, and its weak-MF residual is strictly
+smaller than its sofic residual.  The earlier finite-representation theorem
+is the special case in which the target is a finitely generated linear
+group, hence residually finite and sofic.
+
+This also recasts `(FD3)` sharply.  A CE trace with `sigma(a)>0` produces a
+hyperlinear quotient of `D` in which `x` survives.  The theorem above says
+that quotient is automatically nonsofic.  Therefore the entire main
+problem on this candidate is exactly whether the weak-MF-visible element
+`x in Rad_sof(D)` lies outside the analogous intersection of kernels of
+Connes-embeddable tracial representations.
+
 The argument gives a family, not just one double.  Shulman's finite-factor
 lemma plus the same GNS detector proves every finite iterated amalgam
 
