@@ -4,8 +4,8 @@ import NonsoficGroupsExist.Sofic.WeakMFTransfer
 /-!
 # Weak-MF nonsofic doubles and finite-lamp amalgams
 
-This file records the formal endpoint of the weak-MF double argument.  For a
-pair `Γ ≤ G`, put
+This file defines the symmetric double and records the finite-lamp weak-MF
+endpoints.  For a pair `Γ ≤ G`, put
 
 `H K = G *_Γ (Γ × K)`.
 
@@ -14,7 +14,7 @@ For the Kun--Thom pair, the operator-algebraic argument in
 finite `K`: profinite regular representations detect the amalgamation
 subalgebra, Shulman's MF amalgamation theorem handles a finite star of copies,
 and the exact induced representation handles the finite extension.  That
-analytic conclusion is an explicit premise of the endpoint theorems below;
+analytic conclusion is an explicit premise of the finite-lamp theorems below;
 it is not something Lean's current C*-algebra library proves.
 
 Everything after that boundary is kernel-checked here.  In particular,
@@ -22,7 +22,7 @@ Kun--Thom centralizer normalization plus one strict compressor forces every
 nontrivial finite-lamp amalgam to be nonsofic.  Combining the two inputs gives
 an explicit family of groups which are weak-MF but not sofic.
 
-The final results use the literal conjunction `IsWeakMF H ∧ ¬ IsSofic H`.
+The results use the literal conjunction `IsWeakMF H ∧ ¬ IsSofic H`.
 In particular, the cited analytic premises remain visible in every theorem
 signature rather than being hidden behind a proposition alias.
 -/
@@ -72,22 +72,6 @@ instance symmetricDoubleCountable [Countable G] :
   haveI h3 : Countable (Coprod (CoprodI (DoubleFactor G)) ↥Γ) :=
     Con.mk'_surjective.countable
   exact Con.mk'_surjective.countable
-
-/-- **The weak-MF nonsofic symmetric double.**  The operator-algebraic and
-finite-extension inputs are explicitly named.  Given them, the Kun--Thom
-normalization argument proving nonsoficity is kernel-checked. -/
-theorem weakMF_and_not_isSofic_symmetricDouble_of_analytic_inputs [Countable G]
-    (hMF : IsWeakMF (SymmetricDouble G Γ))
-    (hflip : IsSofic (SymmetricDouble G Γ) →
-      IsSofic (FreeLamp G Γ (Multiplicative (ZMod 2))))
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
-    IsWeakMF (SymmetricDouble G Γ) ∧ ¬ IsSofic (SymmetricDouble G Γ) := by
-  obtain ⟨k, hk⟩ := exists_ne (1 : Multiplicative (ZMod 2))
-  refine ⟨hMF, ?_⟩
-  intro hsofic
-  exact freeLamp_not_isSofic G Γ (Multiplicative (ZMod 2))
-    hcn hγ hstrict hk (hflip hsofic)
 
 /-- **Finite-lamp weak-MF/nonsofic separation.**
 

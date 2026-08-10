@@ -1,6 +1,6 @@
 # A weak-MF nonsofic symmetric double
 
-## Headline: negative answer to Question 1.6 on sofic doubles
+## Status of Question 1.6 on sofic doubles
 
 Gao--Kunnawalkam Elayavalli--Mj ask in Question 1.6 of *On soficity
 for certain fundamental groups of graphs of groups* (arXiv:2408.11724):
@@ -8,28 +8,39 @@ for certain fundamental groups of graphs of groups* (arXiv:2408.11724):
 > If (G) is a countable sofic group, are arbitrary doubles
 > (G *_H G) sofic?
 
-The Kun--Thom pair used below gives a negative answer.  Their ambient group
-(G) is countable and residually finite, hence sofic, but Section 3 proves
+The proposed Kun--Thom pair would give a negative answer: its ambient group
+(G) is countable and residually finite, hence sofic, and the reduction below
+would imply
 
 \[
 G *_\Gamma G\quad\text{is nonsofic}.
 \]
 
-The weak-MF conclusion is additional and is not needed for this negative
-answer.  The proof of nonsoficity uses Kun--Thom's published
-centralizer-normalization theorem and the standard permanence of soficity
-under finite extensions.  The repository formalizes the symmetric amalgam,
-its flip, the presentation isomorphism
+This is not yet a zero-premise Lean theorem resolving the question.  The
+repository now proves internally the symmetric amalgam, its flip, the
+presentation isomorphism
 
 \[
 G *_\Gamma(\Gamma\times C_2)
   \cong (G *_\Gamma G)\rtimes C_2,
 \]
 
-and the resulting reduction in
-`NonsoficGroupsExist/Sofic/SymmetricDoubleFlip.lean`.  The Kun--Thom theorem
-and finite-extension permanence remain explicit inputs at the current Lean
-boundary; they are not silently treated as kernel-checked facts.
+finite-semidirect-product permanence, and the embedding of the two-vertex
+double into the infinite line double.  These are in
+`NonsoficGroupsExist/Sofic/SoficFiniteSemidirect.lean`,
+`NonsoficGroupsExist/Sofic/SymmetricDoubleFlip.lean`, and
+`NonsoficGroupsExist/Sofic/LineDouble.lean`.
+
+The remaining Lean boundary is substantive: the newer centralizer-
+normalization theorem and the existence, residual finiteness, Kazhdan
+properties, infranormality, and nonnormality of the concrete matrix-group pair
+have not been formalized in this repository.  Until those are proved
+internally, the repository contains a conditional reduction rather than a
+formal resolution of Question 1.6.  No literature theorem is encoded as an
+axiom or hidden proposition.
+
+The weak-MF conclusion discussed below is additional and is not needed for a
+negative answer once the missing group-theoretic inputs are closed.
 
 The additional weak/operator-norm MF conclusion proves
 

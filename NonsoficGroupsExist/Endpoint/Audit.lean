@@ -265,10 +265,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 -- MF models to hyperlinearity.
 #print axioms NonsoficGroupsExist.SqrtDimensionMFProfile.isHyperlinear_of_profile
 
--- The operator-norm separation endpoint.  The C*-amalgamation and flip
--- permanence statements remain explicit hypotheses; the local weak-MF
--- transfer and the Kun--Thom/Bass--Serre deduction contain no hidden axiom.
+-- The operator-norm separation endpoint.  The C*-amalgamation statement
+-- remains an explicit hypothesis; the local weak-MF transfer and the
+-- group-theoretic deduction contain no hidden axiom.
 #print axioms NonsoficGroupsExist.isWeakMF_of_injective
 #print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
-#print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_symmetricDouble_of_analytic_inputs
 #print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_freeLamp_of_analytic_input
