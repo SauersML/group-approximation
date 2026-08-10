@@ -126,6 +126,7 @@ import NonsoficGroupsExist.Matching.BlockWordCrossing
 import NonsoficGroupsExist.Matching.BlockTransport
 import NonsoficGroupsExist.Matching.ComponentRefinement
 import NonsoficGroupsExist.Matching.DecompositionRefinement
+import NonsoficGroupsExist.Matching.FiniteGroupoidCounting
 import NonsoficGroupsExist.Matching.EdgeEditing
 import NonsoficGroupsExist.Matching.GeneratorCrossing
 import NonsoficGroupsExist.Matching.ExternalCompressorCrossing
