@@ -36197,13 +36197,13 @@ representation, while a finitely presented LEF group is residually finite.
 
 Thus the passage from Theorem 8.6 to Theorem 8.11 does not manufacture
 nonsoficity and cannot by itself attach a trace-visible phase to the
-Kun--Thom collision.  The only live use of this reservoir is the seed itself:
-prove that its central involution lies in its full sofic radical (for example
-by a genuinely permutation-stability theorem for that particular linear
-system).  Generic stability of linear-system groups cannot be assumed,
-because Slofstra's embedding machinery makes that class group-theoretically
-universal.  The exact-representation fact `J=1` is therefore not a substitute
-for the required approximate-permutation statement.
+Kun--Thom collision.  At this stage the remaining test was whether the seed's
+central involution lies in its full sofic radical.  The permutation audit
+below disproves that assertion for Slofstra's particular seed.  Generic
+stability of linear-system groups cannot be assumed, because Slofstra's
+embedding machinery makes that class group-theoretically universal.  The
+exact-representation fact `J=1` is therefore not a substitute for the
+required approximate-permutation statement.
 
 Primary source audited directly: Culf--van Dobben de Bruyn--Zeman,
 arXiv:2604.01408v1, Theorem 8.6 and Lemmas 8.7--8.10, especially the explicit
@@ -36226,9 +36226,10 @@ group requires.  The construction starts from the explicitly sofic HNN group
 `K_0=<x,y,a,b | a^2=b^2=1, [a,b]=1,`
 `                 yay^(-1)=a, yby^(-1)=ab, xyx^(-1)=y^2>`, `(HSC5)`
 
-but the passage from `K_0` to the solution group is only an
-`fa`-embedding: it preserves approximate visibility of the selected element.
-It does not assert approximate faithfulness of the target solution group.
+The passage from `K_0` to the solution group is an `fa*`-embedding: it is an
+actual group embedding and preserves approximate visibility of source
+elements.  It does not assert that every nonidentity element of the larger
+target solution group is approximately visible.
 Slofstra's 2020 universal embedding theorem gives group embeddings into
 solution groups, but likewise does not make the whole target hyperlinear.
 
@@ -36261,3 +36262,106 @@ hyperlinearity of the target).  The main gadget separation in
 arXiv:2604.01408 can be repaired by replacing ``hyperlinear group'' with
 ``group admitting a noncommutative Connes-embeddable image'' wherever that
 is all the proof consumes.
+
+# The Slofstra involution survives a sofic image
+
+The missing assertion `(HSC7)` is in fact false for the particular solution
+group constructed in Slofstra, arXiv:1703.08618v2, Proposition 5.1.  The
+finite-coordinate constructions in that proof can be made with permutation
+matrices throughout.  Consequently its distinguished involution `J` survives
+in a metric ultraproduct of finite symmetric groups.
+
+**Theorem (permutation survival).**  Let `S` be the solution group produced
+in the proof of Slofstra's Proposition 5.1.  There is a homomorphism
+
+`Theta:S -> product_omega (Sym(Omega_n),d_H)`             `(HSC8)`
+
+such that `Theta(J) != 1`.  In particular the image of `Theta` is sofic and
+`J` does not belong to the full sofic radical of `S`.
+
+**Proof.**  Recall Slofstra's sofic seed
+
+`K_0=<x,y,a,b | a^2=b^2=1, [a,b]=1,`
+`                  yay^(-1)=a, yby^(-1)=ab, xyx^(-1)=y^2>`.
+
+Choose an asymptotically free permutation approximation of `K_0`.  If `A_n`
+is the permutation assigned to `a`, then
+
+`d_H(A_n^2,1)->0`,  `d_H(A_n,1)->1`.                    `(HSC9)`
+
+Changing `A_n` on `o(|X_n|)` points makes it an exact involution: retain its
+one- and two-cycles and replace all cycles of length at least three.  The
+mass of the latter cycles is exactly the mass moved by `A_n^2`, hence is
+`o(|X_n|)`.  This edit preserves all relators asymptotically.  The second
+limit in `(HSC9)` then says that the fixed-point set `F_n` of `A_n` has
+`|F_n|=o(|X_n|)`.
+
+Proposition 4.8 sends `K_0` by an `fa*`-embedding to a
+homogeneous-linear-plus-conjugacy group `G`, with `a` sent to an involutary
+generator `xi`.  Inspecting its proof shows more than the stated unitary
+claim: every block matrix introduced there is a permutation matrix whenever
+the input matrices are permutation matrices.  Diagonal sums, block swaps,
+and products preserve this property.  Hence the preceding approximation
+extends to permutation approximations of the defining relations of `G`, in
+which the permutation assigned to `xi` is still an exact involution with
+`o(|X_n|)` fixed points.  We do not assert that these approximations are
+faithful on all of `G`; only visibility of `xi` is needed.
+
+Now consider Slofstra's intermediate group over `Z_2`
+
+`Ghat=<G,J,t | J^2=t^2=1, [J,G]=[J,t]=1, t xi t=J xi>`.
+
+Put `Omega_n=X_n times {0,1}`.  Let every generator of `G` act diagonally,
+let
+
+`J_n(z,e)=(z,e+1 mod 2)`,                              `(HSC10)`
+
+and construct `T_n` orbit by orbit for `A_n`.  On every two-cycle
+`{u,v}` of `A_n`, choose one endpoint, say `v`, and let `T_n` flip the second
+coordinate precisely over `v`; over a fixed point of `A_n`, let `T_n` be the
+identity.  Then `T_n^2=1` and `[T_n,J_n]=1`.  On the four points above every
+two-cycle a direct calculation gives
+
+`T_n (A_n times 1) T_n = J_n (A_n times 1)`.            `(HSC11)`
+
+The only failures of `(HSC11)` lie above `F_n`.  Thus its normalized Hamming
+defect is `|F_n|/|X_n|=o(1)`.  All other defining relations of `Ghat` have
+the same asymptotic defects as those of `G`, or hold exactly.  Moreover
+`d_H(J_n,1)=1`.  We have therefore constructed an approximate permutation
+representation of `Ghat` in which `J` is maximally visible.
+
+Finally Proposition 4.2 embeds `Ghat` over `Z_2` into the solution group `S`.
+Its proof is again permutation-preserving: the displayed matrices are block
+diagonal permutations or block swaps whose nonzero blocks are products of
+input permutations.  Its lift fixes `J`, up to repeated diagonal copies.
+Applying that construction coordinatewise produces maps from the defining
+free group of `S` to finite symmetric groups, all defining relators tending
+to the identity in Hamming distance, while the image of `J` stays at Hamming
+distance one.  Passing to a metric ultraproduct gives `(HSC8)`.  Its image is
+a subgroup of a metric ultraproduct of finite symmetric groups, hence is
+sofic.  End proof.
+
+For completeness, the Hilbert--Schmidt estimates in Propositions 4.8 and 4.2
+do imply the required Hamming estimates on these coordinates: for permutation
+matrices `P,Q`, normalized Frobenius distance satisfies
+
+`||P-Q||_2^2 = 2 d_H(P,Q)`.                             `(HSC12)`
+
+Thus vanishing input Hamming defects give vanishing input Frobenius defects;
+the cited block estimates give vanishing output Frobenius defects; and because
+the outputs are permutations, `(HSC12)` returns vanishing output Hamming
+defects.
+
+This is stronger than merely observing that exact finite-dimensional
+invisibility does not imply `(HSC7)`: the very approximate representations
+used by Slofstra already yield a concrete sofic quotient in which `J`
+survives.  Therefore neither `S` nor its Connes-embeddable image in `(HSC6)`
+can be proved nonsofic by putting `J` in the full sofic radical.  The
+homogeneous completion `(HSC2)` remains a separate object, but its soficity is
+equivalent to that of `S` by `(HSC3)`; the permutation quotient above does
+not decide either abstract group's soficity, and the completion does not
+repair the failed `J`-radical assertion automatically.
+
+Primary source audited for every block formula: Slofstra,
+arXiv:1703.08618v2, Lemma 4.4, Propositions 4.2 and 4.8, Lemmas 5.2--5.4,
+and the proof of Proposition 5.1.
