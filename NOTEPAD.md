@@ -35508,3 +35508,56 @@ co-hyperlinearity hypothesis already fails before the operator-algebraic
 step.  The proof is stronger than failure of subgroup separability.  It
 rules out every co-hyperlinear filtration, even one using infinite
 hyperlinear quotients rather than finite quotients.
+
+# The shrinking-corner gap extends to the whole parent factor under ICC
+
+The diagonal estimate `(SDC2)` is a special case of a factor-level statement.
+This matters because merely moving the constraint projection out of the
+Bernoulli Cartan does not evade property `(T)` when the ambient conjugation
+action is ICC.
+
+**Theorem (full shrinking-corner gap).**  Let `G` be an ICC property-`(T)`
+group acting on a discrete abelian group `A`.  Assume every nonzero
+`a in A` has an infinite `G`-orbit, and put
+
+`H=A semidirect G`, `M=L(H)`.                            `(FSC1)`
+
+Then
+
+`L(G)' intersect M=C1`.                                 `(FSC2)`
+
+Consequently there are a finite set `S subset G` and `kappa>0` such that
+every projection `q in M`, of trace `t`, satisfies
+
+`sum_(s in S)||u_s q u_s^*-q||_2^2`
+` >=kappa^2 t(1-t)`.                                    `(FSC3)`
+
+In particular, no projections `q_n in M` with `tau(q_n)->0` can become
+asymptotically central under `S` in the normalized corner metric.
+
+**Proof.**  Conjugation by `G` permutes the canonical Fourier basis
+`{u_h:h in H}` of `L2(M)`.  If `h=(a,g)` with `g!=1`, its `G`-conjugacy
+orbit is infinite because its projection to `G` contains the infinite
+conjugacy orbit of `g`.  If `g=1` and `a!=0`, the orbit is infinite by
+hypothesis.  Thus the only finite orbit is the identity.  A square-summable
+vector invariant under this permutation representation is therefore a
+scalar multiple of `u_1`, proving `(FSC2)`.
+
+Apply a Kazhdan pair to the conjugation representation of `G` on
+`L2(M) minus C1`.  For `xi=q-t1`, equation `(SDC4)` still holds and its
+displacements are the left side of `(FSC3)`.  This proves the estimate.  End
+proof.
+
+For an infinite transitive `G`-set `X`, the orbit hypothesis holds for every
+submodule of the restricted lamp `C^(X)` by the support argument following
+`(FCC6)`.  Hence `(FSC3)` applies to any ICC Kazhdan ambient group in the
+restricted-lamp quotient presentation.  Application to a particular
+Kun--Thom model requires the separate group-theoretic check that its chosen
+ambient semidirect product is ICC; that check is not being silently assumed
+here.
+
+The theorem clarifies the surviving role of the finite central gauge cover.
+A nontrivial central spectral projection there has fixed trace `1/m` and is
+**exactly** central, so it is not a shrinking quotient corner inside the
+parent `(FSC1)`.  Thus `(FSC3)` closes the broad corner-compression approach
+without closing the finite-central-character endpoint `(FGC7)--(FGC10)`.
