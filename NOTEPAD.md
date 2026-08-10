@@ -27953,3 +27953,56 @@ closeness of a `1`-cochain with small coboundary to a genuine `1`-cocycle and
 relates it to covering and homomorphism stability.  High-dimensional
 coboundary/cosystolic expansion gives stronger quantitative instances, but
 is not a consequence of ordinary graph expansion or property `(T)` alone.
+
+# Profinite-trace repair of the weak-MF symmetric double (2026-08-09)
+
+The earlier correction around line 20413 and the full-C-star obstruction
+around line 23744 remain valid for an **arbitrary** weak-MF embedding and for
+`C*_max(G)`.  They do not prevent a specially chosen MF completion from
+retaining the abstract double.  For a countable residually finite group the
+profinite regular completion supplies exactly such a choice.
+
+Choose nested finite-index normal subgroups `N_n` with trivial intersection
+and put
+
+`rho(g)=[lambda_(G/N_n)(gN_n)] in product M_|G/N_n| / direct-sum M_|G/N_n|`.
+
+Let `A=C*(rho(G))`, `C=C*(rho(Gamma))`.  Then `A` is separable MF, and the
+ultralimit of normalized regular traces is a trace `tau` satisfying
+
+`tau(rho(g))=delta_(g,1)`.
+
+In particular `rho(g) in C` iff `g in Gamma`: for `g notin Gamma`, the vector
+`rho(g)` is trace-orthogonal to the norm-dense group algebra of `Gamma`.
+Shulman's Theorem 10 makes `B=A *_C A` MF.
+
+The load-bearing faithfulness argument does not use a questionable algebraic
+normal form for arbitrary C-star amalgams.  In the GNS representation of
+`tau`,
+
+`pi_tau(A)''=L(G)`, `pi_tau(C)''=L(Gamma)`.
+
+Hence the two GNS maps from `A` into the reduced tracial amalgam agree on
+`C`, and universality gives
+
+`B -> L(G) *_(L(Gamma)) L(G) = L(G *_Gamma G)`.
+
+The induced group map `G *_Gamma G -> U(B)` followed by this homomorphism is
+the left regular representation of the abstract group double.  It is
+faithful, so the map into `B` is faithful.  Therefore:
+
+**Theorem.**  If `G` is countable and residually finite and `Gamma<G` is
+arbitrary, then the symmetric double `G *_Gamma G` is weak/operator-norm MF.
+
+For the explicit Kun--Thom pair, their centralizer-normalization theorem
+proves this double nonsofic (equivalently, its flip extension is nonsofic and
+soficity is closed under finite extensions).  Thus
+
+`G *_Gamma G` is an explicit weak-MF nonsofic group.
+
+This is a genuine separation `weak MF !=> sofic`.  It does not settle
+`hyperlinear !=> sofic`: the MF trace supplied abstractly by Shulman's
+embedding need not equal the fold-sensitive trace detected by the quotient
+onto `L(G *_Gamma G)`.  The remaining exact target is Connes embeddability of
+that trace, or another trace-visible quotient retaining the Kun--Thom
+witness.  Full proof: `docs/WEAK_MF_NONSOFIC_DOUBLE.md`, commit `3bcdd61`.
