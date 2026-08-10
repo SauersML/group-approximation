@@ -83,7 +83,11 @@ theorem one_le_sum_leavitt_hsNorm (Y : FiniteModel)
           norm_sub_le _ _
         _ ≤ (‖normTrace Y C‖ + ‖normTrace Y A₀‖) +
             ‖normTrace Y A₁‖ :=
-          add_le_add_right (norm_sub_le _ _) _
+          by
+            simpa [add_comm, add_left_comm, add_assoc] using
+              add_le_add_right
+                (norm_sub_le (normTrace Y C) (normTrace Y A₀))
+                ‖normTrace Y A₁‖
     _ ≤ hsNorm Y C + hsNorm Y A₀ + hsNorm Y A₁ := by
       gcongr <;> exact norm_normTrace_le_hsNorm _ _
     _ = hsNorm Y A₀ + hsNorm Y A₁ + hsNorm Y C := by ring
