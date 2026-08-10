@@ -28580,3 +28580,43 @@ trace is provably in the wrong weak-containment class, not merely missing an
 uncomputed normalization.  Any proof of reduced MF or of the one-CE-trace
 criterion must manufacture a genuinely non-fold character.  Full proof is
 in `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`.
+
+### Complete sofic radical of the augmentation quotient
+
+Continue with
+
+`P=reduced Z[G/Gamma] semidirect G`,
+
+and write `N=normal_closure_G(Gamma)`, `Q=G/N=SL_d(Z)`.  The natural map of
+transitive `G`-sets `G/Gamma -> G/N` induces
+
+`p_*:reduced Z[G/Gamma] -> reduced Z[Q]`.
+
+Put `M=ker(p_*)`.  Then
+
+`Rad_sof(P)=M`.                                         `(AB4)`
+
+Indeed `M` is generated as a `ZG`-module by
+`[g n Gamma]-[g Gamma]`, with `g in G`, `n in N`.  These are exactly the
+images in the fold-kernel abelianization of the generators
+`i_2(n)i_1(n)^(-1)` of `Rad_sof(D)`.  Thus every map from `P` to a sofic
+group kills `M`.
+
+Conversely,
+
+`P/M = reduced Z[Q] semidirect G`
+
+embeds by `(a,g) |-> (g,(a,gN))` into
+
+`G times (reduced Z[Q] semidirect Q) <= G times (Z wreath Q)`.
+
+This is residually finite by Gruenberg's wreath-product theorem, since
+`G,Q` are residually finite and the base `Z` is abelian.  Hence no element
+outside `M` belongs to the sofic radical, proving `(AB4)`.
+
+The FALSE-side target is now exact at the linear level: one must construct a
+Connes-embeddable representation of `P` which retains any nonzero vector of
+
+`ker(reduced Z[G/Gamma] -> reduced Z[G/N])`.
+
+Full proof: `docs/AUGMENTATION_SOFIC_RADICAL.md`.
