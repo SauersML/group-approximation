@@ -33389,3 +33389,101 @@ a section with `(PST10)--(PST12)` simultaneously.  A positive calculation
 is the complete FALSE proof; a negative one would be a quantitative
 relative cocycle-stability theorem, not the already-known exact
 finite-module obstruction.
+
+## Kazhdan uniformization localizes every long phase in the splitting cochain
+
+There is a useful exact separation between the representation-theoretic
+and arithmetic parts of `(PST10)--(PST12)`.  Let `Gamma` be perfect with
+property `(T)`, and fix a Kazhdan pair `(S,kappa)`, where the convention is
+
+`max_(s in S)||pi(s)xi-xi|| >= kappa||xi||`
+
+on every representation with no invariant vectors.  Suppose
+
+`U_k:Gamma->U(d_k)`                                     `(KPU1)`
+
+is an honest representation and
+
+`V_k(g)V_k(h)=omega_k(g,h)V_k(gh)`                     `(KPU2)`
+
+is an exact projective representation.  Assume the multiplier is a
+coboundary
+
+`omega_k(g,h)=beta_k(g)beta_k(h)beta_k(gh)^(-1)`,      `(KPU3)`
+
+normalized by `beta_k(1)=1`, and that
+
+`omega_k(g,h)->1`,                                    `(KPU4)`
+
+`||V_k(g)-U_k(g)||_2->0`                              `(KPU5)`
+
+for every fixed `g,h in Gamma`.
+
+**Theorem (Kazhdan phase localization).**  Put
+
+`Vhat_k(g)=beta_k(g)^(-1)V_k(g)`.                     `(KPU6)`
+
+Then `Vhat_k` is honest and
+
+`sup_(g in Gamma)||Vhat_k(g)U_k(g)^*-1||_2 -> 0`.     `(KPU7)`
+
+Consequently, for every sequence of possibly growing words `gamma_k`, if
+
+`||V_k(gamma_k)U_k(gamma_k)^*-theta_k 1||_2->0`,      `(KPU8)`
+
+then
+
+`|beta_k(gamma_k)-theta_k|->0`.                       `(KPU9)`
+
+**Proof.**  First `(KPU4)` forces
+
+`beta_k(g)->1` for every fixed `g`.                   `(KPU10)`
+
+Indeed, otherwise pass to a subsequence on which one fixed value stays
+away from one, and then use compactness of `T^Gamma` to take a pointwise
+convergent subnet/subsequence.  Equation `(KPU3)--(KPU4)` says that the
+limit is a character of `Gamma`; perfectness makes that character trivial,
+a contradiction.  Equations `(KPU5)` and `(KPU10)` therefore give
+
+`epsilon_k=max_(s in S)||Vhat_k(s)U_k(s)^*-1||_2 ->0`. `(KPU11)`
+
+On the normalized Hilbert--Schmidt space `M_(d_k)` consider the honest
+representation
+
+`Pi_k(g)X=Vhat_k(g) X U_k(g)^*`.                      `(KPU12)`
+
+The identity vector has displacement at most `epsilon_k` on `S`.  If
+`P_k` denotes orthogonal projection onto the invariant vectors of `Pi_k`,
+the Kazhdan inequality on the orthogonal complement gives
+
+`||1-P_k(1)||_2 <= epsilon_k/kappa`.                  `(KPU13)`
+
+Put `X_k=P_k(1)`.  Since
+
+`Vhat_k(g)X_kU_k(g)^*=X_k`
+
+for every `g`, one obtains, uniformly in `g`,
+
+`||Vhat_k(g)U_k(g)^*-1||_2`
+` <= ||Vhat_k(g)(1-X_k)U_k(g)^*||_2+||X_k-1||_2`
+` <= 2 epsilon_k/kappa`.                             `(KPU14)`
+
+This proves `(KPU7)`.  Finally
+
+`V_k(gamma_k)U_k(gamma_k)^*`
+` = beta_k(gamma_k)Vhat_k(gamma_k)U_k(gamma_k)^*`,
+
+so `(KPU7)--(KPU8)` imply `(KPU9)`.  End proof.
+
+For the symplectic polynomial subgroup, `(SPM5)` and perfectness imply
+`H^2(Gamma,T)=0`, so every finite-quotient multiplier pulls back in the
+form `(KPU3)`.  The theorem therefore proves that a proposed finite-torus
+model has no hidden matrix-valued obstruction on the polynomial side:
+after the scalar correction it agrees with the untwisted sector uniformly
+on **all** of `Gamma`.  Conversely, it shows exactly where the desired
+order-one discrepancy must live.  If `pi_k(h)=pi_k(gamma_k)`, then the
+phase in `(PST12)` is necessarily the long-relator value
+`beta_k(gamma_k)`.  Fixed-word estimates cannot see or rule out that value.
+The remaining arithmetic question is precisely whether the relative
+Laurent symbol makes `beta_k(gamma_k)` stay away from one while the
+uncorrected sectors satisfy `(PST10)` on each fixed polynomial word.
