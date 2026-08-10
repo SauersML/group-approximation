@@ -32707,6 +32707,86 @@ embeddable must therefore use genuinely aperiodic, non-Cartan matrix
 models.  Residual finite-dimensionality, density of periodic points, and
 periodic-orbit trace approximation are all unavailable.
 
+## Every useful gauge character regularizes to one algebraic p.m.p. action
+
+The one-character criterion `(OCG1)--(OCG2)` can be put in an exact
+action-theoretic normal form.  Let
+
+`p:K_omega=B_omega semidirect G -> G`
+
+be the quotient map, and let `delta_G` be the regular character of `G`.
+
+**Theorem (regularized gauge-character criterion).**  The following are
+equivalent sufficient certificates for a hyperlinear nonsofic group.
+
+1. There is a Connes-embeddable character `tau` of `K_omega` satisfying
+   `(OCG1)--(OCG2)`.
+2. There is a `G`-invariant Borel probability measure `mu` on `X_chi` such
+   that
+
+   `|integral_(X_chi) eta(b_n) dmu(eta)|<1`,            `(RGC1)`
+
+   and the canonical trace of
+
+   `L-infinity(X_chi,mu) crossed G`                    `(RGC2)`
+
+   is Connes embeddable.
+
+More precisely, every character in item 1 may be replaced, without changing
+its values on `B_omega`, by one of the canonical crossed-product characters
+in item 2.
+
+**Proof.**  Starting with `tau`, form the pointwise product
+
+`tau_reg(k)=tau(k) delta_G(p(k))`.                     `(RGC3)`
+
+This is the character of the tensor-product representation of the GNS
+representation of `tau` with the pulled-back left regular representation
+of `G`.  The latter is Connes embeddable because `G` is residually finite,
+and tensor products of Connes-embeddable tracial von Neumann algebras are
+Connes embeddable.  Hence `tau_reg` is Connes embeddable.  It agrees with
+`tau` on `B_omega` and vanishes on every `(b,g)` with `g!=1`.
+
+The restriction
+
+`phi(b)=tau_reg(b,1)=tau(b,1)`                         `(RGC4)`
+
+is a positive-definite function on the discrete abelian group `B_omega`.
+Bochner duality gives a unique probability measure `mu` on `dual(B_omega)`
+with
+
+`phi(b)=integral eta(b) dmu(eta)`.                     `(RGC5)`
+
+Conjugation invariance of the character makes `mu` `G`-invariant.  Also
+`phi(z)=chi(z)` for every `z in Z`.  Equality in the triangle inequality,
+or equivalently
+
+`integral |eta(z)-chi(z)|^2 dmu(eta)=0`,
+
+shows that `eta|Z=chi` almost everywhere.  Thus `mu` is supported on
+`X_chi`.  The GNS construction of the character which is `(RGC5)` on
+`B_omega` and zero off `B_omega` is precisely the group-measure-space
+construction `(RGC2)` with its canonical trace.  Condition `(OCG2)` becomes
+`(RGC1)`.
+
+Conversely, the canonical trace of `(RGC2)` is
+
+`tau_mu(b,g)=0` for `g!=1`,
+
+`tau_mu(b,1)=integral eta(b)dmu(eta)`.                 `(RGC6)`
+
+It satisfies `(OCG1)` because `mu` is supported on `X_chi`, and `(RGC1)`
+is `(OCG2)`.  The one-character gauge theorem finishes.  End proof.
+
+This normal form removes two degrees of freedom from the analytic search:
+values of a proposed character on nontrivial `G`-cosets and faithfulness of
+its GNS representation are irrelevant.  It is enough to find one invariant
+measure on the explicit closed algebraic subaction `(RAG6)`.  By periodic-
+sector rigidity above, no measure satisfying `(RGC1)` can be supported
+entirely on periodic points, and it cannot be a weak-star limit of periodic-
+orbit measures.  A successful crossed-product embedding must therefore
+contain a genuinely aperiodic sector and must be non-Cartan.
+
 # The free-stabilized cyclic shear cannot repair rank blindness (2026-08-10)
 
 The preferred cyclic-centralizer reduction `(FCS1)--(FCS7)` is algebraically
@@ -33181,3 +33261,132 @@ finite-dimensional image is sofic, so its projective image of `D` kills
 `x_n`; equivalently `(OCG6)` forces `|tau(b_n)|=1`.  Thus a positive
 character must be genuinely asymptotic, but it may have a large kernel and
 may ignore every other gauge direction.
+
+# Phase splitting: locally equal projective sectors can retain a long collision (2026-08-10)
+
+There is a direct projective-microstate endpoint which bypasses the gauge
+cover and explains exactly how finite congruence models could evade
+exact-projective sterility.  Let `Gamma<=G`, let
+`D=G *_Gamma G`, and fix `n in Rad_sof(D)` of the form
+
+`x_h=i_2(h)i_1(h)^(-1)`, `h in N=normalClosure_G(Gamma)`. `(PST1)`
+
+For each `k`, suppose `U_k,V_k:G->U(d_k)` are maps with the following
+properties on every fixed finite window.
+
+1. `U_k` is asymptotically multiplicative:
+
+   `||U_k(g)U_k(l)-U_k(gl)||_2 -> 0`.                 `(PST2)`
+
+2. `V_k` is asymptotically projective:
+
+   `ell_pr(V_k(g)V_k(l)V_k(gl)^*) -> 0`.              `(PST3)`
+
+3. Their restrictions become equal on `Gamma`:
+
+   `||V_k(gamma)-U_k(gamma)||_2 -> 0`                 `(PST4)`
+
+   for every fixed `gamma in Gamma` (a conjugation of the whole `V_k`
+   sector is allowed before stating this).
+
+4. The fixed invisible element accumulates a scalar phase:
+
+   `||V_k(h)U_k(h)^*-theta_k 1||_2 -> 0`,             `(PST5)`
+
+   where
+
+   `liminf_k |theta_k-1|>0`.                          `(PST6)`
+
+**Theorem (phase-splitting criterion).**  Conditions `(PST2)--(PST6)` imply
+that there is a hyperlinear nonsofic group.
+
+**Proof.**  On `C^(d_k) directSum C^(d_k)` define two vertex maps
+
+`A_k(g)=diag(U_k(g),U_k(g))`,
+`B_k(g)=diag(U_k(g),V_k(g))`.                         `(PST7)`
+
+Equation `(PST2)` makes `A_k` asymptotically multiplicative.  For `B_k`,
+the defect is block diagonal with one block tending to `1` and the other
+block tending to a scalar by `(PST3)`.  If the scalar in `(PST3)` is
+`lambda_k(g,l)`, multiplication of the second block of `V_k` by a scalar
+one-cochain on the finite window (or, equivalently, choosing the scalar
+representatives in the projective ultraproduct) makes both blocks have the
+same limiting scalar.  More invariantly, the pair `(A_k,B_k)` defines maps
+to `PU(2d_k)` provided the projective defect of
+`diag(U_k,V_k)` tends to scalars.  Thus the load-bearing hypothesis should
+be recorded explicitly as
+
+`ell_pr(diag(U_k(g)U_k(l)U_k(gl)^*,`
+`                 V_k(g)V_k(l)V_k(gl)^*)) -> 0`.      `(PST3')`
+
+In the important exact-sector application below the first defect is `1` and
+the second scalar multiplier tends to `1`, so `(PST3')` is automatic.
+
+Equation `(PST4)` says that the two projective vertex maps agree on
+`Gamma` in the ultraproduct.  They therefore induce
+
+`Phi:D -> product_omega PU(2d_k)`.                    `(PST8)`
+
+For the radical word `(PST1)`, `(PST5)` gives
+
+`Phi(x_h)=[diag(1,theta_k 1)]`.                       `(PST9)`
+
+With equal block weights,
+
+`|tr(diag(1,theta_k 1))|=|(1+theta_k)/2|`.
+
+After passing to a subsequence, `(PST6)` makes the right side uniformly
+smaller than one; hence `(PST9)` is nontrivial in the projective tracial
+ultraproduct.  Apply `(PRD3)--(PRD4)`: the image of `Phi` is hyperlinear and
+cannot be sofic because it retains `x_h in Rad_sof(D)`.  End proof.
+
+The theorem's decisive feature is that each sector separately may be
+completely scalar on the collision.  The order-one structure is the
+**difference between sectors**.  This is why it does not contradict the
+exact-projective normalizer theorem `(SKT6)`: for each finite `k`, the two
+block multipliers are not identical.  They only become identical on every
+fixed relation as `k->infinity`.
+
+## Finite central-character formulation
+
+A concrete sufficient package for `(PST2)--(PST6)` is the following.  Let
+`Q_k` be finite quotients of `G`, let `omega_k:Q_k x Q_k->T` be multipliers,
+and let `lambda_k`, `lambda_(omega_k)` be the ordinary and twisted regular
+representations on `ell^2(Q_k)`.  After diagonal gauge changes, require
+
+`||lambda_(omega_k)(g)-lambda_k(g)||_2 -> 0`
+`  for every fixed gamma in Gamma`,                  `(PST10)`
+
+and
+
+`omega_k(pi_k(g),pi_k(l)) -> 1`
+`  for every fixed g,l in G`.                        `(PST11)`
+
+If `pi_k(h)=pi_k(gamma_k)` for some (necessarily growing-word)
+`gamma_k in Gamma`, but the two lifts satisfy
+
+`lambda_(omega_k)(h) lambda_k(h)^* -> theta_k 1`
+`  modulo the gauge aligning Gamma`,                 `(PST12)`
+
+with `(PST6)`, then `(PST7)` solves the main problem.
+
+The cyclic model explains the required scale.  A central extension of a
+cycle of length `M` has a section whose carry cocycle is supported only when
+addition crosses the endpoint.  Every fixed shift crosses on `O(1/M)` of
+the points, so its twisted and ordinary regular matrices are `o_2(1)`
+apart, while one full circuit accumulates an arbitrary prescribed central
+phase.  Thus the remaining arithmetic target is no longer a vague
+non-Cartan model:
+
+> Build finite congruence multipliers for the symplectic Laurent pair whose
+> local carry density tends to zero but whose collision
+> `h=gamma_k` winds once (or a fixed positive fraction) in the central
+> direction.
+
+The Laurent `K_2` symbol and its symplectic functional in `(SPM2)--(SPM3)`
+are designed to measure precisely such two-dimensional exponent carries.
+The next calculation must determine whether a finite torus quotient admits
+a section with `(PST10)--(PST12)` simultaneously.  A positive calculation
+is the complete FALSE proof; a negative one would be a quantitative
+relative cocycle-stability theorem, not the already-known exact
+finite-module obstruction.
