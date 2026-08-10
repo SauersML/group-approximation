@@ -252,6 +252,60 @@ theorem kazhdan_mul_missingMass_repair_le
   have hscaled := mul_le_mul_of_nonneg_left hmissingReal (sq_nonneg ε)
   nlinarith
 
+/-- Source-side form of the missing-mass estimate. -/
+theorem kazhdan_mul_sourceDefect_repair_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    ε ^ 2 * ((repair σY σZ b).sourceDefect : ℝ) ≤
+      ε ^ 2 * (b.sourceDefect : ℝ) +
+        8 * (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have hsNat := sourceDefect_repair_le σY σZ b
+  have hs : ((repair σY σZ b).sourceDefect : ℝ) ≤
+      (b.sourceDefect : ℝ) +
+        ((hammingDisagreement b.swapPerm p).card : ℝ) := by
+    exact_mod_cast hsNat
+  have hsymm :
+      hammingDisagreement b.swapPerm p =
+        hammingDisagreement p b.swapPerm := by
+    ext x
+    simp [hammingDisagreement, ne_comm]
+  have hham :=
+    kazhdan_mul_card_hammingDisagreement_roundedDiagonalPermutation_le
+      hQ (sumActionHom σY σZ) b.swapPerm
+  rw [← hsymm] at hham
+  have hscaled := mul_le_mul_of_nonneg_left hs (sq_nonneg ε)
+  nlinarith
+
+/-- Target-side form of the missing-mass estimate. -/
+theorem kazhdan_mul_targetDefect_repair_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) :
+    ε ^ 2 * ((repair σY σZ b).targetDefect : ℝ) ≤
+      ε ^ 2 * (b.targetDefect : ℝ) +
+        8 * (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have htNat := targetDefect_repair_le σY σZ b
+  have ht : ((repair σY σZ b).targetDefect : ℝ) ≤
+      (b.targetDefect : ℝ) +
+        ((hammingDisagreement b.swapPerm p).card : ℝ) := by
+    exact_mod_cast htNat
+  have hsymm :
+      hammingDisagreement b.swapPerm p =
+        hammingDisagreement p b.swapPerm := by
+    ext x
+    simp [hammingDisagreement, ne_comm]
+  have hham :=
+    kazhdan_mul_card_hammingDisagreement_roundedDiagonalPermutation_le
+      hQ (sumActionHom σY σZ) b.swapPerm
+  rw [← hsymm] at hham
+  have hscaled := mul_le_mul_of_nonneg_left ht (sq_nonneg ε)
+  nlinarith
+
 /-- The same distance estimate expressed entirely in the native forward and
 backward partial-equivariance defects of the input arrow. -/
 theorem kazhdan_mul_twoSidedDisagreement_repair_le_partialDefect
@@ -345,6 +399,135 @@ theorem kazhdan_mul_card_taggedSumCommutationDefect_repaired_inv_le
   have hscaled := mul_le_mul_of_nonneg_left htag (sq_nonneg ε)
   have hQ0 : 0 ≤ (Q.card : ℝ) := by positivity
   nlinarith
+
+/-- Complete numerical interface from exact Kazhdan repair to the finite
+cluster machinery.  The three strict hypotheses are stated entirely in
+terms of the input partial arrow and its original labelled commutation
+defect.  They imply simultaneously that the repaired crossing is a
+low-defect candidate and that it lies inside the required radius. -/
+theorem repair_isClusterCandidate_and_close_of_bounds
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (hε : 0 < ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) {h : ℝ} {m : ℕ}
+    (hclose :
+      ε ^ 2 * (b.sourceDefect + b.targetDefect : ℕ) +
+          16 * (totalCommutationDefect
+            (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+        ε ^ 2 * ((2 * m : ℕ) : ℝ))
+    (hforward :
+      2 * (Q.card : ℝ) *
+          (ε ^ 2 * (b.sourceDefect : ℝ) +
+            8 * (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ)) +
+          8 * (Q.card : ℝ) ^ 2 *
+            (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+        ε ^ 2 * (h * m / 2))
+    (hbackward :
+      2 * (Q.card : ℝ) *
+          (ε ^ 2 * (b.targetDefect : ℝ) +
+            8 * (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ)) +
+          8 * (Q.card : ℝ) ^ 2 *
+            (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+        ε ^ 2 * (h * m / 2)) :
+    (repair σY σZ b).IsClusterCandidate
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m ∧
+      (repair σY σZ b).twoSidedDisagreement b < 2 * m := by
+  let p := roundedDiagonalPermutation (sumActionHom σY σZ) b.swapPerm
+  have hεsq : 0 < ε ^ 2 := sq_pos_of_pos hε
+  have hmissing := kazhdan_mul_missingMass_repair_le hQ σY σZ b
+  have hselfScaled := hmissing.trans_lt hclose
+  have hselfReal :
+      (((repair σY σZ b).sourceDefect +
+          (repair σY σZ b).targetDefect : ℕ) : ℝ) <
+        ((2 * m : ℕ) : ℝ) :=
+    lt_of_mul_lt_mul_left hselfScaled hεsq.le
+  have hself :
+      (repair σY σZ b).sourceDefect +
+          (repair σY σZ b).targetDefect < 2 * m := by
+    exact_mod_cast hselfReal
+  have hs := kazhdan_mul_sourceDefect_repair_le hQ σY σZ b
+  have hfTag :=
+    kazhdan_mul_card_taggedSumCommutationDefect_repaired_le hQ σY σZ b
+  have hsMul := mul_le_mul_of_nonneg_left hs
+    (show 0 ≤ 2 * (Q.card : ℝ) by positivity)
+  have hfCombined :
+      ε ^ 2 *
+          ((2 * (Fintype.card ↥Q * (repair σY σZ b).sourceDefect) +
+            (sumCommutationDefect p
+              (fun q : ↥Q ↦ σY q.1)
+              (fun q : ↥Q ↦ σZ q.1)).card : ℕ) : ℝ) ≤
+        2 * (Q.card : ℝ) *
+            (ε ^ 2 * (b.sourceDefect : ℝ) +
+              8 * (totalCommutationDefect
+                (sumActionHom σY σZ) Q b.swapPerm : ℝ)) +
+          8 * (Q.card : ℝ) ^ 2 *
+            (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+    simp only [Fintype.card_coe]
+    push_cast
+    dsimp only [p] at hfTag ⊢
+    nlinarith
+  have hfScaled := hfCombined.trans_lt hforward
+  have hfReal :
+      ((2 * (Fintype.card ↥Q * (repair σY σZ b).sourceDefect) +
+        (sumCommutationDefect p
+          (fun q : ↥Q ↦ σY q.1)
+          (fun q : ↥Q ↦ σZ q.1)).card : ℕ) : ℝ) < h * m / 2 :=
+    lt_of_mul_lt_mul_left hfScaled hεsq.le
+  have ht := kazhdan_mul_targetDefect_repair_le hQ σY σZ b
+  have hbTag :=
+    kazhdan_mul_card_taggedSumCommutationDefect_repaired_inv_le
+      hQ σY σZ b
+  have htMul := mul_le_mul_of_nonneg_left ht
+    (show 0 ≤ 2 * (Q.card : ℝ) by positivity)
+  have hbCombined :
+      ε ^ 2 *
+          ((2 * (Fintype.card ↥Q * (repair σY σZ b).targetDefect) +
+            (sumCommutationDefect p⁻¹
+              (fun q : ↥Q ↦ σY q.1)
+              (fun q : ↥Q ↦ σZ q.1)).card : ℕ) : ℝ) ≤
+        2 * (Q.card : ℝ) *
+            (ε ^ 2 * (b.targetDefect : ℝ) +
+              8 * (totalCommutationDefect
+                (sumActionHom σY σZ) Q b.swapPerm : ℝ)) +
+          8 * (Q.card : ℝ) ^ 2 *
+            (totalCommutationDefect
+              (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+    simp only [Fintype.card_coe]
+    push_cast
+    dsimp only [p] at hbTag ⊢
+    nlinarith
+  have hbScaled := hbCombined.trans_lt hbackward
+  have hbReal :
+      ((2 * (Fintype.card ↥Q * (repair σY σZ b).targetDefect) +
+        (sumCommutationDefect p⁻¹
+          (fun q : ↥Q ↦ σY q.1)
+          (fun q : ↥Q ↦ σZ q.1)).card : ℕ) : ℝ) < h * m / 2 :=
+    lt_of_mul_lt_mul_left hbScaled hεsq.le
+  have hcand :
+      (extractCrossing p).IsClusterCandidate
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m :=
+    isClusterCandidate_extractCrossing_of_bounds p
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)
+      (by simpa only [repair, p] using hself)
+      (by simpa only [repair, p] using hfReal)
+      (by simpa only [repair, p] using hbReal)
+  have hdist := kazhdan_mul_twoSidedDisagreement_repair_le hQ σY σZ b
+  have hdistScaled := hdist.trans_lt hclose
+  have hdistReal :
+      (b.twoSidedDisagreement (repair σY σZ b) : ℝ) <
+        ((2 * m : ℕ) : ℝ) :=
+    lt_of_mul_lt_mul_left hdistScaled hεsq.le
+  have hdistNat : b.twoSidedDisagreement (repair σY σZ b) < 2 * m := by
+    exact_mod_cast hdistReal
+  refine ⟨?_, ?_⟩
+  · simpa only [repair, p] using hcand
+  · rw [twoSidedDisagreement_comm]
+    exact hdistNat
 
 end ExactPartialKazhdanRepair
 end NonsoficGroupsExist
