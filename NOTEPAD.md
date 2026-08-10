@@ -28744,7 +28744,7 @@ and its multiplication in the scaled entry coordinates is
 There are finite sets `F_M subset U_p^up` with the following properties:
 
 1. every matrix in `F_M` has nonnegative entries;
-2. for every fixed word ball `W subset U_p^+`,
+2. for every fixed word ball `W subset U_p^up`,
    `|F_M triangle F_M w|/|F_M|=O_W(1/M)` uniformly for `w in W`.
 
 Indeed, give the entry `A_(ij)` weight `j-i` and let it range over an
@@ -28889,3 +28889,70 @@ homomorphism of `W` into a Connes-embeddable tracial algebra which retains
 certificate is positivity of the one spectral projection `(1-rho(w))/2`.
 
 Full proof: `docs/COMMUTING_WREATH_SOFIC_RADICAL.md`.
+
+### Vertex-character rigidity cannot select the reduced double trace
+
+The unique-reduced-trace endpoint for the Kun--Thom symmetric double cannot
+be reached by improving the traces on the two vertex copies separately.
+There is an exact marginal-blindness theorem.
+
+Let `Gamma<G` be any proper subgroup and put
+
+`D=G *_Gamma G`.
+
+Write `i_1,i_2:G->D` for the vertex embeddings and let
+
+`r:D->G`,  `r i_1=r i_2=id_G`
+
+be the fold retraction.  Denote the regular character of `D` by `tau_D` and
+the pullback of the regular character of `G` by
+
+`tau_fold=delta_e o r`.
+
+**Proposition (vertex-marginal blindness).**  The two characters have
+identical restrictions to each vertex group and to the amalgam:
+
+`tau_D o i_j=tau_fold o i_j=delta_e`,  `j=1,2`.
+
+Nevertheless, for every `g in G minus Gamma`, the reduced word
+
+`a_g=i_2(g)i_1(g)^(-1)`
+
+satisfies
+
+`tau_D(a_g)=0`,  `tau_fold(a_g)=1`.                 `(VMB1)`
+
+**Proof.**  Both vertex embeddings and the fold map restricted to either
+vertex copy are injective, which gives the first assertion.  Bass--Serre
+normal form says that `a_g` is a nonidentity reduced word when `g` is not in
+`Gamma`, so its regular trace is zero.  Its fold image is `g g^(-1)=1`, so
+its fold trace is one.  End proof.
+
+Thus even a hypothetical theorem classifying all characters of `G` and
+`Gamma` cannot distinguish the two traces: they already agree exactly on
+all those marginals.  What differs is their **joining** across the two
+copies.  In particular, removing the `Gamma`-fixed Kazhdan corner from the
+weak-MF realization does not remove this obstruction.  In the fold GNS
+representation `lambda_G o r`, the infinite group `Gamma` has no invariant
+vector, so its Kazhdan projection is zero and the complementary projection
+`q` is one; nevertheless `(VMB1)` still gives
+
+`tau_fold((a_g-1)^*(a_g-1))=0`.
+
+This also pinpoints why Shulman's symmetric-amalgam theorem is not a trace
+bootstrap.  Theorem 10 proves that `A *_C A` is MF from norm-asymptotic
+lifts of a faithful representation.  Its trace statement assumes at the
+outset that the trace under consideration is hyperlinear; it does not make
+an arbitrary quotient/GNS trace hyperlinear.  Applied to the profinite
+regular completion, the evident induced trace is precisely the fold joining
+above, which is outside the reduced dual because the fold kernel is a
+nonamenable free group.
+
+Consequently a TRUE-side proof through the double must create genuinely
+joint data.  One sufficient finite-stage certificate is a sequence of two
+matrix models of the vertex group which agree on the tested `Gamma` window,
+have regular marginal moments, and whose alternating `Gamma`-centered mixed
+moments tend to zero, while retaining one `a_g`.  The first two conditions
+alone are provably blind by `(VMB1)`; the last mixed condition is exactly the
+reduced amalgamated-free-product trace and is the load-bearing analytic
+target.
