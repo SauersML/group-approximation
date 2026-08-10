@@ -36144,3 +36144,69 @@ co-hyperlinear overgroups.  This closes the last unused group-subgroup route
 in that paper.  It does **not** decide `(CHI8)`: a positive proof must still
 construct the genuinely operator-algebraic commuting square identified in
 `(RER2)`, rather than assemble it from co-hyperlinear subgroup filtrations.
+
+# The homogeneous solution-group completion preserves the soficity question
+
+Culf--van Dobben de Bruyn--Zeman, arXiv:2604.01408, Theorems 8.6 and
+8.11, provide a genuinely approximate reservoir which is not covered by the
+finite-image collapse `(FIC1)--(FIC11)`.  They start with a finite linear
+system `A_0` whose solution group
+
+`S=Gamma(A_0)`                                           `(HSC1)`
+
+is noncommutative and hyperlinear, and whose distinguished central
+involution `J` is killed by every finite-dimensional unitary representation.
+Their homogeneous completion constructs a finitely presented group
+
+`K=Gamma_H(B)`                                           `(HSC2)`
+
+which contains `S`, is hyperlinear, is noncommutative, and is killed in its
+entirety by every finite-dimensional unitary representation.  At first sight
+`K` looks like a stronger candidate than `S` for the TRUE problem.  In fact
+the completion preserves the soficity question exactly.
+
+**Theorem (soficity-neutral homogeneous completion).**  For the groups in
+`(HSC1)--(HSC2)`,
+
+`K is sofic  iff  S is sofic`.                           `(HSC3)`
+
+**Proof.**  The forward implication follows from the embedding `S<=K` and
+closure of soficity under subgroups.
+
+For the converse, inspect Lemmas 8.7--8.10 of the cited construction.  The
+auxiliary group in Lemma 8.7 is the finite perfect central extension
+`3.A_7`.  The group in Lemma 8.9 is obtained from the finite magic-square
+group and finitely many copies of `3.A_7` by amalgamating over copies of the
+finite dihedral group `D_4`; it is therefore sofic, since finite groups are
+sofic and amalgamation over an amenable subgroup preserves soficity.  Lemma
+8.10 obtains `K` from `S` and finitely many copies of this Lemma-8.9 group by
+amalgamating over copies of the finite group `C_2^2`.  If `S` is sofic, the
+same permanence theorem, applied finitely many times, makes `K` sofic.  This
+proves `(HSC3)`.  End proof.
+
+The same argument applies to every approximation class closed under
+subgroups and amalgamation over finite groups, including hyperlinearity; it
+also gives an independent structural proof of the hyperlinearity assertion
+in Theorem 8.11 once `(HSC1)` is known.
+
+There is a sharp dichotomy.  If `S` is nonsofic, then `(HSC1)` itself is a
+hyperlinear nonsofic group and solves the main problem.  If `S` is sofic,
+then `K` is an explicit finitely presented, noncommutative, hyperlinear and
+sofic group with no nontrivial finite-dimensional unitary representation.
+In that branch `K` is minimally almost periodic and not LEF: a nontrivial
+finite quotient would give a nontrivial finite-dimensional permutation
+representation, while a finitely presented LEF group is residually finite.
+
+Thus the passage from Theorem 8.6 to Theorem 8.11 does not manufacture
+nonsoficity and cannot by itself attach a trace-visible phase to the
+Kun--Thom collision.  The only live use of this reservoir is the seed itself:
+prove that its central involution lies in its full sofic radical (for example
+by a genuinely permutation-stability theorem for that particular linear
+system).  Generic stability of linear-system groups cannot be assumed,
+because Slofstra's embedding machinery makes that class group-theoretically
+universal.  The exact-representation fact `J=1` is therefore not a substitute
+for the required approximate-permutation statement.
+
+Primary source audited directly: Culf--van Dobben de Bruyn--Zeman,
+arXiv:2604.01408v1, Theorem 8.6 and Lemmas 8.7--8.10, especially the explicit
+finite amalgams in Lemmas 8.9 and 8.10.
