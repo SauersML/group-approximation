@@ -75,13 +75,36 @@ theorem starScale_sq (D : ℕ) :
   rw [Real.sq_sqrt]
   positivity
 
+/-- The hub diagonal entry of a product is the scaled dot product. -/
+theorem starMatrix_mul_hub_hub {D : ℕ} (v w : Fin D → ℝ) :
+    (starMatrix v * starMatrix w) (Sum.inl ()) (Sum.inl ()) =
+      (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) := by
+  rw [Matrix.mul_apply, Fintype.sum_sum_type]
+  simp [starMatrix, starDot, Finset.mul_sum]
+  ring
+
+/-- Each spoke diagonal entry of a product comes only from the hub path. -/
+theorem starMatrix_mul_spoke_spoke {D : ℕ} (v w : Fin D → ℝ)
+    (i : Fin D) :
+    (starMatrix v * starMatrix w) (Sum.inr i) (Sum.inr i) =
+      (starScale D : ℂ) ^ 2 * (v i : ℂ) * (w i : ℂ) := by
+  rw [Matrix.mul_apply, Fintype.sum_sum_type]
+  simp [starMatrix]
+  ring
+
 /-- Exact unnormalized covariance of two star matrices. -/
 theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
     Matrix.trace (starMatrix v * starMatrix w) =
       ((D + 1 : ℝ) * starDot v w : ℝ) := by
-  unfold Matrix.trace starDot
+  unfold Matrix.trace
   rw [Fintype.sum_sum_type]
-  simp [starMatrix, Fintype.sum_sum_type, starScale_sq]
+  rw [starMatrix_mul_hub_hub]
+  simp_rw [starMatrix_mul_spoke_spoke]
+  rw [← Finset.mul_sum]
+  change (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) +
+      (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) = _
+  rw [← ofReal_pow, starScale_sq]
+  norm_num
   push_cast
   ring
 
