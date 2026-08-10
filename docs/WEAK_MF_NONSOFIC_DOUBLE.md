@@ -263,6 +263,84 @@ centralizer-normalization argument, using any \(1\neq k\in K\), proves
  }                                                       \tag{16}
 \]
 
+## 4. The forced exotic MF corner
+
+The weak-MF statement makes an operator-norm localization theorem
+unconditional.  Let \(H_K=G *_\Gamma(\Gamma\times K)\) be one of the groups
+above and let
+
+\[
+ \varphi:H_K\longrightarrow U(F)
+\]
+
+be an injective homomorphism into a unital finite C*-algebra \(F\).  This
+includes the faithful realization in an MF norm ultraproduct just
+constructed.  Let \(p_\Gamma\in C^*_{\max}(\Gamma)\) be the Kazhdan
+projection and set
+
+\[
+ p=\varphi(p_\Gamma),\qquad q=1-p.
+\]
+
+Here the integrated representation is understood; the canonical map
+\(C^*_{\max}(\Gamma)\to C^*_{\max}(H_K)\) is injective by induction of
+representations.
+
+**Proposition (forced exotic corner).**  The projection \(q\) commutes with
+\(\varphi(H_K)\).  Fix \(1\neq k\in K\), retain \(t,\gamma\) from (12),
+and put
+
+\[
+ w_k=[tkt^{-1},\gamma]\neq1.
+\]
+
+Then
+
+\[
+ p(\varphi(w_k)-1)=0,
+ \qquad
+ q(\varphi(w_k)-1)\neq0.                               \tag{17}
+\]
+
+In particular \(q\neq0\), and the unital corner \(qFq\) is a finite
+C*-algebra carrying an operator-norm-visible image of the nonsofic witness
+and no \(\Gamma\)-fixed summand.
+
+**Proof.**  For a strict compressor \(s\), put \(U=\varphi(s)\).  In every
+unitary representation, \(U^{-1}\) sends \(\Gamma\)-fixed vectors to
+\(\Gamma\)-fixed vectors because \(s\Gamma s^{-1}\leq\Gamma\).  Hence
+
+\[
+ UqU^*\leq q.
+\]
+
+The two projections are unitarily equivalent.  Finiteness of \(F\) forbids
+a projection from being equivalent to a proper subprojection, so equality
+holds.  The compressor semigroup generates \(G\), and therefore \(q\)
+commutes with \(\varphi(G)\).  Every element of the lamp copy \(K\)
+centralizes \(\Gamma\), hence commutes with its Kazhdan projection and with
+\(q\).  These elements generate \(H_K\), proving centrality.
+
+On the \(p\)-corner, \(\Gamma\) acts trivially; since \(p\) also reduces the
+whole representation, the commutator witness acts trivially there.  This is
+the first equality in (17).  Bass--Serre normal form gives \(w_k\neq1\), and
+injectivity of \(\varphi\) gives \(\varphi(w_k)\neq1\).  Centrality of
+\(p,q\) and the first equality force all remaining deviation into the
+\(q\)-corner, proving the second. \(\square\)
+
+This is stronger than merely knowing that some MF embedding separates
+\(w\): the location of every possible separation is canonical.  It still
+does not give normalized-Hilbert--Schmidt mass.  Finite-stage lifts of \(q\)
+may have growing rank while \(q(\varphi(w)-1)\) remains visible on only a
+vanishing fraction of that rank.  Thus the exact unresolved analytic step
+is now internal to \(qFq\): produce one Connes-embeddable corner trace which
+does not annihilate the positive element
+
+\[
+ q(\varphi(w_k)-1)^*(\varphi(w_k)-1)q.
+ \tag{18}
+\]
+
 This is a genuine separation of weak/operator-norm MF from soficity.  It
 does **not** yet separate hyperlinearity from soficity: Shulman's MF
 embedding supplies operator-norm separation, but its normalized traces need
