@@ -380,10 +380,6 @@ hypothesis, needed to exhaust the group by finite test sets.  The reduction make
 that hypothesis free of charge: a finitely generated group is countable, being a
 surjective image of a free group on finitely many generators, so a counterexample
 may be taken countable.
-
-That matters for citing the ultraproduct picture at all.  Radulescu's
-characterization of hyperlinearity is stated for countable groups, and without
-the reduction one would have to say the general case is not covered by it.
 -/
 
 /-- A finitely generated group is countable. -/

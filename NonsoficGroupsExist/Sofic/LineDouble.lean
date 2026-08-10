@@ -53,16 +53,12 @@ instance lineDoubleFactorCountable [Countable G] :
     ∀ i, Countable (LineDoubleFactor G i) :=
   fun _ ↦ inferInstanceAs (Countable G)
 
-set_option synthInstance.maxHeartbeats 100000 in
 instance lineDoubleCountable [Countable G] : Countable (LineDouble G Γ) := by
   haveI hΓ : Countable ↥Γ := Subtype.countable
-  haveI hsigma : Countable (Sigma (LineDoubleFactor G)) := inferInstance
   haveI h0 : Countable (FreeMonoid (Σ i, LineDoubleFactor G i)) :=
     inferInstanceAs (Countable (List (Σ i, LineDoubleFactor G i)))
   haveI h1 : Countable (CoprodI (LineDoubleFactor G)) :=
     Con.mk'_surjective.countable
-  haveI hsum : Countable (CoprodI (LineDoubleFactor G) ⊕ ↥Γ) :=
-    inferInstance
   haveI h2 : Countable
       (FreeMonoid (CoprodI (LineDoubleFactor G) ⊕ ↥Γ)) :=
     List.countable

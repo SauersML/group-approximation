@@ -15,6 +15,10 @@ import NonsoficGroupsExist.Leavitt.UnitsGLProfile
 import NonsoficGroupsExist.KOne.AllRanksElementary
 import NonsoficGroupsExist.Sofic.SoficPositiveControl
 import NonsoficGroupsExist.Sofic.ExteriorMFProfile
+import NonsoficGroupsExist.Sofic.HyperlinearNonScalar
+import NonsoficGroupsExist.Sofic.HyperlinearReduction
+import NonsoficGroupsExist.Sofic.HyperlinearUltraproduct
+import NonsoficGroupsExist.Sofic.PhasePropagation
 import NonsoficGroupsExist.Kun.KunDecomposition
 import NonsoficGroupsExist.KunThom.KunThomTheorem
 import NonsoficGroupsExist.PropertyT.FreeElementaryPropertyT

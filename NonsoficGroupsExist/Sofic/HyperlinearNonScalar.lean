@@ -27,25 +27,9 @@ place the resulting condition:
   `hsDistSq_conjDoubleTensorPow`, to models of every accuracy and separation
   `2 - \eps`.
 
-So
+Thus the declarations below establish
 
-  sofic  ==>  non-scalar hyperlinear  ==>  hyperlinear,
-
-and both inclusions are elementary.  The two classes in fact **coincide**, by
-Radulescu's theorem (Theorem 8.5 of Pestov's survey): a countable group is
-hyperlinear exactly when its group von Neumann algebra embeds into `R^omega`,
-and restricting a trace-preserving embedding to the group unitaries makes
-`tau(u_g) = 0` for `g` non-trivial, on the nose.
-
-What the two inclusions record is the proof-theoretic asymmetry that hides.
-On the permutation side the separation constant is made arbitrary by tensor
-amplification (`Sofic.SoficAmplification`).  Pestov's Remark 3.7 asserts the
-same refinement for the unitary characterization without proof, and
-`Sofic.HyperlinearAmplification` shows the amplification cannot supply it: the
-tensor power identifies unitaries differing by a root of unity.  The unitary
-refinement rests on the von Neumann algebra theorem; the elementary route
-available on the permutation side provably does not exist here.  What is
-elementary is exactly the two implications above.
+  sofic  ==>  non-scalar hyperlinear  ==>  hyperlinear.
 
 The endpoint reading `not_isSofic_of_not_isHyperlinearNonScalar` is recorded in
 the same form as the one in `Sofic.Hyperlinear`.
