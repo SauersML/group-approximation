@@ -98,46 +98,5 @@ theorem swapPerm_mul_self (b : FinitePartialBijection Y Z) :
   intro x
   exact b.swapPerm.left_inv x
 
-/-- Embed the swap of `Y` and `Z` into the three-layer model
-`Y ⊕ (Z ⊕ W)`, fixing `W`. -/
-def firstSwap (b : FinitePartialBijection Y Z) :
-    Equiv.Perm (sumModel Y (sumModel Z W)) :=
-  (Equiv.sumAssoc Y Z W).symm |>.trans
-    (Equiv.sumCongr b.swapPerm (Equiv.refl W)) |>.trans
-    (Equiv.sumAssoc Y Z W)
-
-/-- Embed the swap of `Z` and `W` into the three-layer model, fixing `Y`. -/
-def secondSwap (c : FinitePartialBijection Z W) :
-    Equiv.Perm (sumModel Y (sumModel Z W)) :=
-  Equiv.sumCongr (Equiv.refl Y) c.swapPerm
-
-@[simp] theorem firstSwap_inl_of_mem
-    (b : FinitePartialBijection Y Z) (y : Y) (hy : y ∈ b.source) :
-    (firstSwap (W := W) b) (Sum.inl y) = Sum.inr (Sum.inl (b.apply y hy)) := by
-  rw [firstSwap, Equiv.trans_apply, Equiv.trans_apply]
-  change (Equiv.sumAssoc Y Z W)
-    (Sum.inl (b.swapPerm (Sum.inl y))) = _
-  rw [swapPerm_inl_of_mem b y hy]
-  rfl
-
-@[simp] theorem secondSwap_middle_of_mem
-    (c : FinitePartialBijection Z W) (z : Z) (hz : z ∈ c.source) :
-    (secondSwap (Y := Y) c) (Sum.inr (Sum.inl z)) =
-      Sum.inr (Sum.inr (c.apply z hz)) := by
-  change Sum.inr (c.swapPerm (Sum.inl z)) = _
-  rw [swapPerm_inl_of_mem c z hz]
-
-/-- On every composable source point, the product of the two swaps carries
-the first layer to the third layer by the partial composite. -/
-theorem secondSwap_mul_firstSwap_apply
-    (b : FinitePartialBijection Y Z) (c : FinitePartialBijection Z W)
-    (y : Y) (hy : y ∈ (b.trans c).source) :
-    (secondSwap (Y := Y) c * firstSwap (W := W) b) (Sum.inl y) =
-      Sum.inr (Sum.inr ((b.trans c).apply y hy)) := by
-  obtain ⟨hyb, hyc⟩ := (b.mem_trans_source c y).mp hy
-  rw [Equiv.Perm.mul_apply, firstSwap_inl_of_mem b y hyb,
-    secondSwap_middle_of_mem c (b.apply y hyb) hyc]
-  rfl
-
 end FinitePartialBijection
 end NonsoficGroupsExist
