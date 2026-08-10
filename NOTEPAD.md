@@ -33826,3 +33826,107 @@ remaining phase-splitting construction must instead use a multiplier which
 is already cohomologically trivial on the finite polynomial image, or use
 honest induced sectors/non-regular representations not covered by
 `(KDF1)--(KDF4)`.
+
+## Kazhdan collapse also closes invariant induced-character sectors
+
+The last sentence above suggested that the honest induced representations
+in `(ICB1)--(ICB7)` might evade the finite-regular obstruction.  They do
+not when the kernel character is invariant, which is precisely the
+hypothesis needed there to make the collision phase scalar.
+
+Let `Gamma<=G`, put `D=G *_Gamma G`, and fix `h in G` such that
+
+`x_h=i_2(h)i_1(h)^(-1) in Rad_sof(D)`.                `(KIC1)`
+
+For a finite-index normal subgroup `K normal G` and a `G`-invariant
+character `chi:K->T`, write
+
+`U=Ind_K^G(1)`, `V=Ind_K^G(chi)`                     `(KIC2)`
+
+on `ell^2(G/K)`.  Invariance of `chi` implies
+
+`U(k)=1`, `V(k)=chi(k)1` for every `k in K`.          `(KIC3)`
+
+**Theorem (Kazhdan collapse of invariant induced sectors).**  Assume
+`Gamma` has property `(T)`, with finite Kazhdan set `S`.  Let `K_j normal G`
+be finite-index subgroups, let `chi_j:K_j->T` be `G`-invariant characters,
+and let `U_j,V_j` be `(KIC2)`.  Suppose there are unitaries `W_j` such that
+
+`max_(s in S)||W_j V_j(s)W_j^*-U_j(s)||_2 ->0`.       `(KIC4)`
+
+If `gamma_j in Gamma` and
+
+`k_j=gamma_j^(-1)h in K_j`,                          `(KIC5)`
+
+then
+
+`chi_j(k_j)=1`                                       `(KIC6)`
+
+for all sufficiently large `j`.  Consequently the induced-character
+branch-cut criterion `(ICB4)--(ICB5)` cannot hold for a nontrivial scalar
+phase.
+
+**Proof.**  After replacing `V_j` by `W_jV_jW_j^*`, the restrictions of
+`U_j,V_j` to `Gamma` are honest representations on the same normalized
+Hilbert--Schmidt space and are close on the Kazhdan set.  The intertwiner
+argument `(KPU12)--(KPU14)`, now with no projective scalar at all, gives
+
+`sup_(gamma in Gamma)||V_j(gamma)-U_j(gamma)||_2 ->0`. `(KIC7)`
+
+Put `L_j=K_j intersect Gamma`.  By `(KIC3)`, for every `l in L_j`,
+
+`V_j(l)=chi_j(l)1`, `U_j(l)=1`.
+
+Thus `(KIC7)` gives
+
+`sup_(l in L_j)|chi_j(l)-1|->0`.                     `(KIC8)`
+
+Every nontrivial subgroup of the circle contains an element whose distance
+from one is at least `sqrt(3)`.  Hence
+
+`chi_j|_(L_j)=1`                                     `(KIC9)`
+
+for all sufficiently large `j`.
+
+There is then an exact representation-theoretic identification on the
+amalgamating subgroup.  Mackey decomposition, using normality of `K_j`,
+gives
+
+`Res_Gamma U_j ~= [G:Gamma K_j] Ind_(L_j)^Gamma(1)`,
+`Res_Gamma V_j ~= [G:Gamma K_j] Ind_(L_j)^Gamma(chi_j|L_j)`. `(KIC10)`
+
+By `(KIC9)` these two restrictions are unitarily equivalent.  Choose an
+exact intertwiner `T_j` and represent the two vertex copies of `G` in `D`
+by `U_j` and `T_jV_jT_j^*`.  They agree exactly on `Gamma`, hence define
+an honest finite-dimensional representation
+
+`rho_j:D->U([G:K_j])`.                               `(KIC11)`
+
+Since `h=gamma_j k_j`, equations `(KIC3)`, `(KIC5)`, and exact
+intertwining on `Gamma` give
+
+`rho_j(x_h)=chi_j(k_j)1`.                            `(KIC12)`
+
+Every linear group is sofic (reduce to finitely generated subgroups and
+apply Malcev residual finiteness).  The defining property `(KIC1)` of the
+full sofic radical therefore forces `rho_j(x_h)=1`.  Equation `(KIC12)` is
+exactly `(KIC6)`.  End proof.
+
+This theorem closes the whole invariant one-dimensional induction lane,
+not just the regular projective coordinate patch.  A surviving
+non-regular construction must abandon at least one of its load-bearing
+hypotheses: scalar `G`-invariant kernel characters, honest finite-index
+induction, or generatorwise Hilbert--Schmidt agreement on the Kazhdan
+subgroup.  Merely changing the finite representation away from the regular
+one is insufficient.
+
+## Exact source pin for the primitive moment symbol
+
+The comparison used in `(IMG9)` is Matthew Morrow, *K2 of localisations of
+local rings*, Journal of Algebra 399 (2014), Theorem 3.7: for every
+5-fold stable ring, the natural map `K_2^M(R)->K_2(R)` is an isomorphism.
+Remark 3.3 in the same paper states that a semilocal ring is `k`-fold
+stable exactly when all residue fields have more than `k` elements.  Since
+`A_M` in `(IMG2)` is local with residue field `F_p` and `p>5`, the
+hypothesis holds exactly as used; `(IMG4)` therefore defines a character
+of stable Quillen `K_2`, not only of Milnor `K_2`.
