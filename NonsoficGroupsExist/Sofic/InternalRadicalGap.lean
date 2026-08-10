@@ -86,6 +86,149 @@ theorem subgroupTopSpectralDisplacement_vanishing
   rw [D.generates]
   exact Subgroup.mem_top x
 
+/-- Conjugation by an ambient element, regarded as an element of a normal
+subgroup. -/
+def normalConjugate (N : Subgroup H) [N.Normal] (g : H) (x : N) : N :=
+  ⟨g⁻¹ * x * g, Subgroup.Normal.conj_mem' inferInstance x x.property g⟩
+
+@[simp]
+theorem normalConjugate_coe (N : Subgroup H) [N.Normal] (g : H) (x : N) :
+    (normalConjugate N g x : H) = g⁻¹ * x * g :=
+  rfl
+
+/-- Normality converts subgroup top-corner invariance into approximate
+invariance of an ambient translate of that corner. -/
+theorem subgroup_displacement_mul_ambient_top_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) (s : N) :
+    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+      ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          KazhdanCornerMatrices.spectralAbove
+            (KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n)
+            (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+              (restrictedApproximation A N) D.S n)
+            D.cutoff) := by
+  let x : N := normalConjugate N g s
+  let P : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
+    KazhdanCornerMatrices.spectralAbove
+      (KazhdanCornerMatrices.hermitianAverage
+        (restrictedApproximation A N) D.S n)
+      (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+        (restrictedApproximation A N) D.S n)
+      D.cutoff
+  have hP : ∀ n, ‖P n‖ ≤ 1 := fun n ↦
+    KazhdanCornerMatrices.norm_spectralAbove_le_one _ _ _
+  have hsg := (KazhdanCornerMatrices.multiplicativeDefect_vanishing
+    A (s : H) g).mul_right_of_norm_le_one P hP
+  have hgx := (KazhdanCornerMatrices.multiplicativeDefect_vanishing
+    A g (x : H)).mul_right_of_norm_le_one P hP
+  have hx := (subgroupTopSpectralDisplacement_vanishing A N D x).mul_left_of_norm_le_one
+    (fun n ↦ (A.map n g : Matrix (A.model n) (A.model n) ℂ))
+    (fun n ↦ (CStarRing.norm_of_mem_unitary (A.map n g).2).le)
+  have htotal := hx.add hgx |>.sub hsg
+  exact htotal.congr fun n ↦ by
+    have hgroup : (s : H) * g = g * (x : H) := by
+      simp only [x, normalConjugate_coe]
+      simp [mul_assoc]
+    simp only [P, KazhdanCornerMatrices.topSpectralDisplacement] at htotal ⊢
+    rw [hgroup]
+    noncomm_ring
+
+/-- The subgroup orbit average acts asymptotically as the identity on every
+ambient translate of the retained top corner. -/
+theorem matrixAverage_sub_one_mul_ambient_top_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) :
+    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+      (KazhdanCornerMatrices.matrixAverage
+          (restrictedApproximation A N) D.S n - 1) *
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          KazhdanCornerMatrices.spectralAbove
+            (KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n)
+            (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+              (restrictedApproximation A N) D.S n)
+            D.cutoff) := by
+  classical
+  let P : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
+    KazhdanCornerMatrices.spectralAbove
+      (KazhdanCornerMatrices.hermitianAverage
+        (restrictedApproximation A N) D.S n)
+      (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+        (restrictedApproximation A N) D.S n)
+      D.cutoff
+  let X : N → ∀ n, Matrix (A.model n) (A.model n) ℂ := fun s n ↦
+    ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
+      (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n
+  have hsum := KazhdanCornerMatrices.OpNormVanishing.finset_sum D.S X
+    (fun s _ ↦ subgroup_displacement_mul_ambient_top_vanishing A N D g s)
+  have hscaled := hsum.smul (((D.S.card : ℂ)⁻¹))
+  have hcard : (D.S.card : ℂ) ≠ 0 := by
+    exact_mod_cast (Finset.card_ne_zero.mpr ⟨1, D.one_mem⟩)
+  exact hscaled.congr fun n ↦ by
+    change ((D.S.card : ℂ)⁻¹) •
+        (∑ s ∈ D.S,
+          ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
+            (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n) = _
+    rw [KazhdanCornerMatrices.matrixAverage]
+    have hones : ((D.S.card : ℂ)⁻¹) •
+        (∑ _s ∈ D.S, (1 : Matrix (A.model n) (A.model n) ℂ)) = 1 := by
+      ext i j
+      simp [hcard]
+    rw [show (∑ s ∈ D.S,
+          ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
+            (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n) =
+        ((∑ s ∈ D.S,
+          (A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ)) -
+            ∑ _s ∈ D.S, 1) *
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n by
+      simp_rw [sub_mul, Finset.sum_sub_distrib, Finset.sum_mul]
+      noncomm_ring]
+    rw [smul_mul_assoc, smul_mul_assoc, smul_sub, hones]
+
+/-- Replacing the weak-MF orbit average by its exact Hermitian part preserves
+ambient top-corner invariance. -/
+theorem hermitianAverage_sub_one_mul_ambient_top_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
+    (D : Setup A N) (g : H) :
+    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+      (KazhdanCornerMatrices.hermitianAverage
+          (restrictedApproximation A N) D.S n - 1) *
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
+          KazhdanCornerMatrices.spectralAbove
+            (KazhdanCornerMatrices.hermitianAverage
+              (restrictedApproximation A N) D.S n)
+            (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+              (restrictedApproximation A N) D.S n)
+            D.cutoff) := by
+  let P : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
+    KazhdanCornerMatrices.spectralAbove
+      (KazhdanCornerMatrices.hermitianAverage
+        (restrictedApproximation A N) D.S n)
+      (KazhdanCornerMatrices.hermitianAverage_conjTranspose
+        (restrictedApproximation A N) D.S n)
+      D.cutoff
+  let GP : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
+    (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n
+  have hGP : ∀ n, ‖GP n‖ ≤ 1 := fun n ↦ by
+    calc
+      ‖GP n‖ ≤ ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)‖ * ‖P n‖ :=
+        Matrix.l2_opNorm_mul _ _
+      _ ≤ 1 * 1 := mul_le_mul
+        (CStarRing.norm_of_mem_unitary (A.map n g).2).le
+        (KazhdanCornerMatrices.norm_spectralAbove_le_one _ _ _)
+        (norm_nonneg _) zero_le_one
+      _ = 1 := one_mul 1
+  have havg := matrixAverage_sub_one_mul_ambient_top_vanishing A N D g
+  have hdiff := (KazhdanCornerMatrices.matrixAverage_sub_hermitian_vanishing
+    (restrictedApproximation A N) D.S D.symmetric).neg.mul_right_of_norm_le_one GP hGP
+  have htotal := hdiff.add havg
+  exact htotal.congr fun n ↦ by
+    simp only [GP, P]
+    noncomm_ring
+
 /-- The subgroup moving-coordinate type cut out inside the ambient matrix
 model. -/
 noncomputable abbrev MovingIndex (A : WeakMFApproximation H)
