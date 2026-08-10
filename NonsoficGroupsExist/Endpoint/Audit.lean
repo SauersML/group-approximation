@@ -242,10 +242,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.exists_isLEF_group_with_non_isLEF_quotient
 #print axioms NonsoficGroupsExist.exists_residuallyFinite_group_with_non_residuallyFinite_quotient
 
--- The exterior-amplification bridge from square-root-profile operator-norm
--- MF models to hyperlinearity.
-#print axioms NonsoficGroupsExist.SqrtDimensionMFProfile.isHyperlinear_of_profile
-
 -- Internally proved operator-norm MF transfer mechanisms.
 #print axioms NonsoficGroupsExist.isWeakMF_of_injective
 #print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
