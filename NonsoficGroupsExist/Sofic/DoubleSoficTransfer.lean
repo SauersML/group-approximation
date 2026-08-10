@@ -41,4 +41,18 @@ theorem isSofic_freeLamp_flip_of_isSofic_lineDouble
   isSofic_freeLamp_flip_of_isSofic_symmetricDouble G Γ
     (isSofic_symmetricDouble_of_isSofic_lineDouble G Γ hline)
 
+/-- A nonsofic `C₂` free-lamp amalgam forces the two-vertex symmetric double
+to be nonsofic. -/
+theorem not_isSofic_symmetricDouble_of_not_isSofic_freeLamp_flip
+    (hLamp : ¬ IsSofic (FreeLamp G Γ FlipC2)) :
+    ¬ IsSofic (SymmetricDouble G Γ) := fun hD ↦
+  hLamp (isSofic_freeLamp_flip_of_isSofic_symmetricDouble G Γ hD)
+
+/-- A nonsofic `C₂` free-lamp amalgam forces the exact infinite line double
+from Question 1.6 to be nonsofic. -/
+theorem not_isSofic_lineDouble_of_not_isSofic_freeLamp_flip
+    (hLamp : ¬ IsSofic (FreeLamp G Γ FlipC2)) :
+    ¬ IsSofic (LineDouble G Γ) := fun hline ↦
+  hLamp (isSofic_freeLamp_flip_of_isSofic_lineDouble G Γ hline)
+
 end NonsoficGroupsExist
