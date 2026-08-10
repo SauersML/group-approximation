@@ -174,4 +174,34 @@ theorem not_kernel_range_le_soficResidual_of_split_equiv
 
 end SplitExtensions
 
+section ResidualExtension
+
+variable (N : Subgroup K) [N.Normal] [Finite N] [Nontrivial N]
+
+/-- **Finite residual kernels do not split.**  If `N` is a nontrivial finite
+normal subgroup contained in the sofic residual, there is no semidirect-product
+isomorphism carrying the actual kernel inclusion to the canonical base
+inclusion. -/
+theorem finite_normal_residual_kernel_has_no_split_equiv
+    (hN : N ≤ soficResidual K) (alpha : Q →* MulAut N)
+    (e : K ≃* (N ⋊[alpha] Q))
+    (hbase : e.toMonoidHom.comp N.subtype = SemidirectProduct.inl) : False := by
+  apply not_kernel_range_le_soficResidual_of_split_equiv alpha N.subtype e hbase
+  intro x hx
+  obtain ⟨n, rfl⟩ := hx
+  exact hN n.2
+
+/-- An order-two finite residual kernel is central and nonsplit. -/
+theorem order_two_residual_kernel_central_and_nonsplit
+    (hN : N ≤ soficResidual K) (hcard : Nat.card N = 2) :
+    N ≤ Subgroup.center K ∧
+      ∀ (alpha : Q →* MulAut N) (e : K ≃* (N ⋊[alpha] Q)),
+        e.toMonoidHom.comp N.subtype = SemidirectProduct.inl → False := by
+  constructor
+  · exact normal_subgroup_le_center_of_natCard_eq_two N hcard
+  · intro alpha e hbase
+    exact finite_normal_residual_kernel_has_no_split_equiv N hN alpha e hbase
+
+end ResidualExtension
+
 end NonsoficGroupsExist
