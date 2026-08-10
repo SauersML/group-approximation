@@ -85,6 +85,7 @@ import NonsoficGroupsExist.KunThom.KunThomTheorem
 import NonsoficGroupsExist.Kun.KunSpectralCounterexample
 import NonsoficGroupsExist.Matching.MaximalCutRepair
 import NonsoficGroupsExist.Sofic.SoficRestriction
+import NonsoficGroupsExist.Sofic.IntersectionReduction
 import NonsoficGroupsExist.Matching.EssentialExpanderRepair
 import NonsoficGroupsExist.KunThom.KunThomEssential
 import NonsoficGroupsExist.Kun.KunPartitionBoundary
