@@ -35821,3 +35821,67 @@ can recover the gauge quotient while becoming covariant in normalized corner
 norm.  This still leaves the fixed-trace central-character projection of
 `(FGC7)--(FGC10)` alive; constructing a Connes-embeddable trace there remains
 the positive endpoint.
+
+# Zeta23 rank--trace audit: an exact interface, not a missing source of mass (2026-08-10)
+
+The self-contained linear-algebra core of Anthropic's `zeta-23-lean`
+formalizes three tools that are directly legible in the approximation-group
+problem: inertia under pullback, Weyl stability of the positive index, and the
+rank--trace inequality.  Its thresholded Cauchy--Schwarz theorem has the
+following normalized consequence.
+
+**Lemma (moment-to-rank visibility).**  Let `R in M_d(C)` be Hermitian, let
+`theta >= 0`, and suppose
+
+`tau_d(R) > theta`,  `tau_d(R^2) <= B`.                    `(ZRT1)`
+
+Then
+
+`rank(1_((theta,infinity))(R))/d
+   >= (tau_d(R)-theta)^2/B`.                              `(ZRT2)`
+
+Here `tau_d` is normalized trace.  This is exactly
+`RHLinalg.cauchySchwarz_count`, divided by `d`; its proof is Cauchy--Schwarz
+on the eigenvalues above `theta` and is independent of zeta-function input.
+
+For a unitary `U`, take
+
+`R=(U-1)^*(U-1)`,  `delta=||U-1||_2^2=tau_d(R)`.          `(ZRT3)`
+
+Since `0 <= R <= 4`, one has `tau_d(R^2)<=4delta`.  Taking
+`theta=delta/2` in `(ZRT2)` gives the explicit visibility bound
+
+`rank(1_((delta/2,infinity))(R))/d >= delta/16`.          `(ZRT4)`
+
+Thus any *Hilbert--Schmidt* witness gap automatically occupies positive
+normalized rank, with a completely quantitative constant.  In particular,
+once a central-character corner, an internal-radical Kazhdan corner, or a
+relative-mixing construction supplies a fixed positive second moment, no
+separate rank-profile hypothesis is needed: `(ZRT4)` supplies it.
+
+The same audit also identifies the precise limitation.  Operator-norm
+separation controls only the largest eigenvalue of `(ZRT3)` and supplies no
+lower bound on `delta`.  The rank-spiky full-spectrum model `(RSF1)--(RSF9)`
+has `||U_n-1||` bounded away from zero while `delta_n -> 0`, so neither
+`(ZRT2)` nor the stronger rank--trace inequality has a nonzero input.  The
+`zeta-23-lean` tightness theorem (`lemmaR_tight`) further shows that the
+rank--trace certificate cannot be improved using only rank, trace, Frobenius
+norm and positive index.  Consequently this machinery does **not** upgrade
+weak MF to hyperlinearity and does not close the finite-gauge or
+Leavitt--Steinberg weak-MF gates.  It proves that their missing datum is
+genuinely the first trace moment, not a sharper matrix inequality.
+
+**Reusable formalization architecture.**  The repository's trusted
+statement / untrusted solution split is worth copying when a terminal
+approximation theorem is reached: put only Mathlib definitions and the exact
+headline statement in a small trusted module, delegate the implementation in
+a separate module, compare statement equality with `leanprover/comparator`,
+and run both `#print axioms` and an independent-kernel replay.  This improves
+verification discipline but does not add a mathematical premise.
+
+**Route verdict.**  Importing the seven-file linear-algebra library now would
+duplicate the spectral-threshold machinery already present in
+`Sofic/KazhdanCornerModel` and `Sofic/InternalRadicalGap`.  The useful new
+checkpoint is instead the scoped no-go above: future FALSE-side proposals
+based only on operator norm plus rank--trace/inertia are closed unless they
+exhibit an independent positive normalized trace moment.
