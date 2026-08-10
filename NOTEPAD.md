@@ -29591,3 +29591,237 @@ must be detected by genuinely approximate representations.  The
 small-phase tensor lemma and the Fourier-odd criterion are therefore not
 merely convenient reformulations; they target the only possible
 finite-dimensional mechanism.
+
+# Transpose time reversal cancels oriented curvature without cancelling the center (2026-08-09)
+
+There is a second phase-balancing symmetry which is often better suited to
+gallery/Egorov holonomy because it reverses the orientation of every
+multiplication cell.
+
+First define the anti-symplectic automorphism
+
+`S(u,v,a)=(u,-v,-a)`                                   `(TTR1)`
+
+of `Heis(I directSum I)`.  It commutes with the diagonal `G`-action and
+sends `z` to `z^(-1)`.  Let
+
+`A=S compose inversion`.                               `(TTR2)`
+
+Then `A` is an anti-automorphism of `E_Z`, it fixes `z`, and on the
+Heisenberg subgroup it is
+
+`A(u,v,a)=(-u,v,a-<u,v>)`;                             `(TTR3)`
+
+on the ambient factor it sends `g` to `g^(-1)`.
+
+**Proof of the formulas.**  Formula `(TTR1)` preserves multiplication
+because both the center and the cocycle `<u,v'>` change sign.  Inversion is
+an anti-automorphism and sends `z` to `z^(-1)`, so their composite is anti
+and fixes `z`.  Since
+
+`(u,v,a)^(-1)=(-u,-v,-a+<u,v>)`,
+
+applying `S` gives `(TTR3)`.  End proof.
+
+**Theorem (transpose-time-reversal cancellation).**  Let `phi_t:E_Z->U(d_t)`
+and
+
+`D_t(g,h)=phi_t(g)phi_t(h)phi_t(gh)^*`.
+
+Suppose, for every fixed `g,h`,
+
+`||D_t(g,h)-exp(i t c_t(g,h))1||_2=O_(g,h)(t^2)`,       `(TTR4)`
+
+`c_t(Ah,Ag)=-c_t(g,h)+O_(g,h)(t)`,                    `(TTR5)`
+
+and
+
+`||phi_t(z)-exp(i t)1||_2=O(t^2)`.                    `(TTR6)`
+
+Then there is a hyperlinear nonsofic group.
+
+**Proof.**  Define
+
+`phi_t^rev(g)=phi_t(Ag)^T`,
+`Psi_t(g)=phi_t(g) tensor phi_t^rev(g)`.
+
+Put `x=Ah`, `y=Ag`, so `A(gh)=xy`.  The defect of the reverse-transpose
+map is
+
+`phi_t(y)^T phi_t(x)^T overline(phi_t(xy))`.
+
+If `C=phi_t(xy)^T`, this equals
+
+`C D_t(x,y)^T C^*`.                                   `(TTR7)`
+
+Thus it is unitarily conjugate to the transpose of `D_t(Ah,Ag)`.  Matrix
+transpose preserves the scalar `exp(i t c)` rather than complex-conjugating
+it.  Equations `(TTR4)--(TTR5)` therefore make the defect of `Psi_t`
+`O_(g,h)(t^2)`.  Since `A(z)=z`, equation `(TTR6)` gives
+
+`||Psi_t(z)-exp(2 i t)1||_2=O(t^2)`.
+
+Small-phase tensor amplification followed by the one-character integral
+Weyl endpoint finishes.  End proof.
+
+This differs decisively from conjugate tensoring.  Complex conjugation
+reverses both a scalar curvature and the scalar image of `z`; transpose
+combined with the anti-automorphism reverses the **cell orientation** while
+leaving scalar values unchanged.  Hence an oriented first-order holonomy
+can cancel while the central phase adds.  The remaining model-production
+target may now be stated in its most natural form: produce one-polarization
+finite maps whose first-order defect is scalar curvature of oriented
+multiplication cells.  Oddness `(TTR5)` is then the expected orientation
+law, rather than an unrelated extra symmetry.
+
+# Quantitative Weyl scalarization of covariance defects (2026-08-09)
+
+The scalar-defect hypothesis in `(FOC3)` and `(TTR4)` follows from a
+checkable full-basis covariance estimate; it need not be imposed by hand.
+
+Let `omega=exp(2 pi i/m)` and on
+
+`H=(C^m)^(tensor N)`
+
+write `X_j,Z_j` for the standard clock and shift on the `j`th factor, with
+`X_j Z_j=omega Z_j X_j`.
+
+**Lemma (Weyl commutant gap).**  For every `T in M_(m^N)(C)`,
+
+`dist_2(T,C1)`
+` <=(1/(2 sin(pi/m)))`
+`   (sum_j (||[T,X_j]||_2^2+||[T,Z_j]||_2^2))^(1/2)`. `(WS1)`
+
+If `T` is unitary, there is `lambda in T` for which the right side, times
+`sqrt(2)`, bounds `||T-lambda 1||_2`.
+
+**Proof.**  The Weyl monomials
+
+`X_1^(a_1)Z_1^(b_1)...X_N^(a_N)Z_N^(b_N)`
+
+form an orthonormal basis for normalized Hilbert--Schmidt norm.  Commutation
+with `X_j` or `Z_j` multiplies the coefficient of a monomial by respectively
+`1-omega^(b_j)` or `1-omega^(-a_j)`.  Every non-scalar monomial has at least
+one nonzero exponent, whose multiplier has modulus at least
+`2 sin(pi/m)`.  Summing the squared Fourier coefficients proves `(WS1)`.
+
+The best scalar approximation to a unitary `T` is `tau(T)1`, with squared
+distance `1-|tau(T)|^2`.  Replacing `tau(T)` by its phase has squared
+distance `2-2|tau(T)|<=2(1-|tau(T)|^2)`, proving the last assertion.  End
+proof.
+
+Now suppose finite-stage unitaries `U_g` approximately implement a genuine
+symplectic action on this Weyl block:
+
+`||U_g W_j U_g^*-W_(g j)||_2<=eta`                    `(WS2)`
+
+for every clock/shift generator required by a fixed multiplication window,
+and similarly for `h` and `gh`.  The defect
+
+`D(g,h)=U_g U_h U_(gh)^*`
+
+then commutes with every target Weyl generator up to `O(eta)`, by a
+three-term telescope.  Lemma `(WS1)` supplies a scalar `lambda(g,h)` with
+
+`||D(g,h)-lambda(g,h)1||_2`
+` =O(sqrt(N) eta/sin(pi/m))`.                          `(WS3)`
+
+At small phase `t=2 pi/m`, the denominator is asymptotic to `t/2`.
+Consequently, for a block with `N=N(t)` Weyl pairs:
+
+* `sqrt(N) eta=o(t^2)` makes the multiplication defect scalar modulo
+  `o(t)`;
+* `sqrt(N) eta=O(t^3)` makes it scalar modulo `O(t^2)`.
+
+The factor `sqrt(N)` is load-bearing: merely knowing that native chamber
+errors tend to zero is insufficient if the number of active Weyl pairs grows
+too quickly.  If the geometry and the Weyl multiplicity are independently
+amplifiable, one may diagonalize to achieve
+`sqrt(N) eta=O(t^3)`; otherwise this is an explicit dimension/error profile
+which must be proved.  Thus the issue is no longer an unquantified appeal to
+Stone--von Neumann.  It is the finite assembly statement:
+
+> construct a time-reversal-symmetric covariant Weyl block on a full
+> symplectic basis, with
+> `sqrt(N) eta=O(t^3)` on the chosen diagonal.
+
+Once that exists, `(WS3)` scalarizes its defects, time reversal cancels the
+oriented scalar curvature, and small-phase amplification detects `z`.
+
+There is a dimension-free replacement when covariance is available in
+mean over the whole Weyl group.  Let `V=(Z/mZ)^(2N)` and choose Weyl
+unitaries `{W_v:v in V}` in the irreducible block.
+
+**Lemma (dimension-free Weyl twirl).**  For every `T in M_(m^N)(C)`,
+
+`(1/|V|) sum_(v in V) ||[T,W_v]||_2^2`
+` =2 ||T-tau(T)1||_2^2`.                              `(WS4)`
+
+**Proof.**  Weyl twirling is the scalar conditional expectation:
+
+`(1/|V|) sum_v W_v^* T W_v=tau(T)1`.
+
+Expand the squared commutators and use trace invariance.  The two diagonal
+terms contribute `2||T||_2^2`, and the two cross terms contribute
+`2|tau(T)|^2`.  Their difference is `(WS4)`.  End proof.
+
+Suppose now that a unitary `U_g` implements the desired symplectic
+permutation `rho_g` of `V` with averaged error
+
+`((1/|V|) sum_v`
+` ||U_g W_v U_g^*-W_(rho_g v)||_2^2)^(1/2)<=eta`.      `(WS5)`
+
+For `g,h,gh`, a three-term telescope and invariance of the uniform measure
+on `V` show that `D(g,h)=U_gU_hU_(gh)^*` has root-mean-square commutator at
+most `3 eta` with the full Weyl system.  Equation `(WS4)` therefore gives
+
+`dist_2(D(g,h),C1)<=3 eta/sqrt(2)`,                    `(WS6)`
+
+and a scalar unitary lies within `3 eta` (up to the harmless universal
+factor from phase normalization).  Unlike `(WS3)`, this estimate has no
+loss in `m`, `t`, or `N`.
+
+Thus there are two exact finite interfaces:
+
+1. generatorwise covariance, requiring the explicit profile
+   `sqrt(N) eta=O(t^3)`;
+2. averaged covariance over the complete finite Weyl system, requiring
+   only `eta=O(t^2)`.
+
+The second is much better aligned with normalized-Hilbert--Schmidt
+geometry.  A successful chamber/local-system construction should therefore
+be audited first in the averaged form `(WS5)`, rather than by paying a
+small-phase spectral gap on each clock and shift generator.
+
+# Historical scope of the weak-MF nonsofic double (2026-08-09)
+
+The proved symmetric-double theorem
+
+`D=G *_Gamma G is weak/operator-norm MF and nonsofic`
+
+has a standalone literature consequence distinct from the active
+hyperlinear problem:
+
+`MF groups are not contained in sofic groups`.         `(HMF1)`
+
+The closest explicit numbered provenance currently documented is Andrew
+James Schneider, *Finite dimensional approximations and deformations of
+group C*-algebras*, Purdue PhD dissertation (2016), Question 8:
+
+> What is the relationship between the class of MF groups, the class of
+> sofic groups, and the class hyperlinear groups?
+
+Thus the cautious historical description is:
+
+> the weak-MF nonsofic double settles one inclusion in Schneider's
+> Question 8 by proving `(HMF1)`.
+
+It should not be described, without further evidence, as answering a
+separately numbered question stated verbatim as "Is every MF group sofic?"
+Nor does `(HMF1)` settle Pestov's different question whether every
+hyperlinear group is sofic: weak/operator-norm MF does not imply
+hyperlinearity because normalized trace can lose the norm-visible witness.
+
+Primary pins: Purdue Open Access Dissertations 704 (award date April 2016,
+advisor Marius Dadarlat), and Shulman, arXiv:2603.13564, Definition 3 for
+the operator-norm meaning of MF used here.
