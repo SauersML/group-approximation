@@ -32204,3 +32204,123 @@ stated after `(SKT3)`:
 The real `H^2` direction remains valuable because it scalarizes the global
 holonomy of the compressor atlas; its magnitude no longer controls the
 allowable non-scalar error rate.
+
+# The cyclic radical shear is exactly one corona-covariance equation (2026-08-10)
+
+The free-stabilized shear `(FCS3)--(FCS7)` admits a sharper operator-norm
+formulation.  This isolates both the positive certificate and the precise
+reason that full essential spectrum in an infinite representation is not
+yet a proof.
+
+Let `H` be weak/operator-norm MF, let
+
+`1!=r in Rad_sof(H)`,  `C_H(r)=<r> isomorphic Z`,
+
+and let `z` be a central involution.  Put `B=H times <z>` and
+
+`A=<r,z> isomorphic Z times C_2`.
+
+On `A` define
+
+`alpha(r)=r z`,  `alpha(z)=z`,                       `(CRC1)`
+
+and form the involutively twisted double
+
+`J=B *_((A,id),(A,alpha)) B`.                        `(CRC2)`
+
+As in `(FCS5)`, `z` is nontrivial, central, and belongs to
+`Rad_sof(J)`.
+
+Choose a separable MF completion `calB` of the group copy of `B` with a
+trace whose GNS quotient is the regular representation of `B`; this is the
+profinite-trace completion used for the weak-MF symmetric double, followed
+by the free-product and finite-factor constructions in `(FCS1)--(FCS7)`.
+The infinite order of `r` makes
+
+`calA=C^*(r,z) subset calB isomorphic C(T) directSum C(T)`.
+
+**Theorem (corona-covariance criterion).**  The following are equivalent.
+
+1. There are star-embeddings `phi_1,phi_2:calB->Q` into one norm matrix
+   ultraproduct `Q=product M_(d_n)/directSum M_(d_n)` such that
+
+   `phi_1(a)=phi_2(alpha(a))` for every `a in calA`.  `(CRC3)`
+
+2. There are a star-embedding `rho:calB->Q'` into a norm matrix
+   ultraproduct and a unitary `S in U(Q')` such that
+
+   `[S,rho(z)]=0`,  `S rho(r) S^*=rho(r)rho(z)`.      `(CRC4)`
+
+Either condition implies that `J` is weak MF.  Consequently either one
+implies the existence of a hyperlinear nonsofic group.
+
+**Proof.**  `(CRC4)=>(CRC3)` by taking
+
+`phi_1=rho`,  `phi_2=Ad(S^*) compose rho`.
+
+The two equations in `(CRC4)` say exactly that the restrictions agree after
+the edge twist `(CRC1)`.
+
+Conversely suppose `(CRC3)` holds.  In `M_2(Q)` put
+
+`rho(b)=diag(phi_1(b),phi_2(b))`
+
+and let `S` be the block-swap unitary.  Compatibility at `z` gives
+`phi_1(z)=phi_2(z)`, hence `[S,rho(z)]=0`.  Compatibility at `r` gives
+
+`phi_1(r)=phi_2(r)phi_2(z)`,
+`phi_2(r)=phi_1(r)phi_1(z)`,
+
+where the second equality follows from the first and `z^2=1`.  Therefore
+
+`S rho(r) S^*=rho(r)rho(z)`,
+
+which is `(CRC4)`.
+
+Under `(CRC3)`, Shulman's general amalgamation criterion (Theorem 20)
+gives an MF C-star amalgam
+
+`calB *_((calA,id),(calA,alpha)) calB`.
+
+The regular-trace quotient used in the profinite repair certifies the
+Bass--Serre group normal form, so `J` embeds as a weak-MF group.  Finally
+the central-torsion corner cuts any injective norm model to a tracial corner
+on which `z` survives.  Since `z in Rad_sof(J)`, that hyperlinear image is
+nonsofic.  End proof.
+
+The completion hypothesis is load-bearing.  Merely replacing `calB` by an
+abstract injective group map `B->U(Q)` is insufficient: even an injective
+unitary representation of `Z` may generate only the scalar algebra, so it
+need not induce a faithful copy of `C^*(A)`, and the abstract amalgam normal
+form need not survive in the generated C-star amalgam.
+
+The equation `(CRC4)` is the whole remaining operator-norm problem.  On the
+`z=+1` spectral corner it asks `S` to commute with `rho(r)`; on the `z=-1`
+corner it asks for the exact antipodal balance
+
+`S rho(r) S^*=-rho(r)`.                              `(CRC5)`
+
+Thus the faithful weak-MF data may be placed entirely in the positive
+corner; the negative corner only has to be a nonzero asymptotic
+representation carrying `(CRC5)`.
+
+**Scope correction (essential spectrum is insufficient).**  The MF
+completion of `H` can be chosen with a regular-trace quotient.  Since `r`
+has infinite order, its image in the regular representation is a bilateral
+shift and has spectrum `T`.  After infinite amplification, elementary
+spectral partitioning gives unitaries `S_k` with
+
+`||S_k pi(r) S_k^*+pi(r)|| ->0`: partition `T` into small antipodal arcs,
+and match their infinite-dimensional spectral subspaces.
+
+This does **not** prove `(CRC4)`.  Shulman's MF lifting theorem lifts the
+representation only in the strong-limit quotient.  The two finite lifts of
+the edge generator may differ by norm-one, strongly-null spectral
+projections.  Approximate equivalence of the limiting bilateral shifts
+therefore supplies no operator-norm matching of the finite spectral
+multiplicities.  The stable Julia transposition cancels the unitary-index
+obstruction but swaps these unmatched ideal profiles; it does not equalize
+them.  Hence a valid finish must construct `(CRC5)` in the norm matrix
+corona itself (or produce the projective radical model `(PRD1)--(PRD2)` by a
+different route), not merely in an infinite-dimensional quotient
+representation.
