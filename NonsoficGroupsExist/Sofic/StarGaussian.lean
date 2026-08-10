@@ -98,7 +98,10 @@ theorem trace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
       ((D + 1 : ℝ) * starDot v w : ℝ) := by
   unfold Matrix.trace
   rw [Fintype.sum_sum_type]
+  rw [Fintype.sum_unique]
+  simp only [Matrix.diag_apply]
   rw [starMatrix_mul_hub_hub]
+  simp only [Matrix.diag_apply]
   simp_rw [starMatrix_mul_spoke_spoke]
   rw [← Finset.mul_sum]
   change (starScale D : ℂ) ^ 2 * (starDot v w : ℂ) +
@@ -121,5 +124,6 @@ theorem normTrace_starMatrix_mul {D : ℕ} (v w : Fin D → ℝ) :
     simpa [add_comm] using
       (Nat.cast_ne_zero (R := ℂ).mpr (Nat.succ_ne_zero D))
   field_simp [h]
+  ring
 
 end NonsoficGroupsExist
