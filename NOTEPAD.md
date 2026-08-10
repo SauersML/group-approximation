@@ -35822,6 +35822,65 @@ norm.  This still leaves the fixed-trace central-character projection of
 `(FGC7)--(FGC10)` alive; constructing a Connes-embeddable trace there remains
 the positive endpoint.
 
+# Thom's hyperlinear Kazhdan group does not supply a conjugation compressor
+
+There is a tempting way to try to avoid all trace selection: apply the new
+Kun--Thom nonsoficity criterion directly to the already hyperlinear Kazhdan
+group `K` of de Cornulier--Thom.  Its non-Hopfian dilation has the wrong
+orientation in an unavoidable sense.
+
+**Lemma (central-dilation orientation).**  Let `Ktilde` be a group, let
+`Z<=Z(Ktilde)`, and let `alpha in Aut(Ktilde)` satisfy
+
+`alpha(Z) properSubset Z`.                              `(TCD1)`
+
+Then `alpha` induces a well-defined endomorphism
+
+`alphaBar:Ktilde/Z -> Ktilde/Z`,                        `(TCD2)`
+
+which is surjective and noninjective, with
+
+`ker(alphaBar)=alpha^(-1)(Z)/Z !=1`.                    `(TCD3)`
+
+The inverse automorphism `alpha^(-1)` does not induce an endomorphism of
+`Ktilde/Z`.  In particular `(TCD2)` cannot be realized as
+
+`k |-> t k t^(-1)`                                     `(TCD4)`
+
+inside any overgroup in which `Ktilde/Z` embeds.
+
+**Proof.**  The inclusion `alpha(Z)<=Z` is exactly what makes `(TCD2)`
+well-defined.  Surjectivity follows from surjectivity of `alpha`.  Its kernel
+is `(TCD3)`.  Strictness in `(TCD1)` gives
+`Z properSubset alpha^(-1)(Z)`, so this kernel is nontrivial.  The same strict
+inclusion says that `alpha^(-1)(Z)` is not contained in `Z`, which is exactly
+the failure of well-definedness for the inverse map on cosets.  Finally every
+map `(TCD4)` is the restriction of an inner automorphism and is injective,
+contradicting `(TCD3)`.  End proof.
+
+For Thom's group,
+
+`K=K_0(Z[1/p])/Z`,                                     `(TCD5)`
+
+the block-diagonal dilation is an automorphism of `K_0(Z[1/p])` and sends
+the central copy of `Z` to `pZ`.  Thus `(TCD1)--(TCD3)` recover precisely
+the surjective noninjective endomorphism used to prove that `K` is
+non-Hopfian.  They also show that this datum cannot be turned around into the
+strict conjugation compression
+
+`t Gamma t^(-1) properSubset Gamma`                    `(TCD6)`
+
+required by the Kun--Thom criterion.  The earlier function-field example in
+Thom's paper is LEF (hence sofic), so its analogous central shift cannot
+provide a nonsofic witness either.  Therefore the known hyperlinear Kazhdan
+examples do not settle the TRUE problem merely by reinterpreting their
+non-Hopfian endomorphism; a successful application would need genuinely new
+subgroups `Gamma,J` inside them, not the published central dilation.
+
+Primary sources checked: de Cornulier, arXiv:math/0502140v4, Lemma 2.3 and
+the block-matrix construction; Thom, arXiv:0810.2180, Proposition 3.2 and
+Remark 3.4.
+
 # Zeta23 rank--trace audit: an exact interface, not a missing source of mass (2026-08-10)
 
 The self-contained linear-algebra core of Anthropic's `zeta-23-lean`
