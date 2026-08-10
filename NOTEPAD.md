@@ -32087,14 +32087,25 @@ exactly with the untwisted polynomial subgroup.  Therefore scalar
 projective flux is no longer cohomologically sterile when assembling the
 explicit polynomial-compressor orbit chains.
 
-This is not yet a hyperlinear model.  The remaining analytic certificate is
-precise: produce finite-dimensional projective microstates for
-`(G,omega_t)` whose non-scalar defect is `o(t)` (or `O(t^2)`) while the
-polynomial restriction retains the macroscopic strict-commutant witness.
-Small-phase tensor amplification would then accumulate `(SKT3)` to an
-order-one central phase, and the Kun--Thom one-character argument would
-produce a hyperlinear nonsofic image.  Unlike the previous scalar-flux
-proposal, this target is not ruled out by the ambient Schur multiplier.
+This is not yet a hyperlinear model.  The direct free-lamp certificate does
+not require a square-root or small-phase rate.  It is enough to produce maps
+`rho_n:G->U(d_n)`, parameters `t_n->0`, and lamp unitaries `v_n` such that,
+on every fixed window,
+
+`rho_n(g)rho_n(h)`
+` = omega_(t_n)(g,h) rho_n(gh) + o_(2)(1)`,             `(SKT6a)`
+
+`[v_n,rho_n(gamma)] ->_2 0` for `gamma in Gamma`, and one fixed
+free-lamp commutator stays a positive normalized-HS distance from one.
+Indeed `(SKT3)` makes the scalar term in `(SKT6a)` itself `o(1)`, so the
+maps are ordinary hyperlinear microstates; the surviving commutator and the
+single-trace criterion then produce a hyperlinear nonsofic image.
+
+Thus the non-scalar assembly error only has to tend to zero.  The stronger
+`o(t_n)` or `O(t_n^2)` profile is sufficient for the separate
+central-phase tensor-amplification endpoint, but is not necessary for the
+free-lamp route.  Unlike the previous scalar-flux proposal, even this weaker
+target is not ruled out by the ambient Schur multiplier.
 
 **Exact-projective sterility remains.**  Let `U_g` be any exact
 finite-dimensional projective representation of an infranormal pair, with
