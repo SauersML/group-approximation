@@ -1,5 +1,6 @@
 import NonsoficGroupsExist.Kazhdan.DiagonalInvariantRelation
 import NonsoficGroupsExist.Matching.PartialSwapEquivariance
+import NonsoficGroupsExist.Matching.PartialEquivarianceComposition
 
 /-!
 # Exact Kazhdan repair for finite partial intertwiners
@@ -97,6 +98,121 @@ noncomputable def partialTotalDefect
         (fun _ : Unit ↦ σY q) (fun _ : Unit ↦ σZ q)).card +
       (b.symm.equivarianceDefect
         (fun _ : Unit ↦ σZ q) (fun _ : Unit ↦ σY q)).card)
+
+/-- The tagged defect over the subtype `Q` is exactly the sum of the
+one-label defects.  This prevents either overcounting or loss of multiplicity
+when passing between the candidate and Kazhdan-repair interfaces. -/
+theorem card_taggedEquivarianceDefect_eq_sum_singleton
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (Q : Finset G) (b : FinitePartialBijection Y Z) :
+    (b.equivarianceDefect
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card =
+      ∑ q : ↥Q,
+        (b.equivarianceDefect
+          (fun _ : Unit ↦ σY q.1) (fun _ : Unit ↦ σZ q.1)).card := by
+  classical
+  let F :
+      {d // d ∈ b.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)} →
+        Σ q : ↥Q, {d // d ∈ b.equivarianceDefect
+          (fun _ : Unit ↦ σY q.1) (fun _ : Unit ↦ σZ q.1)} := fun d ↦ by
+    refine ⟨d.1.1, ⟨(Unit.unit, d.1.2), ?_⟩⟩
+    have hd := (mem_equivarianceDefect b
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) d.1).mp d.2
+    rw [mem_equivarianceDefect]
+    exact hd
+  have hF : Function.Bijective F := by
+    constructor
+    · intro d e hde
+      apply Subtype.ext
+      apply Prod.ext
+      · exact congrArg (fun x ↦ x.1) hde
+      · exact congrArg (fun x ↦ x.2.1.2) hde
+    · rintro ⟨q, ⟨⟨u, y⟩, hy⟩⟩
+      cases u
+      have htag : (q, y) ∈ b.equivarianceDefect
+          (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) := by
+        rw [mem_equivarianceDefect] at hy ⊢
+        exact hy
+      refine ⟨⟨(q, y), htag⟩, ?_⟩
+      rfl
+  let e := Equiv.ofBijective F hF
+  have hcard := Fintype.card_congr e
+  rw [Fintype.card_sigma] at hcard
+  simpa only [Fintype.card_coe] using hcard
+
+/-- `partialTotalDefect` is precisely the sum of the forward and backward
+candidate defect cardinalities with `Q` retained as a subtype. -/
+theorem partialTotalDefect_eq_tagged
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (Q : Finset G) (b : FinitePartialBijection Y Z) :
+    partialTotalDefect σY σZ Q b =
+      (b.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card +
+      (b.symm.equivarianceDefect
+        (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1)).card := by
+  rw [card_taggedEquivarianceDefect_eq_sum_singleton,
+    card_taggedEquivarianceDefect_eq_sum_singleton]
+  unfold partialTotalDefect
+  rw [Finset.sum_add_distrib]
+  rw [← Q.sum_attach, ← Q.sum_attach]
+  rw [Finset.attach_eq_univ]
+
+/-- Native total defect is subadditive under composition of partial
+intertwiners, with all four forward/backward input contributions explicit. -/
+theorem partialTotalDefect_trans_le
+    {X : FiniteModel}
+    (σX : G →* Equiv.Perm X) (σY : G →* Equiv.Perm Y)
+    (σZ : G →* Equiv.Perm Z) (Q : Finset G)
+    (f : FinitePartialBijection X Y)
+    (g : FinitePartialBijection Y Z) :
+    partialTotalDefect σX σZ Q (f.trans g) ≤
+      (f.equivarianceDefect
+        (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σY q.1)).card +
+      (g.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card +
+      (f.symm.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σX q.1)).card +
+      (g.symm.equivarianceDefect
+        (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1)).card := by
+  classical
+  rw [partialTotalDefect_eq_tagged]
+  have hforward := card_equivarianceDefect_trans_le
+    (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σY q.1)
+    (fun q : ↥Q ↦ σZ q.1) f g
+  have hbackward := card_equivarianceDefect_trans_le
+    (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1)
+    (fun q : ↥Q ↦ σX q.1) g.symm f.symm
+  rw [f.symm_trans g]
+  omega
+
+/-- Candidate bounds turn the preceding four-term estimate into the clean
+strict real budget `2 h m`. -/
+theorem partialTotalDefect_trans_lt_two_mul
+    {X : FiniteModel}
+    (σX : G →* Equiv.Perm X) (σY : G →* Equiv.Perm Y)
+    (σZ : G →* Equiv.Perm Z) (Q : Finset G)
+    (f : FinitePartialBijection X Y)
+    (hf : f.IsClusterCandidate
+      (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σY q.1) h m)
+    (g : FinitePartialBijection Y Z)
+    (hg : g.IsClusterCandidate
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m) :
+    (partialTotalDefect σX σZ Q (f.trans g) : ℝ) < 2 * h * m := by
+  have htotalNat := partialTotalDefect_trans_le σX σY σZ Q f g
+  have htotal : (partialTotalDefect σX σZ Q (f.trans g) : ℝ) ≤
+      ((f.equivarianceDefect
+        (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σY q.1)).card +
+      (g.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)).card +
+      (f.symm.equivarianceDefect
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σX q.1)).card +
+      (g.symm.equivarianceDefect
+        (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1)).card : ℕ) := by
+    exact_mod_cast htotalNat
+  push_cast at htotal
+  nlinarith [hf.forwardSmall, hf.backwardSmall,
+    hg.forwardSmall, hg.backwardSmall]
 
 /-- For one label, every bad arc of the swap embeds into the tagged
 commutation-defect set used by the partial-equivariance comparison. -/
