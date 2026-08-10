@@ -64,6 +64,29 @@ theorem map_root_injective_of_ne_one
     (fun _ ha ↦ BinaryLeavitt.exists_mul_mul_eq_one (ZMod 2) ha)
     (SteinbergGroup.fin_exists_spare_four hn) φ hφ i j hij
 
+/-- Every nonzero root element normally generates the explicit Steinberg
+group in rank at least five. -/
+theorem normalClosure_root_eq_top
+    {n : ℕ} (hn : 5 ≤ n) (i j : Fin n) (hij : i ≠ j)
+    {a : UniversalLeavitt.BinaryLeavittAlgebra} (ha : a ≠ 0) :
+    Subgroup.normalClosure
+      ({SteinbergGroup.x i j hij a} : Set (BinaryLeavittSteinberg n)) = ⊤ :=
+  SteinbergGroup.normalClosure_x_eq_top
+    (fun _ hx ↦ BinaryLeavitt.exists_mul_mul_eq_one (ZMod 2) hx)
+    (SteinbergGroup.fin_exists_spare_four hn) hij ha
+
+/-- In every proper normal quotient of the explicit Steinberg group, each
+root copy of the binary Leavitt algebra remains faithful. -/
+theorem quotient_root_injective
+    {n : ℕ} (hn : 5 ≤ n)
+    (N : Subgroup (BinaryLeavittSteinberg n)) [N.Normal] (hN : N ≠ ⊤)
+    (i j : Fin n) (hij : i ≠ j) :
+    Function.Injective (fun a : UniversalLeavitt.BinaryLeavittAlgebra ↦
+      (QuotientGroup.mk' N) (SteinbergGroup.x i j hij a)) :=
+  SteinbergGroup.quotientMap_x_injective
+    (fun _ hx ↦ BinaryLeavitt.exists_mul_mul_eq_one (ZMod 2) hx)
+    (SteinbergGroup.fin_exists_spare_four hn) N hN i j hij
+
 /-- The binary-Leavitt Steinberg group in rank three has property `(T)`
 directly, without assuming that the unstable Steinberg kernel vanishes. -/
 theorem rankThree_hasKazhdanPropertyT :

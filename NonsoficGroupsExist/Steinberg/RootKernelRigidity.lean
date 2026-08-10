@@ -98,6 +98,48 @@ theorem map_x_injective_of_ne_one
     simpa using hmap
   exact hφ (hom_eq_one_of_map_x_eq_one hdiv hspare φ hij hsub0 hkilled)
 
+/-- Every nonzero root element normally generates the whole Steinberg group
+under strong two-sided division and the spare-index hypothesis. -/
+theorem normalClosure_x_eq_top
+    (hdiv : ∀ a : R, a ≠ 0 → ∃ u v : R, u * a * v = 1)
+    (hspare : ∀ i j l k : I, ∃ r : I, r ≠ i ∧ r ≠ j ∧ r ≠ l ∧ r ≠ k)
+    {i j : I} (hij : i ≠ j) {a : R} (ha0 : a ≠ 0) :
+    Subgroup.normalClosure ({x i j hij a} : Set (SteinbergGroup I R)) = ⊤ := by
+  let N : Subgroup (SteinbergGroup I R) :=
+    Subgroup.normalClosure ({x i j hij a} : Set (SteinbergGroup I R))
+  let q : SteinbergGroup I R →* SteinbergGroup I R ⧸ N := QuotientGroup.mk' N
+  have hxN : x i j hij a ∈ N :=
+    Subgroup.subset_normalClosure (Set.mem_singleton _)
+  have hkill : q (x i j hij a) = 1 :=
+    (QuotientGroup.eq_one_iff _).mpr hxN
+  have hq : q = 1 := hom_eq_one_of_map_x_eq_one hdiv hspare q hij ha0 hkill
+  change N = ⊤
+  calc
+    N = q.ker := (QuotientGroup.ker_mk' N).symm
+    _ = (1 : SteinbergGroup I R →* SteinbergGroup I R ⧸ N).ker :=
+      congrArg MonoidHom.ker hq
+    _ = ⊤ := MonoidHom.ker_one
+
+/-- Every proper normal quotient remains injective on every root subgroup. -/
+theorem quotientMap_x_injective
+    (hdiv : ∀ a : R, a ≠ 0 → ∃ u v : R, u * a * v = 1)
+    (hspare : ∀ i j l k : I, ∃ r : I, r ≠ i ∧ r ≠ j ∧ r ≠ l ∧ r ≠ k)
+    (N : Subgroup (SteinbergGroup I R)) [N.Normal] (hN : N ≠ ⊤)
+    (i j : I) (hij : i ≠ j) :
+    Function.Injective (fun a : R ↦
+      (QuotientGroup.mk' N) (x i j hij a)) := by
+  have hq : (QuotientGroup.mk' N : SteinbergGroup I R →*
+      SteinbergGroup I R ⧸ N) ≠ 1 := by
+    intro htrivial
+    apply hN
+    calc
+      N = (QuotientGroup.mk' N : SteinbergGroup I R →*
+          SteinbergGroup I R ⧸ N).ker := (QuotientGroup.ker_mk' N).symm
+      _ = (1 : SteinbergGroup I R →* SteinbergGroup I R ⧸ N).ker :=
+        congrArg MonoidHom.ker htrivial
+      _ = ⊤ := MonoidHom.ker_one
+  exact map_x_injective_of_ne_one hdiv hspare (QuotientGroup.mk' N) hq i j hij
+
 /-- Five or more finite coordinates supply an index outside any prescribed
 four coordinates. -/
 theorem fin_exists_spare_four {n : ℕ} (hn : 5 ≤ n) (i j l k : Fin n) :
