@@ -60,8 +60,10 @@ theorem clusterGood_taggedExpansion (n : ℕ) (C : D.componentIndex n)
 
 /-- Total vertex mass of components failing the cluster conditions. -/
 noncomputable def badClusterComponentMass (n : ℕ) : ℝ :=
-  ∑ C : D.componentIndex n,
-    if D.IsClusterGood n C then 0 else (C.block.card : ℝ)
+  by
+    classical
+    exact ∑ C : D.componentIndex n,
+      if D.IsClusterGood n C then 0 else (C.block.card : ℝ)
 
 /-- Bad component mass is bounded by the bounded-component locus plus a
 fixed multiple of the total local edit budget. -/
@@ -72,24 +74,26 @@ theorem badClusterComponentMass_le (n : ℕ) :
           ∑ C : D.componentIndex n,
             (D.componentLabelEditBudget n C : ℝ) := by
   classical
+  have hcoef : 0 ≤ (72 : ℝ) / D.cheeger :=
+    (div_pos (by norm_num) D.cheeger_pos).le
   rw [← sum_smallBlock_card (D.blocks n) 17]
   unfold badClusterComponentMass
   calc
     (∑ C : D.componentIndex n,
       if D.IsClusterGood n C then 0 else (C.block.card : ℝ)) ≤
         ∑ C : D.componentIndex n,
-          ((if (C.block.card : ℝ) ≤ 17 then C.block.card else 0) +
+          ((if (C.block.card : ℝ) ≤ 17 then (C.block.card : ℝ) else 0) +
             (72 / D.cheeger) * D.componentLabelEditBudget n C) := by
       apply Finset.sum_le_sum
       intro C _
       by_cases hgood : D.IsClusterGood n C
       · rw [if_pos hgood]
-        positivity
+        exact add_nonneg (by positivity) (mul_nonneg hcoef (by positivity))
       · rw [if_neg hgood]
         by_cases hsmall : C.block.card ≤ 17
         · rw [if_pos (by exact_mod_cast hsmall)]
-          positivity
-        · rw [if_neg (by exact_mod_cast hsmall)]
+          exact le_add_of_nonneg_right (mul_nonneg hcoef (by positivity))
+        · rw [if_neg (by exact_mod_cast hsmall), zero_add]
           have hlarge : 18 ≤ C.block.card := by omega
           have hbudget : D.cheeger * (C.block.card : ℝ) / 72 ≤
               D.componentLabelEditBudget n C := by
@@ -103,11 +107,10 @@ theorem badClusterComponentMass_le (n : ℕ) :
             (C.block.card : ℝ) = (72 / D.cheeger) *
                 (D.cheeger * C.block.card / 72) := by
               field_simp
-              ring
             _ ≤ (72 / D.cheeger) * D.componentLabelEditBudget n C :=
-              mul_le_mul_of_nonneg_left hbudget (by positivity)
+              mul_le_mul_of_nonneg_left hbudget hcoef
     _ = (∑ C : D.componentIndex n,
-          if (C.block.card : ℝ) ≤ 17 then C.block.card else 0) +
+          if (C.block.card : ℝ) ≤ 17 then (C.block.card : ℝ) else 0) +
         (72 / D.cheeger) *
           ∑ C : D.componentIndex n,
             (D.componentLabelEditBudget n C : ℝ) := by
@@ -124,7 +127,7 @@ theorem badClusterComponentMass_negligible [Infinite G]
   have hbudget := Negligible.const_mul (72 / D.cheeger)
     D.componentLabelEditBudget_sum_negligible
   have hmajor := Negligible.add hsmall hbudget
-  exact Negligible.mono (fun _ ↦ by positivity) (fun _ ↦ by
+  exact Negligible.mono_nonneg (fun _ ↦ by positivity) (fun _ ↦ by
       unfold badClusterComponentMass
       positivity) (fun n ↦ D.badClusterComponentMass_le n) hmajor
 

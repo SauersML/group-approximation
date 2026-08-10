@@ -66,8 +66,18 @@ noncomputable def componentEditWitness (n : ℕ) (C : D.componentIndex n) :
       edgeEquiv := W.edgeEquiv
       preservesEndpoints := by
         intro a
-        simpa only [W, EdgeEditWitness.inducedVertexEquiv,
-          Equiv.refl_apply] using W.preservesEndpoints a }
+        have hvertex :
+            EdgeEditWitness.inducedVertexEquiv
+              (X := generatorGraph (S.model n) T (S.map n))
+              (Z := D.modelGraph n)
+              (e := Equiv.refl (S.model n)) C.block C.block
+                (fun _ ↦ Iff.rfl) =
+              Equiv.refl (D.actualInducedComponentGraph n C).vertex := by
+          apply Equiv.ext
+          intro x
+          rfl
+        rw [← hvertex]
+        exact W.preservesEndpoints a }
 
 /-- The finite local error budget: four occurrences per generator exit and
 two occurrences per locally unmatched edit-witness edge. -/
@@ -78,9 +88,9 @@ noncomputable def componentLabelEditBudget
         S.map n t.1 (x : S.model n) ∉ C.block).card +
     2 * (D.componentEditWitness n C).unmatchedCount
 
+set_option maxHeartbeats 4000000 in
 /-- The completed component generator graph is within the explicit local
 budget of the edited expanding component graph. -/
-set_option maxHeartbeats 800000 in
 theorem componentCompletedGraph_editDistance_le
     (n : ℕ) (C : D.componentIndex n) :
     (generatorGraph (indexedBlockModel (D.blocks n) C) T
@@ -95,8 +105,16 @@ theorem componentCompletedGraph_editDistance_le
       4 * ∑ t : T,
         (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
           S.map n t.1 (x : S.model n) ∉ C.block).card := by
-    exact CompletionGraphEditing.canonicalCompletion_editDistance_le
-      C.block T (S.map n)
+    refine (CompletionGraphEditing.editDistance_le C.block T (S.map n)
+      (D.componentCompletedAction n C)).trans ?_
+    apply Nat.mul_le_mul_left
+    apply Finset.sum_le_sum
+    intro t _
+    apply Finset.card_le_card
+    intro x hx
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hx ⊢
+    intro hin
+    exact hx (D.componentCompletedAction_agrees n C t.1 x hin)
   have hwitness : Y.editDistance Z (Equiv.refl _) ≤
       2 * (D.componentEditWitness n C).unmatchedCount := by
     exact (D.componentEditWitness n C).editDistance_le_two_mul_unmatchedCount
@@ -139,25 +157,51 @@ theorem sum_componentGeneratorExits (n : ℕ) (t : G) :
     (D.blocks n).block (S.map n t x) ≠ (D.blocks n).block x)]
   apply Finset.sum_congr rfl
   intro C _
-  congr 1
-  ext x
-  simp only [Finset.mem_filter, Finset.mem_univ, true_and]
-  constructor
-  · intro hout heq
-    apply hout
-    have hself : (x : S.model n) ∈
-        (D.blocks n).block (x : S.model n) := (D.blocks n).self_mem _
-    have hxblock : (D.blocks n).block (x : S.model n) = C.block :=
-      (D.blocks n).eq_of_mem _ _ x.2
-    rw [heq, hxblock]
-    exact hself
-  · intro hneq hin
-    apply hneq
-    have hxblock : (D.blocks n).block (x : S.model n) = C.block :=
-      (D.blocks n).eq_of_mem _ _ x.2
-    have himage : (D.blocks n).block (S.map n t (x : S.model n)) = C.block :=
-      (D.blocks n).eq_of_mem _ _ hin
-    exact himage.trans hxblock.symm
+  norm_cast
+  have hsets :
+      (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+        S.map n t (x : S.model n) ∉ C.block) =
+      (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+        (D.blocks n).block (S.map n t (x : S.model n)) ≠
+          (D.blocks n).block (x : S.model n)) := by
+    ext x
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    constructor
+    · intro hout heq
+      apply hout
+      have hxmem : (x : S.model n) ∈
+          (D.blocks n).block (BlockIndex.representative (D.blocks n) C) := by
+        rw [BlockIndex.block_representative]
+        exact x.2
+      have hxblock : (D.blocks n).block (x : S.model n) = C.block :=
+        ((D.blocks n).eq_of_mem
+          (BlockIndex.representative (D.blocks n) C) _ hxmem).trans
+            (BlockIndex.block_representative (D.blocks n) C)
+      have himageself : S.map n t (x : S.model n) ∈
+          (D.blocks n).block (S.map n t (x : S.model n)) :=
+        (D.blocks n).self_mem _
+      rw [heq, hxblock] at himageself
+      exact himageself
+    · intro hneq hin
+      apply hneq
+      have hxmem : (x : S.model n) ∈
+          (D.blocks n).block (BlockIndex.representative (D.blocks n) C) := by
+        rw [BlockIndex.block_representative]
+        exact x.2
+      have hxblock : (D.blocks n).block (x : S.model n) = C.block :=
+        ((D.blocks n).eq_of_mem
+          (BlockIndex.representative (D.blocks n) C) _ hxmem).trans
+            (BlockIndex.block_representative (D.blocks n) C)
+      have himagemem : S.map n t (x : S.model n) ∈
+          (D.blocks n).block (BlockIndex.representative (D.blocks n) C) := by
+        rw [BlockIndex.block_representative]
+        exact hin
+      have himage : (D.blocks n).block (S.map n t (x : S.model n)) = C.block :=
+        ((D.blocks n).eq_of_mem
+          (BlockIndex.representative (D.blocks n) C) _ himagemem).trans
+            (BlockIndex.block_representative (D.blocks n) C)
+      exact himage.trans hxblock.symm
+  rw [hsets]
 
 /-- Restricting the occurrence edit witness to every component counts each
 globally unmatched occurrence at most once. -/
@@ -175,17 +219,20 @@ theorem sum_componentEditWitness_unmatchedCount_le (n : ℕ) :
           (D.modelGraph n).first e ∈ C.block).card := by
     have h := W.induce_unmatchedCount_le_filters C.block C.block
       (fun _ ↦ Iff.rfl)
-    simpa only [componentEditWitness, W, actualInducedComponentGraph,
-      directIndexedComponentGraph] using h
-  have hsum := Finset.sum_le_sum fun C _ ↦ hlocal C
+    change (W.induce C.block C.block (fun _ ↦ Iff.rfl)).unmatchedCount ≤ _
+    simpa only [modelGraph] using h
+  have hsum := (Finset.univ : Finset (D.componentIndex n)).sum_le_sum
+    fun C _ ↦ hlocal C
   rw [Finset.sum_add_distrib] at hsum
   have hsource := BlockIndex.sum_card_filter_mem_block (D.blocks n)
     W.sourceUnmatched
     (fun e ↦ (generatorGraph (S.model n) T (S.map n)).first e)
   have htarget := BlockIndex.sum_card_filter_mem_block (D.blocks n)
     W.targetUnmatched (fun e ↦ (D.modelGraph n).first e)
-  unfold EdgeEditWitness.unmatchedCount
-  omega
+  change ∑ C : D.componentIndex n,
+      (D.componentEditWitness n C).unmatchedCount ≤
+    W.sourceUnmatched.card + W.targetUnmatched.card
+  exact hsum.trans (Nat.add_le_add hsource htarget)
 
 /-- The sum of all local completed-label edit budgets has negligible density
 in the ambient finite models. -/
@@ -203,7 +250,7 @@ theorem componentLabelEditBudget_sum_negligible :
       (fun t _ ↦ hexitEach t)
   have hmajor := Negligible.add (Negligible.const_mul 4 hexits)
     (Negligible.const_mul 2 D.unmatched_negligible)
-  refine Negligible.mono (fun _ ↦ by positivity) (fun _ ↦ by positivity)
+  refine Negligible.mono_nonneg (fun _ ↦ by positivity) (fun _ ↦ by positivity)
     (fun n ↦ ?_) hmajor
   have hw := D.sum_componentEditWitness_unmatchedCount_le n
   unfold componentLabelEditBudget
@@ -223,10 +270,10 @@ theorem componentLabelEditBudget_sum_negligible :
         2 * ∑ C : D.componentIndex n,
           ((D.componentEditWitness n C).unmatchedCount : ℝ) := by
       congr 1
+      congr 1
       rw [Finset.sum_comm]
-      apply Finset.sum_congr rfl
-      intro t _
-      exact D.sum_componentGeneratorExits n t.1
+      exact Finset.sum_congr rfl fun (t : T) _ ↦
+        D.sum_componentGeneratorExits n t.1
     _ ≤ 4 * ∑ t : T,
           ((Finset.univ.filter fun x : S.model n ↦
             (D.blocks n).block (S.map n t.1 x) ≠
