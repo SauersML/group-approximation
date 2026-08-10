@@ -35944,3 +35944,108 @@ duplicate the spectral-threshold machinery already present in
 checkpoint is instead the scoped no-go above: future FALSE-side proposals
 based only on operator norm plus rank--trace/inertia are closed unless they
 exhibit an independent positive normalized trace moment.
+
+# Honest finite-dimensional phase splitting is impossible for the binary pair
+
+The phase-splitting criterion `(PST1)--(PST9)` permits genuinely approximate
+vertex maps.  It cannot be realized by two sequences of honest
+finite-dimensional unitary representations of the explicit characteristic-
+`p` Kun--Thom ambient.  This is stronger than the induced-sector no-go
+`(BRC11)--(BRC19)` and uses no description of the representations beyond
+finite image.
+
+**Lemma (finite-image collision collapse).**  Let `Gamma<=G` have property
+`(T)`, fix a Kazhdan pair `(S,kappa)`, and suppose
+
+`h in closure_profinite(Gamma)`.                        `(FIC1)`
+
+Let
+
+`U_n,V_n:G->U(d_n)`                                    `(FIC2)`
+
+be homomorphisms whose combined image `(U_n,V_n)(G)` is finite.  After a
+unitary conjugation of `V_n`, put
+
+`epsilon_n=max_(s in S)||V_n(s)-U_n(s)||_2`.            `(FIC3)`
+
+Then
+
+`||V_n(h)-U_n(h)||_2 <= 2 epsilon_n/kappa`.             `(FIC4)`
+
+In particular, if `epsilon_n->0`, no fixed nontrivial scalar phase can occur
+at `h`.
+
+**Proof.**  On normalized Hilbert--Schmidt space let
+
+`Pi_n(g)X=V_n(g) X U_n(g)^*`, `g in Gamma`.             `(FIC5)`
+
+The identity has `S`-displacement at most `epsilon_n`.  If `P_n` is
+orthogonal projection onto the invariant vectors and `X_n=P_n(1)`, the
+Kazhdan inequality gives
+
+`||1-X_n||_2<=epsilon_n/kappa`.                         `(FIC6)`
+
+Since `V_n(g)X_nU_n(g)^*=X_n`, for every `g in Gamma`,
+
+`||V_n(g)U_n(g)^*-1||_2`
+` <=||V_n(g)(1-X_n)U_n(g)^*||_2+||X_n-1||_2`
+` <=2 epsilon_n/kappa`.                                `(FIC7)`
+
+Apply `(FIC1)` to the finite quotient `(U_n,V_n)(G)`.  There is
+`gamma_n in Gamma` such that
+
+`U_n(h)=U_n(gamma_n)`, `V_n(h)=V_n(gamma_n)`.           `(FIC8)`
+
+Equation `(FIC4)` is `(FIC7)` at `gamma_n`.  End proof.
+
+The finite-image hypothesis is automatic for the explicit positive-
+characteristic ambient.
+
+**Theorem (finite-dimensional unitary-image rigidity).**  Put
+
+`R=F_q[x_1^(+-1),...,x_d^(+-1)]`,
+`N=EL_r(R)`, `G=N semidirect SL_d(Z)`, `r,d>=3`.         `(FIC9)`
+
+Every finite-dimensional complex unitary representation of `N`, and hence
+of `G`, has finite image.
+
+**Proof.**  Let `rho:N->U(m)` and take the complex Zariski closure `H` of
+its image.  Because the analytic closure is compact, `H^0` is reductive.
+The standard-description theorem for representations of elementary
+Chevalley groups over commutative rings (type `A_(r-1)`) applies: on a
+finite-index subgroup, a positive-dimensional `H^0` would be obtained from
+a unital ring map
+
+`R -> B`,                                               `(FIC10)`
+
+where `B` is a nonzero finite-dimensional complex algebra.  No such map
+exists, since `R` has characteristic `p` while `B` has characteristic zero:
+`0=f(p 1_R)=p 1_B`.  Thus `H^0=1`.  A zero-dimensional complex algebraic
+group is finite, so `rho(N)` is finite.
+
+For a representation of `G`, its restriction to the normal subgroup `N`
+therefore has finite image.  Its restriction to `SL_d(Z)` also has finite
+image by the classical finite-dimensional compact-target consequence of
+Margulis superrigidity.  The whole image is the product of the finite normal
+subgroup `rho(N)` and the finite subgroup `rho(SL_d(Z))`, hence is finite.
+End proof.
+
+For a strict compressor `t Gamma t^(-1) properSubset Gamma`, the standard
+finite-quotient argument gives
+
+`t^(-1) gamma t in closure_profinite(Gamma)`            `(FIC11)`
+
+for every `gamma in Gamma`: in each finite quotient the inclusion of the
+two conjugate finite subgroups is an equality.  Apply `(FIC4)` and `(FIC9)`.
+Thus the phase-splitting conditions `(PST4)--(PST6)` are impossible when
+both `U_n,V_n` are honest finite-dimensional representations of the binary
+Kun--Thom ambient.  This closes all exact congruence, exact projective-after-
+cancellation, and arbitrary finite-image sector constructions at once, not
+only regular or induced ones.  A positive TRUE construction must spend
+normalized-Hilbert--Schmidt multiplicative defect in at least one ambient
+vertex sector; long finite-quotient holonomy alone cannot work.
+
+Primary representation-rigidity pin: I. Rapinchuk, *On linear
+representations of Chevalley groups over commutative rings*, arXiv:1005.0422,
+Main Theorem, reductive-closure case.  The `SL_d(Z)` compact-target statement
+is the standard superrigidity corollary.
