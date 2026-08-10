@@ -30896,3 +30896,111 @@ is Connes embeddable on the path subgroup.  Unlike the full generalized
 Bernoulli trace, this formulation is radial and has the exact tensor scaling
 `(GTP3)`; unlike regular-cone attempts, it deliberately retains the
 nonmixing `K_h`-fixed detector identified in `(MCO1)`.
+
+# Positive-time path heat recovers the full Bernoulli algebra (2026-08-09)
+
+The Gaussian endpoint has no genuinely smaller positive-time GNS algebra.
+The non-Haar heat measure almost surely chooses a unique representative of
+each fiber-rotation class, so the path kernel already generates every
+coordinate function measurably.
+
+Write
+
+`Y=Q/Gamma`,  `Z=Q/N`,  `p:Y->Z`,
+`C_1=Z^(Y)`,  `A=ker(p_*:C_1->Z^(Z))`.
+
+Pontryagin duality identifies
+
+`Ahat = T^Y / p^*(T^Z)`,                              `(PHB1)`
+
+where `T^Z` rotates all coordinates in each fiber `p^(-1)(z)` by one common
+phase.  For `t>0`, let `nu_t` be the circle heat measure with
+
+`Fourier(nu_t)(k)=exp(-t k^2)`,
+
+and put `mu_t=nu_t^Y`.  Restriction of characters from `C_1` to `A`
+corresponds to pushing `mu_t` through the quotient map in `(PHB1)`.
+
+**Theorem (positive-time Bernoulli recovery).**  For every `t>0`:
+
+1. the quotient map `T^Y->Ahat` is injective on a `Q`-invariant conull
+   Borel set for `mu_t`;
+2. in `L-infinity(T^Y,mu_t)`, the characters indexed by `A` generate the
+   whole probability algebra;
+3. the GNS von Neumann algebra of the path trace `tau_t` from `(GTP1)` is
+
+   `L-infinity(T^Y,mu_t) crossed_product Q`;           `(PHB2)`
+
+4. this algebra is trace-preservingly isomorphic to the group von Neumann
+   algebra of the integral generalized wreath product
+
+   `W_Y=Z^(Y) semidirect Q`.                           `(PHB3)`
+
+Consequently the following are equivalent for any (and hence every)
+`t>0`:
+
+`tau_t is Connes embeddable`,
+`L(W_Y) is Connes embeddable`,
+`W_Y is hyperlinear`.                                 `(PHB4)`
+
+**Proof.**  Every fiber `p^(-1)(z)` is a copy of the infinite set
+`N/Gamma`.  Choose an enumeration of each fiber.  A `mu_t`-random point has
+i.i.d. `nu_t` coordinates on every fiber.  By the strong law of large
+numbers, the empirical distribution along every enumerated fiber is
+`nu_t` almost surely.  Apply the same assertion after every element of the
+countable group `Q`; intersecting the resulting countably many conull sets
+gives a `Q`-invariant conull Borel set `Omega_t` on which this empirical-law
+property holds in every translated fiber.
+
+The heat measure has trivial rotation stabilizer.  Indeed, if rotation by
+`lambda in T` preserved `nu_t`, its first Fourier coefficient would give
+
+`lambda exp(-t)=exp(-t)`,
+
+so `lambda=1`.  Now suppose two points of `Omega_t` differ by a fiberwise
+constant rotation `(lambda_z)_(z in Z)`.  In the `z`th fiber their empirical
+laws are respectively `nu_t` and `(lambda_z)_*nu_t`.  Both points belong to
+`Omega_t`, so both empirical laws equal `nu_t`; trivial rotational
+stabilizer gives `lambda_z=1` for every `z`.  Thus the quotient map in
+`(PHB1)` is injective on `Omega_t`, proving (1).
+
+A Borel injection between standard Borel spaces has a Borel inverse on its
+image.  Hence the quotient sigma-algebra, pulled back to `Omega_t`, is the
+entire sigma-algebra modulo null sets.  Characters of the countable group
+`A` generate the quotient Borel algebra of `Ahat`; their pullbacks therefore
+generate all of `L-infinity(T^Y,mu_t)`.  This proves (2).
+
+Realize `tau_t` by restricting the canonical crossed-product trace in
+
+`M_t=L-infinity(T^Y,mu_t) crossed_product Q`
+
+to the Magnus path subgroup
+
+`P<Z^(Y) semidirect Q`.
+
+Its kernel `A` supplies all character unitaries indexed by `A`, which
+generate the coefficient algebra by (2).  The projection `P->Q` is onto.
+For each `s in Q`, choose a path lift `(c_s,s) in P`.  The GNS algebra
+contains `chi_(c_s) u_s`; since it already contains the whole coefficient
+algebra, it also contains `chi_(c_s)^*` and hence `u_s`.  Therefore it is all
+of `M_t`, proving `(PHB2)`.
+
+For `t>0`, `nu_t` is nonatomic.  All nonatomic standard probability spaces
+are isomorphic, so choose a measure-space isomorphism
+
+`(T,nu_t) -> (T,Haar)`.
+
+Applying it coordinatewise on `Y` commutes with every coordinate
+permutation, hence conjugates the two generalized Bernoulli `Q`-actions.
+It follows that
+
+`M_t isomorphic L-infinity(T^Y,Haar^Y) crossed_product Q`
+`    =L(Z^(Y) semidirect Q)=L(W_Y)`,
+
+trace preservingly.  This proves `(PHB3)--(PHB4)`.  End proof.
+
+Thus the heat path does not offer a small-positive-`t` perturbative shortcut:
+the GNS algebra jumps from the quotient algebra at `t=0` to the same full
+generalized-Bernoulli algebra for every `t>0`.  Its value is instead an exact
+faithful trace on the smaller finitely generated path group whose CE status
+is equivalent to hyperlinearity of the split integral wreath candidate.
