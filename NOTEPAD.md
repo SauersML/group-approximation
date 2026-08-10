@@ -28466,6 +28466,81 @@ elements are invisibly forced.  Any Connes-embeddable representation that
 violates precisely one of these relations automatically supplies the desired
 hyperlinear nonsofic quotient.
 
+## An abelian-by-residually-finite nonsofic quotient
+
+The radical witness remains nontrivial after a drastic simplification of the
+fold kernel.  Let
+
+`r:D=G *_Gamma G -> G`
+
+be the fold retraction, let `F=ker(r)`, and use the first vertex copy to split
+`r`.  Thus `D=F semidirect G`.
+
+**Theorem.**  There is a `ZG`-module isomorphism
+
+`F_ab = reduced Z[G/Gamma]`,                           `(AB1)`
+
+where the right side is the augmentation kernel in the permutation module.
+Under `(AB1)`,
+
+`i_2(g)i_1(g)^(-1)  |->  [g Gamma]-[Gamma]`.           `(AB2)`
+
+Consequently
+
+`D/[F,F] = reduced Z[G/Gamma] semidirect G`            `(AB3)`
+
+is a finitely generated abelian-by-residually-finite nonsofic group.
+
+**Proof.**  Let `T` be the Bass--Serre tree of the double.  Since `F` meets
+each conjugate of either vertex group trivially, it acts freely on `T`.
+The quotient graph `F\T` has two vertices: the fold quotient `D/F=G` acts
+transitively on the vertices of each of the two types because the image of
+each vertex stabilizer is all of `G`.  Its edge set is `G/Gamma`, because
+the image of an edge stabilizer is `Gamma`.  Every edge joins the same two
+vertices.  Hence `F` is the fundamental group of the graph with two vertices
+and `G/Gamma` parallel edges, and its abelianization is the first cellular
+homology
+
+`ker(Z[G/Gamma] -> Z{v_2-v_1})
+ = ker(augmentation:Z[G/Gamma]->Z)`.
+
+Conjugation by the split copy of `G` is left translation on the edge set,
+so this is an isomorphism of `ZG`-modules, proving `(AB1)`.  Taking the edge
+`Gamma` as the spanning-tree edge, the loop represented by passing along
+`g Gamma` and returning along `Gamma` is precisely
+`i_2(g)i_1(g)^(-1)` (up to the harmless global orientation convention).
+This gives `(AB2)`.
+
+Choose the strict witness `h=t^(-1) gamma t notin Gamma`.  Formula `(AB2)`
+shows that the class `x_bar` of
+
+`x=i_2(h)i_1(h)^(-1)`
+
+is nonzero in `(AB3)`.  But `x in Rad_sof(D)` by `(SR1)--(SR3)`.  If `(AB3)`
+were sofic, the quotient homomorphism from `D` to `(AB3)` would have to kill
+`x`, contradicting `x_bar!=0`.  Therefore `(AB3)` is nonsofic.  Its kernel
+over `G` is free abelian, its quotient `G` is residually finite, and it is
+finitely generated because it is a quotient of the finitely generated
+double `D`.  End proof.
+
+**Corollary.**  The class of sofic groups is not closed under extensions
+with amenable normal subgroup and residually finite quotient.  More sharply,
+there is a finitely generated nonsofic group whose normal subgroup is free
+abelian and whose quotient is the explicit residually finite Kazhdan group
+`G`.  Notice that this is the reverse orientation from the classical
+permanence theorem for a sofic normal subgroup and amenable quotient.
+
+This is a substantially simpler standalone nonsofic example than the full
+double: the only non-residually-finite layer is an explicit cyclically
+generated permutation module.  It is also a sharp TRUE-side candidate for
+the main problem.  Hyperlinearity of `(AB3)` is equivalent to constructing a
+Connes-embeddable trace for this particular generalized permutation-module
+extension; it does not follow from the currently known extension closure
+properties.  In Pontryagin-dual language the remaining object is the algebraic
+`G`-action on the compact dual of `reduced Z[G/Gamma]`, so the earlier
+generalized-Bernoulli/Gaussian obstruction has now been reduced to its
+abelian core rather than an auxiliary free lamp.
+
 ### The fold trace is outside the reduced dual
 
 The trace mismatch above is now exact rather than qualitative.  Let
