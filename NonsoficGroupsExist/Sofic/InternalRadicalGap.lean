@@ -22,20 +22,6 @@ open scoped Matrix.Norms.L2Operator
 
 variable {H : Type} [Group H]
 
-/-- Restrict one fixed sequential approximation of `H` to a subgroup.  It is
-important that this uses the same matrices as the ambient approximation. -/
-abbrev restrictedApproximation (A : WeakMFApproximation H) (N : Subgroup H) :
-    WeakMFApproximation N :=
-  A.comap N.subtype Subtype.val_injective
-
-@[simp] theorem restrictedApproximation_model
-    (A : WeakMFApproximation H) (N : Subgroup H) (n : ℕ) :
-    (restrictedApproximation A N).model n = A.model n := rfl
-
-@[simp] theorem restrictedApproximation_map
-    (A : WeakMFApproximation H) (N : Subgroup H) (n : ℕ) (x : N) :
-    (restrictedApproximation A N).map n x = A.map n x := rfl
-
 /-- Finite spectral data for a prescribed ambient weak-MF approximation,
 restricted to a property-`(T)` subgroup. -/
 structure Setup (A : WeakMFApproximation H) (N : Subgroup H) where
@@ -79,12 +65,19 @@ theorem exists_setup (A : WeakMFApproximation H) (N : Subgroup H)
     gap_lt_cutoff := hct
     cutoff_lt_one := htOne }⟩
 
+/-- The subgroup generators, embedded as an honest finite set in the ambient
+group.  Building the spectral average from this set keeps every matrix on the
+ambient carrier by construction. -/
+def ambientGenerators (N : Subgroup H) {A : WeakMFApproximation H}
+    (D : Setup A N) : Finset H :=
+  D.S.map ⟨N.subtype, Subtype.val_injective⟩
+
 /-- The subgroup moving-coordinate type cut out inside the ambient matrix
 model. -/
 noncomputable abbrev MovingIndex (A : WeakMFApproximation H)
     (N : Subgroup H) (D : Setup A N) (n : ℕ) :=
   KazhdanCornerMatrices.WeakMFMovingIndex
-    (restrictedApproximation A N) D.S D.cutoff n
+    A (ambientGenerators N D) D.cutoff n
 
 /-- The subgroup spectral compression of an ambient element.  This is the
 matrix whose asymptotic multiplicativity will follow from normality. -/
@@ -92,7 +85,7 @@ noncomputable def ambientEigenbasisMicrostate (A : WeakMFApproximation H)
     (N : Subgroup H) (D : Setup A N) (n : ℕ) (g : H) :
     Matrix (A.model n) (A.model n) ℂ :=
   let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
-    (restrictedApproximation A N) D.S n
+    A (ambientGenerators N D) n
   hAvg.eigenvectorUnitaryᴴ *
     (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
       hAvg.eigenvectorUnitary
@@ -104,7 +97,7 @@ theorem ambientEigenbasisMicrostate_mem_unitaryGroup
     ambientEigenbasisMicrostate A N D n g ∈
       Matrix.unitaryGroup (A.model n) ℂ := by
   let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
-    (restrictedApproximation A N) D.S n
+    A (ambientGenerators N D) n
   let U : Matrix (A.model n) (A.model n) ℂ := hAvg.eigenvectorUnitary
   have hUstar : Uᴴ ∈ Matrix.unitaryGroup (A.model n) ℂ := by
     rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
@@ -113,15 +106,6 @@ theorem ambientEigenbasisMicrostate_mem_unitaryGroup
   change Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U ∈
     Matrix.unitaryGroup (A.model n) ℂ
   exact mul_mem (mul_mem hUstar (A.map n g).2) hAvg.eigenvectorUnitary.2
-
-/-- On subgroup elements the ambient matrix is literally the ordinary
-eigenbasis microstate of the restricted approximation. -/
-theorem ambientEigenbasisMicrostate_subgroup
-    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N)
-    (n : ℕ) (x : N) :
-    ambientEigenbasisMicrostate A N D n x =
-      KazhdanCornerMatrices.eigenbasisMicrostate
-        (restrictedApproximation A N) D.S n x := rfl
 
 /-- Conjugating into the subgroup spectral basis preserves the ambient
 weak-MF multiplication defect exactly. -/
@@ -134,7 +118,7 @@ theorem norm_ambientEigenbasisMicrostate_mul_defect_eq
       ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ := by
   let hAvg := KazhdanCornerMatrices.movingHermitianAverage_isHermitian
-    (restrictedApproximation A N) D.S n
+    A (ambientGenerators N D) n
   let U : Matrix (A.model n) (A.model n) ℂ := hAvg.eigenvectorUnitary
   have hU : U * Uᴴ = 1 :=
     Unitary.mul_star_self_of_mem hAvg.eigenvectorUnitary.2
@@ -162,7 +146,7 @@ noncomputable def ambientMovingCompression (A : WeakMFApproximation H)
     Matrix (MovingIndex A N D n) (MovingIndex A N D n) ℂ :=
   KazhdanCornerMatrices.principalBlock
     (KazhdanCornerMatrices.movingPredicate
-      (restrictedApproximation A N) D.S D.cutoff n)
+      A (ambientGenerators N D) D.cutoff n)
     (ambientEigenbasisMicrostate A N D n g)
 
 /-- The ambient moving compression is a contraction. -/
@@ -174,7 +158,7 @@ theorem norm_ambientMovingCompression_le_one
     Fintype.card_pos_iff.mp (A.modelNonempty n)
   exact (KazhdanCornerMatrices.norm_principalBlock_le
     (KazhdanCornerMatrices.movingPredicate
-      (restrictedApproximation A N) D.S D.cutoff n)
+      A (ambientGenerators N D) D.cutoff n)
     (ambientEigenbasisMicrostate A N D n g)).trans_eq
       (CStarRing.norm_of_mem_unitary
         (ambientEigenbasisMicrostate_mem_unitaryGroup A N D n g))
@@ -191,20 +175,20 @@ theorem norm_ambientMovingCompression_mul_defect_le
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h‖ +
       ‖KazhdanCornerMatrices.coordinateBlock
         (KazhdanCornerMatrices.movingPredicate
-          (restrictedApproximation A N) D.S D.cutoff n)
+          A (ambientGenerators N D) D.cutoff n)
         (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
-          (restrictedApproximation A N) D.S D.cutoff n i)
+          A (ambientGenerators N D) D.cutoff n i)
         (ambientEigenbasisMicrostate A N D n g)‖ *
       ‖KazhdanCornerMatrices.coordinateBlock
         (fun i ↦ ¬KazhdanCornerMatrices.movingPredicate
-          (restrictedApproximation A N) D.S D.cutoff n i)
+          A (ambientGenerators N D) D.cutoff n i)
         (KazhdanCornerMatrices.movingPredicate
-          (restrictedApproximation A N) D.S D.cutoff n)
+          A (ambientGenerators N D) D.cutoff n)
         (ambientEigenbasisMicrostate A N D n h)‖ := by
   classical
   have hbound := KazhdanCornerMatrices.norm_principalBlock_mul_defect_le
     (KazhdanCornerMatrices.movingPredicate
-      (restrictedApproximation A N) D.S D.cutoff n)
+      A (ambientGenerators N D) D.cutoff n)
     (ambientEigenbasisMicrostate A N D n (g * h))
     (ambientEigenbasisMicrostate A N D n g)
     (ambientEigenbasisMicrostate A N D n h)
