@@ -405,6 +405,26 @@ def freeLampMulEquivSymmetricDoubleFlip :
 
 /-! ## The nonsofic-double reduction with the presentation gap removed -/
 
+/-- **Nonsofic symmetric double.**  Once the standard permanence of soficity
+under a finite semidirect product is supplied, Kun--Thom centralizer
+normalization and one strict compressor imply that `G *_Γ G` is nonsofic.
+
+This is the group-theoretic endpoint giving a negative answer to Question 1.6
+of Gao--Kunnawalkam Elayavalli--Mj for the Kun--Thom pair.  It is deliberately
+separate from every weak-MF input. -/
+theorem not_isSofic_symmetricDouble_of_flip_permanence [Countable G]
+    (hfinite : IsSofic (SymmetricDouble G Γ) →
+      IsSofic (SymmetricDoubleFlipExtension G Γ))
+    (hcn : CentralizerNormalization G Γ)
+    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
+    ¬ IsSofic (SymmetricDouble G Γ) := by
+  intro hD
+  have hE : IsSofic (SymmetricDoubleFlipExtension G Γ) := hfinite hD
+  have hLamp : IsSofic (FreeLamp G Γ FlipC2) :=
+    (isSofic_mulEquiv_iff (freeLampMulEquivSymmetricDoubleFlip G Γ)).mpr hE
+  exact freeLamp_not_isSofic G Γ FlipC2 hcn hγ hstrict
+    (k := (.swap : FlipC2)) (by decide) hLamp
+
 /-- Once the standard permanence of soficity under a finite semidirect
 product is supplied, the old ad hoc flip implication is no longer needed:
 the isomorphism above converts it into the exact free-lamp group to which the
@@ -416,12 +436,7 @@ theorem weakMF_and_not_isSofic_symmetricDouble_of_flip_permanence [Countable G]
     (hcn : CentralizerNormalization G Γ)
     {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
     IsWeakMF (SymmetricDouble G Γ) ∧ ¬ IsSofic (SymmetricDouble G Γ) := by
-  refine ⟨hMF, ?_⟩
-  intro hD
-  have hE : IsSofic (SymmetricDoubleFlipExtension G Γ) := hfinite hD
-  have hLamp : IsSofic (FreeLamp G Γ FlipC2) :=
-    (isSofic_mulEquiv_iff (freeLampMulEquivSymmetricDoubleFlip G Γ)).mpr hE
-  exact freeLamp_not_isSofic G Γ FlipC2 hcn hγ hstrict
-    (k := (.swap : FlipC2)) (by decide) hLamp
+  exact ⟨hMF, not_isSofic_symmetricDouble_of_flip_permanence
+    G Γ hfinite hcn hγ hstrict⟩
 
 end NonsoficGroupsExist
