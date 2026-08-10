@@ -31316,3 +31316,70 @@ equivariance defects survive Clifford second quantization at `o(t)`, and for
 which the primitive path has norm tending to `sqrt(2)`.  Conversely, any
 candidate factoring through a genuine finite `Q`-set or finite quotient is
 eliminated immediately by `(CCT10)`.
+
+# Profinite closure defeats every exact finite-dimensional linear detector (2026-08-10)
+
+The last sentence above can be strengthened substantially: an exact finite
+orthogonal model need not visibly factor through a finite quotient.  Finite
+specialization shows that it still cannot distinguish the invisible cosets.
+
+**Theorem (linear specialization of relative profinite closure).**  Let `Q`
+be finitely generated, let `Gamma<Q`, and let `h` lie in the relative
+profinite closure of `Gamma`, meaning
+
+`theta(h) in theta(Gamma)`                             `(LSP1)`
+
+for every homomorphism `theta:Q->F` to a finite group.  If
+
+`rho:Q->GL_d(C)`
+
+is any finite-dimensional complex linear representation, then
+
+`Fix(rho(Gamma)) <= Fix(rho(h))`.                      `(LSP2)`
+
+The same conclusion holds over any characteristic-zero field.
+
+**Proof.**  Suppose `xi` is fixed by `rho(Gamma)` but
+
+`w=(rho(h)-1)xi!=0`.
+
+Choose a finite generating set of `Q`.  Let `R<C` be the finitely generated
+unital integral domain containing the matrix entries of the images of those
+generators and their inverses, the coordinates of `xi`, and the inverse of
+one nonzero coordinate `w_j` of `w`.  All matrices lie in `GL_d(R)` after
+also adjoining their determinant inverses.
+
+A finitely generated nonzero ring has a maximal ideal, and the residue field
+of a maximal ideal of a finitely generated `Z`-algebra is finite.  Reduce
+the matrices and `xi` modulo such a maximal ideal.  This gives
+
+`bar rho:Q->GL_d(k)`
+
+for a finite field `k`.  Every element of `Gamma` fixes `bar xi`, because
+the corresponding identities already hold over `R`.  On the other hand
+`bar rho(h)bar xi!=bar xi`, since `w_j` was made invertible before reduction.
+Thus `bar rho(h)` cannot belong to `bar rho(Gamma)`: every element of the
+latter fixes `bar xi`.  The finite image `bar rho(Q)` therefore contradicts
+`(LSP1)`.  This proves `(LSP2)`.  End proof.
+
+Apply the theorem to the Clifford tangent endpoint.  If
+
+`pi:Q->O(H)`
+
+is any exact finite-dimensional orthogonal representation and
+`J:Z[Q/Gamma]->H` is equivariant, then `xi=J(delta_Gamma)` is
+`pi(Gamma)`-fixed.  Hence `pi(h)xi=xi` and
+
+`J(delta_(h Gamma)-delta_Gamma)=0`.                   `(LSP3)`
+
+Therefore `(CCT10)` is not merely a no-go for profinite constructions:
+
+> no exact finite-dimensional linear covariance model, including one with
+> infinite compact image, can retain the primitive path energy.
+
+The surviving TRUE-side target is necessarily an **approximate orthogonal
+representation of `Q`** together with an approximately equivariant vector
+whose `Gamma`-defect is `o(t)` after Clifford quantization but whose
+`h`-displacement stays asymptotic to `sqrt(2)`.  Any approach which first
+repairs the orthogonal maps to honest finite-dimensional representations
+before quantization automatically kills the witness by `(LSP3)`.
