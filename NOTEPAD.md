@@ -33390,6 +33390,104 @@ is the complete FALSE proof; a negative one would be a quantitative
 relative cocycle-stability theorem, not the already-known exact
 finite-module obstruction.
 
+## Honest induced sectors reduce phase splitting to a finite-cover branch cut
+
+The projective multipliers in `(PST10)--(PST12)` are not essential.  A
+strictly cleaner sufficient package uses two honest finite-dimensional
+representations of `G`.
+
+Let `K normal G` have finite index, put `Q=G/K`, and let
+
+`chi:K->T`                                              `(ICB1)`
+
+be a conjugation-invariant character.  Choose a section `s:Q->G`, with
+`s(1)=1`, and define the Schreier cocycle
+
+`kappa(g,q)=s(gq)^(-1) g s(q) in K`.                  `(ICB2)`
+
+On `ell^2(Q)` define
+
+`U(g)delta_q=delta_(gq)`,
+
+`V(g)delta_q=chi(kappa(g,q)) delta_(gq)`.             `(ICB3)`
+
+The first is `Ind_K^G(1)` and the second is `Ind_K^G(chi)`.  The cocycle
+identity
+
+`kappa(gh,q)=kappa(g,hq)kappa(h,q)`
+
+shows directly that `(ICB3)` is an honest representation (in fact this
+part does not require conjugation invariance).  Conjugation invariance is
+the additional hypothesis that makes the phase of a kernel element
+independent of the coset and hence makes the long collision holonomy below
+a scalar.  Changing the section, or conjugating `V` by a diagonal unitary,
+changes the phases in `(ICB3)` by a circle-valued vertex coboundary.
+
+**Theorem (induced-character branch-cut criterion).**  Fix
+`h in normalClosure_G(Gamma)` for which
+`x_h=i_2(h)i_1(h)^(-1)` is a nontrivial element of the full sofic radical
+of `D=G *_Gamma G`.  Suppose there are finite-index normal subgroups
+`K_j`, conjugation-invariant characters `chi_j:K_j->T`, sections `s_j`,
+and a scalar `theta!=1` such that, for every fixed `gamma in Gamma`,
+
+`(1/|Q_j|) sum_(q in Q_j)
+ |chi_j(kappa_j(gamma,q))-1|^2 ->0`,                  `(ICB4)`
+
+while
+
+`(1/|Q_j|) sum_(q in Q_j)
+ |chi_j(kappa_j(h,q))-theta|^2 ->0`.                  `(ICB5)`
+
+Then there is a hyperlinear nonsofic group.
+
+**Proof.**  The maps `U_j,V_j` in `(ICB3)` are exact representations, so
+`(PST2)--(PST3)` hold with zero defect.  Since the two monomial matrices
+have the same underlying permutation, their normalized Hilbert--Schmidt
+distance is exactly the square root of the average in `(ICB4)`.  Thus
+`(ICB4)` is `(PST4)`.  Similarly
+
+`V_j(h)U_j(h)^*`
+
+is diagonal, up to reindexing its diagonal entries, with entries
+`chi_j(kappa_j(h,q))`; hence `(ICB5)` is `(PST5)--(PST6)`.  Apply the
+phase-splitting theorem.  End proof.
+
+There is a gauge-invariant formulation.  Fix a finite generating set
+`S_Gamma` of `Gamma`.  For an invariant kernel character `chi`, define its
+relative branch-cut energy by
+
+`E_(K,chi)=inf_(a:Q->T) max_(gamma in S_Gamma)`
+` (1/|Q|) sum_q |a(gamma q)^(-1)
+    chi(kappa(gamma,q))a(q)-1|^2`.                    `(ICB6)`
+
+The infimum ranges over diagonal gauge changes.  The positive target is a
+sequence with `E_(K_j,chi_j)->0`, but for which the same minimizing gauges
+make the `h`-edge converge to a nontrivial constant phase.  Property `(T)`
+of `Gamma` obstructs ordinary vertex coboundaries, but it does not by
+itself remove the flux of the line bundle determined by `chi_j`; the latter
+is a transgressed `H^2(Q_j,T)` class.
+
+For a collision `hK_j=gamma_jK_j` with a growing
+`gamma_j in Gamma`, the phase accumulated around the closed path consisting
+of the `h`-edge followed by the inverse `Gamma`-path is
+
+`chi_j(h gamma_j^(-1))`,                              `(ICB7)`
+
+up to the fixed section convention.  Thus the explicit arithmetic target
+is:
+
+1. choose congruence kernels `K_j` and invariant characters `chi_j`
+   coming from the symplectic Laurent `K_2` functional;
+2. gauge the associated finite line bundles so every fixed polynomial
+   generator has vanishing branch-cut density; and
+3. prove that the long collision `(ICB7)` has one fixed nontrivial value
+   and that its phase is equidistributed as the constant in `(ICB5)`, not
+   concentrated on a vanishing set.
+
+This is sharper than asking whether the whole gauge cover is hyperlinear.
+It is a finite-cover calculation involving honest induced representations;
+all analytic work after `(ICB4)--(ICB5)` is complete.
+
 ## Kazhdan uniformization localizes every long phase in the splitting cochain
 
 There is a useful exact separation between the representation-theoretic
