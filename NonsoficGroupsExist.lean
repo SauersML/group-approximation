@@ -273,6 +273,7 @@ import NonsoficGroupsExist.Sofic.HyperlinearScalar
 import NonsoficGroupsExist.Sofic.PhaseOrder
 import NonsoficGroupsExist.Sofic.MonomialModel
 import NonsoficGroupsExist.Sofic.PhasePropagation
+import NonsoficGroupsExist.Sofic.LeavittTraceFloor
 import NonsoficGroupsExist.Sofic.ScalarCocycle
 import NonsoficGroupsExist.Sofic.CharacterCount
 import NonsoficGroupsExist.Sofic.NoRounding
