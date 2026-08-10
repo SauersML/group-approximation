@@ -34616,3 +34616,72 @@ FALSE construction must now leave the one-particle orthogonal category
 altogether and work directly in normalized-Hilbert--Schmidt matrix
 geometry (the non-Bogoljubov CAR tail, the Leavitt exact-atlas character
 problem, or the balanced corona shear).
+
+# Property (T) forbids induction of the one-compressor lamp (2026-08-10)
+
+The exact sofic dilation `(OSD1)--(OSD11)` realizes all of the desired
+strict-commutant geometry for one compressor.  A natural attempted
+globalization is to induce that representation from the one-compressor
+subgroup to the full Kun--Thom ambient.  This cannot retain positive trace
+mass, for a reason independent of the detailed lamp model.
+
+Let `G` have property `(T)` and let `E<G`.  Recall that `E` is coamenable in
+`G` exactly when the quasi-regular representation on `ell^2(G/E)` weakly
+contains the trivial representation.
+
+**Theorem (Kazhdan induction dilution).**  If `E` has infinite index in the
+property-`(T)` group `G`, then:
+
+1. `E` is not coamenable in `G`;
+2. there is no `G`-invariant mean on `ell^infinity(G/E)`; and
+3. there is no unital equivariant star-homomorphism
+
+   `iota:ell^infinity(G/E)->M`                        `(KID1)`
+
+   into a finite tracial von Neumann algebra `(M,tau)`, where `G` acts on
+   `M` by trace-preserving inner automorphisms.
+
+Consequently, a finite-trace induction or coinduction of a representation of
+`E` cannot keep a lamp localized at the base coset `E` with positive
+normalized `2`-mass.
+
+**Proof.**  If `E` were coamenable, the quasi-regular representation
+`lambda_(G/E)` would have almost invariant unit vectors.  Property `(T)`
+would then give a nonzero invariant vector.  The action on `G/E` is
+transitive, so every invariant vector is constant.  A nonzero constant
+function belongs to `ell^2(G/E)` only when `G/E` is finite, contrary to the
+infinite-index hypothesis.  This proves (1), and the invariant-mean
+characterization of coamenability gives (2).
+
+If `(KID1)` existed, then
+
+`m(f)=tau(iota(f))`                                   `(KID2)`
+
+would be a state on `ell^infinity(G/E)`.  Equivariance of `iota` and
+invariance of `tau` under inner automorphisms would make `m` `G`-invariant,
+contradicting (2).  This proves (3).
+
+In the ordinary induced construction the base-fiber projection is the image
+of `1_E` under `(KID1)`.  More generally, every diagonal coinduced field
+contains the same equivariant coset algebra.  Thus no such finite trace exists
+at all; in particular one cannot give the base lamp positive trace.  End
+proof.
+
+For the explicit polynomial/Laurent Kun--Thom pair
+
+`Gamma=EL_r(k[x_1,...,x_d])`,
+`G=EL_r(k[x_1^(+-1),...,x_d^(+-1)]) semidirect SL_d(Z)`, `(KID3)`
+
+let `t` be one substitution compressor and put `E=<Gamma,t>`.  Projection
+onto the external `SL_d(Z)` factor sends `E` into the cyclic group `<t>`,
+whereas it sends `G` onto `SL_d(Z)`.  Since `SL_d(Z)` is not virtually cyclic
+for `d>=3`, `E` has infinite index in `G`.  The theorem therefore applies
+exactly to the one-compressor dilation `(OSD7)`.
+
+This rules out a broader method than finite-index induction: even an
+ultraproduct coinduction based on an invariant mean on the compressor coset
+space cannot exist.  A surviving globalization must distribute the strict
+lamp through genuinely noncommutative multiplicity fibers.  It cannot first
+construct a diagonal `G/E` coordinate algebra and then hide that algebra in
+a tracial ultraproduct.  In the terminology of the free-lamp program, the
+missing multi-compressor Kazhdan gluing is necessarily **non-Cartan**.
