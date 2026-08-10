@@ -271,7 +271,7 @@ The first layer is approximation-theoretic.
 
 \begin{mainthm}[Kazhdan compression--centralizer criterion]\label{thm:D}%
 \leanverified{\leanmod{Endpoint/ManuscriptStatements}{theoremD_subgroups}\leanmod{Criterion/CriterionAssembly}{isLEF_of_isSofic,not_isSofic_of_not_isLEF}\leannote{Finite generation and countability are derived from $(T)$, not assumed.}}%
-Let \(G\) be a finitely generated property-\((T)\) group, and let \(\Gamma\leq G\) be an infinite finitely generated property-\((T)\) subgroup.  Suppose there is a finite set \(Q\subseteq G\) with
+Let \(G\) be a finitely generated property-\((T)\) group, and let \(\Gamma\leq G\) be an infinite property-\((T)\) subgroup.  Suppose there is a finite set \(Q\subseteq G\) with
 \[
  G=\langle\Gamma,Q\rangle
  \qquad\text{and}\qquad
@@ -286,7 +286,7 @@ Fix \(q_0\in Q\), put \(K=q_0\Gamma q_0^{-1}\), and let \(J\leq\Gamma\) be finit
 If \(G\) is sofic, then \(J\) is LEF.
 \end{mainthm}
 
-Finite generation of \(G\) is listed for readability only: it follows from the generation hypothesis, \(\Gamma\) being finitely generated and \(Q\) finite, and the formal statement omits it.
+Finite generation of \(G\) is listed for readability only: property \((T)\) already makes \(\Gamma\) finitely generated---the Kazhdan pair, tested on the \(\ell^2\) permutation representation of the coset space of the subgroup its finite set generates, forces that subgroup to have finite index---and \(G\) then inherits finite generation from \(\Gamma\), the generation hypothesis, and the finiteness of \(Q\); the formal statement omits it.
 
 The point of departure is the tension between the two theorems that govern sofic approximations of Kazhdan groups.  Kun's theorem \cite{Kun19} proves Bowen's conjecture: every sofic approximation of an infinite property-\((T)\) group is essentially a vertex-disjoint union of uniformly expanding components.  The Kun--Thom theorem \cite{KunThom19} requires more: if the restriction of a sofic approximation of \(\Lambda\times\Delta\) to a Kazhdan factor \(\Lambda\) is essentially \emph{one} expander, then \(\Delta\) is locally embeddable into finite groups (LEF).  A disjoint union of equal-sized expanders is not enough, because the commuting factor may permute the components---this is exactly what happens in a product approximation.
 
