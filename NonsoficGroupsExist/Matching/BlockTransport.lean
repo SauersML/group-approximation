@@ -160,6 +160,29 @@ noncomputable def overlap (P : BlockStructure Y) (q : Equiv.Perm Y)
     (C D : BlockIndex P) : ℕ :=
   ((C.block.image q) ∩ D.block).card
 
+/-- Reversing a transported overlap exchanges its source and target. -/
+theorem overlap_inv_comm (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (C D : BlockIndex P) :
+    overlap P q C D = overlap P q⁻¹ D C := by
+  classical
+  unfold overlap
+  apply Finset.card_bij (fun y _ ↦ q⁻¹ y)
+  · intro y hy
+    obtain ⟨hyqC, hyD⟩ := Finset.mem_inter.mp hy
+    apply Finset.mem_inter.mpr
+    refine ⟨Finset.mem_image.mpr ⟨y, hyD, rfl⟩, ?_⟩
+    obtain ⟨x, hxC, hxy⟩ := Finset.mem_image.mp hyqC
+    simpa [← hxy] using hxC
+  · intro x _ y _ hxy
+    exact q⁻¹.injective hxy
+  · intro x hx
+    obtain ⟨hxqD, hxC⟩ := Finset.mem_inter.mp hx
+    refine ⟨q x, ?_, by simp⟩
+    apply Finset.mem_inter.mpr
+    refine ⟨Finset.mem_image.mpr ⟨x, hxC, rfl⟩, ?_⟩
+    obtain ⟨y, hyD, hyx⟩ := Finset.mem_image.mp hxqD
+    simpa [← hyx] using hyD
+
 /-- An involution gives a symmetric component-overlap matrix. -/
 theorem overlap_comm_of_sq (P : BlockStructure Y) (q : Equiv.Perm Y)
     (hsq : q * q = 1) (C D : BlockIndex P) :
