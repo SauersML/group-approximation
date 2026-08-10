@@ -31004,3 +31004,87 @@ the GNS algebra jumps from the quotient algebra at `t=0` to the same full
 generalized-Bernoulli algebra for every `t>0`.  Its value is instead an exact
 faithful trace on the smaller finitely generated path group whose CE status
 is equivalent to hyperlinearity of the split integral wreath candidate.
+
+# An infinitesimal heat model is enough (2026-08-09)
+
+The positive-time GNS jump does **not** eliminate perturbative model
+production.  It fixes the scale at which such a construction must work.
+Retain the path group `P`, its quotient map `q:P->Q`, and the heat characters
+
+`tau_t(a,s)=1_(s=1) exp(-t ||a||_2^2)`.
+
+**Theorem (tangent heat amplification).**  Suppose `t_n>0`, `t_n->0`, and
+there are maps
+
+`phi_n:P->U(d_n)`
+
+such that, for every fixed `g,h in P`,
+
+`||phi_n(g)phi_n(h)-phi_n(gh)||_(2,d_n)=o_(g,h)(t_n)`, `(THA1)`
+
+and, for every fixed `g in P`,
+
+`|tr_(d_n)(phi_n(g))-tau_(t_n)(g)|=o_g(t_n)`.          `(THA2)`
+
+Then `tau_T` is Connes embeddable for every `T>0`.  Consequently the integral
+generalized wreath product
+
+`W_Y=Z^(Q/Gamma) semidirect Q`
+
+is hyperlinear and nonsofic, and the main hyperlinear-versus-sofic question
+has a negative answer.
+
+**Proof.**  Fix `T>0` and put
+
+`L_n=floor(T/t_n)`,  `Phi_n(g)=phi_n(g)^(tensor L_n)`.
+
+For unitaries `A,B`, tensor telescoping gives
+
+`||A^(tensor L)-B^(tensor L)||_2<=L||A-B||_2`.
+
+Apply this with `A=phi_n(g)phi_n(h)` and `B=phi_n(gh)`.  Since
+`L_n=O(1/t_n)`, `(THA1)` gives
+
+`||Phi_n(g)Phi_n(h)-Phi_n(gh)||_2=o_(g,h)(1)`.        `(THA3)`
+
+Normalized trace is multiplicative on tensor products.  For complex
+numbers of modulus at most one,
+
+`|a^L-b^L|<=L|a-b|`.
+
+Hence `(THA2)` gives
+
+`tr(Phi_n(g))-tau_(t_n)(g)^(L_n)->0`.                 `(THA4)`
+
+If `q(g)!=1`, both `tau_(t_n)(g)^(L_n)` and `tau_T(g)` are zero.  If
+`g=(a,1)` lies in the path kernel, then
+
+`tau_(t_n)(g)^(L_n)`
+` =exp(-L_n t_n ||a||_2^2)->exp(-T||a||_2^2)=tau_T(g)`.
+
+Thus `(THA3)--(THA4)` are matrix microstates for `tau_T`.  A diagonal
+sequence over the countable group produces its trace-preserving embedding
+into a tracial matrix ultraproduct.  Positive-time Bernoulli recovery
+`(PHB2)--(PHB4)` identifies its GNS algebra with `L(W_Y)`, so `W_Y` is
+hyperlinear.  The path subgroup `P<W_Y` is nonsofic, hence `W_Y` is
+nonsofic.  End proof.
+
+The scale `o(t)` is load-bearing.  An `O(t)` multiplication error accumulates
+to order one under `L_n asymptotic T/t_n` tensor factors and gives no
+ultraproduct homomorphism.  Thus the remaining positive construction can be
+stated entirely at the fold endpoint `t=0`:
+
+> produce first-order heat microstates whose group-law and trace errors are
+> little-oh of the heat time.
+
+On a kernel element `(a,1)`, the required infinitesimal trace is explicit:
+
+`tau_t(a,1)=1-t||a||_2^2+O_a(t^2)`.                  `(THA5)`
+
+For elements with nontrivial `Q`-coordinate it is identically zero.  Hence
+the nonlinear fixed-time CE problem has been reduced to realizing the
+quadratic path energy as the tangent of finite-dimensional characters while
+keeping every fixed multiplication cell one order smaller.  The classical
+finite-quotient models fail exactly at this threshold: the invisible edge is
+collapsed and the associated Heisenberg/Weyl commutator has a first-order,
+not little-oh, curvature floor `(FQW2)--(FQW3)`.
