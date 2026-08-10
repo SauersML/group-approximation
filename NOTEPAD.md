@@ -30000,3 +30000,136 @@ weak-MF, K_infinity is virtually abelian, and A is amenable. Weak MF of
 this explicit shear amalgam is the exact remaining compatibility question;
 on its z=-1 sector the image of x must be unitarily equivalent to its
 negative.
+
+# Centralizer-twisted shear of the weak-MF symmetric double (2026-08-09)
+
+The preceding HNN/shear certificate can be made symmetric and its edge can
+be chosen intrinsically from the Bass--Serre geometry.  This gives a second,
+sharper MF endpoint.
+
+## Abstract centralizer shear
+
+Let `H` be a group, let `r in Rad_sof(H)`, and put `C=C_H(r)`.  Suppose
+there is a homomorphism `ell:C->Z` with `ell(r)` odd.  Introduce a central
+involution `z`, put
+
+`B=H times <z>`,  `A=C times <z>`,
+
+and define
+
+`alpha(c,z^e)=(c,z^(e+ell(c) mod 2))`.                `(IS1)`
+
+This is an involutive automorphism of `A`, with `alpha(z)=z` and
+`alpha(r)=rz`.  Form the twisted symmetric amalgam
+
+`J=B *_((A,id),(A,alpha)) B`.                          `(IS2)`
+
+**Theorem (centralizer shear).**  The element `z` is a nontrivial central
+involution in `Rad_sof(J)`.
+
+**Proof.**  Bass--Serre normal form keeps both vertex groups injective, so
+`z!=1`.  The two copies of `z` are identified, and `z` is central in both
+vertices, hence in `J`.  The edge relation for `r` is
+
+`r_1=r_2 z`.                                          `(IS3)`
+
+Every map from `J` to a sofic group kills `r_1` and `r_2`, because its two
+restrictions to `H` have sofic image.  Equation `(IS3)` then kills `z`.
+End proof.
+
+This removes the order-two hypothesis on the original radical element; a
+parity character on its centralizer is enough.
+
+## A primitive radical word in the symmetric double
+
+For the explicit Kun--Thom pair put `D=G *_Gamma G`, let `alpha_D` be its
+flip, and write `E=D semidirect_(alpha_D) C_2` with flip generator `k`.
+Choose `h=t^(-1) gamma t notin Gamma` as in the Kun--Thom witness and put
+
+`r=i_2(h)i_1(h)^(-1)=[k,h] in D`.                     `(IS4)`
+
+**Lemma.**  `r in Rad_sof(D)`.
+
+**Proof.**  Every homomorphism `Phi:E->S` with sofic target kills `[k,h]`:
+pair `Phi` with the fold map `E->G times C_2`.  The resulting sofic map is
+faithful on the distinguished `G`, so Kun--Thom centralizer normalization
+kills the witness.
+
+Given any `phi:D->S` with sofic target, induce it across the flip:
+
+`d |-> (phi(d),phi(alpha_D(d)))`,  `k |-> swap`.
+
+This maps `E` to the sofic finite extension
+`(S times S) semidirect C_2`.  The previous paragraph kills `[k,h]`, whose
+first coordinate is `phi(r)`.  Thus every sofic image of `D` kills `r`.
+End proof.
+
+The word `(IS4)` is cyclically reduced of syllable length two, so it is
+hyperbolic of translation length two on the bipartite Bass--Serre tree.
+Every positive translation length is even.  Hence `r` is primitive: an
+identity `r=s^m` would give `2=|m| length_T(s)`, forcing `|m|=1`.
+
+Every element of `C_D(r)` preserves the axis and its orientation.
+Translation on the axis, divided by two and oriented in the direction of
+`r`, gives
+
+`ell:C_D(r)->Z`,  `ell(r)=1`.                         `(IS5)`
+
+Its kernel fixes the axis pointwise and
+`C_D(r)=ker(ell) times <r>`.  The abstract theorem therefore gives the
+explicit group
+
+`J_D=(D times C_2) *_((C_D(r) times C_2),alpha)
+     (D times C_2)`,                                  `(IS6)`
+
+with `z` central, nontrivial, and in the full sofic radical.
+
+## Exact operator-algebra endpoint
+
+Choose the banked faithful realization `rho:D->U(M)` in the separable MF
+algebra supplied by the profinite symmetric-amalgam construction, and
+realize `D times C_2` in `M tensor C^*(C_2)`.  Besides being MF, this
+particular `M` has an abstract tracial state whose restriction to `D` is
+the regular character; this was the GNS normal-form device used to prove
+faithfulness of the original symmetric double.  Put
+
+`C_0=C^*(rho(C_D(r)),z)`.
+
+For group unitaries the intersection is exact:
+
+`rho(D times C_2) intersect C_0=rho(C_D(r) times C_2)`. `(IS7)`
+
+Indeed every element of `C_0` commutes with `rho(r)`, so faithfulness forces
+any group unitary in `C_0` to lie in the group centralizer.  More strongly,
+regular-trace orthogonality gives
+
+`tau(rho(b)^* C_0)=0` whenever `b notin C_D(r) times C_2`. `(IS7a)`
+
+The restriction of `tau` to `C_0` is invariant under `alpha`, since it is
+the canonical group trace on the edge group.  Pass to the finite von
+Neumann GNS completions and use their trace-preserving conditional
+expectations onto the edge algebra.  The reduced twisted amalgam then sends
+every nontrivial Bass--Serre reduced group word to a nonzero reduced word
+(indeed one orthogonal to the identity).  Since the full twisted
+C*-amalgam surjects onto this reduced one, `(IS6)` embeds in the full
+twisted amalgam.  This trace is used only to certify group normal form; it
+is not asserted to be visible to the MF matrix traces.
+
+Thus the remaining sufficient certificate is the single statement
+
+`(M tensor C^*(C_2)) *_((C_0,id),(C_0,alpha))
+ (M tensor C^*(C_2)) is MF`.                           `(IS8)`
+
+If `(IS8)` holds, `J_D` is weak MF.  The nonzero central projection
+`(1-z)/2` can then be compressed and its trace renormalized, producing a
+tracial-ultraproduct image which retains `z`.  That image is hyperlinear
+and cannot be sofic because `z in Rad_sof(J_D)`.
+
+No solution is claimed yet: Shulman's Theorem 10 proves the pointwise
+untwisted amalgam `A *_C A`, not `(IS8)`.  Her general Theorem 16 identifies
+the exact remaining issue as two norm-corona embeddings of the vertex
+algebra whose restrictions differ by `alpha`.  The gain is that the whole
+TRUE problem is now localized to one explicit involutive shear on the
+centralizer of one primitive hyperbolic radical word; the group-theoretic
+central-radical statement and the group/C*-subalgebra intersection are both
+unconditional.
