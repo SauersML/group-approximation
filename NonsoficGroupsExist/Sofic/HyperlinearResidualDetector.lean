@@ -31,6 +31,29 @@ theorem soficInvisible_one : SoficInvisible (1 : G) := by
   intro S _ _ f
   exact map_one f
 
+/-- The elements killed by every homomorphism to a sofic group form a
+subgroup.  This is the *sofic residual* (as opposed to a largest normal sofic
+subgroup, which is a different construction). -/
+def soficResidual (G : Type u) [Group G] : Subgroup G where
+  carrier := {x | SoficInvisible x}
+  one_mem' := soficInvisible_one
+  mul_mem' := by
+    intro x y hx hy S _ hS f
+    rw [map_mul, hx S inferInstance hS f, hy S inferInstance hS f, one_mul]
+  inv_mem' := by
+    intro x hx S _ hS f
+    rw [map_inv, hx S inferInstance hS f, inv_one]
+
+@[simp] theorem mem_soficResidual_iff {x : G} :
+    x ∈ soficResidual G ↔ SoficInvisible x :=
+  Iff.rfl
+
+/-- Every map to a sofic group kills the full sofic residual. -/
+theorem map_eq_one_of_mem_soficResidual {S : Type u} [Group S]
+    (hS : IsSofic S) (f : G →* S) {x : G} (hx : x ∈ soficResidual G) :
+    f x = 1 :=
+  hx S inferInstance hS f
+
 /-- If a sofic-residual element survives under a homomorphism, the range of
 that homomorphism is not sofic. -/
 theorem not_isSofic_range_of_soficInvisible

@@ -337,6 +337,7 @@ import NonsoficGroupsExist.Leavitt.ThompsonWitness
 import NonsoficGroupsExist.Matching.MatchedComponents
 import NonsoficGroupsExist.Sofic.SoficTransfer
 import NonsoficGroupsExist.Sofic.HyperlinearResidualDetector
+import NonsoficGroupsExist.Sofic.FiniteResidualKernel
 import NonsoficGroupsExist.Sofic.InternalRadicalGap
 import NonsoficGroupsExist.Sofic.StarGaussian
 import NonsoficGroupsExist.Endpoint.MainResults
