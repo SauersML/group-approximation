@@ -60,6 +60,7 @@ theorem norm_displacement_le_two_div_kazhdan
   have hτm : τ v - v = τ m - m := by
     change τ v - v = τ (v - p) - (v - p)
     rw [map_sub, hτp]
+    abel
   have hτm_le : ‖τ m - m‖ ≤ 2 * ‖m‖ := by
     calc
       ‖τ m - m‖ ≤ ‖τ m‖ + ‖m‖ := norm_sub_le _ _
@@ -82,7 +83,8 @@ theorem norm_displacement_le_two_div_kazhdan
         κ * ‖m‖ ≤ ‖ρ q m - m‖ := hmove
         _ = ‖ρ q v - v‖ := congrArg norm hmove_eq
         _ ≤ δ := hnear q hqQ
-    have hm_le : ‖m‖ ≤ δ / κ := (le_div_iff₀ hQ.1).mpr hκmδ
+    have hm_le : ‖m‖ ≤ δ / κ := (le_div_iff₀ hQ.1).mpr (by
+      simpa [mul_comm] using hκmδ)
     rw [hτm]
     calc
       ‖τ m - m‖ ≤ 2 * ‖m‖ := hτm_le
