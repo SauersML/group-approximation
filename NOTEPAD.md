@@ -27820,3 +27820,136 @@ This does not yet construct the required phases.  It converts the vague
 "twisted sofic relation" question into the quantitative defect `(PH5)` and
 shows exactly why finite-group/profinite cochains, despite matching the
 finite-valued cocycle, are too classical to solve the main problem.
+
+## Cocycle-stable charts force the monomial model back to soficity
+
+Allowing the phase alphabet in `(PH5)` to grow is necessary, but it is not
+sufficient.  A qualitative degree-one cocycle-stability property already
+rounds all such models back to permutation models.
+
+Here is the abstract finite-complex statement.  Let `X_n` be finite weighted
+`2`-complexes of uniformly bounded local degree.  Give `T`-valued cochains
+the normalized `L^2` chordal metrics `d_1,d_2`.  Write `delta` multiplicatively.
+Assume the sequence is **`T`-cocycle stable** in the qualitative sense
+
+`d_2(delta eta_n,1)->0`
+`  ==> d_1(eta_n,Z^1(X_n,T))->0`.                       `(CS1)`
+
+This is exactly the degree-one stability/cosystolic condition, without a
+rate or a lower bound on nontrivial cosystoles.
+
+**Theorem (torsion rounding under cocycle stability).**  Fix `m`.  Suppose
+
+`omega_n in C^2(X_n,mu_m)`, `theta_n in C^1(X_n,T)`
+
+satisfy
+
+`d_2(delta theta_n,omega_n)->0`.                        `(CS2)`
+
+Then there are finite cyclic groups `K_n<=T` (their orders may grow) and
+
+`p_n in C^1(X_n,K_n)`
+
+such that
+
+`d_1(p_n,theta_n)->0`                                  `(CS3)`
+
+and the proportion of `2`-cells on which
+
+`delta p_n != omega_n`
+
+tends to zero.
+
+**Proof.**  Put `eta_n=theta_n^m`, edgewise.  Since `omega_n^m=1` and the
+power map is Lipschitz on `T`, `(CS2)` gives
+
+`d_2(delta eta_n,1)->0`.
+
+By `(CS1)`, choose `lambda_n in Z^1(X_n,T)` with
+
+`d_1(theta_n^m,lambda_n)->0`.                          `(CS4)`
+
+Choose an `m`-th root `r_n(e)` of `lambda_n(e)` on every edge.  Then
+
+`delta r_n` is `mu_m`-valued, because
+
+`(delta r_n)^m=delta lambda_n=1`.                      `(CS5)`
+
+The cochain `q_n=theta_n/r_n` has `q_n^m` tending to `1` in `L^2` by
+`(CS4)`.  Distance to `mu_m` is bounded, with a constant depending only on
+`m`, by distance of the `m`-th power to `1`.  Rounding each edge to a nearest
+`m`-th root therefore gives `q'_n in C^1(X_n,mu_m)` with
+
+`d_1(q_n,q'_n)->0`.
+
+Set `u_n=r_n q'_n`.  Then `d_1(u_n,theta_n)->0`, while `(CS5)` gives
+
+`delta u_n in C^2(X_n,mu_m)` exactly.                  `(CS6)`
+
+It remains only to make the edge values torsion without losing `(CS6)`.
+The set
+
+`C_n={u in T^(X_n(1)) : delta u in mu_m^(X_n(2))}`     `(CS7)`
+
+is a closed subgroup of a finite-dimensional torus.  Every closed subgroup
+of a finite-dimensional torus is a compact abelian Lie group, and its torsion
+points are dense (use its decomposition as a torus times a finite abelian
+group).  Choose a torsion point `p_n in C_n` uniformly as close to `u_n` as
+desired.  Its finitely many coordinates lie in one finite cyclic subgroup
+`K_n<=T`, and `(CS3)` follows.
+
+Both `delta p_n` and `omega_n` are `mu_m`-valued.  They are `L^2`-close by
+`(CS2)`, `(CS3)`, and bounded local degree.  Distinct `m`-th roots have a
+fixed positive chordal separation, so the proportion of cells where they
+differ tends to zero.  End proof.
+
+**Corollary (cocycle-stable monomial collapse).**  Suppose the phase-chart
+microstates `(PH3)`--`(PH9)` for a finite-abelian-lamp wreath-like extension
+are organized on finite presentation complexes satisfying `(CS1)`.  If the
+extension is hyperlinear through those monomial charts, then it is sofic.
+
+**Proof.**  Apply the theorem to the phase edge cochain.  Replacing
+`theta_n` by `p_n` preserves the trace moments because of `(CS3)`.  After the
+replacement, every tested multiplication equation is an **exact equality**
+outside `o(1)` of the columns, and all phases lie in the finite cyclic group
+`K_n`.  Embed
+
+`K_n^Y semidirect Sym(Y) -> Sym(Y times K_n)`           `(CS8)`
+
+by the regular action on the second coordinate.  Since phase multiplication
+is exactly correct on the good columns, the Hamming multiplication defect in
+`(CS8)` is `o(1)`; no lower bound on the spacing of the growing `K_n` is
+needed.  If a monomial microstate has trace tending to zero, `(PH13)` (whose
+proof is independent of the phase alphabet) says that `(CS8)` moves at least
+`1/2-o(1)` of its points.  Product amplification gives asymptotic freeness.
+Thus these are sofic approximations.  End proof.
+
+This yields a sharper necessary condition for the CIOS corona route:
+
+> A scalar-monomial hyperlinear/nonsofic witness with finite lamps must use
+> finite labelled model complexes that fail qualitative `T`-valued
+> degree-one cocycle stability.
+
+The distinction from property `(T)` is essential.  Property `(T)` gives
+spectral expansion of the `1`-skeletons used in Kun's argument; `(CS1)` is a
+higher-dimensional local-testability/cosystolic assertion about edge
+cochains and relator cells.  The former does not imply the latter.  The CIOS
+small-cancellation theorem supplies a Kazhdan hyperbolic quotient, but no
+cocycle-unstable sofic approximation of that quotient (indeed, it does not
+currently supply soficity of the quotient at all).  Thus its published input
+does not satisfy the new positive criterion.
+
+Conversely, a useful constructive target is now exact: find sofic labelled
+models of the acting quotient and `T`-valued edge cochains whose `m`-th
+powers have vanishing curvature but stay a positive distance from every
+genuine `1`-cocycle.  Such a sequence simultaneously witnesses the failure
+of `(CS1)` and supplies the non-roundable phase reservoir required by
+`(PH5)`.  Merely choosing roots of increasingly high order, without this
+cocycle instability, cannot work.
+
+Terminology/source pin: Chapman--Lubotzky, *Stability of homomorphisms,
+coverings and cocycles I: equivalence*, formulates cocycle stability as
+closeness of a `1`-cochain with small coboundary to a genuine `1`-cocycle and
+relates it to covering and homomorphism stability.  High-dimensional
+coboundary/cosystolic expansion gives stronger quantitative instances, but
+is not a consequence of ordinary graph expansion or property `(T)` alone.
