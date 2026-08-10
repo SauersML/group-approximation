@@ -36365,3 +36365,72 @@ repair the failed `J`-radical assertion automatically.
 Primary source audited for every block formula: Slofstra,
 arXiv:1703.08618v2, Lemma 4.4, Propositions 4.2 and 4.8, Lemmas 5.2--5.4,
 and the proof of Proposition 5.1.
+
+# Fixed free-word stabilization cannot repair a rank-spiky radical model
+
+The free stabilization `(FCS1)--(FCS7)` simplifies the centralizer of a
+radical element, but freedom in the added generators does not by itself
+manufacture antipodal spectral mass.  The obstruction is a rank inequality
+which applies to every fixed word, not only to a single commutator.
+
+**Lemma (finite-occurrence rank bound).**  Let `R in U(d)` and suppose that
+for some `lambda in T`
+
+`rank(R-lambda I)=r`.                                  `(FSR1)`
+
+Let `W` be a product of `m` factors, each of which is a unitary conjugate of
+`R` or `R^(-1)`, with arbitrary conjugating unitaries.  If the total scalar
+obtained by replacing `R` by `lambda I` is `mu in T`, then
+
+`rank(W-mu I)<=m r`.                                   `(FSR2)`
+
+In particular, if the exponent sum of the occurrences of `R` is zero, then
+
+`rank(W-I)<=m r`,
+`||W-I||_2<=2 sqrt(m r/d)`.                            `(FSR3)`
+
+**Proof.**  Inversion preserves the rank of the scalar deviation:
+
+`R^(-1)-lambda^(-1)I`
+` =-lambda^(-1)R^(-1)(R-lambda I)`.
+
+Unitary conjugation also preserves it.  For arbitrary matrices `X,Y` and
+scalars `a,b`,
+
+`XY-abI=(X-aI)Y+a(Y-bI)`,
+
+so
+
+`rank(XY-abI)<=rank(X-aI)+rank(Y-bI)`.                 `(FSR4)`
+
+Induction over the `m` factors proves `(FSR2)`.  When the scalar product is
+one, `(FSR3)` follows because a unitary difference has operator norm at
+most two and Frobenius rank at most `m r`.  End proof.
+
+**Application to free radical gadgets.**  Let `H` have an operator-norm
+asymptotic model `phi_n`, let `r_0 in H`, and freely adjoin any fixed finite
+set of generators.  Assign completely arbitrary unitary matrices to those
+free generators.  If a fixed word `w` is a product of `m` conjugates of
+`r_0^(+-1)` with exponent sum zero--for example
+
+`w=[r_0,a]`,                                            `(FSR5)`
+
+then every coordinate in which `phi_n(r_0)` is a scalar modulo a rank
+`r_n=o(d_n)` perturbation satisfies
+
+`||phi_n(w)-1||_2<=2 sqrt(m r_n/d_n)->0`.              `(FSR6)`
+
+No choice of the free-generator matrices changes this conclusion.  In
+particular `(FSR5)` cannot be made antipodal in such a coordinate: if a
+unitary `W_n` were approximately unitarily conjugate to `-W_n`, trace
+invariance would force `tr(W_n)->0`, whereas `(FSR6)` forces
+`tr(W_n)->1`.
+
+Thus the cyclic-centralizer reduction remains algebraically useful, but it
+does not remove the analytic rank-profile obstruction.  A positive free-word
+construction would need a number of radical occurrences growing with the
+matrix coordinate (tensor/exterior amplification), and then its accumulated
+multiplicative defect reintroduces exactly the missing dimension--error
+profile.  Equivalently, any profile-free TRUE proof must use a central or
+Kazhdan spectral corner, a genuinely trace-sensitive relative lift, or some
+other mechanism not expressible by one fixed finite free word.
