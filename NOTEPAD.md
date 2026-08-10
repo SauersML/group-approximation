@@ -29219,12 +29219,65 @@ which
 
 `z |-> exp(2 pi i/m)`.
 
-Thus one may take `m->infinity` and make individual curvature phases tend
-to one while retaining an accumulated order-one phase.  This observation
-does not supply the required global `G`-covariance—finite quotients still
-collapse the Kun--Thom radical—but it isolates a real semiclassical
-parameter absent from the fixed-order Clifford construction.  The next
-positive question is whether the positive nilpotent-chamber microstates can
-be coupled to these finite Weyl sectors so that the phase accumulated
-across opposite chambers survives while every fixed covariance relator has
-defect `o(1)`.
+Thus one may take central characters of orders tending to infinity and,
+by using `z |-> exp(2 pi i k_m/m)` with `k_m/m->theta`, obtain any prescribed
+nontrivial limiting phase `exp(2 pi i theta)`.  One must **not** use the
+primitive phase `exp(2 pi i/m)` itself: that would send the fixed generator
+`z` to one in the tracial ultraproduct.  This observation does not supply
+the required global `G`-covariance—finite quotients still collapse the
+Kun--Thom radical—but it gives a continuous phase parameter absent from the
+fixed-order Clifford construction.  The next positive question is whether
+the positive nilpotent-chamber microstates can be coupled to these finite
+Weyl sectors while a fixed nontrivial central phase survives and every
+tested covariance relator has defect `o(1)`.
+
+The target can be weakened further, exactly as for the even Clifford core.
+
+**Theorem (one-character integral Weyl endpoint).**  For the binary
+Laurent Kun--Thom pair, suppose `E_Z` has a Connes-embeddable character
+`chi` such that
+
+`chi(z)!=1`.
+
+Then there exists a hyperlinear nonsofic group.
+
+**Proof.**  Realize `chi` by a homomorphism
+
+`eta:E_Z->U(M)`
+
+into a tracial matrix ultraproduct, so `eta(z)!=1`.  The quotient map
+`r:E_Z->G` which kills the Heisenberg group is a retraction.  Combine `eta`
+with a faithful hyperlinear embedding of the residually finite group `G`:
+
+`Phi=(eta,rho_0 o r)`.
+
+Its image `Q_chi` is hyperlinear, its restriction to `G` is faithful, and
+`Phi(z)!=1`.
+
+It remains to rule out soficity.  Let `o=Gamma`, choose the explicit
+radical edge `x=h Gamma`, and choose a third point `y` distinct from `o,x`.
+In the two copies of `I` put
+
+`u=delta_x-delta_o`,  `v=delta_x-delta_y`.
+
+Then `<u,v>=1`, so in `E_Z`
+
+`z=[((u,0),0),((0,v),0)]`.                            `(IHC4)`
+
+If `Q_chi` were sofic, restrict `Phi` to the first isotropic subgroup
+
+`P_Z=(I directSum 0) semidirect G`.
+
+This is a homomorphism to a sofic group which is faithful on `G`.  The
+complete augmentation-radical theorem `(AB4)--(AB5)` says that every such
+map kills `u=[h Gamma]-[Gamma]`.  Applying `Phi` to `(IHC4)` would therefore
+give `Phi(z)=1`, a contradiction.  Hence `Q_chi` is hyperlinear and
+nonsofic.  End proof.
+
+This is now the smallest integral positive certificate: construct one CE
+trace with nontrivial expectation on a single infinite central Weyl
+generator.  Faithfulness, regular trace, and microstates for the entire
+group are unnecessary.  The growing-order finite Schrödinger sectors above
+are tailored to this endpoint: it is enough to choose central characters
+with a fixed nontrivial ultralimit while their finitely many tested
+`G`-covariance defects vanish in normalized Hilbert--Schmidt norm.
