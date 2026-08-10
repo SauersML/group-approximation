@@ -31563,3 +31563,52 @@ so it is the desired hyperlinear nonsofic group.
 Thus free stabilization removes all group-theoretic complexity from the
 balanced-lift problem.  The surviving obstruction is purely the spectral
 rank profile of one primitive infinite-order unitary.
+# Virtually cyclic radical-shear edge (2026-08-10)
+
+The centralizer-shear endpoint can be reduced from a nonamenable edge to an
+amenable one.  In the binary Laurent Kun--Thom double
+
+`D=G *_Gamma G`,
+
+take `A=-(I+E_12) in SL_4(Z)`, a non-involutive opposite-cone substitution,
+and `n=e_12(x_1^(-1))`.  With
+
+`delta=i_2(n)i_1(n)^(-1)`, set
+
+`w=delta i_1(A) delta i_1(A)^(-1)`.
+
+Then `w` lies in the complete sofic radical `ker(D->G *_N G)` and is a
+cyclically reduced hyperbolic word of length four.  The pointwise stabilizer
+of its Bass--Serre axis is contained in
+
+`Gamma intersection A Gamma A^(-1)`.
+
+Because `A(N^4)` is contained in the nonpositive cone,
+
+`R_+ intersection A(R_+)=F_2`,
+
+so this group intersection is contained in the finite group `GL_r(F_2)`.
+It follows that `C_D(w)` is finite-by-cyclic and amenable.  This is the
+feature missing for the old length-two radical word, whose centralizer
+contains a large polynomial elementary subgroup.
+
+Let `ell:C_D(w)->Z` be axis translation.  Choose a prime `p` not dividing
+`ell(w)`, add a central `z` of order `p`, and twist the edge by
+
+`alpha(c z^j)=c z^(j+ell(c))`.
+
+In the twisted double of two copies of `D times C_p`, the edge relation is
+
+`w_1=w_2 z^(ell(w))`.
+
+Every sofic image kills both `w_i`, hence kills `z`; thus `z` is a nonzero
+central element of the full sofic radical.  If this twisted double is weak
+MF, the central corner yields a hyperlinear nonsofic quotient and settles
+the main problem FALSE.
+
+The remaining compatibility is now over the virtually cyclic group
+`C_D(w) times C_p`.  Shulman's untwisted symmetric-double theorem still does
+not automatically prove the twisted double MF, but the balanced relative
+lift has been reduced to a finite-kernel type plus one `p`-fold cyclic
+spectral rotation.  Full proof and scope audit:
+`docs/VIRTUALLY_CYCLIC_RADICAL_SHEAR.md`.
