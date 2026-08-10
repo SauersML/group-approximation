@@ -600,14 +600,12 @@ theorem hsDistSq_exteriorAdMatrix (Y : FiniteModel) [LinearOrder Y]
 turns operator-norm error `ε` into squared normalized Hilbert--Schmidt error at
 most `d ε² / 2`. -/
 theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
-    (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
     (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε) :
     hsDistSq (doubleModel (fockModel Y))
         (exteriorAdMatrix A) (exteriorAdMatrix B) ≤
       Fintype.card Y * ε ^ 2 / 2 := by
-  letI : Nonempty Y := hY
   let W : Matrix Y Y ℂ := A * Bᴴ
   have hW : W ∈ Matrix.unitaryGroup Y ℂ :=
     mul_mem hA (conjTranspose_mem_unitaryGroup hB)
@@ -705,7 +703,7 @@ theorem hsDistSq_exteriorTensorMatrix_le
   letI : Nonempty Y := hY
   let q : ℝ := Complex.normSq
     ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det)
-  have hbase := hsDistSq_exteriorAdMatrix_le Y hY hA hB hε2 hnorm
+  have hbase := hsDistSq_exteriorAdMatrix_le Y hA hB hε2 hnorm
   have hq0 : 0 ≤ q := Complex.normSq_nonneg _
   have hbern := one_add_mul_sub_le_pow (a := q) (by linarith) k
   rw [hsDistSq_exteriorTensorMatrix Y hA hB k]

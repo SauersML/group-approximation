@@ -415,15 +415,10 @@ theorem steinbergUnit_constantTrue_isPlaneCharacterSign :
 /-- The Steinberg presentation's additivity relation has an explicit
 nonempty instance. -/
 theorem steinberg_add_relation_exists :
-    SteinbergGroup.IsRelation
-      (FreeGroup.of (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
-          0 1 (by decide) 0) *
-        FreeGroup.of (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
-          0 1 (by decide) 0) *
-        (FreeGroup.of
-          (SteinbergGroup.generator (I := Fin 2) (R := ℤ)
-            0 1 (by decide) (0 + 0)))⁻¹) :=
-  SteinbergGroup.IsRelation.add (I := Fin 2) (R := ℤ) 0 1 (by decide) 0 0
+    ∃ w : FreeGroup (SteinbergGenerator (Fin 2) ℤ),
+      SteinbergGroup.IsRelation w := by
+  exact ⟨_, SteinbergGroup.IsRelation.add (I := Fin 2) (R := ℤ)
+    0 1 (by decide) 0 0⟩
 
 /-- The universal Leavitt relation family has a concrete member. -/
 theorem universalLeavitt_t0_s0_relation :
