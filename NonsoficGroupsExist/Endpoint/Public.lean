@@ -87,10 +87,10 @@ which is what a referee checking the paper against the library wants.
 * `countable_of_finiteType` -- a finite-type algebra over a finite field is
   countable, which is what removes the countability hypothesis above.
 
-## The external inputs that are proved here rather than cited
+## Internally closed dependency surface
 
-Every theorem the paper cites for its own proofs is proved outright here, so
-these are inputs to the *paper* and not to the *library*.
+The following load-bearing results are proved in Lean inside this repository;
+none is represented by an axiom or theorem-shaped caller premise.
 
 * `KunDecomposition.exists_expanderDecomposition` -- Kun's expander
   decomposition, Theorem 2.9, in the one-way full-sequence form used.
@@ -103,9 +103,8 @@ these are inputs to the *paper* and not to the *library*.
   -- property `(T)` at rank three, Theorem 5.7, for finite-type algebras over
   every finite field, with the explicit Kazhdan pair of
   `FreeElementaryPropertyT`.  This is the case the paper states and consumes;
-  `LeavittRankEquivalence.rankSuccEquiv` spreads it to every rank.  The
-  Ershov--Jaikin-Zapirain theorem over an arbitrary finitely generated ring is
-  *not* formalized, and nothing here needs it.
+  `LeavittRankEquivalence.rankSuccEquiv` spreads it to every rank.  The library
+  consumes only this proved finite-field statement.
 
 The non-LEF witness is likewise internal: no simplicity or finite-presentation
 theorem for Thompson's `V` is used (`ThompsonFObstruction`,
@@ -180,10 +179,12 @@ export NonsoficGroupsExist (binaryLeavittStableUnits_eq_top
   binaryLeavittElementaryColim_eq_top binaryLeavittClassicalK1_subsingleton
   countable_of_finiteType)
 
-/-! ### Inputs proved rather than cited -/
+/-! ### Internally proved load-bearing theorems -/
 
 export NonsoficGroupsExist.KunDecomposition (exists_expanderDecomposition)
 export NonsoficGroupsExist.KunThomTheorem (isLEF_of_exactProductExpansion)
+export NonsoficGroupsExist.KazhdanFiniteGeneration
+  (exists_symmetric_generating_finset fg_of_hasKazhdanPropertyT)
 export NonsoficGroupsExist.Shalom (exists_finitelyPresented_kazhdan_cover)
 export NonsoficGroupsExist (finiteFieldElementaryThree_hasKazhdanPropertyT)
 export NonsoficGroupsExist (exists_kazhdan_finitelyPresented_cover_of_not_isSofic)

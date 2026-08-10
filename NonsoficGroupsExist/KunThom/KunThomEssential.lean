@@ -5,8 +5,8 @@ import NonsoficGroupsExist.KunThom.KunThomTheorem
 # Kun--Thom for an essential expander certificate
 
 The selected graph is first repaired to an exact expanding action, after which
-the kernel-checked exact-expander Kun--Thom theorem applies.  No implication
-representing the cited theorem is accepted as an argument.
+the internally proved exact-expander theorem applies.  The caller supplies
+only mathematical data, never a theorem-shaped callback.
 -/
 
 namespace NonsoficGroupsExist

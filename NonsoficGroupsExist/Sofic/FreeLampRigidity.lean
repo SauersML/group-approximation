@@ -22,11 +22,9 @@ centralizes `Γ`; its `t`-conjugate therefore stays in the commutant and
 commutes with `π(γ)`, and the witness dies.  No property `(T)`, no trace, no
 unitarity: only the finite dimension.
 
-This is exactly what fails in a `II₁` factor, which is not co-Hopfian — and
-that failure is the entire remaining hope of the hyperlinear side of the
-free-lamp program.  What is proved here confines that hope to genuinely
-non-liftable models; the operator-ultraproduct sharpenings of the same
-confinement are not formalized and not claimed.
+The exported conclusion is limited to honest finite-dimensional
+representations.  No operator-ultraproduct or approximation-theoretic
+strengthening is stated or accepted as a premise.
 -/
 
 namespace NonsoficGroupsExist

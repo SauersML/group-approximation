@@ -6,11 +6,10 @@ import Mathlib.Analysis.SpecificLimits.Basic
 /-!
 # Groups with exactly two conjugacy classes
 
-Constructions of omnimonsters force their groups to have exactly two conjugacy
-classes and then read off a long list of consequences.  The forcing is Baire
-category over a relative small-cancellation space and is not formalized here;
-the consequences are elementary and are.  Everything below takes
-`HasTwoConjugacyClasses` as a hypothesis and derives, with no further input:
+This module defines the two-conjugacy-class property, constructs a finite
+example showing the definition is inhabited, and proves its elementary
+consequences.  Everything below takes `HasTwoConjugacyClasses` as an explicit
+mathematical hypothesis and derives, with no theorem-shaped callback:
 
 * simplicity, hence perfectness and a trivial centre;
 * every element is conjugate to its inverse and to each of its nontrivial

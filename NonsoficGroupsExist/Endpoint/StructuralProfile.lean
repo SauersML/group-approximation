@@ -17,14 +17,10 @@ stronger than the failure of residual finiteness that nonsoficity already
 gives.  It says the group has no proper finite-index subgroup, no nontrivial
 action on a finite set, and trivial profinite completion -- there is no
 residual structure at all for the failure of soficity to be an artifact of.
-With Malcev's theorem it also rules out every nontrivial finite-dimensional
-linear representation over every field, though that step is not formalized
-here.
-
 `universalLeavittEL4_no_soficEmbedding` is the negative one, in the language
-the surrounding literature uses: the witness admits no injective homomorphism
-into any metric ultraproduct of finite symmetric groups, over any index type
-and any ultrafilter.
+of ultraproducts: the witness admits no injective homomorphism into any metric
+ultraproduct of finite symmetric groups, over any index type and any
+ultrafilter.
 -/
 
 namespace NonsoficGroupsExist

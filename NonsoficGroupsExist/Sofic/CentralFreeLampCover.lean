@@ -7,25 +7,13 @@ import NonsoficGroupsExist.Sofic.Hyperlinear
 
 For a group `G` with a subgroup `Z`, the free-lamp amalgam
 `FreeLamp G Z K = G *_Z (Z × K)` from `FreeLampReduction` specializes, when
-`Z` is *central*, to an object with a very different role.  Two closure
-theorems from the literature — hyperlinearity is preserved by amalgamated
-free products over amenable subgroups (Brown--Dykema--Jung), and soficity
-is preserved by the same operation (Elek--Szabó, Păunescu) — make the
-central cover of a group with amenable center an *equivalence vehicle*:
-for `K` hyperlinear with amenable central `Z`, the cover is hyperlinear
-unconditionally, and it is sofic exactly when the base is.  Applied to
-Thom's group `K` with its Prüfer center, the cover is the first free-lamp
-group whose hyperlinearity is closed by cited theorems, and proving *it*
-nonsofic would resolve Question 3.4 negatively with the hyperlinear half
-pre-banked.
+`Z` is central, to a split cover of `G`.
 
-This file records the kernel-checked skeleton: the retraction onto the
-ambient group (so the cover splits over its base), the forward
-monotonicity for both approximation properties, and the observation that
-the Kun--Thom escape hypothesis is unsatisfiable over a central base —
-the reason a nonsoficity proof for the cover must be a new,
-central-quotient mechanism rather than centralizer normalization.  The
-two closure theorems themselves are cited, not formalized.
+This file proves exactly the local algebraic statements it exports: the
+retraction onto the ambient group, subgroup monotonicity for soficity and
+hyperlinearity, and the fact that the free-lamp escape condition is impossible
+over a central base.  It contains no closure claim for amalgamated products
+and accepts no such claim as a premise.
 -/
 
 namespace NonsoficGroupsExist
@@ -59,16 +47,13 @@ def lampRetract : FreeLamp G Z K →* G :=
 theorem lampRetract_surjective : Function.Surjective (lampRetract G Z K) :=
   fun g => ⟨inAmbient G Z K g, lampRetract_inAmbient G Z K g⟩
 
-/-- **Soficity of the cover forces soficity of the base**: the base embeds.
-The converse — soficity of the base gives soficity of the cover, for
-amenable `Z` — is the Elek--Szabó/Păunescu amalgamation theorem, cited and
-not formalized; together they make the cover an equivalence vehicle. -/
+/-- **Soficity of the cover forces soficity of the base** because the base
+embeds. -/
 theorem isSofic_base_of_cover (h : IsSofic (FreeLamp G Z K)) : IsSofic G :=
   isSofic_of_injective (inAmbient G Z K) (inAmbient_injective G Z K) h
 
-/-- Hyperlinearity of the cover forces hyperlinearity of the base.  The
-converse for amenable `Z` is Brown--Dykema--Jung, cited and not
-formalized. -/
+/-- Hyperlinearity of the cover forces hyperlinearity of the base because the
+base embeds. -/
 theorem isHyperlinear_base_of_cover (h : IsHyperlinear (FreeLamp G Z K)) :
     IsHyperlinear G :=
   isHyperlinear_of_injective (inAmbient G Z K) (inAmbient_injective G Z K) h

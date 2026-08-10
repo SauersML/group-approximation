@@ -430,9 +430,8 @@ noncomputable def toEssentiallyFreeNearAction (S : SoficApproximation G) :
 
 end SoficApproximation
 
-/-- **Sofic groups admit Pestov near actions.**  This direction of the
-Elek--Szabó characterization is constructed from the repository's sequential
-sofic approximation and contains no external assumption. -/
+/-- **Sofic groups admit Pestov near actions.**  This direction is constructed
+from the repository's sequential sofic approximation. -/
 theorem admitsEssentiallyFreeNearAction_of_isSofic
     (G : Type*) [Group G] [Countable G] (hG : IsSofic G) :
     AdmitsEssentiallyFreeNearAction G := by

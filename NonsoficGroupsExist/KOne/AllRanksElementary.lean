@@ -17,8 +17,7 @@ Three closures, all by transport along maps the library already proves:
 
 * **Perfectness.**  `L_k(1,2)ˣ` is perfect: the three-leaf prefix code
   identifies `Lˣ` with `GL₃ = EL₃`, and every elementary generator is a
-  commutator by the Steinberg relation.  This removes the last use of
-  the cited `K₁`-theoretic input (Ara–Goodearl–Pardo part (b)).
+  commutator by the Steinberg relation.  The proof is entirely internal.
 
 * **Rank two closes.**  The two-by-two Leavitt-corner theorem
   (`rankTwo_not_isSofic`) is instantiated over `L_k(1,2)` for every

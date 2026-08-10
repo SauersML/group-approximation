@@ -9,14 +9,10 @@ generating set.  That normally protects a finite set.  But if an infinite
 subgroup `U` is contained in the generating set itself, then every element of
 `U` has length one, so radius-one injectivity already embeds all of `U`.
 
-This file proves exactly that combinatorial statement and nothing else.  The
-small-cancellation theorems that supply the injectivity hypothesis (Hull's
-Theorem 7.1, in the form of Coulon--Fournier-Facio's Theorem 2.9 and
-Proposition 4.4) are not formalized here, and the ellipticity bookkeeping that
-makes an adjoined countable subgroup land inside the generating set is already
-part of Proposition 4.4 rather than new here.  What is written out is the
-mechanism: containment in the generating set, not finiteness, is what
-finite-radius injectivity actually needs.
+This file proves exactly that combinatorial statement and nothing else.  It
+does not assert a small-cancellation theorem or accept one as a premise.  The
+formal content is simply that containment in the generating set, not
+finiteness, is what finite-radius injectivity needs.
 -/
 
 namespace NonsoficGroupsExist.Monsters

@@ -7,9 +7,8 @@ import Mathlib.Algebra.Group.PUnit
 /-!
 # Verbal completeness and what it forces
 
-Constructions of omnimonsters make verbal completeness generic and then read
-off its consequences.  Only the second half is elementary, and it is the half
-formalized here.
+This module defines verbal completeness, proves that the definition is
+inhabited, and derives its elementary consequences.
 
 A group is verbally complete when every equation `v(x₁, …, x_m) = g` with `v` a
 nontrivial element of a free group is solvable.  Three consequences follow by
@@ -47,10 +46,7 @@ def IsVerballyComplete (G : Type*) [Group G] : Prop :=
     ∃ f : Fin m → G, FreeGroup.lift f v = g
 
 /-- The definition is satisfiable: the trivial group is verbally complete.
-This is a control on the definition, not an interesting example -- nontrivial
-verbally complete groups are what a Baire-category argument over a
-small-cancellation space produces, and that argument is not formalized
-here. -/
+This is a control on the definition, not an interesting example. -/
 theorem isVerballyComplete_punit : IsVerballyComplete PUnit.{1} :=
   fun _ _ _ g ↦ ⟨fun _ ↦ g, Subsingleton.elim _ _⟩
 
