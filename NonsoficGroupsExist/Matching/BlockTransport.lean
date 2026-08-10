@@ -153,5 +153,71 @@ theorem componentPerm_sq (P : BlockStructure Y) (q : Equiv.Perm Y)
     refine ⟨q x, ?_, hpoint x⟩
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- The number of vertices transported from component `C` into component
+`D`.  Unlike a choice of dominant target, this retains the entire finite
+component correspondence. -/
+noncomputable def overlap (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (C D : BlockIndex P) : ℕ :=
+  ((C.block.image q) ∩ D.block).card
+
+/-- An involution gives a symmetric component-overlap matrix. -/
+theorem overlap_comm_of_sq (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (hsq : q * q = 1) (C D : BlockIndex P) :
+    overlap P q C D = overlap P q D C := by
+  classical
+  have hpoint (x : Y) : q (q x) = x := by
+    have hx := DFunLike.congr_fun hsq x
+    simpa [Equiv.Perm.mul_apply] using hx
+  unfold overlap
+  apply Finset.card_bij (fun x _ ↦ q x)
+  · intro x hx
+    obtain ⟨hxC, hxD⟩ := Finset.mem_inter.mp hx
+    apply Finset.mem_inter.mpr
+    refine ⟨Finset.mem_image.mpr ⟨x, hxD, rfl⟩, ?_⟩
+    obtain ⟨c, hc, hcx⟩ := Finset.mem_image.mp hxC
+    rw [← hcx, hpoint]
+    exact hc
+  · intro x _ y _ hxy
+    exact q.injective hxy
+  · intro y hy
+    refine ⟨q y, ?_, hpoint y⟩
+    obtain ⟨hyD, hyC⟩ := Finset.mem_inter.mp hy
+    apply Finset.mem_inter.mpr
+    refine ⟨?_, ?_⟩
+    · exact Finset.mem_image.mpr ⟨y, hyC, rfl⟩
+    · obtain ⟨d, hd, hdy⟩ := Finset.mem_image.mp hyD
+      rw [← hdy, hpoint]
+      exact hd
+
+/-- Every row of the component-overlap matrix has total weight equal to the
+size of its source component. -/
+theorem sum_overlap (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (C : BlockIndex P) :
+    ∑ D : BlockIndex P, (overlap P q C D : ℝ) = C.block.card := by
+  classical
+  let U : Finset Y := C.block.image q
+  have hpartition := BlockIndex.sum_card_filter P (fun x ↦ x ∈ U)
+  calc
+    ∑ D : BlockIndex P, (overlap P q C D : ℝ) =
+        ∑ D : BlockIndex P,
+          ((Finset.univ.filter fun x : D.block ↦ (x : Y) ∈ U).card : ℝ) := by
+            apply Finset.sum_congr rfl
+            intro D _
+            congr 1
+            unfold overlap
+            apply Finset.card_bij (fun x hx ↦ ⟨x, (Finset.mem_inter.mp hx).2⟩)
+            · intro x hx
+              simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+              exact (Finset.mem_inter.mp hx).1
+            · intro x _ y _ hxy
+              exact congrArg Subtype.val hxy
+            · intro x hx
+              refine ⟨x.1, Finset.mem_inter.mpr ⟨?_, x.2⟩, rfl⟩
+              simpa only [Finset.mem_filter, Finset.mem_univ, true_and] using hx
+    _ = ((Finset.univ.filter fun x : Y ↦ x ∈ U).card : ℝ) := hpartition
+    _ = U.card := by simp
+    _ = C.block.card := by
+      exact_mod_cast Finset.card_image_of_injective C.block q.injective
+
 end BlockIndex
 end NonsoficGroupsExist
