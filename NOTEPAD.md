@@ -29537,3 +29537,57 @@ a genuine second-polarization modulation.  Thus the next finite calculation
 is concrete: construct a one-polarization Weyl/chamber map, compute its
 first-order Egorov curvature, and verify that the position--momentum swap
 `(FOC1)` makes that curvature odd on the fixed exhaustion.
+
+# Every finite-dimensional representation of the integral cover kills its center (2026-08-09)
+
+The variable central phase is available only asymptotically; it cannot be
+obtained from a sequence of genuine finite-dimensional representations.
+
+**Theorem (finite-dimensional central blindness).**  For the integral
+Heisenberg cover `E_Z`, every homomorphism
+
+`pi:E_Z->U(d)`
+
+satisfies `pi(z)=1`.
+
+**Proof.**  The coset set `X=G/Gamma` is infinite.  For every `k`, choose
+pairwise distinct points
+
+`o,x_1,...,x_k,y_1,...,y_k in X`
+
+and put
+
+`u_i=delta_(x_i)-delta_o`,  `v_i=delta_(x_i)-delta_(y_i)`.
+
+Then `u_i,v_i in I` and
+
+`<u_i,v_j>=delta_(ij)`.                                `(FCB1)`
+
+Let `A_i` and `B_i` be the images under `pi` of the Heisenberg elements
+with coordinates `(u_i,0)` and `(0,v_i)`.  The `A_i` commute with one
+another, the `B_i` commute with one another, and
+
+`A_i B_j=pi(z)^(delta_(ij)) B_j A_i`.                  `(FCB2)`
+
+Because `z` is central, decompose `C^d` into its spectral subspaces.  On a
+nonzero subspace on which `pi(z)` has eigenvalue `lambda`, determinants in
+one relation `A_i B_i=lambda B_i A_i` show that `lambda` is a root of
+unity; let its order be `m`.
+
+Simultaneously diagonalize the commuting unitaries `B_1,...,B_k` on this
+subspace.  Relation `(FCB2)` says that `A_i` multiplies the `i`th joint
+eigenvalue by `lambda` and leaves the other joint eigenvalues unchanged.
+Thus every joint eigenspace occurs in an orbit of exactly `m^k` joint
+eigenspaces of equal dimension.  The dimension of the `lambda`-spectral
+subspace is therefore at least `m^k`.  Since `(FCB1)` supplies such a family
+for every `k` inside the same fixed representation, finite dimensionality
+forces `m=1`.  Hence every spectral value of `pi(z)` is `1`, proving
+`pi(z)=1`.  End proof.
+
+In particular `E_Z` is not maximally almost periodic and is not residually
+finite.  More importantly for the TRUE lane, no direct product of exact
+finite-dimensional sectors can produce the required character: the center
+must be detected by genuinely approximate representations.  The
+small-phase tensor lemma and the Fourier-odd criterion are therefore not
+merely convenient reformulations; they target the only possible
+finite-dimensional mechanism.
