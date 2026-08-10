@@ -316,6 +316,240 @@ theorem exactCoreRepair_isClusterCandidate_of_source_target_eq_univ
     simp only [Finset.card_empty, Nat.cast_zero]
     positivity
 
+/-- If the exact repair is full on the source, every forward disagreement
+with the original partial arrow supplies a discarded edge of the original
+swap-permutation graph. -/
+theorem card_disagreement_exactCoreRepair_le_core_edits
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hsource : (exactCoreRepair σY σZ b).source = Finset.univ) :
+    (b.disagreement (exactCoreRepair σY σZ b)).card ≤
+      (permutationGraph (sumModel Y Z) b.swapPerm \
+        relationCore (sumModel Y Z)
+          (roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm))).card := by
+  classical
+  let r := exactCoreRepair σY σZ b
+  let C := relationCore (sumModel Y Z)
+    (roundedDiagonalRelation (sumActionHom σY σZ)
+      (permutationGraph (sumModel Y Z) b.swapPerm))
+  let charge : {y // y ∈ b.disagreement r} →
+      {p // p ∈ permutationGraph (sumModel Y Z) b.swapPerm \ C} := fun y ↦ by
+    refine ⟨(Sum.inl y.1, b.swapPerm (Sum.inl y.1)), ?_⟩
+    rw [Finset.mem_sdiff]
+    refine ⟨(mem_permutationGraph (sumModel Y Z) b.swapPerm _).2 rfl, ?_⟩
+    intro hcore
+    have hry : y.1 ∈ r.source := by
+      rw [hsource]
+      exact Finset.mem_univ _
+    have hrgraph : (y.1, r.apply y.1 hry) ∈ r.graph :=
+      (mem_graph r y.1 (r.apply y.1 hry)).2 ⟨hry, rfl⟩
+    have hrepairCore :
+        (Sum.inl y.1, Sum.inr (r.apply y.1 hry)) ∈ C := by
+      change (y.1, r.apply y.1 hry) ∈
+        (coreCrossing (roundedDiagonalRelation (sumActionHom σY σZ)
+          (permutationGraph (sumModel Y Z) b.swapPerm))).graph at hrgraph
+      rw [graph_coreCrossing, mem_crossingRelation] at hrgraph
+      exact hrgraph
+    have hunique := relationCore_right_unique (sumModel Y Z)
+      _ hcore hrepairCore
+    by_cases hyb : y.1 ∈ b.source
+    · have heq : b.apply y.1 hyb = r.apply y.1 hry := by
+        apply Sum.inr.inj
+        simpa only [swapPerm_inl_of_mem b y.1 hyb] using hunique
+      exact (mem_disagreement b r y.1).1 y.2 hyb hry heq
+    · exact Sum.inl_ne_inr (by
+        simpa only [swapPerm_inl_of_not_mem b y.1 hyb] using hunique)
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Sum.inl.inj (congrArg (fun p ↦ p.1.1) hxy)
+  simpa only [Fintype.card_coe, C, r] using
+    Fintype.card_le_of_injective charge hcharge
+
+/-- The inverse disagreement obeys the same discarded-core-edge bound,
+using columns of the singleton-fiber core. -/
+theorem card_symm_disagreement_exactCoreRepair_le_core_edits
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (htarget : (exactCoreRepair σY σZ b).target = Finset.univ) :
+    (b.symm.disagreement (exactCoreRepair σY σZ b).symm).card ≤
+      (permutationGraph (sumModel Y Z) b.swapPerm \
+        relationCore (sumModel Y Z)
+          (roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm))).card := by
+  classical
+  let r := exactCoreRepair σY σZ b
+  let C := relationCore (sumModel Y Z)
+    (roundedDiagonalRelation (sumActionHom σY σZ)
+      (permutationGraph (sumModel Y Z) b.swapPerm))
+  let charge : {z // z ∈ b.symm.disagreement r.symm} →
+      {p // p ∈ permutationGraph (sumModel Y Z) b.swapPerm \ C} := fun z ↦ by
+    refine ⟨(b.swapPerm (Sum.inr z.1), Sum.inr z.1), ?_⟩
+    rw [Finset.mem_sdiff]
+    refine ⟨?_, ?_⟩
+    · rw [mem_permutationGraph]
+      have hsquare := DFunLike.congr_fun (swapPerm_mul_self b) (Sum.inr z.1)
+      simpa using hsquare.symm
+    · intro hcore
+      have hrz : z.1 ∈ r.target := by
+        rw [htarget]
+        exact Finset.mem_univ _
+      let y := r.symm.apply z.1 hrz
+      have hry : y ∈ r.source := r.symm.apply_mem_target z.1 hrz
+      have hrgraph : (y, z.1) ∈ r.graph := by
+        rw [mem_graph]
+        exact ⟨hry, r.apply_symm_apply z.1 hrz⟩
+      have hrepairCore : (Sum.inl y, Sum.inr z.1) ∈ C := by
+        change (y, z.1) ∈
+          (coreCrossing (roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm))).graph at hrgraph
+        rw [graph_coreCrossing, mem_crossingRelation] at hrgraph
+        exact hrgraph
+      have hunique := relationCore_left_unique (sumModel Y Z)
+        _ hrepairCore hcore
+      by_cases hzb : z.1 ∈ b.target
+      · have heq : b.symm.apply z.1 hzb = r.symm.apply z.1 hrz := by
+          apply Sum.inl.inj
+          simpa only [y, swapPerm_inr_of_mem b z.1 hzb] using hunique.symm
+        exact (mem_disagreement b.symm r.symm z.1).1 z.2 hzb hrz heq
+      · exact Sum.inl_ne_inr (by
+          simpa only [swapPerm_inr_of_not_mem b z.1 hzb] using hunique)
+  have hcharge : Function.Injective charge := by
+    intro x y hxy
+    apply Subtype.ext
+    exact Sum.inr.inj (congrArg (fun p ↦ p.1.2) hxy)
+  simpa only [Fintype.card_coe, C, r] using
+    Fintype.card_le_of_injective charge hcharge
+
+/-- A full exact core repair differs from the original partial arrow on at
+most twice the number of original swap-graph edges discarded by the core. -/
+theorem twoSidedDisagreement_exactCoreRepair_le_two_mul_core_edits
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hfull : (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ) :
+    b.twoSidedDisagreement (exactCoreRepair σY σZ b) ≤
+      2 * (permutationGraph (sumModel Y Z) b.swapPerm \
+        relationCore (sumModel Y Z)
+          (roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm))).card := by
+  rw [FinitePartialBijection.twoSidedDisagreement]
+  have hf := card_disagreement_exactCoreRepair_le_core_edits
+    σY σZ b hfull.1
+  have hb := card_symm_disagreement_exactCoreRepair_le_core_edits
+    σY σZ b hfull.2
+  omega
+
+/-- Passing to the singleton-fiber core costs at most six times the total
+directed relation-edit budget in two-sided partial disagreement. -/
+theorem twoSidedDisagreement_exactCoreRepair_le_six_mul_edits
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hfull : (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ) :
+    b.twoSidedDisagreement (exactCoreRepair σY σZ b) ≤
+      6 * (((permutationGraph (sumModel Y Z) b.swapPerm \
+          roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm)).card) +
+        ((roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm) \
+          permutationGraph (sumModel Y Z) b.swapPerm).card)) := by
+  let R := roundedDiagonalRelation (sumActionHom σY σZ)
+    (permutationGraph (sumModel Y Z) b.swapPerm)
+  have htwo := twoSidedDisagreement_exactCoreRepair_le_two_mul_core_edits
+    σY σZ b hfull
+  have hcore := card_missingSources_relationCore_le_three_edits
+    (sumModel Y Z) R b.swapPerm
+  rw [card_missingSources] at hcore
+  dsimp only [R] at hcore
+  omega
+
+/-- Quantitative closeness of a full exact core repair, with all constants
+visible: Kazhdan rounding converts the factor-six core loss into `48` times
+the original total commutation defect. -/
+theorem kazhdan_mul_twoSidedDisagreement_exactCoreRepair_le
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hfull : (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ) :
+    ε ^ 2 * (b.twoSidedDisagreement (exactCoreRepair σY σZ b) : ℝ) ≤
+      48 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+  let P := permutationGraph (sumModel Y Z) b.swapPerm
+  let R := roundedDiagonalRelation (sumActionHom σY σZ) P
+  let E : ℕ := (P \ R).card + (R \ P).card
+  have htwoNat := twoSidedDisagreement_exactCoreRepair_le_six_mul_edits
+    σY σZ b hfull
+  have htwo : (b.twoSidedDisagreement (exactCoreRepair σY σZ b) : ℝ) ≤
+      6 * (E : ℝ) := by
+    dsimp only [P, R, E]
+    exact_mod_cast htwoNat
+  have hround := kazhdan_mul_card_graph_symmDiff_rounded_le_defect
+    hQ (sumActionHom σY σZ) b.swapPerm
+  have hE : E = (P ∆ R).card := by
+    simpa [E, Nat.add_comm] using
+      card_sdiff_add_card_sdiff_eq_symmDiff P R
+  have hroundE : ε ^ 2 * (E : ℝ) ≤
+      8 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+    dsimp only [P, R] at hround
+    rw [hE]
+    exact hround
+  have hεsq : 0 ≤ ε ^ 2 := sq_nonneg ε
+  nlinarith
+
+/-- Under the explicit strict defect bound, the exact core repair is close
+to the original partial arrow at the prescribed integer scale. -/
+theorem twoSidedDisagreement_exactCoreRepair_lt_two_mul_of_kazhdan
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (hε : 0 < ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hfull : (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ)
+    {m : ℕ}
+    (hclose : 48 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+      ε ^ 2 * (2 * m : ℕ)) :
+    (exactCoreRepair σY σZ b).twoSidedDisagreement b < 2 * m := by
+  have hbound := kazhdan_mul_twoSidedDisagreement_exactCoreRepair_le
+    hQ σY σZ b hfull
+  rw [twoSidedDisagreement_comm]
+  have hεsq : 0 < ε ^ 2 := sq_pos_of_pos hε
+  have hreal : (b.twoSidedDisagreement (exactCoreRepair σY σZ b) : ℝ) <
+      (2 * m : ℕ) := by
+    nlinarith
+  exact_mod_cast hreal
+
+/-- Complete exact-repair package for transitive finite actions: one
+explicit smallness bound makes the core full and hence a zero-defect cluster
+candidate, while a second explicit bound keeps it within the cluster radius. -/
+theorem exactCoreRepair_candidate_and_close_of_kazhdan
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (hε : 0 < ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (htransY : ∀ x y : Y, ∃ g : G, σY g x = y)
+    (htransZ : ∀ x y : Z, ∃ g : G, σZ g x = y)
+    (b : FinitePartialBijection Y Z)
+    {h : ℝ} {m : ℕ} (hh : 0 < h) (hm : 0 < m)
+    (hfullBound : 24 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+      ε ^ 2 * (b.source.card : ℝ))
+    (hcloseBound : 48 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+      ε ^ 2 * (2 * m : ℕ)) :
+    (exactCoreRepair σY σZ b).IsClusterCandidate
+        (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m ∧
+      (exactCoreRepair σY σZ b).twoSidedDisagreement b < 2 * m := by
+  have hfull := exactCoreRepair_source_target_eq_univ_of_kazhdan
+    hQ hε σY σZ htransY htransZ b hfullBound
+  exact ⟨exactCoreRepair_isClusterCandidate_of_source_target_eq_univ
+      σY σZ b hfull hh hm,
+    twoSidedDisagreement_exactCoreRepair_lt_two_mul_of_kazhdan
+      hQ hε σY σZ b hfull hcloseBound⟩
+
 /-- Repair the swap permutation and extract its crossing partial map. -/
 noncomputable def repair
     (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
