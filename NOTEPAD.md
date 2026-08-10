@@ -28359,3 +28359,30 @@ clean new certificate requiring no dimension/error profile and no separate
 trace choice.  Likewise, QWEP of the auxiliary amalgam would finish via its
 reduced quotient, but MF does not imply QWEP.  Full proof:
 `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`.
+
+### The fold trace is outside the reduced dual
+
+The trace mismatch above is now exact rather than qualitative.  Let
+
+`r:D=G *_Gamma G -> G`,  `K=ker(r)`.
+
+The fold kernel acts freely on the Bass--Serre tree.  Its quotient graph has
+two vertices and one edge for every coset in `G/Gamma`; hence
+
+`K ~= F_(|G/Gamma|-1)`.
+
+Since `[G:Gamma]=infinity`, `K` is a nonamenable free group of infinite
+rank.  The natural CE fold character is
+
+`chi_fold(w)=delta_e(r(w))=1_K(w)`.
+
+Its GNS representation is `lambda_(D/K)=lambda_G o r`.  It is **not** weakly
+contained in `lambda_D`: otherwise restriction to `K` would give
+`1_K weakly-contained-in lambda_D|K`, while the latter is a multiple of
+`lambda_K`; Hulanicki's criterion would make `K` amenable, contradiction.
+
+Thus `chi_fold` cannot extend to `C*_r(D)`.  The weak-MF completion's obvious
+trace is provably in the wrong weak-containment class, not merely missing an
+uncomputed normalization.  Any proof of reduced MF or of the one-CE-trace
+criterion must manufacture a genuinely non-fold character.  Full proof is
+in `docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`.
