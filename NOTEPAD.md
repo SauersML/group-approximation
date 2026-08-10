@@ -33585,3 +33585,88 @@ phase in `(PST12)` is necessarily the long-relator value
 The remaining arithmetic question is precisely whether the relative
 Laurent symbol makes `beta_k(gamma_k)` stay away from one while the
 uncorrected sectors satisfy `(PST10)` on each fixed polynomial word.
+
+## The two-dimensional Weyl flux has a sparse seam gauge
+
+The cyclic carry analogy extends to the genuinely symplectic, rather than
+one-dimensional, multiplier.  This removes a possible analytic no-go for
+the finite-torus plan.
+
+Let `M` be even, let `A_M=(Z/MZ)^2`, write its elements as `(x,y)`, and put
+`zeta=exp(2 pi i/M)`.  Use the multiplier
+
+`omega((a,b),(c,d))=zeta^(b c)`.                     `(WSG1)`
+
+Its twisted left regular representation is
+
+`lambda_omega(g)delta_x=omega(g,x)delta_(g+x)`.      `(WSG2)`
+
+Write `e_1=(1,0)`, `e_2=(0,1)`.  Choose a divisor `L` of `M` and define
+
+`f(y)=y mod L`,  `a(x,y)=zeta^(-x f(y))`,            `(WSG3)`
+
+where `f(y)` is represented in `{0,...,L-1}`.  Let `W` be the diagonal
+unitary with diagonal `a`.
+
+**Theorem (sparse symplectic seam).**  With normalized Hilbert--Schmidt
+norm on `ell^2(A_M)`,
+
+`||W lambda_omega(e_1)W^*-lambda(e_1)||_2^2`
+` <= 4 pi^2 L^2/M^2`,                               `(WSG4)`
+
+`||W lambda_omega(e_2)W^*-lambda(e_2)||_2^2`
+` <= 4/L`.                                           `(WSG5)`
+
+Consequently, taking divisors `L=L_M` with
+
+`L_M->infinity`, `L_M/M->0`,                         `(WSG6)`
+
+makes the twisted and ordinary regular sectors agree on every fixed
+element of `Z^2` after pullback along `Z^2->A_M`.  For example, when
+`M=2^(3j)` and `L=2^(2j)`, each generator error is `O(M^(-1/3))`.
+Nevertheless the growing relator
+
+`r_M=[e_1,e_2]^(M/2)`                                `(WSG7)`
+
+acts as `-1` in the twisted sector and as `1` in the ordinary sector.
+
+**Proof.**  Both operators over a fixed group element have the same
+underlying permutation.  After the diagonal gauge, the coefficient on an
+`e_1`-edge from `(x,y)` is
+
+`a(x+1,y) conjugate(a(x,y))=zeta^(-f(y))`.
+
+The elementary estimate `|exp(i t)-1|<=|t|` gives `(WSG4)`.  On an
+`e_2`-edge the coefficient is
+
+`zeta^x a(x,y+1) conjugate(a(x,y))`
+` =zeta^(x(1-(f(y+1)-f(y))))`.                       `(WSG8)`
+
+Except when `y` is the last point of an `L`-block, the difference in
+parentheses is zero.  Boundary rows have density exactly `1/L`, and on
+them the squared distance of two unit scalars is at most four.  This proves
+`(WSG5)`.  A fixed element is a bounded word in `e_1^(+-1),e_2^(+-1)`;
+telescoping `(WSG4)--(WSG5)` proves the fixed-word assertion.
+
+Finally `(WSG1)` gives
+
+`lambda_omega(e_1)lambda_omega(e_2)`
+` =zeta^(-1)lambda_omega(e_2)lambda_omega(e_1)`.
+
+Thus the commutator is the scalar `zeta^(-1)`, and its `(M/2)`-th power is
+`-1`.  Diagonal conjugation does not alter this scalar holonomy.  End proof.
+
+This is the exact micro--macro profile demanded by `(PST10)--(PST12)`:
+local generator disagreement tends to zero while a growing null word
+retains an order-one phase.  In particular, a constant symplectic magnetic
+class does **not** force a positive Hilbert--Schmidt energy floor; its flux
+can be moved to a sparse family of block seams.
+
+The remaining lift is now sharply algebraic.  One must realize `(WSG1)` as
+the monomial-symbol sector of the finite central extension of
+`EL_r(F_q[(Z/MZ)^(2n)])`, with a central character whose order grows with
+`M`, and extend the seam gauge from the monomial torus to the fixed
+elementary generators and substitution generators.  The first requirement
+is a concrete finite-group-ring `K_2` exponent question; the second is an
+intertwining/induction calculation in that finite extension.  Neither is
+an obstruction already visible in the Weyl sector itself.
