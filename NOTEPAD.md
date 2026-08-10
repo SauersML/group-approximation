@@ -28259,3 +28259,36 @@ amalgamated over the common `Gamma`.  Therefore every finite-lamp group
 for the Kun--Thom pair is weak-MF and nonsofic.  This strengthens the single
 separation to an explicit family; it still supplies operator-norm rather than
 canonical-trace visibility.
+
+## The q=2 symmetric double has unique reduced trace
+
+A separate Bass--Serre calculation now removes trace-selection ambiguity
+from the reduced-C-star target.  Take the explicit Kun--Thom pair over
+`F_2`, and put `D=G *_Gamma G`.
+
+**Theorem.**  The amenable radical of `D` is trivial.  Consequently
+`C*_r(D)` has its regular trace as its unique tracial state.  In particular,
+
+`C*_r(D) MF  ==>  D hyperlinear and nonsofic`.          `(UR1)`
+
+The core computation is elementary.  If `N normal G` and `N<=Gamma`, take
+`z=(z_kl) in N` and conjugate by `1+x_1^(-m)E_ij`.  The `(i,k)` entries for
+`k!=j`, as `m->infinity`, force every off-diagonal `z_jk` to vanish.  The
+`(i,j)` entry then forces all diagonal entries equal.  Over `F_2`, the only
+polynomial scalar unit is `1`, so `core_G(Gamma)=1`.  Hence the Bass--Serre
+action of `D` is faithful, minimal and non-elementary.  A normal amenable
+subgroup has an elementary tree action; normality and non-elementarity rule
+out a fixed end or boundary pair, while minimality turns a fixed subtree
+into the whole tree.  Faithfulness then kills the subgroup.
+
+By the BKKO unique-trace theorem, `C*_r(D)` has unique trace.  An MF embedding
+of this reduced algebra supplies a normalized matrix-ultralimit trace; it
+must therefore equal the faithful regular trace, and the induced tracial
+ultraproduct map embeds `L(D)`.  Kun--Thom already supplies nonsoficity.
+
+This does not follow from the already proved weak MF completion: the latter
+surjects onto `C*_r(D)`, and MF need not pass to quotients.  It does give a
+clean new certificate requiring no dimension/error profile and no separate
+trace choice.  Likewise, QWEP of the auxiliary amalgam would finish via its
+reduced quotient, but MF does not imply QWEP.  Full proof:
+`docs/UNIQUE_TRACE_KUN_THOM_DOUBLE.md`.
