@@ -1,4 +1,4 @@
-import NonsoficGroupsExist.Matching.BlockEnumeration
+import NonsoficGroupsExist.Matching.BlockIndex
 
 /-!
 # Transporting component partitions
@@ -47,21 +47,69 @@ noncomputable def transport (q : Equiv.Perm Y) : BlockStructure Y :=
   rw [P.transport_block]
   exact Finset.card_image_of_injective _ q.injective
 
-theorem transport_blocksFinset (q : Equiv.Perm Y) :
-    (P.transport q).blocksFinset = P.blocksFinset.image (Finset.image q) := by
+theorem transportEquiv_blocksFinset {Z : FiniteModel} (q : Y ≃ Z) :
+    (P.transportEquiv q).blocksFinset =
+      P.blocksFinset.image (Finset.image q) := by
   classical
   ext C
   simp only [mem_blocksFinset, Finset.mem_image]
   constructor
-  · rintro ⟨y, rfl⟩
-    refine ⟨P.block (q.symm y), ⟨q.symm y, rfl⟩, ?_⟩
-    simp [transport, transportEquiv]
+  · rintro ⟨z, rfl⟩
+    refine ⟨P.block (q.symm z), ⟨q.symm z, rfl⟩, ?_⟩
+    simp [transportEquiv]
   · rintro ⟨B, ⟨y, rfl⟩, rfl⟩
-    exact ⟨q y, by simp [transport, transportEquiv]⟩
+    exact ⟨q y, by simp [transportEquiv]⟩
+
+theorem transport_blocksFinset (q : Equiv.Perm Y) :
+    (P.transport q).blocksFinset = P.blocksFinset.image (Finset.image q) :=
+  P.transportEquiv_blocksFinset q
 
 theorem image_block_card (q : Equiv.Perm Y) (y : Y) :
     ((P.block y).image q).card = (P.block y).card :=
   Finset.card_image_of_injective _ q.injective
 
 end BlockStructure
+
+namespace BlockIndex
+
+variable {Y Z : FiniteModel}
+
+/-- Transporting a block partition along an equivalence transports its finite
+type of distinct blocks bijectively.  This is the object map used by the
+finite component groupoid: it contains no choice of representatives. -/
+noncomputable def transportEquiv (P : BlockStructure Y) (q : Y ≃ Z) :
+    BlockIndex P ≃ BlockIndex (P.transportEquiv q) :=
+  Equiv.ofBijective
+    (fun C ↦
+      ⟨C.block.image q, by
+        rw [P.transportEquiv_blocksFinset q]
+        exact Finset.mem_image.mpr ⟨C.block, C.2, rfl⟩⟩)
+    ⟨by
+      intro C D hCD
+      apply Subtype.ext
+      exact Finset.image_injective q.injective (Subtype.ext_iff.mp hCD),
+     by
+      intro D
+      have hD : D.1 ∈ P.blocksFinset.image (Finset.image q) := by
+        simpa only [P.transportEquiv_blocksFinset q] using D.2
+      obtain ⟨C, hC, hCD⟩ := Finset.mem_image.mp hD
+      exact ⟨⟨C, hC⟩, Subtype.ext hCD⟩⟩
+
+@[simp] theorem transportEquiv_block (P : BlockStructure Y) (q : Y ≃ Z)
+    (C : BlockIndex P) :
+    (transportEquiv P q C).block = C.block.image q := rfl
+
+@[simp] theorem transportEquiv_card (P : BlockStructure Y) (q : Y ≃ Z)
+    (C : BlockIndex P) :
+    (transportEquiv P q C).block.card = C.block.card := by
+  rw [transportEquiv_block]
+  exact Finset.card_image_of_injective _ q.injective
+
+theorem transportEquiv_representative_mem (P : BlockStructure Y) (q : Y ≃ Z)
+    (C : BlockIndex P) :
+    q (representative P C) ∈ (transportEquiv P q C).block := by
+  rw [transportEquiv_block]
+  exact Finset.mem_image.mpr ⟨representative P C, representative_mem P C, rfl⟩
+
+end BlockIndex
 end NonsoficGroupsExist
