@@ -15,6 +15,7 @@ namespace KazhdanImprovement
 
 open AlmostAutomorphism
 open AlmostAutomorphism.ClusterData
+open scoped symmDiff
 
 variable (Y : FiniteModel)
 
@@ -1019,6 +1020,60 @@ def badTargetSources (U : Finset (Y × Y))
     (c : Equiv.Perm Y) :
     (badTargetSources Y U c).card = (badColumns Y U).card := by
   simp [badTargetSources]
+
+/-- A point whose original permutation-graph edge is absent from the
+singleton-fiber core is charged to a missing relation edge, a bad row, or a
+bad target column. -/
+theorem missingSources_relationCore_subset
+    (U : Finset (Y × Y)) (c : Equiv.Perm Y) :
+    missingSources Y (relationCore Y U) c ⊆
+      missingSources Y U c ∪
+        (badRows Y U ∪ badTargetSources Y U c) := by
+  intro x hx
+  rw [mem_missingSources] at hx
+  by_cases hgraph : (x, c x) ∈ U
+  · by_cases hrow : rowDegree Y U x = 1
+    · by_cases hcol : columnDegree Y U (c x) = 1
+      · exact (hx ((mem_relationCore Y U (x, c x)).2
+          ⟨hgraph, hrow, hcol⟩)).elim
+      · exact Finset.mem_union_right _ <| Finset.mem_union_right _ <|
+          (mem_badTargetSources Y U c x).2
+            ((mem_badColumns Y U (c x)).2 hcol)
+    · exact Finset.mem_union_right _ <| Finset.mem_union_left _ <|
+        (mem_badRows Y U x).2 hrow
+  · exact Finset.mem_union_left _ <| (mem_missingSources Y U c x).2 hgraph
+
+/-- At most three times the symmetric-difference edit budget of a relation
+can be lost when passing from a permutation graph to its singleton-fiber
+core. -/
+theorem card_missingSources_relationCore_le_three_edits
+    (U : Finset (Y × Y)) (c : Equiv.Perm Y) :
+    (missingSources Y (relationCore Y U) c).card ≤
+      3 * ((permutationGraph Y c \ U).card +
+        (U \ permutationGraph Y c).card) := by
+  have hcover := Finset.card_le_card
+    (missingSources_relationCore_subset Y U c)
+  have hunion₁ := Finset.card_union_le (missingSources Y U c)
+    (badRows Y U ∪ badTargetSources Y U c)
+  have hunion₂ := Finset.card_union_le (badRows Y U)
+    (badTargetSources Y U c)
+  have hmissing := card_missingSources Y U c
+  have hrows := card_badRows_le_edits Y U c
+  have hcolumns := card_badColumns_le_edits Y U c
+  rw [card_badTargetSources] at hunion₂
+  omega
+
+/-- The two directed edit counts are exactly the symmetric-difference
+cardinality. -/
+theorem card_sdiff_add_card_sdiff_eq_symmDiff
+    {α : Type} [DecidableEq α] (U V : Finset α) :
+    (V \ U).card + (U \ V).card = (U ∆ V).card := by
+  have hdisj : Disjoint (U \ V) (V \ U) := by
+    apply Finset.disjoint_left.mpr
+    intro x hx hy
+    exact (Finset.mem_sdiff.mp hx).2 (Finset.mem_sdiff.mp hy).1
+  rw [Finset.symmDiff_def, Finset.card_union_of_disjoint hdisj]
+  omega
 
 theorem repairRelation_disagreement_subset
     (U : Finset (Y × Y)) (c : Equiv.Perm Y) :

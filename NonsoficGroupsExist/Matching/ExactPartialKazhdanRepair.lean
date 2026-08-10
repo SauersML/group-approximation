@@ -20,6 +20,7 @@ namespace ExactPartialKazhdanRepair
 open DiagonalInvariantRelation
 open FinitePartialBijection
 open KazhdanImprovement
+open scoped symmDiff
 
 universe u
 
@@ -161,6 +162,103 @@ theorem exactCoreRepair_source_target_eq_univ_of_transitive
       (exactCoreRepair σY σZ b).apply_mem_target y hy⟩
   exact ⟨hsource, exactCoreRepair_target_eq_univ_of_transitive
     σY σZ b htransZ htargetNonempty⟩
+
+/-- If fewer than one third of the original source graph edges can be lost
+to relation edits and bad fibers, then the exact core repair has a nonempty
+crossing. -/
+theorem exactCoreRepair_source_nonempty_of_three_mul_edits_lt
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hedits :
+      3 * (((permutationGraph (sumModel Y Z) b.swapPerm \
+          roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm)).card) +
+        ((roundedDiagonalRelation (sumActionHom σY σZ)
+            (permutationGraph (sumModel Y Z) b.swapPerm) \
+          permutationGraph (sumModel Y Z) b.swapPerm).card)) <
+        b.source.card) :
+    (exactCoreRepair σY σZ b).source.Nonempty := by
+  let P := permutationGraph (sumModel Y Z) b.swapPerm
+  let R := roundedDiagonalRelation (sumActionHom σY σZ) P
+  by_contra hempty
+  rw [Finset.not_nonempty_iff_eq_empty] at hempty
+  let F : ↥b.source →
+      ↥(missingSources (sumModel Y Z)
+        (relationCore (sumModel Y Z) R) b.swapPerm) := fun y ↦ by
+    refine ⟨Sum.inl y.1, ?_⟩
+    rw [mem_missingSources]
+    intro hcore
+    have hcross : (y.1, b.apply y.1 y.2) ∈
+        crossingRelation (relationCore (sumModel Y Z) R) := by
+      rw [mem_crossingRelation]
+      simpa only [swapPerm_inl_of_mem b y.1 y.2] using hcore
+    have hgraph : (y.1, b.apply y.1 y.2) ∈
+        (exactCoreRepair σY σZ b).graph := by
+      rw [exactCoreRepair, graph_coreCrossing]
+      exact hcross
+    obtain ⟨hsource, _⟩ :=
+      (mem_graph (exactCoreRepair σY σZ b) y.1
+        (b.apply y.1 y.2)).mp hgraph
+    rw [hempty] at hsource
+    exact (Finset.notMem_empty _ hsource).elim
+  have hF : Function.Injective F := by
+    intro y x h
+    apply Subtype.ext
+    exact Sum.inl.inj (congrArg Subtype.val h)
+  have hsourceLe : b.source.card ≤
+      (missingSources (sumModel Y Z)
+        (relationCore (sumModel Y Z) R) b.swapPerm).card := by
+    simpa only [Fintype.card_coe] using
+      Fintype.card_le_of_injective F hF
+  have hcoreBound :=
+    card_missingSources_relationCore_le_three_edits
+      (sumModel Y Z) R b.swapPerm
+  dsimp only [P, R] at hsourceLe
+  dsimp only [P, R] at hcoreBound
+  omega
+
+/-- A strict Kazhdan defect budget makes the invariant core repair a full
+equivariant bijection between transitive finite actions. -/
+theorem exactCoreRepair_source_target_eq_univ_of_kazhdan
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (hε : 0 < ε)
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (htransY : ∀ x y : Y, ∃ g : G, σY g x = y)
+    (htransZ : ∀ x y : Z, ∃ g : G, σZ g x = y)
+    (b : FinitePartialBijection Y Z)
+    (hsmall :
+      24 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) <
+          ε ^ 2 * (b.source.card : ℝ)) :
+    (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ := by
+  let P := permutationGraph (sumModel Y Z) b.swapPerm
+  let R := roundedDiagonalRelation (sumActionHom σY σZ) P
+  let E : ℕ := (P \ R).card + (R \ P).card
+  have hround := kazhdan_mul_card_graph_symmDiff_rounded_le_defect
+    hQ (sumActionHom σY σZ) b.swapPerm
+  have hE : E = (P ∆ R).card := by
+    simpa [E, Nat.add_comm] using
+      card_sdiff_add_card_sdiff_eq_symmDiff P R
+  have hroundE : ε ^ 2 * (E : ℝ) ≤
+      8 * (totalCommutationDefect
+        (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+    dsimp only [P, R] at hround
+    rw [hE]
+    exact hround
+  have hεsq : 0 < ε ^ 2 := sq_pos_of_pos hε
+  have heditsReal : (3 * E : ℝ) < b.source.card := by
+    have hscaled : ε ^ 2 * (3 * E : ℝ) ≤
+        24 * (totalCommutationDefect
+          (sumActionHom σY σZ) Q b.swapPerm : ℝ) := by
+      nlinarith
+    nlinarith
+  have heditsNat : 3 * E < b.source.card := by
+    exact_mod_cast heditsReal
+  have hnonempty := exactCoreRepair_source_nonempty_of_three_mul_edits_lt
+    σY σZ b (by simpa only [P, R, E] using heditsNat)
+  exact exactCoreRepair_source_target_eq_univ_of_transitive
+    σY σZ b htransY htransZ hnonempty
 
 /-- Repair the swap permutation and extract its crossing partial map. -/
 noncomputable def repair
