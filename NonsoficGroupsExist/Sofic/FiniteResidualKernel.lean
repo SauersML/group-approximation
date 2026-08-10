@@ -43,6 +43,14 @@ theorem conjNormal_eq_one_of_mem_soficResidual [Finite N]
   exact map_eq_one_of_mem_soficResidual
     (isSofic_of_finite (MulAut N)) (MulAut.conjNormal (H := N)) hx
 
+/-- Equivalently, the entire sofic residual lies in the kernel of the finite
+conjugation action.  This is the precise algebraic meaning of saying that the
+action factors through the maximal sofic image. -/
+theorem soficResidual_le_conjNormal_ker [Finite N] :
+    soficResidual K ≤ (MulAut.conjNormal (H := N)).ker := by
+  intro x hx
+  exact conjNormal_eq_one_of_mem_soficResidual N hx
+
 /-- A finite normal subgroup contained in the sofic residual is abelian. -/
 theorem finite_normal_subgroup_commute [Finite N]
     (hN : N ≤ soficResidual K) (x y : N) : Commute x y := by
@@ -136,6 +144,33 @@ theorem not_inl_range_le_soficResidual [Finite F] [Nontrivial F] :
   obtain ⟨f, hf⟩ := exists_ne (1 : F)
   exact inl_not_mem_soficResidual_of_ne_one alpha hf
     (hle (Subgroup.mem_range_self (SemidirectProduct.inl (phi := alpha)) f))
+
+/-- Coordinate-free nonsplitting criterion.  If a proposed kernel inclusion
+is carried to the canonical finite base by an isomorphism with a semidirect
+product, that kernel cannot lie in the sofic residual.  Thus a nontrivial
+finite normal subgroup of the residual admits no compatible splitting. -/
+theorem not_kernel_range_le_soficResidual_of_split_equiv
+    [Finite F] [Nontrivial F] (i : F →* K)
+    (e : K ≃* (F ⋊[alpha] Q))
+    (hbase : e.toMonoidHom.comp i = SemidirectProduct.inl) :
+    ¬ i.range ≤ soficResidual K := by
+  intro hle
+  obtain ⟨f, hf⟩ := exists_ne (1 : F)
+  have hres : i f ∈ soficResidual K :=
+    hle (Subgroup.mem_range_self i f)
+  let detector : K →* F ⋊[actionRangeAction alpha] alpha.range :=
+    (finiteActionDetector alpha).comp e.toMonoidHom
+  have hkilled : detector (i f) = 1 :=
+    map_eq_one_of_mem_soficResidual
+      (isSofic_of_finite (F ⋊[actionRangeAction alpha] alpha.range))
+      detector hres
+  have heq : e (i f) = SemidirectProduct.inl (phi := alpha) f := by
+    exact DFunLike.congr_fun hbase f
+  have hleft := congrArg SemidirectProduct.left hkilled
+  apply hf
+  simpa only [detector, MonoidHom.coe_comp, Function.comp_apply, heq,
+    finiteActionDetector_inl, SemidirectProduct.left_inl,
+    SemidirectProduct.one_left] using hleft
 
 end SplitExtensions
 
