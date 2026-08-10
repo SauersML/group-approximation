@@ -256,10 +256,10 @@ that a conditional result must not LIVE on the trust surface, however honest
 its type: it belongs in `Superseded`, or its antecedent belongs in the
 corpus as a theorem, after which its name comes off this list.
 
-`CentralizerNormalization` is the transcription of Kun--Thom,
-arXiv:2608.06222v1, Theorem 4.1. -/
-def literatureInputNames : List Name :=
-  [``CentralizerNormalization]
+The roster is empty: literature-transcription premises are not permitted in
+the corpus.  Keep this mechanism in place so adding one cannot silently turn
+an external theorem into a conditional trust-surface result. -/
+def literatureInputNames : List Name := []
 
 /-- The public results.  Their individual closures are reported separately so
 that a CI log records exactly what each headline theorem rests on. -/

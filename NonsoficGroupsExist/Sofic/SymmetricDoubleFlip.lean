@@ -1,6 +1,7 @@
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
-import NonsoficGroupsExist.Sofic.SoficFiniteSemidirect
+import NonsoficGroupsExist.Sofic.FreeLampReduction
 import Mathlib.GroupTheory.SemidirectProduct
+import Mathlib.Tactic.DeriveFintype
 
 /-!
 # The flip of a symmetric amalgam
@@ -403,39 +404,5 @@ def freeLampMulEquivSymmetricDoubleFlip :
   left_inv x := DFunLike.congr_fun (flipToFreeLamp_comp_freeLampToFlip G Γ) x
   right_inv x := DFunLike.congr_fun (freeLampToFlip_comp_flipToFreeLamp G Γ) x
   map_mul' := (freeLampToFlip G Γ).map_mul
-
-/-! ## The nonsofic-double reduction with the presentation gap removed -/
-
-/-- **Nonsofic symmetric double.**  Centralizer normalization and one strict
-compressor imply that `G *_Γ G` is nonsofic.  The required permanence of
-soficity under the finite flip extension is proved internally in
-`SoficFiniteSemidirect` and is not a premise.
-
-This is a conditional group-theoretic reduction, deliberately separate from
-every weak-MF input.  It is not by itself a formal answer to the doubles
-question: both displayed hypotheses remain visible and must be proved for a
-concrete pair. -/
-theorem not_isSofic_symmetricDouble_of_centralizerNormalization [Countable G]
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
-    ¬ IsSofic (SymmetricDouble G Γ) := by
-  intro hD
-  have hE : IsSofic (SymmetricDoubleFlipExtension G Γ) :=
-    isSofic_semidirectProduct_of_finite (doubleFlipAction G Γ) hD
-  have hLamp : IsSofic (FreeLamp G Γ FlipC2) :=
-    (isSofic_mulEquiv_iff (freeLampMulEquivSymmetricDoubleFlip G Γ)).mpr hE
-  exact freeLamp_not_isSofic G Γ FlipC2 hcn hγ hstrict
-    (k := (.swap : FlipC2)) (by decide) hLamp
-
-/-- The weak-MF companion to
-`not_isSofic_symmetricDouble_of_centralizerNormalization`. -/
-theorem weakMF_and_not_isSofic_symmetricDouble_of_centralizerNormalization
-    [Countable G]
-    (hMF : IsWeakMF (SymmetricDouble G Γ))
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
-    IsWeakMF (SymmetricDouble G Γ) ∧ ¬ IsSofic (SymmetricDouble G Γ) := by
-  exact ⟨hMF, not_isSofic_symmetricDouble_of_centralizerNormalization
-    G Γ hcn hγ hstrict⟩
 
 end NonsoficGroupsExist

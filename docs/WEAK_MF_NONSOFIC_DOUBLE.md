@@ -35,9 +35,18 @@ The remaining Lean boundary is substantive: the newer centralizer-
 normalization theorem and the existence, residual finiteness, Kazhdan
 properties, infranormality, and nonnormality of the concrete matrix-group pair
 have not been formalized in this repository.  Until those are proved
-internally, the repository contains a conditional reduction rather than a
-formal resolution of Question 1.6.  No literature theorem is encoded as an
-axiom or hidden proposition.
+internally, the repository does not contain a formal resolution of Question
+1.6.  The Lean corpus does not retain the literature-dependent reduction
+behind a named proposition: it proves only the unconditional implication
+
+\[
+\operatorname{Sofic}(*_\Gamma G)
+\Longrightarrow
+\operatorname{Sofic}\bigl(G *_\Gamma(\Gamma\times C_2)\bigr).
+\]
+
+No literature theorem is encoded as an axiom, definition, or hidden
+proposition.
 
 The weak-MF conclusion discussed below is additional and is not needed for a
 negative answer once the missing group-theoretic inputs are closed.
@@ -237,7 +246,12 @@ cocycles.  A nonidentity element either moves a coset or has a nonidentity
 diagonal cocycle entry, so the induced homomorphism is injective.  Since
 matrix amplifications of MF algebras are MF, \(H\) is weak-MF.
 
-## 3. Application to the Kun--Thom pair
+## 3. Proposed application to the Kun--Thom pair
+
+This section is a pen-and-paper consequence of the cited Kun--Thom inputs,
+not a theorem currently present in the Lean trust surface.  The conditional
+argument is retained here to specify exactly what still has to be proved
+internally.
 
 Let \(\Gamma<G\) be the explicit residually finite Kazhdan infranormal pair
 of Kun--Thom.  Choose a strict compressor \(t\) and
@@ -284,11 +298,11 @@ maps to the identity, contradicting injectivity.  Therefore \(E\) is
 nonsofic.
 
 Finally, if \(D\) were sofic, its extension by the finite quotient \(C_2\)
-would be sofic.  Thus \(E\) would be sofic, a contradiction.  We have
-proved:
+would be sofic.  Thus \(E\) would be sofic, a contradiction.  Using the cited
+theorem, the argument would prove:
 
 \[
- \boxed{D=G*_\Gamma G\text{ is weak-MF and nonsofic}.}  \tag{14}
+ \boxed{D=G*_\Gamma G\text{ would be weak-MF and nonsofic}.}  \tag{14}
 \]
 
 There is a finite-lamp family version.  Let \(K\neq1\) be finite and put
@@ -308,9 +322,9 @@ coordinate on \(\Gamma\times K\), has kernel
 
 This is the Bass--Serre covering with one central \(\Gamma\)-vertex and
 \(|K|\) outer \(G\)-vertices.  Its kernel is weak-MF by (11), and \(H_K\)
-is weak-MF by finite-extension closure.  The same Kun--Thom
+is weak-MF by finite-extension closure.  The same cited Kun--Thom
 centralizer-normalization argument, using any \(1\neq k\in K\), proves
-\(H_K\) nonsofic.  Consequently
+\(H_K\) nonsofic on paper.  Conditionally on that unformalized input,
 
 \[
  \boxed{

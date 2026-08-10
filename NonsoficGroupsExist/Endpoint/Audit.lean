@@ -2,9 +2,11 @@ import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.ManuscriptStatements
 import NonsoficGroupsExist.Sofic.SoficSequential
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.WeakMFTransfer
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
 import NonsoficGroupsExist.Sofic.LineDouble
+import NonsoficGroupsExist.Sofic.DoubleSoficTransfer
 import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
@@ -22,6 +24,7 @@ import NonsoficGroupsExist.KOne.RefineLoopDischarge
 import NonsoficGroupsExist.Kazhdan.ShalomFinitePresentation
 import NonsoficGroupsExist.Covers.KazhdanCover
 import NonsoficGroupsExist.Leavitt.FamilyRankFour
+import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
 import NonsoficGroupsExist.Leavitt.RawSwapCompressors
 import NonsoficGroupsExist.Leavitt.SelfSimilarityAlgebra
@@ -79,15 +82,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.KunDecomposition.exists_expanderDecomposition
 #print axioms NonsoficGroupsExist.KunSelectiveRepairExpansion.refined_bad_component_expands_at_every_positive_constant
 #print axioms NonsoficGroupsExist.KunThomTheorem.isLEF_of_exactProductExpansion
-#print axioms NonsoficGroupsExist.not_isSofic_of_strictCentralizerWitness
 #print axioms NonsoficGroupsExist.commute_of_perfect_quotient
 #print axioms NonsoficGroupsExist.subgroup_eq_top_of_surjects_mod_central
 #print axioms NonsoficGroupsExist.CentralExtension.lift_centralizes_perfect_preimage
-#print axioms NonsoficGroupsExist.CentralExtension.not_isSofic_of_centralExtension_strictWitness
-#print axioms NonsoficGroupsExist.CentralExtension.not_isSofic_of_centralExtension_subcoverWitness
-#print axioms NonsoficGroupsExist.CentralExtension.allCentralExtensions_not_isSofic_of_subcoverStrictWitness
-#print axioms NonsoficGroupsExist.CentralExtension.allCentralExtensions_not_isSofic_of_strictWitness
-#print axioms NonsoficGroupsExist.CentralExtension.allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
 #print axioms NonsoficGroupsExist.center_eq_bot_of_isPerfect_of_isSimpleGroup
 #print axioms NonsoficGroupsExist.hyperlinear_nonsofic_exists_of_kazhdan_weakMF_of_quotientObstruction
 #print axioms NonsoficGroupsExist.everyNontrivialQuotientIsNonsofic_of_quasisimple
@@ -97,7 +94,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.CentralExtension.descendAlongSurjection
 #print axioms NonsoficGroupsExist.CentralExtension.isQuasisimple_of_isPerfect_of_isSimpleGroup
 #print axioms NonsoficGroupsExist.finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
-#print axioms NonsoficGroupsExist.finitelyPresentedKazhdanSoficImageRigid_of_subcoverStrictWitness
 #print axioms NonsoficGroupsExist.SteinbergGroup.projection_surjective
 #print axioms NonsoficGroupsExist.SteinbergGroup.centralExtension
 #print axioms NonsoficGroupsExist.SteinbergGroup.fin_isPerfect
@@ -132,13 +128,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.elementaryBase_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.elementaryBase_not_isSofic
 #print axioms NonsoficGroupsExist.LeavittStrictCentralCoverWitness.witness_strict
-#print axioms NonsoficGroupsExist.LeavittStrictCentralCoverWitness.allCountableCentralExtensionsAreNonsofic
-#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.elementaryBase_allCountableCentralExtensionsAreNonsofic
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.everyCentralExtensionSplits
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.universalCentralExtension_of_kernel_central
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.rankThree_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.hasKazhdanPropertyT
-#print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_certificates
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
 #print axioms NonsoficGroupsExist.hyperlinear_nonsofic_exists_of_quasisimple_kazhdan_weakMF
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
@@ -147,10 +140,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.isSofic_of_finite
 #print axioms NonsoficGroupsExist.isSofic_semidirectProduct_of_finite
 #print axioms NonsoficGroupsExist.freeLampMulEquivSymmetricDoubleFlip
-#print axioms NonsoficGroupsExist.not_isSofic_symmetricDouble_of_centralizerNormalization
-#print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_symmetricDouble_of_centralizerNormalization
 #print axioms NonsoficGroupsExist.doubleToLine_injective
-#print axioms NonsoficGroupsExist.not_isSofic_lineDouble_of_centralizerNormalization
+#print axioms NonsoficGroupsExist.isSofic_freeLamp_flip_of_isSofic_lineDouble
+#print axioms NonsoficGroupsExist.not_isSofic_lineDouble_of_not_isSofic_freeLamp_flip
 #print axioms NonsoficGroupsExist.isSofic_multiplicative_int
 #print axioms NonsoficGroupsExist.isSofic_iff_productRestricted
 #print axioms NonsoficGroupsExist.isSofic_of_soficApproximation
@@ -265,9 +257,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 -- MF models to hyperlinearity.
 #print axioms NonsoficGroupsExist.SqrtDimensionMFProfile.isHyperlinear_of_profile
 
--- The operator-norm separation endpoint.  The C*-amalgamation statement
--- remains an explicit hypothesis; the local weak-MF transfer and the
--- group-theoretic deduction contain no hidden axiom.
+-- Internally proved operator-norm MF transfer mechanisms.
 #print axioms NonsoficGroupsExist.isWeakMF_of_injective
 #print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
-#print axioms NonsoficGroupsExist.weakMF_and_not_isSofic_freeLamp_of_analytic_input

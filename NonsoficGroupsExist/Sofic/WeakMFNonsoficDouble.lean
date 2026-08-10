@@ -1,30 +1,12 @@
-import NonsoficGroupsExist.Sofic.FreeLampReduction
-import NonsoficGroupsExist.Sofic.WeakMFTransfer
+import Mathlib.GroupTheory.PushoutI
 
 /-!
-# Weak-MF nonsofic doubles and finite-lamp amalgams
+# Symmetric amalgamated doubles
 
-This file defines the symmetric double and records the finite-lamp weak-MF
-endpoints.  For a pair `Γ ≤ G`, put
-
-`H K = G *_Γ (Γ × K)`.
-
-For the Kun--Thom pair, the operator-algebraic argument in
-`docs/WEAK_MF_NONSOFIC_DOUBLE.md` proves that `H K` is weak-MF for every
-finite `K`: profinite regular representations detect the amalgamation
-subalgebra, Shulman's MF amalgamation theorem handles a finite star of copies,
-and the exact induced representation handles the finite extension.  That
-analytic conclusion is an explicit premise of the finite-lamp theorems below;
-it is not something Lean's current C*-algebra library proves.
-
-Everything after that boundary is kernel-checked here.  In particular,
-Kun--Thom centralizer normalization plus one strict compressor forces every
-nontrivial finite-lamp amalgam to be nonsofic.  Combining the two inputs gives
-an explicit family of groups which are weak-MF but not sofic.
-
-The results use the literal conjunction `IsWeakMF H ∧ ¬ IsSofic H`.
-In particular, the cited analytic premises remain visible in every theorem
-signature rather than being hidden behind a proposition alias.
+This file defines the symmetric double `G *_Γ G` and proves its elementary
+structural interface.  It contains no approximation-theoretic endpoint:
+such an endpoint requires additional mathematics and is not represented by
+a literature-backed theorem parameter.
 -/
 
 namespace NonsoficGroupsExist
@@ -72,36 +54,5 @@ instance symmetricDoubleCountable [Countable G] :
   haveI h3 : Countable (Coprod (CoprodI (DoubleFactor G)) ↥Γ) :=
     Con.mk'_surjective.countable
   exact Con.mk'_surjective.countable
-
-/-- **Finite-lamp weak-MF/nonsofic separation.**
-
-Assume the regular-amalgam weak-MF input and Kun--Thom centralizer
-normalization for `Γ ≤ G`.  If one conjugate of an element of `Γ` leaves
-`Γ`, then every nontrivial finite lamp produces a weak-MF nonsofic group.
-
-The weak-MF conjunct is exactly the analytic input.  The nonsofic conjunct is
-the fully formalized amalgam normal-form/centralizer-normalization reduction
-from `FreeLampReduction`. -/
-theorem weakMF_and_not_isSofic_freeLamp_of_analytic_input [Countable G]
-    {K : Type} [Group K] [Finite K] [Nontrivial K]
-    (hMF : IsWeakMF (FreeLamp G Γ K))
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ)
-    : IsWeakMF (FreeLamp G Γ K) ∧ ¬ IsSofic (FreeLamp G Γ K) := by
-  obtain ⟨k, hk⟩ := exists_ne (1 : K)
-  exact ⟨hMF, freeLamp_not_isSofic G Γ K hcn hγ hstrict hk⟩
-
-/-- The family theorem in pointwise form: no choice of a nontrivial finite
-lamp can restore soficity or destroy weak-MF. -/
-theorem every_finiteLamp_weakMF_and_not_isSofic_of_analytic_inputs [Countable G]
-    (hMF : ∀ (K : Type) [Group K] [Finite K],
-      IsWeakMF (FreeLamp G Γ K))
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
-    ∀ (K : Type) [Group K] [Finite K] [Nontrivial K],
-      IsWeakMF (FreeLamp G Γ K) ∧ ¬ IsSofic (FreeLamp G Γ K) := by
-  intro K _ _ _
-  exact weakMF_and_not_isSofic_freeLamp_of_analytic_input
-    G Γ (hMF K) hcn hγ hstrict
 
 end NonsoficGroupsExist

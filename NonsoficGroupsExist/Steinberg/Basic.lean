@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.PresentedGroup
+import Mathlib.SetTheory.Cardinal.Free
 import NonsoficGroupsExist.Leavitt.ElementaryRoots
 import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 

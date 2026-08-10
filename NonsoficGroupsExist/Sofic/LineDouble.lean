@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
+import NonsoficGroupsExist.Sofic.SoficTransfer
 
 /-!
 # From the symmetric double to the line double
@@ -150,14 +151,5 @@ theorem lineDouble_not_isSofic_of_symmetricDouble_not_isSofic
   intro hline
   exact hD (isSofic_of_injective (doubleToLine G Γ)
     (doubleToLine_injective G Γ) hline)
-
-/-- The line-double form of the centralizer-normalization reduction. -/
-theorem not_isSofic_lineDouble_of_centralizerNormalization [Countable G]
-    (hcn : CentralizerNormalization G Γ)
-    {t γ : G} (hγ : γ ∈ Γ) (hstrict : t⁻¹ * γ * t ∉ Γ) :
-    ¬ IsSofic (LineDouble G Γ) :=
-  lineDouble_not_isSofic_of_symmetricDouble_not_isSofic G Γ
-    (not_isSofic_symmetricDouble_of_centralizerNormalization
-      G Γ hcn hγ hstrict)
 
 end NonsoficGroupsExist

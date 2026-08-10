@@ -6,7 +6,6 @@ import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Leavitt.LeavittRankEquivalence
 import NonsoficGroupsExist.Leavitt.FiniteFieldLeavitt
 import NonsoficGroupsExist.Leavitt.FinitePresentation
-import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.PropertyT.FiniteFieldElementaryPropertyT
 
 /-!
@@ -103,28 +102,6 @@ theorem elementaryBase_not_isSofic {n : ℕ} (hn : 2 ≤ n) :
   exact FiniteFieldLeavitt.ambient_not_isSofic (ZMod 2)
     (isSofic_of_injective e.symm.toMonoidHom e.symm.injective hsofic)
 
-/-- The sole remaining normalization input for the explicit Kun--Thom
-central-cover witness, stated in rank four where the compressor lives. -/
-abbrev RankFourStableNormalization :=
-  CentralExtension.CentralSubcoverStableNormalization
-    (ElementaryBase 4)
-    (LeavittStrictCentralCoverWitness.AmbientTop
-      UniversalLeavitt.BinaryLeavittAlgebra)
-    (LeavittStrictCentralCoverWitness.CompressedCore UniversalLeavitt.family)
-
-/-- The explicit compressor and corner witness make every countable central
-extension of every positive elementary rank nonsofic, once the single named
-rank-four normalization-stability statement is supplied. -/
-theorem elementaryBase_allCountableCentralExtensionsAreNonsofic
-    {n : ℕ} (hn : 2 ≤ n) (hstable : RankFourStableNormalization) :
-    AllCountableCentralExtensionsAreNonsofic (ElementaryBase n) := by
-  obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
-  let e : ElementaryBase (m + 1) ≃* ElementaryBase 4 :=
-    UniversalLeavitt.family.rankSuccEquiv m 3 (by omega) (by omega)
-  apply allCountableCentralExtensionsAreNonsofic_of_mulEquiv e
-  exact LeavittStrictCentralCoverWitness.allCountableCentralExtensionsAreNonsofic
-    UniversalLeavitt.family hstable
-
 /-- The canonical Steinberg projection as an isomorphism, conditional on
 vanishing of the **unstable** Steinberg kernel `K₂(n,L)`.  No such
 vanishing or stability theorem is proved here. -/
@@ -179,31 +156,6 @@ noncomputable def universalCentralExtension_of_kernel_central
     UniversalCentralExtension (BinaryLeavittSteinberg n)
       (ElementaryBase n) :=
   KervaireSteinberg.fin_universalCentralExtension hn hker
-
-/-- Concrete endpoint with the still-external classical certificates made
-explicit.  The group in the conclusion is the actual presented Steinberg
-group, not an abstract placeholder.
-
-The remaining hypotheses correspond to centrality of the canonical
-Steinberg kernel, simplicity of the elementary Leavitt base, the named
-Kun--Thom normalization-stability theorem, and finite presentability.
-Property `(T)` and the strict Kun--Thom witness are discharged internally. -/
-theorem finitelyPresentedKazhdanSoficImageRigid_of_certificates
-    {n : ℕ} (hn : 5 ≤ n)
-    (hker : (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n).ker ≤
-      Subgroup.center (BinaryLeavittSteinberg n))
-    [IsSimpleGroup (ElementaryBase n)]
-    (hstable : RankFourStableNormalization)
-    (hfp : Group.IsFinitelyPresented (BinaryLeavittSteinberg n)) :
-    FinitelyPresentedKazhdanSoficImageRigid
-      (BinaryLeavittSteinberg n) := by
-  letI : Group.IsPerfect (BinaryLeavittSteinberg n) := isPerfect (by omega)
-  exact finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
-    (centralExtension n hker)
-      (elementaryBase_allCountableCentralExtensionsAreNonsofic
-        (by omega) hstable)
-      hfp (hasKazhdanPropertyT hn)
 
 /-- A shorter endpoint conditional on **unstable** `K₂(n,L)=0`.
 Injectivity identifies the Steinberg group with its simple elementary base.

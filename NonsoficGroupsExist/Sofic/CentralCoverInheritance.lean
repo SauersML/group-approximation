@@ -1,19 +1,16 @@
 import Mathlib.GroupTheory.IsPerfect
-import NonsoficGroupsExist.Sofic.FreeLampReduction
+import Mathlib.GroupTheory.FinitelyPresentedGroup
 import NonsoficGroupsExist.Sofic.KazhdanCorner
 
 /-!
-# Central-cover inheritance of Kun--Thom witnesses
+# Algebra of central covers
 
-This file isolates the algebraic mechanism behind central-cover inheritance.
+This file isolates algebraic mechanisms for central covers.
 If an element centralizes a perfect quotient of a group modulo a central
 kernel, then it already centralizes the whole group.  Applied to the full
 inverse image of a Kun--Thom subgroup, this lifts a strict centralizer witness
-through a central extension.
-
-The analytic input remains exactly the named
-`CentralizerNormalization` hypothesis from `FreeLampReduction`; no new
-approximation-theoretic axiom is introduced here.
+through a central extension.  No approximation-theoretic theorem is accepted
+as a premise here.
 -/
 
 namespace NonsoficGroupsExist
@@ -276,58 +273,6 @@ theorem lift_centralizes_perfect_preimage (P : CentralExtension E H)
       P.ker_le_center (MonoidHom.mem_ker.mpr hpx)
     exact Subgroup.mem_center_iff.mp hcenter a
 
-/-- **Central-cover inheritance of a strict Kun--Thom witness.**
-
-Let `G ≤ H` contain a perfect subgroup `Γ`, and let an element `a ∈ H`
-centralize `Γ` but fail to centralize one inverse conjugate `t⁻¹γt`.
-For any countable central extension `E → H`, if the lifted pair satisfies the
-same named Kun--Thom centralizer-normalization hypothesis, then `E` is
-nonsofic.
-
-The central kernel may be infinite.  The only role of the usual finite-cover
-hypothesis is to establish `CentralizerNormalization` for the lifted pair;
-the inheritance argument itself does not use finiteness. -/
-theorem not_isSofic_of_centralExtension_strictWitness
-    (P : CentralExtension E H) [Countable E]
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (hcn : CentralizerNormalization (P.preimage G) (P.liftedSubgroup G Γ))
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t))) :
-    ¬ IsSofic E := by
-  obtain ⟨aLift, haLift⟩ := P.surjective a
-  obtain ⟨tLift, htLift⟩ := P.preimageProjection_surjective G t
-  obtain ⟨gammaLift, hgammaLift⟩ :=
-    P.liftedProjection_surjective G Γ ⟨γ, hγ⟩
-  apply not_isSofic_of_strictCentralizerWitness
-      (P.liftedSubgroup G Γ) hcn (P.preimage G).subtype
-      Subtype.val_injective aLift (t := tLift)
-      (γ := (gammaLift : P.preimage G))
-  · intro x hx
-    exact P.lift_centralizes_perfect_preimage G Γ aLift
-      (by
-        intro g hg
-        rw [haLift]
-        exact ha g hg)
-      ⟨x, hx⟩
-  · exact gammaLift.property
-  · intro hcomm
-    apply hstrict
-    have hmapped := hcomm.map P.projection
-    have htProj : P.projection ((P.preimage G).subtype tLift) = G.subtype t := by
-      change G.subtype (P.preimageProjection G tLift) = G.subtype t
-      exact congrArg G.subtype htLift
-    have hgammaProj :
-        P.projection ((P.preimage G).subtype (gammaLift : P.preimage G)) =
-          G.subtype γ := by
-      change G.subtype (P.preimageProjection G (gammaLift : P.preimage G)) =
-        G.subtype γ
-      have h := congrArg (fun g : Γ ↦ G.subtype (g : G)) hgammaLift
-      simpa only [liftedProjection_apply] using h
-    change Commute a
-      ((G.subtype t)⁻¹ * G.subtype γ * G.subtype t)
-    simpa only [map_mul, map_inv, haLift, htProj, hgammaProj] using hmapped
-
 /-! ## A good subcover inside an arbitrary central extension -/
 
 /-- The projection of a subgroup of the full inverse image onto the base
@@ -414,113 +359,6 @@ theorem lift_centralizes_perfect_subcover (P : CentralExtension E H)
     have hcenter : P.subcoverInclusion G L x ∈ Subgroup.center E :=
       P.ker_le_center (MonoidHom.mem_ker.mpr hpx)
     exact Subgroup.mem_center_iff.mp hcenter a
-
-/-- **Subcover form of central-cover inheritance.**  An arbitrary countable
-central extension is nonsofic as soon as it contains a surjective subcover
-whose lifted pair has Kun--Thom centralizer normalization.  This is the form
-used with the finite image of a universal/stem cover; the ambient central
-kernel can still be infinite. -/
-theorem not_isSofic_of_centralExtension_subcoverWitness
-    (P : CentralExtension E H) [Countable E]
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (L : Subgroup (P.preimage G))
-    (hL : Function.Surjective (P.subcoverProjection G L))
-    (hcn : CentralizerNormalization L (P.subcoverLiftedSubgroup G Γ L))
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t))) :
-    ¬ IsSofic E := by
-  obtain ⟨aLift, haLift⟩ := P.surjective a
-  obtain ⟨tLift, htLift⟩ := hL t
-  obtain ⟨gammaLift, hgammaLift⟩ :=
-    P.subcoverLiftedProjection_surjective G Γ L hL ⟨γ, hγ⟩
-  apply not_isSofic_of_strictCentralizerWitness
-      (P.subcoverLiftedSubgroup G Γ L) hcn
-      (P.subcoverInclusion G L) (by
-        intro x y hxy
-        apply Subtype.ext
-        apply Subtype.ext
-        exact hxy)
-      aLift (t := tLift) (γ := (gammaLift : L))
-  · intro x hx
-    exact P.lift_centralizes_perfect_subcover G Γ L hL aLift
-      (by
-        intro g hg
-        rw [haLift]
-        exact ha g hg)
-      ⟨x, hx⟩
-  · exact gammaLift.property
-  · intro hcomm
-    apply hstrict
-    have hmapped := hcomm.map P.projection
-    have htProj : P.projection (P.subcoverInclusion G L tLift) = G.subtype t := by
-      rw [projection_subcoverInclusion]
-      exact congrArg G.subtype htLift
-    have hgammaProj :
-        P.projection (P.subcoverInclusion G L (gammaLift : L)) =
-          G.subtype γ := by
-      rw [projection_subcoverInclusion]
-      have h := congrArg (fun g : Γ ↦ G.subtype (g : G)) hgammaLift
-      simpa only [subcoverLiftedProjection_apply] using h
-    change Commute a
-      ((G.subtype t)⁻¹ * G.subtype γ * G.subtype t)
-    simpa only [map_mul, map_inv, haLift, htProj, hgammaProj] using hmapped
-
-/-- The universal/stem-cover certificate: every countable central extension
-contains some subgroup surjecting onto `G` for which the lifted pair has the
-Kun--Thom normalization property.  In the intended application, `L` is the
-finite image of a universal central extension, and finiteness of the Schur
-multiplier is used only to produce this certificate. -/
-def CentralSubcoverStableNormalization (H : Type) [Group H]
-    (G : Subgroup H) (Γ : Subgroup G) : Prop :=
-  ∀ (E : Type) [Group E] [Countable E] (P : CentralExtension E H),
-    ∃ L : Subgroup (P.preimage G),
-      Function.Surjective (P.subcoverProjection G L) ∧
-        CentralizerNormalization L (P.subcoverLiftedSubgroup G Γ L)
-
-/-- **Arbitrary-kernel subcover theorem.**  A strict witness for a perfect
-pair, together with the universal/stem-cover certificate, makes every
-countable central extension nonsofic.  Unlike the full-preimage formulation,
-normalization is required only on one good subcover; this is what permits an
-arbitrary infinite ambient central kernel. -/
-theorem allCentralExtensions_not_isSofic_of_subcoverStrictWitness
-    {H : Type} [Group H]
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (hstable : CentralSubcoverStableNormalization H G Γ)
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
-    {E : Type} [Group E] [Countable E] (P : CentralExtension E H) :
-    ¬ IsSofic E := by
-  obtain ⟨L, hL, hcn⟩ := hstable E P
-  exact P.not_isSofic_of_centralExtension_subcoverWitness
-    G Γ L hL hcn a ha hγ hstrict
-
-/-- The exact external stability certificate needed to turn the one-cover
-inheritance theorem into a statement about *all* central covers.  For a
-stable Kun--Thom pair this is supplied by applying the cited normalization
-theorem to every lifted pair.  Keeping it named prevents that citation from
-being silently conflated with the algebraic inheritance proof. -/
-def CentralCoverStableNormalization (H : Type) [Group H]
-    (G : Subgroup H) (Γ : Subgroup G) : Prop :=
-  ∀ (E : Type) [Group E] [Countable E] (P : CentralExtension E H),
-    CentralizerNormalization (P.preimage G) (P.liftedSubgroup G Γ)
-
-/-- **All-central-covers form.**  A strict witness for a perfect pair whose
-Kun--Thom normalization is stable under central covers makes every countable
-central extension nonsofic.  No finiteness assumption is imposed on the
-central kernel. -/
-theorem allCentralExtensions_not_isSofic_of_strictWitness
-    {H : Type} [Group H]
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (hstable : CentralCoverStableNormalization H G Γ)
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
-    {E : Type} [Group E] [Countable E] (P : CentralExtension E H) :
-    ¬ IsSofic E :=
-  P.not_isSofic_of_centralExtension_strictWitness G Γ
-    (hstable E P) a ha hγ hstrict
 
 end CentralExtension
 
@@ -636,28 +474,6 @@ theorem center_eq_bot_of_isPerfect_of_isSimpleGroup
 namespace CentralExtension
 
 variable {J H Q : Type} [Group J] [Group H] [Group Q]
-
-/-- Package the arbitrary-kernel subcover theorem in the form consumed by
-the quasisimple central-cover argument: one strict Kun--Thom witness and a
-good-subcover certificate make *every* countable central extension of the
-base nonsofic.
-
-This is deliberately the subcover, rather than full-preimage, formulation.
-For universal Steinberg covers, the classical stability input produces a
-single suitable subcover inside each central extension; it need not control
-the whole inverse image when the ambient central kernel is infinite. -/
-theorem allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (hstable : CentralSubcoverStableNormalization H G Γ)
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t))) :
-    AllCountableCentralExtensionsAreNonsofic H := by
-  intro E hEGroup hECountable P
-  letI : Group E := hEGroup
-  letI : Countable E := hECountable
-  exact allCentralExtensions_not_isSofic_of_subcoverStrictWitness
-    G Γ hstable a ha hγ hstrict P
 
 /-- The center of a central cover lies in its kernel when the base is
 centerless.  The reverse inclusion is part of `CentralExtension`, so in this
@@ -826,40 +642,6 @@ theorem finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
     P.center_le_ker_of_center_eq_bot hcenter
   exact hall Q hQGroup inferInstance
     (P.descendAlongSurjection q hsurj (hqcentral.trans hcenterker))
-
-/-- **Strict-witness Steinberg endpoint.**  A perfect central cover of a
-centerless simple base has the full advertised rigidity profile as soon as
-the base carries a strict Kun--Thom witness whose normalization survives in
-one suitable subcover of every countable central extension.
-
-This theorem composes the complete formal chain used by the proposed
-`St_n(L_{𝔽₂}(1,2))` application:
-
-* the strict witness makes every countable central extension of the
-  elementary base nonsofic;
-* perfectness over a simple base makes the Steinberg cover quasisimple;
-* every nontrivial quotient is therefore one of those central extensions;
-* hence every homomorphism to a sofic group is trivial.
-
-Only the concrete classical Steinberg/Leavitt certificates remain as
-premises; no quotient-closure assertion for soficity is used. -/
-theorem finitelyPresentedKazhdanSoficImageRigid_of_subcoverStrictWitness
-    {J H : Type} [Group J] [Group H] [Countable J]
-    [Group.IsPerfect J] [IsSimpleGroup H]
-    (P : CentralExtension J H)
-    (G : Subgroup H) (Γ : Subgroup G) [Group.IsPerfect Γ]
-    (hstable : CentralExtension.CentralSubcoverStableNormalization H G Γ)
-    (a : H) (ha : ∀ g : G, g ∈ Γ → Commute a (G.subtype g))
-    {t γ : G} (hγ : γ ∈ Γ)
-    (hstrict : ¬ Commute a (G.subtype (t⁻¹ * γ * t)))
-    (hfp : Group.IsFinitelyPresented J)
-    (hT : HasKazhdanPropertyT.{0, 0} J) :
-    FinitelyPresentedKazhdanSoficImageRigid J :=
-  finitelyPresentedKazhdanSoficImageRigid_of_perfectCentralCover
-    P
-      (CentralExtension.allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
-        G Γ hstable a ha hγ hstrict)
-    hfp hT
 
 /-- **Quasisimple-target Kazhdan-corner bridge.**  If every nontrivial
 quotient of a nontrivial Kazhdan group is nonsofic, then one weak-MF

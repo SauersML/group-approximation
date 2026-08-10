@@ -1,6 +1,6 @@
 import NonsoficGroupsExist.Leavitt.ElementaryPerfect
 import NonsoficGroupsExist.Leavitt.FamilyRankFour
-import NonsoficGroupsExist.Sofic.CentralCoverInheritance
+import Mathlib.GroupTheory.IsPerfect
 
 /-!
 # A strict central-cover witness in the binary Leavitt rank-four group
@@ -136,21 +136,6 @@ theorem witness_strict (L : LeavittFamily A) :
         ((compressor L)⁻¹ * (compressedTestRoot L : AmbientTop A) * compressor L)) := by
   rw [compressor_inv_conjugate_compressedTestRoot]
   exact witness_not_commute_coreTestRoot L
-
-/-- Once the named normalization-stability input is supplied, the explicit
-compressor and corner elements prove that every countable central extension
-of the rank-four elementary group is nonsofic. -/
-theorem allCountableCentralExtensionsAreNonsofic
-    (L : LeavittFamily A)
-    (hstable : CentralExtension.CentralSubcoverStableNormalization
-      (Ambient A) (AmbientTop A) (CompressedCore L)) :
-    AllCountableCentralExtensionsAreNonsofic (Ambient A) :=
-  CentralExtension.allCountableCentralExtensionsAreNonsofic_of_subcoverStrictWitness
-    (AmbientTop A) (CompressedCore L) hstable (witness L)
-      (witness_centralizes_compressedCore L)
-      (show (compressedTestRoot L : AmbientTop A) ∈ CompressedCore L from
-        (compressedTestRoot L).property)
-      (witness_strict L)
 
 end
 end LeavittStrictCentralCoverWitness
