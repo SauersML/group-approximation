@@ -28166,6 +28166,80 @@ rectify to exact representations while retaining positive normalized
 `2`-mass on this word.  This is the precise normalized-HS instability that
 the operator-norm MF construction leaves unresolved.
 
+## Faithfulness is unnecessary in the strict-commutant criterion
+
+The strict commutant-compression theorem around `(FD1)` can be strengthened
+in a way that materially enlarges the model search.  The tracial
+representation producing the strict compression need not remember any
+nonidentity element of `G` except the single commutator witness.
+
+Let `Gamma<G` be the residually finite Kun--Thom pair, let `t` be a strict
+compressor, and let `M` be a Connes-embeddable finite tracial von Neumann
+algebra.  Let
+
+`rho:G -> U(M)`
+
+be an arbitrary homomorphism, not assumed injective, and put
+
+`N=W*(rho(Gamma))`,  `P=N' intersect M`.                 `(NFC1)`
+
+The compressed inclusion gives automatically
+
+`P subset rho(t) P rho(t)^*`.                           `(NFC2)`
+
+Indeed, `rho(t)N rho(t)^* subset N`, and taking relative commutants in `M`
+reverses the inclusion.
+
+**Theorem (nonfaithful strict-compression criterion).**  If `(NFC2)` is
+strict for one compressor, then a hyperlinear nonsofic group exists.
+
+**Proof.**  A proper inclusion of von Neumann algebras contains a unitary in
+the larger algebra outside the smaller one.  Choose
+
+`y in U(rho(t)P rho(t)^*) minus P`
+
+and set `v=rho(t)^* y rho(t) in U(P)`.  Since `y notin P`, there is
+`gamma in Gamma` such that
+
+`[y,rho(gamma)]!=1`.                                   `(NFC3)`
+
+Let
+
+`H=G *_Gamma (Gamma times Z)`
+
+and denote the generator of the second factor by `k`.  The universal
+property gives a homomorphism `eta:H->U(M)` which equals `rho` on `G` and
+sends `k` to `v`.  Its Kun--Thom witness satisfies
+
+`eta([t k t^(-1),gamma])=[y,rho(gamma)]!=1`.            `(NFC4)`
+
+The possible kernel of `rho` is now repaired externally.  Let
+
+`theta:G -> U(R)`
+
+be any faithful hyperlinear embedding; it exists because the original `G`
+is residually finite.  If `r:H->G` is the retraction killing `k`, form
+
+`Phi=eta directSum (theta o r)`
+
+with positive asymptotic block weights, and let `Q=Phi(H)`.  Then `Q` is
+hyperlinear, its copy of `G` is faithful because of the second block, and
+the witness `(NFC4)` survives because its retraction is trivial.  If `Q`
+were sofic, Kun--Thom centralizer-normalization applied to this faithful
+copy of `G` and to `Phi(k)` would force `(NFC4)` to be trivial.  Therefore
+`Q` is nonsofic.  End proof.
+
+This removes a strong and unnecessary constraint from all earlier
+commutant-compression searches.  It is enough to find a possibly very
+singular CE representation of `G` for which the endomorphic inclusion of
+relative commutants remains proper.  Neither the regular character nor
+group faithfulness needs to survive in that representation; those duties
+are supplied afterward by the fold block.  Exact finite-dimensional
+representations still cannot work, because conjugate finite-dimensional
+subalgebras of equal dimension cannot be properly nested.  The surviving
+target is therefore genuinely diffuse but may factor through a drastic
+quotient of `G`.
+
 The argument gives a family, not just one double.  Shulman's finite-factor
 lemma plus the same GNS detector proves every finite iterated amalgam
 
