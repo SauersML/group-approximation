@@ -57,6 +57,7 @@ import NonsoficGroupsExist.PropertyT.NormalEdgeCodistance
 import NonsoficGroupsExist.Kazhdan.KazhdanGenerators
 import NonsoficGroupsExist.Kazhdan.KazhdanOrthogonal
 import NonsoficGroupsExist.Kazhdan.KazhdanProjection
+import NonsoficGroupsExist.Kazhdan.InvariantDisplacement
 import NonsoficGroupsExist.Kazhdan.KazhdanFiniteModel
 import NonsoficGroupsExist.Kazhdan.KazhdanGNS
 import NonsoficGroupsExist.Kun.KunFiniteMarkov
