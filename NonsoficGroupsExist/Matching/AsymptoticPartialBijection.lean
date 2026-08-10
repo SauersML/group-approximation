@@ -24,7 +24,14 @@ structure AsymptoticPartialBijection (N : ℕ → ℝ)
 
 namespace AsymptoticPartialBijection
 
-variable {N : ℕ → ℝ} {Y Z : ℕ → FiniteModel}
+variable {N : ℕ → ℝ} {Y Z W V : ℕ → FiniteModel}
+
+@[ext] theorem ext {a b : AsymptoticPartialBijection N Y Z}
+    (hmap : a.map = b.map) : a = b := by
+  cases a
+  cases b
+  cases hmap
+  rfl
 
 /-- The sequence of full identity arrows. -/
 def refl (N : ℕ → ℝ) (Y : ℕ → FiniteModel) :
@@ -56,6 +63,70 @@ def reflOn (s : ∀ n, Finset (Y n))
     apply Negligible.congr hmissing
     intro n
     rfl
+
+/-- Reverse every finite partial bijection in the sequence. -/
+def symm (a : AsymptoticPartialBijection N Y Z) :
+    AsymptoticPartialBijection N Z Y where
+  map := fun n ↦ (a.map n).symm
+  source_negligible := by
+    simpa only [FinitePartialBijection.sourceDefect_symm] using
+      a.target_negligible
+  target_negligible := by
+    simpa only [FinitePartialBijection.targetDefect_symm] using
+      a.source_negligible
+
+/-- Compose two asymptotic partial bijections.  The finite injectivity bound
+proves that the new missing source and target remain negligible. -/
+noncomputable def trans (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z)
+    (b : AsymptoticPartialBijection N Z W) :
+    AsymptoticPartialBijection N Y W where
+  map := fun n ↦ (a.map n).trans (b.map n)
+  source_negligible := by
+    apply Negligible.mono_nonneg hN (fun _ ↦ by positivity) (fun n ↦ ?_)
+      (Negligible.add a.source_negligible b.source_negligible)
+    exact_mod_cast (a.map n).sourceDefect_trans_le (b.map n)
+  target_negligible := by
+    apply Negligible.mono_nonneg hN (fun _ ↦ by positivity) (fun n ↦ ?_)
+      (Negligible.add b.target_negligible a.target_negligible)
+    exact_mod_cast (a.map n).targetDefect_trans_le (b.map n)
+
+@[simp] theorem symm_symm (a : AsymptoticPartialBijection N Y Z) :
+    a.symm.symm = a := by
+  apply ext
+  funext n
+  exact (a.map n).symm_symm
+
+@[simp] theorem refl_trans (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z) :
+    (refl N Y).trans hN a = a := by
+  apply ext
+  funext n
+  exact (a.map n).refl_trans
+
+@[simp] theorem trans_refl (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z) :
+    a.trans hN (refl N Z) = a := by
+  apply ext
+  funext n
+  exact (a.map n).trans_refl
+
+theorem trans_assoc (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z)
+    (b : AsymptoticPartialBijection N Z W)
+    (c : AsymptoticPartialBijection N W V) :
+    (a.trans hN b).trans hN c = a.trans hN (b.trans hN c) := by
+  apply ext
+  funext n
+  exact (a.map n).trans_assoc (b.map n) (c.map n)
+
+theorem symm_trans (hN : ∀ n, 0 ≤ N n)
+    (a : AsymptoticPartialBijection N Y Z)
+    (b : AsymptoticPartialBijection N Z W) :
+    (a.trans hN b).symm = b.symm.trans hN a.symm := by
+  apply ext
+  funext n
+  exact (a.map n).symm_trans (b.map n)
 
 /-- Two asymptotic partial bijections are near when the density of vertices
 where they cannot be compared or disagree tends to zero. -/

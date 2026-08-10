@@ -331,6 +331,40 @@ theorem symm_trans_self (b : FinitePartialBijection Y Z) :
     b.symm.trans b = reflOn b.target := by
   simpa only [symm_source, symm_symm] using trans_symm b.symm
 
+/-- Images under `b` of the source points discarded when composing with
+`c`.  Injectivity of `b` makes this set have exactly the discarded-source
+cardinality. -/
+noncomputable def droppedSourceImage (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) : Finset Z :=
+  (b.source \ (b.trans c).source).attach.map
+    ⟨fun y ↦ b.apply y.1 (Finset.mem_sdiff.mp y.2).1, by
+      intro x y h
+      apply Subtype.ext
+      exact b.apply_injective (Finset.mem_sdiff.mp x.2).1
+        (Finset.mem_sdiff.mp y.2).1 h⟩
+
+@[simp] theorem card_droppedSourceImage (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) :
+    (b.droppedSourceImage c).card =
+      (b.source \ (b.trans c).source).card := by
+  classical
+  simp [droppedSourceImage]
+
+/-- Every discarded source point maps outside the next source. -/
+theorem droppedSourceImage_subset (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) :
+    b.droppedSourceImage c ⊆ Finset.univ \ c.source := by
+  classical
+  intro z hz
+  rw [droppedSourceImage, Finset.mem_map] at hz
+  obtain ⟨y, _, rfl⟩ := hz
+  rw [Finset.mem_sdiff]
+  refine ⟨Finset.mem_univ _, ?_⟩
+  intro hc
+  exact (Finset.mem_sdiff.mp y.2).2
+    ((b.mem_trans_source c y.1).mpr
+      ⟨(Finset.mem_sdiff.mp y.2).1, hc⟩)
+
 /-- Graph of the partial bijection. -/
 noncomputable def graph (b : FinitePartialBijection Y Z) : Finset (Y × Z) :=
   b.source.attach.map
@@ -388,6 +422,42 @@ def targetDefect (b : FinitePartialBijection Y Z) : ℕ :=
 
 @[simp] theorem targetDefect_symm (b : FinitePartialBijection Y Z) :
     b.symm.targetDefect = b.sourceDefect := rfl
+
+/-- Composition loses at most the first missing source plus the second
+missing source. -/
+theorem sourceDefect_trans_le (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) :
+    (b.trans c).sourceDefect ≤ b.sourceDefect + c.sourceDefect := by
+  classical
+  have hsub : (b.trans c).source ⊆ b.source := by
+    intro y hy
+    exact ((b.mem_trans_source c y).mp hy).choose
+  have hdrop : (b.source \ (b.trans c).source).card =
+      b.source.card - (b.trans c).source.card := by
+    rw [Finset.card_sdiff]
+    rw [Finset.inter_eq_left.mpr hsub]
+  have hdrop_le : (b.source \ (b.trans c).source).card ≤
+      Fintype.card Z - c.source.card := by
+    rw [← b.card_droppedSourceImage c]
+    calc
+      (b.droppedSourceImage c).card ≤ (Finset.univ \ c.source).card :=
+        Finset.card_le_card (b.droppedSourceImage_subset c)
+      _ = Fintype.card Z - c.source.card := by
+        rw [Finset.card_sdiff]
+        simp
+  have hbcard : b.source.card ≤ Fintype.card Y := Finset.card_le_univ _
+  have htcard : (b.trans c).source.card ≤ b.source.card :=
+    Finset.card_le_card hsub
+  unfold sourceDefect
+  omega
+
+/-- Composition loses at most the second missing target plus the first
+missing target. -/
+theorem targetDefect_trans_le (b : FinitePartialBijection Y Z)
+    (c : FinitePartialBijection Z W) :
+    (b.trans c).targetDefect ≤ c.targetDefect + b.targetDefect := by
+  rw [← sourceDefect_symm, symm_trans]
+  exact sourceDefect_trans_le c.symm b.symm
 
 /-- Source points at which two partial maps cannot be compared or disagree. -/
 noncomputable def disagreement (b c : FinitePartialBijection Y Z) : Finset Y :=
