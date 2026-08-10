@@ -181,7 +181,7 @@ theorem not_kernel_range_le_soficResidual_of_split_equiv
     exact DFunLike.congr_fun hbase f
   have hleft := congrArg SemidirectProduct.left hkilled
   apply hf
-  dsimp only [detector, MonoidHom.coe_comp, Function.comp_apply] at hleft
+  change ((finiteActionDetector alpha) (e (i f))).left = 1 at hleft
   rw [heq, finiteActionDetector_inl] at hleft
   simpa using hleft
 
