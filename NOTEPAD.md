@@ -31761,3 +31761,43 @@ Theorem 10 would prove it MF automatically.  `(FRA2)` rules out exactly this
 shortcut.  The remaining cyclic spectral balance is therefore genuine; it
 cannot be removed by free stabilization, a Nielsen transformation, or a
 vertex reparametrization.
+
+# Fixed free stabilization cannot amplify radical rank (2026-08-10)
+
+Let `w=w(x,a_1,...,a_s)` be a fixed word with `w(1,a_1,...,a_s)=1`, and
+let `L_x(w)` be the total number of occurrences of `x` and `x^(-1)` in
+`w`.  For arbitrary finite-dimensional unitaries `U,A_1,...,A_s`,
+
+`rank(w(U,A_1,...,A_s)-1) <= L_x(w) rank(U-1)`.          `(FWR1)`
+
+Indeed, compare the product defining `w(U,A)` with the product obtained by
+replacing every occurrence of `U^(+-1)` by `1`, and telescope one factor at
+a time.  Every summand is a left-right unitary multiple of either `U-1` or
+`U^(-1)-1`, hence has rank `rank(U-1)`; rank subadditivity proves `(FWR1)`.
+In normalized Hilbert--Schmidt norm this gives
+
+`||w(U,A)-1||_2 <= 2 sqrt(L_x(w) rank(U-1)/d)`.          `(FWR2)`
+
+For the free-stabilized radical element `r=[r_0,a]`, one has `L_x(r)=2`.
+Thus no choice of the free-generator matrix can spread a vanishing-rank
+operator-norm outlier for `r_0` into positive normalized trace mass.
+
+There is also a direct obstruction to the cyclic shear's required spectral
+rotation.  If `omega!=1` and
+
+`||S w(U,A) S^* - omega w(U,A)||_2 -> 0`,               `(FWR3)`
+
+trace invariance forces `tr(w(U,A))->0`.  On the other hand `(FWR1)` gives
+
+`|1-tr(w(U,A))| <= 2 L_x(w) rank(U-1)/d`.               `(FWR4)`
+
+Consequently `(FWR3)` implies
+
+`liminf rank(U-1)/d >= 1/(2 L_x(w))`.                   `(FWR5)`
+
+So free stabilization simplifies the radical element's centralizer to an
+exactly cyclic edge, but it cannot manufacture the missing spectral mass.
+The cyclic balanced-lift route still needs an original defect/rank budget
+of the form `epsilon=o(rho)`, or a genuinely dimension-growing mechanism;
+no fixed word in finitely many auxiliary free generators can bypass rank
+blindness.
