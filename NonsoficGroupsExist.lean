@@ -339,7 +339,6 @@ import NonsoficGroupsExist.KOne.ClassicalKOne
 import NonsoficGroupsExist.KOne.FactorizationCertificate
 import NonsoficGroupsExist.Leavitt.FiniteTypeCountable
 import NonsoficGroupsExist.Leavitt.ShiftEndomorphism
-import NonsoficGroupsExist.Sofic.UniversalCentralExtension
 import NonsoficGroupsExist.Sofic.LocalCentralQuotientLifting
 import NonsoficGroupsExist.Steinberg.KervaireSteinberg
 import NonsoficGroupsExist.Steinberg.BinaryLeavittFinitePresentation

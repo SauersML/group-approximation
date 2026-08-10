@@ -1,5 +1,5 @@
 import NonsoficGroupsExist.Steinberg.Perfect
-import NonsoficGroupsExist.Sofic.UniversalCentralExtension
+import NonsoficGroupsExist.Sofic.CentralCoverInheritance
 
 /-!
 # The Kervaire--Steinberg central-extension argument
@@ -591,23 +591,6 @@ theorem every_centralExtension_splits
     ∃ s : SteinbergGroup (Fin n) R →* Y,
       P.projection.comp s = MonoidHom.id _ :=
   ⟨splittingHom hn P, splittingHom_isSection hn P⟩
-
-/-- The Kervaire--Steinberg recognition theorem for the canonical
-Steinberg projection.  Once the classical centrality of its kernel is
-supplied, the projection is the universal central extension for every
-ring in rank at least five.  This requires no injectivity, and hence no
-vanishing of unstable `K₂(n,R)`. -/
-noncomputable def fin_universalCentralExtension
-    {S : Type} [Ring S] {n : ℕ} (hn : 5 ≤ n)
-    (hker : (SteinbergGroup.projection :
-        SteinbergGroup (Fin n) S →* elementaryGroup (Fin n) S).ker ≤
-      Subgroup.center (SteinbergGroup (Fin n) S)) :
-    UniversalCentralExtension (SteinbergGroup (Fin n) S)
-      (elementaryGroup (Fin n) S) :=
-  UniversalCentralExtension.of_every_centralExtension_splits
-    (SteinbergGroup.centralExtension hker)
-    (SteinbergGroup.fin_isPerfect (by omega))
-    (fun P ↦ every_centralExtension_splits hn P)
 
 /-- The corrected lift of the zero coefficient is the identity, despite the
 fact that the original chosen lift of the identity may be a nontrivial
