@@ -132,6 +132,7 @@ import NonsoficGroupsExist.Matching.FinitePartialBijection
 import NonsoficGroupsExist.Matching.AsymptoticPartialBijection
 import NonsoficGroupsExist.Matching.AsymptoticPartialGroupoid
 import NonsoficGroupsExist.Matching.AsymptoticBlockArrow
+import NonsoficGroupsExist.Matching.FiniteGroupoidBisection
 import NonsoficGroupsExist.Matching.BlockPartialBijection
 import NonsoficGroupsExist.Matching.EdgeEditing
 import NonsoficGroupsExist.Matching.GeneratorCrossing
