@@ -30133,3 +30133,38 @@ TRUE problem is now localized to one explicit involutive shear on the
 centralizer of one primitive hyperbolic radical word; the group-theoretic
 central-radical statement and the group/C*-subalgebra intersection are both
 unconditional.
+
+## The twisted double and the shear-vertex amalgam are finite-index twins
+
+Let the abstract data `B,A,alpha` be as above and put
+
+`K=A semidirect_alpha C_2`,
+`L=B *_A K`,                                           `(IS9)`
+
+where the edge uses the canonical copy of `A` in `K`.  There is a retraction
+
+`pi:L->C_2`
+
+which is trivial on `B` and is the semidirect-product quotient on `K`.
+The Bass--Serre covering for `ker(pi)` has two `B`-vertices, one
+`A`-vertex, and two edges.  Collapsing the `A`-vertex identifies the first
+edge pointwise and the second through `alpha`.  Therefore
+
+`ker(pi) isomorphic B *_((A,id),(A,alpha)) B=J`.       `(IS10)`
+
+Equivalently, the shear generator exchanges the two vertices of `J` and
+
+`L isomorphic J semidirect C_2`.                      `(IS11)`
+
+Consequently
+
+`L is weak MF iff J is weak MF`:                      `(IS12)`
+
+one implication uses closure under subgroups, and the other closure under
+finite extensions.  Thus the infinite-order shear-vertex endpoint recorded
+immediately before `(IS1)` and the twisted-symmetric endpoint are two
+finite-index presentations of the same compatibility obstruction (when
+formed from the same `H,r,A`).  The twisted presentation is useful for
+comparison with Shulman's symmetric theorem; the shear-vertex presentation
+is useful because the central-radical commutator is explicit.  They should
+not be counted as independent analytic routes.
