@@ -32969,3 +32969,74 @@ has no periodic models in the `C_N` direction.  A positive proof must
 therefore approximate the Haar crossed product of the closed subaction by
 non-diagonal matrix models; ordinary coset lamps and periodic algebraic
 points cannot see the required central character.
+
+# Steinberg pushout repairs the symplectic-multiplier proof (2026-08-10)
+
+The conclusion `(SKT2)` and the finite multipliers used in `(FGC1)` admit a
+more direct proof than the LHS-spectral-sequence argument recorded there.
+The direct proof avoids the questionable sentence that splitness alone
+forces every invariant fiber class to survive a spectral sequence.
+
+Work in the stable finite rank of `(SKT1)` and write
+
+`1 -> K_2(R) -> St_r(R) -> EL_r(R) -> 1`.             `(SPM1)`
+
+In this range `(SPM1)` is the universal central extension.  Every ring
+automorphism induced by `A in Sp_(2n)(Z)` acts on elementary generators and
+lifts functorially to `St_r(R)`.  The induced action on the kernel is the
+usual action on `K_2(R)`.
+
+The Laurent fundamental theorem, iterated from the regular ring `F_q`, gives
+
+`K_2(R) ~= K_2(F_q) directSum`
+`  (Z^(2n) tensor K_1(F_q)) directSum exterior^2 Z^(2n)`. `(SPM2)`
+
+The first two summands are finite (`K_2(F_q)=0` and
+`K_1(F_q)=F_q^times`).  On the last summand define the primitive functional
+
+`ell(u wedge v)=u^T J v`.                             `(SPM3)`
+
+It is invariant under `Sp_(2n)(Z)`.  Push out `(SPM1)` along `ell` and use
+that invariance to retain the symplectic action.  This gives a central
+extension
+
+`1 -> Z -> E_ell semidirect Sp_(2n)(Z)`
+`  -> EL_r(R) semidirect Sp_(2n)(Z)=G -> 1`.          `(SPM4)`
+
+The restriction of `(SPM4)` to `Gamma=EL_r(R_+)` splits.  Indeed homotopy
+invariance for the polynomial ring identifies
+
+`K_2(R_+) ~= K_2(F_q)=0`,                             `(SPM5)`
+
+so the composite
+
+`K_2(R_+) -> K_2(R) ->_ell Z`
+
+vanishes; equivalently, the pullback of the pushout extension `(SPM4)` is
+the zero central-extension class.  Choose such a splitting over `Gamma`.
+Relative to a set-theoretic section of `(SPM4)` extending that splitting,
+the associated integral cocycle is identically zero on
+`Gamma x Gamma`.
+
+Finally reduce `(SPM4)` modulo `m`.  Primitivity of `(SPM3)` supplies a
+Laurent-symbol cycle on which the reduced class has value `1 mod m`.
+Therefore, for every `m>=2`, one obtains a normalized multiplier
+
+`omega_m:G x G -> mu_m`                              `(SPM6)`
+
+which is one on `Gamma x Gamma` and remains nontrivial on
+`N=EL_r(R)`.  This is exactly `(FGC1)`.
+
+**Conclusion.**  The arithmetic input to the finite-gauge construction is
+banked without an LHS transgression claim.  The two remaining caveats are
+standard stable-range pins: `(SPM1)` must be invoked in the chosen finite
+rank `r>=2n+3`, and `(SPM2)` is the iterated Laurent fundamental theorem for
+the regular coefficient field.  Neither affects the analytic obstruction
+`(FGR7)`: the multiplier exists, but its gauge cover is not residually
+finite.
+
+Primary source pins for publication: the stable Steinberg extension and
+`K_2=H_2(E,Z)` formulation in Weibel's *K-book*, Chapter III; the Laurent
+fundamental theorem (Bass--Heller--Swan/Quillen) for regular rings; and the
+functoriality of universal central extensions (equivalently, uniqueness of
+lifts of automorphisms of a perfect group to its universal central cover).
