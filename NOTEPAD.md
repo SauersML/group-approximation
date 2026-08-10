@@ -34921,3 +34921,91 @@ change the radical algebraically--for example by the finite-central shear--
 and then prove weak MF of that changed group.  Merely choosing finitely many
 normal generators of the existing free radical cannot produce the central
 spectral projection used in `(IRG7)`.
+
+# A relative Julia lift for an involutive edge intertwiner (2026-08-10)
+
+The proof of Shulman's symmetric-amalgam theorem uses a Julia unitary to
+lift a quotient unitary which commutes with the common edge algebra.  The
+same argument has a useful two-sided form.  It does not by itself solve the
+radical shear, but it isolates the missing datum more sharply than ordinary
+homotopy lifting.
+
+**Lemma (involutive pair-intertwining Julia lift).**  Let `q:B->B/I` be a
+unital C-star quotient.  Fix finitely many contractions
+
+`a_j,b_j in B/I`, `A_j,B_j in B`,
+`q(A_j)=a_j`, `q(B_j)=b_j`.                            `(RIJ1)`
+
+Suppose `u=u^*=u^(-1) in B/I` and
+
+`u a_j u=b_j`, `u b_j u=a_j`                          `(RIJ2)`
+
+for every `j`.  For every `epsilon>0` there is a self-adjoint unitary
+
+`V in M_2(B)`, `q(V)=diag(u,-u)`,                      `(RIJ3)`
+
+such that, with `T_j=diag(A_j,B_j)` and
+`T'_j=diag(B_j,A_j)`,
+
+`||V T_j V-T'_j||<epsilon`                            `(RIJ4)`
+
+for all `j`.
+
+**Proof.**  Lift `u` to a self-adjoint contraction `X in B`.  Let
+`(e_lambda)` be a quasicentral approximate unit of `I`, chosen
+quasicentral for `X` and the finite family in `(RIJ1)`, and put
+
+`X_lambda=(1-e_lambda)X(1-e_lambda)`.                  `(RIJ5)`
+
+The quotient relations `(RIJ2)` say that
+
+`XA_j-B_jX in I`, `XB_j-A_jX in I`.                   `(RIJ6)`
+
+Quasicentrality and the approximate-unit property therefore give
+
+`||X_lambda A_j-B_jX_lambda||->0`,
+`||X_lambda B_j-A_jX_lambda||->0`.                    `(RIJ7)`
+
+It follows by multiplying the two displayed relations once more that
+
+`||[X_lambda^2,A_j]||->0`, `||[X_lambda^2,B_j]||->0`. `(RIJ8)`
+
+Set `Y_lambda=(1-X_lambda^2)^(1/2)`.  Pedersen's
+square-root commutator estimate applied to `(RIJ8)` gives
+
+`||[Y_lambda,A_j]||->0`, `||[Y_lambda,B_j]||->0`.      `(RIJ9)`
+
+The self-adjoint Julia matrix
+
+`V_lambda=[[X_lambda,Y_lambda],[Y_lambda,-X_lambda]]`  `(RIJ10)`
+
+satisfies `V_lambda^2=1`, because `Y_lambda` is a function of
+`X_lambda`, and its quotient is `diag(u,-u)`.  Direct multiplication gives
+
+`V_lambda T_j-T'_j V_lambda`
+` =[[X_lambda A_j-B_jX_lambda, [Y_lambda,B_j]],`
+`    [[Y_lambda,A_j], A_jX_lambda-X_lambda B_j]]`.     `(RIJ11)`
+
+Equations `(RIJ7)--(RIJ9)` make the norm of `(RIJ11)` tend to zero.
+Since `V_lambda` is unitary, this is equivalent to `(RIJ4)` for a late
+enough `lambda`.  End proof.
+
+The lemma contains Shulman's commuting lift as the diagonal case
+`a_j=b_j`.  It also shows exactly what an involutive twisted-double proof
+would need.  If the edge automorphism is `alpha^2=id`, then in any faithful
+representation of the twisted double the vertex-swap unitary satisfies
+
+`u rho(c)u=rho(alpha(c))`.                             `(RIJ12)`
+
+The lemma can lift `(RIJ12)` for a **finite family of edge lifts**.  To
+assemble global vertex asymptotic homomorphisms, however, the two diagonal
+families in `(RIJ10)` must be restrictions of two asymptotic homomorphisms
+on the whole vertex algebra.  Supplying that global second family is exactly
+the compatible-embedding condition `(CRC3)`.  The expression
+`phi(alpha(c))` is defined on the edge, but there is no `alpha(a)` for
+general vertex elements `a`; replacing the second Julia diagonal by the
+first loses `(RIJ7)` on the defect space.  Thus the relative Julia lemma
+removes the unitary-index obstruction but not the vertex-extension
+obstruction.  Any valid use on the cyclic radical shear must still construct
+one antipodal vertex lift, rather than infer it from the involutive flip
+alone.
