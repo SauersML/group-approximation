@@ -30664,3 +30664,74 @@ generalized wreath product using `G acts G/Gamma`; the path construction
 adds a second formulation in which the nonsofic subgroup `P`, its entire
 free-abelian sofic radical, and the residually finite quotient are all
 explicit simultaneously.
+
+# The radical detector cannot enter the regular/mixing cone (2026-08-09)
+
+The Magnus--path model also gives an exact no-go theorem for the most tempting
+hyperlinearity shortcut.  Keep
+
+`Q=D_N`, `Y=Q/Gamma`, `C_1=Z[Y]`,
+
+and let
+
+`a_h=delta_(h Gamma)-delta_Gamma in A<=C_1`
+
+be the strict parallel-edge detector, where `h in N minus Gamma`.  Put
+
+`K_h=Gamma intersection h Gamma h^(-1)`.
+
+By infranormality of the Kun--Thom pair, `K_h` is infinite.
+
+**Theorem (mixing-cone obstruction).**  Let `pi` be any mixing unitary
+representation of `Q` and let
+
+`T:l^2(Q/Gamma)->H_pi`
+
+be a bounded `Q`-equivariant operator.  Then
+
+`T(delta_(h Gamma)-delta_Gamma)=0`.                 `(MCO1)`
+
+Consequently every `Q`-equivariant homomorphism
+
+`A -> Z[Q]^(I)`                                     `(MCO2)`
+
+kills `a_h`, for every index set `I`.  The same is true for every bounded
+intertwiner from the Hilbert completion of `A` into a multiple of the regular
+representation.  In particular, the path detector cannot be embedded into
+an ordinary restricted-wreath lamp module, and no Gaussian/free-probability
+construction whose coefficient representation is contained in a multiple of
+`lambda_Q` can see it.
+
+**Proof.**  If `k in K_h`, then `k Gamma=Gamma` and
+
+`k h Gamma=h Gamma`,
+
+the latter because `h^(-1) k h in Gamma`.  Hence `a_h` is fixed by the
+infinite subgroup `K_h`.  Equivariance makes `T(a_h)` a `K_h`-invariant
+vector in `pi`.
+
+A mixing representation has no nonzero vector fixed by an infinite subgroup:
+if `xi` were such a vector, then
+
+`<pi(k)xi,xi>=||xi||^2`
+
+for every `k in K_h`, contradicting decay of matrix coefficients along any
+sequence of distinct elements of `K_h`.  This proves `(MCO1)`.
+
+For `(MCO2)`, a finitely supported vector in the regular permutation module
+`Z[Q]^(I)` fixed by an infinite subgroup must be zero: each nonzero coordinate
+would have an infinite `K_h`-orbit inside its finite support.  Applying this
+to the image of `a_h` proves the algebraic claim.  Finally `lambda_Q` and all
+of its multiples are mixing, so the Hilbert-space claim follows from
+`(MCO1)`.  End proof.
+
+**Meaning.**  This is stronger than the elementary observation that
+`l^2(Q/Gamma)` is not weakly contained in the regular representation when
+`Gamma` is nonamenable.  It isolates the *specific* vector that must survive
+to detect the full sofic radical and proves that every regular/mixing
+intertwiner annihilates that vector.  Thus stabilization by regular lamps,
+ordinary restricted wreath products, and regular-cone Bogoliubov embeddings
+cannot prove the path group hyperlinear.  A successful FALSE-side model must
+retain a nonmixing `K_h`-fixed sector while making its `h`-translate genuinely
+different--equivalently, it must solve the relative normalized-HS
+instability problem rather than hide it in a regular amplification.
