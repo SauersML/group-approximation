@@ -184,6 +184,106 @@ theorem refineIndex_eq_of_two_mul_overlap_gt_card
     (D.refineIndex q C) E
       (D.two_mul_overlap_gt_card_of_not_mem_majorityLeakageBad q C hC) hE
 
+/-- Components on which the chosen target map fails to be reciprocal. -/
+noncomputable def nonreciprocal (q : Equiv.Perm (S.model n)) :
+    Finset (D.componentIndex n) :=
+  Finset.univ.filter fun C ↦ D.refineIndex q (D.refineIndex q C) ≠ C
+
+/-- Vertex mass carried by the nonreciprocal component locus. -/
+noncomputable def nonreciprocalMass (q : Equiv.Perm (S.model n)) : ℝ :=
+  (D.nonreciprocal q).sum fun C ↦ (C.block.card : ℝ)
+
+/-- For an involution, failure of reciprocity costs leakage.  More precisely,
+the total mass of components with `f (f C) ≠ C`, where `f` is the chosen
+target map, is at most twice the total one-sided leakage. -/
+theorem nonreciprocalMass_le_two_mul_totalLeakage
+    (q : Equiv.Perm (S.model n)) (hsq : q * q = 1) :
+    D.nonreciprocalMass q ≤
+      2 * ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) q C : ℝ) := by
+  classical
+  let R := D.nonreciprocal q
+  let f := D.refineIndex q
+  let e : D.componentIndex n → ℝ := fun C ↦
+    D.componentLeakage (D.blocks n) q C
+  let w : D.componentIndex n → D.componentIndex n → ℝ := fun C E ↦
+    BlockIndex.overlap (D.blocks n) q C E
+  have hsplit (C : D.componentIndex n) :
+      (C.block.card : ℝ) = e C + w C (f C) := by
+    dsimp only [e, w, f]
+    rw [add_comm]
+    exact_mod_cast (D.overlap_refineIndex_add_componentLeakage q C).symm
+  have hsymm (C E : D.componentIndex n) : w C E = w E C := by
+    dsimp only [w]
+    exact_mod_cast BlockIndex.overlap_comm_of_sq (D.blocks n) q hsq C E
+  have hfiber (E : D.componentIndex n) :
+      ∑ C ∈ R.filter (fun C ↦ f C = E), w C E ≤ e E := by
+    let F := R.filter (fun C ↦ f C = E)
+    have hsubset : F ⊆ (Finset.univ : Finset (D.componentIndex n)).erase (f E) := by
+      intro C hC
+      have hCR : C ∈ R := (Finset.mem_filter.mp hC).1
+      have hfCE : f C = E := (Finset.mem_filter.mp hC).2
+      apply Finset.mem_erase.mpr
+      refine ⟨?_, Finset.mem_univ C⟩
+      intro hCeq
+      have hrecip : f (f C) = C := by rw [hfCE, ← hCeq]
+      exact (Finset.mem_filter.mp hCR).2 hrecip
+    have hsubsum :
+        ∑ C ∈ F, w E C ≤
+          ∑ C ∈ (Finset.univ : Finset (D.componentIndex n)).erase (f E),
+            w E C := by
+      exact Finset.sum_le_sum_of_subset_of_nonneg hsubset
+        (fun _ _ _ ↦ by positivity)
+    have htotal := BlockIndex.sum_overlap (D.blocks n) q E
+    have herase := Finset.sum_erase_add
+      (Finset.univ : Finset (D.componentIndex n)) (fun C ↦ w E C)
+        (Finset.mem_univ (f E))
+    have hchosen : w E (f E) + e E = E.block.card := by
+      dsimp only [w, f, e]
+      exact_mod_cast D.overlap_refineIndex_add_componentLeakage q E
+    have herase_eq :
+        ∑ C ∈ (Finset.univ : Finset (D.componentIndex n)).erase (f E),
+          w E C = e E := by
+      dsimp only [w] at htotal hchosen ⊢
+      linarith
+    calc
+      ∑ C ∈ R.filter (fun C ↦ f C = E), w C E =
+          ∑ C ∈ F, w E C := by
+            apply Finset.sum_congr rfl
+            intro C _
+            exact hsymm C E
+      _ ≤ ∑ C ∈ (Finset.univ : Finset (D.componentIndex n)).erase (f E),
+          w E C := hsubsum
+      _ = e E := herase_eq
+  have hoverlap : ∑ C ∈ R, w C (f C) ≤ ∑ E, e E := by
+    calc
+      ∑ C ∈ R, w C (f C) =
+          ∑ E, ∑ C ∈ R.filter (fun C ↦ f C = E), w C (f C) :=
+            (Finset.sum_fiberwise R f (fun C ↦ w C (f C))).symm
+      _ = ∑ E, ∑ C ∈ R.filter (fun C ↦ f C = E), w C E := by
+            apply Finset.sum_congr rfl
+            intro E _
+            apply Finset.sum_congr rfl
+            intro C hC
+            rw [(Finset.mem_filter.mp hC).2]
+      _ ≤ ∑ E, e E := Finset.sum_le_sum fun E _ ↦ hfiber E
+  have hleakage : ∑ C ∈ R, e C ≤ ∑ C, e C :=
+    Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ R)
+      (fun _ _ _ ↦ by positivity)
+  calc
+    D.nonreciprocalMass q = ∑ C ∈ R, (C.block.card : ℝ) := rfl
+    _ = ∑ C ∈ R, (e C + w C (f C)) := by
+      apply Finset.sum_congr rfl
+      intro C _
+      exact hsplit C
+    _ = (∑ C ∈ R, e C) + ∑ C ∈ R, w C (f C) := by
+      rw [Finset.sum_add_distrib]
+    _ ≤ (∑ C, e C) + ∑ C, e C := add_le_add hleakage hoverlap
+    _ = 2 * ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) q C : ℝ) := by
+      dsimp only [e]
+      ring
+
 /-- The target-block label on the whole edited model graph. -/
 def transportedTargetLabel (Q : BlockStructure (S.model n))
     (q : Equiv.Perm (S.model n)) (x : S.model n) : Finset (S.model n) :=
@@ -357,6 +457,55 @@ theorem cheeger_mul_totalLeakage_le_globalCrossing
         (((D.modelGraph n).crossingEdges (transportedTargetLabel Q q)).card : ℝ) := by
     exact_mod_cast D.sum_componentCrossingCount Q q
   rwa [hsum] at h
+
+/-- Any sequence of permutations with negligible crossings of the edited
+component graph has negligible total refinement leakage.  This form applies
+to external approximate centralizers as well as ambient compressors. -/
+theorem totalLeakage_negligible_of_crossing
+    (q : ∀ n, Equiv.Perm (S.model n))
+    (hcross : Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      fun n ↦ (((D.modelGraph n).crossingEdges
+        (transportedTargetLabel (D.blocks n) (q n))).card : ℝ)) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      fun n ↦ ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) (q n) C : ℝ) := by
+  have hscaled := Negligible.const_mul (4 / D.cheeger) hcross
+  refine Vanishing.squeeze (fun n ↦ div_nonneg (by positivity) (by positivity))
+    (fun n ↦ ?_) hscaled
+  have hrefine := D.cheeger_mul_totalLeakage_le_globalCrossing
+    (D.blocks n) (q n)
+  have hle : (∑ C : D.componentIndex n,
+      (D.componentLeakage (D.blocks n) (q n) C : ℝ)) ≤
+      (4 / D.cheeger) *
+        (((D.modelGraph n).crossingEdges
+          (transportedTargetLabel (D.blocks n) (q n))).card : ℝ) := by
+    rw [div_mul_eq_mul_div]
+    apply (le_div_iff₀ D.cheeger_pos).2
+    rw [mul_comm]
+    exact hrefine
+  apply div_le_div_of_nonneg_right hle
+  positivity
+
+/-- Exact involutivity plus negligible total leakage makes failure of the
+chosen component target map to square to the identity negligible in vertex
+mass. -/
+theorem nonreciprocalMass_negligible_of_totalLeakage
+    (q : ∀ n, Equiv.Perm (S.model n))
+    (hsq : ∀ n, q n * q n = 1)
+    (hleak : Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      fun n ↦ ∑ C : D.componentIndex n,
+        (D.componentLeakage (D.blocks n) (q n) C : ℝ)) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      fun n ↦ D.nonreciprocalMass (q n) := by
+  have htwice := Negligible.const_mul 2 hleak
+  refine Vanishing.squeeze
+    (fun n ↦ div_nonneg (by
+      unfold nonreciprocalMass
+      positivity) (by positivity))
+    (fun n ↦ ?_) htwice
+  apply div_le_div_of_nonneg_right
+  · exact D.nonreciprocalMass_le_two_mul_totalLeakage (q n) (hsq n)
+  · positivity
 
 end ExpanderDecomposition
 end NonsoficGroupsExist

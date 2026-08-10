@@ -71,23 +71,7 @@ theorem compressorLeakage_negligible
       fun n ↦ ∑ A : D.componentIndex n,
         (D.componentLeakage (D.blocks n) (S.map n q) A : ℝ) := by
   have hcross := C.compressorCrossing_negligible S D q hq
-  have hscaled := Negligible.const_mul (4 / D.cheeger) hcross
-  refine Vanishing.squeeze (fun n ↦ div_nonneg (by positivity) (by positivity))
-    (fun n ↦ ?_) hscaled
-  have hrefine := D.cheeger_mul_totalLeakage_le_globalCrossing
-    (D.blocks n) (S.map n q)
-  have hle : (∑ A : D.componentIndex n,
-      (D.componentLeakage (D.blocks n) (S.map n q) A : ℝ)) ≤
-      (4 / D.cheeger) *
-        (((D.modelGraph n).crossingEdges
-          (ExpanderDecomposition.transportedTargetLabel
-            (D.blocks n) (S.map n q))).card : ℝ) := by
-    rw [div_mul_eq_mul_div]
-    apply (le_div_iff₀ D.cheeger_pos).2
-    rw [mul_comm]
-    exact hrefine
-  apply div_le_div_of_nonneg_right hle
-  positivity
+  exact D.totalLeakage_negligible_of_crossing (fun n ↦ S.map n q) hcross
 
 /-- For every compressor, components whose chosen target fails to contain a
 strict majority of the transported source carry negligible total vertex
