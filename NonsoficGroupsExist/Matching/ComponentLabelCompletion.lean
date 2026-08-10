@@ -89,7 +89,6 @@ noncomputable def componentLabelEditBudget
         S.map n t.1 (x : S.model n) ∉ C.block).card +
     2 * (D.componentEditWitness n C).unmatchedCount
 
-set_option maxHeartbeats 4000000 in
 /-- The completed component generator graph is within the explicit local
 budget of the edited expanding component graph. -/
 theorem componentCompletedGraph_editDistance_le
