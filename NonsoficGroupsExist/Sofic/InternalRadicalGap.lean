@@ -71,6 +71,21 @@ abbrev restrictedApproximation (A : WeakMFApproximation H) (N : Subgroup H) :
     WeakMFApproximation N :=
   A.comap N.subtype Subtype.val_injective
 
+/-- Every subgroup element asymptotically fixes the retained top spectral
+subspace.  Generation is used only inside the subgroup; no ambient
+generation hypothesis is needed. -/
+theorem subgroupTopSpectralDisplacement_vanishing
+    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N) (x : N) :
+    KazhdanCornerMatrices.OpNormVanishing
+      (restrictedApproximation A N)
+      (fun n ↦ KazhdanCornerMatrices.topSpectralDisplacement
+        (restrictedApproximation A N) D.S D.cutoff n x) := by
+  apply KazhdanCornerMatrices.topSpectralDisplacement_vanishing_of_mem_closure
+    D.kazhdan D.S (by rfl) D.one_mem D.epsilon_le_one D.symmetric
+    (restrictedApproximation A N) D.gap_lt_cutoff
+  rw [D.generates]
+  exact Subgroup.mem_top x
+
 /-- The subgroup moving-coordinate type cut out inside the ambient matrix
 model. -/
 noncomputable abbrev MovingIndex (A : WeakMFApproximation H)
