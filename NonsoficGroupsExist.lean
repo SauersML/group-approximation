@@ -339,6 +339,7 @@ import NonsoficGroupsExist.Sofic.SoficTransfer
 import NonsoficGroupsExist.Sofic.HyperlinearResidualDetector
 import NonsoficGroupsExist.Sofic.FiniteResidualKernel
 import NonsoficGroupsExist.Sofic.InternalRadicalGap
+import NonsoficGroupsExist.Sofic.AuxiliaryClassSeparation
 import NonsoficGroupsExist.Sofic.StarGaussian
 import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.StructuralProfile
