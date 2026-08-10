@@ -31853,3 +31853,72 @@ genuinely twisted extension (as in the shear construction), or arise one
 homological degree higher from an extension class.  This explains
 structurally why every attempted untwisted centralization collapses before
 any matrix-rank issue is reached.
+
+# The relative-abelianization formula for every symmetric double (2026-08-10)
+
+The preceding central-quotient calculation has a coefficient-free general
+form.  Let
+
+`Gamma <= N normal G`,
+`D_Gamma=G *_Gamma G`, `D_N=G *_N G`,
+`R=ker(D_Gamma->D_N)`.
+
+As in `(ARD2)`, Bass--Serre chains give a natural `Z[D_N]`-module
+isomorphism
+
+`R_ab ~= A=ker(Z[D_N/Gamma] -> Z[D_N/N])`.             `(RAC1)`
+
+No perfectness hypothesis is needed for the central quotient.
+
+**Theorem (relative-abelianization formula).**  There is a natural
+isomorphism
+
+`R/[R,D_Gamma] ~= coker(Gamma_ab -> N_ab)`.             `(RAC2)`
+
+In particular, every homomorphism out of `D_Gamma` whose image of `R` is
+central kills `R` if and only if `Gamma_ab -> N_ab` is onto.
+
+**Proof.**  Take `D_N`-coinvariants in `(RAC1)`.  The long exact homology
+sequence of
+
+`0 -> A -> Z[D_N/Gamma] -> Z[D_N/N] -> 0`
+
+contains
+
+`H_1(D_N,Z[D_N/Gamma]) -> H_1(D_N,Z[D_N/N])`
+` -> A_(D_N) -> H_0(D_N,Z[D_N/Gamma])`
+` -> H_0(D_N,Z[D_N/N])`.                              `(RAC3)`
+
+By Shapiro, the first two terms are respectively `Gamma_ab` and `N_ab`,
+and the displayed map is the map induced by inclusion.  Both permutation
+modules are transitive, so the final two terms are `Z` and their map is the
+identity.  Exactness therefore identifies
+
+`A_(D_N) ~= coker(Gamma_ab -> N_ab)`.                  `(RAC4)`
+
+Conjugation by `R` is trivial on `R_ab`; hence its `D_Gamma`-coinvariants
+are the same as the `D_N`-coinvariants of `A`, while
+
+`(R_ab)_(D_Gamma)=R/[R,D_Gamma]`.
+
+This proves `(RAC2)`.  The final assertion follows because centralizing the
+image of `R` kills `[R,D_Gamma]`.  Conversely, the universal quotient by
+`[R,D_Gamma]` retains exactly the group in `(RAC2)` as a central subgroup.
+End proof.
+
+**Exact design consequence.**  If the Kun--Thom centralizer theorem forces
+`R` into the full sofic radical and `D_N` is sofic, then in
+
+`C=D_Gamma/[R,D_Gamma]`
+
+the central subgroup
+
+`Z=R/[R,D_Gamma] ~= coker(Gamma_ab -> N_ab)`            `(RAC5)`
+
+is the full sofic radical and `C/Z~=D_N`.  Thus a nonzero cokernel produces
+a nonsofic central extension of the sofic group `D_N`.  This is a
+structural reduction, not yet a hyperlinear counterexample: MF and
+hyperlinearity do not automatically pass to this quotient/central
+extension.  It nevertheless gives the exact algebraic target for the
+next construction.  The binary Laurent pair has `Gamma_ab=N_ab=0`, so its
+gate is closed for the strongest possible reason.
