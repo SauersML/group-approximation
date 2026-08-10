@@ -127,6 +127,7 @@ import NonsoficGroupsExist.Matching.BlockTransport
 import NonsoficGroupsExist.Matching.ComponentRefinement
 import NonsoficGroupsExist.Matching.DecompositionRefinement
 import NonsoficGroupsExist.Matching.FiniteGroupoidCounting
+import NonsoficGroupsExist.Matching.FiniteGroupoidPresentation
 import NonsoficGroupsExist.Matching.FinitePartialBijection
 import NonsoficGroupsExist.Matching.BlockPartialBijection
 import NonsoficGroupsExist.Matching.EdgeEditing
