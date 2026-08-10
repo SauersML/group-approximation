@@ -775,6 +775,71 @@ theorem totalCommutationDefect_swap_le_partialTotalDefect
   exact card_swapEquivarianceDefect_le b
     (fun _ : Unit ↦ σY q) (fun _ : Unit ↦ σZ q)
 
+/-- Exact Kazhdan improvement for a composite of two cluster candidates.
+The single scale-free numerical condition `48 h < ε²` makes the invariant
+core both full and closer than the cluster radius. -/
+theorem exactCoreRepair_trans_candidate_and_close
+    {X : FiniteModel}
+    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, 0} G Q ε)
+    (hε : 0 < ε)
+    (σX : G →* Equiv.Perm X) (σY : G →* Equiv.Perm Y)
+    (σZ : G →* Equiv.Perm Z)
+    (htransX : ∀ x y : X, ∃ g : G, σX g x = y)
+    (htransZ : ∀ x y : Z, ∃ g : G, σZ g x = y)
+    {h : ℝ} {m : ℕ} (hh : 0 < h) (hm : 0 < m)
+    (hnumeric : 48 * h < ε ^ 2)
+    (hsizeX : 17 * m ≤ Fintype.card X)
+    (f : FinitePartialBijection X Y)
+    (hf : f.IsClusterCandidate
+      (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σY q.1) h m)
+    (g : FinitePartialBijection Y Z)
+    (hg : g.IsClusterCandidate
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m) :
+    (exactCoreRepair σX σZ (f.trans g)).IsClusterCandidate
+        (fun q : ↥Q ↦ σX q.1) (fun q : ↥Q ↦ σZ q.1) h m ∧
+      (exactCoreRepair σX σZ (f.trans g)).twoSidedDisagreement
+        (f.trans g) < 2 * m := by
+  let b := f.trans g
+  let D := totalCommutationDefect (sumActionHom σX σZ) Q b.swapPerm
+  have hpartial := partialTotalDefect_trans_lt_two_mul
+    σX σY σZ Q f hf g hg
+  have hDnat := totalCommutationDefect_swap_le_partialTotalDefect
+    σX σZ Q b
+  have hDle : (D : ℝ) ≤ (partialTotalDefect σX σZ Q b : ℝ) := by
+    exact_mod_cast hDnat
+  have hDlt : (D : ℝ) < 2 * h * m := hDle.trans_lt (by
+    simpa only [b] using hpartial)
+  have hfSelf := hf.selfSmall
+  have hgSelf := hg.selfSmall
+  have hfSource : f.sourceDefect < 2 * m := by omega
+  have hgSource : g.sourceDefect < 2 * m := by omega
+  have hbDefectLe : b.sourceDefect ≤ f.sourceDefect + g.sourceDefect := by
+    exact sourceDefect_trans_le f g
+  have hbDefect : b.sourceDefect < 4 * m := by omega
+  have hbSourceLe : b.source.card ≤ Fintype.card X := Finset.card_le_univ _
+  have hbSplit : b.sourceDefect + b.source.card = Fintype.card X := by
+    unfold FinitePartialBijection.sourceDefect
+    omega
+  have hmSource : m ≤ b.source.card := by omega
+  have hmReal : 0 < (m : ℝ) := by exact_mod_cast hm
+  have hmSourceReal : (m : ℝ) ≤ b.source.card := by exact_mod_cast hmSource
+  have hεsq : 0 < ε ^ 2 := sq_pos_of_pos hε
+  have hfullBound :
+      24 * (totalCommutationDefect
+          (sumActionHom σX σZ) Q b.swapPerm : ℝ) <
+        ε ^ 2 * (b.source.card : ℝ) := by
+    dsimp only [D] at hDlt
+    nlinarith
+  have hcloseBound :
+      48 * (totalCommutationDefect
+          (sumActionHom σX σZ) Q b.swapPerm : ℝ) <
+        ε ^ 2 * (2 * m : ℕ) := by
+    dsimp only [D] at hDlt
+    push_cast
+    nlinarith
+  exact exactCoreRepair_candidate_and_close_of_kazhdan
+    hQ hε σX σZ htransX htransZ b hh hm hfullBound hcloseBound
+
 /-- Retaining every element of `Q` as a distinct label costs at most a
 factor `|Q|` relative to the bad-arc set indexed by the finite image of the
 action.  The explicit first coordinate makes the charge injective even when

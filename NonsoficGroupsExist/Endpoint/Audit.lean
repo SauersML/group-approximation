@@ -48,6 +48,7 @@ import NonsoficGroupsExist.Matching.PartialBijectionSwap
 import NonsoficGroupsExist.Matching.PartialSwapEquivariance
 import NonsoficGroupsExist.Matching.PartialBijectionExtraction
 import NonsoficGroupsExist.Matching.ExactPartialKazhdanRepair
+import NonsoficGroupsExist.Matching.ExactKazhdanPartialClusterSystem
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -367,3 +368,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.ExactPartialKazhdanRepair.partialTotalDefect_eq_tagged
 #print axioms NonsoficGroupsExist.ExactPartialKazhdanRepair.partialTotalDefect_trans_le
 #print axioms NonsoficGroupsExist.ExactPartialKazhdanRepair.partialTotalDefect_trans_lt_two_mul
+#print axioms NonsoficGroupsExist.ExactPartialKazhdanRepair.exactCoreRepair_trans_candidate_and_close
+#print axioms NonsoficGroupsExist.PartialClusterSystem.ofExactTransitiveKazhdanActions
+#print axioms NonsoficGroupsExist.PartialClusterSystem.exactKazhdanPresentation
