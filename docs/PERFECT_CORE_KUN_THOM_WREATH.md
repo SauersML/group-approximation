@@ -373,6 +373,106 @@ The open construction is therefore smaller than hyperlinearity of the
 whole cover: it is enough to produce one Connes-embeddable character which
 sees the single central sign.
 
+## 6. Character rigidity: the one-character target is the CAR trace
+
+The last formulation looks weaker than embedding the canonical negative
+Clifford crossed product, but in fact the two conditions are equivalent.
+
+Let \(A_{\mathrm{CAR}}\) be the quotient of the complex group algebra of
+\(C_0(X)\) by \(z+1\).  Equivalently, it is the twisted group algebra of
+the symplectic \(\mathbb F_2\)-space \((I_X,\beta)\).
+
+**Lemma 5.**  The algebra \(A_{\mathrm{CAR}}\) is the CAR algebra and has a
+unique tracial state \(\tau_{\mathrm{CAR}}\).  On Clifford monomials,
+
+\[
+ \tau_{\mathrm{CAR}}(\widetilde u)=0
+ \quad(0\ne u\in I_X),\qquad
+ \tau_{\mathrm{CAR}}(z)=-1.                           \tag{22}
+\]
+
+**Proof.**  The form \(\beta\) is nondegenerate and alternating.  Choose a
+symplectic basis
+
+\[
+ I_X=\bigoplus_{n\ge1}\langle p_n,q_n\rangle.
+\]
+
+The twisted algebra on the first \(n\) hyperbolic planes is
+\(M_{2^n}(\mathbb C)\), with the standard Pauli realization.  The natural
+inclusions are the unital tensor-factor inclusions, so their inductive limit
+is the \(2^\infty\) UHF, or CAR, algebra.  It has a unique trace, and the
+Pauli monomials other than the identity have trace zero. \(\square\)
+
+Let
+
+\[
+ \tau_{\mathrm{can}}(cu_g)=
+ \begin{cases}
+  \tau_{\mathrm{CAR}}(c),&g=1,\\
+  0,&g\ne1,
+ \end{cases}                                          \tag{23}
+\]
+
+be the canonical trace on the negative Clifford crossed product
+
+\[
+ A_{\mathrm{CAR}}\rtimes G.
+\]
+
+**Theorem 6 (no character shortcut).**  The following are equivalent:
+
+1. \(E_{\mathrm{Cl},0}\) has a Connes-embeddable character \(\chi\) with
+   \(\chi(z)\ne1\);
+2. it has a Connes-embeddable character \(\chi_-\) with \(\chi_-(z)=-1\);
+3. the canonical trace \(\tau_{\mathrm{can}}\) in (23) is
+   Connes-embeddable.
+
+**Proof.**  The implication \(3\Rightarrow2\Rightarrow1\) is immediate.
+For \(1\Rightarrow2\), realize \(\chi\) in a tracial matrix ultraproduct.
+The central involution \(z\) has spectral projections
+
+\[
+ e_+=(1+z)/2,\qquad e_-=(1-z)/2.
+\]
+
+The inequality \(\chi(z)\ne1\) says that \(e_-\) has positive trace.
+Compressing to this central corner and normalizing the trace gives a
+Connes-embeddable character \(\chi_-\) with \(\chi_-(z)=-1\).
+
+For \(2\Rightarrow3\), Lemma 5 forces
+
+\[
+ \chi_-|_{C_0(X)}=\tau_{\mathrm{CAR}}.                \tag{24}
+\]
+
+Let \(\tau_G\) be the regular character of \(G\).  It is
+Connes-embeddable because \(G\) is residually finite.  Pull it back through
+the retraction \(r:E_{\mathrm{Cl},0}\to G\), and take the pointwise product
+
+\[
+ \psi(e)=\chi_-(e)\tau_G(r(e)).                       \tag{25}
+\]
+
+Pointwise products of Connes-embeddable characters are
+Connes-embeddable: take tensor products of their matrix microstates.  If
+\(e=cu_g\), equation (25) vanishes for \(g\ne1\), while (24) gives
+\(\psi(c)=\tau_{\mathrm{CAR}}(c)\) for \(g=1\).  Hence
+\(\psi=\tau_{\mathrm{can}}\). \(\square\)
+
+Thus Theorem 4 is a useful one-witness consequence, but it does not weaken
+the model-production problem.  The exact remaining Clifford certificate is
+
+\[
+ \boxed{
+ \tau_{\mathrm{can}}\text{ on }
+ A_{\mathrm{CAR}}\rtimes G\text{ is Connes-embeddable}.}
+\]
+
+Any proposed near-character, singular-state, or noncanonical joining route
+which sees \(z\) automatically yields this canonical trace after central
+compression and tensoring with the regular retraction.
+
 ## References
 
 * A. Thom, *Examples of hyperlinear groups without factorization property*,

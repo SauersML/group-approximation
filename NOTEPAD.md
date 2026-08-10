@@ -29354,3 +29354,48 @@ error into vanishing global error while accumulating the desired central
 curvature to order one.  Conversely an `Omega(epsilon)` curvature defect is
 not removed by this amplification and remains the concrete obstruction to
 audit in the opposite-chamber cell.
+
+# The even Clifford one-character endpoint equals the canonical CAR trace (2026-08-09)
+
+The perfect even Clifford cover has no genuinely weaker noncanonical
+character shortcut.  Let `C_0(X)` be its even Clifford lamp group, let
+`I_X` be the even `F_2` augmentation module, and let
+
+`beta(u,v)=sum_x u_x v_x mod 2`.
+
+In the `z=-1` central sector, the group algebra of `C_0(X)` is the twisted
+group algebra of the countable nondegenerate symplectic space
+`(I_X,beta)`.  A symplectic exhaustion identifies it with
+
+`M_2(C) -> M_4(C) -> ... -> M_(2^n)(C) -> ...`,
+
+so its completion is the CAR algebra and has a unique trace.  Every
+nonidentity symplectic monomial has trace zero.
+
+**Theorem (no Clifford character shortcut).**  The following are equivalent:
+
+1. the perfect even Clifford cover has a CE character `chi` with
+   `chi(z)!=1`;
+2. it has a CE character `chi_-` with `chi_-(z)=-1`;
+3. the canonical trace of
+   `CAR(I_X,beta) crossed_product G` is CE.
+
+For `(1)=>(2)`, compress the tracial-ultraproduct representation by the
+positive-trace central projection `(1-z)/2`.  For `(2)=>(3)`, unique trace
+forces the restriction to the lamp algebra to be the canonical CAR trace.
+Multiply `chi_-` pointwise by the pullback, through the retraction to `G`,
+of the regular character of the residually finite group `G`.  Tensor
+products preserve CE characters.  This product kills every coefficient
+with nontrivial `G` part and leaves the unique CAR trace on the lamp part,
+so it is exactly the canonical crossed-product trace.  The reverse
+implications are immediate.
+
+Consequently the earlier statement that an arbitrary `z`-seeing
+amenable-near character is strictly weaker than the canonical CAR target
+was overstated.  It has weaker input syntax, but any successful instance
+automatically manufactures the canonical CAR trace.  The exact surviving
+fixed-sign certificate remains:
+
+`the canonical trace on CAR(I_X,beta) crossed_product G is CE`.
+
+Full proof: `docs/PERFECT_CORE_KUN_THOM_WREATH.md`, Lemma 5 and Theorem 6.
