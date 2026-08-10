@@ -31005,6 +31005,102 @@ generalized-Bernoulli algebra for every `t>0`.  Its value is instead an exact
 faithful trace on the smaller finitely generated path group whose CE status
 is equivalent to hyperlinearity of the split integral wreath candidate.
 
+# Stable Julia transposition isolates the twisted-double obstruction (2026-08-09)
+
+Shulman's index-cancelling lift has a useful relative form.  It handles a
+pair of already matched edge lifts, but it does not create the missing
+twisted extension from the vertex algebra.  This distinction prevents an
+incorrect automatic proof that every involutively twisted symmetric double
+of an MF algebra is MF.
+
+Let `q:B->B/I` be a quotient map.  Suppose `u in B/I` is unitary and
+
+`u^* a_j u=b_j`                                      `(SJT1)`
+
+for `j=1,...,m`.  Let `A_j,B_j in B` lift `a_j,b_j`.
+
+**Lemma (stable Julia transposition).**  For every `epsilon>0` there is a
+unitary `V in M_2(B)` such that
+
+`q(V)=diag(u,-u^*)`                                   `(SJT2)`
+
+and
+
+`|| diag(A_j,B_j)V-V diag(B_j,A_j) ||<epsilon`         `(SJT3)`
+
+for every `j`.  Equivalently, `V` approximately conjugates the paired lift
+`diag(A_j,B_j)` to its transposition `diag(B_j,A_j)`.
+
+**Proof.**  Lift `u` to a contraction `X in B`, and choose a quasicentral
+approximate unit `(e_lambda)` for `I`.  Put
+
+`X_lambda=X(1-e_lambda)`.
+
+The two intertwining errors
+
+`A_j X_lambda-X_lambda B_j`,
+`B_j X_lambda^*-X_lambda^* A_j`
+
+tend to zero in norm along a suitable subnet.  Indeed their images in the
+quotient vanish by `(SJT1)`; multiplication by `1-e_lambda` kills the
+resulting ideal terms, while quasicentrality kills the commutator terms.
+The identities
+
+`[A_j,X_lambda X_lambda^*]`
+` =(A_jX_lambda-X_lambda B_j)X_lambda^*`
+`  +X_lambda(B_jX_lambda^*-X_lambda^*A_j)`,
+
+and the analogous identity for `[B_j,X_lambda^*X_lambda]`, show that these
+two commutators can simultaneously be made arbitrarily small.
+
+For such a choice of `lambda`, form the Julia unitary
+
+`V=[[X_lambda, (1-X_lambda X_lambda^*)^(1/2)],`
+`   [(1-X_lambda^*X_lambda)^(1/2), -X_lambda^*]]`.
+
+Its quotient is `(SJT2)`.  In the difference in `(SJT3)`, the diagonal
+entries are exactly the two intertwining errors above.  The off-diagonal
+entries are respectively the commutators of `A_j` and `B_j` with the two
+square roots.  Pedersen's square-root commutator inequality bounds those by
+a universal constant times the square roots of the preceding commutator
+norms.  Choosing the errors sufficiently small proves `(SJT3)`.  End proof.
+
+Here is the precise implication for the centralizer shear `(IS8)`.  Let
+`alpha:C->C` be involutive and consider
+
+`A *_((C,id),(C,alpha)) A`.                           `(SJT4)`
+
+In a faithful representation of `(SJT4)`, orbit-doubling makes the two
+vertex representations unitarily conjugate, and on `C` the conjugator
+implements `alpha`.  Since `A` is MF, both vertex representations admit
+discrete asymptotic lifts.  The lemma makes those lifts compatible provided
+they can first be chosen in paired form
+
+`(A_j,B_j)=(lift(c_j),lift(alpha(c_j)))`.              `(SJT5)`
+
+That proviso is the entire remaining issue.  Independent lifts have the
+correct common image in `B/I`, but their differences lie only in `I`; they
+need not tend to zero in norm.  An ideal-supported projection can converge
+strongly to zero while retaining norm one, so no quasicentral cutoff erases
+this mismatch.  The Julia unitary swaps the two ideal profiles; it does not
+equalize them.
+
+Consequently Shulman's untwisted proof cannot simply be repeated with a
+block swap to prove `(SJT4)` MF.  For the explicit centralizer shear, the
+live analytic certificate remains a **balanced relative lift** of the
+involution
+
+`alpha(c,z^e)=(c,z^(e+ell(c) mod 2))`
+
+on `C^*(C_D(r) times C_2)`: in the `z=-1` sector the odd and even
+`ell`-profiles must have asymptotically matching matrix multiplicities.
+Once that balance is supplied, `(SJT3)` gives the compatible corona
+embeddings required by Shulman's general amalgamation criterion, and the
+central-radical corner gives a hyperlinear nonsofic quotient.  Thus the
+remaining obstruction is not a `K_1` index--the stabilization cancels that
+completely--but the normalized rank/multiplicity profile of the two
+relative edge lifts.
+
 # An infinitesimal heat model is enough (2026-08-09)
 
 The positive-time GNS jump does **not** eliminate perturbative model
