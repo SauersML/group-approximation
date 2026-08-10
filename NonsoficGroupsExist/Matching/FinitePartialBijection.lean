@@ -395,6 +395,79 @@ noncomputable def disagreement (b c : FinitePartialBijection Y Z) : Finset Y :=
     ∀ hb : y ∈ b.source, ∀ hc : y ∈ c.source,
       b.apply y hb ≠ c.apply y hc
 
+@[simp] theorem mem_disagreement (b c : FinitePartialBijection Y Z) (y : Y) :
+    y ∈ b.disagreement c ↔
+      ∀ hb : y ∈ b.source, ∀ hc : y ∈ c.source,
+        b.apply y hb ≠ c.apply y hc := by
+  classical
+  simp [disagreement]
+
+/-- Disagreement is symmetric, including at points missing from one of the
+two domains. -/
+theorem disagreement_comm (b c : FinitePartialBijection Y Z) :
+    b.disagreement c = c.disagreement b := by
+  classical
+  ext y
+  simp only [mem_disagreement]
+  constructor
+  · intro h hc hb
+    exact (h hb hc).symm
+  · intro h hb hc
+    exact (h hc hb).symm
+
+/-- Self-disagreement is exactly the complement of the source. -/
+theorem disagreement_self (b : FinitePartialBijection Y Z) :
+    b.disagreement b = Finset.univ \ b.source := by
+  classical
+  ext y
+  simp only [mem_disagreement, Finset.mem_sdiff, Finset.mem_univ, true_and]
+  constructor
+  · intro h hy
+    exact (h hy hy) rfl
+  · intro hy hb
+    exact (hy hb).elim
+
+/-- Pointwise triangle inclusion for disagreement sets. -/
+theorem disagreement_subset_union (b c d : FinitePartialBijection Y Z) :
+    b.disagreement d ⊆ b.disagreement c ∪ c.disagreement d := by
+  classical
+  intro y hyd
+  by_contra hnot
+  have hnbc : y ∉ b.disagreement c := by
+    intro h
+    exact hnot (Finset.mem_union_left _ h)
+  have hncd : y ∉ c.disagreement d := by
+    intro h
+    exact hnot (Finset.mem_union_right _ h)
+  rw [mem_disagreement] at hnbc hncd hyd
+  push Not at hnbc hncd
+  obtain ⟨hb, hc, hbc⟩ := hnbc
+  obtain ⟨hc', hd, hcd⟩ := hncd
+  apply hyd hb hd
+  calc
+    b.apply y hb = c.apply y hc := hbc
+    _ = c.apply y hc' := by congr
+    _ = d.apply y hd := hcd
+
+/-- Cardinal triangle inequality for finite disagreement. -/
+theorem card_disagreement_le (b c d : FinitePartialBijection Y Z) :
+    (b.disagreement d).card ≤
+      (b.disagreement c).card + (c.disagreement d).card := by
+  calc
+    (b.disagreement d).card ≤
+        (b.disagreement c ∪ c.disagreement d).card :=
+      Finset.card_le_card (disagreement_subset_union b c d)
+    _ ≤ (b.disagreement c).card + (c.disagreement d).card :=
+      Finset.card_union_le _ _
+
+/-- The cardinality of self-disagreement is the source defect. -/
+@[simp] theorem card_disagreement_self (b : FinitePartialBijection Y Z) :
+    (b.disagreement b).card = b.sourceDefect := by
+  classical
+  rw [disagreement_self, sourceDefect]
+  rw [Finset.card_sdiff]
+  simp
+
 /-- Failures of equivariance, counting a missing source endpoint as a
 failure, for a finite family of labels. -/
 noncomputable def equivarianceDefect {L : Type*} [Fintype L]
