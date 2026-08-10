@@ -51,6 +51,7 @@ import NonsoficGroupsExist.Matching.ExactPartialKazhdanRepair
 import NonsoficGroupsExist.Matching.ExactKazhdanPartialClusterSystem
 import NonsoficGroupsExist.Matching.RelationPartialClusterRepair
 import NonsoficGroupsExist.Matching.FiniteGroupoidPartialBisection
+import NonsoficGroupsExist.Matching.FiniteGroupoidFunctor
 import NonsoficGroupsExist.Sofic.InvolutiveCentralizerComponents
 import NonsoficGroupsExist.Leavitt.StrictCentralCoverWitness
 import NonsoficGroupsExist.Leavitt.IntegralGeneration
@@ -383,3 +384,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.FiniteGroupoid.PartialBisection.complete_hom_of_mem
 #print axioms NonsoficGroupsExist.FiniteGroupoid.partialPullbackBisectionOfCardinalPreserving
 #print axioms NonsoficGroupsExist.FiniteGroupoid.completePartialPullbackBisectionOfCardinalPreserving
+#print axioms NonsoficGroupsExist.GroupoidPresentation.FunctorData.toFunctor
+#print axioms NonsoficGroupsExist.GroupoidPresentation.FunctorData.faithful
