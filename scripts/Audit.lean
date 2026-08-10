@@ -243,6 +243,24 @@ declaration introduced it, not to widen this list. -/
 def allowedAxioms : List Name :=
   [``propext, ``Classical.choice, ``Quot.sound]
 
+/-- Named propositions that transcribe theorems of the literature which this
+repository does not prove.  Under the same custody as `allowedAxioms`: the
+list lives in the lint, so the corpus cannot untag its own citations.
+
+Any user-written declaration on the trust surface that takes one of these --
+or anything that unfolds to mention one -- as a premise, or embeds one in its
+conclusion other than by proving it, is a LITERATURE_INPUT finding and fails
+the audit.  The kernel cannot make this distinction: such an implication is
+genuinely proved, and its axiom report is clean.  The point of the gate is
+that a conditional result must not LIVE on the trust surface, however honest
+its type: it belongs in `Superseded`, or its antecedent belongs in the
+corpus as a theorem, after which its name comes off this list.
+
+`CentralizerNormalization` is the transcription of Kun--Thom,
+arXiv:2608.06222v1, Theorem 4.1. -/
+def literatureInputNames : List Name :=
+  [``CentralizerNormalization]
+
 /-- The public results.  Their individual closures are reported separately so
 that a CI log records exactly what each headline theorem rests on. -/
 def headlineTheorems : List Name :=
@@ -349,7 +367,10 @@ def scanTags : List String :=
   -- Prose calling a result conditional on a statement with no Prop premise.
   -- Lives here rather than in `check.py` because only the environment can see
   -- both the docstring and the type; see `Scan.disclaimerPhrases`.
-  , "STALE_DISCLAIMER" ]
+  , "STALE_DISCLAIMER"
+  -- A premise or embedded conclusion mentioning a tagged transcription of an
+  -- unproved literature theorem; the roster is `literatureInputNames` above.
+  , "LITERATURE_INPUT" ]
 
 /-- Keep this high enough that a failing log names every hit rather than a
 sample of them. -/
@@ -359,6 +380,8 @@ run_cmd do
   let env ← getEnv
   let findings ← liftTermElabM <|
     Audit.allScans env `NonsoficGroupsExist allowedAxioms
+  let findings := findings ++
+    Audit.literatureScan env `NonsoficGroupsExist literatureInputNames
 
   for tag in scanTags do
     logInfo m!"{tag}: {(findings.filter (fun f => f.tag == tag)).size}"

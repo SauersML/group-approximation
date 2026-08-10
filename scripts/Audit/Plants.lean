@@ -169,4 +169,60 @@ findings, every one of them true. -/
 theorem cleanConditionalOnItsPremise (h : (0 : Nat) = 0) : ∃ n : Nat, n = 0 :=
   ⟨0, h⟩
 
+/-! ## Literature-input plants
+
+The real roster of tagged transcriptions is driver config; the calibration
+tags `PlantedLiteratureInput` below, so it needs no corpus.  The witness
+matters: it makes LAUNDERED_PROP silent about the proposition, which is
+exactly the evasion the literature scan exists to close -- established at one
+degenerate instance, assumed everywhere it counts. -/
+
+/-- The planted stand-in for a literature transcription. -/
+def PlantedLiteratureInput : Prop := ∀ n : Nat, n = n
+
+/-- Its satisfiability witness; a non-`rfl` proof, so the RFL scan stays
+calibrated.  Must NOT be LITERATURE_INPUT: a conclusion whose head is the
+tagged proposition is a proof of it, not an assumption of it. -/
+theorem plantedLiteratureWitness : PlantedLiteratureInput :=
+  fun _ => Eq.trans rfl rfl
+
+/-- LITERATURE_INPUT: takes the transcription as a premise. -/
+theorem plantedLiteratureConditional (h : PlantedLiteratureInput) : 0 = 0 :=
+  h 0
+
+/-- One definitional layer of laundering. -/
+def PlantedLiteratureAlias : Prop := PlantedLiteratureInput
+
+/-- Must NOT be LITERATURE_INPUT: proving the alias is proving the
+transcription. -/
+theorem plantedLiteratureAliasWitness : PlantedLiteratureAlias :=
+  plantedLiteratureWitness
+
+/-- LITERATURE_INPUT: the premise mentions the transcription only through the
+alias, which the closure must not be fooled by. -/
+theorem plantedLiteratureLaundered (h : PlantedLiteratureAlias) : 1 = 1 :=
+  h 1
+
+/-- LITERATURE_INPUT: the conclusion embeds the transcription under a
+connective instead of proving it outright, which is how a conditional claim
+hides without taking a premise. -/
+theorem plantedLiteratureEmbedded : PlantedLiteratureInput ∨ 0 = 1 :=
+  Or.inl plantedLiteratureWitness
+
+/-- A wrapper structure carrying the transcription as a field: the second
+laundering channel, through a constructor type rather than a definition
+body. -/
+structure PlantedLiteraturePacket : Prop where
+  input : PlantedLiteratureInput
+
+/-- Must NOT be LITERATURE_INPUT (conclusion head is tagged-reaching), and
+keeps UNWITNESSED silent about the packet. -/
+theorem plantedLiteraturePacketWitness : PlantedLiteraturePacket :=
+  ⟨plantedLiteratureWitness⟩
+
+/-- LITERATURE_INPUT: the premise mentions the transcription only through the
+packet's constructor field. -/
+theorem plantedLiteraturePacketed (h : PlantedLiteraturePacket) : 0 = 0 :=
+  h.input 0
+
 end AuditPlant

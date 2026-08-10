@@ -101,6 +101,28 @@ run_cmd do
       failures := failures.push
         s!"clean declaration {decl} was reported under {(hits.map (·.tag)).toList}"
 
+  -- LITERATURE_INPUT is calibrated separately: its roster of tagged
+  -- transcriptions is driver config, not a detector constant, so it is run
+  -- here against a plant roster.  Both directions, as above: the premise,
+  -- alias, embedded-conclusion and structure-field channels must each fire,
+  -- and proving the tagged proposition -- directly, through the alias, or
+  -- through the packet -- must stay silent.
+  let lit := Audit.literatureScan env `Audit [``AuditPlant.PlantedLiteratureInput]
+  for d in [``AuditPlant.plantedLiteratureConditional,
+            ``AuditPlant.plantedLiteratureLaundered,
+            ``AuditPlant.plantedLiteratureEmbedded,
+            ``AuditPlant.plantedLiteraturePacketed] do
+    unless lit.any (fun f ↦ f.tag == "LITERATURE_INPUT" && f.decl == d) do
+      failures := failures.push
+        s!"plant {d} was NOT reported under LITERATURE_INPUT"
+  for d in [``AuditPlant.plantedLiteratureWitness,
+            ``AuditPlant.plantedLiteratureAliasWitness,
+            ``AuditPlant.plantedLiteraturePacketWitness,
+            ``AuditPlant.cleanUsesPremise] do
+    if lit.any (fun f ↦ f.decl == d) then
+      failures := failures.push
+        s!"false positive: {d} reported under LITERATURE_INPUT"
+
   -- The claim-word test must read the LAST COMPONENT, not the full name.
   -- A corpus named after its own headline claim (this one is called
   -- `NonsoficGroupsExist`) otherwise matches every declaration in it, and the

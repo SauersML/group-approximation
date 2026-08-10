@@ -493,6 +493,124 @@ proof term: {(dead.map Prod.snd).toList}" }
             detail := "non-simp theorem whose proof term is `Eq.refl`" }
   return out
 
+/-! ## LITERATURE_INPUT
+
+`LAUNDERED_PROP` above catches a named proposition the corpus only ever
+assumes.  Its evasion costs one witness: a positive control at a degenerate
+instance makes the proposition "established" while every load-bearing use
+still ASSUMES it at the instances that matter.  That is the exact shape of a
+citation smuggled into a hypothesis -- the implication is kernel-true, the
+antecedent is one paper's theorem, and no kernel or axiom check can see the
+difference, because there is no difference in the proof term.
+
+No scan can DISCOVER that difference either: whether a premise is ordinary
+mathematics or a transcription of someone's Theorem 4.1 is not a property of
+the expression.  So the roster of transcriptions is CONFIG, owned by the
+driver under the same custody as `allowedAxioms`, and this scan enforces a
+ban: no user-written corpus declaration may take a tagged proposition as a
+premise, and none may embed one in its conclusion except to prove it outright
+(a conclusion whose head constant is itself tagged-reaching -- proving the
+proposition, or an alias of it, is mathematics, not assumption).
+
+Laundering is defeated by closure, not spelling: the ban extends to every
+corpus constant from whose type, body, or constructor types a tagged name is
+reachable, so an `abbrev` alias, a wrapper structure carrying the
+transcription as a field, and a definition mentioning it in its body are all
+exactly as banned as the name itself.
+
+Population is by MODULE, not namespace: a corpus file can open any namespace
+it likes, so membership is decided by where the declaration was compiled,
+which the author of a corpus file cannot spoof. -/
+
+/-- Was `n` compiled in a module of the corpus source tree?  Module-based,
+unlike `isOurs`: a declaration escapes its namespace by writing `namespace
+Anything`, but not the file it lives in. -/
+def inCorpusModule (env : Environment) (moduleRoot : Name) (n : Name) : Bool :=
+  match env.getModuleIdxFor? n with
+  | some idx =>
+      match env.header.moduleNames[idx.toNat]? with
+      | some m => m.getRoot == moduleRoot
+      | none => false
+  | none => false
+
+/-- Corpus constants from which some tagged name is reachable through types,
+bodies, and constructor types.  Always contains the tagged names themselves.
+Propagation stays inside the corpus modules: nothing compiled before the
+corpus can mention a corpus name, so the restriction loses nothing. -/
+def taggedClosure (env : Environment) (moduleRoot : Name) (tagged : List Name) :
+    NameSet := Id.run do
+  let entries : Array (Name × Array Name) :=
+    env.constants.fold (init := #[]) fun acc n ci =>
+      if inCorpusModule env moduleRoot n then
+        let m := ci.type.getUsedConstants
+        let m := match valueOf? ci with
+          | some v => m ++ v.getUsedConstants
+          | none => m
+        -- An inductive does not mention its constructors; add them, so a
+        -- structure is contaminated when a field type is.
+        let m := match ci with
+          | .inductInfo v => m ++ v.ctors.toArray
+          | _ => m
+        acc.push (n, m)
+      else acc
+  let mut contaminated : NameSet := {}
+  for t in tagged do contaminated := contaminated.insert t
+  let mut changed := true
+  while changed do
+    changed := false
+    for (n, ms) in entries do
+      unless contaminated.contains n do
+        if ms.any contaminated.contains then
+          contaminated := contaminated.insert n
+          changed := true
+  return contaminated
+
+/-- The types of the leading-`∀` premises.  Structural, not `MetaM`: the scan
+must run on the Mathlib-free plants. -/
+partial def premiseTypes : Expr → Array Expr
+  | .forallE _ t b _ => #[t] ++ premiseTypes b
+  | .mdata _ b => premiseTypes b
+  | _ => #[]
+
+/-- The body after the leading-`∀` telescope. -/
+partial def conclusionOf : Expr → Expr
+  | .forallE _ _ b _ => conclusionOf b
+  | .mdata _ b => conclusionOf b
+  | e => e
+
+def literatureScan (env : Environment) (moduleRoot : Name)
+    (tagged : List Name) : Array Finding := Id.run do
+  if tagged.isEmpty then return #[]
+  let contaminated := taggedClosure env moduleRoot tagged
+  let corpus : Array (Name × ConstantInfo) :=
+    env.constants.fold (init := #[]) fun acc n ci =>
+      if inCorpusModule env moduleRoot n && userWritten env n then
+        acc.push (n, ci)
+      else acc
+  let mut out := #[]
+  for (n, ci) in corpus do
+    let hit? := (premiseTypes ci.type).findSome? fun t =>
+      t.getUsedConstants.find? contaminated.contains
+    if let some bad := hit? then
+      out := out.push
+        { tag := "LITERATURE_INPUT", decl := n,
+          detail := s!"premise mentions `{bad}`, which is or unfolds to a \
+tagged literature transcription: the result is conditional on a theorem this \
+corpus does not prove" }
+    else
+      let concl := conclusionOf ci.type
+      let headTagged := match headConst? concl with
+        | some h => contaminated.contains h
+        | none => false
+      if !headTagged then
+        if let some bad := concl.getUsedConstants.find? contaminated.contains then
+          out := out.push
+            { tag := "LITERATURE_INPUT", decl := n,
+              detail := s!"conclusion embeds `{bad}`, which is or unfolds to a \
+tagged literature transcription, under a connective rather than proving it \
+outright" }
+  return out
+
 /-! ## Driver -/
 
 def allScans (env : Environment) (root : Name) (allowed : List Name) :
