@@ -157,26 +157,5 @@ noncomputable def universalCentralExtension_of_kernel_central
       (ElementaryBase n) :=
   KervaireSteinberg.fin_universalCentralExtension hn hker
 
-/-- A shorter endpoint conditional on **unstable** `K₂(n,L)=0`.
-Injectivity identifies the Steinberg group with its simple elementary base.
-Its nonsoficity therefore rules out every nontrivial quotient directly, with
-no all-central-covers stability premise.  The injectivity hypothesis remains
-an external certificate. -/
-theorem finitelyPresentedKazhdanSoficImageRigid_of_projection_injective
-    {n : ℕ} (hn : 5 ≤ n)
-    (hinj : Function.Injective
-      (SteinbergGroup.projection :
-        BinaryLeavittSteinberg n →* ElementaryBase n))
-    [IsSimpleGroup (ElementaryBase n)]
-    (hfp : Group.IsFinitelyPresented (BinaryLeavittSteinberg n)) :
-    FinitelyPresentedKazhdanSoficImageRigid
-      (BinaryLeavittSteinberg n) := by
-  letI : IsSimpleGroup (BinaryLeavittSteinberg n) :=
-    (projectionEquiv n hinj).isSimpleGroup
-  exact finitelyPresentedKazhdanSoficImageRigid_of_quotientObstruction
-    hfp (hasKazhdanPropertyT hn)
-    (everyNontrivialQuotientIsNonsofic_of_isSimpleGroup
-      (not_isSofic_of_projection_injective (by omega) hinj))
-
 end BinaryLeavittSteinberg
 end NonsoficGroupsExist
