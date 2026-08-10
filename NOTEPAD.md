@@ -35061,3 +35061,85 @@ removes the unitary-index obstruction but not the vertex-extension
 obstruction.  Any valid use on the cyclic radical shear must still construct
 one antipodal vertex lift, rather than infer it from the involutive flip
 alone.
+
+# A nontrivial scalar flux has no restricted-wreath gauge (2026-08-10)
+
+The finite gauge cover `(FGC1)--(FGC10)` cannot be reduced to an ordinary
+restricted wreath product by a more fortunate choice of diagonal gauge.  The
+obstruction is elementary and is exactly the multiplier class itself.
+
+Let `G` be infinite, let `Z=mu_m` be written as the subgroup of constant
+functions in `Z^G`, and let
+
+`D=directSum_G Z <= Z^G`                                  `(NRG1)`
+
+be the finite-support subgroup.  Suppose a normalized multiplier
+
+`omega:G x G -> Z`                                        `(NRG2)`
+
+has a projective regular gauge `b_g in Z^G`, so that
+
+`b_g alpha_g(b_h)=omega(g,h)b_(gh)`.                       `(NRG3)`
+
+Here `alpha` is the shift action.  Gauge replacement by an arbitrary
+`a in Z^G` replaces `b_g` by
+
+`b'_g=a b_g alpha_g(a)^(-1)`                              `(NRG4)`
+
+and does not change the class of `omega`.
+
+**Theorem (restricted-gauge obstruction).**  If `[omega]!=0` in
+`H^2(G,Z)`, then for every gauge choice `(NRG4)` there is a `g in G` such
+that
+
+`b'_g notin Z D`.                                          `(NRG5)`
+
+Equivalently, the gauge module `B_omega` is not contained in constants
+times the restricted regular lamp module.  In particular the gauge cover
+
+`K_omega=B_omega semidirect G`                             `(NRG6)`
+
+cannot be embedded in `(Z times D) semidirect G` by its canonical gauge
+coordinates, so ordinary restricted-wreath hyperlinearity/soficity does not
+apply.
+
+**Proof.**  Suppose all `b'_g` lie in `ZD`.  Since `G` is infinite,
+
+`Z intersect D={1}`.                                      `(NRG7)`
+
+Thus there are unique `beta_g in Z` and `f_g in D` with
+
+`b'_g=beta_g f_g`.                                        `(NRG8)`
+
+Substitute `(NRG8)` into `(NRG3)`.  It gives
+
+`f_g alpha_g(f_h)f_(gh)^(-1)`
+` =omega(g,h) beta_(gh) beta_g^(-1) beta_h^(-1)`.          `(NRG9)`
+
+The left side has finite support, while the right side is a constant
+function.  By `(NRG7)` both sides equal one.  Hence
+
+`omega(g,h)=beta_g beta_h beta_(gh)^(-1)`                  `(NRG10)`
+
+for every `g,h`, making `omega` a coboundary, contradiction.  End proof.
+
+There is an equivalent module-theoretic formulation which is useful for the
+central-corner endpoint.  Put `B=B_omega` and `Bbar=B/Z`.  The functions
+`b_g` define a `1`-cocycle `bbar:G->Bbar`; in the connecting map for
+
+`0 -> Z -> B -> Bbar -> 0`,                                `(NRG11)`
+
+its image is precisely `[omega]`.  Therefore `(NRG11)` has no
+`G`-equivariant splitting whenever `[omega]!=0`: a splitting would make the
+connecting map zero.  The central character corner in `(FGC7)--(FGC9)` is
+not removable bookkeeping; it detects an intrinsically nonsplit
+`G`-module extension.
+
+For the symplectic Kun--Thom multiplier, `[omega|N]!=0`, so the same
+conclusion already holds after restriction to `N`.  This strengthens the
+finite-gauge obstruction `(FGO1)`: not only is `B_omega/Z` infinite, it
+cannot be realized by changing gauge inside the restricted regular lamp
+module.  A successful proof that `K_omega` is hyperlinear must therefore
+handle the coinduced/nonrestricted tail of the gauge and its nonsplit
+central character; no ordinary wreath-product permanence theorem can close
+the endpoint.
