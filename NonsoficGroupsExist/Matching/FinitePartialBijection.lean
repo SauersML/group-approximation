@@ -70,6 +70,19 @@ def refl (Y : FiniteModel) : FinitePartialBijection Y Y where
 @[simp] theorem refl_apply (y : Y) (hy : y ∈ (refl Y).source) :
     (refl Y).apply y hy = y := rfl
 
+/-- Identity restricted to an explicitly chosen finite subset. -/
+def reflOn (s : Finset Y) : FinitePartialBijection Y Y where
+  source := s
+  target := s
+  equiv := Equiv.refl s
+
+@[simp] theorem reflOn_source (s : Finset Y) : (reflOn s).source = s := rfl
+
+@[simp] theorem reflOn_target (s : Finset Y) : (reflOn s).target = s := rfl
+
+@[simp] theorem reflOn_apply (s : Finset Y) (y : Y) (hy : y ∈ s) :
+    (reflOn s).apply y hy = y := rfl
+
 /-- Reverse a finite partial bijection. -/
 def symm (b : FinitePartialBijection Y Z) : FinitePartialBijection Z Y where
   source := b.target
@@ -297,6 +310,27 @@ theorem symm_trans (b : FinitePartialBijection Y Z)
     intro w hw
     rfl)
 
+/-- Composing an arrow with its reverse is the identity on its source. -/
+theorem trans_symm (b : FinitePartialBijection Y Z) :
+    b.trans b.symm = reflOn b.source := by
+  classical
+  have hs : (b.trans b.symm).source = (reflOn b.source).source := by
+    ext y
+    constructor
+    · intro hy
+      exact (b.mem_trans_source b.symm y).mp hy |>.choose
+    · intro hy
+      apply (b.mem_trans_source b.symm y).mpr
+      exact ⟨hy, b.apply_mem_target y hy⟩
+  exact ext_source hs (by
+    intro y hy
+    simp only [trans_apply, symm_apply_apply, reflOn_apply])
+
+/-- Composing the reverse with the arrow is the identity on its target. -/
+theorem symm_trans_self (b : FinitePartialBijection Y Z) :
+    b.symm.trans b = reflOn b.target := by
+  simpa only [symm_source, symm_symm] using trans_symm b.symm
+
 /-- Graph of the partial bijection. -/
 noncomputable def graph (b : FinitePartialBijection Y Z) : Finset (Y × Z) :=
   b.source.attach.map
@@ -348,6 +382,12 @@ def sourceDefect (b : FinitePartialBijection Y Z) : ℕ :=
 /-- Missing range mass. -/
 def targetDefect (b : FinitePartialBijection Y Z) : ℕ :=
   Fintype.card Z - b.target.card
+
+@[simp] theorem sourceDefect_symm (b : FinitePartialBijection Y Z) :
+    b.symm.sourceDefect = b.targetDefect := rfl
+
+@[simp] theorem targetDefect_symm (b : FinitePartialBijection Y Z) :
+    b.symm.targetDefect = b.sourceDefect := rfl
 
 /-- Source points at which two partial maps cannot be compared or disagree. -/
 noncomputable def disagreement (b c : FinitePartialBijection Y Z) : Finset Y :=
