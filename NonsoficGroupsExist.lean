@@ -285,6 +285,7 @@ import NonsoficGroupsExist.Sofic.KazhdanCornerModel
 import NonsoficGroupsExist.Sofic.KazhdanCornerDiagonal
 import NonsoficGroupsExist.Sofic.FreeLampReduction
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
+import NonsoficGroupsExist.Sofic.SoficFiniteSemidirect
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
 import NonsoficGroupsExist.Sofic.FreeLampRigidity
 import NonsoficGroupsExist.Sofic.ProfiniteClosure
