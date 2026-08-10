@@ -29666,13 +29666,30 @@ Weyl endpoint finishes.  End proof.
 
 This differs decisively from conjugate tensoring.  Complex conjugation
 reverses both a scalar curvature and the scalar image of `z`; transpose
-combined with the anti-automorphism reverses the **cell orientation** while
-leaving scalar values unchanged.  Hence an oriented first-order holonomy
-can cancel while the central phase adds.  The remaining model-production
-target may now be stated in its most natural form: produce one-polarization
-finite maps whose first-order defect is scalar curvature of oriented
-multiplication cells.  Oddness `(TTR5)` is then the expected orientation
-law, rather than an unrelated extra symmetry.
+combined with the anti-automorphism reverses the cell orientation while
+leaving scalar values unchanged.  Hence `(TTR5)`, when verified, cancels
+first-order holonomy while the central phase adds.  The oddness condition is
+load-bearing and must be computed in the finite model; it is not a formal
+consequence of the existence of `A`.
+
+**Sign audit.**  On the quotient module write the defining Heisenberg
+cocycle as
+
+`kappa((u,v),(u',v'))=<u,v'>`
+
+and put `f(u,v)=-<u,v>`.  The quotient anti-map is
+`abar(u,v)=(-u,v)`.  Direct calculation gives
+
+`kappa(abar(y),abar(x))`
+` =kappa(x,y)+f(x+y)-f(x)-f(y)`.                       `(TTR8)`
+
+Thus reversed `kappa` is cohomologous to `kappa`, not to `-kappa`.  This is
+exactly because the anti-symplectic sign in `A` compensates orientation
+reversal so that `A(z)=z`.  Therefore a finite model whose first-order
+defect is simply the defining polarization cocycle does **not** satisfy
+`(TTR5)`.  The theorem can only help when the residual analytic
+Egorov/gallery curvature has an additional odd symmetry.  The Fourier-odd
+criterion `(FOC4)` remains independent and is not affected by this audit.
 
 # Quantitative Weyl scalarization of covariance defects (2026-08-09)
 
