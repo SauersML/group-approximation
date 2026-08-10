@@ -202,5 +202,58 @@ theorem apply_action_eq_of_graph_mapsTo
     (mem_graph b (σY g y) (σZ g (b.apply y hy))).mp hmapped
   exact heq
 
+/-- Swapping the coordinates of an invariant partial-bijection graph gives
+the invariant graph of its inverse. -/
+theorem symm_graph_mapsTo_of_graph_mapsTo
+    {G : Type*} [Group G]
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hgraph : ∀ g y z, (y, z) ∈ b.graph →
+      (σY g y, σZ g z) ∈ b.graph)
+    (g : G) (z : Z) (y : Y) (hzy : (z, y) ∈ b.symm.graph) :
+    (σZ g z, σY g y) ∈ b.symm.graph := by
+  obtain ⟨hz, heq⟩ := (mem_graph b.symm z y).mp hzy
+  have hy : y ∈ b.source := by
+    rw [← heq]
+    exact b.symm.apply_mem_target z hz
+  have hyz : (y, z) ∈ b.graph := by
+    rw [mem_graph]
+    refine ⟨hy, ?_⟩
+    simpa only [heq, proof_irrel_heq] using b.apply_symm_apply z hz
+  obtain ⟨hgy, hmap⟩ :=
+    (mem_graph b (σY g y) (σZ g z)).mp (hgraph g y z hyz)
+  rw [mem_graph]
+  have htarget : σZ g z ∈ b.target := by
+    rw [← hmap]
+    exact b.apply_mem_target (σY g y) hgy
+  refine ⟨htarget, ?_⟩
+  have hinverse := b.symm_apply_apply (σY g y) hgy
+  simpa only [hmap, proof_irrel_heq] using hinverse
+
+/-- A full invariant graph has no labeled equivariance failures. -/
+theorem equivarianceDefect_eq_empty_of_graph_mapsTo_of_source_eq_univ
+    {L : Type*} [Fintype L]
+    (actY : L → Equiv.Perm Y) (actZ : L → Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hgraph : ∀ l y z, (y, z) ∈ b.graph →
+      (actY l y, actZ l z) ∈ b.graph)
+    (hsource : b.source = Finset.univ) :
+    b.equivarianceDefect actY actZ = ∅ := by
+  classical
+  ext p
+  simp only [equivarianceDefect, Finset.mem_filter, Finset.mem_univ,
+    true_and, Finset.notMem_empty, iff_false]
+  intro hdefect
+  have hy : p.2 ∈ b.source := by rw [hsource]; exact Finset.mem_univ _
+  have hsy : actY p.1 p.2 ∈ b.source := by
+    rw [hsource]
+    exact Finset.mem_univ _
+  have hmem : (p.2, b.apply p.2 hy) ∈ b.graph :=
+    (mem_graph b p.2 (b.apply p.2 hy)).mpr ⟨hy, rfl⟩
+  obtain ⟨_, heq⟩ :=
+    (mem_graph b (actY p.1 p.2) (actZ p.1 (b.apply p.2 hy))).mp
+      (hgraph p.1 p.2 (b.apply p.2 hy) hmem)
+  exact hdefect hy hsy heq
+
 end FinitePartialBijection
 end NonsoficGroupsExist

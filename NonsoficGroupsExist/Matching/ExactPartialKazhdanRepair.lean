@@ -2,6 +2,7 @@ import NonsoficGroupsExist.Kazhdan.DiagonalInvariantRelation
 import NonsoficGroupsExist.Matching.PartialBijectionRelation
 import NonsoficGroupsExist.Matching.PartialSwapEquivariance
 import NonsoficGroupsExist.Matching.PartialEquivarianceComposition
+import NonsoficGroupsExist.Matching.PartialClusterCandidates
 
 /-!
 # Exact Kazhdan repair for finite partial intertwiners
@@ -259,6 +260,61 @@ theorem exactCoreRepair_source_target_eq_univ_of_kazhdan
     σY σZ b (by simpa only [P, R, E] using heditsNat)
   exact exactCoreRepair_source_target_eq_univ_of_transitive
     σY σZ b htransY htransZ hnonempty
+
+/-- Once the exact core repair is full, its labeled forward defect is
+literally empty. -/
+theorem exactCoreRepair_equivarianceDefect_eq_empty
+    {Q : Finset G}
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hsource : (exactCoreRepair σY σZ b).source = Finset.univ) :
+    (exactCoreRepair σY σZ b).equivarianceDefect
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) = ∅ := by
+  exact equivarianceDefect_eq_empty_of_graph_mapsTo_of_source_eq_univ
+    (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1)
+    (exactCoreRepair σY σZ b)
+    (fun q ↦ exactCoreRepair_graph_mapsTo σY σZ b q.1) hsource
+
+/-- Fullness also makes the labeled equivariance defect of the inverse
+literally empty. -/
+theorem exactCoreRepair_symm_equivarianceDefect_eq_empty
+    {Q : Finset G}
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (htarget : (exactCoreRepair σY σZ b).target = Finset.univ) :
+    (exactCoreRepair σY σZ b).symm.equivarianceDefect
+      (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1) = ∅ := by
+  exact equivarianceDefect_eq_empty_of_graph_mapsTo_of_source_eq_univ
+    (fun q : ↥Q ↦ σZ q.1) (fun q : ↥Q ↦ σY q.1)
+    (exactCoreRepair σY σZ b).symm
+    (fun q ↦ symm_graph_mapsTo_of_graph_mapsTo σY σZ
+      (exactCoreRepair σY σZ b)
+      (exactCoreRepair_graph_mapsTo σY σZ b) q.1)
+    (by simpa only [symm_source] using htarget)
+
+/-- A full exact core repair is a cluster candidate at every positive
+expansion threshold and every positive scale: all three candidate defects
+vanish exactly. -/
+theorem exactCoreRepair_isClusterCandidate_of_source_target_eq_univ
+    {Q : Finset G}
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (hfull : (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ)
+    {h : ℝ} {m : ℕ} (hh : 0 < h) (hm : 0 < m) :
+    (exactCoreRepair σY σZ b).IsClusterCandidate
+      (fun q : ↥Q ↦ σY q.1) (fun q : ↥Q ↦ σZ q.1) h m := by
+  refine ⟨?_, ?_, ?_⟩
+  · simp only [FinitePartialBijection.sourceDefect,
+      FinitePartialBijection.targetDefect, hfull.1, hfull.2,
+      Finset.card_univ, Nat.sub_self, zero_add]
+    omega
+  · rw [exactCoreRepair_equivarianceDefect_eq_empty σY σZ b hfull.1]
+    simp only [Finset.card_empty, Nat.cast_zero]
+    positivity
+  · rw [exactCoreRepair_symm_equivarianceDefect_eq_empty σY σZ b hfull.2]
+    simp only [Finset.card_empty, Nat.cast_zero]
+    positivity
 
 /-- Repair the swap permutation and extract its crossing partial map. -/
 noncomputable def repair
