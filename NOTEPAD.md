@@ -32128,3 +32128,79 @@ defects scalarize exactly, `(SKT6)` restores the liftable corner.  The live
 target is consequently a mixed object:
 
 `nontrivial small scalar H2 flux + matrix-valued strict-commutant boundary`.
+
+# Projective radical detection removes the o(t) scale requirement (2026-08-10)
+
+The symplectic flux target `(SKT1)--(SKT6)` does not require small-phase
+tensor amplification.  Passing directly to projective unitary groups
+removes every scalar multiplier before taking the ultraproduct.
+
+For `V in U(d)` write
+
+`ell_pr(V)=inf_(lambda in T)||V-lambda 1||_(2,d)`.
+
+**Theorem (projective radical detector).**  Let `H` be countable and let
+
+`x in Rad_sof(H)`.
+
+Suppose there are maps `phi_n:H->U(d_n)` such that, for every fixed
+`g,h in H`,
+
+`ell_pr(phi_n(g)phi_n(h)phi_n(gh)^*) -> 0`,            `(PRD1)`
+
+while
+
+`liminf_n ell_pr(phi_n(x))>0`.                         `(PRD2)`
+
+Then there is a hyperlinear nonsofic group.
+
+**Proof.**  Equation `(PRD1)` gives a homomorphism
+
+`Phi:H->product_omega PU(d_n)`                         `(PRD3)`
+
+for any ultrafilter on a subsequence on which `(PRD2)` persists.  The
+adjoint representations give exact injective homomorphisms
+
+`Ad:PU(d)->U(M_d(C))=U(d^2)`.
+
+For normalized traces one has
+
+`ell_pr(V)^2=2-2|tr_d(V)|`,
+
+`||Ad(V)-1||_(2,d^2)^2=2-2|tr_d(V)|^2`,
+
+and hence
+
+`ell_pr(V)^2 <= ||Ad(V)-1||_2^2 <= 2 ell_pr(V)^2`.     `(PRD4)`
+
+Thus `(PRD3)` embeds its image `Q=Phi(H)` into a tracial matrix
+ultraproduct, so `Q` is hyperlinear.  Condition `(PRD2)` says
+`Phi(x)!=1`.  If `Q` were sofic, the quotient homomorphism `H->Q` would
+kill `x` by the definition of `Rad_sof(H)`, a contradiction.  End proof.
+
+This is the radical-word version of the projective-atlas argument used for
+the Leavitt universal cover, but it requires neither quasisimplicity nor a
+central-cover identification.
+
+**Impact on the symplectic flux.**  Suppose the projective assembly for
+`(SKT3)` is applied to the banked free-lamp or symmetric-double group and
+retains one explicit radical word `x`.  Scalar defects equal to
+`omega_(t_n)(g,h)` disappear identically in `PU(d_n)`.  The remaining
+matrix-valued defects need only satisfy
+
+`epsilon_n -> 0`,                                     `(PRD5)`
+
+not `epsilon_n=o(t_n)`.  Nor must `t_n` be tensor-amplified to an order-one
+central phase.  The exact surviving condition is instead the genuinely
+noncentral estimate `(PRD2)`: a scalar sign or scalar Schur holonomy does
+not count, while a matrix-valued strict-commutant boundary at positive
+projective distance does.
+
+Consequently the live symplectic target is strictly weaker than the one
+stated after `(SKT3)`:
+
+`projective relation error o(1) + one radical word bounded away from scalars`.
+
+The real `H^2` direction remains valuable because it scalarizes the global
+holonomy of the compressor atlas; its magnitude no longer controls the
+allowable non-scalar error rate.
