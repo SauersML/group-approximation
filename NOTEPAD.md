@@ -29017,8 +29017,8 @@ surjection
 
 `Ptilde_2 ->> E_(Cl,0)`.
 
-Thus the even Clifford group is a distinguished finite central quotient of
-the universal cover, rather than an ad hoc auxiliary group.  Hyperlinearity
+Thus the even Clifford group is a distinguished finite-kernel central
+quotient of the universal cover, rather than an ad hoc auxiliary group.  Hyperlinearity
 of either cover would solve the main problem.  This does not yet construct
 microstates: the exact finite-dimensional/operator-norm sectors kill `z`,
 so the open certificate remains normalized-HS/projective.
