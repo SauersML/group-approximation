@@ -29842,3 +29842,64 @@ hyperlinearity because normalized trace can lose the norm-visible witness.
 Primary pins: Purdue Open Access Dissertations 704 (award date April 2016,
 advisor Marius Dadarlat), and Shulman, arXiv:2603.13564, Definition 3 for
 the operator-norm meaning of MF used here.
+
+# Cross-agent audit: the new Clifford weak-MF endpoint has a false premise (2026-08-09)
+
+Commit `8cd3352` correctly proves the conditional implication
+
+`E_(Cl,0) weak-MF => canonical CAR trace CE`
+
+by cutting a norm-ultraproduct representation to the central `z=-1`
+projection.  This is the finite-central-torsion corner theorem specialized
+to the perfect even Clifford cover.
+
+It must be read together with the earlier **norm-MF Clifford sterility**
+theorem.  The even perfect subgroup needs a separate choice of fixed lamp,
+but the obstruction still applies.
+
+**Proposition (even-cover norm-MF sterility).**  Every homomorphism
+
+`Theta:E_(Cl,0)->U(product M_d/directSum M_d)`
+
+sends `z` to `1`.
+
+**Proof.**  If not, cut to the nonzero central projection
+`e=(1-Theta(z))/2` and work in that norm-matrix corner.  As in the complete
+Clifford proof, conjugation on normalized matrix Hilbert spaces gives a
+norm-ultraproduct representation `beta` of `G`.  Stable finiteness and the
+Kazhdan projection imply that every compressor `t` normalizes the
+`Gamma`-fixed subspace of `beta`.
+
+Put `o=Gamma`, `x=t^(-1)Gamma`, and
+
+`w=delta_o+delta_x in I_X`.
+
+Both `o` and `x` are fixed by `Gamma`: for `gamma in Gamma`,
+
+`gamma t^(-1)Gamma=t^(-1)(t gamma t^(-1))Gamma=t^(-1)Gamma`.
+
+Hence the matrix vector represented by a Clifford lift of `w` is
+`Gamma`-fixed.  Normalization by `t` makes the lift of
+
+`t w=delta_(t Gamma)+delta_o`
+
+`Gamma`-fixed as well.  Choose
+`gamma in Gamma minus t Gamma t^(-1)`, possible because the compression is
+strict.  Fixedness forces the lifts of `t w` and `gamma t w` to agree in
+normalized Hilbert--Schmidt norm.  But their supports meet only at `o`, so
+
+`beta(t w,gamma t w)=1 mod 2`.
+
+In the `z=-1` corner their Clifford lifts anticommute, and two
+anticommuting self-adjoint unitaries have squared normalized-HS distance
+`2`.  This contradiction proves `Theta(z)=1`.  End proof.
+
+Therefore
+
+`E_(Cl,0) is not weak/operator-norm MF`.
+
+So Theorem 7 in `docs/PERFECT_CORE_KUN_THOM_WREATH.md` is a valid
+conditional bridge but not a remaining certificate whose hypothesis could
+hold.  No further work should attempt to prove weak MF of this Clifford
+cover.  The direct normalized-HS canonical CAR trace and the integral
+small-phase Heisenberg construction remain the live tracial targets.
