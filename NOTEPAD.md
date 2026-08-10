@@ -35561,3 +35561,43 @@ A nontrivial central spectral projection there has fixed trace `1/m` and is
 **exactly** central, so it is not a shrinking quotient corner inside the
 parent `(FSC1)`.  Thus `(FSC3)` closes the broad corner-compression approach
 without closing the finite-central-character endpoint `(FGC7)--(FGC10)`.
+
+# The action-class separation criterion cannot construct the first example
+
+The proposed positive half of `(AHG5)` is logically circular as a route to
+the **first** hyperlinear nonsofic group.  This follows directly from the
+quantifiers in Alekseev--Bradford Definition 4.23.
+
+**Lemma (auxiliary-class separation).**  Let `C_1 subset C_2` be two classes
+of groups and let `alpha:Gamma->Aut(Delta)` be an action.  If `alpha` is a
+sofic `C_2`-action but is not a sofic `C_1`-action, then
+
+`C_2 minus C_1 != empty`.                                `(ACS1)`
+
+More precisely, at least one auxiliary chart group `Lambda` occurring in
+the `C_2`-action approximations lies outside `C_1`.
+
+**Proof.**  Definition 4.23 uses the same finite permutation set `A`, the
+same approximately multiplicative map `phi:Gamma->Sym(A)`, and the same
+family of injective partial homomorphisms
+
+`pi_s:E->Lambda`                                         `(ACS2)`
+
+for every choice of the class `C`; the class enters only through the
+requirement `Lambda in C`.  If every auxiliary `Lambda` used by the
+`C_2` witnesses belonged to `C_1`, those identical witnesses would make
+`alpha` a sofic `C_1`-action, contradiction.  End proof.
+
+Apply this with
+
+`C_1={sofic groups}`, `C_2={hyperlinear groups}`.         `(ACS3)`
+
+The gauge action `beta:G->Aut(B_omega/Z)` is already proved not to be a
+sofic `C_1`-action in `(AHG1)--(AHG5)`.  Therefore any proof that it is a
+sofic `C_2`-action must already exhibit, among its auxiliary groups, a
+hyperlinear nonsofic group.  In particular the positive half of `(AHG5)` is
+not a weaker finite-window matrix-covariance problem from which the first
+example can be extracted using known sofic auxiliaries.  It is an exact
+repackaging of the desired class separation.  The semidirect-product
+conclusion remains valid once such an auxiliary is available, but this
+framework cannot by itself produce the initial TRUE witness.
