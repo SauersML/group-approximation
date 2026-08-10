@@ -105,5 +105,58 @@ theorem map_surjective_of_faithful_of_vertexGroup_card_eq
     _ = Fintype.card (F.obj X ⟶ F.obj Y) :=
       (card_hom_eq_card_vertexGroup (F.map f)).symm
 
+section Endofunctor
+
+variable [Fintype C]
+
+/-- A finite-groupoid endofunctor which is injective on objects and preserves
+the cardinality of every object orbit reflects connectedness. -/
+theorem nonempty_hom_of_map_nonempty (F : C ⥤ C) (hobj : Function.Injective F.obj)
+    (horbit : ∀ X, (orbit X).card = (orbit (F.obj X)).card)
+    {X Y : C} (hmap : Nonempty (F.obj X ⟶ F.obj Y)) : Nonempty (X ⟶ Y) := by
+  classical
+  let φ : ↥(orbit X) → ↥(orbit (F.obj X)) := fun Z ↦
+    ⟨F.obj Z.1, by
+      apply (mem_orbit _ _).2
+      obtain ⟨f⟩ := (mem_orbit _ _).1 Z.2
+      exact ⟨F.map f⟩⟩
+  have hφinj : Function.Injective φ := by
+    intro Z W hZW
+    apply Subtype.ext
+    apply hobj
+    exact congrArg Subtype.val hZW
+  have hcard : Fintype.card ↥(orbit X) =
+      Fintype.card ↥(orbit (F.obj X)) := by
+    simpa only [Fintype.card_coe] using horbit X
+  have hφsurj : Function.Surjective φ :=
+    ((Fintype.bijective_iff_injective_and_card φ).2 ⟨hφinj, hcard⟩).surjective
+  have hFY : F.obj Y ∈ orbit (F.obj X) := (mem_orbit _ _).2 hmap
+  obtain ⟨Z, hZ⟩ := hφsurj ⟨F.obj Y, hFY⟩
+  have hZY : Z.1 = Y := by
+    apply hobj
+    exact congrArg Subtype.val hZ
+  rw [← hZY]
+  exact (mem_orbit X Z.1).1 Z.2
+
+variable [∀ X Y : C, Fintype (X ⟶ Y)]
+
+/-- **Finite groupoid co-Hopfian theorem.**  A faithful endofunctor is full
+when it is injective on objects and preserves both object-orbit sizes and
+vertex-group orders. -/
+theorem fullOfFaithfulOfCardinalPreserving
+    (F : C ⥤ C) [F.Faithful]
+    (hobj : Function.Injective F.obj)
+    (horbit : ∀ X, (orbit X).card = (orbit (F.obj X)).card)
+    (hvertex : ∀ X,
+      Fintype.card (X ⟶ X) = Fintype.card (F.obj X ⟶ F.obj X)) :
+    F.Full := by
+  refine { map_surjective := ?_ }
+  intro X Y f
+  obtain ⟨g⟩ := nonempty_hom_of_map_nonempty F hobj horbit ⟨f⟩
+  exact (map_surjective_of_faithful_of_vertexGroup_card_eq
+    F g (hvertex X)) f
+
+end Endofunctor
+
 end FiniteGroupoid
 end NonsoficGroupsExist
