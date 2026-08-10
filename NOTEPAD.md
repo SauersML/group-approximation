@@ -34440,3 +34440,68 @@ already the original task.  The live gauge endpoint remains the direct one:
 construct a Connes-embeddable trace on the finite central gauge corner (or
 on the regularized algebraic crossed product) which sees the radical
 coordinate.  The automorphic-action packaging does not lower that gate.
+
+## Correction: the star profile is forbidden for the Kun--Thom vector
+
+The quantization theorem `(RSG1)--(RSG18)` is correct, but its relative
+square-root-profile antecedent is impossible for a Kun--Thom compression
+pair.  Thus it supplies a reusable Gaussian conversion and a second proof
+of the square-root boundary, not a live model-production route for this
+pair.
+
+**Proposition (stable-finite obstruction to `(RSG13)`).**  Let
+`Gamma<Q` have property `(T)`, let `t Gamma t^(-1)<=Gamma`, and choose
+
+`h=t^(-1) gamma t notin Gamma`, `gamma in Gamma`.     `(RSN1)`
+
+There are no normalized maps `pi_n:Q->O(H_n)` and unit vectors
+`xi_n in H_n`, with `D_n=dim(H_n)`, such that
+
+`eta_n sqrt(D_n)->0`,                                `(RSN2)`
+
+where `eta_n` is their multiplicative defect on exhausting windows, while
+
+`max_(s in S_Gamma)||pi_n(s)xi_n-xi_n||->0`,
+`||pi_n(h)xi_n-xi_n|| liminf>0`.                     `(RSN3)`
+
+In particular, the `J_n` required by the relative criterion cannot retain
+the primitive path norm.
+
+**Proof.**  Equation `(RSN2)` and
+
+`||A||_op<=||A||_F=sqrt(D_n)||A||_(2,H_n)`
+
+make the maps `pi_n` multiplicative in operator norm.  They therefore
+define a homomorphism
+
+`pi:Q->U(product_n B(H_n)/directSum_n B(H_n))`.       `(RSN4)`
+
+The norm matrix quotient is stably finite.  Let `p_Gamma` be the Kazhdan
+projection and let `P=pi(p_Gamma)`.  The compressor relation gives
+
+`pi(t)^*P pi(t)<=P`.
+
+The two projections are unitarily equivalent, so stable finiteness upgrades
+the inclusion to equality.  Hence
+
+`pi(h)P=P`.                                           `(RSN5)`
+
+The ultralimit of the vector states defined by `xi_n` is a state on the
+norm quotient.  In its GNS representation, the first part of `(RSN3)`
+makes the cyclic vector `Gamma`-fixed, so it lies in the range of `P`.
+Equation `(RSN5)` then makes it `h`-fixed.  This says
+
+`||pi_n(h)xi_n-xi_n||->0`,
+
+contradicting the second part of `(RSN3)`.  End proof.
+
+The obstruction also follows directly from the earlier square-root
+quasi-regular no-go, but the formulation above matches `(RSG13)` exactly.
+The parameter inequalities in the star construction make the boundary
+unavoidable: `(RSG14)` requires `m_n>>D_n`, while `(RSG17)` requires
+`sqrt(m_n)eta_n->0`; together they imply `(RSN2)`.  Therefore no choice of
+the star tensor count or heat time can evade stable finiteness.  A viable
+FALSE construction must now leave the one-particle orthogonal category
+altogether and work directly in normalized-Hilbert--Schmidt matrix
+geometry (the non-Bogoljubov CAR tail, the Leavitt exact-atlas character
+problem, or the balanced corona shear).
