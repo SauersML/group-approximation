@@ -191,5 +191,41 @@ theorem agreement_or_disagreement_small
       exact_mod_cast hboundary
     linarith
 
+/-- Applying partial-intertwiner separation in both directions gives the
+eight-radius gap required by `FinitePartialClusterData`.  The factor
+seventeen leaves sixteen scales of disagreement when an agreement set has
+size below `m`; the near radius is `2m`, one copy for each direction. -/
+theorem twoSidedDisagreement_lt_two_mul_or_eight_radius_le
+    [DecidableEq L]
+    (actY : L → Equiv.Perm Y) (actZ : L → Equiv.Perm Z)
+    {h : ℝ} (b c : FinitePartialBijection Y Z) (m : ℕ)
+    (hexpY : HasTaggedExpansionAtScale actY h m)
+    (hexpZ : HasTaggedExpansionAtScale actZ h m)
+    (hsizeY : 17 * m ≤ Fintype.card Y)
+    (hsizeZ : 17 * m ≤ Fintype.card Z)
+    (hforward : (((b.equivarianceDefect actY actZ).card +
+      (c.equivarianceDefect actY actZ).card : ℕ) : ℝ) < h * m)
+    (hbackward : (((b.symm.equivarianceDefect actZ actY).card +
+      (c.symm.equivarianceDefect actZ actY).card : ℕ) : ℝ) < h * m) :
+    b.twoSidedDisagreement c < 2 * m ∨
+      8 * (2 * m) ≤ b.twoSidedDisagreement c := by
+  have hsource := agreement_or_disagreement_small
+    actY actZ b c m hexpY hforward
+  have htarget := agreement_or_disagreement_small
+    actZ actY b.symm c.symm m hexpZ hbackward
+  rcases hsource with hsourceAgree | hsourceDis
+  · right
+    have hpartition := card_agreement_add_card_disagreement b c
+    unfold FinitePartialBijection.twoSidedDisagreement
+    omega
+  · rcases htarget with htargetAgree | htargetDis
+    · right
+      have hpartition := card_agreement_add_card_disagreement b.symm c.symm
+      unfold FinitePartialBijection.twoSidedDisagreement
+      omega
+    · left
+      unfold FinitePartialBijection.twoSidedDisagreement
+      omega
+
 end FinitePartialBijection
 end NonsoficGroupsExist
