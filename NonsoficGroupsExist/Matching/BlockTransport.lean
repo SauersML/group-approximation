@@ -111,5 +111,47 @@ theorem transportEquiv_representative_mem (P : BlockStructure Y) (q : Y ≃ Z)
   rw [transportEquiv_block]
   exact Finset.mem_image.mpr ⟨representative P C, representative_mem P C, rfl⟩
 
+/-- A permutation which sends every block of `P` onto another block induces
+a genuine permutation of the finite component type. -/
+noncomputable def componentPerm (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (hmaps : ∀ C : BlockIndex P, C.block.image q ∈ P.blocksFinset) :
+    Equiv.Perm (BlockIndex P) := by
+  let f : BlockIndex P → BlockIndex P := fun C ↦ ⟨C.block.image q, hmaps C⟩
+  have hf : Function.Injective f := by
+    intro C D hCD
+    apply Subtype.ext
+    exact Finset.image_injective q.injective (Subtype.ext_iff.mp hCD)
+  exact Equiv.ofBijective f ⟨hf, Finite.surjective_of_injective hf⟩
+
+@[simp] theorem componentPerm_block (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (hmaps : ∀ C : BlockIndex P, C.block.image q ∈ P.blocksFinset)
+    (C : BlockIndex P) :
+    (componentPerm P q hmaps C).block = C.block.image q := rfl
+
+/-- An involution which preserves the partition induces an involution of its
+component type.  This is the exact finite precursor of the involutive
+component arrows used for the flip lamp. -/
+theorem componentPerm_sq (P : BlockStructure Y) (q : Equiv.Perm Y)
+    (hmaps : ∀ C : BlockIndex P, C.block.image q ∈ P.blocksFinset)
+    (hsq : q * q = 1) :
+    componentPerm P q hmaps * componentPerm P q hmaps = 1 := by
+  apply Equiv.ext
+  intro C
+  apply Subtype.ext
+  change (C.block.image q).image q = C.block
+  have hpoint (x : Y) : q (q x) = x := by
+    have hx := DFunLike.congr_fun hsq x
+    simpa [Equiv.Perm.mul_apply] using hx
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨y, hy, rfl⟩ := Finset.mem_image.mp hx
+    obtain ⟨z, hz, rfl⟩ := Finset.mem_image.mp hy
+    simpa only [hpoint] using hz
+  · intro hx
+    apply Finset.mem_image.mpr
+    refine ⟨q x, ?_, hpoint x⟩
+    exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
+
 end BlockIndex
 end NonsoficGroupsExist
