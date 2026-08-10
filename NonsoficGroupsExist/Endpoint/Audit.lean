@@ -399,3 +399,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.PartialClusterBridgeData.faithful
 #print axioms NonsoficGroupsExist.FiniteNormalizedPartialClusterData.near_trans
 #print axioms NonsoficGroupsExist.FiniteNormalizedPartialClusterData.presentation
+#print axioms NonsoficGroupsExist.MultiplicativeApproximation.map_one_close
+#print axioms NonsoficGroupsExist.MultiplicativeApproximation.inv_mul_close_eventually
+#print axioms NonsoficGroupsExist.KunThomCorrelation.finiteAveragingDisplacementNormSq_eventually_lt
+#print axioms NonsoficGroupsExist.KunThomRounding.exists_pairProduct_relation_eventually

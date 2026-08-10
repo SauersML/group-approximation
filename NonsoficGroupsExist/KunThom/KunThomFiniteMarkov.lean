@@ -28,7 +28,7 @@ abbrev pairModel (Y : FiniteModel) : FiniteModel where
   decidableEq := inferInstance
 
 /-- The assigned first-factor permutation acting diagonally on ordered pairs. -/
-def pairMap (A : SoficApproximation (K × J)) (n : ℕ) (g : K) :
+def pairMap (A : MultiplicativeApproximation (K × J)) (n : ℕ) (g : K) :
     Equiv.Perm (pairModel (A.model n)) :=
   diagonalPerm (A.map n (g, 1))
 
@@ -81,7 +81,7 @@ theorem norm_average_sq_div_scale_le {I E : Type*}
 /-- A fixed finite exact translation and its composed finite-model
 translation differ by `o(|Y_n|)`, uniformly over every permutation graph. -/
 theorem finiteTranslation_hilbert_error_eventually
-    (A : SoficApproximation (K × J)) (s : K) (a : K →₀ ℝ)
+    (A : MultiplicativeApproximation (K × J)) (s : K) (a : K →₀ ℝ)
     (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       ‖finiteExactTranslation (pairModel (A.model n)) (pairMap A n)
@@ -191,7 +191,7 @@ theorem finiteTranslation_hilbert_error_eventually
 /-- One exact averaging step and one genuine finite diagonal Markov step are
 uniformly close on every permutation graph. -/
 theorem finiteAveragingStep_hilbert_error_eventually
-    (A : SoficApproximation (K × J)) (S : Finset K) (hS : S.Nonempty)
+    (A : MultiplicativeApproximation (K × J)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       ‖finiteFinsuppCombination (pairModel (A.model n)) (pairMap A n)
@@ -249,7 +249,7 @@ theorem finiteAveragingStep_hilbert_error_eventually
 /-- The assigned identity acts negligibly on every permutation graph at the
 graph scale. -/
 theorem sofic_one_hilbert_error_eventually
-    (A : SoficApproximation (K × J)) (δ : ℝ) (hδ : 0 < δ) :
+    (A : MultiplicativeApproximation (K × J)) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       ‖permutationOperator (pairMap A n 1)
           (centeredIndicator (permutationGraph (A.model n) c)) -
@@ -292,14 +292,14 @@ theorem sofic_one_hilbert_error_eventually
 /-- Genuine diagonal Markov iteration started at a centered permutation
 graph. -/
 noncomputable def finiteModelAverageIterate
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     EuclideanSpace ℝ (pairModel (A.model n)) :=
   ((finiteModelAverage (pairModel (A.model n)) (pairMap A n) S)^[k])
     (centeredIndicator (permutationGraph (A.model n) c))
 
 theorem finiteModelAverageIterate_succ
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     finiteModelAverageIterate A n c S (k + 1) =
       finiteModelAverage (pairModel (A.model n)) (pairMap A n) S
@@ -310,7 +310,7 @@ theorem finiteModelAverageIterate_succ
 /-- At every fixed time, exact group-word averaging tracks the genuine
 diagonal finite-model average uniformly over all permutation graphs. -/
 theorem finiteAveragingIterate_hilbert_error_eventually
-    (A : SoficApproximation (K × J)) (S : Finset K) (hS : S.Nonempty)
+    (A : MultiplicativeApproximation (K × J)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       ‖finiteFinsuppCombination (pairModel (A.model n)) (pairMap A n)
@@ -415,7 +415,7 @@ theorem displacement_sq_div_scale_le_of_close
 /-- Exact displacement coefficients evaluate to the difference of successive
 exact graph-scale averages. -/
 theorem exact_displacement_eq
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     KunThomCorrelation.finiteAveragingDisplacementNormSq A n c S k =
       ‖finiteFinsuppCombination (pairModel (A.model n)) (pairMap A n)
@@ -436,7 +436,7 @@ theorem exact_displacement_eq
 
 /-- Genuine consecutive diagonal Markov displacement at graph scale. -/
 noncomputable def finiteModelAveragingDisplacementNormSq
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) : ℝ :=
   ‖finiteModelAverageIterate A n c S (k + 1) -
       finiteModelAverageIterate A n c S k‖ ^ 2 /
@@ -446,7 +446,7 @@ noncomputable def finiteModelAveragingDisplacementNormSq
 theorem finiteModelAveragingDisplacementNormSq_eventually_lt
     {Q : Finset K} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q ε)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : SoficApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
+    (A : MultiplicativeApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       finiteModelAveragingDisplacementNormSq A n c S k <
         4 * (1 - ε ^ 2 / (4 * S.card)) ^ (2 * k) *

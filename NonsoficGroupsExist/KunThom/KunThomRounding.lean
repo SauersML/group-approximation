@@ -28,14 +28,14 @@ variable {K J : Type} [Group K] [Group J]
 /-- Genuine diagonal Markov iteration started at the indicator of a
 permutation graph. -/
 noncomputable def pairIndicatorIterate
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     EuclideanSpace ℝ (pairModel (A.model n)) :=
   ((finiteModelAverage (pairModel (A.model n)) (pairMap A n) S)^[k])
     (indicator (permutationGraph (A.model n) c))
 
 theorem pairIndicatorIterate_succ
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     pairIndicatorIterate A n c S (k + 1) =
       finiteModelAverage (pairModel (A.model n)) (pairMap A n) S
@@ -45,7 +45,7 @@ theorem pairIndicatorIterate_succ
 
 /-- Every diagonal indicator iterate remains pointwise in `[0,1]`. -/
 theorem pairIndicatorIterate_between_zero_one
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) (z : pairModel (A.model n)) :
     0 ≤ pairIndicatorIterate A n c S k z ∧
@@ -64,7 +64,7 @@ theorem pairIndicatorIterate_between_zero_one
 /-- The diagonal Markov trajectory preserves the `|Y|` mass of its initial
 permutation graph. -/
 theorem sum_pairIndicatorIterate
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     ∑ z, pairIndicatorIterate A n c S k z =
@@ -85,7 +85,7 @@ theorem sum_pairIndicatorIterate
 /-- The squared norm of every diagonal indicator iterate is at most the
 graph size, not the ambient pair-space size. -/
 theorem norm_pairIndicatorIterate_sq_le_card
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     ‖pairIndicatorIterate A n c S k‖ ^ 2 ≤
@@ -105,7 +105,7 @@ theorem norm_pairIndicatorIterate_sq_le_card
 /-- Centered and uncentered diagonal trajectories differ by the same constant
 at every time. -/
 theorem finiteModelAverageIterate_eq_pairIndicatorIterate_sub
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     KunThomFiniteMarkov.finiteModelAverageIterate A n c S k =
@@ -124,7 +124,7 @@ theorem finiteModelAverageIterate_eq_pairIndicatorIterate_sub
 /-- Consecutive displacement vectors are identical before and after
 centering. -/
 theorem finiteModelAverageIterate_displacement_eq_pairIndicator
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     KunThomFiniteMarkov.finiteModelAverageIterate A n c S (k + 1) -
@@ -138,7 +138,7 @@ theorem finiteModelAverageIterate_displacement_eq_pairIndicator
 /-- Diagonal indicator displacement norms are nonincreasing along the genuine
 finite trajectory. -/
 theorem norm_pairIndicatorIterate_displacement_le_initial
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     ‖pairIndicatorIterate A n c S (k + 1) -
@@ -157,7 +157,7 @@ theorem norm_pairIndicatorIterate_displacement_le_initial
 /-- A `k`-step diagonal indicator trajectory moves by at most `k` times its
 initial displacement. -/
 theorem norm_pairIndicatorIterate_sub_le
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     ‖pairIndicatorIterate A n c S k -
@@ -185,7 +185,7 @@ theorem norm_pairIndicatorIterate_sub_le
 /-- Thresholding between one third and two thirds changes the input
 permutation graph by at most nine times the trajectory's squared movement. -/
 theorem card_pairSuperlevel_symmDiff_le
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) (t : ℝ)
     (ht0 : (1 : ℝ) / 3 < t) (ht1 : t < (2 : ℝ) / 3) :
     (((KunRounding.superlevelSet (pairIndicatorIterate A n c S k) t) ∆
@@ -199,7 +199,7 @@ theorem card_pairSuperlevel_symmDiff_le
 /-- Quantitative proximity of a thresholded diagonal iterate to its input
 graph, expressed through the initial tagged generator cut. -/
 theorem card_pairSuperlevel_symmDiff_le_cut
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) (t : ℝ) (ht0 : (1 : ℝ) / 3 < t)
     (ht1 : t < (2 : ℝ) / 3) :
@@ -251,7 +251,7 @@ theorem card_pairSuperlevel_symmDiff_le_cut
 permutations, the occurrence boundary of the diagonal generator graph is
 exactly the tagged relation boundary used by the repair argument. -/
 theorem boundaryCard_pairGeneratorGraph_eq_relationBoundary
-    (A : SoficApproximation (K × J)) (n : ℕ) (S : Finset K)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ) (S : Finset K)
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K))
     (U : Finset (pairModel (A.model n))) :
     (generatorGraph (pairModel (A.model n)) S (pairMap A n)).boundaryCard U =
@@ -316,7 +316,7 @@ theorem boundaryCard_pairGeneratorGraph_eq_relationBoundary
 
 /-- Equivalent generator-cut form of the preceding boundary identity. -/
 theorem generatorCutSize_pair_eq_relationBoundary
-    (A : SoficApproximation (K × J)) (n : ℕ) (S : Finset K)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ) (S : Finset K)
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K))
     (U : Finset (pairModel (A.model n))) :
     generatorCutSize (pairModel (A.model n)) (pairMap A n) S U =
@@ -330,7 +330,7 @@ the entrance to the Kun--Thom improvement argument: multiplication doubles
 the commutation defect, and passing from a permutation graph to its diagonal
 boundary doubles it once more. -/
 theorem generatorCutSize_pair_product_lt
-    (A : SoficApproximation (K × J)) (n : ℕ) (S : Finset K)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ) (S : Finset K)
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K))
     {ε : ℝ} {a b : Equiv.Perm (A.model n)}
     (ha : IsEpsilonGood (A.model n) (productLabels A n S) ε a)
@@ -359,7 +359,7 @@ theorem generatorCutSize_pair_product_lt
 to the product permutation graph.  Unlike an arbitrary relation certificate,
 this bound is derived from the two input almost-centralizer defects. -/
 theorem card_pairSuperlevel_product_symmDiff_lt
-    (A : SoficApproximation (K × J)) (n : ℕ) (S : Finset K)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ) (S : Finset K)
     (hS : S.Nonempty)
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K))
     {ε : ℝ} {a b : Equiv.Perm (A.model n)}
@@ -395,7 +395,7 @@ theorem card_pairSuperlevel_product_symmDiff_lt
 /-- The initial diagonal Markov displacement of a product is controlled at
 the graph scale by the two input almost-centralizer defects. -/
 theorem pairIndicator_initialDisplacement_sq_div_lt
-    (A : SoficApproximation (K × J)) (n : ℕ) (S : Finset K)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ) (S : Finset K)
     (hS : S.Nonempty)
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K))
     (hcard : 0 < Fintype.card (A.model n))
@@ -438,7 +438,7 @@ diagonal indicator trajectory. -/
 theorem pairIndicatorDisplacementNormSq_eventually_lt
     {Q : Finset K} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q ε)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : SoficApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
+    (A : MultiplicativeApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       ‖pairIndicatorIterate A n c S (k + 1) -
           pairIndicatorIterate A n c S k‖ ^ 2 /
@@ -465,7 +465,7 @@ the initial displacement has been eliminated using the product-cut bound. -/
 theorem pairProductDisplacementNormSq_eventually_lt
     {Q : Finset K} {κ : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q κ)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hκone : κ ≤ 1)
-    (A : SoficApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
+    (A : MultiplicativeApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N,
       Set.InjOn (fun x : K ↦ A.map n (x, (1 : J))) (S : Set K) →
       0 < Fintype.card (A.model n) →
@@ -506,7 +506,7 @@ theorem pairProductDisplacementNormSq_eventually_lt
 /-- Coarea thresholding of a diagonal indicator iterate, with every term
 measured at the permutation-graph scale. -/
 theorem exists_threshold_pairIndicator_boundary_sq
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) :
     ∃ t : ℝ, (1 : ℝ) / 3 < t ∧ t < (2 : ℝ) / 3 ∧
@@ -535,7 +535,7 @@ prescribed boundary fraction.  The fourth-power numerical hypothesis is the
 result of squaring the coarea estimate and using the graph-scale norm bound
 `‖f_k‖² ≤ |Y|`; it contains no hidden asymptotic premise. -/
 theorem exists_threshold_pairIndicator_boundary_lt
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (hS : S.Nonempty)
     (k : ℕ) (hcard : 0 < Fintype.card (A.model n))
     {θ β : ℝ} (hβ : 0 < β)
@@ -629,7 +629,7 @@ has a prescribed small diagonal boundary. -/
 theorem exists_pairProduct_relation_eventually
     {Q : Finset K} {κ : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q κ)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hκone : κ ≤ 1)
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (k : ℕ) (hk : 0 < k) {δ η β : ℝ}
     (hδ : 0 < δ) (hβ : 0 < β)
     (hnumerical :

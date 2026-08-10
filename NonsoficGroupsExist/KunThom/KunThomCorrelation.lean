@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.KunThom.KunThomDiagonal
+import NonsoficGroupsExist.Sofic.MultiplicativeApproximation
 import NonsoficGroupsExist.Sofic.SoficTransfer
 import NonsoficGroupsExist.Kazhdan.KazhdanGNS
 
@@ -251,7 +252,7 @@ variable {K J : Type} [Group K] [Group J]
 /-- In a sofic approximation of `K × J`, the scaled relative coefficient
 of any sequence of permutation graphs approaches its Gram coefficient. -/
 theorem relativeCorrelation_approaches_gram_eventually
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n))
     (g h : K) (η : ℝ) (hη : 0 < η) :
     ∃ N : ℕ, ∀ n ≥ N,
@@ -259,7 +260,7 @@ theorem relativeCorrelation_approaches_gram_eventually
         scaledGramCorrelation (fun k ↦ A.map n (k, 1)) (c n) g h| < η := by
   have htol : 0 < η ^ 2 / 4 := by positivity
   obtain ⟨Nclose, hNclose⟩ :=
-    sofic_inv_mul_close_eventually A (g, (1 : J)) (h, 1)
+    A.inv_mul_close_eventually (g, (1 : J)) (h, 1)
       (η ^ 2 / 4) htol
   obtain ⟨Ncard, hNcard⟩ := A.card_tendsToInfinity 1
   refine ⟨max Nclose Ncard, fun n hn ↦ ?_⟩
@@ -297,20 +298,20 @@ theorem relativeCorrelation_approaches_gram_eventually
 
 /-- Hyperreal scaled coefficient of a sequence of permutation graphs. -/
 noncomputable def correlationHyperreal
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g : K) : Hyperreal :=
   Hyperreal.ofSeq fun n ↦
     scaledCorrelation (fun k ↦ A.map n (k, 1)) (c n) g
 
 /-- Hyperreal Gram coefficient of the corresponding diagonal translates. -/
 noncomputable def gramCorrelationHyperreal
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) : Hyperreal :=
   Hyperreal.ofSeq fun n ↦
     scaledGramCorrelation (fun k ↦ A.map n (k, 1)) (c n) g h
 
 theorem correlationHyperreal_finite
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g : K) :
     0 ≤ ArchimedeanClass.mk (correlationHyperreal A c g) := by
   apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
@@ -331,7 +332,7 @@ theorem correlationHyperreal_finite
         (c n) (A.map n (g, 1)))).2
 
 theorem gramCorrelationHyperreal_finite
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     0 ≤ ArchimedeanClass.mk (gramCorrelationHyperreal A c g h) := by
   apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
@@ -352,7 +353,7 @@ theorem gramCorrelationHyperreal_finite
         (fun k ↦ A.map n (k, 1)) (c n) g h)).2
 
 theorem gramCorrelationHyperreal_comm
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     gramCorrelationHyperreal A c g h =
       gramCorrelationHyperreal A c h g := by
@@ -362,7 +363,7 @@ theorem gramCorrelationHyperreal_comm
     (fun k ↦ A.map n (k, 1)) (c n) g h
 
 theorem correlation_sub_gram_tendsto_zero
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     Filter.Tendsto
       (fun n ↦
@@ -376,7 +377,7 @@ theorem correlation_sub_gram_tendsto_zero
   simpa only [dist_zero_right, Real.norm_eq_abs] using hN n hn
 
 theorem correlationHyperreal_sub_gram_mk_pos
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     0 < ArchimedeanClass.mk
       (correlationHyperreal A c (g⁻¹ * h) -
@@ -391,12 +392,12 @@ theorem correlationHyperreal_sub_gram_mk_pos
 
 /-- Standard-part correlation of a permutation-graph sequence. -/
 noncomputable def limitingCorrelation
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g : K) : ℝ :=
   ArchimedeanClass.stdPart (correlationHyperreal A c g)
 
 theorem limitingCorrelation_inv_mul_eq_stdPart_gram
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     limitingCorrelation A c (g⁻¹ * h) =
       ArchimedeanClass.stdPart (gramCorrelationHyperreal A c g h) := by
@@ -413,7 +414,7 @@ theorem limitingCorrelation_inv_mul_eq_stdPart_gram
   exact sub_eq_zero.mp hsub.symm
 
 theorem limitingCorrelation_inv_mul_comm
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (g h : K) :
     limitingCorrelation A c (g⁻¹ * h) =
       limitingCorrelation A c (h⁻¹ * g) := by
@@ -423,7 +424,7 @@ theorem limitingCorrelation_inv_mul_comm
 
 /-- The scaled limiting correlation is positive definite. -/
 theorem limitingCorrelation_isPositiveDefinite
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) :
     IsPositiveDefinite (limitingCorrelation A c) := by
   refine ⟨limitingCorrelation_inv_mul_comm A c, ?_⟩
@@ -507,7 +508,7 @@ theorem limitingCorrelation_isPositiveDefinite
 
 /-- Bundle the proved scaled correlation for the GNS construction. -/
 noncomputable def limitingPositiveDefiniteFunction
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) :
     KazhdanGNS.PositiveDefiniteFunction K where
   toFun := limitingCorrelation A c
@@ -515,7 +516,7 @@ noncomputable def limitingPositiveDefiniteFunction
 
 /-- Hyperreal Gram norm of a fixed finite cyclic combination. -/
 noncomputable def combinationNormSqHyperreal {I : Type*}
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n))
     (F : Finset I) (w : I → K) (a : I → ℝ) : Hyperreal :=
   ∑ i ∈ F, ∑ j ∈ F,
@@ -523,7 +524,7 @@ noncomputable def combinationNormSqHyperreal {I : Type*}
       gramCorrelationHyperreal A c (w i) (w j)
 
 theorem combinationNormSqHyperreal_eq_ofSeq {I : Type*}
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n))
     (F : Finset I) (w : I → K) (a : I → ℝ) :
     combinationNormSqHyperreal A c F w a = Hyperreal.ofSeq (fun n ↦
@@ -554,7 +555,7 @@ theorem combinationNormSqHyperreal_eq_ofSeq {I : Type*}
   congr 1
 
 theorem combinationNormSqHyperreal_finite {I : Type*}
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n))
     (F : Finset I) (w : I → K) (a : I → ℝ) :
     0 ≤ ArchimedeanClass.mk (combinationNormSqHyperreal A c F w a) := by
@@ -566,7 +567,7 @@ theorem combinationNormSqHyperreal_finite {I : Type*}
     (gramCorrelationHyperreal_finite A c (w i) (w j))
 
 theorem stdPart_combinationNormSqHyperreal {I : Type*}
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n))
     (F : Finset I) (w : I → K) (a : I → ℝ) :
     ArchimedeanClass.stdPart (combinationNormSqHyperreal A c F w a) =
@@ -608,7 +609,7 @@ theorem stdPart_combinationNormSqHyperreal {I : Type*}
         ← limitingCorrelation_inv_mul_eq_stdPart_gram A c (w i) (w j)]
 
 theorem stdPart_averagingDisplacementNormSq
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     ArchimedeanClass.stdPart
@@ -635,7 +636,7 @@ theorem stdPart_averagingDisplacementNormSq
 theorem stdPart_averagingDisplacementNormSq_le
     {Q : Finset K} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q ε)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (k : ℕ) :
     let dk := KazhdanGNS.averagingDisplacementCoefficients S k
     let d0 := KazhdanGNS.averagingDisplacementCoefficients S 0
@@ -692,14 +693,14 @@ theorem stdPart_averagingDisplacementNormSq_le
 /-- Exact-word displacement norm in the diagonal pair model, normalized by
 the size of the underlying permutation model. -/
 noncomputable def finiteAveragingDisplacementNormSq
-    (A : SoficApproximation (K × J)) (n : ℕ)
+    (A : MultiplicativeApproximation (K × J)) (n : ℕ)
     (c : Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) : ℝ :=
   let d := KazhdanGNS.averagingDisplacementCoefficients S k
   scaledCombinationNormSq d.support d
     (fun g ↦ A.map n (g, 1)) c id
 
 theorem combinationNormSqHyperreal_displacement_eq_ofSeq
-    (A : SoficApproximation (K × J))
+    (A : MultiplicativeApproximation (K × J))
     (c : ∀ n, Equiv.Perm (A.model n)) (S : Finset K) (k : ℕ) :
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     combinationNormSqHyperreal A c d.support id d =
@@ -713,7 +714,7 @@ theorem combinationNormSqHyperreal_displacement_eq_ofSeq
 theorem finiteAveragingDisplacementNormSq_eventually_lt
     {Q : Finset K} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} K Q ε)
     (S : Finset K) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : SoficApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
+    (A : MultiplicativeApproximation (K × J)) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ c : Equiv.Perm (A.model n),
       finiteAveragingDisplacementNormSq A n c S k <
         (1 - ε ^ 2 / (4 * S.card)) ^ (2 * k) *
