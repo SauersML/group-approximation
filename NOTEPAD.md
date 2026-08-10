@@ -34214,3 +34214,45 @@ commutator of one polynomial-kernel element, and property `(T)` controls
 that growing element uniformly.  A surviving FALSE construction must
 therefore be genuinely non-induced/non-finite-cover, or use an approximate
 ambient representation for which `(BRC5)` is not respected exactly.
+
+## Separation of Alekseev--Bradford target classes is already the desired group separation
+
+The action-level criterion `(AHG1)--(AHG5)` is correct, but it is not a
+strictly easier analytic endpoint.  This follows directly from the
+quantifiers in Alekseev--Bradford Definition 4.23.
+
+Let `C_1 subset C_2` be two classes of groups and let
+
+`alpha:Gamma->Aut(Delta)`
+
+be a sofic `C_2`-action but not a sofic `C_1`-action.  Failure of the latter
+means that there are finite sets `F subset Gamma`, `E subset Delta`, and
+`epsilon>0` for which no group `Lambda in C_1` supports a unital
+`(F,epsilon)`-multiplicative
+`(F,E,epsilon,Lambda)`-automorphic approximation.  Since `alpha` is a sofic
+`C_2`-action, the same fixed window has such an approximation for some
+`Lambda in C_2`.  Necessarily
+
+`Lambda in C_2 setminus C_1`.                          `(ATC1)`
+
+This proves the following elementary but load-bearing audit statement.
+
+**Proposition (target-class extraction).**  If one action is a sofic
+`C_2`-action but not a sofic `C_1`-action, then there already exists a group
+in `C_2` which is not in `C_1`.
+
+For `C_1=sofic` and `C_2=hyperlinear`, `(ATC1)` is itself a hyperlinear
+nonsofic group.  Hence proving that the gauge action `beta` is
+hyperlinear-sofic after having proved that it is not sofic-sofic does answer
+the main question, but only because one of the auxiliary chart groups in
+the definition must already answer it.  Alekseev--Bradford Corollary 5.2 then
+produces a second counterexample, the semidirect product, but it does not
+turn the positive half into a finite-dimensional covariance problem.
+
+This also clarifies the phrase "hyperlinear auxiliary group carries matrix
+microstates."  Those microstates are supplied only *after* one has supplied
+the auxiliary group `Lambda`; if `Lambda` cannot be sofic, supplying it is
+already the original task.  The live gauge endpoint remains the direct one:
+construct a Connes-embeddable trace on the finite central gauge corner (or
+on the regularized algebraic crossed product) which sees the radical
+coordinate.  The automorphic-action packaging does not lower that gate.
