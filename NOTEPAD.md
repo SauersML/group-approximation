@@ -29281,3 +29281,76 @@ group are unnecessary.  The growing-order finite Schrödinger sectors above
 are tailored to this endpoint: it is enough to choose central characters
 with a fixed nontrivial ultralimit while their finitely many tested
 `G`-covariance defects vanish in normalized Hilbert--Schmidt norm.
+
+### Sublinear small-phase defect amplifies to the required CE character
+
+The infinite center turns the one-character endpoint into a second-order
+local construction problem.  No direct fixed-phase model is necessary.
+
+**Lemma (small-phase tensor amplification).**  Let `E` be a countable group
+with a central element `z`.  Suppose there are numbers `epsilon_n>0` tending
+to zero and maps
+
+`phi_n:E->U(d_n)`
+
+such that, for every fixed `g,h in E`,
+
+`||phi_n(g)phi_n(h)-phi_n(gh)||_2=o_(g,h)(epsilon_n)`, `(SPA1)`
+
+and
+
+`||phi_n(z)-exp(i epsilon_n) I||_2=o(epsilon_n)`.       `(SPA2)`
+
+Then for every `theta in (0,2 pi)` there is a homomorphism from `E` to a
+tracial matrix ultraproduct whose image of `z` is the nontrivial scalar
+`exp(i theta)`.
+
+**Proof.**  Put
+
+`L_n=floor(theta/epsilon_n)`
+
+and define
+
+`Phi_n(g)=phi_n(g)^(tensor L_n)`.
+
+For unitaries `A,B`, the tensor telescoping identity gives
+
+`||A^(tensor L)-B^(tensor L)||_2<=L ||A-B||_2`.
+
+Indeed, replace the tensor factors one at a time; normalized
+Hilbert--Schmidt norm is unchanged by tensoring with unitaries.  Applying
+this with `A=phi_n(g)phi_n(h)` and `B=phi_n(gh)` yields
+
+`||Phi_n(g)Phi_n(h)-Phi_n(gh)||_2`
+` <=L_n o_(g,h)(epsilon_n)=o_(g,h)(1)`.
+
+Thus the classes of the `Phi_n(g)` define a homomorphism in any tracial
+ultraproduct.  A second application of the same tensor estimate and
+`(SPA2)` gives
+
+`||Phi_n(z)-exp(i L_n epsilon_n) I||_2=o(1)`.
+
+Since `L_n epsilon_n->theta`, the ultraproduct image of `z` is
+`exp(i theta)`, as claimed.  End proof.
+
+Apply the lemma to the integral Heisenberg group `E_Z`.  Composing the
+resulting homomorphism with the ultraproduct trace gives a
+Connes-embeddable character `chi` with
+
+`chi(z)=exp(i theta)!=1`.
+
+The one-character integral Weyl theorem then produces a hyperlinear
+nonsofic group.  Therefore the TRUE direction is reduced to the following
+sharp local target:
+
+> construct finite Weyl/positive-chamber maps for `E_Z` whose central
+> phase is first order (`epsilon`) while every fixed group-law defect is
+> sublinear in that phase (`o(epsilon)`).
+
+An `O(epsilon^2)` Egorov or Pauli--Jacobi error bound is more than enough.
+This explains exactly why the integral center is potentially stronger than
+the Clifford sign: tensor power converts a quadratic local quantization
+error into vanishing global error while accumulating the desired central
+curvature to order one.  Conversely an `Omega(epsilon)` curvature defect is
+not removed by this amplification and remains the concrete obstruction to
+audit in the opposite-chamber cell.
