@@ -1,0 +1,220 @@
+# A weak-MF nonsofic symmetric double
+
+This note repairs the group-level application of Shulman's symmetric
+amalgamation theorem for the explicit Kun--Thom pair.  An arbitrary
+weak-MF embedding of a group need not retain the abstract Bass--Serre normal
+form after passing to the generated C*-algebra.  For a residually finite
+group, however, the profinite regular embedding carries the regular group
+trace, and that trace forces the required intersections to be exact.
+
+Throughout, weak-MF means embeddability into
+
+\[
+ U\left(\prod_n M_{d_n}(\mathbb C)/\bigoplus_n M_{d_n}(\mathbb C)\right)
+\]
+
+with the quotient taken in operator norm.
+
+## 1. The profinite regular completion remembers every subgroup
+
+Let \(G\) be a countable residually finite group and let \(\Gamma<G\) be
+arbitrary.  Choose a decreasing sequence of finite-index normal subgroups
+
+\[
+ G=N_0\geq N_1\geq N_2\geq\cdots,
+ \qquad \bigcap_nN_n=\{1\},
+\]
+
+and put \(G_n=G/N_n\).  Let \(\lambda_n\) be the left regular
+representation of \(G_n\), and define
+
+\[
+ \rho(g)=[(\lambda_n(gN_n))_n]
+ \quad\text{in}\quad
+ \prod_nM_{|G_n|}/\bigoplus_nM_{|G_n|}.
+ \tag{1}
+\]
+
+The map \(\rho\) is injective.  Indeed, if \(g\neq1\), then \(gN_n\neq
+N_n\) eventually.  For every nonidentity element \(x\) of a finite group,
+the regular unitary \(\lambda(x)\) satisfies
+
+\[
+ \|\lambda(x)-1\|\geq \sqrt3.
+\]
+
+(For an element of order \(m\geq2\), maximize \(|\zeta-1|\) over the
+\(m\)-th roots of unity.)
+
+Let
+
+\[
+ A=C^*(\rho(G)),\qquad C=C^*(\rho(\Gamma))\subseteq A.
+ \tag{2}
+\]
+
+An ultralimit of the normalized matrix traces defines a tracial state
+\(\tau\) on \(A\).  The regular-character calculation gives
+
+\[
+ \tau(\rho(g))=\begin{cases}1,&g=1,\\0,&g\neq1.\end{cases}
+ \tag{3}
+\]
+
+Consequently,
+
+\[
+ \boxed{\rho(g)\in C\quad\Longleftrightarrow\quad g\in\Gamma.}
+ \tag{4}
+\]
+
+Only the reverse implication needs proof.  If \(g\notin\Gamma\), then for
+every finite sum \(c=\sum_{\gamma\in F}a_\gamma\rho(\gamma)\),
+
+\[
+ \tau(\rho(g)^*c)=0
+ \tag{5}
+\]
+
+by (3).  The same is true for every \(c\in C\) by norm continuity.  If
+\(\rho(g)\) belonged to \(C\), taking \(c=\rho(g)\) in (5) would give
+\(1=0\).
+
+The argument proves a little more: in the GNS Hilbert space of \(\tau\),
+\(\rho(g)\) is orthogonal to \(C\) whenever \(g\notin\Gamma\).  This remains
+true even if \(g\) lies in the relative profinite closure of \(\Gamma\), so
+finite-quotient collapse does not collapse the *fixed* C*-subalgebra \(C\).
+
+## 2. Symmetric doubles of residually finite groups are weak-MF
+
+The algebra \(A\) in (2) is separable and MF: it is a C*-subalgebra of the
+norm matrix ultraproduct in (1).  Shulman's Theorem 10 therefore gives
+
+\[
+ B:=A*_C A\quad\text{is MF}.                             \tag{6}
+\]
+
+Let \(i_1,i_2:A\to B\) be the two canonical embeddings.  Define
+
+\[
+ \iota:G*_\Gamma G\longrightarrow U(B)
+ \tag{7}
+\]
+
+by \(\iota(g)=i_1(\rho(g))\) on the first vertex group and
+\(\iota(g)=i_2(\rho(g))\) on the second.
+
+**Theorem.**  The map (7) is injective.  Hence every symmetric double of a
+countable residually finite group over an arbitrary subgroup is weak-MF.
+
+**Proof.**  Let \((\pi_\tau,H_\tau)\) be the GNS representation associated
+to \(\tau\).  Equation (3) says that the representation
+\(\pi_\tau\circ\rho\) is the left regular representation of \(G\).  Thus
+
+\[
+ \pi_\tau(A)''=L(G),\qquad \pi_\tau(C)''=L(\Gamma).
+ \tag{8}
+\]
+
+Form the reduced tracial amalgam
+
+\[
+ M=L(G)*_{L(\Gamma)}L(G).
+\]
+
+The two copies of \(\pi_\tau:A\to L(G)\subset M\) agree on \(C\).
+Universality of the full amalgam therefore gives a unital *-homomorphism
+
+\[
+ \Pi:B=A*_C A\longrightarrow M.
+ \tag{9}
+\]
+
+The standard group-von-Neumann-algebra identification gives
+
+\[
+ M\cong L(G*_\Gamma G),
+ \tag{10}
+\]
+
+and under this identification \(\Pi\circ\iota\) is the canonical left
+regular representation of \(G*_\Gamma G\).  It is faithful as a group
+representation: a nonidentity Bass--Serre reduced word has canonical trace
+zero and hence is not the identity.  Therefore \(\iota\) itself is
+injective.  Since \(B\) is MF, its countable unitary subgroup
+\(\iota(G *_\Gamma G)\) is weak-MF. \(\square\)
+
+The trace argument is the missing hypothesis in the invalid general
+inference from an arbitrary weak-MF embedding.  For example, a faithful
+irrational scalar representation of \(\mathbb Z\) generates only
+\(\mathbb C\), and therefore folds the double over \(2\mathbb Z\).  The
+profinite regular completion cannot fold in this way because (3) also
+provides the detecting quotient (9)--(10).
+
+## 3. Application to the Kun--Thom pair
+
+Let \(\Gamma<G\) be the explicit residually finite Kazhdan infranormal pair
+of Kun--Thom.  Choose a strict compressor \(t\) and
+\(\gamma\in\Gamma\) such that
+
+\[
+ h=t^{-1}\gamma t\notin\Gamma.                          \tag{11}
+\]
+
+Put
+
+\[
+ D=G*_\Gamma G.
+\]
+
+The theorem above proves that \(D\) is weak-MF.  We next recall why it is
+nonsofic, keeping track of the one word that must survive.
+
+The flip of the two free factors defines an automorphism \(\alpha\) of
+\(D\).  Let
+
+\[
+ E=D\rtimes_\alpha C_2,
+\]
+
+and write \(k\) for the flip generator.  Thus \(k^2=1\), \(k\) centralizes
+the common copy of \(\Gamma\), and conjugates the first copy of \(G\) onto
+the second.  The Kun--Thom witness is
+
+\[
+ w=[tkt^{-1},\gamma]
+   =t[k,h]t^{-1}.                                      \tag{12}
+\]
+
+Abstract Bass--Serre normal form gives \([k,h]\neq1\) because
+\(h\notin\Gamma\).  Hence \(w\neq1\) in \(E\).
+
+If \(E\) were sofic, restrict a sofic embedding to the first copy of
+\(G\).  Kun--Thom's centralizer-normalization theorem says that the
+permutation-ultraproduct centralizer of the image of \(\Gamma\) is
+normalized by the image of \(G\).  Since \(k\) centralizes \(\Gamma\), so
+does \(tkt^{-1}\).  It would follow that the nontrivial word \(w\) in (12)
+maps to the identity, contradicting injectivity.  Therefore \(E\) is
+nonsofic.
+
+Finally, if \(D\) were sofic, its extension by the finite quotient \(C_2\)
+would be sofic.  Thus \(E\) would be sofic, a contradiction.  We have
+proved:
+
+\[
+ \boxed{D=G*_\Gamma G\text{ is weak-MF and nonsofic}.}  \tag{13}
+\]
+
+This is a genuine separation of weak/operator-norm MF from soficity.  It
+does **not** yet separate hyperlinearity from soficity: Shulman's MF
+embedding supplies operator-norm separation, but its normalized traces need
+not retain the fold-kernel witness (12).  The remaining main-problem
+certificate is a trace-visibility theorem for this particular profinite
+regular amalgam, or a pointwise square-root profile for Shulman's lifts.
+
+## Sources
+
+* Tatiana Shulman, *The MF property for amalgamated free products*,
+  arXiv:2603.13564v2, Theorem 10.
+* G. Kun and A. Thom, *Nonsofic wreath products of residually finite
+  groups*, arXiv:2608.06222v1, Theorem 4.1.
