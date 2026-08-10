@@ -1,4 +1,5 @@
 import NonsoficGroupsExist.Matching.ComponentPinning
+import NonsoficGroupsExist.Matching.ComponentDivergence
 import NonsoficGroupsExist.Matching.CompletionGraphEditing
 import NonsoficGroupsExist.Matching.EdgeWitnessRestriction
 import NonsoficGroupsExist.Matching.EditedGeneratorExpansion
@@ -202,6 +203,67 @@ theorem sum_componentGeneratorExits (n : ℕ) (t : G) :
             (BlockIndex.block_representative (D.blocks n) C)
       exact himage.trans hxblock.symm
   rw [hsets]
+
+/-- On one component, the chosen completion can disagree with the ambient
+permutation only where the ambient image leaves that component. -/
+theorem componentCompletedAction_disagreement_le_exit
+    (n : ℕ) (C : D.componentIndex n) (g : G) :
+    (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+      (D.componentCompletedAction n C g x : S.model n) ≠
+        S.map n g (x : S.model n)).card ≤
+      (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+        S.map n g (x : S.model n) ∉ C.block).card := by
+  classical
+  apply Finset.card_le_card
+  intro x hx
+  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hx ⊢
+  intro hin
+  exact hx (D.componentCompletedAction_agrees n C g x hin)
+
+/-- Summed over all components, completion disagreement is bounded by the
+global block-crossing error of the ambient permutation. -/
+theorem sum_componentCompletedAction_disagreement_le
+    (n : ℕ) (g : G) :
+    (∑ C : D.componentIndex n,
+      ((Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+        (D.componentCompletedAction n C g x : S.model n) ≠
+          S.map n g (x : S.model n)).card : ℝ)) ≤
+      ((Finset.univ.filter fun x : S.model n ↦
+        (D.blocks n).block (S.map n g x) ≠
+          (D.blocks n).block x).card : ℝ) := by
+  calc
+    _ ≤ ∑ C : D.componentIndex n,
+        ((Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+          S.map n g (x : S.model n) ∉ C.block).card : ℝ) := by
+      apply Finset.sum_le_sum
+      intro C _
+      exact_mod_cast D.componentCompletedAction_disagreement_le_exit n C g
+    _ = _ := D.sum_componentGeneratorExits n g
+
+/-- For every fixed group element, the total number of component points on
+which the chosen completions differ from the ambient sofic model is
+negligible.  This is the quantitative bridge from the global approximation
+to the componentwise completed labels. -/
+theorem componentCompletedAction_disagreement_sum_negligible
+    (hsymm : ∀ t ∈ T, t⁻¹ ∈ T)
+    (hgen : Subgroup.closure (T : Set G) = ⊤) (g : G) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      (fun n ↦ ∑ C : D.componentIndex n,
+        ((Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+          (D.componentCompletedAction n C g x : S.model n) ≠
+            S.map n g (x : S.model n)).card : ℝ)) := by
+  apply Negligible.mono_nonneg (fun n ↦ by
+      exact_mod_cast Nat.zero_le (Fintype.card (S.model n)))
+    (fun _ ↦ by positivity)
+    (fun n ↦ D.sum_componentCompletedAction_disagreement_le n g)
+  have hall := D.all_almost_invariant hsymm hgen g
+  change Negligible S.cardScale.value
+    (fun n ↦ ((wordCrossing (D.blocks n) (S.map n g)).card : ℝ)) at hall
+  change Negligible S.cardScale.value (fun n ↦
+    ((Finset.univ.filter fun x : S.model n ↦
+      (D.blocks n).block (S.map n g x) ≠
+        (D.blocks n).block x).card : ℝ))
+  simpa only [wordCrossing] using hall
 
 /-- Restricting the occurrence edit witness to every component counts each
 globally unmatched occurrence at most once. -/
