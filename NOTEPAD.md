@@ -32628,6 +32628,85 @@ nonseparable subgroup carries infinitely many nonconstant translates.  A
 finite-dimensional or finite-orbit gauge would erase the same relative
 class that detects the double radical.
 
+# Periodic gauge sectors all kill the radical by the same scalar (2026-08-10)
+
+Retain the finite gauge cover `(FGC1)--(FGC10)`.  Thus
+
+`K_omega=B_omega semidirect G`,
+
+`Z=mu_m<=B_omega`
+
+is central and fixed pointwise by `G`.  Fix the faithful character
+`chi:Z->T` used in the central corner.  Its dual fiber is the compact
+space
+
+`X_chi={eta in Bhat_omega:eta|Z=chi}`.                 `(PGS1)`
+
+The action of `G` on `B_omega` preserves `Z`, hence acts on `X_chi`.
+For a finite `G`-orbit `O<=X_chi`, the usual covariant representation on
+`ell^2(O)` is
+
+`pi_O(b)delta_eta=eta(b)delta_eta`,
+
+`pi_O(g)delta_eta=delta_(g eta)`.                      `(PGS2)`
+
+Every `z in Z` acts as the scalar `chi(z)`, so `(PGS2)` gives a projective
+representation of `K_omega/Z`, and hence, after composing with `(FGC7)`, a
+homomorphism
+
+`Psi_O:D=G *_Gamma G -> PU(ell^2(O))`.                 `(PGS3)`
+
+The image of `(PGS3)` is finite: the diagonal entries lie in the fixed
+finite group `mu_m`, and the permutation part acts on the finite set `O`.
+
+**Theorem (periodic-sector rigidity).**  Let `x in Rad_sof(D)` and suppose
+its gauge image is represented by `b in B_omega`.  There is a scalar
+`c_x in mu_m` such that
+
+`eta(b)=c_x`                                             `(PGS4)`
+
+for every periodic point `eta in X_chi`.  In particular, if `bZ` is
+nontrivial, then the periodic points are not dense in `X_chi`, and Haar
+measure on `X_chi` is not a weak-star limit of probability measures
+supported on finite orbits.
+
+**Proof.**  For one finite orbit `O`, the target in `(PGS3)` is a finite,
+hence sofic, group.  Since `x` belongs to the full sofic radical,
+`Psi_O(x)=1`.  Thus the diagonal matrix
+
+`diag_(eta in O)(eta(b))`
+
+is scalar, proving that `eta(b)` is constant on each finite orbit.
+
+The constants cannot depend on the orbit.  Given two finite orbits
+`O_1,O_2`, take the direct sum of their covariant representations.  The
+central subgroup `Z` acts by the same scalar character `chi` on both
+summands, so the direct sum again induces a projective homomorphism from
+`D` into a finite projective unitary group.  The radical element must die
+there as well.  A block diagonal matrix which is scalar on the two blocks
+is globally projectively trivial only when the two scalars agree.  This
+proves `(PGS4)` simultaneously over all periodic points.
+
+If periodic points were dense, continuity of the character
+`eta |-> eta(b)` would make it equal to `c_x` on all of `X_chi`.  This says
+exactly that `b` differs from a constant element of `Z` by an element
+annihilated by every character of `B_omega/Z`, hence `bZ=1`, a
+contradiction.
+
+Finally, every probability measure supported on periodic points integrates
+the character `eta |-> eta(b)` to `c_x`, of modulus one.  Haar measure on
+the compact torsor `X_chi` integrates a nontrivial character `bZ` to zero.
+Weak-star convergence is therefore impossible.  End proof.
+
+For the detector `x_n` in `(FGC8)`, nontriviality of `b_nZ` is precisely
+the projective separation statement.  Hence the central-character gauge
+action is not merely nonprofinite: its trace-visible radical coordinate is
+invisible in **every** periodic covariant sector, with one common scalar
+across all sectors.  Any proof that its Haar crossed product is Connes
+embeddable must therefore use genuinely aperiodic, non-Cartan matrix
+models.  Residual finite-dimensionality, density of periodic points, and
+periodic-orbit trace approximation are all unavailable.
+
 # The free-stabilized cyclic shear cannot repair rank blindness (2026-08-10)
 
 The preferred cyclic-centralizer reduction `(FCS1)--(FCS7)` is algebraically
