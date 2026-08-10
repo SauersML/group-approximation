@@ -93,6 +93,75 @@ theorem graph_coreCrossing
       crossingRelation (relationCore (sumModel Y Z) U) := by
   exact graph_ofBiuniqueRelation _ _ _
 
+/-- Exact relation-core repair of a partial arrow.  This differs from
+`repair`: it never completes the invariant singleton-fiber core to an
+arbitrary permutation. -/
+noncomputable def exactCoreRepair
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) : FinitePartialBijection Y Z :=
+  coreCrossing (roundedDiagonalRelation (sumActionHom σY σZ)
+    (permutationGraph (sumModel Y Z) b.swapPerm))
+
+/-- The graph of the exact core repair is invariant under every group
+element. -/
+theorem exactCoreRepair_graph_mapsTo
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z) (g : G) (y : Y) (z : Z)
+    (hyz : (y, z) ∈ (exactCoreRepair σY σZ b).graph) :
+    (σY g y, σZ g z) ∈ (exactCoreRepair σY σZ b).graph := by
+  rw [exactCoreRepair, graph_coreCrossing, mem_crossingRelation] at hyz ⊢
+  have hmapped := relationCore_roundedDiagonalRelation_mapsTo
+    (sumActionHom σY σZ)
+    (permutationGraph (sumModel Y Z) b.swapPerm) g hyz
+  have heq : diagonalActionHom (sumActionHom σY σZ) g
+      (Sum.inl y, Sum.inr z) =
+        (Sum.inl (σY g y), Sum.inr (σZ g z)) := rfl
+  rw [heq] at hmapped
+  exact hmapped
+
+/-- In a transitive source action, any nonempty exact core repair has full
+source. -/
+theorem exactCoreRepair_source_eq_univ_of_transitive
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (htransY : ∀ x y : Y, ∃ g : G, σY g x = y)
+    (hne : (exactCoreRepair σY σZ b).source.Nonempty) :
+    (exactCoreRepair σY σZ b).source = Finset.univ := by
+  exact source_eq_univ_of_graph_mapsTo_of_transitive σY σZ
+    (exactCoreRepair σY σZ b)
+    (exactCoreRepair_graph_mapsTo σY σZ b) htransY hne
+
+/-- In a transitive target action, any nonempty exact core repair has full
+target. -/
+theorem exactCoreRepair_target_eq_univ_of_transitive
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (htransZ : ∀ x y : Z, ∃ g : G, σZ g x = y)
+    (hne : (exactCoreRepair σY σZ b).target.Nonempty) :
+    (exactCoreRepair σY σZ b).target = Finset.univ := by
+  exact target_eq_univ_of_graph_mapsTo_of_transitive σY σZ
+    (exactCoreRepair σY σZ b)
+    (exactCoreRepair_graph_mapsTo σY σZ b) htransZ hne
+
+/-- Nonempty exact core repair between two transitive actions is a full
+equivariant bijection. -/
+theorem exactCoreRepair_source_target_eq_univ_of_transitive
+    (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)
+    (b : FinitePartialBijection Y Z)
+    (htransY : ∀ x y : Y, ∃ g : G, σY g x = y)
+    (htransZ : ∀ x y : Z, ∃ g : G, σZ g x = y)
+    (hne : (exactCoreRepair σY σZ b).source.Nonempty) :
+    (exactCoreRepair σY σZ b).source = Finset.univ ∧
+      (exactCoreRepair σY σZ b).target = Finset.univ := by
+  have hsource := exactCoreRepair_source_eq_univ_of_transitive
+    σY σZ b htransY hne
+  obtain ⟨y, hy⟩ := hne
+  have htargetNonempty : (exactCoreRepair σY σZ b).target.Nonempty :=
+    ⟨(exactCoreRepair σY σZ b).apply y hy,
+      (exactCoreRepair σY σZ b).apply_mem_target y hy⟩
+  exact ⟨hsource, exactCoreRepair_target_eq_univ_of_transitive
+    σY σZ b htransZ htargetNonempty⟩
+
 /-- Repair the swap permutation and extract its crossing partial map. -/
 noncomputable def repair
     (σY : G →* Equiv.Perm Y) (σZ : G →* Equiv.Perm Z)

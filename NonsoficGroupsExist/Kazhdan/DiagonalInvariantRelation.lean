@@ -58,6 +58,86 @@ theorem roundedDiagonalRelation_map (σ : G →* Equiv.Perm Y)
   exact KazhdanInvariantRounding.roundedInvariantSet_map
     (diagonalActionHom σ) U g
 
+/-- Membership in the rounded relation is preserved and reflected by every
+diagonal action permutation. -/
+theorem mem_roundedDiagonalRelation_map_iff
+    (σ : G →* Equiv.Perm Y) (U : Finset (Y × Y)) (g : G) (p : Y × Y) :
+    diagonalActionHom σ g p ∈ roundedDiagonalRelation σ U ↔
+      p ∈ roundedDiagonalRelation σ U := by
+  let R := roundedDiagonalRelation σ U
+  have maps (a : G) (q : Y × Y) (h : q ∈ R) :
+      diagonalActionHom σ a q ∈ R := by
+    have hmapped : diagonalActionHom σ a q ∈
+        R.map (diagonalActionHom σ a).toEmbedding := by
+      exact Finset.mem_map.mpr ⟨q, h, rfl⟩
+    rw [roundedDiagonalRelation_map] at hmapped
+    exact hmapped
+  constructor
+  · intro hp
+    have hback := maps g⁻¹ (diagonalActionHom σ g p) hp
+    have hcancel : diagonalActionHom σ g⁻¹
+        (diagonalActionHom σ g p) = p := by
+      rw [← Equiv.Perm.mul_apply, ← map_mul, inv_mul_cancel, map_one,
+        Equiv.Perm.one_apply]
+    rw [hcancel] at hback
+    exact hback
+  · exact maps g p
+
+/-- Diagonal invariance preserves every row cardinality. -/
+theorem rowDegree_roundedDiagonalRelation_eq
+    (σ : G →* Equiv.Perm Y) (U : Finset (Y × Y)) (g : G) (x : Y) :
+    rowDegree Y (roundedDiagonalRelation σ U) (σ g x) =
+      rowDegree Y (roundedDiagonalRelation σ U) x := by
+  symm
+  unfold rowDegree
+  apply Finset.card_bij (fun y _ ↦ σ g y)
+  · intro y hy
+    rw [mem_rowFiber] at hy ⊢
+    exact (mem_roundedDiagonalRelation_map_iff σ U g (x, y)).mpr hy
+  · intro y₁ hy₁ y₂ hy₂ heq
+    exact (σ g).injective heq
+  · intro z hz
+    refine ⟨(σ g).symm z, ?_, by simp⟩
+    rw [mem_rowFiber] at hz ⊢
+    have := (mem_roundedDiagonalRelation_map_iff σ U g
+      (x, (σ g).symm z)).mp (by simpa using hz)
+    exact this
+
+/-- Diagonal invariance preserves every column cardinality. -/
+theorem columnDegree_roundedDiagonalRelation_eq
+    (σ : G →* Equiv.Perm Y) (U : Finset (Y × Y)) (g : G) (y : Y) :
+    columnDegree Y (roundedDiagonalRelation σ U) (σ g y) =
+      columnDegree Y (roundedDiagonalRelation σ U) y := by
+  symm
+  unfold columnDegree
+  apply Finset.card_bij (fun x _ ↦ σ g x)
+  · intro x hx
+    rw [mem_columnFiber] at hx ⊢
+    exact (mem_roundedDiagonalRelation_map_iff σ U g (x, y)).mpr hx
+  · intro x₁ hx₁ x₂ hx₂ heq
+    exact (σ g).injective heq
+  · intro z hz
+    refine ⟨(σ g).symm z, ?_, by simp⟩
+    rw [mem_columnFiber] at hz ⊢
+    have := (mem_roundedDiagonalRelation_map_iff σ U g
+      ((σ g).symm z, y)).mp (by simpa using hz)
+    exact this
+
+/-- The singleton-row/singleton-column core of the rounded relation remains
+exactly invariant. -/
+theorem relationCore_roundedDiagonalRelation_mapsTo
+    (σ : G →* Equiv.Perm Y) (U : Finset (Y × Y)) (g : G)
+    {p : Y × Y}
+    (hp : p ∈ relationCore Y (roundedDiagonalRelation σ U)) :
+    diagonalActionHom σ g p ∈
+      relationCore Y (roundedDiagonalRelation σ U) := by
+  rw [mem_relationCore] at hp ⊢
+  refine ⟨(mem_roundedDiagonalRelation_map_iff σ U g p).mpr hp.1, ?_, ?_⟩
+  · simpa only [diagonalActionHom_apply,
+      rowDegree_roundedDiagonalRelation_eq] using hp.2.1
+  · simpa only [diagonalActionHom_apply,
+      columnDegree_roundedDiagonalRelation_eq] using hp.2.2
+
 /-- Quantitative exact diagonal-relation rounding.  The division-free form is
 valid without any auxiliary nonzero assumption on the Kazhdan constant. -/
 theorem kazhdan_mul_card_symmDiff_roundedDiagonalRelation_le
