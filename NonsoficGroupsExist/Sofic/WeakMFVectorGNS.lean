@@ -25,6 +25,17 @@ structure UnitVectorSequence (A : WeakMFApproximation G) where
   vec : ∀ n, EuclideanSpace ℂ (A.model n)
   norm_eq_one : ∀ n, ‖vec n‖ = 1
 
+/-- Every weak-MF approximation has a canonical sequence of coordinate unit
+vectors.  The positive model cardinality stored in the approximation supplies
+the coordinate at each stage. -/
+noncomputable def UnitVectorSequence.coordinate
+    (A : WeakMFApproximation G) : UnitVectorSequence A where
+  vec n := EuclideanSpace.single
+    (Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))) 1
+  norm_eq_one n := by
+    rw [EuclideanSpace.norm_single]
+    norm_num
+
 /-- The unitary assigned to a group element, acting on its Euclidean model. -/
 noncomputable def translate (A : WeakMFApproximation G) (n : ℕ) (g : G)
     (x : EuclideanSpace ℂ (A.model n)) : EuclideanSpace ℂ (A.model n) :=
@@ -1010,6 +1021,27 @@ structure HermitianEigenpairSequence (A : WeakMFApproximation G)
     (Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
       (hermitianAverage A S n) (vector.vec n) =
         (value n : ℂ) • vector.vec n
+
+/-- A canonical finite-stage eigenpair sequence, obtained by taking the first
+available vector in the orthonormal eigenbasis of each Hermitian average. -/
+noncomputable def HermitianEigenpairSequence.coordinate
+    (A : WeakMFApproximation G) (S : Finset G) :
+    HermitianEigenpairSequence A S := by
+  let hH : ∀ n, (hermitianAverage A S n).IsHermitian := fun n ↦
+    hermitianAverage_conjTranspose A S n
+  let i : ∀ n, A.model n := fun n ↦
+    Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))
+  exact {
+    vector := {
+      vec := fun n ↦ (hH n).eigenvectorBasis (i n)
+      norm_eq_one := fun n ↦ (hH n).eigenvectorBasis.orthonormal.1 (i n) }
+    value := fun n ↦ (hH n).eigenvalues (i n)
+    eigen := by
+      intro n
+      apply PiLp.ext
+      intro j
+      exact congrFun ((hH n).mulVec_eigenvectorBasis (i n)) j
+    }
 
 theorem HermitianEigenpairSequence.abs_value_le_one
     {A : WeakMFApproximation G} {S : Finset G}
