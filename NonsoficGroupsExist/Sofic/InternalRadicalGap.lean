@@ -572,6 +572,17 @@ noncomputable def ambientMovingCompression (A : WeakMFApproximation H)
       (restrictedApproximation A N) D.S D.cutoff n)
     (ambientEigenbasisMicrostate A N D n g)
 
+/-- On subgroup elements, the ambient compression is exactly the ordinary
+moving compression of the restricted weak-MF model. -/
+@[simp]
+theorem ambientMovingCompression_subgroup_eq
+    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N)
+    (n : ℕ) (s : N) :
+    ambientMovingCompression A N D n (s : H) =
+      KazhdanCornerMatrices.movingCompression
+        (restrictedApproximation A N) D.S D.cutoff n s :=
+  rfl
+
 /-- The ambient moving compression is a contraction. -/
 theorem norm_ambientMovingCompression_le_one
     (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N)
@@ -714,6 +725,246 @@ theorem ambientMovingCompression_gram_eventually_small
       exact sq_le_sq₀ (norm_nonneg _)
         (Real.sqrt_nonneg _) |>.2 (hstage n hn)
     _ = eta := Real.sq_sqrt heta.le
+
+/-- The subgroup moving corner is eventually nonempty. -/
+theorem eventually_nonempty_movingIndex
+    (A : WeakMFApproximation H) (N : Subgroup H) [Nontrivial N]
+    (D : Setup A N) :
+    ∃ stage : ℕ, ∀ n ≥ stage, Nonempty (MovingIndex A N D n) := by
+  simpa only [MovingIndex] using
+    KazhdanCornerMatrices.eventually_nonempty_weakMFMovingIndex
+      D.kazhdan D.S (by rfl) D.one_mem D.epsilon_le_one D.symmetric
+      D.generates (restrictedApproximation A N) D.gap_lt_cutoff
+
+/-- A cofinal schedule on which the moving corner is nonempty and the first
+`n + 1` ambient elements all have controlled Gram defect. -/
+structure AmbientMovingCornerSchedule [Nontrivial N]
+    (A : WeakMFApproximation H) (N : Subgroup H) (D : Setup A N) where
+  enumerate : ℕ → H
+  enumerate_surjective : Function.Surjective enumerate
+  stage : ℕ → ℕ
+  stage_ge : ∀ n, n ≤ stage n
+  moving_nonempty : ∀ n, Nonempty (MovingIndex A N D (stage n))
+  gram_close : ∀ n k, k ≤ n →
+    ‖KazhdanCornerMatrices.cornerGram
+        (ambientMovingCompression A N D (stage n) (enumerate k)) - 1‖ ≤
+      KazhdanCornerMatrices.diagonalTolerance n
+
+/-- Countability supplies a simultaneous ambient normal-corner schedule. -/
+theorem exists_ambientMovingCornerSchedule
+    [Countable H] (A : WeakMFApproximation H) (N : Subgroup H)
+    [N.Normal] [Nontrivial N] (D : Setup A N) :
+    Nonempty (AmbientMovingCornerSchedule A N D) := by
+  classical
+  obtain ⟨enumerate, henumerate⟩ := exists_surjective_nat H
+  obtain ⟨Nzero, hNzero⟩ := eventually_nonempty_movingIndex A N D
+  let F : ℕ → Finset H := fun n ↦ (Finset.range (n + 1)).image enumerate
+  have hsimultaneous (n : ℕ) : ∃ stage, ∀ m ≥ stage, ∀ g ∈ F n,
+      ‖KazhdanCornerMatrices.cornerGram
+          (ambientMovingCompression A N D m g) - 1‖ ≤
+        KazhdanCornerMatrices.diagonalTolerance n := by
+    apply eventually_finset (F n)
+    intro g _
+    exact ambientMovingCompression_gram_eventually_small A N D g
+      (KazhdanCornerMatrices.diagonalTolerance n)
+      (KazhdanCornerMatrices.diagonalTolerance_pos n)
+  let threshold : ℕ → ℕ := fun n ↦ Classical.choose (hsimultaneous n)
+  have hthreshold (n : ℕ) : ∀ m ≥ threshold n, ∀ g ∈ F n,
+      ‖KazhdanCornerMatrices.cornerGram
+          (ambientMovingCompression A N D m g) - 1‖ ≤
+        KazhdanCornerMatrices.diagonalTolerance n :=
+    Classical.choose_spec (hsimultaneous n)
+  let stage : ℕ → ℕ := fun n ↦ max n (max Nzero (threshold n))
+  refine ⟨{
+    enumerate := enumerate
+    enumerate_surjective := henumerate
+    stage := stage
+    stage_ge := fun n ↦ le_max_left _ _
+    moving_nonempty := fun n ↦ hNzero (stage n) (by
+      exact (le_max_left Nzero (threshold n)).trans
+        (le_max_right n (max Nzero (threshold n))))
+    gram_close := ?_ }⟩
+  intro n k hk
+  exact hthreshold n (stage n)
+    ((le_max_right Nzero (threshold n)).trans
+      (le_max_right n (max Nzero (threshold n)))) (enumerate k)
+    (Finset.mem_image.mpr ⟨k, by simp only [Finset.mem_range]; omega, rfl⟩)
+
+/-- A chosen enumeration index for an ambient element. -/
+noncomputable def AmbientMovingCornerSchedule.code [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (g : H) : ℕ :=
+  Classical.choose (R.enumerate_surjective g)
+
+@[simp]
+theorem AmbientMovingCornerSchedule.enumerate_code [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (g : H) :
+    R.enumerate (R.code g) = g :=
+  Classical.choose_spec (R.enumerate_surjective g)
+
+/-- The selected ambient moving-corner matrix model. -/
+noncomputable abbrev AmbientMovingCornerSchedule.model [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (n : ℕ) : FiniteModel :=
+  KazhdanCornerMatrices.weakMFMovingModel
+    (restrictedApproximation A N) D.S D.cutoff (R.stage n)
+
+theorem AmbientMovingCornerSchedule.model_nonempty [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (n : ℕ) :
+    0 < Fintype.card (R.model n) := by
+  rw [Fintype.card_pos_iff]
+  exact R.moving_nonempty n
+
+/-- Exact scheduled unitary obtained by polar correction once an ambient
+element is active. -/
+noncomputable def AmbientMovingCornerSchedule.map [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (n : ℕ) (g : H) :
+    Matrix.unitaryGroup (R.model n) ℂ := by
+  by_cases hg : R.code g ≤ n
+  · have hclose := R.gram_close n (R.code g) hg
+    rw [R.enumerate_code g] at hclose
+    exact KazhdanCornerMatrices.polarCorrectUnitary
+      (ambientMovingCompression A N D (R.stage n) g)
+      (KazhdanCornerMatrices.cornerGram_isHermitian _)
+      (KazhdanCornerMatrices.diagonalTolerance_le_half n) hclose
+  · exact 1
+
+/-- Active scheduled unitaries remain close to their uncorrected ambient
+moving compressions. -/
+theorem AmbientMovingCornerSchedule.map_close_of_code_le [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (n : ℕ) (g : H)
+    (hg : R.code g ≤ n) :
+    ‖(R.map n g : Matrix (R.model n) (R.model n) ℂ) -
+        ambientMovingCompression A N D (R.stage n) g‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n := by
+  rw [AmbientMovingCornerSchedule.map, dif_pos hg]
+  exact KazhdanCornerMatrices.norm_polarCorrect_sub_le
+    (ambientMovingCompression A N D (R.stage n) g)
+    (KazhdanCornerMatrices.cornerGram_isHermitian _)
+    (norm_ambientMovingCompression_le_one A N D (R.stage n) g)
+    (KazhdanCornerMatrices.diagonalTolerance_pos n).le
+    (KazhdanCornerMatrices.diagonalTolerance_le_half n)
+    (by simpa only [R.enumerate_code g] using
+      R.gram_close n (R.code g) hg)
+
+/-- The scheduled exact unitaries are asymptotically multiplicative in
+operator norm. -/
+theorem AmbientMovingCornerSchedule.map_multiplicative_eventually_op
+    [N.Normal] [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) (g h : H) :
+    ∀ eta : ℝ, 0 < eta → ∃ stage, ∀ n ≥ stage,
+      ‖(R.map n (g * h) : Matrix (R.model n) (R.model n) ℂ) -
+        (R.map n g : Matrix (R.model n) (R.model n) ℂ) * R.map n h‖ ≤ eta := by
+  intro eta heta
+  obtain ⟨Nmul, hmul⟩ := ambientMovingCompression_mul_defect_eventually_small
+    A N D g h (eta / 2) (by linarith)
+  obtain ⟨Ntol, htol⟩ := KazhdanCornerMatrices.diagonalTolerance_eventually_le
+    (show 0 < eta / 12 by linarith)
+  let Ncode := max (R.code (g * h)) (max (R.code g) (R.code h))
+  refine ⟨max Nmul (max Ntol Ncode), fun n hn ↦ ?_⟩
+  have hnMul : Nmul ≤ R.stage n := by
+    exact (by omega : Nmul ≤ n).trans (R.stage_ge n)
+  have hnTol : Ntol ≤ n := by omega
+  have hnCode : Ncode ≤ n := by omega
+  have hghActive : R.code (g * h) ≤ n := by dsimp [Ncode] at hnCode; omega
+  have hgActive : R.code g ≤ n := by dsimp [Ncode] at hnCode; omega
+  have hhActive : R.code h ≤ n := by dsimp [Ncode] at hnCode; omega
+  let Wgh : Matrix (R.model n) (R.model n) ℂ := R.map n (g * h)
+  let Wg : Matrix (R.model n) (R.model n) ℂ := R.map n g
+  let Wh : Matrix (R.model n) (R.model n) ℂ := R.map n h
+  let Cgh : Matrix (R.model n) (R.model n) ℂ :=
+    ambientMovingCompression A N D (R.stage n) (g * h)
+  let Cg : Matrix (R.model n) (R.model n) ℂ :=
+    ambientMovingCompression A N D (R.stage n) g
+  let Ch : Matrix (R.model n) (R.model n) ℂ :=
+    ambientMovingCompression A N D (R.stage n) h
+  have hclosegh : ‖Wgh - Cgh‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n :=
+    R.map_close_of_code_le n (g * h) hghActive
+  have hcloseg : ‖Wg - Cg‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n :=
+    R.map_close_of_code_le n g hgActive
+  have hcloseh : ‖Wh - Ch‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n :=
+    R.map_close_of_code_le n h hhActive
+  have hcloseg' : ‖Cg - Wg‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n := by
+    rw [show Cg - Wg = -(Wg - Cg) by abel, norm_neg]
+    exact hcloseg
+  have hcloseh' : ‖Ch - Wh‖ ≤
+      2 * KazhdanCornerMatrices.diagonalTolerance n := by
+    rw [show Ch - Wh = -(Wh - Ch) by abel, norm_neg]
+    exact hcloseh
+  have hdefect : ‖Cgh - Cg * Ch‖ ≤ eta / 2 := hmul (R.stage n) hnMul
+  letI : Nonempty (R.model n) :=
+    Fintype.card_pos_iff.mp (R.model_nonempty n)
+  have hWh : ‖Wh‖ = 1 := CStarRing.norm_of_mem_unitary (R.map n h).2
+  have hCg : ‖Cg‖ ≤ 1 :=
+    norm_ambientMovingCompression_le_one A N D (R.stage n) g
+  have htermg : ‖Cg - Wg‖ * ‖Wh‖ ≤
+      (2 * KazhdanCornerMatrices.diagonalTolerance n) * 1 :=
+    mul_le_mul hcloseg' hWh.le (norm_nonneg _)
+      (mul_nonneg (by norm_num)
+        (KazhdanCornerMatrices.diagonalTolerance_pos n).le)
+  have htermh : ‖Cg‖ * ‖Ch - Wh‖ ≤
+      1 * (2 * KazhdanCornerMatrices.diagonalTolerance n) :=
+    mul_le_mul hCg hcloseh' (norm_nonneg _) (by norm_num)
+  have hbase := KazhdanCornerMatrices.norm_mul_defect_of_perturbations
+    Wgh Wg Wh Cgh Cg Ch
+  have htolerance := htol n hnTol
+  dsimp only [Wgh, Wg, Wh] at hbase ⊢
+  nlinarith
+
+/-- The ambient scheduled polar corrections form an asymptotic unitary
+representation. -/
+noncomputable def AmbientMovingCornerSchedule.toAsymptoticUnitaryRepresentation
+    [N.Normal] [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) :
+    AsymptoticUnitaryRepresentation H where
+  model := R.model
+  modelNonempty := R.model_nonempty
+  map := R.map
+  asymptoticallyMultiplicative := by
+    intro g h eta heta
+    obtain ⟨stage, hstage⟩ := R.map_multiplicative_eventually_op g h
+      (Real.sqrt eta) (Real.sqrt_pos.2 heta)
+    refine ⟨stage, fun n hn ↦ ?_⟩
+    let E : Matrix (R.model n) (R.model n) ℂ :=
+      (R.map n (g * h) : Matrix (R.model n) (R.model n) ℂ) -
+        (R.map n g : Matrix (R.model n) (R.model n) ℂ) * R.map n h
+    have hop : ‖E‖ ≤ Real.sqrt eta := hstage n hn
+    calc
+      hsDistSq (R.model n) (R.map n (g * h))
+          ((R.map n g : Matrix (R.model n) (R.model n) ℂ) * R.map n h) ≤
+        ‖E‖ ^ 2 := hsDistSq_le_sq_l2_opNorm (R.model n) _ _
+      _ ≤ (Real.sqrt eta) ^ 2 := by
+        nlinarith [norm_nonneg E, Real.sqrt_nonneg eta]
+      _ = eta := Real.sq_sqrt heta.le
+
+/-- The ambient homomorphism represented by scheduled polar-corrected
+normal corners. -/
+noncomputable def AmbientMovingCornerSchedule.hyperlinearHom
+    [N.Normal] [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) :
+    H →* UniversalHyperlinear 𝒰 R.model R.model_nonempty :=
+  R.toAsymptoticUnitaryRepresentation.toUltraproductHom hcof
+
+@[simp]
+theorem AmbientMovingCornerSchedule.hyperlinearHom_apply
+    [N.Normal] [Nontrivial N]
+    {A : WeakMFApproximation H} {N : Subgroup H} {D : Setup A N}
+    (R : AmbientMovingCornerSchedule A N D) {𝒰 : Ultrafilter ℕ}
+    (hcof : (𝒰 : Filter ℕ) ≤ Filter.cofinite) (g : H) :
+    R.hyperlinearHom hcof g = QuotientGroup.mk (fun n ↦ R.map n g) :=
+  rfl
 
 end InternalRadicalGap
 end NonsoficGroupsExist
