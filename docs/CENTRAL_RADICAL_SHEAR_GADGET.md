@@ -239,58 +239,114 @@ that
  \|S_n\phi_n(x)S_n^*+\phi_n(x)\|\longrightarrow0.       \tag{9}
 \]
 
-For the amalgam argument one also needs the same regular detector used in
-the repaired symmetric-double proof: after the two vertex models are put
-in compatible block form, their strong limits on the vertices and edge
-must be the corresponding amplified left regular representations.  This
-prevents the C*-amalgam from folding a Bass--Serre reduced word.  Merely
-asking that the $H$-block have regular strong limit is not enough; the
-$K_\infty$ block and the edge identifications must be part of the detector.
+The antipodal relation itself is already a trace detector.  The larger
+shear amalgam and its Bass--Serre no-fold argument are unnecessary once
+(9) has been produced.
 
-**Theorem 3 (antipodal regular compatible lift suffices).**  Suppose the
-explicit free-lamp group $H$ above has an operator-norm asymptotic lift
-which is antipodal at the witness $x$ in the sense of (9), and suppose the
-compatible two-vertex block construction below has the regular detector
-just specified.  Then $J_\infty(H,x)$ is weak-MF.  Consequently a
-hyperlinear nonsofic group exists.
+**Theorem 3 (antipodal norm models suffice).**  Let $H$ be countable and
+let $x$ belong to its full sofic radical.  Suppose there are maps
+$\phi_n:H\to U(d_n)$ whose pointwise multiplicative defects tend to zero in
+operator norm, and unitaries $S_n$ satisfying (9).  Then the tracial
+ultraproduct image of $H$ is a hyperlinear nonsofic group.  In particular,
+a hyperlinear nonsofic group exists.
 
-**Proof.**  Use two summands.  On the first, take the faithful weak-MF model
-of $H$, put $z=1$, and let the stable generator of $K_\infty$ act by a
-generic scalar.  Since $xz=x$ on this summand, all edge relations hold;
-the scalar can be chosen outside the countable set which would create a
-relation between the infinite-order image of $x$ and the stable generator.
-This summand separates $H$ and the $z=1$ quotient of $K_\infty$.
-
-On the second summand use $\phi_n$, put $z=-1$, and send the stable
-generator to $S_n$.  Equation (9) is precisely
+**Proof.**  Operator-norm multiplicative defect bounds normalized
+Hilbert--Schmidt defect, so
 
 \[
- S_n\phi_n(x)S_n^*\simeq\phi_n(xz),
+ \Phi(h)=[\phi_n(h)]_2
 \]
 
-while $z$ is fixed.  Thus the two vertex models agree on $A$ and give
-compatible embeddings into one norm matrix ultraproduct.  Shulman's
-general amalgamation criterion makes the associated C*-amalgam MF.  The
-regular strong-limit representation of the two vertex models gives a
-quotient onto the reduced group amalgam, exactly as in the repaired
-symmetric-double argument; hence the abstract Bass--Serre copy of
-$J_\infty(H,x)$ is not folded.  It is therefore weak-MF.  Theorem 2
-finishes. $\square$
+is a homomorphism into a tracial matrix ultraproduct.  Trace invariance
+under conjugacy and (9) give
 
-This isolates a local quantitative target together with a no-fold audit.
-It does not ask for trace visibility or a dimension/error profile.  It asks
-whether Shulman's regular asymptotic lift can be chosen so that the one
-bilateral-shift word $x$ is antipodally symmetric in operator norm, while
-retaining the regular detector on the completed graph of groups.  Arbitrary
-weak-MF lifts do not have this property: full spectrum alone does not
-control finite-stage spectral multiplicities.
+\[
+ 2\,|\operatorname{tr}_{d_n}(\phi_n(x))|\longrightarrow0.
+\]
+
+Consequently
+
+\[
+ \|\phi_n(x)-1\|_2^2
+ =2-2\operatorname{Re}\operatorname{tr}_{d_n}(\phi_n(x))
+ \longrightarrow2,
+\]
+
+so $\Phi(x)\ne1$.  The image $Q=\Phi(H)$ is hyperlinear.  If $Q$ were
+sofic, the quotient homomorphism $H\to Q$ would kill $x$ by the definition
+of the full sofic radical, contradicting $\Phi(x)\ne1$. $\square$
+
+More generally, the same proof works with
+$S_n\phi_n(x)S_n^*\simeq\omega\phi_n(x)$ for any fixed
+$\omega\in\mathbb T\setminus\{1\}$.  Thus the precise remaining target is
+only (9).  It needs neither norm-faithfulness, a regular strong-limit
+detector, weak MF of the completed shear amalgam, nor control of its
+Bass--Serre normal form.
+
+### Relative-lifting audit
+
+There is a canonical infinite-dimensional source of the desired symmetry.
+If $x$ has infinite order, the quasi-regular representation on
+$H/\langle x^2\rangle$ has an exact parity involution $S$ with
+$S\pi(x)S=-\pi(x)$.  Equivalently, $(\pi(x),S)$ represents
+
+\[
+ C(\mathbb T)\rtimes_{z\mapsto-z}C_2\cong M_2(C(\mathbb T)).
+\]
+
+Shulman's MF lifting characterization does **not** by itself turn this
+operator symmetry into (9).  It lifts a representation of an MF algebra
+through the quotient from strongly convergent matrix sequences to
+$B(\mathcal H)$.  An external lift of $S$ then makes the anticommutator
+converge strongly to zero, whereas (9) requires norm convergence.  Her
+homotopy-lifting theorem likewise does not prescribe the lift on the common
+copy of $C^*(x)$.
+
+Accordingly, the missing statement is a genuinely relative one: lift the
+ambient representation and the $M_2(C(\mathbb T))$ representation so that
+their two lifts of $C^*(x)$ agree in norm.  This is exactly Shulman's
+compatible-embedding criterion for the corresponding amalgamated free
+product; it is not a consequence of ordinary MF or homotopy invariance.
+
+**Lemma 4 (the antipodal representation exists).**  Let a group $L$ act on
+a tree and let $x\in L$ be hyperbolic.  In the quasi-regular representation
+on $\ell^2(L/\langle x^2\rangle)$ there is a diagonal self-adjoint unitary
+$S$ such that
+
+\[
+ S\pi(x)S=-\pi(x).                                   \tag{10}
+\]
+
+Moreover this representation is weakly contained in the left regular
+representation of $L$.
+
+**Proof.**  Consider the orbits of $x$ on $L/\langle x^2\rangle$.  If such
+an orbit has finite length $m$, then for some $g\in L$ and $k\in\mathbb Z$
+
+\[
+ g^{-1}x^mg=x^{2k}.
+\]
+
+Translation length is invariant under conjugacy and satisfies
+$\ell_T(x^j)=|j|\ell_T(x)$.  Since $x$ is hyperbolic, this equality forces
+$|m|=2|k|$; hence every finite orbit has even length.  Color each finite or
+infinite orbit alternately and let $S$ be multiplication by its
+$\{1,-1\}$-valued coloring.  This proves (10).  Finally
+$\langle x^2\rangle$ is amenable, so its induced trivial representation,
+which is the displayed quasi-regular representation, is weakly contained
+in $\lambda_L$. $\square$
+
+For the primitive length-two radical word in the Kun--Thom symmetric
+double, the Bass--Serre action supplies the hypothesis.  Thus the exact
+antipodal representation factors through $C_r^*(L)$.  What remains open is
+precisely whether its parity operator can survive an MF lift in norm.
 
 ## 8. Involutivization: the infinite stable letter gives no analytic gain
 
 The use of an infinite cyclic stable letter above avoids writing $s^2=1$,
 but it does not weaken the actual antipodal-profile requirement.
 
-**Lemma 4 (involutivization by doubling).**  Let $U_n,S_n$ be unitaries and
+**Lemma 5 (involutivization by doubling).**  Let $U_n,S_n$ be unitaries and
 suppose
 
 \[
@@ -312,7 +368,7 @@ Then $T_n=T_n^*$ and $T_n^2=1$, while
 
 \[
  \|T_n\widetilde U_nT_n^*+\widetilde U_n\|
- \leq\varepsilon_n.                                  \tag{10}
+ \leq\varepsilon_n.                                  \tag{11}
 \]
 
 **Proof.**  The first two assertions are immediate.  Also
@@ -324,7 +380,7 @@ Then $T_n=T_n^*$ and $T_n^2=1$, while
 
 The second block has error $\varepsilon_n$ by hypothesis.  Conjugating the
 hypothesis by $S_n^*$ shows
-$\|S_n^*U_nS_n+U_n\|=\varepsilon_n$, proving (10).
+$\|S_n^*U_nS_n+U_n\|=\varepsilon_n$, proving (11).
 $\square$
 
 Consequently the $C_2$-stable-letter shear and the infinite-cyclic shear
@@ -338,6 +394,9 @@ the form closest to Shulman's symmetric-amalgam theorem.
 
 * T. Shulman, *The MF property for amalgamated free products*,
   arXiv:2603.13564, Theorems 10, 20, and 23.
+* T. Shulman, *Homotopy lifting, asymptotic homomorphisms, and traces*,
+  arXiv:2508.00125, especially the MF lifting characterization and the
+  mapping-cylinder homotopy-lifting theorem.
 * Q. Li, D. Hadwin, J. Li, X. Ma, J. Shen, *A note on unital full
   amalgamated free products of quasi-diagonal C*-algebras*,
   arXiv:1412.0120, for the finite-dimensional amalgam compatibility
