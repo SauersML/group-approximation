@@ -417,6 +417,25 @@ def sourceDefect (b : FinitePartialBijection Y Z) : ℕ :=
 def targetDefect (b : FinitePartialBijection Y Z) : ℕ :=
   Fintype.card Z - b.target.card
 
+/-- Transport only the target model of a finite partial bijection along an
+equality.  Naming this transport keeps dependent casts out of later defect
+calculations. -/
+def castTarget {Z' : FiniteModel} (h : Z = Z')
+    (b : FinitePartialBijection Y Z) : FinitePartialBijection Y Z' :=
+  h ▸ b
+
+@[simp] theorem castTarget_sourceDefect {Z' : FiniteModel} (h : Z = Z')
+    (b : FinitePartialBijection Y Z) :
+    (castTarget h b).sourceDefect = b.sourceDefect := by
+  subst Z'
+  rfl
+
+@[simp] theorem castTarget_targetDefect {Z' : FiniteModel} (h : Z = Z')
+    (b : FinitePartialBijection Y Z) :
+    (castTarget h b).targetDefect = b.targetDefect := by
+  subst Z'
+  rfl
+
 @[simp] theorem sourceDefect_symm (b : FinitePartialBijection Y Z) :
     b.symm.sourceDefect = b.targetDefect := rfl
 
