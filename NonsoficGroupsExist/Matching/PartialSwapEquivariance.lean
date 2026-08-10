@@ -44,6 +44,36 @@ omit [DecidableEq L] in
   simp [sumCommutationDefect]
 
 omit [DecidableEq L] in
+/-- Keeping labels distinct costs at most one factor of `|L|` compared with
+the untagged bad-arc set for the finite image of the label maps.  This is the
+finite counting interface needed when the label maps are merely permutations,
+not homomorphisms coming from an exact group action. -/
+theorem card_sumCommutationDefect_le_card_mul_badArcs
+    (p : Equiv.Perm (sumModel Y Z))
+    (actY : L → Equiv.Perm Y) (actZ : L → Equiv.Perm Z) :
+    (sumCommutationDefect p actY actZ).card ≤
+      Fintype.card L *
+        (AlmostAutomorphism.badArcs (sumModel Y Z)
+          (Finset.univ.image (sumAction actY actZ)) p).card := by
+  classical
+  let charge :
+      {d // d ∈ sumCommutationDefect p actY actZ} →
+        L × {a // a ∈ AlmostAutomorphism.badArcs (sumModel Y Z)
+          (Finset.univ.image (sumAction actY actZ)) p} := fun d ↦ by
+    refine ⟨d.1.1, ⟨(sumAction actY actZ d.1.1, d.1.2), ?_⟩⟩
+    rw [AlmostAutomorphism.mem_badArcs]
+    refine ⟨Finset.mem_image.mpr ⟨d.1.1, Finset.mem_univ _, rfl⟩, ?_⟩
+    exact (mem_sumCommutationDefect p actY actZ d.1).mp d.2
+  have hcharge : Function.Injective charge := by
+    intro d e hde
+    apply Subtype.ext
+    apply Prod.ext
+    · exact congrArg (fun x ↦ x.1) hde
+    · exact congrArg (fun x ↦ x.2.1.2) hde
+  have hcard := Fintype.card_le_of_injective charge hcharge
+  simpa only [Fintype.card_coe, Fintype.card_prod] using hcard
+
+omit [DecidableEq L] in
 /-- A left-layer swap commutator is a forward partial-equivariance defect. -/
 theorem left_mem_equivarianceDefect_of_swap
     (b : FinitePartialBijection Y Z)
