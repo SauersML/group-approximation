@@ -361,9 +361,10 @@ theorem eigenvalues_mul_conjTranspose_le_sq_opNorm (D : Matrix Y Y ℂ) (i : Y) 
 omit [LinearOrder Y] in
 /-- The largest eigenvalue of `D D*` is exactly `‖D‖²`. -/
 theorem exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm
-    (D : Matrix Y Y ℂ) [Nonempty Y] :
+    (D : Matrix Y Y ℂ) (hY : Nonempty Y) :
     ∃ i : Y, (Matrix.isHermitian_mul_conjTranspose_self D).eigenvalues i =
       ‖D‖ ^ 2 := by
+  letI : Nonempty Y := hY
   let H : Matrix Y Y ℂ := D * Dᴴ
   let hH : H.IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
   have hpos : H.PosSemidef := Matrix.posSemidef_self_mul_conjTranspose D
@@ -391,9 +392,10 @@ theorem exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm
 
 omit [LinearOrder Y] in
 /-- Two unitaries are at operator-norm distance at most `2`. -/
-theorem opNorm_sub_le_two_of_unitary [Nonempty Y] {A B : Matrix Y Y ℂ}
+theorem opNorm_sub_le_two_of_unitary (hY : Nonempty Y) {A B : Matrix Y Y ℂ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ) (hB : B ∈ Matrix.unitaryGroup Y ℂ) :
     ‖A - B‖ ≤ 2 := by
+  letI : Nonempty Y := hY
   calc
     ‖A - B‖ ≤ ‖A‖ + ‖B‖ := norm_sub_le _ _
     _ = 2 := by rw [CStarRing.norm_of_mem_unitary hA,
@@ -460,10 +462,12 @@ omit [LinearOrder Y] in
 identity in operator norm (with `0 ≤ ε ≤ 2`), its exterior character is at
 least `1 - d ε²/4`. -/
 theorem one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
-    [Nonempty Y] {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
+    (hY : Nonempty Y) {W : Matrix Y Y ℂ}
+    (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {ε : ℝ} (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖W - 1‖ ≤ ε) :
     1 - Fintype.card Y * ε ^ 2 / 4 ≤
       Complex.normSq ((((2 : ℂ)⁻¹) • (1 + W)).det) := by
+  letI : Nonempty Y := hY
   rw [normSq_det_midpoint_eq_prod hW]
   let D : Matrix Y Y ℂ := W - 1
   let hH : (D * Dᴴ).IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
@@ -497,15 +501,17 @@ omit [LinearOrder Y] in
 separation by `δ` forces the exterior character below `1 - δ²/4`, with no
 dependence on the matrix dimension. -/
 theorem normSq_det_midpoint_le_one_sub_sq_div_four
-    [Nonempty Y] {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
+    (hY : Nonempty Y) {W : Matrix Y Y ℂ}
+    (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {δ : ℝ} (hδ0 : 0 ≤ δ) (hnorm : δ ≤ ‖W - 1‖) :
     Complex.normSq ((((2 : ℂ)⁻¹) • (1 + W)).det) ≤ 1 - δ ^ 2 / 4 := by
+  letI : Nonempty Y := hY
   rw [normSq_det_midpoint_eq_prod hW]
   let D : Matrix Y Y ℂ := W - 1
   let hH : (D * Dᴴ).IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
-  obtain ⟨i, hi⟩ := exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D
+  obtain ⟨i, hi⟩ := exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D hY
   have hD2 : ‖D‖ ≤ 2 :=
-    opNorm_sub_le_two_of_unitary hW (Submonoid.one_mem _)
+    opNorm_sub_le_two_of_unitary hY hW (Submonoid.one_mem _)
   have hμ0 : ∀ j : Y, 0 ≤ hH.eigenvalues j := by
     intro j
     exact Matrix.eigenvalues_self_mul_conjTranspose_nonneg D j
@@ -594,13 +600,14 @@ theorem hsDistSq_exteriorAdMatrix (Y : FiniteModel) [LinearOrder Y]
 turns operator-norm error `ε` into squared normalized Hilbert--Schmidt error at
 most `d ε² / 2`. -/
 theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
-    [Nonempty Y]
+    (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
     (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε) :
     hsDistSq (doubleModel (fockModel Y))
         (exteriorAdMatrix A) (exteriorAdMatrix B) ≤
       Fintype.card Y * ε ^ 2 / 2 := by
+  letI : Nonempty Y := hY
   let W : Matrix Y Y ℂ := A * Bᴴ
   have hW : W ∈ Matrix.unitaryGroup Y ℂ :=
     mul_mem hA (conjTranspose_mem_unitaryGroup hB)
@@ -608,7 +615,7 @@ theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
     rw [opNorm_mul_conjTranspose_sub_one hB]
     exact hnorm
   have hdet := one_sub_card_mul_sq_div_four_le_normSq_det_midpoint
-    hW hε0 hε2 hnormW
+    hY hW hε0 hε2 hnormW
   rw [hsDistSq_exteriorAdMatrix Y hA hB]
   change 1 - Fintype.card Y * ε ^ 2 / 4 ≤
     Complex.normSq ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det) at hdet
@@ -618,20 +625,21 @@ theorem hsDistSq_exteriorAdMatrix_le (Y : FiniteModel) [LinearOrder Y]
 by `δ` becomes squared normalized Hilbert--Schmidt separation `δ²/2`,
 independently of the matrix dimension. -/
 theorem sq_div_two_le_hsDistSq_exteriorAdMatrix
-    (Y : FiniteModel) [LinearOrder Y] [Nonempty Y]
+    (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {δ : ℝ}
     (hδ0 : 0 ≤ δ) (hnorm : δ ≤ ‖A - B‖) :
     δ ^ 2 / 2 ≤ hsDistSq (doubleModel (fockModel Y))
       (exteriorAdMatrix A) (exteriorAdMatrix B) := by
+  letI : Nonempty Y := hY
   let W : Matrix Y Y ℂ := A * Bᴴ
   have hW : W ∈ Matrix.unitaryGroup Y ℂ :=
     mul_mem hA (conjTranspose_mem_unitaryGroup hB)
   have hnormW : δ ≤ ‖W - 1‖ := by
     rw [opNorm_mul_conjTranspose_sub_one hB]
     exact hnorm
-  have hdet := normSq_det_midpoint_le_one_sub_sq_div_four hW hδ0 hnormW
+  have hdet := normSq_det_midpoint_le_one_sub_sq_div_four hY hW hδ0 hnormW
   rw [hsDistSq_exteriorAdMatrix Y hA hB]
   change Complex.normSq ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det) ≤
     1 - δ ^ 2 / 4 at hdet
@@ -686,7 +694,7 @@ theorem hsDistSq_exteriorTensorMatrix (Y : FiniteModel) [LinearOrder Y]
 /-- Tensoring `k` exterior lifts costs at most the factor `k` in the exact
 finite-dimensional defect bound. -/
 theorem hsDistSq_exteriorTensorMatrix_le
-    (Y : FiniteModel) [LinearOrder Y] [Nonempty Y]
+    (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
     (hε0 : 0 ≤ ε) (hε2 : ε ≤ 2) (hnorm : ‖A - B‖ ≤ ε)
@@ -694,9 +702,10 @@ theorem hsDistSq_exteriorTensorMatrix_le
     hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
         (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
       k * (Fintype.card Y * ε ^ 2 / 2) := by
+  letI : Nonempty Y := hY
   let q : ℝ := Complex.normSq
     ((((2 : ℂ)⁻¹) • (1 + A * Bᴴ)).det)
-  have hbase := hsDistSq_exteriorAdMatrix_le Y hA hB hε0 hε2 hnorm
+  have hbase := hsDistSq_exteriorAdMatrix_le Y hY hA hB hε0 hε2 hnorm
   have hq0 : 0 ≤ q := Complex.normSq_nonneg _
   have hbern := one_add_mul_sub_le_pow (a := q) (by linarith) k
   rw [hsDistSq_exteriorTensorMatrix Y hA hB k]
@@ -709,19 +718,20 @@ theorem hsDistSq_exteriorTensorMatrix_le
 the distance between the two unitary inputs is itself at most `2`, so the
 previous estimate applies with `min ε 2`. -/
 theorem hsDistSq_exteriorTensorMatrix_le_of_nonneg
-    (Y : FiniteModel) [LinearOrder Y] [Nonempty Y]
+    (Y : FiniteModel) [LinearOrder Y] (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ} (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) {ε : ℝ}
     (hε0 : 0 ≤ ε) (hnorm : ‖A - B‖ ≤ ε) (k : ℕ) :
     hsDistSq (tensorModel (doubleModel (fockModel Y)) k)
         (exteriorTensorMatrix A k) (exteriorTensorMatrix B k) ≤
       k * (Fintype.card Y * ε ^ 2 / 2) := by
+  letI : Nonempty Y := hY
   let ε' : ℝ := min ε 2
   have hε'0 : 0 ≤ ε' := le_min hε0 (by norm_num)
   have hε'2 : ε' ≤ 2 := min_le_right _ _
-  have hnorm2 : ‖A - B‖ ≤ 2 := opNorm_sub_le_two_of_unitary hA hB
+  have hnorm2 : ‖A - B‖ ≤ 2 := opNorm_sub_le_two_of_unitary hY hA hB
   have hnorm' : ‖A - B‖ ≤ ε' := le_min hnorm hnorm2
-  have hmain := hsDistSq_exteriorTensorMatrix_le Y hA hB
+  have hmain := hsDistSq_exteriorTensorMatrix_le Y hY hA hB
     hε'0 hε'2 hnorm' k
   have hsq : ε' ^ 2 ≤ ε ^ 2 := by
     have hle : ε' ≤ ε := min_le_left _ _

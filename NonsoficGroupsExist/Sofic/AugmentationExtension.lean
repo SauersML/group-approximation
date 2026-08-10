@@ -351,11 +351,12 @@ theorem actionDifference_mem_inlCommutatorPreimage (g : G)
 
 /-- For a nonempty transitive action of a perfect group, every reduced lamp
 lies in the commutator subgroup of the associated semidirect product. -/
-theorem inl_mem_commutator [Nonempty X] [MulAction.IsPretransitive G X]
+theorem inl_mem_commutator (hX : Nonempty X) [MulAction.IsPretransitive G X]
     [Group.IsPerfect G] (f : ReducedPermutationLattice X) :
     SemidirectProduct.inl (G := G) (φ := reducedPermutationAction G)
         (Multiplicative.ofAdd f) ∈
       commutator (ReducedPermutationExtension (X := X) G) := by
+  letI : Nonempty X := hX
   change f ∈ inlCommutatorPreimage (X := X) G
   have hle : reducedActionDifferenceSubgroup (X := X) G ≤
       inlCommutatorPreimage (X := X) G := by
@@ -381,25 +382,27 @@ theorem inr_mem_commutator [Group.IsPerfect G] (g : G) :
 
 /-- A perfect group acting transitively on a nonempty set has a perfect
 reduced integral permutation-lattice extension. -/
-theorem reducedPermutationExtension_isPerfect [Nonempty X]
+theorem reducedPermutationExtension_isPerfect (hX : Nonempty X)
     [MulAction.IsPretransitive G X] [Group.IsPerfect G] :
     Group.IsPerfect (ReducedPermutationExtension (X := X) G) := by
+  letI : Nonempty X := hX
   rw [Group.isPerfect_def, eq_top_iff]
   intro x _
   rw [← SemidirectProduct.inl_left_mul_inr_right x]
   exact Subgroup.mul_mem _
-    (by simpa using inl_mem_commutator G (Multiplicative.toAdd x.left))
+    (by simpa using inl_mem_commutator G hX (Multiplicative.toAdd x.left))
     (inr_mem_commutator G x.right)
 
 /-- The canonical image of the reduced extension lies in the commutator
 subgroup of the full permutation extension. -/
-theorem reducedPermutationExtensionHom_mem_commutator [Nonempty X]
+theorem reducedPermutationExtensionHom_mem_commutator (hX : Nonempty X)
     [MulAction.IsPretransitive G X] [Group.IsPerfect G]
     (x : ReducedPermutationExtension (X := X) G) :
     reducedPermutationExtensionHom (X := X) G x ∈
       commutator (PermutationExtension (X := X) G) := by
+  letI : Nonempty X := hX
   letI : Group.IsPerfect (ReducedPermutationExtension (X := X) G) :=
-    reducedPermutationExtension_isPerfect G
+    reducedPermutationExtension_isPerfect G hX
   have hx : x ∈ commutator (ReducedPermutationExtension (X := X) G) :=
     Group.IsPerfect.mem_commutator
   have hmap := Subgroup.mem_map_of_mem
@@ -429,10 +432,11 @@ theorem reducedPermutationExtensionHom_range_eq_augmentation_ker :
 
 /-- For a perfect group acting transitively, the derived subgroup of the full
 integral permutation extension is exactly the augmentation-kernel extension. -/
-theorem permutationExtension_commutator_eq_augmentation_ker [Nonempty X]
+theorem permutationExtension_commutator_eq_augmentation_ker (hX : Nonempty X)
     [MulAction.IsPretransitive G X] [Group.IsPerfect G] :
     commutator (PermutationExtension (X := X) G) =
       (permutationExtensionAugmentation (X := X) G).ker := by
+  letI : Nonempty X := hX
   apply le_antisymm
   · exact Abelianization.commutator_subset_ker _
   · intro x hx
@@ -445,11 +449,11 @@ theorem permutationExtension_commutator_eq_augmentation_ker [Nonempty X]
     let f : ReducedPermutationLattice X := ⟨Multiplicative.toAdd x.left, hsum⟩
     rw [← SemidirectProduct.inl_left_mul_inr_right x]
     apply Subgroup.mul_mem
-    · have h := reducedPermutationExtensionHom_mem_commutator G
+    · have h := reducedPermutationExtensionHom_mem_commutator G hX
           (SemidirectProduct.inl (G := G) (φ := reducedPermutationAction G)
             (Multiplicative.ofAdd f))
       simpa [reducedPermutationExtensionHom, reducedLatticeEmbedding, f] using h
-    · have h := reducedPermutationExtensionHom_mem_commutator G
+    · have h := reducedPermutationExtensionHom_mem_commutator G hX
           (SemidirectProduct.inr
             (N := Multiplicative (ReducedPermutationLattice X))
             (φ := reducedPermutationAction G) x.right)
