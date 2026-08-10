@@ -28115,6 +28115,57 @@ question on the now-unconditional weak-MF nonsofic candidate is:
 Any trace-production argument can now ignore all other reduced words and all
 other trace moments.
 
+## The fold-difference is invisible in every exact matrix representation
+
+The one-element target `(FD9)` cannot be solved by finding an exact
+finite-dimensional representation of `B`.  In fact the same witness proves
+a separate C-star-algebraic consequence.
+
+**Theorem.**  For every unital finite-dimensional star representation
+
+`psi:B -> M_d(C)`,
+
+one has `psi(x)=1`.  Consequently the nonzero positive element `a` from
+`(FD2)` belongs to the kernel of every finite-dimensional representation of
+`B`.  In particular, Shulman's MF algebra `B=A *_C A` is not residually
+finite-dimensional.
+
+**Proof.**  Suppose `psi(x)!=1`.  Symmetrize the representation, not merely
+its trace:
+
+`psi_s=psi directSum (psi o flip):B -> M_(2d)(C)`.       `(FD10)`
+
+Let `L=psi_s(G *_Gamma G)`.  This is a finitely generated linear group, so
+it is residually finite by Malcev's theorem.  Combine `(FD10)` with the fold
+map into the original residually finite group:
+
+`Psi=(psi_s,r):G *_Gamma G -> L times G`,               `(FD11)`
+
+and let `Q` be its image.  The fold coordinate makes both vertex copies of
+`G` faithful, while the first block of `(FD10)` keeps `x` nontrivial.  Since
+subgroups and finite products of residually finite groups are residually
+finite, `Q` is residually finite and hence sofic.
+
+The kernel of `(FD11)` is flip invariant: flip exchanges the two matrix
+blocks and fixes the fold coordinate.  Therefore flip descends to `Q`, and
+the finite extension `Q semidirect C_2` is sofic.  Its flip generator
+centralizes the faithful common copy of `Gamma`, while its commutator with
+the first copy of `h` is the surviving image of `x`.  Kun--Thom
+centralizer-normalization gives exactly the calculation following `(FD8)`
+and forces that image to be trivial, a contradiction.  Thus `psi(x)=1`.
+
+The profinite-trace quotient into `L(G *_Gamma G)` proves `a!=0` in `B`, so
+finite-dimensional representations do not separate points of `B`.  End
+proof.
+
+Thus the remaining CE trace, if it exists, must be genuinely asymptotic.
+More precisely, every trace obtained as a pointwise limit of traces of exact
+finite-dimensional star representations kills `a`.  Detecting `a` requires
+matrix microstates whose multiplicative errors tend to zero but which do not
+rectify to exact representations while retaining positive normalized
+`2`-mass on this word.  This is the precise normalized-HS instability that
+the operator-norm MF construction leaves unresolved.
+
 The argument gives a family, not just one double.  Shulman's finite-factor
 lemma plus the same GNS detector proves every finite iterated amalgam
 
