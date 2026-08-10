@@ -38,6 +38,15 @@ noncomputable def componentMultiplicationError
       (D.componentCompletedAction n C g *
         D.componentCompletedAction n C h) x
 
+/-- Points where the completed label assigned to the group identity moves a
+component vertex. -/
+noncomputable def componentIdentityError
+    (n : ℕ) (C : D.componentIndex n) :
+    Finset (indexedBlockModel (D.blocks n) C) := by
+  classical
+  exact Finset.univ.filter fun x ↦
+    D.componentCompletedAction n C (1 : G) x ≠ x
+
 /-- Ambient multiplication failures, restricted only by the source
 component. -/
 noncomputable def componentAmbientMultiplicationError
@@ -238,6 +247,77 @@ theorem componentMultiplicationError_sum_negligible
           ((D.componentCompletionDisagreement n C g).card : ℝ)) := by
       rw [Finset.sum_add_distrib, Finset.sum_add_distrib]
       ring
+
+/-- A completed identity-label failure is either a completion disagreement
+or an ambient identity error. -/
+theorem componentIdentityError_card_le
+    (n : ℕ) (C : D.componentIndex n) :
+    (D.componentIdentityError n C).card ≤
+      (D.componentCompletionDisagreement n C (1 : G)).card +
+        (Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+          S.map n (1 : G) (x : S.model n) ≠ (x : S.model n)).card := by
+  classical
+  let A := D.componentCompletionDisagreement n C (1 : G)
+  let B := Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+    S.map n (1 : G) (x : S.model n) ≠ (x : S.model n)
+  calc
+    (D.componentIdentityError n C).card ≤ (A ∪ B).card := by
+      apply Finset.card_le_card
+      intro x hx
+      by_cases hA : x ∈ A
+      · exact Finset.mem_union_left _ hA
+      apply Finset.mem_union_right
+      simp only [B, Finset.mem_filter, Finset.mem_univ, true_and]
+      intro hambient
+      apply hA
+      simp only [A, componentCompletionDisagreement, Finset.mem_filter,
+        Finset.mem_univ, true_and]
+      intro hcompletion
+      have hxne : D.componentCompletedAction n C (1 : G) x ≠ x := by
+        simpa only [componentIdentityError, Finset.mem_filter,
+          Finset.mem_univ, true_and] using hx
+      apply hxne
+      apply Subtype.ext
+      exact hcompletion.trans hambient
+    _ ≤ A.card + B.card := Finset.card_union_le _ _
+    _ = _ := by rfl
+
+/-- The completed identity label moves only negligible total component
+mass. -/
+theorem componentIdentityError_sum_negligible
+    (hsymm : ∀ t ∈ T, t⁻¹ ∈ T)
+    (hgen : Subgroup.closure (T : Set G) = ⊤) :
+    Negligible (fun n ↦ (Fintype.card (S.model n) : ℝ))
+      (fun n ↦ ∑ C : D.componentIndex n,
+        ((D.componentIdentityError n C).card : ℝ)) := by
+  have hcompletion :=
+    D.componentCompletedAction_disagreement_sum_negligible hsymm hgen (1 : G)
+  have hmajor := Negligible.add hcompletion S.identityError_negligible
+  apply Negligible.mono_nonneg (fun n ↦ by
+      exact_mod_cast Nat.zero_le (Fintype.card (S.model n)))
+    (fun _ ↦ by positivity) (fun n ↦ ?_) hmajor
+  calc
+    (∑ C : D.componentIndex n,
+      ((D.componentIdentityError n C).card : ℝ)) ≤
+        ∑ C : D.componentIndex n,
+          (((D.componentCompletionDisagreement n C (1 : G)).card : ℝ) +
+            ((Finset.univ.filter fun x : indexedBlockModel (D.blocks n) C ↦
+              S.map n (1 : G) (x : S.model n) ≠
+                (x : S.model n)).card : ℝ)) := by
+      apply Finset.sum_le_sum
+      intro C _
+      exact_mod_cast D.componentIdentityError_card_le n C
+    _ = (∑ C : D.componentIndex n,
+          ((D.componentCompletionDisagreement n C (1 : G)).card : ℝ)) +
+        ((S.identityError n).card : ℝ) := by
+      rw [Finset.sum_add_distrib]
+      congr 1
+      simpa only [SoficApproximation.identityError,
+        SoficApproximation.movedVertices] using
+        BlockIndex.sum_card_filter (D.blocks n) (fun x : S.model n ↦
+          S.map n (1 : G) x ≠ x)
+    _ = _ := by
+      simp only [componentCompletionDisagreement]
 
 end ExpanderDecomposition
 end NonsoficGroupsExist
