@@ -201,10 +201,14 @@ def main() -> None:
     parser.add_argument("instance", type=Path)
     parser.add_argument("model_output", type=Path)
     parser.add_argument("--time-limit", type=float, default=600.0)
+    parser.add_argument("--threads", type=int, default=1)
     args = parser.parse_args()
+    if args.threads < 1:
+        raise ValueError("thread count must be positive")
 
     source_variable_count, width, equations = parse_instance(args.instance)
-    solver = Solver(verbose=0, time_limit=args.time_limit, threads=1)
+    solver = Solver(
+        verbose=0, time_limit=args.time_limit, threads=args.threads)
     circuit = Circuit(solver)
     words = [circuit.new_bits(width) for _ in range(source_variable_count)]
     modulus = 1 << width
@@ -241,6 +245,7 @@ def main() -> None:
     print(json.dumps({
         "bit_width": width,
         "source_variable_count": source_variable_count,
+        "solver_threads": args.threads,
         "equation_count": len(equations),
         "boolean_variable_count": circuit.variable_count,
         "cnf_clause_count": circuit.clause_count,
