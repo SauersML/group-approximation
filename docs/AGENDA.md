@@ -912,6 +912,20 @@ force ambient-chart extension.  Full proof and audit:
 `docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md` and
 `experiments/atlas_stubborn_s4_certificate.py`.
 
+The ambient-extension escape is real, not merely local.  The 178
+perfect-overlap-certified zero words reduce to 24 cyclic classes.  Exhausting
+all `40,320` automorphisms between the two full `A8` factors finds 14 inner
+and 12 outer alignments killing all 24 representatives.  Eight inner and all
+12 outer solutions keep class `11` nontrivial; an explicit outer solution
+maps it to an involution.  Hence class `11` is not in the normal closure of
+the entire currently certified package.  This still does not prove survival
+in `R/[P,R]`, because the finite `A8` image of class `11` is not central.
+The next finite quotient search must impose phase centrality, or a larger
+exact atlas scan must find new zero relators eliminating all 20 witnesses.
+Full theorem and exhaustive certificate:
+`docs/FALSE_ATLAS_CERTIFIED_A8_QUOTIENT.md` and
+`experiments/atlas_certified_a8_alignment.py`.
+
 The simultaneous 24-class solver now gives a first finite compatibility
 answer.  With the two `(5,2,1)` `A8` charts fixed, `U(64)` reaches certified
 zero-class RMS `1.279437` while retaining the survivor phase to HS error
