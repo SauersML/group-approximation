@@ -179,3 +179,115 @@ common abelian algebra.  That is the same common-Cartan/phase-completion
 boundary appearing on the TRUE side, specialized to one signed coordinate
 orbit.  The construction localizes the gate; it does not evade it.
 
+## 6. For the symmetric double, both vertex extensions are residually finite
+
+The universal central extension becomes especially concrete before the free
+stabilization used in the Mackey note.  Let
+
+`D=G_0 *_Gamma G_0`                                      `(CPM22)`
+
+be the binary Kun--Thom symmetric double.  The two copies of `G_0` are
+residually finite.  Choose an infinite-order hyperbolic element
+
+`1!=s in Rad_sof(D)`                                      `(CPM23)`
+
+from the complete radical calculation, and define
+
+`R=F_2[D]`, `I=ker(epsilon:R->F_2)`,
+`A_s=R/I(1+s)`, `E_s=A_s semidirect D`.                `(CPM24)`
+
+The proof of Theorem 6 in `FALSE_MACKEY_SPLIT_COCYCLE.md` applies without
+the free-stabilized notation.  If `v` is the class of `1` and
+
+`z=(1+s)v`,                                              `(CPM25)`
+
+then
+
+`0 -> F_2 z -> A_s -> F_2[D/<s>] ->0`                  `(CPM26)`
+
+is exact, `z` is `D`-fixed, and
+
+`1!=z=[v,s] in Rad_sof(E_s)`.                           `(CPM27)`
+
+In particular `E_s` is nonsofic and the finite-radical corner theorem would
+finish the FALSE problem as soon as `E_s` were known to be operator MF.
+
+There is a sharper vertex calculation.  Put `Y=D/<s>`.  Either vertex copy
+`G_i` acts freely on `Y`.  Indeed, a stabilizer element belongs to
+
+`G_i intersect d<s>d^(-1)`.                            `(CPM28)`
+
+Every element of `G_i` is elliptic in the Bass--Serre tree of `(CPM22)`,
+whereas every nonidentity element of `d<s>d^(-1)` is hyperbolic.  Therefore
+the intersection in `(CPM28)` is trivial.
+
+Use the basis from Theorem 7 of the Mackey note,
+
+`{z} union {e_y:y in Y}`,
+
+for which the action has the form
+
+`g e_y=e_(gy)+epsilon(g,y)z`, `epsilon(g,y) in F_2`. `(CPM29)`
+
+On every free `G_i`-orbit choose a basepoint `y_0`.  Each point is uniquely
+`g y_0`; replace
+
+`e_(g y_0)` by `f_(g y_0)=g e_(y_0)`.                 `(CPM30)`
+
+This is a triangular change of basis by multiples of `z`, and now
+
+`h f_y=f_(hy)` for `h in G_i`.                         `(CPM31)`
+
+Consequently, as an `F_2[G_i]`-module,
+
+`A_s = F_2 z directSum F_2[Y]`,                       `(CPM32)`
+
+where `Y` is a disjoint union of regular `G_i`-sets.  Hence the vertex
+preimage
+
+`J_i=A_s semidirect G_i`                               `(CPM33)`
+
+is isomorphic to
+
+`C_2 times ((directSum_Y C_2) semidirect G_i)`,        `(CPM34)`
+
+a direct product with a possibly many-orbit regular binary wreath product.
+
+**Lemma 4.**  If a group `K` is residually finite and `Y` is a disjoint
+union of regular `K`-sets, then
+
+`(directSum_Y C_2) semidirect K`                       `(CPM35)`
+
+is residually finite.
+
+**Proof.**  An element with nonidentity `K`-coordinate survives in a finite
+quotient of `K`.  For a nonzero finite lamp `b`, choose one nonzero
+coordinate in one regular orbit.  Residual finiteness supplies a finite
+quotient `K->Q` separating that coordinate from the finitely many other
+coordinates of `b` in the same orbit.  Project away all other orbit labels
+and push the selected lamp function forward to `Q`.  Its chosen coefficient
+does not cancel, so the element survives in the finite group
+
+`(directSum_Q C_2) semidirect Q`.
+
+This separates every nonidentity element.  End proof.
+
+Equations `(CPM34)--(CPM35)` prove that both `J_1` and `J_2` are residually
+finite.  Finally semidirect products distribute over this amalgam:
+
+`E_s = J_1 *_(A_s semidirect Gamma) J_2`.              `(CPM36)`
+
+Thus the explicit central-radical candidate is an amalgam of **two
+residually finite groups**.  All failure of finite approximation is in the
+global edge carry `(CPM26)`, not in either vertex.
+
+This still does not make `(CPM36)` MF.  Shulman's automatic theorem applies
+to an untwisted symmetric double.  After identifying the two vertex groups
+with one another by the flip of `(CPM22)`, the edge identification acts
+nontrivially on `A_s`; that twist is exactly the nonsplit central line in
+`(CPM26)`.  Her general amalgamation criterion therefore leaves one precise
+compatibility question: construct norm-corona embeddings of the two
+residually finite vertex groups which agree on
+`A_s semidirect Gamma` and retain `z`.  Every compatible exact finite
+quotient kills `z` by `(CPM27)`, so a successful model must again use a
+genuinely asymptotic carry sector.
