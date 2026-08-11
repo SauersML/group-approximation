@@ -39152,6 +39152,45 @@ For relative rank `delta=r/d`, the forced cost is order
 shrinking-Clifford-sector criterion and unifies the positive-rank and
 rank-one amplification barriers.
 
+# The common-Cartan phase kernel obeys Haar duality (2026-08-10)
+
+Full details are in `docs/TRUE_HAAR_PHASE_KERNEL.md`.  If a faithful
+regular-trace monomial ultraproduct embedding has permutation-part kernel
+`K`, then `K` is abelian and its diagonal representatives define a measurable
+map
+
+`chi:X_omega -> dual(K)`.                              `(HPK4)`
+
+The pushforward of Loeb measure is exactly Haar: for every `k in K`,
+
+`integral chi_x(k) dmu(x)=tau(rho(k))=1_(k=1)`.        `(HPK8)`
+
+Fourier uniqueness proves the claim.  Conjugation by a monomial lift loses
+its diagonal phase on the diagonal algebra, giving the equivariance law
+
+`chi_(theta(g)x)(gkg^(-1))=chi_x(k)`.                  `(HPK6)`
+
+This strengthens the abelian-by-sofic conclusion without reversing the
+false extension permanence theorem.  At finite level it gives `L^2`
+approximate character multiplication, Haar Fourier moments, and quotient
+equivariance (`(HPK10)-(HPK12)`).  The exact missing implication is to
+replace these by finite-order labels whose phase-cocycle equations hold
+outside `o(1)` of the coordinates (`(HPK13)-(HPK18)`).  The resulting skew
+products on `Y_n times mu_(m_n)` are permutation microstates; a trace-zero
+element moves at least one half of the points, and fixed product powers
+amplify this to asymptotic freeness.
+
+There is a genuine positive boundary: every split extension
+
+`K semidirect Q`, `K` finitely generated abelian, `Q` sofic, `(HPK19)`
+
+embeds in `Hol(K) times Q` and is sofic because `Hol(K)` is virtually an
+integral affine group.  The Kun--Thom quotient `(AB3)` survives this audit:
+its kernel `reduced Z[G/Gamma]` has infinite abelian rank, and its dual is the
+infinite-dimensional algebraic action `T^(G/Gamma)/T`.  Thus neither Haar
+genericity, splitness, nor a residually finite quotient can substitute for
+the finite-window Fourier completion.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and

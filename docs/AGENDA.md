@@ -128,6 +128,20 @@ is asymptotically diagonal and hence abelian.  This does not imply soficity in
 the required extension orientation; `(AB1)-(AB3)` are an explicit
 abelian-by-residually-finite nonsofic calibration.
 
+The phase kernel has additional exact structure, proved in
+`docs/TRUE_HAAR_PHASE_KERNEL.md`: its coordinate phases form a measurable
+field of characters whose law is Haar on the Pontryagin dual, equivariantly
+for the sofic quotient (`(HPK1)-(HPK12)`).  The remaining conversion is now a
+finite-window Fourier-completion gate `(HPK13)-(HPK18)`: replace the
+`L^2`-multiplicative Haar character chart by finite-order phase labels whose
+cocycle equations hold outside `o(1)` of the coordinates.  Such a completion
+untwists to permutations and is sofic, even when the phase orders grow.
+Haar genericity alone does not provide the completion; the Kun--Thom
+augmentation kernel specializes to the same infinite-dimensional dual action.
+A valid positive special case is split extension by a finitely generated
+abelian kernel, which embeds in `Hol(K) times Q`; the Kun--Thom kernel has
+infinite abelian rank and therefore lies exactly outside this case.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested
