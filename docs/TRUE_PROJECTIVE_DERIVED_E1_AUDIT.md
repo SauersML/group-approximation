@@ -64,6 +64,25 @@ middle homology at `E^2` in these cases.  The next proof must establish this
 exactness in the subgroup-orbit Shapiro bases for every odd prime; rank data
 alone do not supply the uniform splitting norm.
 
+The outer positive term also collapses sharply under the higher Wall
+differential.  The complete filtered ranks in the audited range are
+
+| `p` | `E^1_(0,2)` | `im d^1` | `E^2_(0,2)` | `im d^2` | `E^3_(0,2)` | `im d^3` | `E^infinity_(0,2)` |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 3 | 7 | 4 | 3 | 1 | 2 | 0 | 2 |
+| 5 | 9 | 5 | 4 | 2 | 2 | 0 | 2 |
+| 7 | 10 | 6 | 4 | 2 | 2 | 0 | 2 |
+| 11 | 13 | 8 | 5 | 3 | 2 | 0 | 2 |
+| 13 | 15 | 9 | 6 | 4 | 2 | 0 | 2 |
+
+Thus every linearly growing positive stabilizer-homology contribution in
+total degree two disappears by `E^3`; the positive filtered residue has
+dimension exactly two in all five charts.  The `d^3` image is zero, so this
+fixed residue survives to `E^infinity`.  A fixed two-dimensional summand
+cannot by itself cause a normalized decoder blow-up.  What remains is to
+prove the family statement and obtain bounded local splittings for `d^1`
+and `d^2`, not to control a growing positive-row rank.
+
 ## Exact extraction
 
 HAP's total resolution has bidegrees
@@ -91,7 +110,7 @@ vertical boundaries in `A_(0,1)`.  It verifies exactly that source vertical
 boundaries are cycles and that horizontal images are target vertical cycles.
 The compact table is
 `experiments/projective-derived-e1-horizontal.tsv`, with SHA-256
-`6c25fb95b1f71f06293d19bd76dd6d6288cf2213adbec5ee18cff880568194dc`.
+`76d30492a7cc82649d12aa05c5a76d4bb5666b516f7854320d15fccf4cf91084`.
 
 For the incoming rank it takes vertical cycles in `A_(2,1)`, applies the
 horizontal block into `A_(1,1)`, and measures the image modulo target
@@ -100,23 +119,29 @@ the as-yet-unexported incoming vertical boundaries in the source.  The chain
 identity puts the image inside the outgoing kernel; equality of their ranks
 proves `(DE1-2)` exactly.
 
+The `d^2` calculation uses corrected pairs in
+`A_(2,1) directSum A_(1,2)`: their boundary is required to vanish in
+cellular degrees two and one, and the remaining degree-zero component is
+measured modulo the vertical and `d^1` denominator.  For `d^3`, add the
+`A_(3,0)` component and quotient further by the `d^2` image.  These are
+direct filtered-complex calculations from `d2,d3`; no unexported degree-four
+boundary is needed to determine either image.
+
 ## Next exact task
 
 The middle of the second complex in the following display is exact on the
-first five charts, but not yet classified uniformly.  Compute and classify
-the remaining maps and prove the observed middle exactness:
+first five charts, and the first complex plus its higher differential leaves
+only a two-dimensional residue.  Prove these observations uniformly and
+classify their integral splitting norms:
 
 `E^1_(1,2) -> E^1_(0,2)`,
 
 `E^1_(2,1) -> E^1_(1,1) -> E^1_(0,1)`.               `(DE1-1)`
 
-The existing length-three HAP object contains the chain-level horizontal
-blocks in `(DE1-1)` and suffices to compute their images in the middle terms.
-Full homology in the two source terms requires one further vertical
-stabilizer boundary.  HAP truncates `FreeGResolution` at the
-three-dimensional proper complex, so that boundary must be obtained from
-the fixed finite-stabilizer resolutions directly.  Only the groups
-`S_4,D_8,D_12` are involved.
+The existing length-three HAP object contains all filtered images which can
+reach total degree two.  Full homology in the source terms would require one
+further vertical stabilizer boundary, but it is not needed for the image
+ranks just computed.  Only the groups `S_4,D_8,D_12` are involved.
 
 Once those maps are known, compute their local block types under the natural
 projective orbit classification.  A uniformly split matching, as in the

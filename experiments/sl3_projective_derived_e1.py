@@ -2,8 +2,9 @@
 
 Run on MSI after ``sl3_projective_h2_export.g``.  The HAP resolution retains
 the Wall bidegree ``(q,s)``.  This script reduces the first three specialized
-boundaries modulo two, extracts the vertical blocks preserving ``q``, and
-computes the exact E1 homology dimensions in total degree two.
+boundaries in characteristic two or three, extracts the vertical blocks
+preserving ``q``, and computes the exact filtered homology data in total
+degree two.
 """
 
 from __future__ import annotations
@@ -23,16 +24,16 @@ Q_BY_TOTAL_GENERATOR = {
 }
 
 
-def read_boundary(path: Path):
+def read_boundary(path: Path, field):
     lines = path.read_text(encoding="utf-8").splitlines()
     source_rank, target_rank = map(int, lines[0].split())
     entries = {}
     for line in lines[1:]:
         source, target, coefficient = map(int, line.split())
         key = (source, target)
-        entries[key] = (entries.get(key, 0) + coefficient) % 2
+        entries[key] = entries.get(key, field.zero()) + field(coefficient)
     return matrix(
-        GF(2),
+        field,
         source_rank,
         target_rank,
         {key: value for key, value in entries.items() if value},
@@ -202,11 +203,12 @@ def filtered_h2_dimensions(boundaries, degree: int):
     }
 
 
-def analyze(prime: int, prefix: Path):
+def analyze(prime: int, modulus: int, prefix: Path):
     degree = prime**2 + prime + 1
+    field = GF(modulus)
     boundaries = {
         total_degree: read_boundary(
-            Path(f"{prefix}-d{total_degree}.tsv"))
+            Path(f"{prefix}-d{total_degree}.tsv"), field)
         for total_degree in range(1, 4)
     }
     vertical = {}
@@ -267,6 +269,7 @@ def analyze(prime: int, prefix: Path):
 
     return {
         "prime": prime,
+        "coefficient_characteristic": modulus,
         "projective_degree": degree,
         "vertical_blocks": {
             f"{q},{s}": value for (q, s), value in sorted(vertical.items())
@@ -281,8 +284,8 @@ def analyze(prime: int, prefix: Path):
         "E3_0_2_dimension": e3_0_2,
         "E3_d3_3_0_to_0_2_image_rank": d3_rank,
         "E4_0_2_dimension": e4_0_2,
-        "full_mod_two_boundary_ranks": full_boundary_ranks,
-        "full_mod_two_H2_dimension": total_h2,
+        "full_boundary_ranks": full_boundary_ranks,
+        "full_H2_dimension": total_h2,
         "E_infinity_total_degree_two": filtered_h2,
     }
 
@@ -290,10 +293,11 @@ def analyze(prime: int, prefix: Path):
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("prime", type=int)
+    parser.add_argument("modulus", type=int, choices=(2, 3))
     parser.add_argument("prefix", type=Path)
     parser.add_argument("output", type=Path)
     args = parser.parse_args()
-    result = analyze(args.prime, args.prefix)
+    result = analyze(args.prime, args.modulus, args.prefix)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
     print(json.dumps(result, indent=2, sort_keys=True))
 

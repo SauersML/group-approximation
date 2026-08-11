@@ -1036,9 +1036,12 @@ Consequently `E^2_(1,1)=0` on all five charts: the growing edge-stabilizer
 homology is horizontally exact rather than a surviving obstruction.  The
 theorem target is to express this complex in orbitwise Shapiro bases, prove
 exactness with a bounded local splitting for every odd prime, and then
-analyze the two outer positive terms.  Full source homology there still
-requires one further fixed-stabilizer vertical boundary.  See
-`TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
+analyze the two outer positive terms.  The latter audit is now also sharply
+favorable: after `d^1` and `d^2`, the growing vertex `H_2` term has dimension
+exactly two at all five levels; `d^3` is zero, so this fixed local residue is
+the entire positive contribution at `E^infinity`.  The live task is a
+uniform orbitwise proof with bounded integral splittings, not control of a
+growing positive-row rank.  See `TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
 
 The next cuspidal chart has now been computed.  At `p=61` the compact
 complex is `183<-480<-440<-150`, again with harmonic rank two.  Its cyclic

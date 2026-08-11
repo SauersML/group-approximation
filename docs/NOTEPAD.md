@@ -41787,6 +41787,19 @@ this in Shapiro orbit bases with a bounded local splitting for every odd
 prime, then analyze the two outer positive terms.  Full audit:
 `docs/TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
 
+The outer term has now been followed through the entire filtration in total
+degree two.  Its dimensions after `d^1` are `3,4,4,5,6`; the `d^2` image has
+dimensions `1,2,2,3,4`; and `d^3` is zero.  Therefore
+
+    dim E^infinity_(0,2)=2
+
+at every one of `p=3,5,7,11,13`.  All linearly growing positive
+stabilizer-homology ranks collapse to a fixed two-dimensional residue.  This
+is the strongest derived-primary signal so far: a normalized obstruction can
+no longer come from the rank of the positive rows.  It would have to come
+from failure of a uniform local splitting, or from coupling of this fixed
+residue to the zero-row harmonic lattice.
+
 ## 2026-08-11: deck Fourier frames and the exact prime-two parity split
 
 FALSE-side work, deliberately separate from the current derived-HAP TRUE
