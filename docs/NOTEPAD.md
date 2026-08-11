@@ -36916,6 +36916,50 @@ shows.  Thus Theorem 7.11 cleanly upgrades the input to the finite-image
 corner stage, but it does not cross either the trace-centralization gate or
 the unitary-character-to-finite-action gate.
 
+### Property MD does not preserve the fixed-point character
+
+The measurable companion in the same paper does not cross the second gate
+either.  Fournier-Facio--Willett, Definition A.1 and Theorem A.5, recall that
+free groups have property MD: every p.m.p. action is a weak limit of actions
+factoring through finite groups.  It is tempting to apply this to an
+essentially free action of `Gamma=F/N`, pulled back to `F`.  In the target,
+
+`mu(Fix(r))=1` for `r in N`, and `mu(Fix(w))=0` for `w notin N`. `(MDG1)`
+
+If these numbers passed to the finite MD approximants, their finite-action
+characters would converge to `1_N` and every quotient of a free group would
+be sofic.  The failure is not subtle: fixed-point measure is discontinuous
+for the weak topology used by property MD.
+
+Let `F=<a>` be infinite cyclic and let `alpha_m(a)` act on the circle
+`R/Z` by translation through `1/m`.  This action factors through `C_m`, and
+
+`mu(Fix(alpha_m(a)))=0` for every `m`.                       `(MDG2)`
+
+On the other hand, for every measurable set `A subset R/Z`, continuity of
+translations in the measure algebra gives
+
+`mu((A+1/m) symmetricDifference A)->0`.                     `(MDG3)`
+
+The same holds simultaneously for every fixed finite family of measurable
+sets.  Therefore `alpha_m` converges in the MD weak topology to the trivial
+action, whose generator has fixed-point measure one:
+
+`alpha_m -> id`, but `mu(Fix(alpha_m(a))) not->mu(Fix(a^id))`. `(MDG4)`
+
+Equivalently, a long finite cycle is invisible to any prescribed finite
+measurable partition while moving every point.  This is the action-level
+version of the small-phase/projective-gap obstruction `(NIR8)--(NIR12)`.
+
+Indeed the argument needs no hyperlinearity.  For an arbitrary countable
+quotient `F/N`, pull its Bernoulli action back to `F`.  Property MD supplies
+finite actions weakly approximating it; only the invalid passage from weak
+statistics to `(MDG1)` would turn those into a sofic approximation.  Hence
+property MD, EMD, or density of finite actions in the weak topology cannot be
+the missing normal-Dirac transfer.  A useful measurable input would have to
+control the uniform/fixed-point metric itself, or supply an additional
+rounding theorem that kills the long cycles representing elements of `N`.
+
 # Classical Weyl curvature survives every polarization and scalar gauge
 
 The finite-quotient floor `(FQW1)--(FQW3)` is not specific to the displayed

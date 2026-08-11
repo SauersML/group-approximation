@@ -48,6 +48,13 @@ Even centralizing that corner would yield a finite-image unitary character,
 not yet a finite-action character.  Treat trace centralization and the
 permutation-character conversion as two separate gates.
 
+Property MD of the free source does not repair the second gate.  Finite
+actions are dense only in the weak action topology, where fixed-point measure
+is discontinuous: the order-`m` rotation of the circle has no fixed points
+but converges weakly to the trivial action (`(MDG1)-(MDG4)`).  Thus pulling
+back a free quotient action and invoking MD loses exactly the normal-Dirac
+statistics required for soficity.
+
 Exact doubled form (proved in `docs/NOTEPAD.md`, `(DCT1)-(DCT9)`): for
 `H_N={(a,b) in F x F : aN=bN}`, hyperlinearity is precisely approximation of
 `1_(H_N)` by the canonical maximally-entangled coefficients of
