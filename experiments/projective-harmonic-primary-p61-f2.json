@@ -7,6 +7,33 @@
   "characteristic": 2,
   "compact_degree_two_dimension": 440,
   "full_degree_two_dimension": 37830,
+  "harmonic_modular_section_norm": {
+    "approx": 0.5389830847930701,
+    "squared": "117590/404781"
+  },
+  "harmonic_modular_section_profiles": [
+    {
+      "basis_mask": 1,
+      "compact_support": 224,
+      "normalized_ratio_approx": 0.525927048027274,
+      "normalized_squared_ratio": "8371/30264",
+      "total_lift_support": 5327
+    },
+    {
+      "basis_mask": 2,
+      "compact_support": 214,
+      "normalized_ratio_approx": 0.5389830847930701,
+      "normalized_squared_ratio": "117590/404781",
+      "total_lift_support": 5345
+    },
+    {
+      "basis_mask": 3,
+      "compact_support": 218,
+      "normalized_ratio_approx": 0.5281383572375042,
+      "normalized_squared_ratio": "115016/412347",
+      "total_lift_support": 5228
+    }
+  ],
   "harmonic_q1_transgression_rank_without_orientation_torsion": 1,
   "prime": 61,
   "projective_degree": 3783,

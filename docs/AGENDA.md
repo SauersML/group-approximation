@@ -1102,6 +1102,15 @@ meets positive vertex-stabilizer homology, followed by the integral norm
 bound on the paired carry lattice.  See
 `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
 
+The restricted modular norm is also exact at these levels.  Enumerating all
+three nonzero vectors in each rank-two harmonic parity plane gives section
+norms `0.5497745548...` at `p=53` and `0.5389830848...` at `p=61` under
+normalized Hamming--Euclidean norms.  In contrast, a fixed cross-pair
+singleton demand already needs support `11` at `p=3` and at least `14` at
+`p=5`.  The tested harmonic plane therefore avoids the growing coset-leader
+signal rather than merely hiding it in the full solver.  This is exact
+finite-level evidence, not yet an integral or all-prime theorem.
+
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
 projective `S_4` orbit classification show that the vertex `H_2` term is
