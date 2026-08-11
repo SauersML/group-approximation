@@ -700,3 +700,10 @@ symmetry-broken multiplicity scaling of this outer-stable family; more
 same-dimensional `iI` seeds are demoted.  Full data and the construction of
 the exact-zero endpoint are in
 `experiments/atlas_self_similarity_multirelator_results.md`.
+
+Multiplicity two supplies no useful scaling.  A full `U(256)` continuation
+from duplicated balanced states changes `(zero RMS, phase HS)` only from
+`(0.352252,0.212666)` to `(0.352035,0.212209)`, a `0.205%` weighted-objective
+improvement.  A ten-times larger symmetry break returns the same errors.
+Stop duplicating this fixed outer pair; the next model must change its actual
+`A8` irrep content.

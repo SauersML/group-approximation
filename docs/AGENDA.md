@@ -960,8 +960,10 @@ certified classes to `6.5e-15`.  After symmetry breaking, the central target
 phase HS `0.212666`, phase operator `0.412192`, and phase trace `-0.977386`.
 At phase weight ten the phase improves to HS `0.057228` and operator
 `0.115708` with zero RMS `0.491114`.  This is decisively better than the `iI`
-front.  Run multiplicity scaling from these retained states; stop additional
-same-dimensional `iI` seeds.  Details:
+front.  Multiplicity two does not scale: a symmetry-broken full `U(256)` run
+improves the balanced weighted objective by only `0.205%`, with errors still
+`(0.352035,0.212209)`.  Stop this fixed outer-pair family and additional
+same-dimensional `iI` seeds.  Change the actual vertex irrep content.  Details:
 `experiments/atlas_self_similarity_multirelator_results.md`.
 
 

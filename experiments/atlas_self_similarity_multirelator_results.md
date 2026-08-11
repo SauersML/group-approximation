@@ -177,3 +177,21 @@ scaling of `(3)--(4)` from the retained `-I` states.  If the errors do not
 improve under symmetry-broken full-unitary coupling, stop this fixed-irrep
 family.  If they do, extract whether the optimizer is isolating a shrinking
 bad subspace, as suggested by the small phase operator error and trace.
+
+That multiplicity test has now been run.  Two copies of the balanced
+128-dimensional state were embedded in dimension 256 and perturbed in the
+full `U(256)`, first narrowly and then with a ten-times larger dense
+skew-Hermitian perturbation.  The weight-one results are:
+
+| dimension | zero RMS | phase HS | phase operator | weighted objective |
+|---:|---:|---:|---:|---:|
+| 128 | 0.352252 | 0.212666 | 0.412192 | 0.169308 |
+| 256, narrow break | 0.352035 | 0.212209 | 0.410029 | 0.168961 |
+| 256, wide break | 0.352294 | 0.212443 | 0.410379 | 0.169243 |
+
+The best objective improvement is only `0.205%`.  The narrowly broken final
+state has off-block normalized HS mass `0.00557`; the wide run retains
+`0.03240` off-block mass but does not improve the errors.  Thus there is no
+useful multiplicity scaling signal in the fixed outer pair through dimension
+256.  Stop this family.  A new continuation must change the actual irrep
+content, rather than duplicate `rho directSum (rho after theta)`.
