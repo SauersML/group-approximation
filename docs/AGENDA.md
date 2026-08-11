@@ -142,6 +142,16 @@ A valid positive special case is split extension by a finitely generated
 abelian kernel, which embeds in `Hol(K) times Q`; the Kun--Thom kernel has
 infinite abelian rank and therefore lies exactly outside this case.
 
+The principal skew-product reformulation now removes every countable-range
+circle cocycle without a root construction.  If `lambda` is cohomologous into
+a countable subgroup `A<T`, then `R_Q(lambda)` is a subrelation of
+`R_Q times S_A`, where `S_A` is the hyperfinite translation relation of
+`A action T`.  Product and subgroupoid permanence make the skew product
+sofic, and principalization then makes `Gamma` sofic (`(HPK9cc)-(HPK9cf)`).
+Thus finite generation, property `(T)`, and Pruefer scalar divisibility are
+irrelevant in the countable-range case.  A surviving bounded-exponent residue
+must have no countable-range gauge on any finite-index restriction.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has

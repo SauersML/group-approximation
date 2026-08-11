@@ -39810,6 +39810,53 @@ sofic quotient relation is sofic.  General compact-extension permanence is
 not known and would cross the finite-central-kernel boundary, so `(TWT21)`
 is a reduction rather than the final proof.
 
+# 2026-08-11: countable-range circle skew products are sofic
+
+The principalization endpoint `(TWT17)--(TWT21)` has a useful permanence
+case which does not require roots, finite generation, property `(T)`, or a
+finite phase alphabet.  Let `R` be a sofic countable pmp relation and let
+
+`eta in Z^1(R,T)`                                      `(TWT22)`
+
+be cohomologous to an `A`-valued cocycle for some countable subgroup
+`A<T`.  After the cohomology gauge, let `S_A` be the orbit relation of the
+translation action `A action (T,Haar)`.  Since `A` is countable abelian,
+`S_A` is hyperfinite and hence sofic.  Products of sofic relations are
+sofic, while subgrouprelations of sofic groupoids are sofic.  The exact
+inclusion
+
+`R(eta) < R times S_A`                                `(TWT23)`
+
+holds because
+
+`u=eta(x,y)t  ==>  x R y and u S_A t`.                `(TWT24)`
+
+The cocycle law is precisely what makes the left side a subrelation.  Thus
+
+`eta cohomologous into countable A  ==>  R(eta) sofic`. `(TWT25)`
+
+Applying `(TWT25)` to the bounded-exponent phase cocycle `lambda=b^m` and
+then `(TWT21)` gives
+
+`lambda has a countable-range gauge  ==>  Gamma sofic`. `(TWT26)`
+
+This strictly strengthens the earlier finitely-generated-range and
+property-`(T)` criteria.  It also removes the apparent Pruefer-range
+obstruction: multiplication by `p` need not split on the Pruefer group,
+because the proof never constructs a scalar retraction or a finite quotient
+of the phase group.  It embeds the **relation** into a product and invokes
+subgroupoid permanence.
+
+The remaining bounded-exponent residue must therefore satisfy the sharper
+condition
+
+`no finite-index restriction has any countable-range gauge`. `(TWT27)`
+
+Full Mackey range alone is weaker: a cocycle with values in a countable
+dense subgroup can be Mackey-full, but `(TWT25)` still makes its skew product
+sofic.  The unresolved endpoint is now genuinely uncountable measurable
+circle range, not infinite torsion height.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
