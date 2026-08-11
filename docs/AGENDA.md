@@ -162,6 +162,13 @@ witness with a model satisfying `sqrt(d_n) * defect_n -> 0` already yields a
 hyperlinear nonsofic quotient. This removes every rank-profile requirement
 and leaves only a quantitative
 dimension--error gate; see `docs/FALSE_FERMIONIC_AMPLIFICATION.md`.
+The same note now proves that this square-root loss is optimal up to a
+universal constant among all exact continuous functorial amplifications:
+if `R:U(d)->U(N)` makes a rank-one involution HS-visible by `Delta_R`, then
+its normalized-HS differential has operator-to-HS norm at least
+`sqrt(d) Delta_R/pi`. Therefore the next FALSE step must use special group
+structure rather than swap in a more efficient universal representation
+functor.
 
 FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
 action survives the sofic image obtained by completing its restrictions to

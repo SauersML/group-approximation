@@ -184,7 +184,7 @@ For the symmetric double, Shulman's lifting proof has two independent
 indices: an asymptotic-homomorphism index controlling the norm defect and a
 matrix-coordinate index realizing the lifted representation. A successful
 quantitative diagonal choice satisfying `(FFA15)` would now finish the main
-problem immediately through Theorem 3. Merely knowing strong convergence
+problem immediately through Theorem 4. Merely knowing strong convergence
 of each lift does not supply that choice; its visibility threshold may grow
 faster than the reciprocal defect.
 
@@ -210,3 +210,90 @@ cost is the square-root-dimension-weighted multiplicative error `(FFA15)`.
 
 Thus the theorem is a genuine approximate regime, not a disguised use of
 finite-image representations.
+
+## 5. The square-root loss is functorially optimal
+
+The factor `sqrt(d)` in `(FFA8)` is not an artifact of taking every exterior
+power. It is forced, up to a universal constant, for any exact continuous
+unitary functor which makes a rank-one outlier visible in normalized
+Hilbert--Schmidt norm.
+
+Let
+
+`R:U(d)->U(N)`                                             `(FFA21)`
+
+be a continuous homomorphism. Equip the Lie algebras with operator norm on
+`u(d)` and normalized Hilbert--Schmidt norm on `u(N)`, and put
+
+`Lip_2(R)=sup_(||X||_op<=1) ||dR(X)||_(2,N)`.              `(FFA22)`
+
+Let
+
+`s=diag(-1,1,...,1) in U(d)`,
+`Delta_R=||R(s)-I||_(2,N)`.                               `(FFA23)`
+
+**Theorem 5 (functorial square-root lower bound).** Every `(FFA21)`
+satisfies
+
+`Lip_2(R) >= (sqrt(d)/pi) Delta_R`.                        `(FFA24)`
+
+**Proof.** For `1<=j<=d`, let `E_jj` be the `j`th diagonal matrix unit and
+put
+
+`X_j=i E_jj in u(d)`, `A_j=dR(X_j) in u(N)`.              `(FFA25)`
+
+The element `exp(pi X_j)` is a rank-one involution conjugate to `s`.
+Consequently its image under `R` has normalized Hilbert--Schmidt distance
+`Delta_R` from the identity. Since a continuous Lie-group homomorphism
+intertwines exponentials,
+
+`R(exp(pi X_j))=exp(pi A_j)`.                              `(FFA26)`
+
+For every skew-adjoint matrix `A`, spectral calculus and
+`|exp(i t)-1|<=|t|` give
+
+`||exp(A)-I||_2<=||A||_2`.                                 `(FFA27)`
+
+Equations `(FFA26)--(FFA27)` therefore imply
+
+`||A_j||_(2,N) >= Delta_R/pi` for every `j`.               `(FFA28)`
+
+Choose independent Rademacher signs `epsilon_1,...,epsilon_d`. Because the
+normalized Hilbert--Schmidt norm is a Hilbert-space norm,
+
+`E ||sum_j epsilon_j A_j||_(2,N)^2`
+`   =sum_j ||A_j||_(2,N)^2`
+`   >=d Delta_R^2/pi^2`.                                  `(FFA29)`
+
+Hence some deterministic choice of signs satisfies
+
+`||sum_j epsilon_j A_j||_(2,N)>=sqrt(d) Delta_R/pi`.       `(FFA30)`
+
+But `X=sum_j epsilon_j X_j` has operator norm one, and linearity of the
+differential gives `dR(X)=sum_j epsilon_j A_j`. Taking the supremum in
+`(FFA22)` proves `(FFA24)`. End proof.
+
+For the phase-cancelled fermionic functor `G_d`, the rank-one involution has
+normalized trace zero and hence `Delta_(G_d)=sqrt(2)`. Its differential at
+the identity satisfies
+
+`sup_(||X||_op<=1)||dG_d(X)||_2=sqrt(d/2)`.                `(FFA31)`
+
+Indeed, for eigenvalues `i alpha_j` of `X`, expanding `(FFA10)` at
+`W=exp(tX)` gives
+
+`||G_d(exp(tX))-I||_2^2`
+`   =(t^2/2) sum_j alpha_j^2+O(t^4)`.                     `(FFA32)`
+
+The upper bound is attained when every `|alpha_j|=1`. Comparing
+`(FFA24)` and `(FFA31)` shows that `G_d` is within the universal factor
+`pi/2` of the best possible local Lipschitz constant among all continuous
+homomorphisms which give the same rank-one visibility.
+
+Thus no replacement of the full exterior algebra by another exact
+finite-dimensional representation of `U(d)` can remove the square-root
+dimension gate while still uniformly amplifying a single spectral outlier.
+A rate-free FALSE proof has to use additional structure of the candidate
+group--for example a central corner, a Kazhdan corner, or a special
+nonfunctorial projective sector--rather than a better universal matrix
+functor.

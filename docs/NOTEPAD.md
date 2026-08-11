@@ -39050,3 +39050,30 @@ with `(FFA15)` would finish immediately; strong convergence alone does not
 bound the coordinate at which the norm witness appears. Earlier exterior
 amplification notes asked unnecessarily for trace convergence to zero: the
 uniform strict bound `(FFA6)` already suffices.
+
+# The square-root amplification cost is functorially optimal (2026-08-10)
+
+Full details are in `docs/FALSE_FERMIONIC_AMPLIFICATION.md`, Theorem 5.  Let
+`R:U(d)->U(N)` be a continuous homomorphism, let
+`s=diag(-1,1,...,1)`, and put
+
+`Delta_R=||R(s)-1||_(2,N)`.
+
+Then the normalized-HS differential of `R` obeys
+
+`sup_(||X||_op<=1)||dR(X)||_(2,N) >= sqrt(d) Delta_R/pi`. `(FFO1)`
+
+For the diagonal infinitesimal generators `X_j=iE_jj`, conjugacy of the
+rank-one involutions and the exponential estimate give
+`||dR(X_j)||_2>=Delta_R/pi`. Rademacher signs then produce a diagonal
+`X=sum epsilon_j X_j` of operator norm one for which the squared HS norm of
+`dR(X)` is at least the sum of these `d` squared lower bounds.
+
+The conjugate-doubled full exterior functor has `Delta=sqrt(2)` and exact
+local Lipschitz constant `sqrt(d/2)`, so it is within a factor `pi/2` of the
+lower bound. Thus the `sqrt(d)` gate is not an inefficient choice of
+fermionic functor. No exact continuous representation functor of `U(d)` can
+turn one rank-one outlier into constant normalized-HS mass with
+dimension-free error amplification. Any rate-free FALSE proof must exploit
+candidate-specific structure (central/Kazhdan corners or a nonfunctorial
+projective sector), not a more clever universal amplification.
