@@ -85,12 +85,24 @@ the amenable `Z`-shift, and explicitly does not obtain permutation rounding.
 Thus pairwise unitary correction cannot replace simultaneous finite-set
 assembly.
 
-Next: attack the normal-Dirac restriction inside a finite subgroup test.  Use
-normality and the `0/1` law to symmetrize an arbitrary positive loss
-certificate, seeking a finite-action strategy directly from the relation-good
-corners without first making those corners invariant.  Do not route through
-conjugate averaging, amenability, generic HS stability, or Bernoulli-lamp
-permanence; their exact stopping points are now proved in the notepad.
+Finite-prefix completion `(FPC1)-(FPC12)` nevertheless bypasses `(SCR10)`
+for every fixed word test without averaging.  Intersecting finitely many
+translated good corners loses at most `|B|(1-tr(p))`; each generator then
+extends from all of its tested prefix fibers to a unitary on `pH`.  Every
+tested word agrees with the original word on the common large intersection,
+so relators remain small and the witness remains trace-visible.  This removes
+generator invariance as the analytic bottleneck.  What remains is a joint
+atom/matching construction from those overlapping prefix fibers.  It may not
+require the generator matrices themselves to be close to permutation
+matrices—that stronger pointwise demand is false—but it must retain all
+tested relator and witness losses in one finite action.
+
+Next: extract a finite matching system from the simultaneous prefix-fiber
+data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
+Use the normal `0/1` trace law to control overlaps and retain only the tested
+word losses.  Do not route through conjugate
+averaging, amenability, generic HS stability, or Bernoulli-lamp permanence;
+their exact stopping points are now proved in the notepad.
 
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 

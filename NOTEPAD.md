@@ -38139,6 +38139,120 @@ unitary correction on the spectral corner.  It must construct the finite set
 and all generator permutations together, using the normal `0/1` coefficient
 law at the combinatorial assembly step.
 
+## 2026-08-10: finite-prefix unitary completion bypasses corner leakage
+
+The operator leakage `(SCR10)` is an obstruction to *polar compression*, but
+it is not an obstruction to evaluating a fixed finite family of words on a
+large corner.  A table-dependent partial-isometry extension gives a sharper
+replacement.
+
+Let `F=F(A)` be free on a finite set `A`, let
+
+`pi:F -> U(H)`, `dim(H)=d`,                              `(FPC1)`
+
+and let `p` be a projection.  Fix a finite set `B subset F` containing every
+prefix (with left multiplication convention) of the finite words that will
+be tested.  Put
+
+`q=meet_(g in B) pi(g)^* p pi(g)`.                      `(FPC2)`
+
+Then
+
+`tr_d(q) >= 1-|B|(1-tr_d(p))`,                         `(FPC3)`
+
+and
+
+`pi(g)qH subset pH` for every `g in B`.                `(FPC4)`
+
+Indeed, the orthogonal complement of a finite intersection is the span of
+the orthogonal complements, so its dimension is at most their summed
+dimensions.  Every conjugate of `p` has the same codimension, proving
+`(FPC3)`; `(FPC4)` is the definition of the meet.
+
+For a generator `a in A`, reorient every tested prefix edge labelled
+`a^(+-1)` as a positive edge `g -> ag`, and let `D_a subset pH` be the span
+of the spaces `pi(g)qH` over all those reoriented edges.  Both endpoints of
+every such edge lie in `B`, so
+
+`pi(a)D_a subset pH`.                                  `(FPC5)`
+
+The restriction `pi(a)|_(D_a)` is an isometry between equal-dimensional
+subspaces of `pH`; hence it extends to a unitary
+
+`V_a in U(pH)`.                                        `(FPC6)`
+
+Use `V_(a^(-1))=V_a^(-1)`.  If
+
+`g_0=1`, `g_j=l_j g_(j-1)`                             `(FPC7)`
+
+is any tested prefix path, induction gives
+
+`V_(l_j)...V_(l_1) xi=pi(g_j)xi`, `xi in qH`.          `(FPC8)`
+
+For a positive letter this is the defining extension on `D_a`.  For an
+inverse letter `l_j=a^(-1)`, the forward edge is `g_j -> a g_j=g_(j-1)`;
+therefore `V_a pi(g_j)xi=pi(g_(j-1))xi`, which is exactly the inverse step.
+
+This yields quantitative relation and witness estimates.  Suppose `R` is a
+finite tested relator set, all its prefix paths are in `B`, and
+
+`max_(r in R)||(pi(r)-1)p||_op <= eta`.                 `(FPC9)`
+
+Writing `||.||_(2,p)` for normalized Hilbert--Schmidt norm on `pH`, `(FPC8)`
+and the bound `||U-1||_op<=2` for a unitary give
+
+`||V_r-1||_(2,p)^2`
+` <= eta^2+4|B|(1-tr_d(p))/tr_d(p)`, `r in R`.         `(FPC10)`
+
+Indeed, on the domain `qH`, `V_r-1` agrees with `pi(r)-1` and has norm at
+most `eta`; the remaining domain inside `pH` has relative dimension at most
+`|B|(1-tr_d(p))/tr_d(p)`.
+
+If `w` is a tested witness and
+
+`b=||pi(w)-1||_(2,d)^2`,                               `(FPC11)`
+
+then, because `(pi(w)-1)^*(pi(w)-1)<=4`,
+
+`||V_w-1||_(2,p)^2`
+` >= max(0,b-4|B|(1-tr_d(p)))`.                        `(FPC12)`
+
+To see this, `(FPC8)` identifies `V_w-1` with `pi(w)-1` on `qH`; deleting
+`q^perp` can remove at most `4 tr_d(1-q)` of the original squared HS mass,
+and `(FPC3)` bounds that loss.  Division by `tr_d(p)<=1` only increases a
+positive lower bound.
+
+Apply this to the spectral corners `(SCR2)--(SCR8)`, after putting all tested
+prefixes into the fixed finite set `B`.  Then `tr_d(p)->1`, `eta->0`, every
+relator defect in `(FPC10)` tends to zero, and a regular-trace witness with
+`b->2` remains separated by `(FPC12)`.  Thus no generator-invariant spectral
+corner, conjugate averaging, or Folner boundary is needed to produce a
+coherent **unitary** table for the fixed word test.
+
+The construction does not yet give a finite action.  The complements used
+to extend the different `D_a` in `(FPC6)` are unrelated, and the matrices
+`V_a` need not preserve any common basis.  In fact the output is another
+hyperlinear table, now with the stronger property that all tested word paths
+are exact copies of the original paths on one common asymptotically full
+subspace.  The remaining target is correspondingly sharper, but it must not
+be read as generatorwise matrix approximation:
+
+> use the simultaneous word-path data `(FPC4)--(FPC8)` to construct partial
+> bijections of one finite set, with unmatched mass controlled by `(FPC3)`,
+> and then complete those partial bijections to permutations.
+
+Requiring a basis in which each `V_a` itself is close to a permutation matrix
+would be an unjustified stronger statement (and the pointwise obstruction
+`(PUR1)--(PUR3)` still applies).  The finite bijections may discard the
+generator matrices after extracting their joint word constraints; only the
+relator and witness losses must be retained.
+
+Unlike the discarded conjugate-averaging attempt, this target has no
+group-indexed boundary term: `B` is fixed first and its cardinality is
+absorbed by the arbitrarily small corner loss.  The unresolved issue is a
+joint atom/matching construction from the overlapping prefix subspaces, not
+invariance of the spectral projection.
+
 # The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
 
 The cyclic-shear candidate admits a useful reduction, together with an
