@@ -132,6 +132,25 @@ the original HAP carry metric still requires the bounded integral comparison
 and the two-primary stabilizer correction described in
 `TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.
 
+The harmonic numerator is also bounded in the other direction.  Exact
+integral lifts of a Gauss-reduced basis have lift Gram matrix
+`diag(4,16)`, and the largest generalized squared singular value against
+the harmonic Gram matrix is `56.10275777902312...`.  Thus the compact
+harmonic decoder has a section of norm
+
+`7.49017741972933...`,                                      `(PHS12c)`
+
+and its optimal section constant satisfies the near-sharp bracket
+
+`7.489055360091924...<=kappa_Sigma`
+` <=7.49017741972933...`.                                  `(PHS12d)`
+
+This upper bound is for the free harmonic sector.  It does not yet include
+the bounded spherical templates, the omitted two-primary stabilizer
+coordinates, or the norm loss in comparison with the free HAP carry metric.
+Those qualifications are essential before reading `(PHS12d)` as an upper
+bound for the original full-chart constant.
+
 ## A regulator criterion for divergence
 
 Suppose `Q` has rank `r>0`, and let `Reg(Q)` denote its Euclidean
