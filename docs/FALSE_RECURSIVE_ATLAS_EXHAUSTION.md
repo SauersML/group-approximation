@@ -442,6 +442,48 @@ witness inside the canonical regular model.  The live problem is
 simultaneous compatibility with the other collision-tree generators and
 with later windows, not repair of this parity cluster in isolation.
 
+## 3.9 A coherent wall crossing reduces the shortest parity system to one pair
+
+The 34 shortest one-sided boundary words have a second exact compression,
+proved in `FALSE_COHERENT_WALL_CROSSING.md`.  Each is a product of three
+conjugates of one repeated involution.  Removing duplicate triples gives 24
+independent three-uniform parity edges on 44 vertices, split into eight
+connected components of sizes
+
+\[
+ 5,5,7,7,4,4,6,6.                                  \tag{CW1}
+\]
+
+There are exactly fourteen inner (A_8)-alignments which make all 34 words
+equal to one.  More usefully, on the (64)-dimensional irrep (W=(5,2,1))
+one may take
+
+\[
+ U=\rho(k){I-i\rho(d)\over\sqrt2},\qquad d^2=1,     \tag{CW2}
+\]
+
+for the explicit (k,d\in GL_4(2)) displayed in that note.  An exact
+rational-Gaussian character calculation shows that 32 of the 34 words still
+act as (1).  The remaining inverse-pair has
+
+\[
+ \operatorname{tr}_{64}(q_\partial)=\frac14,
+ \qquad\left\|q_\partial-\frac14I\right\|_2^2
+ =\frac{15}{16}.                                    \tag{CW3}
+\]
+
+Thus seven of the eight parity components can be crossed coherently by one
+quarter-turn between classical walls.  This construction does not retain a
+central phase: its 32 exact words all have phase (+1).  Moreover
+`FALSE_CLIFFORD_TORSION_GATE.md` proves that the apparent phase in the local
+Pauli block is globally trivial in (R/[P,R]).  Hence (CW2) is a structural
+boundary reduction and a regression test for truncated-window false
+positives, not a route for preserving that Clifford witness.
+
+The subsequent complete-boundary classification is in
+`FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`; it should be used before optimizing
+any further cross-chart phase.
+
 ## 4. Canonical one-unitary models
 
 Let `lambda:A_8->U(20160)` be the left regular representation.  For
