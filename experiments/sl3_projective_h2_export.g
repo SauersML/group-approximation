@@ -29,10 +29,11 @@ ProjectiveH2ReduceMatrix := function(value, field, prime)
 end;
 
 ProjectiveH2WriteBoundary := function(
-        resolution, orbit, field, prime, degree, chain_degree, path)
+        resolution, orbit, orbit_positions, field, prime, degree,
+        chain_degree, path)
     local stream, source_rank, target_rank, cache, source, coordinate,
-          word, term, element_index, reduced, images, permutation,
-          action_rows, target, value;
+          word, term, element_index, reduced, images, inverse_images,
+          target;
     source_rank := resolution!.dimension(chain_degree) * degree;
     target_rank := resolution!.dimension(chain_degree - 1) * degree;
     stream := OutputTextFile(path, false);
@@ -48,24 +49,25 @@ ProjectiveH2WriteBoundary := function(
                     reduced := ProjectiveH2ReduceMatrix(
                         resolution!.elts[element_index]^-1, field, prime);
                     images := List(orbit,
-                        point -> Position(orbit, OnLines(point, reduced)));
+                        point -> LookupDictionary(
+                            orbit_positions, OnLines(point, reduced)));
                     if fail in images then
                         Error("coefficient matrix did not preserve the orbit");
                     fi;
-                    permutation := PermList(images);
-                    action_rows := TransposedMat(PermutationMat(
-                        permutation, degree));
-                    cache[element_index] := action_rows;
-                fi;
-                for target in [1..degree] do
-                    value := cache[element_index][coordinate][target];
-                    if value <> 0 then
-                        AppendTo(stream,
-                            (source - 1) * degree + coordinate - 1, " ",
-                            (AbsoluteValue(term[1]) - 1) * degree + target - 1,
-                            " ", SignInt(term[1]) * value, "\n");
+                    inverse_images := ListWithIdenticalEntries(degree, 0);
+                    for target in [1..degree] do
+                        inverse_images[images[target]] := target;
+                    od;
+                    if 0 in inverse_images then
+                        Error("coefficient action is not a permutation");
                     fi;
-                od;
+                    cache[element_index] := inverse_images;
+                fi;
+                target := cache[element_index][coordinate];
+                AppendTo(stream,
+                    (source - 1) * degree + coordinate - 1, " ",
+                    (AbsoluteValue(term[1]) - 1) * degree + target - 1,
+                    " ", SignInt(term[1]), "\n");
             od;
         od;
     od;
@@ -75,7 +77,7 @@ end;
 
 ProjectiveH2Run := function(prime, prefix)
     local resolution, group, generators, field, one, zero, reduced_generators,
-          finite_group, point, orbit, degree,
+          finite_group, point, orbit, orbit_positions, coordinate, degree,
           dimensions2, dimensions3;
     resolution := ResolutionArithmeticGroup("SL(3,Z)", 3);
     group := GroupOfResolution(resolution);
@@ -92,11 +94,15 @@ ProjectiveH2Run := function(prime, prefix)
     if Length(orbit) <> degree then
         Error("symmetric-square line is not the projective-plane orbit");
     fi;
+    orbit_positions := NewDictionary(orbit[1], true);
+    for coordinate in [1..degree] do
+        AddDictionary(orbit_positions, orbit[coordinate], coordinate);
+    od;
     dimensions2 := ProjectiveH2WriteBoundary(
-        resolution, orbit, field, prime, degree, 2,
+        resolution, orbit, orbit_positions, field, prime, degree, 2,
         Concatenation(prefix, "-d2.tsv"));
     dimensions3 := ProjectiveH2WriteBoundary(
-        resolution, orbit, field, prime, degree, 3,
+        resolution, orbit, orbit_positions, field, prime, degree, 3,
         Concatenation(prefix, "-d3.tsv"));
     Print("prime=", prime,
           " projective_degree=", degree,

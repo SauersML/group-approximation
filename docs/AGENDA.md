@@ -789,6 +789,16 @@ uniform theorem: prime-level cuspidal cohomology gives nonzero rational
 growth on the acyclic charts and the metric harmonic lattice on the
 non-acyclic charts.
 
+The first non-acyclic chart is now computed exactly at `p=53`.  The Shapiro
+complex has rational `H_2` of dimension two: its `F_101` ranks give the
+upper bound two, matching the two-dimensional cuspidal lower bound of
+Ash--Yasaki.  A sparse real Hodge solve isolates the same two-plane with a
+gap of `0.19377` to the next eigenvalue, and 64.15 percent of its leverage
+lies in one five-term degree-two cell orbit.  The live metric calculation is
+therefore an exact rank-two lattice lift/regulator problem, not another
+homology-dimension sweep.  See
+`experiments/sl3_projective_carry_results.md`.
+
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
 by an integer of magnitude less than one with every template, hence is

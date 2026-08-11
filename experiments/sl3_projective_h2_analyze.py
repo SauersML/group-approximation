@@ -10,6 +10,8 @@ export uses row-vector chain conventions, so the chain identity is
 import argparse
 import hashlib
 import json
+import sys
+import time
 
 from sage.all import ChainComplex, GF, QQ, ZZ, matrix
 
@@ -31,16 +33,36 @@ def read_sparse(path, ring):
     return matrix(ring, rows, columns, entries, sparse=True), digest.hexdigest()
 
 
-def field_result(d2_path, d3_path, field, label):
+def field_result(d2_path, d3_path, field, label, chain_check):
+    started = time.perf_counter()
     d2, d2_hash = read_sparse(d2_path, field)
     d3, d3_hash = read_sparse(d3_path, field)
+    print(
+        "%s loaded in %.3fs" % (label, time.perf_counter() - started),
+        file=sys.stderr, flush=True)
     if d3.ncols() != d2.nrows():
         raise AssertionError("boundary dimensions do not compose")
-    chain = d3 * d2
-    if chain != 0:
-        raise AssertionError("exported boundaries do not form a chain complex")
+    if chain_check == "exact":
+        chain_started = time.perf_counter()
+        chain = d3 * d2
+        if chain != 0:
+            raise AssertionError("exported boundaries do not form a chain complex")
+        print(
+            "%s exact chain check in %.3fs" % (
+                label, time.perf_counter() - chain_started),
+            file=sys.stderr, flush=True)
+    rank_started = time.perf_counter()
     rank2 = d2.rank()
+    print(
+        "%s d2 rank %d in %.3fs" % (
+            label, rank2, time.perf_counter() - rank_started),
+        file=sys.stderr, flush=True)
+    rank_started = time.perf_counter()
     rank3 = d3.rank()
+    print(
+        "%s d3 rank %d in %.3fs" % (
+            label, rank3, time.perf_counter() - rank_started),
+        file=sys.stderr, flush=True)
     dimension = d2.nrows() - rank2 - rank3
     return {
         "field": label,
@@ -52,7 +74,8 @@ def field_result(d2_path, d3_path, field, label):
         "d3_nnz": len(d3.dict()),
         "d2_sha256": d2_hash,
         "d3_sha256": d3_hash,
-        "chain_squared_zero": True,
+        "chain_check": chain_check,
+        "chain_squared_zero": True if chain_check == "exact" else None,
     }
 
 
@@ -70,21 +93,25 @@ def integral_result(d2_path, d3_path):
     }
 
 
-def run(prime, prefix, coefficient_primes):
+def run(prime, prefix, coefficient_primes, include_integral, include_rational,
+        chain_check):
     d2_path = prefix + "-d2.tsv"
     d3_path = prefix + "-d3.tsv"
-    integral = integral_result(d2_path, d3_path)
-    rational = field_result(d2_path, d3_path, QQ, "Q")
-    modular = [field_result(d2_path, d3_path, GF(ell), "F_%d" % ell)
-               for ell in coefficient_primes]
-    return {
+    result = {
         "chart": "projective",
         "chart_prime": prime,
         "method": "HAP_SL3_resolution_plus_Shapiro_permutation_module",
-        "integral": integral,
-        "rational": rational,
-        "modular": modular,
     }
+    if include_integral:
+        result["integral"] = integral_result(d2_path, d3_path)
+    if include_rational:
+        result["rational"] = field_result(
+            d2_path, d3_path, QQ, "Q", chain_check)
+    result["modular"] = [
+        field_result(
+            d2_path, d3_path, GF(ell), "F_%d" % ell, chain_check)
+        for ell in coefficient_primes]
+    return result
 
 
 def main():
@@ -93,9 +120,15 @@ def main():
     parser.add_argument("--prefix", required=True)
     parser.add_argument("--coefficient-primes", type=int, nargs="+",
                         default=(2, 3, 5, 7))
+    parser.add_argument("--without-integral", action="store_true")
+    parser.add_argument("--without-rational", action="store_true")
+    parser.add_argument(
+        "--chain-check", choices=("exact", "structural"), default="exact")
     args = parser.parse_args()
     print(json.dumps(run(
-        args.prime, args.prefix, args.coefficient_primes)), flush=True)
+        args.prime, args.prefix, args.coefficient_primes,
+        not args.without_integral, not args.without_rational,
+        args.chain_check)), flush=True)
 
 
 if __name__ == "__main__":

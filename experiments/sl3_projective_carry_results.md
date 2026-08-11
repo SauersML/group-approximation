@@ -128,6 +128,81 @@ The raw sparse boundaries and analyzer summaries are committed as
 `projective-h2-p{3,5,7}-direct.json`.  The summaries contain SHA-256 hashes
 of the exact boundary files.
 
+## First cuspidal level: exact `p=53` rank
+
+The first literature-certified projective level with nonzero cuspidal
+cohomology is `p=53`, where `n=2863`.  The Shapiro complex has dimensions
+
+`11452 -> 28630 -> 57260`
+
+in degrees one, two, and three.  Its two sparse boundaries have 232,070 and
+1,603,070 nonzero entries.  Exact ranks are:
+
+| field | `rank(d2)` | `rank(d3)` | `dim H_2` |
+| --- | ---: | ---: | ---: |
+| `F_2` | 8,589 | 20,029 | 12 |
+| `F_3` | 8,590 | 20,038 | 2 |
+| `F_5` | 8,590 | 20,038 | 2 |
+| `F_7` | 8,590 | 20,038 | 2 |
+| `F_101` | 8,590 | 20,038 | 2 |
+
+Ash--Yasaki compute that the cuspidal degree-three cohomology at level 53
+has dimension two.  Poincare--Lefschetz duality therefore gives
+`dim_Q H_2>=2`, while reduction modulo 101 gives `dim_Q H_2<=2`.  Hence
+
+`dim_Q H_2(H_53,Q)=2`.
+
+This is the first exact computation in the selected chart family where the
+harmonic carry sector is genuinely present.  The jump to dimension 12 in
+characteristic two also shows that substantial two-primary homology or a
+universal-coefficient contribution survives beyond the free rank.
+
+The optimized exporter replaces two quadratic operations by a projective
+point dictionary and a direct inverse-permutation lookup.  At `p=3` it is
+byte-for-byte identical to the original exporter.  At `p=53` it writes the
+full complex in 13.43 seconds using about 167 MiB, so export is no longer a
+bottleneck.  The boundary hashes and exact ranks are in
+`projective-h2-p53-summary.json`; the 26 MiB reproducible raw text matrices
+are intentionally not stored in Git.
+
+## Numerical metric probe at `p=53`
+
+`sl3_projective_harmonic_probe.py` applies
+
+`Delta_2=d2 d2^T+d3^T d3`
+
+as a sparse linear operator, without materializing the Laplacian.  A
+diagonally preconditioned six-vector LOBPCG run found eigenvalues
+
+`2.42e-16, 2.11e-13, 0.193773, 0.306577, 0.383428, 0.417535`.
+
+The first two vectors independently satisfy the cycle and boundary
+orthogonality equations to at worst `3.55e-7`; the next eigenvalue is
+separated by `0.19377`.  Thus the numerical Hodge kernel cleanly reproduces
+the exact harmonic dimension two.
+
+The harmonic leverage is highly nonuniform among the ten degree-two cell
+orbits.  Their leverage sums are approximately
+
+`0.0143, 0.0224, 0.0174, 0.0410, 0.0713,`
+`0.0493, 0.0884, 1.2830, 0.2484, 0.1645`.
+
+The eighth orbit alone carries 64.15 percent of the two-dimensional plane.
+In the fixed HAP resolution this is the five-term cell with boundary
+
+`[[-1,23],[2,23],[2,27],[-4,30],[4,32]]`.
+
+This concentration is the first concrete reduction for the harmonic
+systole calculation: eliminate the other nine cell orbits by a sparse
+Schur complement and lift the resulting two coordinates exactly.  The full
+numerical certificate is in `projective-h2-p53-harmonic.json`.
+
+Generic Sage sparse-kernel extraction was also tested with both echelon and
+raw computed bases.  Each remained compute-bound at the five-minute cap;
+the live exact-basis implementation should use pivot-guided sparse solving
+or a purpose-built block-Wiedemann routine, not a larger generic echelon
+job.
+
 ## Mathematical interpretation
 
 For `p=3,5,7`, Proposition 12 of
@@ -145,6 +220,5 @@ harmonic lattice.  The next high-yield tasks are therefore:
 2. split off bounded spherical templates explicitly;
 3. synthesize a coupled integral decoder for the torsion and harmonic
    sectors and measure its norm;
-4. test the first prime with known cuspidal homology, where the genuinely new
-   harmonic obstruction appears.
-
+4. lift the concentrated `p=53` harmonic plane to its exact rank-two
+   integral lattice and compute its regulator and dual systole.
