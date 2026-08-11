@@ -360,3 +360,69 @@ What remains is genuinely arithmetic: uniformly control the paired range
 radii in `(NDR37)` and the nonsmall spherical-sector classes.  The real
 Hodge problem and the nonlinear nearest-carry bookkeeping are no longer
 mixed together.
+
+## 8. Exact rank-one computational calibration
+
+The paired envelope is already nontrivial for a primitive rank-one map
+
+`A:R->R^2`, `A(t)=(pt,qt)`, `gcd(p,q)=1`.             `(NDR42)`
+
+Put `N=p^2+q^2`.  Then
+
+`L=Z(p,q)`, `K=Z(-q,p)`, `|D_K|=N`.                  `(NDR43)`
+
+Index a cycle discriminant class by `j mod N`.  If `(r,s) in Z^2`
+satisfies
+
+`j=-qr+ps mod N`,                                    `(NDR44)`
+
+its paired range index is
+
+`h(j)=pr+qs mod N`.                                  `(NDR45)`
+
+This is well defined and bijective.  If
+
+`bar(j)=min(j mod N,-j mod N)`,                       `(NDR46)`
+
+then
+
+`rho_K(j)^2=bar(j)^2/N`,                             `(NDR47)`
+
+and `(NDR14)--(NDR15)` become
+
+`dist((pt,qt),Z^2)^2`
+` =min_(j mod N)(`
+`    N dist(t,h(j)/N+Z)^2+bar(j)^2/N),`              `(NDR48)`
+
+`C_circ(A)^2`
+` =sup_(t mod Z)`
+`   dist(t,Z)^2`
+`   /min_(j mod N)(`
+`      N dist(t,h(j)/N+Z)^2+bar(j)^2/N).`            `(NDR49)`
+
+The lower envelope in `(NDR49)` is piecewise quadratic with rational
+breakpoints.  `experiments/integral_carry_exact_repair_formula.sage`
+constructs the gluing map, checks `(NDR48)` with exact rational arithmetic,
+and maximizes `(NDR49)` by subdividing at all envelope crossings.  The
+stored certificate is
+`experiments/integral-carry-exact-repair-formula.json`.
+
+| column `(p,q)` | `|D_K|` | `Theta^2` | `C_circ(A)^2` | optimizing `t` |
+| --- | ---: | ---: | ---: | ---: |
+| `(1,1)` | 2 | 2 | `1/2` | `0` (directional limit) |
+| `(1,2)` | 5 | 5 | `1` | `1/2` |
+| `(2,3)` | 13 | 26 | `2` | `2/5` |
+| `(2,5)` | 29 | 145 | `5` | `5/12` |
+| `(3,5)` | 34 | 170 | `5` | `5/13` |
+
+All 1,060 sampled distance identities have exact rational error zero.  In
+the last four examples, the sharp upper bound in `(NDR19)` is attained
+exactly:
+
+`C_circ(A)^2=Theta(W)^2/(p^2+q^2).`                  `(NDR50)`
+
+For `(1,1)`, the inequality is strict: its right side is `1`, while the
+exact constant is `1/2`.  Thus Theorem 3 is sharp even in primitive
+rank-one families, but the full paired envelope `(NDR15)` contains strictly
+more information than `Theta` and the singular values on an individual
+chart.
