@@ -246,6 +246,8 @@ def main() -> None:
         for point in two_cell_torsion_points[cell_index - 1]
     ]
     records = []
+    q1_syndromes = []
+    target_q1 = coordinate_indices(1, 1, degree)
     for basis_index, integer_row in enumerate(harmonic_rows):
         compact_cycle = vector(field, integer_row)
         if compact_cycle * compact_boundary:
@@ -256,6 +258,9 @@ def main() -> None:
             generator = cell_generators[cell_index - 1]
             compact_lift[generator * degree + point] += (
                 field(source_sign) * compact_cycle[compact_coordinate])
+        initial_boundary = compact_lift * full_boundary
+        q1_syndromes.append(vector(
+            field, [initial_boundary[index] for index in target_q1]))
         record = solve_filtered_lift(
             full_boundary,
             degree,
@@ -265,6 +270,12 @@ def main() -> None:
         record["basis_index"] = basis_index
         record["compact_reduced_support"] = len(compact_cycle.support())
         records.append(record)
+
+    source_q1 = coordinate_indices(2, 1, degree)
+    q1_block = full_boundary.matrix_from_rows_and_columns(source_q1, target_q1)
+    harmonic_q1_transgression_rank = int(
+        q1_block.stack(matrix(field, q1_syndromes)).rank()
+        - q1_block.rank())
 
     payload = {
         "prime": prime,
@@ -276,6 +287,8 @@ def main() -> None:
         "cell_generators": list(cell_generators),
         "two_cell_orientation_torsion_orbits": [
             len(points) for points in two_cell_torsion_points],
+        "harmonic_q1_transgression_rank_without_orientation_torsion": (
+            harmonic_q1_transgression_rank),
         "zero_row_comparison_ranks": comparison_ranks,
         "records": records,
     }
