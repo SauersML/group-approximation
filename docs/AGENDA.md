@@ -210,6 +210,20 @@ removing `o(|X|)` points: extend both models to a common set with trivial
 actions and phases, apply `(SBC17)`, and use the asymptotically unit dimension
 ratio (`(SBC29a)-(SBC29b)`).
 
+On the amplified FALSE lane, full base transfer reduces the modular
+holonomy search to a fixed-rank dual norm; see
+`FALSE_BASE_HOLONOMY_DUAL_NORM.md`.  For a fixed integral basis of the base
+cycle lattice, center its `k` radical-transgression values modulo `q` into a
+vector `c in Z^k`.  The optimal ratio
+`sup_(v!=0) H_q(Hol(Jv))/||v||` has an exact finite shortest-representative
+formula and is bounded above and below by fixed basis constants times
+`||c||`.  Hence unbounded centered basis holonomy already supplies one fixed
+primitive cycle to the amplified transfer-holonomy certificate and proves
+FALSE.  Computationally, on full-transfer charts it is enough to solve the
+`k` basis right-hand sides and watch one fixed-dimensional output vector;
+searching over all base cycles is unnecessary.  Full transfer itself remains
+a substantive unproved hypothesis for the candidate chart families.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
