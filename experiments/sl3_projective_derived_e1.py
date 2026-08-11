@@ -154,6 +154,11 @@ def analyze(prime: int, prefix: Path):
     e2_1_1 = e1_total_two["1,1"] - outgoing_h1["rank"] - incoming_h1_rank
     if e2_1_1 < 0:
         raise AssertionError("horizontal E1 ranks violate the chain inequality")
+    incoming_h2_rank = horizontal_image_rank(
+        boundaries, total_degree=3, source_q=1, target_q=0, degree=degree)
+    e2_0_2 = e1_total_two["0,2"] - incoming_h2_rank
+    if e2_0_2 < 0:
+        raise AssertionError("horizontal H2 image exceeds its target")
 
     return {
         "prime": prime,
@@ -164,7 +169,9 @@ def analyze(prime: int, prefix: Path):
         "E1_total_degree_two_dimensions": e1_total_two,
         "E1_horizontal_H1_D8_to_H1_S4": outgoing_h1,
         "E1_horizontal_H1_cells_to_D8_image_rank": incoming_h1_rank,
+        "E1_horizontal_H2_D8_to_S4_image_rank": incoming_h2_rank,
         "E2_1_1_dimension": e2_1_1,
+        "E2_0_2_dimension": e2_0_2,
     }
 
 
