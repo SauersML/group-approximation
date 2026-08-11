@@ -87,6 +87,19 @@ has
 `RMS defect = 0.2412090757`,
 `maximum defect = 1.0327955590`.
 
+The twenty kernel generators in this window are cross-chart commutators of
+adjacent transvections.  The best alignment kills eighteen of them exactly.
+The two survivors are
+
+`[p2_32,p1_23]` and `[p2_23,p1_32]`;                 `(ACW1)`
+
+their aligned `GL_4(F_2)` values are the opposite transvections `e_31` and
+`e_13`.  Precisely the twelve constraints asking these two survivors to
+centralize the two factor generating sets fail.  Thus the classical optimum
+has a clean structural description: it aligns the entire shortest
+cross-commutation web except for one opposite-root pair, rather than using a
+hidden central/projective value for the kernel words.
+
 Starting the unrestricted `U(15)` max-focused optimizer at that alignment
 and running four 600-step perturbations changed the best maximum defect only
 to `1.032793451`, while slightly worsening the RMS defect.  Thus the best
@@ -95,3 +108,63 @@ unitary space.  This is numerical evidence only: it neither proves a
 dimension-15 lower bound nor addresses multiplicity growth.  Its value is
 that the first complete window is already nontrivial even before the longer
 Steinberg relations enter.
+
+## Exact minimax theorem for inner regular mixtures
+
+There is a separate, fully regular calculation.  Let `lambda` be the left
+regular representation of `A8`.  For `h in A8`, use the relative alignment
+
+`lambda(g)` on factor one and `lambda(hgh^(-1))` on factor two. `(ACW2)`
+
+Every radius-two constraint then evaluates to a regular matrix `lambda(k)`.
+Its normalized trace is one if `k=1` and zero otherwise, so its squared HS
+defect is exactly zero or two.  A block direct sum of inner alignments is
+therefore a probability distribution on the 20,160 rows of the exact
+satisfaction matrix.
+
+**Proposition (exact inner-mixture optimum).**  Among all such probability
+distributions, the least possible worst failure probability is exactly
+
+`2/7`.                                                     `(ACW3)`
+
+Equivalently, the least possible worst normalized-HS defect is
+
+`sqrt(4/7) = 0.7559289460...`.                            `(ACW4)`
+
+**Computer-assisted proof.**  The exact primal certificate places weights
+
+```text
+bits       4680  6180  8580  16952  33060
+numerator     1     1     2      1      2
+```
+
+over denominator seven.  Direct evaluation shows that every one of the 220
+constraints fails with total numerator at most two.  For the converse, put
+uniform weight `1/7` on constraints
+
+`26, 38, 50, 96, 97, 98, 114`.                         `(ACW5)`
+
+Every one of the 20,160 inner alignments fails at least two of these seven
+constraints.  Hence, for any distribution on alignments, the average of the
+seven failure probabilities is at least `2/7`; at least one constraint has
+failure probability at least `2/7`.  This proves both bounds.
+
+The `--inner-mixture` mode discovers the linear-program solution and then
+rationalizes it.  It accepts the result only after checking both displayed
+integer certificates directly against the exact Boolean satisfaction
+matrix.  Thus no floating-point LP tolerance enters the proof.
+
+The primal certificate gives a concrete canonical model with regular
+multiplicity seven.  If `delta_(tree,2)` denotes the maximum over the 220
+spanning-tree constraints used here, it gives the rigorous finite-window
+upper bound
+
+`delta_(tree,2) <= sqrt(4/7)`.                           `(ACW6)`
+
+The matching lower bound applies only to direct sums of inner alignments.
+It does not apply to arbitrary relative unitaries in the regular
+representation, to outer automorphism alignments, or to other multiplicity
+sectors.  Consequently it does not decide `delta_(tree,2)`, much less the full
+hyperlinearity criterion.  It does prove that simply mixing classical inner
+charts cannot drive even the first complete window to zero; a successful
+model must use genuinely additional representation geometry.

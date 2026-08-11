@@ -8,7 +8,9 @@ window here is exhaustive through a stated word radius.
 """
 
 import argparse
+from fractions import Fraction
 import json
+from math import lcm
 
 import numpy as np
 
@@ -91,7 +93,21 @@ def inverse_permutations(permutations):
     return np.argsort(permutations, axis=1).astype(np.uint8)
 
 
-def exhaustive_inner_scan(problem):
+def rationalize_weights(values):
+    fractions = [Fraction(float(value)).limit_denominator(1_000_000)
+                 for value in values]
+    denominator = 1
+    for value in fractions:
+        denominator = lcm(denominator, value.denominator)
+    numerators = np.asarray(
+        [value.numerator * (denominator // value.denominator)
+         for value in fractions],
+        dtype=np.int64,
+    )
+    return numerators, denominator
+
+
+def exhaustive_inner_scan(problem, solve_mixture=False):
     records = list(all_gl4())
     bits = np.asarray([record[0] for record in records], dtype=np.uint32)
     relatives = np.stack([matrix_permutation(record[1]) for record in records])
@@ -134,11 +150,18 @@ def exhaustive_inner_scan(problem):
             word_values(kernel_word),
         )
 
+    identity = np.arange(16, dtype=np.uint8)
+    exact_kernel_count = np.zeros(count, dtype=np.int32)
+    for value in kernel_values.values():
+        exact_kernel_count += np.all(value == identity, axis=1)
+
     trace_sum = np.zeros(count, dtype=np.float64)
     minimum_trace = np.ones(count, dtype=np.float64)
     exact_count = np.zeros(count, dtype=np.int32)
-    identity = np.arange(16, dtype=np.uint8)
-    for generator, kernel_word in problem.constraint_pairs:
+    satisfaction = (np.empty((len(problem.constraint_pairs), count), dtype=bool)
+                    if solve_mixture else None)
+    for constraint_index, (generator, kernel_word) in enumerate(
+            problem.constraint_pairs):
         generator_key = tuple((f, matrix_key(m)) for f, m in generator)
         kernel_key = tuple((f, matrix_key(m)) for f, m in kernel_word)
         x_value = generator_values[generator_key]
@@ -152,7 +175,10 @@ def exhaustive_inner_scan(problem):
         traces = fixed_nonzero / 15.0
         trace_sum += traces
         minimum_trace = np.minimum(minimum_trace, traces)
-        exact_count += fixed_nonzero == 15
+        exact = fixed_nonzero == 15
+        exact_count += exact
+        if satisfaction is not None:
+            satisfaction[constraint_index] = exact
 
     mean_trace = trace_sum / len(problem.constraint_pairs)
     max_defect = np.sqrt(2.0 - 2.0 * minimum_trace)
@@ -162,11 +188,12 @@ def exhaustive_inner_scan(problem):
     best_mask = ((max_defect == max_defect[best_index])
                  & (rms_defect == rms_defect[best_index]))
     unique_counts, multiplicities = np.unique(exact_count, return_counts=True)
-    return {
+    result = {
         "alignments": count,
         "best_count": int(np.count_nonzero(best_mask)),
         "best": {
             "bits": int(bits[best_index]),
+            "exact_kernel_generators": int(exact_kernel_count[best_index]),
             "exact_constraints": int(exact_count[best_index]),
             "mean_trace": float(mean_trace[best_index]),
             "rms_defect": float(rms_defect[best_index]),
@@ -177,6 +204,91 @@ def exhaustive_inner_scan(problem):
             for value, multiplicity in zip(unique_counts, multiplicities)
         ],
     }
+    if satisfaction is not None:
+        from scipy import sparse
+        from scipy.optimize import linprog
+
+        failures = sparse.csr_matrix((~satisfaction).astype(np.float64))
+        a_ub = sparse.hstack(
+            (failures, -np.ones((failures.shape[0], 1))), format="csr"
+        )
+        a_eq = sparse.csr_matrix(
+            (np.ones(count), (np.zeros(count), np.arange(count))),
+            shape=(1, count + 1),
+        )
+        objective = np.zeros(count + 1)
+        objective[-1] = 1.0
+        solution = linprog(
+            objective,
+            A_ub=a_ub,
+            b_ub=np.zeros(failures.shape[0]),
+            A_eq=a_eq,
+            b_eq=np.array([1.0]),
+            bounds=[(0.0, None)] * count + [(0.0, None)],
+            method="highs",
+        )
+        if not solution.success:
+            raise RuntimeError("inner-mixture linear program failed: %s" %
+                               solution.message)
+        weights = solution.x[:count]
+        support = np.flatnonzero(weights > 1e-9)
+        failure_probabilities = failures @ weights
+        dual_weights = -solution.ineqlin.marginals
+        dual_support = np.flatnonzero(dual_weights > 1e-9)
+        primal_numerators, primal_denominator = rationalize_weights(
+            weights[support]
+        )
+        dual_numerators, dual_denominator = rationalize_weights(
+            dual_weights[dual_support]
+        )
+        optimum = Fraction(float(solution.x[-1])).limit_denominator(1_000_000)
+        if primal_numerators.sum() != primal_denominator:
+            raise AssertionError("rationalized primal weights do not sum to one")
+        if dual_numerators.sum() != dual_denominator:
+            raise AssertionError("rationalized dual weights do not sum to one")
+        primal_load = failures[:, support] @ primal_numerators
+        if np.any(primal_load * optimum.denominator >
+                  optimum.numerator * primal_denominator):
+            raise AssertionError("rationalized primal certificate is infeasible")
+        dual_load = failures[dual_support].T @ dual_numerators
+        if np.any(dual_load * optimum.denominator <
+                  optimum.numerator * dual_denominator):
+            raise AssertionError("rationalized dual certificate is infeasible")
+        result["regular_inner_mixture"] = {
+            "worst_failure_probability": float(failure_probabilities.max()),
+            "worst_hs_defect": float(np.sqrt(2.0 * failure_probabilities.max())),
+            "mean_failure_probability": float(failure_probabilities.mean()),
+            "rms_constraint_defect": float(np.sqrt(
+                2.0 * failure_probabilities.mean()
+            )),
+            "support_size": int(len(support)),
+            "support": [
+                {"bits": int(bits[index]), "weight": float(weights[index])}
+                for index in support
+            ],
+            "dual_support": [
+                {"constraint": int(index),
+                 "weight": float(dual_weights[index])}
+                for index in dual_support
+            ],
+            "exact_certificate": {
+                "optimum_numerator": optimum.numerator,
+                "optimum_denominator": optimum.denominator,
+                "primal_denominator": primal_denominator,
+                "primal": [
+                    {"bits": int(bits[index]),
+                     "numerator": int(numerator)}
+                    for index, numerator in zip(support, primal_numerators)
+                ],
+                "dual_denominator": dual_denominator,
+                "dual": [
+                    {"constraint": int(index),
+                     "numerator": int(numerator)}
+                    for index, numerator in zip(dual_support, dual_numerators)
+                ],
+            },
+        }
+    return result
 
 
 def main():
@@ -191,16 +303,18 @@ def main():
     parser.add_argument("--identity-start", action="store_true")
     parser.add_argument("--inner-bits", type=int)
     parser.add_argument("--inner-scan", action="store_true")
+    parser.add_argument("--inner-mixture", action="store_true")
     parser.add_argument("--save", type=str)
     args = parser.parse_args()
 
     problem = CompleteWindowProblem(args.radius, args.k)
     print(json.dumps({"event": "window", **problem.window_summary}), flush=True)
-    if args.inner_scan:
+    if args.inner_scan or args.inner_mixture:
         if args.k != 1:
             raise ValueError("the exact inner scan is independent of amplification; use k=1")
         print(json.dumps({"event": "inner_scan", **problem.window_summary,
-                          **exhaustive_inner_scan(problem)}), flush=True)
+                          **exhaustive_inner_scan(problem, args.inner_mixture)}),
+              flush=True)
         return
     if args.identity_start and args.inner_bits is not None:
         raise ValueError("choose at most one explicit starting alignment")
