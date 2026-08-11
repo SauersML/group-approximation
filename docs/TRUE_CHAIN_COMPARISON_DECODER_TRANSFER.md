@@ -242,3 +242,11 @@ separates these two questions exactly:
 
 The remaining arithmetic task is now to construct either side of `(CDT31)`,
 not to compare anonymous high-dimensional harmonic bases.
+
+For fixed free `Z[G]` resolutions, the uniform comparison required here is
+automatic.  `TRUE_FIXED_RESOLUTION_DECODER_INVARIANCE.md` constructs fixed
+group-ring comparison matrices and bounds every finite-chart specialization
+by their coefficient `l1` Schur norms.  Proper cellular models with finite
+stabilizers have the same property after inverting the stabilizer orders;
+the remaining failure of integral comparison is therefore bounded-primary
+torsion, not growth of the real comparison norm.

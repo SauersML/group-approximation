@@ -136,6 +136,15 @@ norms.  Consequently the comparison does not need to output a rational HAP
 harmonic basis.  It may transport two compact-model integral lifts directly
 and certify the resulting HAP decoder through the chain identities.
 
+The family-level norm of a fixed comparison is not an additional unknown.
+`TRUE_FIXED_RESOLUTION_DECODER_INVARIANCE.md` proves that fixed group-ring
+comparison matrices specialize with uniformly bounded normalized `L2`
+norms on every projective set.  For the well-rounded/modular-symbol cellular
+model this is automatic after inverting the finite cell-stabilizer orders.
+Thus the live comparison issue is the bounded-primary integral correction,
+especially the observed two-primary sector, rather than growth of the real
+chain-map norm with `p`.
+
 ## Status for the open problem
 
 The exact integral function lattice solves a genuine finite arithmetic

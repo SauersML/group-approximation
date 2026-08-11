@@ -1014,6 +1014,16 @@ lifts directly, without reconstructing the full rational HAP harmonic
 plane.  At family level, a bounded-propagation integral comparison preserves
 uniform decoder bounds.
 
+For fixed free `Z[G]` resolutions, that bounded comparison is automatic.
+`TRUE_FIXED_RESOLUTION_DECODER_INVARIANCE.md` uses fixed group-ring
+comparison matrices and coefficient-`l1` Schur bounds to obtain one norm
+constant for every finite chart.  The modular-symbol/well-rounded cellular
+model becomes a fixed projective resolution after inverting its finite cell
+stabilizer orders.  Hence its comparison to HAP is uniformly bounded over
+the projective family, and the only unresolved change-of-model issue is a
+bounded-primary integral correction (notably the two-primary sector), not a
+growing real chain-map norm.
+
 On the FALSE side, the paired carry energy now has the coordinate-order
 formula in `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`: its uniform subgroup mean
 is a sum of `nu(o_j)` over ambient carry characters, with every nontrivial
