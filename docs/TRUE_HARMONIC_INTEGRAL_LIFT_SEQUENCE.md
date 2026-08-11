@@ -421,13 +421,17 @@ exactly.  In its `328` free signed-coinvariant coordinates,
 with the `83`-digit integer `q` in
 `TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.  Its shortest nonintegral
 dual vector has exact squared norm `a/q=0.0713191090...`, lies below the
-spherical threshold `1/12`, and gives
+spherical threshold `1/12`.  Exact saturated-range reduction and exhaustive
+support certification give its minimum ambient integral lift norm:
 
-`kappa_Sigma>=sqrt(q/a)=3.7445276800...`.             `(HIL32b)`
+`lambda(u)^2=4`,
+`lambda(u)/||u||=2sqrt(q/a)=7.4890553601...`.         `(HIL32b)`
 
-This lower bound is rigorous in the compact free lattice: the squared norm
-of every nonzero ambient integral lift is a positive integer.  The enormous
-HNF section norm exported by the computation is only a poor upper bound.
+The four-term lift is exact, and exhaustive cycle-pairing profiles rule out
+every integral lift of squared norm below four.  Thus this particular
+discriminant class is completely solved, not merely bounded.  A full
+rank-two linear section still requires a controlled lift of a second basis
+vector.
 The two-primary signed-coinvariant correction and the norm of the comparison
 to the free HAP carry metric remain to be certified before `(HIL32b)` can be
 read as a bound in the original chart.

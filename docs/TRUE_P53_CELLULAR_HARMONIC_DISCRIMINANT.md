@@ -101,10 +101,9 @@ harmonic vectors and the `Q^#` basis with integral ambient lifts are in
 The summary verifies their residuals and records SHA-256 hashes of both
 files.
 
-## A rigorous paired-lift lower bound
+## The shortest class has exact integral lift energy four
 
-The short class already yields a nontrivial metric certificate without
-solving a `224`-dimensional closest-vector problem.
+The short class now has a complete paired metric certificate.
 
 Let `u` be its shortest representative.  Any ambient integral lift has the
 orthogonal form
@@ -119,28 +118,49 @@ The Pythagorean lift formula therefore gives
 
 `lambda(u)^2=||u||^2+rho_L(eta(u))^2>=1`,                   `(PCH14)`
 
-so
+but integrality gives much more here.  Exact BKZ/Babai reduction in the
+saturated range lattice produces the four-term lift
 
-`rho_L(eta(u))^2>=1-a/q`,
-`lambda(u)/||u||>=sqrt(q/a)`
-` =3.744527680045962...`.                                   `(PCH15)`
+`z=e_240-e_287-e_302+e_304`,                               `(PCH15)`
 
-Equivalently, the compact model's harmonic integral-lift distortion obeys
+using zero-based cellular coordinates.  It satisfies the degree-three
+cocycle equations and all `104` required integral cycle pairings exactly,
+so `lambda(u)^2<=4`.
 
-`kappa_Sigma^2>=q/a=14.02148754663039...`.                  `(PCH16)`
+The reverse inequality has a small exhaustive certificate.  An integral
+vector of squared norm below four is a signed sum of at most three distinct
+coordinate vectors.  The cycle-pairing profile of such a vector is a signed
+sum of at most three of the `328` columns of the cycle basis.  The verifier
+checks all `656` signed singletons and all
+
+`4 binom(328,2)=214512`                                    `(PCH16)`
+
+signed pairs.  The target is neither a singleton nor a pair, and no
+target-minus-singleton profile is a pair on two distinct remaining
+coordinates.  Therefore no lift of squared norm zero, one, two, or three
+exists.  Consequently
+
+`lambda(u)^2=4`,
+`rho_L(eta(u))^2=4-a/q`,                                  `(PCH17)`
+
+and this class contributes the exact paired distortion
+
+`lambda(u)/||u||=2sqrt(q/a)`
+` =7.489055360091924...`.                                  `(PCH18)`
+
+In particular,
+
+`kappa_Sigma^2>=4q/a=56.08595018652158...`.                 `(PCH19)`
 
 This is the exact numerator compensation behind the coarse inequality
 `Theta>=1/delta_H` in `TRUE_PROJECTIVE_HARMONIC_SYSTOLE.md`.
 
-The exported HNF lift has squared norm
-
-`35939851216607643678587654132133`,                          `(PCH17)`
-
-and hence gives only the enormous upper bound
-`2.2448...*10^16` on the same distortion.  It is a deliberately crude
-right inverse.  Neither `(PCH17)` nor the still larger raw section norm is
-evidence that the optimal decoder is large; only the lower bound `(PCH16)`
-is presently intrinsic.
+The original HNF lift had squared norm
+`35939851216607643678587654132133`; this discrepancy was entirely a bad
+choice of affine representative.  The exact certificate is
+`experiments/projective-cellular-p53-cvp-exact.json`, its four-term lift is
+`experiments/projective-cellular-p53-cvp-exact.tsv`, and the reproducible
+verifier is `experiments/sl3_projective_cellular_cvp.py`.
 
 ## Two essential scope qualifications
 
@@ -162,7 +182,7 @@ carry chart.  A bounded chain comparison transports decoder bounds between
 the models, but its norm must be included.  Thus the huge order `q` is not,
 by itself, a FALSE certificate for the original carry problem.
 
-These qualifications do not affect `(PCH1)--(PCH16)` as statements about
+These qualifications do not affect `(PCH1)--(PCH19)` as statements about
 the displayed compact free lattice.  They delimit the remaining transfer
 theorem needed to use the certificate in the universal problem.
 
@@ -182,8 +202,8 @@ It does not decide TRUE or FALSE.  The next exact tasks are:
    bounded correction after inverting the fixed stabilizer orders;
 2. construct the explicit bounded chain comparison to the free HAP carry
    complex;
-3. find a genuinely short integral section for the rank-two lift sequence,
-   or prove a basis-independent lower bound stronger than `(PCH16)`;
+3. compute the second basis lift needed for a full rank-two integral
+   section;
 4. repeat the same compact invariant at later cuspidal primes and determine
    whether the transferred dual systole tends to zero or stays uniformly
    bounded below.

@@ -120,8 +120,13 @@ harmonic quotient is cyclic of order `q` and
 `delta_H^2=a/q=0.0713191090...`,
 `delta_H=0.2670563781...`.                            `(PHS12a)`
 
-Thus a genuine nonintegral class lies below the spherical threshold and
-`Theta>=sqrt(q/a)=3.7445276800...` in that compact metric.  This is one
+Thus a genuine nonintegral class lies below the spherical threshold.  Its
+minimum ambient integral lift has squared norm exactly four, so its exact
+paired contribution is
+
+`2sqrt(q/a)=7.4890553601...`.                         `(PHS12b)`
+
+Hence `Theta>=7.4890553601...` in that compact metric.  This is one
 fixed-level certificate, not a family-level collapse.  Transferring it to
 the original HAP carry metric still requires the bounded integral comparison
 and the two-primary stabilizer correction described in

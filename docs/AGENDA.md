@@ -967,8 +967,12 @@ in its own free signed-coinvariant lattice.  Its complex has dimensions
 `17269229743444936295695902979877937666574454551881432366677092780148396252626561139`,
 and the exact shortest nonintegral dual vector has norm
 `0.2670563781191559`, below the spherical threshold `1/sqrt(12)`.  Positive
-integral lift energy gives the intrinsic compact-metric lower bound
-`kappa>=3.744527680045962`.  The raw HNF section is not an optimal decoder.
+integral lift energy first gives a coarse compact-metric lower bound.  The
+shortest class is now solved exactly: saturated-range reduction finds the
+four-term lift `e_240-e_287-e_302+e_304`, and exhaustive support profiles
+rule out squared norm below four.  Thus its exact paired contribution is
+`2sqrt(q/a)=7.489055360091924`.  The second harmonic basis direction remains
+for a full rank-two section.
 The live bridge is now explicit: retain or uniformly correct the omitted
 two-primary stabilizer coinvariants and transport this compact metric through
 a bounded integral comparison to the free HAP carry complex.  See

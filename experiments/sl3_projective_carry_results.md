@@ -326,9 +326,16 @@ The shortest nonintegral dual vector has squared norm `a/q` with
 `a=1231626080044198340111057047829063373386905262559674403703730158374753002756468263`,
 
 hence norm `0.2670563781...`.  Since `12a<q`, it is below the spherical
-threshold.  Integral lift-energy quantization gives the exact distortion
-lower bound `sqrt(q/a)=3.7445276800...`.  The HNF lift's huge upper bound is
-not intrinsic.
+threshold.  Saturated-range BKZ/Babai reduction finds the exact four-term
+integral lift
+
+`e_240-e_287-e_302+e_304`.
+
+An exhaustive check of `656` signed singletons and `214,512` signed pairs
+rules out every lift of squared norm below four.  Therefore this class has
+exact lift energy `4` and exact paired distortion
+`2sqrt(q/a)=7.4890553601...`.  The original HNF lift's huge norm was only a
+basis artifact.  The certificate is `projective-cellular-p53-cvp-exact.json`.
 
 This is a certificate for the compact free coinvariant lattice.  It omits
 two-primary orientation-torsion coordinates and uses a different Euclidean
