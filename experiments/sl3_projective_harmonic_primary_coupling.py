@@ -108,10 +108,19 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
     initial_boundary = compact_lift * boundary
     q1_syndrome = vector(field, [initial_boundary[index] for index in target_q1])
     q1_block = boundary.matrix_from_rows_and_columns(source_q1, target_q1)
+    q1_rank = int(q1_block.rank())
+    q1_augmented_rank = int(q1_block.stack(matrix(field, [q1_syndrome])).rank())
     try:
         q1_local = q1_block.solve_left(-q1_syndrome)
     except ValueError:
-        return {"q1_solvable": False}
+        return {
+            "q1_solvable": False,
+            "q1_block_rank": q1_rank,
+            "q1_augmented_rank": q1_augmented_rank,
+            "q1_syndrome_support": len(q1_syndrome.support()),
+        }
+    if q1_augmented_rank != q1_rank:
+        raise AssertionError("q=1 solver accepted an inconsistent syndrome")
 
     q1_correction = vector(field, boundary.nrows())
     for local, total in enumerate(source_q1):
@@ -122,6 +131,8 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
 
     q0_syndrome = vector(field, [after_q1[index] for index in target_q0])
     q0_block = boundary.matrix_from_rows_and_columns(source_q0, target_q0)
+    q0_rank = int(q0_block.rank())
+    q0_augmented_rank = int(q0_block.stack(matrix(field, [q0_syndrome])).rank())
     try:
         q0_local = q0_block.solve_left(-q0_syndrome)
     except ValueError:
@@ -130,7 +141,11 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
             "q0_solvable": False,
             "q1_correction_support": len(q1_local.support()),
             "q0_syndrome_support": len(q0_syndrome.support()),
+            "q0_block_rank": q0_rank,
+            "q0_augmented_rank": q0_augmented_rank,
         }
+    if q0_augmented_rank != q0_rank:
+        raise AssertionError("q=0 solver accepted an inconsistent syndrome")
 
     q0_correction = vector(field, boundary.nrows())
     for local, total in enumerate(source_q0):
@@ -145,8 +160,12 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
         "q0_solvable": True,
         "compact_support": len(compact_lift.support()),
         "q1_syndrome_support": len(q1_syndrome.support()),
+        "q1_block_rank": q1_rank,
+        "q1_augmented_rank": q1_augmented_rank,
         "q1_correction_support": len(q1_local.support()),
         "q0_syndrome_support": len(q0_syndrome.support()),
+        "q0_block_rank": q0_rank,
+        "q0_augmented_rank": q0_augmented_rank,
         "q0_correction_support": len(q0_local.support()),
         "total_lift_support": len(total_lift.support()),
         "first_q0_generator_support": len(first_q0.support()),
