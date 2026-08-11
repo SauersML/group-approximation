@@ -160,6 +160,16 @@ def analyze(prime: int, prefix: Path):
     if e2_0_2 < 0:
         raise AssertionError("horizontal H2 image exceeds its target")
 
+    full_boundary_ranks = {
+        str(total_degree): int(boundaries[total_degree].rank())
+        for total_degree in (2, 3)
+    }
+    total_h2 = (
+        boundaries[2].nrows()
+        - full_boundary_ranks["2"]
+        - full_boundary_ranks["3"]
+    )
+
     return {
         "prime": prime,
         "projective_degree": degree,
@@ -172,6 +182,8 @@ def analyze(prime: int, prefix: Path):
         "E1_horizontal_H2_D8_to_S4_image_rank": incoming_h2_rank,
         "E2_1_1_dimension": e2_1_1,
         "E2_0_2_dimension": e2_0_2,
+        "full_mod_two_boundary_ranks": full_boundary_ranks,
+        "full_mod_two_H2_dimension": total_h2,
     }
 
 
