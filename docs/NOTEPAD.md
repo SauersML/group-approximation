@@ -38399,6 +38399,10 @@ After aligning phases on those entries, the corresponding monomial unitary
 
 `||U-M||_2^2 <= 2 kappa_D(U)`.                         `(CTM)`
 
+The constant `2` is asymptotically optimal: for the normalized Fourier matrix
+`F_d`, `kappa_D(F_d)=1-1/d`, while its best normalized squared-HS distance to
+a monomial unitary is `2-2/sqrt(d)`.  Their ratio tends to `2`.
+
 Consequently a common masa with `kappa_D(phi_n(g))->0` transfers all unitary
 multiplication estimates to the underlying permutations.  Separation still
 has an independent phase gate: if the phases on permutation-fixed points have

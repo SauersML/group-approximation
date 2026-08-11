@@ -68,6 +68,26 @@ which is `(CTM3)`.  End proof.
 The constant is independent of `d`; no entrywise or operator-norm control is
 being assumed.
 
+The factor `2` cannot be improved uniformly.  Let `F_d` be the normalized
+Fourier matrix, so every entry has modulus `d^(-1/2)`.  Then
+
+`kappa_D(F_d)=1-1/d`.                                  `(CTM8a)`
+
+For every monomial `M`, at most one entry in each column contributes to
+`tau_d(F_d^*M)`, and each such entry has modulus `d^(-1/2)`.  Therefore
+
+`Re tau_d(F_d^*M)<=d^(-1/2)`,
+`||F_d-M||_(2,d)^2>=2-2/sqrt(d)`.                      `(CTM8b)`
+
+Aligning the selected Fourier entries attains equality.  Hence the optimal
+ratio is
+
+`(2-2/sqrt(d))/(1-1/d)=2 sqrt(d)/(sqrt(d)+1) -> 2`.    `(CTM8c)`
+
+Thus any improvement of the TRUE lane has to construct a smaller Cartan
+displacement or control phases; a better universal constant in `(CTM3)`
+cannot remove either gate.
+
 ## 2. Multiplication survives in the permutation parts
 
 Let `M_g` be monomial and let `sigma_g` denote its underlying permutation.
