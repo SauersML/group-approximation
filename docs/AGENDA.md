@@ -74,6 +74,18 @@ after matrix rounding.  Subgroup tests capture all finite separators but do
 not make the separating IRS normal Dirac, and HS-stability results stop at
 exact matrices rather than permutation actions.
 
+The positive-loss obstruction now has a one-witness transitive normal form;
+see `TRUE_ONE_WITNESS_TRANSITIVE_LOSS.md`.  If TRUE fails, there are fixed
+`R subset N`, one `w outside N`, nonnegative weights, and `epsilon>0` such
+that every finite-index subgroup `H<=F` has weighted loss at least `epsilon`
+after averaging membership over the conjugates represented by `F/H`, while
+finite-dimensional characters have loss tending to zero.  Orbit
+decomposition proves that testing arbitrary finite actions gives exactly the
+same infimum as testing the quasiregular actions `F/H`.  Thus disjoint unions
+and multiple witnesses are no longer part of the gate; the missing theorem
+is the normal-indicator rounding from unitary characters to one finite
+quotient/subgroup pair `(Q,J)` with small averaged Boolean loss.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
