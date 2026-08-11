@@ -23,11 +23,18 @@ residual system.  At `p=61`, `11051` unit pivots reduce `15132` equations to
 two residual equations, with the same two-division pattern.  The direct
 modulus-eight solves take about one second on one CPU.
 
-This is positive evidence for the TRUE integral-repair lane, but it is not a
-uniform decoder theorem.  The computed corrections are arbitrary exact
-solutions and their centered Euclidean norms grow with the modulus.  Thus
-`(HTL1)` proves existence through six primary layers, not a chart-uniform
-operator-norm bound and not an all-depth lift.
+The residual elementary divisors can now be identified exactly.  At both
+levels the correction cokernel has two-primary torsion precisely `C_4`, and
+both harmonic demands have zero free-cokernel component.  Since they solve
+modulo eight, their `C_4` component vanishes.  Consequently both harmonic
+generators admit corrections modulo
+
+`2^k for every k>=1`.                                      `(HTL1a)`
+
+This closes qualitative all-depth two-adic existence at the first two
+cuspidal levels.  It is not a uniform decoder theorem: the computed
+corrections are arbitrary exact solutions, and no minimum-norm or
+chart-uniform operator-norm bound follows from two levels.
 
 ## 2. Exact module solver
 
@@ -113,38 +120,102 @@ eight the exact diagnostics are:
 | 53 | 87226 | 8365 | 20476 | 4 | 0.7705 |
 | 61 | 114982 | 11051 | 27019 | 2 | 1.0040 |
 
-The residual equation counts are diagnostics for this pivot order, not a
-canonical Smith invariant.  Their collapse nevertheless identifies the
-right next exact calculation: determine the two-local elementary divisor
-and Bockstein carried by this tiny residual module, rather than search the
-full Boolean or integer-programming instance.
+The residual equation counts are diagnostics for this pivot order, not by
+themselves canonical Smith invariants.  Combining their valuation profile
+with the exact rational and binary ranks determines the two-local elementary
+divisor in the next section.
 
-## 4. Consequence for the research program
+## 4. Exact two-local cokernel and all-depth compatibility
+
+Let `C_p=coker(A_p)` for the correction matrix at level `p`.  Exact rational
+and binary ranks give:
+
+| `p` | `rank_Q A_p` | `rank_F2 A_p` | free rank of `C_p` | `(C_p)_(2)` |
+| ---: | ---: | ---: | ---: | :--- |
+| 53 | 8366 | 8365 | 3086 | `C_4` |
+| 61 | 11052 | 11051 | 4080 | `C_4` |
+
+The free ranks are the equation counts minus the rational ranks.  The rank
+drop by one modulo two shows that exactly one nonzero elementary divisor is
+even.  In the direct local elimination, all rational-rank pivots are
+accounted for: `8365` respectively `11051` occur before division, none after
+one division, and one after two divisions.  Hence the unique even elementary
+divisor has two-adic valuation exactly two.  This proves the last column,
+not merely an exponent bound.                              `(HTL6)`
+
+For each of the two harmonic demands, adjoining the demand row leaves the
+rational rank unchanged:
+
+| `p` | `rank_Q A_p` | augmented ranks for the two demands |
+| ---: | ---: | :--- |
+| 53 | 8366 | `8366, 8366` |
+| 61 | 11052 | `11052, 11052` |
+
+Thus their cokernel classes have zero free component.  Let `g` be either
+class.  Exact solvability modulo eight says
+
+`g in 8 C_p`.                                             `(HTL7)`
+
+On `(C_p)_(2)=C_4`, multiplication by eight is zero, so `(HTL7)` forces the
+two-primary component of `g` to vanish.  Multiplication by every power of
+two is an automorphism on the odd-primary torsion.  Therefore
+
+`g in 2^k C_p for every k>=1`,                            `(HTL8)`
+
+which is equivalent to `(HTL1a)`.  Notice that depth six is used only as an
+exact certificate containing the local pivots; depth three already kills the
+unique two-primary obstruction once `(HTL6)` is known.
+
+### Normalized profiles of the selected modulus-64 section
+
+Although the direct solutions are not norm minimizers, their normalized
+basis-vector profiles are nearly identical at the two levels.  If `x_i` is
+the selected correction and `c_i` the corresponding compact harmonic vector,
+put
+
+`R_(p,i)^2=(||x_i||_cent^2/n_corr)`
+`          /(||c_i||_cent^2/d_compact)`.                `(HTL9)`
+
+The common phase scale `1/64` cancels from this ratio.  Exact squared norms
+give:
+
+| `p` | basis | compact squared norm | correction squared norm | `R_(p,i)` |
+| ---: | ---: | ---: | ---: | ---: |
+| 53 | 0 | 109373 | 2396148 | 0.5590981882 |
+| 53 | 1 | 105972 | 2284824 | 0.5546476001 |
+| 61 | 0 | 148968 | 3233789 | 0.5608991744 |
+| 61 | 1 | 143346 | 3243234 | 0.5726269812 |
+
+This is rigorous flat upper-bound evidence for the two displayed basis
+vectors.  It is not the minimum lift norm and not the operator norm on every
+linear combination in the harmonic plane; centered reduction is nonlinear,
+so neither conclusion follows from the four entries alone.
+
+## 5. Consequence for the research program
 
 `TRUE_HARMONIC_PRIMARY_COUPLING.md` proved only the first primary layer: the
 cuspidal planes lift modulo two after restoring the omitted orientation
-coordinates.  Equation `(HTL1)` now shows that this repair is not immediately
-destroyed by higher binary carries.  The first possible obstruction is
-therefore deeper than modulus `64` or quantitative rather than qualitative.
+coordinates.  Equations `(HTL6)--(HTL8)` now show that this repair is never
+destroyed by a higher binary carry at either chart.  At these levels the
+remaining issue is quantitative rather than qualitative.
 
 There are two distinct next questions.
 
-1. **All-depth existence.**  Compute the exact two-local elementary divisor
-   of the residual correction map and test the two harmonic right-hand sides
-   against its integral compatibility condition.  If the residual cokernel
-   has bounded two-primary exponent and the compatibility holds integrally,
-   `(HTL1)` upgrades to lifts modulo every `2^k`.
-2. **Uniform metric control.**  Even an all-depth lift need not have bounded
+1. **Uniform metric control.**  Even an all-depth lift need not have bounded
    normalized norm.  The TRUE theorem still requires a family-level bounded
    section compatible with the paired-discriminant metric.  The displayed
    echelon solutions do not provide that bound.
+2. **Family replication.**  Construct the next cuspidal projective charts,
+   compute their exact local elementary divisors, and screen the selected
+   section profiles.  Flat arbitrary-section profiles suggest finite local
+   templates; apparent growth must be confirmed by minimum-norm optimization
+   or a dual lower bound before it counts as an obstruction.
 
-Thus generic feasibility search on these two charts is now obsolete.  The
-live computation is the exact small residual Bockstein/elementary-divisor
-calculation, followed by norm minimization only after the compatibility
-class is understood.
+Thus all further feasibility search on these two charts is obsolete.  The
+live TRUE computation is the family-level metric problem, together with the
+remaining odd-primary and universal chart-selection gates.
 
-## 5. Reproducibility
+## 6. Reproducibility
 
 The committed result artifacts are:
 
@@ -160,3 +231,18 @@ compact cellular export, the full HAP boundary prefix, the certified
 harmonic basis, and an output path, followed by `--depth 6`.  It emits the
 exact post-check status and the local-ring elimination diagnostics in the
 JSON artifact.
+
+The exact rank, elementary-divisor, augmented-rank, and normalized-profile
+analyzer is
+`experiments/sl3_projective_harmonic_primary_structure.py`.  Its committed
+result artifacts are:
+
+* `experiments/projective-harmonic-primary-p53-structure.json`, SHA-256
+  `929d9827495484c4944b08c5b3b4ac19a9aa1b1d38d7932ed84a1d10a994f019`;
+* `experiments/projective-harmonic-primary-p61-structure.json`, SHA-256
+  `44a66205a8424d57a29b5b977283d1c0528a3d8cf2c1520495de31e7c42a6657`.
+
+Independent reruns of the depth-six solver reproduced both source
+certificates exactly after deleting only the nondeterministic elapsed-time
+field.  All displayed ranks were recomputed from the original integer HAP
+boundaries.
