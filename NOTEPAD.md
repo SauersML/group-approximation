@@ -36936,6 +36936,114 @@ non-Cartan/radical-retention gate already encountered in the Leavitt atlas
 and central-shear formulations, now proved unavoidable for the entire
 classical polarized Weyl family.
 
+# Every failed character transfer has a positive loss certificate
+
+The arbitrary separator `(NIR7)` can be sharpened to one whose coefficients
+have exactly the signs dictated by the sofic approximation problem.  This
+removes a possible ambiguity in the dual route: no cancellation between
+unrelated character values is needed to witness failure.
+
+Fix a finitely generated free group `F`, finite sets
+
+`R subset N normal F`, and `W subset F setminus N`,                 `(PLC1)`
+
+and let `rho` range over nonempty finite `F`-actions.  Put
+
+`L_r(rho)=1-chi_rho(r)` for `r in R`,
+
+`L_w(rho)=chi_rho(w)` for `w in W`.                               `(PLC2)`
+
+Every coordinate of `L(rho)` lies in `[0,1]`.  The desired local sofic
+model is precisely an action for which every coordinate is small.
+
+**Positive-certificate theorem.**  Let `S=R disjointUnion W` and let
+
+`K=closure({L(rho): rho a nonempty finite F-action}) subset [0,1]^S`.
+
+Then `K` is compact and convex, and
+
+`inf_rho max_(s in S) L_s(rho)`
+
+`= max_(lambda in Delta(S)) inf_rho sum_(s in S) lambda_s L_s(rho)`, `(PLC3)`
+
+where `Delta(S)` is the probability simplex.  Consequently, if every finite
+action has some error coordinate at least `epsilon`, then there are
+nonnegative weights
+
+`alpha_r (r in R), beta_w (w in W)`,
+
+`sum_r alpha_r + sum_w beta_w = 1`,                               `(PLC4)`
+
+such that every finite action satisfies
+
+`sum_(r in R) alpha_r(1-chi_rho(r))`
+
+` + sum_(w in W) beta_w chi_rho(w) >= epsilon`.                   `(PLC5)`
+
+**Proof.**  Compactness follows because `K` is a closed subset of the finite
+cube.  If `rho_1,rho_2` have carriers of sizes `a,b`, then the disjoint union
+of `m` copies of `rho_1` and `n` copies of `rho_2` has character
+
+`(ma chi_(rho_1)+nb chi_(rho_2))/(ma+nb)`.                        `(PLC6)`
+
+Varying `m,n` realizes a dense set of convex coefficients.  Passing to the
+closure proves that `K` is convex.
+
+For a vector `x in [0,1]^S`,
+
+`max_(s in S) x_s = max_(lambda in Delta(S)) lambda dot x`,       `(PLC7)`
+
+since a vertex of the simplex can select a largest coordinate.  Apply the
+finite-dimensional minimax theorem to the continuous bilinear function
+`(x,lambda) mapsto lambda dot x` on the compact convex sets `K` and
+`Delta(S)`.  This gives `(PLC3)` (replacing `K` by the dense action vectors
+does not change either infimum).  If the left side is at least `epsilon`, a
+maximizing `lambda` gives `(PLC4)--(PLC5)`.  End proof.
+
+There is an exact unitary counterpart.  For a normalized finite-dimensional
+character `chi`, its `m`th conjugate-double tensor power is
+
+`psi_m(g)=|chi(g)|^(2m)`.                                        `(PLC8)`
+
+It is again a normalized finite-dimensional character and is real in
+`[0,1]`.  Define
+
+`Q_(alpha,beta)(psi)`
+
+`=sum_r alpha_r(1-psi(r)) + sum_w beta_w psi(w)`.                 `(PLC9)`
+
+If `chi_n -> 1_N` pointwise, then already with `m=1`,
+
+`Q_(alpha,beta)(|chi_n|^2) -> 0`.                                `(PLC10)`
+
+More quantitatively, if `0<=delta<=1`, `Re chi(r)>=1-delta` on `R`, and
+`|chi(w)|<=c<1` on `W`, then
+
+`Q_(alpha,beta)(psi_m) <= 2m delta + c^(2m)`.                    `(PLC11)`
+
+Indeed `|chi(r)|>=Re chi(r)>=1-delta`, so Bernoulli's inequality gives
+`1-|chi(r)|^(2m)<=1-(1-delta)^(2m)<=2m delta`, while every witness term is
+at most `c^(2m)`.  Thus one may first choose `m` to kill the witness term and
+then choose a sufficiently accurate hyperlinear table to kill the relator
+term.
+
+**Exact remaining statement.**  A normal `0/1` character transfer fails if
+and only if there are fixed finite `R subset N`, `W subset F setminus N`,
+nonnegative weights as in `(PLC4)`, and `epsilon>0` for which the classical loss
+has the uniform gap `(PLC5)`, even though finite-dimensional unitary
+characters have loss tending to zero by `(PLC10)` (or `(PLC11)`).  Hence a
+TRUE proof is exactly a zero-integrality-gap theorem for these positive
+fixed-point losses, under the promise that the zero unitary-loss limit is the
+indicator of a normal subgroup.
+
+This formulation is strictly narrower than full metric-sofic approximation
+of `U(d)`.  The `C_4` character `(NIR5)` disproves that stronger finite-stage
+claim, but it does not provide a positive loss certificate of the form
+`(PLC5)` against the regular `0/1` target: the regular `C_4`-action makes every
+witness collision zero.  Tensor amplification therefore disposes of the
+elementary power-monotonicity obstruction, while `(PLC5)` isolates the only
+kind of integrality gap that can still obstruct the universal implication.
+
 # Finite power self-similarity has no norm-to-trace force
 
 One possible replacement for the central shear is an ascending cyclic HNN
