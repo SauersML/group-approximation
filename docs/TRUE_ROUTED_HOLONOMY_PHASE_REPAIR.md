@@ -8,12 +8,12 @@ This note tests whether `cost(R)=1` closes the circle-cocycle gate in
 `TRUE_HAAR_PHASE_KERNEL.md`.  The exact finite forest argument is positive,
 but **cost one by itself does not supply the quantitative conclusion**.
 
-The valid result is a routed-tree-excess criterion.  Roughly, a finite base
+The strongest valid result is a routed-holonomy criterion.  Roughly, a finite base
 model may be cut to a forest and its phases repaired exactly whenever every
-tested transformation crosses the deleted edges on only `o(1)` of its
-starting points **and the chosen route already reproduces that
-transformation's target phase**.  A convenient sufficient condition for the
-exposure part is
+tested transformation has asymptotically trivial total fundamental-cycle
+holonomy **and the chosen route already reproduces that transformation's
+target phase**.  Requiring deleted-edge exposure to vanish is a convenient
+but strictly stronger sufficient condition.  Its simplest numerical form is
 
 `routing width times normalized tree excess -> 0`.       `(RFR1)`
 
@@ -81,7 +81,35 @@ repairing an *arbitrary* edge table is the tree excess `r(G)`.
 This corollary concerns the chosen generator edges.  Passing from them to
 external transformations represented by long paths is a separate step.
 
-## 3. Exact routed-tree-excess criterion
+### Exact fundamental-holonomy identity
+
+Retain the forest and the functions `a,a'` from Lemma 1.  For an oriented
+edge put
+
+`d_F(e)=a'(e)^(-1)a(e) in T`.                          `(RFR5a)`
+
+Thus `d_F(e)=1` on forest edges and
+`d_F(reverse(e))=d_F(e)^(-1)`.  On a nonforest edge it is exactly the
+holonomy of the corresponding fundamental cycle, up to the chosen
+orientation.
+
+> **Lemma 2 (path discrepancy is routed fundamental holonomy).**  For every
+> oriented path `P=(e_1,...,e_l)`,
+>
+> `a(P)=a'(P) product_(j=1)^l d_F(e_j)`.               `(RFR5b)`
+
+**Proof.**  The circle is abelian, so substitute `a(e)=a'(e)d_F(e)` into
+the ordered path product and collect the factors.  End proof.
+
+Define
+
+`Hol_F(P)=product_(e in P) d_F(e)`.                    `(RFR5c)`
+
+This identity is sharper than counting nonforest edges.  A path can cross
+many chords while `Hol_F(P)=1`, either because their fundamental holonomies
+are trivial or because they cancel.
+
+## 3. Exact routed-holonomy criterion
 
 For each `n`, let `G_n=(V_n,E_n)` be the finite graph underlying a base
 model.  Choose a spanning forest `F_n` and put
@@ -107,6 +135,33 @@ generator-edge labels along the chosen path.  The routing is
 `  |a_n(P_(n,t,v))-z_(n,t)(v)|^2 -> 0`                 `(RFR8a)`
 
 for every fixed `t` (with the sum restricted to its domain if it is partial).
+
+There are now two possible forest hypotheses.  The sharp one is routed
+holonomy decay:
+
+`h_n(t)=|V_n|^(-1) sum_v`
+`  |Hol_(F_n)(P_(n,t,v))-1|^2 -> 0`.                  `(RFR8b)`
+
+The coarser exposure hypothesis `(RFR9)` implies `(RFR8b)`, since the
+holonomy is exactly `1` on paths avoiding `D_n` and any two circle points
+have squared chordal distance at most `4`.
+
+> **Theorem 3A (routed-holonomy phase repair).**  Suppose the finite base
+> models converge to a sofic pmp equivalence relation, their quantized
+> finite-phase generator labels converge to a measurable circle cocycle,
+> the selected paths satisfy phase compatibility `(RFR8a)`, and forests can
+> be chosen so that `(RFR8b)` holds for every fixed tested transformation.
+> Then the principal circle skew-product relation is sofic.
+
+**Proof.**  Replace the edge table by the finite-phase coboundary from
+Lemma 1.  Lemma 2 says that, along `P_(n,t,v)`, the ratio between the old and
+new phase products is exactly `Hol_(F_n)(P_(n,t,v))`.  Condition `(RFR8b)`
+therefore makes those products `L^2`-close.  Condition `(RFR8a)` compares
+the old path product with the phase of the transformation being tested.
+The new labels are a coboundary, so all path equalities lift exactly on
+`V_n times mu_(m_n)`.  Uniform measure on the growing finite phase groups
+converges to circle Haar measure.  The standard diagonal finite-colour
+argument now gives the required skew-product models.  End proof.
 
 > **Theorem 3 (routed forest phase repair).**  Suppose the finite base
 > models converge to a sofic pmp equivalence relation, their quantized
@@ -155,6 +210,14 @@ skew product.  End proof.
 The theorem uses both phase compatibility `(RFR8a)` and exposure `(RFR8)`,
 not merely the cardinality of `D_n`.  These distinctions are precisely what
 is lost in a bare cost estimate or arbitrary tree routing.
+
+Equivalently, Theorem 3 is the immediate coarse corollary of Theorem 3A and
+the bound
+
+`h_n(t) <= 4 q_n(t)`.                                  `(RFR12a)`
+
+Theorem 3A can succeed when `(RFR9)` fails, so routed holonomy rather than
+raw exposure is the preferred next target.
 
 ## 4. A convenient word-length sufficient condition
 
@@ -228,12 +291,13 @@ used to deduce arbitrary compact-skew permanence from the forest lemma.
 
 In the principal quotient-relation endpoint of Theorem 3H in
 `TRUE_HAAR_PHASE_KERNEL.md`, the circle phase gate closes whenever its sofic
-models have vanishing routed tree excess `(RFR9)`.  Therefore:
+models have vanishing routed fundamental holonomy `(RFR8b)`.  Therefore:
 
 > **Corollary 5.**  A hyperlinear group satisfying the bounded-exponent
 > common-Cartan hypotheses of Theorem 3H is sofic if its principal quotient
-> relation admits finite models and routes satisfying both `(RFR8a)` and
-> `(RFR9)` (with `(RFR14)` a sufficient estimate for the latter).
+> relation admits finite models, routes, and forests satisfying `(RFR8a)`
+> and `(RFR8b)`.  Vanishing exposure `(RFR9)`, with `(RFR14)` as a convenient
+> numerical sufficient estimate, is one way to force `(RFR8b)`.
 
 The previously proved treeable case uses a different cohomological argument;
 positive-cost treeings need not have vanishing tree excess in finite models.
@@ -246,15 +310,19 @@ available.
 For the general problem, the live quantitative question is now:
 
 > Can the normal `0/1` trace law or the simultaneous prefix-path structure
-> select routes satisfying phase compatibility `(RFR8a)` for which the
-> deleted cycle edges also have vanishing exposure `(RFR9)`?
+> select routes satisfying phase compatibility `(RFR8a)` whose total
+> fundamental-cycle holonomy vanishes in the sense of `(RFR8b)`?
 
-This is more precise than asking for cost one and weaker than requiring the
-entire graphing model to be cocycle stable.
+This is more precise than asking for cost one, strictly weaker than
+vanishing deleted-edge exposure, and weaker than requiring the entire
+graphing model to be cocycle stable.  It asks only for the cycle errors seen
+by the finite family of transformations whose statistics are currently
+being tested.
 
 ## 7. Source audit
 
-The forest lemma and routed exposure estimate are proved above.  The
+The forest lemma, fundamental-holonomy identity, and routed repair estimates
+are proved above.  The
 background notions are the graphing definition of cost and the
 finite-coloured-model definition of a sofic equivalence relation:
 
@@ -264,6 +332,6 @@ finite-coloured-model definition of a sofic equivalence relation:
   arXiv:1002.0605.
 
 A targeted search did not locate a stated phase-repair theorem in this
-routed-tree-excess form.  The unconditional cost-one claim should not be
-cited; the valid conclusions are Lemma 1, Theorem 3, and their explicitly
-quantitative corollaries.
+routed-holonomy form.  The unconditional cost-one claim should not be cited;
+the valid conclusions are Lemmas 1--2, Theorem 3A, Theorem 3, and their
+explicitly quantitative corollaries.
