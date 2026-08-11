@@ -47,6 +47,8 @@ def main():
         choices=("exact-phase", "certified-outer"),
         default="exact-phase",
     )
+    parser.add_argument(
+        "--phase-target", choices=("i", "-i", "-1"), default="i")
     args = parser.parse_args()
     if args.multiplicity < 1:
         raise ValueError("multiplicity must be positive")
@@ -78,11 +80,16 @@ def main():
     phase_index = 11
     words = [word for _index, word in representatives] + [boundary[phase_index]]
     source_indices = [index for index, _word in representatives] + [phase_index]
-    targets = np.array([1] * len(representatives) + [1j], dtype=np.complex128)
+    phase_targets = {"i": 1j, "-i": -1j, "-1": -1}
+    phase_target = phase_targets[args.phase_target]
+    targets = np.array(
+        [1] * len(representatives) + [phase_target], dtype=np.complex128)
     if len(words) != 25:
         raise AssertionError("expected 24 zero classes plus one phase class")
     representation64, phase_relative = amplified_alignment()
     if args.initial_alignment == "exact-phase":
+        if phase_target != 1j:
+            raise ValueError("the exact-phase alignment has target i only")
         phase_value = word_value(
             boundary[phase_index], representation64, phase_relative)
         if np.linalg.norm(phase_value - 1j * np.eye(64)) > 1e-10:
@@ -167,7 +174,7 @@ def main():
         "certified_cyclic_classes": len(representatives),
         "certified_representative_indices": source_indices[:-1],
         "phase_boundary_index": phase_index,
-        "phase_target": f"i I_{dimension}",
+        "phase_target": f"{args.phase_target} I_{dimension}",
         "initial_alignment": args.initial_alignment,
         "initial_zero_rms": float(np.sqrt(np.mean(
             np.square(initial_errors[:-1])))),
