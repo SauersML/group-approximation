@@ -387,10 +387,72 @@ Thus unbounded real escape in either sign sector proves FALSE.  In the
 surviving bounded-real branch, both real eigensector fillings are bounded
 and all divergence in Corollary 6 is integral arithmetic.
 
-## 7. The remaining finite target
+## 7. A bounded-weight primary cycle-lift obstruction
+
+The third branch of Corollary 6 can be made into a single sparse-syndrome
+decoder failure.  Suppose
+
+`I_n^+<=C`, `I_n^-<=C`.                               `(DFB42)`
+
+Choose `s_n^0 in S_n^+`, `a_n^0 in S_n^-` with norms at most `C`, and put
+
+`epsilon_n=red_2(s_n^0-a_n^0)`.                       `(DFB43)`
+
+Every nonzero coordinate of `epsilon_n` lies in the union of the supports
+of `s_n^0` and `a_n^0`.  Since a nonzero integral coordinate contributes
+at least one to squared Euclidean norm,
+
+`weight(epsilon_n)<=2C^2`.                            `(DFB44)`
+
+Let
+
+`Z_n^+={u in C_2(X_n,Z):tau_n u=u, d u=0}`,
+`Z_n^-={v in C_2(X_n,Z):tau_n v=-v, d v=0}`           `(DFB45)`
+
+and define the integral lift cost of the binary syndrome by
+
+`kappa_n(epsilon_n)`
+` =min {sqrt(||u||^2+||v||^2):`
+`         u in Z_n^+, v in Z_n^-,`
+`         red_2(u-v)=epsilon_n}.`                     `(DFB46)`
+
+The set in `(DFB46)` is nonempty: a finite-stage integral filling of
+`b_n`, decomposed by Theorem 5, supplies a parity-compatible pair, and its
+difference from `(s_n^0,a_n^0)` supplies `(u,v)`.
+
+**Theorem 7 (sparse primary lift escape).**  In the third branch of
+Corollary 6,
+
+`weight(epsilon_n)<=2C^2`,
+`kappa_n(epsilon_n)->infinity`.                        `(DFB47)`
+
+**Proof.**  Every parity-compatible pair has the form
+
+`(s_n^0+u,a_n^0+v)`, `u in Z_n^+`, `v in Z_n^-`,      `(DFB48)`
+
+and compatibility is exactly the last condition in `(DFB46)`.  The product
+Euclidean norm satisfies
+
+`sqrt(||s_n^0+u||^2+||a_n^0+v||^2)`
+` <=sqrt(2)C+sqrt(||u||^2+||v||^2).`                  `(DFB49)`
+
+If `(DFB46)` stayed bounded, `(DFB49)` would give bounded compatible pairs,
+contrary to the third branch and `(DFB4)`.  Equation `(DFB44)` proves the
+support bound.  End proof.
+
+Thus the genuinely hard parity branch is witnessed by binary syndromes of
+uniformly bounded support whose integral invariant/anti-invariant cycle
+lifts have unbounded norm.  This is exactly the type of bounded-primary
+decoder failure that a fixed-resolution integral comparison theorem must
+exclude.  In particular, a uniform decoder for the maps in `(DFB46)` rules
+out branch 3 completely; it would leave only escape of one of the two sign
+sector radii.
+
+## 8. The remaining finite target
 
 Theorem 5 turns the prime-two branch into a family of two-sector affine
-binary gluing problems.  The finite combinatorial target is now:
+binary gluing problems, and Theorem 7 makes the hardest branch a
+bounded-weight lift failure.  The finite combinatorial target is now:
 
 > prove that the parity-compatibility relation `(DFB32)` has carry
 > incidence `a_n` and marked witness incidence `b_n` with `a_n/b_n->0`, or
