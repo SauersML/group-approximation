@@ -128,6 +128,32 @@ def main():
     multiplicity_identity = np.eye(args.multiplicity, dtype=np.complex128)
     dimension = block_dimension * args.multiplicity
     maximum_length = max(map(len, words))
+    block_cache = {}
+
+    def represented_block(matrix):
+        key = matrix_key(matrix)
+        if key not in block_cache:
+            block_cache[key] = block_representation(matrix)
+        return block_cache[key]
+
+    block_identity = np.eye(block_dimension, dtype=np.complex128)
+    block_relative_adjoint = relative_block.conj().T
+    initial_errors = []
+    for word_index, word in enumerate(words):
+        value = block_identity
+        for factor, matrix in word:
+            represented = represented_block(matrix)
+            if factor == 2:
+                represented = (
+                    relative_block @ represented @ block_relative_adjoint)
+            value = value @ represented
+        initial_errors.append(float(np.linalg.norm(
+            value - targets[word_index] * block_identity)
+            / np.sqrt(block_dimension)))
+    if (args.initial_alignment == "certified-outer"
+            and max(initial_errors[:-1]) > 1e-10):
+        raise AssertionError("certified outer alignment did not kill all classes")
+
     factors = np.zeros((len(words), maximum_length), dtype=np.int8)
     matrices = np.zeros(
         (len(words), maximum_length, dimension, dimension),
@@ -139,27 +165,11 @@ def main():
             factors[word_index, position] = factor
             key = matrix_key(matrix)
             if key not in representation_cache:
-                represented = block_representation(matrix)
                 representation_cache[key] = np.kron(
-                    multiplicity_identity, represented)
+                    multiplicity_identity, represented_block(matrix))
             matrices[word_index, position] = representation_cache[key]
 
     relative_array = np.kron(multiplicity_identity, relative_block)
-    identity = np.eye(dimension, dtype=np.complex128)
-    initial_errors = []
-    relative_adjoint = relative_array.conj().T
-    for word_index, length in enumerate(lengths):
-        value = identity
-        for position in range(int(length)):
-            matrix = matrices[word_index, position]
-            if factors[word_index, position] == 2:
-                matrix = relative_array @ matrix @ relative_adjoint
-            value = value @ matrix
-        initial_errors.append(float(np.linalg.norm(
-            value - targets[word_index] * identity) / np.sqrt(dimension)))
-    if (args.initial_alignment == "certified-outer"
-            and max(initial_errors[:-1]) > 1e-10):
-        raise AssertionError("certified outer alignment did not kill all classes")
     np.save(args.relative, relative_array)
     np.savez(
         args.bundle,
