@@ -492,3 +492,86 @@ No vanishing is claimed in this note.  Its contribution is an exact orbit
 formula, an explicit infinite family of candidate classes, and the
 exterior-square targets `(CFO54)--(CFO55)` which measure whether those
 classes are genuine or automatically canceling.
+
+## 9. First-order arithmetic of a non-common stabilizing lift
+
+The phrase "nonabelian cocycle" in Section 6 has a concrete first
+congruence approximation.  Put
+
+`Rbar=R/pR`,
+`Pbar_ell=F_p[A N^d]`, `A=varphi(ell)`.                `(CFO59)`
+
+Let `gbar Gamma_bar_ell` be a fixed point of the `hbar`-action on
+`Ebar/Gamma_bar_ell`.  Thus
+
+`gamma_bar=gbar^(-1) hbar gbar in Gamma_bar_ell`.      `(CFO60)`
+
+Choose lifts `g in E` and `gamma in Gamma_ell`.  There is a unique
+first-congruence error `Delta mod p` defined by
+
+`g^(-1) h g gamma^(-1)=1+p Delta mod p^2`.             `(CFO61)`
+
+It belongs to `sl_r(Rbar)` by the determinant-one calculation of Lemma 1
+in the congruence-torsion note.
+
+Changing the lift of the edge by `e in E_p` on the left and changing the
+polynomial lift by an element of `Gamma_ell intersect E_p` changes `Delta`
+by
+
+`Delta |-> Delta+(Ad(gbar^(-1))(Ad(hbar)-1))X`
+`             -Ad(gamma_bar)Y`,                       `(CFO62)`
+
+where `X in sl_r(Rbar)` and `Y in sl_r(Pbar_ell)` are their first
+congruence logarithms.
+
+Since `gamma_bar=gbar^(-1)hbar gbar`, the first variable in `(CFO62)`
+runs through
+
+`(Ad(gamma_bar)-1)sl_r(Rbar)`.                         `(CFO63)`
+
+The first congruence images here are the full displayed Lie algebras.
+Off-diagonal matrices come from `e_ij(pf)`, and diagonal differences come
+from their commutators with constant opposite-root elements.  Conjugation
+by `gamma_bar in EL_r(Pbar_ell)` preserves the polynomial
+matrix algebra `sl_r(Pbar_ell)`.  Hence the invariant obstruction space is
+
+`Def(gbar)`
+` =sl_r(Rbar)/((Ad(gamma_bar)-1)sl_r(Rbar)`
+`                 +sl_r(Pbar_ell)).`                  `(CFO64)`
+
+**Theorem 8 (first-order common-lift criterion).**  The class
+
+`obs_1(gbar)=[Delta] in Def(gbar)`                     `(CFO65)`
+
+is independent of all choices in `(CFO61)`.  It vanishes if and only if
+the fixed mod-`p` double coset has a representative fixed by `h` modulo
+`p^2`, after changing the representative by `E_p` and the edge stabilizer
+element by the level-`p` polynomial congruence subgroup.
+
+**Proof.**  Formula `(CFO62)` follows by expanding
+
+`(eg)^(-1)h(eg)`                                       `(CFO66)`
+
+modulo `p^2` and moving the right polynomial correction past `gamma`.
+Equations `(CFO63)--(CFO64)` show that all choices change `Delta` by the stated
+denominator.  Conversely, a solution of the linear equation saying that
+`A` lies in that denominator supplies `X,Y` for which the corrected error
+in `(CFO61)` is zero modulo `p^2`.  End proof.
+
+For the diagonal fixed points `(CFO25)`, one may choose the exact equality
+`d_m^(-1)h d_m in Gamma_ell`, so `Delta=0` and `(CFO65)` vanishes.  A genuinely
+wild fixed orbit must have a nonzero obstruction at some congruence depth;
+`(CFO64)` is its first possible occurrence.
+
+This quotient is computable by sparse Laurent support.  For example, when
+`gamma_bar` is a root transvection, `Ad(gamma_bar)-1` changes only the
+corresponding row and column, while `sl_r(Pbar_ell)` removes the polynomial
+cone.  The remaining coordinates are negative-cone root directions.  The
+lower-right part is already known to cancel through `(CTC30)`; the live
+first-order search should therefore project `(CFO64)` further by the
+commuting-root-torus subspace before testing the exterior-square
+transgression `(CFO54)`.
+
+Vanishing of `(CFO65)` is only a lift modulo `p^2`.  An exact integral
+common lift requires compatible vanishing at all higher congruence depths;
+no Hensel or algebraization assertion is made here.
