@@ -228,6 +228,12 @@ amplification.  This is not automatic from soficity of `R_Q`: universal
 finite-twist permanence would already settle the open finite-central-kernel
 extension problem.  The two live alternatives are therefore torsion splitting
 or direct sofic approximation of this special evaluated-extension twist.
+There is an intermediate virtual criterion: it is enough for the torsion
+class to vanish on a finite-index subrelation.  Its full preimage retains all
+torsion isotropy, is a sofic product groupoid by Cordeiro's product theorem,
+and has finite index in the whole twist; Cordeiro induction then applies
+noncircularly.  In particular Kida's treeable cohomology vanishing shows that
+a finite-index treeable subrelation closes the phase gate.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

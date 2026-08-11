@@ -39643,6 +39643,24 @@ splitting.  The phase lane now has two exact targets: torsion-rationalize the
 circle primitive, or directly approximate the special evaluated-extension
 twist `(TWT1)`.
 
+There is a useful intermediate criterion.  If `S<R_Q` has finite index and
+
+`[omega|S]=0 in H^2(S,mu_infty)`,                     `(TWT5)`
+
+then the full inverse image `H` of `S` in `Sigma_omega` contains all of the
+isotropy and therefore has the same finite index as `S`: lift relation
+transversals through `Sigma_omega->R_Q`, and the isotropy contained in `H`
+makes their lifted cosets exhaustive and disjoint.  The primitive identifies
+
+`H ~= mu_infty times S`.                              `(TWT6)`
+
+The group `mu_infty` is locally finite and sofic, hence Cordeiro's product
+theorem makes this product sofic.  Cordeiro finite-index induction gives
+`Sigma_omega` sofic, and `(TWT4)` gives `Gamma` sofic.  Thus virtual torsion
+splitting suffices.  In particular, Kida's Corollary 2.8 shows that a
+finite-index treeable subrelation finishes the phase gate because its
+discrete-coefficient `H^2` vanishes.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 

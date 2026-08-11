@@ -705,6 +705,42 @@ moves the same holonomy into a finite extension group.  Thus `(HPK9ay)` is
 an alternate exact gate, not a consequence of the existing finite-index
 theorem.
 
+The groupoid endpoint does, however, make finite-index restriction useful in
+the correct direction.
+
+**Theorem 3C (virtual torsion splitting implies soficity).**  Suppose there is
+a finite-index pmp subrelation `S<R_Q` such that
+
+`[omega|S]=0 in H^2(S,mu_infty)`.                     `(HPK9az)`
+
+Then `Gamma` is sofic.
+
+**Proof.**  Let `H` be the full inverse image of `S` in `Sigma_omega`.  Its
+index in `Sigma_omega` equals `[R_Q:S]`: lift a finite family of full-group
+transversals for `S<R_Q` through the quotient map
+`Sigma_omega -> R_Q`; because `H` contains the entire isotropy group
+`mu_infty` over every unit, the lifted left cosets are still disjoint and
+exhaust `Sigma_omega`.  A primitive in `(HPK9az)` gives
+
+`H ~= mu_infty times S`.                              `(HPK9ba)`
+
+The subrelation `S` is sofic, since subgroupoids of a sofic equivalence
+relation are sofic.  The countable locally finite group `mu_infty` is sofic,
+so Cordeiro's product theorem makes `(HPK9ba)` sofic.  Cordeiro's finite-index
+theorem now gives soficity of `Sigma_omega`, and Theorem 3B gives soficity of
+`Gamma`.  End proof.
+
+In particular, it is enough that `R_Q` have a finite-index treeable
+subrelation: discrete-coefficient second cohomology vanishes on a treeing, so
+`(HPK9az)` holds.  More generally the exact remaining virtual target is
+
+`omega becomes torsion-trivial on a finite-index subrelation.` `(HPK9bb)`
+
+This is strictly the right use of finite-index permanence.  Taking the full
+preimage retains all isotropy and therefore keeps the groupoid index finite;
+trying to insert the base relation itself would still require a global
+splitting.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -924,7 +960,9 @@ The common-Cartan route now has four exact layers:
 There is also an unsplit endpoint: soficity of the torsion central groupoid
 `Sigma_omega` implies soficity of `Gamma` through the full-bisection embedding
 `(HPK9at)--(HPK9ay)`.  Universal permanence for this endpoint is not known
-and would already settle the finite-central-kernel extension problem.
+and would already settle the finite-central-kernel extension problem.  A
+finite-index restriction on which the torsion class vanishes is enough by
+Theorem 3C.
 
 Only the general implication from layer 2 to layer 4 is missing.  The
 torsion-kernel criterion settles it when the residue in layer 3 is
@@ -954,4 +992,6 @@ Primary source pins:
   arXiv:1608.05608, Theorem 3.4.
 * Luiz Cordeiro, *An elementary approach to sofic groupoids*,
   arXiv:1708.08023; and *On sofic groupoids and their full groups*,
-  C. R. Acad. Sci. Paris 356 (2018), Theorems 2.4 and 2.5.
+  C. R. Acad. Sci. Paris 356 (2018), Theorems 2.1, 2.4, and 2.5.
+* Yoshikata Kida, *Splitting in orbit equivalence, treeable groups, and the
+  Haagerup property*, arXiv:1403.0688, Corollary 2.8.
