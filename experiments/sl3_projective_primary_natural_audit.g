@@ -53,6 +53,8 @@ PrimaryNaturalBadOrbits := function(
     return bad;
 end;
 
+PrimaryNaturalComplex := ContractibleGcomplex("SL(3,Z)a");
+
 PrimaryNaturalRun := function(prime)
     local complex, field, one, zero, reduced_group, points, source_orbits,
           target_orbits, boundary_elements, rows, columns, orbit,
@@ -144,7 +146,6 @@ PrimaryNaturalRun := function(prime)
           " matching_law=true\n");
 end;
 
-PrimaryNaturalComplex := ContractibleGcomplex("SL(3,Z)a");
 for PrimaryNaturalPrime in PRIMARY_NATURAL_PRIMES do
     PrimaryNaturalRun(PrimaryNaturalPrime);
 od;
