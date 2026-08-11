@@ -73,6 +73,58 @@ if Q0RelationResidual <> Q0RelationExpected then
     Error("the rational four-term relation has the wrong boundary");
 fi;
 
+Q0MatchingParameter := Indeterminate(Rationals, "t");
+Q0MatchingPoint := [
+    1,
+    2,
+    Q0MatchingParameter,
+    4,
+    2 * Q0MatchingParameter,
+    Q0MatchingParameter^2
+];
+Q0MatchingMate := [
+    1,
+    2,
+    2 - Q0MatchingParameter,
+    4,
+    2 * (2 - Q0MatchingParameter),
+    (2 - Q0MatchingParameter)^2
+];
+
+Q0MatchingBoundary := function(point)
+    local output, term, image;
+    output := [];
+    for term in Q0RelationResolution!.boundary(3, 4) do
+        image := Q0RelationCanonicalLine(
+            point * Q0RelationResolution!.elts[term[2]]);
+        Q0RelationToggle(
+            output, [AbsoluteValue(term[1]) - 1, image]);
+    od;
+    return Set(output);
+end;
+
+Q0MatchingActual := Q0MatchingBoundary(Q0MatchingPoint);
+Q0MatchingExpected := Set([
+    [0, Q0RelationCanonicalLine(Q0MatchingPoint)],
+    [0, Q0RelationCanonicalLine(Q0MatchingMate)]
+]);
+if Length(Q0MatchingActual) <> Length(Q0MatchingExpected)
+        or not ForAll([1..Length(Q0MatchingActual)], position ->
+            Q0MatchingActual[position][1] = Q0MatchingExpected[position][1]
+            and ForAll([1..6], coordinate ->
+                IsZero(Q0MatchingActual[position][2][coordinate]
+                - Q0MatchingExpected[position][2][coordinate]))) then
+    Error("the generic singleton matching is not t -> 2-t");
+fi;
+if Q0MatchingBoundary([1, 2, 1, 4, 2, 1]) <> []
+        or Q0MatchingBoundary([0, 0, 0, 0, 0, 1]) <> [] then
+    Error("the two claimed matching fixed points are not fixed");
+fi;
+if ForAny(Q0RelationSupport, pair -> pair[1] = 3) then
+    Error("the fixed-point fill overlaps the one-row matching generator");
+fi;
+
 Print("support=", Length(Q0RelationSupport),
       " residual=", Length(Q0RelationResidual),
-      " exact_rational=true\n");
+      " exact_rational=true matching=t->2-t fixed=2",
+      " decoder_squared_norm=2\n");

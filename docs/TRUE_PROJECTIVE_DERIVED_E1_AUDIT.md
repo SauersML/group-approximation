@@ -141,7 +141,7 @@ rational endpoints.  Reduction modulo any odd prime proves `(DE1-4)`.
 The exact rational verifier is
 `experiments/sl3_projective_q0_relation_exact.g`; its stdout certificate is
 `experiments/sl3-projective-q0-relation-exact.txt`, with SHA-256
-`e3224692c91cc92d19848ebb42c287f47b1b54d3857e6a335c77b433c5a11e29`.
+`6d6e924f94c7af378a0a49fc923eafbf97a3eed8b1afab605664532598249219`.
 The finite-chart verifier
 `experiments/sl3_projective_q0_relation.py` independently checks the raw
 specialized matrices; its compact audit is
@@ -149,17 +149,14 @@ specialized matrices; its compact audit is
 `9ff88cf113f302d5c3d008cd1c5127ff4d4f030c8635bfe3c00b56ff4bb2b8b3`.
 
 The ordinary `p+1` points are the Veronese image of a projective line; the
-exceptional point lies off it.  Equation `(DE1-4)` therefore suggests a
-uniform decoder architecture built from a bounded-degree relation graph on
-that projective line.  There is an important equivariance restriction: the
-full `SL_3` coefficient action is not a residual symmetry of one fixed
-filtered generator, so arbitrary group translates of `(DE1-4)` cannot
-simply be asserted to be relations in the same block.  The load-bearing
-next calculation is to discover a bounded set of Wall-compatible rational
-relation templates whose specialized graph expands uniformly and whose
-filling synthesis map has bounded overlap.  Merely filling every point back
-to one basepoint produces long row-echelon solutions and misses this
-structure.
+exceptional point lies off it.  The Wall-compatible relation graph on this
+line is now exact: one fixed generator gives `t <-> 2-t`, and the four-term
+chain joins its two fixed points `1,infinity`.  These relations split the
+matching-difference subspace with norm `sqrt(2)` for every odd prime.  See
+`TRUE_PROJECTIVE_SINGLETON_MATCHING_DECODER.md`.  The live object is the
+smaller pair-orbit quotient, not the original projective line.  Arbitrary
+`SL_3` translates are still unavailable because the full coefficient action
+does not preserve one filtered generator.
 
 ## Exact extraction
 

@@ -1054,15 +1054,13 @@ have support one.  The remaining norm question is whether the relations
 identifying the ordinary fibre admit a uniformly bounded local filling; more
 prime ranks will not answer it.
 
-One bounded relation is now exact for every odd prime: the same four
-total-degree-three coordinates, interpreted as fixed rational projective
-lines, have boundary equal to the difference of two ordinary singletons in
-HAP's integral resolution.  The ordinary fibre is a projective line.  The
-proof-producing next step is to find enough Wall-compatible rational
-relation templates to form a bounded-degree expanding graph with bounded
-filling overlap.  Arbitrary `SL_3` translates are not automatically allowed,
-because the full coefficient action does not preserve a fixed filtered
-generator.
+The ordinary singleton line now has a uniform matching decoder.  Symbolic
+evaluation over `Q(t)` proves that one fixed Wall generator has boundary
+`e_t+e_(2-t)`.  The involution has fixed points `1,infinity`, and the exact
+four-term chain joins those two.  The resulting matching-difference subspace
+has a right inverse of norm exactly `sqrt(2)` for every odd prime.  The live
+positive-primary object is reduced to the `(p+1)/2`-dimensional pair-orbit
+quotient.  See `TRUE_PROJECTIVE_SINGLETON_MATCHING_DECODER.md`.
 
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
