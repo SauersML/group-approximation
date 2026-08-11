@@ -1577,6 +1577,23 @@ one cyclic block; arbitrary finite-quotient sweeps are obsolete.  Full
 chain formula and proof:
 `docs/FALSE_RADICAL_BS_FINITE_CYCLE_TRANSGRESSION.md`.
 
+The integral group behind that transgression is also exact:
+`H_1(B,I_M)=Z/N_MZ` with `N_M=((p+1)^M-1)/p`, and the displayed paired
+cycle is a generator.  For `M=p^k` its primary order is exactly `p^k`.
+This does **not** yet give small normalized carry.  The natural primitive
+clock has one small distinguished increment, but its translated increments
+have mean zero and squared chordal energy exactly two.  More generally,
+every nontrivial character of the full translated `p`-primary clock sector
+has energy at least
+`min(2,4 sin(pi/p)^2)`, so arbitrary orthogonal sums of these character
+blocks obey a fixed marked-word domination bound.  The local FALSE gate is
+therefore still open and is narrower: derive the allowed twisted gauges
+from the square-zero elementary presentation and either concentrate their
+defect on a negligible set or prove a gauge-independent lower bound.
+Do not cite the one-coordinate phase increment as an HS amplification.
+See `FALSE_RADICAL_BS_INTEGRAL_CYCLE_AMPLIFIER.md` and
+`FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
