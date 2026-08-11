@@ -919,9 +919,10 @@ zero-class RMS `1.279437` while retaining the survivor phase to HS error
 `1.271406` at phase error `0.008401`; its off-block HS mass is `0.334236`, so
 the small improvement is genuine rather than a duplicated block.  Zero-only
 searches plateau near RMS `0.65` and erase the phase.  Stop broad weight/seed
-sweeps in this ansatz.  Attack the persistent phase-preserving class package
-`70,86,90,91` for an exact inequality, or enlarge the actual vertex irrep
-multiplicities.  Full scoped result:
+sweeps in this ansatz.  The preceding finite quotient rules out an exact
+obstruction from the four persistent local classes alone.  Add relations
+outside their `S4*S4` slice to force ambient-chart extension, or enlarge the
+actual vertex irrep multiplicities.  Full scoped result:
 `experiments/atlas_self_similarity_multirelator_results.md`.
 
 

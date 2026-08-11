@@ -678,7 +678,9 @@ both ends reproduce the qualitative tradeoff.
 This is not a lower bound or a disproof of the FALSE route.  It is a scoped
 negative result for the fixed `(5,2,1)` vertex representations and one relative
 intertwiner.  The persistent phase-preserving worst package consists of source
-classes `70`, `86`, `90`, and `91`; these are now the smallest candidates from
-which to seek an exact obstruction.  Full loss tables, multiplicity checks,
-and reproduction scope are in
-`experiments/atlas_self_similarity_multirelator_results.md`.
+classes `70`, `86`, `90`, and `91`, but a subsequent exact finite quotient
+shows that those four local relators do not force the phase to vanish: the
+obstruction must use further certified classes or the extension from the local
+`S4` subgroups to the full `A8` charts.  Full loss tables and multiplicity
+checks are in `experiments/atlas_self_similarity_multirelator_results.md`; the
+finite quotient is proved in `docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md`.

@@ -98,12 +98,21 @@ indices `70`, `86`, `90`, and `91` remain close to the orthogonal scale
 `sqrt(2)` in both dimensions.  In zero-only optimization, the persistent worst
 package instead contains `35`, `68`, `126`, and `127`.
 
-Do not spend a large sweep on more weights or seeds.  The next high-yield work
-is one of:
+An exact calculation made immediately after this run prevents a false
+interpretation of the persistent four-class package.  Classes `70`, `86`,
+`90`, and `91` together with the phase class lie in a local `S4*S4`.  There is
+a homomorphism from its quotient by those four zero relators onto
+`PSL(2,7)` under which the phase survives.  Therefore no inequality using
+only the local `S4` laws and those four relators can force the phase to vanish.
+The durable certificate is
+`experiments/atlas_stubborn_s4_certificate.py`, with proof scope in
+`docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md`.
 
-1. derive an exact inequality from one of those persistent four-class
-   packages, which would certify an obstruction for this representation
-   multiplicity;
+Do not spend a large sweep on more weights, seeds, or an exact four-class
+obstruction.  The next high-yield work is one of:
+
+1. add enough of the other 20 certified-zero classes to expose the first
+   package that prevents the local separating map from extending;
 2. implement a representation-theoretic enlargement in which the two vertex
    representations themselves acquire new irreducible multiplicities, rather
    than merely duplicating the current `(5,2,1)` chart;
