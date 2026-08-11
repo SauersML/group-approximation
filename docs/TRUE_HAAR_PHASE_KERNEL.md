@@ -1,6 +1,6 @@
 # TRUE lane: the Haar law of a common-Cartan phase kernel
 
-Date: 2026-08-10
+Started: 2026-08-10.  Updated: 2026-08-11.
 
 This note continues `docs/TRUE_CARTAN_MONOMIAL_GATE.md`.  A common Cartan
 does more than produce an abelian kernel: the phases of that kernel are
@@ -256,6 +256,117 @@ root in `Z^1(Q,T)`.  This is the carry class of
 `1->C_m->C_(m^2)->C_m->1` after evaluating the kernel by a faithful
 character.
 
+More importantly, the obstruction can survive all the regular-trace and
+Haar hypotheses of Theorem 1.
+
+**Proposition (regular trace does not kill the phase Bockstein).**  Let
+`Gamma=C_4=<g>` and represent its generator on four coordinates by
+
+`rho(g)=[[0,1],[1,0]] directSum [i] directSum [-i]`.    `(HPK9m)`
+
+With the diagonal Cartan, the permutation-part exact sequence is
+
+`1 -> K=<g^2>=C_2 -> C_4 -> Q=C_2 -> 1`,              `(HPK9n)`
+
+the kernel phase field is Haar, and the class `(HPK9f'')` is nonzero.
+
+**Proof.**  The eigenvalues in `(HPK9m)` are `1,-1,i,-i`, each once.  Thus
+`rho` is the regular representation: its normalized trace is one at the
+identity and zero at `g,g^2,g^3`.  Its permutation part swaps the first two
+coordinates and fixes the last two, so its kernel is exactly `<g^2>`.  The
+nontrivial kernel element is
+
+`a_(g^2)=diag(1,1,-1,-1)`,                            `(HPK9o)`
+
+which has the Haar distribution on `dual(C_2)`.
+
+For the section sending the nontrivial element of `Q` to `g`, let `u` be
+the displayed transposition.  Then
+
+`b=rho(g)u^(-1)=diag(1,1,i,-i)`,
+`lambda=b^2=diag(1,1,-1,-1)=a_(g^2)`.                `(HPK9p)`
+
+The `Q`-action fixes the last two atoms.  At either such atom, any
+circle-valued `C_2` 1-cocycle `r` satisfies `r(q,x)^2=1`, whereas an exact
+square root of `lambda` would satisfy `r(q,x)^2=-1`.  No cocycle root exists,
+so `(HPK9f'')` is nonzero.  End proof.
+
+Of course `C_4` is sofic, for example through its regular permutation
+action.  The proposition therefore shows that the Bockstein is intrinsic to
+the chosen common-Cartan monomial model, but not to the abstract group.
+Regular trace, finite dimensionality, exact multiplicativity, and the Haar
+kernel law do not force `(HPK9f''')`; a general TRUE proof would have to
+replace the model or round through the nonzero class.
+
+### Slow tensor amplification removes quotient isotropy
+
+There is a canonical model change which kills the point-stabilizer mechanism
+in the proposition while preserving the phase kernel.
+
+**Lemma (essentially-free quotient amplification).**  From `(HPK1)` one can
+construct another faithful regular-trace monomial ultraproduct embedding
+
+`rho_tilde:Gamma -> product_omega Mon(D_n)`            `(HPK9q)`
+
+whose permutation-part kernel is the same subgroup `K`, but for which every
+nonidentity element of `Q=Gamma/K` moves almost every point.  Equivalently,
+the induced pmp `Q`-action on the new Loeb diagonal is essentially free.
+
+**Proof.**  Enumerate `Gamma` and choose matrix representatives so that all
+relations, traces, and permutation-kernel identities on the first `n`
+elements have defects tending to zero.  Choose integers `L_n->infinity` so
+slowly that multiplying any of these first-`n` defects by `L_n` still gives
+zero in the limit.  Set
+
+`rho_tilde_n(g)=rho_n(g)^(tensor L_n)`.                `(HPK9r)`
+
+Tensor products of monomial matrices are monomial for the product basis.
+For unitary matrices, telescoping gives
+
+`||A^(tensor L)-B^(tensor L)||_2 <= L ||A-B||_2`,     `(HPK9s)`
+
+so `(HPK9r)` remains asymptotically multiplicative.  Its trace is
+`tr(rho_n(g))^(L_n)`, hence still tends to `1_(g=1)`.
+
+If `ell_n(g)` is the Hamming length of the permutation part, the product
+permutation has length
+
+`1-(1-ell_n(g))^(L_n)`.                               `(HPK9t)`
+
+For `k in K`, slow growth ensures this is at most `L_n ell_n(k)->0`.  For
+`g notin K`, `ell_n(g)` has a positive ultralimit, so `(HPK9t)` tends to one.
+The same diagonal choice preserves equality of permutation parts for two
+lifts of one quotient element.  Thus the new kernel is exactly `K` and the
+quotient action is essentially free.  End proof.
+
+When `K` has exponent `m`, Theorem 1 and `(HPK9a)--(HPK9f'')` apply anew to
+`rho_tilde`.  Since the action is now free, its action groupoid is the
+principal orbit equivalence relation `R_Q`.  Therefore the remaining class
+has the sharper location
+
+`partial_m[lambda_tilde] in H^2(R_Q,mu_m)`,           `(HPK9u)`
+
+and maps to zero in `H^2(R_Q,T)`.
+
+**Corollary (treeable quotient relation).**  If the relation `R_Q` obtained
+after slow tensor amplification is treeable, then `Gamma` is sofic.
+
+**Proof.**  A measurable treeing is a one-dimensional free groupoid
+presentation.  Consequently its second cohomology with any discrete abelian
+coefficient group vanishes.  Concretely, assign value one to the oriented
+tree edges and integrate a normalized 2-cocycle recursively along the unique
+reduced path between two points; the cocycle identity shows that the resulting
+measurable 1-cochain has the prescribed coboundary.  Hence
+`H^2(R_Q,mu_m)=0`, so `(HPK9u)` vanishes and Theorem 2 applies.  End proof.
+
+For `(HPK9m)`, product amplification makes the fixed density of the
+nontrivial quotient element equal to `(1/2)^(L_n)`, and the displayed
+Bockstein disappears.  In general, however, essential freeness does not
+make an arbitrary measured equivalence relation treeable or force its second
+finite-coefficient cohomology to vanish.  The reduced open obstruction is
+therefore a finite central twist of a **principal** sofic equivalence relation,
+not merely isotropy at fixed atoms.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -473,7 +584,10 @@ The common-Cartan route now has four exact layers:
 
 Only the general implication from layer 2 to layer 4 is missing.  The
 bounded-exponent criterion settles it when the residue in layer 3 is
-divisible.  The amenable case
+divisible.  Slow tensor amplification `(HPK9q)--(HPK9u)` shows that the
+residue may be assumed to live on a principal quotient relation and settles
+the treeable case, but arbitrary principal sofic relations are not covered by
+that vanishing argument.  The amenable case
 is supplied by Burton--Chaudkhari--Juschenko--Muliarchyk, while the general
 case cannot be obtained by averaging over a finite window without paying its
 Følner boundary.  A successful general proof must exploit the normal `0/1`

@@ -39234,6 +39234,58 @@ Indeed `b` is an `m`th root of `lambda` and
 `H^2(Q action X,mu_m) -> H^2(Q action X,T)` is a clean sufficient condition
 for soficity in the bounded-exponent common-Cartan lane.
 
+An exact four-dimensional calibration shows why injectivity cannot be
+deduced from the existing hypotheses.  For `Gamma=C_4=<g>`, put
+
+`rho(g)=[[0,1],[1,0]] directSum [i] directSum [-i]`.   `(HPK9m)`
+
+The four eigenvalues are `1,-1,i,-i`, so this is the regular representation.
+The permutation part swaps the first two atoms and fixes the last two; hence
+its kernel is `<g^2>=C_2`, and
+
+`a_(g^2)=diag(1,1,-1,-1)`
+
+has exactly Haar law on `dual(C_2)`.  With the evident section,
+
+`b=diag(1,1,i,-i)`,  `lambda=b^2=a_(g^2)`.            `(HPK9p)`
+
+On either fixed atom, a `C_2` 1-cocycle root would have to satisfy both
+`r(q,x)^2=1` (the cocycle law) and `r(q,x)^2=-1` (the root equation), which
+is impossible.  Thus the phase Bockstein is genuinely nonzero in an exact
+regular-trace common-Cartan model.  Since `C_4` is nevertheless sofic via a
+different permutation model, the class is a model obstruction, not a group
+invariant.  A full TRUE argument must be able to change the Cartan model or
+round through a nonzero residue; trace and Haar moments alone cannot kill it.
+
+There is nevertheless a universal model change which removes stabilizer
+obstructions.  Replace the `n`th monomial microstate by its `L_n`-fold tensor
+power, with `L_n->infinity` chosen slowly enough that `L_n` times every tested
+matrix and kernel-permutation defect still tends to zero.  The telescoping
+bound
+
+`||A^(tensor L)-B^(tensor L)||_2 <= L||A-B||_2`
+
+preserves multiplicativity, while a permutation of Hamming length `ell` has
+product-action length
+
+`1-(1-ell)^L`.                                        `(HPK9t)`
+
+Thus elements of `K` still have trivial permutation part, whereas every
+nontrivial element of `Q=Gamma/K` acquires length tending to one.  The new
+Loeb quotient action is essentially free and has the same phase kernel.
+
+For bounded-exponent `K`, its Bockstein now lies in
+
+`H^2(R_Q,mu_m) -> H^2(R_Q,T)`,                        `(HPK9u)`
+
+where `R_Q` is the principal orbit relation, and lies in the kernel of this
+coefficient map.  If `R_Q` is treeable, its free groupoid presentation is
+one-dimensional, so `H^2(R_Q,mu_m)=0` and `Gamma` is sofic.  This kills the
+fixed-atom Bockstein in the `C_4` calibration, whose fixed density becomes
+`(1/2)^(L_n)`.  It does not finish the general case: a principal sofic
+equivalence relation need not be treeable, and its finite-coefficient second
+cohomology is the sharpened remaining obstruction.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and
@@ -39299,3 +39351,38 @@ trace, which may kill this element; homotopy trace lifting upgrades an
 already hyperlinear trace and therefore cannot manufacture the missing
 canonical trace. The live gate remains the one-positive-element MF-trace
 certificate.
+
+## 2026-08-11: finite-radical corner extraction, separated from BDL
+
+Full details are in `docs/FALSE_FINITE_RADICAL_CORNER.md`.  Let `E` be a
+countable operator-norm MF group and suppose
+
+`1 != F normal E`, `F` finite, `F <= Rad_sof(E)`.       `(FRC1)`
+
+The central fixed-space average
+
+`p_F=|F|^(-1) sum_(f in F)u_f`
+
+has nonzero complementary image `q` in every injective MF corona model.
+Compress to `q`, polar-correct, and renormalize the corner traces.  The exact
+identity
+
+`sum_(f in F)(u_f-1)^*(u_f-1)=2|F|(1-p_F)`             `(FRC2)`
+
+forces one fixed `f_0 in F` to survive in the resulting tracial matrix
+ultraproduct.  Its image is hyperlinear and cannot be sofic, because every
+homomorphism from `E` to a sofic group kills `F`.
+
+Thus an MF group with a nontrivial finite normal subgroup in its full sofic
+radical already yields a hyperlinear nonsofic quotient.  Unlike
+Bachner--Dogon--Lubotzky Proposition 1.6, no hyperlinearity of `E/F` is
+needed, because the conclusion sought is a quotient retaining one radical
+element rather than hyperlinearity of all of `E`.
+
+For the cyclic shear this sharpens the dependency but does not close it:
+
+`J operator-norm MF  ==>  hyperlinear nonsofic quotient`,
+
+with no extra quotient hypothesis.  Proving `J` MF remains exactly the
+nonzero projective-sector problem `(PSC4)/(PSG6)`.  The corner theorem is a
+converter after that sector exists, not a construction of it.

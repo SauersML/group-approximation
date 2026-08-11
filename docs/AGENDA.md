@@ -154,6 +154,24 @@ which finite cocycle stability would have to eliminate.  Concretely the
 residue is the evaluated extension class
 `partial_m[lambda]=[a_(v(q,r))]`; it maps to zero in circle-valued `H^2`, so
 injectivity of `H^2(mu_m)->H^2(T)` for the Loeb action would close this gate.
+This injectivity is not automatic even in an exact regular model: the
+four-dimensional regular representation
+`C_4 -> U(4)`, `g |-> swap directSum i directSum (-i)`, has phase kernel
+`C_2`, Haar kernel law, and nonzero Bockstein (`(HPK9m)-(HPK9p)`).  The same
+group is sofic through another Cartan.  Therefore the residue is a
+model-level obstruction; a general proof must replace the Cartan or round
+through it, not try to deduce its vanishing from trace moments.
+
+Slow tensor amplification performs one useful model replacement.  Taking
+`L_n`-fold tensor powers with `L_n->infinity` sufficiently slowly preserves
+all multiplicativity and the kernel `K`, while changing every nontrivial
+quotient permutation length `ell` to `1-(1-ell)^(L_n)->1`.  Hence the
+quotient Loeb action may be assumed essentially free.  For exponent-`m`
+kernel, the remaining residue lies in the coefficient kernel
+`ker(H^2(R_Q,mu_m)->H^2(R_Q,T))` of a principal sofic equivalence relation.
+It vanishes when `R_Q` is treeable.  The exact remaining TRUE-side question
+is whether the special residue forced by a monomial hyperlinear model can be
+removed for arbitrary principal sofic `R_Q`.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
