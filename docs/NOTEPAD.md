@@ -39191,6 +39191,39 @@ infinite-dimensional algebraic action `T^(G/Gamma)/T`.  Thus neither Haar
 genericity, splitness, nor a residually finite quotient can substitute for
 the finite-window Fourier completion.
 
+There is a sharper bounded-exponent consequence.  Choose a section of the
+sofic quotient and write its extension cocycle as `v(q,r) in K`.  The
+monomial phases have a measurable primitive
+
+`b_q beta_q(b_r)=a_(v(q,r))b_(qr)`.                   `(HPK9c)`
+
+If `K` has exponent `m`, then `lambda_q=b_q^m` is a circle-valued
+1-cocycle.  The exact Bockstein criterion `(HPK9e)-(HPK9k)` says:
+
+`lambda has an mth root in Z^1(Q action X,T)`
+`  ==> Gamma is sofic`.                               `(HPK9g)`
+
+Indeed `p_q=b_q/r_q` is then `mu_m`-valued and still trivializes the
+evaluated extension cocycle.  All phases of the resulting monomial embedding
+lie in the fixed finite alphabet `mu_m`, so the skew action on
+`[d_n] times mu_m` gives permutation microstates.  Nontrivial quotient
+elements move positive base mass; nontrivial kernel elements move at least
+one half of the fibers by the Haar trace-zero law.
+
+The condition is not automatic: pointwise roots of the functions `lambda_q`
+need not obey the cocycle identity.  Conversely a `mu_m`-valued primitive
+exists only if this cocycle root exists, so the residue of `lambda` modulo
+`m`th powers in measurable `Z^1` is the exact obstruction.  This prevents an
+invalid appeal to divisibility of `T` and locates what bounded-exponent
+cocycle stability would have to kill.
+
+Equivalently, this residue is the connecting class
+`partial_m[lambda] in H^2(Q action X,mu_m)` for
+`1 -> mu_m -> T --m--> T -> 1`.  It is the measurable-action degree-one
+version of the `H^1(L,T)` ambiguity already recorded in “virtual
+divisibility equals projective realizability” above; thus this route refines,
+rather than repeats, that earlier Bockstein analysis.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and

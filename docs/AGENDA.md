@@ -142,6 +142,16 @@ A valid positive special case is split extension by a finitely generated
 abelian kernel, which embeds in `Hol(K) times Q`; the Kun--Thom kernel has
 infinite abelian rank and therefore lies exactly outside this case.
 
+For a phase kernel of exponent `m`, the section primitive has an intrinsic
+Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
+`lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has
+an `m`th root **inside the 1-cocycle group**, then dividing `b` by that root
+produces a `mu_m`-valued monomial embedding; skew untwisting proves soficity
+(`(HPK9e)-(HPK9k)`).  Pointwise divisibility of the circle does not imply
+cocycle divisibility.  Thus any bounded-exponent common-Cartan counterexample
+must carry a nonzero Bockstein residue; this is the exact cohomological datum
+which finite cocycle stability would have to eliminate.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested
