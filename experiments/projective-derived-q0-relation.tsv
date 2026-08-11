@@ -1,0 +1,7 @@
+prime	projective_degree	chain_support_size	endpoint_coordinates	verified
+3	13	19	1,8	true
+5	31	19	1,8	true
+7	57	19	1,8	true
+11	133	19	1,8	true
+13	183	19	1,8	true
+17	307	19	1,8	true

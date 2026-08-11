@@ -125,6 +125,30 @@ singleton profile is in
 `experiments/projective-derived-q0-singletons.tsv`, with SHA-256
 `bb8bdb5a4a20dc68be72cadae192aa983dd9708622f19a3b5f11fbc1d40a775b`.
 
+There is already one prime-independent local relation.  In total
+degree three, the same nineteen `(resolution generator, coefficient
+coordinate)` pairs have boundary
+
+`e_1+e_8`                                                `(DE1-4)`
+
+in the first `q=0` generator for every audited
+`p=3,5,7,11,13,17`.  Both endpoints are ordinary singleton cycles.  This is
+not merely equality of support size: the full nineteen-pair support is
+identical at all six levels.  The verifier is
+`experiments/sl3_projective_q0_relation.py`; its compact audit is
+`experiments/projective-derived-q0-relation.tsv`, with SHA-256
+`172ea2077ea3787c9575220b33dbc1a522992bba7d253440317ff252ad373184`.
+
+The ordinary `p+1` points are the Veronese image of a projective line; the
+exceptional point lies off it.  Equation `(DE1-4)` therefore suggests a
+uniform decoder architecture: translate a fixed local filling along a
+bounded-degree Schreier graph on that projective line and use a uniform
+spectral gap to solve the resulting incidence equation.  The load-bearing
+next calculation is to identify a bounded set of translated relation types
+whose graph expands uniformly and whose filling synthesis map has bounded
+overlap.  Merely filling every point back to one basepoint produces long
+row-echelon solutions and misses this structure.
+
 ## Exact extraction
 
 HAP's total resolution has bidegrees
