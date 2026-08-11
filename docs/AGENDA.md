@@ -217,6 +217,15 @@ vertices.  This is exactly the qualitative cocycle-stability gate
 `docs/POPA_FACTOR_MODEL_LIFTING.md`.  Product permanence still uses the
 wrong, independent joining.
 
+Complete-simplex unfolding does not bypass this gate.  On `V times F`, the
+label potentials make the phase transitions an exact coboundary and permit
+exact torsion rounding, but completing the partial translations
+`q |-> gq` costs `|gF triangle F|/(2|F|)`.  This vanishes along an
+exhaustion exactly in the Følner/amenable case.  Identifying the local copies
+through `(v,q) |-> sigma_q(v)` removes that boundary only if the rounded
+phases agree on overlaps, which is `(CS1)` again.  The proof and quantitative
+boundary estimate are in `docs/PHASE_UNFOLDING_AMENABILITY_BARRIER.md`.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has
