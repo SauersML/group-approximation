@@ -39151,3 +39151,31 @@ For relative rank `delta=r/d`, the forced cost is order
 `1/sqrt(delta)`. This exactly matches the normalization loss in the
 shrinking-Clifford-sector criterion and unifies the positive-rank and
 rank-one amplification barriers.
+
+## 2026-08-10: recent-literature audit and the reduced-vertex gate
+
+The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and
+Paddock references have been consolidated in
+`docs/FALSE_RECENT_LITERATURE_AUDIT.md`.  The two exact conclusions are:
+
+* BDL Proposition 1.6 converts an **already MF** finite extension with
+  hyperlinear quotient into a hyperlinear total group; it does not construct
+  the cyclic-shear projective sector or prove MF permanence under finite
+  kernels.
+* Manzoor identifies the exact normal-Dirac closure gap, but the known IRS
+  counterexamples are not normal Dirac masses.
+
+A further necessary gate is now explicit.  The exact Mackey algebra
+`A_Mac` contains a faithful copy of `C*_r(G)` for `G=H*Z`; hence
+
+`A_Mac MF => C*_r(G) MF`.                                `(RVG1)`
+
+Regular MF realization of `H` is insufficient to infer the right side of
+`(RVG1)`: it gives canonical group-element moments but not strong convergence
+of polynomial norms, whereas adjoining a free Haar unitary by strong
+asymptotic freeness requires precisely that norm control.  Even MF of the
+reduced vertex would not by itself solve the Mackey problem; Shulman's
+amalgam criterion still demands compatible matrix-corona embeddings whose
+edge restrictions implement the parity twist.  This rules out the tempting
+``regular trace + free stabilization'' shortcut without adding a new
+hypothesis equivalent to the missing projective sector.
