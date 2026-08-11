@@ -240,6 +240,11 @@ finite-index preimage of `m Z^r directSum 0<Q_ab`.  Thus the Popa carry
 calibration is globally nonsplit but virtually split.  The remaining
 bounded-exponent obstruction must stay non-character-like under every
 finite-index restriction.
+More generally, if `lambda` is cohomologous to a cocycle taking values in
+any finitely generated subgroup `A<T`, restrict to the finite-index kernel
+of `A -> A/(m Z^d directSum 0)` and divide the remaining free coordinates by
+`m`.  Hence a surviving phase class must have essentially infinitely
+generated scalar range after every gauge and every finite-index restriction.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

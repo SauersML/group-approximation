@@ -741,26 +741,71 @@ preimage retains all isotropy and therefore keeps the groupoid index finite;
 trying to insert the base relation itself would still require a global
 splitting.
 
-The virtual criterion removes the apparent obstruction from every
-character-rigid quotient action in bounded exponent.
+The virtual criterion removes the apparent obstruction from every cocycle
+class with a finitely generated scalar-range representative, and therefore
+from every character-rigid quotient action, in bounded exponent.
+
+**Lemma (finitely generated cocycle range is virtually divisible).**  Let
+`R` be a countable pmp relation, let `eta in Z^1(R,T)`, and suppose the
+essential range of `eta` is contained in a finitely generated subgroup
+`A<T`.  For every `m>=1` there are a finite-index pmp subrelation `S<R` and
+`r in Z^1(S,T)` such that
+
+`r^m=eta|S`.                                          `(HPK9bc)`
+
+**Proof.**  Choose an abstract decomposition
+
+`A ~= Z^d directSum T_0`                              `(HPK9bd)`
+
+with `T_0` finite, and let `B<A` correspond to
+`m Z^d directSum 0`.  Then `[A:B]<infinity`.  The set
+
+`S={gamma in R:eta(gamma) in B}`                     `(HPK9be)`
+
+is a pmp subrelation.  On each `R`-class, two points belong to the same
+`S`-class exactly when their `eta`-coordinates lie in the same coset of
+`B`, so `[R:S]<=[A:B]`.
+
+There is a homomorphism `rho:B->T` with `rho(b)^m=b`: under `(HPK9bd)`, set
+`rho(mz,0)` equal to the image in `T` of `(z,0)`.  Therefore
+`r=rho after eta|S` is a circle cocycle and satisfies `(HPK9bc)`.  End
+proof.
+
+**Theorem 3D (virtual finitely generated-range criterion).**  Suppose the
+phase kernel `K` has exponent `m` and use the essentially-free quotient
+model `(HPK9q)--(HPK9u)`.  If the cocycle `lambda` in `(HPK9e)` is
+cohomologous to a circle cocycle whose essential range lies in a finitely
+generated subgroup of `T`, then `Gamma` is sofic.
+
+**Proof.**  Write
+
+`lambda_q=f beta_q(f)^(-1) eta_q`                    `(HPK9bf)`
+
+and apply the preceding lemma to `eta`, obtaining `S` and `rho after eta`.
+Choose a measurable `m`th root `h` of `f`.  On `S`, the cocycle
+
+`r=(h beta(h)^(-1))(rho after eta)`                  `(HPK9bg)`
+
+satisfies `r^m=lambda|S`.  Hence the restricted Bockstein
+`[omega|S]` vanishes in `H^2(S,mu_m)`, and Theorem 3C applies.  End proof.
 
 **Lemma (characters are virtually divisible).**  Let `Q` be finitely
 generated, let `m>=1`, and let `chi:Q->T` be a character.  There are a
 finite-index normal subgroup `L normal Q` and a character `psi:L->T` such that
 
-`psi(l)^m=chi(l)` for every `l in L`.                  `(HPK9bc)`
+`psi(l)^m=chi(l)` for every `l in L`.                  `(HPK9bh)`
 
 **Proof.**  Write the finitely generated abelianization as
 
-`Q_ab ~= Z^r directSum T_0`,                          `(HPK9bd)`
+`Q_ab ~= Z^r directSum T_0`,                          `(HPK9bi)`
 
 with `T_0` finite, and let `L` be the inverse image of
 `m Z^r directSum 0`.  This subgroup has finite index.  If the image of
 `l in L` is `(m z,0)`, set `psi(l)=chi_bar(z,0)`, where `chi_bar` is the
 character induced on `Q_ab`.  The vector `z` is unique, so `psi` is a
-well-defined character, and `(HPK9bc)` is immediate.  End proof.
+well-defined character, and `(HPK9bh)` is immediate.  End proof.
 
-**Theorem 3D (virtual character-rigidity criterion).**  In the setup of
+**Corollary 3E (virtual character-rigidity criterion).**  In the setup of
 Theorem 2, suppose that `K` has exponent `m`, that `Q` is finitely generated,
 and that the cocycle `lambda` in `(HPK9e)` is cohomologous to a character of
 `Q`.  Then `Gamma` is sofic.  In particular, this holds if every measurable
@@ -768,12 +813,12 @@ circle cocycle for the quotient action is cohomologous to a character.
 
 **Proof.**  Write, using the convention of `(HPK9l)`,
 
-`lambda_q=f beta_q(f)^(-1) chi(q)`.                   `(HPK9be)`
+`lambda_q=f beta_q(f)^(-1) chi(q)`.                   `(HPK9bj)`
 
-Choose `L` and `psi` from `(HPK9bc)` and a measurable `m`th root `h` of `f`.
+Choose `L` and `psi` from `(HPK9bh)` and a measurable `m`th root `h` of `f`.
 The restricted cocycle
 
-`r_l=h beta_l(h)^(-1) psi(l)`                         `(HPK9bf)`
+`r_l=h beta_l(h)^(-1) psi(l)`                         `(HPK9bk)`
 
 satisfies `r_l^m=lambda_l`.  Let `Gamma_L` be the inverse image of `L` in
 `Gamma`.  Restricting the common-Cartan model to `Gamma_L` preserves the

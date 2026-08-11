@@ -39661,6 +39661,31 @@ splitting suffices.  In particular, Kida's Corollary 2.8 shows that a
 finite-index treeable subrelation finishes the phase gate because its
 discrete-coefficient `H^2` vanishes.
 
+There is a broader virtual-divisibility mechanism.  Let
+`eta in Z^1(R,T)` have essential range in a finitely generated subgroup
+`A<T`, choose
+
+`A ~= Z^d directSum T_0`, `B=m Z^d directSum 0`,
+
+and set
+
+`S={gamma in R:eta(gamma) in B}`.                    `(TWT7)`
+
+This is a subrelation of index at most `[A:B]`: inside one `R`-class its
+classes are the cosets of `B` seen by the cocycle.  The homomorphism
+
+`rho:B->T`, `rho(mz,0)=image(z,0)`,                   `(TWT8)`
+
+satisfies `rho(b)^m=b`.  Thus `rho after eta|S` is an `m`th root cocycle.
+If the phase cocycle `lambda=b^m` is merely cohomologous to `eta`, take an
+`m`th root of the transfer function as well.  Its Bockstein then vanishes on
+`S`, and `(TWT5)--(TWT6)` prove `Gamma` sofic.
+
+Consequently a genuine bounded-exponent phase obstruction must have no
+cohomologous representative with finitely generated scalar range, even after
+passing to finite-index subrelations.  Approximation by finite-range
+cochains is not enough; the representative must be an exact cocycle.
+
 Finite generation gives another broad virtual closure.  If `Q` is finitely
 generated and `chi:Q->T` is a character, write
 
@@ -39669,13 +39694,13 @@ generated and `chi:Q->T` is a character, write
 For an exponent `m`, the inverse image `L<Q` of `m Z^r directSum 0` has
 finite index, and
 
-`psi(l)=chi_bar(z,0)` when `l_ab=(m z,0)`             `(TWT7)`
+`psi(l)=chi_bar(z,0)` when `l_ab=(m z,0)`             `(TWT9)`
 
 defines a character with `psi^m=chi|L`.  Consequently, if the phase kernel
 has exponent `m` and `lambda=b^m` is cohomologous to `chi`, then on the
 `L`-orbit subrelation it has the cocycle root
 
-`r_l=h beta_l(h)^(-1) psi(l)`, `h^m=f`,               `(TWT8)`
+`r_l=h beta_l(h)^(-1) psi(l)`, `h^m=f`,               `(TWT10)`
 
 where `lambda_l=f beta_l(f)^(-1)chi(l)`.  Its Bockstein vanishes on that
 finite-index subrelation.  Equivalently, Theorem 2 makes the inverse image of
