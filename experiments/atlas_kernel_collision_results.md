@@ -295,6 +295,16 @@ artifact with
 python3 experiments/atlas_kernel_collision_enumerator.py --radius 5
 ```
 
+The same artifact records an exact support audit.  Among the 234 failing
+words, 210 lie entirely in `H*H`: 104 have projection pattern `(1,b)`, 90
+have `(a,1)`, and 16 have `(a,b)`, with displayed nonidentity entries.
+Consequently the tempting coset-multiplicity ansatz
+`U=(I_(ell^2 H) tensor V)J`, `V in U(120)`, is rigid.  It keeps the two
+`H`-actions commuting, so each of these words evaluates as
+`L_a U L_b U^*`; a selected `H`-generator exposes a nonidentity regular
+commutator of defect `sqrt(2)`.  This exact filter prevents a large but
+mathematically futile manifold optimization.
+
 The 24 pairs themselves have an exact group-theoretic compression.  Their
 six one-sided nonidentity entries are the same in the two coordinates.  Four
 are adjacent elementary transvections in the upper-left `3 x 3` block; the

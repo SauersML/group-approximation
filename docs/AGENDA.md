@@ -680,6 +680,35 @@ the first tested bound.  The next TRUE solver must price high-support
 binary gluing in the sector Gram norms.  Do not infer distortion from code
 dimension, minimum weight, or discriminant-class order alone.
 
+The exact involution-overlattice formula performs the needed algebraic
+compression.  If `K_0=K_+ directSum K_-` and `C=K/K_0` is the binary gluing
+code, then
+
+`D_K ~= C^perp/C`,
+
+and each shortest discriminant radius is a weighted nearest-code distance,
+the sum of its two sector Gram distances minimized over `C`.  Odd-primary
+torsion splits completely between the two sectors; only the two-primary
+part is coupled by the code.  A codeword of support `w` has prequotient
+squared sector cost at least `w/2` in each sector.  Thus the live invariant
+is the nearest-code radius in the sector metrics, not whether high-support
+codewords admit a bounded-support generating set.
+
+The gluing code itself is the homology image for the scalar two-cover:
+
+`C=im(H_2(P_H,Z)->H_2(P_J,F_2))`.
+
+The long exact sequence of the integral trivial/sign local systems says it
+is also the kernel of one connecting map.  After quotienting the spherical
+subgroup, its exact nonspherical part is
+
+`im(H_2(H,Z)->H_2(J,F_2))`.
+
+Thus low-weight codewords may be merely lifted bounded spheres.  Separate
+those local templates before interpreting the measured weight distribution;
+the genuinely global nearest-code obstruction is a stabilizer-homology
+image, not an arbitrary binary code.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
@@ -689,14 +718,15 @@ normalized-HS almost-representation inside at least one vertex.  Exact RF
 models may serve as controls or auxiliary blocks, never as the complete
 projective-sector ansatz.
 
-The radius-ten atlas boundary also has a smaller structured ansatz.  With
+The radius-ten atlas boundary appeared to have a smaller structured ansatz.  With
 `H=GL_3(F_2)<A8`, left-coset coordinates give
 `ell^2(A8)=ell^2(H) tensor C^120`; relative unitaries
 `U_V=(I_H tensor V)J`, `V in U(120)`, preserve exact commutation with the
-whole left `H` while allowing dense, nonmonomial deformation in the coset
-multiplicity.  Optimize the complete radius-five word energy in this space,
-using the committed 24 projection pairs only for diagnostics.  This is the
-next bounded FALSE search; do not allocate a dense `U(20160)` optimizer.
+whole left `H`.  The exact word-support audit kills it: 210 of the 234
+failing words lie in `H*H`, forcing a regular commutator defect `sqrt(2)`
+for every `V`.  Do not launch this `U(120)` optimization.  Any successful
+deformation must break exact `H`-equivariance as well as leave the monomial
+category; a dense `U(20160)` search is still not justified.
 
 ## Banked (kernel-checked, this repo)
 

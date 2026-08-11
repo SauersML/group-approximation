@@ -264,7 +264,7 @@ Thus the residual rank-three problem comes with a large canonical
 multiplicity space; this is the natural place for an induced or Hecke-type
 deformation of the tensor flip.
 
-### A 120-dimensional equivariant deformation space
+### The 120-dimensional equivariant deformation is still rigid
 
 Choose left-coset representatives for `H` in `K=A8`.  They identify
 
@@ -300,6 +300,33 @@ The complete tree-word list must remain in the loss, with the 24 pairs used
 only to stratify the first failing directions.  The exact pair list and
 multiplicities are stored in
 `experiments/atlas-kernel-radius5-summary.json`.
+
+The exact support audit in that artifact in fact kills the whole ansatz.
+Of the 234 failing tree generators, 210 use only letters from `H` in both
+free factors.  Their projection patterns are
+
+\[
+ 104(1,b),\qquad 90(a,1),\qquad 16(a,b),quad a,b\ne1. \tag{TF6d}
+\]
+
+For such a word `q`, equation `(TF6c)` lets all alternating letters commute,
+so
+
+\[
+ \pi_{U_V}(q)=L_a\,W_VR_bW_V^*.                       \tag{TF6e}
+\]
+
+If `a!=1`, one of the four selected generators lying in `H` has nontrivial
+commutator with `a`, because those generators generate the centerless group
+`H`.  The corresponding centrality constraint is a nonidentity regular
+translation and has normalized-HS defect `sqrt(2)`.  If `b!=1`, the same
+argument uses a factor-two generator in `H`.  Hence every `V in U(120)` has
+maximum radius-five defect at least `sqrt(2)`.
+
+So the canonical restriction multiplicity is real, but deforming only its
+coset factor while retaining exact left-`H` equivariance cannot cross the
+boundary.  A successful model must also break that equivariance; no
+`U(120)` optimization in `(TF6b)` should be launched.
 
 ## 3.7 Phase twists of the tensor flip cannot cross the boundary
 

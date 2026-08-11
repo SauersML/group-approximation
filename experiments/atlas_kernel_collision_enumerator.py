@@ -155,6 +155,15 @@ def factor_projections(word):
     return tuple(projections)
 
 
+def lies_in_rank_three_subgroup(matrix):
+    """Test membership in diag(GL(3,F2),1) inside GL(4,F2)."""
+    return (
+        np.array_equal(matrix[3, :], np.array((0, 0, 0, 1), dtype=np.uint8))
+        and np.array_equal(
+            matrix[:, 3], np.array((0, 0, 0, 1), dtype=np.uint8))
+    )
+
+
 def encode_word(word):
     return [
         {"factor": factor, "matrix_f2_hex": matrix_key(matrix).hex()}
@@ -177,6 +186,7 @@ def main():
                    if args.deduplicate_constraints else None)
     projection_counts = {}
     projection_pair_counts = {}
+    boundary_support_counts = {}
     for word in kernel_words:
         projections = factor_projections(word)
         pattern = tuple(
@@ -188,6 +198,22 @@ def main():
         projection_counts[label] = projection_counts.get(label, 0) + 1
         pair_label = ",".join(matrix_key(value).hex() for value in projections)
         projection_pair_counts[pair_label] = projection_pair_counts.get(pair_label, 0) + 1
+        if not all(matrix_key(value) == matrix_key(I4)
+                   for value in projections):
+            support_label = ",".join((
+                "factor1_all_H=%s" % all(
+                    lies_in_rank_three_subgroup(matrix)
+                    for factor, matrix in word if factor == 1),
+                "factor2_all_H=%s" % all(
+                    lies_in_rank_three_subgroup(matrix)
+                    for factor, matrix in word if factor == 2),
+                "p1_identity=%s" % (
+                    matrix_key(projections[0]) == matrix_key(I4)),
+                "p2_identity=%s" % (
+                    matrix_key(projections[1]) == matrix_key(I4)),
+            ))
+            boundary_support_counts[support_label] = (
+                boundary_support_counts.get(support_label, 0) + 1)
     summary = {
         "radius": args.radius,
         "complete_kernel_word_radius": 2 * args.radius,
@@ -209,6 +235,8 @@ def main():
             if label != "%s,%s" % (
                 matrix_key(I4).hex(), matrix_key(I4).hex())
         },
+        "tensor_flip_boundary_H_support_strata": dict(
+            sorted(boundary_support_counts.items())),
         "tensor_flip_unsatisfied_kernel_generators": sum(
             count for label, count in projection_counts.items()
             if label != "identity,identity"
