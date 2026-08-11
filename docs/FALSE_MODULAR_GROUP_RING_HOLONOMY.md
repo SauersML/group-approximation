@@ -182,6 +182,21 @@ sequence of finite quotients of `(MGR15)` in which
 
 `||v||/q->0`, `dist(h/q,Z)>=epsilon>0`.                            `(MGR21)`
 
+After tensor amplification, the second requirement can be weakened
+strictly.  If `H_q(h)=dist(h,qZ)` is the centered residue, Theorem 3a of
+`FALSE_TRANSFER_HOLONOMY_CERTIFICATE.md` only requires
+
+`H_q(h)/||v||->infinity`.                                          `(MGR21a)`
+
+Indeed the radical-character to total-relator-character ratio is at least
+
+`(4/pi^2) H_q(h)^2/||v||^2`.                                      `(MGR21b)`
+
+Thus the central deformation need not send `w` to a root of unity a fixed
+angular distance from `1`.  Its exponent only has to grow relative to the
+integer relator-deformation vector; conjugate doubling and tensor powers
+then create the macroscopic phase.
+
 This is an exact finite-quotient formulation of the remaining problem,
 with no ultraproduct or lattice terminology in its hypotheses.
 
@@ -207,10 +222,10 @@ reduce the fixed Fox data modulo `p`.  The complete remaining finite test is
 `[1]<a,b_w> !=0`.                                                  `(MGR25)`
 
 For a sequence with primes or prime powers tending to infinity, the
-quantitative version requires the order of the second residue to be a
-positive fraction of the modulus.  If `(MGR25)` holds with fixed `p`, it is
-still a genuine nonzero-holonomy certificate, but by itself does not make
-the normalized relator defect tend to zero.
+quantitative version only requires the centered second residue to grow
+faster than `||v||`; it may be `o(q)`.  If `(MGR25)` holds with fixed `p`,
+it is still a genuine nonzero-holonomy certificate, but by itself does not
+make the normalized relator defect tend to zero.
 
 ## 7. Status
 
@@ -221,7 +236,7 @@ identifies the next theorem sharply:
 
 > Find an unbounded modular quotient tower of `(MGR23)` for which the norm
 > socle class `N_Tv` is a Fox coboundary and its canonical radical Fox
-> functional has macroscopic order.
+> functional has centered order growing faster than `||v||`.
 
 That is the finite algebraic form of the hyperlinear-versus-sofic gap on
 this explicit finitely presented nonsofic group.

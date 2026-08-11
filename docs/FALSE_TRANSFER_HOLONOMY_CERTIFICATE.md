@@ -200,6 +200,64 @@ that its image retains the nontrivial element `w`.  The image is hyperlinear.
 If it were sofic, the quotient homomorphism from `H` to that image would
 kill `w in Rad_sof(H)`, a contradiction.  End proof.
 
+The macroscopic condition `(THC24)` is sufficient but not necessary.
+Tensor amplification turns a much smaller holonomy into a fixed
+normalized-Hilbert--Schmidt displacement.  For a residue `h in Z/qZ`, put
+
+`H_q(h)=dist(h,qZ) in [0,q/2]`,                                    `(THC24a)`
+
+the absolute value of its centered integer representative.
+
+**Theorem 3a (amplified transfer-holonomy certificate).**  Retain
+`(THC21)--(THC22)`.  It is enough to assume
+
+`H_(q_j)(h_j)/||v_j|| ->infinity`.                                `(THC24b)`
+
+In particular, `h_j/q_j` is allowed to tend to zero.
+
+**Proof.**  Let `chi_j` be the normalized character of the monomial
+free-group representation constructed from `x_j=-a_j/q_j`, and put
+
+`alpha_j=sum_(r in R)(1-Re chi_j(r))`,
+`beta_j=1-Re chi_j(w)`.                                           `(THC24c)`
+
+Equation `(THC16)` shows that the phase of relator `r` at every vertex is
+`-v_(j,r)/q_j` modulo integers.  Hence
+
+`alpha_j=sum_(r in R)(1-cos(2 pi v_(j,r)/q_j))`
+`        <=2 pi^2 ||v_j||^2/q_j^2`.                               `(THC24d)`
+
+Lemma 2 makes the word phase scalar, so
+
+`beta_j=1-cos(2 pi h_j/q_j)`
+`       >=8 H_(q_j)(h_j)^2/q_j^2`.                                `(THC24e)`
+
+Here we used, for `dist(t,Z)<=1/2`,
+
+`8 dist(t,Z)^2 <=1-cos(2 pi t)<=2 pi^2 dist(t,Z)^2`.               `(THC24f)`
+
+Therefore
+
+`beta_j/alpha_j`
+` >=(4/pi^2) H_(q_j)(h_j)^2/||v_j||^2 ->infinity`.                 `(THC24g)`
+
+The marked-discriminant divergence theorem in
+`FALSE_MARKED_DISCRIMINANT_DIVERGENCE_CRITERION.md` now applies: after
+conjugate doubling, either the word displacement is already macroscopic or
+`ceil(1/beta_j)` tensor powers make it macroscopic while the total relator
+defect still tends to zero.  The resulting hyperlinear image retains
+`w in Rad_sof(H)` and is therefore nonsofic.  End proof.
+
+Condition `(THC24b)` automatically implies `(THC23)`, since
+`H_q(h)<=q/2`.  Its advantage over `(THC24)` is nevertheless strict: for
+bounded nonzero `v_j`, holonomies such as `H_(q_j)(h_j)=sqrt(q_j)` satisfy
+`(THC24b)` but have `h_j/q_j->0`.
+
+For compatible moduli `q_j=p^j` and fixed `v`, even the growth assertion
+can be removed: `FALSE_PADIC_RADICAL_TRANSGRESSION_CRITERION.md` proves
+that it is enough for the compatible holonomies to define any element of
+`Z_p minus Z`.
+
 This criterion only needs `q_j` to dominate `||v_j||`; it does **not** need
 the stronger instability scale
 
@@ -215,7 +273,7 @@ For fixed `v` and `q`, all data are obtained from modular linear algebra:
 
 1. solve the single system `A_Xa=Jv mod q`;
 2. evaluate `a` on one lifted word chain `b_(w,x)`;
-3. check that its centered residue is a positive fraction of `q`.
+3. check whether its centered residue is large relative to `||v||`.
 
 Equivalently, one may first compute the fixed-rank transfer subgroup
 
@@ -234,10 +292,10 @@ The exact remaining arithmetic question is therefore self-contained:
 > Is there a finitely presented group `H`, a nontrivial
 > `w in Rad_sof(H)`, and regular finite covers for which a virtually
 > divisible base two-cycle has unbounded modulus `q_j`, while its modular
-> line integral around `w` is asymptotic to `theta q_j` for some
-> `theta notin Z`?
+> line integral around `w`, in centered residue, grows faster than the norm
+> of that base cycle?
 
-A positive answer is the full FALSE proof by Theorem 3.  A negative answer
+A positive answer is the full FALSE proof by Theorem 3a.  A negative answer
 would be a new integral holonomy rigidity theorem; it does not follow from
 the uniform subgroup-mean no-go.
 
