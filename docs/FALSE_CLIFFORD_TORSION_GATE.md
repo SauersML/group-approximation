@@ -277,9 +277,103 @@ Theorem 5 identifies a concrete later relation which obstructs the pure
 Pauli block: the local value \(c_{ij}=-1\) must be driven to \(+1\) in every
 full atlas approximation.  A global optimizer should therefore not preserve
 the order-four phase \(q=-i\) as its target.  The only possible surviving
-central witness from this cluster is the order-two phase \(q=-1\).
+central witness from this cluster is the order-two phase \(q=-1\).  The next
+section shows that even this sign vanishes.
 
-## 5. Why survival plus atlas approximation would finish the FALSE lane
+## 5. A perfect overlap kills the residual sign
+
+Uniformly refine every leaf of the second original chart
+
+\[
+ C_2=(00,1,010,011)
+\]
+
+by one binary digit.  The resulting complete code is
+
+\[
+ E=(000,001,10,11,0100,0101,0110,0111),              \tag{26}
+\]
+
+up to an irrelevant reordering, and gives a scalar chart
+
+\[
+ G_E\cong GL_8(\mathbb F_2).                           \tag{27}
+\]
+
+This group is superperfect.  Let
+
+\[
+ \tau:G_E\longrightarrow U                            \tag{28}
+\]
+
+be the unique splitting of the pullback of \(U\to Q\).  The original
+second-chart lift \(j|_{K_2}\) and \(\tau|_{K_2}\) differ by a character
+of \(K_2\cong A_8\) into the central kernel.  Since \(A_8\) is perfect,
+that character is trivial.  In particular,
+
+\[
+ j(b)=\tau(b).                                         \tag{29}
+\]
+
+Now compare the two refined charts \(G_D\) and \(G_E\).  They have the four
+literal common leaves
+
+\[
+ 000,\quad001,\quad10,\quad11.
+\]
+
+The scalar transformations supported on these four leaves and fixing all
+other leaves form one and the same subgroup of \(Q\) in both charts:
+
+\[
+ H=GL(\{000,001,10,11\},\mathbb F_2)
+   \cong GL_4(\mathbb F_2)\cong A_8.                  \tag{30}
+\]
+
+Here ``fixing all other leaves'' means fixing \(010,011\) in the
+six-leaf chart and fixing \(0100,0101,0110,0111\) in the eight-leaf chart.
+The two descriptions give the same Leavitt units because the latter four
+leaves refine the former two fixed cylinders.
+
+The refined element \(b\) belongs to \(H\): on the four displayed leaves it
+is the direct sum of the two identical active transvections, pairing
+\(000\) with \(10\) and \(001\) with \(11\), and it fixes the complementary
+cylinders.  The restrictions \(\sigma|_H\) and \(\tau|_H\) are two lifts of
+the same inclusion \(H\hookrightarrow Q\).  Their quotient is a character
+of the perfect group \(H\cong A_8\) into the central kernel, so it is
+trivial.  Thus
+
+\[
+ \tau(b)=\sigma(b).                                    \tag{31}
+\]
+
+Combining `(23)`, `(29)`, and `(31)` gives the final calculation.
+
+**Theorem 6 (the Clifford atlas word dies globally).**  In the full central
+atlas quotient \(U=P/[P,R]\),
+
+\[
+ q=1,
+ \qquad c_{01}=c_{02}=c_{12}=1.                       \tag{32}
+\]
+
+Equivalently, the explicit word \(q\) belongs to \([P,R]\), not merely to
+\(R\).  Hence neither the order-four Pauli phase nor its residual order-two
+sign can be a central survivor for the FALSE lane.
+
+**Proof.**  Equations `(29)` and `(31)` give
+\(j(b)=\sigma(b)\), so the discrepancy character in `(22)` satisfies
+\(\beta(b)=1\).  Equation `(23)` gives \(q=1\).  The commutators were already
+shown trivial in `(21)`.  End proof.
+
+This argument uses only two uniqueness principles.  A superperfect scalar
+chart has a unique lift to any central extension, and two lifts agree on a
+perfect overlap.  It does not compute the rest of \(R/[P,R]\).  It does,
+however, close the exact algebraic gate raised by the local Clifford block:
+further numerical optimization of that block cannot retain any nontrivial
+central phase after the full atlas relations are imposed.
+
+## 6. What a different surviving atlas word would have to provide
 
 The quotient \(Q\) is simple and nonsofic, and \(U\) is perfect with central
 quotient \(Q\).  No claim about \(\operatorname{Rad}_{\rm sof}(U)\) is
@@ -287,13 +381,14 @@ available here: whether soficity passes to central quotients is itself open.
 The required permanence theorem is instead Thom's theorem that a central
 quotient of a hyperlinear group is hyperlinear.
 
-Suppose now that the sign in `(23)` is nontrivial and that exact
-finite-dimensional representations \(\pi_n:P\to U(d_n)\) satisfy
+For a different word \(z\in R\) whose class in \(R/[P,R]\) is proved
+nontrivial, exact finite-dimensional representations
+\(\pi_n:P\to U(d_n)\) satisfying
 
 \[
  \|\pi_n(s)-1\|_2\longrightarrow0
  \quad(s\in\mathcal S),\qquad
- \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{26}
+ \liminf_n\|\pi_n(z)-1\|_2>0                         \tag{33}
 \]
 
 where the finite set \(\mathcal S\) normally generates \([P,R]\).  The
@@ -314,9 +409,8 @@ the main problem negatively.  This is exactly the finite one-survivor
 certificate already proved in `docs/ATLAS_HS_CRITERION.md`, now with a
 bounded central witness.
 
-The local Clifford certificate proves neither hypothesis in the preceding
-paragraph.  Theorem 5 proves that its order-four phase is too strong for the
-full cover and isolates the residual order-two discrepancy `(23)`.  The next
-exact algebraic calculation is whether that sign is zero in \(R/[P,R]\);
-the analytic target, if it is nonzero, is a commuting \(q=-1\) sector rather
-than the anticommuting \(q=-i\) Pauli sector.
+The local Clifford certificate cannot supply `(33)`: Theorem 6 proves its
+candidate survivor is already the identity in \(U\).  A viable replacement
+must therefore come from a genuinely different cross-chart relation, first
+survive the perfect-overlap test above, and only then be subjected to an
+analytic atlas approximation search.

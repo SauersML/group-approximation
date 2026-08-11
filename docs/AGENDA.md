@@ -765,23 +765,28 @@ would establish local rigidity of every surviving index-15 stabilizer
 ansatz, while a negative eigendirection would give a principled continuation
 seed.
 
-The exact Clifford word has a prior algebraic gate which should be checked
-before more large-dimensional optimization.  Abstract centrality first gives
-`c_01=c_02=c_12=q^2` and `q^4=1`.  But the local generators admit the common
-six-leaf scalar refinement
+The exact Clifford word has now been closed algebraically.  Abstract
+centrality first gives `c_01=c_02=c_12=q^2` and `q^4=1`.  The local generators
+admit the common six-leaf scalar refinement
 
 `D=(000,001,010,011,10,11)`, `G_D ~= GL_6(F_2)`.
 
 This group is superperfect, so its unique lift to the central atlas cover
-shows that the common commutator is actually trivial and `q^2=1` in the full
-cover.  The pure Pauli target `q=-i`, `c_ij=-1` therefore cannot survive the
-later atlas relations.  The only possible witness is the residual sign
-`q=-1`, exactly the discrepancy between the second-chart lift of `b` and the
-common-chart lift.  Determine whether this sign survives in `R/[P,R]`; if it
-does, target a commuting sign sector rather than preserving the
-anticommuting Pauli sector.  The five-term sequence only makes this kernel a
-quotient of `H_2(Q,Z)`, because `H_2(A8*A8,Z)=C2 directSum C2`; it is not the
-whole Schur multiplier.  Full proof and the corrected central-quotient scope:
+shows that the common commutator is trivial and `q^2=1`.  Uniformly refining
+the second chart gives a superperfect `GL_8(F_2)` chart.  Its overlap with the
+six-leaf chart contains the common perfect subgroup
+
+`GL({000,001,10,11},F_2) ~= GL_4(F_2) ~= A8`,
+
+and the element `b` lies in this overlap.  Uniqueness over the two
+superperfect charts and agreement over the perfect overlap force their lifts
+of `b` to coincide.  Hence the residual discrepancy is trivial and `q=1` in
+`P/[P,R]`.  The entire Clifford block is therefore a proved no-go; do not
+optimize either its `q=-i` or `q=-1` sector further.  A new FALSE witness must
+use another cross-chart relation that survives this perfect-overlap test.
+The five-term sequence alone only makes the central kernel a quotient of
+`H_2(Q,Z)`, because `H_2(A8*A8,Z)=C2 directSum C2`; it is not automatically
+the whole Schur multiplier.  Full proof:
 `docs/FALSE_CLIFFORD_TORSION_GATE.md`.
 
 The 64-dimensional block is now executable.  It validates the Pauli
