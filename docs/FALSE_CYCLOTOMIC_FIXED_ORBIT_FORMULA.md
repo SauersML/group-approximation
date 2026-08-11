@@ -575,3 +575,61 @@ transgression `(CFO54)`.
 Vanishing of `(CFO65)` is only a lift modulo `p^2`.  An exact integral
 common lift requires compatible vanishing at all higher congruence depths;
 no Hensel or algebraization assertion is made here.
+
+## 10. A quadratic repair warning at the next congruence depth
+
+A naive iteration of Theorem 8 can report a false higher-depth obstruction
+if one quotients only by the new linear correction and forgets quadratic
+terms coming from homogeneous solutions at the preceding depth.  The
+following exact example is a useful regression test.
+
+Work in one Laurent variable, at `p=2`, in the upper-left `3 x 3` block.
+Put
+
+`g=e_21(x)e_12(x^(-1))e_21(x^(-2))`,
+`h=e_12(x^(-1))`.                                      `(CFO68)`
+
+Direct multiplication gives
+
+`g^(-1)h g=`
+` [[3+4x^(-3),       4x^(-1), 0],`
+`  [-x-4x^(-2)-4x^(-5), -1-4x^(-3),0],`
+`  [0,0,1]].`                                           `(CFO69)`
+
+Modulo two this is the polynomial transvection `e_21(x)`, and modulo four
+all negative Laurent terms vanish.  Looking only at the next linearized
+error therefore suggests a nonzero negative class.  Nevertheless define
+
+`c=[[1-2x^(-3), -2x^(-1),0],`
+`   [2x^(-5),    1+2x^(-3),0],`
+`   [0,0,1]].`                                          `(CFO70)`
+
+There is an exact elementary factorization
+
+`c=e_12(-x^2)e_21(2x^(-5))e_12(x^2)`,                 `(CFO71)`
+
+so `c in E_2`: its reduction modulo two is the identity.  Another direct
+multiplication gives
+
+`c^(-1)g^(-1)h g c=e_21(-x) in Gamma`.                `(CFO72)`
+
+Equivalently, with `a=g c g^(-1) in E_2`, the representative `a g=g c`
+of the same `E_2`-double coset is fixed by `h` exactly.
+
+The mechanism is a finite Bezout correction.  The rank-one factorization
+of `(CFO69)-1` is
+
+`u=(2x^(-1),-1-2x^(-3),0)^T`,`
+`v=(x+2x^(-2),2,0)`, `v u=0`.                          `(CFO73)`
+
+The first column of `(CFO70)` solves the Laurent Bezout equation which
+removes the negative part of `v`, while the second column restores
+determinant one.  Formula `(CFO71)` shows that this is an allowed relative
+elementary correction, not merely a matrix in the ambient general linear
+group.
+
+Thus a genuine all-depth obstruction must be invariant under the full
+nonlinear torsor of lower-depth solutions.  Reapplying `(CFO64)` at each
+depth with one arbitrarily chosen lift is insufficient.  The bounded exact
+search in `experiments/wild_fixed_coset_search.py` should consequently be
+used only as a first-order falsification tool.
