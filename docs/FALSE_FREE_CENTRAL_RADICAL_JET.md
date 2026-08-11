@@ -166,7 +166,71 @@ Compared with the integral lamp criterion, Theorem 2 has no analogue of
 the commuting-conjugates condition `(ICR27)`.  The scalar approximation in
 `(FCJ15)` already makes the commutator asymptotically central by `(FCJ17)`.
 
-## 4. Clock calibration
+## 4. The Weyl relation already forces trace visibility
+
+The simplification in Theorem 2 is algebraically real, but the remaining
+analytic hypothesis must not be understated.  At first order, a scalar
+Weyl relation already performs the entire norm-to-trace amplification.
+
+**Proposition 3 (first-order Weyl visibility).**  Let `epsilon_n->0`, let
+`S_n,T_n` be finite-dimensional unitaries, and suppose
+
+`||W(S_n,T_n)-exp(i epsilon_n)1||_2=o(epsilon_n)`.     `(FCJ23a)`
+
+Then
+
+`tr(S_n^k)->0`                                        `(FCJ23b)`
+
+for every fixed nonzero integer `k`.  In particular,
+
+`||S_n-1||_2^2 ->2`.                                  `(FCJ23c)`
+
+**Proof.**  Put `lambda_n=exp(i epsilon_n)` and let the error in
+`(FCJ23a)` be `r_n=o(epsilon_n)`.  Multiplying
+
+`S_n T_n S_n^* T_n^*-lambda_n 1`
+
+on the right by `T_n S_n` gives
+
+`||S_n T_n-lambda_n T_n S_n||_2=r_n`.                `(FCJ23d)`
+
+Consequently
+
+`||T_n S_n T_n^*-lambda_n^(-1)S_n||_2=r_n`.          `(FCJ23e)`
+
+Taking normalized traces and using conjugation invariance yields
+
+`|1-lambda_n^(-1)| |tr(S_n)|<=r_n`.                  `(FCJ23f)`
+
+Since `|1-lambda_n|` is asymptotic to `epsilon_n`, the right ratio tends
+to zero.  For a fixed positive `k`, telescoping `(FCJ23e)` gives
+
+`||T_n S_n^k T_n^*-lambda_n^(-k)S_n^k||_2<=k r_n`.   `(FCJ23g)`
+
+The same trace argument, with
+`|1-lambda_n^(-k)|` asymptotic to `k epsilon_n`, proves `(FCJ23b)`.
+Negative `k` follows by adjoints.  Finally
+
+`||S_n-1||_2^2=2-2 Re tr(S_n)`,                       `(FCJ23h)`
+
+which proves `(FCJ23c)`.  End proof.
+
+Thus the empirical spectral measures of `S_n` converge weakly to Haar
+measure on the circle.  Applied to `(FCJ14)--(FCJ15)`, Proposition 3 says
+that the maps `U_n` alone already define a tracial-ultraproduct image of
+`G` which retains `s`.  If `s in Rad_sof(G)`, that image is hyperlinear and
+nonsofic.  No tensor power and no passage to `J(G,s)` is then necessary.
+
+This is an important calibration:
+
+* the free jet removes the commuting-lamp algebra from the presentation;
+* but constructing its `o(epsilon)` Weyl pair is already a complete
+  norm-to-trace conversion for the original radical element.
+
+Accordingly, Theorem 2 is best viewed as a sharp spectral reformulation of
+the FALSE endpoint, not as a proof that the analytic gate has become easy.
+
+## 5. Clock calibration
 
 The endpoint has a particularly transparent finite-dimensional form.  Let
 
@@ -195,7 +259,7 @@ are finitely generated linear groups, hence residually finite and sofic, so
 they kill `s`.  The vertex model in `(FCJ26)` must therefore be genuinely
 nonliftable, just as in the previous cyclic-shear calibrations.
 
-## 5. An exact Mackey carousel
+## 6. An exact Mackey carousel
 
 The one-Weyl formulation also identifies an exact infinite-dimensional
 source for the clock.  The following statement is useful independently of
@@ -206,7 +270,7 @@ Assume now that `C=<s>` is malnormal in `G`.  For `theta in R`, put
 `chi_theta(s^k)=exp(i k theta)`,
 `pi_theta=Ind_C^G(chi_theta)`.                         `(FCJ27)`
 
-**Lemma 3 (cyclic-edge spectral transport).**  For every `theta,alpha`,
+**Lemma 4 (cyclic-edge spectral transport).**  For every `theta,alpha`,
 
 `pi_(theta+alpha)|_C`
 `  is unitarily equivalent to chi_alpha tensor pi_theta|_C`. `(FCJ28)`
@@ -223,7 +287,7 @@ Fix `m>=2`, set `alpha=2 pi/m`, and take the direct sum of
 
 `pi_0, pi_alpha, ..., pi_((m-1)alpha)`.                `(FCJ29)`
 
-Lemma 3 supplies unitary edge intertwiners between consecutive summands;
+Lemma 4 supplies unitary edge intertwiners between consecutive summands;
 the final one closes because `pi_(2 pi)=pi_0`.  Choosing their orientations
 consistently gives a unitary `T` which cyclically permutes the summands and,
 for
@@ -246,7 +310,7 @@ homotopy lifting does not give that rate, and projectional cuts would force
 coamenability of the cyclic subgroup, as explained in
 `FALSE_INDUCED_CHARACTER_HOMOTOPY.md`.
 
-## 6. Updated FALSE target
+## 7. Updated FALSE target
 
 The integral abelian radical jet required two simultaneous phenomena:
 
@@ -254,12 +318,15 @@ The integral abelian radical jet required two simultaneous phenomena:
 2. `o(epsilon)` commutation of all relevant conjugate lamps.
 
 The free central radical jet proves that item 2 is dispensable.  A complete
-FALSE proof now follows from the self-contained question:
+FALSE proof follows from the self-contained question:
 
 > Does the banked weak-MF Kun--Thom double admit normalized-Hilbert--Schmidt
 > almost-representations and one unitary `T_n` satisfying `(FCJ14)--(FCJ15)`
 > for some `epsilon_n->0`?
 
+By Proposition 3, a positive answer already makes the spectral law of
+`U_n(s)` Haar and therefore solves FALSE directly at the level of `G`.
 The remaining obstruction is a single first-order clock insertion into one
-nonliftable vertex model.  No Cartan, commuting-lamp, or global coinduced
-coordinate approximation is required.
+nonliftable vertex model, but that insertion is itself the full
+norm-to-trace breakthrough.  No Cartan, commuting-lamp, or global coinduced
+coordinate approximation is required to state it.
