@@ -39,6 +39,16 @@ unitary-character density, full metric-sofic approximation of `U(d)`, and
 Fell density of finite-image representations are all strictly too weak or too
 strong in the wrong direction.
 
+Exact doubled form (proved in `NOTEPAD.md`, `(DCT1)-(DCT9)`): for
+`H_N={(a,b) in F x F : aN=bN}`, hyperlinearity is precisely approximation of
+`1_(H_N)` by the canonical maximally-entangled coefficients of
+`pi(a) tensor overline(pi(b))`; soficity is precisely approximation by the
+canonical diagonal-set coefficients of `P_a tensor P_b` from a common finite
+`F`-set.  Thus the missing implication is a restricted diagonal rounding
+theorem for normal fiber-product indicators.  General synchronous-correlation
+results do not supply it: maximally-entangled quantum correlations need not be
+classical, while their known density theorem stays inside the quantum cone.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the
