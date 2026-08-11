@@ -576,3 +576,92 @@ Smith arithmetic in `K_1`; it does not require a Gram basis for all of
 largest modular-image modulus for each `v`.  This is the rigorous
 low-dimensional successor to both the maximal-minor saturation audit and
 the full discriminant search.
+
+## 9. The transfer quotient injects into augmentation homology
+
+The fixed-rank subgroup `(ICD59)` has a standard homological description
+which isolates the remaining integral input.  Let
+
+`I_X=ker(S:Z[X]->Z)`                                  `(ICD64)`
+
+be the augmentation lattice of the transitive action.  Apply cellular
+homology of `P` to the coefficient sequence
+
+`0 -> I_X -> Z[X] --S--> Z -> 0`.                    `(ICD65)`
+
+The relevant part of the long exact sequence is
+
+`H_2(P,Z[X]) --S--> H_2(P,Z)`
+` --delta_X--> H_1(P,I_X)`.                          `(ICD66)`
+
+Under the cell identifications already used above,
+
+`H_2(P,Z[X])=K_X`, `H_2(P,Z)=K_1`,                  `(ICD67)`
+
+and the first arrow is the coordinate sum `S`.  Therefore
+
+`K_1/M_X ~= im(delta_X) subset H_1(P,I_X)`.          `(ICD68)`
+
+This recovers `(ICD60)` from a different direction: the constant lift `J`
+satisfies `S J=n`, so the finite group in `(ICD68)` is killed by `n`.
+
+For a property-`(T)` group, the ambient group in `(ICD68)` is finite.
+Indeed `I_X tensor R` is a finite-dimensional orthogonal representation.
+Transitivity says that it has no invariant vectors.  Property `(T)` gives
+
+`H^1(G,I_X tensor R)=0`.                             `(ICD69)`
+
+Finite-dimensional duality gives the corresponding vanishing of
+`H_1(G,I_X tensor R)`, and degree-one cellular homology of the presentation
+complex agrees with group homology.  Hence
+
+`H_1(P,I_X) tensor R=0`.                             `(ICD70)`
+
+The group in `(ICD70)` is finitely generated, so it is finite.
+
+Let
+
+`e_X=exp H_1(P,I_X)`                                 `(ICD71)`
+
+and, for fixed `v in K_1`, let
+
+`g(v)=gcd{<v,w>:w in K_1}`.                          `(ICD72)`
+
+Since `(ICD68)` is killed by `e_X`, one has
+
+`e_X K_1 subset M_X`.                                `(ICD73)`
+
+Taking pairings in `(ICD61)` gives the necessary bound
+
+`m_X(v) divides e_X g(v)`.                           `(ICD74)`
+
+Together with `(ICD63)`,
+
+`m_X(v) divides gcd(n||v||^2,e_X g(v))`.             `(ICD75)`
+
+Thus property `(T)` proves finiteness of the integral obstruction on each
+chart, exactly as it proves a real spectral gap on each chart, but it does
+not bound that obstruction uniformly.  A divergent invariant-transfer
+carry for a fixed `v` forces
+
+`e_X/sqrt(|X|) -> infinity`                          `(ICD76)`
+
+along a subsequence, up to the fixed factor `g(v)`.  Conversely, a uniform
+bound on the exponents `(ICD71)` closes this entire mechanism.
+
+For `X=G/H`, Shapiro rewrites the next terms of `(ICD66)` as
+
+`K_X -> K_1 -> H_1(P,I_X) -> H_1(H,Z) -> H_1(G,Z)`. `(ICD77)`
+
+Property `(T)` makes the last two abelianizations finite, but their
+finiteness alone does not control the exponent of the middle term.  The
+precise remaining arithmetic target is therefore:
+
+> Bound the exponent of the augmentation homology
+> `H_1(P,I_X)`, or at least of its subgroup `im(delta_X)`, uniformly (or by
+> `O(sqrt(|X|))`) for the selected congruence actions.
+
+This formulation is strictly smaller than the full discriminant problem
+and strictly stronger than the real Hodge gap.  It also explains why the
+circle obstruction is integral: after tensoring with `R`, property `(T)`
+kills `(ICD68)` completely; only its finite torsion survives.
