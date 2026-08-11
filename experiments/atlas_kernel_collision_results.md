@@ -310,3 +310,25 @@ particular
 so the next construction has a canonical 120-dimensional multiplicity
 space on which to deform the tensor flip while controlling the rank-three
 corner.
+
+There is also a sharp no-go for the obvious deformation.  On
+`ell^2(A8) tensor V`, let `D=directsum_g D_g` be any block-diagonal unitary
+and take
+
+`U=D(J tensor 1_V)`.                                    `(TF6)`
+
+Every word remains block-monomial, and its base permutation is still
+`L_(p_1(w)) R_(p_2(w))`; the fiber gauges affect only the nonzero matrix
+blocks.  If `p_1(w)!=1`, some selected factor-one generator `x` has
+`[x,p_1(w)]!=1`, because those generators generate the centerless group
+`A8`.  The base permutation of `pi_U([x,w])` is then a nonidentity regular
+translation and has no fixed points.  Its normalized trace is exactly zero,
+independently of `V` and of all `D_g`, so
+
+`||pi_U([x,w])-1||_2=sqrt(2)`.                          `(TF7)`
+
+The same argument uses factor two when only `p_2(w)` is nontrivial.  Hence
+every block-phase or matrix-cocycle twist of inversion has maximum defect at
+least `sqrt(2)` on the radius-ten window.  The next model must change the
+permutation support or be genuinely nonmonomial; phase decoration alone
+cannot repair the rank-three corner.

@@ -264,6 +264,68 @@ Thus the residual rank-three problem comes with a large canonical
 multiplicity space; this is the natural place for an induced or Hecke-type
 deformation of the tensor flip.
 
+## 3.7 Phase twists of the tensor flip cannot cross the boundary
+
+The most immediate deformation of `J` is already impossible.  Let `V` be
+any finite-dimensional multiplicity space, decompose
+
+\[
+ \ell^2(K)\otimes V=\bigoplus_{g\in K}(\mathbb C\delta_g\otimes V),
+\]
+
+and let `D=directsum_(g in K) D_g` be an arbitrary block-diagonal unitary,
+with `D_g in U(V)`.  Set
+
+\[
+ U=D(J\otimes1_V).                                    \tag{TF7}
+\]
+
+This includes arbitrary scalar phases and arbitrary matrix-valued cocycle
+gauges on the inversion alignment.
+
+**Proposition 6 (monomial phase no-go).**  For every word `w in P`, the
+base permutation of `pi_U(w)` is
+
+\[
+ L_{p_1(w)}R_{p_2(w)}.                                \tag{TF8}
+\]
+
+If `(p_1(w),p_2(w)) != (1,1)`, then at least one of the twelve generator
+commutators satisfies
+
+\[
+ \|\pi_U([x,w])-1\|_2=\sqrt2.                         \tag{TF9}
+\]
+
+In particular no sequence of block-phase twists (TF7), with arbitrary
+growing multiplicities, can solve the radius-ten window.
+
+**Proof.**  Conjugating a left translation by `D(J tensor 1)` changes its
+matrix weights but not its base permutation, which is the corresponding
+right translation.  Base permutations multiply independently of their
+block weights, proving (TF8).
+
+Write `(a,b)=(p_1(w),p_2(w))`.  If `a!=1`, centerlessness of `K=A_8` and the
+fact that the six selected transvections generate `K` give a factor-one
+generator `x` with `[x,a]!=1`.  The base permutation of `[x,w]` is the
+nonidentity left translation `L_[x,a]`, hence has no fixed point.  A
+block-monomial unitary with fixed-point-free base permutation has normalized
+trace zero, regardless of its block weights.  Therefore
+
+\[
+ \|\pi_U([x,w])-1\|_2^2
+ =2-2\operatorname{Re}\operatorname{tr}(\pi_U([x,w]))=2.
+\]
+
+If `a=1` and `b!=1`, use a factor-two generator and the identical argument
+with right translations.  This proves (TF9).  The radius-five tree list
+contains 234 words with nontrivial projection pair, so its maximum defect is
+at least `sqrt(2)` for every unitary of the form (TF7).  End proof.
+
+Thus neither diagonal phases nor nonabelian fiber gauges exploit the
+120-fold restriction multiplicity in (TF6).  A successful deformation must
+change the permutation support itself or leave the block-monomial category.
+
 ## 4. Canonical one-unitary models
 
 Let `lambda:A_8->U(20160)` be the left regular representation.  For
