@@ -155,6 +155,53 @@ def higher_image_ranks(boundaries, degree: int):
     return d2_rank, d3_rank
 
 
+def filtered_h2_dimensions(boundaries, degree: int):
+    """Compute the cellular filtration on total mod-two H2 directly."""
+
+    if boundaries[3] * boundaries[2]:
+        raise AssertionError("total degree-three boundaries are not cycles")
+
+    full_boundary_rank = int(boundaries[3].rank())
+    cumulative = []
+    for maximum_q in range(3):
+        supported_indices = [
+            index
+            for q in range(maximum_q + 1)
+            for index in coordinate_indices(2, q, degree)
+        ]
+        restricted = boundaries[2].matrix_from_rows(supported_indices)
+        supported_cycles = restricted.left_kernel().basis_matrix()
+        embedded = matrix(
+            GF(2),
+            supported_cycles.nrows(),
+            boundaries[2].nrows(),
+            {
+                (row, supported_indices[column]): value
+                for (row, column), value in supported_cycles.dict().items()
+            },
+            sparse=True,
+        )
+        cumulative.append(
+            int(boundaries[3].stack(embedded).rank()) - full_boundary_rank
+        )
+
+    graded = [
+        cumulative[0],
+        cumulative[1] - cumulative[0],
+        cumulative[2] - cumulative[1],
+    ]
+    if any(dimension < 0 for dimension in graded):
+        raise AssertionError("filtered H2 dimensions are not monotone")
+    return {
+        "filtration_dimensions": cumulative,
+        "graded_dimensions": {
+            "0,2": graded[0],
+            "1,1": graded[1],
+            "2,0": graded[2],
+        },
+    }
+
+
 def analyze(prime: int, prefix: Path):
     degree = prime**2 + prime + 1
     boundaries = {
@@ -214,6 +261,9 @@ def analyze(prime: int, prefix: Path):
         - full_boundary_ranks["2"]
         - full_boundary_ranks["3"]
     )
+    filtered_h2 = filtered_h2_dimensions(boundaries, degree)
+    if filtered_h2["filtration_dimensions"][-1] != total_h2:
+        raise AssertionError("cellular filtration does not exhaust total H2")
 
     return {
         "prime": prime,
@@ -233,6 +283,7 @@ def analyze(prime: int, prefix: Path):
         "E4_0_2_dimension": e4_0_2,
         "full_mod_two_boundary_ranks": full_boundary_ranks,
         "full_mod_two_H2_dimension": total_h2,
+        "E_infinity_total_degree_two": filtered_h2,
     }
 
 
