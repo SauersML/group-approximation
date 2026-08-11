@@ -41800,6 +41800,22 @@ no longer come from the rank of the positive rows.  It would have to come
 from failure of a uniform local splitting, or from coupling of this fixed
 residue to the zero-row harmonic lattice.
 
+## 2026-08-11: positive three-primary rows are uniformly local
+
+The characteristic-three derived audit is much cleaner.  The `D_8` edge
+stabilizer has no positive homology because its order is invertible in
+`F_3`.  At the `S_4` vertex, Shapiro reduces `H_2` to point stabilizers.  The
+only contributing type is `C_3`; the ever-present `S_3` type contributes
+zero because inversion acts by `-1` on `H_2(C_3;F_3)`.
+
+A nontrivial `C_3` eigenline orbit exists exactly when `p=1 mod 3`, and the
+two eigenlines form one `S_4` orbit.  Therefore the positive total-degree-two
+sector has rank at most one for every odd chart.  It is a fixed eight-point
+local template of exponent three, so it cannot generate a growing normalized
+decoder cost.  Exact audits at `p=3,5,7,11,13` give full mod-three `H_2`
+dimensions `0,0,1,0,1`.  Full proof:
+`docs/TRUE_PROJECTIVE_DERIVED_THREE_PRIMARY.md`.
+
 ## 2026-08-11: deck Fourier frames and the exact prime-two parity split
 
 FALSE-side work, deliberately separate from the current derived-HAP TRUE
@@ -41949,3 +41965,49 @@ The natural cyclotomic image is the torsion-free ideal
 simultaneous Bockstein obstruction needs another relation-module sector or
 transgression.  This is a module-level statement only: injection into the
 full twisted/untwisted `H_1` still has to be audited.
+
+## 2026-08-11: complementary congruence torsion exists, but root tori cancel it
+
+Full proof: `docs/FALSE_CONGRUENCE_TORSION_TORUS_CANCELLATION.md`.
+
+The hoped-for shortcut `H_1(Y;O_chi)[varpi]=0` is false for the full
+fixed-prime intermediate group.  Put
+
+    E_p=ker(E->EL_r(R/pR)),
+    B_p=<E_p,h>,  h=e_12(x_1^(-1)),
+    B_p/E_p=C_p.
+
+The first congruence logarithm
+
+    theta_p(1+pA)=A mod p
+
+maps `E_p^ab` to `sl_r(R/pR)`.  For all distinct `i,j>=3`, the classes
+
+    [e_ij(pf)]
+
+are nonzero of order `p`, are fixed by `h`, and are linearly independent
+as `f mod p` varies.  The ordinary five-term sequence injects them into
+`H_1(B_p,Z)[p]`.  In the nontrivial cyclotomic local system they are killed
+by `varpi=1-zeta_p`; lower-right projection of `theta_p` kills the sole
+extension transgression coming from `h^p=e_12(p x_1^(-1))`, so the same
+classes inject into `H_1(B_p,O_chi)[varpi]`.
+
+This large simultaneous target torsion is nevertheless harmless for the
+paired Bockstein quotient.  Each lower-right root `k=e_ij(pf)` commutes
+with `h`.  If `alpha_k` is the mod-`p` fundamental class of the torus
+`<h,k>~=Z^2`, then
+
+    beta_1(alpha_k)=0,
+    beta_chi(alpha_k)=unit*[k].
+
+The second identity is the torus cellular boundary
+`(zeta_p-1)e_k`.  Hence the entire explicit congruence subspace lies in
+
+    beta_chi(ker beta_1)
+
+and vanishes from
+`H_2(F_p)/(ker beta_1+ker beta_chi)`.  A derived computation must remove
+these automatically canceling root-torus blocks before searching for a
+genuine simultaneous obstruction.  The live classes are now restricted to
+noncommuting primary directions, excess fixed double-coset orbits in the
+Bass--Serre relation module, or a coupling transgression between them.

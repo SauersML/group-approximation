@@ -1043,6 +1043,15 @@ the entire positive contribution at `E^infinity`.  The live task is a
 uniform orbitwise proof with bounded integral splittings, not control of a
 growing positive-row rank.  See `TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
 
+The other stabilizer prime is uniformly harmless in positive degree.  Over
+`F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
+projective `S_4` orbit classification show that the vertex `H_2` term is
+zero unless `p=1 mod 3`, when it is one fixed `C_3`-orbit coordinate.  Its
+integral exponent is three and its support is bounded.  Thus no growing
+positive three-primary decoder remains; only the compact harmonic lattice
+can carry separate three-primary arithmetic.  See
+`TRUE_PROJECTIVE_DERIVED_THREE_PRIMARY.md`.
+
 The next cuspidal chart has now been computed.  At `p=61` the compact
 complex is `183<-480<-440<-150`, again with harmonic rank two.  Its cyclic
 harmonic discriminant has `114` digits, but its dual systole increases to
