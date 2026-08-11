@@ -277,7 +277,100 @@ Items 1 and 2 prove nonliftable phase microstates.  Items 1 and 3 prove the
 desired group counterexample.  All three together produce a hyperlinear
 nonsofic image witnessed by a macroscopic integral repair obstruction.
 
-## 5. Calibration and computation target
+## 5. Radical-word evaluation descends to the discriminant group
+
+The marked condition has an automatic finite-group amplification which is
+not visible in the real singular-value problem.
+
+**Theorem 4 (discriminant-character averaging).**  In the setting of
+Section 4, word evaluation induces a homomorphism
+
+`chi_(w,n):D_(K,n)->(R/Z)^(N_n)`,                      `(DPI29)`
+
+given by
+
+`chi_(w,n)(c)=B_(w,n)A_n^dagger a mod Z^(N_n)`,       `(DPI30)`
+
+where `a+L_n=gamma_n(c)`.  Let `C_n<=D_(K,n)` be a
+subgroup and suppose at least `delta N_n` coordinate characters of
+`chi_(w,n)|_(C_n)` are nontrivial.  Then some `c_n in C_n` satisfies
+
+`mu_(w,n)(x_(c_n))^2>=2 delta`.                        `(DPI31)`
+
+If moreover
+
+`max_(c in C_n) rho_K(c)/sqrt(m_n)->0`,                `(DPI32)`
+
+then a hyperlinear nonsofic group exists.
+
+**Proof.**  First check that `(DPI30)` is well defined.  If `a` is replaced
+by `a+ell` with `ell in L_n`, then
+
+`y=A_n^dagger ell`                                    `(DPI33)`
+
+is an exact phase table: `A_n y=ell` is integral.  It therefore defines an
+honest monomial representation of `H`.  Its image is a finitely generated
+linear group, hence residually finite and sofic.  Since
+`w in Rad_sof(H)`, this representation kills `w`.  Formula `(DPI24b)` now
+gives
+
+`B_(w,n)y in Z^(N_n)`.                                 `(DPI34)`
+
+Thus `(DPI30)` is independent of the representative.  Linearity proves
+that it is a homomorphism.
+
+For the `j`-th coordinate character `chi_j` on `C_n`, character
+orthogonality gives
+
+`(1/|C_n|) sum_(c in C_n)|exp(2 pi i chi_j(c))-1|^2`
+` =0` if `chi_j=0`, and `=2` otherwise.               `(DPI35)`
+
+Averaging `(DPI24c)` over `C_n` is therefore at least `2 delta`, so one
+class satisfies `(DPI31)`.  Under `(DPI32)`, its defect tends to zero by
+`(DPI8)`, while `(DPI31)` is the marked condition `(DPI25)`.  Theorem 3
+finishes the proof.  End proof.
+
+**Corollary 5 (transitive one-coordinate test).**  Suppose a group of chart
+symmetries acts transitively on the `N_n` word-evaluation coordinates,
+preserves `C_n`, and makes the coordinate characters in `(DPI29)` one
+orbit.  If the restriction of one coordinate character to `C_n` is
+nontrivial, then there is `c_n in C_n` with
+
+`mu_(w,n)(x_(c_n))>=sqrt(2)`.                          `(DPI36)`
+
+Consequently `(DPI32)` plus a single nonzero coordinate evaluation proves
+the desired FALSE result.  This replaces a macroscopic analytic estimate by
+two finite algebraic checks: microscopic covering radius of `C_n` on the
+cycle side, and nonvanishing of one discriminant character.
+
+**Corollary 6 (low-rank harmonic test).**  Let
+
+`D_(H,n)=Q_n^#/(H_n intersect Z^(m_n))`                `(DPI37)`
+
+be the harmonic discriminant group from the pullback theorem in
+`TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md`, and let `C_n` be its
+injected image in `D_(K,n)`.  If the covering radius of the integral
+harmonic lattice `H_n intersect Z^(m_n)` satisfies
+
+`covrad(H_n intersect Z^(m_n))/sqrt(m_n)->0`,          `(DPI38)`
+
+then `(DPI32)` holds.  Hence, under the transitivity assumptions of
+Corollary 5, nonvanishing of one coordinate of `chi_(w,n)|_(C_n)` proves a
+hyperlinear nonsofic group exists.
+
+Indeed, every class of `(DPI37)` has a representative of norm at most the
+covering radius in `(DPI38)`, and its image has no larger `rho_K` radius.
+In particular, `(DPI38)` follows when the harmonic rank is bounded and the
+integral harmonic lattice has a basis `b_(1,n),...,b_(r,n)` with
+
+`sum_i ||b_(i,n)||_2=o(sqrt(m_n))`.                    `(DPI39)`
+
+This is the precise huge-upside version of the rank-two observation: a
+uniformly microscopic harmonic fundamental domain plus one nonzero radical
+word character would settle FALSE, without estimating the full
+high-dimensional discriminant module.
+
+## 6. Calibration and computation target
 
 For the oriented incidence matrix of a connected `d`-regular graph on `n`
 vertices, the class computed in the discriminant note has
