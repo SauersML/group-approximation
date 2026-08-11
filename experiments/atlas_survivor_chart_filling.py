@@ -165,6 +165,8 @@ def main():
     parser.add_argument("--max-boundary", type=int, default=8)
     parser.add_argument("--max-cells", type=int, default=8)
     parser.add_argument("--max-states", type=int, default=200_000)
+    parser.add_argument("--reverse-steps", type=int, default=0)
+    parser.add_argument("--max-reverse-states", type=int, default=20_000)
     parser.add_argument("--progress", action="store_true")
     parser.add_argument("--output")
     args = parser.parse_args()
@@ -266,6 +268,45 @@ def main():
         if not frontier or state_cap_reached or len(found) == 4:
             break
 
+    reverse_layers = []
+    reverse_seen = {(target, index): 0 for target, index in targets.items()}
+    reverse_frontier = list(reverse_seen)
+    reverse_cap_reached = False
+    for step in range(1, args.reverse_steps + 1):
+        following = {}
+        for state, target_index in reverse_frontier:
+            for key, operation in attached_classes(
+                    state, attachment_variants, args.max_boundary):
+                tagged = (key, target_index)
+                if tagged in reverse_seen or tagged in following:
+                    continue
+                following[tagged] = operation
+                if key in known:
+                    cells = known[key]["cells"] + step
+                    found[target_index] = min(
+                        found.get(target_index, cells), cells)
+                if len(reverse_seen) + len(following) >= args.max_reverse_states:
+                    reverse_cap_reached = True
+                    break
+            if reverse_cap_reached:
+                break
+        reverse_seen.update({tagged: step for tagged in following})
+        reverse_frontier = list(following)
+        reverse_layers.append({
+            "steps": step,
+            "new_classes": len(reverse_frontier),
+            "classes_reached": len(reverse_seen),
+        })
+        if args.progress:
+            print(json.dumps({
+                "reverse_steps": step,
+                "new_classes": len(reverse_frontier),
+                "classes_reached": len(reverse_seen),
+                "survivors_found": found,
+            }), file=sys.stderr, flush=True)
+        if not reverse_frontier or reverse_cap_reached:
+            break
+
     result = {
         "certified_boundary_relators": data["perfect_overlap_certificates"],
         "certified_conjugacy_or_inverse_classes": len(relators),
@@ -276,6 +317,8 @@ def main():
         "layers": layers,
         "reverse_neighbor_checks": reverse_neighbor_checks,
         "reverse_certificates": reverse_certificates,
+        "reverse_layers": reverse_layers,
+        "reverse_search_truncated_by_state_cap": reverse_cap_reached,
         "classes_reached": len(known),
         "search_truncated_by_state_cap": state_cap_reached,
         "survivor_cells_found": {

@@ -85,17 +85,21 @@ nonzero in \(R/[P,R]\).
 
 ## 4. Width-ten frontier
 
-Width ten is substantially larger.  The first three complete layers have
+Width ten is substantially larger.  The first three complete forward layers
+have
 
 \[
  24,\qquad 2996,\qquad 10214
 \]
 
-new classes, for 13,234 classes in total.  A target-directed reverse-neighbor
-check shows that none of the four survivors has a width-ten cyclic-attachment
-filling using at most four certified cells.  A forward run capped at 20,000
-states entered the fourth layer without finding a survivor, but that capped
-calculation is not an exhaustive negative result.
+new classes, for 13,234 classes in total.  Target-directed reverse layers
+from the four survivors contain 292 and 5,200 new tagged classes at depths one
+and two.  Neither meets the complete three-cell forward ball.  Thus none of
+the four survivors has a width-ten cyclic-attachment filling using at most
+five certified cells.  A forward run capped at 20,000 states entered the
+fourth layer without finding a survivor, and a reverse run capped at 20,000
+states entered its third layer without a meeting, but those capped
+calculations are not exhaustive negative results.
 
 ## 5. Reproduction
 
@@ -110,7 +114,8 @@ python3 experiments/atlas_survivor_chart_filling.py \
 
 python3 experiments/atlas_survivor_chart_filling.py \
   /tmp/atlas-perfect-overlap.json \
-  --max-boundary 10 --max-cells 3 --max-states 20000 --progress
+  --max-boundary 10 --max-cells 3 --max-states 20000 \
+  --reverse-steps 2 --max-reverse-states 20000 --progress
 ```
 
 The next exact multi-chart calculation should either complete the width-ten
