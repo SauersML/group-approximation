@@ -180,8 +180,11 @@ def main():
         }
         candidates.append((record, relative))
 
+    # All six maxima are exactly 5/4; eigensolver roundoff separates them at
+    # the fifteenth decimal place.  Round the primary key so --save-best uses
+    # the genuinely smaller RMS complement rather than that meaningless tie.
     candidates.sort(key=lambda item: (
-        item[0]["full_chart_centrality_max"],
+        round(item[0]["full_chart_centrality_max"], 12),
         item[0]["full_chart_centrality_rms"]))
     if args.save_best:
         np.save(args.save_best, candidates[0][1])
