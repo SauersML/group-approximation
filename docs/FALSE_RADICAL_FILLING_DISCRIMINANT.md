@@ -330,6 +330,9 @@ by itself force `(RFD27)` to be nonintegral: the filling code could
 conceivably be totally isotropic in every finite cover.  The next version
 must therefore study the joint low-carry/high-word distribution on individual
 classes, rather than trying to prove the now-impossible uniform mean bound.
+In the two-torsion sector,
+`FALSE_BERNOULLI_CARRY_INCIDENCE.md` reduces this to the explicit incidence
+condition `a_n/b_n->0` between carry rows and marked-word rows.
 
 The `p=53` projective `SL_3(Z)` harmonic quotient cannot be substituted
 directly: `SL_3(Z)` is residually finite and has trivial sofic radical.

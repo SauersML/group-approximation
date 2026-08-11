@@ -232,3 +232,8 @@ the radical filling code in that setting.  The live FALSE statistic is the
 joint low-carry/high-word tail, not the uniform subgroup mean: one must use
 a nonuniform selection correlated with word energy, allow a growing number
 of coordinate orbits, or leave the regular-cover phase ansatz.
+
+`FALSE_BERNOULLI_CARRY_INCIDENCE.md` gives a concrete nonuniform
+replacement in the two-torsion sector.  A binary parametrization proves
+FALSE when its maximum carry-row degree is negligible compared with the
+marked-word row degree on a positive fraction of word coordinates.

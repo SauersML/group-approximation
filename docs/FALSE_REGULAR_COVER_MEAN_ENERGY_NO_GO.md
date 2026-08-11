@@ -122,6 +122,12 @@ not individual discriminant classes.  A viable FALSE argument may still:
    tends to infinity, so one deck orbit has vanishing relative size; or
 4. abandon the regular-cover phase ansatz.
 
+The first option now has an exact two-torsion implementation.  If a binary
+generator parametrization has maximum carry-row degree `a_n` and a positive
+fraction of marked-word rows have degree at least `b_n`, then
+`a_n/b_n->0` proves FALSE by sparse Bernoulli sampling; see
+`FALSE_BERNOULLI_CARRY_INCIDENCE.md`.
+
 Thus the next finite statistic is not the uniform mean `(PCE10)`.  It is the
 joint distribution
 

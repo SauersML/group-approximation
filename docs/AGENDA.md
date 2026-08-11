@@ -857,6 +857,19 @@ bound.  The next exact computation should therefore first evaluate this
 determinant ratio, then solve two affine integer lift problems; it should
 not enumerate the full discriminant group.
 
+On the FALSE side, the paired carry energy now has the coordinate-order
+formula in `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`: its uniform subgroup mean
+is a sum of `nu(o_j)` over ambient carry characters, with every nontrivial
+coordinate contributing between `2/27` and `1/8`.  This immediately kills
+uniform mean pruning for nonzero deck-invariant codes in regular covers of
+a fixed presentation, since their support contains a full deck orbit; see
+`FALSE_REGULAR_COVER_MEAN_ENERGY_NO_GO.md`.  The exact nonuniform replacement
+is `FALSE_BERNOULLI_CARRY_INCIDENCE.md`: in a two-torsion parametrization,
+FALSE follows if the maximum carry-row degree `a_n` is negligible compared
+with the marked-word row degree `b_n` on a positive fraction of word
+coordinates.  The live finite search is therefore an incidence-separation
+calculation, not a uniform discriminant average.
+
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
 by an integer of magnitude less than one with every template, hence is
