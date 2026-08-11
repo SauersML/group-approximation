@@ -361,7 +361,7 @@ extension from the simultaneous kernel (6), not closure of the sum of the
 two fixed subspaces.
 
 There is a sharper boundary on what an analytic extension argument could
-detect. Give (M_{\mathbb C}) the norm inherited from its inclusion in
+detect. Give \(M_{\mathbb C}\) the norm inherited from its inclusion in
 \(\ell^2(U)\), and write
 
 \[
