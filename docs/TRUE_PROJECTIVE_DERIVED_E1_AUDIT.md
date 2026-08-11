@@ -49,10 +49,11 @@ exact map
 | 7 | 13 | 8 | 5 | 8 | 0 |
 | 11 | 18 | 11 | 7 | 11 | 0 |
 | 13 | 21 | 13 | 8 | 13 | 0 |
+| 17 | 26 | 16 | 10 | 16 | 0 |
 
-The five outgoing ranks equal `(p+3)/2`.  This is an exact finite pattern,
+The six outgoing ranks equal `(p+3)/2`.  This is an exact finite pattern,
 not yet a family theorem.  More importantly, the incoming image from
-`E^1_(2,1)` has rank exactly equal to the outgoing kernel in all five cases.
+`E^1_(2,1)` has rank exactly equal to the outgoing kernel in all six cases.
 Thus
 
 `E^2_(1,1)=0`                                             `(DE1-2)`
@@ -74,14 +75,33 @@ differential.  The complete filtered ranks in the audited range are
 | 7 | 10 | 6 | 4 | 2 | 2 | 0 | 2 |
 | 11 | 13 | 8 | 5 | 3 | 2 | 0 | 2 |
 | 13 | 15 | 9 | 6 | 4 | 2 | 0 | 2 |
+| 17 | 18 | 11 | 7 | 5 | 2 | 0 | 2 |
 
 Thus every linearly growing positive stabilizer-homology contribution in
 total degree two disappears by `E^3`; the positive filtered residue has
-dimension exactly two in all five charts.  The `d^3` image is zero, so this
+dimension exactly two in all six charts.  The `d^3` image is zero, so this
 fixed residue survives to `E^infinity`.  A fixed two-dimensional summand
 cannot by itself cause a normalized decoder blow-up.  What remains is to
 prove the family statement and obtain bounded local splittings for `d^1`
 and `d^2`, not to control a growing positive-row rank.
+
+As an independent check, intersect the total degree-two cycle space with
+each cellular filtration step and quotient by the full total boundary
+space.  The resulting associated-graded dimensions are
+
+| `p` | `E^infinity_(0,2)` | `E^infinity_(1,1)` | `E^infinity_(2,0)` | total `H_2` |
+| ---: | ---: | ---: | ---: | ---: |
+| 3 | 2 | 0 | 2 | 4 |
+| 5 | 2 | 0 | 2 | 4 |
+| 7 | 2 | 0 | 3 | 5 |
+| 11 | 2 | 0 | 3 | 5 |
+| 13 | 2 | 0 | 4 | 6 |
+| 17 | 2 | 0 | 4 | 6 |
+
+Thus the direct filtration calculation agrees with the page-by-page
+calculation and locates all remaining growth in the two-cell zero row.  The
+positive stabilizer rows contribute exactly two classes, independently of
+the six audited levels.
 
 ## Exact extraction
 
@@ -110,7 +130,7 @@ vertical boundaries in `A_(0,1)`.  It verifies exactly that source vertical
 boundaries are cycles and that horizontal images are target vertical cycles.
 The compact table is
 `experiments/projective-derived-e1-horizontal.tsv`, with SHA-256
-`76d30492a7cc82649d12aa05c5a76d4bb5666b516f7854320d15fccf4cf91084`.
+`6a72a9221ad458232e97ee2a8127e67ee8dd8e2da3d0a933574394acc3fd1b81`.
 
 For the incoming rank it takes vertical cycles in `A_(2,1)`, applies the
 horizontal block into `A_(1,1)`, and measures the image modulo target
@@ -127,10 +147,16 @@ measured modulo the vertical and `d^1` denominator.  For `d^3`, add the
 direct filtered-complex calculations from `d2,d3`; no unexported degree-four
 boundary is needed to determine either image.
 
+The analyzer also computes the induced filtration on total homology
+directly.  For each `q`, it takes total cycles supported in cellular degrees
+at most `q`, adjoins the full row space of `d3`, and measures the rank gain.
+Successive differences give the displayed `E^infinity` grading.  This avoids
+assuming that the visible higher-page ranks exhaust total homology.
+
 ## Next exact task
 
 The middle of the second complex in the following display is exact on the
-first five charts, and the first complex plus its higher differential leaves
+first six charts, and the first complex plus its higher differential leaves
 only a two-dimensional residue.  Prove these observations uniformly and
 classify their integral splitting norms:
 

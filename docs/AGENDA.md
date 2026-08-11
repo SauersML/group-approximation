@@ -1028,18 +1028,21 @@ to the free harmonic lattice.  See
 `TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.
 
 The first positive horizontal complex has now been measured exactly.  On
-`p=3,5,7,11,13`, the map
+`p=3,5,7,11,13,17`, the map
 `H_1(D_8;F_2[X])->H_1(S_4;F_2[X])` has ranks
-`3,4,5,7,8=(p+3)/2`.  Its kernel has dimensions `5,7,8,11,13`, and the
+`3,4,5,7,8,10=(p+3)/2`.  Its kernel has dimensions `5,7,8,11,13,16`, and the
 incoming image from the two-cell `H_1` row has exactly those same ranks.
-Consequently `E^2_(1,1)=0` on all five charts: the growing edge-stabilizer
+Consequently `E^2_(1,1)=0` on all six charts: the growing edge-stabilizer
 homology is horizontally exact rather than a surviving obstruction.  The
 theorem target is to express this complex in orbitwise Shapiro bases, prove
 exactness with a bounded local splitting for every odd prime, and then
 analyze the two outer positive terms.  The latter audit is now also sharply
 favorable: after `d^1` and `d^2`, the growing vertex `H_2` term has dimension
-exactly two at all five levels; `d^3` is zero, so this fixed local residue is
-the entire positive contribution at `E^infinity`.  The live task is a
+exactly two at all six levels; `d^3` is zero, so this fixed local residue is
+the entire positive contribution at `E^infinity`.  Direct intersection of
+the total cycle space with the cellular filtration independently gives
+graded dimensions `(2,0,2),(2,0,2),(2,0,3),(2,0,3),(2,0,4),(2,0,4)`.
+Thus all remaining mod-two growth lies in the two-cell zero row.  The live task is a
 uniform orbitwise proof with bounded integral splittings, not control of a
 growing positive-row rank.  See `TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
 
