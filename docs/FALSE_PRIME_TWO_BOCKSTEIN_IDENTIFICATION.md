@@ -267,3 +267,58 @@ vanishing is an exact algebraic elimination of the branch, not by itself a
 uniform decoder estimate.  Once such norm control is available, any
 remaining escape lies in an individual rational Fourier sector, where the
 deck Fourier-frame theorem applies.
+
+## 8. The radical augmentation module is torsion-free cyclotomically
+
+The cyclotomic orbit theorem identifies the known radical submodule before
+any Bockstein computation.  Put
+
+`R_p=Z[C_p]=Z[t]/(t^p-1)`,
+`I_p=Aug_Z(C_p)=(t-1)R_p`.                             `(BTI29)`
+
+The deck orbit of `[w]` is a copy of `I_p`.  Its ordinary and cyclotomic
+coinvariants have opposite arithmetic behavior.
+
+**Proposition 4 (augmentation coefficient contrast).**
+
+`(I_p)_(C_p)=I_p/(t-1)I_p ~= Z/pZ`,                   `(BTI30)`
+
+whereas for the nontrivial cyclotomic character,
+
+`(I_p tensor_Z O_chi)_(C_p) ~= O_p`                   `(BTI31)`
+
+as an abelian group.  In particular `(BTI31)` has no `varpi`-torsion.  Under
+the natural map induced by `I_p<=R_p` into the twisted regular orbit, its
+image is the principal ideal
+
+`(zeta_p-1)O_p=varpi O_p`.                             `(BTI32)`
+
+**Proof.**  Multiplication by `t-1` gives an `R_p`-module isomorphism
+
+`R_p/(1+t+...+t^(p-1)) ~= I_p`.                       `(BTI33)`
+
+Taking ordinary coinvariants sets `t=1`; the remaining relation in
+`(BTI33)` becomes `p=0`, proving `(BTI30)`.
+
+For diagonal twisted coinvariants, tensoring over `R_p` evaluates `t` at
+`zeta_p^(-1)` (the inverse depends only on the left/right convention).  The
+norm polynomial in `(BTI33)` vanishes at that value, so
+
+`I_p tensor_(R_p) O_(chi^(-1)) ~= O_p`,               `(BTI34)`
+
+which is `(BTI31)`.  The inclusion `I_p<=R_p` sends its generator `t-1`
+to `zeta_p^(-1)-1`, a unit multiple of `varpi`, proving `(BTI32)`.  End
+proof.
+
+At `p=2`, Proposition 4 says that the anti-invariant radical line becomes
+ordinary `C_2` torsion after adjoining the involution, while in sign
+coefficients it remains an infinite cyclic line.  More generally, the
+known radical augmentation module has an ordinary `p`-torsion coinvariant
+but no cyclotomic `varpi`-torsion at the isolated module level.
+
+This does not prove that the ordinary coinvariant injects into the full
+`H_1(Y;Z)`, nor that `H_1(Y;O_chi)[varpi]` vanishes.  Additional
+relation-module summands and the five-term transgression still have to be
+audited.  It does prove that the explicit radical orbit, considered by
+itself, has no cyclotomic primary torsion; a simultaneous obstruction in
+`(BTI26)` needs additional homological input.
