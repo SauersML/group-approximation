@@ -103,6 +103,23 @@ def decode_word(encoded):
     ]
 
 
+def matrix_commutator(left, right):
+    return gf2_mul(
+        gf2_mul(gf2_mul(left, right), gf2_inv(left)), gf2_inv(right))
+
+
+def exposing_generator(projections, generators):
+    identity_key = matrix_key(I4)
+    for generator in generators:
+        factor, matrix = generator[0]
+        projection = projections[factor - 1]
+        if (matrix_key(projection) != identity_key
+                and matrix_key(matrix_commutator(
+                    matrix, projection)) != identity_key):
+            return generator
+    raise AssertionError("nontrivial projection pair has no exposing generator")
+
+
 class ImplicitModel:
     def __init__(self, ordered, ordered_index, device):
         self.ordered = ordered
@@ -163,9 +180,10 @@ def run(args):
     satisfied = []
     for word in words:
         projections = factor_projections(word)
-        target = (failing if any(matrix_key(value) != identity_key
-                                 for value in projections) else satisfied)
-        target.append(word)
+        if any(matrix_key(value) != identity_key for value in projections):
+            failing.append((word, projections))
+        else:
+            satisfied.append(word)
     if len(failing) != 234:
         raise AssertionError("artifact does not have the radius-five boundary")
 
@@ -183,8 +201,9 @@ def run(args):
     probe_norm = float(probe.numel())
     constraints = []
     for _ in range(args.batch_size // 2):
+        failing_word, projections = random.choice(failing)
         constraints.append(commutator(
-            random.choice(generators), random.choice(failing)))
+            exposing_generator(projections, generators), failing_word))
         constraints.append(commutator(
             random.choice(generators), random.choice(satisfied)))
     history = []
