@@ -44,6 +44,15 @@ be the unimodular gluing isomorphism of Proposition 1 in the discriminant
 note.  Write `rho_K(c)` and `rho_L(gamma_n(c))` for the corresponding
 shortest-coset radii.
 
+Let `A_n^dagger:W_n->ker(A_n)^perp` be the Moore--Penrose inverse and define
+the paired ellipsoidal radius
+
+`rho_(A,L)(d)=min{||A_n^dagger a||_2:
+                  a in L_n^#, a+L_n=d}`.              `(DPI4a)`
+
+Unlike the Euclidean radius `rho_L`, this is the exact metric seen by phase
+repair in the domain.
+
 The additive phase defect and repair distance are
 
 `def_n(x)=dist_(F,n)(A_n x,Z^(m_n))`,                   `(DPI5)`
@@ -64,13 +73,14 @@ for one constant `C`.  For relator matrices of a fixed finite presentation,
 
 `def_n(x_c)<=rho_K(c)/sqrt(m_n)`,                       `(DPI8)`
 
-`rep_n(x_c)>=rho_L(gamma_n(c))/(C sqrt(m_n))`.          `(DPI9)`
+`rep_n(x_c)=rho_(A,L)(gamma_n(c))/sqrt(e_n)`
+`          >=rho_L(gamma_n(c))/(C sqrt(m_n))`.          `(DPI9)`
 
 Consequently, if classes `0!=c_n in D_(K,n)` satisfy
 
 `rho_K(c_n)/sqrt(m_n)->0`,                              `(DPI10)`
 
-`liminf_n rho_L(gamma_n(c_n))/sqrt(m_n)>0`,             `(DPI11)`
+`liminf_n rho_(A,L)(gamma_n(c_n))/sqrt(e_n)>0`,         `(DPI11)`
 
 then the induced torus maps have approximate zeros with vanishing normalized
 defect which remain a fixed normalized distance from every exact zero.
@@ -91,6 +101,13 @@ Choose `x_c` perpendicular to `ker(A_n)` with
 
 `A_n x_c=a=z-u`.                                       `(DPI15)`
 
+We may change `a` by any element of `L_n` and change `x_c` by its canonical
+`A_n^dagger` lift without changing `(DPI13)` or the class.  Choose this
+translate to minimize the ellipsoidal norm.  The exact quotient-norm formula
+for circle repair then gives
+
+`rep_n(x_c)=rho_(A,L)(gamma_n(c))/sqrt(e_n)`.           `(DPI15a)`
+
 The integer vector `z` is an admissible competitor in `(DPI5)`, so
 
 `def_n(x_c)<=||u||_2/sqrt(m_n)`,                        `(DPI16)`
@@ -101,7 +118,7 @@ If `y` is any exact phase table, then `A_n y` belongs to
 
 `W_n intersect Z^(m_n)=L_n`.                            `(DPI17)`
 
-Equations `(DPI14)--(DPI15)` therefore give
+Equations `(DPI14)--(DPI15)` also give
 
 `||A_n(x_c-y)||_2>=rho_L(gamma_n(c))`.                  `(DPI18)`
 
@@ -112,20 +129,53 @@ After normalizing and applying `(DPI7)`,
 Taking the infimum over exact `y` proves `(DPI9)`.  The final assertion is
 immediate.  End proof.
 
+The defect side is exact as well if one retains the lower envelope rather
+than only its easiest upper bound.  Among the finitely many ellipsoidal
+shortest representatives used in `(DPI15a)`, choose `a_c` with least
+distance to `Z^(m_n)` and put
+
+`delta_A(c)=dist_2(a_c,Z^(m_n))`.                       `(DPI19a)`
+
+If `d_(gamma d)(a_c)` denotes Euclidean distance from `a_c` to the coset
+`gamma(d) subset L_n^#`, the nonlinear discriminant formula gives
+
+`delta_A(c)^2=min_(d in D_(K,n))`
+`  (d_(gamma d)(a_c)^2+rho_K(d)^2)`.                  `(DPI19b)`
+
+For `d=c` the first summand is zero, so
+
+`delta_A(c)<=rho_K(c)`.                                `(DPI19c)`
+
+Thus the canonical phase table has the exact paired geometry
+
+`def_n(x_c)=delta_A(c)/sqrt(m_n)`,
+`rep_n(x_c)=rho_(A,L)(gamma_n(c))/sqrt(e_n)`.          `(DPI19d)`
+
 The conclusion is unchanged after passing from additive geodesic distance
 on `R/Z` to chordal distance on `T`, up to universal constants.  Integer
 translations of `x_c-y` do not weaken `(DPI9)`: applying `A_n` merely changes
 the competitor in `L_n` by an element of `A_n(Z^(e_n)) subset L_n`.
 
-**Corollary 2 (scale-sharp metric criterion).**  Under `(DPI7)`, the paired
-discriminant construction produces a macroscopic phase-repair instability
-whenever
+**Corollary 2 (exact paired criterion).**  The canonical paired microstates
+have vanishing defect and macroscopic repair distance exactly when
 
-`rho_K(c_n)=o(sqrt(m_n))`
+`delta_A(c_n)=o(sqrt(m_n))`
 
 and
 
-`rho_L(gamma_n(c_n))=Omega(sqrt(m_n))`.                 `(DPI20)`
+`rho_(A,L)(gamma_n(c_n))=Omega(sqrt(e_n))`.             `(DPI20)`
+
+The easier-to-check sufficient condition for the first line is
+
+`rho_K(c_n)=o(sqrt(m_n))`
+
+by `(DPI19c)`.
+
+Under `(DPI7)`, the simpler Euclidean condition
+
+`rho_L(gamma_n(c_n))=Omega(sqrt(m_n))`                 `(DPI20a)`
+
+is sufficient for the second half of `(DPI20)`.
 
 In particular, divergence of
 
@@ -180,8 +230,9 @@ For a discriminant representative `(DPI13)`, take the canonical lift
 
 where `A_n^dagger` is the Moore--Penrose inverse.  This is exactly the
 choice perpendicular to `ker(A_n)` made in `(DPI15)`.  Thus all three tests
-below are finite lattice/linear-algebra computations: `rho_K(c)`,
-`rho_L(gamma_n(c))`, and `mu_(w,n)(x_c)`.
+below are finite lattice/linear-algebra computations: `rho_K(c)`, the exact
+ellipsoidal radius `rho_(A,L)(gamma_n(c))`, and `mu_(w,n)(x_c)`.  The
+Euclidean `rho_L` gives the cheaper sufficient test `(DPI20a)`.
 
 **Theorem 3 (marked discriminant criterion).**  In the situation above,
 let
@@ -219,7 +270,7 @@ search criterion supplied by discriminant duality.
 Thus the discriminant program has a sharp FALSE-side certificate:
 
 1. a microscopic cycle-side radius `(DPI10)`;
-2. a macroscopic glued range-side radius `(DPI11)`;
+2. a macroscopic glued ellipsoidal range-side radius `(DPI11)`;
 3. a fixed-word evaluation `(DPI25)` on a known sofic-radical word.
 
 Items 1 and 2 prove nonliftable phase microstates.  Items 1 and 3 prove the
