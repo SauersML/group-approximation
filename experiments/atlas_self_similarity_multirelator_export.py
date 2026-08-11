@@ -27,7 +27,10 @@ def main():
     parser.add_argument("perfect_overlap_json")
     parser.add_argument("--bundle", required=True)
     parser.add_argument("--relative", required=True)
+    parser.add_argument("--multiplicity", type=int, default=1)
     args = parser.parse_args()
+    if args.multiplicity < 1:
+        raise ValueError("multiplicity must be positive")
     with open(args.perfect_overlap_json, encoding="utf-8") as stream:
         scan = json.load(stream)
     if scan["radius"] != 5 or not scan["boundary_only"]:
@@ -64,17 +67,29 @@ def main():
     if np.linalg.norm(phase_value - 1j * np.eye(64)) > 1e-10:
         raise AssertionError("exported alignment lost the exact phase")
 
+    multiplicity_identity = np.eye(args.multiplicity, dtype=np.complex128)
+    dimension = 64 * args.multiplicity
     maximum_length = max(map(len, words))
     factors = np.zeros((len(words), maximum_length), dtype=np.int8)
     matrices = np.zeros(
-        (len(words), maximum_length, 64, 64), dtype=np.complex128)
+        (len(words), maximum_length, dimension, dimension),
+        dtype=np.complex128)
     lengths = np.array(list(map(len, words)), dtype=np.int16)
+    representation_cache = {}
     for word_index, word in enumerate(words):
         for position, (factor, matrix) in enumerate(word):
             factors[word_index, position] = factor
-            matrices[word_index, position] = representation(matrix)
+            key = matrix_key(matrix)
+            if key not in representation_cache:
+                represented = np.asarray(
+                    representation(matrix), dtype=np.complex128).reshape(64, 64)
+                representation_cache[key] = np.kron(
+                    multiplicity_identity, represented)
+            matrices[word_index, position] = representation_cache[key]
 
-    relative_array = np.asarray(relative, dtype=np.complex128).reshape(64, 64)
+    relative_block = np.asarray(
+        relative, dtype=np.complex128).reshape(64, 64)
+    relative_array = np.kron(multiplicity_identity, relative_block)
     np.save(args.relative, relative_array)
     np.savez(
         args.bundle,
@@ -89,7 +104,9 @@ def main():
         "certified_cyclic_classes": len(representatives),
         "certified_representative_indices": source_indices[:-1],
         "phase_boundary_index": phase_index,
-        "phase_target": "i I_64",
+        "phase_target": f"i I_{dimension}",
+        "multiplicity": args.multiplicity,
+        "dimension": dimension,
         "maximum_word_length": maximum_length,
         "bundle": args.bundle,
         "relative": args.relative,

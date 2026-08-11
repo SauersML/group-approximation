@@ -25,8 +25,8 @@ class MultiRelatorProblem:
         self.dimension = self.matrices.shape[-1]
         if len(self.lengths) != 25 or len(self.targets) != 25:
             raise ValueError("expected 24 zero classes plus one phase class")
-        if self.dimension != 64:
-            raise ValueError("expected the amplified 64-dimensional atlas model")
+        if self.dimension % 64:
+            raise ValueError("atlas model dimension must be a multiple of 64")
         self.identity = torch.eye(self.dimension, dtype=torch.complex128)
 
     def values(self, relative):
