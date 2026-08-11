@@ -330,6 +330,35 @@ class satisfies `(DPI31)`.  Under `(DPI32)`, its defect tends to zero by
 `(DPI8)`, while `(DPI31)` is the marked condition `(DPI25)`.  Theorem 3
 finishes the proof.  End proof.
 
+The worst-case radius in `(DPI32)` can be replaced by an average.
+
+**Theorem 4A (second-moment pruning).**  Retain the character hypothesis of
+Theorem 4 with one fixed `delta>0`.  It is enough to assume
+
+`(1/|C_n|) sum_(c in C_n) rho_K(c)^2=o(m_n)`.          `(DPI35a)`
+
+Under `(DPI35a)`, a hyperlinear nonsofic group exists.
+
+**Proof.**  Put
+
+`epsilon_n=((1/(m_n|C_n|))`
+`  sum_(c in C_n)rho_K(c)^2)^(1/4)->0`                `(DPI35b)`
+
+and call a class good when
+
+`rho_K(c)<=epsilon_n sqrt(m_n)`.                       `(DPI35c)`
+
+Markov's inequality says that the bad fraction is at most
+`epsilon_n^2`, hence tends to zero.  The exact character average in
+`(DPI35)` gives total marked energy at least `2 delta |C_n|`.  Since each
+class has marked energy at most `4`, deleting the bad classes removes only
+`o(|C_n|)` energy.  Some good class therefore has
+
+`mu_(w,n)(x_c)^2>=delta`                               `(DPI35d)`
+
+for all large `n`.  Its relator defect is at most `epsilon_n` by
+`(DPI8)` and `(DPI35c)`.  Theorem 3 applies.  End proof.
+
 **Corollary 5 (transitive one-coordinate test).**  Suppose a group of chart
 symmetries acts transitively on the `N_n` word-evaluation coordinates,
 preserves `C_n`, and makes the coordinate characters in `(DPI29)` one
@@ -338,10 +367,11 @@ nontrivial, then there is `c_n in C_n` with
 
 `mu_(w,n)(x_(c_n))>=sqrt(2)`.                          `(DPI36)`
 
-Consequently `(DPI32)` plus a single nonzero coordinate evaluation proves
-the desired FALSE result.  This replaces a macroscopic analytic estimate by
-two finite algebraic checks: microscopic covering radius of `C_n` on the
-cycle side, and nonvanishing of one discriminant character.
+Consequently either `(DPI32)` or the weaker mean-square condition
+`(DPI35a)`, together with a single nonzero coordinate evaluation, proves the
+desired FALSE result.  This replaces a macroscopic analytic estimate by two
+finite algebraic checks: microscopic discriminant energy on `C_n` and
+nonvanishing of one discriminant character.
 
 **Corollary 6 (low-rank harmonic test).**  Let
 

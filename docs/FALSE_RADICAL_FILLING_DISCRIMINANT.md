@@ -201,7 +201,8 @@ Its discriminant Gram matrix is
 finite covers of the fixed presentation `(RFD6)`, with numbers of relator
 cells `m_n`.  Suppose
 
-`max_(c in C_(w,X_n)) rho_(K_Xn)(c)/sqrt(m_n)->0`,    `(RFD28)`
+`(1/|C_(w,X_n)|) sum_(c in C_(w,X_n))`
+`  rho_(K_Xn)(c)^2=o(m_n)`,                           `(RFD28)`
 
 and for every sufficiently large `n` the matrix `(RFD27)` has a nonintegral
 entry.  Then a hyperlinear nonsofic group exists.
@@ -209,21 +210,58 @@ entry.  Then a hyperlinear nonsofic group exists.
 **Proof.**  A nonintegral entry says that the coordinate character
 represented by `q_(w,x)` is nontrivial on the generator `c_(w,y)` of the
 filling code.  Deck transitivity makes all coordinate characters one orbit
-and preserves `C_(w,X_n)`.  Hence Corollary 5 of
-`FALSE_DISCRIMINANT_PHASE_INSTABILITY.md` supplies a class in the filling
-code whose normalized word displacement is at least `sqrt(2)`.  Condition
-`(RFD28)` makes its relator defect tend to zero.  The resulting tracial
+and preserves `C_(w,X_n)`.  Theorem 4A of
+`FALSE_DISCRIMINANT_PHASE_INSTABILITY.md` prunes the classes of large radius
+and supplies a remaining microscopic class whose normalized word
+displacement is bounded away from zero.  The resulting tracial
 matrix-ultraproduct image retains `w in Rad_sof(H)`, so it is hyperlinear
 and nonsofic.  End proof.
+
+The stronger covering-radius condition
+
+`max_(c in C_(w,X_n))rho_(K_Xn)(c)=o(sqrt(m_n))`      `(RFD28a)`
+
+implies `(RFD28)`, but is not necessary.
+
+The nonintegral-entry gate also has a determinant-size certificate.
+
+**Theorem 6 (isotropic-size obstruction).**  Let
+
+`D_X=K_X^#/K_X`, `Delta_X=|D_X|`.                     `(RFD31)`
+
+If every entry of `(RFD27)` is integral, then
+
+`|C_(w,X)|^2<=Delta_X`.                               `(RFD32)`
+
+Consequently,
+
+`|C_(w,X)|^2>Delta_X`                                 `(RFD33)`
+
+forces a nonintegral Gram entry.  In particular, if the filling classes
+generate `D_X!=0`, then the marked character is nonzero.
+
+**Proof.**  The discriminant pairing on `L_X^#/L_X` is nondegenerate.
+Equation `(RFD19)` and the definition `(RFD27)` say that integrality of all
+Gram entries is exactly the assertion that `gamma_X(C_(w,X))` is a totally
+isotropic subgroup.  For a subgroup `C` of a finite group with a perfect
+pairing,
+
+`|C| |C^perp|=|D_X|`.                                 `(RFD34)`
+
+Total isotropy gives `C<=C^perp`, and hence `(RFD32)`.  Its contrapositive
+is `(RFD33)`.  If `C=D_X!=0`, nondegeneracy rules out total isotropy of all
+of `D_X`.  End proof.
 
 The theorem is exact and finite at each stage.  The two quantities to
 certify are:
 
-1. the metric covering radius of the finite filling code in `(RFD28)`;
+1. the mean squared discriminant radius of the finite filling code in
+   `(RFD28)`;
 2. one nonzero entry of the rational matrix `(RFD27)` modulo `Z`.
 
 No full discriminant enumeration is necessary for item 2.  The vectors in
-`(RFD27)` are obtained by solving the real linear systems `(RFD21)`.
+`(RFD27)` are obtained by solving the real linear systems `(RFD21)`, and
+Theorem 6 can replace those pairings by a Smith-order comparison.
 
 ## 6. Concrete Kun--Thom target and limitations
 
@@ -242,11 +280,10 @@ regular finite quotient chart of this presentation.  It converts the
 FALSE problem into the radical filling codes `(RFD26)`.
 
 This is not yet the complete proof.  Theorem 2 supplies integral fillings
-but no normalized bound `(RFD28)`.  Also, nontriviality of `w` does not by
-itself force `(RFD27)` to be nonintegral: the canonical coexact fillings
-could conceivably be integral in every finite cover.  These are now two
-separate, checkable assertions rather than one unspecified projective-sector
-problem.
+but no mean-square bound `(RFD28)`.  Also, nontriviality of `w` does not by
+itself force `(RFD27)` to be nonintegral: the filling code could conceivably
+be totally isotropic in every finite cover.  These are now two separate,
+checkable assertions rather than one unspecified projective-sector problem.
 
 The `p=53` projective `SL_3(Z)` harmonic quotient cannot be substituted
 directly: `SL_3(Z)` is residually finite and has trivial sofic radical.
