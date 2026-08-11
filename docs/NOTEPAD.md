@@ -38589,41 +38589,42 @@ the sofic-radical property forces `chi(z)=1`.  Characters separate the
 abelianization, proving the claim.  Thus normal coamenable character
 induction cannot manufacture the negative sector.
 
-## A coamenable action moving the central radical is already enough
+## Coamenability cannot move a central sofic-radical element
 
-Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  The scalar
-hypothesis above has an equivalent action formulation.  If `L<J` is
-coamenable and `z notin L`, then the quasi-regular
-representation on `ell^2(J/L)` has the hypertrace
+Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  The proposed
+coamenable action is impossible for a simpler reason than the scalar-sector
+analysis.
 
-`Phi(T)=m(x |-> <T delta_x,delta_x>)`,                  `(CAC3)`
+Let `J action X` be amenable and choose finite Følner sets `F_n`.  Restrict
+each `g in J` to the partial bijection
 
-where `m` is a `J`-invariant mean.  Centrality gives
+`F_n intersect g^(-1)F_n -> F_n intersect gF_n`         `(CAF4)`
 
-`z gL=gL iff z in L`,                                  `(CAC5)`
+and complete it arbitrarily to `sigma_n(g) in Sym(F_n)`.  On points for
+which `x,hx,ghx` remain in `F_n`, these completions satisfy
 
-so `z` fixes no coset and the induced amenable trace satisfies
-`tau(z)=0`.  Amenable-trace matrix microstates therefore give a hyperlinear
-image in which `z` survives.  That image is nonsofic because
-`z in Rad_sof(J)`.
+`sigma_n(g)sigma_n(h)x=sigma_n(gh)x`.                   `(CAF6)`
 
-For the central involution this is equivalent, not strictly weaker, than
-coamenable sign-character induction.  From `L`, the group
-`L^+=<L,z>=L times <z>` is coamenable and has the sign character
-`chi(lz^e)=(-1)^e`.  Conversely, the kernel of any coamenable character with
-`chi(z)=-1` is a coamenable subgroup omitting `z`.  Equivalently, the central
-extension splits over the image of `L` in `J/<z>`.  The gain is the direct
-fixed-point/trace formulation, not a weaker existence assumption.
+The bad proportion is bounded by the two Følner boundaries and tends to
+zero.  If `z` acts without fixed points on `X`, then every fixed point of
+`sigma_n(z)` lies in the `z`-boundary of `F_n`, so
 
-In particular, it is enough to prove that the cyclic shear `J` belongs to
-the Glasner--Monod class of groups with a faithful transitive amenable
-action.  In any such action the stabilizer omits `z`: if it contained the
-central `z`, then every conjugate stabilizer would contain `z`, contradicting
-faithfulness.  Moon's theorem for `F_2 *_Z F_2` and Fima's theorem for finite
-edge groups do not cover the shear's arbitrary nonsofic vertex data,
-infinite edge `C times C_2`, and twisted embedding.  The live combinatorial
-target is only to build a transitive amenable `J`-action on which `z` acts
-freely; this is exactly the action form of the sign-sector problem.
+`|Fix(sigma_n(z))|/|F_n| -> 0`.                         `(CAF8)`
+
+Thus the metric-ultraproduct image is a sofic group in which `z` survives.
+Consequently, if `z in Z(J) intersect Rad_sof(J)`, then **every** coamenable
+subgroup `L<J` contains `z`: otherwise centrality makes `z` fixed-point-free
+on `J/L`, contradicting `(CAF8)`.  In particular
+
+`J in calA  ==>  Z(J) intersect Rad_sof(J)={1}`.        `(CAF12)`
+
+This also closes the nonnormal character-induction loophole.  If a character
+of a coamenable subgroup satisfied `chi(z)=-1`, its finite-index kernel would
+still be coamenable and would omit `z`, which is impossible.  Hence no
+coamenable quasi-regular or monomial sector detects the cyclic shear's
+central radical involution.  An amenable negative representation, if one
+exists, must be genuinely nonmonomial; the other surviving target is a
+nonamenable Connes-embeddable trace.
 
 # The hyperlinear halo-action shortcut is circular (2026-08-10)
 
@@ -38747,8 +38748,10 @@ gives an amenable trace with `tau(u(x_i))<=3/4`.  Amenable-trace microstates
 therefore give a hyperlinear image retaining `x_i`; because
 `x_i in Rad_sof(H)`, that image is nonsofic.
 
-Thus a Moon--Fima construction of the desired shear action would solve the
-problem, but it cannot make trace separation emerge only after amalgamation:
-it has already built the needed amenable negative sector in a vertex.  The
-smaller action target is directly an amenable `H`-action with
-`m(Fix(x))<1`, not a class-`A` permanence theorem for the shear.
+The Følner-truncation theorem `(CAF1)--(CAF13)` already forbids the desired
+shear action outright, because `z` is a central element of
+`Rad_sof(J)`.  Conditionally, the calculation above explains where a
+hypothetical separation would already occur: it cannot emerge only after
+amalgamation, since it has already built an amenable negative sector in a
+vertex.  The associated analytic target is directly an amenable `H`-action
+with `m(Fix(x))<1`, not a class-`A` permanence theorem for the shear.

@@ -82,7 +82,18 @@ the amenable-trace hypothesis.  Any successful MF proof for `A_Mac` must
 therefore use a genuinely nonamenable but Connes-embeddable trace, as happens
 for the canonical trace of a nonamenable hyperlinear group.
 
-## 3. Normal coamenable induction cannot detect the radical sign
+## 3. Coamenable induction cannot detect the radical sign
+
+There is a general obstruction, proved in full in
+`FALSE_COAMENABLE_ACTION_CRITERION.md`.  If `L<J` is coamenable and
+`chi:L->T` satisfies `chi(z)!=1`, then `ker(chi)` is coamenable in `J` and
+omits `z`.  The amenable action on `J/ker(chi)` makes `z` fixed-point-free.
+Completing its restrictions to Følner sets produces a homomorphism to a
+metric ultraproduct of symmetric groups in which `z` survives.  This
+contradicts `(ANS1)`.  Thus no coamenable subgroup, normal or not, has a
+character detecting `z`.
+
+In the normal case there is the following stronger algebraic conclusion.
 
 There is a separate purely algebraic obstruction to inducing `(ANS2)` from
 a character.
@@ -107,11 +118,8 @@ Thus every character of `L` kills `z`.  Circle-valued characters separate
 points of every abelian group, so the image of `z` in `L_ab` is zero.  This
 is `(ANS6)`.  End proof.
 
-Consequently no kernel of an amenable quotient, and no finite-index normal
-subgroup, can supply the desired sign character for a monomial induced
-model.  A viable amenable negative sector would have to be genuinely
-nonmonomial, or be induced from a nonnormal coamenable subgroup where the
-normal monomial argument no longer applies.
+Consequently no coamenable character induction can supply the desired sign
+sector.  A viable amenable negative sector has to be genuinely nonmonomial.
 
 ## 4. Updated live boundary
 
@@ -121,10 +129,11 @@ The following routes are now sharply separated.
    must be nonamenable while remaining Connes embeddable.
 2. An amenable representation satisfying `(ANS2)` would solve the problem
    directly, but it cannot arise from an amenable trace on `A_Mac`.
-3. Character induction from a normal coamenable subgroup is impossible by
-   `(ANS6)`.
-4. The remaining representation-theoretic possibility is a nonnormal
-   coamenable negative sector, or a direct construction of a nonamenable
-   embeddable trace.
+3. Character induction from every coamenable subgroup is impossible by the
+   Følner-truncation obstruction `(CAF1)--(CAF13)`; `(ANS6)` strengthens this
+   algebraically for normal kernels of amenable quotients.
+4. The remaining representation-theoretic possibilities are a genuinely
+   nonmonomial amenable negative sector or a direct construction of a
+   nonamenable embeddable trace.
 
 No statement in this note proves that such a sector or trace exists.

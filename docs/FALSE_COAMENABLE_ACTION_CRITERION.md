@@ -1,149 +1,136 @@
-# FALSE lane: coamenable actions that move a central radical element
+# FALSE lane: coamenability cannot move a central sofic-radical element
 
 Date: 2026-08-10
 
-This note gives an action-theoretic reformulation of the amenable-negative-
-sector criterion in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  A transitive amenable
-permutation action gives the required trace whenever the central radical
-element moves one point, because centrality then makes it move every point.
-For a central involution this turns out to be equivalent to the induced-sign-
-character formulation, not strictly weaker; the equivalence is proved below.
+This note corrects the earlier proposal to detect a central sofic-radical
+element in a coamenable coset action.  Such an action cannot exist.  Følner
+truncation turns any fixed-point-free element of an amenable action into a
+nontrivial element of a sofic image.
 
-Throughout, let `J` be countable and let
+Throughout, let `J` be a countable group and write
 
-`1 != z in Z(J) intersect Rad_sof(J)`.                         `(CAC1)`
+`Rad_sof(J)=intersection_(phi:J->S, S sofic) ker(phi)`.         `(CAF1)`
 
-Here `Rad_sof(J)` is the intersection of the kernels of all homomorphisms
-from `J` to sofic groups.
+## 1. Følner truncation detects a fixed-point-free element
 
-## 1. The coamenable-subgroup criterion
+**Theorem.**  Let `J action X` be an amenable action on a countable set.  If
+`z in J` acts without fixed points on `X`, then
 
-**Theorem.**  Suppose that `J` has a coamenable subgroup `L` such that
+`z notin Rad_sof(J)`.                                         `(CAF2)`
 
-`z notin L`.                                                   `(CAC2)`
+**Proof.**  Choose a Følner sequence of nonempty finite sets `F_n subset X`,
+diagonalized over `J`, so that
 
-Then a hyperlinear nonsofic group exists.
+`|g F_n triangle F_n|/|F_n| -> 0` for every `g in J`.         `(CAF3)`
 
-**Proof.**  Let `X=J/L`, let `u:J->U(ell^2(X))` be the quasi-regular
-representation, and choose a `J`-invariant mean `m` on `X`.  Define a state
-on `B(ell^2(X))` by
+For each `g in J`, its action restricts to a bijection
 
-`Phi(T)=m(x |-> <T delta_x,delta_x>)`.                         `(CAC3)`
+`D_(g,n)=F_n intersect g^(-1)F_n  ->  R_(g,n)=F_n intersect gF_n`.
+                                                                    `(CAF4)`
 
-Conjugation by `u(g)` translates the diagonal function in `(CAC3)`.
-Invariance of `m` therefore gives
+The two complements in `F_n` have equal cardinality, so complete `(CAF4)`
+arbitrarily to a permutation `sigma_n(g) in Sym(F_n)`.
 
-`Phi(u(g) T u(g)^*)=Phi(T)`, `g in J`.                        `(CAC4)`
+Fix `g,h in J`.  If
 
-Consequently the restriction `tau=Phi|_(C^*(u(J)))` is tracial: `(CAC4)`
-allows each generating unitary to be moved cyclically across an arbitrary
-element, and linearity and norm density finish the argument.  The state
-`Phi` is a hypertrace extending `tau`, so `tau` is an amenable trace.
+`x, h x, gh x in F_n`,                                      `(CAF5)`
 
-Centrality and `(CAC2)` imply that `z` fixes no point of `X`.  Indeed,
+then all three relevant partial maps in `(CAF4)` are unchanged by completion
+and
 
-`z gL=gL  iff  g^(-1) z g=z in L`,                            `(CAC5)`
+`sigma_n(g)sigma_n(h)x=ghx=sigma_n(gh)x`.                   `(CAF6)`
 
-which never occurs.  Thus
+The complement of `(CAF5)` has relative size at most
 
-`tau(u(z))=m(Fix_X(z))=0`                                    `(CAC6)`
+`|hF_n triangle F_n|/|F_n|`
+`  + |ghF_n triangle F_n|/|F_n| -> 0`.                      `(CAF7)`
 
-and, since `z` is an involution in the cyclic-shear application,
+Thus `(sigma_n)` is pointwise asymptotically multiplicative.  It defines a
+homomorphism from `J` to a metric ultraproduct of finite symmetric groups.
 
-`||u(z)-1||_tau^2=2`.                                        `(CAC7)`
+On `D_(z,n)`, the permutation `sigma_n(z)` agrees with the original action
+of `z`, which has no fixed points.  Hence every fixed point introduced by
+the arbitrary completion lies in `F_n minus D_(z,n)`, and
 
-The matrix characterization of amenable traces supplies u.c.p. maps from
-`C^*(u(J))` to matrices which recover `tau` and are asymptotically
-multiplicative in normalized Hilbert--Schmidt norm.  Polar correction on a
-countable diagonal sequence gives a homomorphism from the GNS image of
-`u(J)` to a tracial matrix ultraproduct.  Equation `(CAC7)` says that the
-image of `z` is nontrivial.  This countable image group is hyperlinear.
+`|Fix(sigma_n(z))|/|F_n|`
+` <= |zF_n triangle F_n|/|F_n| -> 0`.                        `(CAF8)`
 
-If the image group were sofic, the composite homomorphism from `J` to it
-would have to kill `z` by `(CAC1)`, contradicting `(CAC7)`.  Hence the image
-is hyperlinear and nonsofic.  End proof.
+The ultraproduct image of `z` is therefore nontrivial.  The countable image
+group is sofic, so the composite map from `J` to that image witnesses
+`(CAF2)`.  End proof.
 
-The involution assumption is inessential: for a general central `z`,
-`(CAC6)` still gives
-`||u(z)-1||_tau^2=2-2 Re(tau(u(z)))=2`.
+The argument needs no centrality.  Centrality enters only when a coset action
+must be shown fixed-point-free.
 
-## 2. Faithful transitive amenable actions are enough
+## 2. Central radical elements lie in every coamenable subgroup
 
-Let `calA` denote the Glasner--Monod class of countable groups admitting a
-faithful, transitive, amenable action on a countable set.
+**Corollary.**  If
 
-**Corollary.**  Under `(CAC1)`, if `J in calA`, then a hyperlinear nonsofic
-group exists.
+`z in Z(J) intersect Rad_sof(J)`                              `(CAF9)`
 
-**Proof.**  Write the action as `J action J/L`.  Faithfulness means that the
-core `intersection_(g in J) g L g^(-1)` is trivial.  If the central element
-`z` belonged to `L`, it would belong to every conjugate of `L` and hence to
-the core.  This contradicts `z!=1`.  Therefore `(CAC2)` holds and the theorem
-applies.  End proof.
+and `L<J` is coamenable, then
 
-For a central involution, this criterion is exactly equivalent to the
-coamenable induced-sign-character criterion.
+`z in L`.                                                     `(CAF10)`
 
-**Proposition.**  The following are equivalent:
+**Proof.**  The action `J action J/L` is amenable.  If `z notin L`, then for
+every coset
 
-1. there is a coamenable subgroup `L<J` with `z notin L`;
-2. there is a coamenable subgroup `L^+<J` and a character
-   `chi:L^+->{+-1}` with `chi(z)=-1`.
+`z gL=gL  iff  g^(-1)zg=z in L`,                             `(CAF11)`
 
-**Proof.**  From (1), put `L^+=<L,z>`.  Centrality, `z^2=1`, and
-`z notin L` give `L^+=L times <z>`.  A supergroup of a coamenable subgroup
-is coamenable, by pushing the invariant mean from `J/L` to `J/L^+`.  The
-formula
+where centrality was used.  Thus `z` acts without fixed points, contradicting
+the theorem and `(CAF9)`.  End proof.
 
-`chi(l z^e)=(-1)^e`                                      `(CAC8)`
+In particular, a group in the Glasner--Monod class `calA` of faithful,
+transitive, amenable actions has
 
-is therefore the required character.  Conversely, from (2) put
-`L=ker(chi)`.  It has finite index in `L^+`, hence is coamenable in `L^+`;
-coamenability is transitive, so `L` is coamenable in `J`.  Since
-`chi(z)=-1`, one has `z notin L`.  End proof.
+`Z(J) intersect Rad_sof(J)={1}`.                              `(CAF12)`
 
-Thus `(CAC2)` removes scalarity from the proof, but not from the existence
-problem: inducing `(CAC8)` recovers a scalar negative sector, while taking
-its sign kernel recovers the fixed-point-free transitive action.  In quotient
-language, `(CAC2)` also says that the central extension splits over the image
-of `L` in `J/<z>`.
+Indeed, a nontrivial central element acts fixed-point-freely in every faithful
+transitive action: if it fixed one point, centrality and transitivity would
+make it fix all points.
 
-## 3. Application boundary for the cyclic shear
+## 3. All coamenable monomial negative sectors are impossible
 
-For the cyclic shear
+Suppose `z` is a central involution satisfying `(CAF9)`, `L<J` is
+coamenable, and `chi:L->{+-1}` is a character with `chi(z)=-1`.  Its kernel
+`K=ker(chi)` has finite index in `L`, hence is coamenable in `L`; by
+transitivity of coamenability, `K` is coamenable in `J`.  But `z notin K`,
+contradicting `(CAF10)`.  Therefore
 
-`J=(G times C_2) *_((C times C_2,id),(C times C_2,alpha))`
+> no character of any coamenable subgroup can induce a negative scalar
+> sector for a central element of the full sofic radical.      `(CAF13)`
 
-from `FALSE_MACKEY_SECTOR.md`, the central involution `z` satisfies `(CAC1)`.
-Therefore either of the following would finish the FALSE lane:
+Normality is unnecessary.  The normal-coamenable commutator theorem in
+`FALSE_AMENABLE_SECTOR_AUDIT.md` remains a stronger algebraic conclusion in
+its narrower setting, but nonnormality does not evade the representation
+obstruction.
 
-1. prove directly that `J` has a coamenable subgroup omitting `z`;
-2. prove the stronger statement `J in calA`.
+## 4. Consequence for the cyclic shear
 
-The currently located class-`calA` theorems do not establish this.  Moon,
-*Amenable actions of amalgamated free products* (arXiv:0810.2456), proves
-the result for doubles `F_2 *_Z F_2` with cyclic amalgam.  Fima,
-*Amenable, transitive and faithful actions of groups acting on trees*
-(arXiv:1202.6467), treats amalgamation over a finite subgroup under
-almost-free amenable-action hypotheses on the vertex groups.  The shear has
-an infinite edge `C times C_2`, arbitrary nonsofic data in its vertex group,
-and a twisted edge embedding.  Thus neither theorem applies as stated.
+For the cyclic shear `J` of `FALSE_MACKEY_SECTOR.md`, the central involution
+`z` belongs to `Rad_sof(J)`.  Hence:
 
-The precise equivalent group-action problem is
+1. every coamenable subgroup of `J` contains `z`;
+2. `J` does not admit a faithful transitive amenable action;
+3. the class-`calA` theorems of Moon, Fima, and Azuelos--Gaboriau cannot
+   apply in a way that moves `z`;
+4. no quasi-regular or coamenably induced monomial representation supplies
+   the negative sector.
 
-> construct an invariant mean on one transitive `J`-set on which the central
-> involution `z` acts freely.
+The amenable-negative-sector criterion from
+`FALSE_AMENABLE_SECTOR_AUDIT.md` is still valid for an arbitrary amenable
+unitary representation with `pi(z)=-1`.  This note proves that such a
+representation, if it exists, must be genuinely nonmonomial: it cannot arise
+by inducing a character from a coamenable subgroup.  The exact Mackey model
+is nonamenable, so the surviving FALSE target remains a nonamenable
+Connes-embeddable trace or a genuinely nonmonomial amenable negative sector.
 
-This is weaker than constructing a faithful action, but equivalent to the
-coamenable induced-sign sector in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  Its
-advantage is a direct fixed-point/trace formulation, not a weaker existence
-hypothesis.  No construction of that action is currently proved here.
+## 5. A hypothetical shear action already separates a vertex witness
 
-## 4. The shear action collapses back to the original radical witness
-
-There is a further quantitative restriction which is easy to miss.  Let `m`
-be a `J`-invariant mean on an arbitrary `J`-set `X`, and define the invariant
-Hamming pseudometric
+Although `(CAF2)` already rules out a fixed-point-free amenable action of the
+cyclic shear, the collaborator's displacement computation gives a useful
+quantitative localization of the same failed route.  Let `m` be a
+`J`-invariant mean on an arbitrary `J`-set `X`, and define
 
 `d_m(g,h)=m({x in X : gx != hx})`.                         `(CAC9)`
 
@@ -157,10 +144,9 @@ where each `x_i` is the copy of the original nontrivial element
 
 `max(d_m(x_1,1),d_m(x_2,1)) >= 1/4`.                     `(CAC11)`
 
-Consequently the restricted action of one vertex copy of `H` already gives
-an amenable trace whose hyperlinear image retains the original radical
-witness `x`.  In particular, it already gives a hyperlinear nonsofic group
-without using the shear.
+Consequently, even before applying `(CAF2)`, the restricted action of one
+vertex copy of `H` already gives an amenable trace whose hyperlinear image
+retains the original radical witness `x`.
 
 **Proof.**  Invariance of `m` makes `(CAC9)` bi-invariant.  Since `z` acts
 freely, `d_m(z,1)=1`.  The triangle inequality and `(CAC10)` give
@@ -179,9 +165,9 @@ Applying `(CAC13)` to `r_i=[x_i,a_i]` in `(CAC12)` yields
 
 which proves `(CAC11)`.
 
-Restrict the action and the invariant mean to the vertex copy of `H`
-selected by `(CAC11)`.  The diagonal-state construction `(CAC3)` gives an
-amenable trace `tau_H` on its permutation image, and
+Restrict the action and invariant mean to the vertex copy of `H` selected by
+`(CAC11)`.  The diagonal-state construction gives an amenable trace `tau_H`
+on its permutation image, and
 
 `tau_H(u(x_i))=m(Fix_X(x_i))=1-d_m(x_i,1) <= 3/4`.       `(CAC15)`
 
@@ -190,14 +176,10 @@ amenability of `tau_H`.  If that image were sofic, the homomorphism from `H`
 to it would kill `x_i in Rad_sof(H)`, contradicting `(CAC15)`.  The image is
 therefore hyperlinear and nonsofic.  End proof.
 
-This does not invalidate the coamenable-action criterion.  It shows that a
-Moon--Fima-style construction cannot make the hard trace separation appear
-only after amalgamation: any successful fixed-point-free `z` action has
-already produced positive mean displacement of the original radical element
-in one vertex.  The truly smaller action-theoretic target is therefore
-
-> construct an amenable action of `H` with an invariant mean `m` such that
-> `m(Fix_X(x))<1` for one nontrivial `x in Rad_sof(H)`.
-
-That target is exactly the permutation form of the amenable negative-sector
-criterion, not a new permanence theorem for the shear.
+This proposition is conditional: `(CAF2)` says that its hypothesis cannot
+hold for the cyclic shear because `z in Rad_sof(J)`.  Its value is to show
+where the hypothetical separation would already occur.  It cannot emerge
+only after amalgamation; it is already present as positive mean displacement
+of the original radical element in one vertex.  The associated analytic
+target is an amenable `H`-action with an invariant mean `m` satisfying
+`m(Fix_X(x))<1`, not a class-`calA` permanence theorem for the shear.

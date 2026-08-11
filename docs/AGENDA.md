@@ -135,18 +135,17 @@ finite tensor amplification (`(SPF1)-(SPF6)`).  Only the limiting normal
 `0/1` character removes it.  Do not replace the joint matching problem by a
 generic negative-type-to-fixed-point transform.
 
-FALSE-side reduction `(CAC1)-(CAC7)`: for a central
-`1!=z in Rad_sof(J)`, it is enough to find a coamenable subgroup `L<J` with
-`z notin L`.  The quasi-regular hypertrace then has `tau(z)=0` and produces a
-hyperlinear nonsofic image.  In particular, proving that the cyclic shear is
-in the Glasner--Monod class of faithful transitive amenable actions would
-finish the problem.  Existing cyclic-double and finite-edge class-`A`
-theorems do not cover its twisted infinite edge; see
-`docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  For the central involution this
-is equivalent to coamenable sign-character induction: adjoining `z` to `L`
-gives the sign character, and taking its kernel reverses the construction.
+FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
+action survives the sofic image obtained by completing its restrictions to
+Følner sets.  Therefore every coamenable subgroup contains every central
+element of `Rad_sof(J)`, and a class-`A` group has
+`Z(J) intersect Rad_sof(J)={1}`.  This rules out all coamenable monomial
+negative sectors for the cyclic shear, including nonnormal character
+induction.  See `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.
 Do not pursue class-`A` permanence as an allegedly weaker shortcut.  The
-displacement collapse `(CAC9)--(CAC15)` proves that any such shear action
+Følner-truncation theorem already forbids the required fixed-point-free
+action.  Conditionally, the displacement collapse `(CAC9)--(CAC15)` proves
+that any such shear action
 already restricts on one vertex to an amenable action in which the original
 radical witness moves mean mass at least `1/4`; that restricted action itself
 produces the hyperlinear nonsofic image.  The smaller action target is
