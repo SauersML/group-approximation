@@ -11,7 +11,9 @@ but **cost one by itself does not supply the quantitative conclusion**.
 The valid result is a routed-tree-excess criterion.  Roughly, a finite base
 model may be cut to a forest and its phases repaired exactly whenever every
 tested transformation crosses the deleted edges on only `o(1)` of its
-starting points.  A convenient sufficient condition is
+starting points **and the chosen route already reproduces that
+transformation's target phase**.  A convenient sufficient condition for the
+exposure part is
 
 `routing width times normalized tree excess -> 0`.       `(RFR1)`
 
@@ -27,6 +29,13 @@ relation (a cost-one stabilization), apply phase repair there, and try to
 pass to a subrelation.  That would prove the general compact-skew permanence
 which is precisely open.  The missing routing bound is where this false
 shortcut pays back the apparent cost reduction.
+
+Phase compatibility is equally load-bearing.  Any two vertices in one
+finite component are joined by a forest path, so without it one could route
+every permutation through an arbitrary spanning tree and make exposure
+identically zero.  Products of approximate generator phases along such
+unbounded paths need not approximate the cocycle value of the transformation
+being tested.
 
 ## 2. The exact finite forest-repair lemma
 
@@ -89,10 +98,21 @@ exposure by
 
 `q_n(t)=|{v : P_(n,t,v) uses an edge of D_n}|/|V_n|`.   `(RFR8)`
 
+Let `z_(n,t)(v)` be the quantized phase assigned to the tested transformation
+itself, and let `a_n(P_(n,t,v))` be the ordered product of the quantized
+generator-edge labels along the chosen path.  The routing is
+**phase-compatible** when
+
+`|V_n|^(-1) sum_v`
+`  |a_n(P_(n,t,v))-z_(n,t)(v)|^2 -> 0`                 `(RFR8a)`
+
+for every fixed `t` (with the sum restricted to its domain if it is partial).
+
 > **Theorem 3 (routed forest phase repair).**  Suppose the finite base
 > models converge to a sofic pmp equivalence relation, their quantized
 > `mu_(m_n)`-valued generator-edge labels converge to a measurable circle
-> cocycle, and forests can be chosen so that
+> cocycle, the selected paths satisfy phase compatibility `(RFR8a)`, and
+> forests can be chosen so that
 >
 > `q_n(t) -> 0` for every fixed tested transformation `t`. `(RFR9)`
 >
@@ -121,17 +141,20 @@ Hence every equality between base paths lifts to an exact equality on the
 finite phase bundle.  There is no circle carry and no shrinking
 root-spacing problem.
 
-For a tested `t`, the repaired and original quantized phase products agree
-whenever `P_(n,t,v)` stays in the forest.  Their disagreement set therefore
-has density at most `q_n(t)`, which tends to zero by `(RFR9)`.  Initial
+For a tested `t`, the repaired and original generator-edge phase products
+agree whenever `P_(n,t,v)` stays in the forest.  The repaired phase therefore
+differs from `a_n(P_(n,t,v))` only on a set of density at most `q_n(t)`, which
+tends to zero by `(RFR9)`.  Phase compatibility `(RFR8a)` then compares this
+path product with the phase `z_(n,t)(v)` which must be modelled.  Initial
 circle quantization and base-model errors tend to zero separately.  Uniform
 measure on `mu_(m_n)` converges to Haar measure on the circle, and circle
 test partitions may be chosen with Haar-null boundary.  Thus all finite
 labelled statistics of the lifted tests converge to those of the principal
 skew product.  End proof.
 
-The theorem uses exposure `(RFR8)`, not merely the cardinality of `D_n`.
-This distinction is precisely what is lost in a bare cost estimate.
+The theorem uses both phase compatibility `(RFR8a)` and exposure `(RFR8)`,
+not merely the cardinality of `D_n`.  These distinctions are precisely what
+is lost in a bare cost estimate or arbitrary tree routing.
 
 ## 4. A convenient word-length sufficient condition
 
@@ -149,9 +172,15 @@ Consequently:
 >
 > `L_n(t) r(G_n)/|V_n| -> 0`.                          `(RFR14)`
 
-For a fixed graphing and fixed test words, `(RFR5)` implies `(RFR14)`.  The
-problem for an abstract cost-one relation is that both the graphing and the
-representing words change as the graphing cost approaches one.
+This controls exposure.  Phase compatibility follows from the original
+approximate cocycle equations if the accumulated phase error along the same
+routes also tends to zero; for instance it is automatic for fixed words, and
+follows for growing words from `L_n(t) delta_n -> 0` when `delta_n` uniformly
+bounds the relevant per-step phase error.  For a fixed graphing and fixed
+test words, `(RFR5)` implies `(RFR14)` and finite-step cocycle convergence
+gives `(RFR8a)`.  The problem for an abstract cost-one relation is that both
+the graphing and the representing words change as the graphing cost
+approaches one.
 
 ## 5. Why cost one alone does not prove the criterion
 
@@ -180,6 +209,8 @@ it does not imply
 `inf_(epsilon -> 0) L_epsilon(T)epsilon=0`.            `(RFR18)`
 
 Thus `(RFR15)` does not imply `(RFR9)` or `(RFR14)`.
+Nor does it bound accumulated phase error along those routes, so it does not
+imply `(RFR8a)`.
 
 The same loss appears under finite amplification.  The standard graphing of
 an `m`-fold amplification places one copy of the horizontal `R`-edges over
@@ -201,8 +232,8 @@ models have vanishing routed tree excess `(RFR9)`.  Therefore:
 
 > **Corollary 5.**  A hyperlinear group satisfying the bounded-exponent
 > common-Cartan hypotheses of Theorem 3H is sofic if its principal quotient
-> relation admits phase-compatible finite models satisfying `(RFR9)` (or the
-> sufficient estimate `(RFR14)`).
+> relation admits finite models and routes satisfying both `(RFR8a)` and
+> `(RFR9)` (with `(RFR14)` a sufficient estimate for the latter).
 
 The previously proved treeable case uses a different cohomological argument;
 positive-cost treeings need not have vanishing tree excess in finite models.
@@ -215,8 +246,8 @@ available.
 For the general problem, the live quantitative question is now:
 
 > Can the normal `0/1` trace law or the simultaneous prefix-path structure
-> select phase-compatible base models for which the deleted cycle edges have
-> vanishing exposure `(RFR9)`?
+> select routes satisfying phase compatibility `(RFR8a)` for which the
+> deleted cycle edges also have vanishing exposure `(RFR9)`?
 
 This is more precise than asking for cost one and weaker than requiring the
 entire graphing model to be cocycle stable.
