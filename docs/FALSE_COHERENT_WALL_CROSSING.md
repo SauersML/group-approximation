@@ -225,3 +225,47 @@ cross-chart words which survive the superperfect/perfect-overlap scanner.
 The complete boundary classification, including the 178 explicit deaths
 and the all-depth positive-cardinality obstruction for the 56 remaining
 words, is recorded separately in `FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`.
+
+## 6. A unique classical alignment repairs the entire boundary
+
+The 56 intrinsically cross-chart words are not mutually inconsistent.
+There is a single inner alignment of the two (A_8) charts which kills not
+only those words but the entire 234-word tensor-flip boundary.
+
+Let
+
+\[
+ k=\begin{pmatrix}
+ 0&0&1&0\\
+ 0&1&0&0\\
+ 1&0&0&0\\
+ 0&0&0&1
+ \end{pmatrix}\in GL_4(\mathbb F_2).                 \tag{15}
+\]
+
+Thus (k) interchanges the first and third basis vectors.  Identify the
+two chart factors by
+
+\[
+ h_1\longmapsto h,\qquad h_2\longmapsto khk^{-1}.     \tag{16}
+\]
+
+**Theorem 3 (unique boundary alignment).** Every one of the 234 boundary
+words evaluates to the identity under (16).  Moreover, (15) is the unique
+element of (GL_4(\mathbb F_2)) with this property.
+
+The statement is an exhaustive exact calculation over \(\mathbb F_2\):
+`experiments/atlas_boundary_inner_alignment.py` enumerates all 20,160
+alignments.  On the complete radius-five collision tree, containing 27,256
+kernel words, (16) kills 20,862 and fails on 6,394.  It is therefore a
+perfect repair of the tensor-flip boundary, not a representation of the
+whole radius-five quotient window.
+
+The alignment gives a finite identity quotient of the survivor package in
+which both local (GL_3(2)) factors remain faithful: (k) itself lies in
+that (GL_3(2)), and the two factor maps differ by its inner automorphism.
+This proves global consistency of all eight survivor classes and shows that
+their phase analysis is a deformation problem around one rigid classical
+point.  It does not show that their classes vanish in (R/[P,R]); the map
+in (16) is a quotient of the local relation package, not a lift of the full
+Leavitt atlas.
