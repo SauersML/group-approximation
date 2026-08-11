@@ -283,7 +283,33 @@ The exact check is reproduced by
 exhaustion of all 40,320 conjugations by one chart element agrees with the
 theorem: not one removes the sign obstruction.
 
-## 6. Exact scope
+## 6. The four classes have one abstract local type
+
+The four classes remain distinct under inner conjugacy in the free product,
+but their local finite-group patterns are equivalent.  In the matrix model
+
+$$
+\operatorname{Aut}(A_8)
+=\operatorname{Inn}(A_8)\rtimes
+\langle g\mapsto(g^{-1})^T\rangle,
+$$
+
+so all 40,320 automorphisms can be enumerated exactly.  Apply one such
+automorphism independently in each free factor, allow interchange of the two
+factors, and compare cyclic rotations of the word and its inverse.  The four
+classes in `(19)` form one orbit under this action.
+
+This does not identify their elements in $R/[P,R]$: an arbitrary independent
+automorphism of the two abstract $A_8$ factors need not preserve the concrete
+Leavitt atlas kernel $R$.  It does show that all four have the same abstract
+$D_8*V_4$ local obstruction type.  Thus the character and phase calculation
+in Sections 2--3 applies, after transport, to every remaining class; four
+separate local representation analyses are unnecessary.
+
+The exact orbit calculation is reproduced by
+`experiments/atlas_survivor_automorphism_orbit.py`.
+
+## 7. Exact scope
 
 Theorem `(17)` is stronger than a representation of the small local groups:
 both chart marginals are honest irreducible \(A_8\) representations, and the
@@ -302,7 +328,7 @@ so that \(r\) centralizes the full two \(A_8\) charts without losing its
 macroscopic spectrum.  This is the first phase seed not already ruled out by
 one-chart refinement.
 
-## 7. Executable realization and the full-chart defect
+## 8. Executable realization and the full-chart defect
 
 `experiments/atlas_self_similarity_block.py` constructs the relative chart
 unitary directly from the exact spectral projectors in \(W\).  There are six
