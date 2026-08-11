@@ -35,6 +35,7 @@ import numpy as np
 from flint import fmpq_mat, fmpz_mat
 
 from sl3_degree_one_spectrum import coboundaries
+from sl3_projective_charts import projective_coboundaries
 
 
 def integer_matrix(sparse_matrix):
@@ -66,8 +67,9 @@ def nonzero_rows(matrix):
 def left_kernel_basis(matrix):
     """Return a primitive column basis of ker(matrix^T) over Z."""
     hermite, transform = matrix.hnf(transform=True)
+    occupied = set(nonzero_rows(hermite))
     zero_rows = [row for row in range(hermite.nrows())
-                 if row not in set(nonzero_rows(hermite))]
+                 if row not in occupied]
     basis = fmpz_mat([
         [transform[row, column] for row in zero_rows]
         for column in range(transform.ncols())
@@ -144,9 +146,11 @@ def exact_norm_summary(matrix):
     }
 
 
-def run(prime):
+def run(prime, chart):
     started = time.time()
-    _names, vertices, _d0, sparse = coboundaries(prime)
+    builder = (projective_coboundaries if chart == "projective"
+               else coboundaries)
+    _names, vertices, _d0, sparse = builder(prime)
     relator = integer_matrix(sparse)
     cycle_basis = left_kernel_basis(relator)
     range_basis = left_kernel_basis(cycle_basis)
@@ -199,6 +203,7 @@ def run(prime):
     spectral_norm = float(np.linalg.norm(complement_float, ord=2))
     nonunit = [factor for factor in factors if factor != 1]
     return {
+        "chart": chart,
         "prime": prime,
         "vertices": vertices,
         "edges": relator.ncols(),
@@ -232,8 +237,10 @@ def run(prime):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--prime", type=int, required=True)
+    parser.add_argument("--chart", choices=("projective", "vectors"),
+                        required=True)
     args = parser.parse_args()
-    print(json.dumps(run(args.prime)), flush=True)
+    print(json.dumps(run(args.prime, args.chart)), flush=True)
 
 
 if __name__ == "__main__":
