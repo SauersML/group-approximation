@@ -478,3 +478,61 @@ Thus the next exact task is a finite square-root factorization: choose a
 square root $Y$ of $iC$ and factor it as $Y=BABE$, where $A,E$ are commuting
 involutions with four joint eigenspaces of dimension sixteen. Further blind
 weight or seed searches are superseded by this spectral problem.
+
+## 10. Exact solution of the square-root factorization
+
+The factorization in `(25)` has an exact solution already in the minimal
+8-dimensional multiplicity block. In the canonical basis $0,\ldots,7$, let
+$B,C$ act as two copies of the faithful $D_8$ representation followed by its
+four linear characters. Define
+
+\[
+ S=(0\ 7)(1\ 6)(2\ 5)(3\ 4),\qquad
+ P=(0\ 6)(2\ 4)(3\ 5)(1\ 7),                       \tag{26}
+\]
+
+and
+
+\[
+ F={I+iC\over\sqrt2},\qquad A=BPB,\qquad E=PSF.    \tag{27}
+\]
+
+The permutation identities
+
+\[
+ P^2=S^2=1,\quad PC=-CP,\quad PS=SP,\quad SC=CS
+\]
+
+show that $E$ is a self-adjoint involution. Exact multiplication also gives
+
+\[
+ [A,E]=0,qquad
+ \operatorname{Tr}(A)=\operatorname{Tr}(E)
+ =\operatorname{Tr}(AE)=0.                          \tag{28}
+\]
+
+Hence every joint $(A,E)$-eigenspace has dimension two, exactly the required
+two regular copies of $V_4$. Moreover
+
+\[
+ BABE=PE=SF,qquad (SF)^2=F^2=iC,                  \tag{29}
+\]
+
+and therefore
+
+\[
+ \rho(r)=iI_8.                                      \tag{30}
+\]
+
+All identities are checked exactly over $\mathbb Q(\zeta_8)$ by
+`experiments/atlas_self_similarity_block8_exact.py`. The restriction
+multiplicities in the 64-dimensional $A_8$ irrep are eight times this block,
+so amplification gives two honest $A_8$ chart representations with
+$\rho(r)=iI_{64}$ exactly. In particular the relation now centralizes the
+full chart images, not only its local $D_8$ and $V_4$ subgroups.
+
+This completes the one-relator phase construction. It does not alone prove
+that the class of $r$ is nonzero in $R/[P,R]$, because the commutators with
+all other Leavitt relators can impose additional relations. That
+multi-relator central-kernel survival question is now the sole algebraic gate
+for this witness before the downstream negative-corner problem.

@@ -870,8 +870,23 @@ The multiplicities compress once more: the 64-dimensional restrictions are
 eight copies of a canonical 8-dimensional package, namely `2*tau` plus the
 four linear `D8` characters versus two copies of every `V4` character. Hence
 an exact `U(8)` solution of `(BABE)^2=iC` amplifies to the observed 64D model.
-Run `experiments/atlas_self_similarity_block8_search.py` next and recognize
-its output before returning to the dense 64D state.
+`experiments/atlas_self_similarity_block8_search.py` instantiates this
+minimal package; its exact recognition is recorded below.
+
+That block-eight search has succeeded and been made exact. In the canonical
+block let `S=(0 7)(1 6)(2 5)(3 4)`,
+`P=(0 6)(2 4)(3 5)(1 7)`, `F=(I+iC)/sqrt(2)`, `A=BPB`, and `E=PSF`.
+Then `A,E` are commuting self-adjoint involutions, all four joint eigenspaces
+have dimension two, and `BABE=SF` with `(SF)^2=iC`. Thus the survivor relation
+is exactly `i I_8`, and eightfold amplification gives `i I_64` inside the two
+honest `A8` charts. Sage verifies the identities exactly over `Q(zeta_8)` in
+`experiments/atlas_self_similarity_block8_exact.py`. The one-relator phase
+gate is complete; stop optimizing it. The remaining algebraic gate is whether
+this class survives after centralizing *all* Leavitt relators, i.e. in
+`R/[P,R]`, followed by the negative-corner construction. Full proof:
+`docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md` and
+`experiments/atlas_self_similarity_refine_results.md`.
+
 
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,

@@ -195,7 +195,67 @@ Finally, all restriction multiplicities have a common factor eight. The
 \]
 
 Therefore an exact 8-dimensional solution amplifies directly to dimension
-64. `atlas_self_similarity_block8_search.py` instantiates this canonical
-package without Sage and searches only its relative $U(8)$. This is the next
-compute job; its output should be much easier to recognize algebraically than
-the dense $U(64)$ state.
+64. `atlas_self_similarity_block8_search.py` instantiated this canonical
+package without Sage. All eight independent starts converged in 1.3 seconds
+total to $\|r-iI\|_2<3.3\cdot10^{-8}$; the best error was
+$1.29\cdot10^{-8}$.
+
+## Exact 8-dimensional construction
+
+The minimal numerical solution exposed a signed-permutation construction.
+Use the canonical basis $0,\ldots,7$ from the block-eight search. Let
+
+\[
+ S=(0\ 7)(1\ 6)(2\ 5)(3\ 4),\qquad
+ P=(0\ 6)(2\ 4)(3\ 5)(1\ 7),                       \tag{8}
+\]
+
+and put
+
+\[
+ F={I+iC\over\sqrt2},\qquad A=BPB,\qquad E=PSF.    \tag{9}
+\]
+
+Direct permutation calculation gives
+
+\[
+ P^2=S^2=1,\quad PC=-CP,\quad PS=SP,\quad SC=CS.   \tag{10}
+\]
+
+It follows that $PFP=F^*$, hence $E$ is a self-adjoint involution. A second
+direct calculation gives
+
+\[
+ [A,E]=0,qquad
+ \operatorname{Tr}(A)=\operatorname{Tr}(E)
+ =\operatorname{Tr}(AE)=0.                          \tag{11}
+\]
+
+The four joint eigenspace ranks are therefore
+
+\[
+ {1\over4}\operatorname{Tr}((1\pm A)(1\pm E))=2,   \tag{12}
+\]
+
+so $(A,E)$ is exactly two copies of the regular $V_4$ representation. Finally,
+
+\[
+ BABE=PE=SF,qquad (SF)^2=F^2=iC.                  \tag{13}
+\]
+
+Using the equivalence `(5)`, the survivor relation is exactly
+
+\[
+ r=iI_8.                                            \tag{14}
+\]
+
+`atlas_self_similarity_block8_exact.py` verifies every identity in
+`(8)--(14)` exactly over $\mathbb Q(\zeta_8)$. Since the two restrictions of
+the 64-dimensional $A_8$ irrep are eight copies of the canonical packages,
+eightfold amplification gives a relative alignment of two honest $A_8$
+charts for which $r=iI_{64}$ exactly.
+
+This completes the one-relator phase gate. It still does not prove that $r$
+survives in $R/[P,R]$: centralizing the other Leavitt relators can add new
+relations. The next computation must incorporate representatives of those
+other relators or prove the multi-chart central-kernel survival algebraically.
