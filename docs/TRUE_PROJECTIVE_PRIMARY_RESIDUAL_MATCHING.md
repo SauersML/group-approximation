@@ -133,9 +133,9 @@ The involution `phi` has exactly the two fixed points `0` and `1`.  Hence
 The negative order-four elements are one `K`-conjugacy class.  The
 characteristic polynomial of `w` is
 
-`(X+1)(X^2+1)`.
+`(X-1)(X^2+1)`.
 
-Its `(-1)`-eigenline is carried by a fixed `K`-matrix to `v(1)`, so it is
+Its `1`-eigenline is carried by a fixed `K`-matrix to `v(0)`, so it is
 already in `(PRM3)`.  If `chi=-1` there are no further eigenlines over `k`.
 If `chi=1`, choose `i^2=-1`; the two lines represented by `(i,1,0)` and
 `(-i,1,0)` are interchanged by a fixed element of `K`, and supply exactly one

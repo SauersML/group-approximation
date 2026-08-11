@@ -151,6 +151,18 @@ coordinates, or the norm loss in comparison with the free HAP carry metric.
 Those qualifications are essential before reading `(PHS12d)` as an upper
 bound for the original full-chart constant.
 
+At the next cuspidal prime, `p=61`, the compact harmonic rank is again two,
+but
+
+`delta_H=0.3532226522900641...`.                              `(PHS12e)`
+
+This is larger than the level-`53` systole and lies above its own spherical
+threshold `1/sqrt(28)`.  Exact integral lifts give a harmonic section of
+norm `11.793652354043665...`.  Hence the second cusp exhibits neither
+harmonic denominator collapse nor a huge lift forced by its `114`-digit
+cyclic discriminant.  The constant is larger than at `p=53`, so these two
+points are evidence, not a family bound.
+
 ## A regulator criterion for divergence
 
 Suppose `Q` has rank `r>0`, and let `Reg(Q)` denote its Euclidean

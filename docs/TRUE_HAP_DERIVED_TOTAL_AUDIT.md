@@ -127,3 +127,11 @@ The reproducible metadata exporter is
 `experiments/sl3_derived_resolution_audit.g`; its exact MSI output is
 `experiments/sl3-derived-resolution-audit.txt`, with SHA-256
 `55bc75aaaab2228ce6d5776a8d7a44fb70ed448c13a79a29ff09b55500614048`.
+
+The zero-th row of this filtered augmentation now admits one exact uniform
+cancellation.  The transfer from the first degree-two `S_4` cell to the
+degree-one `D_8` cell is a permutation isomorphism on every signed
+orientation-`C_2` orbit summand, with norm-one inverse.  This removes that
+zero-row pair before studying the augmentation defect, but it does not touch
+the positive stabilizer-resolution bidegrees listed above.  See
+`TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.

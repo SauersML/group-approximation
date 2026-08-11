@@ -359,6 +359,53 @@ comparison is still required.  Full details and scope are in
 `docs/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`; the machine certificate is
 `projective-cellular-p53-summary.json`.
 
+### Replication at the second cuspidal level `p=61`
+
+The same compact calculation at `p=61` gives dimensions
+
+`183 <- 480 <- 440 <- 150`,
+
+boundary ranks `182,298,140`, and exact degree-two homology dimension two.
+The harmonic discriminant is cyclic of order
+
+`784027680124070571244902013018900874324624829344998811622894236133560467890375653648339615390452725402770059419298`.
+
+Its shortest nonintegral dual vector has norm `0.3532226522900641...`, so
+it is farther from zero than the level-`53` vector and is above the
+level-`61` spherical threshold `1/sqrt(28)`.  Exact lattice reduction finds
+two integral lifts with Gram matrix
+
+`[[17,-3],[-3,10]]`.
+
+The generalized squared singular values are
+`22.239342479055036...` and `139.0902358480397...`, giving a certified full
+section norm `11.793652354043665...`.  Exact mod-two coset-leader
+optimization gives lift-energy lower bounds `5` and `6`; the first yields
+`kappa_Sigma>=6.330477286783821...`.  This is a second modest compact
+harmonic decoder, not a proof of uniformity.  The exact artifacts are the
+`projective-cellular-p61-*` files, and the mathematical statement is in
+`docs/TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
+
+The zero-th orientation-primary row has also been narrowed exactly.  For
+every finite coefficient action, the first degree-two `S_4` torsion block
+maps by a permutation isomorphism onto the degree-one `D_8` torsion block.
+At levels `53` and `61` this accounts for `29` and `33` norm-one matched
+pairs.  The residual zero-row primary issue lies between degree three and
+the second degree-two cell; positive stabilizer-homology rows in the derived
+HAP complex remain separate.  See
+`docs/TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
+
+That residual zero-row map is now uniform as well.  For every odd prime it
+is permutation-equivalent over `F_2` to `(p+1)/2` copies of `[1 1]`, together
+with `(3+chi_(-1)(p))/2` zero source coordinates and one zero target
+coordinate.  The proof classifies the fixed projective lines of the two
+negative conjugacy classes in the `S_4` and `D_12` stabilizers: both target
+families are `P^1(F_p)` modulo `t -> t/(2t-1)`, glued at the unique cancelled
+coordinate.  Hence neither zero-th-row primary interface can create a
+growing-distance code.  The positive stabilizer-resolution rows remain the
+derived arithmetic gate.  See
+`docs/TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
+
 For `p=3,5,7`, Proposition 12 of
 `docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` rules out denominator collapse
 through real stabilizer homology: the relevant harmonic space is zero.
@@ -374,9 +421,9 @@ harmonic lattice.  The next high-yield tasks are therefore:
 2. split off bounded spherical templates explicitly;
 3. synthesize a coupled integral decoder for the torsion and harmonic
    sectors and measure its norm;
-4. transport the now-explicit `p=53` rank-two section through the
-   bounded-primary/model-comparison bridge and repeat it at the next cuspidal
-   prime.
+4. transport the explicit `p=53,61` rank-two sections through the derived
+   bounded-primary/model-comparison bridge and determine whether their
+   compact norms remain uniform at further cuspidal primes.
 
 ### Two-primary signed-orbit audit
 

@@ -1,6 +1,6 @@
-"""Reduce an ambient integral lift in the compact projective cellular model.
+"""Reduce an ambient integral lift in a compact projective cellular model.
 
-The level-53 cellular analysis exports a basis of ``Q^#`` together with one
+The cellular analysis exports a rank-two basis of ``Q^#`` together with one
 integral lift of each basis vector.  Those HNF lifts are deliberately crude.
 For a selected harmonic vector, every other integral lift differs by the
 saturated boundary lattice
@@ -248,8 +248,6 @@ def main() -> None:
     started = time.monotonic()
     prime, degree, orbit_dimensions, cells = parse(args.cellular_input)
     dimensions, boundaries = build_boundaries(degree, orbit_dimensions, cells)
-    if prime != 53:
-        raise ValueError("the current exported harmonic lift is specific to level 53")
 
     d2_integer = boundaries[2].change_ring(ZZ)
     cycle_basis = d2_integer.transpose().right_kernel_matrix()
@@ -261,6 +259,10 @@ def main() -> None:
 
     qsharp_basis, lift_basis = read_export(args.qsharp_lifts)
     summary = json.loads(args.summary.read_text(encoding="utf-8"))
+    if summary["prime"] != prime or summary["projective_degree"] != degree:
+        raise ValueError("the summary and cellular export describe different charts")
+    if qsharp_basis.nrows() != 2 or qsharp_basis.ncols() != dimensions[2]:
+        raise ValueError("the lift reducer requires a rank-two harmonic export")
     coordinates = vector(
         ZZ,
         summary["harmonic_lift_sequence"]["qsharp_gauss_transform"][args.basis_row],

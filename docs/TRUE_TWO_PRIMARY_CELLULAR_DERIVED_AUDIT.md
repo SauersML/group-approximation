@@ -87,6 +87,7 @@ unsigned mod-two orbit complex.
 | 29 | 871 | `(49,112,92,32)` | `(17,48,17)` | `(1,0,14,4)` |
 | 31 | 993 | `(55,128,108,38)` | `(17,50,17)` | `(1,0,15,3)` |
 | 53 | 2863 | `(141,364,328,112)` | `(29,84,29)` | `(1,0,24,6)` |
+| 61 | 3783 | `(183,480,440,150)` | `(33,96,33)` | `(1,0,28,6)` |
 
 Across these eleven exact cases the torsion-coordinate counts obey the
 quasipolynomial pattern
@@ -95,9 +96,22 @@ quasipolynomial pattern
 `t_2=(3p+8+chi_(-1)(p))/2`,                            `(TPC5)`
 
 where `chi_(-1)(p)=1` for `p=1 mod 4` and `-1` for `p=3 mod 4`.
-Equation `(TPC5)` is an experimentally exact pattern, not yet a proved
-family formula.  It should be accessible by Burnside counting for the fixed
-cell stabilizers.
+The residual theorem in
+`TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md` now proves, for every odd
+prime, the degree-three formula in `(TPC5)` and the `p+2` contribution of the
+second degree-two cell.  The equality with the degree-one and first
+degree-two counts is still recorded here from the exact finite audit rather
+than promoted without its own orbit proof.
+
+One part of the zero-th row is now understood uniformly, without assuming
+`(TPC5)`.  The first degree-two stabilizer is `S_4`, the degree-one
+stabilizer is an index-three `D_8`, and the cellular transfer is a
+permutation isomorphism on their signed `C_2` orbit summands for every finite
+coefficient action.  Thus `t_1` of the first degree-two torsion coordinates
+cancel against all `t_1` degree-one coordinates with norm-one inverse.  The
+exact all-subgroup proof is
+`TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.  This cancellation occurs in the
+zero-th row only and does not remove the positive derived rows in `(TPC6)`.
 
 The hash-bearing raw result is
 `experiments/projective-cellular-two-primary.json`.

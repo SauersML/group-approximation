@@ -1002,6 +1002,38 @@ three.  The live bridge is consequently the bounded-primary lattice defect
 of the canonical filtered augmentation, not construction or real-norm
 control of another complex.  See `TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.
 
+The zero-th-row residual primary boundary is now solved uniformly on the
+projective family.  For every odd prime, after cancelling the first
+degree-two block, the map from degree-three orientation torsion to the
+second degree-two torsion block is a disjoint union of `[1 1]` repetition
+rows.  The proof identifies the source with `P^1(F_p)` modulo
+`t -> t/(2t-1)`, plus a possible order-four eigenline, and the target with
+two copies of that quotient glued at one point.  With `chi=(-1|p)`, it has source dimension
+`(p+4+chi)/2`, target dimension `p+2`, rank `(p+1)/2`, and exactly one unused
+target coordinate.  Its image therefore has a local norm-one decoder; it is
+not the feared high-covering-radius binary code.  The live task is to trace
+the explicit kernel/cokernel coordinates through the positive
+stabilizer-resolution rows.  See
+`TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
+
+The next cuspidal chart has now been computed.  At `p=61` the compact
+complex is `183<-480<-440<-150`, again with harmonic rank two.  Its cyclic
+harmonic discriminant has `114` digits, but its dual systole increases to
+`0.3532226523...`, and exact `17`- and `10`-term lifts give a full section
+of norm `11.7936523541...`.  Thus the first two cuspidal charts both have
+modest free harmonic repair despite enormous discriminant order.  The
+observed constant grows, so uniformity remains a theorem rather than an
+extrapolation.  See `TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
+
+The zero-th row of the primary augmentation admits one uniform exact
+cancellation.  The first degree-two stabilizer is `S_4`, the degree-one
+stabilizer is an index-three `D_8`, and analysis of all thirty actual
+subgroups of `S_4` proves that signed torsion transfer is a permutation
+isomorphism for every finite coefficient action.  Its inverse has norm one.
+This cancels the whole degree-one orientation-torsion block in the zero-th
+row; the residual degree-`(3,2)` block and the positive derived stabilizer
+rows remain.  See `TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
+
 `TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` now gives the exact optimal
 nonlinear repair constant, not only a comparison through `Theta`.  It is
 the quotient of the ellipsoidal distance to the saturated range lattice by
@@ -1030,11 +1062,12 @@ determinant lower bound
 `kappa^2>=(3/16)Reg(L)/Reg(S_sat)` at rank two require only saturated
 boundary/coboundary determinants and Smith indices, not an exact harmonic
 basis.  The basis is still needed for shape, dual systole, and an upper
-bound.  At `p=53` the two affine lift problems now give a section of norm
-`7.49017741972933`, within `0.015%` of the exact shortest-class lower bound.
-The next exact computation should transport this certificate through the
-bounded-primary correction and repeat it at the next cuspidal level; it
-should not enumerate the full discriminant group.
+bound.  At `p=53` the two affine lift problems give a section of norm
+`7.49017741972933`, within `0.015%` of the exact shortest-class lower bound;
+at `p=61` they give `11.793652354043665`.  The next exact computation should
+transport these certificates through the derived bounded-primary
+augmentation and test further cuspidal levels; it should not enumerate a
+full discriminant group.
 
 The fixed-chart nonlinear optimization is now finite and exact.  By
 `TRUE_FINITE_PAIRED_DISCRIMINANT_CERTIFICATE.md`, only finitely many range

@@ -218,3 +218,14 @@ uniform integral correction theorem at the fixed stabilizer primes would
 remove the comparison-map gate completely.  The remaining difficulty would
 then be the compact model's own uniform integral section, not the HAP
 resolution or its dimension.
+
+The zero-th stabilizer-homology row now has one exact correction.  The first
+degree-two orientation-torsion block is induced from `S_4`, the degree-one
+block from an index-three `D_8`, and the cellular transfer is a permutation
+isomorphism on signed `C_2` orbit summands for every finite coefficient
+action.  Its inverse has norm one.  These zero-row summands can therefore be
+cancelled uniformly.  This does not cancel the positive stabilizer-homology
+rows in HAP's derived total complex; the remaining bounded-primary issue is
+the residual filtered augmentation described in
+`TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.  See
+`TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md` for the exact finite-group theorem.

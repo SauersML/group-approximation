@@ -41510,6 +41510,131 @@ two-primary signed-coinvariant correction, the bounded comparison to the
 free HAP carry metric, and uniform control over later cuspidal projective
 levels.
 
+## 2026-08-11: the second cuspidal harmonic section remains small
+
+The compact signed-coinvariant computation at `p=61` gives
+
+    Q^183 <- Q^480 <- Q^440 <- Q^150,
+
+with ranks `182,298,140` and `dim H_2=2`.  Its harmonic discriminant is
+cyclic of `114`-digit order, but the shortest nonintegral dual vector has
+norm `0.3532226522900641...`, larger than at `p=53` and above the local
+spherical threshold `1/sqrt(28)`.
+
+Exact lattice reduction produces two integral lifts with Gram matrix
+
+    [[17,-3],[-3,10]],
+
+and hence a full compact harmonic section of norm
+
+    11.793652354043665....
+
+Thus enormous discriminant order again fails to produce enormous repair
+cost.  The first two cuspidal charts support TRUE, but the increase from
+`7.49` to `11.79` means no uniform theorem is claimed.  Full certificate:
+`docs/TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
+
+## 2026-08-11: a norm-one cancellation in the primary zero row
+
+In HAP's fixed proper cellular complex, the degree-one stabilizer is an
+index-three `D_8` in the first degree-two stabilizer `S_4`.  The three
+boundary elements are a right transversal.  Exhausting all thirty actual
+subgroups of `S_4` proves the following all-actions statement: every
+nonorientable transitive `S_4`-orbit restricts to exactly one nonorientable
+`D_8`-orbit, and the cellular transfer hits exactly that coordinate with odd
+multiplicity.
+
+Therefore the signed `C_2` transfer is a permutation isomorphism with
+norm-one inverse for every finite coefficient action.  It cancels all
+degree-one orientation torsion against the matching part of the first
+degree-two cell in the zero-th stabilizer-homology row.  At `p=53,61` these
+are respectively `29` and `33` matched pairs.
+
+This does not cancel the positive stabilizer-resolution rows in HAP's
+derived total complex.  The live primary gate is the residual filtered
+augmentation involving the second degree-two cell, degree three, and the
+positive derived rows.  Full proof:
+`docs/TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
+
+## 2026-08-11: a fixed-prime tower makes the Kazhdan degree constant
+
+Full proof: `docs/FALSE_FIXED_PRIME_CONSTANT_STABILIZER_TOWER.md`.
+
+Fix one prime `p` and use the nested Laurent group-algebra quotients
+
+    Z[x_1^(+-1),...,x_d^(+-1)]
+      -> F_p[(Z/M_n Z)^d],
+    M_n | M_(n+1), M_n->infinity.
+
+After intersecting their kernels with a residual chain in the `Q*Q`
+coordinate, one obtains normal finite-index `L_n normal F` with exact
+limits
+
+    intersection L_n = E(p),
+    intersection J L_n = J E(p),
+
+where `E(p)` is the coefficient-`p` congruence kernel and
+`J=SL_3(Z)` is the constant lower-right block.  Entrywise Laurent detection
+proves the first equality; the second follows because a matrix whose image
+lies in the constant block at every torus level is already constant modulo
+`p`.
+
+The restriction to `J` is independent of `M_n`, so exactly
+
+    |J/(J intersect L_n)| = |SL_3(F_p)|
+
+at every level.  Moreover reduction modulo `p` of the first matrix row
+proves
+
+    h notin E(p) Gamma,
+    h notin J E(p) Gamma.
+
+The split-homology theorem therefore keeps `w` at infinite order in both
+limiting abelianizations, and the integral filling norms diverge in both
+towers.  This removes the artificial growth of the Kazhdan averaging
+degree.  It does not alone settle the bounded-real/divergent-discriminant
+branch.
+
+## 2026-08-11: the marked orbit frame cancels transfer dilution exactly
+
+Full proof: `docs/FALSE_STABILIZER_FRAME_AMPLIFICATION.md`.
+
+Let `q` be the canonical real filling in a regular cover, let a deck
+subgroup `A` of order `m` stabilize the marked homology class, and put
+`r=P_A q`.  For every `a in A`, the marked analysis operator satisfies
+
+    (T r)_a = <a q,r> = ||r||^2.
+
+Taking the tangent of the exact torus ratio at zero gives
+
+    Lambda_(w,X) >= ||T r||/||r|| >= sqrt(m)||r||.
+
+Exact quotient scaling is
+
+    ||r||=m^(-1/2) Fill_R(w;H),
+
+so the factors cancel:
+
+    Lambda_(w,X) >= Fill_R(w;H).
+
+Thus **any** unbounded intermediate real filling proves FALSE; no
+super-square-root rate is needed, even if the stabilizer image grows.
+Combining with integral escape leaves only:
+
+    real fills bounded,
+    canonical discriminant radii -> infinity.
+
+In that remaining branch the escaping canonical class is already cheap on
+the paired side:
+
+    delta(c_n) <= rho_L(gamma(c_n)) <= ||q_n|| = O(1).
+
+The exact unresolved statistic is its translated marked Gram/incidence
+profile.  If that profile is unbounded, FALSE follows immediately.  The
+only possible escape is asymptotic total isotropy/locality despite the
+divergent cycle radius.  Do not reintroduce the obsolete `sqrt(m)` rate
+gate in later summaries.
+
 ## 2026-08-11: the two-primary cellular correction needs derived stabilizer rows
 
 Full audit: `docs/TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.
@@ -41582,3 +41707,191 @@ computation is to lift the two certified compact harmonic classes through
 this existing filtration and either obtain a bounded integral section or
 exhibit the positive stabilizer-homology class blocking it.  Full audit:
 `docs/TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.
+
+## 2026-08-11: the residual projective primary boundary is a matching
+
+After the norm-one cancellation of the first degree-two torsion block, an
+exact MSI audit finds that the remaining map
+
+    T_3 -> T_(2,second)
+
+is a disjoint union of `[1 1]` repetition rows over `F_2`, plus zero
+coordinates.  For every odd prime, with `chi=(-1|p)`, its dimensions
+are
+
+    source=(p+4+chi)/2,
+    target=p+2,
+    rank=(p+1)/2,
+    kernel=(3+chi)/2,
+    cokernel=(p+3)/2.
+
+Every nonzero row has weight two; every used column has weight one; exactly
+one target column is unused.  Hence the image has a local decoder of norm at
+most one and cannot be a growing-distance binary code.  The raw-export
+statement is certified for `p=3,5,7,11,13,17,19,23,29,31,53,61`; an
+independent natural three-dimensional verifier confirms it for all `42` odd
+primes at most `191`.  More importantly, the law is now proved for every odd
+prime.  The source transposition stratum is `P^1(F_p)` modulo
+`phi(t)=t/(2t-1)`; the possible extra source orbit is the `+-i` eigenline of
+a negative order-four element.  The target is two copies of the same
+projective-line quotient glued at `t=0`, and the boundary sends a source
+parameter to the corresponding point in both copies.  The glued row cancels,
+all other rows are disjoint `[1 1]` pairs, and the `+-i` row cancels in three
+explicit pairs.
+
+This narrows rather than closes the bounded-primary gate.  The zero source
+and quotient coordinates are genuine primary homology, and the positive
+stabilizer-resolution rows in HAP's derived total complex may still couple
+to them or to the free harmonic lattice.  The next target is the same local
+splitting audit in the positive stabilizer-resolution rows.  Full result:
+`docs/TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
+
+## 2026-08-11: deck Fourier frames and the exact prime-two parity split
+
+FALSE-side work, deliberately separate from the current derived-HAP TRUE
+audit.  Full proof: `docs/FALSE_DECK_FOURIER_BINARY_REDUCTION.md`.
+
+The marked orbit-frame theorem holds character by character.  If `A` is
+an abelian deck subgroup of order `m`, `q` is the canonical real filling,
+and `P_chi` is a deck Fourier projection, then
+
+    Lambda_(w,X) >= sqrt(m)||P_chi q||.
+
+Hence bounded marked ratio forces every Fourier atom to have squared mass
+at most `Lambda^2/m`; any uniformly nonzero filling supported on `o(m)`
+characters proves FALSE.
+
+For every prime `p`, put `B_p=E(p)` and let `t=i_1(e_12(x^-1))`.  The deck
+class of `t` has order exactly `p`, the `p` double cosets
+
+    B_p h^k Gamma, 0<=k<p,
+
+are distinct, and the orbit of `[w]` in `H_1(pi^(-1)(B_p),Z)` is exactly
+the augmentation lattice `Aug_Z(C_p)`.  Thus every nontrivial cyclotomic
+character occurs once.  This supplies cyclic deck frames of arbitrarily
+large prime order for a diagonal FALSE search.
+
+At `p=2`, the limiting radical class is exactly anti-invariant.  In every
+finite fixed-prime cover, with deck involution `tau`, integral fillings of
+`b` are in exact bijection with pairs
+
+    tau s=s,  ds=b+tau b,
+    tau a=-a, da=b-tau b,
+    s=a mod 2,
+
+through `z=(s+a)/2`.  Orthogonality gives the exact integral Pythagoras
+
+    Fill_Z(b)^2 = (1/4) min_(s=a mod 2)(||s||^2+||a||^2).
+
+The one-sided affine formula with a fixed symmetric fill is only a
+reparametrization; do not oversell it.  The structural result is the paired
+invariant/anti-invariant decomposition and the sole binary gluing condition
+`s=a mod 2`.  Since `Fill_Z(b)->infinity`, escape occurs in the invariant
+radius, the anti-invariant radius, or in parity compatibility between two
+bounded sectors.  The exact remaining FALSE gate is a marked-incidence
+estimate for this parity-glued cyclotomic sector.
+
+The hardest third branch is now a sparse decoder failure.  Choosing bounded
+integral fills `s_n^0,a_n^0` in the two sign sectors produces a syndrome
+
+    epsilon_n=red_2(s_n^0-a_n^0)
+
+of Hamming weight bounded independently of the cover.  Nevertheless every
+pair of invariant and anti-invariant integral cycles `(u_n,v_n)` with
+
+    red_2(u_n-v_n)=epsilon_n
+
+has product Euclidean norm tending to infinity.  Thus branch 3 is a
+bounded-support primary cycle-lift obstruction.  A uniform decoder for this
+one map rules it out entirely and leaves only escape of an individual sign
+sector.  This is the precise interface with the collaborator's derived-HAP
+decoder work; no claim is made that their current zero-row matching already
+controls these Laurent-cover cycle lattices.
+
+## 2026-08-11: sparse parity escape has a fixed limiting obstruction
+
+Full proof: `docs/FALSE_SPARSE_SYNDROME_COMPACTNESS.md`.
+
+A general residual-cover lemma says that bounded-support syndromes with
+diverging integral lift cost force at least one finite-support cluster
+outside the lift image in the infinite cover.  The Laurent sign-sector map
+is not equivariant under arbitrary deck translations, so the application
+uses a stronger anchored argument instead of incorrectly invoking that
+lemma.
+
+For a minimum integral fill of one fixed boundary with norm at most `C`,
+every support component must meet the boundary: otherwise remove its whole
+`tau`-orbit and lower the norm.  There are at most `C^2` support cells, so
+the minimizer lies in a fixed `C^2`-neighborhood of the boundary.  Residual
+injectivity then makes bounded sign-sector minimizers eventually equal to
+fixed finite-support chains upstairs.
+
+Consequently the parity-only branch produces a fixed nonzero
+`tau`-invariant mod-two cycle `epsilon` on the `K_infinity` cover with
+
+    epsilon notin red_2(Z_infinity^+) - red_2(Z_infinity^-),
+
+where `Z_infinity^+-` are the integral sign-eigenspace two-cycle lattices.
+Thus the parity branch is genuine local primary homology, not finite-level
+conditioning.  Proving surjectivity onto finite-support `tau`-invariant
+mod-two cycles eliminates it; failure identifies the exact local charge
+whose moving finite-cover cancellation must be shown marked-visible.
+
+## 2026-08-11: the parity cokernel is a simultaneous Bockstein quotient
+
+Full proof: `docs/FALSE_PRIME_TWO_BOCKSTEIN_IDENTIFICATION.md`.
+
+Let `X` be the limiting `K_infinity=pi^(-1)(E(2))` cover, let `tau` be the
+canonical deck involution, and put `Y=<tau>\X`.  Invariant integral chains
+on `X` are ordinary integral chains on `Y`; anti-invariant chains are chains
+with the sign local system.  Both systems reduce modulo two to the same
+trivial `F_2` complex.
+
+If
+
+    beta_+:H_2(Y;F_2)->H_1(Y;Z_+),
+    beta_-:H_2(Y;F_2)->H_1(Y;Z_-)
+
+are the two coefficient Bocksteins, then the exact parity-cycle cokernel is
+
+    H_2(Y;F_2)/(ker beta_+ + ker beta_-).
+
+The proof is cycle-level: a binary cycle lifts to an integral `+` or `-`
+cycle exactly when its homology class lies in the corresponding Bockstein
+kernel; binary boundaries lift in both systems.
+
+Therefore the parity-only escape branch forces one finite-support class
+`alpha` with both `beta_+(alpha)` and `beta_-(alpha)` nonzero (indeed
+two-torsion) and with `alpha` outside the sum of the two kernels.  The local
+primary task is now a fixed simultaneous-Bockstein computation on one
+index-two intermediate cover.  Proving the two kernels span eliminates the
+branch; failure gives the precise class whose finite-cover cancellations
+must be shown marked-visible.
+
+The same calculation holds for every prime through the integral pullback
+
+    Z[C_p] = Z times_(F_p) Z[zeta_p].
+
+Ordinary and cyclotomic chains glue when their residues modulo `p` and
+`varpi=1-zeta_p` agree.  The cycle-gluing cokernel is
+
+    H_2(Y;F_p)/(ker beta_1 + ker beta_chi),
+
+where `beta_1` is the ordinary `p`-Bockstein and `beta_chi` is the
+cyclotomic `varpi`-Bockstein.  It vanishes if either `H_1(Y;Z)` has no
+`p`-torsion or `H_1(Y;Z[zeta_p]_chi)` has no `varpi`-torsion.  This is an
+exact algebraic elimination at each fixed prime; varying `p` still requires
+uniform norm control and should not be advertised as an automatic decoder.
+
+The explicit radical orbit itself has now been separated from the unknown
+complement.  For `I_p=Aug_Z(C_p)`,
+
+    (I_p)_(C_p) = Z/p,
+    (I_p tensor Z[zeta_p]_chi)_(C_p) = Z[zeta_p].
+
+The natural cyclotomic image is the torsion-free ideal
+`(1-zeta_p)Z[zeta_p]`.  Thus the radical augmentation module has ordinary
+`p`-torsion coinvariants but no cyclotomic `varpi`-torsion by itself.  Any
+simultaneous Bockstein obstruction needs another relation-module sector or
+transgression.  This is a module-level statement only: injection into the
+full twisted/untwisted `H_1` still has to be audited.

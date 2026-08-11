@@ -1,0 +1,146 @@
+{
+  "ambient_dimension": 440,
+  "bkz_block_sizes": [
+    20,
+    30,
+    40
+  ],
+  "bkz_loops": 1,
+  "cycle_lattice_rank": 142,
+  "elapsed_seconds": 114.6550139199826,
+  "exact_cycle_pairing_verified": true,
+  "exact_degree_three_annihilation_verified": true,
+  "history": [
+    {
+      "elapsed_seconds": 103.06486568995751,
+      "maximum_absolute_coefficient": 208991697295354518645478189396198961,
+      "norm_approx": 9.265224513093909e+35,
+      "squared_norm": "858443852780362731588531355854077312233802426238509667279972611007077072",
+      "stage": "exported_hnf",
+      "support_size": 132
+    },
+    {
+      "elapsed_seconds": 103.21381874295184,
+      "maximum_absolute_coefficient": 39,
+      "norm_approx": 141.15594213493102,
+      "squared_norm": "19925",
+      "stage": "saturated_plane_round",
+      "support_size": 123
+    },
+    {
+      "elapsed_seconds": 104.00916209298884,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 4.795831523312719,
+      "squared_norm": "23",
+      "stage": "lll_plane_round",
+      "support_size": 23
+    },
+    {
+      "elapsed_seconds": 104.76229822199093,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.3166247903554,
+      "squared_norm": "11",
+      "stage": "lll_babai",
+      "support_size": 11
+    },
+    {
+      "elapsed_seconds": 105.60765001300024,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.3166247903554,
+      "squared_norm": "11",
+      "stage": "bkz_20_plane_round",
+      "support_size": 11
+    },
+    {
+      "elapsed_seconds": 106.3824855829589,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.1622776601683795,
+      "squared_norm": "10",
+      "stage": "bkz_20_babai",
+      "support_size": 10
+    },
+    {
+      "elapsed_seconds": 107.24197034799727,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.1622776601683795,
+      "squared_norm": "10",
+      "stage": "bkz_30_plane_round",
+      "support_size": 10
+    },
+    {
+      "elapsed_seconds": 107.99969208496623,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.1622776601683795,
+      "squared_norm": "10",
+      "stage": "bkz_30_babai",
+      "support_size": 10
+    },
+    {
+      "elapsed_seconds": 108.88697405497078,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.1622776601683795,
+      "squared_norm": "10",
+      "stage": "bkz_40_plane_round",
+      "support_size": 10
+    },
+    {
+      "elapsed_seconds": 109.67203357396647,
+      "maximum_absolute_coefficient": 1,
+      "norm_approx": 3.1622776601683795,
+      "squared_norm": "10",
+      "stage": "bkz_40_babai",
+      "support_size": 10
+    }
+  ],
+  "lift_sha256": "895f601c6cc566158763ff7a841124531d8d39795cc50d7405681d6e42ac8ef9",
+  "modular_coset_certificates": [
+    {
+      "candidate_centered_residue_cost": 10,
+      "exact_lower_bound": "every integral lift has squared norm at least the modular cost",
+      "modular_coset_leader_entries": [
+        [
+          18,
+          1
+        ],
+        [
+          95,
+          1
+        ],
+        [
+          96,
+          1
+        ],
+        [
+          156,
+          1
+        ],
+        [
+          321,
+          1
+        ],
+        [
+          352,
+          1
+        ]
+      ],
+      "modular_coset_leader_squared_cost": 6,
+      "modulus": 2,
+      "parity_check_rank": 142,
+      "solver": "GLPK branch-and-bound",
+      "syndrome_support": [
+        71,
+        77
+      ]
+    }
+  ],
+  "paired_distortion_upper": 4.892965738491561,
+  "paired_distortion_upper_squared": "7840276801240705712449020130189008743246248293449988116228942361335604678903756536483396153904527254027700594192980/327481707558530172141936273258164582168885284351423489831325060580670153770614187205777952073817157480161455382829",
+  "prime": 61,
+  "projective_degree": 3783,
+  "qsharp_gauss_basis_row": 1,
+  "qsharp_squared_norm": "327481707558530172141936273258164582168885284351423489831325060580670153770614187205777952073817157480161455382829/784027680124070571244902013018900874324624829344998811622894236133560467890375653648339615390452725402770059419298",
+  "reduced_lift_squared_norm": "10",
+  "saturated_range_basis_maximum_absolute_coefficient": 113,
+  "saturated_range_lattice_rank": 298,
+  "support_exhaustion_certificate": null
+}

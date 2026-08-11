@@ -481,6 +481,18 @@ fully bounded.  The second lift need not be a shortest representative for
 this conclusion; exact pairings make it a valid integral section, while the
 first class supplies the matching lower bound to within `0.015%`.
 
+The same construction at the next cuspidal level supplies a second family
+datum.  At `p=61`, the reduced harmonic rank is again two, exact lifts have
+Gram matrix
+
+`[[17,-3],[-3,10]]`,
+
+and the resulting section norm is `11.793652354043665...`.  The shortest
+dual vector has norm `0.3532226522900641...`, so it is farther from zero
+than at `p=53`.  This replication rules out immediate denominator collapse
+but does not prove a uniform bound; see
+`TRUE_P61_CELLULAR_HARMONIC_SECTION.md`.
+
 Before recovering `V`, Theorem 1A already gives the exact harmonic
 regulator from the two cellular spans.  If `C_W,C_S` are independent
 integer coboundary and boundary spanning matrices at level `53`, with
