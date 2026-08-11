@@ -75,6 +75,23 @@ example (m : ℕ) (hm : 1 ≤ m) :
       ¬ IsSofic (UniversalLeavittEL m) :=
   universalLeavitt_profile m hm
 
+example (n : ℕ) (hn : 3 ≤ n) :
+    HasTTmodT.{0, 0}
+      (elementaryGroup (Fin n)
+        (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
+  LeavittAllRanksTT.elementaryGroup_hasTTmodT n hn
+
+example {R : Type} [Ring R] [Nontrivial R]
+    (X : Type) [Fintype X]
+    (f : FreeAlgebra (ZMod 2) X →+* R) (hf : Function.Surjective f)
+    (L : LeavittFamily R)
+    (hdiv : HasSingleSandwichDivision R)
+    (hdiag : HasElementaryDiagonalClass R)
+    (n : ℕ) (hn : 3 ≤ n) :
+    HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) :=
+  FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
+    X f hf L hdiv hdiag n hn
+
 example (k : Type) [Field k] [Finite k]
     (m : ℕ) (hm : 1 ≤ m) :
     Group.FG (BinaryLeavittEL k m) ∧

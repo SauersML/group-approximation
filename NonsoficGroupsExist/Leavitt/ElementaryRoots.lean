@@ -139,6 +139,14 @@ theorem elementaryRoot_commutator (i j k : I)
   apply Subtype.ext
   exact elementaryUnit_commutator i j k hij hjk hik a b
 
+@[simp] theorem elementaryReindexEquiv_elementaryRoot
+    {J : Type*} [Fintype J] [DecidableEq J]
+    (e : I ≃ J) (i j : I) (hij : i ≠ j) (a : R) :
+    elementaryReindexEquiv e (elementaryRoot i j hij a) =
+      elementaryRoot (e i) (e j) (e.injective.ne hij) a := by
+  apply Subtype.ext
+  exact elementaryReindexUnitEquiv_elementaryUnit e i j hij a
+
 /-- Conjugation by one elementary root performs the corresponding elementary
 shear on an adjacent root. -/
 theorem elementaryRoot_conjugate (i j k : I)
