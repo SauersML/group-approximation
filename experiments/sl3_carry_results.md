@@ -157,6 +157,56 @@ Do not resume dense Smith forms of `d1`; use sparse modular selection and
 exact determinant/gcd certificates, then move to the primitive cycle Gram
 lattice which actually governs `Theta`.
 
+## Exact primitive cycle discriminant at `p=3`
+
+`sl3_carry_cycle_discriminant.py` obtains a primitive basis from the zero
+rows of a transformed row Hermite form.  It independently checks that every
+Smith factor of the resulting `338 x 207` basis is one.  The cycle Gram
+matrix has determinant
+
+`111860100927858053679845003076090458883815688550015485832058016128295803340756802716303360`
+
+and 13 nonunit Smith factors:
+
+`3,3,6,6,6,6,6,6,18,18,108,648,`
+`11748473010802458762353905411768954045704229041349662360748852518665758026240`.
+
+Thus even the smallest chart has a 296-bit discriminant and cannot be
+handled by enumerating discriminant classes.  The fixed-axis torsion cell
+already has discriminant-class order
+
+`489519708783435781764746058823706418571009543389569265031202188277739917760`,
+
+while its exact squared carry ratio is only
+
+`20396654532643157573531085784321100773792064307898719376300091178239163240`
+`/989539625037043080774308299417824307996183859749981101022908782774423723`
+
+`=20.612266569799...`.  Large class order therefore does not imply large
+distortion.  Symmetry or a structural lattice inequality is mandatory.
+
+The exact output is cold-replayed by
+
+```text
+python experiments/sl3_carry_cycle_discriminant.py \
+  --verify experiments/sl3-carry-cycle-discriminant-p3.json
+```
+
+As a calibration of the constant-cycle theorem below, direct Hermite
+arithmetic proves `S(K_3)=K_1`.  At `p=5`, the transform-free combined-map
+certificate in `sl3_carry_transfer_certificate.py` has three
+`628 x 628` minors with determinants
+
+`-2142487245, 39070484480, -23842199808`.
+
+Their gcd is one, so the combined `(d1^T,S)` image is saturated.  Constant
+rational lifts then prove `S(K_5)=K_1` integrally.  Verify it with
+
+```text
+python experiments/sl3_carry_transfer_certificate.py \
+  --verify experiments/sl3-carry-transfer-p5-certificate.json
+```
+
 ## The constant-cycle transfer route is closed
 
 Sections 6--10 of

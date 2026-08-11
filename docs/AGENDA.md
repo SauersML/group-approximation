@@ -649,6 +649,15 @@ forces it.  The next autonomous solver must therefore construct the cycle
 Gram discriminant module and certify the paired closest-vector radii, using
 the scalar/chart symmetries to avoid unrestricted high-dimensional CVP.
 
+The first exact cycle computation confirms that requirement.  At `p=3`,
+the primitive cycle lattice has rank 207 and a 296-bit discriminant with 13
+nonunit Smith factors; the fixed-axis cell alone has enormous class order
+but squared distortion only `20.612266...`.  Exhaustive class enumeration
+and class-order heuristics are therefore both dead.  Exact combined-map
+minor certificates also prove full constant-cycle transfer at `p=3,5`, in
+agreement with the Schur-multiplier theorem.  Continue only in genuinely
+new-cover symmetry sectors of the cycle discriminant module.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
