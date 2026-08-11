@@ -140,6 +140,12 @@ shortest-vector-in-coset problems, one for each nonzero discriminant class.
 No enumeration of arbitrary integral carries is logically necessary once
 the gluing is known.
 
+The companion note `TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` upgrades
+this statement from `Theta` to the optimal nonlinear circle-repair constant
+itself.  It expresses the defect at every point of `W` as the lower envelope
+of the finitely many glued discriminant wells and gives the improved bounds
+`sqrt(Theta^2-1)/||A|| <= C_circ <= Theta/sigma_+`.
+
 ### Exact Gram-matrix coordinates
 
 Let the columns of an integer matrix

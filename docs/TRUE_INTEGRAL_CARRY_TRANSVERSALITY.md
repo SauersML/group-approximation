@@ -130,6 +130,12 @@ principal interval it is uniformly bi-Lipschitz equivalent to chordal
 distance in `T`, so the same theorem holds for the normalized `L2` chordal
 defect used in the monomial model, with universal changes of constants.
 
+The exact nonlinear formula in
+`TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` sharpens `(ICT8)` to
+`rep_A<=Theta(A)/sigma_+(A) def_A` and sharpens `(ICT10)` to
+`Theta(A)<=sqrt(1+(||A||C)^2)`.  More strongly, it writes the optimal repair
+constant itself as a finite paired-discriminant envelope.
+
 ## 4. Application to exact property-`(T)` charts
 
 Fix a finite presentation `G=<S|R>` of a property-`(T)` group.  For every

@@ -814,6 +814,19 @@ therefore an exact rank-two lattice lift/regulator problem, not another
 homology-dimension sweep.  See
 `experiments/sl3_projective_carry_results.md`.
 
+`TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` now gives the exact optimal
+nonlinear repair constant, not only a comparison through `Theta`.  It is
+the quotient of the ellipsoidal distance to the saturated range lattice by
+the lower envelope of the finitely many paired discriminant wells.  This
+sharpens the old constants to
+`sqrt(Theta^2-1)/||A|| <= C_circ <= Theta/sigma_+`.  More importantly for
+the cuspidal chart, it proves
+`Q^#=H intersect (Z^m+W)` and embeds
+`Q^#/(H intersect Z^m)` into the paired range discriminant.  Hence the
+`p=53` regulator, dual systole, and all sub-spherical-threshold paired
+classes can be recovered from a two-variable rational lattice pullback;
+constructing the full rank-20,000-plus integral cycle kernel is unnecessary.
+
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
 by an integer of magnitude less than one with every template, hence is

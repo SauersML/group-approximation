@@ -169,3 +169,11 @@ For `p=53`, an exact run should export more than the abstract group:
 This replaces the false target “prove `H_2(H_p,Z)=C_2^3` uniformly” by two
 precise metric targets: bound the harmonic dual systole from below and
 bound the paired range/cycle discriminant-radius ratio from above.
+
+The exact coupling of these two targets is now given in
+`TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md`.  In particular,
+`Q^#=H intersect (Z^m+W)`, the quotient
+`Q^#/(H intersect Z^m)` injects into the paired range discriminant, and all
+classes below the spherical threshold are computed by this harmonic
+quotient.  At `p=53` this replaces a full integral cycle-kernel computation
+by a rank-two rational lattice pullback.
