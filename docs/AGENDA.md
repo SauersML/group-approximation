@@ -1102,18 +1102,23 @@ meets positive vertex-stabilizer homology, followed by the integral norm
 bound on the paired carry lattice.  See
 `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
 
-The same four cuspidal generators have now been followed through six binary
-layers.  Exact sparse local-ring elimination produces full corrections at
-both `p=53` and `p=61` modulo `2,4,8,16,32,64`.  The previous greedy failure
-at modulus eight was therefore a choice-of-lift artifact, not a primary
-obstruction.  At modulus eight, unit elimination compresses the `p=53`
-problem from `11452` equations to four residual equations and the `p=61`
-problem from `15132` equations to two; each exact direct solve then takes
-about one second.  The selected centered correction norms grow with the
-modulus, so this proves finite-depth existence rather than a uniform metric
-section.  Generic SAT/MILP feasibility search is obsolete here.  The next
-exact target is the tiny residual two-local elementary divisor/Bockstein,
-followed separately by norm control.  See
+The same four cuspidal generators now have all-depth two-adic lifts.  Exact
+sparse local-ring elimination first produced full corrections at both
+`p=53` and `p=61` modulo `2,4,8,16,32,64`; the previous greedy failure at
+modulus eight was therefore a choice-of-lift artifact.  Exact rational and
+binary ranks, together with the complete discrete-valuation pivot profile,
+identify the two-primary correction cokernel at each level as one copy of
+`C_4`.  Both harmonic demands have zero free-cokernel component.  Since they
+solve modulo eight, their `C_4` components vanish, while multiplication by
+two is invertible on the odd torsion.  Consequently both generators solve
+modulo `2^k` for every `k>=1` at both charts.  Independent one-CPU MSI reruns
+reproduced the exact structure artifacts byte for byte.  This closes
+qualitative binary existence at the first two cuspidal levels, not the
+family-level metric theorem: neither arbitrary all-depth lifts nor the four
+displayed modulus-64 basis profiles bound the minimum operator norm on every
+harmonic combination uniformly over the charts.  Generic feasibility search
+is obsolete here; the live target is uniform norm control and replication of
+the exact local structure across further cuspidal levels.  See
 `TRUE_HARMONIC_TWO_ADIC_LIFT.md`.
 
 The restricted modular norm is also exact at these levels.  Enumerating all
