@@ -111,6 +111,30 @@ def main() -> None:
     args = parser.parse_args()
     result = [residual_boundary(path) for path in args.inputs]
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+    columns = (
+        "prime",
+        "projective_degree",
+        "source_degree_three_C2_coordinates",
+        "target_second_degree_two_C2_coordinates",
+        "rank_over_F2",
+        "kernel_dimension",
+        "cokernel_dimension",
+        "zero_rows",
+        "weight_two_rows",
+        "zero_columns",
+        "weight_one_columns",
+    )
+    lines = ["\t".join(columns)]
+    for row in result:
+        values = {
+            **row,
+            "zero_rows": row["row_weight_histogram"].get("0", 0),
+            "weight_two_rows": row["row_weight_histogram"].get("2", 0),
+            "zero_columns": row["column_weight_histogram"].get("0", 0),
+            "weight_one_columns": row["column_weight_histogram"].get("1", 0),
+        }
+        lines.append("\t".join(str(values[column]) for column in columns))
+    args.output.with_suffix(".tsv").write_text("\n".join(lines) + "\n")
     print(json.dumps(result, indent=2, sort_keys=True))
 
 
