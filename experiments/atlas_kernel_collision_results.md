@@ -64,3 +64,34 @@ The enumeration does not decide whether the limiting normalized-HS energy
 vanishes as the regular multiplicity grows.  It removes the algebraic
 incompleteness of the finite constraint list and makes that analytic limit
 the only remaining issue for each displayed window.
+
+## Radius-two representation calibration
+
+`atlas_complete_window_search.py` feeds the complete radius-two list into
+the existing one-relative-unitary optimizer in the 15-point permutation
+representation of each `A8` factor.  This is not the asymptotically regular
+sector required by the criterion, but it is a cheap exact calibration.
+
+The vectorized command
+
+```text
+python3 experiments/atlas_complete_window_search.py --radius 2 --inner-scan
+```
+
+exhausts all 20,160 inner relative alignments.  No alignment satisfies all
+220 constraints.  The unique lexicographic optimum is the alignment encoded
+by the `GL_4(F_2)` bit word 33060.  It satisfies 208 constraints exactly and
+has
+
+`mean trace = 0.9709090909`,
+`RMS defect = 0.2412090757`,
+`maximum defect = 1.0327955590`.
+
+Starting the unrestricted `U(15)` max-focused optimizer at that alignment
+and running four 600-step perturbations changed the best maximum defect only
+to `1.032793451`, while slightly worsening the RMS defect.  Thus the best
+classical alignment is also a very stiff stationary locus in the full
+unitary space.  This is numerical evidence only: it neither proves a
+dimension-15 lower bound nor addresses multiplicity growth.  Its value is
+that the first complete window is already nontrivial even before the longer
+Steinberg relations enter.
