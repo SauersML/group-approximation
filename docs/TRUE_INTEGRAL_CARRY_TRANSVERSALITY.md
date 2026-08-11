@@ -226,7 +226,66 @@ It proves that bounded degree, expansion, and the property-`(T)`-type real
 gap cannot by themselves supply the nonlinear step.  Some integral
 cosystolic or carry-lattice input is logically necessary.
 
-## 6. What remains for the main problem
+## 6. A fixed integral generalized inverse is sufficient
+
+There is a purely algebraic condition which supplies both missing estimates
+at once.
+
+**Proposition 3 (integral splitting criterion).**  Let `A:E->F` preserve the
+integer lattices.  Suppose there is an integer-lattice-preserving map
+`B:F->E` such that
+
+`A B A=A`.                                             `(ICT33)`
+
+Put `P=A B`.  Then
+
+`Theta(A)<=||1-P||`                                   `(ICT34)`
+
+and, for every `x`,
+
+`rep_A(x)<=||B|| ||P|| def_A(x)`.                     `(ICT35)`
+
+**Proof.**  Equation `(ICT33)` makes `P` a projection onto `W=ran(A)`.
+It preserves the integer lattice, so `Pz` belongs to `L_A` for every
+`z in F_Z`.  For any `w in W`,
+
+`||z-Pz||=||(1-P)(z-w)||<=||1-P|| ||z-w||`.           `(ICT36)`
+
+Taking the infimum over `w` proves `(ICT34)`.
+
+For `(ICT35)`, choose `z in F_Z` nearest to `Ax` and put `ell=Pz`.  Then
+
+`Ax-ell=P(Ax-z)`.                                     `(ICT37)`
+
+Set `u=B(Ax-ell)`.  Since `Ax-ell` lies in `W`,
+
+`Au=P(Ax-ell)=Ax-ell`.                                `(ICT38)`
+
+Thus `y=x-u` satisfies `Ay=ell in F_Z`, while
+
+`||x-y||=||u||<=||B|| ||P|| def_A(x)`.                `(ICT39)`
+
+End proof.
+
+Now let `D` be a fixed presentation relator matrix over `Z[G]`.  If there is
+a matrix `B` over `Z[G]` with
+
+`D B D=D`,                                             `(ICT40)`
+
+then every finite permutation specialization of `D` and `B` satisfies
+`(ICT33)`.  Their operator norms are bounded uniformly by the fixed
+group-ring coefficient `l1` norms.  Proposition 3 therefore proves uniform
+circle-cocycle repair on all those exact charts, with no separate appeal to
+property `(T)`.
+
+Condition `(ICT40)` is intentionally strong: it says that the universal
+relator range has a fixed integral splitting.  The present argument does not
+show that the property-`(T)` presentations relevant to the main problem have
+such a splitting.  Its value is to identify an algebraic certificate that
+would settle the carry problem immediately, and to separate that certificate
+from real closed-range statements.
+
+## 7. What remains for the main problem
 
 The vague instruction "control logarithmic carries" can now be replaced by
 two precise questions.
