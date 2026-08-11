@@ -117,6 +117,7 @@ def main():
         ("S4", SymmetricGroup(4)),
         ("A5", AlternatingGroup(5)),
         ("S5", SymmetricGroup(5)),
+        ("S6", SymmetricGroup(6)),
         ("PSL(2,7)", PSL(2, 7)),
     ]
     results = []
