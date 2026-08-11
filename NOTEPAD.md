@@ -37406,3 +37406,58 @@ Any use toward the main problem needs one additional statement of the form:
 That additional statement is presently unproved and is equivalent in force
 to the finite-action transfer, rather than a consequence of the supplied
 paper.
+
+## 2026-08-10: the partial-orbit rounding method stops exactly at amenability
+
+Burton's arXiv:2110.03076 proves that hyperlinear approximations of an
+amenable group can be rounded, quantitatively, to permutation-induced ones.
+Its mechanism chooses a Følner set `M` in the group, turns the vectors
+`{pi(g)xi:g in M}` into an almost orthonormal partial orbit, and uses the
+almost-invariance of `M` to make left multiplication into permutations on
+most of that orbit.
+
+The doubled formulation `(DCT1)-(DCT9)` does not weaken the Følner input.
+In fact it identifies it exactly.  Let `q:F->Gamma=F/N` and
+
+`H_N={(a,b) in F x F:q(a)=q(b)}`.                     `(PO1)`
+
+The coset space `(F x F)/H_N` is equivariantly identifiable with `Gamma`
+under the left-right action
+
+`(a,b).x=q(a) x q(b)^(-1)`.                           `(PO2)`
+
+For example, the coset of `(u,v)` maps to `q(u)q(v)^(-1)`; equality of two
+such images is exactly membership of their quotient in `H_N`.
+
+**Proposition.**  `H_N` is coamenable in `F x F` if and only if `Gamma` is
+amenable.
+
+**Proof.**  A mean on `(F x F)/H_N`, transported through `(PO2)`, is a mean
+on `Gamma` invariant under every left and right translation.  Restricting to
+the transformations `(a,1)` gives a left-invariant mean, so `Gamma` is
+amenable.  Conversely, an amenable group admits a two-sided invariant mean;
+that mean is invariant under `(PO2)` and hence makes `H_N` coamenable.  End
+proof.
+
+Equivalently, finite subsets of the orbit in `(PO2)` with simultaneously
+small boundary for the finitely many left-right translations needed by a
+table exist for every table exactly in the amenable case.  Restriction to
+left translations already shows why no weaker conclusion is possible.
+
+Therefore the following tempting extension is circularly false as a
+universal strategy:
+
+1. regard the matrices `pi(g)` as almost orthogonal orbit vectors;
+2. choose a large almost invariant finite piece of that orbit;
+3. let generators permute the piece and discard its boundary.
+
+Step 2 is precisely a Følner demand.  On a nonamenable hyperlinear group such
+as a nonabelian free group, no choice of larger matrix dimension or better
+trace accuracy supplies it.  Random-vector orthogonalization is
+dimension-free, but the boundary estimate is group-theoretic.
+
+This does not rule out a different rounding argument using global quantum
+interference rather than a partial regular orbit.  It does close the direct
+attempt to combine the stable-commutativity manuscript or the canonical
+entangled coefficient `(DCT5)` with Burton's partial-orbit extraction beyond
+amenable quotients.
