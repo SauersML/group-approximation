@@ -166,7 +166,67 @@ attainable carry lattice
 
 `ran(d1_V) intersect C^2(V,Z)`.                       `(ICT23)`
 
-## 5. What remains for the main problem
+## 5. Real expansion alone cannot bound the carries
+
+The extra lattice condition is not a disguised consequence of a real
+spectral gap, even for uniformly sparse integral matrices.
+
+Let `Gamma_n` be connected `d`-regular graphs with `|V_n|=n` and a uniform
+unnormalized Laplacian gap `lambda_2(Gamma_n)>=lambda>0`.  Orient the edges
+arbitrarily and let
+
+`B_n:R^(E_n) -> R^(V_n)`                              `(ICT24)`
+
+be the signed incidence matrix.  Then
+
+`ran(B_n)=1^perp`,
+`sigma_+(B_n)=sqrt(lambda_2(Gamma_n))>=sqrt(lambda)`,
+`||B_n||<=sqrt(2d)`.                                  `(ICT25)`
+
+Thus this family has exactly the uniform real gap and operator-norm bound in
+`(ICT11)`.  Nevertheless
+
+`Theta(B_n)>=sqrt(n)`.                                `(ICT26)`
+
+Indeed, fix a vertex `v` and take `z=e_v in Z^(V_n)`.  Its distance to the
+zero-sum real hyperplane is
+
+`dist(e_v,1^perp)=1/sqrt(n)`.                         `(ICT27)`
+
+On the other hand,
+
+`1^perp intersect Z^(V_n)={ell in Z^(V_n):sum ell=0}`. `(ICT28)`
+
+The zero vector is at distance one from `e_v`, and every nonzero vector in
+the lattice `(ICT28)` has an integer coordinate pattern forcing distance at
+least one.  Hence `dist(e_v,L_(B_n))=1`, proving `(ICT26)`.
+
+There is also a direct near-cocycle witness.  Let
+
+`w=e_v-(1/n)1`,                                       `(ICT29)`
+
+and choose `x perpendicular ker(B_n)` with `B_n x=w`.  The nearest integer
+vector to `w` is `e_v`, so
+
+`def_(B_n)(x)=1/sqrt(n)`.                             `(ICT30)`
+
+For every exact point `y`, the vector `B_n y` belongs to the lattice
+`(ICT28)`, and `w` has distance `sqrt(1-1/n)` from that lattice.  Therefore
+
+`||x-y|| >= ||B_n(x-y)||/||B_n||`
+`          >= sqrt(1-1/n)/sqrt(2d)`.                 `(ICT31)`
+
+Consequently the optimal circle repair constant is at least
+
+`sqrt(n-1)/sqrt(2d)`.                                 `(ICT32)`
+
+This example is degree zero rather than the relator map of the target group,
+so it is a calibration, not a counterexample to the selected-chart program.
+It proves that bounded degree, expansion, and the property-`(T)`-type real
+gap cannot by themselves supply the nonlinear step.  Some integral
+cosystolic or carry-lattice input is logically necessary.
+
+## 6. What remains for the main problem
 
 The vague instruction "control logarithmic carries" can now be replaced by
 two precise questions.
