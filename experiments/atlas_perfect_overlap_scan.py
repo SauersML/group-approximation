@@ -12,6 +12,7 @@ survives this bounded family of perfect-overlap certificates.
 """
 
 import argparse
+import collections
 import json
 
 import numpy as np
@@ -26,6 +27,11 @@ from atlas_two_chart_search import CHART_LEAVES, I4, gf2_mul, matrix_key
 
 
 COMMON_REFINEMENT = ("000", "001", "010", "011", "1")
+SUFFIX_VARIABLES = ("A", "B", "C", "D", "E", "F", "G")
+FACTOR_VARIABLES = {
+    1: (0, 1, 2, 3),       # (A,B,C,D)
+    2: (4, 1, 5, 6),       # (E,B,F,G)
+}
 
 
 def refinement_levels(max_leaves):
@@ -157,12 +163,81 @@ def classify_word(word, candidates):
     return None, first_common_chart
 
 
+def cardinality_obstruction(word):
+    """Return an exact positive-cardinality obstruction to any common chart.
+
+    If a common refinement exists, write its suffix codes under the first
+    chart as A,B,C,D and under the second as E,B,F,G.  The binary tree gives
+
+        |A|=|F|+|G|,   |E|=|C|+|D|.
+
+    Matrix support identifies some variables.  After those identifications,
+    a row whose nonzero coefficients have only one sign cannot vanish on
+    positive suffix-code cardinalities.
+    """
+    parent = list(range(len(SUFFIX_VARIABLES)))
+
+    def find(value):
+        while parent[value] != value:
+            parent[value] = parent[parent[value]]
+            value = parent[value]
+        return value
+
+    def union(left, right):
+        left = find(left)
+        right = find(right)
+        if left != right:
+            parent[right] = left
+
+    for factor, matrix in word:
+        variables = FACTOR_VARIABLES[factor]
+        for row in range(4):
+            for col in range(4):
+                if matrix[row, col]:
+                    union(variables[row], variables[col])
+
+    equations = []
+    for terms in (
+            ((0, 1), (5, -1), (6, -1)),
+            ((4, 1), (2, -1), (3, -1))):
+        coefficients = collections.defaultdict(int)
+        for variable, coefficient in terms:
+            coefficients[find(variable)] += coefficient
+        equations.append({root: coefficient for root, coefficient
+                          in coefficients.items() if coefficient})
+
+    roots = sorted({find(variable) for variable in range(len(parent))})
+    classes = {
+        root: [SUFFIX_VARIABLES[variable]
+               for variable in range(len(parent)) if find(variable) == root]
+        for root in roots
+    }
+    encoded_equations = []
+    obstructing_rows = []
+    for row, equation in enumerate(equations):
+        encoded = [
+            {"class": classes[root], "coefficient": equation.get(root, 0)}
+            for root in roots if equation.get(root, 0)
+        ]
+        encoded_equations.append(encoded)
+        signs = [entry["coefficient"] for entry in encoded]
+        if signs and (all(value > 0 for value in signs)
+                      or all(value < 0 for value in signs)):
+            obstructing_rows.append(row)
+    return {
+        "classes": list(classes.values()),
+        "cardinality_equations": encoded_equations,
+        "positive_cardinality_obstruction_rows": obstructing_rows,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--radius", type=int, default=5)
     parser.add_argument("--max-leaves", type=int, default=12)
     parser.add_argument("--boundary-only", action="store_true")
     parser.add_argument("--output")
+    parser.add_argument("--summary-only", action="store_true")
     args = parser.parse_args()
     if args.radius < 0 or args.max_leaves < len(COMMON_REFINEMENT):
         raise ValueError("invalid radius or leaf bound")
@@ -191,22 +266,29 @@ def main():
     survivors = []
     histogram = {}
     common_chart_survivors = 0
+    cardinality_obstructions = 0
+    projection_classes = collections.Counter()
     for index, word in enumerate(words):
         certificate, common_chart = classify_word(word, candidates)
         if certificate is None:
             projections = factor_projections(word)
+            projection_pair = tuple(
+                matrix_key(projection).hex() for projection in projections)
+            projection_classes[projection_pair] += 1
             if common_chart is not None:
                 common_chart_survivors += 1
+            obstruction = cardinality_obstruction(word)
+            if obstruction["positive_cardinality_obstruction_rows"]:
+                cardinality_obstructions += 1
             survivors.append({
                 "word_index": index,
                 "length": len(word),
-                "projection_pair": [
-                    matrix_key(projection).hex() for projection in projections
-                ],
+                "projection_pair": list(projection_pair),
                 "common_chart_leaf_count": (
                     common_chart[0] if common_chart is not None else None),
                 "common_chart_code": (
                     list(common_chart[1]) if common_chart is not None else None),
+                "cardinality_analysis": obstruction,
                 "word": encode_word(word),
             })
             continue
@@ -229,6 +311,12 @@ def main():
         "perfect_overlap_certificates": len(certificates),
         "survivors": len(survivors),
         "survivors_with_common_chart": common_chart_survivors,
+        "survivors_with_global_cardinality_obstruction": (
+            cardinality_obstructions),
+        "survivor_projection_classes": [
+            {"projection_pair": list(pair), "multiplicity": multiplicity}
+            for pair, multiplicity in sorted(projection_classes.items())
+        ],
         "minimum_leaf_histogram": histogram,
         "certificate_records": certificates,
         "survivor_records": survivors,
@@ -237,7 +325,13 @@ def main():
     if args.output:
         with open(args.output, "w", encoding="utf-8") as stream:
             stream.write(encoded + "\n")
-    print(encoded)
+    if args.summary_only:
+        summary = dict(result)
+        summary.pop("certificate_records")
+        summary.pop("survivor_records")
+        print(json.dumps(summary, indent=2))
+    else:
+        print(encoded)
 
 
 if __name__ == "__main__":

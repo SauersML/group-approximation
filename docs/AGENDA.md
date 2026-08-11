@@ -798,6 +798,17 @@ Clifford-preserving `U(32) x U(32)` manifold lowers RMS slightly but leaves
 maximum defect exactly `2`.  The perfect-overlap bridge decides the algebraic
 survival problem negatively, so stop numerical refinement of this branch.
 
+The perfect-overlap mechanism has now been run on the entire first boundary.
+Among its 234 tensor-flip failures, 178 are proved trivial in `R/[P,R]` by
+common superperfect charts of sizes 6, 8, or 10.  The remaining 56 words fall
+into only eight projection classes.  They are not merely beyond the search
+cutoff: their matrix-support equalities turn the two common-refinement suffix
+cardinality equations into positive contradictions, so none can lie in one
+scalar chart at any depth.  Their two factor subgroups have orders 4 and 8.
+Use one representative from each class for exact central-phase/character
+analysis before launching another unitary optimizer.  Full criterion and
+counts: `docs/FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
