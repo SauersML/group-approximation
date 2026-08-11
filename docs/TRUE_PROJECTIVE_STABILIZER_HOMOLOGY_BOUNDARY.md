@@ -122,6 +122,21 @@ varies with the prime is exactly the degree-two Betti defect, not the
 degree-two boundary rank.  At `p=3,5,7` that defect is zero; at `p=53` and
 the other cuspidal levels it is positive.
 
+At the first published cuspidal level, `p=53`, one has
+
+`n=53^2+53+1=2863`, `rank_Q(d_2)=8590`.               `(PSH14)`
+
+The cuspidal cohomology there has complex dimension two, so Proposition 1
+gives `b_2(H_53)>=2`.  Therefore
+
+`rank_Q(d_3)=20040-b_2(H_53)<=20038`,                 `(PSH15)`
+
+strictly below the small-prime extrapolation `7n-1=20040`.  Equations
+`(PSH14)--(PSH15)` are a direct checksum for any future exact `p=53`
+export.  Equality in `(PSH15)` would additionally require proving that
+compactly supported degree-three cohomology has no noncuspidal kernel; the
+cuspidal calculation alone supplies only the displayed upper bound.
+
 ## Exact consequence for the carry program
 
 Proposition 12 of `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` says that a dual
@@ -129,7 +144,7 @@ cycle shorter than the inverse norm of every bounded spherical template is
 orthogonal to the spherical lattice and hence lies in the harmonic
 representative of
 
-`H_2(H_p,R)`.                                        `(PSH14)`
+`H_2(H_p,R)`.                                        `(PSH16)`
 
 At `p=3,5,7`, `(PSH1)` makes this harmonic space zero, so every nonzero
 dual discriminant class has a uniform positive denominator radius on those
