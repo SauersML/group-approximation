@@ -10,6 +10,7 @@ assignments, and measures both local and full-chart centrality.
 Run with SageMath.  No optimization or random initialization is used.
 """
 
+import argparse
 import itertools
 import json
 import math
@@ -60,6 +61,9 @@ def spectral_counts(value):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--save-best")
+    args = parser.parse_args()
     block = CliffordBlock(seed=0)
     representation = block.representation
     identity = np.eye(64, dtype=np.complex128)
@@ -105,7 +109,7 @@ def main():
     if any(basis.shape[1] != 16 for basis in source_bases.values()):
         raise AssertionError("V4 restriction is not sixteen regular copies")
 
-    assignments = []
+    candidates = []
     character_keys = tuple(sorted(character_projectors))
     for positive_negative in itertools.combinations(character_keys, 2):
         positive_negative = set(positive_negative)
@@ -150,7 +154,7 @@ def main():
             generator_values.append(value)
         full_defects = [commutator_defect(r_value, value)
                         for value in generator_values]
-        assignments.append({
+        record = {
             "positive_negative_d8_characters": [list(key)
                                                   for key in sorted(
                                                       positive_negative)],
@@ -173,11 +177,15 @@ def main():
                 for (name, _word), defect in zip(
                     named_generators, full_defects, strict=True)
             },
-        })
+        }
+        candidates.append((record, relative))
 
-    assignments.sort(key=lambda item: (
-        item["full_chart_centrality_max"],
-        item["full_chart_centrality_rms"]))
+    candidates.sort(key=lambda item: (
+        item[0]["full_chart_centrality_max"],
+        item[0]["full_chart_centrality_rms"]))
+    if args.save_best:
+        np.save(args.save_best, candidates[0][1])
+    assignments = [record for record, _relative in candidates]
     print(json.dumps({
         "representation": "A8 irrep (5,2,1), dimension 64",
         "relation": "a_2 b_1 c_2 b_1 a_2 b_1 c_2 (cb)_1",
