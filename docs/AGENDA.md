@@ -148,6 +148,23 @@ representations and irreducible unitary representations whose degrees tend
 to infinity; reducible mixtures and multiplicity growth are not part of the
 gap.
 
+The induced finite-image part of that growing-degree comparison is now
+sharply controlled; see `TRUE_INDUCED_IDENTITY_GAP_DOMINATION.md`.  If
+`sigma=Ind_H^F(tau)` and `tau` has finite image, its normalized character
+defect is sandwiched against the moved fraction of the finite coset action
+`F/ker(tau)`:
+
+`min(1,eta(tau)) d_(F/ker(tau))(g) <= delta_sigma(g)`
+`                                      <= 2 d_(F/ker(tau))(g)`,
+
+where `eta(tau)` is the least normalized trace defect of a nonidentity
+inducing block.  The classical radical inequality therefore transfers with
+loss `2/min(1,eta(tau))`, independently of `[F:H]`.  In particular,
+finite-image monomial irreducibles of bounded phase exponent, and more
+generally induced finite-image blocks of bounded dimension and exponent,
+cannot obstruct TRUE.  Any induced finite-image obstruction must have
+identity gap tending to zero; growing coset degree alone is harmless.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
