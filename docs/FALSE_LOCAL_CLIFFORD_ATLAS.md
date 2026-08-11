@@ -211,7 +211,162 @@ is satisfied exactly. The block retains the central phase on all of its
 dimension; it is neither monomial nor a small-rank perturbation of the
 tensor flip.
 
-## 4. What this proves and what remains
+## 4. The irreducible Clifford sector is forced
+
+The \(64\)-dimensional choice is not accidental.
+
+**Proposition 3.** Suppose a representation of the two local \(S_3\)
+subgroups has \(q=\pm i\), has the three \(p_j\) pairwise anticommuting, and
+both subgroup actions extend irreducibly to \(A_8\) on that central spectral
+sector. Then both \(A_8\) representations are equivalent to \(W\).
+
+**Proof.** Anticommutation with \(p_0=b_2\) gives
+
+\[
+ \operatorname{Tr}(p_0)
+ =\operatorname{Tr}(p_1p_0p_1^{-1})
+ =-\operatorname{Tr}(p_0)=0.                         \tag{21}
+\]
+
+Thus the character of the second \(A_8\) representation vanishes on the
+transvection class \(2^4\). The irreducible \(A_8\) character table, obtained
+equally by restricting the paired \(S_8\) Specht characters and splitting
+the two self-conjugate shapes, has exactly one row which vanishes on this
+class: the \(64\)-dimensional row \((5,2,1)\). Hence the second chart is
+\(W\). The first irreducible chart acts on the same \(64\)-dimensional
+space, and \(W\) is the unique irreducible \(A_8\) representation of that
+dimension. End proof.
+
+Therefore every irreducible full-chart realization of this Clifford sign
+passes through the same \(64\)-dimensional sector. Reducible constructions
+may combine sectors with cancelling transvection characters, but there is no
+second irreducible seed to search for.
+
+## 5. An exact regular-character block with surviving phase
+
+All other irreducible \(A_8\) sectors admit a phase-\(1\) realization of the
+same local relation. This follows from a small branching calculation.
+
+Write the irreducible \(S_4\) representations as
+
+\[
+ 1,\quad\varepsilon,\quad v,\quad v\varepsilon,\quad u
+\]
+
+of dimensions \(1,1,3,3,2\), respectively. Restriction to a point
+stabilizer \(S_3<S_4\) and evaluation at a double transposition give
+
+\[
+\begin{array}{c|ccccc}
+ &1&\varepsilon&v&v\varepsilon&u\\ \hline
+\operatorname{Res}_{S_3}
+ &1&\mathrm{sgn}&1+\sigma&\mathrm{sgn}+\sigma&\sigma\\
+\chi(2^2)&1&1&-1&-1&2 .
+\end{array}                                           \tag{22}
+\]
+
+If an \(A_8\) representation restricts to
+
+\[
+ m_1\,1\oplus m_\varepsilon\,\mathrm{sgn}
+             \oplus m_\sigma\,\sigma                 \tag{23}
+\]
+
+and has transvection character \(c\), an \(S_4\) representation with
+multiplicities \((x_1,x_\varepsilon,x_v,x_{v\varepsilon},x_u)\) has the
+required restriction and double-transposition trace exactly when
+
+\[
+\begin{aligned}
+ m_1&=x_1+x_v,\\
+ m_\varepsilon&=x_\varepsilon+x_{v\varepsilon},\\
+ m_\sigma&=x_v+x_{v\varepsilon}+x_u,\\
+ c&=x_1+x_\varepsilon-x_v-x_{v\varepsilon}+2x_u .
+\end{aligned}                                        \tag{24}
+\]
+
+For the irreducible \(A_8\) rows, one nonnegative solution of (24) is:
+
+\[
+\begin{array}{c|r|r|r|r|c}
+\dim&m_1&m_\varepsilon&m_\sigma&c&
+(x_1,x_\varepsilon,x_v,x_{v\varepsilon},x_u)\\ \hline
+1  &1&0&0 & 1 &(1,0,0,0,0)\\
+7  &1&2&2 &-1 &(1,0,0,2,0)\\
+14 &6&0&4 & 6 &(4,0,2,0,2)\\
+20 &5&1&7 & 4 &(2,0,3,1,3)\\
+21 &2&5&7 &-3 &(1,0,1,5,1)\\
+28 &3&7&9 &-4 &(2,0,1,7,1)\\
+35 &8&5&11& 3 &(5,0,3,5,3)\\
+45 &6&9&15&-3 &(3,0,3,9,3)\\
+56 &13&5&19&8 &(6,0,7,5,7)\\
+64 &10&10&22&0&(4,0,6,10,6)\\
+70 &11&13&23&-2&(6,0,5,13,5).
+\end{array}                                          \tag{25}
+\]
+
+The three \(21\)-dimensional irreducibles have the same row here, and the
+two \(45\)-dimensional irreducibles have the same row. Thus (25) covers all
+irreducible representations of \(A_8\).
+
+For a row \(W'\), realize the first local \(S_3\) by the corresponding
+\(S_4\) representation in (25). Let its normal Klein four subgroup have
+nonidentity elements \(P_0,P_1,P_2\), permuted by that \(S_3\). Equation
+(22) and (24) say that \(P_0\) and the image of \(b\) in
+\(\operatorname{Res}_{S_3}^{A_8}W'\) are involutions of the same dimension
+and trace, hence are unitarily conjugate. Choose the second chart basis so
+that they agree. Then
+
+\[
+ p_j=P_j,\qquad p_1p_2p_0=1,\qquad [p_i,p_j]=1.       \tag{26}
+\]
+
+Both local \(S_3\) actions extend to honest copies of \(W'\) by construction.
+This proves:
+
+**Proposition 4 (phase-\(1\) completion).** Every irreducible \(A_8\)
+representation admits a pair of honest chart realizations on which \(q\)
+and the three pairwise commutators in (6) act as \(1\).
+
+Now decompose the regular representation as
+
+\[
+ \lambda_{A_8}\cong
+ \bigoplus_{W'\in\widehat {A_8}}(\dim W')\,W'.        \tag{27}
+\]
+
+On all \(64\) copies of the \(64\)-dimensional summand \(W\), use Theorem 2.
+On every other summand use Proposition 4. The direct sum has both chart
+restrictions exactly equal to \(\lambda_{A_8}\), while \(q\) and all three
+commutators are scalar on every common summand and therefore central in the
+whole free-product image.
+
+**Theorem 5 (canonical regular local certificate).** There is a relative
+unitary \(V\in U(20160)\) between two regular \(A_8\) charts such that
+
+\[
+ [\rho(x),\rho(q)]=[\rho(x),\rho([p_i,p_j])]=1
+ \quad(x\in P,\ i\ne j),                              \tag{28}
+\]
+
+and
+
+\[
+\begin{aligned}
+ \|\rho(q)-1\|_2^2
+   &=2\,{64^2\over20160}={128\over315},\\
+ \|\rho([p_i,p_j])-1\|_2^2
+   &=4\,{64^2\over20160}={256\over315}.               \tag{29}
+\end{aligned}
+\]
+
+Thus the first parity relation has an exact canonical regular-chart model
+which both kills its centrality defects and retains a positive normalized
+Hilbert--Schmidt central witness. The witness occupies the complete
+\(64\)-irrep isotypic component, of relative dimension \(64^2/20160\), not
+a vanishing corner.
+
+## 6. What this proves and what remains
 
 Theorem 2 is a genuine finite-dimensional solution of the first local
 Clifford cluster, but it is not a representation of the full group (8).
@@ -222,11 +377,10 @@ extension.
 
 The useful change is that this obstruction is now sharply posed. The
 radius-ten failure of the commuting tensor flip does **not** impose a local
-positive lower bound: a macroscopic \(64\)-dimensional \(A_8\) sector closes
-the parity word and its induced Klein-four commutators exactly, with the
-desired central phase. The next task is to add further Clifford sectors so
-that an increasing collision window is central while the accumulated
-character approaches the regular \(A_8\) character. A proof that the
-normalized cost of the later relations is \(o(1)\) would feed directly into
-the recursive atlas criterion and produce a hyperlinear nonsofic group.
-
+positive lower bound: Theorem 5 closes the parity word and its induced
+Klein-four commutators exactly inside the canonical regular-character
+problem, with a positive central witness already built in. The next task is
+to make the remaining collision-tree words central without destroying this
+\(64\)-isotypic phase. A proof that the normalized cost of the later
+relations is \(o(1)\) would feed directly into the recursive atlas criterion
+and produce a hyperlinear nonsofic group.
