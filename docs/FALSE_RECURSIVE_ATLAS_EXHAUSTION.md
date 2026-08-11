@@ -328,6 +328,23 @@ coset factor while retaining exact left-`H` equivariance cannot cross the
 boundary.  A successful model must also break that equivariance; no
 `U(120)` optimization in `(TF6b)` should be launched.
 
+The same exact filter identifies a smaller ansatz which survives.  Audit the
+15 point stabilizers and 15 hyperplane stabilizers `M` of `GL_4(F_2)`.  Each
+has order 1344 and index 15.  For 18 of these 30 subgroups, no one of the
+234 boundary words has all of its letters in `M` in both factors.  Hence the
+preceding rigidity proof has no witness for
+
+\[
+ U_V=(I_{\ell^2(M)}\otimes V)J,\qquad V\in U(15).      \tag{TF6f}
+\]
+
+This remains an exact regular-factor model in dimension 20,160, but its only
+continuous variable is a `15 x 15` unitary.  It is different from optimizing
+the 15-point permutation representation itself: `(TF6f)` deforms the coset
+multiplicity inside the full regular representation.  The complete
+30-subgroup audit is stored in the radius-five summary.  The zero-contained
+stabilizers are the next bounded primal search.
+
 ## 3.7 Phase twists of the tensor flip cannot cross the boundary
 
 The most immediate deformation of `J` is already impossible.  Let `V` be

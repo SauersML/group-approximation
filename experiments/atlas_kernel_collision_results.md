@@ -305,6 +305,14 @@ Consequently the tempting coset-multiplicity ansatz
 commutator of defect `sqrt(2)`.  This exact filter prevents a large but
 mathematically futile manifold optimization.
 
+Auditing all 15 point and 15 hyperplane stabilizers gives the constructive
+counterpoint.  Eighteen contain no failing word entirely in `M*M`.  Since
+each such `M` has order 1,344 and index 15, the ansatz
+`U=(I_(ell^2 M) tensor V)J` retains the exact regular factor restrictions
+while reducing the live variable to `V in U(15)`.  It is not ruled out by
+the support certificate.  This is a regular-representation multiplicity
+deformation, not the earlier 15-point representation optimizer.
+
 The 24 pairs themselves have an exact group-theoretic compression.  Their
 six one-sided nonidentity entries are the same in the two coordinates.  Four
 are adjacent elementary transvections in the upper-left `3 x 3` block; the

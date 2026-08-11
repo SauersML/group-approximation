@@ -739,6 +739,14 @@ for every `V`.  Do not launch this `U(120)` optimization.  Any successful
 deformation must break exact `H`-equivariance as well as leave the monomial
 category; a dense `U(20160)` search is still not justified.
 
+There is a viable smaller replacement.  Among the 30 point/hyperplane
+stabilizers `M` of order 1,344, 18 contain none of the 234 boundary words in
+both factors.  For these index-15 subgroups, search
+`U_V=(I_(ell^2 M) tensor V)J` with only `V in U(15)`.  This stays in the
+full 20,160-dimensional regular sector but evades the exact support no-go.
+Implement traces through induced/coset coordinates; do not materialize
+20,160-square matrices.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

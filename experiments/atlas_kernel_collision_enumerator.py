@@ -22,6 +22,7 @@ from atlas_two_chart_search import (
     I4,
     commutator,
     factor_generators,
+    gf2_inv,
     gf2_mul,
     inverse,
     leavitt_chart_element,
@@ -166,6 +167,58 @@ def lies_in_rank_three_subgroup(matrix):
     )
 
 
+def maximal_stabilizer_boundary_audit(kernel_words):
+    """Audit the 15 point and 15 hyperplane stabilizers of GL(4,F2)."""
+    selected_generators = [word[0][1]
+                           for _name, word in factor_generators()[:6]]
+
+    def matrix_commutator(left, right):
+        return gf2_mul(
+            gf2_mul(gf2_mul(left, right), gf2_inv(left)), gf2_inv(right))
+
+    boundary = []
+    for word in kernel_words:
+        projections = factor_projections(word)
+        if any(matrix_key(value) != matrix_key(I4) for value in projections):
+            boundary.append((word, projections))
+
+    audits = []
+    for kind in ("point", "hyperplane"):
+        for bits in range(1, 16):
+            vector = np.array(
+                [(bits >> index) & 1 for index in range(4)], dtype=np.uint8)
+
+            def inside(matrix):
+                image = ((matrix @ vector) & 1 if kind == "point"
+                         else (vector @ matrix) & 1)
+                return np.array_equal(image, vector)
+
+            contained = 0
+            exposed = 0
+            for word, projections in boundary:
+                if not all(inside(matrix) for _factor, matrix in word):
+                    continue
+                contained += 1
+                for projection in projections:
+                    if matrix_key(projection) == matrix_key(I4):
+                        continue
+                    if any(
+                        inside(generator)
+                        and matrix_key(matrix_commutator(
+                            generator, projection)) != matrix_key(I4)
+                        for generator in selected_generators
+                    ):
+                        exposed += 1
+                        break
+            audits.append({
+                "kind": kind,
+                "fixed_vector_bits": bits,
+                "contained_boundary_words": contained,
+                "rigid_exposed_words": exposed,
+            })
+    return audits
+
+
 def encode_word(word):
     return [
         {"factor": factor, "matrix_f2_hex": matrix_key(matrix).hex()}
@@ -239,6 +292,8 @@ def main():
         },
         "tensor_flip_boundary_H_support_strata": dict(
             sorted(boundary_support_counts.items())),
+        "tensor_flip_boundary_maximal_stabilizer_audit": (
+            maximal_stabilizer_boundary_audit(kernel_words)),
         "tensor_flip_unsatisfied_kernel_generators": sum(
             count for label, count in projection_counts.items()
             if label != "identity,identity"
