@@ -757,6 +757,14 @@ full 20,160-dimensional regular sector but evades the exact support no-go.
 Implement traces through induced/coset coordinates; do not materialize
 20,160-square matrices.
 
+That implicit implementation is now live.  Two bounded orthogonal searches
+from rotation scales `0.02` and `0.20` descended toward, but not below, the
+balanced tensor-flip loss one.  Stop multiseed optimization.  Compute the
+exact induced-coordinate Hessian at `V=I`; a rational positive certificate
+would establish local rigidity of every surviving index-15 stabilizer
+ansatz, while a negative eigendirection would give a principled continuation
+seed.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

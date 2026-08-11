@@ -313,6 +313,33 @@ while reducing the live variable to `V in U(15)`.  It is not ruled out by
 the support certificate.  This is a regular-representation multiplicity
 deformation, not the earlier 15-point representation optimizer.
 
+## First implicit index-15 deformation search
+
+`atlas_stabilizer_coset_search.py` implements this ansatz without forming a
+`20160 x 20160` matrix.  Left and right translations are permutations of
+the regular basis, while `V` acts in 1,344 identical `15 x 15` blocks.  The
+script differentiates a fixed Hutchinson trace estimate through
+`V=exp(A-A^T)` and samples half exposed boundary constraints and half exact
+tensor-flip controls.
+
+At `V=I`, that balanced batch has exact mean squared defect one: exposed
+regular commutators contribute two and controls contribute zero.  Two small
+bounded runs gave:
+
+| seed | initial rotation scale | batch | iterations | sampled loss path |
+|---:|---:|---:|---:|:---|
+| 0 | 0.02 | 4 | 10 | `1.02588 -> 1.00026` |
+| 1 | 0.20 | 8 | 30 | `1.24910 -> 1.13241` |
+
+Both flows move toward the tensor-flip value rather than below it.  This is
+only stochastic local evidence, not a lower bound and not a reason to rule
+out the index-15 family globally.  It is enough to stop seed sweeps.  The
+next useful computation is an exact induced-coordinate Hessian at `V=I`,
+followed by a rational SOS certificate if the Hessian is positive on every
+non-gauge direction.  Raw results are in
+`atlas-stabilizer-coset-seed0.json` and
+`atlas-stabilizer-coset-seed1.json`.
+
 The 24 pairs themselves have an exact group-theoretic compression.  Their
 six one-sided nonidentity entries are the same in the two coordinates.  Four
 are adjacent elementary transvections in the upper-left `3 x 3` block; the
