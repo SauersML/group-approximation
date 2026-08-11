@@ -248,6 +248,13 @@ whole holonomy vector is exactly `f+Gm_X mod q`, and the degree-torsion
 vector is `(G/e)m_X mod g`.  This removes the modular phase solve from the
 marked numerator and identifies the remaining nonlinear obstruction with a
 single relative filling class in a finite paired lattice quotient.
+Bounded quotient torsion is already decisive: if one fixed primitive cycle
+detects a nonzero relative filling class modulo unbounded transferable
+moduli, and those classes have order bounded by `E`, their centered
+holonomies are at least `q/E-O(1)`.  The amplified certificate then proves
+FALSE.  In particular, finite exponent of `H_2(H,Z)` reduces the construction
+to persistence of a nonzero paired class; growing torsion order is not
+needed.
 
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized

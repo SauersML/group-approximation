@@ -228,7 +228,63 @@ This computation needs an integral kernel basis only to determine
 no modular phase solution, no full discriminant basis, and no optimization
 over base cycles.
 
-## 7. What remains
+## 7. Bounded torsion is already a strong FALSE trigger
+
+The transfer quotient is always killed by the cover degree, but in useful
+families it may be killed by a fixed integer.  Contrary to a possible first
+impression, such bounded torsion does not make holonomy small.  A nonzero
+element of bounded order in `Z/qZ` has magnitude proportional to `q`.
+
+**Theorem 3 (persistent bounded torsion proves FALSE).**  Fix a primitive
+`v in K_1`.  Suppose there are regular covers `X_j`, moduli `q_j->infinity`,
+and modular transfers
+
+`A_(X_j)a_j=Jv mod q_j`.                                          `(TFP32)`
+
+Suppose one fixed integer `E>=2` satisfies
+
+`E kappa_(w,X_j)=0 in K_1/M_(X_j)`                               `(TFP33)`
+
+for every `j`.  If the paired residues
+
+`alpha_j=<v,kappa_(w,X_j)>_(q_j) in Z/q_jZ`                       `(TFP34)`
+
+are nonzero for infinitely many `j`, then a hyperlinear nonsofic group
+exists.
+
+**Proof.**  Pass to the subsequence on which `alpha_j!=0`.  Transferability
+of `v` makes the pairing `(TFP34)` well-defined.  Equation `(TFP33)` shows
+that the additive order `d_j` of `alpha_j` divides `E`, so
+
+`2<=d_j<=E`.                                                      `(TFP35)`
+
+A nonzero element of order `d_j` in `Z/q_jZ` is a multiple of
+`q_j/d_j` by a unit modulo `d_j`.  Its centered size therefore satisfies
+
+`H_(q_j)(alpha_j)>=q_j/d_j>=q_j/E`.                               `(TFP36)`
+
+Put `f=<v,z_0>`, which is fixed.  The paired formula `(TFP15)` and the
+`1`-Lipschitz property of distance to `q_j Z` give
+
+`H_(q_j)(Hol(Jv))>=H_(q_j)(alpha_j)-|f|`
+`                    >=q_j/E-|f| ->infinity`.                    `(TFP37)`
+
+Since `v` is fixed, Theorem 3a of
+`FALSE_TRANSFER_HOLONOMY_CERTIFICATE.md` applies.  End proof.
+
+One sufficient source of `(TFP33)` is a uniform inclusion
+
+`E K_1<=M_(X_j)`.                                                 `(TFP38)`
+
+By `(ICD81)--(ICD83)` in `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md`, this
+holds for every finite cover if the group homology `H_2(H,Z)` has finite
+exponent `E`.  Therefore, in that case, the FALSE problem reduces further:
+find one fixed primitive `v`, unbounded transferable moduli, and a paired
+relative filling class that remains detectable modulo those moduli.  Any
+such persistent nonzero finite-torsion signal is already decisive; no
+growth of the order of `kappa` is required.
+
+## 8. What remains
 
 The FALSE construction problem on full-transfer charts is now exact:
 
@@ -239,8 +295,10 @@ The FALSE construction problem on full-transfer charts is now exact:
 4. make the centered Gram pairing `(TFP31)` unbounded.
 
 The class `kappa_(w,X)` can have growing order because the quotient is only
-killed by the cover degree.  This note does not prove that its marked Gram
-pairing grows.  It proves that this one paired quotient-lattice class is the
-entire nonlinear integral numerator.  Any TRUE theorem ruling out the
-FALSE route must bound these marked pairings; any FALSE construction must
-make one of them diverge.
+killed by the cover degree.  But Theorem 3 shows that growing order is not
+necessary: bounded-order classes are even stronger whenever they remain
+nonzero at unbounded transferable moduli.  This note does not prove that a
+detectable class persists.  It proves that this one paired quotient-lattice
+class is the entire nonlinear integral numerator.  Any TRUE theorem ruling
+out the FALSE route must eventually annihilate these marked pairings; any
+FALSE construction need only keep one of them nonzero.
