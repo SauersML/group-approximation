@@ -124,6 +124,7 @@ import NonsoficGroupsExist.Criterion.Criterion
 import NonsoficGroupsExist.Matching.BlockEnumeration
 import NonsoficGroupsExist.Matching.BlockIndex
 import NonsoficGroupsExist.Matching.ComponentDivergence
+import NonsoficGroupsExist.Matching.ComponentPairApproximation
 import NonsoficGroupsExist.Matching.GeneratorWords
 import NonsoficGroupsExist.Matching.BlockWordCrossing
 import NonsoficGroupsExist.Matching.BlockTransport
@@ -301,12 +302,16 @@ import NonsoficGroupsExist.Sofic.HyperlinearUltraproduct
 import NonsoficGroupsExist.Sofic.NormTraceGap
 import NonsoficGroupsExist.Sofic.WeakMFUltraproduct
 import NonsoficGroupsExist.Sofic.WeakMFTransfer
+import NonsoficGroupsExist.Sofic.WeakMFRegularTrace
+import NonsoficGroupsExist.Sofic.RegularCharacterGNS
 import NonsoficGroupsExist.Sofic.KazhdanCorner
 import NonsoficGroupsExist.Sofic.KazhdanCornerMatrices
 import NonsoficGroupsExist.Sofic.WeakMFVectorGNS
 import NonsoficGroupsExist.Sofic.KazhdanCornerModel
 import NonsoficGroupsExist.Sofic.KazhdanCornerDiagonal
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.PushoutEmbedding
+import NonsoficGroupsExist.Sofic.FreeLampDoubleEmbedding
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.SoficFiniteSemidirect
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip

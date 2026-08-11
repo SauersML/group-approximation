@@ -101,6 +101,43 @@ theorem quotient_infinite
         (SteinbergGroup.x i j (by simp [i, j]) a))
     (quotient_root_injective hn N hN i j (by simp [i, j]))
 
+/-- Every proper normal quotient of the binary-Leavitt Steinberg group in
+rank at least five is perfect. -/
+theorem quotient_isPerfect
+    {n : ℕ} (hn : 5 ≤ n)
+    (N : Subgroup (BinaryLeavittSteinberg n)) [N.Normal] :
+    Group.IsPerfect (BinaryLeavittSteinberg n ⧸ N) := by
+  letI : Group.IsPerfect (BinaryLeavittSteinberg n) := isPerfect (by omega)
+  exact Group.IsPerfect.ofSurjective (QuotientGroup.mk'_surjective N)
+
+/-- Every proper normal quotient of the binary-Leavitt Steinberg group in
+rank at least five retains property `(T)`. -/
+theorem quotient_hasKazhdanPropertyT
+    {n : ℕ} (hn : 5 ≤ n)
+    (N : Subgroup (BinaryLeavittSteinberg n)) [N.Normal] :
+    HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n ⧸ N) :=
+  HasKazhdanPropertyT.of_surjective
+    (QuotientGroup.mk' N) (QuotientGroup.mk'_surjective N)
+    (hasKazhdanPropertyT hn)
+
+/-- **Unconditional proper-quotient rigidity.**  Every proper normal
+quotient is simultaneously infinite, perfect, Kazhdan, and faithful on each
+Steinberg root copy of the binary Leavitt algebra.  This is the strongest
+quotient statement currently obtained without a centrality theorem for the
+unstable Steinberg kernel. -/
+theorem properQuotient_rigidity
+    {n : ℕ} (hn : 5 ≤ n)
+    (N : Subgroup (BinaryLeavittSteinberg n)) [N.Normal] (hN : N ≠ ⊤) :
+    Infinite (BinaryLeavittSteinberg n ⧸ N) ∧
+      Group.IsPerfect (BinaryLeavittSteinberg n ⧸ N) ∧
+      HasKazhdanPropertyT.{0, 0} (BinaryLeavittSteinberg n ⧸ N) ∧
+      ∀ (i j : Fin n) (hij : i ≠ j),
+        Function.Injective
+          (fun a : UniversalLeavitt.BinaryLeavittAlgebra ↦
+            (QuotientGroup.mk' N) (SteinbergGroup.x i j hij a)) := by
+  exact ⟨quotient_infinite hn N hN, quotient_isPerfect hn N,
+    quotient_hasKazhdanPropertyT hn N, quotient_root_injective hn N hN⟩
+
 /-- Every homomorphism from the binary-Leavitt Steinberg group to a finite
 group is trivial. -/
 theorem hom_eq_one_of_finite

@@ -40,6 +40,14 @@ def lampMap : ∀ b, ↥Γ →* LampFactor G Γ K b
   | true => Γ.subtype
   | false => MonoidHom.inl ↥Γ K
 
+@[simp]
+theorem lampMap_true_apply (γ : ↥Γ) :
+    lampMap G Γ K true γ = (γ : G) := rfl
+
+@[simp]
+theorem lampMap_false_apply (γ : ↥Γ) :
+    lampMap G Γ K false γ = (γ, (1 : K)) := rfl
+
 theorem lampMap_injective : ∀ b, Function.Injective (lampMap G Γ K b)
   | true => Γ.subtype_injective
   | false => fun _ _ hxy => congrArg Prod.fst hxy

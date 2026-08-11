@@ -2,7 +2,11 @@ import NonsoficGroupsExist.Endpoint.MainResults
 import NonsoficGroupsExist.Endpoint.ManuscriptStatements
 import NonsoficGroupsExist.Sofic.SoficSequential
 import NonsoficGroupsExist.Sofic.FreeLampReduction
+import NonsoficGroupsExist.Sofic.PushoutEmbedding
+import NonsoficGroupsExist.Sofic.FreeLampDoubleEmbedding
 import NonsoficGroupsExist.Sofic.WeakMFTransfer
+import NonsoficGroupsExist.Sofic.WeakMFRegularTrace
+import NonsoficGroupsExist.Sofic.RegularCharacterGNS
 import NonsoficGroupsExist.Sofic.WeakMFNonsoficDouble
 import NonsoficGroupsExist.Sofic.SymmetricDoubleFlip
 import NonsoficGroupsExist.Sofic.LineDouble
@@ -270,6 +274,14 @@ the entire project namespace and fails on anything beyond classical Lean.
 -- Internally proved operator-norm MF transfer mechanisms.
 #print axioms NonsoficGroupsExist.isWeakMF_of_injective
 #print axioms NonsoficGroupsExist.isWeakMF_of_residuallyFinite
+#print axioms NonsoficGroupsExist.exists_regularTraceWeakMFApproximation_of_isLEF
+#print axioms NonsoficGroupsExist.exists_regularTraceWeakMFApproximation_of_residuallyFinite
+#print axioms NonsoficGroupsExist.RegularTraceWeakMFApproximation.matrixGroupRing_trace_pairing_eventually
+#print axioms NonsoficGroupsExist.RegularCharacterGNS.regularCharacter_isPositiveDefinite
+#print axioms NonsoficGroupsExist.RegularCharacterGNS.representation_injective
+#print axioms NonsoficGroupsExist.PushoutEmbedding.map_injective_of_reflects_range
+#print axioms NonsoficGroupsExist.freeLampToProductDouble_injective
+#print axioms NonsoficGroupsExist.isWeakMF_freeLamp_of_productDouble
 
 -- Cluster-groupoid carrier: composition and negligible-disagreement setoid
 -- are derived from concrete finite partial bijections.
