@@ -257,6 +257,20 @@ the constant `E gcd{<v,u>:u in K_1}`.  Hence finite-exponent `H_2(H,Z)`
 rules out this modular-transfer route.  A bounded-order marked class can be
 dangerous only inside ambient transfer quotients of growing exponent.
 
+For the explicit stable Kun--Thom radical double, the marked class localizes
+still further; see `FALSE_RADICAL_DOUBLE_AUGMENTATION_LOCALIZATION.md`.  The
+kernel of `D=G *_Gamma G -> Q*Q` is the fundamental group of a tree of
+perfect groups and is therefore perfect.  Consequently
+`H_1(D,I_T)=H_1(Q*Q,I_T)` for every finite quotient module.  Although the
+free-product Mayer--Vietoris sequence contains a large free Bass--Serre
+overlap lattice, naturality from `H_2` forces the relative radical filling
+class into `H_1(Q,I_T) directSum H_1(Q,I_T)` and gives it zero overlap
+component.  Shapiro then expresses each vertex group by the exact sequence
+`sum H_2(stabilizer)->H_2(Q)->H_1(Q,I_T)->sum H_1(stabilizer)->H_1(Q)`.
+Thus the projective stabilizer-homology calculations locate the only live
+arithmetic sector of the explicit radical-double numerator; free-product
+rank growth cannot supply the obstruction.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
