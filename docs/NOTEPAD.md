@@ -38908,3 +38908,27 @@ step.  Moreover the Kazhdan corner of a nonsimple envelope could kill the
 embedded nonsofic subgroup.  A useful envelope theorem would therefore have
 to preserve weak MF and either be simple or retain a specified radical
 witness; no current construction has those properties.
+
+# Regular MF is closed under central HNN extensions (2026-08-10)
+
+Full details are in `docs/REGULAR_MF_BASS_SERRE.md`.  If `H` embeds in a
+separable MF algebra `A` carrying a trace regular on `H`, and `C<=H`, then
+
+`<H,t | [t,C]=1>`                                          `(RMH1)`
+
+has the same kind of realization.  Shulman's central-HNN theorem makes the
+corresponding full C-star HNN algebra MF.  In the reduced von Neumann HNN of
+the two GNS subalgebras, regularity gives
+
+`E_(L(C))(u_h)=0`, `h notin C`,                            `(RMH2)`
+
+so the reduced-word moment formula gives trace zero for every nonidentity
+Britton-reduced group word.  This simultaneously proves that the abstract
+group in `(RMH1)` embeds in the MF algebra and that the pulled-back trace is
+its canonical regular trace.
+
+Together with the regular symmetric-double theorem, this gives a finite
+Bass--Serre closure toolkit starting from residually finite groups, without
+subgroup separability.  It does not cover the cyclic shear: that edge map is
+`r|->rz`, not the identity, and its nonzero projective sector remains the
+open finite-kernel gate.
