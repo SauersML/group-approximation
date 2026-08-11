@@ -34,6 +34,21 @@ def proportional(left, right):
     )
 
 
+def proportional_polynomial(left, right, polynomial):
+    minors = [
+        left[i] * right[j] - left[j] * right[i]
+        for i in range(3)
+        for j in range(i + 1, 3)
+    ]
+    numerators = [polynomial(value.numerator()) for value in minors if value]
+    if not numerators:
+        return polynomial.zero()
+    common = numerators[0]
+    for value in numerators[1:]:
+        common = common.gcd(value)
+    return common.monic()
+
+
 def target_equivalent(left, right, target):
     return any(proportional(left * element, right) for _, element in target)
 
@@ -47,6 +62,7 @@ def target_bad(point, target):
 
 def generic_source_planes(source):
     planes = []
+    keys = set()
     identity = identity_matrix(QQ, 3)
     for sign, element in source:
         if sign != -1:
@@ -55,11 +71,9 @@ def generic_source_planes(source):
             eigenspace = (element.transpose() - eigenvalue * identity).right_kernel()
             if eigenspace.dimension() != 2:
                 continue
-            basis = eigenspace.basis()
-            if not any(
-                all(vector(QQ, row) in prior for row in basis)
-                for prior in planes
-            ):
+            key = tuple(eigenspace.basis_matrix().echelon_form().list())
+            if key not in keys:
+                keys.add(key)
                 planes.append(eigenspace)
     return planes
 
@@ -98,11 +112,39 @@ def analyze(path: Path):
             )
             for representative in classes
         ]
+        exceptional_factors = set()
+        exceptional_tests = []
+        for sign, element in source:
+            if sign != -1:
+                continue
+            obstruction = proportional_polynomial(
+                point * element.change_ring(fraction), point, polynomial)
+            exceptional_tests.append(obstruction)
+        for image in images:
+            for sign, element in target:
+                if sign != -1:
+                    continue
+                obstruction = proportional_polynomial(
+                    image * element.change_ring(fraction), image, polynomial)
+                exceptional_tests.append(obstruction)
+        for left_index, left in enumerate(images):
+            for right in images[left_index + 1:]:
+                for _, element in target:
+                    obstruction = proportional_polynomial(
+                        left * element.change_ring(fraction), right, polynomial)
+                    exceptional_tests.append(obstruction)
+        for obstruction in exceptional_tests:
+            if obstruction.degree() <= 0:
+                continue
+            for factor, _ in obstruction.factor():
+                exceptional_factors.add(str(factor.monic()))
         strata.append({
-            "plane_basis": [[int(value) for value in row] for row in plane.basis()],
+            "plane_basis": [[str(value) for value in row] for row in plane.basis()],
             "target_bad_boundary_terms": sum(bad),
             "generic_target_orbit_multiplicities": multiplicities,
             "odd_target_orbit_count": sum(value % 2 for value in multiplicities),
+            "finite_exceptional_factors": sorted(exceptional_factors),
+            "infinite_parameter_is_exceptional": True,
         })
     return {
         "source_orientation_reversing_projective_planes": len(strata),
