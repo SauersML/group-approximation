@@ -110,8 +110,22 @@ gives `(PHS12)`.  End proof.
 When `H_2(H_p,R)=0`, the lattice `Q` has rank zero and
 `delta_H=+infinity`, recovering the `p=3,5,7` denominator bound.  At a
 cuspidal level such as `p=53`, nonzero real homology merely creates a
-positive-rank harmonic sector.  It does not say whether `(PHS7)` contains a
-nonintegral vector or whether `delta_H` is small.
+positive-rank harmonic sector.  By itself it does not say whether `(PHS7)`
+contains a nonintegral vector or whether `delta_H` is small.
+
+The compact non-free cellular computation at `p=53` now answers the first
+of those two questions in its own free signed-coinvariant lattice: the
+harmonic quotient is cyclic of order `q` and
+
+`delta_H^2=a/q=0.0713191090...`,
+`delta_H=0.2670563781...`.                            `(PHS12a)`
+
+Thus a genuine nonintegral class lies below the spherical threshold and
+`Theta>=sqrt(q/a)=3.7445276800...` in that compact metric.  This is one
+fixed-level certificate, not a family-level collapse.  Transferring it to
+the original HAP carry metric still requires the bounded integral comparison
+and the two-primary stabilizer correction described in
+`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.
 
 ## A regulator criterion for divergence
 

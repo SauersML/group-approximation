@@ -413,6 +413,25 @@ At the first cuspidal projective level,
 
 `dim_Q H_2(H_53,Q)=2`.                               `(HIL32)`
 
+The compact non-free cellular model now computes this rank-two lattice
+exactly.  In its `328` free signed-coinvariant coordinates,
+
+`Q^#/(K intersect H) ~= Z/qZ`,                       `(HIL32a)`
+
+with the `83`-digit integer `q` in
+`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.  Its shortest nonintegral
+dual vector has exact squared norm `a/q=0.0713191090...`, lies below the
+spherical threshold `1/12`, and gives
+
+`kappa_Sigma>=sqrt(q/a)=3.7445276800...`.             `(HIL32b)`
+
+This lower bound is rigorous in the compact free lattice: the squared norm
+of every nonzero ambient integral lift is a positive integer.  The enormous
+HNF section norm exported by the computation is only a poor upper bound.
+The two-primary signed-coinvariant correction and the norm of the comparison
+to the free HAP carry metric remain to be certified before `(HIL32b)` can be
+read as a bound in the original chart.
+
 Let the columns of `V` be an exact `Z`-basis of `Q^#`, and choose integral
 lifts `z_1,z_2 in M_Sigma` with
 

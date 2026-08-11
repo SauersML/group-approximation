@@ -47,6 +47,15 @@ commutator filling area: only an `ell^2`-diffuse filling in the infinite
 radical cover can prevent the real-filling route from completing the
 counterexample.
 
+**Update.**  `FALSE_NONAMENABLE_STABILIZER_FILLING_REDUCTION.md` proves
+that this diffuse filling does exist for the explicit stable Laurent
+double.  A nonamenable subgroup stabilizes the marked homology class and a
+regular-representation divergence equation constructs the filling.  The
+same argument localizes every finite-cover real filling, up to a uniform
+additive constant, to one Kazhdan-subgroup orbit average.  The general
+criteria below remain valid; the infinite-cover branch is now decided for
+that example.
+
 ## 2. The infinitesimal marked-ratio bound
 
 Let `Y_X` be the presentation complex over a finite exact `P`-set `X`.  As
@@ -332,6 +341,11 @@ The exact remaining alternative is now:
   filling in the infinite `R_0`-cover, and all forced divergence is in the
   marked discriminant correction `(RFE24)`.
 
+The nonamenable-stabilizer theorem cited in the update after Section 1
+proves that the second infinite-cover alternative occurs.  This does not by
+itself bound the finite-cover minimum real fillings: possible divergence is
+localized to the rational invariant orbit averages described there.
+
 The earlier `Q*Q`-only tower had a larger fixed kernel containing `w` in
 its commutator subgroup, so one fixed integral filling bounded both terms
 in `(RFE22)`.  The present residual tower is genuinely different: its
@@ -354,12 +368,13 @@ at the marked parallel-edge cycle `b`.  In spectral-measure notation, an
 
 `integral_((0,infinity)) lambda^(-1) d mu_b(lambda)<infinity`. `(RFE30)`
 
-Theorem 6 proves the first condition for the explicit double.  Therefore
-its live real-filling question is exactly
+Theorem 6 proves the first condition for the explicit double.  The later
+nonamenable-stabilizer filling theorem proves in addition that
 
 `integral_((0,infinity)) lambda^(-1) d mu_b(lambda)`
-`  =infinity ?`                                             `(RFE31)`
+`  <infinity`.                                               `(RFE31)`
 
-An affirmative answer proves FALSE by Corollary 4.  A finite integral gives
-an actual diffuse `ell^2` filling and places the entire obstruction in the
-integral paired-discriminant branch.
+Thus the infinite spectral-tail route is closed for this candidate.  At
+finite levels, real filling escape can still occur through the invariant
+orbit-average mode; all noninvariant Kazhdan modes have a uniform decoder.
+The integral excess remains in the paired-discriminant branch.

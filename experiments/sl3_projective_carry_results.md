@@ -305,6 +305,38 @@ comparison between two certified rank-two models.  See
 
 ## Mathematical interpretation
 
+### Compact cellular harmonic discriminant at `p=53`
+
+The non-free HAP complex `ContractibleGcomplex("SL(3,Z)")` produces a much
+smaller rational projective complex
+
+`Q^141 <- Q^364 <- Q^328 <- Q^112`
+
+with boundary ranks `140,224,102` and `H_2` dimension two.  Exact lattice
+arithmetic in its free signed-coinvariant coordinates gives
+
+`Q^#/(K intersect H) ~= Z/qZ`,
+
+where
+
+`q=17269229743444936295695902979877937666574454551881432366677092780148396252626561139`.
+
+The shortest nonintegral dual vector has squared norm `a/q` with
+
+`a=1231626080044198340111057047829063373386905262559674403703730158374753002756468263`,
+
+hence norm `0.2670563781...`.  Since `12a<q`, it is below the spherical
+threshold.  Integral lift-energy quantization gives the exact distortion
+lower bound `sqrt(q/a)=3.7445276800...`.  The HNF lift's huge upper bound is
+not intrinsic.
+
+This is a certificate for the compact free coinvariant lattice.  It omits
+two-primary orientation-torsion coordinates and uses a different Euclidean
+metric from the free HAP carry complex, so a bounded integral chain
+comparison is still required.  Full details and scope are in
+`docs/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`; the machine certificate is
+`projective-cellular-p53-summary.json`.
+
 For `p=3,5,7`, Proposition 12 of
 `docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` rules out denominator collapse
 through real stabilizer homology: the relevant harmonic space is zero.

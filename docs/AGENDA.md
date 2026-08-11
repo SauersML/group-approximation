@@ -961,6 +961,19 @@ therefore an exact rank-two lattice lift/regulator problem, not another
 homology-dimension sweep.  See
 `experiments/sl3_projective_carry_results.md`.
 
+The compact non-free cellular model now resolves that rank-two discriminant
+in its own free signed-coinvariant lattice.  Its complex has dimensions
+`141<-364<-328<-112`; the harmonic quotient is cyclic of order
+`17269229743444936295695902979877937666574454551881432366677092780148396252626561139`,
+and the exact shortest nonintegral dual vector has norm
+`0.2670563781191559`, below the spherical threshold `1/sqrt(12)`.  Positive
+integral lift energy gives the intrinsic compact-metric lower bound
+`kappa>=3.744527680045962`.  The raw HNF section is not an optimal decoder.
+The live bridge is now explicit: retain or uniformly correct the omitted
+two-primary stabilizer coinvariants and transport this compact metric through
+a bounded integral comparison to the free HAP carry complex.  See
+`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.
+
 `TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` now gives the exact optimal
 nonlinear repair constant, not only a comparison through `Theta`.  It is
 the quotient of the ellipsoidal distance to the saturated range lattice by

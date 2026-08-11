@@ -41259,3 +41259,55 @@ The real-filling branch is consequently the single near-zero question
 for the marked spectral measure.  Divergence proves FALSE; convergence
 constructs the diffuse `ell^2` filling and leaves only integral
 discriminant escape.
+
+# 2026-08-11: a nonamenable stabilizer constructs the diffuse filling
+
+Full proof: `docs/FALSE_NONAMENABLE_STABILIZER_FILLING_REDUCTION.md`.
+
+Let `b` be a finite cellular cycle in a regular cover with deck group `F`,
+and suppose a finitely generated nonamenable subgroup `J<=F` fixes `[b]` in
+ordinary homology.  For generators `s` choose finite chains
+
+    partial c_s=(s-1)b.
+
+Nonamenability makes the right divergence
+
+    D((xi_s))=sum_s xi_s(s-1)
+
+onto `ell^2(J)`.  Choose `D xi=delta_1` and put
+
+    z=sum_s xi_s c_s.
+
+Finite convolution is bounded on the free cellular Hilbert modules, and
+associativity gives `partial z=b`.  Thus every homology class with a
+nonamenable stabilizer has an actual `ell^2` filling.
+
+For the stable Laurent double, the class
+
+    delta_(hGamma)-delta_Gamma,
+    h=e_12(x_1^(-1)),
+
+is fixed by the lower-right subgroup
+
+    J=EL_(r-2)(Z[x_1,...,x_d]),
+
+which commutes with `h`, lies in `Gamma`, and has property `(T)`.  Therefore
+the inverse spectral moment is finite; the infinite spectral-tail route is
+closed for this candidate.
+
+Property `(T)` gives a stronger finite-level reduction.  In every residual
+finite quotient, if `P_n` averages over `J/(J intersect L_n)`, there is a
+uniformly bounded chain filling
+
+    b_n-P_n b_n.
+
+Consequently
+
+    Fill_R(P_n b_n)
+      <=Fill_R(b_n)
+      <=Fill_R(P_n b_n)+C.
+
+So any remaining real-filling divergence is carried entirely by the
+rational invariant transfer cycle `P_n b_n`; all noninvariant Kazhdan modes
+are uniformly harmless.  The denominator `|J/(J intersect L_n)|` and the
+paired integral correction are now the live arithmetic data.
