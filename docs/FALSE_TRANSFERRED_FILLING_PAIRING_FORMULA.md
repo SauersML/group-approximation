@@ -228,7 +228,7 @@ This computation needs an integral kernel basis only to determine
 no modular phase solution, no full discriminant basis, and no optimization
 over base cycles.
 
-## 7. Bounded torsion is already a strong FALSE trigger
+## 7. Bounded marked torsion versus bounded quotient exponent
 
 The transfer quotient is always killed by the cover degree, but in useful
 families it may be killed by a fixed integer.  Contrary to a possible first
@@ -272,17 +272,31 @@ Put `f=<v,z_0>`, which is fixed.  The paired formula `(TFP15)` and the
 Since `v` is fixed, Theorem 3a of
 `FALSE_TRANSFER_HOLONOMY_CERTIFICATE.md` applies.  End proof.
 
-One sufficient source of `(TFP33)` is a uniform inclusion
+It is essential that `(TFP33)` only bounds the order of the **marked class**.
+If the entire transfer quotient has uniformly bounded exponent, the
+conclusion is instead a TRUE-side no-go.  More precisely, suppose
 
 `E K_1<=M_(X_j)`.                                                 `(TFP38)`
 
-By `(ICD81)--(ICD83)` in `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md`, this
-holds for every finite cover if the group homology `H_2(H,Z)` has finite
-exponent `E`.  Therefore, in that case, the FALSE problem reduces further:
-find one fixed primitive `v`, unbounded transferable moduli, and a paired
-relative filling class that remains detectable modulo those moduli.  Any
-such persistent nonzero finite-torsion signal is already decisive; no
-growth of the order of `kappa` is required.
+For fixed nonzero `v`, put
+
+`g(v)=gcd{<v,u>:u in K_1}>0`.                                    `(TFP39)`
+
+Transferability modulo `q_j` gives `q_j divides <v,M_(X_j)>` by `(TFP13)`.
+Applying this to `Eu in M_(X_j)` for every `u in K_1` yields
+
+`q_j divides E g(v)`.                                             `(TFP40)`
+
+Thus the transferable moduli are uniformly bounded.  By `(ICD81)--(ICD83)`
+in `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md`, `(TFP38)` holds for every
+finite cover if `H_2(H,Z)` has finite exponent `E`.  Finite-exponent second
+homology therefore closes the fixed-cycle modular-transfer route rather
+than furnishing a bounded-torsion example.
+
+Theorem 3 remains nonvacuous only when the individual classes
+`kappa_(w,X_j)` have bounded order while the exponents of the ambient
+quotients `K_1/M_(X_j)` grow.  Other quotient directions can then support
+unbounded transfer moduli even though the marked direction stays bounded.
 
 ## 8. What remains
 
@@ -295,10 +309,12 @@ The FALSE construction problem on full-transfer charts is now exact:
 4. make the centered Gram pairing `(TFP31)` unbounded.
 
 The class `kappa_(w,X)` can have growing order because the quotient is only
-killed by the cover degree.  But Theorem 3 shows that growing order is not
-necessary: bounded-order classes are even stronger whenever they remain
-nonzero at unbounded transferable moduli.  This note does not prove that a
-detectable class persists.  It proves that this one paired quotient-lattice
-class is the entire nonlinear integral numerator.  Any TRUE theorem ruling
-out the FALSE route must eventually annihilate these marked pairings; any
-FALSE construction need only keep one of them nonzero.
+killed by the cover degree.  Theorem 3 shows that its own order need not
+grow, provided the ambient quotient exponent does.  If the ambient exponent
+is uniformly bounded, `(TFP40)` closes the route.  This note does not prove
+that a detectable class persists in the growing-exponent case.  It proves
+that this one paired quotient-lattice class is the entire nonlinear
+integral numerator.  Any TRUE theorem ruling out the FALSE route must
+eventually annihilate these marked pairings; any FALSE construction need
+only keep one of them nonzero while other quotient directions permit
+unbounded transfer.
