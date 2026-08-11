@@ -37130,3 +37130,107 @@ principle.  Shulman's Theorem 25 in arXiv:2603.13564v2 gives automatic HNN
 permanence only for the central case (the associated embeddings agree); the
 power HNN would require a new compatible-corona construction before weak MF
 is known.
+
+## 2026-08-10: the character-transfer gap is a diagonal-coefficient gap on a fiber product
+
+The normal-indicator and positive-loss formulations above admit a useful
+exact recoding.  It removes the apparent mismatch between a normalized trace
+and a single vector coefficient, without changing the open rounding problem.
+
+Let `F` be a finitely generated free group, let `N normal F`, and put
+`Gamma=F/N`.  Define the fiber-product subgroup
+
+`H_N={(a,b) in F x F : aN=bN}`
+`   ={(a,b) in F x F : b^(-1)a in N}`.               `(DCT1)`
+
+Thus its indicator is
+
+`1_(H_N)(a,b)=1_N(b^(-1)a)`.                          `(DCT2)`
+
+### Unitary models give maximally-entangled coefficients
+
+For a homomorphism `pi:F->U(d)`, let
+
+`Pi_pi(a,b)=pi(a) tensor overline(pi(b))`              `(DCT3)`
+
+on `C^d tensor overline(C^d)`, and let
+
+`Omega_d=d^(-1/2) sum_(i=1)^d e_i tensor overline(e_i)` `(DCT4)`
+
+be the canonical maximally-entangled unit vector.  The standard vectorization
+identity gives
+
+`<Pi_pi(a,b)Omega_d,Omega_d>`
+` =d^(-1)Tr(pi(a)pi(b)^*)`
+` =chi_pi(a b^(-1))`
+` =chi_pi(b^(-1)a)`.                                  `(DCT5)`
+
+The last equality is cyclicity of the trace (equivalently, the two group
+elements are conjugate).  Consequently `Gamma` is hyperlinear exactly when
+there is a sequence of such pairs `(Pi_(pi_n),Omega_(d_n))` whose coefficients
+converge pointwise on `F x F` to `1_(H_N)`.
+
+Indeed, the forward implication follows from the normal-indicator
+characterization `(NIR)` above and `(DCT2)-(DCT5)`.  Conversely, restricting
+to pairs `(g,1)` recovers `chi_(pi_n)(g)->1_N(g)`, so `(NIR)` gives
+hyperlinearity.
+
+### Finite actions give diagonal-set coefficients
+
+For a finite action `rho:F->Sym(X)`, let `P_g` be the permutation matrix of
+`rho(g)`, and put
+
+`eta_X=|X|^(-1/2) sum_(x in X)e_x tensor e_x`.         `(DCT6)`
+
+Then
+
+`<(P_a tensor P_b)eta_X,eta_X>`
+` =|{x in X:rho(a)x=rho(b)x}|/|X|`
+` =chi_rho(b^(-1)a)`.                                 `(DCT7)`
+
+Therefore `Gamma` is sofic exactly when `1_(H_N)` is a pointwise limit of
+coefficients `(DCT7)` arising from a *common* finite `F`-set on the two
+coordinates.  Again, one direction is immediate from a sofic action
+sequence, and the converse follows by restriction to `(g,1)` and `(NIR)`.
+
+We have thus proved the exact equivalence
+
+> Every hyperlinear group is sofic if and only if, for every finitely
+> generated free `F` and every `N normal F`, whenever the fiber-product
+> indicator `1_(H_N)` lies in the pointwise closure of the canonical
+> maximally-entangled coefficients `(DCT5)`, it lies in the pointwise closure
+> of the canonical diagonal-set permutation coefficients `(DCT7)`.
+
+This is narrower than arbitrary finite-dimensional representation theory of
+`F x F`.  Property FD for `F`, even where available, would only approximate
+an arbitrary vector coefficient by a coefficient of an arbitrary finite-image
+representation.  What is needed here is simultaneously:
+
+1. the same finite `F`-action in both tensor factors;
+2. the canonical diagonal vector `eta_X`; and
+3. approximation of the `0/1` subgroup indicator rather than merely one
+   unconstrained positive-definite function.
+
+Hence the doubled formulation does not by itself prove the conjecture.  It
+does identify the missing theorem as a precise quantum-to-classical diagonal
+rounding statement, with no normalized-trace bookkeeping left over.
+
+### Compatibility with the positive loss certificate
+
+For the finite relator and witness sets in `(PLC1)-(PLC7)`, the loss is simply
+the evaluation of these doubled coefficients at `(r,1)` and `(w,1)`:
+
+`L(c)=sum_(r in R) alpha_r(1-c(r,1))`
+`    +sum_(w in W) beta_w c(w,1)`.                    `(DCT8)`
+
+The tensor-power amplification used in `(PLC7)` is also canonical in this
+picture.  Under the natural identification,
+
+`Omega_(d^m)=Omega_d tensor ... tensor Omega_d`,       `(DCT9)`
+
+so the doubled coefficient is raised to the `m`th power.  On the classical
+side, the Cartesian power `X^m` with diagonal `F`-action likewise raises every
+fixed-point character to the `m`th power.  Thus amplification is shared by
+the two cones; the sole unresolved step is rounding an amplified canonical
+entangled coefficient to a canonical diagonal-set coefficient while
+preserving the finite loss constraints.
