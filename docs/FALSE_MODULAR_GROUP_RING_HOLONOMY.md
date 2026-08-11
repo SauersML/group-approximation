@@ -129,41 +129,97 @@ Thus a finite computation needs only:
 2. solve the socle equation `(MGR12)`; and
 3. test whether `(MGR13)` has order comparable with `q`.
 
-## 5. Application to the explicit radical double
+## 5. Central-deformation interpretation
+
+The modular equation has an equivalent group-theoretic interpretation
+which is useful independently of the Fox calculation.  For
+`v=(v_1,...,v_f) in Z^f`, define the central relator deformation
+
+`Htilde_(v,q)=<s_1,...,s_e,z | z^q=1, [z,s_i]=1,`
+`                              r_j=z^(-v_j)>`.                     `(MGR15)`
+
+Here the sign agrees with the phase convention `x=-a/q` in the transfer
+note.
+
+**Theorem 3 (finite central-deformation equivalence).**  A solution of
+
+`A_Ta=N_Tv mod q`                                                  `(MGR16)`
+
+is equivalent to a homomorphism
+
+`rho_a:Htilde_(v,q)->mu_q^T semidirect T`                          `(MGR17)`
+
+whose permutation part is the regular action of `T` and for which
+`rho_a(z)=exp(2 pi i/q)I`.  Under this homomorphism the word lift defined by
+the same word in the `s_i` satisfies
+
+`rho_a(w)=rho_a(z)^(-h)`,
+`h=[1]<a,b_w> mod q`.                                              `(MGR18)`
+
+**Proof.**  Put the edge phase cochain `x=-a/q` on the regular `T`-chart.
+The cellular word calculation gives
+
+`A_Tx=integer cochain-(1/q)N_Tv`.                                 `(MGR19)`
+
+Thus the monomial matrices attached to the generators satisfy every
+deformed relator in `(MGR15)` exactly and send `z` to the displayed scalar.
+Their image lies in the finite monomial group `mu_q^T semidirect T`, which
+gives `(MGR17)`.  Conversely, read the `q`-th-root diagonal entries of such
+a monomial homomorphism as an edge cochain.  Its relator equations are
+exactly `(MGR16)`, up to the fixed left/right convention.  Finally the Fox
+word calculation `(MGR13)` gives `(MGR18)`.  End proof.
+
+There is no contradiction with `w in Rad_sof(H)`: `(MGR17)` is a finite
+representation of the varying central deformation `Htilde_(v,q)`, not of
+`H`.  The crucial asymptotic mismatch is now completely visible.  The
+relator deformation has size `O(||v||/q)`, while the lifted radical word has
+displacement
+
+`|exp(2 pi i h/q)-1|`.                                             `(MGR20)`
+
+Consequently the transfer-holonomy FALSE certificate is equivalently a
+sequence of finite quotients of `(MGR15)` in which
+
+`||v||/q->0`, `dist(h/q,Z)>=epsilon>0`.                            `(MGR21)`
+
+This is an exact finite-quotient formulation of the remaining problem,
+with no ultraproduct or lattice terminology in its hypotheses.
+
+## 6. Application to the explicit radical double
 
 For
 
 `D=(EL_r(R) semidirect SL_d(Z)) *_(EL_r(R_+))`
-`  (EL_r(R) semidirect SL_d(Z))`                                  `(MGR15)`
+`  (EL_r(R) semidirect SL_d(Z))`                                  `(MGR22)`
 
 from `FALSE_EXPLICIT_FP_RADICAL_DOUBLE.md`, take finite deck quotients of
 
-`SL_d(Z)*SL_d(Z)`.                                                 `(MGR16)`
+`SL_d(Z)*SL_d(Z)`.                                                 `(MGR23)`
 
 The explicit radical word is
 
-`w=i_2(e_12(x_1^(-1)))i_1(e_12(x_1^(-1)))^(-1)`.                  `(MGR17)`
+`w=i_2(e_12(x_1^(-1)))i_1(e_12(x_1^(-1)))^(-1)`.                  `(MGR24)`
 
 Choose congruence quotients whose orders are divisible by a prime `p` and
 reduce the fixed Fox data modulo `p`.  The complete remaining finite test is
 
 `N_Tv in im(A_T:F_p[T]^e->F_p[T]^f)`,
-`[1]<a,b_w> !=0`.                                                  `(MGR18)`
+`[1]<a,b_w> !=0`.                                                  `(MGR25)`
 
 For a sequence with primes or prime powers tending to infinity, the
 quantitative version requires the order of the second residue to be a
-positive fraction of the modulus.  If `(MGR18)` holds with fixed `p`, it is
+positive fraction of the modulus.  If `(MGR25)` holds with fixed `p`, it is
 still a genuine nonzero-holonomy certificate, but by itself does not make
 the normalized relator defect tend to zero.
 
-## 6. Status
+## 7. Status
 
 The reduction is exact but not yet the final FALSE proof.  Its new content
 is that the live transfer class is the square-zero norm/socle class of a
 modular group algebra.  This eliminates semisimple character searches and
 identifies the next theorem sharply:
 
-> Find an unbounded modular quotient tower of `(MGR16)` for which the norm
+> Find an unbounded modular quotient tower of `(MGR23)` for which the norm
 > socle class `N_Tv` is a Fox coboundary and its canonical radical Fox
 > functional has macroscopic order.
 
