@@ -39224,6 +39224,16 @@ version of the `H^1(L,T)` ambiguity already recorded in “virtual
 divisibility equals projective realizability” above; thus this route refines,
 rather than repeats, that earlier Bockstein analysis.
 
+At the cochain level there is no mystery:
+
+`partial_m[lambda]=[a_(v(q,r))]`.                     `(HPK9f'')`
+
+Indeed `b` is an `m`th root of `lambda` and
+`delta b=a_v`.  The class dies after extending coefficients from `mu_m` to
+`T`, since `b` is then its primitive.  Therefore injectivity of
+`H^2(Q action X,mu_m) -> H^2(Q action X,T)` is a clean sufficient condition
+for soficity in the bounded-exponent common-Cartan lane.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and

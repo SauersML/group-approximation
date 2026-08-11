@@ -150,7 +150,10 @@ produces a `mu_m`-valued monomial embedding; skew untwisting proves soficity
 (`(HPK9e)-(HPK9k)`).  Pointwise divisibility of the circle does not imply
 cocycle divisibility.  Thus any bounded-exponent common-Cartan counterexample
 must carry a nonzero Bockstein residue; this is the exact cohomological datum
-which finite cocycle stability would have to eliminate.
+which finite cocycle stability would have to eliminate.  Concretely the
+residue is the evaluated extension class
+`partial_m[lambda]=[a_(v(q,r))]`; it maps to zero in circle-valued `H^2`, so
+injectivity of `H^2(mu_m)->H^2(T)` for the Loeb action would close this gate.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

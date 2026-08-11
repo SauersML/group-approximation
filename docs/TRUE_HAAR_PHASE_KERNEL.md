@@ -148,6 +148,23 @@ Exactness says that this class vanishes precisely when `[lambda]` is
 0-cochains have measurable `m`th roots, vanishing is also equivalent to an
 exact cocycle root as in `(HPK9g)` below.
 
+There is also a direct representative formula.  The cochain `b` is already
+an `m`th root of `lambda`, and `(HPK9c)` says that its coboundary is the
+`mu_m`-valued evaluated extension cocycle.  Hence
+
+`partial_m[lambda]=[a_(v(q,r))]`
+`  in H^2(Q action X,mu_m)`.                           `(HPK9f'')`
+
+Its image in circle-valued `H^2` is zero, with primitive `b`.  Consequently,
+if the coefficient inclusion induces an injection
+
+`H^2(Q action X,mu_m) -> H^2(Q action X,T)`,           `(HPK9f''')`
+
+then `(HPK9f'')` vanishes and Theorem 2 applies.  This is an exact
+cohomological sufficient condition, not a stability assumption: the missing
+general statement is precisely that the particular class in `(HPK9f'')`
+need not lie in the kernel of `(HPK9f''')` nontrivially.
+
 **Theorem 2 (vanishing phase Bockstein implies soficity).**  In the common-Cartan
 setup, assume `K` has finite exponent `m`.  If there is a measurable
 1-cocycle `r_q in U(A)` satisfying
