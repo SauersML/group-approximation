@@ -429,9 +429,9 @@ support certification give its minimum ambient integral lift norm:
 
 The four-term lift is exact, and exhaustive cycle-pairing profiles rule out
 every integral lift of squared norm below four.  Thus this particular
-discriminant class is completely solved, not merely bounded.  A full
-rank-two linear section still requires a controlled lift of a second basis
-vector.
+discriminant class is completely solved, not merely bounded.  A controlled
+lift of the second Gauss-reduced basis vector has now also been found, so the
+full rank-two linear section is explicit.
 The two-primary signed-coinvariant correction and the norm of the comparison
 to the free HAP carry metric remain to be certified before `(HIL32b)` can be
 read as a bound in the original chart.
@@ -457,6 +457,29 @@ quadratic algebraic number.  It immediately certifies
 ` <=(||s||^2-1)rho_H(c)^2`                           `(HIL36)`
 
 for every harmonic class `c`, without enumerating `D_H`.
+
+For the certified level-`53` lifts, their supports are disjoint and
+
+`G_Z=[[4,0],[0,16]].`                               `(HIL35c)`
+
+The exact generalized characteristic polynomial is recorded in
+`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`; its largest root is
+
+`56.10275777902312...`,                              `(HIL35d)`
+
+so this integral section has norm
+
+`||s||=7.49017741972933...`.                         `(HIL35e)`
+
+Together with the exact shortest-class lower bound `(HIL32b)`, this gives
+
+`7.489055360091924...<=kappa_Sigma`
+` <=7.49017741972933...`.                            `(HIL35f)`
+
+Thus the compact free harmonic lift problem at the first cuspidal level is
+fully bounded.  The second lift need not be a shortest representative for
+this conclusion; exact pairings make it a valid integral section, while the
+first class supplies the matching lower bound to within `0.015%`.
 
 Before recovering `V`, Theorem 1A already gives the exact harmonic
 regulator from the two cellular spans.  If `C_W,C_S` are independent

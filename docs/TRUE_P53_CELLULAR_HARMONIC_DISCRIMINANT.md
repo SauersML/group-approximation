@@ -162,6 +162,69 @@ choice of affine representative.  The exact certificate is
 `experiments/projective-cellular-p53-cvp-exact.tsv`, and the reproducible
 verifier is `experiments/sl3_projective_cellular_cvp.py`.
 
+## A near-optimal full rank-two integral section
+
+The second Gauss-reduced basis vector also has a small verified integral
+lift.  A short LLL/BKZ continuation gives
+
+`z_2=e_45+e_49+e_52+e_55+e_107-e_178+e_219-e_242`
+`    +e_247-e_262-e_283+e_298-e_303-e_308+e_316+e_325`, `(PCH20)`
+
+again in zero-based coordinates.  Its squared norm is `16`.  Exact cycle
+pairings and the degree-three cocycle equations verify that it lifts the
+second reduced basis vector.  No optimality assertion for `z_2` is needed.
+Its support is disjoint from `(PCH15)`, so the two lift vectors have Gram
+matrix
+
+`G_Z=[[4,0],[0,16]].`                                      `(PCH21)`
+
+In the same basis, write
+
+`G_H=(1/q)[[a,b],[b,c]]`,                                  `(PCH22)`
+
+where `a` is `(PCH8)` and
+
+`b=-56747109056607762375194153269785554845473318947639702446220798724932267608137725`,
+
+`c=13652477141855668986785589318594066780128481258677480963257028544207685068564640667`.
+
+The squared singular values of the resulting integral section are the two
+roots of the exact generalized characteristic polynomial
+
+`det(G_Z-lambda G_H)`
+` =(D/q)lambda^2-(E/q)lambda+64`,                           `(PCH23)`
+
+with
+
+`D=973496034304122008340916042563771299469198884174733931892389656553715746971291164`,
+
+`E=74315925848129849388919270039641281094704409235664714312287796710826788318362054876`.
+
+They are approximately
+
+`20.236460080505854`, `56.10275777902312`.                 `(PCH24)`
+
+Consequently the section norm is
+
+`||s||=7.49017741972933...`.                               `(PCH25)`
+
+Combining `(PCH18)` with the general inequality
+`kappa_Sigma<=||s||` gives the rigorous compact-model bracket
+
+`7.489055360091924...`
+` <=kappa_Sigma<=7.49017741972933...`.                     `(PCH26)`
+
+Thus the full free rank-two harmonic lift problem at level `53` is bounded
+to a relative interval of about `1.5*10^(-4)`.  The enormous HNF section
+norm `3.649*10^29` was entirely basis pathology, not an intrinsic
+high-order discriminant obstruction.
+
+The second lift and its modular lower-bound audit are in
+`experiments/projective-cellular-p53-cvp-basis1-certified.json` and its TSV
+companion.  The combined exact polynomial certificate is
+`experiments/projective-cellular-p53-section.json`, produced by
+`experiments/sl3_projective_cellular_section.py`.
+
 ## Two essential scope qualifications
 
 The phrase "exact integral" in this note refers to the free coordinate
@@ -182,7 +245,7 @@ carry chart.  A bounded chain comparison transports decoder bounds between
 the models, but its norm must be included.  Thus the huge order `q` is not,
 by itself, a FALSE certificate for the original carry problem.
 
-These qualifications do not affect `(PCH1)--(PCH19)` as statements about
+These qualifications do not affect `(PCH1)--(PCH26)` as statements about
 the displayed compact free lattice.  They delimit the remaining transfer
 theorem needed to use the certificate in the universal problem.
 
@@ -194,7 +257,9 @@ This calculation rules out two previously plausible shortcuts.
   possible obstruction: in the compact `p=53` model it contains a concrete
   nonintegral sub-threshold class.
 * The order of the harmonic discriminant can be enormous even though the
-  harmonic rank is only two.  A proof cannot enumerate discriminant classes.
+  harmonic rank is only two, while the full rank-two integral section can
+  nevertheless have norm below `7.491`.  Discriminant order is not a proxy
+  for repair cost, and a proof cannot enumerate discriminant classes.
 
 It does not decide TRUE or FALSE.  The next exact tasks are:
 
@@ -202,9 +267,8 @@ It does not decide TRUE or FALSE.  The next exact tasks are:
    bounded correction after inverting the fixed stabilizer orders;
 2. construct the explicit bounded chain comparison to the free HAP carry
    complex;
-3. compute the second basis lift needed for a full rank-two integral
-   section;
-4. repeat the same compact invariant at later cuspidal primes and determine
+3. repeat the same compact invariant and section construction at later
+   cuspidal primes and determine
    whether the transferred dual systole tends to zero or stays uniformly
    bounded below.
 

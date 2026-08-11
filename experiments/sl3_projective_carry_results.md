@@ -337,6 +337,21 @@ exact lift energy `4` and exact paired distortion
 `2sqrt(q/a)=7.4890553601...`.  The original HNF lift's huge norm was only a
 basis artifact.  The certificate is `projective-cellular-p53-cvp-exact.json`.
 
+The second Gauss-reduced basis vector has a verified sixteen-term integral
+lift of squared norm `16`.  Its support is disjoint from the exact four-term
+lift, so the rank-two lift Gram matrix is exactly `diag(4,16)`.  Against the
+exact reduced harmonic Gram matrix, the generalized squared singular values
+are
+
+`20.236460080505854...`, `56.10275777902312...`.
+
+Hence the full integral section has norm `7.49017741972933...`, while the
+first class forces `kappa_Sigma>=7.489055360091924...`.  The compact free
+harmonic decoder at `p=53` is therefore bounded within a relative interval
+of about `1.5*10^(-4)`.  The exact polynomial is in
+`projective-cellular-p53-section.json`; the second lift is in
+`projective-cellular-p53-cvp-basis1-certified.tsv`.
+
 This is a certificate for the compact free coinvariant lattice.  It omits
 two-primary orientation-torsion coordinates and uses a different Euclidean
 metric from the free HAP carry complex, so a bounded integral chain
@@ -359,5 +374,6 @@ harmonic lattice.  The next high-yield tasks are therefore:
 2. split off bounded spherical templates explicitly;
 3. synthesize a coupled integral decoder for the torsion and harmonic
    sectors and measure its norm;
-4. lift the concentrated `p=53` harmonic plane to its exact rank-two
-   integral lattice and compute its regulator and dual systole.
+4. transport the now-explicit `p=53` rank-two section through the
+   bounded-primary/model-comparison bridge and repeat it at the next cuspidal
+   prime.

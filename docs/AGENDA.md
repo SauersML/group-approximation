@@ -971,8 +971,13 @@ integral lift energy first gives a coarse compact-metric lower bound.  The
 shortest class is now solved exactly: saturated-range reduction finds the
 four-term lift `e_240-e_287-e_302+e_304`, and exhaustive support profiles
 rule out squared norm below four.  Thus its exact paired contribution is
-`2sqrt(q/a)=7.489055360091924`.  The second harmonic basis direction remains
-for a full rank-two section.
+`2sqrt(q/a)=7.489055360091924`.  A verified lift of the second reduced basis
+vector has squared norm `16` and is orthogonal to the four-term lift.  Their
+exact generalized section norm is `7.49017741972933`, giving the near-sharp
+bracket
+`7.489055360091924<=kappa_Sigma<=7.49017741972933`.  Thus the free compact
+rank-two numerator is solved at `p=53`; the live question is uniformity at
+later cuspidal levels, not another discriminant enumeration at this level.
 The live bridge is now explicit: retain or uniformly correct the omitted
 two-primary stabilizer coinvariants and transport this compact metric through
 a bounded integral comparison to the free HAP carry complex.  See
@@ -1006,9 +1011,11 @@ determinant lower bound
 `kappa^2>=(3/16)Reg(L)/Reg(S_sat)` at rank two require only saturated
 boundary/coboundary determinants and Smith indices, not an exact harmonic
 basis.  The basis is still needed for shape, dual systole, and an upper
-bound.  The next exact computation should therefore first evaluate this
-determinant ratio, then solve two affine integer lift problems; it should
-not enumerate the full discriminant group.
+bound.  At `p=53` the two affine lift problems now give a section of norm
+`7.49017741972933`, within `0.015%` of the exact shortest-class lower bound.
+The next exact computation should transport this certificate through the
+bounded-primary correction and repeat it at the next cuspidal level; it
+should not enumerate the full discriminant group.
 
 The fixed-chart nonlinear optimization is now finite and exact.  By
 `TRUE_FINITE_PAIRED_DISCRIMINANT_CERTIFICATE.md`, only finitely many range

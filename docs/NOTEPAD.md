@@ -41312,6 +41312,128 @@ rational invariant transfer cycle `P_n b_n`; all noninvariant Kazhdan modes
 are uniformly harmless.  The denominator `|J/(J intersect L_n)|` and the
 paired integral correction are now the live arithmetic data.
 
+## 2026-08-11: exact orthogonal transfer of real and integral repair
+
+Full proof: `docs/FALSE_ORTHOGONAL_TRANSFER_FILLING_FORMULA.md`.
+
+For a regular intermediate cover of degree `m`, deck averaging gives an
+orthogonal splitting of the minimum real filling, not merely an additive
+comparison:
+
+    Fill_R(b_up)^2
+      = m^(-1) Fill_R(b_down)^2
+        + Fill_R((1-P)b_up)^2.
+
+Every integral filling upstairs pushes to an integral filling downstairs,
+so
+
+    Fill_Z(b_up)^2 >= m^(-1) Fill_Z(b_down)^2.
+
+Subtracting the exact real/integral Pythagoras identities yields the sharp
+canonical discriminant transfer inequality
+
+    rho_up(c_up)^2
+      >= m^(-1) rho_down(c_down)^2
+         - Fill_R((1-P)b_up)^2.
+
+The canonical class is coherent: `p_* q_up=q_down`, and the cycle component
+of any integral filling pushes to a representative of `c_down`.  In the
+Laurent-double tower, property `(T)` uniformly bounds the last term.  Thus
+both the real part and the integral discriminant part reduce to the
+intermediate cover with exactly the square-root loss.  This dovetails with
+the exact nonlinear discriminant-Voronoi repair formula; the live FALSE
+task is now a nonzero marked pairing whose paired ratio beats `sqrt(m)`.
+
+## 2026-08-11: the radical word survives adjoining its stabilizer
+
+Full proof: `docs/FALSE_INTERMEDIATE_SPLIT_HOMOLOGY.md`.
+
+For `pi:D=G *_Gamma G -> F=G *_E G`, the preimage of the lower-right
+Kazhdan subgroup `J<=Gamma` splits:
+
+    pi^(-1)(J)=R_0 semidirect J.
+
+Using
+
+    (R_0)_ab ~= ker(Z[F/Gamma] -> Z[F/E]),
+    [w]=delta_(hGamma)-delta_Gamma,
+
+its image in `J`-coinvariants maps to
+
+    delta_(J h Gamma)-delta_(J Gamma)
+
+in the free permutation module `Z[J\F/Gamma]`.  These are distinct because
+`J<=Gamma` and `h notin Gamma`.  Hence `w` has infinite order in the
+abelianization of `R_0 semidirect J`.
+
+So the stabilizer creates an `ell^2` filling on the normal `R_0`-cover but
+does not kill ordinary homology after adjoining `J`.  Any finite-index
+tower whose intermediate subgroups decrease to this split preimage has
+diverging integral filling norms.  This proves that the invariant transfer
+mode left by the Kazhdan reduction is genuinely live, not a fixed-kernel
+artifact.  The remaining gates are relative separability of `J`, growth
+relative to `sqrt(m)`, and a nonzero marked paired character.
+
+## 2026-08-11: use a constant stabilizer; relative separability is proved
+
+Full proof: `docs/FALSE_CONSTANT_STABILIZER_SEPARABILITY.md`.
+
+The large polynomial stabilizer was unnecessary.  Take instead the
+constant lower-right block
+
+    J = EL_3(Z) = SL_3(Z)
+
+on matrix coordinates `3,4,5`.  It still centralizes
+`h=e_12(x_1^(-1))`, lies in `Gamma`, and has property `(T)`.  Thus every
+nonamenable-stabilizer and orthogonal-transfer theorem remains valid, while
+the averaging degree is only the size of the finite image of one fixed
+arithmetic group.
+
+Moreover `J` is separable in
+
+    F = G *_E G ~= E semidirect_(fold) (Q*Q).
+
+For the `E` component, use the finite `Q`-equivariant Laurent quotients
+
+    Z[x_1^(+-1),...,x_d^(+-1)]
+      -> F_p[(Z/MZ)^d].
+
+Choosing `M` injective on the finite exponent support and `p` retaining a
+coefficient separates every Laurent matrix outside the constant `3 x 3`
+block.  A nontrivial `Q*Q` component is separated by residual finiteness of
+`Q*Q`.  Hence every `f notin J` has a finite quotient with
+`theta(f) notin theta(J)`.
+
+Diagonalizing these subgroup-separating quotients together with ordinary
+residual quotients gives nested normal finite-index `L_n` satisfying
+
+    intersection L_n = 1,
+    intersection J L_n = J.
+
+Therefore the intermediate subgroups really do converge to
+`R_0 semidirect J`, and their integral filling norms diverge.  The relative
+separability gate is closed.  The remaining quantitative gate is growth
+versus `sqrt(|image(J)|)` plus a nonzero marked discriminant pairing.
+
+### Audit: quotient-graph homology is not yet an `ell^2` obstruction
+
+The split preimage has a visible Bass--Serre quotient-graph cycle
+
+    delta_(J h Gamma)-delta_(J Gamma).
+
+It is tempting to declare the corresponding two-edge cocycle finitely
+supported and conclude that the marked loop has no `ell^2` filling.  This
+is invalid in the cellular cover.  One quotient-graph edge lifts through
+the edge-space fiber `J\Gamma`, which is infinite because `J` has infinite
+index in `Gamma`.  The constant edge cocycle therefore has infinite
+cellular `ell^2` norm.  Collapsing the graph-of-spaces fibers is not a
+bounded chain equivalence for this norm.
+
+So separability plus nonzero ordinary homology does not close the real
+filling branch.  A genuine proof needs either an actual square-summable
+cocycle in the full cover or the marked paired-discriminant estimate.  No
+headline proof is claimed from the quotient graph alone.
+
 ## 2026-08-11: exact compact cellular harmonic discriminant at level 53
 
 The non-free HAP `SL_3(Z)` cellular complex, after tensoring with the
@@ -41334,3 +41456,56 @@ and the compact orbit-coordinate metric is not literally the free HAP carry
 metric.  The remaining bridge is the bounded-primary integral correction
 plus an explicit bounded chain comparison.  See
 `docs/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.
+
+## 2026-08-11: the full level-53 free harmonic section is bounded
+
+The coarse statement immediately above is now superseded.  Saturating the
+rank-224 range lattice gives a basis with coefficients at most `85`, and one
+short MSI LLL/BKZ computation collapses the shortest class's HNF lift to
+
+    z_1=e_240-e_287-e_302+e_304.
+
+Its squared norm is exactly four.  This is not a heuristic CVP value:
+exhausting all `656` signed coordinate vectors and all `214,512` signed
+two-coordinate sums proves that no vector of squared norm below four has the
+required `104` cycle pairings.  Thus
+
+    lambda(u_1)^2=4,
+    lambda(u_1)/||u_1||=7.489055360091924...
+
+exactly.
+
+The second Gauss-reduced basis vector has a verified integral lift with
+squared norm `16`.  Its sixteen-coordinate support is disjoint from that of
+`z_1`, so the two lift vectors have exact Gram matrix
+
+    G_Z=diag(4,16).
+
+Against the exact reduced harmonic Gram matrix, the generalized squared
+singular values are the roots of a rational quadratic and equal
+
+    20.236460080505854...,
+    56.10275777902312....
+
+Therefore the resulting integral section has norm
+
+    ||s||=7.49017741972933...,
+
+and the nonlinear lift distortion is rigorously bracketed by
+
+    7.489055360091924...
+      <=kappa_Sigma<=
+    7.49017741972933....
+
+This solves the free rank-two harmonic numerator at the first cuspidal
+level to about `0.015%` relative width.  The `83`-digit discriminant order
+does not create a huge repair cost; the earlier `10^29` section was entirely
+bad affine-basis choice.  The exact artifacts are
+`experiments/projective-cellular-p53-cvp-exact.json`,
+`experiments/projective-cellular-p53-cvp-basis1-certified.json`, and
+`experiments/projective-cellular-p53-section.json`.
+
+This still does not settle TRUE or FALSE.  The live tasks are now the
+two-primary signed-coinvariant correction, the bounded comparison to the
+free HAP carry metric, and uniform control over later cuspidal projective
+levels.
