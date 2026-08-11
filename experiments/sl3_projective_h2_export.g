@@ -78,7 +78,7 @@ end;
 ProjectiveH2Run := function(prime, prefix)
     local resolution, group, generators, field, one, zero, reduced_generators,
           finite_group, point, orbit, orbit_positions, coordinate, degree,
-          dimensions2, dimensions3;
+          dimensions1, dimensions2, dimensions3;
     resolution := ResolutionArithmeticGroup("SL(3,Z)", 3);
     group := GroupOfResolution(resolution);
     generators := GeneratorsOfGroup(group);
@@ -98,6 +98,9 @@ ProjectiveH2Run := function(prime, prefix)
     for coordinate in [1..degree] do
         AddDictionary(orbit_positions, orbit[coordinate], coordinate);
     od;
+    dimensions1 := ProjectiveH2WriteBoundary(
+        resolution, orbit, orbit_positions, field, prime, degree, 1,
+        Concatenation(prefix, "-d1.tsv"));
     dimensions2 := ProjectiveH2WriteBoundary(
         resolution, orbit, orbit_positions, field, prime, degree, 2,
         Concatenation(prefix, "-d2.tsv"));
@@ -106,6 +109,7 @@ ProjectiveH2Run := function(prime, prefix)
         Concatenation(prefix, "-d3.tsv"));
     Print("prime=", prime,
           " projective_degree=", degree,
+          " d1=", dimensions1,
           " d2=", dimensions2,
           " d3=", dimensions3, "\n");
 end;
