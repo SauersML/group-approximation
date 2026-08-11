@@ -204,13 +204,17 @@ relatively-Haar fiber product
 (`(HPK9cy)-(HPK9dh)`, `(TWT46)-(TWT51)`).  This quotient is exactly Popa's
 factor map.  Austin's property-`(T)` examples show that universal
 model-surjectivity is false: good projective models may live in nonzero
-finite-graph cohomology sectors a uniform distance from every lift.  The live
-theorem is therefore narrower and more exact: select **one** model sequence,
+finite-graph cohomology sectors a uniform distance from every global vertex
+potential.  This does not obstruct finite-phase completion: Austin's
+property-`(T)` stabilizers have finite abelianization, so their nonzero
+sectors already have finite-phase representatives.  The live theorem is
+therefore different, not merely weaker: select **one** model sequence,
 compatible with the given base colors and relatively-Haar joining, whose
-phase cochain is `o(1)` from the coboundary sector, then quantize its primitive
-so the cocycle law holds away from `o(1)` vertices.  The zero-sector rounding
-lemma proves this suffices (`docs/POPA_FACTOR_MODEL_LIFTING.md`).  Product
-permanence still uses the wrong, independent joining.
+phase cochain is `o(1)` from some finite-image cocycle sector, with equality
+away from `o(1)` vertices.  The stabilizer-character classification and the
+zero-sector sufficient lemma are in
+`docs/POPA_FACTOR_MODEL_LIFTING.md`.  Product permanence still uses the
+wrong, independent joining.
 
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions

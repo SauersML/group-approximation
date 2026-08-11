@@ -1353,16 +1353,19 @@ representatives pointwise, but its shift defect is exactly the cocycle
 This also explains why ordinary product permanence is insufficient.
 `Z_Phi` carries the relatively Haar measure supported on the fiber product,
 not the independent product of the two marginal actions.  The needed new
-input is an **existential, relative, Hamming-exact liftable-model selection**
-for the particular principal circle bundle `(HPK9dh)`.  Austin's terminology
-`model-surjective` must not be used here: the quotient `T^Q->P_Q` is exactly
-the Popa factor map, and it is not model-surjective for some residually finite
-property-`(T)` groups and sofic approximations.  That failure comes from good
-models in nonzero finite-graph cohomology sectors, while the zero sector still
-contains liftable good models.  Our requirement is only to select one model
-sequence in the zero sector, but with finite-phase cocycle equality away from
-`o(1)` vertices.  The full audit and the resulting zero-sector rounding lemma
-are in `docs/POPA_FACTOR_MODEL_LIFTING.md`.  Such a selection would make the
+input is an **existential, relative, Hamming-exact finite-circle-bundle
+selection** for the particular principal circle bundle `(HPK9dh)`.  Austin's
+terminology `model-surjective` must not be used here: the quotient
+`T^Q->P_Q` is exactly the Popa factor map, and it is not model-surjective for
+some residually finite property-`(T)` groups and sofic approximations.  That
+failure comes from good models in nonzero finite-graph cohomology sectors.
+It does not obstruct `(HPK18)`: the stabilizers in Austin's example have
+finite abelianization, so those nonzero sectors themselves have finite-phase
+representatives.  Our requirement is to select one model sequence close to
+some finite-image sector, not necessarily the zero sector, with cocycle
+equality away from `o(1)` vertices.  The full audit, the stabilizer-character
+classification, and a zero-sector sufficient lemma are in
+`docs/POPA_FACTOR_MODEL_LIFTING.md`.  Such a selection would make the
 skew relation sofic and close Theorem 3H.  Without it, the proposition is an
 exact reformulation rather than a proof: every circle cocycle occurs by
 `(HPK9cz)--(HPK9db)`.

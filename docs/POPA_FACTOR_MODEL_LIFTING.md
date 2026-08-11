@@ -8,11 +8,13 @@ is a correction of scope:
 
 > The required finite theorem is **not** model-surjectivity of the Popa
 > factor map.  It is an existential, relative, Hamming-exact selection of a
-> liftable (zero-cohomology-sector) model sequence.
+> finite-torsion cocycle sector.  That sector need not be cohomologically
+> zero.
 
 Austin's Popa-factor examples show that model-surjectivity is false even for
-very classical sofic groups.  They do not obstruct the existential selection
-needed here, because the same examples still have abundant liftable models.
+very classical sofic groups.  They do not obstruct the finite-phase selection
+needed here: their nonliftable sectors are themselves represented by
+finite-image stabilizer characters.
 
 ## 1. Identification with the Popa factor
 
@@ -88,38 +90,44 @@ Thus the nonliftable Popa sectors are precisely stabilizer-character sectors.
 Austin arranges nontrivial characters by choosing stabilizers with nontrivial
 abelianization.
 
-This also shows why essential freeness of the limiting action does not remove
-the obstruction.  In Austin's sofic approximation every fixed nonidentity
-`q in Q` eventually has no fixed vertices, but the stabilizers `H_n` still
-have characters on elements whose word length escapes to infinity.  Those
-global characters remain a uniform distance from `B^1`.  Slow tensor
-amplification, which kills fixed points for each fixed word, therefore cannot
-by itself force the phase sector to be zero.
+This also shows why essential freeness of the limiting action does not force
+the coboundary sector.  In Austin's sofic approximation every fixed
+nonidentity `q in Q` eventually has no fixed vertices, but the stabilizers
+`H_n` still have characters on elements whose word length escapes to
+infinity.  Those global characters remain a uniform distance from `B^1`.
+Slow tensor amplification, which kills fixed points for each fixed word,
+therefore cannot by itself force the phase sector to be zero.
 
 ## 3. Why this does not refute the needed lifting statement
 
 Model-surjectivity quantifies over **every** convergent sequence of good
-target models.  Soficity of the relatively-Haar pullback only needs **one**
-compatible sequence.
+target models and asks for a lift by a global vertex potential in `T^(V_n)`.
+Soficity of the relatively-Haar pullback only needs **one** compatible
+finite circle bundle.  Such a bundle may have nontrivial finite holonomy and
+therefore need not come from a global potential.
 
 In Austin's example the zero sector `B^1(Gamma_n,T)` is still present.  In
 fact the pushforward of Haar measure on `T^(V_n)` under `(PFL4)` is supported
 entirely on liftable models and converges locally to Haar measure on the Popa
-factor.  Equivalently, choose independent finite-circle labels on the
-vertices and take their exact gradients.  This gives a liftable sequence even
-though other, nonzero-cohomology sectors prove `(PFL3)`.
+factor.  More importantly, every nonzero sector in his construction is also
+finite-phase.  Each stabilizer `H_n` has property `(T)` (it has finite index
+in `Q`), so its finitely generated abelianization is finite.  By `(PFL5b)`,
+every stabilizer character therefore has finite image.  The projective model
+may fail to lift to a vertex potential while still defining an exact finite
+circle extension, which is all phase completion asks for.
 
 Therefore the notions relevant here compare as follows.
 
 | property | quantifier on target models | quality of the lift |
 |---|---|---|
-| Austin model-surjectivity | every good model sequence | average-metric approximation |
-| phase completion `(HPK18)` | existence of one sequence compatible with the given base colors and Haar joining | finite-phase cocycle equality off `o(1)` vertices |
+| Austin model-surjectivity | every good model sequence | global `T`-valued vertex potential, up to average-metric error |
+| phase completion `(HPK18)` | existence of one sequence compatible with the given base colors and Haar joining | possibly nontrivial finite-circle bundle; cocycle equality off `o(1)` vertices |
 
 Neither phrase should be substituted for the other.  The phase requirement
-is weaker in quantification and stronger in exactness.
+is weaker in quantification, allows nonzero torsion holonomy, and is stronger
+in its demand for equality away from a small set.
 
-## 4. A zero-sector rounding lemma
+## 4. A zero-sector rounding lemma (one sufficient case)
 
 The distinction yields a useful positive finite criterion.  Let `V_n` be
 finite sets, let `sigma_(n,g)` be permutation charts, and let
@@ -162,10 +170,34 @@ limits of the original monomial data are retained.  Equations
 `docs/TRUE_HAAR_PHASE_KERNEL.md` finishes the sofic approximation.  End
 proof.
 
-This lemma says that the true finite obstruction is the distance of the
-particular phase cochain to the **zero** cohomology sector.  Nonzero sectors
-may coexist with it and are irrelevant if the models forced by the original
-hyperlinear approximation can be selected in the zero sector.
+This lemma is only a sufficient special case.  It is useful for a quotient
+circle cocycle after the phase-kernel data have been separated, but it is far
+too strong for the full monomial cocycle: a nontrivial kernel element has
+asymptotically trivial base permutation and a Haar-distributed diagonal
+phase, so it cannot be close to a coboundary.  The general completion must
+retain such phases in a nonzero finite-torsion sector.
+
+The exact finite classification is as follows.  For a transitive exact
+finite action `V=Q/H`, a circle cocycle class has a `mu_m`-valued
+representative if and only if its stabilizer character `(PFL5a)` has image in
+`mu_m`.
+
+**Proof.**  Necessity follows by restricting a `mu_m`-valued cocycle to the
+stabilizer.  Conversely, choose a section `tau:Q/H->Q` and put
+
+`kappa(q,v)=tau(qv)^(-1) q tau(v) in H`.              `(PFL10a)`
+
+If `chi_a(H) subset mu_m`, then
+
+`z_q(v)=chi_a(kappa(q,v))`                           `(PFL10b)`
+
+is a `mu_m`-valued cocycle in the class of `a`; the Schreier identity for
+`kappa` proves the cocycle equation.  End proof.
+
+Thus the relevant sector condition is **finite stabilizer image**, not
+trivial stabilizer image.  Austin's property-`(T)` example sharply separates
+the two conditions: every sector has finite stabilizer image, while some
+sectors stay uniformly far from the trivial one.
 
 ## 5. Revised live gate
 
@@ -173,25 +205,30 @@ For the factor `Phi_eta:X->P_Q` coming from a monomial hyperlinear model, the
 remaining task is:
 
 > Select finite models of the already-sofic base action, with the prescribed
-> `Phi_eta` colors and relatively-Haar statistics, for which the associated
-> phase near-cocycle has distance `o(1)` from the coboundary sector; then apply
-> `(PFL7)--(PFL10)`.
+> `Phi_eta` colors and relatively-Haar statistics, whose phase near-cocycle is
+> `o(1)` from an exact cocycle with values in some finite circle group
+> `mu_(m_n)`.  The cohomology sector may be nonzero and `m_n` may grow.
 
-Austin's theorem warns that arbitrary good models can occupy uniformly
-nonzero sectors.  It does not determine the sector of the special models
-coming from the evaluated extension cocycle and Haar character field.  That
-special-sector statement, rather than universal model-surjectivity, is the
-exact target.
+Austin's theorem warns that arbitrary good models need not lift through
+`T^(V_n)`.  Its finite stabilizer calculation also proves that this warning is
+not itself an obstruction to `(HPK18)`: those nonliftable sectors can still be
+finite-phase.  What remains special to the evaluated extension cocycle and
+Haar character field is the approximation by **some** finite-image sector.
 
-In particular, the next useful invariant is a finite-window sector distance
+For a fixed finite window `F`, let `Z^1_fin(sigma_n,F)` denote all families
+`z_g:V_n->mu_m`, for any finite `m`, which obey the phase-cocycle identity
+wherever the base chart obeys multiplication on `F`.  The useful sector
+distance is
 
-`kappa_n(F)=inf_(b:V_n->T) max_(g in F)
-             ||c_(n,g)-d b(g)||_2`.                 `(PFL11)`
+`kappa_n^fin(F)=inf_(z in Z^1_fin(sigma_n,F))
+                 max_(g in F)||c_(n,g)-z_g||_2`.     `(PFL11)`
 
-The zero-sector lemma proves `kappa_n(F)->0` for every finite `F` is
-sufficient.  A TRUE proof must force this after an allowed change of Cartan,
-amplification, or model sequence.  A FALSE construction could instead try to
-force `liminf kappa_n(F)>0` while retaining the Haar kernel law.
+The exact remaining assertion is `kappa_n^fin(F)->0` along one compatible
+model sequence for every finite `F`, with the Haar kernel and trace statistics
+retained.  The zero-sector lemma treats only the subfamily of quantized
+coboundaries.  A TRUE proof may use arbitrary finite stabilizer characters;
+a FALSE construction would have to keep `(PFL11)` bounded away from zero,
+not merely stay away from `B^1`.
 
 ## Sources
 
