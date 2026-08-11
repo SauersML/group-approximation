@@ -900,6 +900,18 @@ coupling or a multi-chart filling proof. Full audit:
 `experiments/atlas_self_similarity_global_audit.py` and
 `experiments/atlas_self_similarity_global_audit_results.md`.
 
+The four persistent worst classes near the exact phase do not themselves
+give an algebraic obstruction.  All of indices `70,86,90,91` and phase class
+`11` lie in a local `S4*S4`.  After imposing the four zero words, this local
+presentation has a quotient of order `168` (the degree-eight `PSL(2,7)`)
+where class `11` is a nontrivial involution.  Hence no proof using only those
+four relations plus the local `S4` laws can kill the phase.  The finite
+certificate cannot extend to the ambient simple `A8` factors, so the next
+exact target is to exploit certified-zero words outside the local slice to
+force ambient-chart extension.  Full proof and audit:
+`docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md` and
+`experiments/atlas_stubborn_s4_certificate.py`.
+
 The simultaneous 24-class solver now gives a first finite compatibility
 answer.  With the two `(5,2,1)` `A8` charts fixed, `U(64)` reaches certified
 zero-class RMS `1.279437` while retaining the survivor phase to HS error
