@@ -1046,6 +1046,14 @@ Thus all remaining mod-two growth lies in the two-cell zero row.  The live task 
 uniform orbitwise proof with bounded integral splittings, not control of a
 growing positive-row rank.  See `TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
 
+The constant positive residue is itself visibly local.  At `p=3,5,7`, the
+first vertex-resolution generator has exactly `p+2` singleton cycles.  One
+exceptional singleton represents one surviving class, while all other
+`p+1` singletons represent the second.  Both quotient generators therefore
+have support one.  The remaining norm question is whether the relations
+identifying the ordinary fibre admit a uniformly bounded local filling; more
+prime ranks will not answer it.
+
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
 projective `S_4` orbit classification show that the vertex `H_2` term is

@@ -103,6 +103,28 @@ calculation and locates all remaining growth in the two-cell zero row.  The
 positive stabilizer rows contribute exactly two classes, independently of
 the six audited levels.
 
+The two surviving positive classes have an even sharper finite description.
+On `p=3,5,7`, the first `q=0` stabilizer-resolution generator contains
+exactly `p+2` singleton cycles.  One exceptional singleton represents the
+first class; every one of the other `p+1` singletons represents the same
+second class.  Thus the quotient pattern is
+
+`{exceptional point} disjointUnion {p+1 ordinary points} -> F_2^2`,
+
+with the two fibres mapping to the two standard basis vectors.  Sparse
+quotient bases choose one singleton from each fibre, so both surviving
+classes have support one.  In the projective orbit ordering these begin at
+the coordinate-square lines, whose vertex stabilizer is `C_2 x C_2`.
+
+This identifies the likely all-prime local template, but does not yet bound
+the chains which identify the `p+1` ordinary singletons.  An arbitrary
+row-echelon preimage can be long.  The next quantitative step is therefore
+to exhibit bounded local relations or a uniformly bounded decoder for this
+two-fibre quotient, rather than to compute more homology ranks.  The exact
+singleton profile is in
+`experiments/projective-derived-q0-singletons.tsv`, with SHA-256
+`bb8bdb5a4a20dc68be72cadae192aa983dd9708622f19a3b5f11fbc1d40a775b`.
+
 ## Exact extraction
 
 HAP's total resolution has bidegrees
@@ -152,6 +174,12 @@ directly.  For each `q`, it takes total cycles supported in cellular degrees
 at most `q`, adjoins the full row space of `d3`, and measures the rank gain.
 Successive differences give the displayed `E^infinity` grading.  This avoids
 assuming that the visible higher-page ranks exhaust total homology.
+
+In characteristic two it additionally enumerates zero rows in the first
+`q=0` generator and tests each singleton class against the full total
+boundary space.  It verifies that the first two singleton classes are
+independent and records the unique two-bit class label of every remaining
+singleton.
 
 ## Next exact task
 
