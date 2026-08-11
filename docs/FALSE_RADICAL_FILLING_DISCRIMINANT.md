@@ -223,6 +223,29 @@ The stronger covering-radius condition
 
 implies `(RFD28)`, but is not necessary.
 
+There is a strictly weaker exact form of the energy hypothesis.  Define
+
+`delta_X(c)^2=min_(d in D_X)`
+` (rho_(L_X)(gamma_X(c-d))^2+rho_(K_X)(d)^2)`.        `(RFD28b)`
+
+By Theorem 1 of `FALSE_PAIRED_CARRY_ENERGY.md`, `delta_X(c)/sqrt(m)` is
+the exact normalized relator defect of the canonical phase table for `c`.
+Consequently Theorem 5 remains true if `(RFD28)` is replaced by
+
+`(1/|C_(w,X_n)|)sum_(c in C_(w,X_n))delta_Xn(c)^2`
+` =o(m_n)`.                                           `(RFD28c)`
+
+If `C_(w,X_n)=P_n+Q_n`, a sufficient paired condition is
+
+`avg_(p in P_n)rho_(K_Xn)(p)^2`
+` +avg_(q in Q_n)rho_(L_Xn)(gamma_Xn(q))^2=o(m_n)`.   `(RFD28d)`
+
+This permits the filling code to split between a cycle-cheap part and a
+range-cheap part.  It is the exact point at which the low-rank rational
+pullback and binary quadratic CVP method from the `p=53` calculation can
+transfer to the radical-presentation problem without transferring the
+residually finite `SL_3(Z)` group itself.
+
 The nonintegral-entry gate also has a determinant-size certificate.
 
 **Theorem 6 (isotropic-size obstruction).**  Let
@@ -255,8 +278,8 @@ of `D_X`.  End proof.
 The theorem is exact and finite at each stage.  The two quantities to
 certify are:
 
-1. the mean squared discriminant radius of the finite filling code in
-   `(RFD28)`;
+1. the exact mean carry energy `(RFD28c)`, for example through the paired
+   subgroup bound `(RFD28d)`;
 2. one nonzero entry of the rational matrix `(RFD27)` modulo `Z`.
 
 No full discriminant enumeration is necessary for item 2.  The vectors in

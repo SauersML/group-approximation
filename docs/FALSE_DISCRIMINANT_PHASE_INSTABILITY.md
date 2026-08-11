@@ -359,6 +359,38 @@ class has marked energy at most `4`, deleting the bad classes removes only
 for all large `n`.  Its relator defect is at most `epsilon_n` by
 `(DPI8)` and `(DPI35c)`.  Theorem 3 applies.  End proof.
 
+The exact nonlinear carry formula gives a strictly stronger version.  For
+`c in D_(K,n)`, define the intrinsic carry energy
+
+`delta_n(c)^2=min_(d in D_(K,n))`
+` (rho_(L,n)(gamma_n(c-d))^2+rho_(K,n)(d)^2)`.        `(DPI35e)`
+
+Then the canonical phase table for `c` has exact normalized relator defect
+`delta_n(c)/sqrt(m_n)`.  The proof is Theorem 1 of
+`FALSE_PAIRED_CARRY_ENERGY.md`: it is `(NDR14)` evaluated at any point of
+the range discriminant coset `gamma_n(c)`.
+
+**Theorem 4B (exact carry-energy pruning).**  In Theorem 4A, the hypothesis
+`(DPI35a)` may be weakened to
+
+`(1/|C_n|)sum_(c in C_n)delta_n(c)^2=o(m_n)`.          `(DPI35f)`
+
+The same Markov-pruning proof applies with `delta_n(c)` in place of
+`rho_K(c)`, now using the exact defect rather than `(DPI8)`.  Since
+
+`delta_n(c)^2<=min(rho_(K,n)(c)^2,`
+`                    rho_(L,n)(gamma_n(c))^2)`,       `(DPI35g)`
+
+this is strictly more flexible.  More generally, if `C_n=P_n+Q_n`, then
+
+`avg_(c in C_n)delta_n(c)^2`
+` <=avg_(p in P_n)rho_(K,n)(p)^2`
+`   +avg_(q in Q_n)rho_(L,n)(gamma_n(q))^2`.          `(DPI35h)`
+
+Thus a cycle-cheap subgroup and a range-cheap subgroup may jointly supply
+the microscopic phase tables even when neither side controls the entire
+discriminant code.
+
 **Corollary 5 (transitive one-coordinate test).**  Suppose a group of chart
 symmetries acts transitively on the `N_n` word-evaluation coordinates,
 preserves `C_n`, and makes the coordinate characters in `(DPI29)` one
