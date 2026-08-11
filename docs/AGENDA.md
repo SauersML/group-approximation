@@ -142,7 +142,9 @@ hyperlinear nonsofic image.  In particular, proving that the cyclic shear is
 in the Glasner--Monod class of faithful transitive amenable actions would
 finish the problem.  Existing cyclic-double and finite-edge class-`A`
 theorems do not cover its twisted infinite edge; see
-`docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.
+`docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  For the central involution this
+is equivalent to coamenable sign-character induction: adjoining `z` to `L`
+gives the sign character, and taking its kernel reverses the construction.
 
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 

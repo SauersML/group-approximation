@@ -38592,8 +38592,8 @@ induction cannot manufacture the negative sector.
 ## A coamenable action moving the central radical is already enough
 
 Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  The scalar
-hypothesis above can be replaced by a different, strictly weaker action
-hypothesis.  If `L<J` is coamenable and `z notin L`, then the quasi-regular
+hypothesis above has an equivalent action formulation.  If `L<J` is
+coamenable and `z notin L`, then the quasi-regular
 representation on `ell^2(J/L)` has the hypertrace
 
 `Phi(T)=m(x |-> <T delta_x,delta_x>)`,                  `(CAC3)`
@@ -38607,6 +38607,14 @@ so `z` fixes no coset and the induced amenable trace satisfies
 image in which `z` survives.  That image is nonsofic because
 `z in Rad_sof(J)`.
 
+For the central involution this is equivalent, not strictly weaker, than
+coamenable sign-character induction.  From `L`, the group
+`L^+=<L,z>=L times <z>` is coamenable and has the sign character
+`chi(lz^e)=(-1)^e`.  Conversely, the kernel of any coamenable character with
+`chi(z)=-1` is a coamenable subgroup omitting `z`.  Equivalently, the central
+extension splits over the image of `L` in `J/<z>`.  The gain is the direct
+fixed-point/trace formulation, not a weaker existence assumption.
+
 In particular, it is enough to prove that the cyclic shear `J` belongs to
 the Glasner--Monod class of groups with a faithful transitive amenable
 action.  In any such action the stabilizer omits `z`: if it contained the
@@ -38615,8 +38623,7 @@ faithfulness.  Moon's theorem for `F_2 *_Z F_2` and Fima's theorem for finite
 edge groups do not cover the shear's arbitrary nonsofic vertex data,
 infinite edge `C times C_2`, and twisted embedding.  The live combinatorial
 target is only to build a transitive amenable `J`-action on which `z` acts
-freely; scalar character induction and splitting of the central extension
-are not required.
+freely; this is exactly the action form of the sign-sector problem.
 
 # The hyperlinear halo-action shortcut is circular (2026-08-10)
 

@@ -2,11 +2,12 @@
 
 Date: 2026-08-10
 
-This note strengthens the amenable-negative-sector criterion in
-`FALSE_AMENABLE_SECTOR_AUDIT.md`.  A scalar negative sector is sufficient,
-but it is not necessary.  A transitive amenable permutation action already
-gives the required trace whenever the central radical element moves one
-point, because centrality then makes it move every point.
+This note gives an action-theoretic reformulation of the amenable-negative-
+sector criterion in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  A transitive amenable
+permutation action gives the required trace whenever the central radical
+element moves one point, because centrality then makes it move every point.
+For a central involution this turns out to be equivalent to the induced-sign-
+character formulation, not strictly weaker; the equivalence is proved below.
 
 Throughout, let `J` be countable and let
 
@@ -80,10 +81,32 @@ core `intersection_(g in J) g L g^(-1)` is trivial.  If the central element
 the core.  This contradicts `z!=1`.  Therefore `(CAC2)` holds and the theorem
 applies.  End proof.
 
-This criterion is strictly different from the scalar induced-character
-criterion `(ANS2)`.  It asks only for a coamenable subgroup omitting `z`; it
-does not ask for a character on a subgroup containing `z`, a splitting of
-the central extension over that subgroup, or a scalar action of `z`.
+For a central involution, this criterion is exactly equivalent to the
+coamenable induced-sign-character criterion.
+
+**Proposition.**  The following are equivalent:
+
+1. there is a coamenable subgroup `L<J` with `z notin L`;
+2. there is a coamenable subgroup `L^+<J` and a character
+   `chi:L^+->{+-1}` with `chi(z)=-1`.
+
+**Proof.**  From (1), put `L^+=<L,z>`.  Centrality, `z^2=1`, and
+`z notin L` give `L^+=L times <z>`.  A supergroup of a coamenable subgroup
+is coamenable, by pushing the invariant mean from `J/L` to `J/L^+`.  The
+formula
+
+`chi(l z^e)=(-1)^e`                                      `(CAC8)`
+
+is therefore the required character.  Conversely, from (2) put
+`L=ker(chi)`.  It has finite index in `L^+`, hence is coamenable in `L^+`;
+coamenability is transitive, so `L` is coamenable in `J`.  Since
+`chi(z)=-1`, one has `z notin L`.  End proof.
+
+Thus `(CAC2)` removes scalarity from the proof, but not from the existence
+problem: inducing `(CAC8)` recovers a scalar negative sector, while taking
+its sign kernel recovers the fixed-point-free transitive action.  In quotient
+language, `(CAC2)` also says that the central extension splits over the image
+of `L` in `J/<z>`.
 
 ## 3. Application boundary for the cyclic shear
 
@@ -106,11 +129,12 @@ almost-free amenable-action hypotheses on the vertex groups.  The shear has
 an infinite edge `C times C_2`, arbitrary nonsofic data in its vertex group,
 and a twisted edge embedding.  Thus neither theorem applies as stated.
 
-The precise surviving group-action problem is now
+The precise equivalent group-action problem is
 
 > construct an invariant mean on one transitive `J`-set on which the central
 > involution `z` acts freely.
 
-This is weaker than constructing a faithful action, and weaker than the
-amenable scalar sector in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  No construction
-of that action is currently proved here.
+This is weaker than constructing a faithful action, but equivalent to the
+coamenable induced-sign sector in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  Its
+advantage is a direct fixed-point/trace formulation, not a weaker existence
+hypothesis.  No construction of that action is currently proved here.
