@@ -1359,12 +1359,16 @@ terminology `model-surjective` must not be used here: the quotient
 `T^Q->P_Q` is exactly the Popa factor map, and it is not model-surjective for
 some residually finite property-`(T)` groups and sofic approximations.  That
 failure comes from good models in nonzero finite-graph cohomology sectors.
-It does not obstruct `(HPK18)`: the stabilizers in Austin's example have
-finite abelianization, so those nonzero sectors themselves have finite-phase
-representatives.  Our requirement is to select one model sequence close to
-some finite-image sector, not necessarily the zero sector, with cocycle
-equality away from `o(1)` vertices.  The full audit, the stabilizer-character
-classification, and a zero-sector sufficient lemma are in
+It does not obstruct `(HPK18)`: Austin's bad models are already exact circle
+cocycles.  On every fixed finite chart the exact cocycles form a closed
+subgroup of a finite torus, whose torsion points are dense, so any exact
+sector can be approximated by finite-phase exact cocycles.  Our requirement
+is instead to select one model sequence whose vanishing raw cocycle defect
+forces vanishing distance to the exact cocycle locus, with equality away from
+`o(1)` vertices after torsion approximation.  This is exactly the qualitative
+cocycle-stability gate `(CS1)--(CS8)`, not a cohomology-sector restriction.
+The full audit, stabilizer-character classification, and torsion-density
+argument are in
 `docs/POPA_FACTOR_MODEL_LIFTING.md`.  Such a selection would make the
 skew relation sofic and close Theorem 3H.  Without it, the proposition is an
 exact reformulation rather than a proof: every circle cocycle occurs by

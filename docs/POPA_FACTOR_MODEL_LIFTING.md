@@ -8,13 +8,14 @@ is a correction of scope:
 
 > The required finite theorem is **not** model-surjectivity of the Popa
 > factor map.  It is an existential, relative, Hamming-exact selection of a
-> finite-torsion cocycle sector.  That sector need not be cohomologically
-> zero.
+> finite-phase cocycle.  On a fixed finite chart torsion cocycles are dense
+> in all exact circle cocycles, so the real issue is closeness to the exact
+> cocycle locus, not the cohomology sector.
 
 Austin's Popa-factor examples show that model-surjectivity is false even for
 very classical sofic groups.  They do not obstruct the finite-phase selection
-needed here: their nonliftable sectors are themselves represented by
-finite-image stabilizer characters.
+needed here: Austin's bad models are already exact cocycles, and exact finite
+charts can be approximated by torsion cocycles regardless of their sector.
 
 ## 1. Identification with the Popa factor
 
@@ -109,23 +110,25 @@ therefore need not come from a global potential.
 In Austin's example the zero sector `B^1(Gamma_n,T)` is still present.  In
 fact the pushforward of Haar measure on `T^(V_n)` under `(PFL4)` is supported
 entirely on liftable models and converges locally to Haar measure on the Popa
-factor.  More importantly, every nonzero sector in his construction is also
-finite-phase.  Each stabilizer `H_n` has property `(T)` (it has finite index
-in `Q`), so its finitely generated abelianization is finite.  By `(PFL5b)`,
-every stabilizer character therefore has finite image.  The projective model
-may fail to lift to a vertex potential while still defining an exact finite
-circle extension, which is all phase completion asks for.
+factor.  More importantly, the nonzero models used to disconnect the target
+are elements of `Z^1(Gamma_n,T)` already.  They therefore have zero distance
+from the exact cocycle locus even though they stay a uniform distance from
+`B^1`.  Section 4 below shows that every such exact finite-chart cocycle can
+be approximated by finite-phase exact cocycles.  (In Austin's particular
+construction one can say more: the finite-index property-`(T)` stabilizers
+have finite abelianization, so their classes already have finite-image
+representatives.)
 
 Therefore the notions relevant here compare as follows.
 
 | property | quantifier on target models | quality of the lift |
 |---|---|---|
 | Austin model-surjectivity | every good model sequence | global `T`-valued vertex potential, up to average-metric error |
-| phase completion `(HPK18)` | existence of one sequence compatible with the given base colors and Haar joining | possibly nontrivial finite-circle bundle; cocycle equality off `o(1)` vertices |
+| phase completion `(HPK18)` | existence of one sequence compatible with the given base colors and Haar joining | proximity to any exact cocycle, followed by torsion approximation and equality off `o(1)` vertices |
 
 Neither phrase should be substituted for the other.  The phase requirement
-is weaker in quantification, allows nonzero torsion holonomy, and is stronger
-in its demand for equality away from a small set.
+is weaker in quantification, allows arbitrary cohomology sectors, and is
+stronger in its demand for equality away from a small set.
 
 ## 4. A zero-sector rounding lemma (one sufficient case)
 
@@ -177,6 +180,25 @@ asymptotically trivial base permutation and a Haar-distributed diagonal
 phase, so it cannot be close to a coboundary.  The general completion must
 retain such phases in a nonzero finite-torsion sector.
 
+There is a general replacement for the zero-sector hypothesis.  Fix one
+finite permutation chart and one finite multiplication window, and let `C`
+be the set of all circle-valued phase tables satisfying the required cocycle
+equalities wherever the base permutations multiply correctly.  Then `C` is
+a closed subgroup of a finite-dimensional torus.  Hence
+
+`closure(C_tor)=C`,                                  `(PFL10a)`
+
+where `C_tor` denotes the phase tables whose finitely many coordinates all
+belong to one finite circle group `mu_M`.  Indeed, a closed subgroup of a
+finite-dimensional torus is a compact abelian Lie group, isomorphic to a
+torus times a finite abelian group up to a finite quotient, and its torsion
+points are dense.  This is the same torsion-density step used in
+`(CS6)--(CS8)` of `docs/NOTEPAD.md`.
+
+Consequently, once an approximate phase table is `o(1)` from **any** exact
+circle cocycle, it is also `o(1)` from an exact finite-phase table.  No
+control of its cohomology class is necessary.
+
 The exact finite classification is as follows.  For a transitive exact
 finite action `V=Q/H`, a circle cocycle class has a `mu_m`-valued
 representative if and only if its stabilizer character `(PFL5a)` has image in
@@ -185,19 +207,22 @@ representative if and only if its stabilizer character `(PFL5a)` has image in
 **Proof.**  Necessity follows by restricting a `mu_m`-valued cocycle to the
 stabilizer.  Conversely, choose a section `tau:Q/H->Q` and put
 
-`kappa(q,v)=tau(qv)^(-1) q tau(v) in H`.              `(PFL10a)`
+`kappa(q,v)=tau(qv)^(-1) q tau(v) in H`.              `(PFL10b)`
 
 If `chi_a(H) subset mu_m`, then
 
-`z_q(v)=chi_a(kappa(q,v))`                           `(PFL10b)`
+`z_q(v)=chi_a(kappa(q,v))`                           `(PFL10c)`
 
 is a `mu_m`-valued cocycle in the class of `a`; the Schreier identity for
 `kappa` proves the cocycle equation.  End proof.
 
-Thus the relevant sector condition is **finite stabilizer image**, not
-trivial stabilizer image.  Austin's property-`(T)` example sharply separates
-the two conditions: every sector has finite stabilizer image, while some
-sectors stay uniformly far from the trivial one.
+This class-preserving statement explains the stabilizer holonomy, but it is
+still stronger than phase completion needs.  If `chi_a` has infinite image,
+torsion characters approximate it on every finite set of stabilizer carries;
+equivalently `(PFL10a)` approximates the whole cocycle by finite-phase
+cocycles in nearby classes.  Austin's example sharply separates all three
+notions: some sectors are uniformly far from `B^1`, all are exact, and all
+are eligible for finite-phase approximation.
 
 ## 5. Revised live gate
 
@@ -206,29 +231,31 @@ remaining task is:
 
 > Select finite models of the already-sofic base action, with the prescribed
 > `Phi_eta` colors and relatively-Haar statistics, whose phase near-cocycle is
-> `o(1)` from an exact cocycle with values in some finite circle group
-> `mu_(m_n)`.  The cohomology sector may be nonzero and `m_n` may grow.
+> `o(1)` from the exact circle-cocycle locus.  Torsion density then replaces
+> the nearby exact cocycle by one with values in some `mu_(m_n)` without
+> changing the asymptotics.
 
 Austin's theorem warns that arbitrary good models need not lift through
-`T^(V_n)`.  Its finite stabilizer calculation also proves that this warning is
-not itself an obstruction to `(HPK18)`: those nonliftable sectors can still be
-finite-phase.  What remains special to the evaluated extension cocycle and
-Haar character field is the approximation by **some** finite-image sector.
+`T^(V_n)`, but its bad models are already exact cocycles.  Thus that warning
+is orthogonal to `(HPK18)`.  What remains is a uniform cocycle-stability
+problem: raw `L^2` multiplicative defect must control distance to the exact
+cocycle locus on the chosen growing charts.
 
-For a fixed finite window `F`, let `Z^1_fin(sigma_n,F)` denote all families
-`z_g:V_n->mu_m`, for any finite `m`, which obey the phase-cocycle identity
-wherever the base chart obeys multiplication on `F`.  The useful sector
-distance is
+For a fixed finite window `F`, let `C_n(F)` be the closed subgroup of all
+circle phase tables obeying the phase-cocycle identity wherever the base
+chart obeys multiplication on `F`.  The useful distance is
 
-`kappa_n^fin(F)=inf_(z in Z^1_fin(sigma_n,F))
-                 max_(g in F)||c_(n,g)-z_g||_2`.     `(PFL11)`
+`kappa_n(F)=dist_(L^2)(c_n,C_n(F))`.                 `(PFL11)`
 
-The exact remaining assertion is `kappa_n^fin(F)->0` along one compatible
-model sequence for every finite `F`, with the Haar kernel and trace statistics
-retained.  The zero-sector lemma treats only the subfamily of quantized
-coboundaries.  A TRUE proof may use arbitrary finite stabilizer characters;
-a FALSE construction would have to keep `(PFL11)` bounded away from zero,
-not merely stay away from `B^1`.
+By `(PFL10a)`, this equals the infimum of the distance to exact finite-phase
+tables.  The exact remaining assertion is `kappa_n(F)->0` along one
+compatible model sequence for every finite `F`, with the Haar kernel and
+trace statistics retained.  This is precisely qualitative `T`-valued
+degree-one cocycle stability `(CS1)`, already isolated and proved sufficient
+in `(CS1)--(CS8)` of `docs/NOTEPAD.md`.  A TRUE proof must arrange that
+stability (possibly after changing charts); a FALSE construction would have
+to keep `(PFL11)` bounded away from zero despite vanishing raw cocycle defect.
+Merely occupying a nonzero Popa cohomology sector proves neither outcome.
 
 ## Sources
 

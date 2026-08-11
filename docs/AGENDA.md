@@ -206,13 +206,14 @@ factor map.  Austin's property-`(T)` examples show that universal
 model-surjectivity is false: good projective models may live in nonzero
 finite-graph cohomology sectors a uniform distance from every global vertex
 potential.  This does not obstruct finite-phase completion: Austin's
-property-`(T)` stabilizers have finite abelianization, so their nonzero
-sectors already have finite-phase representatives.  The live theorem is
+bad models are already exact circle cocycles, and torsion points are dense in
+the exact-cocycle subgroup of every finite chart.  The live theorem is
 therefore different, not merely weaker: select **one** model sequence,
-compatible with the given base colors and relatively-Haar joining, whose
-phase cochain is `o(1)` from some finite-image cocycle sector, with equality
-away from `o(1)` vertices.  The stabilizer-character classification and the
-zero-sector sufficient lemma are in
+compatible with the given base colors and relatively-Haar joining, for which
+vanishing raw cocycle defect forces vanishing distance to the exact cocycle
+locus.  Torsion density then supplies finite-phase equality away from `o(1)`
+vertices.  This is exactly the qualitative cocycle-stability gate
+`(CS1)--(CS8)`, not a choice of cohomology sector.  The Popa audit is in
 `docs/POPA_FACTOR_MODEL_LIFTING.md`.  Product permanence still uses the
 wrong, independent joining.
 
