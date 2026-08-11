@@ -224,6 +224,19 @@ FALSE.  Computationally, on full-transfer charts it is enough to solve the
 searching over all base cycles is unnecessary.  Full transfer itself remains
 a substantive unproved hypothesis for the candidate chart families.
 
+The degree congruence gives that fixed-rank character an exact arithmetic
+normal form; see `FALSE_FULL_TRANSFER_TORSION_NORMAL_FORM.md`.  If a regular
+cover has degree `n`, modulus `q`, `g=gcd(n,q)`, and the whole base cycle
+lattice transfers, then `e=q/g` divides the fixed Gram content of that
+lattice.  Radical holonomy decomposes uniquely as
+`Hol(Jv)=<v,z_0>+e psi(v) mod q` for a character
+`psi:K_1->Z/gZ`.  Centered basis holonomy differs in norm from `e` times the
+centered coordinate vector of `psi` by at most the fixed base-filling norm.
+Since `e` ranges over finitely many divisors, the amplified FALSE condition
+is exactly unbounded growth of this fixed-rank degree-torsion character.
+Thus all full-transfer growth is confined to the common nonsemisimple part
+of cover degree and modulus; the coprime sector is rigorously inert.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
