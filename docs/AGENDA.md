@@ -1065,6 +1065,16 @@ This does not contradict the bounded-degree graph no-go: cross-pair parity
 demands remain outside the matching section and still require additional
 Wall shortcuts or a nonlinear paired-discriminant repair.
 
+The first cross-pair demand has now been solved exactly at the first chart
+and bounded at the second.  In the full mod-two HAP boundary, the minimum
+support filling of `e_1+e_7` is exactly `11` at `p=3`, while it is at least
+`14` at `p=5` (with a verified support-`61` upper bound).  The optimal
+eleven-row `p=3` pattern does not specialize to later primes.  This is real
+finite-level growth, but not yet an asymptotic obstruction; it directs the
+next computation to the symbolic pair-orbit quotient rather than a blind
+full-matrix `p=7` solve.  See
+`TRUE_PROJECTIVE_PAIR_QUOTIENT_COSET_LEADER.md`.
+
 In fact the strong decoder on **all** cross-pair demands is impossible even
 for the full HAP boundary.  Coefficient augmentation detects every ordinary
 singleton in a fixed nonzero class of `H_2(SL_3(Z);F_2)`, while the full
