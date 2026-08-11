@@ -38380,6 +38380,48 @@ absorbed by the arbitrarily small corner loss.  The unresolved issue is a
 joint atom/matching construction from the overlapping prefix subspaces, not
 invariance of the spectral projection.
 
+### A dimension-free Cartan-to-monomial estimate
+
+The joint matching target has a useful quantitative sufficient condition.
+For a masa `D` with minimal projections `p_j`, put
+
+`kappa_D(U)=sum_j ||U p_j U^*-E_D(U p_j U^*)||_2^2`
+`          =1-d^(-1)sum_(i,j)|u_(i,j)|^4`.
+
+The unistochastic matrix `B_(i,j)=|u_(i,j)|^2` is doubly stochastic.  A
+Birkhoff decomposition and averaging show that some permutation `sigma`
+satisfies
+
+`sum_j |u_(sigma(j),j)|^2 >= sum_(i,j)|u_(i,j)|^4`.
+
+After aligning phases on those entries, the corresponding monomial unitary
+`M` obeys the dimension-free bound
+
+`||U-M||_2^2 <= 2 kappa_D(U)`.                         `(CTM)`
+
+Consequently a common masa with `kappa_D(phi_n(g))->0` transfers all unitary
+multiplication estimates to the underlying permutations.  Separation still
+has an independent phase gate: if the phases on permutation-fixed points have
+real part at least `c_g>0`, then
+
+`c_g |Fix(sigma_(n,g))|/d_n <= Re tau(M_(n,g))->0`.
+
+Under these two hypotheses the hyperlinear tables are sofic tables.  The full
+proof, including the Birkhoff estimate and the product-error bound, is in
+`docs/TRUE_CARTAN_MONOMIAL_GATE.md`.  This does not solve the main problem:
+the normal `0/1` character law has not yet been shown to produce either one
+common approximately invariant masa or the noncancelling fixed phases.
+
+The phase clause is essential even at the asymptotic normal endpoint.  For
+`C_4=<g>`, the diagonal representation
+`W=(1 directSum chi) tensor conjugate(1 directSum chi)`, `chi(g)=i`, has
+normalized character `(1,1/2,0,1/2)`.  The characters of `W^(tensor m)`
+converge to the regular `0/1` character, while every matrix stays diagonal and
+every underlying permutation stays the identity.  Thus `kappa_D=0` plus the
+normal character limit does not license phase stripping; a TRUE proof must be
+allowed to replace those microstates or construct a different Cartanized
+model.
+
 ## 2026-08-10: the compact-unitary metric shortcut is false
 
 A stronger-looking replacement for the finite matching step would assert

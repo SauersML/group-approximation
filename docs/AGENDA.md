@@ -113,6 +113,16 @@ require the generator matrices themselves to be close to permutation
 matrices—that stronger pointwise demand is false—but it must retain all
 tested relator and witness losses in one finite action.
 
+The Cartan-to-monomial estimate `(CTM1)-(CTM16)` in
+`docs/TRUE_CARTAN_MONOMIAL_GATE.md` gives a dimension-free intermediate
+criterion.  If the completed table approximately preserves one common masa,
+Birkhoff matching puts every generator within squared normalized-HS distance
+`2 kappa_D` of a monomial unitary, and multiplication passes to the underlying
+permutations.  A separate fixed-phase half-plane condition then converts trace
+separation into Hamming separation.  Thus a common Cartan and noncancelling
+fixed phases would finish the TRUE lane; neither follows yet from the normal
+`0/1` character law, and approximate Cartan invariance alone is insufficient.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested
