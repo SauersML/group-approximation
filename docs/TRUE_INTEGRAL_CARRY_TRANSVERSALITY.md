@@ -285,7 +285,40 @@ such a splitting.  Its value is to identify an algebraic certificate that
 would settle the carry problem immediately, and to separate that certificate
 from real closed-range statements.
 
-## 7. What remains for the main problem
+## 7. Calibration against coefficient-independent cosystolic expansion
+
+Oppenheim--Valentiner-Branth prove that suitable Kac--Moody--Steinberg
+complexes are cosystolic expanders, with constants that work for every
+finitely generated abelian coefficient group.  This removes one apparent
+coefficient-cardinality objection: the coordinates of any cochain on one
+finite chart generate a finitely generated subgroup of `T`.
+
+The theorem cannot be substituted directly for `(ICT12)`, because its norm
+is the support/Hamming norm.  A curvature which is nonzero but
+infinitesimal on every cell has full Hamming support and arbitrarily small
+chordal `L2` norm.  The latter is the norm occurring in a normalized
+Hilbert--Schmidt phase model.  Thus coefficient-independent Hamming
+cosystolic expansion does not, as a black box, bound the carry
+transversality constant.
+
+The constructive part of that work is nevertheless relevant: its link
+expansion is obtained from integral cone functions.  The useful next audit
+is whether those cone operators assemble into a generalized inverse or a
+uniformly bounded integral projection of the form `(ICT33)--(ICT40)` for the
+global degree-one relator maps.  Such an operator would give chordal `L2`
+repair by Proposition 3, independently of the support metric.
+
+Primary sources:
+
+* Izhar Oppenheim and Inga Valentiner-Branth,
+  [*New cosystolic high-dimensional expanders from KMS groups*](https://arxiv.org/abs/2504.05823),
+  Theorems 1.1 and 1.2.
+* Lukas Gohla and Andreas Thom,
+  [*High-dimensional expansion and soficity of groups*](https://arxiv.org/abs/2403.09582),
+  for the earlier arbitrary-finite-abelian coefficient construction and its
+  explicitly conditional application to soficity.
+
+## 8. What remains for the main problem
 
 The vague instruction "control logarithmic carries" can now be replaced by
 two precise questions.
