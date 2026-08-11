@@ -203,6 +203,57 @@ the live exact-basis implementation should use pivot-guided sparse solving
 or a purpose-built block-Wiedemann routine, not a larger generic echelon
 job.
 
+## Pivot-guided `p=53` exact-recovery benchmark
+
+The nonlinear discriminant formula in
+`docs/TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` makes an exact rational
+basis of the harmonic two-plane the next input.  A second bounded MSI audit
+localized the computational obstruction more precisely.
+
+Rerunning LOBPCG with four vectors selected the well-conditioned free
+coordinates
+
+`22551, 21965`.
+
+Their harmonic residuals in the two defining equations were at most
+`1.97e-10`.  Over `F_101`, exact sparse row-profile extraction then selected
+
+`8,590` independent rows of `d2^T`,
+`20,038` independent rows of `d3`.
+
+This took `47.06` seconds in total and used at most about `1.14` GiB.
+Deleting the two numerical free columns reduces the full 68,712-row stack
+to one square candidate system of order `28,628`.  Direct integer
+aggregation found only `477,925` distinct positions before modular zero
+removal, and a native LinBox implementation assembled the matrix and
+right-hand side in `0.589` seconds.
+
+The remaining cost is entirely elimination fill:
+
+| exact operation | cap | outcome |
+| --- | ---: | --- |
+| Sage sparse square solve, two right-hand sides | 300 s | timed out |
+| native LinBox sparse elimination, one right-hand side | 180 s | timed out |
+| Sage/LinBox rank of the reduced square matrix | 90 s | timed out |
+
+Every process from this benchmark ended at its cap and none remains.  The
+benchmark summary is stored in `projective-h2-p53-pivot-benchmark.json`, and
+`sl3_projective_harmonic_modular.py` reproduces the exact row profiles and
+supports the pivot-guided solve when a suitable backend is available.
+
+This rules out another blind increase in generic exact-elimination time.
+The next implementation should either:
+
+1. apply a genuine block-Wiedemann/nullspace solver to the reduced sparse
+   system; or
+2. exploit the ten HAP cell blocks and eliminate the nine low-leverage
+   blocks symbolically before exact arithmetic.
+
+The second option is especially attractive because 64.15 percent of the
+harmonic leverage is already concentrated in block eight.  A successful
+Schur complement would turn the exact recovery into a structured lift from
+that block rather than an unstructured order-28,628 elimination.
+
 ## Mathematical interpretation
 
 For `p=3,5,7`, Proposition 12 of
