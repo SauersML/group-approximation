@@ -18,6 +18,7 @@ import time
 
 import numpy as np
 from fpylll import BKZ, GSO, IntegerMatrix, LLL
+from sage.all import matrix
 
 from sl3_carry_rational_projection import (
     exact_norm_summary,
@@ -59,7 +60,7 @@ def nearest_plane_rows(right_inverse, cycles, block_size):
     basis = reduced_cycle_basis(cycles, block_size)
     orthogonalization = GSO.Mat(basis, float_type="double")
     orthogonalization.update_gso()
-    reduced = right_inverse.copy()
+    reduced = matrix(right_inverse)
     before_squared = []
     after_squared = []
     for column in range(right_inverse.ncols()):
