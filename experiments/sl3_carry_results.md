@@ -156,3 +156,41 @@ fixed-axis and saturation data are calibration invariants for that solver.
 Do not resume dense Smith forms of `d1`; use sparse modular selection and
 exact determinant/gcd certificates, then move to the primitive cycle Gram
 lattice which actually governs `Theta`.
+
+## The constant-cycle transfer route is closed
+
+Sections 6--10 of
+`docs/INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` give a low-dimensional test
+for discriminant classes of the form
+
+`u=Jv/m`, `v in ker(d1_1^T)`.                         `(SCA4)`
+
+If `M_p` is the image of chart `2`-cycles under coordinate transfer, the
+largest possible denominator is
+
+`m_p(v)=gcd{<v,w>:w in M_p}`.                         `(SCA5)`
+
+This initially looks like a useful fixed-rank modular search.  It is now
+closed theoretically.  Every spherical presentation cycle lifts to every
+cover and pushes back unchanged, so
+
+`ker(d1_1^T)/M_p` is a quotient of
+`H_2(SL_3(Z),Z) ~= C_2 directSum C_2`.                `(SCA6)`
+
+Consequently, with
+
+`g(v)=gcd{<v,w>:w in ker(d1_1^T)}`,
+
+one has the uniform bound
+
+`m_p(v) divides 2g(v)`.                               `(SCA7)`
+
+Thus no constant base cycle can produce a denominator growing with
+`|X_p|`.  The exact `p=5` saturation certificate makes the annihilator and
+modular-column-space versions of this test equivalent, but the
+Schur-multiplier theorem already bounds both on every chart.
+
+Do not launch the proposed constant-lift modular membership sweep.  Any bad
+carry must lie in a genuinely new-cover discriminant class of `K_p`, not in
+the transfer sector generated from `ker(d1_1^T)`.  The full cycle Gram
+module remains the live object.
