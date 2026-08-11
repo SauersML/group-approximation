@@ -171,11 +171,115 @@ which were previously bundled together:
 
 The first question is finite-primary: the class of `q` in the central kernel
 has order dividing four, and any lift through `(11)` lies in the
-two-primary multiplier quotient.  In particular, computations or structural
-theorems about odd-primary multiplier classes are irrelevant to this
-Clifford branch.
+two-primary multiplier quotient.  The next section reduces it further to a
+single order-two lift discrepancy.
 
-## 4. Why survival plus atlas approximation would finish the FALSE lane
+## 4. A common six-leaf chart kills the square of the phase
+
+The local elements admit a common scalar refinement.  Put
+
+\[
+ D=(000,001,010,011,10,11).                            \tag{15}
+\]
+
+This is a complete binary prefix code.  In the first original chart, refine
+the two active leaves \(01,1\) simultaneously:
+
+\[
+ 01\rightsquigarrow010,011,qquad
+ 1\rightsquigarrow10,11.                              \tag{16}
+\]
+
+The matrices \(s,t\) then act as two identical copies of their active
+two-dimensional matrices and fix \(000,001\).  In the second chart, refine
+the two active leaves \(00,1\) simultaneously:
+
+\[
+ 00\rightsquigarrow000,001,qquad
+ 1\rightsquigarrow10,11.                              \tag{17}
+\]
+
+The matrix \(b\) likewise acts by two identical active blocks and fixes
+\(010,011\).  Hence all three elements belong to the one scalar chart
+
+\[
+ G_D\cong GL_6(\mathbb F_2)\leq Q.                    \tag{18}
+\]
+
+The standard Schur-multiplier calculation gives
+
+\[
+ H_1(G_D,\mathbb Z)=H_2(G_D,\mathbb Z)=0;             \tag{19}
+\]
+
+there is no low-rank exception for \(PSL_6(2)=GL_6(2)\).  Therefore the
+pullback of the central extension \(U\to Q\) to \(G_D\) has a unique
+splitting
+
+\[
+ \sigma:G_D\longrightarrow U.                         \tag{20}
+\]
+
+**Theorem 5 (the global Clifford class is an involution).**  In the full
+cover \(U=P/[P,R]\),
+
+\[
+ c_{01}=c_{02}=c_{12}=1,qquad q^2=1.                 \tag{21}
+\]
+
+More precisely, let \(j:P\to U\) be the canonical map.  The two lifts of the
+cyclic subgroup \(\langle b\rangle\cong C_2\), namely \(j\) from the second
+original chart and \(\sigma\) from the common chart, differ by a character
+
+\[
+ \beta:C_2\longrightarrow Z(U),                       \tag{22}
+\]
+
+and
+
+\[
+ q=\beta(b).                                           \tag{23}
+\]
+
+Consequently the sole remaining algebraic question is whether this one
+central sign is trivial.
+
+**Proof.**  Two homomorphic lifts of the same subgroup into a central
+extension differ by a homomorphism to the central kernel.  Therefore there
+are characters \(\alpha:\langle s,t\rangle\to Z(U)\) and \(\beta\) as in
+`(22)` such that
+
+\[
+ j(h)=\alpha(h)\sigma(h)\quad(h\in\langle s,t\rangle),
+ \qquad j(b)=\beta(b)\sigma(b).                        \tag{24}
+\]
+
+The central factors \(\alpha(h)\) cancel when \(h\) conjugates \(b\), while
+the same factor \(\beta(b)\) remains in each conjugate.  Hence
+
+\[
+ j(p_i)=\beta(b)\sigma(p_i)\qquad(i=0,1,2).            \tag{25}
+\]
+
+Inside \(G_D\), the three \(p_i\) commute and have product one: they are the
+same exact Leavitt elements as in `(1)`, and the scalar-chart embedding is
+injective.  Their images under \(\sigma\) therefore commute and have product
+one.  Equation `(25)` makes every \(c_{ij}\) trivial and gives
+
+\[
+ q=\beta(b)^3=\beta(b).
+\]
+
+Finally \(\beta(b)^2=1\), because \(b^2=1\) and \(\beta\) is a character.
+This proves `(21)--(23)`.  End proof.
+
+Theorem 5 identifies a concrete later relation which obstructs the pure
+Pauli block: the local value \(c_{ij}=-1\) must be driven to \(+1\) in every
+full atlas approximation.  A global optimizer should therefore not preserve
+the order-four phase \(q=-i\) as its target.  The only possible surviving
+central witness from this cluster is the order-two phase \(q=-1\).
+
+## 5. Why survival plus atlas approximation would finish the FALSE lane
 
 The quotient \(Q\) is simple and nonsofic, and \(U\) is perfect with central
 quotient \(Q\).  No claim about \(\operatorname{Rad}_{\rm sof}(U)\) is
@@ -183,13 +287,13 @@ available here: whether soficity passes to central quotients is itself open.
 The required permanence theorem is instead Thom's theorem that a central
 quotient of a hyperlinear group is hyperlinear.
 
-Suppose now that \([q]\ne0\) in `(9)` and that exact finite-dimensional
-representations \(\pi_n:P\to U(d_n)\) satisfy
+Suppose now that the sign in `(23)` is nontrivial and that exact
+finite-dimensional representations \(\pi_n:P\to U(d_n)\) satisfy
 
 \[
  \|\pi_n(s)-1\|_2\longrightarrow0
  \quad(s\in\mathcal S),\qquad
- \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{15}
+ \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{26}
 \]
 
 where the finite set \(\mathcal S\) normally generates \([P,R]\).  The
@@ -211,8 +315,8 @@ certificate already proved in `docs/ATLAS_HS_CRITERION.md`, now with a
 bounded central witness.
 
 The local Clifford certificate proves neither hypothesis in the preceding
-paragraph.  It proves instead that the first exposed atlas cluster is fully
-compatible with the strongest possible two-primary phase.  The next exact
-algebraic calculation should therefore determine whether \([q]\) is zero in
-\(R/[P,R]\), before further large-dimensional optimization is devoted to
-preserving it.
+paragraph.  Theorem 5 proves that its order-four phase is too strong for the
+full cover and isolates the residual order-two discrepancy `(23)`.  The next
+exact algebraic calculation is whether that sign is zero in \(R/[P,R]\);
+the analytic target, if it is nonzero, is a commuting \(q=-1\) sector rather
+than the anticommuting \(q=-i\) Pauli sector.
