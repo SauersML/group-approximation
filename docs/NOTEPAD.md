@@ -36833,6 +36833,89 @@ regular quotient action by nonregular actions which treat near-projective
 elements as fixing most, but not necessarily all, points.  The latter is once
 again precisely the stabilizer-law problem `(FAC8)`.
 
+### Very flexible finite-image stability gives corners, not characters
+
+Fournier-Facio--Willett, arXiv:2603.18456v2, Theorem 7.11 sharpens the first
+gap above.  A free group `F` has the LLP and property FD.  Apply their theorem
+with the normalized Hilbert--Schmidt norms and with `S` the representations
+factoring through finite quotients.  For every sequence of exact matrix
+representations
+
+`pi_n:F->U(d_n)`                                          `(VFC1)`
+
+there are finite-image representations `rho_n:F->U(H_n)` and isometries
+`v_n:C^(d_n)->H_n` such that, for every fixed `g in F`,
+
+`eps_n(g)=||v_n^* rho_n(g)v_n-pi_n(g)||_(2,d_n)->0`.      `(VFC2)`
+
+This is genuinely stronger than bare Fell density: it approximates the whole
+`d_n`-dimensional table simultaneously as a corner.  It is nevertheless
+**very** flexible in the precise sense of their Definition 7.3: there is no
+bound on `dim(H_n)/d_n`.
+
+Put `P_n=v_nv_n^*` and use `Tr/d_n` for norms on operators on `H_n`.  The
+corner functional
+
+`phi_n(g)=Tr(P_n rho_n(g))/d_n`                          `(VFC3)`
+
+satisfies
+
+`|phi_n(g)-tr_(d_n)(pi_n(g))|<=eps_n(g)`.               `(VFC4)`
+
+Moreover the corner is almost invariant under every **fixed** group element:
+if `C_n(g)=v_n^*rho_n(g)v_n`, then, eventually,
+
+`||(1-P_n)rho_n(g)P_n||_(2;d_n)^2`
+` =1-||C_n(g)||_(2,d_n)^2<=2 eps_n(g)`.                 `(VFC5)`
+
+Thus the 2026 theorem supplies a finite-quotient representation together with
+an asymptotically tracial-looking finite-rank corner state.  The remaining
+centralization operation is exact.  If `Q_n=rho_n(F)` and
+
+`A_n=|Q_n|^(-1) sum_(q in Q_n) rho_n(q)P_n rho_n(q)^*`,  `(VFC6)`
+
+then `A_n` lies in the commutant, `0<=A_n<=1`, and `Tr(A_n)=d_n`.  Hence
+
+`theta_n(g)=Tr(A_n rho_n(g))/d_n`                       `(VFC7)`
+
+is a tracial positive-definite function factoring through a finite quotient.
+Its isotypic weights are positive real numbers; rational approximation of
+those finitely many weights makes `(VFC7)`, on any prescribed finite set,
+the normalized character of an honest finite-image representation.
+
+What is missing is an estimate comparing `(VFC7)` with `(VFC3)`.  A
+sufficient estimate is
+
+`||A_n-P_n||_1/d_n ->0`,                                `(VFC8)`
+
+but `(VFC5)` only controls conjugation by each fixed word.  The average in
+`(VFC6)` ranges over every element of a changing finite quotient.  Its word
+diameter and conjugation spectral gap are uncontrolled, and the absent bound
+on `dim(H_n)/d_n` prevents converting relative Hilbert--Schmidt control into
+trace-norm control.
+
+The elementary cyclic model shows why a norm argument cannot be inserted
+silently.  Let `rho_n` be the regular shift of `C_(m_n)` on `C^(m_n)`, let
+`P_n` project onto an interval of `d_n` consecutive standard basis vectors,
+and take `1<<d_n<<m_n`.  For every fixed power `k`, the normalized squared
+Hilbert--Schmidt boundary of that interval is `O(k/d_n)`, while the full
+group average is
+
+`A_n=(d_n/m_n)1` and `||A_n-P_n||_1/d_n=2(1-d_n/m_n)->2`. `(VFC9)`
+
+In fact the compression of the `m_n`-cycle differs from the `d_n`-cycle on
+only one boundary vector, so this phenomenon is compatible with `(VFC2)`.
+It does not show that the desired characters cannot be chosen; it proves
+that very-flexible corner control alone does not centralize them.
+
+Even a successful replacement for `(VFC8)` would only reach finite-image
+**unitary** characters.  The second gate remains `(NIR12)` or a genuinely
+nonregular stabilizer-law construction: finite-image characters need not be
+permutation characters, as the `C_4` inequality `(NIR4)--(NIR7)` already
+shows.  Thus Theorem 7.11 cleanly upgrades the input to the finite-image
+corner stage, but it does not cross either the trace-centralization gate or
+the unitary-character-to-finite-action gate.
+
 # Classical Weyl curvature survives every polarization and scalar gauge
 
 The finite-quotient floor `(FQW1)--(FQW3)` is not specific to the displayed
@@ -38359,12 +38442,23 @@ faithful copies of `C_r^*(G)`.  The target is therefore an explicitly glued
 pair of faithful tempered reduced-group representations, not an unspecified
 projective cocycle.
 
-Paddock's Lemma 3.26 does not prove that target.  It rounds a state-dependent
-approximately tracial model to a normalized-Frobenius model on a nonzero
-spectral subspace, but supplies no positive lower bound on the subspace's
-relative dimension.  It can normalize a tracial game model; it cannot turn
-the exact infinite sector `(MPS6)` into operator-norm microstates or amplify
-a negligible norm-visible sector to positive trace.
+Paddock's Lemma 3.26 does not prove that target, but the decisive reason is
+subtler than relative output dimension.  If an input model kept `z=-1`
+exactly, any nonzero rounded subspace would retain scalar `-1` at full
+normalized Hilbert--Schmidt distance, so no positive relative-dimension
+bound would be needed.  The missing hypothesis is Paddock's approximate
+traciality
+
+`||phi(s)sqrt(rho)-sqrt(rho)phi(s)||_F->0`.            `(MPS7)`
+
+The exact Mackey model does not supply it.  Its first restriction is the
+quasi-regular representation `Ind_C^G(1)`.  Since `C` is amenable but not
+coamenable in the nonamenable free product `G=H*Z`, this representation is
+nonamenable.  Approximately central finite-rank density matrices would give
+an invariant state on `B(ell^2(G/C))`, hence an invariant mean on
+`ell^infinity(G/C)`, contradicting noncoamenability.  Thus Paddock is a
+conditional state-to-trace converter, not a source of the required
+approximately tracial models.
 
 # The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
 

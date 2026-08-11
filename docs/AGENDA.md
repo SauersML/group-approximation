@@ -39,6 +39,15 @@ unitary-character density, full metric-sofic approximation of `U(d)`, and
 Fell density of finite-image representations are all strictly too weak or too
 strong in the wrong direction.
 
+The Fournier-Facio--Willett very-flexible theorem now sharpens the last item:
+for the free source it does produce finite-quotient representations whose
+corners approximate the whole unitary table (`(VFC1)-(VFC5)`).  It gives no
+ambient-dimension bound, however, and pointwise almost-invariance of the
+corner does not control the full finite-quotient twirl (`(VFC6)-(VFC9)`).
+Even centralizing that corner would yield a finite-image unitary character,
+not yet a finite-action character.  Treat trace centralization and the
+permutation-character conversion as two separate gates.
+
 Exact doubled form (proved in `docs/NOTEPAD.md`, `(DCT1)-(DCT9)`): for
 `H_N={(a,b) in F x F : aN=bN}`, hyperlinearity is precisely approximation of
 `1_(H_N)` by the canonical maximally-entangled coefficients of
