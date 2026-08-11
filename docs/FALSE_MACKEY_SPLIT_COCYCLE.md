@@ -188,6 +188,21 @@ So the missing permanence problem is already present for a finitely
 generated elementary-abelian module, but it is maximally invisible to its
 finite equivariant quotients at the one element that must survive.
 
+There is also a cohomological formulation.  Let `Z=<-1_X>` be the trivial
+one-dimensional `F_2[G]`-submodule of `A`.  The exact sequence
+
+`0 -> Z -> A -> A/Z -> 0`                               `(MSC20a)`
+
+does not split as a sequence of `F_2[G]`-modules.  A splitting would give a
+`G`-equivariant retraction `A->Z` which is nontrivial on `-1_X`, contrary
+to Proposition 3.  Thus the Mackey sign defines a nonzero class in
+
+`Ext^1_(F_2[G])(A/Z,F_2)`.                              `(MSC20b)`
+
+This is the algebraic shadow of the collaborator's phase/Bockstein
+obstruction: the desired finite negative sector would amount to a torsion
+splitting which the exact Mackey module forbids.
+
 This endpoint is weaker than proving the concrete generated C-star algebra
 `A_Mac=C^*(P subset U(ell^2(X)))` MF: algebra MF implies group MF, whereas
 the converse need not preserve this particular representation.

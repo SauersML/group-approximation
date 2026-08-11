@@ -39629,3 +39629,12 @@ Thus `A` is finitely generated as an `F_2[G]`-module.  The live gate is
 therefore sharp: MF permanence for one finitely generated elementary-
 abelian cocycle module whose distinguished central sign is invisible in
 every finite equivariant quotient.
+
+Equivalently, with `Z=<-1_X>`, the module extension
+
+`0 -> Z -> A -> A/Z -> 0`                              `(MSC8)`
+
+is nonsplit: a `G`-equivariant retraction onto `Z` would be a finite
+equivariant quotient retaining `-1_X`, contradicting `(MSC7)`.  Hence its
+class in `Ext^1_(F_2[G])(A/Z,F_2)` is nonzero.  This pins the precise
+algebraic overlap with the TRUE-side Bockstein calculation.
