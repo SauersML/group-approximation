@@ -38138,3 +38138,82 @@ design constraint: a successful TRUE proof cannot consist of pairwise
 unitary correction on the spectral corner.  It must construct the finite set
 and all generator permutations together, using the normal `0/1` coefficient
 law at the combinatorial assembly step.
+
+# The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
+
+The cyclic-shear candidate admits a useful reduction, together with an
+essential correction to a tempting permanence argument.  Full details are
+in `docs/FALSE_FINITE_KERNEL_AUDIT.md`.
+
+Call `H` regularly MF-realized when `H` embeds in the unitary group of a
+separable MF C-star algebra `A` carrying a trace `tau` with
+
+`tau(h)=0` for every `h!=1`.                            `(PSG1)`
+
+**Theorem (regular MF symmetric doubles).**  If `H` is regularly
+MF-realized and `C<=H`, then `H *_C H` is regularly MF-realized.
+
+Indeed Shulman's theorem makes `A *_(C^*(C)) A` MF.  In the reduced von
+Neumann amalgam of the two GNS closures, every syllable outside `C` has zero
+conditional expectation, so every nontrivial reduced group word has trace
+zero.  This simultaneously certifies the group normal form and supplies the
+regular trace.
+
+For the banked weak-MF Kun--Thom double `D`, this proves that
+
+`K=D *_(C_D(r)) D`                                    `(PSG2)`
+
+has a regular MF realization.  The cyclic shear fits into
+
+`1 -> <z> ~= C_2 -> J -> K -> 1`.                    `(PSG3)`
+
+But `(PSG3)` has **finite kernel**, not finite quotient.  The familiar MF
+permanence proof for finite-index extensions runs in the opposite direction
+and gives no implication from `(PSG2)` to MF of `J`.  Bachner--Dogon--
+Lubotzky Proposition 1.6 also assumes that the total finite-kernel extension
+is MF; it does not prove that assumption.
+
+The remaining datum has an exact general form.  Let
+
+`1 -> C_p -> E -> K -> 1`                             `(PSG4)`
+
+be central, let `K` be MF, and write a section cocycle as
+
+`s(k)s(l)=omega(k,l)s(kl)`, `omega(k,l) in C_p`.      `(PSG5)`
+
+For any nontrivial character `chi:C_p->T`, the following are equivalent:
+
+1. `E` is MF;
+2. there are maps `v_n:K->U(d_n)` satisfying
+
+   `||v_n(k)v_n(l)-chi(omega(k,l))v_n(kl)||_op ->0`   `(PSG6)`
+
+   for every fixed `k,l`.
+
+No separation condition on `v_n` is needed.  For `1=>2`, cut an injective
+norm-corona representation of `E` by a nontrivial spectral projection of
+the central generator.  For `2=>1`, direct-sum `(PSG6)` with any faithful
+MF model of `K`: the quotient block separates distinct cosets and the
+projective block separates powers of the central generator.
+
+For the shear, `(PSG6)` is the single nonzero multiplier-`-1` sector encoded
+by `(CRC4)`.  This is sharper than asking for a faithful twisted model: all
+faithful data can remain in the untwisted quotient block.
+
+There is also a decisive stability warning.  Because `z` is in the full
+sofic radical of `J`, no honest finite-dimensional projective representation
+can realize the required nontrivial sector: it would give a finitely
+generated linear, hence residually finite and sofic, image detecting `z`.
+Therefore a positive `(PSG6)` model must be genuinely non-liftable.  A
+stability theorem correcting it to honest projective representations would
+disprove MF of this candidate rather than establish it.
+
+Lubotzky--Salomon's flexible stability of `Z^2` only repairs the already
+solved cyclic edge after a negligible enlargement; it does not extend that
+sector across the radical vertex.  Paddock's maximally-entangled rounding is
+tracial/average-loss control and can discard a norm-visible sector of
+negligible normalized rank.  Neither supplies `(PSG6)`.
+
+Thus the quotient MF problem is closed.  The entire FALSE content of the
+cyclic shear is now one existence problem for an unstable operator-norm
+projective sector.  It remains open.
