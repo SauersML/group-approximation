@@ -37819,3 +37819,63 @@ connects the normal-Dirac character route directly to the repository's
 radical constructions.  The unresolved step is now exactly to prove that a
 hyperlinear target cannot detect that element, or to construct a
 Connes-embeddable trace which does detect it.
+
+## 2026-08-10: tensor powers extract the probability-one core of an IRS
+
+There is a canonical way to pass from an arbitrary IRS trace back to a
+normal Dirac trace.  It explains precisely why the known non-co-sofic and
+non-co-hyperlinear IRS constructions do not automatically settle the group
+question.
+
+Let `mu` be an IRS of a countable free group `F`, and let
+
+`tau_mu(g)=Prob_(H sampled from mu)[g in H]`.          `(ICE1)`
+
+Define its probability-one core by
+
+`N_mu={g in F:tau_mu(g)=1}`.                          `(ICE2)`
+
+**Proposition (IRS core extraction).**
+
+1. `N_mu` is a normal subgroup of `F`.
+2. The pointwise powers of the IRS trace converge to its indicator:
+
+   `tau_mu(g)^m -> 1_(N_mu)(g)`.                      `(ICE3)`
+3. If `mu` is co-hyperlinear, then `delta_(N_mu)` is co-hyperlinear.
+4. If `mu` is co-sofic, then `delta_(N_mu)` is co-sofic.
+
+**Proof.**  If `g,h in N_mu`, then almost every sampled subgroup contains
+both, hence contains `gh^(-1)`; thus `gh^(-1) in N_mu`.  Conjugation
+invariance of `mu` makes `tau_mu` a class function, so `N_mu` is normal.
+For each `g`, the number `tau_mu(g)` lies in `[0,1]`; it equals one exactly
+on `N_mu`, and otherwise its powers tend to zero.  This proves `(ICE3)`.
+
+For the co-hyperlinear claim, use Manzoor's finite-dimensional trace
+characterization for a free source (or directly Connes embeddability of the
+trace).  If finite-dimensional characters `chi_n` converge pointwise to
+`tau_mu`, then the `m`-fold tensor powers have characters `chi_n^m` and
+converge to `tau_mu^m`.  A diagonal choice of `n=n(m)` and `(ICE3)` gives
+finite-dimensional characters converging to `1_(N_mu)`.
+
+For the co-sofic claim, approximate `mu` by stabilizer laws of finite
+`F`-sets.  The Cartesian product of `m` independent such actions has
+fixed-point character equal to the `m`th power of the original character.
+Choose the finite-action approximation accurately on the first `m` group
+elements and then take its `m`th Cartesian power.  A diagonal sequence has
+membership probabilities converging to `1_(N_mu)`.  Because the target
+values are all `0` or `1`, convergence of the one-element membership
+probabilities implies weak-star convergence of the stabilizer laws to the
+point mass `delta_(N_mu)`: on each finite cylinder this follows by the union
+bound.  End proof.
+
+For an ergodic IRS, `N_mu` is also the almost-sure normal core of a sampled
+subgroup.  Indeed, the core map is conjugation invariant and hence almost
+surely constant; and `g` belongs to that constant core exactly when the
+conjugation-invariant event `g in H` has probability one.
+
+The limitation is sharp.  Non-co-soficity of `mu` need not pass to
+`delta_(N_mu)`: a faithful non-co-sofic action has `N_mu={1}`, whose Dirac
+IRS is co-sofic whenever `F` is sofic (in particular when `F` is free).
+Thus an IRS separation solves the group problem only if its extracted core
+retains the separation.  The subgroup-test constructions audited in `(SA5)`
+do not establish this additional property.

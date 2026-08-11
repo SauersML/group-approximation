@@ -63,6 +63,12 @@ shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
 Alekseev--Bradford action generalization are circular for this purpose.
 
+IRS tensor powers `(ICE1)-(ICE3)` extract the normal probability-one core and
+preserve both co-hyperlinearity and co-soficity.  This turns a general IRS
+separation into a group separation only when the extracted core still fails
+the corresponding finite-action approximation; known subgroup-test
+separations do not supply that extra property.
+
 Next: attack the normal-Dirac restriction inside a finite subgroup test.  Use
 normality and the `0/1` law to symmetrize an arbitrary positive loss
 certificate, seeking a finite-action strategy without asking for universal
