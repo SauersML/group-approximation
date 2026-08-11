@@ -41763,6 +41763,30 @@ differential between these local labels or by coupling them to the free
 harmonic lattice.  Full proof:
 `docs/TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.
 
+## 2026-08-11: the first positive horizontal primary map
+
+The induced map
+
+    H_1(D_8;F_2[X]) -> H_1(S_4;F_2[X])
+
+is now computed modulo vertical boundaries at `p=3,5,7,11,13`.  Its
+source/target/rank triples are
+
+    (8,5,3), (11,7,4), (13,8,5), (18,11,7), (21,13,8).
+
+The ranks equal `(p+3)/2` on these five exact charts.  Both kernel and
+cokernel grow, so the map is not another cancellation isomorphism.  However,
+the incoming image from the two-cell `H_1` row has ranks
+
+    5, 7, 8, 11, 13,
+
+exactly equal to the outgoing kernels.  Hence `E^2_(1,1)=0` in every audited
+chart.  The growing edge-stabilizer homology is horizontally exact, not a
+surviving primary obstruction.  The remaining theorem target is to prove
+this in Shapiro orbit bases with a bounded local splitting for every odd
+prime, then analyze the two outer positive terms.  Full audit:
+`docs/TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
+
 ## 2026-08-11: deck Fourier frames and the exact prime-two parity split
 
 FALSE-side work, deliberately separate from the current derived-HAP TRUE

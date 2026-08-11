@@ -1,0 +1,6 @@
+prime	projective_degree	source_H1_D8	target_H1_S4	outgoing_rank	outgoing_kernel	outgoing_cokernel	incoming_image_rank	E2_1_1
+3	13	8	5	3	5	2	5	0
+5	31	11	7	4	7	3	7	0
+7	57	13	8	5	8	3	8	0
+11	133	18	11	7	11	4	11	0
+13	183	21	13	8	13	5	13	0

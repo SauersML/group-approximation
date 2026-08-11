@@ -117,6 +117,34 @@ def horizontal_image_rank(
         - int(target_vertical_in.rank())
 
 
+def d2_image_rank(boundaries, degree: int):
+    """Rank of d2:E2_(2,1) -> E2_(0,2) from the filtered total boundary."""
+
+    source = coordinate_indices(3, 2, degree) \
+        + coordinate_indices(3, 1, degree)
+    high_target = coordinate_indices(2, 2, degree) \
+        + coordinate_indices(2, 1, degree)
+    low_target = coordinate_indices(2, 0, degree)
+    high = boundaries[3].matrix_from_rows_and_columns(source, high_target)
+    low = boundaries[3].matrix_from_rows_and_columns(source, low_target)
+    corrected_pairs = high.left_kernel().basis_matrix()
+    images = corrected_pairs * low
+
+    target_vertical_out = filtered_block(boundaries, 2, 0, 0, degree)
+    target_vertical_in = filtered_block(boundaries, 3, 0, 0, degree)
+    q1_vertical_out = filtered_block(boundaries, 3, 1, 1, degree)
+    q1_horizontal = filtered_block(boundaries, 3, 1, 0, degree)
+    q1_cycles = q1_vertical_out.left_kernel().basis_matrix()
+    e1_boundaries = q1_cycles * q1_horizontal
+    denominator = target_vertical_in.stack(e1_boundaries)
+
+    if denominator * target_vertical_out:
+        raise AssertionError("E2 target denominator is not made of cycles")
+    if images * target_vertical_out:
+        raise AssertionError("d2 images are not target vertical cycles")
+    return int(denominator.stack(images).rank()) - int(denominator.rank())
+
+
 def analyze(prime: int, prefix: Path):
     degree = prime**2 + prime + 1
     boundaries = {
@@ -159,6 +187,10 @@ def analyze(prime: int, prefix: Path):
     e2_0_2 = e1_total_two["0,2"] - incoming_h2_rank
     if e2_0_2 < 0:
         raise AssertionError("horizontal H2 image exceeds its target")
+    d2_rank = d2_image_rank(boundaries, degree)
+    e3_0_2 = e2_0_2 - d2_rank
+    if e3_0_2 < 0:
+        raise AssertionError("filtered d2 image exceeds its E2 target")
 
     full_boundary_ranks = {
         str(total_degree): int(boundaries[total_degree].rank())
@@ -182,6 +214,8 @@ def analyze(prime: int, prefix: Path):
         "E1_horizontal_H2_D8_to_S4_image_rank": incoming_h2_rank,
         "E2_1_1_dimension": e2_1_1,
         "E2_0_2_dimension": e2_0_2,
+        "E2_d2_2_1_to_0_2_image_rank": d2_rank,
+        "E3_0_2_dimension": e3_0_2,
         "full_mod_two_boundary_ranks": full_boundary_ranks,
         "full_mod_two_H2_dimension": total_h2,
     }

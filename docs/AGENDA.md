@@ -1027,6 +1027,19 @@ horizontal Wall incidence on these local homology labels and its coupling
 to the free harmonic lattice.  See
 `TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.
 
+The first positive horizontal complex has now been measured exactly.  On
+`p=3,5,7,11,13`, the map
+`H_1(D_8;F_2[X])->H_1(S_4;F_2[X])` has ranks
+`3,4,5,7,8=(p+3)/2`.  Its kernel has dimensions `5,7,8,11,13`, and the
+incoming image from the two-cell `H_1` row has exactly those same ranks.
+Consequently `E^2_(1,1)=0` on all five charts: the growing edge-stabilizer
+homology is horizontally exact rather than a surviving obstruction.  The
+theorem target is to express this complex in orbitwise Shapiro bases, prove
+exactness with a bounded local splitting for every odd prime, and then
+analyze the two outer positive terms.  Full source homology there still
+requires one further fixed-stabilizer vertical boundary.  See
+`TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
+
 The next cuspidal chart has now been computed.  At `p=61` the compact
 complex is `183<-480<-440<-150`, again with harmonic rank two.  Its cyclic
 harmonic discriminant has `114` digits, but its dual systole increases to
