@@ -5,12 +5,14 @@ Date: 2026-08-11
 > **Correction (2026-08-11).**  The integral homology calculation, the
 > generator statement, the exact `p^k`-primary order, and the clock
 > representation below are valid.  The original version incorrectly
-> inferred small normalized Hilbert--Schmidt carry from the single small
+> inferred a uniformly small translated increment from the single small
 > increment `(ICA28)`.  Its translates are not uniformly small: their
 > average squared chord is exactly `2` for every `k>=2`.  The corrected
-> calculation is in `FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.  Thus this
-> note supplies exact algebraic torsion and an exact representation, but
-> it does **not** complete the quantitative one-cycle amplification gate.
+> calculation is in `FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.  Importantly,
+> that average is the desired fold displacement for the two sectors
+> `H_k,H_k^q`, not a defect of the Baumslag--Solitar relator, which remains
+> exact.  What was unsupported was the claim of microscopic averaged
+> gluing cost; extension to the full square-zero pair remains open.
 
 ## 1. Outcome
 
@@ -50,11 +52,19 @@ amplification statement: after translation around the orbit, the adjacent
 quotients are equidistributed in a subgroup and have normalized squared
 chord energy `2` for `k>=2`.
 
-Consequently, the remaining gate already occurs on the single cyclic
-orbit: one needs either a different representative/gauge whose fixed
-relation defect is supported on `o(p^k)` dimensions, or a different
-non-orbitwise extension.  Only after that local quantitative problem is
-solved does extension to the whole radical double become relevant.
+Use two exact `B`-sectors with translation matrices
+
+`H_k^(1)=H_k`, `H_k^(2)=H_k^q`.                         `(ICA4a)`
+
+Both use the stable-letter matrix `C_k` and satisfy the Baumslag--Solitar
+relation exactly.  Their fold word is
+
+`H_k^(2)(H_k^(1))^(-1)=H_k^p`,                         `(ICA4b)`
+
+whose normalized squared displacement is `2` for `k>=2`.  Thus the frozen
+clock block is an exact local low-defect/high-fold block.  The remaining
+gate is genuinely global: extend these two sectors to approximate models
+of the two copies of `G` which asymptotically agree on `Gamma`.
 
 ## 2. The LHS calculation
 
@@ -242,6 +252,14 @@ then
 
 for every `k>=2`; see `FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.
 
+Since `delta_j` is the complex conjugate of the `j`th eigenvalue of
+`H_k^p`, equation `(ICA32)` is equivalently
+
+`||H_k^p-I||_(2,normalized)^2=2`.                     `(ICA33)`
+
+This is the macroscopic displacement of the fold between the exact local
+sectors `H_k` and `H_k^q`.
+
 ## 7. What this closes and what remains
 
 This note completes the integral one-orbit calculation requested in Section
@@ -253,18 +271,18 @@ This note completes the integral one-orbit calculation requested in Section
 4. the `p`-primary clock representation has one microscopic distinguished
    increment and fixed normalized translation displacement.
 
-It does not provide an HS-small realization of that distinguished
-increment on the whole transitive cycle.  The naive translated clock
-defect has the fixed energy `(ICA32)`.  A complete FALSE proof must first
-replace it by an orbit model whose fixed local relations have normalized
-defect `o(1)` while the marked fold word remains separated, and must then
-extend that model to the square-zero Kun--Thom double.  The exact remaining
-problem is therefore:
+The exact `B` relation has zero defect, and `(ICA33)` supplies the desired
+macroscopic fold displacement.  What is not supplied is an estimate for the
+additional relations which identify the two copies on `Gamma` and extend
+the clock through the square-zero elementary module and the `Q times L`
+action.  A complete FALSE proof must therefore solve exactly the extension
+problem suggested by the frozen-clock experiment:
 
-> construct a gauge or replacement for `(ICA27)` on the `p^k` cycle with
-> vanishing averaged fixed-relation defect and macroscopic marked-word
-> displacement, then extend it to the finite square-zero relative module
-> while preserving all polynomial elementary and `Q`-covariance relations.
+> keep the two exact sectors `H_k,H_k^q` fixed, extend each to the finite
+> square-zero relative module, and make every fixed polynomial elementary,
+> `Q`-covariance, external-`L`, and amalgam relation have vanishing
+> normalized defect.
 
-The first clause is reopened by `(ICA32)`; the prior version's claim that
-only the global extension remained was incorrect.
+The average calculation rules out counting `(ICA28)` itself as a small
+orbitwise gluing error.  It does not rule out the frozen exact clock block;
+instead it proves that this block already has the required local witness.
