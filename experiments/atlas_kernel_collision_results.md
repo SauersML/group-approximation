@@ -168,3 +168,58 @@ sectors.  Consequently it does not decide `delta_(tree,2)`, much less the full
 hyperlinearity criterion.  It does prove that simply mixing classical inner
 charts cannot drive even the first complete window to zero; a successful
 model must use genuinely additional representation geometry.
+
+## Exact minimax theorem for all regular automorphism mixtures
+
+The graph automorphism
+
+`theta(g)=(g^(-1))^T`                                  `(ACW7)`
+
+is an outer automorphism of `GL_4(F_2) ~= A8`, and every automorphism of
+`A8` is an inner automorphism or an inner automorphism followed by `theta`.
+Thus the 20,160 inner alignments and their 20,160 outer partners exhaust all
+classical automorphism alignments of the two regular factors.
+
+The same exact Boolean minimax calculation over all 40,320 alignments gives:
+
+**Proposition (exact full-automorphism optimum).**  Among all direct sums of
+regular automorphism alignments, the least possible worst failure
+probability on the 220 radius-two tree constraints is exactly
+
+`3/11`.                                                    `(ACW8)`
+
+Equivalently, the optimal worst normalized-HS defect in this whole sector is
+
+`sqrt(6/11) = 0.7385489458...`.                          `(ACW9)`
+
+The exact primal certificate has denominator eleven:
+
+| bit word | coset | numerator |
+|---:|:---:|---:|
+| 4680 | inner | 2 |
+| 6180 | inner | 1 |
+| 16680 | inner | 1 |
+| 33060 | inner | 3 |
+| 4680 | outer | 3 |
+| 33060 | outer | 1 |
+
+Every constraint has failure numerator at most three.  A matching exact
+dual certificate of denominator eleven is supported on constraints
+
+```text
+index       51  67  99  104  112  113  115  135  136
+numerator    1   1   2    1    1    1    1    1    2
+```
+
+Every automorphism alignment has dual-weighted failure numerator at least
+three.  Averaging proves that every probability distribution on the 40,320
+alignments has some constraint with failure probability at least `3/11`.
+The script verifies both integer inequalities against all rows before it
+prints the certificate.
+
+This closes the entire classical automorphism sector for the first complete
+window.  Outer blocks provide a small but strictly positive improvement over
+inner blocks; they do not create a vanishing sequence.  Any model witnessing
+the recursive hyperlinearity criterion must therefore use relative
+unitaries which are not block sums of intertwiners implementing
+automorphisms of the two regular `A8` actions.

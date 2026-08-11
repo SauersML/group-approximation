@@ -23,6 +23,7 @@ from atlas_two_chart_search import (
     Problem,
     commutator,
     factor_generators,
+    gf2_inv,
     matrix_key,
     optimize,
     permutation_rep,
@@ -107,14 +108,29 @@ def rationalize_weights(values):
     return numerators, denominator
 
 
-def exhaustive_inner_scan(problem, solve_mixture=False):
+def exhaustive_automorphism_scan(problem, solve_mixture=False,
+                                 include_outer=False):
     records = list(all_gl4())
-    bits = np.asarray([record[0] for record in records], dtype=np.uint32)
-    relatives = np.stack([matrix_permutation(record[1]) for record in records])
+    base_bits = np.asarray([record[0] for record in records], dtype=np.uint32)
+    base_relatives = np.stack(
+        [matrix_permutation(record[1]) for record in records]
+    )
+    if include_outer:
+        bits = np.concatenate((base_bits, base_bits))
+        relatives = np.concatenate((base_relatives, base_relatives), axis=0)
+        outer = np.concatenate((
+            np.zeros(len(records), dtype=bool),
+            np.ones(len(records), dtype=bool),
+        ))
+    else:
+        bits = base_bits
+        relatives = base_relatives
+        outer = np.zeros(len(records), dtype=bool)
     relative_inverses = inverse_permutations(relatives)
-    count = len(records)
+    count = len(bits)
 
     fixed_cache = {}
+    outer_fixed_cache = {}
     conjugate_cache = {}
 
     def aligned(factor, matrix):
@@ -127,7 +143,17 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
             return np.broadcast_to(fixed, (count, 16))
         conjugate = conjugate_cache.get(key)
         if conjugate is None:
-            left = relatives[:, fixed]
+            if include_outer:
+                outer_fixed = outer_fixed_cache.get(key)
+                if outer_fixed is None:
+                    outer_matrix = gf2_inv(matrix).T
+                    outer_fixed = matrix_permutation(outer_matrix)
+                    outer_fixed_cache[key] = outer_fixed
+                twisted = np.where(outer[:, None], outer_fixed[None, :],
+                                   fixed[None, :])
+                left = compose_permutations(relatives, twisted)
+            else:
+                left = relatives[:, fixed]
             conjugate = compose_permutations(left, relative_inverses)
             conjugate_cache[key] = conjugate
         return conjugate
@@ -193,6 +219,7 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
         "best_count": int(np.count_nonzero(best_mask)),
         "best": {
             "bits": int(bits[best_index]),
+            "outer": bool(outer[best_index]),
             "exact_kernel_generators": int(exact_kernel_count[best_index]),
             "exact_constraints": int(exact_count[best_index]),
             "mean_trace": float(mean_trace[best_index]),
@@ -228,7 +255,7 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
             method="highs",
         )
         if not solution.success:
-            raise RuntimeError("inner-mixture linear program failed: %s" %
+            raise RuntimeError("automorphism-mixture linear program failed: %s" %
                                solution.message)
         weights = solution.x[:count]
         support = np.flatnonzero(weights > 1e-9)
@@ -254,7 +281,9 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
         if np.any(dual_load * optimum.denominator <
                   optimum.numerator * dual_denominator):
             raise AssertionError("rationalized dual certificate is infeasible")
-        result["regular_inner_mixture"] = {
+        mixture_key = ("regular_automorphism_mixture" if include_outer
+                       else "regular_inner_mixture")
+        result[mixture_key] = {
             "worst_failure_probability": float(failure_probabilities.max()),
             "worst_hs_defect": float(np.sqrt(2.0 * failure_probabilities.max())),
             "mean_failure_probability": float(failure_probabilities.mean()),
@@ -263,7 +292,8 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
             )),
             "support_size": int(len(support)),
             "support": [
-                {"bits": int(bits[index]), "weight": float(weights[index])}
+                {"bits": int(bits[index]), "outer": bool(outer[index]),
+                 "weight": float(weights[index])}
                 for index in support
             ],
             "dual_support": [
@@ -276,7 +306,7 @@ def exhaustive_inner_scan(problem, solve_mixture=False):
                 "optimum_denominator": optimum.denominator,
                 "primal_denominator": primal_denominator,
                 "primal": [
-                    {"bits": int(bits[index]),
+                    {"bits": int(bits[index]), "outer": bool(outer[index]),
                      "numerator": int(numerator)}
                     for index, numerator in zip(support, primal_numerators)
                 ],
@@ -304,16 +334,25 @@ def main():
     parser.add_argument("--inner-bits", type=int)
     parser.add_argument("--inner-scan", action="store_true")
     parser.add_argument("--inner-mixture", action="store_true")
+    parser.add_argument("--automorphism-scan", action="store_true")
+    parser.add_argument("--automorphism-mixture", action="store_true")
     parser.add_argument("--save", type=str)
     args = parser.parse_args()
 
     problem = CompleteWindowProblem(args.radius, args.k)
     print(json.dumps({"event": "window", **problem.window_summary}), flush=True)
-    if args.inner_scan or args.inner_mixture:
+    scan_requested = (args.inner_scan or args.inner_mixture
+                      or args.automorphism_scan or args.automorphism_mixture)
+    if scan_requested:
         if args.k != 1:
             raise ValueError("the exact inner scan is independent of amplification; use k=1")
-        print(json.dumps({"event": "inner_scan", **problem.window_summary,
-                          **exhaustive_inner_scan(problem, args.inner_mixture)}),
+        include_outer = args.automorphism_scan or args.automorphism_mixture
+        solve_mixture = args.inner_mixture or args.automorphism_mixture
+        scan_kind = "automorphism_scan" if include_outer else "inner_scan"
+        print(json.dumps({"event": scan_kind, **problem.window_summary,
+                          **exhaustive_automorphism_scan(
+                              problem, solve_mixture, include_outer
+                          )}),
               flush=True)
         return
     if args.identity_start and args.inner_bits is not None:
