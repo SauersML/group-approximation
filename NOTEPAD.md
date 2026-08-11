@@ -36935,3 +36935,90 @@ while its covariance defects are `o(epsilon_n)`.  This is precisely the
 non-Cartan/radical-retention gate already encountered in the Leavitt atlas
 and central-shear formulations, now proved unavoidable for the entire
 classical polarized Weyl family.
+
+# Finite power self-similarity has no norm-to-trace force
+
+One possible replacement for the central shear is an ascending cyclic HNN
+relation
+
+`t u t^(-1)=u^m`.                                      `(PWR1)`
+
+Unlike a forbidden scalar rotation `u -> omega u`, the power map can preserve
+a finite spectrum exactly.  The following elementary construction shows that
+even finitely many such self-similarities impose no dimension-free tracial
+visibility on `u`.
+
+**Theorem (power-conjugacy rank blindness).**  Fix integers
+`m_1,...,m_s>=2`.  There are dimensions `d_n->infinity` and exact unitaries
+
+`U_n,T_(1,n),...,T_(s,n) in U(d_n)`                    `(PWR2)`
+
+such that
+
+`T_(i,n) U_n T_(i,n)^(-1)=U_n^(m_i)`,
+`[T_(i,n),T_(j,n)]=1`                                  `(PWR3)`
+
+for all `i,j,n`, while
+
+`inf_n ||U_n-1||_op > sqrt(2)`,
+`||U_n-1||_(2,d_n) -> 0`, and `tau_(d_n)(U_n)->1`.      `(PWR4)`
+
+Moreover, for every fixed finite collection of integers `k`, all the
+normalized-HS quantities `||U_n^k-1||_(2,d_n)` tend to zero simultaneously.
+
+**Proof.**  Choose an odd prime `q` which divides none of the `m_i`, put
+`zeta=exp(2 pi i/q)`, and let
+
+`A=<m_1,...,m_s> <= (Z/qZ)^x`.                         `(PWR5)`
+
+Write `L=|A|`, choose `c=(q-1)/2`, and on `K=l2(A)` with basis `(e_a)_(a in A)`
+define
+
+`U e_a=zeta^(c a)e_a`,
+`T_i e_a=e_(m_i^(-1)a)`.                              `(PWR6)`
+
+Multiplication in `(Z/qZ)^x` is abelian, so the `T_i` commute.  Direct
+calculation gives
+
+`T_i U T_i^(-1)e_a=zeta^(c m_i a)e_a=U^(m_i)e_a`.     `(PWR7)`
+
+For `n>=1`, pad this representation by a trivial block:
+
+`U_n=U directSum 1_n`, `T_(i,n)=T_i directSum 1_n`,
+`d_n=L+n`.                                             `(PWR8)`
+
+All relations remain exact.  Since `1 in A`, the spectrum of `U` contains
+`zeta^c`, and hence
+
+`||U_n-1||_op >= |zeta^c-1|`
+`=2 cos(pi/(2q)) > sqrt(2)`.                           `(PWR9)`
+
+On the other hand,
+
+`||U_n-1||_(2,d_n)^2`
+`=(1/(L+n)) sum_(a in A)|zeta^(ca)-1|^2`
+`<=4L/(L+n) -> 0`,                                    `(PWR10)`
+
+and `|tau_(d_n)(U_n)-1|<=2L/(L+n)->0`.  Replacing `U`
+by any one of finitely many fixed powers changes only the bounded numerator
+in `(PWR10)`.  End proof.
+
+Equivalently, the group
+
+`P(m_1,...,m_s)=`
+`<u,t_1,...,t_s | [t_i,t_j]=1, t_i u t_i^(-1)=u^(m_i)>` `(PWR11)`
+
+has exact finite-dimensional representations which separate `u` uniformly
+in operator norm but erase it tracially.  Therefore no finite family of
+ascending power conjugacies can, by itself, upgrade weak-MF visibility of a
+radical element to hyperlinear visibility.  Tensor amplification would still
+need the old quantitative budget `operator defect=o(deviation rank)`; the
+relations `(PWR3)` supply no such budget.
+
+This does not prove that an HNN extension of a particular weak-MF group is
+not useful: extra structure of the vertex models could force a nontrivial
+spectral distribution.  It closes the proposed *automatic* self-amplification
+principle.  Shulman's Theorem 25 in arXiv:2603.13564v2 gives automatic HNN
+permanence only for the central case (the associated embeddings agree); the
+power HNN would require a new compatible-corona construction before weak MF
+is known.
