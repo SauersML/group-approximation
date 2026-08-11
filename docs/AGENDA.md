@@ -122,6 +122,11 @@ permutations.  A separate fixed-phase half-plane condition then converts trace
 separation into Hamming separation.  Thus a common Cartan and noncancelling
 fixed phases would finish the TRUE lane; neither follows yet from the normal
 `0/1` character law, and approximate Cartan invariance alone is insufficient.
+Without the half-plane condition, the same construction gives an exact
+abelian-by-sofic decomposition: the kernel of the permutation-ultraproduct map
+is asymptotically diagonal and hence abelian.  This does not imply soficity in
+the required extension orientation; `(AB1)-(AB3)` are an explicit
+abelian-by-residually-finite nonsofic calibration.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

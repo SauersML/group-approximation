@@ -38426,6 +38426,22 @@ normal character limit does not license phase stripping; a TRUE proof must be
 allowed to replace those microstates or construct a different Cartanized
 model.
 
+There is nevertheless an exact structural conclusion without that clause.
+The Birkhoff permutation parts define a homomorphism from the group to a
+metric ultraproduct of symmetric groups.  Its kernel consists of elements
+whose monomial approximants have permutation parts tending to the identity;
+deleting those vanishing permutation parts makes the matrices asymptotically
+diagonal.  Faithfulness of the original hyperlinear embedding then forces the
+kernel to be abelian.  Hence every common-Cartan hyperlinear model presents
+its group as
+
+`1 -> abelian -> Gamma -> sofic -> 1`.
+
+This is not enough: the extension orientation is the reverse of the standard
+sofic permanence theorem, and the Kun--Thom quotient `(AB1)--(AB3)` is already
+abelian-by-residually-finite and nonsofic.  The fixed-phase half-plane condition
+is precisely what makes the permutation map faithful and removes this kernel.
+
 ## 2026-08-10: the compact-unitary metric shortcut is false
 
 A stronger-looking replacement for the finite matching step would assert

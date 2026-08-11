@@ -184,7 +184,58 @@ the two defining estimates for a sofic approximation.  End proof.
 For a finite soficity test one only needs the minimum of the finitely many
 constants `c_g` appearing in that test.
 
-## 4. What this changes in the finite-prefix program
+## 4. The phase kernel is abelian, but that does not finish
+
+Even without the half-plane hypothesis, the common Cartan has a precise
+group-theoretic consequence.
+
+**Theorem 3 (common-Cartan models are abelian-by-sofic).**  Suppose the
+hyperlinear tables `(CTM14)` are faithful in the tracial ultraproduct and
+satisfy hypotheses 1--3 of Theorem 2.  Then there is an exact sequence
+
+`1 -> K -> Gamma -> Q -> 1`                            `(CTM17)`
+
+in which `K` is abelian and `Q` is sofic.
+
+**Proof.**  Choose the monomial approximants `M_(n,g)` and let
+`sigma_(n,g)` be their permutation parts.  Equations `(CTM9)--(CTM11)` make
+
+`theta(g)=[sigma_(n,g)]`                               `(CTM18)`
+
+a homomorphism from `Gamma` to a metric ultraproduct of finite symmetric
+groups.  Its image `Q` is sofic.  Put `K=ker(theta)`.
+
+For `k in K`, the moved-point density of `sigma_(n,k)` tends to zero.  Replace
+the permutation part of `M_(n,k)` by the identity while retaining its column
+phases, obtaining a diagonal unitary `A_(n,k)`.  Columnwise orthogonality gives
+
+`||M_(n,k)-A_(n,k)||_2^2=2 d_Ham(sigma_(n,k),1)->0`.   `(CTM19)`
+
+Together with `(CTM10)`, this says that `phi_n(k)` is asymptotically diagonal.
+Hence the tracial-ultraproduct images of any two elements of `K` commute.
+Faithfulness of the hyperlinear embedding gives `[k,l]=1` in `Gamma` for all
+`k,l in K`.  Thus `K` is abelian, proving `(CTM17)`.  End proof.
+
+The orientation of `(CTM17)` is not a sofic permanence theorem.  The standard
+closure result assumes a **sofic normal subgroup and amenable quotient**.
+Here the amenable group is the normal subgroup, while the quotient is merely
+sofic.  The Kun--Thom construction recorded in `docs/NOTEPAD.md`,
+`(AB1)--(AB3)`, gives a finitely generated abelian-by-residually-finite
+nonsofic group, so reversing the extension theorem is actually false.
+
+There are two valid positive consequences:
+
+1. the half-plane condition makes `theta` faithful by `(CTM16)`, hence
+   `Gamma=Q` is sofic;
+2. if the particular permutation-ultraproduct image `Q` in `(CTM17)` is
+   amenable, then `K` is sofic and the standard extension theorem does apply,
+   so `Gamma` is sofic.
+
+Thus the residual phase problem is not cosmetic: without a condition killing
+or otherwise controlling `K`, it has exactly the extension orientation in
+which the first known nonsofic groups occur.
+
+## 5. What this changes in the finite-prefix program
 
 The finite-prefix construction `(FPC1)--(FPC12)` in `docs/NOTEPAD.md`
 produces coherent unitary word paths on one asymptotically full corner.  The
@@ -209,7 +260,7 @@ random-basis, matrix-unit, or atom-matching argument must estimate
 must still address `(CTM13)`; citing nonnegative normalized characters is not
 enough.
 
-## 5. Exact remaining question
+## 6. Exact remaining question
 
 The useful strengthened target is now:
 
