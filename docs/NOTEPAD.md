@@ -39218,3 +39218,41 @@ amalgam criterion still demands compatible matrix-corona embeddings whose
 edge restrictions implement the parity twist.  This rules out the tempting
 ``regular trace + free stabilization'' shortcut without adding a new
 hypothesis equivalent to the missing projective sector.
+
+## 2026-08-10: Shulman trace theorem source and variance audit
+
+Full details are in `docs/FALSE_SHULMAN_TRACE_AUDIT.md`. The trace theorem
+tentatively associated with the symmetric-amalgam paper is not in
+arXiv:2603.13564. That paper proves algebra MF permanence for `A *_C A`, but
+does not state that its hyperlinear traces are MF.
+
+The actual result is Corollary 35 of Shulman,
+arXiv:2508.00125v5: if `E` is HS-stable and `B` is homotopy dominated by
+`E`, then every hyperlinear trace on `B` is MF. For a symmetric double
+`B=A *_C A`, the fold and first-vertex inclusion satisfy
+
+`A --j_1--> B --p--> A`, `p j_1=id_A`.                 `(STA1)`
+
+Thus `A` is dominated by `B`, whereas applying Corollary 35 to traces on
+`B` would require `B` to be dominated by an HS-stable algebra such as `A`.
+The arrow is reversed. No homotopy from `j_1 p` to `id_B` is known.
+
+There is a sharp opposite-side consequence. If a C-star completion `B` of
+`C^*(Gamma)` carries the canonical trace, every finite-dimensional
+representation of `B` kills `1!=x in Gamma`, and `B` is HS-stable, then
+`Gamma` is nonhyperlinear. Indeed an embedding of the canonical GNS algebra
+in a tracial matrix ultraproduct would lift to exact finite-dimensional
+representations, all of which send `x` to one, contradicting
+
+`tau_Gamma((x-1)^*(x-1))=2`.                            `(STA2)`
+
+The regular Kun--Thom symmetric double has exactly such a fold-radical
+witness. Hence HS stability of the **total** double completion would produce
+an explicit nonhyperlinear group, not the desired hyperlinear nonsofic one.
+
+Finally, an MF trace seeing `(x-1)^*(x-1)` would still finish FALSE because
+MF traces are hyperlinear. Algebra MF permanence only supplies some MF
+trace, which may kill this element; homotopy trace lifting upgrades an
+already hyperlinear trace and therefore cannot manufacture the missing
+canonical trace. The live gate remains the one-positive-element MF-trace
+certificate.
