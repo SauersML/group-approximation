@@ -38,6 +38,14 @@ which retains one coordinate for each involution pair.  The remaining
 positive-primary problem is therefore the Wall differential on that smaller
 pair-orbit module, not the original `p+1` singleton coordinates.
 
+There is no conflict with
+`TRUE_BOUNDED_DEGREE_PARITY_DECODER_NO_GO.md`.  The section here acts only on
+the orthogonal direct sum of differences inside disjoint matched pairs.  A
+demand between two different pair-orbit coordinates is absent from its
+domain and can still require a path of growing length in any bounded-degree
+graph-only decoder.  The theorem removes one uniformly split summand; it
+does not claim an integral section of the full augmentation lattice.
+
 ## Exact rational identity
 
 Let `R` be HAP's free Wall resolution

@@ -1061,6 +1061,9 @@ four-term chain joins those two.  The resulting matching-difference subspace
 has a right inverse of norm exactly `sqrt(2)` for every odd prime.  The live
 positive-primary object is reduced to the `(p+1)/2`-dimensional pair-orbit
 quotient.  See `TRUE_PROJECTIVE_SINGLETON_MATCHING_DECODER.md`.
+This does not contradict the bounded-degree graph no-go: cross-pair parity
+demands remain outside the matching section and still require additional
+Wall shortcuts or a nonlinear paired-discriminant repair.
 
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
