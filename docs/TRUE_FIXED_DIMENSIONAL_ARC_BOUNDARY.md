@@ -309,3 +309,41 @@ quantifier elimination is enormous even at small `d`.  Its conceptual role
 is to show that no undecidable or infinitary ambiguity remains at an
 individual dimension.  All difficulty is in a bound uniform over the
 unbounded sequence `(FDA33)`.
+
+## 8. One factorial matrix tower contains the whole obstruction
+
+There is no need to range over unrelated dimension sequences.
+
+**Proposition 7 (divisibility monotonicity).**  For all positive integers
+`d,m`,
+
+`C_fd(md)>=C_fd(d)`.                                         `(FDA34)`
+
+Consequently
+
+`sup_(d>=1) C_fd(d)=sup_(n>=1) C_fd(n!)`,                    `(FDA35)`
+
+and the sequence on the right is nondecreasing.
+
+**Proof.**  Given `pi:F_k->U(d)`, take the direct sum of `m` identical
+copies.  Its normalized character is exactly the normalized character of
+`pi`, so every quotient `q_pi(w)/Q_R(pi)` is reproduced in dimension `md`.
+This proves `(FDA34)`.  Every `d` divides `n!` for all sufficiently large
+`n`, giving `(FDA35)`; consecutive factorials divide one another, so their
+constants are nondecreasing.  End proof.
+
+Thus the last TRUE implication is equivalent to boundedness of the single
+monotone computable sequence
+
+`C_fd(1!), C_fd(2!), C_fd(3!), ...`.                          `(FDA36)`
+
+Equivalently, all finite stages may be placed in the canonical divisibility
+tower
+
+`M_(1!) -> M_(2!) -> M_(3!) -> ...`                          `(FDA37)`
+
+using block-diagonal repetition.  This does not itself supply compatible
+witness tuples from one stage to the next; forcing such compatibility would
+be another form of the missing dimension-uniform theorem.  It does show that
+arbitrary prime factors or sporadic matrix sizes are not part of the
+obstruction.
