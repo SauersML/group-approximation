@@ -41311,3 +41311,26 @@ So any remaining real-filling divergence is carried entirely by the
 rational invariant transfer cycle `P_n b_n`; all noninvariant Kazhdan modes
 are uniformly harmless.  The denominator `|J/(J intersect L_n)|` and the
 paired integral correction are now the live arithmetic data.
+
+## 2026-08-11: exact compact cellular harmonic discriminant at level 53
+
+The non-free HAP `SL_3(Z)` cellular complex, after tensoring with the
+projective level-53 permutation module and taking rational signed
+coinvariants, has dimensions `141<-364<-328<-112`, ranks `140,224,102`, and
+exact `H_2` dimension two.  In the free `328`-coordinate lattice its
+harmonic discriminant is cyclic of order
+
+`17269229743444936295695902979877937666574454551881432366677092780148396252626561139`.
+
+The Gauss-certified shortest nonintegral `Q^#` vector has squared norm
+`a/q=0.071319109094...`, norm `0.267056378119...`, and full order `q`; it is
+strictly below the spherical `1/sqrt(12)` threshold.  Every nonzero ambient
+integral lift has squared norm at least one, so this class gives the exact
+compact-metric lower bound `kappa>=sqrt(q/a)=3.744527680045962...` without a
+large CVP.  The huge HNF-lift upper bound is not intrinsic.
+
+Scope: the rational signed quotient kills orientation `C_2` coordinates,
+and the compact orbit-coordinate metric is not literally the free HAP carry
+metric.  The remaining bridge is the bounded-primary integral correction
+plus an explicit bounded chain comparison.  See
+`docs/TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.

@@ -152,6 +152,54 @@ The average in `(NSF11)` is rational rather than integral.  Theorem 3 is a
 real-filling localization; it does not remove the integral discriminant
 correction.
 
+There is an exact cover-theoretic form of the invariant term.  Suppose the
+finite complexes above are covers of one finite presentation complex for a
+group `D`, obtained from a quotient `pi:D->F`.  Put
+
+`K_n=pi^(-1)(L_n)`,
+`H_n=pi^(-1)(J L_n)`,
+`m_n=[H_n:K_n]=|J/(J intersect L_n)|`.                `(NSF16a)`
+
+The cover `Y_(K_n)->Y_(H_n)` has degree `m_n`.  Let
+
+`J_n^!:C_*(Y_(H_n),R)->C_*(Y_(K_n),R)`                `(NSF16b)`
+
+be constant lift, the sum of all lifts of every cell.
+
+**Proposition 4 (exact quotient scaling).**  If `b_(H_n)` is the marked
+loop in the intermediate cover, then
+
+`P_n b_n=(1/m_n)J_n^! b_(H_n)`                        `(NSF16c)`
+
+and
+
+`Fill_R,2(P_n b_n;Y_(K_n))`
+` =m_n^(-1/2) Fill_R,2(b_(H_n);Y_(H_n))`.              `(NSF16d)`
+
+Consequently `(NSF13)` becomes
+
+`m_n^(-1/2) Fill_R,2(b_(H_n))`
+` <=Fill_R,2(b_n)`
+` <=m_n^(-1/2) Fill_R,2(b_(H_n))+C`.                  `(NSF16e)`
+
+**Proof.**  The deck orbit of one lift of the marked loop is exactly the
+set of `m_n` lifts of `b_(H_n)`, which proves `(NSF16c)`.  Constant lift
+multiplies squared cellular norm by `m_n`.
+
+Every filling of `P_nb_n` may be averaged over the deck group without
+changing its boundary or increasing its norm.  An invariant chain is
+uniquely the constant lift of a chain downstairs.  Therefore a minimum
+filling has the form `(1/m_n)J_n^!z`, where `z` is a minimum filling of
+`b_(H_n)`.  Its norm is
+
+`(1/m_n)sqrt(m_n)||z||=m_n^(-1/2)||z||`,              `(NSF16f)`
+
+proving `(NSF16d)`.  Combine with Theorem 3 for `(NSF16e)`.  End proof.
+
+Thus the surviving real criterion is no longer an unspecified invariant
+mode: it is **super-square-root filling growth** in the intermediate
+subgroup tower `H_n`.
+
 ## 5. The explicit stable Laurent double
 
 Use the stable integral pair
@@ -200,9 +248,16 @@ covers of `D`.  Theorem 3 gives
 
 `Fill_R,2(b_n)=Fill_R,2(P_nb_n)+O(1)`.                 `(NSF23)`
 
+Proposition 4 sharpens this to
+
+`Fill_R,2(b_n)`
+` =m_n^(-1/2)Fill_R,2(b_(H_n))+O(1)`,                 `(NSF24)`
+
+where `H_n=pi^(-1)(J L_n)` and `m_n=|J/(J intersect L_n)|`.
+
 Therefore Corollary 2 of the real-filling note can prove FALSE on this
-tower only if the invariant averages `P_nb_n` have unbounded filling norm.
-All noninvariant Kazhdan modes admit one uniform real decoder.
+tower precisely when the intermediate filling norms grow faster than
+`sqrt(m_n)`.  All noninvariant Kazhdan modes admit one uniform real decoder.
 
 ## 6. Consequence for the remaining FALSE lane
 
@@ -219,9 +274,14 @@ transfer sector from two independent directions:
    part is filled uniformly its excess lies in the paired discriminant
    correction.
 
-Thus the next exact object is the rational invariant cycle `P_nb_n` and its
-integral denominator `|J/J_n|`.  One should compute its transfer holonomy in
-the fixed-rank base lattice.  Persistent bounded-order pairing proves FALSE
-by `FALSE_TRANSFERRED_FILLING_PAIRING_FORMULA.md`; a common fixed-kernel
+Thus the next exact object has two equivalent descriptions:
+
+* the rational invariant cycle `P_nb_n`, with denominator `m_n`; or
+* the marked loop in the intermediate cover `Y_(H_n)`, whose real filling
+  must be compared with `sqrt(m_n)`.
+
+One should compute its transfer holonomy in the fixed-rank base lattice.
+Persistent bounded-order pairing proves FALSE by
+`FALSE_TRANSFERRED_FILLING_PAIRING_FORMULA.md`; a common fixed-kernel
 filling would instead close the tower by
 `FALSE_FIXED_KERNEL_COVER_NO_GO.md`.
