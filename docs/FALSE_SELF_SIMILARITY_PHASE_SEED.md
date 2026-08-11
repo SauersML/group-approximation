@@ -409,3 +409,42 @@ deform the relative \(U(64)\) alignment so that the full-chart defect falls
 while retaining a macroscopic nonidentity value of \(r\), or must couple
 several copies nonorthogonally.  Orthogonal averaging cannot help because its
 maximum defect is the maximum of its blocks.
+
+## 9. Full relative-unitary continuation
+
+The deformable gate in the preceding paragraph gives strong positive signal.
+Starting from the lowest-RMS exact complement and varying the full relative
+$U(64)$, a cyclic-gradient worst-tail continuation produced
+
+\[
+ \max_{x\in S_1\cup S_2}\|[\rho(r),\rho(x)]\|_2
+ =0.0295801,
+\]
+
+while simultaneously moving
+
+\[
+ \operatorname{tr}_{64}(\rho(r))
+ ={i\over2}
+ \quad\hbox{to}\quad
+ 2.4\cdot10^{-9}+0.9998817i.                         \tag{22}
+\]
+
+In fact \(\|\rho(r)-iI\|_2=0.0153837\) and the operator-norm error is
+$0.0423631$.  The retained relative unitary moved normalized-HS distance
+$0.78677$ from the seed and is dense, so this is a genuinely global
+alignment rather than a small correction of the Pauli block.
+
+The live equation is now the exact finite-dimensional problem
+
+\[
+ \rho_U(r)=iI_{64}.                                  \tag{23}
+\]
+
+Solving `(23)` would certify an exact nontrivial phase after centralizing the
+normal closure of this one relator.  It would not alone prove survival in
+\(R/[P,R]\), since commutators with the other Leavitt relators may impose
+additional identifications.  Numerics alone do not establish even `(23)`, and
+the downstream negative central corner remains separate.  The full
+continuation record and exact commands are in
+`experiments/atlas_self_similarity_refine_results.md`.

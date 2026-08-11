@@ -839,6 +839,21 @@ ansatz that trades full-chart centrality against macroscopic phase. Exact
 construction and diagnostics: `experiments/atlas_self_similarity_block.py`
 and `docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md`.
 
+The full relative-unitary continuation is now the leading FALSE signal.
+Starting from the lowest-RMS exact complement, worst-tail Cayley descent in
+`U(64)` reduced the maximum of all twelve chart-centrality defects from
+`1.25` to `0.0295801`, while moving the normalized relation trace from `i/2`
+to `2.4e-9 + 0.9998817 i`. The retained state has
+`||r-iI||_2=0.0153837` and operator-norm error `0.0423631`; its alignment is
+dense and lies normalized-HS distance `0.78677` from the seed. Stop broad
+weight/seed sweeps. The live exact target is now the fixed-dimensional
+equation `r(U)=iI_64`: compute its tangent rank, apply a local exact/Newton
+solver, and recognize an algebraic block model. Solving it certifies the
+one-relator central phase but does not yet prove survival in `R/[P,R]`, where
+commutators involving all other Leavitt relators also matter. The
+multi-relator central-kernel and negative-corner gates remain. Full record:
+`experiments/atlas_self_similarity_refine_results.md`.
+
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
 each of size fourteen, represented by collision-tree indices
