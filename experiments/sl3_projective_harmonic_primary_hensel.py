@@ -106,7 +106,7 @@ def main() -> None:
             try:
                 direct_solutions = correction_boundary.change_ring(
                     residue_ring).solve_left(matrix(residue_ring, right_sides))
-            except (ArithmeticError, NotImplementedError, ValueError) as error:
+            except Exception as error:
                 records.append({
                     "level": level + 1,
                     "modulus": modulus,
