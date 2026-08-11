@@ -7,14 +7,14 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=8G
 #SBATCH --time=00:20:00
-#SBATCH --output=/projects/standard/PROJECT_ACCOUNT/nonsofic_existence/experiments/atlas-search-%j.log
+#SBATCH --output=atlas-search-%j.log
 
 set -euo pipefail
 
 export OPENBLAS_NUM_THREADS=4
 export OMP_NUM_THREADS=4
 
-cd /projects/standard/PROJECT_ACCOUNT/nonsofic_existence
+cd "${SLURM_SUBMIT_DIR:?submit this job from the repository root}"
 
 seed_dir="experiments/atlas-run-${SLURM_JOB_ID}"
 mkdir -p "$seed_dir"
