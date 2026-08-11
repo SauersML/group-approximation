@@ -39661,6 +39661,36 @@ splitting suffices.  In particular, Kida's Corollary 2.8 shows that a
 finite-index treeable subrelation finishes the phase gate because its
 discrete-coefficient `H^2` vanishes.
 
+Finite generation gives another broad virtual closure.  If `Q` is finitely
+generated and `chi:Q->T` is a character, write
+
+`Q_ab ~= Z^r directSum T_0`.
+
+For an exponent `m`, the inverse image `L<Q` of `m Z^r directSum 0` has
+finite index, and
+
+`psi(l)=chi_bar(z,0)` when `l_ab=(m z,0)`             `(TWT7)`
+
+defines a character with `psi^m=chi|L`.  Consequently, if the phase kernel
+has exponent `m` and `lambda=b^m` is cohomologous to `chi`, then on the
+`L`-orbit subrelation it has the cocycle root
+
+`r_l=h beta_l(h)^(-1) psi(l)`, `h^m=f`,               `(TWT8)`
+
+where `lambda_l=f beta_l(f)^(-1)chi(l)`.  Its Bockstein vanishes on that
+finite-index subrelation.  Equivalently, Theorem 2 makes the inverse image of
+`L` in `Gamma` sofic, and ordinary finite-quotient extension permanence
+makes `Gamma` sofic.  Hence every bounded-exponent common-Cartan model whose
+quotient action is circle-cocycle-superrigid to characters is already
+harmless.  In the Popa carry calibration one can take
+`L=SL_3(Z) times {1}`; its globally nonzero minimal-alphabet residue
+disappears at index `m`.
+
+This sharpens the live obstruction: a bounded-exponent counterexample must
+produce a circle cocycle which remains outside the character locus after
+every finite-index restriction.  Character-valued residues cannot obstruct
+the TRUE implication.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 

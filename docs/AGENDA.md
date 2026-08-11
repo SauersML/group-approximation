@@ -234,6 +234,12 @@ torsion isotropy, is a sofic product groupoid by Cordeiro's product theorem,
 and has finite index in the whole twist; Cordeiro induction then applies
 noncircularly.  In particular Kida's treeable cohomology vanishing shows that
 a finite-index treeable subrelation closes the phase gate.
+For bounded-exponent kernels, character-rigid quotient actions also close:
+every character of a finitely generated `Q` becomes `m`-divisible on the
+finite-index preimage of `m Z^r directSum 0<Q_ab`.  Thus the Popa carry
+calibration is globally nonsplit but virtually split.  The remaining
+bounded-exponent obstruction must stay non-character-like under every
+finite-index restriction.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

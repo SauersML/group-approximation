@@ -741,6 +741,54 @@ preimage retains all isotropy and therefore keeps the groupoid index finite;
 trying to insert the base relation itself would still require a global
 splitting.
 
+The virtual criterion removes the apparent obstruction from every
+character-rigid quotient action in bounded exponent.
+
+**Lemma (characters are virtually divisible).**  Let `Q` be finitely
+generated, let `m>=1`, and let `chi:Q->T` be a character.  There are a
+finite-index normal subgroup `L normal Q` and a character `psi:L->T` such that
+
+`psi(l)^m=chi(l)` for every `l in L`.                  `(HPK9bc)`
+
+**Proof.**  Write the finitely generated abelianization as
+
+`Q_ab ~= Z^r directSum T_0`,                          `(HPK9bd)`
+
+with `T_0` finite, and let `L` be the inverse image of
+`m Z^r directSum 0`.  This subgroup has finite index.  If the image of
+`l in L` is `(m z,0)`, set `psi(l)=chi_bar(z,0)`, where `chi_bar` is the
+character induced on `Q_ab`.  The vector `z` is unique, so `psi` is a
+well-defined character, and `(HPK9bc)` is immediate.  End proof.
+
+**Theorem 3D (virtual character-rigidity criterion).**  In the setup of
+Theorem 2, suppose that `K` has exponent `m`, that `Q` is finitely generated,
+and that the cocycle `lambda` in `(HPK9e)` is cohomologous to a character of
+`Q`.  Then `Gamma` is sofic.  In particular, this holds if every measurable
+circle cocycle for the quotient action is cohomologous to a character.
+
+**Proof.**  Write, using the convention of `(HPK9l)`,
+
+`lambda_q=f beta_q(f)^(-1) chi(q)`.                   `(HPK9be)`
+
+Choose `L` and `psi` from `(HPK9bc)` and a measurable `m`th root `h` of `f`.
+The restricted cocycle
+
+`r_l=h beta_l(h)^(-1) psi(l)`                         `(HPK9bf)`
+
+satisfies `r_l^m=lambda_l`.  Let `Gamma_L` be the inverse image of `L` in
+`Gamma`.  Restricting the common-Cartan model to `Gamma_L` preserves the
+regular trace, has the same phase kernel `K`, and has quotient `L`; hence
+Theorem 2 makes `Gamma_L` sofic.  Since `Gamma_L` has finite index in
+`Gamma`, ordinary finite-quotient extension permanence makes `Gamma` sofic.
+Equivalently, after essentially-free amplification, the Bockstein vanishes
+on the finite-index `L`-orbit subrelation and Theorem 3C applies.  End proof.
+
+For the Popa carry calibration `(HPK9v)--(HPK9aa)`, take
+`L=SL_3(Z) times {1}`.  Thus the nonzero minimal-alphabet Bockstein is not
+even a virtual obstruction: it disappears on this index-`m` subrelation.
+The genuinely remaining bounded-exponent case requires circle cocycles
+which stay outside the character locus on every finite-index restriction.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
