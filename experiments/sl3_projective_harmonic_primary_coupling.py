@@ -236,11 +236,14 @@ def main() -> None:
         raise AssertionError(
             "HAP zero-row boundary does not match the compact boundary: "
             + repr(comparison_ranks))
-    first_cell_torsion_points = signed_torsion_representatives(
-        degree, cells[(2, 1)])
+    two_cell_torsion_points = [
+        signed_torsion_representatives(degree, cells[(2, cell_index)])
+        for cell_index in (1, 2)
+    ]
     q2_torsion_source_indices = [
-        cell_generators[0] * degree + point
-        for point in first_cell_torsion_points
+        cell_generators[cell_index - 1] * degree + point
+        for cell_index in (1, 2)
+        for point in two_cell_torsion_points[cell_index - 1]
     ]
     records = []
     for basis_index, integer_row in enumerate(harmonic_rows):
@@ -271,8 +274,8 @@ def main() -> None:
         "full_degree_two_dimension": full_boundary.nrows(),
         "canonical_representative_count": len(representatives),
         "cell_generators": list(cell_generators),
-        "first_two_cell_orientation_torsion_orbits": len(
-            first_cell_torsion_points),
+        "two_cell_orientation_torsion_orbits": [
+            len(points) for points in two_cell_torsion_points],
         "zero_row_comparison_ranks": comparison_ranks,
         "records": records,
     }
