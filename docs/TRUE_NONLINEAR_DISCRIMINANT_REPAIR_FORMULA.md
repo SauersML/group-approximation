@@ -344,6 +344,12 @@ Step 4 is the still-live numerator decoder.  A uniform theorem must either
 bound those paired radii over all projective primes or exhibit a sequence
 for which the ratios in `(NDR37)` diverge.
 
+`TRUE_HARMONIC_INTEGRAL_LIFT_SEQUENCE.md` gives the exact next reduction.
+The numerator is the extra squared norm in the short exact sequence
+`0->L->M_Sigma->Q^#->0`; a bounded integral section of this sequence bounds
+all harmonic paired radii at once.  In rank two, the optimal nonlinear lift
+distortion and the norm of a linear section differ by at most `4/sqrt(3)`.
+
 ## 7. Status
 
 The exact implications now are

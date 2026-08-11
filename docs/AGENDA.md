@@ -827,6 +827,18 @@ the cuspidal chart, it proves
 classes can be recovered from a two-variable rational lattice pullback;
 constructing the full rank-20,000-plus integral cycle kernel is unnecessary.
 
+`TRUE_HARMONIC_INTEGRAL_LIFT_SEQUENCE.md` now converts the remaining
+harmonic numerator into an integral decoder.  The spherical annihilator
+lattice fits into the exact sequence
+`0->L->M_Sigma->Q^#->0`, and the glued range radius is exactly the extra
+Pythagorean norm paid by an ambient integer lift.  Its nonlinear lift
+distortion is equivalent, in harmonic rank `r`, to the least norm of a
+`Z`-linear section up to a rank-only lattice-reduction constant.  For the
+rank-two `p=53` chart the factor is `4/sqrt(3)`, and any two integral basis
+lifts give a complete bound through a `2 x 2` generalized eigenvalue.  The
+next exact computation should therefore solve two affine integer lift
+problems, not enumerate the full discriminant group.
+
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
 by an integer of magnitude less than one with every template, hence is

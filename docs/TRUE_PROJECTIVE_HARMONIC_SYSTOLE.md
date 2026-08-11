@@ -177,3 +177,9 @@ The exact coupling of these two targets is now given in
 classes below the spherical threshold are computed by this harmonic
 quotient.  At `p=53` this replaces a full integral cycle-kernel computation
 by a rank-two rational lattice pullback.
+
+The paired numerator has now also been absorbed into the harmonic lattice
+in `TRUE_HARMONIC_INTEGRAL_LIFT_SEQUENCE.md`.  There is an exact sequence
+`0->L->M_Sigma->Q^#->0`, and the numerator is precisely the additional norm
+of a shortest integral lift.  Hence at `p=53` two lifted vectors and one
+`2 x 2` generalized eigenvalue certify every harmonic paired-radius bound.
