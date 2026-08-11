@@ -207,6 +207,49 @@ python experiments/sl3_carry_transfer_certificate.py \
   --verify experiments/sl3-carry-transfer-p5-certificate.json
 ```
 
+## Scalar-involution gluing code
+
+The scalar involution `x |-> -x` decomposes the rational cycle space into
+plus and minus sectors, but the integral cycle lattice need not split.  Its
+failure to split is the exact binary code obtained by recording, modulo
+two, the sum of a cycle on each paired cell orbit.
+
+At `p=3`, the plus and minus cycle ranks are `103` and `104`.  Their direct
+sum has exact index
+
+`2^103 = 10141204801825835211973625643008`
+
+in the full primitive cycle lattice.  The corresponding gluing code is
+`[169,103]`.  At `p=5` it is `[806,495]`.  Thus the scalar split removes the
+odd-character coupling, but leaves a maximal-scale 2-primary gluing problem.
+
+The code is sparse but not bounded-locally generated:
+
+| `p` | weight-one words | rank generated through weight 4 | full rank |
+|---:|---:|---:|---:|
+| 3 | 16 | 61 | 103 |
+| 5 | 44 | 157 | 495 |
+
+A greedy basis selected from the natural mod-2 cycle basis has maximum
+weights `28` and `141`, respectively.  Its weight quartiles are
+`1,3,6,14,28` at `p=3` and `1,5,25,85,141` at `p=5`.  Therefore neither an
+expanding-code picture nor generation by a fixed list of support-at-most-four
+patterns describes this gluing.
+
+These are exact finite-field and integer-lattice computations.  Replay them
+with the installed SageMath stack:
+
+```text
+sage -python experiments/sl3_carry_gluing_code.py \
+  --verify experiments/sl3-carry-gluing-code.jsonl
+```
+
+The live compression problem is now sharper: control the Euclidean cost of
+the high-support binary gluing sectors, not merely their dimension, class
+order, or minimum weight.  A useful successor should combine the scalar
+character blocks with the exact gluing code rather than optimize the full
+296-bit discriminant module blindly.
+
 ## The constant-cycle transfer route is closed
 
 Sections 6--10 of

@@ -658,6 +658,15 @@ minor certificates also prove full constant-cycle transfer at `p=3,5`, in
 agreement with the Schur-multiplier theorem.  Continue only in genuinely
 new-cover symmetry sectors of the cycle discriminant module.
 
+The scalar-involution audit makes those sectors explicit.  The integral
+plus/minus split has index `2^103` at `p=3`; its gluing codes are
+`[169,103]` and `[806,495]` at `p=3,5`.  They contain many weight-one words,
+so cosystolic expansion is false, but weight-at-most-four words generate
+only ranks `61` and `157`, so a bounded local-generator proof also fails at
+the first tested bound.  The next TRUE solver must price high-support
+binary gluing in the sector Gram norms.  Do not infer distortion from code
+dimension, minimum weight, or discriminant-class order alone.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
