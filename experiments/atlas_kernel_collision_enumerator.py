@@ -16,6 +16,8 @@ import argparse
 import itertools
 import json
 
+import numpy as np
+
 from atlas_two_chart_search import (
     I4,
     commutator,
