@@ -258,3 +258,47 @@ overlaps.  If `(2)` survives, deform the multiplicity alignment in `(17)` so
 that \(r\) centralizes the full two \(A_8\) charts without losing its
 macroscopic spectrum.  This is the first phase seed not already ruled out by
 one-chart refinement.
+
+## 6. Executable realization and the full-chart defect
+
+`experiments/atlas_self_similarity_block.py` constructs the relative chart
+unitary directly from the exact spectral projectors in \(W\).  There are six
+ways to partition the four one-dimensional \(D_8\)-characters between the two
+unused \(V_4\)-characters.  The script exhausts all six; there is no random
+initialization and no optimization.
+
+Every assignment reproduces `(17)--(18)` to less than
+\(1.6\cdot 10^{-14}\):
+
+\[
+ \operatorname{spec}(\rho(r))
+ =i^{[32]}\sqcup1^{[16]}\sqcup(-1)^{[16]},\qquad
+ \operatorname{tr}_{64}(\rho(r))=i/2,
+\]
+
+and the maximum normalized Hilbert--Schmidt commutator defect against the
+local \(D_8\) and \(V_4\) generators is below \(1.3\cdot10^{-14}\).  Thus the
+character calculation and the Pauli block are realized inside the honest
+charts exactly, up to floating-point diagonalization error.
+
+The global diagnostic is also uniform across all six assignments:
+
+\[
+ \max_{x\in S_1\cup S_2}
+ \|[\rho(r),\rho(x)]\|_2={5\over4},                 \tag{21}
+\]
+
+where \(S_j\) is the six standard transvection generators of chart \(j\).
+For the two best complementary assignments the RMS defect over the twelve
+generators is \(0.8228507358\).  In the first chart, the local generators
+\(b=I+E_{01}\), \(c=I+E_{12}\), and \(I+E_{32}\) commute with \(\rho(r)\),
+while the three exposed directions have defects \(1\), \(5/4\), and
+\(\sqrt{3/2}\).  The obstruction is therefore not a numerical artifact or a
+bad choice among the six discrete complement matchings.
+
+This closes one tempting shortcut: the exact local phase block cannot simply
+be repeated and declared a central microstate.  A live continuation must
+deform the relative \(U(64)\) alignment so that the full-chart defect falls
+while retaining a macroscopic nonidentity value of \(r\), or must couple
+several copies nonorthogonally.  Orthogonal averaging cannot help because its
+maximum defect is the maximum of its blocks.

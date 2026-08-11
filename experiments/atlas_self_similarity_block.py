@@ -140,9 +140,10 @@ def main():
         local_max = max(commutator_defect(r_value, value)
                         for value in local_values)
 
-        generators = [word[0] for _name, word in factor_generators()]
+        named_generators = factor_generators()
         generator_values = []
-        for factor, matrix in generators:
+        for _name, word in named_generators:
+            factor, matrix = word[0]
             value = representation(matrix)
             if factor == 2:
                 value = relative @ value @ relative.conj().T
@@ -167,7 +168,11 @@ def main():
             "full_chart_centrality_rms": float(math.sqrt(
                 sum(value * value for value in full_defects)
                 / len(full_defects))),
-            "full_chart_generator_defects": full_defects,
+            "full_chart_generator_defects": {
+                name: defect
+                for (name, _word), defect in zip(
+                    named_generators, full_defects, strict=True)
+            },
         })
 
     assignments.sort(key=lambda item: (

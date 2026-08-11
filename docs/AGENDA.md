@@ -828,6 +828,17 @@ full charts or prove that `r` survives in `R/[P,R]`.  This is now the first
 live self-similarity phase seed; full calculation:
 `docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md`.
 
+The 64-dimensional seed is now executable rather than character-theoretic
+only. Exhausting all six complementary `D8`-character matchings reproduces
+the spectrum `i^[32],1^[16],(-1)^[16]`, trace `i/2`, and exact local
+centrality to below `1.3e-14`. Every matching nevertheless has full-chart
+maximum commutator defect exactly `5/4`; the best twelve-generator RMS is
+`0.8228507358`. Thus discrete complement reassignment is exhausted. Continue
+only with a genuinely deformable relative-unitary or nonorthogonally coupled
+ansatz that trades full-chart centrality against macroscopic phase. Exact
+construction and diagnostics: `experiments/atlas_self_similarity_block.py`
+and `docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md`.
+
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
 each of size fourteen, represented by collision-tree indices
