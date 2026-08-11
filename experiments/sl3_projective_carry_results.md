@@ -294,6 +294,15 @@ arithmetic invariant that needs only residues--for example determinant or
 Smith-index data--or derive a height bound before launching rational
 reconstruction.  Generic sparse elimination is no longer the bottleneck.
 
+The first such change of coordinates is now exact.  The
+Ash--Grayson--Green cuspidal function model reduces the same level-53 rational
+cuspidal sector from `2,863` projective coordinates to `100` signed variables
+and a rank-two integral kernel with coefficients bounded by `12`.  Its basis
+Gram matrix is `[[7872,-3264],[-3264,71424]]`.  This does not yet transport
+the HAP Euclidean metric, but it replaces blind CRT by a finite chain-map
+comparison between two certified rank-two models.  See
+`docs/TRUE_P53_CUSPIDAL_FUNCTION_LATTICE.md`.
+
 ## Mathematical interpretation
 
 For `p=3,5,7`, Proposition 12 of
