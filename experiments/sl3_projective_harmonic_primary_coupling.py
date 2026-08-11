@@ -5,7 +5,10 @@ complex.  Its two degree-two cells are the last two free generators of total
 degree two.  A signed-coinvariant cycle therefore has a canonical sparse
 lift obtained by choosing one coefficient point in every orbit.  This script
 cancels the resulting positive-filtration syndrome, first in bidegree
-``(1,1)`` and then in ``(0,2)``, over a specified prime field.
+``(1,1)`` and then in ``(0,2)``, over a specified prime field.  It also
+retains one deterministic solution of the first equation and measures the
+resulting class in vertex-stabilizer homology before the homogeneous
+horizontal correction is applied.
 
 Run with Sage's Python.  The full boundary prefix is the prefix passed to
 ``sl3_projective_h2_export.g``; only ``-d2.tsv`` is needed here.
@@ -125,6 +128,7 @@ def solve_filtered_lift(
 ):
     field = boundary.base_ring()
     target_q1 = coordinate_indices(1, 1, degree)
+    target_q0 = coordinate_indices(1, 0, degree)
     source_q1 = coordinate_indices(2, 1, degree)
     source_q0 = coordinate_indices(2, 0, degree)
 
@@ -133,11 +137,11 @@ def solve_filtered_lift(
     q1_block = boundary.matrix_from_rows_and_columns(source_q1, target_q1)
     q1_rank = int(q1_block.rank())
     q1_augmented_rank = int(q1_block.stack(matrix(field, [q1_syndrome])).rank())
-    torsion_q1_block = boundary.matrix_from_rows_and_columns(
-        q2_torsion_source_indices, target_q1)
-    q1_with_torsion = q1_block.stack(torsion_q1_block)
+    # Keep the same source order used below: torsion first, then A_(1,1).
+    q1_with_torsion = boundary.matrix_from_rows_and_columns(
+        list(q2_torsion_source_indices) + source_q1, target_q1)
     try:
-        q1_with_torsion.solve_left(-q1_syndrome)
+        q1_particular = q1_with_torsion.solve_left(-q1_syndrome)
     except ValueError:
         return {
             "q1_solvable_without_orientation_torsion": (
@@ -146,7 +150,7 @@ def solve_filtered_lift(
             "q1_block_rank": q1_rank,
             "q1_augmented_rank": q1_augmented_rank,
             "q1_syndrome_support": len(q1_syndrome.support()),
-        }, None
+        }, None, None
 
     correction_indices = (
         list(q2_torsion_source_indices) + source_q1 + source_q0)
@@ -162,7 +166,7 @@ def solve_filtered_lift(
             "q1_block_rank": q1_rank,
             "q1_augmented_rank": q1_augmented_rank,
             "q1_syndrome_support": len(q1_syndrome.support()),
-        }, None
+        }, None, None
 
     total_correction = vector(field, boundary.nrows())
     for local, total in enumerate(correction_indices):
@@ -173,9 +177,33 @@ def solve_filtered_lift(
 
     torsion_count = len(q2_torsion_source_indices)
     q1_count = len(source_q1)
+    stage_count = torsion_count + q1_count
+    stage_indices = correction_indices[:stage_count]
+    stage_q0_block = boundary.matrix_from_rows_and_columns(
+        stage_indices, target_q0)
+    q0_block = boundary.matrix_from_rows_and_columns(source_q0, target_q0)
+    initial_q0_syndrome = vector(
+        field, [initial_boundary[index] for index in target_q0])
+    vertex_syndrome = (
+        initial_q0_syndrome + q1_particular * stage_q0_block)
+    try:
+        q0_block.solve_left(-vertex_syndrome)
+        vertex_solvable_without_horizontal_adjustment = True
+    except ValueError:
+        vertex_solvable_without_horizontal_adjustment = False
+
+    full_stage_local = correction[:stage_count]
+    horizontal_adjustment = full_stage_local - q1_particular
+    if horizontal_adjustment * q1_with_torsion:
+        raise AssertionError("the horizontal adjustment is not a vertical cycle")
+    q0_local = correction[stage_count:]
+    if (initial_q0_syndrome
+            + full_stage_local * stage_q0_block
+            + q0_local * q0_block):
+        raise AssertionError("the lower filtered correction does not cancel")
+
     torsion_local = correction[:torsion_count]
     q1_local = correction[torsion_count:torsion_count + q1_count]
-    q0_local = correction[torsion_count + q1_count:]
     first_q0 = q0_local[:degree]
     return {
         "q1_solvable_without_orientation_torsion": (
@@ -184,6 +212,15 @@ def solve_filtered_lift(
         "total_lift_solvable": True,
         "compact_support": len(compact_lift.support()),
         "q1_syndrome_support": len(q1_syndrome.support()),
+        "q1_particular_support": len(q1_particular.support()),
+        "vertex_syndrome_support_before_horizontal_adjustment": len(
+            vertex_syndrome.support()),
+        "direct_higher_vertex_syndrome_support": len(
+            initial_q0_syndrome.support()),
+        "vertex_solvable_without_horizontal_adjustment": (
+            vertex_solvable_without_horizontal_adjustment),
+        "horizontal_vertical_cycle_adjustment_support": len(
+            horizontal_adjustment.support()),
         "q1_block_rank": q1_rank,
         "q1_augmented_rank": q1_augmented_rank,
         "q2_orientation_torsion_correction_support": len(torsion_local.support()),
@@ -194,7 +231,7 @@ def solve_filtered_lift(
         "first_q0_generator_coordinates": list(first_q0.support()),
         "exceptional_singleton_coefficient": int(first_q0[0]),
         "ordinary_singleton_coefficient": int(first_q0[1]),
-    }, total_lift
+    }, total_lift, vertex_syndrome
 
 
 def main() -> None:
@@ -249,6 +286,7 @@ def main() -> None:
     records = []
     compact_cycles = []
     total_lifts = []
+    vertex_syndromes = []
     q1_syndromes = []
     target_q1 = coordinate_indices(1, 1, degree)
     for basis_index, integer_row in enumerate(harmonic_rows):
@@ -265,7 +303,7 @@ def main() -> None:
         initial_boundary = compact_lift * full_boundary
         q1_syndromes.append(vector(
             field, [initial_boundary[index] for index in target_q1]))
-        record, total_lift = solve_filtered_lift(
+        record, total_lift, vertex_syndrome = solve_filtered_lift(
             full_boundary,
             degree,
             compact_lift,
@@ -275,12 +313,23 @@ def main() -> None:
         record["compact_reduced_support"] = len(compact_cycle.support())
         records.append(record)
         total_lifts.append(total_lift)
+        vertex_syndromes.append(vertex_syndrome)
 
     source_q1 = coordinate_indices(2, 1, degree)
     q1_block = full_boundary.matrix_from_rows_and_columns(source_q1, target_q1)
     harmonic_q1_transgression_rank = int(
         q1_block.stack(matrix(field, q1_syndromes)).rank()
         - q1_block.rank())
+
+    harmonic_vertex_class_rank = None
+    if all(syndrome is not None for syndrome in vertex_syndromes):
+        target_q0 = coordinate_indices(1, 0, degree)
+        source_q0 = coordinate_indices(2, 0, degree)
+        q0_block = full_boundary.matrix_from_rows_and_columns(
+            source_q0, target_q0)
+        harmonic_vertex_class_rank = int(
+            q0_block.stack(matrix(field, vertex_syndromes)).rank()
+            - q0_block.rank())
 
     harmonic_section_profiles = []
     harmonic_section_maximum = Fraction(0)
@@ -322,6 +371,8 @@ def main() -> None:
             len(points) for points in two_cell_torsion_points],
         "harmonic_q1_transgression_rank_without_orientation_torsion": (
             harmonic_q1_transgression_rank),
+        "harmonic_vertex_class_rank_before_horizontal_adjustment": (
+            harmonic_vertex_class_rank),
         "harmonic_modular_section_profiles": harmonic_section_profiles,
         "harmonic_modular_section_norm": {
             "squared": str(harmonic_section_maximum),

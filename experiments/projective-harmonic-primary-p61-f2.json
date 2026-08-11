@@ -35,6 +35,7 @@
     }
   ],
   "harmonic_q1_transgression_rank_without_orientation_torsion": 1,
+  "harmonic_vertex_class_rank_before_horizontal_adjustment": 2,
   "prime": 61,
   "projective_degree": 3783,
   "records": [
@@ -42,6 +43,7 @@
       "basis_index": 0,
       "compact_reduced_support": 224,
       "compact_support": 224,
+      "direct_higher_vertex_syndrome_support": 3508,
       "exceptional_singleton_coefficient": 0,
       "first_q0_generator_coordinates": [
         28,
@@ -500,22 +502,27 @@
         3390
       ],
       "first_q0_generator_support": 454,
+      "horizontal_vertical_cycle_adjustment_support": 2634,
       "ordinary_singleton_coefficient": 0,
       "q0_correction_support": 2580,
       "q1_augmented_rank": 3270,
       "q1_block_rank": 3270,
       "q1_correction_support": 2477,
+      "q1_particular_support": 1181,
       "q1_solvable_with_orientation_torsion": true,
       "q1_solvable_without_orientation_torsion": true,
       "q1_syndrome_support": 938,
       "q2_orientation_torsion_correction_support": 46,
       "total_lift_solvable": true,
-      "total_lift_support": 5327
+      "total_lift_support": 5327,
+      "vertex_solvable_without_horizontal_adjustment": false,
+      "vertex_syndrome_support_before_horizontal_adjustment": 4069
     },
     {
       "basis_index": 1,
       "compact_reduced_support": 214,
       "compact_support": 214,
+      "direct_higher_vertex_syndrome_support": 3452,
       "exceptional_singleton_coefficient": 0,
       "first_q0_generator_coordinates": [
         25,
@@ -967,17 +974,21 @@
         3391
       ],
       "first_q0_generator_support": 447,
+      "horizontal_vertical_cycle_adjustment_support": 2713,
       "ordinary_singleton_coefficient": 0,
       "q0_correction_support": 2512,
       "q1_augmented_rank": 3271,
       "q1_block_rank": 3270,
       "q1_correction_support": 2569,
+      "q1_particular_support": 1186,
       "q1_solvable_with_orientation_torsion": true,
       "q1_solvable_without_orientation_torsion": false,
       "q1_syndrome_support": 919,
       "q2_orientation_torsion_correction_support": 50,
       "total_lift_solvable": true,
-      "total_lift_support": 5345
+      "total_lift_support": 5345,
+      "vertex_solvable_without_horizontal_adjustment": false,
+      "vertex_syndrome_support_before_horizontal_adjustment": 3989
     }
   ],
   "two_cell_orientation_torsion_orbits": [

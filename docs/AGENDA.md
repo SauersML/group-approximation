@@ -1111,6 +1111,19 @@ singleton demand already needs support `11` at `p=3` and at least `14` at
 signal rather than merely hiding it in the full solver.  This is exact
 finite-level evidence, not yet an integral or all-prime theorem.
 
+The next filtration step is nontrivial but now has exact rank.  After one
+fixed row-echelon splitting of the solved compact-to-edge interface, neither
+harmonic basis vector at `p=53` or `p=61` is directly fillable in the
+vertex-resolution row.  Their two classes have rank exactly two modulo
+vertex boundaries at both levels.  They form a two-dimensional subspace of
+vertex `H_1`, and a homogeneous vertical cycle in the intervening row
+cancels that subspace in every computed case.  It is not the separate fixed
+two-dimensional `E^infinity` residue in vertex `H_2`.  The live theorem is
+therefore a bounded horizontal inverse on this rank-two harmonic image,
+then an integral lift compatible with paired carries.  The rank statement
+depends on the chosen first-interface splitting and is not an uncancelable
+homology obstruction.  See `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
+
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
 projective `S_4` orbit classification show that the vertex `H_2` term is
