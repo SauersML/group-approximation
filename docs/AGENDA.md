@@ -183,6 +183,25 @@ minimal-alphabet residue; the group is sofic only because its phases already
 lie in the larger fixed alphabet `mu_(m^2)`.  The true target remains
 finite-phase completion, not universal Bockstein vanishing.
 
+This target sharpens once more if all torsion phases are allowed.  Put
+`mu_infty=union_M mu_M`.  A measurable `mu_infty`-valued primitive can be
+truncated on each finite test to one alphabet `mu_(M_n)`: only finitely many
+functions occur, their discarded mass tends to zero, and the projective
+cocycle equation then fails only on the union of three discarded sets.
+Finite-phase skew untwisting proves soficity.  The same proof works for every
+torsion phase kernel, without a global exponent: a finite test sees only
+finitely many kernel orders and `M_n` can absorb them.  Consequently the
+exact torsion-kernel obstruction is now
+
+`ker(H^2(R_Q,mu_infty) -> H^2(R_Q,T))`,
+
+not the larger minimal-alphabet Bockstein kernel.  Both the `C_4` and
+Popa/Bernoulli calibrations vanish after this enlargement (`mu_4` and
+`mu_(m^2)`, respectively).  Finite-index permanence for sofic relations is
+not a shortcut: it assumes the base subrelation is already embedded in the
+finite extension, while constructing that subrelation is exactly the
+torsion splitting being sought.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested

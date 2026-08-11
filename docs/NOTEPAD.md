@@ -39315,6 +39315,46 @@ is residually finite and sofic, so this example isolates the limitation of
 the minimal-alphabet criterion: even a principal sofic relation may require
 enlarging `mu_m` before skew untwisting.
 
+### Sharpening from one finite alphabet to all torsion phases
+
+Write `mu_infty=union_M mu_M`.  There is a stronger positive theorem than
+minimal Bockstein vanishing.  It applies whenever the phase kernel `K` is
+torsion, without a global exponent.  After slow tensor amplification, let
+
+`omega(q,r,x)=a_(v(q,r))(x) in mu_infty`.
+
+If `[omega]=0` in `H^2(R_Q,mu_infty)`, then `Gamma` is sofic.  Indeed, choose
+a measurable torsion-valued primitive `p_q`.  On the `n`th finite group
+window only finitely many `p_q` occur.  Since `mu_infty=union_M mu_(M!)`,
+choose `M_n` so that all these functions lie in `mu_(M_n)` outside mass
+`epsilon_n->0`; enlarge it to absorb the finitely many kernel orders in the
+test, and replace the functions by `1` on the exceptional sets.  The
+projective cocycle equation can fail only on the union of three such sets.
+Finite-valued Loeb functions lift to finite-valued diagonal matrices, so
+this gives a combinatorial finite-phase table.  Essential freeness separates
+nontrivial quotient elements, the Haar kernel law separates nontrivial
+kernel elements, and skew untwisting finishes.
+
+Thus the remaining torsion-kernel class lies in the sharper kernel
+
+`ker(H^2(R_Q,mu_infty) -> H^2(R_Q,T))`.               `(HPK9ah)`
+
+The `C_4` calibration is killed in `mu_4`, and the Popa carry calibration is
+killed in `mu_(m^2)`.  They show that `mu_m` is too small but do not obstruct
+the torsion criterion.
+
+Groupoid translation: the `mu_M` pushout
+`G_(omega,M)=mu_M times_omega R_Q` splits over `R_Q` iff a `mu_M` primitive
+exists.  Cordeiro's finite-index permanence theorem assumes the relevant
+sofic subrelation is already present; producing that subrelation inside the
+twist is precisely this splitting, so the theorem cannot be used circularly
+to obtain it.  Nor can one apply an abstract algebraic retraction
+`T->mu_infty` to the measurable circle primitive: every Borel homomorphism
+from connected `T` to countable discrete `mu_infty` is trivial.  The next
+decisive question is therefore injectivity of the displayed measurable
+coefficient map for the specific principal sofic relation supplied by the
+common-Cartan model, or a finite-window substitute for that injectivity.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and

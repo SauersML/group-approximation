@@ -424,6 +424,120 @@ soficity of the quotient relation forces the **minimal `mu_m`** Bockstein to
 vanish.  A general proof must allow a larger finite phase alphabet or solve
 the finite-phase completion gate `(HPK18)` directly.
 
+### Torsion-valued primitives already suffice
+
+Let
+
+`mu_infty=union_(M>=1) mu_M`                           `(HPK9ab)`
+
+be the countable group of all roots of unity, equipped with its discrete
+Borel structure.  Allowing its elements to have unbounded order gives a
+strictly stronger criterion than killing the Bockstein in one fixed
+`mu_M`, but it still gives finite models.
+
+**Theorem 3 (torsion phase primitive implies soficity).**  Assume more
+generally that the abelian phase kernel `K` is torsion, and first make the
+quotient action essentially free by `(HPK9q)--(HPK9u)`.  Write
+
+`omega(q,r,x)=a_(v(q,r))(x) in mu_infty`.             `(HPK9ac)`
+
+If there are measurable functions `p_q:X->mu_infty`, with `p_1=1`, such
+that
+
+`p_q beta_q(p_r)=omega(q,r) p_(qr)`                  `(HPK9ad)`
+
+almost everywhere for every `q,r in Q`, then `Gamma` is sofic.  Equivalently,
+it is enough that
+
+`[omega]=0 in H^2(R_Q,mu_infty)`.                    `(HPK9ae)`
+
+**Proof.**  Formula
+
+`rho_p(k s(q))=a_k p_q u_q`                          `(HPK9af)`
+
+is a homomorphism by `(HPK6)` and `(HPK9ad)`.  All its diagonal factors are
+torsion-valued, although there need not be one exponent which works
+globally.
+
+Enumerate `Gamma` and let the `n`th test contain the first `n` elements and
+all section terms needed to multiply them.  Fix `epsilon_n->0`.  Since
+`mu_infty=union_M mu_(M!)`, continuity from below gives an integer `M_n`
+such that, for every one of the finitely many functions `p_q` in this test,
+
+`mu{x:p_q(x) notin mu_(M_n)}<epsilon_n`.              `(HPK9ag)`
+
+Enlarge `M_n`, if necessary, so that it is divisible by the orders of the
+finitely many kernel elements and extension values occurring in the test.
+Replace `p_q` by `1` on its exceptional set.  The resulting functions, all
+tested `a_k`, and all tested values of `omega` are `mu_(M_n)`-valued.
+Equation `(HPK9ad)` can now fail only where one of its three variable terms
+was replaced (with one exceptional set transported by a measure-preserving
+quotient map), so its failure set has measure at most `3 epsilon_n`.
+Covariance `(HPK6)` is unchanged.
+
+Every finite-valued Loeb-diagonal function has finite-level representatives
+with the same finite range: lift its level-set partition to the diagonal
+matrix coordinates.  Simultaneously lifting the finitely many functions in
+the `n`th test and the quotient permutations therefore gives
+`mu_(M_n)`-valued monomial tables satisfying `(HPK13)--(HPK14)`, with error
+tending to zero.
+
+Their traces have the required limit.  If `q!=1`, essential freeness of the
+amplified quotient action makes the trace of any diagonal multiple of `u_q`
+zero.  If `q=1` and `k!=1`, the trace of `a_k` is zero by the Haar law;
+moreover `a_k=1` on exactly `1/ord(k)<=1/2` of the Haar character field.
+Thus `(HPK15)` holds, and finite-phase skew untwisting, Theorem 4 below,
+proves that `Gamma` is sofic.  End proof.
+
+For a bounded-exponent kernel, the theorem moves the exact cohomological
+obstruction from
+
+`ker(H^2(R_Q,mu_m) -> H^2(R_Q,T))`
+
+to the potentially smaller group
+
+`ker(H^2(R_Q,mu_infty) -> H^2(R_Q,T)).`               `(HPK9ah)`
+
+Both calibrations above disappear at this sharper level: the `C_4` class
+has a `mu_4` primitive, and the `H times C_(m^2)` carry class has a
+`mu_(m^2)` primitive.  Thus they disprove minimal-alphabet vanishing but do
+not disprove `(HPK9ae)`.
+
+There is an exact groupoid interpretation.  On a fixed finite window choose
+`M` divisible by the orders of its cocycle values and push the corresponding
+part of the central twist `(HPK9ac)` out to `mu_M`:
+
+`G_(omega,M)=mu_M times_omega R_Q`,                   `(HPK9ai)`
+
+with multiplication
+
+`(zeta,gamma)(eta,delta)=(zeta eta omega(gamma,delta),gamma delta)`.
+
+A groupoid splitting over `R_Q` has the form
+`gamma |-> (p(gamma)^(-1),gamma)` and exists exactly when a
+`mu_M`-valued `p` satisfies `(HPK9ad)` (up to the displayed inverse
+convention).  The same statement with `mu_infty` says that `(HPK9ae)` is
+precisely the splitting of the torsion pushout of the twist.  The original
+circle primitive `b` proves only that its pushout to `T` splits.
+
+This distinction prevents a tempting circular use of permanence for sofic
+equivalence relations.  Cordeiro's finite-index theorem starts with a
+**sofic subrelation already embedded in** a finite-index superrelation (and
+appropriate invertible choice functions).  Here one initially has a finite
+central groupoid **over** `R_Q`; producing a copy of `R_Q` inside it is the
+splitting `(HPK9ad)` itself.  Finite-index permanence therefore propagates a
+splitting after it is found, but does not manufacture one.
+
+Finally, the algebraic fact that `mu_infty` is an injective abelian group
+does not make the coefficient map in `(HPK9ah)` formally injective in
+measurable cohomology.  Algebraic retractions `T->mu_infty` are necessarily
+nonmeasurable: a Borel homomorphism from the connected Polish group `T` to
+the countable discrete group `mu_infty` is continuous and hence trivial.
+Applying an abstract retraction pointwise to the measurable primitive `b`
+is therefore invalid.  The remaining torsion-kernel TRUE target is the
+measurable torsion-splitting statement `(HPK9ae)`, or its finite-window
+version, not minimal Bockstein vanishing.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -483,7 +597,7 @@ Here is the exact output that would suffice.  It is useful because it
 separates the missing rounding statement from the already solved Cartan and
 trace estimates.
 
-**Theorem 3 (finite phase completion implies soficity).**  Suppose that for
+**Theorem 4 (finite phase completion implies soficity).**  Suppose that for
 arbitrarily accurate finite windows there are finite sets `Y_n`, maps
 
 `sigma_n:Gamma -> Sym(Y_n)`,
@@ -535,7 +649,7 @@ multiplication error grows by at most the factor `L`.  First choose `L` and
 then a sufficiently accurate window.  This gives the standard asymptotically
 free sofic approximations.  End proof.
 
-Theorem 3 does not assume a uniform bound on `m_n`; exact equality off a
+Theorem 4 does not assume a uniform bound on `m_n`; exact equality off a
 small set removes the shrinking root-spacing problem.  The unresolved step
 is precisely
 
@@ -559,7 +673,7 @@ imply equality in Hamming measure.
 There is one group-theoretic regime in which the phase kernel can already be
 removed without `(HPK18)`.
 
-**Theorem 4 (split finite-rank abelian kernel).**  If
+**Theorem 5 (split finite-rank abelian kernel).**  If
 
 `Gamma=K semidirect_alpha Q`,                         `(HPK19)`
 
@@ -601,7 +715,7 @@ not finitely generated as an abelian group.  Strict compression forces
 `G/Gamma` to be infinite: a proper inclusion between the conjugate
 subgroups `t Gamma t^(-1)<Gamma` is impossible at finite index, since the
 two conjugates have equal index in `G`.  Therefore the augmentation kernel
-in `(HPK21)` has infinite rank, exactly outside Theorem 4.
+in `(HPK21)` has infinite rank, exactly outside Theorem 5.
 
 Pontryagin duality identifies
 
@@ -636,15 +750,19 @@ The common-Cartan route now has four exact layers:
    field `(HPK4)--(HPK12)`;
 3. for bounded-exponent kernels, the Bockstein residue
    `(HPK9e)--(HPK9g)` is the exact obstruction to fixed-alphabet completion;
-4. combinatorial finite-phase completion `(HPK13)--(HPK15)` gives a sofic
-   approximation.
+4. for torsion kernels, torsion splitting `(HPK9ab)--(HPK9ah)`, or directly
+   combinatorial
+   finite-phase completion `(HPK13)--(HPK15)`, gives a sofic approximation.
 
 Only the general implication from layer 2 to layer 4 is missing.  The
-bounded-exponent criterion settles it when the residue in layer 3 is
-divisible.  Slow tensor amplification `(HPK9q)--(HPK9u)` shows that the
+torsion-kernel criterion settles it when the residue in layer 3 is
+torsion-split; allowing all roots of unity removes both explicit
+minimal-alphabet counterexamples above.  Slow tensor amplification
+`(HPK9q)--(HPK9u)` shows that the
 residue may be assumed to live on a principal quotient relation and settles
 the treeable case, but arbitrary principal sofic relations are not covered by
-that vanishing argument.  The amenable case
+that vanishing argument.  The exact torsion-kernel obstruction is now
+`(HPK9ah)`, not the larger minimal-alphabet Bockstein kernel.  The amenable case
 is supplied by Burton--Chaudkhari--Juschenko--Muliarchyk, while the general
 case cannot be obtained by averaging over a finite window without paying its
 Følner boundary.  A successful general proof must exploit the normal `0/1`
@@ -660,3 +778,5 @@ Primary source pins:
   Algebra Is Not Connes Embeddable*, arXiv:2502.06697v2.
 * Sorin Popa, *Cocycle and Orbit Equivalence Superrigidity for Malleable
   Actions of w-Rigid Groups*, arXiv:math/0512646.
+* Luiz Cordeiro, *An elementary approach to sofic equivalence relations*,
+  arXiv:1608.05608, Theorem 3.4.
