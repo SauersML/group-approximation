@@ -1,39 +1,39 @@
-# Cost-one sofic relations admit finite circle-phase repair
+# Forest phase repair and the routing-width gate
 
 Date: 2026-08-11
 
-## 1. Result and scope
+## 1. Correct result and corrected scope
 
-The circle-cocycle gate in `TRUE_HAAR_PHASE_KERNEL.md` has a positive
-solution whenever the already-sofic base relation has cost one.
+This note tests whether `cost(R)=1` closes the circle-cocycle gate in
+`TRUE_HAAR_PHASE_KERNEL.md`.  The exact finite forest argument is positive,
+but **cost one by itself does not supply the quantitative conclusion**.
 
-> **Theorem (cost-one circle-skew permanence).**  Let `R` be an aperiodic
-> pmp countable equivalence relation.  Assume that `R` is sofic and
-> `cost(R)=1`.  If
->
-> `alpha:R -> T`
->
-> is a measurable circle-valued cocycle, then its principal skew-product
-> relation `R(alpha)` on `X times T`, with relatively Haar measure, is sofic.
+The valid result is a routed-tree-excess criterion.  Roughly, a finite base
+model may be cut to a forest and its phases repaired exactly whenever every
+tested transformation crosses the deleted edges on only `o(1)` of its
+starting points.  A convenient sufficient condition is
 
-The proof is a direct finite-model argument.  It does not assert an analogous
-statement for arbitrary compact structure groups, it does not assert that every
-action of a sofic group is sofic, and it does not assume a general
-compact-extension permanence theorem.  The soficity of the *particular base
-relation* is a hypothesis.
+`routing width times normalized tree excess -> 0`.       `(RFR1)`
 
-This theorem enlarges the treeable and hyperfinite cases already recorded in
-the Haar-phase note.  It does not prove that every hyperlinear group is sofic:
-the quotient relation produced by an arbitrary hypothetical common-Cartan
-model need not have cost one, and construction of a common Cartan from an
-arbitrary hyperlinear table remains a separate gate.
+For a cost-one relation the normalized tree excess can be made arbitrarily
+small, but the word length needed to express a fixed external test in that
+near-minimal graphing may diverge faster than its reciprocal.  No theorem
+currently controls this product.  Thus the earlier unconditional
+``cost-one compact-skew permanence'' claim was invalid and is withdrawn.
 
-## 2. The finite forest-repair lemma
+The correction is load-bearing.  If cost one alone sufficed, one could take
+the product of an arbitrary sofic relation with an aperiodic hyperfinite
+relation (a cost-one stabilization), apply phase repair there, and try to
+pass to a subrelation.  That would prove the general compact-skew permanence
+which is precisely open.  The missing routing bound is where this false
+shortcut pays back the apparent cost reduction.
+
+## 2. The exact finite forest-repair lemma
 
 Let `G=(V,E)` be a finite undirected multigraph.  Loops and parallel edges
 are allowed.  Give every oriented edge `e` a label `a(e)` in a group `K`, with
 
-`a(reverse(e))=a(e)^(-1)`.                              `(CFR1)`
+`a(reverse(e))=a(e)^(-1)`.                              `(RFR2)`
 
 Write `c(G)` for the number of connected components, including isolated
 vertices.
@@ -41,11 +41,11 @@ vertices.
 > **Lemma 1 (forest phase repair).**  There is a vertex function
 > `b:V -> K` such that the coboundary labelling
 >
-> `a'(e)=b(target(e)) b(source(e))^(-1)`                `(CFR2)`
+> `a'(e)=b(target(e)) b(source(e))^(-1)`                `(RFR3)`
 >
 > agrees with `a(e)` on all but at most
 >
-> `|E|-|V|+c(G)`                                       `(CFR3)`
+> `r(G)=|E|-|V|+c(G)`                                  `(RFR4)`
 >
 > unoriented edges.  If `K=mu_m`, then `b` and `a'` also take values in
 > `mu_m`.
@@ -53,154 +53,186 @@ vertices.
 **Proof.**  Choose a spanning tree in each nontrivial component and one root
 per component.  Put `b(root)=1`.  Recursively across each oriented tree edge
 `e=(v,w)`, set `b(w)=a(e)b(v)`.  The unique-path property makes this
-well-defined, and `(CFR2)` equals `a(e)` on every forest edge.  A spanning
-forest has `|V|-c(G)` edges, so exactly `(CFR3)` edges remain.  Products and
+well-defined, and `(RFR3)` equals `a(e)` on every forest edge.  A spanning
+forest has `|V|-c(G)` edges, leaving exactly `(RFR4)` edges.  Products and
 inverses preserve `mu_m`.  End proof.
 
-No small-curvature assumption occurs here.  The only obstruction is the
-cycle excess of the finite graph.
+No small-curvature assumption occurs here.  The only obstruction to
+repairing an *arbitrary* edge table is the tree excess `r(G)`.
 
-> **Corollary 2 (vanishing tree excess).**  Suppose `G_n=(V_n,E_n)` are
-> finite graphs such that
+> **Corollary 2 (vanishing tree excess for the generator table).**  If
 >
-> `|E_n|/|V_n| -> 1`,  `c(G_n)/|V_n| -> 0`.            `(CFR4)`
+> `r(G_n)/|V_n| -> 0`,                                  `(RFR5)`
 >
-> Then every sequence of group-valued edge labellings is `o(|V_n|)`-close
-> in Hamming edge measure to a coboundary labelling.  For circle labels, one
-> may first approximate the finitely many labels in each model by roots of
-> unity and obtain a finite-phase coboundary.
+> then every sequence of group-valued generator-edge labellings is
+> `o(|V_n|)`-close in edge Hamming measure to a coboundary labelling.  For
+> circle labels, first approximate the finitely many labels in each model by
+> roots of unity; the repaired coboundary is then finite-phase.
 
-This is stronger than qualitative cocycle stability on this particular
-sequence: it repairs arbitrary curvature after changing only the cycle-excess
-edges.
+This corollary concerns the chosen generator edges.  Passing from them to
+external transformations represented by long paths is a separate step.
 
-## 3. Sparse models supplied by cost one
+## 3. Exact routed-tree-excess criterion
 
-Fix a finite test in the skew relation and a tolerance `epsilon>0`.  Choose a
-countable graphing `Phi=(phi_i)` generating `R` with
+For each `n`, let `G_n=(V_n,E_n)` be the finite graph underlying a base
+model.  Choose a spanning forest `F_n` and put
 
-`sum_i mu(dom(phi_i)) < 1+epsilon`.                    `(CFR5)`
+`D_n=E_n minus F_n`.                                    `(RFR6)`
 
-This is the definition of `cost(R)=1`, using the standard normalization in
-which one partial isomorphism contributes the measure of its domain.
+Let `T` be a finite collection of transformations to be tested.  Suppose
+that, for each `t in T` and every `v` in its finite-model domain, a path
 
-Only finitely many graphing letters are needed to approximate the fixed test
-by words.  Enlarge this finite family further so that, outside a set of
-measure at most `epsilon`, its connected components have more than
-`M` vertices.  This is possible because the increasing union of the finite
-subgraphings generates the aperiodic relation: for almost every `x`, the
-size of its finite-subgraphing component increases to the infinite size of
-`[x]_R`.
+`P_(n,t,v)`                                             `(RFR7)`
 
-Partition the domains of these finitely many graphing letters so that every
-edge value
+in `G_n` represents the model value of `t` at `v`.  Define its forest
+exposure by
 
-`alpha(phi_i(x),x)`                                    `(CFR6)`
+`q_n(t)=|{v : P_(n,t,v) uses an edge of D_n}|/|V_n|`.   `(RFR8)`
 
-is, outside measure `epsilon`, within `epsilon` of a constant root of unity
-on each partition cell.  One common group `mu_m` suffices for the finite
-partition.  Include these cells as finite colours in a sofic model of `R`.
+> **Theorem 3 (routed forest phase repair).**  Suppose the finite base
+> models converge to a sofic pmp equivalence relation, their quantized
+> `mu_(m_n)`-valued generator-edge labels converge to a measurable circle
+> cocycle, and forests can be chosen so that
+>
+> `q_n(t) -> 0` for every fixed tested transformation `t`. `(RFR9)`
+>
+> Then replacing the labels by the forest coboundaries from Lemma 1 gives
+> finite permutation-bundle models of the principal circle skew product.
+> In particular, if one exhaustion of finite tests satisfies `(RFR9)`, the
+> skew-product relation is sofic.
 
-Let `G_n=(V_n,E_n)` be the resulting finite coloured graph.  Soficity and
-`(CFR5)` give, for sufficiently accurate models,
+**Proof.**  Apply Lemma 1 and write the repaired label as
 
-`|E_n| <= (1+2 epsilon)|V_n|`.                         `(CFR7)`
+`a'_n(e)=b_n(target(e))b_n(source(e))^(-1)`.            `(RFR10)`
 
-The chosen component-size statistic gives
+On
 
-`|{v: |component(v)| <= M}| <= 2 epsilon |V_n|`.       `(CFR8)`
+`Omega_n=V_n times mu_(m_n)`
 
-Every component of size greater than `M` accounts for more than `M`
-vertices, while the number of small components is at most the number of
-vertices in them.  Hence
+lift a model generator edge `v -> sigma_i(v)` by
 
-`c(G_n)/|V_n| <= 2 epsilon + 1/M`.                     `(CFR9)`
+`(v,u) -> (sigma_i(v),a'_n(v,sigma_i(v))u)`.            `(RFR11)`
 
-Lemma 1 therefore changes at most
+The product of `(RFR10)` along every path from `v` to `w` telescopes to
 
-`(4 epsilon+1/M)|V_n|`                                `(CFR10)`
+`b_n(w)b_n(v)^(-1)`.                                   `(RFR12)`
 
-edge labels, up to the vanishing finite-model errors.  Call the resulting
-`mu_m`-valued coboundary label `a'_n`.
+Hence every equality between base paths lifts to an exact equality on the
+finite phase bundle.  There is no circle carry and no shrinking
+root-spacing problem.
 
-## 4. Lift to a genuine finite permutation bundle
+For a tested `t`, the repaired and original quantized phase products agree
+whenever `P_(n,t,v)` stays in the forest.  Their disagreement set therefore
+has density at most `q_n(t)`, which tends to zero by `(RFR9)`.  Initial
+circle quantization and base-model errors tend to zero separately.  Uniform
+measure on `mu_(m_n)` converges to Haar measure on the circle, and circle
+test partitions may be chosen with Haar-null boundary.  Thus all finite
+labelled statistics of the lifted tests converge to those of the principal
+skew product.  End proof.
 
-Let a model edge for `phi_i` run from `v` to `sigma_i(v)`.  On
+The theorem uses exposure `(RFR8)`, not merely the cardinality of `D_n`.
+This distinction is precisely what is lost in a bare cost estimate.
 
-`Omega_n=V_n times mu_m`
+## 4. A convenient word-length sufficient condition
 
-define the lifted partial permutation
+Suppose a tested transformation `t` is represented by a word of length at
+most `L_n(t)` in partial-bijection generators.  At each fixed step, the map
+from starting vertices to the currently traversed oriented generator edge
+is injective on its domain.  Therefore a union bound gives
 
-`hat(sigma_i)(v,u)`
-`  =(sigma_i(v),a'_n(v,sigma_i(v))u)`.                 `(CFR11)`
+`q_n(t) <= L_n(t)|D_n|/|V_n|`.                         `(RFR13)`
 
-Because `a'_n` is the vertex coboundary `(CFR2)`, its product along *every*
-finite path from `v` to `w` is
+Consequently:
 
-`b_n(w)b_n(v)^(-1)`.                                  `(CFR12)`
+> **Corollary 4 (width times excess).**  The conclusion of Theorem 3 holds
+> if, for every fixed test `t`,
+>
+> `L_n(t) r(G_n)/|V_n| -> 0`.                          `(RFR14)`
 
-Consequently every equality between base paths in the finite model lifts to
-an exact equality on `Omega_n`.  There is no circle carry and no shrinking
-root-spacing problem.  The uniform measure on `mu_m` converges to Haar
-measure on `T` as `m` increases.
+For a fixed graphing and fixed test words, `(RFR5)` implies `(RFR14)`.  The
+problem for an abstract cost-one relation is that both the graphing and the
+representing words change as the graphing cost approaches one.
 
-For a word of length at most `L`, the corrected and original quantized phase
-products can differ only if the path crosses a changed edge.  By a union
-bound and `(CFR10)`, this affects at most
+## 5. Why cost one alone does not prove the criterion
 
-`L(4 epsilon+1/M)+o(1)`                               `(CFR13)`
+Let `R` be aperiodic with `cost(R)=1`.  For every `epsilon>0` there is a
+generating graphing `Phi_epsilon` with
 
-of the starting vertices.  The initial phase quantization and the base
-sofic-model error contribute another quantity tending to zero.  Circle
-partitions may be chosen with Haar-null boundaries, so convergence of the
-finite labelled statistics follows.
+`cost(Phi_epsilon)<1+epsilon`.                         `(RFR15)`
 
-First take the finite model size to infinity, then `M` and `m` to infinity,
-and finally `epsilon` to zero.  A diagonal sequence models every finite test
-in `R(alpha)`.  This proves the theorem.
+A sufficiently accurate finite model of a large finite subgraphing has
 
-## 5. Consequence for the Haar phase kernel
+`r(G_n)/|V_n| <= O(epsilon)+o_n(1)`,                   `(RFR16)`
 
-In the bounded-exponent common-Cartan setup of Theorem 3H in
-`TRUE_HAAR_PHASE_KERNEL.md`, slow tensor amplification makes the quotient
-relation `R_Q` principal.  If in addition
+because its edge density is at most `1+epsilon` and its component density
+can be made small by aperiodicity.  This part of the original cost-one
+argument is correct.
 
-`cost(R_Q)=1`,                                         `(CFR14)`
+Now fix an external finite test `T`.  Let `L_epsilon(T)` be the largest word
+length used to approximate its members in `Phi_epsilon`.  The forest proof
+only yields the error estimate
 
-then the theorem above makes the circle skew product `R_Q(lambda)` sofic.
-Theorem 3H then gives:
+`O(L_epsilon(T) epsilon)`.                             `(RFR17)`
 
-> **Corollary 3.**  A hyperlinear group satisfying the bounded-exponent
-> common-Cartan hypotheses of Theorem 3H is sofic whenever its principal
-> quotient relation is sofic of cost one.
+The definition of cost supplies no bound on `L_epsilon(T)`.  In particular,
+it does not imply
 
-This removes the Bockstein, uncountable-range, and finite-phase stability
-obstructions simultaneously in the cost-one case: sparse graphings let one
-discard all global holonomy edges at vanishing density.
+`inf_(epsilon -> 0) L_epsilon(T)epsilon=0`.            `(RFR18)`
 
-The remaining general case has positive tree excess.  If a finite graphing
-model has asymptotic edge density `c>1`, the same argument changes at most
+Thus `(RFR15)` does not imply `(RFR9)` or `(RFR14)`.
 
-`(c-1+o(1))|V_n|`                                     `(CFR15)`
+The same loss appears under finite amplification.  The standard graphing of
+an `m`-fold amplification places one copy of the horizontal `R`-edges over
+roughly `m` vertical copies, reducing normalized cost excess by `1/m`.
+However, the transformation on each of the `m` slices routes through those
+same horizontal edges.  A deleted horizontal edge is therefore reused by
+`m` starting fibers.  The global edge saving `1/m` is cancelled by routing
+multiplicity `m`; after returning to a slice there is no improved Hamming
+error.  Infinite hyperfinite stabilization has the same accounting issue.
 
-edges, which is not negligible.  Thus the proof identifies the exact place
-where cost one is used and does not smuggle in a Følner assumption.
+This explains why the product-with-a-hyperfinite-relation shortcut cannot be
+used to deduce arbitrary compact-skew permanence from the forest lemma.
 
-## 6. Source and novelty audit
+## 6. Consequence for the Haar phase program
 
-The only external inputs are the standard graphing definition of cost and
-the finite-coloured-model definition of a sofic equivalence relation.  The
-forest estimate and the skew-bundle construction are proved above.
+In the principal quotient-relation endpoint of Theorem 3H in
+`TRUE_HAAR_PHASE_KERNEL.md`, the circle phase gate closes whenever its sofic
+models have vanishing routed tree excess `(RFR9)`.  Therefore:
 
-Relevant background:
+> **Corollary 5.**  A hyperlinear group satisfying the bounded-exponent
+> common-Cartan hypotheses of Theorem 3H is sofic if its principal quotient
+> relation admits phase-compatible finite models satisfying `(RFR9)` (or the
+> sufficient estimate `(RFR14)`).
+
+The previously proved treeable case uses a different cohomological argument;
+positive-cost treeings need not have vanishing tree excess in finite models.
+Følner models do satisfy the present criterion through their controlled
+routing.  The new formulation isolates a possible intermediate class:
+relations whose relevant tests admit low-congestion routing through
+near-forest sofic models even when no fixed treeing or Følner exhaustion is
+available.
+
+For the general problem, the live quantitative question is now:
+
+> Can the normal `0/1` trace law or the simultaneous prefix-path structure
+> select phase-compatible base models for which the deleted cycle edges have
+> vanishing exposure `(RFR9)`?
+
+This is more precise than asking for cost one and weaker than requiring the
+entire graphing model to be cocycle stable.
+
+## 7. Source audit
+
+The forest lemma and routed exposure estimate are proved above.  The
+background notions are the graphing definition of cost and the
+finite-coloured-model definition of a sofic equivalence relation:
 
 * D. Gaboriau, *What is Cost?*, arXiv:1011.2294.
 * G. Elek and G. Lippner, *Sofic equivalence relations*, arXiv:0906.3619.
 * L. Paunescu, *On Sofic Actions and Equivalence Relations*,
   arXiv:1002.0605.
 
-A targeted search did not locate a stated compact-skew permanence theorem
-under exactly the hypotheses above.  Until independently checked against a
-fully fixed formal definition of sofic groupoids, it should be cited as the
-finite-model theorem proved in this note, rather than attributed to those
-papers.
+A targeted search did not locate a stated phase-repair theorem in this
+routed-tree-excess form.  The unconditional cost-one claim should not be
+cited; the valid conclusions are Lemma 1, Theorem 3, and their explicitly
+quantitative corollaries.
