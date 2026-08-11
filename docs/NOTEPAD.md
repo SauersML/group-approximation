@@ -38729,3 +38729,26 @@ negligible normalized rank.  Neither supplies `(PSG6)`.
 Thus the quotient MF problem is closed.  The entire FALSE content of the
 cyclic shear is now one existence problem for an unstable operator-norm
 projective sector.  It remains open.
+
+# Coamenable shear actions collapse to a vertex radical sector (2026-08-10)
+
+Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`,
+`(CAC9)--(CAC15)`.  Let `m` be an invariant mean for any action of the cyclic
+shear `J` in which its central involution `z` acts freely.  The mean-Hamming
+pseudometric is bi-invariant.  With `r_i=[x_i,a_i]` in the two vertex copies,
+the shear relation `z=r_2^(-1)r_1` gives
+
+`1=d_m(z,1) <= d_m(r_1,1)+d_m(r_2,1)`
+`              <= 2d_m(x_1,1)+2d_m(x_2,1)`.             `(CSD1)`
+
+Hence one original radical witness has mean displacement at least `1/4`.
+Restricting the mean and permutation representation to that copy of `H`
+gives an amenable trace with `tau(u(x_i))<=3/4`.  Amenable-trace microstates
+therefore give a hyperlinear image retaining `x_i`; because
+`x_i in Rad_sof(H)`, that image is nonsofic.
+
+Thus a Moon--Fima construction of the desired shear action would solve the
+problem, but it cannot make trace separation emerge only after amalgamation:
+it has already built the needed amenable negative sector in a vertex.  The
+smaller action target is directly an amenable `H`-action with
+`m(Fix(x))<1`, not a class-`A` permanence theorem for the shear.

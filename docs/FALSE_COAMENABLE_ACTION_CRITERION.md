@@ -138,3 +138,66 @@ This is weaker than constructing a faithful action, but equivalent to the
 coamenable induced-sign sector in `FALSE_AMENABLE_SECTOR_AUDIT.md`.  Its
 advantage is a direct fixed-point/trace formulation, not a weaker existence
 hypothesis.  No construction of that action is currently proved here.
+
+## 4. The shear action collapses back to the original radical witness
+
+There is a further quantitative restriction which is easy to miss.  Let `m`
+be a `J`-invariant mean on an arbitrary `J`-set `X`, and define the invariant
+Hamming pseudometric
+
+`d_m(g,h)=m({x in X : gx != hx})`.                         `(CAC9)`
+
+Write `x_i,a_i,r_i=[x_i,a_i]` for the elements in the two vertex copies,
+where each `x_i` is the copy of the original nontrivial element
+`x in Rad_sof(H)`.  The shear relation is
+
+`r_1=r_2 z`, and hence `z=r_2^(-1) r_1`.                  `(CAC10)`
+
+**Proposition (displacement collapse).**  If `z` acts freely on `X`, then
+
+`max(d_m(x_1,1),d_m(x_2,1)) >= 1/4`.                     `(CAC11)`
+
+Consequently the restricted action of one vertex copy of `H` already gives
+an amenable trace whose hyperlinear image retains the original radical
+witness `x`.  In particular, it already gives a hyperlinear nonsofic group
+without using the shear.
+
+**Proof.**  Invariance of `m` makes `(CAC9)` bi-invariant.  Since `z` acts
+freely, `d_m(z,1)=1`.  The triangle inequality and `(CAC10)` give
+
+`1 <= d_m(r_1,1)+d_m(r_2,1)`.                            `(CAC12)`
+
+For every pair of permutations `u,v`, bi-invariance also gives
+
+`d_m([u,v],1)`
+` <= d_m(u^(-1),1)+d_m(v^(-1)uv,1)`
+` =2 d_m(u,1)`.                                         `(CAC13)`
+
+Applying `(CAC13)` to `r_i=[x_i,a_i]` in `(CAC12)` yields
+
+`1 <= 2d_m(x_1,1)+2d_m(x_2,1)`,                         `(CAC14)`
+
+which proves `(CAC11)`.
+
+Restrict the action and the invariant mean to the vertex copy of `H`
+selected by `(CAC11)`.  The diagonal-state construction `(CAC3)` gives an
+amenable trace `tau_H` on its permutation image, and
+
+`tau_H(u(x_i))=m(Fix_X(x_i))=1-d_m(x_i,1) <= 3/4`.       `(CAC15)`
+
+Thus `x_i` survives in the tracial matrix-ultraproduct image furnished by
+amenability of `tau_H`.  If that image were sofic, the homomorphism from `H`
+to it would kill `x_i in Rad_sof(H)`, contradicting `(CAC15)`.  The image is
+therefore hyperlinear and nonsofic.  End proof.
+
+This does not invalidate the coamenable-action criterion.  It shows that a
+Moon--Fima-style construction cannot make the hard trace separation appear
+only after amalgamation: any successful fixed-point-free `z` action has
+already produced positive mean displacement of the original radical element
+in one vertex.  The truly smaller action-theoretic target is therefore
+
+> construct an amenable action of `H` with an invariant mean `m` such that
+> `m(Fix_X(x))<1` for one nontrivial `x in Rad_sof(H)`.
+
+That target is exactly the permutation form of the amenable negative-sector
+criterion, not a new permanence theorem for the shear.

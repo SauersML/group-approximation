@@ -145,6 +145,12 @@ theorems do not cover its twisted infinite edge; see
 `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  For the central involution this
 is equivalent to coamenable sign-character induction: adjoining `z` to `L`
 gives the sign character, and taking its kernel reverses the construction.
+Do not pursue class-`A` permanence as an allegedly weaker shortcut.  The
+displacement collapse `(CAC9)--(CAC15)` proves that any such shear action
+already restricts on one vertex to an amenable action in which the original
+radical witness moves mean mass at least `1/4`; that restricted action itself
+produces the hyperlinear nonsofic image.  The smaller action target is
+directly an amenable `H`-action with `m(Fix(x))<1`.
 
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
