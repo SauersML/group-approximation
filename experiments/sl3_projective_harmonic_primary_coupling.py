@@ -20,7 +20,12 @@ from pathlib import Path
 
 from sage.all import GF, matrix, vector
 
-from sl3_projective_cellular_analyze import build_boundaries, coinvariants, parse
+from sl3_projective_cellular_analyze import (
+    SignedDSU,
+    build_boundaries,
+    coinvariants,
+    parse,
+)
 from sl3_projective_derived_e1 import coordinate_indices, read_boundary
 
 
@@ -68,6 +73,22 @@ def compact_representatives(degree: int, cells):
     return representatives
 
 
+def signed_torsion_representatives(degree: int, cell):
+    """Choose one point in every signed orbit killed by a minus stabilizer."""
+
+    dsu = SignedDSU(degree)
+    for sign, permutation in cell.stabilizers:
+        for source, target in enumerate(permutation):
+            dsu.union(source, target, sign)
+    representatives = {}
+    for point in range(degree):
+        root, _sign = dsu.find(point)
+        root, _ = dsu.find(root)
+        if dsu.bad[root] and root not in representatives:
+            representatives[root] = point
+    return list(representatives.values())
+
+
 def induced_compact_boundary(
     full_boundary, degree: int, cells, representatives, cell_generators
 ):
@@ -98,10 +119,11 @@ def induced_compact_boundary(
     )
 
 
-def solve_filtered_lift(boundary, degree: int, compact_lift):
+def solve_filtered_lift(
+    boundary, degree: int, compact_lift, q2_torsion_source_indices
+):
     field = boundary.base_ring()
     target_q1 = coordinate_indices(1, 1, degree)
-    target_q0 = coordinate_indices(1, 0, degree)
     source_q1 = coordinate_indices(2, 1, degree)
     source_q0 = coordinate_indices(2, 0, degree)
 
@@ -110,62 +132,61 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
     q1_block = boundary.matrix_from_rows_and_columns(source_q1, target_q1)
     q1_rank = int(q1_block.rank())
     q1_augmented_rank = int(q1_block.stack(matrix(field, [q1_syndrome])).rank())
+    torsion_q1_block = boundary.matrix_from_rows_and_columns(
+        q2_torsion_source_indices, target_q1)
+    q1_with_torsion = q1_block.stack(torsion_q1_block)
     try:
-        q1_local = q1_block.solve_left(-q1_syndrome)
+        q1_with_torsion.solve_left(-q1_syndrome)
     except ValueError:
         return {
-            "q1_solvable": False,
+            "q1_solvable_without_orientation_torsion": (
+                q1_augmented_rank == q1_rank),
+            "q1_solvable_with_orientation_torsion": False,
             "q1_block_rank": q1_rank,
             "q1_augmented_rank": q1_augmented_rank,
             "q1_syndrome_support": len(q1_syndrome.support()),
         }
-    if q1_augmented_rank != q1_rank:
-        raise AssertionError("q=1 solver accepted an inconsistent syndrome")
 
-    q1_correction = vector(field, boundary.nrows())
-    for local, total in enumerate(source_q1):
-        q1_correction[total] = q1_local[local]
-    after_q1 = (compact_lift + q1_correction) * boundary
-    if any(after_q1[index] for index in target_q1):
-        raise AssertionError("q=1 correction left a q=1 residual")
-
-    q0_syndrome = vector(field, [after_q1[index] for index in target_q0])
-    q0_block = boundary.matrix_from_rows_and_columns(source_q0, target_q0)
-    q0_rank = int(q0_block.rank())
-    q0_augmented_rank = int(q0_block.stack(matrix(field, [q0_syndrome])).rank())
+    correction_indices = (
+        list(q2_torsion_source_indices) + source_q1 + source_q0)
+    correction_block = boundary.matrix_from_rows(correction_indices)
     try:
-        q0_local = q0_block.solve_left(-q0_syndrome)
+        correction = correction_block.solve_left(-initial_boundary)
     except ValueError:
         return {
-            "q1_solvable": True,
-            "q0_solvable": False,
-            "q1_correction_support": len(q1_local.support()),
-            "q0_syndrome_support": len(q0_syndrome.support()),
-            "q0_block_rank": q0_rank,
-            "q0_augmented_rank": q0_augmented_rank,
+            "q1_solvable_without_orientation_torsion": (
+                q1_augmented_rank == q1_rank),
+            "q1_solvable_with_orientation_torsion": True,
+            "total_lift_solvable": False,
+            "q1_block_rank": q1_rank,
+            "q1_augmented_rank": q1_augmented_rank,
+            "q1_syndrome_support": len(q1_syndrome.support()),
         }
-    if q0_augmented_rank != q0_rank:
-        raise AssertionError("q=0 solver accepted an inconsistent syndrome")
 
-    q0_correction = vector(field, boundary.nrows())
-    for local, total in enumerate(source_q0):
-        q0_correction[total] = q0_local[local]
-    total_lift = compact_lift + q1_correction + q0_correction
+    total_correction = vector(field, boundary.nrows())
+    for local, total in enumerate(correction_indices):
+        total_correction[total] = correction[local]
+    total_lift = compact_lift + total_correction
     if total_lift * boundary:
         raise AssertionError("filtered correction is not a total cycle")
 
+    torsion_count = len(q2_torsion_source_indices)
+    q1_count = len(source_q1)
+    torsion_local = correction[:torsion_count]
+    q1_local = correction[torsion_count:torsion_count + q1_count]
+    q0_local = correction[torsion_count + q1_count:]
     first_q0 = q0_local[:degree]
     return {
-        "q1_solvable": True,
-        "q0_solvable": True,
+        "q1_solvable_without_orientation_torsion": (
+            q1_augmented_rank == q1_rank),
+        "q1_solvable_with_orientation_torsion": True,
+        "total_lift_solvable": True,
         "compact_support": len(compact_lift.support()),
         "q1_syndrome_support": len(q1_syndrome.support()),
         "q1_block_rank": q1_rank,
         "q1_augmented_rank": q1_augmented_rank,
+        "q2_orientation_torsion_correction_support": len(torsion_local.support()),
         "q1_correction_support": len(q1_local.support()),
-        "q0_syndrome_support": len(q0_syndrome.support()),
-        "q0_block_rank": q0_rank,
-        "q0_augmented_rank": q0_augmented_rank,
         "q0_correction_support": len(q0_local.support()),
         "total_lift_support": len(total_lift.support()),
         "first_q0_generator_support": len(first_q0.support()),
@@ -215,6 +236,12 @@ def main() -> None:
         raise AssertionError(
             "HAP zero-row boundary does not match the compact boundary: "
             + repr(comparison_ranks))
+    first_cell_torsion_points = signed_torsion_representatives(
+        degree, cells[(2, 1)])
+    q2_torsion_source_indices = [
+        cell_generators[0] * degree + point
+        for point in first_cell_torsion_points
+    ]
     records = []
     for basis_index, integer_row in enumerate(harmonic_rows):
         compact_cycle = vector(field, integer_row)
@@ -226,7 +253,12 @@ def main() -> None:
             generator = cell_generators[cell_index - 1]
             compact_lift[generator * degree + point] += (
                 field(source_sign) * compact_cycle[compact_coordinate])
-        record = solve_filtered_lift(full_boundary, degree, compact_lift)
+        record = solve_filtered_lift(
+            full_boundary,
+            degree,
+            compact_lift,
+            q2_torsion_source_indices,
+        )
         record["basis_index"] = basis_index
         record["compact_reduced_support"] = len(compact_cycle.support())
         records.append(record)
@@ -239,6 +271,8 @@ def main() -> None:
         "full_degree_two_dimension": full_boundary.nrows(),
         "canonical_representative_count": len(representatives),
         "cell_generators": list(cell_generators),
+        "first_two_cell_orientation_torsion_orbits": len(
+            first_cell_torsion_points),
         "zero_row_comparison_ranks": comparison_ranks,
         "records": records,
     }
