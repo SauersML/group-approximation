@@ -124,6 +124,49 @@ sector.  Moreover, `(CAP1)--(CAP13)` in
 permutation character is already co-sofic.  A viable amenable negative sector
 therefore has to be genuinely nonpermutational, and hence nonmonomial.
 
+### Why the unit-sphere mean does not close the last case
+
+Pestov, *Amenable representations and dynamics of the unit sphere in an
+infinite-dimensional Hilbert space* (arXiv:math/9903085v2), proves that a
+Bekka-amenable unitary representation `pi:J->U(H)` admits a `J`-invariant
+mean on
+
+`UCB(S(H))`,                                                `(USP1)`
+
+the uniformly continuous bounded functions on the unit sphere.  If
+`pi(z)=-1`, the action of `z` on `S(H)` is fixed-point-free.  It is tempting
+to combine `(USP1)` with `(CAP13)`, but the domains of the two means are
+different in exactly the needed place.
+
+The proof of `(CAP6)` starts with a mean on all of `ell^infinity(X)`.  Atomic
+probabilities approaching that mean make their translate differences
+converge weakly in `ell^1(X)`, because
+
+`ell^1(X)^*=ell^infinity(X)`.                               `(USP2)`
+
+Mazur convexification then upgrades weak convergence to total-variation
+convergence.  A mean on `UCB(S(H))` tests only uniformly continuous
+functions.  Atomic approximants therefore need not have translate
+differences converging weakly in `ell^1(S(H))`; the missing discontinuous
+tests are precisely the arbitrary subsets needed for total variation.
+
+Metric or Wasserstein closeness does not substitute for `(USP2)`.  Two
+distinct atoms always have total-variation distance `2`, however close their
+sphere vectors are.  Turning closeness into equality requires a finite
+partition with simultaneous small boundary under all tested transformations,
+and making the resulting atom matchings multiplicatively coherent is the
+same joint matching problem as in the TRUE lane.
+
+Thus Pestov's theorem identifies a promising geometric model but does not
+produce the `ell^infinity`-mean required by `(CAP1)--(CAP13)`.  No invariant
+positive extension
+
+`UCB(S(H)) -> ell^infinity(S(H))`                            `(USP3)`
+
+is available without an additional amenability hypothesis on the acting
+group.  The genuinely nonpermutational amenable negative sector remains
+open; silently replacing `(USP1)` by `(USP3)` would assume the missing step.
+
 ## 4. Updated live boundary
 
 The following routes are now sharply separated.

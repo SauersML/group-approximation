@@ -38800,6 +38800,32 @@ also the collaborator's smaller vertex-action target with positive mean
 displacement.  Any surviving amenable negative sector must be genuinely
 nonpermutational as well as nonmonomial.
 
+## The Bekka unit-sphere mean stops at `UCB`, not `ell^infinity`
+
+Pestov, arXiv:math/9903085v2, proves that a Bekka-amenable representation
+has an invariant mean on `UCB(S(H))`.  For a negative scalar sector,
+`pi(z)=-1` acts antipodally and hence fixed-point-freely on the sphere, but
+this does **not** allow `(CAP13)` to be applied.
+
+The prescribed Reiter argument uses the full duality
+
+`ell^1(X)^*=ell^infinity(X)`:                              `(USP2)`
+
+weak-star approximation of an `ell^infinity`-mean makes translate defects
+weakly zero in `ell^1`, and Mazur then makes them small in total variation.
+An invariant `UCB`-mean controls only uniformly continuous tests.  It gives
+no weak `ell^1` convergence against arbitrary subsets and hence no
+total-variation matching.  Metric/Wasserstein proximity of distinct sphere
+points does not help directly—their atomic total-variation distance remains
+`2`.  A partition that turns proximity into equality needs simultaneous
+boundary control and coherent atom matchings, which is the original rounding
+problem in another form.
+
+Therefore the sphere construction does not close the genuinely
+nonpermutational amenable sector.  An invariant positive extension from
+`UCB(S(H))` to all bounded functions would be the missing new theorem, not a
+formal consequence of Bekka amenability.
+
 # The regular-MF double input is now fully explicit (2026-08-10)
 
 The profinite-trace repair from the earlier weak-MF-double section is the
