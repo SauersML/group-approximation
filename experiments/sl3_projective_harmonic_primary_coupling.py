@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from fractions import Fraction
 from pathlib import Path
 
 from sage.all import GF, matrix, vector
@@ -145,7 +146,7 @@ def solve_filtered_lift(
             "q1_block_rank": q1_rank,
             "q1_augmented_rank": q1_augmented_rank,
             "q1_syndrome_support": len(q1_syndrome.support()),
-        }
+        }, None
 
     correction_indices = (
         list(q2_torsion_source_indices) + source_q1 + source_q0)
@@ -161,7 +162,7 @@ def solve_filtered_lift(
             "q1_block_rank": q1_rank,
             "q1_augmented_rank": q1_augmented_rank,
             "q1_syndrome_support": len(q1_syndrome.support()),
-        }
+        }, None
 
     total_correction = vector(field, boundary.nrows())
     for local, total in enumerate(correction_indices):
@@ -193,7 +194,7 @@ def solve_filtered_lift(
         "first_q0_generator_coordinates": list(first_q0.support()),
         "exceptional_singleton_coefficient": int(first_q0[0]),
         "ordinary_singleton_coefficient": int(first_q0[1]),
-    }
+    }, total_lift
 
 
 def main() -> None:
@@ -246,10 +247,13 @@ def main() -> None:
         for point in two_cell_torsion_points[cell_index - 1]
     ]
     records = []
+    compact_cycles = []
+    total_lifts = []
     q1_syndromes = []
     target_q1 = coordinate_indices(1, 1, degree)
     for basis_index, integer_row in enumerate(harmonic_rows):
         compact_cycle = vector(field, integer_row)
+        compact_cycles.append(compact_cycle)
         if compact_cycle * compact_boundary:
             raise AssertionError("reduced compact harmonic vector is not a cycle")
         compact_lift = vector(field, full_boundary.nrows())
@@ -261,7 +265,7 @@ def main() -> None:
         initial_boundary = compact_lift * full_boundary
         q1_syndromes.append(vector(
             field, [initial_boundary[index] for index in target_q1]))
-        record = solve_filtered_lift(
+        record, total_lift = solve_filtered_lift(
             full_boundary,
             degree,
             compact_lift,
@@ -270,12 +274,41 @@ def main() -> None:
         record["basis_index"] = basis_index
         record["compact_reduced_support"] = len(compact_cycle.support())
         records.append(record)
+        total_lifts.append(total_lift)
 
     source_q1 = coordinate_indices(2, 1, degree)
     q1_block = full_boundary.matrix_from_rows_and_columns(source_q1, target_q1)
     harmonic_q1_transgression_rank = int(
         q1_block.stack(matrix(field, q1_syndromes)).rank()
         - q1_block.rank())
+
+    harmonic_section_profiles = []
+    harmonic_section_maximum = Fraction(0)
+    if all(lift is not None for lift in total_lifts):
+        for mask in range(1, 1 << len(compact_cycles)):
+            compact_combination = vector(field, compact_dimensions[2])
+            total_combination = vector(field, full_boundary.nrows())
+            for basis_index in range(len(compact_cycles)):
+                if mask & (1 << basis_index):
+                    compact_combination += compact_cycles[basis_index]
+                    total_combination += total_lifts[basis_index]
+            compact_support = len(compact_combination.support())
+            total_support = len(total_combination.support())
+            if compact_support == 0:
+                raise AssertionError("harmonic basis is dependent modulo the field")
+            squared_ratio = Fraction(
+                total_support * compact_dimensions[2],
+                compact_support * full_boundary.nrows(),
+            )
+            harmonic_section_maximum = max(
+                harmonic_section_maximum, squared_ratio)
+            harmonic_section_profiles.append({
+                "basis_mask": mask,
+                "compact_support": compact_support,
+                "total_lift_support": total_support,
+                "normalized_squared_ratio": str(squared_ratio),
+                "normalized_ratio_approx": float(squared_ratio ** Fraction(1, 2)),
+            })
 
     payload = {
         "prime": prime,
@@ -289,6 +322,11 @@ def main() -> None:
             len(points) for points in two_cell_torsion_points],
         "harmonic_q1_transgression_rank_without_orientation_torsion": (
             harmonic_q1_transgression_rank),
+        "harmonic_modular_section_profiles": harmonic_section_profiles,
+        "harmonic_modular_section_norm": {
+            "squared": str(harmonic_section_maximum),
+            "approx": float(harmonic_section_maximum ** Fraction(1, 2)),
+        } if harmonic_section_profiles else None,
         "zero_row_comparison_ranks": comparison_ranks,
         "records": records,
     }
