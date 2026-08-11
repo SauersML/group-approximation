@@ -18,9 +18,7 @@ Q0RelationPoints := [
     [1, 2, 1, 4, 2, 1]
 ];
 Q0RelationSupport := [
-    [1, 3], [2, 4], [2, 8], [3, 2], [4, 2], [4, 4],
-    [5, 1], [5, 2], [5, 4], [5, 8], [6, 0], [6, 4],
-    [7, 0], [7, 8], [8, 1], [8, 4], [9, 0], [11, 0], [11, 8]
+    [10, 8], [11, 1], [11, 8], [12, 8]
 ];
 
 Q0RelationCanonicalLine := function(vector)
@@ -72,7 +70,7 @@ Q0RelationExpected := Set([
     [0, Q0RelationPoints[9]]
 ]);
 if Q0RelationResidual <> Q0RelationExpected then
-    Error("the rational nineteen-term relation has the wrong boundary");
+    Error("the rational four-term relation has the wrong boundary");
 fi;
 
 Print("support=", Length(Q0RelationSupport),
