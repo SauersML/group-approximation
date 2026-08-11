@@ -140,6 +140,61 @@ not allow an exact implementation of that orbit flip followed by a small
 perturbation of the `Gamma` action.  Positive negative-sector rank forces a
 positive edge mismatch independent of the matrix dimension.
 
+The exact lamp hypothesis in Theorem 2 is not essential for this conclusion.
+Only the single commutator relation carrying the central sign is needed.
+
+**Theorem 2A (robust finite-window parity bound).**  Let
+
+`alpha_i:G_0->U(d)`, `i=1,2`,                            `(RVH14a)`
+
+be honest finite-dimensional unitary representations, let `V,Z in U(d)`,
+and suppose that `Z` is an involution.  Put
+
+`S_h=alpha_2(h)alpha_1(h)^(-1)`,
+`epsilon=max_(a in S)||alpha_1(a)-alpha_2(a)||_2`,       `(RVH14b)`
+
+and assume only the approximate parity relation
+
+`||Z-[V,S_h]||_2<=eta`.                                 `(RVH14c)`
+
+If `delta` is the relative dimension of the `-1` eigenspace of `Z`, then
+
+`sqrt(delta)<=eta/2+(2/kappa)epsilon`.                  `(RVH14d)`
+
+Equivalently,
+
+`delta<=(eta/2+(2/kappa)epsilon)^2`.                    `(RVH14e)`
+
+**Proof.**  The finite-representation matching theorem applied to the two
+honest representations in `(RVH14a)` gives
+
+`||S_h-1||_2=||alpha_2(h)-alpha_1(h)||_2`
+`             <=(2/kappa)epsilon`.                     `(RVH14f)`
+
+For arbitrary unitaries `V,S`,
+
+`||[V,S]-1||_2<=2||S-1||_2`.                           `(RVH14g)`
+
+The triangle inequality, `(RVH14c)`, `(RVH14f)`, and `(RVH14g)` therefore
+give
+
+`2sqrt(delta)=||Z-1||_2`
+` <=eta+(4/kappa)epsilon`.                              `(RVH14h)`
+
+Dividing by two proves `(RVH14d)--(RVH14e)`.  End proof.
+
+In particular, a sequence with a fixed lower bound `delta>=delta_0>0`
+must satisfy the dimension-free alternative
+
+`eta+(4/kappa)epsilon>=2sqrt(delta_0)`.                 `(RVH14i)`
+
+Thus permitting an approximate Boolean/lamp implementation does not rescue
+honest models of the two acting copies of `G_0`.  If the edge mismatch on
+the fixed Kazhdan set and the one parity-relation defect both tend to zero,
+then the negative central rank tends to zero.  A successful model must be
+genuinely nonliftable already in at least one acting `G_0` sector; moving the
+inexactness only into the lamp coordinates cannot work.
+
 ## The general matching no-go
 
 **Theorem 3 (exact RF vertices cannot retain `z`).**  Let
