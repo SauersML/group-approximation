@@ -397,6 +397,83 @@ central line is exactly the projective-sector problem.  Operator-MF is not
 known to pass either to this locally-finite-by-`G` semidirect product or
 from `E_univ` to the quotient `P`.
 
+The central multiplier in Theorem 6 is completely explicit.  This is useful
+because it removes the module quotient from the analytic statement.
+
+**Theorem 7 (Schreier formula for the universal multiplier).**  Put
+
+`Y=G/<s>`
+
+and choose a section `tau:Y->G`.  Define the integer Schreier cocycle by
+
+`g tau(y)=tau(gy)s^(kappa(g,y))`.                      `(MSC20ag)`
+
+In `A_univ`, set
+
+`e_y=tau(y)v_univ`.                                   `(MSC20ah)`
+
+Then
+
+`{z_univ} union {e_y:y in Y}`                         `(MSC20ai)`
+
+is an `F_2`-basis of `A_univ`, and the `G`-action is
+
+`g e_y=e_(gy)+(kappa(g,y) mod 2)z_univ`.              `(MSC20aj)`
+
+Consequently, if
+
+`Q=(directSum_Y C_2) semidirect G=E_univ/<z_univ>`,  `(MSC20ak)`
+
+the central extension `E_univ->Q` has the following normalized multiplier.
+For a finite lamp `c=(c_y)_(y in Y)`, put
+
+`L_g(c)=sum_(y in Y)c_y kappa(g,y) mod 2`.             `(MSC20al)`
+
+Using the section which lifts the lamp at `y` to `e_y`, one has
+
+`omega((b,g),(c,h))=(-1)^(L_g(c))`.                   `(MSC20am)`
+
+In particular the missing negative projective sector is exactly a
+norm-matrix asymptotic representation of the permutational wreath product
+`Q` with multiplier `(MSC20am)`.
+
+**Proof.**  The quotient map in `(MSC20w)` sends `e_y` to the standard lamp
+`delta_y`.  Hence the elements in `(MSC20ai)` span and are linearly
+independent, using nontriviality of `z_univ` for the remaining kernel
+coordinate.
+
+The defining relation gives
+
+`s^n v_univ=v_univ+(n mod 2)z_univ`                  `(MSC20an)`
+
+for every integer `n`.  Apply this after `(MSC20ag)`:
+
+`g e_y=tau(gy)s^(kappa(g,y))v_univ`
+`     =e_(gy)+(kappa(g,y) mod 2)z_univ`,
+
+which proves `(MSC20aj)`.
+
+For a finite lamp `c`, let
+
+`c_tilde=sum_y c_y e_y`.                              `(MSC20ao)`
+
+Equation `(MSC20aj)` gives
+
+`g c_tilde=(g c)_tilde+L_g(c)z_univ`.                 `(MSC20ap)`
+
+Multiplying the selected lifts of `(b,g)` and `(c,h)` in
+`A_univ semidirect G`, the only difference from the selected lift of
+`(b+g c,gh)` is the central term in `(MSC20ap)`.  Letting `z_univ` act as
+`-1` gives `(MSC20am)`.  End proof.
+
+The formula is local in the lamp variable, but it has no exact finite
+equivariant realization which retains the central sign.  Indeed, the proof
+of Proposition 3 applied to `E_univ` says that every finite equivariant
+quotient of `A_univ` kills `z_univ`.  Thus `(MSC20am)` is not already a
+hidden exact finite Weyl model.  A successful construction must approximate
+this specific Schreier carry in operator norm without repairing it to a
+finite `G`-set in a way that erases the sign.
+
 There is also a cohomological formulation.  Let `Z=<-1_X>` be the trivial
 one-dimensional `F_2[G]`-submodule of `A`.  The exact sequence
 

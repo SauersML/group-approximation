@@ -39931,3 +39931,39 @@ FALSE candidate with a nonzero central radical involution.  Operator-MF of
 `E_univ` would close the main problem by the finite-radical corner theorem.
 It is not proved: `(MSC18)` is precisely a nonsplit projective-sector lift,
 and the current MF amalgam/wreath permanence theorems do not cover it.
+
+# 2026-08-11: explicit Schreier multiplier for the universal candidate
+
+Full proof: `docs/FALSE_MACKEY_SPLIT_COCYCLE.md`, Theorem 7.  Put
+
+`Y=G/<s>`
+
+and choose a section `tau:Y->G`, with integer Schreier cocycle
+
+`g tau(y)=tau(gy)s^(kappa(g,y))`.                    `(MSC20)`
+
+If `e_y=tau(y)v_univ`, then
+
+`{z_univ} union {e_y:y in Y}`                       `(MSC21)`
+
+is an `F_2`-basis of `A_univ`, and
+
+`g e_y=e_(gy)+(kappa(g,y) mod 2)z_univ`.            `(MSC22)`
+
+Thus, for
+
+`Q=(directSum_Y C_2) semidirect G=E_univ/<z_univ>`, `(MSC23)`
+
+the central extension `E_univ->Q` is represented by the explicit multiplier
+
+`omega((b,g),(c,h))=(-1)^(L_g(c))`,
+`L_g(c)=sum_y c_y kappa(g,y) mod 2`.                 `(MSC24)`
+
+This is obtained by lifting the lamp at `y` to `e_y`; equation `(MSC22)`
+shows that acting by `g` introduces exactly `L_g(c)z_univ`.  Consequently
+the remaining FALSE gate can be stated without the module quotient: build
+operator-norm microstates for this particular twisted permutational wreath
+product which retain its central sign.  Every exact finite equivariant
+quotient kills that sign (apply the proof of Proposition 3 to `E_univ`), so
+the formula is not secretly an exact finite Weyl model.  This sharpens the
+analytic target but does **not** yet prove operator-MF or the main result.
