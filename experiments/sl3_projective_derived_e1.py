@@ -203,6 +203,39 @@ def filtered_h2_dimensions(boundaries, degree: int):
     }
 
 
+def q0_homology_representatives(boundaries, degree: int):
+    """Lift a basis of the q=0 graded H2 term and report its support."""
+
+    supported_indices = coordinate_indices(2, 0, degree)
+    restricted = boundaries[2].matrix_from_rows(supported_indices)
+    local_cycles = restricted.left_kernel().basis_matrix()
+    embedded = matrix(
+        boundaries[2].base_ring(),
+        local_cycles.nrows(),
+        boundaries[2].nrows(),
+        {
+            (row, supported_indices[column]): value
+            for (row, column), value in local_cycles.dict().items()
+        },
+        sparse=True,
+    )
+    cycle_space = embedded.row_space()
+    boundary_space = boundaries[3].row_space()
+    boundary_cycles = cycle_space.intersection(boundary_space)
+    quotient = cycle_space.quotient(boundary_cycles)
+    result = []
+    for quotient_vector in quotient.basis():
+        vector = quotient_vector.lift()
+        support = [int(index) for index in vector.support()]
+        result.append({
+            "support_size": len(support),
+            "total_coordinates": support,
+            "resolution_generators": sorted({index // degree for index in support}),
+            "coefficient_coordinates": sorted({index % degree for index in support}),
+        })
+    return result
+
+
 def analyze(prime: int, modulus: int, prefix: Path):
     degree = prime**2 + prime + 1
     field = GF(modulus)
@@ -266,6 +299,9 @@ def analyze(prime: int, modulus: int, prefix: Path):
     filtered_h2 = filtered_h2_dimensions(boundaries, degree)
     if filtered_h2["filtration_dimensions"][-1] != total_h2:
         raise AssertionError("cellular filtration does not exhaust total H2")
+    q0_representatives = q0_homology_representatives(boundaries, degree)
+    if len(q0_representatives) != filtered_h2["graded_dimensions"]["0,2"]:
+        raise AssertionError("q=0 representatives do not span the graded term")
 
     return {
         "prime": prime,
@@ -287,6 +323,7 @@ def analyze(prime: int, modulus: int, prefix: Path):
         "full_boundary_ranks": full_boundary_ranks,
         "full_H2_dimension": total_h2,
         "E_infinity_total_degree_two": filtered_h2,
+        "E_infinity_q0_representatives": q0_representatives,
     }
 
 
