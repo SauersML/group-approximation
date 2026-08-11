@@ -828,6 +828,17 @@ full charts or prove that `r` survives in `R/[P,R]`.  This is now the first
 live self-similarity phase seed; full calculation:
 `docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md`.
 
+Free-product conjugacy reduces the 56 apparent survivors further. After
+exact cyclic reduction, they form four classes up to conjugacy and inversion,
+each of size fourteen, represented by collision-tree indices
+11, 30, 44, and 55. All representatives have cyclically reduced length
+eight, and none is conjugate to its inverse. Since conjugacy is trivial and
+inversion is negation in \(R/[P,R]\), the entire first-boundary package is
+generated up to sign by at most these four central classes. Work with these
+four representatives, not the eight projection pairs. Reproducible exact
+classification and proof are in FALSE_SELF_SIMILARITY_PHASE_SEED.md and
+experiments/atlas_survivor_conjugacy.py.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
