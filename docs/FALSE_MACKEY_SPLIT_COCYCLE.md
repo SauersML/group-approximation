@@ -572,6 +572,19 @@ sofic group which does not kill `z_univ`, contradicting
 `z_univ in Rad_sof(E_univ)` from Theorem 6.  Therefore `L` is hyperlinear
 and nonsofic.  End proof.
 
+There is a quantitative stability calibration which is useful when trying
+to construct these data.  Since `s in Rad_sof(G)`, every honest
+finite-dimensional representation of `G` sends `s` to `1`.  But
+`(MSC20as)` and the triangle inequality imply
+
+`||U_n(s)-1||_(2,d_n) >= sqrt(2)-o(1)`.              `(MSC20bd)`
+
+The same lower bound survives padding by `o(d_n)` dimensions.  Thus any
+solution of Theorem 8 is automatically a flexibly Hilbert--Schmidt unstable
+sequence for `G`, already on the one coordinate `s`; generic
+operator--HS correction cannot build the negative sector.  The complete
+estimate and proof are in `FALSE_ONE_INVOLUTION_INSTABILITY.md`.
+
 Equivalently, writing `P_n=(1+T_n)/2`, the live object is a sequence of
 Boolean half-spaces whose `G`-translates asymptotically commute in operator
 norm and for which `sP_ns^*` is asymptotic to `1-P_n`.  This formulation
