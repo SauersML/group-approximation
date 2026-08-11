@@ -62,6 +62,16 @@ class PhaseContinuation:
             for key, matrix in distinct.items()
         }
 
+    def export_relation_bundle(self, path):
+        np.savez(
+            path,
+            factors=np.array([factor for factor, _matrix in self.relation]),
+            matrices=np.stack([
+                self.values[matrix_key(matrix)]
+                for _factor, matrix in self.relation
+            ]),
+        )
+
     def factors(self, word, relative):
         adjoint = relative.conj().T
         factors = []
@@ -221,11 +231,14 @@ def main():
     parser.add_argument("--centrality-batch", type=int, default=0)
     parser.add_argument("--focus-every", type=int, default=5)
     parser.add_argument("--save-prefix")
+    parser.add_argument("--export-relation-bundle")
     args = parser.parse_args()
     initial = np.load(args.init)
     if initial.shape != (64, 64):
         raise ValueError("the initial relative unitary must be 64 by 64")
     problem = PhaseContinuation()
+    if args.export_relation_bundle:
+        problem.export_relation_bundle(args.export_relation_bundle)
     finals = []
     for phase_weight in map(float, args.weights.split(",")):
         runs = []
