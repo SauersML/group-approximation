@@ -1054,7 +1054,7 @@ have support one.  The remaining norm question is whether the relations
 identifying the ordinary fibre admit a uniformly bounded local filling; more
 prime ranks will not answer it.
 
-One bounded relation is now exact for every odd prime: the same nineteen
+One bounded relation is now exact for every odd prime: the same four
 total-degree-three coordinates, interpreted as fixed rational projective
 lines, have boundary equal to the difference of two ordinary singletons in
 HAP's integral resolution.  The ordinary fibre is a projective line.  The

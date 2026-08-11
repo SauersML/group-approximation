@@ -68,7 +68,7 @@ boundary `(PSE3)`, both eigensublattices in `(PSE4)`, and their index two.
 
 The growing part of the singleton set is not an unexplained collection of
 coordinates: it is one ordinary projective line.  Moreover
-`TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md` now contains an exact nineteen-term
+`TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md` now contains an exact four-term
 chain whose boundary is the difference of two points of this line for every
 odd prime.  To finish the positive two-primary decoder one still needs enough
 Wall-compatible translates or additional rational templates to fill every

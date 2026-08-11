@@ -1,4 +1,4 @@
-"""Verify one prime-independent 19-term relation in the q=0 residue.
+"""Verify one prime-independent four-term relation in the q=0 residue.
 
 The total degree-three chain is specified by resolution-generator and
 coefficient-coordinate pairs.  Its mod-two boundary must be the difference

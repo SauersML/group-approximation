@@ -126,7 +126,7 @@ singleton profile is in
 `bb8bdb5a4a20dc68be72cadae192aa983dd9708622f19a3b5f11fbc1d40a775b`.
 
 There is already one prime-independent local relation.  In total
-degree three, the same nineteen `(resolution generator, coefficient
+degree three, the same four `(resolution generator, coefficient
 coordinate)` pairs have boundary
 
 `e_1+e_8`                                                `(DE1-4)`
@@ -141,12 +141,12 @@ rational endpoints.  Reduction modulo any odd prime proves `(DE1-4)`.
 The exact rational verifier is
 `experiments/sl3_projective_q0_relation_exact.g`; its stdout certificate is
 `experiments/sl3-projective-q0-relation-exact.txt`, with SHA-256
-`357c6621d39bbc51b9ca7ff61bb6b17d21a6039e72580831ea78143f8ac4cfef`.
+`e3224692c91cc92d19848ebb42c287f47b1b54d3857e6a335c77b433c5a11e29`.
 The finite-chart verifier
 `experiments/sl3_projective_q0_relation.py` independently checks the raw
 specialized matrices; its compact audit is
 `experiments/projective-derived-q0-relation.tsv`, with SHA-256
-`172ea2077ea3787c9575220b33dbc1a522992bba7d253440317ff252ad373184`.
+`9ff88cf113f302d5c3d008cd1c5127ff4d4f030c8635bfe3c00b56ff4bb2b8b3`.
 
 The ordinary `p+1` points are the Veronese image of a projective line; the
 exceptional point lies off it.  Equation `(DE1-4)` therefore suggests a
