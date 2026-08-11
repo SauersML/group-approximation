@@ -148,6 +148,17 @@ representations and irreducible unitary representations whose degrees tend
 to infinity; reducible mixtures and multiplicity growth are not part of the
 gap.
 
+Rayleigh selection cannot reduce that comparison to individual vector
+states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
+trace ratio has a vector-state ratio at least as large, every quotient
+`F/N`—with no soficity assumption—has exact finite permutation models at one
+distinguished root on every finite word window.  Complete the generator
+partial bijections on a finite Schreier ball.  The resulting root coefficient
+equals `1_N` exactly on the window.  Hence vector-state/Fell approximation is
+vacuous here: TRUE is the passage from one good root to a density-one set of
+good roots, and the irreducible reduction must retain normalized trace or
+macroscopic rank.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
