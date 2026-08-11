@@ -1003,6 +1003,17 @@ algebraic number with an exact certificate.  The remaining issue is wholly
 uniform: construct one bound for these finite certificates over the
 selected chart family.
 
+The compact-model comparison now has an exact quantitative theorem as well.
+`TRUE_CHAIN_COMPARISON_DECODER_TRANSFER.md` proves that integral cochain
+maps in both directions which induce inverse maps on the harmonic lattice
+transport the lift sequence and every integral decoder.  Both the optimal
+nonlinear lift distortion and the least section norm change by at most
+`||f^2|| ||g^2||`; the chain-homotopy norms do not enter.  Therefore the
+level-`53` AGG--HAP comparison may transport two compact-model integral
+lifts directly, without reconstructing the full rational HAP harmonic
+plane.  At family level, a bounded-propagation integral comparison preserves
+uniform decoder bounds.
+
 On the FALSE side, the paired carry energy now has the coordinate-order
 formula in `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`: its uniform subgroup mean
 is a sum of `nu(o_j)` over ambient carry characters, with every nontrivial

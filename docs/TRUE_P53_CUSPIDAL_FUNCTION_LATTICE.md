@@ -128,6 +128,14 @@ Either route is a fixed finite comparison at level `53`.  The important new
 fact is that the arithmetic cusp lattice itself is no longer hidden inside a
 `28,628`-dimensional rational solve.
 
+`TRUE_CHAIN_COMPARISON_DECODER_TRANSFER.md` gives the exact payoff for this
+comparison.  Integral cochain maps in both directions which induce inverse
+maps on the rank-two cuspidal lattice transport every integral lift section;
+the decoder norm grows by at most the product of the two degree-two map
+norms.  Consequently the comparison does not need to output a rational HAP
+harmonic basis.  It may transport two compact-model integral lifts directly
+and certify the resulting HAP decoder through the chain identities.
+
 ## Status for the open problem
 
 The exact integral function lattice solves a genuine finite arithmetic

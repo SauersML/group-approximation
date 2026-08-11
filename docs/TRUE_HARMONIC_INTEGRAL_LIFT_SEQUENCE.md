@@ -499,6 +499,15 @@ CVP.  At fixed harmonic rank it is also necessary up to the rank constant
 from the local spherical-template presentation, or to prove their norms
 diverge.
 
+`TRUE_CHAIN_COMPARISON_DECODER_TRANSFER.md` shows that this section problem
+is invariant, up to an explicit multiplicative constant, under bounded
+integral chain comparison.  If integral cochain maps in both directions
+induce inverse maps on the harmonic lattice, then the optimal nonlinear
+lift distortion and least section norm change by at most
+`||f^2|| ||g^2||`.  Thus a local compact cellular model may be used in place
+of the large HAP complex without first reconstructing a rational harmonic
+basis.
+
 Even a successful selected `SL_3(Z)` theorem would not alone prove that
 every hyperlinear group is sofic.  As recorded in
 `TRUE_SELECTED_CHART_QUANTIFIER_BOUNDARY.md`, the universal proof must still
