@@ -227,24 +227,28 @@ be a continuous homomorphism. Equip the Lie algebras with operator norm on
 
 `Lip_2(R)=sup_(||X||_op<=1) ||dR(X)||_(2,N)`.              `(FFA22)`
 
-Let
+More generally, for `1<=r<=d`, let
 
-`s=diag(-1,1,...,1) in U(d)`,
-`Delta_R=||R(s)-I||_(2,N)`.                               `(FFA23)`
+`s_r=diag(-I_r,I_(d-r)) in U(d)`,
+`Delta_(R,r)=||R(s_r)-I||_(2,N)`.                         `(FFA23)`
 
 **Theorem 5 (functorial square-root lower bound).** Every `(FFA21)`
 satisfies
 
-`Lip_2(R) >= (sqrt(d)/pi) Delta_R`.                        `(FFA24)`
+`Lip_2(R) >= (sqrt(floor(d/r))/pi) Delta_(R,r)`            `(FFA24)`
 
-**Proof.** For `1<=j<=d`, let `E_jj` be the `j`th diagonal matrix unit and
-put
+for every `1<=r<=d`. In particular, at `r=1`,
 
-`X_j=i E_jj in u(d)`, `A_j=dR(X_j) in u(N)`.              `(FFA25)`
+`Lip_2(R) >= (sqrt(d)/pi) Delta_(R,1)`.                    `(FFA24a)`
 
-The element `exp(pi X_j)` is a rank-one involution conjugate to `s`.
+**Proof.** Put `m=floor(d/r)` and choose pairwise orthogonal coordinate
+projections `P_1,...,P_m`, each of rank `r`. Put
+
+`X_j=i P_j in u(d)`, `A_j=dR(X_j) in u(N)`.               `(FFA25)`
+
+The element `exp(pi X_j)` is a rank-`r` involution conjugate to `s_r`.
 Consequently its image under `R` has normalized Hilbert--Schmidt distance
-`Delta_R` from the identity. Since a continuous Lie-group homomorphism
+`Delta_(R,r)` from the identity. Since a continuous Lie-group homomorphism
 intertwines exponentials,
 
 `R(exp(pi X_j))=exp(pi A_j)`.                              `(FFA26)`
@@ -256,18 +260,19 @@ For every skew-adjoint matrix `A`, spectral calculus and
 
 Equations `(FFA26)--(FFA27)` therefore imply
 
-`||A_j||_(2,N) >= Delta_R/pi` for every `j`.               `(FFA28)`
+`||A_j||_(2,N) >= Delta_(R,r)/pi` for every `j`.           `(FFA28)`
 
-Choose independent Rademacher signs `epsilon_1,...,epsilon_d`. Because the
+Choose independent Rademacher signs `epsilon_1,...,epsilon_m`. Because the
 normalized Hilbert--Schmidt norm is a Hilbert-space norm,
 
 `E ||sum_j epsilon_j A_j||_(2,N)^2`
 `   =sum_j ||A_j||_(2,N)^2`
-`   >=d Delta_R^2/pi^2`.                                  `(FFA29)`
+`   >=m Delta_(R,r)^2/pi^2`.                              `(FFA29)`
 
 Hence some deterministic choice of signs satisfies
 
-`||sum_j epsilon_j A_j||_(2,N)>=sqrt(d) Delta_R/pi`.       `(FFA30)`
+`||sum_j epsilon_j A_j||_(2,N)`
+`   >=sqrt(m) Delta_(R,r)/pi`.                            `(FFA30)`
 
 But `X=sum_j epsilon_j X_j` has operator norm one, and linearity of the
 differential gives `dR(X)=sum_j epsilon_j A_j`. Taking the supremum in
@@ -289,6 +294,13 @@ The upper bound is attained when every `|alpha_j|=1`. Comparing
 `(FFA24)` and `(FFA31)` shows that `G_d` is within the universal factor
 `pi/2` of the best possible local Lipschitz constant among all continuous
 homomorphisms which give the same rank-one visibility.
+
+Writing `delta=r/d` for the relative input rank, `(FFA24)` says that fixed
+visibility on a rank-`r` involution costs at least order
+`1/sqrt(delta)` whenever `r<=d/2`. This is the same density scaling as the
+corner-normalization estimate `error/sqrt(delta)` in the shrinking-Clifford
+criterion. Thus the rank-one `sqrt(d)` phenomenon and the sparse-sector
+threshold are two instances of one unavoidable functorial law.
 
 Thus no replacement of the full exterior algebra by another exact
 finite-dimensional representation of `U(d)` can remove the square-root

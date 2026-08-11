@@ -168,7 +168,9 @@ if `R:U(d)->U(N)` makes a rank-one involution HS-visible by `Delta_R`, then
 its normalized-HS differential has operator-to-HS norm at least
 `sqrt(d) Delta_R/pi`. Therefore the next FALSE step must use special group
 structure rather than swap in a more efficient universal representation
-functor.
+functor. More generally a rank-`r` visible involution costs at least
+`sqrt(floor(d/r)) Delta/pi`, recovering the `1/sqrt(delta)` sparse-corner
+scale for relative rank `delta=r/d`.
 
 FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
 action survives the sofic image obtained by completing its restrictions to

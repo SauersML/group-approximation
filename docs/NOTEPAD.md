@@ -39077,3 +39077,15 @@ turn one rank-one outlier into constant normalized-HS mass with
 dimension-free error amplification. Any rate-free FALSE proof must exploit
 candidate-specific structure (central/Kazhdan corners or a nonfunctorial
 projective sector), not a more clever universal amplification.
+
+The proof works verbatim at every rank. For
+`s_r=diag(-I_r,I_(d-r))` and
+`Delta_(R,r)=||R(s_r)-1||_2`, choose `floor(d/r)` disjoint rank-`r`
+coordinate projections before applying the Rademacher argument. This gives
+
+`Lip_2(R) >= sqrt(floor(d/r)) Delta_(R,r)/pi`.          `(FFO2)`
+
+For relative rank `delta=r/d`, the forced cost is order
+`1/sqrt(delta)`. This exactly matches the normalization loss in the
+shrinking-Clifford-sector criterion and unifies the positive-rank and
+rank-one amplification barriers.
