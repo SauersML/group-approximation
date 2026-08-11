@@ -1,9 +1,10 @@
 """Export the exact phase plus 24 certified-zero atlas classes for PyTorch.
 
-Run with SageMath.  The input is the boundary-only JSON emitted by
+The input is the boundary-only JSON emitted by
 `atlas_perfect_overlap_scan.py`.  The exporter reconstructs the honest 64D
-A8 representation, the exact block-eight relative alignment, and one cyclic
-representative of every certified perfect-overlap class.
+A8 representation with the standalone Young-orthogonal implementation, the
+exact block-eight relative alignment, and one cyclic representative of every
+certified perfect-overlap class.  No Sage runtime is required.
 """
 
 import argparse
@@ -73,7 +74,8 @@ def main():
             factors[word_index, position] = factor
             matrices[word_index, position] = representation(matrix)
 
-    np.save(args.relative, relative)
+    relative_array = np.asarray(relative, dtype=np.complex128).reshape(64, 64)
+    np.save(args.relative, relative_array)
     np.savez(
         args.bundle,
         factors=factors,

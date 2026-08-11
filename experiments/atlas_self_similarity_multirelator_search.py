@@ -139,6 +139,10 @@ def main():
     torch.set_default_dtype(torch.float64)
     problem = MultiRelatorProblem(args.bundle)
     base = np.load(args.init)
+    if base.shape != (problem.dimension, problem.dimension):
+        raise ValueError(
+            f"initial relative unitary has shape {base.shape}, expected "
+            f"({problem.dimension}, {problem.dimension})")
     results = []
     for phase_weight in map(float, args.weights.split(",")):
         relative, closure_calls, diagnostics = optimize(
