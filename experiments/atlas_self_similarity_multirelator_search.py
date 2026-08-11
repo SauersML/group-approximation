@@ -57,14 +57,17 @@ class MultiRelatorProblem:
             zero_errors = torch.sqrt(losses[:-1])
             phase_error = torch.sqrt(losses[-1])
             phase_trace = torch.trace(values[-1]) / self.dimension
+            phase_difference = (
+                values[-1] - self.targets[-1] * self.identity
+            ).cpu().numpy()
             worst = torch.argsort(zero_errors, descending=True)[:5]
             return {
                 "certified_zero_rms": float(torch.sqrt(torch.mean(
                     zero_errors ** 2))),
                 "certified_zero_max": float(torch.max(zero_errors)),
                 "phase_hs_error": float(phase_error),
-                "phase_operator_error": float(torch.linalg.matrix_norm(
-                    values[-1] - 1j * self.identity, ord=2)),
+                "phase_operator_error": float(np.linalg.norm(
+                    phase_difference, ord=2)),
                 "phase_trace": [
                     float(phase_trace.real), float(phase_trace.imag)],
                 "worst_certified_classes": [
