@@ -22,7 +22,7 @@ import time
 from pathlib import Path
 
 from fpylll import BKZ, CVP, IntegerMatrix, LLL
-from sage.all import QQ, ZZ, matrix, vector
+from sage.all import GF, MixedIntegerLinearProgram, QQ, ZZ, matrix, vector
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
 
@@ -145,6 +145,93 @@ def certify_low_norm_minimum(cycle_basis, required_pairing, candidate_squared_no
     }
 
 
+def centered_residue(value, modulus):
+    residue = int(value) % modulus
+    if 2 * residue > modulus:
+        residue -= modulus
+    return residue
+
+
+def modular_coset_minimum(cycle_basis, candidate, modulus):
+    """Compute a rigorous modular lower bound with GLPK branch-and-bound."""
+    if modulus < 2 or not ZZ(modulus).is_prime():
+        raise ValueError("certification moduli must be prime")
+    finite_field = GF(modulus)
+    check = cycle_basis.change_ring(finite_field)
+    if check.rank() != cycle_basis.nrows():
+        raise ValueError("cycle checks lose rank modulo the selected prime")
+    syndrome_integer = cycle_basis * candidate
+    syndrome = check * candidate.change_ring(finite_field)
+
+    if modulus == 2:
+        residues = [1]
+    else:
+        residues = list(range(-(modulus // 2), modulus // 2 + 1))
+        residues.remove(0)
+    problem = MixedIntegerLinearProgram(maximization=False, solver="GLPK")
+    selected = problem.new_variable(binary=True, nonnegative=True)
+    quotients = problem.new_variable(integer=True, nonnegative=False)
+    coordinate_expressions = []
+    objective = 0
+    for column in range(cycle_basis.ncols()):
+        problem.add_constraint(problem.sum(
+            selected[column, residue] for residue in residues) <= 1)
+        expression = problem.sum(
+            residue * selected[column, residue] for residue in residues)
+        coordinate_expressions.append(expression)
+        objective += problem.sum(
+            residue * residue * selected[column, residue]
+            for residue in residues)
+    problem.set_objective(objective)
+
+    for row in range(cycle_basis.nrows()):
+        coefficients = [
+            centered_residue(cycle_basis[row, column], modulus)
+            for column in range(cycle_basis.ncols())
+        ]
+        syndrome_value = centered_residue(syndrome_integer[row], modulus)
+        expression = problem.sum(
+            coefficients[column] * coordinate_expressions[column]
+            for column in range(cycle_basis.ncols()) if coefficients[column]
+        )
+        absolute_bound = sum(abs(value) for value in coefficients) * (
+            modulus // 2)
+        quotient_bound = (absolute_bound + abs(syndrome_value)) // modulus + 1
+        problem.set_min(quotients[row], -quotient_bound)
+        problem.set_max(quotients[row], quotient_bound)
+        problem.add_constraint(
+            expression - modulus * quotients[row] == syndrome_value)
+
+    candidate_cost = sum(
+        centered_residue(entry, modulus) ** 2 for entry in candidate)
+    problem.add_constraint(objective <= candidate_cost)
+    optimum = int(round(problem.solve(log=0)))
+    solution_values = problem.get_values(selected)
+    solution = vector(ZZ, cycle_basis.ncols())
+    solution_entries = []
+    for (column, residue), value in solution_values.items():
+        if value <= 0.5:
+            continue
+        solution[column] = residue
+        solution_entries.append([int(column), int(residue)])
+    if sum(int(entry) ** 2 for entry in solution) != optimum:
+        raise AssertionError("modular solution cost differs from the optimum")
+    if check * solution.change_ring(finite_field) != syndrome:
+        raise AssertionError("modular solution has the wrong syndrome")
+    return {
+        "modulus": modulus,
+        "parity_check_rank": int(check.rank()),
+        "candidate_centered_residue_cost": candidate_cost,
+        "modular_coset_leader_squared_cost": optimum,
+        "modular_coset_leader_entries": solution_entries,
+        "syndrome_support": [
+            row for row, entry in enumerate(syndrome) if entry],
+        "solver": "GLPK branch-and-bound",
+        "exact_lower_bound": (
+            "every integral lift has squared norm at least the modular cost"),
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("cellular_input", type=Path)
@@ -155,6 +242,7 @@ def main() -> None:
     parser.add_argument("--basis-row", type=int, choices=(0, 1), default=0)
     parser.add_argument("--bkz-block-size", type=int, action="append", default=[])
     parser.add_argument("--bkz-loops", type=int, default=1)
+    parser.add_argument("--certify-modulus", type=int, action="append", default=[])
     args = parser.parse_args()
 
     started = time.monotonic()
@@ -248,6 +336,10 @@ def main() -> None:
     if squared_norm(candidate) <= 4:
         support_certificate = certify_low_norm_minimum(
             cycle_basis, required_pairing, squared_norm(candidate))
+    modular_certificates = [
+        modular_coset_minimum(cycle_basis, candidate, modulus)
+        for modulus in args.certify_modulus
+    ]
 
     digest = hashlib.sha256()
     with args.lift_output.open("w", encoding="ascii") as stream:
@@ -282,6 +374,7 @@ def main() -> None:
             (candidate_squared_norm / qsharp_squared_norm).sqrt()),
         "lift_sha256": digest.hexdigest(),
         "support_exhaustion_certificate": support_certificate,
+        "modular_coset_certificates": modular_certificates,
         "exact_cycle_pairing_verified": True,
         "exact_degree_three_annihilation_verified": True,
         "elapsed_seconds": time.monotonic() - started,
