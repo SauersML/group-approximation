@@ -126,16 +126,19 @@ Euclidean decoder through the resulting total complex.
 
 ## Next exact task
 
-Build fixed free resolutions of the finitely many stabilizers through the
-degrees needed for carry repair, splice them with the horizontal cellular
-boundary maps, and export the total free integral complex on each projective
-chart.  Because the stabilizer list and vertical templates are fixed, this
-should have bounded propagation and coefficients independent of `p`.
+The proposed total-complex construction is already implemented by HAP.
+`FreeGResolution(ContractibleGcomplex("SL(3,Z)"),3)` is the Wall
+perturbation total complex of the fixed stabilizer resolutions, and
+`ResolutionArithmeticGroup("SL(3,Z)",3)` calls it directly.  Thus the large
+free projective Shapiro complex already used in this repo is precisely the
+required derived integral model.  Its bidegrees, stabilizer types, and
+chart-independent Schur bounds are audited in
+`TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.
 
 The decisive computation is then to transport the two certified level-53
-harmonic lifts into that derived free complex and measure the resulting
-section norm.  Success gives the missing two-primary bridge at this level;
-failure identifies an explicit stabilizer-homology class responsible for
-the obstruction.  Either outcome is more informative than further work in
-the naive unsigned orbit complex.
-
+harmonic lifts through the canonical filtered augmentation into that
+already-exported derived free complex and measure the resulting section
+norm.  Success gives the missing bounded-primary bridge at this level;
+failure identifies an explicit positive stabilizer-homology class
+responsible for the obstruction.  Either outcome is more informative than
+further work in the naive unsigned orbit complex.

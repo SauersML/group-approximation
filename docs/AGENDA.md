@@ -989,6 +989,19 @@ number of torsion coordinates grows linearly with `p`.  See
 `TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md` and
 `TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.
 
+That splice is now identified with an existing object rather than a new
+implementation task.  HAP's
+`FreeGResolution(ContractibleGcomplex("SL(3,Z)"),3)` is the derived
+Wall/perturbation total complex, and
+`ResolutionArithmeticGroup("SL(3,Z)",3)` is exactly this construction.  Its
+degree-two bidegrees have multiplicities `6,2,2` for `(0,2),(1,1),(2,0)`,
+so the previously exported `28630`-coordinate level-53 complex already
+contains the positive stabilizer-resolution rows.  Fixed group-ring term
+counts give uniform squared Schur bounds `16,980,30906` through degree
+three.  The live bridge is consequently the bounded-primary lattice defect
+of the canonical filtered augmentation, not construction or real-norm
+control of another complex.  See `TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.
+
 `TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` now gives the exact optimal
 nonlinear repair constant, not only a comparison through `Theta`.  It is
 the quotient of the ellipsoidal distance to the saturated range lattice by

@@ -41547,3 +41547,38 @@ are killed by `8`.  The live construction is a fixed derived total complex
 from free stabilizer resolutions, followed by transport of the explicit
 rank-two section into it.  Simply restoring deleted coordinates is now a
 proved-wrong implementation strategy.
+
+## 2026-08-11: the derived total complex was already the large HAP resolution
+
+Source audit and a bounded MSI probe identify
+
+    FreeGResolution(ContractibleGcomplex("SL(3,Z)"),3)
+
+as the Wall/perturbation total complex of the finite cell-stabilizer
+resolutions.  `ResolutionArithmeticGroup("SL(3,Z)",3)` is exactly this call,
+so the free projective Shapiro resolution already used in the repo is the
+missing derived model.  Its dimensions `(1,4,10,20)` split by cellular and
+vertical degree as
+
+    n=0: (0,0):1,
+    n=1: (0,1):3, (1,0):1,
+    n=2: (0,2):6, (1,1):2, (2,0):2,
+    n=3: (0,3):10, (1,2):3, (2,1):6, (3,0):1.
+
+Thus the level-53 `28630`-coordinate degree-two module already contains six
+vertex-resolution, two edge-resolution, and two compact-cell copies of the
+`2863`-point coefficient module.  No second derived exporter should be
+built.
+
+The five finite stabilizer templates have orders `24,8,24,12,24`.  Exact
+group-ring term counts give chart-independent squared Schur bounds
+
+    16, 980, 30906
+
+for the first three differentials.  Hence the real propagation is already
+uniform; the live comparison problem is only the integral `2`- and
+`3`-primary defect of the canonical filtered augmentation.  The next
+computation is to lift the two certified compact harmonic classes through
+this existing filtration and either obtain a bounded integral section or
+exhibit the positive stabilizer-homology class blocking it.  Full audit:
+`docs/TRUE_HAP_DERIVED_TOTAL_AUDIT.md`.
