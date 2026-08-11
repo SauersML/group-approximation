@@ -293,3 +293,58 @@ integral Heisenberg cover in the shared notebook.  It needs one cyclic lamp
 coordinate and one integer Schreier carry rather than a symplectic pair.  It
 does not evade the non-Cartan approximation problem; it isolates its
 first-order derivative in the smallest available central-radical module.
+
+## 7. Honest Kazhdan vertex models have a linear phase floor
+
+For the Kun--Thom symmetric-double realization, the required `o(epsilon)`
+data cannot be obtained by gluing honest finite-dimensional representations
+of the two residually finite vertices.  The fixed-sign estimate in
+`FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md` has the following small-phase form.
+
+Let `Gamma<G_0` have Kazhdan constant `kappa` for a finite set `S`, let
+
+`h=t^(-1) gamma t notin Gamma`,
+
+and let
+
+`alpha_i:G_0->U(d)`, `i=1,2`,                          `(ICR42)`
+
+be honest finite-dimensional representations.  Put
+
+`S_h=alpha_2(h)alpha_1(h)^(-1)`,
+`delta=max_(a in S)||alpha_1(a)-alpha_2(a)||_2`.        `(ICR43)`
+
+The finite-representation matching theorem gives
+
+`||S_h-1||_2<=(2/kappa)delta`.                          `(ICR44)`
+
+**Proposition 5 (linear central-curvature floor).**  For every unitary `V`,
+every real `epsilon`, and
+
+`eta=||exp(i epsilon)1-[V,S_h]||_2`,                   `(ICR45)`
+
+one has
+
+`|exp(i epsilon)-1|<=eta+(4/kappa)delta`.              `(ICR46)`
+
+Consequently, if `epsilon_n->0`, it is impossible to have simultaneously
+
+`eta_n=o(epsilon_n)`, `delta_n=o(epsilon_n)`            `(ICR47)`
+
+using honest vertex representations.
+
+**Proof.**  For arbitrary unitaries `V,S`,
+
+`||[V,S]-1||_2<=2||S-1||_2`.                           `(ICR48)`
+
+The triangle inequality, `(ICR44)`, and `(ICR48)` give `(ICR46)`.  Since
+`|exp(i epsilon)-1|/|epsilon|->1`, equations `(ICR46)--(ICR47)` are
+incompatible.  End proof.
+
+Thus a cost-one or forest repair of the circle phase on the common
+`Gamma`-orbit, by itself, cannot close Theorem 4.  Such a repair treats the
+edge relation.  Proposition 5 shows that attaching it to honest vertex
+representations leaves a first-order Kazhdan mismatch.  Any successful
+small-phase construction must already be genuinely nonliftable in at least
+one vertex sector, with a first-order term which cancels that mismatch and a
+remaining curvature of order `o(epsilon)`.
