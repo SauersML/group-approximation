@@ -771,13 +771,24 @@ cover its three pairwise involution commutators have order two and
 
 `c_01=c_02=c_12=q^2`, `q^4=1`.
 
-Thus the local Pauli phase is a specific two-primary Schur-multiplier class;
+Thus the local Pauli phase is a specific two-primary central-kernel class;
 the generated central subgroup is cyclic of order at most four.  The Pauli
 block proves that `q` has order four in the quotient imposing only this local
 centrality, not in the full cover.  Determine whether `[q]` survives in
-`R/[P,R] ~= H_2(Q,Z)` before treating its preservation as the objective of a
-global atlas optimizer.  Full proof and the corrected central-quotient scope:
+`R/[P,R]` before treating its preservation as the objective of a global
+atlas optimizer.  The five-term sequence only makes this kernel a quotient
+of `H_2(Q,Z)`, because `H_2(A8*A8,Z)=C2 directSum C2`; it is not the whole
+Schur multiplier.  Full proof and the corrected central-quotient scope:
 `docs/FALSE_CLIFFORD_TORSION_GATE.md`.
+
+The 64-dimensional block is now executable.  It validates the Pauli
+identities below `5.4e-14` and centralizes 19 of the 234 radius-ten boundary
+words, all inside one 25-word `(1,b)` projection class.  Six words with the
+same projections remain, showing computationally that projection pairs do
+not determine compatibility.  A 20-step search over the exact
+Clifford-preserving `U(32) x U(32)` manifold lowers RMS slightly but leaves
+maximum defect exactly `2`.  Stop numerical refinement until the corrected
+algebraic survival problem in `R/[P,R]` is decided.
 
 ## Banked (kernel-checked, this repo)
 

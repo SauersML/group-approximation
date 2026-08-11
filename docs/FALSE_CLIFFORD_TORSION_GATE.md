@@ -1,4 +1,4 @@
-# The Clifford atlas phase is a bounded Schur-multiplier class
+# The Clifford atlas phase is a bounded central-kernel class
 
 Date: 2026-08-11
 
@@ -102,10 +102,10 @@ Consequently the whole displayed central subgroup is cyclic:
 
 and has order at most four.
 
-In additive Schur-multiplier notation, the corresponding classes in
+In additive notation inside the central kernel, the corresponding classes in
 
 \[
- R/[P,R]\cong H_2(Q,\mathbb Z)                         \tag{9}
+ R/[P,R]                                                \tag{9}
 \]
 
 satisfy
@@ -119,6 +119,29 @@ Apply Lemmas 1 and 3 with \((a,b,c)=(p_1,p_2,p_0)\).  This gives `(7)` and
 `(8)`.  Writing the identities additively inside the central kernel gives
 `(10)`.  End proof.
 
+The group in `(9)` must not be identified with the whole Schur multiplier.
+The five-term homology sequence gives
+
+\[
+ H_2(P,\mathbb Z)\longrightarrow H_2(Q,\mathbb Z)
+ \longrightarrow R/[P,R]\longrightarrow0.            \tag{11}
+\]
+
+Here
+
+\[
+ H_2(P,\mathbb Z)
+ \cong H_2(A_8,\mathbb Z)\oplus H_2(A_8,\mathbb Z)
+ \cong C_2\oplus C_2,                                 \tag{12}
+\]
+
+so `P` is perfect but not superperfect.  GAP's exact
+`AbelianInvariantsMultiplier(AlternatingGroup(8))` returns `[2]`, agreeing
+with the standard multiplier calculation.  Thus `R/[P,R]` is a quotient of
+`H_2(Q,Z)` after the two factor-multiplier classes are accounted for; it is
+not canonically equal to `H_2(Q,Z)`.  The cyclic calculation `(7)--(10)` is
+unchanged because it takes place directly in `R/[P,R]`.
+
 ## 3. The local Pauli block detects the universal bounded package
 
 Let \(U_{\rm loc}\) be the quotient of \(P\) obtained by imposing only the
@@ -126,13 +149,13 @@ centrality of \(q\) and of the three \(c_{ij}\).  The exact Pauli block from
 `FALSE_LOCAL_CLIFFORD_ATLAS.md` factors through \(U_{\rm loc}\) and has
 
 \[
- q\longmapsto-iI,\qquad c_{ij}\longmapsto-I.           \tag{11}
+ q\longmapsto-iI,\qquad c_{ij}\longmapsto-I.           \tag{13}
 \]
 
 Equation `(7)` is visible numerically without approximation:
 
 \[
- (-iI)^2=-I=(-I)^3.                                   \tag{12}
+ (-iI)^2=-I=(-I)^3.                                   \tag{14}
 \]
 
 Consequently \(q\) has exact order four in \(U_{\rm loc}\).  The later
@@ -140,16 +163,17 @@ atlas relations can only send this order-four class to an element of order
 four, two, or one in the full quotient \(U\).  This separates two questions
 which were previously bundled together:
 
-1. **algebraic survival:** determine the image of \([q]\) in the full
-   multiplier \(H_2(Q,\mathbb Z)\);
+1. **algebraic survival:** determine the image of \([q]\) in the central
+   kernel \(R/[P,R]\);
 2. **analytic survival:** construct exact representations of \(P\) in which
    a finite normal generating set of \([P,R]\) tends to one in normalized
    Hilbert--Schmidt norm while the \(q\)-phase stays nontrivial.
 
-The first question is finite-primary: only the two-primary part of the
-unstable Schur multiplier can contain \([q]\).  In particular, computations
-or structural theorems about odd-primary multiplier classes are irrelevant
-to this Clifford branch.
+The first question is finite-primary: the class of `q` in the central kernel
+has order dividing four, and any lift through `(11)` lies in the
+two-primary multiplier quotient.  In particular, computations or structural
+theorems about odd-primary multiplier classes are irrelevant to this
+Clifford branch.
 
 ## 4. Why survival plus atlas approximation would finish the FALSE lane
 
@@ -165,7 +189,7 @@ representations \(\pi_n:P\to U(d_n)\) satisfy
 \[
  \|\pi_n(s)-1\|_2\longrightarrow0
  \quad(s\in\mathcal S),\qquad
- \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{13}
+ \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{15}
 \]
 
 where the finite set \(\mathcal S\) normally generates \([P,R]\).  The

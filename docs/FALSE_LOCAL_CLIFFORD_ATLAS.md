@@ -384,3 +384,38 @@ to make the remaining collision-tree words central without destroying this
 \(64\)-isotypic phase. A proof that the normalized cost of the later
 relations is \(o(1)\) would feed directly into the recursive atlas criterion
 and produce a hyperlinear nonsofic group.
+
+## 7. Exact implementation and complete-boundary audit
+
+`experiments/atlas_clifford_block.py` instantiates Theorem 2 using GAP's
+explicit `GL_4(F_2) -> A8` isomorphism and Sage's orthogonal Young
+representation of shape `(5,2,1)`.  The six-element `S3` average constructs
+the tensor-factor intertwiner, and an exact-sign eigenspace match constructs
+the second chart.  Numerically, the defining identities verify with
+Frobenius residual below `5.4e-14`.
+
+Scoring all 234 words at the first tensor-flip boundary gives a sharply
+localized result.  This one Clifford alignment centralizes 19 words.  All
+19 belong to one projection-pair class `(1,b)` containing 25 words; the six
+other alternating representatives with the same pair are not centralized.
+On the full boundary the RMS centrality defect is `1.3587338001` and the
+maximum is `2`.  Thus projection pairs are insufficient data once the
+tensor flip is deformed, exactly as anticipated in
+`FALSE_RECURSIVE_ATLAS_EXHAUSTION.md`.
+
+There is a large exact family of Clifford-preserving refinements.  Right
+multiplication of the relative chart unitary by the commutant of the second
+involution gives `U(32) x U(32)` and leaves the Pauli lamp image, `q=-i`,
+and its three commutators unchanged.  The projected optimizer in
+`atlas_clifford_refine.py` targets all 300 centrality constraints attached
+to the 25-word pair class.  Over 20 worst-tail iterations it improves the
+RMS defect only from `0.7189726` to `0.7162448`; the maximum remains pinned
+at `2`, while the Clifford identities stay below `6e-14`.
+
+This is numerical evidence of a rigid subconstraint inside that Pauli
+manifold, not a theorem.  Do not run more seeds.  More importantly,
+`FALSE_CLIFFORD_TORSION_GATE.md` supplies the prior algebraic gate: first
+determine whether the order-at-most-four class of `q` survives in
+`R/[P,R]`.  Only after survival is known should the pinned constraint be
+converted into an exact representation-theoretic obstruction or enlarged
+by coupling the 64 isotypic copies.
