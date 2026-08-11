@@ -16,7 +16,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sage.all import GF, ZZ, matrix, vector
+from sage.all import GF, ZZ, Integers, matrix, vector
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
 from sl3_projective_derived_e1 import coordinate_indices, read_boundary
@@ -101,12 +101,43 @@ def main() -> None:
             bit_solutions = correction_mod_two.solve_left(
                 matrix(GF(2), bit_right_sides))
         except ValueError:
+            modulus = 2 * scale
+            residue_ring = Integers(modulus)
+            try:
+                direct_solutions = correction_boundary.change_ring(
+                    residue_ring).solve_left(matrix(residue_ring, right_sides))
+            except (ArithmeticError, NotImplementedError, ValueError) as error:
+                records.append({
+                    "level": level + 1,
+                    "modulus": modulus,
+                    "solvable": None,
+                    "greedy_hensel_solvable": False,
+                    "direct_ring_solve_error": type(error).__name__ + ": " + str(error),
+                })
+                break
+            solutions = [
+                vector(ZZ, [ZZ(value) for value in direct_solutions.row(row)])
+                for row in range(len(harmonic_rows))
+            ]
             records.append({
                 "level": level + 1,
-                "modulus": 2 * scale,
-                "solvable": False,
+                "modulus": modulus,
+                "solvable": True,
+                "greedy_hensel_solvable": False,
+                "direct_ring_solve": True,
+                "correction_supports": [
+                    len(solution.support()) for solution in solutions
+                ],
+                "centered_correction_squared_norms": [
+                    sum(centered(int(value), modulus) ** 2 for value in solution)
+                    for solution in solutions
+                ],
+                "centered_maximum_absolute_coefficients": [
+                    max(abs(centered(int(value), modulus)) for value in solution)
+                    for solution in solutions
+                ],
             })
-            break
+            continue
         for basis_index in range(len(harmonic_rows)):
             solutions[basis_index] += scale * vector(
                 ZZ, bit_solutions.row(basis_index))
@@ -122,6 +153,7 @@ def main() -> None:
             "level": level + 1,
             "modulus": modulus,
             "solvable": True,
+            "greedy_hensel_solvable": True,
             "correction_supports": [
                 len(solution.support()) for solution in solutions
             ],
@@ -139,7 +171,7 @@ def main() -> None:
         "prime": prime,
         "projective_degree": degree,
         "requested_depth": args.depth,
-        "reached_depth": sum(record["solvable"] for record in records),
+        "reached_depth": sum(record["solvable"] is True for record in records),
         "compact_degree_two_dimension": compact_dimensions[2],
         "full_degree_two_dimension": full_boundary.nrows(),
         "correction_variable_count": len(correction_indices),
