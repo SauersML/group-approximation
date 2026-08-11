@@ -39286,6 +39286,35 @@ fixed-atom Bockstein in the `C_4` calibration, whose fixed density becomes
 equivalence relation need not be treeable, and its finite-coefficient second
 cohomology is the sharpened remaining obstruction.
 
+Essential freeness does **not** make measurable `H^1(-,T)` divisible.  An
+explicit principal-sofic calibration follows from Popa cocycle
+superrigidity.  Let
+
+`Q=SL_3(Z) times C_m`
+
+act by its Bernoulli shift, and let `chi:Q->mu_m` be projection to the finite
+factor.  Every circle cocycle is cohomologous to a homomorphism.  If
+`[r]^m=[chi]`, write `r~psi`; mixing says the cohomologous homomorphisms
+`psi^m` and `chi` are equal.  On a generator `c` of `C_m`, however,
+`psi(c)^m=1` while `chi(c)` is primitive.  Contradiction.
+
+This class is not artificial.  For
+
+`Gamma=SL_3(Z) times C_(m^2)`
+
+and its central carry extension over `Q`, take the Cartan space
+`dual(C_m) times X_Bernoulli`.  If `d_q in mu_(m^2)` lifts `chi(q)`, set
+
+`a_k(eta_t,x)=eta_t(k)`, `b_q(eta_t,x)=d_q^t`.
+
+Then `delta b=eta_t(v)`, the Bernoulli quotient action is free, Haar averaging
+gives the regular trace on the kernel, and the `t=1` component has
+`lambda=chi`, hence nonzero phase Bockstein.  Finite Bernoulli models and the
+fixed alphabet `mu_(m^2)` give a matrix-ultraproduct realization.  The group
+is residually finite and sofic, so this example isolates the limitation of
+the minimal-alphabet criterion: even a principal sofic relation may require
+enlarging `mu_m` before skew untwisting.
+
 ## 2026-08-10: recent-literature audit and the reduced-vertex gate
 
 The supplied BDL, Manzoor, Eckhardt, Lubotzky--Salomon, subgroup-test, and

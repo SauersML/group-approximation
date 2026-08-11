@@ -173,6 +173,16 @@ It vanishes when `R_Q` is treeable.  The exact remaining TRUE-side question
 is whether the special residue forced by a monomial hyperlinear model can be
 removed for arbitrary principal sofic `R_Q`.
 
+Popa superrigidity gives a sharp negative calibration to automatic removal.
+For the free Bernoulli relation of
+`Q=SL_3(Z) times C_m`, the projection character `Q->mu_m` is not
+`m`-divisible in measurable `H^1`.  It occurs as the phase residue in a
+regular common-Cartan model of the residually finite group
+`SL_3(Z) times C_(m^2)`.  Thus even principal sofic relations may retain the
+minimal-alphabet residue; the group is sofic only because its phases already
+lie in the larger fixed alphabet `mu_(m^2)`.  The true target remains
+finite-phase completion, not universal Bockstein vanishing.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested

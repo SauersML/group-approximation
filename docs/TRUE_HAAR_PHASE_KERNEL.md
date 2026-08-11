@@ -367,6 +367,63 @@ finite-coefficient cohomology to vanish.  The reduced open obstruction is
 therefore a finite central twist of a **principal** sofic equivalence relation,
 not merely isotropy at fixed atoms.
 
+This last caution is genuine, not just a gap in the argument.
+
+**Proposition (principal sofic relations can retain the residue).**  Fix
+`m>=2`, let
+
+`H=SL_3(Z)`, `Q=H times C_m`,                         `(HPK9v)`
+
+and let `Q` act by its Bernoulli shift on a nonatomic base.  This action is
+free, its orbit relation is sofic, and the projection character
+
+`chi:Q -> C_m=mu_m`                                  `(HPK9w)`
+
+is not `m`-divisible in measurable `H^1` of the action.  Moreover this
+nondivisible class occurs as `(HPK9e)` in a regular-trace common-Cartan
+monomial model of the sofic group
+
+`Gamma=H times C_(m^2)`.                              `(HPK9x)`
+
+**Proof.**  Popa's cocycle-superrigidity theorem applies to the Bernoulli
+action in `(HPK9v)`: every circle-valued measurable 1-cocycle is cohomologous
+to a homomorphism `Q->T`.  Suppose a cocycle `r` had `[r]^m=[chi]`.  Write
+`r` as a homomorphism `psi` up to coboundary.  Then `chi` and `psi^m` are
+cohomologous homomorphism cocycles.  Their quotient would be an eigencharacter
+of the Bernoulli action; mixing makes it trivial.  Hence `chi=psi^m`.  But if
+`c` generates the `C_m` factor, then `psi(c)^m=psi(c^m)=1`, whereas
+`chi(c)` is primitive.  This is impossible.
+
+To realize the class, write the central extension
+
+`1 -> K=C_m -> H times C_(m^2) -> H times C_m -> 1`   `(HPK9y)`
+
+using the usual carry cocycle `v:Q times Q->C_m`.  Choose a set-theoretic
+lift `d:Q->mu_(m^2)` of `(HPK9w)`, so
+
+`d_q^m=chi(q)`, `delta d(q,r)=zeta_m^(v(q,r))`.       `(HPK9z)`
+
+On `dual(K) times X`, where `X` is the Bernoulli space and `Q` acts trivially
+on `dual(K)`, write a character as `eta_t(k)=zeta_m^(tk)` and put
+
+`a_k(eta_t,x)=eta_t(k)`, `b_q(eta_t,x)=d_q^t`.        `(HPK9aa)`
+
+Then `delta b_q=eta_t(v(q,r))`, so `(HPK9j)` defines a monomial
+representation of `Gamma`.  The Bernoulli action kills the trace when
+`q!=1`, while Haar averaging over `dual(K)` kills it when `q=1,k!=1`.
+Thus the trace is regular and the phase field of `K` is Haar.  Standard
+finite Bernoulli models for the residually finite group `Q`, together with
+the fixed phase alphabet `mu_(m^2)`, realize this representation in a matrix
+ultraproduct.  Finally `(HPK9e)` restricts on the invariant component `t=1`
+to `chi`, which was just shown nondivisible.  End proof.
+
+The group `(HPK9x)` is nevertheless residually finite and hence sofic; its
+`mu_(m^2)` phases can be untwisted by Theorem 3.  The lesson is precise:
+neither regular trace, Haar kernel law, essential freeness, principality, nor
+soficity of the quotient relation forces the **minimal `mu_m`** Bockstein to
+vanish.  A general proof must allow a larger finite phase alphabet or solve
+the finite-phase completion gate `(HPK18)` directly.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -601,3 +658,5 @@ Primary source pins:
   approximations*, arXiv:2311.09202.
 * Aareyan Manzoor, *There Is An Equivalence Relation Whose von Neumann
   Algebra Is Not Connes Embeddable*, arXiv:2502.06697v2.
+* Sorin Popa, *Cocycle and Orbit Equivalence Superrigidity for Malleable
+  Actions of w-Rigid Groups*, arXiv:math/0512646.
