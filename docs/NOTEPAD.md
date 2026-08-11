@@ -39415,3 +39415,50 @@ For the cyclic shear this sharpens the dependency but does not close it:
 with no extra quotient hypothesis.  Proving `J` MF remains exactly the
 nonzero projective-sector problem `(PSC4)/(PSG6)`.  The corner theorem is a
 converter after that sector exists, not a construction of it.
+
+## 2026-08-11: the Mackey endpoints are homotopic on the whole vertex
+
+Full details are in `docs/FALSE_INDUCED_CHARACTER_HOMOTOPY.md`.  Let `G`
+act on a tree, let `r` be hyperbolic, and put `C=<r>`.  Choose representatives
+`s(x)` of `G/C` whose marked axis point is closest to a fixed base vertex.
+For
+
+`g s(x)=s(gx)r^(kappa(g,x))`,                           `(ICH1)`
+
+nearest-point projection to the axis gives the uniform estimate
+
+`sup_x |kappa(g,x)| <= d_T(o,go)/ell_T(r)+2`.           `(ICH2)`
+
+Consequently the induced characters
+
+`pi_theta=Ind_C^G(r^n |-> exp(i theta n))`              `(ICH3)`
+
+form a point-norm continuous path of tempered representations.  Combining
+this path with the Mackey parity intertwiner proves that the two negative
+shear endpoints are homotopic as representations of the **whole** reduced
+vertex algebra, and hence of the regular MF completion:
+
+`psi=pi_0`, `phi=Ad(U)pi_pi`,
+`phi(r^n)=(-1)^n psi(r^n)`.                             `(ICH4)`
+
+This strictly improves the earlier edge-only homotopy audit.  Shulman's
+Theorems 11 and 15 lift this entire vertex homotopy.  They still leave
+
+`Phi_j(r)+Psi_j(r)`                                    `(ICH5)`
+
+only in the star-strongly-null ideal, not norm-null.  The mapping-cylinder
+coordinate is lifted by a quasicentral positive contraction; its complement
+may be strongly null with norm one.  Thus `(ICH4)` does not yet imply the
+corona covariance `(CRC4)`.
+
+The obvious projectional repair is unavailable in this exact model.  A
+sequence of nonzero finite-rank projections asymptotically commuting in
+operator norm with `pi_0(G)` would yield a `pi_0(G)`-central state on
+`B(ell^2(G/C))`, hence a `G`-invariant mean on `G/C`.  But `C` is amenable
+and not coamenable in the nonamenable free product `G=H*Z`.  Therefore the
+quasi-regular Mackey representation has no such projectional approximation.
+
+The sharpened live gate is a genuinely relative norm-lifting theorem:
+convert the whole-vertex homotopy `(ICH4)` into endpoint lifts agreeing on
+the twisted cyclic edge without quasidiagonalizing the nonamenable
+quasi-regular representation.  This remains open.
