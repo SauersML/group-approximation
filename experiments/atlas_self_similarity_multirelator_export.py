@@ -18,6 +18,9 @@ from atlas_kernel_collision_enumerator import (
     factor_projections,
     spanning_tree_kernel_words,
 )
+from atlas_certified_outer_tangent import (
+    representation as outer_permutation_representation,
+)
 from atlas_self_similarity_global_audit import amplified_alignment, word_value
 from atlas_survivor_chart_filling import canonical, encode_word
 from atlas_two_chart_search import I4, gf2_inv, matrix_key
@@ -36,6 +39,13 @@ def direct_sum(left, right):
     return np.block([[left, zero], [zero, right]])
 
 
+def permutation_matrix(images):
+    result = np.zeros((len(images), len(images)), dtype=np.complex128)
+    for source, target in enumerate(images):
+        result[target, source] = 1
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("perfect_overlap_json")
@@ -44,7 +54,11 @@ def main():
     parser.add_argument("--multiplicity", type=int, default=1)
     parser.add_argument(
         "--initial-alignment",
-        choices=("exact-phase", "certified-outer"),
+        choices=(
+            "exact-phase",
+            "certified-outer",
+            "certified-outer-permutation",
+        ),
         default="exact-phase",
     )
     parser.add_argument(
@@ -103,7 +117,7 @@ def main():
 
         relative_block = np.asarray(
             phase_relative, dtype=np.complex128).reshape(64, 64)
-    else:
+    elif args.initial_alignment == "certified-outer":
         block_dimension = 128
 
         def block_representation(matrix):
@@ -122,6 +136,21 @@ def main():
         swap = np.block([
             [np.zeros((64, 64), dtype=np.complex128), np.eye(64)],
             [np.eye(64), np.zeros((64, 64), dtype=np.complex128)],
+        ])
+        relative_block = block_representation(alignment) @ swap
+    else:
+        block_dimension = 30
+
+        def block_representation(matrix):
+            return permutation_matrix(
+                outer_permutation_representation(matrix))
+
+        alignment = np.frombuffer(
+            bytes.fromhex(CERTIFIED_OUTER_ALIGNMENT), dtype=np.uint8
+        ).reshape(4, 4).copy()
+        swap = np.block([
+            [np.zeros((15, 15), dtype=np.complex128), np.eye(15)],
+            [np.eye(15), np.zeros((15, 15), dtype=np.complex128)],
         ])
         relative_block = block_representation(alignment) @ swap
 
@@ -150,7 +179,7 @@ def main():
         initial_errors.append(float(np.linalg.norm(
             value - targets[word_index] * block_identity)
             / np.sqrt(block_dimension)))
-    if (args.initial_alignment == "certified-outer"
+    if (args.initial_alignment.startswith("certified-outer")
             and max(initial_errors[:-1]) > 1e-10):
         raise AssertionError("certified outer alignment did not kill all classes")
 
