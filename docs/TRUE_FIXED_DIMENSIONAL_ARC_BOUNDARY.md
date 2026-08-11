@@ -276,3 +276,36 @@ bounded-dimensional subsequence is excluded by Theorem 5.
 This is now the theorem-shaped TRUE target: make the fixed-dimensional
 linear constants uniform in `d`.  More prime farming in one selected
 projective `SL_3(Z)` family does not address that quantifier by itself.
+
+## 7. Every fixed-dimensional constant is effectively computable
+
+Theorem 5 also makes the remaining sequence completely explicit.
+
+**Corollary 6 (effective algebraic constants).**  Given the finite words
+`R,w` and a dimension `d`, under `(FDA6)` the number `C_fd(d)` is a finite
+real-algebraic number and can be computed, in principle, by quantifier
+elimination over real closed fields.
+
+**Proof.**  Write every matrix variable in real and imaginary coordinates.
+The equations defining `U(d)^k`, and the functions `Q_R` and `q_w`, have
+rational coefficients.  For a real parameter `C`, the assertion
+
+`C>=0 and q_U(w) <= C Q_R(U) for every U in U(d)^k`          `(FDA32)`
+
+is a first-order formula over the real closed field with rational
+coefficients.  Its set of solutions in `C` is therefore semialgebraic over
+`Q`.  It is an upper ray, and it is nonempty by Theorem 5.  Its left endpoint
+is exactly `C_fd(d)`.  A finite endpoint of a one-dimensional semialgebraic
+set over `Q` is real algebraic, and real quantifier elimination computes its
+defining algebraic data and isolating interval.  End proof.
+
+Consequently the universal comparison `(FDA30)` is equivalent to boundedness
+of the computable sequence of algebraic numbers
+
+`C_fd(1), C_fd(2), C_fd(3), ...`.                            `(FDA33)`
+
+The computation is not proposed as a practical algorithm: generic real
+quantifier elimination is enormous even at small `d`.  Its conceptual role
+is to show that no undecidable or infinitary ambiguity remains at an
+individual dimension.  All difficulty is in a bound uniform over the
+unbounded sequence `(FDA33)`.
