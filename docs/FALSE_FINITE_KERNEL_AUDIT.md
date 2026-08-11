@@ -182,6 +182,14 @@ relations and therefore cannot guarantee the nonzero norm-corona projective
 sector `(PSC3)--(PSC4)`.  A sector supported on negligible normalized rank is
 exactly what tracial rounding is allowed to ignore.
 
+There is a refined positive reading once a scalar negative sector is already
+present.  Paddock's Lemma 3.26 only needs a nonzero output subspace, and an
+exact scalar `z=-1` would survive on that subspace without any relative-rank
+bound.  The missing input is then its approximate-tracial commutator
+hypothesis, not output dimension.  The exact induced Mackey model in the
+next section is nonamenable and has no approximately central finite-rank
+density matrices, so it does not furnish that hypothesis.
+
 The audited FALSE endpoint is therefore `(PSC4)`, equivalently the existing
 corona covariance condition `(CRC4)`.  Proving it for the cyclic radical
 shear would make `J` weak MF; its central radical involution would then yield
