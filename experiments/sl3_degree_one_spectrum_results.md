@@ -1,0 +1,124 @@
+# Degree-one repair spectrum on fixed `SL_3(Z)` charts
+
+Date: 2026-08-11
+
+## Question
+
+The degree-zero experiment in `phase_code_spectrum_results.md` shows that
+arbitrary locally free Schreier charts can have vanishing repair gap.  The
+next live TRUE question is whether a fixed property-`(T)` presentation can
+instead supply a degree-one linear repair estimate.
+
+`sl3_degree_one_spectrum.py` tests this on the reduction actions
+
+`X_p = F_p^3 - {0}`
+
+of a fixed six-generator presentation of `SL_3(Z)`.  The generators are the
+six elementary transvections.  The 13 relators are the six Steinberg
+commutator relations, the six allowed orthogonal-root commutators, and the
+Conder--Robertson--Williams torsion relation
+
+`(x_12 x_21^(-1) x_12)^4 = 1`.
+
+For the resulting finite presentation complex the program constructs the
+sparse cellular coboundaries
+
+`d0:C^0 -> C^1`, `d1:C^1 -> C^2`
+
+and measures the bottom of
+
+`Delta_1 = d1^* d1 + d0 d0^*`.                         `(SDO1)`
+
+The construction checks every relator modulo `p` and checks `d1 d0=0`
+exactly before diagonalization.
+
+## MSI run
+
+The runs used the existing Anaconda NumPy/SciPy installation on `acn116`,
+four CPU cores, and sparse ARPACK diagonalization.  No package build and no
+RAM-backed temporary directory were needed.  There are no surviving jobs.
+
+The complete machine-readable outputs are:
+
+* `sl3-degree-one-spectrum.jsonl`;
+* `sl3-degree-one-spectrum-extra.jsonl`;
+* `sl3-degree-one-spectrum-large.jsonl`;
+* `sl3-degree-one-low-modes.jsonl`.
+
+The first positive degree-zero singular value and the least degree-one
+Hodge singular value were:
+
+| `p` | vertices | edges | cells | `sigma_1(d0)` | `sqrt(lambda_min(Delta_1))` |
+|---:|---:|---:|---:|---:|---:|
+| 3  | 26    | 156     | 338     | 1.645751 | 1.000000 |
+| 5  | 124   | 744     | 1,612   | 1.329473 | 1.000000 |
+| 7  | 342   | 2,052   | 4,446   | 1.213558 | 1.000000 |
+| 11 | 1,330 | 7,980   | 17,290  | 1.081600 | 0.986762 |
+| 13 | 2,196 | 13,176  | 28,548  | 1.047932 | 0.980771 |
+| 17 | 4,912 | 29,472  | 63,856  | 1.012725 | 0.979245 |
+| 19 | 6,858 | 41,148  | 89,154  | 0.992815 | 0.962999 |
+| 23 | 12,166 | 72,996 | 158,158 | 0.967616 | 0.767843 |
+| 29 | 24,388 | 146,328 | 317,044 | 0.953613 | 0.890685 |
+| 31 | 29,790 | 178,740 | 387,270 | 0.961326 | 0.899509 |
+| 37 | 50,652 | 303,912 | 658,476 | 0.942777 | 0.815371 |
+
+Thus the coexact degree-one bottom stays between `0.7678` and `1` over the
+measured family, while the complexes grow by nearly four orders of
+magnitude.  This is positive evidence for a linear repair estimate on these
+selected charts, but it is not a proof of a uniform lower bound.  The dip at
+`p=23` also makes extrapolation from a smooth trend unjustified.
+
+## The low modes have exact scalar-character structure
+
+Scalar multiplication by `F_p^*` commutes with the `SL_3(F_p)` action and
+therefore with `(SDO1)`.  The `--analyze` mode Fourier-transforms a lowest
+eigenvector along this scalar action.  Two diagnostic cases give:
+
+| `p` | `lambda_min(Delta_1)` | `||d1 u||^2` | `||d0^* u||^2` | scalar character |
+|---:|---:|---:|---:|---|
+| 23 | 0.589583616965 | 0.589583616965 | `2.32e-19` | quadratic (`j=11`) |
+| 37 | 0.664830486617 | 0.664830486617 | `1.23e-18` | trivial (`j=0`) |
+
+In both cases the reported character has Fourier weight `1` to numerical
+precision.  The low vector is also coexact to numerical precision: all of
+its Hodge energy is `||d1 u||^2`, not `||d0^*u||^2`.
+
+This is the useful output of the experiment.  The full operator decomposes
+into `p-1` scalar-character blocks.  The `p=23` anomaly is not an
+unstructured large-dimensional near-kernel; it is a quadratic-character
+block.  The `p=37` low mode descends to the projective-plane quotient.
+
+## Proof-producing successor
+
+Do not spend the next allocation merely extending the prime table.  Replace
+the full `F_p^3-{0}` matrices by their Fourier blocks under `F_p^*` and make
+the controller emit one of:
+
+1. a rigorous lower bound for every scalar-character block, preferably an
+   exact rational/algebraic or interval certificate;
+2. an explicit character block whose bottom tends to zero, together with
+   its recognized eigenvector architecture.
+
+The immediate theorem candidate is:
+
+> For the fixed presentation above, the coexact part of `Delta_1` on the
+> complexes over `X_p` has a positive lower bound independent of `p`.
+
+A proof would give the real-linear part of a robust degree-one cocycle
+repair theorem on this explicit family.  It would not by itself settle the
+circle/torsion problem: integer carries, finite-order approximation, and
+Hamming deletion still have to be controlled.  Conversely, failure of this
+candidate would identify a concrete character sector and cochain mode that
+any TRUE decoder must handle.
+
+## Reproduction
+
+On a compute node with NumPy and SciPy already available:
+
+```text
+python experiments/sl3_degree_one_spectrum.py --primes 3 5 7 11
+python experiments/sl3_degree_one_spectrum.py --primes 23 37 --eigenvalues 2 --analyze
+```
+
+The program writes one JSON object per prime to standard output.  Redirect
+that output to shared storage, not a RAM-backed temporary directory.

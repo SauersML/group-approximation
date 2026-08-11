@@ -584,6 +584,29 @@ alone can give the uniform repair spectrum suggested by `(PFL11)`.  A TRUE
 decoder must select expanding/cosystolic charts or exploit the prescribed
 relatively-Haar joining; arbitrary-chart spectral mining is a dead route.
 
+The first genuine degree-one selected-chart computation is in
+`experiments/sl3_degree_one_spectrum_results.md`.  For the fixed six-root,
+13-relator presentation of `SL_3(Z)` acting on `F_p^3-{0}`, sparse MSI runs
+through `p=37` give coexact degree-one singular bottoms between `0.7678` and
+`1`, on complexes ranging from 156 to 303,912 edges.  This is evidence for
+a linear repair estimate on these selected property-`(T)` charts, not a
+uniform-gap proof and not yet circle/torsion repair.  More importantly, the
+lowest modes split exactly under the commuting scalar `F_p^*` action: the
+`p=23` anomaly is wholly in the quadratic-character block, while the `p=37`
+mode is wholly scalar-invariant.  Stop extending the raw prime table.  The
+proof-producing successor is to construct the scalar-character Fourier
+blocks directly and seek exact/interval lower-bound certificates, or a
+recognized block family whose bottom tends to zero.
+
+This also fixes the architecture of the autonomous FALSE solver.  It must
+not enumerate exact RF vertex representations and hope that ILP plus an
+intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
+proves that every such asymptotically compatible exact-vertex sequence kills
+the sign.  The primal variables must include a genuinely nonliftable
+normalized-HS almost-representation inside at least one vertex.  Exact RF
+models may serve as controls or auxiliary blocks, never as the complete
+projective-sector ansatz.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
