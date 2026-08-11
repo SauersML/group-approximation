@@ -367,6 +367,14 @@ radii in `(NDR37)` and the nonsmall spherical-sector classes.  The real
 Hodge problem and the nonlinear nearest-carry bookkeeping are no longer
 mixed together.
 
+`TRUE_FINITE_PAIRED_DISCRIMINANT_CERTIFICATE.md` removes the remaining
+continuous optimization on each fixed chart.  On a compact fundamental
+polytope, only finitely many numerator lattice sites and paired
+discriminant wells are active.  Their common Voronoi refinement is rational
+polyhedral, and an asserted bound `C_circ(A)^2<=T` is equivalent to a finite
+family of exact quadratic nonpositivity tests on those cells.  In
+particular, the optimal squared constant is always real algebraic.
+
 ## 8. Exact rank-one computational calibration
 
 The paired envelope is already nontrivial for a primitive rank-one map

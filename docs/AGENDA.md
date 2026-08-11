@@ -993,6 +993,16 @@ bound.  The next exact computation should therefore first evaluate this
 determinant ratio, then solve two affine integer lift problems; it should
 not enumerate the full discriminant group.
 
+The fixed-chart nonlinear optimization is now finite and exact.  By
+`TRUE_FINITE_PAIRED_DISCRIMINANT_CERTIFICATE.md`, only finitely many range
+lattice sites and paired discriminant wells can be active on a fundamental
+polytope.  Their common Voronoi refinement is a finite rational polyhedral
+complex, and `C_circ(A)^2<=T` is equivalent to one rational quadratic
+nonpositivity test on each cell.  Thus every fixed-chart constant is a real
+algebraic number with an exact certificate.  The remaining issue is wholly
+uniform: construct one bound for these finite certificates over the
+selected chart family.
+
 On the FALSE side, the paired carry energy now has the coordinate-order
 formula in `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`: its uniform subgroup mean
 is a sum of `nu(o_j)` over ambient carry characters, with every nontrivial
