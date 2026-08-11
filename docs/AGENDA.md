@@ -866,6 +866,13 @@ square-root factorization by spectral projectors and character matching; it
 is now higher yield than further continuous descent. Details and solver
 records: `experiments/atlas_self_similarity_refine_results.md`.
 
+The multiplicities compress once more: the 64-dimensional restrictions are
+eight copies of a canonical 8-dimensional package, namely `2*tau` plus the
+four linear `D8` characters versus two copies of every `V4` character. Hence
+an exact `U(8)` solution of `(BABE)^2=iC` amplifies to the observed 64D model.
+Run `experiments/atlas_self_similarity_block8_search.py` next and recognize
+its output before returning to the dense 64D state.
+
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
 each of size fourteen, represented by collision-tree indices

@@ -184,3 +184,18 @@ blind optimization.
 A bounded GAP size query for the corresponding four-involution central-phase
 presentation did not finish; only its abelianization $C_2^4$ was returned.
 Do not enlarge that raw coset enumeration without first exploiting `(5)`.
+
+Finally, all restriction multiplicities have a common factor eight. The
+64-dimensional data is eight copies of a minimal 8-dimensional package:
+
+\[
+ W|_{D_8}/8=2\tau\oplus\!\bigoplus_{\chi\in\widehat{D_8}^{(1)}}\!\chi,
+ \qquad
+ W|_{V_4}/8=2\!\bigoplus_{\psi\in\widehat{V_4}}\!\psi. \tag{7}
+\]
+
+Therefore an exact 8-dimensional solution amplifies directly to dimension
+64. `atlas_self_similarity_block8_search.py` instantiates this canonical
+package without Sage and searches only its relative $U(8)$. This is the next
+compute job; its output should be much easier to recognize algebraically than
+the dense $U(64)$ state.
