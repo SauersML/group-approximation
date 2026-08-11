@@ -69,12 +69,19 @@ separation into a group separation only when the extracted core still fails
 the corresponding finite-action approximation; known subgroup-test
 separations do not supply that extra property.
 
+Spectral compression `(SCR1)-(SCR10)` now removes exceptional vectors from a
+finite hyperlinear table: on an asymptotically full corner every selected
+normal relator is operator-norm small, while one outside witness remains
+Hilbert--Schmidt separated.  The exact residue is generator invariance of the
+corner.  Averaging the defect operator over conjugates makes this a Følner
+boundary problem and therefore recovers only the known amenable case.
+
 Next: attack the normal-Dirac restriction inside a finite subgroup test.  Use
 normality and the `0/1` law to symmetrize an arbitrary positive loss
-certificate, seeking a finite-action strategy without asking for universal
-matrix-to-permutation rounding.  Do not route through amenability, generic HS
-stability, or Bernoulli-lamp permanence; their exact stopping points are now
-proved in the notepad.
+certificate, seeking a finite-action strategy directly from the relation-good
+corners without first making those corners invariant.  Do not route through
+conjugate averaging, amenability, generic HS stability, or Bernoulli-lamp
+permanence; their exact stopping points are now proved in the notepad.
 
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 

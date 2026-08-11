@@ -37955,3 +37955,106 @@ IRS is co-sofic whenever `F` is sofic (in particular when `F` is free).
 Thus an IRS separation solves the group problem only if its extracted core
 retains the separation.  The subgroup-test constructions audited in `(SA5)`
 do not establish this additional property.
+
+## 2026-08-10: spectral compression removes bad vectors but not the normality boundary
+
+There is a dimension-free way to turn small normalized-Hilbert--Schmidt
+relator errors into uniform operator-norm errors on one large subspace.  It
+shows that the finite-action transfer is not blocked by a sparse set of bad
+vectors.  What remains is invariance of the resulting subspace under the
+free generators.
+
+Let `pi:F->U(d)` be an exact representation of a free group, let
+`R subset F` be finite, and put
+
+`A=sum_(r in R) (pi(r)-1)^*(pi(r)-1)`,
+`a=tr_d(A)=sum_(r in R)||pi(r)-1||_2^2`.                `(SCR1)`
+
+For `t>0`, let
+
+`p=1_([0,t])(A)`.                                      `(SCR2)`
+
+**Proposition (large relation-good spectral corner).**  One has
+
+`tr_d(p)>=1-a/t`,                                      `(SCR3)`
+
+and, for every `r in R`,
+
+`||(pi(r)-1)p||_op<=sqrt(t)`.                          `(SCR4)`
+
+If `w in F`, `W=pi(w)`, and
+
+`b=||W-1||_2^2`,                                      `(SCR5)`
+
+then
+
+`tr_d(p(W-1)^*(W-1)p)>=b-4a/t`.                       `(SCR6)`
+
+Consequently, whenever `a/t<1`, the Hilbert--Schmidt norm normalized on
+`p C^d` satisfies
+
+`||(W-1)p||_(2,p)^2>=max(0,b-4a/t)`.                  `(SCR7)`
+
+**Proof.**  Since `A` is positive, spectral Markov gives
+
+`a=tr_d(A)>=t tr_d(1-p)`,
+
+which is `(SCR3)`.  Also `pAp<=tp`.  Each positive summand
+`(pi(r)-1)^*(pi(r)-1)` is at most `A`, so compression to `p` gives
+`p(pi(r)-1)^*(pi(r)-1)p<=tp`; this is exactly `(SCR4)`.
+
+Put `B=(W-1)^*(W-1)`.  Since `W` is unitary, `0<=B<=4`.  Therefore
+
+`tr_d(pBp)=tr_d(B)-tr_d((1-p)B)`
+`          >=b-4tr_d(1-p)>=b-4a/t`,
+
+where cyclicity removes the off-diagonal blocks.  This proves `(SCR6)`.
+Dividing by `tr_d(p)<=1` only increases the lower bound, proving `(SCR7)`.
+End proof.
+
+Apply this with a hyperlinear normal-indicator model for `Gamma=F/N`, with
+`R subset N` and `w notin N`.  Then `a->0`, whereas `b->2` after asking for
+the regular trace at `w`.  Taking, for example, `t=sqrt(a)` gives
+
+`tr_d(p)->1`,
+`max_(r in R)||(pi(r)-1)p||_op<=a^(1/4)->0`,
+`||(pi(w)-1)p||_(2,p)^2->2`.                           `(SCR8)`
+
+Thus every finite table admits an almost-full corner on which all selected
+relations hold uniformly and the witness remains macroscopic.  No
+concentration theorem, tensor power, or exceptional-vector deletion is
+still needed at this stage.
+
+The corner is not a quotient module: generally
+
+`pi(s)p pi(s)^* != p`                                  `(SCR9)`
+
+for a free generator `s`.  Although `tr_d(p)->1` makes this failure small in
+normalized Hilbert--Schmidt norm, it gives no operator-norm control of the
+leakage
+
+`||(1-p)pi(s)p||_op`.                                  `(SCR10)`
+
+That control is needed to evaluate a relator word in the compressed and
+polar-rounded generator matrices: without it, the intermediate prefixes may
+leave `p C^d`, so `(SCR4)` for the final word does not propagate to an
+operator-norm almost representation on the corner.
+
+Enlarging `(SCR1)` by conjugates of `R` over a
+finite set `M subset F` makes the corner good for those conjugates, but
+generator invariance compares `M` with `sM`.  Requiring the discarded trace
+from this comparison to be negligible is precisely a small-boundary demand
+on `M`.  The Burton--Chaudkhari--Juschenko--Muliarchyk argument supplies such
+sets when `F/N` is amenable; the coamenability calculation `(PO1)-(PO2)`
+shows that this averaging route cannot be made universal.
+
+The sharpened remaining problem is therefore:
+
+> starting from the corners `(SCR2)`--`(SCR8)`, assemble a common finite
+> `F`-set without first replacing `p` by a generator-invariant corner.
+
+Any argument which simply averages the spectral defect operator over
+conjugates has reintroduced the Følner step and stops at amenability.  A
+general proof must instead use the normal `0/1` trace law to perform a
+non-Følner, globally coherent rounding of these already-uniform local
+corners.
