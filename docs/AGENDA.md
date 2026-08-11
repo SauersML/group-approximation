@@ -1551,6 +1551,18 @@ model.  The stronger construction in
 `L`-coset incidence is now a live quantitative FALSE target.  Precise scope:
 `docs/FALSE_SQUARE_ZERO_FINITE_RING_QUOTIENT_NO_GO.md`.
 
+The fold-aligned class has an exact finite-quotient dichotomy.  In the
+natural coefficient-ring quotients, `h` acts trivially on the `L`-coset set
+and `c` acts by the transvection `s=I+e_13`.  If its cycle length is `M`,
+the orbit-stabilizer map on `H_2(-,F_p)` is multiplication by `M`.
+Therefore the paired augmentation class vanishes when `p` does not divide
+`M` and survives on every orbit when `p|M`.  For
+`SL_d(Z/MZ)`, `s` has order exactly `M`.  Restrict the quantitative search
+to `p`-divisible moduli and compute the Fourier-symbol carry/marked ratio on
+one cyclic block; arbitrary finite-quotient sweeps are obsolete.  Full
+chain formula and proof:
+`docs/FALSE_RADICAL_BS_FINITE_CYCLE_TRANSGRESSION.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
