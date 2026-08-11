@@ -142,15 +142,17 @@ A valid positive special case is split extension by a finitely generated
 abelian kernel, which embeds in `Hol(K) times Q`; the Kun--Thom kernel has
 infinite abelian rank and therefore lies exactly outside this case.
 
-The principal skew-product reformulation now removes every countable-range
-circle cocycle without a root construction.  If `lambda` is cohomologous into
-a countable subgroup `A<T`, then `R_Q(lambda)` is a subrelation of
+The principal skew-product reformulation gives a direct relation-theoretic
+proof for every countable-range circle cocycle.  If `lambda` is cohomologous
+into a countable subgroup `A<T`, then `R_Q(lambda)` is a subrelation of
 `R_Q times S_A`, where `S_A` is the hyperfinite translation relation of
 `A action T`.  Product and subgroupoid permanence make the skew product
 sofic, and principalization then makes `Gamma` sofic (`(HPK9cc)-(HPK9cf)`).
-Thus finite generation, property `(T)`, and Pruefer scalar divisibility are
-irrelevant in the countable-range case.  A surviving bounded-exponent residue
-must have no countable-range gauge on any finite-index restriction.
+The same bounded-phase conclusion was already implicit in Theorem 3A, since
+countable range of `lambda=b^m` forces countable range of `b`.  Thus finite
+generation, property `(T)`, and Pruefer scalar divisibility are irrelevant in
+the countable-range case.  A surviving bounded-exponent residue must have no
+countable-range gauge on any finite-index restriction.
 
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
@@ -425,6 +427,25 @@ absorbs, and Q3.4 on these families asks exactly whether HS-with-(T) is
 closure-exact.  Dig where closure-exactness breaks: the normal `0/1`
 character-transfer problem (item 1), and controlled inexactness (item 2's
 ε-budget).
+
+## 5. Two-chart atlas computation  [FIRST SIGNAL]
+
+The MSI experiment in `experiments/atlas_two_chart_results.md` translates 54
+exact Steinberg/Leavitt relations through the explicit `A8*A8` atlas and
+tests all 648 centrality constraints obtained from twelve chart generators.
+Exact `F_2` Leavitt reduction validates every source relation.  At
+multiplicities `k=1,2,4`, worst-tail optimization reduces the maximum
+normalized-HS defect only
+
+`1.27256 -> 1.24958 -> 1.23908`.
+
+The gain is genuine but slow.  Exhausting all 40,320 automorphisms of `A8`
+finds no exact classical alignment: the best inner alignment satisfies
+`42/54` source relations and the best outer alignment `20/54`.  Thus the
+subsystem has nonclassical multiplicity daylight but no near-solution.
+Next: extract the full finite normal-relator list before larger blind runs;
+in parallel, target the persistent scalar Steinberg/Cuntz branch for a
+dimension-free trace or SOS inequality.
 
 ## Banked (kernel-checked, this repo)
 

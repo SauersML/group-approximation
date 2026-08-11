@@ -39840,12 +39840,13 @@ then `(TWT21)` gives
 
 `lambda has a countable-range gauge  ==>  Gamma sofic`. `(TWT26)`
 
-This strictly strengthens the earlier finitely-generated-range and
-property-`(T)` criteria.  It also removes the apparent Pruefer-range
-obstruction: multiplication by `p` need not split on the Pruefer group,
-because the proof never constructs a scalar retraction or a finite quotient
-of the phase group.  It embeds the **relation** into a product and invokes
-subgroupoid permanence.
+This gives a direct alternative to the earlier finitely-generated-range and
+property-`(T)` arguments.  The conclusion was already implicit in Theorem 3A
+of the Haar-phase note: if `lambda=b^m` has countable range, then `b` has
+countable range because each scalar has only `m` roots, and the countable
+primitive theorem applies.  The new point of `(TWT23)` is the independent
+relation-theoretic proof: it never constructs a scalar retraction or a finite
+quotient of the phase group.
 
 The remaining bounded-exponent residue must therefore satisfy the sharper
 condition
