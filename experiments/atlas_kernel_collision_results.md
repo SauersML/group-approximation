@@ -286,6 +286,15 @@ pairs become asymptotically central without losing the two regular factor
 characters.  No further enumeration of the original Leavitt kernel is
 needed to locate the first obstruction.
 
+The exact 24 ordered pairs and their multiplicities are emitted by the
+enumerator and committed in
+`experiments/atlas-kernel-radius5-summary.json`.  Regenerate the compact
+artifact with
+
+```text
+python3 experiments/atlas_kernel_collision_enumerator.py --radius 5
+```
+
 The 24 pairs themselves have an exact group-theoretic compression.  Their
 six one-sided nonidentity entries are the same in the two coordinates.  Four
 are adjacent elementary transvections in the upper-left `3 x 3` block; the

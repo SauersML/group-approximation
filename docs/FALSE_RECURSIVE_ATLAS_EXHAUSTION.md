@@ -264,6 +264,43 @@ Thus the residual rank-three problem comes with a large canonical
 multiplicity space; this is the natural place for an induced or Hecke-type
 deformation of the tensor flip.
 
+### A 120-dimensional equivariant deformation space
+
+Choose left-coset representatives for `H` in `K=A8`.  They identify
+
+\[
+ \ell^2(K)\cong \ell^2(H)\otimes\mathbb C^{120}.       \tag{TF6a}
+\]
+
+with `L(H)` acting only on the first tensor factor.  For
+`V in U(120)`, put
+
+\[
+ W_V=I_{\ell^2(H)}\otimes V,\qquad U_V=W_VJ.           \tag{TF6b}
+\]
+
+This is an exact 120-dimensional reduction of a nonclassical search inside
+`U(20160)`.  Both factor restrictions remain regular because `U_V` is
+unitary.  Moreover, for every `h in H` and `g in K`,
+
+\[
+ [L_h,W_VR_gW_V^*]=0,                                \tag{TF6c}
+\]
+
+since `W_V` commutes with `L(H)` and every right translation commutes with
+every left translation.  Thus the ansatz preserves all cross-commutation
+relations whose factor-one letter lies in `H`, while allowing the two
+generators outside `H` to deform the tensor-flip boundary.  A nonmonomial
+`V` changes permutation support and is not covered by Proposition 6.
+
+This reduction does **not** permit replacing the radius-five words by their
+24 projection pairs.  Formula `(TF2)` is special to `V=I`; for general
+`V`, alternating words with the same `(p_1,p_2)` can have different values.
+The complete tree-word list must remain in the loss, with the 24 pairs used
+only to stratify the first failing directions.  The exact pair list and
+multiplicities are stored in
+`experiments/atlas-kernel-radius5-summary.json`.
+
 ## 3.7 Phase twists of the tensor flip cannot cross the boundary
 
 The most immediate deformation of `J` is already impossible.  Let `V` be

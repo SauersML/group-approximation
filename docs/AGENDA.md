@@ -689,6 +689,15 @@ normalized-HS almost-representation inside at least one vertex.  Exact RF
 models may serve as controls or auxiliary blocks, never as the complete
 projective-sector ansatz.
 
+The radius-ten atlas boundary also has a smaller structured ansatz.  With
+`H=GL_3(F_2)<A8`, left-coset coordinates give
+`ell^2(A8)=ell^2(H) tensor C^120`; relative unitaries
+`U_V=(I_H tensor V)J`, `V in U(120)`, preserve exact commutation with the
+whole left `H` while allowing dense, nonmonomial deformation in the coset
+multiplicity.  Optimize the complete radius-five word energy in this space,
+using the committed 24 projection pairs only for diagnostics.  This is the
+next bounded FALSE search; do not allocate a dense `U(20160)` optimizer.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
