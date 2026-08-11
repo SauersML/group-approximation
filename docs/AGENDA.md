@@ -162,6 +162,17 @@ Thus a sofic-radical element has fixed-set mean `1` in every amenable action.
 Any viable amenable negative sector must be genuinely nonpermutational, not
 merely nonmonomial.
 
+The Kazhdan-corner theorem gives a separate exact FALSE certificate: every
+nontrivial weak-MF Kazhdan group has a nontrivial hyperlinear quotient, by
+renormalizing on the complement of the central Kazhdan projection.  Hence a
+simple Kazhdan weak-MF group is hyperlinear, and weak MF of
+`St_5(L_(F_2)(1,2))` would make its simple nonsofic quotient
+`EL_4(L_(F_2)(1,2))` hyperlinear.  See
+`docs/FALSE_KAZHDAN_CORNER.md`.  Do not treat Delzant's theorem that every
+countable group embeds in a Kazhdan group as MF-preserving: its envelope is
+a quotient `P/N` of an SQ-universal hyperbolic Kazhdan group, and weak MF is
+not known to pass through the arbitrary quotient `P->P/N`.
+
 Do not try to extend Pestov's invariant `UCB` sphere mean to all bounded
 functions formally.  The implication is false even in dimension two:
 a faithful `F_2<SU(2)` representation is Bekka-amenable and has the Haar

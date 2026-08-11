@@ -38882,3 +38882,29 @@ That remaining step is still exactly the nontrivial operator-norm projective
 sector `(PSG6)/(PSC4)`.  The older warning about arbitrary weak-MF embeddings
 remains correct; the profinite regular model is the special repair that keeps
 the Bass--Serre normal form visible.
+
+# Kazhdan-corner extraction has a standalone audited endpoint (2026-08-10)
+
+Full details are now in `docs/FALSE_KAZHDAN_CORNER.md`.  If a nontrivial
+Kazhdan group `G` is weak MF, cut its injective norm-corona representation by
+the complement of the central Kazhdan projection and renormalize the
+coordinate traces on that corner.  The Kazhdan Laplacian has a uniform
+spectral gap there, so the resulting tracial-ultraproduct homomorphism is
+nontrivial.  Thus `G` has a nontrivial hyperlinear quotient; if `G` is
+simple, it is itself hyperlinear.
+
+For the quasisimple group `U=St_5(L_(F_2)(1,2))`, the kernel is central.
+Thom's central-quotient permanence then makes the already nonsofic simple
+quotient `Q=EL_4(L_(F_2)(1,2))` hyperlinear.  Hence
+
+`U weak MF  ==>  Q hyperlinear and nonsofic`.               `(KCE1)`
+
+The universal Kazhdan-envelope theorem does not supply the hypothesis in
+`(KCE1)`.  Delzant obtains an envelope as `P/N`, where `P` is a hyperbolic
+Kazhdan group and SQ-universality chooses an arbitrary normal subgroup `N`
+so that the desired countable group embeds in `P/N`.  Passing weak MF from
+`P` to `P/N` is precisely the unavailable arbitrary-quotient permanence
+step.  Moreover the Kazhdan corner of a nonsimple envelope could kill the
+embedded nonsofic subgroup.  A useful envelope theorem would therefore have
+to preserve weak MF and either be simple or retain a specified radical
+witness; no current construction has those properties.
