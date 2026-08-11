@@ -17,8 +17,10 @@ import itertools
 import json
 
 from atlas_two_chart_search import (
+    I4,
     commutator,
     factor_generators,
+    gf2_mul,
     inverse,
     leavitt_chart_element,
     leavitt_is_one,
@@ -142,6 +144,17 @@ def centrality_constraints(kernel_words):
     return constraints
 
 
+def factor_projections(word):
+    projections = []
+    for selected_factor in (1, 2):
+        value = I4.copy()
+        for factor, matrix in word:
+            if factor == selected_factor:
+                value = gf2_mul(value, matrix)
+        projections.append(value)
+    return tuple(projections)
+
+
 def encode_word(word):
     return [
         {"factor": factor, "matrix_f2_hex": matrix_key(matrix).hex()}
@@ -162,6 +175,19 @@ def main():
     kernel_words, collision_sizes, depths = spanning_tree_kernel_words(states)
     constraints = (centrality_constraints(kernel_words)
                    if args.deduplicate_constraints else None)
+    projection_counts = {}
+    projection_pair_counts = {}
+    for word in kernel_words:
+        projections = factor_projections(word)
+        pattern = tuple(
+            matrix_key(value) == matrix_key(I4) for value in projections
+        )
+        label = "%s,%s" % tuple(
+            "identity" if entry else "nonidentity" for entry in pattern
+        )
+        projection_counts[label] = projection_counts.get(label, 0) + 1
+        pair_label = ",".join(matrix_key(value).hex() for value in projections)
+        projection_pair_counts[pair_label] = projection_pair_counts.get(pair_label, 0) + 1
     summary = {
         "radius": args.radius,
         "complete_kernel_word_radius": 2 * args.radius,
@@ -171,6 +197,16 @@ def main():
         "collision_bucket_count": len(collision_sizes),
         "largest_collision_bucket": max(collision_sizes, default=1),
         "spanning_tree_kernel_generators": len(kernel_words),
+        "factor_projection_patterns": dict(sorted(projection_counts.items())),
+        "distinct_factor_projection_pairs": len(projection_pair_counts),
+        "nontrivial_factor_projection_pairs": sum(
+            1 for label in projection_pair_counts
+            if label != "%s,%s" % (matrix_key(I4).hex(), matrix_key(I4).hex())
+        ),
+        "tensor_flip_unsatisfied_kernel_generators": sum(
+            count for label, count in projection_counts.items()
+            if label != "identity,identity"
+        ),
         "commutator_constraints_upper_bound": 12 * len(kernel_words),
         "common_right_depth_by_degree": {
             str(degree): depth for degree, depth in sorted(depths.items())
