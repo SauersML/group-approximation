@@ -2,6 +2,16 @@
 
 Date: 2026-08-11
 
+> **Correction (2026-08-11).**  The integral homology calculation, the
+> generator statement, the exact `p^k`-primary order, and the clock
+> representation below are valid.  The original version incorrectly
+> inferred small normalized Hilbert--Schmidt carry from the single small
+> increment `(ICA28)`.  Its translates are not uniformly small: their
+> average squared chord is exactly `2` for every `k>=2`.  The corrected
+> calculation is in `FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.  Thus this
+> note supplies exact algebraic torsion and an exact representation, but
+> it does **not** complete the quantitative one-cycle amplification gate.
+
 ## 1. Outcome
 
 The mod-`p` finite-cycle transgression in
@@ -27,22 +37,24 @@ generator of `(ICA3)`.  Consequently, when `M=p^k`, its `p`-primary order
 is exactly `p^k`.  Its reduction modulo `p` is precisely the nonzero
 augmentation transgression already found in the finite-cycle theorem.
 
-The Pontryagin-dual generator has a completely explicit clock model.  On
+The relevant `p`-primary character has a completely explicit clock model.  On
 `C^(p^k)`, the translation generator has eigenvalues
 
 `exp(2 pi i q^j/p^(k+1))`, `0<=j<p^k`,                   `(ICA4)`
 
-and the stable letter cyclically permutes them.  Adjacent character values
-differ by the primitive `p^k`-th root `exp(-2 pi i/p^k)`, while the
-translation matrix has normalized trace zero.  Thus a phase increment of
-size `O(p^(-k))` is integrated into a translation with fixed normalized
-Hilbert--Schmidt displacement `sqrt(2)`.
+and the stable letter cyclically permutes them.  The distinguished adjacent
+pair has quotient `exp(-2 pi i/p^k)`, while the translation matrix has
+normalized trace zero.  This is an exact microscopic-to-macroscopic
+identity at one distinguished coordinate.  It is not an averaged
+amplification statement: after translation around the orbit, the adjacent
+quotients are equidistributed in a subgroup and have normalized squared
+chord energy `2` for `k>=2`.
 
-This is the exact one-cycle quantitative amplifier requested in Section 6
-of the finite-cycle note.  The remaining global gate is to extend this
-clock sector from the restricted Baumslag--Solitar action to phase
-microstates of the whole radical double without paying a comparable error
-on the other polynomial-amalgam relations.
+Consequently, the remaining gate already occurs on the single cyclic
+orbit: one needs either a different representative/gauge whose fixed
+relation defect is supported on `o(p^k)` dimensions, or a different
+non-orbitwise extension.  Only after that local quantitative problem is
+solved does extension to the whole radical double become relevant.
 
 ## 2. The LHS calculation
 
@@ -213,35 +225,46 @@ through all residues `1+p a`, `a in Z/p^kZ`.  Equation `(ICA24)` gives
 `tr_M(H_k)=0`,
 `||H_k-I||_(2,normalized)^2=2`.                       `(ICA30)`
 
-At the same time, the phase increment in `(ICA28)` has chordal size
+At the distinguished coordinate, the phase increment in `(ICA28)` has
+chordal size
 
 `|exp(2 pi i/p^k)-1|=O(p^(-k)).`                      `(ICA31)`
 
-Equations `(ICA30)--(ICA31)` are an exact cyclic-shear amplification:
-microscopic adjacent phase produces macroscopic normalized translation
-displacement.
+Equations `(ICA30)--(ICA31)` compare one distinguished increment with the
+global displacement.  They must not be read as a normalized
+Hilbert--Schmidt estimate for all translated increments.  In fact, if
+
+`delta_j=exp(-2 pi i q^j/p^k)`,
+
+then
+
+`(1/p^k) sum_j |delta_j-1|^2=2`                       `(ICA32)`
+
+for every `k>=2`; see `FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.
 
 ## 7. What this closes and what remains
 
-This note completes the one-orbit Fourier calculation requested in Section
+This note completes the integral one-orbit calculation requested in Section
 6 of `FALSE_RADICAL_BS_FINITE_CYCLE_TRANSGRESSION.md`:
 
 1. the integral obstruction group is cyclic and explicit;
 2. the marked class is its generator;
 3. its primary order on the `p^k` cycle is exactly `p^k`; and
-4. the dual clock representation has microscopic increment but fixed
-   normalized translation displacement.
+4. the `p`-primary clock representation has one microscopic distinguished
+   increment and fixed normalized translation displacement.
 
-It does not by itself extend `(ICA24)` to the whole square-zero Kun--Thom
-double.  The finite coefficient-ring quotient makes the polynomial and
-Laurent edge images equal, while `(ICA24)` distinguishes the long wrapped
-Laurent translation.  A complete FALSE proof must realize that distinction
-by an approximate representation of the full fixed presentation, with the
-additional polynomial-amalgam defects still `o(1)` in normalized
-Hilbert--Schmidt norm.  The exact remaining extension problem is therefore:
+It does not provide an HS-small realization of that distinguished
+increment on the whole transitive cycle.  The naive translated clock
+defect has the fixed energy `(ICA32)`.  A complete FALSE proof must first
+replace it by an orbit model whose fixed local relations have normalized
+defect `o(1)` while the marked fold word remains separated, and must then
+extend that model to the square-zero Kun--Thom double.  The exact remaining
+problem is therefore:
 
-> extend the clock character `(ICA27)` from the `B`-orbit to the finite
-> square-zero relative module so that every fixed polynomial elementary
-> and `Q`-covariance relation has vanishing normalized defect.
+> construct a gauge or replacement for `(ICA27)` on the `p^k` cycle with
+> vanishing averaged fixed-relation defect and macroscopic marked-word
+> displacement, then extend it to the finite square-zero relative module
+> while preserving all polynomial elementary and `Q`-covariance relations.
 
-No further growth estimate is required on the Baumslag--Solitar cycle.
+The first clause is reopened by `(ICA32)`; the prior version's claim that
+only the global extension remained was incorrect.
