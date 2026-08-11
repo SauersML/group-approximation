@@ -171,7 +171,7 @@ Since $BT=BABE$, the exact problem is to factor a square root of the fixed
 operator $iC$ as
 
 \[
- Y=BABE,qquad Y^2=iC,                               \tag{6}
+ Y=BABE,\qquad Y^2=iC,                               \tag{6}
 \]
 
 subject to the joint-multiplicity constraint on $A,E$. In particular $Y$
@@ -226,7 +226,7 @@ It follows that $PFP=F^*$, hence $E$ is a self-adjoint involution. A second
 direct calculation gives
 
 \[
- [A,E]=0,qquad
+ [A,E]=0,\qquad
  \operatorname{Tr}(A)=\operatorname{Tr}(E)
  =\operatorname{Tr}(AE)=0.                          \tag{11}
 \]
@@ -240,7 +240,7 @@ The four joint eigenspace ranks are therefore
 so $(A,E)$ is exactly two copies of the regular $V_4$ representation. Finally,
 
 \[
- BABE=PE=SF,qquad (SF)^2=F^2=iC.                  \tag{13}
+ BABE=PE=SF,\qquad (SF)^2=F^2=iC.                  \tag{13}
 \]
 
 Using the equivalence `(5)`, the survivor relation is exactly

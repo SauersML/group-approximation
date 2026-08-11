@@ -887,6 +887,19 @@ this class survives after centralizing *all* Leavitt relators, i.e. in
 `docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md` and
 `experiments/atlas_self_similarity_refine_results.md`.
 
+The complete radius-ten audit prevents overinterpreting that theorem. The
+eightfold exact alignment makes exactly fourteen of the 234 boundary words
+scalar, namely the whole conjugacy/inversion class `C_11`; they are `+/- iI`
+to below `5.4e-15`. None of the other 220 words is scalar and none of the 178
+perfect-overlap-certified zero words maps to identity. The remaining maximum
+centrality defect is `1.7375382832`, with boundary RMS `1.4149416221`. Thus
+the model does not factor through `P/[P,R]`. The next finite solver must force
+representatives of the 24 certified-zero classes to identity while retaining
+the exact `C_11` phase, then use the incompatibility pattern for multiplicity
+coupling or a multi-chart filling proof. Full audit:
+`experiments/atlas_self_similarity_global_audit.py` and
+`experiments/atlas_self_similarity_global_audit_results.md`.
+
 
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
