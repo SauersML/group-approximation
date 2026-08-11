@@ -448,3 +448,33 @@ additional identifications.  Numerics alone do not establish even `(23)`, and
 the downstream negative central corner remains separate.  The full
 continuation record and exact commands are in
 `experiments/atlas_self_similarity_refine_results.md`.
+
+Local L-BFGS and an independently implemented matrix-free Gauss--Newton solve
+lower the retained error further to
+
+\[
+ \|\rho_U(r)-iI\|_2=1.11046\cdot10^{-4},\qquad
+ \|\rho_U(r)-iI\|_{\rm op}=2.82906\cdot10^{-4}.     \tag{24}
+\]
+
+The tangent adjoint check passes at $1.2\cdot10^{-16}$, but every deep LSMR
+solve hits its iteration cap, so numerical polishing is now
+ill-conditioned. There is an exact simplification. With
+
+\[
+ A=\rho_U(a_2),\quad E=\rho_U(c_2),\quad
+ B=\rho(b_1),\quad C=\rho(c_1),
+\]
+
+put $T=ABE$. Then
+
+\[
+ \rho_U(r)=iI
+ \quad\Longleftrightarrow\quad
+ (BT)^2=(BABE)^2=iC.                                \tag{25}
+\]
+
+Thus the next exact task is a finite square-root factorization: choose a
+square root $Y$ of $iC$ and factor it as $Y=BABE$, where $A,E$ are commuting
+involutions with four joint eigenspaces of dimension sixteen. Further blind
+weight or seed searches are superseded by this spectral problem.

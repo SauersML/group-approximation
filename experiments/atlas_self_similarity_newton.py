@@ -94,6 +94,10 @@ def main():
             relation - target, ord=2)
         unitarity_error = torch.linalg.matrix_norm(
             relative.conj().T @ relative - identity, ord=2)
+        gradient_norm = torch.sqrt(sum(
+            torch.sum(parameter.grad ** 2)
+            for parameter in (real_parameter, imaginary_parameter)
+        ))
         result = {
             "event": "final",
             "closure_calls": calls,
@@ -103,6 +107,7 @@ def main():
             "operator_error": float(operator_error),
             "relation_trace": [float(trace.real), float(trace.imag)],
             "unitarity_operator_error": float(unitarity_error),
+            "parameter_gradient_norm": float(gradient_norm),
         }
         print(json.dumps(result), flush=True)
         if args.save:

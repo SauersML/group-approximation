@@ -108,3 +108,79 @@ prove that the class survives in the smaller quotient $R/[P,R]$, because
 commutators involving the other Leavitt relators could still kill it. That
 multi-relator central-kernel gate and the downstream negative-corner
 construction remain separate.
+
+## Local polishing and conditioning
+
+`atlas_self_similarity_newton.py` exports the Sage representation matrices
+once, then uses the existing CPU PyTorch installation to minimize
+$\|r(U)-iI\|_2^2$ over one exponential tangent chart. Repeated L-BFGS restarts
+gave:
+
+| stage | $\|r-iI\|_2$ | $\|r-iI\|_{\rm op}$ |
+|---|---:|---:|
+| retained Cayley state | $1.5384\cdot10^{-2}$ | $4.2363\cdot10^{-2}$ |
+| 40 L-BFGS closures | $2.6773\cdot10^{-3}$ | $6.5326\cdot10^{-3}$ |
+| 208 more closures | $5.0521\cdot10^{-4}$ | $1.4157\cdot10^{-3}$ |
+| 1,251 more closures | $2.4993\cdot10^{-4}$ | $6.7466\cdot10^{-4}$ |
+| 2,002 more closures | $2.4381\cdot10^{-4}$ | $6.6225\cdot10^{-4}$ |
+
+The final restart improved only slowly, so this is not merely stale L-BFGS
+history. `atlas_self_similarity_gauss_newton.py` independently applies the
+exact tangent Jacobian and adjoint with matrix-free LSMR. Its random adjoint
+identity check passed with relative error $1.2\cdot10^{-16}$. Four
+200-iteration inner solves reached $1.4266\cdot10^{-4}$, and two
+1,000-iteration solves reached
+
+\[
+ \|r-iI\|_2=1.11046\cdot10^{-4},\qquad
+ \|r-iI\|_{\rm op}=2.82906\cdot10^{-4}.             \tag{4}
+\]
+
+Every inner solve hit its Krylov iteration cap. This is evidence for a very
+ill-conditioned tangent problem, not evidence that the residual is zero.
+Further floating-point polishing has sharply diminishing value until the
+exact structure below is used.
+
+## Exact square-root reduction
+
+Write
+
+\[
+ A=\rho_U(a_2),\quad E=\rho_U(c_2),\quad
+ B=\rho(b_1),\quad C=\rho(c_1).
+\]
+
+Here $A,E$ are commuting involutions with four joint eigenspaces of dimension
+16, while $B,C$ generate the fixed $D_8$ restriction. Put $T=ABE$. Then
+
+\[
+ r=TBT\,CB.
+\]
+
+Consequently
+
+\[
+ r=iI
+ \quad\Longleftrightarrow\quad
+ TBT=iBC
+ \quad\Longleftrightarrow\quad
+ (BT)^2=iC.                                         \tag{5}
+\]
+
+Since $BT=BABE$, the exact problem is to factor a square root of the fixed
+operator $iC$ as
+
+\[
+ Y=BABE,qquad Y^2=iC,                               \tag{6}
+\]
+
+subject to the joint-multiplicity constraint on $A,E$. In particular $Y$
+must commute with $C$. On the $C=+1$ eigenspace its eigenvalues lie in
+$\{\pm e^{i\pi/4}\}$, and on the $C=-1$ eigenspace they lie in
+$\{\pm e^{-i\pi/4}\}$. This finite spectral-factorization problem is the
+right target for exact character and projector analysis. It replaces further
+blind optimization.
+
+A bounded GAP size query for the corresponding four-involution central-phase
+presentation did not finish; only its abelianization $C_2^4$ was returned.
+Do not enlarge that raw coset enumeration without first exploiting `(5)`.

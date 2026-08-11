@@ -854,6 +854,18 @@ commutators involving all other Leavitt relators also matter. The
 multi-relator central-kernel and negative-corner gates remain. Full record:
 `experiments/atlas_self_similarity_refine_results.md`.
 
+Local solvers sharpen that signal but also expose the next mathematical gate.
+Repeated PyTorch L-BFGS and an independent matrix-free Gauss--Newton/LSMR
+solver reached `||r-iI||_2 = 1.11046e-4` and operator error `2.82906e-4`.
+The Jacobian adjoint check is accurate to `1.2e-16`, but all deep Krylov solves
+hit their iteration caps, so stop numerical polishing. Algebraically, with
+`A=rho_U(a_2)`, `E=rho_U(c_2)`, and fixed `B=rho(b_1)`, `C=rho(c_1)`, the
+equation reduces exactly to `(BABE)^2=iC`. Here `A,E` are commuting
+involutions with four 16-dimensional joint eigenspaces. Attack this finite
+square-root factorization by spectral projectors and character matching; it
+is now higher yield than further continuous descent. Details and solver
+records: `experiments/atlas_self_similarity_refine_results.md`.
+
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
 each of size fourteen, represented by collision-tree indices

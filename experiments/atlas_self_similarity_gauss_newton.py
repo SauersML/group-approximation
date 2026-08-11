@@ -170,6 +170,7 @@ def main():
         hermitian = unpack_hermitian(solution[0], dimension)
         old_error = errors(value)["hs_error"]
         accepted = False
+        accepted_step_size = None
         for step_size in (1.0, 0.5, 0.25, 0.1, 0.03):
             candidate = expm(1j * step_size * hermitian) @ relative
             candidate_value = relation(candidate, factors, fixed_matrices)
@@ -178,6 +179,7 @@ def main():
                 relative = candidate
                 value = candidate_value
                 accepted = True
+                accepted_step_size = step_size
                 break
         record = {
             "event": "step",
@@ -190,6 +192,7 @@ def main():
             "lsmr_condition_estimate": float(solution[6]),
             "tangent_norm": float(np.linalg.norm(hermitian)),
             "accepted": accepted,
+            "accepted_step_size": accepted_step_size,
             **errors(value),
         }
         print(json.dumps(record), flush=True)
