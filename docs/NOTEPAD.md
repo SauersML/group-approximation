@@ -38977,3 +38977,33 @@ data of a normal `0/1` trace characterize membership in
 The cited Lueck/Kionke results assert neither.  Thus ``permutation characters
 have the approximation property'' must not be cited as the finite-action
 character transfer.
+
+## Exact-image rounding fails on a fixed normal-Dirac table
+
+Full details are in `docs/TRUE_IMAGE_FACTOR_NO_GO.md`. Let `F=<a,b>` and let
+`N` be the kernel of `F->C_2` which kills `a` and sends `b` to the involution.
+For `zeta_n=exp(2 pi i/(4n))`, the exact finite-image representations
+
+`pi_n(a)=diag(1,zeta_n)`,
+`pi_n(b)=diag(1,-1)=pi_n(a)^(2n)`                       `(IFR3)`
+
+have normalized characters converging pointwise to `1_N`. Indeed a fixed
+word with exponent sums `A,B` has character
+
+`(1+zeta_n^A(-1)^B)/2 -> (1+(-1)^B)/2=1_N(w)`.         `(IFR5)`
+
+But any finite action factoring through `pi_n(F)` retains
+`sigma_n(b)=sigma_n(a)^(2n)`. Since
+
+`supp(s^k) subset supp(s)`,                              `(IFR7)`
+
+its fixed-point character satisfies `chi_n(b)>=chi_n(a)`. It therefore
+cannot converge even on the fixed test `{a,b}`, where the target values are
+`1_N(a)=1` and `1_N(b)=0`.
+
+Thus finite quotients, coset actions, projective-kernel residual finiteness,
+or finite-group character conversion cannot be applied levelwise if the
+output action is required to factor through the exact unitary image. A valid
+rounding must forget changing accidental image relations and use only the
+limiting normal law. Unlike `(NIR8)-(NIR10)`, the source word table here is
+fixed; only the accidental exponent `2n` in the image changes.

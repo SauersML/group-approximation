@@ -143,6 +143,16 @@ class.  It neither produces that sequence nor moves a finite-dimensional
 unitary sequence into the class.  The same warning applies to Kionke's
 fixed-algebraic-degree version; see `(LRA1)-(LRA5)` in `docs/NOTEPAD.md`.
 
+Exact-image functoriality is also impossible, even for a fixed normal-Dirac
+table. The cyclic two-dimensional sequence `(IFR1)-(IFR8)` converges
+pointwise to the regular character of `C_2`, but its exact images satisfy the
+changing accidental relation `b=a^(2n)`. Every finite action of those images
+has `supp(b) subset supp(a)` and cannot approach the target values
+`chi(a)=1`, `chi(b)=0`. Hence residual finiteness of the matrix/projective
+image, its regular or coset actions, and same-image permutation-character
+conversion are dead routes. The output must forget accidental levelwise
+relations; see `docs/TRUE_IMAGE_FACTOR_NO_GO.md`.
+
 FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
 action survives the sofic image obtained by completing its restrictions to
 Følner sets.  Therefore every coamenable subgroup contains every central
