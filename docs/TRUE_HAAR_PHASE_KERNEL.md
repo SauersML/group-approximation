@@ -904,6 +904,52 @@ purely scalar-retraction method.  The Pruefer calculation does not itself
 produce a nonzero relation Bockstein; it identifies the infinite-height
 range a surviving obstruction would have to exploit.
 
+There is also a canonical closed-range reduction which applies without
+property `(T)`.  Recall that if `R` is an ergodic pmp relation and
+`eta in Z^1(R,T)`, Mackey's compact-cocycle theorem gives a closed subgroup
+`H_eta<T` and a cohomologous cocycle with values in `H_eta`.  One way to see
+the reduction is to form the skew-product relation on `X times T`.  The
+commuting right-translation action of `T` on its ergodic-component space is
+ergodic; every ergodic probability action of a compact group is a homogeneous
+space `T/H_eta`.  A measurable section of this homogeneous-space factor is
+the required transfer function.  The subgroup is unique here because `T`
+is abelian.
+
+**Corollary 3G (Mackey-full-range obstruction).**  Suppose the phase kernel
+has exponent `m` and the essentially-free quotient relation `R_Q` is
+ergodic.  Let `H_lambda<T` be the Mackey group of the cocycle `(HPK9e)`.  If
+
+`H_lambda != T`,                                      `(HPK9br)`
+
+then `Gamma` is sofic.  More generally, the same conclusion holds if some
+finite-index ergodic subrelation `S<R_Q` has
+
+`H_(lambda|S) != T`.                                  `(HPK9bs)`
+
+**Proof.**  Every proper closed subgroup of the circle is finite cyclic.
+Mackey reduction therefore makes `lambda` (or `lambda|S`) cohomologous to a
+cocycle with finite, hence finitely generated, scalar range.  Apply Theorem
+3D.  In the second case its further finite-index subrelation still has
+finite index in `R_Q`, so Theorem 3C applies.  End proof.
+
+Thus a surviving bounded-exponent residue must have full circle Mackey range
+on every finite-index ergodic restriction.  This condition is stronger than
+having uncountable essential range in a particular gauge and is invariant
+under measurable cohomology.  It is still only necessary: a cocycle with
+finitely generated dense range can have Mackey group `T`, while Theorem 3D
+already removes it.  In particular, the remaining class must be both
+Mackey-full and non-reducible to finitely generated range after every
+finite-index restriction.
+
+At the level of the displayed primitive there is an even simpler check.  If
+`lambda_q=b_q^m` is torsion-valued almost everywhere for every `q`, then
+each `b_q` is torsion-valued because an `m`th root of a root of unity is a
+root of unity.  Hence `b` itself is the `mu_infty`-valued primitive required
+by Theorem 3, and `Gamma` is sofic.  Therefore an infinite-height torsion
+group such as the Pruefer group can matter only after a genuinely
+non-torsion transfer; it cannot obstruct in the original equality
+`lambda=b^m`.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -1158,3 +1204,6 @@ Primary source pins:
   C. R. Acad. Sci. Paris 356 (2018), Theorems 2.1, 2.4, and 2.5.
 * Yoshikata Kida, *Splitting in orbit equivalence, treeable groups, and the
   Haagerup property*, arXiv:1403.0688, Corollary 2.8.
+* Vadim Kaimanovich and Klaus Schmidt, *Ergodicity of cocycles. 1: General
+  theory*, especially the compact skew-product/Mackey reduction in Section
+  2, Propositions 2.5--2.7.

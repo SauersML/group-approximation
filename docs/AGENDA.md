@@ -252,6 +252,14 @@ repair has a unique dominant coordinate which gauges the cocycle into
 finitely generated `A_0`.  The scalar method is sharp at Pruefer
 `p`-torsion, where multiplication by `p` has no right inverse and there are
 no proper finite-index subgroups.
+Mackey's compact-cocycle reduction sharpens the invariant boundary further:
+on every finite-index ergodic restriction, a proper Mackey subgroup of the
+circle is finite and therefore closes by the virtual finitely-generated
+range theorem.  Any surviving residue must have full circle Mackey range on
+all such restrictions.  Moreover `lambda=b^m` cannot itself be
+torsion-valued: that would force `b` to be torsion-valued and give the
+torsion primitive immediately.  Pruefer behavior can arise only after a
+genuinely non-torsion transfer.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.

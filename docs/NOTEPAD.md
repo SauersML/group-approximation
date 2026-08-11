@@ -39753,6 +39753,29 @@ order-`p` subgroup.  This does not construct a nonzero measured Bockstein;
 it shows that a surviving countable-range class must use infinite-height
 torsion rather than a merely large finite alphabet.
 
+Mackey reduction makes the remaining scalar obstruction gauge-invariant.
+For an ergodic pmp relation `R` and `eta in Z^1(R,T)`, the compact
+skew-product theorem produces a closed subgroup `H_eta<T` and a cohomologous
+`H_eta`-valued cocycle.  Since every proper closed subgroup of `T` is finite,
+
+`H_(lambda|S) != T` on a finite-index ergodic `S<R_Q`  `(TWT15)`
+
+puts `lambda|S` in finite scalar range.  The virtual finitely generated-range
+criterion `(TWT7)--(TWT8)`, followed by `(TWT5)--(TWT6)`, then proves
+`Gamma` sofic.  Consequently a surviving bounded-exponent phase class must
+have full circle Mackey range on every finite-index ergodic restriction and
+must still admit no finitely generated-range gauge there.
+
+There is no direct Pruefer obstruction in the original section primitive.
+If
+
+`lambda_q=b_q^m in mu_infty` a.e. for every `q`,        `(TWT16)`
+
+then `b_q` is itself torsion-valued: an `m`th root of a root of unity is a
+root of unity.  Thus `b` is already the torsion primitive of `omega`, and
+Theorem 3 proves soficity.  Infinite-height torsion can survive only after a
+non-torsion cohomology transfer, not in the equality `lambda=b^m` itself.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
