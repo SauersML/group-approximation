@@ -162,6 +162,19 @@ Thus a sofic-radical element has fixed-set mean `1` in every amenable action.
 Any viable amenable negative sector must be genuinely nonpermutational, not
 merely nonmonomial.
 
+Do not try to extend Pestov's invariant `UCB` sphere mean to all bounded
+functions formally.  The implication is false even in dimension two:
+a faithful `F_2<SU(2)` representation is Bekka-amenable and has the Haar
+mean on `UCB(S^3)=C(S^3)`, but its sphere action is free, so an invariant
+`ell^infinity(S^3)` mean would contradict paradoxicality of `F_2` (`(USP4)--
+(USP5)`).  A sphere route must use the normal `0/1` trace law essentially.
+In fact odd symmetric powers sharpen the warning: their exact normalized
+characters converge to the regular `0/1` character of `F_2`, and every
+level still acts freely on its unit sphere, so no invariant
+`ell^infinity`-mean exists (`(USP6)--(USP9)`).  The normal law cannot justify
+a levelwise extension; it would have to enter through a cross-level matching
+argument.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the

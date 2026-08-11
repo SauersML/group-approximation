@@ -163,9 +163,67 @@ positive extension
 
 `UCB(S(H)) -> ell^infinity(S(H))`                            `(USP3)`
 
-is available without an additional amenability hypothesis on the acting
-group.  The genuinely nonpermutational amenable negative sector remains
-open; silently replacing `(USP1)` by `(USP3)` would assume the missing step.
+exists in general.  Here is a finite-dimensional sharpness example.  Choose
+a faithful embedding
+
+`rho:F_2 -> SU(2)`.                                         `(USP4)`
+
+Such embeddings may be chosen dense; see Breuillard--Gelander, *On dense
+free subgroups of Lie groups* (arXiv:math/0206236).
+
+The defining representation on `C^2` is Bekka-amenable: normalized matrix
+trace is an invariant state on `M_2(C)`.  Its unit sphere is the compact
+three-sphere, so `UCB(S^3)=C(S^3)`, and spherical Haar measure supplies the
+invariant mean predicted by Pestov.
+
+On the other hand, the `F_2`-action on `S^3` is free.  Indeed, a nonidentity
+matrix in `SU(2)` cannot have eigenvalue `1`: its eigenvalues are
+`lambda,conjugate(lambda)`, so one eigenvalue `1` forces both to be `1` and
+the matrix to be the identity.  If the Haar mean on `C(S^3)` had an
+`F_2`-invariant positive extension to `ell^infinity(S^3)`, it would give an
+invariant mean on this free `F_2`-set.  Choosing one basepoint in each orbit
+identifies the set equivariantly with `F_2 times I`; a paradoxical
+decomposition of `F_2`, copied over `I`, makes such a mean impossible.
+Therefore
+
+`Bekka amenable representation`
+`  does not imply an invariant mean on ell^infinity(S(H))`. `(USP5)`
+
+The genuinely nonpermutational amenable negative sector remains open;
+silently replacing `(USP1)` by `(USP3)` is not merely an unproved step but a
+false general principle.  Any successful use of the central scalar must
+exploit the normal `0/1` trace law or other special structure absent from
+`(USP4)`.
+
+Even the normal `0/1` law does not repair the extension **level by level**.
+Choose `(USP4)` torsion-free and, for odd `n`, let
+
+`rho_n=Sym^n(rho):F_2->U(n+1)`.                            `(USP6)`
+
+If the eigenvalues of `rho(g)` are `exp(+-i theta_g)`, then injectivity and
+torsion-freeness imply `theta_g/pi` is irrational for every `g!=1`.  The
+weights of the odd symmetric power are the nonzero odd integers
+
+`n,n-2,...,-n`.                                           `(USP7)`
+
+Consequently `rho_n(g)` has no eigenvalue `1`; the action of `F_2` on the
+unit sphere of every `(USP6)` is free.  Nevertheless its normalized
+character is
+
+`tr_(n+1)(rho_n(g))`
+` = sin((n+1)theta_g)/((n+1)sin(theta_g)) -> 0`, `g!=1`. `(USP8)`
+
+Thus the exact finite-dimensional representations `(USP6)` converge
+pointwise to the normal regular `0/1` character of `F_2`, while none of their
+invariant `UCB` sphere means extends invariantly to all bounded functions.
+The implication
+
+`normal-Dirac unitary characters + levelwise UCB means`
+`  => levelwise ell^infinity means`                          `(USP9)`
+
+is false.  A valid sphere argument would have to couple different levels or
+extract finite permutations directly; applying the invariant-mean theorem
+separately at each matrix level cannot work.
 
 ## 4. Updated live boundary
 

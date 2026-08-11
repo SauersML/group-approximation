@@ -38826,6 +38826,37 @@ nonpermutational amenable sector.  An invariant positive extension from
 `UCB(S(H))` to all bounded functions would be the missing new theorem, not a
 formal consequence of Bekka amenability.
 
+This extension principle is actually false in general.  Choose a faithful
+free subgroup `F_2<SU(2)` and use the defining representation on `C^2`.
+Normalized matrix trace makes the representation Bekka-amenable, while Haar
+measure on the compact unit sphere `S^3` is an invariant mean on
+`UCB(S^3)=C(S^3)`.  But the action on `S^3` is free: a nonidentity `SU(2)`
+matrix cannot have eigenvalue `1`.  An invariant extension to all bounded
+functions would therefore make a free `F_2`-set amenable.  Every free
+`F_2`-set is equivariantly `F_2 times I`, and copying a paradoxical
+decomposition of `F_2` over `I` rules this out.  Hence
+
+`Bekka amenable  -/->  invariant ell^infinity sphere mean`. `(USP5)`
+
+Any sphere-based rounding theorem must use the special normal `0/1` trace
+law; it cannot follow from Bekka amenability alone.
+
+There is a stronger levelwise no-go which already has the normal `0/1` law.
+For the same torsion-free embedding `rho:F_2->SU(2)`, take the odd symmetric
+powers `rho_n=Sym^n(rho)`.  If `rho(g)` has eigenvalues
+`exp(+-i theta_g)`, then `theta_g/pi` is irrational for `g!=1`.  The weights
+of an odd symmetric power are all nonzero odd integers, so `rho_n(g)` has no
+eigenvalue `1` and its sphere action remains free.  On the other hand,
+
+`tr_(n+1)(rho_n(g))`
+` =sin((n+1)theta_g)/((n+1)sin(theta_g))->0`.           `(USP8)`
+
+Hence these honest finite-dimensional characters converge to the regular
+normal `0/1` character of `F_2`, but no level admits an invariant
+`ell^infinity` sphere mean.  Normal-Dirac convergence cannot be used to
+extend the `UCB` means one matrix level at a time; a successful sphere route
+would need a genuinely cross-level matching construction.
+
 # The regular-MF double input is now fully explicit (2026-08-10)
 
 The profinite-trace repair from the earlier weak-MF-double section is the
