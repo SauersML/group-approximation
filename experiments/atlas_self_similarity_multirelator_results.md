@@ -195,3 +195,41 @@ state has off-block normalized HS mass `0.00557`; the wide run retains
 useful multiplicity scaling signal in the fixed outer pair through dimension
 256.  Stop this family.  A new continuation must change the actual irrep
 content, rather than duplicate `rho directSum (rho after theta)`.
+
+## Explicit centrality in the 30-dimensional tangent model
+
+The exact outer-tangent theorem uses the permutation representation on the
+15 nonzero vectors and its outer twist, for dimension 30.  Its outer quotient
+kills all 24 zero classes exactly and has a 136-dimensional zero-relation
+tangent kernel, with phase derivative rank 60 on that kernel.  To test the
+actual central-kernel requirement, the bundle was enlarged by the 12 words
+
+\[
+ [r_{11},g],\qquad g\text{ a generator of either }A_8\text{ chart}. \tag{5}
+\]
+
+The exact quotient starts with certified-zero RMS zero, centrality RMS
+`0.869227`, centrality maximum `1.264911`, and `-I` phase error `1.712698`.
+A partial symmetric eigensolver was used to perturb inside the numerical
+136-dimensional kernel.  Full-unitary L-BFGS then gave:
+
+| phase weight | all-identity RMS | all-identity max | phase HS | phase trace |
+|---:|---:|---:|---:|---:|
+| 0.1 | 0.498453 | 1.265065 | 1.712612 | 0.466521 |
+| 1 | 0.480563 | 1.368373 | 1.366428 | -0.066438 |
+| 10 | 0.484497 | 1.367831 | 1.366273 | -0.066649 |
+
+Without the commutators, weights from `0.1` through `100` simply converge to
+an exact certified-zero quotient with phase trace `-1/15` and phase error
+`1.366260`.  With `(5)`, the worst constraints are phase commutators and stay
+macroscopic.  Thus generic full-unitary descent does not integrate the exact
+phase-moving tangent space into a central phase.
+
+This does not contradict the tangent theorem: its rank statement concerns
+the full phase matrix derivative, while the scalar-target character is
+stationary at a representation and nonlinear centrality can have second-order
+obstructions.  Stop generic L-BFGS in this 30-dimensional model.  The next
+specific lanes are to solve the second-order equations inside the tangent
+kernel, or start from the exact order-2688 local central block and couple in
+the 20 outside certified classes using induced/regular representation
+coordinates rather than dense 20,160-dimensional matrices.

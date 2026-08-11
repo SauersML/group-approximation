@@ -707,3 +707,13 @@ from duplicated balanced states changes `(zero RMS, phase HS)` only from
 improvement.  A ten-times larger symmetry break returns the same errors.
 Stop duplicating this fixed outer pair; the next model must change its actual
 `A8` irrep content.
+
+The exact 30-dimensional outer tangent model has also been tested with the 12
+phase commutators imposed explicitly.  Although its 24-zero tangent kernel has
+dimension 136 and phase-moving rank 60, kernel-directed and random starts do
+not centralize the phase: the best all-identity RMS is `0.480563`, the maximum
+centrality constraint is `1.368373`, and phase HS remains `1.366428` at weight
+one.  Generic full-unitary descent therefore does not integrate the tangent
+signal.  Work next in the tangent-kernel second-order equations or in the
+exact order-2688 local central block; do not launch more unrestricted
+30-dimensional seeds.

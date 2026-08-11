@@ -966,6 +966,17 @@ improves the balanced weighted objective by only `0.205%`, with errors still
 same-dimensional `iI` seeds.  Change the actual vertex irrep content.  Details:
 `experiments/atlas_self_similarity_multirelator_results.md`.
 
+Explicitly adding all twelve phase commutators to the exact 30-dimensional
+outer-tangent model does not produce a nonlinear central phase.  A
+kernel-directed start at weight one ends with all-identity RMS `0.480563`,
+maximum `1.368373`, and phase HS `1.366428`; weights `0.1` and `10` remain on
+the same two finite-quotient strata.  The exact 136-dimensional tangent kernel
+and phase rank 60 are first-order information only.  Stop generic `U(30)`
+L-BFGS.  Solve its second-order kernel equations, or couple the exact
+order-2688 local central block to the 20 outside classes in induced/regular
+coordinates.  Full numerical scope:
+`experiments/atlas_self_similarity_multirelator_results.md`.
+
 
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,
