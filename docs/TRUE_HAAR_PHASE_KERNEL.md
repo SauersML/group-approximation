@@ -1086,6 +1086,79 @@ without finite generation, virtual divisibility, or property `(T)`.  This is
 an alternative proof of a conclusion already implicit in Theorem 3A, not a
 stronger torsion-splitting theorem.
 
+Exact countable range is not necessary.  The class of such skew products is
+closed under the convergence which is natural for circle cocycles, provided
+the base action is essentially free.
+
+**Theorem 3J (statistical closure of countable-range skew products).**  Let a
+countable group `Q` act essentially freely and pmp on `(X,mu)`, and suppose
+its orbit relation `R_Q` is sofic.  Let
+
+`eta_n, eta in Z^1(Q action X,T)`                     `(HPK9cg)`
+
+and suppose, for every `q in Q`,
+
+`eta_(n,q) -> eta_q in measure`.                      `(HPK9ch)`
+
+If every `eta_n` is cohomologous to a cocycle with values in some countable
+subgroup `A_n<T`, then `R_Q(eta)` is sofic.
+
+**Proof.**  By the countable-range lemma, every relation `R_Q(eta_n)` is
+sofic.  Let `alpha_n` and `alpha` be the skew-product actions on
+`X times T`; with one fixed convention,
+
+`alpha_n(q)(x,t)=(qx,eta_(n,q)(x)t)`.                 `(HPK9ci)`
+
+These actions converge on the measure algebra.  First take a measurable
+rectangle `B times C`.  The base coordinate in `(HPK9ci)` is independent of
+`n`, while the fiberwise symmetric-difference error is bounded by
+
+`m_T(C triangle zC)`, `z=eta_(n,q)(x)eta_q(x)^(-1)`. `(HPK9cj)`
+
+Translation is continuous on the measure algebra of the circle, so the
+quantity in `(HPK9cj)` tends to zero in measure in `x`; it is bounded by
+one, hence its integral tends to zero.  Finite unions of rectangles are
+dense in the product measure algebra, and all the transformations preserve
+measure.  Therefore, for every measurable `D subset X times T`,
+
+`measure(alpha_n(q)D triangle alpha(q)D) -> 0`.       `(HPK9ck)`
+
+It follows by a finite union bound that all finite Boolean statistics of
+translates of a finite measurable partition converge.  Stabilizer statistics
+converge as well, without any circle-rounding argument: essential freeness of
+the base says that, for `q!=1`, neither `alpha_n(q)` nor `alpha(q)` fixes a
+positive-measure set.  Thus the finite labelled rooted-neighborhood
+statistics of `R_Q(eta_n)` converge to those of `R_Q(eta)`.
+
+Soficity of a measured equivalence relation is exactly finite approximability
+of these statistics.  Given one finite test and `epsilon>0`, first choose `n`
+so that the statistics above differ by less than `epsilon/2`, and then choose
+a finite sofic model of `R_Q(eta_n)` within `epsilon/2`.  The same model is an
+`epsilon`-model of `R_Q(eta)`.  Diagonalizing over the countable tests proves
+the theorem.  End proof.
+
+**Corollary 3K (closure criterion for the bounded phase gate).**  In the
+setup of Theorem 3H, if `lambda` belongs, in the topology `(HPK9ch)`, to the
+closure of the cocycles which admit a countable-range gauge, then `Gamma` is
+sofic.
+
+**Proof.**  Theorem 3J makes `R_Q(lambda)` sofic, and Theorem 3H applies.
+End proof.
+
+This is genuinely stronger than Theorem 3A and Corollary 3I: the limiting
+cocycle need not itself have a countable-range gauge.  It also identifies a
+sharper obstruction.  A surviving bounded-exponent phase class must lie
+outside the convergence-in-measure closure of all countable-reducible
+circle cocycles, after every finite-index restriction.
+
+Essential freeness in Theorem 3J is load-bearing.  Topological closeness of
+circle rotations does not control fixed points: a nontrivial rotation fixes
+nothing even when its angle tends to zero.  Here every nontrivial word moves
+the base almost everywhere, so the problematic stabilizer statistic is
+identically zero throughout the approximating sequence.  This is precisely
+why `(HPK9ck)` suffices here but ordinary weak density of finite actions did
+not suffice in the property-MD shortcut.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -1315,6 +1388,12 @@ countable subgroup of `T`: its skew product is a subgrouprelation of the
 sofic product `R_Q times S_A`.  Consequently a remaining bounded-exponent
 class must have genuinely uncountable scalar range in every gauge (and after
 every finite-index restriction), in addition to being Mackey-full.
+
+The statistical-closure theorem `(HPK9cg)--(HPK9ck)` sharpens this once more:
+the class must remain outside the convergence-in-measure closure of all
+countable-reducible cocycles.  The next positive target is therefore a
+density theorem for the special cocycle `lambda=b^m`, not exact measurable
+reduction to one countable subgroup.
 
 Only the general implication from layer 2 to layer 4 is missing.  The
 torsion-kernel criterion settles it when the residue in layer 3 is

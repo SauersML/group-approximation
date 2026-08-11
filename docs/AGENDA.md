@@ -154,6 +154,17 @@ generation, property `(T)`, and Pruefer scalar divisibility are irrelevant in
 the countable-range case.  A surviving bounded-exponent residue must have no
 countable-range gauge on any finite-index restriction.
 
+The exact countable-range hypothesis can now be weakened to a closure
+hypothesis.  For the essentially-free quotient action, if circle cocycles
+`lambda_n` with countable-range gauges converge in measure, generator by
+generator, to `lambda`, then their sofic skew-product relations converge in
+all finite labelled statistics to `R_Q(lambda)`.  Essential freeness keeps
+every nontrivial-word fixed-point statistic identically zero, avoiding the
+rotation discontinuity in the property-MD no-go.  Hence `R_Q(lambda)` and
+then `Gamma` are sofic (`(HPK9cg)-(HPK9ck)`).  The surviving target is now
+outside the convergence-in-measure closure of all countable-reducible
+cocycles, a sharper condition than uncountable essential range.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has

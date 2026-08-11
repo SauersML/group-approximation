@@ -39858,6 +39858,45 @@ dense subgroup can be Mackey-full, but `(TWT25)` still makes its skew product
 sofic.  The unresolved endpoint is now genuinely uncountable measurable
 circle range, not infinite torsion height.
 
+# 2026-08-11: closure of countable-range skew products
+
+The countable-range subrelation theorem has a closure extension which is
+strictly stronger than exact countable reduction.  Let `Q` act essentially
+freely and pmp on `X`, with sofic orbit relation, and suppose
+
+`eta_n,eta in Z^1(Q action X,T)`,
+`eta_(n,q) -> eta_q in measure for every q`.           `(TWT28)`
+
+If every `eta_n` admits a countable-range gauge, then
+
+`R_Q(eta) is sofic`.                                  `(TWT29)`
+
+Indeed `(TWT25)` makes every `R_Q(eta_n)` sofic.  The skew actions
+
+`alpha_n(q)(x,t)=(qx,eta_(n,q)(x)t)`                  `(TWT30)`
+
+converge on the product measure algebra: check rectangles first, using
+continuity of circle translation in `L^1(T)`, then approximate arbitrary
+measurable sets by finite unions of rectangles.  All finite Boolean
+statistics of labelled translates therefore converge.  Fixed-point
+statistics also converge because they do not see the phase at all: for
+`q!=1`, essential freeness of the base makes the fixed sets of every
+`alpha_n(q)` and `alpha(q)` null.  A finite sofic model for a sufficiently
+late `R_Q(eta_n)` consequently models any prescribed finite statistics of
+`R_Q(eta)`.  Diagonalization proves `(TWT29)`.
+
+For the bounded phase cocycle `lambda=b^m`, principalization gives
+
+`lambda in closure(countable-reducible Z^1)`
+`  ==> R_Q(lambda) sofic ==> Gamma sofic`.             `(TWT31)`
+
+This is the first countable-range statement here not already implicit in the
+countable-primitive Theorem 3A: `lambda` itself may have no countable-range
+gauge.  The remaining class must lie outside this convergence-in-measure
+closure on every finite-index restriction.  Essential freeness is crucial;
+without it, rotations approaching the identity still have empty fixed sets,
+so weak convergence of the circle labels would lose the stabilizer data.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
