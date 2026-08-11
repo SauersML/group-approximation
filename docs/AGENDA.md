@@ -205,6 +205,10 @@ uniform exact-chart carry bound closes the entire monomial branch.  This
 proves that base repair and phase repair have no hidden third compatibility
 loss; what remains is to establish them for the relevant charts, and to
 obtain a common Cartan/monomialization for arbitrary matrix characters.
+The conclusion is unchanged under flexible exactification by adding or
+removing `o(|X|)` points: extend both models to a common set with trivial
+actions and phases, apply `(SBC17)`, and use the asymptotically unit dimension
+ratio (`(SBC29a)-(SBC29b)`).
 
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized

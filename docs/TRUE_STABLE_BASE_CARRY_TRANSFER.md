@@ -217,6 +217,35 @@ every `w in Rad_sof(P)` in normalized Hilbert--Schmidt norm.
 action and `E_R(U_n)->0`.  Assumption 1 gives `h_n->0`; assumption 2 gives
 `sup C_n<infinity`.  Apply Corollary 3.  End proof.
 
+The same conclusion holds for flexible exactification, where an asymptotically
+negligible number of points may be added or removed.
+
+**Corollary 5 (flexible stable-base transfer).**  Suppose that for each `n`
+there is a finite set `Z_n` containing relabelled copies of the original
+model `X_n` and of an exact finite `P`-set `Y_n`.  Extend `U_n` to `Z_n` by
+the identity on `Z_n minus X_n`, and extend the exact `P`-action on `Y_n` by
+the trivial action on `Z_n minus Y_n`.  Assume
+
+`|X_n|/|Z_n|->1`, `|Y_n|/|Z_n|->1`,                  `(SBC29a)`
+
+and that the two extended permutation maps have generator Hamming distance
+`h_n->0`.  If the exact extended charts have uniformly bounded circle-repair
+constants and `E_R(U_n)->0`, then `(SBC26)` holds.
+
+**Proof.**  On the common set `Z_n`, the extended monomial representation
+`U_n^+` satisfies
+
+`||U_n^+(g)-1||_2^2`
+` =(|X_n|/|Z_n|)||U_n(g)-1||_2^2                    `(SBC29b)`
+
+for every `g`: the added block is the identity.  Thus its relator defects
+vanish.  Apply Corollary 3 on `Z_n`.  Equation `(SBC29b)` for `g=w`, together
+with `|X_n|/|Z_n|->1`, transfers the conclusion back to `U_n`.  End proof.
+
+Hence Corollary 4 remains valid with same-set permutation stability replaced
+by flexible permutation stability with `o(|X_n|)` stabilization.  The
+trivial added orbits cause no phase compatibility problem.
+
 Using the exact carry formula, assumption 2 follows from
 
 `inf_X sigma_+(A_X)>0`, `sup_X Theta(A_X)<infinity`.  `(SBC30)`
