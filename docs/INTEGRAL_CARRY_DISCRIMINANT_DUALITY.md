@@ -810,3 +810,225 @@ give an integral, norm-controlled decoder for the spherical-template
 lattice and control the discriminant geometry of the stabilizer homology.
 Real degree-one Hodge expansion only controls the orthogonal projection
 onto `K_X`; it supplies neither of these two integral statements.
+
+## 12. Scalar involutions turn discriminant gluing into nearest-code decoding
+
+The scalar-involution computation in `experiments/sl3_carry_results.md` has
+a standard exact lattice interpretation.  Let `T` be an isometric
+involution of the ambient standard lattice `Lambda`, assume `T(K)=K`, and
+write
+
+`V_+=ker(T-1)`, `V_-=ker(T+1)`,                       `(ICD96)`
+`K_+=K intersect V_+`, `K_-=K intersect V_-`,
+`K_0=K_+ orthogonalDirectSum K_-`.                    `(ICD97)`
+
+Every `k in K` satisfies
+
+`2k=(k+Tk)+(k-Tk) in K_0`.                           `(ICD98)`
+
+Hence
+
+`C=K/K_0`                                            `(ICD99)`
+
+is a finite elementary abelian two-group.  For any integral lattice `M`,
+write
+
+`b_M:D_M times D_M -> Q/Z`,
+`b_M(x+M,y+M)=<x,y> mod Z`                           `(ICD100)`
+
+for its discriminant pairing.
+
+**Theorem 9 (involution overlattice formula).**  Projection of the
+overlattice `K` into `D_(K_0)` embeds `C` as an isotropic subgroup for
+`b_(K_0)`.  Moreover,
+
+`K^#/K_0 = C^perp subset D_(K_0)`,                   `(ICD101)`
+
+and therefore
+
+`D_K ~= C^perp/C`.                                   `(ICD102)`
+
+For `xi in C^perp`, decompose its class under
+
+`D_(K_0)=D_(K_+) directSum D_(K_-)`                  `(ICD103)`
+
+as `xi=(xi_+,xi_-)`.  Then its shortest radius in the quotient class is
+
+`rho_K(xi+C)^2`
+` =min_(c in C) (`
+`    rho_(K_+)(xi_+-c_+)^2`
+`   +rho_(K_-)(xi_--c_-)^2).`                        `(ICD104)`
+
+**Proof.**  Since `K` is integral and lies between `K_0` and `K_0^#`, the
+pairing of any two elements of its image `C` is integral.  This is exactly
+isotropy in `(ICD100)`.  An element `x in K_0^#` lies in `K^#` if and only
+if it pairs integrally with every element of `K`, equivalently if and only
+if `x+K_0` lies in `C^perp`.  This proves `(ICD101)`.  Quotienting by
+`K/K_0=C` gives `(ICD102)`.
+
+The lattice `K` is the union of the `K_0`-cosets indexed by `C`.  Thus the
+distance from a representative of `xi` to `K` is the minimum, over
+`c in C`, of its distance to that `K_0`-coset.  The eigenspaces in
+`(ICD96)` are orthogonal and `K_0` is their orthogonal direct sum, so the
+squared distance to each coset is the sum of the two sector distances.
+This is `(ICD104)`.  End proof.
+
+Two consequences matter for the current charts.
+
+First, for every odd prime `ell`, localization at `ell` kills the index in
+`(ICD98)`.  Therefore
+
+`D_K[ell^infinity]`
+` ~= D_(K_+)[ell^infinity] directSum`
+`     D_(K_-)[ell^infinity].`                        `(ICD105)`
+
+Thus scalar gluing is a purely two-primary phenomenon.  The odd-primary
+factors seen in both exact `p=3` sector Gram matrices are genuine sector
+obstructions; no binary gluing argument can remove them.
+
+Second, suppose `T` exchanges `N` disjoint pairs of standard coordinates.
+The map which records, modulo two, the sum on each pair identifies `(ICD99)`
+with the gluing code computed by `sl3_carry_gluing_code.py`.  If a codeword
+`c` has Hamming weight `w`, then every representative has half-integral
+`+` and `-` projections on those `w` pairs.  Consequently
+
+`rho_(K_+)(c_+)^2 >= w/2`,
+`rho_(K_-)(c_-)^2 >= w/2`,
+`rho_(K_0)(c)^2 >= w`.                               `(ICD106)`
+
+High support is therefore expensive before quotienting.  What remains is
+not generation of `C` by low-weight words: equation `(ICD104)` asks for the
+distance of every class in `C^perp` to the **whole code** in the sector Gram
+metrics.  A successful symmetry proof must bound this weighted nearest-code
+problem simultaneously with the corresponding glued radius on the
+orthogonal range lattice.  Code dimension, minimum Hamming weight, and a
+sparse generating basis do not determine either radius in Theorem 2.
+
+## 13. The gluing code is a mod-two homology image
+
+There is a topological description of the code in Theorem 9.  Suppose the
+involution `T` acts freely on every cell of a finite presentation cover
+`P_H` and commutes with the covering action.  Put
+
+`P_J=P_H/<T>`,                                        `(ICD107)`
+
+so in the scalar chart `H` is the stabilizer of a vector and `J` is the
+stabilizer of its sign-orbit.  On cellular chains define
+
+`q:C_*(P_H,Z)->C_*(P_J,F_2)`                         `(ICD108)`
+
+by adding the two coefficients in every `T`-orbit and reducing modulo two.
+The pairwise sum and difference subcomplexes are
+
+`C_*^+=ker(T-1)`, `C_*^-=ker(T+1)`.                  `(ICD109)`
+
+They are respectively the integral chains of `P_J` with the trivial and
+sign local systems.  Pairwise parity gives a short exact sequence of chain
+complexes
+
+`0 -> C_*^+ directSum C_*^- -> C_*(P_H,Z)`
+`  --q--> C_*(P_J,F_2) -> 0`.                        `(ICD110)`
+
+**Theorem 10 (homological gluing code).**  For a two-dimensional
+presentation complex, the code `C=K/K_0` in `(ICD99)` satisfies
+
+`C=im(H_2(P_H,Z) --q_*--> H_2(P_J,F_2))`             `(ICD111)`
+
+and, if `delta` is the connecting map of `(ICD110)`,
+
+`C=ker(delta:H_2(P_J,F_2)`
+`             ->H_1(C_*^+ directSum C_*^-)).`        `(ICD112)`
+
+Let `Sigma_J^(2)` denote the spherical subgroup of
+`H_2(P_J,F_2)`.  Naturality of the Hopf maps further gives
+
+`C/(C intersect Sigma_J^(2))`
+` ~= im(H_2(H,Z)->H_2(J,F_2)).`                      `(ICD113)`
+
+**Proof.**  On one paired cell orbit, the kernel of
+
+`Z^2 -> F_2`, `(a,b) |-> a+b mod 2`                 `(ICD114)`
+
+is generated by `(1,1)` and `(1,-1)`.  The boundary commutes with `T`, so
+these orbitwise sequences assemble to `(ICD110)`.  Its homology sequence
+contains
+
+`H_2(C_*^+ directSum C_*^-) -> H_2(P_H,Z)`
+` --q_*--> H_2(P_J,F_2) --delta--> ...`.             `(ICD115)`
+
+There are no three-cells.  Hence the first two groups in `(ICD115)` are
+`K_0` and `K`, and the first arrow is their inclusion.  Exactness proves
+`(ICD111)--(ICD112)`.
+
+The covering map induces the inclusion `H->J`.  Naturality of the Hopf
+exact sequences gives a commutative square from `q_*` to the coefficient
+reduction of
+
+`H_2(H,Z)->H_2(J,F_2)`.                              `(ICD116)`
+
+The vertical Hopf map from `H_2(P_H,Z)` is surjective by Theorem 8, so the
+image of `C` in `H_2(J,F_2)` is exactly the image in `(ICD116)`.  The
+kernel of the lower Hopf map is `Sigma_J^(2)`.  Restricting that map to
+`C` and applying the first isomorphism theorem proves `(ICD113)`.  End
+proof.
+
+Thus the weight-one words in the measured code need not signal a global
+failure: they can lie in the spherical subgroup.  After the finitely many
+bounded spherical templates are separated, every nonspherical gluing word
+comes from the explicit stabilizer-homology image in `(ICD113)`.  Combining
+Theorems 9 and 10 leaves a concrete two-part task: price the spherical code
+by a local integral decoder, and price the image of stabilizer homology by
+the `+/-` sector Gram forms.  This is narrower than unrestricted CVP in the
+full cycle discriminant group.
+
+## 14. Projective charts remove scalar gluing from the selected family
+
+The scalar code is unavoidable if one insists on the charts
+
+`X_p=F_p^3 minus {0}`.                               `(ICD117)`
+
+It is not unavoidable in a selected-chart argument.  Let
+
+`Y_p=P^2(F_p)=X_p/F_p^*`.                            `(ICD118)`
+
+Reduction modulo `p` gives an exact action of `SL_3(Z)` on `Y_p`, and these
+actions form an asymptotically free family.
+
+**Proposition 11 (projective selected charts).**  For every fixed
+`1!=g in SL_3(Z)`,
+
+`|Fix_(Y_p)(g)|/|Y_p| -> 0`                          `(ICD119)`
+
+as `p` tends to infinity through primes.  The relator maps on `Y_p` are the
+trivial scalar-character blocks of the maps on `(ICD117)`.  Consequently
+the universal rational Hodge certificate in `TRUE_SL3_HODGE_SOS.md` gives
+the same uniform positive real degree-one gap on the projective family,
+while the involution code `C` in Theorems 9 and 10 is absent.
+
+**Proof.**  A non-scalar matrix in `SL_3(F_p)` fixes only its eigenlines.
+The largest possible fixed projective locus is a projective line together
+with one further point, so
+
+`|Fix_(Y_p)(g)| <= p+2`, `|Y_p|=p^2+p+1`.            `(ICD120)`
+
+For a fixed integral matrix `g`, scalar reduction modulo infinitely many
+primes would force every off-diagonal entry and every difference of
+diagonal entries of `g` to vanish over `Z`.  The only integral scalar in
+`SL_3(Z)` is the identity.  Thus `(ICD120)` applies for all but finitely
+many primes and proves `(ICD119)`.
+
+Scalar multiplication commutes with every elementary generator.  Passing
+from `(ICD117)` to `(ICD118)` is therefore precisely restriction to the
+trivial scalar local system.  The group-ring sum-of-squares inequality is
+valid in every unitary representation, hence also in these permutation
+representations.  There is no residual scalar cover in `(ICD118)`, so no
+scalar gluing code occurs.  End proof.
+
+This does not prove bounded carry transversality.  The projective cycle
+lattice can still have large odd-primary discriminant and nontrivial
+stabilizer homology; at `p=3` it is exactly the `+` sector in the stored
+sector calculation.  It does, however, remove the entire two-primary
+nearest-code problem from any argument that only needs one asymptotically
+free exact chart family.  The nonzero-vector charts remain useful for
+testing twisted scalar local systems, but controlling every scalar character
+is stronger than what such a selected-family proof requires.

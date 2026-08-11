@@ -709,6 +709,17 @@ those local templates before interpreting the measured weight distribution;
 the genuinely global nearest-code obstruction is a stabilizer-homology
 image, not an arbitrary binary code.
 
+For a selected `SL_3(Z)` chart family, the scalar code can be removed
+entirely: use the exact actions on `P^2(F_p)` instead of on
+`F_p^3 minus {0}`.  Every fixed nonidentity integral matrix is nonscalar
+modulo all but finitely many primes and then fixes at most `p+2` of the
+`p^2+p+1` projective points, so this family is still asymptotically free.
+The universal Hodge SOS applies unchanged.  Its carry lattice is the
+trivial scalar-character sector, with no scalar gluing.  This does not
+control that sector's odd discriminant or stabilizer homology, but a proof
+which needs only one selected exact family should not solve the strictly
+harder all-character gluing problem first.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
