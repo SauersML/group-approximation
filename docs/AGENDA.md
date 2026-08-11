@@ -201,11 +201,16 @@ the equivariant orbit-configuration factor
 `c_q([f])=f(q)/f(1)`.  The skew action on `X times T` is exactly the
 relatively-Haar fiber product
 `{(x,f):[f]=Phi_lambda(x)}` with the shift on `T^Q`
-(`(HPK9cy)-(HPK9dh)`, `(TWT46)-(TWT51)`).  The live theorem is now a
-model-surjective lift of finite projective configurations through
-`T^Q->P_Q`.  Base soficity supplies projective colors but not coherent
-representatives; product permanence uses the wrong, independent joining.
-This is a precise finite-model lifting target for `(HPK18)`.
+(`(HPK9cy)-(HPK9dh)`, `(TWT46)-(TWT51)`).  This quotient is exactly Popa's
+factor map.  Austin's property-`(T)` examples show that universal
+model-surjectivity is false: good projective models may live in nonzero
+finite-graph cohomology sectors a uniform distance from every lift.  The live
+theorem is therefore narrower and more exact: select **one** model sequence,
+compatible with the given base colors and relatively-Haar joining, whose
+phase cochain is `o(1)` from the coboundary sector, then quantize its primitive
+so the cocycle law holds away from `o(1)` vertices.  The zero-sector rounding
+lemma proves this suffices (`docs/POPA_FACTOR_MODEL_LIFTING.md`).  Product
+permanence still uses the wrong, independent joining.
 
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
