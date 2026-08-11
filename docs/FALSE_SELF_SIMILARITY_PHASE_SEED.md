@@ -684,3 +684,19 @@ obstruction must use further certified classes or the extension from the local
 `S4` subgroups to the full `A8` charts.  Full loss tables and multiplicity
 checks are in `experiments/atlas_self_similarity_multirelator_results.md`; the
 finite quotient is proved in `docs/FALSE_ATLAS_STUBBORN_S4_QUOTIENT.md`.
+
+The finite quotient also supplies a better continuous endpoint.  On the
+outer-stable representation
+`rho directSum (rho after theta)` in dimension 128, the certified outer
+alignment kills all 24 zero classes exactly.  Searching from a perturbed copy
+shows that the involutory scalar target `-I` is far better than the original
+`iI` target.  A retained point has zero-class RMS `0.352252`, zero maximum
+`0.555910`, phase HS error `0.212666`, phase operator error `0.412192`, and
+phase trace `-0.977386`.  At larger phase weight, phase HS drops to `0.057228`
+and operator error to `0.115708`, while zero RMS is `0.491114`.
+
+These are finite-dimensional signals only.  The next valid computation is
+symmetry-broken multiplicity scaling of this outer-stable family; more
+same-dimensional `iI` seeds are demoted.  Full data and the construction of
+the exact-zero endpoint are in
+`experiments/atlas_self_similarity_multirelator_results.md`.

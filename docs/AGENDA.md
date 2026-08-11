@@ -939,6 +939,18 @@ outside their `S4*S4` slice to force ambient-chart extension, or enlarge the
 actual vertex irrep multiplicities.  Full scoped result:
 `experiments/atlas_self_similarity_multirelator_results.md`.
 
+The exact outer quotient yields a stronger continuous bridge.  The
+outer-stable 128-dimensional representation
+`rho directSum (rho after theta)` has an alignment which kills all 24
+certified classes to `6.5e-15`.  After symmetry breaking, the central target
+`-I` gives a new balanced point: zero RMS `0.352252`, zero maximum `0.555910`,
+phase HS `0.212666`, phase operator `0.412192`, and phase trace `-0.977386`.
+At phase weight ten the phase improves to HS `0.057228` and operator
+`0.115708` with zero RMS `0.491114`.  This is decisively better than the `iI`
+front.  Run multiplicity scaling from these retained states; stop additional
+same-dimensional `iI` seeds.  Details:
+`experiments/atlas_self_similarity_multirelator_results.md`.
+
 
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,

@@ -121,3 +121,59 @@ obstruction.  The next high-yield work is one of:
 
 The present data rule out none of those routes and say nothing universal about
 hyperlinear versus sofic groups.
+
+## Outer-stable exact-zero endpoint and the involutory phase
+
+The subsequent exact `A8` quotient changes the representation family.  Let
+
+\[
+ \theta(g)=(g^{-1})^{\mathsf T},\qquad
+ \sigma=\rho\oplus(\rho\circ\theta),                \tag{3}
+\]
+
+where `rho` is the 64-dimensional `(5,2,1)` representation.  The direct sum
+is stable under the outer automorphism.  If `h` is the certified outer
+alignment and `S` swaps the two summands, then
+
+\[
+ U_0=\sigma(h)S,qquad
+ U_0\sigma(g)U_0^*=\sigma(h\theta(g)h^{-1}).         \tag{4}
+\]
+
+The exporter now constructs this point exactly.  In dimension 128 all 24
+certified classes have identity error at most `6.47e-15`.  The survivor is a
+noncentral involution with trace zero, hence is at HS distance `sqrt(2)` from
+both `iI` and `-I`.
+
+The exact quotient point is stationary for the smooth loss.  After a dense
+`1e-2` skew-Hermitian perturbation, weights `0.1` and `1` return to it when
+the phase target is `iI`; weight `10` crosses to the old phase-side basin.
+Backward continuation gives:
+
+| `iI` phase weight | zero RMS | phase HS |
+|---:|---:|---:|
+| 10 | 1.272649 | 0.034630 |
+| 1 | 1.092851 | 0.224533 |
+| 0.3 | 0.943395 | 0.418604 |
+| 0.1 | 0.701255 | 1.372264 |
+
+The target `iI` is not intrinsic to central-kernel survival.  Repeating the
+same continuation with the involutory target `-I` is dramatically better:
+
+| `-I` phase weight | zero RMS | zero maximum | phase HS | phase operator | phase trace |
+|---:|---:|---:|---:|---:|---:|
+| 10 | 0.491114 | 0.794729 | 0.057228 | 0.115708 | -0.998362 |
+| 1 | 0.352252 | 0.555910 | 0.212666 | 0.412192 | -0.977386 |
+
+The weight-ten line is after two 120-step continuations; the weight-one line
+continues backward from it.  The operator norm is computed against the actual
+selected target.  Earlier `iI` operator values were already correct; an
+initial diagnostic for `-I` accidentally compared against `iI` and has been
+discarded.
+
+This is the strongest simultaneous numerical signal in this experiment, but
+both errors remain macroscopic.  The next decisive test is multiplicity
+scaling of `(3)--(4)` from the retained `-I` states.  If the errors do not
+improve under symmetry-broken full-unitary coupling, stop this fixed-irrep
+family.  If they do, extract whether the optimizer is isolating a shrinking
+bad subspace, as suggested by the small phase operator error and trace.
