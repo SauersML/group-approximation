@@ -135,6 +135,59 @@ endpoint
 `P operator-norm MF`
 `  ==> a hyperlinear nonsofic quotient exists`.        `(MSC17)`
 
+The split presentation also exposes a hard obstruction which every proof of
+this MF endpoint must evade.
+
+**Proposition 3 (equivariant profinite invisibility).**  If
+
+`q:A->F`                                                 `(MSC18)`
+
+is a homomorphism to a finite group and is equivariant for the `G`-actions,
+then
+
+`q(-1_X)=1`.                                            `(MSC19)`
+
+**Proof.**  The action on `F` gives a homomorphism
+`alpha:G->Aut(F)`.  Equivariance makes
+
+`A semidirect G -> F semidirect alpha(G)`,
+`(a,g) |-> (q(a),alpha(g))`
+
+a homomorphism to a finite group.  Since `-1_X` belongs to
+`Rad_sof(P)` by `(MSC16)`, this finite image must kill it.  End proof.
+
+Equivalently, `-1_X` lies in the **equivariant profinite residual** of the
+`F_2[G]`-module `A`.  On the compact dual `dual(A)`, every character with a
+finite `G`-orbit satisfies
+
+`eta(-1_X)=1`.                                          `(MSC20)`
+
+Indeed, orbit evaluation maps `A` equivariantly into the finite group
+`{+-1}^(G eta)` and Proposition 3 applies.  Thus the invariant negative
+clopen set
+
+`X_-={eta in dual(A): eta(-1_X)=-1}`
+
+contains no periodic point.  It has Haar measure `1/2`, because evaluation
+at the nonzero element `-1_X` is a nontrivial character on `dual(A)`.  In
+particular, the Haar measure on `X_-` cannot be a weak-star limit of
+probability measures supported on finite `G`-orbits.  Finite equivariant
+module quotients therefore cannot supply the negative projective sector.
+
+**Proposition 4 (finite module generation).**  If `G` is finitely generated,
+then `A` is finitely generated as an `F_2[G]`-module.
+
+**Proof.**  Choose a finite symmetric generating set `S` for `G`.  The
+diagonal ratios in `(MSC13)` are the cocycle values from `(MSC10)`.  The
+cocycle identity `(MSC11)` expresses the value on every word in `S` as a
+product of `G`-translates of the finitely many values indexed by `S`.
+Consequently those values generate all the ratios and their conjugates,
+which generate `A`.  End proof.
+
+So the missing permanence problem is already present for a finitely
+generated elementary-abelian module, but it is maximally invisible to its
+finite equivariant quotients at the one element that must survive.
+
 This endpoint is weaker than proving the concrete generated C-star algebra
 `A_Mac=C^*(P subset U(ell^2(X)))` MF: algebra MF implies group MF, whereas
 the converse need not preserve this particular representation.
@@ -146,10 +199,10 @@ acting group here is the already nonsofic weak-MF group `G`, and proving it
 hyperlinear would itself settle the main problem.  There is no general
 permanence theorem here saying
 
-`G MF and A locally finite abelian => A semidirect G MF`. `(MSC18)`
+`G MF and A locally finite abelian => A semidirect G MF`. `(MSC21)`
 
 The benefit of `(MSC14)` is localization: the missing projective sector is
 equivalently an MF problem for one explicit split elementary-abelian
-cocycle extension.  A proof of `(MSC18)` for the particular cocycle
+cocycle extension.  A proof of `(MSC21)` for the particular cocycle
 `(MSC10)--(MSC12)`, without residual finiteness of `G`, would close the
 FALSE lane through `(MSC17)`.

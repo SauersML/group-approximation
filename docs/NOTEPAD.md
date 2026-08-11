@@ -39545,3 +39545,28 @@ acting group `G`.  Existing wreath/crossed-product permanence requires
 extra covariance, almost-periodicity, or residual-finiteness hypotheses.
 The precise new target is MF permanence for the explicit sign cocycle in
 `(MSC1)--(MSC4)`.
+
+The split form has an exact finite-model obstruction.  If `q:A->F` is any
+finite `G`-equivariant quotient, then the induced homomorphism
+
+`A semidirect G -> F semidirect image(G->Aut(F))`
+
+has finite target.  Since `-1_X in Rad_sof(P)`, it follows that
+
+`q(-1_X)=1`.                                           `(MSC7)`
+
+Hence `-1_X` lies in the equivariant profinite residual of the
+`F_2[G]`-module `A`.  Dually, every finite `G`-orbit in `dual(A)` lies in
+the positive clopen `eta(-1_X)=1`; the invariant negative clopen
+`eta(-1_X)=-1` has Haar mass `1/2` but no periodic points.  No approximation
+by finite invariant module quotients can therefore retain the shear sign.
+This is the concrete Mackey instance of the collaborator's general
+finite-phase/equivariant-profinite obstruction, not a second route around
+it.
+
+If `G` is finitely generated, the cocycle identity expresses every ratio
+`a_g` as a product of translates of the ratios for a finite generating set.
+Thus `A` is finitely generated as an `F_2[G]`-module.  The live gate is
+therefore sharp: MF permanence for one finitely generated elementary-
+abelian cocycle module whose distinguished central sign is invisible in
+every finite equivariant quotient.
