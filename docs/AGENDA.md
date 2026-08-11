@@ -202,6 +202,23 @@ not a shortcut: it assumes the base subrelation is already embedded in the
 finite extension, while constructing that subrelation is exactly the
 torsion splitting being sought.
 
+The coefficient kernel also has an exact primitive quotient description:
+
+`ker(H^2(R_Q,mu_infty)->H^2(R_Q,T))`
+` ~= {b:delta b is torsion-valued}/(T-valued cocycles * torsion cochains)`.
+
+This gives a positive criterion.  If, after multiplying the circle primitive
+by a circle 1-cocycle, its scalar essential range is countable, divisibility
+of the roots of unity extends the identity on the torsion intersection to a
+scalar homomorphism.  Applying it pointwise produces a measurable torsion
+primitive and proves soficity (Theorem 3A in
+`docs/TRUE_HAAR_PHASE_KERNEL.md`).  The unrestricted coefficient statement
+already fails for a free hyperfinite relation in degree one: the cocycle
+`u(a,x)=a` for dense translations `Q/Z acting on R/Z` is a circle
+coboundary but not a `Q/Z` coboundary.  The live target must therefore use
+the special automorphic Haar evaluation `omega(q,r,x)=chi_x(v(q,r))`, not a
+generic measurable retraction.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested
