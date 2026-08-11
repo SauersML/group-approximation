@@ -165,6 +165,23 @@ then `Gamma` are sofic (`(HPK9cg)-(HPK9ck)`).  The surviving target is now
 outside the convergence-in-measure closure of all countable-reducible
 cocycles, a sharper condition than uncountable essential range.
 
+Package that boundary as
+`H^1_cr=Z^1/closure(Z^1_cr)`, where `Z^1_cr` consists of cocycles
+cohomologous into countable circle subgroups.  It is a genuine quotient
+because `Z^1_cr` is a subgroup, and `closure(B^1)` lies inside its kernel.
+Thus a live phase residue has nonzero `H^1_cr` class on every relevant
+finite-index restriction.  Do **not** call `lambda=b^m` a special density
+hypothesis: every circle cocycle has a measurable pointwise `m`th root `b`
+with `delta b` in `mu_m`.  Any further TRUE argument must use compatibility
+of the particular root/curvature with the evaluated extension cocycle and
+the Haar character field, not merely the power equation (`(HPK9cl)-
+(HPK9cq)`, `(TWT32)-(TWT38)`).
+
+Calibration: Bezuglyi--Sanadhya's density of coboundaries for hyperfinite
+Borel actions gives `H^1_cr=0` there (`(HPK9cr)`, `(TWT39)`), recovering the
+amenable endpoint.  No such density result is known for arbitrary principal
+sofic relations.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has

@@ -39897,6 +39897,61 @@ closure on every finite-index restriction.  Essential freeness is crucial;
 without it, rotations approaching the identity still have empty fixed sets,
 so weak convergence of the circle labels would lose the stabilizer data.
 
+This closure has an exact intrinsic quotient.  In the pointwise
+convergence-in-measure topology put
+
+`Z^1_cr={eta in Z^1(Q action X,T):`
+`        eta is cohomologous into some countable A<T}`. `(TWT32)`
+
+The set `Z^1_cr` is a subgroup: multiply the two transfer functions and
+replace the two countable target groups by the countable subgroup they
+generate; inverses are identical.  Hence define
+
+`H^1_cr=Z^1/closure(Z^1_cr)`.                          `(TWT33)`
+
+Every coboundary is cohomologous to the trivial cocycle, so
+
+`closure(B^1) subset closure(Z^1_cr)`.                 `(TWT34)`
+
+Corollary `(TWT31)` now reads
+
+`[lambda]=0 in H^1_cr ==> Gamma sofic`.                `(TWT35)`
+
+In particular, zero class in ordinary reduced measurable cohomology
+`Z^1/closure(B^1)` suffices.  A surviving bounded phase obstruction must
+have nonzero class in `(TWT33)`, including after every finite-index
+restriction used by the virtual criterion.
+
+There is no hidden gain in the notation `lambda=b^m`.  For every
+`eta in Z^1(Q action X,T)` and every `m>=1`, choose a Borel root section
+`r:T->T` and set
+
+`b_q(x)=r(eta_q(x))`.                                  `(TWT36)`
+
+Then
+
+`b^m=eta`, `(delta b)^m=delta eta=1`,
+`delta b in C^2(Q action X,mu_m)`.                     `(TWT37)`
+
+Thus **every** circle cocycle has the formal power/finite-curvature shape of
+the bounded phase cocycle.  A claim that the `b^m` shape alone forces
+`lambda in closure(Z^1_cr)` would prove the density statement for arbitrary
+circle cocycles, not exploit a special feature of this construction.  The
+only genuinely special datum left is compatibility of this particular
+primitive and its curvature with the evaluated extension cocycle and Haar
+character field.                                                   `(TWT38)`
+
+As a source-checked calibration, Bezuglyi--Sanadhya prove that coboundaries
+are dense in all locally-compact-second-countable-valued cocycles for a
+hyperfinite Borel action (arXiv:2001.09205).  Hence
+
+`R_Q hyperfinite ==> closure(B^1)=Z^1 ==> H^1_cr=0`,  `(TWT39)`
+
+which recovers the amenable endpoint through `(TWT35)`.  There is no known
+analog of `(TWT39)` for arbitrary principal sofic relations; asserting one
+would be a substantive compact-extension theorem, not a routine density
+argument.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
