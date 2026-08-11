@@ -342,6 +342,7 @@ import NonsoficGroupsExist.Leavitt.RankFourCompressors
 import NonsoficGroupsExist.Leavitt.UniversalLeavitt
 import NonsoficGroupsExist.Leavitt.UniversalRankFour
 import NonsoficGroupsExist.Leavitt.UniversalPropertyT
+import NonsoficGroupsExist.PropertyTT.LeavittAllRanksTT
 import NonsoficGroupsExist.Leavitt.UniversalCompressionSetup
 import NonsoficGroupsExist.Leavitt.ThompsonV
 import NonsoficGroupsExist.Leavitt.ThompsonVEmbedding

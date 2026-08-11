@@ -84,15 +84,26 @@ theorem controlElement_mem
   classical
   exact Finset.mem_image.mpr ⟨p, Finset.mem_univ _, rfl⟩
 
-/-- The finite control set bounds the moving projection for either of the two
-roots in a common-terminal-index plane. -/
-theorem norm_columnPlaneMovingProjection_le
+/-- The four root directions used by the Fourier argument bound the moving
+projection onto a common-terminal-index plane.  This is the localized core
+of `norm_columnPlaneMovingProjection_le`; unrelated roots are not assumed
+small. -/
+theorem norm_columnPlaneMovingProjection_le_of_root_bounds
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [CompleteSpace E]
     (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
     (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
     (z : E) {δ : ℝ} (hδ : 0 < δ)
-    (hnear : ∀ s ∈ controlSet X, ‖rho s z - z‖ < δ) :
+    (hIK : ‖rho (elementaryRoot i k hik 1) z - z‖ < δ)
+    (hJK : ‖rho (elementaryRoot j k hjk 1) z - z‖ < δ)
+    (hIJUnit : ‖rho (elementaryRoot i j hij 1) z - z‖ < δ)
+    (hJIUnit : ‖rho (elementaryRoot j i hij.symm 1) z - z‖ < δ)
+    (hIJGen : ∀ q : Fin (Fintype.card X),
+      ‖rho (elementaryRoot i j hij
+        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) z - z‖ < δ)
+    (hJIGen : ∀ q : Fin (Fintype.card X),
+      ‖rho (elementaryRoot j i hij.symm
+        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) z - z‖ < δ) :
     ‖KazhdanFixedSpace.subgroupMovingProjection rho
         (elementaryRootSubgroup i k hik ⊔
           elementaryRootSubgroup j k hjk) z‖ ≤
@@ -101,9 +112,6 @@ theorem norm_columnPlaneMovingProjection_le
   let H : Subgroup (elementaryGroup (Fin 3) (FreeRing X)) :=
     elementaryRootSubgroup i k hik ⊔ elementaryRootSubgroup j k hjk
   let w := KazhdanFixedSpace.subgroupMovingProjection rho H z
-  have hnearControl (a : A2Root) (q : Option (Fin (Fintype.card X))) :
-      ‖rho (controlElement X (a, q)) z - z‖ < δ :=
-    hnear _ (controlElement_mem X (a, q))
   have hnormalIJ (a : FreeRing X) :
       elementaryRoot i j hij a ∈ Subgroup.normalizer H := by
     exact elementaryRoot_mem_normalizer_columnPlane X i j k hij hik hjk a
@@ -126,27 +134,21 @@ theorem norm_columnPlaneMovingProjection_le
       KazhdanFixedSpace.norm_subgroupMovingProjection_displacement_le_of_mem_normalizer
         rho H hg z
   have hwIK : ‖rho (elementaryRoot i k hik 1) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalIK 1)).trans
-      (hnearControl ⟨(i, k), hik⟩ none).le
+    (hmove_le _ (hnormalIK 1)).trans hIK.le
   have hwJK : ‖rho (elementaryRoot j k hjk 1) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalJK 1)).trans
-      (hnearControl ⟨(j, k), hjk⟩ none).le
+    (hmove_le _ (hnormalJK 1)).trans hJK.le
   have hwIJUnit : ‖rho (elementaryRoot i j hij 1) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalIJ 1)).trans
-      (hnearControl ⟨(i, j), hij⟩ none).le
+    (hmove_le _ (hnormalIJ 1)).trans hIJUnit.le
   have hwJIUnit : ‖rho (elementaryRoot j i hij.symm 1) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalJI 1)).trans
-      (hnearControl ⟨(j, i), hij.symm⟩ none).le
+    (hmove_le _ (hnormalJI 1)).trans hJIUnit.le
   have hwIJ (q : Fin (Fintype.card X)) :
       ‖rho (elementaryRoot i j hij
         (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalIJ _)).trans
-      (hnearControl ⟨(i, j), hij⟩ (some q)).le
+    (hmove_le _ (hnormalIJ _)).trans (hIJGen q).le
   have hwJI (q : Fin (Fintype.card X)) :
       ‖rho (elementaryRoot j i hij.symm
         (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) w - w‖ ≤ δ :=
-    (hmove_le _ (hnormalJI _)).trans
-      (hnearControl ⟨(j, i), hij.symm⟩ (some q)).le
+    (hmove_le _ (hnormalJI _)).trans (hJIGen q).le
   have hsumIJ :
       (∑ q : Fin (Fintype.card X),
           2 * ‖w‖ * ‖rho (elementaryRoot i j hij
@@ -216,6 +218,31 @@ theorem norm_columnPlaneMovingProjection_le
     have hδ0 : 0 ≤ δ := hδ.le
     have hcard : (0 : ℝ) ≤ Fintype.card X := by positivity
     nlinarith
+
+/-- The finite control set bounds the moving projection for either of the two
+roots in a common-terminal-index plane. -/
+theorem norm_columnPlaneMovingProjection_le
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (rho : elementaryGroup (Fin 3) (FreeRing X) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) {δ : ℝ} (hδ : 0 < δ)
+    (hnear : ∀ s ∈ controlSet X, ‖rho s z - z‖ < δ) :
+    ‖KazhdanFixedSpace.subgroupMovingProjection rho
+        (elementaryRootSubgroup i k hik ⊔
+          elementaryRootSubgroup j k hjk) z‖ ≤
+      (6 * Fintype.card X + 6 : ℝ) * δ := by
+  have hnearControl (a : A2Root) (q : Option (Fin (Fintype.card X))) :
+      ‖rho (controlElement X (a, q)) z - z‖ < δ :=
+    hnear _ (controlElement_mem X (a, q))
+  exact norm_columnPlaneMovingProjection_le_of_root_bounds X
+    i j k hij hik hjk rho z hδ
+    (hnearControl ⟨(i, k), hik⟩ none)
+    (hnearControl ⟨(j, k), hjk⟩ none)
+    (hnearControl ⟨(i, j), hij⟩ none)
+    (hnearControl ⟨(j, i), hij.symm⟩ none)
+    (fun q ↦ hnearControl ⟨(i, j), hij⟩ (some q))
+    (fun q ↦ hnearControl ⟨(j, i), hij.symm⟩ (some q))
 
 /-- The finite elementary control set uniformly controls displacement by the
 union of all six root subgroups. -/

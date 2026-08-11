@@ -200,6 +200,33 @@ theorem boundedOn_conjugate (hb : IsQuasiCocycle rho b D)
       have := hbound h hh
       linarith
 
+/-- If two group elements commute, the action of one on the quasi-cocycle
+value of the other is controlled solely by the first value and the defect. -/
+theorem norm_action_sub_of_commute_le (hb : IsQuasiCocycle rho b D)
+    {s r : G} (hsr : Commute s r) :
+    ‖rho s (b r) - b r‖ ≤ 2 * ‖b s‖ + 2 * D := by
+  let e₁ : E := b (s * r) - b s - rho s (b r)
+  let e₂ : E := b (r * s) - b r - rho r (b s)
+  have he₁ : ‖e₁‖ ≤ D := hb.2 s r
+  have he₂ : ‖e₂‖ ≤ D := hb.2 r s
+  have hid : rho s (b r) - b r =
+      (e₂ - e₁) + (rho r (b s) - b s) := by
+    dsimp [e₁, e₂]
+    rw [hsr.eq]
+    abel
+  rw [hid]
+  calc
+    ‖(e₂ - e₁) + (rho r (b s) - b s)‖ ≤
+        ‖e₂ - e₁‖ + ‖rho r (b s) - b s‖ := norm_add_le _ _
+    _ ≤ (‖e₂‖ + ‖e₁‖) + (‖rho r (b s)‖ + ‖b s‖) := by
+      gcongr
+      · exact norm_sub_le e₂ e₁
+      · exact norm_sub_le (rho r (b s)) (b s)
+    _ ≤ (D + D) + (‖b s‖ + ‖b s‖) := by
+      rw [(rho r).norm_map]
+      gcongr
+    _ = 2 * ‖b s‖ + 2 * D := by ring
+
 end IsQuasiCocycle
 
 namespace IsKazhdanPairComplex

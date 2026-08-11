@@ -106,10 +106,22 @@ theorem weakUltralimit_eq_of_eventuallyEq (x z : ℕ → E) (C K : ℝ)
     weakUltralimit x C hx = weakUltralimit z K hz := by
   apply ext_inner_right ℂ
   intro y
+  have heq : (fun n ↦ ⟪x n, y⟫_ℂ) =ᶠ[hyperfilter ℕ]
+      (fun n ↦ ⟪z n, y⟫_ℂ) := hxz.mono fun n hn ↦ by
+        exact congrArg (fun w ↦ ⟪w, y⟫_ℂ) hn
   exact tendsto_nhds_unique
     ((tendsto_inner_weakUltralimit x C hx y).congr'
-      (hxz.fun_comp fun w ↦ ⟪w, y⟫_ℂ).symm)
+      heq)
     (tendsto_inner_weakUltralimit z K hz y)
+
+/-- The weak ultralimit of a constant sequence is that constant. -/
+theorem weakUltralimit_const (z : E) (C : ℝ) (hz : ‖z‖ ≤ C) :
+    weakUltralimit (fun _ : ℕ ↦ z) C (fun _ ↦ hz) = z := by
+  apply ext_inner_right ℂ
+  intro y
+  exact tendsto_nhds_unique
+    (tendsto_inner_weakUltralimit (fun _ : ℕ ↦ z) C (fun _ ↦ hz) y)
+    tendsto_const_nhds
 
 /-- A unitary operator commutes with weak ultralimits. -/
 theorem weakUltralimit_linearIsometryEquiv

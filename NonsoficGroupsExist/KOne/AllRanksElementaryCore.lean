@@ -69,6 +69,41 @@ private theorem eq_top_reindex (e : iota ≃ kappa)
 
 end Transport
 
+namespace LeavittFamily
+
+variable {R : Type*} [Ring R]
+
+/-- A binary Leavitt family upgrades `GL₂ = EL₂` to `GLₙ = ELₙ` in every
+rank `n ≥ 2`.  This is the coefficient/block transport argument underlying
+the binary Leavitt specialization below. -/
+theorem elementaryGroup_eq_top_of_rankTwo (L : LeavittFamily R)
+    (h2 : elementaryGroup (Fin 2) R = ⊤) (n : ℕ) (hn : 2 ≤ n) :
+    elementaryGroup (Fin n) R = ⊤ := by
+  classical
+  obtain ⟨n', rfl⟩ : ∃ n', n = n' + 1 := ⟨n - 1, by omega⟩
+  haveI : Nontrivial (Fin (n' + 1)) :=
+    ⟨⟨⟨0, by omega⟩, ⟨1, by omega⟩, by
+      intro h
+      simpa using congrArg Fin.val h⟩⟩
+  have h2M : elementaryGroup (Fin 2)
+      (Matrix (Fin (n' + 1)) (Fin (n' + 1)) R) = ⊤ :=
+    eq_top_coeff
+      (L.prefixRingEquiv (leftCombCode n')
+        (L.leftCombCode_complete n')).symm
+      h2
+  have hprod : elementaryGroup (Fin 2 × Fin (n' + 1)) R = ⊤ :=
+    eq_top_flatten h2M
+  have hprod' : elementaryGroup (Fin (n' + 1) × Fin 2) R = ⊤ :=
+    eq_top_reindex (Equiv.prodComm (Fin 2) (Fin (n' + 1))) hprod
+  have hnM : elementaryGroup (Fin (n' + 1))
+      (Matrix (Fin 2) (Fin 2) R) = ⊤ :=
+    eq_top_unflatten hprod'
+  exact eq_top_coeff
+    (L.prefixRingEquiv (leftCombCode 1)
+      (L.leftCombCode_complete 1)) hnM
+
+end LeavittFamily
+
 namespace BinaryLeavitt
 
 open LeavittFamily
@@ -79,33 +114,11 @@ variable (k : Type) [Field k]
 This dependency-clean form is the one used by the `(TT)/T` development. -/
 theorem elementaryGroup_eq_top (n : ℕ) (hn : 2 ≤ n) :
     elementaryGroup (Fin n) (BinaryLeavittAlgebra k) = ⊤ := by
-  classical
-  obtain ⟨n', rfl⟩ : ∃ n', n = n' + 1 := ⟨n - 1, by omega⟩
-  haveI : Nontrivial (Fin (n' + 1)) :=
-    ⟨⟨⟨0, by omega⟩, ⟨1, by omega⟩, by
-      intro h
-      simpa using congrArg Fin.val h⟩⟩
   have htwo : elementaryGroup (Fin 2) (BinaryLeavittAlgebra k) = ⊤ := by
     ext M
     simp only [Subgroup.mem_top, iff_true]
     exact glTwo_eq_elementary_holds k M
-  have h2M : elementaryGroup (Fin 2)
-      (Matrix (Fin (n' + 1)) (Fin (n' + 1)) (BinaryLeavittAlgebra k)) = ⊤ :=
-    eq_top_coeff
-      ((family k).prefixRingEquiv (leftCombCode n')
-        ((family k).leftCombCode_complete n')).symm
-      htwo
-  have hprod : elementaryGroup (Fin 2 × Fin (n' + 1))
-      (BinaryLeavittAlgebra k) = ⊤ := eq_top_flatten h2M
-  have hprod' : elementaryGroup (Fin (n' + 1) × Fin 2)
-      (BinaryLeavittAlgebra k) = ⊤ :=
-    eq_top_reindex (Equiv.prodComm (Fin 2) (Fin (n' + 1))) hprod
-  have hnM : elementaryGroup (Fin (n' + 1))
-      (Matrix (Fin 2) (Fin 2) (BinaryLeavittAlgebra k)) = ⊤ :=
-    eq_top_unflatten hprod'
-  exact eq_top_coeff
-    ((family k).prefixRingEquiv (leftCombCode 1)
-      ((family k).leftCombCode_complete 1)) hnM
+  exact (family k).elementaryGroup_eq_top_of_rankTwo htwo n hn
 
 end BinaryLeavitt
 

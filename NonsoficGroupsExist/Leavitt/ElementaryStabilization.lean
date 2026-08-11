@@ -1,4 +1,4 @@
-import NonsoficGroupsExist.Leavitt.ElementaryGroup
+import NonsoficGroupsExist.Leavitt.ElementaryRoots
 import Mathlib.Data.Matrix.Block
 
 /-!
@@ -82,6 +82,14 @@ noncomputable def elementaryStabilization :
   map_mul' x y := by
     apply Subtype.ext
     exact (stabilizeUnit (ι := ι) (κ := κ) (R := R)).map_mul x y
+
+@[simp] theorem elementaryStabilization_elementaryRoot
+    (i j : ι) (hij : i ≠ j) (a : R) :
+    elementaryStabilization (κ := κ) (elementaryRoot i j hij a) =
+      elementaryRoot (Sum.inl i) (Sum.inl j)
+        (Sum.inl_injective.ne hij) a := by
+  apply Subtype.ext
+  exact stabilizeUnit_elementaryUnit i j hij a
 
 theorem elementaryStabilization_injective :
     Function.Injective (elementaryStabilization (ι := ι) (κ := κ) (R := R)) := by

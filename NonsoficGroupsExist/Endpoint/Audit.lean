@@ -26,6 +26,7 @@ import NonsoficGroupsExist.Sofic.PhasePropagation
 import NonsoficGroupsExist.Kun.KunDecomposition
 import NonsoficGroupsExist.KunThom.KunThomTheorem
 import NonsoficGroupsExist.PropertyT.FreeElementaryPropertyT
+import NonsoficGroupsExist.PropertyTT.LeavittAllRanksTT
 import NonsoficGroupsExist.Kazhdan.KazhdanComplex
 import NonsoficGroupsExist.Kazhdan.KazhdanUniverse
 import NonsoficGroupsExist.Kazhdan.InvariantSubsetRounding
@@ -158,6 +159,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.rankThree_hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.BinaryLeavittSteinberg.hasKazhdanPropertyT
 #print axioms NonsoficGroupsExist.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
+#print axioms NonsoficGroupsExist.FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
+#print axioms NonsoficGroupsExist.LeavittAllRanksTT.elementaryGroup_hasTTmodT
 #print axioms NonsoficGroupsExist.UniversalRankFour.witness_not_isLEF
 #print axioms NonsoficGroupsExist.ThompsonFObstruction.finite_image_generatorCommutator_eq_one
 #print axioms NonsoficGroupsExist.isSofic_of_finite
