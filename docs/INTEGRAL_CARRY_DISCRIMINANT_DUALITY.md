@@ -654,8 +654,8 @@ For `X=G/H`, Shapiro rewrites the next terms of `(ICD66)` as
 `K_X -> K_1 -> H_1(P,I_X) -> H_1(H,Z) -> H_1(G,Z)`. `(ICD77)`
 
 Property `(T)` makes the last two abelianizations finite, but their
-finiteness alone does not control the exponent of the middle term.  The
-precise remaining arithmetic target is therefore:
+finiteness alone does not control the exponent of the middle term.  At this
+stage the apparent arithmetic target is therefore:
 
 > Bound the exponent of the augmentation homology
 > `H_1(P,I_X)`, or at least of its subgroup `im(delta_X)`, uniformly (or by
@@ -665,3 +665,79 @@ This formulation is strictly smaller than the full discriminant problem
 and strictly stronger than the real Hodge gap.  It also explains why the
 circle obstruction is integral: after tensoring with `R`, property `(T)`
 kills `(ICD68)` completely; only its finite torsion survives.
+
+The next proposition supplies the missing uniform exponent bound for
+`SL_3(Z)` without calculating `(ICD71)`.
+
+## 10. A finite Schur multiplier closes the invariant-transfer sector
+
+There is a stronger presentation-independent bound.  Let
+
+`Sigma_P=im(pi_2(P)->H_2(P,Z)) subset K_1`           `(ICD78)`
+
+be the spherical subgroup.  The Hopf exact sequence gives
+
+`K_1/Sigma_P ~= H_2(G,Z)`.                           `(ICD79)`
+
+**Theorem 7 (Schur-multiplier bound).**  For every connected finite cover
+`p:P_H->P`,
+
+`Sigma_P subset M_X=p_*H_2(P_H,Z)`.                 `(ICD80)`
+
+Consequently
+
+`K_1/M_X` is a quotient of `H_2(G,Z)`.               `(ICD81)`
+
+If the Schur multiplier `H_2(G,Z)` has finite exponent `E`, then, uniformly
+over every finite transitive `G`-set,
+
+`E K_1 subset M_X`,                                  `(ICD82)`
+
+`m_X(v) divides E g(v)` for every `v in K_1`.        `(ICD83)`
+
+**Proof.**  A spherical class in `(ICD78)` is represented by a map
+
+`f:S^2->P`.                                          `(ICD84)`
+
+Since `S^2` is simply connected, `f` lifts to every connected cover:
+
+`f=p compose f_tilde`, `f_tilde:S^2->P_H`.          `(ICD85)`
+
+On integral homology,
+
+`f_*[S^2]=p_* f_tilde_*[S^2]`,                      `(ICD86)`
+
+so every spherical class belongs to `M_X`.  Quotienting the inclusion
+`Sigma_P subset M_X subset K_1` by `Sigma_P` and using `(ICD79)` proves
+`(ICD81)`.  If `E` kills `H_2(G,Z)`, it kills its quotient `K_1/M_X`, which
+is `(ICD82)`.  Pairing `(ICD82)` with `v` and taking the gcd as in
+`(ICD61)` proves `(ICD83)`.  End proof.
+
+This theorem completely rules out divergent carries of the
+invariant-transfer form whenever the Schur multiplier is finite.  Indeed,
+for fixed `v`, equations `(ICD62)` and `(ICD83)` leave only the fixed set of
+possible annihilator moduli dividing `E g(v)`; none can grow faster than
+`sqrt(|X|)`.
+
+For the group used in the selected-chart program, van der Kallen computed
+
+`H_2(SL_3(Z),Z) ~= C_2 directSum C_2`.               `(ICD87)`
+
+See W. van der Kallen, [*The Schur Multipliers of `SL(3,Z)` and
+`SL(4,Z)`*](https://doi.org/10.1007/BF01343979), Math. Ann. 212 (1974),
+47--50.  Therefore `E=2`, and for every finite exact `SL_3(Z)` chart,
+
+`m_X(v) divides 2 g(v)`.                             `(ICD88)`
+
+In particular, Corollary 4 cannot produce a growing-modulus obstruction on
+the selected congruence charts.  At `p=5`, saturation makes the modular
+image and annihilator tests equivalent, so every modular-image modulus for
+a fixed base cycle already obeys `(ICD88)`.  At nonsaturated charts the
+modular test is even stronger and hence obeys the same bound.
+
+This closes the low-dimensional invariant-cycle mechanism proposed after
+`(ICD40)`.  It does **not** prove bounded `Theta`: Theorem 2 ranges over all
+classes of the full discriminant group `D_(K_X)`, and most chart cycles do
+not descend from `K_1`.  Any divergent `SL_3(Z)` carry must therefore be a
+genuinely new-cover discriminant class, invisible to constant base cycles
+and to the transfer subgroup `(ICD59)`.
