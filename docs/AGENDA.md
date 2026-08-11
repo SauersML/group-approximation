@@ -1076,6 +1076,17 @@ restricted lattice of primary demands actually produced by the compact
 harmonic/carry classes, not a global primary boundary section.  See
 `TRUE_BOUNDED_DEGREE_PARITY_DECODER_NO_GO.md`.
 
+That restricted coupling has now been computed exactly at the first two
+cuspidal levels.  The compact-to-HAP zero-row identification has difference
+rank zero.  At both `p=53` and `p=61`, the two-dimensional harmonic plane has
+a rank-one mod-two transgression into the orientation-primary edge sector.
+After restoring the two omitted cellular torsion blocks, both harmonic
+generators admit exact total HAP cycle lifts.  Thus there is no mod-two
+existence obstruction on the actual cuspidal plane at either level.  The
+remaining theorem is quantitative and integral: prove the observed local
+rank-one cancellation uniformly and bound its section on the paired carry
+lattice.  See `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
+
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
 projective `S_4` orbit classification show that the vertex `H_2` term is
