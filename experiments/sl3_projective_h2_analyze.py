@@ -11,7 +11,7 @@ import argparse
 import hashlib
 import json
 
-from sage.all import GF, QQ, matrix
+from sage.all import ChainComplex, GF, QQ, ZZ, matrix
 
 
 def read_sparse(path, ring):
@@ -56,9 +56,24 @@ def field_result(d2_path, d3_path, field, label):
     }
 
 
+def integral_result(d2_path, d3_path):
+    d2, d2_hash = read_sparse(d2_path, ZZ)
+    d3, d3_hash = read_sparse(d3_path, ZZ)
+    complex_ = ChainComplex(
+        {2: d2.transpose(), 3: d3.transpose()}, degree=-1)
+    homology = complex_.homology(2)
+    return {
+        "group": str(homology),
+        "abelian_invariants": [int(value) for value in homology.invariants()],
+        "d2_sha256": d2_hash,
+        "d3_sha256": d3_hash,
+    }
+
+
 def run(prime, prefix, coefficient_primes):
     d2_path = prefix + "-d2.tsv"
     d3_path = prefix + "-d3.tsv"
+    integral = integral_result(d2_path, d3_path)
     rational = field_result(d2_path, d3_path, QQ, "Q")
     modular = [field_result(d2_path, d3_path, GF(ell), "F_%d" % ell)
                for ell in coefficient_primes]
@@ -66,6 +81,7 @@ def run(prime, prefix, coefficient_primes):
         "chart": "projective",
         "chart_prime": prime,
         "method": "HAP_SL3_resolution_plus_Shapiro_permutation_module",
+        "integral": integral,
         "rational": rational,
         "modular": modular,
     }
