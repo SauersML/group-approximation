@@ -75,7 +75,7 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
     source_q0 = coordinate_indices(2, 0, degree)
 
     initial_boundary = compact_lift * boundary
-    q1_syndrome = initial_boundary[target_q1]
+    q1_syndrome = vector(field, [initial_boundary[index] for index in target_q1])
     q1_block = boundary.matrix_from_rows_and_columns(source_q1, target_q1)
     try:
         q1_local = q1_block.solve_left(-q1_syndrome)
@@ -89,7 +89,7 @@ def solve_filtered_lift(boundary, degree: int, compact_lift):
     if any(after_q1[index] for index in target_q1):
         raise AssertionError("q=1 correction left a q=1 residual")
 
-    q0_syndrome = after_q1[target_q0]
+    q0_syndrome = vector(field, [after_q1[index] for index in target_q0])
     q0_block = boundary.matrix_from_rows_and_columns(source_q0, target_q0)
     try:
         q0_local = q0_block.solve_left(-q0_syndrome)
