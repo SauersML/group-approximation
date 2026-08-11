@@ -22,11 +22,13 @@ copy (and Moore--Penrose norm `1/sqrt(2)` in the Euclidean realization).
 Thus the residual boundary image itself cannot hide a growing-distance
 binary code.
 
-This is an exact computation on twelve primes, not yet a theorem for every
-odd prime.  It also does not remove the positive stabilizer-resolution rows
-in HAP's derived total complex.  The growing kernel and cokernel coordinates
-are genuine primary homology and may still couple to those rows or to the
-free harmonic lattice.
+The full raw-export computation was performed on twelve primes.  An
+independent direct verifier in HAP's natural three-dimensional model checks
+the same law for all `42` odd primes at most `191`.  This is still not a
+theorem for every odd prime.  It also does not remove the positive
+stabilizer-resolution rows in HAP's derived total complex.  The growing
+kernel and cokernel coordinates are genuine primary homology and may still
+couple to those rows or to the free harmonic lattice.
 
 ## Exact family pattern
 
@@ -84,6 +86,12 @@ The program is `experiments/sl3_projective_primary_residual.py`; the compact
 machine-readable table is `experiments/projective-primary-residual.tsv`,
 with SHA-256
 `6c6a48b0d8c64f0ac212b027cc0e03268f589c788cee69a585a3f0f456967118`.
+The independent natural-model verifier is
+`experiments/sl3_projective_primary_natural_audit.g`.  It acts directly on
+`P^2(F_p)` using the fixed `3 x 3` stabilizer and boundary matrices from
+`ContractibleGcomplex("SL(3,Z)a")`; its verified-prime manifest is
+`experiments/projective-primary-natural-audit.txt`, with SHA-256
+`a101cc89013657c2f4577e5d7379b1684e1ddd89d3dacaab8d8bf6c5dad88763`.
 The raw cellular inputs and all arithmetic were generated on MSI.  No dense
 matrix optimization was used.
 

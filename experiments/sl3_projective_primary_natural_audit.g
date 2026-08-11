@@ -37,7 +37,7 @@ PrimaryNaturalBadOrbits := function(
     reduced_group := Group(List(
         GeneratorsOfGroup(stabilizer),
         element -> PrimaryNaturalReduce(element, field, prime)));
-    orbits := Orbits(reduced_group, points, OnLines);
+    orbits := OrbitsDomain(reduced_group, points, OnLines);
     bad := [];
     for orbit in orbits do
         representative := orbit[1];
@@ -59,7 +59,7 @@ PrimaryNaturalRun := function(prime)
           representative, element, image, target, row, row_weights,
           column_weights, chi, expected;
 
-    complex := ContractibleGcomplex("SL(3,Z)a");
+    complex := PrimaryNaturalComplex;
     field := GF(prime);
     one := One(field);
     zero := Zero(field);
@@ -144,6 +144,7 @@ PrimaryNaturalRun := function(prime)
           " matching_law=true\n");
 end;
 
+PrimaryNaturalComplex := ContractibleGcomplex("SL(3,Z)a");
 for PrimaryNaturalPrime in PRIMARY_NATURAL_PRIMES do
     PrimaryNaturalRun(PrimaryNaturalPrime);
 od;
