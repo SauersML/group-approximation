@@ -131,23 +131,35 @@ coordinate)` pairs have boundary
 
 `e_1+e_8`                                                `(DE1-4)`
 
-in the first `q=0` generator for every audited
-`p=3,5,7,11,13,17`.  Both endpoints are ordinary singleton cycles.  This is
-not merely equality of support size: the full nineteen-pair support is
-identical at all six levels.  The verifier is
-`experiments/sl3_projective_q0_relation.py`; its compact audit is
+in the first `q=0` generator for every odd projective prime.  Both endpoints
+are ordinary singleton cycles.  This is an exact theorem, not an
+extrapolation from the six levels: all coefficient points in the chain are
+reductions of fixed rational projective lines, and direct evaluation in
+HAP's integral group-ring resolution gives precisely the two displayed
+rational endpoints.  Reduction modulo any odd prime proves `(DE1-4)`.
+
+The exact rational verifier is
+`experiments/sl3_projective_q0_relation_exact.g`; its stdout certificate is
+`experiments/sl3-projective-q0-relation-exact.txt`, with SHA-256
+`357c6621d39bbc51b9ca7ff61bb6b17d21a6039e72580831ea78143f8ac4cfef`.
+The finite-chart verifier
+`experiments/sl3_projective_q0_relation.py` independently checks the raw
+specialized matrices; its compact audit is
 `experiments/projective-derived-q0-relation.tsv`, with SHA-256
 `172ea2077ea3787c9575220b33dbc1a522992bba7d253440317ff252ad373184`.
 
 The ordinary `p+1` points are the Veronese image of a projective line; the
 exceptional point lies off it.  Equation `(DE1-4)` therefore suggests a
-uniform decoder architecture: translate a fixed local filling along a
-bounded-degree Schreier graph on that projective line and use a uniform
-spectral gap to solve the resulting incidence equation.  The load-bearing
-next calculation is to identify a bounded set of translated relation types
-whose graph expands uniformly and whose filling synthesis map has bounded
-overlap.  Merely filling every point back to one basepoint produces long
-row-echelon solutions and misses this structure.
+uniform decoder architecture built from a bounded-degree relation graph on
+that projective line.  There is an important equivariance restriction: the
+full `SL_3` coefficient action is not a residual symmetry of one fixed
+filtered generator, so arbitrary group translates of `(DE1-4)` cannot
+simply be asserted to be relations in the same block.  The load-bearing
+next calculation is to discover a bounded set of Wall-compatible rational
+relation templates whose specialized graph expands uniformly and whose
+filling synthesis map has bounded overlap.  Merely filling every point back
+to one basepoint produces long row-echelon solutions and misses this
+structure.
 
 ## Exact extraction
 

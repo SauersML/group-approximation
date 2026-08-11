@@ -1,0 +1,1 @@
+support=19 residual=2 exact_rational=true

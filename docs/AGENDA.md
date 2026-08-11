@@ -1054,12 +1054,15 @@ have support one.  The remaining norm question is whether the relations
 identifying the ordinary fibre admit a uniformly bounded local filling; more
 prime ranks will not answer it.
 
-One bounded relation is now explicit: the same nineteen total-degree-three
-coordinates have boundary equal to the difference of two ordinary
-singletons at all six audited primes.  The ordinary fibre is a projective
-line.  The proof-producing next step is to translate this fixed relation
-into a bounded-degree expanding Schreier graph with bounded filling overlap;
-that would give a uniform `L2` decoder for the entire positive residue.
+One bounded relation is now exact for every odd prime: the same nineteen
+total-degree-three coordinates, interpreted as fixed rational projective
+lines, have boundary equal to the difference of two ordinary singletons in
+HAP's integral resolution.  The ordinary fibre is a projective line.  The
+proof-producing next step is to find enough Wall-compatible rational
+relation templates to form a bounded-degree expanding graph with bounded
+filling overlap.  Arbitrary `SL_3` translates are not automatically allowed,
+because the full coefficient action does not preserve a fixed filtered
+generator.
 
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
