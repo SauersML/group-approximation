@@ -386,7 +386,7 @@ $\square$
 Consequently the $C_2$-stable-letter shear and the infinite-cyclic shear
 have the same local matrix certificate after a harmless factor-two
 amplification.  Combined with the finite-index calculation recorded as
-(IS9)--(IS12) in `NOTEPAD.md`, this means the centralizer-twisted symmetric
+(IS9)--(IS12) in `docs/NOTEPAD.md`, this means the centralizer-twisted symmetric
 double is the preferred endpoint: it loses no antipodal flexibility and is
 the form closest to Shulman's symmetric-amalgam theorem.
 

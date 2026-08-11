@@ -25,7 +25,7 @@ fixed-point characters.  Thus the live theorem is the normal-IRS transfer
 `co-hyperlinear δ_N  =>  co-sofic δ_N`.
 
 The normality and `0/1` limit are essential.  Nonnegative unitary characters
-need not be finite-action characters (the `C₄` inequality in `NOTEPAD.md` is
+need not be finite-action characters (the `C₄` inequality in `docs/NOTEPAD.md` is
 an explicit obstruction), and no modulus can be uniform over changing word
 tables.  Pointwise rounding `U(d) -> Sym(X)` is also impossible: zero defect
 would make it a homomorphism, and every homomorphism from divisible `U(d)` to
@@ -39,7 +39,7 @@ unitary-character density, full metric-sofic approximation of `U(d)`, and
 Fell density of finite-image representations are all strictly too weak or too
 strong in the wrong direction.
 
-Exact doubled form (proved in `NOTEPAD.md`, `(DCT1)-(DCT9)`): for
+Exact doubled form (proved in `docs/NOTEPAD.md`, `(DCT1)-(DCT9)`): for
 `H_N={(a,b) in F x F : aN=bN}`, hyperlinearity is precisely approximation of
 `1_(H_N)` by the canonical maximally-entangled coefficients of
 `pi(a) tensor overline(pi(b))`; soficity is precisely approximation by the

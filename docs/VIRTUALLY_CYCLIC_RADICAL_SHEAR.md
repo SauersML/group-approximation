@@ -208,7 +208,7 @@ together with its finite axis-kernel type.
 This is a genuinely smaller target than the previous balanced-relative-lift
 problem: no Kazhdan or polynomial elementary subgroup remains in the edge.
 
-There is an even sharper stabilized variant in `NOTEPAD.md`, theorem
+There is an even sharper stabilized variant in `docs/NOTEPAD.md`, theorem
 `(FCS1)--(FCS7)`: replacing `D` by `D * Z` turns a commutator of a radical
 word with the new free generator into a primitive radical word with exactly
 cyclic centralizer.  That variant should be preferred for model production;

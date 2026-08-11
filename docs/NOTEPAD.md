@@ -38303,6 +38303,69 @@ map to every element of `U(d)`.  Tensor amplification is allowed before the
 finite action is selected.  Thus metric soficity of the compact matrix image
 is a false strengthening, just like pointwise rounding `(PUR1)--(PUR3)`.
 
+# The cyclic shear has a canonical exact Mackey sector (2026-08-10)
+
+The projective sector `(CRC4)` is abstract only at finite dimension.  It has
+a canonical exact infinite-dimensional realization.  Full details are in
+`docs/FALSE_MACKEY_SECTOR.md`.
+
+Use the free-stabilized group and primitive hyperbolic word
+
+`G=H*<a>`,  `C=<r>`,  `r=[r_0,a]`,                    `(MPS1)`
+
+and let `chi(r^n)=(-1)^n`.  Define
+
+`pi_0=Ind_C^G(1)`,  `pi_1=Ind_C^G(chi)`.              `(MPS2)`
+
+**Theorem (Mackey parity pairing).**  There is a unitary `U` such that
+
+`U pi_1(c) U^*=chi(c)pi_0(c)`, `c in C`.              `(MPS3)`
+
+Mackey restriction decomposes both sides over `C\G/C`.  On a summand with
+`L=C intersect tCt^(-1)`, there is nothing to check if `L=1`.  Otherwise an
+equality `r^m=t r^n t^(-1)` has `|m|=|n|` by translation length in the
+free-product Bass--Serre tree.  Therefore the two parity characters agree
+on `L`, and tensoring the `pi_1` summand by `chi` cancels them.  This proves
+`(MPS3)`.  Possible inversion of the axis is harmless, so malnormality is
+not needed.
+
+Let `B=G times <z>` and form the shear `(FCS3)--(FCS4)`.  On the Hilbert
+space of `pi_0`, put
+
+`beta_1(g,z^e)=(-1)^e pi_0(g)`,
+`beta_2(g,z^e)=(-1)^e U pi_1(g)U^*`.                  `(MPS4)`
+
+For an edge element `r^n z^e`,
+
+`beta_2(alpha(r^n,z^e))`
+` =(-1)^(e+n)(-1)^n pi_0(r^n)`
+` =beta_1(r^n,z^e)`.                                  `(MPS5)`
+
+Thus the two vertex representations glue to an exact representation
+
+`Pi:J->U(K_Mac)`,  `Pi(z)=-1`.                        `(MPS6)`
+
+Let `A_Mac=C^*(Pi(J))`.  If `A_Mac` is MF, its norm-matrix models pass to a
+tracial ultraproduct in which the scalar `Pi(z)=-1` survives.  The image is
+hyperlinear.  It cannot be sofic, since the composite homomorphism from `J`
+to that image does not kill `z in Rad_sof(J)`.  Hence:
+
+> proving that the single concrete algebra `A_Mac` is MF solves the FALSE
+> lane.
+
+The two induced vertex representations are tempered because `C` is
+amenable.  Moreover `G=H*Z` is C-star simple, so both vertex algebras are
+faithful copies of `C_r^*(G)`.  The target is therefore an explicitly glued
+pair of faithful tempered reduced-group representations, not an unspecified
+projective cocycle.
+
+Paddock's Lemma 3.26 does not prove that target.  It rounds a state-dependent
+approximately tracial model to a normalized-Frobenius model on a nonzero
+spectral subspace, but supplies no positive lower bound on the subspace's
+relative dimension.  It can normalize a tracial game model; it cannot turn
+the exact infinite sector `(MPS6)` into operator-norm microstates or amplify
+a negligible norm-visible sector to positive trace.
+
 # The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
 
 The cyclic-shear candidate admits a useful reduction, together with an

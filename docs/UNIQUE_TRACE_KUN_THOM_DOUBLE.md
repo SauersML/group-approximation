@@ -2,7 +2,7 @@
 
 This note isolates a reduced-\(C^*\) endpoint for the hyperlinear-versus-sofic
 problem which is independent of the phase and one-trace constructions in
-`NOTEPAD.md`.
+`docs/NOTEPAD.md`.
 
 Throughout this note take the explicit Kun--Thom pair with \(q=2\) and
 \(r,d\geq 3\):

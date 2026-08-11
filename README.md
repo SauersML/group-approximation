@@ -207,4 +207,4 @@ in the published Kun–Thom argument) are repaired in the Lean proofs.
 ## Development history
 
 What was proved when, in what order, and the intermediate results named
-along the way: [NOTEPAD.md](NOTEPAD.md).
+along the way: [docs/NOTEPAD.md](docs/NOTEPAD.md).
