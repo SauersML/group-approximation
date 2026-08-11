@@ -157,7 +157,7 @@ def higher_image_ranks(boundaries, degree: int):
 
 
 def filtered_h2_dimensions(boundaries, degree: int):
-    """Compute the cellular filtration on total mod-two H2 directly."""
+    """Compute the cellular filtration on total H2 in the chosen field."""
 
     if boundaries[3] * boundaries[2]:
         raise AssertionError("total degree-three boundaries are not cycles")
@@ -173,7 +173,7 @@ def filtered_h2_dimensions(boundaries, degree: int):
         restricted = boundaries[2].matrix_from_rows(supported_indices)
         supported_cycles = restricted.left_kernel().basis_matrix()
         embedded = matrix(
-            GF(2),
+            boundaries[2].base_ring(),
             supported_cycles.nrows(),
             boundaries[2].nrows(),
             {
