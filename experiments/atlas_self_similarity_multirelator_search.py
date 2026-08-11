@@ -1,8 +1,10 @@
-"""Trade 24 certified atlas relators against the exact C11 phase.
+"""Trade atlas identity constraints against a scalar C11 phase.
 
-The first 24 bundle words are targeted at the identity.  The last word is the
-C11 survivor targeted at iI.  Only the relative U(64) chart alignment moves.
-This is a finite compatibility diagnostic, not a proof about all of [P,R].
+Every bundle word except the last is targeted at the identity.  These include
+24 certified-zero classes and may include phase-centrality commutators.  The
+last word is the C11 survivor with a selected nontrivial scalar target.  Only
+the relative chart alignment moves.  This is a finite compatibility
+diagnostic, not a proof about all of [P,R].
 """
 
 import argparse
@@ -22,9 +24,12 @@ class MultiRelatorProblem:
         self.matrices = torch.tensor(
             bundle["matrices"], dtype=torch.complex128)
         self.source_indices = bundle["source_indices"].tolist()
+        self.labels = bundle["labels"].tolist()
         self.dimension = self.matrices.shape[-1]
-        if len(self.lengths) != 25 or len(self.targets) != 25:
-            raise ValueError("expected 24 zero classes plus one phase class")
+        if len(self.lengths) < 25 or len(self.targets) != len(self.lengths):
+            raise ValueError("malformed identity/phase constraint package")
+        if len(self.labels) != len(self.lengths):
+            raise ValueError("constraint labels do not match the word package")
         if self.dimension < 1:
             raise ValueError("atlas model dimension must be positive")
         self.identity = torch.eye(self.dimension, dtype=torch.complex128)
@@ -54,25 +59,25 @@ class MultiRelatorProblem:
     def diagnostics(self, relative):
         with torch.no_grad():
             losses, values = self.losses(relative)
-            zero_errors = torch.sqrt(losses[:-1])
+            identity_errors = torch.sqrt(losses[:-1])
             phase_error = torch.sqrt(losses[-1])
             phase_trace = torch.trace(values[-1]) / self.dimension
             phase_difference = (
                 values[-1] - self.targets[-1] * self.identity
             ).cpu().numpy()
-            worst = torch.argsort(zero_errors, descending=True)[:5]
+            worst = torch.argsort(identity_errors, descending=True)[:5]
             return {
-                "certified_zero_rms": float(torch.sqrt(torch.mean(
-                    zero_errors ** 2))),
-                "certified_zero_max": float(torch.max(zero_errors)),
+                "identity_constraint_rms": float(torch.sqrt(torch.mean(
+                    identity_errors ** 2))),
+                "identity_constraint_max": float(torch.max(identity_errors)),
                 "phase_hs_error": float(phase_error),
                 "phase_operator_error": float(np.linalg.norm(
                     phase_difference, ord=2)),
                 "phase_trace": [
                     float(phase_trace.real), float(phase_trace.imag)],
-                "worst_certified_classes": [
-                    [self.source_indices[int(index)],
-                     float(zero_errors[int(index)])]
+                "worst_identity_constraints": [
+                    [self.labels[int(index)],
+                     float(identity_errors[int(index)])]
                     for index in worst
                 ],
             }

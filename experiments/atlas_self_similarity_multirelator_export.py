@@ -23,7 +23,13 @@ from atlas_certified_outer_tangent import (
 )
 from atlas_self_similarity_global_audit import amplified_alignment, word_value
 from atlas_survivor_chart_filling import canonical, encode_word
-from atlas_two_chart_search import I4, gf2_inv, matrix_key
+from atlas_two_chart_search import (
+    I4,
+    factor_generators,
+    gf2_inv,
+    inverse,
+    matrix_key,
+)
 
 
 CERTIFIED_OUTER_ALIGNMENT = (
@@ -63,6 +69,7 @@ def main():
     )
     parser.add_argument(
         "--phase-target", choices=("i", "-i", "-1"), default="i")
+    parser.add_argument("--include-phase-centrality", action="store_true")
     args = parser.parse_args()
     if args.multiplicity < 1:
         raise ValueError("multiplicity must be positive")
@@ -92,14 +99,26 @@ def main():
         raise AssertionError("certified boundary does not have 24 cyclic classes")
 
     phase_index = 11
-    words = [word for _index, word in representatives] + [boundary[phase_index]]
-    source_indices = [index for index, _word in representatives] + [phase_index]
+    phase_word = boundary[phase_index]
+    words = [word for _index, word in representatives]
+    source_indices = [index for index, _word in representatives]
+    labels = [f"zero_{index}" for index in source_indices]
+    if args.include_phase_centrality:
+        for generator_name, generator in factor_generators():
+            words.append(
+                phase_word + generator + inverse(phase_word)
+                + inverse(generator))
+            source_indices.append(-len(source_indices))
+            labels.append(f"centrality_{generator_name}")
+    words.append(phase_word)
+    source_indices.append(phase_index)
+    labels.append("phase_11")
     phase_targets = {"i": 1j, "-i": -1j, "-1": -1}
     phase_target = phase_targets[args.phase_target]
     targets = np.array(
-        [1] * len(representatives) + [phase_target], dtype=np.complex128)
-    if len(words) != 25:
-        raise AssertionError("expected 24 zero classes plus one phase class")
+        [1] * (len(words) - 1) + [phase_target], dtype=np.complex128)
+    if len(representatives) != 24 or len(words) < 25:
+        raise AssertionError("malformed identity/phase constraint package")
     representation64, phase_relative = amplified_alignment()
     if args.initial_alignment == "exact-phase":
         if phase_target != 1j:
@@ -180,7 +199,7 @@ def main():
             value - targets[word_index] * block_identity)
             / np.sqrt(block_dimension)))
     if (args.initial_alignment.startswith("certified-outer")
-            and max(initial_errors[:-1]) > 1e-10):
+            and max(initial_errors[:24]) > 1e-10):
         raise AssertionError("certified outer alignment did not kill all classes")
 
     factors = np.zeros((len(words), maximum_length), dtype=np.int8)
@@ -207,17 +226,26 @@ def main():
         lengths=lengths,
         targets=targets,
         source_indices=np.array(source_indices, dtype=np.int32),
+        labels=np.array(labels),
     )
     print(json.dumps({
         "certified_words": scan["perfect_overlap_certificates"],
         "certified_cyclic_classes": len(representatives),
-        "certified_representative_indices": source_indices[:-1],
+        "certified_representative_indices": [
+            index for index, _word in representatives],
         "phase_boundary_index": phase_index,
         "phase_target": f"{args.phase_target} I_{dimension}",
         "initial_alignment": args.initial_alignment,
-        "initial_zero_rms": float(np.sqrt(np.mean(
+        "certified_zero_classes": 24,
+        "centrality_constraints": len(words) - 25,
+        "initial_identity_rms": float(np.sqrt(np.mean(
             np.square(initial_errors[:-1])))),
-        "initial_zero_max": max(initial_errors[:-1]),
+        "initial_identity_max": max(initial_errors[:-1]),
+        "initial_certified_zero_rms": float(np.sqrt(np.mean(
+            np.square(initial_errors[:24])))),
+        "initial_centrality_rms": (
+            float(np.sqrt(np.mean(np.square(initial_errors[24:-1]))))
+            if args.include_phase_centrality else None),
         "initial_phase_error": initial_errors[-1],
         "multiplicity": args.multiplicity,
         "dimension": dimension,
