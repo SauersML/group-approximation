@@ -124,4 +124,6 @@ total complex and measure the best integral section.  Failure should be
 reported as an explicit class in a positive stabilizer-homology row.
 
 The reproducible metadata exporter is
-`experiments/sl3_derived_resolution_audit.g`.
+`experiments/sl3_derived_resolution_audit.g`; its exact MSI output is
+`experiments/sl3-derived-resolution-audit.txt`, with SHA-256
+`55bc75aaaab2228ce6d5776a8d7a44fb70ed448c13a79a29ff09b55500614048`.
