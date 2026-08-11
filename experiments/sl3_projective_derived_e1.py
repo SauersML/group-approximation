@@ -236,6 +236,51 @@ def q0_homology_representatives(boundaries, degree: int):
     return result
 
 
+def q0_singleton_class_profile(boundaries, degree: int):
+    """Classify singleton cycles in the first q=0 resolution generator."""
+
+    field = boundaries[2].base_ring()
+    if field.cardinality() != 2:
+        raise ValueError("the singleton class profile is a mod-two invariant")
+
+    singleton_indices = [
+        index for index in range(degree) if not boundaries[2].row(index)
+    ]
+    if len(singleton_indices) < 2:
+        raise AssertionError("fewer than two singleton q=0 cycles")
+
+    def unit(index):
+        return matrix(
+            field, 1, boundaries[2].nrows(), {(0, index): 1}, sparse=True
+        ).row(0)
+
+    boundary_space = boundaries[3].row_space()
+    first = unit(singleton_indices[0])
+    second = unit(singleton_indices[1])
+    if boundaries[3].stack(matrix(field, [first, second])).rank() \
+            - boundaries[3].rank() != 2:
+        raise AssertionError("the first two singleton classes are dependent")
+
+    classes = []
+    for index in singleton_indices:
+        candidate = unit(index)
+        label = None
+        for first_coefficient, second_coefficient in (
+                (0, 0), (1, 0), (0, 1), (1, 1)):
+            if candidate + first_coefficient * first \
+                    + second_coefficient * second in boundary_space:
+                label = [first_coefficient, second_coefficient]
+                break
+        if label is None:
+            raise AssertionError("a singleton cycle lies outside the two classes")
+        classes.append({"coordinate": int(index), "class": label})
+
+    return {
+        "count": len(singleton_indices),
+        "classes": classes,
+    }
+
+
 def analyze(prime: int, modulus: int, prefix: Path):
     degree = prime**2 + prime + 1
     field = GF(modulus)
@@ -302,6 +347,8 @@ def analyze(prime: int, modulus: int, prefix: Path):
     q0_representatives = q0_homology_representatives(boundaries, degree)
     if len(q0_representatives) != filtered_h2["graded_dimensions"]["0,2"]:
         raise AssertionError("q=0 representatives do not span the graded term")
+    q0_singletons = q0_singleton_class_profile(boundaries, degree) \
+        if modulus == 2 else None
 
     return {
         "prime": prime,
@@ -324,6 +371,7 @@ def analyze(prime: int, modulus: int, prefix: Path):
         "full_H2_dimension": total_h2,
         "E_infinity_total_degree_two": filtered_h2,
         "E_infinity_q0_representatives": q0_representatives,
+        "E_infinity_q0_singleton_class_profile": q0_singletons,
     }
 
 
