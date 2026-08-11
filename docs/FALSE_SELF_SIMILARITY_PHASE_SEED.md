@@ -636,7 +636,7 @@ $R/[P,R]$.  A general two-dimensional disc diagram may use killed relators
 in an order that is not a single running-prefix gallery, and non-scalar
 perfect subgroups are not covered.  Those are now the live algebraic routes.
 
-## 11. Complete radius-ten audit
+## 12. Complete radius-ten audit
 
 The eightfold exact alignment has been evaluated on all 234 words in the
 complete first boundary. Exactly fourteen are scalar: their indices are
