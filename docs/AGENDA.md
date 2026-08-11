@@ -463,6 +463,16 @@ level still acts freely on its unit sphere, so no invariant
 a levelwise extension; it would have to enter through a cross-level matching
 argument.
 
+The collaborator's universal cyclic-module candidate and exact coinduced
+parity model are the same analytic target.  Fourier transform on
+`A_univ` identifies the signed coinduced crossed product with the normalized
+`z=-1` central corner `p_-L(E_univ)`; at the reduced C-star level,
+`A_(G,s)=p_-C_r^*(E_univ)`.  The `z=+1` corner is the ordinary wreath
+quotient.  Thus the FALSE gate is exactly MF/Connes embeddability of one
+explicit negative central corner, not a choice between two representations.
+The proof and the precise non-permanence warning are in
+`docs/COINDUCED_NEGATIVE_CENTRAL_CORNER.md`.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the
