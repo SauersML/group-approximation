@@ -188,6 +188,24 @@ bound closes arbitrary phase orders on all exact charts.  A marked ratio can
 still remain bounded when full circle repair does not, so `(ECM31)` is the
 sharper word-specific target.
 
+The exact/nonexact chart transition now has a quantitative composition
+theorem; see `TRUE_STABLE_BASE_CARRY_TRANSFER.md`.  Keep the original phase
+labels while replacing the permutation part by an exact `P`-action.  If `h`
+is the generator Hamming exactification cost, `E_R` is the relator HS defect,
+and `C_circ` is the resulting exact-chart repair constant, then `(SBC17)`
+gives
+
+`||U(w)-1||_2 <= |w|sqrt(2h)`
+` +(pi/2)|w|C_circ(E_R+sqrt(2h)L_R)`.
+
+Hence sequencewise permutation exactification plus uniform carry repair
+kills every monomial radical witness, with no bound on phase order.  In
+particular, permutation stability of the presentation together with a
+uniform exact-chart carry bound closes the entire monomial branch.  This
+proves that base repair and phase repair have no hidden third compatibility
+loss; what remains is to establish them for the relevant charts, and to
+obtain a common Cartan/monomialization for arbitrary matrix characters.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
