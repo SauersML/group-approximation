@@ -377,3 +377,19 @@ harmonic lattice.  The next high-yield tasks are therefore:
 4. transport the now-explicit `p=53` rank-two section through the
    bounded-primary/model-comparison bridge and repeat it at the next cuspidal
    prime.
+
+### Two-primary signed-orbit audit
+
+The compact rational quotient omits a growing orientation-torsion sector.
+At `p=53` the zero-th signed coinvariants have `Z/2` coordinate counts
+`(0,29,84,29)`, while the unsigned mod-two orbit complex has dimensions
+`(141,393,412,141)`, ranks `(140,253,135)`, and homology dimensions
+`(1,0,24,6)`.
+
+The last value is smaller than the rational signed `H_3` dimension `10`, so
+the unsigned complex cannot be the mod-two reduction of a free integral
+model.  The missing comparison must include derived finite-stabilizer
+homology.  Exact results for eleven primes are in
+`projective-cellular-two-primary.json`; interpretation and the next total
+complex construction are in
+`docs/TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.

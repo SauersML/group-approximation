@@ -978,10 +978,16 @@ bracket
 `7.489055360091924<=kappa_Sigma<=7.49017741972933`.  Thus the free compact
 rank-two numerator is solved at `p=53`; the live question is uniformity at
 later cuspidal levels, not another discriminant enumeration at this level.
-The live bridge is now explicit: retain or uniformly correct the omitted
-two-primary stabilizer coinvariants and transport this compact metric through
-a bounded integral comparison to the free HAP carry complex.  See
-`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md`.
+The two-primary audit shows that this bridge must be derived.  At `p=53` the
+zero-th signed coinvariants contain `(Z/2)^84` in degree two.  The naive
+unsigned mod-two orbit complex has homology dimensions `(1,0,24,6)`, whose
+degree-three value is smaller than the rational Betti number `10`; it cannot
+be the reduction of a free integral comparison model.  One must splice in
+fixed free resolutions of the finite cell stabilizers.  Their orders are at
+most `24`, so the primary exponent is uniformly bounded even though the
+number of torsion coordinates grows linearly with `p`.  See
+`TRUE_P53_CELLULAR_HARMONIC_DISCRIMINANT.md` and
+`TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.
 
 `TRUE_NONLINEAR_DISCRIMINANT_REPAIR_FORMULA.md` now gives the exact optimal
 nonlinear repair constant, not only a comparison through `Theta`.  It is

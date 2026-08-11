@@ -41509,3 +41509,41 @@ This still does not settle TRUE or FALSE.  The live tasks are now the
 two-primary signed-coinvariant correction, the bounded comparison to the
 free HAP carry metric, and uniform control over later cuspidal projective
 levels.
+
+## 2026-08-11: the two-primary cellular correction needs derived stabilizer rows
+
+Full audit: `docs/TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md`.
+
+The compact signed-coinvariant complex at `p=53` has zero-th integral
+coinvariant groups
+
+    Z^141,
+    Z^364 directSum (Z/2)^29,
+    Z^328 directSum (Z/2)^84,
+    Z^112 directSum (Z/2)^29.
+
+Thus the rational free model deletes `84` degree-two orientation-torsion
+coordinates.  This correction is not fixed rank: across eleven exact primes
+its counts grow linearly, with the observed formulas
+
+    t_1=t_3=(p+4+chi_(-1)(p))/2,
+    t_2=(3p+8+chi_(-1)(p))/2.
+
+More importantly, merely forgetting signs over `F_2` is not the correct
+free integral model.  At `p=53` the unsigned orbit complex has dimensions
+
+    141 <- 393 <- 412 <- 141,
+
+ranks `140,253,135`, and homology dimensions `(1,0,24,6)`.  Its mod-two
+`H_3` dimension `6` is smaller than the rational signed `H_3` dimension
+`10`, impossible for reduction of a free integral complex.  Therefore one
+must include the positive-degree homology of the finite cell stabilizers;
+the unsigned complex is only the zero-th row of the equivariant spectral
+sequence.
+
+The correction still has uniformly bounded primary exponent: the fixed
+stabilizers have orders at most `24`, so the additional two-primary groups
+are killed by `8`.  The live construction is a fixed derived total complex
+from free stabilizer resolutions, followed by transport of the explicit
+rank-two section into it.  Simply restoring deleted coordinates is now a
+proved-wrong implementation strategy.

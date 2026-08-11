@@ -233,9 +233,12 @@ kept separate.
 
 First, an orientation-reversing stabilizer relation `e=-e` creates a
 `Z/2` coinvariant, while the rational signed quotient kills that coordinate.
-The computation therefore determines the free rational lattice exactly but
-does not determine the full two-primary integral cellular complex.  This is
-precisely the bounded-primary correction isolated in
+There are `84` such degree-two coordinates at `p=53`.  The computation
+therefore determines the free rational lattice exactly but does not determine
+the full two-primary integral cellular complex.  The naive unsigned mod-two
+orbit complex is insufficient; positive stabilizer-homology rows are forced.
+This derived bounded-primary correction is isolated in
+`TRUE_TWO_PRIMARY_CELLULAR_DERIVED_AUDIT.md` and
 `TRUE_FIXED_RESOLUTION_DECODER_INVARIANCE.md`.
 
 Second, the standard Euclidean metric on the `328` orbit coordinates is the
