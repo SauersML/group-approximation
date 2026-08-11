@@ -163,8 +163,15 @@ criterion of `FALSE_RADICAL_FILLING_DISCRIMINANT.md` supply item 1 from one
 nonzero discriminant pairing.  The formerly metric item 2 is now the exact
 support calculation `(CMS17)`.
 
-This exposes the finite structure a FALSE construction must seek: a
-deck-invariant discriminant code whose range-gluing image is sparse in the
-relator-coordinate torus but whose marked radical-word evaluation is dense.
-The two support profiles, rather than the orders of the discriminant classes,
-are the decisive data.
+In regular covers of one fixed presentation, deck symmetry actually
+prevents item 2 for every nonzero invariant code: its support contains a
+whole deck orbit, a fixed positive fraction of all relator coordinates.
+See `FALSE_REGULAR_COVER_MEAN_ENERGY_NO_GO.md`.  Thus Corollary 3 is useful
+only with a non-invariant/nonuniform choice, a growing number of coordinate
+orbits, or a different chart architecture.
+
+This exposes the finite structure a FALSE construction must seek: not a
+uniform deck-invariant subgroup, but a low-carry subset or distribution whose
+range-gluing coordinates are sparse and whose marked radical-word evaluation
+is dense.  The joint support/energy profile, rather than the orders of the
+discriminant classes, is the decisive data.

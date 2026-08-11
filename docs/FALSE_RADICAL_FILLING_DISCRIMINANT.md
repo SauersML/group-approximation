@@ -242,6 +242,20 @@ then the mean in `(RFD28c)` lies between `(2/27)s_n` and `(1/8)s_n`.
 This replaces the exact-energy average by finite rational/Smith support
 data.
 
+For the deck-invariant code of a regular cover of this fixed presentation,
+that support observation is a no-go rather than a shortcut.  Theorem 1 of
+`FALSE_REGULAR_COVER_MEAN_ENERGY_NO_GO.md` proves that every nonzero
+invariant code contains a full coordinate orbit.  If the base presentation
+has `b_2` relator cells, then
+
+`avg_C delta_Xn(c)^2>=(2/(27b_2))m_n`,               `(RFD28e)`
+
+so `(RFD28c)` cannot hold.  Theorem 5 remains a valid implication, but its
+mean-energy hypothesis is impossible for the nonzero regular filling codes
+to which it was intended to apply.  A successful phase construction must
+replace uniform subgroup averaging by a correlated low-energy selection or
+use charts with a growing number of coordinate orbits.
+
 If `C_(w,X_n)=P_n+Q_n`, a sufficient paired condition is
 
 `avg_(p in P_n)rho_(K_Xn)(p)^2`
@@ -309,14 +323,16 @@ a word `w` mapping to one such surviving `x_h`.  Theorem 5 applies to every
 regular finite quotient chart of this presentation.  It converts the
 FALSE problem into the radical filling codes `(RFD26)`.
 
-This is not yet the complete proof.  Theorem 2 supplies integral fillings
-but no mean-square bound `(RFD28)`.  Also, nontriviality of `w` does not by
-itself force `(RFD27)` to be nonintegral: the filling code could conceivably
-be totally isotropic in every finite cover.  These are now two separate,
-checkable assertions rather than one unspecified projective-sector problem.
+This route does not complete the proof.  More strongly, the regular-cover
+no-go `(RFD28e)` shows that the required uniform subgroup mean-square bound
+cannot hold for a nonzero filling code.  Nontriviality of `w` also does not
+by itself force `(RFD27)` to be nonintegral: the filling code could
+conceivably be totally isotropic in every finite cover.  The next version
+must therefore study the joint low-carry/high-word distribution on individual
+classes, rather than trying to prove the now-impossible uniform mean bound.
 
 The `p=53` projective `SL_3(Z)` harmonic quotient cannot be substituted
 directly: `SL_3(Z)` is residually finite and has trivial sofic radical.
-What can transfer is the method--a low-rank, microscopic filling code and a
-nonzero discriminant Gram pairing--inside the finite covers of the radical
-presentation `(RFD29)--(RFD30)`.
+What can transfer is the low-rank paired-lattice calculation, but it must be
+used to isolate a nonuniform microscopic tail with a nonzero word pairing
+inside the radical presentation `(RFD29)--(RFD30)`.

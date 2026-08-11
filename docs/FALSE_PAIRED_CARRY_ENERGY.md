@@ -219,10 +219,16 @@ More directly, item 2 may be replaced by the exact single condition
 `(PCE10)` and item 1 by one nonintegral entry of the discriminant Gram
 matrix.
 
-This leaves a genuinely smaller finite problem than the earlier
-cycle-radius formulation.  The remaining search should not enumerate the
-full cycle lattice.  It should compute the Smith image of the radical
-filling code and its ambient coordinate support.  A sublinear support gives
-the exact mean-energy hypothesis immediately; paired low-dimensional CVPs
-remain an optional sufficient route when that support is not directly
-available.
+For the regular covers of one fixed presentation, this sufficient criterion
+is in fact vacuous for a nonzero deck-invariant code.  Theorem 1 of
+`FALSE_REGULAR_COVER_MEAN_ENERGY_NO_GO.md` shows that its carry support
+contains a full deck orbit and hence has positive density; quantitatively,
+if the base has `b_2` relator cells, then
+
+`avg_C delta_n(c)^2>=(2/(27b_2))m_n`.                              `(PCE21)`
+
+Thus neither `(PCE10)` nor the stronger paired bound `(PCE18)` can hold for
+the radical filling code in that setting.  The live FALSE statistic is the
+joint low-carry/high-word tail, not the uniform subgroup mean: one must use
+a nonuniform selection correlated with word energy, allow a growing number
+of coordinate orbits, or leave the regular-cover phase ansatz.
