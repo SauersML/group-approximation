@@ -36832,3 +36832,106 @@ finite-image approximation plus a usable projective gap, or replace the
 regular quotient action by nonregular actions which treat near-projective
 elements as fixing most, but not necessarily all, points.  The latter is once
 again precisely the stabilizer-law problem `(FAC8)`.
+
+# Classical Weyl curvature survives every polarization and scalar gauge
+
+The finite-quotient floor `(FQW1)--(FQW3)` is not specific to the displayed
+position polarization.  It survives arbitrary scalar gauge changes, every
+integral position--momentum polarization, and tensor products of such
+sectors.  This closes the proposed Fourier-odd and transpose-time-reversal
+repairs whenever all their one-particle coordinates still factor through
+finite `G`-sets.
+
+Retain the integral Heisenberg cover
+
+`E_Z=Heis(I directSum I) semidirect G`,
+
+and the profinitely invisible edge
+
+`u=delta_x-delta_o in I`.                              `(PWG1)`
+
+Choose `v in I` with `<u,v>=1`, and put
+
+`a=((u,0),0)`, `b=((0,v),0)`, so [a,b]=z`.             `(PWG2)`
+
+Let `p:X->Y` be any map to a finite `G`-set and let
+`T=p_*:I->Z^(Y)` be its fiber-sum map.  Since `x` and `o` have the same
+image in every finite `G`-set,
+
+`T(u)=0`.                                               `(PWG3)`
+
+An integral polarization is an element
+
+`R=[[r,s],[q,l]] in SL_2(Z)`                            `(PWG4)`
+
+acting on `I directSum I`, with the usual central quadratic correction that
+makes it an automorphism `Rhat` of the Heisenberg group and fixes `z`.
+The Fourier quarter-turn `(FOC1)` is one such polarization; the linear part
+of the transpose-time-reversal map sends `a` to the same class considered
+below.  From `(PWG3)`,
+
+`(T directSum T)(R(u,0))=(T(ru),T(qu))=(0,0)`.          `(PWG5)`
+
+**Theorem (polarization/gauge Weyl no-go).**  For `1<=j<=m`, choose finite
+`G`-set quotient maps `p_j`, integral polarizations `R_j`, and arbitrary
+scalar gauges.  Let `psi_j` be any corresponding finite Weyl sector, with
+
+`psi_j(z)=exp(i epsilon_j)1`,                           `(PWG6)`
+
+whose module coordinate depends only on
+`(p_j)_* directSum (p_j)_*`.  Define
+
+`Psi(g)=tensor_(j=1)^m psi_j(Rhat_j(g))`.               `(PWG7)`
+
+Then
+
+`[Psi(a),Psi(b)]=1`,
+`Psi(z)=exp(i sum_j epsilon_j)1`.                       `(PWG8)`
+
+Consequently the defect of the fixed relation `[a,b]=z` is exactly
+
+`|1-exp(i sum_j epsilon_j)|`.                          `(PWG9)`
+
+In particular, if the total retained central phase is `epsilon->0` and is
+nonzero to first order, the relation defect divided by `|epsilon|` tends to
+one.  It can never be `o(epsilon)`.  If the total phase has a nontrivial
+limit, the defect stays bounded away from zero.
+
+**Proof.**  Equation `(PWG5)` says that the Weyl part of
+`psi_j(Rhat_j(a))` is the identity.  A scalar gauge can only multiply it by
+a scalar.  Scalars commute with `psi_j(Rhat_j(b))`, so the commutator in
+each tensor factor is one.  Tensor products preserve this equality.  Every
+`Rhat_j` fixes `z`, so the central phases in `(PWG6)` multiply, proving
+`(PWG8)--(PWG9)`.  End proof.
+
+There is an equivalent cocycle calculation.  For a linear map `T`, put
+
+`Delta_T(r,s)=<T r,T s>-<r,s>`.                        `(PWG10)`
+
+Before a scalar gauge, the first-order Weyl curvature on module elements
+`(r,s),(r',s')` is `Delta_T(r,s')`.  A scalar gauge on the abelian module
+adds a symmetric `2`-coboundary.  Hence the alternating part
+
+`Delta_T(r,s')-Delta_T(s,r')`                          `(PWG11)`
+
+is gauge invariant.  For the pair in `(PWG2)`, `(PWG3)` makes `(PWG11)`
+equal to `-1`.  Under the Fourier quarter-turn the two first-order
+curvatures sum to exactly this alternating quantity, rather than canceling.
+Thus `(FOC4)` cannot hold in any scalar gauge of a classical quotient Weyl
+model.  The word proof above is stronger because it also covers arbitrary
+finite tensor packages and fixed non-small phases.
+
+**Exact scope and surviving target.**  This theorem does not obstruct a
+genuinely nonclassical Weyl model in which the radical vector `u` remains
+non-scalar at first order.  It proves that such retention is necessary:
+changing polarization, moving curvature to sparse scalar seams, adding
+opposite gauges, or tensoring finitely many classical quotient sectors
+cannot manufacture it.  Any live integral-Heisenberg construction must
+satisfy, for the fixed element `a` in `(PWG2)`,
+
+`inf_(lambda in T)||phi_n(a)-lambda 1||_2` not `=o(epsilon_n)`, `(PWG12)`
+
+while its covariance defects are `o(epsilon_n)`.  This is precisely the
+non-Cartan/radical-retention gate already encountered in the Leavitt atlas
+and central-shear formulations, now proved unavoidable for the entire
+classical polarized Weyl family.
