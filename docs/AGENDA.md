@@ -153,6 +153,16 @@ image, its regular or coset actions, and same-image permutation-character
 conversion are dead routes. The output must forget accidental levelwise
 relations; see `docs/TRUE_IMAGE_FACTOR_NO_GO.md`.
 
+FALSE-side fermionic criterion: the full exterior-algebra functor turns one
+operator-norm-visible eigenvalue into a uniform normalized-HS displacement.
+After tensoring it with its conjugate, the normalized character is
+`|det((1+U)/2)|^2` and the normalized-HS multiplicative defect is at most
+`sqrt(d_n/2)` times the original operator-norm defect. Hence a radical
+witness with a model satisfying `sqrt(d_n) * defect_n -> 0` already yields a
+hyperlinear nonsofic quotient. This removes every rank-profile requirement
+and leaves only a quantitative
+dimension--error gate; see `docs/FALSE_FERMIONIC_AMPLIFICATION.md`.
+
 FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
 action survives the sofic image obtained by completing its restrictions to
 Følner sets.  Therefore every coamenable subgroup contains every central

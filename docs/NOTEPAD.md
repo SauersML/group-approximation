@@ -39007,3 +39007,46 @@ output action is required to factor through the exact unitary image. A valid
 rounding must forget changing accidental image relations and use only the
 limiting normal law. Unlike `(NIR8)-(NIR10)`, the source word table here is
 fixed; only the accidental exponent `2n` in the image changes.
+
+# Fermionic amplification converts one norm outlier into tracial mass (2026-08-10)
+
+Full details are in `docs/FALSE_FERMIONIC_AMPLIFICATION.md`. For
+`U in U(d)`, let
+
+`F_d(U)=directSum_(k=0)^d wedge^k U`.                    `(FFA1)`
+
+Then
+
+`||F_d(U)-F_d(V)||_op<=d||U-V||_op`,                    `(FFA4)`
+
+while its normalized trace is
+
+`tr_(2^d)(F_d(U))=det((I+U)/2)`.                         `(FFA5)`
+
+If `||U-I||_op>=c`, one eigenvalue is at distance at least `c` from one,
+and therefore
+
+`|tr_(2^d)(F_d(U))|<=sqrt(1-c^2/4)<1`.                  `(FFA6)`
+
+Thus a single rank-one norm outlier becomes a fixed normalized-HS
+displacement after fermionic amplification.
+
+Consequently, if `1!=x in Rad_sof(H)` and an operator-norm model
+`phi_n:H->U(d_n)` sees `x` while satisfying
+
+`sqrt(d_n) ||phi_n(g)phi_n(h)-phi_n(gh)||_op ->0`        `(FFA15)`
+
+for every fixed `g,h`, then the conjugate-doubled full exterior functor gives
+a tracial ultraproduct image retaining `x`. Its normalized character is
+`|det((1+U)/2)|^2`, and its output defect is bounded by
+`sqrt(d_n/2)` times the input operator-norm defect. That image is
+hyperlinear and cannot be sofic. This is a complete conditional FALSE
+theorem with no positive-rank, faithfulness, or trace-profile hypothesis.
+
+The remaining issue is exactly the dimension--error rate. Ordinary weak MF
+only gives unweighted norm defects. Shulman's lift has separate
+asymptotic-map and matrix-coordinate indices, so a quantitative diagonal
+with `(FFA15)` would finish immediately; strong convergence alone does not
+bound the coordinate at which the norm witness appears. Earlier exterior
+amplification notes asked unnecessarily for trace convergence to zero: the
+uniform strict bound `(FFA6)` already suffices.
