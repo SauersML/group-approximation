@@ -23,8 +23,7 @@ where
 `J=EL_3(Z)=SL_3(Z)`                                    `(ISH4)`
 
 is embedded on coordinates `3,4,5`.  More generally the same holds for
-every subgroup `B<=Gamma` satisfying `h notin B Gamma` (the latter is
-automatic here because `h notin Gamma`).
+every subgroup `B<=E` satisfying `h notin B Gamma`.
 
 Thus the nonamenable stabilizer does two sharply different things.
 
@@ -49,9 +48,10 @@ Under this isomorphism,
 
 `[w]=e_h:=delta_(hGamma)-delta_Gamma`.                 `(ISH6)`
 
-Let `B<=Gamma` be any subgroup.  The two copies of `B` are already
-identified in `D`, so its inclusion is a section of `pi` over `B`.  Hence
-the restriction of `(ISH1)` over `B` splits:
+Let `B<=E` be any subgroup.  Although the two copies of `E` are not
+identified in `D`, either vertex embedding `E->D` is a homomorphic section
+of `pi` over the common copy of `E` in `F`.  Fix the first one.  Hence the
+restriction of `(ISH1)` over `B` splits:
 
 `H_B:=pi^(-1)(B)=R_0 semidirect B`.                   `(ISH7)`
 
@@ -201,13 +201,13 @@ instead the closure
 
 `B_infinity=intersection_n J L_n`.                    `(ISH26)`
 
-The split argument above does not automatically apply to `B_infinity`:
-unlike `J`, that subgroup need not lie in `Gamma`, and the extension
-`pi^(-1)(B_infinity)->B_infinity` need not have a section.  This is why
-`(ISH18)` is the clean live target.  A more general tower would require a
-separate argument controlling the five-term transgression.  Once the
-limiting survival of `w` is proved, one must still make one of the two terms
-in `(ISH25)` grow faster than `sqrt(m_n)` with a nonzero marked pairing.
+If `B_infinity<=E`, then the first vertex embedding supplies the same split
+section used in Section 2, and Theorem 2 applies whenever
+`h notin B_infinity Gamma`.  If `B_infinity` has a nontrivial `Q*Q`
+component, a more general tower requires a separate argument controlling
+the five-term transgression.  Once limiting survival of `w` is proved, one
+must still make one of the two terms in `(ISH25)` grow faster than
+`sqrt(m_n)` with a nonzero marked pairing.
 
 The theorem here is standalone: the radical word is not merely nonzero in
 `(R_0)_ab`; it remains an infinite-order homology class after adjoining its
