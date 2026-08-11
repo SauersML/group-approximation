@@ -37612,6 +37612,106 @@ needed finite joint-spectrum action from the hyperlinear microstate itself,
 without assuming either a sofic approximation of `Gamma` or a sofic action
 of `Gamma` on its lamp coordinates.
 
+## 2026-08-10: operator-norm MF conventions and the finite-normal theorem
+
+Bachner--Dogon--Lubotzky, arXiv:2508.17392v3, use the group-theoretic
+operator-norm notion of MF: an operator-norm asymptotic homomorphism which is
+eventually uniformly separating on every nonidentity element.  This agrees,
+for countable groups, with the apparently weaker convention used earlier in
+this notebook, where every nonidentity element is only required to have
+positive `limsup` distance from the identity.
+
+**Lemma (simultaneous eventual separation).**  Let `H={1,h_1,h_2,...}` be
+countable and suppose
+
+`phi_n:H->U(d_n)`                                           `(OMF1)`
+
+is pointwise operator-norm asymptotically multiplicative, while for every
+`j` there is a constant `c_j>0` with
+
+`limsup_n ||phi_n(h_j)-1||_op >= c_j`.                      `(OMF2)`
+
+Then there is an operator-norm asymptotic homomorphism
+
+`psi_k:H->U(D_k)`                                           `(OMF3)`
+
+such that, for every fixed `j`,
+
+`liminf_k ||psi_k(h_j)-1||_op >= c_j/2`.                    `(OMF4)`
+
+**Proof.**  At stage `k`, for each `j<=k` choose an index `n(k,j)>=k` at
+which `(OMF2)` is at least `c_j/2` and at which all multiplicativity defects
+for the first `k` prescribed pairs are at most `1/k`.  This is possible
+because every fixed defect tends to zero and the good indices in `(OMF2)`
+are unbounded.  Put
+
+`psi_k(h)=directSum_(j=1)^k phi_(n(k,j))(h)`.                 `(OMF5)`
+
+The operator norm of a block direct sum is the maximum of the block norms.
+Thus every one of the first `k` multiplicativity defects is at most `1/k`,
+while the `j`th selected block gives `(OMF4)` for all `k>=j`.  End proof.
+
+The same paper proves the following norm-to-trace statement (Proposition
+1.6): if a finitely generated group `K` has a finite normal subgroup `F`,
+`K/F` is hyperlinear, and `K` is MF, then `K` is hyperlinear.  The proof
+first makes the restriction to `F` exact, selects an isotypic corner which
+detects a prescribed element of `F`, and uses the finite normal orbit to
+obtain an asymptotically invariant positive-rank corner.  Elements outside
+`F` are separated by the assumed hyperlinear model of `K/F`.
+
+This is fully compatible with, but does not improve, the internal-radical
+gap bridge `(IRG1)--(IRG21)` for the present FALSE candidates.  The latter
+only asks for a hyperlinear **image** retaining one element of a finite
+normal subgroup in the full sofic radical, and therefore needs no
+hyperlinearity assumption on the quotient.  Proposition 1.6 instead proves
+hyperlinearity of the whole group and uses quotient hyperlinearity to
+separate the remaining cosets.
+
+Here is the exact applicability audit.
+
+1. For the finite gauge cover `K_omega`, the finite central subgroup is
+   `Z=mu_m`, but
+
+   `K_omega/Z=Kbar`                                         `(OMF6)`
+
+   is already proved nonsofic in `(AHG3)--(AHG4)`.  Proving the BDL quotient
+   hypothesis that `Kbar` is hyperlinear would itself be a complete negative
+   answer, before invoking Proposition 1.6.
+2. For the cyclic radical shear `J` in `(CRC1)--(CRC2)`, quotienting by
+   `<z>` removes the twist:
+
+   `J/<z> isomorphic H *_(C_H(r)) H`                         `(OMF7)`
+
+   in the centralizer version (and analogously in the smaller shear-vertex
+   presentation).  In particular the quotient contains the already
+   nonsofic weak-MF vertex `H`.  Hyperlinearity of `(OMF7)` would make `H`
+   hyperlinear by subgroup permanence and would again already solve the main
+   problem.
+3. The weak-MF symmetric double itself has no nonzero finite central radical
+   quotient: `(RCQ1)--(RCQ5)` prove
+
+   `R/[R,D]=0`.                                             `(OMF8)`
+
+   Thus Proposition 1.6 cannot be applied there by centralizing a finite
+   piece of the known radical.
+
+Consequently BDL Proposition 1.6 would give genuine new leverage here only
+after constructing a **provably nonsofic finite extension of an already
+hyperlinear quotient** and proving the extension MF.  None of the current
+finite-central candidates has that hypothesis package: in each one the
+quotient-hyperlinearity clause is already as strong as the desired
+conclusion.  The live FALSE certificates remain `(CRC4)`, `(OCG1)--(OCG2)`,
+or the hyperlinear-sofic action condition in `(AHG5)`.
+
+The two supplied 2026 papers have also been bibliographically separated.
+arXiv:2603.13564 is Shulman's *The MF property for amalgamated free
+products*, and its Theorems 10 and 20 are the untwisted-double and compatible-
+corona criteria already used in `(CRC3)--(CRC4)`.  arXiv:2604.01408 is
+Culf--van Dobben de Bruyn--Zeman, *Quantum polymorphism characterisation of
+commutativity gadgets in all quantum models*; its valid transfer and its
+category boundary are `(QSC1)--(QSC7)`.  It is not an operator--HS stability
+paper and does not state HS stability of the Steinberg group.
+
 ## 2026-08-10: one witness and one finite presentation suffice
 
 The positive loss certificate `(PLC1)-(PLC11)` can be sharpened in two useful
