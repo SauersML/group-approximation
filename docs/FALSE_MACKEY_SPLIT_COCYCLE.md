@@ -203,6 +203,27 @@ This is the algebraic shadow of the collaborator's phase/Bockstein
 obstruction: the desired finite negative sector would amount to a torsion
 splitting which the exact Mackey module forbids.
 
+In the concrete shear, the sign lies even deeper.  Use additive notation
+for the elementary abelian module and let `I_G` be the augmentation ideal of
+`F_2[G]`.  For any `1`-cocycle `b:G->A`, direct expansion gives
+
+`b_[x,y]=(1+xyx^(-1))b_x+(x+[x,y])b_y`.               `(MSC20c)`
+
+Both coefficients have augmentation zero.  Since the shear word is
+`r=[r_0,a]` and its cocycle value is the constant sign, `(MSC12)` implies
+
+`-1_X in I_G A=[G,A]`.                                 `(MSC20d)`
+
+Thus `-1_X` vanishes in the module of coinvariants `A_G`, and in the split
+group `P=A semidirect G` it already belongs to the commutator subgroup.  On
+the other hand transitivity of `G` on `X=G/C` gives
+
+`A^G=<-1_X>`,                                           `(MSC20e)`
+
+because the only invariant functions in the ambient module
+`{+-1}^X` are the constants.  The same element is therefore the entire
+fixed submodule and simultaneously dies in coinvariants.
+
 This endpoint is weaker than proving the concrete generated C-star algebra
 `A_Mac=C^*(P subset U(ell^2(X)))` MF: algebra MF implies group MF, whereas
 the converse need not preserve this particular representation.

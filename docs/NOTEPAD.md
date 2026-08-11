@@ -39638,3 +39638,19 @@ is nonsplit: a `G`-equivariant retraction onto `Z` would be a finite
 equivariant quotient retaining `-1_X`, contradicting `(MSC7)`.  Hence its
 class in `Ext^1_(F_2[G])(A/Z,F_2)` is nonzero.  This pins the precise
 algebraic overlap with the TRUE-side Bockstein calculation.
+
+There is a sharper commutator calculation.  In additive `F_2` notation a
+`1`-cocycle satisfies
+
+`b_[x,y]=(1+xyx^(-1))b_x+(x+[x,y])b_y`.               `(MSC9)`
+
+The two group-ring coefficients have augmentation zero.  Here
+`r=[r_0,a]` and `b_r=-1_X`, so
+
+`-1_X in I_G A=[G,A]`.                                 `(MSC10)`
+
+Thus the distinguished sign is zero in the coinvariants `A_G` and lies in
+the commutator subgroup of `P=A semidirect G`.  Conversely, transitivity on
+`X=G/C` says that `A^G=<-1_X>`.  Hence the whole fixed submodule is generated
+by one element which already dies in coinvariants.  This is the exact
+parity/commutator location of the nonsplit torsion class.
