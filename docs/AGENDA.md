@@ -1065,6 +1065,17 @@ This does not contradict the bounded-degree graph no-go: cross-pair parity
 demands remain outside the matching section and still require additional
 Wall shortcuts or a nonlinear paired-discriminant repair.
 
+In fact the strong decoder on **all** cross-pair demands is impossible even
+for the full HAP boundary.  Coefficient augmentation detects every ordinary
+singleton in a fixed nonzero class of `H_2(SL_3(Z);F_2)`, while the full
+`d_3` Tanner graph has uniformly bounded row and column degrees.  Some pair
+therefore needs `Omega(log p)` odd source coordinates, forcing every integral
+right inverse on all primary boundaries to have norm
+`Omega(sqrt(log p))`.  The viable TRUE target is now necessarily the
+restricted lattice of primary demands actually produced by the compact
+harmonic/carry classes, not a global primary boundary section.  See
+`TRUE_BOUNDED_DEGREE_PARITY_DECODER_NO_GO.md`.
+
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the
 projective `S_4` orbit classification show that the vertex `H_2` term is
