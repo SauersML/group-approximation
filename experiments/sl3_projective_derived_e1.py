@@ -203,7 +203,74 @@ def filtered_h2_dimensions(boundaries, degree: int):
     }
 
 
-def q0_homology_representatives(boundaries, degree: int):
+def permutation_from_vertical_generator(boundary, generator: int, degree: int):
+    """Recover one vertex-stabilizer permutation from its mod-two boundary."""
+
+    result = []
+    for coefficient in range(degree):
+        support = boundary.row(generator * degree + coefficient).support()
+        if not support:
+            result.append(coefficient)
+            continue
+        if len(support) != 2 or coefficient not in support:
+            raise AssertionError("vertex boundary is not permutation minus identity")
+        result.append(next(index for index in support if index != coefficient))
+    return tuple(result)
+
+
+def vertex_orbit_profile(boundaries, degree: int, coordinate: int):
+    """Identify the finite S4 orbit supporting a q=0 representative."""
+
+    if boundaries[1].base_ring().characteristic() != 2:
+        return None
+    permutations = [
+        permutation_from_vertical_generator(boundaries[1], generator, degree)
+        for generator in range(3)
+    ]
+    identity = tuple(range(degree))
+
+    def compose(left, right):
+        return tuple(left[right[index]] for index in range(degree))
+
+    group = {identity}
+    pending = [identity]
+    while pending:
+        left = pending.pop()
+        for right in permutations:
+            product = compose(left, right)
+            if product not in group:
+                group.add(product)
+                pending.append(product)
+
+    stabilizer = [element for element in group if element[coordinate] == coordinate]
+
+    def element_order(element):
+        power = identity
+        for order in range(1, len(group) + 1):
+            power = compose(element, power)
+            if power == identity:
+                return order
+        raise AssertionError("permutation order exceeds group order")
+
+    order_histogram = {}
+    for element in stabilizer:
+        order = element_order(element)
+        order_histogram[str(order)] = order_histogram.get(str(order), 0) + 1
+    return {
+        "orbit": sorted({element[coordinate] for element in group}),
+        "acting_group_order": len(group),
+        "stabilizer_order": len(stabilizer),
+        "stabilizer_element_order_histogram": order_histogram,
+        "generator_restrictions": [
+            [permutation[index] for index in sorted({
+                element[coordinate] for element in group
+            })]
+            for permutation in permutations
+        ],
+    }
+
+
+def q0_homology_representatives(boundaries, degree: int, graded_dimension: int):
     """Lift a basis of the q=0 graded H2 term and report its support."""
 
     supported_indices = coordinate_indices(2, 0, degree)
@@ -221,6 +288,31 @@ def q0_homology_representatives(boundaries, degree: int):
     )
     cycle_space = embedded.row_space()
     boundary_space = boundaries[3].row_space()
+
+    # In characteristic two the surviving projective classes have canonical
+    # singleton representatives.  Certifying them directly is much cheaper
+    # than constructing a quotient basis in the larger charts.
+    if boundaries[2].base_ring().characteristic() == 2 and graded_dimension == 2:
+        candidates = matrix(
+            boundaries[2].base_ring(), 2, boundaries[2].nrows(),
+            {(0, 0): 1, (1, 1): 1}, sparse=True,
+        ).row_space()
+        if not candidates.is_subspace(cycle_space):
+            raise AssertionError("canonical singleton representatives are not cycles")
+        if (boundary_space + candidates).dimension() - boundary_space.dimension() != 2:
+            raise AssertionError("canonical singleton representatives are not independent")
+        return [
+            {
+                "support_size": 1,
+                "total_coordinates": [coordinate],
+                "resolution_generators": [0],
+                "coefficient_coordinates": [coordinate],
+                "vertex_orbit": vertex_orbit_profile(
+                    boundaries, degree, coordinate),
+            }
+            for coordinate in (0, 1)
+        ]
+
     boundary_cycles = cycle_space.intersection(boundary_space)
     quotient = cycle_space.quotient(boundary_cycles)
     result = []
@@ -344,7 +436,8 @@ def analyze(prime: int, modulus: int, prefix: Path):
     filtered_h2 = filtered_h2_dimensions(boundaries, degree)
     if filtered_h2["filtration_dimensions"][-1] != total_h2:
         raise AssertionError("cellular filtration does not exhaust total H2")
-    q0_representatives = q0_homology_representatives(boundaries, degree)
+    q0_representatives = q0_homology_representatives(
+        boundaries, degree, filtered_h2["graded_dimensions"]["0,2"])
     if len(q0_representatives) != filtered_h2["graded_dimensions"]["0,2"]:
         raise AssertionError("q=0 representatives do not span the graded term")
     q0_singletons = q0_singleton_class_profile(boundaries, degree) \
