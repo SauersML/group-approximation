@@ -572,6 +572,19 @@ sofic group which does not kill `z_univ`, contradicting
 `z_univ in Rad_sof(E_univ)` from Theorem 6.  Therefore `L` is hyperlinear
 and nonsofic.  End proof.
 
+There is a canonical exact infinite-dimensional realization of all the
+relations in Theorem 8.  Coinduce the two-point parity action of `<s>` to
+`G`, take its product-measure crossed product, and let `T` be the base
+coordinate function.  Then `(MSC20as)--(MSC20at)` hold with zero error and
+the conjugates of `T` generate the entire coinduced coordinate algebra.
+The complete construction is in `FALSE_COINDUCED_PARITY_MODEL.md`.
+
+This exact model does not supply the matrix approximation: its crossed
+product contains `L(G)` trace-preservingly.  Its value is to isolate one
+explicit compact action and one concrete crossed-product MF/Connes-embedding
+question, eliminating any residual algebraic or invariant-measure ambiguity
+from the negative sector.
+
 There is a quantitative stability calibration which is useful when trying
 to construct these data.  Since `s in Rad_sof(G)`, every honest
 finite-dimensional representation of `G` sends `s` to `1`.  But
