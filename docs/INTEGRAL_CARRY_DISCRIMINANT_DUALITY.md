@@ -1032,3 +1032,58 @@ nearest-code problem from any argument that only needs one asymptotically
 free exact chart family.  The nonzero-vector charts remain useful for
 testing twisted scalar local systems, but controlling every scalar character
 is stronger than what such a selected-family proof requires.
+
+## 15. Short dual cycles are forced into stabilizer homology
+
+The finite spherical templates in Theorem 8 give one uniform metric
+consequence without any closest-vector computation.  Suppose
+
+`sigma_1,...,sigma_q in K_univ`                      `(ICD121)`
+
+are integral spherical templates whose translates generate `Sigma_X` in
+every finite cover, and put
+
+`0<B=max_i ||sigma_i||`.                             `(ICD122)`
+
+Translation preserves the Euclidean norm, so every lifted generator has
+norm at most `B`.
+
+**Proposition 12 (short-vector localization).**  If `u in K_X^#` and
+
+`||u||<1/B`,                                         `(ICD123)`
+
+then `u` is orthogonal to `Sigma_X`.  Under the real Hopf quotient,
+
+`K_(X,R)/span_R(Sigma_X) ~= H_2(H,R)`,               `(ICD124)`
+
+so all such `u` lie in the orthogonal harmonic representative of the
+stabilizer homology.  In particular, if
+
+`H_2(H,R)=0`,                                        `(ICD125)`
+
+then every nonzero discriminant class `c in D_(K_X)` satisfies
+
+`rho_(K_X)(c)>=1/B`.                                 `(ICD126)`
+
+**Proof.**  For every lifted spherical generator `sigma`, dual-lattice
+membership gives
+
+`<u,sigma> in Z`.                                    `(ICD127)`
+
+Cauchy--Schwarz and `(ICD123)` give
+
+`|<u,sigma>| <= ||u|| ||sigma|| <1`,                 `(ICD128)`
+
+so the integer in `(ICD127)` is zero.  The generators span `Sigma_X`,
+proving the first assertion.  Tensoring `(ICD92)` with `R` proves
+`(ICD124)`.  Under `(ICD125)`, the spherical subgroup spans all of
+`K_(X,R)`, so the first assertion forces `u=0`.  A shortest representative
+of a nonzero class cannot be zero, proving `(ICD126)`.  End proof.
+
+This isolates the two possible sources of divergent ratios in `(ICD14)`.
+If the denominator radii tend to zero, Proposition 12 forces those classes
+into nonzero real `H_2(H,R)`.  If the stabilizers are rationally
+two-acyclic, denominator collapse is impossible and any divergence must
+instead come from glued range radii tending to infinity while the cycle
+radii stay uniformly positive.  Controlling only small leverage scores
+therefore addresses the first mechanism but not the second.

@@ -720,6 +720,16 @@ control that sector's odd discriminant or stabilizer homology, but a proof
 which needs only one selected exact family should not solve the strictly
 harder all-character gluing problem first.
 
+Bounded spherical templates already localize every vanishing denominator.
+If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
+by an integer of magnitude less than one with every template, hence is
+orthogonal to the whole spherical lattice.  Its real component therefore
+lies in `H_2(H,R)`.  In particular, when a chart stabilizer is rationally
+two-acyclic, every nonzero discriminant class has cycle radius at least
+`1/B`, uniformly.  This does not bound the paired range radius: the two
+remaining failure modes are now denominator collapse inside stabilizer
+homology and numerator growth with denominator bounded below.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
