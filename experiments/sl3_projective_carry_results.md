@@ -254,6 +254,46 @@ harmonic leverage is already concentrated in block eight.  A successful
 Schur complement would turn the exact recovery into a structured lift from
 that block rather than an unstructured order-28,628 elimination.
 
+## Exact modular harmonic bases with SpaSM
+
+A specialized sparse finite-field backend removes the elimination bottleneck.
+SpaSM revision `09c4094` was built against the existing Sage finite-field
+libraries.  Its default block size repeated an expensive triangular update,
+but setting the dense block size to `14,000` processes the residual core in
+one FFLAS-FFPACK call.  With four threads, the same pivot-guided square system
+is solved in under 46 seconds at each of three primes:
+
+| field | sparse pivots | dense core | full rank | echelonization |
+| --- | ---: | ---: | ---: | ---: |
+| `F_101` | 15,170 | 13,458 | 28,628 | 29.683 s |
+| `F_1009` | 15,221 | 13,407 | 28,628 | 40.227 s |
+| `F_10007` | 15,220 | 13,408 | 28,628 | 45.601 s |
+
+The exporter combines duplicate cellular entries before writing the exact
+SpaSM systems.  Each square matrix has `474,612` nonzero entries and each
+two-row right-hand side has `24`.  The verifier reconstructs the two full
+`28,630`-coordinate vectors and checks all original `d2^T` and `d3`
+equations.  Every residual is exactly zero at all three primes.  Hashes and
+timings are stored in `projective-h2-p53-spasm.json`; the large raw solutions
+remain on shared compute storage.
+
+This is an exact modular basis of the harmonic plane, but not yet a rational
+or integral basis.  The normalized coordinates are not small integers:
+only `66` of `57,260` centered entries agree between characteristics `101`
+and `1009`.  Standard rational reconstruction from modulus `101*1009`
+returns candidates at `34,356` coordinates, while reconstruction after
+adding characteristic `10007` returns `34,424`; only six earlier candidates
+remain unchanged.  Thus the two-prime candidates were almost entirely
+reconstruction noise, and the rational height is already beyond this
+three-prime modulus on nearly every nontrivial coordinate.
+
+The computational conclusion is sharp.  Exact prime-field recovery is now a
+fast primitive, so further primes are feasible, but a blind CRT sweep is not
+yet justified.  The next step should use these modular bases to recover an
+arithmetic invariant that needs only residues--for example determinant or
+Smith-index data--or derive a height bound before launching rational
+reconstruction.  Generic sparse elimination is no longer the bottleneck.
+
 ## Mathematical interpretation
 
 For `p=3,5,7`, Proposition 12 of
