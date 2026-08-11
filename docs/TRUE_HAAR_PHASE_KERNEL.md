@@ -950,6 +950,80 @@ group such as the Pruefer group can matter only after a genuinely
 non-torsion transfer; it cannot obstruct in the original equality
 `lambda=b^m`.
 
+The full-Mackey-range case has a principal reformulation which does not ask
+for a cocycle root.  For a circle cocycle `lambda in Z^1(R,T)`, write
+`R(lambda)` for the skew-product relation on `X times T`:
+
+`(x,u) R(lambda) (y,t)` iff `(x,y) in R`
+`  and u=lambda(x,y)t`.                               `(HPK9bt)`
+
+**Theorem 3H (sofic skew product closes the bounded-exponent gate).**
+Suppose the phase kernel has exponent `m`, the quotient relation `R_Q` has
+been made principal as above, and the pmp relation `R_Q(lambda)` is sofic.
+Then `Gamma` is sofic.
+
+**Proof.**  Put `R=R_Q` and regard `b` as a circle-valued 1-cochain on `R`,
+so that
+
+`b(gamma)^m=lambda(gamma)`, `delta b=omega in mu_m`.  `(HPK9bu)`
+
+The fixed-alphabet twist `Sigma_m=mu_m times_omega R` is isomorphic to the
+root groupoid
+
+`G_lambda={(gamma,z):z^m=lambda(gamma)}`              `(HPK9bv)`
+
+by
+
+`(zeta,gamma) |-> (gamma,zeta b(gamma))`.             `(HPK9bw)`
+
+Indeed `(HPK9bu)` makes the displayed map multiplicative, and its `mu_m`
+ambiguity gives bijectivity on every arrow fiber.
+
+Let `G_lambda` act on `Y=X times T` by
+
+`(gamma,z):(s(gamma),t) |-> (r(gamma),zt)`.           `(HPK9bx)`
+
+This action is free because even a nontrivial isotropy root
+`zeta in mu_m` translates the circle without fixed points.  Its orbit
+relation `E` is
+
+`(x,u) E (y,t)` iff `(x,y) in R`
+`  and u^m=lambda(x,y)t^m`.                           `(HPK9by)`
+
+Choose a Borel `m`th-root map `r:T->T`.  The measure-space isomorphism
+
+`(x,u) |-> ((x,u^m),u/r(u^m))`
+`Y -> (X times T) times mu_m`                         `(HPK9bz)`
+
+identifies `E` with `R(lambda) times (mu_m)^2`, where `(mu_m)^2` is the full
+finite relation.  Cordeiro's product theorem and finite-groupoid soficity
+therefore make `E` sofic.
+
+It remains to recover the isotropy-bearing root groupoid from this principal
+relation.  Every partial bisection `alpha` of `G_lambda` induces the partial
+transformation of `Y`
+
+`(s(gamma),t) |-> (r(gamma),zt)`, `(gamma,z) in alpha`. `(HPK9ca)`
+
+This defines a multiplicative map
+
+`[[G_lambda]] -> [[E]]`.                              `(HPK9cb)`
+
+It preserves trace.  An induced point `(s(gamma),t)` is fixed exactly when
+`r(gamma)=s(gamma)` and `zt=t`.  Principality of `R` makes `gamma` a unit,
+and circle translation makes `z=1`; this is exactly the condition that
+`(gamma,z)` was a unit of `G_lambda`.  Thus restricting a sofic approximation
+of `E` along `(HPK9cb)` proves that `G_lambda`, hence `Sigma_m`, is sofic.
+The bisection embedding `(HPK9av)--(HPK9ax)`, now with alphabet `mu_m`, and
+the same product amplification prove that `Gamma` is sofic.  End proof.
+
+When `R` is ergodic, `H_lambda=T` is equivalent to ergodicity of the
+skew-product relation `(HPK9bt)`.  Corollary 3G and Theorem 3H therefore
+leave a precise principal endpoint: only a Mackey-full cocycle whose
+ergodic circle skew product is not yet known to be sofic can survive.  It is
+not known that compact skew products of arbitrary sofic relations are sofic;
+asserting that permanence here would subsume the finite-central-kernel gate.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a

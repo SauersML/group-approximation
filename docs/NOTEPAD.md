@@ -39776,6 +39776,40 @@ root of unity.  Thus `b` is already the torsion primitive of `omega`, and
 Theorem 3 proves soficity.  Infinite-height torsion can survive only after a
 non-torsion cohomology transfer, not in the equality `lambda=b^m` itself.
 
+The Bockstein twist can also be principalized without splitting it.  For a
+principal relation `R` and `lambda in Z^1(R,T)`, define the root groupoid
+
+`G_lambda={(gamma,z):z^m=lambda(gamma)}`.              `(TWT17)`
+
+The choice `b^m=lambda`, `delta b=omega` identifies this with the finite
+twist `mu_m times_omega R` by `(zeta,gamma) |->
+(gamma,zeta b(gamma))`.  It acts freely on `Y=X times T` by circle
+translation.  The orbit relation is
+
+`u^m=lambda(x,y)t^m`.                                 `(TWT18)`
+
+After a Borel choice of `m`th roots, the map
+
+`(x,u) |-> ((x,u^m),u/root(u^m))`                     `(TWT19)`
+
+identifies `(TWT18)` with the finite amplification
+
+`R(lambda) times (mu_m)^2`.                           `(TWT20)`
+
+Every bisection of `G_lambda` acts on `Y`.  This embeds its full semigroup
+in that of `(TWT20)` and preserves trace: because `R` is principal, a point
+is fixed only for a unit base arrow and the trivial circle translation.
+Consequently
+
+`R(lambda) sofic ==> G_lambda sofic ==> Gamma sofic`. `(TWT21)`
+
+This is a new unsplit endpoint.  In the Mackey-full case `R(lambda)` is an
+ergodic principal relation, so the bounded-exponent obstruction has become
+the ordinary question whether this particular compact skew product of the
+sofic quotient relation is sofic.  General compact-extension permanence is
+not known and would cross the finite-central-kernel boundary, so `(TWT21)`
+is a reduction rather than the final proof.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 

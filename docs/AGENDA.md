@@ -260,6 +260,14 @@ all such restrictions.  Moreover `lambda=b^m` cannot itself be
 torsion-valued: that would force `b` to be torsion-valued and give the
 torsion primitive immediately.  Pruefer behavior can arise only after a
 genuinely non-torsion transfer.
+The unsplit Bockstein has a principal endpoint as well.  Its fixed-alphabet
+root groupoid acts freely on `X times T`; the resulting relation is exactly
+the finite amplification `R_Q(lambda) times (mu_m)^2`.  The action embeds
+the root groupoid full semigroup trace-preservingly into this relation.
+Hence soficity of the ordinary circle skew-product relation `R_Q(lambda)`
+already proves soficity of `Gamma`.  In the Mackey-full case this skew
+product is ergodic.  Universal compact-skew-product permanence remains
+unavailable and would cross the finite-central-kernel boundary.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
