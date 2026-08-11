@@ -93,19 +93,31 @@ class PhaseContinuation:
                 gradient += current @ rest - rest @ current
         return trace, gradient / self.dimension
 
-    def objective(self, relative, phase_weight, need_gradient):
+    def centrality_traces(self, relative):
+        return np.array([
+            self.trace_and_gradient(word, relative, False)[0]
+            for word in self.centrality_words
+        ])
+
+    def objective(self, relative, phase_weight, need_gradient,
+                  centrality_indices=None):
+        if centrality_indices is None:
+            centrality_indices = range(len(self.centrality_words))
         centrality_trace = 0.0
         gradient = np.zeros(
             (self.dimension, self.dimension), dtype=np.complex128)
-        for word in self.centrality_words:
+        count = 0
+        for index in centrality_indices:
+            word = self.centrality_words[int(index)]
             value, derivative = self.trace_and_gradient(
                 word, relative, need_gradient)
             centrality_trace += value
             if need_gradient:
                 gradient += derivative
-        centrality_trace /= len(self.centrality_words)
+            count += 1
+        centrality_trace /= count
         if need_gradient:
-            gradient /= len(self.centrality_words)
+            gradient /= count
         relation_trace, relation_gradient = self.trace_and_gradient(
             self.relation, relative, need_gradient)
         score = centrality_trace - phase_weight * relation_trace
@@ -114,10 +126,7 @@ class PhaseContinuation:
         return score, gradient
 
     def diagnostics(self, relative):
-        centrality_traces = np.array([
-            self.trace_and_gradient(word, relative, False)[0]
-            for word in self.centrality_words
-        ])
+        centrality_traces = self.centrality_traces(relative)
         defects = np.sqrt(np.maximum(0.0, 2.0 - 2.0 * centrality_traces))
         relation_value = np.eye(self.dimension, dtype=np.complex128)
         for factor in self.factors(self.relation, relative):
@@ -144,7 +153,8 @@ def random_kick(relative, rng, scale):
     return cayley_left(relative, tangent, scale)
 
 
-def optimize(problem, initial, phase_weight, seed, iterations, report_every):
+def optimize(problem, initial, phase_weight, seed, iterations, report_every,
+             centrality_batch, focus_every):
     rng = np.random.default_rng(seed)
     relative = initial.copy()
     if seed:
@@ -160,15 +170,20 @@ def optimize(problem, initial, phase_weight, seed, iterations, report_every):
         "score": best_score,
         **problem.diagnostics(relative),
     }), flush=True)
+    active = None
     for iteration in range(1, iterations + 1):
+        if centrality_batch and (
+                active is None or (iteration - 1) % focus_every == 0):
+            active = np.argsort(problem.centrality_traces(relative))[
+                :centrality_batch]
         old_score, gradient = problem.objective(
-            relative, phase_weight, True)
+            relative, phase_weight, True, active)
         direction = -0.5 * (gradient - gradient.conj().T)
         accepted = False
         for step in (3.0, 1.0, 0.3, 0.1, 0.03, 0.01, 0.003):
             candidate = cayley_left(relative, direction, step)
             score, _gradient = problem.objective(
-                candidate, phase_weight, False)
+                candidate, phase_weight, False, active)
             if score > old_score + 1e-12:
                 relative = candidate
                 accepted = True
@@ -190,6 +205,9 @@ def optimize(problem, initial, phase_weight, seed, iterations, report_every):
                 "score": score,
                 **problem.diagnostics(relative),
             }), flush=True)
+    if centrality_batch:
+        score, _gradient = problem.objective(relative, phase_weight, False)
+        return relative, score, problem.diagnostics(relative)
     return best, best_score, problem.diagnostics(best)
 
 
@@ -200,6 +218,8 @@ def main():
     parser.add_argument("--iterations", type=int, default=30)
     parser.add_argument("--seeds", type=int, default=1)
     parser.add_argument("--report-every", type=int, default=10)
+    parser.add_argument("--centrality-batch", type=int, default=0)
+    parser.add_argument("--focus-every", type=int, default=5)
     parser.add_argument("--save-prefix")
     args = parser.parse_args()
     initial = np.load(args.init)
@@ -212,7 +232,8 @@ def main():
         for seed in range(args.seeds):
             runs.append(optimize(
                 problem, initial, phase_weight, seed,
-                args.iterations, args.report_every))
+                args.iterations, args.report_every,
+                args.centrality_batch, args.focus_every))
         relative, score, diagnostics = max(runs, key=lambda item: item[1])
         if args.save_prefix:
             np.save(f"{args.save_prefix}-w{phase_weight:g}.npy", relative)
