@@ -46,7 +46,7 @@ def haar_unitary(dimension, seed):
     value = (rng.standard_normal((dimension, dimension))
              + 1j * rng.standard_normal((dimension, dimension)))
     unitary, triangular = np.linalg.qr(value)
-    phases = np.diag(triangular)
+    phases = np.diag(triangular).copy()
     phases /= np.abs(phases)
     return unitary @ np.diag(phases.conj())
 
