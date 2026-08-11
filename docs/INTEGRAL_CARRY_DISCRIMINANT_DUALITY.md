@@ -317,7 +317,7 @@ For every `k in K_X`, equations `(ICD31)` and `(ICD33)` give
 
 `<u,k>=(1/m)<v,S k> in Z`.                            `(ICD36)`
 
-Hence `u in K_X^#`.  Since `v` is primitive and `n>1`, `u` is not integral,
+Hence `u in K_X^#`.  Since `v` is primitive and `m>1`, `u` is not integral,
 so it represents a nonzero discriminant class.  Proposition 1 supplies an
 integer carry `z` whose orthogonal projection to `(K_X)_R` is `u`.  This
 carry does not lie in the saturated range lattice.  Distinct integral
@@ -368,3 +368,102 @@ constant vector `Z 1`, and transfer has image `nZ`.  Taking `v=1` recovers
 `Theta=sqrt(n)`.  For the `SL_3(Z)` charts, computing the subgroup
 `S(K_X) subset K_1` is therefore a more targeted exact audit than further
 maximal-minor searches in the relator image.
+
+## 7. The modular certificate is virtual divisibility in degree two
+
+The modular image condition `(ICD40)` has an exact topological meaning.
+This makes the source of a possible growing modulus visible and supplies a
+necessary arithmetic test before any large modular calculation.
+
+Let `P` be the presentation `2`-complex, with one vertex, whose cellular
+degree-one coboundary is `d1_1`.  If the transitive action is `X=G/H`, let
+
+`p:P_H -> P`                                          `(ICD42)`
+
+be the corresponding `n=[G:H]` sheeted cover.  We identify cellular
+`2`-chains and `2`-cochains using the oriented cell basis.  Under this
+identification, the constant lift `J` in `(ICD31)` is the cochain pullback
+`p^*`, while `S` is cochain transfer.  The extra condition
+`v in K_1=ker(d1_1^T)` says that the same vector is also an integral
+`2`-cycle.
+
+**Proposition 5 (finite-cover divisibility criterion).**  Let
+`0!=v in K_1` be primitive and `m>1`.  The following are equivalent:
+
+1. `Jv in im(d1_X)` modulo `m`;
+2. `p^*([v])=0` in `H^2(P_H,Z/m)`;
+3. the integral class `p^*([v]) in H^2(P_H,Z)` is divisible by `m`.
+
+Whenever these conditions hold,
+
+`m divides n ||v||^2`.                                `(ICD43)`
+
+In particular, if `gcd(m,||v||^2)=1`, then `m divides n`.
+
+**Proof.**  Since `P_H` has no cells above dimension two,
+
+`H^2(P_H,Z/m)`
+` =C^2(P_H,Z)/(im(d1_X)+m C^2(P_H,Z))`.              `(ICD44)`
+
+Thus the vanishing in (2) is exactly the modular column-space statement in
+(1).  The same quotient is
+
+`H^2(P_H,Z)/m H^2(P_H,Z)`,                           `(ICD45)`
+
+which proves the equivalence with (3).
+
+For the divisibility assertion, choose integral cochains `a,z` such that
+
+`Jv=d1_X a+mz`.                                      `(ICD46)`
+
+Pair `(ICD46)` with the integral cycle `Jv`.  Naturality gives
+`d1_X^T Jv=0`, so
+
+`n||v||^2=||Jv||^2`
+` =<Jv,d1_X a>+m<Jv,z>`
+` =m<Jv,z>`.                                         `(ICD47)`
+
+This proves `(ICD43)`.  Equivalently, applying cochain transfer to the
+divisibility in (3) gives `n[v]=m p_!(beta)` and evaluating on the cycle
+`[v]` gives the same formula.  End proof.
+
+Combining Proposition 5 with Corollary 4 gives the exact implication
+
+`p^*([v]) in m H^2(P_H,Z)`
+`  ==> Theta(ran_R(d1_X)) >= m/(sqrt(n)||v||).`       `(ICD48)`
+
+This is a finite-cover **virtual divisibility** problem for one fixed
+presentation-complex class.  A sequence with
+
+`m_H/sqrt([G:H]) -> infinity`                         `(ICD49)`
+
+would disprove uniform circle repair on those covers.  Formula `(ICD43)`
+shows that the largest possible scale for fixed `v` is linear in the cover
+degree, so the graph-incidence value `m=n` is extremal up to the fixed
+factor `||v||^2`.
+
+This does not yet characterize all of `Theta`.  The classes detected in
+`(ICD48)` lie in the invariant-transfer sector `J(K_1)` of the much larger
+cycle lattice `K_X`; unrelated discriminant classes can still dominate
+`(ICD14)`.  Conversely, failure of virtual divisibility for every base
+cycle only closes this particular divergence mechanism.
+
+It is also distinct from the fixed finite-image coefficient theorem in the
+notepad.  That theorem concerns restriction of a group-cohomology class
+with a fixed nontrivial finite-image coefficient module.  Here the
+coefficient is trivial, the class lives a priori in the cohomology of the
+presentation `2`-complex, and its cycle representative is used essentially
+in `(ICD47)`.  Unless the presentation complex is already a `K(G,1)` in
+degree two, presentation-relation classes need not come from `H^2(G,Z)`.
+
+For the selected `SL_3(Z)` charts the next exact question can therefore be
+stated without lattice numerics:
+
+> For a short primitive `v in ker(d1_1^T)`, how divisible can the pullback
+> of `[v]` become in `H^2(P_H,Z)` as `H` ranges over the chosen congruence
+> stabilizers?
+
+Any proposed modulus must first divide `[G:H]||v||^2` by `(ICD43)`.  A
+positive answer at scale larger than `sqrt([G:H])` gives an explicit
+divergent carry through `(ICD48)`; a uniform square-root bound closes the
+entire invariant-transfer sector but not the remaining discriminant module.
