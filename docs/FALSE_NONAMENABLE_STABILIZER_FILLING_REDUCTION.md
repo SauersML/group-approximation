@@ -224,13 +224,20 @@ Under the Bass--Serre homology isomorphism,
 ` ~=ker(Z[F/Gamma]->Z[F/N])`,
 `[w]=delta_(hGamma)-delta_Gamma`.                       `(NSF20)`
 
-The stabilizer of this vector contains the lower-right elementary group
+The stabilizer of this vector already contains the much smaller constant
+lower-right elementary group
 
-`J=EL_(r-2)(Z[x_1,...,x_d])`,                          `(NSF21)`
+`J=EL_3(Z)=SL_3(Z)`,                                   `(NSF21)`
 
-embedded on the coordinates `3,...,r`.  Indeed `J<=Gamma` and every element
-of `J` commutes with `h`, so it fixes both cosets in `(NSF20)`.  The group
-`J` has property `(T)` and is nonamenable; here `r-2>=5`.
+embedded on the coordinates `3,4,5` and acting trivially on all remaining
+coordinates.  Indeed `J<=Gamma` and every element of `J` commutes with `h`,
+so it fixes both cosets in `(NSF20)`.  The group `J` has property `(T)` and
+is nonamenable.  The stable range gives `r>=d+4>=7`, so this block is
+available.
+
+Using the constant subgroup is quantitatively stronger than using the full
+lower-right polynomial elementary group: the averaging degree in a finite
+quotient is now only the size of the image of one fixed `SL_3(Z)`.
 
 Apply Theorem 2 to any finite presentation chain complex of `D`, viewed in
 the `R_0`-cover.  The marked loop has an `ell^2` filling.  Equivalently, for

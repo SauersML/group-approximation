@@ -20,9 +20,9 @@ intermediate subgroup
 
 where
 
-`J=EL_(r-2)(Z[x_1,...,x_d])`                          `(ISH4)`
+`J=EL_3(Z)=SL_3(Z)`                                    `(ISH4)`
 
-is embedded in the lower-right block.  More generally the same holds for
+is embedded on coordinates `3,4,5`.  More generally the same holds for
 every subgroup `B<=Gamma` satisfying `h notin B Gamma` (the latter is
 automatic here because `h notin Gamma`).
 
@@ -193,9 +193,11 @@ surviving discriminant class has an unbounded marked paired ratio.
 ## 6. Scope and next target
 
 Condition `(ISH18)` is a relative subgroup-separability condition.  It is
-not automatic from residual finiteness of `F`; asserting it for the
-lower-right polynomial subgroup would require a separate proof.  For an
-arbitrary residual chain the intersection is instead the closure
+not automatic from residual finiteness of `F`.  The constant subgroup in
+`(ISH4)` is in fact separable by the finite torus-quotient argument in
+`FALSE_CONSTANT_STABILIZER_SEPARABILITY.md`; hence a chain satisfying
+`(ISH18)` exists.  For an arbitrary residual chain the intersection is
+instead the closure
 
 `B_infinity=intersection_n J L_n`.                    `(ISH26)`
 
