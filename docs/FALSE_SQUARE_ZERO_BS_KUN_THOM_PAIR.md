@@ -50,8 +50,10 @@ augmentation-module transgression is nonzero.
 
 This is not by itself the complete FALSE proof: the remaining task is to
 turn this exact derived class into a trace-visible finite-dimensional
-unitary model along finite quotients.  It does, however, close the full
-group-theoretic host and stabilizer gates simultaneously.
+unitary model along finite quotients.  The stronger aligned construction
+in `FALSE_RADICAL_BS_PAIRED_KUN_THOM_DOUBLE.md` also makes the stable
+letter visible in the external substitution quotient and identifies the
+ordinary Bockstein with an explicit fold word in the full sofic radical.
 
 ## 2. The global pair
 
