@@ -38430,6 +38430,64 @@ map to every element of `U(d)`.  Tensor amplification is allowed before the
 finite action is selected.  Thus metric soficity of the compact matrix image
 is a false strengthening, just like pointwise rounding `(PUR1)--(PUR3)`.
 
+## 2026-08-10: the canonical Schoenberg--Poisson transform misses the finite-action cone
+
+One can weaken the failed metric-sofic demand and retain only the
+conditionally negative Hilbert--Schmidt length.  For a normalized unitary
+character `psi`, put
+
+`ell_psi(g)=2-2 Re(psi(g))`.                            `(SPF1)`
+
+This is a conditionally negative definite function: if `pi` realizes `psi`,
+then it is the squared Hilbert--Schmidt distance from `pi(g)` to the identity.
+Schoenberg therefore makes
+
+`f_t(g)=exp(-t ell_psi(g))`, `t>0`,                    `(SPF2)`
+
+positive definite.  It is tempting to interpret `(SPF2)` by a Poisson or
+measured-wall construction and then read it as a finite-action fixed-point
+character.  That interpretation already fails on the finite character
+`(NIR5)`.
+
+**Proposition.**  There is a finite-dimensional nonnegative normalized
+unitary character `psi` for which `f_t` is not in the convex hull of
+normalized finite-action characters for any `t>0`.
+
+**Proof.**  Let `C_4=<g>` and take the character from `(NIR5)`, obtained from
+`(1 direct-sum chi) tensor conjugate(1 direct-sum chi)` with `chi(g)=i`.
+Thus
+
+`psi(1),psi(g),psi(g^2),psi(g^3)=(1,1/2,0,1/2)`.       `(SPF3)`
+
+Equations `(SPF1)--(SPF2)` give
+
+`f_t(1),f_t(g),f_t(g^2),f_t(g^3)`
+`                  =(1,exp(-t),exp(-2t),exp(-t))`.     `(SPF4)`
+
+For every action of `C_4`, `Fix(g) subset Fix(g^2)`.  Hence every normalized
+finite-action character `theta`, and every convex combination of such
+characters, satisfies
+
+`theta(g)<=theta(g^2)`.                                `(SPF5)`
+
+But `exp(-t)>exp(-2t)` for `t>0`, so `(SPF4)` violates `(SPF5)`.  End proof.
+
+The same obstruction survives every finite tensor amplification of `(NIR5)`.
+Replacing `psi` by `psi^m` gives
+
+`f_(t,m)(g)=exp(-2t(1-2^(-m)))`
+`              > exp(-2t)=f_(t,m)(g^2)`               `(SPF6)`
+
+for every finite `m`.  Only the limit `m->infinity` reaches the regular
+`0/1` character, where the inequality becomes equality.  Consequently the
+canonical negative-type-to-positive-type transform does not perform the
+matrix-to-permutation step, even for finite groups and nonnegative
+characters.  This is narrower than ruling out all measured-wall
+constructions: it rules out the universal scalar prescription `(SPF1)--(SPF2)`.
+As with `(NIR5)`, it does not refute a table-dependent construction that
+first exploits convergence to a normal `0/1` character and chooses its
+amplification scale from the whole finite word test.
+
 # The cyclic shear has a canonical exact Mackey sector (2026-08-10)
 
 The projective sector `(CRC4)` is abstract only at finite dimension.  It has
@@ -38503,6 +38561,33 @@ an invariant state on `B(ell^2(G/C))`, hence an invariant mean on
 `ell^infinity(G/C)`, contradicting noncoamenability.  Thus Paddock is a
 conditional state-to-trace converter, not a source of the required
 approximately tracial models.
+
+# Amenable negative sectors: a sufficient criterion and two no-go theorems (2026-08-10)
+
+Full details are in `docs/FALSE_AMENABLE_SECTOR_AUDIT.md`.
+
+Let `1!=z in Z(J) intersect Rad_sof(J)`.  If an amenable unitary
+representation `pi` satisfies `pi(z)=omega 1`, `omega!=1`, then a
+hyperlinear nonsofic group exists.  Indeed, the invariant state restricts
+to an amenable trace on `C^*(pi(J))`; amenable-trace matrix microstates and
+polar correction give a tracial-ultraproduct image, while scalarity keeps
+`z` visible exactly.
+
+The exact Mackey algebra cannot realize this criterion.  Each of its vertex
+algebras is a faithful copy of `C_r^*(G)` for the nonamenable Powers group
+`G=H*Z`.  Any trace restricts to the unique canonical group trace.  If a
+trace on the Mackey algebra were amenable, its vertex restriction would be
+amenable, which would force `G` to be amenable.  Hence the Mackey algebra
+has no amenable trace at all.  A successful MF trace on it must be
+nonamenable but Connes embeddable.
+
+There is also a general algebraic obstruction.  If `L normal J` and `J/L`
+is amenable, then `z in [L,L]`.  For any character `chi:L->T`, the induced
+representation has image in the amenable monomial group
+`T^(J/L) semidirect J/L`; centrality makes `z` act as scalar `chi(z)`, so
+the sofic-radical property forces `chi(z)=1`.  Characters separate the
+abelianization, proving the claim.  Thus normal coamenable character
+induction cannot manufacture the negative sector.
 
 # The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
 
