@@ -187,9 +187,13 @@ stabilization used in the Mackey note.  Let
 `D=G_0 *_Gamma G_0`                                      `(CPM22)`
 
 be the binary Kun--Thom symmetric double.  The two copies of `G_0` are
-residually finite.  Choose an infinite-order hyperbolic element
+residually finite.  Choose `h in G_0\Gamma` and the primitive fold-kernel
+element
 
-`1!=s in Rad_sof(D)`                                      `(CPM23)`
+`s=i_2(h)i_1(h)^(-1) in Rad_sof(D)`.                    `(CPM23)`
+
+It is cyclically reduced of length two, hence hyperbolic and of infinite
+order.  The flip of the symmetric double sends `s` to `s^(-1)`.
 
 from the complete radical calculation, and define
 
@@ -291,3 +295,97 @@ residually finite vertex groups which agree on
 `A_s semidirect Gamma` and retain `z`.  Every compatible exact finite
 quotient kills `z` by `(CPM27)`, so a successful model must again use a
 genuinely asymptotic carry sector.
+
+## 7. The entire edge carry can be concentrated on one lamp orbit
+
+The last paragraph of Section 6 can be made substantially sharper.  The
+twist on the common subgroup is not an arbitrary function on infinitely
+many lamp orbits.  Up to changing the two vertex splittings, it is the
+indicator of one `Gamma`-orbit.
+
+Continue to write
+
+`P=F_2[Y]`, `Y=D/<s>`,
+
+so that `(CPM26)` is
+
+`0 -> F_2 z -> A_s -> P -> 0`.                         `(CPM37)`
+
+For `i=1,2`, freeness of the `G_i`-action on `Y` gives a
+`G_i`-equivariant linear splitting
+
+`sigma_i:P->A_s`.                                      `(CPM38)`
+
+Indeed, choose a lift of one lamp in each free `G_i`-orbit and translate
+it.  On restriction to `Gamma`, the difference of the two splittings has
+image in the kernel of `(CPM37)`, hence is a map
+
+`d=sigma_2-sigma_1 in Hom_(F_2[Gamma])(P,F_2 z)`.       `(CPM39)`
+
+Changing `sigma_i` by a `G_i`-module map `P->F_2 z` changes `d` by the
+difference of the two restricted maps.
+
+Let `T` be the Bass--Serre tree of `D=G_1 *_Gamma G_2` and put
+
+`X=<s>\T`.                                              `(CPM40)`
+
+Inversion of double-coset representatives identifies
+
+`G_i\Y  <->  vertices of type i in X`,
+`Gamma\Y <-> edges of X`.                              `(CPM41)`
+
+Moreover, for every subgroup `K` among `G_1,G_2,Gamma`,
+
+`Hom_(F_2[K])(F_2[Y],F_2)`
+
+is naturally the space of all `F_2`-valued functions on `K\Y`: an
+equivariant functional is the orbit-wise augmentation, with an arbitrary
+coefficient on each orbit.  Under `(CPM41)`, the change-of-splitting map in
+`(CPM39)` is therefore exactly the graph coboundary
+
+`C^0(X;F_2) -> C^1(X;F_2)`.                            `(CPM42)`
+
+**Theorem 5 (one-orbit clutching form).**  The class of `d` modulo the
+changes allowed above is the nonzero element of
+
+`C^1(X;F_2) / delta C^0(X;F_2) ~= F_2`.               `(CPM43)`
+
+Consequently one may choose the vertex splittings so that, for one edge
+`e_0` on the unique cycle of `X`,
+
+`d(c)=sum_(y in O_0)c_y`,                              `(CPM44)`
+
+where `O_0` is the single `Gamma`-orbit in `Y`
+corresponding to `e_0`.  Thus the two edge identifications agree on every
+lamp orbit except `O_0`; on `O_0` they differ by the central shear
+
+`f_y |-> f_y+z` for every `y in O_0`.                  `(CPM45)`
+
+**Proof.**  The infinite cyclic group `<s>` acts freely on `T`, because a
+nonzero power of the hyperbolic element `s` fixes no vertex or edge.  Hence
+`T->X` is a graph covering with deck group `<s>`.  In particular `X` is
+connected, its fundamental group is infinite cyclic, and it consists of
+one core cycle with trees attached.  Therefore the quotient in `(CPM43)`
+is one-dimensional: every edge cochain on an attached tree is a
+coboundary, while on the core cycle only the sum of its edge values
+survives.
+
+If the class of `d` were zero, alter the two splittings by the corresponding
+vertex functions.  The resulting linear splittings would be equal.  Their
+common value would be equivariant for both vertex groups and hence for
+`D=G_1 *_Gamma G_2`, contradicting the nonsplitting proved in Theorem 6 of
+`FALSE_MACKEY_SPLIT_COCYCLE.md`.  Thus `[d]` is the unique nonzero class.
+
+Over `F_2`, the indicator of any one core edge represents that class.
+Adding a graph coboundary, equivalently changing the two vertex splittings,
+therefore puts `d` in the form `(CPM44)`.  Formula `(CPM45)` is the same
+statement in the basis `{z} union {f_y}`.  End proof.
+
+This is a strict reduction of the remaining analytic problem.  Each vertex
+is the residually finite group `(CPM34)`, and their common subgroup differs
+only by negating, in the `z=-1` sector, the regular family of commuting lamp
+involutions indexed by one free `Gamma`-orbit.  The obstruction is still
+real: if that one-orbit shear extended equivariantly over either adjacent
+`G_i`-orbit, `(CPM43)` would be zero.  But no uncontrolled infinite phase
+pattern remains.  The live target is a norm-asymptotic implementation of
+this single regular-orbit shear.
