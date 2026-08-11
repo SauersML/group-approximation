@@ -38253,6 +38253,56 @@ absorbed by the arbitrarily small corner loss.  The unresolved issue is a
 joint atom/matching construction from the overlapping prefix subspaces, not
 invariance of the spectral projection.
 
+## 2026-08-10: the compact-unitary metric shortcut is false
+
+A stronger-looking replacement for the finite matching step would assert
+that `(U(d),||.||_2)` is a sofic **metric group**, so every finite unitary
+table could be approximated while preserving all Hilbert--Schmidt distances.
+Ivanov's metric-sofic framework (arXiv:1604.08446) makes clear that metric
+soficity is stronger than abstract soficity and can already fail for finite
+metric groups.  In the present setting there is a direct scalar obstruction.
+
+Let `p>=5` be prime and embed `C_p=<zeta>` in the scalar circle in `U(d)`,
+where `zeta=exp(2 pi i/p)`.  With the normalized chordal length
+
+`ell(zeta^k)=||zeta^k 1-1||_2/2=sin(pi k/p)`,           `(MSU1)`
+
+the nonidentity elements do not all have the same length; for example
+
+`ell(zeta) != ell(zeta^2)`.                            `(MSU2)`
+
+**Proposition.**  The finite metric group `(C_p,ell)` is not sofic metric.
+Consequently `U(d)` with its normalized Hilbert--Schmidt metric is not a
+sofic metric group for any `d>=1`.
+
+**Proof.**  Suppose maps `gamma_n:C_p->Sym(X_n)` asymptotically preserve
+multiplication and the metric.  Put `sigma_n=gamma_n(zeta)`.  Telescoping the
+finitely many product defects gives
+
+`d_H(gamma_n(zeta^k),sigma_n^k)->0`, `0<=k<=p`,        `(MSU3)`
+
+and in particular `d_H(sigma_n^p,1)->0`.
+
+Decompose `sigma_n` into cycles.  A point is fixed by `sigma_n^p` exactly
+when its cycle length divides `p`.  Therefore all but `o(|X_n|)` points lie
+in cycles of length `1` or `p`.  On that good set, for every
+`1<=k<=p-1`, the permutation `sigma_n^k` fixes exactly the points fixed by
+`sigma_n`.  Hence
+
+`d_H(sigma_n^k,1)-d_H(sigma_n,1)->0`.                 `(MSU4)`
+
+Together with `(MSU3)`, metric preservation would force
+`ell(zeta^k)=ell(zeta)` for all nonzero `k`, contradicting `(MSU2)`.
+Sofic metric groups are closed under metric subgroups, so the scalar copy of
+`C_p` rules out the ambient unitary group.  End proof.
+
+This does not contradict the desired normal-Dirac transfer.  That transfer
+only preserves the limiting discrete `0/1` coefficient law on a fixed word
+test; it neither preserves the full chordal metric nor applies one rounding
+map to every element of `U(d)`.  Tensor amplification is allowed before the
+finite action is selected.  Thus metric soficity of the compact matrix image
+is a false strengthening, just like pointwise rounding `(PUR1)--(PUR3)`.
+
 # The shear quotient is MF, but the finite kernel is exactly one projective sector (2026-08-10)
 
 The cyclic-shear candidate admits a useful reduction, together with an

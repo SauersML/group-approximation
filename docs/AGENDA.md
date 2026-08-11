@@ -104,6 +104,13 @@ word losses.  Do not route through conjugate
 averaging, amenability, generic HS stability, or Bernoulli-lamp permanence;
 their exact stopping points are now proved in the notepad.
 
+Also do not demand metric-sofic approximation of `U(d)`.  The scalar
+prime-order subgroup with chordal HS length has unequal nonidentity lengths,
+whereas an approximate permutation action of `C_p` forces every nonidentity
+power to have the same asymptotic Hamming length (`(MSU1)-(MSU4)`).  The
+normal-Dirac problem is narrower because it only retains a limiting discrete
+`0/1` word law after table-dependent amplification.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the
