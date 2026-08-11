@@ -497,7 +497,9 @@ and
 
 No separation condition on `U_n` or `T_n` is asserted or required here.
 Thus this is precisely the rank-free negative sector in the finite-central-
-kernel criterion, not by itself an operator-MF model of `E_univ`.
+kernel criterion.  It is not by itself an operator-MF model of `E_univ`,
+but Corollary 9 below shows that it is already enough to solve the main
+FALSE problem.
 
 **Proof.**  First suppose `V_n:Q->U(d_n)` is an asymptotic projective
 representation with multiplier `(MSC20am)`.  Since the multiplier is
@@ -544,6 +546,31 @@ exactly
 `(-1)^(sum_y c_y kappa(g,y))=(-1)^(L_g(c))`.
 
 Consequently the maps `(MSC20az)` have multiplier `(MSC20am)`.  End proof.
+
+**Corollary 9 (the one-involution data are a final FALSE certificate).**
+If the equivalent conditions in Theorem 8 hold, then there exists a
+hyperlinear nonsofic group.
+
+**Proof.**  Use the section of `E_univ->Q` from Theorem 7.  For
+`epsilon in F_2` and `q in Q`, define
+
+`Phi_n(z_univ^epsilon q_tilde)=(-1)^epsilon W_n(q)`.  `(MSC20ba)`
+
+The multiplier calculation in Theorem 8 says that the pointwise
+multiplicative defects in `(MSC20ba)` tend to zero in operator norm, hence
+also in normalized Hilbert--Schmidt norm.  After harmless amplification if
+the dimensions do not grow, `(MSC20ba)` induces a homomorphism
+
+`Phi:E_univ -> product_omega(U(d_n),d_2)`.             `(MSC20bb)`
+
+Let `L=Phi(E_univ)`.  It is hyperlinear by construction, and
+
+`Phi(z_univ)=-1 != 1`.                                `(MSC20bc)`
+
+If `L` were sofic, `(MSC20bb)` would be a homomorphism from `E_univ` to a
+sofic group which does not kill `z_univ`, contradicting
+`z_univ in Rad_sof(E_univ)` from Theorem 6.  Therefore `L` is hyperlinear
+and nonsofic.  End proof.
 
 Equivalently, writing `P_n=(1+T_n)/2`, the live object is a sequence of
 Boolean half-spaces whose `G`-translates asymptotically commute in operator

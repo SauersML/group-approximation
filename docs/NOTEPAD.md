@@ -40051,6 +40051,27 @@ approximate commuting translates fails at the boundary of a finite orbit
 window; controlling the normalized mass of that boundary is essentially
 the unresolved hyperlinear-to-sofic step.
 
+Crucially, `(MSC25)--(MSC26)` are already a **final FALSE certificate**;
+they do not have to be combined with a faithful operator-MF model of the
+quotient.  The products in `(MSC27)` give projective maps `W_n` with
+multiplier `(MSC24)`.  Lifting them through the central extension gives
+
+`Phi_n(z_univ^epsilon q_tilde)=(-1)^epsilon W_n(q)`. `(MSC29)`
+
+Their operator-norm defects, hence normalized-HS defects, tend to zero.
+Thus they define a homomorphism from `E_univ` into a tracial matrix
+ultraproduct which sends `z_univ` to `-1`.  Its image is hyperlinear; it
+cannot be sofic, because `z_univ in Rad_sof(E_univ)`.  This is Corollary 9
+of the focused note.  No injectivity of the microstates is needed.
+
+Accordingly, the live task is now exactly self-contained:
+
+> Construct asymptotic unitary representations `U_n` of the explicit
+> `G=H*<a>` and involutions `T_n` satisfying `(MSC25)--(MSC26)`.
+
+Doing only that proves FALSE.  It is still open; the corollary improves the
+endpoint, not its existence.
+
 # 2026-08-11: finite-extension twisting cannot create the radical corner
 
 Let `H normal E` have finite index.  Then
