@@ -154,11 +154,53 @@ finite-dimensional character and
 Hence Theorem 2 is exactly a one-witness integrality-gap statement between
 finite-dimensional characters and finite quasiregular actions.
 
+## Real weights can be replaced by one uniform finite test
+
+**Proposition 3 (rational and uniform certificate).**  In Theorem 2 the
+weights may be chosen rational.  After clearing denominators, there are a
+positive integer `M`, a multiset of relation words
+
+`(r_1,...,r_a)`, with every `r_i in N`,                    `(WTL16)`
+
+and a positive integer `b`, with `a+b=M`, such that every finite-index
+`H<=F` satisfies
+
+`1/M E_(xH in F/H)[`
+` sum_(i=1)^a 1_(x^(-1)r_i x notin H)`
+` +b 1_(x^(-1)w x in H)] >=epsilon'`                   `(WTL17)`
+
+for some `epsilon'>0`.  The finite-dimensional unitary losses for the same
+uniform multiset tend to zero.
+
+**Proof.**  Start with weights and gap `epsilon` from Theorem 2.  Since the
+weight simplex is finite-dimensional, choose a rational probability vector
+`(alpha'_r,beta')` with
+
+`sum_r |alpha'_r-alpha_r|+|beta'-beta|<epsilon/2`.     `(WTL18)`
+
+Every loss coordinate lies in `[0,1]`, so replacing the weights changes the
+value of the loss on any action by less than `epsilon/2`.  The new classical
+gap is therefore at least `epsilon'=epsilon/2`.  Choose the approximation
+close enough that `beta'>0`, which is possible because Theorem 2 gives
+`beta>0`.  Clear a common denominator `M`, repeat each relation word
+`M alpha'_r` times, and take `b=M beta'` copies of the single witness
+coordinate.  Formula `(WTL10)` becomes `(WTL17)`.  The unitary loss is the
+same rational linear combination, so `(WTL15)` still makes it tend to zero.
+End proof.
+
+Thus a failed TRUE implication would already produce a finite randomized
+test with no real parameters: choose uniformly among `M` slots; a relation
+slot rejects when the sampled rooted subgroup omits its conjugated relator,
+and one of the `b` witness slots rejects when it contains the conjugated
+witness.  Every finite Schreier model has rejection probability at least
+`epsilon'`, whereas the nonnegative matrix characters have asymptotic loss
+zero.
+
 ## Finite-presentation form and the remaining gate
 
 Put
 
-`P=<generators(F) | R>`.                              `(WTL16)`
+`P=<generators(F) | R>`.                              `(WTL19)`
 
 The radical-localization theorem `(FPR5)--(FPR12)` says that the image of
 `w` lies in `Rad_sof(P)` but survives in the hyperlinear quotient `F/N`.
