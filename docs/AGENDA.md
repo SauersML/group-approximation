@@ -1102,6 +1102,20 @@ meets positive vertex-stabilizer homology, followed by the integral norm
 bound on the paired carry lattice.  See
 `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
 
+The same four cuspidal generators have now been followed through six binary
+layers.  Exact sparse local-ring elimination produces full corrections at
+both `p=53` and `p=61` modulo `2,4,8,16,32,64`.  The previous greedy failure
+at modulus eight was therefore a choice-of-lift artifact, not a primary
+obstruction.  At modulus eight, unit elimination compresses the `p=53`
+problem from `11452` equations to four residual equations and the `p=61`
+problem from `15132` equations to two; each exact direct solve then takes
+about one second.  The selected centered correction norms grow with the
+modulus, so this proves finite-depth existence rather than a uniform metric
+section.  Generic SAT/MILP feasibility search is obsolete here.  The next
+exact target is the tiny residual two-local elementary divisor/Bockstein,
+followed separately by norm control.  See
+`TRUE_HARMONIC_TWO_ADIC_LIFT.md`.
+
 The restricted modular norm is also exact at these levels.  Enumerating all
 three nonzero vectors in each rank-two harmonic parity plane gives section
 norms `0.5497745548...` at `p=53` and `0.5389830848...` at `p=61` under
