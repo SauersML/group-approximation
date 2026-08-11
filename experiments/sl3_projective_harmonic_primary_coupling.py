@@ -18,7 +18,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sage.all import GF, vector
+from sage.all import GF, matrix, vector
 
 from sl3_projective_cellular_analyze import build_boundaries, coinvariants, parse
 from sl3_projective_derived_e1 import coordinate_indices, read_boundary
@@ -60,11 +60,42 @@ def compact_representatives(degree: int, cells):
                 local_representatives[coordinate] = point
         if any(point is None for point in local_representatives):
             raise AssertionError("coinvariant coordinate has no representative")
-        representatives.extend(
-            (8 + cell_index - 1, point)
-            for point in local_representatives
-        )
+        for coordinate, point in enumerate(local_representatives):
+            _root_coordinate, source_sign = coordinate_map[point]
+            if _root_coordinate != coordinate:
+                raise AssertionError("invalid compact representative")
+            representatives.append((cell_index, point, source_sign))
     return representatives
+
+
+def induced_compact_boundary(
+    full_boundary, degree: int, cells, representatives, cell_generators
+):
+    """Augment the HAP zero row and recover its compact cellular boundary."""
+
+    field = full_boundary.base_ring()
+    target_dimension, target_map = coinvariants(degree, cells[(1, 1)])
+    entries = {}
+    for compact_source, (cell_index, point, source_sign) in enumerate(representatives):
+        full_source = cell_generators[cell_index - 1] * degree + point
+        for full_target, coefficient in full_boundary.row(full_source).dict().items():
+            target_generator, target_point = divmod(full_target, degree)
+            if target_generator != 3:
+                continue
+            target_value = target_map[target_point]
+            if target_value is None:
+                continue
+            compact_target, target_sign = target_value
+            value = field(source_sign * target_sign) * coefficient
+            key = (compact_source, compact_target)
+            entries[key] = entries.get(key, field.zero()) + value
+    return matrix(
+        field,
+        len(representatives),
+        target_dimension,
+        {key: value for key, value in entries.items() if value},
+        sparse=True,
+    )
 
 
 def solve_filtered_lift(boundary, degree: int, compact_lift):
@@ -150,6 +181,21 @@ def main() -> None:
     harmonic_rows = read_harmonic_basis(
         args.harmonic_basis, compact_dimensions[2])
     compact_boundary = compact_boundaries[2].change_ring(field)
+    candidate_generator_orders = ((8, 9), (9, 8))
+    comparison_ranks = {}
+    cell_generators = None
+    for candidate in candidate_generator_orders:
+        induced = induced_compact_boundary(
+            full_boundary, degree, cells, representatives, candidate)
+        difference_rank = int((induced - compact_boundary).rank())
+        comparison_ranks[",".join(map(str, candidate))] = difference_rank
+        if difference_rank == 0:
+            cell_generators = candidate
+            break
+    if cell_generators is None:
+        raise AssertionError(
+            "HAP zero-row boundary does not match the compact boundary: "
+            + repr(comparison_ranks))
     records = []
     for basis_index, integer_row in enumerate(harmonic_rows):
         compact_cycle = vector(field, integer_row)
@@ -157,8 +203,10 @@ def main() -> None:
             raise AssertionError("reduced compact harmonic vector is not a cycle")
         compact_lift = vector(field, full_boundary.nrows())
         for compact_coordinate in compact_cycle.support():
-            generator, point = representatives[compact_coordinate]
-            compact_lift[generator * degree + point] += compact_cycle[compact_coordinate]
+            cell_index, point, source_sign = representatives[compact_coordinate]
+            generator = cell_generators[cell_index - 1]
+            compact_lift[generator * degree + point] += (
+                field(source_sign) * compact_cycle[compact_coordinate])
         record = solve_filtered_lift(full_boundary, degree, compact_lift)
         record["basis_index"] = basis_index
         record["compact_reduced_support"] = len(compact_cycle.support())
@@ -171,6 +219,8 @@ def main() -> None:
         "compact_degree_two_dimension": compact_dimensions[2],
         "full_degree_two_dimension": full_boundary.nrows(),
         "canonical_representative_count": len(representatives),
+        "cell_generators": list(cell_generators),
+        "zero_row_comparison_ranks": comparison_ranks,
         "records": records,
     }
     encoded = json.dumps(payload, indent=2, sort_keys=True) + "\n"
