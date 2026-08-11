@@ -94,16 +94,23 @@ def block_is_in_derived_group(matrix, component, multiplicity):
 
 def bridge_certifies(matrix, suffixes):
     """Certify one chart letter through uniform-refinement perfect overlaps."""
-    for row in range(4):
-        for col in range(4):
-            if matrix[row, col] and suffixes[row] != suffixes[col]:
-                return False
+    if not represented_on_code(matrix, suffixes):
+        return False
     for component in support_components(matrix):
         if len(component) == 1:
             continue
         multiplicity = len(suffixes[component[0]])
         if not block_is_in_derived_group(matrix, component, multiplicity):
             return False
+    return True
+
+
+def represented_on_code(matrix, suffixes):
+    """Test whether prefix refinement puts a chart matrix on this code."""
+    for row in range(4):
+        for col in range(4):
+            if matrix[row, col] and suffixes[row] != suffixes[col]:
+                return False
     return True
 
 
@@ -123,26 +130,31 @@ def embedded_matrix(matrix, chart, suffixes, code):
     return value
 
 
-def certify_word(word, candidates):
+def classify_word(word, candidates):
+    first_common_chart = None
     for leaf_count, code, suffixes_by_factor in candidates:
         represented = []
-        valid = True
+        bridge_valid = True
         for factor, matrix in word:
             suffixes = suffixes_by_factor[factor]
-            if not bridge_certifies(matrix, suffixes):
-                valid = False
+            if not represented_on_code(matrix, suffixes):
+                represented = None
                 break
+            bridge_valid = bridge_valid and bridge_certifies(matrix, suffixes)
             represented.append(embedded_matrix(
                 matrix, CHART_LEAVES[factor], suffixes, code))
-        if not valid:
+        if represented is None:
             continue
         product = np.eye(leaf_count, dtype=np.uint8)
         for matrix in represented:
             product = (product @ matrix) & 1
         if not np.array_equal(product, np.eye(leaf_count, dtype=np.uint8)):
             raise AssertionError("common-chart image of a kernel word is nontrivial")
-        return leaf_count, code
-    return None
+        if first_common_chart is None:
+            first_common_chart = (leaf_count, code)
+        if bridge_valid:
+            return (leaf_count, code), first_common_chart
+    return None, first_common_chart
 
 
 def main():
@@ -178,12 +190,23 @@ def main():
     certificates = []
     survivors = []
     histogram = {}
+    common_chart_survivors = 0
     for index, word in enumerate(words):
-        certificate = certify_word(word, candidates)
+        certificate, common_chart = classify_word(word, candidates)
         if certificate is None:
+            projections = factor_projections(word)
+            if common_chart is not None:
+                common_chart_survivors += 1
             survivors.append({
                 "word_index": index,
                 "length": len(word),
+                "projection_pair": [
+                    matrix_key(projection).hex() for projection in projections
+                ],
+                "common_chart_leaf_count": (
+                    common_chart[0] if common_chart is not None else None),
+                "common_chart_code": (
+                    list(common_chart[1]) if common_chart is not None else None),
                 "word": encode_word(word),
             })
             continue
@@ -205,6 +228,7 @@ def main():
         "tested_words": len(words),
         "perfect_overlap_certificates": len(certificates),
         "survivors": len(survivors),
+        "survivors_with_common_chart": common_chart_survivors,
         "minimum_leaf_histogram": histogram,
         "certificate_records": certificates,
         "survivor_records": survivors,
