@@ -39716,6 +39716,43 @@ produce a circle cocycle which remains outside the character locus after
 every finite-index restriction.  Character-valued residues cannot obstruct
 the TRUE implication.
 
+Property `(T)` strengthens the finitely generated-range criterion.  Let
+`Q acts (X,mu)` be ergodic pmp, let `Q` have property `(T)`, and let
+`eta in Z^1(Q acts X,A)` for a countable abelian group `A`.  Choose a finite
+Kazhdan set `F` and a finitely generated `A_0<A` containing all but a small
+fraction of the values of every `eta_s`, `s in F`.  The quotient cocycle in
+`B=A/A_0` acts on
+
+`L^2(X,ell^2(B))`.                                    `(TWT11)`
+
+The constant vector field `delta_0` has squared displacement
+
+`2 mu{x:eta(s,x) notin A_0}`.                         `(TWT12)`
+
+Property `(T)` supplies a nearby invariant vector field.  Its fiber norm is
+constant by ergodicity.  On a positive-measure invariant set it has a unique
+coordinate of modulus greater than `1/sqrt(2)`; hence this holds conull.
+That coordinate is a measurable map `c:X->B` satisfying
+
+`c(qx)=eta_bar(q,x)+c(x)`.                            `(TWT13)`
+
+Lifting `c` to `A` gauges `eta` into `A_0`.  Therefore, for an ergodic
+property-`(T)` quotient action, any countable-valued representative of the
+phase cocycle is cohomologous to a finitely generated-range representative,
+and `(TWT7)--(TWT8)` prove soficity.
+
+The scalar argument stops sharply at infinite-height torsion.  For the
+Pruefer group `A=mu_(p^infinity)`, divisibility rules out proper finite-index
+subgroups, and multiplication by `p` has no homomorphic right inverse.  Such
+an inverse would split
+
+`A=A[p] directSum rho(A)`,                             `(TWT14)`
+
+contradicting the fact that `A[p]` is cyclic while `rho(A)` contains another
+order-`p` subgroup.  This does not construct a nonzero measured Bockstein;
+it shows that a surviving countable-range class must use infinite-height
+torsion rather than a merely large finite alphabet.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 

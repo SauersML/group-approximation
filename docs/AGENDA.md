@@ -245,6 +245,13 @@ any finitely generated subgroup `A<T`, restrict to the finite-index kernel
 of `A -> A/(m Z^d directSum 0)` and divide the remaining free coordinates by
 `m`.  Hence a surviving phase class must have essentially infinitely
 generated scalar range after every gauge and every finite-index restriction.
+For an ergodic property-`(T)` quotient action, even countable range closes:
+the skew-product representation on `L^2(X,ell^2(A/A_0))` turns a large
+finite range truncation into an almost invariant vector, and its invariant
+repair has a unique dominant coordinate which gauges the cocycle into
+finitely generated `A_0`.  The scalar method is sharp at Pruefer
+`p`-torsion, where multiplication by `p` has no right inverse and there are
+no proper finite-index subgroups.
 
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
