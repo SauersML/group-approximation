@@ -572,6 +572,18 @@ negative relative rank `delta`, their mismatch on a fixed Kazhdan set of
 Boolean flip with `z=-1` leaves a dimension-independent edge defect of at
 least `kappa/2`.
 
+The first cohomological-code spectrum calibration is in
+`experiments/phase_code_spectrum_results.md`.  Exact locally free `F_2`
+Schreier charts can have a two-block bottleneck with only two cross-half
+generator edges.  Their binary half-word has check defect `1/n` but distance
+`1/2` from the degree-zero cocycle code, while the first positive incidence
+singular value is asymptotic to `2/sqrt(n)`.  MSI sparse spectra through
+`n=4096` reproduce this law; random Schreier controls retain gap about
+`0.72`.  Thus neither soficity, essential freeness, nor local statistics
+alone can give the uniform repair spectrum suggested by `(PFL11)`.  A TRUE
+decoder must select expanding/cosystolic charts or exploit the prescribed
+relatively-Haar joining; arbitrary-chart spectral mining is a dead route.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
