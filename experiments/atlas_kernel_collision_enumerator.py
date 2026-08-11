@@ -203,6 +203,12 @@ def main():
             1 for label in projection_pair_counts
             if label != "%s,%s" % (matrix_key(I4).hex(), matrix_key(I4).hex())
         ),
+        "nontrivial_factor_projection_pair_counts": {
+            label: count
+            for label, count in sorted(projection_pair_counts.items())
+            if label != "%s,%s" % (
+                matrix_key(I4).hex(), matrix_key(I4).hex())
+        },
         "tensor_flip_unsatisfied_kernel_generators": sum(
             count for label, count in projection_counts.items()
             if label != "identity,identity"
