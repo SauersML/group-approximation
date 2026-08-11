@@ -847,8 +847,15 @@ distortion is equivalent, in harmonic rank `r`, to the least norm of a
 `Z`-linear section up to a rank-only lattice-reduction constant.  For the
 rank-two `p=53` chart the factor is `4/sqrt(3)`, and any two integral basis
 lifts give a complete bound through a `2 x 2` generalized eigenvalue.  The
-next exact computation should therefore solve two affine integer lift
-problems, not enumerate the full discriminant group.
+same note now gives the exact regulator balance
+`Reg(Q^#)=Reg(S_sat)/Reg(L)`.  Thus the harmonic regulator and the
+determinant lower bound
+`kappa^2>=(3/16)Reg(L)/Reg(S_sat)` at rank two require only saturated
+boundary/coboundary determinants and Smith indices, not an exact harmonic
+basis.  The basis is still needed for shape, dual systole, and an upper
+bound.  The next exact computation should therefore first evaluate this
+determinant ratio, then solve two affine integer lift problems; it should
+not enumerate the full discriminant group.
 
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs

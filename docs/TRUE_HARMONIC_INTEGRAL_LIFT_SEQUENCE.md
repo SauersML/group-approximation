@@ -94,6 +94,111 @@ Theorem 1 strengthens the set-theoretic pullback
 from the nonlinear repair note: it identifies the full lattice extension
 whose quotient map produces that pullback.
 
+### Regulator balance
+
+Put
+
+`S_sat=Lambda intersect S`.                           `(HIL10a)`
+
+For a Euclidean lattice `J`, write `Reg(J)` for its covolume in its real
+span.
+
+**Theorem 1A (exact regulator quotient).**  The harmonic homology and
+cohomology lattices satisfy
+
+`Reg(Q^#)=Reg(S_sat)/Reg(L)`,
+`Reg(Q)=Reg(L)/Reg(S_sat)`.                            `(HIL10b)`
+
+In particular they are reciprocal, as required by `Q^#=Q^dual`.  If
+
+`K_H=Lambda intersect H`, `D_H=Q^#/K_H`,              `(HIL10c)`
+
+then
+
+`|D_H|=Reg(K_H)Reg(L)/Reg(S_sat)`.                    `(HIL10d)`
+
+**Proof.**  We use two elementary covolume facts in the unimodular lattice
+`Lambda=Z^m`.
+
+First, if `U` is rational, the primitive orthogonal lattices
+`Lambda intersect U` and `Lambda intersect U^perp` have isomorphic
+discriminant groups with opposite pairings.  Hence their Gram determinants,
+and therefore their regulators, are equal.
+
+Second, suppose a lattice `M` lies in an orthogonal sum `U directSum V`, its
+intersection with `U` is `J`, and orthogonal projection maps `M` onto a
+lattice `T` in `V` with kernel `J`.  Lift a basis of `T` to `M` and append a
+basis of `J`.  Subtracting the real `U`-components of the lifted vectors is
+a determinant-one column operation.  The resulting Gram volume factors
+orthogonally, so
+
+`Reg(M)=Reg(J)Reg(T)`.                                `(HIL10e)`
+
+Apply the first fact to `S` and the second to the exact sequence `(HIL8)`:
+
+`Reg(S_sat)=Reg(M_Sigma)=Reg(L)Reg(Q^#)`.             `(HIL10f)`
+
+This proves the first formula in `(HIL10b)`.  Similarly, projection
+`K->Q` has kernel `S_sat`, while the orthogonal-complement identity gives
+`Reg(K)=Reg(L)`.  Hence
+
+`Reg(L)=Reg(K)=Reg(S_sat)Reg(Q)`,                     `(HIL10g)`
+
+which proves the second formula.  Finally `K_H subset Q^#`, so its index is
+the quotient of covolumes:
+
+`[Q^#:K_H]=Reg(K_H)/Reg(Q^#)`.                       `(HIL10h)`
+
+Substitute `(HIL10b)` to get `(HIL10d)`.  End proof.
+
+The formula is directly computable without a harmonic basis.  Let `C_W`
+and `C_S` be full-column-rank integer matrices whose columns generate
+finite-index sublattices of `L` and `S_sat`, of indices `t_W` and `t_S`.
+Then
+
+`Reg(Q^#)`
+` =(t_W/t_S)sqrt(det(C_S^T C_S)/det(C_W^T C_W)).`     `(HIL10i)`
+
+The indices are the saturation indices obtained from Smith data, or
+equivalently the gcds of the maximal minors.  Thus `(HIL10i)` replaces an
+exact basis of the large harmonic kernel by two determinant-and-saturation
+computations in the boundary and coboundary spans.
+
+There is also a decoder obstruction depending only on this regulator.
+
+**Corollary 1B (determinant lower bound for integral repair).**  Let
+`r=rank(Q)>0`.  Every integral section `s` of `(HIL8)` satisfies
+
+`||s||>=Reg(Q^#)^(-1/r)`
+`      =(Reg(L)/Reg(S_sat))^(1/r)`.                  `(HIL10j)`
+
+Consequently the optimal nonlinear lift distortion of `(HIL18)` below
+satisfies
+
+`kappa_Sigma>=(1/beta_r)(Reg(L)/Reg(S_sat))^(1/r)`.  `(HIL10k)`
+
+**Proof.**  Choose a basis matrix `V` of `Q^#` and write `Z=s(V)`.  If
+`lambda_1,...,lambda_r` are the squared singular values of the section,
+then
+
+`product_i lambda_i=det(Z^T Z)/det(V^T V)`.          `(HIL10l)`
+
+The columns of `Z` are linearly independent integral vectors.  Therefore
+`det(Z^T Z)` is a positive integer and is at least one, while
+`det(V^T V)=Reg(Q^#)^2`.  The largest `lambda_i` is at least the geometric
+mean, proving `(HIL10j)`.  Theorem 4 below gives an integral section of norm
+at most `beta_r kappa_Sigma`; combine it with `(HIL10j)` to obtain
+`(HIL10k)`.  End proof.
+
+For harmonic rank two this becomes
+
+`kappa_Sigma^2>=(3/16)Reg(L)/Reg(S_sat)`.             `(HIL10m)`
+
+Thus a family with `Reg(L)/Reg(S_sat)->infinity` cannot have uniformly
+bounded integral carry repair.  This is only a one-sided obstruction:
+bounded regulator ratio does not control lattice shape or the extension
+class, so it does not by itself construct a bounded section.
+
 ## 3. The numerator is the lift cost
 
 For `u in Q^#`, define its shortest ambient integral lift norm
@@ -330,6 +435,25 @@ quadratic algebraic number.  It immediately certifies
 
 for every harmonic class `c`, without enumerating `D_H`.
 
+Before recovering `V`, Theorem 1A already gives the exact harmonic
+regulator from the two cellular spans.  If `C_W,C_S` are independent
+integer coboundary and boundary spanning matrices at level `53`, with
+saturation indices `t_W,t_S`, then
+
+`Reg(Q^#)`
+` =(t_W/t_S)sqrt(det(C_S^T C_S)/det(C_W^T C_W))`,     `(HIL35a)`
+
+and every integral decoder obeys
+
+`kappa_Sigma^2`
+` >=(3/16)(t_S/t_W)`
+`      sqrt(det(C_W^T C_W)/det(C_S^T C_S)).`          `(HIL35b)`
+
+Thus the regulator and a rigorous decoder lower bound can be computed by
+modular determinant and Smith-index methods without lifting the numerical
+harmonic vectors.  The exact plane is still needed for the dual systole,
+lattice shape, and the matching upper bound.
+
 For the exact nonlinear metric, put `a_i=z_i-V_i` and replace `G_Z` by
 
 `G_(Z,A)=G_H+`
@@ -340,11 +464,14 @@ ellipsoidal paired radius simultaneously.
 
 Equations `(HIL15)` and `(HIL33)` give the efficient exact workflow:
 
-1. recover an exact rational basis of the two-dimensional Hodge kernel;
-2. compute `Q^#` from the rational pullback `(HIL10)`;
-3. Gauss-reduce its two-column basis;
-4. solve two affine integral lift problems `(HIL15)`;
-5. evaluate the `2 x 2` generalized eigenvalue `(HIL35)`.
+1. compute the independent boundary/coboundary determinants and saturation
+   indices in `(HIL35a)`;
+2. recover an exact rational basis of the two-dimensional Hodge kernel;
+3. compute `Q^#` from the rational pullback `(HIL10)` and verify its
+   regulator against `(HIL35a)`;
+4. Gauss-reduce its two-column basis;
+5. solve two affine integral lift problems `(HIL15)`;
+6. evaluate the `2 x 2` generalized eigenvalue `(HIL35)`.
 
 The observed 64.15 percent leverage concentration on the five-term cell
 orbit can be used in steps 1 and 4 to eliminate the other nine cell orbits
