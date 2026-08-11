@@ -179,6 +179,15 @@ charts.  The remaining monomial overlap is unbounded phase order on
 nonexact permutation charts, plus possible growth of the marked ratios over
 exact charts.
 
+Full circle repair is a sufficient uniform bound for every marked radical
+word: `(ECM24b)-(ECM24c)` give
+`Lambda_(w,X)<=|w| C_circ(A_X)<=|w|Theta(A_X)/sigma_+(A_X)` and the
+corresponding character constant is at most `pi^2/4` times its square.
+Therefore the exact property-`(T)` Hodge gap plus a uniform integral-carry
+bound closes arbitrary phase orders on all exact charts.  A marked ratio can
+still remain bounded when full circle repair does not, so `(ECM31)` is the
+sharper word-specific target.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient

@@ -56,6 +56,11 @@ Give the two target spaces the normalized squared geodesic norms
 `||v||_(2,T)^2=(1/|X|)sum_(x in X,r in R)`
 `                         dist(v_(x,r),Z)^2`.         `(ECM6)`
 
+On the phase-label space use, similarly,
+
+`||theta||_(1,T)^2=(1/|X|)sum_(x in X,s in S)`
+`                              dist(theta_(x,s),Z)^2.` `(ECM6a)`
+
 The sum over relators is deliberately not divided by `|R|`; it matches the
 total relator defect in the universal domination constant.
 
@@ -187,7 +192,67 @@ is equivalent to
 
 There is no dependence here on the orders of the phases.
 
-## 5. Marked paired-discriminant formula
+## 5. Full circle repair bounds every marked radical map
+
+Let `C_circ(A_X)` be the optimal nonlinear circle-repair constant of
+`A_X`, with the normalized source and target norms used above:
+
+`dist(theta,ker(bar(A_X)))`
+` <=C_circ(A_X)||bar(A_X)theta||_(2,T).`              `(ECM24a)`
+
+Let `ell(w)` be the length of the displayed word in the generators and
+their inverses.
+
+**Theorem 4 (repair-to-radical domination).**
+
+`Lambda_(w,X)<=||B_X||_(1->0) C_circ(A_X)`
+`             <=ell(w) C_circ(A_X)`
+`             <=ell(w) Theta(A_X)/sigma_+(A_X).`     `(ECM24b)`
+
+Consequently
+
+`C_mon(w,X)`
+` <=(pi^2/4)ell(w)^2 C_circ(A_X)^2`
+` <=(pi^2/4)ell(w)^2 Theta(A_X)^2/sigma_+(A_X)^2.`   `(ECM24c)`
+
+**Proof.**  Given a phase table `theta`, choose `theta_0` in
+`ker(bar(A_X))` with
+
+`||theta-theta_0||_(1,T)`
+` <=C_circ(A_X)||bar(A_X)theta||_(2,T)+epsilon.`      `(ECM24d)`
+
+The integral factorization gives `bar(B_X)theta_0=0`.  Therefore
+
+`||bar(B_X)theta||_(0,T)`
+` <=||B_X||_(1->0)||theta-theta_0||_(1,T).`           `(ECM24e)`
+
+If `w=t_1...t_ell`, its real evaluation map is a sum of `ell` signed
+coordinate pullbacks.  Each pullback is a contraction in normalized `L2`,
+because the current vertex is obtained from `x` by a permutation.  Hence
+
+`||B_X||_(1->0)<=ell(w)`.                             `(ECM24f)`
+
+Let `epsilon` tend to zero.  This proves the first two bounds in `(ECM24b)`.
+The exact nonlinear repair estimate `(NDR19)` gives
+
+`C_circ(A_X)<=Theta(A_X)/sigma_+(A_X)`,               `(ECM24g)`
+
+and Theorem 3 then gives `(ECM24c)`.  End proof.
+
+For a fixed property-`(T)` presentation, `sigma_+(A_X)` is uniformly
+positive over exact finite charts.  Thus a uniform carry bound
+`sup_X Theta(A_X)<infinity` proves uniform normalized-character domination
+for **every** radical word and every phase order on those charts.  This is
+the precise positive role of the Hodge certificate and the integral-carry
+program: the Hodge gap controls real repair, while `Theta` is the entire
+remaining nonlinear loss.
+
+The converse need not hold for one marked word.  Formula `(ECM31)` below
+can be bounded because its particular radical filling vectors annihilate
+the dangerous discriminant classes even when the full unmarked repair
+constant grows.
+
+## 6. Marked paired-discriminant formula
 
 Put
 
@@ -214,7 +279,7 @@ be the canonical coexact radical filling.  Then
 
 `(T_X y)_x=<q_(w,x),y>` for y in W_X.                `(ECM30)`
 
-**Theorem 4 (exact marked discriminant ratio).**
+**Theorem 5 (exact marked discriminant ratio).**
 
 `Lambda_(w,X)^2`
 ` =sup_(y in W_X minus L_X)`
@@ -245,11 +310,11 @@ integral carry repair.  The numerator is not an unspecified decoder norm:
 it is the simultaneous pairing against the canonical radical filling
 vectors `(ECM29)`.
 
-## 6. Consequences and remaining boundary
+## 7. Consequences and remaining boundary
 
 Theorems 3 and 4 prove the following exact exclusion principle.
 
-**Corollary 5.**  Suppose the marked ratios `(ECM31)` are uniformly bounded
+**Corollary 6.**  Suppose the marked ratios `(ECM31)` are uniformly bounded
 over a family of exact finite `P`-sets.  Then no sequence of monomial
 representations whose underlying permutation actions belong to that family
 can have unbounded radical-character domination ratio, regardless of phase
