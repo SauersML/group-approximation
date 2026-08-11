@@ -865,6 +865,21 @@ four representatives, not the eight projection pairs. Reproducible exact
 classification and proof are in FALSE_SELF_SIMILARITY_PHASE_SEED.md and
 experiments/atlas_survivor_conjugacy.py.
 
+The first genuinely multi-chart filling closure is also exact.  The 178
+known perfect-overlap relators collapse to 24 cyclic classes.  Repeatedly
+attaching arbitrary cyclic conjugates of those chart cells while keeping the
+cyclic boundary length at most eight reaches a fixed point after six cells:
+the layer counts are `24,222,462,480,148,22`, for 1,358 classes total, and
+none of the four survivor representatives occurs.  Thus every filling which
+admits this cyclic attachment ordering must cross intermediate boundary
+length at least ten.  At width ten, 13,234 classes occur through three cells
+and a reverse check excludes every cyclic-attachment filling of area at most
+four.  This is a width barrier, not nontriviality in `R/[P,R]`; larger
+boundaries, nonshellable diagrams, or new chart cells remain live.  Exact
+search and proof scope:
+`experiments/atlas_survivor_chart_filling.py` and
+`docs/FALSE_ATLAS_CHART_FILLING_WIDTH.md`.
+
 The obvious nonorthogonal interpolation between the complementary exact
 endpoints is also closed.  For tensor flip `J` and the unique wall alignment
 `L_k`, the relative permutation has `(J^*L_k)^4=1`, so there are only eight
