@@ -151,6 +151,17 @@ radical witness moves mean mass at least `1/4`; that restricted action itself
 produces the hyperlinear nonsofic image.  The smaller action target is
 directly an amenable `H`-action with `m(Fix(x))<1`.
 
+The prescribed-mean strengthening `(CAP1)--(CAP13)` closes that smaller
+target too.  After pullback along a free presentation, every invariant-mean
+permutation character is a pointwise limit of finite-action characters:
+approximate the chosen mean by an
+`ell^1`-Reiter sequence, replace rational weights by numbered fibers, and use
+the coherent partial maps `(x,k)|->(gx,k)`.  Their unmatched mass is the
+`ell^1` boundary and their common fiber indices make multiplication coherent.
+Thus a sofic-radical element has fixed-set mean `1` in every amenable action.
+Any viable amenable negative sector must be genuinely nonpermutational, not
+merely nonmonomial.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the

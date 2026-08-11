@@ -119,7 +119,10 @@ points of every abelian group, so the image of `z` in `L_ab` is zero.  This
 is `(ANS6)`.  End proof.
 
 Consequently no coamenable character induction can supply the desired sign
-sector.  A viable amenable negative sector has to be genuinely nonmonomial.
+sector.  Moreover, `(CAP1)--(CAP13)` in
+`FALSE_COAMENABLE_ACTION_CRITERION.md` proves that every invariant-mean
+permutation character is already co-sofic.  A viable amenable negative sector
+therefore has to be genuinely nonpermutational, and hence nonmonomial.
 
 ## 4. Updated live boundary
 
@@ -133,7 +136,7 @@ The following routes are now sharply separated.
    Følner-truncation obstruction `(CAF1)--(CAF13)`; `(ANS6)` strengthens this
    algebraically for normal kernels of amenable quotients.
 4. The remaining representation-theoretic possibilities are a genuinely
-   nonmonomial amenable negative sector or a direct construction of a
+   nonpermutational amenable negative sector or a direct construction of a
    nonamenable embeddable trace.
 
 No statement in this note proves that such a sector or trace exists.

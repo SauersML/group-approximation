@@ -38755,3 +38755,47 @@ hypothetical separation would already occur: it cannot emerge only after
 amalgamation, since it has already built an amenable negative sector in a
 vertex.  The associated analytic target is directly an amenable `H`-action
 with `m(Fix(x))<1`, not a class-`A` permanence theorem for the shear.
+
+# Every invariant-mean permutation character is co-sofic (2026-08-10)
+
+Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`,
+`(CAP1)--(CAP13)`.  The fixed-point-free Følner argument has a stronger
+prescribed-mean form.
+
+For an action `J action X` and invariant mean `m`, first approximate `m` by
+finitely supported probability measures.  Their translate differences
+converge weakly to zero in `ell^1`; Mazur convexification makes those
+differences converge in norm while preserving prescribed fixed-set values.
+After rationalization, write
+
+`mu_n(x)=c_(n,x)/M_n`.
+
+Replace `x` by the numbered fiber `{(x,k):1<=k<=c_(n,x)}`.  The crucial
+coherent partial action is
+
+`(x,k) |-> (gx,k)` if `k<=min(c_(n,x),c_(n,gx))`.       `(CAP9)`
+
+Complete each partial bijection arbitrarily.  Because every generator uses
+the same fiber index, the canonical parts compose exactly.  With
+
+`b_n(g)=1/2||g mu_n-mu_n||_1`,                         `(CAP10)`
+
+the Hamming product defect is at most
+`b_n(h)+b_n(g)+b_n(gh)`, while the fixed-point fraction differs from
+`mu_n(Fix(g))` by at most `b_n(g)`.  Hence the finite tables converge to the
+permutation character
+
+`theta_m(g)=m(Fix_X(g))`.
+
+More precisely, the tables are asymptotic `J`-actions, not honest finite
+`J`-actions.  Pull them back along a free presentation `F->J`: the chosen
+generator permutations extend to honest finite `F`-actions, and telescoping
+the table defects makes their word characters converge to `theta_m` pulled
+back to `F`.  This is exactly the co-sofic character formulation.
+
+Therefore `J/{g:theta_m(g)=1}` is sofic.  In particular, if
+`x in Rad_sof(J)`, every invariant mean on every amenable `J`-set gives
+`m(Fix(x))=1`.  This closes not only fixed-point-free coamenable actions but
+also the collaborator's smaller vertex-action target with positive mean
+displacement.  Any surviving amenable negative sector must be genuinely
+nonpermutational as well as nonmonomial.

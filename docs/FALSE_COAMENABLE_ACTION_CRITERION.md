@@ -183,3 +183,113 @@ only after amalgamation; it is already present as positive mean displacement
 of the original radical element in one vertex.  The associated analytic
 target is an amenable `H`-action with an invariant mean `m` satisfying
 `m(Fix_X(x))<1`, not a class-`calA` permanence theorem for the shear.
+
+## 6. Prescribed invariant means also have coherent finite models
+
+The last target in the preceding paragraph is itself impossible.  The
+fixed-point-free hypothesis of `(CAF2)` can be replaced by positive
+displacement with respect to one specified invariant mean.
+
+**Theorem (co-soficity of invariant-mean permutation characters).**  Let a
+countable group `J` act on a countable set `X`, and let `m` be a
+`J`-invariant mean on `X`.  Put
+
+`theta_m(g)=m(Fix_X(g))`.                                  `(CAP1)`
+
+There are finite `J`-tables `sigma_n:J->Sym(Omega_n)` such that, for every
+`g,h in J`,
+
+`d_H(sigma_n(g)sigma_n(h),sigma_n(gh))->0`,                `(CAP2)`
+
+and
+
+`|Fix(sigma_n(g))|/|Omega_n| -> theta_m(g)`.               `(CAP3)`
+
+Consequently, after pullback along any free presentation `q:F->J`, the
+function `theta_m circle q` is a pointwise limit of finite-`F`-action
+characters, and
+
+`J/{g : theta_m(g)=1}` is sofic.                            `(CAP4)`
+
+**Proof, step 1: a Reiter sequence prescribed by `m`.**  Finitely supported
+probability measures are weak-star dense in the means on `X`: for any finite
+family of bounded functions, the vector of their `m`-values lies in the
+closed convex hull of their point-evaluation vectors.  Otherwise a finite-
+dimensional separating functional would give a bounded function `f` with
+`m(f)>sup_X f` or `m(f)<inf_X f`, contradicting positivity of `m`.
+
+Choose a net of finitely supported probabilities `mu_i` converging weak-star
+to `m`.  For a fixed finite `S subset J`, the tuple
+
+`T_S(mu_i)=(g mu_i-mu_i)_(g in S)`                         `(CAP5)`
+
+converges weakly to zero in the finite direct sum of copies of `ell^1(X)`,
+because `m` is invariant.  Mazur's lemma supplies convex combinations of a
+tail for which `(CAP5)` tends to zero in norm.  Tail convex combinations
+remain finitely supported probabilities and retain all previously imposed
+weak-star tests.  Diagonalizing over `J` and the countable family of
+indicators `1_(Fix_X(g))` gives finitely supported probabilities `mu_n` with
+
+`||g mu_n-mu_n||_1 -> 0`,
+`mu_n(Fix_X(g)) -> theta_m(g)` for every `g in J`.           `(CAP6)`
+
+Approximate the finitely many nonzero weights of each `mu_n` by rational
+weights.  After another diagonal choice, `(CAP6)` still holds.  Write the
+rational probability as
+
+`mu_n(x)=c_(n,x)/M_n`, `sum_x c_(n,x)=M_n`.                `(CAP7)`
+
+**Step 2: coherent numbered fibers.**  Define
+
+`Omega_n={(x,k):1<=k<=c_(n,x)}`.                            `(CAP8)`
+
+For `g in J`, use the canonical partial bijection
+
+`(x,k) |-> (gx,k)` whenever `k<=min(c_(n,x),c_(n,gx))`.     `(CAP9)`
+
+Its domain and range have the same cardinality, so complete it arbitrarily
+to a permutation `sigma_n(g)` of `Omega_n`.  The proportion outside the
+canonical domain is
+
+`b_n(g)=1/2 ||g mu_n-mu_n||_1`.                            `(CAP10)`
+
+The common fiber index in `(CAP9)` is essential.  If a point lies in the
+canonical domains for `h`, then for `g` after `h`, and also for `gh`, both
+composites send `(x,k)` to `(ghx,k)`.  A union bound therefore gives
+
+`d_H(sigma_n(g)sigma_n(h),sigma_n(gh))`
+` <= b_n(h)+b_n(g)+b_n(gh) -> 0`,                          `(CAP11)`
+
+which proves `(CAP2)`.
+
+On a fiber over `x in Fix_X(g)`, `(CAP9)` is the identity on the entire
+fiber.  On every other canonical-domain point it moves to a different
+fiber.  Only the completion points can contribute additional fixed points.
+Hence
+
+`mu_n(Fix_X(g))`
+` <= |Fix(sigma_n(g))|/M_n`
+` <= mu_n(Fix_X(g))+b_n(g)`.                               `(CAP12)`
+
+Equations `(CAP6)`, `(CAP10)`, and `(CAP12)` prove `(CAP3)`.  The maps
+`sigma_n` induce a homomorphism to a metric ultraproduct of finite symmetric
+groups.  Its kernel consists exactly of the elements for which
+`theta_m(g)=1`, proving `(CAP4)`.  Finally, for a free presentation
+`q:F(A)->J`, assign the generator `a` the permutation `sigma_n(q(a))` and
+extend this assignment to an honest finite `F(A)`-action.  Telescoping
+`(CAP2)` along each fixed word `w` shows that its permutation differs in
+Hamming distance from `sigma_n(q(w))` by a quantity tending to zero.  Its
+fixed-point character therefore converges to `theta_m(q(w))`, proving the
+stated co-sofic character conclusion.  End proof.
+
+**Radical consequence.**  If `x in Rad_sof(J)`, then every invariant mean
+for every amenable `J`-action satisfies
+
+`m(Fix_X(x))=1`.                                           `(CAP13)`
+
+Otherwise `(CAP4)` is a sofic image retaining `x`.  Thus no amenable action
+of the original vertex group `H` can satisfy the final target after
+`(CAC15)`.  More generally, amenable permutation representations cannot
+provide a genuinely new negative sector for a sofic-radical element; any
+remaining amenable negative representation must be nonpermutational as well
+as nonmonomial.
