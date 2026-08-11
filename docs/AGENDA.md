@@ -1539,18 +1539,16 @@ normalizer or rule out unrelated inner symmetries.  Exact proof and audit:
 `docs/FALSE_ATLAS_TWISTED_SWAP_NO_GO.md` and
 `experiments/atlas_twisted_swap_normalizer.py`.
 
-The new square-zero construction supplies the first explicit
-stabilizer-surviving paired class inside an actual residually finite
-Kazhdan infranormal pair; see
-`FALSE_SQUARE_ZERO_BS_KUN_THOM_PAIR.md`.  Its obvious residual-finiteness
-tower is nevertheless an exact dead end.  In every finite coefficient-ring
-quotient, each Laurent inverse is a positive power of the corresponding
-finite-order unit, so the positive and Laurent ring images coincide.  The
-image of `Gamma` is then normal, the marked Baumslag--Solitar subgroup acts
-trivially on the whole finite coset set, and the augmentation transgression
-vanishes.  Do not sweep finite ring quotients of this pair.  The live FALSE
-target is a non-ring-quotient phase or projective microstate retaining the
-marked translation.  Full proof:
+The original square-zero paired class with stable letter inside `Q` is
+invisible in every finite coefficient-ring quotient.  Each Laurent inverse
+becomes a positive power of a finite-order unit, so the positive and Laurent
+ring images coincide; the original Baumslag--Solitar subgroup then acts
+trivially on the finite coset set and its augmentation transgression
+vanishes.  Do not sweep finite ring quotients for that internal-stable-letter
+model.  The stronger construction in
+`FALSE_RADICAL_BS_PAIRED_KUN_THOM_DOUBLE.md` escapes the no-go by taking
+`c=(c_0,s)` with nontrivial external substitution projection.  Its finite
+`L`-coset incidence is now a live quantitative FALSE target.  Precise scope:
 `docs/FALSE_SQUARE_ZERO_FINITE_RING_QUOTIENT_NO_GO.md`.
 
 ## Banked (kernel-checked, this repo)

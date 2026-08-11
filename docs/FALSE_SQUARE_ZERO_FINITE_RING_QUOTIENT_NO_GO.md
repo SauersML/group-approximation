@@ -1,20 +1,27 @@
-# Finite coefficient-ring quotients erase the square-zero paired survivor
+# Finite coefficient-ring quotients erase the internal-stable-letter survivor
 
 Date: 2026-08-11
 
 ## 1. Outcome
 
-The explicit residual-finiteness quotients of the square-zero Kun--Thom
-pair cannot amplify the paired class from
-`FALSE_SQUARE_ZERO_BS_KUN_THOM_PAIR.md`.  In fact every finite quotient of
-the Laurent coefficient ring already identifies the positive and Laurent
-subrings.  In the resulting finite group quotient the image of `Gamma` is
-normal, the whole marked Baumslag--Solitar subgroup acts trivially on the
-finite coset set, and the augmentation transgression is zero.
+The explicit residual-finiteness quotients of the **original** square-zero
+Kun--Thom pair cannot amplify the paired class whose stable letter lies in
+`Q`, as constructed in `FALSE_SQUARE_ZERO_BS_KUN_THOM_PAIR.md`.  In fact
+every finite quotient of the Laurent coefficient ring already identifies
+the positive and Laurent subrings.  In the resulting finite group quotient
+the image of `Gamma` is normal, that original Baumslag--Solitar subgroup
+acts trivially on the finite coset set, and its augmentation transgression
+is zero.
 
 This is an exact no-go theorem, not a poor scaling observation.  The live
 analytic search must use phase microstates which do not factor through a
 finite coefficient ring.
+
+The theorem does **not** apply to the stronger fold-aligned subgroup in
+`FALSE_RADICAL_BS_PAIRED_KUN_THOM_DOUBLE.md`.  There the stable letter is
+`c=(c_0,s)` with nontrivial external substitution projection `s in L`, so
+its finite coset action need not be trivial.  That external component is
+exactly what escapes the argument below.
 
 ## 2. Positive and Laurent images coincide in every finite ring
 
@@ -67,7 +74,7 @@ The subgroup in `(FRQ7)` is normal: the elementary factor is preserved by
 the monomial action of `bar(L)`, while `bar(Q)` commutes with `bar(L)`.
 Thus the finite coset action factors through `bar(L)`.
 
-The marked subgroup
+The original marked subgroup
 
 `B=<h,c> ~= BS(1,p+1)`                                `(FRQ9)`
 
@@ -99,6 +106,10 @@ In particular the explicit paired bar class `[Z_p]` has zero image in
 every finite coefficient-ring quotient, although its transgression in the
 infinite coset module is nonzero by `(SQ38)`.
 
+Here `[Z_p]` denotes the class with internal stable letter
+`c in Q`.  The fold-aligned class `(RB18)` has stable letter `(c_0,s)` and
+is outside the scope of `(FRQ13)`.
+
 This explains the analytic gap sharply.  Residual finiteness of `G` does
 not approximate the nonnormal pair `(G,Gamma)` in a way which retains the
 marked augmentation class; all of the natural finite ring quotients make
@@ -107,7 +118,10 @@ the subgroup image normal first.
 ## 5. Computational consequence
 
 Do not sweep the parameters `(ell,m)` in `(FRQ5)` looking for positive
-marked mass.  The answer is exactly zero for every such quotient.
+marked mass from the original internal-stable-letter class.  The answer is
+exactly zero for every such quotient.  A finite-quotient incidence audit
+of the fold-aligned class remains meaningful because its stable letter is
+visible in the `L` quotient.
 
 The remaining viable finite-dimensional models must violate at least one
 of the hypotheses above.  Concretely they may use:
