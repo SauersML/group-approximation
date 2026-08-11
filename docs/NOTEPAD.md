@@ -38799,3 +38799,29 @@ Therefore `J/{g:theta_m(g)=1}` is sofic.  In particular, if
 also the collaborator's smaller vertex-action target with positive mean
 displacement.  Any surviving amenable negative sector must be genuinely
 nonpermutational as well as nonmonomial.
+
+# The regular-MF double input is now fully explicit (2026-08-10)
+
+The profinite-trace repair from the earlier weak-MF-double section is the
+load-bearing input for the finite-kernel reduction.  Every countable
+residually finite group `G` is regularly MF-realized: choose nested finite
+quotients `G/N_n`, use their left regular representations in the norm matrix
+corona, and take an ultralimit of normalized traces.  Nonidentity elements
+eventually act as nontrivial regular permutations, so the corona map is
+injective and the limiting trace is the canonical regular group trace.
+
+Therefore the regular-double theorem is applied twice, not assumed:
+
+`G  ->  D=G *_Gamma G  ->  K=D *_(C_D(r)) D`.          `(PRD1)`
+
+The first arrow uses residual finiteness of the Kun--Thom vertex group; the
+second uses the regular MF realization just obtained for `D`.  This validates
+the banked claim that `K` is regularly MF-realized without requiring subgroup
+separability.  It does **not** cross the finite central kernel
+
+`1 -> C_2 -> J -> K -> 1`.
+
+That remaining step is still exactly the nontrivial operator-norm projective
+sector `(PSG6)/(PSC4)`.  The older warning about arbitrary weak-MF embeddings
+remains correct; the profinite regular model is the special repair that keeps
+the Bass--Serre normal form visible.

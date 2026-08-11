@@ -21,6 +21,26 @@ such that
 Equivalently, the cyclic representation of `H` obtained from the GNS vector
 of `tau` is the left regular representation.
 
+**Lemma (profinite regular MF realization).**  Every countable residually
+finite group is regularly MF-realized.
+
+**Proof.**  Choose a decreasing sequence of finite-index normal subgroups
+`N_n` with trivial intersection, put `Q_n=H/N_n`, and let `lambda_n` be the
+left regular representation of `Q_n`.  Then
+
+`h |-> [(lambda_n(hN_n))_n]`                            `(RMD1a)`
+
+is injective in the norm matrix corona: if `h!=1`, then `hN_n!=1` eventually,
+and a nontrivial permutation unitary has operator-norm distance at least
+`sqrt(3)` from the identity.  Let `A` be the separable C-star algebra generated
+by this group copy.  It is MF because it is a C-star subalgebra of the norm
+matrix corona.  Any ultralimit of the normalized matrix traces restricts to
+
+`tau(h)=0` for every `h!=1`,                            `(RMD1b)`
+
+since the trace of the regular permutation of `hN_n` is zero eventually.
+Thus `(A,tau)` is the required regular MF realization.  End proof.
+
 **Proposition (regular MF symmetric doubles).**  If `H` is regularly
 MF-realized and `C<=H`, then
 
@@ -56,13 +76,20 @@ In particular no nontrivial reduced group word maps to `1`, proving
 injectivity.  Pulling the trace in `(RMD5)` back to `(RMD3)` proves `(RMD1)`
 for the double.  End proof.
 
-This proposition can be iterated.  In particular, for the banked
-Kun--Thom symmetric double `D` and the primitive radical shear word `r`, the
-untwisted quotient
+This proposition can be iterated.  Start with the residually finite
+Kun--Thom vertex group `G` and its subgroup `Gamma`.  The profinite lemma and
+one application of the proposition show that the banked symmetric double
+
+`D=G *_Gamma G`
+
+is regularly MF-realized.  A second application, now to `D` and the primitive
+radical shear word `r`, shows that the untwisted quotient
 
 `K=D *_(C_D(r)) D`                                     `(RMD6)`
 
-has a regular MF realization.
+has a regular MF realization.  This explicit two-step dependency is the
+profinite-trace repair: the claim does not follow from an arbitrary weak-MF
+embedding of `G`, because such an embedding may fold the amalgamated subgroup.
 
 ## 2. The finite-extension orientation correction
 
