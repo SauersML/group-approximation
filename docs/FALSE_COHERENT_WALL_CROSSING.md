@@ -269,3 +269,24 @@ their phase analysis is a deformation problem around one rigid classical
 point.  It does not show that their classes vanish in (R/[P,R]); the map
 in (16) is a quotient of the local relation package, not a lift of the full
 Leavitt atlas.
+
+There is an immediate analytic no-go for the most literal use of the two
+complementary models.  Let a block sum put normalized dimension weight
+(t) on the tensor flip and (1-t) on the alignment (16).  Choose any
+boundary word.  The alignment kills it, whereas the tensor flip gives it a
+nontrivial projection in at least one centerless (A_8) factor; one of the
+twelve generator commutators therefore has squared normalized-HS defect
+(2t).  Conversely, among the 6,394 interior words not killed by (16),
+choose one and then a chart generator not commuting with its nonidentity
+regular image.  The tensor flip kills this word, while that commutator has
+squared defect (2(1-t)) on the alignment block.  Consequently every such
+block sum satisfies
+
+\[
+ \max_{c\in\mathcal C_5}\|\pi(c)-1\|_2
+ \geq\sqrt{2\max\{t,1-t\}}\geq1.                    \tag{17}
+\]
+
+Thus ordinary orthogonal mixing cannot combine the complementary exact
+solutions.  Any useful fusion must couple their subspaces nonorthogonally
+or leave this two-model span.
