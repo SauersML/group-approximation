@@ -360,6 +360,59 @@ well-conditioned Hilbert quotient.  The unresolved issue is genuinely
 extension from the simultaneous kernel (6), not closure of the sum of the
 two fixed subspaces.
 
+There is a sharper boundary on what an analytic extension argument could
+detect. Give (M_{\mathbb C}) the norm inherited from its inclusion in
+\(\ell^2(U)\), and write
+
+\[
+ W=\overline{M_{\mathbb C}}^{\ell^2(U)}.
+\]
+
+**Proposition (continuous relation maps are cohomologically trivial).** If
+\(V\) is a unitary \(U\)-module and
+
+\[
+ T:M_{\mathbb C}\longrightarrow V
+\]
+
+is \(U\)-equivariant and bounded for the inherited \(\ell^2\)-norm, then
+\(T\) lies in the image of the first arrow in (4). Consequently every
+nonzero class in \(H^2(U,V)\) is represented by an algebraic equivariant map
+on \(M_{\mathbb C}\) which is discontinuous in the regular \(\ell^2\)-norm.
+
+**Proof.** The map \(T\) extends continuously to a \(U\)-intertwiner
+\(\overline T:W\to V\). Since \(W\) is invariant under the left regular
+representation, the orthogonal projection \(P_W:\ell^2(U)\to W\) commutes
+with \(U\). Thus
+
+\[
+ S=\overline T P_W:\ell^2(U)\longrightarrow V
+\]
+
+is a bounded \(U\)-intertwiner extending \(T\). Put
+\(v=-S\delta_1\). For \(x=\sum_g c_g g\in M_{\mathbb C}\), equivariance gives
+
+\[
+ T(x)=S(x)=\sum_g c_g\pi(g)S\delta_1=-\pi(x)v.       \tag{8}
+\]
+
+Under the Bass--Serre identification (5), the first arrow in (4) sends
+\(v\) to precisely the map \(x\mapsto-\pi(x)v\). To check the sign directly,
+make the cocycle zero on \(A\) and equal to
+\(b\mapsto\pi(b)v-v\) on \(B\). On the oriented edge from \(gA\) to \(gB\),
+the resulting equivariant edge cochain is \(-\pi(g)v\); evaluation on the
+cycle \(x=\sum_g c_g g\) is the right side of (8). Therefore \(T\) is in
+the image. Exactness of (4) proves the final assertion. \(\square\)
+
+This proposition explains why the spectral projection associated with the
+uniform angle in (7) cannot by itself produce or obstruct the missing
+cohomology. Spectral calculus, bounded intertwiners, and Hilbert-module
+orthogonal projections see only the continuous part of the relation module,
+and that entire part already dies in \(H^2\). A successful nonvanishing
+argument would have to construct a genuinely discontinuous algebraic module
+map; a vanishing argument must prove an automatic-continuity theorem from the
+special finite presentation of \(M\).
+
 ## Exact remaining frontier
 
 For the Steinberg cover (U=St_5(L)), superperfectness handles trivial
