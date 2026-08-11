@@ -138,28 +138,22 @@ is not confined to the trivial and quadratic sectors: primitive characters
 win for several primes.  Any uniform proof must therefore control all
 characters, not extrapolate only the two initially recognized blocks.
 
-## Proof-producing successor
+## Analytic resolution of the immediate candidate
 
-Do not spend the next allocation merely extending the prime table.  The
-Fourier-block replacement is now implemented and validated.  Make the
-controller emit one of:
+The uniform real-linear gap is now proved without further computation in
+`docs/TRUE_PROPERTY_T_LINEAR_COCYCLE_GAP.md`.  For a fixed finite
+presentation of any property-`(T)` group, a Hilbert-ultraproduct argument and
+Delorme--Guichardet vanishing give a positive lower bound for the coexact
+singular value over **every exact unitary representation**.  It applies in
+particular to all permutation representations on `X_p`.
 
-1. a rigorous lower bound for every scalar-character block, preferably an
-   exact rational/algebraic or interval certificate;
-2. an explicit character block whose bottom tends to zero, together with
-   its recognized eigenvector architecture.
-
-The immediate theorem candidate is:
-
-> For the fixed presentation above, the coexact part of `Delta_1` on the
-> complexes over `X_p` has a positive lower bound independent of `p`.
-
-A proof would give the real-linear part of a robust degree-one cocycle
-repair theorem on this explicit family.  It would not by itself settle the
-circle/torsion problem: integer carries, finite-order approximation, and
-Hamming deletion still have to be controlled.  Conversely, failure of this
-candidate would identify a concrete character sector and cochain mode that
-any TRUE decoder must handle.
+Character-block interval certificates may still produce an explicit
+constant, but they are no longer needed to establish qualitative linear
+repair.  The proof-producing successor is instead nonlinear: control the
+integral carries created by logarithms of circle phases, and explain how the
+selected exact-action gap survives the approximately multiplicative charts
+with the required relatively-Haar statistics.  Those are exactly the parts
+not supplied by property `(T)`.
 
 ## Reproduction
 
