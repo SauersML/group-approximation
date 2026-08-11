@@ -102,6 +102,22 @@ counterexample requires finite-dimensional characters that maximally violate
 one classical linear quasiregular-character inequality; arbitrary minimax
 weights are not intrinsic to the gate.
 
+Conjugate-double tensor powers give the exact parallel statement for the
+hyperlinear radical; see `TRUE_RADICAL_DOMINATION_CONSTANTS.md`.  With
+`q_chi(g)=1-|chi(g)|^2`, define the optimal ratios `C_perm` over finite
+action characters and `C_fd` over all normalized finite-dimensional
+characters.  Then
+
+`C_perm<infinity iff w in Rad_sof(P)`,
+`C_fd<infinity iff w in Rad_hyp(P)`, and `C_perm<=C_fd`.
+
+Consequently TRUE is exactly the assertion that `C_perm<infinity` forces
+`C_fd<infinity` for every finite presentation and word.  This is a sharper
+target than full HS stability: only the one controlled word must collapse,
+and the comparison constant may depend arbitrarily on the fixed presentation
+and word.  A counterexample is exactly a finite classical domination
+constant together with an infinite matrix-character domination constant.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
