@@ -40050,3 +40050,28 @@ are excluded by the sofic radical.  The tempting operator-norm rounding of
 approximate commuting translates fails at the boundary of a finite orbit
 window; controlling the normalized mass of that boundary is essentially
 the unresolved hyperlinear-to-sofic step.
+
+# 2026-08-11: finite-extension twisting cannot create the radical corner
+
+Let `H normal E` have finite index.  Then
+
+`Rad_sof(E) <= H`,                                    `(FRC12)`
+
+because the finite quotient `E/H` is sofic.  Moreover, if
+`x in Rad_sof(H)` and `e in E`, conjugation by `e` is an automorphism of
+`H`, the full sofic radical is characteristic, and therefore
+
+`e x e^(-1)x^(-1) in Rad_sof(H)`.                    `(FRC13)`
+
+Hence, if this commutator generates a finite normal subgroup of `E`, that
+subgroup is already finite normal in `H` and lies in `Rad_sof(H)`.  The
+finite-radical corner theorem would already apply to `H`; the finite
+extension has manufactured nothing.  Full proof:
+`docs/FALSE_FINITE_RADICAL_CORNER.md`, Section 5.
+
+This rules out the natural flip/finite-order-automorphism shortcut for the
+banked weak-MF double.  One cannot take the fold-radical witness `x`, put it
+in a finite extension, and hope that `[e,x]` becomes the new central torsion
+certificate unless that certificate was already present in the original
+group.  The live route remains the genuinely nonsplit projective sector,
+not finite-extension permanence.

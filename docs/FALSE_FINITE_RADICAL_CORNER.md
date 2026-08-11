@@ -148,3 +148,40 @@ Thus the cyclic shear has the correct unavoidable algebraic shape: a finite
 abelian, nonsplit radical kernel.  The unresolved projective sector is not
 an artifact of a poor presentation; it is the analytic content forced by
 that nonsplitting.
+
+## 5. Finite extensions cannot manufacture this kernel by twisting
+
+There is a tempting but sterile shortcut: place a weak-MF group in a finite
+extension, conjugate a radical element by a lift of the finite quotient, and
+try to make the resulting commutator a central torsion element.  The radical
+bookkeeping shows that this never creates a new finite-radical certificate.
+
+**Proposition (finite-extension twist no-go).**  Let `H normal E` have
+finite index.
+
+1. `Rad_sof(E) <= H`.
+2. If `x in Rad_sof(H)` and `e in E`, then
+
+   `e x e^(-1)x^(-1) in Rad_sof(H)`.                  `(FRC12)`
+
+Consequently, if the element in `(FRC12)` generates a finite normal subgroup
+of `E`, then that same finite subgroup is already normal in `H` and contained
+in `Rad_sof(H)`.  A finite extension has not manufactured a new application
+of the corner theorem; the application was already present in `H`.
+
+**Proof.**  The quotient map `E->E/H` has finite, hence sofic, target.  It
+kills `Rad_sof(E)`, proving the first assertion.
+
+Conjugation by `e` restricts to an automorphism `alpha_e` of `H`.  The full
+sofic radical is characteristic: precomposing homomorphisms from `H` to
+sofic groups by an automorphism does not change the intersection of their
+kernels.  Hence both `alpha_e(x)` and `x` belong to `Rad_sof(H)`, and so does
+their product `alpha_e(x)x^(-1)`, which is `(FRC12)`.  If its cyclic subgroup
+is normal in `E`, it is in particular normal in `H`.  End proof.
+
+The qualification about normality is essential: a finite-order element of a
+radical need not by itself be a finite normal subgroup.  But the corner
+theorem needs normality, and exactly in that case the finite-extension trick
+has added nothing.  Thus finite semidirect products, flip extensions, and
+finite-order automorphism gadgets cannot bypass the nonsplit projective
+sector by taking a commutator with the existing fold-radical witness.
