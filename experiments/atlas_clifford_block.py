@@ -192,11 +192,16 @@ def run(args):
     words = [decode_word(encoded)
              for encoded in artifact["kernel_generators"]]
     identity_key = matrix_key(I4)
+    records = []
+    for word in words:
+        projections = factor_projections(word)
+        label = ",".join(matrix_key(value).hex() for value in projections)
+        records.append((word, projections, label))
     if args.scope == "boundary":
-        words = [
-            word for word in words
+        records = [
+            record for record in records
             if any(matrix_key(value) != identity_key
-                   for value in factor_projections(word))
+                   for value in record[1])
         ]
     generators = [word[0] for _name, word in factor_generators()]
     generator_values = [
@@ -208,7 +213,8 @@ def run(args):
     defect_max = 0.0
     central_words = 0
     worst = []
-    for index, word in enumerate(words):
+    pair_stats = {}
+    for index, (word, _projections, label) in enumerate(records):
         value = block.word_value(word)
         word_max = 0.0
         for generator in generator_values:
@@ -221,21 +227,31 @@ def run(args):
             word_max = max(word_max, defect_squared)
         if word_max < args.tolerance:
             central_words += 1
+        stats = pair_stats.setdefault(label, {
+            "words": 0,
+            "central_words": 0,
+            "maximum_defect_squared": 0.0,
+        })
+        stats["words"] += 1
+        stats["central_words"] += int(word_max < args.tolerance)
+        stats["maximum_defect_squared"] = max(
+            stats["maximum_defect_squared"], word_max)
         worst.append((word_max, index))
     worst.sort(reverse=True)
     return {
         "scope": args.scope,
-        "kernel_words_scored": len(words),
-        "centrality_constraints_scored": 12 * len(words),
+        "kernel_words_scored": len(records),
+        "centrality_constraints_scored": 12 * len(records),
         "central_kernel_words": central_words,
-        "mean_defect_squared": defect_sum / (12 * len(words)),
-        "rms_defect": math.sqrt(defect_sum / (12 * len(words))),
+        "mean_defect_squared": defect_sum / (12 * len(records)),
+        "rms_defect": math.sqrt(defect_sum / (12 * len(records))),
         "maximum_defect_squared": defect_max,
         "maximum_defect": math.sqrt(defect_max),
         "worst_word_indices": [
             {"index": index, "maximum_defect_squared": value}
             for value, index in worst[:10]
         ],
+        "projection_pair_statistics": pair_stats,
         "local_clifford": block.local_diagnostics(),
         "representation_cache_size": len(block.cache),
         "elapsed_s": round(time.time() - started, 3),
