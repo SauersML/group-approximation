@@ -165,6 +165,20 @@ generally induced finite-image blocks of bounded dimension and exponent,
 cannot obstruct TRUE.  Any induced finite-image obstruction must have
 identity gap tending to zero; growing coset degree alone is harmless.
 
+The complementary unbounded-phase sector is now connected exactly to the
+carry/discriminant program on every exact finite quotient chart; see
+`TRUE_EXACT_COVER_MONOMIAL_DISCRIMINANT.md`.  Integral fillings of the
+lifted radical loops give an integer factorization `B_(w,X)=Z_X A_X` from
+relator holonomy to word holonomy.  The optimal additive monomial
+domination constant is the marked torus Lipschitz ratio of this factor map,
+and the optimal chordal/character constant is universally equivalent to its
+square.  Its exact formula `(ECM31)` has the paired-discriminant lower
+envelope as denominator and the canonical radical filling pairings as
+numerator.  Hence bounded marked ratios rule out all phase orders on exact
+charts.  The remaining monomial overlap is unbounded phase order on
+nonexact permutation charts, plus possible growth of the marked ratios over
+exact charts.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
