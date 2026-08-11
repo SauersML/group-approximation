@@ -638,6 +638,73 @@ the special evaluation form `chi_x(v(q,r))`.  Any further positive theorem
 must exploit that automorphic Haar geometry, or another property forced by
 the monomial model; it cannot be a coefficient-only measurable retraction.
 
+### The unsplit twist itself is an alternate endpoint
+
+Splitting is sufficient but not logically necessary.  Retain the essentially
+free quotient action and form the countable pmp groupoid
+
+`Sigma_omega=mu_infty times_omega R_Q`.                `(HPK9at)`
+
+Use the target-coordinate convention: an arrow `(q,x)` has source
+`q^(-1)x` and range `x`, and
+
+`(zeta,q,x)(eta,r,q^(-1)x)`
+`  =(zeta eta omega(q,r,x),qr,x)`.                     `(HPK9au)`
+
+**Theorem 3B (sofic torsion twist implies soficity).**  If the pmp groupoid
+`Sigma_omega` is sofic, then `Gamma` is sofic.
+
+**Proof.**  For `g=k s(q)` define the full bisection
+
+`B_g={ (a_k(x),q,x):x in X }`.                        `(HPK9av)`
+
+This is well-defined because `K` is torsion, so `a_k` takes values in the
+finite group `mu_(ord(k))`.  Equivariance `(HPK6)`, the extension law
+`s(q)s(r)=v(q,r)s(qr)`, and `(HPK9ac)` give
+
+`B_g B_h=B_(gh)`.                                     `(HPK9aw)`
+
+Thus `g |-> B_g` is a homomorphism `Gamma->[Sigma_omega]`.
+
+It is metrically injective.  If `q!=1`, essential freeness says that
+`B_(k s(q))` differs from the unit at almost every point.  If `q=1` and
+`1!=k in K`, Haar measure on `dual(K)` gives
+
+`mu{x:a_k(x)=1}=1/ord(k) <= 1/2`.                     `(HPK9ax)`
+
+Hence every nonidentity `g` has positive full-group distance from the unit.
+
+A sofic embedding of the full semigroup of `Sigma_omega` restricts to a
+metric permutation-ultraproduct embedding of its full group, and then to
+`Gamma`.  Positive, rather than unit, separation is enough: enumerate
+`Gamma` and take sufficiently slow diagonal product powers of the finite
+permutation representatives.  A permutation of Hamming length `ell` has
+product length `1-(1-ell)^L`; choose `L` tending to infinity slowly enough
+to preserve every tested multiplication defect.  All nonidentity lengths
+then tend to one.  This is a sofic approximation of `Gamma`.  End proof.
+
+Theorem 3 is the split special case of this endpoint.  If `(HPK9ae)` holds,
+the primitive identifies `(HPK9at)` with the product groupoid
+`mu_infty times R_Q`.  This product is sofic: it is the increasing union of
+`mu_(M!) times R_Q`, and each finite product contains `R_Q` as a finite-index
+sofic subgroupoid.  Cordeiro's finite-index and increasing-union permanence
+theorems apply after the splitting has been supplied.
+
+Theorem 3B gives a potentially weaker target than a torsion primitive:
+
+`Sigma_omega is a sofic pmp groupoid`.                 `(HPK9ay)`
+
+It is not automatic from soficity of `R_Q`.  A theorem asserting that every
+finite central twist over a sofic principal relation is sofic would, by the
+same bisection construction applied to a free sofic action of the quotient,
+settle the open permanence of sofic groups under finite central kernels.  At
+the finite-model level the obstruction is visible as follows.  A finite pair
+groupoid has trivial second cohomology, so completing the prescribed local
+twist labels requires a finite primitive; allowing finite isotropy merely
+moves the same holonomy into a finite extension group.  Thus `(HPK9ay)` is
+an alternate exact gate, not a consequence of the existing finite-index
+theorem.
+
 There is one immediate case where the condition is automatic.  If the phase
 exact sequence `(CTM17)` itself splits and its kernel has exponent `m`, choose
 the section to be a homomorphism.  Then `v=1`, `(HPK9c)` says that `b` is a
@@ -854,6 +921,11 @@ The common-Cartan route now has four exact layers:
    combinatorial
    finite-phase completion `(HPK13)--(HPK15)`, gives a sofic approximation.
 
+There is also an unsplit endpoint: soficity of the torsion central groupoid
+`Sigma_omega` implies soficity of `Gamma` through the full-bisection embedding
+`(HPK9at)--(HPK9ay)`.  Universal permanence for this endpoint is not known
+and would already settle the finite-central-kernel extension problem.
+
 Only the general implication from layer 2 to layer 4 is missing.  The
 torsion-kernel criterion settles it when the residue in layer 3 is
 torsion-split; allowing all roots of unity removes both explicit
@@ -880,3 +952,6 @@ Primary source pins:
   Actions of w-Rigid Groups*, arXiv:math/0512646.
 * Luiz Cordeiro, *An elementary approach to sofic equivalence relations*,
   arXiv:1608.05608, Theorem 3.4.
+* Luiz Cordeiro, *An elementary approach to sofic groupoids*,
+  arXiv:1708.08023; and *On sofic groupoids and their full groups*,
+  C. R. Acad. Sci. Paris 356 (2018), Theorems 2.4 and 2.5.

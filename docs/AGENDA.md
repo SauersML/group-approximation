@@ -219,6 +219,16 @@ coboundary but not a `Q/Z` coboundary.  The live target must therefore use
 the special automorphic Haar evaluation `omega(q,r,x)=chi_x(v(q,r))`, not a
 generic measurable retraction.
 
+There is a second exact endpoint which does not demand splitting.  The
+torsion twist `Sigma_omega=mu_infty times_omega R_Q` contains `Gamma` in its
+full group via the bisections `x |-> (a_k(x),q,x)`.  Essential freeness and
+the Haar law give every nonidentity bisection positive metric length, so
+soficity of `Sigma_omega` would imply soficity of `Gamma` after product
+amplification.  This is not automatic from soficity of `R_Q`: universal
+finite-twist permanence would already settle the open finite-central-kernel
+extension problem.  The two live alternatives are therefore torsion splitting
+or direct sofic approximation of this special evaluated-extension twist.
+
 Next: extract a finite matching system from the simultaneous prefix-fiber
 data `(FPC4)-(FPC8)` without demanding generatorwise matrix approximation.
 Use the normal `0/1` trace law to control overlaps and retain only the tested

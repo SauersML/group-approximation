@@ -39605,6 +39605,44 @@ profinite Haar dual and cocycles of the form
 special evaluated-extension primitive is countable-range modulo a cocycle,
 or to obtain the same torsion splitting by a finite-window argument.
 
+## 2026-08-11: the unsplit torsion twist is also a sufficient endpoint
+
+The torsion primitive is not logically necessary.  After making the quotient
+action free, form
+
+`Sigma_omega=mu_infty times_omega R_Q`.                `(TWT1)`
+
+With arrows `(zeta,q,x)` from `q^(-1)x` to `x`, multiplication is
+
+`(zeta,q,x)(eta,r,q^(-1)x)`
+`  =(zeta eta omega(q,r,x),qr,x)`.                     `(TWT2)`
+
+For `g=k s(q)`, the formula
+
+`B_g(x)=(a_k(x),q,x)`                                 `(TWT3)`
+
+defines a full bisection.  Kernel covariance and the extension cocycle law
+give `B_gB_h=B_(gh)`.  If `q!=1`, essential freeness makes its metric length
+one; if `q=1` and `k!=1`, the Haar law makes its length
+`1-1/ord(k)>=1/2`.  Hence `Gamma` embeds metrically in `[Sigma_omega]`.
+
+If `Sigma_omega` is a sofic pmp groupoid, restricting a full-semigroup sofic
+embedding gives permutation approximations of these bisections.  Their
+nonidentity lengths are positive; slow product amplification changes length
+`ell` to `1-(1-ell)^L` and produces ordinary asymptotic freeness.  Therefore
+
+`Sigma_omega sofic ==> Gamma sofic`.                  `(TWT4)`
+
+Splitting the twist recovers the previous torsion-primitive theorem, but
+`(TWT4)` is potentially weaker.  It is also a real open gate: automatic
+soficity of all finite central twists over principal sofic relations would
+settle closure of sofic groups under finite central kernels.  Cordeiro's
+finite-index theorem does not give this, because it starts from a sofic
+subgroupoid already inside the twist; such a copy of the base is precisely a
+splitting.  The phase lane now has two exact targets: torsion-rationalize the
+circle primitive, or directly approximate the special evaluated-extension
+twist `(TWT1)`.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
