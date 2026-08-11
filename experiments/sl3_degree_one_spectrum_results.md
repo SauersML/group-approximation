@@ -44,6 +44,10 @@ The complete machine-readable outputs are:
 * `sl3-degree-one-spectrum-extra.jsonl`;
 * `sl3-degree-one-spectrum-large.jsonl`;
 * `sl3-degree-one-low-modes.jsonl`.
+* `sl3-character-block-validation.jsonl`;
+* `sl3-character-block-existing-primes.jsonl`;
+* `sl3-character-block-all.jsonl`;
+* `sl3-character-block-targets.jsonl`.
 
 The first positive degree-zero singular value and the least degree-one
 Hodge singular value were:
@@ -88,11 +92,57 @@ into `p-1` scalar-character blocks.  The `p=23` anomaly is not an
 unstructured large-dimensional near-kernel; it is a quadratic-character
 block.  The `p=37` low mode descends to the projective-plane quotient.
 
+## Exact block construction and validation
+
+`sl3_character_block_spectrum.py` now performs this Fourier reduction
+directly.  It records every transition as a projective target, a sign, and
+an integer exponent modulo `p-1`.  Roots of unity are evaluated only after a
+character is selected.  Relation paths close both projectively and in their
+integer scalar exponent before any eigensolver is called.
+
+At `p=5`, the union of block minima begins
+
+`1, 1, 1.311018630490, 1.334178582518, ...`,
+
+which reproduces the full operator.  At the two large diagnostic primes the
+reduced blocks reproduce the full global minima to about `1e-14`:
+
+* `p=23`, quadratic character: `0.589583616964886`;
+* `p=37`, trivial character: `0.664830486617010`.
+
+The reduction is substantial.  At `p=37`, the full degree-one space has
+303,912 coordinates; one exact character pattern has 8,442 edge coordinates
+and 92,862 relator terms, and diagonalizes in well under two seconds on the
+four-core run.
+
+An all-character pass on the already measured primes gives the following
+winning sectors.  Character `j` means the character sending the chosen
+primitive root to `exp(2 pi i j/(p-1))`.
+
+| `p` | winning `j` | character order | least Hodge eigenvalue |
+|---:|---:|---:|---:|
+| 3  | 0  | 1  | 1.000000000000 |
+| 5  | 0  | 1  | 1.000000000000 |
+| 7  | 0  | 1  | 1.000000000000 |
+| 11 | 3  | 10 | 0.973698887134 |
+| 13 | 7  | 12 | 0.961911228508 |
+| 17 | 11 | 16 | 0.958921109237 |
+| 19 | 13 | 18 | 0.927367584903 |
+| 23 | 11 | 2  | 0.589583616965 |
+| 29 | 5  | 28 | 0.793320605152 |
+| 31 | 15 | 2  | 0.809116176894 |
+| 37 | 0  | 1  | 0.664830486617 |
+
+Every winning mode is coexact numerically.  However, the winning character
+is not confined to the trivial and quadratic sectors: primitive characters
+win for several primes.  Any uniform proof must therefore control all
+characters, not extrapolate only the two initially recognized blocks.
+
 ## Proof-producing successor
 
-Do not spend the next allocation merely extending the prime table.  Replace
-the full `F_p^3-{0}` matrices by their Fourier blocks under `F_p^*` and make
-the controller emit one of:
+Do not spend the next allocation merely extending the prime table.  The
+Fourier-block replacement is now implemented and validated.  Make the
+controller emit one of:
 
 1. a rigorous lower bound for every scalar-character block, preferably an
    exact rational/algebraic or interval certificate;

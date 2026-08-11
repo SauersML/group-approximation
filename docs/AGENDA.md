@@ -594,9 +594,13 @@ uniform-gap proof and not yet circle/torsion repair.  More importantly, the
 lowest modes split exactly under the commuting scalar `F_p^*` action: the
 `p=23` anomaly is wholly in the quadratic-character block, while the `p=37`
 mode is wholly scalar-invariant.  Stop extending the raw prime table.  The
-proof-producing successor is to construct the scalar-character Fourier
-blocks directly and seek exact/interval lower-bound certificates, or a
-recognized block family whose bottom tends to zero.
+scalar-character Fourier reduction is now implemented and validated in
+`experiments/sl3_character_block_spectrum.py`; at `p=37` it reduces 303,912
+edge coordinates to 8,442 per block and reproduces the full minimum to
+`1e-14`.  An all-character pass shows that primitive, quadratic, and trivial
+characters can each be the winning sector.  The proof-producing successor
+must therefore seek exact/interval lower-bound certificates for every
+character order, or a recognized block family whose bottom tends to zero.
 
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
