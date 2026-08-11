@@ -135,6 +135,14 @@ finite tensor amplification (`(SPF1)-(SPF6)`).  Only the limiting normal
 `0/1` character removes it.  Do not replace the joint matching problem by a
 generic negative-type-to-fixed-point transform.
 
+Do not confuse Lueck's ``approximation property'' for permutation characters
+with density of permutation characters.  In the precise definition audited in
+Boschheidgen's thesis, it says only that von Neumann ranks converge along a
+pointwise-convergent sequence already lying in the permutation-character
+class.  It neither produces that sequence nor moves a finite-dimensional
+unitary sequence into the class.  The same warning applies to Kionke's
+fixed-algebraic-degree version; see `(LRA1)-(LRA5)` in `docs/NOTEPAD.md`.
+
 FALSE-side no-go `(CAF1)-(CAF13)`: a fixed-point-free element of an amenable
 action survives the sofic image obtained by completing its restrictions to
 Følner sets.  Therefore every coamenable subgroup contains every central

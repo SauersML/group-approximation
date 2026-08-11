@@ -38932,3 +38932,48 @@ Bass--Serre closure toolkit starting from residually finite groups, without
 subgroup separability.  It does not cover the cyclic shear: that edge map is
 `r|->rz`, not the identity, and its nonzero projective sector remains the
 open finite-kernel gate.
+
+## Lueck's ``approximation property'' is rank continuity, not character density
+
+A terminology collision in the recent literature looks stronger than it is.
+Boschheidgen's thesis, Definition 2.2.3, calls a class `C` of traces on an
+algebra `A` an **approximation class** when every pointwise-convergent sequence
+
+`tau_i in C`, `tau_i -> tau`                              `(LRA1)`
+
+already satisfies
+
+`rk_(tau_i)(B) -> rk_tau(B)` for every matrix `B` over `A`. `(LRA2)`
+
+The source then states on page 70 that Lueck's lemma gives this property for
+permutation characters of `Q[F]`, and that Kionke gives the analogous property
+for finite-image unitary characters of fixed algebraic degree.  The relevant
+source is Jan Boschheidgen, *Finite dimensional approximations of operators
+related to groups and their applications*, pages 67 and 70:
+<https://www.icmat.es/Thesis/2023/Tesis_Jan_Paul_Boschheidgen.pdf>.
+
+This is an internal continuity theorem for a class, not a closure or rounding
+theorem between classes.  For `F` free and `N normal F`, the two statements at
+issue are
+
+`1_N in closure(C_fd)`    (hyperlinearity),                 `(LRA3)`
+
+`1_N in closure(C_perm)`  (soficity).                       `(LRA4)`
+
+Lueck's property begins only after a sequence in `C_perm` has been supplied.
+Under the negation of `(LRA4)` there is no such sequence converging to `1_N`,
+so `(LRA1)--(LRA2)` is simply inapplicable.  Kionke's result likewise keeps a
+sequence inside the fixed-degree finite-image unitary class; it does not move
+that sequence into `C_perm`.  In particular, neither result interchanges
+
+`closure(T_IRS intersect T_fd)` and
+`T_IRS intersect closure(T_fd)`.                            `(LRA5)`
+
+Nor can the rank conclusion by itself defeat the separator `(NIR7)`: the
+approximation property is vacuous for the missing permutation sequence.  A
+rank-based TRUE proof would need an additional theorem saying that the rank
+data of a normal `0/1` trace characterize membership in
+`closure(C_perm)`, or an explicit construction of the permutation sequence.
+The cited Lueck/Kionke results assert neither.  Thus ``permutation characters
+have the approximation property'' must not be cited as the finite-action
+character transfer.
