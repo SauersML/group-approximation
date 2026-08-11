@@ -467,3 +467,112 @@ Any proposed modulus must first divide `[G:H]||v||^2` by `(ICD43)`.  A
 positive answer at scale larger than `sqrt([G:H])` gives an explicit
 divergent carry through `(ICD48)`; a uniform square-root bound closes the
 entire invariant-transfer sector but not the remaining discriminant module.
+
+## 8. Saturation torsion is exactly the gap between the two tests
+
+The annihilator hypothesis `(ICD33)` and the modular image hypothesis
+`(ICD40)` need not be equivalent.  The exact difference is the saturation
+quotient already computed in the chart experiments.
+
+For one chart abbreviate
+
+`A=d1_X`, `K=ker(A^T) intersect Z^cells`,
+`L=ran_R(A) intersect Z^cells`,
+`T_X=L/A(Z^edges)`.                                  `(ICD50)`
+
+The top cellular cohomology of the presentation cover is
+
+`H^2(P_H,Z)=Z^cells/A(Z^edges)`.                     `(ICD51)`
+
+Evaluation on integral `2`-cycles gives an exact sequence
+
+`0 -> T_X -> H^2(P_H,Z)`
+`  --ev--> Hom(K,Z) -> 0`.                           `(ICD52)`
+
+**Proof of `(ICD52)`.**  The evaluation map sends the class of an integral
+cell vector `z` to `k |-> <z,k>`.  Its kernel consists exactly of integral
+vectors orthogonal to `K`, namely
+
+`K_R^perp intersect Z^cells=L`,                      `(ICD53)`
+
+and quotienting by `A(Z^edges)` gives `T_X`.  Every integer homomorphism on
+`K` extends to the ambient cell lattice because `K`, as the kernel of an
+integer map, is primitive.  Self-duality of the ambient standard lattice
+then realizes that extension as pairing with an integral cell vector.
+Hence evaluation is surjective.  End proof.
+
+This is the degree-two universal-coefficient sequence written directly in
+the presentation matrix.  In particular, `T_X` is the torsion subgroup of
+`H^2(P_H,Z)`.  It is exactly the group measured by the nonunit Smith factors
+of `d1_X`, not the discriminant group `D_K`.
+
+Now take `v in K_1` and let
+
+`alpha=p^*([v]) in H^2(P_H,Z)`.                      `(ICD54)`
+
+Under `(ICD52)`, its evaluation functional is
+
+`ev(alpha)(k)=<Jv,k>=<v,Sk>`.                        `(ICD55)`
+
+Therefore `(ICD33)` says precisely that `ev(alpha)` is divisible by `m` in
+the free group `Hom(K,Z)`.  Choose a lift `beta in H^2(P_H,Z)` of
+`ev(alpha)/m`.  The remaining element
+
+`t_(v,m)=alpha-m beta in T_X/mT_X`                   `(ICD56)`
+
+is independent of the choice of `beta`.  It vanishes if and only if
+`alpha` itself is divisible by `m`, equivalently if and only if the modular
+image certificate `(ICD40)` holds.
+
+**Corollary 6 (when annihilator and modular image agree).**  Under
+`(ICD33)`, condition `(ICD40)` follows whenever multiplication by `m` is
+surjective on `T_X`.  In particular this holds if either
+
+`T_X=0`, or `gcd(m,|T_X|)=1`.                         `(ICD57)`
+
+Thus the exact `p=5` certificate
+
+`L_5=d1_5(Z^edges)`                                  `(ICD58)`
+
+proves that the transfer-annihilator and modular-column-space tests are
+equivalent on that entire chart, for every base cycle and every modulus.
+At `p=3`, where `T_X~=C_3`, they are still equivalent for moduli coprime to
+three; only the `3`-primary part can separate them.
+
+### A fixed-rank transfer computation
+
+There is no need to construct the full discriminant lattice in order to
+audit this sector.  Put
+
+`M_X=S(K_X)=p_*H_2(P_H,Z) subset K_1`.               `(ICD59)`
+
+Equations `(ICD32)` imply
+
+`nK_1 subset M_X subset K_1`,                        `(ICD60)`
+
+so `M_X` has the fixed rank `rank(K_1)` and `K_1/M_X` is killed by `n`.
+For `v in K_1`, define
+
+`m_X(v)=gcd{<v,w>:w in M_X}`.                        `(ICD61)`
+
+The set in `(ICD61)` is nonzero because it contains the pairings with
+`nK_1`.  The largest modulus satisfying `(ICD33)` is exactly `m_X(v)`, and
+Theorem 3 gives
+
+`Theta(ran_R(d1_X))`
+` >= m_X(v)/(sqrt(n)||v||)` whenever `m_X(v)>1`.      `(ICD62)`
+
+Also
+
+`m_X(v) divides n||v||^2`,                           `(ICD63)`
+
+which recovers `(ICD43)` at the maximal annihilator.
+
+For the chosen presentation, `rank(K_1)` is fixed while the chart cell
+space grows with `|X|`.  Hence this sector reduces to finding the image of
+the integer kernel under the fixed-rank map `S`, followed by Hermite or
+Smith arithmetic in `K_1`; it does not require a Gram basis for all of
+`K_X`.  On a saturated chart, `(ICD61)` simultaneously determines the
+largest modular-image modulus for each `v`.  This is the rigorous
+low-dimensional successor to both the maximal-minor saturation audit and
+the full discriminant search.
