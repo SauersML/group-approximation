@@ -132,17 +132,27 @@ def evenly_spaced(values, count):
     return [values[index] for index in indices]
 
 
+def aligned_value(word, alignment, inverse_alignment):
+    value = I4.copy()
+    for factor, matrix in word:
+        if factor == 2:
+            matrix = gf2_mul(
+                gf2_mul(alignment, matrix), inverse_alignment)
+        value = gf2_mul(value, matrix)
+    return value
+
+
 def run(args):
     started = time.time()
     states, sphere_sizes = enumerate_ball(args.radius)
     words, _, _ = spanning_tree_kernel_words(states)
     identity_key = matrix_key(I4)
     boundary = []
-    controls = []
+    tensor_controls = []
     for word in words:
         projections = factor_projections(word)
         (boundary if any(matrix_key(value) != identity_key
-                         for value in projections) else controls).append(word)
+                         for value in projections) else tensor_controls).append(word)
 
     elements = enumerate_gl4()
     alignment = np.array([
@@ -151,11 +161,27 @@ def run(args):
         [1, 0, 0, 0],
         [0, 0, 0, 1],
     ], dtype=np.uint8)
+    inverse_alignment = gf2_inv(alignment)
+    wall_failures = [
+        word for word in tensor_controls
+        if matrix_key(aligned_value(word, alignment, inverse_alignment))
+        != identity_key
+    ]
+    shared_controls = [
+        word for word in tensor_controls
+        if matrix_key(aligned_value(word, alignment, inverse_alignment))
+        == identity_key
+    ]
+    if len(wall_failures) != 6394:
+        raise AssertionError("wall-alignment failure set changed")
     model = RegularPathModel(elements, alignment)
     selected_boundary = evenly_spaced(boundary, args.boundary_samples)
-    selected_controls = evenly_spaced(controls, args.control_samples)
+    selected_wall_failures = evenly_spaced(
+        wall_failures, args.wall_failure_samples)
+    selected_shared = evenly_spaced(shared_controls, args.shared_samples)
     selected = [("boundary", word) for word in selected_boundary]
-    selected.extend(("control", word) for word in selected_controls)
+    selected.extend(("wall_failure", word) for word in selected_wall_failures)
+    selected.extend(("shared", word) for word in selected_shared)
 
     rng = np.random.default_rng(args.seed)
     probes = rng.choice((-1.0, 1.0),
@@ -181,8 +207,10 @@ def run(args):
         ])
         boundary_losses = projective_losses[
             np.array([kind == "boundary" for kind in kinds])]
-        control_losses = projective_losses[
-            np.array([kind == "control" for kind in kinds])]
+        wall_losses = projective_losses[
+            np.array([kind == "wall_failure" for kind in kinds])]
+        shared_losses = projective_losses[
+            np.array([kind == "shared" for kind in kinds])]
         results.append({
             "label": label,
             "coefficients": [[float(value.real), float(value.imag)]
@@ -191,8 +219,10 @@ def run(args):
             "max_projective_loss": float(projective_losses.max()),
             "boundary_mean_loss": float(boundary_losses.mean()),
             "boundary_max_loss": float(boundary_losses.max()),
-            "control_mean_loss": float(control_losses.mean()),
-            "control_max_loss": float(control_losses.max()),
+            "wall_failure_mean_loss": float(wall_losses.mean()),
+            "wall_failure_max_loss": float(wall_losses.max()),
+            "shared_mean_loss": float(shared_losses.mean()),
+            "shared_max_loss": float(shared_losses.max()),
             "minimum_trace_modulus": float(min(abs(value) for value in traces)),
         })
     results.sort(key=lambda item: (
@@ -202,9 +232,12 @@ def run(args):
         "sphere_sizes": sphere_sizes,
         "kernel_words": len(words),
         "boundary_words": len(boundary),
-        "control_words": len(controls),
+        "tensor_control_words": len(tensor_controls),
+        "wall_failure_words": len(wall_failures),
+        "shared_control_words": len(shared_controls),
         "sampled_boundary_words": len(selected_boundary),
-        "sampled_control_words": len(selected_controls),
+        "sampled_wall_failure_words": len(selected_wall_failures),
+        "sampled_shared_control_words": len(selected_shared),
         "probes": args.probes,
         "seed": args.seed,
         "relative_endpoint_order": 4,
@@ -217,7 +250,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--radius", type=int, default=5)
     parser.add_argument("--boundary-samples", type=int, default=8)
-    parser.add_argument("--control-samples", type=int, default=16)
+    parser.add_argument("--wall-failure-samples", type=int, default=8)
+    parser.add_argument("--shared-samples", type=int, default=4)
     parser.add_argument("--probes", type=int, default=1)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--output")
