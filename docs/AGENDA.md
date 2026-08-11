@@ -529,6 +529,30 @@ Next: extract the full finite normal-relator list before larger blind runs;
 in parallel, target the persistent scalar Steinberg/Cuntz branch for a
 dimension-free trace or SOS inequality.
 
+The natural-eight-point red-team in
+`experiments/atlas_one_involution_results.md` adds the commuting-Boolean
+geometry from the current one-involution FALSE endpoint.  GAP's exceptional
+isomorphism `GL_4(F_2) ~= A8` makes a chart transvection four disjoint
+2-cycles, so a diagonal involution can be chosen exactly antipodal.  At the
+best classical inner alignment, all 78 conjugate-commutator tests vanish
+exactly while the 648 atlas constraints have RMS defect `0.46811943`.
+Multiplicity two lowers this only to `0.46792161`, with orbit RMS
+`0.00567036`; the atlas operator maximum remains `2`.  Thus the finite
+Boolean sector does not cause the atlas floor, but the observed improvement
+is merely local perturbative daylight.  Do not scale this blind.  The same
+scalar `e/E` Steinberg--Cuntz branch remains the dual/SOS target.
+
+On the direct FALSE lane, Corollary 10 of
+`FALSE_MACKEY_SPLIT_COCYCLE.md` lowers the final one-involution endpoint from
+operator norm to normalized Hilbert--Schmidt norm: finite telescoping of the
+unitary products and commuting lamp factors passes directly to the tracial
+ultraproduct.  Operator norm remains relevant only for the stronger MF
+statement.  The coinduced parity model already realizes antipodality and all
+commuting conjugates exactly in a finite crossed product, so the direct
+matrix problem is now approximation of that explicit crossed product while
+retaining its radical sign, not construction of the infinite-dimensional
+parity action.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

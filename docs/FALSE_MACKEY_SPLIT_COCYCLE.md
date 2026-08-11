@@ -572,6 +572,33 @@ sofic group which does not kill `z_univ`, contradicting
 `z_univ in Rad_sof(E_univ)` from Theorem 6.  Therefore `L` is hyperlinear
 and nonsofic.  End proof.
 
+The operator norm in Theorem 8 is needed for its equivalence with the
+operator-norm projective sector, but it is stronger than the norm required
+by the final group-theoretic conclusion.
+
+**Corollary 10 (normalized-HS one-involution endpoint).**  The conclusion of
+Corollary 9 already follows if `(MSC20ar)--(MSC20at)` hold in normalized
+Hilbert--Schmidt norm `||.||_(2,d_n)` instead of operator norm.
+
+**Proof.**  Normalized Hilbert--Schmidt norm is unitarily invariant, and
+
+`||AXB||_(2,d_n) <= ||A||_op ||X||_(2,d_n) ||B||_op`. `(MSC20bc1)`
+
+All factors used in the proof of Theorem 8 are unitary.  Therefore every
+fixed finite telescoping argument in `(MSC20ay)` and `(MSC20av)` remains
+valid with normalized-HS errors.  Likewise, for each pair of fixed finite
+lamps, reordering the finite products in `(MSC20az)` uses only finitely many
+commutators, so `(MSC20at)` makes the resulting normalized-HS error tend to
+zero.  The maps `W_n` consequently satisfy the multiplier `(MSC20am)` in
+normalized-HS norm.
+
+Define `Phi_n` by `(MSC20ba)`.  Its pointwise normalized-HS multiplicative
+defects tend to zero directly, so after amplification when necessary it
+induces the homomorphism `(MSC20bb)`.  The central element still maps exactly
+to `-1` by `(MSC20bc)`.  The rest of the proof of Corollary 9 is unchanged:
+the image is hyperlinear and cannot be sofic because `z_univ` belongs to the
+sofic radical of `E_univ`.  End proof.
+
 There is a canonical exact infinite-dimensional realization of all the
 relations in Theorem 8.  Coinduce the two-point parity action of `<s>` to
 `G`, take its product-measure crossed product, and let `T` be the base
