@@ -29,9 +29,10 @@ ProjectiveH2ReduceMatrix := function(value, field, prime)
 end;
 
 ProjectiveH2WriteBoundary := function(
-        resolution, action, field, prime, degree, chain_degree, path)
+        resolution, orbit, field, prime, degree, chain_degree, path)
     local stream, source_rank, target_rank, cache, source, coordinate,
-          word, term, element_index, action_rows, target, value;
+          word, term, element_index, reduced, images, permutation,
+          action_rows, target, value;
     source_rank := resolution!.dimension(chain_degree) * degree;
     target_rank := resolution!.dimension(chain_degree - 1) * degree;
     stream := OutputTextFile(path, false);
@@ -44,10 +45,16 @@ ProjectiveH2WriteBoundary := function(
             for term in word do
                 element_index := term[2];
                 if not IsBound(cache[element_index]) then
+                    reduced := ProjectiveH2ReduceMatrix(
+                        resolution!.elts[element_index]^-1, field, prime);
+                    images := List(orbit,
+                        point -> Position(orbit, OnLines(point, reduced)));
+                    if fail in images then
+                        Error("coefficient matrix did not preserve the orbit");
+                    fi;
+                    permutation := PermList(images);
                     action_rows := TransposedMat(PermutationMat(
-                        Image(action, ProjectiveH2ReduceMatrix(
-                            resolution!.elts[element_index]^-1,
-                            field, prime)), degree));
+                        permutation, degree));
                     cache[element_index] := action_rows;
                 fi;
                 for target in [1..degree] do
@@ -68,7 +75,7 @@ end;
 
 ProjectiveH2Run := function(prime, prefix)
     local resolution, group, generators, field, one, zero, reduced_generators,
-          finite_group, point, orbit, stabilizer, cosets, action, degree,
+          finite_group, point, orbit, degree,
           dimensions2, dimensions3;
     resolution := ResolutionArithmeticGroup("SL(3,Z)", 3);
     group := GroupOfResolution(resolution);
@@ -81,18 +88,15 @@ ProjectiveH2Run := function(prime, prefix)
     finite_group := Group(reduced_generators);
     point := [one, zero, zero, zero, zero, zero];
     orbit := Orbit(finite_group, point, OnLines);
-    stabilizer := Stabilizer(finite_group, point, OnLines);
     degree := prime^2 + prime + 1;
-    if Length(orbit) <> degree or Index(finite_group, stabilizer) <> degree then
+    if Length(orbit) <> degree then
         Error("symmetric-square line is not the projective-plane orbit");
     fi;
-    cosets := RightCosets(finite_group, stabilizer);
-    action := ActionHomomorphism(finite_group, cosets, OnRight);
     dimensions2 := ProjectiveH2WriteBoundary(
-        resolution, action, field, prime, degree, 2,
+        resolution, orbit, field, prime, degree, 2,
         Concatenation(prefix, "-d2.tsv"));
     dimensions3 := ProjectiveH2WriteBoundary(
-        resolution, action, field, prime, degree, 3,
+        resolution, orbit, field, prime, degree, 3,
         Concatenation(prefix, "-d3.tsv"));
     Print("prime=", prime,
           " projective_degree=", degree,
