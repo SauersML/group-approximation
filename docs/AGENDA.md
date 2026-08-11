@@ -795,8 +795,8 @@ words, all inside one 25-word `(1,b)` projection class.  Six words with the
 same projections remain, showing computationally that projection pairs do
 not determine compatibility.  A 20-step search over the exact
 Clifford-preserving `U(32) x U(32)` manifold lowers RMS slightly but leaves
-maximum defect exactly `2`.  Stop numerical refinement until the corrected
-algebraic survival problem in `R/[P,R]` is decided.
+maximum defect exactly `2`.  The perfect-overlap bridge decides the algebraic
+survival problem negatively, so stop numerical refinement of this branch.
 
 ## Banked (kernel-checked, this repo)
 

@@ -375,15 +375,16 @@ representation of \(U\), whereas the latter has only the trivial such
 representation. Therefore some later kernel relation must obstruct the
 extension.
 
-The useful change is that this obstruction is now sharply posed. The
-radius-ten failure of the commuting tensor flip does **not** impose a local
-positive lower bound: Theorem 5 closes the parity word and its induced
-Klein-four commutators exactly inside the canonical regular-character
-problem, with a positive central witness already built in. The next task is
-to make the remaining collision-tree words central without destroying this
-\(64\)-isotypic phase. A proof that the normalized cost of the later
-relations is \(o(1)\) would feed directly into the recursive atlas criterion
-and produce a hyperlinear nonsofic group.
+The useful conclusion is now a no-go boundary. The radius-ten failure of the
+commuting tensor flip does **not** impose a local positive lower bound:
+Theorem 5 closes the parity word and its induced Klein-four commutators
+exactly inside the canonical regular-character problem, with a positive
+central witness on that truncated window.  However,
+`FALSE_CLIFFORD_TORSION_GATE.md` proves that a six-leaf common chart kills
+the commutator phases and a perfect four-leaf overlap through an eight-leaf
+bridge kills the residual sign.  Thus \(q=1\) in the full universal central
+cover.  No continuation of this local block can retain its phase while
+satisfying all later relations.
 
 ## 7. Exact implementation and complete-boundary audit
 
@@ -413,9 +414,9 @@ RMS defect only from `0.7189726` to `0.7162448`; the maximum remains pinned
 at `2`, while the Clifford identities stay below `6e-14`.
 
 This is numerical evidence of a rigid subconstraint inside that Pauli
-manifold, not a theorem.  Do not run more seeds.  More importantly,
-`FALSE_CLIFFORD_TORSION_GATE.md` supplies the prior algebraic gate: first
-determine whether the order-at-most-four class of `q` survives in
-`R/[P,R]`.  Only after survival is known should the pinned constraint be
-converted into an exact representation-theoretic obstruction or enlarged
-by coupling the 64 isotypic copies.
+manifold, while `FALSE_CLIFFORD_TORSION_GATE.md` now supplies the exact
+reason the whole branch fails: the class of `q` is zero in `R/[P,R]`.
+Do not run more seeds, convert the pinned constraint into a larger optimizer,
+or couple additional 64-dimensional isotypic copies in an attempt to retain
+this witness.  Keep the construction only as a regression test for false
+positives produced by truncated centrality windows.
