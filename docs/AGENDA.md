@@ -127,6 +127,23 @@ power to have the same asymptotic Hamming length (`(MSU1)-(MSU4)`).  The
 normal-Dirac problem is narrower because it only retains a limiting discrete
 `0/1` word law after table-dependent amplification.
 
+The canonical Schoenberg/Poisson scalar transform does not cross the gap
+either.  Applied to the nonnegative `C_4` character `(NIR5)`, it gives
+`(1,e^(-t),e^(-2t),e^(-t))`, which violates the finite-action inequality
+`theta(g)<=theta(g^2)` for every `t>0`; the violation persists after every
+finite tensor amplification (`(SPF1)-(SPF6)`).  Only the limiting normal
+`0/1` character removes it.  Do not replace the joint matching problem by a
+generic negative-type-to-fixed-point transform.
+
+FALSE-side reduction `(CAC1)-(CAC7)`: for a central
+`1!=z in Rad_sof(J)`, it is enough to find a coamenable subgroup `L<J` with
+`z notin L`.  The quasi-regular hypertrace then has `tau(z)=0` and produces a
+hyperlinear nonsofic image.  In particular, proving that the cyclic shear is
+in the Glasner--Monod class of faithful transitive amenable actions would
+finish the problem.  Existing cyclic-double and finite-edge class-`A`
+theorems do not cover its twisted infinite edge; see
+`docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the

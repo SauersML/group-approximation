@@ -38589,6 +38589,35 @@ the sofic-radical property forces `chi(z)=1`.  Characters separate the
 abelianization, proving the claim.  Thus normal coamenable character
 induction cannot manufacture the negative sector.
 
+## A coamenable action moving the central radical is already enough
+
+Full details are in `docs/FALSE_COAMENABLE_ACTION_CRITERION.md`.  The scalar
+hypothesis above can be replaced by a different, strictly weaker action
+hypothesis.  If `L<J` is coamenable and `z notin L`, then the quasi-regular
+representation on `ell^2(J/L)` has the hypertrace
+
+`Phi(T)=m(x |-> <T delta_x,delta_x>)`,                  `(CAC3)`
+
+where `m` is a `J`-invariant mean.  Centrality gives
+
+`z gL=gL iff z in L`,                                  `(CAC5)`
+
+so `z` fixes no coset and the induced amenable trace satisfies
+`tau(z)=0`.  Amenable-trace matrix microstates therefore give a hyperlinear
+image in which `z` survives.  That image is nonsofic because
+`z in Rad_sof(J)`.
+
+In particular, it is enough to prove that the cyclic shear `J` belongs to
+the Glasner--Monod class of groups with a faithful transitive amenable
+action.  In any such action the stabilizer omits `z`: if it contained the
+central `z`, then every conjugate stabilizer would contain `z`, contradicting
+faithfulness.  Moon's theorem for `F_2 *_Z F_2` and Fima's theorem for finite
+edge groups do not cover the shear's arbitrary nonsofic vertex data,
+infinite edge `C times C_2`, and twisted embedding.  The live combinatorial
+target is only to build a transitive amenable `J`-action on which `z` acts
+freely; scalar character induction and splitting of the central extension
+are not required.
+
 # The hyperlinear halo-action shortcut is circular (2026-08-10)
 
 Full details are in `docs/FALSE_HALO_ACTION_AUDIT.md`.
