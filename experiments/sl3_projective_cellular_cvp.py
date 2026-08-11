@@ -251,11 +251,12 @@ def main() -> None:
 
     digest = hashlib.sha256()
     with args.lift_output.open("w", encoding="ascii") as stream:
-        header = "coordinate coefficient\n"
+        header = "coordinate qsharp lift\n"
         stream.write(header)
         digest.update(header.encode("ascii"))
-        for coordinate, coefficient in enumerate(candidate):
-            line = f"{coordinate} {coefficient}\n"
+        for coordinate, (qsharp_coefficient, lift_coefficient) in enumerate(
+                zip(qsharp, candidate)):
+            line = f"{coordinate} {qsharp_coefficient} {lift_coefficient}\n"
             stream.write(line)
             digest.update(line.encode("ascii"))
 
