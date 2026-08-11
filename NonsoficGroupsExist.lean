@@ -285,6 +285,7 @@ import NonsoficGroupsExist.Sofic.LeavittTraceFloor
 import NonsoficGroupsExist.Sofic.ScalarCocycle
 import NonsoficGroupsExist.Sofic.CharacterCount
 import NonsoficGroupsExist.Sofic.NoRounding
+import NonsoficGroupsExist.Sofic.NoPointwiseUnitaryRounding
 import NonsoficGroupsExist.Sofic.PhaseCorrection
 import NonsoficGroupsExist.Sofic.ScalarClass
 import NonsoficGroupsExist.Sofic.RationalCharacter
