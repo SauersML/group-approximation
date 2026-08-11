@@ -564,6 +564,14 @@ exact RF vertex models cannot solve the FALSE endpoint.  At least one vertex
 must already be represented by a genuinely nonliftable HS
 almost-representation.
 
+The one-orbit clutching refinement does not evade this no-go by implementing
+the lamp shear exactly.  The same note proves the quantitative bound: if
+exact vertex representations agree on `A_s` and the central involution has
+negative relative rank `delta`, their mismatch on a fixed Kazhdan set of
+`Gamma` is at least `(kappa/2)sqrt(delta)`.  In particular an exact global
+Boolean flip with `z=-1` leaves a dimension-independent edge defect of at
+least `kappa/2`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

@@ -86,53 +86,107 @@ The lemma is unchanged if the two representations initially have different
 dimensions and are amplified to a common dimension before `(RVH7)` is
 imposed.
 
-## The matching no-go
+## A quantitative exact-lamp obstruction
 
-**Theorem 2 (exact RF vertices cannot retain `z`).**  Let
+The one-orbit clutching form in `FALSE_COINDUCED_PARITY_MODEL.md` suggests
+implementing the shear on the lamp algebra exactly, for example by a global
+Boolean bit flip, and then trying to make only the two group actions close.
+Property `(T)` gives a dimension-free obstruction to precisely that ansatz.
 
-`pi_(i,n):J_i->U(d_n)`                                 `(RVH9)`
+**Theorem 2 (exact lamp matching forces a Kazhdan gap).**  Let
+
+`pi_i:J_i->U(d)`                                        `(RVH9)`
+
+be honest finite-dimensional unitary representations whose restrictions to
+the common normal subgroup `A_s` agree exactly.  Write `Z=pi_1(z)=pi_2(z)`
+and let `delta` be the relative dimension of the `-1` eigenspace of `Z`.
+Then
+
+`max_(a in S)||pi_1(a)-pi_2(a)||_2`
+` >=(kappa/2)sqrt(delta)`.                            `(RVH10)`
+
+In particular, if `Z=-1`, the two restrictions to the fixed Kazhdan set
+remain at distance at least `kappa/2`.
+
+**Proof.**  Put
+
+`V=pi_1(v)=pi_2(v)`,
+`S_h=pi_2(h)pi_1(h)^(-1)`.                            `(RVH11)`
+
+The two exact covariance relations on the common copy of `A_s` give the
+matrix identity
+
+`Z=[V,S_h]`.                                           `(RVH12)`
+
+Indeed, expand the commutator in `(RVH12)`.  Conjugation first by
+`pi_1(h)^(-1)` and then by `pi_2(h)` acts on the common lamp algebra exactly
+as `i_2(h)i_1(h)^(-1)=s`; the resulting group identity is `z=[v,s]`.
+
+The elementary commutator estimate and the finite-representation matching
+theorem now give
+
+`||Z-1||_2 <=2||S_h-1||_2`
+` =2||pi_2(h)-pi_1(h)||_2`
+` <=(4/kappa) max_(a in S)||pi_1(a)-pi_2(a)||_2`.     `(RVH13)`
+
+Since `Z` is an involution with negative relative rank `delta`,
+
+`||Z-1||_2=2sqrt(delta)`.                             `(RVH14)`
+
+Rearranging `(RVH13)--(RVH14)` proves `(RVH10)`.  End proof.
+
+Thus concentrating the clutching class on one regular `Gamma`-orbit does
+not allow an exact implementation of that orbit flip followed by a small
+perturbation of the `Gamma` action.  Positive negative-sector rank forces a
+positive edge mismatch independent of the matrix dimension.
+
+## The general matching no-go
+
+**Theorem 3 (exact RF vertices cannot retain `z`).**  Let
+
+`pi_(i,n):J_i->U(d_n)`                                 `(RVH15)`
 
 be honest finite-dimensional unitary representations such that
 
-`||pi_(1,n)(ell)-pi_(2,n)(ell)||_2 ->0`               `(RVH10)`
+`||pi_(1,n)(ell)-pi_(2,n)(ell)||_2 ->0`               `(RVH16)`
 
 for every fixed `ell in H`.  Then
 
 `||pi_(1,n)(z)-1||_2 ->0`,
-`||pi_(2,n)(z)-1||_2 ->0`.                            `(RVH11)`
+`||pi_(2,n)(z)-1||_2 ->0`.                            `(RVH17)`
 
 In particular these compatible vertex models cannot yield a tracial
 ultraproduct image retaining `z`.
 
-**Proof.**  Restrict `(RVH9)` to the two copies of `G_0`.  The finite
+**Proof.**  Restrict `(RVH15)` to the two copies of `G_0`.  The finite
 representation matching theorem in
 `FINITE_REPRESENTATION_MATCHING_BARRIER.md`, applied to `(RVH1)`, says
 
 `||pi_(1,n)(h)-pi_(2,n)(h)||_2`
 ` <=(2/kappa) max_(a in S)`
-`       ||pi_(1,n)(a)-pi_(2,n)(a)||_2`,               `(RVH12)`
+`       ||pi_(1,n)(a)-pi_(2,n)(a)||_2`,               `(RVH18)`
 
 where `(S,kappa)` is a fixed Kazhdan pair for `Gamma`.  The right-hand side
-tends to zero by `(RVH10)`.  Apply Lemma 1 to `(RVH5)` and choose the normal
+tends to zero by `(RVH16)`.  Apply Lemma 1 to `(RVH5)` and choose the normal
 form of `s` displayed in `(RVH2)`.  Then
 
 `||Phi_n(s)-1||_2`
-` =||pi_(2,n)(h)pi_(1,n)(h)^(-1)-1||_2 ->0`.          `(RVH13)`
+` =||pi_(2,n)(h)pi_(1,n)(h)^(-1)-1||_2 ->0`.          `(RVH19)`
 
 The group identity `z=[v,s]` in `(RVH5)` and pointwise asymptotic
 multiplicativity of `Phi_n` give
 
-`||Phi_n(z)-[Phi_n(v),Phi_n(s)]||_2 ->0`.             `(RVH14)`
+`||Phi_n(z)-[Phi_n(v),Phi_n(s)]||_2 ->0`.             `(RVH20)`
 
 For unitaries `V,S`,
 
-`||[V,S]-1||_2<=2||S-1||_2`.                         `(RVH15)`
+`||[V,S]-1||_2<=2||S-1||_2`.                         `(RVH21)`
 
-Equations `(RVH13)--(RVH15)` show `||Phi_n(z)-1||_2->0`.  Since `z` belongs
-to the common edge group, Lemma 1 and `(RVH10)` identify `Phi_n(z)`
-asymptotically with each `pi_(i,n)(z)`.  This is `(RVH11)`.  End proof.
+Equations `(RVH19)--(RVH21)` show `||Phi_n(z)-1||_2->0`.  Since `z` belongs
+to the common edge group, Lemma 1 and `(RVH16)` identify `Phi_n(z)`
+asymptotically with each `pi_(i,n)(z)`.  This is `(RVH17)`.  End proof.
 
-Because `z` is an involution, `(RVH11)` equivalently says that the relative
+Because `z` is an involution, `(RVH17)` equivalently says that the relative
 dimension of its `-1` eigenspace tends to zero.  In particular the failure
 cannot be repaired by selecting a negative spectral corner of positive
 normalized rank.
@@ -143,7 +197,7 @@ Residual finiteness of `J_1` and `J_2` does not furnish the normalized-HS
 endpoint of Corollary 10 in `FALSE_MACKEY_SPLIT_COCYCLE.md`.  Profinite
 regular models, arbitrary exact finite-image models, and indeed arbitrary
 honest finite-dimensional unitary representations of the two vertices all
-fall under Theorem 2 once their edge restrictions are made asymptotically
+fall under Theorem 3 once their edge restrictions are made asymptotically
 compatible.
 
 Therefore a successful compatible construction must use a genuinely
