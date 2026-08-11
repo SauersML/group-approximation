@@ -154,6 +154,22 @@ and `S(D)<=log d`, while
 
 rearrangement gives `(GCT17)`.  End proof.
 
+There is a sharper form which measures the actual top spectral
+multiplicity.  Put `M=||h||_op`, fix `eta>0`, and let
+
+`r=rank(1_([M-eta,M])(h))`.                                 `(GCT17a)`
+
+Then
+
+`Tr(D_(beta,h)h)>=M-eta-log(d/r)/beta`.                     `(GCT17b)`
+
+Indeed the top band gives
+
+`log Tr(exp(beta h))>=log r+beta(M-eta)`,                   `(GCT17c)`
+
+and combining this with `(GCT18)` and `S(D)<=log d` proves
+`(GCT17b)`.
+
 **Lemma 4 (Gibbs transport).**  If `U` is unitary and
 `D=D_(beta,h)`, then
 
@@ -219,6 +235,33 @@ Consequently, in the GNS representation associated to `chi`,
 Thus the quotient map `H->L` does not kill `z`.  If `L` were sofic, that
 map would kill every element of `Rad_sof(H)`, contradicting `(GCT2)` and
 `(GCT30)`.  Hence `L` is hyperlinear and nonsofic.  End proof.
+
+The same proof gives the following strictly sharper statement.
+
+**Theorem 1A (spectral-entropy version).**  Under `(GCT2)--(GCT5)`, put
+
+`M_n=||(Z_n-1)^*(Z_n-1)||_op`,                              `(GCT30a)`
+
+fix `0<eta<c^2`, and put
+
+`r_n=rank(1_([M_n-eta,M_n])((Z_n-1)^*(Z_n-1)))`,
+`L_n=1+log(d_n/r_n)`.                                       `(GCT30b)`
+
+It is enough to assume
+
+`delta_n L_n->0`.                                           `(GCT30c)`
+
+**Proof.**  Choose `beta_n` with
+
+`beta_n delta_n->0`, `L_n/beta_n->0`,                       `(GCT30d)`
+
+and use `(GCT17b)` in place of `(GCT17)`.  The limiting weighted energy is
+at least `c^2-eta>0`; the remainder of the proof is unchanged.  End proof.
+
+Since `r_n>=1`, one has `L_n<=1+log d_n`, so Theorem 1 is the worst-case
+rank-one corollary.  If the top spectral band has a fixed positive relative
+rank, `L_n` stays bounded and **no quantitative rate beyond centrality
+convergence is needed**.
 
 ## 5. Exact scope and sharpness of the method
 
