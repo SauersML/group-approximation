@@ -937,6 +937,21 @@ least `0.9676`, and shared-control mean at least `0.8301` for every branch.
 Do not run more branches or seeds in this one-operator functional calculus.
 Full signal: `experiments/atlas_boundary_geodesic_results.md`.
 
+The natural enlargement of the genuine prefix-swap symmetry is exhausted as
+well.  Every two-sided coordinate twist has the form `w_M=M_2 v`; it still
+exchanges the two atlas factors exactly when
+`M_2 in K_2 intersect N_Q(K_1)`.  Exact enumeration of all 20,160 matrices,
+with Leavitt chart membership decided over `F_2`, gives
+
+`K_2 intersect N_Q(K_1)={1}`.
+
+Thus this whole family acts only by the already-known
+`11 <-> 55`, `30 <-> 44` swap and cannot identify the final two central
+classes or make either self-inverse.  This does not compute the full Leavitt
+normalizer or rule out unrelated inner symmetries.  Exact proof and audit:
+`docs/FALSE_ATLAS_TWISTED_SWAP_NO_GO.md` and
+`experiments/atlas_twisted_swap_normalizer.py`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
