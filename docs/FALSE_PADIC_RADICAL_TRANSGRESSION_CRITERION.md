@@ -142,3 +142,30 @@ ordinary integer `<v,z_0>` (and `(PRT17)` would itself eventually fail for
 fixed nonzero `v`).  The nonintegral transgression can only live in the
 nonsemisimple norm sector where the growing `p`-power divides the cover
 degree.
+
+## 6. Profinite-modulus generalization
+
+Nothing in Lemma 1 uses prime powers.  Let
+
+`q_1 | q_2 | q_3 | ...`, `q_k->infinity`,              `(PRT19)`
+
+and let compatible residues `h_k in Z/q_k Z` define an element
+
+`hhat in lim_k Z/q_k Z`.                               `(PRT20)`
+
+Exactly the same finite-subsequence proof gives
+
+`sup_k dist(h_k,q_k Z)<infinity`
+` iff hhat lies in the diagonal image of Z`.           `(PRT21)`
+
+Therefore a compatible modular-transfer tower with fixed `v` proves FALSE
+whenever its profinite radical transgression `hhat` is not an ordinary
+integer.  The prime-power theorem is the special case in which the inverse
+limit in `(PRT20)` is `Z_p`.
+
+This version is useful when the profinite compression kernel has finite
+quotients of unbounded order but no single pro-`p` quotient tower has yet
+been isolated.  Whenever the corresponding solutions can be organized over
+a nested divisibility chain (an additional compatibility requirement), the
+live target is again nonintegrality, not a quantitative positive-fraction
+estimate.
