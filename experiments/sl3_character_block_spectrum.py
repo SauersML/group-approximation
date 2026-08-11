@@ -152,6 +152,7 @@ def exact_block_pattern(prime):
         "vertices": vertices,
         "generators": len(ROOTS),
         "relators": len(names),
+        "relator_names": names,
         "edges": edges,
         "cells": cell,
         "d0": (np.asarray(d0_rows), np.asarray(d0_cols),
@@ -186,7 +187,38 @@ def character_block(pattern, character):
     return d0, d1, chain_error
 
 
-def analyze_character(pattern, character, eigenvalues):
+def structure_diagnostics(pattern, mode, d0, d1):
+    vertices = pattern["vertices"]
+    shaped = mode.reshape((pattern["generators"], vertices))
+    defects = (d1 @ mode).reshape((pattern["relators"], vertices))
+    gram = shaped @ shaped.conjugate().T
+    points = projective_points(pattern["prime"])
+    zero_masks = ((points == 0) * np.array((1, 2, 4))).sum(axis=1)
+    point_energy = np.sum(np.abs(shaped) ** 2, axis=0)
+    return {
+        "inverse_participation_ratio": float(np.sum(np.abs(mode) ** 4)),
+        "max_coordinate_squared": float(np.max(np.abs(mode) ** 2)),
+        "generator_energy": [
+            float(value) for value in np.sum(np.abs(shaped) ** 2, axis=1)
+        ],
+        "generator_gram": [
+            [[float(value.real), float(value.imag)] for value in row]
+            for row in gram
+        ],
+        "relator_defect_energy": [
+            [name, float(value)] for name, value in zip(
+                pattern["relator_names"],
+                np.sum(np.abs(defects) ** 2, axis=1))
+        ],
+        "point_zero_mask_energy": [
+            [int(mask), float(np.sum(point_energy[zero_masks == mask]))]
+            for mask in sorted(set(zero_masks.tolist()))
+        ],
+        "d0_adjoint_norm": float(np.linalg.norm(d0.conjugate().T @ mode)),
+    }
+
+
+def analyze_character(pattern, character, eigenvalues, structure):
     started = time.time()
     d0, d1, chain_error = character_block(pattern, character)
     laplacian = d1.conjugate().T @ d1 + d0 @ d0.conjugate().T
@@ -200,7 +232,7 @@ def analyze_character(pattern, character, eigenvalues):
     values = values[order]
     mode = vectors[:, order[0]]
     residual = np.linalg.norm(laplacian @ mode - values[0] * mode)
-    return {
+    result = {
         "character": character,
         "conjugate_character": (-character) % (pattern["prime"] - 1),
         "hodge1_eigenvalues": [float(value) for value in values],
@@ -211,9 +243,14 @@ def analyze_character(pattern, character, eigenvalues):
         "chain_error": chain_error,
         "elapsed_s": round(time.time() - started, 3),
     }
+    if structure:
+        result["structure"] = structure_diagnostics(
+            pattern, mode, d0, d1)
+        result["elapsed_s"] = round(time.time() - started, 3)
+    return result
 
 
-def run(prime, characters, eigenvalues):
+def run(prime, characters, eigenvalues, structure):
     started = time.time()
     pattern = exact_block_pattern(prime)
     modulus = prime - 1
@@ -225,7 +262,7 @@ def run(prime, characters, eigenvalues):
     result["pattern_d0_terms"] = int(len(pattern["d0"][0]))
     result["pattern_d1_terms"] = int(len(pattern["d1"][0]))
     result["characters"] = [
-        analyze_character(pattern, character, eigenvalues)
+        analyze_character(pattern, character, eigenvalues, structure)
         for character in selected
     ]
     result["elapsed_s"] = round(time.time() - started, 3)
@@ -237,9 +274,11 @@ def main():
     parser.add_argument("--primes", type=int, nargs="+", required=True)
     parser.add_argument("--characters", type=int, nargs="+")
     parser.add_argument("--eigenvalues", type=int, default=2)
+    parser.add_argument("--structure", action="store_true")
     args = parser.parse_args()
     for prime in args.primes:
-        print(json.dumps(run(prime, args.characters, args.eigenvalues)),
+        print(json.dumps(run(prime, args.characters, args.eigenvalues,
+                             args.structure)),
               flush=True)
 
 

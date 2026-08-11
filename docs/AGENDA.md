@@ -598,9 +598,27 @@ scalar-character Fourier reduction is now implemented and validated in
 `experiments/sl3_character_block_spectrum.py`; at `p=37` it reduces 303,912
 edge coordinates to 8,442 per block and reproduces the full minimum to
 `1e-14`.  An all-character pass shows that primitive, quadratic, and trivial
-characters can each be the winning sector.  The proof-producing successor
-must therefore seek exact/interval lower-bound certificates for every
-character order, or a recognized block family whose bottom tends to zero.
+characters can each be the winning sector.  Any certificate search therefore
+had to control every character order rather than extrapolate one block.
+
+That certificate search has succeeded in a stronger universal form; see
+`TRUE_SL3_HODGE_SOS.md`.  A 102-by-132 rational group-ring factor and an
+exact coefficient residual prove
+
+`Delta_1 >= 14164556740143/5000000000000000 I`
+
+for the fixed `SL_3(Z)` presentation in every unitary representation.  This
+makes the qualitative property-`(T)` result in
+`TRUE_PROPERTY_T_LINEAR_COCYCLE_GAP.md` explicit and gives
+
+`dist(a,Z^1) <18.789 ||d1 a||`.
+
+The real-linear selected-chart gate is therefore closed.  Do not spend more
+compute on its character blocks.  The live obstruction is integral and
+nonlinear: lift circle phases through integer carries, retain the
+finite-order cohomology class, and turn `L2` repair into Hamming deletion.
+On the FALSE side the same issue asks whether varying torsion curvature can
+evade real repair and furnish the genuinely nonliftable projective sector.
 
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an

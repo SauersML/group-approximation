@@ -43,11 +43,12 @@ The complete machine-readable outputs are:
 * `sl3-degree-one-spectrum.jsonl`;
 * `sl3-degree-one-spectrum-extra.jsonl`;
 * `sl3-degree-one-spectrum-large.jsonl`;
-* `sl3-degree-one-low-modes.jsonl`.
+* `sl3-degree-one-low-modes.jsonl`;
 * `sl3-character-block-validation.jsonl`;
 * `sl3-character-block-existing-primes.jsonl`;
 * `sl3-character-block-all.jsonl`;
-* `sl3-character-block-targets.jsonl`.
+* `sl3-character-block-targets.jsonl`;
+* `sl3-character-block-structure.jsonl`.
 
 The first positive degree-zero singular value and the least degree-one
 Hodge singular value were:
@@ -138,6 +139,27 @@ is not confined to the trivial and quadratic sectors: primitive characters
 win for several primes.  Any uniform proof must therefore control all
 characters, not extrapolate only the two initially recognized blocks.
 
+The low-mode structure diagnostics show a repeated local pattern.  At
+`p=23` and `p=37` the six generator energies are close to uniform, and the
+Steinberg/orthogonal-root relators carry nearly all the coexact energy.  The
+single torsion relator contributes only `0.0004414` and `0.0002257`,
+respectively.  This was the signal to search for one fixed group-ring
+inequality instead of extending the prime table.
+
+## Exact quantitative resolution
+
+The certificate miner succeeded.  `sl3_group_ring_sos.py` constructs the
+Hodge operator as a `6 x 6` matrix over `R[SL_3(Z)]`.  A radius-zero Gram SDP
+found a positive candidate, and `sl3_sos_certificate.py` rationalized it and
+paid for the complete exact coefficient residual.  The resulting rigorously
+verified inequality is
+
+`Delta_1 >= 0.0028329113480286 I`
+
+for every unitary representation, not just the finite `X_p` actions.  The
+exact rational theorem, certificate hash, proof, and robust-repair corollary
+are in `docs/TRUE_SL3_HODGE_SOS.md`.
+
 ## Analytic resolution of the immediate candidate
 
 The uniform real-linear gap is now proved without further computation in
@@ -147,9 +169,9 @@ Delorme--Guichardet vanishing give a positive lower bound for the coexact
 singular value over **every exact unitary representation**.  It applies in
 particular to all permutation representations on `X_p`.
 
-Character-block interval certificates may still produce an explicit
-constant, but they are no longer needed to establish qualitative linear
-repair.  The proof-producing successor is instead nonlinear: control the
+The group-ring certificate above supplies an explicit constant
+simultaneously for all representations.  The proof-producing successor is
+instead nonlinear: control the
 integral carries created by logarithms of circle phases, and explain how the
 selected exact-action gap survives the approximately multiplicative charts
 with the required relatively-Haar statistics.  Those are exactly the parts
