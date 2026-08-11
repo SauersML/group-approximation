@@ -285,6 +285,61 @@ such a splitting.  Its value is to identify an algebraic certificate that
 would settle the carry problem immediately, and to separate that certificate
 from real closed-range statements.
 
+### The universal integral splitting is impossible for one-ended groups
+
+There is a structural obstruction to using `(ICT40)` for the present
+property-`(T)` group.
+
+**Proposition 4.**  Let `G` be infinite, finitely presented, and one-ended,
+and let `D=d1` be the relator matrix of any finite presentation over
+`Z[G]`.  There is no matrix `B` over `Z[G]` satisfying
+
+`D B D=D`.                                             `(ICT41)`
+
+**Proof.**  The beginning of the presentation resolution computes
+`H^1(G,Z[G])` as
+
+`ker(d1)/im(d0)`.                                     `(ICT42)`
+
+The Specker--Houghton ends theorem gives
+`H^1(G,Z[G])=0` for an infinite one-ended finitely generated group.  Hence
+
+`ker(D)=im(d0)`.                                      `(ICT43)`
+
+If `(ICT41)` held, then
+
+`P=1-BD`                                              `(ICT44)`
+
+would be a `Z[G]`-module projection onto `ker(D)`: one has `DP=0`, while
+`P` is the identity on `ker(D)`.  Thus `im(d0)` would be a direct summand.
+
+Because `G` is infinite, the regular module has no nonzero invariant vector,
+so `d0:Z[G]->Z[G]^S` is injective.  A splitting of its image would therefore
+give a module row `L` with
+
+`L d0=1`.                                             `(ICT45)`
+
+Every entry of `d0(1)` is `s-1` (up to the left/right convention).  Applying
+the augmentation `epsilon:Z[G]->Z` to `(ICT45)` gives `0=1`, a
+contradiction.  End proof.
+
+In particular, `SL_3(Z)` is one-ended: property `(T)` implies property
+`(FA)`, while Stallings' theorem would give a nontrivial tree action if it
+had more than one end.  Thus an autonomous search for one fixed group-ring
+matrix `B` in `(ICT40)` is mathematically dead.
+
+This does not rule out uniformly bounded chart-dependent splittings over
+the finite permutation lattices, nor does it rule out `(ICT12)`.  Those
+finite lattices can split even though the universal regular module does not.
+The compute target must therefore measure or construct the finite-chart
+carry lattice itself rather than solve one universal `DBD=D` equation.
+
+References for the only external input in the proof are W. H. Houghton,
+[*Ends of Groups and the Associated First Cohomology
+Groups*](https://doi.org/10.1112/jlms/s2-6.1.81), and the standard
+property-`(T)` to property-`(FA)` implication recorded in
+Bekka--de la Harpe--Valette, *Kazhdan's Property (T)*, Theorem 2.3.6.
+
 ## 7. Calibration against coefficient-independent cosystolic expansion
 
 Oppenheim--Valentiner-Branth prove that suitable Kac--Moody--Steinberg

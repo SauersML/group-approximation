@@ -620,6 +620,35 @@ finite-order cohomology class, and turn `L2` repair into Hamming deletion.
 On the FALSE side the same issue asks whether varying torsion curvature can
 evade real repair and furnish the genuinely nonliftable projective sector.
 
+`TRUE_INTEGRAL_CARRY_TRANSVERSALITY.md`, Proposition 4, also closes the
+tempting universal generalized-inverse search.  For any infinite one-ended
+finitely presented group, `DBD=D` over `Z[G]` would split `ker D=im d0`;
+augmentation makes that impossible.  In particular it cannot hold for
+`SL_3(Z)`.  The surviving compute target is chart-dependent: measure or
+construct the finite carry lattice `ran(d1_V) intersect Z^cells` and its
+transversality, not one universal integral group-ring splitting.
+
+The first such audit is in `experiments/sl3_carry_results.md`.  Basis
+leverage through `p=37`, exhaustive two-cell searches, torsion-cell LLL at
+`p=3,5`, and a full-cell LLL pass at `p=3` find no divergent carry.  The
+strongest class is always the fixed-axis CRW torsion cell and stabilizes at
+`Theta>=4.543096`.  Exact Smith arithmetic gives saturation quotient `C_3`
+at `p=3`; at `p=5`, three cold-verifiable maximal minors have determinant
+gcd one, proving that the relator image is saturated.  This is positive
+signal for bounded carry transversality, not an upper bound.  The next
+solver must synthesize a uniformly bounded chart-dependent integral
+reduction operator or exhibit a long carry with projected norm tending to
+zero.  Dense Smith forms are superseded by sparse modular selection and
+exact determinant/gcd certificates.
+
+The saturation computation is not the terminal invariant.
+`INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` proves that `Theta` is governed by
+the discriminant gluing of the primitive cycle lattice
+`ker(d1^T) intersect Z^cells`; saturation of `im(d1)` neither bounds nor
+forces it.  The next autonomous solver must therefore construct the cycle
+Gram discriminant module and certify the paired closest-vector radii, using
+the scalar/chart symmetries to avoid unrestricted high-dimensional CVP.
+
 This also fixes the architecture of the autonomous FALSE solver.  It must
 not enumerate exact RF vertex representations and hope that ILP plus an
 intertwiner retains the radical sign: `FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md`
