@@ -64,3 +64,46 @@ for named in targets do
     break;
   fi;
 od;
+
+centralRelations := Concatenation(
+  s4Relations, [w70, w90, w91, w86],
+  List([s1,t1,s2,t2], generator -> Comm(phase,generator)));
+centralQuotient := F / centralRelations;
+centralPhase := MappedWord(
+  phase, GeneratorsOfGroup(F), GeneratorsOfGroup(centralQuotient));
+Print("central_abelian_invariants ",
+      AbelianInvariants(centralQuotient), "\n");
+centralTargets := [];
+for targetOrder in [1..5000] do
+  for targetIndex in [1..NumberPerfectGroups(targetOrder)] do
+    target := PerfectGroup(IsPermGroup,targetOrder,targetIndex);
+    if Size(Centre(target))>1 then
+      Add(centralTargets,
+          [Concatenation(String(targetOrder),".",String(targetIndex)),target]);
+    fi;
+  od;
+od;
+for named in centralTargets do
+  centralMaps := GQuotients(centralQuotient,named[2]);
+  centralSurvivors := Filtered(
+    centralMaps,hom -> Image(hom,centralPhase) <> One(named[2]));
+  Print("central_target ",named[1]," quotients ",Length(centralMaps),
+        " phase_survivors ",Length(centralSurvivors),"\n");
+  if Length(centralSurvivors)>0 then
+    centralCertificate := centralSurvivors[1];
+    centralGeneratorImages := [];
+    for generator in GeneratorsOfGroup(centralQuotient) do
+      Add(centralGeneratorImages,Image(centralCertificate,generator));
+    od;
+    Print("central_generator_images ",centralGeneratorImages,"\n");
+    Print("central_phase_image ",
+          Image(centralCertificate,centralPhase),"\n");
+    Print("central_target_center_order ",Size(Centre(named[2])),"\n");
+    Print("central_phase_order ",
+          Order(Image(centralCertificate,centralPhase)),"\n");
+    Print("central_factor_image_orders ",
+          Size(Group(centralGeneratorImages{[1,2]}))," ",
+          Size(Group(centralGeneratorImages{[3,4]})),"\n");
+    break;
+  fi;
+od;

@@ -926,6 +926,19 @@ Full theorem and exhaustive certificate:
 `docs/FALSE_ATLAS_CERTIFIED_A8_QUOTIENT.md` and
 `experiments/atlas_certified_a8_alignment.py`.
 
+Centrality does not rescue the local four-class obstruction. The central
+quotient of the local `S4*S4` presentation maps onto the perfect group
+`PerfectGroup(2688,2) ~= (C2^4):PSL(3,2)`, whose center has order two. Both
+local `S4` factors embed, the four zero classes map to one, and class `11`
+maps to the central involution. The negative central eigenspace of the
+regular representation restricts as `56 lambda_S4`; amplifying 15 times
+matches `lambda_A8|S4 = 840 lambda_S4`. Hence two honest regular `A8` charts
+in dimension `20160` satisfy all four zeros exactly and send class `11` to
+`-I`. Any obstruction must now use at least one of the other 20 certified
+classes. Full exact proof and permutation certificate:
+`docs/FALSE_ATLAS_LOCAL_CENTRAL_PHASE.md` and
+`experiments/atlas_stubborn_s4_certificate.py`.
+
 The simultaneous 24-class solver now gives a first finite compatibility
 answer.  With the two `(5,2,1)` `A8` charts fixed, `U(64)` reaches certified
 zero-class RMS `1.279437` while retaining the survivor phase to HS error

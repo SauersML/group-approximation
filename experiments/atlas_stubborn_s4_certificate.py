@@ -47,6 +47,16 @@ CERTIFICATE = {
     "t2": (0, 1, 4, 5, 6, 7, 2, 3),
 }
 
+CENTRAL_CERTIFICATE = {
+    "s1": (10, 5, 8, 14, 9, 1, 13, 12, 2, 4, 0, 15, 7, 6, 3, 11),
+    "t1": (4, 8, 14, 1, 13, 5, 10, 2, 3, 9, 11, 6, 12, 0, 7, 15),
+    "s2": (2, 10, 0, 6, 14, 7, 3, 5, 12, 11, 1, 9, 8, 15, 4, 13),
+    "t2": (0, 1, 7, 3, 4, 12, 11, 8, 2, 15, 5, 13, 10, 6, 9, 14),
+}
+CENTRAL_PHASE = (
+    3, 4, 6, 0, 1, 9, 2, 11, 13, 5, 14, 7, 15, 8, 10, 12,
+)
+
 
 def matrix_from_key(key):
     return np.frombuffer(bytes.fromhex(key), dtype=np.uint8).reshape(4, 4)
@@ -146,12 +156,12 @@ def translate(word, factorizations):
     return tuple(answer)
 
 
-def evaluate_symbols(word):
-    identity = tuple(range(8))
+def evaluate_symbols(word, certificate=CERTIFICATE):
+    identity = tuple(range(len(next(iter(certificate.values())))))
     value = identity
     for symbol in word:
         inverse = symbol.endswith("^-1")
-        generator = CERTIFICATE[symbol.removesuffix("^-1")]
+        generator = certificate[symbol.removesuffix("^-1")]
         if inverse:
             generator = permutation_inverse(generator)
         value = permutation_product(value, generator)
@@ -209,12 +219,59 @@ def main():
     image_group = generated_permutation_group(list(CERTIFICATE.values()))
     if len(image_group) != 168:
         raise AssertionError("certificate image does not have order 168")
+
+    central_identity = tuple(range(16))
+    for factor in (1, 2):
+        s = CENTRAL_CERTIFICATE[f"s{factor}"]
+        t = CENTRAL_CERTIFICATE[f"t{factor}"]
+        if (permutation_power(s, 2) != central_identity
+                or permutation_power(t, 3) != central_identity
+                or permutation_power(permutation_product(s, t), 4)
+                != central_identity):
+            raise AssertionError("central certificate lost S4 relations")
+    for index in ZERO_INDICES:
+        translated = translate(boundary[index], factorizations)
+        if evaluate_symbols(translated, CENTRAL_CERTIFICATE) != central_identity:
+            raise AssertionError("central certificate lost a zero relation")
+    central_phase_image = evaluate_symbols(
+        translate(boundary[PHASE_INDEX], factorizations), CENTRAL_CERTIFICATE)
+    if central_phase_image != CENTRAL_PHASE:
+        raise AssertionError("central phase image changed")
+    central_group = generated_permutation_group(
+        list(CENTRAL_CERTIFICATE.values()))
+    if len(central_group) != 2688:
+        raise AssertionError("central certificate image order changed")
+    center = [
+        value for value in central_group
+        if all(permutation_product(value, generator)
+               == permutation_product(generator, value)
+               for generator in CENTRAL_CERTIFICATE.values())
+    ]
+    if set(center) != {central_identity, CENTRAL_PHASE}:
+        raise AssertionError("central certificate center is not C2")
+    factor_orders = [
+        len(generated_permutation_group([
+            CENTRAL_CERTIFICATE[f"s{factor}"],
+            CENTRAL_CERTIFICATE[f"t{factor}"],
+        ]))
+        for factor in (1, 2)
+    ]
+    if factor_orders != [24, 24]:
+        raise AssertionError("central certificate collapsed a local factor")
     print(json.dumps({
         "local_factor_orders": [
             len(factorizations[1]), len(factorizations[2])],
         "quotient_image_order": len(image_group),
         "quotient_image_isomorphic_to": "PSL(2,7)",
         "records": records,
+        "central_certificate": {
+            "image_order": len(central_group),
+            "image_structure": "(C2^4) : PSL(3,2)",
+            "center_order": len(center),
+            "factor_image_orders": factor_orders,
+            "phase_cycles": cycles(central_phase_image),
+            "phase_order": 2,
+        },
     }, indent=2))
 
 
