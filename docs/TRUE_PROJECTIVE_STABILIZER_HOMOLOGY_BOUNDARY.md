@@ -4,14 +4,21 @@ Date: 2026-08-11
 
 ## Purpose
 
-The exact projective `p=3` calculation gives
+The exact projective `p=3,5,7` calculations give
 
-`H_2(H_3,Z) ~= C_2^3`, hence `H_2(H_3,Q)=0`,             `(PSH1)`
+`H_2(H_3,Z) ~= C_2^3`,
+`H_2(H_5,Z) ~= C_2^3`,
+`H_2(H_7,Z) ~= C_2^4`,
+`H_2(H_p,Q)=0` for `p=3,5,7`.                           `(PSH1)`
 
-for the stabilizer `H_3` of a point in the selected action on
-`P^2(F_3)`.  Combined with Proposition 12 of
+Here `H_p` is the stabilizer of a point in the selected action on
+`P^2(F_p)`.  The exact modular dimensions over `F_2` are respectively
+`4,4,5`; at `p=7` there is also one mod-three dimension.  The extra
+dimensions beyond the torsion in integral `H_2` are universal-coefficient
+contributions from `H_1`, not hidden torsion in `H_2`.  Combined with
+Proposition 12 of
 `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md`, this removes real
-stabilizer-homology denominator collapse on the first projective chart.
+stabilizer-homology denominator collapse on the first three projective charts.
 
 This note records a necessary correction of scope: `(PSH1)` cannot hold
 uniformly over the projective prime family.  The obstruction is already
@@ -71,6 +78,50 @@ The same conclusion is visible in Porat's direct prime-level computation:
 his subgroup is defined by `(PSH2)`, and his cuspidal classes live in
 degree three of the Borel--Serre compactification.
 
+## The exact boundary-rank formula
+
+The HAP resolution used by the exact export has rational chain dimensions
+
+`dim C_0=n`, `dim C_1=4n`, `dim C_2=10n`, `dim C_3=20n`, `(PSH8)`
+
+after tensoring with the projective permutation module, where
+`n=p^2+p+1`.  The observed rank formulas have the following exact
+all-prime form.
+
+**Proposition 2.**  For every prime `p`,
+
+`rank_Q(d_2)=3n+1`,
+`rank_Q(d_3)=7n-1-b_2(H_p)`,                          `(PSH9)`
+
+where `b_2(H_p)=dim_Q H_2(H_p,Q)`.  In particular, the small-prime formula
+`rank_Q(d_3)=7n-1` is equivalent to rational two-acyclicity; it cannot hold
+at the cuspidal levels in `(PSH5)`.
+
+**Proof.**  The projective action is transitive, so `H_0(H_p,Q)=Q` and
+
+`rank(d_1)=n-1`.                                     `(PSH10)`
+
+Every finite-index subgroup `H_p` of `SL_3(Z)` has property `(T)`.  Its
+abelianization is therefore finite, and
+
+`H_1(H_p,Q)=0`.                                      `(PSH11)`
+
+Consequently `im(d_2)=ker(d_1)`, which has dimension
+
+`4n-(n-1)=3n+1`.                                     `(PSH12)`
+
+Finally,
+
+`b_2(H_p)=dim ker(d_2)-rank(d_3)`
+`         =10n-(3n+1)-rank(d_3)`,                    `(PSH13)`
+
+and rearranging proves the second formula in `(PSH9)`.  End proof.
+
+Thus the rank computation has extracted a genuine uniform theorem.  What
+varies with the prime is exactly the degree-two Betti defect, not the
+degree-two boundary rank.  At `p=3,5,7` that defect is zero; at `p=53` and
+the other cuspidal levels it is positive.
+
 ## Exact consequence for the carry program
 
 Proposition 12 of `INTEGRAL_CARRY_DISCRIMINANT_DUALITY.md` says that a dual
@@ -78,10 +129,11 @@ cycle shorter than the inverse norm of every bounded spherical template is
 orthogonal to the spherical lattice and hence lies in the harmonic
 representative of
 
-`H_2(H_p,R)`.                                         `(PSH8)`
+`H_2(H_p,R)`.                                        `(PSH14)`
 
-At `p=3`, `(PSH1)` makes this harmonic space zero, so every nonzero dual
-discriminant class has a uniform positive denominator radius on that chart.
+At `p=3,5,7`, `(PSH1)` makes this harmonic space zero, so every nonzero
+dual discriminant class has a uniform positive denominator radius on those
+charts.
 Proposition 1 proves that this last implication cannot be repeated for all
 `p`: the harmonic space is genuinely nonzero at the levels `(PSH5)`.
 
@@ -98,8 +150,9 @@ problem is the metric one:
 3. control the corresponding glued range radii, since a denominator bound
    alone never bounds `Theta_p`.
 
-Thus the exact `p=3` result is a valuable calibration and removes one
-failure mode there.  It is not evidence for uniform rational 2-acyclicity;
+Thus the matching rational result at `p=3,5,7`, despite the changing
+two-torsion, is a valuable calibration and removes one failure mode on all
+three small charts.  It is not evidence for uniform rational 2-acyclicity;
 that proposed shortcut is now closed.
 
 ## Sources
@@ -112,4 +165,3 @@ that proposed shortcut is now closed.
   [*Computations directly on the cuspidal cohomology of congruence subgroups
   of `SL(3,Z)`*](https://arxiv.org/abs/2410.02734), especially the definition
   of `Gamma_0(3,p)` and the Borel--Serre degree-three model in Section 2.
-
