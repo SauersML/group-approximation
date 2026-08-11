@@ -383,9 +383,19 @@ dimension.  This example proves why the ratio alone cannot drive the FALSE
 construction.
 
 For the projective `SL_3(Z)` charts, the useful exact computation is
-therefore not only the shortest dual vector or the regulator.  One must also
-compute its glued `L_n^#/L_n` representative and test whether its norm is of
-order `sqrt(m_n)`.  The strong candidate is a harmonic dual vector with
-sub-square-root norm paired, under unimodular gluing, to a delocalized
-range-lattice class of square-root norm.  Finally its phase evaluation must
-be paired with one fixed radical word as in `(DPI25)`.
+therefore not only the shortest dual vector or the regulator.  One should
+also compute its glued `L_n^#/L_n` representative and test whether its norm
+is of order `sqrt(m_n)`.  A harmonic dual vector with sub-square-root norm
+paired, under unimodular gluing, to a delocalized range-lattice class of
+square-root norm would be a genuine selected-family circle-instability
+theorem.
+
+It would not yet prove FALSE.  The group `SL_3(Z)` is residually finite, so
+its sofic radical is trivial and no word `(DPI24)` exists in this
+presentation.  The `p=53` rank-two quotient is therefore a rigorous testbed
+for the paired-lattice mechanism.  To use Corollaries 5--6 for the main
+problem, one must transfer the same low-rank harmonic geometry to the exact
+charts of a finitely presented group with a known nontrivial sofic-radical
+word, or embed it into a larger presentation while preserving the descended
+word character.  This group-theoretic transfer is an additional gate, not a
+consequence of the rank-two calculation.
