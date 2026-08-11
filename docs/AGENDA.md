@@ -1092,10 +1092,15 @@ rank zero.  At both `p=53` and `p=61`, the two-dimensional harmonic plane has
 a rank-one mod-two transgression into the orientation-primary edge sector.
 After restoring the two omitted cellular torsion blocks, both harmonic
 generators admit exact total HAP cycle lifts.  Thus there is no mod-two
-existence obstruction on the actual cuspidal plane at either level.  The
-remaining theorem is quantitative and integral: prove the observed local
-rank-one cancellation uniformly and bound its section on the paired carry
-lattice.  See `TRUE_HARMONIC_PRIMARY_COUPLING.md`.
+existence obstruction on the actual cuspidal plane at either level.
+Moreover, the first compact-to-edge interface now splits uniformly for
+**every** finite chart: its free part vanishes by the compact cycle
+condition, its torsion part is canceled by the proved norm-one `S_4 -> D_8`
+transfer, and its vertical fill is a sum of fixed stabilizer templates.  The
+remaining theorem is the next filtration step, where the induced demand
+meets positive vertex-stabilizer homology, followed by the integral norm
+bound on the paired carry lattice.  See
+`TRUE_HARMONIC_PRIMARY_COUPLING.md`.
 
 The other stabilizer prime is uniformly harmless in positive degree.  Over
 `F_3`, the `D_8` edge stabilizer has no positive homology.  Shapiro and the

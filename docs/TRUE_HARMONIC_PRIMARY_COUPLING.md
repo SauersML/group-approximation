@@ -21,6 +21,13 @@ It is not yet a uniform integral decoder theorem.  The lifts are arbitrary
 row-echelon solutions over `F_2`; their support is neither minimal nor a
 canonical invariant, and no integral norm bound follows from two levels.
 
+One part *does* admit a family theorem.  The first filtered interface, from
+the compact two-cell row to the edge-stabilizer row, always splits with a
+chart-independent bound.  This follows by combining the signed-orbit
+decomposition with the norm-one primary transfer theorem.  Hence the live
+coupling has moved one filtration step lower, to the vertex-stabilizer
+positive row.
+
 ## 1. Exact zero-row identification
 
 Let `N=p^2+p+1`.  HAP's total degree-two module has ten coefficient blocks,
@@ -75,7 +82,51 @@ vector has zero syndrome class and the other raises the rank to `3271`, so
 The distinction between the individual basis vectors is basis dependent;
 the rank-one statement is invariant.
 
-## 3. Restoring the missing primary coordinates
+## 3. The first filtered interface splits for every chart
+
+Write the relevant beginning of the Wall total differential as
+
+`A_(2,0) -> A_(1,0) directSum A_(0,1)`,
+`A_(1,1) -> A_(1,0) directSum A_(0,1)`.                 `(HPC5)`
+
+Let `c` be any cycle in the free part of the compact signed-coinvariant
+two-cell row, and choose one point representative in each signed orbit to
+obtain `c_tilde in A_(2,0)`.  Because `c` is a compact cycle, the image of
+the `A_(1,0)` component of `d c_tilde` in the **free** signed edge
+coinvariants is zero.  Its vertical homology class is therefore contained
+entirely in the edge orientation-torsion module `T_H(X)`.
+
+The first two-cell stabilizer is `K~=S_4`, the edge stabilizer is the
+index-three subgroup `H~=D_8`, and
+`TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md` proves for every finite `K`-set
+`X` that the cellular boundary is a permutation isomorphism
+
+`T_K(X) -> T_H(X)`.                                      `(HPC6)`
+
+Choose the unique torsion coordinate `t` mapping to the torsion class of
+`d c_tilde`.  Replacing `c_tilde` by `c_tilde-t` makes its edge component
+zero in all of vertical `H_0`, not merely in the rational free quotient.
+Exactness of the fixed free `H`-resolution then supplies
+`u in A_(1,1)` whose vertical boundary cancels that edge component.  Thus
+
+`c_tilde-t-u`                                             `(HPC7)`
+
+has no remaining boundary in cellular degree one.
+
+This construction is uniform.  In natural torsion-orbit bases `(HPC6)` and
+its inverse have norm one.  The point-representative section has normalized
+norm at most one, the horizontal boundary has a fixed Schur bound, and the
+vertical fill is an orthogonal sum of finitely many fixed subgroup
+templates by `TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.  Therefore the
+nonlinear parity choice and the subsequent vertical correction in `(HPC7)`
+have a chart-independent normalized Euclidean bound.
+
+This proves that the first filtered primary interface cannot be the source
+of unbounded harmonic repair.  The rank-one values `(HPC3)--(HPC4)` merely
+describe how the chosen cuspidal bases meet this uniformly split torsion
+coordinate.
+
+## 4. Restoring the remaining primary coordinates in the two cuspidal charts
 
 The two cellular degree-two blocks have the following numbers of signed
 orientation-torsion orbits:
@@ -87,12 +138,13 @@ orientation-torsion orbits:
 
 These values agree with
 
-`((p+5)/2, p+2)`                                           `(HPC5)`
+`((p+5)/2, p+2)`                                           `(HPC8)`
 
-at both levels.  This formula is an observed exact pattern, not yet a
-proved all-prime theorem.
+at both levels.  The second formula is known for every odd prime, while the
+first specializes the general quasipolynomial
+`(p+4+(-1|p))/2` to these two primes, both congruent to one modulo four.
 
-Allow one representative in every orbit from `(HPC5)`, together with the
+Allow one representative in every orbit from `(HPC8)`, together with the
 `(1,1)` and `(0,2)` HAP correction blocks.  Exact sparse `F_2` elimination
 then produces total degree-two cycles mapping to each compact harmonic
 generator:
@@ -117,9 +169,9 @@ modified by boundaries or lower-filtration cycles, so they do not prove
 that the harmonic plane avoids the singleton decoder obstruction in an
 invariant sense.
 
-## 4. What is proved and what remains
+## 5. What is proved and what remains
 
-The computation proves:
+The computation and the preceding family argument prove:
 
 1. the compact-to-HAP zero-row identification is exact;
 2. the two-dimensional cuspidal plane has a rank-one mod-two orientation
@@ -127,7 +179,9 @@ The computation proves:
 3. the transgression is canceled after the omitted two-cell orientation
    sectors are restored;
 4. every certified compact harmonic generator at `p=53,61` lifts to a full
-   mod-two HAP cycle.
+   mod-two HAP cycle;
+5. the first compact-to-edge filtered interface has a uniformly bounded
+   primary splitting for every finite coefficient chart.
 
 It does not prove:
 
@@ -137,13 +191,14 @@ It does not prove:
    singleton differences from
    `TRUE_BOUNDED_DEGREE_PARITY_DECODER_NO_GO.md`.
 
-The next theorem-shaped target is to express `(HPC3)--(HPC5)` in the same
-projective orbit coordinates used for the primary matching theorem.  An
-all-prime rank-one transgression formula plus a fixed local torsion
-cancellation would remove the **existence** part of the harmonic-primary
-coupling uniformly.  The remaining quantitative problem would then be the
-norm of the induced integral section on the paired harmonic carry lattice,
-not a decoder on all primary boundaries.
+The next theorem-shaped target is the boundary left in cellular degree zero
+after `(HPC7)`.  Its obstruction lies in the positive vertex-stabilizer
+homology `H_1(S_4;F_2[X])`, whose growing pieces were shown to collapse to a
+fixed two-dimensional residue in `TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
+One must prove that the particular lower-filtration demands created by the
+harmonic/carry lattice split through that residue with bounded norm.  This
+is strictly narrower than either the original global primary decoder or the
+first edge-torsion interface, which is now solved uniformly.
 
 ## Reproducibility
 
