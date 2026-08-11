@@ -89,7 +89,10 @@ family without Gate 1.
 
 `𝔰(G)` (sofic radical) and `𝔥(G) ⊆ 𝔰(G)` (hyperlinear radical) over the
 repo's `UniversalSofic`/hyperlinear ultraproducts.  Q3.4 ⟺ 𝔥 = 𝔰 on f.g.
-groups.  Conjecture: `𝔰(H_K)` is the whole lamp kernel.  A strict
+groups.  The finite-presentation localization `(FPR1)-(FPR12)` sharpens this:
+it is enough to prove equality for finitely presented groups, and any failure
+is detected by one element in one finite presentation.  Conjecture:
+`𝔰(H_K)` is the whole lamp kernel.  A strict
 intermediate value of `𝔥(H_K)` would be a canonical invariant of the
 hyperlinear–sofic gap — bigger than either answer.
 

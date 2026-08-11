@@ -37611,3 +37611,111 @@ soficity directly.  A genuinely new lamp route would have to construct the
 needed finite joint-spectrum action from the hyperlinear microstate itself,
 without assuming either a sofic approximation of `Gamma` or a sofic action
 of `Gamma` on its lamp coordinates.
+
+## 2026-08-10: one witness and one finite presentation suffice
+
+The positive loss certificate `(PLC1)-(PLC11)` can be sharpened in two useful
+ways.  First, all separation witnesses can be combined by Cartesian products
+of actions.  Second, after that reduction, Cartesian powers turn any positive
+amount of motion of the remaining witness into asymptotically free motion.
+
+For a finite `F`-action `rho`, write
+
+`d_rho(g)=1-chi_rho(g)`.                              `(FPR1)`
+
+If `rho_i` acts on `X_i`, their diagonal Cartesian product acts on
+`product_i X_i` and satisfies
+
+`chi_(product_i rho_i)(g)=product_i chi_(rho_i)(g)`,  `(FPR2)`
+
+and hence
+
+`d_(product_i rho_i)(r)<=sum_i d_(rho_i)(r)`.         `(FPR3)`
+
+**Lemma (single-witness reduction).**  Let `F` be finitely generated, let
+`N normal F`, and suppose the local finite-action approximation of `1_N`
+fails.  Then there are a finite set `R subset N` and one element
+`w in F setminus N` such that no sequence of finite `F`-actions `rho_n`
+satisfies
+
+`d_(rho_n)(r)->0`, `r in R`, and `chi_(rho_n)(w)->0`. `(FPR4)`
+
+**Proof.**  A failure is witnessed by finite sets `R subset N` and
+`W subset F setminus N` and a positive error threshold.  Suppose `(FPR4)`
+were false for every `w in W`.  Choose for each `w` an action whose relator
+deficits and its `w`-fixed fraction are all smaller than `delta`.  Their
+Cartesian product has every relator deficit at most `|W|delta` by `(FPR3)`,
+while its fixed fraction at a given `w` is at most the corresponding factor
+and hence below `delta`.  Taking `delta` sufficiently small contradicts the
+chosen local failure.  End proof.
+
+Put
+
+`P=<generators(F) | R>=F/normal_closure_F(R)`.         `(FPR5)`
+
+Recall that the full sofic radical is
+
+`Rad_sof(P)=intersection_(phi:P->S, S sofic) ker(phi)`. `(FPR6)`
+
+**Theorem (finite-presentation radical localization).**  The witness `w`
+from the lemma belongs to `Rad_sof(P)`, but its image under the quotient map
+
+`P -> F/N=Gamma`                                      `(FPR7)`
+
+is nontrivial.  If `Gamma` is hyperlinear, this map therefore detects `w`
+in a hyperlinear target.
+
+**Proof.**  Suppose `w` does not belong to `Rad_sof(P)`.  Then some
+homomorphism from `P` to a sofic group has nontrivial value at `w`.  Pulling
+back a faithful sofic approximation of its image gives finite `F`-actions
+`rho_n` such that every `r in R` has `d_(rho_n)(r)->0` and
+
+`liminf_n d_(rho_n)(w)=a>0`.                          `(FPR8)`
+
+Pass to a subsequence with `d_(rho_n)(w)>=a/2`, and choose integers
+`m_n->infinity` sufficiently slowly that
+
+`m_n max_(r in R)d_(rho_n)(r)->0`.                    `(FPR9)`
+
+Take the `m_n`th Cartesian power.  Its relator deficits tend to zero by
+`(FPR3)`, whereas
+
+`chi_(rho_n^(product m_n))(w)`
+` =chi_(rho_n)(w)^(m_n)<=(1-a/2)^(m_n)->0`.           `(FPR10)`
+
+This contradicts `(FPR4)`, so `w in Rad_sof(P)`.  Since `R subset N`, the
+map `(FPR7)` is defined; since `w notin N`, it does not kill `w`.  End proof.
+
+Define similarly
+
+`Rad_hyp(P)=intersection_(phi:P->H, H hyperlinear) ker(phi)`. `(FPR11)`
+
+Because every sofic group is hyperlinear,
+
+`Rad_hyp(P) subset Rad_sof(P)`.                        `(FPR12)`
+
+The preceding argument gives the following exact finite-presentation form
+of the whole open problem.
+
+**Corollary.**  The following are equivalent.
+
+1. Every hyperlinear group is sofic.
+2. `Rad_hyp(P)=Rad_sof(P)` for every finitely presented group `P`.
+3. Every homomorphism from a finitely presented group to a hyperlinear group
+   kills its full sofic radical.
+
+**Proof.**  If every hyperlinear group is sofic, the two intersections of
+kernels are equal, giving `1=>2=>3`.  Conversely, if a hyperlinear nonsofic
+group exists, nonsoficity is witnessed inside a finitely generated subgroup,
+which remains hyperlinear.  Present it as `F/N` and apply the single-witness
+lemma and theorem.  They produce a finitely presented `P` and
+`w in Rad_sof(P)` with nontrivial image in the hyperlinear group.  Thus
+`w notin Rad_hyp(P)`, contradicting either 2 or 3.  End proof.
+
+This is stronger than merely restricting the conjecture to finitely
+generated groups: a counterexample in either direction always localizes to
+one element of the sofic radical of one finitely presented group.  It also
+connects the normal-Dirac character route directly to the repository's
+radical constructions.  The unresolved step is now exactly to prove that a
+hyperlinear target cannot detect that element, or to construct a
+Connes-embeddable trace which does detect it.
