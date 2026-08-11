@@ -133,6 +133,21 @@ remaining TRUE obstruction is uniformity in growing dimensions:
 This removes exact finite-stage searches, nonlinear fixed-dimensional
 deformations, and singular projective solution strata from the live gate.
 
+The matrix side can now be made irreducible as well; see
+`TRUE_IRREDUCIBLE_DOMINATION_REDUCTION.md`.  With
+`delta_sigma(g)=1-Re tr(sigma(g))`, conjugate-double decomposition and
+trivial-block dilution give the exact equality
+
+`C_fd=sup_(sigma irreducible) delta_sigma(w)/sum_R delta_sigma(r)`.
+
+The restricted supremum over irreducibles of degree at most `D` is finite
+for every `D`, again by jet truncation.  Even arbitrary total dimension and
+multiplicity are harmless if all irreducible blocks have bounded degree.
+Thus the live TRUE comparison is now between transitive finite permutation
+representations and irreducible unitary representations whose degrees tend
+to infinity; reducible mixtures and multiplicity growth are not part of the
+gap.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026

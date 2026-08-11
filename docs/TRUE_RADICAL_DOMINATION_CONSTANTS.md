@@ -258,6 +258,25 @@ dimension-uniform:
 In particular, every sequence witnessing `(RDC28)` has unbounded matrix
 dimension after passage to a subsequence.
 
+There is also an exact irreducible form.  For a unitary representation
+`sigma`, put
+
+`delta_sigma(g)=1-Re tr(sigma(g))`.
+
+Then `TRUE_IRREDUCIBLE_DOMINATION_REDUCTION.md` proves
+
+`C_fd=sup_(sigma irreducible)`
+`  delta_sigma(w)/sum_(r in R)delta_sigma(r)`.         `(RDC31)`
+
+The upper bound follows by decomposing the conjugate double of an arbitrary
+representation; its affine defect is exactly `q_chi`.  The reverse bound
+follows by diluting an irreducible representation with increasingly many
+trivial blocks.  For each fixed irreducible-degree bound `D`, the restricted
+supremum in `(RDC31)` is finite by the same jet-truncation argument as
+`(RDC29)`.  Arbitrarily large multiplicities of bounded-degree blocks are
+therefore harmless.  A genuine obstruction requires irreducible degrees
+tending to infinity.
+
 Ordinary matrix stability is sufficient but stronger than `(RDC26)`: it
 would correct every approximate representation, whereas `(RDC26)` only
 forces one word to collapse.  Conversely, generic inequalities for
