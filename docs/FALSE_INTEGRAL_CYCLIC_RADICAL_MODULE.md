@@ -138,6 +138,19 @@ finitely generated nonsofic group with an infinite cyclic central subgroup
 inside its full sofic radical.  This conclusion uses no approximation
 property of `G`.
 
+**Corollary 2A (explicit application).**  Let
+
+`D=G_0 *_Gamma G_0`
+
+be the banked Kun--Thom symmetric double, and choose the primitive fold word
+
+`s=i_2(h)i_1(h)^(-1)`
+
+from `FALSE_COINDUCED_PARITY_MODEL.md`.  That word is cyclically reduced of
+length two, hence has infinite order, and belongs to `Rad_sof(D)`.  Applying
+`(ICR1)--(ICR9)` gives an explicit finitely generated nonsofic group with a
+central infinite cyclic subgroup contained in its sofic radical.
+
 ## 4. The integer Schreier multiplier
 
 Put
