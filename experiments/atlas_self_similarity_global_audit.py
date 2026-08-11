@@ -1,23 +1,45 @@
 """Audit the exact block-eight phase against the complete atlas boundary.
 
-Run with SageMath.  The block-eight construction is amplified inside the
-honest 64-dimensional A8 irrep W=(5,2,1), then every one of the 234 tensor-
-flip failures in the complete radius-ten collision window is evaluated.
+The block-eight construction is amplified inside the honest 64-dimensional
+A8 irrep W=(5,2,1), then every one of the 234 tensor-flip failures in the
+complete radius-ten collision window is evaluated.  The representation uses
+the standalone Young-orthogonal implementation and needs no Sage runtime.
 """
 
 import json
+import itertools
 import math
 
 import numpy as np
 
-from atlas_clifford_block import CliffordBlock
+from atlas_clifford_window_search import (
+    adjacent_matrices,
+    permutation_matrix,
+    tableaux,
+)
 from atlas_kernel_collision_enumerator import (
     enumerate_ball,
     factor_projections,
     spanning_tree_kernel_words,
 )
-from atlas_self_similarity_block import joint_bases, projector_basis
-from atlas_two_chart_search import I4, factor_generators, matrix_key
+from atlas_two_chart_search import I4, factor_generators, gf2_mul, matrix_key
+
+
+def projector_basis(projector, tolerance=0.5):
+    values, vectors = np.linalg.eigh((projector + projector.conj().T) / 2)
+    return vectors[:, values > tolerance]
+
+
+def joint_bases(first, second):
+    identity = np.eye(first.shape[0], dtype=np.complex128)
+    answer = {}
+    for first_sign, second_sign in itertools.product((-1, 1), repeat=2):
+        projector = (
+            ((identity + first_sign * first) / 2)
+            @ ((identity + second_sign * second) / 2)
+        )
+        answer[(first_sign, second_sign)] = projector_basis(projector)
+    return answer
 
 
 def exact_block_pair():
@@ -45,9 +67,52 @@ def exact_block_pair():
     return b, c, a, e
 
 
+def standalone_representation():
+    """Return the W=(5,2,1) representation of GL(4,2), with caching."""
+    with open("experiments/atlas-a8-natural.json", encoding="utf-8") as stream:
+        permutations = json.load(stream)["matrices"]
+    adjacent = adjacent_matrices(tableaux())
+    generators = [word[0][1] for _name, word in factor_generators()[:6]]
+    generator_values = [
+        permutation_matrix(permutations[matrix_key(value).hex()], adjacent)
+        .astype(np.complex128)
+        for value in generators
+    ]
+    identity_key = matrix_key(I4)
+    parents = {identity_key: None}
+    elements = [I4.copy()]
+    for element in elements:
+        parent_key = matrix_key(element)
+        for generator_index, generator in enumerate(generators):
+            target = gf2_mul(element, generator)
+            key = matrix_key(target)
+            if key not in parents:
+                parents[key] = (parent_key, generator_index)
+                elements.append(target)
+    if len(parents) != 20160:
+        raise AssertionError("GL(4,2) enumeration failed")
+    cache = {identity_key: np.eye(64, dtype=np.complex128)}
+
+    def representation(value):
+        key = matrix_key(value)
+        if key not in cache:
+            path = []
+            cursor = key
+            while cursor not in cache:
+                parent, generator_index = parents[cursor]
+                path.append(generator_index)
+                cursor = parent
+            result = cache[cursor]
+            for generator_index in reversed(path):
+                result = result @ generator_values[generator_index]
+            cache[key] = result
+        return cache[key]
+
+    return representation
+
+
 def amplified_alignment():
-    block = CliffordBlock(seed=0)
-    representation = block.representation
+    representation = standalone_representation()
     identity = np.eye(64, dtype=np.complex128)
     b8, c8, a8, e8 = exact_block_pair()
 
