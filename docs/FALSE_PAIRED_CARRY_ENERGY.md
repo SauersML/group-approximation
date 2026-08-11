@@ -139,6 +139,23 @@ It also gives the previously unavailable range-side criterion
 
 `(1/|C_n|)sum_(c in C_n)rho_(L,n)(gamma_n(c))^2=o(m_n)`.            `(PCE15)`
 
+The exact mean in `(PCE10)` has a still simpler finite form.  The canonical
+embedding
+
+`D_(L,n)->(R/Z)^(m_n)`                                               `(PCE15a)`
+
+makes every ambient coordinate a character of `C_n`.  If `s_n` is the
+number of nontrivial coordinate characters, Theorem 1 of
+`FALSE_CARRY_MEAN_SUPPORT_FORMULA.md` gives
+
+`(2/27)s_n<=avg_(c in C_n)delta_n(c)^2<=(1/8)s_n`.                  `(PCE15b)`
+
+Consequently `(PCE10)` is equivalent to `s_n=o(m_n)`.  The orders of the
+coordinate characters give the exact mean through `(CMS11)--(CMS12)`, but
+even those orders are irrelevant to the asymptotic criterion.  Thus one may
+verify the load-bearing defect hypothesis by a rational/Smith support pass,
+without a discriminant CVP.
+
 ## 4. Splitting a filling code between the two lattices
 
 The infimal convolution has a useful group-theoretic consequence.
@@ -205,5 +222,7 @@ matrix.
 This leaves a genuinely smaller finite problem than the earlier
 cycle-radius formulation.  The remaining search should not enumerate the
 full cycle lattice.  It should compute the Smith image of the radical
-filling code, split it into low-rank cycle-cheap and range-cheap pieces,
-and solve the corresponding low-dimensional CVPs.
+filling code and its ambient coordinate support.  A sublinear support gives
+the exact mean-energy hypothesis immediately; paired low-dimensional CVPs
+remain an optional sufficient route when that support is not directly
+available.

@@ -235,6 +235,13 @@ Consequently Theorem 5 remains true if `(RFD28)` is replaced by
 `(1/|C_(w,X_n)|)sum_(c in C_(w,X_n))delta_Xn(c)^2`
 ` =o(m_n)`.                                           `(RFD28c)`
 
+Equivalently, by `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`, the range-gluing
+image of `C_(w,X_n)` in the ambient relator torus is nontrivial on only
+`o(m_n)` coordinate characters.  More precisely, if `s_n` is that support,
+then the mean in `(RFD28c)` lies between `(2/27)s_n` and `(1/8)s_n`.
+This replaces the exact-energy average by finite rational/Smith support
+data.
+
 If `C_(w,X_n)=P_n+Q_n`, a sufficient paired condition is
 
 `avg_(p in P_n)rho_(K_Xn)(p)^2`
