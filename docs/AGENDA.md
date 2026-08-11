@@ -86,6 +86,22 @@ and multiple witnesses are no longer part of the gate; the missing theorem
 is the normal-indicator rounding from unitary characters to one finite
 quotient/subgroup pair `(Q,J)` with small averaged Boolean loss.
 
+Cartesian powers sharpen this further to a linear, unweighted radical
+inequality; see `TRUE_LINEAR_SOFIC_RADICAL_INEQUALITY.md`.  For the finite
+presentation `P=<S|R>`, one has `w in Rad_sof(P)` if and only if some finite
+`C` satisfies
+
+`1-chi_rho(w) <= C sum_(r in R)(1-chi_rho(r))`
+
+for every finite action `rho`; orbit decomposition again makes transitive
+coset actions sufficient.  The amplification proof is exact: if no linear
+constant existed, take actions with relator defect `o(d_rho(w))` and about
+`1/d_rho(w)` Cartesian powers, producing vanishing relator defect but a
+fixed positive motion of `w`, contrary to radical membership.  Thus a
+counterexample requires finite-dimensional characters that maximally violate
+one classical linear quasiregular-character inequality; arbitrary minimax
+weights are not intrinsic to the gate.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
