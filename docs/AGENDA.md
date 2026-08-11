@@ -76,6 +76,15 @@ Hilbert--Schmidt separated.  The exact residue is generator invariance of the
 corner.  Averaging the defect operator over conjugates makes this a Følner
 boundary problem and therefore recovers only the known amenable case.
 
+The quantitative-stability audit `(QSA1)-(QSA5)` rules out two apparent
+shortcuts.  Dor-On--Hall--Kachkovskiy requires the very operator-norm corner
+leakage missing in `(SCR10)` (small normalized-HS leakage does not imply it,
+even for a codimension-one corner).  Dogon--Vidick corrects special
+lamplighter relations to an exact unitary representation through towers for
+the amenable `Z`-shift, and explicitly does not obtain permutation rounding.
+Thus pairwise unitary correction cannot replace simultaneous finite-set
+assembly.
+
 Next: attack the normal-Dirac restriction inside a finite subgroup test.  Use
 normality and the `0/1` law to symmetrize an arbitrary positive loss
 certificate, seeking a finite-action strategy directly from the relation-good

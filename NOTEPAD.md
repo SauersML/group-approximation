@@ -38058,3 +38058,83 @@ conjugates has reintroduced the Følner step and stops at amenability.  A
 general proof must instead use the normal `0/1` trace law to perform a
 non-Følner, globally coherent rounding of these already-uniform local
 corners.
+
+## 2026-08-10: two quantitative stability papers do not cross the rounding boundary
+
+The hypotheses of two recent quantitative correction theorems can be
+compared exactly with `(SCR10)`.
+
+**Dor-On--Hall--Kachkovskiy.**  Theorem 1.2 of
+[arXiv:2510.03674v3](https://arxiv.org/abs/2510.03674) is an
+**operator-norm** result.  If `u,v in U(d)`, their winding invariant vanishes,
+and the operator norm `||[u,v]||` is small, it produces commuting unitaries
+`u',v'` in the same dimension with
+
+`||u-u'||+||v-v'|| <= C ||[u,v]||^(2/15)`.             `(QSA1)`
+
+For a spectral corner `p` and a generator unitary `U`, put `J=2p-1`.  Then
+
+`[U,J]=2[U,p]`,                                        `(QSA2)`
+
+and, relative to `pH directSum (1-p)H`,
+
+`||[U,p]||_op`
+` = max(||(1-p)Up||_op, ||pU(1-p)||_op)`.              `(QSA3)`
+
+Thus the small operator-norm hypothesis needed to apply `(QSA1)` to `(U,J)`
+is exactly the leakage estimate missing in `(SCR10)`; the theorem cannot
+manufacture that hypothesis from normalized-Hilbert--Schmidt control.
+
+This is not a loss in the estimates.  Let `p_d` project onto the first
+`d-1` coordinate vectors and let `U_d` interchange the last two coordinate
+vectors.  Then
+
+`tr_d(p_d)=1-1/d`,
+`||[U_d,p_d]||_2=sqrt(2/d) -> 0`,
+`||(1-p_d)U_dp_d||_op=1`.                              `(QSA4)`
+
+Equivalently `||[U_d,2p_d-1]||_2=2sqrt(2/d)` while its operator norm is `2`.
+Consequently the spectral-corner input lies outside the dimension-free
+operator-norm regime of `(QSA1)`.  In the normalized-HS regime, the existing
+almost-commuting correction results already used in the atlas are stronger
+for our purpose because they do not impose the winding obstruction; but they
+still produce unitaries, not permutation actions.
+
+**Dogon--Vidick.**  Theorem 1.1 of
+[arXiv:2607.20135v1](https://arxiv.org/abs/2607.20135) says that approximate
+lamplighter generators `A,T`, satisfying finitely many normalized-HS
+relations
+
+`A^2 approximately 1`,
+`[A,T^(-i)AT^i] approximately 0  (0 <= i <= 2M)`,       `(QSA5)`
+
+are polynomially close to an exact finite-dimensional **unitary**
+representation of the lamplighter group.  The proof Fourier-transforms the
+abelian lamp subgroup to an approximately equivariant projection-valued
+measure on `{0,1}^Z`, forms an approximately invariant scalar measure, and
+uses a Kakutani--Rokhlin tower decomposition for the `Z`-shift.
+
+This is valuable evidence for a PVM/tower implementation of unitary
+correction, but it does not give the second arrow from exact matrices to a
+finite action.  The authors explicitly state after Theorem 1.2 that their
+methods do not naively adapt even to effective permutation stability of the
+lamplighter group.  Moreover, the global tower is organized by the amenable
+`Z`-shift.  Replacing that shift by conjugation of a general quotient returns
+to the small-boundary obstruction following `(SCR10)`.
+
+The resulting source verdict is therefore:
+
+* Dor-On--Hall--Kachkovskiy repairs an operator-norm almost-commuting pair
+  after the topological obstruction is already removed; it does not upgrade
+  the HS leakage of a large corner to operator-norm leakage.
+* Dogon--Vidick repairs a special amenable semidirect-product unitary model;
+  it neither rounds to permutations nor supplies non-Folner coherence.
+* Manzoor remains the exact global formulation: the unresolved operation is
+  still passage from a finite-dimensional trace in the closure to a
+  finite-action/IRS trace before taking the closure.
+
+Neither paper closes the normal-Dirac transfer.  They do sharpen a useful
+design constraint: a successful TRUE proof cannot consist of pairwise
+unitary correction on the spectral corner.  It must construct the finite set
+and all generator permutations together, using the normal `0/1` coefficient
+law at the combinatorial assembly step.
