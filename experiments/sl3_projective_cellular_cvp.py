@@ -73,6 +73,68 @@ def exact_plane_round(candidate, basis):
     return candidate - rounded * basis
 
 
+def certify_no_norm_below_four(cycle_basis, required_pairing):
+    """Exhaust all integral vectors of squared norm at most three.
+
+    Such a vector is a signed sum of at most three distinct coordinate
+    vectors.  Its cycle-pairing profile is therefore a signed sum of at most
+    three columns of ``cycle_basis``.  A meet-in-the-middle table makes this
+    exact exhaustion tiny at the present 328-coordinate level.
+    """
+    target = tuple(int(entry) for entry in required_pairing)
+    columns = [
+        tuple(int(entry) for entry in cycle_basis.column(index))
+        for index in range(cycle_basis.ncols())
+    ]
+    signed_singletons = []
+    singleton_profiles = set()
+    for index, column in enumerate(columns):
+        for sign in (-1, 1):
+            profile = tuple(sign * entry for entry in column)
+            signed_singletons.append((profile, index, sign))
+            singleton_profiles.add(profile)
+
+    if target in singleton_profiles:
+        raise AssertionError("a norm-one lift exists")
+
+    pair_profiles = {}
+    signed_pair_count = 0
+    for left in range(len(columns)):
+        for right in range(left + 1, len(columns)):
+            for left_sign in (-1, 1):
+                for right_sign in (-1, 1):
+                    profile = tuple(
+                        left_sign * left_entry + right_sign * right_entry
+                        for left_entry, right_entry in zip(columns[left], columns[right])
+                    )
+                    pair_profiles.setdefault(profile, []).append((left, right))
+                    signed_pair_count += 1
+
+    if target in pair_profiles:
+        raise AssertionError("a norm-two lift exists")
+
+    complement_matches = 0
+    for singleton, singleton_index, _ in signed_singletons:
+        complement = tuple(
+            target_entry - singleton_entry
+            for target_entry, singleton_entry in zip(target, singleton)
+        )
+        for left, right in pair_profiles.get(complement, []):
+            complement_matches += 1
+            if singleton_index not in (left, right):
+                raise AssertionError("a norm-three lift exists")
+
+    return {
+        "certified_no_integral_lift_squared_norm_below": 4,
+        "ambient_coordinate_count": len(columns),
+        "signed_singleton_count": len(signed_singletons),
+        "signed_pair_count": signed_pair_count,
+        "unique_signed_singleton_profile_count": len(singleton_profiles),
+        "unique_signed_pair_profile_count": len(pair_profiles),
+        "triple_complement_matches_with_repeated_coordinate_only": complement_matches,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("cellular_input", type=Path)
@@ -171,6 +233,13 @@ def main() -> None:
     if any(entry.denominator() != 1 for entry in candidate):
         raise AssertionError("reduced lift is not integral")
 
+    support_certificate = None
+    if squared_norm(candidate) <= 4:
+        support_certificate = certify_no_norm_below_four(
+            cycle_basis, required_pairing)
+        if squared_norm(candidate) == 4:
+            support_certificate["minimum_lift_squared_norm"] = 4
+
     digest = hashlib.sha256()
     with args.lift_output.open("w", encoding="ascii") as stream:
         header = "coordinate coefficient\n"
@@ -201,6 +270,7 @@ def main() -> None:
         "paired_distortion_upper": float(
             (candidate_squared_norm / qsharp_squared_norm).sqrt()),
         "lift_sha256": digest.hexdigest(),
+        "support_exhaustion_certificate": support_certificate,
         "exact_cycle_pairing_verified": True,
         "exact_degree_three_annihilation_verified": True,
         "elapsed_seconds": time.monotonic() - started,
