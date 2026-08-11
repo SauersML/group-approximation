@@ -900,6 +900,18 @@ coupling or a multi-chart filling proof. Full audit:
 `experiments/atlas_self_similarity_global_audit.py` and
 `experiments/atlas_self_similarity_global_audit_results.md`.
 
+The simultaneous 24-class solver now gives a first finite compatibility
+answer.  With the two `(5,2,1)` `A8` charts fixed, `U(64)` reaches certified
+zero-class RMS `1.279437` while retaining the survivor phase to HS error
+`0.008520`.  A symmetry-broken full `U(128)` multiplicity-two search reaches
+`1.271406` at phase error `0.008401`; its off-block HS mass is `0.334236`, so
+the small improvement is genuine rather than a duplicated block.  Zero-only
+searches plateau near RMS `0.65` and erase the phase.  Stop broad weight/seed
+sweeps in this ansatz.  Attack the persistent phase-preserving class package
+`70,86,90,91` for an exact inequality, or enlarge the actual vertex irrep
+multiplicities.  Full scoped result:
+`experiments/atlas_self_similarity_multirelator_results.md`.
+
 
 Free-product conjugacy reduces the 56 apparent survivors further. After
 exact cyclic reduction, they form four classes up to conjugacy and inversion,

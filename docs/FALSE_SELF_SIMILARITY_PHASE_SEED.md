@@ -657,3 +657,28 @@ does not factor through $P/[P,R]$. The next solver must impose the 24
 certified-zero cyclic classes simultaneously while retaining the
 $\mathcal C_{11}$ phase. Reproduction and full scope are in
 `experiments/atlas_self_similarity_global_audit_results.md`.
+
+## 13. Simultaneous 24-class compatibility experiment
+
+The prescribed next finite solver has now been run.  The 178
+perfect-overlap-certified zero words collapse to 24 cyclic classes.  Keeping
+the two honest `A8` chart representations exact and varying only their relative
+unitary, we minimized the mean squared identity defect of those 24 class
+representatives together with a weighted `C11 -> iI` defect.
+
+In dimension 64 the best phase-preserving continuation recorded zero-class RMS
+`1.279437` at phase HS error `0.008520`.  A symmetry-broken search on two
+copies in the full `U(128)` improved this only to zero-class RMS `1.271406` at
+phase error `0.008401`.  The enlarged optimizer has substantial off-block
+mass, so this is a genuine multiplicity coupling, but the improvement is only
+`0.6%`.  Conversely, zero-only searches reached RMS about `0.65` while sending
+the phase error to about `sqrt(2)`.  Two Haar restarts and continuation from
+both ends reproduce the qualitative tradeoff.
+
+This is not a lower bound or a disproof of the FALSE route.  It is a scoped
+negative result for the fixed `(5,2,1)` vertex representations and one relative
+intertwiner.  The persistent phase-preserving worst package consists of source
+classes `70`, `86`, `90`, and `91`; these are now the smallest candidates from
+which to seek an exact obstruction.  Full loss tables, multiplicity checks,
+and reproduction scope are in
+`experiments/atlas_self_similarity_multirelator_results.md`.
