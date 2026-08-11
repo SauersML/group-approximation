@@ -553,6 +553,17 @@ matrix problem is now approximation of that explicit crossed product while
 retaining its radical sign, not construction of the infinite-dimensional
 parity action.
 
+`FALSE_RF_VERTEX_HS_MATCHING_NO_GO.md` closes the most immediate use of the
+new residually finite vertex decomposition.  For the special Kun--Thom fold
+word `s=i_2(h)i_1(h)^(-1)`, property `(T)` implies that any two honest
+finite-dimensional representations of the RF vertices whose restrictions
+become normalized-HS compatible on the common edge satisfy `s->1`.
+Asymptotic amalgam gluing and `z=[v,s]` then force `z->1`; equivalently the
+negative spectral rank is `o(d)`.  Thus even tracial matching of arbitrary
+exact RF vertex models cannot solve the FALSE endpoint.  At least one vertex
+must already be represented by a genuinely nonliftable HS
+almost-representation.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
