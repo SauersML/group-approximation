@@ -95,6 +95,28 @@ def horizontal_h1_rank(boundaries, degree: int):
     }
 
 
+def horizontal_image_rank(
+    boundaries, total_degree: int, source_q: int, target_q: int, degree: int
+):
+    """Rank on E1 without needing the next source vertical boundary."""
+
+    source_vertical_out = filtered_block(
+        boundaries, total_degree, source_q, source_q, degree)
+    target_vertical_out = filtered_block(
+        boundaries, total_degree - 1, target_q, target_q, degree)
+    target_vertical_in = filtered_block(
+        boundaries, total_degree, target_q, target_q, degree)
+    horizontal = filtered_block(
+        boundaries, total_degree, source_q, target_q, degree)
+
+    source_cycles = source_vertical_out.left_kernel().basis_matrix()
+    images = source_cycles * horizontal
+    if images * target_vertical_out:
+        raise AssertionError("horizontal images are not target vertical cycles")
+    return int(target_vertical_in.stack(images).rank()) \
+        - int(target_vertical_in.rank())
+
+
 def analyze(prime: int, prefix: Path):
     degree = prime**2 + prime + 1
     boundaries = {
@@ -126,6 +148,13 @@ def analyze(prime: int, prefix: Path):
             chain_dimension - outgoing - incoming
         )
 
+    outgoing_h1 = horizontal_h1_rank(boundaries, degree)
+    incoming_h1_rank = horizontal_image_rank(
+        boundaries, total_degree=3, source_q=2, target_q=1, degree=degree)
+    e2_1_1 = e1_total_two["1,1"] - outgoing_h1["rank"] - incoming_h1_rank
+    if e2_1_1 < 0:
+        raise AssertionError("horizontal E1 ranks violate the chain inequality")
+
     return {
         "prime": prime,
         "projective_degree": degree,
@@ -133,9 +162,9 @@ def analyze(prime: int, prefix: Path):
             f"{q},{s}": value for (q, s), value in sorted(vertical.items())
         },
         "E1_total_degree_two_dimensions": e1_total_two,
-        "E1_horizontal_H1_D8_to_H1_S4": horizontal_h1_rank(
-            boundaries, degree
-        ),
+        "E1_horizontal_H1_D8_to_H1_S4": outgoing_h1,
+        "E1_horizontal_H1_cells_to_D8_image_rank": incoming_h1_rank,
+        "E2_1_1_dimension": e2_1_1,
     }
 
 
