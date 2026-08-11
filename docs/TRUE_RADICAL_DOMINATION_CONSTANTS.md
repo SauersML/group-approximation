@@ -213,6 +213,27 @@ inequality `(RDC24)`.  It would suffice to prove any bound
 with finite right-hand side; no dimension-uniform numerical formula is
 required beyond the fixed presentation and word.
 
+There is no exact finite-stage obstruction hidden in `(RDC26)`.  If
+`C_perm<infinity` and a finite-dimensional character has
+
+`Q_R(chi)=0`,                                         `(RDC27)`
+
+then every `pi(r)` is scalar.  The conjugate-double representation kills
+every relator exactly and hence factors through `P`.  Its image is a
+finitely generated linear group, therefore residually finite and sofic.
+Since `(RDC16)` puts `w` in `Rad_sof(P)`, this representation kills `w` as
+well, and consequently `q_chi(w)=0`.
+
+Thus `C_fd=+infinity`, if it occurs, is necessarily witnessed by a sequence
+
+`Q_R(chi_n)>0`,
+`q_(chi_n)(w)/Q_R(chi_n)->infinity`,                  `(RDC28)`
+
+approaching the exact projective solution locus without a uniform linear
+modulus.  Searching for one exact finite-image representation which kills
+the relators and retains `w` cannot find the gap: such an image would itself
+be a sofic quotient detecting a sofic-radical word.
+
 Ordinary matrix stability is sufficient but stronger than `(RDC26)`: it
 would correct every approximate representation, whereas `(RDC26)` only
 forces one word to collapse.  Conversely, generic inequalities for
