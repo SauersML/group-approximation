@@ -37234,3 +37234,95 @@ fixed-point character to the `m`th power.  Thus amplification is shared by
 the two cones; the sole unresolved step is rounding an amplified canonical
 entangled coefficient to a canonical diagonal-set coefficient while
 preserving the finite loss constraints.
+
+# The cyclic shear edge is exactly antipodally balanced at every even finite level
+
+The remaining obstruction in the central radical-shear construction is not
+an obstruction intrinsic to its edge group.  The edge already has exact
+finite models with the required sign symmetry.
+
+Let
+
+`A=<r> times <z> ~= Z times C_2`,
+`alpha(r)=r z`, `alpha(z)=z`.                           `(FEB1)`
+
+For every even integer `q`, put
+
+`A_q=C_q times C_2`,
+`alpha_q(k,e)=(k,e+k mod 2)`.                           `(FEB2)`
+
+Parity is well defined on `C_q` exactly because `q` is even.
+
+**Theorem (exact finite edge balance).**  The map `alpha_q` is an
+involutive automorphism.  In the left regular representation of `A_q`, the
+permutation unitary
+
+`S_q delta_(k,e)=delta_(alpha_q(k,e))`                  `(FEB3)`
+
+satisfies
+
+`S_q lambda_q(a) S_q^*=lambda_q(alpha_q(a))`            `(FEB4)`
+
+for every `a in A_q`.  On the `z=-1` spectral subspace, which has dimension
+`q`, one has exactly
+
+`S_q lambda_q(r) S_q^*=-lambda_q(r)`.                  `(FEB5)`
+
+Moreover `lambda_q(r)` has every `q`th root of unity exactly once on that
+subspace.  Thus the antipodal multiplicity balance required by `(CRC5)` is
+exact at every even finite level.
+
+**Proof.**  Additivity of parity gives
+
+`alpha_q((k,e)+(l,f))=alpha_q(k,e)+alpha_q(l,f)`,        `(FEB6)`
+
+and applying `alpha_q` twice adds `2k=0` in `C_2`; hence `alpha_q` is an
+involutive automorphism.  Equation `(FEB4)` is the usual covariance of a
+regular representation under a group automorphism.
+
+For a direct calculation of the signed corner, set
+
+`f_k=2^(-1/2)(delta_(k,0)-delta_(k,1))`, `k in C_q`.    `(FEB7)`
+
+Then `(f_k)` is an orthonormal basis for the `z=-1` subspace and
+
+`lambda_q(r)f_k=f_(k+1)`, `S_q f_k=(-1)^k f_k`.        `(FEB8)`
+
+The second formula is well defined because `q` is even.  Therefore
+
+`S_q lambda_q(r) S_q^* f_k=-f_(k+1)`,                 `(FEB9)`
+
+which is `(FEB5)`.  The cyclic shift on the `q` vectors `(f_k)` has all
+`q`th roots once.  End proof.
+
+There is likewise no infinite-dimensional representation-theoretic
+obstruction.  If `A<=B`, choose representatives of the left cosets of `A`
+in `B`.  The restriction of the left regular representation decomposes as
+
+`lambda_B|A ~= directSum_(A b in A\\B) lambda_A`.       `(FEB10)`
+
+Applying the regular implementer of `alpha` on every summand produces a
+unitary `S` on `l2(B)` with
+
+`S lambda_B(a) S^*=lambda_B(alpha(a))`, `a in A`.      `(FEB11)`
+
+Consequently neither edge spectrum, edge multiplicity, nor a unitary-index
+class is the missing certificate.
+
+The boundary is extension to the vertex.  In the radical-shear application
+`r in Rad_sof(B)`, so every homomorphism from `B` to a finite (indeed sofic)
+group kills `r`.  Hence no genuine finite quotient representation of `B`
+can restrict to the nontrivial regular model of `A_q`, where `r` has order
+`q`.  The exact models `(FEB2)--(FEB9)` must therefore be extended by a
+genuinely nonprofinite operator-norm approximation of `B`.  Equivalently,
+the entire open content of `(CRC4)` is now localized to this statement:
+
+> extend the balanced finite edge profiles `(FEB2)--(FEB9)` to asymptotic
+> representations of the weak-MF radical vertex, without erasing their
+> positive normalized rank.
+
+This is consistent with the relative Julia lemma `(RIJ1)--(RIJ12)`: that
+lemma can lift the finite edge intertwiner once two global vertex families
+are present, while `(FEB1)--(FEB11)` show that the edge family itself is
+already exact.  What neither result supplies is the second global vertex
+family.
