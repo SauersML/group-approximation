@@ -21,6 +21,7 @@ from atlas_perfect_overlap_scan import cardinality_obstruction  # noqa: E402
 from atlas_survivor_conjugacy import (  # noqa: E402
     cyclic_reduce,
     invert_word,
+    oriented_key,
     unoriented_key,
 )
 from atlas_two_chart_search import (  # noqa: E402
@@ -42,19 +43,24 @@ def main():
     boundary = [word for word in words if any(
         matrix_key(projection) != identity_key
         for projection in factor_projections(word))]
-    survivors = [word for word in boundary if
-                 cardinality_obstruction(word)[
-                     "positive_cardinality_obstruction_rows"]]
     classes = {}
-    for word in survivors:
-        classes.setdefault(unoriented_key(word), cyclic_reduce(word))
+    for boundary_index, word in enumerate(boundary):
+        if not cardinality_obstruction(word)[
+                "positive_cardinality_obstruction_rows"]:
+            continue
+        classes.setdefault(unoriented_key(word), {
+            "boundary_index": boundary_index,
+            "word": cyclic_reduce(word),
+        })
     if len(classes) != 4:
         raise AssertionError("survivor conjugacy classification changed")
 
     variants_by_class = []
     sequences = set()
     matrices = {}
-    for word in classes.values():
+    records = list(classes.values())
+    for record in records:
+        word = record["word"]
         variants = []
         for oriented in (word, invert_word(word)):
             for variant in rotations(oriented):
@@ -97,6 +103,37 @@ def main():
     if len(set(signatures)) != 1:
         raise AssertionError("the four survivor types split into several orbits")
 
+    key_to_class = {
+        unoriented_key(record["word"]): index
+        for index, record in enumerate(records)
+    }
+    actual_actions = []
+    for name, use_outer, swap_factors in (
+            ("prefix_chart_swap", False, True),
+            ("adjoint_inverse", True, False),
+            ("adjoint_inverse_after_swap", True, True)):
+        images = []
+        for record in records:
+            transformed = []
+            for factor, original in record["word"]:
+                matrix = (gf2_inv(original).T.copy()
+                          if use_outer else original)
+                transformed.append((
+                    3 - factor if swap_factors else factor,
+                    matrix,
+                ))
+            target = key_to_class[unoriented_key(transformed)]
+            orientation = (1 if oriented_key(transformed) == oriented_key(
+                records[target]["word"]) else -1)
+            if orientation != 1:
+                raise AssertionError("an atlas symmetry reverses orientation")
+            images.append({
+                "source": record["boundary_index"],
+                "target": records[target]["boundary_index"],
+                "orientation": orientation,
+            })
+        actual_actions.append({"name": name, "images": images})
+
     print(json.dumps({
         "survivor_conjugacy_classes": len(classes),
         "automorphisms_tested_per_factor": automorphisms_tested,
@@ -104,6 +141,8 @@ def main():
         "allow_word_inversion": True,
         "abstract_factor_automorphism_orbits": len(set(signatures)),
         "orbit_sizes": [len(signatures)],
+        "actual_leavitt_symmetry_actions": actual_actions,
+        "central_generators_after_inner_prefix_swap": 2,
     }, indent=2))
 
 

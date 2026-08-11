@@ -299,12 +299,49 @@ automorphism independently in each free factor, allow interchange of the two
 factors, and compare cyclic rotations of the word and its inverse.  The four
 classes in `(19)` form one orbit under this action.
 
-This does not identify their elements in $R/[P,R]$: an arbitrary independent
-automorphism of the two abstract $A_8$ factors need not preserve the concrete
-Leavitt atlas kernel $R$.  It does show that all four have the same abstract
-$D_8*V_4$ local obstruction type.  Thus the character and phase calculation
-in Sections 2--3 applies, after transport, to every remaining class; four
-separate local representation analyses are unnecessary.
+The concrete atlas symmetries identify half of them.  Let $v$ be the prefix
+replacement which matches the ordered charts
+
+$$
+(01,1,000,001)\longleftrightarrow(00,1,010,011).
+$$
+
+It is an involution: it sends the second chart back to the first because
+$00=000\sqcup001$ maps to $010\sqcup011=01$, while $010$ and $011$ map to
+$000$ and $001$.  Consequently conjugation by $v$ swaps the two $A_8$
+chart embeddings with the same matrix coordinate.  On the four oriented
+classes it acts by
+
+$$
+11\longleftrightarrow55,
+\qquad 30\longleftrightarrow44.
+$$
+
+This is an inner automorphism of the Leavitt group.  Its functorial lift to
+the universal central cover is conjugation by a lift of $v$, hence acts
+trivially on the central kernel.  Therefore
+
+$$
+[r_{11}]=[r_{55}],\qquad [r_{30}]=[r_{44}]
+\quad\hbox{in }R/[P,R].
+$$
+
+Thus the 56-word boundary package is generated up to sign by at most two
+central classes, not four.
+
+There is a second genuine Leavitt symmetry.  The algebra involution induces
+the group automorphism $u\mapsto(u^*)^{-1}$, whose restriction to every
+scalar chart is the graph automorphism
+$g\mapsto(g^{-1})^T$.  It exchanges classes $11\leftrightarrow44$ and
+$30\leftrightarrow55$, again with positive orientation.  Hence it exchanges
+the two remaining central generators.  It need not act trivially on the
+central kernel, so this last symmetry does not identify them.
+
+Arbitrary independent factor automorphisms likewise need not preserve the
+concrete kernel $R$.  Their one-orbit calculation still shows that all four
+have the same abstract $D_8*V_4$ local obstruction type.  Thus the character
+and phase calculation in Sections 2--3 applies, after transport, to every
+remaining class.
 
 The exact orbit calculation is reproduced by
 `experiments/atlas_survivor_automorphism_orbit.py`.
@@ -319,9 +356,10 @@ an \(A_8\)-invariant subspace, `(17)` does not make \(r\) commute with all of
 either chart.  Nor does the absence of a common scalar chart prove that the
 class of \(r\) is nonzero in \(R/[P,R]\).
 
-The next exact gate is now sharply bounded: determine whether the four
-all-depth survivor classes, beginning with `(2)`, die along genuinely
-multi-chart chains of perfect overlaps.  Section 5 proves that inserting a
+The next exact gate is now sharply bounded: determine whether the two
+central generators represented by the four all-depth survivor classes die
+along genuinely multi-chart chains of perfect overlaps.  Section 5 proves
+that inserting a
 conjugating tail and returning to one common chart cannot do this.  If `(2)`
 survives the multi-chart gate, deform the multiplicity alignment in `(17)`
 so that \(r\) centralizes the full two \(A_8\) charts without losing its
