@@ -166,8 +166,11 @@ decomposition `(RDA17)`, and then use vertex naturality of `delta_L`.  End
 proof.
 
 This rules out the most obvious source of denominator growth: the radical
-word cannot use the free Bass--Serre lattice created by `Q*Q`.  All of its
-augmentation torsion is inherited from the two arithmetic vertex factors.
+word cannot use the free Bass--Serre lattice created by `Q*Q`.  The stronger
+chain-level argument in `FALSE_FIXED_KERNEL_COVER_NO_GO.md` in fact
+shows that the particular marked class is zero, because the quotient kernel
+is perfect.  Thus the vertex localization below describes the ambient
+sector but the explicit radical word occupies the zero class in it.
 
 ## 6. Shapiro reduction to stabilizer homology
 
@@ -217,6 +220,11 @@ that contains the only possible augmentation-homology location of the
 relative radical filling class.
 
 ## 7. Consequences for TRUE and FALSE
+
+For the explicit word and cover family, the later fixed-kernel no-go is
+decisive: `kappa_(w,X)=0`, so none of the alternatives below is realized.
+They remain useful for variants whose marked word does not lie in the
+commutator subgroup of one fixed quotient kernel.
 
 Let `E_T=exp(V_T)` when `V_T` is finite.  Theorem 3 implies
 

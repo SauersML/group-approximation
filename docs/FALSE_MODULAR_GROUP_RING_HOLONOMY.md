@@ -19,6 +19,14 @@ This note records that reduction and gives a Fox-derivative recipe for the
 holonomy.  It applies in particular to the explicit finitely presented
 Kun--Thom radical double in `FALSE_EXPLICIT_FP_RADICAL_DOUBLE.md`.
 
+**Closure update for that example.**  The general group-ring reduction
+remains live, but the specific `SL_d(Z)*SL_d(Z)` quotient tower in Section 6
+is closed by `FALSE_FIXED_KERNEL_COVER_NO_GO.md`: the marked word lies in
+the commutator subgroup of the fixed quotient kernel, which supplies a
+cover-independent filling.  Consequently the Fox functional in `(MGR25)`
+is the reduction of a fixed integral functional and cannot have unbounded
+centered slope.
+
 ## 2. The equivariant presentation matrix
 
 Fix a finite presentation
@@ -227,16 +235,26 @@ faster than `||v||`; it may be `o(q)`.  If `(MGR25)` holds with fixed `p`,
 it is still a genuine nonzero-holonomy certificate, but by itself does not
 make the normalized relator defect tend to zero.
 
+For this particular tower, however, the perfect-kernel no-go gives a fixed
+integral filling `z_0` and the exact identity
+
+`[1]<a,b_w>=<v,z_0> mod q`.                                      `(MGR26)`
+
+The centered value is at most `||v||||z_0||`, so the required slope cannot
+diverge.  Thus `(MGR25)` is useful only as a finite diagnostic here, not as
+an asymptotic counterexample route.
+
 ## 7. Status
 
-The reduction is exact but not yet the final FALSE proof.  Its new content
-is that the live transfer class is the square-zero norm/socle class of a
-modular group algebra.  This eliminates semisimple character searches and
-identifies the next theorem sharply:
+The general reduction is exact but not a final FALSE proof.  Its content is
+that a transfer class is a square-zero norm/socle class of a modular group
+algebra.  This eliminates semisimple character searches.  The previously
+stated target
 
 > Find an unbounded modular quotient tower of `(MGR23)` for which the norm
 > socle class `N_Tv` is a Fox coboundary and its canonical radical Fox
 > functional has centered order growing faster than `||v||`.
 
-That is the finite algebraic form of the hyperlinear-versus-sofic gap on
-this explicit finitely presented nonsofic group.
+is impossible for the explicit tower `(MGR23)` by `(MGR26)`.  It remains a
+valid finite algebraic target only for quotient towers whose kernels do not
+admit one common commutator filling of the marked radical word.

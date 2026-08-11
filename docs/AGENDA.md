@@ -271,6 +271,19 @@ Thus the projective stabilizer-homology calculations locate the only live
 arithmetic sector of the explicit radical-double numerator; free-product
 rank growth cannot supply the obstruction.
 
+The chain-level fixed-kernel argument closes that explicit tower
+completely; see `FALSE_FIXED_KERNEL_COVER_NO_GO.md`.  If finite actions
+factor through one quotient `H->L` and `w in [ker(pi),ker(pi)]`, fix a
+commutator expression for `w` inside the kernel.  Every factor fixes every
+cover vertex, so the lifted commutator chain cancels, and one fixed van
+Kampen diagram gives fillings with `S z_(w,x)=z_0` on every cover.  Hence
+`kappa_(w,X)=0` and `Hol(Jv)=<v,z_0> mod q`, yielding the uniform bound
+`H_q(Hol(Jv))/||v||<=||z_0||`.  The explicit word lies in the commutator
+subgroup of the kernel of the stable Kun--Thom double map to `Q*Q`, so all covers proposed in
+`FALSE_EXPLICIT_FP_RADICAL_DOUBLE.md` are inert for modular holonomy and its
+tensor amplifications.  A surviving FALSE tower must have genuinely
+varying action kernels with no common commutator filling of the marked word.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient

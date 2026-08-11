@@ -133,6 +133,32 @@ This remains true when both `v` and `q` vary.  Thus Theorem 3a of
 profinite formulation, `(FKC14)` says that the radical transgression is the
 diagonal ordinary integer `<v,z_0>`, never a nonintegral profinite integer.
 
+The same fixed diagram controls every phase class, not only constant-lift
+classes.  Let `C_D` be the number of relator-cell occurrences in the chosen
+diagram, counted with multiplicity.  For an arbitrary circle-valued edge
+phase table `theta`, let `A_X theta` be its relator residual and let
+`B_(w,X)theta` be its vector of marked word phases.  The lifted chain
+identity `(FKC7)--(FKC8)` gives at every vertex
+
+`(B_(w,X)theta)_x=<A_X theta,z_(w,x)> mod Z`.                     `(FKC16a)`
+
+The chains `z_(w,x)` are deck translates of one fixed finite pattern.
+The triangle inequality on `R/Z`, followed by the finite convolution
+inequality on the deck group, yields
+
+`||dist(B_(w,X)theta,Z)||_2`
+` <=C_D ||dist(A_X theta,Z)||_2`.                                `(FKC16b)`
+
+Thus the marked circle Lipschitz ratios satisfy
+
+`Lambda_(w,X)<=C_D`                                               `(FKC16c)`
+
+uniformly over the entire fixed-kernel family.  By the exact comparison in
+`TRUE_EXACT_COVER_MONOMIAL_DISCRIMINANT.md`, the corresponding monomial
+character-domination constants are uniformly bounded as well.  Hence the
+marked discriminant-divergence criterion and its tensor amplification also
+cannot fire on this family.
+
 ## 4. Application to the explicit radical double
 
 Use the notation of `FALSE_EXPLICIT_FP_RADICAL_DOUBLE.md`:

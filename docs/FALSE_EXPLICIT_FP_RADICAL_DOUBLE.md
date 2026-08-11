@@ -16,6 +16,15 @@ This supplies a concrete source presentation and cover tower for the
 modular transfer-holonomy certificate in
 `FALSE_TRANSFER_HOLONOMY_CERTIFICATE.md`.
 
+**Closure update.**  The presentation and radical calculation below remain
+valid, but the proposed `Q*Q` cover tower is now ruled out for modular
+holonomy.  `FALSE_FIXED_KERNEL_COVER_NO_GO.md` observes that the marked word
+lies in the commutator subgroup of the fixed kernel of `D->Q*Q`.  One
+commutator filling in that intermediate cover therefore pushes compatibly
+to every cover in this family.  Its relative filling class is zero and its
+holonomy ratio is uniformly bounded.  Sections 5--6 document the candidate
+closed by that no-go; they are no longer a live FALSE target.
+
 ## 2. The stable integral pair
 
 Fix `d>=3` and put
@@ -136,7 +145,7 @@ Thus `(FPRD5)` is a concrete finitely presented nonsofic group with a fixed
 length-two radical witness.  Unlike the quasisimple Leavitt--Steinberg
 group, it also has many nontrivial finite quotients.
 
-## 5. Large regular finite covers
+## 5. Large regular finite covers, and why the quotient-only tower is sterile
 
 Quotient each vertex group `G` by `E`.  Since `Gamma<=E`, the universal
 property of the amalgam gives a surjection
@@ -167,18 +176,50 @@ If a sequence satisfies `(FPRD16)` with `||v||/q->0`, Theorem 3 of
 `FALSE_TRANSFER_HOLONOMY_CERTIFICATE.md` produces a hyperlinear nonsofic
 group.
 
-## 6. Exact remaining arithmetic task
+However, the particular covers obtained only from `(FPRD15)` cannot satisfy
+the amplified marked-holonomy condition.  Let `K=ker(pi)`.  It contains the
+two vertex copies `E_1,E_2` of the perfect group `E`, and
 
-The FALSE problem on this family is no longer an existence-only
-finite-presentation localization.  It is the following finite computation
-in a fixed presentation:
+`w=i_2(h)i_1(h)^(-1) in [K,K]`.                                    `(FPRD17)`
 
-> Along finite quotients of `SL_d(Z)*SL_d(Z)`, determine the largest modulus
-> for which a constant base two-cycle becomes a modular coboundary, and
-> evaluate one solution on the parallel-edge loop `(FPRD14)`.
+The fixed-kernel filling theorem in
+`FALSE_FIXED_KERNEL_COVER_NO_GO.md` therefore gives
+
+`kappa_(w,X)=0`                                                    `(FPRD18)`
+
+on every finite cover pulled back through `(FPRD15)`.  Its holonomy is only
+the fixed ordinary integral filling functional and satisfies
+
+`H_q(Hol(Jv))<=C||v||`                                             `(FPRD19)`
+
+with one presentation-dependent constant `C`.  Thus increasing the order
+of a quotient of `Q*Q` alone is rigorously sterile.
+
+## 6. Closed arithmetic task
+
+The originally proposed finite computation was:
+
+> Along finite quotients of
+> `G *_E G ~= E semidirect (SL_d(Z)*SL_d(Z))` whose restriction to `E` is
+> nontrivial, determine the largest modulus for which a constant base
+> two-cycle becomes a modular coboundary, and evaluate one solution on the
+> parallel-edge loop `(FPRD14)`.
 
 The transfer subgroup `S(K_X)<=K_1`, the maximal divisibility modulus, and
 the radical holonomy all live in fixed rank.  The full cover cycle lattice
 and its enormous discriminant basis are unnecessary.  The degree-holonomy
 congruence `(THC29)` says in advance that only prime powers shared with the
-cover degree can contribute a macroscopic phase.
+cover degree can contribute.  Equations `(FPRD17)--(FPRD19)` add a stronger
+screen: the quotient must retain nontrivial Laurent elementary data.  The
+convenient `Q*Q` tower proves that large covers exist, but cannot itself
+produce radical holonomy.
+
+The perfect-kernel theorem is stronger than this screen.  With its fixed
+kernel commutator filling `z_0`, every solution satisfies
+
+`Hol_(w,X,q)(Jv)=<v,z_0> mod q`,
+`H_q(Hol_(w,X,q)(Jv))/||v||<=||z_0||`.                            `(FPRD17)`
+
+Thus the requested centered growth cannot occur, for any choice of
+modulus or base cycle.  A replacement explicit tower must not factor
+through one quotient whose kernel contains `w` in its commutator subgroup.
