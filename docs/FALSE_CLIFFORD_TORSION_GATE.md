@@ -63,44 +63,61 @@ orientation is immaterial.  Moving the second \(a\) to the left in
 The right side is a product of commuting involutions, so its square is one.
 End proof.
 
+**Lemma 3.**  Under the hypotheses of Lemma 2, if \(abc\) is central, then
+the three pairwise commutators are equal.  Writing their common value as
+\(d\), one has
+
+\[
+ (abc)^2=d.                                             \tag{5}
+\]
+
+**Proof.**  Centrality of \(abc\), together with centrality of the pairwise
+commutators, gives
+
+\[
+ 1=[abc,a]=[c,a][b,a].                                 \tag{6}
+\]
+
+Both factors are involutions by Lemma 1, so \([c,a]=[b,a]\).  Commuting with
+\(b\), or cyclically repeating the same calculation, shows that this also
+equals \([b,c]\).  Formula `(4)` is therefore the product of three copies of
+the same involution \(d\), which equals \(d\).  End proof.
+
 Applying the lemmas in \(U\) gives the following finite relation package.
 
-**Theorem 3 (bounded Clifford kernel).**  In \(U=P/[P,R]\),
+**Theorem 4 (cyclic Clifford kernel).**  In \(U=P/[P,R]\), all three
+pairwise commutators have a common value \(c\), and
 
 \[
- c_{ij}^2=1,\qquad
- q^2=c_{02}c_{12}c_{01},\qquad q^4=1,                 \tag{5}
+ c_{01}=c_{02}=c_{12}=c,\qquad
+ c^2=1,\qquad q^2=c,\qquad q^4=1.                    \tag{7}
 \]
 
-where the order of the three central factors in the middle identity is
-irrelevant.  The central subgroup
+Consequently the whole displayed central subgroup is cyclic:
 
 \[
- C_{\rm Cl}=\langle q,c_{01},c_{02},c_{12}\rangle       \tag{6}
+ C_{\rm Cl}=\langle q,c_{01},c_{02},c_{12}\rangle
+             =\langle q\rangle,                         \tag{8}
 \]
 
-is finite of order at most \(16\).  More precisely, the middle identity in
-`(5)` eliminates any one of the three \(c_{ij}\), so \(C_{\rm Cl}\) is a
-quotient of \(C_4\times C_2\times C_2\).
+and has order at most four.
 
 In additive Schur-multiplier notation, the corresponding classes in
 
 \[
- R/[P,R]\cong H_2(Q,\mathbb Z)                         \tag{7}
+ R/[P,R]\cong H_2(Q,\mathbb Z)                         \tag{9}
 \]
 
 satisfy
 
 \[
- 2[c_{ij}]=0,\qquad
- 2[q]=[c_{01}]+[c_{02}]+[c_{12}],\qquad 4[q]=0.        \tag{8}
+ [c_{01}]=[c_{02}]=[c_{12}]=2[q],\qquad 4[q]=0.       \tag{10}
 \]
 
-**Proof.**  Equations `(5)` are Lemmas 1 and 2 with
-\((a,b,c)=(p_1,p_2,p_0)\).  All displayed elements are central because they
-belong to \(R\).  Thus `(6)` is abelian, and `(5)` gives the asserted finite
-presentation bound.  Abelianizing the same identities inside the central
-kernel gives `(8)`.  End proof.
+**Proof.**  All displayed elements are central because they belong to \(R\).
+Apply Lemmas 1 and 3 with \((a,b,c)=(p_1,p_2,p_0)\).  This gives `(7)` and
+`(8)`.  Writing the identities additively inside the central kernel gives
+`(10)`.  End proof.
 
 ## 3. The local Pauli block detects the universal bounded package
 
@@ -109,13 +126,13 @@ centrality of \(q\) and of the three \(c_{ij}\).  The exact Pauli block from
 `FALSE_LOCAL_CLIFFORD_ATLAS.md` factors through \(U_{\rm loc}\) and has
 
 \[
- q\longmapsto-iI,\qquad c_{ij}\longmapsto-I.           \tag{9}
+ q\longmapsto-iI,\qquad c_{ij}\longmapsto-I.           \tag{11}
 \]
 
-Equation `(5)` is visible numerically without approximation:
+Equation `(7)` is visible numerically without approximation:
 
 \[
- (-iI)^2=-I=(-I)^3.                                   \tag{10}
+ (-iI)^2=-I=(-I)^3.                                   \tag{12}
 \]
 
 Consequently \(q\) has exact order four in \(U_{\rm loc}\).  The later
@@ -142,13 +159,13 @@ available here: whether soficity passes to central quotients is itself open.
 The required permanence theorem is instead Thom's theorem that a central
 quotient of a hyperlinear group is hyperlinear.
 
-Suppose now that \([q]\ne0\) in `(7)` and that exact finite-dimensional
+Suppose now that \([q]\ne0\) in `(9)` and that exact finite-dimensional
 representations \(\pi_n:P\to U(d_n)\) satisfy
 
 \[
  \|\pi_n(s)-1\|_2\longrightarrow0
  \quad(s\in\mathcal S),\qquad
- \liminf_n\|\pi_n(q)-1\|_2>0,                        \tag{12}
+ \liminf_n\|\pi_n(q)-1\|_2>0.                        \tag{13}
 \]
 
 where the finite set \(\mathcal S\) normally generates \([P,R]\).  The

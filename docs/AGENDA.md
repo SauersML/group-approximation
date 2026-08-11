@@ -769,12 +769,12 @@ The exact Clifford word has a prior algebraic gate which should be checked
 before more large-dimensional optimization.  In the universal central atlas
 cover its three pairwise involution commutators have order two and
 
-`q^2=c_01 c_02 c_12`, `q^4=1`.
+`c_01=c_02=c_12=q^2`, `q^4=1`.
 
 Thus the local Pauli phase is a specific two-primary Schur-multiplier class;
-the generated central subgroup has order at most 16.  The Pauli block proves
-that `q` has order four in the quotient imposing only this local centrality,
-not in the full cover.  Determine whether `[q]` survives in
+the generated central subgroup is cyclic of order at most four.  The Pauli
+block proves that `q` has order four in the quotient imposing only this local
+centrality, not in the full cover.  Determine whether `[q]` survives in
 `R/[P,R] ~= H_2(Q,Z)` before treating its preservation as the objective of a
 global atlas optimizer.  Full proof and the corrected central-quotient scope:
 `docs/FALSE_CLIFFORD_TORSION_GATE.md`.
