@@ -1,0 +1,204 @@
+# A self-similarity phase seed beyond the perfect-overlap boundary
+
+Date: 2026-08-11
+
+## 1. The first irreducible boundary relation
+
+Retain the two scalar charts
+
+\[
+ C_1=(01,1,000,001),\qquad C_2=(00,1,010,011)
+\]
+
+inside the binary Leavitt unit group.  In \(GL_4(\mathbb F_2)\), put
+
+\[
+ a=I+E_{10},\qquad b=I+E_{01},\qquad
+ c=I+E_{12},\qquad d=I+E_{01}+E_{12}=cb.              \tag{1}
+\]
+
+All of \(a,b,c\) are involutions and \(d\) has order four.  The first
+all-depth survivor returned by
+`experiments/atlas_perfect_overlap_scan.py` is
+
+\[
+ r=a_2b_1c_2b_1a_2b_1c_2d_1.                          \tag{2}
+\]
+
+It is an exact Leavitt relation.  Direct prefix multiplication gives
+
+\[
+ r=000(000)^*+001(001)^*+010(010)^*+011(011)^*+1(1)^*=1. \tag{3}
+\]
+
+Thus \(r\in R=\ker(A_8*A_8\to L_{\mathbb F_2}(1,2)^\times)\).
+Its factor projections are
+
+\[
+ \operatorname{pr}_2(r)=1,qquad
+ \operatorname{pr}_1(r)=I+E_{02}+E_{12}.              \tag{4}
+\]
+
+Unlike the shorter Clifford word, `(2)` cannot be placed in one scalar leaf
+chart.  Indeed, a scalar chart containing a transvection
+\(1+\alpha\beta^*\) also contains its source and range cylinder projections:
+multiply its nilpotent part by its adjoint in the chart matrix algebra.  The
+chart must therefore refine both cylinders.
+
+For the factor-two letters \(a,c\), equality of the descendant suffix codes
+forces
+
+\[
+ \mathcal S_{00}=\mathcal S_1=\mathcal S_{010}.        \tag{5}
+\]
+
+For the factor-one letters \(b,d\), note that \(db=c\); hence the same chart
+also contains the transvection \(c_1\).  It follows that
+
+\[
+ \mathcal S_{01}=\mathcal S_1=\mathcal S_{000}.       \tag{6}
+\]
+
+Equations `(5)--(6)` identify \(\mathcal S_{00}\) with
+\(\mathcal S_{000}\).  This is impossible for a finite complete suffix
+code: descendants of the \(000\)-cylinder occur inside the \(00\)-suffix
+code with an additional leading zero, so the equality would imply
+
+\[
+ 0\mathcal S_{00}\subseteq\mathcal S_{00}.            \tag{7}
+\]
+
+Iteration produces suffixes of unbounded length in a finite nonempty set.
+This is the concrete self-similarity loop behind the cardinality obstruction
+in `FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`.
+
+The conclusion is deliberately limited: no single scalar chart can fill
+`(2)`.  A chain of intermediate perfect overlaps or another global relation
+could still prove \(r\in[P,R]\).
+
+## 2. Its local groups are \(D_8\) and \(V_4\)
+
+The factor-one letters generate
+
+\[
+ H_1=\langle b,c\rangle\cong D_8,                     \tag{8}
+\]
+
+whereas the factor-two letters commute and generate
+
+\[
+ H_2=\langle a,c\rangle\cong V_4.                     \tag{9}
+\]
+
+There is an exact two-dimensional projective phase for `(2)`.  Let \(X,Y,Z\)
+be the Pauli matrices and, for \(\theta\in\mathbb R\), put
+
+\[
+ A_\theta=\cos(\theta)X+\sin(\theta)Y.                \tag{10}
+\]
+
+Represent \(H_1\) by
+
+\[
+ b\longmapsto X,\qquad c\longmapsto Z,                \tag{11}
+\]
+
+and represent \(H_2\) by
+
+\[
+ a\longmapsto A_\theta,\qquad c\longmapsto A_\theta. \tag{12}
+\]
+
+The first assignment is the faithful two-dimensional irreducible
+representation of \(D_8\); the second is the sum of the two \(V_4\)-characters
+on which \(a\) and \(c\) have equal signs.  Direct Pauli multiplication gives
+
+\[
+ r\longmapsto i\sin(4\theta)I-\cos(4\theta)Z.          \tag{13}
+\]
+
+At \(\theta=\pi/8\), therefore,
+
+\[
+ r\longmapsto iI_2.                                   \tag{14}
+\]
+
+This is an honest representation of the local free product \(D_8*V_4\).
+The phase is fourth-order, but it is attached to a relation which has already
+passed the all-depth single-chart obstruction.
+
+## 3. The phase block occurs inside two honest \(A_8\) charts
+
+Let \(W\) be the 64-dimensional \(A_8\)-irrep obtained from the
+\((5,2,1)\) Specht module.  Its character has
+
+\[
+ \chi_W(1)=64,\qquad \chi_W(2^4)=0,\qquad
+ \chi_W(4^2)=0.                                      \tag{15}
+\]
+
+Let \(\tau\) denote the two-dimensional representation `(11)` of \(D_8\).
+Its character is \(2\) at the identity, \(-2\) at the central involution,
+and zero on the other six elements.  The central involution and the four
+reflections are in the \(2^4\) class of \(A_8\), while the two order-four
+elements are in the \(4^2\) class.  Hence
+
+\[
+ \langle\operatorname{Res}^{A_8}_{D_8}\chi_W,\chi_\tau\rangle
+ ={1\over8}(2\cdot64-2\cdot0)=16.                    \tag{16}
+\]
+
+Every nonidentity element of the selected \(V_4\) is likewise in the
+\(2^4\) class.  Character orthogonality therefore gives multiplicity
+sixteen for each of its four characters in
+\(\operatorname{Res}^{A_8}_{V_4}W\).  In particular, the two characters
+used in `(12)` occur sixteen times each.
+
+It follows that two honest copies of \(W\), one for each \(A_8\) chart, can
+be relatively aligned so that a common 32-dimensional reducing subspace is
+the direct sum of sixteen copies of `(11)--(12)`.  On that subspace `(14)`
+holds exactly.
+
+The complementary restrictions can also be aligned into one-dimensional
+local blocks.  The four one-dimensional \(D_8\)-characters occur eight times
+each; the two unused \(V_4\)-characters occur sixteen times each.  On this
+complement the relation has eigenvalue \(+1\) on sixteen dimensions and
+\(-1\) on sixteen dimensions.  Thus we obtain:
+
+**Theorem (honest-chart self-similarity seed).**  There are honest
+representations
+
+\[
+ \rho_1,\rho_2:A_8\longrightarrow U(64),
+\]
+
+both equivalent to \(W\), for which \(\rho(r)\) commutes with the local
+subgroups \(H_1\) and \(H_2\) and has spectrum
+
+\[
+ i^{[32]},\qquad 1^{[16]},\qquad(-1)^{[16]}.           \tag{17}
+\]
+
+In particular,
+
+\[
+ \operatorname{tr}_{64}(\rho(r))={i\over2},\qquad
+ \|\rho(r)-1\|_2^2=2.                                \tag{18}
+\]
+
+## 4. Exact scope
+
+Theorem `(17)` is stronger than a representation of the small local groups:
+both chart marginals are honest irreducible \(A_8\) representations, and the
+phase occupies half their dimension.  It is also weaker than a representation
+of the central atlas quotient.  Since the common 32-dimensional block is not
+an \(A_8\)-invariant subspace, `(17)` does not make \(r\) commute with all of
+either chart.  Nor does the absence of a common scalar chart prove that the
+class of \(r\) is nonzero in \(R/[P,R]\).
+
+The next exact gate is now sharply bounded: determine whether the eight
+all-depth survivor classes, beginning with `(2)`, die along chains of perfect
+overlaps.  If `(2)` survives, deform the multiplicity alignment in `(17)` so
+that \(r\) centralizes the full two \(A_8\) charts without losing its
+macroscopic spectrum.  This is the first phase seed not already ruled out by
+one-chart refinement.

@@ -809,6 +809,25 @@ Use one representative from each class for exact central-phase/character
 analysis before launching another unitary optimizer.  Full criterion and
 counts: `docs/FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`.
 
+The first of those eight incompatible classes already has an exact phase
+seed.  With `a=I+E_10`, `b=I+E_01`, `c=I+E_12`, and
+`d=I+E_01+E_12=cb`, the relation
+
+`r=a_2 b_1 c_2 b_1 a_2 b_1 c_2 d_1`
+
+is the identity in the Leavitt group but forces a suffix code to equal its
+own proper refinement, so no single scalar chart contains its letters.  Its
+local factor groups are `V4` and `D8`.  The Pauli assignment
+`b->X`, `c->Z`, `a_2,c_2->cos(pi/8)X+sin(pi/8)Y` gives `r->i`.
+Inside the 64-dimensional `(5,2,1)` `A8` irrep, exact restriction characters
+give sixteen copies of this two-dimensional block.  Two honest `A8` charts
+can therefore be aligned so that `r` has spectrum
+`i^[32],1^[16],(-1)^[16]`, commutes with the local `D8` and `V4`, and has
+normalized distance squared `2` from one.  It does not yet centralize the
+full charts or prove that `r` survives in `R/[P,R]`.  This is now the first
+live self-similarity phase seed; full calculation:
+`docs/FALSE_SELF_SIMILARITY_PHASE_SEED.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
