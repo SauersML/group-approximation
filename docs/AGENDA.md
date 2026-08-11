@@ -182,6 +182,19 @@ Borel actions gives `H^1_cr=0` there (`(HPK9cr)`, `(TWT39)`), recovering the
 amenable endpoint.  No such density result is known for arbitrary principal
 sofic relations.
 
+Every circle skew product has a canonical vertical wreath envelope.  The
+fiber rotations `V_(r,s)(x,t)=(x,lambda_r(sx)t)` generate a hyperfinite
+relation normalized by the lifted base action, and together they form an
+action of the abstractly sofic restricted wreath product
+`(directSum_Q Z) wr Q`.  The skew action lies inside this envelope
+(`(HPK9cs)-(HPK9cx)`, `(TWT40)-(TWT45)`).  This does not close the gate:
+soficity of the abstract wreath product does not make this particular action
+sofic.  Coordinatewise torsion quantization respects the base shift but can
+destroy vertical kernel relations, including the cocycle identity; a tiny
+carry moves the whole phase fiber.  The live statement is soficity of this
+specific wreath action, equivalently the relation-preserving completion
+`(HPK18)`.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has

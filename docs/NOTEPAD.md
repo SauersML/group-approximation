@@ -39952,6 +39952,50 @@ analog of `(TWT39)` for arbitrary principal sofic relations; asserting one
 would be a substantive compact-extension theorem, not a routine density
 argument.
 
+# 2026-08-11: every circle skew product has a vertical wreath envelope
+
+Fix the cocycle convention
+
+`eta_(qr)(x)=eta_q(rx)eta_r(x)`.                       `(TWT40)`
+
+On `Y=X times T`, define
+
+`B_q(x,t)=(qx,t)`,
+`V_(r,s)(x,t)=(x,eta_r(sx)t)`.                         `(TWT41)`
+
+All `V_(r,s)` commute, so they give an action of the countable abelian group
+
+`D=directSum_(Q times Q) Z`.                           `(TWT42)`
+
+Its orbit relation is hyperfinite.  Moreover
+
+`B_q V_(r,s) B_q^(-1)=V_(r,sq^(-1))`,                `(TWT43)`
+
+so the base lifts normalize the vertical relation.  The generated ambient
+action is an action of
+
+`W=D semidirect Q ~= (directSum_Q Z) wr Q`,            `(TWT44)`
+
+a restricted wreath product and hence an abstractly sofic group when `Q`
+is sofic.  Since
+
+`alpha(q)=B_q V_(q,1)`,                               `(TWT45)`
+
+the circle skew-product relation `R_Q(eta)` is a subrelation of the orbit
+relation `E_eta` of this action.  Therefore soficity of `E_eta` would imply
+soficity of `R_Q(eta)` by subgroupoid permanence.
+
+The last premise is not automatic.  A sofic abstract group can have actions
+whose soficity is additional data, and adjoining a normalized hyperfinite
+vertical relation is the dangerous amenable-kernel/sofic-quotient
+orientation.  Here the concrete failure is exact: coordinatewise rounding
+of `eta_r(sx)` to roots of unity respects the coordinate shift `(TWT43)` but
+can destroy vertical relations which act trivially, including `(TWT40)`.
+Even an arbitrarily small nonzero carry moves every point of a finite phase
+fiber.  Thus constructing a sofic model of `E_eta` is the same
+relation-preserving phase completion still missing in `(HPK18)`, now phrased
+as action soficity rather than cocycle density.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 
