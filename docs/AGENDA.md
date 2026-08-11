@@ -839,6 +839,15 @@ four representatives, not the eight projection pairs. Reproducible exact
 classification and proof are in FALSE_SELF_SIMILARITY_PHASE_SEED.md and
 experiments/atlas_survivor_conjugacy.py.
 
+The obvious nonorthogonal interpolation between the complementary exact
+endpoints is also closed.  For tensor flip `J` and the unique wall alignment
+`L_k`, the relative permutation has `(J^*L_k)^4=1`, so there are only eight
+square-root branches up to scalar.  A balanced implicit regular-space scan
+gave boundary mean projective loss at least `0.9937`, wall-failure mean at
+least `0.9676`, and shared-control mean at least `0.8301` for every branch.
+Do not run more branches or seeds in this one-operator functional calculus.
+Full signal: `experiments/atlas_boundary_geodesic_results.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
