@@ -720,6 +720,16 @@ control that sector's odd discriminant or stabilizer homology, but a proof
 which needs only one selected exact family should not solve the strictly
 harder all-character gluing problem first.
 
+The first exact projective-chart audit is now in
+`experiments/sl3_projective_carry_results.md`.  For the point stabilizers at
+`p=3,5,7`, exact Shapiro boundary complexes give rational `H_2=0` and
+integral groups `C_2^3,C_2^3,C_2^4`.  The small-level boundary ranks follow
+`3n+1` and `7n-1` for `n=p^2+p+1`.  This is a valuable calibration, not a
+uniform theorem: prime-level cuspidal cohomology gives nonzero rational
+`H_2` at later levels.  Thus the live program must control both numerator
+growth on the acyclic charts and the metric harmonic lattice on the
+non-acyclic charts.
+
 Bounded spherical templates already localize every vanishing denominator.
 If their maximum norm is `B`, then a dual cycle `u` with `||u||<1/B` pairs
 by an integer of magnitude less than one with every template, hence is
