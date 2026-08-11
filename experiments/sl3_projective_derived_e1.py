@@ -56,6 +56,45 @@ def vertical_rank(boundaries, total_degree: int, cellular_degree: int, degree: i
     return int(block.rank()), block.nrows(), block.ncols()
 
 
+def filtered_block(
+    boundaries, total_degree: int, source_q: int, target_q: int, degree: int
+):
+    source = coordinate_indices(total_degree, source_q, degree)
+    target = coordinate_indices(total_degree - 1, target_q, degree)
+    return boundaries[total_degree].matrix_from_rows_and_columns(source, target)
+
+
+def horizontal_h1_rank(boundaries, degree: int):
+    """Rank of E1_(1,1) -> E1_(0,1), modulo vertical boundaries."""
+
+    source_vertical_out = filtered_block(boundaries, 2, 1, 1, degree)
+    source_vertical_in = filtered_block(boundaries, 3, 1, 1, degree)
+    target_vertical_out = filtered_block(boundaries, 1, 0, 0, degree)
+    target_vertical_in = filtered_block(boundaries, 2, 0, 0, degree)
+    horizontal = filtered_block(boundaries, 2, 1, 0, degree)
+
+    source_cycles = source_vertical_out.left_kernel().basis_matrix()
+    if source_vertical_in * source_vertical_out:
+        raise AssertionError("source vertical boundaries are not cycles")
+    images = source_cycles * horizontal
+    if images * target_vertical_out:
+        raise AssertionError("horizontal images are not target vertical cycles")
+
+    induced_rank = int(target_vertical_in.stack(images).rank()) \
+        - int(target_vertical_in.rank())
+    source_h1 = source_vertical_out.nrows() \
+        - int(source_vertical_out.rank()) - int(source_vertical_in.rank())
+    target_h1 = target_vertical_out.nrows() \
+        - int(target_vertical_out.rank()) - int(target_vertical_in.rank())
+    return {
+        "source_dimension": source_h1,
+        "target_dimension": target_h1,
+        "rank": induced_rank,
+        "kernel_dimension": source_h1 - induced_rank,
+        "cokernel_dimension": target_h1 - induced_rank,
+    }
+
+
 def analyze(prime: int, prefix: Path):
     degree = prime**2 + prime + 1
     boundaries = {
@@ -94,6 +133,9 @@ def analyze(prime: int, prefix: Path):
             f"{q},{s}": value for (q, s), value in sorted(vertical.items())
         },
         "E1_total_degree_two_dimensions": e1_total_two,
+        "E1_horizontal_H1_D8_to_H1_S4": horizontal_h1_rank(
+            boundaries, degree
+        ),
     }
 
 

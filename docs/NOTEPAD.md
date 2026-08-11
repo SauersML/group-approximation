@@ -41746,6 +41746,23 @@ to them or to the free harmonic lattice.  The next target is the same local
 splitting audit in the positive stabilizer-resolution rows.  Full result:
 `docs/TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
 
+## 2026-08-11: positive stabilizer rows are vertically local
+
+For a fixed finite cell stabilizer `H`, a finite coefficient `H`-set splits
+as a disjoint union of transitive orbits `H/L`.  Tensoring a fixed free
+`Z[H]`-resolution with that coefficient set therefore produces an integral
+orthogonal direct sum of finitely many subgroup templates.  Fixing an
+integral boundary section on each template and taking their direct sum gives
+a chart-independent vertical filling constant.
+
+Shapiro identifies the homology left after that contraction as a direct sum
+of local groups `H_s(L;Z_chi|L)`.  Thus the positive HAP rows cannot hide a
+large decoder in the vertical stabilizer resolutions themselves.  Any
+remaining primary obstruction must be assembled by the horizontal Wall
+differential between these local labels or by coupling them to the free
+harmonic lattice.  Full proof:
+`docs/TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.
+
 ## 2026-08-11: deck Fourier frames and the exact prime-two parity split
 
 FALSE-side work, deliberately separate from the current derived-HAP TRUE

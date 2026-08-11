@@ -123,6 +123,15 @@ the two certified compact harmonic classes into the `28630`-coordinate
 total complex and measure the best integral section.  Failure should be
 reported as an explicit class in a positive stabilizer-homology row.
 
+The zero-th orientation-primary boundary has since been split uniformly,
+but the first derived audit shows that the positive rows are substantial:
+at `p=3,5,7,11,13,17`, the exact dimensions of
+`(E^1_(0,2),E^1_(1,1))` are respectively
+`(7,8),(9,11),(10,13),(13,18),(15,21),(18,26)`.  The next computation is
+therefore the induced horizontal differential between these groups, not
+another zero-row orbit calculation.  See
+`TRUE_PROJECTIVE_DERIVED_E1_AUDIT.md`.
+
 The reproducible metadata exporter is
 `experiments/sl3_derived_resolution_audit.g`; its exact MSI output is
 `experiments/sl3-derived-resolution-audit.txt`, with SHA-256
@@ -135,3 +144,13 @@ orientation-`C_2` orbit summand, with norm-one inverse.  This removes that
 zero-row pair before studying the augmentation defect, but it does not touch
 the positive stabilizer-resolution bidegrees listed above.  See
 `TRUE_SL3_PRIMARY_TRANSFER_SPLITTING.md`.
+
+The vertical part of those positive bidegrees is nevertheless uniformly
+decodable.  For a fixed finite stabilizer `H`, restriction of any finite
+coefficient action decomposes into transitive `H/L`-orbits.  The specialized
+free stabilizer resolution is the orthogonal direct sum of finitely many
+fixed subgroup templates, so integral vertical boundary sections have a
+chart-independent Euclidean norm.  After this reduction the only possible
+primary obstruction is the horizontal Wall differential on the local
+groups `H_s(L;Z_chi|L)` and its coupling to the zero row.  See
+`TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.

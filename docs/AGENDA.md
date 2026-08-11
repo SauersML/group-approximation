@@ -1016,6 +1016,17 @@ the explicit kernel/cokernel coordinates through the positive
 stabilizer-resolution rows.  See
 `TRUE_PROJECTIVE_PRIMARY_RESIDUAL_MATCHING.md`.
 
+The positive stabilizer rows have also been reduced without computation.
+For any fixed finite cell stabilizer `H`, the specialized vertical free
+resolution splits orthogonally over the `H`-orbits of the coefficient set.
+Each orbit is `H/L` for one of finitely many subgroup types, so choosing an
+integral boundary section for each fixed template gives a uniform vertical
+decoder in every chart.  Shapiro identifies the surviving fibres as
+`H_s(L;Z_chi|L)`.  Hence the remaining bounded-primary gate is only the
+horizontal Wall incidence on these local homology labels and its coupling
+to the free harmonic lattice.  See
+`TRUE_VERTICAL_STABILIZER_DECODER_SPLITTING.md`.
+
 The next cuspidal chart has now been computed.  At `p=61` the compact
 complex is `183<-480<-440<-150`, again with harmonic rank two.  Its cyclic
 harmonic discriminant has `114` digits, but its dual systole increases to
