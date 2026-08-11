@@ -234,6 +234,30 @@ modulus.  Searching for one exact finite-image representation which kills
 the relators and retains `w` cannot find the gap: such an image would itself
 be a sofic quotient detecting a sofic-radical word.
 
+The fixed-dimensional version of this obstruction is now ruled out.  For
+each `d`, let `C_fd(d)` be the same supremum restricted to representations
+of dimension `d`.  Then
+
+`C_perm<infinity  ==>  C_fd(d)<infinity for every fixed d`.  `(RDC29)`
+
+The proof is in `TRUE_FIXED_DIMENSIONAL_ARC_BOUNDARY.md`.  If a fixed
+`C_fd(d)` were infinite, semialgebraic curve selection would give an
+analytic arc on which every conjugate-double relator vanishes to strictly
+higher order than the conjugate-double witness.  Truncating the matrix power
+series at the first nonzero witness jet makes all relators exactly one while
+retaining the witness.  This gives a homomorphism from `P` to a finitely
+generated complex linear, hence residually finite and sofic, group,
+contradicting `w in Rad_sof(P)`.
+
+Consequently the sole remaining possibility is genuinely
+dimension-uniform:
+
+`C_fd(d)<infinity for every d`,
+`sup_d C_fd(d)=infinity`.                            `(RDC30)`
+
+In particular, every sequence witnessing `(RDC28)` has unbounded matrix
+dimension after passage to a subsequence.
+
 Ordinary matrix stability is sufficient but stronger than `(RDC26)`: it
 would correct every approximate representation, whereas `(RDC26)` only
 forces one word to collapse.  Conversely, generic inequalities for

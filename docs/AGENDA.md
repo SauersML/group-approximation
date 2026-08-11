@@ -118,6 +118,21 @@ and the comparison constant may depend arbitrarily on the fixed presentation
 and word.  A counterexample is exactly a finite classical domination
 constant together with an infinite matrix-character domination constant.
 
+The finite-dimensional singularity branch is now closed; see
+`TRUE_FIXED_DIMENSIONAL_ARC_BOUNDARY.md`.  If `C_perm<infinity`, then the
+restricted constant `C_fd(d)` is finite for every fixed matrix dimension
+`d`.  Indeed an unbounded fixed-dimensional ratio has a semialgebraic bad
+arc.  In the conjugate double, its relators vanish to higher power-series
+order than its witness; truncation at the first witness jet produces an
+exact homomorphism to a finitely generated complex linear group retaining
+the radical word, impossible because that image is sofic.  Hence the only
+remaining TRUE obstruction is uniformity in growing dimensions:
+
+`C_fd(d)<infinity for every d`, but `sup_d C_fd(d)=infinity`.
+
+This removes exact finite-stage searches, nonlinear fixed-dimensional
+deformations, and singular projective solution strata from the live gate.
+
 The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
 shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
 already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
