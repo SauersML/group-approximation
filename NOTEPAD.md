@@ -37326,3 +37326,83 @@ lemma can lift the finite edge intertwiner once two global vertex families
 are present, while `(FEB1)--(FEB11)` show that the edge family itself is
 already exact.  What neither result supplies is the second global vertex
 family.
+
+## 2026-08-10: what the quantum-polymorphism stable-commutativity theorem does and does not transfer
+
+The supplied manuscript of Culf--van Dobben de Bruyn--Zeman proves a
+powerful but different rounding statement.  In its notation, if
+
+`A=C[Z_(d_1)] * ... * C[Z_(d_k)]`,                    `(QSC1)`
+
+then `q`-stable commutativity of a weighted algebra implies `qa`-stable
+commutativity.  The proof lifts a Connes-embeddable representation to
+finite-dimensional approximate maps, rounds the images of the cyclic
+generators to exact finite-order unitaries, and uses the free-product
+universal property to obtain honest finite-dimensional representations.
+
+The same rectification step has the following immediate free-group version.
+
+**Lemma (matrix rectification for a free source).**  Let `F_k` be free on
+`s_1,...,s_k`.  Every star-homomorphism
+
+`C^*(F_k) -> product_omega (M_(d_n),tau_(d_n))`        `(QSC2)`
+
+is represented by a sequence of honest homomorphisms
+
+`pi_n:F_k -> U(d_n)`.                                 `(QSC3)`
+
+**Proof.**  Choose arbitrary matrix lifts `X_(i,n)` of the images of the
+canonical generators.  The ultraproduct identities imply
+
+`||X_(i,n)^*X_(i,n)-1||_2 ->_omega 0`,
+`||X_(i,n)X_(i,n)^*-1||_2 ->_omega 0`.                `(QSC4)`
+
+Finite-dimensional polar decomposition, completing the polar partial
+isometry on its kernel, gives unitaries `U_(i,n)` with
+
+`||X_(i,n)-U_(i,n)||_2 ->_omega 0`.                   `(QSC5)`
+
+Freeness uniquely extends `s_i |-> U_(i,n)` to `(QSC3)`, and wordwise
+telescoping shows that these homomorphisms induce the original map `(QSC2)`.
+End proof.
+
+This lemma is useful bookkeeping, but it is already implicit in the
+normal-indicator characterization `(NIR)`: the unitary side of `(DCT5)` may
+be taken exact on the free source at every level.
+
+The manuscript does **not** prove the missing implication `(DCT5)=>(DCT7)`.
+Its hierarchy is
+
+`finite-dimensional matrices (q) subset CE limits (qa)`, `(QSC6)`
+
+whereas our missing hierarchy is
+
+`finite permutation actions subset finite-dimensional matrices`. `(QSC7)`
+
+Stable commutativity controls commutators of projection generators.  Even
+when it succeeds, a commutative representation yields a probability
+distribution over classical CSP assignments.  To obtain `(DCT7)` one would
+still have to construct, from those assignments, bijections `P_s` on one
+common finite set satisfying the word constraints and the prescribed
+fixed-point statistics.  Nothing in the `q`-to-`qa` rectification supplies
+these bijections or controls their normalized Hamming character.
+
+There is a sharp sanity check.  The same manuscript constructs a
+finite-dimensional versus `qa` separation from a hyperlinear group all of
+whose honest finite-dimensional representations are trivial.  Such a group
+need not be nonsofic: sofic approximations are approximate permutation maps,
+not honest finite-dimensional representations.  Thus replacing the missing
+finite-action characters by honest finite-dimensional characters would erase
+exactly the distinction under study.
+
+Consequently the valid import from the manuscript is `(QSC2)-(QSC5)` and the
+stable-commutativity language, not a quantum-to-classical rounding theorem.
+Any use toward the main problem needs one additional statement of the form:
+
+> for the weighted algebra encoding a normal fiber-product indicator, small
+> matrix defect plus the normal `0/1` trace constraints forces proximity to a
+> commutative model whose atoms assemble into a common finite `F`-action.
+
+That additional statement is presently unproved and is equivalent in force
+to the finite-action transfer, rather than a consequence of the supplied
+paper.
