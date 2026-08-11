@@ -142,6 +142,42 @@ character.  Hence
 This numerical inequality is the familiar inclusion
 `Rad_hyp(P) subset Rad_sof(P)`.
 
+## Scalar phases can be removed at factor-two cost
+
+The finite-dimensional supremum does not require complex-valued character
+phases.  Given `chi`, its conjugate double
+
+`psi(g)=|chi(g)|^2`                                   `(RDC18)`
+
+is a real nonnegative normalized finite-dimensional character, and
+
+`q_psi(g)=1-|chi(g)|^4`
+` =(1+|chi(g)|^2)q_chi(g)`.                           `(RDC19)`
+
+Therefore
+
+`q_chi(g)<=q_psi(g)<=2q_chi(g)`.                      `(RDC20)`
+
+Let `C_fd^+(P,w;R)` be the supremum `(RDC11)` restricted to real
+nonnegative finite-dimensional characters.  Since this is a subclass,
+
+`C_fd^+<=C_fd`.                                       `(RDC21)`
+
+Conversely, if the restricted characters obey the domination inequality
+with constant `C`, apply it to `psi` and use `(RDC20)`:
+
+`q_chi(w)<=q_psi(w)`
+` <=C sum_r q_psi(r)<=2C sum_r q_chi(r)`.              `(RDC22)`
+
+Hence
+
+`C_fd^+<=C_fd<=2C_fd^+`,                              `(RDC23)`
+
+with the statement interpreted in the extended nonnegative reals.  In
+particular, finiteness of `C_fd` may be tested entirely inside the same
+real nonnegative character cone in which finite-action characters live.
+The missing comparison is not caused by character phases.
+
 ## Exact equivalence with the open problem
 
 **Theorem 3 (domination-constant formulation).**  The following are
@@ -152,7 +188,7 @@ equivalent.
 3. For every finite presentation `(RDC1)` and every word `w`,
 
    `C_perm(P,w;R)<infinity`
-`  ==> C_fd(P,w;R)<infinity`.                          `(RDC18)`
+`  ==> C_fd(P,w;R)<infinity`.                          `(RDC24)`
 
 **Proof.**  The equivalence `1<=>2` is the finite-presentation localization
 proved in `(FPR1)--(FPR12)` of `NOTEPAD.md`.  Equations `(RDC12)` and
@@ -161,7 +197,7 @@ proved in `(FPR1)--(FPR12)` of `NOTEPAD.md`.  Equations `(RDC12)` and
 If the implication fails, the gap is extreme.  There are characters
 `chi_n` with
 
-`Q_R(chi_n)->0`, `q_(chi_n)(w)->1`,                   `(RDC19)`
+`Q_R(chi_n)->0`, `q_(chi_n)(w)->1`,                   `(RDC25)`
 
 so `C_fd=+infinity`, while `C_perm` is finite.  Conversely any such pair of
 constants produces a homomorphism from `P` to a hyperlinear group retaining
@@ -170,15 +206,15 @@ the sofic-radical word `w`, and hence a hyperlinear nonsofic image.
 ## What remains
 
 The universal TRUE theorem has now been reduced to the cross-category
-inequality `(RDC18)`.  It would suffice to prove any bound
+inequality `(RDC24)`.  It would suffice to prove any bound
 
-`C_fd(P,w;R)<=Phi(P,w,R,C_perm(P,w;R))`                `(RDC20)`
+`C_fd(P,w;R)<=Phi(P,w,R,C_perm(P,w;R))`                `(RDC26)`
 
 with finite right-hand side; no dimension-uniform numerical formula is
 required beyond the fixed presentation and word.
 
-Ordinary matrix stability is sufficient but stronger than `(RDC20)`: it
-would correct every approximate representation, whereas `(RDC20)` only
+Ordinary matrix stability is sufficient but stronger than `(RDC26)`: it
+would correct every approximate representation, whereas `(RDC26)` only
 forces one word to collapse.  Conversely, generic inequalities for
 nonnegative characters are insufficient, because finite action characters
 form a strictly smaller cone.  The missing argument must use simultaneously
