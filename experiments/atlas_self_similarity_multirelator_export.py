@@ -33,7 +33,7 @@ def outer(matrix):
 
 def direct_sum(left, right):
     zero = np.zeros_like(left)
-    return np.block(((left, zero), (zero, right)))
+    return np.block([[left, zero], [zero, right]])
 
 
 def main():
@@ -112,10 +112,10 @@ def main():
         alignment = np.frombuffer(
             bytes.fromhex(CERTIFIED_OUTER_ALIGNMENT), dtype=np.uint8
         ).reshape(4, 4).copy()
-        swap = np.block((
-            (np.zeros((64, 64), dtype=np.complex128), np.eye(64)),
-            (np.eye(64), np.zeros((64, 64), dtype=np.complex128)),
-        ))
+        swap = np.block([
+            [np.zeros((64, 64), dtype=np.complex128), np.eye(64)],
+            [np.eye(64), np.zeros((64, 64), dtype=np.complex128)],
+        ])
         relative_block = block_representation(alignment) @ swap
 
     multiplicity_identity = np.eye(args.multiplicity, dtype=np.complex128)
