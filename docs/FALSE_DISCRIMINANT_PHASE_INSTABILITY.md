@@ -370,6 +370,51 @@ uniformly microscopic harmonic fundamental domain plus one nonzero radical
 word character would settle FALSE, without estimating the full
 high-dimensional discriminant module.
 
+**Theorem 7 (explicit marked dual class).**  Let `b_(j,n) in R^(e_n)` be
+the transpose of the `j`-th row of `B_(w,n)` and put
+
+`q_(j,n)=(A_n^dagger)^* b_(j,n) in W_n`.              `(DPI40)`
+
+Then
+
+`q_(j,n) in L_n^#`,                                   `(DPI41)`
+
+and the `j`-th coordinate of the character `(DPI29)` is exactly
+
+`chi_(j,n)(c)=<q_(j,n),a> mod Z`,
+`a+L_n=gamma_n(c)`.                                   `(DPI42)`
+
+In particular, on the full discriminant group this coordinate is
+nontrivial if and only if
+
+`q_(j,n) notin L_n`.                                  `(DPI43)`
+
+More generally, its restriction to `C_n<=D_(K,n)` is nontrivial if and
+only if the class `q_(j,n)+L_n` does not lie in the annihilator of
+`gamma_n(C_n)` under the discriminant pairing on `D_(L,n)`.
+
+**Proof.**  For every `ell in L_n`, the phase table
+
+`y=A_n^dagger ell`                                    `(DPI44)`
+
+is exact.  The radical-word argument `(DPI33)--(DPI34)` gives
+
+`<b_(j,n),A_n^dagger ell> in Z`.                      `(DPI45)`
+
+By adjointness this is `<q_(j,n),ell>`, proving `(DPI41)`.  For a paired
+representative `a`, the same adjointness gives
+
+`(B_(w,n)A_n^dagger a)_j=<q_(j,n),a>`,                `(DPI46)`
+
+which proves `(DPI42)`.  The discriminant pairing on `L_n^#/L_n` is
+nondegenerate, proving `(DPI43)` and the subgroup statement.  End proof.
+
+Theorem 7 turns the last check in Corollaries 5--6 into exact rational
+linear algebra.  For the harmonic subgroup, compute one marked class
+`q_(j,n)+L_n` and pair it with the rank-`dim(H_n)` pullback image.  A single
+nonintegral pairing, together with the microscopic covering-radius bound,
+is a complete FALSE certificate.
+
 ## 6. Calibration and computation target
 
 For the oriented incidence matrix of a connected `d`-regular graph on `n`
