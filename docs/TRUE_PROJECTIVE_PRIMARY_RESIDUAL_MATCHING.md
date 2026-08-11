@@ -74,6 +74,46 @@ exactly from the certified sparse matrix.
 | 53 | 29 | 55 | 27 | 2 | 28 |
 | 61 | 33 | 63 | 31 | 2 | 32 |
 
+## The generic stratum is symbolic
+
+The natural model makes a proof decomposition visible.  Its degree-three
+stabilizer is `S_4` in a three-dimensional rational representation.  The
+orientation-reversing elements have six rational projective fixed planes,
+the reflection mirrors.  Parameterize any one of them by
+
+`v(t)=v_0+t v_1` over `Q(t)`.
+
+The exact rational-function verifier enumerates the six residual boundary
+matrices and all twelve target-stabilizer matrices.  On **each** of the six
+mirrors it proves:
+
+1. exactly two boundary images are generically target-nonorientable;
+2. those two images lie in distinct target-stabilizer orbits; and
+3. each occurs with multiplicity one.
+
+Thus the generic residual row is exactly `[1 1]`; this is no longer merely
+a finite-prime pattern.  Every possible failure is confined to finitely many
+parameters.  On each mirror the verifier computes seven rational linear
+exception factors, plus the point at infinity.  Across the six chosen
+coordinates the factors are drawn from
+
+`t, t+1/2, t+1, t+1/3, t+2, t+3, t-1, t-1/2,`
+`t-1/3, t-1/4, t-2, t-2/3, t-3, t-3/4, t-3/2,`
+`t-4/3, t-4`.
+
+This leaves a finite exceptional-orbit calculation and the nonrational
+4-cycle eigenlines.  The latter explain why the observed kernel count
+depends on `chi=(-1|p)`: the `+-i` projective eigenlines exist over `F_p`
+exactly when `-1` is a square.  That explanation is currently a derived
+conjecture from the representation type; the exceptional strata still need
+an explicit all-prime proof.
+
+The symbolic program is `experiments/sl3_projective_primary_generic.py`,
+fed by the exact HAP template exporter
+`experiments/sl3_projective_primary_template_export.g`.  Its compact output
+is `experiments/sl3-primary-generic-summary.tsv`, with SHA-256
+`07da64831418c5ea0814ea20faf37246ef257b3b49c6463426f1cec6d150ac90`.
+
 ## Construction checked
 
 The compact degree-three boundary has six terms landing in the second
