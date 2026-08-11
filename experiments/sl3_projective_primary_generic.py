@@ -14,7 +14,7 @@ import argparse
 import json
 from pathlib import Path
 
-from sage.all import QQ, PolynomialRing, identity_matrix, matrix, vector
+from sage.all import QQ, PolynomialRing, QuadraticField, identity_matrix, matrix, vector
 
 
 def parse(path: Path):
@@ -60,6 +60,46 @@ def target_bad(point, target):
     )
 
 
+def orbit_representatives(points, group):
+    representatives = []
+    for point in points:
+        if not any(target_equivalent(point, representative, group)
+                   for representative in representatives):
+            representatives.append(point)
+    return representatives
+
+
+def normalized_strings(point):
+    first = next(value for value in point if value)
+    return [str(value / first) for value in point]
+
+
+def residual_profile(point, target, boundary):
+    field = point.base_ring()
+    images = [point * element.change_ring(field) for _, element in boundary]
+    bad = [target_bad(image, target) for image in images]
+    classes = []
+    for index, image in enumerate(images):
+        if not bad[index]:
+            continue
+        if not any(target_equivalent(image, representative, target)
+                   for representative in classes):
+            classes.append(image)
+    multiplicities = [
+        sum(
+            1
+            for index, image in enumerate(images)
+            if bad[index] and target_equivalent(image, representative, target)
+        )
+        for representative in classes
+    ]
+    return {
+        "target_bad_boundary_terms": sum(bad),
+        "target_orbit_multiplicities": multiplicities,
+        "odd_target_orbit_count": sum(value % 2 for value in multiplicities),
+    }
+
+
 def generic_source_planes(source):
     planes = []
     keys = set()
@@ -88,6 +128,7 @@ def analyze(path: Path):
     t = fraction.gen()
 
     strata = []
+    rational_exception_points = []
     for plane in generic_source_planes(source):
         basis = [vector(fraction, row) for row in plane.basis()]
         point = basis[0] + t * basis[1]
@@ -133,11 +174,20 @@ def analyze(path: Path):
                     obstruction = proportional_polynomial(
                         left * element.change_ring(fraction), right, polynomial)
                     exceptional_tests.append(obstruction)
+        exceptional_polynomials = set()
         for obstruction in exceptional_tests:
             if obstruction.degree() <= 0:
                 continue
             for factor, _ in obstruction.factor():
+                exceptional_polynomials.add(factor.monic())
                 exceptional_factors.add(str(factor.monic()))
+        rational_basis = [vector(QQ, row) for row in plane.basis()]
+        rational_exception_points.append(rational_basis[1])
+        for factor in exceptional_polynomials:
+            if factor.degree() == 1:
+                root = -factor[0] / factor[1]
+                rational_exception_points.append(
+                    rational_basis[0] + root * rational_basis[1])
         strata.append({
             "plane_basis": [[str(value) for value in row] for row in plane.basis()],
             "target_bad_boundary_terms": sum(bad),
@@ -146,9 +196,45 @@ def analyze(path: Path):
             "finite_exceptional_factors": sorted(exceptional_factors),
             "infinite_parameter_is_exceptional": True,
         })
+
+    rational_representatives = orbit_representatives(
+        rational_exception_points, source)
+    rational_exception_orbits = [
+        {
+            "representative": normalized_strings(point),
+            **residual_profile(point, target, boundary),
+        }
+        for point in rational_representatives
+    ]
+
+    quadratic = QuadraticField(-1, "ii")
+    quadratic_identity = identity_matrix(quadratic, 3)
+    quadratic_lines = []
+    for sign, element in source:
+        if sign != -1:
+            continue
+        changed = element.change_ring(quadratic)
+        for eigenvalue in changed.charpoly().roots(quadratic, multiplicities=False):
+            eigenspace = (
+                changed.transpose() - eigenvalue * quadratic_identity
+            ).right_kernel()
+            if eigenspace.dimension() == 1:
+                quadratic_lines.append(vector(quadratic, eigenspace.basis()[0]))
+    quadratic_representatives = orbit_representatives(quadratic_lines, source)
+    quadratic_exception_orbits = []
+    for point in quadratic_representatives:
+        normalized = point / next(value for value in point if value)
+        defined_over_QQ = all(value[1] == 0 for value in normalized)
+        quadratic_exception_orbits.append({
+            "representative": [str(value) for value in normalized],
+            "defined_over_QQ": defined_over_QQ,
+            **residual_profile(point, target, boundary),
+        })
     return {
         "source_orientation_reversing_projective_planes": len(strata),
         "strata": strata,
+        "rational_exception_orbits": rational_exception_orbits,
+        "quadratic_negative_eigenline_orbits": quadratic_exception_orbits,
     }
 
 
