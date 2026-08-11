@@ -49,6 +49,27 @@ theorem for normal fiber-product indicators.  General synchronous-correlation
 results do not supply it: maximally-entangled quantum correlations need not be
 classical, while their known density theorem stays inside the quantum cone.
 
+Source audit `(SA1)-(SA6)` now pins this to Manzoor's exact closure gap:
+`closure(T_IRS intersect T_fd)` versus
+`T_IRS intersect closure(T_fd)` at the normal Dirac trace.  The quantitative
+theorem of Burton--Chaudkhari--Juschenko--Muliarchyk proves the transfer for
+amenable quotients, with doubled coefficient error at most `2 sqrt(epsilon)`
+after matrix rounding.  Subgroup tests capture all finite separators but do
+not make the separating IRS normal Dirac, and HS-stability results stop at
+exact matrices rather than permutation actions.
+
+The Bernoulli-lamp detour is also sharply delimited by `(BL1)-(BL4)`: the
+shift action on `directSum_Gamma C_2` is a sofic `C`-action only if `Gamma` is
+already sofic.  Hence both Hayes--Sale wreath-product permanence and its 2026
+Alekseev--Bradford action generalization are circular for this purpose.
+
+Next: attack the normal-Dirac restriction inside a finite subgroup test.  Use
+normality and the `0/1` law to symmetrize an arbitrary positive loss
+certificate, seeking a finite-action strategy without asking for universal
+matrix-to-permutation rounding.  Do not route through amenability, generic HS
+stability, or Bernoulli-lamp permanence; their exact stopping points are now
+proved in the notepad.
+
 ## 2. Defect-localized commutant pinning  [LEMMAS LANDED]
 
 The (T)-analog of the kernel-checked f.d. collapse (N20), avoiding the

@@ -37409,8 +37409,10 @@ paper.
 
 ## 2026-08-10: the partial-orbit rounding method stops exactly at amenability
 
-Burton's arXiv:2110.03076 proves that hyperlinear approximations of an
-amenable group can be rounded, quantitatively, to permutation-induced ones.
+The stronger current source is Burton--Chaudkhari--Juschenko--Muliarchyk,
+arXiv:2311.09202v2, Theorem 1.1.  It proves that hyperlinear approximations of
+an amenable group can be rounded, quantitatively and in the same dimension,
+to permutation-induced ones.
 Its mechanism chooses a Følner set `M` in the group, turns the vectors
 `{pi(g)xi:g in M}` into an almost orthonormal partial orbit, and uses the
 almost-invariance of `M` to make left multiplication into permutations on
@@ -37461,3 +37463,151 @@ interference rather than a partial regular orbit.  It does close the direct
 attempt to combine the stable-commutativity manuscript or the canonical
 entangled coefficient `(DCT5)` with Burton's partial-orbit extraction beyond
 amenable quotients.
+
+## 2026-08-10: source audit and the exact IRS closure gap
+
+The papers suggested in the external literature note have now been checked
+against their theorem statements.  They validate the formulation above but
+do not contain the missing normal-Dirac rounding theorem.
+
+Let `F` be free, `N normal F`, and `Gamma=F/N`.  Write `T_fd(F)` for traces of
+finite-dimensional unitary representations, and write `T_IRS(F)` for traces
+coming from invariant random subgroups.  Manzoor, arXiv:2502.06697v2,
+Propositions 2.6 and 2.14 and the discussion following Definition 2.13,
+identifies the two relevant closures as
+
+`closure(T_IRS(F) intersect T_fd(F))`                 `(SA1)`
+
+and
+
+`T_IRS(F) intersect closure(T_fd(F))`.                `(SA2)`
+
+Here `(SA1)` is the co-sofic side and `(SA2)` is the co-hyperlinear side for
+free `F`.  For the normal Dirac IRS `delta_N`, membership in `(SA1)` is
+equivalent to soficity of `Gamma`, while membership in `(SA2)` is equivalent
+to hyperlinearity of `Gamma`.  Manzoor explicitly notes that equality of
+these notions on normal Dirac IRSs would imply hyperlinear equals sofic.
+Thus the target is literally an interchange-of-closure-and-intersection
+problem at the special `0/1` trace `1_N`; it is not supplied by Connes
+embeddability alone.
+
+The amenable case admits the following quantitative doubled translation.
+In the notation of `(DCT1)-(DCT7)`, let `E subset Gamma` be finite.  Theorem
+1.1 of Burton--Chaudkhari--Juschenko--Muliarchyk says that, after demanding a
+sufficiently accurate hyperlinear approximation `alpha` on a larger finite
+set, there is a sofic-induced approximation `beta` on the same Hilbert space
+such that
+
+`||alpha(g)-beta(g)||_(2,n)^2 <= epsilon`, `g in E`.   `(SA3)`
+
+Consequently, for `g,h in E`, Cauchy--Schwarz and a two-term telescoping give
+
+`|tr_n(alpha(g)alpha(h)^*)`
+` -tr_n(beta(g)beta(h)^*)| <= 2 sqrt(epsilon)`.        `(SA4)`
+
+The trace on the right is the normalized fixed-point count of the
+permutation `beta(g)beta(h)^*`.  To turn the approximate map `beta:Gamma ->
+Sym(V)` into the genuine finite `F`-action required in `(DCT7)`, assign the
+free generators of `F` the permutations `beta(q(s))` and extend freely.
+If the theorem is applied on a prefix-closed set containing the words under
+consideration, telescoping the sofic multiplicative defects shows that the
+resulting action differs from `beta(q(w))` on at most
+`(word_length(w)-1) epsilon |V|` points.  Thus `(SA4)`, with the input
+tolerance reduced according to the finite word table, proves `(DCT5)=>(DCT7)`
+for amenable `Gamma` with an explicit modulus.
+
+Bowen--Chapman--Lubotzky--Vidick, arXiv:2408.00110, supplies a complete
+finite-test language for the larger inclusion
+
+`closure(IRS_fd(F)) subset IRS(F)`.                   `(SA5)`
+
+Its subgroup tests are continuous finite-coordinate linear functionals, and
+its finite strategies are exactly finite `F`-actions sampled at a uniform
+point.  The paper's non-co-sofic IRS, however, is not shown to be a normal
+Dirac mass.  The companion Bowen--Chapman--Vidick construction,
+arXiv:2501.00173, builds the tailored-game undecidability mechanism and
+special permutation strategies needed for that separation; it likewise
+does not turn an arbitrary maximally-entangled trace into a normal-Dirac
+finite action.  Hence these papers enrich the separator language `(PLC)` but
+do not rule out the separators at `1_N`.
+
+The remaining stability papers stop one category too early.  De la Salle,
+arXiv:2204.07084, and Fournier-Facio--Gerasimova--Spaas,
+arXiv:2307.13155, give hypotheses under which approximate unitary relations
+are close to exact unitary representations.  Dogon--Vidick,
+arXiv:2607.20135, gives polynomial Hilbert--Schmidt stability for the
+amenable lamplighter group.  Paddock, arXiv:2203.02525, rounds certain
+near-optimal strategies to maximally-entangled/tracial strategies.  None of
+these results performs the second arrow
+
+`finite matrices -> permutations with fixed-point trace control`. `(SA6)`
+
+This audit therefore confirms that `(DCT5)=>(DCT7)`, or equivalently the
+normal-Dirac instance of `(SA2)=>(SA1)`, remains the exact open step.
+
+## 2026-08-10: the Bernoulli-lamp permanence hypothesis is already soficity
+
+A tempting route is to adjoin a commuting Bernoulli lamp algebra and use its
+joint spectrum as the finite set on which the quotient group should act.
+The standard permanence theorem does not provide this construction from
+hyperlinearity alone.  Hayes--Sale, arXiv:1608.02610, Theorem 4.3, proves
+
+`G hyperlinear and H sofic => G wr H hyperlinear`;   `(BL1)`
+
+for the restricted wreath product `G wr H=(directSum_H G) semidirect H`.
+Taking `G=C_2` and `H=Gamma`, its acting-group hypothesis is exactly the
+desired conclusion that `Gamma` is sofic.
+
+The 2026 generalization of Alekseev--Bradford, arXiv:2601.18742, does not
+remove this circularity.  It replaces soficity of the acting group by a
+sofic action, or more generally by a sofic `C`-action by automorphisms.  For
+the regular Bernoulli lamp shift, that hypothesis is itself equivalent to
+soficity of the acting group.
+
+**Proposition (lamp-shift action detects soficity).**  Let `Gamma` be a group,
+
+`Delta=directSum_(x in Gamma) C_2`,                  `(BL2)`
+
+and let `beta` be the shift action, with `beta(g)(a_x)=a_(gx)` for the
+standard lamp involutions.  If `beta` is a sofic `C`-action in the sense of
+Alekseev--Bradford Definition 4.23, for any class `C`, then `Gamma` is sofic.
+Conversely, if `Gamma` is sofic and `C` contains all finite elementary
+abelian `2`-groups, then `beta` is a sofic `C`-action.
+
+**Proof.**  Fix finite `K subset Gamma` and `epsilon>0`.  Apply Definition
+4.23 with an internal tolerance `eta>0` small compared with `epsilon`, and
+choose the acting table to contain `K`, `K^(-1)K`, and the products and
+inverses needed for the usual sofic multiplicative tests.  Also choose the
+lamp table to contain
+
+`a_e` and `beta(g)^(-1)(a_e)=a_(g^(-1))`, `g in K`.  `(BL3)`
+
+The definition gives `phi:Gamma -> Sym(A)`, a set `S subset A` with
+`|S|>(1-eta)|A|`, and injective partial homomorphisms `pi_s` satisfying
+the covariance equation.  If `g != e`, `s in S`, and `phi(g)s=s`, that
+equation at `a_e` gives
+
+`pi_s(a_e)=pi_s(a_(g^(-1)))`,                         `(BL4)`
+
+contradicting injectivity because the two lamps are distinct.  Thus every
+fixed point of `phi(g)` lies in `A-S`, so its fixed-point fraction is less
+than `eta`.  For distinct `g,h in K`, multiplicativity and the approximate
+inverse identities make `phi(h)^(-1)phi(g)` `O(eta)`-close in Hamming
+distance to `phi(h^(-1)g)`.  The latter has fewer than `eta|A|` fixed points
+by the preceding argument.  Choosing `eta` sufficiently small makes `phi`
+an `epsilon`-sofic approximation on `K`.  Since `K` and
+`epsilon` were arbitrary, `Gamma` is sofic.
+
+Conversely, the regular action `Gamma` on its underlying set is a sofic set
+action.  The lamp construction is the set-theoretic halo
+`L(X)=directSum_X C_2`, whose finite values lie in `C`.  Alekseev--Bradford
+Proposition 4.26 therefore makes the induced shift a sofic `C`-action.  End
+proof.
+
+This proposition is useful because it rules out a disguised shortcut: any
+attempt to invoke the existing semidirect-product theorem for the Bernoulli
+lamp shift must first prove a hypothesis already strong enough to conclude
+soficity directly.  A genuinely new lamp route would have to construct the
+needed finite joint-spectrum action from the hyperlinear microstate itself,
+without assuming either a sofic approximation of `Gamma` or a sofic action
+of `Gamma` on its lamp coordinates.
