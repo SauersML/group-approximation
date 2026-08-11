@@ -237,6 +237,18 @@ is exactly unbounded growth of this fixed-rank degree-torsion character.
 Thus all full-transfer growth is confined to the common nonsemisimple part
 of cover degree and modulus; the coprime sector is rigorously inert.
 
+That torsion character itself is now identified with one paired integral
+class; see `FALSE_TRANSFERRED_FILLING_PAIRING_FORMULA.md`.  Transfer an
+integral filling of a lifted radical loop to the base and subtract a fixed
+base filling.  Its class `kappa_(w,X) in K_1/S(K_X)` is independent of all
+choices.  For every transferable `(v,q)`,
+`Hol(Jv)=<v,z_0>+<v,kappa_(w,X)> mod q`; under full transfer the second term
+is the mod-`q` Gram pairing on the transfer quotient.  In a fixed basis the
+whole holonomy vector is exactly `f+Gm_X mod q`, and the degree-torsion
+vector is `(G/e)m_X mod g`.  This removes the modular phase solve from the
+marked numerator and identifies the remaining nonlinear obstruction with a
+single relative filling class in a finite paired lattice quotient.
+
 Rayleigh selection cannot reduce that comparison to individual vector
 states; see `TRUE_ONE_ROOT_VECTOR_STATE_NO_GO.md`.  Although every normalized
 trace ratio has a vector-state ratio at least as large, every quotient
