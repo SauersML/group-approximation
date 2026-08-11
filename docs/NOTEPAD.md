@@ -39985,7 +39985,8 @@ Full proof: `docs/FALSE_MACKEY_SPLIT_COCYCLE.md`, Theorem 7.  Put
 
 `Y=G/<s>`
 
-and choose a section `tau:Y->G`, with integer Schreier cocycle
+and choose a section `tau:Y->G`, normalized by `tau(<s>)=1`, with integer
+Schreier cocycle
 
 `g tau(y)=tau(gy)s^(kappa(g,y))`.                    `(MSC20)`
 
@@ -40014,3 +40015,37 @@ product which retain its central sign.  Every exact finite equivariant
 quotient kills that sign (apply the proof of Proposition 3 to `E_univ`), so
 the formula is not secretly an exact finite Weyl model.  This sharpens the
 analytic target but does **not** yet prove operator-MF or the main result.
+
+The projective sector in `(MSC24)` is equivalent to a one-involution
+certificate.  Precisely, it exists if and only if there are asymptotic
+unitary representations `U_n:G->U(d_n)` and self-adjoint involutions `T_n`
+such that
+
+`U_n(s)T_nU_n(s)^*=-T_n+o(1)`,                       `(MSC25)`
+
+`[U_n(g)T_nU_n(g)^*,U_n(h)T_nU_n(h)^*]=o(1)`         `(MSC26)`
+
+for every fixed `g,h`.  Given these data, set
+
+`T_(n,y)=U_n(tau(y))T_nU_n(tau(y))^*`.               `(MSC27)`
+
+The Schreier identity and `(MSC25)` give
+
+`U_n(g)T_(n,y)U_n(g)^*`
+` =(-1)^(kappa(g,y))T_(n,gy)+o(1)`.                  `(MSC28)`
+
+Products of the commuting lamp involutions in `(MSC27)`, followed by
+`U_n(g)`, then have exactly the multiplier `(MSC24)`.  Conversely, restricting
+any projective microstate to `G` and to the one-site lamps gives
+`(MSC25)--(MSC26)`.  Full proof: Theorem 8 of
+`docs/FALSE_MACKEY_SPLIT_COCYCLE.md`.
+
+This is a substantial compression of the remaining negative-sector gate:
+one no longer has to guess a projective cocycle model.  One must construct a
+single Boolean half-space `P_n=(1+T_n)/2` whose conjugacy orbit
+asymptotically commutes and which `s` swaps with its complement.  There is
+still no proof that these data exist.  Exact finite-dimensional versions
+are excluded by the sofic radical.  The tempting operator-norm rounding of
+approximate commuting translates fails at the boundary of a finite orbit
+window; controlling the normalized mass of that boundary is essentially
+the unresolved hyperlinear-to-sofic step.

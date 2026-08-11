@@ -404,7 +404,8 @@ because it removes the module quotient from the analytic statement.
 
 `Y=G/<s>`
 
-and choose a section `tau:Y->G`.  Define the integer Schreier cocycle by
+and choose a section `tau:Y->G` with `tau(<s>)=1`.  Define the integer
+Schreier cocycle by
 
 `g tau(y)=tau(gy)s^(kappa(g,y))`.                      `(MSC20ag)`
 
@@ -473,6 +474,87 @@ quotient of `A_univ` kills `z_univ`.  Thus `(MSC20am)` is not already a
 hidden exact finite Weyl model.  A successful construction must approximate
 this specific Schreier carry in operator norm without repairing it to a
 finite `G`-set in a way that erases the sign.
+
+The multiplier can be compressed further: all its lamp operators are
+conjugates of one involution.
+
+**Theorem 8 (one-involution criterion for the negative sector).**  The
+multiplier `(MSC20am)` admits operator-norm asymptotic projective
+representations if and only if there are dimensions `d_n`, maps
+
+`U_n:G->U(d_n)`,                                      `(MSC20aq)`
+
+and self-adjoint involutions `T_n in U(d_n)` such that, pointwise in the
+displayed group variables,
+
+`||U_n(g)U_n(h)-U_n(gh)|| -> 0`,                      `(MSC20ar)`
+
+`||U_n(s)T_nU_n(s)^*+T_n|| -> 0`,                    `(MSC20as)`
+
+and
+
+`||[U_n(g)T_nU_n(g)^*,U_n(h)T_nU_n(h)^*]|| -> 0`.   `(MSC20at)`
+
+No separation condition on `U_n` or `T_n` is asserted or required here.
+Thus this is precisely the rank-free negative sector in the finite-central-
+kernel criterion, not by itself an operator-MF model of `E_univ`.
+
+**Proof.**  First suppose `V_n:Q->U(d_n)` is an asymptotic projective
+representation with multiplier `(MSC20am)`.  Since the multiplier is
+trivial on `G times G` and on the lamp subgroup, set
+
+`U_n(g)=V_n(0,g)`, `T_(n,y)=V_n(delta_y,1)`.          `(MSC20au)`
+
+After an asymptotically vanishing functional-calculus perturbation, the
+base operator `T_n=T_(n,<s>)` is a self-adjoint involution.  The projective
+law gives asymptotic commutation of the `T_(n,y)` and the signed covariance
+
+`U_n(g)T_(n,y)U_n(g)^*`
+`  =(-1)^(kappa(g,y))T_(n,gy)+o(1)`.                 `(MSC20av)`
+
+At the base coset `o=<s>`, one has `so=o` and `kappa(s,o)=1`, so
+`(MSC20av)` gives `(MSC20as)`.  More generally it gives
+
+`U_n(g)T_nU_n(g)^*`
+`  =(-1)^(kappa(g,o))T_(n,go)+o(1)`.                `(MSC20aw)`
+
+The scalar signs do not affect commutators, so the lamp commutators now give
+`(MSC20at)`, while the restriction to `G` gives `(MSC20ar)`.
+
+Conversely, assume `(MSC20aq)--(MSC20at)`.  For the section `tau` of
+Theorem 7 define
+
+`T_(n,y)=U_n(tau(y))T_nU_n(tau(y))^*`.               `(MSC20ax)`
+
+For each fixed integer `k`, `(MSC20as)` implies
+
+`U_n(s)^kT_nU_n(s)^(-k)=(-1)^kT_n+o(1)`.             `(MSC20ay)`
+
+Combining `(MSC20ar)`, the Schreier identity `(MSC20ag)`, and `(MSC20ay)`
+gives the signed covariance `(MSC20av)`.  Equation `(MSC20at)` gives
+asymptotic commutation of all the operators in `(MSC20ax)`.  For a finite
+lamp `b`, put
+
+`W_n(b,g)=product_y T_(n,y)^(b_y) U_n(g)`.            `(MSC20az)`
+
+The order of the finite product is immaterial modulo `o(1)`.  Moving the
+lamp factors of `W_n(c,h)` through `U_n(g)` with `(MSC20av)` contributes
+exactly
+
+`(-1)^(sum_y c_y kappa(g,y))=(-1)^(L_g(c))`.
+
+Consequently the maps `(MSC20az)` have multiplier `(MSC20am)`.  End proof.
+
+Equivalently, writing `P_n=(1+T_n)/2`, the live object is a sequence of
+Boolean half-spaces whose `G`-translates asymptotically commute in operator
+norm and for which `sP_ns^*` is asymptotic to `1-P_n`.  This formulation
+makes the obstruction transparent.  Exact finite-dimensional data would
+produce a finite equivariant Boolean model retaining the radical sign and
+is impossible.  Approximate data need not round: the joint spectral atoms
+for a finite orbit window have a boundary under the generators, and
+discarding that boundary would require normalized-trace control absent from
+operator-norm MF.  Claiming that it can always be discarded would amount to
+the hyperlinear-to-sofic rounding problem rather than solve it.
 
 There is also a cohomological formulation.  Let `Z=<-1_X>` be the trivial
 one-dimensional `F_2[G]`-submodule of `A`.  The exact sequence
