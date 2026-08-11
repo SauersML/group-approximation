@@ -39996,6 +39996,53 @@ fiber.  Thus constructing a sofic model of `E_eta` is the same
 relation-preserving phase completion still missing in `(HPK18)`, now phrased
 as action soficity rather than cocycle density.
 
+# 2026-08-11: the skew product is a universal projective-shift pullback
+
+Let
+
+`P_Q=T^Q/T_diag`, `R_q f(s)=f(sq)`,
+`f_x(s)=eta_s(x)`, `Phi_eta(x)=[f_x]`.                 `(TWT46)`
+
+The cocycle identity gives
+
+`f_(qx)(s)=f_x(sq)f_x(q)^(-1)`,                       `(TWT47)`
+
+so `Phi_eta:X->P_Q` is equivariant.  There is one universal cocycle
+
+`c_q([f])=f(q)f(1)^(-1)`,                             `(TWT48)`
+
+and `eta_q=c_q after Phi_eta`.  Thus no circle cocycle is omitted by this
+normal form.
+
+Form the fiber product
+
+`Z_Phi={(x,f):[f]=Phi_eta(x)}`                        `(TWT49)`
+
+with diagonal-circle Haar measure on each fiber.  The map
+
+`I(x,t)=(x,t f_x)`                                    `(TWT50)`
+
+is a measure isomorphism from `X times T` to `Z_Phi`.  Equation `(TWT47)`
+shows
+
+`I(qx,eta_q(x)t)=(qx,R_q(t f_x))`,                    `(TWT51)`
+
+so it conjugates the circle skew action to the pullback of the full shift
+`Q action T^Q` through `T^Q->P_Q`.
+
+This identifies the finite gate exactly.  A sofic model of the base can
+carry finite projective-configuration colors from `Phi_eta`, but the missing
+step is to lift those colors to representatives in `T^Q` whose right-shift
+overlaps agree away from `o(1)` of the model.  Pointwise Borel sections are
+not equivariant; their defect is the universal cocycle `(TWT48)`.  Product
+permanence also misses the point because the required measure is relatively
+Haar on the fiber product `(TWT49)`, not the independent product measure.
+
+Therefore a model-surjective lifting theorem for the principal bundle
+`T^Q->P_Q` would prove the compact skew-product endpoint and hence Theorem
+3H.  In its absence `(TWT46)--(TWT51)` is a sharp joining/lifting
+reformulation of `(HPK18)`, not a solution.
+
 The split form has an exact finite-model obstruction.  If `q:A->F` is any
 finite `G`-equivariant quotient, then the induced homomorphism
 

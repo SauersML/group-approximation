@@ -1282,6 +1282,83 @@ sofic model of `E_eta` still requires exactly the relation-preserving phase
 completion isolated in `(HPK18)`.  The wreath envelope relocates the gate
 to action soficity; it does not bypass it.
 
+The same obstruction has a universal projective-shift form.  This removes
+the arbitrary cocycle from the structure map and places all of the
+difficulty in one compact-bundle lift.
+
+**Proposition (universal projective-shift pullback).**  Let
+
+`P_Q=T^Q/T_diag`,                                     `(HPK9cy)`
+
+where the circle acts on `T^Q` by constant scalar multiplication, and let
+`R_q f(s)=f(sq)` be the right shift.  For the cocycle `eta`, define
+
+`f_x(s)=eta_s(x)`, `Phi_eta(x)=[f_x] in P_Q`.         `(HPK9cz)`
+
+Then `Phi_eta` is `Q`-equivariant.  The formula
+
+`c_q([f])=f(q)f(1)^(-1)`                              `(HPK9da)`
+
+defines a universal circle cocycle on `P_Q`, and
+
+`eta_q(x)=c_q(Phi_eta(x))`.                           `(HPK9db)`
+
+Moreover the skew action `Q action X times T` is isomorphic to the pullback
+of the shift action on `T^Q` through `Phi_eta`.  Explicitly, put
+
+`Z_Phi={(x,f) in X times T^Q:[f]=Phi_eta(x)}`.        `(HPK9dc)`
+
+Give each fiber its diagonal-circle Haar measure.  Then
+
+`I:X times T -> Z_Phi`, `I(x,t)=(x,t f_x)`           `(HPK9dd)`
+
+is a measure-space isomorphism and conjugates the skew action to
+
+`q(x,f)=(qx,R_q f)`.                                 `(HPK9de)`
+
+**Proof.**  Apply the cocycle identity `(HPK9cs)` with the pair `(s,q)`:
+
+`f_(qx)(s)=eta_s(qx)=eta_(sq)(x)eta_q(x)^(-1)`
+`          =f_x(sq)f_x(q)^(-1)`.                     `(HPK9df)`
+
+The last scalar is independent of `s`, so `(HPK9df)` says exactly that
+`Phi_eta(qx)=R_q Phi_eta(x)`.  Formula `(HPK9da)` is independent of the
+representative `f`; and
+
+`c_q(R_r[f])c_r([f])`
+` =f(qr)f(r)^(-1) f(r)f(1)^(-1)=c_(qr)([f])`,
+
+so it is a cocycle.  Since `f_x(1)=eta_1(x)=1`, `(HPK9db)` follows.
+
+Every lift of `[f_x]` is uniquely `t f_x`, so `(HPK9dd)` is a fiberwise
+Haar-preserving bijection.  Finally `(HPK9df)` gives
+
+`eta_q(x)t f_(qx)=t R_q f_x`,                         `(HPK9dg)`
+
+which is precisely the conjugacy `(HPK9de)`.  End proof.
+
+Consequently, a finite model of `R_Q(eta)` is exactly a coherent lift of the
+projective configuration factor `Phi_eta` through
+
+`T^Q -> P_Q`.                                        `(HPK9dh)`
+
+Soficity of the base relation lets one include every finite partition of
+`P_Q` pulled back by `Phi_eta` as vertex colors.  What it does not provide is
+a choice of representatives in `T^Q` whose right-shift overlaps agree away
+from `o(1)` of the finite chart.  A Borel section of `(HPK9dh)` gives
+representatives pointwise, but its shift defect is exactly the cocycle
+`(HPK9da)`; coordinatewise torsion rounding reintroduces the carries from
+`(HPK18)`.
+
+This also explains why ordinary product permanence is insufficient.
+`Z_Phi` carries the relatively Haar measure supported on the fiber product,
+not the independent product of the two marginal actions.  The needed new
+input is a model-surjective (or directly combinatorial) lifting theorem for
+the particular principal circle bundle `(HPK9dh)`.  Such a lift would make
+the skew relation sofic and close Theorem 3H.  Without it, the proposition is
+an exact reformulation rather than a proof: every circle cocycle occurs by
+`(HPK9cz)--(HPK9db)`.
+
 This is genuinely stronger than Theorem 3A and Corollary 3I: the limiting
 cocycle need not itself have a countable-range gauge.  It also identifies a
 sharper obstruction.  A surviving bounded-exponent phase class must lie

@@ -195,6 +195,18 @@ carry moves the whole phase fiber.  The live statement is soficity of this
 specific wreath action, equivalently the relation-preserving completion
 `(HPK18)`.
 
+Universalize the same gate via the projective full shift.  Every cocycle has
+the equivariant orbit-configuration factor
+`Phi_lambda:X->P_Q=T^Q/T`, and is the pullback of
+`c_q([f])=f(q)/f(1)`.  The skew action on `X times T` is exactly the
+relatively-Haar fiber product
+`{(x,f):[f]=Phi_lambda(x)}` with the shift on `T^Q`
+(`(HPK9cy)-(HPK9dh)`, `(TWT46)-(TWT51)`).  The live theorem is now a
+model-surjective lift of finite projective configurations through
+`T^Q->P_Q`.  Base soficity supplies projective colors but not coherent
+representatives; product permanence uses the wrong, independent joining.
+This is a precise finite-model lifting target for `(HPK18)`.
+
 For a phase kernel of exponent `m`, the section primitive has an intrinsic
 Bockstein residue.  Writing `delta b(q,r)=a_(v(q,r))`, the functions
 `lambda_q=b_q^m` form a measurable circle-valued 1-cocycle.  If `lambda` has
