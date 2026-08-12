@@ -43564,3 +43564,24 @@ all three limits.  Applying Ioana separately to the finite targets does not
 give uniform control, and the natural profinite inverse-limit target is
 uncountable.  The coherent lift for the real transition system, or direct
 three-moment transversals, has not yet been constructed.
+# 2026-08-11: Sinclair--Smith closes correction only after the masa gate
+
+Sinclair--Smith, arXiv:math/0111330, Theorem 5.3 proves the exact universal
+estimate
+
+`d_2(u,N(A))/31 <= ||E_A-E_(uAu^*)||_(infinity,2)`
+
+for a masa `A` in a separably acting type-`II_1` factor.  Thus a unitary
+which almost preserves one **specified** masa in conditional-expectation
+norm is close to an exact normalizer.  Their Theorem 5.4 also shows that two
+masas at distance `epsilon` become exactly conjugate on corners of trace at
+least `1-24 epsilon^2`.  This is a useful coherence theorem for gluing local
+masas already constructed.
+
+It does not create the common masa from a hyperlinear table, and an atomic
+normalizer is only monomial, so the fixed-point phase gate remains.  For the
+finite average-atom quantity actually used here, the direct Birkhoff bound
+`inf_M ||U-M||_2^2<=2 kappa_D(U)` is already the sharper interface.  The
+paper therefore validates the normalizer-correction stage of the proposed
+pipeline but does not solve either missing global stage.  Full audit:
+`docs/TRUE_SINCLAIR_SMITH_MASA_PERTURBATION_AUDIT.md`.
