@@ -14,11 +14,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 from pathlib import Path
 
 from sage.all import GF, ZZ, gcd, matrix, vector
 
-from sl3_projective_cellular_analyze import build_boundaries, parse
+from sl3_projective_cellular_analyze import build_boundaries, coinvariants, parse
 
 
 def quantiles(values: list[int]) -> dict[str, int]:
@@ -45,13 +46,27 @@ def main() -> None:
     parser.add_argument("output", type=Path)
     parser.add_argument("--characteristic", type=int, default=1009)
     parser.add_argument("--expected-rank", type=int)
+    parser.add_argument(
+        "--reverse-columns", action="store_true",
+        help="reverse the degree-two coordinate order before echelon reduction")
+    parser.add_argument(
+        "--column-seed", type=int,
+        help="deterministically shuffle degree-two coordinates before reduction")
     args = parser.parse_args()
 
     field = GF(args.characteristic)
     level, degree, orbit_dimensions, cells = parse(args.input)
     dimensions, boundaries = build_boundaries(degree, orbit_dimensions, cells)
 
-    cycle_matrix = boundaries[2].transpose().change_ring(field)
+    original_cycle_matrix = boundaries[2].transpose().change_ring(field)
+    column_order = list(range(original_cycle_matrix.ncols()))
+    if args.reverse_columns and args.column_seed is not None:
+        parser.error("--reverse-columns and --column-seed are mutually exclusive")
+    if args.reverse_columns:
+        column_order.reverse()
+    elif args.column_seed is not None:
+        random.Random(args.column_seed).shuffle(column_order)
+    cycle_matrix = original_cycle_matrix.matrix_from_columns(column_order)
     print(
         f"level={level} matrix={cycle_matrix.nrows()}x{cycle_matrix.ncols()} "
         f"characteristic={args.characteristic}",
@@ -86,7 +101,8 @@ def main() -> None:
         coefficients += len(balanced)
         coefficients_of_size_one += sum(value == 1 for value in balanced)
 
-    boundary_matrix = boundaries[3].change_ring(field)
+    boundary_matrix = boundaries[3].change_ring(field).matrix_from_columns(
+        column_order)
     if cycle_matrix * boundary_matrix.transpose() != 0:
         raise AssertionError("cellular boundaries are not cycles")
     kernel_pivots = list(kernel.pivots())
@@ -133,7 +149,31 @@ def main() -> None:
 
     exact_short_circuits = []
     exact_short_vectors = []
-    rational_cycle_matrix = boundaries[2].transpose()
+    rational_cycle_matrix = boundaries[2].transpose().matrix_from_columns(
+        column_order)
+    degree_two_coordinates = {}
+    degree_two_offset = 0
+    for cell_orbit in range(1, orbit_dimensions[2] + 1):
+        coinvariant_dimension, coordinate_map = coinvariants(
+            degree, cells[(2, cell_orbit)])
+        representatives = {}
+        for projective_point, value in enumerate(coordinate_map):
+            if value is None:
+                continue
+            local_coordinate, orientation = value
+            representatives.setdefault(
+                local_coordinate, (projective_point, orientation))
+        for local_coordinate, value in representatives.items():
+            projective_point, orientation = value
+            degree_two_coordinates[degree_two_offset + local_coordinate] = {
+                "cell_orbit": int(cell_orbit),
+                "cell_orbit_coordinate": int(local_coordinate),
+                "projective_point_index": int(projective_point),
+                "coinvariant_orientation": int(orientation),
+            }
+        degree_two_offset += coinvariant_dimension
+    if degree_two_offset != rational_cycle_matrix.ncols():
+        raise AssertionError("degree-two coordinate decoder has the wrong size")
     for selected in selected_rows:
         index = selected["kernel_row"]
         if selected["support_size"] > 64:
@@ -155,7 +195,7 @@ def main() -> None:
             raise AssertionError("exact short circuit has a nonzero residual")
         full_exact_circuit = vector(ZZ, rational_cycle_matrix.ncols())
         for column, coefficient in zip(support, exact_coefficients):
-            full_exact_circuit[column] = coefficient
+            full_exact_circuit[column_order[column]] = coefficient
         exact_short_vectors.append(full_exact_circuit)
 
         modular_row = kernel.row(index)
@@ -182,7 +222,11 @@ def main() -> None:
                 quotient_dual[row, index] != 0
                 for row in range(quotient_dual.nrows())),
             "coordinates": [
-                {"coordinate": int(column), "coefficient": int(coefficient)}
+                {
+                    "coordinate": int(column_order[column]),
+                    "coefficient": int(coefficient),
+                    **degree_two_coordinates[column_order[column]],
+                }
                 for column, coefficient in zip(support, exact_coefficients)
             ],
         })
@@ -193,6 +237,10 @@ def main() -> None:
         "cell_orbit_dimensions": orbit_dimensions,
         "rational_coinvariant_dimensions": dimensions,
         "characteristic": int(args.characteristic),
+        "column_order": (
+            "reverse" if args.reverse_columns else
+            f"shuffle:{args.column_seed}" if args.column_seed is not None else
+            "natural"),
         "cycle_matrix_dimensions": [
             int(cycle_matrix.nrows()), int(cycle_matrix.ncols())],
         "cycle_matrix_rank": int(rank),

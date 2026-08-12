@@ -40,68 +40,132 @@
     {
       "coordinates": [
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 315,
           "coefficient": 2,
-          "coordinate": 315
+          "coinvariant_orientation": 1,
+          "coordinate": 315,
+          "projective_point_index": 4374
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 646,
           "coefficient": -2,
-          "coordinate": 646
+          "coinvariant_orientation": -1,
+          "coordinate": 646,
+          "projective_point_index": 15413
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 650,
           "coefficient": 2,
-          "coordinate": 650
+          "coinvariant_orientation": 1,
+          "coordinate": 650,
+          "projective_point_index": 15606
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 653,
           "coefficient": -2,
-          "coordinate": 653
+          "coinvariant_orientation": -1,
+          "coordinate": 653,
+          "projective_point_index": 15899
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 507,
           "coefficient": 2,
-          "coordinate": 1161
+          "coinvariant_orientation": 1,
+          "coordinate": 1161,
+          "projective_point_index": 4419
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1197,
           "coefficient": -1,
-          "coordinate": 1851
+          "coinvariant_orientation": 1,
+          "coordinate": 1851,
+          "projective_point_index": 11703
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1198,
           "coefficient": 2,
-          "coordinate": 1852
+          "coinvariant_orientation": 1,
+          "coordinate": 1852,
+          "projective_point_index": 11758
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1199,
           "coefficient": 1,
-          "coordinate": 1853
+          "coinvariant_orientation": 1,
+          "coordinate": 1853,
+          "projective_point_index": 11759
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1271,
           "coefficient": 1,
-          "coordinate": 1925
+          "coinvariant_orientation": 1,
+          "coordinate": 1925,
+          "projective_point_index": 15331
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1272,
           "coefficient": -2,
-          "coordinate": 1926
+          "coinvariant_orientation": 1,
+          "coordinate": 1926,
+          "projective_point_index": 15423
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1274,
           "coefficient": -2,
-          "coordinate": 1928
+          "coinvariant_orientation": 1,
+          "coordinate": 1928,
+          "projective_point_index": 15534
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1275,
           "coefficient": -1,
-          "coordinate": 1929
+          "coinvariant_orientation": 1,
+          "coordinate": 1929,
+          "projective_point_index": 15614
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1276,
           "coefficient": -1,
-          "coordinate": 1930
+          "coinvariant_orientation": 1,
+          "coordinate": 1930,
+          "projective_point_index": 15759
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1278,
           "coefficient": 1,
-          "coordinate": 1932
+          "coinvariant_orientation": 1,
+          "coordinate": 1932,
+          "projective_point_index": 15809
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1284,
           "coefficient": 1,
-          "coordinate": 1938
+          "coinvariant_orientation": 1,
+          "coordinate": 1938,
+          "projective_point_index": 15959
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1285,
           "coefficient": -1,
-          "coordinate": 1939
+          "coinvariant_orientation": 1,
+          "coordinate": 1939,
+          "projective_point_index": 15983
         }
       ],
       "kernel_row": 310,
@@ -115,72 +179,140 @@
     {
       "coordinates": [
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 617,
           "coefficient": 2,
-          "coordinate": 617
+          "coinvariant_orientation": -1,
+          "coordinate": 617,
+          "projective_point_index": 13749
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 646,
           "coefficient": -2,
-          "coordinate": 646
+          "coinvariant_orientation": -1,
+          "coordinate": 646,
+          "projective_point_index": 15413
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 652,
           "coefficient": 2,
-          "coordinate": 652
+          "coinvariant_orientation": 1,
+          "coordinate": 652,
+          "projective_point_index": 15861
         },
         {
+          "cell_orbit": 1,
+          "cell_orbit_coordinate": 653,
           "coefficient": -2,
-          "coordinate": 653
+          "coinvariant_orientation": -1,
+          "coordinate": 653,
+          "projective_point_index": 15899
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1247,
           "coefficient": 1,
-          "coordinate": 1901
+          "coinvariant_orientation": 1,
+          "coordinate": 1901,
+          "projective_point_index": 13762
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1248,
           "coefficient": -1,
-          "coordinate": 1902
+          "coinvariant_orientation": 1,
+          "coordinate": 1902,
+          "projective_point_index": 13763
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1249,
           "coefficient": 1,
-          "coordinate": 1903
+          "coinvariant_orientation": 1,
+          "coordinate": 1903,
+          "projective_point_index": 13773
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1271,
           "coefficient": 1,
-          "coordinate": 1925
+          "coinvariant_orientation": 1,
+          "coordinate": 1925,
+          "projective_point_index": 15331
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1272,
           "coefficient": -2,
-          "coordinate": 1926
+          "coinvariant_orientation": 1,
+          "coordinate": 1926,
+          "projective_point_index": 15423
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1274,
           "coefficient": -1,
-          "coordinate": 1928
+          "coinvariant_orientation": 1,
+          "coordinate": 1928,
+          "projective_point_index": 15534
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1275,
           "coefficient": -1,
-          "coordinate": 1929
+          "coinvariant_orientation": 1,
+          "coordinate": 1929,
+          "projective_point_index": 15614
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1276,
           "coefficient": -2,
-          "coordinate": 1930
+          "coinvariant_orientation": 1,
+          "coordinate": 1930,
+          "projective_point_index": 15759
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1278,
           "coefficient": 1,
-          "coordinate": 1932
+          "coinvariant_orientation": 1,
+          "coordinate": 1932,
+          "projective_point_index": 15809
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1279,
           "coefficient": 1,
-          "coordinate": 1933
+          "coinvariant_orientation": 1,
+          "coordinate": 1933,
+          "projective_point_index": 15828
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1280,
           "coefficient": -1,
-          "coordinate": 1934
+          "coinvariant_orientation": 1,
+          "coordinate": 1934,
+          "projective_point_index": 15859
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1281,
           "coefficient": 1,
-          "coordinate": 1935
+          "coinvariant_orientation": 1,
+          "coordinate": 1935,
+          "projective_point_index": 15897
         },
         {
+          "cell_orbit": 2,
+          "cell_orbit_coordinate": 1285,
           "coefficient": -1,
-          "coordinate": 1939
+          "coinvariant_orientation": 1,
+          "coordinate": 1939,
+          "projective_point_index": 15983
         }
       ],
       "kernel_row": 586,
