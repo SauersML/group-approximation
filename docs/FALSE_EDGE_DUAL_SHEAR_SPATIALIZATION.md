@@ -233,9 +233,14 @@ It is worth separating three levels which had previously been conflated.
    `FALSE_MACKEY_SPLIT_COCYCLE.md` rules them out.
 2. **The negative edge von Neumann algebra.**  The shear is exactly spatial
    in a Connes-embeddable over-algebra by `(EDS5)--(EDS7)`.
-3. **The two vertices simultaneously.**  It remains unknown whether the
-   edge embedding from item 2 extends to trace-preserving embeddings of
-   both negative vertex corners in one matrix ultraproduct.
+3. **One external vertex extension.**  It remains unknown whether the edge
+   embedding from item 2 extends to one faithful negative vertex corner in
+   a Connes-embeddable finite algebra.  This already proves FALSE by
+   `FALSE_ONE_VERTEX_SPATIALIZATION_CERTIFICATE.md`.  For the canonical
+   reduced amalgam, however, the edge implementer regenerates the second
+   vertex: `FALSE_ONE_VERTEX_GROUP_CORNER_AND_COVER.md` identifies it with a
+   finite crossed product of the canonical twisted double.  Thus the two
+   canonical CE questions are equivalent rather than independent.
 
 Thus finite-quotient invisibility does not imply an intrinsic tracial
 obstruction on the edge.  The missing theorem is an extension theorem for
@@ -245,7 +250,7 @@ the inclusions
 P subset pL(J_i),                                       (EDS23)
 ```
 
-with the prescribed unitary `(EDS7)`.  Proving that relative extension
+with the prescribed unitary `(EDS7)`.  Proving one such relative extension
 would finish the coinduced-parity FALSE route; disproving it would require
 an invariant of the inclusions, not merely of `P` and `alpha`.
 

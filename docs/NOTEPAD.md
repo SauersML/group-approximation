@@ -45009,3 +45009,88 @@ algebra over the even edge corner.  The only missing statement is CE of this
 one reduced amalgam over the nonamenable edge.  The quantitative twisted
 innerness gap proves it cannot arise inside any matrix amplification of the
 regular vertex, so the remaining construction must be genuinely external.
+
+# 2026-08-12: the one-vertex algebra is an exact group corner and finite cover
+
+Full proof: `docs/FALSE_ONE_VERTEX_GROUP_CORNER_AND_COVER.md`.
+
+Let `K<J` contain a central involution `z`, let `theta` be an involution of
+`K` fixing `z`, and set
+
+```text
+B_theta=K semidirect_theta C_2,
+H_theta=J *_K B_theta,
+p=(1-u_z)/2.
+```
+
+Compression of the group von Neumann amalgam gives the exact identity
+
+```text
+pL(H_theta)
+  isomorphic pL(J) *_pL(K) (pL(K) crossed_alpha C_2).
+```
+
+The parity map `H_theta->C_2` has kernel
+
+```text
+D_theta isomorphic J *_(id,theta) J,
+```
+
+and splits.  Therefore
+
+```text
+pL(H_theta) isomorphic pL(D_theta) crossed C_2,
+```
+
+so the canonical one-sided target is CE if and only if the canonical
+twisted-double target is CE.  The abstract one-vertex certificate remains
+a genuine simplification, but canonically the edge implementer automatically
+creates the second vertex.
+
+For the Kun--Thom parity construction, the fixed group `H_theta` is itself
+nonsofic.  The word
+
+```text
+omega=[t v t^(-1),gamma]
+```
+
+is nontrivial by the free-lamp quotient and belongs to
+`Rad_sof(H_theta)` by the Kun--Thom centralizer-normalization argument.
+Moreover `h |-> p u_h` embeds `H_theta` faithfully in the unitary group of
+the negative corner.  Hence CE of the displayed corner makes this explicit
+fixed group—not merely an unspecified quotient—hyperlinear and nonsofic.
+
+# 2026-08-12: correction to the direct-double RE/C converse
+
+Full audit: `docs/FALSE_RELATIVE_EMBEDDABILITY_CONVERSE_APPLICATION_GAP.md`.
+
+The earlier notebook assertion `(RER2)`, namely
+
+```text
+L(G *_Gamma G) CE  iff  L(Gamma)<L(G) is RE/C,
+```
+
+must not be used.  Gao--Junge--Gao's Appendix converse proof forms a
+commuting square with lower-left algebra `L(Gamma)` and upper-left algebra
+the commutant of an auxiliary unitary `u`.  This requires
+
+```text
+u in L(Gamma)' intersect hat M.
+```
+
+The condition `E_L(Gamma)(u^n)=0` for every nonzero `n` does not imply this
+commutation.  In the attempted Kun--Thom application, the chosen group
+unitary explicitly does not centralize `Gamma`, so the required inclusion
+is absent.  The printed averaging argument kills the centered second
+factor but does not supply that missing inclusion.
+
+The sound implications retained here are
+
+```text
+RE/C => ordinary direct double CE,
+enlarged circle double CE => RE/C.
+```
+
+The reverse implication from the ordinary direct double is currently
+unsupported.  This is an application/proof audit, not a claimed
+counterexample to the published theorem statement.

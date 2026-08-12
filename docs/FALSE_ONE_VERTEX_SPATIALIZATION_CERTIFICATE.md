@@ -37,9 +37,13 @@ then a hyperlinear nonsofic group exists.  The common algebra `P` is the
 nonamenable edge; automatic Connes-embedding permanence over an amenable
 amalgam does not apply.
 
-This strictly sharpens the previous target.  The two-vertex twisted double
-is still a valid route, but it contains more compatibility than the main
-problem requires.
+This strictly sharpens the *abstract certificate*: an arbitrary ambient
+algebra need only contain one faithful vertex and one edge spatializer.  It
+does not create a second independent canonical CE gate.  The exact
+group-corner calculation in
+`FALSE_ONE_VERTEX_GROUP_CORNER_AND_COVER.md` shows that the canonical
+one-sided amalgam is a finite crossed product of the canonical twisted
+double, so the two canonical targets are CE simultaneously.
 
 ## 2. Abstract one-sided certificate
 
@@ -260,11 +264,15 @@ obstruction:
 
 * an internal spatializer is impossible;
 * an external Connes-embeddable spatializer would already solve FALSE;
-* a second vertex is not needed.
+* a second vertex need not be supplied independently.
 
 The edge crossed product is therefore not merely a local compatibility
 device.  Its one-sided amalgamation with one residually finite vertex is a
-minimal finite-algebra candidate for the complete problem.
+minimal abstract certificate for the complete problem.  Canonically, the
+crossed-product generator conjugates the first vertex into a second one;
+the resulting algebra is exactly the negative central group corner and the
+index-two extension described in
+`FALSE_ONE_VERTEX_GROUP_CORNER_AND_COVER.md`.
 
 This also identifies the precise role of the external correspondence.  In
 `L^2(N_one)`, the vector `v` centralizes `Gamma` but has odd lamp parity.
