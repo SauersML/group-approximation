@@ -89,7 +89,7 @@ theorem norm_comp_columnPlane_sub_le_of_root_bounds
             elementaryRootSubgroup j k hjk) z‖ ≤ C * (B + η) := by
               simpa only [C] using hraw
       _ = C * B + C * η := by ring
-      _ ≤ C * B + ε := add_le_add_left hCη _
+      _ ≤ C * B + ε := add_le_add_left hCη (C * B)
   have hdisp :=
     KazhdanFixedSpace.norm_displacement_le_two_mul_norm_subgroupMovingProjection_of_mem
       rhoR (elementaryRootSubgroup i k hik ⊔
