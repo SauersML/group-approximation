@@ -61,12 +61,16 @@ def main() -> None:
     if harmonic_system * harmonic_basis.transpose() != 0:
         raise AssertionError("harmonic basis has a nonzero exact residual")
 
+    print("systole: computing the rational cycle nullspace", flush=True)
     cycle_rational_kernel = boundaries[2].transpose().right_kernel_matrix()
+    print("systole: intersecting the cycle space with the integer lattice",
+          flush=True)
     cycle_lattice = cycle_rational_kernel.row_space().intersection(
         FreeModule(ZZ, dimensions[2]))
     cycle_basis = cycle_lattice.basis_matrix()
     if boundaries[2].transpose() * cycle_basis.transpose() != 0:
         raise AssertionError("cycle lattice has a nonzero exact residual")
+    print("systole: reconstructing Q-sharp from cycle pairings", flush=True)
     harmonic_cycle_pairing = harmonic_basis * cycle_basis.transpose()
     pairing_basis = harmonic_cycle_pairing.transpose().row_module().basis_matrix()
     if pairing_basis.nrows() != harmonic_basis.nrows():
@@ -89,6 +93,7 @@ def main() -> None:
 
     common_denominator = int(qsharp_basis.denominator())
     scaled_basis = (common_denominator * qsharp_basis).change_ring(ZZ)
+    print("systole: solving the exact shortest-vector problem", flush=True)
     lattice = IntegerLattice(scaled_basis, lll_reduce=True)
     shortest_scaled = vector(ZZ, lattice.shortest_vector())
     scaled_gram = scaled_basis * scaled_basis.transpose()

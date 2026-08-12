@@ -238,13 +238,65 @@ trivial, just as at prime levels `61`, `79`, and `89`.  If (PP4) holds, level
 `121` becomes the next dangerous chart and warrants an exact compact CVP
 calculation of its paired-discriminant repair constant.
 
+## 5. Exact level-121 outcome
+
+The rank-seven span export and exact `Q^#` systole computation completed on
+one MSI core in `5m16s`.  The harmonic system has dimensions
+
+```text
+2682 x 1940,
+```
+
+the exported basis has rank seven, and its exact harmonic residual is zero.
+The span-basis reconstruction gives
+
+```text
+rank(K)=632,
+delta_121 = lambda_1(Q^#) = 0.45320230767323166... .   (PP5)
+```
+
+The shortest vector is nonintegral.  Its discriminant-class order is the
+same explicit common denominator recorded in the certificate, but its norm
+is already too large to participate in the localized obstruction.  The
+chartwise spherical template bound is `B_121^2=12`, and exact rational
+comparison gives
+
+```text
+12 delta_121^2 > 1.                                  (PP6)
+```
+
+Consequently
+
+```text
+every nonzero vector of Q^# lies above the spherical threshold. (PP7)
+```
+
+Thus the first composite projective chart is **safe**.  Its seven new
+rational harmonic directions do not require a paired CVP/decoder
+calculation.  This is materially stronger than merely lifting selected
+mod-`2^k` classes: it eliminates the entire rational harmonic space at once.
+
+The exact certificates are
+
+```text
+experiments/projective-cellular-n121-harmonic-span.json
+SHA-256 90fccdd4c83c3812cecae3dadf8076aadc6cfaa23159dede4853593ac8b0e3eb,
+
+experiments/projective-cellular-n121-systole-span.json
+SHA-256 f9b5733277ba8c942710d6f24cf5407895478e13aa71d5014cbd28475a0c51b3.
+```
+
+The conclusion is chart-specific, not yet a uniform theorem over all prime
+powers.  Together with the prime-level screen it leaves level `53` as the
+only presently known subthreshold projective chart below `100`.
+
 Independently of the chart-specific value, the fixed cellular attaching word
 gives the uniform bound `B_level^2<=52` at every level; see
 `TRUE_UNIFORM_PROJECTIVE_SPHERICAL_BOUND.md`.  Thus
 `delta_level>=1/sqrt(52)` is already a chart-independent sufficient safety
 certificate.
 
-## 5. Scope
+## 6. Scope
 
 This closes a computational-model gap: composite projective levels can now be
 screened without pretending that `Z/p^k Z` is a field.  It does not prove the
