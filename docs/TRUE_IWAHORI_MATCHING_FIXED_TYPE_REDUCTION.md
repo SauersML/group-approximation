@@ -55,6 +55,15 @@ This does not solve the unrestricted question.  It identifies the remaining
 escape exactly as unbounded representation type, rather than multiplicity,
 dimension padding, or central-sign mismatch.
 
+The character-rigidity reduction below gives a stronger conclusion.  The
+question is positive whenever the irreducible dimensions on even one vertex
+are uniformly tight: for every `epsilon>0`, all but `epsilon d_n` dimensions
+belong to irreducible summands of dimension at most some fixed
+`D=D(epsilon)`.  Thus a counterexample must put positive normalized
+dimension on irreducible summands whose dimensions escape every fixed bound,
+on both vertices.  Merely moving through a continuous family of bounded
+dimensional irreducibles cannot produce a counterexample.
+
 ## 2. The exact square-root formulation
 
 Write
@@ -483,3 +492,91 @@ traces converge to `(IMR36)`, but trace agreement alone does not conjugate
 two nonamenable matrix models.  The missing theorem is therefore a relative
 microstate-uniqueness statement for the inclusion of the two modular
 vertices in `Gamma`; ordinary character approximation is insufficient.
+
+## 7. Bounded irreducible dimension cannot reach the regular endpoint
+
+The preceding reduction also removes all bounded-dimensional continuous
+families of modular representations.  This is stronger than the fixed
+library theorem because the irreducible type may vary with `n` through an
+arbitrary compact representation variety.
+
+For a finite-dimensional representation `rho` of `K=SL_2(Z)`, let
+`rho^(>D)` denote the direct sum of its irreducible summands of dimension
+strictly greater than `D`, counted with multiplicity.
+
+**Theorem 6 (dimension-tight Iwahori matching).**  Let
+`alpha_n,beta_n:K->U(d_n)` be an Iwahori pair whose defect tends to zero.
+Suppose that on at least one vertex, say `alpha_n`,
+
+```text
+for every epsilon>0 there is D such that
+dim(alpha_n^(>D)) <= epsilon d_n for all large n.       (IMR38)
+```
+
+Then the pair is flexibly Hilbert--Schmidt close to compatible honest
+representations.  Consequently any negative sequence satisfies, on each
+vertex,
+
+```text
+there is epsilon_0>0 such that for every D,
+limsup_n dim(alpha_n^(>D))/d_n >= epsilon_0,             (IMR39)
+```
+
+and the analogous assertion for `beta_n`.
+
+### Proof
+
+The two vertex representations and their vanishing edge discrepancy define
+an asymptotic representation `pi_n` of
+`Gamma=SL_2(Z[1/2])`.  Pass to a subsequence on which its normalized traces
+converge to a trace `tau` of `Gamma`.
+
+Condition `(IMR38)` implies that the restricted trace `tau|_K` is amenable.
+To see this without a closure assumption on amenable traces, decompose each
+`alpha_n` into irreducibles and put mass
+
+```text
+(multiplicity of V) dim(V)/d_n
+```
+
+on the normalized trace of each irreducible summand `V`.  Condition
+`(IMR38)` makes these probability measures tight on the disjoint union of
+the compact unitary representation varieties of dimensions `1,2,...`.
+After passing to a subsequence they converge to a probability measure
+supported on finite-dimensional representations, and
+
+```text
+tau|_K(g)=integral tr_V(g)/dim(V) dmu(V).               (IMR40)
+```
+
+The GNS algebra of `(IMR40)` is a direct integral of finite-dimensional
+factors and is therefore amenable.
+
+Now use the decomposition `(IMR37)`.  A central-regular summand of positive
+weight restricts to `K` as a central-regular trace.  To avoid any issue from
+the scalar central twist, restrict once more to a torsion-free finite-index
+free subgroup `F<K`.  It misses `Z(K)\setminus{1}`, and the restricted trace
+is the ordinary regular trace `delta_e` of `F`.  The group `F` is a
+nonabelian free group, so `L(F)` is nonamenable.  Thus a positive
+central-regular weight would put a nonamenable direct summand in the GNS
+algebra of `tau|_F`, whereas `tau|_F` is a restriction of the amenable trace
+`tau|_K` and is amenable.  This is impossible.  Therefore every
+central-regular weight in `(IMR37)` is zero.
+
+It follows that `M_tau` is amenable.  The hyperfinite
+Hilbert--Schmidt-stability criterion quoted in Section 6 corrects the
+asymptotic representation `pi_n`, along a further subsequence, to honest
+representations of `Gamma` with flexible `o(d_n)` padding.  Restricting the
+corrected representations to the two modular vertices gives the required
+compatible pair.  Applying the argument to every subsequence upgrades
+subsequential correction to correction of the original sequence.
+
+If `(IMR39)` failed on one vertex, a diagonal choice of `D` would give
+`(IMR38)` along a subsequence, contradicting negativity.  The same argument
+applies to the other vertex.  End proof.
+
+The remaining central-regular problem is therefore a genuinely
+large-irreducible phenomenon.  Its matrix models cannot be assembled, up to
+negligible rank, from bounded-dimensional modular blocks.  This is the
+appropriate starting point for a uniform high-dimensional restriction
+analysis of the index-three Iwahori subgroup.

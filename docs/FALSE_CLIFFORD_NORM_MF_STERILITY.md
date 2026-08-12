@@ -155,3 +155,55 @@ Cl(X) crossed_product G is Connes embeddable.
 ```
 
 The norm-MF route to that endpoint is closed.
+
+## 5. A different use of the same sector: adjoint-density amplification
+
+The norm proof above suggests a possible direct nonhyperlinearity argument,
+but one additional quantitative lemma is indispensable.  In a tracial
+matrix ultraproduct the adjoint matrices
+
+```text
+Ad U_g = U_g tensor conjugate(U_g)
+```
+
+form an honest representation of `G` in a finite tracial ultraproduct.
+The Kazhdan projections for `Gamma` and `t Gamma t^(-1)` then have the same
+normalized trace.  Their order relation therefore holds modulo a projection
+of trace zero.  This does not control the particular vector represented by
+`c_(t Gamma)`: that vector may lie entirely in the exceptional
+`o(r_n^2)`-dimensional adjoint subspace.  Thus stable finiteness alone does
+not extend the norm proof to Hilbert--Schmidt microstates.
+
+There is, however, a canonical candidate for destroying this second-order
+rank blindness.  When `[Gamma:t Gamma t^(-1)]` is finite, the Majoranas on
+the finite orbit
+
+```text
+Gamma / t Gamma t^(-1)
+```
+
+generate a fixed finite Clifford factor normalized by `Gamma`.  The missing
+lemma would say that the non-`Gamma`-fixed
+`t Gamma t^(-1)`-fixed Majorana generates, after multiplication by the
+Clifford coefficient algebra present in a microstate, an adjoint subspace
+whose normalized dimension is bounded below independently of the matrix
+size.  Such a lower bound would contradict equality of the two Kazhdan
+projection traces and prove that the Clifford extension is nonhyperlinear.
+
+This amplification is not automatic.  Tensoring with a finite Clifford
+factor only gives a fixed number of orthogonal vectors, which can still have
+zero normalized density as `r_n` grows; one must show that a sufficiently
+large commutant or coefficient sector inherits the same stabilizer defect.
+The precise live target is therefore:
+
+```text
+Clifford adjoint-density lemma:
+the excess Fix(t Gamma t^(-1)) minus Fix(Gamma) forced by the root
+Majorana has normalized dimension at least c>0 in every negative-sector
+HS microstate.
+```
+
+Proving this lemma would use the Clifford sector to establish
+nonhyperlinearity, not to manufacture a hyperlinear nonsofic image.  Until
+the positive-density conclusion is proved, it is only a sharply isolated
+endpoint.

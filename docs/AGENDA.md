@@ -4,6 +4,24 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: Iwahori counterexamples require high-dimensional type escape
+
+The fixed-library theorem for the Dogon--Vigdorovich matching problem
+extends to every dimension-tight sequence.  If, on even one modular vertex,
+all but `epsilon d_n` dimensions lie in irreducible summands of dimension at
+most a fixed `D(epsilon)`, then the limiting vertex trace is a direct
+integral of finite-dimensional traces and hence amenable.  Character
+rigidity for `SL_2(Z[1/2])` excludes the only nonamenable central-regular
+summands, and hyperfinite HS stability corrects the whole Iwahori asymptotic
+representation.
+
+Hence a negative sequence must place a fixed positive fraction of its
+dimension in irreducible `SL_2(Z)` summands escaping every dimension bound,
+on both vertices.  Continuous motion through bounded-dimensional types is
+not an escape.  The remaining target is uniform high-dimensional
+restriction theory for the index-three Iwahori inclusion.  See
+`docs/TRUE_IWAHORI_MATCHING_FIXED_TYPE_REDUCTION.md`, Theorem 6.
+
 ### 2026-08-12: the negative Clifford corner closes the norm-MF route
 
 The canonical projection `e=(1-z)/2` does remove relative-rank blindness:
