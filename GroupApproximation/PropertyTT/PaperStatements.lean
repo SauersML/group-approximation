@@ -66,7 +66,7 @@ theorem freeCharacteristicTwo_localizedPlaneEstimate
     (hg : g ∈ elementaryRootSubgroup i k hik ⊔
       elementaryRootSubgroup j k hjk) :
     ‖rho g z - z‖ ≤
-      2 * (6 * Fintype.card X + 6 : ℝ) * (B + 1) :=
+      2 * (6 * Fintype.card X + 6 : ℝ) * B :=
   norm_comp_columnPlane_sub_le_of_root_bounds X
     i j k hij hik hjk (MonoidHom.id _) rho z hB hIK hJK hIJUnit hJIUnit
     hIJGen hJIGen g hg

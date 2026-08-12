@@ -96,8 +96,10 @@ exact telescoping identity.  If \(R\) is a nontrivial finite-type
 single-sandwich condition, and satisfying
 \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\), then
 \(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge2\).
-For the binary Leavitt algebra this identifies every rank with the
-unit group and gives
+For the binary Leavitt algebra, the structural identifications
+\(\GL_n(L)=\EL_n(L)\cong L^\times\) are known from the work of
+Khanh--Thanh.  Combining them with the rigidity theorem gives the new
+conclusion
 \[
   \EL_n\bigl(L_{\F_2}(1,2)\bigr)
   \cong L_{\F_2}(1,2)^\times,
@@ -109,6 +111,8 @@ with property \((TT)/T\).
 \maketitle
 
 \section{Introduction}\label{sec:introduction}
+
+All rings and ring homomorphisms in this paper are unital.
 
 Property \((TT)/T\), introduced by Mimura, asks that Hilbert-space
 quasi-cocycles be bounded after the invariant-vector part of the
@@ -182,6 +186,21 @@ between matrix ranks, the single-sandwich property supplies bounded
 matrix reduction, and the diagonal condition identifies elementary
 and general linear groups.
 
+There is a useful structural interpretation.  Under the first two
+ring-theoretic assumptions, \(R\) is simple, is not a division ring,
+and is therefore purely infinite simple by
+Ara--Goodearl--Pardo's characterization.  Their description
+\(V(R)\cong\{0\}\sqcup K_0(R)\) identifies the existence of a binary
+Leavitt family with the module identity \(R\cong R^2\), equivalently
+\([1_R]=0\) in \(K_0(R)\)~\cite{AraGoodearlPardo}.  Their isomorphism
+\(R^\times_{\mathrm{ab}}\cong K_1(R)\), together with the GE property,
+shows that \(K_1(R)=0\) implies the diagonal hypothesis: every unit is
+a product of commutators, and the elementary identity in
+Khanh--Thanh's Lemma~4.1 puts
+\(\diag(u,1)\) in \(\EL_2(R)\).  Thus the two concrete
+self-similarity and diagonal assumptions are the visible forms of
+\([1_R]=0\) and \(K_1(R)=0\) in the purely infinite simple setting.
+
 \begin{mainthm}[Binary Leavitt algebra]\label{thm:C}
 The unit group of the binary Leavitt algebra has property \((TT)/T\):
 \[
@@ -208,34 +227,43 @@ Leavitt self-similarity then identifies \(\EL_2(L)\) with
 \(\EL_4(L)\).  This is why a rank-two elementary group can inherit
 property \((TT)/T\) here.
 
-Khanh and Thanh prove that every complete binary leaf set \(C\) with
-\(n\ge2\) identifies
+The algebraic equalities in Theorem~\ref{thm:C} are not new.
+Khanh and Thanh prove \(K_1(L_k(1,2))=0\), perfection of its unit
+group, and
+\(\GL_n(L_k(1,2))=\EL_n(L_k(1,2))\) for every \(n\ge2\)
+~\cite[Proposition~4.2]{KhanhThanh}.  For every complete binary leaf
+set \(C\) with \(n\ge2\), their matrix-ring isomorphism identifies
 \[
  L_k(1,2)^\times=\Theta_C\bigl(\EL_n(L_k(1,2))\bigr)
 \]
-~\cite[Corollary~4.4]{KhanhThanh}.  Their identification agrees with
-the rank collapse in Theorem~\ref{thm:C}; the new conclusion here is
-property \((TT)/T\) for this unit group.
+~\cite[Corollary~4.4]{KhanhThanh}.  The contribution of
+Theorem~\ref{thm:C} is the property \((TT)/T\) conclusion for this
+already identified unit group.
 
 \subsection*{Relation to previous work}
 
 The argument combines several established theories.  Mimura
 introduced property \((TT)/T\), developed the relative-to-global
-strategy for quasi-cocycles, and proved the noncommutative relative
-result discussed in Section~\ref{sec:quasicocycles}
-~\cite{MimuraTT,MimuraThesis}.  The quantitative argument below gives
+strategy for quasi-cocycles~\cite{MimuraTT}.  The quantitative argument below gives
 an explicit root bound and also controls the invariant-vector summand.
 Ershov and Jaikin-Zapirain proved property~\((T)\) for elementary
 groups of rank at least three over finitely generated associative
 rings~\cite{ErshovJaikin}.
-On the ring-theoretic side, Ara, Goodearl, and Pardo established the
-GE and unit-group \(K_1\) structure of purely infinite simple
-rings~\cite{AraGoodearlPardo}, while Ara, Brustenga, and Corti\~nas
+On the ring-theoretic side, Ara, Goodearl, and Pardo obtained the GE
+consequence for purely infinite simple rings, using the earlier
+Menal--Moncasi reduction, and identified \(K_1\) with the
+abelianization of the unit group~\cite{MenalMoncasi,AraGoodearlPardo}.
+Ara, Brustenga, and Corti\~nas
 computed the stable algebraic \(K\)-theory of Leavitt path
 algebras~\cite{AraBrustengaCortinas}.
 
 The pivot in Section~\ref{sec:factorization} belongs to the same
-Gaussian-elimination circle as the GE reduction of Ara--Goodearl--Pardo.
+bounded-reduction circle as Shalom's property~\((T)\) criterion and
+the GE reduction used by Ara--Goodearl--Pardo; compare the discussion
+in Ershov--Jaikin-Zapirain~\cite{ErshovJaikin}.  This is a setting in
+which stable-range elimination is unavailable: purely infinite simple
+rings have infinite Bass stable rank
+~\cite[Theorem~2.8(2)]{AraGoodearlPardo}.
 The fixed-coordinate organization is the additional feature used here:
 the coordinate is chosen before the matrix, exactly one block factor
 occurs, and the remaining word has length at most \(2n+1\).
@@ -280,27 +308,6 @@ write relative \((TT)\) when the conclusion holds without excluding
 invariant vectors.
 \end{definition}
 
-\paragraph{Mimura's qualitative route.}
-Mimura proves that, for the free associative ring
-\(R=\mathbb Z\langle X\rangle\), the pair
-\[
-  \EL_m(\mathbb Z\langle X\rangle)
-  \ \ge\ \EL_{m-1}(\mathbb Z\langle X\rangle),
-  \qquad m\ge3,
-\]
-has relative property \((TT)/T\), with the smaller group in the
-upper-left corner
-~\cite[p.~154, Proposition~9.2.8]{MimuraThesis}.
-Relative \((TT)/T\)
-descends through a surjective homomorphism: pull a representation
-and quasi-cocycle back along the quotient map and then apply the
-relative bound.  Reduce coefficients modulo \(2\), take \(m=4\),
-and conjugate the standard rank-three block so that it contains
-\(X_{03}\).  This gives a short qualitative proof of relative
-\((TT)/T\) for \((\EL_4(\F_2\langle X\rangle),X_{03})\).  We now
-prove the stronger relative \((TT)\) statement, with an explicit
-bound.
-
 We first isolate the quantitative rank-three estimate used in the
 direct proof.  For distinct \(i,j,k\), write
 \(H_{ijk}=\langle X_{ik},X_{jk}\rangle\le\EL_3(A)\), and identify
@@ -315,11 +322,11 @@ abelian subgroup
  (a,c)\longmapsto x_{ik}(a)x_{jk}(c)
  \quad\text{of }H_{ijk}.
 \]
-For an orthogonal representation \(\sigma\) on a real Hilbert space
-and \(z\in\mathcal H\), let
-\(z_{d,\chi}\) be the Fourier component of \(z\) belonging to
-\(\chi\in\widehat V_d\).  The components are orthogonal and their
-squared norms sum to \(\norm z^2\).  Write a character as
+For an orthogonal representation \(\sigma\) on a real Hilbert space,
+let \(P_{d,\chi}\) be the spectral projection for
+\(\chi\in\widehat V_d\), and put \(z_{d,\chi}=P_{d,\chi}z\).
+The projections are mutually orthogonal and their squared norms sum to
+\(\norm z^2\).  Write a character as
 \((\chi_1,\chi_2)\), and let \(\nu(\chi_r)\) be the least word
 degree on which \(\chi_r\) is nontrivial, with value \(d+1\) for
 the trivial character.  The nontrivial pairs split into
@@ -334,11 +341,9 @@ the trivial character.  The nontrivial pairs split into
 Let \(m_d^A,m_d^B,m_d^C,m_d^D\) be the corresponding Fourier
 masses.  Let \(\partial_{1,d}\) and \(\partial_{2,d}\) be the
 masses for which the indicated coordinate character is trivial on
-\(A_{\le d-1}\) and becomes nontrivial on \(A_{\le d}\).
-Equivalently, one may index Fourier components by Boolean sign
-assignments on a basis of \(V_d\).  A nonadditive assignment indexes
-the zero component, so only genuine characters contribute to the
-transport identities below.
+\(A_{\le d-1}\) and becomes nontrivial on \(A_{\le d}\).  Thus every
+index below is a genuine character of the finite elementary abelian
+group \(V_d\).
 
 \begin{lemma}[Finite-plane energy estimate]\label{lem:plane-energy}
 Let \(\sigma:\EL_3(A)\to\mathcal O(\mathcal H)\) be an orthogonal
@@ -383,9 +388,9 @@ for \(z'=\sigma(g)z\) give
  m_d^C\le m_d^B+U_{ij}.
 \end{equation}
 On region \(D\), one coordinate character detects the unit
-coefficient.  The nontrivial character of \(\F_2\) has character
-gap \(4\), so the negative-character projection formula for an
-involution gives
+coefficient.  For an involution \(r\), the projection onto its
+\((-1)\)-eigenspace is \((I-\sigma(r))/2\); hence its squared norm is
+one quarter of the squared \(r\)-displacement.  Therefore
 \begin{equation}\label{eq:Dmass}
  m_d^D\le\tfrac14(d_{ik,1}^2+d_{jk,1}^2).
 \end{equation}
@@ -426,29 +431,59 @@ Pullback along \(\psi_s\) sends a character pair
 \((\chi_1,\chi_2)\in\widehat V_{d+2}\) to
 \[
  \psi_s^*(\chi_1,\chi_2)=
- \bigl(\chi_1\,\partial_s\chi_2,\chi_2\bigr)
+ \bigl(\chi_1\cdot\partial_s\chi_2,\chi_2\bigr)
 \]
-where \((\partial_s\chi_2)(a)=\chi_2(sa)\).  The leading-degree
-\(\nu(\partial_s\chi_2)=\nu(\chi_2)-1\).
+where \((\partial_s\chi_2)(a)=\chi_2(sa)\).  If the leading
+homogeneous part of \(\chi_2\) detects a word beginning with \(s\),
+then
+\[
+ \nu(\partial_s\chi_2)=\nu(\chi_2)-1.
+\]
+No equality is asserted for the other generators.  At least one such
+generator exists: a word detected by the leading homogeneous part has
+a first letter.  Fix an ordering of \(X\) and assign the character to
+the least eligible letter.
 
-Now partition the characters in \(A\cup B\) at stage \(d+2\) by the
-least generator \(s\) for which the leading part of
-\(\partial_s\chi_2\) is nontrivial.  First remove the characters whose
-second coordinate is detected for the first time in degree \(d+2\);
-their mass is the boundary term \(\partial_{2,d+2}\).  For every
-remaining character, the leading part of \(\chi_2\) survives
-restriction to \(A_{\le d+1}\).  Its pullback therefore lies in
-\(C\cup D\), and the least-generator rule can be read back from that
-surviving leading part.  Hence the receiving families for distinct
-\(s\) are disjoint.  Fourier covariance identifies the spectral
-projection for a source fiber with the projection for its pullback,
-up to replacing \(z\) by \(\sigma(x_{ji}(s))z\).  The variation
-inequality then charges the fiber to a single copy of
-\(m_{d+1}^{C\cup D}\), with error
-\(2\norm z\,d_{ji,s}\).  Summing the disjoint fibers over \(s\in X\)
-proves~\eqref{eq:AB-descent}.  The forward shear
+Here is the projection bookkeeping for~\eqref{eq:AB-descent}.  Let
+\(F_s\subseteq\widehat V_{d+2}\) be the characters in \(A\cup B\)
+assigned to \(s\).  Split
+\[
+ F_s=F_s^{\mathrm{int}}\sqcup F_s^{\mathrm{top}},
+\]
+where \(F_s^{\mathrm{top}}\) consists of characters whose second
+coordinate becomes visible only in degree \(d+2\).  The sets
+\(F_s^{\mathrm{top}}\) are disjoint and their total mass is at most
+\(\partial_{2,d+2}\).  For \(\chi\in F_s^{\mathrm{int}}\), the
+leading part of \(\chi_2\) survives restriction to
+\(A_{\le d+1}\), and
+\[
+ \operatorname{res}_{d+1}(\psi_s^*\chi)\in C\cup D.
+\]
+Moreover, the surviving leading part recovers the least eligible
+letter.  Therefore the receiving sets
+\[
+ R_s=\{\operatorname{res}_{d+1}(\psi_s^*\chi):
+          \chi\in F_s^{\mathrm{int}}\}
+ \subseteq C\cup D
+\]
+are pairwise disjoint.
+
+Let \(P_d(\Omega)=\sum_{\chi\in\Omega}P_{d,\chi}\).  Spectral
+covariance says that
+\(\sigma(x_{ji}(s))P_{d+2}(F_s^{\mathrm{int}})z\) belongs to the
+range of \(P_{d+1}(R_s)\).  Apply the variation inequality to
+\(z_s=\sigma(x_{ji}(s))z\):
+\[
+ \norm{P_{d+2}(F_s^{\mathrm{int}})z}^2
+ \le \norm{P_{d+1}(R_s)z}^2
+      +2\norm z\,d_{ji,s}.
+\]
+Summing over \(s\), pairwise disjointness gives
+\(\sum_s\norm{P_{d+1}(R_s)z}^2\le m_{d+1}^{C\cup D}\), so every
+target component is charged at most once.  Adding the top-boundary
+mass proves~\eqref{eq:AB-descent}.  The forward shear
 \((a,c)\mapsto(a+sc,c)\), whose character pullback is
-\((\chi_1,\chi_2\,\partial_s\chi_1)\), proves
+\((\chi_1,\chi_2\cdot\partial_s\chi_1)\), proves
 ~\eqref{eq:CB-descent}.
 
 Add~\eqref{eq:AB-descent} and~\eqref{eq:CB-descent}, use
@@ -465,9 +500,10 @@ This is the finite-stage estimate whose limit is
 ~\eqref{eq:plane-energy}; it also accounts for the coefficient
 \(3/2\) there.
 
-The boundary limit follows from an exact telescoping identity.  If
-\(T_{r,d}\) is the mass on which the \(r\)-th coordinate character
-is trivial on \(A_{\le d}\), orthogonal refinement gives
+The boundary limit follows from an exact operator identity.  Let
+\(Q_{r,d}\) be the orthogonal projection onto the vectors fixed by
+the \(r\)-th coordinate copy of \(A_{\le d}\), and put
+\(T_{r,d}=\norm{Q_{r,d}z}^2\).  Orthogonal refinement gives
 \[
  T_{r,d}=\partial_{r,d+1}+T_{r,d+1}.
 \]
@@ -492,7 +528,7 @@ the displacement of \(z\) is at most \(B\) under
 Then, for every \(g\in H_{ijk}\),
 \[
   \norm{\sigma(g)z-z}
-  \le 2(6\abs X+6)(B+1).
+  \le 2(6\abs X+6)B.
 \]
 \leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate}
 \end{lemma}
@@ -500,23 +536,28 @@ Then, for every \(g\in H_{ijk}\),
 \begin{proof}
 Regard the complex Hilbert space as real and the unitary operators as
 orthogonal operators; norms, fixed spaces, and displacements are
-unchanged.  Put \(\delta=B+1\), let \(P\) be the orthogonal projection onto
+unchanged.  Let \(P\) be the orthogonal projection onto
 \(\mathcal H^{H_{ijk}}\), and set \(w=z-Pz\).  The adjacent root
 groups \(X_{ij}\) and \(X_{ji}\) normalize \(H_{ijk}\), while
 \(X_{ik},X_{jk}\le H_{ijk}\).  Orthogonal projection therefore
 passes each of the displayed displacement bounds from \(z\) to
-\(w\), with the strict bound \(\delta\).
+\(w\), with the same bound \(B\).
 Apply Lemma~\ref{lem:plane-energy} to \(w\).  Since \(Pw=0\), it
 gives
 \[
   \norm w^2
-  \le 2\delta^2+(6\abs X+4)\norm w\,\delta.
+  \le 2B^2+(6\abs X+4)\norm w\,B.
 \]
-If \(\norm w\le\delta\), the desired bound on \(w\) is immediate.
-Otherwise \(\delta\le\norm w\), and the last inequality gives
-\(\norm w\le(6\abs X+6)\delta\).  Finally, every \(g\in H_{ijk}\)
+If \(B=0\), this forces \(w=0\).  If \(B>0\) and
+\(\norm w\le B\), the desired bound on \(w\) is immediate.
+Otherwise \(B<\norm w\), and the last inequality gives
+\(\norm w\le(6\abs X+6)B\).  Finally, every \(g\in H_{ijk}\)
 fixes \(Pz\), so
 \(\norm{\sigma(g)z-z}\le2\norm w\).
+The formal declaration obtains the same non-strict bound from its
+strict-bound helper by applying it at
+\(B+\varepsilon/(6\lvert X\rvert+7)\) and then letting
+\(\varepsilon\downarrow0\).
 \end{proof}
 
 \begin{lemma}[Row-plane symmetry]\label{lem:row-symmetry}
@@ -631,7 +672,7 @@ Figure~\ref{fig:root-geometry}.  Put
  \quad B=2M+2D,
 \]
 \[
- K=2(6\abs X+6)(B+1).
+ K=2(6\abs X+6)B.
 \]
 Only the following members of these two finite embedded sets are
 used:
@@ -680,22 +721,10 @@ Consequently \(\norm w\le6K\).  Together with~\eqref{eq:fixed}, this gives
 \[
   \norm{b(I+aE_{03})}
   \le
-  D+12(6\abs X+6)(2M+2D+1),
+  D+12(6\abs X+6)(2M+2D),
 \]
 uniformly in \(a\in A\).
 \end{proof}
-
-\begin{remark}[A qualitative proof from Mimura's theorem]\label{rem:root-literature}
-For qualitative boundedness, Mimura's relative theorem gives a
-shorter proof of Theorem~\ref{thm:root}.  Split
-\(\mathcal H=\mathcal H^G\oplus(\mathcal H^G)^\perp\).  Mimura's
-relative theorem bounds the second projection on \(X_{03}\).  On
-the invariant summand the action is trivial, while \(r^2=1\) for
-\(r\in X_{03}\); the quasi-cocycle identities for \(1\) and \(r^2\)
-then give \(\norm{b_0(r)}\le D\).  The direct proof above complements
-this argument by recording an explicit bound and the quantitative
-rank-three propagation behind it.
-\end{remark}
 
 \section{Coordinate-block factorization}\label{sec:factorization}
 
@@ -718,16 +747,16 @@ More precisely, one left factor and two right factors suffice.
 
 \begin{proof}
 We give the calculation, since it is the source of the uniform
-constant.  Choose two distinct indices \(i,j\).  First arrange that
-the entry \(a=A_{ii}\) is nonzero.  If it is zero, invertibility of
-\(A\) gives \(k\) with \(A_{ik}\ne0\); right multiplication by
-\(e_{ki}(1)\) replaces \(A_{ii}\) by \(A_{ik}\).  This costs at most
-one preliminary column operation.
+constant.  Choose two distinct indices \(i,j\).  Put \(F_0=I\) if
+\(A_{ii}\ne0\).  If \(A_{ii}=0\), invertibility of \(A\) gives \(k\)
+with \(A_{ik}\ne0\); put \(F_0=e_{ki}(1)\).  In either case set
+\(A^{(0)}=AF_0\) and \(a=A^{(0)}_{ii}\).  Then \(a\ne0\), and \(F_0\)
+is a product of at most one elementary column operation.
 
-Write \(b=A_{ij}\), and choose \(p,q\in R\) with \(paq=1\).  Put
+Write \(b=A^{(0)}_{ij}\), and choose \(p,q\in R\) with \(paq=1\).  Put
 \[
   \rho=q(1-pb),\qquad
-  F_1=e_{ij}(\rho),\qquad A_1=AF_1,\qquad b_1=(A_1)_{ij}.
+  F_1=e_{ij}(\rho),\qquad A_1=A^{(0)}F_1,\qquad b_1=(A_1)_{ij}.
 \]
 Then
 \[
@@ -745,10 +774,9 @@ The \((j,j)\)-entry is now
   (A_2)_{jj}=d_1+wb_1
   =d_1+(1-d_1)pb_1=1.
 \]
-Thus \(B=A_2=E_1AF_1\) has \(B_{jj}=1\).  This uses one row and one
-column transvection.  Including the possible preliminary column
-addition gives one left factor and at most two right factors.  The
-calculation applies to arbitrary rings satisfying~\eqref{eq:sandwich}.
+Thus \(B=A_2=E_1A(F_0F_1)\) has \(B_{jj}=1\).  This uses one left
+factor and at most two right factors.  The calculation applies to
+arbitrary rings satisfying~\eqref{eq:sandwich}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
@@ -842,7 +870,9 @@ provided the ambient representation has no invariant vectors.  This
 is the only place where the quotient by the trivial representation
 enters.
 
-We record the relative-to-global step explicitly.  For a subset
+This is the normalized-set step in Mimura's relative-to-global
+mechanism~\cite[Theorem~5.1]{MimuraTT}; the following Kazhdan-pair
+form records the quantitative estimate used here.  For a subset
 \(S\subseteq G\), say that quasi-cocycles are \emph{bounded on
 \(S\)} if every quasi-cocycle into a unitary representation without
 invariant vectors has bounded restriction to \(S\).
@@ -864,7 +894,8 @@ Fix a unitary representation \(\pi\) of \(G\) without nonzero
 invariant vectors and a quasi-cocycle \(b\) of defect at most \(D\).
 Choose a Kazhdan pair \((K,\varepsilon)\), and choose once and for
 all an \(S\cup S^{-1}\)-word for each \(k\in K\).  Let \(L\) be
-the sum of their lengths.  If \(\norm{b(s)}\le C\) for \(s\in S\),
+the sum of their lengths, so \(L\) bounds each chosen length.  If
+\(\norm{b(s)}\le C\) for \(s\in S\),
 comparison of the quasi-cocycle identities for \(sh\) and
 \(h(h^{-1}sh)\) gives
 \[
@@ -1005,17 +1036,18 @@ identity makes \(b\) bounded on \(U^+\) and on \(U^-\).  The set
 coordinate lie in \(S\), and every remaining root is a Steinberg
 commutator of one last-column and one last-row root.
 
-For the Kazhdan input, the finite set of elementary roots with
-coefficients in \(\{1\}\cup X\) is a Kazhdan set for
-\(\EL_3(\F_2\langle X\rangle)\): the rank-three root estimate gives a
-Kazhdan constant after division by \(2(12\abs X+13)\).  Descending this
-finite Kazhdan pair through \(f\) gives property~\((T)\) for
-\(\EL_3(R)\).  This is the finite-control form of the
-Ershov--Jaikin-Zapirain theorem used here~\cite{ErshovJaikin}.
+For the Kazhdan input, apply the Ershov--Jaikin-Zapirain theorem:
+\(\EL_3(R)\) has property~\((T)\), because \(R\) is a finitely
+generated unital associative ring~\cite{ErshovJaikin}.  The formal
+counterpart reconstructs precisely this characteristic-two instance:
+it descends an explicit finite Kazhdan pair from
+\(\EL_3(\F_2\langle X\rangle)\) through \(f\).  No Kazhdan constant is
+deduced from Lemma~\ref{lem:localized-plane}.
 Lemma~\ref{lem:rank-equivalence} transports property
 \((T)\) to \(\EL_4(R)\).  The stabilized rank-three subgroup
 \(H=\EL_3(R)\) normalizes both \(U^+\) and \(U^-\), hence normalizes
-\(S\).  Lemma~\ref{lem:kazhdan-globalization} now proves that
+\(S\).
+Lemma~\ref{lem:kazhdan-globalization} now proves that
 \((\EL_4(R),H)\) has relative property \((TT)/T\).  Notice that the
 no-invariant-vectors hypothesis is used precisely in the Kazhdan
 inequality inside that lemma.
@@ -1116,8 +1148,12 @@ left by \(y_{\gamma_0}\) turns the \(\gamma_0\)-term into
 \(m=\max_{\gamma\in G}\abs\gamma\).
 
 Let \(w=0^m1\).  For every such \(\varepsilon\), the words \(w\)
-and \(\varepsilon w\) are incomparable: they disagree in position
-\(m\), while \(\varepsilon w\) is longer than \(w\).  Hence
+and \(\varepsilon w\) are incomparable.  Indeed,
+\(\varepsilon w\) is longer than \(w\).  If \(w\) were its prefix,
+the first \(m\) letters of \(\varepsilon w\) would force
+\(\varepsilon=0^{\lvert\varepsilon\rvert}\), but in position \(m+1\)
+the word \(w\) has \(1\) and \(\varepsilon w\) still has \(0\).
+Hence
 \(y_w{}x_\varepsilon x_w=0\).  It follows that
 \[
  y_w{}y_{\gamma_0}zx_\delta x_w=c_{\gamma_0}.
@@ -1137,78 +1173,93 @@ Ara--Goodearl--Pardo's characterization gives the same conclusion
 ~\cite[Theorem~1.6]{AraGoodearlPardo}.
 It remains to establish the unstable diagonal condition.
 
-\begin{proposition}[Unstable diagonal reduction]\label{prop:diag}
+\begin{proposition}[Elementary matrices over the binary Leavitt algebra]
+\label{prop:diag}
 For every field \(k\), write \(L_k=L_k(1,2)\).  For every
 \(u\in L_k^\times\),
 \[
   \diag(u,1)\in\EL_2(L_k).
 \]
-Consequently \(\GL_2(L_k)=\EL_2(L_k)\).
+More generally,
+\[
+  \GL_n(L_k)=\EL_n(L_k)\qquad(n\ge2).
+\]
 \leanverified{KOne/PaperStatements}{KOnePaper.diagUnit_mem_elementary}
 \leanverified{KOne/PaperStatements}{KOnePaper.elementaryGroup_two_eq_top}
+\leanverified{KOne/AllRanksElementaryCore}{BinaryLeavitt.elementaryGroup_eq_top}
 \end{proposition}
 
 \begin{proof}
-Put
+The Leavitt-path-algebra exact sequence of
+Ara--Brustenga--Corti\~nas applies because \(k\) is regular
+supercoherent.  The binary rose has adjacency matrix \((2)\), so the
+relevant segment is
 \[
- \mathcal W=
- \{u\in L_k^\times:\diag(u,1)\in\EL_2(L_k)\}.
+ K_1(k)\xrightarrow{-1}K_1(k)\longrightarrow K_1(L_k)
+ \longrightarrow K_0(k)\xrightarrow{-1}K_0(k).
 \]
-The elementary identities for diagonal stabilization show that
-\(\mathcal W\) is a normal subgroup of \(L_k^\times\).
-
-Give \(L_k\) its standard \(\mathbb Z\)-grading, in which a monomial
-\(x_\alpha y_\beta\) has degree \(\abs\alpha-\abs\beta\).  The first
-reduction, by elementary code changes and square-zero tail removals,
-shows that every unit has a representative modulo \(\mathcal W\)
-in the degree window \([-1,1]\).  Such a representative admits a
-\emph{pencil form}: relative to finite complete binary prefix codes
-\(P,Q\), every corner coefficient is
+This is the specialization of
+~\cite[Theorem~7.6]{AraBrustengaCortinas}.
+The two outer maps are automorphisms: under
+\(K_1(k)=k^\times\) the first is inversion, and under
+\(K_0(k)=\mathbb Z\) the second is multiplication by \(-1\).
+Exactness therefore gives
 \[
- a_0y_0+a_1y_1+c+b_0x_0+b_1x_1,
- \qquad a_0,a_1,b_0,b_1,c\in k.
+ K_1(L_k)=0.
 \]
-After refining \(P\), its cardinality may be taken to be \(2^r\).
+The ring \(L_k\) is purely infinite simple.  Ara--Goodearl--Pardo
+show that it is a GE-ring and that the canonical map induces
+\[
+ (L_k^\times)_{\mathrm{ab}}\cong K_1(L_k).
+\]
+See~\cite[Theorem~2.4 and its proof]{AraGoodearlPardo}.
+Thus \(L_k^\times\) is perfect.
 
-It remains to eliminate a pencil unit.  Form the two coefficient
-matrices \(B_0,B_1\) belonging to the positive-degree terms and stack
-them vertically.  There are two cases.
-
-If the stack has a nonzero kernel vector, an invertible scalar column
-operation makes one column simultaneously \(B_0\)- and
-\(B_1\)-free.  The corresponding code-change unit lies in
-\(\mathcal W\).  Splitting that free code word into its two children
-replaces \(Q\) by a complete code with one additional word, leaves
-the row code fixed, and preserves the pencil form.  Iteration is
-finite: while \(\abs Q<2^{r+1}\), the integer
-\(2^{r+1}-\abs Q\) decreases strictly.  When
-\(\abs Q\ge2^{r+1}\), reshape to a row code of depth at most \(r\)
-and a column code of depth at least \(r+1\).  Every resulting term has
-nonpositive degree, and the nonpositive-window elementary reduction
-places the unit in \(\mathcal W\).
-
-If instead the stack has a scalar left inverse, the inverse pencil
-has strictly negative degree after a complementary shallow/deep code
-reshape.  The same nonpositive-window reduction puts the inverse,
-and hence the original unit, in \(\mathcal W\).  These two exits prove
-that every narrow-window unit belongs to \(\mathcal W\).  Combined
-with the first reduction, this gives \(\mathcal W=L_k^\times\), which
-is the displayed diagonal assertion.
-
-Finally, the single-sandwich elimination for a \(2\times2\)
-invertible matrix produces elementary matrices \(E,F\) and a unit
-\(u\) with \(EAF=\diag(u,1)\).  Since all three factors on the right
-are elementary, \(A\) is elementary.  Thus
-\(\GL_2(L_k)=\EL_2(L_k)\).
+It remains only to recall the unstable elementary calculation.
+For a unit \(c\), put
+\[
+ w(c)=e_{12}(c)e_{21}(-c^{-1})e_{12}(c).
+\]
+Direct multiplication gives
+\[
+ w(c)w(-1)=\diag(c,c^{-1})\in\EL_2(L_k).
+\]
+If \([a,b]=aba^{-1}b^{-1}\), then
+\[
+ \diag([a,b],1)
+ =\diag(a,a^{-1})\diag(b,b^{-1})
+  \diag(a^{-1}b^{-1},ba)\in\EL_2(L_k).
+\]
+Since every \(u\in L_k^\times\) is a product of commutators, this
+proves \(\diag(u,1)\in\EL_2(L_k)\).  Embedding the calculation in
+larger matrices shows that every invertible diagonal matrix is
+elementary.  The GE property now gives
+\(\GL_n(L_k)=\EL_n(L_k)\) for all \(n\ge2\).  This is also the argument
+recorded explicitly by Khanh--Thanh
+~\cite[Lemma~4.1 and Proposition~4.2]{KhanhThanh}.
 \end{proof}
 
-\begin{remark}[Alternative structural proof]
-The conclusion also follows structurally from the Leavitt-path-algebra
-exact sequence of Ara--Brustenga--Corti\~nas, which gives
-\(K_1(L_k)=0\), together with the GE theorem of Menal--Moncasi and
-Ara--Goodearl--Pardo's identification of \(K_1\) with the
-abelianization of the unit group for purely infinite simple rings
-~\cite{AraBrustengaCortinas,MenalMoncasi,AraGoodearlPardo}.
+\begin{remark}[Constructive formal route]\label{rem:constructive-diagonal}
+The formal companion proves Proposition~\ref{prop:diag} without
+formalizing algebraic \(K\)-theory.  Its constructive reduction gives
+every unit a representative in the degree window \([-1,1]\), expands
+that representative relative to complete binary prefix codes into
+the pencil
+\[
+ a_0y_0+a_1y_1+c+b_0x_0+b_1x_1,
+\]
+and applies the scalar-matrix dichotomy to the stacked pair
+\(\binom{B_0}{B_1}\).  A kernel vector produces a \(B\)-free column;
+splitting its code word increases the column-code cardinality by one.
+A left inverse instead forces all entries of the inverse pencil into
+strictly negative degree.  The two branches terminate respectively
+at the deep-column and inverse deep-row nonpositive-window lemmas.
+The decreasing counter is \(2^{r+1}-\lvert Q\rvert\), with the row
+code fixed at cardinality \(2^r\).  This is the exact route through
+\nolinkurl{exists_narrow_representative},
+\nolinkurl{exists_pencil_form}, \nolinkurl{pencil_free_exit},
+\nolinkurl{pencil_full_exit}, and \nolinkurl{pencil_unit_mem_pow}
+listed in the formal-companion reading guide.
 \end{remark}
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
@@ -1221,9 +1272,10 @@ condition.  Theorem~\ref{thm:B} gives property \((TT)/T\) for
 \(\EL_n(L)\) in every rank \(n\ge2\), while
 Lemma~\ref{lem:gl-el} identifies it with \(\GL_n(L)\).
 
-For each \(n\ge1\), the left-comb prefix code
+For \(n=1\), take the one-word code consisting of the empty word.
+For each \(n\ge2\), the left-comb prefix code
 \[
- 0,\ 10,\ 110,\ \ldots,\ 1^{n-2}0,\ 1^{n-1}
+ C_n=\{\,1^r0:0\le r\le n-2\,\}\cup\{1^{n-1}\}
 \]
 is a complete binary prefix code with \(n\) words.  Its Leavitt
 matrix units give a ring isomorphism \(M_n(L)\cong L\), hence a group
@@ -1292,6 +1344,10 @@ Argument & Principal Lean implementation declarations, in proof order \\
 Finite-plane filtration and Lemma~\ref{lem:plane-energy} &
 \nolinkurl{FreeRootCharacterValuation.}
 \nolinkurl{sum_norm_planeRegionUnion_sq_le_succ_add_topBoundaries};
+\nolinkurl{planeABOppositeInteriorImageSignSet_pairwise_disjoint};
+\nolinkurl{sum_norm_planeABInteriorLeadingSignSet_sq_le_target_add_error};
+\nolinkurl{planeCBForwardInteriorImageSignSet_pairwise_disjoint};
+\nolinkurl{sum_norm_planeCBInteriorLeadingSignSet_sq_le_target_add_error};
 \nolinkurl{sum_norm_planeABRegion_sq_le_target_add_error_add_boundary};
 \nolinkurl{sum_norm_planeCBRegion_sq_le_target_add_error_add_boundary};
 \nolinkurl{sum_planeRegionMass_nonzero_le_explicit_errors};
@@ -1322,10 +1378,13 @@ Rank transport and rank-four assembly &
 Proposition~\ref{prop:diag} &
 \nolinkurl{BinaryLeavitt.exists_narrow_representative};
 \nolinkurl{BinaryLeavitt.exists_pencil_form};
+\nolinkurl{BinaryLeavitt.pencil_free_exit};
+\nolinkurl{BinaryLeavitt.pencil_full_exit};
 \nolinkurl{BinaryLeavitt.pencil_unit_mem_pow};
 \nolinkurl{BinaryLeavitt.narrowReduction_holds};
 \nolinkurl{BinaryLeavitt.stableUnits_eq_top_holds};
-\nolinkurl{BinaryLeavitt.glTwo_eq_elementary_holds} \\
+\nolinkurl{BinaryLeavitt.glTwo_eq_elementary_holds};
+\nolinkurl{BinaryLeavitt.elementaryGroup_eq_top} \\
 Lemma~\ref{lem:leavitt-sandwich} &
 \nolinkurl{LeavittFamily.eq_sum_mul_wordS_mul_wordT};
 \nolinkurl{BinaryLeavitt.killWord_not_prefix};
@@ -1357,6 +1416,10 @@ row of the table.
 The single-sandwich and unstable diagonal inputs for \(L_k(1,2)\) are
 theorems, not hypotheses, in \nolinkurl{LeavittSimplicity.lean} and
 \nolinkurl{RefineLoopDischarge.lean}.
+The latter uses the constructive pencil reduction of
+Remark~\ref{rem:constructive-diagonal}; the formal development does
+not encode the cited \(K\)-theory exact sequence or GE theorem as
+axioms.
 
 \begin{thebibliography}{99}
 
@@ -1398,12 +1461,6 @@ M.~Mimura,
 superrigidity into mapping class groups},
 preprint, 2011,
 \href{https://arxiv.org/abs/1106.3769}{arXiv:1106.3769}.
-
-\bibitem{MimuraThesis}
-M.~Mimura,
-\emph{Rigidity theorems for universal and symplectic universal lattices},
-doctoral thesis, University of Tokyo, 2011,
-\href{https://doi.org/10.15083/00004046}{doi:10.15083/00004046}.
 
 \bibitem{MenalMoncasi}
 P.~Menal and J.~Moncasi,

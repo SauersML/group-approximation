@@ -93,14 +93,14 @@ theorem norm_root03_movingProjection_le
         (columnGroup X)
         (b (elementaryRoot (0 : Fin 4) 3 (by decide) a))‖ ≤
       6 * (2 * (6 * Fintype.card X + 6 : ℝ) *
-        (2 * embeddedControlNormSum X b + 2 * D + 1)) := by
+        (2 * embeddedControlNormSum X b + 2 * D)) := by
   letI : InnerProductSpace ℝ E := InnerProductSpace.complexToReal
   let rhoR : G4 X →* (E ≃ₗᵢ[ℝ] E) := realifyHom rho
   let N : Subgroup (G4 X) := columnGroup X
   let r : G4 X := elementaryRoot (0 : Fin 4) 3 (by decide) a
   let M : ℝ := embeddedControlNormSum X b
   let B : ℝ := 2 * M + 2 * D
-  let K : ℝ := 2 * (6 * Fintype.card X + 6 : ℝ) * (B + 1)
+  let K : ℝ := 2 * (6 * Fintype.card X + 6 : ℝ) * B
   let w : E := KazhdanFixedSpace.subgroupMovingProjection rhoR N (b r)
   have hM : 0 ≤ M := embeddedControlNormSum_nonneg X b
   have hB : 0 ≤ B := by
@@ -437,9 +437,9 @@ theorem hasRelativeTT_X03 :
   intro E _ _ _ rho b D hb
   let M : ℝ := embeddedControlNormSum X b
   let C : ℝ := D +
-    6 * (2 * (6 * Fintype.card X + 6 : ℝ) * (2 * M + 2 * D + 1))
+    6 * (2 * (6 * Fintype.card X + 6 : ℝ) * (2 * M + 2 * D))
   have hM : 0 ≤ M := embeddedControlNormSum_nonneg X b
-  have hinner : 0 ≤ 2 * M + 2 * D + 1 := by
+  have hinner : 0 ≤ 2 * M + 2 * D := by
     have hD := hb.1
     positivity
   have hfactor : 0 ≤ (6 * Fintype.card X + 6 : ℝ) := by positivity
@@ -462,7 +462,7 @@ theorem hasRelativeTT_X03 :
       norm_root03_fixedProjection_le X rho b D hb a
   have hmoving :
       ‖w‖ ≤ 6 * (2 * (6 * Fintype.card X + 6 : ℝ) *
-        (2 * M + 2 * D + 1)) := by
+        (2 * M + 2 * D)) := by
     simpa only [w, rhoR, N, r, M] using
       norm_root03_movingProjection_le X rho b D hb a
   have hsplit : b r = p + w := by
