@@ -44546,3 +44546,37 @@ remaining FALSE object must be genuinely nonliftable at the covariance
 level itself.
 
 Full proof: docs/FALSE_KAZHDAN_CYCLIC_SEED_TRACIAL_EXTENSION.md.
+
+# 2026-08-12: subgroup twirling exactly identifies nonliftable covariance
+
+Let `W` be finite abelian, `K<=W`, and let `Phi_i:W->U(M)` be two exact
+character representations in a finite tracial algebra.  If `p_i(chi)` are
+their Fourier spectral projections, then every `T in L^2(M)` satisfies
+
+```text
+(1/|K|) sum_(k in K)||Phi_0(k)T-T Phi_1(k)||_2^2
+ =2 sum_(chi|K != psi|K)||p_0(chi)T p_1(psi)||_2^2.
+```
+
+The matching-block truncation is therefore the orthogonal projection onto
+the exact `K`-intertwiner space, at distance exactly the RMS defect divided
+by `sqrt(2)`.  In matrices, the same identity shows that the `l^1` distance
+between the two restricted character-multiplicity vectors is at most the
+squared RMS defect.  If those vectors agree, blockwise polar completion
+produces an exact unitary `K`-intertwiner `V` with
+
+```text
+||T-V||_2<=RMS covariance defect.
+```
+
+The twisted version for an automorphism `alpha` merely replaces the block
+condition by `chi o alpha|K=psi|K`.  There is no dependence on phase spacing,
+group exponent, or dimension.
+
+Consequently the surviving Frobenius proposal must fail local-to-global
+covariance in an exact measurable way: its fixed-generator defects tend to
+zero while the average over the generated finite tangent subgroup remains
+macroscopic.  Any upgrade to full-subgroup average control rounds the
+implementers, after which the cyclic-seed Kazhdan theorem erases the fold.
+
+Full proof: docs/FALSE_FINITE_ABELIAN_COVARIANCE_TWIRL.md.

@@ -2322,6 +2322,26 @@ FALSE gate is genuinely approximate/nonliftable tangent covariance in every
 tracial model, not a matrix compactness issue.  See
 `FALSE_KAZHDAN_CYCLIC_SEED_TRACIAL_EXTENSION.md`.
 
+The remaining approximate tangent-covariance gate now has an exact finite
+Fourier statistic.  For a finite abelian tangent group `W`, subgroup `K`,
+two character representations `Phi_i`, and comparison operator `T`,
+
+```text
+(1/|K|) sum_(k in K)||Phi_0(k)T-T Phi_1(k)||_2^2
+ =2 sum_(chi|K != psi|K)||p_0(chi)T p_1(psi)||_2^2.
+```
+
+Thus full-subgroup RMS covariance is exactly twice the mass outside the
+correct character-restriction blocks.  In matrices, it bounds the `l^1`
+mismatch of the restricted multiplicity vectors; if those multiplicities
+agree, the proposed implementer lies within the RMS defect of an exact
+unitary `K`-intertwiner.  No root-spacing or exponent loss occurs.  Hence a
+live Frobenius model must exhibit a strict local-to-global failure: vanishing
+generatorwise covariance but macroscopic covariance defect averaged over
+the growing tangent subgroup.  This gives a finite exact diagnostic for the
+remaining nonliftable field.  See
+`FALSE_FINITE_ABELIAN_COVARIANCE_TWIRL.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
