@@ -91,9 +91,43 @@ This is a local statement: `rho_n` need not extend to all of `W_q`.  That is
 exactly the amount needed to rule out an instability mechanism confined to a
 fixed cyclic lamp window.
 
+There is a stronger conclusion when the maps are trace separating.  Theorem
+1.1 of Burton--Chaudkhari--Juschenko--Muliarchyk,
+[*Hyperlinear approximations to amenable groups come from sofic
+approximations*](https://arxiv.org/abs/2311.09202), says that every sufficiently
+accurate hyperlinear approximation of an amenable group is close, on any
+prescribed finite set and in the **same dimension**, to permutation matrices
+coming from a sofic approximation.  Since every group in `(CVS5)` is
+amenable, it gives the following upgrade.
+
+**Corollary 3 (same-dimension permutationization).**  Fix finite
+`I_0 subset I`, a finite set `E subset W_(q,I_0)`, and `epsilon>0`.  There are
+a finite set `F subset W_(q,I_0)` and `delta>0` such that every
+`(F,delta)`-hyperlinear approximation
+
+`alpha:W_(q,I_0)->U(d)`
+
+is accompanied by an `(E,epsilon)`-sofic approximation on a set of cardinality
+`d`, whose permutation matrices `beta` satisfy
+
+`max_(g in E) ||alpha(g)-beta(g)||_2^2 <= epsilon`.       `(CVS10)`
+
+Thus Dogon--Vidick and Burton--Chaudkhari--Juschenko--Muliarchyk control two
+different regimes of the same cyclic sector:
+
+* without trace separation, the lamplighter relations are polynomially
+  correctable to an exact unitary representation;
+* with the regular trace separation required of a hyperlinear model, the
+  matrices are directly correctable to a sofic-induced model in the same
+  dimension.
+
+The second statement does not require permutation stability of the
+lamplighter group: the resulting permutations are a sofic approximation, not
+necessarily an exact finite action.
+
 The harmless central `C_2` factor in the vertex decomposition
 
-`J_i ~= C_2 times ((directSum_Y C_2) semidirect G_i)`  `(CVS10)`
+`J_i ~= C_2 times ((directSum_Y C_2) semidirect G_i)`  `(CVS11)`
 
 does not change the conclusion: a fixed finite group has HS-stable relations,
 and one may correct that factor together with the finite window.
@@ -103,16 +137,16 @@ and one may correct that factor together with the finite window.
 Eckhardt's basic unstable group is
 
 `G_p=Z[1/p]^2 semidirect_alpha Z`,
-`alpha=[[1,1],[0,1]]`.                                 `(CVS11)`
+`alpha=[[1,1],[0,1]]`.                                 `(CVS12)`
 
 Writing its elements as `(a,b,c)`, the multiplication is
 
 `(a_1,b_1,c_1)(a_2,b_2,c_2)`
-` =(a_1+a_2+c_1 b_2,b_1+b_2,c_1+c_2)`.                `(CVS12)`
+` =(a_1+a_2+c_1 b_2,b_1+b_2,c_1+c_2)`.                `(CVS13)`
 
 If `t=(0,0,1)` and `u_b=(0,b,0)`, then
 
-`[t,u_b]=(b,0,0)`.                                    `(CVS13)`
+`[t,u_b]=(b,0,0)`.                                    `(CVS14)`
 
 Hence `[G_p,G_p]` contains a copy of the torsion-free group `Z[1/p]`.
 
@@ -124,11 +158,11 @@ case `A=C_2^m`, that base has exponent two.  Therefore:
 `C_2^m wr Z`.
 
 **Proof.**  An embedding restricts injectively to the derived subgroup.
-Equations `(CVS11)--(CVS13)` put a torsion-free copy of `Z[1/p]` in the
+Equations `(CVS12)--(CVS14)` put a torsion-free copy of `Z[1/p]` in the
 source derived subgroup, whereas the target derived subgroup has exponent
 two.  This is impossible.
 
-In particular the unipotent trace obstruction `(CVS11)--(CVS13)` is not an
+In particular the unipotent trace obstruction `(CVS12)--(CVS14)` is not an
 internal cyclic-lamp obstruction for `(CVS2)`.
 
 Eckhardt's finitely generated class-three-nilpotent-by-cyclic and finitely
@@ -154,4 +188,7 @@ single-tower, and Eckhardt-unipotent substitutions do not meet this condition.
 
 This does not prove that the full vertex `J_i` is HS-stable, nor would such a
 claim be expected from the argument.  It isolates precisely where a
-nonliftable sector would have to live.
+nonliftable sector would have to live.  In particular, the trace-separated
+part of that sector cannot hide a nonpermutational obstruction inside an
+amenable cyclic window; any surviving obstruction must occur in the gluing
+across several nonamenable acting directions.
