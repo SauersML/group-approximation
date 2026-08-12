@@ -44823,3 +44823,45 @@ compressor inclusion becomes equality there, forcing `t^(-1)gamma t` into
 every approximating overgroup and hence into `N`, a contradiction.  Thus
 the edge is CE-spatial but the Gao--Junge--Gao group-theoretic relative
 extension criterion provably cannot extend it to a vertex.
+
+# 2026-08-12: bounded real frames forbid dense bounded-order phase incidence
+
+Full proof: `docs/FALSE_BOUNDED_FRAME_PHASE_INCIDENCE_NO_GO.md`.
+
+Let `Q delta_x=q_x` and `R delta_j=r_j` be two finite Hilbert-space
+synthesis families with `||Q||<=C` and `||R||<=D`.  If every phase
+
+```text
+<q_x,r_j> mod Z
+```
+
+has order dividing `M`, then Bessel's inequality gives the exact incidence
+bound
+
+```text
+|{j:<q_x,r_j> notin Z}|,
+|{x:<q_x,r_j> notin Z}| <= M^2 C^2 D^2.
+```
+
+For selected canonical filling classes `R` is a restriction of `Q`, so the
+bound is `M^2C^4`.  In the bounded-intermediate-real branch of the explicit
+Kazhdan tower, the orbit-frame theorem gives one uniform `C`.  Hence every
+binary marked-word row on canonical two-torsion deck translates has weight
+at most `4C^4`.  If a word row is nonzero, the maximum carry degree is at
+least one, and therefore the ratio `a_n/b_n` from the Bernoulli incidence
+criterion is bounded below by `1/(4C^4)`.  It cannot tend to zero.
+
+More generally, bounded-order latent generators can satisfy the Bernoulli
+criterion only if their real synthesis norm diverges.  Thus the most direct
+canonical binary nonlinear escape is closed: it would have to reintroduce
+an unbounded real frame which the canonical Kazhdan decoder had removed.
+
+At the totally isotropic endpoint, the canonical Gram matrix is integral.
+Since `||Q^*Q||<=C^2`, every row then has at most `C^4` nonzero entries.
+Equivariantly, the orbit autocorrelation is a positive-definite integral
+kernel of uniformly bounded support cardinality.  This is a sharp sparse
+spectral-factor normal form, but not yet an integral decoder: the explicit
+local minimum filling `(1,2,2)/3` has identity Gram and an integral filling
+of the same boundary.  The remaining TRUE arithmetic must use growing
+discriminant radius and fixed-boundary compatibility, not Gram integrality
+alone.

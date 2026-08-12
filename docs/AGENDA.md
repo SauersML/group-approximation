@@ -4,6 +4,32 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: bounded frames close canonical binary phase incidence
+
+Let `Q delta_x=q_x` and `R delta_j=r_j` be finite Hilbert synthesis
+families with norms at most `C,D`.  If all pairings
+`<q_x,r_j> mod Z` have order dividing `M`, Bessel's inequality gives
+
+```text
+max_x |{j:<q_x,r_j> notin Z}|<=M^2 C^2D^2,
+max_j |{x:<q_x,r_j> notin Z}|<=M^2 C^2D^2.
+```
+
+For canonical filling translates, `R` is a restriction of `Q`, so the
+bound is `M^2C^4`.  The Kazhdan orbit-frame theorem supplies a uniform `C`
+throughout the bounded-intermediate-real branch.  Consequently every
+canonical order-two marked incidence row has weight at most `4C^4`, and the
+binary Bernoulli condition `a_n/b_n->0` is impossible.  Any bounded-order
+correlated generator family satisfying that criterion must have unbounded
+real synthesis norm.
+
+If the canonical code is totally isotropic, `Q^*Q` is integral; its bounded
+operator norm then forces at most `C^4` nonzero autocorrelations per deck
+row.  This reduces the last isotropic branch to a sparse integral
+spectral-factor problem.  Gram integrality alone does not give an integral
+decoder, as an exact three-coordinate counterexample shows.  Full proof:
+`FALSE_BOUNDED_FRAME_PHASE_INCIDENCE_NO_GO.md`.
+
 ### 2026-08-12: finite-index covers do not revive the central radical
 
 For the explicit Kun--Thom double
