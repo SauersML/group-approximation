@@ -4,6 +4,39 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: fundamental-circuit height is an exact packet certificate
+
+For an integral closing matrix `beta:Z^I->E`, choose pivot columns `F` and
+write every nonpivot column in its primitive integral dependence
+
+```text
+a_e beta(e)=sum_f b_(e,f) beta(f).
+```
+
+The vectors
+
+```text
+c_e=a_e e-sum_f b_(e,f)f
+```
+
+are independent integral circuits spanning `ker(beta_R)`.  If their norms
+are at most `A` and the integral comparison from closed symbols to absolute
+cycles has norm at most `C`, their harmonic projections span the primal
+lattice with norm at most `CA`.  Hence
+
+```text
+lambda_1(Q_X^#)>=1/(CA).
+```
+
+The integral defect is also exact: the quotient of the full kernel by the
+fundamental-circuit lattice is killed by `lcm_e(a_e)`; when every `a_e=1`,
+the circuits are a `Z`-basis.  This converts the Ash--Rudolph closing gap
+into a finite proposed-certificate problem: find projective pivot sets with
+uniformly bounded primitive dependence height, plus a bounded absolute
+realization.  The four supplied stability/expansion papers do not provide
+this integral kernel statement.  Full proof and source audit:
+`TRUE_FUNDAMENTAL_CIRCUIT_PACKET_CERTIFICATE.md`.
+
 ### 2026-08-12: paired carry collapses to cycle carry under the word frame
 
 For a regular cover with `N` marked-word coordinates, let `Q delta_x=q_x`

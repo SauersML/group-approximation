@@ -45094,3 +45094,49 @@ enlarged circle double CE => RE/C.
 The reverse implication from the ordinary direct double is currently
 unsupported.  This is an application/proof audit, not a claimed
 counterexample to the published theorem statement.
+
+# 2026-08-12: bounded fundamental circuits certify the harmonic denominator
+
+Full proof: `docs/TRUE_FUNDAMENTAL_CIRCUIT_PACKET_CERTIFICATE.md`.
+
+The Ash--Rudolph closing problem now has a finite exact sufficient
+certificate.  For an integral closing matrix `beta:Z^I->E`, choose pivot
+columns `F`.  The primitive dependence of a nonpivot column is
+
+```text
+a_e beta(e)=sum_f b_(e,f)beta(f),
+```
+
+and the corresponding fundamental circuit is
+
+```text
+c_e=a_e e-sum_f b_(e,f)f.
+```
+
+These circuits are independent and span `ker(beta_R)`.  If all have norm at
+most `A`, and the fixed integral comparison from closed symbols to absolute
+cycles has norm at most `C`, then their harmonic projections are bounded
+spanning primal packets and
+
+```text
+lambda_1(Q_X^#)>=1/(CA).
+```
+
+No primitivity, bounded overlap, or bounded harmonic rank is needed for
+this denominator bound.  Integrally, the circuit lattice has quotient in
+`ker(beta)` killed by `lcm_e(a_e)`; if every `a_e=1`, the circuits form a
+`Z`-basis.  Thus the primitive denominators `a_e` isolate saturation from
+metric circuit height.
+
+The path-difference counterexample is measured sharply: its unique circuit
+is `(1,...,1)`, so the height is `sqrt(m)` despite bounded row support and
+column degree.  Total unimodularity is likewise insufficient unless the
+fundamental circuits also have bounded support.
+
+Direct source inspection of Becker--Lubotzky, Dinur--Meshulam,
+Kaufman--Oppenheim--Weinberger, and Sinclair--Smith confirms that none
+supplies this integral kernel theorem.  Their expansion/perturbation results
+remain downstream tools after the arithmetic closing data are supplied.
+The projective family target is now concrete: find pivot lists with uniformly
+bounded primitive fundamental-dependence height and a bounded absolute
+realization.  The stronger bounded integral lift section remains open.
