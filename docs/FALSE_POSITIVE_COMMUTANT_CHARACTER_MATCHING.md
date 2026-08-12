@@ -173,15 +173,20 @@ Then the largest pointwise marked energy compatible with exact positive
 agreement is `E_pi(P_k,m_k)`.  For a regular tangent block, Theorem 1
 reduces it to the order of `m_k+P_k` and the explicit multiplier `(PCM16)`.
 
-The choices `t(k)` cannot in general be made independently: in the actual
-principal-bundle construction they must arise as the relative table of two
-exact cocycles and obey the stabilizer consistency equations.  Nevertheless
-the continuous variables have disappeared.  Restricting to the optimal
-Pauli multipliers turns the remaining search into:
+The choices `t(k)` cannot in general be made independently on a transitive
+base with nontrivial stabilizer.  On the **regular finite-group base** they
+can: `FALSE_REGULAR_BUNDLE_FREE_TABLE_AND_KERNEL_GATE.md` proves that every
+unitary table is the relative table of two exact external coboundaries.  For
+the actual infinite Laurent action, however, a finite quotient has a
+nontrivial kernel action on the fiber.  The remaining constraint is the
+explicit kernel-carry intertwining defect `(RBF20)` in that note, not a
+constraint among the relative Pauli values themselves.  Thus the continuous
+wall variables have disappeared.  Restricting to the optimal Pauli
+multipliers turns the remaining search into:
 
 1. compute the positive restriction fibers in the dual tangent module;
 2. choose one annihilator character on each base incidence;
-3. impose the finite twisted-cocycle and stabilizer congruences; and
+3. impose the finite kernel-carry intertwining equations; and
 4. maximize the density on which the chosen character is nontrivial at the
    marked class.
 
