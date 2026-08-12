@@ -4,6 +4,84 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: finite-index Bernoulli tower audit
+
+The affine endomorphism
+`alpha(z,A)=(2z,A)` of `Z^3 semidirect SL_3(Z)` gives an exact tower with
+indices `8^n`, hence an exact finite-tracial Bernoulli wall.  It does not
+give a radical pair: the pair `alpha(Gamma)<Gamma` already has a finite
+quasi-regular wall, and the ascending tower group is sofic.  A modular
+homomorphism gives the sharper obstruction: a property-(T) group generated
+only by strict finite-index compressors of a commensurated subgroup cannot
+exist.  Any Kazhdan completion must add infinite-index directions.  The live
+theorem is therefore a mixed dilation: extend the local lamp wall over those
+directions inside a Connes-embeddable finite algebra, with a non-group
+relative-commutant unitary.  Full audit:
+`docs/FALSE_FINITE_INDEX_BERNOULLI_TOWER_AUDIT.md`.
+
+### 2026-08-12: repaired level-169 packet has an exact integral section
+
+The packet-only dual solver was rerun on MSI against the repaired packet
+with SHA-256
+
+```text
+b9f37304009e64acb829c6c4da5f7f3f7dcbce9996f88b9c8794b147ee90e483.
+```
+
+All twelve ambient integer dual equations are solvable.  The projected
+packet is a rational basis and the solver reports
+
+```text
+complete_integral_section=true,
+projected_packet_is_q_basis=true.
+```
+
+Thus the parity repair did not merely fix the projected determinant: the
+repaired packet really has an integral ambient dual section.  This closes
+the qualitative level-`169` lift question.  The HNF completion is not a
+quantitative certificate: its first unreduced section has maximum
+coefficient about `8.56e47`, full support `3728` in every column, and a
+packet Riesz-section upper bound about `2.30e50`.  These values measure the
+bad choice of representatives, not an obstruction, because the affine
+fiber still permits reduction by the saturated coboundary lattice.  The
+live theorem remains a family-uniform, bounded-overlap choice of section.
+
+### 2026-08-12: weak ucp stability sharpens, but does not select, the fork
+
+Dogon's 2023 theorem replaces flexible Hilbert--Schmidt stability by the
+strictly weaker weak ucp-stability in the central-extension obstruction.  In
+the present project this yields the following exact negative-side target.  If
+the known nonsofic Kazhdan quotient `Q` admits cocycles
+
+```text
+c_n in Z^2(Q,T),        [c_n]!=0,        c_n(g,h)->1,
+```
+
+whose twisted regular algebras `L_(c_n)(Q)` are Connes embeddable, then their
+canonical projective regular unitaries are already a trace-separating
+normalized-HS asymptotic representation of `Q`.  Hence `Q` is hyperlinear and
+nonsofic, proving FALSE.  Weak ucp-stability would contradict this family by
+the Nicoara--Popa--Sasyk projective Kazhdan lemma.
+
+This does not presently select a branch.  The explicit Steinberg cover `U`
+is a universal central extension and therefore superperfect, so it has no
+further non-split central extension detected by `H_2(U,Z)` to which the
+criterion can simply be iterated.  For the base `Q`, LLP or weak
+ucp-stability is itself the unresolved global lifting problem.  Moreover the
+stable/nonhyperlinear branch would construct a nonhyperlinear group, but
+would not decide whether every hyperlinear group is sofic.  The useful live
+certificate is therefore the CE twisted-algebra family above, not the
+conditional stability conclusion.
+
+The simultaneous audit of character rigidity and robust `(T;CE)` gives no
+relative-commutant no-go.  Character data are blind by regular-character
+camouflage.  A wall `v in pi(Gamma)' intersect M` is a fixed vector for the
+conjugation representation on `L^2(M)`; that representation is not in
+general tracial or CE, and even a spectral gap would not replace the finite
+dimension argument which turns two nested, unitarily equivalent fixed spaces
+into equal spaces.  Thus the extrinsic relative-bicommutant endpoint remains
+live.
+
 ### 2026-08-12: compact and weakly compact anchors are impossible
 
 For an arbitrary subgroup `Gamma<G` and a compressor

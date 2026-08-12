@@ -26,6 +26,7 @@ import json
 import time
 from pathlib import Path
 
+from fpylll import CVP, IntegerMatrix, LLL
 from sage.all import QQ, RealField, ZZ, identity_matrix, matrix
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
@@ -54,6 +55,47 @@ def synthesis_metric(candidate):
     return gram, polynomial, roots
 
 
+def to_fpylll(basis):
+    result = IntegerMatrix(basis.nrows(), basis.ncols())
+    for row in range(basis.nrows()):
+        for column in range(basis.ncols()):
+            result[row, column] = int(basis[row, column])
+    return result
+
+
+def saturated_babai_reduce(lifts, d2):
+    """Reduce packet-dual lifts in the full integral annihilator.
+
+    The raw row lattice of ``d2.transpose()`` need not be primitive.  Its
+    saturation is the integral orthogonal complement of the integral cycle
+    lattice.  Computing the two kernels below constructs that saturation
+    directly, including every torsion direction at once.
+    """
+    cycle_basis = d2.transpose().right_kernel_matrix()
+    saturated_basis = cycle_basis.right_kernel_matrix()
+    if saturated_basis * cycle_basis.transpose() != 0:
+        raise AssertionError("saturated annihilator does not kill cycles")
+    if saturated_basis.nrows() + cycle_basis.nrows() != d2.ncols():
+        raise AssertionError("cycle and annihilator ranks do not complement")
+
+    reduced_basis = to_fpylll(saturated_basis)
+    LLL.reduction(reduced_basis, delta=0.99)
+    reduced_rows = []
+    for lift in lifts.rows():
+        correction = CVP.babai(
+            reduced_basis, tuple(-int(entry) for entry in lift), delta=0.99)
+        candidate = lift + matrix(ZZ, 1, len(correction), correction).row(0)
+        reduced_rows.append(candidate)
+    reduced_lifts = matrix(ZZ, reduced_rows)
+    return reduced_lifts, {
+        "cycle_lattice_rank": cycle_basis.nrows(),
+        "saturated_annihilator_rank": saturated_basis.nrows(),
+        "saturated_annihilator_basis_maximum_absolute_coefficient": max(
+            abs(int(entry)) for entry in saturated_basis.list()),
+        "reduction": "exact double-kernel saturation plus fpylll LLL/Babai",
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("cellular_input", type=Path)
@@ -62,6 +104,7 @@ def main() -> None:
     parser.add_argument("--time-limit", type=float, default=120.0)
     parser.add_argument("--greedy-sweeps", type=int, default=20)
     parser.add_argument("--finish-residual-hnf", action="store_true")
+    parser.add_argument("--lll-saturated-reduce", action="store_true")
     parser.add_argument(
         "--saturation-direction-certificate",
         action="append",
@@ -179,25 +222,40 @@ def main() -> None:
     if cycles * reduced_lifts.transpose() != identity_matrix(ZZ, rank):
         raise AssertionError("range reduction changed packet pairings")
 
+    saturated_lifts = None
+    saturated_diagnostics = None
+    if args.lll_saturated_reduce:
+        saturated_lifts, saturated_diagnostics = saturated_babai_reduce(
+            reduced_lifts, d2)
+        if d3 * saturated_lifts.transpose() != 0:
+            raise AssertionError(
+                "saturated reduction changed boundary annihilation")
+        if cycles * saturated_lifts.transpose() != identity_matrix(ZZ, rank):
+            raise AssertionError("saturated reduction changed packet pairings")
+
     packet_gram, packet_polynomial, packet_roots = synthesis_metric(cycles)
     raw_gram, raw_polynomial, raw_roots = synthesis_metric(raw_lifts)
     reduced_gram, reduced_polynomial, reduced_roots = synthesis_metric(
         reduced_lifts)
-    if reduced_roots[-1] <= raw_roots[-1]:
-        selected_lifts = reduced_lifts
-        selected_gram = reduced_gram
-        selected_polynomial = reduced_polynomial
-        selected_roots = reduced_roots
-        selected_name = (
-            "greedy_certified_saturation_reduced"
-            if saturation_certificate_hashes
-            else "greedy_raw_coboundary_reduced")
-    else:
-        selected_lifts = raw_lifts
-        selected_gram = raw_gram
-        selected_polynomial = raw_polynomial
-        selected_roots = raw_roots
-        selected_name = "raw_unit_elimination"
+    candidates = [
+        (raw_roots[-1], raw_lifts, raw_gram, raw_polynomial, raw_roots,
+         "raw_unit_elimination"),
+        (reduced_roots[-1], reduced_lifts, reduced_gram, reduced_polynomial,
+         reduced_roots,
+         "greedy_certified_saturation_reduced"
+         if saturation_certificate_hashes
+         else "greedy_raw_coboundary_reduced"),
+    ]
+    saturated_gram = None
+    if saturated_lifts is not None:
+        saturated_gram, saturated_polynomial, saturated_roots = synthesis_metric(
+            saturated_lifts)
+        candidates.append((
+            saturated_roots[-1], saturated_lifts, saturated_gram,
+            saturated_polynomial, saturated_roots,
+            "full_saturated_lll_babai"))
+    (_selected_metric, selected_lifts, selected_gram, selected_polynomial,
+     selected_roots, selected_name) = min(candidates, key=lambda item: item[0])
     real_field = RealField(160)
     riesz_bound_squared = packet_roots[-1] * selected_roots[-1]
     riesz_bound = real_field(riesz_bound_squared).sqrt()
@@ -215,6 +273,7 @@ def main() -> None:
         "saturation_direction_certificate_sha256": (
             saturation_certificate_hashes),
         "reduction_generator_count": reduction_generators.nrows(),
+        "full_saturated_reduction_diagnostics": saturated_diagnostics,
         "packet_ambient_gram": [
             [int(entry) for entry in row] for row in packet_gram.rows()],
         "packet_ambient_synthesis_polynomial_monic": str(packet_polynomial),
@@ -224,6 +283,9 @@ def main() -> None:
             [int(entry) for entry in row] for row in raw_gram.rows()],
         "reduced_lift_gram": [
             [int(entry) for entry in row] for row in reduced_gram.rows()],
+        "full_saturated_lift_gram": (
+            None if saturated_gram is None else
+            [[int(entry) for entry in row] for row in saturated_gram.rows()]),
         "selected_lift_gram": [
             [int(entry) for entry in row] for row in selected_gram.rows()],
         "raw_lift_synthesis_polynomial_monic": str(raw_polynomial),
@@ -237,6 +299,9 @@ def main() -> None:
         "packet_riesz_section_bound_approx": str(riesz_bound),
         "raw_lifts": sparse_rows_json(raw_lifts),
         "reduced_lifts": sparse_rows_json(reduced_lifts),
+        "full_saturated_lifts": (
+            None if saturated_lifts is None else
+            sparse_rows_json(saturated_lifts)),
         "selected_maximum_absolute_coefficient": max(
             abs(int(entry)) for entry in selected_lifts.list()),
         "selected_support_sizes": [
@@ -247,9 +312,10 @@ def main() -> None:
         "elapsed_seconds": time.monotonic() - started,
         "scope": (
             "exact integral Q-basis and packet-dual section certificate; "
-            "the Riesz norm is a basis-free upper bound; greedy reduction "
-            "uses the raw d2 coboundary rows plus every explicitly certified "
-            "prime-saturation direction, but is not a CVP optimum"),
+            "the Riesz norm is a basis-free upper bound; when requested, "
+            "double-kernel reduction constructs the full saturated "
+            "annihilator exactly and applies LLL/Babai, but is not a CVP "
+            "optimum"),
     }
     args.output.write_text(
         json.dumps(certificate, indent=2, sort_keys=True) + "\n",

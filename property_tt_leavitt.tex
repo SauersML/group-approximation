@@ -12,14 +12,14 @@
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newif\ifanonymous\anonymoustrue
 \hypersetup{
   pdftitle={Coordinate-Block Factorization under Single-Sandwich Division and Applications to Property (TT)/T},
-  pdfauthor={GPT-5.6 Sol},
+  pdfauthor={Anonymous},
   pdfsubject={quasi-cocycles, elementary groups, Leavitt algebras},
   pdfkeywords={property (TT)/T, quasi-cocycles, elementary groups, Leavitt algebras, bounded generation}
 }
 
-\newif\ifanonymous\anonymousfalse
 \ifanonymous
   \newcommand{\leanrepo}{[repository link removed for anonymous review]}
 \else
@@ -66,7 +66,7 @@
 \title[Coordinate-block factorization and \texorpdfstring{\((TT)/T\)}{(TT)/T}]
 {Coordinate-Block Factorization under Single-Sandwich Division
 and Applications to Property \texorpdfstring{\((TT)/T\)}{(TT)/T}}
-\author{GPT-5.6 Sol}
+\author{Anonymous}
 \date{August 2026}
 \subjclass[2020]{20J06, 20F65, 16S50, 16S88, 19B99}
 \keywords{property (TT)/T, quasi-cocycles, elementary groups,
@@ -90,7 +90,7 @@ fixed coordinate block.
 The algebraic factorization is the main input developed here.  We
 combine it with a quantitative root-subgroup estimate in Mimura's
 relative quasi-cocycle framework.  The estimate is proved here by an
-exhaustive finite-word filtration whose boundary terms vanish by an
+exhausting finite-word filtration whose boundary terms vanish by an
 exact telescoping identity.  If \(R\) is a nontrivial finite-type
 \(\F_2\)-algebra carrying a binary Leavitt family, satisfying the
 single-sandwich condition, and satisfying
@@ -153,8 +153,11 @@ coordinate copy
 Theorem~\ref{thm:A} is a relative bounded-width statement rather
 than bounded elementary generation: the bounded factors come from
 the elementary root subgroups together with one fixed coordinate
-block.  This is exactly the form required by the quasi-cocycle
-argument.  By the characterization just cited, the conclusion applies
+block.  Fixing the block lets the quasi-cocycle argument use one
+relative subgroup throughout the factorization.  A version in which
+the coordinate depends on the matrix could also be used after a finite
+permutation argument, but it would be a weaker width statement with
+additional bookkeeping.  By the characterization just cited, the conclusion applies
 in particular to every unital purely infinite simple ring.
 
 For the synthesis theorem, a \emph{binary Leavitt family} in \(R\)
@@ -231,11 +234,9 @@ The algebraic equalities in Theorem~\ref{thm:C} are not new.
 Khanh and Thanh prove \(K_1(L_k(1,2))=0\), perfection of its unit
 group, and
 \(\GL_n(L_k(1,2))=\EL_n(L_k(1,2))\) for every \(n\ge2\)
-~\cite[Proposition~4.2]{KhanhThanh}.  For every complete binary leaf
-set \(C\) with \(n\ge2\), their matrix-ring isomorphism identifies
-\[
- L_k(1,2)^\times=\Theta_C\bigl(\EL_n(L_k(1,2))\bigr)
-\]
+~\cite[Proposition~4.2]{KhanhThanh}.  Their complete-prefix-code
+matrix isomorphisms \(M_n(L_k(1,2))\cong L_k(1,2)\) send the
+elementary group onto the unit group
 ~\cite[Corollary~4.4]{KhanhThanh}.  The contribution of
 Theorem~\ref{thm:C} is the property \((TT)/T\) conclusion for this
 already identified unit group.
@@ -273,6 +274,11 @@ Section~\ref{sec:quasicocycles}
 gives a quantitative proof of the root estimate, and
 Section~\ref{sec:leavitt} verifies the remaining structural
 hypotheses for the binary Leavitt algebra.
+
+Each numbered theorem and lemma proved in the formal companion is
+linked to its public Lean declaration.  Appendix~\ref{app:formal}
+gives a proof-order reading path through the implementation and states
+the definitions and trust surface used there.
 
 \subsection*{Organization}
 
@@ -326,10 +332,16 @@ For an orthogonal representation \(\sigma\) on a real Hilbert space,
 let \(P_{d,\chi}\) be the spectral projection for
 \(\chi\in\widehat V_d\), and put \(z_{d,\chi}=P_{d,\chi}z\).
 The projections are mutually orthogonal and their squared norms sum to
-\(\norm z^2\).  Write a character as
-\((\chi_1,\chi_2)\), and let \(\nu(\chi_r)\) be the least word
-degree on which \(\chi_r\) is nontrivial, with value \(d+1\) for
-the trivial character.  The nontrivial pairs split into
+\(\norm z^2\).  Write a character as \((\chi_1,\chi_2)\).  For a
+character \(\chi\) of \(A_{\le d}\), define
+\[
+ \nu(\chi)=\min\{\lvert w\rvert:\chi(w)=-1\},
+\]
+where a word is identified with its monomial in \(A_{\le d}\), and
+put \(\nu(\chi)=d+1\) when \(\chi\) is trivial.  In particular,
+\(\nu(\chi)=0\) exactly when \(\chi(1)=-1\): degree zero is the
+one-dimensional constant subspace \(\F_2\cdot1\).  The nontrivial
+pairs split into
 \[
  \begin{array}{c@{\quad}l}
  A&0<\nu(\chi_2)<\nu(\chi_1)\\
@@ -339,11 +351,10 @@ the trivial character.  The nontrivial pairs split into
  \end{array}
 \]
 Let \(m_d^A,m_d^B,m_d^C,m_d^D\) be the corresponding Fourier
-masses.  Let \(\partial_{1,d}\) and \(\partial_{2,d}\) be the
-masses for which the indicated coordinate character is trivial on
-\(A_{\le d-1}\) and becomes nontrivial on \(A_{\le d}\).  Thus every
-index below is a genuine character of the finite elementary abelian
-group \(V_d\).
+masses.  Let \(\partial_{r,d}\) be the mass for which the \(r\)-th
+coordinate character is trivial on \(A_{\le d-1}\) and becomes
+nontrivial on \(A_{\le d}\).  Thus every index below is a genuine
+character of the finite elementary abelian group \(V_d\).
 
 \begin{lemma}[Finite-plane energy estimate]\label{lem:plane-energy}
 Let \(\sigma:\EL_3(A)\to\mathcal O(\mathcal H)\) be an orthogonal
@@ -374,15 +385,31 @@ act by
  (a,c)\longmapsto(a,c+a),
  \qquad (a,c)\longmapsto(a+c,c),
 \]
-with the choice of formula determined by the adjacent root.  After
-precomposition, the corresponding pair of characters is transformed
-by the same elementary shear.  Fourier covariance, orthogonality, and
+with the choice of formula determined by the adjacent root.  Their
+dual maps are
+\[
+ (\chi_1,\chi_2)\longmapsto(\chi_1\chi_2,\chi_2),
+ \qquad
+ (\chi_1,\chi_2)\longmapsto(\chi_1,\chi_1\chi_2).
+\]
+Suppose, for example, that \((\chi_1,\chi_2)\) lies in \(A\), so
+\(0<\nu(\chi_2)<\nu(\chi_1)\).  At the first degree detected by
+\(\chi_2\), the character \(\chi_1\) is still trivial.  Hence
+\(\nu(\chi_1\chi_2)=\nu(\chi_2)\), while the second character is
+unchanged, and the image lies in \(B\).  Interchanging the
+coordinates gives the transport from \(C\) to \(B\).
+
+For either shear \(g\), spectral covariance is the identity
+\[
+ \sigma(g)P_{d,\chi}\sigma(g)^{-1}=P_{d,\chi\circ g^{-1}}.
+\]
+Together with orthogonality and
 \[
  \left|\sum_{\chi\in\Omega}\norm{z_{d,\chi}}^2-
  \sum_{\chi\in\Omega}\norm{z'_{d,\chi}}^2\right|
  \le(\norm z+\norm{z'})\norm{z-z'}
 \]
-for \(z'=\sigma(g)z\) give
+for \(z'=\sigma(g)z\), these two transports give
 \begin{equation}\label{eq:ABCB}
  m_d^A\le m_d^B+U_{ji},\qquad
  m_d^C\le m_d^B+U_{ij}.
@@ -441,8 +468,9 @@ then
 \]
 No equality is asserted for the other generators.  At least one such
 generator exists: a word detected by the leading homogeneous part has
-a first letter.  Fix an ordering of \(X\) and assign the character to
-the least eligible letter.
+a first letter.  Call such a generator \emph{eligible}.  Fix an
+ordering of \(X\) and assign the character to its least eligible
+generator.
 
 Here is the projection bookkeeping for~\eqref{eq:AB-descent}.  Let
 \(F_s\subseteq\widehat V_{d+2}\) be the characters in \(A\cup B\)
@@ -460,7 +488,13 @@ leading part of \(\chi_2\) survives restriction to
  \operatorname{res}_{d+1}(\psi_s^*\chi)\in C\cup D.
 \]
 Moreover, the surviving leading part recovers the least eligible
-letter.  Therefore the receiving sets
+letter.  Concretely, the second character of
+\(\operatorname{res}_{d+1}(\psi_s^*\chi)\) is the restriction of
+\(\chi_2\).  Below the top boundary its leading homogeneous part is
+unchanged, so its least eligible generator is still \(s\).  If a
+character belonged to both \(R_s\) and \(R_t\), its second coordinate
+would therefore have least eligible generator both \(s\) and \(t\),
+forcing \(s=t\).  Thus the receiving sets
 \[
  R_s=\{\operatorname{res}_{d+1}(\psi_s^*\chi):
           \chi\in F_s^{\mathrm{int}}\}
@@ -486,10 +520,28 @@ mass proves~\eqref{eq:AB-descent}.  The forward shear
 \((\chi_1,\chi_2\cdot\partial_s\chi_1)\), proves
 ~\eqref{eq:CB-descent}.
 
-Add~\eqref{eq:AB-descent} and~\eqref{eq:CB-descent}, use
-~\eqref{eq:stage-monotonicity} to move their coarse masses to stage
-\(d+2\), and then use~\eqref{eq:ABCB} and~\eqref{eq:Dmass}.
-Collecting the four region coefficients gives
+It remains to collect the coefficients.  Use
+~\eqref{eq:stage-monotonicity} to move the two coarse target masses in
+~\eqref{eq:AB-descent} and~\eqref{eq:CB-descent} to stage \(d+2\).
+Suppressing that common stage and writing
+\(\partial_r=\partial_{r,d+2}\), the resulting inequalities are
+\[
+ \begin{aligned}
+ A+B&\le C+D+G_{ji}+\partial_1+2\partial_2,\\
+ C+B&\le A+D+G_{ij}+2\partial_1+\partial_2.
+ \end{aligned}
+\]
+After addition and cancellation of \(A+C\),
+\begin{equation}\label{eq:Bmass}
+ B\le D+\tfrac12(G_{ji}+G_{ij})
+       +\tfrac32(\partial_1+\partial_2).
+\end{equation}
+On the other hand,~\eqref{eq:ABCB} gives
+\[
+ A+B+C+D\le 3B+D+U_{ji}+U_{ij}.
+\]
+Substitute~\eqref{eq:Bmass}, and then use~\eqref{eq:Dmass}.  This
+gives the completely collected finite-stage inequality
 \begin{align}\label{eq:finite-mass}
  m_{d+2}^A+m_{d+2}^B+m_{d+2}^C+m_{d+2}^D
  \le{}&d_{ik,1}^2+d_{jk,1}^2
@@ -634,6 +686,8 @@ Let \(X\) be finite, put \(A=\F_2\langle X\rangle\), and let
 For every unitary representation \(\pi\), every \(D\ge0\), and every
 quasi-cocycle \(b:G\to\mathcal H\) of defect at most \(D\), the set
 \(b(X_{03})\) is bounded.
+Equivalently, the pair \((G,X_{03})\) has relative property \((TT)\),
+with no invariant-vector hypothesis.
 \leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT}
 \end{theorem}
 
@@ -707,8 +761,13 @@ relation
 \[
   [\,I+cE_{01},\,I+E_{13}\,]=I+cE_{03}
 \]
-and the unitary commutator estimate give displacement at most
-\(4K\) under \(x_{03}(c)\).  Every element of \(N\) is a product of
+and two applications of the product displacement inequality give
+\[
+ \norm{\pi([g,h])w-w}
+ \le2\norm{\pi(g)w-w}+2\norm{\pi(h)w-w}.
+\]
+With \(g=x_{01}(c)\) and \(h=x_{13}(1)\), the right side is at most
+\(4K\).  Every element of \(N\) is a product of
 one element from each of \(X_{03},X_{13},X_{23}\), so its
 displacement of \(w\) is at most \(6K\).  Since
 \(w\perp\mathcal H^N\), this already bounds \(w\).  Indeed, the
@@ -795,7 +854,13 @@ For every \(k\ne j\), right multiply by
   e_{jk}(-B_{jk}).
 \]
 These transvections have a common source column and distinct target
-columns, so each previously cleared entry stays zero.  If \(T\) is
+columns, so each previously cleared entry stays zero.  For the factor
+indexed by \(k\), the entry being cleared is
+\[
+ (Be_{jk}(-B_{jk}))_{jk}
+ =B_{jk}+B_{jj}(-B_{jk})=0.
+\]
+If \(T\) is
 their product and \(C=BT\), then
 \[
   C_{jc}=\begin{cases}1,&c=j,\\0,&c\ne j.\end{cases}
@@ -844,9 +909,11 @@ and therefore length at most
 
 \begin{remark}
 The fixed coordinate \(j\) is chosen before \(A\).  Allowing the
-coordinate block to depend on \(A\) gives a different, weaker width
-statement; the fixed-coordinate form is what feeds the uniform
-quasi-cocycle globalization below.
+coordinate block to depend on \(A\) gives a weaker width statement.
+Because there are only finitely many coordinate blocks, that weaker
+form could still be used after permutation transport; the fixed form
+keeps one relative subgroup throughout and is the sharper reusable
+statement.
 \end{remark}
 
 \section{From relative control to global rigidity}\label{sec:globalization}
@@ -895,19 +962,22 @@ invariant vectors and a quasi-cocycle \(b\) of defect at most \(D\).
 Choose a Kazhdan pair \((K,\varepsilon)\), and choose once and for
 all an \(S\cup S^{-1}\)-word for each \(k\in K\).  Let \(L\) be
 the sum of their lengths, so \(L\) bounds each chosen length.  If
-\(\norm{b(s)}\le C\) for \(s\in S\),
+\(\norm{b(s)}\le C\) for \(s\in S\), where \(C\) is the bound for
+this fixed quasi-cocycle,
 comparison of the quasi-cocycle identities for \(sh\) and
 \(h(h^{-1}sh)\) gives
 \[
   \norm{\pi(s)b(h)-b(h)}\le 2C+2D
-  \qquad(s\in S\cup S^{-1},\ h\in H).
+  \qquad(s\in S,\ h\in H).
 \]
-For an inverse letter, apply the comparison to its inverse.  The
+For an inverse letter \(s^{-1}\), apply this estimate to \(s\in S\).
+The
 identity
 \[
   \norm{\pi(s^{-1})v-v}=\norm{\pi(s)v-v}
 \]
-shows that the constant remains \(2C+2D\).
+holds for every vector \(v\), so with \(v=b(h)\) the constant remains
+\(2C+2D\).  No bound on \(b(s^{-1})\) is used.
 The displacement estimate for a product of unitaries therefore gives
 \[
   \norm{\pi(k)b(h)-b(h)}
@@ -935,8 +1005,12 @@ If \(R\) contains a binary Leavitt family, then for all
 \end{lemma}
 
 \begin{proof}
-Iterating the binary prefix code gives a ring isomorphism
-\(M_q(R)\cong R\) for every \(q\ge2\).  Functoriality in the
+For every \(q\ge2\), the complete left-comb binary prefix code
+\[
+ \{\,1^r0:0\le r\le q-2\,\}\cup\{1^{q-1}\}
+\]
+has \(q\) words.  Its Leavitt matrix units give a ring isomorphism
+\(M_q(R)\cong R\).  Functoriality in the
 coefficient ring and block flattening give
 \[
  \EL_m(R)
@@ -971,9 +1045,11 @@ and satisfies
 \end{lemma}
 
 \begin{proof}
-The single-sandwich elimination reduces an arbitrary element of
-\(\GL_2(R)\), by elementary row and column operations, to
-\(\diag(u,1)\) for some \(u\in R^\times\).  The diagonal hypothesis
+Apply the pivot and the row and column clearing in the proof of
+Theorem~\ref{thm:A} with \(n=2\).  They reduce an arbitrary element
+of \(\GL_2(R)\), by elementary operations, to the remaining
+one-by-one coordinate block \(\diag(u,1)\) for some
+\(u\in R^\times\).  The diagonal hypothesis
 therefore gives \(\GL_2(R)=\EL_2(R)\).
 
 The binary Leavitt family gives a coefficient isomorphism
@@ -986,8 +1062,10 @@ flattening proved in Lemma~\ref{lem:rank-equivalence} then gives
   \quad\Longrightarrow\quad
   \EL_{2n}(R)=\GL_{2n}(R).
 \]
-Equivalently, one may write the same flattening after interchanging
-the two finite index factors as
+Reindexing \(\operatorname{Fin}(2n)\) by
+\(\operatorname{Fin}(n)\times\operatorname{Fin}(2)\), rather than
+\(\operatorname{Fin}(2)\times\operatorname{Fin}(n)\), gives the same
+bidirectional flattening in the form
 \[
   \EL_n(M_2(R))=\GL_n(M_2(R)).
 \]
@@ -1036,26 +1114,33 @@ identity makes \(b\) bounded on \(U^+\) and on \(U^-\).  The set
 coordinate lie in \(S\), and every remaining root is a Steinberg
 commutator of one last-column and one last-row root.
 
-For the Kazhdan input, apply the Ershov--Jaikin-Zapirain theorem:
-\(\EL_3(R)\) has property~\((T)\), because \(R\) is a finitely
-generated unital associative ring~\cite{ErshovJaikin}.  The formal
-counterpart reconstructs precisely this characteristic-two instance:
-it descends an explicit finite Kazhdan pair from
-\(\EL_3(\F_2\langle X\rangle)\) through \(f\).  No Kazhdan constant is
-deduced from Lemma~\ref{lem:localized-plane}.
+For the Kazhdan input, first apply the
+Ershov--Jaikin-Zapirain theorem to
+\(\EL_3(\F_2\langle X\rangle)\)~\cite{ErshovJaikin}.  Property~\((T)\)
+descends along the surjection induced by \(f\), so \(\EL_3(R)\) has
+property~\((T)\).  The formal proof follows this same route: it
+constructs the finite Kazhdan pair in rank three over the free
+algebra, descends it through \(f\), and does not use
+Lemma~\ref{lem:localized-plane} as a Kazhdan estimate.
 Lemma~\ref{lem:rank-equivalence} transports property
 \((T)\) to \(\EL_4(R)\).  The stabilized rank-three subgroup
-\(H=\EL_3(R)\) normalizes both \(U^+\) and \(U^-\), hence normalizes
-\(S\).
+\(H\) is the upper-left copy of \(\EL_3(R)\), fixing the last basis
+vector and covector.  Conjugation acts on a last-column vector by the
+upper-left elementary matrix and on a last-row vector by its inverse.
+Thus \(H\) normalizes both \(U^+\) and \(U^-\), and hence \(S\).
 Lemma~\ref{lem:kazhdan-globalization} now proves that
 \((\EL_4(R),H)\) has relative property \((TT)/T\).  Notice that the
 no-invariant-vectors hypothesis is used precisely in the Kazhdan
 inequality inside that lemma.
 
 By Lemma~\ref{lem:gl-el}, the elementary groups in ranks three and
-four are the full general linear groups.  Under these
-identifications the stabilized core is exactly the coordinate block
-\(\GL_3^{(3)}(R)\).  Finally, coordinate permutations carry this
+four are the full general linear groups.  Under these identifications,
+the upper-left stabilized subgroup is
+\[
+ \{\diag(A,1):A\in\GL_3(R)\}=\GL_3^{(3)}(R),
+\]
+the coordinate block fixing the last basis vector and covector.
+Finally, coordinate permutations carry this
 relative statement to \(\GL_3^{(j)}(R)\) for every
 \(j\in\{0,1,2,3\}\).
 
@@ -1165,9 +1250,10 @@ Thus
 \]
 \end{proof}
 
-This direct argument proves the single-sandwich form of pure infinite
-simplicity used below.  Alternatively, the graph criterion of
-Abrams--Aranda Pino gives pure infinite simplicity, and
+This direct argument proves the single-sandwich form of pure
+infiniteness used below.
+Alternatively, the graph criterion of
+Abrams--Aranda Pino gives pure infiniteness and simplicity, and
 Ara--Goodearl--Pardo's characterization gives the same conclusion
 ~\cite[Theorem~11]{AbramsArandaPino}
 ~\cite[Theorem~1.6]{AraGoodearlPardo}.
@@ -1240,8 +1326,9 @@ recorded explicitly by Khanh--Thanh
 \end{proof}
 
 \begin{remark}[Constructive formal route]\label{rem:constructive-diagonal}
-The formal companion proves Proposition~\ref{prop:diag} without
-formalizing algebraic \(K\)-theory.  Its constructive reduction gives
+The formal companion also proves Proposition~\ref{prop:diag} by a
+constructive route, without formalizing algebraic \(K\)-theory.  Its
+reduction gives
 every unit a representative in the degree window \([-1,1]\), expands
 that representative relative to complete binary prefix codes into
 the pencil
@@ -1249,7 +1336,11 @@ the pencil
  a_0y_0+a_1y_1+c+b_0x_0+b_1x_1,
 \]
 and applies the scalar-matrix dichotomy to the stacked pair
-\(\binom{B_0}{B_1}\).  A kernel vector produces a \(B\)-free column;
+\(\binom{B_0}{B_1}\).  If the row and column codes have cardinalities
+\(r\) and \(c\), then \(B_0,B_1\in M_{r\times c}(k)\), so this stack
+is the linear map \(k^c\to k^{2r}\).  It either has a nonzero kernel,
+or it is injective and hence has a left inverse.  A kernel vector
+produces a \(B\)-free column;
 splitting its code word increases the column-code cardinality by one.
 A left inverse instead forces all entries of the inverse pencil into
 strictly negative degree.  The two branches terminate respectively
@@ -1343,6 +1434,12 @@ Argument & Principal Lean implementation declarations, in proof order \\
 \midrule
 Finite-plane filtration and Lemma~\ref{lem:plane-energy} &
 \nolinkurl{FreeRootCharacterValuation.}
+\nolinkurl{characterValuation_eq_zero_iff};
+\nolinkurl{planeCharacterRegion_oppositeUnitConjugatedRestriction_eq_B_of_valid};
+\nolinkurl{planeCharacterRegion_forwardUnitConjugatedRestriction_eq_B_of_valid};
+\nolinkurl{sum_norm_planeRegionSignSet_A_sq_le_B_add_unit_error};
+\nolinkurl{sum_norm_planeRegionSignSet_C_sq_le_B_add_unit_error};
+\nolinkurl{sum_norm_planeRegionSignSet_D_sq_le_unit_displacements};
 \nolinkurl{sum_norm_planeRegionUnion_sq_le_succ_add_topBoundaries};
 \nolinkurl{planeABOppositeInteriorImageSignSet_pairwise_disjoint};
 \nolinkurl{sum_norm_planeABInteriorLeadingSignSet_sq_le_target_add_error};
@@ -1350,6 +1447,7 @@ Finite-plane filtration and Lemma~\ref{lem:plane-energy} &
 \nolinkurl{sum_norm_planeCBInteriorLeadingSignSet_sq_le_target_add_error};
 \nolinkurl{sum_norm_planeABRegion_sq_le_target_add_error_add_boundary};
 \nolinkurl{sum_norm_planeCBRegion_sq_le_target_add_error_add_boundary};
+\nolinkurl{planeRegionMass_B_le_D_add_generatorErrors_add_boundaries};
 \nolinkurl{sum_planeRegionMass_nonzero_le_explicit_errors};
 \nolinkurl{tendsto_planeFirstTopBoundaryMass_succ_zero};
 \nolinkurl{tendsto_planeSecondTopBoundaryMass_succ_zero};
