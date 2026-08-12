@@ -92,7 +92,7 @@ jobs:
           mkdir -p build pdf-render-check
 
           tex_commit="$(git log -1 --format=%H -- "$TEX_FILE")"
-          sed -i "s|\\newcommand{\\leancommit}{main}|\\newcommand{\\leancommit}{${tex_commit}}|" "$TEX_FILE"
+          sed -i "s|\\\\newcommand{\\\\leancommit}{main}|\\\\newcommand{\\\\leancommit}{${tex_commit}}|" "$TEX_FILE"
           grep -q "leancommit}{${tex_commit}}" "$TEX_FILE"
 
           export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct -- "$TEX_FILE")"

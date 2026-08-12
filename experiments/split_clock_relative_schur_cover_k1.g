@@ -35,12 +35,21 @@ if pcIsomorphism = fail then
     Error("failed to convert the split-clock presentation to a pc group");
 fi;
 
-ambient := Image(pcIsomorphism);;
+ambientPc := Image(pcIsomorphism);;
 fpGenerators := GeneratorsOfGroup(presented);;
-aa := Image(pcIsomorphism, fpGenerators[1]);;
-bb := Image(pcIsomorphism, fpGenerators[2]);;
-hh := Image(pcIsomorphism, fpGenerators[3]);;
-cc := Image(pcIsomorphism, fpGenerators[4]);;
+aaPc := Image(pcIsomorphism, fpGenerators[1]);;
+bbPc := Image(pcIsomorphism, fpGenerators[2]);;
+hhPc := Image(pcIsomorphism, fpGenerators[3]);;
+ccPc := Image(pcIsomorphism, fpGenerators[4]);;
+
+# The polycyclic package installs the Schur-extension method for its pcp
+# representation, not GAP's finite pc representation.
+pcpIsomorphism := IsomorphismPcpGroup(ambientPc);;
+ambient := Range(pcpIsomorphism);;
+aa := Image(pcpIsomorphism, aaPc);;
+bb := Image(pcpIsomorphism, bbPc);;
+hh := Image(pcpIsomorphism, hhPc);;
+cc := Image(pcpIsomorphism, ccPc);;
 
 positiveH := Group(aa, bb, hh);;
 cycleC := Group(aa, bb, cc);;
