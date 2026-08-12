@@ -351,3 +351,29 @@ coordinates sublinear in precisely the three senses `(IC2)`.
 
 At present neither alternative has been proved.  Thus this note is a
 rigorous reduction of the real Schreier problem, not a proof of FALSE.
+
+## 8. Subsequent primitive-holonomy exclusion
+
+The conditional theorem above is correct, but its sufficient hypothesis is
+not available for the exact primitive scalar principal bundle.
+`FALSE_PROPERTY_T_PRIMITIVE_HOLONOMY_MOMENT_NO_GO.md` proves that whenever a
+transition coordinate is the difference of a primitive potential
+
+`r(tx)=r(x)+1 mod M_k`,
+
+property `(T)` forces some fixed generator to have mean centered coordinate
+at least
+
+`(kappa^2/(4 pi)) M_k`.
+
+Thus the finite-stage integral-chart conclusion `(IC3)` contradicts the
+prescribed primitive holonomy.  For the actual scalar bundle, the coherent
+countable lift, compatibility with the primitive finite reductions, and the
+integral-horocyclic gauge cannot all hold.
+
+Accordingly, option 1 in Section 7 is retained only as a diagnostic
+trichotomy: a failed component must be identified.  It is no longer a live
+positive construction for the primitive scalar seam.  The surviving route
+must change the tangent/Fourier representation with the base point or use
+higher-incidence cancellation, so that the Kazhdan-forced holonomy is not one
+of the scalar Weyl transition coordinates.
