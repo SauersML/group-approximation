@@ -4,6 +4,29 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the framed FALSE endpoint is paired HS, not MF permanence
+
+The three-tag construction gives a radical-marked element `h` whose full
+conjugacy centralizer in the vertex group is amenable.  Hence the actual
+conjugacy action `G curvearrowright G/C_G(h)` has finite root-dependent
+sofic Schreier charts.  An irrational coadjoint character simultaneously
+assigns the phases of all conjugate square-zero labels, so the integral
+additive and covariance relations are exact before finite truncation.
+
+The remaining theorem is now precisely a paired tracial extension: construct
+HS-asymptotic maps `phi_(0,n),phi_(1,n):G->U(k_n)` which agree on every fixed
+element of `Gamma` but retain positive normalized HS displacement between
+the two images of `h`.  Their tracial-ultraproduct limits then define
+`D=G *_Gamma G -> U_omega`; its image is hyperlinear, retains the nontrivial
+word in `Rad_sof(D)`, and is therefore nonsofic.  Faithfulness is unnecessary.
+
+This direct HS endpoint corrects an important possible misstatement:
+Shulman's amalgamated-MF theorem is an operator-norm conclusion and does
+**not** imply hyperlinearity.  Operator-norm visibility may occupy vanishing
+normalized rank.  Full construction and corrected endpoint:
+`FALSE_FULLY_FRAMED_AMENABLE_CONJUGACY_ORBIT.md`; exact character model:
+`FALSE_AMENABLE_COADJOINT_FRAME_CHARACTER.md`.
+
 ### 2026-08-12: determinant-one primal section at level 121
 
 Boundary reduction of the full exact square-level packets improves the

@@ -282,10 +282,37 @@ solves their finite transport but does not automatically preserve those
 additive relations.  That relation-module compatibility is now the sole
 analytic obstruction in this framed route.
 
-If it is proved, the resulting compatible embeddings of the two copies of
-`G` agree on `Gamma`; Shulman's amalgamated-MF criterion makes `C^*(D)` MF,
-while `(FAC6)` keeps `D` nonsofic.  Hence `D` would be a hyperlinear
-nonsofic group.
+The required conclusion here is **tracial**, not merely operator-norm MF.
+More precisely, suppose the extension theorem produces maps
+
+`phi_(i,n):G -> U(k_n)`, `i=0,1`,                       `(FAC34)`
+
+which are asymptotic homomorphisms in normalized Hilbert--Schmidt norm and
+satisfy
+
+`||phi_(0,n)(gamma)-phi_(1,n)(gamma)||_2 -> 0`          `(FAC35)`
+
+for every `gamma in Gamma`, while
+
+`liminf_n ||phi_(1,n)(h)phi_(0,n)(h)^(-1)-1||_2 > 0`.  `(FAC36)`
+
+Then the two limiting homomorphisms into the tracial matrix ultraproduct
+agree on `Gamma`.  The universal property gives a homomorphism
+
+`Psi:D=G *_Gamma G -> product_omega U(k_n)`             `(FAC37)`
+
+whose image is hyperlinear and in which
+`w=i_2(h)i_1(h)^(-1)` survives.  If `im(Psi)` were sofic, the quotient map
+from `D` to `im(Psi)` would kill `w in Rad_sof(D)`, a contradiction.
+Therefore `im(Psi)` is hyperlinear and nonsofic.  Neither faithfulness of
+`Psi` nor faithfulness of either vertex map is required.
+
+Shulman's amalgamated-MF criterion would separately give an operator-norm
+MF conclusion from compatible norm-corona embeddings.  That conclusion is
+not the endpoint above: group MF in Shulman's operator-norm sense does not
+imply hyperlinearity, because operator-norm visibility can be supported on
+vanishing normalized rank.  Thus no MF-to-hyperlinear implication is used
+in `(FAC34)--(FAC37)`.
 
 ## Reference
 
