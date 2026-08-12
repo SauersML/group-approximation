@@ -4,6 +4,57 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: an amenable relative core cannot hide the wall
+
+A tempting completion of the relative-bicommutant endpoint is now closed.
+If a CE representation `pi:G->U(M)` made `N=pi(Gamma)''` amenable while
+leaving `pi(h)` outside `N`, then the amalgam
+
+```text
+M *_N (N tensor M_2)
+```
+
+would be CE by hyperfinite amalgamation.  Its matrix flip would centralize
+`Gamma`, and amalgamated freeness gives the exact identity
+
+```text
+||[v,pi(h)]||_2^2=2 dist_2(pi(h),N)^2,
+```
+
+finishing FALSE.
+
+This configuration is impossible.  Property `(T)` makes every amenable
+factorial `Gamma`-trace finite-dimensional; finite-dimensional local
+rigidity makes the center of `N` atomic.  Conjugation by a compressor is a
+trace-preserving endomorphism of this atomic finite type-I algebra.  Its
+factor multiplicities define a stationary Markov chain along which matrix
+dimension can only increase.  Stationarity forces constant dimension, so
+the chain reduces to deterministic finite cycles and every fiber map is
+onto.  Therefore the compressor normalizes `N` and every inverse predecessor
+lies in `N`.
+
+Thus every live relative wall has a **nonamenable** relative core and must
+be genuinely extrinsic/nonliftable.  Full proof:
+`docs/FALSE_AMENABLE_RELATIVE_CORE_NO_GO.md`.
+
+The complementary nonamenable construction is now exact for one
+compressor.  For an injective endomorphism `beta:Gamma->Gamma`, the coset
+tower
+
+```text
+X = disjointUnion_(n>=1) Gamma/beta^n(Gamma)
+```
+
+supports a Bernoulli crossed product `N=A rtimes Gamma` and a
+trace-preserving endomorphism extending `beta`.  The root lamp lies in
+`alpha(N)' intersect N` and has squared commutator norm exactly `2` with
+every `gamma` outside `beta(Gamma)`.  The automorphic dilation converts it
+into the required exact relative wall for the ascending HNN subsystem, and
+is CE whenever `N` is CE.  The remaining scope issue is sharp: Kun--Thom's
+sofic-radical theorem uses the full infranormal vertex, whereas the ascending
+subsystem need not be infranormal.  See
+`docs/FALSE_COSET_TOWER_AUTOMORPHIC_DILATION.md`.
+
 ### 2026-08-12: natural-module formal deformations fail over every field
 
 The all-fields square-zero theorem has an all-order strengthening on the

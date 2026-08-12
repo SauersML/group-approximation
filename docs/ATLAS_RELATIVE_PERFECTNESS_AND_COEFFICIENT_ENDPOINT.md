@@ -517,6 +517,60 @@ This last partial-isometry claim is not automatic from the group
 commutators and has not been proved.  It is now the smallest concrete form
 of the coefficient-extraction gate.
 
+There is a useful exact calibration which prevents a tempting but false
+shortcut at this point.  Let \(M\) be any finite tracial von Neumann algebra,
+let \(z_0,z_1\in M\) be commuting self-adjoint involutions, and put
+
+\[
+ z=z_0z_1,\qquad e=P_-(z),\qquad e_i=P_-(z_i).
+ \tag{RPC33}
+\]
+
+Assume that the two compression implementers conjugate \(z\) to \(z_i\).
+Then
+
+\[
+ \tau(e_0)=\tau(e_1)=\tau(e)=:t.
+ \tag{RPC34}
+\]
+
+Since the negative set of the product of two commuting signs is their
+symmetric difference,
+
+\[
+ e=e_0(1-e_1)+(1-e_0)e_1.
+ \tag{RPC35}
+\]
+
+Taking traces in `(RPC35)` gives the exact identity
+
+\[
+ \tau(e_0e_1)=\frac t2.
+ \tag{RPC36}
+\]
+
+In the regular-character sector \(t=1/2\), all four joint sign projections
+
+\[
+ e_0e_1,\quad e_0(1-e_1),\quad (1-e_0)e_1,\quad
+ (1-e_0)(1-e_1)
+ \tag{RPC37}
+\]
+
+have trace \(1/4\).  Thus the two corner-root signs are exactly independent,
+not orthogonal.  On the \(z=-1\) sector their negative projections are
+complementary, but each occupies only one half of that sector.  The whole
+compressor maps \(e\) onto \(e_i\); it does **not** map the Pauli multiplicity
+space onto the half-sector \(ee_i\).
+
+Consequently no trace contradiction follows from compression conjugacy and
+`(RPC32)` alone.  A successful proof must identify a particular matrix
+coefficient of the cross-chart implementer whose initial projection is the
+Pauli multiplicity identity and whose final projection is the coefficient
+projection cut out by \(ee_i\).  This is precisely the assertion which is
+automatic for the sparse Leavitt matrix over an infinite coefficient space
+and which still has to be derived from the finite atlas relations.
+
 The lemma itself does not give the needed quantitative stability.  A matrix
 sequence can realize larger and larger finite-rank pieces of an
 infinite-rank pairing.  The missing estimate must prove a uniform boundary

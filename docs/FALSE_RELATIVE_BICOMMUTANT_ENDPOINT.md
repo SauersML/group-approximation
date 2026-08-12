@@ -261,6 +261,24 @@ nontrivial `Gamma`-central unitary in a CE representation of `G` whose
 conjugate by the inverse predecessor is not `Gamma`-central.  Any such
 realization completes the proof of FALSE by Corollary 2.
 
+There is now one further scope restriction.  The relative algebra
+`pi(Gamma)''` cannot be amenable.  Property `(T)` makes every amenable
+factorial `Gamma`-trace finite-dimensional and local rigidity makes the
+resulting type-I center atomic.  The compressor then acts by a
+trace-preserving endomorphism of an atomic finite algebra, which is
+automatically onto; hence `pi(h)` belongs to `pi(Gamma)''`.  The complete
+argument, including the otherwise-valid hyperfinite-amalgamation shortcut,
+is in `FALSE_AMENABLE_RELATIVE_CORE_NO_GO.md`.
+
+The matching positive construction for a single compressor is recorded in
+`FALSE_COSET_TOWER_AUTOMORPHIC_DILATION.md`.  Its nonamenable Bernoulli core
+has an exact relative wall, and its automorphic dilation is CE whenever one
+explicit generalized Bernoulli crossed product is CE.  What prevents this
+from closing the present endpoint is not an operator-algebraic defect: the
+ascending one-compressor subgroup need not inherit the full Kun--Thom
+infranormal sofic-radical theorem, and the representation has not yet been
+extended to all of `G`.
+
 ## 7. Finite form: one almost-central wall
 
 The one-representation endpoint has an equally exact matrix form.
