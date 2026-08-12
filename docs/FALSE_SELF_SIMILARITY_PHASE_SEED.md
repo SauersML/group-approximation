@@ -717,3 +717,31 @@ one.  Generic full-unitary descent therefore does not integrate the tangent
 signal.  Work next in the tangent-kernel second-order equations or in the
 exact order-2688 local central block; do not launch more unrestricted
 30-dimensional seeds.
+
+## 14. Prefix replication cannot scale the local phase
+
+There is now an exact homological restriction on every proposed scaling of
+the finite blocks above.  The canonical prefix insertion
+
+```text
+kappa:Q->Q
+```
+
+induces the zero map on `H_2(Q,Z)`.  Its functorial lift to the universal
+central extension therefore kills the whole central kernel.  Under
+leaf-matrix self-similarity this is exactly transported standard matrix
+stabilization.
+
+Consequently, if one of the local scalar phases in this note represents a
+genuine class of `R/[P,R]`, precomposing a full atlas representation with
+prefix insertion sends that phase to the identity in one step.  Direct
+sums, tensor products, or conjugates of such prefix-stabilized models do not
+restore it.  The failure of the exact eight-dimensional block on the other
+certified-zero relations is therefore load bearing: the phase cannot be
+made into a full model merely by refining or repeating the same block down
+the binary tree.
+
+The surviving second-order and order-2688 routes must change the actual
+cross-chart holonomy or the `A8` representation content as the relation
+window grows.  Full proof:
+`FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.

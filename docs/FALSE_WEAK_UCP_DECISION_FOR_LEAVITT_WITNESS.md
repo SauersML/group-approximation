@@ -128,6 +128,28 @@ known Steinberg cover `U` is universal and superperfect, so its second
 homology does not provide another central layer on which to iterate the
 argument.
 
+For this particular `Q`, there is a stronger scope correction.  The
+injective prefix endomorphism
+
+```text
+kappa:Q->Q
+```
+
+induces zero on `H_2(Q,Z)`.  By naturality of the universal-coefficient
+identification, every circle-valued cocycle becomes a coboundary on
+`kappa(Q)`.  Hence every twisted regular algebra `L_c(Q)` contains a
+trace-preserving copy of the untwisted algebra `L(Q)`.  Consequently
+
+```text
+L_c(Q) Connes embeddable  ==>  Q hyperlinear            (WUD10)
+```
+
+for each cocycle separately.  Thus `(WUD7)--(WUD9)` is an exact decision
+certificate but cannot be used as an easier preliminary CE problem: one
+embeddable member already solves the target.  See
+`FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md` for the proof and for the
+parallel phase-death statement on the universal cover.
+
 ## 5. Exact scope of the four stability inputs
 
 The recent results now divide the unresolved matrix sector cleanly.

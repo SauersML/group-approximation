@@ -4,6 +4,31 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: Gaussian and free-Gaussian amenable-orbit fibers also collapse
+
+Replacing the Bernoulli fiber over `G/C_G(h)` by either the classical
+Gaussian or free Gaussian functor does not create the relative wall.  Since
+`C_G(h)` is amenable, the quasi-regular representation is weakly contained
+in the regular representation of `G`.  After restriction to every
+finite-index subgroup of the nonamenable Kazhdan group `Gamma`, every
+nonconstant symmetric- or full-Fock chaos remains weakly regular by Fell
+absorption.  Hence it has spectral gap and no fixed vector, including in
+the ultrapower.
+
+Combining this with the exact relative FC-centre
+`FC_G(Gamma)={+-I_4}` gives, for both Gaussian crossed products,
+
+```text
+L(Gamma)' intersect M=L({+-I_4}),
+L(Gamma)' intersect M^omega=L({+-I_4}) <= {u_h}'.
+```
+
+Thus the amenable orbit cannot be rescued by passing from independent
+tensor fibers to either Fock functor.  Any live analytic construction must
+use a non-weakly-regular correspondence or an extrinsic commutant in a
+larger CE algebra.  Full proof:
+`docs/FALSE_AMENABLE_ORBIT_GAUSSIAN_RELATIVE_COMMUTANT_NO_GO.md`.
+
 ### 2026-08-12: finite-index Bernoulli tower audit
 
 The affine endomorphism
@@ -89,9 +114,10 @@ further non-split central extension detected by `H_2(U,Z)` to which the
 criterion can simply be iterated.  For the base `Q`, LLP or weak
 ucp-stability is itself the unresolved global lifting problem.  Moreover the
 stable/nonhyperlinear branch would construct a nonhyperlinear group, but
-would not decide whether every hyperlinear group is sofic.  The useful live
-certificate is therefore the CE twisted-algebra family above, not the
-conditional stability conclusion.
+would not decide whether every hyperlinear group is sofic.  The CE
+twisted-algebra family is therefore the exact projective certificate, but
+the prefix theorem below shows that it is not a simpler target than
+hyperlinearity of `Q` itself.
 
 The simultaneous audit of character rigidity and robust `(T;CE)` gives no
 relative-commutant no-go.  Character data are blind by regular-character
@@ -101,6 +127,18 @@ general tracial or CE, and even a spectral gap would not replace the finite
 dimension argument which turns two nested, unitarily equivalent fixed spaces
 into equal spaces.  Thus the extrinsic relative-bicommutant endpoint remains
 live.
+
+For the Leavitt witness, prefix homological death makes the twisted-algebra
+criterion no easier than the original target.  The injective corner map
+`kappa:Q->Q` has `kappa_*=0` on `H_2(Q,Z)`.  Hence every circle-valued
+cocycle untwists on `kappa(Q)`, and every twisted regular algebra `L_c(Q)`
+contains a trace-preserving copy of `L(Q)`.  Connes embeddability of even one
+twist already proves `Q` hyperlinear.  On the universal cover, the lifted
+prefix map kills the whole center, so standard prefix replication also
+annihilates every genuine atlas phase.  A surviving model must change its
+cross-chart holonomy or representation content rather than refine one fixed
+phase block.  Full proof:
+`docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
 
 ### 2026-08-12: compact and weakly compact anchors are impossible
 

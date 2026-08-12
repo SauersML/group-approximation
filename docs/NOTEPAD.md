@@ -33,6 +33,15 @@ property `(T)` applies only after the near representation has been repaired
 to an honest one.  See
 `docs/FALSE_AMENABLE_NEAR_REPRESENTATION_SCOPE_AUDIT.md`.
 
+For `Q=L_(F_2)(1,2)^x`, the prefix endomorphism `kappa` is injective and has
+zero map on `H_2(Q,Z)`.  Naturality of the universal-coefficient theorem
+therefore makes every multiplier coboundary on `kappa(Q)`.  Consequently
+every `L_c(Q)` contains a trace-preserving copy of `L(Q)`: one CE twisted
+algebra already implies that `Q` is hyperlinear.  The lift of `kappa` to the
+universal central cover kills its whole center, so prefix stabilization of
+a genuine atlas sector kills rather than amplifies its phase.  See
+`docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
+
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 
 Full proof and certificate:
@@ -46274,3 +46283,41 @@ For the fixed three-tag pair, any classical action completing the new
 relative-bicommutant endpoint must be CE but genuinely non-weakly-compact.
 Profinite and compact models are not merely unconstructed; they are
 structurally impossible.
+
+# 2026-08-12: Gaussian functors do not rescue the amenable orbit
+
+Full proof:
+`docs/FALSE_AMENABLE_ORBIT_GAUSSIAN_RELATIVE_COMMUTANT_NO_GO.md`.
+
+Let `S=C_G(h)` and let `rho` be the quasi-regular orthogonal representation
+on `ell^2_R(G/S)`.  Since `S` is amenable,
+
+```text
+rho weakly_contained lambda_G.
+```
+
+On restriction to every finite-index `Gamma_0<=Gamma`, this is weakly
+contained in a multiple of `lambda_(Gamma_0)`.  The nonconstant part of the
+classical Gaussian Koopman representation is a sum of symmetric tensor
+powers of `rho_C`; the free Gaussian version is a sum of full tensor powers.
+Fell absorption makes all these powers weakly regular.  Since every
+`Gamma_0` is nonamenable and has property `(T)`, both Fock actions have
+scalar `Gamma_0`-fixed algebra and uniform spectral gap.
+
+For a general crossed product `A crossed G` with this finite-index fixed
+point property, a Fourier coefficient of an element commuting with
+`L(Gamma)` can be supported only on a finite `Gamma`-conjugacy orbit.  Its
+coefficient is fixed by the finite-index centralizer and is therefore
+scalar.  The framed relative FC-centre is exactly `{+-I_4}`, and these
+central signs act trivially on `G/S`.  Consequently, for the classical and
+free Gaussian crossed products,
+
+```text
+L(Gamma)' intersect M=L({+-I_4}),
+L(Gamma)' intersect M^omega=L({+-I_4}) <= {u_h}'.
+```
+
+This closes the weak-regular Fock lane, including its tracial-ultrapower
+version.  A surviving correspondence must have a non-weakly-regular
+`Gamma`-central sector or create its commutant only extrinsically after a CE
+embedding.
