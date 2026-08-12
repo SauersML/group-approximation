@@ -184,6 +184,23 @@ coincide.
 The whole construction is regular and exact: no approximate matrix
 relation, spectral matching, or boundary deletion occurs.
 
+### Smallest example
+
+Over `F_2`, take
+
+`f_0(X)=X^3+X+1`, `f_1(X)=X^3+X^2+1`.               `(PRF20b)`
+
+These are the two primitive cubics.  Both compressor maps have order seven
+and agree on `1,x,x^2`.  Formula `(PRF12)` gives
+
+`T_0^(-1)e_0=e_2+e_0`,
+`T_1^(-1)e_0=e_2+e_1`.                               `(PRF20c)`
+
+Their difference is `e_0+e_1!=0`.  Thus even the seven-point Singer cycle
+already exhibits the equal-order inverse-fold phenomenon; increasing `n`
+only lengthens the common positive window and increases the number of
+available primitive sectors.
+
 ## 4. The bounded positive ring window is identical
 
 Let `P_D` be the `k`-space of polynomials of degree at most `D`.  If
