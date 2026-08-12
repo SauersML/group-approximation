@@ -40,7 +40,9 @@ work of Narayanan--Raghuram establishes such control, away from explicit
 exceptional primes, in an analogous `GL_4` setting; it is not yet available
 for this square-level `GL_3` family.
 
-There is also an exact local lattice consequence.  If a Hecke block has
+There is also an exact local lattice consequence.  The basis-independent
+quantity is the sum of the absolute Smith exponents of the full scattering
+map relative to the two localized boundary lattices.  If a Hecke block has
 slope
 
 \[
@@ -227,11 +229,78 @@ Then the packetwise scattering map has the promised form
 \tag{7}
 \]
 
-## 3. An exact graph-valuation lemma
+## 3. An exact Smith-height lemma for primitive graphs
 
-The following elementary lemma is the useful integral interface.
+The following elementary lemma is the useful integral interface.  Its
+general form matters because the splitting `C_f=alpha_f R_f` depends on the
+normalization of `R_f`, whereas the Smith exponents of the full map do not.
 
-### Lemma 1 (the primitive graph records both signs of the valuation)
+### Lemma 1 (the primitive graph records the full Smith height)
+
+Let `O` be a discrete valuation ring with uniformizer `pi` and fraction
+field `K`.  Let `L_1,L_2` be free `O`-modules of rank `r`, and let
+
+\[
+C:L_1\otimes K\overset\sim\longrightarrow L_2\otimes K
+\]
+
+be a `K`-linear isomorphism.  Choose Smith bases so that
+
+\[
+Ce_i=\pi^{a_i}f_i,
+\qquad a_i\in\mathbb Z.
+\tag{8a}
+\]
+
+For the primitive graph lattice
+
+\[
+G_C=(L_1\oplus L_2)\cap\{(x,Cx):x\in L_1\otimes K\},
+\]
+
+one has
+
+\[
+\operatorname{length}\frac{L_1}{\operatorname{pr}_1(G_C)}
+=\sum_i\max(0,-a_i),
+\qquad
+\operatorname{length}\frac{L_2}{\operatorname{pr}_2(G_C)}
+=\sum_i\max(0,a_i).
+\tag{8b}
+\]
+
+Consequently
+
+\[
+\boxed{
+\operatorname{length}\operatorname{coker}(\operatorname{pr}_1)
++\operatorname{length}\operatorname{coker}(\operatorname{pr}_2)
+=\sum_i|a_i|.
+}
+\tag{8c}
+\]
+
+#### Proof
+
+Writing `x=sum_i x_i e_i`, membership in `G_C` is coordinatewise
+
+\[
+x_i\in O,
+\qquad
+\pi^{a_i}x_i\in O.
+\]
+
+Thus `x_i` belongs to `pi^{max(0,-a_i)}O`.  The first projection
+therefore has elementary divisors `max(0,-a_i)`.  Applying `C` shows that
+the second projection has elementary divisors
+
+\[
+a_i+\max(0,-a_i)=\max(0,a_i).
+\]
+
+Summing the two lengths gives (8c). \(\square\)
+
+### Corollary 2 (a scalar slope records both signs of its valuation)
 
 Let `O` be a discrete valuation ring with uniformizer `pi`, fraction field
 `K`, and valuation `v`.  Let `L_1,L_2` be free `O`-modules of rank `r`, and
@@ -292,7 +361,7 @@ This proves (8).  Multiplication by `alpha R` sends that lattice onto
 `pi^{max(0,v(alpha))}L_2`, proving (9).  Taking lengths gives (10).
 \(\square\)
 
-### Corollary 2 (the exact local obstruction)
+### Corollary 3 (the exact local obstruction)
 
 Let `mathfrak q` be a prime of `E_f` at which `R_f` identifies the two
 localized modular-symbol lattices.  If `G_f` is the primitive integral
@@ -312,10 +381,26 @@ Hence changing from one maximal face to the other merely exchanges the
 positive and negative parts of the valuation.  It cannot remove the
 arithmetic height of the scattering slope.
 
-If `R_f` is not an integral isomorphism, the elementary divisors of `R_f`
-add their own local conductor terms.  In this family those terms can vary
-only at the ramified level prime `p`, apart from a fixed finite set caused
-by the coefficient-system and archimedean normalizations.
+If `R_f` is not an integral isomorphism and has Smith exponents `b_i`, then
+the full map has Smith exponents
+
+\[
+a_i=v_{\mathfrak q}(\alpha_f)+b_i,
+\]
+
+and the intrinsic obstruction is
+
+\[
+\sum_i|v_{\mathfrak q}(\alpha_f)+b_i|.
+\tag{11a}
+\]
+
+It would be incorrect to replace (11a) by
+`r|v(alpha_f)|+sum_i|b_i|`: cancellation can occur.  Moving a scalar
+between `alpha_f` and `R_f` changes the two displayed contributions but
+leaves the Smith height (11a) unchanged.  In this family the nonzero `b_i`
+can vary only at the ramified level prime `p`, apart from a fixed finite set
+caused by the coefficient-system and archimedean normalizations.
 
 ## 4. Relation with the actual Eisenstein lattice
 
@@ -395,7 +480,7 @@ The first item is a critical-value/congruence-ideal problem, the second is
 a single local newvector calculation, the third is torsion topology, and
 the fourth is metric comparison.  They are logically independent.
 
-Conversely, Lemma 1 shows that any proof claiming a uniformly integral
+Conversely, Corollary 2 shows that any proof claiming a uniformly integral
 two-sided scattering graph must account for the nonunit valuations of
 `alpha_f`; an Atkin--Lehner or functional-equation slogan alone is not an
 integral proof.

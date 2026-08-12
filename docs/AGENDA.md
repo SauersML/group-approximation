@@ -37,6 +37,12 @@ length
 rank(V_f) * |v_q(alpha_f)|.
 ```
 
+More intrinsically, if the full scattering map has local Smith exponents
+`a_1,...,a_r`, the two primitive-graph projection lengths sum exactly to
+`sum_i |a_i|`.  If the normalized local operator has exponents `b_i`, then
+`a_i=v_q(alpha_f)+b_i`; scalar and conductor valuations may cancel, so only
+the full Smith height is normalization-independent.
+
 Thus swapping the two maximal faces only exchanges numerator and
 denominator; it cannot remove the height of the full scattering slope. The
 square-level integral gate now has four separate inputs: critical-value

@@ -44335,6 +44335,20 @@ The two faces see the negative and positive parts separately. Hence the
 numerator and denominator of the full scattering slope cannot be hidden by
 orienting the graph the other way.
 
+The basis-independent version is stronger. If the full local scattering
+map has Smith exponents `a_i`, then the two primitive-graph projection
+lengths sum exactly to
+
+```text
+sum_i |a_i|.
+```
+
+If `R_f` has Smith exponents `b_i`, then
+`a_i=v(alpha_f)+b_i`.  The scalar and local-conductor pieces can cancel, so
+their absolute values must not be added separately.  The full Smith height
+is the invariant arithmetic obstruction; its split into critical-value and
+local-normalization factors is bookkeeping.
+
 This decomposes the live square-level TRUE gate into four genuinely
 different problems: critical-value plus integral-comparison valuations, one
 ramified local newvector operator at `p`, the finite saturation defect of
