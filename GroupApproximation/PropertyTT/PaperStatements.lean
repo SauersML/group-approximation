@@ -123,7 +123,7 @@ theorem elementaryGroup_eq_generalLinear
 
 /-- **Leavitt rank equivalence.**  A binary Leavitt family identifies all
 elementary matrix groups of ranks at least two. -/
-theorem leavitt_elementaryRankEquivalence
+noncomputable def leavitt_elementaryRankEquivalence
     (R : Type) [Ring R]
     (L : LeavittFamily R)
     (n m : ℕ) (hn : 2 ≤ n) (hm : 2 ≤ m) :
