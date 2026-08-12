@@ -1,0 +1,278 @@
+{
+  "balanced_l1": {
+    "maximum": 309558,
+    "median": 290514,
+    "minimum": 1,
+    "p90": 299245,
+    "p99": 303654
+  },
+  "balanced_l2_squared": {
+    "maximum": 108979592,
+    "median": 97706107,
+    "minimum": 1,
+    "p90": 102096537,
+    "p99": 104937885
+  },
+  "balanced_maximum_coefficient": {
+    "maximum": 504,
+    "median": 504,
+    "minimum": 1,
+    "p90": 504,
+    "p99": 504
+  },
+  "balanced_unit_coefficient_count": 3998,
+  "balanced_unit_coefficient_fraction": 0.005830045001297834,
+  "basis_role": "finite-field right-kernel echelon basis; a pivot-choice screen, not an integral fundamental-circuit certificate",
+  "boundary_rank": 625,
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "characteristic": 1009,
+  "cycle_matrix_dimensions": [
+    2028,
+    1940
+  ],
+  "cycle_matrix_rank": 1308,
+  "exact_short_homology_circuits": [
+    {
+      "coordinates": [
+        {
+          "coefficient": 2,
+          "coordinate": 315
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 646
+        },
+        {
+          "coefficient": 2,
+          "coordinate": 650
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 653
+        },
+        {
+          "coefficient": 2,
+          "coordinate": 1161
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1851
+        },
+        {
+          "coefficient": 2,
+          "coordinate": 1852
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1853
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1925
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 1926
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 1928
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1929
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1930
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1932
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1938
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1939
+        }
+      ],
+      "kernel_row": 310,
+      "l1": 24,
+      "l2_squared": 40,
+      "maximum_absolute_coefficient": 2,
+      "modular_homology_signature_nonzero": true,
+      "primitive": true,
+      "support_size": 16
+    },
+    {
+      "coordinates": [
+        {
+          "coefficient": 2,
+          "coordinate": 617
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 646
+        },
+        {
+          "coefficient": 2,
+          "coordinate": 652
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 653
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1901
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1902
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1903
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1925
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 1926
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1928
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1929
+        },
+        {
+          "coefficient": -2,
+          "coordinate": 1930
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1932
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1933
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1934
+        },
+        {
+          "coefficient": 1,
+          "coordinate": 1935
+        },
+        {
+          "coefficient": -1,
+          "coordinate": 1939
+        }
+      ],
+      "kernel_row": 586,
+      "l1": 23,
+      "l2_squared": 35,
+      "maximum_absolute_coefficient": 2,
+      "modular_homology_signature_nonzero": true,
+      "primitive": true,
+      "support_size": 17
+    }
+  ],
+  "exact_short_packet_gram": [
+    [
+      40,
+      20
+    ],
+    [
+      20,
+      35
+    ]
+  ],
+  "exact_short_packet_modular_quotient_rank": 2,
+  "greedy_homology_packet": [
+    {
+      "balanced_l1": 4040,
+      "balanced_l2_squared": 2032136,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 310,
+      "support_size": 16
+    },
+    {
+      "balanced_l1": 5550,
+      "balanced_l2_squared": 2794182,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 586,
+      "support_size": 17
+    },
+    {
+      "balanced_l1": 288211,
+      "balanced_l2_squared": 101792297,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 608,
+      "support_size": 1105
+    },
+    {
+      "balanced_l1": 287114,
+      "balanced_l2_squared": 97748620,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 602,
+      "support_size": 1111
+    },
+    {
+      "balanced_l1": 269934,
+      "balanced_l2_squared": 88247824,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 607,
+      "support_size": 1127
+    },
+    {
+      "balanced_l1": 301431,
+      "balanced_l2_squared": 104368269,
+      "balanced_maximum_coefficient": 503,
+      "kernel_row": 500,
+      "support_size": 1148
+    },
+    {
+      "balanced_l1": 287582,
+      "balanced_l2_squared": 94376604,
+      "balanced_maximum_coefficient": 504,
+      "kernel_row": 546,
+      "support_size": 1149
+    }
+  ],
+  "greedy_homology_packet_maximum_balanced_l2_squared": 104368269,
+  "greedy_homology_packet_maximum_support": 1149,
+  "homology_dimension": 7,
+  "kernel_dimension": 632,
+  "kernel_residual_zero": true,
+  "level": 121,
+  "nonzero_coefficient_count": 685758,
+  "projective_degree": 16093,
+  "rational_coinvariant_dimensions": [
+    721,
+    2028,
+    1940,
+    654
+  ],
+  "support_size": {
+    "maximum": 1256,
+    "median": 1156,
+    "minimum": 1,
+    "p90": 1161,
+    "p99": 1183
+  }
+}

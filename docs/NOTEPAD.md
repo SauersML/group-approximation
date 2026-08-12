@@ -45140,3 +45140,105 @@ remain downstream tools after the arithmetic closing data are supplied.
 The projective family target is now concrete: find pivot lists with uniformly
 bounded primitive fundamental-dependence height and a bounded absolute
 realization.  The stronger bounded integral lift section remains open.
+
+# 2026-08-12: a free half-circle spatializer removes the parity twist
+
+Let `P_0 subset P subset M` be finite tracial von Neumann algebras with
+
+```text
+P=P_0 crossed_beta C_2,
+```
+
+and let `q` be the self-adjoint crossed-product generator. In the reduced
+symmetric amalgam
+
+```text
+R=M *_P_0 M,
+```
+
+write `q_1,q_2` for the two copies and put `u=q_1q_2`. Then
+
+```text
+[u,P_0]=0,
+E_(P_0)(u^n)=0 (n!=0),
+q_1u q_1=u^*.
+```
+
+Thus `u` is Haar and the Borel half-circle sign
+
+```text
+v=sgn(Im(u))
+```
+
+is a self-adjoint unitary satisfying
+
+```text
+[v,P_0]=0,
+v q_1 v=-q_1.
+```
+
+If `alpha` is the dual grading on `P`, then
+
+```text
+W^*(P,v) isomorphic P crossed_alpha C_2.
+```
+
+The isomorphism preserves the canonical trace because the Fourier series
+of `v` has zero constant coefficient and every nonzero power of `u` is a
+reduced amalgam word. Reduced-word associativity then proves the exact
+trace-preserving inclusion
+
+```text
+M *_P (P crossed_alpha C_2)
+ subset M *_P_0 M.
+```
+
+For the explicit Kun--Thom parity edge this gives
+
+```text
+N_one subset
+pL(J) *_pL(K_0) pL(J)
+ isomorphic pL(J *_K_0 J),
+```
+
+where `K_0=ker(epsilon)`. Hence CE of the **untwisted** even-edge
+symmetric double proves FALSE. That double is already weak/operator-norm
+MF by Shulman. The remaining gap is trace selection: the half-circle sign
+is Borel rather than continuous, and MF of the full C-star amalgam does not
+show that the canonical reduced trace is MF.
+
+Full proof: `docs/FALSE_FREE_HALF_CIRCLE_SPATIALIZER.md`.
+
+# 2026-08-12: level 121 contains an exact short rank-two cellular packet
+
+Full proof and coordinates: `docs/TRUE_N121_SHORT_CIRCUIT_PACKET.md`.
+
+The new fundamental-circuit screen gives one strikingly structured result at
+projective level `121`.  The full cellular cycle kernel has dimension `632`,
+and its default modular echelon basis is mostly dense: median support `1156`.
+Nevertheless, the greedy homology quotient sees two circuits of supports
+only `16` and `17` before the five dense directions appear.  The same row
+indices and support sizes occur over `F_101`, `F_1009`, and `F_10007`.
+
+Lifting those two small support relations exactly over `Z` gives primitive
+cycles with coefficients only `+-1,+-2` and
+
+```text
+||c_1||^2=40, ||c_1||_1=24,
+||c_2||^2=35, ||c_2||_1=23,
+Gram(c_1,c_2)=[[40,20],[20,35]].
+```
+
+Their quotient signatures modulo each of the three primes are independent.
+Because the exact rational boundary rank is `625`, modular rank `627` of the
+boundary rows together with these cycles proves that their rational homology
+classes are independent.  Harmonic projection therefore gives an explicit
+short rank-two primal packet.
+
+This exactly matches the separately known `2+5` split in dimension, but the
+current calculation does not apply the absolute-to-relative map.  It is not
+yet proved that these are the two cuspidal directions, and the large supports
+of the other five circuits are only a failure of this pivot choice, not a
+lower bound.  The next small exact task is to map these two cycles to the
+relative modular-symbol quotient; rank two there would identify the packet
+as cuspidal and cleanly separate the remaining boundary-kernel problem.

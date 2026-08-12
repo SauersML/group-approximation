@@ -4,6 +4,51 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: untwisted even-edge reduction
+
+`FALSE_FREE_HALF_CIRCLE_SPATIALIZER.md` proves that the one-vertex twisted
+target embeds trace preservingly in the ordinary symmetric reduced amalgam
+over the even edge:
+
+```text
+N_one
+ subset pL(J) *_pL(K_0) pL(J)
+ isomorphic pL(J *_K_0 J).
+```
+
+The spatializer is `sgn(Im(q_1q_2))`; the product `q_1q_2` is a Haar
+unitary commuting with the even edge and inverted by the first odd
+involution. This removes the parity twist from the remaining target. The
+right-hand group is already weak MF by Shulman's symmetric-double theorem.
+The live gate is still tracial: prove CE of its canonical reduced trace (or
+an MF trace on the displayed subalgebra retaining the scalar
+anticommutation). Full-C-star MF alone does not supply that trace.
+
+### 2026-08-12: level 121 has an exact short rank-two cellular packet
+
+The modular fundamental-circuit screen at level `121` isolates the same two
+small homology-bearing supports in characteristics `101`, `1009`, and
+`10007`.  Exact integer lifting gives primitive cycles `c_1,c_2` with
+
+```text
+|supp(c_1)|=16, ||c_1||^2=40,
+|supp(c_2)|=17, ||c_2||^2=35,
+Gram(c_1,c_2)=[[40,20],[20,35]],
+```
+
+and coefficients only `+-1,+-2`.  Their quotient signatures are independent
+modulo all three primes.  Since the boundary rank is exactly `625`, modular
+rank `627` of `[d_3;c_1;c_2]` proves that the two classes are independent in
+rational `H_2`.
+
+This is an explicit rank-two primal packet in actual cellular coordinates,
+not just a reduced harmonic Gram basis.  Its rank matches the independently
+known cuspidal quotient dimension at `121`, but the absolute-to-relative map
+has not yet identified the packet as cuspidal.  The remaining five quotient
+directions are dense in this particular pivot basis, matching the boundary
+kernel split only heuristically.  Full certificate:
+`TRUE_N121_SHORT_CIRCUIT_PACKET.md`.
+
 ### 2026-08-12: fundamental-circuit height is an exact packet certificate
 
 For an integral closing matrix `beta:Z^I->E`, choose pivot columns `F` and

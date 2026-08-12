@@ -1,0 +1,111 @@
+{
+  "balanced_l1": {
+    "maximum": 31032,
+    "median": 29040,
+    "minimum": 1,
+    "p90": 29879,
+    "p99": 30438
+  },
+  "balanced_l2_squared": {
+    "maximum": 1074927,
+    "median": 975912,
+    "minimum": 1,
+    "p90": 1018533,
+    "p99": 1049918
+  },
+  "balanced_maximum_coefficient": {
+    "maximum": 50,
+    "median": 50,
+    "minimum": 1,
+    "p90": 50,
+    "p99": 50
+  },
+  "balanced_unit_coefficient_count": 16097,
+  "balanced_unit_coefficient_fraction": 0.023680660475202023,
+  "basis_role": "finite-field right-kernel echelon basis; a pivot-choice screen, not an integral fundamental-circuit certificate",
+  "boundary_rank": 625,
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "characteristic": 101,
+  "cycle_matrix_dimensions": [
+    2028,
+    1940
+  ],
+  "cycle_matrix_rank": 1308,
+  "greedy_homology_packet": [
+    {
+      "balanced_l1": 408,
+      "balanced_l2_squared": 20008,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 310,
+      "support_size": 16
+    },
+    {
+      "balanced_l1": 556,
+      "balanced_l2_squared": 27506,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 586,
+      "support_size": 17
+    },
+    {
+      "balanced_l1": 27850,
+      "balanced_l2_squared": 954042,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 608,
+      "support_size": 1105
+    },
+    {
+      "balanced_l1": 28538,
+      "balanced_l2_squared": 971532,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 602,
+      "support_size": 1110
+    },
+    {
+      "balanced_l1": 28718,
+      "balanced_l2_squared": 978136,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 607,
+      "support_size": 1111
+    },
+    {
+      "balanced_l1": 27687,
+      "balanced_l2_squared": 907575,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 496,
+      "support_size": 1129
+    },
+    {
+      "balanced_l1": 29820,
+      "balanced_l2_squared": 1022836,
+      "balanced_maximum_coefficient": 50,
+      "kernel_row": 85,
+      "support_size": 1131
+    }
+  ],
+  "greedy_homology_packet_maximum_balanced_l2_squared": 1022836,
+  "greedy_homology_packet_maximum_support": 1131,
+  "homology_dimension": 7,
+  "kernel_dimension": 632,
+  "kernel_residual_zero": true,
+  "level": 121,
+  "nonzero_coefficient_count": 679753,
+  "projective_degree": 16093,
+  "rational_coinvariant_dimensions": [
+    721,
+    2028,
+    1940,
+    654
+  ],
+  "support_size": {
+    "maximum": 1241,
+    "median": 1146,
+    "minimum": 1,
+    "p90": 1153,
+    "p99": 1174
+  }
+}

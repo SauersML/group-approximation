@@ -132,6 +132,7 @@ def main() -> None:
         raise AssertionError("fundamental circuits do not span homology")
 
     exact_short_circuits = []
+    exact_short_vectors = []
     rational_cycle_matrix = boundaries[2].transpose()
     for selected in selected_rows:
         index = selected["kernel_row"]
@@ -152,6 +153,10 @@ def main() -> None:
             exact_coefficients = [-value for value in exact_coefficients]
         if subsystem * vector(ZZ, exact_coefficients) != 0:
             raise AssertionError("exact short circuit has a nonzero residual")
+        full_exact_circuit = vector(ZZ, rational_cycle_matrix.ncols())
+        for column, coefficient in zip(support, exact_coefficients):
+            full_exact_circuit[column] = coefficient
+        exact_short_vectors.append(full_exact_circuit)
 
         modular_row = kernel.row(index)
         pivot = next(
@@ -212,6 +217,15 @@ def main() -> None:
         "greedy_homology_packet_maximum_balanced_l2_squared": max(
             (row["balanced_l2_squared"] for row in selected_rows), default=0),
         "exact_short_homology_circuits": exact_short_circuits,
+        "exact_short_packet_gram": [
+            [int(left * right) for right in exact_short_vectors]
+            for left in exact_short_vectors
+        ],
+        "exact_short_packet_modular_quotient_rank": int(matrix(
+            field,
+            [list(quotient_dual.column(row["kernel_row"]))
+             for row in exact_short_circuits],
+        ).rank()) if exact_short_circuits else 0,
     }
     rendered = json.dumps(certificate, indent=2, sort_keys=True) + "\n"
     args.output.write_text(rendered, encoding="utf-8")
