@@ -104,8 +104,10 @@ does not determine the centered clock coordinates of the **fixed**
 presentation relators after Shapiro induction and a choice of Schreier
 gauge.
 
-Those coordinates are explicit.  With the local crossed homomorphism
-\(z_k\) from `FALSE_MIXED_LHS_COCYCLE_FORMULA.md`, a Schreier transition
+Those coordinates are explicit.  First rescale the local crossed
+homomorphism \(z_k\) from `FALSE_MIXED_LHS_COCYCLE_FORMULA.md` by the inverse
+unit that sends the distinguished augmentation coordinate to
+`1 mod p^k`.  For the resulting \(z'_k\), a Schreier transition
 
 \[
 \beta_\tau(x,s)=h^{a_\tau(x,s)}c^{t_\tau(x,s)}
@@ -114,8 +116,7 @@ Those coordinates are explicit.  With the local crossed homomorphism
 contributes the phase
 
 \[
-\exp\left(-\frac{2\pi i q^{-1}a_\tau(x,s)}{p^k}\right),
-\qquad q=1+p,
+\exp\left(\frac{2\pi i a_\tau(x,s)}{p^k}\right)
 \]
 
 on the distinguished augmentation vector.  Exact absorption says that the
@@ -125,6 +126,10 @@ equivalently, the scalar gauge) so that the transitions attached to every
 fixed presentation coordinate have centered exponents \(o(p^k)\), while the
 growing collision representing the fold has exponent a unit times
 \(p^{k-1}\).
+
+This normalization is essential.  A modular inverse such as
+`q^(-1) mod p^k` need not have a bounded standard representative, so the raw
+unscaled character does not itself justify a small-chord estimate.
 
 This is precisely the long-relator phase localization allowed by the
 phase-splitting criterion: local curvature tends to one, but the branch cut

@@ -1818,6 +1818,28 @@ minimized over Schreier gauges, together with its phase on the growing
 collision.  See `FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md` and
 `FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
 
+The local metric part of that distinction is now solved explicitly.  On the
+positive subgroup `P_k=J_k times <h>`, first power the primitive central
+character by the inverse of the distinguished unit clock coordinate.  The
+normalized clock multiplier is then the inflation of the standard Weyl
+multiplier on `(Z/p^k)^2`.  A diagonal sparse-seam gauge of width `L|p^k`
+makes the two basic squared HS errors at most
+
+`4 pi^2 L^2/p^(2k)` and `4/L`.
+
+Taking `L` near `p^(2k/3)` gives HS error `O(p^(-k/3))` on every fixed
+bounded Weyl window, while the `p^(k-1)`-fold commutator remains the fixed
+scalar `exp(2 pi i/p)`.  Thus exact positive absorption is locally
+asymptotically repairable; no numerical local gauge search is needed.  The
+remaining gate is simultaneous equivariance for the other Shapiro/external
+transition coordinates.  See `FALSE_CLOCK_POSITIVE_WEYL_SEAM.md`.
+
+The unit normalization is essential: the standard integer representative of
+`q^(-1) mod p^k` is not uniformly bounded, so the raw modular formula does
+not by itself give a small chord.  After unit normalization the distinguished
+coordinate is exactly `1 mod p^k`, making both the vanishing local chord and
+the fixed `p`-th-root Bockstein phase invariant statements.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with

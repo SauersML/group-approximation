@@ -363,7 +363,7 @@ The cocycle relation applied to
 identity.  The order relations hold because \(p^k\varphi_k=0\), hence also
 \(p^{k+1}\varphi_k=0\), and because \(z_k(\bar c)=0\). \(\square\)
 
-### Corollary 5 (exact local low-error/high-witness scale)
+### Corollary 5 (unit-normalized local low-error/high-witness scale)
 
 For \(v=e_1-e_0\),
 
@@ -373,17 +373,44 @@ For \(v=e_1-e_0\),
 \exp\left(-\frac{2\pi iq^{-1}}{p^k}\right),
 \]
 
-so
+where `q^(-1)` is a residue modulo `p^k`.  Its standard integer
+representative need not stay bounded, so this raw formula by itself does
+**not** imply an `O(p^(-k))` chord.
+
+Instead put
 
 \[
-|\varphi_k(v)-1|=O(p^{-k}).
+u_k=-q^{-1}\pmod {p^k},
+\qquad
+b_k=u_k^{-1}=-q\pmod {p^k},
+\qquad
+\psi_k=\varphi_k^{\,b_k}.
+\]
+
+The power `b_k` is a unit, so `psi_k` still has exact order `p^k` and still
+satisfies the same eigencharacter identity
+
+\[
+\bar c\cdot\psi_k=q\psi_k.
+\]
+
+It is normalized by the exact equality
+
+\[
+\psi_k(v)=\exp(2\pi i/p^k),
+\]
+
+and hence
+
+\[
+|\psi_k(v)-1|=O(p^{-k}).
 \]
 
 The nonzero ordinary Bockstein of the order-\(p^k\) clock generator is its
-\(p^{k-1}\)-multiple, and the same character takes on it the value
+\(p^{k-1}\)-multiple, and the normalized character takes on it the value
 
 \[
-\exp(-2\pi iq^{-1}/p),
+\exp(2\pi i/p),
 \]
 
 whose distance from \(1\) is bounded below independently of \(k\).
@@ -403,18 +430,19 @@ More explicitly, write a transition in metacyclic normal form as
 \]
 
 Because \(\bar h\) acts trivially on \(\widehat{J_k}\) and
-\(z_k(\bar c)=0\),
+\(z_k(\bar c)=0\), the unit-rescaled cocycle
+`z'_k=b_k z_k` satisfies
 
 \[
-z_k(\beta_\tau(x,s))
-=a_\tau(x,s)\varphi_k.
+z'_k(\beta_\tau(x,s))
+=a_\tau(x,s)\psi_k.
 \]
 
 On \(v=e_1-e_0\), the corresponding phase is
 
 \[
 \exp\left(
--\frac{2\pi iq^{-1}a_\tau(x,s)}{p^k}
+\frac{2\pi i a_\tau(x,s)}{p^k}
 \right).
 \]
 
@@ -426,7 +454,7 @@ Therefore the orbit-sum covariance energy is, up to a fixed multiplicity,
 \sum_{x\in B_k\backslash A_k}
 \sum_{s\in S_A}
 4\sin^2\left(
-\frac{\pi q^{-1}a_\tau(x,s)}{p^k}
+\frac{\pi a_\tau(x,s)}{p^k}
 \right).
 }
 \]
@@ -516,7 +544,7 @@ The energy minimization is therefore the finite twisted circle-repair problem
 \inf_g
 \frac1{|E|}\sum_{e\in E}
 4\sin^2\left(
-\frac{\pi q^{-1}(a_e+(d_tg)(e))}{p^k}
+\frac{\pi (a_e+(d_tg)(e))}{p^k}
 \right).
 \]
 
