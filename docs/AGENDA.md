@@ -4,6 +4,22 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: determinant-one primal section at level 121
+
+Boundary reduction of the full exact square-level packets improves the
+finite bounds to maximum squared norms `95` at level `121` and `133` at
+level `169`.  More decisively, exact pairing with a basis of `Q_121^#`
+shows that the seven projected level-`121` cycles have determinant one and
+therefore form a `Z`-basis of `Q_121`.  After transporting the short primal
+LLL basis and reducing by boundaries, there is a full integral primal
+projection section with coefficients only `0,+-1` and operator norm
+`14.3173701531...`.  This solves primal saturation/absolute realization in
+that chart.  It is not the dual carry section of the harmonic lift sequence.
+The family target is now a uniform determinant-one packet and uniform
+primal section bound, followed separately by uniform control of the dual
+carry extension.  Full certificate:
+`TRUE_SQUARE_LEVEL_BOUNDARY_REDUCED_SECTIONS.md`.
+
 ### 2026-08-12: untwisted even-edge reduction
 
 `FALSE_FREE_HALF_CIRCLE_SPATIALIZER.md` proves that the one-vertex twisted
