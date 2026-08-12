@@ -43744,3 +43744,38 @@ actions whose stabilizers contain the small relator images with high
 probability.  That is precisely the soft-kernel/IRS gate, not ordinary
 residual finiteness.  Full proof:
 `docs/TRUE_SOFT_PROJECTIVE_KERNEL_RATE_GAP.md`.
+
+# 2026-08-11: Ioana--Drimbe does not construct the three-moment system
+
+Full audit: `docs/FALSE_IOANA_DRIMBE_SCHREIER_SCOPE_AUDIT.md`.
+
+For the actual induced transition system, no transversals have been
+constructed which prove
+
+`R_*/M -> 0`, `A_*/M -> 0`, and `R_* A_*/M -> 0`.
+
+Ioana untwists one cocycle into one fixed countable target.  Drimbe extends
+cocycle superrigidity to broad coinduced pmp actions and finite-von-Neumann
+targets.  Neither theorem constructs a coherent lift of the changing finite
+Schreier tables, and neither controls the Archimedean size of centered
+coordinates in a growing profinite target.  Levelwise applications give
+unrelated transfer functions and no uniform moment estimate.
+
+Moreover, the scalar primitive-clock version is rigorously excluded:
+property `(T)` forces one fixed generator to have mean transition size at
+least `(kappa^2/(4 pi))M` for every transversal.  Thus the scalar system
+cannot satisfy the first two endpoint limits.  The surviving target must
+use base-dependent paired Fourier/Frobenius polarizations or
+higher-incidence cancellation.
+
+There is a second correction.  The basepoint fiber-functor problem cannot
+be solved by honest finite-dimensional representations.  If approximate
+maps `phi_0,phi_1` are within `delta` of honest vertex representations on
+the Kazhdan set and fold label, and their edge discrepancy is `epsilon`,
+then their marked discrepancy is at most
+
+`2 delta+(2/kappa)(epsilon+2 delta)`.
+
+Hence a marked lower bound `c` with `epsilon->0` forces
+`liminf delta>=c/(2+4/kappa)`.  Any successful finite Schreier system is
+genuinely nonliftable; exact finite completion necessarily erases the fold.

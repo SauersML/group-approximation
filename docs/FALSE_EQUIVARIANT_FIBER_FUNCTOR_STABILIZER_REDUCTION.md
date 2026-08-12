@@ -196,7 +196,7 @@ the external saturation of even a very small positive monomial window can
 already contain inverse monomials.  The difference between the two
 principal-bundle cocycles is load bearing, not optional.
 
-## 6. Exact remaining theorem
+## 6. Corrected remaining theorem: the fibers must be nonliftable
 
 In the paired Fourier/Frobenius construction, `G` is the finite square-zero
 base/tangent group, `K` is the selected finite external congruence image,
@@ -205,14 +205,68 @@ construction already supplies the required pair along the selected cyclic
 subgroup.  The unresolved globalization can now be stated without any
 fiberwise redundancy:
 
-> Construct finite Frobenius modules and basepoint representations
-> `pi_(0,n),pi_(1,n)` satisfying the two stabilizer covariance equations and
-> `(EFR15)` on the growing positive window, possibly after deleting a
-> vanishing-rank part, while the marked average `(EFR18)` has a fixed positive
-> lower bound.
+It is tempting to ask for honest finite-dimensional representations
+`pi_(0,n),pi_(1,n)` satisfying the two stabilizer covariance equations and
+`(EFR15)` exactly.  That target is impossible in the fold-aligned Kazhdan
+double.  If the positive window contains a Kazhdan set in the amalgamated
+subgroup, the finite-representation matching theorem in
+`FINITE_REPRESENTATION_MATCHING_BARRIER.md` forces the two sectors to agree
+on the inverse-compressor fold as well.
+
+The corrected target is therefore:
+
+> Construct finite Frobenius modules and **approximate** basepoint maps
+> `phi_(0,n),phi_(1,n)` satisfying the two stabilizer covariance laws and
+> `(EFR15)` with normalized-Hilbert--Schmidt defect tending to zero on every
+> fixed positive window, while `(EFR18)` has a fixed positive lower bound.
+> The maps must remain a fixed distance, on a finite Kazhdan/fold window,
+> from every pair of honest finite-dimensional vertex representations.
 
 The cyclic monodromy theorem in
 `FALSE_LONG_CHAIN_BUNDLE_MONODROMY_NO_GO.md` proves that the naive long-chain
 basepoint pair fails this criterion.  The present reduction identifies the
-minimal replacement: a pair of stabilizer-intertwining Frobenius
-representations with nontrivial relative holonomy.
+minimal replacement: a pair of genuinely nonliftable, approximately
+stabilizer-intertwining Frobenius maps with nontrivial relative holonomy.
+
+## 7. Quantitative nonliftability certificate
+
+The preceding correction is quantitative.  Let `Gamma<G`, the Kazhdan set
+`S`, the constant `kappa`, and
+
+`h=t^(-1) gamma t`
+
+be as in `FINITE_REPRESENTATION_MATCHING_BARRIER.md`.  Let
+`phi_0,phi_1:G->U(d)` be arbitrary maps and let `U in U(d)`.  Suppose there
+are exact representations `pi_0,pi_1:G->U(d)` such that
+
+`max_(g in S union {h}) ||phi_i(g)-pi_i(g)||_2 <= delta`
+for `i=0,1`.                                                `(EFR22)`
+
+Put
+
+`epsilon=max_(s in S)||phi_0(s)-U phi_1(s)U^*||_2`.          `(EFR23)`
+
+Then
+
+`||phi_0(h)-U phi_1(h)U^*||_2`
+` <=2 delta+(2/kappa)(epsilon+2 delta).`                    `(EFR24)`
+
+Indeed, the triangle inequality gives
+
+`max_(s in S)||pi_0(s)-U pi_1(s)U^*||_2`
+` <=epsilon+2 delta`.                                      `(EFR25)`
+
+The finite-representation matching theorem bounds the exact marked
+discrepancy by `(2/kappa)(epsilon+2 delta)`.  A second use of the triangle
+inequality at `h` proves `(EFR24)`.
+
+Consequently, if `epsilon_n->0` while the marked discrepancy has lower
+bound `c>0`, then every simultaneous honest correction obeys
+
+`liminf_n delta_n >= c/(2+4/kappa).`                       `(EFR26)`
+
+Thus a successful three-moment Schreier construction is not merely an
+awkward presentation of nearby finite representations.  It produces a
+uniform local normalized-Hilbert--Schmidt instability certificate.  The
+depth wrap or its higher-incidence replacement is therefore load bearing:
+removing it by exact finite completion necessarily removes the fold.
