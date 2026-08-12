@@ -117,11 +117,11 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
       elementaryInverseWord t ++ elementaryInverseWord r
   refine ⟨w, ?_, ?_, ?_⟩
   · have hslen : s.length = Fintype.card ι - 1 := by
-      dsimp [s, leftClearFactors]
-      exact length_otherIndices j
+      simp [s, leftClearFactors]
     have htlen : t.length = Fintype.card ι - 1 := by
-      dsimp [t, rightClearFactors]
-      exact length_otherIndices j
+      simp [t, rightClearFactors]
+    have hcard : 2 ≤ Fintype.card ι :=
+      Fintype.one_lt_card_iff_nontrivial.mpr inferInstance
     dsimp [w]
     simp only [List.length_append, length_elementaryInverseWord, List.length_cons,
       List.length_nil]
