@@ -28,7 +28,8 @@
 \newcommand{\leanverified}[2]{%
   \par\smallskip\noindent
   {\normalfont\footnotesize\color{gray!70!black}%
-  Formal counterpart: \ifanonymous\nolinkurl{#2}\else
+  Formal counterpart:\par\nobreak\noindent
+  \ifanonymous\nolinkurl{#2}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.}}
 
 \setlist[enumerate]{leftmargin=2.35em}
