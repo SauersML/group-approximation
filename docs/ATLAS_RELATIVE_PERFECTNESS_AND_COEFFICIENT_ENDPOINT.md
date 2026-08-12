@@ -593,3 +593,100 @@ Not proved:
 * finite-coefficient extraction `(RPC23)`;
 * CE rigidity `(RPC17)` for any sufficient full packet; or
 * nonhyperlinearity of \(Q\).
+
+## 11. A smaller finite-multiplicity target: triangular leakage
+
+Full extraction `(RPC23)` is stronger than necessary.  The displayed comb
+compressor is already one-sided triangular, and one-sided triangularity of a
+unitary is impossible over a finite tracial multiplicity algebra unless all
+off-diagonal blocks vanish.  The following quantitative form isolates the
+finite-matrix invariant.
+
+Let `(D,tau)` be a finite tracial von Neumann algebra and let
+
+```text
+e_1+...+e_m=1
+```
+
+be pairwise orthogonal projections.  Put `P_r=e_1+...+e_r`.  For every
+unitary `W in M` one has
+
+\[
+ \|(1-P_r)WP_r\|_2^2=\|P_rW(1-P_r)\|_2^2.
+ \tag{RPC38}
+\]
+
+Indeed, both sides equal
+
+\[
+ \tau(P_r)-\tau(P_rW^*P_rWP_r)
+\]
+
+after cyclically moving the factors on the second side.  Summing `(RPC38)`
+over `r=1,...,m-1` gives
+
+\[
+ \sum_{i>j}(i-j)\|e_iWe_j\|_2^2
+ =
+ \sum_{i<j}(j-i)\|e_iWe_j\|_2^2.
+ \tag{RPC39}
+\]
+
+Consequently
+
+\[
+ \boxed{
+ \sum_{i<j}\|e_iWe_j\|_2^2
+ \le (m-1)\sum_{i>j}\|e_iWe_j\|_2^2.}
+ \tag{RPC40}
+\]
+
+In particular, an exactly upper-triangular unitary is block diagonal.  This
+statement fails in the needed way on an infinite multiplicity space: a
+proper isometry and coisometry can occupy the diagonal blocks of an upper
+triangular unitary, and the projections in question have infinite ordinary
+trace.  Thus `(RPC40)` distinguishes finite matrix microstates from the
+exact Leavitt regular model without invoking an identity valid in every
+finite ambient von Neumann algebra.
+
+For the rank-four comb matrix
+
+\[
+ \begin{pmatrix}
+ s_0&0&0&p_1\\
+ 0&s_0&0&p_1t_0\\
+ 0&0&s_0&p_1t_0^2\\
+ 0&0&0&t_0^3
+ \end{pmatrix},
+ \tag{RPC41}
+\]
+
+it is therefore enough to prove the following weaker replacement for
+`(RPC23)`.
+
+> **Finite flag-support extraction.**  From a canonical regular-margin atlas
+> microstate of defect `delta`, construct a fixed four-step projection flag
+> in a canonically traced finite multiplicity corner and a unitary `W` such
+> that
+> \[
+>  \sum_{i>j}\|e_iWe_j\|_2^2\le C\delta^c,
+>  \qquad
+>  \sum_{i<j}\|e_iWe_j\|_2^2\ge c_0-C\delta^c
+>  \tag{RPC42}
+> \]
+> for constants `C,c,c_0>0` independent of the multiplicity.
+
+Equations `(RPC40)` and `(RPC42)` give an immediate positive defect floor.
+Unlike `(RPC23)`, this target does not require identifying `s_i,t_i` as four
+operators or reconstructing the additive Leavitt relation.  Unitarity itself
+is the additivity source.  The only remaining work is support rigidity and a
+positive-mass certificate for one upper block.
+
+The natural support projections must be obtained from the finite scalar/root
+subgroup by a fixed Fourier or parabolic compression.  Merely writing the
+abstract ring matrix `(RPC41)` is not enough: a group microstate does not
+come with the four module-coordinate projections.  The decisive finite test
+is therefore whether the smallest boundary-plus-interior packet forces the
+compressed image of the comb word to satisfy `(RPC42)`.  If it does, this
+triangular-leakage argument proves nonhyperlinearity without the stronger
+partial-isometry claim in `(RPC23a)`.

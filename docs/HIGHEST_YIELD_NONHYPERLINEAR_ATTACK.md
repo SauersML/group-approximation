@@ -37,6 +37,17 @@ it, the route can be killed quickly.  The exact theorem and falsification
 gates are in
 `ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.
 
+There is now a strictly smaller success condition.  A unitary over a finite
+tracial coefficient algebra has equal leakage in both directions across
+every projection cut.  Summing over a four-step flag shows that its total
+upper-triangular block mass is at most three times its lower-triangular mass.
+Hence it suffices to force the comb compressor to be approximately upper
+triangular in a finite Fourier/parabolic multiplicity corner while retaining
+one upper block with positive normalized mass.  This finite flag-support
+extraction `(RPC42)` uses unitarity as the missing additive identity and
+avoids reconstructing all four Leavitt operators.  It is now the first atlas
+gate to test.
+
 The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect
