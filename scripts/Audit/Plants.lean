@@ -68,14 +68,6 @@ theorem plantedDuplicateA : (1 : Nat) + 1 = 2 := rfl
 /-- DUPLICATE + RFL: the same proposition under a second name. -/
 theorem plantedDuplicateB : (1 : Nat) + 1 = 2 := rfl
 
-/-- LAUNDERED_PROP: a named proposition nothing is ever proved to satisfy. -/
-def PlantedLaunderedProp (n : Nat) : Prop := n = n + 1
-
-/-- UNWITNESSED: Prop-valued fields, and no closed term of it anywhere. -/
-structure PlantedCertificate where
-  bound : Nat
-  law : bound = bound + 1
-
 /-- The axiom traversal must descend through PROOF TERMS, not merely notice
 declarations that are themselves axioms.  This theorem's type mentions no
 axiom; only its proof reaches `Classical.choice`.  Asserted directly in
@@ -83,47 +75,6 @@ axiom; only its proof reaches `Classical.choice`.  Asserted directly in
 the descent is completely broken. -/
 theorem plantedReachesClassical (p : Prop) (h : ¬¬p) : p :=
   Classical.byContradiction h
-
-/-! ### False-positive guards for the establishment criterion
-
-Each of these is a defect the scans REPORTED on the real corpus and should
-not have.  They are plants in the opposite direction: the scan must stay
-silent about them. -/
-
-/-- Stands in for Mathlib's `Finite`, which is a Prop-valued class.  A theorem
-stated for such a class is naming the category it works in, not assuming its
-inhabitants into existence. -/
-class PlantedStructuralClass (α : Type) : Prop where
-  ok : True
-
-instance : PlantedStructuralClass Nat := ⟨trivial⟩
-
-def EstablishedUnderStructuralClass (α : Type) : Prop := α = α
-
-/-- Must NOT be LAUNDERED_PROP.  This is the shape of `isLEF_of_finite`, and
-the first version of the criterion reported the proposition it establishes as
-never established. -/
-theorem establishedUnderStructuralClass (α : Type) [PlantedStructuralClass α] :
-    EstablishedUnderStructuralClass α := rfl
-
-def EstablishedConditionally (α : Type) : Prop := α = α
-
-/-- Must NOT be LAUNDERED_PROP: this lemma proves the named relation under its
-honest mathematical hypothesis.  The stricter literature-input scan, rather
-than this satisfiability scan, is responsible for banning externally supplied
-theorems disguised as hypotheses. -/
-theorem establishedConditionally (α : Type) (h : α = α) :
-    EstablishedConditionally α := h
-
-/-- Must NOT be UNWITNESSED: constructed inside a proof term while the
-conclusion is about something else, which is exactly how `isSofic_of_fintype`
-constructs a `SoficModel`. -/
-structure PlantedInnerCertificate where
-  bound : Nat
-  law : bound = bound
-
-def plantedInnerCertificateUser : Nat :=
-  (⟨0, rfl⟩ : PlantedInnerCertificate).bound
 
 /-- Must be UNCONDITIONAL: a headline claim word, at the root of the corpus
 namespace, on a type that still takes a premise. -/
@@ -138,18 +89,6 @@ lemma, which is what 96 of the corpus's 96 hits were. -/
 @[simp] theorem plantedSimpRfl : (2 : Nat) + 0 = 2 := rfl
 
 /-! ## Clean declarations.  No scan may report any of these. -/
-
-/-- Not LAUNDERED_PROP: established below. -/
-def CleanProp (n : Nat) : Prop := n = n
-
-theorem cleanProp_holds (n : Nat) : CleanProp n := rfl
-
-/-- Not UNWITNESSED: a closed term of it is exhibited below. -/
-structure CleanCertificate where
-  bound : Nat
-  law : bound = bound
-
-def cleanCertificate : CleanCertificate := ⟨0, rfl⟩
 
 /-- Not UNUSED: Lean's own convention for a deliberately unused binder is the
 leading underscore, which its `unusedVariables` linter respects.  Honouring it

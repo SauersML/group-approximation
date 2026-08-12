@@ -371,8 +371,6 @@ def scanTags : List String :=
   , "TAUTOLOGY"             -- a proof that is its own premise is never intended
   , "EMPTY_PREMISE"         -- a vacuously true theorem is never intended
   , "UNCONDITIONAL"
-  , "LAUNDERED_PROP"
-  , "UNWITNESSED"
   -- Structural `[Nonempty ...]` inputs used to obtain positive finite
   -- cardinalities or select an index.  Fixed at the declaration, not tolerated
   -- by a count here.

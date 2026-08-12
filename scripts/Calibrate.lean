@@ -36,8 +36,6 @@ def mustReport : List (String × Name) :=
    ("EMPTY_PREMISE", ``AuditPlant.plantedVacuous),
    ("TRIVIAL", ``AuditPlant.plantedUnusedHypothesis),
    ("UNUSED", ``AuditPlant.plantedUnusedHypothesis),
-   ("LAUNDERED_PROP", ``AuditPlant.PlantedLaunderedProp),
-   ("UNWITNESSED", ``AuditPlant.PlantedCertificate),
    ("STALE_DISCLAIMER", ``AuditPlant.plantedStaleDisclaimer)]
 
 /-- Defects where either member of a pair may carry the finding, since which
@@ -51,15 +49,7 @@ first run against the real corpus actually emitted.  A detector is not fixed
 because the number went down; it is fixed when the shape that was
 misclassified is pinned here. -/
 def mustNotReportUnder : List (String × Name) :=
-  [-- `Finite` is a Prop-valued class, so the theorem that ESTABLISHES a
-   -- proposition looked conditional and the proposition looked laundered.
-   ("LAUNDERED_PROP", ``AuditPlant.EstablishedUnderStructuralClass),
-   -- A proposition proved under an explicit, visible mathematical hypothesis
-   -- is not something the corpus only assumes.
-   ("LAUNDERED_PROP", ``AuditPlant.EstablishedConditionally),
-   -- constructed inside a proof term, not in the conclusion
-   ("UNWITNESSED", ``AuditPlant.PlantedInnerCertificate),
-   -- `exists_foo_of_bar` is Lean's convention for a CONDITIONAL lemma
+  [-- `exists_foo_of_bar` is Lean's convention for a CONDITIONAL lemma
    ("UNCONDITIONAL", ``AuditPlant.plantedExistsUnderPremise),
    -- an ordinary implicit side condition is not an assumption in disguise
    ("ASSUMPTION_INSTANCE", ``AuditPlant.plantedHiddenPremise),
@@ -70,9 +60,7 @@ def mustNotReportUnder : List (String × Name) :=
 
 /-- Declarations no scan may report. -/
 def mustNotReport : List Name :=
-  [``AuditPlant.CleanProp,
-   ``AuditPlant.CleanCertificate,
-   ``AuditPlant.cleanDeliberateUnused,
+  [``AuditPlant.cleanDeliberateUnused,
    ``AuditPlant.cleanUsesPremise]
 
 run_cmd do

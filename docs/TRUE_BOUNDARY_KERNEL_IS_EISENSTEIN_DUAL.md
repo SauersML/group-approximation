@@ -258,21 +258,28 @@ packets. Degree-two Eisenstein cohomology is assembled from the maximal
 parabolic modular-curve faces and their incidence along minimal faces, so
 the next literature and chain-level audit has a specific object to target.
 
-The small square-level data give an additional lead. The exact charts at
-levels `9` and `25` have `H_2=0` and no cuspidal contribution, hence
-`E^2=0`. The new exact level-`49` chart has `H_2=1` and no cuspidal
-contribution, hence `dim E^2=1`. At level `121`, `dim E^2=5`. These values
-match
+The square-level dimension is now a theorem, not merely a four-level pattern.
+For every odd prime `p`, Lee--Schwermer's exact boundary module, descended
+through the maximal-face stabilizers computed by Ash--Yasaki, gives
 
 ```text
-dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))                    (BED17)
+dim E^2(Gamma_0(p^2,3))
+ = dim S_3(Gamma_1(p))
+ = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)).                (BED17)
 ```
 
-for `p=3,5,7,11`. In particular, level `49` was the first case where
-`(BED17)` predicted a nonzero space without a cuspidal contribution, and its
-exact rank is one as predicted. This four-level pattern is evidence for a
-degeneracy-map description of the Eisenstein kernel, not yet a proved family
-formula.
+For `p>=5` this is `(p-1)(p-5)/12`; for `p=3` it is zero.  More
+structurally, the degree-two boundary is the direct sum of the weight-three
+cusp spaces on the two middle maximal faces, and the Eisenstein image is the
+graph of the constant-term intertwining operator between them.  Thus the
+remaining square-level packet problem is one `S_3(Gamma_1(p))` integral
+modular-symbol lattice plus one scattering graph.  The proof is in
+`TRUE_SQUARE_LEVEL_EISENSTEIN_GRAPH.md`.
+
+The exact charts at levels `9,25,49,121` give dimensions `0,0,1,5`, in
+agreement with `(BED17)`. In particular, level `49` was the first case where
+the theorem predicts a nonzero space without a cuspidal contribution, and
+its exact rank is one as predicted.
 
 The exact level-`49` complex has dimensions
 
@@ -312,4 +319,8 @@ SHA-256 d1ca1f99ca43b610b92cc28fc10925893529bc06835a747b28ed76c3adac1881.
   [*Cohomology of congruence subgroups of SL(3,Z)*](https://arxiv.org/abs/2107.10918),
   Section 7 for the Lee--Schwermer boundary theorem and Section 12.4 for
   level `121`.
+- Ronnie Lee and Joachim Schwermer,
+  [*Cohomology of arithmetic subgroups of SL3 at infinity*](https://doi.org/10.1515/crll.1982.330.100),
+  Theorem 2.4 and Section 6.1 for the exact degree-two boundary module and
+  its scattering graph.
 - `TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md` for the first rational split.

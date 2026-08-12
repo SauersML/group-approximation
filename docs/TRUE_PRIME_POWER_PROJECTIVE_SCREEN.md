@@ -143,8 +143,18 @@ square levels `p^2`, `p=3,5,7,11`, are `0,0,1,5`. They match
 dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)),
 ```
 
-which is now a precise conjectural degeneracy-map formula to prove. The
-certificates are
+and this is now proved for every odd prime. In fact,
+
+```text
+dim H_Eis^2(Gamma_0(p^2,3))
+ = dim S_3(Gamma_1(p))
+ = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)).
+```
+
+The two middle maximal faces supply the two copies of
+`S_3(Gamma_1(p))` in boundary degree two; the Eisenstein image is the graph
+of their constant-term intertwiner. See
+`TRUE_SQUARE_LEVEL_EISENSTEIN_GRAPH.md`. The computational certificates are
 
 ```text
 experiments/projective-cellular-n25-summary.json

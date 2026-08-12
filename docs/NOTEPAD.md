@@ -44119,3 +44119,105 @@ themselves suffice, because coinvariant collapse may keep \(\delta_Q(w)\)
 bounded.
 
 Full proof: `docs/FALSE_FIXED_RANK_CHARACTER_COMPACTNESS.md`.
+
+# 2026-08-12: square-level Eisenstein cohomology is exactly one scattering graph
+
+The empirical dimensions `0,0,1,5` at levels `9,25,49,121` now have a
+family proof. For every odd prime `p`,
+
+```text
+dim H_Eis^2(Gamma_0(p^2,3))
+ = dim S_3(Gamma_1(p))
+ = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)).
+```
+
+The common value is `(p-1)(p-5)/12` for `p>=5` and zero for `p=3`.
+
+The mechanism is exact. Lee--Schwermer Theorem 2.4 decomposes principal-
+level boundary `H^2` into one standard-coefficient cusp module and two sign
+modules for each maximal-parabolic type. Mackey descent to
+`Gamma_0(p^2)` uses the six face stabilizers computed by Ash--Yasaki. Every
+extended Levi contains a determinant-negative element, so all sign fixed
+spaces vanish. Odd weight kills the outer `Gamma_0(p^2)` and `SL_2(Z)`
+faces. Only the two middle faces remain, each contributing
+`S_3(Gamma_1(p))`.
+
+The Eisenstein image is not merely half-dimensional: Lee--Schwermer Section
+6.1 identifies it as
+
+```text
+{phi (+) C_p^*(0) phi},
+```
+
+the graph of the constant-term intertwiner between the two middle faces.
+Thus the square-level TRUE gate is now one integral weight-three modular-
+symbol lattice plus the arithmetic denominator of one scattering operator,
+not arbitrary boundary incidence across a growing collection of faces.
+
+Full proof: `docs/TRUE_SQUARE_LEVEL_EISENSTEIN_GRAPH.md`.
+
+# 2026-08-12: the symmetric double's finite residual is D-perfect
+
+The fixed-rank criterion interacts decisively with the already computed
+radical module. Let
+
+\[
+D=G*_\Gamma G,\qquad D_N=G*_N G,\qquad R=\ker(D\to D_N).
+\]
+
+The complete-radical theorem and residual finiteness of \(D_N\) identify
+\(R\) with the full finite residual of \(D\). The abelianized-radical
+calculation gives
+
+\[
+R_{\rm ab}\cong
+A=\ker\bigl(\mathbb Z[D_N/\Gamma]\to\mathbb Z[D_N/N]\bigr).
+\]
+
+Applying \(D_N\)-homology to this permutation-module sequence and using
+Shapiro gives
+
+\[
+H_1(\Gamma;\mathbb Z)\to H_1(N;\mathbb Z)
+\to A_{D_N}\to\mathbb Z\xrightarrow{\rm id}\mathbb Z.
+\]
+
+Both \(\Gamma\) and \(N\) are perfect, so
+
+\[
+A_{D_N}=0.
+\]
+
+Therefore
+
+\[
+\boxed{R/[D,R]\cong(R_{\rm ab})_{D_N}=0,}
+\qquad
+\boxed{R=[D,R].}
+\]
+
+There is a general presentation consequence. If
+\(w\in[P,R_{\rm fin}(P)]\), lift a commutator expression for \(w\) to the
+free presentation group. The remaining kernel word is, modulo
+\([F,R_{\rm fin}^{\sim}]\), one fixed integral product of the finitely many
+presentation relators. Since \(R_{\rm fin}^{\sim}\) lies in every
+finite-quotient kernel, the same coefficient vector represents \([w]\) in
+every module \(L_Q/[F,L_Q]\). Hence
+
+\[
+\sup_Q\delta_Q(w)<\infty,
+\qquad
+\sup_Q\Lambda_Q(w)<\infty.
+\]
+
+Applied to \(D\), this holds for every radical word. Thus the entire
+canonical central-character route is closed for the explicit symmetric
+double. The exact local \(p^k\) Baumslag--Solitar clock cannot globalize
+through these central covers, regardless of how its local order grows.
+
+The surviving FALSE route must be genuinely noncentral--currently the
+base-dependent Fourier/Frobenius kernel-carry intertwiner--or must use a
+different radical candidate with a nonzero class in
+\(R_{\rm fin}/[P,R_{\rm fin}]\).
+
+Full proof: `docs/FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.

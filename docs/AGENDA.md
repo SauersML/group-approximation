@@ -4,6 +4,31 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the square-level Eisenstein kernel is one scattering graph
+
+The square-level dimension pattern is now proved for every odd prime:
+
+```text
+dim H_Eis^2(Gamma_0(p^2,3))
+ = dim S_3(Gamma_1(p))
+ = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)).
+```
+
+For `p>=5` the common value is `(p-1)(p-5)/12`; at `p=3` it is zero.
+Lee--Schwermer's exact degree-two boundary module has a twisted cusp term
+and two sign terms for each maximal-parabolic type. Taking
+`Gamma_0(p^2)`-invariants and using Ash--Yasaki's face stabilizers kills all
+sign terms and all faces except the middle `d=p` face of each type. The
+boundary is therefore two copies of `S_3(Gamma_1(p))`, and the Eisenstein
+Lagrangian is exactly the graph of the constant-term intertwiner
+`C_p^*(0)` between them.
+
+This replaces arbitrary square-level boundary packets by one explicit
+weight-three modular-symbol lattice and one scattering graph. The remaining
+family gate is integral: bound modular-symbol packets and the denominators
+and metric distortion of `C_p^*(0)`. Full proof:
+`TRUE_SQUARE_LEVEL_EISENSTEIN_GRAPH.md`.
+
 ### 2026-08-12: the boundary kernel is dual degree-two Eisenstein cohomology
 
 For every oriented compact five-manifold, the image
@@ -45,9 +70,8 @@ dim H_Eis^2(Gamma_0(p^2))
   = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))
 ```
 
-for `p=3,5,7,11`. This is now the theorem-shaped square-level formula to
-derive from maximal-parabolic degeneracy maps; it remains conjectural as a
-family statement.
+for `p=3,5,7,11`. The formula is now proved for every odd prime by the
+preceding Lee--Schwermer/Ash--Yasaki descent.
 
 ### 2026-08-12: absolute H2 has an interior quotient and a boundary kernel
 

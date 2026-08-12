@@ -22,15 +22,11 @@ environment is the only authority.
 ## The scans
 
   AXIOM            transitive axiom closure outside classical Lean's three.
-  LAUNDERED_PROP   a named proposition the corpus only ever ASSUMES.  Nothing
-                   is ever proved to satisfy it, so every theorem with it as a
-                   hypothesis is consistent with it being unsatisfiable, and
-                   every theorem refuting it is consistent with it being
-                   unsatisfiable too.  This is the general form of the gap the
-                   positive control in `SoficPositiveControl.lean` closes.
-  UNWITNESSED      a structure with Prop-valued fields that the corpus never
-                   exhibits a closed term of: the caller hands over finished
-                   mathematics and the corpus never shows it can be finished.
+  LITERATURE_INPUT a premise, alias, embedded conclusion, or structure field
+                   carrying a tagged transcription of an external theorem.
+                   This is the laundering check: it follows definitional and
+                   constructor closure instead of guessing from whether an
+                   ordinary relation happens to have a closed example.
   TAUTOLOGY        the conclusion is syntactically one of the premises.
                    `theorem P_of_P (h : P) : P := h` has a clean axiom report.
   UNCONDITIONAL    a name promising an unconditional result on a type that
@@ -164,18 +160,7 @@ def axiomScan (env : Environment) (names : Array Name) (allowed : List Name) :
         detail := s!"reached from {(debtorsOf env names a).toList}" }
   return out
 
-/-! ## Established heads: the shared core of LAUNDERED_PROP and UNWITNESSED
-
-A corpus declaration establishes that it does mathematical work with a head
-constant `H` when its type, after the telescope, concludes in `H …` (or in
-`Nonempty (H …)`).  This deliberately includes conditional lemmas.  A relation
-such as `IsQuasiCocycle` is not laundered merely because its useful existence
-theorems have hypotheses; laundering means the corpus only ever *consumes* the
-named proposition and never proves a result with it as conclusion.
-
-External theorems smuggled into hypotheses are handled more strictly by
-`literatureScan`, which follows definitional and constructor closure and bans
-tagged inputs even when a degenerate positive instance exists. -/
+/-! ## Shared expression classifiers -/
 
 /-- Head constant of a type, if it has one. -/
 def headConst? (e : Expr) : Option Name := e.getAppFn.constName?
@@ -233,90 +218,6 @@ def mentionsConditionality (s : String) : Bool :=
     -- word that asserts the opposite is not a disclaimer.
     let shielded := (lower.splitOn ("un" ++ p)).length - 1
     hits > shielded
-
-/-- Every head constant the corpus proves or constructs, in one pass.
-
-One pass, and not a search per question: the environment holds all of Mathlib,
-so asking "is there a witness for `S`" by walking `env.constants` once per `S`
-is (structures asked about) x (constants in Mathlib) telescopes.  gnomon
-records that exact shape not finishing inside fifteen minutes. -/
-def establishedHeads (env : Environment) (names : Array Name) : MetaM NameSet := do
-  let mut out : NameSet := {}
-  for n in names do
-    let some ci := env.find? n | continue
-    unless (match ci with
-            | .defnInfo _ | .ctorInfo _ | .thmInfo _ => true
-            | _ => false) do continue
-    let h? ← forallTelescope ci.type fun _ body ↦ do
-      -- Either a term of `H …`, or a proof of `Nonempty (H …)`: a theorem
-      -- witnesses a Prop-valued head, a `Nonempty` proof a data one.
-      let body := match body.getAppFn.constName? with
-        | some ``Nonempty => (body.getAppArgs[0]?).getD body
-        | _ => body
-      return headConst? body
-    if let some h := h? then out := out.insert h
-    -- A structure is also witnessed when its CONSTRUCTOR appears inside the
-    -- proof term of an unconditional declaration, even though the conclusion
-    -- is about something else.  `isSofic_of_fintype` builds a `SoficModel`
-    -- and concludes `IsSofic G`; reading conclusions alone reported
-    -- `SoficModel` as never constructed while the construction sat in the
-    -- proof.
-    if let some val := valueOf? ci then
-      for c in val.getUsedConstants do
-        match c with
-        | .str parent "mk" => out := out.insert parent
-        | _ => pure ()
-  return out
-
-/-- Corpus constants that are proposition-formers: `∀ …, Prop`. -/
-def propFormers (env : Environment) (names : Array Name) : MetaM (Array Name) := do
-  let mut out := #[]
-  for n in names do
-    let some ci := env.find? n | continue
-    unless (match ci with
-            | .defnInfo _ | .inductInfo _ => true
-            | _ => false) do continue
-    let isFormer ← forallTelescope ci.type fun _ body ↦
-      pure (match body with
-            | .sort l => l == Level.zero
-            | _ => false)
-    if isFormer then out := out.push n
-  return out
-
-/-- Structure fields whose type is a `Prop`.  Such a parameter is a
-CERTIFICATE: the caller hands over finished mathematics. -/
-def propFields (env : Environment) (S : Name) : MetaM (Array Name) := do
-  let some info := getStructureInfo? env S | return #[]
-  let mut out := #[]
-  for f in info.fieldNames do
-    let some proj := env.find? (S ++ f) | continue
-    -- The `isProp` test MUST run INSIDE the telescope.  Returning the body out
-    -- of `forallTelescopeReducing` leaks the fvars it bound, and the check then
-    -- runs where they do not exist -- surfacing much later as `unknown free
-    -- variable`, nowhere near the cause.
-    let isP ← forallTelescope proj.type fun _ b ↦ isProp b
-    if isP then out := out.push f
-  return out
-
-/-- LAUNDERED_PROP and UNWITNESSED, which share the one pass above. -/
-def vacuityScan (env : Environment) (names : Array Name) : MetaM (Array Finding) := do
-  let established ← establishedHeads env names
-  let mut out := #[]
-  for p in ← propFormers env names do
-    unless established.contains p do
-      out := out.push
-        { tag := "LAUNDERED_PROP", decl := p,
-          detail := "named proposition the corpus only ever assumes: nothing is \
-ever proved to satisfy it, so a theorem refuting it is equally consistent with \
-it being unsatisfiable" }
-  for n in names do
-    let fields ← propFields env n
-    if !fields.isEmpty && !established.contains n then
-      out := out.push
-        { tag := "UNWITNESSED", decl := n,
-          detail := s!"structure with Prop-valued fields {fields.toList} that the \
-corpus never exhibits a closed term of" }
-  return out
 
 /-! ## Per-declaration shape scans -/
 
@@ -487,15 +388,7 @@ proof term: {(dead.map Prod.snd).toList}" }
 
 /-! ## LITERATURE_INPUT
 
-`LAUNDERED_PROP` above catches a named proposition the corpus only ever
-assumes.  Its evasion costs one witness: a positive control at a degenerate
-instance makes the proposition "established" while every load-bearing use
-still ASSUMES it at the instances that matter.  That is the exact shape of a
-citation smuggled into a hypothesis -- the implication is kernel-true, the
-antecedent is one paper's theorem, and no kernel or axiom check can see the
-difference, because there is no difference in the proof term.
-
-No scan can DISCOVER that difference either: whether a premise is ordinary
+Whether a premise is ordinary
 mathematics or a transcription of someone's Theorem 4.1 is not a property of
 the expression.  So the roster of transcriptions is CONFIG, owned by the
 driver under the same custody as `allowedAxioms`, and this scan enforces a
@@ -609,7 +502,6 @@ def allScans (env : Environment) (root : Name) (allowed : List Name) :
     MetaM (Array Finding) := do
   let names := corpusNames env root
   let mut out := axiomScan env names allowed
-  out := out ++ (← vacuityScan env names)
   out := out ++ (← declScan env names)
   return out
 
