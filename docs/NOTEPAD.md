@@ -43818,3 +43818,35 @@ then their marked discrepancy is at most
 Hence a marked lower bound `c` with `epsilon->0` forces
 `liminf delta>=c/(2+4/kappa)`.  Any successful finite Schreier system is
 genuinely nonliftable; exact finite completion necessarily erases the fold.
+
+# 2026-08-11: the signed radical action lies exactly beyond strong QD
+
+Full audit: `docs/FALSE_SIGNED_ACTION_MF_PERMANENCE_AUDIT.md`.
+
+Let `1 != s in Rad_sof(G)` and let `alpha:G -> Aut(A)` admit a norm-one
+eigenvector `a` with `alpha_s(a)=zeta a`, `zeta != 1`.  Then `alpha` cannot
+be strongly quasidiagonal in the Kerr--Nowak sense.  Indeed every honest
+matrix action `G -> Aut(M_d)=PU(d)` kills `s`, because its image is linear
+and hence sofic.  Approximate equivariance and approximate isometry would
+force simultaneously
+
+`|zeta-1| ||phi(a)|| < epsilon`, `||phi(a)|| > 1-epsilon`,
+
+which is impossible for sufficiently small `epsilon`.
+
+For the signed coinduced action of the explicit double, the base coordinate
+satisfies `alpha_s(T)=-T`.  Its action is also faithful: the core of `<s>`
+is trivial by the Bass--Serre axis argument.  Since a faithful residually
+finite compact action would make the acting group residually finite, this
+nonsofic double's signed action is neither residually finite nor strongly
+QD.  Thus Kerr--Nowak and finite-quotient crossed-product permanence cannot
+finish FALSE.
+
+Rainone's weaker MF-action notion remains exactly live: its matrix
+implementers are only locally approximately multiplicative.  An MF model
+for the signed action would give the operator-norm one-involution
+certificate and finish FALSE.  Pulling the action back to a free
+presentation does yield an MF reduced crossed product, but it cannot be
+descended through the relators: the reduced quotient exists only when the
+presentation kernel is amenable, whereas here it is a nonamenable
+infinite-rank free group.
