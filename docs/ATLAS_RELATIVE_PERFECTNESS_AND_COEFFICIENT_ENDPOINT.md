@@ -690,3 +690,132 @@ is therefore whether the smallest boundary-plus-interior packet forces the
 compressed image of the comb word to satisfy `(RPC42)`.  If it does, this
 triangular-leakage argument proves nonhyperlinearity without the stronger
 partial-isometry claim in `(RPC23a)`.
+
+## 12. A sharper support-only obstruction: quantitative Hall deficiency
+
+There is an even smaller success condition when the extracted block support
+has a Hall deficit.  Let `(D,tau)` be a finite tracial von Neumann algebra,
+let `W=(W_ij)` be a unitary in `M_m(D)`, and give `M_m(D)` its normalized
+product trace.  For subsets `S,T subset {1,...,m}`, let `Q_S` be the diagonal
+projection onto the source coordinates in `S` and `P_T` the diagonal
+projection onto the target coordinates in `T`.  Then
+
+\[
+ \begin{aligned}
+ \frac1m\sum_{j\in S}\sum_{i\notin T}\|W_{ij}\|_{2,D}^2
+ &=\|(1-P_T)WQ_S\|_2^2\\
+ &\ge \frac{(|S|-|T|)_+}{m}.
+ \end{aligned}
+ \tag{RPC43}
+\]
+
+Indeed,
+
+\[
+ \begin{aligned}
+ \|(1-P_T)WQ_S\|_2^2
+ &=\tau(Q_S)-\|P_TWQ_S\|_2^2\\
+ &=\tau(Q_S)-\tau(P_TWQ_SW^*P_T)\\
+ &\ge\tau(Q_S)-\tau(P_T),
+ \end{aligned}
+\]
+
+because `0 <= P_TWQ_SW^*P_T <= P_T`.  This proves `(RPC43)`.  The same
+argument works for arbitrary finite projection families, with
+`(|S|-|T|)/m` replaced by `tau(Q_S)-tau(P_T)`.
+
+Consequently, suppose a fixed Fourier compression of the atlas transition
+unitary has an allowed-support graph `E` from source types to target types.
+If some source set `S` has fewer allowed neighbours `N(S)` than its total
+tracial weight, then
+
+\[
+ \sum_{j\in S}\sum_{i\notin N(S)}\|W_{ij}\|_{2,D}^2
+\]
+
+has a fixed positive lower bound.  Thus it is enough for a finite atlas
+packet to force precisely those forbidden blocks to be `o(1)`.  No lower
+bound on a selected upper block, no reconstruction of four Leavitt
+operators, and no classification of the remaining blocks is needed.
+
+This gives the sharpest immediate computational gate:
+
+> **Finite Hall-support extraction.**  Fourier-decompose the fixed root
+> Heisenberg/parabolic packet, compute the forced zero blocks of the two raw
+> compressor intertwiners, and test the resulting finite weighted bipartite
+> graph for a Hall-deficient source set.
+
+The visible support graph of the bare four-by-four comb matrix `(RPC41)` is
+Hall-balanced: its diagonal already supplies a perfect matching.  Therefore
+`(RPC43)` does not by itself prove anything from the printed triangular
+matrix.  A successful deficit must occur only after the root-character or
+Pauli compression which remembers the self-similar multiplicity types.
+This is a useful falsification criterion: if every forced finite type graph
+is Hall-balanced, support-only extraction is dead and one must return to the
+stronger coefficient identities in `(RPC23)`.
+
+## 13. One cut is enough
+
+The four-step flag in `(RPC42)` is itself stronger than necessary.  For a
+projection `P` and a unitary `W` in any finite tracial von Neumann algebra,
+`(RPC38)` already says
+
+\[
+ \boxed{\|(1-P)WP\|_2=\|PW(1-P)\|_2.}
+ \tag{RPC44}
+\]
+
+For the displayed comb matrix `(RPC41)`, take the algebraic coordinate cut
+
+\[
+ P=\operatorname{diag}(1,1,1,0).
+ \tag{RPC45}
+\]
+
+Then the lower-left corner `(1-P)WP` is zero, whereas the upper-right corner
+contains
+
+\[
+ p_1,\qquad p_1t_0,\qquad p_1t_0^2.
+ \tag{RPC46}
+\]
+
+Consequently the minimal live extraction statement is now:
+
+> **One-cut coefficient extraction.**  From a canonical regular-margin
+> atlas microstate of defect `delta`, construct in a fixed matrix
+> amplification of its finite multiplicity algebra a projection `P` and a
+> unitary `W` such that
+> \[
+>  \|(1-P)WP\|_2^2\le C\delta^c,
+>  \qquad
+>  \|PW(1-P)\|_2^2\ge c_0-C\delta^c,
+>  \tag{RPC47}
+> \]
+> for constants `C,c,c_0>0` independent of the multiplicity.
+
+Equations `(RPC44)` and `(RPC47)` immediately give
+
+\[
+ c_0\le 2C\delta^c,
+ \qquad
+ \delta\ge(c_0/(2C))^{1/c}.
+ \tag{RPC48}
+\]
+
+Thus neither all four Leavitt operators nor four Fourier sectors are needed.
+One must extract only the rank-three-versus-one coordinate cut of the comb,
+prove that its forbidden direction is small, and retain positive mass in one
+allowed direction.  The natural candidate for the positive mass is the
+`p_1` entry in `(RPC46)`; a root-character projection with its regular trace
+bounded below would suffice.
+
+The finite-multiplicity qualification is essential.  In the exact regular
+representation of `Q`, the two chart restrictions again have regular finite
+chart character, but the associated chart multiplicity space is infinite.
+The coordinate cut `(RPC45)` then belongs to an amplification over
+`B(ell^2)`, which has no normalized finite coefficient trace.  A recipe for
+`P` made only from universal ambient von Neumann algebra operations would
+also apply inside `L(Q)` and therefore cannot establish `(RPC47)`.  The
+projection must be recovered in the canonical finite chart multiplicity
+corner (or an equivalent finite root-character coefficient corner).

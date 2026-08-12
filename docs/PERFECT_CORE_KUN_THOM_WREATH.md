@@ -345,6 +345,58 @@ abelianization and without an arbitrary extension:
 with one central involution \(z\) killed by every exact finite-dimensional
 unitary representation.
 
+The corresponding full and even operator-algebraic endpoints are exactly
+equivalent.  Let
+
+\[
+ M_{\mathrm{full}}=\operatorname{Cl}(X)\rtimes G
+\]
+
+be the negative full Clifford crossed product and retain the notation
+\(A_{\mathrm{CAR}}\rtimes G\) for its even subalgebra crossed with \(G\).
+
+**Proposition 4.**  One has
+
+\[
+ M_{\mathrm{full}}\cong
+ (A_{\mathrm{CAR}}\rtimes G)\rtimes_{\operatorname{Ad}(C_o)}\mathbb Z/2
+ \tag{19a}
+\]
+
+for any fixed Majorana generator \(C_o\).  Consequently
+
+\[
+ \boxed{M_{\mathrm{full}}\text{ is Connes-embeddable}
+ \iff A_{\mathrm{CAR}}\rtimes G\text{ is Connes-embeddable}.}
+ \tag{19b}
+\]
+
+**Proof.**  The odd Majorana \(C_o\) normalizes the even Clifford algebra.
+It also normalizes the crossed-product unitaries modulo the even algebra,
+because
+
+\[
+ C_o u_g C_o=(C_oC_{go})u_g
+\]
+
+and \(C_oC_{go}\) is even.  Moreover \(C_o^2=1\), and the even crossed
+product together with \(C_o\) generates \(M_{\mathrm{full}}\).  The parity
+automorphism fixes the even crossed product and sends \(C_o\) to \(-C_o\),
+so its conditional expectation proves that the two homogeneous summands
+are linearly independent.  This proves `(19a)`.
+
+Connes embeddability passes to von Neumann subalgebras, giving the forward
+implication in `(19b)`.  Conversely, the regular covariant representation
+embeds a crossed product by the finite group \(\mathbb Z/2\) into
+\(M_2(A_{\mathrm{CAR}}\rtimes G)\).  Matrix amplification preserves Connes
+embeddability, giving the reverse implication. \(\square\)
+
+Thus the full-Majorana formulation and the perfect even-core formulation
+are two presentations of the same CE problem.  The full formulation makes
+the relative wall \(C_o\in\pi(\Gamma)'\) visible; the even formulation keeps
+the nonsofic witness perfect and exposes the canonical CAR trace.  They
+must not be counted as independent construction routes.
+
 **Theorem 4 (one-character endpoint).**  Suppose that
 \(E_{\mathrm{Cl},0}\) has a Connes-embeddable character \(\chi\) with
 \(\chi(z)\ne1\).  Then there exists a hyperlinear nonsofic group.

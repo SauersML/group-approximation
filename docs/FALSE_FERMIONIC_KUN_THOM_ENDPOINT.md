@@ -4,6 +4,28 @@ Date: 2026-08-12
 
 ## 1. Outcome
 
+**Synchronization note.**  This is not a second endpoint independent of
+`PERFECT_CORE_KUN_THOM_WREATH.md`.  If
+
+```text
+N_even=A_CAR crossed_product G,
+```
+
+then, for any fixed odd Majorana `C_o`,
+
+```text
+M_Cl = N_even crossed_product_(Ad C_o) C_2.
+```
+
+Indeed `C_o` normalizes `N_even`, since
+`C_o u_g C_o=(C_o C_(g o))u_g` and the Clifford coefficient is even; parity
+gives the reverse grading and the required conditional expectation.
+Therefore `M_Cl` is Connes embeddable iff `N_even` is: one implication is
+inheritance by subalgebras, and the other follows from the standard
+embedding of a finite crossed product into `M_2(N_even)`.  The present note
+is retained because it displays the relative-commutant wall directly, while
+the perfect-core note is the authoritative group-theoretic endpoint.
+
 Let `Gamma<G` be one of the Kun--Thom Kazhdan infranormal pairs and put
 
 ```text

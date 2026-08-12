@@ -48,6 +48,29 @@ extraction `(RPC42)` uses unitarity as the missing additive identity and
 avoids reconstructing all four Leavitt operators.  It is now the first atlas
 gate to test.
 
+In fact, one cut is enough.  With the rank-three-versus-one coordinate
+projection `P=diag(1,1,1,0)`, the comb has zero lower-left corner and an
+upper-right corner containing `p_1`.  Every unitary over a finite tracial
+coefficient algebra satisfies
+
+\[
+ \|(1-P)WP\|_2=\|PW(1-P)\|_2.
+\]
+
+Thus the sharp first gate is `(RPC47)`: extract one finite-multiplicity
+projection cut, make the forbidden leakage tend to zero, and certify fixed
+positive leakage in the opposite direction.  Four sectors and a complete
+Leavitt-family reconstruction should only be attempted if this one-cut
+recipe cannot be obtained.
+
+Before attempting even that positive-mass estimate, test the support-only
+Hall gate `(RPC43)`.  If a root-character compression forces a collection
+of source sectors to land in target sectors of strictly smaller total
+weight, unitarity gives a fixed forbidden-block lower bound immediately.
+The bare four-coordinate comb graph is Hall-balanced, so any such deficit
+must arise only after Pauli/root-sector compression; this is a fast and
+decisive falsification test.
+
 The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect
