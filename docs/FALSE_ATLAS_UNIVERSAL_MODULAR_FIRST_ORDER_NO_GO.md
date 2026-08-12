@@ -136,6 +136,7 @@ FALSE construction must instead change at least one of:
 3. the inner order-zero chart alignment; or
 4. the use of one common (A_8)-module for the two full charts.
 
-The Boolean higher-order theorem remains independently useful: in the
-natural module, even raising the univariate dual-number order cannot evade
-the obstruction.
+The higher-order theorem remains independently useful: in the natural
+module, even changing coefficient field and raising the univariate
+dual-number order cannot evade the obstruction. See
+`FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md`.

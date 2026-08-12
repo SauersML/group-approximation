@@ -72,7 +72,7 @@ two-chart image forces the desired phase to vanish.  This is stronger than
 the earlier scalar-valued statement: it uses the actual relation-module
 condition and permits the full modular commutant.
 
-**Theorem 2 (all-order natural-module rigidity).** Put
+**Theorem 2 (characteristic-two all-order natural-module rigidity).** Put
 
 \[
  D_N=\mathbb F _2[\varepsilon]/(\varepsilon^N).
@@ -90,7 +90,9 @@ certified words are identity and all four survivors commute with the first
 Thus the positive eight-point certificate cannot be promoted to a complete
 central-boundary model by changing subset degree, adding Boolean permutation
 sectors or multiplicity at first order, nor by passing to higher univariate
-dual numbers in the natural module.
+dual numbers in the natural module. The natural-module conclusion has since
+been extended from characteristic two to every coefficient field in
+`FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md`.
 
 ## Exact linearization
 

@@ -4,6 +4,25 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: natural-module formal deformations fail over every field
+
+The all-fields square-zero theorem has an all-order strengthening on the
+natural eight-point permutation module. The integral first-order constraint
+matrix has rational rank `62` and an exact `62 x 62` minor of determinant
+`8192=2^13`. Since the chart commutant `<I,J>` is always a two-dimensional
+kernel, it is the entire constrained kernel over every odd field. The first
+noncommutant coefficient of any truncated formal deformation would therefore
+already contradict the linear equations. In characteristic two the kernel
+has one extra projective line, whose nonzero representative is quadratically
+obstructed by exact truncated-ring replay. Hence every univariate
+`k[epsilon]/(epsilon^N)` deformation on the natural module kills the marked
+phase, for every field `k` and every `N`.
+
+This closes “raise the nilpotent order/change characteristic” on the natural
+module. It does not close nonlinear analytic branches, other modules,
+different chart modules, or different order-zero holonomy. Full theorem:
+`docs/FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md`.
+
 ### 2026-08-12: the inner first-order atlas obstruction holds over every field
 
 The modular certificate is an instance of a general representation-free

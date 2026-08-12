@@ -1,5 +1,26 @@
 # NOTEPAD
 
+## Natural-module all-field all-order obstruction (2026-08-12)
+
+For the natural eight-point `A_8` permutation module, the integral matrix of
+the 24 zero-derivative constraints plus commutant-valued centrality of all
+four survivors has rational rank `62`. An exact `62 x 62` witness minor has
+determinant `8192=2^13`. Consequently its kernel over every odd field is
+exactly the two-dimensional chart commutant `<I,J>`. Any first
+noncommutant coefficient of a truncated formal alignment is therefore
+impossible already at its first visible order.
+
+In characteristic two the constrained kernel has one additional projective
+line. Its nonzero representative (weight `20`) is exactly quadratically
+obstructed. The usual first-noncommutant-coefficient argument combines these
+facts into an all-order theorem for every field and every
+`k[epsilon]/(epsilon^N)`. Output hash:
+`eeba09db179087df0f7019b01faf212aebb6f03f01964e38e12d16e812bb8518`.
+See `docs/FALSE_ATLAS_NATURAL_ALL_FIELD_HIGHER_ORDER_NO_GO.md`.
+
+This is still not analytic unitary local rigidity and does not touch singular
+branches or other order-zero/module geometries.
+
 ## Universal signed first-order atlas obstruction over every field (2026-08-12)
 
 The characteristic-two group-algebra certificate is part of a general
