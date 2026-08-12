@@ -163,3 +163,10 @@ the inference from an exact relative quotient to an asymptotic
 Hilbert--Schmidt obstruction.  The finite ring tower is excluded only from
 the exact-splitting route; its growing-word branch-cut route remains open and
 is now an explicit modular gauge computation.
+
+The first exact HAP restriction-map calculation is recorded in
+`experiments/split_clock_relative_h2_k1_results.md`.  At `p=3`, `k=1`, the
+ambient multiplier is `C_3 directSum C_3 directSum C_9`, while the natural
+translation-positive subgroup has image `C_3 directSum C_9` and cokernel
+`C_3`.  This independently verifies exact absorption of a growing-order
+direction without supplying a quantitative fixed-window obstruction.
