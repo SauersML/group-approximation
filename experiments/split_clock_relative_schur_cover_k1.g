@@ -69,6 +69,20 @@ imageC := Intersection(multiplier, DerivedSubgroup(preC));;
 combinedImage := Group(Concatenation(Igs(imageH), Igs(imageC)));;
 intersectionImage := Intersection(imageH, imageC);;
 
+if AbelianInvariants(multiplier) <> [3, 3, 9] then
+    Error("unexpected ambient Schur multiplier");
+fi;
+if AbelianInvariants(imageH) <> [3, 9]
+   or AbelianInvariants(imageC) <> [3, 9] then
+    Error("unexpected subgroup image");
+fi;
+if imageH = imageC or AbelianInvariants(intersectionImage) <> [9] then
+    Error("unexpected image intersection");
+fi;
+if combinedImage <> multiplier then
+    Error("the two subgroup images do not fill the multiplier");
+fi;
+
 Print("ambient_order=", Size(ambient), "\n");
 Print("multiplier=", AbelianInvariants(multiplier), "\n");
 Print("positive_h_image=", AbelianInvariants(imageH), "\n");

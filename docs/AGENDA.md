@@ -1845,6 +1845,16 @@ minimized over Schreier gauges, together with its phase on the growing
 collision.  See `FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md` and
 `FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
 
+The common-Schur-cover calculation now resolves the residual first-level
+image-comparison ambiguity exactly.  At `p=3,k=1`, the ambient multiplier is
+`C_3 directSum C_3 directSum C_9`.  The translation-positive and pure-cycle
+subgroups have unequal images `C_3 directSum C_9`, intersect in `C_9`, and
+together generate the entire ambient multiplier.  Hence their simultaneous
+relative cokernel is zero, not the `C_3` seen after either map separately.
+This confirms that no exact natural-tower Schur direction was hidden by the
+two independent HAP target models.  See
+`experiments/split_clock_relative_schur_cover_k1_results.md`.
+
 The local metric part of that distinction is now solved explicitly.  On the
 positive subgroup `P_k=J_k times <h>`, first power the primitive central
 character by the inverse of the distinguished unit clock coordinate.  The
