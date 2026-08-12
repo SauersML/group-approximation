@@ -44921,3 +44921,43 @@ Therefore any cyclic amplification retaining fixed marked energy needs
 to the exact scale required for marked use.  The remaining nonlinear target
 is a genuinely cycle-microscopic, word-macroscopic class; range-side hybrid
 repair and sub-square-root canonical multiples are now ruled out.
+
+# 2026-08-12: the actual lamp vertex has a uniform twisted-innerness gap
+
+Full proof: `docs/FALSE_TWISTED_VERTEX_INNERNESS_GAP.md`.
+
+The one-orbit edge shear is exactly spatial in its index-two crossed
+product, but it cannot be extended by an internal stabilization of the
+canonical vertex.  For the characteristic-two symplectic Kun--Thom pair,
+the identity is the only finite `Gamma`-conjugacy orbit in the Laurent
+ambient.  Since every vertex lamp orbit is free, the identity coset is also
+the only finite `Gamma`-conjugacy orbit in the actual lamp vertex modulo the
+central involution.
+
+In the negative corner `M=pL(J)`, let `chi` be the odd-orbit parity
+character and define the twisted conjugation representation
+
+```text
+rho(k)xi=chi(k)(pu_k)xi(pu_k)^*.
+```
+
+Its `Gamma`-fixed space in every `M_m(M)` is exactly
+`M_m(C) tensor Cp`.  An odd lamp acts as `-1` on that space.  If `kappa` is
+a Kazhdan constant for a finite set `S subset Gamma`, property `(T)` gives
+the dimension-independent estimate
+
+```text
+max_(k in S union {q})
+ ||V(1_m tensor pu_k)V^*-chi(k)(1_m tensor pu_k)||_2
+ >= 2kappa/(kappa+4)
+```
+
+for every unitary `V in M_m(pL(J))`.
+
+Thus no finite matrix amplification, tensor stabilization, or internal
+regular-sector limit can implement the actual clutching shear.  Any
+successful FALSE construction must create a genuinely external
+Connes-embeddable correspondence (or a nonregular vertex embedding) with
+new relative `Gamma`-multiplicity.  This complements the edge
+spatialization theorem: the edge obstruction is gone, and the exact vertex
+extension obstruction is now quantitative.
