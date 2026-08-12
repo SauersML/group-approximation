@@ -47,6 +47,22 @@ constructing that encoding from the finite normal-`0/1` table, not proving a
 relative metric estimate.  Becker--Lubotzky still rules out ordinary
 HS/permutation stability for infinite property-`(T)` groups.
 
+There is a decisive qualification.  The hard monomial witnesses lie in the
+kernel of the base permutation ultraproduct, so their word paths are closed
+at `1-o(1)` of base points.  If a distribution of such encoded loops has
+fillings of at most `m` faces and weighted face congestion at most `C`, then
+
+    E ell(holonomy)^r
+      <=m^(r-1) C ||curvature||_(L^r)^r.
+
+Thus bounded `m,C` and vanishing curvature kill the phase witness.  A
+building encoding can evade this only by producing positive base motion,
+letting filling geometry diverge, or retaining nonvanishing defects.  The
+first option, for every nonidentity element, already makes the base
+permutation model faithful and hence sofic.  The `A_3` cone is therefore a
+real synchronization component, but not a shortcut through the phase-kernel
+extension obstruction.
+
 ## 2026-08-11: a bounded-overlap harmonic packet basis would prove the family bound
 
 Full proof: `docs/TRUE_HARMONIC_RIESZ_PACKET_CRITERION.md`.

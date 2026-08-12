@@ -221,8 +221,13 @@ For a uniform automorphism orbit of paths of length at most `L`, their average
 holonomy changes by at most `9 sqrt(3)L` times the curvature RMS.  Thus a
 bounded-congestion orbit-redundant open-path encoding would retain the marked
 trace signal.  Becker--Lubotzky rules out replacing this by ordinary stability
-of an infinite property-`(T)` presentation; constructing that encoding is the
-next target.
+of an infinite property-`(T)` presentation.  There is also an exact kernel-
+loop no-go: an element in the kernel of the base permutation ultraproduct is
+a closed path on `1-o(1)` of points, and any bounded-fill, bounded-congestion
+building encoding with vanishing curvature forces its phase holonomy to
+vanish.  Therefore the encoding must turn phase-kernel elements into positive
+base motion; doing this for every nonidentity element already makes the base
+model sofic.  This is the noncircular core still missing.
 
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give

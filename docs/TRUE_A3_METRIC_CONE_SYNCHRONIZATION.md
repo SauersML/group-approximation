@@ -437,7 +437,85 @@ The theorem does not create that repeated encoding.  It proves that once an
 encoding distributes a fixed tested word over a bounded-length automorphism
 orbit, metric synchronization will not erase its average witness signal.
 
-## 7. Remaining universal bridge
+## 7. Kernel-loop obstruction
+
+The open-path theorem does not address the hardest witnesses in the existing
+monomial reduction.  This failure is structural.
+
+Let
+
+```text
+M_n(g)=D_n(g)P_n(g)                                  (AMC43)
+```
+
+be asymptotically multiplicative monomial tables, and let `sigma_n(g)` be
+their base permutations.  The base maps define a homomorphism to a metric
+ultraproduct of finite symmetric groups.  An element `k` of its kernel
+satisfies
+
+```text
+d_Ham(sigma_n(k),1)->0.                              (AMC44)
+```
+
+Hence the word path for `k` is a closed loop at `1-o(1)` of the base points.
+The surviving phase obstruction is precisely that these closed paths may
+still have macroscopic phase holonomy.
+
+The next lemma applies to any proposed auxiliary-complex encoding.  Let
+`nu_n` be a probability distribution on encoded closed loops `gamma`, each
+with a chosen disk containing at most `m` faces.  Assume the weighted face
+congestion is at most `C`, meaning
+
+```text
+E_(gamma~nu_n) number_of_occurrences(tau in disk(gamma))
+  <=C c_X(tau)                                       (AMC45)
+```
+
+for every face `tau`.
+
+**Theorem 5 (bounded-fill kernel-loop no-go).**  For every `r>=1`,
+
+```text
+E_gamma ell(Hol_phi(gamma))^r
+ <=m^(r-1) C ||K_phi||_(r,T)^r.                     (AMC46)
+```
+
+In particular, a sequence with bounded `m,C` and curvature tending to zero
+cannot retain a macroscopic closed-loop phase witness.
+
+**Proof.**  Apply `(AMC11)` to each disk, average, interchange the two finite
+sums, and use `(AMC45)`.  End proof.
+
+For the `A_3(F_q)` cone, the same conclusion follows directly by closing a
+bounded-congestion path orbit and using Theorem 3.  Therefore a
+witness-preserving building encoding of an element satisfying `(AMC44)` must
+do at least one of the following:
+
+1. move the encoded base endpoint on a positive density of points;
+2. use filling area or congestion tending to infinity; or
+3. introduce additional curvature that does not tend to zero.
+
+The third option is not an approximation.  The second recreates the
+unbounded integral/cosystolic problem rather than solving it.  The first
+option makes the base permutation image detect `k`.
+
+If the first option works for every nonidentity element while multiplication
+defects vanish, the base permutations themselves form a sofic approximation.
+Thus the open-path encoding needed to kill the entire phase kernel is already
+equivalent in force to making the permutation-ultraproduct map faithful.
+
+This calibrates the positive result sharply:
+
+> the `A_3` cone can synchronize fiber data over a supplied finite base and
+> can protect witnesses which already move between base fibers; it cannot,
+> with bounded geometry and vanishing curvature, turn a phase-only kernel
+> witness into base motion.
+
+That phase-only kernel is exactly the extension-orientation obstruction in
+`TRUE_CARTAN_MONOMIAL_GATE.md` and the Haar phase field in
+`TRUE_HAAR_PHASE_KERNEL.md`.
+
+## 8. Remaining universal bridge
 
 Theorem 3 provides a new reusable component:
 
@@ -453,10 +531,18 @@ that it is enough to repeat the witness as relative/open-path data on a
 bounded-congestion path orbit.  A controlled presentation sector is another
 possibility.
 
+Theorem 5 adds an essential qualification: for an element in the kernel of
+the base permutation model, its paths are closed on almost every point, and
+bounded building synchronization kills its phase holonomy.  Hence a full
+encoding theorem would have to convert phase-kernel elements into genuine
+base motion.  Accomplishing that for every nontrivial element already makes
+the base model sofic.
+
 This is sharper than asking for ordinary HS or permutation stability, which
 is false by Becker--Lubotzky.  The metric relative estimate is now
 `(AMC39)--(AMC42)`; the next legitimate target is an **orbit-redundant
-open-path encoding** of the finite-prefix table into the building.
+open-path encoding which also proves phase-kernel escape**.  The latter is
+the noncircular heart of the problem.
 
 ## Primary sources
 
