@@ -189,8 +189,18 @@ J_k=\operatorname{Aug}_{\mathbb Z/n}(C_M)
 
 be the augmentation ideal of the regular \((\mathbb Z/n)[C_M]\)-module.
 Let \(\bar c\) act by the regular cycle and let \(\bar h\) act trivially.
-Then \(H_1(B_k,J_k)\) contains a canonical cyclic subgroup of exact order
-\(p^k\).
+Then
+
+\[
+\boxed{
+H_1(B_k,J_k)
+\cong
+(\mathbb Z/p^k\mathbb Z)^2.
+}
+\]
+
+One summand is the canonical clock class in the \(\bar h\)-coordinate; the
+other is the pure \(\bar c\)-cycle sector.
 
 #### Proof
 
@@ -279,11 +289,54 @@ v_p(N_M)=v_p(q^M-1)-v_p(q-1)=k,
 \]
 
 so \(\gcd(N_M,p^{k+1})=p^k\).  The displayed summand is therefore
-\(\mathbb Z/p^k\mathbb Z\). \(\square\)
+\(\mathbb Z/p^k\mathbb Z\).
+
+For completeness, the \(\bar c\)-coordinate can also be read directly from
+the same Fox complex.  Its cycles are
+
+\[
+\ker(\bar c-1:J_k\to J_k).
+\]
+
+The conjugacy relator has zero \(\bar c\)-component, and the
+\(\bar c^M\)-relator contributes the norm operator
+
+\[
+1+\bar c+\cdots+\bar c^{M-1},
+\]
+
+which vanishes on the augmentation ideal.  The fixed vectors of the regular
+\(M\)-cycle are the constant vectors \(a\mathbf 1\), and the augmentation
+condition is
+
+\[
+Ma=0\pmod n.
+\]
+
+For \(M=p^k\) and \(n=p^{k+1}\), this is equivalent to \(p\mid a\), so the
+fixed-vector group is cyclic of order \(p^k\).  The Fox boundary is block
+diagonal in the \(\bar h\)- and \(\bar c\)-coordinates.  Therefore
+
+\[
+H_1(B_k,J_k)
+\cong
+J_k/(\bar c-q)J_k
+\oplus J_k^{\langle\bar c\rangle}
+\cong
+(\mathbb Z/p^k\mathbb Z)^2.
+\]
+
+\(\square\)
 
 The generator is the finite reduction of the integral clock class.  Its dual
 is the exact clock/shift block: \(\bar c\) acts by the length-\(p^k\) shift,
 and \(\bar h\) has the orbit of a character of order \(p^{k+1}\).
+
+The direct-sum decomposition is useful for relative survival.  Homology
+coming from the pure subgroup \(\langle\bar c\rangle\) lands in the second
+summand and has zero projection to the clock summand.  Thus the common
+\(\bar h\)-coordinate character simultaneously annihilates every stabilizer
+contained in \(\langle\bar c\rangle\).
 
 ### Corollary 5 (global \(p^k\) curvature from an induced module)
 

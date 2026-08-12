@@ -320,3 +320,107 @@ projection \(\Pi_k\), and so does their sum.  The image of a generator of
 This gives a quantitative audit target for the earlier stabilizer theorem:
 one need not prove complete absence of the \(\bar h\)-direction, only that
 its minimum \(p\)-adic depth tends to infinity.
+
+## Cyclic complements are killed exactly
+
+The depth bound is not sharp for stabilizers that project isomorphically onto
+any subgroup of the \(\bar c\)-cycle.  Coefficient invariance supplies the
+complementary power of \(p\).
+
+### Proposition 6 (every cyclic complement has zero clock image)
+
+Let
+
+\[
+H=\langle g\rangle\leq B_k,
+\qquad
+g=\bar h^a\bar c^t,
+\]
+
+and suppose that the projection of \(H\) to \(\langle\bar c\rangle\) is
+injective.  Then
+
+\[
+\Pi_k\bigl(\operatorname{im}(H_1(H,J_k)\to H_1(B_k,J_k))\bigr)=0.
+\]
+
+#### Proof
+
+Write
+
+\[
+t=p^ru,
+\qquad p\nmid u,
+\qquad0\leq r\leq k,
+\]
+
+where \(r=k\) is the trivial-projection case.  For \(r<k\), injectivity says
+that \(g\) has order \(p^{k-r}\).  Its normal component after taking this
+power is zero modulo \(n=p^{k+1}\).  That component is
+
+\[
+a\left(1+q^t+q^{2t}+\cdots+q^{(p^{k-r}-1)t}\right),
+\qquad q=1+p.
+\]
+
+Lifting the exponent gives
+
+\[
+v_p\left(
+\frac{q^{tp^{k-r}}-1}{q^t-1}
+\right)=k-r.
+\]
+
+The order relation modulo \(p^{k+1}\) therefore forces \(p\mid a\).
+More precisely,
+
+\[
+v_p(a)\geq r+1.
+\]
+
+A one-cycle for the cyclic group \(H\) has coefficient
+\(y\in J_k\) fixed by the action of \(g\).  Since \(\bar h\) acts trivially,
+this says
+
+\[
+(\bar c^t-1)y=0.
+\]
+
+In the clock quotient
+
+\[
+J_k/(\bar c-q)J_k\cong\mathbb Z/p^k,
+\]
+
+it becomes
+
+\[
+(q^t-1)[y]=0.
+\]
+
+Now \(v_p(q^t-1)=r+1\).  Hence
+
+\[
+[y]\in p^{k-r-1}\mathbb Z/p^k
+\]
+
+when \(r<k\).  The bar-to-Fox map sends the \(H\)-cycle to an
+\(\bar h\)-coordinate equal to \(a[y]\), up to multiplication by a power of
+the unit \(q\).  The two divisibilities give
+
+\[
+v_p(a[y])\geq(r+1)+(k-r-1)=k,
+\]
+
+so this product is zero modulo \(p^k\).  If \(r=k\), injectivity forces
+\(H=1\), and the conclusion is immediate. \(\square\)
+
+Thus every cyclic subgroup disjoint from \(\langle\bar h\rangle\) is killed
+by the same clock projection.  If
+
+\[
+B_{k,x}\cap\langle\bar h\rangle=1
+\]
+
+for every positive double-coset stabilizer, then Proposition 3 closes the
+relative survival step with exact order \(p^k\).
