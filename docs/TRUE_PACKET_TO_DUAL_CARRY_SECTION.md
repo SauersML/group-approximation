@@ -64,8 +64,10 @@ performance result, not a mathematical obstruction.  The implementation now
 uses the faster rational-kernel/intersection construction already validated
 by the level-`121` systole computation.  A second attempt using the direct
 integer kernel was stopped by its fifteen-minute cap before the kernel
-finished; no further job was submitted.  No numerical section norm is claimed
-in this note until the end-to-end certificate finishes.
+finished.  The direct sparse packet equations subsequently bypassed both
+normal-form bottlenecks and produced the complete rank-seven section with
+norm at most `21.9892802607...`; see
+`TRUE_N121_DUAL_CARRY_SECTION.md`.
 
 ## 2. Packet splitting theorem
 

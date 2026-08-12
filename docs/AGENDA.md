@@ -2678,9 +2678,22 @@ The rows of `Z` annihilate the saturated boundary lattice, project to the
 `u_i`, and form an integral section of
 `0 -> L -> M_Sigma -> Q^# -> 0`.  Thus the full rank-seven carry problem is
 one exact right-inverse computation, not a nonlinear phase or modular-SAT
-problem.  Two capped MSI attempts exposed the performance bottleneck but did
-not produce the final section norm; no further job was launched.  See
-`TRUE_PACKET_TO_DUAL_CARRY_SECTION.md`.
+problem.  Direct content-normalized unit elimination solves the `632 x 1940`
+system for all seven right sides in `0.057s`: `630` unit pivots leave two
+rows of contents `2,4`, division exposes the last two unit pivots, and no
+residual remains.  Converged greedy range reduction gives an exact integral
+section with coefficients at most `2`, lift squared norms
+`480,188,67,91,226,6,34`, and
+
+```text
+||s_121||<=21.9892802606427564....
+```
+
+This is the first full numerator certificate for all seven new level-`121`
+directions.  It is an upper bound, not CVP, and the `2,4` residual contents
+are presentation-dependent rather than intrinsic Smith invariants.  See
+`TRUE_PACKET_TO_DUAL_CARRY_SECTION.md` and
+`TRUE_N121_DUAL_CARRY_SECTION.md`.
 
 ## Banked (kernel-checked, this repo)
 

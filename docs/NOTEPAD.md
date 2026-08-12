@@ -45863,3 +45863,49 @@ inverse, while a direct integer-kernel replacement also hit its `15m` cap.
 No third job was submitted. The reusable implementation now follows the
 already validated rational-kernel/intersection route; the final numerical
 section norm remains open.
+
+# All seven level-121 dual carry directions now have an exact integral section (2026-08-12)
+
+Full certificate and proof:
+`docs/TRUE_N121_DUAL_CARRY_SECTION.md`.
+
+The determinant-one packet turns the dual lift problem into the direct sparse
+system
+
+`<z_i,b_j>=0`, `<z_i,c_j>=delta_ij`
+
+with `632` equations, `1940` variables, seven right sides, and only `6746`
+nonzeros. Content-normalized integer unit elimination solves all seven fibers
+in `0.057s`:
+
+`630 unit pivots -> two rows of contents 2,4`
+` -> divide contents -> two unit pivots -> zero residual.`
+
+Exact verification gives `d_3 Z^T=0` and `C Z^T=I_7`. After greedy reduction
+by literal range rows converges, the lift Gram is
+
+```text
+[[480,-5,-23,-11,97,-1,-1],
+ [-5,188,-20,-25,17,-2,-1],
+ [-23,-20,67,14,-35,2,2],
+ [-11,-25,14,91,-34,0,-17],
+ [97,17,-35,-34,226,-1,-1],
+ [-1,-2,2,0,-1,6,0],
+ [-1,-1,2,-17,-1,0,34]].
+```
+
+The exact generalized polynomial gives
+
+`||s_121||<=21.9892802606427563...`.
+
+All coefficients are at most `2`, with supports
+`468,188,67,91,220,6,34`. This is the first simultaneous numerator-side
+integral decoder for all seven new square-level directions. It is a certified
+upper bound, not a CVP optimum. The residual contents `2,4` are specific to
+the selected equations/pivots and are not claimed as intrinsic Smith torsion.
+
+Combined with the previous dual systole `0.4532023076...`, level `121` now
+has exact denominator and numerator control. The section norm is larger than
+the rank-two values at `53,61`, but no level-`121` harmonic vector is below
+the spherical threshold, so this does not create a dangerous class. The
+family target remains a uniform packet-and-lift Gram theorem.
