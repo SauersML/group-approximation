@@ -1,5 +1,11 @@
 # Schur curvature is necessary for the central FALSE route
 
+**Closure update for the explicit symmetric double.** The necessary growing
+curvature condition is not sufficient there: its full finite residual
+\(R\) satisfies \(R=[D,R]\), forcing a fixed relator coefficient vector and
+a uniform bound on every canonical character ratio. See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 ## Setup
 
 Let

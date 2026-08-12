@@ -276,9 +276,12 @@ construction.
 
 ## Scope and remaining gate
 
-This theorem does **not** prove that the explicit Kun--Thom radical word has
-unbounded \(\delta_Q(w)\). It proves that this is now the sole arithmetic
-gate for the canonical central-character route.
+**Closure update.** The explicit Kun--Thom radical word does not have
+unbounded \(\delta_Q(w)\). In fact the full finite residual \(R\) of the
+symmetric double satisfies \(R=[D,R]\), which supplies one fixed relator
+coefficient vector in every canonical module. Thus all \(\delta_Q(w)\) and
+all \(\Lambda_Q(w)\) are uniformly bounded for every \(w\in R\). See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
 
 It is also important not to confuse \(\delta_Q(w)\) with an integral filling
 norm in a full finite-cover cellular complex. The latter normally has
@@ -287,3 +290,5 @@ norm in a full finite-cover cellular complex. The latter normally has
 collapse after passage to coinvariants. A proof of FALSE must establish
 unbounded distortion in the fixed-rank canonical module itself, or prove a
 comparison theorem preventing that collapse for the chosen quotient tower.
+For the current double, the stronger commutator theorem proves that collapse
+does occur.

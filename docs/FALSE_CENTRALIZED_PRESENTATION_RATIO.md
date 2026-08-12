@@ -4,6 +4,12 @@ Date: 2026-08-11
 
 ## 1. Outcome
 
+**Closure update for the explicit symmetric double.** Its universal ratio is
+finite for every radical word. The full finite residual \(R\) satisfies
+\(R=[D,R]\), which forces one fixed integral relator expression in every
+canonical finite quotient. See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 For a finitely presented group `P` and a nontrivial word in its sofic
 radical, every finite central-relator search factors through one canonical
 finitely presented group.  On each finite quotient, the radical word

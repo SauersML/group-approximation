@@ -36,6 +36,18 @@ canonical central route proves FALSE if and only if the integral coefficient
 distortions \(\delta_Q(w)\) are unbounded. See
 `FALSE_FIXED_RANK_CHARACTER_COMPACTNESS.md`.
 
+**Closure update for the explicit symmetric double.** Its full finite
+residual \(R\) satisfies \(R=[D,R]\). This produces one fixed relator
+coefficient vector in every canonical module, so
+
+\[
+\sup_Q\delta_Q(w)<\infty
+\]
+
+for every radical word \(w\in R\). Hence the criterion below is exact but
+cannot prove FALSE for the current Kun--Thom double. See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 ## The canonical cover
 
 Fix a finite quotient
@@ -453,14 +465,15 @@ along some finite quotient family. The compactness theorem then supplies the
 required character ratios automatically.
 
 This also clarifies what the existing \(p^k\)-cycle amplifier does and does
-not yet prove.  Large order of the marked class is not by itself enough.  The
-needed invariant is its dual separation from the fixed relator classes,
-measured by
+not prove. Large order of the marked class is not by itself enough. For the
+explicit symmetric double, the finite-residual commutator theorem now proves
+that the needed dual separation is uniformly bounded. The invariant is
 
 \[
 \frac{W_{Q,m}(\chi)}{R_{Q,m}(\chi)}.
 \]
 
-The exact next bridge is therefore to identify the integral
-Baumslag--Solitar transgression generator inside one of the canonical modules
-\(C_Q/mC_Q\), including the images of the fixed presentation relators.
+Thus identifying the local Baumslag--Solitar transgression generator inside
+these canonical modules cannot finish the proof. A successful continuation
+must use a genuinely noncentral kernel-carry model or a different radical
+candidate whose finite residual has nonzero coinvariants.

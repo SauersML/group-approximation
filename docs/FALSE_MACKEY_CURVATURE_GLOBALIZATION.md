@@ -1,5 +1,12 @@
 # Mackey globalization of the local clock curvature
 
+**Closure update for the explicit symmetric double.** No Mackey-globalized
+class can satisfy the final central marked/relator separation condition for
+this presentation. Its full finite residual \(R\) satisfies \(R=[D,R]\), so
+the canonical character ratios are uniformly bounded. The Mackey test below
+remains valid for other candidates. See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 ## Why this is the remaining extension problem
 
 The canonical central-quotient criterion separates a character of the finite
@@ -185,4 +192,3 @@ image.
 
 This formulation replaces simultaneous matrix covariance by finite group
 homology, finite double-coset arithmetic, and a finite abelian gauge problem.
-

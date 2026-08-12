@@ -4,6 +4,13 @@ Date: 2026-08-11
 
 ## 1. Outcome
 
+**Closure update for the explicit symmetric double.** Although the marked
+classes below may occupy growing Schur multipliers, their position relative
+to the fixed relator classes has uniformly bounded coefficient distortion.
+The reason is group-theoretic: the full finite residual \(R\) satisfies
+\(R=[D,R]\). Thus this marked-Schur route cannot finish FALSE for the
+current presentation. See `FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 After the real relation-filling closure in
 `FALSE_REAL_RELATION_FILLING_NO_GO.md`, the quotient-dependent part of the
 central search has a canonical finite home.
@@ -153,4 +160,3 @@ especially sharp: realize its growing primary transgression generator as the
 marked Hopf class `(SMR5)` in a finite quotient of the full presented double.
 Once this identification is made, only the phases of the fixed relator
 classes in the same Schur/lattice coordinates remain to be controlled.
-

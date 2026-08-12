@@ -4,6 +4,12 @@ Date: 2026-08-11
 
 ## 1. Outcome
 
+**Closure update for the explicit symmetric double.** The criterion in this
+note remains valid, but its hypotheses cannot occur for that presentation.
+Its full finite residual \(R\) satisfies \(R=[D,R]\), so every radical word
+has one fixed relator coefficient vector in all finite central-relator
+models. See `FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
 The remaining frozen-clock search can be formulated without optimizing
 unitary matrices.  It is enough to find finite groups with a cyclic central
 subgroup and generator labels for which every defining relator has

@@ -206,7 +206,7 @@ discriminant--Voronoi geometry. The compactness theorem is qualitative and
 does not give an effective bound.
 
 For the fold-aligned Baumslag--Solitar construction, the remaining symbolic
-task is now precise:
+task would have been:
 
 1. realize the integral transgression generator in a finite quotient of
    \(A_Q=L/[F,L]\);
@@ -214,4 +214,11 @@ task is now precise:
 3. evaluate the displayed sine ratio along \(M=p^k\).
 
 The already-proved order formula for the marked class supplies item 1 only
-partially.  It does not determine the relator residues required in item 2.
+partially. It does not determine the relator residues required in item 2.
+
+**Closure update.** The finite-residual commutator theorem proves directly
+that the displayed spectral constants are uniformly bounded for every
+radical word of the explicit symmetric double. Its full finite residual
+\(R\) satisfies \(R=[D,R]\), so one fixed relator coefficient vector works
+in every canonical relation module. See
+`FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
