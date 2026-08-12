@@ -2473,6 +2473,25 @@ Fourier concentration proves FALSE, while a Plancherel-flat filling leaves
 only the nonlinear discriminant/carry obstruction.  See
 `FALSE_NONABELIAN_DECK_FRAME_BLOCKS.md`.
 
+For the explicit constant-stabilizer tower, the Kazhdan decoder forces the
+flat alternative.  It upgrades from one bounded noninvariant filling to an
+equivariant right inverse for the entire deck orbit.  If `T_n` is the marked
+analysis operator of all translated minimum real fillings, then
+
+```text
+Fill_(R,2)(w;H_n) <= ||T_n||_op
+ <= max{Fill_(R,2)(w;H_n),C_J}.
+```
+
+Thus the intermediate real fill is the only possible unbounded real mode.
+If it is bounded, every nontrivial reduced deck density obeys the uniform
+Plancherel-flat estimate
+`||rho_(n,pi)||_op<=C_J^2 dim(pi)/|A_n|`; no hidden
+low-capacity real sector remains.  Integral filling still diverges in this
+branch, so the sole surviving gate is the nonlinear marked
+discriminant/carry obstruction.  See
+`FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

@@ -64,13 +64,13 @@ is an orthonormal basis and `||T_(A,q)||=1`.  Therefore the tempting claim
 is false.  The invariant component amplifies coherently; a regular-like
 noninvariant component can remain perfectly flat.
 
-For the constant-stabilizer Laurent tower, this produces an exact new
-alternative.  Unbounded intermediate real filling already proves FALSE.
-On a bounded-real subsequence, either the nontrivial deck Fourier density
-concentrates on `o(m_n)` effective capacity, which also proves FALSE by
-`(NDF5)--(NDF7)`, or the canonical filling becomes Plancherel-flat in the
-precise reduced-density sense above.  Only the latter branch must be sent
-to the nonlinear discriminant/carry analysis.
+For a general deck tower, this produces an exact new alternative:
+low-capacity concentration proves FALSE, while the escape is
+Plancherel-flatness in the precise reduced-density sense above.  In the
+constant-stabilizer Laurent tower the operator-level Kazhdan decoder now
+proves that bounded intermediate real filling forces the flat branch; see
+`FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md`.  Hence only the nonlinear
+discriminant/carry analysis survives there.
 
 ## 2. Exact finite-group twirling formula
 
@@ -290,22 +290,26 @@ one has
 `||q_n||>=beta/M`.                                   `(NDF40)`
 
 Thus `(NDF38)` leaves a fixed positive amount of nontrivial isotypic mass.
-Corollary 2 now gives the exact dichotomy:
+In a general tower, Corollary 2 gives the exact dichotomy between
+low-capacity concentration, which proves FALSE, and linear-capacity
+Plancherel spreading.
 
-1. that mass has a positive portion on `o(m_n)` effective Plancherel
-   capacity, and Corollary 3 proves FALSE;
-2. every positive portion of it occupies `Omega(m_n)` capacity, with the
-   reduced densities satisfying `(NDF27)`.
+For this explicit Kazhdan tower the second alternative is now known to be
+forced.  The operator-level refinement in
+`FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md` constructs a simultaneous
+equivariant decoder for the entire noninvariant word orbit and proves
 
-The second branch is the nonabelian form of a regular/diffuse filling.  It
-shows why a lower bound on `||(1-P_A)q_n||` is not enough and identifies
-what a successful real-sector calculation must actually detect: low-rank
-or low-capacity concentration of the finite deck Fourier transforms.
+`||T_(A_n,q_n)||_op`
+` <=max{Fill_(R,2)(w;H_n),C_J}`.                     `(NDF41)`
+
+Thus bounded intermediate real fills imply `(NDF27)` uniformly for every
+nontrivial block; low-capacity real concentration cannot occur here.  This
+sharpens the general dichotomy rather than contradicting it.
 
 If the second branch holds and the intermediate real fills stay bounded,
 the known integral filling escape still forces the canonical discriminant
 radii to diverge.  The remaining obstruction is then genuinely nonlinear:
 one must prove marked nonisotropy/incidence for those low-carry classes.
-The theorem here separates that arithmetic branch from all nonabelian real
-frame concentration, rather than conflating both under the phrase
-"noninvariant filling."
+The two theorems together separate the arithmetic branch from all
+nonabelian real-frame concentration, rather than conflating both under the
+phrase "noninvariant filling."

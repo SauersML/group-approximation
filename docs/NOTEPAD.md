@@ -44727,3 +44727,44 @@ FALSE, or it is genuinely Plancherel-flat and the surviving obstruction is
 the nonlinear marked discriminant/carry branch.
 
 Full proof: `docs/FALSE_NONABELIAN_DECK_FRAME_BLOCKS.md`.
+
+# 2026-08-12: the Kazhdan decoder bounds the whole orbit frame
+
+The pointwise noninvariant filling from the stabilizer argument upgrades to
+an equivariant bounded right inverse on the entire deck orbit.  For
+
+```text
+A_n=H_n/K_n,
+Q_n delta_a=the minimum real filling of a b_n,
+T_n=Q_n^*,
+```
+
+there is one constant `C_J`, independent of the cover, such that
+
+```text
+Fill_(R,2)(w;H_n) <= ||T_n||_op
+ <= max{Fill_(R,2)(w;H_n),C_J}.
+```
+
+The proof takes the uniformly bounded Moore--Penrose right inverse of the
+Kazhdan divergence operator on `ell^2_0(A_n)`, composes it with the fixed
+finite chains filling `(s-1)b`, and finally projects orthogonally to the
+minimum-filling subspace.  All maps are deck equivariant.  On the invariant
+unit vector, constant-lift scaling gives exactly the intermediate real
+filling norm.
+
+Therefore unbounded intermediate real filling proves FALSE, while bounded
+intermediate real filling bounds **every** nonabelian real deck sector.  In
+the latter branch the reduced densities automatically satisfy
+
+```text
+||rho_(n,pi)||_op <= C_J^2 dim(pi)/|A_n|
+```
+
+for every nontrivial irreducible `pi`.  The low-capacity branch of the
+general deck-frame theorem is impossible in this explicit tower.  The sole
+remaining obstruction is now genuinely nonlinear: divergent integral
+discriminant radius with bounded real orbit frame, and the need to prove
+marked nonisotropy/incidence or a uniform integral decoder.
+
+Full proof: `docs/FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md`.
