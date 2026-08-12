@@ -3,7 +3,7 @@ import GroupApproximation.PropertyTT.Basic
 import GroupApproximation.Leavitt.ElementaryNoFiniteQuotients
 
 /-!
-# Uniform coordinate-block generation over strongly purely infinite rings
+# Uniform coordinate-block generation under single-sandwich division
 
 This is the reusable algebraic theorem behind the Leavitt application.  Over
 any nontrivial ring in which every nonzero element `a` admits `x * a * y = 1`,

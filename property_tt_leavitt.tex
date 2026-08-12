@@ -5,6 +5,9 @@
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -21,7 +24,7 @@
 \else
   \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
 \fi
-% Machine-readable theorem correspondence, intentionally invisible in print.
+% Machine-readable theorem correspondence, collected visibly in Appendix A.
 \newcommand{\leanverified}[2]{}
 
 \setlist[enumerate]{leftmargin=2.35em}
@@ -73,10 +76,10 @@ groups over rings satisfying the single-sandwich condition
   a\ne0\quad\Longrightarrow\quad
   xay=1\ \text{for some }x,y.
 \]
-Every element of \(\GL_n(R)\) is a product of at most \(2n+6\)
+Every element of \(\GL_n(R)\) is a product of at most \(2n+4\)
 factors, each an elementary transvection or an element of one fixed
 coordinate copy of \(\GL_{n-1}(R)\).  Thus \(\GL_n(R)\) has width at
-most \(2n+6\) relative to the elementary root subgroups and that
+most \(2n+4\) relative to the elementary root subgroups and that
 fixed coordinate block.
 
 The algebraic factorization is the main input developed here.  We
@@ -86,17 +89,16 @@ for elementary groups over finite free associative
 \(\F_2\)-algebra carrying a binary Leavitt family, satisfying the
 single-sandwich condition, and satisfying
 \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\), then
-\(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge3\).
+\(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge2\).
 Consequently,
 \[
   \EL_n\bigl(L_{\F_2}(1,2)\bigr)
   \quad\text{has property }(TT)/T
-  \qquad(n\ge3).
+  \qquad(n\ge2).
 \]
-An independent quantitative reconstruction of the relative root
-estimate makes the analytic input explicit.  Together with OpenAI's
-previously
-established nonsoficity theorem for the binary Leavitt unit
+We also give a quantitative reconstruction of the relative root
+estimate.  Together with OpenAI's construction of the first
+nonsofic group, whose example is the binary Leavitt unit
 group~\cite[Theorem~1.1, Chapter~3]{OpenAITenProofs}, the result gives explicit
 nonsofic groups with property \((TT)/T\).
 \end{abstract}
@@ -131,7 +133,7 @@ to pure infiniteness~\cite[Theorem~1.6]{AraGoodearlPardo}.
 \begin{mainthm}[Coordinate-block factorization]\label{thm:A}
 Let \(R\) be a nontrivial ring satisfying~\eqref{eq:sandwich}, let
 \(n\ge2\), and fix a coordinate \(j<n\).  Every \(A\in\GL_n(R)\)
-admits a factorization of length at most \(2n+6\) in which every
+admits a factorization of length at most \(2n+4\) in which every
 factor is either an elementary transvection or belongs to the
 coordinate copy
 \[
@@ -167,7 +169,7 @@ Let \(R\) be a nontrivial finite-type \(\F_2\)-algebra.  Assume that
   property~\eqref{eq:sandwich};
 \item \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).
 \end{enumerate}
-Then \(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge3\).
+Then \(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge2\).
 \leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT}
 \end{mainthm}
 
@@ -178,7 +180,7 @@ matrix reduction, and the diagonal condition identifies elementary
 and general linear groups.
 
 \begin{mainthm}[Binary Leavitt algebra]\label{thm:C}
-For every \(n\ge3\),
+For every \(n\ge2\),
 \[
   \EL_n\bigl(L_{\F_2}(1,2)\bigr)
   \quad\text{has property }(TT)/T.
@@ -186,12 +188,15 @@ For every \(n\ge3\),
 \leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT}
 \end{mainthm}
 
-Combining Theorem~\ref{thm:C} with OpenAI's theorem that
+OpenAI proved that
 \(L_{\F_2}(1,2)^\times\) is nonsofic~\cite[Theorem~1.1 of
-Chapter~3]{OpenAITenProofs} gives the following consequence.
+Chapter~3]{OpenAITenProofs}.  Combining that theorem with
+Theorem~\ref{thm:C} gives the following consequence.
+The same nonsoficity mechanism has since been developed by
+Kun--Thom and Fournier-Facio~\cite{KunThom,FournierFacio}.
 
 \begin{corollary}\label{cor:nonsofic}
-For every \(n\ge3\), the group
+For every \(n\ge2\), the group
 \(\EL_n(L_{\F_2}(1,2))\) is nonsofic and has property \((TT)/T\).
 \leanverified{PropertyTT/NonsoficCorollary}{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic}
 \end{corollary}
@@ -224,10 +229,14 @@ rings~\cite{AraGoodearlPardo}, while Ara, Brustenga, and Corti\~nas
 computed the stable algebraic \(K\)-theory of Leavitt path
 algebras~\cite{AraBrustengaCortinas}.
 
-Within this framework, the algebraic input developed here is the fixed-coordinate
-factorization of Theorem~\ref{thm:A}, including its explicit width
-\(2n+6\).  The rigidity theorem arises by using that factorization to
-globalize relative quasi-cocycle bounds.  Section~\ref{sec:quasicocycles}
+The pivot in Section~\ref{sec:factorization} belongs to the same
+Gaussian-elimination circle as the GE reduction of Ara--Goodearl--Pardo.
+The fixed-coordinate organization is the additional feature used here:
+the coordinate is chosen before the matrix, exactly one block factor
+occurs, and the remaining word has the uniform length \(2n+3\).
+Thus the full factorization has width \(2n+4\).  The rigidity theorem
+uses this factorization to globalize relative quasi-cocycle bounds.
+Section~\ref{sec:quasicocycles}
 gives a quantitative proof of the root estimate, and
 Section~\ref{sec:leavitt} verifies the remaining structural
 hypotheses for the binary Leavitt algebra.
@@ -277,8 +286,8 @@ lattice pair in~\cite[p.~154, Proposition~9.2.8]{MimuraThesis}:
 \[
   \EL_m(\mathbb Z\langle X\rangle)
   \ \ge\ \EL_{m-1}(\mathbb Z\langle X\rangle),
-  \qquad m\ge3
-\].
+  \qquad m\ge3.
+\]
 Relative \((TT)/T\)
 descends through a surjective homomorphism: pull a representation
 and quasi-cocycle back along the quotient map and then apply the
@@ -296,6 +305,111 @@ direct proof.  For distinct \(i,j,k\), write
 \(H_{ijk}=\langle X_{ik},X_{jk}\rangle\le\EL_3(A)\), and identify
 the elements of \(X\) with the corresponding free generators of
 \(A\).
+
+The proof uses the word-length filtration
+\(A_{\le d}\subseteq A\).  Put
+\(V_d=A_{\le d}\oplus A_{\le d}\), viewed as the finite elementary
+abelian subgroup
+\[
+ (a,c)\longmapsto x_{ik}(a)x_{jk}(c)
+ \quad\text{of }H_{ijk}.
+\]
+For a unitary representation \(\sigma\) and \(z\in\mathcal H\), let
+\(z_{d,\chi}\) be the Fourier component of \(z\) belonging to
+\(\chi\in\widehat V_d\).  The components are orthogonal and their
+squared norms sum to \(\norm z^2\).  Write a character as
+\((\chi_1,\chi_2)\), and let \(\nu(\chi_r)\) be the least word
+degree on which \(\chi_r\) is nontrivial, with value \(d+1\) for
+the trivial character.  The nontrivial pairs split into
+\[
+ \begin{array}{c|c}
+ A&0<\nu(\chi_2)<\nu(\chi_1)\\
+ B&0<\nu(\chi_1)=\nu(\chi_2)\\
+ C&0<\nu(\chi_1)<\nu(\chi_2)\\
+ D&\nu(\chi_1)=0\ \text{or}\ \nu(\chi_2)=0.
+ \end{array}
+\]
+Let \(m_d^A,m_d^B,m_d^C,m_d^D\) be the corresponding Fourier
+masses.  Let \(\partial_{1,d}\) and \(\partial_{2,d}\) be the
+masses for which the indicated coordinate character is trivial on
+\(A_{\le d-1}\) and becomes nontrivial on \(A_{\le d}\).
+
+\begin{lemma}[Finite-plane energy estimate]\label{lem:plane-energy}
+If \(P\) is the orthogonal projection onto
+\(\mathcal H^{H_{ijk}}\) and \(w=z-Pz\), then
+\begin{align}\label{eq:plane-energy}
+ \norm w^2\le{}&d_{ik}^2+d_{jk}^2
+ +\frac32\sum_{s\in X}2\norm z
+       (d_{ij,s}+d_{ji,s})\notag\\
+ &+2\norm z(d_{ij,1}+d_{ji,1}),
+\end{align}
+where \(d_{ab,t}=\norm{\sigma(x_{ab}(t))z-z}\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_planeEnergyEstimate}
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+ U_{ab}=2\norm z\,d_{ab,1},\qquad
+ G_{ab}=\sum_{s\in X}2\norm z\,d_{ab,s}.
+\]
+Conjugation by \(x_{ji}(1)\) shears region \(A\) into region \(B\),
+and conjugation by \(x_{ij}(1)\) does the same from \(C\) to
+\(B\).  Fourier orthogonality and
+\[
+ \left|\sum_{\chi\in\Omega}\norm{z_{d,\chi}}^2-
+ \sum_{\chi\in\Omega}\norm{z'_{d,\chi}}^2\right|
+ \le(\norm z+\norm{z'})\norm{z-z'}
+\]
+for \(z'=\sigma(g)z\) give
+\begin{equation}\label{eq:ABCB}
+ m_d^A\le m_d^B+U_{ji},\qquad
+ m_d^C\le m_d^B+U_{ij}.
+\end{equation}
+On region \(D\), one coordinate character detects the unit
+coefficient.  The negative-character projection formula for an
+involution gives
+\begin{equation}\label{eq:Dmass}
+ m_d^D\le\tfrac14(d_{ik}^2+d_{jk}^2).
+\end{equation}
+
+For each character in \(B\), choose the first generator \(s\in X\)
+whose left derivative lowers the common valuation.  These choices
+partition \(B\).  Conjugation by \(x_{ji}(s)\) sends the first
+family into \(C\cup D\), while conjugation by \(x_{ij}(s)\) sends
+the symmetric family into \(A\cup D\).  The conjugations are
+compared between \(V_d\) and \(V_{d+1}\) by restricting
+characters.  Thus no invariance of \(A_{\le d}\) under
+multiplication by \(s\) is assumed: multiplication raises degree by
+one, and the lost restrictions are exactly the two top-boundary
+sets.  Applying the displayed variation inequality on each piece
+and adding the symmetric estimates yields
+\begin{equation}\label{eq:Bmass}
+ m_d^B\le m_d^D+\tfrac12(G_{ji}+G_{ij})
+       +\tfrac32(\partial_{1,d}+\partial_{2,d}).
+\end{equation}
+Combining~\eqref{eq:ABCB}--\eqref{eq:Bmass} gives
+\begin{align}\label{eq:finite-mass}
+ m_d^A+m_d^B+m_d^C+m_d^D
+ \le{}&d_{ik}^2+d_{jk}^2
+   +\tfrac32(G_{ji}+G_{ij})+U_{ji}+U_{ij}\notag\\
+ &+\tfrac92(\partial_{1,d}+\partial_{2,d}).
+\end{align}
+This calculation accounts for the coefficient \(3/2\) in
+\eqref{eq:plane-energy}.
+
+The boundary limit follows from an exact telescoping identity.  If
+\(T_{r,d}\) is the mass on which the \(r\)-th coordinate character
+is trivial on \(A_{\le d}\), then
+\[
+ T_{r,d}=\partial_{r,d+1}+T_{r,d+1}.
+\]
+The nonnegative sequence \(T_{r,d}\) decreases, so
+\(\partial_{r,d+1}=T_{r,d}-T_{r,d+1}\to0\).  Finally, \(V_d\)
+exhausts \(H_{ijk}\), and the left side of
+\eqref{eq:finite-mass} converges to \(\norm{z-Pz}^2\).  Passing to
+the limit proves~\eqref{eq:plane-energy}.
+\end{proof}
 
 \begin{lemma}[Localized plane estimate]\label{lem:localized-plane}
 Let \(\sigma:\EL_3(A)\to\mathcal U(\mathcal H)\) be a unitary
@@ -320,23 +434,8 @@ groups \(X_{ij}\) and \(X_{ji}\) normalize \(H_{ijk}\), while
 \(X_{ik},X_{jk}\le H_{ijk}\).  Orthogonal projection therefore
 passes each of the displayed displacement bounds from \(z\) to
 \(w\), with the strict bound \(\delta\).
-
-For completeness, we recall the energy estimate behind this step.
-Filter the free algebra by word length and decompose the finite
-elementary abelian plane into its characters.  The shears
-\(x_{ij}(1),x_{ji}(1),x_{ij}(s),x_{ji}(s)\) move the character mass
-between the four leading-letter regions.  Summing the resulting
-parallelogram identities and then letting the filtration degree tend
-to infinity gives
-\begin{align*}
- \norm w^2 \le{}& d_{ik}^2+d_{jk}^2
- +\frac32\sum_{s\in X}
-   2\norm w\bigl(d_{ij,s}+d_{ji,s}\bigr)\\
- &+2\norm w\bigl(d_{ij,1}+d_{ji,1}\bigr),
-\end{align*}
-where each \(d\) is the corresponding displacement of \(w\).
-The boundary terms vanish because the word-length filtration is
-exhaustive.  Hence
+Apply Lemma~\ref{lem:plane-energy} to \(w\).  Since \(Pw=0\), it
+gives
 \[
   \norm w^2
   \le 2\delta^2+(6\abs X+4)\norm w\,\delta.
@@ -347,6 +446,64 @@ Otherwise \(\delta\le\norm w\), and the last inequality gives
 fixes \(Pz\), so
 \(\norm{\sigma(g)z-z}\le2\norm w\).
 \end{proof}
+
+\begin{lemma}[Row-plane symmetry]\label{lem:row-symmetry}
+Let \(\overline{\phantom a}:A\to A\) reverse every word and fix the
+free generators.  The inverse-transpose map
+\[
+ \Theta(g)=\overline{g}^{\,-t}
+\]
+is an automorphism of \(\EL_3(A)\), and
+\[
+ \Theta(x_{ij}(t))=x_{ji}(t)
+ \qquad(t\in\{1\}\cup X).
+\]
+Consequently Lemma~\ref{lem:localized-plane} applies with the two
+root directions reversed.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_controlRoot}
+\end{lemma}
+
+\begin{proof}
+Word reversal followed by transpose identifies the matrix ring with
+its opposite ring.  On units, inversion identifies the opposite
+group with the original group, so \(\Theta\) is an automorphism.
+Since \(E_{ij}^2=0\),
+\(x_{ij}(a)^{-1}=x_{ij}(-a)\).  In characteristic two the sign
+vanishes, while word reversal fixes \(1\) and every \(s\in X\),
+which gives the displayed formula.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  vertex/.style={circle,draw,minimum size=7mm,inner sep=0pt,font=\small},
+  col/.style={-{Latex[length=2mm]},very thick,blue!70!black},
+  row/.style={-{Latex[length=2mm]},very thick,orange!80!black},
+  aux/.style={-{Latex[length=1.8mm]},semithick,gray!70},
+  every node/.style={font=\small}]
+  \node[vertex] (v0) at (0,1.5) {0};
+  \node[vertex] (v1) at (2.3,2.3) {1};
+  \node[vertex] (v2) at (2.3,.7) {2};
+  \node[vertex] (v3) at (4.8,1.5) {3};
+  \draw[col] (v0) -- node[above] {$X_{03}$} (v3);
+  \draw[col] (v1) -- node[above,sloped] {$X_{13}$} (v3);
+  \draw[col] (v2) -- node[below,sloped] {$X_{23}$} (v3);
+  \draw[row,bend left=22] (v3) to node[below] {$X_{30}$} (v0);
+  \draw[row,bend left=18] (v3) to node[right] {$X_{31}$} (v1);
+  \draw[row,bend right=18] (v3) to node[right] {$X_{32}$} (v2);
+  \draw[aux] (v0) -- node[above,sloped] {$X_{01}$} (v1);
+  \draw[aux] (v1) -- node[right] {$X_{12}$} (v2);
+  \node[align=center,blue!70!black] at (4.8,.2) {column plane};
+  \node[align=center,orange!80!black] at (.2,.15) {row plane};
+  \node[align=center] at (2.35,-.35)
+    {$[X_{01}(c),X_{13}(1)]=X_{03}(c)$};
+\end{tikzpicture}
+\caption{The rank-four root geometry.  The two rank-three plane
+estimates control the blue column roots and, through
+Lemma~\ref{lem:row-symmetry}, the orange row roots.  The displayed
+Steinberg commutator recovers the target root \(X_{03}\).}
+\label{fig:root-geometry}
+\end{figure}
 
 \begin{theorem}[Root quasi-cocycle estimate]\label{thm:root}
 Let \(X\) be finite, put \(A=\F_2\langle X\rangle\), and let
@@ -387,7 +544,8 @@ For the moving component, let \(Q_X\subseteq\EL_3(A)\) consist of
 all elementary roots with coefficient \(1\) or one of the free
 generators.  Embed it on the coordinates \(\{1,2,3\}\), and also on
 the coordinates \(\{0,1,2\}\) using the transpose--word-reversal
-symmetry.  Put
+symmetry of Lemma~\ref{lem:row-symmetry}; the geometry is shown in
+Figure~\ref{fig:root-geometry}.  Put
 \[
  M=\sum_{s\in Q_X}
  \bigl(\norm{b(\iota_{123}(s))}+\norm{b(\iota_{012}(s))}\bigr),
@@ -545,7 +703,7 @@ their product and \(C=BT\), then
 \[
   C_{jc}=\begin{cases}1,&c=j,\\0,&c\ne j.\end{cases}
 \]
-The list \(t\) of right-clearing factors has length at most \(n\).
+The list \(t\) of right-clearing factors has length exactly \(n-1\).
 
 For every \(k\ne j\), left multiply by
 \[
@@ -563,7 +721,7 @@ If \(S\) is their product and \(D=SC\), then
   \end{cases}
 \]
 Hence \(D\in\GL_{n-1}^{(j)}(R)\).  The list \(s\) of
-left-clearing factors also has length at most \(n\).
+left-clearing factors also has length exactly \(n-1\).
 
 Solving \(D=SEAF T\) for \(A\) gives
 \[
@@ -582,7 +740,7 @@ elementary.  The resulting word has the exact form
 \]
 and therefore length at most
 \[
-  2+n+1+n+3=2n+6.
+  2+(n-1)+1+(n-1)+3=2n+4.
 \]
 \end{proof}
 
@@ -636,13 +794,16 @@ Fix a unitary representation \(\pi\) of \(G\) without nonzero
 invariant vectors and a quasi-cocycle \(b\) of defect at most \(D\).
 Choose a Kazhdan pair \((K,\varepsilon)\), and choose once and for
 all an \(S\cup S^{-1}\)-word for each \(k\in K\).  Let \(L\) be
-the sum of their lengths.  If \(\norm{b(s)}\le C\) for \(s\in S\),
+the maximum of their lengths.  If \(\norm{b(s)}\le C\) for \(s\in S\),
 comparison of the quasi-cocycle identities for \(sh\) and
 \(h(h^{-1}sh)\) gives
 \[
   \norm{\pi(s)b(h)-b(h)}\le 2C+2D
   \qquad(s\in S\cup S^{-1},\ h\in H).
 \]
+For an inverse letter, apply the comparison to its inverse and use
+\(\norm{\pi(s^{-1})v-v}=\norm{\pi(s)v-v}\); the constant remains
+\(2C+2D\).
 The displacement estimate for a product of unitaries therefore gives
 \[
   \norm{\pi(k)b(h)-b(h)}
@@ -679,9 +840,20 @@ coefficient ring and block flattening give
  \cong \EL_n(M_m(R))
  \cong \EL_n(R).
 \]
-All maps in this chain preserve elementary root generators, so the
-display restricts from general linear groups to the stated
-elementary groups.
+The middle identifications are bidirectional on elementary groups.
+A block transvection decomposes into commuting scalar
+transvections after flattening.  Conversely, a scalar transvection
+whose indices lie in different outer blocks is already a block
+transvection.  If both indices lie in one outer block, choose a
+second outer block and use the Steinberg identity
+\[
+ e_{(i,k),(i,l)}(a)
+ =\bigl[e_{(i,k),(j,k)}(a),e_{(j,k),(i,l)}(1)\bigr].
+\]
+Thus block flattening identifies the full elementary subgroups in
+both directions, and the displayed chain restricts to the claimed
+group isomorphism.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryBlockFlattening}
 \end{proof}
 
 \begin{lemma}[Elementary equals general linear]\label{lem:gl-el}
@@ -700,9 +872,11 @@ The single-sandwich elimination reduces an arbitrary element of
 \(\diag(u,1)\) for some \(u\in R^\times\).  The diagonal hypothesis
 therefore gives \(\GL_2(R)=\EL_2(R)\).
 
-Apply this rank-two equality over the coefficient ring \(M_n(R)\).
-Under block flattening, an elementary transvection over \(M_n(R)\)
-splits into scalar transvections, and hence
+The binary Leavitt family gives a coefficient isomorphism
+\(M_n(R)\cong R\) for every \(n\ge2\).  Transporting the two
+ring-theoretic hypotheses across this isomorphism gives the same
+rank-two equality over \(M_n(R)\).  The bidirectional block
+flattening proved in Lemma~\ref{lem:rank-equivalence} then gives
 \[
   \EL_2(M_n(R))=\GL_2(M_n(R))
   \quad\Longrightarrow\quad
@@ -713,17 +887,14 @@ the two finite index factors as
 \[
   \EL_n(M_2(R))=\GL_n(M_2(R)).
 \]
-The binary Leavitt family supplies a coefficient isomorphism
-\(M_2(R)\cong R\), and transport along it gives
-\(\EL_n(R)=\GL_n(R)\).  This argument uses block flattening only in
-the form in which elementary block transvections decompose into
-ordinary elementary transvections.
+Transport through \(M_2(R)\cong R\) now gives
+\(\EL_n(R)=\GL_n(R)\).
 \end{proof}
 
 \begin{proposition}[Rank-four assembly]\label{prop:rank-four}
 Under the hypotheses of Theorem~\ref{thm:B}, \(\EL_4(R)\) has
 property \((TT)/T\).
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finitePresentation_rankFour_hasTTmodT}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finiteFreeQuotient_rankFour_hasTTmodT}
 \end{proposition}
 
 \begin{proof}
@@ -779,7 +950,7 @@ relative statement to \(\GL_3^{(j)}(R)\) for every
 Each elementary transvection lies in a coordinate block avoiding its
 two indices.  Hence the union of one fixed coordinate block and all
 root subgroups is bounded for the quasi-cocycle.  Theorem~\ref{thm:A}
-writes every element of \(\GL_4(R)\) as a product of at most \(14\)
+writes every element of \(\GL_4(R)\) as a product of at most \(12\)
 elements of that union.  Lemma~\ref{lem:products} below, or directly
 the corresponding bounded-product lemma, makes the quasi-cocycle
 bounded on \(\GL_4(R)\).  Transporting through
@@ -810,7 +981,7 @@ also covers the empty list.
 
 \begin{proof}[Proof of Theorem~\ref{thm:B}]
 Proposition~\ref{prop:rank-four} gives the result in rank four.  For
-arbitrary \(n\ge3\), Lemma~\ref{lem:rank-equivalence} supplies an
+arbitrary \(n\ge2\), Lemma~\ref{lem:rank-equivalence} supplies an
 explicit group equivalence \(\EL_n(R)\cong\EL_4(R)\).
 Property \((TT)/T\) is invariant under group equivalence, so the
 rank-four conclusion transports to rank \(n\).
@@ -861,8 +1032,6 @@ unit a product of commutators.  The standard \(2\times2\) Whitehead
 identity places \(\diag([a,b],1)\) in \(\EL_2(L)\); the GE property
 then gives \(\GL_2(L)=\EL_2(L)\), proving
 Proposition~\ref{prop:diag}.
-The endpoint is therefore established by the cited structural
-theorems, which prove Proposition~\ref{prop:diag}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
@@ -897,15 +1066,53 @@ block in Theorem~\ref{thm:A} itself be controlled by elementary
 subgroups?  A satisfactory answer would extend the present
 synthesis from the Leavitt setting to a broader rigidity criterion.
 
-\subsection*{Formal companion}
+\appendix
+\section{Formal theorem correspondence}\label{app:formal}
 
 \ifanonymous
-An accompanying Lean formalization is available in the supplementary
-material.
+The accompanying Lean formalization is included in the supplementary
+material.  The table below records the declaration corresponding to
+each principal statement.
 \else
-An accompanying Lean formalization is available
-\href{\leanrepo}{online}.
+The accompanying Lean formalization is available in the
+\href{\leanrepo}{project repository}.  The table below records the
+declaration corresponding to each principal statement.
 \fi
+
+\medskip
+\noindent
+\begin{tabularx}{\textwidth}{@{}p{.29\textwidth}X@{}}
+\hline
+Paper statement & Lean declaration \\
+\hline
+Theorem~\ref{thm:A} &
+\texttt{PropertyTTPaper.coordinateBlock\_factorization} \\
+Lemma~\ref{lem:pivot} &
+\texttt{PropertyTTPaper.fiveMove\_pivot} \\
+Lemma~\ref{lem:plane-energy} &
+\texttt{PropertyTTPaper.freeCharacteristicTwo\_planeEnergyEstimate} \\
+Lemma~\ref{lem:localized-plane} &
+\texttt{PropertyTTPaper.freeCharacteristicTwo\_localizedPlaneEstimate} \\
+Lemma~\ref{lem:row-symmetry} &
+\texttt{PropertyTTPaper.freeCharacteristicTwo\_rowEmbedding\_controlRoot} \\
+Theorem~\ref{thm:root} &
+\texttt{PropertyTTPaper.freeCharacteristicTwo\_root\_hasRelativeTT} \\
+Lemma~\ref{lem:kazhdan-globalization} &
+\texttt{PropertyTTPaper.kazhdan\_normalizedSet\_globalization} \\
+Lemmas~\ref{lem:rank-equivalence} and~\ref{lem:gl-el} &
+\texttt{PropertyTTPaper.leavitt\_elementaryRankEquivalence},
+\texttt{PropertyTTPaper.elementaryGroup\_eq\_generalLinear} \\
+Proposition~\ref{prop:rank-four} &
+\texttt{PropertyTTPaper.finiteFreeQuotient\_rankFour\_hasTTmodT} \\
+Theorem~\ref{thm:B} &
+\texttt{PropertyTTPaper.finiteType\_elementaryGroup\_hasTTmodT} \\
+Proposition~\ref{prop:diag} &
+\texttt{KOnePaper.diagUnit\_mem\_elementary} \\
+Theorem~\ref{thm:C} and Corollary~\ref{cor:nonsofic} &
+\texttt{PropertyTTPaper.binaryLeavitt\_elementaryGroup\_hasTTmodT},
+\texttt{PropertyTTPaper.binaryLeavitt\_elementaryGroup\_hasTTmodT\_and\_not\_isSofic} \\
+\hline
+\end{tabularx}
 
 \begin{thebibliography}{99}
 
@@ -928,6 +1135,18 @@ Invent.\ Math. \textbf{179} (2010), no.~2, 303--347.
 W.~G. Leavitt,
 \emph{The module type of a ring},
 Trans.\ Amer.\ Math.\ Soc. \textbf{103} (1962), 113--130.
+
+\bibitem{FournierFacio}
+F.~Fournier-Facio,
+\emph{A torsion-free non-sofic group},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.02025}{arXiv:2608.02025}.
+
+\bibitem{KunThom}
+G.~Kun and A.~Thom,
+\emph{Nonsofic wreath products of residually finite groups},
+preprint, 2026,
+\href{https://arxiv.org/abs/2608.06222}{arXiv:2608.06222}.
 
 \bibitem{MimuraTT}
 M.~Mimura,
