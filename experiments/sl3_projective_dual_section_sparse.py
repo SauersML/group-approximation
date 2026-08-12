@@ -227,12 +227,13 @@ def solve_unit_system(
             })
         residual_targets = matrix(ZZ, [
             values[row_index] for row_index in active_rows])
-        residual_hnf, residual_transform = (
-            residual_matrix.transpose().hermite_form(
-                transformation=True, include_zero_rows=True))
         residual_rank = residual_matrix.rank()
         if residual_rank != len(active_rows):
             raise AssertionError("residual equations are rationally dependent")
+
+        residual_hnf, residual_transform = (
+            residual_matrix.transpose().hermite_form(
+                transformation=True, include_zero_rows=True))
         hnf_head = residual_hnf[:residual_rank, :]
         if residual_hnf[residual_rank:, :] != 0:
             raise AssertionError("residual column HNF has a nonzero tail")
@@ -311,12 +312,25 @@ def solve_unit_system(
     )
 
 
-def greedy_range_reduce(lifts, range_generators, sweeps):
-    reduced = [vector(ZZ, lift) for lift in lifts.rows()]
+def greedy_row_lattice_reduce(lifts, row_generators, sweeps):
+    """Greedily shorten rows modulo the supplied integral row lattice.
+
+    When ``row_generators`` are raw rows of a boundary matrix, this does not
+    reduce modulo the full saturated annihilator unless that row lattice is
+    already primitive.
+    """
+    variable_count = lifts.ncols()
+    reduced = [
+        {int(index): int(entry) for index, entry in lift.dict().items()}
+        for lift in lifts.rows()
+    ]
     generators = []
-    for row in range(range_generators.nrows()):
-        generator = range_generators.row(row)
-        norm_squared = generator.dot_product(generator)
+    for row in range(row_generators.nrows()):
+        generator = {
+            int(index): int(entry)
+            for index, entry in row_generators.row(row).dict().items()
+        }
+        norm_squared = sum(entry * entry for entry in generator.values())
         if norm_squared:
             generators.append((generator, norm_squared))
     changes_by_sweep = []
@@ -324,21 +338,36 @@ def greedy_range_reduce(lifts, range_generators, sweeps):
         changes = 0
         for lift_index, lift in enumerate(reduced):
             for generator, norm_squared in generators:
-                inner = lift.dot_product(generator)
-                multiple = ZZ((QQ(inner) / norm_squared).round())
+                inner = sum(
+                    lift.get(index, 0) * entry
+                    for index, entry in generator.items())
+                if inner >= 0:
+                    multiple = (2 * inner + norm_squared) // (
+                        2 * norm_squared)
+                else:
+                    multiple = -(
+                        (2 * (-inner) + norm_squared) //
+                        (2 * norm_squared))
                 if not multiple:
                     continue
                 norm_change = (
                     -2 * multiple * inner
                     + multiple * multiple * norm_squared)
                 if norm_change < 0:
-                    lift = lift - multiple * generator
+                    for index, entry in generator.items():
+                        updated = lift.get(index, 0) - multiple * entry
+                        if updated:
+                            lift[index] = updated
+                        else:
+                            lift.pop(index, None)
                     changes += 1
             reduced[lift_index] = lift
         changes_by_sweep.append(changes)
         if not changes:
             break
-    return matrix(ZZ, reduced), changes_by_sweep
+    return matrix(ZZ, [
+        vector(ZZ, variable_count, lift) for lift in reduced
+    ]), changes_by_sweep
 
 
 def main() -> None:
@@ -439,7 +468,7 @@ def main() -> None:
     if cycles * raw_lifts.transpose() != identity_matrix(ZZ, rank):
         raise AssertionError("lifts are not packet-dual")
 
-    reduced_lifts, reduction_changes = greedy_range_reduce(
+    reduced_lifts, reduction_changes = greedy_row_lattice_reduce(
         raw_lifts, d2.transpose(), args.greedy_sweeps)
     if d3 * reduced_lifts.transpose() != 0:
         raise AssertionError("range reduction changed boundary annihilation")
@@ -465,7 +494,7 @@ def main() -> None:
         selected_gram = reduced_gram
         selected_polynomial = reduced_polynomial
         selected_roots = reduced_roots
-        selected_name = "greedy_range_reduced"
+        selected_name = "greedy_raw_coboundary_reduced"
     else:
         selected_lifts = raw_lifts
         selected_gram = raw_gram
@@ -477,7 +506,8 @@ def main() -> None:
         **common,
         "complete_integral_section": True,
         "residual_equation_count": 0,
-        "greedy_range_reduction_changes_by_sweep": reduction_changes,
+        "greedy_raw_coboundary_reduction_changes_by_sweep": (
+            reduction_changes),
         "qsharp_packet_pairing_matrix": [
             [int(entry) for entry in row] for row in packet_pairings.rows()],
         "qsharp_packet_pairing_determinant": int(packet_pairings.det()),
@@ -511,7 +541,9 @@ def main() -> None:
         "elapsed_seconds": time.monotonic() - started,
         "scope": (
             "exact integral section of the packet-dual harmonic lift "
-            "sequence; greedy range reduction is an upper bound, not CVP"),
+            "sequence; greedy reduction uses the raw d2 coboundary row "
+            "lattice, not its saturation, and is therefore only an upper "
+            "bound rather than CVP in the full extension fiber"),
     }
     args.output.write_text(
         json.dumps(certificate, indent=2, sort_keys=True) + "\n",

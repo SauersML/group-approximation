@@ -27,6 +27,36 @@ normalized rank.  Full construction and corrected endpoint:
 `FALSE_FULLY_FRAMED_AMENABLE_CONJUGACY_ORBIT.md`; exact character model:
 `FALSE_AMENABLE_COADJOINT_FRAME_CHARACTER.md`.
 
+### 2026-08-12: exact level-169 packet saturation and parity repair
+
+The twelve-cycle level-`169` packet has exact projected lattice index two.
+An unused cycle gives a one-row replacement of odd index seven, and signed
+determinant linearity turns it into the explicit unimodular correction
+
+```text
+c_new=c_15-3c_3.
+```
+
+The repaired packet is a `Z`-basis of `Q_169`; its maximum coefficient is
+`6`, maximum squared row norm is `824`, and maximum absolute Gram row sum is
+`1018`.  More generally, an index-two packet plus one odd-index replacement
+is repaired by `x +/- ((m-1)/2)c_j`.
+
+Because the ambient cycle kernel is primitive, every coordinate functional
+of this `Q_169` basis extends to an integral ambient covector annihilating
+the boundaries.  Hence qualitative integral dual lifting is solved in all
+twelve directions.  The live TRUE gate is now quantitative: produce these
+extensions with a family-uniform synthesis norm.  A generic HNF extension
+can be astronomically large and is not the desired certificate.  Full proof:
+`TRUE_SQUARE_LEVEL_INTEGRAL_PACKET_INDICES.md`.
+
+The extension fiber is now identified exactly as
+`Sat(Row_Z(d_2))=Row_Q(d_2) intersect Z^N`, not merely the raw coboundary row
+lattice.  The quotient between them is the `Ext^1` group coming from torsion
+in `coker(d_2)`.  Thus the first greedy reducer was operating in a
+finite-index sublattice and its huge output is inconclusive.  The next
+quantitative calculation must reduce in the saturated annihilator.
+
 ### 2026-08-12: determinant-one primal section at level 121
 
 Boundary reduction of the full exact square-level packets improves the

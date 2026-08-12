@@ -1,5 +1,64 @@
 # NOTEPAD
 
+## 2026-08-12: the level-169 parity defect is repaired exactly
+
+Full proof and certificate:
+`docs/TRUE_SQUARE_LEVEL_INTEGRAL_PACKET_INDICES.md` and
+`experiments/projective-cellular-n169-cycle-boundary-saturated.json`.
+
+For the square-level chart at `169`, the original twelve-cycle packet had
+exact projected index two.  An unused cycle replacing packet record `3` has
+odd projected index seven.  Signed determinant linearity therefore makes
+
+    c_new = c_15 - 3 c_3
+
+unimodular.  The repaired packet has projected index one, maximum coefficient
+`6`, maximum squared row norm `824`, and maximum absolute Gram row sum `1018`.
+The certificate SHA-256 is
+`b9f37304009e64acb829c6c4da5f7f3f7dcbce9996f88b9c8794b147ee90e483`.
+
+The general repair lemma is useful beyond this chart: if a rank-`r` packet
+has index two and one row replacement has odd index `m`, then one of
+
+    x +/- ((m-1)/2)c_j
+
+is a basis.  This follows because the two signed determinants are `+-2` and
+`+-m`, while determinant is linear in the replacement row.
+
+Moreover, an index-one packet automatically has integral ambient dual lifts.
+Indeed the cycle kernel is primitive in the ambient free lattice, so the
+coordinate functionals on `Q=K/S_sat` extend integrally to the ambient chain
+group.  Thus the level-169 two-primary obstruction was a packet-choice
+artifact: qualitative lift existence is solved in all twelve directions.
+The remaining problem is quantitative---construct such extensions with a
+family-uniform synthesis norm.  Raw HNF witnesses are enormous and are not
+evidence about that norm.
+
+The correct affine reduction lattice has now been identified.  For
+`K=ker(d:Z^N->Z^M)`, two ambient extensions of the same functional on `K`
+differ by
+
+    Ann_Z(K)=Row_Q(d) intersect Z^N=Sat(Row_Z(d)),
+
+not necessarily by the raw integer row lattice of `d`.  Their quotient is
+`Ext^1(coker(d),Z)`, hence exactly the torsion carried by the cokernel.  The
+first level-169 reducer subtracted only raw rows of `d_2^T`; it could miss
+the finite-index saturated directions which are designed to remove the HNF
+denominators.  The next exact computation should therefore perform CVP or
+range reduction in this saturated annihilator.  This is a mathematical
+correction to the solver target, not a request for a larger HNF run.
+
+## 2026-08-12: Shulman MF is not the FALSE endpoint
+
+The framed double now uses the correct conclusion in
+`docs/FALSE_FULLY_FRAMED_AMENABLE_CONJUGACY_ORBIT.md`.  Shulman's
+amalgamated-MF theorem gives operator-norm MF, which by itself does not imply
+hyperlinearity: norm-visible information may occupy vanishing normalized
+rank.  The sufficient endpoint is instead a pair of normalized-HS
+asymptotic vertex maps which agree on the amalgam and retain positive HS
+displacement on the radical word.  Their direct tracial-ultraproduct image is
+hyperlinear and cannot be sofic.  No MF-to-hyperlinear implication is used.
+
 ## 2026-08-11: bounded auxiliary cones cannot retain a sofic-radical witness
 
 Full proof: `docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`.

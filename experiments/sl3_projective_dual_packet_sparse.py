@@ -34,7 +34,7 @@ from sl3_projective_dual_section_from_packet import (
     sparse_rows_json,
 )
 from sl3_projective_dual_section_sparse import (
-    greedy_range_reduce,
+    greedy_row_lattice_reduce,
     solve_unit_system,
 )
 
@@ -141,7 +141,7 @@ def main() -> None:
     if cycles * raw_lifts.transpose() != identity_matrix(ZZ, rank):
         raise AssertionError("lifts are not packet-dual")
 
-    reduced_lifts, reduction_changes = greedy_range_reduce(
+    reduced_lifts, reduction_changes = greedy_row_lattice_reduce(
         raw_lifts, d2.transpose(), args.greedy_sweeps)
     if d3 * reduced_lifts.transpose() != 0:
         raise AssertionError("range reduction changed boundary annihilation")
@@ -157,7 +157,7 @@ def main() -> None:
         selected_gram = reduced_gram
         selected_polynomial = reduced_polynomial
         selected_roots = reduced_roots
-        selected_name = "greedy_range_reduced"
+        selected_name = "greedy_raw_coboundary_reduced"
     else:
         selected_lifts = raw_lifts
         selected_gram = raw_gram
@@ -176,7 +176,8 @@ def main() -> None:
             "the packet-coordinate dual basis extends to ambient integer "
             "functionals annihilating every boundary; hence it lies in Q^#"),
         "residual_equation_count": 0,
-        "greedy_range_reduction_changes_by_sweep": reduction_changes,
+        "greedy_raw_coboundary_reduction_changes_by_sweep": (
+            reduction_changes),
         "packet_ambient_gram": [
             [int(entry) for entry in row] for row in packet_gram.rows()],
         "packet_ambient_synthesis_polynomial_monic": str(packet_polynomial),
@@ -209,8 +210,9 @@ def main() -> None:
         "elapsed_seconds": time.monotonic() - started,
         "scope": (
             "exact integral Q-basis and packet-dual section certificate; "
-            "the Riesz norm is a basis-free upper bound and greedy range "
-            "reduction is not a CVP optimum"),
+            "the Riesz norm is a basis-free upper bound; greedy reduction "
+            "uses the raw d2 coboundary row lattice, not its saturation, "
+            "and is not a CVP optimum in the full extension fiber"),
     }
     args.output.write_text(
         json.dumps(certificate, indent=2, sort_keys=True) + "\n",
