@@ -24,6 +24,14 @@ dense unitaries.  Honest finite Laurent quotients in which the positive
 image already contains the inverse have `r=1` and are exactly sterile.  Full
 proof: `FALSE_POSITIVE_COMMUTANT_CHARACTER_MATCHING.md`.
 
+This reduction is robust.  If `epsilon` is the RMS commutator of an
+arbitrary unitary with the whole positive subgroup, conditional expectation
+and polar correction produce an exact positive-commutant unitary within
+`sqrt(2) epsilon`.  Its marked displacement changes by at most
+`2 sqrt(2) epsilon`.  Hence diffuse approximate walls cannot beat the exact
+character assignment asymptotically, and an absorbed marked class has
+marked norm at most `2 sqrt(2) epsilon`.
+
 ## 1. Finite-action character transfer  [ACTIVE]
 
 Fix a finite multiplication table and let `F_T` be the free group on its

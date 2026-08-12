@@ -190,7 +190,73 @@ with nonvanishing objective completes the local commutant portion of the
 paired-Fourier FALSE endpoint.  A dual inconsistency certificate would give
 a no-go theorem for the entire Pauli/regular subclass.
 
-## 6. Consequences for compute
+## 6. Robust reduction from approximate to exact commutants
+
+The exact formula also controls a unitary which only approximately commutes
+with the positive subgroup.  Let
+
+`epsilon_P(T)^2`
+` =(1/|P|) sum_(p in P)||[T,pi(p)]||_2^2.`             `(PCM21)`
+
+**Theorem 3 (dimension-free commutant correction).**  For every unitary
+`T in U(V)`, there is a unitary `T_0 in pi(P)'` such that
+
+`||T-T_0||_2<=sqrt(2) epsilon_P(T).`                  `(PCM22)`
+
+Consequently
+
+`||T pi(m)T^*-pi(m)||_2`
+` <=sqrt(E_pi(P,m))+2 sqrt(2) epsilon_P(T).`           `(PCM23)`
+
+Equivalently, if the left side of `(PCM23)` is `D`, then
+
+`E_pi(P,m)>=(max(0,D-2 sqrt(2)epsilon_P(T)))^2.`       `(PCM24)`
+
+### Proof
+
+Let
+
+`mathcal E(X)=(1/|P|) sum_(p in P) pi(p)Xpi(p)^*`     `(PCM25)`
+
+be the trace-preserving conditional expectation onto `pi(P)'`, and put
+`X=mathcal E(T)`.  Orthogonality of conditional expectation gives
+
+`epsilon_P(T)^2=2||T-X||_2^2`
+`                    =2(1-||X||_2^2).`                `(PCM26)`
+
+Since conditional expectation is operator-norm contractive, `||X||<=1`.
+Take the polar decomposition of `X` inside the finite-dimensional algebra
+`pi(P)'` and extend its polar partial isometry to a unitary `T_0` in that
+algebra.  On every singular value `0<=s<=1`,
+
+`(1-s)^2<=1-s^2.`                                     `(PCM27)`
+
+Therefore
+
+`||X-T_0||_2^2<=1-||X||_2^2=||T-X||_2^2.`            `(PCM28)`
+
+The triangle inequality and `(PCM26)--(PCM28)` give `(PCM22)`.  For any
+unitary `U`,
+
+`||TUT^*-T_0UT_0^*||_2<=2||T-T_0||_2.`               `(PCM29)`
+
+Apply `(PCM29)` to `U=pi(m)`, use the definition `(PCM6)` for `T_0`, and
+then use `(PCM22)`.  This proves `(PCM23)`; rearranging proves `(PCM24)`.
+End proof.
+
+The estimate is independent of `|A|`, `|P|`, and `dim(V)`.  In particular,
+when the marked phase is constant on every positive restriction fiber,
+Corollary 2 and `(PCM23)` give
+
+`||T pi(m)T^*-pi(m)||_2<=2 sqrt(2)epsilon_P(T).`       `(PCM30)`
+
+Thus approximate positive commutation cannot rescue an absorbed marked
+class.  Conversely, Theorem 3 replaces every asymptotically
+positive-invisible wall by a nearby exact commutant unitary; Theorem 1 then
+computes the sharp supremum over that exact commutant by finite character
+matching.
+
+## 7. Consequences for compute
 
 Do not optimize arbitrary unitaries at this gate.  The exact assignment
 formula proves that character permutations are optimal.  A useful MSI job
