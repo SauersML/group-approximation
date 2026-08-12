@@ -10,6 +10,7 @@ short relators, avoiding the poor generic presentations that obstructed the
 first Todd--Coxeter attempt.
 """
 
+import argparse
 from collections import deque
 
 import numpy as np
@@ -114,6 +115,12 @@ def transported_word(word, alignment, alignment_inverse, words):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--low-index", type=int,
+        help=("enumerate permutation actions through subgroups of index at "
+              "most this value, instead of asking for the quotient size"))
+    args = parser.parse_args()
     elements = enumerate_group(generators())
     x, y = hurwitz_pair(elements)
     words = word_table(x, y)
@@ -131,9 +138,26 @@ def main():
           "c^2,d^3,(c*d)^7,cm(c,d)^4,%s];;" % ",".join(selected))
     print("Q:=F/rels;;")
     print("K:=Subgroup(Q,[Q.1,Q.2]);;")
-    print('Print("first_factor_size ",Size(K),"\\n");')
-    print('Print("first_factor_index ",Index(Q,K),"\\n");')
-    print('Print("quotient_size ",Size(Q),"\\n");')
+    if args.low_index is None:
+        print('Print("first_factor_size ",Size(K),"\\n");')
+        print('Print("first_factor_index ",Index(Q,K),"\\n");')
+        print('Print("quotient_size ",Size(Q),"\\n");')
+    else:
+        print("subs:=LowIndexSubgroupsFpGroup(Q,%d);;" % args.low_index)
+        print('Print("low_index_subgroups ",Length(subs),"\\n");')
+        print("bridge1:=Q.1*Q.3^-1;; bridge2:=Q.2*Q.4^-1;;")
+        print("records:=[];;")
+        print("for subgroup in subs do")
+        print("  cosets:=RightCosets(Q,subgroup);;")
+        print("  action:=ActionHomomorphism(Q,cosets,OnRight);;")
+        print("  if not IsOne(Image(action,bridge1)) or ")
+        print("     not IsOne(Image(action,bridge2)) then")
+        print("    Add(records,[Length(cosets),Size(Image(action)),")
+        print("      Image(action,bridge1),Image(action,bridge2)]);")
+        print("  fi;")
+        print("od;")
+        print('Print("separating_actions ",Length(records),"\\n");')
+        print('Print("separating_records ",records,"\\n");')
     print("QUIT;")
 
 
