@@ -24,28 +24,28 @@ not claimed here as a new proof or mechanism. -/
 theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
     (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
-        (elementaryGroup (Fin n) LeavittAllRanksTT.L) ∧
-      ¬ IsSofic (elementaryGroup (Fin n) LeavittAllRanksTT.L) := by
+        (elementaryGroup (Fin n) BinaryL) ∧
+      ¬ IsSofic (elementaryGroup (Fin n) BinaryL) := by
   refine ⟨binaryLeavitt_elementaryGroup_hasTTmodT n hn, ?_⟩
   let d : BinaryLeavittUnits (ZMod 2) →*
-      elementaryGroup (Fin 2) LeavittAllRanksTT.L :=
+      elementaryGroup (Fin 2) BinaryL :=
     MatrixDiagonalization.diagUnitHom.codRestrict
-      (elementaryGroup (Fin 2) LeavittAllRanksTT.L)
+      (elementaryGroup (Fin 2) BinaryL)
       (fun u ↦ KOnePaper.diagUnit_mem_elementary (ZMod 2) u)
   have hd : Function.Injective d := by
     intro u v huv
     apply Units.ext
     have hentry := congrArg
-      (fun M : elementaryGroup (Fin 2) LeavittAllRanksTT.L ↦
-        ((M.1 : Matrix (Fin 2) (Fin 2) LeavittAllRanksTT.L) 0 0)) huv
+      (fun M : elementaryGroup (Fin 2) BinaryL ↦
+        ((M.1 : Matrix (Fin 2) (Fin 2) BinaryL) 0 0)) huv
     simpa [d, MatrixDiagonalization.diagUnitHom,
       MatrixDiagonalization.diagUnit] using hentry
-  let e : elementaryGroup (Fin 2) LeavittAllRanksTT.L ≃*
-      elementaryGroup (Fin n) LeavittAllRanksTT.L :=
-    leavitt_elementaryRankEquivalence LeavittAllRanksTT.L
+  let e : elementaryGroup (Fin 2) BinaryL ≃*
+      elementaryGroup (Fin n) BinaryL :=
+    leavitt_elementaryRankEquivalence BinaryL
       (BinaryLeavitt.family (ZMod 2)) 2 n (by omega) hn
   let f : BinaryLeavittUnits (ZMod 2) →*
-      elementaryGroup (Fin n) LeavittAllRanksTT.L :=
+      elementaryGroup (Fin n) BinaryL :=
     e.toMonoidHom.comp d
   have hf : Function.Injective f := e.injective.comp hd
   intro hsofic

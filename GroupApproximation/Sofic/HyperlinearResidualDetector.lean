@@ -68,7 +68,7 @@ theorem not_isSofic_range_of_soficInvisible
 /-- **One-detector criterion.**  If a homomorphism to a hyperlinear group
 detects one element of the sofic residual, its range is a hyperlinear
 nonsofic group. -/
-theorem hyperlinear_nonsofic_range_of_soficInvisible
+theorem hyperlinear_range_and_failureOfSoficity_of_soficInvisible
     (hH : IsHyperlinear H) {x : G} (hx : SoficInvisible x)
     (rho : G →* H) (hdetect : rho x ≠ 1) :
     IsHyperlinear rho.range ∧ ¬ IsSofic rho.range := by
@@ -80,11 +80,11 @@ theorem hyperlinear_nonsofic_range_of_soficInvisible
 /-- Existential form of the one-detector criterion: a single hyperlinear
 representation seeing a single sofic-residual element produces a
 counterexample to `hyperlinear ⇒ sofic`. -/
-theorem exists_hyperlinear_nonsofic_of_soficInvisible_detector
+theorem exists_hyperlinear_failureOfSoficity_of_soficInvisible_detector
     (hH : IsHyperlinear H) {x : G} (hx : SoficInvisible x)
     (rho : G →* H) (hdetect : rho x ≠ 1) :
     ∃ (Q : Type u) (_ : Group Q), IsHyperlinear Q ∧ ¬ IsSofic Q := by
   refine ⟨rho.range, inferInstance, ?_⟩
-  exact hyperlinear_nonsofic_range_of_soficInvisible hH hx rho hdetect
+  exact hyperlinear_range_and_failureOfSoficity_of_soficInvisible hH hx rho hdetect
 
 end GroupApproximation

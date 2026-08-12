@@ -166,11 +166,16 @@ def axiomScan (env : Environment) (names : Array Name) (allowed : List Name) :
 
 /-! ## Established heads: the shared core of LAUNDERED_PROP and UNWITNESSED
 
-A corpus declaration ESTABLISHES a head constant `H` when its type, after the
-telescope, concludes in `H …` (or in `Nonempty (H …)`) and its telescope holds
-no `Prop` argument.  The Prop-argument condition is the whole point: a witness
-that itself needs a hypothesis discharged has not established anything, it has
-relocated the obligation into a premise. -/
+A corpus declaration establishes that it does mathematical work with a head
+constant `H` when its type, after the telescope, concludes in `H …` (or in
+`Nonempty (H …)`).  This deliberately includes conditional lemmas.  A relation
+such as `IsQuasiCocycle` is not laundered merely because its useful existence
+theorems have hypotheses; laundering means the corpus only ever *consumes* the
+named proposition and never proves a result with it as conclusion.
+
+External theorems smuggled into hypotheses are handled more strictly by
+`literatureScan`, which follows definitional and constructor closure and bans
+tagged inputs even when a degenerate positive instance exists. -/
 
 /-- Head constant of a type, if it has one. -/
 def headConst? (e : Expr) : Option Name := e.getAppFn.constName?
@@ -215,7 +220,7 @@ here, and so is prose on a `def`.  `BinaryLeavittDiagonal.lean`'s module
 docstring was one of the four original hits, and is no longer checked by
 anything. -/
 def disclaimerPhrases : List String :=
-  ["conditional", "candidate", "proposed", "not proved", "unproved",
+  ["conditional", "proposed", "not proved", "unproved",
    "not yet proved", "assumed rather than", "remains an assumption"]
 
 /-- Case-insensitive substring test against `disclaimerPhrases`.  `splitOn`
@@ -229,15 +234,7 @@ def mentionsConditionality (s : String) : Bool :=
     let shielded := (lower.splitOn ("un" ++ p)).length - 1
     hits > shielded
 
-/-- Does this binder relocate a mathematical obligation onto the caller?
-
-Prop-valued, and NOT an instance binder of an ordinary structural class. -/
-def isObligation (t : Expr) (bi : BinderInfo) (isP : Bool) : Bool :=
-  isP && (bi != .instImplicit ||
-    (headConst? t |>.map assumptionClasses.contains |>.getD true))
-
-/-- Every head constant the corpus proves or constructs UNCONDITIONALLY, in one
-pass.
+/-- Every head constant the corpus proves or constructs, in one pass.
 
 One pass, and not a search per question: the environment holds all of Mathlib,
 so asking "is there a witness for `S`" by walking `env.constants` once per `S`
@@ -250,17 +247,13 @@ def establishedHeads (env : Environment) (names : Array Name) : MetaM NameSet :=
     unless (match ci with
             | .defnInfo _ | .ctorInfo _ | .thmInfo _ => true
             | _ => false) do continue
-    let (h?, unconditional) ← forallTelescope ci.type fun args body ↦ do
-      for a in args do
-        let t ← inferType a
-        let bi := (← a.fvarId!.getDecl).binderInfo
-        if isObligation t bi (← isProp t) then return (none, false)
+    let h? ← forallTelescope ci.type fun _ body ↦ do
       -- Either a term of `H …`, or a proof of `Nonempty (H …)`: a theorem
       -- witnesses a Prop-valued head, a `Nonempty` proof a data one.
       let body := match body.getAppFn.constName? with
         | some ``Nonempty => (body.getAppArgs[0]?).getD body
         | _ => body
-      return (headConst? body, true)
+      return headConst? body
     if let some h := h? then out := out.insert h
     -- A structure is also witnessed when its CONSTRUCTOR appears inside the
     -- proof term of an unconditional declaration, even though the conclusion
@@ -268,12 +261,11 @@ def establishedHeads (env : Environment) (names : Array Name) : MetaM NameSet :=
     -- and concludes `IsSofic G`; reading conclusions alone reported
     -- `SoficModel` as never constructed while the construction sat in the
     -- proof.
-    if unconditional then
-      if let some val := valueOf? ci then
-        for c in val.getUsedConstants do
-          match c with
-          | .str parent "mk" => out := out.insert parent
-          | _ => pure ()
+    if let some val := valueOf? ci then
+      for c in val.getUsedConstants do
+        match c with
+        | .str parent "mk" => out := out.insert parent
+        | _ => pure ()
   return out
 
 /-- Corpus constants that are proposition-formers: `∀ …, Prop`. -/

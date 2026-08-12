@@ -23,7 +23,7 @@ The broader rigidity endpoints are independent of the nonsofic construction:
 | Declaration | Statement |
 | --- | --- |
 | `FiniteTypeLeavittTT.elementaryGroup_hasTTmodT` | The four-hypothesis finite-type ring-class `(TT)/T` theorem, in every rank `≥ 2` |
-| `LeavittAllRanksTT.elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 2` |
+| `PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 2` |
 | `boundedProduct_coordinateBlockOrRoot` | Single-sandwich coordinate-block generation with width `2n + 4` |
 
 The original nonsofic endpoints are collected in

@@ -79,7 +79,7 @@ example (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
       (elementaryGroup (Fin n)
         (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
-  LeavittAllRanksTT.elementaryGroup_hasTTmodT n hn
+  PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT n hn
 
 example {R : Type} [Ring R] [Nontrivial R]
     (X : Type) [Fintype X]

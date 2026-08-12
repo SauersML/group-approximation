@@ -1,7 +1,7 @@
 import GroupApproximation.PropertyTT.BoundedGeneration
 import GroupApproximation.PropertyTT.FiniteTypeLeavittTT
-import GroupApproximation.PropertyTT.LeavittAllRanksTT
 import GroupApproximation.PropertyTT.RankFourRelativeTT
+import GroupApproximation.Leavitt.UniversalLeavitt
 import Mathlib.RingTheory.FiniteType
 
 /-!
@@ -20,6 +20,8 @@ namespace PropertyTTPaper
 open FreeRootCharacterValuation
 
 noncomputable section
+
+abbrev BinaryL := BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
 
 universe u v
 
@@ -318,8 +320,16 @@ elementary group over the binary Leavitt algebra over `F₂` has property
 theorem binaryLeavitt_elementaryGroup_hasTTmodT
     (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
-      (elementaryGroup (Fin n) LeavittAllRanksTT.L) :=
-  LeavittAllRanksTT.elementaryGroup_hasTTmodT n hn
+      (elementaryGroup (Fin n) BinaryL) :=
+  FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
+    BinaryLeavitt.Generator
+    (BinaryLeavitt.quotientMap (ZMod 2)).toRingHom
+    (RingQuot.mkAlgHom_surjective (ZMod 2)
+      (BinaryLeavitt.Relation (ZMod 2)))
+    (BinaryLeavitt.family (ZMod 2))
+    (BinaryLeavitt.hasSingleSandwichDivision (ZMod 2))
+    (BinaryLeavitt.hasElementaryDiagonalClass (ZMod 2))
+    n hn
 
 end
 end PropertyTTPaper

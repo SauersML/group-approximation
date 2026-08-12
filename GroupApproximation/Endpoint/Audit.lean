@@ -27,7 +27,6 @@ import GroupApproximation.Sofic.PhasePropagation
 import GroupApproximation.Kun.KunDecomposition
 import GroupApproximation.KunThom.KunThomTheorem
 import GroupApproximation.PropertyT.FreeElementaryPropertyT
-import GroupApproximation.PropertyTT.LeavittAllRanksTT
 import GroupApproximation.PropertyTT.PaperStatements
 import GroupApproximation.PropertyTT.NonsoficCorollary
 import GroupApproximation.Kazhdan.KazhdanComplex
@@ -158,7 +157,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.BinaryLeavittSteinberg.hasKazhdanPropertyT
 #print axioms GroupApproximation.FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT
 #print axioms GroupApproximation.FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
-#print axioms GroupApproximation.LeavittAllRanksTT.elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_planeEnergyEstimate

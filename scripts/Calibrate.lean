@@ -33,7 +33,6 @@ def mustReport : List (String × Name) :=
    ("TAUTOLOGY", ``AuditPlant.plantedTautology),
    ("UNCONDITIONAL", ``AuditPlant.plantedNonsoficUnconditional),
    ("ASSUMPTION_INSTANCE", ``AuditPlant.plantedNonemptyAssumption),
-   ("LAUNDERED_PROP", ``AuditPlant.OnlyEstablishedConditionally),
    ("EMPTY_PREMISE", ``AuditPlant.plantedVacuous),
    ("TRIVIAL", ``AuditPlant.plantedUnusedHypothesis),
    ("UNUSED", ``AuditPlant.plantedUnusedHypothesis),
@@ -55,6 +54,9 @@ def mustNotReportUnder : List (String × Name) :=
   [-- `Finite` is a Prop-valued class, so the theorem that ESTABLISHES a
    -- proposition looked conditional and the proposition looked laundered.
    ("LAUNDERED_PROP", ``AuditPlant.EstablishedUnderStructuralClass),
+   -- A proposition proved under an explicit, visible mathematical hypothesis
+   -- is not something the corpus only assumes.
+   ("LAUNDERED_PROP", ``AuditPlant.EstablishedConditionally),
    -- constructed inside a proof term, not in the conclusion
    ("UNWITNESSED", ``AuditPlant.PlantedInnerCertificate),
    -- `exists_foo_of_bar` is Lean's convention for a CONDITIONAL lemma

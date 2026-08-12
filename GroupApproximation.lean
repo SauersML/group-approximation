@@ -337,7 +337,6 @@ import GroupApproximation.Leavitt.RankFourCompressors
 import GroupApproximation.Leavitt.UniversalLeavitt
 import GroupApproximation.Leavitt.UniversalRankFour
 import GroupApproximation.Leavitt.UniversalPropertyT
-import GroupApproximation.PropertyTT.LeavittAllRanksTT
 import GroupApproximation.PropertyTT.PaperStatements
 import GroupApproximation.PropertyTT.NonsoficCorollary
 import GroupApproximation.Leavitt.UniversalCompressionSetup

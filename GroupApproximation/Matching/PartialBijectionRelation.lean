@@ -88,7 +88,7 @@ noncomputable def ofBiuniqueRelation (R : Finset (Y × Z))
     (hleft : ∀ {y x z}, (y, z) ∈ R → (x, z) ∈ R → y = x) :
     (ofBiuniqueRelation R hright hleft).target = relationTarget R := rfl
 
-theorem ofBiuniqueRelation_apply (R : Finset (Y × Z))
+@[simp] theorem ofBiuniqueRelation_apply (R : Finset (Y × Z))
     (hright : ∀ {y z w}, (y, z) ∈ R → (y, w) ∈ R → z = w)
     (hleft : ∀ {y x z}, (y, z) ∈ R → (x, z) ∈ R → y = x)
     (y : Y) (hy : y ∈ (ofBiuniqueRelation R hright hleft).source) :

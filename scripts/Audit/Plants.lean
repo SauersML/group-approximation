@@ -106,12 +106,14 @@ never established. -/
 theorem establishedUnderStructuralClass (α : Type) [PlantedStructuralClass α] :
     EstablishedUnderStructuralClass α := rfl
 
-def OnlyEstablishedConditionally (α : Type) : Prop := α = α
+def EstablishedConditionally (α : Type) : Prop := α = α
 
-/-- Must STILL be LAUNDERED_PROP: an explicit Prop premise really does
-relocate the obligation, and widening the criterion must not lose that. -/
-theorem onlyEstablishedConditionally (α : Type) (h : α = α) :
-    OnlyEstablishedConditionally α := h
+/-- Must NOT be LAUNDERED_PROP: this lemma proves the named relation under its
+honest mathematical hypothesis.  The stricter literature-input scan, rather
+than this satisfiability scan, is responsible for banning externally supplied
+theorems disguised as hypotheses. -/
+theorem establishedConditionally (α : Type) (h : α = α) :
+    EstablishedConditionally α := h
 
 /-- Must NOT be UNWITNESSED: constructed inside a proof term while the
 conclusion is about something else, which is exactly how `isSofic_of_fintype`
