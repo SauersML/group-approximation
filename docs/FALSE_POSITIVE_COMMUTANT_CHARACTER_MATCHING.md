@@ -256,7 +256,84 @@ positive-invisible wall by a nearby exact commutant unitary; Theorem 1 then
 computes the sharp supremum over that exact commutant by finite character
 matching.
 
-## 7. Consequences for compute
+## 7. Sharp finite-window correction and the only local escape
+
+The whole-subgroup average in `(PCM21)` is exact but stronger than the
+finite generating-window control supplied by an almost representation.
+There is also an exact finite-window bound, with one necessary spectral
+factor.
+
+Let `S subset P` generate `P`.  Define the spectral character gap on the
+support of `pi` by
+
+`eta_pi(S)`
+` =min sum_(s in S)|chi(s)-psi(s)|^2,`                 `(PCM31)`
+
+where the minimum is over spectral characters `chi,psi` with
+`chi|_P!=psi|_P`.  If no such pair occurs, put `eta_pi(S)=infinity`.
+
+**Theorem 4 (sharp window-to-commutant estimate).**  For every unitary
+`T`, there is a unitary `T_0 in pi(P)'` such that
+
+`||T-T_0||_2`
+` <=2 eta_pi(S)^(-1/2)`
+`      (sum_(s in S)||[T,pi(s)]||_2^2)^(1/2).`        `(PCM32)`
+
+Consequently
+
+`||T pi(m)T^*-pi(m)||_2`
+` <=sqrt(E_pi(P,m))`
+`   +4 eta_pi(S)^(-1/2)`
+`      (sum_(s in S)||[T,pi(s)]||_2^2)^(1/2).`        `(PCM33)`
+
+### Proof
+
+Use the character decomposition `(PCM7)` and let `mathcal E` be the
+conditional expectation `(PCM25)`.  In block-matrix notation,
+`T-mathcal E(T)` consists exactly of entries `T_(chi,psi)` for which
+`chi|_P!=psi|_P`.  On such an entry,
+
+`[T,pi(s)]_(chi,psi)`
+` =(psi(s)-chi(s))T_(chi,psi).`                        `(PCM34)`
+
+Therefore
+
+`sum_(s in S)||[T,pi(s)]||_2^2`
+` >=eta_pi(S)||T-mathcal E(T)||_2^2.`                 `(PCM35)`
+
+The polar-correction argument `(PCM27)--(PCM28)` gives a unitary `T_0` in
+the commutant with
+
+`||T-T_0||_2<=2||T-mathcal E(T)||_2.`                 `(PCM36)`
+
+Equations `(PCM35)--(PCM36)` prove `(PCM32)`.  Combine `(PCM32)` with the
+conjugation estimate `(PCM29)` and the exact optimum `(PCM6)` to obtain
+`(PCM33)`.  End proof.
+
+For the regular representation, character restriction is surjective and
+`(PCM31)` becomes
+
+`eta_reg(S)`
+` =min_(1!=nu in P^) sum_(s in S)|nu(s)-1|^2.`        `(PCM37)`
+
+This is twice the smallest nonzero eigenvalue of the unnormalized Cayley
+Laplacian associated with `S` (with the displayed one-sided convention).
+For a cyclic group of order `M` with one generator,
+
+`eta_reg(S)=4 sin^2(pi/M)~4 pi^2/M^2.`                `(PCM38)`
+
+Thus the exact character matching plus `(PCM33)` identifies the only local
+finite-window escape:
+
+`marked quotient survives and the positive dual spectral gap tends to 0.` `(PCM39)`
+
+This is precisely the high-order-clock regime.  If `eta_pi(S)` is bounded
+below, approximate commutation on the fixed positive window reduces
+dimension-freely to the exact assignment theorem.  If it tends to zero,
+the near-colliding character pair selected by `(PCM31)` is the explicit
+clock direction which future global cocycle constraints must transport.
+
+## 8. Consequences for compute
 
 Do not optimize arbitrary unitaries at this gate.  The exact assignment
 formula proves that character permutations are optimal.  A useful MSI job
@@ -264,6 +341,8 @@ should instead emit:
 
 * the finite tangent module and positive submodule at every base incidence;
 * the order of the marked quotient class;
+* the finite-window character gap `(PCM31)` and its minimizing character
+  pair;
 * the annihilator-character variables;
 * the sparse modular consistency matrix from external edges and
   stabilizers; and

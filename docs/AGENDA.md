@@ -32,6 +32,20 @@ and polar correction produce an exact positive-commutant unitary within
 character assignment asymptotically, and an absorbed marked class has
 marked norm at most `2 sqrt(2) epsilon`.
 
+For control only on a finite generating window `S`, the exact loss is the
+inverse square root of
+
+`eta(S)=min_(1!=nu in P^) sum_(s in S)|nu(s)-1|^2`.
+
+This is the positive dual Cayley spectral gap.  The marked norm is at most
+the exact assignment optimum plus `4 Def_S/sqrt(eta(S))`.  Therefore the
+only local finite-window escape is a surviving marked quotient class
+together with `eta(S)->0`.  On a cyclic clock of order `M`,
+`eta(S)=4 sin^2(pi/M)`, recovering exactly the high-order phase mechanism.
+The global FALSE problem is now to transport that minimizing clock character
+through the relative cocycle/stabilizer system without incurring positive
+mass elsewhere.
+
 ## 1. Finite-action character transfer  [ACTIVE]
 
 Fix a finite multiplication table and let `F_T` be the free group on its
