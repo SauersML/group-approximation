@@ -85,7 +85,7 @@ example : HasTTmodT.{0, 0}
     (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ :=
   PropertyTTPaper.binaryLeavittUnits_hasTTmodT
 
-example (n : ℕ) (hn : 2 ≤ n) :
+noncomputable example (n : ℕ) (hn : 2 ≤ n) :
     elementaryGroup (Fin n)
         (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) ≃*
       (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ :=
