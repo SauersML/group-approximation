@@ -2431,6 +2431,13 @@ recurrence has the same positive arc and compressor order, and every two
 inverse Fourier labels have squared HS distance two.  The local alphabet
 therefore has unbounded incidence, not merely two branches.
 
+A fixed-constant-term packing argument strengthens this to an exponential
+primitive-sector code with linear Hamming distance between inverse
+recurrence vectors.  Coordinatewise regular additive characters compress
+that distance to dimension `O(n)` while retaining a constant HS fold.  The
+remaining missing datum is a low-defect unitary transport for the dense
+feedback rows; the coordinate character set is not recurrence-invariant.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

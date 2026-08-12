@@ -130,6 +130,62 @@ Fourier operators are pairwise separated by squared normalized HS distance
 two.  This is a growing higher-incidence alphabet, not a balanced
 one-dimensional wall system.
 
+There is a stronger coding form.  Give `W_n=k^n` coordinate Hamming metric.
+
+**Proposition 1 (primitive inverse code).**  For every fixed finite field
+`F_l`, there are constants `delta_l,c_l>0` and, for all sufficiently large
+`n`, subfamilies
+
+`C_n subset calP_n`, `|C_n|>=l^(c_l n)`,              `(PRF12d)`
+
+such that
+
+`d_H(v_f,v_g)>=delta_l n`                            `(PRF12e)`
+
+for all distinct `f,g in C_n`.
+
+**Proof.**  There are `phi(l^n-1)/n=l^(n-o(n))` primitive polynomials.
+Their nonzero constant terms take only `l-1` values, so one constant-term
+fiber still has cardinality `l^(n-o(n))`.  On that fiber, formula `(PRF12)`
+identifies the remaining polynomial coefficient vector with `v_f` by one
+fixed coordinate reversal and multiplication by a nonzero scalar.  It
+therefore preserves Hamming distance.
+
+Choose `delta_l>0` so small that the `l`-ary entropy satisfies
+`H_l(delta_l)<1`.  A Hamming ball of radius `delta_l n` in `k^n` has size at
+most `l^((H_l(delta_l)+o(1))n)`.  Greedily select a vector and delete its
+ball.  Since the starting constant-term fiber has exponent `1-o(1)`, the
+remaining code has positive exponential rate for all large `n`.  Pulling it
+back through `(PRF12)` proves `(PRF12d)--(PRF12e)`.  End proof.
+
+Thus the common positive arc supports not only many distinguishable inverse
+sectors, but an honest positive-rate code of inverse sectors.  This is the
+finite combinatorial resource required by a higher-incidence carry scheme:
+local transport would have to change few inverse coordinates per tested
+relation while a marked path crosses a linear code distance.
+
+The Hamming statement already has a compressed Fourier consequence.  Fix a
+nontrivial additive character `psi:k->T`.  On
+`ell^2({0,...,n-1} times k)`, put
+
+`Z_coord(v)delta_(j,y)=psi(y v_j)delta_(j,y)`.        `(PRF12f)`
+
+If `v_j!=w_j`, the average over `y in k` of
+`psi(y(w_j-v_j))` is zero.  Hence
+
+`||Z_coord(v)-Z_coord(w)||_2^2=2 d_H(v,w)/n`.         `(PRF12g)`
+
+In particular, `(PRF12e)` gives
+
+`||Z_coord(v_f)-Z_coord(v_g)||_2^2>=2 delta_l`.       `(PRF12h)`
+
+Thus linear inverse-code distance already yields macroscopic normalized HS
+separation in dimension `n`, rather than only in the full regular dimension
+`l^n`.  The missing operation on this compressed model is a low-defect
+unitary transport implementing the companion recurrences: the coordinate
+character set is not invariant under a dense feedback row.  Equation
+`(PRF12h)` isolates exactly what such a sparse transport must preserve.
+
 ## 3. Exact Fourier realization
 
 Fix a nontrivial additive character
