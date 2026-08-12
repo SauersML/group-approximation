@@ -24319,6 +24319,33 @@ not hyperlinear--it is sofic--but it proves that one cannot obtain a
 hyperlinear embedding merely by changing the metric on a given weak-MF
 embedding.
 
+# 2026-08-12: exact boundary countermodel and repaired atlas objective
+
+Full audit: `docs/ATLAS_BOUNDARY_RANK_THREE_EXACT_AUDIT.md`.
+
+The `234` first-boundary relations do not globally force the proposed
+`H=GL3(2)` intertwiner.  Their characteristic-two signed-prefix derivatives
+generate a left ideal of codimension `155` in `F2[A8]`.  The corresponding
+semidirect product supplies two injective `A8` charts with exact regular
+margins, all boundary words equal to one, and four nonzero `H` bridges.  The
+independent dual witness has support `9408` and verifies all translated rows.
+
+The first interior collision at index `19243` has a noncentral order-zero
+projection and therefore kills the whole affine component, independent of
+the module or cocycle.  The exhaustive `A9` point-stabilizer scan tests all
+`362880` relative labeled chart positions: exactly one passes the boundary,
+and none pass boundary plus `19243`.  The corresponding `A10` scan tests all
+`1814400` distinct labeled charts modulo the two-point centralizer and gives
+the same result; every different eight-point support fails the first
+boundary word.
+
+This is not yet a uniform matrix gap.  In particular, a universal tracial
+SOS certificate is impossible because the full presented group always has
+its exact regular von Neumann algebra.  The remaining proof must be CE
+specific: rule out `R^omega` regular-margin solutions of a finite packet,
+or establish an LLP/stability statement converting such a solution into an
+excluded finite component.
+
 Consequently, even a separate proof of Shulman's introductory group-level
 sentence
 
