@@ -1638,6 +1638,15 @@ finite target is a holonomy-canceling multi-chain incidence code, or a
 genuinely nonconstant solution of the fiber equation `(LFE29)`.  See
 `FALSE_LONG_CHAIN_BUNDLE_MONODROMY_NO_GO.md`.
 
+A balanced scalar wall code on one cycle does not evade this obstruction.
+If `y_j` is its accumulated shear and `s_j=y_(j+1)-y_j` its wall increment,
+then `|supp(s)|<=2|supp(y)|`.  More generally
+`|supp(dy)|<=Delta|supp(y)|` on a graph of maximum degree `Delta`.  Hence a
+bounded-degree scalar coboundary cannot have vanishing positive mismatch
+and macroscopic marked energy.  Any computational wall search must build
+growing marked incidence, moving local commutants, or higher/nonabelian
+derived data rather than merely adding a distant compensating wall.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
