@@ -41,6 +41,15 @@ dim H_2=7,       dim H_cusp^3=2,       dim E^2=5.             (BED4)
 The seven harmonic directions are therefore the extension of a rank-two
 cuspidal quotient by the dual of a rank-five Eisenstein image.
 
+The first discriminating small square-level computation confirms the same
+structure:
+
+```text
+dim H_2(Gamma_0(49);Q)=1,
+dim H_cusp^3(Gamma_0(49);Q)=0,
+dim E^2=1.                                                   (BED4a)
+```
+
 There is also an integral refinement. For a torsion-free quotient, let
 
 ```text
@@ -189,15 +198,47 @@ the next literature and chain-level audit has a specific object to target.
 
 The small square-level data give an additional lead. The exact charts at
 levels `9` and `25` have `H_2=0` and no cuspidal contribution, hence
-`E^2=0`. At level `121`, `dim E^2=5`. These values match
+`E^2=0`. The new exact level-`49` chart has `H_2=1` and no cuspidal
+contribution, hence `dim E^2=1`. At level `121`, `dim E^2=5`. These values
+match
 
 ```text
 dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))                    (BED17)
 ```
 
-for `p=3,5,11`. The discriminating level `49` is being checked separately;
-`(BED17)` predicts rank one. This pattern is evidence for a degeneracy-map
-description of the Eisenstein kernel, not yet a proved family formula.
+for `p=3,5,7,11`. In particular, level `49` was the first case where
+`(BED17)` predicted a nonzero space without a cuspidal contribution, and its
+exact rank is one as predicted. This four-level pattern is evidence for a
+degeneracy-map description of the Eisenstein kernel, not yet a proved family
+formula.
+
+The exact level-`49` complex has dimensions
+
+```text
+Q^139 <- Q^356 <- Q^320 <- Q^110
+```
+
+and boundary ranks `(138,218,101)`, so its homology dimensions are
+`(1,0,1,9)`. Three modular fields `101,1009,10007` give the same ranks, and
+the exact rational analyzer constructs the rank-one harmonic lattice. Its
+shortest nonintegral `Q^#` class has norm
+
+```text
+0.335966093411573...,
+```
+
+which is above the spherical threshold `1/sqrt(28)`. Thus this new
+Eisenstein direction is chart-safe as well as structurally informative.
+
+Certificates:
+
+```text
+experiments/projective-cellular-n49-summary.json
+SHA-256 3c3727e4df6d0ce2018ece91670e782879b2b5568942d57223b900598a3ffadc,
+
+experiments/projective-cellular-n49-modular-screen.json
+SHA-256 d1ca1f99ca43b610b92cc28fc10925893529bc06835a747b28ed76c3adac1881.
+```
 
 ## Sources
 

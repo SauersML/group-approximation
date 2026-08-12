@@ -110,6 +110,50 @@ SHA-256 1a81d7c70b6477ab4c0cfeba0ebd0f4e1f3cf08c8f94aca0e42b3871cdb74ae2.
 Thus the new path has been checked both against the old implementation where
 the latter applies and on a true prime-power ring where it does not.
 
+### Square-level Eisenstein calibration
+
+The boundary/cuspidal split in
+`TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md` motivated two further exact
+small square-level runs.
+
+At level `25`, the rational complex has dimensions and ranks
+
+```text
+Q^45 <- Q^100 <- Q^80 <- Q^28,
+rank(d1)=44, rank(d2)=56, rank(d3)=24,
+```
+
+so its homology is `(1,0,0,4)`. At level `49`,
+
+```text
+Q^139 <- Q^356 <- Q^320 <- Q^110,
+rank(d1)=138, rank(d2)=218, rank(d3)=101,
+```
+
+so its homology is `(1,0,1,9)`. All consecutive boundary products vanish
+exactly. The rank-one level-`49` harmonic lattice is the first nonzero
+noncuspidal square-level `H_2` in this calibration. Its shortest nonintegral
+`Q^#` class has norm `0.335966093411573...>1/sqrt(28)`, so it is above the
+spherical threshold.
+
+Together with level `9` and level `121`, the exact Eisenstein dimensions at
+square levels `p^2`, `p=3,5,7,11`, are `0,0,1,5`. They match
+
+```text
+dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p)),
+```
+
+which is now a precise conjectural degeneracy-map formula to prove. The
+certificates are
+
+```text
+experiments/projective-cellular-n25-summary.json
+SHA-256 597a70d2aafb8f2175988612a029d3c973c7b11ee1b68f3fa8d1869a62bfb1b3,
+
+experiments/projective-cellular-n49-summary.json
+SHA-256 3c3727e4df6d0ce2018ece91670e782879b2b5568942d57223b900598a3ffadc.
+```
+
 ### Exact lower-level control for `121`
 
 The reduction target of the level-`121` chart is level `11`.  Exact analysis

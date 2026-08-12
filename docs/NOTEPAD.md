@@ -44055,7 +44055,12 @@ The square-level data suggest a further, still conjectural formula:
 `dim H_Eis^2(Gamma_0(p^2))`
 ` = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))`.
 
-It matches exact levels `9`, `25`, and `121`; level `49` is the first
-discriminating check and predicts dimension one.
+It now matches exact levels `9`, `25`, `49`, and `121`. The discriminating
+level `49` calculation gives homology dimensions `(1,0,1,9)` exactly, so its
+noncuspidal `H_2` is a rank-one Eisenstein kernel as predicted. Its shortest
+nonintegral `Q^#` norm is `0.335966...>1/sqrt(28)`, so the new direction is
+also chart-safe. Certificates:
+`experiments/projective-cellular-n49-summary.json` and
+`experiments/projective-cellular-n49-modular-screen.json`.
 
 Full proof: `docs/TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md`.

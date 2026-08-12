@@ -36,6 +36,19 @@ The finite group `E_sat/E` is precisely the extra denominator/gluing layer.
 This puts the boundary problem directly into the paired-discriminant
 framework. Full proof: `TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md`.
 
+The first discriminating square-level check also succeeds: level `49` has
+exact homology `(1,0,1,9)`, no cuspidal degree-three contribution, and hence
+a rank-one Eisenstein kernel. Together with levels `9,25,121`, this matches
+
+```text
+dim H_Eis^2(Gamma_0(p^2))
+  = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))
+```
+
+for `p=3,5,7,11`. This is now the theorem-shaped square-level formula to
+derive from maximal-parabolic degeneracy maps; it remains conjectural as a
+family statement.
+
 ### 2026-08-12: absolute H2 has an interior quotient and a boundary kernel
 
 The Borel--Serre pair sequence and Lee--Schwermer boundary theorem give the
