@@ -134,7 +134,7 @@ specialist confirmation.
 4. **Binary Leavitt specialization.**  The unconditional theorem
    `E_n(L_{F_2}(1,2))` has `(TT)/T` for `n ≥ 2` is a candidate new theorem.
 
-No sentence may use "first", "previously unknown", or "new" for items 1--5
+No sentence may use "first", "previously unknown", or "new" for items 1--4
 without a documented final literature search and, preferably, a direct query
 to specialists in noncommutative universal lattices and `(TT)/T`.
 
@@ -144,7 +144,7 @@ Before the manuscript is frozen, it must have one declaration per numbered
 paper result:
 
 1. the no-`/T` root theorem;
-2. the `Fin n` coordinate-block factorization with the literal `2*n+6`
+2. the `Fin n` coordinate-block factorization with the literal `2*n+4`
    width;
 3. the explicit four-hypothesis ring-class theorem;
 4. a finite-type-algebra wrapper, if the manuscript uses that formulation;

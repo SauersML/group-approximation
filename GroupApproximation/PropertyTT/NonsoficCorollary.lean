@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.KOne.PaperStatements
 import GroupApproximation.PropertyTT.PaperStatements
 
 /-!
@@ -25,14 +26,31 @@ theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
     HasTTmodT.{0, 0}
         (elementaryGroup (Fin n) LeavittAllRanksTT.L) ∧
       ¬ IsSofic (elementaryGroup (Fin n) LeavittAllRanksTT.L) := by
-  have hpositive : 1 ≤ n - 1 := by omega
-  have hrank : n - 1 + 1 = n := Nat.sub_add_cancel (by omega)
-  have hnonsofic :
-      ¬ IsSofic (BinaryLeavittEL (ZMod 2) (n - 1)) :=
-    (binaryLeavitt_finiteField_profile (ZMod 2) (n - 1) hpositive).2.2.2
   refine ⟨binaryLeavitt_elementaryGroup_hasTTmodT n hn, ?_⟩
-  rw [← hrank]
-  exact hnonsofic
+  let d : BinaryLeavittUnits (ZMod 2) →*
+      elementaryGroup (Fin 2) LeavittAllRanksTT.L :=
+    MatrixDiagonalization.diagUnitHom.codRestrict
+      (elementaryGroup (Fin 2) LeavittAllRanksTT.L)
+      (fun u ↦ KOnePaper.diagUnit_mem_elementary (ZMod 2) u)
+  have hd : Function.Injective d := by
+    intro u v huv
+    apply Units.ext
+    have hentry := congrArg
+      (fun M : elementaryGroup (Fin 2) LeavittAllRanksTT.L ↦
+        ((M.1 : Matrix (Fin 2) (Fin 2) LeavittAllRanksTT.L) 0 0)) huv
+    simpa [d, MatrixDiagonalization.diagUnitHom,
+      MatrixDiagonalization.diagUnit] using hentry
+  let e : elementaryGroup (Fin 2) LeavittAllRanksTT.L ≃*
+      elementaryGroup (Fin n) LeavittAllRanksTT.L :=
+    leavitt_elementaryRankEquivalence LeavittAllRanksTT.L
+      (BinaryLeavitt.family (ZMod 2)) 2 n (by omega) hn
+  let f : BinaryLeavittUnits (ZMod 2) →*
+      elementaryGroup (Fin n) LeavittAllRanksTT.L :=
+    e.toMonoidHom.comp d
+  have hf : Function.Injective f := e.injective.comp hd
+  intro hsofic
+  exact binaryLeavittUnits_not_isSofic (ZMod 2)
+    (isSofic_of_injective f hf hsofic)
 
 end PropertyTTPaper
 end GroupApproximation

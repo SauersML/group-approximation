@@ -349,7 +349,9 @@ where \(d_{ab,t}=\norm{\sigma(x_{ab}(t))z-z}\).
 \end{lemma}
 
 \begin{proof}
-Set
+We apply the Fourier argument to the underlying real Hilbert space.
+The unitary operators are orthogonal there, and all norms, fixed
+spaces, and displacements are unchanged.  Set
 \[
  U_{ab}=2\norm z\,d_{ab,1},\qquad
  G_{ab}=\sum_{s\in X}2\norm z\,d_{ab,s}.
@@ -368,36 +370,59 @@ for \(z'=\sigma(g)z\) give
  m_d^C\le m_d^B+U_{ij}.
 \end{equation}
 On region \(D\), one coordinate character detects the unit
-coefficient.  The negative-character projection formula for an
+coefficient.  The nontrivial character of \(\F_2\) has character
+gap \(4\), so the negative-character projection formula for an
 involution gives
 \begin{equation}\label{eq:Dmass}
  m_d^D\le\tfrac14(d_{ik}^2+d_{jk}^2).
 \end{equation}
 
-For each character in \(B\), choose the first generator \(s\in X\)
-whose left derivative lowers the common valuation.  These choices
-partition \(B\).  Conjugation by \(x_{ji}(s)\) sends the first
-family into \(C\cup D\), while conjugation by \(x_{ij}(s)\) sends
-the symmetric family into \(A\cup D\).  The conjugations are
-compared between \(V_d\) and \(V_{d+1}\) by restricting
-characters.  Thus no invariance of \(A_{\le d}\) under
-multiplication by \(s\) is assumed: multiplication raises degree by
-one, and the lost restrictions are exactly the two top-boundary
-sets.  Applying the displayed variation inequality on each piece
-and adding the symmetric estimates yields
-\begin{equation}\label{eq:Bmass}
- m_d^B\le m_d^D+\tfrac12(G_{ji}+G_{ij})
-       +\tfrac32(\partial_{1,d}+\partial_{2,d}).
+We next record the cross-stage inequalities controlling the
+equal-valuation region.  If \(m_d^S\) denotes the mass in a union
+\(S\) of valuation regions, restriction of characters from
+\(V_{d+1}\) to \(V_d\) gives
+\begin{equation}\label{eq:stage-monotonicity}
+ m_d^S\le m_{d+1}^S+\partial_{1,d+1}+\partial_{2,d+1}.
 \end{equation}
-Combining~\eqref{eq:ABCB}--\eqref{eq:Bmass} gives
+The two generator shears give the sharper descents
+\begin{align}
+ m_{d+2}^{A\cup B}
+ &\le m_{d+1}^{C\cup D}+G_{ji}+\partial_{2,d+2},
+ \label{eq:AB-descent}\\
+ m_{d+2}^{C\cup B}
+ &\le m_{d+1}^{A\cup D}+G_{ij}+\partial_{1,d+2}.
+ \label{eq:CB-descent}
+\end{align}
+We prove the first; the second follows after interchanging the two
+coordinates.  Remove the characters whose second coordinate is new
+in top degree.  Their mass is at most \(\partial_{2,d+2}\).  For
+each remaining character, choose the least free generator in the
+leading word of its second coordinate.  The opposite shear
+\(x_{ji}(s)\) lowers that leading degree, and restriction to
+\(V_{d+1}\) places the resulting character in \(C\cup D\).  The
+chosen generator is retained in the receiving functional, so the
+receiving sets for distinct generators are disjoint.  Fourier
+covariance and the variation inequality above charge the source
+mass to \(m_{d+1}^{C\cup D}\), with error
+\(2\norm z\,d_{ji,s}\) on the part labeled by \(s\).  Summing over
+\(s\in X\) proves~\eqref{eq:AB-descent}.  The forward shear proves
+~\eqref{eq:CB-descent}.  Thus generator multiplication is handled by
+passing between consecutive stages, with the newly exposed terms
+recorded by the two top-boundary masses.
+
+Add~\eqref{eq:AB-descent} and~\eqref{eq:CB-descent}, use
+~\eqref{eq:stage-monotonicity} to move their coarse masses to stage
+\(d+2\), and then use~\eqref{eq:ABCB} and~\eqref{eq:Dmass}.
+Collecting the four region coefficients gives
 \begin{align}\label{eq:finite-mass}
- m_d^A+m_d^B+m_d^C+m_d^D
+ m_{d+2}^A+m_{d+2}^B+m_{d+2}^C+m_{d+2}^D
  \le{}&d_{ik}^2+d_{jk}^2
    +\tfrac32(G_{ji}+G_{ij})+U_{ji}+U_{ij}\notag\\
- &+\tfrac92(\partial_{1,d}+\partial_{2,d}).
+ &+\tfrac92(\partial_{1,d+2}+\partial_{2,d+2}).
 \end{align}
-This calculation accounts for the coefficient \(3/2\)
-in~\eqref{eq:plane-energy}.
+This is the finite-stage estimate whose limit is
+~\eqref{eq:plane-energy}; it also accounts for the coefficient
+\(3/2\) there.
 
 The boundary limit follows from an exact telescoping identity.  If
 \(T_{r,d}\) is the mass on which the \(r\)-th coordinate character
@@ -456,12 +481,14 @@ free generators.  The inverse-transpose map
 \]
 is an automorphism of \(\EL_3(A)\), and
 \[
- \Theta(x_{ij}(t))=x_{ji}(t)
- \qquad(t\in\{1\}\cup X).
+ \Theta(x_{ij}(a))=x_{ji}(-\overline a)
+ \qquad(a\in A).
 \]
+In particular, \(\Theta(x_{ij}(t))=x_{ji}(t)\) for
+\(t\in\{1\}\cup X\).
 Consequently Lemma~\ref{lem:localized-plane} applies with the two
 root directions reversed.
-\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_controlRoot}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_inverseTranspose_root}
 \end{lemma}
 
 \begin{proof}
@@ -670,7 +697,7 @@ Next set
 \[
   E_2=e_{ij}(-b_1),\qquad A_3=E_2A_2.
 \]
-This clears \((i,j)\) without changing the new \(1\) at \((j,j)\).
+This clears \((i,j)\) and preserves the new \(1\) at \((j,j)\).
 Finally, with \(c_3=(A_3)_{ji}\), put
 \[
   F_2=e_{ji}(-c_3),\qquad A_4=A_3F_2.
@@ -678,8 +705,8 @@ Finally, with \(c_3=(A_3)_{ji}\), put
 This clears \((j,i)\), again preserving \((j,j)=1\) and
 \((i,j)=0\).  Thus the four main moves use two row and two column
 transvections; including the possible preliminary column addition
-gives the asserted bounds \(2\) and \(3\).  No stable-range or
-commutativity hypothesis is used.
+gives the asserted bounds \(2\) and \(3\).  The calculation applies
+to arbitrary rings satisfying~\eqref{eq:sandwich}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:A}]
@@ -699,7 +726,7 @@ For every \(k\ne j\), right multiply by
   e_{jk}(-B_{jk}).
 \]
 These transvections have a common source column and distinct target
-columns, so they do not interfere with one another.  If \(T\) is
+columns, so each previously cleared entry stays zero.  If \(T\) is
 their product and \(C=BT\), then
 \[
   C_{jc}=\begin{cases}1,&c=j,\\0,&c\ne j.\end{cases}
@@ -710,7 +737,8 @@ For every \(k\ne j\), left multiply by
 \[
   e_{kj}(-C_{kj}).
 \]
-Again the operations have distinct target rows and do not interfere.
+Again the operations have distinct target rows and preserve the
+previously cleared entries.
 If \(S\) is their product and \(D=SC\), then
 \[
   D_{rc}=
@@ -931,9 +959,9 @@ coordinate lie in \(S\), and every remaining root is a Steinberg
 commutator of one last-column and one last-row root.
 
 Property~\((T)\) for \(\EL_3(R)\) follows from
-Ershov--Jaikin-Zapirain; equivalently, in the formal proof it follows
-by descending the explicit finite Kazhdan system for the free
-algebra.  Lemma~\ref{lem:rank-equivalence} transports property
+Ershov--Jaikin-Zapirain.  It can also be obtained by descending an
+explicit finite Kazhdan system for the free algebra.
+Lemma~\ref{lem:rank-equivalence} transports property
 \((T)\) to \(\EL_4(R)\).  The stabilized rank-three subgroup
 \(H=\EL_3(R)\) normalizes both \(C\) and \(C^-\), hence normalizes
 \(S\).  Lemma~\ref{lem:kazhdan-globalization} now proves that
@@ -1086,7 +1114,7 @@ Except where indicated, declarations are in the
 \noindent
 \begingroup
 \small
-\begin{tabularx}{\textwidth}{@{}p{.29\textwidth}X@{}}
+\begin{tabularx}{\textwidth}{@{}p{.29\textwidth}>{\raggedright\arraybackslash}X@{}}
 \toprule
 Paper statement & Lean declaration \\
 \midrule
@@ -1099,7 +1127,8 @@ Lemma~\ref{lem:plane-energy} &
 Lemma~\ref{lem:localized-plane} &
 \nolinkurl{freeCharacteristicTwo_localizedPlaneEstimate} \\
 Lemma~\ref{lem:row-symmetry} &
-\nolinkurl{freeCharacteristicTwo_rowEmbedding_controlRoot} \\
+\nolinkurl{freeCharacteristicTwo_inverseTranspose_root},
+\nolinkurl{freeCharacteristicTwo_rowEmbedding_elementaryRoot} \\
 Theorem~\ref{thm:root} &
 \nolinkurl{freeCharacteristicTwo_root_hasRelativeTT} \\
 Lemma~\ref{lem:kazhdan-globalization} &

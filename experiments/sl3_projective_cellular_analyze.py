@@ -156,7 +156,15 @@ def build_boundaries(degree, orbit_dimensions, cells):
 
 
 def gauss_reduce_gram(gram):
-    """Return an integral basis change and a Gauss-reduced binary Gram matrix."""
+    """Return an integral basis change and a Gauss-reduced Gram matrix of rank at most two."""
+    if gram.nrows() != gram.ncols():
+        raise ValueError("Gram matrix must be square")
+    if gram.nrows() == 0:
+        return identity_matrix(ZZ, 0), gram
+    if gram.nrows() == 1:
+        return identity_matrix(ZZ, 1), gram
+    if gram.nrows() != 2:
+        raise ValueError("Gauss reduction only handles Gram matrices of rank at most two")
     reduced = gram
     transform = identity_matrix(ZZ, 2)
     while True:

@@ -43941,6 +43941,39 @@ system with proved
 
 has been constructed.
 
+# 2026-08-12: regular bundles free the wall table and isolate the kernel carry
+
+Full proof: `docs/FALSE_REGULAR_BUNDLE_FREE_TABLE_AND_KERNEL_GATE.md`.
+
+On the regular base of a genuine finite external action, an arbitrary
+unitary table `t(x)` is realized by two exact principal-bundle coboundaries.
+There is therefore no twisted-cocycle CSP left for the relative Pauli walls.
+The block formula is exact: external relations and covariance hold, the
+fiber multiplicativity defect is the orbit average of the basepoint defect,
+and positive/marked comparison is the pointwise character-matching average.
+
+This does not yet solve the Laurent globalization.  For a quotient
+`q:L->K` and a section `sigma`, the Laurent action need not factor through
+`K`.  Its exact residual transition is
+
+`kappa(s,x)=sigma(q(s)x)^(-1) s sigma(x) in ker(q)`.
+
+The covariance defect is precisely the average of
+
+`||Ad(v(s,x))pi(z)-pi(alpha_(kappa(s,x))z)||_2^2`.
+
+Thus regularization frees the relative wall choices but exposes the one
+real external gate: a nonliftable kernel-carry intertwiner.  The scalar
+primitive clock cannot solve it by the property-`(T)` moment lower bound.
+
+There is also an exact tensor-atlas lemma.  A wall placed on one tensor
+factor retains its full normalized-HS marked energy, with no `1/N` chart
+dilution, while multiplicativity defects add over the factors.  Hence a
+family of `N_k` local chart models with individual error `o(1/N_k)` can be
+combined without nonorthogonal fusion.  Producing those arbitrarily accurate
+kernel-carry models, rather than choosing the Pauli walls or satisfying the
+external group law, is the remaining theorem.
+
 # 2026-08-12: level 121 is five boundary directions plus two interior directions
 
 The seven-dimensional absolute harmonic space at projective level `121` is
@@ -43974,3 +44007,55 @@ images plus five kernel packets. Their supports may expose the two different
 family templates directly.
 
 Full proof: `docs/TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md`.
+
+# 2026-08-12: the boundary kernel is an Eisenstein dual, with one finite saturation defect
+
+The boundary/interior split has a sharper canonical form. For an oriented
+compact five-manifold `M`, let
+
+`E^2=im(H^2(M;Q)->H^2(partial M;Q))`.
+
+Compatibility of the boundary and Lefschetz pairings proves
+
+`(E^2)^perp=E^2`
+
+inside the middle cohomology of the four-dimensional boundary. Hence `E^2`
+is Lagrangian and the boundary intersection form gives
+
+`H^2(partial M;Q)/E^2 ~= (E^2)^*`.
+
+For the `SL_3` Borel--Serre quotient, the pair sequence and
+Lee--Schwermer theorem therefore become
+
+```text
+0 -> (H_Eis^2)^* -> H_2(Gamma;Q) -> H_cusp^3(Gamma;Q) -> 0.
+```
+
+So the five level-`121` kernel directions are exactly dual degree-two
+Eisenstein classes. This replaces the vague target “understand the boundary
+kernel” by the much more structured target “build bounded degree-two
+Eisenstein restriction packets.”
+
+There is an exact integral version on a torsion-free cover. If `L` is the
+unimodular middle boundary lattice, `E` is the actual integral restriction
+image, and `E_sat=L intersect (E tensor Q)`, then
+
+```text
+L/E_sat ~= E_sat^*,
+0 -> E_sat/E -> L/E -> E_sat^* -> 0.
+```
+
+Thus all additional integral trouble is concentrated in the finite
+saturation group `E_sat/E` and the metric norm of its gluing section. This
+is precisely paired-discriminant geometry, now derived directly from
+Borel--Serre duality.
+
+The square-level data suggest a further, still conjectural formula:
+
+`dim H_Eis^2(Gamma_0(p^2))`
+` = dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))`.
+
+It matches exact levels `9`, `25`, and `121`; level `49` is the first
+discriminating check and predicts dimension one.
+
+Full proof: `docs/TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md`.

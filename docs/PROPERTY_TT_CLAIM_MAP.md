@@ -2,9 +2,11 @@
 
 This file is the publication gate for the property `(TT)/T` paper. A result may
 appear as a numbered theorem in the manuscript only when it has one exact
-paper-facing Lean declaration below. The manuscript proof must follow that
-declaration's dependency path. Formalization itself is not claimed as
-mathematical novelty.
+paper-facing Lean declaration below. The mathematical statement in the
+manuscript must have exactly the declaration's hypotheses and conclusion. The
+written proof may use a shorter independently valid argument from the
+literature, with the source credited explicitly. Formalization itself is not
+claimed as mathematical novelty.
 
 ## Analytic input: strong relative root control
 
@@ -31,6 +33,8 @@ The localized Fourier estimate used by that proof is exposed as:
 GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate
 GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_planeEnergyEstimate
 GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_controlRoot
+GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_inverseTranspose_root
+GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_elementaryRoot
 ```
 
 Credit boundary: relative `(TT)/T` for noncommutative universal lattices is

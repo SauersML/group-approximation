@@ -4,6 +4,38 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the boundary kernel is dual degree-two Eisenstein cohomology
+
+For every oriented compact five-manifold, the image
+
+```text
+E^2=im(H^2(M;Q)->H^2(partial M;Q))
+```
+
+is Lagrangian for the four-dimensional boundary intersection pairing.
+Consequently `H^2(partial M)/E^2` is canonically `E^2*`. In the Borel--Serre
+pair sequence this sharpens the previous split to
+
+```text
+0 -> (H_Eis^2)^* -> H_2(Gamma;Q) -> H_cusp^3(Gamma;Q) -> 0.
+```
+
+Thus the five level-`121` boundary directions are exactly the dual of a
+rank-five degree-two Eisenstein image. The family target is no longer an
+unspecified boundary packet theorem: it is bounded Eisenstein restriction
+packets plus bounded cuspidal closing.
+
+Integrally, if `E_sat` is the primitive saturation of the boundary image in
+the unimodular boundary lattice `L`, then
+
+```text
+0 -> E_sat/E -> L/E -> E_sat^* -> 0.
+```
+
+The finite group `E_sat/E` is precisely the extra denominator/gluing layer.
+This puts the boundary problem directly into the paired-discriminant
+framework. Full proof: `TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md`.
+
 ### 2026-08-12: absolute H2 has an interior quotient and a boundary kernel
 
 The Borel--Serre pair sequence and Lee--Schwermer boundary theorem give the

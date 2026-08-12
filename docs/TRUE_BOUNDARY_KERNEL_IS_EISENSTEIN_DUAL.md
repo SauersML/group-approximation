@@ -1,0 +1,212 @@
+# The absolute boundary kernel is the dual degree-two Eisenstein lattice
+
+Date: 2026-08-12
+
+## Outcome
+
+The five-dimensional boundary kernel isolated at level `121` has a canonical
+cohomological identity. Let `M` be an oriented compact five-manifold with
+boundary (or the rational Borel--Serre orbifold obtained from an arithmetic
+quotient), and put
+
+```text
+E^2(M)=im(H^2(M;Q)->H^2(partial M;Q)).                       (BED1)
+```
+
+This is the degree-two Eisenstein image. The boundary intersection pairing
+makes `E^2(M)` a Lagrangian subspace of `H^2(partial M;Q)`, and induces a
+canonical isomorphism
+
+```text
+H^2(partial M;Q)/E^2(M) ~= E^2(M)^*.                         (BED2)
+```
+
+Combining `(BED2)` with the pair sequence and the Lee--Schwermer boundary
+theorem gives
+
+```text
+0 -> E^2(M)^* -> H_2(M;Q) -> H_cusp^3(M;Q) -> 0.             (BED3)
+```
+
+Thus the “boundary packet” problem is exactly the dual degree-two
+Eisenstein packet problem. It is not an amorphous extra part of absolute
+homology.
+
+At level `121`,
+
+```text
+dim H_2=7,       dim H_cusp^3=2,       dim E^2=5.             (BED4)
+```
+
+The seven harmonic directions are therefore the extension of a rank-two
+cuspidal quotient by the dual of a rank-five Eisenstein image.
+
+There is also an integral refinement. For a torsion-free quotient, let
+
+```text
+L=H^2(partial M;Z)/torsion,
+E=im(H^2(M;Z)/torsion -> L),
+E_sat=L intersect (E tensor Q).                              (BED5)
+```
+
+Then `E_sat` is a primitive Lagrangian and
+
+```text
+L/E_sat ~= E_sat^*,                                         (BED6)
+0 -> E_sat/E -> L/E -> E_sat^* -> 0.                        (BED7)
+```
+
+Consequently the finite saturation defect `E_sat/E` is precisely the extra
+integral denominator layer hidden by the rational splitting. This is the
+boundary counterpart of the paired-discriminant gluing already present in
+circle repair.
+
+## 1. The middle boundary image is Lagrangian
+
+Write
+
+```text
+r_q:H^q(M;Q)->H^q(partial M;Q),
+delta_q:H^q(partial M;Q)->H^(q+1)(M,partial M;Q).             (BED8)
+```
+
+The oriented four-manifold `partial M` has the nondegenerate intersection
+pairing
+
+```text
+<x,y>_partial = <x cup y,[partial M]>,
+H^2(partial M;Q) x H^2(partial M;Q) -> Q.                   (BED9)
+```
+
+Compatibility of boundary and Lefschetz pairings says, up to the irrelevant
+orientation sign,
+
+```text
+<r_2(a),x>_partial = <a,delta_2(x)>_M.                       (BED10)
+```
+
+First take `x=r_2(b)`. Exactness gives `delta_2 r_2(b)=0`, hence `(BED10)`
+shows that `E^2(M)` is isotropic.
+
+Conversely, suppose `x` annihilates `E^2(M)`. Then the right side of
+`(BED10)` vanishes for every `a in H^2(M;Q)`. The Lefschetz pairing
+
+```text
+H^2(M;Q) x H^3(M,partial M;Q) -> Q                          (BED11)
+```
+
+is nondegenerate, so `delta_2(x)=0`. Exactness gives
+`x in im(r_2)=E^2(M)`. Therefore
+
+```text
+E^2(M)^perp=E^2(M).                                         (BED12)
+```
+
+The map
+
+```text
+H^2(partial M;Q)/E^2(M) -> E^2(M)^*,
+x+E^2(M) |-> (e |-> <x,e>_partial)                          (BED13)
+```
+
+is now injective by `(BED12)`. Both sides have the same dimension because a
+Lagrangian has half the dimension of a nondegenerate space. Hence `(BED13)`
+is the canonical isomorphism `(BED2)`.
+
+This argument is purely topological. It is the degree-two, five-dimensional
+instance of the general statement that complementary boundary restriction
+images are mutual annihilators. Bajpai--Harder--Horozov--Moya Giusti record
+the same maximal-isotropic Eisenstein principle in their Poincare-duality
+description of boundary cohomology.
+
+## 2. Identification inside absolute H2
+
+The pair sequence contains
+
+```text
+H^2(M) -> H^2(partial M) -> H^3(M,partial M)
+  -> H^3(M) -> H^3(partial M).                              (BED14)
+```
+
+Therefore `(BED2)` identifies the kernel of the middle map with `E^2(M)^*`.
+For a five-manifold, Lefschetz duality gives
+
+```text
+H^3(M,partial M;Q) ~= H_2(M;Q).                              (BED15)
+```
+
+For the `SL_3` Borel--Serre quotient, Lee--Schwermer identify the kernel of
+the last restriction in `(BED14)` with interior degree-three cohomology, and
+interior degree three with cuspidal degree three. Exactness now turns
+`(BED14)` into `(BED3)`.
+
+Equation `(BED3)` refines the earlier boundary/cuspidal split. The left term
+is not merely a cokernel with unknown structure: it is canonically dual to
+the degree-two Eisenstein restriction image.
+
+## 3. Integral saturation and discriminant gluing
+
+Assume first that `M` is a genuine compact oriented five-manifold. The free
+lattice `L` in `(BED5)` has a unimodular integral intersection form. The
+rational proof shows that `E_sat tensor Q` is Lagrangian. Primitivity of
+`E_sat` and unimodularity of `L` imply that every integral functional on
+`E_sat` extends to `L`. Hence
+
+```text
+L -> E_sat^*,       x |-> <x,->                              (BED16)
+```
+
+is surjective. Its kernel is `E_sat^perp=E_sat`, proving `(BED6)`.
+
+Since `E subset E_sat subset L`, the quotient sequence gives `(BED7)`.
+The finite group `E_sat/E` measures failure of the actual restriction image
+to be primitive. Even if bounded packets are known for the rational
+Eisenstein space, a uniform circle-repair theorem must still control this
+finite group and the metric norm of a section of `(BED7)`.
+
+For arithmetic quotients with torsion, the rational statement follows after
+passing to a torsion-free normal finite cover and taking finite-group
+invariants. The integral assertion must retain stabilizer primes and transfer
+indices; it should not be imported from `(BED7)` without those corrections.
+Those corrections are exactly the derived primary sectors already isolated
+in the projective cellular model.
+
+## 4. Consequences for the family strategy
+
+The corrected TRUE-side division of labor is now:
+
+1. **Cuspidal quotient.** Use unimodular modular-symbol closing to bound the
+   two-dimensional interior quotient when it is present.
+2. **Eisenstein kernel.** Construct bounded degree-two Eisenstein restriction
+   packets; their boundary intersection duals give the absolute kernel.
+3. **Integral gluing.** Bound the saturation group in `(BED7)` and the metric
+   section coupling the Eisenstein and cuspidal pieces.
+
+This is substantially sharper than asking for arbitrary boundary-stratum
+packets. Degree-two Eisenstein cohomology is assembled from the maximal
+parabolic modular-curve faces and their incidence along minimal faces, so
+the next literature and chain-level audit has a specific object to target.
+
+The small square-level data give an additional lead. The exact charts at
+levels `9` and `25` have `H_2=0` and no cuspidal contribution, hence
+`E^2=0`. At level `121`, `dim E^2=5`. These values match
+
+```text
+dim S_2(Gamma_0(p^2))-dim S_2(Gamma_0(p))                    (BED17)
+```
+
+for `p=3,5,11`. The discriminating level `49` is being checked separately;
+`(BED17)` predicts rank one. This pattern is evidence for a degeneracy-map
+description of the Eisenstein kernel, not yet a proved family formula.
+
+## Sources
+
+- Jitendra Bajpai, Gunter Harder, Ivan Horozov, and Matias Victor Moya Giusti,
+  [*Boundary and Eisenstein cohomology of SL3(Z)*](https://doi.org/10.1007/s00208-020-01976-9),
+  especially Section 6.2 on Poincare duality and maximal isotropic
+  Eisenstein images.
+- Avner Ash and Dan Yasaki,
+  [*Cohomology of congruence subgroups of SL(3,Z)*](https://arxiv.org/abs/2107.10918),
+  Section 7 for the Lee--Schwermer boundary theorem and Section 12.4 for
+  level `121`.
+- `TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md` for the first rational split.

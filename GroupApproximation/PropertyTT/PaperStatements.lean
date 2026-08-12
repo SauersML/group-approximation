@@ -115,6 +115,37 @@ theorem freeCharacteristicTwo_rowEmbedding_controlRoot
         (FreeElementaryPropertyT.controlCoefficient X q) :=
   RankFourRootGeometry.embedRow012_controlRoot X i j hij q
 
+/-- **Inverse-transpose root formula.**  Word reversal followed by inverse
+transpose is an automorphism of the rank-three elementary group.  On an
+arbitrary elementary root it reverses the root and applies signed word
+reversal to the coefficient. -/
+theorem freeCharacteristicTwo_inverseTranspose_root
+    (X : Type)
+    (i j : Fin 3) (hij : i ≠ j)
+    (a : FreeAlgebra (ZMod 2) X) :
+    FreeElementaryTranspose.elementaryTransposeEquiv X (Fin 3)
+        (elementaryRoot i j hij a) =
+      elementaryRoot j i hij.symm
+        (-MulOpposite.unop
+          (FreeAlgebra.reverseEquiv (ZMod 2) X a)) :=
+  FreeElementaryTranspose.elementaryTransposeEquiv_elementaryRoot
+    X (Fin 3) i j hij a
+
+/-- **Arbitrary row-root transport.**  The inverse-transposed upper-left
+rank-three embedding sends an arbitrary root to the opposite row root with
+signed reversed coefficient. -/
+theorem freeCharacteristicTwo_rowEmbedding_elementaryRoot
+    (X : Type)
+    (i j : Fin 3) (hij : i ≠ j)
+    (a : FreeAlgebra (ZMod 2) X) :
+    RankFourRootGeometry.embedRow012 X
+        (elementaryRoot i j hij a) =
+      elementaryRoot (Fin.castAdd 1 j) (Fin.castAdd 1 i)
+        ((Fin.castAddEmb 1).injective.ne hij.symm)
+        (-MulOpposite.unop
+          (FreeAlgebra.reverseEquiv (ZMod 2) X a)) :=
+  RankFourRootGeometry.embedRow012_elementaryRoot X i j hij a
+
 /-- **Coordinate-block factorization.**  If every nonzero element of `R`
 admits a single sandwich to `1`, then every invertible `n × n` matrix is a
 product of at most `2*n+4` factors, each either an elementary transvection or

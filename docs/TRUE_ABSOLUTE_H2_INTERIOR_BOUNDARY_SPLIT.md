@@ -46,6 +46,11 @@ The corrected family target therefore has three pieces:
 The rational exact sequence alone supplies no uniform integral or metric
 splitting.
 
+The boundary kernel has since been identified more sharply: the middle
+boundary intersection pairing canonically identifies it with the dual of
+the degree-two Eisenstein restriction image. See
+`TRUE_BOUNDARY_KERNEL_IS_EISENSTEIN_DUAL.md`.
+
 ## 1. The pair sequence
 
 Work over `Q`, and include the orientation local system when required by the
@@ -173,6 +178,10 @@ K_bdry,X tensor R is spanned by bounded boundary-stratum packets. (AHB14)
 The second line should be attacked in the Borel--Serre boundary complex,
 through maximal-parabolic faces and their intersections. It is a different
 finite-combinatorial problem from cuspidal closing.
+
+Equivalently, by middle-dimensional boundary duality, this line asks for
+bounded packets in degree-two Eisenstein cohomology. That reformulation is
+canonical and is the preferred target.
 
 For circle repair one additionally needs a bounded integral/metric gluing
 theorem for the extension
