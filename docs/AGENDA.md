@@ -1840,6 +1840,18 @@ not by itself give a small chord.  After unit normalization the distinguished
 coordinate is exactly `1 mod p^k`, making both the vanishing local chord and
 the fixed `p`-th-root Bockstein phase invariant statements.
 
+For a nonconstant induced bundle, the seam bound has the scalar form
+`R^2 L^2/M^2+A/L`.  Its exact asymptotic criterion includes three conditions,
+not only the interior product condition:
+
+`R=o(M)`, `A=o(M)`, and `RA=o(M)`.
+
+The product condition alone fails when one moment vanishes and the other is
+linear in `M`; for several fixed generators the three conditions must be
+applied to the separate maxima `R_*` and `A_*` so one common seam width
+works.  Future Schreier-gauge screens must record all three normalized
+statistics.  See `FALSE_INDUCED_WEYL_SEAM_ENDPOINT_AUDIT.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
