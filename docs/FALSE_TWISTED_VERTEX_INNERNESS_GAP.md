@@ -308,6 +308,12 @@ one of the following genuinely new objects:
    to the edge agree but are not obtained from their canonical regular
    traces by finite amplification.
 
+The first item is already sufficient by
+`FALSE_ONE_VERTEX_SPATIALIZATION_CERTIFICATE.md`: one faithful vertex plus
+one external edge implementer produces a hyperlinear image of the
+Kun--Thom free-lamp group in which its standard sofic-radical word survives.
+Thus items 2 and 3 are possible construction methods, not additional gates.
+
 The theorem also explains why residual finiteness of each vertex does not
 by itself resolve the amalgam.  Exact compatible finite-quotient models
 kill `z`, while the canonical regular vertex factor and all of its finite
@@ -315,6 +321,8 @@ matrix amplifications have the uniform twisted gap `(TVG3)`.  A successful
 asymptotic model would have to create new relative multiplicity in its
 ultralimit; the present theorem does not rule that out.
 
-The local edge amplifier is therefore complete.  The live endpoint is now
-an external-correspondence construction, not another clock block, cyclic
-homology calculation, or internal matrix stabilization.
+The local edge amplifier is therefore complete.  The minimal live endpoint
+is Connes embeddability of the one-sided amalgam
+`pL(J) *_P (P crossed_alpha C_2)`: an external-correspondence construction,
+not another clock block, cyclic homology calculation, or internal matrix
+stabilization.

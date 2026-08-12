@@ -44961,3 +44961,51 @@ Connes-embeddable correspondence (or a nonregular vertex embedding) with
 new relative `Gamma`-multiplicity.  This complements the edge
 spatialization theorem: the edge obstruction is gone, and the exact vertex
 extension obstruction is now quantitative.
+
+# 2026-08-12: one external vertex spatialization already proves FALSE
+
+Full proof: `docs/FALSE_ONE_VERTEX_SPATIALIZATION_CERTIFICATE.md`.
+
+The previous formulation asked for a compatible spatialization across both
+vertices.  This is stronger than necessary.  Let `M=pL(J)` be one negative
+lamp-vertex corner, `P=pL(K)` its edge corner, and `alpha` the odd-orbit
+parity automorphism of `P`.  If a Connes-embeddable finite algebra `R`
+contains a faithful copy of `M` and a unitary `V` satisfying
+
+```text
+V iota(x)V^*=iota(alpha(x)),    x in P,
+```
+
+then `V` may be normalized to an involution and, because `alpha` is trivial
+on `Gamma`, it commutes with the represented Kazhdan subgroup.  Therefore
+`G` together with `V` gives a homomorphism from
+
+```text
+H_2=G *_Gamma (Gamma times C_2).
+```
+
+For the standard compressor `t` and `gamma in Gamma` with
+`t^(-1)gamma t notin Gamma`, the Kun--Thom radical word is
+
+```text
+omega=[t V t^(-1),gamma].
+```
+
+Conjugation by `gVg^(-1)` flips precisely the lamps in the translated orbit
+`gO`.  The cosets `tO` and `gamma tO` are distinct and disjoint, so the image
+of `omega` anticommutes with a lamp in their symmetric difference.  Hence it
+is nontrivial.  The image group is hyperlinear because `R` is CE, and it is
+nonsofic because a sofic quotient of `H_2` must kill `omega`.
+
+Consequently the single canonical algebra
+
+```text
+N_one=pL(J) *_pL(K) (pL(K) crossed_alpha C_2)
+```
+
+is a complete target: `N_one` CE implies a hyperlinear nonsofic group.  Both
+factors are separately CE, and the second is explicitly a two-by-two matrix
+algebra over the even edge corner.  The only missing statement is CE of this
+one reduced amalgam over the nonamenable edge.  The quantitative twisted
+innerness gap proves it cannot arise inside any matrix amplification of the
+regular vertex, so the remaining construction must be genuinely external.
