@@ -43626,6 +43626,50 @@ Fourier/Frobenius tangent functor must distribute the clutching through
 internal matrix directions rather than through one scalar coordinate or one
 finite quotient subset.
 
+# 2026-08-11: the full fiber-functor equation reduces to one stabilizer representation
+
+Full proof: `docs/FALSE_EQUIVARIANT_FIBER_FUNCTOR_STABILIZER_REDUCTION.md`.
+
+For a transitive finite external base `X=K/H`, a unitary cocycle `zeta` and
+an action `alpha:K->Aut(G)`, every solution of
+
+`Pi_(kx)(alpha_k g)=Ad(zeta(k,x))Pi_x(g)`
+
+is determined by one basepoint representation `pi:G->U(V)`.  It exists
+exactly when
+
+`pi(alpha_h g)=Ad(zeta(h,x_0))pi(g)`, for `h in H`.
+
+The complete family is then
+
+`Pi_(kx_0)(g)=Ad(zeta(k,x_0))pi(alpha_(k^-1)g)`.
+
+For the two FALSE sectors, put
+
+`t(k)=zeta_1(k,x_0)^*zeta_0(k,x_0)`.
+
+Agreement on a positive window `P` over every base point is equivalent to
+the single finite basepoint table
+
+`pi_1(alpha_(k^-1)g)=Ad(t(k))pi_0(alpha_(k^-1)g)`,
+
+for `k in K`, `g in P`.  The marked normalized-HS energy is the average of
+the same expression over `K/H` with `g` replaced by the marked Laurent
+label.
+
+This removes all redundant per-fiber matrix variables from the remaining
+Frobenius problem.  It also gives a sharp same-bundle no-go: if
+`zeta_0=zeta_1`, agreement on `P` forces agreement on the full external
+saturation `K^-1 P`.  Any marked inverse label in that saturation has zero
+fold energy.  Therefore nontrivial relative external holonomy is load
+bearing.
+
+The exact remaining construction is now a pair of finite Frobenius
+basepoint representations satisfying two stabilizer intertwining laws and
+the relative-holonomy table on the growing positive window, while retaining
+positive marked average.  The naive long-chain pair fails by the already
+proved monodromy theorem.
+
 # 2026-08-11: exact Gaussian wall model isolates subgroupification
 
 For `pi:F->U(d)`, put
