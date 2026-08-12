@@ -16,7 +16,7 @@ import argparse
 import json
 from pathlib import Path
 
-from sage.all import GF, matrix
+from sage.all import GF, ZZ, gcd, matrix, vector
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
 
@@ -131,6 +131,55 @@ def main() -> None:
     if signature_rank != homology_dimension:
         raise AssertionError("fundamental circuits do not span homology")
 
+    exact_short_circuits = []
+    rational_cycle_matrix = boundaries[2].transpose()
+    for selected in selected_rows:
+        index = selected["kernel_row"]
+        if selected["support_size"] > 64:
+            continue
+        support = [
+            column for column, value in enumerate(kernel.row(index)) if value]
+        subsystem = rational_cycle_matrix.matrix_from_columns(support)
+        exact_kernel = subsystem.change_ring(ZZ).right_kernel_matrix()
+        if exact_kernel.nrows() != 1:
+            raise AssertionError(
+                "short modular circuit does not have a unique rational lift")
+        coefficients = [ZZ(value) for value in exact_kernel.row(0)]
+        common = gcd(coefficients)
+        coefficients = [value // common for value in coefficients]
+        first = next(value for value in coefficients if value)
+        if first < 0:
+            coefficients = [-value for value in coefficients]
+        if subsystem * vector(ZZ, coefficients) != 0:
+            raise AssertionError("exact short circuit has a nonzero residual")
+
+        modular_row = kernel.row(index)
+        pivot = next(
+            offset for offset, value in enumerate(coefficients)
+            if field(value) != 0)
+        scalar = field(coefficients[pivot]) / modular_row[support[pivot]]
+        if any(
+                field(coefficient) != scalar * modular_row[column]
+                for column, coefficient in zip(support, coefficients)):
+            raise AssertionError(
+                "exact short circuit does not reduce to the modular circuit")
+        exact_short_circuits.append({
+            "kernel_row": int(index),
+            "support_size": len(support),
+            "l1": int(sum(abs(value) for value in coefficients)),
+            "l2_squared": int(sum(value * value for value in coefficients)),
+            "maximum_absolute_coefficient": int(max(
+                abs(value) for value in coefficients)),
+            "primitive": gcd(coefficients) == 1,
+            "modular_homology_signature_nonzero": any(
+                quotient_dual[row, index] != 0
+                for row in range(quotient_dual.nrows())),
+            "coordinates": [
+                {"coordinate": int(column), "coefficient": int(coefficient)}
+                for column, coefficient in zip(support, coefficients)
+            ],
+        })
+
     certificate = {
         "level": int(level),
         "projective_degree": int(degree),
@@ -160,6 +209,7 @@ def main() -> None:
             (row["support_size"] for row in selected_rows), default=0),
         "greedy_homology_packet_maximum_balanced_l2_squared": max(
             (row["balanced_l2_squared"] for row in selected_rows), default=0),
+        "exact_short_homology_circuits": exact_short_circuits,
     }
     rendered = json.dumps(certificate, indent=2, sort_keys=True) + "\n"
     args.output.write_text(rendered, encoding="utf-8")
