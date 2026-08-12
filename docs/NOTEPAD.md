@@ -46088,6 +46088,25 @@ then every finite-dimensional representation `rho` satisfies
 rho(t)Fix_Gamma(rho)=Fix_Gamma(rho).
 ```
 
+The exact statement is stronger.  If `rho_0,rho_1` are any two
+finite-dimensional `G`-representations, every operator intertwining their
+restrictions to `Gamma` also intertwines `h`.  Apply the same fixed-space
+dimension argument to
+
+```text
+beta(g)X=rho_0(g)Xrho_1(g)^*.
+```
+
+Consequently every almost-periodic representation satisfies
+
+```text
+pi(Gamma)' subset pi(h)'.
+```
+
+This rules out the relative-bicommutant endpoint on all compact
+noncommutative multiplicity spaces, not only on invariant functions in a
+pmp action.
+
 Indeed `rho(t)Fix_Gamma=Fix_(t Gamma t^(-1))`, the latter contains
 `Fix_Gamma`, and finite dimension turns the inclusion into equality.  It
 follows that `h` fixes `Fix_Gamma` pointwise.

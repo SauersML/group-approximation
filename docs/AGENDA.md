@@ -13,6 +13,18 @@ For an arbitrary subgroup `Gamma<G` and a compressor
 rho(t)Fix_Gamma=Fix_Gamma.
 ```
 
+More strongly, every `Gamma`-intertwiner between two finite-dimensional
+`G`-representations automatically intertwines every inverse predecessor
+`h=t^(-1)gamma t`.  Passing blockwise to an almost-periodic representation
+gives the exact bicommutant inclusion
+
+```text
+pi(Gamma)' subset pi(h)'.
+```
+
+Thus the exclusion is fully noncommutative: compact multiplicity spaces do
+not contain the one-wall witness either.
+
 Hence every inverse predecessor `h=t^(-1)gamma t` fixes `Fix_Gamma`
 pointwise.  Direct sums prove that in every compact pmp action of `G`, every
 `Gamma`-invariant measurable function is already `h`-invariant.  If `G`
