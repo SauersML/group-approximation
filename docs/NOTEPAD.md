@@ -44450,8 +44450,27 @@ For the four-orbit Frobenius formula, \(\bar c=\pm1/2\) and
 \]
 
 So exact fold absorption really does escape every fixed positive word
-ball; this is intrinsic polynomial-degree distortion.  The theorem does
-not yet supply a matching upper bound or construct the needed low-cost
-Hilbert--Schmidt interpolation.
+ball; this is intrinsic polynomial-degree distortion.
+
+Property \((T)\) supplies a complementary coarse upper bound.  If
+\(\kappa_S\) is a Kazhdan constant, every finite quotient has Cayley
+diameter at most
+
+\[
+\left(4|S|/\kappa_S^2+1\right)(\log|K|+1).
+\]
+
+Since the exponent-\(m\) Frobenius image has size at most
+\(|\bar C|^{r^2m^d}|\bar Q|\),
+
+\[
+\lambda_m^-
+\le C_S\bigl(r^2m^d\log|\bar C|+\log|\bar Q|+1\bigr).
+\]
+
+For \(\bar C=(\mathbb Z/p^n)\ltimes(\mathbb Z/p^n)^3\), this is
+\(O_{S,r,p}(nm^d+n)\).  The branch-cut scale is therefore bracketed between
+linear and polynomial growth.  The theorem does not yet construct the
+needed low-cost Hilbert--Schmidt interpolation.
 
 Full proof: docs/FALSE_POSITIVE_INVERSE_ROOT_LINEAR_DISTORTION.md.

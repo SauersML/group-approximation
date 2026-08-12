@@ -62,6 +62,20 @@ Thus exact absorption of the inverse fold necessarily escapes every fixed
 positive word ball.  The asymptotic branch cut is intrinsic to the
 polynomial-degree filtration.
 
+There is also a uniform polynomial upper bound.  If \(\kappa_S>0\) is a
+Kazhdan constant for \((\Gamma,S)\), then
+
+\[
+\lambda_m^-
+\leq C_S\left(r^2m^d\log|\bar C|+\log|\bar Q|+1\right),
+\tag{PIR6a}
+\]
+
+where \(\bar Q\) is the coefficient-group image and
+\(C_S=4|S|/\kappa_S^2+1\) is sufficient.  Thus the inverse-root distortion
+is bracketed between a linear lower bound and a volume-polynomial upper
+bound.
+
 ## 2. Degree growth in a fixed word metric
 
 For a matrix \(g\) over \(R_+\), let
@@ -142,7 +156,95 @@ The argument survives square-zero coefficients without change.  The
 normal-form monomials are still a \(\bar C\)-basis, and the selected scalar
 \(\pm1/2\) is nonzero because the construction uses odd characteristic.
 
-## 4. Consequence for the paired Fourier/Frobenius endpoint
+## 4. Property (T) gives a polynomial upper bound
+
+We record the standard quantitative diameter consequence in the normalization
+needed here.
+
+**Lemma 2 (Kazhdan diameter bound).**  Let a group
+\(\Lambda=\langle S\rangle\) have Kazhdan constant \(\kappa_S>0\), with
+\(S=S^{-1}\) finite.  Every finite quotient \(K\) of \(\Lambda\) satisfies
+
+\[
+\operatorname {diam}(K,\bar S)
+\leq
+\left(\frac{4|S|}{\kappa_S^2}+1\right)(\log|K|+1).
+\tag{PIR13a}
+\]
+
+**Proof.**  On the orthogonal complement of the constants in
+\(\ell^2(K)\), put
+
+\[
+P=\frac1{|S|}\sum_{s\in S}\lambda(s).
+\tag{PIR13b}
+\]
+
+For every unit vector \(\xi\) in that subspace, the Kazhdan inequality gives
+
+\[
+2\langle(1-P)\xi,\xi\rangle
+=\frac1{|S|}\sum_{s\in S}\|\lambda(s)\xi-\xi\|^2
+\geq\frac{\kappa_S^2}{|S|}.
+\tag{PIR13c}
+\]
+
+The lazy operator \(M=(1+P)/2\) is positive and therefore has norm at most
+\(1-\kappa_S^2/(4|S|)\) on the same subspace.  Starting at a point mass,
+after \(k\) lazy steps its distance from the uniform distribution is at
+most
+
+\[
+\left(1-\frac{\kappa_S^2}{4|S|}\right)^k.
+\tag{PIR13d}
+\]
+
+For \(k>(4|S|/\kappa_S^2)(\log|K|+1)\), this is less than \(1/|K|\).
+Every coordinate of the probability distribution is then positive, so
+the radius-\(k\) word ball is all of \(K\).  This proves (PIR13a).  End
+proof.
+
+The finite image in the present construction embeds in
+
+\[
+\operatorname {GL}_r(\bar B_m)\rtimes\bar Q.
+\tag{PIR13e}
+\]
+
+Since \(|\bar B_m|=|\bar C|^{m^d}\),
+
+\[
+\log|\bar\Gamma_m|
+\leq r^2m^d\log|\bar C|+\log|\bar Q|.
+\tag{PIR13f}
+\]
+
+The inverse root (PIR3) belongs to \(\bar\Gamma_m\), because the positive
+coefficient map surjects onto \(\bar B_m\).  Lemma 2 and (PIR13f) prove
+(PIR6a).
+
+For the standard square-zero coefficient quotient
+\[
+\bar C=(\mathbb Z/p^n\mathbb Z)
+\ltimes(\mathbb Z/p^n\mathbb Z)^3,
+\qquad
+\bar Q=\operatorname {SL}_3(\mathbb Z/p^n\mathbb Z),
+\tag{PIR13g}
+\]
+one obtains the concrete coarse window
+
+\[
+\frac{m-1}{D_S}
+\leq\lambda_{m,n}^-
+\leq C_{S,r,p}\,(nm^d+n+1).
+\tag{PIR13h}
+\]
+
+No claim of sharpness is made for the upper exponent \(d\).  Its value is
+that the constructive rate problem is polynomially bounded in the actual
+finite parameters.
+
+## 5. Consequence for the paired Fourier/Frobenius endpoint
 
 The explicit four-orbit formula (FCM19) propagates positive-label
 agreement to the inverse label through elementary roots with coefficient
@@ -169,12 +271,13 @@ fiber functor.  Exact or uniformly bounded-depth mixing makes (PIR15)
 zero and kills the fold.  A live construction must distribute a total
 order-one change across an inverse-root path whose length tends to infinity.
 
-The lower bound (PIR6) does not by itself construct such a path with
-sufficiently small local Hilbert--Schmidt cost, nor does it give an upper
-bound for \(\lambda_m^-\).  It proves the necessary escape and identifies
-the filtration in which a constructive upper bound must be sought.
+The degree lower bound (PIR6) does not by itself construct such a path with
+sufficiently small local Hilbert--Schmidt cost.  Lemma 2 supplies a coarse
+word-metric upper bound, but not a coherent path of polarizations attaining
+the required covariance estimate.  Together they identify the finite
+polynomial window in which that construction must be sought.
 
-## 5. Scope
+## 6. Scope
 
 The theorem concerns the common polynomial subgroup \(\Gamma\).  The
 external transvection \(t\in L=\operatorname {SL}_d(\mathbb Z)\) sends
