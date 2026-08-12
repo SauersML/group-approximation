@@ -127,31 +127,25 @@ For every word in the local \(S_4*S_4\), evaluation under
 \((\rho_1,\rho_2)\) agrees with \(15\pi_-\) applied to its image in \(H\).
 Equations (4)--(5) therefore give exactly (1).
 
-## Scope and next gate
+## Scope and supersession
 
-This closes the four-class obstruction route more strongly than the earlier
-order-168 quotient: the phase is now scalar and the local models extend to
-honest full \(A_8\) representations. It still does not solve the full atlas
-problem. The other 20 perfect-overlap-certified cyclic classes use letters
-outside these local \(S_4\)'s, and the chosen extension intertwiners are not
-known to make them identity.
+This closes the four-relation local obstruction more strongly than the
+earlier order-168 quotient: the phase is scalar and the local models extend
+to honest full \(A_8\) representations.  It is retained as the minimal local
+certificate, but it is no longer the active global seed.
 
-The concrete next problem is to couple the central order-2688 block to those
-20 outside classes while retaining a nonzero \(z=-1\) sector. Any no-go
-proof must use at least one of those outside relations; the four persistent
-optimizer classes are now completely discharged as a universal obstruction.
-
-The full-chart extension can in fact be made with finite image, not merely
-by transporting two complex representations. Attach an
-\(A_8\times C_2\) vertex to each subgroup
-\(\alpha_i(S_4)\times\langle z\rangle<H\). The resulting graph of finite
-groups is virtually free, its common involution \(z\) is central, and a
-vertex-injective finite quotient retains both \(A_8\) charts. On the
-negative sector of the quotient's regular representation, both chart
-restrictions are regular amplifications and \(r=-I\). Thus the remaining
-twenty relations may be attacked inside the canonical regular-chart
-stratum with finite-image seed data. Full proof:
-`FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+The later construction in
+`FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md` strictly supersedes it.  That
+explicit finite image kills all 24 cyclic representatives of the 178
+currently certified zero relations, retains `s_11` as its unique nontrivial
+central involution, and already has canonical regular marginals on both full
+charts.  The remaining first-boundary gate is simultaneous central control
+of the four uncertified survivor classes `s_11,s_30,s_44,s_55`, followed by
+genuinely new higher-radius/full-Leavitt relations.  The natural Boolean
+first-order deformation is exhausted by
+`FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`; a positive continuation must use
+different projective chart geometry or a higher-order non-Boolean modular
+representation.
 
 ## Reproduction
 

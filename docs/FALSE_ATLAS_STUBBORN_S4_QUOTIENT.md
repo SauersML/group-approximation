@@ -2,6 +2,11 @@
 
 Date: 2026-08-11
 
+> **Status.** This local certificate is retained as the first exact
+> obstruction.  It is superseded globally by
+> `FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md`, which extends to both full
+> `A_8` charts and kills all 24 certified zero classes simultaneously.
+
 ## Result
 
 The phase-preserving multi-relator search identified certified-zero boundary

@@ -199,10 +199,12 @@ ways of reaching that endpoint:
 
 A viable finite-atlas sequence must instead change its actual chart
 representation content or its relative cross-chart holonomy as the window
-grows.  This is exactly the sector left open by the phase-moving outer
-tangent calculation and the order-2688 local central block.  Neither result
-is invalidated; what is excluded is scaling either one by prefix replication
-alone.
+grows.  The authoritative finite seed is now the dual-number image
+`(C_2)^7 semidirect A_8`, which kills the complete certified package and
+strictly supersedes the order-2688 local block.  The Boolean first-order
+no-go shows that merely changing subset degree or multiplicity cannot make
+all four survivor classes scalar.  What the present theorem excludes is
+scaling any fixed phase block by prefix replication alone.
 
 The only inputs used here are the already proved identity `(PTR2)`, the
 universal-coefficient theorem, and the canonical trace of a twisted group

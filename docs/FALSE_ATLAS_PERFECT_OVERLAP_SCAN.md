@@ -2,6 +2,12 @@
 
 Date: 2026-08-11
 
+> **Status.** The scan and its 178 certified zero words remain authoritative.
+> The remaining 56 words were subsequently reduced to the four cyclic
+> survivor classes `11,30,44,55`; see
+> `FALSE_ATLAS_CHART_FILLING_WIDTH.md`.  The “next target” below is the
+> historical handoff from this scan, not the current four-class boundary.
+
 ## 1. Purpose
 
 The local Clifford word from `FALSE_LOCAL_CLIFFORD_ATLAS.md` carries a

@@ -2,6 +2,11 @@
 
 Date: 2026-08-11
 
+> **Status.** This noncentral quotient is retained as the exact precursor to
+> `FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md`, which kills the same 24
+> certified classes while making `r_11` the unique nontrivial central
+> involution.  The “next target” below is therefore historical.
+
 ## Result
 
 Let

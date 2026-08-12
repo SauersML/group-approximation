@@ -2,6 +2,14 @@
 
 Date: 2026-08-11
 
+> **Current status.** This note records the route to the first exact local
+> phase.  Its active finite endpoint is superseded by
+> `FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md`, which kills all 24 certified
+> zero classes and centralizes `s_11` in a finite full-chart image.  The
+> current obstruction is the simultaneous four-survivor problem isolated in
+> `FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`; the historical solver directions below
+> should not be read as the present research priority.
+
 ## 1. The first irreducible boundary relation
 
 Retain the two scalar charts
@@ -714,9 +722,10 @@ dimension 136 and phase-moving rank 60, kernel-directed and random starts do
 not centralize the phase: the best all-identity RMS is `0.480563`, the maximum
 centrality constraint is `1.368373`, and phase HS remains `1.366428` at weight
 one.  Generic full-unitary descent therefore does not integrate the tangent
-signal.  Work next in the tangent-kernel second-order equations or in the
-exact order-2688 local central block; do not launch more unrestricted
-30-dimensional seeds.
+signal.  This left tangent-kernel second-order equations and the order-2688
+local block as the two candidate continuations at that stage.  The later
+dual-number quotient supersedes the latter and the Boolean no-go sharpens the
+former; do not launch more unrestricted 30-dimensional seeds.
 
 ## 14. Prefix replication cannot scale the local phase
 
@@ -741,7 +750,8 @@ certified-zero relations is therefore load bearing: the phase cannot be
 made into a full model merely by refining or repeating the same block down
 the binary tree.
 
-The surviving second-order and order-2688 routes must change the actual
-cross-chart holonomy or the `A8` representation content as the relation
-window grows.  Full proof:
+Any surviving higher-order route must change the actual cross-chart holonomy
+or the `A8` representation content as the relation window grows.  The
+order-2688 route has since been superseded by the complete certified
+dual-number quotient.  Full proof:
 `FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.

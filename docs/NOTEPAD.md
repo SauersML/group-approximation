@@ -42,21 +42,37 @@ universal central cover kills its whole center, so prefix stabilization of
 a genuine atlas sector kills rather than amplifies its phase.  See
 `docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
 
-The order-2688 central phase block has an exact finite full-chart
-completion. Form the graph of finite groups
+The authoritative finite full-chart phase seed is the explicit dual-number
+image
 
 ```text
-(A_8 x C_2) *_(S_4 x C_2) H *_(S_4 x C_2) (A_8 x C_2).
+H=(C_2)^7 semidirect A_8,   |H|=2,580,480.
 ```
 
-Its common involution is central, the four stubborn relations are identity,
-and `r_11` is that involution. A finite quotient injective on all vertex
-groups exists by virtual freeness and residual finiteness. The negative
-central sector of its regular representation restricts to regular
-amplifications on both `A_8` charts and sends `r_11` to `-I`. Thus full
-chart extension, centrality, finite image, and canonical multiplicities are
-simultaneously exact; only the other twenty certified zero classes remain.
-See `docs/FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+It kills all 24 cyclic representatives of the 178 currently certified zero
+relations, sends `s_11` to its unique nontrivial central involution, and its
+negative regular sector restricts on both `A_8` charts as 64 copies of the
+regular representation.  This strictly supersedes the four-relation
+order-2688 block.  The live first-boundary obstruction is simultaneous
+centralization of `s_11,s_30,s_44,s_55`, not twenty residual certified
+classes; the Boolean first-order dual-number family cannot do this without
+killing `s_11`.  See
+`docs/FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md` and
+`docs/FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`.
+
+The next exact theorem is therefore either a new full-Leavitt filling that
+decides `s_11` in `R/[P,R]`, or a genuinely different finite/tracial chart
+model which centralizes `s_11,s_30,s_44,s_55` while retaining `s_11` and can
+be extended through growing relation windows.  It cannot be a quotient of
+the current `2^7:A_8` image because
+
+```text
+[rho(s_30),rho(p1_01)]=rho(s_11).
+```
+
+No proved higher-order or non-Boolean modular continuation is already
+present in the repository.  Prefix replication is also excluded because it
+kills the universal central class.
 
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 

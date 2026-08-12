@@ -140,16 +140,32 @@ cross-chart holonomy or representation content rather than refine one fixed
 phase block.  Full proof:
 `docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
 
-Conversely, the order-2688 local phase seed admits a stronger positive
-completion than previously recorded. Amalgamating its two
-`S_4 x C_2` subgroups with two `A_8 x C_2` vertices gives a virtually free
-group in which the four stubborn relations vanish and the phase is a
-nontrivial central involution. Residual finiteness supplies a finite
-vertex-injective quotient. Its negative regular sector restricts to regular
-amplifications on both full `A_8` charts, so the seed already lies in the
-canonical one-unitary stratum. The only local constraints left are the
-other twenty certified zero classes. Full proof:
-`docs/FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+For the Leavitt atlas, the authoritative finite phase seed is the explicit
+dual-number quotient
+
+`H=(C_2)^7 semidirect A_8`, `|H|=2,580,480`.
+
+It kills all 24 representatives of the 178 currently certified zero
+relations, sends survivor `s_11` to the unique nontrivial central involution,
+and its negative regular sector restricts on each full `A_8` chart as 64
+copies of the regular representation.  This strictly supersedes the earlier
+four-relation order-2688 block.  The current boundary is not a set of twenty
+uncoupled relations: the 56 uncertified words reduce to the four survivor
+classes `s_11,s_30,s_44,s_55`, and the first-order Boolean dual-number family
+cannot centralize all four while retaining `s_11`.  Full proofs:
+`docs/FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md` and
+`docs/FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`.
+
+The exact next target has two logically distinct forms.  On the negative
+side, enlarge the perfect-overlap/full-Leavitt relation package until one can
+decide whether `s_11` dies in `R/[P,R]`.  On the positive side, construct a
+different full-chart finite or tracial model in which all four survivors are
+central while `s_11` remains nontrivial, and then extend that control to
+growing relation windows.  Quotienting the current finite image cannot work:
+inside it, `[rho(s_30),rho(g)]=rho(s_11)` for a chart generator `g`.
+The repository contains no completed higher-order or non-Boolean modular
+construction beyond this boundary.  Any such construction must also avoid
+prefix replication, which kills the central class homologically.
 
 ### 2026-08-12: compact and weakly compact anchors are impossible
 
@@ -2341,8 +2357,10 @@ maps to the central involution. The negative central eigenspace of the
 regular representation restricts as `56 lambda_S4`; amplifying 15 times
 matches `lambda_A8|S4 = 840 lambda_S4`. Hence two honest regular `A8` charts
 in dimension `20160` satisfy all four zeros exactly and send class `11` to
-`-I`. Any obstruction must now use at least one of the other 20 certified
-classes. Full exact proof and permutation certificate:
+`-I`. At that stage this showed that a local obstruction had to use at least
+one of the other 20 certified classes.  The later dual-number quotient kills
+all 24 certified classes at once and supersedes this intermediate boundary.
+Full exact proof and permutation certificate:
 `docs/FALSE_ATLAS_LOCAL_CENTRAL_PHASE.md` and
 `experiments/atlas_stubborn_s4_certificate.py`.
 
@@ -2379,9 +2397,11 @@ kernel-directed start at weight one ends with all-identity RMS `0.480563`,
 maximum `1.368373`, and phase HS `1.366428`; weights `0.1` and `10` remain on
 the same two finite-quotient strata.  The exact 136-dimensional tangent kernel
 and phase rank 60 are first-order information only.  Stop generic `U(30)`
-L-BFGS.  Solve its second-order kernel equations, or couple the exact
-order-2688 local central block to the 20 outside classes in induced/regular
-coordinates.  Full numerical scope:
+L-BFGS.  This historically suggested second-order kernel equations or a
+coupling of the order-2688 block to the 20 outside classes.  The later
+dual-number quotient performs the latter coupling exactly; the surviving
+gate is now the four-class central boundary recorded at the top of this
+agenda.  Full numerical scope:
 `experiments/atlas_self_similarity_multirelator_results.md`.
 
 
