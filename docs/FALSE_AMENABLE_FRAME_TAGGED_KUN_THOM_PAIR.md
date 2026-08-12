@@ -2,6 +2,12 @@
 
 Date: 2026-08-12
 
+**Status.** The coefficient-frame construction below is correct, but the
+finite tag has the short recurrence `(AFT38)`. The preferred construction is
+now `FALSE_AMENABLE_MONOMIAL_FRAME_KUN_THOM_PAIR.md`, which puts the frame in
+the Laurent exponent lattice. Its orbit monomials are linearly independent,
+so it keeps the amenable stabilizer without introducing that recurrence.
+
 ## 1. Outcome
 
 The square-zero Kun--Thom pair can be modified so that the **actual marked
@@ -31,8 +37,9 @@ the two orbits coincide at the point that matters.
 
 It is not yet a complete FALSE proof. One must still extend the paired
 Fourier block from the marked orbit to a chart-functorial map on each fixed
-finite elementary/tangent window. Section 8 states that remaining local
-lemma precisely.
+finite elementary/tangent window, and that extension must remain genuinely
+nonliftable for the Kazhdan base action. Section 8 states the remaining
+local lemma precisely.
 
 ## 2. The tagged square-zero coefficient ring
 
@@ -280,28 +287,48 @@ Fourier character calculation still gives
 
 for every `n>=2`.
 
-## 8. The reduced analytic endpoint
+## 8. The reduced analytic endpoint and an essential warning
 
 Let `E` be a fixed finite window in the tagged tangent and base elementary
 groups, and let `F` be a fixed finite window in `L`. The action `(AFT27)`
 provides finite root-dependent charts which are exactly covariant on
 `F` over a set of roots of density `1-o(1)`.
 
-It remains to define, on each good root, the paired Fourier/Frobenius map
-for `E` so that changing the local representative by an element of `H_*`
-conjugates the fiber map by the corresponding stabilizer operator. The
-ordered frame makes this the covariance problem for the **actual** marked
-orbit. Since `H_*=Z^2`, every fixed transition set is amenable and the
-long paired chain can be chosen deeper than all its tested exponents.
+The first remaining requirement is to define, on each good root, the paired
+Fourier/Frobenius map for `E` so that changing the local representative by
+an element of `H_*` conjugates the fiber map by the corresponding stabilizer
+operator. The ordered frame makes this the covariance problem for the
+**actual** marked orbit. Since `H_*=Z^2`, every fixed transition set is
+amenable and the long paired chain can be chosen deeper than all its tested
+exponents.
 
-Once this local stabilizer covariance is proved, the orbit-chart induction
-estimate gives
+There is a second requirement which the tag does not remove. Since the
+positive ring contains the full tag module, the positive subgroup also
+contains the label `v_0 tensor x_2`. In a finite Laurent quotient the base
+elementary action can propagate this label to
+`v_0 tensor x^(e_2-e_1)`. The property-`(T)` cyclic-seed theorem in
+`FALSE_KAZHDAN_CYCLIC_SEED_PROPAGATION_NO_GO.md` shows that exact base
+representations with exact tangent covariance would then erase the fold,
+with no word-length loss. Equivalently, the short tag recurrence
+
+`t^(-1)u_0=(2-t)u_0`                                  `(AFT38)`
+
+shows that the finite-dimensional frame itself is not a new branch-cut
+coordinate.
+
+Therefore the required local chart map must also realize the Laurent
+collision only approximately, in a way which stays a fixed distance from
+every exact Kazhdan-covariant finite model. If both this nonliftable
+base/tangent condition and the `H_*` stabilizer covariance are proved, the
+orbit-chart induction estimate gives
 
 `vertex and amalgam defects ->0`,
 
-`marked fold distance^2 ->2`.                          `(AFT38)`
+`marked fold distance^2 ->2`.                          `(AFT39)`
 
 The compatible-pair endpoint then produces a hyperlinear nonsofic image of
-`D`. Thus the remaining statement is no longer an unidentified external
-coherence problem: it is a local `Z^2`-equivariance lemma for the tagged
-finite Frobenius block.
+`D`. Thus the tag removes the nonamenable orbit-stabilizer part of external
+coherence, but it does not solve the kernel-carry/finite-Laurent collision.
+The remaining statement is a local `Z^2`-equivariant **nonliftable**
+Frobenius block, exactly the kind of object isolated by `(RBF20)` in
+`FALSE_REGULAR_BUNDLE_FREE_TABLE_AND_KERNEL_GATE.md`.

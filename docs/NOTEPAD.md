@@ -45765,8 +45765,67 @@ It is therefore amenable. Gao--Patchell--Kunnawalkam Elayavalli now gives
 sofic root-dependent orbit charts for the actual marked tangent orbit, not
 for an auxiliary orbit.
 
-This is the strongest new structural progress on FALSE in this cycle. It
-reduces the surviving analytic gate to a local `Z^2`-equivariance lemma for
-the tagged finite Frobenius block. If that lemma holds, the existing
-no-dilution estimate gives defect tending to zero and marked squared gap
-tending to two.
+This is strong structural progress on FALSE, but one correction is
+essential. The tag solves the orbit-stabilizer mismatch; it does not evade
+the Kazhdan cyclic-seed theorem. Since the positive ring contains the full
+tag module, it contains `v_0 tensor x_2`, and exact finite base covariance
+can still propagate that label to `v_0 tensor x^(e_2-e_1)`. The short frame
+recurrence `t^(-1)u_0=(2-t)u_0` also shows that the finite-dimensional tag
+is not itself a long branch cut.
+
+The surviving gate is therefore a local `Z^2`-equivariant **nonliftable**
+Frobenius block: stabilizer transitions must be coherent on the amenable
+charts, while the finite Laurent collision/base covariance must stay away
+from every exact Kazhdan-covariant model. If that stronger lemma holds, the
+existing no-dilution estimate gives defect tending to zero and marked
+squared gap tending to two.
+
+# Monomial frames remove both the parabolic stabilizer and the short tag recurrence (2026-08-12)
+
+Full proof:
+`docs/FALSE_AMENABLE_MONOMIAL_FRAME_KUN_THOM_PAIR.md`.
+
+The better tag belongs in the exponent lattice. Replace `Z^3` by
+
+`Lambda=M_(3 times 2)(Z)~=Z^6`
+
+with diagonal left `SL_3(Z)` action, and use the polynomial/Laurent monoid
+rings `C[N^6] subset C[Z^6]`. Put
+
+`t=I+e_12`, `s=I+e_13`,
+
+`v=(e_1,e_2-e_1)`, `u=tv=(e_1,e_2)`.
+
+Then `u` is positive, `v` has a negative coordinate, `t^(-1)u=v`, and
+`sv=v`. The tagged strict fold is
+
+`gamma=1+a y^u P in Gamma`,
+
+`h=t^(-1)gamma t=1+a y^vP notin Gamma`,
+
+with the same `BS(1,p+1)` stable letter and paired Bockstein class as before.
+The Kazhdan/RF/infranormal proofs survive because nonnegative elementary
+matrices preserve `N^6`, while conjugates of the positive ring generate all
+inverse Laurent variables.
+
+The stabilizer is exactly
+
+`H_*=Stab_(SL_3(Z))(v)`
+` ={I+a e_13+b e_23:a,b in Z}~=Z^2`.                  `(AMF20)`
+
+More importantly, Laurent-monomial independence gives an actual equivariant
+embedding
+
+`Z[1/q][SL_3(Z)/H_*] -> Z[1/q][Lambda]`,
+
+`gH_* |-> y^(gv)`.                                    `(AMF22)`
+
+Thus the actual marked tangent orbit is an amenable-stabilizer permutation
+submodule. Unlike the finite coefficient tag, it has no short linear
+recurrence: distinct orbit points are distinct Laurent basis monomials.
+
+This is now the preferred FALSE candidate. The remaining gate is sharply
+relative: extend the paired map from this permutation tangent submodule to
+fixed finite windows of the elementary semidirect product while preserving
+the root-dependent charts. Factoring through one honest finite Laurent ring
+is forbidden by the existing absorption and Kazhdan cyclic-seed no-gos.
