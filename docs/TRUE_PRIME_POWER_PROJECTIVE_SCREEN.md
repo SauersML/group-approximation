@@ -152,6 +152,42 @@ For `121=11^2`, the export has already certified
 |P^2(Z/121Z)| = 11^2(11^2+11+1) = 16093.         (PP3)
 ```
 
+The exact signed-coinvariant dimensions are
+
+```text
+Q^721 <- Q^2028 <- Q^1940 <- Q^654,                       (PP3a)
+```
+
+whose Euler characteristic is `-21`.  Reduction of these same integral
+boundary matrices over each of `F_101`, `F_1009`, and `F_10007` gives ranks
+
+```text
+(rank(d1),rank(d2),rank(d3))=(720,1308,625),              (PP3b)
+```
+
+so the modular homology dimensions are `(1,0,7,29)` in all three fields.
+This already gives the rational upper bounds `dim H_1=0`, `dim H_2<=7`, and
+`dim H_3<=29`.  Ash--Yasaki independently compute
+`dim H^3(Gamma_0(121),Q)=29` in their detailed level-121 example
+([Section 12.4](https://arxiv.org/html/2107.10918#S12.SS4)).  Thus the upper bound in
+degree three is sharp.  Euler characteristic then forces
+
+```text
+dim_Q H_2(Gamma_0(121);Q)=7.                             (PP3c)
+```
+
+The two-dimensional cuspidal packet is therefore not the entire dangerous
+space: five additional rational directions occur at this composite level.
+The exact modular certificate is
+
+```text
+experiments/projective-cellular-n121-modular-screen.json
+SHA-256 58b7e3fae6ec5fc1c4c7b7d4095f35331919f4622a794c4a5f8a2482f0384fa8.
+```
+
+This is precisely why the rank-independent systole screen must precede an
+ambient section computation.
+
 The decisive output is not merely the size of a selected modular lift.  If
 the harmonic lattice is nonzero, compute its compact dual systole `delta_121`
 and the spherical template bound `B_121`.  The harmonic plane is relevant to
