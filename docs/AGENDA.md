@@ -2454,6 +2454,25 @@ coordinate transport cannot realize low-carry/high-fold behavior.  Any use
 of the recurrence alphabet must couple feedback rows through a genuinely
 higher-incidence character construction.
 
+The stabilizer-frame route now has an exact nonabelian Fourier refinement.
+For a finite deck subgroup `A`, decompose the canonical real filling as
+`q=directSum q_pi` and put
+`rho_pi=Tr_(V_pi)(|q_pi><q_pi|)` on the multiplicity space.  Then
+
+```text
+||T_(A,q)||_op^2=max_pi (|A|/dim(pi))||rho_pi||_op.
+```
+
+Consequently bounded marked ratio forces every fixed amount of filling mass
+to occupy linear effective Plancherel capacity
+`sum dim(pi) rank(rho_pi)`.  Concentration on sublinear capacity proves
+FALSE.  This is sharp: a delta vector in the regular representation has
+noninvariant norm tending to one but orbit-frame norm exactly one.  Thus the
+bounded-real stabilizer branch has a precise alternative: low-capacity deck
+Fourier concentration proves FALSE, while a Plancherel-flat filling leaves
+only the nonlinear discriminant/carry obstruction.  See
+`FALSE_NONABELIAN_DECK_FRAME_BLOCKS.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

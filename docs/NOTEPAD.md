@@ -44681,3 +44681,49 @@ current Fourier-twirl work: it closes the finite-cover algebraic escape and
 leaves only genuinely noncentral/nonliftable covariance.
 
 Full proof: docs/FALSE_FINITE_INDEX_RADICAL_COINVARIANT_NO_GO.md.
+
+# 2026-08-12: nonabelian deck frames are exact reduced-density blocks
+
+The stabilizer-frame theorem now has a sharp formula for every finite deck
+subgroup, not only abelian character sectors.  If
+
+```text
+H=directSum_pi V_pi tensor M_pi,
+rho_pi=Tr_(V_pi)(|q_pi><q_pi|),
+```
+
+then the orbit analysis operator of the canonical real filling satisfies
+
+```text
+||T_(A,q)||_op^2=max_pi (|A|/dim(pi))||rho_pi||_op.
+```
+
+Hence
+
+```text
+Lambda^2 >= |A| ||q_pi||^2
+            /(dim(pi) rank(rho_pi)).
+```
+
+If `Lambda<=C`, any collection of blocks carrying squared filling mass at
+least `eta` must have effective Plancherel capacity
+
+```text
+sum_pi dim(pi) rank(rho_pi) >= |A| eta/C^2.
+```
+
+Thus concentration on `o(|A|)` capacity proves FALSE even for perfect deck
+groups with no nontrivial characters.  The bound is sharp: for
+`q=delta_1` in the regular representation, the noninvariant norm tends to
+one but every reduced density is maximally spread and the orbit frame has
+norm exactly one.  Therefore noninvariant filling mass by itself cannot
+amplify.
+
+Applied to the constant-stabilizer tower, bounded intermediate real filling
+makes the invariant component `O(|A_n|^(-1/2))`, while the boundary equation
+keeps the total real filling norm bounded below.  Either a positive amount
+of the remaining mass concentrates on sublinear effective capacity, proving
+FALSE, or it is genuinely Plancherel-flat and the surviving obstruction is
+the nonlinear marked discriminant/carry branch.
+
+Full proof: `docs/FALSE_NONABELIAN_DECK_FRAME_BLOCKS.md`.
