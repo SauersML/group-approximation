@@ -1757,6 +1757,27 @@ bound `3`.  This validates the finite reduction and the Schur computation;
 it does not address the relative positive-edge restriction.  See
 `experiments/split_clock_schur_k1_results.md`.
 
+The growing local Schur class now has an explicit cocycle, not merely an
+order certificate.  On `J_k=Aug_(Z/p^(k+1))(C_(p^k))`, define
+
+`lambda_k(x)=sum_j x_j(1+p)^(-j) mod p^(k+1)`.
+
+The crossed homomorphism on
+`B_k=C_(p^(k+1)) semidirect C_(p^k)` given by
+
+`alpha_k(h)=lambda_k`, `alpha_k(c)=0`
+
+is well defined, and
+
+`omega_k((x,g),(y,t))=alpha_k(g)(g.y)`
+
+is a normalized `2`-cocycle on `G_k=J_k semidirect B_k`.  Its exact order
+is `p^k`, detected by
+`lambda_k(e_0-e_1)=1-(1+p)^(-1)`.  This is the form needed for computation:
+globalize one explicit modular formula, evaluate it on the fixed vertex
+relators, and feed the resulting phase vector to the folded two-gauge circle
+repair problem.  See `FALSE_SPLIT_CLOCK_EXPLICIT_COCYCLE.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with

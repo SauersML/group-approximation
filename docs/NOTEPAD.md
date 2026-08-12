@@ -43083,6 +43083,42 @@ problem counterexample: the class must still globalize into a finite quotient
 of the full Kun--Thom vertex and vanish on the positive edge restriction.
 Full proof: `docs/FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`, Theorem 5.
 
+## FALSE: explicit cocycle for the finite clock multiplier
+
+The finite `p^k` Schur class is represented without a resolution.  On
+
+`J_k=Aug_(Z/p^(k+1))(C_(p^k))`,
+
+put
+
+`lambda_k(x)=sum_j x_j(1+p)^(-j) mod p^(k+1)`.
+
+It satisfies
+
+`lambda_k(Sx)=(1+p)^(-1)lambda_k(x)`
+
+and has exact order `p^k`, since
+
+`lambda_k(e_0-e_1)=1-(1+p)^(-1)`
+
+has `p`-adic valuation one.  For
+
+`B_k=<h,c | h^(p^(k+1))=c^(p^k)=1, c h c^-1=h^(1+p)>`,
+
+the assignment
+
+`alpha_k(h)=lambda_k`, `alpha_k(c)=0`
+
+defines a crossed homomorphism `B_k->J_k^*`.  On
+`G_k=J_k semidirect B_k`, the evaluation formula
+
+`omega_k((x,g),(y,t))=alpha_k(g)(g.y)`
+
+is a normalized `2`-cocycle of exact order `p^k`.  This is the actual
+finite projective multiplier to globalize.  It makes corestriction and fixed
+relator phases exact modular arithmetic, not a matrix or resolution search.
+Full proof: `docs/FALSE_SPLIT_CLOCK_EXPLICIT_COCYCLE.md`.
+
 ## FALSE: split-LHS globalization and exact two-gauge fold criterion
 
 New notes:
@@ -43136,3 +43172,55 @@ the TRUE side.
 Remaining links: identify the induced clock summand and its relative
 survival; compute its fixed relator phase vector; prove the paired repair
 ratio diverges.  No claim of a completed FALSE proof yet.
+
+### FALSE update: finite clock descent is now proved
+
+The finite-descent caveat in `FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md` is
+closed for odd `p`.  Put `M=p^k`, `n=p^(k+1)`, `q=p+1`, and
+
+`B_k=<h,c | h^n=c^M=1, c h c^-1=h^q>`.
+
+Let `J_k=Aug_{Z/n}(C_M)`, with `c` acting regularly and `h` trivially.  Fox
+derivatives split off
+
+`J_k/(c-q)J_k -> H_1(B_k,J_k)`.
+
+Integrally,
+
+`I_M/(c-q)I_M = Z/((q^M-1)/(q-1))`,
+
+with cyclicity proved by a unit Smith minor.  Reducing modulo `n` and using
+LTE gives
+
+`J_k/(c-q)J_k = Z/p^k`.
+
+Thus the integral clock amplifier really descends to a finite metacyclic
+group and a finite coefficient module with exact order `p^k`; factoring the
+clock matrices was not being used as a substitute for homological descent.
+
+Remaining globalization checks: install `Ind_{B_k}^{A_k} J_k` as a
+unit-split summand of the finite tangent module, and prove its generator
+survives modulo the positive subgroup's `H_1` image.
+
+### FALSE update: exact relative Shapiro--Mackey quotient
+
+`FALSE_RELATIVE_SHAPIRO_MACKEY_QUOTIENT.md` proves that for
+`N=Ind_B^A J` and positive subgroup `A_+`, the relative mixed-homology
+quotient is
+
+`H_1(B,J) / sum_x im(H_1(B_x,J) -> H_1(B,J))`,
+
+where `x` ranges over `A_+\A/B` and `B_x=B cap x^-1 A_+ x`.
+
+Thus individual survival at every stabilizer is not logically enough: the
+clock class could lie in the sum of their images.  The exact dual certificate
+is one character annihilating every image simultaneously.
+
+For the finite metacyclic clock, Fox splitting gives a canonical projection
+
+`Pi_k:H_1(B_k,J_k) -> J_k/(c-(p+1))J_k = Z/p^k`
+
+sending the clock class to a generator.  If all stabilizer images have zero
+`h`-coordinate, `Pi_k` kills them simultaneously and the relative class keeps
+its full `p^k` order.  This is the precise stronger property to audit in the
+existing double-coset stabilizer proof.
