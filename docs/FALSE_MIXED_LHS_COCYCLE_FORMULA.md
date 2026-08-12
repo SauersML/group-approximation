@@ -264,3 +264,264 @@ the mixed cohomology class itself.  A successful construction must either:
   covariance energy but distinct fold holonomy.
 
 All three alternatives are finite scalar/cochain problems.
+
+## The exact finite clock cocycle
+
+For the metacyclic group
+
+\[
+B_k=
+\langle \bar h,\bar c\mid
+\bar h^{p^{k+1}}=1,
+\bar c^{p^k}=1,
+\bar c\bar h\bar c^{-1}=\bar h^{p+1}
+\rangle,
+\]
+
+put
+
+\[
+n=p^{k+1},
+\qquad M=p^k,
+\qquad q=p+1,
+\]
+
+and
+
+\[
+J_k=\left\{
+(x_0,\ldots ,x_{M-1})\in(\mathbb Z/n)^M:
+\sum_jx_j=0
+\right\}.
+\]
+
+Orient the regular cycle so that the contragredient action below has the
+displayed eigenvalue.  Define
+
+\[
+\varphi_k(x)
+:=
+\exp\left(
+\frac{2\pi i}{n}
+\sum_{j=0}^{M-1}q^{-j}x_j
+\right).
+\]
+
+The inverses \(q^{-j}\) are taken modulo \(n\); they are periodic because
+\(q^M\equiv1\pmod n\).
+
+### Proposition 4 (explicit clock cocycle)
+
+The character \(\varphi_k\in\widehat{J_k}\) has exact order \(p^k\) and
+satisfies
+
+\[
+\bar c\cdot\varphi_k=q\varphi_k.
+\]
+
+Consequently
+
+\[
+z_k(\bar h)=\varphi_k,
+\qquad
+z_k(\bar c)=0
+\]
+
+extends uniquely to a cocycle
+
+\[
+z_k\in Z^1(B_k,\widehat{J_k})
+\]
+
+dual to the \(\bar h\)-coordinate generator of
+\(H_1(B_k,J_k)\).
+
+#### Proof
+
+Since \(q^{-j}\equiv1\pmod p\) and \(\sum_jx_j=0\), the numerator in the
+definition of \(\varphi_k\) is divisible by \(p\).  Hence the order divides
+\(p^k\).  On the augmentation vector
+
+\[
+v=e_1-e_0
+\]
+
+the numerator is
+
+\[
+q^{-1}-1=-pq^{-1},
+\]
+
+which has exact \(p\)-adic valuation one.  Thus the order is exactly \(p^k\).
+
+With the chosen cycle orientation, shifting the coordinates in the
+contragredient action multiplies the weight vector \((q^{-j})_j\) by \(q\),
+so \(\bar c\cdot\varphi_k=q\varphi_k\).
+
+The cocycle relation applied to
+\(\bar c\bar h\bar c^{-1}=\bar h^q\) is precisely this eigencharacter
+identity.  The order relations hold because \(p^k\varphi_k=0\), hence also
+\(p^{k+1}\varphi_k=0\), and because \(z_k(\bar c)=0\). \(\square\)
+
+### Corollary 5 (exact local low-error/high-witness scale)
+
+For \(v=e_1-e_0\),
+
+\[
+\varphi_k(v)
+=
+\exp\left(-\frac{2\pi iq^{-1}}{p^k}\right),
+\]
+
+so
+
+\[
+|\varphi_k(v)-1|=O(p^{-k}).
+\]
+
+The nonzero ordinary Bockstein of the order-\(p^k\) clock generator is its
+\(p^{k-1}\)-multiple, and the same character takes on it the value
+
+\[
+\exp(-2\pi iq^{-1}/p),
+\]
+
+whose distance from \(1\) is bounded below independently of \(k\).
+
+Thus the local covariance coordinate is microscopically small while the fold
+Bockstein is macroscopically visible.  Under Shapiro induction, the only new
+coordinates are the \(\bar h\)-exponents of the Schreier transitions
+\(\beta_\tau(x,s_i)\).  Controlling those exponents, in the scalar or averaged
+sense appropriate to the chosen model, is the exact remaining ambient
+extension problem.
+
+More explicitly, write a transition in metacyclic normal form as
+
+\[
+\beta_\tau(x,s)
+=\bar h^{a_\tau(x,s)}\bar c^{t_\tau(x,s)}.
+\]
+
+Because \(\bar h\) acts trivially on \(\widehat{J_k}\) and
+\(z_k(\bar c)=0\),
+
+\[
+z_k(\beta_\tau(x,s))
+=a_\tau(x,s)\varphi_k.
+\]
+
+On \(v=e_1-e_0\), the corresponding phase is
+
+\[
+\exp\left(
+-\frac{2\pi iq^{-1}a_\tau(x,s)}{p^k}
+\right).
+\]
+
+Therefore the orbit-sum covariance energy is, up to a fixed multiplicity,
+
+\[
+\boxed{
+\frac1{|B_k\backslash A_k|}
+\sum_{x\in B_k\backslash A_k}
+\sum_{s\in S_A}
+4\sin^2\left(
+\frac{\pi q^{-1}a_\tau(x,s)}{p^k}
+\right).
+}
+\]
+
+The final averaged extension question is precisely whether a transversal can
+make this expression tend to zero while the Bockstein fold phase remains the
+fixed nontrivial \(p\)-th root.  This is the scalar Schreier version of the
+proposed frozen-clock computation.
+
+## Exact twisted gauge law and cycle discriminants
+
+Changing the transversal by the normal metacyclic subgroup is completely
+explicit.  Let
+
+\[
+\tau'(x)=\bar h^{g_x}\tau(x),
+\qquad
+g_x\in\mathbb Z/p^{k+1}.
+\]
+
+If an oriented Schreier edge \(e=(x,s)\), with endpoint \(y=xs\), has label
+
+\[
+\beta_\tau(e)=\bar h^{a_e}\bar c^{t_e},
+\]
+
+then the semidirect multiplication law gives
+
+\[
+\boxed{
+a'_e=a_e+g_x-q^{t_e}g_y,
+\qquad
+t'_e=t_e.
+}
+\]
+
+Thus the normal labels form a twisted one-cochain, and normal changes of
+transversal add the twisted coboundary
+
+\[
+(d_tg)(e)=g_x-q^{t_e}g_y.
+\]
+
+For a closed path \(C=e_1\cdots e_m\), define
+
+\[
+T_C=t_{e_1}+\cdots+t_{e_m}
+\]
+
+and the normal holonomy
+
+\[
+A_C
+=a_{e_1}+q^{t_{e_1}}a_{e_2}
++q^{t_{e_1}+t_{e_2}}a_{e_3}
++\cdots.
+\]
+
+At the base vertex, a gauge change gives
+
+\[
+\boxed{
+A'_C=A_C+(1-q^{T_C})g.
+}
+\]
+
+Hence the cycle obstruction is the discriminant class
+
+\[
+[A_C]
+\in
+(\mathbb Z/p^{k+1})/(1-q^{T_C}).
+\]
+
+If \(T_C=0\pmod{p^k}\), the holonomy is fully gauge invariant.  More
+generally,
+
+\[
+v_p(1-q^{T_C})=1+v_p(T_C)
+\]
+
+for nonzero \(T_C\), so the exact depth of the residual obstruction is known.
+
+The energy minimization is therefore the finite twisted circle-repair problem
+
+\[
+\inf_g
+\frac1{|E|}\sum_{e\in E}
+4\sin^2\left(
+\frac{\pi q^{-1}(a_e+(d_tg)(e))}{p^k}
+\right).
+\]
+
+This is not merely analogous to the paired discriminant formula: after
+writing the twisted incidence matrix of \(d_t\), it is exactly an instance of
+that formula.  The cycle classes \([A_C]\) are its finite discriminant data.
+The remaining proof can therefore be phrased as a uniform asymptotic estimate
+for this explicit family of twisted incidence lattices.
