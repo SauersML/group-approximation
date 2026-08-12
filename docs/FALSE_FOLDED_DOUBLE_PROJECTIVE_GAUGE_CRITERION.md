@@ -2,6 +2,15 @@
 
 ## Setup
 
+**Closure for the current Kun--Thom fold.**  The criterion below is valid,
+but its same-projective-model ansatz cannot retain the present marked word
+`h=t^(-1) gamma t` with `gamma in Gamma`.  Exponent sum gives
+`e(h)=e(gamma)`, so the displayed marked defect is exactly the scalar-gauge
+defect of an amalgamated edge word and tends to zero with the edge defects.
+See `FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.  A live construction must use
+distinct relative Schur classes on the two vertices, not one common class
+with two scalar gauges.
+
 Let
 
 \[
@@ -234,6 +243,13 @@ distinct integral lifts/discriminant classes.
 
 ## What the clock amplifier must now provide
 
+For the current conjugate fold, the common-model proposal below is closed by
+`FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.  The clock amplifier must instead
+produce a relative curvature class whose restriction to the edge group
+vanishes while its fold pairing remains nonzero.  The text below describes
+the scalar optimization only for marked words not already controlled in
+edge-group abelianization.
+
 The split square-zero \(H_2\)-amplifier supplies candidate projective classes
 of order \(p^k\).  To finish the proof, one must compute their scalar relator
 phase vectors
@@ -254,4 +270,3 @@ paired circle-repair problem above admits gauges with
 This is strictly smaller than the earlier simultaneous matrix-extension
 problem: all matrices are already supplied by the finite central extension,
 and only \(2d\) scalar phases remain.
-

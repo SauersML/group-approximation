@@ -43224,3 +43224,46 @@ sending the clock class to a generator.  If all stabilizer images have zero
 `h`-coordinate, `Pi_k` kills them simultaneously and the relative class keeps
 its full `p^k` order.  This is the precise stronger property to audit in the
 existing double-coset stabilizer proof.
+
+### FALSE update: full finite metacyclic `H_1`
+
+The Fox calculation now gives the complete answer, not only a clock
+subgroup:
+
+`H_1(B_k,J_k) = (Z/p^k)^2`.
+
+The first summand is `J_k/(c-(p+1))J_k`, the clock/`h` coordinate.  The
+second is the fixed-vector group `J_k^{<c>}`, the pure cycle coordinate.  The
+norm boundary vanishes on the augmentation ideal, and the fixed constants
+have `p^k` choices because `p^k a=0 mod p^(k+1)` iff `p|a`.
+
+Thus any double-coset stabilizer contained in the pure `c`-cycle subgroup
+lands in the second summand and is killed by the same projection that detects
+the clock generator with exact order `p^k`.
+
+### FALSE correction: same projective model plus two gauges cannot see the fold
+
+The folded two-gauge endpoint is sterile for the current marked word.  If
+both vertices use the same projective matrices and differ only by scalar
+generator gauges with ratio `q`, then an edge word `u` has discrepancy
+
+`q^(epsilon(u))`,
+
+and the marked element `h` has discrepancy `q^(epsilon(h))`.
+
+But the Kun--Thom fold is `h=t^(-1) gamma t` for `gamma in Gamma`, so
+
+`epsilon(h)=epsilon(gamma)`.
+
+Thus the marked displacement is exactly the scalar discrepancy of the edge
+word `gamma` and vanishes with the amalgam defect.  In general, if
+`epsilon(h)=sum c_a epsilon(u_a)`, telescoping bounds the marked displacement
+by `sum |c_a|` times the edge discrepancies.
+
+The common projective multiplier cancels between vertex evaluations and
+cannot help.  The explicit clock cocycle must instead globalize as a relative
+Schur class: its restriction to the positive edge group must vanish, while
+its fold pairing remains nonzero.  The next exact computation is the kernel
+of the finite vertex-to-edge restriction map in `H^2`, not a `2d` scalar
+gauge optimization.  Full proof:
+`docs/FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.

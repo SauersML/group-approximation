@@ -1774,9 +1774,24 @@ is well defined, and
 is a normalized `2`-cocycle on `G_k=J_k semidirect B_k`.  Its exact order
 is `p^k`, detected by
 `lambda_k(e_0-e_1)=1-(1+p)^(-1)`.  This is the form needed for computation:
-globalize one explicit modular formula, evaluate it on the fixed vertex
-relators, and feed the resulting phase vector to the folded two-gauge circle
-repair problem.  See `FALSE_SPLIT_CLOCK_EXPLICIT_COCYCLE.md`.
+globalize one explicit modular formula and evaluate it on the fixed vertex
+relators.  See `FALSE_SPLIT_CLOCK_EXPLICIT_COCYCLE.md`.
+
+The apparent final `2d` same-model gauge problem is closed for the actual
+Kun--Thom word.  With two scalar generator gauges, an edge word `u` has
+discrepancy `q^(epsilon(u))` and the marked element has discrepancy
+`q^(epsilon(h))`.  But `h=t^(-1) gamma t` with `gamma in Gamma`, so
+
+`epsilon(h)=epsilon(gamma)`.
+
+The marked displacement is exactly an edge discrepancy and tends to zero
+whenever the amalgam relations do.  More generally it is bounded by a fixed
+telescoping combination whenever `epsilon(h)` lies in the integral span of
+edge exponent vectors.  Do not optimize this scalar ansatz.  The live object
+is a genuinely relative multiplier: two vertex Schur classes with equal edge
+restriction but nonzero fold difference, equivalently a class in the kernel
+of vertex-to-edge restriction.  See
+`FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.
 
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
