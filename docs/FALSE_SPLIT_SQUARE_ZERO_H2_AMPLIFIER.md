@@ -155,44 +155,140 @@ H_1(B,I_M)
 
 When \(M=p^k\), its \(p\)-primary part has exact order \(p^k\).  Therefore:
 
-This calculation is for the infinite Baumslag--Solitar group.  It does **not**
-by itself satisfy the hypotheses of Theorem 3, because a subgroup of the
-finite ambient group \(A_k\) must be finite.  One needs the following finite
-descent statement.
+This calculation is for the infinite Baumslag--Solitar group.  A priori it
+does not satisfy the hypotheses of Theorem 3, because a subgroup of the
+finite ambient group \(A_k\) must be finite.  The following theorem closes
+that descent gap.
 
-### Required lemma (finite metacyclic descent)
+### Theorem 4 (exact finite metacyclic descent)
 
-There must exist:
+Assume \(p\) is odd, put
 
-- a finite quotient \(B\twoheadrightarrow B_k\) through which the action on
-  a finite coefficient quotient \(J_k\) of \(I_{p^k}\) factors; and
-- a class
-  \[
-  \bar\kappa_k\in H_1(B_k,J_k)
-  \]
-  whose image under inflation/coefficient comparison is the clock class and
-  whose order is exactly \(p^k\).
+\[
+M=p^k,
+\qquad n=p^{k+1},
+\qquad q=p+1,
+\]
 
-The explicit matrices suggest the metacyclic quotient
+and define the finite metacyclic group
 
 \[
 B_k=
 \langle \bar h,\bar c\mid
-\bar h^{p^{k+1}}=1,
-\bar c^{p^k}=1,
-\bar c\bar h\bar c^{-1}=\bar h^{p+1}
+\bar h^n=1,
+\bar c^M=1,
+\bar c\bar h\bar c^{-1}=\bar h^q
 \rangle,
 \]
 
-because \(p+1\) has order \(p^k\) modulo \(p^{k+1}\) for odd \(p\).
-But factoring the clock representation through \(B_k\) is weaker than
-proving that the integral homology generator descends with its exact order.
-That homological assertion remains to be checked.
+which has order \(nM\).  Let
 
-### Corollary 4 (global \(p^k\) curvature from an induced module)
+\[
+J_k=\operatorname{Aug}_{\mathbb Z/n}(C_M)
+\]
 
-Assume the finite metacyclic descent lemma above.  If the finite square-zero
-tangent module \(N_k\) contains an \(A_k\)-equivariant direct summand
+be the augmentation ideal of the regular \((\mathbb Z/n)[C_M]\)-module.
+Let \(\bar c\) act by the regular cycle and let \(\bar h\) act trivially.
+Then \(H_1(B_k,J_k)\) contains a canonical cyclic subgroup of exact order
+\(p^k\).
+
+#### Proof
+
+The relation defines a finite semidirect product because \(q\) is a unit
+modulo \(n\) and, by the lifting-the-exponent formula,
+
+\[
+v_p(q^M-1)=v_p(q-1)+v_p(M)=k+1.
+\]
+
+Hence \(q^M\equiv1\pmod n\), and in fact \(q\) has order \(M\) modulo
+\(n\).
+
+Compute \(H_1\) from the presentation using Fox derivatives.  In degree
+one, the boundary on the two generator coordinates is
+
+\[
+d_1(x_h,x_c)=(\bar h-1)x_h+(\bar c-1)x_c
+=(\bar c-1)x_c,
+\]
+
+because \(\bar h\) acts trivially.  Thus every vector in the \(h\)-coordinate
+is a cycle.  The \(h\)-coordinate of the Fox boundary of
+
+\[
+\bar c\bar h\bar c^{-1}\bar h^{-q}
+\]
+
+is \((\bar c-q)z\).  The relator \(\bar h^n\) contributes \(nz=0\) on
+\(J_k\), while \(\bar c^M\) has zero \(h\)-coordinate.  Moreover the
+conjugacy relator has zero \(c\)-coordinate after applying the module action.
+It follows that the \(h\)-coordinate supplies an injective summand
+
+\[
+J_k/(\bar c-q)J_k
+\hookrightarrow H_1(B_k,J_k).
+\]
+
+Let \(I_M=\operatorname{Aug}_{\mathbb Z}(C_M)\).  In the basis
+
+\[
+e_i=\bar c^i-\bar c^{i-1},
+\qquad1\leq i<M,
+\]
+
+the action of \(\bar c\) is the companion matrix of
+
+\[
+1+X+\cdots+X^{M-1}.
+\]
+
+Consequently
+
+\[
+\left|I_M/(\bar c-q)I_M\right|
+=\left|1+q+\cdots+q^{M-1}\right|
+=\frac{q^M-1}{q-1}.
+\]
+
+The cokernel is cyclic: the matrix of \(q-\bar c\) has an
+\((M-2)\times(M-2)\) minor equal to \(\pm1\), so all Smith invariants except
+the last are \(1\).  Therefore
+
+\[
+I_M/(\bar c-q)I_M
+\cong
+\mathbb Z/N_M\mathbb Z,
+\qquad
+N_M=\frac{q^M-1}{q-1}.
+\]
+
+Reducing the coefficient module modulo \(n\) gives
+
+\[
+J_k/(\bar c-q)J_k
+\cong
+(\mathbb Z/N_M\mathbb Z)/n(\mathbb Z/N_M\mathbb Z)
+\cong
+\mathbb Z/\gcd(N_M,n)\mathbb Z.
+\]
+
+Finally,
+
+\[
+v_p(N_M)=v_p(q^M-1)-v_p(q-1)=k,
+\]
+
+so \(\gcd(N_M,p^{k+1})=p^k\).  The displayed summand is therefore
+\(\mathbb Z/p^k\mathbb Z\). \(\square\)
+
+The generator is the finite reduction of the integral clock class.  Its dual
+is the exact clock/shift block: \(\bar c\) acts by the length-\(p^k\) shift,
+and \(\bar h\) has the orbit of a character of order \(p^{k+1}\).
+
+### Corollary 5 (global \(p^k\) curvature from an induced module)
+
+If the finite square-zero tangent module \(N_k\) contains an
+\(A_k\)-equivariant direct summand
 
 \[
 \operatorname{Ind}_{B_k}^{A_k}J_k,
@@ -344,20 +440,18 @@ This is a finite abelian module statement.
 
 ## Exact remaining bridge
 
-The finite-module construction should now be audited for the following three
-items, rather than for simultaneous matrices:
+The finite descent item is now proved.  The finite-module construction should
+be audited for the following two items, rather than for simultaneous matrices:
 
-1. finite descent of the integral clock generator to an exact-order class in
-   \(H_1(B_k,J_k)\);
-2. an \(A_k\)-equivariant induced-module inclusion (or unit-split map)
+1. an \(A_k\)-equivariant induced-module inclusion (or unit-split map)
    \[
    \operatorname{Ind}_{B_k}^{A_k}J_k\longrightarrow N_k;
    \]
-3. nontriviality of the clock generator in the relative quotient
+2. nontriviality of the clock generator in the relative quotient
    \[
    H_1(A_k,N_k)/\operatorname{im}H_1(A_{+,k},N_{+,k}).
    \]
 
-If all three hold with exact \(p^k\) order, the local clock class is already a
+If both hold with exact \(p^k\) order, the local clock class is already a
 global relative Schur-multiplier class.  The only remaining step is the finite
 central gauge/relator ratio, not external covariance.
