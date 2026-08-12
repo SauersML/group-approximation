@@ -333,7 +333,11 @@ identify every elementary rank at least two with the unit group itself. -/
 noncomputable def binaryLeavitt_elementaryEquivUnits
     (n : ℕ) (hn : 2 ≤ n) :
     elementaryGroup (Fin n) BinaryL ≃* BinaryLˣ := by
-  obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
+  let m := n - 1
+  have hnm : n = m + 1 := by
+    dsimp [m]
+    omega
+  rw [hnm]
   exact ((MulEquiv.subgroupCongr
       (FiniteTypeLeavittTT.elementaryGroup_eq_top
         (BinaryLeavitt.family (ZMod 2))

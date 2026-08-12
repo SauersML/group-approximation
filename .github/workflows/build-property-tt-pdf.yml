@@ -69,7 +69,7 @@ jobs:
           sudo cp /var/cache/apt/archives/*.deb "$HOME/texdebs/" 2>/dev/null || true
           sudo chown -R "$USER" "$HOME/texdebs"
 
-      - name: Calibrate and check Lean margin references
+      - name: Calibrate and check visible Lean counterpart links
         run: |
           python3 scripts/check_property_tt_refs.py --self-test
           python3 scripts/check_property_tt_refs.py --tex "$TEX_FILE"

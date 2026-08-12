@@ -12,9 +12,10 @@ a question of Weiss, open since 2000.
 
 The witness is explicit: `EL₄(L_{𝔽₂}(1,2))`, the rank-four elementary group
 over the universal binary Leavitt algebra. It is countable, infinite,
-finitely generated, has Kazhdan's property `(T)`, and is not sofic. The
-accompanying manuscript is `nonsofic_groups_exist.tex`; the committed
-`nonsofic_groups_exist.pdf` is its validated build.
+finitely generated, has Kazhdan's property `(T)`, and is not sofic.
+
+The current manuscript is `property_tt_leavitt.tex`; its validated build is
+`property_tt_leavitt.pdf`.
 
 ## Major verified results
 
@@ -24,7 +25,7 @@ The broader rigidity endpoints are independent of the nonsofic construction:
 | --- | --- |
 | `FiniteTypeLeavittTT.elementaryGroup_hasTTmodT` | The four-hypothesis finite-type ring-class `(TT)/T` theorem, in every rank `≥ 2` |
 | `PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 2` |
-| `boundedProduct_coordinateBlockOrRoot` | Single-sandwich coordinate-block generation with width `2n + 4` |
+| `boundedProduct_coordinateBlockOrRoot` | Single-sandwich coordinate-block generation with width `2n + 2` |
 
 The original nonsofic endpoints are collected in
 `GroupApproximation/Endpoint/MainResults.lean`:

@@ -25,6 +25,11 @@
 \else
   \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
 \fi
+\newcommand{\leanverified}[2]{%
+  \par\smallskip\noindent
+  {\normalfont\footnotesize\color{gray!70!black}%
+  Formal counterpart: \ifanonymous\nolinkurl{#2}\else
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -137,6 +142,7 @@ coordinate copy
   \GL_{n-1}^{(j)}(R)
   =\{B\in\GL_n(R):Be_j=e_j,\ e_j^{\,t}B=e_j^{\,t}\}.
 \]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.coordinateBlock_factorization}
 \end{mainthm}
 
 Theorem~\ref{thm:A} is a relative bounded-width statement rather
@@ -166,6 +172,7 @@ Let \(R\) be a nontrivial finite-type \(\F_2\)-algebra.  Assume that
 \item \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).
 \end{enumerate}
 Then \(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge2\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT}
 \end{mainthm}
 
 The assumptions play separate roles: finite type presents the
@@ -189,6 +196,9 @@ diagonal reduction give
 \]
 In particular, every displayed elementary group has property
 \((TT)/T\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.binaryLeavittUnits_hasTTmodT}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.binaryLeavitt_elementaryEquivUnits}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT}
 \end{mainthm}
 
 The rank-two case is not a low-rank analogue of the universal-lattice
@@ -341,6 +351,7 @@ orthogonal projection onto
  &+2\norm z(d_{ij,1}+d_{ji,1}),
 \end{align}
 where \(d_{ab,t}=\norm{\sigma(x_{ab}(t))z-z}\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_planeEnergyEstimate}
 \end{lemma}
 
 \begin{proof}
@@ -482,6 +493,7 @@ Then, for every \(g\in H_{ijk}\),
   \norm{\sigma(g)z-z}
   \le 2(6\abs X+6)(B+1).
 \]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate}
 \end{lemma}
 
 \begin{proof}
@@ -521,6 +533,9 @@ In particular, \(\Theta(x_{ij}(t))=x_{ji}(t)\) for
 \(t\in\{1\}\cup X\).
 Consequently Lemma~\ref{lem:localized-plane} applies with the two
 root directions reversed.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_inverseTranspose_root}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_controlRoot}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_elementaryRoot}
 \end{lemma}
 
 \begin{proof}
@@ -577,6 +592,7 @@ Let \(X\) be finite, put \(A=\F_2\langle X\rangle\), and let
 For every unitary representation \(\pi\), every \(D\ge0\), and every
 quasi-cocycle \(b:G\to\mathcal H\) of defect at most \(D\), the set
 \(b(X_{03})\) is bounded.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT}
 \end{theorem}
 
 \begin{proof}
@@ -696,6 +712,7 @@ column operations in total produce a matrix \(B\) satisfying
   B_{jj}=1.
 \]
 More precisely, one left factor and two right factors suffice.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.threeMove_diagonalPivot}
 \end{lemma}
 
 \begin{proof}
@@ -838,6 +855,7 @@ Let \(G\) have property~\((T)\), let \(S\subseteq G\) generate
 \]
 and quasi-cocycles are bounded on \(S\).  Then \((G,H)\) has
 relative property \((TT)/T\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.kazhdan_normalizedSet_globalization}
 \end{lemma}
 
 \begin{proof}
@@ -880,6 +898,8 @@ If \(R\) contains a binary Leavitt family, then for all
 \[
   \EL_m(R)\cong\EL_n(R).
 \]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.leavitt_elementaryRankEquivalence}
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryBlockFlattening}
 \end{lemma}
 
 \begin{proof}
@@ -915,6 +935,7 @@ and satisfies
 \[
   \EL_n(R)=\GL_n(R)\qquad(n\ge2).
 \]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryGroup_eq_generalLinear}
 \end{lemma}
 
 \begin{proof}
@@ -949,6 +970,7 @@ homomorphism.  Suppose that \(R\) is nontrivial, contains a binary
 Leavitt family, satisfies~\eqref{eq:sandwich}, and satisfies
 \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).  Then
 \(\EL_4(R)\) has property \((TT)/T\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finiteFreeQuotient_rankFour_hasTTmodT}
 \end{proposition}
 
 \begin{proof}
@@ -1024,6 +1046,7 @@ Let \(b\) be a quasi-cocycle of defect at most \(D\), and suppose
   \norm{b(g_1\cdots g_m)}
   \le mC+(m+1)D.
 \]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.quasiCocycle_list_product_bound}
 \end{lemma}
 
 \begin{proof}
@@ -1069,6 +1092,7 @@ depth \(r\),
 \label{lem:leavitt-sandwich}
 For every field \(k\) and every nonzero \(z\in L_k(1,2)\), there are
 \(a,b\in L_k(1,2)\) such that \(azb=1\).
+\leanverified{Leavitt/LeavittSimplicity}{BinaryLeavitt.exists_mul_mul_eq_one}
 \end{lemma}
 
 \begin{proof}
@@ -1119,6 +1143,8 @@ For every field \(k\), write \(L_k=L_k(1,2)\).  For every
   \diag(u,1)\in\EL_2(L_k).
 \]
 Consequently \(\GL_2(L_k)=\EL_2(L_k)\).
+\leanverified{KOne/PaperStatements}{KOnePaper.diagUnit_mem_elementary}
+\leanverified{KOne/PaperStatements}{KOnePaper.elementaryGroup_two_eq_top}
 \end{proposition}
 
 \begin{proof}
@@ -1248,58 +1274,11 @@ The accompanying Lean formalization is available in the
 \fi
 Except where indicated, declarations are in the
 \nolinkurl{PropertyTTPaper} namespace.
-For readers checking a calculation or importing a result, the first
-table gives the public declaration for each numbered statement.  The
-second gives the main implementation declarations in the order used by
-the argument; these are convenient entry points for navigating the
-proof source.
-
-\medskip
-\noindent
-\begingroup
-\small
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{.33\textwidth}>{\raggedright\arraybackslash}X@{}}
-\toprule
-Paper statement & Lean declaration \\
-\midrule
-Theorem~\ref{thm:A} &
-\nolinkurl{coordinateBlock_factorization} \\
-Lemma~\ref{lem:pivot} &
-\nolinkurl{threeMove_diagonalPivot} \\
-Lemma~\ref{lem:plane-energy} &
-\nolinkurl{freeCharacteristicTwo_planeEnergyEstimate} \\
-Lemma~\ref{lem:localized-plane} &
-\nolinkurl{freeCharacteristicTwo_localizedPlaneEstimate} \\
-Lemma~\ref{lem:row-symmetry} &
-\nolinkurl{freeCharacteristicTwo_inverseTranspose_root},
-\nolinkurl{freeCharacteristicTwo_rowEmbedding_controlRoot},
-\nolinkurl{freeCharacteristicTwo_rowEmbedding_elementaryRoot} \\
-Theorem~\ref{thm:root} &
-\nolinkurl{freeCharacteristicTwo_root_hasRelativeTT} \\
-Lemma~\ref{lem:kazhdan-globalization} &
-\nolinkurl{kazhdan_normalizedSet_globalization} \\
-Lemmas~\ref{lem:rank-equivalence} and~\ref{lem:gl-el} &
-\nolinkurl{leavitt_elementaryRankEquivalence},
-\nolinkurl{elementaryBlockFlattening},
-\nolinkurl{elementaryGroup_eq_generalLinear} \\
-Proposition~\ref{prop:rank-four} &
-\nolinkurl{finiteFreeQuotient_rankFour_hasTTmodT} \\
-Lemma~\ref{lem:products} &
-\nolinkurl{quasiCocycle_list_product_bound} \\
-Theorem~\ref{thm:B} &
-\nolinkurl{finiteType_elementaryGroup_hasTTmodT} \\
-Proposition~\ref{prop:diag} &
-\nolinkurl{KOnePaper.diagUnit_mem_elementary},
-\nolinkurl{KOnePaper.elementaryGroup_two_eq_top} \\
-Lemma~\ref{lem:leavitt-sandwich} &
-\nolinkurl{BinaryLeavitt.exists_mul_mul_eq_one} \\
-Theorem~\ref{thm:C} &
-\nolinkurl{binaryLeavitt_elementaryGroup_hasTTmodT},
-\nolinkurl{binaryLeavitt_elementaryEquivUnits},
-\nolinkurl{binaryLeavittUnits_hasTTmodT} \\
-\bottomrule
-\end{tabularx}
-\endgroup
+Each numbered result carries a visible link to its public declaration.
+The table below lists the main implementation declarations in the
+order used by the mathematical argument.  It is intended as a reading
+path for users who want to inspect a calculation or reuse a proof
+component.
 
 \medskip
 \noindent
@@ -1365,7 +1344,7 @@ current audit succeeds with only \nolinkurl{propext},
 classical axioms used by Mathlib.  There are no \nolinkurl{sorry}
 terms in the development.
 
-The definitions used by the statements in the first table are in
+The definitions used by the linked statements are in
 \nolinkurl{Basic.lean} in the \nolinkurl{PropertyTT} directory.  They quantify
 over complete complex Hilbert spaces and unitary representations;
 \nolinkurl{IsQuasiCocycle} includes \(D\ge0\) and
@@ -1373,7 +1352,7 @@ over complete complex Hilbert spaces and unitary representations;
 invariant vectors exactly as in Definition~\ref{def:tt}.  The
 rank-three Kazhdan input is proved from an explicit finite Kazhdan
 pair; its implementation entry point appears in the rank-transport
-row of the second table.
+row of the table.
 The single-sandwich and unstable diagonal inputs for \(L_k(1,2)\) are
 theorems, not hypotheses, in \nolinkurl{LeavittSimplicity.lean} and
 \nolinkurl{RefineLoopDischarge.lean}.

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Validate every Lean margin reference in the property-(TT)/T manuscript.
+"""Validate every visible Lean counterpart link in the property-(TT)/T manuscript.
 
 The main manuscript uses a richer ``\\leanmod`` syntax.  The property-(TT)/T
-paper deliberately uses the smaller
+paper uses the smaller
 
     \\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.theorem}
 
-surface, so this checker resolves that surface directly against the same
+surface for its visible per-result links, so this checker resolves it against the same
 lexical Lean declaration index used by ``check_lean_refs.py``.
 """
 
@@ -37,7 +37,7 @@ def validate(repo: Path, tex: Path) -> list[str]:
     source = tex.read_text(encoding="utf-8")
     references = REFERENCE_RE.findall(source)
     if not references:
-        return [f"no Lean margin references found in {tex.name}"]
+        return [f"no visible Lean counterpart links found in {tex.name}"]
 
     index = build_index(repo)
     problems: list[str] = []

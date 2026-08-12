@@ -55,7 +55,7 @@ def build_manifest() -> dict:
         p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
                           "Superseded/**/*.lean", "Superseded.lean",
                           "scripts/*", "docs/*",
-                          "nonsofic_groups_exist.tex", "nonsofic_groups_exist.pdf",
+                          "property_tt_leavitt.tex", "property_tt_leavitt.pdf",
                           "lakefile.toml", "lean-toolchain", "lake-manifest.json")
         for p in REPO.glob(pattern) if p.is_file()
     )
