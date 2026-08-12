@@ -16,7 +16,7 @@ import argparse
 import json
 from pathlib import Path
 
-from sage.all import GF
+from sage.all import GF, matrix
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
 
@@ -86,6 +86,51 @@ def main() -> None:
         coefficients += len(balanced)
         coefficients_of_size_one += sum(value == 1 for value in balanced)
 
+    boundary_matrix = boundaries[3].change_ring(field)
+    if cycle_matrix * boundary_matrix.transpose() != 0:
+        raise AssertionError("cellular boundaries are not cycles")
+    kernel_pivots = list(kernel.pivots())
+    if len(kernel_pivots) != kernel.nrows():
+        raise AssertionError("kernel basis does not have enough pivot columns")
+    pivot_minor = kernel.matrix_from_columns(kernel_pivots)
+    boundary_coordinates = (
+        boundary_matrix.matrix_from_columns(kernel_pivots)
+        * pivot_minor.inverse()
+    )
+    if boundary_coordinates * kernel != boundary_matrix:
+        raise AssertionError("failed to express boundaries in cycle coordinates")
+    quotient_dual = boundary_coordinates.right_kernel_matrix()
+    homology_dimension = int(quotient_dual.nrows())
+
+    selected_rows = []
+    selected_signatures = []
+    order = sorted(
+        range(kernel.nrows()),
+        key=lambda index: (
+            support_sizes[index], balanced_l2_squared[index],
+            balanced_l1[index], index),
+    )
+    signature_rank = 0
+    for index in order:
+        signature = list(quotient_dual.column(index))
+        candidate_rank = matrix(
+            field, selected_signatures + [signature]).rank()
+        if candidate_rank == signature_rank:
+            continue
+        selected_signatures.append(signature)
+        selected_rows.append({
+            "kernel_row": int(index),
+            "support_size": int(support_sizes[index]),
+            "balanced_l1": int(balanced_l1[index]),
+            "balanced_l2_squared": int(balanced_l2_squared[index]),
+            "balanced_maximum_coefficient": int(balanced_maximum[index]),
+        })
+        signature_rank = candidate_rank
+        if signature_rank == homology_dimension:
+            break
+    if signature_rank != homology_dimension:
+        raise AssertionError("fundamental circuits do not span homology")
+
     certificate = {
         "level": int(level),
         "projective_degree": int(degree),
@@ -96,6 +141,8 @@ def main() -> None:
             int(cycle_matrix.nrows()), int(cycle_matrix.ncols())],
         "cycle_matrix_rank": int(rank),
         "kernel_dimension": int(kernel.nrows()),
+        "boundary_rank": int(boundary_coordinates.rank()),
+        "homology_dimension": homology_dimension,
         "kernel_residual_zero": True,
         "basis_role": (
             "finite-field right-kernel echelon basis; a pivot-choice screen, "
@@ -108,6 +155,11 @@ def main() -> None:
         "balanced_unit_coefficient_count": int(coefficients_of_size_one),
         "balanced_unit_coefficient_fraction": (
             coefficients_of_size_one / coefficients if coefficients else 1.0),
+        "greedy_homology_packet": selected_rows,
+        "greedy_homology_packet_maximum_support": max(
+            (row["support_size"] for row in selected_rows), default=0),
+        "greedy_homology_packet_maximum_balanced_l2_squared": max(
+            (row["balanced_l2_squared"] for row in selected_rows), default=0),
     }
     rendered = json.dumps(certificate, indent=2, sort_keys=True) + "\n"
     args.output.write_text(rendered, encoding="utf-8")
