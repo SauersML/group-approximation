@@ -1889,6 +1889,32 @@ applied to the separate maxima `R_*` and `A_*` so one common seam width
 works.  Future Schreier-gauge screens must record all three normalized
 statistics.  See `FALSE_INDUCED_WEYL_SEAM_ENDPOINT_AUDIT.md`.
 
+Property `(T)` now closes this scalar seam for the actual primitive
+principal bundle.  If `r(tx)=r(x)+1 mod M`, the root-valued vector
+`exp(2 pi i r/M)` has mean zero on every transvection orbit.  A Kazhdan
+inequality and the chord-to-centered-arc bound give, for some fixed
+generator `s`,
+
+`avg_x |r(s^(-1)x)-r(x)|_M >= (kappa^2/(4 pi)) M`.
+
+The RMS moment is also linear.  Hence whichever Weyl transition coordinate
+carries this primitive holonomy violates one of the necessary separate
+conditions `R=o(M)` or `A=o(M)`, even if the other moment vanishes.  Do not
+optimize scalar principal-bundle seams further.  The remaining globalization
+must change the tangent/Fourier functor with the base point or use genuinely
+higher incidence.  See
+`FALSE_PROPERTY_T_PRIMITIVE_HOLONOMY_MOMENT_NO_GO.md`.
+
+This also audits the coherent-Ioana shortcut.  A fixed countable lift with a
+finite-stage representative in the integral horocyclic chart would give
+bounded transition moments, contradicting the linear Kazhdan lower bound for
+the prescribed primitive coordinate.  Hence, for that exact scalar bundle,
+the coherent lift, its compatibility with the primitive finite reductions,
+and the integral-chart gauge cannot all hold.  The conditional reduction in
+`FALSE_IOANA_COHERENT_SCHREIER_LIFT_CRITERION.md` remains valid, but its
+sufficient hypothesis is now excluded for the primitive principal-bundle
+seam.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with

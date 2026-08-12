@@ -40,12 +40,17 @@ continuous optimum gives
 `error^2 <= C_p (R A/M)^(2/3)`                       `(IWS5)`
 
 when `R,A` are nonzero and the optimum lies away from the endpoints.  The
-zero-coordinate endpoint cases have still better bounds.
+endpoint regimes require separate control.
 
-Consequently, for finitely many fixed generators, the simultaneous
-sufficient condition is simply
+For one transition family, a seam width with vanishing bound exists exactly
+when
 
-`max_s R_(s,k) A_(s,k)=o(M_k).`                      `(IWS6)`
+`R_k=o(M_k), A_k=o(M_k), R_k A_k=o(M_k).`            `(IWS6)`
+
+For finitely many fixed generators, the same three conditions must hold for
+the separate maxima `R_* = max_s R_s` and `A_* = max_s A_s`.  The product
+condition alone is not sufficient when one moment approaches zero while the
+other remains linear in `M`.
 
 This is strictly weaker than requiring every transition coordinate to be
 bounded.  In the common case in which the coefficient coordinate has
@@ -170,20 +175,37 @@ Choose a divisor `L=p^ell` within a factor `p` of `L_*`, clipped to
 `[1,M]`.  Substitution in `(IWS4)` gives `(IWS5)` with a constant depending
 only on `p`.
 
-Suppose `R A=o(M)` and `R,A>=1`.  Then `R=o(M)`, so `(IWS20)` tends to
-infinity.  Also
+In the interior regime `R,A>=1`, the product condition `RA=o(M)` implies
+both separate sublinearity conditions.  Then `(IWS20)` tends to infinity and
 
 `L_*/M=(A/(R^2 M))^(1/3)=o(1)`.                      `(IWS21)`
 
-Thus clipping is eventually unnecessary and `(IWS5)` tends to zero.  If
-`R=0`, take `L=M`; `(IWS4)` becomes at most `8A/M`.  If `A=0`, take `L=1`
-and the actual first-coordinate formula `(IWS13)` gives squared error at
-most `4 pi^2R^2/M^2`.  These endpoint estimates prove `(IWS6)` in all
-cases, with the evident separate endpoint hypotheses.
+Thus clipping is eventually unnecessary and `(IWS5)` tends to zero.
 
-For a finite generating set, choose one `L_k` using the maxima of the
-finitely many `R_(s,k)` and `A_(s,k)`.  The same block gauge then works for
-all generators simultaneously.
+The endpoint conditions are load bearing.  If `R=0`, taking `L=M` makes
+`(IWS4)` equal to at most `8A/M`, which vanishes exactly under `A=o(M)`.
+If `A=0`, take `L=1`; the actual first-coordinate formula `(IWS13)` gives
+squared error at most `4 pi^2R^2/M^2`, which requires `R=o(M)`.  More
+generally, the endpoint audit proves that some allowed `p`-power seam makes
+`(IWS19)` vanish if and only if all three conditions in `(IWS6)` hold.
+
+Necessity follows directly from `1<=L<=M`:
+
+`R/M <= RL/M`, `A/M <= A/L`,
+
+and
+
+`RA/M=(RL/M)(A/L)`.
+
+The sufficiency proof uses the interior optimizer when it lies in `[1,M]`
+and `L=1` or `L=M` in the two clipped regimes.  See
+`FALSE_INDUCED_WEYL_SEAM_ENDPOINT_AUDIT.md` for the complete case split.
+
+For a finite generating set, put `R_*=max_s R_s` and `A_*=max_s A_s` and
+apply `(IWS6)` to this pair.  Choosing one `L_k` from these maxima makes the
+same block gauge work for all generators simultaneously.  Checking only the
+individual products is insufficient because different generators can force
+opposite endpoint choices.
 
 ## 5. Shapiro specialization
 
@@ -205,9 +227,12 @@ invariant is the infimum of the right side of `(IWS4)` over transversals,
 followed by the choice of `L`.
 
 **Corollary 3 (induced clock seam criterion).**  Suppose transversals can be
-chosen so that for every fixed positive generator `s`,
+chosen so that, with `R_(s,k),A_(s,k)` as in `(IWS23)` and maxima over the
+fixed positive generating set,
 
-`R_(s,k) A_(s,k)=o(M_k).`                             `(IWS24)`
+`R_(*,k)=o(M_k)`,
+`A_(*,k)=o(M_k)`,
+`R_(*,k) A_(*,k)=o(M_k)`.                             `(IWS24)`
 
 Then the Weyl-twisted and ordinary induced clock sectors become equal in
 normalized Hilbert--Schmidt norm on every fixed positive word.
@@ -237,7 +262,8 @@ scalar:
 1. choose the Shapiro transversals;
 2. compute the two centered moments `(IWS23)` for the fixed positive
    generators; and
-3. prove `(IWS24)` without destroying the fold value `(IWS26)`.
+3. prove all three limits in `(IWS24)` without destroying the fold value
+   `(IWS26)`.
 
 A bounded transition coordinate is sufficient but unnecessary.  The exact
 threshold permits a sparse set of macroscopic transitions, as long as their
