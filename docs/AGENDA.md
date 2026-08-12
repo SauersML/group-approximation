@@ -1585,19 +1585,73 @@ chain formula and proof:
 The integral group behind that transgression is also exact:
 `H_1(B,I_M)=Z/N_MZ` with `N_M=((p+1)^M-1)/p`, and the displayed paired
 cycle is a generator.  For `M=p^k` its primary order is exactly `p^k`.
-This does **not** yet give small normalized carry.  The natural primitive
-clock has one small distinguished increment, but its translated increments
-have mean zero and squared chordal energy exactly two.  More generally,
-every nontrivial character of the full translated `p`-primary clock sector
-has energy at least
-`min(2,4 sin(pi/p)^2)`, so arbitrary orthogonal sums of these character
-blocks obey a fixed marked-word domination bound.  The local FALSE gate is
-therefore still open and is narrower: derive the allowed twisted gauges
-from the square-zero elementary presentation and either concentrate their
-defect on a negligible set or prove a gauge-independent lower bound.
-Do not cite the one-coordinate phase increment as an HS amplification.
-See `FALSE_RADICAL_BS_INTEGRAL_CYCLE_AMPLIFIER.md` and
-`FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.
+The natural primitive clock has one small distinguished increment, while
+its translated increments have mean zero and squared chordal energy exactly
+two.  The latter quantity is not a Baumslag--Solitar relator defect: for the
+two exact sectors `H_k,H_k^(p+1)` it is precisely the marked fold energy,
+and the local BS relations have zero defect.  The clock also extends exactly
+over the full finite coefficient `SL_3` orbit.  Left regular coefficient
+covariance and a commuting right clock translation retain squared fold
+displacement two.
+
+The abstract external group is now exact as well.  At depth `k`, the clock
+element in `SL_3(Z/p^(k+1)Z)` and the distinguished transvection in
+`SL_d(Z/p^k Z)` both have order `p^k`.  An explicit gauge on the principal
+bundle
+`SL_3(Z/p^(k+1)Z) times SL_d(Z/p^k Z)` therefore gives two honest external
+representations: the untwisted action and one in which the transvection has
+the prescribed right-clock factor.  Every `Q times L` relation and
+cross-commutator is exact, while the fold remains macroscopic.  Thus generic
+external-unitary optimization is obsolete.  The remaining FALSE gate is
+the simultaneous Laurent-tangent/base-elementary covariance and agreement
+on the fixed positive polynomial window.  Its finite input is now the
+explicit principal-bundle cocycle, not an arbitrary matrix family.  See
+`FALSE_RADICAL_BS_INTEGRAL_CYCLE_AMPLIFIER.md`,
+`FALSE_RADICAL_BS_Q_BIMODULE_EXTENSION.md`, and
+`FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
+
+The principal-bundle cocycle cannot be ignored by keeping the additive
+coefficient character constant over the external quotient.  Write its
+clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
+`r_k(tx)=r_k(x)+1`.  The root-valued function
+`exp(2 pi i r_k/p^k)` has mean zero.  Property `(T)` therefore forces some
+fixed external generator to change `r_k` on a positive fraction of points.
+Every nonzero change conjugates the primitive-orbit coefficient clock by a
+nontrivial power and has squared normalized HS cost at least two.  Hence the
+constant coefficient ansatz has a dimension-independent relation-defect
+floor.  A successful model must use base-dependent tangent characters to
+absorb the exact cocycle, while keeping the two fields asymptotically equal
+on the fixed positive polynomial window.  See
+`FALSE_PRINCIPAL_BUNDLE_CONSTANT_COEFFICIENT_NO_GO.md`.
+
+The exact paired Fourier--`Q` cell supplies the required escape from that
+constant-field no-go on the marked additive window.  On
+`ell^2(Q_n times V_n times V_n)`, the common positive module is represented
+by translations `A_n(v)`, its Laurent image by multipliers `D_n(v)`, and a
+finite Fourier wall exchanges the two.  A right bimodule gauge commutes with
+every `A_n(v)` but scales every `D_n(v)` by `1+p`.  Hence the two compressor
+choices have identical forward action on the entire common additive module,
+while their inverse conjugates of the marked element differ by a fold of
+squared normalized HS size two.  All coefficient-`Q_n` covariance is exact.
+This is a literal base-dependent tangent twist, not a diagonal clock
+reinterpretation.  What remains is to globalize the one cell to a finite
+Frobenius model of the full Laurent tangent module and base elementary group,
+while coupling the actual external `t,s` substitutions.  See
+`FALSE_RADICAL_BS_PAIRED_FOURIER_Q_CELL.md`.
+
+The abstract external group can be attached to that Fourier cell exactly,
+not merely through diffuse unitary completion.  The principal-bundle gauge
+works for arbitrary finite-order unitary fibers.  Both Fourier-cell
+compressors are finite-order Clifford operators: the first has order
+dividing eight, while the second is a product of a finite right translation
+and finite Heisenberg normalizers.  Choose a congruence modulus divisible by
+their orders and prescribe the two commuting transvections on each left
+`(Z/mZ)^2`-orbit.  This gives honest external `SL_d` representations with
+compressor `S_i` and stable transvection `1`, up to common regular factors.
+Thus the marked Fourier cell, its stable-letter identity, and every abstract
+external relation are exact simultaneously.  Only covariance for the other
+Laurent tangent and base-elementary generators remains.  See
+`FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
 
 ## Banked (kernel-checked, this repo)
 
