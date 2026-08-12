@@ -43585,3 +43585,42 @@ finite average-atom quantity actually used here, the direct Birkhoff bound
 paper therefore validates the normalizer-correction stage of the proposed
 pipeline but does not solve either missing global stage.  Full audit:
 `docs/TRUE_SINCLAIR_SMITH_MASA_PERTURBATION_AUDIT.md`.
+
+# 2026-08-11: exact Gaussian wall model isolates subgroupification
+
+For `pi:F->U(d)`, put
+
+`rho=pi tensor conjugate(pi)` and
+`Omega=d^(-1/2) sum_i e_i tensor conjugate(e_i)`.
+
+Then
+
+`||rho(g)Omega-Omega||^2=2-2|tr_d(pi(g))|^2`.
+
+Gaussian linearization is an equivariant isometry from the real Hilbert
+space into `L^1`, so this displacement is exactly the `L^1` norm of one
+coboundary.  The layer-cake construction further realizes it as
+
+`measure(A triangle gA)`
+
+for one set in a sigma-finite measured-wall action.  Hence the unitary side
+already has a dimension-free equivariant `L^1` model; no Hilbert-to-cut
+rounding remains.
+
+The actual missing property is subgroup coherence.  A finite-action length
+satisfies
+
+`1-h(g)=Prob[g in K]`
+
+for a finite-index IRS stabilizer `K`, whereas an arbitrary wall cut has no
+membership closure under products and powers.  For `C_p`, `p>=5`, the
+Gaussian length from `pi=1 direct-sum chi` varies as
+`sqrt(2)|sin(pi k/p)|` on nonidentity powers, while every finite-action
+length is constant there.  Thus generic measured-wall sampling cannot be
+the proof; the normal `0/sqrt(2)` endpoint must be used essentially.
+
+The whole implication is equivalently a normal-endpoint subgroupification
+theorem: replace Gaussian wall lengths tending to zero on `N` and
+`sqrt(2)` off `N` by finite-index IRS Hamming lengths tending to zero on
+`N` and one off `N`.  Full proof and audit:
+`docs/TRUE_GAUSSIAN_WALL_IRS_GATE.md`.
