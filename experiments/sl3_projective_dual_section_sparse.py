@@ -41,7 +41,8 @@ from sl3_projective_dual_section_from_packet import (
 from sl3_projective_packet_section import read_harmonic_basis
 
 
-def solve_unit_system(coefficient_matrix, targets, time_limit):
+def solve_unit_system(
+        coefficient_matrix, targets, time_limit, finish_residual_hnf=False):
     """Solve ``coefficient_matrix * x = targets`` over Z by unit pivots.
 
     Rows whose coefficients have a common divisor are divided by it when the
@@ -205,7 +206,69 @@ def solve_unit_system(coefficient_matrix, targets, time_limit):
             break
         round_index += 1
 
-    elapsed = time.monotonic() - started
+    solutions = [[0] * variable_count for _ in range(target_count)]
+    if active and finish_residual_hnf:
+        hnf_started = time.monotonic()
+        active_rows = sorted(active)
+        active_variables = sorted({
+            variable
+            for row_index in active_rows
+            for variable in rows[row_index]
+        })
+        variable_positions = {
+            variable: position
+            for position, variable in enumerate(active_variables)
+        }
+        residual_matrix = matrix(
+            ZZ, len(active_rows), len(active_variables), {
+                (row_position, variable_positions[variable]): coefficient
+                for row_position, row_index in enumerate(active_rows)
+                for variable, coefficient in rows[row_index].items()
+            })
+        residual_targets = matrix(ZZ, [
+            values[row_index] for row_index in active_rows])
+        residual_hnf, residual_transform = (
+            residual_matrix.transpose().hermite_form(
+                transformation=True, include_zero_rows=True))
+        residual_rank = residual_matrix.rank()
+        if residual_rank != len(active_rows):
+            raise AssertionError("residual equations are rationally dependent")
+        hnf_head = residual_hnf[:residual_rank, :]
+        if residual_hnf[residual_rank:, :] != 0:
+            raise AssertionError("residual column HNF has a nonzero tail")
+        compressed_solutions = []
+        integral_solution = True
+        for target_index in range(target_count):
+            target = residual_targets.column(target_index)
+            coordinates = hnf_head.transpose().solve_right(target)
+            if any(entry.denominator() != 1 for entry in coordinates):
+                integral_solution = False
+                break
+            padded = vector(
+                ZZ,
+                list(coordinates.change_ring(ZZ))
+                + [0] * (len(active_variables) - residual_rank),
+            )
+            compressed = residual_transform.transpose() * padded
+            if residual_matrix * compressed != target:
+                raise AssertionError("residual HNF solution is invalid")
+            compressed_solutions.append(compressed)
+        diagnostics.append({
+            "residual_hnf_attempted": True,
+            "residual_hnf_equations": len(active_rows),
+            "residual_hnf_variables": len(active_variables),
+            "residual_hnf_rank": residual_rank,
+            "residual_hnf_head": [
+                [int(entry) for entry in row] for row in hnf_head.rows()],
+            "residual_hnf_integral_solution": integral_solution,
+            "residual_hnf_seconds": time.monotonic() - hnf_started,
+        })
+        if integral_solution:
+            for target_index, compressed in enumerate(compressed_solutions):
+                for position, variable in enumerate(active_variables):
+                    solutions[target_index][variable] = int(compressed[position])
+            active.clear()
+
     if active:
         residual_rows = []
         for row_index in sorted(active):
@@ -223,9 +286,13 @@ def solve_unit_system(coefficient_matrix, targets, time_limit):
                     for variable, coefficient in sorted(row.items())
                 ],
             })
-        return None, diagnostics, residual_rows, elapsed
+        return (
+            None,
+            diagnostics,
+            residual_rows,
+            time.monotonic() - started,
+        )
 
-    solutions = [[0] * variable_count for _ in range(target_count)]
     for pivot_variable, pivot_row, pivot_values in reversed(pivots):
         pivot_coefficient = pivot_row[pivot_variable]
         for target_index in range(target_count):
@@ -240,7 +307,7 @@ def solve_unit_system(coefficient_matrix, targets, time_limit):
         [vector(ZZ, solution) for solution in solutions],
         diagnostics,
         [],
-        elapsed,
+        time.monotonic() - started,
     )
 
 
@@ -283,6 +350,7 @@ def main() -> None:
     parser.add_argument("output", type=Path)
     parser.add_argument("--time-limit", type=float, default=120.0)
     parser.add_argument("--greedy-sweeps", type=int, default=3)
+    parser.add_argument("--finish-residual-hnf", action="store_true")
     args = parser.parse_args()
 
     started = time.monotonic()
@@ -316,7 +384,7 @@ def main() -> None:
         f"level={level} equations={equation_matrix.nrows()} "
         f"variables={equation_matrix.ncols()} targets={rank}", flush=True)
     solutions, diagnostics, residual_rows, solve_seconds = solve_unit_system(
-        equation_matrix, targets, args.time_limit)
+        equation_matrix, targets, args.time_limit, args.finish_residual_hnf)
 
     common = {
         "level": level,
