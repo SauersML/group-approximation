@@ -50,24 +50,4 @@ theorem finitePresentationDetector_range_fg
       (PresentedGroup.mk_surjective (R : Set (FreeGroup α)))
   infer_instance
 
-/-- **Finite-jet contradiction, Mal'cev interface.**  A representation over a
-finite-dimensional complex coefficient algebra includes the truncated-jet
-case `A = ℂ[t]/(t^N)`.  If its finitely generated image has the residual
-finiteness furnished by Mal'cev after regular linearization, survival of `w`
-contradicts the sofic radical.
-
-The finite-dimensional hypothesis is recorded explicitly because it is what
-allows left regular multiplication to turn matrices over `A` into ordinary
-complex matrices. -/
-theorem finiteJet_contradicts_soficPresentationInvisible
-    {α : Type} [Finite α] {R : Finset (FreeGroup α)} {w : FreeGroup α}
-    {A : Type} [CommRing A] [Algebra ℂ A] [FiniteDimensional ℂ A]
-    {d : Type} [Fintype d] [DecidableEq d]
-    (ρ : PresentedGroup (R : Set (FreeGroup α)) →*
-      Matrix.GeneralLinearGroup d A)
-    [Group.ResiduallyFinite ρ.range]
-    (hdetect : ρ (PresentedGroup.mk (R : Set (FreeGroup α)) w) ≠ 1) :
-    ¬ SoficPresentationInvisible R w :=
-  not_soficPresentationInvisible_of_residuallyFinite_detector ρ hdetect
-
 end GroupApproximation
