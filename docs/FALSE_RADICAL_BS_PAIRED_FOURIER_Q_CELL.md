@@ -239,4 +239,49 @@ fixed-base square-zero jet formulas in `docs/NOTEPAD.md` provide exact
 one-chart candidates, but their simultaneous multi-compressor atlas was
 not completed.  No claim about a full microstate of `G` or its double is
 made here.
+## 7. Exact endpoint needed from the remaining completion
 
+For clarity, faithfulness of a limiting model of the whole double is not
+an additional requirement.  The following elementary endpoint is enough.
+
+**Proposition (marked compatible-pair endpoint).**  Suppose there are
+finite-dimensional maps
+
+`phi_(i,n):G -> U(k_n)`, `i=0,1`,                     `(PFQ32)`
+
+such that
+
+1. both sequences are asymptotic homomorphisms in normalized HS norm;
+2. for every `gamma in Gamma`,
+
+   `||phi_(0,n)(gamma)-phi_(1,n)(gamma)||_2 ->0`;      `(PFQ33)`
+
+3. for the marked `h` in `(RB12)`,
+
+   `liminf_n ||phi_(1,n)(h)phi_(0,n)(h)^(-1)-1||_2>0`.
+                                                               `(PFQ34)`
+
+Then a hyperlinear nonsofic group exists.
+
+**Proof.**  The two limiting homomorphisms into the tracial matrix
+ultraproduct agree on `Gamma` by `(PFQ33)`.  The universal property of the
+amalgamated free product therefore gives a homomorphism
+
+`Psi:D=G *_Gamma G -> product_omega U(k_n)`.          `(PFQ35)`
+
+Its image is hyperlinear.  Condition `(PFQ34)` says that the radical word
+
+`w=i_2(h)i_1(h)^(-1)`                                 `(PFQ36)`
+
+survives in `im(Psi)`.  If `im(Psi)` were sofic, the composite map from
+`D` to that sofic group would have to kill every element of
+`Rad_sof(D)`, in particular `w`, contradicting `(PFQ34)`.  Hence
+`im(Psi)` is hyperlinear and nonsofic.  End proof.
+
+The paired cell gives `(PFQ33)` and `(PFQ34)` exactly on the additive
+`Q_n`-covariant compressor window: the common operators are `A_n(v)` and
+their common forward images `(PFQ7)`, while `(PFQ9)` gives the marked
+lower bound.  The sole missing input to the proposition is extension of
+these assignments to asymptotic homomorphisms on every fixed window of
+the full vertex group `G`, with agreement on every fixed element of
+`Gamma`.
