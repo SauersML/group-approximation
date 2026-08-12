@@ -71,7 +71,7 @@ theorem freeCharacteristicTwo_localizedPlaneEstimate
 
 /-- **Coordinate-block factorization.**  If every nonzero element of `R`
 admits a single sandwich to `1`, then every invertible `n × n` matrix is a
-product of at most `2*n+6` factors, each either an elementary transvection or
+product of at most `2*n+4` factors, each either an elementary transvection or
 an element of the fixed coordinate block omitting `j`.
 
 This is not a claim of bounded elementary generation: one coordinate copy of
@@ -81,7 +81,7 @@ theorem coordinateBlock_factorization
     (n : ℕ) (hn : 2 ≤ n)
     (hdiv : HasSingleSandwichDivision R) (j : Fin n) :
     IsBoundedProduct (Matrix (Fin n) (Fin n) R)ˣ
-      (coordinateBlockOrRoot j) (2 * n + 6) := by
+      (coordinateBlockOrRoot j) (2 * n + 4) := by
   letI : Nontrivial (Fin n) :=
     Fintype.one_lt_card_iff_nontrivial.mp (by
       rw [Fintype.card_fin]
@@ -152,7 +152,7 @@ theorem kazhdan_normalizedSet_globalization
 
 /-- **Rank-four synthesis.**  The finite-presentation form of the structural
 hypotheses already gives global `(TT)/T` in rank four. -/
-theorem finitePresentation_rankFour_hasTTmodT
+theorem finiteFreeQuotient_rankFour_hasTTmodT
     (R : Type) [Ring R] [Nontrivial R]
     (X : Type) [Fintype X]
     (f : FreeAlgebra (ZMod 2) X →+* R)
@@ -177,8 +177,8 @@ theorem quasiCocycle_list_product_bound
 /-- **Four-hypothesis synthesis theorem.**  A finite free characteristic-two
 presentation, binary Leavitt self-similarity, single-sandwich division, and
 trivial elementary diagonal class together imply `(TT)/T` in every
-elementary rank at least three. -/
-theorem finitePresentation_elementaryGroup_hasTTmodT
+elementary rank at least two. -/
+theorem finiteFreeQuotient_elementaryGroup_hasTTmodT
     (R : Type) [Ring R] [Nontrivial R]
     (X : Type) [Fintype X]
     (f : FreeAlgebra (ZMod 2) X →+* R)
@@ -186,7 +186,7 @@ theorem finitePresentation_elementaryGroup_hasTTmodT
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) :=
   FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     X f hf L hdiv hdiag n hn
@@ -201,7 +201,7 @@ theorem finiteType_elementaryGroup_hasTTmodT
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) := by
   obtain ⟨s, hs⟩ :=
     (Algebra.FiniteType.out : (⊤ : Subalgebra (ZMod 2) R).FG)
@@ -221,14 +221,14 @@ theorem finiteType_elementaryGroup_hasTTmodT
     intro y
     have hy : y ∈ f.range := by simp [hrange]
     exact hy
-  exact finitePresentation_elementaryGroup_hasTTmodT
+  exact finiteFreeQuotient_elementaryGroup_hasTTmodT
     R {x : R // x ∈ s} f.toRingHom hf L hdiv hdiag n hn
 
-/-- **Binary Leavitt specialization.**  In every rank at least three, the
+/-- **Binary Leavitt specialization.**  In every rank at least two, the
 elementary group over the binary Leavitt algebra over `F₂` has property
 `(TT)/T`. -/
 theorem binaryLeavitt_elementaryGroup_hasTTmodT
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
       (elementaryGroup (Fin n) LeavittAllRanksTT.L) :=
   LeavittAllRanksTT.elementaryGroup_hasTTmodT n hn

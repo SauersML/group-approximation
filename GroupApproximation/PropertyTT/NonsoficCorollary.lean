@@ -14,14 +14,14 @@ only a corollary.
 namespace GroupApproximation
 namespace PropertyTTPaper
 
-/-- For every `n ≥ 3`, the elementary group over the binary Leavitt algebra
+/-- For every `n ≥ 2`, the elementary group over the binary Leavitt algebra
 over `F₂` has property `(TT)/T` and is nonsofic.
 
 The `(TT)/T` assertion is the rigidity result of this development.  The
 nonsoficity assertion is imported from the prior nonsofic-group theorem and is
 not claimed here as a new proof or mechanism. -/
 theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
         (elementaryGroup (Fin n) LeavittAllRanksTT.L) ∧
       ¬ IsSofic (elementaryGroup (Fin n) LeavittAllRanksTT.L) := by

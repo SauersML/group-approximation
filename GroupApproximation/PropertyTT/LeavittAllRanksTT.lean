@@ -15,13 +15,13 @@ namespace LeavittAllRanksTT
 
 abbrev L := BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
 
-/-- **All-ranks theorem.** For every `n ≥ 3`, the elementary group
+/-- **All-ranks theorem.** For every `n ≥ 2`, the elementary group
 `ELₙ(L_{𝔽₂}(1,2))` has property `(TT)/T`.
 
 Every hypothesis used here is discharged inside the Lean development: the
 rank-four theorem has no external rigidity premise, and the rank transport is
 the explicit prefix-code equivalence for the binary Leavitt algebra. -/
-theorem elementaryGroup_hasTTmodT (n : ℕ) (hn : 3 ≤ n) :
+theorem elementaryGroup_hasTTmodT (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) L) := by
   exact FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     BinaryLeavitt.Generator

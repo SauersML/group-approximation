@@ -185,14 +185,14 @@ theorem rankFour_hasTTmodT
 
 /-- **General all-ranks theorem.**  Under the finite-presentation,
 self-similarity, strong-division, and diagonal-class hypotheses, every
-elementary rank `n ≥ 3` has property `(TT)/T`. -/
+elementary rank `n ≥ 2` has property `(TT)/T`. -/
 theorem elementaryGroup_hasTTmodT
     (X : Type) [Fintype X]
     (f : FreeAlgebra (ZMod 2) X →+* R) (hf : Function.Surjective f)
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   exact HasTTmodT.of_mulEquiv

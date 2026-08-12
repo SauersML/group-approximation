@@ -75,18 +75,17 @@ theorem leftClearFactors_elementary (j : ι) (f : ι → R)
   obtain ⟨k, _, rfl⟩ := List.mem_map.mp hx
   exact ⟨(k : ι), j, k.property, f k, rfl⟩
 
-theorem length_otherIndices_le (j : ι) :
-    (otherIndices j).length ≤ Fintype.card ι := by
-  rw [otherIndices, Finset.length_toList]
-  exact Fintype.card_subtype_le _
+@[simp] theorem length_otherIndices (j : ι) :
+    (otherIndices j).length = Fintype.card ι - 1 := by
+  simp [otherIndices]
 
 /-- **Uniform strong-division bounded generation.**  A rank with at least
-two coordinates has width at most `2 * card ι + 6` with respect to the
+two coordinates has width at most `2 * card ι + 4` with respect to the
 elementary roots and one coordinate copy of `GL`. -/
 theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
     (hdiv : HasSingleSandwichDivision R) (j : ι) :
     IsBoundedProduct (Matrix ι ι R)ˣ (coordinateBlockOrRoot j)
-      (2 * Fintype.card ι + 6) := by
+      (2 * Fintype.card ι + 4) := by
   intro A
   obtain ⟨i, hij⟩ := exists_ne j
   obtain ⟨E, F, _, _, hjj, _, _, l, r, hl, hr,
@@ -117,12 +116,12 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
     elementaryInverseWord l ++ elementaryInverseWord s ++ [D] ++
       elementaryInverseWord t ++ elementaryInverseWord r
   refine ⟨w, ?_, ?_, ?_⟩
-  · have hslen : s.length ≤ Fintype.card ι := by
+  · have hslen : s.length = Fintype.card ι - 1 := by
       dsimp [s, leftClearFactors]
-      simpa using length_otherIndices_le j
-    have htlen : t.length ≤ Fintype.card ι := by
+      exact length_otherIndices j
+    have htlen : t.length = Fintype.card ι - 1 := by
       dsimp [t, rightClearFactors]
-      simpa using length_otherIndices_le j
+      exact length_otherIndices j
     dsimp [w]
     simp only [List.length_append, length_elementaryInverseWord, List.length_cons,
       List.length_nil]
