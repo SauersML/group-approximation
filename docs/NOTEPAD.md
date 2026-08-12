@@ -45393,3 +45393,60 @@ level-independent bound, and rational spanning does not certify an integral
 homology basis or a bounded section.  The theorem-shaped next step is to
 recognize the reverse coordinate filtration as a symbolic modular-symbol or
 Eisenstein packet construction valid for every square level.
+
+# 2026-08-12: property (T) kills the dual-Heisenberg operator sector
+
+Full proof: `docs/FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md`.
+
+The operator-MF endpoint proposed in
+`FALSE_DUAL_HEISENBERG_ENVELOPE.md` is impossible.  Suppose an
+operator-norm asymptotic representation `U_n` of `G` and dual/primal seeds
+`Z_n,X_n` realized the coset-Weyl rule
+
+```text
+Z_g X_h Z_g^*=(-1)^(1_(h in gGamma))X_h.
+```
+
+On the normalized Hilbert--Schmidt matrix spaces, the adjoint maps
+`Ad(U_n(g))` define an exact representation of `G` in a norm ultraproduct
+of finite matrix algebras.  Let `P` be the Kazhdan projection onto the
+`Gamma`-fixed vectors.  The one-sided inclusion
+
+```text
+s Gamma s^(-1) subset Gamma
+```
+
+gives `Ad(U_s)^* P Ad(U_s)<=P`.  The two projections are unitarily
+equivalent, and the norm matrix ultraproduct is stably finite, so equality
+is forced.  Hence `Ad(U_s)` preserves the `Gamma`-fixed space.
+
+The dual seed is `Gamma`-fixed.  It follows that
+
+```text
+||Z_(gamma s)-Z_s||_2 -> 0.
+```
+
+Choose `y` in the symmetric difference of `sGamma` and `gamma sGamma`.
+The two Weyl rules require conjugation of `X_y` by these HS-close unitaries
+to converge to opposite signs of `X_y`, whose normalized HS distance is
+exactly `2`.  Contradiction.
+
+Therefore no negative operator-norm projective sector exists, every
+homomorphism from the dual Heisenberg envelope `E` to a norm matrix
+ultraproduct kills its central radical involution `z`, and `E` is not weak
+MF/operator-MF.  This is a theorem-level negative result, not a failed
+search.
+
+The tracial route survives.  With only HS multiplicativity, the adjoint
+defects need not vanish in superoperator norm, so the Kazhdan projection
+argument above cannot be formed in the stably finite norm ultraproduct.
+Connes embeddability of the negative corner `pL(E)` remains a valid FALSE
+endpoint.  Separately, the actual induced three-moment Schreier system has
+still not been constructed: no transversals are known with
+
+```text
+R_*/M -> 0,  A_*/M -> 0,  R_* A_*/M -> 0.
+```
+
+The present theorem closes an operator-norm shortcut; it neither supplies
+nor refutes that genuinely tracial three-moment system.

@@ -27,18 +27,18 @@ with all of the following properties:
 5. in the negative central corner `pL(E)`, one dual lamp exactly
    spatializes the one-orbit parity automorphism on the entire edge.
 
-Consequently
+The negative corner remains a possible tracial endpoint:
 
 ```text
-E operator-MF  ==>  a hyperlinear nonsofic group exists. (DHE2)
+pL(E) Connes embeddable
+  ==> E is a hyperlinear nonsofic group.                 (DHE2)
 ```
 
-This is not yet a proof of `(DHE2)`'s premise.  Locally-finite-by-residually-
-finite groups are not automatically operator-MF, and in this example such
-an automatic theorem would already cross the known approximation barrier.
-The value of `(DHE1)` is that the remaining analytic target is one explicit
-split group, not an unspecified relative correspondence or a Borel
-functional-calculus operator.
+There is, however, a decisive operator-norm correction.  Theorem 1 of
+`FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md` proves that every homomorphism
+from `E` to a norm matrix ultraproduct kills `z`.  Thus `E` is **not**
+operator-MF.  The value of `(DHE1)` is now a compact explicit tracial
+target, not an operator-MF target.
 
 ## 2. The primal and dual orbit modules
 
@@ -333,18 +333,19 @@ implementer to `v_ell`.  The additional quotient relations are
 Operator-MF does not pass to arbitrary quotients, so the already banked MF
 information on an untwisted double cannot be pushed through `(DHE32)`.
 
-Thus the remaining theorem is precise:
+The tempting operator-norm theorem would have been:
 
 ```text
-boxed: H(A,T) semidirect G is operator-MF.             (DHE33)
+H(A,T) semidirect G is operator-MF.                    (DHE33)
 ```
 
-Any operator-MF proof must in particular construct a nonzero negative
-projective sector.  Even operator-MF of the quotient `E/<z>` is not
-currently banked; by `(DHE28)`, proving that quotient hyperlinear would
-already finish FALSE.  Thus `FALSE_FINITE_KERNEL_AUDIT.md` should be read
-here as a sector decomposition, not as an automatic source of the faithful
-complementary sector.
+This statement is false.  The Kazhdan--stable-finite obstruction in
+`FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md` proves that every norm-corona
+model kills `z`.  Even operator-MF of the quotient `E/<z>` is not currently
+banked; by `(DHE28)`, proving that quotient hyperlinear would already finish
+FALSE.  Thus `FALSE_FINITE_KERNEL_AUDIT.md` should be read here as a sector
+decomposition, not as an automatic source of the faithful complementary
+sector.
 
 ## 8. The negative multiplier and a two-seed criterion
 
@@ -434,6 +435,13 @@ taking the two seed lamps.
 **Corollary 4 (two-seed Weyl endpoint).**  Existence of
 `U_n,X_n,Z_n` satisfying `(DHE40)--(DHE43)` proves FALSE.
 
+**Correction.**  This sufficient endpoint is empty.  Theorem 1 of
+`FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md` uses only `(DHE42)`,
+`(DHE43)`, property `(T)`, and the strict compressor to prove that no such
+operator-norm sequence exists.  In particular `(DHE36)--(DHE37)` cannot
+exist either.  The finite Pauli realization below remains correct, but it
+cannot be equipped with the required coherent operator-norm `G`-transport.
+
 The Weyl part has no finite-window obstruction.  Let `C subset G` and
 `R subset G/Gamma` be finite.  On `ell^2(F_2^C)`, let `X_h` translate the
 `h`-coordinate and let `Z_R0` multiply the basis vector `delta_b` by
@@ -502,9 +510,11 @@ implement the parity automorphism in operator norm, even on the fixed set
 Thus finite matrix stabilization, continuous half-circle approximation,
 or another unitary chosen internally in the full amalgam cannot produce
 the required spatializer.  The Borel half-circle construction is genuinely
-tracial, while the Heisenberg generator is genuinely external.  The live
-choice is now sharply exposed: select a trace on the reduced half-circle
-side, or prove operator-MF of the external group `(DHE13)`.
+tracial, while the Heisenberg generator is genuinely external.  The
+operator-sterility theorem now also excludes operator-MF of the external
+group.  What remains is a genuinely tracial construction: select a suitable
+trace on the reduced half-circle side or prove Connes embeddability of the
+negative corner `pL(E)`.
 
 ## 10. Status
 
@@ -517,12 +527,14 @@ dual orbit lamp
   -> central radical involution.
 ```
 
-No numerical experiment or asymptotic estimate enters the proof.  The
-open part can be attacked through `(DHE33)` or the strictly smaller negative
-sector `(DHE37)`.  The fold no-go `(DHE46)` rules out the most direct
-internal use of the already MF symmetric full amalgam, so future work should
-target a genuinely nonregular representation of `(DHE30)` rather than more
-functional calculus in the regular vertex.
+No numerical experiment or asymptotic estimate enters the algebraic proof.
+The operator-norm candidates `(DHE33)` and `(DHE37)` are now rigorously
+excluded by `FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md`.  The fold no-go
+`(DHE46)` also rules out the most direct internal use of the already MF
+symmetric full amalgam.  Future work on this envelope must therefore target
+a genuinely tracial representation of `(DHE30)`, in particular Connes
+embeddability of `pL(E)`, rather than more operator-norm functional calculus
+in the regular vertex.
 
 ## 11. Literature boundary
 
@@ -545,4 +557,5 @@ The three current permanence results most liable to be confused with
   the desired counterexample rather than an available hypothesis.
 
 Accordingly, the present note claims an exact algebraic reduction and a
-new compact target, not a literature-derived proof of its MF property.
+new compact tracial target.  Its formerly proposed MF target is disproved
+in `FALSE_DUAL_HEISENBERG_OPERATOR_STERILITY.md`.
