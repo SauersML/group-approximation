@@ -4,6 +4,46 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: finite fold kernels have an exact relative-abelian carrier
+
+For the fold `r:D=G *_Gamma G->G` and a quotient `q:G->Q` with kernel `N`,
+the kernel `K=ker(qr)` splits as `F semidirect N`, where
+
+```text
+F_ab = I_(G/Gamma),
+K_ab = (I_(G/Gamma))_N directSum N_ab.
+```
+
+If the positive image is all of `Q`, then `N` is transitive on `G/Gamma`
+and
+
+```text
+(I_(G/Gamma))_N = N/([N,N](N intersection Gamma)).
+```
+
+The marked fold word is represented by `h gamma^(-1)` in this relative
+abelianization.  In the natural period quotient `x^M=1`, take
+
+```text
+h=e_12(x^(-1)),  gamma=e_12(x^(M-1)),  t=x^M-1.
+```
+
+The discrepancy `n=e_12(-x^(-1)t)` differs from the positive kernel element
+`u=e_12(-x^(M-1)t)` by the single commutator
+
+```text
+n u^(-1)=e_12(x^(-1)t^2)
+         =[e_13(t),e_32(x^(-1)t)].
+```
+
+Thus the finite fold class already vanishes in ordinary relative
+abelianization.  This replaces a large exact homology calculation by one
+Steinberg relation and explains the natural finite-clock absorption
+conceptually.  It does not kill the asymptotic branch cut: `u` and its word
+expression grow with `M`.  The sole remaining statistic is the metric cost
+of distributing that growing filling over fixed presentation coordinates.
+Full proof: `docs/FALSE_FOLD_KERNEL_RELATIVE_ABELIANIZATION.md`.
+
 ### 2026-08-12: an amenable relative core cannot hide the wall
 
 A tempting completion of the relative-bicommutant endpoint is now closed.
