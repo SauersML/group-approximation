@@ -124,6 +124,95 @@ H_2(Q_n;\mathbb Z).
 In particular, ordinary scalar rephasing of generator lifts can never finish
 the proof.
 
+### Theorem 3 (unbounded Schur exponent is necessary)
+
+Let \(\mathcal Q\) be a family of finite quotients of \(P\).  If there is an
+integer \(M\) such that
+
+\[
+M\,H_2(Q;\mathbb Z)=0
+\qquad(Q\in\mathcal Q),
+\]
+
+then the canonical central marked/relator ratios are uniformly bounded over
+\(Q\in\mathcal Q\).  Consequently, divergence of the central FALSE
+criterion requires
+
+\[
+\boxed{
+\exp H_2(Q_n;\mathbb Z)\longrightarrow\infty
+}
+\]
+
+along some sequence of finite quotients.
+
+#### Proof
+
+For each \(Q\), the group
+
+\[
+B_Q\leq\mathbb Z^d
+\]
+
+is free abelian, so the exact sequence
+
+\[
+0\to H_2(Q;\mathbb Z)\to C_Q\to B_Q\to0
+\]
+
+splits as a sequence of abelian groups.  Relative to any splitting, a
+character \(\chi\in\widehat{C_Q}\) has two parts:
+
+- a curvature character \(\alpha\in\widehat{H_2(Q;\mathbb Z)}\);
+- a gauge character \(\psi\in\widehat{B_Q}\), which extends to a point of
+  \(\widehat{\mathbb Z^d}\cong\mathbb T^d\).
+
+If \(MH_2(Q;\mathbb Z)=0\), then the curvature contributions to the values
+of \(\chi\) on the finite list
+
+\[
+a_1,\ldots ,a_\ell,b
+\]
+
+belong to the finite set \(\mu_M^{\ell+1}\).  The gauge contributions are
+the fixed monomials on \(\mathbb T^d\) determined by the exponent-sum vectors
+
+\[
+e(r_1),\ldots ,e(r_\ell),e(w).
+\]
+
+Thus every quotient-level marked/relator ratio is the restriction of one of
+finitely many functions
+
+\[
+z\longmapsto
+\frac{|\zeta_w z^{e(w)}-1|}
+{\left(\sum_j|\zeta_j z^{e(r_j)}-1|^2\right)^{1/2}},
+\qquad
+(\zeta_1,\ldots ,\zeta_\ell,\zeta_w)\in\mu_M^{\ell+1}.
+\]
+
+Only patterns realized by an actual quotient and curvature character need be
+considered.  For such a pattern, a zero of every denominator term is also a
+zero of the numerator: otherwise the associated character of \(C_Q\) would
+make every presentation relator trivial while retaining \(w\), producing an
+exact finite-dimensional unitary representation of \(P\) that separates
+\(w\).  The finitely generated linear image of that representation is
+residually finite, contradicting radicality.
+
+Near a common zero, write the monomial phases in local angular coordinates.
+Their first-order parts are the fixed integer linear forms
+\(e(r_j)\), while the marked first-order form \(e(w)\) lies in their real
+span because \(w=0\) in \(P_{\rm ab}\).  The quotient is therefore locally
+bounded.  Away from the common zero set it is continuous on a compact set.
+Each of the finitely many realized phase patterns consequently has finite
+supremum, and taking their maximum gives a bound independent of \(Q\).
+\(\square\)
+
+The theorem explains why a fixed torsion multiplier cannot finish the
+construction.  A successful sequence must carry curvature of genuinely
+growing order, exactly as suggested by the integral \(p^k\)-Bockstein tower.
+
 ## Interpretation
 
 The theorem is the scalar central analogue of the principal-bundle tangent
@@ -170,4 +259,3 @@ Thus the genuinely new data needed by FALSE is a sequence of projective
 multiplier classes on finite quotients.  The local cyclotomic Bockstein is a
 candidate source of precisely such classes; what remains is its global
 extension and the quantitative evaluation stated above.
-
