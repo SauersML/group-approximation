@@ -27,9 +27,9 @@ G *_\Gamma(\Gamma\times C_2)
 
 finite-semidirect-product permanence, and the embedding of the two-vertex
 double into the infinite line double.  These are in
-`NonsoficGroupsExist/Sofic/SoficFiniteSemidirect.lean`,
-`NonsoficGroupsExist/Sofic/SymmetricDoubleFlip.lean`, and
-`NonsoficGroupsExist/Sofic/LineDouble.lean`.
+`GroupApproximation/Sofic/SoficFiniteSemidirect.lean`,
+`GroupApproximation/Sofic/SymmetricDoubleFlip.lean`, and
+`GroupApproximation/Sofic/LineDouble.lean`.
 
 The remaining Lean boundary is substantive: the newer centralizer-
 normalization theorem and the existence, residual finiteness, Kazhdan

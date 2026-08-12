@@ -1,8 +1,8 @@
-import NonsoficGroupsExist.KOne.FullExtraction
-import NonsoficGroupsExist.KOne.MirrorExtraction
-import NonsoficGroupsExist.KOne.EntrywiseKillMirror
-import NonsoficGroupsExist.KOne.BalancedCodePencil
-import NonsoficGroupsExist.KOne.StackDichotomy
+import GroupApproximation.KOne.FullExtraction
+import GroupApproximation.KOne.MirrorExtraction
+import GroupApproximation.KOne.EntrywiseKillMirror
+import GroupApproximation.KOne.BalancedCodePencil
+import GroupApproximation.KOne.StackDichotomy
 
 /-!
 # The master induction
@@ -18,7 +18,7 @@ whose every extension meets the constant data — is the refinement
 branch, isolated here as the named hypothesis `StuckReduction`.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -156,4 +156,4 @@ theorem pencil_unit_mem [Nontrivial (BinaryLeavittAlgebra k)]
           (Or.inl ⟨v₀, hv₀, hkB₀, hkB₁⟩)
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

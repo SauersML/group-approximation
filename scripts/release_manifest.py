@@ -52,7 +52,7 @@ def build_manifest() -> dict:
                 mathlib = pkg.get("rev")
 
     files = sorted(
-        p for pattern in ("NonsoficGroupsExist/**/*.lean", "NonsoficGroupsExist.lean",
+        p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
                           "Superseded/**/*.lean", "Superseded.lean",
                           "scripts/*", "docs/*",
                           "nonsofic_groups_exist.tex", "nonsofic_groups_exist.pdf",

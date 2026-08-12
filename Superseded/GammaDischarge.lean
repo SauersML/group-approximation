@@ -1,8 +1,8 @@
-import NonsoficGroupsExist.KOne.ZeroKOne
-import NonsoficGroupsExist.KOne.PureTailNilpotency
-import NonsoficGroupsExist.Leavitt.RankNormalForm
+import GroupApproximation.KOne.ZeroKOne
+import GroupApproximation.KOne.PureTailNilpotency
+import GroupApproximation.Leavitt.RankNormalForm
 import Superseded.GammaReduction
-import NonsoficGroupsExist.Leavitt.LeavittSimplicity
+import GroupApproximation.Leavitt.LeavittSimplicity
 
 /-!
 # The γ-hypotheses discharge: normal-form units lie in the class group
@@ -18,7 +18,7 @@ unit of the binary Leavitt algebra with value `1 + s₁·(degree
 `[-1,0]` window)` lies in the diagonal class group.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -123,4 +123,4 @@ theorem sOneTail_mem_stableUnits [Nontrivial (BinaryLeavittAlgebra k)]
     (by rw [← hY]; exact hD) u hu
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

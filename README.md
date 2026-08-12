@@ -1,7 +1,14 @@
-# NonsoficGroupsExist
+# Group Approximation and Rigidity
 
-A machine-checked Lean 4 proof that **nonsofic groups exist** — including a
-finitely presented one — settling a question of Weiss, open since 2000.
+A Lean 4 library for group approximation, rigidity, and the algebraic
+constructions connecting them.  It now contains substantially more than its
+original nonsofic-groups endpoint: sofic and hyperlinear approximation,
+Kazhdan theory, expander methods, Leavitt algebras and their `K₁`, and
+quasi-cocycle rigidity through property `(TT)/T`.
+
+The original flagship development is a machine-checked proof that
+**nonsofic groups exist** — including a finitely presented example — settling
+a question of Weiss, open since 2000.
 
 The witness is explicit: `EL₄(L_{𝔽₂}(1,2))`, the rank-four elementary group
 over the universal binary Leavitt algebra. It is countable, infinite,
@@ -9,9 +16,18 @@ finitely generated, has Kazhdan's property `(T)`, and is not sofic. The
 accompanying manuscript is `nonsofic_groups_exist.tex`; the committed
 `nonsofic_groups_exist.pdf` is its validated build.
 
-## Main theorems
+## Major verified results
 
-All reachable from `NonsoficGroupsExist/Endpoint/MainResults.lean`:
+The broader rigidity endpoints are independent of the nonsofic construction:
+
+| Declaration | Statement |
+| --- | --- |
+| `FiniteTypeLeavittTT.elementaryGroup_hasTTmodT` | The four-hypothesis finite-type ring-class `(TT)/T` theorem, in every rank `≥ 3` |
+| `LeavittAllRanksTT.elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 3` |
+| `boundedProduct_coordinateBlockOrRoot` | Strong-division coordinate-block generation with width `2n + 6` |
+
+The original nonsofic endpoints are collected in
+`GroupApproximation/Endpoint/MainResults.lean`:
 
 | Declaration | Statement |
 | --- | --- |
@@ -60,7 +76,7 @@ lake env lean scripts/Audit.lean       # kernel audit: axioms, statements, scans
 
 Three independent gates, none subsuming another:
 
-- `NonsoficGroupsExist.Audit` prints the axiom reports on an ordinary build.
+- `GroupApproximation.Audit` prints the axiom reports on an ordinary build.
 - `scripts/Audit.lean` walks the transitive axiom closure of the whole
   namespace through the kernel, pins the headline statements by restating
   them (a weakened statement stops typechecking), and scans the compiled
@@ -114,7 +130,7 @@ supplied separately by the theorem above.
 
 ## Where to start reading
 
-`NonsoficGroupsExist/Endpoint/Public.lean` is the reading path. It proves
+`GroupApproximation/Endpoint/Public.lean` is the reading path. It proves
 nothing; it names the declarations a referee needs, each against the theorem
 of the manuscript it establishes, and you follow the imports downward.
 
@@ -159,7 +175,8 @@ depends on the literature. The largest of these internal proofs:
 
 ## Library layout
 
-Each directory tracks a section of the paper.
+The top-level namespace is `GroupApproximation`; directories are organized by
+mathematical subject rather than by a single paper.
 
 | Directory | Paper | Contents |
 | --- | --- | --- |
@@ -171,6 +188,7 @@ Each directory tracks a section of the paper.
 | `Criterion/` | §4 | Median normalization, matching, localization; the compression–centralizer theorem |
 | `Leavitt/` | §5–§6 | Leaf calculus, self-similarity, rank equivalence, compressors, the corner witness, the `d`-ary corner route |
 | `PropertyT/` | §5 | Property `(T)` at rank three over every finite field, from an explicit `A₂` gap |
+| `PropertyTT/` | — | Quasi-cocycles, relative and global `(TT)/T`, and strong-division bounded generation |
 | `KOne/` | App. A | The elementary `K₁` elimination: windows, pencils, the two-exit loop, all-ranks `GL = EL` |
 | `Covers/` | §9 | The finite-table and Kazhdan finitely presented covers |
 | `Monsters/` | — | The elementary deduction layer of the omnimonster constructions |

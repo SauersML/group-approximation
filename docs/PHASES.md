@@ -3,7 +3,7 @@
 This is a reader's map of the unitary side of the development, in the order the
 statements depend on one another rather than the order they were proved.  Every
 theorem named here is machine-checked; the file names are modules under
-`NonsoficGroupsExist/Sofic/`.
+`GroupApproximation/Sofic/`.
 
 The question in the background is Pestov's Question 3.4 — *is every hyperlinear
 group sofic?* — and the thread below does not answer it.  What it does is

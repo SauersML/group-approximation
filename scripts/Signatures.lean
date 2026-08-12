@@ -1,4 +1,4 @@
-import NonsoficGroupsExist
+import GroupApproximation
 import Lean.Elab.Command
 
 /-!
@@ -22,7 +22,7 @@ command and requires the committed file to match.
 
 open Lean Elab Command
 
-namespace NonsoficGroupsExist.Signatures
+namespace GroupApproximation.Signatures
 
 /-- Where the declaration list is read from. -/
 def declsPath : System.FilePath := "docs" / "CLAIM_DECLS.txt"
@@ -60,4 +60,4 @@ the lexical index and the elaborated library disagree"
   IO.FS.writeFile outPath (String.join sections.toList)
   logInfo m!"wrote {outPath} ({names.length} declarations)"
 
-end NonsoficGroupsExist.Signatures
+end GroupApproximation.Signatures

@@ -103,14 +103,14 @@ def _resolve(files: dict[str, str], tex_body: str) -> list[str]:
     return problems
 
 
-LEAN_TWO_NAMESPACES = """namespace NonsoficGroupsExist
+LEAN_TWO_NAMESPACES = """namespace GroupApproximation
 namespace One
 theorem dup : True := trivial
 end One
 namespace Two
 theorem dup : True := trivial
 end Two
-end NonsoficGroupsExist
+end GroupApproximation
 """
 
 
@@ -131,8 +131,8 @@ class Resolve(unittest.TestCase):
         # `B/A.lean` declaring `only_in_b` must not let a note pointing at the
         # top-level `A` module claim it.
         files = {
-            "A.lean": "namespace NonsoficGroupsExist\ntheorem in_a : True := trivial\nend NonsoficGroupsExist\n",
-            "B/A.lean": "namespace NonsoficGroupsExist\ntheorem only_in_b : True := trivial\nend NonsoficGroupsExist\n",
+            "A.lean": "namespace GroupApproximation\ntheorem in_a : True := trivial\nend GroupApproximation\n",
+            "B/A.lean": "namespace GroupApproximation\ntheorem only_in_b : True := trivial\nend GroupApproximation\n",
         }
         tex = TEX_HEAD + "\\leanverified{\\leanmod{A}{only_in_b}}%" + TEX_TAIL
         problems = _resolve(files, tex)
@@ -142,25 +142,25 @@ class Resolve(unittest.TestCase):
     def test_noncomputable_section_keeps_namespace(self):
         # A bare `end` closing a `noncomputable section` must not pop the
         # namespace; the declaration after it keeps its full prefix.
-        lean = ("namespace NonsoficGroupsExist\n"
+        lean = ("namespace GroupApproximation\n"
                 "namespace Deep\n"
                 "noncomputable section\n"
                 "theorem inside : True := trivial\n"
                 "end\n"
                 "end Deep\n"
                 "theorem after : True := trivial\n"
-                "end NonsoficGroupsExist\n")
+                "end GroupApproximation\n")
         d = _tree({"A.lean": lean})
         try:
             import lean_decls
             index = lean_decls.build_index(Path(d.name))
-            self.assertIn("NonsoficGroupsExist.Deep.inside", index)
-            self.assertIn("NonsoficGroupsExist.after", index)
+            self.assertIn("GroupApproximation.Deep.inside", index)
+            self.assertIn("GroupApproximation.after", index)
         finally:
             d.cleanup()
 
     def test_dangling_reference_is_an_error(self):
-        files = {"A.lean": "namespace NonsoficGroupsExist\ntheorem real : True := trivial\nend NonsoficGroupsExist\n"}
+        files = {"A.lean": "namespace GroupApproximation\ntheorem real : True := trivial\nend GroupApproximation\n"}
         tex = TEX_HEAD + "\\leanverified{\\leanmod{A}{ghost}}%" + TEX_TAIL
         problems = _resolve(files, tex)
         self.assertEqual(len(problems), 1)

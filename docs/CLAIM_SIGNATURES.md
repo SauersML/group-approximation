@@ -4,13 +4,13 @@
 
 One entry per declaration named by a manuscript margin note, in the order of `docs/CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
-## `NonsoficGroupsExist.AdmitsEssentiallyFreeNearAction`
+## `GroupApproximation.AdmitsEssentiallyFreeNearAction`
 
 ```lean
 (G : Type u) → [Group G] → Prop
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.K1_trivial`
+## `GroupApproximation.BinaryLeavitt.K1_trivial`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -18,14 +18,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   u ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.Move.eval_mem_stableUnits`
+## `GroupApproximation.BinaryLeavitt.Move.eval_mem_stableUnits`
 
 ```lean
 ∀ {k : Type} [inst : Field k] (m : BinaryLeavitt.Move k),
   m.eval ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.balanced_component_isUnit`
+## `GroupApproximation.BinaryLeavitt.balanced_component_isUnit`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -35,20 +35,20 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       ∀ (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ), ↑u = c + ζ → IsUnit c
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.binaryLeavittUnits_perfect`
+## `GroupApproximation.BinaryLeavitt.binaryLeavittUnits_perfect`
 
 ```lean
 ∀ (k : Type) [inst : Field k], commutator (BinaryLeavittUnits k) = ⊤
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.elementaryGroup_eq_top`
+## `GroupApproximation.BinaryLeavitt.elementaryGroup_eq_top`
 
 ```lean
 ∀ (k : Type) [inst : Field k] (n : ℕ),
   2 ≤ n → elementaryGroup (Fin n) (BinaryLeavitt.BinaryLeavittAlgebra k) = ⊤
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.entry_window_negative_of_B_full`
+## `GroupApproximation.BinaryLeavitt.entry_window_negative_of_B_full`
 
 ```lean
 ∀ (k : Type) [inst : Field k] {ι : Type u_1} {κ : Type u_2} [inst_1 : Fintype ι] [DecidableEq ι]
@@ -72,14 +72,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                   Submodule.span k ((BinaryLeavitt.family k).degreeMonomials (-↑N) (-1))
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.exists_elementaryCertificate`
+## `GroupApproximation.BinaryLeavitt.exists_elementaryCertificate`
 
 ```lean
 ∀ {k : Type} [inst : Field k] (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ),
   ∃ c, elementaryProd c = MatrixDiagonalization.diagUnit u
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.exists_moveList`
+## `GroupApproximation.BinaryLeavitt.exists_moveList`
 
 ```lean
 ∀ {k : Type} [inst : Field k] (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ),
@@ -91,14 +91,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       BinaryLeavitt.evalList c = (BinaryLeavitt.family k).kappaUnit [0] u
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.exists_mul_mul_eq_one`
+## `GroupApproximation.BinaryLeavitt.exists_mul_mul_eq_one`
 
 ```lean
 ∀ (k : Type) [inst : Field k] {x : BinaryLeavitt.BinaryLeavittAlgebra k},
   x ≠ 0 → ∃ a b, a * x * b = 1
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.exists_narrow_representative`
+## `GroupApproximation.BinaryLeavitt.exists_narrow_representative`
 
 ```lean
 ∀ (k : Type) [inst : Field k] (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ),
@@ -107,7 +107,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       ↑u' ∈ Submodule.span k ((BinaryLeavitt.family k).degreeMonomials (-1) 1)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.exists_pencil_form`
+## `GroupApproximation.BinaryLeavitt.exists_pencil_form`
 
 ```lean
 ∀ (k : Type) [inst : Field k],
@@ -124,7 +124,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
               (BinaryLeavitt.family k).wordT (List.ofFn j)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.glAll_eq_elementary`
+## `GroupApproximation.BinaryLeavitt.glAll_eq_elementary`
 
 ```lean
 ∀ (k : Type) [inst : Field k] (n : ℕ),
@@ -133,7 +133,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       M ∈ elementaryGroup (Fin n) (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.glFour_eq_elementary_holds`
+## `GroupApproximation.BinaryLeavitt.glFour_eq_elementary_holds`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -141,7 +141,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   M ∈ elementaryGroup (Fin 4) (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.glTwo_eq_elementary_holds`
+## `GroupApproximation.BinaryLeavitt.glTwo_eq_elementary_holds`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -149,14 +149,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   M ∈ elementaryGroup (Fin 2) (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.narrowReduction_holds`
+## `GroupApproximation.BinaryLeavitt.narrowReduction_holds`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)],
   BinaryLeavitt.NarrowReduction k
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.pencil_free_exit`
+## `GroupApproximation.BinaryLeavitt.pencil_free_exit`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)],
@@ -184,7 +184,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                             (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.pencil_full_exit`
+## `GroupApproximation.BinaryLeavitt.pencil_full_exit`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)],
@@ -216,7 +216,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                                 (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.pencil_unit_mem_pow`
+## `GroupApproximation.BinaryLeavitt.pencil_unit_mem_pow`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)],
@@ -243,7 +243,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                             (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.pure_tail_nilpotent`
+## `GroupApproximation.BinaryLeavitt.pure_tail_nilpotent`
 
 ```lean
 ∀ (k : Type) [inst : Field k] {η : BinaryLeavitt.BinaryLeavittAlgebra k},
@@ -251,14 +251,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     ∀ (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ), ↑u = 1 + η → ∃ D, η ^ D = 0
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.scalarReduction_holds`
+## `GroupApproximation.BinaryLeavitt.scalarReduction_holds`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)],
   MatrixDiagonalization.ScalarReduction (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.stableUnits_eq_top_holds`
+## `GroupApproximation.BinaryLeavitt.stableUnits_eq_top_holds`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -266,7 +266,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   u ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.thetaMatUnit_diagUnit`
+## `GroupApproximation.BinaryLeavitt.thetaMatUnit_diagUnit`
 
 ```lean
 ∀ (k : Type) [inst : Field k] (u : (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ),
@@ -274,7 +274,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     MatrixDiagonalization.diagUnit (BinaryLeavitt.thetaUnit k u)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.thetaMatUnit_mem_elementaryGroup`
+## `GroupApproximation.BinaryLeavitt.thetaMatUnit_mem_elementaryGroup`
 
 ```lean
 ∀ (k : Type) [inst : Field k]
@@ -284,25 +284,25 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       elementaryGroup (Fin 2) (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.thompsonV_not_isLEF`
+## `GroupApproximation.BinaryLeavitt.thompsonV_not_isLEF`
 
 ```lean
 ¬IsLEF ↥ThompsonV.thompsonV
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.vEmbedding`
+## `GroupApproximation.BinaryLeavitt.vEmbedding`
 
 ```lean
 (k : Type) → [inst : Field k] → ↥ThompsonV.thompsonV →* (BinaryLeavitt.BinaryLeavittAlgebra k)ˣ
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.vEmbedding_injective`
+## `GroupApproximation.BinaryLeavitt.vEmbedding_injective`
 
 ```lean
 ∀ (k : Type) [inst : Field k], Function.Injective ⇑(BinaryLeavitt.vEmbedding k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.window_nonneg_mem_stableUnits`
+## `GroupApproximation.BinaryLeavitt.window_nonneg_mem_stableUnits`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)] (N : ℕ)
@@ -311,7 +311,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     u ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.window_nonpos_mem_stableUnits`
+## `GroupApproximation.BinaryLeavitt.window_nonpos_mem_stableUnits`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)] (N : ℕ)
@@ -320,7 +320,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     u ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavitt.window_zero_one_mem_stableUnits`
+## `GroupApproximation.BinaryLeavitt.window_zero_one_mem_stableUnits`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Nontrivial (BinaryLeavitt.BinaryLeavittAlgebra k)]
@@ -329,19 +329,19 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     u ∈ MatrixDiagonalization.stableUnits (BinaryLeavitt.BinaryLeavittAlgebra k)
 ```
 
-## `NonsoficGroupsExist.BinaryLeavittClassicalK1`
+## `GroupApproximation.BinaryLeavittClassicalK1`
 
 ```lean
 (k : Type) → [Field k] → Type
 ```
 
-## `NonsoficGroupsExist.BinaryLeavittWhiteheadK1`
+## `GroupApproximation.BinaryLeavittWhiteheadK1`
 
 ```lean
 (k : Type) → [Field k] → Type
 ```
 
-## `NonsoficGroupsExist.CompleteMatrixFamily.matrixAlgEquiv`
+## `GroupApproximation.CompleteMatrixFamily.matrixAlgEquiv`
 
 ```lean
 {k : Type u_1} →
@@ -354,7 +354,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
               [inst_4 : DecidableEq ι] → CompleteMatrixFamily A ι → Matrix ι ι A ≃ₐ[k] A
 ```
 
-## `NonsoficGroupsExist.CompleteMatrixFamily.ringEquivMatrix`
+## `GroupApproximation.CompleteMatrixFamily.ringEquivMatrix`
 
 ```lean
 {A : Type u_1} →
@@ -364,7 +364,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
         [inst_2 : DecidableEq ι] → CompleteMatrixFamily A ι → A ≃+* Matrix ι ι A
 ```
 
-## `NonsoficGroupsExist.CompressionSetup`
+## `GroupApproximation.CompressionSetup`
 
 ```lean
 (G : Type u_1) →
@@ -372,14 +372,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
     (J : Type u_3) → [Group G] → [Group Γ] → [Group J] → Type (max (max u_1 u_2) u_3)
 ```
 
-## `NonsoficGroupsExist.DiagonalElementary.firstDiagonalUnit_mem_of_mem_commutator`
+## `GroupApproximation.DiagonalElementary.firstDiagonalUnit_mem_of_mem_commutator`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] {u : Rˣ},
   u ∈ commutator Rˣ → DiagonalElementary.firstDiagonalUnitHom u ∈ elementaryGroup (Fin 3) R
 ```
 
-## `NonsoficGroupsExist.DirectedCoarea.nonnegative_coarea`
+## `GroupApproximation.DirectedCoarea.nonnegative_coarea`
 
 ```lean
 ∀ (Y : FiniteModel) (S : Finset (Equiv.Perm Y.carrier)) {h : ℝ},
@@ -391,7 +391,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
           h * ∑ x, g x ≤ DirectedCoarea.variation Y S g
 ```
 
-## `NonsoficGroupsExist.EssentialExpanderRepair.induced_expands_eventually`
+## `GroupApproximation.EssentialExpanderRepair.induced_expands_eventually`
 
 ```lean
 ∀ {K J : Type} [inst : Group K] [inst_1 : Group J] (C : MatchingCertificate K J),
@@ -402,7 +402,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
         (EssentialExpanderRepair.expansionConstant C)
 ```
 
-## `NonsoficGroupsExist.EssentialExpanderRepair.repairedActualGraph_expands_eventually`
+## `GroupApproximation.EssentialExpanderRepair.repairedActualGraph_expands_eventually`
 
 ```lean
 ∀ {K J : Type} [inst : Group K] [inst_1 : Group J] (C : MatchingCertificate K J),
@@ -412,19 +412,19 @@ One entry per declaration named by a manuscript margin note, in the order of `do
         (EssentialExpanderRepair.expansionConstant C)
 ```
 
-## `NonsoficGroupsExist.EssentiallyFreeNearAction`
+## `GroupApproximation.EssentiallyFreeNearAction`
 
 ```lean
 (G : Type u) → [Group G] → Type u_1 → Type (max u u_1)
 ```
 
-## `NonsoficGroupsExist.ExpanderDecomposition`
+## `GroupApproximation.ExpanderDecomposition`
 
 ```lean
 {G : Type} → [inst : Group G] → SoficApproximation G → Finset G → Type 1
 ```
 
-## `NonsoficGroupsExist.ExpanderDecomposition.normalized_pinning_global`
+## `GroupApproximation.ExpanderDecomposition.normalized_pinning_global`
 
 ```lean
 ∀ {G : Type} [inst : Group G] {S : SoficApproximation G} {T : Finset G}
@@ -434,7 +434,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       (D.indexedComponentGraph n B).edgeVariation fun x => normalizedSize (P n) (D.blocks n) ↑x
 ```
 
-## `NonsoficGroupsExist.ExpanderDecomposition.smallBlockVertices_negligible`
+## `GroupApproximation.ExpanderDecomposition.smallBlockVertices_negligible`
 
 ```lean
 ∀ {G : Type} [inst : Group G] {S : SoficApproximation G} {T : Finset G} [Infinite G]
@@ -446,7 +446,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
           ↑(smallBlockVertices (D.blocks n) M).card
 ```
 
-## `NonsoficGroupsExist.FamilyRankFour.ambient_not_isSofic`
+## `GroupApproximation.FamilyRankFour.ambient_not_isSofic`
 
 ```lean
 ∀ {A : Type} [inst : Ring A] (L : LeavittFamily A) (k : Type) [inst_1 : Field k] [Finite k]
@@ -454,7 +454,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   ¬IsSofic ↥(RankFour.Ambient A)
 ```
 
-## `NonsoficGroupsExist.FamilyRankFour.compressionSetup`
+## `GroupApproximation.FamilyRankFour.compressionSetup`
 
 ```lean
 {A : Type} →
@@ -470,7 +470,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                     ↥L.cornerWitnessSubgroup
 ```
 
-## `NonsoficGroupsExist.FamilyRankFour.elementary_not_isSofic`
+## `GroupApproximation.FamilyRankFour.elementary_not_isSofic`
 
 ```lean
 ∀ {A : Type} [inst : Ring A] (L : LeavittFamily A) (k : Type) [inst_1 : Field k] [Finite k]
@@ -478,7 +478,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   0 < m → ¬IsSofic ↥(elementaryGroup (Fin (m + 1)) A)
 ```
 
-## `NonsoficGroupsExist.FamilyRankFour.gl_not_isSofic`
+## `GroupApproximation.FamilyRankFour.gl_not_isSofic`
 
 ```lean
 ∀ {A : Type} [inst : Ring A] (L : LeavittFamily A) (k : Type) [inst_1 : Field k] [Finite k]
@@ -486,14 +486,14 @@ One entry per declaration named by a manuscript margin note, in the order of `do
   ¬IsSofic (Matrix (Fin (m + 1)) (Fin (m + 1)) A)ˣ
 ```
 
-## `NonsoficGroupsExist.FamilyRankFour.units_not_isSofic`
+## `GroupApproximation.FamilyRankFour.units_not_isSofic`
 
 ```lean
 ∀ {A : Type} [inst : Ring A] (L : LeavittFamily A) (k : Type) [inst_1 : Field k] [Finite k]
   [inst_3 : Algebra k A] [Algebra.FiniteType k A] [Nontrivial A] [Countable A], ¬IsSofic Aˣ
 ```
 
-## `NonsoficGroupsExist.FiniteMultiGraph.coarea`
+## `GroupApproximation.FiniteMultiGraph.coarea`
 
 ```lean
 ∀ (X : FiniteMultiGraph) {h : ℝ},
@@ -502,7 +502,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       FiniteMultiGraph.IsMedian f c → ∑ x, |f x - c| ≤ 1 / h * X.edgeVariation f
 ```
 
-## `NonsoficGroupsExist.FiniteMultiGraph.coarea_mul`
+## `GroupApproximation.FiniteMultiGraph.coarea_mul`
 
 ```lean
 ∀ (X : FiniteMultiGraph) {h : ℝ},
@@ -511,7 +511,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       FiniteMultiGraph.IsMedian f c → h * ∑ x, |f x - c| ≤ X.edgeVariation f
 ```
 
-## `NonsoficGroupsExist.FiniteMultiGraph.exists_dominant_cell`
+## `GroupApproximation.FiniteMultiGraph.exists_dominant_cell`
 
 ```lean
 ∀ {ι : Type u_1} [inst : DecidableEq ι] (X : FiniteMultiGraph) {h : ℝ},
@@ -526,7 +526,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
                   4 * ↑(X.crossingEdges part).card
 ```
 
-## `NonsoficGroupsExist.FiniteMultiGraph.le_crossing_of_cell`
+## `GroupApproximation.FiniteMultiGraph.le_crossing_of_cell`
 
 ```lean
 ∀ {ι : Type u_1} [inst : DecidableEq ι] (X : FiniteMultiGraph) {h : ℝ},
@@ -537,7 +537,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
           ∀ D ≤ 4 * ↑(X.cell part T).card, h * D ≤ 4 * ↑(X.crossingEdges part).card
 ```
 
-## `NonsoficGroupsExist.FiniteMultiGraph.median_pinning`
+## `GroupApproximation.FiniteMultiGraph.median_pinning`
 
 ```lean
 ∀ {κ : Type u_1} [inst : Fintype κ] (X : κ → FiniteMultiGraph) {h : ℝ},
@@ -547,7 +547,7 @@ One entry per declaration named by a manuscript margin note, in the order of `do
         Nonempty κ → ∑ k, ∑ x, |f k x - 1 / 2| ≤ 1 / h * ∑ k, (X k).edgeVariation (f k)
 ```
 
-## `NonsoficGroupsExist.FreeElementaryPropertyT.controlSet_isKazhdanPair`
+## `GroupApproximation.FreeElementaryPropertyT.controlSet_isKazhdanPair`
 
 ```lean
 ∀ (X : Type u_1) [inst : Fintype X],
@@ -556,19 +556,19 @@ One entry per declaration named by a manuscript margin note, in the order of `do
       (FreeElementaryPropertyT.controlSet X) epsilon
 ```
 
-## `NonsoficGroupsExist.FreeLamp`
+## `GroupApproximation.FreeLamp`
 
 ```lean
 (G : Type) → [inst : Group G] → Subgroup G → (K : Type) → [Group K] → Type
 ```
 
-## `NonsoficGroupsExist.FullFinitelyAdditiveProbability`
+## `GroupApproximation.FullFinitelyAdditiveProbability`
 
 ```lean
 Type u_1 → Type u_1
 ```
 
-## `NonsoficGroupsExist.GeneralCornerTheorem.compressionSetup`
+## `GroupApproximation.GeneralCornerTheorem.compressionSetup`
 
 ```lean
 {R : Type} →
@@ -585,7 +585,7 @@ Type u_1 → Type u_1
                       ↥(elementaryGroup (Fin m) R) ↥L.cornerWitnessSubgroup
 ```
 
-## `NonsoficGroupsExist.GeneralCornerTheorem.coreEmbedding_compressorSet_generate`
+## `GroupApproximation.GeneralCornerTheorem.coreEmbedding_compressorSet_generate`
 
 ```lean
 ∀ {R : Type} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} (hm : 0 < m),
@@ -598,7 +598,7 @@ Type u_1 → Type u_1
         ⊤
 ```
 
-## `NonsoficGroupsExist.GeneralCornerTheorem.corner_not_isSofic`
+## `GroupApproximation.GeneralCornerTheorem.corner_not_isSofic`
 
 ```lean
 ∀ {R : Type} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} (hm : 0 < m),
@@ -611,7 +611,7 @@ Type u_1 → Type u_1
               ¬IsSofic ↥(elementaryGroup (Fin (m + 1)) R)
 ```
 
-## `NonsoficGroupsExist.GeneralCornerTheorem.corner_not_isSofic_of_charTwo`
+## `GroupApproximation.GeneralCornerTheorem.corner_not_isSofic_of_charTwo`
 
 ```lean
 ∀ {R : Type} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2] [Nontrivial R],
@@ -622,7 +622,7 @@ Type u_1 → Type u_1
           ¬IsSofic ↥(elementaryGroup (Fin (m + 1)) R)
 ```
 
-## `NonsoficGroupsExist.GeneralCornerTheorem.witnessEmbedding`
+## `GroupApproximation.GeneralCornerTheorem.witnessEmbedding`
 
 ```lean
 {R : Type} →
@@ -631,56 +631,56 @@ Type u_1 → Type u_1
       {m : ℕ} → 2 ≤ m → ↥L.cornerWitnessSubgroup →* ↥(elementaryGroup (Fin m) R)
 ```
 
-## `NonsoficGroupsExist.GeneralRank.comb`
+## `GroupApproximation.GeneralRank.comb`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → (Matrix (Fin (m + 1)) (Fin (m + 1)) R)ˣ
 ```
 
-## `NonsoficGroupsExist.GeneralRank.combMatrix`
+## `GroupApproximation.GeneralRank.combMatrix`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → ℕ → Matrix (Fin (m + 1)) (Fin (m + 1)) R
 ```
 
-## `NonsoficGroupsExist.GeneralRank.comb_mem`
+## `GroupApproximation.GeneralRank.comb_mem`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ},
   GeneralRank.comb L ∈ elementaryGroup (Fin (m + 1)) R
 ```
 
-## `NonsoficGroupsExist.GeneralRank.comb_val`
+## `GroupApproximation.GeneralRank.comb_val`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2],
   ↑(GeneralRank.comb L) = GeneralRank.combMatrix L m
 ```
 
-## `NonsoficGroupsExist.GeneralRank.involutionWord`
+## `GroupApproximation.GeneralRank.involutionWord`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → 0 < m → (Matrix (Fin (m + 1)) (Fin (m + 1)) R)ˣ
 ```
 
-## `NonsoficGroupsExist.GeneralRank.involutionWord_mem`
+## `GroupApproximation.GeneralRank.involutionWord_mem`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} (hm : 0 < m),
   GeneralRank.involutionWord L hm ∈ elementaryGroup (Fin (m + 1)) R
 ```
 
-## `NonsoficGroupsExist.GeneralRank.involutionWord_sq`
+## `GroupApproximation.GeneralRank.involutionWord_sq`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2] (hm : 0 < m),
   GeneralRank.involutionWord L hm * GeneralRank.involutionWord L hm = 1
 ```
 
-## `NonsoficGroupsExist.GeneralRank.involutionWord_val`
+## `GroupApproximation.GeneralRank.involutionWord_val`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2] (hm : 0 < m),
@@ -688,21 +688,21 @@ Type u_1 → Type u_1
     planeMatrix 0 (GeneralRank.last m) !![L.p0, L.s1; L.t1, 0]
 ```
 
-## `NonsoficGroupsExist.GeneralRank.partialComb_val`
+## `GroupApproximation.GeneralRank.partialComb_val`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2],
   ∀ k ≤ m, ↑(GeneralRank.partialComb L k) = GeneralRank.combMatrix L k
 ```
 
-## `NonsoficGroupsExist.GeneralRank.piece`
+## `GroupApproximation.GeneralRank.piece`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → Fin m → (Matrix (Fin (m + 1)) (Fin (m + 1)) R)ˣ
 ```
 
-## `NonsoficGroupsExist.GeneralRank.piece_val`
+## `GroupApproximation.GeneralRank.piece_val`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ} [CharP R 2] (i : Fin m),
@@ -710,28 +710,28 @@ Type u_1 → Type u_1
     planeMatrix i.castSucc (GeneralRank.last m) !![L.s0, L.s1 * L.t1; 0, L.t0]
 ```
 
-## `NonsoficGroupsExist.GeneralScheme.uMatrix_mul_uPrimeMatrix`
+## `GroupApproximation.GeneralScheme.uMatrix_mul_uPrimeMatrix`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (L : LeavittFamily R) {m : ℕ},
   GeneralScheme.uMatrix L * GeneralScheme.uPrimeMatrix L = 1
 ```
 
-## `NonsoficGroupsExist.GeneralScheme.uUnit`
+## `GroupApproximation.GeneralScheme.uUnit`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → (Matrix (Fin (m + 1)) (Fin (m + 1)) R)ˣ
 ```
 
-## `NonsoficGroupsExist.GeneralScheme.zUnit`
+## `GroupApproximation.GeneralScheme.zUnit`
 
 ```lean
 {R : Type u_1} →
   [inst : Ring R] → LeavittFamily R → {m : ℕ} → 0 < m → (Matrix (Fin (m + 1)) (Fin (m + 1)) R)ˣ
 ```
 
-## `NonsoficGroupsExist.Heis.commutator_generators`
+## `GroupApproximation.Heis.commutator_generators`
 
 ```lean
 ∀ {R : Type u_1} [inst : CommRing R],
@@ -740,63 +740,63 @@ Type u_1 → Type u_1
     { a := 0, b := 0, c := 1 }
 ```
 
-## `NonsoficGroupsExist.Heis.commutator_mem_center`
+## `GroupApproximation.Heis.commutator_mem_center`
 
 ```lean
 ∀ {R : Type u_1} [inst : CommRing R] (x y : Heis R),
   x * y * x⁻¹ * y⁻¹ ∈ Subgroup.center (Heis R)
 ```
 
-## `NonsoficGroupsExist.IsEssentialExpanderSequence`
+## `GroupApproximation.IsEssentialExpanderSequence`
 
 ```lean
 AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ```
 
-## `NonsoficGroupsExist.IsHyperlinear`
+## `GroupApproximation.IsHyperlinear`
 
 ```lean
 (G : Type u_1) → [Group G] → Prop
 ```
 
-## `NonsoficGroupsExist.IsHyperlinearNonScalar`
+## `GroupApproximation.IsHyperlinearNonScalar`
 
 ```lean
 (G : Type u_2) → [Group G] → Prop
 ```
 
-## `NonsoficGroupsExist.IsNormApproximable`
+## `GroupApproximation.IsNormApproximable`
 
 ```lean
 (G : Type u_1) → [Group G] → ℝ → Prop
 ```
 
-## `NonsoficGroupsExist.IsNullSeq`
+## `GroupApproximation.IsNullSeq`
 
 ```lean
 {ι : Type u_1} →
   Ultrafilter ι → (X : ι → FiniteModel) → ((i : ι) → Equiv.Perm (X i).carrier) → Prop
 ```
 
-## `NonsoficGroupsExist.IsSofic`
+## `GroupApproximation.IsSofic`
 
 ```lean
 (G : Type u_1) → [Group G] → Prop
 ```
 
-## `NonsoficGroupsExist.IsSoficWeak`
+## `GroupApproximation.IsSoficWeak`
 
 ```lean
 (G : Type u_1) → [Group G] → ℝ → Prop
 ```
 
-## `NonsoficGroupsExist.IsSoficWeakLocal`
+## `GroupApproximation.IsSoficWeakLocal`
 
 ```lean
 (G : Type u_2) → [Group G] → Prop
 ```
 
-## `NonsoficGroupsExist.KunDecomposition.exists_expanderDecomposition`
+## `GroupApproximation.KunDecomposition.exists_expanderDecomposition`
 
 ```lean
 ∀ {G : Type} [inst : Group G] [Infinite G] {Q : Finset G} {ε : ℝ},
@@ -810,7 +810,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                 ∀ (A : SoficApproximation G), Nonempty (ExpanderDecomposition A S)
 ```
 
-## `NonsoficGroupsExist.KunFixedDecomposition.expanderDecomposition`
+## `GroupApproximation.KunFixedDecomposition.expanderDecomposition`
 
 ```lean
 ∀ {G : Type} [inst : Group G] [Infinite G],
@@ -822,13 +822,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
             ∀ (A : SoficApproximation G), Nonempty (ExpanderDecomposition A S)
 ```
 
-## `NonsoficGroupsExist.KunSpectral.hasCheegerLowerBound_one`
+## `GroupApproximation.KunSpectral.hasCheegerLowerBound_one`
 
 ```lean
 ∀ (m : ℕ), 4 ≤ m → (KunSpectral.switched m).HasCheegerLowerBound 1
 ```
 
-## `NonsoficGroupsExist.KunSpectral.no_uniform_spectral_gap`
+## `GroupApproximation.KunSpectral.no_uniform_spectral_gap`
 
 ```lean
 ∀ (c : ℝ),
@@ -840,13 +840,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
             KunSpectral.rayleigh (KunSpectral.switched m) (KunSpectral.testVector m) < -1 + c
 ```
 
-## `NonsoficGroupsExist.KunSpectral.not_isBipartite`
+## `GroupApproximation.KunSpectral.not_isBipartite`
 
 ```lean
 ∀ (m : ℕ), ¬KunSpectral.IsBipartite (KunSpectral.switched (m + 1))
 ```
 
-## `NonsoficGroupsExist.KunSpectral.rayleigh_repeatedTestVector`
+## `GroupApproximation.KunSpectral.rayleigh_repeatedTestVector`
 
 ```lean
 ∀ (j m : ℕ),
@@ -854,7 +854,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     -1 + 4 / (↑m + 2) ^ 2
 ```
 
-## `NonsoficGroupsExist.KunSpectral.rayleigh_testVector`
+## `GroupApproximation.KunSpectral.rayleigh_testVector`
 
 ```lean
 ∀ (m : ℕ),
@@ -862,7 +862,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     -1 + 4 / (↑m + 2) ^ 2
 ```
 
-## `NonsoficGroupsExist.KunSpectral.repeated_component_expands`
+## `GroupApproximation.KunSpectral.repeated_component_expands`
 
 ```lean
 ∀ (j m : ℕ),
@@ -873,7 +873,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         1
 ```
 
-## `NonsoficGroupsExist.KunSpectral.repetition_of_components`
+## `GroupApproximation.KunSpectral.repetition_of_components`
 
 ```lean
 ∀ (c : ℝ),
@@ -892,13 +892,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   -1 + c
 ```
 
-## `NonsoficGroupsExist.KunSpectral.switched`
+## `GroupApproximation.KunSpectral.switched`
 
 ```lean
 ℕ → FiniteMultiGraph
 ```
 
-## `NonsoficGroupsExist.KunThomEssential.isLEF_of_matchingCertificate`
+## `GroupApproximation.KunThomEssential.isLEF_of_matchingCertificate`
 
 ```lean
 ∀ {K J : Type} [inst : Group K] [inst_1 : Group J] {Q : Finset K} {κ : ℝ},
@@ -907,7 +907,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       Q ⊆ S → C.generatorsK ⊆ S → 1 ∈ S → κ ≤ 1 → IsLEF J
 ```
 
-## `NonsoficGroupsExist.KunThomTheorem.isLEF_of_exactProductExpansion`
+## `GroupApproximation.KunThomTheorem.isLEF_of_exactProductExpansion`
 
 ```lean
 ∀ {K J : Type} [inst : Group K] [inst_1 : Group J] {Q : Finset K} {κ h : ℝ},
@@ -925,19 +925,19 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   IsLEF J
 ```
 
-## `NonsoficGroupsExist.LeavittFamily`
+## `GroupApproximation.LeavittFamily`
 
 ```lean
 (A : Type u_1) → [NonAssocRing A] → Type u_1
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.binaryMatrixRingEquiv`
+## `GroupApproximation.LeavittFamily.binaryMatrixRingEquiv`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Matrix (Fin 2) (Fin 2) A ≃+* A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.central_mem_stableUnits`
+## `GroupApproximation.LeavittFamily.central_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
@@ -945,7 +945,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ∀ (c : Aˣ), (∀ (x : A), ↑c * x = x * ↑c) → c ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.characteristicTwo_compressor`
+## `GroupApproximation.LeavittFamily.characteristicTwo_compressor`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [CharP A 2],
@@ -954,7 +954,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     !![L.s0, L.s1 * L.t1; 0, L.t0]
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.characteristicTwo_involution`
+## `GroupApproximation.LeavittFamily.characteristicTwo_involution`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [CharP A 2],
@@ -962,7 +962,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     !![L.p0, L.s1; L.t1, 0]
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.codeBijection_mem_stableUnits`
+## `GroupApproximation.LeavittFamily.codeBijection_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} [inst_1 : Fintype ι]
@@ -978,7 +978,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.codeChange_mem_stableUnits`
+## `GroupApproximation.LeavittFamily.codeChange_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -991,7 +991,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
             ∀ (u : Aˣ), ↑u = L.pairValue P → u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.codePair_expansion`
+## `GroupApproximation.LeavittFamily.codePair_expansion`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} {κ : Type u_3}
@@ -1007,7 +1007,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   L.wordT (R.word i)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.codeScalar_unit_mem`
+## `GroupApproximation.LeavittFamily.codeScalar_unit_mem`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1020,21 +1020,21 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           IsUnit G → ∀ (u : Aˣ), ↑u = L.codeScalar D G → u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.commute_compressed_corner`
+## `GroupApproximation.LeavittFamily.commute_compressed_corner`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {x y : Aˣ},
   x ∈ L.compressedSubgroup → y ∈ L.cornerSubgroup → Commute x y
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.compressed_inf_corner`
+## `GroupApproximation.LeavittFamily.compressed_inf_corner`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   L.compressedSubgroup ⊓ L.cornerSubgroup = ⊥
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.compressor_factorization`
+## `GroupApproximation.LeavittFamily.compressor_factorization`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
@@ -1043,52 +1043,52 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     !![L.s0, L.p1; 0, L.t0]
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cornerHom`
+## `GroupApproximation.LeavittFamily.cornerHom`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Aˣ →* Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cornerHom_s0`
+## `GroupApproximation.LeavittFamily.cornerHom_s0`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (u : Aˣ), ↑(L.cornerHom u) * L.s0 = L.s0
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cornerWitnessSubgroup`
+## `GroupApproximation.LeavittFamily.cornerWitnessSubgroup`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Subgroup Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cornerWitnessSubgroup_le_commutator`
+## `GroupApproximation.LeavittFamily.cornerWitnessSubgroup_le_commutator`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A), L.cornerWitnessSubgroup ≤ commutator Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cylinderSwap_is_commutator`
+## `GroupApproximation.LeavittFamily.cylinderSwap_is_commutator`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a b : List (Fin 2)) (hab : ¬a <+: b)
   (hba : ¬b <+: a), ∃ x y, L.cylinderSwap a b hab hba = x * y * x⁻¹ * y⁻¹
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cylinderSwap_mem_commutator`
+## `GroupApproximation.LeavittFamily.cylinderSwap_mem_commutator`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a b : List (Fin 2)) (hab : ¬a <+: b)
   (hba : ¬b <+: a), L.cylinderSwap a b hab hba ∈ commutator Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.cylinder_split`
+## `GroupApproximation.LeavittFamily.cylinder_split`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a : List (Fin 2)),
   L.cylinder a = L.cylinder (a ++ [0]) + L.cylinder (a ++ [1])
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_corner_move`
+## `GroupApproximation.LeavittFamily.exists_corner_move`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
@@ -1101,14 +1101,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           u' * u⁻¹ ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_deep_code`
+## `GroupApproximation.LeavittFamily.exists_deep_code`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (M m : ℕ),
   2 ^ M ≤ m → ∃ D, L.IsComplete D ∧ ∀ (i : Fin m), M ≤ (D.word i).length
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_rank_normal_form`
+## `GroupApproximation.LeavittFamily.exists_rank_normal_form`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1122,7 +1122,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
               ↑g * c * ↑h = ∑ γ ∈ S, L.cylinder (List.ofFn γ) ∧ (S = Finset.univ → IsUnit c)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_reshaped_pencil`
+## `GroupApproximation.LeavittFamily.exists_reshaped_pencil`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type} [inst_1 : Field k]
@@ -1143,14 +1143,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                           v ∈ MatrixDiagonalization.stableUnits A)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_shallow_code`
+## `GroupApproximation.LeavittFamily.exists_shallow_code`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (r κ : ℕ),
   1 ≤ κ → κ ≤ 2 ^ r → ∃ Q, L.IsComplete Q ∧ ∀ (j : Fin κ), (Q.word j).length ≤ r
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.exists_window_reduction`
+## `GroupApproximation.LeavittFamily.exists_window_reduction`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1163,27 +1163,27 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
             ↑u' ∈ Submodule.span k (L.degreeMonomials (-1) 1)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.incomparableUnit_mem`
+## `GroupApproximation.LeavittFamily.incomparableUnit_mem`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {a b : List (Fin 2)} (hab : ¬a <+: b)
   (hba : ¬b <+: a) (y : A), L.incomparableUnit hab hba y ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.infinite`
+## `GroupApproximation.LeavittFamily.infinite`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A], Infinite A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.isComplete_of_covers`
+## `GroupApproximation.LeavittFamily.isComplete_of_covers`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} [inst_1 : Fintype ι]
   (E : BinaryPrefixCode ι), ThompsonV.Covers E → L.IsComplete E
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.kappaUnit_mul_inv_mem_stableUnits`
+## `GroupApproximation.LeavittFamily.kappaUnit_mul_inv_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (w : List (Fin 2)) [Nontrivial A],
@@ -1191,7 +1191,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ∀ (u : Aˣ), L.kappaUnit w u * u⁻¹ ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.matrixCompressionHom`
+## `GroupApproximation.LeavittFamily.matrixCompressionHom`
 
 ```lean
 {ι : Type u_1} →
@@ -1201,7 +1201,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         [inst_2 : Ring A] → LeavittFamily A → (Matrix ι ι A)ˣ →* (Matrix ι ι A)ˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.matrixCompressionUnit`
+## `GroupApproximation.LeavittFamily.matrixCompressionUnit`
 
 ```lean
 {ι : Type u_1} →
@@ -1211,7 +1211,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         [inst_2 : Ring A] → LeavittFamily A → (Matrix ι ι A)ˣ → (Matrix ι ι A)ˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.matrixCompression_commutes_firstDiagonalCorner`
+## `GroupApproximation.LeavittFamily.matrixCompression_commutes_firstDiagonalCorner`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (M : Matrix (Fin 3) (Fin 3) A) (u : Aˣ),
@@ -1219,7 +1219,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ↑(DiagonalElementary.firstDiagonalUnitHom (L.cornerHom u)) * L.matrixCompression M
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.matrixCompression_recover`
+## `GroupApproximation.LeavittFamily.matrixCompression_recover`
 
 ```lean
 ∀ {ι : Type u_1} {A : Type u_2} [inst : Fintype ι] [inst_1 : DecidableEq ι] [inst_2 : Ring A]
@@ -1229,7 +1229,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     M
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.nilpotent_tail_mem_stableUnits`
+## `GroupApproximation.LeavittFamily.nilpotent_tail_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1239,7 +1239,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       ∀ (u : Aˣ), ↑u = 1 + L.s 1 * z → u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.not_isLEF_cornerSubgroup`
+## `GroupApproximation.LeavittFamily.not_isLEF_cornerSubgroup`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a b : Aˣ),
@@ -1247,14 +1247,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     Commute (a * b⁻¹) ((a ^ 2)⁻¹ * b * a ^ 2) → ¬Commute a b → ¬IsLEF ↥L.cornerSubgroup
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.not_isLEF_cornerWitnessSubgroup`
+## `GroupApproximation.LeavittFamily.not_isLEF_cornerWitnessSubgroup`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
   ¬IsLEF ↥L.cornerWitnessSubgroup
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.pencilEntry_mem_window`
+## `GroupApproximation.LeavittFamily.pencilEntry_mem_window`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type} [inst_1 : Field k]
@@ -1262,7 +1262,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   L.pencilEntry a₀ a₁ c b₀ b₁ ∈ Submodule.span k (L.degreeMonomials (-1) 1)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.pencilEntry_mul_s`
+## `GroupApproximation.LeavittFamily.pencilEntry_mul_s`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1272,7 +1272,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       (if z = 0 then 0 else c)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.pencilVal_window_mem`
+## `GroupApproximation.LeavittFamily.pencilVal_window_mem`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type} [inst_1 : Field k]
@@ -1285,7 +1285,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           Submodule.span k (L.degreeMonomials lo hi)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.prefixAlgEquiv`
+## `GroupApproximation.LeavittFamily.prefixAlgEquiv`
 
 ```lean
 {k : Type u_1} →
@@ -1300,7 +1300,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   (E : BinaryPrefixCode ι) → L.IsComplete E → Matrix ι ι A ≃ₐ[k] A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.prefixRingEquiv`
+## `GroupApproximation.LeavittFamily.prefixRingEquiv`
 
 ```lean
 {A : Type u_1} →
@@ -1311,7 +1311,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           [DecidableEq ι] → (E : BinaryPrefixCode ι) → L.IsComplete E → Matrix ι ι A ≃+* A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.prefixRingEquiv_apply`
+## `GroupApproximation.LeavittFamily.prefixRingEquiv_apply`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} [inst_1 : Fintype ι]
@@ -1319,7 +1319,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   (L.prefixRingEquiv E hE) M = ∑ i, ∑ j, L.wordS (E.word i) * M i j * L.wordT (E.word j)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.prefixUnitsEquiv`
+## `GroupApproximation.LeavittFamily.prefixUnitsEquiv`
 
 ```lean
 {A : Type u_1} →
@@ -1331,7 +1331,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
             (E : BinaryPrefixCode ι) → L.IsComplete E → (Matrix ι ι A)ˣ ≃* Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankSuccEquiv`
+## `GroupApproximation.LeavittFamily.rankSuccEquiv`
 
 ```lean
 {R : Type u} →
@@ -1341,7 +1341,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         0 < n → 0 < m → ↥(elementaryGroup (Fin (n + 1)) R) ≃* ↥(elementaryGroup (Fin (m + 1)) R)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankSuccToProduct`
+## `GroupApproximation.LeavittFamily.rankSuccToProduct`
 
 ```lean
 {R : Type u} →
@@ -1352,7 +1352,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           ↥(elementaryGroup (Fin (n + 1)) R) ≃* ↥(elementaryGroup (Fin (n + 1) × Fin (m + 1)) R)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankSucc_propertyT_of_rankSucc`
+## `GroupApproximation.LeavittFamily.rankSucc_propertyT_of_rankSucc`
 
 ```lean
 ∀ {R : Type u} [inst : Ring R] (L : LeavittFamily R) (n m : ℕ),
@@ -1362,7 +1362,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         HasKazhdanPropertyT ↥(elementaryGroup (Fin (n + 1)) R)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankTwoInvolution_conj_lowerNil`
+## `GroupApproximation.LeavittFamily.rankTwoInvolution_conj_lowerNil`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a : A),
@@ -1371,7 +1371,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     elementaryUnit 1 0 ⋯ (a * L.p0)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankTwoInvolution_conj_upperNil`
+## `GroupApproximation.LeavittFamily.rankTwoInvolution_conj_upperNil`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a : A),
@@ -1380,7 +1380,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     elementaryUnit 0 1 ⋯ (L.p0 * a)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rankTwo_not_isSofic`
+## `GroupApproximation.LeavittFamily.rankTwo_not_isSofic`
 
 ```lean
 ∀ (A : Type) [inst : Ring A] [Nontrivial A] [Countable A] (L : LeavittFamily A),
@@ -1389,7 +1389,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       HasKazhdanPropertyT Aˣ → ¬IsSofic (Matrix (Fin 2) (Fin 2) A)ˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.refine_column`
+## `GroupApproximation.LeavittFamily.refine_column`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type u_2} [inst_1 : Field k]
@@ -1413,7 +1413,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
               L.wordT (Sum.elim (fun z => C.word j₀ ++ [z]) (fun q => C.word ↑q) p)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.reshaped_pencil_mem_iff`
+## `GroupApproximation.LeavittFamily.reshaped_pencil_mem_iff`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {k : Type} [inst_1 : Field k]
@@ -1433,20 +1433,20 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                         v ∈ MatrixDiagonalization.stableUnits A)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.rootRotation`
+## `GroupApproximation.LeavittFamily.rootRotation`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.s0_pow_injective`
+## `GroupApproximation.LeavittFamily.s0_pow_injective`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
   Function.Injective fun n => L.s0 ^ n
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.stableUnits_eq_top`
+## `GroupApproximation.LeavittFamily.stableUnits_eq_top`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
@@ -1456,20 +1456,20 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       ∀ (u : Aˣ), u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.t0_cornerHom`
+## `GroupApproximation.LeavittFamily.t0_cornerHom`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (u : Aˣ), L.t0 * ↑(L.cornerHom u) = L.t0
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.t1_cornerHom_s1`
+## `GroupApproximation.LeavittFamily.t1_cornerHom_s1`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (u : Aˣ),
   L.t1 * ↑(L.cornerHom u) * L.s1 = ↑u
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.tableSum_eq_of_mapsCylinder`
+## `GroupApproximation.LeavittFamily.tableSum_eq_of_mapsCylinder`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} {κ : Type u_3}
@@ -1481,7 +1481,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         (∀ (j : κ), ThompsonV.MapsCylinder f (E' j) (B' j)) → L.tableSum E B = L.tableSum E' B'
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.tableSum_mul`
+## `GroupApproximation.LeavittFamily.tableSum_mul`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {ι : Type u_2} {κ : Type u_3}
@@ -1492,20 +1492,20 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       L.tableSum E B * L.tableSum E' B' = L.tableSum E' fun j => B (idx j) ++ suf j
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.vEmbeddingOfFamily`
+## `GroupApproximation.LeavittFamily.vEmbeddingOfFamily`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → ↥ThompsonV.thompsonV →* Aˣ
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.vEmbeddingOfFamily_injective`
+## `GroupApproximation.LeavittFamily.vEmbeddingOfFamily_injective`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A],
   Function.Injective ⇑L.vEmbeddingOfFamily
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.vEmbeddingOfFamily_tableEquiv`
+## `GroupApproximation.LeavittFamily.vEmbeddingOfFamily_tableEquiv`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) {m : ℕ} (E B : BinaryPrefixCode (Fin m))
@@ -1514,40 +1514,40 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ∑ i, L.wordS (B.word i) * L.wordT (E.word i)
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.wordS_injective`
+## `GroupApproximation.LeavittFamily.wordS_injective`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) [Nontrivial A] {v w : List (Fin 2)},
   L.wordS v = L.wordS w → v = w
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.wordT_mul_wordS_of_incomparable`
+## `GroupApproximation.LeavittFamily.wordT_mul_wordS_of_incomparable`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a b : List (Fin 2)),
   ¬a <+: b → ¬b <+: a → L.wordT a * L.wordS b = 0
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.wordT_mul_wordS_self`
+## `GroupApproximation.LeavittFamily.wordT_mul_wordS_self`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (a : List (Fin 2)),
   L.wordT a * L.wordS a = 1
 ```
 
-## `NonsoficGroupsExist.LeavittFamily.z_sq`
+## `GroupApproximation.LeavittFamily.z_sq`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A), L.z * L.z = 1
 ```
 
-## `NonsoficGroupsExist.LocalCriterionData`
+## `GroupApproximation.LocalCriterionData`
 
 ```lean
 (G Γ J : Type) → [Group G] → [Group Γ] → [Group J] → Type 1
 ```
 
-## `NonsoficGroupsExist.LocalCriterionData.acceptable_symmDiff_le`
+## `GroupApproximation.LocalCriterionData.acceptable_symmDiff_le`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J]
@@ -1561,26 +1561,26 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
               ↑(BlockIndex.block (D.gammaDecomposition.blocks n) B).card
 ```
 
-## `NonsoficGroupsExist.Localization.exists_completion`
+## `GroupApproximation.Localization.exists_completion`
 
 ```lean
 ∀ {Y : Type u_1} (D : Finset Y) (σ : Equiv.Perm Y), ∃ π, ∀ (x : ↥D), σ ↑x ∈ D → ↑(π x) = σ ↑x
 ```
 
-## `NonsoficGroupsExist.Localization.involutiveCompletion`
+## `GroupApproximation.Localization.involutiveCompletion`
 
 ```lean
 {Y : Type u_1} →
   [DecidableEq Y] → (D : Finset Y) → (σ : Equiv.Perm Y) → σ * σ = 1 → Equiv.Perm ↥D
 ```
 
-## `NonsoficGroupsExist.LocalizedApproximationData.toSoficApproximation`
+## `GroupApproximation.LocalizedApproximationData.toSoficApproximation`
 
 ```lean
 {H : Type} → [inst : Group H] → LocalizedApproximationData H → SoficApproximation H
 ```
 
-## `NonsoficGroupsExist.Manuscript.cor_fgring_countableFree`
+## `GroupApproximation.Manuscript.cor_fgring_countableFree`
 
 ```lean
 ∀ (k A : Type) [inst : Field k] [Finite k] [inst_2 : Ring A] [Nontrivial A]
@@ -1589,7 +1589,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ¬IsSofic Aˣ ∧ ∀ (m : ℕ), ¬IsSofic (Matrix (Fin (m + 1)) (Fin (m + 1)) A)ˣ
 ```
 
-## `NonsoficGroupsExist.Manuscript.cor_fgring_exact`
+## `GroupApproximation.Manuscript.cor_fgring_exact`
 
 ```lean
 ∀ (k A : Type) [inst : Field k] [Finite k] [inst_2 : Ring A] [Nontrivial A]
@@ -1597,7 +1597,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   Manuscript.ManuscriptProfile ↥(RankFour.Ambient A)
 ```
 
-## `NonsoficGroupsExist.Manuscript.cor_fgring_printed`
+## `GroupApproximation.Manuscript.cor_fgring_printed`
 
 ```lean
 ∀ (k A : Type) [inst : Field k] [Finite k] [inst_2 : Ring A] [Nontrivial A]
@@ -1608,7 +1608,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         Manuscript.ManuscriptProfile ↥(elementaryGroup (Fin (m + 1)) A)
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremA_exact`
+## `GroupApproximation.Manuscript.theoremA_exact`
 
 ```lean
 (∀ (m : ℕ),
@@ -1619,7 +1619,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   ¬IsSofic ↥UniversalRankFour.Ambient ∧ CountableNonsoficGroupExists
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremB_Theta`
+## `GroupApproximation.Manuscript.theoremB_Theta`
 
 ```lean
 (k : Type) →
@@ -1630,7 +1630,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           Manuscript.BinaryLeavittGLRank k r ≃* BinaryLeavittUnits k
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremB_Theta_apply`
+## `GroupApproximation.Manuscript.theoremB_Theta_apply`
 
 ```lean
 ∀ (k : Type) [inst : Field k] {r : ℕ} (C : BinaryPrefixCode (Fin r))
@@ -1642,7 +1642,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           (BinaryLeavitt.family k).wordT (C.word j)
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremB_exact`
+## `GroupApproximation.Manuscript.theoremB_exact`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k],
@@ -1661,7 +1661,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           ∀ (r : ℕ), 2 ≤ r → Manuscript.ManuscriptProfile ↥(Manuscript.BinaryLeavittELRank k r)
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremC_covers_theoremB_groups`
+## `GroupApproximation.Manuscript.theoremC_covers_theoremB_groups`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k],
@@ -1675,7 +1675,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                 ∀ (m : ℕ), 1 ≤ m → ∃ π, Function.Surjective ⇑π
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremC_exact`
+## `GroupApproximation.Manuscript.theoremC_exact`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k],
@@ -1684,7 +1684,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       Infinite H ∧ Group.IsFinitelyPresented H ∧ HasKazhdanPropertyT H ∧ ¬IsSofic H
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremC_first`
+## `GroupApproximation.Manuscript.theoremC_first`
 
 ```lean
 ∀ (G : Type) [inst : Group G] [Group.FG G],
@@ -1692,7 +1692,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ∃ H x, Infinite H ∧ Group.IsFinitelyPresented H ∧ ¬IsSofic H ∧ ∃ π, Function.Surjective ⇑π
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremC_second`
+## `GroupApproximation.Manuscript.theoremC_second`
 
 ```lean
 ∀ (G : Type) [inst : Group G],
@@ -1703,7 +1703,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           Infinite H ∧ Group.IsFinitelyPresented H ∧ HasKazhdanPropertyT H ∧ ¬IsSofic H
 ```
 
-## `NonsoficGroupsExist.Manuscript.theoremD_subgroups`
+## `GroupApproximation.Manuscript.theoremD_subgroups`
 
 ```lean
 ∀ {G : Type} [inst : Group G] (Γ J : Subgroup G) (Q : Finset G) (q₀ : G),
@@ -1719,13 +1719,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                     Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
 ```
 
-## `NonsoficGroupsExist.MatchingCertificate`
+## `GroupApproximation.MatchingCertificate`
 
 ```lean
 (K J : Type) → [Group K] → [Group J] → Type 1
 ```
 
-## `NonsoficGroupsExist.MatchingCertificate.isEssentialExpanderSequence`
+## `GroupApproximation.MatchingCertificate.isEssentialExpanderSequence`
 
 ```lean
 ∀ {K J : Type} [inst : Group K] [inst_1 : Group J] (C : MatchingCertificate K J),
@@ -1733,13 +1733,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     generatorGraph (C.approx.model n) C.generatorsK fun k => C.approx.map n (k, 1)
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.ScalarReduction`
+## `GroupApproximation.MatrixDiagonalization.ScalarReduction`
 
 ```lean
 (R : Type u_2) → [Ring R] → Prop
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.binaryLeavitt_exists_elementary_mul_diag`
+## `GroupApproximation.MatrixDiagonalization.binaryLeavitt_exists_elementary_mul_diag`
 
 ```lean
 ∀ (k : Type) [inst : Field k]
@@ -1750,7 +1750,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         E * A * F = MatrixDiagonalization.diagUnit u
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.conj_mem_elementaryGroup_of_division`
+## `GroupApproximation.MatrixDiagonalization.conj_mem_elementaryGroup_of_division`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [Nontrivial R],
@@ -1759,7 +1759,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       E ∈ elementaryGroup (Fin 2) R → X * E * X⁻¹ ∈ elementaryGroup (Fin 2) R
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.diagPair_flipUnit_inv_mem`
+## `GroupApproximation.MatrixDiagonalization.diagPair_flipUnit_inv_mem`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (x y : A) (u : Aˣ) (hu : ↑u = 1 + x * y),
@@ -1767,7 +1767,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     elementaryGroup (Fin 2) A
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.exists_elementary_mul_diag`
+## `GroupApproximation.MatrixDiagonalization.exists_elementary_mul_diag`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [Nontrivial R],
@@ -1778,65 +1778,65 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           F ∈ elementaryGroup (Fin 2) R ∧ E * A * F = MatrixDiagonalization.diagUnit u
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.exists_elementary_whitehead`
+## `GroupApproximation.MatrixDiagonalization.exists_elementary_whitehead`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] (u : Rˣ),
   ∃ E ∈ elementaryGroup (Fin 2) R, ↑E = !![↑u, 0; 0, ↑u⁻¹]
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.flipUnit`
+## `GroupApproximation.MatrixDiagonalization.flipUnit`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → (x y : A) → (u : Aˣ) → ↑u = 1 + x * y → Aˣ
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.mem_stableUnits_of_val_unipotent`
+## `GroupApproximation.MatrixDiagonalization.mem_stableUnits_of_val_unipotent`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] {u : Aˣ} (a b : A),
   b * a = 0 → ↑u = 1 + a * b → u ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.mul_flipUnit_inv_mem_stableUnits`
+## `GroupApproximation.MatrixDiagonalization.mul_flipUnit_inv_mem_stableUnits`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (x y : A) (u : Aˣ) (hu : ↑u = 1 + x * y),
   u * (MatrixDiagonalization.flipUnit x y u hu)⁻¹ ∈ MatrixDiagonalization.stableUnits A
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.stableUnits`
+## `GroupApproximation.MatrixDiagonalization.stableUnits`
 
 ```lean
 (R : Type u_2) → [inst : Ring R] → Subgroup Rˣ
 ```
 
-## `NonsoficGroupsExist.MatrixDiagonalization.stableUnits_normal`
+## `GroupApproximation.MatrixDiagonalization.stableUnits_normal`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R], (MatrixDiagonalization.stableUnits R).Normal
 ```
 
-## `NonsoficGroupsExist.MeasurePreservingNearAction`
+## `GroupApproximation.MeasurePreservingNearAction`
 
 ```lean
 (G : Type u) → [Group G] → Type u_1 → Type (max u u_1)
 ```
 
-## `NonsoficGroupsExist.NonScalarModel`
+## `GroupApproximation.NonScalarModel`
 
 ```lean
 (G : Type u_2) → [Group G] → Finset G → ℝ → ℝ → Type (max 1 u_2)
 ```
 
-## `NonsoficGroupsExist.NormModel.exists_hs_collapse`
+## `GroupApproximation.NormModel.exists_hs_collapse`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {F : Finset G} {δ ε : ℝ} (M : NormModel G F δ ε) {η : ℝ},
   0 < η → ∃ M', ∀ g ∈ F, ∀ h ∈ F, hsDistSq M'.carrier (M'.map g) (M'.map h) ≤ η
 ```
 
-## `NonsoficGroupsExist.NormModel.toHyperlinearModel`
+## `GroupApproximation.NormModel.toHyperlinearModel`
 
 ```lean
 {G : Type u_1} →
@@ -1852,7 +1852,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
               HyperlinearModel G F ε
 ```
 
-## `NonsoficGroupsExist.OrbitChartData`
+## `GroupApproximation.OrbitChartData`
 
 ```lean
 (H : Type u_1) →
@@ -1860,7 +1860,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     (X : Type u_2) → [MulAction H X] → Finset H → Finset X → ℝ → Type (max (max 1 u_1) u_2)
 ```
 
-## `NonsoficGroupsExist.OrbitChartData.comap`
+## `GroupApproximation.OrbitChartData.comap`
 
 ```lean
 {H : Type u_1} →
@@ -1879,39 +1879,39 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                           OrbitChartData H D F (Finset.image emb E) ε → OrbitChartData H X F E ε
 ```
 
-## `NonsoficGroupsExist.RankFour.compressionEnd_injective`
+## `GroupApproximation.RankFour.compressionEnd_injective`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   Function.Injective ⇑(RankFour.compressionEnd L)
 ```
 
-## `NonsoficGroupsExist.RankFour.compressor`
+## `GroupApproximation.RankFour.compressor`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → ↥(RankFour.Ambient A)
 ```
 
-## `NonsoficGroupsExist.RankFour.compressorMatrix`
+## `GroupApproximation.RankFour.compressorMatrix`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Matrix RankFour.Index RankFour.Index A
 ```
 
-## `NonsoficGroupsExist.RankFour.compressorPiece`
+## `GroupApproximation.RankFour.compressorPiece`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Fin 3 → ↥(RankFour.Ambient A)
 ```
 
-## `NonsoficGroupsExist.RankFour.compressorPiece_val`
+## `GroupApproximation.RankFour.compressorPiece_val`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (i : Fin 3),
   ↑↑(RankFour.compressorPiece L i) = RankFour.compressorPieceMatrix L i
 ```
 
-## `NonsoficGroupsExist.RankFour.compressor_conjugation`
+## `GroupApproximation.RankFour.compressor_conjugation`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A) (g : ↥(RankFour.Core A)),
@@ -1919,47 +1919,47 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     RankFour.coreEmbedding ((RankFour.compressionEnd L) g)
 ```
 
-## `NonsoficGroupsExist.RankFour.compressor_val`
+## `GroupApproximation.RankFour.compressor_val`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   ↑↑(RankFour.compressor L) = RankFour.compressorMatrix L
 ```
 
-## `NonsoficGroupsExist.RankFour.coreEmbedding_compressorSet_generate`
+## `GroupApproximation.RankFour.coreEmbedding_compressorSet_generate`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   Subgroup.closure (Set.range ⇑RankFour.coreEmbedding ∪ ↑(RankFour.compressorSet L)) = ⊤
 ```
 
-## `NonsoficGroupsExist.RankFour.involution`
+## `GroupApproximation.RankFour.involution`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → ↥(RankFour.Ambient A)
 ```
 
-## `NonsoficGroupsExist.RankFour.involutionMatrix`
+## `GroupApproximation.RankFour.involutionMatrix`
 
 ```lean
 {A : Type u_1} → [inst : Ring A] → LeavittFamily A → Matrix RankFour.Index RankFour.Index A
 ```
 
-## `NonsoficGroupsExist.RankFour.involution_sq`
+## `GroupApproximation.RankFour.involution_sq`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   RankFour.involution L * RankFour.involution L = 1
 ```
 
-## `NonsoficGroupsExist.RankFour.rawInvolutionWord_val`
+## `GroupApproximation.RankFour.rawInvolutionWord_val`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   ↑↑(RankFour.rawInvolutionWord L) = RankFour.rawInvolutionMatrix L
 ```
 
-## `NonsoficGroupsExist.Shalom.exists_finitelyPresented_kazhdan_cover`
+## `GroupApproximation.Shalom.exists_finitelyPresented_kazhdan_cover`
 
 ```lean
 ∀ {G : Type u} [inst : Group G] (S : Finset G),
@@ -1968,7 +1968,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       ∃ Γ x φ, Function.Surjective ⇑φ ∧ Group.IsFinitelyPresented Γ ∧ HasKazhdanPropertyT Γ
 ```
 
-## `NonsoficGroupsExist.Shalom.exists_presented_kazhdan_cover`
+## `GroupApproximation.Shalom.exists_presented_kazhdan_cover`
 
 ```lean
 ∀ {G : Type u} [inst : Group G] (S : Finset G),
@@ -1977,13 +1977,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       ∃ n rels φ, Function.Surjective ⇑φ ∧ HasKazhdanPropertyT (PresentedGroup ↑rels)
 ```
 
-## `NonsoficGroupsExist.SoficApproximation`
+## `GroupApproximation.SoficApproximation`
 
 ```lean
 (G : Type u_1) → [Group G] → Type (max 1 u_1)
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.all_wordCrossing_negligible`
+## `GroupApproximation.SoficApproximation.all_wordCrossing_negligible`
 
 ```lean
 ∀ {G : Type} [inst : Group G] (S : SoficApproximation G)
@@ -1994,7 +1994,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         ∀ (g : G), S.cardScale.Negligible fun n => ↑(wordCrossing (P n) (S.map n g)).card
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.exists_normalization`
+## `GroupApproximation.SoficApproximation.exists_normalization`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (F : Finset G),
@@ -2009,34 +2009,34 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   ∀ n ≥ N, hammingDistance (S.model n) (S.map n g) ((S.normalize F).map n g) < ε
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.inverseError_negligible`
+## `GroupApproximation.SoficApproximation.inverseError_negligible`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (g : G),
   Negligible (fun n => ↑(Fintype.card (S.model n).carrier)) fun n => ↑(S.inverseError n g).card
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.map_one_close`
+## `GroupApproximation.SoficApproximation.map_one_close`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (ε : ℝ),
   0 < ε → ∃ N, ∀ n ≥ N, hammingDistance (S.model n) (S.map n 1) 1 < ε
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.normalize`
+## `GroupApproximation.SoficApproximation.normalize`
 
 ```lean
 {G : Type u_1} → [inst : Group G] → SoficApproximation G → Finset G → SoficApproximation G
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.normalize_close`
+## `GroupApproximation.SoficApproximation.normalize_close`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (F : Finset G) (g : G) (ε : ℝ),
   0 < ε → ∃ N, ∀ n ≥ N, hammingDistance (S.model n) (S.map n g) ((S.normalize F).map n g) < ε
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.normalize_map_inv`
+## `GroupApproximation.SoficApproximation.normalize_map_inv`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (F : Finset G),
@@ -2044,14 +2044,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ∀ (n : ℕ) {g : G}, g ∈ F → (S.normalize F).map n g⁻¹ = ((S.normalize F).map n g)⁻¹
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.normalize_map_one`
+## `GroupApproximation.SoficApproximation.normalize_map_one`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (F : Finset G) (n : ℕ),
   (S.normalize F).map n 1 = 1
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.perturb`
+## `GroupApproximation.SoficApproximation.perturb`
 
 ```lean
 {G : Type u_1} →
@@ -2060,14 +2060,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
       (τ : (n : ℕ) → G → Equiv.Perm (S.model n).carrier) → S.IsCloseTo τ → SoficApproximation G
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.restrict`
+## `GroupApproximation.SoficApproximation.restrict`
 
 ```lean
 {G : Type u_1} →
   [inst : Group G] → SoficApproximation G → (K : Subgroup G) → SoficApproximation ↥K
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.smallBlockVertices_negligible`
+## `GroupApproximation.SoficApproximation.smallBlockVertices_negligible`
 
 ```lean
 ∀ {G : Type} [inst : Group G] [Infinite G] (S : SoficApproximation G)
@@ -2080,14 +2080,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
         ↑(smallBlockVertices (P n) M).card
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.wordDisagreement_negligible`
+## `GroupApproximation.SoficApproximation.wordDisagreement_negligible`
 
 ```lean
 ∀ {G : Type} [inst : Group G] (S : SoficApproximation G) (w : List G),
   S.cardScale.Negligible fun n => ↑(S.wordDisagreement w n).card
 ```
 
-## `NonsoficGroupsExist.SoficApproximation.word_close`
+## `GroupApproximation.SoficApproximation.word_close`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (S : SoficApproximation G) (w : List G) (ε : ℝ),
@@ -2099,13 +2099,13 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           ε
 ```
 
-## `NonsoficGroupsExist.TableModel`
+## `GroupApproximation.TableModel`
 
 ```lean
 (G : Type u_1) → [Group G] → Finset G → ℝ → Type (max 1 u_1)
 ```
 
-## `NonsoficGroupsExist.TarskiHall.exists_finite_small_boundary_avoiding_null`
+## `GroupApproximation.TarskiHall.exists_finite_small_boundary_avoiding_null`
 
 ```lean
 ∀ {X : Type u} (m : FullFinitelyAdditiveProbability X) (P : Finset (Equiv.Perm X)),
@@ -2119,7 +2119,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                 Disjoint (↑F) N ∧ ∀ p ∈ P, ↑(TarskiHall.escape p F).card < δ * ↑F.card
 ```
 
-## `NonsoficGroupsExist.TarskiHall.no_piecewise_double_embedding`
+## `GroupApproximation.TarskiHall.no_piecewise_double_embedding`
 
 ```lean
 ∀ {X : Type u} (m : FullFinitelyAdditiveProbability X) (A : Set X),
@@ -2133,7 +2133,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                 (∀ (a : { x // x ∈ A }) (b : Bool), (label a b) ↑a = f (a, b)) → False
 ```
 
-## `NonsoficGroupsExist.ThompsonFObstruction.conjugacy_relation_all`
+## `GroupApproximation.ThompsonFObstruction.conjugacy_relation_all`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (a b : G),
@@ -2146,14 +2146,14 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
           ThompsonFObstruction.conjugateTerm a b (n + 2)
 ```
 
-## `NonsoficGroupsExist.ThompsonFObstruction.finite_commute_of_two_relations`
+## `GroupApproximation.ThompsonFObstruction.finite_commute_of_two_relations`
 
 ```lean
 ∀ {G : Type u_2} [inst : Group G] [Finite G] (a b : G),
   Commute (a * b⁻¹) (a⁻¹ * b * a) → Commute (a * b⁻¹) ((a ^ 2)⁻¹ * b * a ^ 2) → Commute a b
 ```
 
-## `NonsoficGroupsExist.ThompsonFObstruction.not_isLEF_of_two_relations`
+## `GroupApproximation.ThompsonFObstruction.not_isLEF_of_two_relations`
 
 ```lean
 ∀ {G : Type u_2} [inst : Group G] (a b : G),
@@ -2161,7 +2161,7 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     Commute (a * b⁻¹) ((a ^ 2)⁻¹ * b * a ^ 2) → ¬Commute a b → ¬IsLEF G
 ```
 
-## `NonsoficGroupsExist.ThompsonV.tableEquiv`
+## `GroupApproximation.ThompsonV.tableEquiv`
 
 ```lean
 {ι : Type u_1} →
@@ -2169,32 +2169,32 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
     ThompsonV.Covers E → ThompsonV.Covers B → Equiv.Perm ThompsonV.Boundary
 ```
 
-## `NonsoficGroupsExist.UniversalHyperlinear`
+## `GroupApproximation.UniversalHyperlinear`
 
 ```lean
 {ι : Type u_1} →
   Ultrafilter ι → (X : ι → FiniteModel) → (∀ (i : ι), 0 < Fintype.card (X i).carrier) → Type u_1
 ```
 
-## `NonsoficGroupsExist.UniversalRankFour.witnessEmbedding`
+## `GroupApproximation.UniversalRankFour.witnessEmbedding`
 
 ```lean
 ↥UniversalRankFour.Witness →* ↥UniversalRankFour.Core
 ```
 
-## `NonsoficGroupsExist.UniversalRankFour.witnessEmbedding_injective`
+## `GroupApproximation.UniversalRankFour.witnessEmbedding_injective`
 
 ```lean
 Function.Injective ⇑UniversalRankFour.witnessEmbedding
 ```
 
-## `NonsoficGroupsExist.UniversalSofic`
+## `GroupApproximation.UniversalSofic`
 
 ```lean
 {ι : Type u_1} → Ultrafilter ι → (ι → FiniteModel) → Type u_1
 ```
 
-## `NonsoficGroupsExist.Whitehead.whitehead_commutator`
+## `GroupApproximation.Whitehead.whitehead_commutator`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (a b : Aˣ),
@@ -2203,14 +2203,14 @@ Function.Injective ⇑UniversalRankFour.witnessEmbedding
       Whitehead.diagonalPair ↑(b * a)⁻¹ ↑(b * a)
 ```
 
-## `NonsoficGroupsExist.Whitehead.whitehead_diagonal`
+## `GroupApproximation.Whitehead.whitehead_diagonal`
 
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (a : Aˣ),
   Whitehead.diagonalPair ↑a ↑a⁻¹ = Whitehead.w a * Whitehead.w (-1)
 ```
 
-## `NonsoficGroupsExist.abs_scalarPart_le`
+## `GroupApproximation.abs_scalarPart_le`
 
 ```lean
 ∀ {G : Type u_1} {Y : Type u_2} [inst : Fintype Y],
@@ -2219,7 +2219,7 @@ Function.Injective ⇑UniversalRankFour.witnessEmbedding
       (∀ (g h : G) (y : Y), |c g h y| ≤ B) → ∀ (g h : G), |scalarPart c g h| ≤ B
 ```
 
-## `NonsoficGroupsExist.abs_window_defect_le`
+## `GroupApproximation.abs_window_defect_le`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} [inst_1 : DecidableEq G]
@@ -2237,7 +2237,7 @@ Function.Injective ⇑UniversalRankFour.witnessEmbedding
                   ↑F.card
 ```
 
-## `NonsoficGroupsExist.additiveRounding_no_separation`
+## `GroupApproximation.additiveRounding_no_separation`
 
 ```lean
 ∀ (Y : FiniteModel) (m : ℕ) [inst : NeZero m] (f : CircleGroup →+ ZMod m)
@@ -2247,7 +2247,7 @@ Function.Injective ⇑UniversalRankFour.witnessEmbedding
     0
 ```
 
-## `NonsoficGroupsExist.adjointRep`
+## `GroupApproximation.adjointRep`
 
 ```lean
 {G : Type u_1} →
@@ -2259,19 +2259,19 @@ Function.Injective ⇑UniversalRankFour.witnessEmbedding
             [inst_3 : _root_.Module k V] → (G →* V ≃ₗ[k] V) → G →* (V →ₗ[k] V) ≃ₗ[k] V →ₗ[k] V
 ```
 
-## `NonsoficGroupsExist.admitsEssentiallyFreeNearAction_of_isSofic`
+## `GroupApproximation.admitsEssentiallyFreeNearAction_of_isSofic`
 
 ```lean
 ∀ (G : Type u_1) [inst : Group G] [Countable G], IsSofic G → AdmitsEssentiallyFreeNearAction G
 ```
 
-## `NonsoficGroupsExist.admitsEssentiallyFreeNearAction_trivial`
+## `GroupApproximation.admitsEssentiallyFreeNearAction_trivial`
 
 ```lean
 AdmitsEssentiallyFreeNearAction Unit
 ```
 
-## `NonsoficGroupsExist.ambient_full_profile`
+## `GroupApproximation.ambient_full_profile`
 
 ```lean
 Countable ↥UniversalRankFour.Ambient ∧
@@ -2280,7 +2280,7 @@ Countable ↥UniversalRankFour.Ambient ∧
       HasKazhdanPropertyT ↥UniversalRankFour.Ambient ∧ ¬IsSofic ↥UniversalRankFour.Ambient
 ```
 
-## `NonsoficGroupsExist.ambient_profile`
+## `GroupApproximation.ambient_profile`
 
 ```lean
 Group.FG ↥UniversalRankFour.Ambient ∧
@@ -2288,25 +2288,25 @@ Group.FG ↥UniversalRankFour.Ambient ∧
     HasKazhdanPropertyT ↥UniversalRankFour.Ambient ∧ ¬IsSofic ↥UniversalRankFour.Ambient
 ```
 
-## `NonsoficGroupsExist.binaryLeavittClassicalK1_subsingleton`
+## `GroupApproximation.binaryLeavittClassicalK1_subsingleton`
 
 ```lean
 ∀ (k : Type) [inst : Field k], Subsingleton (BinaryLeavittClassicalK1 k)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittElementaryColim_eq_top`
+## `GroupApproximation.binaryLeavittElementaryColim_eq_top`
 
 ```lean
 ∀ (k : Type) [inst : Field k], elementaryColim (BinaryLeavitt.BinaryLeavittAlgebra k) = ⊤
 ```
 
-## `NonsoficGroupsExist.binaryLeavittGL_not_isSofic`
+## `GroupApproximation.binaryLeavittGL_not_isSofic`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k] (m : ℕ), ¬IsSofic (BinaryLeavittGL k m)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittGL_profile`
+## `GroupApproximation.binaryLeavittGL_profile`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k] (m : ℕ),
@@ -2315,19 +2315,19 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       HasKazhdanPropertyT (BinaryLeavittGL k m) ∧ ¬IsSofic (BinaryLeavittGL k m)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittRankTwo_not_isSofic`
+## `GroupApproximation.binaryLeavittRankTwo_not_isSofic`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k], ¬IsSofic (BinaryLeavittGL k 1)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittUnits_not_isSofic`
+## `GroupApproximation.binaryLeavittUnits_not_isSofic`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k], ¬IsSofic (BinaryLeavittUnits k)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittUnits_profile`
+## `GroupApproximation.binaryLeavittUnits_profile`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k],
@@ -2336,13 +2336,13 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       HasKazhdanPropertyT (BinaryLeavittUnits k) ∧ ¬IsSofic (BinaryLeavittUnits k)
 ```
 
-## `NonsoficGroupsExist.binaryLeavittWhiteheadK1_subsingleton`
+## `GroupApproximation.binaryLeavittWhiteheadK1_subsingleton`
 
 ```lean
 ∀ (k : Type) [inst : Field k], Subsingleton (BinaryLeavittWhiteheadK1 k)
 ```
 
-## `NonsoficGroupsExist.binaryLeavitt_finiteField_profile`
+## `GroupApproximation.binaryLeavitt_finiteField_profile`
 
 ```lean
 ∀ (k : Type) [inst : Field k] [Finite k] (m : ℕ),
@@ -2352,13 +2352,13 @@ Group.FG ↥UniversalRankFour.Ambient ∧
         HasKazhdanPropertyT ↥(BinaryLeavittEL k m) ∧ ¬IsSofic ↥(BinaryLeavittEL k m)
 ```
 
-## `NonsoficGroupsExist.card_annihilator`
+## `GroupApproximation.card_annihilator`
 
 ```lean
 ∀ (n : ℕ) [inst : NeZero n] (a : ZMod n), {l | l * a = 0}.card = n.gcd a.val
 ```
 
-## `NonsoficGroupsExist.card_fixed_commutator_constraint`
+## `GroupApproximation.card_fixed_commutator_constraint`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (Y : FiniteModel) (m : ℕ) (act : G → Equiv.Perm Y.carrier)
@@ -2379,7 +2379,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
                   ↑{y | (act (a * b * a⁻¹ * b⁻¹)) y = y}.card + ε * ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.card_fixed_commutator_constraint_tight`
+## `GroupApproximation.card_fixed_commutator_constraint_tight`
 
 ```lean
 ∃ Y act e D a b,
@@ -2396,13 +2396,13 @@ Group.FG ↥UniversalRankFour.Ambient ∧
               ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.card_torsion_subgroup`
+## `GroupApproximation.card_torsion_subgroup`
 
 ```lean
 ∀ (m n : ℕ) [inst : NeZero m], {x | ↑n * x = 0}.card = m.gcd n
 ```
 
-## `NonsoficGroupsExist.card_trivially_phased_le`
+## `GroupApproximation.card_trivially_phased_le`
 
 ```lean
 ∀ (Y : FiniteModel) (d : Y.carrier → ℂ),
@@ -2415,21 +2415,21 @@ Group.FG ↥UniversalRankFour.Ambient ∧
               ↑{y | σ y = y}.card + ε * ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.charEval_add`
+## `GroupApproximation.charEval_add`
 
 ```lean
 ∀ (r : ℕ) (a : Fin r → ℝ) (n n' : Fin r → ℤ),
   charEval r a (n + n') = charEval r a n + charEval r a n'
 ```
 
-## `NonsoficGroupsExist.circle_map_eq_zero`
+## `GroupApproximation.circle_map_eq_zero`
 
 ```lean
 ∀ {B : Type u_1} [inst : AddGroup B] [Finite B] (f : CircleGroup →+ B) (a : CircleGroup),
   f a = 0
 ```
 
-## `NonsoficGroupsExist.commutantStabilizer`
+## `GroupApproximation.commutantStabilizer`
 
 ```lean
 {G : Type} →
@@ -2441,7 +2441,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
             [inst_3 : _root_.Module k V] → (G →* V ≃ₗ[k] V) → Subgroup G → Subgroup G
 ```
 
-## `NonsoficGroupsExist.commutantStabilizer_eq_top`
+## `GroupApproximation.commutantStabilizer_eq_top`
 
 ```lean
 ∀ {G : Type} {k : Type u_1} {V : Type u_2} [inst : Group G] [inst_1 : Field k]
@@ -2450,7 +2450,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
   (∀ s ∈ S, ∀ δ ∈ Γ, s * δ * s⁻¹ ∈ Γ) → Subgroup.closure S = ⊤ → commutantStabilizer ρ Γ = ⊤
 ```
 
-## `NonsoficGroupsExist.commutant_no_growth`
+## `GroupApproximation.commutant_no_growth`
 
 ```lean
 ∀ {G : Type u_1} {k : Type u_2} {V : Type u_3} [inst : Group G] [inst_1 : Field k]
@@ -2461,7 +2461,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       (∀ γ ∈ Γ, ((adjointRep π) (t * γ * t⁻¹)) x = x) ↔ ∀ γ ∈ Γ, ((adjointRep π) γ) x = x
 ```
 
-## `NonsoficGroupsExist.compressedImage_eq`
+## `GroupApproximation.compressedImage_eq`
 
 ```lean
 ∀ {H : Type u_1} {Q : Type u_2} [inst : Group H] [inst_1 : Group Q] [Finite Q] (φ : H →* Q)
@@ -2471,7 +2471,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       Subgroup.map φ Γ
 ```
 
-## `NonsoficGroupsExist.compressedImage_le`
+## `GroupApproximation.compressedImage_le`
 
 ```lean
 ∀ {H : Type u_1} {Q : Type u_2} [inst : Group H] [inst_1 : Group Q] (φ : H →* Q)
@@ -2481,7 +2481,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       Subgroup.map φ Γ
 ```
 
-## `NonsoficGroupsExist.compressorImage_normalizes`
+## `GroupApproximation.compressorImage_normalizes`
 
 ```lean
 ∀ {H : Type u_1} {Q : Type u_2} [inst : Group H] [inst_1 : Group Q] [Finite Q] (φ : H →* Q)
@@ -2489,7 +2489,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
   (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) → ∀ q ∈ Subgroup.map φ Γ, φ t * q * (φ t)⁻¹ ∈ Subgroup.map φ Γ
 ```
 
-## `NonsoficGroupsExist.compressorImage_normalizes_inv`
+## `GroupApproximation.compressorImage_normalizes_inv`
 
 ```lean
 ∀ {H : Type u_1} {Q : Type u_2} [inst : Group H] [inst_1 : Group Q] [Finite Q] (φ : H →* Q)
@@ -2497,7 +2497,7 @@ Group.FG ↥UniversalRankFour.Ambient ∧
   (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) → ∀ q ∈ Subgroup.map φ Γ, (φ t)⁻¹ * q * φ t ∈ Subgroup.map φ Γ
 ```
 
-## `NonsoficGroupsExist.correctedImplementer_defect`
+## `GroupApproximation.correctedImplementer_defect`
 
 ```lean
 ∀ {G : Type u_1} {M : Type u_2} [inst : Group G] [inst_1 : Group M] (v b : G → M) (g h : G),
@@ -2505,19 +2505,19 @@ Group.FG ↥UniversalRankFour.Ambient ∧
     b g * (v g * b h * (v g)⁻¹) * implementerCocycle v g h * (b (g * h))⁻¹
 ```
 
-## `NonsoficGroupsExist.countable_group_without_essentiallyFreeNearAction_exists`
+## `GroupApproximation.countable_group_without_essentiallyFreeNearAction_exists`
 
 ```lean
 CountableGroupWithoutEssentiallyFreeNearActionExists
 ```
 
-## `NonsoficGroupsExist.countable_nonsofic_groups_exist`
+## `GroupApproximation.countable_nonsofic_groups_exist`
 
 ```lean
 CountableNonsoficGroupExists
 ```
 
-## `NonsoficGroupsExist.diagonalLevel_diverges`
+## `GroupApproximation.diagonalLevel_diverges`
 
 ```lean
 ∀ (e : ℕ → ℕ → ℝ),
@@ -2525,7 +2525,7 @@ CountableNonsoficGroupExists
     ∀ (k : ℕ), ∃ N, ∀ (n : ℕ), N ≤ n → k ≤ diagonalLevel e n
 ```
 
-## `NonsoficGroupsExist.diagonalLevel_error`
+## `GroupApproximation.diagonalLevel_error`
 
 ```lean
 ∀ (e : ℕ → ℕ → ℝ),
@@ -2533,7 +2533,7 @@ CountableNonsoficGroupExists
     (∀ (k : ℕ), Vanishing fun n => e n k) → Vanishing fun n => e n (diagonalLevel e n)
 ```
 
-## `NonsoficGroupsExist.elementaryGroup_eq_closure_of_adjoin_int`
+## `GroupApproximation.elementaryGroup_eq_closure_of_adjoin_int`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [inst_1 : DecidableEq R] (n : ℕ),
@@ -2543,7 +2543,7 @@ CountableNonsoficGroupExists
         Subgroup.closure ↑(finiteElementaryGenerators n s) = elementaryGroup (Fin n) R
 ```
 
-## `NonsoficGroupsExist.elementaryGroup_finite_quotient_trivial`
+## `GroupApproximation.elementaryGroup_finite_quotient_trivial`
 
 ```lean
 ∀ {ι : Type u_1} {R : Type u_2} [inst : Fintype ι] [inst_1 : DecidableEq ι] [inst_2 : Ring R]
@@ -2553,40 +2553,40 @@ CountableNonsoficGroupExists
       ∀ (φ : ↥(elementaryGroup ι R) →* Q) (g : ↥(elementaryGroup ι R)), φ g = 1
 ```
 
-## `NonsoficGroupsExist.elementaryGroup_finitelyGenerated`
+## `GroupApproximation.elementaryGroup_finitelyGenerated`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [inst_1 : Algebra (ZMod 2) R] [Algebra.FiniteType (ZMod 2) R]
   (n : ℕ), 2 < n → Group.FG ↥(elementaryGroup (Fin n) R)
 ```
 
-## `NonsoficGroupsExist.elementaryGroup_finitelyGenerated_int`
+## `GroupApproximation.elementaryGroup_finitelyGenerated_int`
 
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [Algebra.FiniteType ℤ R] (n : ℕ),
   2 < n → Group.FG ↥(elementaryGroup (Fin n) R)
 ```
 
-## `NonsoficGroupsExist.exists_counterexample_iff_exists_countable`
+## `GroupApproximation.exists_counterexample_iff_exists_countable`
 
 ```lean
 (∃ H x, IsHyperlinear H ∧ ¬IsSofic H) ↔ ∃ H x, Countable H ∧ IsHyperlinear H ∧ ¬IsSofic H
 ```
 
-## `NonsoficGroupsExist.exists_counterexample_iff_exists_fg_not_residuallyFinite`
+## `GroupApproximation.exists_counterexample_iff_exists_fg_not_residuallyFinite`
 
 ```lean
 (∃ H x, IsHyperlinear H ∧ ¬IsSofic H) ↔
   ∃ H x, Group.FG H ∧ IsHyperlinear H ∧ ¬IsSofic H ∧ ¬IsLEF H
 ```
 
-## `NonsoficGroupsExist.exists_finitelyPresented_nonsofic_group`
+## `GroupApproximation.exists_finitelyPresented_nonsofic_group`
 
 ```lean
 ∃ G x, Group.IsFinitelyPresented G ∧ ¬IsSofic G
 ```
 
-## `NonsoficGroupsExist.exists_finitelyPresented_obstruction`
+## `GroupApproximation.exists_finitelyPresented_obstruction`
 
 ```lean
 ∀ {G : Type u} [inst : Group G] [Group.FG G],
@@ -2599,40 +2599,40 @@ CountableNonsoficGroupExists
               ¬IsSofic (tableGroup F h₁) ∧ Function.Surjective ⇑(tableEvaluation F h₁)
 ```
 
-## `NonsoficGroupsExist.exists_hyperlinearApproximation_of_isHyperlinear`
+## `GroupApproximation.exists_hyperlinearApproximation_of_isHyperlinear`
 
 ```lean
 ∀ {G : Type u_2} [inst : Group G] [Countable G],
   IsHyperlinear G → Nonempty (HyperlinearApproximation G)
 ```
 
-## `NonsoficGroupsExist.exists_hyperlinearEmbedding_of_approximation`
+## `GroupApproximation.exists_hyperlinearEmbedding_of_approximation`
 
 ```lean
 ∀ {G : Type u_2} [inst : Group G] (S : HyperlinearApproximation G) {𝒰 : Ultrafilter ℕ},
   ↑𝒰 ≤ Filter.cofinite → ∃ f, Function.Injective ⇑f
 ```
 
-## `NonsoficGroupsExist.exists_infinite_finitelyPresented_nonsofic_ambient_cover`
+## `GroupApproximation.exists_infinite_finitelyPresented_nonsofic_ambient_cover`
 
 ```lean
 ∃ H x, Infinite H ∧ Group.IsFinitelyPresented H ∧ ¬IsSofic H ∧ ∃ π, Function.Surjective ⇑π
 ```
 
-## `NonsoficGroupsExist.exists_isLEF_group_with_non_isLEF_quotient`
+## `GroupApproximation.exists_isLEF_group_with_non_isLEF_quotient`
 
 ```lean
 ∃ H x N, ∃ (x_1 : N.Normal), IsLEF H ∧ ¬IsLEF (H ⧸ N)
 ```
 
-## `NonsoficGroupsExist.exists_isUnit_matrix_col`
+## `GroupApproximation.exists_isUnit_matrix_col`
 
 ```lean
 ∀ {k : Type u_1} [inst : Field k] {ι : Type u_2} [inst_1 : Fintype ι] [inst_2 : DecidableEq ι]
   {v : ι → k}, v ≠ 0 → ∀ (j₀ : ι), ∃ G, IsUnit G ∧ G.mulVec (Pi.single j₀ 1) = v
 ```
 
-## `NonsoficGroupsExist.exists_kazhdan_finitelyPresented_cover_of_not_isSofic`
+## `GroupApproximation.exists_kazhdan_finitelyPresented_cover_of_not_isSofic`
 
 ```lean
 ∀ {G : Type u} [inst : Group G],
@@ -2643,7 +2643,7 @@ CountableNonsoficGroupExists
           Infinite Γ ∧ Group.IsFinitelyPresented Γ ∧ HasKazhdanPropertyT Γ ∧ ¬IsSofic Γ
 ```
 
-## `NonsoficGroupsExist.exists_ratChar_close`
+## `GroupApproximation.exists_ratChar_close`
 
 ```lean
 ∀ (r : ℕ) (a : Fin r → ℝ) (N : ℕ) {δ : ℝ},
@@ -2653,13 +2653,13 @@ CountableNonsoficGroupExists
         ∀ (n : Fin r → ℤ), (∀ (i : Fin r), |n i| ≤ ↑N) → |ratChar r a q n - charEval r a n| ≤ δ
 ```
 
-## `NonsoficGroupsExist.exists_residuallyFinite_group_with_non_residuallyFinite_quotient`
+## `GroupApproximation.exists_residuallyFinite_group_with_non_residuallyFinite_quotient`
 
 ```lean
 ∃ H x N, ∃ (x_1 : N.Normal), Group.ResiduallyFinite H ∧ ¬Group.ResiduallyFinite (H ⧸ N)
 ```
 
-## `NonsoficGroupsExist.exists_selection`
+## `GroupApproximation.exists_selection`
 
 ```lean
 ∀ {β : ℕ → Type u_1} (I : (n : ℕ) → Finset (β n)) (size : (n : ℕ) → β n → ℝ)
@@ -2676,7 +2676,7 @@ CountableNonsoficGroupExists
                     ∀ (r : ℕ), Vanishing fun n => E r n (sel n) / size n (sel n)
 ```
 
-## `NonsoficGroupsExist.exists_selection_diverging`
+## `GroupApproximation.exists_selection_diverging`
 
 ```lean
 ∀ {β : ℕ → Type u_1} (I : (n : ℕ) → Finset (β n)) (size : (n : ℕ) → β n → ℝ)
@@ -2696,33 +2696,33 @@ CountableNonsoficGroupExists
                         Diverges fun n => size n (sel n)
 ```
 
-## `NonsoficGroupsExist.exists_soficEmbedding_of_isSofic`
+## `GroupApproximation.exists_soficEmbedding_of_isSofic`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] [Countable G],
   IsSofic G → ∀ {𝒰 : Ultrafilter ℕ}, ↑𝒰 ≤ Filter.cofinite → ∃ X f, Function.Injective ⇑f
 ```
 
-## `NonsoficGroupsExist.exists_soficEmbedding_of_soficApproximation`
+## `GroupApproximation.exists_soficEmbedding_of_soficApproximation`
 
 ```lean
 ∀ {G : Type u_3} [inst : Group G] (S : SoficApproximation G) {𝒰 : Ultrafilter ℕ},
   ↑𝒰 ≤ Filter.cofinite → ∃ f, Function.Injective ⇑f
 ```
 
-## `NonsoficGroupsExist.exists_sofic_group_with_nonsofic_quotient`
+## `GroupApproximation.exists_sofic_group_with_nonsofic_quotient`
 
 ```lean
 ∃ H x N, ∃ (x_1 : N.Normal), IsSofic H ∧ ¬IsSofic (H ⧸ N)
 ```
 
-## `NonsoficGroupsExist.exists_table_obstruction`
+## `GroupApproximation.exists_table_obstruction`
 
 ```lean
 ∀ {G : Type u} [inst : Group G], ¬IsSofic G → ∃ F ε, 1 ∈ F ∧ 0 < ε ∧ IsEmpty (TableModel G F ε)
 ```
 
-## `NonsoficGroupsExist.exists_unitary_far_from_monomial`
+## `GroupApproximation.exists_unitary_far_from_monomial`
 
 ```lean
 ∃ Y,
@@ -2731,41 +2731,41 @@ CountableNonsoficGroupExists
       1 / 4 ≤ hsDistSq Y U (monomialMatrix Y d σ)
 ```
 
-## `NonsoficGroupsExist.finiteFieldElementaryThree_hasKazhdanPropertyT`
+## `GroupApproximation.finiteFieldElementaryThree_hasKazhdanPropertyT`
 
 ```lean
 ∀ {k A : Type} [inst : Field k] [Finite k] [inst_2 : Ring A] [inst_3 : Algebra k A]
   [Algebra.FiniteType k A], HasKazhdanPropertyT ↥(elementaryGroup (Fin 3) A)
 ```
 
-## `NonsoficGroupsExist.finitelyPresented_isLEF_residuallyFinite`
+## `GroupApproximation.finitelyPresented_isLEF_residuallyFinite`
 
 ```lean
 ∀ {α : Type u_1} (rels : Finset (FreeGroup α)),
   IsLEF (PresentedGroup ↑rels) → ∀ (g : PresentedGroup ↑rels), g ≠ 1 → ∃ n φ, φ g ≠ 1
 ```
 
-## `NonsoficGroupsExist.fixedSet`
+## `GroupApproximation.fixedSet`
 
 ```lean
 {G : Type u_1} → {Y : Type u_2} → [inst : Group G] → (G →* Equiv.Perm Y) → Subgroup G → Set Y
 ```
 
-## `NonsoficGroupsExist.fixedSet_conj`
+## `GroupApproximation.fixedSet_conj`
 
 ```lean
 ∀ {G : Type u_1} {Y : Type u_2} [inst : Group G] (φ : G →* Equiv.Perm Y) (Γ : Subgroup G)
   (t : G), {y | ∀ γ ∈ Γ, (φ (t * γ * t⁻¹)) y = y} = ⇑(φ t) '' fixedSet φ Γ
 ```
 
-## `NonsoficGroupsExist.fixedSet_image_eq`
+## `GroupApproximation.fixedSet_image_eq`
 
 ```lean
 ∀ {G : Type u_1} {Y : Type u_2} [inst : Group G] [Finite Y] (φ : G →* Equiv.Perm Y)
   (Γ : Subgroup G) {t : G}, (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) → ⇑(φ t) '' fixedSet φ Γ = fixedSet φ Γ
 ```
 
-## `NonsoficGroupsExist.fixedSet_smul_eq_of_closure`
+## `GroupApproximation.fixedSet_smul_eq_of_closure`
 
 ```lean
 ∀ {G : Type u_1} {Y : Type u_2} [inst : Group G] [Finite Y] (φ : G →* Equiv.Perm Y)
@@ -2774,7 +2774,7 @@ CountableNonsoficGroupExists
     Subgroup.closure (↑Γ ∪ T) = ⊤ → ∀ (g : G), ⇑(φ g) '' fixedSet φ Γ = fixedSet φ Γ
 ```
 
-## `NonsoficGroupsExist.fixedSubmodule`
+## `GroupApproximation.fixedSubmodule`
 
 ```lean
 {G : Type u_1} →
@@ -2786,7 +2786,7 @@ CountableNonsoficGroupExists
             [inst_3 : _root_.Module k V] → (G →* V ≃ₗ[k] V) → Subgroup G → Submodule k V
 ```
 
-## `NonsoficGroupsExist.fixedSubmodule_compressed_eq`
+## `GroupApproximation.fixedSubmodule_compressed_eq`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {k : Type u_3} {V : Type u_4} [inst_1 : Field k]
@@ -2796,7 +2796,7 @@ CountableNonsoficGroupExists
     ∀ (v : V), (∀ γ ∈ Γ, (σ (t * γ * t⁻¹)) v = v) ↔ v ∈ fixedSubmodule σ Γ
 ```
 
-## `NonsoficGroupsExist.fixedSubmodule_map_eq`
+## `GroupApproximation.fixedSubmodule_map_eq`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {k : Type u_3} {V : Type u_4} [inst_1 : Field k]
@@ -2805,13 +2805,13 @@ CountableNonsoficGroupExists
   (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) → Submodule.map (↑(σ t)) (fixedSubmodule σ Γ) = fixedSubmodule σ Γ
 ```
 
-## `NonsoficGroupsExist.freeGroup_residuallyFinite`
+## `GroupApproximation.freeGroup_residuallyFinite`
 
 ```lean
 ∀ (α : Type u_1), Group.ResiduallyFinite (FreeGroup α)
 ```
 
-## `NonsoficGroupsExist.freeLampRep_kills_witness`
+## `GroupApproximation.freeLampRep_kills_witness`
 
 ```lean
 ∀ (G : Type) {k : Type u_1} {V : Type u_2} [inst : Group G] [inst_1 : Field k]
@@ -2823,7 +2823,7 @@ CountableNonsoficGroupExists
         γ ∈ Γ' → ∀ (k' : K), π (lampWitness G Γ' K t γ k') = 1
 ```
 
-## `NonsoficGroupsExist.freeLampRep_not_injective`
+## `GroupApproximation.freeLampRep_not_injective`
 
 ```lean
 ∀ (G : Type) {k : Type u_1} {V : Type u_2} [inst : Group G] [inst_1 : Field k]
@@ -2835,13 +2835,13 @@ CountableNonsoficGroupExists
         γ ∈ Γ' → t⁻¹ * γ * t ∉ Γ' → ∀ {k' : K}, k' ≠ 1 → ¬Function.Injective ⇑π
 ```
 
-## `NonsoficGroupsExist.halfOrbit`
+## `GroupApproximation.halfOrbit`
 
 ```lean
 {G : Type u_1} → [Group G] → G → G
 ```
 
-## `NonsoficGroupsExist.hammingDistance_characterUntwist`
+## `GroupApproximation.hammingDistance_characterUntwist`
 
 ```lean
 ∀ (m : ℕ) [inst : NeZero m] (α : ZMod m) (d : ZMod m → ZMod m) (σ : Equiv.Perm (ZMod m)),
@@ -2850,7 +2850,7 @@ CountableNonsoficGroupExists
     1 - ↑(m.gcd α.val) / ↑m
 ```
 
-## `NonsoficGroupsExist.hammingDistance_characterUntwist_generator`
+## `GroupApproximation.hammingDistance_characterUntwist_generator`
 
 ```lean
 ∀ (m : ℕ) [inst : NeZero m] (α : ZMod m),
@@ -2861,7 +2861,7 @@ CountableNonsoficGroupExists
         1 - 1 / ↑m
 ```
 
-## `NonsoficGroupsExist.hammingDistance_le_hsDistSq_monomial`
+## `GroupApproximation.hammingDistance_le_hsDistSq_monomial`
 
 ```lean
 ∀ (Y : FiniteModel) {d e : Y.carrier → ℂ},
@@ -2871,7 +2871,7 @@ CountableNonsoficGroupExists
         2 * hammingDistance Y σ τ ≤ hsDistSq Y (monomialMatrix Y d σ) (monomialMatrix Y e τ)
 ```
 
-## `NonsoficGroupsExist.hammingDistance_powerPerm`
+## `GroupApproximation.hammingDistance_powerPerm`
 
 ```lean
 ∀ (Y : FiniteModel) (k : ℕ),
@@ -2881,7 +2881,7 @@ CountableNonsoficGroupExists
         1 - (1 - hammingDistance Y p q) ^ k
 ```
 
-## `NonsoficGroupsExist.hammingDistance_wreathPerm_blockConst`
+## `GroupApproximation.hammingDistance_wreathPerm_blockConst`
 
 ```lean
 ∀ (Y : FiniteModel) (m : ℕ) [inst : NeZero m] {L : Type u_1} (β : Y.carrier → L)
@@ -2891,13 +2891,13 @@ CountableNonsoficGroupExists
     ↑{y | c (β y) ≠ 0}.card / ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.hammingLength`
+## `GroupApproximation.hammingLength`
 
 ```lean
 (Y : FiniteModel) → Equiv.Perm Y.carrier → ℝ
 ```
 
-## `NonsoficGroupsExist.heis_centre_map_eq_one`
+## `GroupApproximation.heis_centre_map_eq_one`
 
 ```lean
 ∀ {p : ℕ},
@@ -2908,13 +2908,13 @@ CountableNonsoficGroupExists
       f ((QuotientGroup.mk' (Heis.intCentre ↥(invPowSubring p))) { a := 0, b := 0, c := q }) = 1
 ```
 
-## `NonsoficGroupsExist.hsDistSq_le_sq_l2_opNorm`
+## `GroupApproximation.hsDistSq_le_sq_l2_opNorm`
 
 ```lean
 ∀ (Y : FiniteModel) (A B : Matrix Y.carrier Y.carrier ℂ), hsDistSq Y A B ≤ ‖A - B‖ ^ 2
 ```
 
-## `NonsoficGroupsExist.hsDistSq_monomial_const`
+## `GroupApproximation.hsDistSq_monomial_const`
 
 ```lean
 ∀ (Y : FiniteModel) {d : Y.carrier → ℂ},
@@ -2925,14 +2925,14 @@ CountableNonsoficGroupExists
           Complex.normSq (1 - ζ)
 ```
 
-## `NonsoficGroupsExist.hsDistSq_orthogonal_rankOne`
+## `GroupApproximation.hsDistSq_orthogonal_rankOne`
 
 ```lean
 ∀ (Y : FiniteModel) {a b : Y.carrier},
   a ≠ b → hsDistSq Y (coordProjection Y a) (coordProjection Y b) = 2 / ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.hsLengthSq_conjTranspose_mul`
+## `GroupApproximation.hsLengthSq_conjTranspose_mul`
 
 ```lean
 ∀ (Y : FiniteModel) {v w : Matrix Y.carrier Y.carrier ℂ},
@@ -2940,7 +2940,7 @@ CountableNonsoficGroupExists
     0 < Fintype.card Y.carrier → hsLengthSq Y (w.conjTranspose * v) = hsDistSq Y v w
 ```
 
-## `NonsoficGroupsExist.hsLengthSq_ge_of_separated`
+## `GroupApproximation.hsLengthSq_ge_of_separated`
 
 ```lean
 ∀ {G : Type u_2} [inst : Group G] {F : Finset G} {ε : ℝ} (M : HyperlinearModel G F ε),
@@ -2949,13 +2949,13 @@ CountableNonsoficGroupExists
       ∀ {g : G}, g ∈ F → 1 ∈ F → g ≠ 1 → 2 - ε - 1 / 50 ≤ hsLengthSq M.carrier (M.map g)
 ```
 
-## `NonsoficGroupsExist.hsNormSq`
+## `GroupApproximation.hsNormSq`
 
 ```lean
 (Y : FiniteModel) → Matrix Y.carrier Y.carrier ℂ → ℝ
 ```
 
-## `NonsoficGroupsExist.hsNormSq_pow_four_sub_le`
+## `GroupApproximation.hsNormSq_pow_four_sub_le`
 
 ```lean
 ∀ (Y : FiniteModel) {U : Matrix Y.carrier Y.carrier ℂ},
@@ -2964,7 +2964,7 @@ CountableNonsoficGroupExists
       hsNormSq Y (U ^ 4 - normTrace Y U ^ 4 • 1) ≤ 22 * (1 - Complex.normSq (normTrace Y U))
 ```
 
-## `NonsoficGroupsExist.hsNormSq_pow_succ_sub_le`
+## `GroupApproximation.hsNormSq_pow_succ_sub_le`
 
 ```lean
 ∀ (Y : FiniteModel) {U : Matrix Y.carrier Y.carrier ℂ},
@@ -2976,7 +2976,7 @@ CountableNonsoficGroupExists
             2 * hsNormSq Y (U ^ l - normTrace Y U ^ l • 1)
 ```
 
-## `NonsoficGroupsExist.hsNormSq_sub_smul_one`
+## `GroupApproximation.hsNormSq_sub_smul_one`
 
 ```lean
 ∀ (Y : FiniteModel) {U : Matrix Y.carrier Y.carrier ℂ},
@@ -2987,7 +2987,7 @@ CountableNonsoficGroupExists
           1 - 2 * ((starRingEnd ℂ) c * normTrace Y U).re + Complex.normSq c
 ```
 
-## `NonsoficGroupsExist.hyperlinear_forces_sofic_iff_phases_off_axis`
+## `GroupApproximation.hyperlinear_forces_sofic_iff_phases_off_axis`
 
 ```lean
 (∀ (Y : FiniteModel) (d : Y.carrier → ℂ) (σ : Equiv.Perm Y.carrier) (c ε : ℝ),
@@ -3001,13 +3001,13 @@ CountableNonsoficGroupExists
         normTrace Y (monomialMatrix Y d σ) = 0 ∧ fixedDensity Y σ = 1
 ```
 
-## `NonsoficGroupsExist.implementerCocycle`
+## `GroupApproximation.implementerCocycle`
 
 ```lean
 {G : Type u_1} → {M : Type u_2} → [Group G] → [Group M] → (G → M) → G → G → M
 ```
 
-## `NonsoficGroupsExist.implementerCocycle_twisted`
+## `GroupApproximation.implementerCocycle_twisted`
 
 ```lean
 ∀ {G : Type u_1} {M : Type u_2} [inst : Group G] [inst_1 : Group M] (v : G → M) (g h k : G),
@@ -3015,32 +3015,32 @@ CountableNonsoficGroupExists
     v g * implementerCocycle v h k * (v g)⁻¹ * implementerCocycle v g (h * k)
 ```
 
-## `NonsoficGroupsExist.inLamp_commute_inAmbient`
+## `GroupApproximation.inLamp_commute_inAmbient`
 
 ```lean
 ∀ (G : Type) [inst : Group G] (Γ : Subgroup G) (K : Type) [inst_1 : Group K] (k : K) {g : G},
   g ∈ Γ → Commute ((inLamp G Γ K) k) ((inAmbient G Γ K) g)
 ```
 
-## `NonsoficGroupsExist.invPowSubgroup`
+## `GroupApproximation.invPowSubgroup`
 
 ```lean
 ℕ → AddSubgroup ℚ
 ```
 
-## `NonsoficGroupsExist.invPowSubring`
+## `GroupApproximation.invPowSubring`
 
 ```lean
 ℕ → Subring ℚ
 ```
 
-## `NonsoficGroupsExist.involutionNormalize`
+## `GroupApproximation.involutionNormalize`
 
 ```lean
 {Y : Type u_1} → [DecidableEq Y] → Equiv.Perm Y → Equiv.Perm Y
 ```
 
-## `NonsoficGroupsExist.involution_untwist_hamming_le`
+## `GroupApproximation.involution_untwist_hamming_le`
 
 ```lean
 ∀ (Y : FiniteModel) (m : ℕ) [inst : NeZero m] (d : Y.carrier → ZMod m)
@@ -3054,20 +3054,20 @@ CountableNonsoficGroupExists
               1 - (fixedDensity Y σ - E / ↑(Fintype.card Y.carrier)) / 2
 ```
 
-## `NonsoficGroupsExist.isHyperlinearWeak_of_isHyperlinear`
+## `GroupApproximation.isHyperlinearWeak_of_isHyperlinear`
 
 ```lean
 ∀ {G : Type} [inst : Group G] {δ : ℝ}, δ < 2 → IsHyperlinear G → IsHyperlinearWeak G δ
 ```
 
-## `NonsoficGroupsExist.isHyperlinear_of_injective`
+## `GroupApproximation.isHyperlinear_of_injective`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {H : Type u_2} [inst_1 : Group H] (ι : H →* G),
   Function.Injective ⇑ι → IsHyperlinear G → IsHyperlinear H
 ```
 
-## `NonsoficGroupsExist.isHyperlinear_of_local`
+## `GroupApproximation.isHyperlinear_of_local`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G],
@@ -3076,7 +3076,7 @@ CountableNonsoficGroupExists
     IsHyperlinear G
 ```
 
-## `NonsoficGroupsExist.isLEF_of_ambientDecomposition`
+## `GroupApproximation.isLEF_of_ambientDecomposition`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J] [Countable Γ]
@@ -3085,7 +3085,7 @@ CountableNonsoficGroupExists
     ∀ (A : SoficApproximation G) (DG : ExpanderDecomposition A C.ambientGenerators), IsLEF J
 ```
 
-## `NonsoficGroupsExist.isLEF_of_isSofic`
+## `GroupApproximation.isLEF_of_isSofic`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J] [Countable G]
@@ -3093,7 +3093,7 @@ CountableNonsoficGroupExists
   HasKazhdanPropertyT G → HasKazhdanPropertyT Γ → IsSofic G → IsLEF J
 ```
 
-## `NonsoficGroupsExist.isLEF_of_soficApproximation`
+## `GroupApproximation.isLEF_of_soficApproximation`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J] [Countable Γ]
@@ -3101,13 +3101,13 @@ CountableNonsoficGroupExists
   HasKazhdanPropertyT G → HasKazhdanPropertyT Γ → ∀ (A : SoficApproximation G), IsLEF J
 ```
 
-## `NonsoficGroupsExist.isNormApproximable_of_finite`
+## `GroupApproximation.isNormApproximable_of_finite`
 
 ```lean
 ∀ (G : Type) [inst : Group G] [Finite G], IsNormApproximable G 1
 ```
 
-## `NonsoficGroupsExist.isScalarCocycle_scalarPart`
+## `GroupApproximation.isScalarCocycle_scalarPart`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} [inst_1 : Fintype Y],
@@ -3116,56 +3116,56 @@ CountableNonsoficGroupExists
       IsPhaseCocycle act c → IsScalarCocycle (scalarPart c)
 ```
 
-## `NonsoficGroupsExist.isSofic_freeGroup`
+## `GroupApproximation.isSofic_freeGroup`
 
 ```lean
 ∀ (α : Type u_1), IsSofic (FreeGroup α)
 ```
 
-## `NonsoficGroupsExist.isSofic_iff_admitsEssentiallyFreeNearAction`
+## `GroupApproximation.isSofic_iff_admitsEssentiallyFreeNearAction`
 
 ```lean
 ∀ (G : Type u) [inst : Group G] [Countable G], IsSofic G ↔ AdmitsEssentiallyFreeNearAction G
 ```
 
-## `NonsoficGroupsExist.isSofic_iff_nonempty_soficApproximation`
+## `GroupApproximation.isSofic_iff_nonempty_soficApproximation`
 
 ```lean
 ∀ (G : Type u_1) [inst : Group G] [Countable G], IsSofic G ↔ Nonempty (SoficApproximation G)
 ```
 
-## `NonsoficGroupsExist.isSofic_iff_weak`
+## `GroupApproximation.isSofic_iff_weak`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {δ : ℝ}, 0 < δ → δ < 1 → (IsSofic G ↔ IsSoficWeak G δ)
 ```
 
-## `NonsoficGroupsExist.isSofic_iff_weakLocal`
+## `GroupApproximation.isSofic_iff_weakLocal`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G], IsSofic G ↔ IsSoficWeakLocal G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_admitsEssentiallyFreeNearAction`
+## `GroupApproximation.isSofic_of_admitsEssentiallyFreeNearAction`
 
 ```lean
 ∀ (G : Type u) [inst : Group G], AdmitsEssentiallyFreeNearAction G → IsSofic G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_finite`
+## `GroupApproximation.isSofic_of_finite`
 
 ```lean
 ∀ (G : Type) [inst : Group G] [Finite G], IsSofic G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_injective`
+## `GroupApproximation.isSofic_of_injective`
 
 ```lean
 ∀ {G : Type u_1} {H : Type u_2} [inst : Group G] [inst_1 : Group H] (f : H →* G),
   Function.Injective ⇑f → IsSofic G → IsSofic H
 ```
 
-## `NonsoficGroupsExist.isSofic_of_isHyperlinear_of_fg_case`
+## `GroupApproximation.isSofic_of_isHyperlinear_of_fg_case`
 
 ```lean
 ∀ {G : Type} [inst : Group G],
@@ -3173,19 +3173,19 @@ CountableNonsoficGroupExists
     IsHyperlinear G → IsSofic G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_isSoficWeak`
+## `GroupApproximation.isSofic_of_isSoficWeak`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {δ : ℝ}, 0 < δ → IsSoficWeak G δ → IsSofic G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_soficApproximation`
+## `GroupApproximation.isSofic_of_soficApproximation`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (A : SoficApproximation G), IsSofic G
 ```
 
-## `NonsoficGroupsExist.isSofic_of_soficEmbedding`
+## `GroupApproximation.isSofic_of_soficEmbedding`
 
 ```lean
 ∀ {ι : Type u_1} (𝒰 : Ultrafilter ι) (X : ι → FiniteModel) {G : Type u_2} [inst : Group G],
@@ -3193,28 +3193,28 @@ CountableNonsoficGroupExists
     ∀ (f : G →* UniversalSofic 𝒰 X), Function.Injective ⇑f → IsSofic G
 ```
 
-## `NonsoficGroupsExist.l2_opNorm_cornerPad`
+## `GroupApproximation.l2_opNorm_cornerPad`
 
 ```lean
 ∀ (Y : FiniteModel) (m : ℕ) (C : Matrix Y.carrier Y.carrier ℂ),
   ‖Matrix.fromBlocks C 0 0 0‖ = ‖C‖
 ```
 
-## `NonsoficGroupsExist.lampEmbedding_injective`
+## `GroupApproximation.lampEmbedding_injective`
 
 ```lean
 ∀ {X : Type u_2} {A : Type u_3} [inst : AddCommGroup A] {a : A},
   a ≠ 0 → Function.Injective (lampEmbedding a)
 ```
 
-## `NonsoficGroupsExist.lampWitness_ne_one`
+## `GroupApproximation.lampWitness_ne_one`
 
 ```lean
 ∀ (G : Type) [inst : Group G] (Γ : Subgroup G) (K : Type) [inst_1 : Group K] {t γ : G},
   t⁻¹ * γ * t ∉ Γ → ∀ {k : K}, k ≠ 1 → lampWitness G Γ K t γ k ≠ 1
 ```
 
-## `NonsoficGroupsExist.map_eq_one_of_mem_divisible_subgroup`
+## `GroupApproximation.map_eq_one_of_mem_divisible_subgroup`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (D : Subgroup G),
@@ -3222,26 +3222,26 @@ CountableNonsoficGroupExists
     ∀ {B : Type u_2} [inst_1 : Group B] [Finite B] (f : G →* B) (d : ↥D), f ↑d = 1
 ```
 
-## `NonsoficGroupsExist.matching_injective`
+## `GroupApproximation.matching_injective`
 
 ```lean
 ∀ {α : Type u_1} [inst : DecidableEq α] (U₁ U₂ D : Finset α),
   Disjoint U₁ U₂ → 2 * (symmDiff U₁ D).card < D.card → 2 * (symmDiff U₂ D).card < D.card → False
 ```
 
-## `NonsoficGroupsExist.medianNormalize`
+## `GroupApproximation.medianNormalize`
 
 ```lean
 ℝ → ℝ → ℝ
 ```
 
-## `NonsoficGroupsExist.monomialMatrix`
+## `GroupApproximation.monomialMatrix`
 
 ```lean
 (Y : FiniteModel) → (Y.carrier → ℂ) → Equiv.Perm Y.carrier → Matrix Y.carrier Y.carrier ℂ
 ```
 
-## `NonsoficGroupsExist.monomialMatrix_pow_card_comm`
+## `GroupApproximation.monomialMatrix_pow_card_comm`
 
 ```lean
 ∀ (Y : FiniteModel) (d e : Y.carrier → ℂ) (σ τ : Equiv.Perm Y.carrier),
@@ -3251,7 +3251,7 @@ CountableNonsoficGroupExists
       monomialMatrix Y d σ ^ (Fintype.card Y.carrier).factorial
 ```
 
-## `NonsoficGroupsExist.no_pointwise_rounding`
+## `GroupApproximation.no_pointwise_rounding`
 
 ```lean
 ∀ (m : ℕ) [NeZero m],
@@ -3260,7 +3260,7 @@ CountableNonsoficGroupExists
       ∃ x y, roundMod m (x + y) ≠ roundMod m x + roundMod m y
 ```
 
-## `NonsoficGroupsExist.no_soficEmbedding_of_not_isSofic`
+## `GroupApproximation.no_soficEmbedding_of_not_isSofic`
 
 ```lean
 ∀ {ι : Type u_1} (𝒰 : Ultrafilter ι) (X : ι → FiniteModel) {G : Type u_2} [inst : Group G],
@@ -3269,7 +3269,7 @@ CountableNonsoficGroupExists
       ∀ (f : G →* UniversalSofic 𝒰 X), ¬Function.Injective ⇑f
 ```
 
-## `NonsoficGroupsExist.normTrace_permMatrix`
+## `GroupApproximation.normTrace_permMatrix`
 
 ```lean
 ∀ (Y : FiniteModel) (σ : Equiv.Perm Y.carrier),
@@ -3277,20 +3277,20 @@ CountableNonsoficGroupExists
     normTrace Y (Equiv.Perm.permMatrix ℂ σ) = ↑(1 - hammingDistance Y σ 1)
 ```
 
-## `NonsoficGroupsExist.normTrace_smul_one`
+## `GroupApproximation.normTrace_smul_one`
 
 ```lean
 ∀ (Y : FiniteModel), 0 < Fintype.card Y.carrier → ∀ (c : ℂ), normTrace Y (c • 1) = c
 ```
 
-## `NonsoficGroupsExist.normTrace_sub`
+## `GroupApproximation.normTrace_sub`
 
 ```lean
 ∀ (Y : FiniteModel) (A B : Matrix Y.carrier Y.carrier ℂ),
   normTrace Y (A - B) = normTrace Y A - normTrace Y B
 ```
 
-## `NonsoficGroupsExist.norm_normTrace_sub_one_le`
+## `GroupApproximation.norm_normTrace_sub_one_le`
 
 ```lean
 ∀ (Y : FiniteModel) {A : Matrix Y.carrier Y.carrier ℂ},
@@ -3300,14 +3300,14 @@ CountableNonsoficGroupExists
         (∀ i ∉ S, A i i = 1) → ‖normTrace Y A - 1‖ ≤ 2 * ↑S.card / ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.norm_normTrace_tensorPow`
+## `GroupApproximation.norm_normTrace_tensorPow`
 
 ```lean
 ∀ (Y : FiniteModel) (A : Matrix Y.carrier Y.carrier ℂ) (k : ℕ),
   ‖normTrace (tensorModel Y k) (tensorPow A k)‖ = ‖normTrace Y A‖ ^ k
 ```
 
-## `NonsoficGroupsExist.not_isSofic_of_ambientDecomposition`
+## `GroupApproximation.not_isSofic_of_ambientDecomposition`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J] [Countable G]
@@ -3317,7 +3317,7 @@ CountableNonsoficGroupExists
       ¬IsLEF J → ¬IsSofic G
 ```
 
-## `NonsoficGroupsExist.not_isSofic_of_not_isLEF`
+## `GroupApproximation.not_isSofic_of_not_isLEF`
 
 ```lean
 ∀ {G Γ J : Type} [inst : Group G] [inst_1 : Group Γ] [inst_2 : Group J] [Countable G]
@@ -3325,42 +3325,42 @@ CountableNonsoficGroupExists
   HasKazhdanPropertyT G → HasKazhdanPropertyT Γ → ¬IsLEF J → ¬IsSofic G
 ```
 
-## `NonsoficGroupsExist.not_isSofic_of_subgroup_not_isHyperlinear`
+## `GroupApproximation.not_isSofic_of_subgroup_not_isHyperlinear`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {H : Type u_2} [inst_1 : Group H] (ι : H →* G),
   Function.Injective ⇑ι → ¬IsHyperlinear H → ¬IsSofic G
 ```
 
-## `NonsoficGroupsExist.nullSubgroup`
+## `GroupApproximation.nullSubgroup`
 
 ```lean
 {ι : Type u_1} →
   Ultrafilter ι → (X : ι → FiniteModel) → Subgroup ((i : ι) → Equiv.Perm (X i).carrier)
 ```
 
-## `NonsoficGroupsExist.ofReal_hsNormSq`
+## `GroupApproximation.ofReal_hsNormSq`
 
 ```lean
 ∀ (Y : FiniteModel) (A : Matrix Y.carrier Y.carrier ℂ),
   ↑(hsNormSq Y A) = normTrace Y (A * A.conjTranspose)
 ```
 
-## `NonsoficGroupsExist.ofReal_sum_normSq`
+## `GroupApproximation.ofReal_sum_normSq`
 
 ```lean
 ∀ (Y : FiniteModel) (A : Matrix Y.carrier Y.carrier ℂ),
   ↑(∑ i, ∑ j, Complex.normSq (A i j)) = (A * A.conjTranspose).trace
 ```
 
-## `NonsoficGroupsExist.permMatrixC_conjTranspose`
+## `GroupApproximation.permMatrixC_conjTranspose`
 
 ```lean
 ∀ (Y : FiniteModel) (σ : Equiv.Perm Y.carrier),
   (Equiv.Perm.permMatrix ℂ σ).conjTranspose = Equiv.Perm.permMatrix ℂ σ⁻¹
 ```
 
-## `NonsoficGroupsExist.permMatrix_normalized_dist_sq_eq`
+## `GroupApproximation.permMatrix_normalized_dist_sq_eq`
 
 ```lean
 ∀ (Y : FiniteModel) (σ τ : Equiv.Perm Y.carrier),
@@ -3369,7 +3369,7 @@ CountableNonsoficGroupExists
     2 * hammingDistance Y σ τ
 ```
 
-## `NonsoficGroupsExist.permutation_conservation_full`
+## `GroupApproximation.permutation_conservation_full`
 
 ```lean
 ∀ {Y : Type u_1} [inst : Fintype Y] (π : Y ≃ Y) (f : Y → ℝ),
@@ -3377,7 +3377,7 @@ CountableNonsoficGroupExists
     ∑ y, max (f (π y) - f y) 0 = 1 / 2 * ∑ y, |f (π y) - f y|
 ```
 
-## `NonsoficGroupsExist.phaseCorrection_eq`
+## `GroupApproximation.phaseCorrection_eq`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] [inst_1 : Fintype G] {Y : Type u_2} (act : G → Equiv.Perm Y)
@@ -3385,7 +3385,7 @@ CountableNonsoficGroupExists
   IsPhaseCocycle act c → ∀ (g h : G) (y : Y), c g h y = phaseCob act (phaseCorrection c) g h y
 ```
 
-## `NonsoficGroupsExist.phase_commutator_local`
+## `GroupApproximation.phase_commutator_local`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} {m : ℕ} (act : G → Equiv.Perm Y)
@@ -3397,7 +3397,7 @@ CountableNonsoficGroupExists
           (act b) y = y → (act a⁻¹) y = y → (act b⁻¹) y = y → d (a * b * a⁻¹ * b⁻¹) y = 0
 ```
 
-## `NonsoficGroupsExist.phase_correctable_of_small`
+## `GroupApproximation.phase_correctable_of_small`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] [Fintype G] {Y : Type u_2} (act : G → Equiv.Perm Y)
@@ -3410,7 +3410,7 @@ CountableNonsoficGroupExists
           ∀ (g h : G) (y : Y), c g h y = phaseCob act b g h y
 ```
 
-## `NonsoficGroupsExist.phase_deviation_no_amplification`
+## `GroupApproximation.phase_deviation_no_amplification`
 
 ```lean
 ∀ (Y : FiniteModel),
@@ -3419,7 +3419,7 @@ CountableNonsoficGroupExists
       ∀ (k : ℕ), ‖normTrace (tensorModel Y k) (tensorPow (Complex.I • 1) k)‖ = 1
 ```
 
-## `NonsoficGroupsExist.phase_eq_zero_of_gcd_eq_one`
+## `GroupApproximation.phase_eq_zero_of_gcd_eq_one`
 
 ```lean
 ∀ (Y : FiniteModel) (m n : ℕ) [NeZero m],
@@ -3430,7 +3430,7 @@ CountableNonsoficGroupExists
           (∀ (y : Y.carrier), φ n y = 0) → ∀ (y : Y.carrier), σ y = y → φ 1 y = 0
 ```
 
-## `NonsoficGroupsExist.phase_weights_cancel`
+## `GroupApproximation.phase_weights_cancel`
 
 ```lean
 ∀ (m : ℕ),
@@ -3445,7 +3445,7 @@ CountableNonsoficGroupExists
                 0
 ```
 
-## `NonsoficGroupsExist.pow_card_eq_one_of_scalarCommute`
+## `GroupApproximation.pow_card_eq_one_of_scalarCommute`
 
 ```lean
 ∀ (Y : FiniteModel) {U V : Matrix Y.carrier Y.carrier ℂ},
@@ -3454,57 +3454,57 @@ CountableNonsoficGroupExists
       ∀ {c : ℂ}, U * V = c • (V * U) → c ^ Fintype.card Y.carrier = 1
 ```
 
-## `NonsoficGroupsExist.powerPerm`
+## `GroupApproximation.powerPerm`
 
 ```lean
 {Y : Type u_1} → (k : ℕ) → Equiv.Perm Y → Equiv.Perm (Fin k → Y)
 ```
 
-## `NonsoficGroupsExist.pruferSubgroup_divisible`
+## `GroupApproximation.pruferSubgroup_divisible`
 
 ```lean
 ∀ {p : ℕ}, Nat.Prime p → ∀ (n : ℕ), 0 < n → ∀ (a : ↥(pruferSubgroup p)), ∃ b, n • b = a
 ```
 
-## `NonsoficGroupsExist.pruferSubgroup_nontrivial`
+## `GroupApproximation.pruferSubgroup_nontrivial`
 
 ```lean
 ∀ {p : ℕ}, Nat.Prime p → ∃ a, a ≠ 0
 ```
 
-## `NonsoficGroupsExist.prufer_map_eq_zero`
+## `GroupApproximation.prufer_map_eq_zero`
 
 ```lean
 ∀ {B : Type u_1} [inst : AddGroup B] [Finite B] {p : ℕ},
   Nat.Prime p → ∀ (f : ↥(pruferSubgroup p) →+ B) (a : ↥(pruferSubgroup p)), f a = 0
 ```
 
-## `NonsoficGroupsExist.ratChar_add`
+## `GroupApproximation.ratChar_add`
 
 ```lean
 ∀ (r : ℕ) (a : Fin r → ℝ) (q : ℕ) (n n' : Fin r → ℤ),
   ratChar r a q (n + n') = ratChar r a q n + ratChar r a q n'
 ```
 
-## `NonsoficGroupsExist.ratChar_eq_div`
+## `GroupApproximation.ratChar_eq_div`
 
 ```lean
 ∀ (r : ℕ) (a : Fin r → ℝ) (q : ℕ) (n : Fin r → ℤ), ∃ k, ratChar r a q n = ↑k / ↑q
 ```
 
-## `NonsoficGroupsExist.re_nonpos_of_pow_four_eq_one`
+## `GroupApproximation.re_nonpos_of_pow_four_eq_one`
 
 ```lean
 ∀ {z : ℂ}, z ^ 4 = 1 → z ≠ 1 → z.re ≤ 0
 ```
 
-## `NonsoficGroupsExist.re_nonpos_of_pow_three_eq_one`
+## `GroupApproximation.re_nonpos_of_pow_three_eq_one`
 
 ```lean
 ∀ {z : ℂ}, z ^ 3 = 1 → z ≠ 1 → z.re ≤ 0
 ```
 
-## `NonsoficGroupsExist.re_normTrace_commutator_ge`
+## `GroupApproximation.re_normTrace_commutator_ge`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (Y : FiniteModel) (m : ℕ) (act : G → Equiv.Perm Y.carrier)
@@ -3521,19 +3521,19 @@ CountableNonsoficGroupExists
               (normTrace Y (monomialMatrix Y D (act (a * b * a⁻¹ * b⁻¹)))).re
 ```
 
-## `NonsoficGroupsExist.re_pow_max_ge`
+## `GroupApproximation.re_pow_max_ge`
 
 ```lean
 ∀ (z : ℂ), Complex.normSq z = 1 → 3 / 10 ≤ max (max z.re (z ^ 2).re) (max (z ^ 3).re (z ^ 4).re)
 ```
 
-## `NonsoficGroupsExist.re_pow_max_sharp`
+## `GroupApproximation.re_pow_max_sharp`
 
 ```lean
 ∃ z, Complex.normSq z = 1 ∧ max (max z.re (z ^ 2).re) (max (z ^ 3).re (z ^ 4).re) = (√5 - 1) / 4
 ```
 
-## `NonsoficGroupsExist.refineComponent`
+## `GroupApproximation.refineComponent`
 
 ```lean
 {Y : FiniteModel} →
@@ -3547,7 +3547,7 @@ CountableNonsoficGroupExists
                 ComponentRefinement X P Q q y
 ```
 
-## `NonsoficGroupsExist.renormalization_isHom`
+## `GroupApproximation.renormalization_isHom`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} {m : ℕ} (act : G → Equiv.Perm Y)
@@ -3557,13 +3557,13 @@ CountableNonsoficGroupExists
       ∀ (g h : G), β (g * h) = β g + β h
 ```
 
-## `NonsoficGroupsExist.roundMod_not_additive`
+## `GroupApproximation.roundMod_not_additive`
 
 ```lean
 ∀ (m : ℕ), 2 ≤ m → ∃ x y, roundMod m (x + y) ≠ roundMod m x + roundMod m y
 ```
 
-## `NonsoficGroupsExist.scalarClass_obstructs`
+## `GroupApproximation.scalarClass_obstructs`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} [inst_1 : Fintype Y],
@@ -3574,7 +3574,7 @@ CountableNonsoficGroupExists
           (∀ (g : G) (y : Y), |b g y| ≤ B) → ∃ g h y, c g h y ≠ phaseCob act b g h y
 ```
 
-## `NonsoficGroupsExist.scalarPart_phaseCob`
+## `GroupApproximation.scalarPart_phaseCob`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} [inst_1 : Fintype Y] (act : G → Equiv.Perm Y)
@@ -3582,7 +3582,7 @@ CountableNonsoficGroupExists
   scalarPart (phaseCob act b) g h = scalarCob (fun g => modelMean (b g)) g h
 ```
 
-## `NonsoficGroupsExist.symmDiff_le_of_pinned`
+## `GroupApproximation.symmDiff_le_of_pinned`
 
 ```lean
 ∀ {α : Type u_1} [inst : DecidableEq α] {m η : ℝ},
@@ -3597,72 +3597,72 @@ CountableNonsoficGroupExists
                   ↑(symmDiff U D).card ≤ (2 * η + 8 * η / (1 - 2 * η) ^ 2) * ↑C.card
 ```
 
-## `NonsoficGroupsExist.tableGroup_no_model`
+## `GroupApproximation.tableGroup_no_model`
 
 ```lean
 ∀ {G : Type u} [inst : Group G] (F : Finset G) (h₁ : 1 ∈ F) {ε : ℝ},
   IsEmpty (TableModel G F ε) → IsEmpty (TableModel (tableGroup F h₁) (tableTestSet F h₁) ε)
 ```
 
-## `NonsoficGroupsExist.tableModel_of_isSofic`
+## `GroupApproximation.tableModel_of_isSofic`
 
 ```lean
 ∀ {G : Type u} [inst : Group G],
   IsSofic G → ∀ (F : Finset G) (ε : ℝ), 0 < ε → Nonempty (TableModel G F ε)
 ```
 
-## `NonsoficGroupsExist.tensorPow`
+## `GroupApproximation.tensorPow`
 
 ```lean
 {Y : Type u_1} → Matrix Y Y ℂ → (k : ℕ) → Matrix (Fin k → Y) (Fin k → Y) ℂ
 ```
 
-## `NonsoficGroupsExist.tensorPow_mul`
+## `GroupApproximation.tensorPow_mul`
 
 ```lean
 ∀ {Y : Type u_1} [inst : Fintype Y] (A B : Matrix Y Y ℂ) (k : ℕ),
   tensorPow (A * B) k = tensorPow A k * tensorPow B k
 ```
 
-## `NonsoficGroupsExist.tensorPow_smul`
+## `GroupApproximation.tensorPow_smul`
 
 ```lean
 ∀ {Y : Type u_1} (c : ℂ) (A : Matrix Y Y ℂ) (k : ℕ), tensorPow (c • A) k = c ^ k • tensorPow A k
 ```
 
-## `NonsoficGroupsExist.trace_tensorPow`
+## `GroupApproximation.trace_tensorPow`
 
 ```lean
 ∀ {Y : Type u_1} [inst : Fintype Y] (A : Matrix Y Y ℂ) (k : ℕ),
   (tensorPow A k).trace = A.trace ^ k
 ```
 
-## `NonsoficGroupsExist.trivialOrbitChartData`
+## `GroupApproximation.trivialOrbitChartData`
 
 ```lean
 (H : Type) →
   [inst : Group H] → (F : Finset H) → (E : Finset PUnit.{1}) → OrbitChartData H PUnit.{1} F E 1
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL3_not_isSofic`
+## `GroupApproximation.universalLeavittEL3_not_isSofic`
 
 ```lean
 ¬IsSofic ↥UniversalRankFour.Core
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL4_no_finite_quotient`
+## `GroupApproximation.universalLeavittEL4_no_finite_quotient`
 
 ```lean
 ∀ {Q : Type u_1} [inst : Group Q] [Finite Q] (φ : ↥UniversalRankFour.Ambient →* Q), φ = 1
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL4_no_properFiniteIndex`
+## `GroupApproximation.universalLeavittEL4_no_properFiniteIndex`
 
 ```lean
 ∀ (H : Subgroup ↥UniversalRankFour.Ambient) [Finite (↥UniversalRankFour.Ambient ⧸ H)], H = ⊤
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL4_no_soficEmbedding`
+## `GroupApproximation.universalLeavittEL4_no_soficEmbedding`
 
 ```lean
 ∀ {ι : Type u_1} (𝒰 : Ultrafilter ι) (X : ι → FiniteModel),
@@ -3670,19 +3670,19 @@ CountableNonsoficGroupExists
     ∀ (f : ↥UniversalRankFour.Ambient →* UniversalSofic 𝒰 X), ¬Function.Injective ⇑f
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL4_not_admitsEssentiallyFreeNearAction`
+## `GroupApproximation.universalLeavittEL4_not_admitsEssentiallyFreeNearAction`
 
 ```lean
 ¬AdmitsEssentiallyFreeNearAction ↥UniversalRankFour.Ambient
 ```
 
-## `NonsoficGroupsExist.universalLeavittEL4_not_isSofic`
+## `GroupApproximation.universalLeavittEL4_not_isSofic`
 
 ```lean
 ¬IsSofic ↥UniversalRankFour.Ambient
 ```
 
-## `NonsoficGroupsExist.universalLeavitt_profile`
+## `GroupApproximation.universalLeavitt_profile`
 
 ```lean
 ∀ (m : ℕ),
@@ -3692,7 +3692,7 @@ CountableNonsoficGroupExists
         HasKazhdanPropertyT ↥(UniversalLeavittEL m) ∧ ¬IsSofic ↥(UniversalLeavittEL m)
 ```
 
-## `NonsoficGroupsExist.untwist_full_separation_witness_even`
+## `GroupApproximation.untwist_full_separation_witness_even`
 
 ```lean
 ∀ (m : ℕ) [inst : NeZero m],
@@ -3706,7 +3706,7 @@ CountableNonsoficGroupExists
                 hammingDistance (wreathModel Y m) (wreathPerm Y m e 1) 1 = 1
 ```
 
-## `NonsoficGroupsExist.untwist_retains_commutator_offBad`
+## `GroupApproximation.untwist_retains_commutator_offBad`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (Y : FiniteModel) (m : ℕ) [inst_1 : NeZero m]
@@ -3722,7 +3722,7 @@ CountableNonsoficGroupExists
           ↑B.card / ↑(Fintype.card Y.carrier)
 ```
 
-## `NonsoficGroupsExist.untwist_separated_of_phase_trivial`
+## `GroupApproximation.untwist_separated_of_phase_trivial`
 
 ```lean
 ∀ (Y : FiniteModel) (m : ℕ) [inst : NeZero m] (D : Y.carrier → ℂ) (e : Y.carrier → ZMod m)
@@ -3735,7 +3735,7 @@ CountableNonsoficGroupExists
             1 - ε ≤ hammingDistance (wreathModel Y m) (wreathPerm Y m e σ) 1
 ```
 
-## `NonsoficGroupsExist.window_defect_eq`
+## `GroupApproximation.window_defect_eq`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] {Y : Type u_2} [inst_1 : DecidableEq G]

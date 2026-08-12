@@ -7,7 +7,7 @@
 BLOCKED, and deliberately not run.  See the reorganization section of
 `NOTEPAD.md`: the
 manuscript names 82 modules in its margin notes and hyperlinks each to
-`NonsoficGroupsExist/<Module>.lean`.  Moving a module breaks both -- the link
+`GroupApproximation/<Module>.lean`.  Moving a module breaks both -- the link
 404s, and `scripts/check.py` reports a dangling reference.  Neither can be
 repaired from this side; `\\leanfileurl` in the `.tex` has to learn about
 paths first.
@@ -28,7 +28,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-LIB = "NonsoficGroupsExist"
+LIB = "GroupApproximation"
 
 # directory -> (what lives there, TeX section it backs, module prefixes/names)
 LAYOUT: dict[str, tuple[str, str, tuple[str, ...]]] = {

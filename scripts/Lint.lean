@@ -1,4 +1,4 @@
-import NonsoficGroupsExist
+import GroupApproximation
 import Batteries.Tactic.Lint
 
 /-!

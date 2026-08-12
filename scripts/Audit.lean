@@ -1,4 +1,4 @@
-import NonsoficGroupsExist
+import GroupApproximation
 import Audit.Scan
 import Lean.Elab.Command
 import Lean.Util.CollectAxioms
@@ -18,7 +18,7 @@ It fails, with a nonzero exit code, if either check below fails:
    verbatim.  If a statement is ever weakened or has a premise added, the
    corresponding `example` stops typechecking.
 2. **Transitive axiom closure.**  Every declaration in the
-   `NonsoficGroupsExist` namespace is traversed through the *kernel*
+   `GroupApproximation` namespace is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three
    axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
@@ -26,7 +26,7 @@ It fails, with a nonzero exit code, if either check below fails:
 
 open Lean Elab Command
 
-namespace NonsoficGroupsExist.Audit
+namespace GroupApproximation.Audit
 
 /-! ## 1. Statement pinning -/
 
@@ -127,7 +127,7 @@ negative results remain.  Every other occurrence of `IsSofic` in the library is
 a hypothesis to refute or a conclusion under a `¬`; if no group is ever
 exhibited satisfying it, `¬ IsSofic G` is equally consistent with the
 definition being unsatisfiable, and a kernel-clean proof of it would be worth
-nothing.  See `NonsoficGroupsExist/SoficPositiveControl.lean`. -/
+nothing.  See `GroupApproximation/SoficPositiveControl.lean`. -/
 example (G : Type) [Group G] [Fintype G] [DecidableEq G] : IsSofic G :=
   isSofic_of_fintype G
 
@@ -315,7 +315,7 @@ than from a hand-maintained list, so that a new module cannot escape the
 audit by not being mentioned here. -/
 def projectDeclarations (env : Environment) : Array Name :=
   env.constants.fold (init := #[]) fun acc n _ =>
-    if (`NonsoficGroupsExist).isPrefixOf n then acc.push n else acc
+    if (`GroupApproximation).isPrefixOf n then acc.push n else acc
 
 /-- The union of the transitive axiom closures of `roots`. -/
 def axiomClosure (roots : Array Name) : CommandElabM (Array Name) := do
@@ -344,12 +344,12 @@ run_cmd do
 
   let decls := projectDeclarations env
   if decls.size < 100 then
-    throwError "only {decls.size} declarations found in the `NonsoficGroupsExist` \
+    throwError "only {decls.size} declarations found in the `GroupApproximation` \
 namespace; the audit is not seeing the library"
   let axioms ← axiomClosure decls
   let bad := disallowed axioms
   unless bad.isEmpty do
-    throwError "the `NonsoficGroupsExist` namespace depends on disallowed \
+    throwError "the `GroupApproximation` namespace depends on disallowed \
 axioms: {bad.toList}"
   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
 
@@ -396,9 +396,9 @@ def examplesPerTag : Nat := 64
 run_cmd do
   let env ← getEnv
   let findings ← liftTermElabM <|
-    Audit.allScans env `NonsoficGroupsExist allowedAxioms
+    Audit.allScans env `GroupApproximation allowedAxioms
   let findings := findings ++
-    Audit.literatureScan env `NonsoficGroupsExist literatureInputNames
+    Audit.literatureScan env `GroupApproximation literatureInputNames
 
   for tag in scanTags do
     logInfo m!"{tag}: {(findings.filter (fun f => f.tag == tag)).size}"
@@ -419,4 +419,4 @@ run_cmd do
   unless failures.isEmpty do
     throwError "audit failed:{Format.line}{Format.joinSep failures.toList Format.line}"
 
-end NonsoficGroupsExist.Audit
+end GroupApproximation.Audit

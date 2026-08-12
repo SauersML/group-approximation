@@ -203,4 +203,3 @@ Consequently a future finite optimization should not vary any external
 
 Positive decay of those covariance and amalgam defects, together with
 `(PFQ9)`, triggers the marked compatible-pair endpoint `(PFQ32)--(PFQ36)`.
-

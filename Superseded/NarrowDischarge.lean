@@ -1,6 +1,6 @@
 import Superseded.MasterInduction
-import NonsoficGroupsExist.KOne.PencilForm
-import NonsoficGroupsExist.KOne.ResidualReduction
+import GroupApproximation.KOne.PencilForm
+import GroupApproximation.KOne.ResidualReduction
 
 /-!
 # Discharging the narrow reduction
@@ -13,7 +13,7 @@ reduces the entire `K₁`-vanishing chain — `NarrowReduction`,
 named refinement statement `StuckReduction`.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -44,4 +44,4 @@ theorem narrowReduction_of_stuckReduction
   exact stableUnits_le_centralClassGroup hmem
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

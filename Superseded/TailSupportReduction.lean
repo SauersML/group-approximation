@@ -1,5 +1,5 @@
-import NonsoficGroupsExist.KOne.BalancedRegularity
-import NonsoficGroupsExist.Leavitt.LeavittGradingSpans
+import GroupApproximation.KOne.BalancedRegularity
+import GroupApproximation.Leavitt.LeavittGradingSpans
 
 /-!
 # Tail support reduction: tails restrict to the `p₁` corner
@@ -13,7 +13,7 @@ the balanced monomials whose `t`-word starts with `0`, so the pieces
 stay in the balanced span.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace LeavittFamily
 
 open MatrixDiagonalization
@@ -212,4 +212,4 @@ theorem exists_tail_support_reduction [Nontrivial A] {n : ℕ} {z : A}
 end PSplit
 
 end LeavittFamily
-end NonsoficGroupsExist
+end GroupApproximation

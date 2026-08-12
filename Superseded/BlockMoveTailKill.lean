@@ -1,5 +1,5 @@
-import NonsoficGroupsExist.KOne.WidthTwoReduction
-import NonsoficGroupsExist.KOne.IncomparableUnipotents
+import GroupApproximation.KOne.WidthTwoReduction
+import GroupApproximation.KOne.IncomparableUnipotents
 
 /-!
 # Pure positive tails die: the block-move induction
@@ -16,7 +16,7 @@ block move `diag(u, I) ~ [[u - PQ, -P], [Q, I]]`.  The base case is
 the width-two reduction.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -368,4 +368,4 @@ theorem pure_positive_tail_mem_stableUnits
         (mul_mem (mul_mem (inv_mem hm₂mem) hu'mem) (inv_mem hm₁mem))
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

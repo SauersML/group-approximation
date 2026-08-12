@@ -239,6 +239,7 @@ fixed-base square-zero jet formulas in `docs/NOTEPAD.md` provide exact
 one-chart candidates, but their simultaneous multi-compressor atlas was
 not completed.  No claim about a full microstate of `G` or its double is
 made here.
+
 ## 7. Exact endpoint needed from the remaining completion
 
 For clarity, faithfulness of a limiting model of the whole double is not

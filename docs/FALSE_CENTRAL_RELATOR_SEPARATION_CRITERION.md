@@ -178,3 +178,79 @@ The theorem does not assert that such certificates exist.  It isolates the
 smallest exact output which would finish FALSE and explains how the local
 clock amplifier must couple to the global `SL_d(Z)` relations.
 
+## 6. The multi-central criterion
+
+The cyclic center is convenient but unnecessary.  The form relevant to a
+higher-incidence wall code is the following.
+
+For every `n`, let `E_n` be finite, let
+
+`Z_n <= Z(E_n)`                                       `(CRS21)`
+
+be any finite central subgroup, and let
+
+`chi_n:Z_n->T`                                        `(CRS22)`
+
+be a character.  Suppose generator labels `u_(n,i) in E_n` satisfy
+
+`r_j(u_(n,1),...,u_(n,d)) in Z_n`,                    `(CRS23)`
+
+`w(u_(n,1),...,u_(n,d)) in Z_n`,                      `(CRS24)`
+
+and
+
+`max_j |chi_n(r_j(u_n))-1| ->0`,                      `(CRS25)`
+
+`liminf_n |chi_n(w(u_n))-1|>0`.                       `(CRS26)`
+
+**Theorem 2 (multi-central relator separation).**  Data
+`(CRS21)--(CRS26)` produce a hyperlinear nonsofic group.
+
+**Proof.**  In the left regular representation of `E_n`, use the central
+Fourier projection
+
+`e_(chi_n)=|Z_n|^(-1) sum_(z in Z_n)`
+`                     conjugate(chi_n(z)) lambda(z)`. `(CRS27)`
+
+Its range is nonzero and invariant, and every `z in Z_n` acts on it as the
+scalar `chi_n(z)`.  Restricting the generator labels to this range makes
+the `j`-th relator defect exactly the left side of `(CRS25)`, while the
+marked displacement is the left side of `(CRS26)`.  The word-evaluation
+and sofic-radical argument in the proof of Theorem 1 applies verbatim.
+QED
+
+Theorem 1 is recovered by taking `Z_n=<z_n>` and
+`chi_n(z_n)=exp(2 pi i/m_n)`.
+
+Let
+
+`B_n=<r_1(u_n),...,r_l(u_n)> <= Z_n`.                 `(CRS28)`
+
+Quotienting by `B_n` again produces a finite image of `P`; hence radicality
+forces
+
+`w(u_n) in B_n`.                                      `(CRS29)`
+
+Thus a successful multi-central family consists of characters which are
+asymptotically trivial on a fixed number of central carry generators but
+remain nontrivial on a word in the subgroup they generate.  Equivalently,
+if
+
+`w(u_n)=product_j r_j(u_n)^(c_(n,j))`,                `(CRS30)`
+
+then the coefficient vector `c_n` must amplify the vanishing individual
+phases into the nonvanishing phase `(CRS26)`.  At least one such coefficient
+is unbounded along every successful subsequence.
+
+This is the correct endpoint after the cyclic-wall no-go in
+`FALSE_LONG_CHAIN_BUNDLE_MONODROMY_NO_GO.md`.  A bounded-degree scalar
+coboundary cannot have low carry and a dense witness, but a growing central
+incidence code may.  Computationally one may therefore search for:
+
+1. a finite central carry group `Z_n`;
+2. the relator incidence vectors in `Z_n`;
+3. the marked-word vector in their span; and
+4. a character `chi_n` satisfying `(CRS25)--(CRS26)`.
+
+Once these four finite objects exist, the unitary matrices and the
+hyperlinear nonsofic image are automatic from `(CRS27)`.

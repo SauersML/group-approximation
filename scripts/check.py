@@ -29,11 +29,11 @@ import tempfile
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-LIB = "NonsoficGroupsExist"
+LIB = "GroupApproximation"
 
 # Every Lean library in the repository.  `Superseded` holds superseded
 # developments: off the trust surface, since the audit walks the environment of
-# `NonsoficGroupsExist` only and never loads it -- but still compiled, and
+# `GroupApproximation` only and never loads it -- but still compiled, and
 # still scanned here.  Superseded is not the same as unchecked, and a `sorry`
 # in code CI builds is a defect wherever it lives.
 LIBS = (LIB, "Superseded")

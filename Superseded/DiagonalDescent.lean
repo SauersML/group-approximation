@@ -1,5 +1,5 @@
-import NonsoficGroupsExist.KOne.GLIsElementary
-import NonsoficGroupsExist.Leavitt.LeavittDiagonalClass
+import GroupApproximation.KOne.GLIsElementary
+import GroupApproximation.Leavitt.LeavittDiagonalClass
 
 /-!
 # Unstable descent for the diagonal class
@@ -13,7 +13,7 @@ exactly the kernel of `Lˣ → K₁(L)`, and the manuscript's rose-graph
 input reduces to the stable vanishing `K₁(L_k(1,2)) = 0`.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace MatrixDiagonalization
 
 /-- Pointwise transport of the diagonal class along a ring
@@ -83,4 +83,4 @@ theorem mem_stableUnits_of_diagUnit_mem [Nontrivial A]
     group] at hmul
 
 end LeavittFamily
-end NonsoficGroupsExist
+end GroupApproximation

@@ -7,10 +7,10 @@
 # never take the proof build down with it.
 name = "docbuild"
 version = "0.1.0"
-defaultTargets = ["NonsoficGroupsExist:docs"]
+defaultTargets = ["GroupApproximation:docs"]
 
 [[require]]
-name = "NonsoficGroupsExist"
+name = "GroupApproximation"
 path = ".."
 
 [[require]]

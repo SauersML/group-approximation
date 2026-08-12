@@ -1,6 +1,6 @@
-import NonsoficGroupsExist.KOne.WidthTwoReduction
-import NonsoficGroupsExist.KOne.IncomparableUnipotents
-import NonsoficGroupsExist.KOne.GradedComponents
+import GroupApproximation.KOne.WidthTwoReduction
+import GroupApproximation.KOne.IncomparableUnipotents
+import GroupApproximation.KOne.GradedComponents
 
 /-!
 # The rank-one normal form for narrow units
@@ -16,7 +16,7 @@ therefore equivalent modulo the diagonal class group to one of value
 `w + s₁ t₀₀` with `w` in the `[0, 1]` window.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -239,4 +239,4 @@ theorem exists_rank_one_normal_form
       exact mul_mem (inv_mem hκmem) hκH
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

@@ -1,6 +1,6 @@
-import NonsoficGroupsExist.KOne.GradedComponents
-import NonsoficGroupsExist.KOne.WindowNonposReduction
-import NonsoficGroupsExist.KOne.WindowNonnegReduction
+import GroupApproximation.KOne.GradedComponents
+import GroupApproximation.KOne.WindowNonposReduction
+import GroupApproximation.KOne.WindowNonnegReduction
 
 /-!
 # The window dichotomy: full one-sided degree parts kill the window
@@ -20,7 +20,7 @@ stack `[B₀; B₁]` has full column rank, resp. `(A₀ | A₁)` full row
 rank: the witness is the transported scalar one-sided inverse.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -301,4 +301,4 @@ theorem mem_stableUnits_of_deg_neg_one_right_full
   simpa using inv_mem hinv
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

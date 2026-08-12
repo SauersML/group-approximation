@@ -42945,6 +42945,42 @@ classes in this coinvariant relation module.  Exact growth of the marked
 order alone is not enough; the needed invariant is the dual marked/relator
 separation ratio.
 
+### Further exact reduction: Cayley spectrum and Schur curvature
+
+`FALSE_CENTRAL_CAYLEY_SPECTRAL_CRITERION.md` proves that on a finite abelian
+relation quotient `A`, the optimal marked/relator ratio is the least `C` in
+
+`Delta_b <= C^2 Delta_R`,
+
+where `Delta_R=sum_j(I-T_{a_j})^*(I-T_{a_j})` and
+`Delta_b=(I-T_b)^*(I-T_b)`.  Fourier diagonalization makes this exactly
+
+`max_chi |chi(b)-1|^2 / sum_j |chi(a_j)-1|^2`.
+
+For `A=Z/M`, this is the explicit sine quotient proposed for the `M=p^k`
+experiment.  The missing symbolic data are the residues of every fixed
+presentation relator in the same cyclic quotient.
+
+`FALSE_SCHUR_CURVATURE_NECESSITY.md` proves the exact sequence
+
+`0 -> H_2(Q;Z) -> L/[F,L] -> ker(F_ab -> Q_ab) -> 0`.
+
+Characters trivial on `H_2(Q;Z)` are pure generator gauges, and their ratio
+is uniformly bounded by a constant depending only on the original exponent
+sum matrix.  Therefore any divergent central FALSE witness must use genuine
+Schur-multiplier curvature.  This explains the earlier global-gauge
+sterility result and identifies the growing paired Bockstein class as the
+correct remaining object.
+
+`FALSE_MACKEY_CURVATURE_GLOBALIZATION.md` gives the precise extension test.
+For a local class `eta in H^2(H;T)`, the marked pairing of
+`Cor_H^Q(eta)` is computed by the Mackey double-coset operator
+`Res Cor(eta)`.  Full `p^k` order globalizes if this Mackey sum pairs as a
+`p`-adic unit multiple of the local class.  Warning: nonvanishing on every
+double-coset stabilizer alone is not sufficient; fusion compatibility and
+the transfer sum must be checked.  After globalization, the only remaining
+step is the finite paired-discriminant gauge repair.
+
 ## FALSE: the real relation-filling escape is impossible
 
 The real LP in `FALSE_FINITE_QUOTIENT_RELATION_FILLING_CRITERION.md` is

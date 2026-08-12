@@ -351,7 +351,7 @@ def isHeadlineName : Name → Bool
 
 Matched against the LAST COMPONENT, never the full name.  Matching
 `n.toString` tests the NAMESPACE too, and this corpus is called
-`NonsoficGroupsExist` -- so the claim word "nonsofic" matched every single
+`GroupApproximation` -- so the claim word "nonsofic" matched every single
 declaration at the root and the scan reported 99 of them, `mul_mem_tableDomain`
 first.  A corpus named after its own headline claim makes that mistake
 invisible in the count and obvious in the first example. -/

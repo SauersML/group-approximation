@@ -1,5 +1,5 @@
-import NonsoficGroupsExist.KOne.ZeroKOne
-import NonsoficGroupsExist.KOne.PureTailNilpotency
+import GroupApproximation.KOne.ZeroKOne
+import GroupApproximation.KOne.PureTailNilpotency
 -- `Mathlib.Algebra.GeomSum` was split; `geom_sum_mul` lives in the Ring file.
 import Mathlib.Algebra.Ring.GeomSum
 
@@ -15,7 +15,7 @@ such a unit again has a nonnegative window — the rigorous
 upper-triangular leg of the Birkhoff factorization.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily
@@ -162,4 +162,4 @@ theorem nonneg_narrow_unit_inv_window
   refine (family k).span_degreeMonomials_mono ?_ ?_ h2 <;> omega
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

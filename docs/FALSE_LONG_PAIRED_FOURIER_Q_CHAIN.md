@@ -195,4 +195,3 @@ simultaneous coefficient functor:
 
 Once that is done for increasing finite windows, `(LPQ3)` supplies the
 amalgam agreement and `(LPQ5)` triggers the marked endpoint `(PFQ32)--(PFQ36)`.
-

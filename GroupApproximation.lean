@@ -1,0 +1,432 @@
+import GroupApproximation.Sofic.Asymptotics
+import GroupApproximation.Sofic.ExteriorMFProfile
+import GroupApproximation.Sofic.AlmostAutomorphism
+import GroupApproximation.PropertyT.A2System
+import GroupApproximation.PropertyT.A2ClassTwoOrthogonality
+import GroupApproximation.PropertyT.A2MagicGraph
+import GroupApproximation.PropertyT.A2MagicGraphEstimates
+import GroupApproximation.PropertyT.A2MagicLaplacian
+import GroupApproximation.PropertyT.A2MagicEnergy
+import GroupApproximation.PropertyT.A2MagicHilbert
+import GroupApproximation.Kazhdan.PositiveOperatorGap
+import GroupApproximation.PropertyT.FreeAlgebraDegree
+import GroupApproximation.PropertyT.FreeRootFiltration
+import GroupApproximation.PropertyT.FreeRootActions
+import GroupApproximation.PropertyT.FreeRootPlane
+import GroupApproximation.PropertyT.FreeRootPlaneMassBase
+import GroupApproximation.PropertyT.FreeRootPlaneMass
+import GroupApproximation.PropertyT.FreeRootFunctionalValuation
+import GroupApproximation.PropertyT.FreeRootPlaneFourier
+import GroupApproximation.PropertyT.FreeRootCharacterValuationBase
+import GroupApproximation.PropertyT.FreeRootCharacterValuation
+import GroupApproximation.PropertyT.FiniteFieldElementaryPropertyT
+import GroupApproximation.PropertyT.FreeElementaryPropertyT
+import GroupApproximation.PropertyT.FiniteTypeCharacteristicTwoPropertyT
+import GroupApproximation.Leavitt.FiniteFieldLeavitt
+import GroupApproximation.PropertyT.A2Kazhdan
+import GroupApproximation.PropertyT.ClassTwoNormalForm
+import GroupApproximation.PropertyT.ClassTwoApproximation
+import GroupApproximation.Matching.DirectedCoarea
+import GroupApproximation.Kazhdan.KazhdanImprovement
+import GroupApproximation.Kazhdan.Kazhdan
+import GroupApproximation.Kazhdan.HilbertComplexification
+import GroupApproximation.Kazhdan.KazhdanComplex
+import GroupApproximation.Kazhdan.KazhdanUniverse
+import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+import GroupApproximation.PropertyT.CharacterMass
+import GroupApproximation.Leavitt.RankTwoCompression
+import GroupApproximation.Kazhdan.KazhdanControl
+import GroupApproximation.Kazhdan.AlmostMinimalDisplacement
+import GroupApproximation.Kazhdan.DelormeFixedPoint
+import GroupApproximation.Kazhdan.ShalomFinitePresentation
+import GroupApproximation.Kazhdan.UltralimitGeometry
+import GroupApproximation.Kazhdan.GaussianPositiveDefinite
+import GroupApproximation.Kazhdan.HilbertCircumcenter
+import GroupApproximation.Kazhdan.KazhdanFixedSpace
+import GroupApproximation.Kazhdan.HilbertConvexFixedPoint
+import GroupApproximation.PropertyT.InvolutionSplitting
+import GroupApproximation.PropertyT.FiniteInvolutionDecomposition
+import GroupApproximation.Kazhdan.HilbertEpsilonOrthogonality
+import GroupApproximation.PropertyT.FiniteGroupAverage
+import GroupApproximation.PropertyT.FiniteOrbitRepresentation
+import GroupApproximation.PropertyT.FiniteClassTwoOrthogonality
+import GroupApproximation.PropertyT.OrthogonalRepresentationDecomposition
+import GroupApproximation.PropertyT.FiniteClassTwoDecompositionBound
+import GroupApproximation.PropertyT.ClassTwoOrthogonality
+import GroupApproximation.PropertyT.NormalEdgeCodistance
+import GroupApproximation.Kazhdan.KazhdanGenerators
+import GroupApproximation.Kazhdan.KazhdanOrthogonal
+import GroupApproximation.Kazhdan.KazhdanProjection
+import GroupApproximation.Kazhdan.InvariantDisplacement
+import GroupApproximation.Kazhdan.KazhdanFiniteModel
+import GroupApproximation.Kazhdan.KazhdanGNS
+import GroupApproximation.Kun.KunFiniteMarkov
+import GroupApproximation.Kun.KunBoundary
+import GroupApproximation.Kun.KunRounding
+import GroupApproximation.Kun.KunThreshold
+import GroupApproximation.Kun.KunGeneratorGraph
+import GroupApproximation.Kun.KunSupport
+import GroupApproximation.Kun.KunIndicatorRounding
+import GroupApproximation.Kun.KunQuantitativeRounding
+import GroupApproximation.Kun.KunRemoval
+import GroupApproximation.Kun.KunAsymptoticRemoval
+import GroupApproximation.Kun.KunSmallBoundary
+import GroupApproximation.Kun.KunPartition
+import GroupApproximation.Kun.KunFinitePartition
+import GroupApproximation.Kun.KunDiagonalPartition
+import GroupApproximation.Kun.KunDecomposition
+import GroupApproximation.Kun.KunFixedDecomposition
+import GroupApproximation.KunThom.KunThomDiagonal
+import GroupApproximation.KunThom.KunThomCorrelation
+import GroupApproximation.KunThom.KunThomFiniteMarkov
+import GroupApproximation.KunThom.KunThomRounding
+import GroupApproximation.KunThom.KunThomParameters
+import GroupApproximation.KunThom.KunThomTheorem
+import GroupApproximation.Kun.KunSpectralCounterexample
+import GroupApproximation.Matching.MaximalCutRepair
+import GroupApproximation.Sofic.SoficRestriction
+import GroupApproximation.Sofic.IntersectionReduction
+import GroupApproximation.Sofic.RelativeIntersectionPermanence
+import GroupApproximation.Matching.EssentialExpanderRepair
+import GroupApproximation.KunThom.KunThomEssential
+import GroupApproximation.Kun.KunPartitionBoundary
+import GroupApproximation.Kun.KunPartitionCrossing
+import GroupApproximation.Kun.KunBlockGraph
+import GroupApproximation.Kun.KunRepairGraph
+import GroupApproximation.Kun.KunMarkerSelection
+import GroupApproximation.Kun.KunLocalNeighborhood
+import GroupApproximation.Kun.KunBadBlocks
+import GroupApproximation.Kun.KunSelectiveRepairGraph
+import GroupApproximation.Kun.KunSelectiveRepairExpansion
+import GroupApproximation.Kun.KunRefinedInvariance
+import GroupApproximation.Kun.KunRepairExpansion
+import GroupApproximation.Kun.KunUniformMovement
+import GroupApproximation.Kun.KunUniformRemoval
+import GroupApproximation.Kun.KunUniformRounding
+import GroupApproximation.Kun.KunUniformDecompositionStep
+import GroupApproximation.Criterion.CompressionSetup
+import GroupApproximation.Criterion.ExactCompression
+import GroupApproximation.Criterion.CommutantRigidity
+import GroupApproximation.Criterion.FiniteQuotientBlindness
+import GroupApproximation.Criterion.LocalCriterion
+import GroupApproximation.Criterion.LocalizedApproximation
+import GroupApproximation.Criterion.SelectionOutput
+import GroupApproximation.Matching.Pinning
+import GroupApproximation.Matching.Refinement
+import GroupApproximation.Matching.Selection
+import GroupApproximation.Matching.MedianNormalization
+import GroupApproximation.Sofic.LEF
+import GroupApproximation.Sofic.FinitelyPresentedLEF
+import GroupApproximation.Sofic.ThompsonFObstruction
+import GroupApproximation.Sofic.AugmentationExtension
+import GroupApproximation.Criterion.Scheme
+import GroupApproximation.Criterion.Criterion
+import GroupApproximation.Matching.BlockEnumeration
+import GroupApproximation.Matching.BlockIndex
+import GroupApproximation.Matching.ComponentDivergence
+import GroupApproximation.Matching.GeneratorWords
+import GroupApproximation.Matching.BlockWordCrossing
+import GroupApproximation.Matching.BlockTransport
+import GroupApproximation.Matching.ComponentRefinement
+import GroupApproximation.Matching.DecompositionRefinement
+import GroupApproximation.Matching.FiniteGroupoidCounting
+import GroupApproximation.Matching.FiniteGroupoidPresentation
+import GroupApproximation.Matching.FinitePartialBijection
+import GroupApproximation.Matching.AsymptoticPartialBijection
+import GroupApproximation.Matching.AsymptoticPartialGroupoid
+import GroupApproximation.Matching.AsymptoticBlockArrow
+import GroupApproximation.Matching.FiniteGroupoidBisection
+import GroupApproximation.Matching.FiniteGroupoidPartialBisection
+import GroupApproximation.Matching.PartialBijectionSandwich
+import GroupApproximation.Matching.FinitePartialClusterGroupoid
+import GroupApproximation.Matching.PartialEquivarianceBoundary
+import GroupApproximation.Matching.PartialTaggedExpansion
+import GroupApproximation.Matching.RelationPartialClusterRepair
+import GroupApproximation.Matching.ComponentInvolutionRepair
+import GroupApproximation.Matching.RepairedComponentBisection
+import GroupApproximation.Matching.BlockPartialBijection
+import GroupApproximation.Matching.EdgeEditing
+import GroupApproximation.Matching.GeneratorCrossing
+import GroupApproximation.Matching.ExternalCompressorCrossing
+import GroupApproximation.Matching.CompressionRefinement
+import GroupApproximation.Matching.FiniteMedian
+import GroupApproximation.Matching.NormalizedComponents
+import GroupApproximation.Matching.ComponentPinning
+import GroupApproximation.Matching.NormalizedVariation
+import GroupApproximation.Matching.InverseNormalization
+import GroupApproximation.Matching.GlobalVariation
+import GroupApproximation.Matching.SlowThreshold
+import GroupApproximation.Matching.FiniteMarkov
+import GroupApproximation.Matching.MatchingPreparation
+import GroupApproximation.Matching.MatchingSelection
+import GroupApproximation.Matching.EdgeWitnessDistance
+import GroupApproximation.Matching.EdgeWitnessRestriction
+import GroupApproximation.Matching.GeneratorGraphEditing
+import GroupApproximation.Matching.CompletionGraphEditing
+import GroupApproximation.Matching.SelectedGraphComparison
+import GroupApproximation.Matching.ConservativeMatching
+import GroupApproximation.Criterion.CriterionAssembly
+import GroupApproximation.Leavitt.Leavitt
+import GroupApproximation.Leavitt.AryCorner
+import GroupApproximation.Leavitt.FamilyRankFour
+import GroupApproximation.Leavitt.RawSwapCompressors
+import GroupApproximation.Leavitt.LeavittOverCommRing
+import GroupApproximation.Leavitt.IntegralGeneration
+import GroupApproximation.Leavitt.ElementaryPerfect
+import GroupApproximation.Leavitt.AryProfile
+import GroupApproximation.Leavitt.SelfSimilarityAlgebra
+import GroupApproximation.Leavitt.PlaneEmbedding
+import GroupApproximation.Leavitt.GeneralRankWords
+import GroupApproximation.Leavitt.GeneralScheme
+import GroupApproximation.Leavitt.GeneralCornerTheorem
+import GroupApproximation.Sofic.LEFSofic
+import GroupApproximation.Sofic.FreeGroupResiduallyFinite
+import GroupApproximation.Endpoint.QuotientNonclosure
+import GroupApproximation.Leavitt.AryLeavitt
+import GroupApproximation.Leavitt.AryCornerMatrix
+import GroupApproximation.Leavitt.AryEndpoints
+import GroupApproximation.Leavitt.UniversalLeavittOver
+import GroupApproximation.Leavitt.LeavittNormalForm
+import GroupApproximation.Leavitt.DiagonalClassGroup
+import GroupApproximation.KOne.GLIsElementary
+import GroupApproximation.Leavitt.LeavittDiagonalClass
+import GroupApproximation.Leavitt.BinaryLeavittDiagonal
+import GroupApproximation.KOne.StableUnitsGenerators
+import GroupApproximation.Leavitt.FamilyDiagonalClass
+import GroupApproximation.KOne.FieldMatrixReduction
+import GroupApproximation.Leavitt.LeavittDegreeZero
+import GroupApproximation.Leavitt.FamilyDescent
+import GroupApproximation.Leavitt.LeavittGradingSpans
+import GroupApproximation.Leavitt.LeavittBalancedUnits
+import GroupApproximation.Leavitt.LeavittWindowReduction
+import GroupApproximation.Leavitt.BinaryLeavittWindow
+import GroupApproximation.KOne.ScaledStreamRepresentation
+import GroupApproximation.KOne.VandermondeExtraction
+import GroupApproximation.KOne.GradedIndependence
+import GroupApproximation.KOne.BaseChangeIndependence
+import GroupApproximation.KOne.StableRankOne
+import GroupApproximation.KOne.BalancedStableRank
+import GroupApproximation.Leavitt.WhiteheadFlip
+import GroupApproximation.KOne.ResidualNormalForm
+import GroupApproximation.KOne.ResidualMoves
+import GroupApproximation.KOne.ResidualReduction
+import GroupApproximation.KOne.BalancedRegularity
+import GroupApproximation.KOne.WindowProductClosure
+import GroupApproximation.KOne.NilpotentTailKill
+import GroupApproximation.KOne.IncomparableUnipotents
+import GroupApproximation.KOne.ShapeCalculus
+import GroupApproximation.KOne.GradedComponents
+import GroupApproximation.KOne.PureTailNilpotency
+import GroupApproximation.Leavitt.RankNormalForm
+import GroupApproximation.KOne.DegreeShapeBridge
+import GroupApproximation.KOne.CylinderCornerRank
+import GroupApproximation.KOne.ZeroKOne
+import GroupApproximation.KOne.WidthTwoReduction
+import GroupApproximation.KOne.WindowNonnegReduction
+import GroupApproximation.KOne.OppositeTranspose
+import GroupApproximation.KOne.ThetaStable
+import GroupApproximation.KOne.WindowNonposReduction
+import GroupApproximation.KOne.CodeChangeInfrastructure
+import GroupApproximation.KOne.CodeChangeSwap
+import GroupApproximation.KOne.CodeChangeUnits
+import GroupApproximation.KOne.PencilCore
+import GroupApproximation.KOne.PencilForm
+import GroupApproximation.KOne.CodePairTransport
+import GroupApproximation.KOne.CodeScalarMoves
+import GroupApproximation.KOne.CodeRelativeFullness
+import GroupApproximation.KOne.CodeChangeGlue
+import GroupApproximation.KOne.AtomPeel
+import GroupApproximation.KOne.MixedCodeMoves
+import GroupApproximation.KOne.GLPairNormalization
+import GroupApproximation.KOne.PencilEntryArith
+import GroupApproximation.KOne.CompleteCodeSupply
+import GroupApproximation.KOne.GLVectorNormalization
+import GroupApproximation.KOne.RowClearMove
+import GroupApproximation.KOne.FullExtraction
+import GroupApproximation.KOne.MirrorExtraction
+import GroupApproximation.KOne.EntryStrip
+import GroupApproximation.KOne.EntrywiseKill
+import GroupApproximation.KOne.StackDichotomy
+import GroupApproximation.KOne.RefinedCodes
+import GroupApproximation.KOne.BalancedCodePencil
+import GroupApproximation.KOne.EntrywiseKillMirror
+import GroupApproximation.KOne.RefineStep
+import GroupApproximation.KOne.StrictNegativePencil
+import GroupApproximation.KOne.CodeShapeSupply
+import GroupApproximation.KOne.PencilReshape
+import GroupApproximation.KOne.RefineLoopDischarge
+import GroupApproximation.Leavitt.MatrixDiagonalization
+import GroupApproximation.Leavitt.LeavittSimplicity
+import GroupApproximation.Leavitt.LeavittRankEquivalence
+import GroupApproximation.Matching.FiniteGraph
+import GroupApproximation.Leavitt.LeavittCorner
+import GroupApproximation.Leavitt.LeavittMatrixCompression
+import GroupApproximation.Leavitt.DiagonalCornerCompression
+import GroupApproximation.Leavitt.DiagonalElementary
+import GroupApproximation.Leavitt.LeavittSelfSimilarity
+import GroupApproximation.Matching.Localization
+import GroupApproximation.Leavitt.MatrixSelfSimilarity
+import GroupApproximation.Matching.PermutationConservation
+import GroupApproximation.Sofic.Sofic
+import GroupApproximation.Sofic.SoficAmplification
+import GroupApproximation.Sofic.SoficUltraproduct
+import GroupApproximation.Sofic.HyperlinearMetric
+import GroupApproximation.Sofic.Hyperlinear
+import GroupApproximation.Sofic.HyperlinearAmplification
+import GroupApproximation.Sofic.HyperlinearNonScalar
+import GroupApproximation.Sofic.HyperlinearScalar
+import GroupApproximation.Sofic.PhaseOrder
+import GroupApproximation.Sofic.MonomialModel
+import GroupApproximation.Sofic.PhasePropagation
+import GroupApproximation.Sofic.LeavittTraceFloor
+import GroupApproximation.Sofic.ScalarCocycle
+import GroupApproximation.Sofic.CharacterCount
+import GroupApproximation.Sofic.NoRounding
+import GroupApproximation.Sofic.NoPointwiseUnitaryRounding
+import GroupApproximation.Sofic.PhaseCorrection
+import GroupApproximation.Sofic.ScalarClass
+import GroupApproximation.Sofic.RationalCharacter
+import GroupApproximation.Sofic.UntwistSeparation
+import GroupApproximation.Sofic.HeisenbergCentre
+import GroupApproximation.Sofic.HyperlinearReduction
+import GroupApproximation.Sofic.HyperlinearWeakBridge
+import GroupApproximation.Sofic.HyperlinearUltraproductBridge
+import GroupApproximation.Sofic.ImplementerCocycle
+import GroupApproximation.Sofic.CoordinateTransfer
+import GroupApproximation.Sofic.DivisibleInvisible
+import GroupApproximation.Sofic.HyperlinearUltraproduct
+import GroupApproximation.Sofic.NormTraceGap
+import GroupApproximation.Sofic.WeakMFUltraproduct
+import GroupApproximation.Sofic.WeakMFTransfer
+import GroupApproximation.Sofic.WeakMFRegularTrace
+import GroupApproximation.Sofic.RegularCharacterGNS
+import GroupApproximation.Sofic.KazhdanCorner
+import GroupApproximation.Sofic.KazhdanCornerMatrices
+import GroupApproximation.Sofic.WeakMFVectorGNS
+import GroupApproximation.Sofic.KazhdanCornerModel
+import GroupApproximation.Sofic.KazhdanCornerDiagonal
+import GroupApproximation.Sofic.FreeLampReduction
+import GroupApproximation.Sofic.PushoutEmbedding
+import GroupApproximation.Sofic.FreeLampDoubleEmbedding
+import GroupApproximation.Sofic.WeakMFNonsoficDouble
+import GroupApproximation.Sofic.SoficFiniteSemidirect
+import GroupApproximation.Sofic.SymmetricDoubleFlip
+import GroupApproximation.Sofic.LineDouble
+import GroupApproximation.Sofic.DoubleSoficTransfer
+import GroupApproximation.Sofic.FreeLampRigidity
+import GroupApproximation.Sofic.ProfiniteClosure
+import GroupApproximation.Sofic.CentralFreeLampCover
+import GroupApproximation.Sofic.CentralCoverInheritance
+import GroupApproximation.Sofic.CommutantPinning
+import GroupApproximation.Sofic.NearAction
+import GroupApproximation.Sofic.NearActionModel
+import GroupApproximation.Sofic.LevelShiftObstruction
+import GroupApproximation.Sofic.SoficPositiveControl
+import GroupApproximation.Sofic.SemanticPositiveControls
+import GroupApproximation.Sofic.SoficErrors
+import GroupApproximation.Sofic.Normalization
+import GroupApproximation.Sofic.InvolutiveCentralizerComponents
+import GroupApproximation.Leavitt.Whitehead
+import GroupApproximation.Covers.KazhdanCover
+import GroupApproximation.Covers.TableCover
+import GroupApproximation.Leavitt.LeavittWords
+import GroupApproximation.Leavitt.PrefixCode
+import GroupApproximation.Leavitt.ElementaryGroup
+import GroupApproximation.Leavitt.ElementaryRoots
+import GroupApproximation.Leavitt.ElementaryStabilization
+import GroupApproximation.Leavitt.RankFourCompressors
+import GroupApproximation.Leavitt.UniversalLeavitt
+import GroupApproximation.Leavitt.UniversalRankFour
+import GroupApproximation.Leavitt.UniversalPropertyT
+import GroupApproximation.PropertyTT.LeavittAllRanksTT
+import GroupApproximation.PropertyTT.PaperStatements
+import GroupApproximation.PropertyTT.NonsoficCorollary
+import GroupApproximation.Leavitt.UniversalCompressionSetup
+import GroupApproximation.Leavitt.ThompsonV
+import GroupApproximation.Leavitt.ThompsonVEmbedding
+import GroupApproximation.Leavitt.FamilyVEmbedding
+import GroupApproximation.Leavitt.ThompsonVWitness
+import GroupApproximation.Leavitt.ThompsonWitness
+import GroupApproximation.Matching.MatchedComponents
+import GroupApproximation.Sofic.SoficTransfer
+import GroupApproximation.Sofic.HyperlinearResidualDetector
+import GroupApproximation.Sofic.FiniteResidualKernel
+import GroupApproximation.Sofic.InternalRadicalGap
+import GroupApproximation.Sofic.AuxiliaryClassSeparation
+import GroupApproximation.Sofic.StarGaussian
+import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.StructuralProfile
+import GroupApproximation.Leavitt.UnitsGLProfile
+import GroupApproximation.KOne.AllRanksElementary
+import GroupApproximation.Kazhdan.KazhdanTextbook
+import GroupApproximation.Monsters.Terminality
+import GroupApproximation.Monsters.TwoConjugacyClasses
+import GroupApproximation.Monsters.VerbalCompleteness
+import GroupApproximation.Monsters.Protection
+import GroupApproximation.Endpoint.Audit
+import GroupApproximation.Endpoint.Public
+import GroupApproximation.Endpoint.ManuscriptStatements
+import GroupApproximation.Sofic.SoficSequential
+import GroupApproximation.KOne.WhiteheadQuotient
+import GroupApproximation.KOne.ClassicalKOne
+import GroupApproximation.KOne.FactorizationCertificate
+import GroupApproximation.Leavitt.FiniteTypeCountable
+import GroupApproximation.Leavitt.ShiftEndomorphism
+import GroupApproximation.Sofic.LocalCentralQuotientLifting
+import GroupApproximation.Steinberg.KervaireSteinberg
+
+/-!
+# An unconditional construction of a finitely presented nonsofic group
+
+This library proves that a nonsofic group exists, and that a finitely
+presented one does.  Both are closed theorems: neither takes a hypothesis
+standing in for a construction, and neither is a parameterized implication
+advertised as an existence result.
+
+**Start at `GroupApproximation.Public`.**  It is the reading path -- the
+declarations a referee needs, each named against the theorem of
+`nonsofic_groups_exist.tex` it establishes.  The statement-by-statement
+correspondence with the manuscript is `docs/CLAIM_MAP.md`, generated from the
+paper's own margin notes and checked on every build.
+
+## What is proved here rather than assumed
+
+Every theorem the paper cites for its own proofs is proved in this library,
+in the exact form used, so each is an input to the manuscript and not to the
+development: Kun's expander decomposition (`KunDecomposition`), the Kun--Thom
+centralizer obstruction (`KunThomTheorem`), Shalom's finitely presented
+Kazhdan covers (`ShalomFinitePresentation`), and property `(T)` for
+elementary groups over finite-type algebras over finite fields
+(`FiniteFieldElementaryPropertyT`, with the explicit Kazhdan pair of
+`FreeElementaryPropertyT`).  The Ershov--Jaikin-Zapirain theorem over an
+arbitrary finitely generated ring is not formalized, and nothing here needs
+it.
+
+The `K₁`-theoretic input is likewise eliminated: `BinaryLeavitt.K1_trivial`
+proves `K₁(L_k(1,2)) = 0` in Whitehead form by an elementary two-exit
+elimination, so the localization-sequence citation is confirmation rather than
+dependency.
+
+## The construction
+
+The coefficient ring is the actual universal binary Leavitt algebra, defined
+as the presented quotient of the free algebra; its stream-operator
+representation proves that quotient nontrivial, so no faithfulness claim is
+needed.  `UniversalRankFour.compressionSetup` constructs the algebraic setup
+rather than accepting it from a caller, and the corner subgroup carrying the
+non-LEF obstruction is identified with Thompson's group `V`
+(`ThompsonVWitness.thompsonV_not_isLEF`), proved non-LEF unconditionally with
+no Higman presentation input.
+
+`MainResults.universalLeavittEL4_not_isSofic` supplies the initial nonsofic
+group; `TableCover` builds its finitely presented cover, and `KazhdanCover`
+the Kazhdan one.
+
+## Trust surface
+
+`GroupApproximation.Audit` prints the axiom report for the public results on
+an ordinary build.  `scripts/Audit.lean` independently walks the transitive
+axiom closure of the whole namespace and fails on anything beyond `propext`,
+`Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
+for what the kernel cannot see, including files that are never compiled.
+-/

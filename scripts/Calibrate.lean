@@ -125,15 +125,15 @@ run_cmd do
 
   -- The claim-word test must read the LAST COMPONENT, not the full name.
   -- A corpus named after its own headline claim (this one is called
-  -- `NonsoficGroupsExist`) otherwise matches every declaration in it, and the
+  -- `GroupApproximation`) otherwise matches every declaration in it, and the
   -- resulting 99 findings look like a working gate rather than a bug.
-  unless Audit.promisesClaim `NonsoficGroupsExist.unconditional_existence do
+  unless Audit.promisesClaim `GroupApproximation.unconditional_existence do
     failures := failures.push "promisesClaim misses a genuine headline claim"
-  if Audit.promisesClaim `NonsoficGroupsExist.mul_mem_tableDomain then
+  if Audit.promisesClaim `GroupApproximation.mul_mem_tableDomain then
     failures := failures.push
       "promisesClaim matches the NAMESPACE: every declaration in a corpus \
 named after its claim is reported"
-  if Audit.promisesClaim `NonsoficGroupsExist.Sub.unconditional_thing then
+  if Audit.promisesClaim `GroupApproximation.Sub.unconditional_thing then
     failures := failures.push "promisesClaim fires outside the corpus root"
 
   -- The axiom traversal must descend through proof terms.  Asserted separately

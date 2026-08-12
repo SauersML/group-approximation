@@ -241,4 +241,3 @@ on the fixed positive window.
 
 This is now a finite equivariant Frobenius-module problem, not an arbitrary
 matrix optimization.
-

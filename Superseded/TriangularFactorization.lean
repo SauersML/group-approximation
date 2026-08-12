@@ -1,6 +1,6 @@
-import NonsoficGroupsExist.KOne.WindowNonposReduction
-import NonsoficGroupsExist.KOne.CodeChangeUnits
-import NonsoficGroupsExist.KOne.ResidualReduction
+import GroupApproximation.KOne.WindowNonposReduction
+import GroupApproximation.KOne.CodeChangeUnits
+import GroupApproximation.KOne.ResidualReduction
 
 /-!
 # Triangular factorization implies the narrow-window kill
@@ -16,7 +16,7 @@ the factorization and performs the reduction, so the sole remaining
 input of the `K₁`-vanishing chain is `TriangularFactorization`.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace BinaryLeavitt
 
 open LeavittFamily MatrixDiagonalization
@@ -69,4 +69,4 @@ theorem narrowReduction_of_triangularFactorization
   exact stableUnits_le_centralClassGroup hmem
 
 end BinaryLeavitt
-end NonsoficGroupsExist
+end GroupApproximation

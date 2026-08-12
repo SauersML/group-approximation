@@ -15,7 +15,7 @@ import Superseded.WindowDichotomy
 # Superseded developments
 
 Structure theory that a later, shorter route made unnecessary.  Nothing in
-`NonsoficGroupsExist` imports any of it, and the library root does not import
+`GroupApproximation` imports any of it, and the library root does not import
 this module, so none of it reaches the kernel audit: `scripts/Audit.lean`
 walks the environment of the library root, and these declarations are not in
 it.  That separation is the point -- this code is explicitly off the trust

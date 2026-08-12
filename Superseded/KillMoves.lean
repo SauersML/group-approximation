@@ -1,4 +1,4 @@
-import NonsoficGroupsExist.KOne.IncomparableUnipotents
+import GroupApproximation.KOne.IncomparableUnipotents
 
 /-!
 # The unipotent kill move for negative parts
@@ -13,7 +13,7 @@ ready for the terminating induction, and the class relation is an
 equivalence through the compiled incomparable-unipotent certificate.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace LeavittFamily
 
 open MatrixDiagonalization
@@ -89,4 +89,4 @@ theorem unipotent_kill_step {x y : List (Fin 2)} (hxy : ¬x <+: y)
       exact mul_mem hu'H (inv_mem hmmem)
 
 end LeavittFamily
-end NonsoficGroupsExist
+end GroupApproximation

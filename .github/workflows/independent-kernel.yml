@@ -74,9 +74,9 @@ jobs:
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
-          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'NonsoficGroupsExist.lean', 'NonsoficGroupsExist/**/*.lean') }}
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}
           restore-keys: |
-            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'NonsoficGroupsExist.lean', 'NonsoficGroupsExist/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
             ${{ runner.os }}-nonsofic-build-
 
       - name: Fetch precompiled Mathlib
@@ -151,7 +151,7 @@ jobs:
       # `scripts/Audit.lean`'s `headlineTheorems` at run time rather than
       # duplicated here -- a hand copy of the list drifted once (14 of 23
       # names) while the comment claimed parity.  Every entry of that list
-      # resolves inside the `NonsoficGroupsExist` namespace, so the prefix is
+      # resolves inside the `GroupApproximation` namespace, so the prefix is
       # uniform; an entry that stops resolving fails the export loudly, which
       # is the check.  Streamed over a pipe so the export never has to be
       # materialised on disk.
@@ -160,11 +160,11 @@ jobs:
           set -euo pipefail
           roster="$(sed -n '/^def headlineTheorems/,/\]/p' scripts/Audit.lean \
             | grep -oE '``[A-Za-z0-9_.]+' | sed 's/^``//' \
-            | sed 's/^/NonsoficGroupsExist./')"
+            | sed 's/^/GroupApproximation./')"
           test -n "$roster"
           echo "roster ($(wc -l <<<"$roster") roots):"; echo "$roster"
           # shellcheck disable=SC2086
-          lake env ../lean4export/.lake/build/bin/lean4export NonsoficGroupsExist -- \
+          lake env ../lean4export/.lake/build/bin/lean4export GroupApproximation -- \
             $roster \
           | ../nanoda_lib/target/release/nanoda_bin nanoda-config.json
 
@@ -177,17 +177,17 @@ jobs:
       - name: Negative calibration (planted axiom must be rejected)
         run: |
           set -euo pipefail
-          cat > NonsoficGroupsExist/PlantedKernelCalibration.lean <<'LEAN'
+          cat > GroupApproximation/PlantedKernelCalibration.lean <<'LEAN'
           axiom plantedCalibrationAxiom : False
           theorem plantedCalibrationTheorem : False := plantedCalibrationAxiom
           LEAN
-          lake build NonsoficGroupsExist.PlantedKernelCalibration
+          lake build GroupApproximation.PlantedKernelCalibration
           if lake env ../lean4export/.lake/build/bin/lean4export \
-              NonsoficGroupsExist.PlantedKernelCalibration -- \
+              GroupApproximation.PlantedKernelCalibration -- \
               plantedCalibrationTheorem \
             | ../nanoda_lib/target/release/nanoda_bin nanoda-config.json; then
             echo "::error::planted unpermitted axiom was ACCEPTED; the independent check cannot say no"
             exit 1
           fi
           echo "planted axiom correctly rejected"
-          rm NonsoficGroupsExist/PlantedKernelCalibration.lean
+          rm GroupApproximation/PlantedKernelCalibration.lean

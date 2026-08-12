@@ -130,9 +130,9 @@ jobs:
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
-          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'NonsoficGroupsExist.lean', 'NonsoficGroupsExist/**/*.lean') }}-${{ github.run_id }}
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'NonsoficGroupsExist.lean', 'NonsoficGroupsExist/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
             ${{ runner.os }}-nonsofic-build-
 
       # Mathlib's own oleans, from the upstream build cache.  This is what makes
@@ -214,7 +214,7 @@ jobs:
       # snapshot on disk is then byte-identical to the one in the cache, and
       # re-uploading several GB per run buys nothing.
       - name: Save compiled project
-        if: always() && !startsWith(steps.build-restore.outputs.cache-matched-key, format('{0}-nonsofic-build-{1}-', runner.os, hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'NonsoficGroupsExist.lean', 'NonsoficGroupsExist/**/*.lean')))
+        if: always() && !startsWith(steps.build-restore.outputs.cache-matched-key, format('{0}-nonsofic-build-{1}-', runner.os, hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean')))
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build
@@ -258,7 +258,7 @@ jobs:
       # elaborator being correct.  It is shipped with Lean from v4.28 onward;
       # using the pinned toolchain also guarantees olean compatibility.
       - name: Fresh kernel re-check (leanchecker)
-        run: lake env leanchecker --fresh NonsoficGroupsExist
+        run: lake env leanchecker --fresh GroupApproximation
 
       # THE GATE.  The two scan steps above defer their verdict here so that one
       # run names every finding; this step is what makes that deferral safe.

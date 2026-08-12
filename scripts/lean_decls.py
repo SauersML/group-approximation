@@ -16,8 +16,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LEAN_ROOTS = (
-    REPO_ROOT / "NonsoficGroupsExist",
-    REPO_ROOT / "NonsoficGroupsExist.lean",
+    REPO_ROOT / "GroupApproximation",
+    REPO_ROOT / "GroupApproximation.lean",
     REPO_ROOT / "scripts",
 )
 
@@ -115,7 +115,7 @@ def build_index(repo: Path | None = None) -> dict[str, Path]:
     corpus cannot be calibrated.
     """
     base = Path(repo) if repo is not None else REPO_ROOT
-    roots = (base / "NonsoficGroupsExist", base / "NonsoficGroupsExist.lean",
+    roots = (base / "GroupApproximation", base / "GroupApproximation.lean",
              base / "scripts")
     index: dict[str, Path] = {}
     for root in roots:

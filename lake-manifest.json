@@ -91,6 +91,6 @@
    "inputRev": "v4.32.0",
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "NonsoficGroupsExist",
+ "name": "GroupApproximation",
  "lakeDir": ".lake",
  "fixedToolchain": false}

@@ -1,10 +1,10 @@
-import NonsoficGroupsExist
+import GroupApproximation
 import Audit.Scan
 import Lean.Elab.Command
 
 open Lean Meta Elab Command
 
-namespace NonsoficGroupsExist.AuditDetail
+namespace GroupApproximation.AuditDetail
 
 def allowedAxioms : List Name :=
   [``propext, ``Classical.choice, ``Quot.sound]
@@ -12,8 +12,8 @@ def allowedAxioms : List Name :=
 run_cmd do
   let env ← getEnv
   let findings ← liftTermElabM <|
-    Audit.allScans env `NonsoficGroupsExist allowedAxioms
+    Audit.allScans env `GroupApproximation allowedAxioms
   for f in findings do
     logInfo m!"{f.tag} | {f.decl} | {f.detail}"
 
-end NonsoficGroupsExist.AuditDetail
+end GroupApproximation.AuditDetail

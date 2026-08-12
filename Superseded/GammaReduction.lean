@@ -1,6 +1,6 @@
-import NonsoficGroupsExist.KOne.NilpotentTailKill
-import NonsoficGroupsExist.Leavitt.WhiteheadFlip
-import NonsoficGroupsExist.Leavitt.LeavittBalancedUnits
+import GroupApproximation.KOne.NilpotentTailKill
+import GroupApproximation.Leavitt.WhiteheadFlip
+import GroupApproximation.Leavitt.LeavittBalancedUnits
 
 /-!
 # The γ-elimination chain
@@ -14,7 +14,7 @@ nilpotency of the pure tail — are explicit hypotheses here, to be
 discharged separately.
 -/
 
-namespace NonsoficGroupsExist
+namespace GroupApproximation
 namespace LeavittFamily
 
 open MatrixDiagonalization
@@ -90,4 +90,4 @@ theorem gamma_reduction [Nontrivial A]
   exact mul_mem hflip1 (mul_mem hgmem (mul_mem hflip2 hw2mem))
 
 end LeavittFamily
-end NonsoficGroupsExist
+end GroupApproximation
