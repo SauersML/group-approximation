@@ -44400,3 +44400,44 @@ inverse-root branch cut.  Tensoring the local cells and applying one exact
 global commutant mixer cannot finish FALSE.
 
 Full proof: docs/FALSE_FROBENIUS_CYCLIC_VECTOR_MIXING_NO_GO.md.
+
+# 2026-08-12: the inverse-root branch cut has linear positive distortion
+
+Let
+
+\[
+R_+=C[x_1,\ldots,x_d],\qquad
+\Gamma=E_r(R_+)\rtimes Q,
+\]
+
+with \(Q\) preserving polynomial degree, and fix any finite generating set
+\(S\) of \(\Gamma\).  If \(D_S\) is the maximum polynomial degree of the
+matrix components of \(S\cup S^{-1}\), then every word of length \(L\) has
+matrix entries of degree at most \(D_SL\).
+
+After imposing \(x_i^m=1\), the normal forms with exponents in
+\([0,m-1]^d\) are unique.  Therefore any positive word representing
+
+\[
+e_{ij}(\bar c x_1^{m-1}),\qquad \bar c\neq0,
+\]
+
+must have
+
+\[
+L\ge\frac{m-1}{D_S}.
+\]
+
+For the four-orbit Frobenius formula, \(\bar c=\pm1/2\) and
+\(x_1^{m-1}=x_1^{-1}\).  Hence the exact propagation cost obeys
+
+\[
+\lambda_m^-\ge\frac{m-1}{D_S}.
+\]
+
+So exact fold absorption really does escape every fixed positive word
+ball; this is intrinsic polynomial-degree distortion.  The theorem does
+not yet supply a matching upper bound or construct the needed low-cost
+Hilbert--Schmidt interpolation.
+
+Full proof: docs/FALSE_POSITIVE_INVERSE_ROOT_LINEAR_DISTORTION.md.
