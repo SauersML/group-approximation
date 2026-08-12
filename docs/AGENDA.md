@@ -4,6 +4,22 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-11: Ash--Rudolph supplies templates but leaves the closing kernel
+
+The unimodular modular-symbol theorem gives canonical level-independent local
+templates: every top-degree modular symbol is an integral sum of determinant-
+one symbols.  It does not yet prove the primal packet theorem.  Absolute
+cycles form the kernel of the boundary-at-infinity map inside the relative
+modular-symbol module.  Even an integral `0,+-1` boundary matrix with two
+entries per row can have kernel `Z(1,...,1)` and first minimum `sqrt(m)`.
+
+Thus the exact modular-symbol target is a bounded integral closing theorem:
+the kernel of the signed projective boundary incidence must be real-spanned
+by uniformly bounded integral combinations of unimodular symbols.  This
+identifies the canonical packet candidates and the precise missing family
+input without claiming that local generation implies global closing.  Full
+audit: `TRUE_ASH_RUDOLPH_PACKET_SCOPE_AUDIT.md`.
+
 ### 2026-08-11: exact primal-packet family screen isolates level 53
 
 Exact Gram--LLL has now been run on the primal harmonic lattices at levels
