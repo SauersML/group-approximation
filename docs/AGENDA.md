@@ -4,6 +4,38 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the inner first-order atlas obstruction also holds in characteristic zero
+
+The modular certificate is an instance of a general representation-free
+principle. At an inner alignment of two finite-group charts, every
+square-zero word derivative is a signed prefix element `d_w in k[G]`.
+Trivial-word constraints contribute `d_z`, survivor centrality contributes
+`(g-1)d_s`, and membership of the marked derivative in their generated left
+ideal kills the marked phase in every `k[G]`-module at once.
+
+For the Leavitt `A_8` atlas, an exact rational annihilator test across all
+fourteen complex irreducible sectors proves
+
+```text
+d_11 in sum_z Q[A_8] d_z
+        + sum_(s in {11,30,44,55}, g in S)
+            Q[A_8] (g-1)d_s.
+```
+
+The twelve tested `S_8` Specht restrictions cover ten nonsplit sectors and
+both constituents of each of the two self-conjugate partitions. Every
+target rank increment is zero. Thus characteristic zero is closed
+universally for arbitrary modules, multiplicities, and off-diagonal
+couplings at the fixed inner square-zero alignment. Exact screens on the
+15-point and 15-hyperplane modules also give zero phase over
+`F_3,F_5,F_7,F_11`, but these four modular computations are not universal.
+
+This does not prove local unitary rigidity or nonhyperlinearity. The live
+atlas branches must be nonlinear/higher-order, leave the inner order-zero
+alignment, separate the chart modules, or use an odd modular characteristic
+not covered by a universal ideal certificate. Full theorem and replay:
+`docs/FALSE_ATLAS_FIRST_ORDER_GROUP_ALGEBRA_PRINCIPLE.md`.
+
 ### 2026-08-12: Gaussian and free-Gaussian amenable-orbit fibers also collapse
 
 Replacing the Bernoulli fiber over `G/C_G(h)` by either the classical
@@ -189,8 +221,11 @@ Therefore the 24 certified zeros and commutant-valued centrality of all four
 survivors kill the `s_11` jet on every `F_2[A_8]` module, including arbitrary
 indecomposables, direct sums, multiplicities, and off-diagonal couplings.
 Searching for a new characteristic-two module at the inner square-zero
-alignment is closed.  A surviving construction must change characteristic,
-deformation order/geometry, order-zero holonomy, or the common-module setup.
+alignment is closed. The characteristic-zero analogue is now closed as
+well by the signed group-algebra theorem above. A surviving construction
+must change deformation order/geometry, order-zero holonomy, the
+common-module setup, or use an odd modular characteristic not yet covered by
+a universal certificate.
 Full theorem and replayable certificate:
 `docs/FALSE_ATLAS_UNIVERSAL_MODULAR_FIRST_ORDER_NO_GO.md`.
 

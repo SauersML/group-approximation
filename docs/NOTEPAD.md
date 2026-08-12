@@ -1,5 +1,47 @@
 # NOTEPAD
 
+## Universal signed first-order atlas obstruction in characteristic zero (2026-08-12)
+
+The characteristic-two group-algebra certificate is part of a general
+principle. For an inner-aligned word `w` in two finite-group charts, put
+
+```text
+d_w=sum_(chart-2 positions t)(prefix_(t-1)-prefix_t) in k[G].
+```
+
+If the second chart is conjugated by `1+epsilon X`, then its word value is
+exactly `1+epsilon(d_w.X)`. Hence a left-ideal identity among the `d_w`
+holds functorially in every module before any representation is chosen.
+
+For the `A_8` Leavitt atlas, exact Sage seminormal matrices test the 24 zero
+derivatives and the 24 centrality derivatives `(g-1)d_s` in every simple
+characteristic-zero sector. One `S_8` partition from each conjugate pair
+gives twelve restrictions; the self-conjugate partitions `(4,2,1,1)` and
+`(3,3,2)` each split, so all fourteen complex `A_8` irreducibles are
+covered. In every sector, `d_11` kills the common kernel of the constraints.
+By the semisimple annihilator criterion,
+
+```text
+d_11 in sum_z Q[A_8]d_z
+        + sum_(s,g) Q[A_8](g-1)d_s.
+```
+
+Thus every characteristic-zero module, arbitrary multiplicity, and every
+off-diagonal block kills the desired central first jet at the fixed inner
+alignment. The output hash is
+`f4c775d64f0dba2e0c7baa0e13191ae2d3ba4f9390be9aa261f484b920042a5c`.
+
+Exact point/hyperplane screens over `F_3,F_5,F_7,F_11` independently have
+constraint rank `212`, nullity `13`, and zero phase image in all four ordered
+Hom blocks. They are not universal modular certificates. See
+`docs/FALSE_ATLAS_FIRST_ORDER_GROUP_ALGEBRA_PRINCIPLE.md`.
+
+The correct live boundary is no longer merely “change characteristic.” A
+FALSE atlas must use nonlinear/higher-order geometry, a different order-zero
+alignment, non-common chart modules, or an odd modular characteristic for
+which the universal ideal question genuinely fails. Nothing here proves
+unitary local rigidity or the nonhyperlinearity of the Leavitt witness.
+
 ## Finite-index Bernoulli tower: exact local wall and Kazhdan obstruction (2026-08-12)
 
 For `Gamma=Z^3 semidirect SL_3(Z)` and `alpha(z,A)=(2z,A)`, the coset

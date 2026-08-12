@@ -119,16 +119,18 @@ Archived SHA-256 hashes:
 ## Scope and next construction boundary
 
 This is a universal theorem about square-zero deformations in characteristic
-two at the fixed inner alignment.  It is not a characteristic-zero unitary
-rigidity theorem and does not exclude a nonlinear finite/tracial atlas with
-different order-zero holonomy.  In particular, it does not by itself prove
-or disprove hyperlinearity of the Leavitt witness.
+two at the fixed inner alignment. It is not a unitary local-rigidity theorem
+and does not exclude a nonlinear finite/tracial atlas with different
+order-zero holonomy. The signed characteristic-zero analogue has since been
+proved in `FALSE_ATLAS_FIRST_ORDER_GROUP_ALGEBRA_PRINCIPLE.md`; neither
+result by itself proves or disproves hyperlinearity of the Leavitt witness.
 
 The previous strategy “find a new indecomposable \(\mathbb F_2[A_8]\)-module”
 is now closed: `(UM7)` is functorial over **all** such modules.  A surviving
 FALSE construction must instead change at least one of:
 
-1. the coefficient characteristic or deformation geometry;
+1. an odd modular characteristic not covered by a universal certificate, or
+   different deformation geometry;
 2. the square-zero order;
 3. the inner order-zero chart alignment; or
 4. the use of one common (A_8)-module for the two full charts.
