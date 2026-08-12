@@ -16,7 +16,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
-from sage.all import QQ, RDF, ZZ, identity_matrix, lcm, matrix, vector
+from sage.all import QQ, RealField, ZZ, identity_matrix, lcm, matrix, vector
 
 
 class SignedDSU:
@@ -310,11 +310,22 @@ def main() -> None:
             raise AssertionError("range reduction changed the harmonic projection")
 
         variable = QQ["lambda"].gen()
+        real_field = RealField(256)
+
         def section_metric(candidate):
             candidate_gram = candidate * candidate.transpose()
             polynomial = (candidate_gram - variable * qsharp_gram).det()
-            roots = sorted(float(root) for root in polynomial.roots(
-                ring=RDF, multiplicities=False))
+            generalized = qsharp_gram.inverse() * candidate_gram
+            trace = generalized.trace()
+            determinant = generalized.det()
+            discriminant = trace * trace - 4 * determinant
+            if discriminant < 0:
+                raise AssertionError("generalized section spectrum is not real")
+            root_discriminant = real_field(discriminant).sqrt()
+            roots = sorted([
+                float((real_field(trace) - root_discriminant) / 2),
+                float((real_field(trace) + root_discriminant) / 2),
+            ])
             return roots[-1], candidate_gram, polynomial, roots
 
         raw_metric = section_metric(raw_lift_basis)

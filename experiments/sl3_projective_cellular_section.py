@@ -14,7 +14,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sage.all import QQ, RDF, ZZ, matrix
+from sage.all import QQ, RealField, ZZ, matrix
 
 
 def read_lift(path: Path):
@@ -64,8 +64,18 @@ def main() -> None:
 
     variable = QQ["lambda"].gen()
     polynomial = (lift_gram - variable * harmonic_gram).det()
-    roots = sorted(float(root) for root in polynomial.roots(
-        ring=RDF, multiplicities=False))
+    generalized = harmonic_gram.inverse() * lift_gram
+    trace = generalized.trace()
+    determinant = generalized.det()
+    discriminant = trace * trace - 4 * determinant
+    if discriminant < 0:
+        raise AssertionError("generalized section spectrum is not real")
+    real_field = RealField(256)
+    root_discriminant = real_field(discriminant).sqrt()
+    roots = sorted([
+        float((real_field(trace) - root_discriminant) / 2),
+        float((real_field(trace) + root_discriminant) / 2),
+    ])
     if len(roots) != 2 or roots[0] <= 0:
         raise AssertionError("invalid generalized section spectrum")
 
