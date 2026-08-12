@@ -1625,6 +1625,19 @@ maps, with vanishing prefix-bad rank.  The fixed-base square-zero jet rings
 give local candidates, but their simultaneous incidence/fusion theorem is
 still open.  See `FALSE_PAIRED_FOURIER_FINITE_MODULE_FUNCTOR.md`.
 
+There is a necessary quantitative warning for combining that cell with the
+exact external principal bundle.  In an `M`-level cyclic polarization, the
+second compressor accumulates one `q^(-1)` shear after each complete cycle:
+`Ad(S_1^M)B_1(z)=B_1(q^(-1)z)`.  If `q` has order `r` on the marked tangent
+module, then the projective order of `S_1` is divisible by `Mr`.  The naive
+coinduced exact bundle consequently has common-positive agreement density
+only `1/r`; for the primitive `p^n` clock its squared HS discrepancy is
+`2(1-p^(-(n-1)))`, independently of `M`.  Thus long-chain completion and
+exact external completion cannot simply be tensored or coinduced.  The live
+finite target is a holonomy-canceling multi-chain incidence code, or a
+genuinely nonconstant solution of the fiber equation `(LFE29)`.  See
+`FALSE_LONG_CHAIN_BUNDLE_MONODROMY_NO_GO.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
