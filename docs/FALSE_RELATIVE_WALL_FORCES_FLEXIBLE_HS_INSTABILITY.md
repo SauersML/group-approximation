@@ -157,10 +157,41 @@ relative wall, and it does not rule out weak ucp corrections into genuinely
 infinite-dimensional representations.  The finite-dimension equality behind
 the compressor matching theorem is exactly what makes `(WFI12)` work.
 
+The infinite-dimensional escape is explicit.  Let `lambda_(G/Gamma)` be the
+quasi-regular representation on `ell^2(G/Gamma)`, let `p_Gamma` be the
+rank-one projection onto the basis vector `delta_Gamma`, and put
+
+```text
+V=1-2p_Gamma.                                           (WFI15)
+```
+
+Every element of `Gamma` fixes `delta_Gamma`; since the orthogonal complement
+of a fixed vector is invariant as well, `p_Gamma` and `V` commute with
+`lambda_(G/Gamma)(Gamma)`.  In the strict pair used here one chooses
+`h notin Gamma` (and any wall satisfying `(WFI3)--(WFI4)` forces this), so
+
+```text
+lambda_(G/Gamma)(h)delta_Gamma=delta_(h Gamma)
+                         perpendicular delta_Gamma.
+```
+
+Consequently
+
+```text
+[V,lambda_(G/Gamma)(h)]!=0.                            (WFI16)
+```
+
+Thus even a finite-rank operator in the relative commutant of an
+infinite-dimensional representation can detect the inverse predecessor.
+There is no compact-operator analogue of the finite-dimensional bicommutant
+collapse.  A weak ucp dilation may place precisely this shift sector outside
+the finite compression, so Theorem 1 cannot be promoted from flexible
+HS-stability to weak ucp-stability by the leakage argument alone.
+
 Thus the implication is one-way but sharp for the present endpoint:
 
 ```text
-relative wall  =>  flexible HS-instability of G.       (WFI15)
+relative wall  =>  flexible HS-instability of G.       (WFI17)
 ```
 
 The new stability papers do not construct the wall.  They identify its
