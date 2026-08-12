@@ -1554,9 +1554,8 @@ theorem re_normTrace_commutator_ge {G : Type*} [Group G] (Y : FiniteModel)
 
 `card_fixed_commutator_constraint` carries a compatibility hypothesis, a
 goodness hypothesis and a trace hypothesis at once.  A theorem whose hypotheses
-cannot all hold is vacuously true and passes every detector in this
-development -- `UNWITNESSED` guards `Prop`-valued definitions, not hypothesis
-sets -- so it is worth exhibiting an instance where they hold simultaneously.
+cannot all hold is vacuously true, so it is worth exhibiting an instance where
+they hold simultaneously.
 
 The two-point model with the trivial action and trivial phases does it, and it
 attains the bound with equality: both sides are `4`.  So the chain is neither

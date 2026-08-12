@@ -114,9 +114,8 @@ theorem cleanConditionalOnItsPremise (h : (0 : Nat) = 0) : ∃ n : Nat, n = 0 :=
 
 The real roster of tagged transcriptions is driver config; the calibration
 tags `PlantedLiteratureInput` below, so it needs no corpus.  The witness
-matters: it makes LAUNDERED_PROP silent about the proposition, which is
-exactly the evasion the literature scan exists to close -- established at one
-degenerate instance, assumed everywhere it counts. -/
+matters because the literature scan must distinguish proving a tagged input
+from assuming it downstream. -/
 
 /-- The planted stand-in for a literature transcription. -/
 def PlantedLiteratureInput : Prop := ∀ n : Nat, n = n
@@ -156,8 +155,8 @@ body. -/
 structure PlantedLiteraturePacket : Prop where
   input : PlantedLiteratureInput
 
-/-- Must NOT be LITERATURE_INPUT (conclusion head is tagged-reaching), and
-keeps UNWITNESSED silent about the packet. -/
+/-- Must NOT be LITERATURE_INPUT: a conclusion whose head reaches the tagged
+input is a proof of the packet, not a use of it as an assumption. -/
 theorem plantedLiteraturePacketWitness : PlantedLiteraturePacket :=
   ⟨plantedLiteratureWitness⟩
 

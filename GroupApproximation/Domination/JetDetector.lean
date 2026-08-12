@@ -1,21 +1,17 @@
 import GroupApproximation.Domination.PresentationRadical
 import GroupApproximation.Sofic.LEFSofic
 import Mathlib.GroupTheory.Finiteness
-import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 
 /-!
-# The algebraic finite-jet contradiction
+# Residually finite detectors for presentation radicals
 
-This file isolates the algebraic end of the fixed-dimensional arc argument.
-Once truncation produces an exact representation of the presented group in a
-finite-dimensional coefficient algebra and the marked word survives, the
-word cannot belong to the sofic radical.
+This file isolates the algebraic detector used by fixed-dimensional arguments.
+If a homomorphism into a residually finite image detects the marked word, then
+that word cannot belong to the sofic radical of the presentation.
 
-The external theorem which supplies residual finiteness is Mal'cev's theorem:
-every finitely generated linear group over a field is residually finite.  We
-do not rebrand that classical theorem as part of the contribution.  The first
-endpoint below is stated at exactly the interface Mal'cev supplies, while the
-analytic file is responsible only for manufacturing the finite jet.
+The separate finite-generation lemma records the other algebraic input needed
+when Mal'cev's theorem is used to establish residual finiteness of a linear
+image.
 -/
 
 namespace GroupApproximation
