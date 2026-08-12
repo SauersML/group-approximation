@@ -71,6 +71,12 @@ The bare four-coordinate comb graph is Hall-balanced, so any such deficit
 must arise only after Pauli/root-sector compression; this is a fast and
 decisive falsification test.
 
+Do not search the current radius-five collision tree for a single linear
+Hecke edge.  The exact archived scan has no word with exactly one transverse
+second-chart syllable, hence no direct equation `W A = B W` after
+`H`-exactification.  The support graph must be derived from quadratic or
+higher block equations (or from a genuinely new relation packet).
+
 The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect

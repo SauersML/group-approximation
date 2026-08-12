@@ -409,6 +409,26 @@ one additive Cuntz--Leavitt relation.  If no such identities survive taking
 fixed coefficients or partial traces, the coefficient route should be
 discarded rather than supported by further unrestricted optimization.
 
+The simplest degree-one version of Gate 3 is already ruled out by the exact
+radius-five scan.  After the fixed classical (H)-alignment, every collision
+word has either zero or at least two transverse second-chart syllables; the
+archived histogram has no entry at one.  Consequently the complete window
+produces no relation of the form
+
+\[
+ W\lambda(a)=\lambda(b)W
+ \tag{RPC26a}
+\]
+
+after merely commuting the (H)-syllables through (W).  This is recorded
+by
+`experiments/atlas_interior_single_bridge.py` and
+`experiments/atlas-interior-single-bridge.json`, whose exact output has
+`single_transverse_second_chart_equations=0`.  Thus the Hall or one-cut
+support constraint must be extracted from genuinely quadratic-or-higher
+block equations, or from a relation packet outside this collision tree; a
+linear Hecke synchronization edge is not hidden in the current window.
+
 There is a precise reason this extraction could distinguish the exact
 Leavitt model from matrix microstates.  In the left regular representation of
 \(Q\), decomposition over the finite chart gives an infinite coset

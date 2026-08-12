@@ -3311,3 +3311,51 @@ Charmenability with trivial amenable radical would suffice, but no known
 group lies in that overlap.  See `FALSE_RECENT_LITERATURE_AUDIT.md`, Section
 7.  Do not cite factor universality as a discrete-group construction without
 proving regularity of the generated character.
+
+### 2026-08-12: consolidate the Clifford endpoint; test finite Hall support
+
+The full fermionic crossed product and the perfect even-core CAR endpoint
+are exactly the same CE problem.  If
+
+```text
+N_even=A_CAR crossed_product G
+```
+
+and `C_o` is one odd Majorana, then
+
+```text
+M_full = N_even crossed_product_(Ad C_o) C_2.
+```
+
+Parity supplies the grading and conditional expectation.  Hence
+`M_full` is CE iff `N_even` is CE: one direction is inheritance by
+subalgebras, and the other is finite-crossed-product embedding into
+`M_2(N_even)`.  The full model displays the exact relative wall, while the
+even model supplies the perfect nonsofic group and canonical CAR character;
+do not count them as independent attacks.  See
+`PERFECT_CORE_KUN_THOM_WREATH.md` and
+`FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md`.
+
+For the Leavitt atlas, finite coefficient extraction now has a sharper
+support-only test.  If a unitary block matrix `W in M_m(D)` is forced to map
+source sectors `S` only into target sectors `T`, then
+
+```text
+(1/m) sum_(j in S, i notin T) ||W_ij||_2^2
+    >= (|S|-|T|)_+/m.
+```
+
+Thus a Hall-deficient root-character support graph gives a uniform defect
+floor without reconstructing a full Leavitt family.  The bare four-by-four
+comb support is Hall-balanced, so the deficit must appear only after the
+Pauli/root-sector compression.  If no such deficit occurs, the next target
+is the one-cut estimate `(RPC47)`: zero lower leakage and positive upper
+leakage across the rank-three-versus-one comb cut.  See
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md` and
+`HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`.
+
+The existing exact radius-five collision scan also closes the naive linear
+Hecke version: after (H)-alignment there are zero words with exactly one
+transverse second-chart syllable, so this window yields no direct
+`W A = B W` synchronization edge.  Any Hall/one-cut extraction must use
+quadratic-or-higher block equations or a new relation packet.
