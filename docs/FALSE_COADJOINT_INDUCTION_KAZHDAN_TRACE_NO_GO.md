@@ -172,3 +172,27 @@ What the theorem does prove is that the amenable coadjoint orbit solves
 only the algebraic and rooted-Schreier parts of the construction. Positive
 normalized-trace amplification must come from genuinely paired relative
 holonomy, not from repeating or compressing the exact induced orbit.
+
+## 7. Literature scope
+
+The general equivalence between finite-rank Folner sequences and amenable
+traces is standard operator-algebraic background; see Ara--Lledo and the
+survey of Lledo--Yakubovich. Bekka--Kalantar treat spectral-gap rigidity for
+quasi-regular and, more generally, induced representations. The contribution
+of this note is not a novelty claim for that background. It records the
+one-line quantitative Kazhdan estimate `(CIT2)` in exactly the density-matrix
+normalization needed by the framed FALSE construction and uses it to remove
+a concrete, otherwise tempting amplification experiment.
+
+## References
+
+Pere Ara and Fernando Lledo, *Amenable traces and Folner C-star algebras*,
+J. Funct. Anal. 264 (2013), 1797--1814; arXiv:1206.1488.
+
+Bachir Bekka and Mehrdad Kalantar, *Quasi-regular representations of
+discrete groups and associated C-star algebras*, Trans. Amer. Math. Soc. 373
+(2020), 2105--2133; arXiv:1903.00202.
+
+Fernando Lledo and Dmitry Yakubovich, *Folner sequences in operator theory
+and operator algebras*, Rev. Math. Phys. 26 (2014), 1430002;
+arXiv:1303.3392.
