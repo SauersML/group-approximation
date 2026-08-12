@@ -43426,3 +43426,41 @@ The estimate is stronger than pointwise bounded labels: a sparse set of
 macroscopic transitions is allowed.  The fixed order-`p` Bockstein phase is
 unchanged.  What remains unproved is whether the actual Kun--Thom Shapiro
 transition system admits transversals satisfying this moment condition.
+
+### Correction and Ioana coherent-lift criterion
+
+The preceding paragraph's product-only condition omitted the two endpoint
+conditions.  The exact simultaneous criterion is
+
+`R_*/M -> 0`, `A_*/M -> 0`, and `R_* A_*/M -> 0`.
+
+Full endpoint proof: `docs/FALSE_INDUCED_WEYL_SEAM_ENDPOINT_AUDIT.md`.
+
+`docs/FALSE_IOANA_COHERENT_SCHREIER_LIFT_CRITERION.md` proves a new strong
+sufficient condition for the actual Schreier gate.  If the growing finite
+transition cocycles are reductions of one cocycle valued in the fixed
+countable group `BS(1,p+1)`, Ioana's profinite cocycle superrigidity makes
+that cocycle finite-stage up to cohomology.  Although
+the measurable transfer map need not be finite-stage, its finite reductions
+can then be approximated by deep cylinder gauges with exceptional measure
+`M^(-4)`.  This gives
+
+`R_*=O(1)` and `A_*=O(1)`,
+
+so all three normalized statistics vanish.
+
+There is an apparent integral-chart obstruction.  If a fixed element has
+horocyclic coordinate `m/(p+1)^d` not in `Z`, its centered reduction `r_k`
+modulo `M_k` satisfies
+
+`liminf |r_k|/M_k >= 1/(p+1)^d`.
+
+But Ioana's cocycle has finite-stage, hence finite, positive-generator
+range.  One constant conjugation by `c^D`, with `D` clearing every finite
+`(p+1)`-denominator, sends `(u,a)` to `((p+1)^D u,a)`.  It therefore makes
+all relevant horocyclic coordinates integral simultaneously.  Consequently
+a coherent `BS(1,p+1)`-valued lift alone implies `R_*=O(1)`, `A_*=O(1)` and
+all three limits.  Applying Ioana separately to the finite targets does not
+give uniform control, and the natural profinite inverse-limit target is
+uncountable.  The coherent lift for the real transition system, or direct
+three-moment transversals, has not yet been constructed.
