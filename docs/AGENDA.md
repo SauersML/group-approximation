@@ -1608,6 +1608,7 @@ on the fixed positive polynomial window.  Its finite input is now the
 explicit principal-bundle cocycle, not an arbitrary matrix family.  See
 `FALSE_RADICAL_BS_INTEGRAL_CYCLE_AMPLIFIER.md`,
 `FALSE_RADICAL_BS_Q_BIMODULE_EXTENSION.md`, and
+`FALSE_PAIRED_FOURIER_PRINCIPAL_BUNDLE_SPLICE.md` and
 `FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
 
 The principal-bundle cocycle cannot be ignored by keeping the additive

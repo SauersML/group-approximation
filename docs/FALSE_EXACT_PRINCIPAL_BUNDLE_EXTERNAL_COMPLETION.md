@@ -226,76 +226,17 @@ relations used by the marked Baumslag--Solitar slice are exact.
 Finally, `(QBE6)` is unchanged by tensoring with `ell^2(K_k)`, so `(PBE5)`
 follows.
 
-## 5. Finite-order unitary fibers and the paired Fourier cell
+## 5. Paired Fourier-cell splice
 
-The same argument does not require a regular `F`-fiber.  Let `E` be a
-finite-dimensional Hilbert space, let `H<=K`, and let
-
-`Theta:H->U(E)`                                        `(PBE24)`
-
-be an anti-representation.  On each left `H`-orbit in `K`, choose a
-representative `x` and define a block-diagonal gauge on
-`E tensor ell^2(K)` by
-
-`W_(hx)=Theta(h)`.                                     `(PBE25)`
-
-Conjugating the ordinary `K`-permutation action by this gauge gives an exact
-representation `Psi_E` of `K`.  The same calculation as `(PBE11b)` yields
-
-`Psi_E(h)=Theta(h) tensor L_K(h)` for every `h in H`. `(PBE26)`
-
-In particular, let `A,B in U(E)` be commuting finite-order unitaries.  If
-`m` is a common multiple of their orders, take
-
-`K=SL_d(Z/mZ)`,
-`H=<I+e_12,I+e_13>~=(Z/mZ)^2`,                        `(PBE27)`
-
-and prescribe the two generators of `H` to be `A,B`.  Pullback along
-`SL_d(Z)->K` is an honest external representation with those two fiber
-operators, up to the harmless common left-regular factors in `(PBE26)`.
-
-This applies directly to the compressor pair in
-`FALSE_RADICAL_BS_PAIRED_FOURIER_Q_CELL.md`.  There
-
-`S_(0,n)=U_n^(-1)`,
-`S_(1,n)=U_n^(-1)T_n^(-1)`.                           `(PBE28)`
-
-Both have finite order.  For `S_(0,n)`, write `J` for the swap and `F` for
-the finite Fourier transform.  The identities `F^2=P`, `P^2=1`, and
-
-`(J(F tensor 1))^2=F tensor F`                        `(PBE29)`
-
-give `U_n^8=1`.
-
-For `S_(1,n)`, separate the finite right translation on the `Q_n`
-coordinate from the operator on the two finite `V_n` fibers.  The latter is
-a product of a finite Fourier transform, a coordinate swap, and an
-invertible linear permutation.  These operators normalize the finite
-Heisenberg group of `V_n times V_n`.  Its unitary normalizer modulo scalars
-is finite.  Hence a power of the product is scalar.  The determinant of each
-displayed Fourier, swap, and permutation operator is a root of unity, so
-that scalar is also a root of unity.  Thus the product, and therefore
-`S_(1,n)`, has finite order.                            `(PBE30)`
-
-Choose `m_n` divisible by both orders in `(PBE28)`.  Apply `(PBE27)` in
-sector `i` with
-
-`A=S_(i,n)`, `B=1`.                                   `(PBE31)`
-
-The image of the strict compressor is
-
-`S_(i,n) tensor L_(K_n)(t_n)`,                        `(PBE32)`
-
-and the image of the commuting stable transvection is
-`1 tensor L_(K_n)(s_n)`.  The extra regular factors cancel from all
-relations in the paired Fourier cell.  Consequently its common forward
-covariance, exact coefficient-`Q_n` covariance, stable-letter relation, and
-macroscopic inverse fold survive, while every abstract external `SL_d`
-relation is exact.
-
-This strengthens the diffuse prescribed-generator completion used in the
-Fourier-cell note: no spectral approximation is needed for the external
-presentation or for the selected commuting `t,s` pair.
+The unitary-fiber form of the same bundle argument and its application to
+the two finite-order Fourier compressors are proved in
+`FALSE_PAIRED_FOURIER_PRINCIPAL_BUNDLE_SPLICE.md`.  It gives two honest
+external `SL_d(Z)` representations whose distinguished transvection fibers
+are the two paired compressors and whose commuting stable transvection has
+trivial fiber holonomy.  Consequently the entire marked Fourier cell and
+every abstract external relation are exact simultaneously.  The separate
+note also proves the required finite-order Clifford statement, so it is the
+canonical source for that splice.
 
 ## 6. What remains
 
@@ -305,7 +246,7 @@ finite-quotient permutation factor is included.
 
 It does **not** yet define the images of
 
-`sl_r(V_k[x_1^(+-1),...,x_d^(+-1)])`                  `(PBE33)`
+`sl_r(V_k[x_1^(+-1),...,x_d^(+-1)])`                  `(PBE24)`
 
 or of the base elementary group.  Those operators must satisfy three
 conditions simultaneously:
