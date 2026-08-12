@@ -45570,3 +45570,57 @@ only remaining issue on this lane is coherent normalized-HS transport of
 the coset-indexed Pauli factors.  This is distinct from the collaborator's
 current projective-cycle computation and from the still-unbuilt
 three-moment Schreier transversals.
+
+# Amenable stabilizers give the real Schreier charts, not scalar transversals (2026-08-12)
+
+The proposed induced-Schreier experiment has a genuine positive input which
+was missing from the previous audit.  Gao--Patchell--Kunnawalkam Elayavalli,
+arXiv:2408.15470, Theorem 2.20, prove
+
+`K sofic, H amenable  ==>  K curvearrowright K/H is sofic.`       `(ASI1)`
+
+Consequently both relevant homogeneous actions have actual finite orbit
+charts:
+
+`G curvearrowright G/B`, `B~=BS(1,p+1)`,
+
+and
+
+`SL_d(Z) curvearrowright SL_d(Z)/<t,s>`, `<t,s>~=Z^2`.             `(ASI2)`
+
+Their proof is quantitative.  For finite `F subset K`, `W subset K/H`, and
+a section `sigma`, it uses only the finite stabilizer set
+
+`{sigma(x)^(-1)g sigma(g^(-1)x):g in F,x in W} subset H`,          `(ASI3)`
+
+then combines an almost-invariant tiling of `H` with a sofic approximation
+of `K`.  On a set of roots of density `1-o(1)` it produces injective local
+orbit charts satisfying exact covariance on the tested window.
+
+This does **not** construct one global finite principal bundle or one
+Schreier transversal.  The chart depends on the root.  Hence it does not
+prove that the old scalar moments
+
+`R_*/M`, `A_*/M`, `R_*A_*/M`                              `(ASI4)`
+
+tend to zero; the primitive scalar version is already impossible by the
+property-`(T)` holonomy lower bound.
+
+The useful replacement is a no-dilution lemma.  Put paired local matrix
+blocks over the good chart roots and identical dummy blocks elsewhere.  If
+the good-root density is `1-eta`, the local defect is `delta`, and every
+good block has marked gap at least `c`, then the induced block maps satisfy
+
+`global defect^2 <= delta^2+8 eta`,
+
+`global positive disagreement^2 <= delta^2+4 eta`,
+
+`global marked gap^2 >= (1-eta)c^2`.                              `(ASI5)`
+
+Thus the marked Fourier fold is not diluted by the size of the finite orbit
+chart.  The amenable-stabilizer theorem removes finite base transport as a
+bottleneck.  The remaining theorem is exactly to make the paired
+Frobenius/Steinberg fiber assignment functorial on those charts, equivalently
+to solve the matrix-valued relative-holonomy table from the stabilizer
+reduction.  Full proof and scope:
+`docs/FALSE_AMENABLE_STABILIZER_ORBIT_CHART_INDUCTION.md`.
