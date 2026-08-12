@@ -6,7 +6,7 @@ paper-facing Lean declaration below. The manuscript proof must follow that
 declaration's dependency path. Formalization itself is not claimed as
 mathematical novelty.
 
-## Theorem A: strong relative root control
+## Analytic input: strong relative root control
 
 Let `X` be finite and let `G = E₄((Z/2Z)⟨X⟩)`. Every Hilbert-space
 quasi-cocycle on `G`, for every unitary representation, is bounded on the
@@ -29,6 +29,8 @@ The localized Fourier estimate used by that proof is exposed as:
 
 ```text
 GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate
+GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_planeEnergyEstimate
+GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_controlRoot
 ```
 
 Credit boundary: relative `(TT)/T` for noncommutative universal lattices is
@@ -40,11 +42,11 @@ element has order two. The paper may present the internal quantitative
 rank-four argument as an independent proof and explicit estimate, but must
 not claim novelty for the bare relative theorem.
 
-## Theorem B: coordinate-block factorization
+## Theorem A: coordinate-block factorization
 
 Let `R` be a nontrivial ring such that every nonzero `a` admits `x, y` with
 `x * a * y = 1`. If `2 ≤ n`, every element of `GLₙ(R)` is a product of at most
-`2n + 6` factors, each either an elementary transvection or an element of the
+`2n + 4` factors, each either an elementary transvection or an element of the
 fixed coordinate copy of `GLₙ₋₁(R)`.
 
 Exact Lean declaration:
@@ -66,7 +68,7 @@ globalization belongs to the Shalom--Mimura rigidity tradition. The candidate
 contribution is only the explicit coordinate-block elimination theorem and its
 width. The manuscript must not call this bounded elementary generation.
 
-## Theorem C: four-hypothesis synthesis
+## Theorem B: four-hypothesis synthesis
 
 Let `R` be a nontrivial ring equipped with:
 
@@ -75,13 +77,13 @@ Let `R` be a nontrivial ring equipped with:
 3. strong sandwich division `a ≠ 0 -> ∃ x y, x*a*y = 1`;
 4. elementary triviality of every diagonal unit, `diag(u,1) ∈ E₂(R)`.
 
-Then `Eₙ(R)` has property `(TT)/T` for each `n ≥ 3` covered by the Lean
+Then `Eₙ(R)` has property `(TT)/T` for each `n ≥ 2` covered by the Lean
 statement.
 
 Exact Lean declaration:
 
 ```text
-GroupApproximation.PropertyTTPaper.finitePresentation_elementaryGroup_hasTTmodT
+GroupApproximation.PropertyTTPaper.finiteFreeQuotient_elementaryGroup_hasTTmodT
 ```
 
 Equivalent finite-type wrapper used for the paper's prose statement:
@@ -96,8 +98,9 @@ the following exact declarations:
 ```text
 GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
 GroupApproximation.PropertyTTPaper.leavitt_elementaryRankEquivalence
+GroupApproximation.PropertyTTPaper.elementaryBlockFlattening
 GroupApproximation.PropertyTTPaper.kazhdan_normalizedSet_globalization
-GroupApproximation.PropertyTTPaper.finitePresentation_rankFour_hasTTmodT
+GroupApproximation.PropertyTTPaper.finiteFreeQuotient_rankFour_hasTTmodT
 GroupApproximation.PropertyTTPaper.quasiCocycle_list_product_bound
 ```
 
@@ -113,9 +116,10 @@ Credit boundary: the definition and rigidity role of `(TT)/T` are due to
 Mimura. Property `(T)` for elementary groups over finitely generated
 associative rings is due to Ershov--Jaikin-Zapirain. Matrix self-similarity and
 the relevant Leavitt-ring structure are classical. Only the synthesis from the
-exact hypotheses, using Theorems A and B, is a candidate contribution.
+exact hypotheses, using the analytic input and Theorem A, is a candidate
+contribution.
 
-## Proposition D: unstable rank-two elimination
+## Proposition: unstable rank-two elimination
 
 For every field `k`, every invertible `2 × 2` matrix over the binary Leavitt
 algebra is elementary. Equivalently,
@@ -140,9 +144,9 @@ a product of commutators; the classical rank-two Whitehead identity makes
 uses this established structural route and makes no novelty claim for the
 unstable equality.
 
-## Corollary E: the binary Leavitt algebra
+## Theorem C: the binary Leavitt algebra
 
-For every `n ≥ 3`, the elementary group over the binary Leavitt algebra has
+For every `n ≥ 2`, the elementary group over the binary Leavitt algebra has
 property `(TT)/T`.
 
 Exact Lean declaration:
@@ -155,9 +159,9 @@ Credit boundary: the binary Leavitt algebra's structural and `K`-theoretic
 facts are not claimed as new. The only possible novelty here is the resulting
 `(TT)/T` conclusion.
 
-## Corollary F: nonsofic and `(TT)/T`
+## Corollary: nonsofic and `(TT)/T`
 
-For every `n ≥ 3`, the elementary group over the binary Leavitt algebra has
+For every `n ≥ 2`, the elementary group over the binary Leavitt algebra has
 property `(TT)/T` and is nonsofic.
 
 Exact Lean declaration:

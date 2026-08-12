@@ -22,9 +22,9 @@ The broader rigidity endpoints are independent of the nonsofic construction:
 
 | Declaration | Statement |
 | --- | --- |
-| `FiniteTypeLeavittTT.elementaryGroup_hasTTmodT` | The four-hypothesis finite-type ring-class `(TT)/T` theorem, in every rank `≥ 3` |
-| `LeavittAllRanksTT.elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 3` |
-| `boundedProduct_coordinateBlockOrRoot` | Strong-division coordinate-block generation with width `2n + 6` |
+| `FiniteTypeLeavittTT.elementaryGroup_hasTTmodT` | The four-hypothesis finite-type ring-class `(TT)/T` theorem, in every rank `≥ 2` |
+| `LeavittAllRanksTT.elementaryGroup_hasTTmodT` | `E_n(L_{𝔽₂}(1,2))` has `(TT)/T` for every `n ≥ 2` |
+| `boundedProduct_coordinateBlockOrRoot` | Single-sandwich coordinate-block generation with width `2n + 4` |
 
 The original nonsofic endpoints are collected in
 `GroupApproximation/Endpoint/MainResults.lean`:
@@ -195,11 +195,9 @@ mathematical subject rather than by a single paper.
 | `Endpoint/` | §1 | `MainResults`, `Public`, `QuotientNonclosure`, the in-build `Audit` |
 
 The `d`-ary layer and `Monsters/` prove more than the manuscript states;
-they sit inside the audit gates but no numbered result maps onto them. The
-separate `Superseded` library holds developments that later proofs replaced;
-it is built so it cannot rot, but nothing imports it — it is off the trust
-surface. `official/` contains OpenAI's proof documents, not imported by
-Lean and distinct from the manuscript.
+they sit inside the audit gates but no numbered result maps onto them.
+The `official/` directory contains OpenAI's proof documents, is not imported
+by Lean, and is distinct from the manuscripts developed in this repository.
 
 ## A literature finding
 

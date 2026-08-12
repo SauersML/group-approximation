@@ -117,7 +117,7 @@ specialist confirmation.
    consequence.  The internal rank-four estimate is an independent
    quantitative proof, not a theorem-novelty claim.
 2. **Strong-division coordinate-block factorization.**  If every nonzero
-   `a` admits `xay = 1`, then `GL_n(R)` has width at most `2n + 6` with
+   `a` admits `xay = 1`, then `GL_n(R)` has width at most `2n + 4` with
    respect to elementary transvections together with one fixed coordinate
    copy of `GL_{n-1}(R)`.  This is not described as bounded elementary
    generation.
@@ -128,11 +128,11 @@ specialist confirmation.
    * `R` has single-sandwich division;
    * every `diag(u,1)` lies in `E_2(R)`.
 
-   Under these assumptions, `E_n(R)` has `(TT)/T` for every `n ≥ 3`.
+   Under these assumptions, `E_n(R)` has `(TT)/T` for every `n ≥ 2`.
    The paper may not abbreviate these assumptions to "purely infinite
    simple" or "binary self-similar" alone.
 4. **Binary Leavitt specialization.**  The unconditional theorem
-   `E_n(L_{F_2}(1,2))` has `(TT)/T` for `n ≥ 3` is a candidate new theorem.
+   `E_n(L_{F_2}(1,2))` has `(TT)/T` for `n ≥ 2` is a candidate new theorem.
 
 No sentence may use "first", "previously unknown", or "new" for items 1--5
 without a documented final literature search and, preferably, a direct query

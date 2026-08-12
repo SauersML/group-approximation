@@ -5,6 +5,7 @@
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{enumitem}
+\usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc}
@@ -322,7 +323,7 @@ squared norms sum to \(\norm z^2\).  Write a character as
 degree on which \(\chi_r\) is nontrivial, with value \(d+1\) for
 the trivial character.  The nontrivial pairs split into
 \[
- \begin{array}{c|c}
+ \begin{array}{c@{\quad}l}
  A&0<\nu(\chi_2)<\nu(\chi_1)\\
  B&0<\nu(\chi_1)=\nu(\chi_2)\\
  C&0<\nu(\chi_1)<\nu(\chi_2)\\
@@ -395,8 +396,8 @@ Combining~\eqref{eq:ABCB}--\eqref{eq:Bmass} gives
    +\tfrac32(G_{ji}+G_{ij})+U_{ji}+U_{ij}\notag\\
  &+\tfrac92(\partial_{1,d}+\partial_{2,d}).
 \end{align}
-This calculation accounts for the coefficient \(3/2\) in
-\eqref{eq:plane-energy}.
+This calculation accounts for the coefficient \(3/2\)
+in~\eqref{eq:plane-energy}.
 
 The boundary limit follows from an exact telescoping identity.  If
 \(T_{r,d}\) is the mass on which the \(r\)-th coordinate character
@@ -406,8 +407,8 @@ is trivial on \(A_{\le d}\), then
 \]
 The nonnegative sequence \(T_{r,d}\) decreases, so
 \(\partial_{r,d+1}=T_{r,d}-T_{r,d+1}\to0\).  Finally, \(V_d\)
-exhausts \(H_{ijk}\), and the left side of
-\eqref{eq:finite-mass} converges to \(\norm{z-Pz}^2\).  Passing to
+exhausts \(H_{ijk}\), and the left side
+of~\eqref{eq:finite-mass} converges to \(\norm{z-Pz}^2\).  Passing to
 the limit proves~\eqref{eq:plane-energy}.
 \end{proof}
 
@@ -997,8 +998,8 @@ Let \(L\) be the binary Leavitt algebra~\cite{Leavitt},
 \]
 The defining generators themselves form a binary Leavitt family,
 and the presentation makes \(L\) a finite-type \(\F_2\)-algebra.
-Ara--Goodearl--Pardo prove that \(L\) is purely infinite simple
-\cite[Theorem~4.2]{AraGoodearlPardo}; their
+Ara--Goodearl--Pardo prove that \(L\) is purely infinite
+simple~\cite[Theorem~4.2]{AraGoodearlPardo}; their
 Theorem~1.6 then gives the single-sandwich property.  It remains to
 discuss the unstable diagonal condition.
 
@@ -1027,7 +1028,7 @@ simple ring is a GE-ring and that
 \[
   K_1(R)\cong R^\times_{\mathrm{ab}}
 \]
-\cite[Theorem~2.4]{AraGoodearlPardo}.  Thus \(K_1(L)=0\) makes each
+by~\cite[Theorem~2.4]{AraGoodearlPardo}.  Thus \(K_1(L)=0\) makes each
 unit a product of commutators.  The standard \(2\times2\) Whitehead
 identity places \(\diag([a,b],1)\) in \(\EL_2(L)\); the GE property
 then gives \(\GL_2(L)=\EL_2(L)\), proving
@@ -1078,41 +1079,46 @@ The accompanying Lean formalization is available in the
 \href{\leanrepo}{project repository}.  The table below records the
 declaration corresponding to each principal statement.
 \fi
+Except where indicated, declarations are in the
+\nolinkurl{PropertyTTPaper} namespace.
 
 \medskip
 \noindent
+\begingroup
+\small
 \begin{tabularx}{\textwidth}{@{}p{.29\textwidth}X@{}}
-\hline
+\toprule
 Paper statement & Lean declaration \\
-\hline
+\midrule
 Theorem~\ref{thm:A} &
-\texttt{PropertyTTPaper.coordinateBlock\_factorization} \\
+\nolinkurl{coordinateBlock_factorization} \\
 Lemma~\ref{lem:pivot} &
-\texttt{PropertyTTPaper.fiveMove\_pivot} \\
+\nolinkurl{fiveMove_pivot} \\
 Lemma~\ref{lem:plane-energy} &
-\texttt{PropertyTTPaper.freeCharacteristicTwo\_planeEnergyEstimate} \\
+\nolinkurl{freeCharacteristicTwo_planeEnergyEstimate} \\
 Lemma~\ref{lem:localized-plane} &
-\texttt{PropertyTTPaper.freeCharacteristicTwo\_localizedPlaneEstimate} \\
+\nolinkurl{freeCharacteristicTwo_localizedPlaneEstimate} \\
 Lemma~\ref{lem:row-symmetry} &
-\texttt{PropertyTTPaper.freeCharacteristicTwo\_rowEmbedding\_controlRoot} \\
+\nolinkurl{freeCharacteristicTwo_rowEmbedding_controlRoot} \\
 Theorem~\ref{thm:root} &
-\texttt{PropertyTTPaper.freeCharacteristicTwo\_root\_hasRelativeTT} \\
+\nolinkurl{freeCharacteristicTwo_root_hasRelativeTT} \\
 Lemma~\ref{lem:kazhdan-globalization} &
-\texttt{PropertyTTPaper.kazhdan\_normalizedSet\_globalization} \\
+\nolinkurl{kazhdan_normalizedSet_globalization} \\
 Lemmas~\ref{lem:rank-equivalence} and~\ref{lem:gl-el} &
-\texttt{PropertyTTPaper.leavitt\_elementaryRankEquivalence},
-\texttt{PropertyTTPaper.elementaryGroup\_eq\_generalLinear} \\
+\nolinkurl{leavitt_elementaryRankEquivalence},
+\nolinkurl{elementaryGroup_eq_generalLinear} \\
 Proposition~\ref{prop:rank-four} &
-\texttt{PropertyTTPaper.finiteFreeQuotient\_rankFour\_hasTTmodT} \\
+\nolinkurl{finiteFreeQuotient_rankFour_hasTTmodT} \\
 Theorem~\ref{thm:B} &
-\texttt{PropertyTTPaper.finiteType\_elementaryGroup\_hasTTmodT} \\
+\nolinkurl{finiteType_elementaryGroup_hasTTmodT} \\
 Proposition~\ref{prop:diag} &
-\texttt{KOnePaper.diagUnit\_mem\_elementary} \\
+\nolinkurl{KOnePaper.diagUnit_mem_elementary} \\
 Theorem~\ref{thm:C} and Corollary~\ref{cor:nonsofic} &
-\texttt{PropertyTTPaper.binaryLeavitt\_elementaryGroup\_hasTTmodT},
-\texttt{PropertyTTPaper.binaryLeavitt\_elementaryGroup\_hasTTmodT\_and\_not\_isSofic} \\
-\hline
+\nolinkurl{binaryLeavitt_elementaryGroup_hasTTmodT},
+\nolinkurl{binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic} \\
+\bottomrule
 \end{tabularx}
+\endgroup
 
 \begin{thebibliography}{99}
 
