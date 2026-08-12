@@ -43267,3 +43267,30 @@ its fold pairing remains nonzero.  The next exact computation is the kernel
 of the finite vertex-to-edge restriction map in `H^2`, not a `2d` scalar
 gauge optimization.  Full proof:
 `docs/FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.
+
+### FALSE correction: the natural finite ring tower absorbs the clock class
+
+In a natural finite coefficient-ring image, positive and Laurent coefficient
+images coincide.  The positive vertex image is normal and contains the full
+finite translation subgroup
+
+`H_k=<h>=C_(p^(k+1))`.
+
+Hence every relative Shapiro double-coset stabilizer contains `H_k`.  Since
+`H_k` acts trivially on `J_k` and `p^(k+1)J_k=0`,
+
+`H_1(H_k,J_k)=J_k`.
+
+The inclusion map followed by the Fox clock projection is exactly
+
+`J_k -> J_k/(c-(1+p))J_k=C_(p^k)`.
+
+It is surjective, so the stabilizer image absorbs the entire clock coordinate
+and the relative mixed Schur class vanishes.  The local augmentation
+transgression may still be nonzero; it is killed at the subsequent induced
+vertex/positive relative step.
+
+Therefore larger natural finite-ring Schur computations are sterile.  A live
+model must keep `h` projectively outside the positive image, something no
+honest finite coefficient-ring quotient can do.  Full proof:
+`docs/FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md`.

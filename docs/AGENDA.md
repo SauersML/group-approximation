@@ -1793,6 +1793,24 @@ restriction but nonzero fold difference, equivalently a class in the kernel
 of vertex-to-edge restriction.  See
 `FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.
 
+The explicit finite clock is also absorbed by the relative Shapiro quotient
+in every natural finite coefficient-ring image.  There the positive image is
+normal and contains `H_k=<h>`.  Since `H_k` acts trivially on `J_k` and
+`p^(k+1) J_k=0`,
+
+`H_1(H_k,J_k)=J_k`,
+
+and inclusion into `B_k` followed by the clock projection is the surjection
+
+`J_k -> J_k/(c-(1+p))J_k=C_(p^k)`.
+
+Thus every stabilizer contains a subgroup whose homology already covers the
+whole clock coordinate; the relative class is zero at every level.  Do not
+run larger Schur computations on this natural tower.  A live construction
+must be genuinely projective/non-ring so that the Laurent translation stays
+outside the positive image.  See
+`FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with

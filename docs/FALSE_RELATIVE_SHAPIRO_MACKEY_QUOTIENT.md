@@ -164,6 +164,15 @@ Thus an explicit induced-module retraction up to a unit is sufficient.
 
 ## Application to the finite clock module
 
+**Closure for natural finite ring quotients.**  In the natural finite images
+of the current Kun--Thom pair, the positive subgroup is normal and contains
+the marked translation subgroup `<h>`.  Its map on `H_1` surjects onto the
+clock coordinate `J_k/(c-(p+1))J_k`.  Hence the relative quotient below kills
+the clock generator at every level.  See
+`FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md`.  The abstract criterion
+remains live only for a finite model which keeps `h` outside the positive
+stabilizer images.
+
 For
 
 \[
