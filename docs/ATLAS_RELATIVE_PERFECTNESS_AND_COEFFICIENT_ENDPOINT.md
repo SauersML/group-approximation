@@ -765,6 +765,31 @@ This gives the sharpest immediate computational gate:
 > compressor intertwiners, and test the resulting finite weighted bipartite
 > graph for a Hall-deficient source set.
 
+There is a categorical restriction on this gate.  The projections in a
+successful Hall graph cannot all be ambient spectral projections obtained by
+universal star-polynomials in the group unitaries.  Otherwise the same exact
+support inclusions would hold in the left regular representation inside the
+finite tracial algebra `L(Q)`.  Applying `(RPC43)` there would already rule
+out a Hall deficit.  Equivalently, if exact ambient relations give
+
+\[
+ WQ_SW^*\le P_{N(S)},
+\]
+
+then traciality itself gives
+
+\[
+ \tau(Q_S)=\tau(WQ_SW^*)\le\tau(P_{N(S)}).
+ \tag{RPC43a}
+\]
+
+Thus the finite test must first disintegrate the canonical regular chart
+`ell^2(A_8) tensor C^k` and take support in the finite coefficient or
+multiplicity algebra.  That disintegration is not an intrinsic ambient
+operation in `L(Q)`, whose corresponding multiplicity space is infinite.
+Ambient subgroup Fourier projections may organize the calculation, but
+they cannot themselves supply the deficient graph.
+
 The visible support graph of the bare four-by-four comb matrix `(RPC41)` is
 Hall-balanced: its diagonal already supplies a perfect matching.  Therefore
 `(RPC43)` does not by itself prove anything from the printed triangular
@@ -918,6 +943,7 @@ false orthogonality shortcut ruled out by `(RPC33)`--`(RPC37)`.
 This explains the independent-sign calibration `(RPC33)`--`(RPC37)` at all
 levels.  Deeper central-root Fourier decomposition alone cannot prove
 nonhyperlinearity.  A Hall deficit, if one exists, must use additional
-support constraints from the raw second compressor and noncentral adjacent
-roots, which couple the two freely extending subtrees.  Otherwise the live
-target remains the positive-versus-forbidden one-cut estimate `(RPC47)`.
+support constraints from block coefficients of the raw second compressor and
+noncentral adjacent roots, which couple the two freely extending subtrees
+after canonical regular-chart disintegration.  Otherwise the live target
+remains the positive-versus-forbidden one-cut estimate `(RPC47)`.

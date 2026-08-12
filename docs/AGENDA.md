@@ -3369,3 +3369,12 @@ remains true on the negative source-root sector because compression fixes
 only the chosen subtree sign, leaving the other subtree free.  A useful
 finite-support obstruction must therefore include the raw second compressor
 and adjacent noncentral roots, rather than merely deeper central roots.
+
+More generally, no Hall deficit can be built solely from ambient subgroup
+spectral projections: the exact Leavitt representation inside the finite
+tracial algebra `L(Q)` obeys the same universal support relations, and trace
+forces every such neighbourhood to have at least the source weight.  Hall is
+still live only after the non-intrinsic canonical regular-chart
+disintegration, in the finite block-coefficient/multiplicity algebra.  The
+raw compressor and adjacent roots are inputs to that coefficient
+calculation, not themselves ambient deficient projections.

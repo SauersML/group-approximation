@@ -71,6 +71,12 @@ The bare four-coordinate comb graph is Hall-balanced, so any such deficit
 must arise only after Pauli/root-sector compression; this is a fast and
 decisive falsification test.
 
+The Hall projections must live in the finite coefficient/multiplicity
+algebra after canonical regular-chart disintegration.  A graph made only
+from ambient finite-subgroup spectral projections is impossible: its exact
+support relations also hold in the finite tracial algebra `L(Q)`, where
+unitary conjugacy and trace already enforce the weighted Hall inequality.
+
 Do not search the current radius-five collision tree for a single linear
 Hecke edge.  The exact archived scan has no word with exactly one transverse
 second-chart syllable, hence no direct equation `W A = B W` after
@@ -82,8 +88,9 @@ compressor alone.  At every finite binary depth, each source character is
 connected to all sign extensions on the unused subtree, and the total trace
 weight of those extensions equals the source weight exactly.  The graph is
 weighted-Hall-balanced.  The first meaningful support calculation must
-include the raw second compressor and adjacent noncentral roots, which are
-the only displayed relations coupling the two subtrees.
+include block coefficients of the raw second compressor and adjacent
+noncentral roots, which are the only displayed relations coupling the two
+subtrees after disintegration.
 
 The best independent fallback is:
 
