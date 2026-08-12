@@ -77,7 +77,6 @@ theorem norm_comp_columnPlane_sub_le_of_root_bounds
       have heq : C * η = (C / (C + 1)) * ε := by
         dsimp only [η]
         field_simp [ne_of_gt hC1]
-        <;> ring
       rw [heq]
       calc
         (C / (C + 1)) * ε ≤ 1 * ε :=
