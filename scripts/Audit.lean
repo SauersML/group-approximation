@@ -75,7 +75,7 @@ example (m : ℕ) (hm : 1 ≤ m) :
       ¬ IsSofic (UniversalLeavittEL m) :=
   universalLeavitt_profile m hm
 
-example (n : ℕ) (hn : 3 ≤ n) :
+example (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0}
       (elementaryGroup (Fin n)
         (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
@@ -87,7 +87,7 @@ example {R : Type} [Ring R] [Nontrivial R]
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
-    (n : ℕ) (hn : 3 ≤ n) :
+    (n : ℕ) (hn : 2 ≤ n) :
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) :=
   FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     X f hf L hdiv hdiag n hn
@@ -411,7 +411,8 @@ run_cmd do
     unless reported.contains f.tag do
       reported := reported.push f.tag
       let hits := findings.filter (fun g => g.tag == f.tag)
-      let examples := (hits.map (·.decl)).toList.take examplesPerTag
+      let examples :=
+        (hits.map (fun h => s!"{h.decl}: {h.detail}")).toList.take examplesPerTag
       let roster := if scanTags.contains f.tag then "" else " (tag not on the roster)"
       failures := failures.push
         s!"{f.tag}: {hits.size} findings{roster}; e.g. {examples}"
