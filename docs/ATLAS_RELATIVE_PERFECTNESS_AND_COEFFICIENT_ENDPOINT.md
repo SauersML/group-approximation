@@ -839,3 +839,85 @@ The coordinate cut `(RPC45)` then belongs to an amplification over
 also apply inside `L(Q)` and therefore cannot establish `(RPC47)`.  The
 projection must be recovered in the canonical finite chart multiplicity
 corner (or an equivalent finite root-character coefficient corner).
+
+## 14. Root-tree covariance is Hall-balanced at every finite depth
+
+The most obvious implementation of `(RPC43)` cannot work.  For a binary word
+`alpha`, put
+
+\[
+ p_\alpha=s_\alpha t_\alpha,
+ \qquad z_\alpha=x_{13}(p_\alpha).
+ \tag{RPC49}
+\]
+
+At depth `r`, the projections `p_alpha`, `|alpha|=r`, are nonzero,
+pairwise orthogonal, and sum to one.  Hence the root involutions `z_alpha`
+generate an elementary abelian group
+
+\[
+ E_r\cong(C_2)^{2^r}.
+ \tag{RPC50}
+\]
+
+Every nonempty product of the `z_alpha` is a nontrivial root element.  The
+group trace restricted to `E_r` is therefore its regular character.  In a
+putative hyperlinear atlas sequence, finite-group Hilbert--Schmidt
+exactification makes the traces of the Fourier projections converge to the
+regular values below.  Writing `n=2^r`, every character projection `e_chi`,
+`chi in dual(E_r)`, has limiting normalized trace
+
+\[
+ \tau(e_\chi)=2^{-n}.
+ \tag{RPC51}
+\]
+
+Let `C_i` be the compressor for the `i`th Leavitt branch.  Coefficient
+compression gives
+
+\[
+ C_i z_\alpha C_i^*=z_{i\alpha}.
+ \tag{RPC52}
+\]
+
+Consequently, if `f_psi` is a character projection for `E_(r+1)`, then
+
+\[
+ f_\psi C_i e_\chi=0
+ \quad\text{unless}\quad
+ \psi(i\alpha)=\chi(\alpha)
+ \text{ for every }|\alpha|=r.
+ \tag{RPC53}
+\]
+
+For each source character `chi`, the allowed targets are precisely its
+`2^n` extensions obtained by freely choosing the signs on the other depth
+`r+1` subtree.  Each target projection has trace `2^(-2n)`.  Therefore, for
+every source set `S`, its allowed neighbourhood satisfies the exact weighted
+identity
+
+\[
+ \tau\!\left(\sum_{\psi\in N(S)}f_\psi\right)
+ =|S|2^n2^{-2n}
+ =|S|2^{-n}
+ =\tau\!\left(\sum_{\chi\in S}e_\chi\right).
+ \tag{RPC54}
+\]
+
+Thus this finite type graph has no weighted Hall-deficient set at any depth.
+The same calculation remains true on the negative source-root sector.  The
+compressor sends
+`z=product_(|alpha|=r) z_alpha` to the sign of the `i`th target subtree, not
+to the product over both target subtrees.  Hence a negative source character
+still has all `2^n` choices on the unused subtree, and `(RPC54)` remains
+equal.  Conditioning the target on the global depth-`r+1` sign would discard
+half those extensions, but no one-compressor covariance relation forces
+that additional condition; treating it as automatic would be exactly the
+false orthogonality shortcut ruled out by `(RPC33)`--`(RPC37)`.
+
+This explains the independent-sign calibration `(RPC33)`--`(RPC37)` at all
+levels.  Deeper central-root Fourier decomposition alone cannot prove
+nonhyperlinearity.  A Hall deficit, if one exists, must use additional
+support constraints from the raw second compressor and noncentral adjacent
+roots, which couple the two freely extending subtrees.  Otherwise the live
+target remains the positive-versus-forbidden one-cut estimate `(RPC47)`.

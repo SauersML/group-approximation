@@ -3359,3 +3359,13 @@ Hecke version: after (H)-alignment there are zero words with exactly one
 transverse second-chart syllable, so this window yields no direct
 `W A = B W` synchronization edge.  Any Hall/one-cut extraction must use
 quadratic-or-higher block equations or a new relation packet.
+
+The central root tree by itself is also closed as a Hall source.  At binary
+depth `r`, its `2^(2^r)` Fourier characters have equal trace.  One compressor
+maps a source character to all `2^(2^r)` extensions on the unused subtree;
+the target weights shrink by exactly the reciprocal factor.  Thus every
+source set has neighbourhood of exactly the same total trace weight.  This
+remains true on the negative source-root sector because compression fixes
+only the chosen subtree sign, leaving the other subtree free.  A useful
+finite-support obstruction must therefore include the raw second compressor
+and adjacent noncentral roots, rather than merely deeper central roots.

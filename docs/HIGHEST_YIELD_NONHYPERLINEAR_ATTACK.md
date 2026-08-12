@@ -77,6 +77,14 @@ second-chart syllable, hence no direct equation `W A = B W` after
 `H`-exactification.  The support graph must be derived from quadratic or
 higher block equations (or from a genuinely new relation packet).
 
+Likewise, do not obtain the Hall graph from central root projections and one
+compressor alone.  At every finite binary depth, each source character is
+connected to all sign extensions on the unused subtree, and the total trace
+weight of those extensions equals the source weight exactly.  The graph is
+weighted-Hall-balanced.  The first meaningful support calculation must
+include the raw second compressor and adjacent noncentral roots, which are
+the only displayed relations coupling the two subtrees.
+
 The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect
