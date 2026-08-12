@@ -17,8 +17,6 @@ all closure data are explicit fields of `SubproductClosedGroupProperty`.
 
 namespace GroupApproximation
 
-set_option maxHeartbeats 800000
-
 /-- A property of groups equipped with its two exact permanence operations
 used by diagonal intersection arguments. -/
 structure SubproductClosedGroupProperty where

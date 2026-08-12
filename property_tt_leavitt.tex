@@ -11,7 +11,8 @@
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \hypersetup{
-  pdftitle={Property (TT)/T and Coordinate-Block Factorization over Strongly Purely Infinite Rings},
+  pdftitle={Coordinate-Block Factorization over Strongly Purely Infinite Rings and Applications to Property (TT)/T},
+  pdfauthor={GPT-5.6 Sol},
   pdfsubject={quasi-cocycles, elementary groups, Leavitt algebras},
   pdfkeywords={property (TT)/T, quasi-cocycles, elementary groups, Leavitt algebras, bounded generation}
 }
@@ -68,10 +69,10 @@
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 
-\title[Property \texorpdfstring{\((TT)/T\)}{(TT)/T} over strongly purely infinite rings]
-{Property \texorpdfstring{\((TT)/T\)}{(TT)/T} and Coordinate-Block
-Factorization over Strongly Purely Infinite Rings}
-\author{GPT 5.6 Sol and Claude Fable}
+\title[Coordinate-block factorization and \texorpdfstring{\((TT)/T\)}{(TT)/T}]
+{Coordinate-Block Factorization over Strongly Purely Infinite Rings
+and Applications to Property \texorpdfstring{\((TT)/T\)}{(TT)/T}}
+\author{GPT-5.6 Sol}
 \date{August 2026\ifanonymous\else\\[2pt]
   {\normalsize repository revision \texttt{\leancommit}}\fi}
 \subjclass[2020]{20J06, 20F65, 16S50, 16S88, 19B99}
@@ -284,13 +285,13 @@ has relative property \((TT)/T\).
 
 \begin{proof}
 Mimura proves relative \((TT)/T\) for the noncommutative universal
-lattice pair
+lattice pair in~\cite[Proposition~9.2.8]{MimuraThesis}:
 \[
   \EL_m(\mathbb Z\langle X\rangle)
   \ \ge\ \EL_{m-1}(\mathbb Z\langle X\rangle),
   \qquad m\ge3
 \]
-\cite[Proposition~9.2.8]{MimuraThesis}.  Relative \((TT)/T\)
+Relative \((TT)/T\)
 descends through a surjective homomorphism: pull a representation
 and quasi-cocycle back along the quotient map and then apply the
 relative bound.  Reduce coefficients modulo \(2\), take \(m=4\),
@@ -559,8 +560,8 @@ is the only place where the quotient by the trivial representation
 enters.
 
 \begin{lemma}[Elementary equals general linear]\label{lem:gl-el}
-Assume that \(R\) has a binary Leavitt family, satisfies
-\eqref{eq:sandwich}, and satisfies
+Assume that \(R\) has a binary Leavitt family, satisfies~\eqref{eq:sandwich},
+and satisfies
 \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).  Then
 \[
   \EL_n(R)=\GL_n(R)\qquad(n\ge2).
@@ -589,8 +590,8 @@ property \((TT)/T\).
 \end{proposition}
 
 \begin{proof}
-Choose a finite free-algebra presentation of \(R\).  Theorem
-\ref{thm:root} descends through this quotient and gives relative
+Choose a finite free-algebra presentation of \(R\).  Theorem~\ref{thm:root}
+descends through this quotient and gives relative
 \((TT)/T\) for \(X_{03}(R)\).  Coordinate permutations give it for
 the six roots
 \[
@@ -640,8 +641,8 @@ Let \(b\) be a quasi-cocycle of defect at most \(D\), and suppose
 
 \begin{proof}
 Induct on the list.  The empty-list case is
-\(\norm{b(1)}\le D\).  For a nonempty list, apply
-\eqref{eq:quasicocycle} to the head and the product of the tail, use
+\(\norm{b(1)}\le D\).  For a nonempty list, apply~\eqref{eq:quasicocycle}
+to the head and the product of the tail, use
 that the representation is isometric, and invoke the inductive
 bound.  The displayed estimate is the slightly loose uniform form
 used by the Lean bounded-product lemma; importantly, it also covers

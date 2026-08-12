@@ -1,6 +1,6 @@
 import GroupApproximation.Sofic.Asymptotics
 import GroupApproximation.Sofic.ExteriorMFProfile
-import GroupApproximation.Domination.PaperStatements
+import GroupApproximation.Domination.Audit
 import GroupApproximation.Sofic.AlmostAutomorphism
 import GroupApproximation.PropertyT.A2System
 import GroupApproximation.PropertyT.A2ClassTwoOrthogonality
@@ -137,7 +137,6 @@ import GroupApproximation.Matching.AsymptoticPartialBijection
 import GroupApproximation.Matching.AsymptoticPartialGroupoid
 import GroupApproximation.Matching.AsymptoticBlockArrow
 import GroupApproximation.Matching.FiniteGroupoidBisection
-import GroupApproximation.Matching.FiniteGroupoidPartialBisection
 import GroupApproximation.Matching.PartialBijectionSandwich
 import GroupApproximation.Matching.FinitePartialClusterGroupoid
 import GroupApproximation.Matching.PartialEquivarianceBoundary
@@ -354,6 +353,7 @@ import GroupApproximation.Sofic.FiniteResidualKernel
 import GroupApproximation.Sofic.InternalRadicalGap
 import GroupApproximation.Sofic.AuxiliaryClassSeparation
 import GroupApproximation.Sofic.StarGaussian
+import GroupApproximation.Sofic.FermionicOptimality
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.StructuralProfile
 import GroupApproximation.Leavitt.UnitsGLProfile
@@ -375,6 +375,7 @@ import GroupApproximation.Leavitt.FiniteTypeCountable
 import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
+import GroupApproximation.Steinberg.FinitePresentationReduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

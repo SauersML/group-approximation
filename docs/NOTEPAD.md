@@ -1,5 +1,38 @@
 # NOTEPAD
 
+## 2026-08-11: a bounded-overlap harmonic packet basis would prove the family bound
+
+Full proof: `docs/TRUE_HARMONIC_RIESZ_PACKET_CRITERION.md`.
+
+Let `q_1,...,q_r` be a `Z`-basis of the projected harmonic cycle lattice
+`Q_X`, and let `T_X a=sum_i a_i q_i`.  The elementary but decisive duality
+estimate is
+
+    ||T_X||<=A  ==>  lambda_1(Q_X^#)>=1/A.
+
+Indeed every nonzero `u in Q_X^#` has a nonzero integral pairing vector
+`T_X^*u`, so `1<=||T_X^*u||<=A||u||`.  Thus harmonic rank growth is harmless
+provided the primal basis has a uniform upper Riesz bound.
+
+There is a simultaneous decoder theorem.  If `z_i` is an integral ambient
+lift of the dual basis vector `q_i^*` and the lift synthesis operator
+`Z_X a=sum_i a_i z_i` has norm at most `K`, then the induced integral section
+satisfies
+
+    kappa_X <= ||s_X|| <= A K.
+
+The same statement holds directly in the Moore--Penrose graph norm.  Both
+operator hypotheses follow from uniform absolute Gram row-sum bounds.  Hence
+a basis of local harmonic packets and compatible integral lift packets, each
+with bounded coefficients, support, and overlap, proves both
+
+    inf_X B_X lambda_1(Q_X^#)>0
+
+and a uniform lift-ratio bound for every harmonic class.  Finitely many
+exceptional levels can be absorbed into the constants.  What remains is to
+construct these packet bases uniformly for the projective family; the
+level-121 computation alone does not do so.
+
 ## 2026-08-11: the relevant cuspidal screen is `(B_p delta_p, kappa_p)`, not raw `kappa_p`
 
 Full proof and certificates: `docs/TRUE_CUSPIDAL_SUBTHRESHOLD_SCREEN.md`.

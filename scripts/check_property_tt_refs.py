@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Validate every Lean margin reference in the property-(TT)/T manuscript.
+
+The main manuscript uses a richer ``\\leanmod`` syntax.  The property-(TT)/T
+paper deliberately uses the smaller
+
+    \\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.theorem}
+
+surface, so this checker resolves that surface directly against the same
+lexical Lean declaration index used by ``check_lean_refs.py``.
+"""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+import tempfile
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from lean_decls import build_index
+
+
+REPO = Path(__file__).resolve().parent.parent
+DEFAULT_TEX = REPO / "property_tt_leavitt.tex"
+REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
+
+
+def validate(repo: Path, tex: Path) -> list[str]:
+    source = tex.read_text(encoding="utf-8")
+    references = REFERENCE_RE.findall(source)
+    if not references:
+        return [f"no Lean margin references found in {tex.name}"]
+
+    index = build_index(repo)
+    problems: list[str] = []
+    for module, declaration in references:
+        expected = repo / "GroupApproximation" / f"{module}.lean"
+        full_name = (declaration if declaration.startswith("GroupApproximation.")
+                     else f"GroupApproximation.{declaration}")
+        actual = index.get(full_name)
+        if not expected.is_file():
+            problems.append(f"missing module file GroupApproximation/{module}.lean")
+        if actual is None:
+            problems.append(f"missing declaration {full_name}")
+        elif actual.resolve() != expected.resolve():
+            problems.append(
+                f"{full_name} is in {actual.relative_to(repo)}, not "
+                f"GroupApproximation/{module}.lean"
+            )
+    return problems
+
+
+def self_test() -> int:
+    with tempfile.TemporaryDirectory() as directory:
+        repo = Path(directory)
+        module = repo / "GroupApproximation" / "PropertyTT"
+        module.mkdir(parents=True)
+        (module / "PaperStatements.lean").write_text(
+            "namespace GroupApproximation\n"
+            "namespace PropertyTTPaper\n"
+            "theorem endpoint : True := by trivial\n"
+            "end PropertyTTPaper\n"
+            "end GroupApproximation\n",
+            encoding="utf-8",
+        )
+        tex = repo / "paper.tex"
+        tex.write_text(
+            r"\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.endpoint}",
+            encoding="utf-8",
+        )
+        if validate(repo, tex):
+            print("self-test: valid reference was rejected", file=sys.stderr)
+            return 1
+        tex.write_text(
+            r"\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.missing}",
+            encoding="utf-8",
+        )
+        problems = validate(repo, tex)
+        if not any("missing declaration" in problem for problem in problems):
+            print("self-test: missing declaration was not detected", file=sys.stderr)
+            return 1
+    print("check-property-tt-refs: self-test passed")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
+    parser.add_argument("--self-test", action="store_true")
+    args = parser.parse_args()
+    if args.self_test:
+        return self_test()
+
+    tex = args.tex if args.tex.is_absolute() else REPO / args.tex
+    problems = validate(REPO, tex)
+    if problems:
+        print(f"check-property-tt-refs: {len(problems)} problem(s):", file=sys.stderr)
+        for problem in problems:
+            print(f"  {problem}", file=sys.stderr)
+        return 1
+
+    count = len(REFERENCE_RE.findall(tex.read_text(encoding="utf-8")))
+    print(f"check-property-tt-refs: {count} references all resolve")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

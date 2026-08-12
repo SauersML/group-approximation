@@ -194,65 +194,59 @@ theorem coreRoot_mem_normalizer_rowGroup
       (root_mem_normalizer_threeRow (R := R) 3 2 1 0
         (by decide) (by decide) (by decide) (by decide) (by decide) (by decide) a)
 
-set_option maxHeartbeats 1000000 in
+private theorem core_transvections_generate :
+    Subgroup.closure
+      {z : RankFour.Core R |
+        ∃ (i j : Fin 3) (hij : i ≠ j) (a : R),
+          RankFour.coreTransvection i j hij a = z} = ⊤ := by
+  apply top_unique
+  rintro ⟨g, hg⟩ -
+  induction hg using Subgroup.closure_induction with
+  | mem x hx =>
+      obtain ⟨i, j, hij, a, rfl⟩ := hx
+      exact Subgroup.subset_closure ⟨i, j, hij, a, rfl⟩
+  | one => exact (Subgroup.closure _).one_mem
+  | mul x y hxmem hymem hx hy =>
+      exact (Subgroup.closure _).mul_mem hx hy
+  | inv x hxmem hx =>
+      exact (Subgroup.closure _).inv_mem hx
+
+private theorem coreEmbedding_mem_subgroup_of_roots
+    (K : Subgroup (E4 (R := R)))
+    (hroot : ∀ (i j : Fin 3) (hij : i ≠ j) (a : R),
+      elementaryRoot (RankFour.coreIndex i) (RankFour.coreIndex j)
+        (RankFour.coreIndex_injective.ne hij) a ∈ K)
+    (g : RankFour.Core R) : RankFour.coreEmbedding g ∈ K := by
+  have hroots :
+      {z : RankFour.Core R |
+        ∃ (i j : Fin 3) (hij : i ≠ j) (a : R),
+          RankFour.coreTransvection i j hij a = z} ⊆
+        K.comap RankFour.coreEmbedding := by
+    rintro z ⟨i, j, hij, a, rfl⟩
+    change RankFour.coreEmbedding (RankFour.coreTransvection i j hij a) ∈ K
+    rw [RankFour.coreEmbedding_coreTransvection]
+    exact hroot i j hij a
+  have hle := (Subgroup.closure_le (K.comap RankFour.coreEmbedding)).2 hroots
+  rw [core_transvections_generate (R := R)] at hle
+  exact hle (by simp)
+
 /-- The entire stabilized rank-three elementary group normalizes the last
 column parabolic. -/
 theorem coreEmbedding_mem_normalizer_columnGroup
     (g : RankFour.Core R) :
-    RankFour.coreEmbedding g ∈ Subgroup.normalizer (columnGroup (R := R)) := by
-  rcases g with ⟨g, hg⟩
-  induction hg using Subgroup.closure_induction with
-  | mem x hx =>
-      obtain ⟨i, j, hij, a, rfl⟩ := hx
-      change RankFour.coreEmbedding (RankFour.coreTransvection i j hij a) ∈ _
-      rw [RankFour.coreEmbedding_coreTransvection]
-      exact coreRoot_mem_normalizer_columnGroup i j hij a
-  | one =>
-      change RankFour.coreEmbedding (1 : RankFour.Core R) ∈ _
-      rw [map_one]
-      exact (Subgroup.normalizer
-        (columnGroup (R := R) : Set (E4 (R := R)))).one_mem
-  | mul x y hxmem hymem hx hy =>
-      change RankFour.coreEmbedding
-        ((⟨x, hxmem⟩ : RankFour.Core R) * ⟨y, hymem⟩) ∈ _
-      rw [map_mul]
-      exact (Subgroup.normalizer
-        (columnGroup (R := R) : Set (E4 (R := R)))).mul_mem hx hy
-  | inv x hxmem hx =>
-      change RankFour.coreEmbedding ((⟨x, hxmem⟩ : RankFour.Core R)⁻¹) ∈ _
-      rw [map_inv]
-      exact (Subgroup.normalizer
-        (columnGroup (R := R) : Set (E4 (R := R)))).inv_mem hx
+    RankFour.coreEmbedding g ∈ Subgroup.normalizer (columnGroup (R := R)) :=
+  coreEmbedding_mem_subgroup_of_roots
+    (Subgroup.normalizer (columnGroup (R := R) : Set (E4 (R := R))))
+    (coreRoot_mem_normalizer_columnGroup (R := R)) g
 
-set_option maxHeartbeats 1000000 in
 /-- The entire stabilized rank-three elementary group normalizes the last
 row parabolic. -/
 theorem coreEmbedding_mem_normalizer_rowGroup
     (g : RankFour.Core R) :
-    RankFour.coreEmbedding g ∈ Subgroup.normalizer (rowGroup (R := R)) := by
-  rcases g with ⟨g, hg⟩
-  induction hg using Subgroup.closure_induction with
-  | mem x hx =>
-      obtain ⟨i, j, hij, a, rfl⟩ := hx
-      change RankFour.coreEmbedding (RankFour.coreTransvection i j hij a) ∈ _
-      rw [RankFour.coreEmbedding_coreTransvection]
-      exact coreRoot_mem_normalizer_rowGroup i j hij a
-  | one =>
-      change RankFour.coreEmbedding (1 : RankFour.Core R) ∈ _
-      rw [map_one]
-      exact (Subgroup.normalizer
-        (rowGroup (R := R) : Set (E4 (R := R)))).one_mem
-  | mul x y hxmem hymem hx hy =>
-      change RankFour.coreEmbedding
-        ((⟨x, hxmem⟩ : RankFour.Core R) * ⟨y, hymem⟩) ∈ _
-      rw [map_mul]
-      exact (Subgroup.normalizer
-        (rowGroup (R := R) : Set (E4 (R := R)))).mul_mem hx hy
-  | inv x hxmem hx =>
-      change RankFour.coreEmbedding ((⟨x, hxmem⟩ : RankFour.Core R)⁻¹) ∈ _
-      rw [map_inv]
-      exact (Subgroup.normalizer
-        (rowGroup (R := R) : Set (E4 (R := R)))).inv_mem hx
+    RankFour.coreEmbedding g ∈ Subgroup.normalizer (rowGroup (R := R)) :=
+  coreEmbedding_mem_subgroup_of_roots
+    (Subgroup.normalizer (rowGroup (R := R) : Set (E4 (R := R))))
+    (coreRoot_mem_normalizer_rowGroup (R := R)) g
 
 private theorem exists_two_roots_of_mem_sup
     {I : Type*} [Fintype I] [DecidableEq I]

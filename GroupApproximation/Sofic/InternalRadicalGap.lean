@@ -17,8 +17,6 @@ matrix corner is constructed from the given weak-MF approximation.
 namespace GroupApproximation
 namespace InternalRadicalGap
 
-set_option maxHeartbeats 800000
-
 open Filter Matrix
 open scoped Matrix.Norms.L2Operator
 

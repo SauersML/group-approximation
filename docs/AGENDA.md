@@ -195,6 +195,17 @@ affine monomial constant is exactly the usual phase-insensitive constant
 defined by `1-|tr|^2`.  This does not solve the phase inequality, but removes
 base motion as an independent source of the gap.
 
+The level-`121` harmonic calculation has also been converted into a precise
+family criterion; see `TRUE_HARMONIC_RIESZ_PACKET_CRITERION.md`.  If the
+projected harmonic cycle lattices admit integral bases with uniformly bounded
+Gram row sums, then `lambda_1(Q_X^#)` is uniformly bounded below, independent
+of harmonic rank.  If the corresponding dual bases have bounded-overlap
+integral ambient lifts, the harmonic exact sequences admit uniformly bounded
+sections and every subthreshold class is repaired.  Thus the theorem-shaped
+TRUE target is now a local packet construction with two Gram row-sum bounds;
+finite exceptional levels can be absorbed.  The implication is proved, but
+the uniform packet bases have not yet been constructed.
+
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give
 `Lambda_(w,X)<=|w| C_circ(A_X)<=|w|Theta(A_X)/sigma_+(A_X)` and the
