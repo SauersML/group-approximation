@@ -45718,3 +45718,55 @@ coordinates depend on the root and therefore carry no single global orbit
 index. Combined with the no-dilution lemma, this shows that root-dependent
 chart functoriality is the necessary live target rather than another exact
 principal bundle.
+
+# The actual marked orbit now has an amenable frame stabilizer (2026-08-12)
+
+Full construction and proof:
+`docs/FALSE_AMENABLE_FRAME_TAGGED_KUN_THOM_PAIR.md`.
+
+The old marked Laurent monomial had a nonamenable parabolic stabilizer. A
+finite-dimensional tag removes it without changing the Laurent cone. Take
+
+`U=M_(3 times 2)(Z[1/q])`,
+
+`v_0=(e_1,e_2)`, `t=I+e_12`, `u_0=t v_0`, `s=I+e_13`,
+
+and replace the square-zero coefficient `V` by `V tensor U`. The positive
+ring still contains the full tag module, so every nonnegative elementary
+substitution remains a compressor and the original infranormality proof is
+unchanged.
+
+The marked elements become
+
+`gamma=1+(a tensor u_0)x_2 P in Gamma`,
+
+`h=t^(-1)gamma t`
+` =1+(a tensor v_0)x^(e_2-e_1)P notin Gamma`.
+
+Since `s` fixes both `v_0` and `e_2-e_1`, the same stable letter
+`c=(diag(q,1,q^(-1)),s)` satisfies `chc^(-1)=h^q`. Thus the exact paired
+Baumslag--Solitar cycle, the stabilizer-survival theorem, and the radical
+word
+
+`w=i_2(h)i_1(h)^(-1)`
+
+all survive unchanged.
+
+The gain is that the actual tag-monomial label
+
+`z_*=v_0 tensor x^(e_2-e_1)`
+
+has stabilizer exactly
+
+`Stab_(SL_3(Z))(v_0)`
+` ={I+a e_13+b e_23:a,b in Z}~=Z^2`.                  `(AFT24)`
+
+It is therefore amenable. Gao--Patchell--Kunnawalkam Elayavalli now gives
+sofic root-dependent orbit charts for the actual marked tangent orbit, not
+for an auxiliary orbit.
+
+This is the strongest new structural progress on FALSE in this cycle. It
+reduces the surviving analytic gate to a local `Z^2`-equivariance lemma for
+the tagged finite Frobenius block. If that lemma holds, the existing
+no-dilution estimate gives defect tending to zero and marked squared gap
+tending to two.
