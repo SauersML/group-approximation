@@ -1611,6 +1611,20 @@ explicit principal-bundle cocycle, not an arbitrary matrix family.  See
 `FALSE_PAIRED_FOURIER_PRINCIPAL_BUNDLE_SPLICE.md` and
 `FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
 
+The paired Fourier cell is functorial on finite tangent modules.  For any
+finite abelian module with a perfect duality and any finite group acting on
+it, translation and multiplier representations on the regular orbit are
+exchanged by Fourier transform, while one right gauge fixes all translations
+and scales all multipliers by `1+p`.  Taking the acting finite group to
+include both the coefficient `Q` quotient and the finite base elementary
+group makes every base conjugation and coefficient covariance relation exact
+automatically.  Thus the remaining full-vertex problem no longer includes
+separate base-matrix optimization: it is to construct one sequence of finite
+Frobenius tangent modules carrying compatible positive and Laurent window
+maps, with vanishing prefix-bad rank.  The fixed-base square-zero jet rings
+give local candidates, but their simultaneous incidence/fusion theorem is
+still open.  See `FALSE_PAIRED_FOURIER_FINITE_MODULE_FUNCTOR.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
