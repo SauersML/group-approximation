@@ -2438,6 +2438,22 @@ that distance to dimension `O(n)` while retaining a constant HS fold.  The
 remaining missing datum is a low-defect unitary transport for the dense
 feedback rows; the coordinate character set is not recurrence-invariant.
 
+That compressed transport is now closed exactly.  If `w(f)` is the number
+of nonzero nonconstant feedback coefficients of a primitive recurrence,
+the optimal full-additive RMS covariance cost of its coordinate-character
+model is
+
+```text
+epsilon(f)^2=2(l-1)w(f)/(ln).
+```
+
+For two recurrences with the same constant term, their compressed inverse
+fold is at most `l/(l-1)` times the sum of these two costs.  Thus linear
+inverse-code distance forces constant covariance cost: independent
+coordinate transport cannot realize low-carry/high-fold behavior.  Any use
+of the recurrence alphabet must couple feedback rows through a genuinely
+higher-incidence character construction.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

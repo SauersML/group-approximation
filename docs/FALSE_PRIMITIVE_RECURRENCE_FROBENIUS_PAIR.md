@@ -232,6 +232,69 @@ from every exact action.  Proposition 2 is the coordinate-code version of
 the tracial cyclic-seed obstruction, and prevents mistaking the local code
 for a completed FALSE proof.
 
+In fact the most direct compressed transport is already impossible before
+property `(T)` enters.  Retain `(PRF12f)` and, for
+
+`f(X)=X^n+a_(n-1)X^(n-1)+...+a_1X+a_0`,              `(PRF12o)`
+
+put
+
+`w(f)=|{r in {1,...,n-1}:a_r!=0}|`.                  `(PRF12p)`
+
+Let `pi_coord(v)=Z_coord(v)`.  Define the optimal full-additive covariance
+cost
+
+`epsilon(f)^2=inf_(U in U(n|k|)) E_(v in k^n)`
+` ||U pi_coord(v)U^*-pi_coord(T_fv)||_2^2`.           `(PRF12q)`
+
+**Proposition 3 (feedback-support identity and compressed no-go).**
+
+`epsilon(f)^2=2(l-1)w(f)/(ln)`.                      `(PRF12r)`
+
+If `f,g` have the same constant term, then
+
+`||Z_coord(v_f)-Z_coord(v_g)||_2^2`
+` <=(l/(l-1))(epsilon(f)^2+epsilon(g)^2).`            `(PRF12s)`
+
+Consequently no pair of compressed coordinate models can have both
+covariance costs tending to zero and inverse-fold energy bounded below.
+
+**Proof.**  The character multiset of `pi_coord` consists of the zero
+character with multiplicity `n`, and every nonzero character on each of the
+`n` coordinate lines with multiplicity one.  The transformed multiset uses
+the lines spanned by `T_f^T e_r`.  In the companion basis,
+
+`T_f^T e_0=-a_0e_(n-1)`,
+`T_f^T e_r=e_(r-1)-a_re_(n-1)`, `1<=r<n`.            `(PRF12t)`
+
+The first is a coordinate line.  For `r>=1`, the second is a coordinate
+line exactly when `a_r=0`; when `a_r!=0` it is an oblique line, and the
+different pivot coordinates make all such lines distinct.  The two
+character multisets therefore have exactly `w(f)(l-1)` unmatched nonzero
+characters out of total dimension `nl`.
+
+Match every common character space and pair the remaining one-dimensional
+spaces arbitrarily.  Distinct finite characters have average squared
+chordal distance two.  Conversely character orthogonality shows that no
+unitary can match more than the common multiplicities.  Hence the optimal
+average is exactly twice the unmatched fraction, proving `(PRF12r)`.
+
+On a fixed constant-term fiber, `(PRF12)` says that the inverse-vector
+Hamming distance is the Hamming distance between the coefficient rows
+`(a_1,...,a_(n-1))`.  It is at most `w(f)+w(g)`.  Equation `(PRF12g)` gives
+
+`||Z_coord(v_f)-Z_coord(v_g)||_2^2`
+` <=2(w(f)+w(g))/n`.                                  `(PRF12u)`
+
+Substitute `(PRF12r)` for `f` and `g` to obtain `(PRF12s)`.  End proof.
+
+Proposition 3 closes the tempting plan “pack the primitive inverse code and
+transport only its coordinate characters.”  Linear code distance requires
+linear feedback support, and the exact character mismatch sees that support
+with constant normalized cost.  A live higher-incidence construction must
+couple different feedback rows so their local unmatched character mass
+cancels or is shared; independent coordinate blocks cannot work.
+
 ## 3. Exact Fourier realization
 
 Fix a nontrivial additive character
