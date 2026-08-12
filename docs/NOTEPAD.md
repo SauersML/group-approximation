@@ -43775,14 +43775,20 @@ Bounded overlap and compatible lift synthesis remain necessary for the
 stronger uniform integral-section theorem.  Full sharpened criterion:
 `docs/TRUE_HARMONIC_SUCCESSIVE_MINIMUM_PACKET_SCREEN.md`.
 
-The first exact level-`121` raw-basis check is negative only at the basis
-level.  Inverting the exported `7 x 7` Gram matrix gives an algebraically
-dual primal basis with squared norms of orders `10^1037`--`10^1039`, far
-above the spherical threshold `12`.  This reflects the roughly `5000`-bit
-near-dependencies of the exported basis and says nothing about the seventh
-successive minimum.  Direct exact Gram--LLL is correspondingly inefficient.
-The correct finite check is floating/modular preconditioning followed by an
-exact unimodular and norm certificate; no new cellular export is required.
+The exact level-`121` packet check succeeds.  Although the raw algebraically
+dual primal basis has squared norms of orders `10^1037`--`10^1039`, exact
+Gram--LLL finds a determinant-one basis with squared norms
+
+`0.7573, 0.9947, 1.8795, 2.4918, 2.9858, 3.7822, 5.7962`,
+
+all strictly below the spherical threshold `12`.  Therefore
+
+`lambda_7(Q_121)^2<=5.7962<12`
+
+and transference gives `12 lambda_1(Q_121^#)^2>=1` without dual SVP.  More
+substantively, every one of the seven new harmonic directions is spanned by
+short primal integral packets.  Exact certificate:
+`experiments/projective-cellular-n121-primal-packet.json`.
 
 # 2026-08-11: Ioana--Drimbe does not construct the three-moment system
 

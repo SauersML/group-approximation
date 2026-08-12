@@ -195,29 +195,49 @@ This is strictly weaker than constructing the bounded-overlap integral
 basis requested previously.  It is compatible with increasing harmonic
 rank and with dense overlap among the packets.
 
-## 6. Level-`121` raw-basis check
+## 6. Level-`121` packet certificate
 
 The exact certificate
-`experiments/projective-cellular-n121-systole-span.json` exports a very
-ill-conditioned basis of `Q_X^#`.  Inverting its exact `7 x 7` Gram matrix
-does produce the Gram matrix of the algebraically dual basis in `Q_X`, but
-that raw primal basis is useless for `(HSM16)`: its seven squared diagonal
-norms are of orders between `10^1037` and `10^1039`, whereas the spherical
-threshold is `12`.
+`experiments/projective-cellular-n121-systole-span.json` exports a basis of
+`Q_X^#` with Gram matrix `G`.  The inverse matrix `G^(-1)` is the Gram
+matrix of the algebraically dual basis of
 
-This is a basis-conditioning statement, not evidence against `(HSM16)`.
-The exported shortest dual vector has small norm precisely because the
-displayed basis has enormous near-dependencies; the primal lattice can still
-contain seven independent short combinations.  Exact rational Gram--LLL
-started directly from this basis spends its time resolving roughly
-`5000`-bit cancellations and is the wrong implementation.  The finite next
-step is:
+```text
+(Q_X^#)^#=Q_X.                                       (HSM19)
+```
 
-1. floating or modular preconditioning of the rank-seven quadratic form;
-2. recovery of an integral unimodular change of basis;
-3. exact rational verification of the seven resulting norms and determinant.
+After clearing denominators, exact Gram--LLL gives a unimodular change of
+basis in `Q_X` with squared packet norms
 
-No further huge cellular computation is needed for this check.
+```text
+0.7573156688...,
+0.9947277683...,
+1.8795041139...,
+2.4918022266...,
+2.9858118176...,
+3.7821535066...,
+5.7961812346....                                     (HSM20)
+```
+
+All values and the determinant-one basis change are stored exactly in
+`experiments/projective-cellular-n121-primal-packet.json`.  In particular,
+
+```text
+lambda_7(Q_X)^2<=5.7961812347<12=B_X^2.              (HSM21)
+```
+
+Corollary 2 now proves independently of the dual SVP computation that
+
+```text
+12 lambda_1(Q_X^#)^2>=1.                             (HSM22)
+```
+
+Thus all seven genuinely new level-`121` harmonic directions admit short
+independent primal packets below one spherical template.  The raw algebraic
+dual basis is extremely ill-conditioned, with squared norms of orders
+`10^1037`--`10^1039`; the unimodular reduction is essential.  The success
+shows that this conditioning is a coordinate artifact rather than dangerous
+arithmetic.
 
 ## 7. Exact scope
 
@@ -240,5 +260,5 @@ not
 uniform bounded-overlap bases plus dual lift bases.   (HSM18)
 ```
 
-Establishing `(HSM17)` would already prove the family-level product bound
+Establishing `(HSM17)` uniformly would already prove the family-level product bound
 highlighted by the level-`121` evidence.

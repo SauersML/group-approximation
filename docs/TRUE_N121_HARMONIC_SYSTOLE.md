@@ -32,6 +32,25 @@ Therefore every nonzero vector of `Q^#` lies above the spherical
 localization threshold.  None of the seven new level-121 harmonic
 directions contributes a dangerous denominator-collapse class.
 
+There is now a second, structurally more informative certificate.  Exact
+Gram--LLL on the algebraically dual primal lattice gives a determinant-one
+basis of `Q` whose seven squared norms are at most
+
+```text
+5.796181234627704...<12=B_121^2.
+```
+
+Hence `lambda_7(Q)<B_121`, and the elementary transference inequality
+
+```text
+lambda_7(Q) lambda_1(Q^#)>=1
+```
+
+proves the same threshold conclusion without solving SVP in `Q^#`.  More
+importantly, it shows that the whole new harmonic space is spanned by short
+integral projected cycles, exactly the family mechanism proposed in
+`TRUE_HARMONIC_SUCCESSIVE_MINIMUM_PACKET_SCREEN.md`.
+
 ## Why this is stronger than the earlier lift tests
 
 The lower-level chart at level `11` has `H_2=0`, so all seven directions at
@@ -55,6 +74,9 @@ SHA-256 90fccdd4c83c3812cecae3dadf8076aadc6cfaa23159dede4853593ac8b0e3eb
 
 experiments/projective-cellular-n121-systole-span.json
 SHA-256 f9b5733277ba8c942710d6f24cf5407895478e13aa71d5014cbd28475a0c51b3
+
+experiments/projective-cellular-n121-primal-packet.json
+SHA-256 8f2f13d41a41a12066745cc8e85f679aa5cb2201415f53ebdeaafb4142a66eb2
 ```
 
 The first certificate records rank seven and zero exact residual.  The
@@ -62,6 +84,10 @@ second reconstructs `Q^#` from exact cycle pairings, checks the exported
 harmonic lattice lies in `Q^#`, runs exact integer SVP, tests ambient
 integrality, computes the class order, and performs the threshold comparison
 over the rationals.
+
+The third inverts the exact dual Gram matrix, clears denominators, records
+the exact unimodular Gram--LLL basis change, verifies its determinant, and
+checks all seven primal packet norms against the rational threshold `12`.
 
 ## Scope
 
