@@ -174,6 +174,18 @@ this boundary.  Raising the dual-number order in the natural module is now
 closed, not live.  Any surviving construction must also avoid prefix
 replication, which kills the central class homologically.
 
+The first-order non-Boolean escape has also been screened in every modular
+type already native to the atlas: the defining and dual 4-modules,
+`wedge^2 V`, the 15-point and 15-hyperplane permutation modules, and
+`V tensor V^*`.  Across all 36 ordered rectangular block types, the 24
+certified zeros plus commutant-valued centrality of all four survivors force
+the whole `s_11` jet to vanish.  This includes arbitrary direct sums,
+multiplicity, and off-diagonal coupling, so the outer-tangent signal cannot
+be rescued at first order by adjoining another native sector.  A live
+modular construction must use a genuinely new indecomposable module or a
+different order-zero projective alignment.  Full theorem:
+`docs/FALSE_ATLAS_NATIVE_MODULAR_FIRST_ORDER_NO_GO.md`.
+
 ### 2026-08-12: compact and weakly compact anchors are impossible
 
 For an arbitrary subgroup `Gamma<G` and a compressor

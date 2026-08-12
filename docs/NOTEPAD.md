@@ -80,6 +80,20 @@ No proved non-Boolean modular continuation is already present in the
 repository.  Higher univariate dual numbers in the natural module and prefix
 replication are both excluded.
 
+The native non-Boolean first-order screen is negative as well.  For the six
+modules
+
+```text
+V, V^*, wedge^2 V, point_15, hyperplane_15, V tensor V^*,
+```
+
+every one of the 36 ordered rectangular block systems has zero `s_11` phase
+image after imposing the certified zeros and commutant-valued centrality of
+all four survivors.  Direct sums, arbitrary multiplicities, and off-diagonal
+couplings therefore do not help.  The remaining modular target must use a
+new indecomposable `F_2[A_8]` module or change the order-zero alignment.  See
+`docs/FALSE_ATLAS_NATIVE_MODULAR_FIRST_ORDER_NO_GO.md`.
+
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 
 Full proof and certificate:

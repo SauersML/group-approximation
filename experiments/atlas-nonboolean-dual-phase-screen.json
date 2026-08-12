@@ -1,0 +1,375 @@
+{
+  "coefficient_ring": "F2[eps]/(eps^2)",
+  "modules": [
+    "natural_4",
+    "dual_4",
+    "wedge2_6",
+    "point_permutation_15",
+    "hyperplane_permutation_15",
+    "natural_tensor_dual_16"
+  ],
+  "centrality_condition": "every survivor block intertwines the first A8 chart",
+  "ordered_block_records": [
+    {
+      "left_module": "natural_4",
+      "right_module": "natural_4",
+      "hom_dimension": 16,
+      "constraint_rank": 13,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_4",
+      "right_module": "dual_4",
+      "hom_dimension": 16,
+      "constraint_rank": 15,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_4",
+      "right_module": "wedge2_6",
+      "hom_dimension": 24,
+      "constraint_rank": 23,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_4",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 60,
+      "constraint_rank": 54,
+      "constraint_nullity": 6,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_4",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 60,
+      "constraint_rank": 57,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_4",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 64,
+      "constraint_rank": 61,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "natural_4",
+      "hom_dimension": 16,
+      "constraint_rank": 15,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "dual_4",
+      "hom_dimension": 16,
+      "constraint_rank": 13,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "wedge2_6",
+      "hom_dimension": 24,
+      "constraint_rank": 23,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 60,
+      "constraint_rank": 57,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 60,
+      "constraint_rank": 54,
+      "constraint_nullity": 6,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "dual_4",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 64,
+      "constraint_rank": 61,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "natural_4",
+      "hom_dimension": 24,
+      "constraint_rank": 23,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "dual_4",
+      "hom_dimension": 24,
+      "constraint_rank": 23,
+      "constraint_nullity": 1,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "wedge2_6",
+      "hom_dimension": 36,
+      "constraint_rank": 32,
+      "constraint_nullity": 4,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 90,
+      "constraint_rank": 87,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 90,
+      "constraint_rank": 87,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "wedge2_6",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 96,
+      "constraint_rank": 94,
+      "constraint_nullity": 2,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "natural_4",
+      "hom_dimension": 60,
+      "constraint_rank": 57,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "dual_4",
+      "hom_dimension": 60,
+      "constraint_rank": 54,
+      "constraint_nullity": 6,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "wedge2_6",
+      "hom_dimension": 90,
+      "constraint_rank": 87,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 211,
+      "constraint_nullity": 14,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 210,
+      "constraint_nullity": 15,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "point_permutation_15",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 240,
+      "constraint_rank": 231,
+      "constraint_nullity": 9,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "natural_4",
+      "hom_dimension": 60,
+      "constraint_rank": 54,
+      "constraint_nullity": 6,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "dual_4",
+      "hom_dimension": 60,
+      "constraint_rank": 57,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "wedge2_6",
+      "hom_dimension": 90,
+      "constraint_rank": 87,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 210,
+      "constraint_nullity": 15,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 211,
+      "constraint_nullity": 14,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 240,
+      "constraint_rank": 231,
+      "constraint_nullity": 9,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "natural_4",
+      "hom_dimension": 64,
+      "constraint_rank": 61,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "dual_4",
+      "hom_dimension": 64,
+      "constraint_rank": 61,
+      "constraint_nullity": 3,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "wedge2_6",
+      "hom_dimension": 96,
+      "constraint_rank": 94,
+      "constraint_nullity": 2,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 240,
+      "constraint_rank": 231,
+      "constraint_nullity": 9,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 240,
+      "constraint_rank": 231,
+      "constraint_nullity": 9,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "left_module": "natural_tensor_dual_16",
+      "right_module": "natural_tensor_dual_16",
+      "hom_dimension": 256,
+      "constraint_rank": 244,
+      "constraint_nullity": 12,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    }
+  ],
+  "some_nonzero_central_phase_exists": false
+}
