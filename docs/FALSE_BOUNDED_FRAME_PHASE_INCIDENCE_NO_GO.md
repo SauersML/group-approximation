@@ -322,3 +322,10 @@ autocorrelation normal form `(BFI25)--(BFI26)` has a uniformly bounded
 integral spectral factor compatible with the fixed boundary equation.  That
 would still be a theorem about this tower, not by itself a proof of the
 universal hyperlinear-to-sofic implication.
+
+The companion theorem
+`FALSE_BOUNDED_FRAME_PAIRED_CARRY_COLLAPSE.md` further shows that alternatives
+2--3 cannot obtain extra existential power merely from the range side of the
+paired carry formula: every low-exact-carry/high-word output extracts a
+cycle-microscopic/high-word class.  The unresolved object is therefore that
+cycle-side class itself.

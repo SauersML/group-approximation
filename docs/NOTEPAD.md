@@ -44865,3 +44865,59 @@ local minimum filling `(1,2,2)/3` has identity Gram and an integral filling
 of the same boundary.  The remaining TRUE arithmetic must use growing
 discriminant radius and fixed-boundary compatibility, not Gram integrality
 alone.
+
+# 2026-08-12: bounded marked frames collapse paired carry to cycle carry
+
+Full proof: `docs/FALSE_BOUNDED_FRAME_PAIRED_CARRY_COLLAPSE.md`.
+
+Let `Q delta_x=q_x` be the synthesis operator of the canonical real
+fillings of the marked radical word over a regular cover, with `|X|=N`.
+For every discriminant class `c`, the marked phase at `x` is
+
+```text
+chi_x(c)=<q_x,a> mod Z,
+a+L=gamma(c).
+```
+
+If `||Q||<=C`, choosing a shortest range representative and using the
+circle chord estimate gives
+
+```text
+mu_w(c)<=2 pi C rho_L(gamma(c))/sqrt(N).
+```
+
+Thus range-cheap classes are automatically word-invisible, with no bound
+on their phase order.
+
+Now let `d` attain the exact paired carry minimum
+
+```text
+delta(c)^2=rho_L(gamma(c-d))^2+rho_K(d)^2.
+```
+
+The marked chordal triangle inequality yields
+
+```text
+rho_K(d)<=delta(c),
+mu_w(d)>=mu_w(c)-2 pi C delta(c)/sqrt(N).
+```
+
+Since the relator-cell count is a fixed multiple of `N`, microscopic exact
+carry plus a macroscopic marked word exists if and only if microscopic
+cycle radius plus a macroscopic marked word exists.  The paired infimal
+convolution can help locate a class computationally, but under the bounded
+Kazhdan word frame it gives no additional existential FALSE mechanism.
+
+For one canonical class `c_y`, the representative `kq_y` gives the sharper
+bound
+
+```text
+mu_w(kc_y)<=2 pi C^2 |k|/sqrt(N).
+```
+
+Therefore any cyclic amplification retaining fixed marked energy needs
+`|k|=Omega(sqrt(N))`, and the order of `c_y` must itself be
+`Omega(sqrt(N))`.  This upgrades the earlier conclusion `ord(c_y)->infinity`
+to the exact scale required for marked use.  The remaining nonlinear target
+is a genuinely cycle-microscopic, word-macroscopic class; range-side hybrid
+repair and sub-square-root canonical multiples are now ruled out.

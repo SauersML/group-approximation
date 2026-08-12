@@ -237,3 +237,12 @@ of coordinate orbits, or leave the regular-cover phase ansatz.
 replacement in the two-torsion sector.  A binary parametrization proves
 FALSE when its maximum carry-row degree is negligible compared with the
 marked-word row degree on a positive fraction of word coordinates.
+
+There is now an additional sharp qualification in the bounded marked-frame
+regime.  `FALSE_BOUNDED_FRAME_PAIRED_CARRY_COLLAPSE.md` proves that any
+individual class with microscopic exact paired energy and macroscopic
+marked energy contains a class with microscopic **cycle** radius and the
+same asymptotic marked energy.  Thus `(PCE16)--(PCE18)` remain useful finite
+search and averaging devices, but once they output a successful marked
+class they do not give a genuinely new existential mechanism beyond the
+cycle-side criterion.

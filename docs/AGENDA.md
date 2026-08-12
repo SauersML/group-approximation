@@ -4,6 +4,39 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: paired carry collapses to cycle carry under the word frame
+
+For a regular cover with `N` marked-word coordinates, let `Q delta_x=q_x`
+be the synthesis of the canonical minimum real word fillings.  If
+`||Q||<=C`, every discriminant class satisfies
+
+```text
+mu_w(c)<=2 pi C rho_L(gamma(c))/sqrt(N).
+```
+
+If `d` realizes the exact paired carry energy of `c`, then
+
+```text
+rho_K(d)<=delta(c),
+mu_w(d)>=mu_w(c)-2 pi C delta(c)/sqrt(N).
+```
+
+Hence, over covers of one fixed presentation, a microscopic exact-carry,
+macroscopic-word sequence exists exactly when a microscopic-cycle,
+macroscopic-word sequence exists.  The range-side term of the paired
+infimal convolution creates no additional FALSE endpoint after the Kazhdan
+marked frame is bounded.
+
+For a canonical filling class `c_y`,
+
+```text
+mu_w(kc_y)<=2 pi C^2 |k|/sqrt(N).
+```
+
+Thus marked cyclic amplification requires square-root-scale multiplier and
+order, sharply strengthening the earlier qualitative order escape.  Full
+proof: `FALSE_BOUNDED_FRAME_PAIRED_CARRY_COLLAPSE.md`.
+
 ### 2026-08-12: bounded frames close canonical binary phase incidence
 
 Let `Q delta_x=q_x` and `R delta_j=r_j` be finite Hilbert synthesis
