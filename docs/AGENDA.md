@@ -4,6 +4,54 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: bounded central coefficients are one global vector
+
+For a finite presentation \(P=F/N\), put
+
+\[
+\widetilde R=\bigcap_{N\leq L\lhd_{\rm fi}F}L,
+\qquad
+J=\bigcap_{N\leq L\lhd_{\rm fi}F}[F,L].
+\]
+
+For a finite-residual word \(w\), the shortest relator coefficient vectors
+in the canonical modules \(L/[F,L]\) are uniformly bounded if and only if
+one integral vector represents \(w\) in every module. Equivalently,
+
+\[
+\sup_L\delta_L(w)<\infty\quad\Longleftrightarrow\quad W\in NJ.
+\]
+
+The intersection has an exact structural meaning. For the central envelope
+
+\[
+E=F/[F,\widetilde R],
+\qquad
+Z=\widetilde R/[F,\widetilde R],
+\]
+
+one has
+
+\[
+J/[F,\widetilde R]=R_{\rm fin}(E).
+\]
+
+Hence canonical central amplification is governed by the single obstruction
+
+\[
+\Omega=
+Z/\bigl(N[F,\widetilde R]/[F,\widetilde R]+R_{\rm fin}(E)\bigr).
+\]
+
+A nonzero sofic-radical class in \(\Omega\) is a complete FALSE
+certificate. If \(E\) is residually finite, \(\Omega\) is exactly
+\(R_{\rm fin}(P)/[P,R_{\rm fin}(P)]\). The infranormal
+relative-\(H_1\) theorem then shows that every element of a Kazhdan
+Kun--Thom double kernel has zero class in \(\Omega\); when the quotient
+double is residually finite, \(\Omega=0\) outright. Thus changing its ring
+or compressor cannot revive the marked central route. Full proof:
+FALSE_DIRECTED_COEFFICIENT_COMPACTNESS.md.
+
 ### 2026-08-12: the square-level Eisenstein kernel is one scattering graph
 
 The square-level dimension pattern is now proved for every odd prime:

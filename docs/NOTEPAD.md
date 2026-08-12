@@ -44221,3 +44221,76 @@ different radical candidate with a nonzero class in
 \(R_{\rm fin}/[P,R_{\rm fin}]\).
 
 Full proof: `docs/FALSE_FINITE_RESIDUAL_COMMUTATOR_NO_GO.md`.
+
+# 2026-08-12: directed coefficient compactness identifies the exact central obstruction
+
+Let \(P=F/N\) be finitely presented and let
+\(\widetilde R\) be the inverse image of its finite residual. For each
+finite-index normal \(L\geq N\), let \(S_L\subset\mathbb Z^\ell\) be the
+coefficient vectors expressing a fixed finite-residual word \(W\) in terms
+of the \(\ell\) defining relators in \(L/[F,L]\).
+
+Refinement gives \(S_{L'}\subset S_L\) whenever \(L'\leq L\). Since a
+bounded lattice ball is finite, the finite-intersection property proves
+
+\[
+\sup_L\delta_L(W)<\infty
+\quad\Longleftrightarrow\quad
+\bigcap_LS_L\neq\varnothing.
+\]
+
+Thus boundedness is not merely quotientwise: one fixed integral vector
+works in all finite quotients. If
+
+\[
+J=\bigcap_{L\geq N,\,[F:L]<\infty}[F,L],
+\]
+
+then this is equivalent to \(W\in NJ\).
+
+The important new identity is obtained from the central envelope
+
+\[
+E=F/[F,\widetilde R],
+\qquad Z=\widetilde R/[F,\widetilde R]\leq Z(E):
+\]
+
+\[
+\boxed{J/[F,\widetilde R]=R_{\rm fin}(E).}
+\]
+
+Indeed, the left side is the intersection of
+\([E,\overline L]\) over finite-index \(\overline L\geq Z\). It lies in
+\(Z\) because \(E/Z=P/R_{\rm fin}(P)\) is residually finite. It lies in
+every finite-index normal \(M\lhd E\) by applying the intersection to
+\(MZ\). Conversely each quotient \(E/[E,\overline L]\) is finitely
+generated central-by-finite, hence residually finite, so it kills
+\(R_{\rm fin}(E)\).
+
+Therefore the exact obstruction group is
+
+\[
+\Omega=
+\frac{Z}
+{\,N[F,\widetilde R]/[F,\widetilde R]+R_{\rm fin}(E)\,}.
+\]
+
+The coefficient norms diverge exactly when \([W]_\Omega\neq0\). Combined
+with fixed-rank character compactness, a nonzero class belonging to the
+sofic radical is a complete canonical-central FALSE certificate.
+
+This is sharper than merely asking for nonzero
+\(R_{\rm fin}(P)/[P,R_{\rm fin}(P)]\): the second finite residual
+\(R_{\rm fin}(E)\) may absorb that class. If \(E\) is residually finite,
+there is no absorption and the ordinary coinvariant test is sufficient.
+
+The infranormal relative-\(H_1\) theorem shows that every element of a
+Kazhdan Kun--Thom double kernel dies already at the ordinary coinvariant
+stage, not just in the binary Laurent example. If the quotient double is
+residually finite, the entire \(\Omega\) vanishes. Thus no change of ring
+or compressor inside that framework can rescue the marked central route.
+The current double still requires the noncentral Fourier/Frobenius
+kernel-carry system; a central replacement must come from a genuine
+\(H_2\) extension or a different radical mechanism.
+
+Full proof: docs/FALSE_DIRECTED_COEFFICIENT_COMPACTNESS.md.

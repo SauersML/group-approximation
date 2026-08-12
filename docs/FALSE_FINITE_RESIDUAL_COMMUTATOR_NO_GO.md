@@ -323,3 +323,12 @@ R_{\mathrm{fin}}(P)/[P,R_{\mathrm{fin}}(P)].
 
 The explicit symmetric double fails this test maximally: that entire
 quotient is zero.
+
+There is now an exact refinement of this necessary condition. The note
+FALSE_DIRECTED_COEFFICIENT_COMPACTNESS.md constructs a canonical central
+envelope \(E=F/[F,\widetilde R]\) and proves that bounded coefficient
+distortion is equivalent to absorption by \(R_{\rm fin}(E)\). Thus the
+actual obstruction is a quotient \(\Omega\) of
+\(R_{\rm fin}(P)/[P,R_{\rm fin}(P)]\). If \(E\) is residually finite then
+the two groups agree; in general nonzero ordinary coinvariants alone do not
+yet suffice.
