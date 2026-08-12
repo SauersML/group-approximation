@@ -43586,6 +43586,46 @@ paper therefore validates the normalizer-correction stage of the proposed
 pipeline but does not solve either missing global stage.  Full audit:
 `docs/TRUE_SINCLAIR_SMITH_MASA_PERTURBATION_AUDIT.md`.
 
+# 2026-08-11: one-orbit finite parity is exactly subgroup separability
+
+Full proof: `docs/FALSE_ONE_ORBIT_PARITY_SEPARABILITY_NO_GO.md`.
+
+The exact infinite coinduced parity model negates the lamps on one subgroup
+orbit `H<K`.  A finite quotient `q:K->Q` cannot implement the indicator of
+`H`; parity over `q(H)` pulls back to the indicator of
+
+`H ker(q)`.
+
+For a lamp at `g`, the squared normalized-HS clutching error is exactly
+
+`4 1_(g in H ker(q) setminus H)`.
+
+For arbitrary dimension-weighted direct sums it becomes
+
+`4 Prob[g in H ker(q)]`, for `g notin H`.
+
+Vanishing on every fixed lamp is equivalent, by a union-bound
+diagonalization, to a deterministic finite-quotient tower with
+
+`intersection_n H ker(q_n)=H`;
+
+equivalently, `H` is profinitely closed in `K`.  Such a tower gives residual
+finite approximation, hence soficity, of the Schreier action `K action K/H`.
+It is therefore impossible for the distinguished Kun--Thom nonsofic orbit.
+
+Together with the property-`(T)` primitive-holonomy moment lower bound, this
+closes both obvious one-coordinate globalizations:
+
+1. a primitive scalar Weyl transition has a linear moment for some fixed
+   generator;
+2. a finite-quotient orbit-indicator parity would force subgroup
+   separability and a sofic Schreier action.
+
+The surviving FALSE gate is genuinely nonmonomial: a base-dependent paired
+Fourier/Frobenius tangent functor must distribute the clutching through
+internal matrix directions rather than through one scalar coordinate or one
+finite quotient subset.
+
 # 2026-08-11: exact Gaussian wall model isolates subgroupification
 
 For `pi:F->U(d)`, put
