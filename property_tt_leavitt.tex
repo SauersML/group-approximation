@@ -507,24 +507,27 @@ which gives the displayed formula.
   vertex/.style={circle,draw,minimum size=7mm,inner sep=0pt,font=\small},
   col/.style={-{Latex[length=2mm]},very thick,blue!70!black},
   row/.style={-{Latex[length=2mm]},very thick,orange!80!black},
-  aux/.style={-{Latex[length=1.8mm]},semithick,gray!70},
   every node/.style={font=\small}]
-  \node[vertex] (v0) at (0,1.5) {0};
-  \node[vertex] (v1) at (2.3,2.3) {1};
-  \node[vertex] (v2) at (2.3,.7) {2};
-  \node[vertex] (v3) at (4.8,1.5) {3};
-  \draw[col] (v0) -- node[above] {$X_{03}$} (v3);
-  \draw[col] (v1) -- node[above,sloped] {$X_{13}$} (v3);
-  \draw[col] (v2) -- node[below,sloped] {$X_{23}$} (v3);
-  \draw[row,bend left=22] (v3) to node[below] {$X_{30}$} (v0);
-  \draw[row,bend left=18] (v3) to node[right] {$X_{31}$} (v1);
-  \draw[row,bend right=18] (v3) to node[right] {$X_{32}$} (v2);
-  \draw[aux] (v0) -- node[above,sloped] {$X_{01}$} (v1);
-  \draw[aux] (v1) -- node[right] {$X_{12}$} (v2);
-  \node[align=center,blue!70!black] at (4.8,.2) {column plane};
-  \node[align=center,orange!80!black] at (.2,.15) {row plane};
-  \node[align=center] at (2.35,-.35)
-    {$[X_{01}(c),X_{13}(1)]=X_{03}(c)$};
+  \node[blue!70!black] at (1.4,1.65) {column plane};
+  \node[vertex] (c0) at (0,0) {0};
+  \node[vertex] (c1) at (0,1) {1};
+  \node[vertex] (c2) at (0,-1) {2};
+  \node[vertex] (c3) at (2.8,0) {3};
+  \draw[col] (c0) -- node[above,fill=white,inner sep=1pt] {$X_{03}$} (c3);
+  \draw[col] (c1) -- node[above,sloped,fill=white,inner sep=1pt] {$X_{13}$} (c3);
+  \draw[col] (c2) -- node[below,sloped,fill=white,inner sep=1pt] {$X_{23}$} (c3);
+
+  \node[orange!80!black] at (6.2,1.65) {row plane};
+  \node[vertex] (r3) at (4.8,0) {3};
+  \node[vertex] (r0) at (7.6,0) {0};
+  \node[vertex] (r1) at (7.6,1) {1};
+  \node[vertex] (r2) at (7.6,-1) {2};
+  \draw[row] (r3) -- node[above,fill=white,inner sep=1pt] {$X_{30}$} (r0);
+  \draw[row] (r3) -- node[above,sloped,fill=white,inner sep=1pt] {$X_{31}$} (r1);
+  \draw[row] (r3) -- node[below,sloped,fill=white,inner sep=1pt] {$X_{32}$} (r2);
+
+  \node[align=center] at (3.8,-1.75)
+    {Steinberg bridge: $[X_{01}(c),X_{13}(1)]=X_{03}(c)$};
 \end{tikzpicture}
 \caption{The rank-four root geometry.  The two rank-three plane
 estimates control the blue column roots and, through
@@ -1114,7 +1117,7 @@ Except where indicated, declarations are in the
 \noindent
 \begingroup
 \small
-\begin{tabularx}{\textwidth}{@{}p{.29\textwidth}>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{.33\textwidth}>{\raggedright\arraybackslash}X@{}}
 \toprule
 Paper statement & Lean declaration \\
 \midrule
