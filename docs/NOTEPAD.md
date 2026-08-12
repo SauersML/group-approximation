@@ -44768,3 +44768,58 @@ discriminant radius with bounded real orbit frame, and the need to prove
 marked nonisotropy/incidence or a uniform integral decoder.
 
 Full proof: `docs/FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md`.
+
+# 2026-08-12: the one-orbit edge shear is spatial after one CE amplification
+
+Full proof: `docs/FALSE_EDGE_DUAL_SHEAR_SPATIALIZATION.md`.
+
+Let `K` be the common coinduced-parity edge, `z` its central involution,
+and let `epsilon:K->F_2` be the one-orbit augmentation from `(CPM44)`.  The
+clutching automorphism is
+
+```text
+theta(k)=z^(epsilon(k))k.
+```
+
+On the negative corner `P=pL(K)`, `p=(1-u_z)/2`, it becomes the dual
+grading action
+
+```text
+alpha(pu_k)=(-1)^(epsilon(k))pu_k.
+```
+
+If `P_0=pL(ker(epsilon))`, an explicit full-corner calculation gives
+
+```text
+P crossed_alpha C_2 isomorphic M_2(P_0).
+```
+
+Indeed, for the crossed-product implementer `v`, the projection
+`e=(1+v)/2` has corner `eBe=P_0e`; any odd group unitary conjugates `e` to
+`1-e`, so `e` is full and the two corners are equivalent.
+
+The concrete even subgroup is contained in either residually finite vertex
+preimage, hence is residually finite and hyperlinear.  Therefore the two
+negative edge embeddings are exactly unitarily conjugate inside a
+Connes-embeddable tracial algebra.  This removes every edge-only Schur or
+projective obstruction.  The remaining gate is strictly relative: extend
+that particular edge embedding and its implementing unitary to the two
+adjacent vertex algebras in one matrix ultraproduct.  Finite equivariant
+quotients still cannot do this because they kill `z`, but the edge algebra
+itself no longer carries the obstruction.
+
+The even subgroup is nevertheless not co-hyperlinear in either vertex.
+More generally, if `Gamma<=N<=J`, `Gamma` has property `(T)`, and a strict
+compressor satisfies
+
+```text
+t Gamma t^(-1)<=Gamma,
+t^(-1)gamma t notin N,
+```
+
+then any putative co-hyperlinear filtration of `N` makes the image of
+`Gamma` finite in each amenable intermediate quotient.  The one-sided
+compressor inclusion becomes equality there, forcing `t^(-1)gamma t` into
+every approximating overgroup and hence into `N`, a contradiction.  Thus
+the edge is CE-spatial but the Gao--Junge--Gao group-theoretic relative
+extension criterion provably cannot extend it to a vertex.
