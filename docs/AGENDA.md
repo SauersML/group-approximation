@@ -2404,6 +2404,28 @@ diagonalization does not provide this rate.  Any universal TRUE proof must
 use the regular `0/1` trace/prefix structure beyond generic Poincare
 rounding.  See `TRUE_FIXED_WINDOW_DUAL_GAP_COLLAPSE.md`.
 
+The long-chain monodromy obstruction now has a genuinely different local
+escape.  For every finite field `F_l` and `n>=3`, choose a primitive
+degree-`n` polynomial and the distinct primitive polynomial of its inverse
+root.  Multiplication by `x` in the two fields `F_(l^n)` gives companion
+compressors of the same exact order `l^n-1`.  In their common coefficient
+basis the first `n` positive iterates of `1` agree literally, while the two
+inverse iterates differ.  The regular Fourier character model therefore has
+
+```text
+Ad(U_0^j)Z(1)=Ad(U_1^j)Z(1),  0<=j<n,
+||Ad(U_0^-1)Z(1)-Ad(U_1^-1)Z(1)||_2^2=2.
+```
+
+Choosing `n` above every intermediate degree also makes the two quotient
+fields identical on any prescribed bounded positive polynomial computation.
+Unlike the sheared cyclic chain, there is no extra clock-order factor and no
+orbitwise density loss.  This solves the local equal-order Frobenius cell;
+it does not solve FALSE, because the two recurrence fields still require a
+base-dependent, genuinely nonliftable transport under the other external
+substitutions.  Exact Kazhdan-covariant completion would again kill the fold.
+See `FALSE_PRIMITIVE_RECURRENCE_FROBENIUS_PAIR.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
