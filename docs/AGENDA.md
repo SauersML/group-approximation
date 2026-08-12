@@ -108,6 +108,31 @@ endomorphisms simultaneously, with their non-Ore branching and the
 relations of `SL_d(Z)`.  Full proof:
 `docs/FALSE_POSITIVE_CORE_IS_SOFIC.md`.
 
+The most natural noncommutative-fiber completion is now isolated.  Replace
+the commuting `C_2` lamps on `G/Gamma` by Majorana involutions whose distinct
+coordinates anticommute.  Algebraically this is a locally finite central
+extension `Wtilde` with central involution `z` and
+
+```text
+c_x c_y = z c_y c_x  (x!=y).
+```
+
+Its quotient by `<z>` is the known Kun--Thom nonsofic wreath group, so
+`Wtilde` is automatically nonsofic.  In the central character `z=-1`, it
+embeds faithfully into the Clifford crossed product
+
+```text
+Cl(G/Gamma) crossed_product G.
+```
+
+The root Majorana centralizes `Gamma` and has squared commutator norm `2`
+with every strict predecessor.  Hence CE of this one twisted tracial summand
+would immediately make `Wtilde` hyperlinear and nonsofic.  This is the sharp
+matrix-fiber target.  Ordinary finite cone truncations cannot prove CE:
+property `(T)` rules out common Følner exponent sets, and second
+quantization does not dilute a defect supported on a fixed number of modes.
+See `docs/FALSE_FERMIONIC_KUN_THOM_ENDPOINT.md`.
+
 ### 2026-08-12: natural-module formal deformations fail over every field
 
 The all-fields square-zero theorem has an all-order strengthening on the
