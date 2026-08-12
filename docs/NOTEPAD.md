@@ -56,7 +56,13 @@ regular representation.  This strictly supersedes the four-relation
 order-2688 block.  The live first-boundary obstruction is simultaneous
 centralization of `s_11,s_30,s_44,s_55`, not twenty residual certified
 classes; the Boolean first-order dual-number family cannot do this without
-killing `s_11`.  See
+killing `s_11`.  The exact rectangular-block audit strengthens this from
+scalarity to the correct commutant-valued condition: all 16 ordered
+`Hom(V_j,V_i)` types have zero phase image.  For the natural eight-point
+module, exactly the four elements of the two-dimensional chart commutant
+extend from first to second order, all with zero phase.  Gauging off lower
+commutant coefficients proves the same no-go over every
+`F_2[epsilon]/(epsilon^N)`.  See
 `docs/FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md` and
 `docs/FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`.
 
@@ -70,9 +76,9 @@ the current `2^7:A_8` image because
 [rho(s_30),rho(p1_01)]=rho(s_11).
 ```
 
-No proved higher-order or non-Boolean modular continuation is already
-present in the repository.  Prefix replication is also excluded because it
-kills the universal central class.
+No proved non-Boolean modular continuation is already present in the
+repository.  Higher univariate dual numbers in the natural module and prefix
+replication are both excluded.
 
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 

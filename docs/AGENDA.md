@@ -152,7 +152,13 @@ copies of the regular representation.  This strictly supersedes the earlier
 four-relation order-2688 block.  The current boundary is not a set of twenty
 uncoupled relations: the 56 uncertified words reduce to the four survivor
 classes `s_11,s_30,s_44,s_55`, and the first-order Boolean dual-number family
-cannot centralize all four while retaining `s_11`.  Full proofs:
+cannot centralize all four while retaining `s_11`.  This no-go has now been
+strengthened to the correct commutant-valued condition on every rectangular
+block between Boolean subset modules.  All 16 ordered block types have zero
+phase image.  In the natural eight-point module, the only first jets that
+extend through order two are the four chart-commutant matrices; this yields an
+all-order no-go over every `F_2[epsilon]/(epsilon^N)`.  Full proofs and exact
+certificates:
 `docs/FALSE_ATLAS_DUAL_NUMBER_CENTRAL_QUOTIENT.md` and
 `docs/FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`.
 
@@ -163,9 +169,10 @@ different full-chart finite or tracial model in which all four survivors are
 central while `s_11` remains nontrivial, and then extend that control to
 growing relation windows.  Quotienting the current finite image cannot work:
 inside it, `[rho(s_30),rho(g)]=rho(s_11)` for a chart generator `g`.
-The repository contains no completed higher-order or non-Boolean modular
-construction beyond this boundary.  Any such construction must also avoid
-prefix replication, which kills the central class homologically.
+The repository contains no completed non-Boolean modular construction beyond
+this boundary.  Raising the dual-number order in the natural module is now
+closed, not live.  Any surviving construction must also avoid prefix
+replication, which kills the central class homologically.
 
 ### 2026-08-12: compact and weakly compact anchors are impossible
 

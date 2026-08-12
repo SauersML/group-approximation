@@ -1,6 +1,6 @@
 # Boolean dual-number deformations cannot centralize the full first boundary
 
-Date: 2026-08-11
+Date: 2026-08-11; strengthened 2026-08-12
 
 ## Result
 
@@ -40,7 +40,15 @@ and use the unique inner alignment \(h\) which kills the complete
                     (I+\varepsilon X)^{-1}.          \tag{BD1}
 \]
 
-**Theorem 1 (Boolean dual-number no-go).** For every \(1\le k\le7\), if
+**Theorem 1 (Boolean dual-number centrality no-go).** Let \(V\) be any
+finite direct sum of the Boolean modules
+
+\[
+ \mathbb F _2^{\Omega_k},\qquad 1\le k\le7,
+\]
+
+with arbitrary multiplicities, and let \(X\in\operatorname{End}(V)\), with
+off-diagonal blocks allowed.  If
 
 \[
  \rho_X(w)=I\quad(w\in\mathcal Z_5)                \tag{BD2}
@@ -53,19 +61,36 @@ and each of
  \rho_X(s_{44}),\rho_X(s_{55})                     \tag{BD3}
 \]
 
-is scalar, then
+commutes with the first \(A_8\) chart, then
 
 \[
  \rho_X(s_{11})=I.                                 \tag{BD4}
 \]
 
-The same conclusion holds for arbitrary finite direct sums and
-multiplicity amplifications of the Boolean subset representations, even
-when \(X\) has off-diagonal blocks between the summands.
+In particular, requiring the four survivor values to be central in the
+two-chart image forces the desired phase to vanish.  This is stronger than
+the earlier scalar-valued statement: it uses the actual relation-module
+condition and permits the full modular commutant.
 
-Thus the positive eight-point dual-number certificate cannot be promoted to
-a model of the complete first central boundary by changing the subset
-degree, adding Boolean permutation sectors, or adding multiplicity.
+**Theorem 2 (all-order natural-module rigidity).** Put
+
+\[
+ D_N=\mathbb F _2[\varepsilon]/(\varepsilon^N).
+\]
+
+For every \(N\ge2\), replace \(I+\varepsilon X\) in `(BD1)` by an arbitrary
+matrix \(A(\varepsilon)\in GL_8(D_N)\) satisfying \(A(0)=I\).  If all 24
+certified words are identity and all four survivors commute with the first
+\(A_8\) chart, then
+
+\[
+ \rho_A(s_{11})=I.                                \tag{BD4a}
+\]
+
+Thus the positive eight-point certificate cannot be promoted to a complete
+central-boundary model by changing subset degree, adding Boolean permutation
+sectors or multiplicity at first order, nor by passing to higher univariate
+dual numbers in the natural module.
 
 ## Exact linearization
 
@@ -88,30 +113,73 @@ where
 
 Every \(P_j\) is a permutation matrix, so `(BD5)` is a binary linear map
 whose rows are represented exactly by bitsets.  Conditions `(BD2)` say that
-all entries of the corresponding derivatives vanish.  Conditions `(BD3)`
-say that every off-diagonal entry vanishes and all diagonal entries are
-equal.  Finally, after these scalarity equations are imposed, the
-upper-left entry of \(D_{s_{11}}(X)\) is the possible scalar phase.
+all entries of the corresponding derivatives vanish.  Centrality is weakened
+to commutation with the first chart: on a rectangular block
+\(X_{ij}\in\operatorname{Hom}(V_j,V_i)\), it requires
 
-Exact row reduction gives:
+\[
+ D_s(X_{ij})\sigma_j(g)
+ =\sigma_i(g)D_s(X_{ij})                         \tag{BD5a}
+\]
 
-| \(k\) | \(|\Omega_k|\) | \(\dim\operatorname{End}\) | constraint rank | nullity | phase row modulo constraint span |
-|---:|---:|---:|---:|---:|---:|
-| 1 | 8 | 64 | 61 | 3 | 0 |
-| 2 | 28 | 784 | 768 | 16 | 0 |
-| 3 | 56 | 3136 | 3101 | 35 | 0 |
-| 4 | 70 | 4900 | 4839 | 61 | 0 |
+for the six standard chart generators \(g\) and each survivor \(s\).
+This is necessary for full centrality and is strictly weaker than scalarity.
 
-The final column is the decisive certificate: the scalar phase functional
-belongs to the row span of the zero and centrality equations.  It therefore
-vanishes on their common kernel.  Complementation identifies the actions on
-\(k\)-subsets and \((8-k)\)-subsets, proving the result for \(k=5,6,7\).
+Exact row reduction for all 16 ordered block types gives:
 
-For a direct sum \(V=\bigoplus_iV_i\), the maps `(BD5)` preserve every
-block \(\operatorname{Hom}(V_j,V_i)\).  A scalar value of the phase has zero
-off-diagonal blocks, while each diagonal block must have the same scalar.
-The table forces that scalar to be zero on every diagonal block.  This proves
-the direct-sum and multiplicity assertion.
+| \(i\backslash j\) | 1 | 2 | 3 | 4 |
+|---:|---:|---:|---:|---:|
+| 1 | 61/3 | 219/5 | 440/8 | 550/10 |
+| 2 | 219/5 | 768/16 | 1548/20 | 1931/29 |
+| 3 | 440/8 | 1548/20 | 3101/35 | 3878/42 |
+| 4 | 550/10 | 1931/29 | 3878/42 | 4839/61 |
+
+Each entry is `constraint rank/nullity` on
+\(\operatorname{Hom}(\mathbb F_2^{\Omega_j},
+\mathbb F_2^{\Omega_i})\).  In every block, adjoining all entries of
+\(D_{s_{11}}\) raises the rank by zero.  Hence the **whole phase block**
+vanishes on the constraint kernel.  Complementation identifies degrees
+\(k\) and \(8-k\); repeated summands repeat the same rectangular systems.
+This proves Theorem 1, including arbitrary multiplicities and off-diagonal
+blocks.
+
+## Quadratic obstruction and all higher dual numbers
+
+For the natural eight-point module the first-order system has rank 61 and
+nullity three.  Over
+\(\mathbb F_2[\varepsilon]/(\varepsilon^3)\), write the relative factor as
+
+\[
+ I+\varepsilon X+\varepsilon^2Y.                 \tag{BD5b}
+\]
+
+All eight possible first-order classes \(X\) were exhausted.  Exactly four
+extend to a solution at order two.  They have matrix weights
+
+\[
+ 0,\ 8,\ 56,\ 64
+\]
+
+and are precisely the four matrices in the two-dimensional chart commutant
+\(\langle I,J\rangle_{\mathbb F_2}\).  All four have zero second-order
+phase.  The other four first-order classes, of weights
+
+\[
+ 20,\ 28,\ 36,\ 44,
+\]
+
+have inconsistent affine equations for \(Y\).  Thus every noncommutant
+first jet is quadratically obstructed.
+
+To deduce Theorem 2, right-multiply \(A(\varepsilon)\) by an invertible
+commutant-valued series; this does not change the conjugated second chart.
+It can remove all commutant coefficients preceding the first noncommutant
+coefficient \(X_m\varepsilon^m\).  Below order \(2m\), the equations are the
+homogeneous first-order system, so Theorem 1 makes every phase coefficient
+zero.  At order \(2m\), when that order exists in \(D_N\), the quadratic
+calculation above says that \(X_m\) cannot extend.  If \(2m\ge N\), every
+visible phase coefficient has already vanished.  In either case `(BD4a)`
+follows.
 
 ## Why quotienting the positive finite image must fail
 
@@ -152,29 +220,42 @@ second class cannot be repaired by taking a quotient of its finite image.
 
 ## Scope and next construction
 
-This is an exact no-go theorem for a broad and natural modular family, not a
-no-go theorem for the full FALSE program.  It says that the next positive
-target must leave at least one of the following restrictions:
+These are exact no-go theorems for a broad and natural modular family, not a
+no-go theorem for the full FALSE program.  The next positive target must
+leave at least one of the following restrictions:
 
-1. first-order square-zero deformation;
-2. Boolean permutation modules of the natural eight-point action;
+1. Boolean permutation modules of the natural eight-point action;
+2. a one-parameter local deformation of the natural module;
 3. the inner alignment which collapses both charts at order zero; or
 4. promotion by quotienting \((C_2)^7\rtimes A_8\).
 
 The live alternatives are a genuinely nonlinear finite extension with
-different projective chart geometry, or a higher-order deformation in a
-non-Boolean modular representation.  In particular, repeating the
-eight-point construction at larger subset degree is now rigorously
-exhausted.
+different projective chart geometry, or a deformation in a non-Boolean
+modular representation.  Merely increasing the truncation order of the
+natural eight-point construction is now rigorously exhausted.
 
 ## Reproduction
 
 ```text
 PYTHONPATH=experiments \
 python3 experiments/atlas_subset_dual_central_no_go.py
+
+PYTHONPATH=experiments \
+python3 experiments/atlas_subset_dual_commutant_phase.py
+
+PYTHONPATH=experiments \
+python3 experiments/atlas_natural_second_order_no_go.py
 ```
 
-The verifier reconstructs \(GL_4(2)\cong A_8\), rebuilds the original atlas
-words, forms every row of `(BD5)` directly from prefix permutations, performs
-exact \(\mathbb F _2\) bitset elimination, checks all four ranks in the
-table, and verifies the commutator identity `(BD8)`.
+The verifiers reconstruct \(GL_4(2)\cong A_8\), rebuild the original atlas
+words, form every row of `(BD5)` directly from prefix permutations, perform
+exact \(\mathbb F _2\) bitset elimination, check all 16 rectangular systems,
+exhaust the eight natural-module first jets at order two, and verify the
+commutator identity `(BD8)`.  The archived outputs have SHA-256 hashes
+
+```text
+50034741480fa4d2ecc249b4c2583c7e8dd9d4d1c7315902557ce9c0d21b62ef
+  experiments/atlas-subset-dual-commutant-phase.json
+318907495f2a271e1b6339103d4e24b1d795478fa5e6d1efbcd4fad5ab304d24
+  experiments/atlas-natural-second-order-no-go.json
+```
