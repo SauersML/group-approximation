@@ -65,7 +65,7 @@ always lies in (ker C), so `(NH3)` proves equality for every odd field.
 Now take the first coefficient (X_m) of (A(\varepsilon)) which is not in
 the commutant. Right multiplication of (A) by an invertible
 commutant-valued series does not change the conjugated chart and removes all
-earlier commutant coefficients. At order (arepsilon^m), the nonlinear
+earlier commutant coefficients. At order (\varepsilon^m), the nonlinear
 equations reduce exactly to the homogeneous system (C(X_m)=0), contradicting
 `(NH3)`--`(NH4)`. Hence the whole series is gauge-equivalent to a
 commutant-valued series, which does not change the second chart at all; this
@@ -74,21 +74,32 @@ proves `(NH1)` in odd characteristic.
 ## Characteristic two
 
 Modulo two, the same system has rank 61 and a one-dimensional
-noncommutant quotient of its kernel. The exact truncated-ring calculation
-exhausts that projective line over (mathbb F_2): its nonzero representative
-has matrix weight 20 and admits no extension through order
-(arepsilon^2). This is the quadratic obstruction already underlying
+noncommutant quotient of its kernel. Let (X_*) denote its nonzero quotient
+class. The exact truncated-ring calculation proves that the quadratic
+right-hand side produced by (X_*) does not belong to the image of (C); the
+archived representative has matrix weight 20. Equivalently, no choice of a
+second coefficient extends (I+\varepsilon X_*) through order
+(\varepsilon^2). This is the quadratic obstruction already underlying
 `FALSE_ATLAS_BOOLEAN_DUAL_NO_GO.md`.
 
-The same first-noncommutant-coefficient argument applies. If the first such
-coefficient occurs in degree (m), the quadratic obstruction appears in
-degree (2m) whenever visible; if (2m\ge N), all visible coefficients of
-the marked phase already vanish by the universal first-order identity.
-Therefore `(NH1)` also holds in characteristic two.
+The same first-noncommutant-coefficient argument applies over every field
+of characteristic two. After removing the preceding commutant-valued
+series, a further commutant gauge in degree (m) lets us write the first
+noncommutant coefficient as (X_m=aX_*) with (a\ne0), modulo the fixed
+choice of representative (X_*). If (2m<N), the equations in
+degree (2m) have quadratic right-hand side (a^2) times the certified
+right-hand side for (X_*). Since scalar extension preserves membership in
+the image of (C), and (a^2\ne0), no coefficient (X_{2m}) can solve those
+equations. If (2m\ge N), products of noncommutant coefficients are invisible
+modulo (\varepsilon^N). Every visible coefficient of the marked survivor is
+then a first-order expression in one coefficient of (A), with lower
+commutant coefficients contributing nothing. The all-module first-order
+identity forces each such coefficient to vanish. Thus `(NH1)` holds in
+characteristic two as well.
 
-For a nonprime field, the relevant matrix ranks and affine inconsistency are
-unchanged under scalar extension from the prime field. This completes the
-all-fields statement.
+The determinant witness, the one-dimensional quotient, and the affine
+inconsistency are preserved under scalar extension from the prime field.
+This completes the all-fields statement.
 
 ## Exact replay
 
