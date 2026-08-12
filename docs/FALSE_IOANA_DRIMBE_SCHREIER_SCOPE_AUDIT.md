@@ -84,9 +84,20 @@ chart conclusion `(IDS5)` cannot all coexist.
 
 Drimbe proves cocycle superrigidity for a broad class of **coinduced pmp
 actions**.  Under his hypotheses, a cocycle with values in a target from
-the relevant finite-von-Neumann class is cohomologous to a homomorphism.
-This potentially enlarges the class of base actions and targets to which a
-rigidity step may be applied.
+the class `U_fin` is cohomologous to a homomorphism.  Importantly, `U_fin`
+contains every compact Polish group, not only countable groups.
+
+This target enlargement still does not help the clock construction.  The
+theorem in `FALSE_DRIMBE_COMPACT_CLOCK_UNTWISTING_NO_GO.md` proves that the
+natural compact inverse-limit clock group
+
+`Z_p semidirect_(1+p) Z_p`
+
+is amenable and torsion-free.  A homomorphism from a property-`(T)` group
+into it has finite image and is therefore trivial.  Hence every such compact
+clock cocycle on a Drimbe coinduced action is a coboundary.  Its finite
+reductions can be gauged to zero, but their primitive fold holonomy is then
+also zero.
 
 It does not solve the present transition problem for three independent
 reasons.
@@ -100,15 +111,17 @@ reasons.
    as `k` varies.  The theorem contains no estimate comparing their centered
    coordinates to `M_k`.
 
-3. Even if the inverse-limit compact target is admitted, cohomology to a
-   homomorphism is topological/algebraic information, whereas `(IDS2)` is an
-   Archimedean growth statement for chosen integer representatives.  A
-   homomorphism into a profinite clock group may have primitive coordinates
-   at every level, and `(IDS3)` then forces linear moments.
+3. For an arbitrary compact target, cohomology to a homomorphism is only
+   topological/algebraic information and need not control Archimedean sizes.
+   For the natural inverse-limit metacyclic clock target, however, the
+   homomorphism is forced to be trivial.  This is stronger but sterile: it
+   kills the primitive fold together with all transition moments.
 
 Thus Drimbe can replace the rigidity engine only **after** one has built a
 single coherent cocycle in an appropriate fixed target.  It cannot supply
-the missing cocycle or the desired transversals.
+the missing cocycle or the desired transversals.  For the obvious compact
+clock target, it proves that the required coherent primitive cocycle does
+not exist.
 
 ## 4. Exact endgame statement
 
@@ -140,4 +153,3 @@ from every honest pair on the finite Kazhdan/fold window.
 That is the genuine finite-stage object still to be constructed.  Until it
 is constructed, the three real transition numbers have not been proved to
 vanish and FALSE is not established.
-

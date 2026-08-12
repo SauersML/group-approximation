@@ -43907,3 +43907,36 @@ the dual packets must also be bounded.  This is the same arithmetic closing
 layer isolated by the paired-discriminant formulation, now expressed in the
 canonical modular-symbol model.  Full audit:
 `docs/TRUE_ASH_RUDOLPH_PACKET_SCOPE_AUDIT.md`.
+
+# 2026-08-11: Drimbe annihilates the compact inverse-limit clock
+
+The target scope in the earlier Ioana--Drimbe audit needed one correction:
+Drimbe's coinduced-action theorem treats every `U_fin` target, explicitly
+including compact Polish groups.  This does not rescue the coherent clock
+lift.  It gives a sharper no-go.
+
+For odd `p`, the natural inverse limit of the metacyclic clock groups is
+
+`B_hat_p = Z_p semidirect_(1+p) Z_p`.
+
+It is compact, metabelian, and torsion-free.  Drimbe untwists every
+`B_hat_p`-valued cocycle on the relevant property-`(T)` coinduced action to
+a homomorphism.  The image is an amenable property-`(T)` group, hence finite;
+torsion-freeness makes it trivial.  Therefore the cocycle is a coboundary.
+
+Its finite reductions can be gauged to zero, so their three measurable
+transition moments vanish identically, but the primitive fold holonomy also
+vanishes.  Thus compact-target superrigidity does not construct the real
+Schreier system: it proves that the coherent primitive compact-clock shortcut
+is impossible.  Coinduction also remains distinct from the finite
+Shapiro/Schreier bundle required by the Kun--Thom model.
+
+Full proof:
+`docs/FALSE_DRIMBE_COMPACT_CLOCK_UNTWISTING_NO_GO.md`.
+
+Exact status remains: no base-dependent paired Fourier/Frobenius transition
+system with proved
+
+`R_*/M -> 0`, `A_*/M -> 0`, `R_* A_*/M -> 0`
+
+has been constructed.
