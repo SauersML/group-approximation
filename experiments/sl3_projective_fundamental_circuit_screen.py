@@ -52,6 +52,9 @@ def main() -> None:
     parser.add_argument(
         "--column-seed", type=int,
         help="deterministically shuffle degree-two coordinates before reduction")
+    parser.add_argument(
+        "--exact-support-limit", type=int, default=64,
+        help="lift selected modular circuits up to this support size over Z")
     args = parser.parse_args()
 
     field = GF(args.characteristic)
@@ -176,7 +179,7 @@ def main() -> None:
         raise AssertionError("degree-two coordinate decoder has the wrong size")
     for selected in selected_rows:
         index = selected["kernel_row"]
-        if selected["support_size"] > 64:
+        if selected["support_size"] > args.exact_support_limit:
             continue
         support = [
             column for column, value in enumerate(kernel.row(index)) if value]
@@ -241,6 +244,7 @@ def main() -> None:
             "reverse" if args.reverse_columns else
             f"shuffle:{args.column_seed}" if args.column_seed is not None else
             "natural"),
+        "exact_support_limit": int(args.exact_support_limit),
         "cycle_matrix_dimensions": [
             int(cycle_matrix.nrows()), int(cycle_matrix.ncols())],
         "cycle_matrix_rank": int(rank),

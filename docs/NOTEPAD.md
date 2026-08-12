@@ -45320,3 +45320,44 @@ matrix amplification has parity-implementation defect at least the same
 fixed constant `c>0`.  Thus the full MF symmetric amalgam cannot hide an
 operator-norm half-circle spatializer.  The Borel half-circle unitary is
 genuinely tracial; the Heisenberg generator is genuinely external.
+
+# 2026-08-12: full exact square-level integral cycle packets
+
+Full proof and certificates:
+`docs/TRUE_SQUARE_LEVEL_EXACT_CYCLE_PACKETS.md`.
+
+The apparent dense complement at level `121` was an echelon-order artifact.
+Reversing the degree-two cellular coordinate order and lifting each selected
+fundamental support over `Z` gives seven primitive exact cycles spanning all
+of rational `H_2`, with supports
+
+```text
+78,98,112,121,124,213,311
+```
+
+and coefficients bounded by four.  At the newly exported level `169`, three
+modular characteristics give ranks `(2530,1226)` and `H_2` upper dimension
+`12`; the square-level Eisenstein dimension eight plus Ash--Yasaki's
+cuspidal dimension four gives equality.  Reverse elimination gives twelve
+primitive exact spanning cycles with supports
+
+```text
+7,112,134,146,174,183,198,199,204,207,207,220
+```
+
+and coefficients bounded by seven.  The first is a unit-coefficient
+seven-term cycle of squared norm seven.
+
+Natural-order elimination separately exposes exact short subpackets of ranks
+`2` at `121` and `4` at `169`, exactly matching the published cuspidal
+dimensions, with support maxima `17` and `23`.  This is not yet a cuspidal
+identification because the absolute-to-relative comparison has not been
+applied.  It is now the precise comparison-map target.
+
+The result is strong finite-level TRUE evidence and removes “intrinsically
+dense Eisenstein directions” from the current diagnosis.  It is not a
+uniform theorem: the supports `311` and `220` do not themselves give a
+level-independent bound, and rational spanning does not certify an integral
+homology basis or a bounded section.  The theorem-shaped next step is to
+recognize the reverse coordinate filtration as a symbolic modular-symbol or
+Eisenstein packet construction valid for every square level.

@@ -2629,6 +2629,20 @@ branch, so the sole surviving gate is the nonlinear marked
 discriminant/carry obstruction.  See
 `FALSE_KAZHDAN_ORBIT_FRAME_OPERATOR_BOUND.md`.
 
+The square-level integral-cycle screen has now been corrected from a partial
+packet to a full exact packet.  At levels `49,121,169`, primitive integral
+two-cycles span all of rational `H_2`; their support maxima are respectively
+`11,311,220`, and their coefficient maxima are `2,4,7`.  At `121` and `169`,
+the enormous natural-order rows were pivot artifacts: reversing the cellular
+coordinate order exposes all seven and all twelve directions with small
+integer coefficients.  The natural-order short subpacket ranks `2` and `4`
+match the published cuspidal dimensions, while the complementary dimensions
+`5` and `8` match the square-level Eisenstein formula; identification still
+requires the absolute-to-relative map.  The next family theorem is to explain
+the reverse-order filtration symbolically and bound support/synthesis and
+integral saturation uniformly.  See
+`TRUE_SQUARE_LEVEL_EXACT_CYCLE_PACKETS.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
