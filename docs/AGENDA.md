@@ -179,6 +179,22 @@ charts.  The remaining monomial overlap is unbounded phase order on
 nonexact permutation charts, plus possible growth of the marked ratios over
 exact charts.
 
+The nonexact monomial overlap has now been reduced further; see
+`TRUE_NONEXACT_MONOMIAL_FIXED_PHASE_REDUCTION.md`.  For every arbitrary
+finite monomial model, the witness character defect is exactly its moved
+fraction plus its phase energy on fixed points.  The classical radical
+inequality controls the moved fraction by the total relator defect, with no
+permutation-stability hypothesis.  Hence monomial domination on all
+nonexact charts is equivalent, up to universal chordal/geodesic constants,
+to one partial-holonomy inequality: fixed-point phase energy of `w` must be
+bounded by closed-relator phase energy plus the mass on which relator loops
+do not close.  Any monomial obstruction therefore has asymptotically
+negligible witness motion and macroscopic phase cancellation on fixed
+points.  Conjugate doubling and trivial-block dilution show that this
+affine monomial constant is exactly the usual phase-insensitive constant
+defined by `1-|tr|^2`.  This does not solve the phase inequality, but removes
+base motion as an independent source of the gap.
+
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give
 `Lambda_(w,X)<=|w| C_circ(A_X)<=|w|Theta(A_X)/sigma_+(A_X)` and the
