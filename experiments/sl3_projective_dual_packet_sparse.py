@@ -62,6 +62,12 @@ def main() -> None:
     parser.add_argument("--time-limit", type=float, default=120.0)
     parser.add_argument("--greedy-sweeps", type=int, default=20)
     parser.add_argument("--finish-residual-hnf", action="store_true")
+    parser.add_argument(
+        "--saturation-direction-certificate",
+        action="append",
+        default=[],
+        type=Path,
+    )
     args = parser.parse_args()
 
     started = time.monotonic()
@@ -141,8 +147,33 @@ def main() -> None:
     if cycles * raw_lifts.transpose() != identity_matrix(ZZ, rank):
         raise AssertionError("lifts are not packet-dual")
 
+    reduction_generators = d2.transpose()
+    saturation_certificate_hashes = []
+    for certificate_path in args.saturation_direction_certificate:
+        certificate_bytes = certificate_path.read_bytes()
+        certificate = json.loads(certificate_bytes)
+        if certificate["level"] != level:
+            raise ValueError("saturation direction level mismatch")
+        if certificate["boundary_degree"] != 2:
+            raise ValueError("saturation direction has the wrong degree")
+        direction = matrix(ZZ, 1, ambient_dimension, {
+            (0, entry["coordinate"]): entry["coefficient"]
+            for entry in certificate["saturation_direction"]
+        })
+        selected_rows = reduction_generators.matrix_from_rows(
+            certificate["selected_bad_field_row_indices"]
+            + [certificate["extra_rational_row_index"]])
+        dependence = matrix(
+            ZZ, 1, selected_rows.nrows(),
+            certificate["lifted_dependence_coefficients"])
+        if dependence * selected_rows != certificate["prime"] * direction:
+            raise AssertionError("saturation direction certificate is invalid")
+        reduction_generators = reduction_generators.stack(direction)
+        saturation_certificate_hashes.append(
+            hashlib.sha256(certificate_bytes).hexdigest())
+
     reduced_lifts, reduction_changes = greedy_row_lattice_reduce(
-        raw_lifts, d2.transpose(), args.greedy_sweeps)
+        raw_lifts, reduction_generators, args.greedy_sweeps)
     if d3 * reduced_lifts.transpose() != 0:
         raise AssertionError("range reduction changed boundary annihilation")
     if cycles * reduced_lifts.transpose() != identity_matrix(ZZ, rank):
@@ -157,7 +188,10 @@ def main() -> None:
         selected_gram = reduced_gram
         selected_polynomial = reduced_polynomial
         selected_roots = reduced_roots
-        selected_name = "greedy_raw_coboundary_reduced"
+        selected_name = (
+            "greedy_certified_saturation_reduced"
+            if saturation_certificate_hashes
+            else "greedy_raw_coboundary_reduced")
     else:
         selected_lifts = raw_lifts
         selected_gram = raw_gram
@@ -176,8 +210,11 @@ def main() -> None:
             "the packet-coordinate dual basis extends to ambient integer "
             "functionals annihilating every boundary; hence it lies in Q^#"),
         "residual_equation_count": 0,
-        "greedy_raw_coboundary_reduction_changes_by_sweep": (
+        "greedy_row_lattice_reduction_changes_by_sweep": (
             reduction_changes),
+        "saturation_direction_certificate_sha256": (
+            saturation_certificate_hashes),
+        "reduction_generator_count": reduction_generators.nrows(),
         "packet_ambient_gram": [
             [int(entry) for entry in row] for row in packet_gram.rows()],
         "packet_ambient_synthesis_polynomial_monic": str(packet_polynomial),
@@ -211,8 +248,8 @@ def main() -> None:
         "scope": (
             "exact integral Q-basis and packet-dual section certificate; "
             "the Riesz norm is a basis-free upper bound; greedy reduction "
-            "uses the raw d2 coboundary row lattice, not its saturation, "
-            "and is not a CVP optimum in the full extension fiber"),
+            "uses the raw d2 coboundary rows plus every explicitly certified "
+            "prime-saturation direction, but is not a CVP optimum"),
     }
     args.output.write_text(
         json.dumps(certificate, indent=2, sort_keys=True) + "\n",

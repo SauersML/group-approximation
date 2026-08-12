@@ -48,6 +48,21 @@ denominators.  The next exact computation should therefore perform CVP or
 range reduction in this saturated annihilator.  This is a mathematical
 correction to the solver target, not a request for a larger HNF run.
 
+For a chain complex, the quotient between the saturated and raw annihilator
+lattices is canonically `Ext^1(H_1,Z)`, hence has the invariant factors of
+the torsion in integral first homology.  At level `169`, `rank(d_2)=2530`;
+the rank remains `2530` modulo `2,3,5,7` and drops to `2529` modulo `13`.
+The first missing extension direction is therefore one-dimensional and
+`13`-primary, not binary.  An exact lifted modular dependence gives
+
+    13 v_13 in Row_Z(d_2^T),
+
+where `v_13` has support `1533`, squared norm `2103`, and maximum coefficient
+`3`.  Adjoining it restores rank `2530` modulo `13`, so it removes the entire
+`13`-primary saturation defect.  Certificates:
+`projective-cellular-n169-modular-small.json` and
+`projective-cellular-n169-d2-saturation-p13.json`.
+
 ## 2026-08-12: Shulman MF is not the FALSE endpoint
 
 The framed double now uses the correct conclusion in

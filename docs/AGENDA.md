@@ -122,6 +122,13 @@ coming from torsion in `coker(d_2)`.  Thus the first greedy reducer operated
 in a finite-index sublattice and its huge output is inconclusive.  The next
 quantitative calculation must reduce in the saturated annihilator.
 
+This quotient is canonically `Ext^1(H_1,Z)`.  At level `169`, the rank of
+`d_2` is full modulo `2,3,5,7` and drops by one modulo `13`.  The unique
+missing `13`-direction has now been extracted explicitly: it has support
+`1533`, squared norm `2103`, maximum coefficient `3`, and adjoining it
+restores full rank modulo `13`.  Hence the entire visible `13`-primary
+saturation defect is one certified row.
+
 ### 2026-08-12: determinant-one primal section at level 121
 
 Boundary reduction of the full exact square-level packets improves the

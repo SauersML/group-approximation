@@ -193,11 +193,11 @@ ambient extension of a fixed functional on `K`, then all its extensions are
 
 ```text
 z_0 + Ann_Z(K),
-Ann_Z(K)=Row_Q(d) intersect Z^N
-        =Sat(Row_Z(d)).                                  (SPI14)
+Ann_Z(K)=Row_Q(d^T) intersect Z^N
+        =Sat(Row_Z(d^T)).                                (SPI14)
 ```
 
-The raw row lattice `Row_Z(d)` can have finite index in `(SPI14)`.  More
+The raw row lattice `Row_Z(d^T)` can have finite index in `(SPI14)`.  More
 precisely, if `I=im(d) subset F`, restriction gives an exact sequence whose
 cokernel is
 
@@ -221,6 +221,62 @@ saturated annihilator `(SPI14)`.  The enormous coefficients of the first
 generic level-`169` HNF extensions therefore do not indicate geometric
 growth; before drawing that conclusion one must reduce in the full
 saturated fiber.
+
+For a chain complex, this quotient has a more intrinsic description.
+
+**Proposition 5 (the missing extension directions are first homology).**
+For free integral chains
+
+```text
+C_2 --d_2--> C_1 --d_1--> C_0,
+```
+
+there are canonical identifications
+
+```text
+Sat(Row_Z(d_2^T))/Row_Z(d_2^T)
+ ~= Ext^1(coker(d_2),Z)
+ ~= Ext^1(H_1,Z).                                      (SPI16)
+```
+
+In particular, this finite group has the same invariant factors as the
+torsion subgroup of `H_1`.
+
+**Proof.**  Proposition 4 gives the first identification.  There is an exact
+sequence
+
+```text
+0 -> H_1 -> coker(d_2) -> im(d_1) -> 0.                (SPI17)
+```
+
+The last term is free, so `(SPI17)` splits as an extension of abelian groups
+and contributes no `Ext^1(-,Z)`.  End proof.
+
+This completely localizes the extra arithmetic: the short-extension solver
+must add precisely the torsion directions of integral `H_1`, not saturate an
+unrelated enormous lattice blindly.
+
+At level `169`, `rank(d_2)=2530`.  Exact modular ranks are
+
+```text
+rank_(F_l)(d_2)=2530,   l=2,3,5,7,
+rank_(F_13)(d_2)=2529.                                (SPI18)
+```
+
+Thus the visible defect is not binary: it is one-dimensional at the level
+prime `13`.  The unique dependence among a suitable `2530`-row rational
+basis modulo `13` gives an exact divided combination `v_13` satisfying
+
+```text
+13 v_13 in Row_Z(d_2^T),
+rank_(F_13)(Row_Z(d_2^T)+Z v_13)=2530.                 (SPI19)
+```
+
+Consequently adjoining `v_13` removes the entire `13`-primary saturation
+defect.  The vector is concrete and modest: support `1533`, squared norm
+`2103`, and maximum coefficient `3`.  This does not by itself exclude
+torsion at untested primes, but it proves that the level-`169` correction is
+one explicit row rather than a full Smith-basis problem.
 
 ## 6. Meaning for TRUE
 
@@ -248,8 +304,15 @@ experiments/projective-cellular-n169-packet-index.json
 experiments/projective-cellular-n169-cycle-boundary-saturated.json
 SHA-256 b9f37304009e64acb829c6c4da5f7f3f7dcbce9996f88b9c8794b147ee90e483
 
+experiments/projective-cellular-n169-modular-small.json
+SHA-256 ceeb8bb2a3dd743ceb3a22731709844d908326690ddd80719397e2a69fcb87d1
+
+experiments/projective-cellular-n169-d2-saturation-p13.json
+SHA-256 8e87f3ce7a68a7162cfd2ce4b77c376f31f61f391ff68f0d0efc5e011828e19a
+
 experiments/sl3_projective_packet_index_sparse.py
 experiments/sl3_projective_packet_saturate.py
+experiments/sl3_projective_row_saturation_direction.py
 ```
 
 The repaired certificate contains all exact cycle coordinates, every
