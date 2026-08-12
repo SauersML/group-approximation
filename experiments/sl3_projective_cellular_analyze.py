@@ -234,7 +234,7 @@ def main() -> None:
         for row in range(boundaries[3].nrows()))
 
     lift_data = None
-    if args.lift_output:
+    if args.lift_output and harmonic_basis.nrows():
         d2_integer = boundaries[2].change_ring(ZZ)
         print("lift: computing the primitive cellular cycle lattice", flush=True)
         cycle_basis = d2_integer.transpose().right_kernel_matrix()

@@ -110,6 +110,30 @@ SHA-256 1a81d7c70b6477ab4c0cfeba0ebd0f4e1f3cf08c8f94aca0e42b3871cdb74ae2.
 Thus the new path has been checked both against the old implementation where
 the latter applies and on a true prime-power ring where it does not.
 
+### Exact lower-level control for `121`
+
+The reduction target of the level-`121` chart is level `11`.  Exact analysis
+at that level gives
+
+```text
+Q^11 <- Q^18 <- Q^10 <- Q^4,
+rank(d1)=10, rank(d2)=8, rank(d3)=2,
+H_2=0.                                                    (PP2a)
+```
+
+Both consecutive boundary products vanish exactly.  Therefore any nonzero
+harmonic plane at level `121` is genuinely new; it cannot be the ordinary
+pullback of a lower-level harmonic class.  The exact control certificate is
+
+```text
+experiments/projective-cellular-n11-summary.json
+SHA-256 f41d32c4f086c0a8bb59fefc170e4ba41213998aad27b4c594f7f640ebae2590.
+```
+
+This run also exposed and fixed an analyzer edge case: when `H_2=0`, a
+requested lift output must remain null instead of entering the binary
+harmonic Gram reducer.
+
 ## 4. The level-121 screen
 
 The batch driver

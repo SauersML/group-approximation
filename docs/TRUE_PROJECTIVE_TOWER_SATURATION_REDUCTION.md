@@ -271,8 +271,8 @@ level, and it does not prove a bound for the saturation cosets.  It does
 remove a misleading source of apparent growth: duplicating a lower-level
 repair across a constant-fibre cover never worsens its normalized cost.
 
-For the level-`121` calculation, level `11` contributes no known lower-level
-cuspidal plane, so a rank-two harmonic result tests a genuinely new packet.
+For the level-`121` calculation, exact rational ranks at level `11` give
+`H_2=0`, so a rank-two harmonic result tests a genuinely new packet.
 For towers above a level already carrying cuspidal homology, the additional
 certificate should export both the new-real quotient and the integral
 saturation group (PTS15).  That is the finite arithmetic object on which a
