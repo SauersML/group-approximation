@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-11: the local positive-commutant gate is exact character matching
+
+The paired-Fourier FALSE endpoint no longer contains a local dense-unitary
+optimization.  For a finite abelian tangent module `A`, positive subgroup
+`P`, representation `pi`, and marked class `m`, the maximum displacement of
+`pi(m)` by a unitary commuting with `pi(P)` is an exact assignment problem
+inside the fibers of `A^ -> P^`.  For the regular representation it depends
+only on `r=ord_(A/P)(m+P)`: `0` for `r=1`, `4` for even `r`, and
+`2+2 cos(pi/r)` for odd `r>1`.
+
+Hence every surviving marked quotient class gives squared normalized-HS
+energy at least three, attained by a Pauli character multiplier.  The
+remaining globalization variables are discrete annihilator characters
+subject to external relative-cocycle and stabilizer congruences.  Future
+compute should build that sparse modular CSP and return a feasible exact
+assignment or a dual inconsistency certificate; it should not optimize
+dense unitaries.  Honest finite Laurent quotients in which the positive
+image already contains the inverse have `r=1` and are exactly sterile.  Full
+proof: `FALSE_POSITIVE_COMMUTANT_CHARACTER_MATCHING.md`.
+
 ## 1. Finite-action character transfer  [ACTIVE]
 
 Fix a finite multiplication table and let `F_T` be the free group on its

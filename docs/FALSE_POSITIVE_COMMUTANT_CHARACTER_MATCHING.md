@@ -1,0 +1,212 @@
+# Positive-invisible Fourier walls are an exact character-matching problem
+
+Date: 2026-08-11
+
+## 1. Outcome
+
+The paired-Fourier globalization problem asks for a unitary which is
+invisible on a common positive additive subgroup but moves one marked
+Laurent class.  On a finite abelian tangent module this local problem has an
+exact solution.  It is not a dense unitary optimization.
+
+Let `A` be a finite abelian group, let
+
+`pi:A -> U(V)`                                                `(PCM1)`
+
+be a finite-dimensional unitary representation, let `P<=A`, and let
+`m in A`.  Among all unitaries commuting with `pi(P)`, the maximum squared
+normalized Hilbert--Schmidt displacement of `pi(m)` is a finite assignment
+problem inside the fibers of character restriction
+
+`A^ -> P^.`                                                  `(PCM2)`
+
+For the regular representation the answer depends only on the order `r` of
+`m+P` in `A/P`:
+
+`E_reg(P,m)=0`                         if `r=1`,
+`E_reg(P,m)=4`                         if `r` is even,
+`E_reg(P,m)=2+2 cos(pi/r)`             if `r>1` is odd. `(PCM3)`
+
+In particular, every nonzero marked quotient class has
+
+`E_reg(P,m)>=3.`                                            `(PCM4)`
+
+Thus local positive invisibility and macroscopic marked displacement are
+automatic as soon as the marked class survives in `A/P`.  The optimum is
+attained by a permutation of Fourier characters, equivalently by an exact
+finite Pauli multiplier; numerical unitary search cannot improve it.
+
+This does **not** finish FALSE.  In an honest finite Laurent quotient the
+image of the full positive polynomial module can already contain the inverse
+marked monomial, making `m in P` and forcing `(PCM3)` to vanish.  In a
+growing-window model the remaining problem is to choose these character
+permutations coherently over the external principal bundle.  The theorem
+reduces that gate to finite character incidences and twisted cocycle
+constraints.
+
+## 2. Character-fiber decomposition
+
+Normalize the Hilbert--Schmidt norm by
+
+`||X||_2^2=dim(V)^(-1) Tr(X^*X).`                       `(PCM5)`
+
+Define
+
+`E_pi(P,m)`
+` =max_{T in U(V), [T,pi(p)]=0 for all p in P}`
+`      ||T pi(m) T^* - pi(m)||_2^2.`                    `(PCM6)`
+
+Since `A` is finite abelian,
+
+`V=directSum_(chi in A^) V_chi,`
+`pi(a)|_(V_chi)=chi(a) 1_(V_chi).`                      `(PCM7)`
+
+For `eta in P^`, put
+
+`V_eta=directSum_(chi|_P=eta) V_chi.`                  `(PCM8)`
+
+The spaces `(PCM8)` are exactly the joint eigenspaces of `pi(P)`.  Hence
+
+`pi(P)'=directSum_(eta in P^) End(V_eta).`             `(PCM9)`
+
+For each `eta`, list the eigenvalues of `pi(m)|_(V_eta)`, with
+multiplicity, as
+
+`z_(eta,1),...,z_(eta,d_eta) in S^1.`                  `(PCM10)`
+
+## 3. Exact assignment formula
+
+**Theorem 1.**  With the preceding notation and `d=dim(V)`,
+
+`E_pi(P,m)`
+` =2-(2/d) sum_eta min_(sigma in Sym(d_eta))`
+`                    sum_(i=1)^(d_eta)`
+`                    Re(z_(eta,sigma(i)) conjugate(z_(eta,i))).` `(PCM11)`
+
+In particular, an optimizer may always be chosen to permute the character
+slots inside each `P`-isotypic block.
+
+### Proof
+
+Put `U=pi(m)`.  Every admissible `T` is block diagonal over `(PCM8)`, and
+
+`||TUT^*-U||_2^2`
+` =2-2 Re dim(V)^(-1) Tr(TUT^*U^*).`                  `(PCM12)`
+
+On one block, diagonalize `U=diag(z_1,...,z_s)`.  Direct expansion gives
+
+`Re Tr(TUT^*U^*)`
+` =sum_(i,j)|T_(ij)|^2 Re(z_j conjugate(z_i)).`       `(PCM13)`
+
+The matrix `(|T_(ij)|^2)` is doubly stochastic.  The right side of
+`(PCM13)` is linear in this matrix, so its minimum over all doubly
+stochastic matrices occurs at a permutation matrix by the Birkhoff--von
+Neumann theorem.  Every permutation matrix is unitary and is therefore
+admissible.  Thus the minimum over unitaries is exactly the assignment
+minimum.  Summing the block minima in `(PCM12)` proves `(PCM11)`.  End
+proof.
+
+**Corollary 2 (exact zero criterion).**  `E_pi(P,m)=0` if and only if
+`chi(m)` is constant among the characters in the spectral support of `pi`
+having any fixed restriction to `P`.
+
+Equivalently, `pi(m)` is central in the finite-dimensional algebra
+`pi(P)'`.  Positive marked energy occurs exactly when two spectral
+characters agree on `P` but disagree on `m`.
+
+### Proof
+
+The displacement in `(PCM6)` vanishes for every admissible `T` exactly when
+`pi(m)` commutes with all of `pi(P)'`.  By `(PCM8)--(PCM10)`, this is
+equivalent to being scalar on every `V_eta`.  End proof.
+
+## 4. Closed formula for the regular representation
+
+Take `pi=lambda_A`, the left regular representation.  In the Fourier basis
+every `chi in A^` occurs once.  The fibers of `(PCM2)` are cosets of
+
+`P^perp={nu in A^:nu|_P=1}~=(A/P)^.`                 `(PCM14)`
+
+Let `r=ord_(A/P)(m+P)`.  Evaluation at `m` maps `P^perp` onto the group of
+`r`th roots of unity, with all fibers of equal size.  Inside every
+restriction fiber, every entry of the assignment cost is at least
+
+`c_r=min_(z^r=1) Re(z).`                              `(PCM15)`
+
+Choose `nu_0 in P^perp` attaining `(PCM15)` and use the character
+permutation
+
+`chi |-> chi nu_0.`                                   `(PCM16)`
+
+Every matched pair in `(PCM16)` has cost `c_r`, so this lower bound is
+attained simultaneously on every fiber.  Therefore
+
+`E_reg(P,m)=2-2c_r.`                                  `(PCM17)`
+
+If `r=1`, then `c_r=1`.  If `r` is even, `-1` is an `r`th root and
+`c_r=-1`.  If `r>1` is odd, the roots nearest `-1` have real part
+`-cos(pi/r)`.  Equations `(PCM3)--(PCM4)` follow.
+
+The optimizer `(PCM16)` has a concrete Pauli form.  In the physical basis
+`ell^2(A)`, it is multiplication by the character `nu_0`; hence it commutes
+with every positive translation `lambda_A(p)`, `p in P`, while
+
+`T lambda_A(m) T^*=nu_0(m) lambda_A(m).`              `(PCM18)`
+
+Thus the optimal wall is already an exact root-of-unity multiplier.
+
+## 5. Interface with the equivariant fiber problem
+
+Suppose two sectors use the same basepoint representation `pi` and their
+relative holonomy at a base label `k` is `t(k)`.  Agreement on a positive
+set `P_0` is exactly
+
+`[t(k),pi(alpha_(k^(-1))g)]=0`
+`                  for every g in P_0.`               `(PCM19)`
+
+Write
+
+`P_k=<alpha_(k^(-1))P_0> <= A,`
+`m_k=alpha_(k^(-1))m.`                                `(PCM20)`
+
+Then the largest pointwise marked energy compatible with exact positive
+agreement is `E_pi(P_k,m_k)`.  For a regular tangent block, Theorem 1
+reduces it to the order of `m_k+P_k` and the explicit multiplier `(PCM16)`.
+
+The choices `t(k)` cannot in general be made independently: in the actual
+principal-bundle construction they must arise as the relative table of two
+exact cocycles and obey the stabilizer consistency equations.  Nevertheless
+the continuous variables have disappeared.  Restricting to the optimal
+Pauli multipliers turns the remaining search into:
+
+1. compute the positive restriction fibers in the dual tangent module;
+2. choose one annihilator character on each base incidence;
+3. impose the finite twisted-cocycle and stabilizer congruences; and
+4. maximize the density on which the chosen character is nontrivial at the
+   marked class.
+
+This is a finite modular CSP/linear-code problem.  A successful sequence
+with nonvanishing objective completes the local commutant portion of the
+paired-Fourier FALSE endpoint.  A dual inconsistency certificate would give
+a no-go theorem for the entire Pauli/regular subclass.
+
+## 6. Consequences for compute
+
+Do not optimize arbitrary unitaries at this gate.  The exact assignment
+formula proves that character permutations are optimal.  A useful MSI job
+should instead emit:
+
+* the finite tangent module and positive submodule at every base incidence;
+* the order of the marked quotient class;
+* the annihilator-character variables;
+* the sparse modular consistency matrix from external edges and
+  stabilizers; and
+* either a feasible character assignment with its exact marked density or
+  a modular dual obstruction.
+
+The formula also diagnoses the natural finite-ring absorption branch.  If
+the finite positive image already contains the marked inverse, then `r=1`
+and `(PCM3)` proves exact sterility.  If a branch-cut or truncated module
+keeps `r>1`, the local marked separation is automatically at least three in
+squared normalized Hilbert--Schmidt norm; only global cocycle coherence
+remains.
