@@ -43708,3 +43708,39 @@ theorem: replace Gaussian wall lengths tending to zero on `N` and
 `sqrt(2)` off `N` by finite-index IRS Hamming lengths tending to zero on
 `N` and one off `N`.  Full proof and audit:
 `docs/TRUE_GAUSSIAN_WALL_IRS_GATE.md`.
+
+# 2026-08-11: tensor sharpening does not approach the exact projective kernel
+
+For `pi:F->U(d)`, the projective length
+
+`delta_pi(g)=sqrt(1-|tr_d(pi(g))|^2)`
+
+is conjugation invariant and subadditive.  Its exact zero set
+
+`K_pi={g:pi(g) is scalar}`
+
+is a normal subgroup, while its soft kernels satisfy the exact filtered law
+
+`K_pi(s)K_pi(t) subset K_pi(s+t)`.
+
+The `m`th tensor power of `pi tensor conjugate(pi)` replaces
+`q=|tr pi|^2` by `q^m`, so one can choose
+`m_n->infinity` slowly enough that all fixed relator characters still tend
+to one while all witness characters go exponentially to zero.  But tensoring
+never changes `K_pi`.
+
+If `w` is in the sofic radical and `w notin K_pi`, at least one defining
+relator lies outside `K_pi`: otherwise the conjugate-double representation
+would factor through the presented group with finitely generated linear,
+hence sofic, image retaining `w`.  Consequently along every tensor-sharpened
+radical witness, some relator has tensor character tending to one while the
+regular character of the exact projective quotient is exactly zero.  The
+discrepancy tends to one.
+
+Thus Malcev residual finiteness of the projective image cannot finish TRUE;
+it turns every microscopically nonzero relator into full Hamming motion.  The
+only remaining use of the linear image would require nonregular finite
+actions whose stabilizers contain the small relator images with high
+probability.  That is precisely the soft-kernel/IRS gate, not ordinary
+residual finiteness.  Full proof:
+`docs/TRUE_SOFT_PROJECTIVE_KERNEL_RATE_GAP.md`.
