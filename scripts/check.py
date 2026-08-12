@@ -266,11 +266,13 @@ def check_claim_map(root: Path, f: Findings) -> None:
     for module in sorted(actual - expected):
         f.add("axiom-report pinning",
               f"{module} is cited by the paper but is outside the import closure of "
-              f"{LIB}/Audit.lean, and is not pinned in claim_map.CITED_OUTSIDE_AXIOM_REPORT")
+              f"{LIB}/Endpoint/Audit.lean, and is not pinned in "
+              f"claim_map.CITED_OUTSIDE_AXIOM_REPORT")
     for module in sorted(expected - actual):
         f.add("axiom-report pinning",
               f"{module} is pinned in claim_map.CITED_OUTSIDE_AXIOM_REPORT but is no "
-              f"longer both cited and outside the {LIB}/Audit.lean closure; the pin is stale")
+              f"longer both cited and outside the {LIB}/Endpoint/Audit.lean closure; "
+              f"the pin is stale")
 
     # The committed table is a build product.  Checking it here is what makes
     # it safe for the README to point at instead of restating: a table nobody
@@ -312,16 +314,17 @@ def run(root: Path) -> Findings:
 
 # The claim-map detectors read a manuscript as well as a library, so the
 # synthetic corpus carries a miniature of each: one result, one margin note,
-# and an `Audit` module whose import closure the note's module lies inside.
+# and an `Endpoint.Audit` module whose import closure the note's module lies inside.
 _TEX = claim_map.TEX_NAME
 
 CLEAN_TREE = {
-    f"{LIB}.lean": f"import {LIB}.Alpha\nimport {LIB}.Beta\nimport {LIB}.Audit\n",
+    f"{LIB}.lean":
+        f"import {LIB}.Alpha\nimport {LIB}.Beta\nimport {LIB}.Endpoint.Audit\n",
     f"{LIB}/Alpha.lean": "theorem alpha : True := trivial\n",
     f"{LIB}/Beta.lean":
         f"import {LIB}.Alpha\n-- an ordinary comment that claims nothing\n"
         "theorem beta : True := trivial\n",
-    f"{LIB}/Audit.lean": f"import {LIB}.Alpha\n#print axioms alpha\n",
+    f"{LIB}/Endpoint/Audit.lean": f"import {LIB}.Alpha\n#print axioms alpha\n",
     _TEX: (
         "\\begin{lemma}\\label{lem:demo}%\n"
         "\\leanverified{\\leanmod{Alpha}{alpha}}%\n"

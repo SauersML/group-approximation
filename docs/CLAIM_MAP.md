@@ -124,4 +124,4 @@ the print.
 | `thm:loopapp` | formalized | `KOne/RefineLoopDischarge`: `pencil_free_exit`, `pencil_full_exit`, `pencil_unit_mem_pow` |  |
 | `cor:K1consequences` | formalized | `KOne/RefineLoopDischarge`: `glTwo_eq_elementary_holds`, `glFour_eq_elementary_holds`; `KOne/AllRanksElementaryCore`: `elementaryGroup_eq_top`; `KOne/AllRanksElementary`: `glAll_eq_elementary`, `binaryLeavittUnits_perfect`; `KOne/WhiteheadQuotient`: `BinaryLeavittWhiteheadK1`, `binaryLeavittWhiteheadK1_subsingleton`; `KOne/ClassicalKOne`: `BinaryLeavittClassicalK1`, `binaryLeavittClassicalK1_subsingleton` | Both forms, over every field, each a constructed group proved trivial. |
 
-† Proved, and covered by the whole-namespace scan in `scripts/Audit.lean`, but outside the import closure of `GroupApproximation/Audit.lean`, whose `#print axioms` reports run on an ordinary build.
+† Proved, and covered by the whole-namespace scan in `scripts/Audit.lean`, but outside the import closure of `GroupApproximation/Endpoint/Audit.lean`, whose `#print axioms` reports run on an ordinary build.

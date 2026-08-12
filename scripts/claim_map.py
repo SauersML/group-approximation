@@ -50,8 +50,8 @@ STATUS = {"verified": "formalized", "partial": "formalized in part",
           "absent": "not formalized"}
 
 # Modules that are proved but sit outside the import closure of
-# `GroupApproximation/Audit.lean`, the module whose `#print axioms` reports
-# run on an ordinary build.  They are still covered by `scripts/Audit.lean`,
+# `GroupApproximation/Endpoint/Audit.lean`, the module whose `#print axioms`
+# reports run on an ordinary build.  They are still covered by `scripts/Audit.lean`,
 # which imports the library root and walks the whole namespace -- so this is a
 # statement about *reporting*, not about the trust surface.
 #
@@ -167,26 +167,27 @@ def read_claims(tex: Path) -> list[Claim]:
 
 
 def audit_report_closure(repo: Path | None = None) -> set[str]:
-    """Modules reachable from `GroupApproximation/Audit.lean`."""
+    """Module basenames reachable from `GroupApproximation/Endpoint/Audit.lean`."""
     d = (Path(repo) if repo is not None else REPO) / LIB
     if not d.is_dir():
         return set()
     imports = {
-        p.stem: set(re.findall(rf"^import {LIB}\.([\w.]+)",
-                               p.read_text(encoding="utf-8"), re.M))
+        ".".join(p.relative_to(d).with_suffix("").parts):
+            set(re.findall(rf"^import {LIB}\.([\w.]+)",
+                           p.read_text(encoding="utf-8"), re.M))
         for p in d.rglob("*.lean")
     }
     seen: set[str] = set()
-    stack = ["Audit"]
+    stack = ["Endpoint.Audit"]
     while stack:
         m = stack.pop()
         if m in seen or m not in imports:
             continue
         seen.add(m)
-        # Imports name modules by dotted path; the index is keyed by basename,
-        # which is what the manuscript's notes and this closure both use.
-        stack.extend(i.rsplit(".", 1)[-1] for i in imports[m])
-    return seen
+        stack.extend(imports[m])
+    # Margin notes allow either a path or an unambiguous basename.  The source
+    # check compares basenames after `module_path` has resolved ambiguity.
+    return {m.rsplit(".", 1)[-1] for m in seen}
 
 
 def module_path(module: str, repo: Path | None = None) -> Path | None:
@@ -297,7 +298,7 @@ def to_markdown(claims: list[Claim], repo: Path | None = None) -> str:
     out += [
         "",
         "† Proved, and covered by the whole-namespace scan in `scripts/Audit.lean`, "
-        "but outside the import closure of `GroupApproximation/Audit.lean`, whose "
+        "but outside the import closure of `GroupApproximation/Endpoint/Audit.lean`, whose "
         "`#print axioms` reports run on an ordinary build.",
     ]
     return "\n".join(out)
