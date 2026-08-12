@@ -1051,3 +1051,161 @@ This target is equivalent to the support-plus-orthogonality part of
 `(RPC23)` and is stronger than the one-compressor Hall gate.  Treating two
 independent unitary support graphs as the columns of one isometry would
 silently assume the theorem to be proved.
+
+## 17. Atomic root characters and the Hellinger gap
+
+There is a second genuinely finite-matrix separator which does not require
+choosing blocks of the relative implementer.  Let
+
+\[
+ A=U_{13}=\{x_{13}(a):a\in L\}\cong(L,+).
+ \tag{RPC59}
+\]
+
+For the binary Leavitt coefficient field, `A` is an elementary abelian
+`2`-group.  After finite-group exactification on a fixed finite root window,
+a matrix model decomposes into character spaces.  Their normalized
+multiplicities define a finite atomic probability measure
+
+\[
+ \mu_n=\sum_{\chi}m_n(\chi)\,\delta_\chi
+ \quad\hbox{on}\quad \widehat A.
+ \tag{RPC60}
+\]
+
+A gap written directly for all probability measures cannot be correct.  The
+canonical exact Leavitt trace restricts to Haar measure on `widehat A`; Haar
+is diffuse, invariant under every continuous automorphism of `A`, and gives
+the trivial character measure zero.  Thus an inequality of the form
+
+\[
+ \sum_{s\in S}\|s_*\mu-\mu\|^2
+ \geq \kappa\mu(\widehat A\setminus\{1\})
+ \tag{RPC61}
+\]
+
+fails if its domain and norm include the invariant Haar measure.  With the
+ordinary `ell^2` norm on atomic probability weights it also fails for a
+second reason: spreading mass over many atoms makes the norm of the
+probability vector tend to zero.
+
+The matrix-specific object is instead the square-root multiplicity vector
+
+\[
+ \xi_{\mu_n}(\chi)=\sqrt{m_n(\chi)}.
+ \tag{RPC62}
+\]
+
+It is a unit vector in the counting-space permutation representation on the
+atomic character labels.  The correct candidate inequality is the
+Hellinger gap
+
+\[
+ \sum_{s\in S}
+ \|s\xi_\mu-\xi_\mu\|_2^2
+ \geq
+ \kappa\bigl(1-\mu(\{1\})\bigr)
+ \tag{RPC63}
+\]
+
+for every finite atomic `mu`.  Diffuse Haar measure is not a vector in this
+counting representation, so the exact tracial Leavitt branch does not
+refute `(RPC63)`.  If the label action extends to a property-`(T)` group,
+then `(RPC63)` follows once the permutation representation on the
+nontrivial character labels has no invariant vector, equivalently once
+there is no finite nontrivial character orbit.
+
+Three nonformal gates remain.
+
+1. **Character transport.**  The selected compressor and Steinberg packet
+   must define one honest permutation action on a common character-label
+   space.  Conjugating one root subgroup to a different root subgroup is not
+   yet such an action.
+2. **Orbit audit.**  Every nontrivial atomic character orbit for that action
+   must be infinite.  One finite orbit destroys `(RPC63)`.
+3. **Hellinger control.**  Small normalized-HS covariance defect must imply
+   small displacement of the square-root multiplicity vectors.  Trace
+   control of finitely many root elements alone gives only weak convergence
+   of cylinder marginals and is insufficient.
+
+If these gates hold, `(RPC63)` forces
+
+\[
+ \mu_n(\widehat A\setminus\{1\})\longrightarrow0.
+ \tag{RPC64}
+\]
+
+Every tested nonzero root element then becomes normalized-HS trivial,
+contradicting hyperlinear separation.  This is a precise finite-matrix
+version of the proposed empirical root-character obstruction.  It avoids
+the commutant gauge `(RPC56)`, but it is not yet a proof because the
+compressor packet has not been shown to supply gates 1--3.
+
+### 17.1 The Hellinger-control gate is finite and exact
+
+Gate 3 has a dimension-free solution whenever both sides are honest
+representations of the same finite abelian group.  Let `rho,sigma` be
+unitary representations of a finite abelian group `F` on a `d`-dimensional
+space, let `U` be unitary, and let `mu_rho,mu_sigma` be the normalized
+character multiplicity distributions.  Put
+
+\[
+ \delta^2={1\over |F|}\sum_{a\in F}
+ \|U\rho(a)-\sigma(a)U\|_{2,d}^2.
+ \tag{RPC65}
+\]
+
+If `P_chi,Q_psi` are the two character projections, orthogonality of finite
+characters gives
+
+\[
+ \delta^2
+ =2\sum_{\chi\ne\psi}\|Q_\psi U P_\chi\|_{2,d}^2.
+ \tag{RPC66}
+\]
+
+The diagonal block mass is therefore `1-delta^2/2`.  Since
+
+\[
+ \|Q_\chi U P_\chi\|_{2,d}^2
+ \leq\min\{\mu_\rho(\chi),\mu_\sigma(\chi)\},
+ \tag{RPC67}
+\]
+
+one obtains
+
+\[
+ \|\mu_\rho-\mu_\sigma\|_{\rm TV}\leq{\delta^2\over2}
+ \quad\hbox{and}\quad
+ \sum_\chi
+  \bigl(\sqrt{\mu_\rho(\chi)}-
+        \sqrt{\mu_\sigma(\chi)}\bigr)^2
+ \leq\delta^2.
+ \tag{RPC68}
+\]
+
+Thus normalized-HS covariance really does control the required Hellinger
+displacement after finite-root exactification.
+
+### 17.2 The actual compressor is not a character permutation
+
+The formal compressor identity is
+
+\[
+ u\,x_{13}(a)\,u^{-1}=x_{13}(s_0at_0).
+ \tag{RPC69}
+\]
+
+The coefficient map `alpha_0(a)=s_0 a t_0` is injective and not surjective.
+Consequently its dual map on `widehat A` is surjective and generally
+many-to-one.  It does not define a permutation representation on the
+character labels, so property `(T)` cannot be applied to `(RPC62)` by the
+naive argument.  Equation `(RPC68)` only compares `mu_n` with the pushforward
+`(alpha_0^*)_*mu_n`.
+
+This is the measure-theoretic form of the balanced extension calculation
+`(RPC53)--(RPC54)`: a character on the compressed subtree has freely
+choosable signs on the unused subtree.  Reviving the root-character route
+therefore requires a uniform transfer-operator theorem for the many-to-one
+map `alpha_0^*`, augmented by further atlas relations.  A permutation
+spectral gap for the compressor alone is unavailable.

@@ -77,6 +77,21 @@ from ambient finite-subgroup spectral projections is impossible: its exact
 support relations also hold in the finite tracial algebra `L(Q)`, where
 unitary conjugacy and trace already enforce the weighted Hall inequality.
 
+A gauge-free variant is now equally high priority: exactify a finite binary
+root subgroup and track its atomic character multiplicities.  The correct
+vector is the square root of the multiplicity distribution, so property
+`(T)` acts through Hellinger distance.  A dimension-free gap would follow
+from an honest compressor action on the character labels with no finite
+nontrivial orbit, provided normalized-HS covariance controls the Hellinger
+displacement.  The diffuse invariant Haar measure in the exact Leavitt
+trace is not an `ell^2` counting vector, so it does not refute this
+matrix-specific gap.  However, the actual compressor acts by the proper
+embedding `a |-> s_0 a t_0`; its dual is many-to-one rather than a
+permutation.  The finite Hellinger estimate is valid, but the naive
+property-`(T)` permutation argument is not.  A revival needs a
+transfer-operator gap using additional atlas relations.  See
+`(RPC59)--(RPC69)`.
+
 Do not search the current radius-five collision tree for a single linear
 Hecke edge.  The exact archived scan has no word with exactly one transverse
 second-chart syllable, hence no direct equation `W A = B W` after
