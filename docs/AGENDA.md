@@ -2302,6 +2302,26 @@ external relation are exact simultaneously.  Only covariance for the other
 Laurent tangent and base-elementary generators remains.  See
 `FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
 
+The cyclic-seed Kazhdan estimate is now known to be intrinsically tracial.
+For every finite tracial von Neumann algebra `(M,tau)`, exact covariant
+realizations `(rho_i,Phi_i)`, and arbitrary comparison vector
+`T in L^2(M,tau)`, one has
+
+```text
+||Phi_0(w)T-T Phi_1(w)||_2
+ <=C epsilon+2(C+1)eta/kappa,
+```
+
+where `C` is the integral orbit-coefficient cost of `w` from the seed,
+`epsilon` is the seed discrepancy, and `eta` is the base-intertwining
+defect.  The proof is the same Kazhdan projection in the standard form;
+finite dimensionality, boundedness of `T`, and Connes embeddability are not
+used.  Thus passing from matrices to finite factors or commuting-operator
+tracial targets cannot rescue exact-covariance Frobenius mixing.  The live
+FALSE gate is genuinely approximate/nonliftable tangent covariance in every
+tracial model, not a matrix compactness issue.  See
+`FALSE_KAZHDAN_CYCLIC_SEED_TRACIAL_EXTENSION.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

@@ -44515,3 +44515,34 @@ successful model must make the base map or tangent covariance itself
 genuinely nonliftable in normalized Hilbert--Schmidt norm.
 
 Full proof: docs/FALSE_KAZHDAN_CYCLIC_SEED_PROPAGATION_NO_GO.md.
+
+# 2026-08-12: the cyclic-seed no-go holds in every finite tracial target
+
+The matrix proof above uses only the Hilbert structure of normalized
+Hilbert--Schmidt space.  Let `(M,tau)` be any finite tracial von Neumann
+algebra and let `(rho_i,Phi_i)` be exact covariant realizations of
+`Gamma semidirect W` in `U(M)`.  On `L^2(M,tau)`, the bimodule action
+
+```text
+beta(g)xi=rho_0(g) xi rho_1(g)^*
+```
+
+is unitary.  Projecting an arbitrary comparison vector `T in L^2(M,tau)`
+onto its invariant subspace gives an exact base intertwiner at cost at most
+`eta/kappa`.  Exact covariance transports the seed error isometrically, and
+additive telescoping then gives, whenever `C=c_Gamma(w;z)<infinity`,
+
+```text
+||Phi_0(w)T-T Phi_1(w)||_2
+ <=C epsilon+2(C+1)eta/kappa.
+```
+
+No boundedness or unitarity of `T` is required.  For the Frobenius pair,
+`C<=2r`, so the same `(2r, (4r+2)/kappa)` estimate holds in arbitrary finite
+factors and tracial ultraproducts.  The exact-covariance no-go is therefore
+not a finite-dimensional artifact and cannot be escaped by moving to a
+commuting-operator or non-Connes-embeddable finite tracial target.  The
+remaining FALSE object must be genuinely nonliftable at the covariance
+level itself.
+
+Full proof: docs/FALSE_KAZHDAN_CYCLIC_SEED_TRACIAL_EXTENSION.md.
