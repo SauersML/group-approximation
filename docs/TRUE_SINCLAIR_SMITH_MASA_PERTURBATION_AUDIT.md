@@ -166,3 +166,19 @@ rounding theorem.  The sharp reusable conclusion is:
 > quantitatively solved with a universal constant; the real open work is to
 > construct that masa coherently and then control the fixed phases.
 
+## 6. Relation to the positive-commutant endpoint
+
+The later finite-Fourier calculation in
+`FALSE_POSITIVE_COMMUTANT_CHARACTER_MATCHING.md` should not be replaced by
+Sinclair--Smith.  There the positive subgroup representation is already
+exactly diagonalizable, and conditional expectation onto its commutant plus
+polar correction gives a dimension-free correction from an approximately
+commuting unitary to an exact commutant unitary.  The exact marked optimum is
+then a finite assignment problem inside character-restriction fibers.
+
+Sinclair--Smith concerns approximate **normalization of a masa**, while that
+endpoint concerns approximate **commutation with an abelian representation**.
+Neither implies the other in the form needed here, and the elementary
+commutant correction has the sharper hypotheses for the endpoint.  The
+paper therefore remains assigned only to the Cartan-to-monomial interface;
+it does not improve the newly solved local positive-commutant bound.

@@ -43745,6 +43745,45 @@ probability.  That is precisely the soft-kernel/IRS gate, not ordinary
 residual finiteness.  Full proof:
 `docs/TRUE_SOFT_PROJECTIVE_KERNEL_RATE_GAP.md`.
 
+# 2026-08-11: harmonic systoles need bounded spanning packets, not bounded overlap
+
+The existing upper-Riesz packet criterion is unnecessarily strong for the
+dual systole.  If `Q subset H` is a full lattice and `q_1,...,q_m in Q`
+span `H` over `R` with `||q_j||<=A`, then every nonzero `u in Q^#` has a
+nonzero integral pairing with some `q_j`.  Therefore
+
+`1<=|<u,q_j>|<=A||u||`
+
+and
+
+`lambda_1(Q^#)>=1/A`.
+
+Equivalently,
+
+`lambda_r(Q) lambda_1(Q^#)>=1`.
+
+The packets need not be a basis, need not generate a primitive sublattice,
+and may overlap arbitrarily.  Hence increasing harmonic rank does not even
+require bounded Gram row sums for the family product
+`B_X lambda_1(Q_X^#)>=c`; it is enough to find uniformly bounded projected
+integral cycles spanning each real harmonic space.  In prime-power towers,
+old packets pull back isometrically and only the genuinely new real quotient
+needs new bounded packets; saturation indices are irrelevant to this
+systole estimate.
+
+Bounded overlap and compatible lift synthesis remain necessary for the
+stronger uniform integral-section theorem.  Full sharpened criterion:
+`docs/TRUE_HARMONIC_SUCCESSIVE_MINIMUM_PACKET_SCREEN.md`.
+
+The first exact level-`121` raw-basis check is negative only at the basis
+level.  Inverting the exported `7 x 7` Gram matrix gives an algebraically
+dual primal basis with squared norms of orders `10^1037`--`10^1039`, far
+above the spherical threshold `12`.  This reflects the roughly `5000`-bit
+near-dependencies of the exported basis and says nothing about the seventh
+successive minimum.  Direct exact Gram--LLL is correspondingly inefficient.
+The correct finite check is floating/modular preconditioning followed by an
+exact unimodular and norm certificate; no new cellular export is required.
+
 # 2026-08-11: Ioana--Drimbe does not construct the three-moment system
 
 Full audit: `docs/FALSE_IOANA_DRIMBE_SCHREIER_SCOPE_AUDIT.md`.

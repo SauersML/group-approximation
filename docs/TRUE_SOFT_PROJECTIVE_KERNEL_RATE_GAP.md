@@ -17,7 +17,7 @@ sharpen the character toward `0/1`, make the regular finite actions of this
 projective quotient into the desired sofic models.
 
 This note proves that the shortcut fails in the strongest possible way.
-Tensor powers do not change `(SPK1)`.  For a sofic-radical witness retained
+Tensor powers of the conjugate double do not change `(SPK1)`.  For a sofic-radical witness retained
 by the matrix model, at least one defining relator lies outside `(SPK1)`.
 The tensor character of that relator can tend to one while the regular
 character of the projective quotient remains exactly zero.  Hence the two
@@ -94,7 +94,7 @@ This is the strongest automatic subgroup-like statement: positive
 thresholds add.  A fixed positive threshold is not generally closed under
 multiplication.
 
-There is also a left-invariant filtered equivalence relation
+There is also a left-invariant filtered proximity relation
 
 ```text
 g approximately_t h  iff delta_pi(g^(-1)h)<=t,       (SPK9)
@@ -106,6 +106,9 @@ with the exact composition law
 approximately_s composed approximately_t
   subset approximately_(s+t).                        (SPK10)
 ```
+
+It is reflexive and symmetric, but for `t>0` it need not be transitive;
+`(SPK10)` is the precise substitute.
 
 If `q_(pi_n)->1_N` pointwise for `N normal F`, then on every fixed finite
 window `B subset F` and every fixed `0<t<1`, eventually
