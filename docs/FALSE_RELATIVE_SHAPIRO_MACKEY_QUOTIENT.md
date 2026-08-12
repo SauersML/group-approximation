@@ -238,3 +238,85 @@ class survives every double-coset stabilizer.  Individual noncontainment is
 not enough.  If the earlier proof actually shows vanishing under the common
 \(\bar h\)-coordinate projection, Proposition 3 upgrades it immediately to
 simultaneous exact-order survival.
+
+## Quantitative \(p\)-adic stabilizer depth
+
+Exact vanishing can be weakened.  Write elements of the metacyclic group in
+normal form
+
+\[
+\bar h^a\bar c^t,
+\qquad
+a\in\mathbb Z/p^{k+1},quad
+t\in\mathbb Z/p^k.
+\]
+
+For a subgroup \(H\leq B_k\), define its normal-coordinate depth by
+
+\[
+\nu_p(H):=min\left\{
+v_p(a):\bar h^a\bar c^t\in H
+\right\},
+\]
+
+with \(\nu_p(H)=k\) when every normal exponent is zero modulo \(p^k\).
+
+### Proposition 4 (depth controls the stabilizer image)
+
+For every subgroup \(H\leq B_k\), the composite
+
+\[
+H_1(H,J_k)\longrightarrow H_1(B_k,J_k)
+\xrightarrow{\Pi_k}\mathbb Z/p^k\mathbb Z
+\]
+
+has image contained in
+
+\[
+p^{\min(\nu_p(H),k)}\mathbb Z/p^k\mathbb Z.
+\]
+
+#### Proof
+
+Use the bar-to-Fox comparison map for the presentation of \(B_k\).  A
+one-chain labelled by \(g=\bar h^a\bar c^t\) contributes to the
+\(\bar h\)-coordinate through the Fox derivative
+
+\[
+\frac{\partial g}{\partial\bar h}.
+\]
+
+Since \(\bar h\) acts trivially on \(J_k\), the normal factor
+\(\bar h^a\) contributes multiplication by \(a\), followed only by a power
+of the invertible \(\bar c\)-action.  If every normal exponent occurring in
+\(H\) is divisible by \(p^\nu\), every bar generator from \(H\) therefore
+has \(\Pi_k\)-image divisible by \(p^\nu\).  The same holds for every cycle
+and hence for homology. \(\square\)
+
+### Corollary 5 (growing depth is enough)
+
+Let
+
+\[
+\nu_k:=\min_{x\in A_{+,k}\backslash A_k/B_k}\nu_p(B_{k,x}).
+\]
+
+Then the relative image of the clock generator has order at least
+
+\[
+p^{\min(\nu_k,k)}.
+\]
+
+In particular, \(\nu_k\to\infty\) is sufficient to produce unbounded-order
+relative Schur curvature.
+
+#### Proof
+
+Every stabilizer image lies in \(p^{\nu_k}\mathbb Z/p^k\) under the common
+projection \(\Pi_k\), and so does their sum.  The image of a generator of
+\(\mathbb Z/p^k\) in the quotient by this subgroup has order
+\(p^{\min(\nu_k,k)}\). \(\square\)
+
+This gives a quantitative audit target for the earlier stabilizer theorem:
+one need not prove complete absence of the \(\bar h\)-direction, only that
+its minimum \(p\)-adic depth tends to infinity.
