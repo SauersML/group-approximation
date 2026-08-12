@@ -186,6 +186,52 @@ unitary transport implementing the companion recurrences: the coordinate
 character set is not invariant under a dense feedback row.  Equation
 `(PRF12h)` isolates exactly what such a sparse transport must preserve.
 
+There is a sharp warning: an honest Kazhdan action cannot transport this
+code with vanishing local Hamming cost and macroscopic endpoint cost.
+
+**Proposition 2 (Kazhdan sector-code inequality).**  Let a group `Gamma`
+with finite symmetric Kazhdan set `S` and Kazhdan constant `kappa` act on a
+finite set `X`.  For every map
+
+`c:X->k^n`                                            `(PRF12i)`
+
+and every `g in Gamma`,
+
+`E_x d_H(c(gx),c(x))/n`
+` <=(4/kappa^2) max_(s in S) E_x d_H(c(sx),c(x))/n`. `(PRF12j)`
+
+**Proof.**  Embed `k^n` into the unit sphere of
+`H_0=directSum_(j=1)^n ell^2(k)` by
+
+`Phi(a_1,...,a_n)=n^(-1/2) directSum_j delta_(a_j).` `(PRF12k)`
+
+Then
+
+`||Phi(a)-Phi(b)||^2=2d_H(a,b)/n`.                   `(PRF12l)`
+
+Regard `F(x)=Phi(c(x))` as a vector in `ell^2(X;H_0)` with normalized
+counting measure, and let `P` be projection onto the invariant vectors for
+the permutation action of `Gamma` on the `X` coordinate.  The Kazhdan
+inequality gives
+
+`||F-PF|| <=kappa^(-1) max_(s in S)||sF-F||`.         `(PRF12m)`
+
+Since `PF` is invariant,
+
+`||gF-F||<=2||F-PF||`.                               `(PRF12n)`
+
+Square `(PRF12m)--(PRF12n)` and use `(PRF12l)`.  This is
+`(PRF12j)`.  End proof.
+
+Therefore a path through the inverse code cannot by itself beat property
+`(T)`: if a fixed marked group element crosses linear relative code
+distance, some fixed Kazhdan generator also crosses linear relative code
+distance.  The only surviving use is the intended one--put the code into a
+sequence of approximate base/tangent actions which stays uniformly far
+from every exact action.  Proposition 2 is the coordinate-code version of
+the tracial cyclic-seed obstruction, and prevents mistaking the local code
+for a completed FALSE proof.
+
 ## 3. Exact Fourier realization
 
 Fix a nontrivial additive character
