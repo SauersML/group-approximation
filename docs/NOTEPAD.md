@@ -45450,3 +45450,102 @@ R_*/M -> 0,  A_*/M -> 0,  R_* A_*/M -> 0.
 
 The present theorem closes an operator-norm shortcut; it neither supplies
 nor refutes that genuinely tracial three-moment system.
+
+# 2026-08-12: the negative Heisenberg kernel is a center-valued Pauli bundle
+
+Full proof:
+`docs/FALSE_DUAL_HEISENBERG_CENTER_PAULI_DECOMPOSITION.md`.
+
+The surviving tracial corner now has an exact internal decomposition.  Put
+
+```text
+A=F_2^(G),
+X=G/Gamma,
+q(a)_C=sum_(y in C)a_y,
+K=ker(q).
+```
+
+Then, for `M_0=pL(H(A,T))`,
+
+```text
+M_0 isomorphic L(K) tensor R_X,
+R_X=bar-tensor_(C in X) M_2,
+Z(M_0)=L(K).
+```
+
+After choosing coset representatives, the action has the exact form
+
+```text
+alpha_g(U_k)=U_(gk),
+alpha_g(X_C)=U_(kappa(g,C))X_(gC),
+alpha_g(Z_C)=Z_(gC),
+
+kappa(g,C)=g j(e_C)+j(e_(gC)),
+kappa(gh,C)=g kappa(h,C)+kappa(g,hC).
+```
+
+Thus all twisting is one center-valued cocycle.  The radical witness is
+already the two-site Pauli word
+
+```text
+Z_(sGamma)Z_(gamma sGamma),
+```
+
+so no local trace-amplification problem remains inside this envelope.
+
+The classical center is completely benign.  Restriction of Bernoulli
+characters gives
+
+```text
+dual(A)={-1,1}^G -> dual(K),
+L(K) crossed G -> L(A) crossed G.
+```
+
+The right side is the ordinary regular wreath-product algebra and is
+Connes embeddable because `G` is residually finite.  In fact the action on
+`dual(K)` is a sofic action and is essentially free; for every `g!=1`, the
+space `(g-1)K` has infinite binary dimension.
+
+There is also an exact Bernoulli gauge cover.  If `R_X` has Pauli
+generators `x_C,z_C`, then
+
+```text
+U_k |-> hat(k),
+X_C |-> hat(j(e_C)) tensor x_C,
+Z_C |-> 1 tensor z_C
+```
+
+is a trace-preserving `G`-equivariant embedding
+
+```text
+M_0 -> L_infinity(dual(A)) tensor R_X.
+```
+
+Its image is exactly the fixed algebra of the compact gauge group
+`dual(F_2^(X))`, and gauge averaging is `G`-equivariant.  Hence
+
+```text
+pL(E) -> (L_infinity({-1,1}^G) tensor R_X) crossed G
+```
+
+is an expected inclusion.  On this cover the cocycle `kappa` is literally
+a coboundary, not merely approximately removable.
+
+The limitation is equally exact.  The target contains the invariant Pauli
+diagonal
+
+```text
+L_infinity({-1,1}^X) crossed G
+ =L((direct-sum_X C_2) semidirect G),
+```
+
+which is the hard Kun--Thom generalized wreath algebra.  Therefore the
+ordinary Bernoulli gauge factor cannot be cited as an embedding shortcut:
+Connes embeddability of the gauge cover would already prove FALSE.
+
+This localizes the tracial endpoint sharply.  The center action, the local
+Pauli cells, and the center-valued sign cocycle are all solved exactly.  The
+only remaining issue on this lane is coherent normalized-HS transport of
+the coset-indexed Pauli factors.  This is distinct from the collaborator's
+current projective-cycle computation and from the still-unbuilt
+three-moment Schreier transversals.

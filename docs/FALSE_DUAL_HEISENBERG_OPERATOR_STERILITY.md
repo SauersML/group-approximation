@@ -259,7 +259,13 @@ pL(E) is Connes embeddable,                            (DHS25)
 ```
 
 or an explicit tracial model of the same negative Heisenberg action.  The
-three-moment induced-Schreier proposal is also tracial and is not decided by
+kernel corner is decomposed in
+`FALSE_DUAL_HEISENBERG_CENTER_PAULI_DECOMPOSITION.md` as
+`L(K) tensor R_(G/Gamma)`.  That note proves that the classical center
+action is already sofic and Connes embeddable and gauges away the
+center-valued sign exactly; only coherent tracial transport of the Pauli
+fibers remains.  The three-moment induced-Schreier proposal is also tracial
+and is not decided by
 Theorem 1.  No actual transversals proving its three limits have yet been
 constructed; that is a separate open calculation.
 
@@ -271,4 +277,3 @@ theorem is its bilinear coset-Weyl form.  It is sharper for this application:
 it needs neither a Clifford support calculation nor commutation inside the
 two lamp families.  One `Gamma`-fixed dual seed, one strict compressor, and
 one pair of opposite incidence signs already force the contradiction.
-

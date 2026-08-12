@@ -300,6 +300,20 @@ where `t in T` acts on the Fourier unitary `u_a` by the sign
 `(-1)^(t(a))`.  The first algebra is hyperfinite because `H(A,T)` is
 locally finite.  The second crossed product is the unresolved part.
 
+The kernel algebra and its action are now computed exactly in
+`FALSE_DUAL_HEISENBERG_CENTER_PAULI_DECOMPOSITION.md`.  If `q:A->F_2^(G/Gamma)`
+is cosetwise parity and `K=ker(q)`, then
+
+```text
+pL(H(A,T)) isomorphic L(K) tensor R_(G/Gamma),
+```
+
+with a center-valued Pauli permutation action.  The center crossed product
+is already Connes embeddable, and the central cocycle becomes an exact
+coboundary on an ordinary Bernoulli gauge cover.  The unsolved part is
+precisely the normalized-Hilbert--Schmidt transport of the coset-indexed
+Pauli factors.
+
 ## 7. Why known permanence does not prove the endpoint
 
 The exact sequence
