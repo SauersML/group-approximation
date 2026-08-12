@@ -1,4 +1,3 @@
-import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.KOne.RefineLoopDischarge
 
 /-!
@@ -8,11 +7,8 @@ These declarations isolate the finite-rank information used by the property
 `(TT)/T` paper.  Stable `K₁`-vanishing for binary Leavitt algebras is known
 from the Leavitt-path-algebra `K`-theory literature.  Together with the
 GE-ring and unit-abelianization theorems for purely infinite simple rings, it
-also implies the unstable rank-two equality below.  The independent content
-of this development is therefore the direct tree/pencil proof and its finite
-factor witnesses, not priority for the equality itself.
-
-No bound on factorization length or certificate size is asserted here.
+also implies the unstable rank-two equality below.  No priority is claimed
+for that equality.
 -/
 
 namespace GroupApproximation
@@ -39,15 +35,6 @@ theorem elementaryGroup_two_eq_top
   apply le_antisymm le_top
   intro M _
   exact glTwo_eq_elementary_holds k M
-
-/-- A finite elementary factor witness for `diag(u, 1)`.  This theorem asserts
-existence and verifies the product; it makes no length or complexity claim. -/
-theorem exists_diagUnit_elementaryFactors
-    [Nontrivial (BinaryLeavittAlgebra k)]
-    (u : (BinaryLeavittAlgebra k)ˣ) :
-    ∃ c : List (ElementaryMove (Fin 2) (BinaryLeavittAlgebra k)),
-      elementaryProd c = diagUnit u :=
-  exists_elementaryCertificate (k := k) u
 
 end KOnePaper
 end GroupApproximation

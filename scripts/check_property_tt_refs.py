@@ -26,6 +26,11 @@ from lean_decls import build_index
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "property_tt_leavitt.tex"
 REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
+RESULT_RE = re.compile(
+    r"\\begin\{(mainthm|theorem|proposition|lemma|corollary)\}(.*?)"
+    r"\\end\{\1\}",
+    re.DOTALL,
+)
 
 
 def validate(repo: Path, tex: Path) -> list[str]:
@@ -36,6 +41,12 @@ def validate(repo: Path, tex: Path) -> list[str]:
 
     index = build_index(repo)
     problems: list[str] = []
+    for result in RESULT_RE.finditer(source):
+        if not REFERENCE_RE.search(result.group(2)):
+            line = source.count("\n", 0, result.start()) + 1
+            problems.append(
+                f"numbered {result.group(1)} at line {line} has no Lean reference"
+            )
     for module, declaration in references:
         expected = repo / "GroupApproximation" / f"{module}.lean"
         full_name = (declaration if declaration.startswith("GroupApproximation.")
@@ -81,6 +92,15 @@ def self_test() -> int:
         problems = validate(repo, tex)
         if not any("missing declaration" in problem for problem in problems):
             print("self-test: missing declaration was not detected", file=sys.stderr)
+            return 1
+        tex.write_text(
+            r"\begin{theorem}Unmarked.\end{theorem}"
+            r"\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.endpoint}",
+            encoding="utf-8",
+        )
+        problems = validate(repo, tex)
+        if not any("has no Lean reference" in problem for problem in problems):
+            print("self-test: unmarked result was not detected", file=sys.stderr)
             return 1
     print("check-property-tt-refs: self-test passed")
     return 0

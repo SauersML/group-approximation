@@ -62,8 +62,8 @@ The sandwich property
 
 `a ≠ 0 -> ∃ x y, x * a * y = 1`
 
-is not introduced here.  Ara--Goodearl--Pardo, *Purely infinite simple rings*,
-arXiv:math/0111066, Theorem 1.6, characterize a simple purely infinite ring by
+is not introduced here.  Ara--Goodearl--Pardo, *K_0 of purely infinite simple
+regular rings*, arXiv:math/0111066, Theorem 1.6, characterize a simple purely infinite ring by
 this property together with exclusion of division rings.  The converse must
 not be quoted without its simplicity/non-division hypotheses.
 
@@ -84,17 +84,21 @@ that their `K₁` is the abelianization of the unit group.  Combined with the
 Ara--Brustenga--Cortiñas vanishing, every unit is a product of commutators;
 the rank-two Whitehead identity makes each `diag([a,b],1)` elementary; and GE
 reduction gives `GL₂(L_k(1,2)) = E₂(L_k(1,2))`.  Thus the unstable equality is
-an established consequence and receives no theorem-novelty credit here.
-Only the direct tree/pencil factorization, which avoids those `K`-theoretic
-inputs and returns a finite elementary witness, remains a possible new proof
-method.
+an established consequence and receives no theorem-novelty credit here.  The
+manuscript uses this structural proof and does not advertise the separate
+internal factorization development.
 
 ### Nonsoficity
 
-The nonsoficity of the binary Leavitt elementary groups belongs to the prior
-nonsofic-group work reproduced and formalized elsewhere in this repository.
+The nonsoficity of the binary Leavitt unit group is Theorem 1.1 of Chapter 3
+of OpenAI, *Ten Advances in Mathematics and Theoretical Computer Science*
+(2026), available at
+<https://cdn.openai.com/pdf/ten-proofs-oai.pdf>.  Binary matrix
+self-similarity and the elementary--general-linear identification transport
+that theorem to the displayed elementary groups.  The proof is reproduced
+for reference and formalized elsewhere in this repository.
 Any combined statement "nonsofic and `(TT)/T`" is explicitly labeled a
-corollary combining that theorem with the new rigidity result.  It is never
+corollary combining that theorem with the present rigidity result.  It is never
 presented as a new proof of nonsoficity.
 
 ## Results and candidate contributions of the paper
@@ -127,14 +131,7 @@ specialist confirmation.
    Under these assumptions, `E_n(R)` has `(TT)/T` for every `n ≥ 3`.
    The paper may not abbreviate these assumptions to "purely infinite
    simple" or "binary self-similar" alone.
-4. **Direct rank-two factorization method.**  For every field `k`, the Lean
-   chain proves `GL₂(L_k(1,2)) = E₂(L_k(1,2))` and returns a finite list of
-   elementary moves whose product is `diag(u,1)`.  It proves no uniform length,
-   complexity bound, or executable algorithm.  The equality itself is an
-   established consequence of Ara--Goodearl--Pardo plus
-   Ara--Brustenga--Cortiñas and is not a novelty claim.  Only the independent
-   elementary factor mechanism remains a possible contribution.
-5. **Binary Leavitt specialization.**  The unconditional theorem
+4. **Binary Leavitt specialization.**  The unconditional theorem
    `E_n(L_{F_2}(1,2))` has `(TT)/T` for `n ≥ 3` is a candidate new theorem.
 
 No sentence may use "first", "previously unknown", or "new" for items 1--5
@@ -151,7 +148,7 @@ paper result:
    width;
 3. the explicit four-hypothesis ring-class theorem;
 4. a finite-type-algebra wrapper, if the manuscript uses that formulation;
-5. unstable diagonal membership, `E₂ = GL₂`, and the finite factor witness;
+5. unstable diagonal membership and `E₂ = GL₂`;
 6. the binary Leavitt all-ranks theorem;
 7. the separately imported nonsofic-plus-`(TT)/T` corollary.
 

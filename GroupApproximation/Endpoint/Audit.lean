@@ -160,9 +160,12 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.LeavittAllRanksTT.elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT
+#print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate
 #print axioms GroupApproximation.PropertyTTPaper.coordinateBlock_factorization
 #print axioms GroupApproximation.PropertyTTPaper.fiveMove_pivot
 #print axioms GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
+#print axioms GroupApproximation.PropertyTTPaper.leavitt_elementaryRankEquivalence
+#print axioms GroupApproximation.PropertyTTPaper.kazhdan_normalizedSet_globalization
 #print axioms GroupApproximation.PropertyTTPaper.finitePresentation_rankFour_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.quasiCocycle_list_product_bound
 #print axioms GroupApproximation.PropertyTTPaper.finitePresentation_elementaryGroup_hasTTmodT
@@ -220,7 +223,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.BinaryLeavitt.K1_trivial
 #print axioms GroupApproximation.KOnePaper.diagUnit_mem_elementary
 #print axioms GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
-#print axioms GroupApproximation.KOnePaper.exists_diagUnit_elementaryFactors
 
 -- The unit-group and general-linear profiles (Theorem B(i) closed): finite
 -- generation, infinitude, property (T), and nonsoficity of `L_k(1,2)ˣ` and

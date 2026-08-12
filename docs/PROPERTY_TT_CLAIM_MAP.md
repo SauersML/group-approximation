@@ -25,6 +25,12 @@ Proof declaration:
 GroupApproximation.PropertyTT.RankFourRelativeTT.hasRelativeTT_X03
 ```
 
+The localized Fourier estimate used by that proof is exposed as:
+
+```text
+GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_localizedPlaneEstimate
+```
+
 Credit boundary: relative `(TT)/T` for noncommutative universal lattices is
 already present in Mimura's work. In characteristic two, the displayed full
 relative `(TT)` statement is also a short consequence at theorem level:
@@ -53,8 +59,9 @@ The five-move pivot used in its proof is exposed separately as:
 GroupApproximation.PropertyTTPaper.fiveMove_pivot
 ```
 
-Credit boundary: the sandwich condition and its connection to purely infinite
-simple rings belong to the established ring literature. Bounded-generation
+Credit boundary: Ara--Goodearl--Pardo, Theorem 1.6, identifies the sandwich
+condition with pure infiniteness for nondivision simple unital rings.
+Bounded-generation
 globalization belongs to the Shalom--Mimura rigidity tradition. The candidate
 contribution is only the explicit coordinate-block elimination theorem and its
 width. The manuscript must not call this bounded elementary generation.
@@ -88,6 +95,8 @@ the following exact declarations:
 
 ```text
 GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
+GroupApproximation.PropertyTTPaper.leavitt_elementaryRankEquivalence
+GroupApproximation.PropertyTTPaper.kazhdan_normalizedSet_globalization
 GroupApproximation.PropertyTTPaper.finitePresentation_rankFour_hasTTmodT
 GroupApproximation.PropertyTTPaper.quasiCocycle_list_product_bound
 ```
@@ -115,15 +124,11 @@ algebra is elementary. Equivalently,
 E₂(L_k(1,2)) = GL₂(L_k(1,2)).
 ```
 
-Every unit `u` also admits a finite list of elementary rank-two factors whose
-product is `diag(u,1)`. No length or complexity bound is asserted.
-
 Exact Lean declarations:
 
 ```text
 GroupApproximation.KOnePaper.diagUnit_mem_elementary
 GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
-GroupApproximation.KOnePaper.exists_diagUnit_elementaryFactors
 ```
 
 Credit boundary: this equality also receives no theorem-novelty credit.
@@ -131,10 +136,9 @@ Ara--Goodearl--Pardo prove that a purely infinite simple unital ring is a
 GE-ring and identify its stable `K₁` with the abelianization of its unit
 group. Ara--Brustenga--Cortiñas give `K₁(L_k(1,2)) = 0`. Hence every unit is
 a product of commutators; the classical rank-two Whitehead identity makes
-`diag(u,1)` elementary; and GE reduction gives `GL₂ = E₂`. What may be new
-is only the direct tree/pencil factorization that derives the same unstable
-conclusion without either established `K`-theory theorem. The manuscript
-must not claim an executable algorithm or a quantitative factor bound.
+`diag(u,1)` elementary; and GE reduction gives `GL₂ = E₂`. The manuscript
+uses this established structural route and makes no novelty claim for the
+unstable equality.
 
 ## Corollary E: the binary Leavitt algebra
 
@@ -162,10 +166,11 @@ Exact Lean declaration:
 GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
 ```
 
-Credit boundary: the nonsoficity theorem and its proof mechanism belong to the
-prior OpenAI work. The conjunction is only a corollary; neither the abstract
-nor the introduction may imply that this paper constructs or proves the
-nonsofic group independently.
+Credit boundary: the nonsoficity theorem and its proof mechanism belong to
+OpenAI, *Ten Advances in Mathematics and Theoretical Computer Science*
+(2026), Chapter 3, Theorem 1.1. The conjunction is only a corollary; neither
+the abstract nor the introduction may imply that this paper constructs or
+proves the nonsofic group independently.
 
 ## Release gates
 
