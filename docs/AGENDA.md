@@ -1711,6 +1711,19 @@ finite quotients by the marked Schur class first, then solve only the
 prime-power character problem in `H_2(Q)/m` plus `d` lattice coordinates.
 See `FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`.
 
+The MSI Schur pipeline has passed one exact repository-level validation.  For
+the local atlas perfect central extension `E=PerfectGroup(2688,2)`, its center
+has order two, the base `E/Z(E)` has order `1344` and is perfect, and HAP
+computes
+
+`H_2(E/Z(E);Z)=C_2 directSum C_2`.
+
+Since `E` is perfect, its central `C_2` extension is nonsplit and therefore
+occupies a nonzero Schur class.  This does not prove FALSE because the atlas
+phase is not a certified radical word; it verifies the exact computation and
+the central-to-Schur interface before applying it to the Kun--Thom marked
+class.  See `experiments/atlas_schur_multiplier_validation_results.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
