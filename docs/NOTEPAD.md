@@ -45242,3 +45242,81 @@ of the other five circuits are only a failure of this pivot choice, not a
 lower bound.  The next small exact task is to map these two cycles to the
 relative modular-symbol quotient; rank two there would identify the packet
 as cuspidal and cleanly separate the remaining boundary-kernel problem.
+
+# 2026-08-12: the parity spatializer has a dual Heisenberg group envelope
+
+Full proof: `docs/FALSE_DUAL_HEISENBERG_ENVELOPE.md`.
+
+Let the fixed Kun--Thom pair be `Gamma<G`, put `A=F_2^(G)`, and let
+
+```text
+ell(a)=sum_(y in Gamma)a_y,
+T=span_F2(G ell) subset A^*.
+```
+
+The binary Heisenberg group
+
+```text
+H(A,T)=A times T times F_2,
+(a,t,c)(a',t',c')=(a+a',t+t',c+c'+t(a'))
+```
+
+is locally finite.  In
+
+```text
+E=H(A,T) semidirect G
+```
+
+the dual lamp `v_ell` commutes with `Gamma` and conjugates every primal lamp
+`u_a` by the central sign `z^ell(a)`.  Hence in the negative corner
+`p=(1-u_z)/2`, the group unitary `p u_(v_ell)` exactly spatializes the
+one-orbit parity automorphism on the whole edge.
+
+More importantly, the standard free-lamp radical word
+
+```text
+omega=[s v s^(-1),gamma]
+```
+
+maps to the dual lamp
+
+```text
+v_r,  r=s ell+gamma s ell.
+```
+
+The two summands are the indicators of the distinct cosets `sGamma` and
+`gamma sGamma`, so `r!=0`.  Functoriality of the full sofic radical gives
+`v_r in Rad_sof(E)`.  Choosing a primal lamp in the symmetric difference of
+those cosets yields
+
+```text
+[v_r,u_a]=z.
+```
+
+Therefore
+
+```text
+1!=z in Z(E) intersect Rad_sof(E).
+```
+
+The group `E` is finitely generated, locally-finite-by-residually-finite,
+and explicitly nonsofic.  If `E` is operator-MF, the finite-radical corner
+theorem immediately gives a hyperlinear nonsofic image.  Equivalently, CE
+of `pL(E)` makes the fixed group `E` itself hyperlinear and nonsofic.  The
+remaining gate is exactly
+
+```text
+H(A,T) semidirect G is operator-MF?
+```
+
+No general extension theorem supplies this: the amenable kernel is on the
+wrong side of the known closure results, and the action records the
+nonsofic coset obstruction.
+
+There is also a rigorous internal no-go.  Folding the full symmetric
+even-edge amalgam back to one vertex and then applying the existing
+Kazhdan twisted-innerness gap proves that every unitary in every finite
+matrix amplification has parity-implementation defect at least the same
+fixed constant `c>0`.  Thus the full MF symmetric amalgam cannot hide an
+operator-norm half-circle spatializer.  The Borel half-circle unitary is
+genuinely tracial; the Heisenberg generator is genuinely external.
