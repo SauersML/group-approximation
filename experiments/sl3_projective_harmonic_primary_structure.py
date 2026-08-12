@@ -77,10 +77,26 @@ def main() -> None:
     certificate = json.loads(certificate_bytes)
     if certificate["prime"] != problems[0]["prime"]:
         raise AssertionError("depth certificate has the wrong prime")
-    deepest = certificate["records"][-1]
-    if not deepest.get("solvable") or not deepest.get("direct_module_solve"):
-        raise ValueError("deepest layer is not a certified direct solve")
-    diagnostics = deepest["direct_module_diagnostics"]
+    if "records" in certificate:
+        deepest = certificate["records"][-1]
+        if not deepest.get("solvable") or not deepest.get("direct_module_solve"):
+            raise ValueError("deepest layer is not a certified direct solve")
+        diagnostics = deepest["direct_module_diagnostics"]
+        modulus = int(deepest["modulus"])
+        centered_correction_squared_norms = (
+            deepest["centered_correction_squared_norms"])
+        compact_dimension = int(certificate["compact_degree_two_dimension"])
+        correction_count = int(certificate["correction_variable_count"])
+        certificate_solvable = bool(deepest["solvable"])
+    elif certificate.get("selected_basis_congruences_verified"):
+        diagnostics = certificate["solver_diagnostics"]
+        modulus = int(certificate["modulus"])
+        centered_correction_squared_norms = None
+        compact_dimension = int(certificate["compact_degree_two_dimension"])
+        correction_count = int(certificate["correction_variable_count"])
+        certificate_solvable = True
+    else:
+        raise ValueError("certificate does not contain a verified direct solve")
     pivot_counts = {
         int(record["depth"]): int(record["unit_pivots"])
         for record in diagnostics
@@ -98,35 +114,33 @@ def main() -> None:
         if valuation > 0
     }
     largest_valuation = max(pivot_counts, default=0)
-    modulus = int(deepest["modulus"])
     if modulus <= 1 << largest_valuation:
         raise AssertionError("certificate is not deeper than the torsion exponent")
     rationally_compatible = [
         rank == rational_rank for rank in augmented_ranks]
     all_depth_two_adic_lifts = [
-        compatible and bool(deepest["solvable"])
+        compatible and certificate_solvable
         for compatible in rationally_compatible
     ]
 
-    compact_dimension = int(certificate["compact_degree_two_dimension"])
-    correction_count = int(certificate["correction_variable_count"])
     profiles = []
-    for basis_index, row in enumerate(basis):
-        input_squared = sum(centered(value, modulus) ** 2 for value in row)
-        output_squared = int(
-            deepest["centered_correction_squared_norms"][basis_index])
-        ratio_squared = Fraction(
-            output_squared * compact_dimension,
-            correction_count * input_squared,
-        )
-        profiles.append({
-            "basis_index": basis_index,
-            "centered_input_squared_norm": input_squared,
-            "centered_output_squared_norm": output_squared,
-            "normalized_ratio_squared_numerator": ratio_squared.numerator,
-            "normalized_ratio_squared_denominator": ratio_squared.denominator,
-            "normalized_ratio": math.sqrt(float(ratio_squared)),
-        })
+    if centered_correction_squared_norms is not None:
+        for basis_index, row in enumerate(basis):
+            input_squared = sum(centered(value, modulus) ** 2 for value in row)
+            output_squared = int(
+                centered_correction_squared_norms[basis_index])
+            ratio_squared = Fraction(
+                output_squared * compact_dimension,
+                correction_count * input_squared,
+            )
+            profiles.append({
+                "basis_index": basis_index,
+                "centered_input_squared_norm": input_squared,
+                "centered_output_squared_norm": output_squared,
+                "normalized_ratio_squared_numerator": ratio_squared.numerator,
+                "normalized_ratio_squared_denominator": ratio_squared.denominator,
+                "normalized_ratio": math.sqrt(float(ratio_squared)),
+            })
 
     payload = {
         "prime": problems[0]["prime"],

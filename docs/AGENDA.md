@@ -660,6 +660,20 @@ Thus a sofic-radical element has fixed-set mean `1` in every amenable action.
 Any viable amenable negative sector must be genuinely nonpermutational, not
 merely nonmonomial.
 
+The action-level gauge reformulation does not provide a shortcut through
+known hyperlinear targets.  In the Alekseev--Bradford definition, if an
+action is a sofic `C_2`-action but not a sofic `C_1`-action for nested group
+classes `C_1 subset C_2`, then at the finite window witnessing failure for
+`C_1`, the auxiliary target `Lambda` supplied by `C_2` already lies in
+`C_2 minus C_1`.  Hence the explicit gauge action being hyperlinear-sofic
+but not sofic would already produce a finitely generated hyperlinear
+nonsofic target before forming its semidirect product.  Finite groups and
+fixed-dimensional linear targets cannot witness that window because they
+are sofic.  The computational action endpoint is therefore an explicit
+finite obstruction window plus a cross-level tracial-ultraproduct
+realization, not a one-level automorphic covariance search.  See
+`FALSE_ACTION_APPROXIMATION_NO_SHORTCUT.md`.
+
 The Kazhdan-corner theorem gives a separate exact FALSE certificate: every
 nontrivial weak-MF Kazhdan group has a nontrivial hyperlinear quotient, by
 renormalizing on the complement of the central Kazhdan projection.  Hence a

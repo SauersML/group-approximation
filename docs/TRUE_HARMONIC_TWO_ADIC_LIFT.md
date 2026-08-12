@@ -4,8 +4,9 @@ Date: 2026-08-11
 
 ## 1. Outcome
 
-The two certified compact cuspidal harmonic generators at each of the first
-two cuspidal projective levels, `p=53` and `p=61`, admit exact corrections in
+The two certified compact cuspidal harmonic generators at every cuspidal
+prime projective level below `100`, namely `p=53,61,79,89`, admit exact
+corrections in
 the full HAP total complex modulo
 
 `2, 4, 8, 16, 32, 64`.                                      `(HTL1)`
@@ -23,23 +24,25 @@ residual system.  At `p=61`, `11051` unit pivots reduce `15132` equations to
 two residual equations, with the same two-division pattern.  The direct
 modulus-eight solves take about one second on one CPU.
 
-The residual elementary divisors can now be identified exactly.  At both
-levels the correction cokernel has two-primary torsion precisely `C_4`, and
-both harmonic demands have zero free-cokernel component.  Since they solve
-modulo eight, their `C_4` component vanishes.  Consequently both harmonic
-generators admit corrections modulo
+The residual elementary divisors can now be identified exactly.  The
+two-primary correction cokernel is `C_4` at `p=53,61,89` and `C_2` at `p=79`;
+both harmonic demands have zero free-cokernel component at all four levels.
+Since they solve modulo eight, their two-primary component vanishes.
+Consequently both harmonic generators admit corrections modulo
 
 `2^k for every k>=1`.                                      `(HTL1a)`
 
-This closes qualitative all-depth two-adic existence at the first two
-cuspidal levels.  It is not a uniform decoder theorem: the computed
+This closes qualitative all-depth two-adic existence for the complete
+prime-level cuspidal sample below `100`.  It is not a uniform decoder theorem:
+the computed
 corrections are arbitrary exact solutions, and no minimum-norm or
-chart-uniform operator-norm bound follows from two levels.
+chart-uniform operator-norm bound follows from four levels.
 
 The stronger full-plane norm audit is now in
 `TRUE_HARMONIC_MODULAR_SECTION_PROFILE.md`.  Exhausting all `4095` nonzero
 combinations modulo `64` gives worst normalized correction ratios
-`0.5995627747` at `p=53` and `0.5970593451` at `p=61`.  These are constructive
+`0.5995627747, 0.5970593451, 0.5857626329, 0.5917473955` at
+`p=53,61,79,89`, respectively.  These are constructive
 upper bounds from one selected section, not claims of minimum-norm lifting.
 
 ## 2. Exact module solver
@@ -140,14 +143,17 @@ and binary ranks give:
 | ---: | ---: | ---: | ---: | :--- |
 | 53 | 8366 | 8365 | 3086 | `C_4` |
 | 61 | 11052 | 11051 | 4080 | `C_4` |
+| 79 | 18458 | 18457 | 6826 | `C_2` |
+| 89 | 23390 | 23389 | 8654 | `C_4` |
 
 The free ranks are the equation counts minus the rational ranks.  The rank
 drop by one modulo two shows that exactly one nonzero elementary divisor is
 even.  In the direct local elimination, all rational-rank pivots are
-accounted for: `8365` respectively `11051` occur before division, none after
-one division, and one after two divisions.  Hence the unique even elementary
-divisor has two-adic valuation exactly two.  This proves the last column,
-not merely an exponent bound.                              `(HTL6)`
+accounted for.  At `p=53,61,89`, the unique missing pivot appears after two
+divisions, so the unique even elementary divisor has two-adic valuation
+exactly two.  At `p=79` it appears after one division, so the valuation is
+exactly one.  This proves the last column, not merely an exponent bound.
+                                                               `(HTL6)`
 
 For each of the two harmonic demands, adjoining the demand row leaves the
 rational rank unchanged:
@@ -156,14 +162,17 @@ rational rank unchanged:
 | ---: | ---: | :--- |
 | 53 | 8366 | `8366, 8366` |
 | 61 | 11052 | `11052, 11052` |
+| 79 | 18458 | `18458, 18458` |
+| 89 | 23390 | `23390, 23390` |
 
 Thus their cokernel classes have zero free component.  Let `g` be either
 class.  Exact solvability modulo eight says
 
 `g in 8 C_p`.                                             `(HTL7)`
 
-On `(C_p)_(2)=C_4`, multiplication by eight is zero, so `(HTL7)` forces the
-two-primary component of `g` to vanish.  Multiplication by every power of
+On each displayed two-primary group, multiplication by eight is zero, so
+`(HTL7)` forces the two-primary component of `g` to vanish.  Multiplication
+by every power of
 two is an automorphism on the odd-primary torsion.  Therefore
 
 `g in 2^k C_p for every k>=1`,                            `(HTL8)`
@@ -217,7 +226,7 @@ There are two distinct next questions.
    templates; apparent growth must be confirmed by minimum-norm optimization
    or a dual lower bound before it counts as an obstruction.
 
-Thus all further feasibility search on these two charts is obsolete.  The
+Thus all further feasibility search on these four charts is obsolete.  The
 live TRUE computation is the family-level metric problem, together with the
 remaining odd-primary and universal chart-selection gates.
 
@@ -247,8 +256,13 @@ result artifacts are:
   `929d9827495484c4944b08c5b3b4ac19a9aa1b1d38d7932ed84a1d10a994f019`;
 * `experiments/projective-harmonic-primary-p61-structure.json`, SHA-256
   `44a66205a8424d57a29b5b977283d1c0528a3d8cf2c1520495de31e7c42a6657`.
+* `experiments/projective-harmonic-primary-p79-structure.json`, SHA-256
+  `e6ff44aae5b814d377fad51cb143dda8453db72ad053509fb65bf986bc407ac6`;
+* `experiments/projective-harmonic-primary-p89-structure.json`, SHA-256
+  `abac3c4a028815006c6f36357e6599bb399be1fdf98d8e9cf1380064a6e2f4a6`.
 
-Independent reruns of the depth-six solver reproduced both source
+Independent reruns of the depth-six solver reproduced the first two source
 certificates exactly after deleting only the nondeterministic elapsed-time
-field.  All displayed ranks were recomputed from the original integer HAP
-boundaries.
+field.  The later full-plane certificates pass the same exact modular
+post-checks.  All displayed ranks were recomputed from the original integer
+HAP boundaries.
