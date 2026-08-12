@@ -207,6 +207,20 @@ system of the monomial representation has finite root-dependent Schreier
 charts.  The stabilizer phases needed on any fixed window form only a
 finite subset of the amenable group `H_chi`.
 
+There is an important normalized-trace limitation.  The restriction of
+`Pi_theta` to `H` is the quasi-regular representation on `H/H_chi`.  This
+is an infinite transitive orbit.  Since `H` has property `(T)`,
+`FALSE_COADJOINT_INDUCTION_KAZHDAN_TRACE_NO_GO.md` proves that for a fixed
+Kazhdan pair `(S,kappa)` and every trace-one density operator `rho`,
+
+`max_(s in S)`
+` ||Pi_theta(s)sqrt(rho)-sqrt(rho)Pi_theta(s)||_(HS)>=kappa.` `(ACF29)`
+
+Thus direct finite-rank compression of the exact induced representation
+cannot supply tracial matrix models.  The sofic orbit charts remain useful
+because they are root-dependent; they must be coupled to two nonliftable
+relative-holonomy fields rather than glued into one global compression.
+
 ## 7. Exact remaining gate
 
 Equation `(ACF27)` is **rooted** visibility, not yet normalized-trace
@@ -215,6 +229,12 @@ in growing finite models.  One must combine `(ACF26)` with the paired
 cyclic/Fourier amplifier so that the marked phase is repeated on positive
 density, while the two resulting models agree asymptotically on the
 positive subgroup `Gamma`.
+
+The quantitative gap `(ACF29)` also rules out a superficially simpler
+amplification: taking larger finite-rank corners of `(ACF26)` and repeating
+them.  At least one fixed external Kazhdan relation then has order-one
+tracial defect.  Hence the word **paired** in the remaining theorem is
+load bearing.
 
 The remaining theorem can now be stated without any independent phase
 variables:

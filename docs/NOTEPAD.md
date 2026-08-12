@@ -45909,3 +45909,36 @@ has exact denominator and numerator control. The section norm is larger than
 the rank-two values at `53,61`, but no level-`121` harmonic vector is below
 the spherical threshold, so this does not create a dangerous class. The
 family target remains a uniform packet-and-lift Gram theorem.
+
+# Infinite coadjoint orbits have a Kazhdan traciality floor (2026-08-12)
+
+Full proof:
+`docs/FALSE_COADJOINT_INDUCTION_KAZHDAN_TRACE_NO_GO.md`.
+
+Let `H` have property `(T)`, let `A<H` have infinite index, and let
+`lambda` be the quasi-regular representation on `ell^2(H/A)`. If
+`(S,kappa)` is a Kazhdan pair, then every positive trace-class `rho` with
+`Tr(rho)=1` satisfies
+
+```text
+max_(s in S)||lambda(s)sqrt(rho)-sqrt(rho)lambda(s)||_(HS)>=kappa.
+```
+
+The proof is one line after choosing the correct representation. Conjugate
+Hilbert--Schmidt operators by `lambda(H)`. An invariant Hilbert--Schmidt
+operator has constant column norm on the infinite transitive set `H/A`, so
+it is zero. Property `(T)` therefore gives the displayed gap for the unit
+Hilbert--Schmidt vector `sqrt(rho)`.
+
+For the irrational framed character, `H_chi` is amenable and hence
+infinite-index in the nonamenable property-`(T)` group `H`. The exact
+induced monomial representation restricts to `lambda_(H/H_chi)`, so no
+sequence of its finite-rank compressions can satisfy Paddock's approximate
+traciality hypothesis. This sharply corrects the positive interpretation
+of the amenable-stabilizer charts: they give root-dependent local transport,
+not a Folner compression of the global orbit representation.
+
+The remaining FALSE system must therefore contain two external transition
+fields and their relative holonomy. A computation which freezes one exact
+orbit representation is structurally guaranteed to return a positive
+Kazhdan defect floor and is not worth scaling.

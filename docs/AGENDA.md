@@ -2695,6 +2695,25 @@ are presentation-dependent rather than intrinsic Smith invariants.  See
 `TRUE_PACKET_TO_DUAL_CARRY_SECTION.md` and
 `TRUE_N121_DUAL_CARRY_SECTION.md`.
 
+The exact amenable coadjoint orbit has a uniform compression obstruction.
+For any property-`(T)` group `H`, infinite-index subgroup `A`, Kazhdan pair
+`(S,kappa)`, and trace-one density operator `rho` on `ell^2(H/A)`,
+
+```text
+max_(s in S)||lambda(s)sqrt(rho)-sqrt(rho)lambda(s)||_(HS)>=kappa.
+```
+
+Indeed conjugation on Hilbert--Schmidt operators has no invariant vector:
+an operator commuting with an infinite transitive permutation action has
+constant column norm and hence cannot be nonzero Hilbert--Schmidt.  Applied
+to the framed character stabilizer, this proves that direct finite-rank
+compression or repetition of its exact induced monomial representation
+cannot create normalized-tracial models.  Amenable-stabilizer sofic charts
+solve rooted transport only.  The live finite experiment must retain two
+external fields and their nonliftable relative holonomy; a one-field orbit
+compression is guaranteed to show a Kazhdan defect floor.  See
+`FALSE_COADJOINT_INDUCTION_KAZHDAN_TRACE_NO_GO.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
