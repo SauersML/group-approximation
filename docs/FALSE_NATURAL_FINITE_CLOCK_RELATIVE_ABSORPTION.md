@@ -24,9 +24,16 @@ surjects onto the clock coordinate
 `J_k/(c-(1+p))J_k ~= C_(p^k)`.                       `(NRA3)`
 
 Therefore the sum of stabilizer images contains the clock generator, and
-the relative curvature class is zero.  This closes the most direct induced-
-module globalization of the finite metacyclic clock through finite ring
-quotients.
+the exact relative curvature class is zero.  This closes exact relative
+splitting of the finite metacyclic clock through finite ring quotients.
+
+It does not close asymptotic phase splitting.  A primitive character takes
+the value `exp(2 pi i/p^k)` on a clock generator, which tends to one, while
+its value on the order-`p` Bockstein shadow remains a fixed nontrivial root.
+Thus fixed positive relators may have vanishing phase even though a growing
+positive collision accumulates the marked phase.  The distinction and the
+correct metric computation are in
+`FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
 
 ## 2. The subgroup homology map
 
@@ -124,18 +131,26 @@ the finite ring image has made `h` positive.
 ## 6. Computational consequence
 
 Do not compute Schur multipliers for larger natural finite coefficient-ring
-quotients in the hope that the clock coordinate survives: the relative
-answer is exactly zero at every level.
+quotients merely in the hope that the clock coordinate survives exactly:
+the relative answer is zero at every level.
 
-A live finite model must avoid `(NRA10)`.  It must keep the Laurent fold
-translation projectively distinct from the positive image even though no
-honest finite ring quotient can do so.  This points back to:
+A live **exactly split** finite model must avoid `(NRA10)`.  An asymptotic
+model need not: it may let the Laurent translation equal a positive word
+whose length grows with the quotient, provided the phase on every fixed
+positive relator tends to one while that long collision retains nontrivial
+holonomy.  The next calculation for the natural tower is therefore the
+centered clock-coordinate energy of the explicit Shapiro transitions after
+optimizing the Schreier gauge, not another exact relative-homology test.
+
+The remaining alternatives are:
 
 1. genuinely projective finite quotients not induced by a finite ring map;
 2. approximate/nonexact vertex models with normalized-HS boundary error; or
-3. a different relative Schur class whose stabilizer restriction misses the
+3. the natural finite ring maps used only asymptotically through a sparse
+   branch cut; or
+4. a different relative Schur class whose stabilizer restriction misses the
    translation coordinate.
 
 The explicit cocycle remains a useful local building block, but the natural
-finite ring tower is now rigorously excluded as its relative globalization.
-
+finite ring tower is rigorously excluded only as an exact relative
+globalization.

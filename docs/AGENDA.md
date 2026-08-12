@@ -1793,7 +1793,7 @@ restriction but nonzero fold difference, equivalently a class in the kernel
 of vertex-to-edge restriction.  See
 `FALSE_FOLDED_DOUBLE_SAME_MODEL_NO_GO.md`.
 
-The explicit finite clock is also absorbed by the relative Shapiro quotient
+The explicit finite clock is also absorbed by the exact relative Shapiro quotient
 in every natural finite coefficient-ring image.  There the positive image is
 normal and contains `H_k=<h>`.  Since `H_k` acts trivially on `J_k` and
 `p^(k+1) J_k=0`,
@@ -1806,10 +1806,17 @@ and inclusion into `B_k` followed by the clock projection is the surjection
 
 Thus every stabilizer contains a subgroup whose homology already covers the
 whole clock coordinate; the relative class is zero at every level.  Do not
-run larger Schur computations on this natural tower.  A live construction
-must be genuinely projective/non-ring so that the Laurent translation stays
-outside the positive image.  See
-`FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md`.
+run larger Schur computations merely to retest exact survival on this natural
+tower.  This does **not** rule out asymptotic branch cutting: the primitive
+clock phase on a bounded coordinate is `O(p^-k)`, while the order-`p`
+Bockstein shadow has fixed phase.  The finite Laurent translation may equal a
+positive word whose length grows with `k`; hyperlinear gluing tests each fixed
+positive word, not exact triviality on the whole finite positive image.  The
+live natural-tower computation is therefore the centered clock-coordinate
+energy of the explicit Shapiro cocycle on the fixed presentation relators,
+minimized over Schreier gauges, together with its phase on the growing
+collision.  See `FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md` and
+`FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`.
 
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
