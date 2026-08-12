@@ -216,10 +216,13 @@ normalized Hamming length, and circle phases.  Together with the Cartan-to-
 monomial estimate it gives the explicit bound `9 delta+28 epsilon` for an
 almost-flat, almost-monomial building connection.  The remaining universal
 gate is witness-preserving encoding: a closed-loop witness cannot survive
-pure-gauge repair on the simply connected building.  Becker--Lubotzky rules
-out replacing this by ordinary stability of an infinite property-`(T)`
-presentation.  The next target is therefore a relative metric cone theorem
-with protected terminal holonomies.
+pure-gauge repair on the simply connected building.  Open paths do survive.
+For a uniform automorphism orbit of paths of length at most `L`, their average
+holonomy changes by at most `9 sqrt(3)L` times the curvature RMS.  Thus a
+bounded-congestion orbit-redundant open-path encoding would retain the marked
+trace signal.  Becker--Lubotzky rules out replacing this by ordinary stability
+of an infinite property-`(T)` presentation; constructing that encoding is the
+next target.
 
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give

@@ -34,12 +34,18 @@ Using the Birkhoff Cartan estimate, one may take
 This is a genuine dimension-free synchronization gadget.  It does not solve
 TRUE because `A_3(F_q)` is simply connected: a nontrivial marked witness
 cannot be stored as a closed-loop holonomy and survive pure-gauge repair.
-The missing bridge is a relative/witness-preserving encoding of the finite
-normal-`0/1` table, not ordinary group stability.  Becker--Lubotzky proves
-that ordinary HS/permutation stability is unavailable for infinite
-property-`(T)` groups.  The next theorem-shaped target is a relative cone
-inequality that synchronizes local gauges while protecting finitely many
-terminal/open-path holonomies.
+Open-path holonomies, however, are quantitatively retained.  If a path
+distribution has maximum length `L` and weighted edge congestion `C`, its
+holonomy changes in `L^r` by at most
+
+    9 L^(1-1/r) C^(1/r) ||curvature||_(L^r).
+
+For the uniform `GL_4(F_q)` orbit of one path, `C<=3L`; in RMS norm the
+constant is `9 sqrt(3)L`.  Hence an orbit-redundant bounded-length encoding
+of the marked word would survive synchronization.  The missing bridge is
+constructing that encoding from the finite normal-`0/1` table, not proving a
+relative metric estimate.  Becker--Lubotzky still rules out ordinary
+HS/permutation stability for infinite property-`(T)` groups.
 
 ## 2026-08-11: a bounded-overlap harmonic packet basis would prove the family bound
 

@@ -42,6 +42,12 @@ Becker--Lubotzky's non-stability theorem proves that one cannot simply replace
 the building by the presentation complex of an infinite property-`(T)` group
 and expect the same statement for all approximate representations.
 
+A further theorem below shows that the witness need not be protected on a
+closed loop.  If it is repeated over a balanced orbit of bounded-length open
+paths, synchronization preserves its average holonomy with a dimension-free
+constant.  The live encoding target is therefore an orbit-redundant open-path
+encoding, not an unspecified relative stability theorem.
+
 ## 1. Metric cochains
 
 Let `X` be a finite pure two-dimensional simplicial complex with the standard
@@ -338,7 +344,100 @@ hyperlinear table nor controls fixed-point phase cancellation.  The matrix
 estimate `(AMC25)` uses a weaker averaged atom displacement, but has the same
 logical prerequisite: a common Cartan must first be found.
 
-## 6. Remaining universal bridge
+## 6. Open-path holonomies survive synchronization
+
+Although a pure gauge has trivial holonomy on every closed loop, its open
+path holonomies need not be trivial: they are the relative vertex gauges.
+The following estimate shows how to retain them quantitatively.
+
+Let `mu` be a probability distribution on oriented edge paths `P` in `X`,
+each of length at most `L`.  Write `N_e(P)` for the number of occurrences of
+the unoriented edge `e` in `P`, and define the weighted edge congestion
+
+```text
+C_mu=max_e E_(P~mu)N_e(P)/c_X(e).                    (AMC33)
+```
+
+For two connections `phi,theta`, put
+
+```text
+d_e(phi,theta)=ell(phi(e)^(-1)theta(e)).             (AMC34)
+```
+
+**Theorem 4 (balanced open-path transfer).**  For `1<=r<infinity`,
+
+```text
+E_(P~mu) ell(Hol_phi(P)^(-1)Hol_theta(P))^r
+ <=L^(r-1) C_mu sum_e c_X(e)d_e(phi,theta)^r.        (AMC35)
+```
+
+**Proof.**  Telescoping the two path products expresses their relative
+holonomy as a product of conjugates of the edgewise discrepancies.  Hence
+
+```text
+ell(Hol_phi(P)^(-1)Hol_theta(P))
+ <=sum_(e in P)d_e(phi,theta).                       (AMC36)
+```
+
+Raise this to the `r`th power using `(AMC12)`, average over `P`, and use
+`(AMC33)`.  End proof.
+
+Apply this to the pure-gauge connection
+
+```text
+theta_a(u,v)=a(u)^(-1)a(v)                           (AMC37)
+```
+
+produced by Theorem 3.  Conjugacy invariance gives
+
+```text
+d_e(phi,theta_a)=ell((a dot phi)(e)).                (AMC38)
+```
+
+Combining `(AMC21)` and `(AMC35)` yields
+
+```text
+||Hol_phi(P)^(-1)a(start(P))^(-1)a(end(P))||_(L^r(mu))
+ <=9 L^(1-1/r) C_mu^(1/r)||K_phi||_(r,T).            (AMC39)
+```
+
+### Uniform automorphism orbits in `A_3(F_q)`
+
+Take one path `P_0` of length at most `L` and let `mu` be the uniform orbit
+of `P_0` under `GL_4(F_q)`.  The building has three unoriented edge types,
+according to the two dimensions in a comparable pair.  The automorphism
+group is transitive on each type, and every chamber contains one edge of
+each type.  Therefore the total edge weight of every type is `1/3`.  If
+`P_0` uses `n_t` edges of type `t`, then every edge of that type has load
+ratio exactly `3n_t`.  Consequently
+
+```text
+C_mu=3 max_t n_t<=3L.                                (AMC40)
+```
+
+Equation `(AMC39)` becomes
+
+```text
+||Hol_phi(P)^(-1)a(start(P))^(-1)a(end(P))||_(L^r(mu))
+ <=9 . 3^(1/r) L ||K_phi||_(r,T).                   (AMC41)
+```
+
+For normalized Hilbert--Schmidt RMS error this is
+
+```text
+path RMS error<=9 sqrt(3) L . curvature RMS error.   (AMC42)
+```
+
+Normalized trace is one-Lipschitz for Hilbert--Schmidt distance, and
+fixed-point fraction is one-Lipschitz for Hamming distance.  Thus any trace
+or fixed-point witness repeated over this path orbit survives in the endpoint
+gauge differences whenever the curvature tends to zero.
+
+The theorem does not create that repeated encoding.  It proves that once an
+encoding distributes a fixed tested word over a bounded-length automorphism
+orbit, metric synchronization will not erase its average witness signal.
+
+## 7. Remaining universal bridge
 
 Theorem 3 provides a new reusable component:
 
@@ -349,14 +448,15 @@ To affect the full open problem, one still needs a **witness-preserving
 encoding theorem** taking an arbitrary finite normal-`0/1` hyperlinear table
 to such a connection and returning a finite action after synchronization.
 The encoding cannot put a nontrivial witness on a closed loop of the simply
-connected building: exact synchronization would kill it.  It must retain the
-witness as relative/open-path data or attach a controlled presentation
-sector while the building synchronizes the local gauges.
+connected building: exact synchronization would kill it.  Theorem 4 shows
+that it is enough to repeat the witness as relative/open-path data on a
+bounded-congestion path orbit.  A controlled presentation sector is another
+possibility.
 
 This is sharper than asking for ordinary HS or permutation stability, which
-is false by Becker--Lubotzky.  The next legitimate target is a **relative
-metric cone theorem with protected terminal holonomies**, followed by an
-encoding of the finite-prefix table into those terminals.
+is false by Becker--Lubotzky.  The metric relative estimate is now
+`(AMC39)--(AMC42)`; the next legitimate target is an **orbit-redundant
+open-path encoding** of the finite-prefix table into the building.
 
 ## Primary sources
 
