@@ -1661,6 +1661,20 @@ and macroscopic marked energy.  Any computational wall search must build
 growing marked incidence, moving local commutants, or higher/nonabelian
 derived data rather than merely adding a distant compensating wall.
 
+The central-relator endpoint has an exact cocycle linearization.  For a
+finite quotient `Q` of the presented radical double and modulus `m`, every
+cyclic central extension with chosen generator lifts is a normalized
+`2`-cocycle plus `d` lift phases.  Relator and marked-word exponents form
+the image of one linear map
+`Z^2(Q,Z/m) directSum (Z/m)^d ->(Z/m)^(ell+1)`.  Once
+that image is computed, the finite FALSE test is a fixed-dimensional
+modular closest-vector/MILP problem: make the first `ell` circular
+coordinates microscopic while the last stays macroscopic.  This replaces
+finite multiplication-table synthesis and all unitary optimization by
+proof-producing finite cohomology.  See
+`FALSE_CENTRAL_RELATOR_COCYCLE_LINEARIZATION.md` and
+`FALSE_CENTRAL_RELATOR_SEPARATION_CRITERION.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
