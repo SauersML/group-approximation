@@ -174,17 +174,25 @@ this boundary.  Raising the dual-number order in the natural module is now
 closed, not live.  Any surviving construction must also avoid prefix
 replication, which kills the central class homologically.
 
-The first-order non-Boolean escape has also been screened in every modular
-type already native to the atlas: the defining and dual 4-modules,
-`wedge^2 V`, the 15-point and 15-hyperplane permutation modules, and
-`V tensor V^*`.  Across all 36 ordered rectangular block types, the 24
-certified zeros plus commutant-valued centrality of all four survivors force
-the whole `s_11` jet to vanish.  This includes arbitrary direct sums,
-multiplicity, and off-diagonal coupling, so the outer-tangent signal cannot
-be rescued at first order by adjoining another native sector.  A live
-modular construction must use a genuinely new indecomposable module or a
-different order-zero projective alignment.  Full theorem:
-`docs/FALSE_ATLAS_NATIVE_MODULAR_FIRST_ORDER_NO_GO.md`.
+The modular first-order obstruction is now universal, rather than a screen
+of selected modules.  For each aligned word `w`, its square-zero derivative
+is one element `d_w` of `F_2[A_8]`, acting by conjugation on the endomorphism
+space of any module.  An exact 552-step left-ideal certificate proves
+
+```text
+d_11 in sum_z F_2[A_8] d_z
+        + sum_(s in {11,30,44,55}, g in S)
+            F_2[A_8] (g+1)d_s.
+```
+
+Therefore the 24 certified zeros and commutant-valued centrality of all four
+survivors kill the `s_11` jet on every `F_2[A_8]` module, including arbitrary
+indecomposables, direct sums, multiplicities, and off-diagonal couplings.
+Searching for a new characteristic-two module at the inner square-zero
+alignment is closed.  A surviving construction must change characteristic,
+deformation order/geometry, order-zero holonomy, or the common-module setup.
+Full theorem and replayable certificate:
+`docs/FALSE_ATLAS_UNIVERSAL_MODULAR_FIRST_ORDER_NO_GO.md`.
 
 ### 2026-08-12: compact and weakly compact anchors are impossible
 
