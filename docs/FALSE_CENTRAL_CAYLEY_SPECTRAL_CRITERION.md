@@ -187,9 +187,23 @@ C(A,b)\leq\delta_A(b).
 \]
 
 Thus spectral divergence requires unbounded integral filling distortion, but
-the converse is a nonlinear discriminant question.  The exact gap between
-\(C(A,b)\) and \(\delta_A(b)\) is governed by the same paired
-discriminant--Voronoi geometry that appears in nonlinear circle repair.
+for a fixed number of generators the converse holds uniformly at the level
+of family divergence. The fixed-rank character compactness theorem proves
+
+\[
+\sup_i C(A_i,b_i)=\infty
+\quad\Longleftrightarrow\quad
+\sup_i\delta_{A_i}(b_i)=\infty
+\]
+
+for every family with a fixed number of ordered generators. Its proof uses
+Hausdorff compactness of character graphs in a fixed torus and exactness of
+Pontryagin duality. See `FALSE_FIXED_RANK_CHARACTER_COMPACTNESS.md`.
+
+For a fixed individual pair \((A,b)\), the numerical gap between
+\(C(A,b)\) and \(\delta_A(b)\) is still governed by paired
+discriminant--Voronoi geometry. The compactness theorem is qualitative and
+does not give an effective bound.
 
 For the fold-aligned Baumslag--Solitar construction, the remaining symbolic
 task is now precise:
@@ -201,4 +215,3 @@ task is now precise:
 
 The already-proved order formula for the marked class supplies item 1 only
 partially.  It does not determine the relator residues required in item 2.
-

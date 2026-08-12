@@ -30,6 +30,12 @@ extension attached to a finite quotient of \(P\).  Consequently the central
 separation ratio can be searched using ordinary finite quotients and a finite
 abelian relation module.
 
+The fixed-rank character compactness theorem now makes the final criterion
+purely integral: because the number of presentation relators is fixed, the
+canonical central route proves FALSE if and only if the integral coefficient
+distortions \(\delta_Q(w)\) are unbounded. See
+`FALSE_FIXED_RANK_CHARACTER_COMPACTNESS.md`.
+
 ## The canonical cover
 
 Fix a finite quotient
@@ -381,16 +387,21 @@ For any character \(\chi:A_Q\to\mathbb T\), telescoping gives
 Consequently the optimal marked/relator phase ratio for the quotient \(Q\)
 is at most \(\delta_Q(w)\).  In particular:
 
-### Corollary 7 (unbounded distortion is necessary)
+### Corollary 7 (unbounded distortion is necessary and sufficient)
 
-If the canonical central-quotient route proves FALSE, then
+The canonical central-quotient route proves FALSE if and only if
 
 \[
 \sup_{P\twoheadrightarrow Q\text{ finite}}\delta_Q(w)=\infty.
 \]
 
-Thus a bounded integral expression of the radical collision loop in terms of
-the fixed presentation relators would rule out this entire route.
+The necessary direction follows immediately from the displayed character
+estimate. The sufficient direction is the fixed-rank character compactness
+theorem: for fixed \(\ell\), a uniform bound on all character ratios forces a
+uniform bound on the shortest integral coefficient vectors. Thus a bounded
+integral expression of the radical collision loop in terms of the fixed
+presentation relators rules out this entire route, while unbounded integral
+distortion completes it.
 
 There is also an exact quotient-level nonlinear invariant.  Set
 
@@ -420,16 +431,26 @@ Hence the canonical central route is completely characterized by
 }
 \]
 
-The elementary estimate above says \(\Lambda_Q(w)\leq\delta_Q(w)\).  The
-gap between these quantities is a finite nonlinear discriminant/Voronoi
-problem for the homomorphism \(\mathbb Z^\ell\to A_Q\).  This is the same
-kind of integral-carry geometry that appears in the exact circle-repair
-formula on the TRUE side.
+The elementary estimate above says \(\Lambda_Q(w)\leq\delta_Q(w)\). The
+fixed-rank character compactness theorem proves the exact family-level
+equivalence
 
-Thus the remaining FALSE calculation is finite abelian homology: locate the
-marked class \([w]\) relative to the finitely many relator classes
-\([r_j]\) in \(C_Q/mC_Q\), and find a character for which the marked phase
-dominates the combined relator phases.
+\[
+\sup_Q\Lambda_Q(w)=\infty
+\quad\Longleftrightarrow\quad
+\sup_Q\delta_Q(w)=\infty.
+\]
+
+For a single quotient, the numerical gap between these quantities remains a
+finite nonlinear discriminant/Voronoi problem for the homomorphism
+\(\mathbb Z^\ell\to A_Q\). That fixed-instance geometry is not needed to
+decide divergence over a family.
+
+Thus the remaining FALSE calculation is integral finite-quotient homology:
+prove that the shortest coefficient vector expressing the marked class
+\([w]\) in terms of the finitely many relator classes \([r_j]\) is unbounded
+along some finite quotient family. The compactness theorem then supplies the
+required character ratios automatically.
 
 This also clarifies what the existing \(p^k\)-cycle amplifier does and does
 not yet prove.  Large order of the marked class is not by itself enough.  The
