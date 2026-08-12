@@ -77,6 +77,34 @@ from ambient finite-subgroup spectral projections is impossible: its exact
 support relations also hold in the finite tracial algebra `L(Q)`, where
 unitary conjugacy and trace already enforce the weighted Hall inequality.
 
+The cleanest way to remove the commutant-gauge ambiguity is categorical.
+Exactify one fixed finite subgroup `F` in both chart restrictions and write
+
+```text
+H_n = direct_sum_(sigma in Fhat) V_sigma tensor K_(sigma,n).
+```
+
+The blocks of a relative chart intertwiner are arrows between the finite
+multiplicity spaces `K_(sigma,n)`.  Changing the regular-chart tensor
+identification acts only by change of basis at the vertices.  Thus ranks,
+singular values, kernel dimensions, and incidence of the block arrows are
+gauge-invariant data of a finite quiver representation.  The immediate
+symbolic target is to reduce the raw compressor and adjacent-root relations
+to either
+
+```text
+K -> L <- K
+```
+
+with two asymptotically isometric arrows having asymptotically orthogonal
+ranges, or to a weighted Hall-deficient subquiver.  Either conclusion gives
+a dimension-vector contradiction in finite multiplicity.  In the exact
+Leavitt branch the corresponding Hilbert multiplicity spaces are infinite,
+so the same algebraic arrows can be proper isometries and there is no
+contradiction.  This quiver formulation is the gauge-free version of the
+finite gauge-index theorem: search for invariant arrow-rank identities, not
+for zero entries of one arbitrarily gauged `20160`-by-`20160` block matrix.
+
 A gauge-free variant is now equally high priority: exactify a finite binary
 root subgroup and track its atomic character multiplicities.  The correct
 vector is the square root of the multiplicity distribution, so property
@@ -162,6 +190,57 @@ The solution group of \(L_0\) has its distinguished central involution
 nontrivial in a commuting representation but trivial in every asymptotic
 matrix representation.  The standard LCS solution-group correspondence then
 produces a nonhyperlinear group.
+
+### The final solution-group implication is profile-free
+
+For completeness, no faithfulness or positive-rank hypothesis is hidden in
+the last sentence.  Let `Gamma(A,b)` be the binary LCS solution group and
+let `J` be its distinguished central involution.  If
+
+\[
+ \omega_{qc}(A,b)=1,
+ \qquad
+ \omega_{qa}(A,b)<1,
+ \tag{HL2a}
+\]
+
+then `Gamma(A,b)` is nonhyperlinear.
+
+Indeed perfect commuting completeness makes `J` nontrivial in the solution
+group.  If the group were hyperlinear, choose a homomorphism
+
+```text
+pi:Gamma(A,b) -> product_omega M_(d_n)
+```
+
+into a normalized tracial matrix ultraproduct which separates `J`.  Since
+`J` is a central involution,
+
+\[
+ q={1-\pi(J)\over2}
+ \tag{HL2b}
+\]
+
+is a nonzero central projection.  Lift `q` to matrix projections, compress
+all unitary lifts to their ranges, normalize the corner traces, and polar
+correct.  The resulting approximate representations still have vanishing
+normalized-HS multiplicative defect and now satisfy
+
+\[
+ J\longmapsto-I
+ \tag{HL2c}
+\]
+
+in normalized Hilbert--Schmidt norm.  The usual LCS
+approximate-representation/strategy construction therefore gives
+finite-dimensional strategies whose winning probabilities tend to one.
+This contradicts `omega_qa<1`.
+
+The corner may have vanishing relative rank in the original matrices; its
+trace is renormalized after compression.  Thus the only unproved issue in
+this lane is the existence of `(HL2a)`, not conversion of such an instance
+to a nonhyperlinear group.  This is also why the `epsilon=0` endpoint in
+Taller--Vidick is exactly the group-theoretic open problem.
 
 ## Why this target is narrower than the published open problem
 

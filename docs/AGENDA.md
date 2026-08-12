@@ -4,6 +4,76 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: a first-order radical jet is already a complete FALSE certificate
+
+The quadratic trace-gap amplifier has a strong geometric consequence.  Let
+`K=<S|R>` be finitely presented, let `1!=q in Rad_sof(K)`, and let `rho` be
+a finite-dimensional unitary representation.  If a skew-Hermitian tangent
+at `rho` kills the derivatives of every defining relator but moves `q`,
+then the generator perturbation has relation defect `O(t^2)` while
+
+```text
+1-Re tr(phi_t(q)) asymptotic c t^2,       c>0.
+```
+
+Thus `eta_t^2/kappa_t=O(t^2)->0`, and the phase-cancelled tensor theorem
+produces a hyperlinear image retaining `q`; that image is nonsofic.  No
+integration of the tangent is needed.
+
+For a folded double this reduces to one honest finite-dimensional
+representation with `rho(h)` outside the bicommutant of `rho(Gamma)`.
+The obstruction for the current strict Kun--Thom predecessor is actually
+complete: property `(T)` makes both vertex tangents inner, agreement on the
+edge leaves a finite-dimensional `Gamma`-intertwiner, and intertwiner
+propagation makes it intertwine `h`.  Hence every tangent at every
+finite-dimensional representation kills the marked fold word and its normal
+closure.  This closes a full-presentation linear search for the current
+marked witness, not merely the same-model ansatz.  It is not being claimed
+here that one displayed predecessor normally generates the complete radical.
+
+The criterion still changes the atlas stopping rule: quadratic obstruction
+of a tangent is irrelevant once the tangent satisfies the full presentation.
+The current outer `A_8` tangent satisfies only the 24 certified local zero
+classes, so it remains insufficient.  Full theorem and scope:
+`docs/FALSE_QUADRATIC_RADICAL_JET_CRITERION.md`.
+
+### 2026-08-12: phase-cancelled tensors lower the FALSE threshold by one power
+
+The one-number relative-commutant criterion has been sharpened.  Given
+finite-window maps with multiplication defect `eta_n` and marked radical
+trace gap `kappa_n`, first replace each map by
+
+```text
+phi_n directSum conjugate(phi_n) directSum 1 directSum 1.
+```
+
+Every relative relation trace is then real and belongs to `[0,1]`.
+Taking an `L_n`-fold tensor power makes relation defects grow only as
+`sqrt(L_n) eta_n`, while the marked trace decays like
+`exp(-L_n kappa_n/2)`.  Hence the sufficient hypothesis is
+
+```text
+eta_n^2/kappa_n -> 0,
+```
+
+not the previously recorded `eta_n/kappa_n->0`.  For the Haar
+relative-commutant scalar this becomes
+
+```text
+epsilon_n^2/Delta_n -> 0,
+Delta_n=dist_2(x_n,W_n)^2.
+```
+
+Thus relation defect need only be little-oh of the Hilbert--Schmidt seam
+size.  In particular, if an active corner has trace `r_n`, carries an
+order-one marked wall, and has active relation amplitude `alpha_n->0`, then
+the criterion holds regardless of how fast `r_n->0` because
+`epsilon_n^2/Delta_n=O(alpha_n^2)`.  Small-corner dilution with arbitrary
+order-one boundary completion is still sterile, but every genuinely
+convergent active covariance model is back in scope.  Full proof:
+`docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md`; corrected scope:
+`docs/FALSE_TANGENT_ACTIVE_CORNER_DILUTION_NO_GO.md`.
+
 ### 2026-08-12: Iwahori counterexamples require high-dimensional type escape
 
 The fixed-library theorem for the Dogon--Vigdorovich matching problem

@@ -47,13 +47,13 @@ Here `E_(W_n)` is the trace-preserving conditional expectation.  The main
 criterion is
 
 ```text
-Delta_n>0 eventually and epsilon_n/Delta_n->0
+Delta_n>0 eventually and epsilon_n^2/Delta_n->0
   ==> a hyperlinear nonsofic group exists.             (ONR6)
 ```
 
 Thus no higher moment, asymptotic-freeness, block-multiplicity, or random
 matrix hypothesis is needed.  A successful FALSE model only has to make
-the predecessor escape the finite `Gamma`-bicommutant by more than the
+the Hilbert--Schmidt size of the predecessor escape dominate the
 relation-error scale.
 
 ## 2. Trace-gap amplification
@@ -76,47 +76,79 @@ kappa_n=1-Re tr_(e_n)(phi_n(q)).                       (ONR8)
 If `kappa_n>0` eventually and
 
 ```text
-eta_n/kappa_n->0,                                     (ONR9)
+eta_n^2/kappa_n->0,                                   (ONR9)
 ```
 
 then there is a hyperlinear nonsofic group.
 
-**Proof.**  Choose integers `L_n->infinity` such that
+**Proof.**  First remove all scalar phases from the relation errors.  Put
 
 ```text
-L_n eta_n->0,       L_n kappa_n->infinity.            (ONR10)
+theta_n(g)=phi_n(g) directSum conjugate(phi_n(g))
+           directSum 1_(e_n) directSum 1_(e_n).       (ONR10a)
 ```
 
-Such a choice exists by `(ONR9)`.  For `1<=j<=L_n`, amplify the tensor
-power `phi_n^(tensor j)` by `e_n^(L_n-j)` identical copies.  Every resulting
-block has the same dimension `e_n^(L_n)`.  Let `Psi_n` be the direct sum of
-these `L_n` equal-dimensional blocks.
-
-Tensor telescoping gives multiplicative defect at most `j eta_n` on the
-`j`th block.  Hence the defect of `Psi_n` is at most `L_n eta_n`, which
-tends to zero by `(ONR10)`.
-
-Put `a_n=tr_(e_n)(phi_n(q))`.  Equal block dimensions give
+For a tested product `gh`, set
 
 ```text
-tr(Psi_n(q))=(1/L_n) sum_(j=1)^(L_n) a_n^j.           (ONR11)
+D_n(g,h)=phi_n(gh)^* phi_n(g)phi_n(h).
 ```
 
-Since `|a_n|<=1` and `|1-a_n|>=1-Re(a_n)=kappa_n`, the geometric-sum
-estimate gives
+If its defect is `delta_n(g,h)=||D_n(g,h)-1||_2`, then the relative
+unitary for `theta_n` has real normalized trace
 
 ```text
-|tr(Psi_n(q))|<=2/(L_n kappa_n)->0.                   (ONR12)
+r_n(g,h)=(1+Re tr(D_n(g,h)))/2
+        =1-delta_n(g,h)^2/4.                         (ONR10b)
 ```
 
-Thus the maps `Psi_n` define a homomorphism from `K` to a tracial matrix
+Likewise, if `a_n=tr(phi_n(q))`, then
+
+```text
+s_n=tr(theta_n(q))=(1+Re a_n)/2=1-kappa_n/2
+```
+
+lies in `[0,1]`.  Choose integers `L_n->infinity` such that
+
+```text
+L_n eta_n^2->0,       L_n kappa_n->infinity.          (ONR10c)
+```
+
+Such a choice exists by `(ONR9)`.  For example, when both scales tend to
+zero one can take an integer asymptotic to
+`(eta_n^2 kappa_n)^(-1/2)`; zero defects and trace gaps bounded away from
+zero are easier.  Define the single tensor amplification
+
+```text
+Psi_n(g)=theta_n(g)^(tensor L_n).
+```
+
+Equation `(ONR10b)` and `1-r^L<=L(1-r)` for `0<=r<=1` give
+
+```text
+||Psi_n(g)Psi_n(h)-Psi_n(gh)||_2^2
+ =2-2r_n(g,h)^L_n
+ <=L_n delta_n(g,h)^2/2.                             (ONR10d)
+```
+
+Thus all multiplication defects tend to zero by `(ONR10c)`.  On the marked
+word,
+
+```text
+tr(Psi_n(q))=(1-kappa_n/2)^L_n
+             <=exp(-L_n kappa_n/2)->0.
+```
+
+Hence the maps `Psi_n` define a homomorphism from `K` to a tracial matrix
 ultraproduct in which `q` is nontrivial.  Its countable image is
 hyperlinear.  If that image were sofic, the quotient homomorphism from `K`
 would kill `(ONR7)`, a contradiction.  End proof.
 
-The equal-dimension amplification in the proof is load bearing.  Without
-it, the largest tensor power would dominate the normalized trace and
-`(ONR11)` would be false.
+The conjugate and identity summands in `(ONR10a)` are load bearing.  They
+turn every relative relation trace into a number in `[0,1]`, replacing the
+linear tensor-telescoping loss by the quadratic identity `(ONR10d)`.  A raw
+tensor power can accumulate an uncontrolled scalar phase and only yields
+the weaker condition `eta_n/kappa_n->0`.
 
 ## 3. Haar averaging over one finite commutant
 
@@ -176,13 +208,13 @@ tr((ONR17))=tr(v_n x_n v_n^* x_n^*).                 (ONR18)
 Consequently `(ONR16)` says that the trace gap of the marked radical word
 is at least `Delta_n`.  To make the diagonalization explicit, enumerate the
 multiplication table of `H`.  At stage `m`, let `c_m` be a finite telescoping
-constant for its first `m` entries.  Because `epsilon_n/Delta_n->0`, pass to
-a subsequence on which `c_m epsilon_n/Delta_n<1/m` and use only the first
+constant for its first `m` entries.  Because `epsilon_n^2/Delta_n->0`, pass to
+a subsequence on which `c_m^2 epsilon_n^2/Delta_n<1/m` and use only the first
 `m` elements of `Gamma` when defining `W_n`.  Replacing a larger
 `Gamma`-algebra by this smaller one can only increase `Delta_n`, since
 conditional expectation is orthogonal projection.  The selected
 subwindows still exhaust `Gamma`, while the induced `H`-window defect
-`eta_n` now satisfies `eta_n/Delta_n->0`.
+`eta_n` now satisfies `eta_n^2/Delta_n->0`.
 
 Lemma 1 applies with `K=H`, `q=w`, and `kappa_n>=Delta_n`.  It produces a
 hyperlinear image of `H` in which `w` survives.  Equation `(ONR4)` then
@@ -209,8 +241,23 @@ rate-sensitive form of the relative-bicommutant endpoint:
 
 ```text
 one nonliftable predecessor seam with
-relation defect=o(squared seam size).                 (ONR20)
+squared relation defect=o(squared seam size).         (ONR20)
 ```
+
+Equivalently, the relation defect itself need only be little-oh of the
+Hilbert--Schmidt seam size.  This square-scale improvement matters for a
+shrinking active corner.  If the wall occupies trace fraction `r_n`, has
+order-one size there, and the active relation error has amplitude
+`alpha_n->0`, then
+
+```text
+Delta_n asymptotic r_n,
+epsilon_n^2=O(r_n alpha_n^2),
+```
+
+so `(ONR6)` holds independently of how fast `r_n->0`.  Arbitrary
+order-one boundary completion is still insufficient, but no comparison
+between `alpha_n` and `sqrt(r_n)` is required.
 
 It is also the precise finite target to test in any future Shulman lift,
 paired microstate construction, or noncommutative-fiber model.  Merely

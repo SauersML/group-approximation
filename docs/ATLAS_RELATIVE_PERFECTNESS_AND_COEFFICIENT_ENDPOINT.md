@@ -1248,3 +1248,68 @@ dual transfer map.  Hence no positive version of `(RPC63)` can hold using
 only the comb compressor.  Any root-character proof must add relations
 which move or couple this boundary-path character; merely passing from
 probability vectors to square-root multiplicity vectors does not suffice.
+
+### 17.3 Both binary branch compressors still have common fixed characters
+
+Using the second corner map does not repair the transfer gap by itself.
+Put
+
+\[
+ \alpha_i(a)=s_iat_i,\qquad i=0,1.
+ \tag{RPC74}
+\]
+
+Every algebraic trace `ell:L->F_2`, meaning an `F_2`-linear map satisfying
+`ell(ab)=ell(ba)`, obeys
+
+\[
+ \ell(\alpha_i(a))
+ =\ell(s_iat_i)
+ =\ell(at_is_i)
+ =\ell(a)
+ \quad(i=0,1).
+ \tag{RPC75}
+\]
+
+There are nonzero such traces.  One conceptual verification uses the
+standard graded universal-trace calculation for the one-vertex two-loop
+Leavitt path algebra: in degree one,
+
+\[
+ HH_0(L)_1=L_1/[L,L]_1
+ \cong
+ \mathbf F_2\{s_0,s_1\}/(1-\mathrm{rotation}),
+ \tag{RPC76}
+\]
+
+and rotation is the identity on length-one loops.  Thus the necklace class
+of `s_0`, for example, gives an `F_2`-valued trace with
+`ell(s_0)=1`.  Equivalently, compose the universal trace
+`L->[L,L]`-coinvariants with the coordinate functional of that necklace
+class.
+
+Consequently
+
+\[
+ \chi_\ell(a)=(-1)^{\ell(a)}
+ \tag{RPC77}
+\]
+
+is a nontrivial additive character fixed simultaneously by both dual
+transfer maps.  The point mass `delta_(chi_ell)` has zero two-branch
+Hellinger energy while assigning full mass to a nontrivial character.
+Therefore no version of `(RPC63)` using only the two covariance maps
+`alpha_0,alpha_1` can have a positive gap.
+
+This also explains why the elementary calculation with `a=1` is
+insufficient.  Simultaneous invariance forces `ell(1)=0` because
+`1=s_0t_0+s_1t_1`, but nonzero-degree necklace traces already vanish on
+`1`.  A live root-character argument must include relations which destroy
+the nonzero graded universal-trace classes, not merely both binary corner
+embeddings.
+
+The graded Hochschild-homology calculation used in `(RPC76)` is Theorem
+4.4 of Pere Ara and Guillermo Cortinas, *Tensor products of Leavitt path
+algebras*, Proc. Amer. Math. Soc. 141 (2013), 2629--2639,
+arXiv:1108.0352.  For nonzero degree it identifies `HH_0` with the
+cokernel of `1-rotation` on closed paths of that degree.

@@ -185,3 +185,35 @@ small angles, or supply a genuinely nonliftable approximate representation
 whose active multiplication law already converges before trace dilution.
 This is the same multi-directional normalized-HS wall isolated by the
 relative-bicommutant and flexible-instability notes.
+
+## 6. Scope after quadratic trace-gap amplification
+
+The barrier above remains correct for the **tangent-heat construction**,
+which asks for raw multiplication error `o(t_n)` before taking the heat
+limit.  It is no longer the optimal threshold for merely retaining one
+marked word in a hyperlinear quotient.
+
+The phase-cancelled tensor amplifier in
+`FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md` only requires
+
+```text
+(full multiplication defect)^2
+  =o(marked trace gap).                               (ACD13)
+```
+
+In the notation of Theorem 1, suppose `r_n` is comparable to `t_n`, the
+marked wall has order-one size on the active corner, and the active
+multiplication defect is `eta_n`.  Then
+
+```text
+marked trace gap asymptotic t_n,
+(full multiplication defect)^2=r_n eta_n^2
+                                =O(t_n eta_n^2).
+```
+
+Consequently `(ACD13)` holds as soon as `eta_n->0`, with no requirement
+that `eta_n=o(sqrt(t_n))`.  Arbitrary boundary completion with an
+order-one active defect is still excluded, but a shrinking active corner
+carrying any genuinely convergent covariance model is again a viable FALSE
+input.  Theorem 1 should therefore not be cited as a no-go for such a
+model; it only rules out obtaining convergence from dilution alone.

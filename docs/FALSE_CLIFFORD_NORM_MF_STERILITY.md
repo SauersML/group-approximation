@@ -207,3 +207,46 @@ Proving this lemma would use the Clifford sector to establish
 nonhyperlinearity, not to manufacture a hyperlinear nonsofic image.  Until
 the positive-density conclusion is proved, it is only a sharply isolated
 endpoint.
+
+### Ambient regular tensors erase ordinary adjoint density
+
+There is a canonical obstruction to proving the displayed lemma with the
+ordinary normalized dimension on the full adjoint matrix space.  Let
+
+```text
+q_n:G->Q_n
+```
+
+be an asymptotically faithful tower of finite quotients, available because
+the ambient Kun--Thom group is residually finite.  Given any hypothetical
+negative-sector HS microstate `(U_(g,n),C_(x,n))`, replace it by
+
+```text
+U_(g,n) tensor lambda_(Q_n)(q_n(g)),
+C_(x,n) tensor I.
+```
+
+All group, Clifford, and covariance defects are unchanged, and the
+Majorana wall keeps squared normalized HS norm `2`.  On the other hand the
+normalized character of the new adjoint representation is
+
+```text
+tr(Ad(U_g tensor lambda(q_n(g))))
+ = |tr(U_g)|^2 |tr(lambda(q_n(g)))|^2.
+```
+
+For every fixed nonidentity `g`, the last factor is eventually zero.
+Consequently the adjoint ultraproduct representation restricts to the
+regular character on both `Gamma` and `t Gamma t^(-1)`.  Both Kazhdan
+projections therefore have trace zero.  The distinguished Majorana can
+still be fixed by the smaller subgroup, but it lives in a trace-zero
+adjoint sector.
+
+Thus no argument using only the ordinary normalized rank of the two fixed
+spaces can force positive density: an irrelevant regular tensor erases that
+density without changing any lamp statistic.  A repaired invariant would
+have to divide out the multiplicity algebra, for example by a relative or
+center-valued dimension over the commutant of the finite Clifford
+coefficient factor.  It would also have to remain compatible with the
+compressor, which normalizes rather than centralizes that commutant.  No
+such relative-dimension inequality is currently proved.
