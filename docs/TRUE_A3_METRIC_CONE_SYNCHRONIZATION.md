@@ -36,17 +36,20 @@ gadget, and it also gives a direct nonlinear circle-repair theorem on these
 buildings.
 
 It does **not** prove that every hyperlinear group is sofic.  The missing
-universal step is to encode an arbitrary normal-`0/1` matrix table into this
-simply connected building connection while retaining its marked witness.
+universal step would be to encode an arbitrary normal-`0/1` matrix table into
+this simply connected building connection while retaining its marked
+witness.
 Becker--Lubotzky's non-stability theorem proves that one cannot simply replace
 the building by the presentation complex of an infinite property-`(T)` group
 and expect the same statement for all approximate representations.
 
-A further theorem below shows that the witness need not be protected on a
-closed loop.  If it is repeated over a balanced orbit of bounded-length open
-paths, synchronization preserves its average holonomy with a dimension-free
-constant.  The live encoding target is therefore an orbit-redundant open-path
-encoding, not an unspecified relative stability theorem.
+A further theorem below shows that arbitrary open-path holonomy is stable
+under synchronization.  However, for the sofic-radical witness relevant to
+the main problem this does **not** provide an escape: radical membership
+forces the encoded paths to be closed on `1-o(1)` of the finite base, and
+the cone then kills their holonomy.  The explicit combined inequality and
+the resulting bounded-encoding no-go are proved in
+`TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`.
 
 ## 1. Metric cochains
 
@@ -433,9 +436,12 @@ fixed-point fraction is one-Lipschitz for Hamming distance.  Thus any trace
 or fixed-point witness repeated over this path orbit survives in the endpoint
 gauge differences whenever the curvature tends to zero.
 
-The theorem does not create that repeated encoding.  It proves that once an
-encoding distributes a fixed tested word over a bounded-length automorphism
-orbit, metric synchronization will not erase its average witness signal.
+The theorem does not create that repeated encoding.  For an arbitrary word,
+it proves that a bounded-length automorphism orbit preserves its endpoint
+gauge signal.  For a word in the sofic radical, the base endpoint moves on
+at most the relator-defect mass, while all other paths are closed.  Combining
+these two cases closes the proposed use in the main problem; see
+`TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`.
 
 ## 7. Kernel-loop obstruction
 
@@ -499,6 +505,13 @@ The third option is not an approximation.  The second recreates the
 unbounded integral/cosystolic problem rather than solving it.  The first
 option makes the base permutation image detect `k`.
 
+For a sofic-radical word the first option is quantitatively impossible as
+well: the linear radical inequality bounds its moved fraction by the total
+relator moved fraction.  Theorem 1 of
+`TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md` combines that bound with the
+closed-path estimate and proves that every bounded-length,
+bounded-congestion witness encoding has vanishing total witness energy.
+
 If the first option works for every nonidentity element while multiplication
 defects vanish, the base permutations themselves form a sofic approximation.
 Thus the open-path encoding needed to kill the entire phase kernel is already
@@ -515,21 +528,21 @@ That phase-only kernel is exactly the extension-orientation obstruction in
 `TRUE_CARTAN_MONOMIAL_GATE.md` and the Haar phase field in
 `TRUE_HAAR_PHASE_KERNEL.md`.
 
-## 8. Remaining universal bridge
+## 8. Consequence for the universal bridge
 
 Theorem 3 provides a new reusable component:
 
 > finite unitary or permutation data already organized as an almost-flat
 > `A_3(F_q)` connection can be synchronized with a dimension-free constant.
 
-To affect the full open problem, one still needs a **witness-preserving
+To affect the full open problem, one would need a **witness-preserving
 encoding theorem** taking an arbitrary finite normal-`0/1` hyperlinear table
 to such a connection and returning a finite action after synchronization.
 The encoding cannot put a nontrivial witness on a closed loop of the simply
-connected building: exact synchronization would kill it.  Theorem 4 shows
-that it is enough to repeat the witness as relative/open-path data on a
-bounded-congestion path orbit.  A controlled presentation sector is another
-possibility.
+connected building: exact synchronization kills it.  Theorem 4 shows that
+relative/open-path data can retain an arbitrary endpoint signal, but the
+radical inequality shows that the required endpoint signal cannot occur on
+positive mass in the application at hand.
 
 Theorem 5 adds an essential qualification: for an element in the kernel of
 the base permutation model, its paths are closed on almost every point, and
@@ -539,10 +552,14 @@ base motion.  Accomplishing that for every nontrivial element already makes
 the base model sofic.
 
 This is sharper than asking for ordinary HS or permutation stability, which
-is false by Becker--Lubotzky.  The metric relative estimate is now
-`(AMC39)--(AMC42)`; the next legitimate target is an **orbit-redundant
-open-path encoding which also proves phase-kernel escape**.  The latter is
-the noncircular heart of the problem.
+is false by Becker--Lubotzky.  The metric relative estimate is
+`(AMC39)--(AMC42)`, but the combined radical estimate in
+`TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md` proves that bounded length and
+congestion cannot supply phase-kernel escape.  Such an encoding would have
+to make the base endpoint move on positive mass despite vanishing relator
+motion, which is already the forbidden finite-action separation of `w`.
+Therefore this auxiliary-cone route is closed rather than a remaining
+universal bridge.
 
 ## Primary sources
 

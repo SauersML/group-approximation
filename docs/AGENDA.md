@@ -214,20 +214,23 @@ connection on `A_3(F_q)` is within factor `9` of a pure gauge.  This applies
 uniformly to `U(d)` with normalized Hilbert--Schmidt length, `Sym(d)` with
 normalized Hamming length, and circle phases.  Together with the Cartan-to-
 monomial estimate it gives the explicit bound `9 delta+28 epsilon` for an
-almost-flat, almost-monomial building connection.  The remaining universal
-gate is witness-preserving encoding: a closed-loop witness cannot survive
-pure-gauge repair on the simply connected building.  Open paths do survive.
-For a uniform automorphism orbit of paths of length at most `L`, their average
-holonomy changes by at most `9 sqrt(3)L` times the curvature RMS.  Thus a
-bounded-congestion orbit-redundant open-path encoding would retain the marked
-trace signal.  Becker--Lubotzky rules out replacing this by ordinary stability
-of an infinite property-`(T)` presentation.  There is also an exact kernel-
-loop no-go: an element in the kernel of the base permutation ultraproduct is
-a closed path on `1-o(1)` of points, and any bounded-fill, bounded-congestion
-building encoding with vanishing curvature forces its phase holonomy to
-vanish.  Therefore the encoding must turn phase-kernel elements into positive
-base motion; doing this for every nonidentity element already makes the base
-model sofic.  This is the noncircular core still missing.
+almost-flat, almost-monomial building connection.  For arbitrary words, a
+uniform automorphism orbit of paths of length at most `L` changes its average
+holonomy by at most `9 sqrt(3)L` times the curvature RMS.  However,
+`TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md` now closes this apparent escape
+for the actual marked word.  The linear sofic-radical inequality controls the
+fraction of paths whose endpoints move; every remaining path is closed and
+is controlled by the cone.  In RMS Hilbert--Schmidt metric the explicit
+combined bound is
+`243 L^2 curvature^2+4 C_rad relator_motion`.  Hence a bounded-length,
+bounded-congestion building encoding cannot retain the radical witness.
+Positive-density endpoint motion would already violate the defining
+finite-action inequality and amount to constructing the desired sofic
+separation before applying the cone.  Becker--Lubotzky independently rules
+out replacing the building by ordinary stability of an infinite
+property-`(T)` presentation.  The auxiliary-cone lane is therefore closed;
+the live universal gates remain direct character domination and
+common-Cartan/fixed-phase control.
 
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give

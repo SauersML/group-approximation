@@ -1,5 +1,42 @@
 # NOTEPAD
 
+## 2026-08-11: bounded auxiliary cones cannot retain a sofic-radical witness
+
+Full proof: `docs/TRUE_AUXILIARY_CONE_RADICAL_WITNESS_NO_GO.md`.
+
+The open-path possibility left by the `A_3(F_q)` metric cone closes for the
+actual marked word in the hyperlinear-versus-sofic problem.  If
+
+    P=<S|R>,  w in Rad_sof(P),
+
+then the linear finite-action theorem gives
+
+    d_rho(w)<=C_rad sum_(r in R)d_rho(r).
+
+For any bounded auxiliary synchronization complex, split the encoded
+`w`-paths according to whether the finite base action fixes their starting
+point.  Moved points contribute at most the diameter times `d_rho(w)`.  On
+fixed points the paths are closed, so their holonomy is controlled by the
+metric cone and its edge congestion.  The resulting general inequality is
+
+    average witness energy
+      <=L^(r-1) C_E K^r curvature_energy
+        +D^r C_rad relator_motion.
+
+For a uniform length-`L` path orbit in `A_3(F_q)`, normalized HS length, and
+RMS energy this becomes
+
+    average witness energy
+      <=243 L^2 curvature_energy+4 C_rad relator_motion.
+
+Thus bounded length and congestion force the witness to vanish whenever the
+model defects vanish.  Positive-density endpoint motion would already be a
+finite-action separation of the radical word, while fixed endpoints make
+the paths closed.  The proposed orbit-redundant bounded-path bridge is
+therefore circular and should not receive compute.  The metric cone theorem
+remains valid and useful, but the universal TRUE target returns to direct
+character domination or common-Cartan/fixed-phase control.
+
 ## 2026-08-11: the `A_3(F_q)` nine-triangle cone is dimension-free in HS/Hamming metric
 
 Full proof and source audit:
