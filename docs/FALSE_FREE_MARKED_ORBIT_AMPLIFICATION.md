@@ -24,9 +24,9 @@ Write (y^A) for the group-algebra monomial associated with (A\in V),
 and define
 
 \[
-R_+=k[C]\cong k[y_{11},\ldots ,y_{dd}],
+R_+=k[C]\cong k[y_{ij}:1\leq i,j\leq d],
 \qquad
-R=k[V]\cong k[y_{11}^{\pm1},\ldots ,y_{dd}^{\pm1}].
+R=k[V]\cong k[y_{ij}^{\pm1}:1\leq i,j\leq d].
 \tag{FMO2}
 \]
 
@@ -63,7 +63,7 @@ Now take
 \[
 t=I_d+E_{12}\in L_+,
 \qquad
-\gamma=e_{12}(y^{I_d})\in\Gamma,
+\gamma=e_{ab}(y^{I_d})\in\Gamma\quad(a\neq b),
 \qquad
 h=t^{-1}\gamma t.
 \tag{FMO6}
@@ -98,10 +98,12 @@ cocycle or stabilizer intertwiner to solve.  This removes one genuine
 globalization obstruction from the explicit pair.
 
 It does not by itself prove FALSE.  The positive polynomial generators
-still have lower-rank exponent matrices and their covariance relations must
-be realized.  The remaining problem is now separated cleanly from the
-marked orbit: build the nonliftable paired Fourier functor on regular
-external charts while respecting the finite positive ring window.
+still have rank-one exponent matrices and their covariance relations must
+be realized.  More importantly, an honest finite exponent quotient still
+absorbs the predecessor into the positive monoid.  The remaining problem is
+now separated cleanly from the marked orbit: build the nonliftable paired
+Fourier functor on regular external charts while respecting the finite
+positive ring window.
 
 ## 2. The coefficient rings and the positive action
 
@@ -234,6 +236,41 @@ All cycle identities in the external presentation follow formally from
 `(FMO18)`.  What remains nontrivial is not marked-orbit holonomy but the
 compatibility of the same matrices with the positive coefficient-ring
 relations and the base elementary group.
+
+There is an exact finite version of the same observation.  Let
+
+\[
+L_m=\operatorname {im}\bigl(L\longrightarrow
+\operatorname {SL}_d(\mathbb Z/m\mathbb Z)\bigr).
+\tag{FMO19}
+\]
+
+Under the left action on (M_d(\mathbb Z/m\mathbb Z)), the orbit of (I_d)
+is
+
+\[
+L_m I_d=L_m,
+\tag{FMO20}
+\]
+
+and its stabilizer is trivial.  Thus this finite orbit is the regular
+(L_m)-set, not merely a locally free Schreier chart.  The free-table theorem
+of `FALSE_REGULAR_BUNDLE_FREE_TABLE_AND_KERNEL_GATE.md` applies to the
+marked orbit without a kernel-valued stabilizer carry.
+
+This does **not** solve the finite model.  In the same quotient,
+
+\[
+I_d-E_{12}\equiv I_d+(m-1)E_{12}\pmod m,
+\tag{FMO21}
+\]
+
+and the right side lies in the image of (C).  Hence the marked Laurent
+coefficient is already in the finite positive image.  Every unitary which
+commutes with the positive image also commutes with the marked image.  The
+regular-orbit gain and the finite-ring absorption theorem coexist: the
+former removes the stabilizer equation, while the latter forces the final
+model to be genuinely nonliftable rather than an honest congruence model.
 
 This is the correct next place to reuse the paired Fourier cell.  The local
 wall and its external transport no longer require an amenable-stabilizer

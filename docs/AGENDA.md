@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the negative Clifford corner closes the norm-MF route
+
+The canonical projection `e=(1-z)/2` does remove relative-rank blindness:
+inside the renormalized `z=-1` matrix corner, distinct Clifford lamps have
+squared normalized-HS distance `2`.  This does not supply an MF-to-CE
+conversion for the Kun--Thom Clifford group.  In fact every homomorphism of
+that group into a norm quotient of matrix algebras kills `z`.
+
+The proof cuts to the negative corner, uses conjugation on the normalized
+matrix Hilbert spaces, applies the Kazhdan projection to the strict
+compressor, and invokes stable finiteness to make the compressor preserve
+the `Gamma`-fixed subspace.  Two distinct Clifford sites are then forced to
+agree in `L2`, contradicting their exact anticommutation.  Thus the desired
+operator-norm MF hypothesis is false, not merely unproved.  Also, a central
+corner of an arbitrary faithful norm representation need not itself remain
+faithful on every group element.
+
+The direct tracial target remains the Connes embeddability of the negative
+CAR crossed product.  Full proof: `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md`.
+
 ### 2026-08-12: matrix exponents make the marked compressor orbit free
 
 The large external stabilizer in the standard exponent lattice is not
@@ -31,7 +51,10 @@ left in the marked Fourier transport.
 This does not yet construct the required nonliftable vertex maps.  It
 removes one independent obstruction and localizes the remaining theorem to
 compatibility with the finite positive ring/elementary window on regular
-external charts.  Full proof and exact endpoint:
+external charts.  Congruence quotients make the marked orbit exactly regular,
+but still absorb `I-E_12` as the positive exponent `I+(m-1)E_12`; thus the
+gain is removal of stabilizer holonomy, not removal of the finite-ring
+absorption theorem.  Full proof and exact endpoint:
 `docs/FALSE_FREE_MARKED_ORBIT_AMPLIFICATION.md`.
 
 ### 2026-08-12: the Ioana shortcut has a free-action scope gap

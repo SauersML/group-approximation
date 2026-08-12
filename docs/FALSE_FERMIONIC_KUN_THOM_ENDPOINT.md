@@ -87,6 +87,12 @@ a stronger target than the commuting Bernoulli algebra: anticommutation
 supplies canonical high-multiplicity Clifford blocks and retains the marked
 wall with maximal trace energy.
 
+The tempting operator-norm MF route to `(FKE6)` is closed.  Cutting a
+norm-matrix representation to the central `z=-1` sector removes relative
+rank blindness, but property `(T)`, stable finiteness, and the strict
+compressor imply that this sector must be zero.  See
+`FALSE_CLIFFORD_NORM_MF_STERILITY.md` for the self-contained proof.
+
 ## 2. The locally finite Clifford lamp group
 
 Define `Vtilde` by the presentation
