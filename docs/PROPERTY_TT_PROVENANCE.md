@@ -69,8 +69,25 @@ not be quoted without its simplicity/non-division hypotheses.
 
 Leavitt self-similarity and the relevant `K`-theory are established subjects.
 In particular, neither matrix self-similarity nor `K_1(L_2)=0` is a novelty
-claim of this paper.  The Lean proofs provide an explicit internal route to
-the exact algebraic hypotheses.
+claim of this paper.  Ara--Brustenga--Cortiñas, *K-theory of Leavitt path
+algebras*, prove the regular-supercoherent coefficient formula whose
+one-vertex, two-loop specialization has `1 - Nᵗ = -1` and hence gives
+`K_i(L_k(1,2)) = 0` in every degree.  The Lean proofs provide an explicit
+internal route to the exact algebraic hypotheses.
+
+Stable `K_1 = 0` alone must not be conflated with the unstable equality
+`GL₂ = E₂`: for an arbitrary ring, the former only gives elementary
+generation after unspecified stabilization.  For the binary Leavitt algebra,
+however, the additional theorems of Ara--Goodearl--Pardo close exactly this
+gap.  They prove that purely infinite simple unital rings are GE-rings and
+that their `K₁` is the abelianization of the unit group.  Combined with the
+Ara--Brustenga--Cortiñas vanishing, every unit is a product of commutators;
+the rank-two Whitehead identity makes each `diag([a,b],1)` elementary; and GE
+reduction gives `GL₂(L_k(1,2)) = E₂(L_k(1,2))`.  Thus the unstable equality is
+an established consequence and receives no theorem-novelty credit here.
+Only the direct tree/pencil factorization, which avoids those `K`-theoretic
+inputs and returns a finite elementary witness, remains a possible new proof
+method.
 
 ### Nonsoficity
 
@@ -80,16 +97,21 @@ Any combined statement "nonsofic and `(TT)/T`" is explicitly labeled a
 corollary combining that theorem with the new rigidity result.  It is never
 presented as a new proof of nonsoficity.
 
-## Candidate contributions of the paper
+## Results and candidate contributions of the paper
 
-These are the only results currently eligible for an originality claim, and
-even these claims remain provisional pending direct specialist confirmation.
+This list separates supporting results from the pieces still eligible for an
+originality claim. Any originality claim remains provisional pending direct
+specialist confirmation.
 
-1. **Strong root estimate.**  The rank-four Lean argument bounds a
-   quasi-cocycle on the root subgroup `X₀₃` for every unitary
-   representation, without assuming absence of invariant vectors.  This is
-   stronger than relative `(TT)/T`.  Before submission it must be exposed as
-   a theorem whose Lean type contains no no-invariant-vector premise.
+1. **Quantitative root proof, not a new bare theorem.**  The rank-four Lean
+   argument bounds a quasi-cocycle on the root subgroup `X₀₃` for every
+   unitary representation, without assuming absence of invariant vectors.
+   However, Mimura's relative `(TT)/T` theorem already controls the moving
+   summand on an appropriate coordinate block; in characteristic two, the
+   invariant summand is uniformly bounded on the root from `r² = 1`.  Thus
+   the displayed full relative `(TT)` conclusion is an established short
+   consequence.  The internal rank-four estimate is an independent
+   quantitative proof, not a theorem-novelty claim.
 2. **Strong-division coordinate-block factorization.**  If every nonzero
    `a` admits `xay = 1`, then `GL_n(R)` has width at most `2n + 6` with
    respect to elementary transvections together with one fixed coordinate
@@ -105,10 +127,17 @@ even these claims remain provisional pending direct specialist confirmation.
    Under these assumptions, `E_n(R)` has `(TT)/T` for every `n ≥ 3`.
    The paper may not abbreviate these assumptions to "purely infinite
    simple" or "binary self-similar" alone.
-4. **Binary Leavitt specialization.**  The unconditional theorem
+4. **Direct rank-two factorization method.**  For every field `k`, the Lean
+   chain proves `GL₂(L_k(1,2)) = E₂(L_k(1,2))` and returns a finite list of
+   elementary moves whose product is `diag(u,1)`.  It proves no uniform length,
+   complexity bound, or executable algorithm.  The equality itself is an
+   established consequence of Ara--Goodearl--Pardo plus
+   Ara--Brustenga--Cortiñas and is not a novelty claim.  Only the independent
+   elementary factor mechanism remains a possible contribution.
+5. **Binary Leavitt specialization.**  The unconditional theorem
    `E_n(L_{F_2}(1,2))` has `(TT)/T` for `n ≥ 3` is a candidate new theorem.
 
-No sentence may use "first", "previously unknown", or "new" for items 1--4
+No sentence may use "first", "previously unknown", or "new" for items 1--5
 without a documented final literature search and, preferably, a direct query
 to specialists in noncommutative universal lattices and `(TT)/T`.
 
@@ -122,13 +151,15 @@ paper result:
    width;
 3. the explicit four-hypothesis ring-class theorem;
 4. a finite-type-algebra wrapper, if the manuscript uses that formulation;
-5. the binary Leavitt all-ranks theorem;
-6. the separately imported nonsofic-plus-`(TT)/T` corollary.
+5. unstable diagonal membership, `E₂ = GL₂`, and the finite factor witness;
+6. the binary Leavitt all-ranks theorem;
+7. the separately imported nonsofic-plus-`(TT)/T` corollary.
 
-The first five belong to a rigidity-only file.  The sixth belongs to a
-separate corollary file so that nonsoficity does not enter the dependency
-closure of the rigidity theorem.  Every declaration is included in the axiom
-audit and its elaborated type is recorded for manuscript comparison.
+The rigidity results and unstable algebra results have separate paper-facing
+files.  The last result belongs to a separate corollary file so that
+nonsoficity does not enter the dependency closure of the rigidity theorem.
+Every declaration is included in the axiom audit and its elaborated type is
+recorded for manuscript comparison.
 
 ## Submission wording
 

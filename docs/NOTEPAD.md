@@ -43290,7 +43290,106 @@ and the relative mixed Schur class vanishes.  The local augmentation
 transgression may still be nonzero; it is killed at the subsequent induced
 vertex/positive relative step.
 
-Therefore larger natural finite-ring Schur computations are sterile.  A live
-model must keep `h` projectively outside the positive image, something no
-honest finite coefficient-ring quotient can do.  Full proof:
+Therefore larger natural finite-ring Schur computations are sterile **for
+exact relative survival**.  This does not imply an asymptotic HS no-go.  A
+primitive clock character is `O(p^-k)` from one on a bounded coordinate,
+whereas its value on the order-`p` Bockstein shadow is a fixed nontrivial
+root.  Thus the finite Laurent translation may equal a positive word of
+growing length while every fixed positive relator has vanishing phase.  The
+correct natural-tower test is the metric clock-coordinate profile of the
+explicit Shapiro cocycle after Schreier-gauge optimization, not another
+exact quotient computation.  Full correction:
+`docs/FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`; exact absorption:
 `docs/FALSE_NATURAL_FINITE_CLOCK_RELATIVE_ABSORPTION.md`.
+
+### FALSE update: Bockstein power amplifier
+
+`FALSE_BOCKSTEIN_POWER_AMPLIFIER.md` isolates the exact scale separation
+already implicit in the local calculation.  If the order-`p^k` clock class is
+`kappa_k`, its nonzero ordinary mod-`p` Bockstein lies in the unique order-`p`
+subgroup:
+
+`[fold] = u_k p^(k-1) kappa_k`, with `p` not dividing `u_k`.
+
+The character `chi_k(kappa_k)=exp(2 pi i/p^k)` sees a unit increment with
+error `O(p^-k)`, while the fold value is the fixed nontrivial `p`th root
+`exp(2 pi i u_k/p)`.
+
+Therefore FALSE follows once this Bockstein identity commutes through finite
+induction, the split-LHS mixed edge, and fold transgression, and the fixed
+presentation relators have clock coordinates `m_{j,k}` with
+
+`sum_j m_{j,k}^2 = o(p^(2k))`.
+
+Uniformly bounded relator coordinates are more than sufficient.  The phase
+amplification itself is exact; functorial Bockstein transport plus the
+coordinate bound are the remaining assertions.
+
+### FALSE update: explicit mixed-LHS cocycle
+
+`FALSE_MIXED_LHS_COCYCLE_FORMULA.md` gives the global cocycle represented by
+`lambda in Z^1(A,N^)` on a split square-zero group `N semidirect A`:
+
+`alpha((n,a),(m,b)) = lambda(a)(a m)`.
+
+It vanishes on `A x A` and `N x N`; only fixed covariance relators carry
+curvature, with phase `lambda(s_i)(s_i v_j)`.  Thus the remaining relator
+coordinate bound is a finite list of explicit character evaluations.
+
+Under Shapiro, these evaluations are computed from the local clock cocycle on
+the Schreier transitions
+
+`beta_tau(x,a)=tau(x) a tau(xa)^-1 in B`.
+
+For an orbit-diagonal/direct-sum clock model, normalized HS energy is exactly
+the average squared clock energy of these transitions.  For a single central
+projective sector there is no automatic average; it sees one scalar pairing.
+This distinction is explicit in the note.  The prior long-chain monodromy
+no-go is therefore a lower bound for one particular Schreier gauge in the
+orbit-sum model, not a refutation of the mixed cohomology class.
+## 2026-08-11: every bounded multiple of the escaping discriminant class also escapes
+
+Full proof: `docs/FALSE_DISCRIMINANT_MULTIPLE_ESCAPE.md`.
+
+In the bounded-real branch of any locally convergent finite-cover tower,
+let `c_n` be the canonical integral filling class and assume the limiting
+word has infinite order in integral homology.  Then, for every fixed `K`,
+
+    min_(1<=k<=K) rho(k c_n) -> infinity.
+
+Indeed the canonical data for `k b_n` are `k q_n` and `k c_n`.  A bounded
+subsequence for one `k<=K` would give uniformly bounded integral fillings
+of `k b_n`; bounded-support compactness would fill `k b_infinity`,
+contradicting infinite order.  Consequently `ord(c_n)->infinity`.
+
+This applies to both sides of the fixed-prime constant-stabilizer tower.
+The residual arithmetic is therefore not bounded central torsion from the
+fixed `SL_3(F_p)` transfer block.  Any successful phase must use growing
+order along `<c_n>` or a different small dual detector with dense marked
+incidence.
+## 2026-08-11: induced Weyl seam reduces globalization to two Schreier moments
+
+Full proof: `docs/FALSE_INDUCED_WEYL_SEAM_MOMENT_CRITERION.md`.
+
+The explicit sparse seam from `FALSE_CLOCK_POSITIVE_WEYL_SEAM.md` extends
+fiberwise over an arbitrary finite permutation bundle.  If a fixed bundle
+generator has centered Weyl transition coordinates `(r_x,a_x)` over the
+base, put
+
+`R^2=avg_x r_x^2` and `A=avg_x |a_x|`.
+
+For every divisor `L|M`, one block-diagonal gauge gives squared normalized
+HS error at most
+
+`8 pi^2 R^2 L^2/M^2 + 8 A/L`.
+
+For `M=p^k`, optimizing over `p`-power seams gives
+
+`error^2 <= C_p (R A/M)^(2/3)`.
+
+Thus simultaneous equivariant globalization on every fixed generator
+follows from the scalar moment condition `max_s R_(s,k)A_(s,k)=o(M_k)`.
+The estimate is stronger than pointwise bounded labels: a sparse set of
+macroscopic transitions is allowed.  The fixed order-`p` Bockstein phase is
+unchanged.  What remains unproved is whether the actual Kun--Thom Shapiro
+transition system admits transversals satisfying this moment condition.

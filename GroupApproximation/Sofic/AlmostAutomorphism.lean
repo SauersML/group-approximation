@@ -90,9 +90,8 @@ variable {K J : Type} [Group K] [Group J]
 
 /-- The first-factor labels of a sofic approximation. -/
 noncomputable def productLabels (A : SoficApproximation (K × J)) (n : ℕ)
-    (T : Finset K) : Finset (Equiv.Perm (A.model n)) := by
-  classical
-  exact T.image fun k ↦ A.map n (k, 1)
+    (T : Finset K) : Finset (Equiv.Perm (A.model n)) :=
+  multiplicativeProductLabels (MultiplicativeApproximation.ofSofic A) n T
 
 /-- Generator-tagged failures of commutation between the first-factor labels
 and the permutation assigned to `(1,j)`. -/
@@ -109,7 +108,8 @@ theorem badArcs_productLabels_eq_image
         (A.map n (p.1.1, 1), p.2) := by
   classical
   ext p
-  simp only [mem_badArcs, productLabels, centralizerDefectPairs,
+  simp only [mem_badArcs, productLabels, multiplicativeProductLabels,
+    MultiplicativeApproximation.ofSofic, centralizerDefectPairs,
     Finset.mem_image, Finset.mem_biUnion, Finset.mem_univ,
     Finset.mem_product, Finset.mem_singleton, true_and,
     SoficApproximation.commutationError, Finset.mem_filter]

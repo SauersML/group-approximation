@@ -14,8 +14,8 @@ explicit one-stage elimination; no stable-range or `K₁` theorem is used.
 For unital simple rings, the sandwich hypothesis is the standard algebraic
 characterization used by Ara--Goodearl--Pardo for purely infinite simplicity
 (with division rings excluded separately).  The bounded-product theorem below
-is new formal content; that literature result is credited only for identifying
-the natural class of examples.
+is the formal contribution of this file; that literature result is credited for
+identifying the natural class of examples.
 -/
 
 namespace GroupApproximation
@@ -40,23 +40,23 @@ theorem IsElementaryUnit.inv {x : (Matrix ι ι R)ˣ}
   simp [elementaryUnit_zero]
 
 /-- The reversed pointwise-inverse word represents the inverse product. -/
-def inverseWord {G : Type*} [Group G] (l : List G) : List G :=
+def elementaryInverseWord {G : Type*} [Group G] (l : List G) : List G :=
   (l.map Inv.inv).reverse
 
-@[simp] theorem length_inverseWord {G : Type*} [Group G] (l : List G) :
-    (inverseWord l).length = l.length := by
-  simp [inverseWord]
+@[simp] theorem length_elementaryInverseWord {G : Type*} [Group G]
+    (l : List G) : (elementaryInverseWord l).length = l.length := by
+  simp [elementaryInverseWord]
 
-theorem prod_inverseWord {G : Type*} [Group G] (l : List G) :
-    (inverseWord l).prod = l.prod⁻¹ := by
+theorem prod_elementaryInverseWord {G : Type*} [Group G] (l : List G) :
+    (elementaryInverseWord l).prod = l.prod⁻¹ := by
   exact (List.prod_inv_reverse l).symm
 
-theorem elementary_inverseWord
+theorem elementaryInverseWord_isElementary
     (l : List (Matrix ι ι R)ˣ)
     (hl : ∀ x ∈ l, IsElementaryUnit x) :
-    ∀ x ∈ inverseWord l, IsElementaryUnit x := by
+    ∀ x ∈ elementaryInverseWord l, IsElementaryUnit x := by
   intro x hx
-  rw [inverseWord, List.mem_reverse] at hx
+  rw [elementaryInverseWord, List.mem_reverse] at hx
   obtain ⟨y, hy, hyx⟩ := List.mem_map.mp hx
   subst x
   exact (hl y hy).inv
@@ -114,7 +114,8 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
     dsimp only [D, S, s]
     exact leftClearFactors_make_coordinateBlock C j hCrow
   let w : List (Matrix ι ι R)ˣ :=
-    inverseWord l ++ inverseWord s ++ [D] ++ inverseWord t ++ inverseWord r
+    elementaryInverseWord l ++ elementaryInverseWord s ++ [D] ++
+      elementaryInverseWord t ++ elementaryInverseWord r
   refine ⟨w, ?_, ?_, ?_⟩
   · have hslen : s.length ≤ Fintype.card ι := by
       dsimp [s, leftClearFactors]
@@ -123,7 +124,7 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
       dsimp [t, rightClearFactors]
       simpa using length_otherIndices_le j
     dsimp [w]
-    simp only [List.length_append, length_inverseWord, List.length_cons,
+    simp only [List.length_append, length_elementaryInverseWord, List.length_cons,
       List.length_nil]
     omega
   ·
@@ -134,15 +135,16 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
       dsimp [t]
       exact rightClearFactors_elementary j _ _
     dsimp [w]
-    have hall : ∀ x ∈ inverseWord l ++
-        (inverseWord s ++ ([D] ++ (inverseWord t ++ inverseWord r))),
+    have hall : ∀ x ∈ elementaryInverseWord l ++
+        (elementaryInverseWord s ++
+          ([D] ++ (elementaryInverseWord t ++ elementaryInverseWord r))),
         x ∈ coordinateBlockOrRoot j := by
       refine List.forall_mem_append.mpr ⟨?_, ?_⟩
       · intro x hx
-        exact Or.inl (elementary_inverseWord l hlelem x hx)
+        exact Or.inl (elementaryInverseWord_isElementary l hlelem x hx)
       refine List.forall_mem_append.mpr ⟨?_, ?_⟩
       · intro x hx
-        exact Or.inl (elementary_inverseWord s hselem x hx)
+        exact Or.inl (elementaryInverseWord_isElementary s hselem x hx)
       refine List.forall_mem_append.mpr ⟨?_, ?_⟩
       · intro x hx
         simp only [List.mem_cons, List.not_mem_nil, or_false] at hx
@@ -150,12 +152,12 @@ theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
         exact Or.inr hD
       refine List.forall_mem_append.mpr ⟨?_, ?_⟩
       · intro x hx
-        exact Or.inl (elementary_inverseWord t htelem x hx)
+        exact Or.inl (elementaryInverseWord_isElementary t htelem x hx)
       · intro x hx
-        exact Or.inl (elementary_inverseWord r hrelem x hx)
+        exact Or.inl (elementaryInverseWord_isElementary r hrelem x hx)
     simpa only [List.append_assoc] using hall
   · dsimp [w]
-    simp only [List.prod_append, prod_inverseWord, List.prod_cons,
+    simp only [List.prod_append, prod_elementaryInverseWord, List.prod_cons,
       List.prod_nil, mul_one, hlE, hrF]
     dsimp [D, S, C, T, B]
     group

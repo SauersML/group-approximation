@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.Asymptotics
 import GroupApproximation.Sofic.ExteriorMFProfile
+import GroupApproximation.Domination.PaperStatements
 import GroupApproximation.Sofic.AlmostAutomorphism
 import GroupApproximation.PropertyT.A2System
 import GroupApproximation.PropertyT.A2ClassTwoOrthogonality
@@ -141,7 +142,6 @@ import GroupApproximation.Matching.PartialBijectionSandwich
 import GroupApproximation.Matching.FinitePartialClusterGroupoid
 import GroupApproximation.Matching.PartialEquivarianceBoundary
 import GroupApproximation.Matching.PartialTaggedExpansion
-import GroupApproximation.Matching.RelationPartialClusterRepair
 import GroupApproximation.Matching.ComponentInvolutionRepair
 import GroupApproximation.Matching.RepairedComponentBisection
 import GroupApproximation.Matching.BlockPartialBijection
@@ -370,6 +370,7 @@ import GroupApproximation.Sofic.SoficSequential
 import GroupApproximation.KOne.WhiteheadQuotient
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
+import GroupApproximation.KOne.PaperStatements
 import GroupApproximation.Leavitt.FiniteTypeCountable
 import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting

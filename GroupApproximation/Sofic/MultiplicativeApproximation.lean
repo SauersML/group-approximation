@@ -39,8 +39,10 @@ namespace MultiplicativeApproximation
 
 variable {G : Type*} [Group G]
 
-/-- Forget metric faithfulness from a sofic approximation. -/
-def ofSofic (S : SoficApproximation G) : MultiplicativeApproximation G where
+/-- Forget metric faithfulness from a sofic approximation.  This is reducible
+so consumers see exactly the same finite model and label map, including in
+types depending on the model's carrier. -/
+abbrev ofSofic (S : SoficApproximation G) : MultiplicativeApproximation G where
   model := S.model
   map := S.map
   card_tendsToInfinity := S.card_tendsToInfinity

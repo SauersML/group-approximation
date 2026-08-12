@@ -1,11 +1,13 @@
-"""Export an exact integral harmonic basis when its rank is already certified.
+"""Export an exact integral basis of a certified rational harmonic span.
 
 The full cellular analyzer recomputes every rational boundary rank before it
 constructs the harmonic lattice.  At large composite level those ranks may
 already be known from independent modular bounds and an exact homology
 dimension theorem.  This program performs only the remaining exact kernel
-calculation, checks the asserted rank and residual, and emits a compact JSON
-certificate together with the coordinate TSV consumed by the systole screen.
+calculation, checks the asserted rank and residual, clears row denominators,
+and emits a compact JSON certificate together with the coordinate TSV
+consumed by the span-basis-invariant systole screen.  The exported basis need
+not be primitive in the ambient integer lattice.
 """
 
 from __future__ import annotations
@@ -15,7 +17,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sage.all import ZZ, FreeModule, matrix
+from sage.all import ZZ, lcm, matrix
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
 
@@ -40,11 +42,11 @@ def main() -> None:
         raise AssertionError(
             f"rational harmonic rank {rational_kernel.nrows()} differs from "
             f"the certified rank {args.expected_rank}")
-    print("harmonic: intersecting the rational plane with the integer lattice",
-          flush=True)
-    harmonic_lattice = rational_kernel.row_space().intersection(
-        FreeModule(ZZ, dimensions[2]))
-    harmonic_basis = harmonic_lattice.basis_matrix()
+    print("harmonic: clearing row denominators", flush=True)
+    harmonic_basis = matrix(ZZ, [
+        int(lcm(value.denominator() for value in row)) * row
+        for row in rational_kernel.rows()
+    ])
     harmonic_basis = matrix(ZZ, harmonic_basis, sparse=False).LLL()
     if harmonic_basis.nrows() != args.expected_rank:
         raise AssertionError(
@@ -76,6 +78,9 @@ def main() -> None:
         "harmonic_system_dimensions": [
             int(harmonic_system.nrows()), int(harmonic_system.ncols())],
         "harmonic_basis_sha256": digest.hexdigest(),
+        "harmonic_basis_role": (
+            "integral basis of the rational harmonic span; primitivity is "
+            "not required by the Q-sharp systole algorithm"),
         "harmonic_maximum_absolute_coefficient": max(
             abs(int(value)) for value in harmonic_basis.list()),
         "harmonic_support_sizes": [

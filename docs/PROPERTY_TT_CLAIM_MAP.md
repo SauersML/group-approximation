@@ -26,11 +26,13 @@ GroupApproximation.PropertyTT.RankFourRelativeTT.hasRelativeTT_X03
 ```
 
 Credit boundary: relative `(TT)/T` for noncommutative universal lattices is
-already present in Mimura's work. The paper must not advertise noncommutative
-relative rigidity itself as new. The candidate increment is the stronger root
-statement without the `/T` hypothesis and its quantitative rank-four proof.
-Priority language is forbidden until the final literature and specialist
-checks are complete.
+already present in Mimura's work. In characteristic two, the displayed full
+relative `(TT)` statement is also a short consequence at theorem level:
+Mimura controls the no-invariant-vector summand on a coordinate block, while
+the globally invariant summand is bounded on the root because every root
+element has order two. The paper may present the internal quantitative
+rank-four argument as an independent proof and explicit estimate, but must
+not claim novelty for the bare relative theorem.
 
 ## Theorem B: coordinate-block factorization
 
@@ -43,6 +45,12 @@ Exact Lean declaration:
 
 ```text
 GroupApproximation.PropertyTTPaper.coordinateBlock_factorization
+```
+
+The five-move pivot used in its proof is exposed separately as:
+
+```text
+GroupApproximation.PropertyTTPaper.fiveMove_pivot
 ```
 
 Credit boundary: the sandwich condition and its connection to purely infinite
@@ -69,13 +77,66 @@ Exact Lean declaration:
 GroupApproximation.PropertyTTPaper.finitePresentation_elementaryGroup_hasTTmodT
 ```
 
+Equivalent finite-type wrapper used for the paper's prose statement:
+
+```text
+GroupApproximation.PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT
+```
+
+The manuscript's intermediate rank-four and globalization steps correspond to
+the following exact declarations:
+
+```text
+GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
+GroupApproximation.PropertyTTPaper.finitePresentation_rankFour_hasTTmodT
+GroupApproximation.PropertyTTPaper.quasiCocycle_list_product_bound
+```
+
+The last inequality is the empty-list-safe estimate actually proved in Lean:
+for a list of length `m` whose entries satisfy `‖b(g)‖ ≤ C`, it gives
+`‖b(prod)‖ ≤ m*C + (m+1)*D`.
+
+The wrapper uses `Algebra.FiniteType (ZMod 2) R` only to construct the finite
+free-algebra surjection. It does not infer or suppress the Leavitt-family,
+sandwich-division, or unstable-diagonal hypotheses.
+
 Credit boundary: the definition and rigidity role of `(TT)/T` are due to
 Mimura. Property `(T)` for elementary groups over finitely generated
 associative rings is due to Ershov--Jaikin-Zapirain. Matrix self-similarity and
 the relevant Leavitt-ring structure are classical. Only the synthesis from the
 exact hypotheses, using Theorems A and B, is a candidate contribution.
 
-## Corollary D: the binary Leavitt algebra
+## Proposition D: unstable rank-two elimination
+
+For every field `k`, every invertible `2 × 2` matrix over the binary Leavitt
+algebra is elementary. Equivalently,
+
+```text
+E₂(L_k(1,2)) = GL₂(L_k(1,2)).
+```
+
+Every unit `u` also admits a finite list of elementary rank-two factors whose
+product is `diag(u,1)`. No length or complexity bound is asserted.
+
+Exact Lean declarations:
+
+```text
+GroupApproximation.KOnePaper.diagUnit_mem_elementary
+GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
+GroupApproximation.KOnePaper.exists_diagUnit_elementaryFactors
+```
+
+Credit boundary: this equality also receives no theorem-novelty credit.
+Ara--Goodearl--Pardo prove that a purely infinite simple unital ring is a
+GE-ring and identify its stable `K₁` with the abelianization of its unit
+group. Ara--Brustenga--Cortiñas give `K₁(L_k(1,2)) = 0`. Hence every unit is
+a product of commutators; the classical rank-two Whitehead identity makes
+`diag(u,1)` elementary; and GE reduction gives `GL₂ = E₂`. What may be new
+is only the direct tree/pencil factorization that derives the same unstable
+conclusion without either established `K`-theory theorem. The manuscript
+must not claim an executable algorithm or a quantitative factor bound.
+
+## Corollary E: the binary Leavitt algebra
 
 For every `n ≥ 3`, the elementary group over the binary Leavitt algebra has
 property `(TT)/T`.
@@ -90,7 +151,7 @@ Credit boundary: the binary Leavitt algebra's structural and `K`-theoretic
 facts are not claimed as new. The only possible novelty here is the resulting
 `(TT)/T` conclusion.
 
-## Corollary E: nonsofic and `(TT)/T`
+## Corollary F: nonsofic and `(TT)/T`
 
 For every `n ≥ 3`, the elementary group over the binary Leavitt algebra has
 property `(TT)/T` and is nonsofic.

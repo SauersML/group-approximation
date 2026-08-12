@@ -1,0 +1,882 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{marginfix}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{
+  pdftitle={Property (TT)/T and Coordinate-Block Factorization over Strongly Purely Infinite Rings},
+  pdfsubject={quasi-cocycles, elementary groups, Leavitt algebras},
+  pdfkeywords={property (TT)/T, quasi-cocycles, elementary groups, Leavitt algebras, bounded generation}
+}
+
+\newif\ifleanlinks\leanlinkstrue
+\newif\ifanonymous\anonymousfalse
+\definecolor{leangreen}{RGB}{0,102,74}
+\newcommand{\leancommit}{main}
+\ifanonymous
+  \newcommand{\leanrepo}{[repository link removed for anonymous review]}
+\else
+  \newcommand{\leanrepo}{https://github.com/SauersML/nonsofic\_existence}
+\fi
+\newcommand{\leanfileurl}[1]{%
+  https://github.com/SauersML/nonsofic_existence/blob/\leancommit/GroupApproximation/#1.lean}
+\setlength{\marginparwidth}{1.35in}
+\setlength{\marginparsep}{8pt}
+\newcommand{\leanverified}[2]{%
+  \ifleanlinks
+    \marginpar{\raggedright\rightskip 0pt plus 1fil
+      \urlstyle{tt}\color{leangreen}\fontsize{5.8}{6.8}\selectfont
+      \href{\leanfileurl{#1}}{\nolinkurl{#1}}
+      \par\nolinkurl{#2}}%
+  \fi}
+
+\setlist[enumerate]{leftmargin=2.35em}
+\setlist[itemize]{leftmargin=2.1em}
+\allowdisplaybreaks
+\raggedbottom
+\emergencystretch=1.5em
+\extrafloats{100}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\theoremstyle{plain}
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+
+\newcommand{\F}{\mathbb F}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\EL}{\operatorname{E}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\Def}{\operatorname{def}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+
+\title[Property \texorpdfstring{\((TT)/T\)}{(TT)/T} over strongly purely infinite rings]
+{Property \texorpdfstring{\((TT)/T\)}{(TT)/T} and Coordinate-Block
+Factorization over Strongly Purely Infinite Rings}
+\author{GPT 5.6 Sol and Claude Fable}
+\date{August 2026\ifanonymous\else\\[2pt]
+  {\normalsize repository revision \texttt{\leancommit}}\fi}
+\subjclass[2020]{20J06, 20F65, 16S50, 16S88, 19B99}
+\keywords{property (TT)/T, quasi-cocycles, elementary groups,
+Leavitt algebras, purely infinite rings, bounded generation}
+
+\begin{document}
+
+\begin{abstract}
+We prove a coordinate-block factorization theorem for general linear
+groups over rings satisfying the single-sandwich condition
+\[
+  a\ne0\quad\Longrightarrow\quad
+  xay=1\ \text{for some }x,y.
+\]
+Every element of \(\GL_n(R)\) is a product of at most \(2n+6\)
+factors, each an elementary transvection or an element of one fixed
+coordinate copy of \(\GL_{n-1}(R)\).  This is not bounded elementary
+generation: the coordinate block is an essential part of the
+statement.
+
+We combine this algebraic factorization with relative quasi-cocycle
+rigidity for elementary groups over finite free associative
+\(\F_2\)-algebras.  If \(R\) is a nontrivial finite-type
+\(\F_2\)-algebra carrying a binary Leavitt family, satisfying the
+single-sandwich condition, and satisfying
+\(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\), then
+\(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge3\).
+Consequently,
+\[
+  \EL_n\bigl(L_{\F_2}(1,2)\bigr)
+  \quad\text{has property }(TT)/T
+  \qquad(n\ge3).
+\]
+We also give a direct quantitative proof of the relative root estimate
+and of the unstable diagonal reduction used in the specialization.
+The stable computation \(K_1(L_{\F_2}(1,2))=0\), the GE property of
+purely infinite simple rings, and the general relative-rigidity
+strategy are due to earlier work; we isolate our contribution
+explicitly.  Every theorem claimed here as part of our contribution is
+matched to a declaration checked by the Lean kernel.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}\label{sec:introduction}
+
+Property \((TT)/T\), introduced by Mimura, asks that Hilbert-space
+quasi-cocycles be bounded after the invariant-vector part of the
+representation has been removed.  It is stronger than Kazhdan's
+property~\((T)\) and is designed to control bounded cohomology and
+homomorphisms into groups admitting unbounded
+quasi-cocycles~\cite{MimuraTT}.  Ershov and Jaikin-Zapirain proved property~\((T)\)
+for elementary groups over arbitrary finitely generated associative
+rings~\cite{ErshovJaikin}.  The corresponding quasi-cocycle problem
+is subtler: the bounded error in the cocycle identity accumulates
+under a long word, so finite generation alone gives no global bound.
+
+The present paper supplies a globalization mechanism for a class of
+strongly purely infinite rings.  Its algebraic input is an explicit
+matrix factorization.  The hypothesis is the following strong
+two-sided division property:
+\begin{equation}\label{eq:sandwich}
+  a\ne0\quad\Longrightarrow\quad
+  \exists x,y\in R,\qquad xay=1.
+\end{equation}
+It is often called the single-sandwich property.  It is available in
+the purely infinite simple setting relevant
+here~\cite{AraGoodearlPardo}.
+
+\begin{mainthm}[Coordinate-block factorization]\label{thm:A}
+Let \(R\) be a nontrivial ring satisfying~\eqref{eq:sandwich}, let
+\(n\ge2\), and fix a coordinate \(j<n\).  Every \(A\in\GL_n(R)\)
+admits a factorization of length at most \(2n+6\) in which every
+factor is either an elementary transvection or belongs to the
+coordinate copy
+\[
+  \GL_{n-1}^{(j)}(R)
+  =\{B\in\GL_n(R):Be_j=e_j,\ e_j^{\,t}B=e_j^{\,t}\}.
+\]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.coordinateBlock_factorization}
+\end{mainthm}
+
+Theorem~\ref{thm:A} is deliberately not called bounded elementary
+generation.  It is a relative bounded-width statement, with respect
+to elementary root subgroups and one fixed coordinate block.  This
+is exactly the form required by the quasi-cocycle argument.
+
+For the synthesis theorem, a \emph{binary Leavitt family} in \(R\)
+means elements \(x_0,x_1,y_0,y_1\) satisfying
+\[
+  y_i x_j=\delta_{ij},\qquad x_0y_0+x_1y_1=1.
+\]
+It supplies the matrix self-similarity used to move between ranks.
+
+\begin{mainthm}[Rigidity synthesis]\label{thm:B}
+Let \(R\) be a nontrivial finite-type \(\F_2\)-algebra.  Assume that
+\begin{enumerate}
+\item \(R\) contains a binary Leavitt family;
+\item \(R\) satisfies the single-sandwich
+  property~\eqref{eq:sandwich};
+\item \(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).
+\end{enumerate}
+Then \(\EL_n(R)\) has property \((TT)/T\) for every \(n\ge3\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT}
+\end{mainthm}
+
+Here finite type is the fourth structural hypothesis: it is stated
+in the opening sentence rather than repeated in the numbered list.
+The Lean theorem has precisely these hypotheses.  In particular,
+there is no residual-finiteness, soficity, approximation, or
+unstated regularity assumption in Theorem~\ref{thm:B}.
+
+\begin{mainthm}[Binary Leavitt algebra]\label{thm:C}
+For every \(n\ge3\),
+\[
+  \EL_n\bigl(L_{\F_2}(1,2)\bigr)
+  \quad\text{has property }(TT)/T.
+\]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT}
+\end{mainthm}
+
+Combining Theorem~\ref{thm:C} with the independently known
+nonsoficity theorem gives the following striking, but logically
+secondary, consequence.
+
+\begin{corollary}\label{cor:nonsofic}
+For every \(n\ge3\), the group
+\(\EL_n(L_{\F_2}(1,2))\) is nonsofic and has property \((TT)/T\).
+\leanverified{PropertyTT/NonsoficCorollary}{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic}
+\end{corollary}
+
+The contribution of this paper to Corollary~\ref{cor:nonsofic} is
+the \((TT)/T\) assertion.  The nonsoficity assertion is credited to
+the prior nonsofic-group construction and is used only as an
+external mathematical input to the corollary.
+
+\subsection*{Credit and novelty boundary}
+
+Several ingredients have strong antecedents, and separating them is
+mathematically important.
+
+\begin{itemize}
+\item Mimura introduced property \((TT)/T\), developed its
+  globalization strategy, and proved the relevant relative
+  quasi-cocycle results for universal-lattice
+  settings~\cite{MimuraTT,MimuraThesis}.
+\item Ershov and Jaikin-Zapirain proved ordinary property~\((T)\)
+  for elementary groups over finitely generated associative
+  rings~\cite{ErshovJaikin}.
+\item Ara, Goodearl, and Pardo established the GE and unit-group
+  \(K_1\) structure for purely infinite simple
+  rings~\cite{AraGoodearlPardo}.
+\item Ara, Brustenga, and Corti\~nas computed the stable algebraic
+  \(K\)-theory of Leavitt path
+  algebras~\cite{AraBrustengaCortinas}.  In particular,
+  \(K_1(L_k(1,2))=0\) for a field \(k\).
+\end{itemize}
+
+Accordingly, we do not claim the stable \(K_1\)-vanishing, the GE
+property, the bare equality
+\(\GL_2(L_{\F_2}(1,2))=\EL_2(L_{\F_2}(1,2))\), or the abstract
+relative-rigidity architecture as new theorems.  The main
+contributions isolated here are the explicit width \(2n+6\)
+coordinate-block factorization and its synthesis with
+quasi-cocycle control into Theorem~\ref{thm:B}.  The direct root and
+rank-two arguments give quantitative, self-contained routes to
+inputs which also have prior structural explanations.
+
+\subsection*{Formal verification}
+
+The accompanying Lean development is available at
+\href{\leanrepo}{\leanrepo}.  Margin notes link theorem statements
+to declarations.  The paper-facing declarations are collected in
+\texttt{PropertyTT/PaperStatements.lean},
+\texttt{KOne/PaperStatements.lean}, and
+\texttt{PropertyTT/NonsoficCorollary.lean}.  The endpoint audit
+reports only Lean's standard logical axioms
+\(\mathsf{propext}\), \(\mathsf{Classical.choice}\), and
+\(\mathsf{Quot.sound}\).
+
+\section{Quasi-cocycles and relative control}\label{sec:quasicocycles}
+
+Let \(G\) be a group and let
+\(\pi:G\to\mathcal U(\mathcal H)\) be a unitary representation on a
+complex Hilbert space.  A map \(b:G\to\mathcal H\) is a
+\emph{quasi-cocycle of defect at most \(D\)} if
+\begin{equation}\label{eq:quasicocycle}
+  \norm{b(gh)-b(g)-\pi(g)b(h)}\le D
+  \qquad(g,h\in G).
+\end{equation}
+An exact cocycle has \(D=0\); it is the translation part of an
+affine isometric action.  A quasi-cocycle permits uniformly bounded
+failure of the affine action law.
+
+\begin{definition}
+A group \(G\) has property \((TT)/T\) if, for every unitary
+representation \(\pi\) with no nonzero invariant vector, every
+Hilbert-space quasi-cocycle into \(\pi\) is bounded on \(G\).
+\end{definition}
+
+\begin{proposition}[Mimura's relative input]\label{prop:mimura-input}
+Let \(X\) be finite and \(A=\F_2\langle X\rangle\).  The pair
+\[
+  \bigl(\EL_4(A),X_{03}\bigr)
+\]
+has relative property \((TT)/T\).
+\end{proposition}
+
+\begin{proof}
+Mimura proves relative \((TT)/T\) for the noncommutative universal
+lattice pair
+\[
+  \EL_m(\mathbb Z\langle X\rangle)
+  \ \ge\ \EL_{m-1}(\mathbb Z\langle X\rangle),
+  \qquad m\ge3
+\]
+\cite[Proposition~9.2.8]{MimuraThesis}.  Relative \((TT)/T\)
+descends through a surjective homomorphism: pull a representation
+and quasi-cocycle back along the quotient map and then apply the
+relative bound.  Reduce coefficients modulo \(2\), take \(m=4\),
+and conjugate the standard rank-three block so that it contains
+\(X_{03}\).  Boundedness on that block implies boundedness on the
+root subgroup.
+\end{proof}
+
+The local input used below is slightly stronger than a relative
+\((TT)/T\) statement because no hypothesis is imposed on invariant
+vectors.
+
+\begin{theorem}[Root quasi-cocycle estimate]\label{thm:root}
+Let \(X\) be finite, put \(A=\F_2\langle X\rangle\), and let
+\[
+  G=\EL_4(A),\qquad
+  X_{03}=\{I+aE_{03}:a\in A\}.
+\]
+For every unitary representation \(\pi\), every \(D\ge0\), and every
+quasi-cocycle \(b:G\to\mathcal H\) of defect at most \(D\), the set
+\(b(X_{03})\) is bounded.
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT}
+\end{theorem}
+
+\begin{proof}
+Let \(N\) be the last-column subgroup generated by
+\(X_{03},X_{13},X_{23}\).  Decompose
+\[
+  \mathcal H=\mathcal H^N\oplus(\mathcal H^N)^\perp,
+  \qquad b(r)=p+w
+\]
+for \(r=I+aE_{03}\).  Since the coefficient ring has
+characteristic two, \(r^2=1\).
+Applying~\eqref{eq:quasicocycle} to \(r^2\), and projecting to
+\(\mathcal H^N\), bounds the fixed component:
+\begin{equation}\label{eq:fixed}
+  \norm p\le D.
+\end{equation}
+
+For the moving component, let \(Q_X\) be the finite rank-three
+control set used in the two coordinate embeddings and put
+\[
+ M=\sum_{s\in Q_X}
+ \bigl(\norm{b(\iota_{123}(s))}+\norm{b(\iota_{012}(s))}\bigr),
+ \quad B=2M+2D,
+\]
+\[
+ K=2(6\abs X+6)(B+1).
+\]
+If a control element \(s\) commutes with \(r\) and normalizes
+\(N\), comparison of the quasi-cocycle equations for \(sr\) and
+\(rs\), followed by orthogonal projection, gives
+\[
+  \norm{\pi(s)w-w}
+  \le \norm{\pi(s)b(r)-b(r)}
+  \le 2\norm{b(s)}+2D\le B.
+\]
+The formalized rank-three plane estimate propagates these finitely
+many inequalities to the complete root planes in the two embeddings.
+In particular, for every \(c\in A\),
+\[
+ \norm{\pi(x_{13}(c))w-w},\quad
+ \norm{\pi(x_{23}(c))w-w},\quad
+ \norm{\pi(x_{01}(c))w-w}
+ \le K.
+\]
+The Steinberg
+relation
+\[
+  [\,I+cE_{01},\,I+E_{13}\,]=I+cE_{03}
+\]
+and the unitary commutator estimate give displacement at most
+\(4K\) under \(x_{03}(c)\).  Every element of \(N\) is a product of
+one element from each of \(X_{03},X_{13},X_{23}\), so its
+displacement of \(w\) is at most \(6K\).  Since
+\(w\perp\mathcal H^N\), the uniform-orbit projection lemma gives
+\(\norm w\le6K\).  Together with~\eqref{eq:fixed}, this is the
+formalized estimate
+\[
+  \norm{b(I+aE_{03})}
+  \le
+  D+12(6\abs X+6)(2M+2D+1),
+\]
+uniformly in \(a\in A\).  The numerical constant is not optimized.
+\end{proof}
+
+\begin{remark}[Literature comparison]\label{rem:root-literature}
+The bare statement of Theorem~\ref{thm:root} also follows much more
+quickly from Proposition~\ref{prop:mimura-input}.  Split
+\(\mathcal H=\mathcal H^G\oplus(\mathcal H^G)^\perp\).  Mimura's
+relative theorem bounds the second projection on \(X_{03}\).  On
+the invariant summand the action is trivial, while \(r^2=1\) for
+\(r\in X_{03}\); the quasi-cocycle identities for \(1\) and \(r^2\)
+then give \(\norm{b_0(r)}\le D\).  Thus we make no priority claim for
+the qualitative root theorem.  The longer proof above is included
+because it is the proof formalized in Lean and records an explicit
+bound.
+\end{remark}
+
+\section{Coordinate-block factorization}\label{sec:factorization}
+
+We now prove the main algebraic input.  Write
+\[
+  e_{ij}(a)=I+aE_{ij}\qquad(i\ne j)
+\]
+for an elementary transvection.
+
+\begin{lemma}[Five-move pivot]\label{lem:pivot}
+Let \(R\) satisfy~\eqref{eq:sandwich}, let \(A\in\GL_n(R)\), and
+fix distinct coordinates \(i,j\).  At most two elementary row
+operations and at most three elementary column operations produce a
+matrix \(B\) satisfying
+\[
+  B_{jj}=1,\qquad B_{ij}=B_{ji}=0.
+\]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.fiveMove_pivot}
+\end{lemma}
+
+\begin{proof}
+We give the calculation, since it is the source of the uniform
+constant.  Choose two distinct indices \(i,j\).  First arrange that
+the entry \(a=A_{ii}\) is nonzero.  If it is zero, invertibility of
+\(A\) gives \(k\) with \(A_{ik}\ne0\); right multiplication by
+\(e_{ki}(1)\) replaces \(A_{ii}\) by \(A_{ik}\).  This costs at most
+one preliminary column operation.
+
+Write \(b=A_{ij}\), and choose \(p,q\in R\) with \(paq=1\).  Put
+\[
+  \rho=q(1-pb),\qquad
+  F_1=e_{ij}(\rho),\qquad A_1=AF_1,\qquad b_1=(A_1)_{ij}.
+\]
+Then
+\[
+  b_1=a\rho+b,\qquad
+  pb_1=pa\,q(1-pb)+pb=1.
+\]
+Set
+\[
+  d_1=(A_1)_{jj},\qquad
+  w=(1-d_1)p,\qquad
+  E_1=e_{ji}(w),\qquad A_2=E_1A_1.
+\]
+The \((j,j)\)-entry is now
+\[
+  (A_2)_{jj}=d_1+wb_1
+  =d_1+(1-d_1)pb_1=1.
+\]
+Next set
+\[
+  E_2=e_{ij}(-b_1),\qquad A_3=E_2A_2.
+\]
+This clears \((i,j)\) without changing the new \(1\) at \((j,j)\).
+Finally, with \(c_3=(A_3)_{ji}\), put
+\[
+  F_2=e_{ji}(-c_3),\qquad A_4=A_3F_2.
+\]
+This clears \((j,i)\), again preserving \((j,j)=1\) and
+\((i,j)=0\).  Thus the four main moves use two row and two column
+transvections; including the possible preliminary column addition
+gives the asserted bounds \(2\) and \(3\).  No stable-range or
+commutativity hypothesis is used.
+\end{proof}
+
+\begin{theorem}\label{thm:factorization-detailed}
+Under the hypotheses of Theorem~\ref{thm:A}, every
+\(A\in\GL_n(R)\) can be written
+\[
+  A=g_1\cdots g_m,\qquad m\le2n+6,
+\]
+where each \(g_i\) is an elementary transvection or lies in
+\(\GL_{n-1}^{(j)}(R)\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.coordinateBlock_factorization}
+\end{theorem}
+
+\begin{proof}
+Choose \(i\ne j\).  Lemma~\ref{lem:pivot} gives elementary products
+\(E,F\), represented by lists \(\ell,r\), such that
+\[
+  B=EAF,\qquad
+  B_{jj}=1,\qquad B_{ij}=B_{ji}=0,
+\]
+with
+\[
+  \abs\ell\le2,\qquad \abs r\le3.
+\]
+The last two displayed zeros are not needed for the subsequent
+clearing, but they are part of the exact pivot calculation.
+
+For every \(k\ne j\), right multiply by
+\[
+  e_{jk}(-B_{jk}).
+\]
+These transvections have a common source column and distinct target
+columns, so they do not interfere with one another.  If \(T\) is
+their product and \(C=BT\), then
+\[
+  C_{jc}=\begin{cases}1,&c=j,\\0,&c\ne j.\end{cases}
+\]
+The list \(t\) of right-clearing factors has length at most \(n\).
+
+For every \(k\ne j\), left multiply by
+\[
+  e_{kj}(-C_{kj}).
+\]
+Again the operations have distinct target rows and do not interfere.
+If \(S\) is their product and \(D=SC\), then
+\[
+  D_{rc}=
+  \begin{cases}
+    1,&r=c=j,\\
+    0,&r=j,\ c\ne j,\\
+    0,&r\ne j,\ c=j,\\
+    C_{rc},&r,c\ne j.
+  \end{cases}
+\]
+Hence \(D\in\GL_{n-1}^{(j)}(R)\).  The list \(s\) of
+left-clearing factors also has length at most \(n\).
+
+Solving \(D=SEAF T\) for \(A\) gives
+\[
+  A=E^{-1}S^{-1}DT^{-1}F^{-1}.
+\]
+At the word level, inverse products are represented by reversing
+the factor lists and inverting every transvection.  The inverse of
+\(e_{ab}(z)\) is \(e_{ab}(-z)\), so all these factors remain
+elementary.  The resulting word has the exact form
+\[
+  \ell^{-1}_{\mathrm{rev}}\,
+  s^{-1}_{\mathrm{rev}}\,
+  [D]\,
+  t^{-1}_{\mathrm{rev}}\,
+  r^{-1}_{\mathrm{rev}},
+\]
+and therefore length at most
+\[
+  2+n+1+n+3=2n+6.
+\]
+\end{proof}
+
+\begin{remark}
+The fixed coordinate \(j\) is chosen before \(A\).  Allowing the
+coordinate block to depend on \(A\) would give a weaker statement
+and would not be sufficient for the uniform quasi-cocycle
+globalization used below.
+\end{remark}
+
+\section{From relative control to global rigidity}\label{sec:globalization}
+
+Let \(R\) be a finite-type \(\F_2\)-algebra.  Choose a finite set
+\(X\) and a surjection
+\[
+  \F_2\langle X\rangle\twoheadrightarrow R.
+\]
+Elementary matrices are functorial in the coefficient ring, so the
+root estimate of Theorem~\ref{thm:root} descends to \(R\).  Coordinate
+permutations then give the same estimate for every root subgroup in
+rank four.
+
+Two larger pieces are used in the assembly: a last-column subgroup
+and a last-row subgroup.  The quasi-cocycle is bounded on both.
+The stabilized rank-three coordinate group normalizes these pieces.
+Kazhdan control for the rank-three group converts boundedness on the
+normalized root system into boundedness on the coordinate group,
+provided the ambient representation has no invariant vectors.  This
+is the only place where the quotient by the trivial representation
+enters.
+
+\begin{lemma}[Elementary equals general linear]\label{lem:gl-el}
+Assume that \(R\) has a binary Leavitt family, satisfies
+\eqref{eq:sandwich}, and satisfies
+\(\diag(u,1)\in\EL_2(R)\) for every \(u\in R^\times\).  Then
+\[
+  \EL_n(R)=\GL_n(R)\qquad(n\ge2).
+\]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.elementaryGroup_eq_generalLinear}
+\end{lemma}
+
+\begin{proof}
+The single-sandwich elimination reduces an arbitrary element of
+\(\GL_2(R)\), by elementary row and column operations, to
+\(\diag(u,1)\) for some \(u\in R^\times\).  The diagonal hypothesis
+therefore gives \(\GL_2(R)=\EL_2(R)\).  A binary Leavitt family
+gives prefix-code coefficient isomorphisms
+\(M_m(R)\cong R\).  Apply the rank-two equality after transporting
+coefficients to \(M_n(R)\), flatten the resulting block matrices,
+swap the two finite index factors, unflatten in the other direction,
+and transport coefficients back through \(M_2(R)\cong R\).  This is
+the coefficient/block argument which gives the assertion in every
+rank \(n\ge2\).
+\end{proof}
+
+\begin{proposition}[Rank-four assembly]\label{prop:rank-four}
+Under the hypotheses of Theorem~\ref{thm:B}, \(\EL_4(R)\) has
+property \((TT)/T\).
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.finitePresentation_rankFour_hasTTmodT}
+\end{proposition}
+
+\begin{proof}
+Choose a finite free-algebra presentation of \(R\).  Theorem
+\ref{thm:root} descends through this quotient and gives relative
+\((TT)/T\) for \(X_{03}(R)\).  Coordinate permutations give it for
+the six roots
+\[
+  X_{03},X_{13},X_{23},X_{30},X_{31},X_{32}.
+\]
+
+Property~\((T)\) for \(\EL_3(R)\) follows from
+Ershov--Jaikin-Zapirain, or equivalently by descending the finite
+Kazhdan system for the free algebra.  The Leavitt rank equivalence
+transports this to \(\EL_4(R)\).  The standard rank-four
+parabolic argument now combines the six relative root bounds:
+the last-row and last-column pieces are bounded, their normalized
+rank-three core has almost-invariant quasi-cocycle values, and the
+Kazhdan estimate bounds those values.  Hence \(\EL_4(R)\) has
+relative \((TT)/T\) with respect to the stabilized
+\(\EL_3(R)\).
+
+By Lemma~\ref{lem:gl-el}, the elementary groups in ranks three and
+four are the full general linear groups.  Under these
+identifications the stabilized core is exactly the coordinate block
+\(\GL_3^{(3)}(R)\).  Finally, coordinate permutations carry this
+relative statement to \(\GL_3^{(j)}(R)\) for every
+\(j\in\{0,1,2,3\}\).
+
+Each elementary transvection lies in a coordinate block avoiding its
+two indices.  Hence the union of one fixed coordinate block and all
+root subgroups is bounded for the quasi-cocycle.  Theorem~\ref{thm:A}
+writes every element of \(\GL_4(R)\) as a product of at most (14)
+elements of that union.  Lemma~\ref{lem:products} below, or directly
+the corresponding bounded-product lemma, makes the quasi-cocycle
+bounded on \(\GL_4(R)\).  Transporting through
+\(\EL_4(R)=\GL_4(R)\) proves the proposition.
+\end{proof}
+
+The passage from a bounded generating subset to the whole group
+uses the following elementary estimate.
+
+\begin{lemma}[Products of controlled pieces]\label{lem:products}
+Let \(b\) be a quasi-cocycle of defect at most \(D\), and suppose
+\(\norm{b(g_i)}\le C\) for a list \((g_1,\ldots,g_m)\).  Then
+\[
+  \norm{b(g_1\cdots g_m)}
+  \le mC+(m+1)D.
+\]
+\leanverified{PropertyTT/PaperStatements}{PropertyTTPaper.quasiCocycle_list_product_bound}
+\end{lemma}
+
+\begin{proof}
+Induct on the list.  The empty-list case is
+\(\norm{b(1)}\le D\).  For a nonempty list, apply
+\eqref{eq:quasicocycle} to the head and the product of the tail, use
+that the representation is isometric, and invoke the inductive
+bound.  The displayed estimate is the slightly loose uniform form
+used by the Lean bounded-product lemma; importantly, it also covers
+the empty list.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:B}]
+Proposition~\ref{prop:rank-four} gives the result in rank four.  For
+arbitrary \(n\ge3\), the binary Leavitt family supplies an
+explicit group equivalence
+\[
+  \EL_n(R)\cong\EL_4(R).
+\]
+Property \((TT)/T\) is invariant under group equivalence, so the
+rank-four conclusion transports to rank \(n\).
+\end{proof}
+
+\section{The binary Leavitt specialization}\label{sec:leavitt}
+
+Let \(L\) be the binary Leavitt algebra~\cite{Leavitt},
+\[
+  L=L_{\F_2}(1,2)
+  =\F_2\langle x_0,x_1,y_0,y_1\rangle/
+  (y_i x_j-\delta_{ij},\,x_0y_0+x_1y_1-1).
+\]
+The defining generators themselves form a binary Leavitt family,
+and the presentation makes \(L\) a finite-type \(\F_2\)-algebra.
+Pure infiniteness and simplicity give the single-sandwich
+property~\cite{AraGoodearlPardo}.  It remains to discuss the unstable
+diagonal condition.
+
+\begin{proposition}[Unstable diagonal reduction]\label{prop:diag}
+For every \(u\in L^\times\),
+\[
+  \diag(u,1)\in\EL_2(L).
+\]
+Consequently \(\GL_2(L)=\EL_2(L)\).
+\leanverified{KOne/PaperStatements}{KOnePaper.diagUnit_mem_elementary}
+\leanverified{KOne/PaperStatements}{KOnePaper.elementaryGroup_two_eq_top}
+\end{proposition}
+
+\subsection{What follows from existing structure}
+
+The conclusion of Proposition~\ref{prop:diag} should not be confused
+with a new computation of stable \(K_1\).  Ara--Brustenga--Corti\~nas
+give, for a regular coefficient ring, the exact sequence determined
+by \(1-N_E^t\)~\cite{AraBrustengaCortinas}.  For the graph with one
+vertex and two loops this map is multiplication by \(-1\), hence
+\[
+  K_i(L_k(1,2))=0
+\]
+in every degree covered by their theorem, in particular in degree
+one.
+
+There is also an unstable route already implicit in the structural
+literature.  Ara--Goodearl--Pardo prove that a unital purely infinite
+simple ring is a GE-ring and that
+\[
+  K_1(R)\cong R^\times_{\mathrm{ab}}
+\]
+This is Theorem~2.3 of~\cite{AraGoodearlPardo}.  Thus \(K_1(L)=0\) makes each
+unit a product of commutators.  The standard \(2\times2\) Whitehead
+identity places \(\diag([a,b],1)\) in \(\EL_2(L)\); the GE property
+then gives \(\GL_2(L)=\EL_2(L)\).  For this reason we claim no
+priority for the bare equality.
+
+\subsection{The direct formalized route}
+
+The Lean development instead gives a direct tree-and-pencil
+reduction.  Finite prefix codes encode the self-similar pieces of a
+unit.  Elementary row and column moves refine the two codes to a
+common tree, isolate code-scalar blocks, and reduce the remaining
+one-sided factor.  The output is an actual finite list of elementary
+matrices whose product is \(\diag(u,1)\).
+
+\begin{proposition}[Finite factor witness]\label{prop:witness}
+For every \(u\in L^\times\), there exists a finite list
+\((e_1,\ldots,e_m)\) of elementary \(2\times2\) matrices such that
+\[
+  \diag(u,1)=e_1\cdots e_m.
+\]
+\leanverified{KOne/PaperStatements}{KOnePaper.exists_diagUnit_elementaryFactors}
+\end{proposition}
+
+Proposition~\ref{prop:witness} is an existence theorem with a
+constructive proof object.  We do not claim a uniform word-length
+bound or a complexity estimate: neither is present in the theorem
+statement.
+
+\begin{proof}[Proof of Theorem~\ref{thm:C}]
+The binary Leavitt algebra is a nontrivial finite-type
+\(\F_2\)-algebra, its canonical generators form a binary Leavitt
+family, pure infiniteness supplies~\eqref{eq:sandwich}, and
+Proposition~\ref{prop:diag} supplies the elementary diagonal
+condition.  Theorem~\ref{thm:B} applies.
+\end{proof}
+
+\section{Formal correspondence and trust boundary}\label{sec:formal}
+
+The public Lean interface is intentionally smaller than the
+implementation.  Table~\ref{tab:correspondence} records the exact
+correspondence between the paper and the checked declarations.
+
+\begin{table}[ht]
+\centering
+\small
+{\hbadness=10000
+\begin{tabular}{@{}p{0.26\textwidth}p{0.63\textwidth}@{}}
+\toprule
+Paper statement & Lean declaration\\
+\midrule
+Theorem~\ref{thm:root} &
+\urlstyle{tt}\nolinkurl{PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT}\\
+\addlinespace
+Theorem~\ref{thm:A} &
+\nolinkurl{PropertyTTPaper.coordinateBlock_factorization}\\
+\addlinespace
+Lemma~\ref{lem:pivot} &
+\nolinkurl{PropertyTTPaper.fiveMove_pivot}\\
+\addlinespace
+Lemma~\ref{lem:gl-el} &
+\nolinkurl{PropertyTTPaper.elementaryGroup_eq_generalLinear}\\
+\addlinespace
+Proposition~\ref{prop:rank-four} &
+\nolinkurl{PropertyTTPaper.finitePresentation_rankFour_hasTTmodT}\\
+\addlinespace
+Lemma~\ref{lem:products} &
+\nolinkurl{PropertyTTPaper.quasiCocycle_list_product_bound}\\
+\addlinespace
+Theorem~\ref{thm:B} &
+\nolinkurl{PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT}\\
+\addlinespace
+Theorem~\ref{thm:C} &
+\nolinkurl{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT}\\
+\addlinespace
+Proposition~\ref{prop:diag} &
+\nolinkurl{KOnePaper.diagUnit_mem_elementary} and
+\nolinkurl{KOnePaper.elementaryGroup_two_eq_top}\\
+\addlinespace
+Proposition~\ref{prop:witness} &
+\nolinkurl{KOnePaper.exists_diagUnit_elementaryFactors}\\
+\addlinespace
+Corollary~\ref{cor:nonsofic} &
+\nolinkurl{PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic}\\
+\bottomrule
+\end{tabular}
+}
+\caption{Paper-to-Lean theorem correspondence.}
+\label{tab:correspondence}
+\end{table}
+
+The synthesis theorem also has the presentation-facing declaration
+\begin{center}
+\urlstyle{tt}\nolinkurl{PropertyTTPaper.finitePresentation_elementaryGroup_hasTTmodT},
+\end{center}
+whose hypotheses exhibit a finite free-algebra quotient explicitly.
+The finite-type wrapper used in Theorem~\ref{thm:B} constructs that
+presentation internally.
+
+No theorem in this paper assumes soficity, residual finiteness, or
+any approximation property.  The only statement importing the
+nonsofic development is Corollary~\ref{cor:nonsofic}; it is placed in
+a separate Lean module so that the rigidity dependency graph remains
+independent.  The formalization does not assert historical novelty.
+Credit claims are prose statements justified by the literature
+review, not kernel-checkable mathematical propositions.
+
+\section{Further directions}\label{sec:directions}
+
+The characteristic-two hypothesis enters most visibly
+in~\eqref{eq:fixed}, where every root element has order two.  Over a
+field of characteristic \(p\), the corresponding root has order
+\(p\), and iterating the quasi-cocycle identity gives
+\[
+  b(1)\approx
+  b(r)+\pi(r)b(r)+\cdots+\pi(r)^{p-1}b(r).
+\]
+On the root-fixed space this is \(p\) times the fixed projection of
+\(b(r)\), with error at most \((p-1)D\).  Thus the fixed-space
+argument has a plausible finite-characteristic analogue.  The
+remaining obstacle is to replace the characteristic-two
+rank-three control and sign-free coordinate symmetries uniformly.
+We do not claim such a generalization here.
+
+The algebraic factorization theorem suggests a separate question.
+For which natural classes of simple or purely infinite rings does
+the single-sandwich condition hold, and when can the coordinate
+block in Theorem~\ref{thm:A} itself be controlled by elementary
+subgroups?  A satisfactory answer would turn the present synthesis
+theorem into a broad rigidity criterion rather than a theorem whose
+most memorable instance is a Leavitt algebra.
+
+\subsection*{Acknowledgements}
+
+We thank the authors whose work supplies the foundations used here.
+In particular, Mimura's quasi-cocycle rigidity framework,
+Ershov--Jaikin-Zapirain's property-\((T)\) theorem, the structural
+results of Ara--Goodearl--Pardo, and the \(K\)-theory computation of
+Ara--Brustenga--Corti\~nas are indispensable to the present proof
+and to its correct interpretation.
+
+\begin{thebibliography}{99}
+
+\bibitem{AraBrustengaCortinas}
+P.~Ara, M.~Brustenga, and G.~Corti\~nas,
+\emph{\(K\)-theory of Leavitt path algebras},
+M\"unster J. Math. \textbf{2} (2009), 5--34.
+
+\bibitem{AraGoodearlPardo}
+P.~Ara, K.~R. Goodearl, and E.~Pardo,
+\emph{\(K_0\) of purely infinite simple regular rings},
+K-Theory \textbf{26} (2002), no.~1, 69--100.
+
+\bibitem{ErshovJaikin}
+M.~Ershov and A.~Jaikin-Zapirain,
+\emph{Property \((T)\) for noncommutative universal lattices},
+Invent. Math. \textbf{179} (2010), no.~2, 303--347.
+
+\bibitem{Leavitt}
+W.~G. Leavitt,
+\emph{The module type of a ring},
+Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130.
+
+\bibitem{MimuraTT}
+M.~Mimura,
+\emph{Property \((TT)\) modulo \(T\) and homomorphism
+superrigidity into mapping class groups},
+Monatsh. Math. \textbf{178} (2015), no.~4, 573--600.
+
+\bibitem{MimuraThesis}
+M.~Mimura,
+\emph{Rigidity theorems for universal and symplectic universal lattices},
+doctoral thesis, University of Tokyo, 2011,
+\href{https://doi.org/10.15083/00004046}{doi:10.15083/00004046}.
+
+\end{thebibliography}
+
+\end{document}

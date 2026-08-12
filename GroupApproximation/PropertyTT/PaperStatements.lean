@@ -2,6 +2,7 @@ import GroupApproximation.PropertyTT.BoundedGeneration
 import GroupApproximation.PropertyTT.FiniteTypeLeavittTT
 import GroupApproximation.PropertyTT.LeavittAllRanksTT
 import GroupApproximation.PropertyTT.RankFourRelativeTT
+import Mathlib.RingTheory.FiniteType
 
 /-!
 # Paper statements for strong-division rings and `(TT)/T`
@@ -17,6 +18,8 @@ namespace GroupApproximation
 namespace PropertyTTPaper
 
 noncomputable section
+
+universe u v
 
 /-- **Strong relative root theorem.**  Over the free associative `ZMod 2`
 algebra, every Hilbert-space quasi-cocycle is bounded on the `(0, 3)`
@@ -52,6 +55,62 @@ theorem coordinateBlock_factorization
   simpa using
     (boundedProduct_coordinateBlockOrRoot (R := R) hdiv j)
 
+/-- **Five-move pivot.**  For two distinct coordinates, two elementary
+left factors and three elementary right factors suffice to create a literal
+`1` at the second diagonal coordinate and zeros in the two cross entries.
+The lists in the conclusion record the two separate word-length bounds. -/
+theorem fiveMove_pivot
+    (R ι : Type*) [Ring R] [Nontrivial R]
+    [Fintype ι] [DecidableEq ι]
+    (hdiv : HasSingleSandwichDivision R)
+    (A : (Matrix ι ι R)ˣ) (i j : ι) (hij : i ≠ j) :
+    ∃ E F : (Matrix ι ι R)ˣ,
+      E ∈ elementaryGroup ι R ∧ F ∈ elementaryGroup ι R ∧
+      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 ∧
+      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j = 0 ∧
+      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j i = 0 ∧
+      ∃ l r : List (Matrix ι ι R)ˣ,
+        l.length ≤ 2 ∧ r.length ≤ 3 ∧
+        (∀ x ∈ l, IsElementaryUnit x) ∧
+        (∀ x ∈ r, IsElementaryUnit x) ∧
+        l.prod = E ∧ r.prod = F :=
+  exists_five_move_pivot hdiv A i j hij
+
+/-- **Elementary/general-linear identification.**  Binary Leavitt
+self-similarity transports the rank-two diagonal reduction to every rank. -/
+theorem elementaryGroup_eq_generalLinear
+    (R : Type) [Ring R] [Nontrivial R]
+    (L : LeavittFamily R)
+    (hdiv : HasSingleSandwichDivision R)
+    (hdiag : HasElementaryDiagonalClass R)
+    (n : ℕ) (hn : 2 ≤ n) :
+    elementaryGroup (Fin n) R = ⊤ :=
+  FiniteTypeLeavittTT.elementaryGroup_eq_top L hdiv hdiag n hn
+
+/-- **Rank-four synthesis.**  The finite-presentation form of the structural
+hypotheses already gives global `(TT)/T` in rank four. -/
+theorem finitePresentation_rankFour_hasTTmodT
+    (R : Type) [Ring R] [Nontrivial R]
+    (X : Type) [Fintype X]
+    (f : FreeAlgebra (ZMod 2) X →+* R)
+    (hf : Function.Surjective f)
+    (L : LeavittFamily R)
+    (hdiv : HasSingleSandwichDivision R)
+    (hdiag : HasElementaryDiagonalClass R) :
+    HasTTmodT.{0, 0} (elementaryGroup (Fin 4) R) :=
+  FiniteTypeLeavittTT.rankFour_hasTTmodT X f hf L hdiv hdiag
+
+/-- **Product estimate used in bounded generation.**  This is deliberately
+the empty-list-safe inequality proved by the implementation. -/
+theorem quasiCocycle_list_product_bound
+    {G : Type u} [Group G]
+    {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {rho : G →* (E ≃ₗᵢ[ℂ] E)} {b : G → E} {D C : ℝ}
+    (hb : IsQuasiCocycle rho b D) (l : List G)
+    (hl : ∀ g ∈ l, ‖b g‖ ≤ C) :
+    ‖b l.prod‖ ≤ (l.length : ℝ) * C + (l.length + 1 : ℕ) * D :=
+  hb.norm_list_prod_le l hl
+
 /-- **Four-hypothesis synthesis theorem.**  A finite free characteristic-two
 presentation, binary Leavitt self-similarity, single-sandwich division, and
 trivial elementary diagonal class together imply `(TT)/T` in every
@@ -68,6 +127,39 @@ theorem finitePresentation_elementaryGroup_hasTTmodT
     HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) :=
   FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     X f hf L hdiv hdiag n hn
+
+/-- **Finite-type synthesis wrapper.**  This is the preceding theorem in
+standard mathematical language.  Finite type is used only to construct the
+finite free-algebra surjection; the other three structural assumptions remain
+explicit. -/
+theorem finiteType_elementaryGroup_hasTTmodT
+    (R : Type) [Ring R] [Nontrivial R] [Algebra (ZMod 2) R]
+    [Algebra.FiniteType (ZMod 2) R]
+    (L : LeavittFamily R)
+    (hdiv : HasSingleSandwichDivision R)
+    (hdiag : HasElementaryDiagonalClass R)
+    (n : ℕ) (hn : 3 ≤ n) :
+    HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) := by
+  obtain ⟨s, hs⟩ :=
+    (Algebra.FiniteType.out : (⊤ : Subalgebra (ZMod 2) R).FG)
+  let f : FreeAlgebra (ZMod 2) {x : R // x ∈ s} →ₐ[ZMod 2] R :=
+    FreeAlgebra.lift (ZMod 2) Subtype.val
+  have hrange : f.range = ⊤ := by
+    change (FreeAlgebra.lift (ZMod 2)
+      (Subtype.val : {x : R // x ∈ s} → R)).range = ⊤
+    rw [← Algebra.adjoin_range_eq_range_freeAlgebra_lift]
+    have hcoe : Set.range (Subtype.val : {x : R // x ∈ s} → R) =
+        (s : Set R) := by
+      ext x
+      simp
+    rw [hcoe]
+    exact hs
+  have hf : Function.Surjective f := by
+    intro y
+    have hy : y ∈ f.range := by simp [hrange]
+    exact hy
+  exact finitePresentation_elementaryGroup_hasTTmodT
+    R {x : R // x ∈ s} f.toRingHom hf L hdiv hdiag n hn
 
 /-- **Binary Leavitt specialization.**  In every rank at least three, the
 elementary group over the binary Leavitt algebra over `F₂` has property

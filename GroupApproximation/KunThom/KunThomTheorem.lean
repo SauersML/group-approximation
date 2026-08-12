@@ -28,7 +28,7 @@ theorem card_productLabels_of_injective
     (hinj : Set.InjOn (fun k : K ↦ A.map n (k, (1 : J))) (S : Set K)) :
     (productLabels A n S).card = S.card := by
   classical
-  unfold productLabels
+  unfold productLabels multiplicativeProductLabels
   rw [Finset.card_image_iff.mpr]
   intro x hx y hy hxy
   exact hinj hx hy hxy
@@ -74,7 +74,8 @@ theorem isLEF_of_exactProductExpansion
     exists_improvementParameters hq0 hq1 hh S.card
       (Finset.card_pos.mpr ⟨1, hone⟩)
   obtain ⟨Nrelation, hNrelation⟩ :=
-    exists_pairProduct_relation_eventually hQ S hQS hone hκone A
+    exists_pairProduct_relation_eventually hQ S hQS hone hκone
+      (MultiplicativeApproximation.ofSofic A)
       k hk hδ hβ hcoarea
   obtain ⟨Ncheeger, hNcheeger⟩ := hcheeger
   obtain ⟨Ninjective, hNinjective⟩ :=
@@ -109,6 +110,11 @@ theorem isLEF_of_exactProductExpansion
     have hcard : 10 ≤ Fintype.card (A.model n) := hNcard n hncard
     have hcardPos : 0 < Fintype.card (A.model n) := by omega
     have hinjective := hNinjective n hninjective
+    have hlabels :
+        multiplicativeProductLabels
+            (MultiplicativeApproximation.ofSofic A) n S =
+          productLabels A n S := by
+      rfl
     have hlabelCard : (productLabels A n S).card = S.card :=
       card_productLabels_of_injective A n S hinjective
     let admissible (c : Equiv.Perm (A.model n))
@@ -132,8 +138,10 @@ theorem isLEF_of_exactProductExpansion
     refine ⟨round, ?_, ?_⟩
     · intro a ha b hb
       have hexists : ∃ U, admissible (a * b) U := by
-        simpa [admissible] using
+        have hrelation :=
           hNrelation n hnrelation hinjective hcardPos ha hb
+        rw [hlabels] at hrelation
+        simpa [admissible] using hrelation
       obtain ⟨hrelationClose, hrelationBoundary⟩ :=
         improve_spec (a * b) hexists
       have hdiffReal :
@@ -195,8 +203,10 @@ theorem isLEF_of_exactProductExpansion
           hP hedits hboundaryNeeded
     · intro a ha b hb
       have hexists : ∃ U, admissible (a * b) U := by
-        simpa [admissible] using
+        have hrelation :=
           hNrelation n hnrelation hinjective hcardPos ha hb
+        rw [hlabels] at hrelation
+        simpa [admissible] using hrelation
       obtain ⟨hrelationClose, _hrelationBoundary⟩ :=
         improve_spec (a * b) hexists
       let missing : ℕ :=

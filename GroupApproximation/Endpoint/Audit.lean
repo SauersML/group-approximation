@@ -14,6 +14,7 @@ import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.CentralCoverInheritance
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
+import GroupApproximation.KOne.PaperStatements
 import GroupApproximation.Sofic.FinitelyPresentedLEF
 import GroupApproximation.Leavitt.UnitsGLProfile
 import GroupApproximation.KOne.AllRanksElementary
@@ -56,7 +57,6 @@ import GroupApproximation.Matching.PartialSwapEquivariance
 import GroupApproximation.Matching.PartialBijectionExtraction
 import GroupApproximation.Matching.ExactPartialKazhdanRepair
 import GroupApproximation.Matching.ExactKazhdanPartialClusterSystem
-import GroupApproximation.Matching.RelationPartialClusterRepair
 import GroupApproximation.Matching.PartialBijectionSandwich
 import GroupApproximation.Sofic.InvolutiveCentralizerComponents
 import GroupApproximation.Leavitt.StrictCentralCoverWitness
@@ -161,7 +161,12 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LeavittAllRanksTT.elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_root_hasRelativeTT
 #print axioms GroupApproximation.PropertyTTPaper.coordinateBlock_factorization
+#print axioms GroupApproximation.PropertyTTPaper.fiveMove_pivot
+#print axioms GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
+#print axioms GroupApproximation.PropertyTTPaper.finitePresentation_rankFour_hasTTmodT
+#print axioms GroupApproximation.PropertyTTPaper.quasiCocycle_list_product_bound
 #print axioms GroupApproximation.PropertyTTPaper.finitePresentation_elementaryGroup_hasTTmodT
+#print axioms GroupApproximation.PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
 #print axioms GroupApproximation.UniversalRankFour.witness_not_isLEF
@@ -213,6 +218,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.BinaryLeavitt.exists_moveList
 #print axioms GroupApproximation.BinaryLeavitt.Move.eval_mem_stableUnits
 #print axioms GroupApproximation.BinaryLeavitt.K1_trivial
+#print axioms GroupApproximation.KOnePaper.diagUnit_mem_elementary
+#print axioms GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
+#print axioms GroupApproximation.KOnePaper.exists_diagUnit_elementaryFactors
 
 -- The unit-group and general-linear profiles (Theorem B(i) closed): finite
 -- generation, infinitude, property (T), and nonsoficity of `L_k(1,2)ˣ` and
@@ -396,10 +404,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ExactPartialKazhdanRepair.exactCoreRepair_trans_candidate_and_close
 #print axioms GroupApproximation.PartialClusterSystem.ofExactTransitiveKazhdanActions
 #print axioms GroupApproximation.PartialClusterSystem.exactKazhdanPresentation
-#print axioms GroupApproximation.RelationPartialClusterRepair.card_hammingDisagreement_repair_le
-#print axioms GroupApproximation.RelationPartialClusterRepair.card_badArcs_repair_le
-#print axioms GroupApproximation.RelationPartialClusterRepair.repair_candidate_and_close_of_bounds
-#print axioms GroupApproximation.PartialClusterSystem.ofRelationRepairs
 #print axioms GroupApproximation.FinitePartialBijection.twoSidedDisagreement_sandwich_le
 #print axioms GroupApproximation.FinitePartialBijection.twoSidedDisagreement_sandwich_trans_le
 #print axioms GroupApproximation.FinitePartialBijection.twoSidedDisagreement_sandwich_roundtrip_le

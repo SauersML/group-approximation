@@ -5,7 +5,7 @@ import GroupApproximation.PropertyTT.PaperStatements
 # A nonsofic group with property `(TT)/T`
 
 This file intentionally sits outside the dependency closure of the rigidity
-theorems.  It combines the new `(TT)/T` endpoint with the previously established
+theorems.  It combines the `(TT)/T` endpoint proved in this development with the previously established
 nonsoficity theorem for the same elementary group.  The nonsoficity input and
 its proof mechanism belong to the prior OpenAI work; the conjunction below is
 only a corollary.
@@ -31,7 +31,8 @@ theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
       ¬ IsSofic (BinaryLeavittEL (ZMod 2) (n - 1)) :=
     (binaryLeavitt_finiteField_profile (ZMod 2) (n - 1) hpositive).2.2.2
   refine ⟨binaryLeavitt_elementaryGroup_hasTTmodT n hn, ?_⟩
-  simpa [BinaryLeavittEL, LeavittAllRanksTT.L, hrank] using hnonsofic
+  rw [← hrank]
+  exact hnonsofic
 
 end PropertyTTPaper
 end GroupApproximation

@@ -1,11 +1,12 @@
 """Compute an exact harmonic dual-systole screen in arbitrary rank.
 
 This is the rank-independent, inexpensive part of the integral harmonic lift
-analysis.  It reconstructs Q-sharp from an already certified integral
-harmonic basis, computes its exact shortest vector with fplll, and compares
-that vector with the spherical localization threshold.  It deliberately does
-not construct an ambient integral section; that expensive step is warranted
-only when the systole screen is subthreshold.
+analysis.  It reconstructs Q-sharp from any certified integral basis spanning
+the rational harmonic space, computes its exact shortest vector with fplll,
+and compares that vector with the spherical localization threshold.  The
+input basis need not be primitive.  It deliberately does not construct an
+ambient integral section; that expensive step is warranted only when the
+systole screen is subthreshold.
 """
 
 from __future__ import annotations
@@ -15,7 +16,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from sage.all import ZZ, lcm, matrix, vector
+from sage.all import ZZ, FreeModule, lcm, matrix, vector
 from sage.modules.free_module_integer import IntegerLattice
 
 from sl3_projective_cellular_analyze import build_boundaries, parse
@@ -60,8 +61,12 @@ def main() -> None:
     if harmonic_system * harmonic_basis.transpose() != 0:
         raise AssertionError("harmonic basis has a nonzero exact residual")
 
-    d2_integer = boundaries[2].change_ring(ZZ)
-    cycle_basis = d2_integer.transpose().right_kernel_matrix()
+    cycle_rational_kernel = boundaries[2].transpose().right_kernel_matrix()
+    cycle_lattice = cycle_rational_kernel.row_space().intersection(
+        FreeModule(ZZ, dimensions[2]))
+    cycle_basis = cycle_lattice.basis_matrix()
+    if boundaries[2].transpose() * cycle_basis.transpose() != 0:
+        raise AssertionError("cycle lattice has a nonzero exact residual")
     harmonic_cycle_pairing = harmonic_basis * cycle_basis.transpose()
     pairing_basis = harmonic_cycle_pairing.transpose().row_module().basis_matrix()
     if pairing_basis.nrows() != harmonic_basis.nrows():
@@ -74,16 +79,13 @@ def main() -> None:
         raise AssertionError("Q-sharp has a nonintegral cycle pairing")
 
     qsharp_gram = qsharp_basis * qsharp_basis.transpose()
-    harmonic_in_qsharp = qsharp_coordinates.inverse()
-    if any(value.denominator() != 1 for value in harmonic_in_qsharp.list()):
-        raise AssertionError("harmonic lattice has nonintegral Q-sharp coordinates")
-    harmonic_in_qsharp = harmonic_in_qsharp.change_ring(ZZ)
-    harmonic_smith = harmonic_in_qsharp.smith_form()[0]
-    harmonic_discriminant = [
-        abs(int(harmonic_smith[index, index]))
-        for index in range(harmonic_smith.nrows())
-        if harmonic_smith[index, index]
-    ]
+    exported_harmonic_in_qsharp = qsharp_coordinates.inverse()
+    if any(value.denominator() != 1
+           for value in exported_harmonic_in_qsharp.list()):
+        raise AssertionError(
+            "exported integral harmonic vectors have nonintegral "
+            "Q-sharp coordinates")
+    exported_harmonic_in_qsharp = exported_harmonic_in_qsharp.change_ring(ZZ)
 
     common_denominator = int(qsharp_basis.denominator())
     scaled_basis = (common_denominator * qsharp_basis).change_ring(ZZ)
@@ -101,13 +103,10 @@ def main() -> None:
             common_denominator**2 * shortest_squared_norm):
         raise AssertionError("scaled shortest-vector norm mismatch")
 
-    harmonic_coordinate_lattice = harmonic_in_qsharp.row_module()
-    shortest_is_integral_harmonic = (
-        shortest_coordinates in harmonic_coordinate_lattice)
-    quotient_coordinates = (
-        shortest_coordinates * harmonic_in_qsharp.change_ring(ZZ).inverse())
+    shortest_is_integral_harmonic = all(
+        value.denominator() == 1 for value in shortest_qsharp)
     shortest_class_order = int(lcm(
-        value.denominator() for value in quotient_coordinates))
+        value.denominator() for value in shortest_qsharp))
     spherical_template_max_squared_norm = max(
         sum(value * value for value in boundaries[3].row(row))
         for row in range(boundaries[3].nrows()))
@@ -127,9 +126,9 @@ def main() -> None:
         "qsharp_common_denominator": common_denominator,
         "qsharp_gram": [
             [str(value) for value in row] for row in qsharp_gram.rows()],
-        "harmonic_in_qsharp": [
-            [int(value) for value in row] for row in harmonic_in_qsharp.rows()],
-        "harmonic_discriminant_invariants": harmonic_discriminant,
+        "exported_harmonic_sublattice_in_qsharp": [
+            [int(value) for value in row]
+            for row in exported_harmonic_in_qsharp.rows()],
         "qsharp_shortest_coordinates": [
             int(value) for value in shortest_coordinates],
         "qsharp_shortest_squared_norm": str(shortest_squared_norm),
