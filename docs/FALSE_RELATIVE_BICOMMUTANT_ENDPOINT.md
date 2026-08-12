@@ -327,3 +327,12 @@ v_n does not asymptotically centralize h.              (RBE28)
 If every `pi_n` were an honest finite-dimensional representation, the
 finite-representation matching theorem would force `(RBE25)` to fail.
 Hence the single map in `(RBE23)` must itself be genuinely nonliftable.
+
+The rate-sensitive finite refinement is
+`FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md`.  It shows that one does
+not need to construct `v_n` by hand: Haar averaging over the exact finite
+commutant chooses it automatically.  It is enough that the squared
+normalized-Hilbert--Schmidt distance of the predecessor matrix from the
+current `Gamma`-algebra dominates the multiplication defect.  Tensor
+averaging then upgrades that possibly vanishing seam to the fixed positive
+gap required in `(RBE25)`.
