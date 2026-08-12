@@ -285,6 +285,20 @@ The live finite-window target is now:
 > von Neumann algebra of the presented group remains the unavoidable
 > non-CE exact solution.
 
+There is now a computation-free reason the earlier finite-central-extension
+route cannot mediate this separation.  The natural kernel
+
+\[
+ \ker(A_8*A_8\to A_8*_H A_8)
+\]
+
+is relatively perfect, while the genuine Leavitt quotient is an explicit
+exact branch in which the two aligned copies of \(H\) remain distinct.
+Therefore the genuine boundary group has noncentral kernel over the amalgam.
+The proof, together with the resulting finite-coefficient Leavitt extraction
+target, is recorded in
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.
+
 ## 7. Replayable artifacts
 
 Discovery and independent verification:

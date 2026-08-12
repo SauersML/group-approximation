@@ -151,6 +151,28 @@ The current FALSE-side targets, in decreasing order of directness, are:
 4. construct a co-hyperlinear/non-co-sofic IRS that is actually a normal
    Dirac mass.
 
+The separate Thom-group shortcut is audited in
+`FALSE_THOM_K_DOMINANT_CENTRALIZER_AUDIT.md`.  Its Prüfer tower gives
+divisibility of favorable finite centralizer orbits but no control of their
+normalized size.  The exact missing input is a dominant-orbit/ergodic-
+centralizer theorem, not another iteration of the non-Hopfian quotient.
+
+The atlas-side finite-central shortcut is closed in
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.  For the natural
+map
+
+`A_8*A_8 -> A_8 *_H A_8`,
+
+the kernel `K` satisfies `K=[A_8*A_8,K]`.  Hence any central kernel in an
+intermediate boundary quotient is automatically trivial.  The genuine
+Leavitt boundary quotient nevertheless does not identify the aligned copies
+of `H`, so its kernel over the amalgam is genuinely noncentral.  This gives
+an explicit distant exact tracial branch and rules out globalization of the
+classical boundary Jacobian by arbitrary finite-tracial rigidity.  The live
+atlas target is now a matrix-specific coefficient/root-character extraction
+theorem which turns group microstates into forbidden approximate Leavitt
+operators inside the finite coefficient algebra.
+
 The BDL theorem becomes immediately decisive after target 1 plus quotient
 hyperlinearity.  Manzoor becomes immediately decisive after target 4.  The
 other cited stability papers provide local tools, but none removes either

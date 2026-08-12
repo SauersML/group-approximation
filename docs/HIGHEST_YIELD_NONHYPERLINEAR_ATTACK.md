@@ -1,8 +1,8 @@
-# Highest-yield remaining attack: one-instance perfect linearization
+# Highest-yield remaining attacks: finite-multiplicity reconstruction first
 
 Date: 2026-08-12
 
-## Decision
+## Revised decision
 
 The active construction target should no longer be another deformation of the
 fixed inner-aligned Leavitt atlas.  The signed group-algebra identity
@@ -17,7 +17,27 @@ square-zero construction on every finite-dimensional module, including
 indecomposable modules, arbitrary multiplicities, and off-diagonal couplings.
 Changing the characteristic or module is therefore dead work.
 
-The best remaining expected-value attack is instead:
+The relative-perfectness audit has now exposed a different, genuinely
+matrix-specific atlas route.  The boundary group has both a classical
+amalgam branch and a distant exact Leavitt branch, so arbitrary tracial or
+group-theoretic alignment is false.  But in a canonical matrix microstate the
+regular finite chart has a finite multiplicity algebra, whereas the exact
+Leavitt regular model has an infinite coset multiplicity algebra.  The
+highest-yield immediate gate is therefore:
+
+> Fourier-compress the fixed order-eight root Heisenberg subgroup, take the
+> Pauli blocks of the already explicit raw compressor words, and determine
+> whether the full atlas identities force a binary Leavitt family in the
+> finite multiplicity algebra.
+
+This is a fixed symbolic block calculation.  If it succeeds, the elementary
+matrix trace floor gives a uniform atlas gap and proves the Leavitt group
+nonhyperlinear.  If an exact finite model or a missing block identity refutes
+it, the route can be killed quickly.  The exact theorem and falsification
+gates are in
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.
+
+The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect
 > commuting-operator strategy but a uniform gap for finite-dimensional
@@ -137,15 +157,20 @@ Stop:
 * natural-overgroup scans beyond the completed \(A_9/A_{10}\) audit;
 * generic perfect-completeness long-code repair.
 
-Continue the Leavitt atlas only as a secondary benchmark for any new
-dimension-independent gadget or decoding theorem.  Its exact data remain
-valuable, but its surviving obstruction is now fully nonlinear and
-CE-specific.
+Prioritize the Leavitt atlas only at the finite-multiplicity reconstruction
+gate: the order-eight Heisenberg Fourier corner, the two raw compressor
+blocks, and the smallest boundary-plus-interior packet.  Do not resume blind
+large-\(k\) optimization or first-order deformations.
+
+Retain the one-instance perfect-linearization program as the independent
+fallback.  It starts with a known finite non-CE separation, but its missing
+perfect-completeness compiler is broader and currently less tied to a fixed
+symbolic identity than the compressor-block gate.
 
 ## Probability assessment
 
-This is still an attack on a famous open problem.  It is not likely in an
-ordinary-project sense.  Its advantage is comparative: it begins with a known
-finite non-CE separation and leaves one finite compilation problem, whereas
-the Leavitt route must both discover and certify the CE separation from
-scratch.
+These remain attacks on a famous open problem.  Neither endpoint is close to
+proved.  The finite-multiplicity route has the best immediate falsifiability
+because its next claim concerns fixed blocks of explicit words; the
+one-instance linearization route has the stronger external source separation
+but a less explicit missing compiler.
