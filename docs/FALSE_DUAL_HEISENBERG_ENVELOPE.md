@@ -346,7 +346,118 @@ already finish FALSE.  Thus `FALSE_FINITE_KERNEL_AUDIT.md` should be read
 here as a sector decomposition, not as an automatic source of the faithful
 complementary sector.
 
-## 8. A fold obstruction inside the full symmetric amalgam
+## 8. The negative multiplier and a two-seed criterion
+
+The sector needed for FALSE is smaller than operator-MF of all of `E`.
+Write
+
+```text
+Q=E/<z>=(A directSum T) semidirect G.                  (DHE34)
+```
+
+Use the section which sends `(a,t,g)` to `(a,t,0)g in E`.  From `(DHE10)`
+and the semidirect-product rule, its central multiplier in the character
+`z |-> -1` is
+
+```text
+sigma((a,t,g),(a',t',g'))=(-1)^(t(g dot a')).         (DHE35)
+```
+
+Thus the negative sector asks only for maps
+
+```text
+W_n:Q->U(d_n)                                         (DHE36)
+```
+
+such that, for every fixed `x,y in Q`,
+
+```text
+||W_n(x)W_n(y)-sigma(x,y)W_n(xy)||_op -> 0.           (DHE37)
+```
+
+No injectivity or norm-separation hypothesis is imposed.
+
+**Theorem 3 (one negative sector already proves FALSE).**  If maps
+`(DHE36)--(DHE37)` exist, then there is a hyperlinear nonsofic group.
+
+**Proof.**  Equation `(DHE37)` is equivalently an operator-norm asymptotic
+representation of `E` on which `z` is the scalar `-1`.  Restrict it along
+`Phi:F->E` from `(DHE23)`.  This gives an operator-norm, hence normalized-
+Hilbert--Schmidt, asymptotic representation of `F`.
+
+The radical word `omega` maps to `v_r`.  Choose `a_y` as in `(DHE26)`.
+Since `[v_r,u_(a_y)]=z`, the two corresponding matrix unitaries
+asymptotically anticommute.  Trace invariance under conjugacy gives
+
+```text
+tr_(d_n)(W_n(image(v_r))) -> 0.                        (DHE38)
+```
+
+Consequently
+
+```text
+||W_n(image(v_r))-1||_2^2 -> 2.                       (DHE39)
+```
+
+The tracial-ultraproduct image of `F` therefore retains `omega`.  It is
+hyperlinear, and it cannot be sofic because `omega in Rad_sof(F)`.  End
+proof.
+
+The same target can be stated using only two matrix involutions.  Put
+
+```text
+X_(n,g)=U_n(g)X_nU_n(g)^*,
+Z_(n,g)=U_n(g)Z_nU_n(g)^*.                            (DHE40)
+```
+
+Here `U_n:G->U(d_n)` is pointwise asymptotically multiplicative and
+`X_n,Z_n` are self-adjoint involutions.  The defining relations of the
+negative Heisenberg sector are exactly, pointwise in fixed indices,
+
+```text
+[X_(n,g),X_(n,h)] -> 0,
+[Z_(n,g),Z_(n,h)] -> 0,                               (DHE41)
+
+Z_(n,g gamma)-Z_(n,g) -> 0,       gamma in Gamma,    (DHE42)
+
+Z_(n,g) X_(n,h) Z_(n,g)^*
+ -(-1)^(1_(h in gGamma))X_(n,h) -> 0.                 (DHE43)
+```
+
+All limits in `(DHE41)--(DHE43)` are in operator norm.  The cosets `gGamma`
+are the only linear identifications among the orbit generators of `T`, so
+these relations and asymptotic multiplicativity of `U_n` give
+`(DHE37)` by collecting every fixed word into Heisenberg normal form.
+Conversely, a negative projective sector supplies `(DHE40)--(DHE43)` by
+taking the two seed lamps.
+
+**Corollary 4 (two-seed Weyl endpoint).**  Existence of
+`U_n,X_n,Z_n` satisfying `(DHE40)--(DHE43)` proves FALSE.
+
+The Weyl part has no finite-window obstruction.  Let `C subset G` and
+`R subset G/Gamma` be finite.  On `ell^2(F_2^C)`, let `X_h` translate the
+`h`-coordinate and let `Z_R0` multiply the basis vector `delta_b` by
+
+```text
+(-1)^(sum_(h in C intersect R0)b_h),       R0 in R.   (DHE43a)
+```
+
+The `X_h` commute, the `Z_R0` commute, and
+
+```text
+Z_R0 X_h Z_R0^*=(-1)^(1_(h in R0))X_h.                (DHE43b)
+```
+
+Thus every finite coset-incidence matrix has an exact Pauli realization.
+The hard condition is a common
+operator-norm asymptotic `G`-transport satisfying both the coset
+identifications `(DHE42)` and all shifted incidences `(DHE43)`.  Honest
+finite-quotient transport would make `Gamma` profinitely separable in the
+required orbit and is excluded by
+`FALSE_ONE_ORBIT_PARITY_SEPARABILITY_NO_GO.md`.  A solution must therefore
+be genuinely nonmonomial.
+
+## 9. A fold obstruction inside the full symmetric amalgam
 
 The new external envelope also clarifies why the existing full symmetric
 amalgam cannot already hide an operator-norm approximation to `v_ell`.
@@ -355,13 +466,13 @@ Let `A_J` be a unital C-star completion of the vertex whose chosen trace has
 GNS image `M=pL(J)`, let `C_0 subset A_J` be the even-edge algebra, and put
 
 ```text
-B=A_J *_C_0 A_J.                                      (DHE34)
+B=A_J *_C_0 A_J.                                      (DHE44)
 ```
 
 There is a fold homomorphism
 
 ```text
-fold:B->A_J                                           (DHE35)
+fold:B->A_J                                           (DHE45)
 ```
 
 which is the identity on both vertex copies.  Let `S subset Gamma`, `q in K`,
@@ -374,14 +485,14 @@ followed by the GNS map gives
 ```text
 max_(k in S union {q})
  ||W(1_m tensor w_k)W^*-chi(k)(1_m tensor w_k)||
- >= c.                                                (DHE36)
+ >= c.                                                (DHE46)
 ```
 
 Indeed the image of `W` under `GNS composed fold` is a unitary in
 `M_m(M)`, and its maximum tracial `2`-norm defect is at least `c` by
 `(TVG3)`.  Each such `2`-norm is bounded above by the C-star norm of the
 corresponding element before applying the homomorphism.  This proves
-`(DHE36)`.
+`(DHE46)`.
 
 **Corollary 3 (full-fold no-go).**  No sequence of unitaries in finite
 matrix amplifications of Shulman's full symmetric even-edge amalgam can
@@ -395,7 +506,7 @@ tracial, while the Heisenberg generator is genuinely external.  The live
 choice is now sharply exposed: select a trace on the reduced half-circle
 side, or prove operator-MF of the external group `(DHE13)`.
 
-## 9. Status
+## 10. Status
 
 The completed part is algebraic and exact:
 
@@ -407,13 +518,13 @@ dual orbit lamp
 ```
 
 No numerical experiment or asymptotic estimate enters the proof.  The
-open part is only `(DHE33)`, equivalently construction of its negative
-projective norm sector.  The fold no-go `(DHE36)` rules out the most direct
+open part can be attacked through `(DHE33)` or the strictly smaller negative
+sector `(DHE37)`.  The fold no-go `(DHE46)` rules out the most direct
 internal use of the already MF symmetric full amalgam, so future work should
 target a genuinely nonregular representation of `(DHE30)` rather than more
 functional calculus in the regular vertex.
 
-## 10. Literature boundary
+## 11. Literature boundary
 
 The three current permanence results most liable to be confused with
 `(DHE33)` do not prove it:

@@ -45321,6 +45321,38 @@ fixed constant `c>0`.  Thus the full MF symmetric amalgam cannot hide an
 operator-norm half-circle spatializer.  The Borel half-circle unitary is
 genuinely tracial; the Heisenberg generator is genuinely external.
 
+The analytic endpoint compresses further.  For
+
+```text
+Q=E/<z>=(A directSum T) semidirect G,
+```
+
+the negative central multiplier has the exact bilinear formula
+
+```text
+sigma((a,t,g),(a',t',g'))=(-1)^(t(g a')).
+```
+
+Any operator-norm asymptotic projective representation of `Q` with this
+multiplier, even a completely nonfaithful one, proves FALSE.  Restriction
+to the free-lamp source sends its radical word to `v_r`; the Weyl relation
+`[v_r,u_a]=z` becomes anticommutation in the `z=-1` sector, forcing the
+normalized trace of `v_r` to zero and its `2`-distance from the identity to
+`sqrt(2)`.
+
+Equivalently it is enough to find an operator-norm asymptotic representation
+`U_n` of `G` and two seed involutions `X_n,Z_n` whose conjugates are two
+commuting lamp families, with `Z_(g gamma)=Z_g` and
+
+```text
+Z_g X_h Z_g^*=(-1)^(1_(h in gGamma))X_h
+```
+
+asymptotically on every fixed window.  Every finite incidence matrix has an
+exact Pauli realization; the sole hard part is coherent nonmonomial
+`G`-transport.  Honest finite-quotient transport is excluded by the existing
+subgroup-separability no-go.
+
 # 2026-08-12: full exact square-level integral cycle packets
 
 Full proof and certificates:
