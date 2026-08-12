@@ -74,6 +74,40 @@ dilation; individual compressor dilations preserve CE, but coupling them
 over `N_+` is the unresolved nonamenable-amalgamation step.  See
 `docs/FALSE_FULL_COMPRESSION_SEMIGROUP_DILATION.md`.
 
+The most obvious semigroup-dilation shortcut is now closed.  In the explicit
+monomial-cone pair, every compressor has external component in the positive
+monoid `SL_3(Z) intersection M_3(N)`.  The two positive transvections
+`I+e_12` and `I+e_21` have no common right multiple: their positive column
+cones intersect in the codimension-one wall `x_1=x_2`, so a common multiple
+would have rank at most two.  Transposition gives the left-hand obstruction.
+Thus the full compressor semigroup is neither left nor right Ore and admits
+no cofinal Ore subsemigroup.  The simultaneous CE gate is genuine non-Ore
+branching, not a missing application of an ordinary group-of-fractions
+dilation theorem.  See `docs/FALSE_COMPRESSION_SEMIGROUP_ORE_NO_GO.md`.
+
+There is also a constructive simplification: the nonamenable positive core
+can be made **sofic**, so its CE microstates are no longer part of the
+unknown.  Take
+
+```text
+R_+=F_q[x_1,...,x_d],  R=F_q[x_1^(+-1),...,x_d^(+-1)],
+Gamma=E_r(R_+),        G=E_r(R) semidirect SL_d(Z),
+T=Gamma (SL_d(Z) intersection M_d(N)).
+```
+
+For a positive external compressor `ell`, its orbit stabilizer is
+`E_r(F_q[ell N^d])`.  Both coefficient rings are polynomial rings, so
+Suslin stability identifies these elementary groups with the corresponding
+special linear groups.  Any matrix outside the stabilizer therefore has an
+entry outside the monomial subring.  Truncating all monomials above a fixed
+degree gives a finite ring quotient which preserves that offending entry,
+proving the stabilizer congruence-separable.  Hence the positive action is
+sofic, its generalized wreath product is sofic, and the positive Bernoulli
+crossed product is CE.  The only live gate is now implementing the positive
+endomorphisms simultaneously, with their non-Ore branching and the
+relations of `SL_d(Z)`.  Full proof:
+`docs/FALSE_POSITIVE_CORE_IS_SOFIC.md`.
+
 ### 2026-08-12: natural-module formal deformations fail over every field
 
 The all-fields square-zero theorem has an all-order strengthening on the
