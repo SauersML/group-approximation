@@ -4,6 +4,42 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: property (T) kills the inverse-root rate escape
+
+Let `Gamma=<S>` have Kazhdan constant `kappa`, let `W` be a `Gamma`-module,
+and let `(rho_i,Phi_i)` be two exact finite-dimensional covariant unitary
+realizations of `Gamma semidirect W`. If `T` has base-intertwining defect
+`eta` on `S` and seed-intertwining defect `epsilon` on `z in W`, then for
+
+```text
+w=sum_nu n_nu g_nu z,     C=sum_nu |n_nu|,
+```
+
+one has the word-length-free bound
+
+```text
+||Phi_0(w)T-T Phi_1(w)||_2
+ <= C epsilon + 2(C+1) eta/kappa.
+```
+
+The proof projects `T`, in the Hilbert--Schmidt bimodule, onto the exact
+base-intertwiner space before transporting the seed. Exact covariance then
+makes every translate cost the same; no length of `g_nu` appears.
+
+For the paired Frobenius labels the four-orbit identity gives `C<=2r`, so
+the inverse fold is bounded by
+
+```text
+2r epsilon + (4r+2) eta/kappa.
+```
+
+This closes the apparent escape in which the positive word length of
+`x_1^(-1)` grows while `lambda_n^- eta_n` remains macroscopic. That escape
+cannot occur with exact Kazhdan base representations and exact tangent
+covariance. A successful FALSE model must put genuine normalized-HS
+nonliftability into the base action or covariance itself. Full proof:
+`FALSE_KAZHDAN_CYCLIC_SEED_PROPAGATION_NO_GO.md`.
+
 ### 2026-08-12: the scattering graph is a critical-value lattice gate
 
 The square-level graph operator is now split packetwise into its exact

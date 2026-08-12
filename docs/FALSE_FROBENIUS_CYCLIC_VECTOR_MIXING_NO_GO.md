@@ -60,27 +60,40 @@ construction therefore cannot be obtained by tensoring the local cells and
 then applying one exact global linear mixing in the commutant of the base
 action.
 
-The quantitative version isolates the remaining escape precisely.  If
-\(\eta_n\) is the base-covariance defect and \(\lambda_n^-\) is the positive
-word length of the root in `(FCM6)`, then the marked discrepancy is bounded
-by
+For an arbitrary approximately covariant system, the direct quantitative
+estimate pays the transport length. If \(\eta_n\) is the base-covariance
+defect and \(\lambda_n^-\) is the positive word length of the root in
+`(FCM6)`, then the marked discrepancy is bounded by
 
 \[
 O_r\bigl(\epsilon_n+(1+\lambda_n^-)\eta_n\bigr),
 \tag{FCM7}
 \]
 
-where \(\epsilon_n\) is the discrepancy on \(z_+\).  Thus a macroscopic fold
-with \(\epsilon_n,\eta_n\to0\) requires
+where \(\epsilon_n\) is the discrepancy on \(z_+\). Thus the elementary
+telescoping estimate alone says that a macroscopic fold with
+\(\epsilon_n,\eta_n\to0\) requires
 
 \[
 \lambda_n^-\eta_n\not\longrightarrow0.
 \tag{FCM8}
 \]
 
-This is a rate theorem, not another clock calculation.  It identifies the
-exact branch-cut distortion that the surviving noncentral construction must
-beat.
+This apparent rate escape is **not available** when the base matrices are
+exact representations of a fixed property-`(T)` group and tangent
+covariance is exact. The Kazhdan bimodule projection theorem in
+`FALSE_KAZHDAN_CYCLIC_SEED_PROPAGATION_NO_GO.md` improves `(FCM7)` in that
+regime to
+
+\[
+ 2r\epsilon_n+\frac{4r+2}{\kappa}\eta_n,
+ \tag{FCM8a}
+\]
+
+with no factor \(\lambda_n^-\). Consequently the live construction must put
+genuine normalized-Hilbert--Schmidt nonliftability into the base map or the
+tangent covariance itself; a long branch cut inside an exact Kazhdan
+covariant pair cannot retain the fold.
 
 ## 2. The alternating diagonal is an adjoint cyclic vector
 
@@ -390,26 +403,23 @@ Step 3 is incompatible with Step 4.  The common positive label is cyclic,
 so an exact equivariant transformation has no orthogonal label sector on
 which the inverse fold can remain.
 
-What remains open is genuinely asymptotic and has a sharp rate parameter.
-At a finite coefficient quotient the positive and Laurent elementary
-images coincide, so the root elements in `(FCM35)` exist.  Their positive
-word lengths may diverge because the positive presentation realizes
-(x_1^{-1}) only through a long finite-quotient collision.  A successful
-base-dependent construction must arrange covariance defect \(\eta_n\to0\)
-while keeping
+The direct estimate leaves a rate parameter for arbitrary approximate
+systems. At a finite coefficient quotient the positive and Laurent
+elementary images coincide, so the root elements in `(FCM35)` exist. Their
+positive word lengths may diverge because the positive presentation realizes
+(x_1^{-1}) only through a long finite-quotient collision. Without further
+rigidity, retaining the fold would require
 
 \[
 \lambda_n^-\eta_n
 \tag{FCM37}
 \]
 
-bounded away from zero along the marked sector.  Equivalently, it must place
-the entire defect on the same growing inverse-root branch cut identified by
-`(FCM21)`; bounded-depth copy mixing cannot work.
+bounded away from zero along the marked sector.
 
-This is consistent with the local long-chain model and with
-`FALSE_EXACT_ABSORPTION_BRANCH_CUT_DISTINCTION.md`: exact finite absorption
-and asymptotic fold visibility coexist only because the positive word which
-absorbs the fold escapes to infinity.  The new point is that the escape is
-controlled by one explicit elementary-root distortion profile, rather than
-by an unspecified global relation.
+For exact representations of the fixed Kazhdan base, however, property
+`(T)` projects the proposed mixer to an exact base intertwiner at cost
+`eta_n/kappa` before the long word is traversed. Exact tangent covariance
+then gives `(FCM8a)`, so `(FCM37)` cannot rescue the model. What remains open
+is narrower: the base maps or their tangent covariance must themselves be
+genuinely nonliftable normalized-Hilbert--Schmidt almost-representations.

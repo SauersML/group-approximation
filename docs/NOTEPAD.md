@@ -44474,3 +44474,44 @@ linear and polynomial growth.  The theorem does not yet construct the
 needed low-cost Hilbert--Schmidt interpolation.
 
 Full proof: docs/FALSE_POSITIVE_INVERSE_ROOT_LINEAR_DISTORTION.md.
+
+# 2026-08-12: property (T) removes the inverse-root word length
+
+The growing positive word length of `x_1^(-1)` is not an escape when the
+base representations and tangent covariance are exact. Let `Gamma=<S>`
+have Kazhdan constant `kappa`, and let `(rho_i,Phi_i)` be two exact
+finite-dimensional covariant realizations of `Gamma semidirect W`. For a
+unitary `T`, put
+
+```text
+epsilon=||Phi_0(z)T-T Phi_1(z)||_2,
+eta=max_(s in S)||rho_0(s)T-T rho_1(s)||_2.
+```
+
+If `w=sum_nu n_nu g_nu z` and `C=sum_nu |n_nu|`, then
+
+```text
+||Phi_0(w)T-T Phi_1(w)||_2
+ <= C epsilon + 2(C+1) eta/kappa.
+```
+
+There is no word length of the `g_nu`. Project `T` in the normalized-HS
+bimodule onto the exact base-intertwiner space; property `(T)` costs only
+`eta/kappa`. Exact covariance then transports the seed discrepancy to every
+`g_nu z` isometrically, and additive telescoping costs only the coefficient
+norm `C`.
+
+For the paired Frobenius labels, the explicit four-orbit formula has
+`C<=2r`, hence
+
+```text
+marked discrepancy <= 2r epsilon + (4r+2) eta/kappa.
+```
+
+Thus the previously isolated condition `lambda_n^- eta_n not->0` cannot
+retain the fold in an exact Kazhdan base action. The inverse-root distortion
+is algebraically real but analytically sterile after Kazhdan projection. A
+successful model must make the base map or tangent covariance itself
+genuinely nonliftable in normalized Hilbert--Schmidt norm.
+
+Full proof: docs/FALSE_KAZHDAN_CYCLIC_SEED_PROPAGATION_NO_GO.md.
