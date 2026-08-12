@@ -46041,3 +46041,40 @@ into the CE relative commutant.  The live target is now the single formula
 ```text
 pi(Gamma)' intersect M not contained in pi(h)' intersect M.
 ```
+
+# 2026-08-12: compact actions cannot move the relative anchor
+
+Full proof: `docs/FALSE_COMPACT_ACTION_RELATIVE_ANCHOR_NO_GO.md`.
+
+For any `Gamma<G`, if
+
+```text
+t Gamma t^(-1)<=Gamma,       h=t^(-1)gamma t,
+```
+
+then every finite-dimensional representation `rho` satisfies
+
+```text
+rho(t)Fix_Gamma(rho)=Fix_Gamma(rho).
+```
+
+Indeed `rho(t)Fix_Gamma=Fix_(t Gamma t^(-1))`, the latter contains
+`Fix_Gamma`, and finite dimension turns the inclusion into equality.  It
+follows that `h` fixes `Fix_Gamma` pointwise.
+
+For a compact pmp action, the Koopman representation is a direct sum of
+finite-dimensional `G`-representations, so
+
+```text
+L^infinity(X)^Gamma subset L^infinity(X)^h.
+```
+
+Thus its crossed product contains no classical relative-commutant unitary
+which centralizes `Gamma` but is moved by `h`.  When `G` has property `(T)`,
+Ioana's Section 6 argument upgrades ergodic weak compactness to compactness;
+the same no-go therefore covers every weakly compact action.
+
+For the fixed three-tag pair, any classical action completing the new
+relative-bicommutant endpoint must be CE but genuinely non-weakly-compact.
+Profinite and compact models are not merely unconstructed; they are
+structurally impossible.

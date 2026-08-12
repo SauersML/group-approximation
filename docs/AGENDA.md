@@ -4,6 +4,28 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: compact and weakly compact anchors are impossible
+
+For an arbitrary subgroup `Gamma<G` and a compressor
+`t Gamma t^(-1)<=Gamma`, every finite-dimensional `G`-representation has
+
+```text
+rho(t)Fix_Gamma=Fix_Gamma.
+```
+
+Hence every inverse predecessor `h=t^(-1)gamma t` fixes `Fix_Gamma`
+pointwise.  Direct sums prove that in every compact pmp action of `G`, every
+`Gamma`-invariant measurable function is already `h`-invariant.  If `G`
+has property `(T)`, Ioana's invariant-vector argument upgrades every
+ergodic weakly compact action to a compact one, so the exclusion applies to
+all weakly compact actions as well.
+
+Therefore the new relative-bicommutant endpoint cannot be realized by a
+profinite, compact, weakly compact, or compact-OE action.  A classical
+solution must be a CE but genuinely non-weakly-compact action; alternatively
+the witness must be noncommutative.  Full proof:
+`FALSE_COMPACT_ACTION_RELATIVE_ANCHOR_NO_GO.md`.
+
 ### 2026-08-12: paired HS models collapse to one relative commutant
 
 For `D=G *_Gamma G` and `w=i_2(h)i_1(h)^(-1)`, the paired tracial endpoint
