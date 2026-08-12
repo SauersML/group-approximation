@@ -163,13 +163,15 @@ its solution cannot be the orbitwise coinduction of one long chain.  The
 relative coefficient shear must be canceled before it becomes a global
 positive-label mismatch.
 
-Three possible escape mechanisms remain consistent with the calculation:
+Three possible escape mechanisms remain consistent with the monodromy
+calculation:
 
-1. **Holonomy-canceling multi-chain codes.**  Couple several cyclic
-   polarizations so the product shear around every external orbit is one,
-   while a marked inverse path crosses many uncompensated walls.  The
-   relevant statistic is the carry-row/marked-row incidence ratio from
-   `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`.
+1. **Higher-incidence holonomy-canceling codes.**  Couple many
+   polarizations so the product shear around every external relator cycle
+   is one, while marked evaluations meet many uncompensated walls.  Section
+   6 below shows that a single bounded-degree cyclic wall system cannot do
+   this.  The relevant statistic is the carry-row/marked-row incidence
+   ratio from `FALSE_CARRY_MEAN_SUPPORT_FORMULA.md`.
 2. **A nonconstant equivariant fiber functor.**  Solve `(LFE29)` with
    base-dependent tangent embeddings rather than conjugates of one seed
    embedding.  The embeddings must absorb `q^(-a)` while remaining equal on
@@ -180,11 +182,59 @@ Three possible escape mechanisms remain consistent with the calculation:
    representation rather than by deleting a small part of the external
    orbit.
 
-The first option is the most finite and computational.  A useful search
-instance should no longer optimize dense unitaries.  It should choose a
-sparse incidence matrix of Fourier walls subject to zero total shear on
-each external relator cycle, then maximize the number of walls crossed by
-the marked inverse path relative to the maximum carry-row weight.  An
+The first option is the most finite and computational, but only after the
+one-dimensional conservation law below has been quotiented out.  A useful
+search instance should no longer optimize dense unitaries.  It should
+choose a sparse incidence matrix of Fourier walls subject to zero total
+shear on each external relator cycle, then maximize the number of walls
+seen by the marked evaluation relative to the maximum carry-row weight.  An
 asymptotic family with carry/marked ratio tending to zero would evade
 `(LCM23)` and feed directly into the existing sparse-carry/dense-word
 certificate.
+
+## 6. Balanced cyclic walls still cannot work
+
+One might try to repair `(LCM11)` by inserting compensating inverse walls
+elsewhere in the depth cycle.  There is an elementary support obstruction
+to every such one-dimensional repair.
+
+Let `C=Z/LZ`, let `A` be any abelian shear group, and let
+
+`y:C->A`                                               `(LCM24)`
+
+be the accumulated relative shear between the two sectors.  Its wall
+increment is
+
+`s(j)=y(j+1)-y(j)`.                                   `(LCM25)`
+
+The total wall shear is automatically zero.  If `s(j)!=0`, then at least
+one of `y(j),y(j+1)` is nonzero.  Every vertex is incident to at most two
+cycle edges, hence
+
+`|supp(s)| <= 2 |supp(y)|`.                           `(LCM26)`
+
+In the regular translation/character model, a nonzero accumulated shear
+gives squared positive-label discrepancy two, while a nonzero wall gives
+at most squared marked-fold discrepancy two.  After normalization by `L`,
+
+`E_marked <= 2 E_positive`.                           `(LCM27)`
+
+Therefore `E_positive->0` forces `E_marked->0`.  Moving one compensating
+wall far away, adding many pairs of opposite walls, or taking `L` to
+infinity cannot change this conclusion.
+
+The same support argument holds on a graph of maximum degree `Delta`:
+
+`|supp(dy)| <= Delta |supp(y)|`.                      `(LCM28)`
+
+Thus bounded-degree wall coboundaries cannot realize the required
+low-carry/high-witness asymptotics.  A viable code must use at least one of
+the following features:
+
+1. marked rows whose incidence grows while carry rows stay sparse;
+2. commutants which vary with the base point, so wall holonomy is invisible
+   to the local positive representation without being an ordinary scalar
+   coboundary; or
+3. genuinely higher-dimensional or nonabelian derived data.
+
+This is the precise search space left by `(LCM23)` and `(LCM26)`.
