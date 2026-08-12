@@ -216,12 +216,13 @@ SHA-256 18683a12a3010c354ab4e5e16ca5ad2ebbdf4c01af5bc04c19244cdcc3c20be9.
 This validates the arbitrary-rank path before applying it to the new
 rank-seven level-`121` harmonic lattice.
 
-The integral harmonic exporter uses a rational nullspace followed by exact
-intersection with the ambient integer lattice.  At level `79` this completed
-in `51` seconds on one MSI core and produced exactly the same integral row
-lattice and Gram matrix as the previous generic integer-kernel calculation.
-This avoids spending tens of minutes on a full ambient HNF before the
-rank-seven level-`121` screen.
+The harmonic exporter now uses an arbitrary integral basis spanning the
+rational harmonic space; `TRUE_QSHARP_SPAN_BASIS_REDUCTION.md` proves that
+primitivity is unnecessary for reconstructing the physical `Q^#`, detecting
+integral classes, or computing their orders.  At level `79`, the combined
+span export and exact systole screen completed in `36` seconds and reproduced
+every decisive field of the primitive-basis certificate exactly.  This
+removes the full ambient HNF before the rank-seven level-`121` screen.
 
 The decisive output is not merely the size of a selected modular lift.  If
 the harmonic lattice is nonzero, compute its compact dual systole `delta_121`

@@ -100,10 +100,30 @@ harmonic-cycle pairing matrix generate `Lambda_P`; its dual is mapped back
 to ambient coordinates exactly as in `(QSB4)`.
 
 At level `79`, replacing the primitive harmonic basis by this nonprimitive
-span basis reproduces the same physical `Q^#` shortest vector and exact
-threshold comparison.  The reduction is especially valuable at level
-`121`, where the harmonic rank is seven and primitive ambient intersection
-was the dominant exact-arithmetic cost.
+span basis reproduces, field for field, the previous exact
+
+```text
+Q-sharp common denominator,
+shortest squared norm,
+shortest class order,
+spherical threshold product,
+safe/non-safe conclusion.                                  (QSB8)
+```
+
+The combined span export and exact systole computation took `36` seconds on
+one MSI core.  The compact regression certificates are
+
+```text
+experiments/projective-cellular-p79-harmonic-span-regression.json
+SHA-256 68330c1bace834e5397a77d6f862dd5d9f82123d8e3fdcd4e9d9970c98e443bd,
+
+experiments/projective-cellular-p79-systole-span-regression.json
+SHA-256 b731e2d463d2268a2845c2d38701b3a16736994b2a78742c7f99638a9104c47e.
+```
+
+The reduction is especially valuable at level `121`, where the harmonic
+rank is seven and primitive ambient intersection was the dominant
+exact-arithmetic cost.
 
 ## Scope
 
