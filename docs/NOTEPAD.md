@@ -38,7 +38,7 @@ The correct affine reduction lattice has now been identified.  For
 `K=ker(d:Z^N->Z^M)`, two ambient extensions of the same functional on `K`
 differ by
 
-    Ann_Z(K)=Row_Q(d) intersect Z^N=Sat(Row_Z(d)),
+    Ann_Z(K)=Row_Q(d^T) intersect Z^N=Sat(Row_Z(d^T)),
 
 not necessarily by the raw integer row lattice of `d`.  Their quotient is
 `Ext^1(coker(d),Z)`, hence exactly the torsion carried by the cokernel.  The
@@ -46041,6 +46041,21 @@ into the CE relative commutant.  The live target is now the single formula
 ```text
 pi(Gamma)' intersect M not contained in pi(h)' intersect M.
 ```
+
+Equivalently, at finite level there is only one unknown approximate vertex
+map and one wall:
+
+```text
+pi_n:G->U(d_n) is HS-asymptotically multiplicative,
+||[v_n,pi_n(gamma)]-1||_2->0          for gamma in Gamma,
+liminf ||[v_n,pi_n(h)]-1||_2>0.
+```
+
+The two vertex maps are `pi_n` and `Ad(v_n)pi_n`.  Conversely any paired
+model becomes this form after taking its block sum and the fixed `2 by 2`
+flip.  Future construction work should therefore solve for one nonliftable
+vertex field plus one almost-central wall, not two independent fiber
+families.
 
 # 2026-08-12: compact actions cannot move the relative anchor
 

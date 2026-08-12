@@ -260,3 +260,70 @@ The next constructive question is consequently precise: realize one
 nontrivial `Gamma`-central unitary in a CE representation of `G` whose
 conjugate by the inverse predecessor is not `Gamma`-central.  Any such
 realization completes the proof of FALSE by Corollary 2.
+
+## 7. Finite form: one almost-central wall
+
+The one-representation endpoint has an equally exact matrix form.
+
+**Theorem 3 (one-map matrix criterion).**  A CE separating representation
+of `(D,w)` exists if and only if there are dimensions `d_n`, normalized-
+Hilbert--Schmidt asymptotic homomorphisms
+
+```text
+pi_n:G->U(d_n),                                        (RBE23)
+```
+
+and unitaries `v_n in U(d_n)` such that, for every fixed
+`gamma in Gamma`,
+
+```text
+||[v_n,pi_n(gamma)]-1||_2->0,                          (RBE24)
+```
+
+while
+
+```text
+liminf_n ||[v_n,pi_n(h)]-1||_2>0.                     (RBE25)
+```
+
+### Proof
+
+Given `(RBE23)--(RBE25)`, define
+
+```text
+phi_(1,n)=pi_n,
+phi_(2,n)=Ad(v_n)pi_n.                                 (RBE26)
+```
+
+Both families are asymptotic homomorphisms.  Equation `(RBE24)` says that
+they agree asymptotically on `Gamma`, while `(RBE25)` says that they
+disagree at `h`.  Evaluation on fixed amalgam normal forms gives an
+asymptotic homomorphism of `D` retaining `w`.  Passage to the tracial
+matrix ultraproduct proves one direction.
+
+Conversely, start with paired matrix representatives
+`phi_(1,n),phi_(2,n)` of a CE separating representation.  On the doubled
+space put
+
+```text
+pi_n(g)=diag(phi_(1,n)(g),phi_(2,n)(g)),
+v_n=[[0,1],[1,0]].                                    (RBE27)
+```
+
+The same block calculation as `(RBE10)--(RBE12)` gives `(RBE24)--(RBE25)`.
+End proof.
+
+Thus the finite construction has only one vertex microstate family and one
+almost-`Gamma`-central wall.  Two independent fiber maps are a coordinate
+choice, not extra mathematical data.  In particular, the real finite
+endgame can be searched or attacked as
+
+```text
+pi_n is HS-asymptotically multiplicative on G,
+v_n asymptotically centralizes Gamma,
+v_n does not asymptotically centralize h.              (RBE28)
+```
+
+If every `pi_n` were an honest finite-dimensional representation, the
+finite-representation matching theorem would force `(RBE25)` to fail.
+Hence the single map in `(RBE23)` must itself be genuinely nonliftable.

@@ -48,6 +48,18 @@ the block sum of any two compatible vertex maps gives `v`.  Since the fixed
 double word lies in the full sofic radical, one such relative-bicommutant
 escape proves FALSE.
 
+At matrix level this is exactly one HS-asymptotic homomorphism
+`pi_n:G->U(d_n)` and one unitary `v_n` with
+
+```text
+||[v_n,pi_n(gamma)]-1||_2->0       (gamma in Gamma),
+liminf ||[v_n,pi_n(h)]-1||_2>0.
+```
+
+Conversely any paired construction becomes this one-map form by block sum
+and the flip.  This removes all formally independent second-vertex fiber
+variables from the live finite problem.
+
 The classical specialization is equally sharp: a CE pmp action of `G` with
 a `Gamma`-invariant function moved by `h` suffices.  A generalized Bernoulli
 action over `G/K` supplies the function when `Gamma<=K` and `h notin K`.
@@ -104,10 +116,10 @@ can be astronomically large and is not the desired certificate.  Full proof:
 `TRUE_SQUARE_LEVEL_INTEGRAL_PACKET_INDICES.md`.
 
 The extension fiber is now identified exactly as
-`Sat(Row_Z(d_2))=Row_Q(d_2) intersect Z^N`, not merely the raw coboundary row
-lattice.  The quotient between them is the `Ext^1` group coming from torsion
-in `coker(d_2)`.  Thus the first greedy reducer was operating in a
-finite-index sublattice and its huge output is inconclusive.  The next
+`Sat(Row_Z(d_2^T))=Row_Q(d_2^T) intersect Z^N`, not merely the raw
+coboundary row lattice.  The quotient between them is the `Ext^1` group
+coming from torsion in `coker(d_2)`.  Thus the first greedy reducer operated
+in a finite-index sublattice and its huge output is inconclusive.  The next
 quantitative calculation must reduce in the saturated annihilator.
 
 ### 2026-08-12: determinant-one primal section at level 121
