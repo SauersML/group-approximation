@@ -1693,6 +1693,24 @@ classes in `M_Q/mM_Q`, not rational LPs.  See
 `FALSE_FINITE_QUOTIENT_RELATION_FILLING_CRITERION.md` and
 `FALSE_REAL_RELATION_FILLING_NO_GO.md`.
 
+The surviving torsion target has a smaller intrinsic form.  For a finite
+quotient `F_d->Q` with kernel `L`, the five-term sequence splits
+noncanonically as
+
+`L/[F_d,L] ~= H_2(Q;Z) directSum K_Q`,
+
+where `K_Q=ker(Z^d->Q_ab)` is free of rank `d`.  Fix one integral exponent-
+sum filling `epsilon(w)=sum c_j epsilon(r_j)`.  Then
+
+`kappa_Q=[w]-sum c_j[r_j]`
+
+is the Hopf class of `w product r_j^(-c_j)` in `H_2(Q;Z)`.  Any successful
+central certificate must detect `kappa_Q` macroscopically; the fixed free
+lattice filling cannot amplify vanishing relator phases.  Therefore screen
+finite quotients by the marked Schur class first, then solve only the
+prime-power character problem in `H_2(Q)/m` plus `d` lattice coordinates.
+See `FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with

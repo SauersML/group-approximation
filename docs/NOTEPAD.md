@@ -42974,3 +42974,39 @@ Its only live information is torsion: compute relator and marked classes in
 amplifier and rules out spending MSI time on a free-part quantity which is
 provably constant.  Full proof:
 `docs/FALSE_REAL_RELATION_FILLING_NO_GO.md`.
+
+## FALSE: the quotient-dependent marked class is in the Schur multiplier
+
+Keep the notation of the preceding entry.  The integral five-term sequence
+has the sharper split form
+
+`0 -> H_2(Q;Z) -> L/[F_d,L] -> K_Q -> 0`,
+
+where `K_Q=ker(Z^d->Q_ab)` is free of rank `d`.  Hence all torsion in the
+central relation module is exactly `H_2(Q;Z)`, and modulo `m` one has
+
+`0 -> H_2(Q;Z)/m -> (L/[F_d,L])/m -> K_Q/m -> 0`.
+
+Choose a fixed integer exponent filling
+
+`epsilon(w)=sum_j c_j epsilon(r_j)`.
+
+Then the residual marked class
+
+`kappa_Q=[w]-sum_j c_j[r_j]`
+
+lies in `H_2(Q;Z)` and is represented by the Hopf word
+
+`w product_j r_j^(-c_j) in L intersect [F_d,F_d]`.
+
+For every circle character,
+
+`|chi(kappa_Q)-1|`
+` >= |chi(w)-1|-sum_j |c_j| |chi(r_j)-1|`.
+
+Thus every successful central-relator certificate must detect this marked
+Schur class.  Quotients with `kappa_Q=0` are sterile and should be rejected
+before modular optimization.  The exact MSI output is now a Schur multiplier,
+one marked Hopf class, a rank-`d` lattice, and a prime-power character—not a
+large real Schreier LP.  Full proof:
+`docs/FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`.
