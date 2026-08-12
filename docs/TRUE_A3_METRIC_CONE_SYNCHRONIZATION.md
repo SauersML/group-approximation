@@ -138,7 +138,7 @@ End proof.
 
 Dinur--Meshulam associate to each auxiliary ordering `s` and each edge `e`
 an explicit contractible subcomplex `Y_s(e)` and a vertex gauge `a_s`.  Their
-displayed eight-edge loop has holonomy
+displayed seven-edge loop has holonomy
 
 ```text
 (a_s dot phi)(e),                                    (AMC13)
@@ -150,6 +150,28 @@ and is filled by `Y_s(e)`.  Let
 m=max_(s,e)|Y_s(e)(2)|,                              (AMC14)
 D=max_tau E_s sum_(e:tau in Y_s(e)) c_X(e)/c_X(tau). (AMC15)
 ```
+
+For completeness, the source figure really supplies a disk to which Lemma 1
+applies with no hidden Dehn-area constant.  With
+
+```text
+J=a_0 join a_1 join a_2,       K=a_0 join a_1,       (AMC15a)
+```
+
+the boundary loop is filled by the following nine ordered chains:
+
+```text
+(a_2,a_0 join a_2,J),       (a_0,a_0 join a_2,J),
+(a_0,K,J),                  (a_1,K,J),
+(a_1,a_1 join a_2,J),       (a_2,a_1 join a_2,J),
+(a_0,v_0,v_1),              (a_0,K,v_1),
+(a_1,K,v_1).                                         (AMC15b)
+```
+
+Peeling this explicit disk uses each face once.  Degenerate coincidences
+delete faces and can only improve the estimate.  This source-level
+decomposition validates the sharp input `m<=9`; simple connectivity alone
+would not have supplied that quantitative filling-area bound.
 
 **Theorem 2 (metric cone synchronization).**  With the preceding data, some
 gauge `a_s` satisfies
