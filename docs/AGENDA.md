@@ -2426,6 +2426,11 @@ base-dependent, genuinely nonliftable transport under the other external
 substitutions.  Exact Kazhdan-covariant completion would again kill the fold.
 See `FALSE_PRIMITIVE_RECURRENCE_FROBENIUS_PAIR.md`.
 
+In fact the cell has `phi(l^n-1)/n` sectors: every primitive degree-`n`
+recurrence has the same positive arc and compressor order, and every two
+inverse Fourier labels have squared HS distance two.  The local alphabet
+therefore has unbounded incidence, not merely two branches.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp

@@ -106,6 +106,30 @@ the remaining coordinates then determine `a_(i,1),...,a_(i,n-1)`.
 Therefore equality of the two inverse vectors would imply `f_0=f_1`,
 contrary to the preceding paragraph.  This proves `(PRF4)`.
 
+The construction actually gives a growing family, not only two sectors.
+Let `calP_n` be the set of monic primitive polynomials of degree `n` over
+`F_l`.  Primitive elements of `F_(l^n)` occur in Frobenius orbits of size
+exactly `n`, and every such orbit has one minimal polynomial.  Therefore
+
+`|calP_n|=phi(l^n-1)/n`.                              `(PRF12a)`
+
+This quantity tends to infinity with `n`.  For every `f in calP_n`, let
+`T_f` be multiplication by `x` in the coefficient basis `(PRF11)`.  All
+these maps have order `l^n-1` and satisfy
+
+`T_f^j e_0=e_j`, `0<=j<n`.                           `(PRF12b)`
+
+The injectivity argument following `(PRF12)` shows that the inverse vectors
+
+`v_f=T_f^(-1)e_0`                                    `(PRF12c)`
+
+are pairwise distinct.  Thus one obtains
+`phi(l^n-1)/n` equal-order sectors with one literally common positive arc
+and pairwise distinct inverse labels.  Section 3 shows that their inverse
+Fourier operators are pairwise separated by squared normalized HS distance
+two.  This is a growing higher-incidence alphabet, not a balanced
+one-dimensional wall system.
+
 ## 3. Exact Fourier realization
 
 Fix a nontrivial additive character
@@ -147,6 +171,15 @@ For unitaries `A,B`,
 `||A-B||_2^2=2-2 Re tr(A^*B)`.                       `(PRF20)`
 
 Equations `(PRF17)--(PRF20)` prove `(PRF6)`.
+
+The same calculation applies to every pair `f!=g` in `calP_n`: by
+`(PRF12c)`, `v_f-v_g!=0`, so
+
+`||Z(v_f)-Z(v_g)||_2^2=2`.                            `(PRF20a)`
+
+Consequently all `|calP_n|` inverse sectors are mutually equidistant in
+normalized Hilbert--Schmidt metric while their first `n` forward sectors
+coincide.
 
 The whole construction is regular and exact: no approximate matrix
 relation, spectral matching, or boundary deletion occurs.
@@ -199,6 +232,10 @@ The primitive-recurrence pair changes the architecture:
 3. every bounded positive coefficient computation occurs before either
    recurrence is visible; and
 4. the inverse coefficient detects the difference with energy exactly two.
+
+Moreover `(PRF12a)--(PRF20a)` provide a growing number of such sectors.
+This is the first explicit local Frobenius cell in this route with both
+unbounded incidence and no compressor-order inflation.
 
 Therefore the **order-inflation** and **orbitwise monodromy-density**
 arguments from the long-chain no-go do not apply to this pair.
