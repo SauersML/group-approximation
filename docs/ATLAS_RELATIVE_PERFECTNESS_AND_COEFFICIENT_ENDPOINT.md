@@ -1003,3 +1003,51 @@ audit and weaker than full coefficient-Leavitt extraction:
 
 This is the load-bearing theorem behind the one-cut route.  A computation of
 forced zeros in a single arbitrary gauge cannot substitute for it.
+
+## 16. Two compressors do not create a Hall deficit by themselves
+
+Using both binary branches appears at first to repair the balanced graph in
+`(RPC54)`.  At depth `r`, take two copies of the source character set, one
+for each compressor.  Their combined source weight is two, whereas the
+depth-`r+1` target has weight one.  Thus the formal union of the two
+covariance graphs has a `2:1` Hall surplus.
+
+This is not yet an operator obstruction.  Equation `(RPC43)` applies to the
+columns of one unitary or, more generally, to one contraction which is
+isometric on the displayed source.  The two compressor group elements give
+two separate unitaries.  Placing their columns side by side does not give an
+isometry from two source copies: the missing condition is precisely that the
+two columns have orthogonal ranges.
+
+In exact coefficient notation that condition is the Leavitt relation.  If
+`S_0,S_1` in a finite tracial algebra satisfied
+
+\[
+ S_i^*S_j=\delta_{ij}1,
+ \tag{RPC57}
+\]
+
+then `S_0S_0^*` and `S_1S_1^*` would be orthogonal projections, while
+
+\[
+ \tau(S_0S_0^*)+\tau(S_1S_1^*)=2,
+ \tag{RPC58}
+\]
+
+contradicting their sum being at most one.  The same argument has an
+elementary quantitative version for approximately isometric, approximately
+orthogonal columns.  But covariance of each compressor with the root tree
+does not imply the cross term `S_0^*S_1` is small.
+
+Therefore the two-branch refinement changes the smallest positive target,
+but does not eliminate coefficient extraction:
+
+> **Cross-orthogonality extraction.**  After one coherent commutant gauge,
+> extract one coefficient column from each raw branch compressor, prove that
+> both columns retain fixed source mass, and prove that their cross inner
+> product is `o(1)`.
+
+This target is equivalent to the support-plus-orthogonality part of
+`(RPC23)` and is stronger than the one-compressor Hall gate.  Treating two
+independent unitary support graphs as the columns of one isometry would
+silently assume the theorem to be proved.

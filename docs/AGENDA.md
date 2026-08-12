@@ -4,6 +4,36 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: matrix exponents make the marked compressor orbit free
+
+The large external stabilizer in the standard exponent lattice is not
+intrinsic to the Kun--Thom construction.  Put
+
+```text
+V=M_d(Z),  C=M_d(N),
+R_+=F_q[C],  R=F_q[V],
+Gamma=E_r(R_+),  G=E_r(R) semidirect SL_d(Z),
+```
+
+with `SL_d(Z)` acting on exponent matrices by left multiplication.  This is
+again a residually finite Kazhdan nonnormal infranormal pair; the same
+positive nonnegative-matrix semigroup compresses `Gamma`, and the positive
+Bernoulli core remains sofic because every compressed coefficient monoid is
+free polynomial and every positive stabilizer is congruence separable.
+
+For `t=I+E_12` and `gamma=e_12(y^I)`, the predecessor has exponent
+`t^(-1)I=I-E_12`, so it is genuinely Laurent, while `t^nI=I+nE_12` is
+positive for every `n>=0`.  Unlike a standard exponent vector, `I` has
+trivial external stabilizer.  The marked orbit is therefore the regular
+`SL_d(Z)`-set: there is no stabilizer cocycle and no stabilizer intertwiner
+left in the marked Fourier transport.
+
+This does not yet construct the required nonliftable vertex maps.  It
+removes one independent obstruction and localizes the remaining theorem to
+compatibility with the finite positive ring/elementary window on regular
+external charts.  Full proof and exact endpoint:
+`docs/FALSE_FREE_MARKED_ORBIT_AMPLIFICATION.md`.
+
 ### 2026-08-12: the Ioana shortcut has a free-action scope gap
 
 The coherent-Schreier note needed one further correction.  Ioana's

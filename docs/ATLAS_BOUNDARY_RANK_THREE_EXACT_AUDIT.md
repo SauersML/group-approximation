@@ -278,6 +278,53 @@ nonlocal-game correlation gaps, not a universal algebraic positivity
 certificate.  This is why a global polynomial SOS search, without a
 matrix-specific ingredient, cannot finish nonhyperlinearity.
 
+## 7. The five-word packet is rigid in the smallest simple ambient group
+
+There is nevertheless a useful exact positive result for the compressed
+indices
+
+\[
+ 0,\ 11,\ 30,\ 44,\ 55.
+ \tag{20}
+\]
+
+Transport the second copy through \(k_0\), so that all five words lie in
+\(H_1*H_2\).  Fix the first standard embedding \(H<GL_4(2)\), and for
+each \(c\in GL_4(2)\) map the second copy by
+
+\[
+ h\longmapsto chc^{-1}.
+ \tag{21}
+\]
+
+Exhaustive exact evaluation over all \(20160\) choices of \(c\) gives
+
+\[
+ \#\{c:\text{all five words in (20) vanish under (21)}\}=1.
+ \tag{22}
+\]
+
+For the unique solution the two copies of \(H\) coincide, and the generated
+image has order \(168\).  In particular there is no finite \(A_8\)-image of
+the five-relator quotient which separates the two copies.
+
+This does not prove that the abstract quotient is \(H\).  Its rational
+linearization is already known to have full rank while its two-primary
+linearization retains residue, so an infinite or more complicated perfect
+quotient is not excluded.  A bounded Todd--Coxeter calculation and a
+low-index search through degree twelve did not terminate; neither timeout is
+used as evidence.  The durable statement is only the exhaustive finite
+certificate `(22)`.
+
+The replayable scan is
+
+```text
+python3 experiments/atlas_boundary_h_finite_quotient_scan.py
+```
+
+with archived output in
+`experiments/atlas-boundary-h-finite-quotient-scan.json`.
+
 The live finite-window target is now:
 
 > Find a finite boundary-plus-interior packet for which every
