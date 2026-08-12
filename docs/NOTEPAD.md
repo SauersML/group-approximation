@@ -43907,3 +43907,33 @@ the dual packets must also be bounded.  This is the same arithmetic closing
 layer isolated by the paired-discriminant formulation, now expressed in the
 canonical modular-symbol model.  Full audit:
 `docs/TRUE_ASH_RUDOLPH_PACKET_SCOPE_AUDIT.md`.
+
+# 2026-08-11: metric cone repair on `A_3(F_q)`
+
+Dinur--Meshulam's geometric-lattice cone argument admits a quantitative
+upgrade from the indicator-of-nonidentity norm to every bi-invariant metric.
+If the cone disks have at most `M` faces and maximum averaged weighted face
+incidence `D`, then for every `1<=p<infinity` there is a vertex gauge with
+
+`||psi.phi||_(L^p edges)
+ <=M^(1-1/p)D^(1/p)||d^1 phi||_(L^p triangles)`.
+
+The proof peels each disk: its boundary holonomy is a product of conjugates
+of its triangle curvatures.  Bi-invariance, Holder, and the weighted
+incidence count give the estimate.  For `A_3(F_q)`, the exact cone data are
+`M<=9` and `D<=9`, so the constant is exactly `9` for every finite `p`,
+uniformly in `q` and the coefficient group.
+
+Taking coefficients in `U(n)` with normalized HS distance gives a
+dimension-free nonlinear unitary cocycle-repair theorem.  Taking permutation
+coefficients with Hamming distance gives average edge repair at most nine
+times average triangle deficiency, without the fixity loss in the published
+support argument.  This is the sheetwise Hamming edit metric, not their
+all-or-nothing metric which charges a whole base edge when its matchings are
+unequal.
+
+This does not yet decode the `SL_3(Z)` projective charts: `P^2(F_p)` with
+stabilizer homology and absolute integral closing is not the simply connected
+`A_3(F_q)` cochain complex.  A bounded integral chain comparison is the
+missing bridge.  Full theorem and scope:
+`docs/TRUE_METRIC_GEOMETRIC_LATTICE_REPAIR.md`.

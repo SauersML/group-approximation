@@ -2077,6 +2077,24 @@ external relation are exact simultaneously.  Only covariance for the other
 Laurent tangent and base-elementary generators remains.  See
 `FALSE_EXACT_PRINCIPAL_BUNDLE_EXTERNAL_COMPLETION.md`.
 
+## Metric geometric-lattice repair (2026-08-11)
+
+The Dinur--Meshulam cone proof upgrades from support norm to every
+bi-invariant metric.  On `A_3(F_q)`, each cone patch has at most nine
+triangles and the averaged weighted incidence is at most nine.  Hence, for
+every metric group and every finite `p`, a vertex gauge repairs a one-cochain
+with `L^p` cost at most nine times its triangle-curvature cost.  In
+particular this gives a dimension-free normalized-Hilbert--Schmidt unitary
+cocycle repair theorem and a fixity-free theorem in the sheetwise Hamming
+edit metric (distinct from the published all-or-nothing base-edge metric).
+
+Do not cite this as solving the projective carry system.  The current charts
+use `P^2(F_p)` plus stabilizer homology and an absolute integral closing map,
+not the simply connected `A_3(F_q)` order complex.  The live bridge is a
+bounded integral chain comparison into geometric-lattice cone patches.
+Full proof and literature scope:
+`TRUE_METRIC_GEOMETRIC_LATTICE_REPAIR.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
