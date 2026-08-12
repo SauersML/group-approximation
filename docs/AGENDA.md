@@ -19,6 +19,26 @@ directions inside a Connes-embeddable finite algebra, with a non-group
 relative-commutant unitary.  Full audit:
 `docs/FALSE_FINITE_INDEX_BERNOULLI_TOWER_AUDIT.md`.
 
+The analogous semifinite shortcut is now also closed exactly.  Put the
+quasi-regular action in `B(l2(G/Gamma)) tensor A`, take its inner crossed
+product, and compress by the finite root projection.  The canonical Morita
+cocycle cancels the entire coset coordinate: the corner representation is
+just `sigma tensor lambda_G`.  A root-supported element is a relative wall
+after compression iff its internal coefficient was already a relative wall
+for `sigma`.  Thus proper infiniteness and finite-corner compression do not
+supply the missing unitary.  Full proof:
+`docs/FALSE_SEMIFINITE_MORITA_COMPRESSION_NO_GO.md`.
+
+The 2025 amenable-near-representation characterization does not close the
+negative branch either.  Its amenability is Bekka amenability encoded by a
+finitely additive charge on a basis.  Hyperfinite HS stability assumes
+amenability of the normalized-trace GNS von Neumann algebra.  The charge may
+live on zero normalized density, so the former does not supply the latter.
+Property `(T)` only extracts a finite-dimensional summand after one has an
+honest amenable representation; it cannot repair the near multiplication
+law.  Full scope audit:
+`docs/FALSE_AMENABLE_NEAR_REPRESENTATION_SCOPE_AUDIT.md`.
+
 ### 2026-08-12: repaired level-169 packet has an exact integral section
 
 The packet-only dual solver was rerun on MSI against the repaired packet

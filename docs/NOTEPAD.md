@@ -15,6 +15,24 @@ finite algebra while retaining a non-group unitary in the required relative
 commutant.  See
 `docs/FALSE_FINITE_INDEX_BERNOULLI_TOWER_AUDIT.md`.
 
+The stable Morita version does not evade this boundary.  For the inner action
+of `rho_(G/Gamma) tensor sigma` on
+`B(l2(G/Gamma)) tensor A`, compression by the rank-one root projection and
+the canonical partial-isometry cocycle produces exactly the corner
+representation `sigma tensor lambda_G`; the quasi-regular coordinate
+cancels.  Hence a root-supported corner element is a wall precisely when its
+`A`-coefficient was already one.  See
+`docs/FALSE_SEMIFINITE_MORITA_COMPRESSION_NO_GO.md`.
+
+Kahl--Schneider's characterization of hyperlinearity by essentially free
+amenable near representations does not combine with hyperfinite HS
+stability.  Their amenability is Bekka's invariant-state/finitely-additive
+charge condition; the stability theorem assumes an amenable normalized-trace
+GNS algebra.  A charge can concentrate on zero normalized density, and
+property `(T)` applies only after the near representation has been repaired
+to an honest one.  See
+`docs/FALSE_AMENABLE_NEAR_REPRESENTATION_SCOPE_AUDIT.md`.
+
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 
 Full proof and certificate:
