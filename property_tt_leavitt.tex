@@ -339,7 +339,7 @@ masses for which the indicated coordinate character is trivial on
 If \(P\) is the orthogonal projection onto
 \(\mathcal H^{H_{ijk}}\) and \(w=z-Pz\), then
 \begin{align}\label{eq:plane-energy}
- \norm w^2\le{}&d_{ik}^2+d_{jk}^2
+ \norm w^2\le{}&d_{ik,1}^2+d_{jk,1}^2
  +\frac32\sum_{s\in X}2\norm z
        (d_{ij,s}+d_{ji,s})\notag\\
  &+2\norm z(d_{ij,1}+d_{ji,1}),
@@ -374,7 +374,7 @@ coefficient.  The nontrivial character of \(\F_2\) has character
 gap \(4\), so the negative-character projection formula for an
 involution gives
 \begin{equation}\label{eq:Dmass}
- m_d^D\le\tfrac14(d_{ik}^2+d_{jk}^2).
+ m_d^D\le\tfrac14(d_{ik,1}^2+d_{jk,1}^2).
 \end{equation}
 
 We next record the cross-stage inequalities controlling the
@@ -416,7 +416,7 @@ Add~\eqref{eq:AB-descent} and~\eqref{eq:CB-descent}, use
 Collecting the four region coefficients gives
 \begin{align}\label{eq:finite-mass}
  m_{d+2}^A+m_{d+2}^B+m_{d+2}^C+m_{d+2}^D
- \le{}&d_{ik}^2+d_{jk}^2
+ \le{}&d_{ik,1}^2+d_{jk,1}^2
    +\tfrac32(G_{ji}+G_{ij})+U_{ji}+U_{ij}\notag\\
  &+\tfrac92(\partial_{1,d+2}+\partial_{2,d+2}).
 \end{align}
@@ -624,10 +624,11 @@ one element from each of \(X_{03},X_{13},X_{23}\), so its
 displacement of \(w\) is at most \(6K\).  Since
 \(w\perp\mathcal H^N\), this already bounds \(w\).  Indeed, the
 closed convex hull of the \(N\)-orbit of \(w\) has a unique vector
-of minimal norm; that vector is \(N\)-fixed.  It is therefore zero,
-whereas the whole orbit, and hence its closed convex hull, lies in
-the closed ball of radius \(6K\) about \(w\).  Consequently
-\(\norm w\le6K\).  Together with~\eqref{eq:fixed}, this gives
+of minimal norm; that vector is \(N\)-fixed.  The convex hull stays
+inside \((\mathcal H^N)^\perp\), so its minimal vector is zero.
+On the other hand, the whole orbit, and hence its closed convex
+hull, lies in the closed ball of radius \(6K\) about \(w\).
+Consequently \(\norm w\le6K\).  Together with~\eqref{eq:fixed}, this gives
 \[
   \norm{b(I+aE_{03})}
   \le
@@ -826,7 +827,7 @@ Fix a unitary representation \(\pi\) of \(G\) without nonzero
 invariant vectors and a quasi-cocycle \(b\) of defect at most \(D\).
 Choose a Kazhdan pair \((K,\varepsilon)\), and choose once and for
 all an \(S\cup S^{-1}\)-word for each \(k\in K\).  Let \(L\) be
-the maximum of their lengths.  If \(\norm{b(s)}\le C\) for \(s\in S\),
+the sum of their lengths.  If \(\norm{b(s)}\le C\) for \(s\in S\),
 comparison of the quasi-cocycle identities for \(sh\) and
 \(h(h^{-1}sh)\) gives
 \[
@@ -1029,10 +1030,11 @@ Let \(L\) be the binary Leavitt algebra~\cite{Leavitt},
 \]
 The defining generators themselves form a binary Leavitt family,
 and the presentation makes \(L\) a finite-type \(\F_2\)-algebra.
-Ara--Goodearl--Pardo prove that \(L\) is purely infinite
-simple~\cite[Theorem~4.2]{AraGoodearlPardo}; their
-Theorem~1.6 then gives the single-sandwich property.  It remains to
-discuss the unstable diagonal condition.
+The graph criterion of Abrams--Aranda Pino shows that \(L\) is
+purely infinite simple~\cite[Theorem~11]{AbramsArandaPino};
+Ara--Goodearl--Pardo's Theorem~1.6 then gives the
+single-sandwich property.  It remains to discuss the unstable
+diagonal condition.
 
 \begin{proposition}[Unstable diagonal reduction]\label{prop:diag}
 For every \(u\in L^\times\),
@@ -1054,12 +1056,15 @@ by \(-1\), hence
 \]
 for every \(i\in\mathbb Z\), in particular in degree one.
 
-Ara--Goodearl--Pardo prove that a unital purely infinite
-simple ring is a GE-ring and that
+The GE criterion of Menal--Moncasi applies to unital purely infinite
+simple rings, as recalled by Ara--Goodearl--Pardo in the proof of
+their Theorem~2.4~\cite{MenalMoncasi,AraGoodearlPardo}.
+Ara--Goodearl--Pardo's theorem also identifies
 \[
   K_1(R)\cong R^\times_{\mathrm{ab}}
 \]
-by~\cite[Theorem~2.4]{AraGoodearlPardo}.  Thus \(K_1(L)=0\) makes each
+for such rings~\cite[Theorem~2.4]{AraGoodearlPardo}.  Thus
+\(K_1(L)=0\) makes each
 unit a product of commutators.  The standard \(2\times2\) Whitehead
 identity places \(\diag([a,b],1)\) in \(\EL_2(L)\); the GE property
 then gives \(\GL_2(L)=\EL_2(L)\), proving
@@ -1131,6 +1136,7 @@ Lemma~\ref{lem:localized-plane} &
 \nolinkurl{freeCharacteristicTwo_localizedPlaneEstimate} \\
 Lemma~\ref{lem:row-symmetry} &
 \nolinkurl{freeCharacteristicTwo_inverseTranspose_root},
+\nolinkurl{freeCharacteristicTwo_rowEmbedding_controlRoot},
 \nolinkurl{freeCharacteristicTwo_rowEmbedding_elementaryRoot} \\
 Theorem~\ref{thm:root} &
 \nolinkurl{freeCharacteristicTwo_root_hasRelativeTT} \\
@@ -1138,13 +1144,17 @@ Lemma~\ref{lem:kazhdan-globalization} &
 \nolinkurl{kazhdan_normalizedSet_globalization} \\
 Lemmas~\ref{lem:rank-equivalence} and~\ref{lem:gl-el} &
 \nolinkurl{leavitt_elementaryRankEquivalence},
+\nolinkurl{elementaryBlockFlattening},
 \nolinkurl{elementaryGroup_eq_generalLinear} \\
 Proposition~\ref{prop:rank-four} &
 \nolinkurl{finiteFreeQuotient_rankFour_hasTTmodT} \\
+Lemma~\ref{lem:products} &
+\nolinkurl{quasiCocycle_list_product_bound} \\
 Theorem~\ref{thm:B} &
 \nolinkurl{finiteType_elementaryGroup_hasTTmodT} \\
 Proposition~\ref{prop:diag} &
-\nolinkurl{KOnePaper.diagUnit_mem_elementary} \\
+\nolinkurl{KOnePaper.diagUnit_mem_elementary},
+\nolinkurl{KOnePaper.elementaryGroup_two_eq_top} \\
 Theorem~\ref{thm:C} and Corollary~\ref{cor:nonsofic} &
 \nolinkurl{binaryLeavitt_elementaryGroup_hasTTmodT},
 \nolinkurl{binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic} \\
@@ -1153,6 +1163,12 @@ Theorem~\ref{thm:C} and Corollary~\ref{cor:nonsofic} &
 \endgroup
 
 \begin{thebibliography}{99}
+
+\bibitem{AbramsArandaPino}
+G.~Abrams and G.~Aranda Pino,
+\emph{Purely infinite simple Leavitt path algebras},
+Journal of Pure and Applied Algebra \textbf{207} (2006), no.~3,
+553--563.
 
 \bibitem{AraBrustengaCortinas}
 P.~Ara, M.~Brustenga, and G.~Corti\~nas,
@@ -1198,6 +1214,11 @@ M.~Mimura,
 \emph{Rigidity theorems for universal and symplectic universal lattices},
 doctoral thesis, University of Tokyo, 2011,
 \href{https://doi.org/10.15083/00004046}{doi:10.15083/00004046}.
+
+\bibitem{MenalMoncasi}
+P.~Menal and J.~Moncasi,
+\emph{\(K_1\) of von Neumann regular rings},
+Journal of Pure and Applied Algebra \textbf{33} (1984), 295--312.
 
 \bibitem{OpenAITenProofs}
 OpenAI,

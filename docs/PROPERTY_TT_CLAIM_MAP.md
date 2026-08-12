@@ -140,9 +140,10 @@ GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
 ```
 
 Credit boundary: this equality also receives no theorem-novelty credit.
-Ara--Goodearl--Pardo prove that a purely infinite simple unital ring is a
-GE-ring and identify its stable `K₁` with the abelianization of its unit
-group. Ara--Brustenga--Cortiñas give `K₁(L_k(1,2)) = 0`. Hence every unit is
+Menal--Moncasi supply the GE theorem used for purely infinite simple unital
+rings; Ara--Goodearl--Pardo apply it and identify stable `K₁` with the
+abelianization of the unit group. Ara--Brustenga--Cortiñas give
+`K₁(L_k(1,2)) = 0`. Hence every unit is
 a product of commutators; the classical rank-two Whitehead identity makes
 `diag(u,1)` elementary; and GE reduction gives `GL₂ = E₂`. The manuscript
 uses this established structural route and makes no novelty claim for the

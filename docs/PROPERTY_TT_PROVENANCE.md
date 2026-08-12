@@ -68,9 +68,12 @@ this property together with exclusion of division rings.  The converse must
 not be quoted without its simplicity/non-division hypotheses.
 
 Leavitt self-similarity and the relevant `K`-theory are established subjects.
-In particular, neither matrix self-similarity nor `K_1(L_2)=0` is a novelty
-claim of this paper.  Ara--Brustenga--Cortiñas, *K-theory of Leavitt path
-algebras*, prove the regular-supercoherent coefficient formula whose
+Abrams--Aranda Pino, *Purely infinite simple Leavitt path algebras*,
+Theorem 11, supplies the graph criterion that makes the one-vertex,
+two-loop algebra purely infinite simple.  In particular, neither matrix
+self-similarity nor `K_1(L_2)=0` is a novelty claim of this paper.
+Ara--Brustenga--Cortiñas, *K-theory of Leavitt path algebras*, prove the
+regular-supercoherent coefficient formula whose
 one-vertex, two-loop specialization has `1 - Nᵗ = -1` and hence gives
 `K_i(L_k(1,2)) = 0` in every degree.  The Lean proofs provide an explicit
 internal route to the exact algebraic hypotheses.
@@ -78,10 +81,11 @@ internal route to the exact algebraic hypotheses.
 Stable `K_1 = 0` alone must not be conflated with the unstable equality
 `GL₂ = E₂`: for an arbitrary ring, the former only gives elementary
 generation after unspecified stabilization.  For the binary Leavitt algebra,
-however, the additional theorems of Ara--Goodearl--Pardo close exactly this
-gap.  They prove that purely infinite simple unital rings are GE-rings and
-that their `K₁` is the abelianization of the unit group.  Combined with the
-Ara--Brustenga--Cortiñas vanishing, every unit is a product of commutators;
+however, the GE theorem of Menal--Moncasi and the `K₁` theorem of
+Ara--Goodearl--Pardo close exactly this gap.  Ara--Goodearl--Pardo apply the
+former and prove that `K₁` is the abelianization of the unit group.  Combined
+with the Ara--Brustenga--Cortiñas vanishing, every unit is a product of
+commutators;
 the rank-two Whitehead identity makes each `diag([a,b],1)` elementary; and GE
 reduction gives `GL₂(L_k(1,2)) = E₂(L_k(1,2))`.  Thus the unstable equality is
 an established consequence and receives no theorem-novelty credit here.  The
