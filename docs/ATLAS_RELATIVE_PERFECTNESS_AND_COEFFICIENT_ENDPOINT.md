@@ -1209,3 +1209,42 @@ choosable signs on the unused subtree.  Reviving the root-character route
 therefore requires a uniform transfer-operator theorem for the many-to-one
 map `alpha_0^*`, augmented by further atlas relations.  A permutation
 spectral gap for the compressor alone is unavailable.
+
+In fact the compressor alone has an explicit nontrivial fixed character.
+Use the standard infinite-binary-path representation of the Leavitt
+algebra, let
+
+\[
+ \zeta=000\cdots,
+ \tag{RPC70}
+\]
+
+and define the `F_2`-linear functional `ell(a)` to be the coefficient of
+`zeta` in `a zeta`.  Prefixing and deleting a leading zero both fix `zeta`,
+so
+
+\[
+ \ell(s_0at_0)=\ell(a),
+ \qquad \ell(1)=1.
+ \tag{RPC71}
+\]
+
+Therefore
+
+\[
+ \chi_0(a)=(-1)^{\ell(a)}
+ \tag{RPC72}
+\]
+
+is a nontrivial character of `(L,+)` satisfying
+
+\[
+ \chi_0\circ\alpha_0=\chi_0.
+ \tag{RPC73}
+\]
+
+The atomic measure `delta_(chi_0)` is a fixed nontrivial measure for the
+dual transfer map.  Hence no positive version of `(RPC63)` can hold using
+only the comb compressor.  Any root-character proof must add relations
+which move or couple this boundary-path character; merely passing from
+probability vectors to square-root multiplicity vectors does not suffice.

@@ -89,8 +89,12 @@ matrix-specific gap.  However, the actual compressor acts by the proper
 embedding `a |-> s_0 a t_0`; its dual is many-to-one rather than a
 permutation.  The finite Hellinger estimate is valid, but the naive
 property-`(T)` permutation argument is not.  A revival needs a
-transfer-operator gap using additional atlas relations.  See
-`(RPC59)--(RPC69)`.
+transfer-operator gap using additional atlas relations.  The
+compressor-only transfer gap is actually false: evaluation at the constant
+path `000...` gives a nontrivial additive character fixed by
+`a |-> s_0 a t_0`.  Do not pursue the empirical-character route without
+first exhibiting an additional relation which moves this fixed character.
+See `(RPC59)--(RPC73)`.
 
 Do not search the current radius-five collision tree for a single linear
 Hecke edge.  The exact archived scan has no word with exactly one transverse
