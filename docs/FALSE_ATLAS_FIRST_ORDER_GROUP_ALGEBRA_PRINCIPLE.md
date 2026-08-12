@@ -72,7 +72,7 @@ In characteristic two, subtraction in `(GA1)` becomes addition. The exact
 Leavitt atlas over \(\mathbb F_2\), including all nonsemisimple modules and
 off-diagonal blocks.
 
-## Characteristic-zero Leavitt-atlas theorem
+## All-fields Leavitt-atlas theorem
 
 Now take
 
@@ -84,21 +84,22 @@ Now take
 
 use the unique classical inner alignment, and let \(\mathcal Z_5\) be the 24
 cyclic representatives of the 178 perfect-overlap-certified zero relations.
-For the signed derivatives `(GA1)`, the exact computation proves
+For the signed derivatives `(GA1)`, the exact computations prove, for
+**every field** (k),
 
 \[
  d_{11}\in
- \sum_{z\in\mathcal Z_5}\mathbb Q[A_8]d_z+
+ \sum_{z\in\mathcal Z_5}k[A_8]d_z+
  \sum_{s\in\mathcal S}\sum_{g\in T}
-       \mathbb Q[A_8](g-1)d_s.                       \tag{GA6}
+       k[A_8](g-1)d_s.                               \tag{GA6}
 \]
 
-Consequently, for **every** finite-dimensional complex representation of
-(A_8), every inner-aligned square-zero deformation which kills the 24 zero
-relations and makes all four survivors commute with the first full chart
-also kills the marked (s_{11}) phase. The conclusion allows arbitrary
-dimensions, irreducible types, multiplicities, direct sums, and
-off-diagonal couplings.
+Consequently, for every finite-dimensional (k[A_8])-module, every
+inner-aligned square-zero deformation which kills the 24 zero relations and
+makes all four survivors commute with the first full chart also kills the
+marked (s_{11}) phase. The conclusion allows every coefficient field,
+arbitrary dimensions, composition factors, indecomposable structure,
+multiplicities, direct sums, and off-diagonal couplings.
 
 ### Why the finite computation proves `(GA6)`
 
@@ -114,7 +115,8 @@ The forward implication is immediate. Conversely, if (t\notin Aa_1+
 \cdots+Aa_r), the cyclic vector (1+I\) in the semisimple module (A/I)
 has a simple component killed by every (a_i) but not by (t).
 
-The computation uses exact rational seminormal matrices. After scalar
+The characteristic-zero computation uses exact rational seminormal matrices.
+After scalar
 extension to \(\mathbb C\), restricting one (S_8) Specht module from each
 conjugate-partition pair covers all (A_8)-irreducibles. There are twelve
 selected partitions. Ten give one irreducible restriction each, while the
@@ -133,6 +135,43 @@ in the corresponding left ideal of \(\mathbb C[A_8]\). Since membership is a
 linear system with rational coefficients, solvability over \(\mathbb C\) is
 equivalent to solvability over \(\mathbb Q\), proving `(GA6)`.
 
+The same computation constructs an exact row certificate in every selected
+restriction, directly in the original constraint rows. The least common
+denominator of all representation matrices is
+
+\[
+ 1814400=2^7 3^4 5^2 7,
+\]
+
+while the least common denominator of all direct row-certificate
+coefficients is
+
+\[
+ 74129444573184000.
+\]
+
+The total exceptional prime support is
+
+\[
+ \{2,3,5,7,11,13,1181\}.
+\]
+
+Hence these certificates reduce modulo every prime outside that set. For
+such primes (p\nmid|A_8|), Maschke semisimplicity and the same Specht
+restriction cover after scalar extension prove `(GA7)` in every simple
+characteristic-(p) sector. Membership after scalar extension is equivalent
+to membership over the base field because it is a linear system.
+
+The exceptional primes are handled directly in the regular group algebra.
+Characteristic two is certified by the 552-step XOR derivation
+described in `FALSE_ATLAS_UNIVERSAL_MODULAR_FIRST_ORDER_NO_GO.md`. In each of
+characteristics (3,5,7,11,13,1181), a sparse left-translation closure of the
+48 seed rows reaches rank (149) and reduces (d_{11}) to zero. The archived
+DAG records every seed or translated-parent source, every modular elimination
+coefficient, normalization inverse, pivot, and final target reduction. A
+separate replay reconstructs all six derivations. Thus `(GA6)` holds in every
+prime characteristic, and scalar extension gives it over every field.
+
 Replay with Sage 10.7:
 
 ```text
@@ -146,19 +185,48 @@ PYTHONPATH=experiments sage -python \
 Archived output SHA-256:
 
 ```text
-f4c775d64f0dba2e0c7baa0e13191ae2d3ba4f9390be9aa261f484b920042a5c
+1a7399cec1359b8a5c36a6234de3b443a73cd47e2d42bb2d585e76d266154f74
   experiments/atlas-signed-group-algebra-irrep-screen.json
 ```
 
-## Odd modular screens
+Replay the exceptional-prime certificate with Sage 10.7:
+
+```text
+module load sagemath/10.7
+PYTHONPATH=experiments sage -python \
+  experiments/atlas_universal_signed_group_algebra.py \
+  --primes 3,5,7,11,13,1181 \
+  --certificate \
+  experiments/atlas-universal-signed-group-algebra-certificate.json \
+  > experiments/atlas-universal-signed-group-algebra.json
+
+PYTHONPATH=experiments sage -python \
+  experiments/atlas_universal_signed_group_algebra.py \
+  --verify-certificate \
+  experiments/atlas-universal-signed-group-algebra-certificate.json \
+  > experiments/atlas-universal-signed-group-algebra-verification.json
+```
+
+Archived SHA-256 hashes:
+
+```text
+b35bfd5b0c9edc2f3ee740bdd5d1d808e5f92ec46182508be264540d332464ae
+  experiments/atlas-universal-signed-group-algebra.json
+c5c0a8df3190f1c601c8244add8d38fe6de53f5bf7ab90c7019e916d5ef3c2ed
+  experiments/atlas-universal-signed-group-algebra-certificate.json
+df23f122ce4e873b7f07897317d1eb1bf819c3aac916c0f28882e96a4f6694ce
+  experiments/atlas-universal-signed-group-algebra-verification.json
+```
+
+## Independent modular screens
 
 The same signed derivative was also tested exactly over
 (\mathbb F_p[\varepsilon]/(\varepsilon^2)) for (p=3,5,7,11), on the
 15-point and 15-hyperplane permutation modules and all four ordered Hom
 blocks between them. Every block has constraint rank (212), nullity
 (13), and zero (s_{11})-phase image. These are useful independent
-checks, but they are **module screens**, not universal odd-characteristic
-theorems.
+checks. They are no longer needed for universality, which is supplied by the
+regular-algebra and cross-characteristic certificates above.
 
 Archived output SHA-256 hashes:
 
@@ -173,8 +241,8 @@ Archived output SHA-256 hashes:
 
 ## Exact scope
 
-The two universal certificates close characteristic two and characteristic
-zero for the following common family:
+The certificates close **every coefficient field** for the following common
+family:
 
 1. square-zero/first-order deformation;
 2. the fixed classical inner order-zero alignment;
@@ -183,9 +251,9 @@ zero for the following common family:
    survivors.
 
 They do **not** prove unitary local rigidity, rule out singular or nonlinear
-branches, cover every odd modular characteristic, classify nonclassical
-order-zero alignments, prove the Leavitt witness nonhyperlinear, or decide
-hyperlinear versus sofic. A surviving FALSE construction must now use at
-least one genuinely different ingredient: nonlinear/higher-order geometry,
-a different order-zero holonomy, a non-common-chart representation, or a
-modular characteristic outside the two universal theorems.
+branches, classify nonclassical order-zero alignments, prove the Leavitt
+witness nonhyperlinear, or decide hyperlinear versus sofic. Changing only the
+coefficient characteristic is no longer an escape. A surviving FALSE
+construction must use at least one genuinely different ingredient:
+nonlinear/higher-order geometry, a different order-zero holonomy, or a
+non-common-chart representation.

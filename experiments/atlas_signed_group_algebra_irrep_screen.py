@@ -13,6 +13,7 @@ irreducibles, including both constituents of self-conjugate partitions.
 import argparse
 from collections import Counter
 import json
+from math import gcd
 
 import numpy as np
 from sage.all import (  # pylint: disable=import-error
@@ -20,6 +21,7 @@ from sage.all import (  # pylint: disable=import-error
     QQ,
     SymmetricGroup,
     SymmetricGroupRepresentation,
+    ZZ,
     identity_matrix,
     matrix,
     zero_matrix,
@@ -160,6 +162,18 @@ def stack_rows(operators, dimension):
     return matrix(QQ, rows, ncols=dimension)
 
 
+def update_denominator(current, values):
+    for value in values:
+        denominator = QQ(value).denominator()
+        current = current * denominator // gcd(current, denominator)
+    return current
+
+
+def matrix_values(input_matrix):
+    for row in input_matrix.rows():
+        yield from row
+
+
 def run(natural_path):
     generator_permutations = load_generator_permutations(natural_path)
     permutation_by_matrix = enumerate_isomorphism(generator_permutations)
@@ -195,6 +209,8 @@ def run(natural_path):
         partitions
     )
     records = []
+    global_certificate_denominator = 1
+    global_representation_denominator = 1
     for partition in partitions:
         representation = SymmetricGroupRepresentation(
             list(partition), implementation="seminormal"
@@ -205,6 +221,11 @@ def run(natural_path):
             key: representation(permutation_elements[key])
             for key in required_keys
         }
+        representation_denominator = 1
+        for represented in cache.values():
+            representation_denominator = update_denominator(
+                representation_denominator, matrix_values(represented)
+            )
         derivative_operators = {
             index: represented_sum(cache, derivative, dimension)
             for index, derivative in derivatives.items()
@@ -232,6 +253,25 @@ def run(natural_path):
             raise AssertionError(
                 "row-rank and common-kernel tests disagree"
             )
+        row_coefficients = seed_rows.transpose().solve_right(
+            target.transpose()
+        )
+        if row_coefficients.transpose() * seed_rows != target:
+            raise AssertionError("exact row-space certificate failed")
+        certificate_denominator = update_denominator(
+            1, matrix_values(row_coefficients)
+        )
+        global_certificate_denominator = (
+            global_certificate_denominator * certificate_denominator
+            // gcd(global_certificate_denominator, certificate_denominator)
+        )
+        global_representation_denominator = (
+            global_representation_denominator * representation_denominator
+            // gcd(
+                global_representation_denominator,
+                representation_denominator,
+            )
+        )
         records.append({
             "partition": [int(value) for value in partition],
             "dimension": int(dimension),
@@ -239,6 +279,10 @@ def run(natural_path):
             "common_kernel_dimension": int(common_kernel.dimension()),
             "target_rank_increment": int(augmented_rank - seed_rank),
             "target_on_common_kernel_rank": int(target_on_kernel_rank),
+            "representation_matrix_denominator": str(
+                representation_denominator
+            ),
+            "row_certificate_denominator": str(certificate_denominator),
             "phase_in_left_ideal_block": augmented_rank == seed_rank,
         })
 
@@ -255,6 +299,19 @@ def run(natural_path):
         ],
         "covered_a8_complex_irreducibles": complex_irreducibles,
         "covers_every_a8_irrep": True,
+        "global_representation_matrix_denominator": str(
+            global_representation_denominator
+        ),
+        "global_row_certificate_denominator": str(
+            global_certificate_denominator
+        ),
+        "cross_characteristic_exceptional_prime_support": [
+            [int(prime), int(exponent)]
+            for prime, exponent in ZZ(
+                global_representation_denominator
+                * global_certificate_denominator
+            ).factor()
+        ],
         "records": records,
         "phase_in_generated_left_ideal": all(
             record["phase_in_left_ideal_block"] for record in records

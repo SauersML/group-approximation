@@ -1,6 +1,6 @@
 # NOTEPAD
 
-## Universal signed first-order atlas obstruction in characteristic zero (2026-08-12)
+## Universal signed first-order atlas obstruction over every field (2026-08-12)
 
 The characteristic-two group-algebra certificate is part of a general
 principle. For an inner-aligned word `w` in two finite-group charts, put
@@ -13,34 +13,39 @@ If the second chart is conjugated by `1+epsilon X`, then its word value is
 exactly `1+epsilon(d_w.X)`. Hence a left-ideal identity among the `d_w`
 holds functorially in every module before any representation is chosen.
 
-For the `A_8` Leavitt atlas, exact Sage seminormal matrices test the 24 zero
-derivatives and the 24 centrality derivatives `(g-1)d_s` in every simple
-characteristic-zero sector. One `S_8` partition from each conjugate pair
-gives twelve restrictions; the self-conjugate partitions `(4,2,1,1)` and
-`(3,3,2)` each split, so all fourteen complex `A_8` irreducibles are
-covered. In every sector, `d_11` kills the common kernel of the constraints.
-By the semisimple annihilator criterion,
+For the `A_8` Leavitt atlas, the certified identity is now valid over every
+field `k`:
 
 ```text
-d_11 in sum_z Q[A_8]d_z
-        + sum_(s,g) Q[A_8](g-1)d_s.
+d_11 in sum_z k[A_8]d_z
+        + sum_(s,g) k[A_8](g-1)d_s.
 ```
 
-Thus every characteristic-zero module, arbitrary multiplicity, and every
-off-diagonal block kills the desired central first jet at the fixed inner
-alignment. The output hash is
-`f4c775d64f0dba2e0c7baa0e13191ae2d3ba4f9390be9aa261f484b920042a5c`.
+The rational seminormal calculation covers all fourteen complex irreducible
+sectors. The representation denominator is `1814400`; the stronger direct
+row-certificate denominator is `74129444573184000`, with total exceptional
+prime support `{2,3,5,7,11,13,1181}`. The prior 552-step regular-algebra
+certificate closes `p=2`. New sparse regular-algebra certificates close
+`p=3,5,7,11,13,1181`: each reaches rank `149`, reduces `d_11` to zero, and
+passes an independent replay of every DAG operation. Rational reduction
+closes every remaining prime, and scalar extension closes every field.
 
-Exact point/hyperplane screens over `F_3,F_5,F_7,F_11` independently have
-constraint rank `212`, nullity `13`, and zero phase image in all four ordered
-Hom blocks. They are not universal modular certificates. See
+The rational output hash is
+`1a7399cec1359b8a5c36a6234de3b443a73cd47e2d42bb2d585e76d266154f74`.
+The exceptional-prime output, certificate, and replay hashes are respectively
+`b35bfd5b0c9edc2f3ee740bdd5d1d808e5f92ec46182508be264540d332464ae`,
+`c5c0a8df3190f1c601c8244add8d38fe6de53f5bf7ab90c7019e916d5ef3c2ed`,
+and `df23f122ce4e873b7f07897317d1eb1bf819c3aac916c0f28882e96a4f6694ce`.
+
+Exact point/hyperplane screens over `F_3,F_5,F_7,F_11` remain independent
+checks but are no longer needed for universality. See
 `docs/FALSE_ATLAS_FIRST_ORDER_GROUP_ALGEBRA_PRINCIPLE.md`.
 
 The correct live boundary is no longer merely “change characteristic.” A
 FALSE atlas must use nonlinear/higher-order geometry, a different order-zero
-alignment, non-common chart modules, or an odd modular characteristic for
-which the universal ideal question genuinely fails. Nothing here proves
-unitary local rigidity or the nonhyperlinearity of the Leavitt witness.
+alignment, or non-common chart modules. Changing only the characteristic is
+closed. Nothing here proves unitary local rigidity or the nonhyperlinearity
+of the Leavitt witness.
 
 ## Finite-index Bernoulli tower: exact local wall and Kazhdan obstruction (2026-08-12)
 
