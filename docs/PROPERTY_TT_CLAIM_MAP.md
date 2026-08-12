@@ -50,7 +50,7 @@ not claim novelty for the bare relative theorem.
 
 Let `R` be a nontrivial ring such that every nonzero `a` admits `x, y` with
 `x * a * y = 1`. If `2 ≤ n`, every element of `GLₙ(R)` is a product of at most
-`2n + 4` factors, each either an elementary transvection or an element of the
+`2n + 2` factors, each either an elementary transvection or an element of the
 fixed coordinate copy of `GLₙ₋₁(R)`.
 
 Exact Lean declaration:
@@ -59,10 +59,10 @@ Exact Lean declaration:
 GroupApproximation.PropertyTTPaper.coordinateBlock_factorization
 ```
 
-The five-move pivot used in its proof is exposed separately as:
+The three-move diagonal pivot used in its proof is exposed separately as:
 
 ```text
-GroupApproximation.PropertyTTPaper.fiveMove_pivot
+GroupApproximation.PropertyTTPaper.threeMove_diagonalPivot
 ```
 
 Credit boundary: Ara--Goodearl--Pardo, Theorem 1.6, identifies the sandwich

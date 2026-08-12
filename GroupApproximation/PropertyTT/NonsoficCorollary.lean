@@ -1,5 +1,4 @@
 import GroupApproximation.Endpoint.MainResults
-import GroupApproximation.KOne.PaperStatements
 import GroupApproximation.PropertyTT.PaperStatements
 
 /-!
@@ -27,30 +26,10 @@ theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
         (elementaryGroup (Fin n) BinaryL) ∧
       ¬ IsSofic (elementaryGroup (Fin n) BinaryL) := by
   refine ⟨binaryLeavitt_elementaryGroup_hasTTmodT n hn, ?_⟩
-  let d : BinaryLeavittUnits (ZMod 2) →*
-      elementaryGroup (Fin 2) BinaryL :=
-    MatrixDiagonalization.diagUnitHom.codRestrict
-      (elementaryGroup (Fin 2) BinaryL)
-      (fun u ↦ KOnePaper.diagUnit_mem_elementary (ZMod 2) u)
-  have hd : Function.Injective d := by
-    intro u v huv
-    apply Units.ext
-    have hentry := congrArg
-      (fun M : elementaryGroup (Fin 2) BinaryL ↦
-        ((M.1 : Matrix (Fin 2) (Fin 2) BinaryL) 0 0)) huv
-    simpa [d, MatrixDiagonalization.diagUnitHom,
-      MatrixDiagonalization.diagUnit] using hentry
-  let e : elementaryGroup (Fin 2) BinaryL ≃*
-      elementaryGroup (Fin n) BinaryL :=
-    leavitt_elementaryRankEquivalence BinaryL
-      (BinaryLeavitt.family (ZMod 2)) 2 n (by omega) hn
-  let f : BinaryLeavittUnits (ZMod 2) →*
-      elementaryGroup (Fin n) BinaryL :=
-    e.toMonoidHom.comp d
-  have hf : Function.Injective f := e.injective.comp hd
   intro hsofic
   exact binaryLeavittUnits_not_isSofic (ZMod 2)
-    (isSofic_of_injective f hf hsofic)
+    ((isSofic_mulEquiv_iff
+      (binaryLeavitt_elementaryEquivUnits n hn)).mp hsofic)
 
 end PropertyTTPaper
 end GroupApproximation

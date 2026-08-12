@@ -46,29 +46,29 @@ in that plane.  This is the quantitative Fourier input used by the direct
 rank-four root proof. -/
 theorem freeCharacteristicTwo_localizedPlaneEstimate
     (X : Type) [Fintype X]
-    {G : Type u} [Group G]
     {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
     [CompleteSpace E]
     (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
-    (f : elementaryGroup (Fin 3) (FreeAlgebra (ZMod 2) X) →* G)
-    (rho : G →* (E ≃ₗᵢ[ℂ] E)) (z : E) {B : ℝ} (hB : 0 ≤ B)
-    (hIK : ‖rho (f (elementaryRoot i k hik 1)) z - z‖ ≤ B)
-    (hJK : ‖rho (f (elementaryRoot j k hjk 1)) z - z‖ ≤ B)
-    (hIJUnit : ‖rho (f (elementaryRoot i j hij 1)) z - z‖ ≤ B)
-    (hJIUnit : ‖rho (f (elementaryRoot j i hij.symm 1)) z - z‖ ≤ B)
+    (rho : elementaryGroup (Fin 3) (FreeAlgebra (ZMod 2) X) →*
+      (E ≃ₗᵢ[ℂ] E))
+    (z : E) {B : ℝ} (hB : 0 ≤ B)
+    (hIK : ‖rho (elementaryRoot i k hik 1) z - z‖ ≤ B)
+    (hJK : ‖rho (elementaryRoot j k hjk 1) z - z‖ ≤ B)
+    (hIJUnit : ‖rho (elementaryRoot i j hij 1) z - z‖ ≤ B)
+    (hJIUnit : ‖rho (elementaryRoot j i hij.symm 1) z - z‖ ≤ B)
     (hIJGen : ∀ q : Fin (Fintype.card X),
-      ‖rho (f (elementaryRoot i j hij
-        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q)))) z - z‖ ≤ B)
+      ‖rho (elementaryRoot i j hij
+        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) z - z‖ ≤ B)
     (hJIGen : ∀ q : Fin (Fintype.card X),
-      ‖rho (f (elementaryRoot j i hij.symm
-        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q)))) z - z‖ ≤ B)
+      ‖rho (elementaryRoot j i hij.symm
+        (FreeAlgebra.ι (ZMod 2) (generatorEnumeration X q))) z - z‖ ≤ B)
     (g : elementaryGroup (Fin 3) (FreeAlgebra (ZMod 2) X))
     (hg : g ∈ elementaryRootSubgroup i k hik ⊔
       elementaryRootSubgroup j k hjk) :
-    ‖rho (f g) z - z‖ ≤
+    ‖rho g z - z‖ ≤
       2 * (6 * Fintype.card X + 6 : ℝ) * (B + 1) :=
   norm_comp_columnPlane_sub_le_of_root_bounds X
-    i j k hij hik hjk f rho z hB hIK hJK hIJUnit hJIUnit
+    i j k hij hik hjk (MonoidHom.id _) rho z hB hIK hJK hIJUnit hJIUnit
     hIJGen hJIGen g hg
 
 /-- **Limiting Fourier energy estimate.**  The moving mass of the full
@@ -150,7 +150,7 @@ theorem freeCharacteristicTwo_rowEmbedding_elementaryRoot
 
 /-- **Coordinate-block factorization.**  If every nonzero element of `R`
 admits a single sandwich to `1`, then every invertible `n × n` matrix is a
-product of at most `2*n+4` factors, each either an elementary transvection or
+product of at most `2*n+2` factors, each either an elementary transvection or
 an element of the fixed coordinate block omitting `j`.
 
 This is not a claim of bounded elementary generation: one coordinate copy of
@@ -160,7 +160,7 @@ theorem coordinateBlock_factorization
     (n : ℕ) (hn : 2 ≤ n)
     (hdiv : HasSingleSandwichDivision R) (j : Fin n) :
     IsBoundedProduct (Matrix (Fin n) (Fin n) R)ˣ
-      (coordinateBlockOrRoot j) (2 * n + 4) := by
+      (coordinateBlockOrRoot j) (2 * n + 2) := by
   letI : Nontrivial (Fin n) :=
     Fintype.one_lt_card_iff_nontrivial.mp (by
       rw [Fintype.card_fin]
@@ -168,26 +168,23 @@ theorem coordinateBlock_factorization
   simpa using
     (boundedProduct_coordinateBlockOrRoot (R := R) hdiv j)
 
-/-- **Five-move pivot.**  For two distinct coordinates, two elementary
-left factors and three elementary right factors suffice to create a literal
-`1` at the second diagonal coordinate and zeros in the two cross entries.
-The lists in the conclusion record the two separate word-length bounds. -/
-theorem fiveMove_pivot
+/-- **Three-move diagonal pivot.**  For two distinct coordinates, one
+elementary left factor and two elementary right factors suffice to create a
+literal `1` at the second diagonal coordinate.  The off-diagonal entries are
+left for the full clearing sweeps. -/
+theorem threeMove_diagonalPivot
     (R ι : Type*) [Ring R] [Nontrivial R]
     [Fintype ι] [DecidableEq ι]
     (hdiv : HasSingleSandwichDivision R)
     (A : (Matrix ι ι R)ˣ) (i j : ι) (hij : i ≠ j) :
     ∃ E F : (Matrix ι ι R)ˣ,
-      E ∈ elementaryGroup ι R ∧ F ∈ elementaryGroup ι R ∧
       ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 ∧
-      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j = 0 ∧
-      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j i = 0 ∧
       ∃ l r : List (Matrix ι ι R)ˣ,
-        l.length ≤ 2 ∧ r.length ≤ 3 ∧
+        l.length ≤ 1 ∧ r.length ≤ 2 ∧
         (∀ x ∈ l, IsElementaryUnit x) ∧
         (∀ x ∈ r, IsElementaryUnit x) ∧
         l.prod = E ∧ r.prod = F :=
-  exists_five_move_pivot hdiv A i j hij
+  exists_three_move_diagonal_pivot hdiv A i j hij
 
 /-- **Elementary/general-linear identification.**  Binary Leavitt
 self-similarity transports the rank-two diagonal reduction to every rank. -/
@@ -330,6 +327,29 @@ theorem binaryLeavitt_elementaryGroup_hasTTmodT
     (BinaryLeavitt.hasSingleSandwichDivision (ZMod 2))
     (BinaryLeavitt.hasElementaryDiagonalClass (ZMod 2))
     n hn
+
+/-- **Leavitt rank collapse.**  Matrix self-similarity and `GL = EL`
+identify every elementary rank at least two with the unit group itself. -/
+noncomputable def binaryLeavitt_elementaryEquivUnits
+    (n : ℕ) (hn : 2 ≤ n) :
+    elementaryGroup (Fin n) BinaryL ≃* BinaryLˣ := by
+  obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
+  exact ((MulEquiv.subgroupCongr
+      (FiniteTypeLeavittTT.elementaryGroup_eq_top
+        (BinaryLeavitt.family (ZMod 2))
+        (BinaryLeavitt.hasSingleSandwichDivision (ZMod 2))
+        (BinaryLeavitt.hasElementaryDiagonalClass (ZMod 2))
+        (m + 1) (by omega))).trans Subgroup.topEquiv).trans
+    ((BinaryLeavitt.family (ZMod 2)).prefixUnitsEquiv (leftCombCode m)
+      ((BinaryLeavitt.family (ZMod 2)).leftCombCode_complete m))
+
+/-- **Unit-group form of the binary Leavitt theorem.**  The unit group of
+`L_{F₂}(1,2)` has property `(TT)/T`. -/
+theorem binaryLeavittUnits_hasTTmodT :
+    HasTTmodT.{0, 0} BinaryLˣ :=
+  HasTTmodT.of_mulEquiv
+    (binaryLeavitt_elementaryEquivUnits 2 (by omega)).symm
+    (binaryLeavitt_elementaryGroup_hasTTmodT 2 (by omega))
 
 end
 end PropertyTTPaper

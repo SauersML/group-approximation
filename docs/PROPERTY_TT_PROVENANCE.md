@@ -148,7 +148,7 @@ Before the manuscript is frozen, it must have one declaration per numbered
 paper result:
 
 1. the no-`/T` root theorem;
-2. the `Fin n` coordinate-block factorization with the literal `2*n+4`
+2. the `Fin n` coordinate-block factorization with the literal `2*n+2`
    width;
 3. the explicit four-hypothesis ring-class theorem;
 4. a finite-type-algebra wrapper, if the manuscript uses that formulation;

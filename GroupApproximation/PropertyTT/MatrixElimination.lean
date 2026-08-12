@@ -182,6 +182,99 @@ theorem exists_ne_zero_in_row [Nontrivial R]
   rw [hone] at hii
   exact zero_ne_one hii
 
+/-- Two elementary moves plant a literal `1` at `(j,j)` once the chosen
+`(i,i)` pivot is nonzero.  The off-diagonal entries are deliberately left
+for the subsequent full row and column sweeps. -/
+theorem exists_two_move_diagonal_pivot
+    (hdiv : HasSingleSandwichDivision R)
+    (A : (Matrix ι ι R)ˣ) (i j : ι) (hij : i ≠ j)
+    (hpivot : (A : Matrix ι ι R) i i ≠ 0) :
+    ∃ E F : (Matrix ι ι R)ˣ,
+      IsElementaryUnit E ∧ IsElementaryUnit F ∧
+      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 := by
+  let a := (A : Matrix ι ι R) i i
+  let b := (A : Matrix ι ι R) i j
+  obtain ⟨p, q, hpq⟩ := hdiv a hpivot
+  let rho : R := q * (1 - p * b)
+  let F : (Matrix ι ι R)ˣ := elementaryUnit i j hij rho
+  let A₁ : (Matrix ι ι R)ˣ := A * F
+  let b₁ : R := (A₁ : Matrix ι ι R) i j
+  have hb₁ : b₁ = a * rho + b := by
+    simp only [b₁, A₁, Units.val_mul, F]
+    rw [mul_elementaryUnit_apply]
+    simp [a, b, add_comm]
+  have hpb₁ : p * b₁ = 1 := by
+    rw [hb₁]
+    dsimp [rho]
+    calc
+      p * (a * (q * (1 - p * b)) + b) =
+          p * a * q * (1 - p * b) + p * b := by
+        rw [mul_add]
+        congr 1
+        rw [← mul_assoc, ← mul_assoc]
+      _ = 1 := by
+        rw [hpq, one_mul]
+        noncomm_ring
+  let d₁ : R := (A₁ : Matrix ι ι R) j j
+  let w : R := (1 - d₁) * p
+  let E : (Matrix ι ι R)ˣ := elementaryUnit j i hij.symm w
+  have hjj : ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 := by
+    rw [show E * A * F = E * A₁ from by dsimp [A₁]; group]
+    simp only [Units.val_mul, E]
+    rw [elementaryUnit_mul_apply]
+    rw [if_pos rfl]
+    change d₁ + w * b₁ = 1
+    rw [show w * b₁ = 1 - d₁ from by
+      dsimp [w]
+      rw [mul_assoc, hpb₁, mul_one]]
+    abel
+  exact ⟨E, F, ⟨j, i, hij.symm, w, rfl⟩,
+    ⟨i, j, hij, rho, rfl⟩, hjj⟩
+
+/-- At most one preliminary column addition followed by the two-move pivot
+plants a literal `1` at `(j,j)`.  The factor lists retain the separate bounds
+needed by the coordinate-block factorization. -/
+theorem exists_three_move_diagonal_pivot [Nontrivial R]
+    (hdiv : HasSingleSandwichDivision R)
+    (A : (Matrix ι ι R)ˣ) (i j : ι) (hij : i ≠ j) :
+    ∃ E F : (Matrix ι ι R)ˣ,
+      ((E * A * F : (Matrix ι ι R)ˣ) : Matrix ι ι R) j j = 1 ∧
+      ∃ l r : List (Matrix ι ι R)ˣ,
+        l.length ≤ 1 ∧ r.length ≤ 2 ∧
+        (∀ x ∈ l, IsElementaryUnit x) ∧
+        (∀ x ∈ r, IsElementaryUnit x) ∧
+        l.prod = E ∧ r.prod = F := by
+  by_cases hii : (A : Matrix ι ι R) i i ≠ 0
+  · obtain ⟨E, F, hE, hF, hjj⟩ :=
+      exists_two_move_diagonal_pivot hdiv A i j hij hii
+    exact ⟨E, F, hjj, [E], [F], by simp, by simp,
+      by simpa using hE, by simpa using hF, by simp, by simp⟩
+  push Not at hii
+  obtain ⟨k, hk⟩ := exists_ne_zero_in_row A i
+  have hki : k ≠ i := by
+    intro h
+    subst k
+    exact hk hii
+  let F₀ : (Matrix ι ι R)ˣ := elementaryUnit k i hki 1
+  let A₀ : (Matrix ι ι R)ˣ := A * F₀
+  have hcorner : (A₀ : Matrix ι ι R) i i ≠ 0 := by
+    simp only [A₀, Units.val_mul, F₀]
+    rw [mul_elementaryUnit_apply]
+    rw [if_pos rfl, hii, zero_add, mul_one]
+    exact hk
+  obtain ⟨E, F, hE, hF, hjj⟩ :=
+    exists_two_move_diagonal_pivot hdiv A₀ i j hij hcorner
+  refine ⟨E, F₀ * F, ?_, [E], [F₀, F], by simp, by simp,
+    by simpa using hE, ?_, by simp, by simp⟩
+  · rw [← hjj]
+    dsimp [A₀]
+    group
+  · intro x hx
+    simp only [List.mem_cons, List.not_mem_nil, or_false] at hx
+    rcases hx with rfl | rfl
+    · exact ⟨k, i, hki, 1, rfl⟩
+    · exact hF
+
 /-- At most one preliminary column addition makes the chosen corner nonzero;
 the four-move pivot then applies. -/
 theorem exists_five_move_pivot [Nontrivial R]

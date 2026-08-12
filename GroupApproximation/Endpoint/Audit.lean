@@ -164,7 +164,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_inverseTranspose_root
 #print axioms GroupApproximation.PropertyTTPaper.freeCharacteristicTwo_rowEmbedding_elementaryRoot
 #print axioms GroupApproximation.PropertyTTPaper.coordinateBlock_factorization
-#print axioms GroupApproximation.PropertyTTPaper.fiveMove_pivot
+#print axioms GroupApproximation.PropertyTTPaper.threeMove_diagonalPivot
 #print axioms GroupApproximation.PropertyTTPaper.elementaryGroup_eq_generalLinear
 #print axioms GroupApproximation.PropertyTTPaper.leavitt_elementaryRankEquivalence
 #print axioms GroupApproximation.PropertyTTPaper.elementaryBlockFlattening
@@ -174,6 +174,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.PropertyTTPaper.finiteFreeQuotient_elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.finiteType_elementaryGroup_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT
+#print axioms GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryEquivUnits
+#print axioms GroupApproximation.PropertyTTPaper.binaryLeavittUnits_hasTTmodT
 #print axioms GroupApproximation.PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
 #print axioms GroupApproximation.UniversalRankFour.witness_not_isLEF
 #print axioms GroupApproximation.ThompsonFObstruction.finite_image_generatorCommutator_eq_one

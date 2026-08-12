@@ -81,6 +81,16 @@ example (n : ℕ) (hn : 2 ≤ n) :
         (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) :=
   PropertyTTPaper.binaryLeavitt_elementaryGroup_hasTTmodT n hn
 
+example : HasTTmodT.{0, 0}
+    (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ :=
+  PropertyTTPaper.binaryLeavittUnits_hasTTmodT
+
+example (n : ℕ) (hn : 2 ≤ n) :
+    elementaryGroup (Fin n)
+        (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) ≃*
+      (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ :=
+  PropertyTTPaper.binaryLeavitt_elementaryEquivUnits n hn
+
 example {R : Type} [Ring R] [Nontrivial R]
     (X : Type) [Fintype X]
     (f : FreeAlgebra (ZMod 2) X →+* R) (hf : Function.Surjective f)

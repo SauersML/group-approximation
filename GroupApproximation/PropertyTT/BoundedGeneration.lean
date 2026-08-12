@@ -80,17 +80,16 @@ theorem leftClearFactors_elementary (j : ι) (f : ι → R)
   simp [otherIndices]
 
 /-- **Uniform strong-division bounded generation.**  A rank with at least
-two coordinates has width at most `2 * card ι + 4` with respect to the
+two coordinates has width at most `2 * card ι + 2` with respect to the
 elementary roots and one coordinate copy of `GL`. -/
 theorem boundedProduct_coordinateBlockOrRoot [Nontrivial R] [Nontrivial ι]
     (hdiv : HasSingleSandwichDivision R) (j : ι) :
     IsBoundedProduct (Matrix ι ι R)ˣ (coordinateBlockOrRoot j)
-      (2 * Fintype.card ι + 4) := by
+      (2 * Fintype.card ι + 2) := by
   intro A
   obtain ⟨i, hij⟩ := exists_ne j
-  obtain ⟨E, F, _, _, hjj, _, _, l, r, hl, hr,
-      hlelem, hrelem, hlE, hrF⟩ :=
-    exists_five_move_pivot hdiv A i j hij
+  obtain ⟨E, F, hjj, l, r, hl, hr, hlelem, hrelem, hlE, hrF⟩ :=
+    exists_three_move_diagonal_pivot hdiv A i j hij
   let B : (Matrix ι ι R)ˣ := E * A * F
   let t : List (Matrix ι ι R)ˣ :=
     rightClearFactors j (fun k ↦ -(B : Matrix ι ι R) j k)
