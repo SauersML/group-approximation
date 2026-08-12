@@ -206,6 +206,21 @@ TRUE target is now a local packet construction with two Gram row-sum bounds;
 finite exceptional levels can be absorbed.  The implication is proved, but
 the uniform packet bases have not yet been constructed.
 
+The supplied stability/expansion papers yield a separate dimension-free
+synchronization theorem; see `TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md`.  The
+explicit nine-triangle cone in Dinur--Meshulam metricizes: for every
+bi-invariant group length and every finite `L^r` exponent, an almost-flat
+connection on `A_3(F_q)` is within factor `9` of a pure gauge.  This applies
+uniformly to `U(d)` with normalized Hilbert--Schmidt length, `Sym(d)` with
+normalized Hamming length, and circle phases.  Together with the Cartan-to-
+monomial estimate it gives the explicit bound `9 delta+28 epsilon` for an
+almost-flat, almost-monomial building connection.  The remaining universal
+gate is witness-preserving encoding: a closed-loop witness cannot survive
+pure-gauge repair on the simply connected building.  Becker--Lubotzky rules
+out replacing this by ordinary stability of an infinite property-`(T)`
+presentation.  The next target is therefore a relative metric cone theorem
+with protected terminal holonomies.
+
 Full circle repair is a sufficient uniform bound for every marked radical
 word: `(ECM24b)-(ECM24c)` give
 `Lambda_(w,X)<=|w| C_circ(A_X)<=|w|Theta(A_X)/sigma_+(A_X)` and the

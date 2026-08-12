@@ -1,5 +1,46 @@
 # NOTEPAD
 
+## 2026-08-11: the `A_3(F_q)` nine-triangle cone is dimension-free in HS/Hamming metric
+
+Full proof and source audit:
+`docs/TRUE_A3_METRIC_CONE_SYNCHRONIZATION.md`.
+
+Dinur--Meshulam state their `A_3(F_q)` theorem for the support length
+`1_(g!=1)`, but their explicit cone proof metricizes.  If `ell` is any
+conjugation-invariant subadditive group length and `1<=r<infinity`, their
+edge loop is filled by at most nine triangles and its averaged triangle
+congestion is at most nine.  Nonabelian Stokes plus convexity therefore gives
+
+    inf_(vertex gauges a) ||a dot phi||_(L^r(edges))
+      <=9 ||curv(phi)||_(L^r(triangles)).
+
+The constant is independent of the field, coefficient group, and matrix
+dimension.  It applies directly to `U(d)` with normalized HS length,
+`Sym(d)` with normalized Hamming length, and `T^d` with chordal length.  Thus
+the apparent `d/2` loss from the natural `Sym(d)` fixity is an artifact of
+converting the already-proved support theorem pointwise; the cone itself
+controls the actual metric.
+
+If an edge unitary table is RMS `epsilon`-close to monomial edges and has RMS
+triangle curvature `delta`, the same argument gives a monomial vertex gauge
+with
+
+    ||a dot U||_(L^2(edges)) <= 9 delta+28 epsilon.
+
+Using the Birkhoff Cartan estimate, one may take
+
+    epsilon^2 <= 2 average_e kappa_D(U_e).
+
+This is a genuine dimension-free synchronization gadget.  It does not solve
+TRUE because `A_3(F_q)` is simply connected: a nontrivial marked witness
+cannot be stored as a closed-loop holonomy and survive pure-gauge repair.
+The missing bridge is a relative/witness-preserving encoding of the finite
+normal-`0/1` table, not ordinary group stability.  Becker--Lubotzky proves
+that ordinary HS/permutation stability is unavailable for infinite
+property-`(T)` groups.  The next theorem-shaped target is a relative cone
+inequality that synchronizes local gauges while protecting finitely many
+terminal/open-path holonomies.
+
 ## 2026-08-11: a bounded-overlap harmonic packet basis would prove the family bound
 
 Full proof: `docs/TRUE_HARMONIC_RIESZ_PACKET_CRITERION.md`.

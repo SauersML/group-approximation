@@ -1,3 +1,4 @@
 /.lake/
+/tmp/
 scripts/msi-build.sh
 scripts/__pycache__/
