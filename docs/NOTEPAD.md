@@ -42,6 +42,22 @@ universal central cover kills its whole center, so prefix stabilization of
 a genuine atlas sector kills rather than amplifies its phase.  See
 `docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
 
+The order-2688 central phase block has an exact finite full-chart
+completion. Form the graph of finite groups
+
+```text
+(A_8 x C_2) *_(S_4 x C_2) H *_(S_4 x C_2) (A_8 x C_2).
+```
+
+Its common involution is central, the four stubborn relations are identity,
+and `r_11` is that involution. A finite quotient injective on all vertex
+groups exists by virtual freeness and residual finiteness. The negative
+central sector of its regular representation restricts to regular
+amplifications on both `A_8` charts and sends `r_11` to `-I`. Thus full
+chart extension, centrality, finite image, and canonical multiplicities are
+simultaneously exact; only the other twenty certified zero classes remain.
+See `docs/FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+
 ## 2026-08-12: the level-169 parity defect is repaired exactly
 
 Full proof and certificate:

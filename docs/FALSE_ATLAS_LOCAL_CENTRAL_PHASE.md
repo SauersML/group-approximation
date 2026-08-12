@@ -141,6 +141,18 @@ The concrete next problem is to couple the central order-2688 block to those
 proof must use at least one of those outside relations; the four persistent
 optimizer classes are now completely discharged as a universal obstruction.
 
+The full-chart extension can in fact be made with finite image, not merely
+by transporting two complex representations. Attach an
+\(A_8\times C_2\) vertex to each subgroup
+\(\alpha_i(S_4)\times\langle z\rangle<H\). The resulting graph of finite
+groups is virtually free, its common involution \(z\) is central, and a
+vertex-injective finite quotient retains both \(A_8\) charts. On the
+negative sector of the quotient's regular representation, both chart
+restrictions are regular amplifications and \(r=-I\). Thus the remaining
+twenty relations may be attacked inside the canonical regular-chart
+stratum with finite-image seed data. Full proof:
+`FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+
 ## Reproduction
 
     python3 experiments/atlas_stubborn_s4_certificate.py

@@ -140,6 +140,17 @@ cross-chart holonomy or representation content rather than refine one fixed
 phase block.  Full proof:
 `docs/FALSE_PREFIX_TWISTED_SUBALGEBRA_RIGIDITY.md`.
 
+Conversely, the order-2688 local phase seed admits a stronger positive
+completion than previously recorded. Amalgamating its two
+`S_4 x C_2` subgroups with two `A_8 x C_2` vertices gives a virtually free
+group in which the four stubborn relations vanish and the phase is a
+nontrivial central involution. Residual finiteness supplies a finite
+vertex-injective quotient. Its negative regular sector restricts to regular
+amplifications on both full `A_8` charts, so the seed already lies in the
+canonical one-unitary stratum. The only local constraints left are the
+other twenty certified zero classes. Full proof:
+`docs/FALSE_ATLAS_CENTRAL_GRAPH_COMPLETION.md`.
+
 ### 2026-08-12: compact and weakly compact anchors are impossible
 
 For an arbitrary subgroup `Gamma<G` and a compressor
