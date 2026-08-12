@@ -339,13 +339,55 @@ Haar averaging in `(CPD36)` is consequently a `G`-equivariant
 trace-preserving conditional expectation.  Its coefficientwise extension
 makes `(CPD6)` an expected inclusion.
 
-## 6. Exact limitation of the gauge cover
+## 6. The hard generalized wreath algebra is already inside the corner
+
+There is a stronger limitation than the one supplied by the gauge cover.
+The dual Pauli algebra
+
+```text
+D_Z=W^*(Z_C:C in X) subset M_0.                       (CPD37)
+```
+
+is abelian, isomorphic to `L_infinity({-1,1}^X)`, and `(CPD18)` gives the
+untwisted covariance
+
+```text
+alpha_g(Z_C)=Z_(gC).                                  (CPD38)
+```
+
+Therefore the canonical unitaries define a trace-preserving inclusion
+
+```text
+D_Z crossed G
+ isomorphic L(T semidirect G)
+ isomorphic L((direct-sum_X C_2) semidirect G)
+ -> pL(E).                                            (CPD39)
+```
+
+The middle group is exactly the Kun--Thom generalized wreath product.  It
+is nonsofic, and its radical witness is the two-site word `(CPD20)`.
+Consequently
+
+```text
+pL(E) Connes embeddable
+  ==> L((direct-sum_X C_2) semidirect G)
+      Connes embeddable
+  ==> FALSE.                                          (CPD40)
+```
+
+The first implication is just von Neumann subalgebra permanence.  Thus the
+dual Heisenberg construction gives useful Pauli structure and a central
+radical, but its tracial endpoint is not analytically cheaper than the
+original generalized-wreath endpoint: the latter occurs as an expected
+Fourier subalgebra of the former.
+
+## 7. Exact limitation of the gauge cover
 
 The pullback removes `kappa` exactly, but it does not remove the coset
 transport.  Let
 
 ```text
-D_X=W^*(x_C:C in X) subset R_X.                       (CPD37)
+D_X=W^*(x_C:C in X) subset R_X.                       (CPD41)
 ```
 
 This is the standard diagonal algebra `L_infinity({-1,1}^X)`, it is
@@ -353,13 +395,13 @@ This is the standard diagonal algebra `L_infinity({-1,1}^X)`, it is
 
 ```text
 D_X crossed G
- isomorphic L((direct-sum_X C_2) semidirect G)        (CPD38)
+ isomorphic L((direct-sum_X C_2) semidirect G)        (CPD42)
 ```
 
 embeds trace preservingly in the right side of `(CPD6)`.  The group in
-`(CPD38)` is exactly the Kun--Thom generalized wreath product attached to
+`(CPD42)` is exactly the Kun--Thom generalized wreath product attached to
 the nonsofic action `G action G/Gamma`; it is nonsofic.  Connes
-embeddability of `(CPD38)` would itself prove the desired FALSE answer.
+embeddability of `(CPD42)` would itself prove the desired FALSE answer.
 
 Thus one must not infer Connes embeddability of the gauge cover from the
 ordinary Bernoulli first tensor factor.  Such an inference would amount to
@@ -385,7 +427,7 @@ The operator-norm version is impossible by
 the live endpoint.  No claim of Connes embeddability of `pL(E)` is made in
 this note.
 
-## 7. Literature boundary
+## 8. Literature boundary
 
 The soficity assertion for the classical center uses only the standard
 Bernoulli/wreath construction and restriction of the resulting
@@ -398,5 +440,5 @@ diagonal-preserving embedding.  The operator-algebraic language is in:
 
 Neither source proves that an arbitrary hyperfinite-factor bundle over a
 sofic base has Connes-embeddable crossed product.  Applying such a statement
-to `(CPD37)--(CPD38)` would already settle the present open problem, so it
+to `(CPD41)--(CPD42)` would already settle the present open problem, so it
 cannot be used as a black-box permanence theorem here.

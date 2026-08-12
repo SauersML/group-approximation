@@ -45543,6 +45543,27 @@ which is the hard Kun--Thom generalized wreath algebra.  Therefore the
 ordinary Bernoulli gauge factor cannot be cited as an embedding shortcut:
 Connes embeddability of the gauge cover would already prove FALSE.
 
+In fact the containment is already present before passing to the gauge
+cover.  Inside `M_0`, the commuting dual Pauli family satisfies
+
+```text
+alpha_g(Z_C)=Z_(gC).
+```
+
+Therefore
+
+```text
+L((direct-sum_X C_2) semidirect G)
+ =W^*(Z_C,u_g:C in X,g in G)
+ subset pL(E)
+```
+
+trace preservingly.  This is precisely the original nonsofic Kun--Thom
+generalized wreath group algebra, and its radical word is the two-site
+operator displayed above.  Thus the Heisenberg tracial endpoint strictly
+enlarges the original generalized-wreath hyperlinearity gate; it does not
+bypass it.
+
 This localizes the tracial endpoint sharply.  The center action, the local
 Pauli cells, and the center-valued sign cocycle are all solved exactly.  The
 only remaining issue on this lane is coherent normalized-HS transport of
