@@ -9067,6 +9067,14 @@ factor `sqrt(dimension)`.
 
 ### The normal lamp kernel has no Kazhdan projection
 
+**Primary-source pin (2026-08-12).**  The commuting-lamp assertion below is
+also an immediate instance of Neuhauser, *Relative property (T) and related
+properties of wreath products*, Proposition 3.2: support length is unbounded
+on `directSum_X K` when `X` is infinite.  Pullback through the free-to-
+commuting lamp quotient gives the free-lamp assertion.  The exact scope and
+the architectural consequence are recorded in
+`FALSE_LAMP_RELATIVE_T_SOURCE_AUDIT.md`.
+
 The monolithic-lamp and MF-Mautner reductions suggest a tempting way to
 remove rank blindness.  Let `X=G/Gamma` be infinite and transitive, let `K`
 be a nontrivial finite group, and put
