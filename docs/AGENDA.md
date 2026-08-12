@@ -1675,19 +1675,23 @@ proof-producing finite cohomology.  See
 `FALSE_CENTRAL_RELATOR_COCYCLE_LINEARIZATION.md` and
 `FALSE_CENTRAL_RELATOR_SEPARATION_CRITERION.md`.
 
-There is an even smaller free-part test.  For a finite quotient
+There is an even smaller free-part test, but it is now closed.  For a finite quotient
 `F_d->Q` killing the marked radical word, put
 `M_Q=ker(F_d->Q)/[F_d,ker(F_d->Q)]`.  Lift-equipped cyclic central
 extensions of `Q` are exactly finite characters of `M_Q`; relator and word
 curvatures are their evaluations on `[r_j]` and `[w]`.  Radicality forces
 `[w]` to lie in the integral span of the defining-relator classes for each
 fixed `Q`.  If the real `l_1` filling norm
-`min{sum|c_j|:[w]=sum c_j[r_j] in M_Q tensor R}` tends to infinity along
-finite quotients, LP duality constructs rational characters with marked
-phase exactly `-1` and relator defects at most `pi/D_Q`; FALSE follows.
-The module is computed by sparse Schreier rewriting and coinvariants, so
-this should precede full `H^2` or matrix searches.  See
-`FALSE_FINITE_QUOTIENT_RELATION_FILLING_CRITERION.md`.
+`min{sum|c_j|:[w]=sum c_j[r_j] in M_Q tensor R}` were to tend to infinity,
+LP duality would construct rational characters with marked phase exactly
+`-1` and relator defects at most `pi/D_Q`.  However the five-term exact
+sequence gives `M_Q tensor R ~= H_1(F;R)=R^d`, carrying every word to its
+exponent-sum vector.  Therefore `D_Q` is the same finite abelianized
+presentation constant for every finite `Q`; it cannot diverge.  The remaining
+central search is purely torsion/modular: compute the marked and relator
+classes in `M_Q/mM_Q`, not rational LPs.  See
+`FALSE_FINITE_QUOTIENT_RELATION_FILLING_CRITERION.md` and
+`FALSE_REAL_RELATION_FILLING_NO_GO.md`.
 
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its

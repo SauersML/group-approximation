@@ -4,6 +4,14 @@ Date: 2026-08-11
 
 ## 1. Outcome
 
+**Closure update.**  The sufficient criterion below is correct, but its
+hypothesis can never occur when `Q` is finite.  The five-term exact sequence
+identifies `M_Q tensor R` with `H_1(F;R)=R^d`; relator and marked classes map
+to their exponent-sum vectors.  Hence `D_Q(w;R)` is independent of `Q` and
+is finite for a sofic-radical word.  See
+`FALSE_REAL_RELATION_FILLING_NO_GO.md`.  Only the torsion/modular criterion
+remains computationally live.
+
 The cocycle search in
 `FALSE_CENTRAL_RELATOR_COCYCLE_LINEARIZATION.md` has a smaller intrinsic
 form.  Let
@@ -226,6 +234,14 @@ turn it into the finite cyclic extension and the required matrix
 microstate.  There is no subsequent nonlinear optimization.
 
 ## 6. Computational priority
+
+The real LP proposed below is now closed by
+`FALSE_REAL_RELATION_FILLING_NO_GO.md`: it returns the same abelianized
+presentation constant on every finite quotient.  It should not be run.
+The useful finite computation is instead the primary torsion of `M_Q`,
+together with the images of `[r_j]` and `[w]` modulo prime powers.  The text
+below is retained to document the formerly proposed search and the still
+valid modular alternative.
 
 For the explicit Kun--Thom double, compute `D_Q` first along the smallest
 natural congruence quotients which kill the marked fold.  This is much

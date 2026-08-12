@@ -1,5 +1,36 @@
 # NOTEPAD
 
+## 2026-08-11: the relevant cuspidal screen is `(B_p delta_p, kappa_p)`, not raw `kappa_p`
+
+Full proof and certificates: `docs/TRUE_CUSPIDAL_SUBTHRESHOLD_SCREEN.md`.
+
+All prime cuspidal projective charts below `100` have now been screened.
+Their harmonic ranks are two at `p=53,61,79,89`; the proposed `p=73,97`
+charts are exactly rationally acyclic in degree two.  Exact harmonic dual
+systoles are
+
+    delta_53=0.2670563781...,
+    delta_61=0.3532226523...,
+    delta_79=0.3532601379...,
+    delta_89=0.7798646007....
+
+After multiplying squared systoles by the relevant spherical-template
+bound, the values are `0.855829,3.493455,3.494196,7.298266`.  Therefore
+only `p=53` has a nonintegral harmonic class below the localization
+threshold; its entire dangerous harmonic sector already has the near-exact
+decoder bracket
+
+    7.4890553600... <= kappa_53 <= 7.4901774198....
+
+The selected full-HAP modular sections are independently flat below `0.60`
+on all four cuspidal planes and all four planes lift through every two-adic
+depth.  Thus the early TRUE data show neither denominator collapse nor a
+primary lifting obstruction.  The theorem target should be localized:
+uniformly lift only harmonic classes with `B_p||u||<1`, rather than demand a
+small section on the entire harmonic lattice of every chart.  Compact CVP
+runs for `p=79,89` remain active as a stronger diagnostic, but their raw
+section constants cannot witness failure of the localized harmonic gate.
+
 Consolidated working notes. Formerly `BUILD_ITERATION_NOTES.md`,
 `docs/HISTORY.md`, and `docs/REORGANIZATION.md`; merged 2026-08-06.
 Each part is kept verbatim under its own banner.
@@ -4278,7 +4309,7 @@ This file is a changelog, kept because the order in which the pieces were
 proved is a genuine record of how the argument was found -- and because the
 checklists below are the only place several intermediate results are named.
 It is not a description of the finished library; for that see the README,
-`NonsoficGroupsExist.Public`, and `docs/CLAIM_MAP.md`.
+`GroupApproximation.Public`, and `docs/CLAIM_MAP.md`.
 
 One bullet in the refine-loop entry below is spliced mid-sentence and ends
 in `` `s`-free ``.  It is left as written: repairing it would mean inventing
@@ -5000,7 +5031,7 @@ presented nonsofic cover. `MainResults` instantiates it with
 
 # Phase 2: directory structure mirroring the manuscript
 
-`NonsoficGroupsExist/` is 256 modules in one flat directory, ordered by the
+`GroupApproximation/` is 256 modules in one flat directory, ordered by the
 sequence the mathematics was discovered in.  `scripts/reorganize.py` moves
 them into eleven directories that track the paper's sections, rewriting every
 import as it goes:
@@ -5031,12 +5062,12 @@ moment a module moved:
 
    ```latex
    \newcommand{\leanfileurl}[1]{%
-     https://github.com/SauersML/nonsofic_existence/blob/main/NonsoficGroupsExist/#1.lean}
+     https://github.com/SauersML/nonsofic_existence/blob/main/GroupApproximation/#1.lean}
    ```
 
    It appends `.lean` to a bare module name.  After the move the file is at
-   `NonsoficGroupsExist/Leavitt/Whitehead.lean`, and the paper links to
-   `NonsoficGroupsExist/Whitehead.lean`, which no longer exists.  189
+   `GroupApproximation/Leavitt/Whitehead.lean`, and the paper links to
+   `GroupApproximation/Whitehead.lean`, which no longer exists.  189
    declaration references across 82 modules are affected.
 
 2. **`scripts/check.py` reports every one as a dangling reference**, because
@@ -36579,7 +36610,7 @@ is that it separates the remaining problem from three false strengthenings:
    `(FAC7)`.
 
 The exact identities `(FAC4)`--`(FAC5)` are machine-checked in
-`NonsoficGroupsExist/Sofic/FiniteActionCharacter.lean`.  The next genuinely
+`GroupApproximation/Sofic/FiniteActionCharacter.lean`.  The next genuinely
 unresolved lemma is now precise: prove the finite free-group character
 transfer with bounds independent of the matrix dimension (but allowed to
 depend on the fixed finite word table), or identify a structural hypothesis
@@ -42011,3 +42042,935 @@ these automatically canceling root-torus blocks before searching for a
 genuine simultaneous obstruction.  The live classes are now restricted to
 noncommuting primary directions, excess fixed double-coset orbits in the
 Bass--Serre relation module, or a coupling transgression between them.
+
+## 2026-08-11: cyclotomic relation torsion is fixed-orbit excess
+
+Full proof: `docs/FALSE_CYCLOTOMIC_FIXED_ORBIT_FORMULA.md`.
+
+The Bass--Serre relation module splits exactly over `L=F/E=Q*Q`:
+
+    M=directSum_(ell in L) Aug_Z(E/Gamma_ell),
+    Gamma_ell=ell Gamma ell^(-1).
+
+For a group `B->C_p` and a `B`-set with `r` quotient-free orbits and `s`
+quotient-fixed orbits, twisted degree-zero homology gives
+
+    O_p^r directSum F_p^s -> F_p.
+
+Its kernel is `O_p^r` for `s=0` and
+
+    O_p^r directSum F_p^(s-1)
+
+for `s>=1`.  The only other contribution is the explicit cokernel of the
+stabilizer maps on twisted `H_1`.  Thus cyclotomic relation torsion is
+exactly excess fixed-double-coset data plus one stabilizer transgression.
+
+Every Laurent fiber has infinitely many fixed double cosets.  If
+`A=varphi(ell)`, choose `n_0` with `A n_0=-e_1 mod 2`, put
+
+    v_m=(A(n_0+2m)+e_1)/2,
+    d_m=diag(x^(-v_m),x^(v_m),1,...),
+
+then
+
+    d_m^(-1) h d_m=e_12(x^(A(n_0+2m))) in Gamma_ell.
+
+Pointedness of `A N^d` proves the `E(p)d_m Gamma_ell` are pairwise
+distinct.  Their differences give an explicit infinite `F_p` cyclotomic
+block.
+
+That explicit block nevertheless cancels completely in the simultaneous
+Bockstein quotient.  In the parallel-edge Bass--Serre graph, if one lift
+`b` fixes edges `x,y`, the free-kernel loop
+
+    k_(x,y)=(x o^(-1))(y o^(-1))^(-1)
+
+is fixed by `b` as an actual group element.  Hence `<b,k_(x,y)>~=Z^2`, and
+its torus class has ordinary Bockstein zero and cyclotomic Bockstein
+`unit*[k_(x,y)]`.  All diagonal fixed points above share the lift `h`, so
+their entire infinite block lies in `beta_chi(ker beta_1)`.
+
+For general fixed orbits, only failure to choose a common stabilizing lift
+can survive; this is a wild nonabelian `C_p`-cocycle problem in `E(p)`.  If
+one first abelianizes the free fold kernel, every actually `h`-fixed class
+again has a commuting torus.  The failure to lift that cancellation
+upstairs is measured by
+
+    H_1([R_0,R_0],F_p)_(M semidirect B_p)
+      ~=(exterior^2 M tensor F_p)_(B_p),
+
+with the analogous cyclotomic module.  Thus the final derived remainder is
+an exterior-square coinvariant of the known permutation kernel, not an
+unknown commutator subgroup.  Future computation should quotient out the
+common-lift torus block and inspect only the nonabelian-cocycle/exterior-
+square residue.
+
+The non-common-lift residue has an exact first-order deformation quotient.
+For a mod-`p` fixed coset `gbar Gamma_bar_ell`, put
+
+    gamma_bar=gbar^(-1) hbar gbar in Gamma_bar_ell
+
+and choose integral lifts.  Writing
+
+    g^(-1) h g gamma^(-1)=1+p Delta mod p^2,
+
+the choice-independent obstruction to making this an exact fixed edge
+modulo `p^2` is
+
+    [Delta] in sl_r(Rbar) /
+      ((Ad(gamma_bar)-1)sl_r(Rbar)+sl_r(Pbar_ell)).
+
+Left correction by `E(p)` supplies the first summand and correction of the
+polynomial stabilizer lift supplies the second.  Vanishing is equivalent to
+an `h`-fixed lift modulo `p^2`.  The diagonal family has zero obstruction.
+Thus a wild fixed orbit can now be searched by sparse Laurent linear
+algebra, after quotienting the already harmless lower-right commuting-root
+subspace.  Exact integral lifting would require compatible vanishing at all
+higher congruence depths; no Hensel claim has been made.
+
+## 2026-08-11: noncommuting congruence blocks survive both Bockstein kernels
+
+Full proof: `docs/FALSE_NONCOMMUTING_CONGRUENCE_BOCKSTEIN.md`.
+
+The lower-right commuting-root block cancels through tori, but the first
+nontrivial `Ad(h)-1` Jordan blocks do not.  At `p=2`, for every Laurent
+monomial `f`, put
+
+    A_f=f E_13,   B_f=x_1 f E_23.
+
+Then `Ad(h)A_f=A_f` and `Ad(h)B_f=A_f+B_f`.  Projection of the first
+congruence logarithm onto any finite collection of these blocks gives
+
+    B_2=<E(2),h> -> Q_S=(directSum_(f in S) F_2{A_f,B_f}) semidirect C_2.
+
+Each one-block projection is `D_8`, with generators
+
+    a_f=e_13(2f), b_f=e_23(2x_1f), t=h.
+
+In normalized mod-two bar homology the class
+
+    z_f=[t|b_f]+[a_f b_f t|b_f]
+
+generates
+
+    H_2(D_8,F_2)/(ker beta_+ + ker beta_-)=F_2.
+
+The exact bar calculation gives `beta_+(z_f)=[b_f]` and
+`beta_-(z_f)=-[b_f]`.  The two square defects lift to commutators wholly
+inside the quotient kernel:
+
+    a_f^2=[e_14(2f),e_43(2)],
+    b_f^2=[e_24(2x_1f),e_43(2)].
+
+Hence the five-term transgression of every `z_f` is zero, so all finite
+collections lift to `H_2(B_2,F_2)`.  Projection back to individual `D_8`
+blocks proves their independence modulo the sum of the two Bockstein
+kernels.  Therefore
+
+    dim_F2 H_2(B_2,F_2)/(ker beta_+ + ker beta_-)=infinity.
+
+The result persists in the actual limiting free-fold group
+`R_0 semidirect B_2` by the split inclusion/retraction.  This is the first
+explicit infinite family of genuine local parity charges: it survives
+ordinary lifting, sign lifting, commuting-torus cancellation, and passage
+to the fold kernel.  It does not yet prove FALSE; the next task is to show
+that the marked radical filling sequence has nonzero projection onto one of
+these charges (or to tailor a marked boundary which does).
+
+The companion exact bounded search
+`experiments/wild_fixed_coset_search.py` matched `228` Laurent fixed cosets
+and found no nonzero **first-order** common-lift obstruction after quotienting
+by the adjoint deformation image.  This supports focusing on the Jordan
+Bockstein residue rather than raw characteristic-two fixed-coset failures.
+
+One apparent higher-depth survivor is now exactly repaired, which exposes a
+necessary warning for future searches.  For
+
+    g=e_21(x)e_12(x^(-1))e_21(x^(-2)),
+
+the conjugate `g^(-1)h g` is polynomial modulo four but has negative terms
+of size four integrally.  Nevertheless
+
+    c=e_12(-x^2)e_21(2x^(-5))e_12(x^2) in E(2)
+
+satisfies
+
+    c^(-1)g^(-1)h g c=e_21(-x) in Gamma.
+
+So a nonzero next-order **linear** residue can be killed by the quadratic
+effect of a homogeneous lower-depth solution.  Any all-depth wild-orbit
+test must quotient by the full nonlinear solution torsor, not independently
+reapply the first-order cokernel.  The calculation and rank-one Bezout
+factorization are recorded in Section 10 of
+`FALSE_CYCLOTOMIC_FIXED_ORBIT_FORMULA.md`.
+
+## 2026-08-11: the displayed noncommuting Bockstein charges are stabilizer-killed
+
+Full proof: `docs/FALSE_NONCOMMUTING_BOCKSTEIN_STABILIZER_CANCELLATION.md`.
+
+The infinite paired quotient in `B_2` remains correct, but its explicit
+`D_8` generators do not couple to the Laurent radical relation module.  In
+the dihedral block one has the exact homology identity
+
+    z_2=[t|b]+[abt|b]=[b|b] in H_2(D_8,F_2).
+
+For `f=x^u`, put `v=u+e_1`,
+
+    b_f=e_23(2x^v), p_f=e_24(2x^v), c_f=e_43(2).
+
+Then `[p_f,c_f]=b_f^2`.  The Laurent diagonal with exponent weights
+
+    lambda_2=0, lambda_3=lambda_4=-v, lambda_5=2v
+
+simultaneously conjugates `b_f,p_f,c_f` to the constant polynomial roots
+`e_23(2),e_24(2),e_43(2)`.  The standard commutator bar filling therefore
+gives a cycle in one polynomial double-coset stabilizer whose image in the
+dihedral quotient is `[b|b]=z_2`.
+
+For `P=E/Gamma`, Shapiro and
+
+    0 -> Aug_F2(P) -> F_2[P] -> F_2 -> 0
+
+show that every displayed class lies in the stabilizer-homology image and
+has zero connecting class in `H_1(B_2,Aug_F2(P))`.  Thus the correct marked
+local target is the further quotient
+
+    H_2(B_2,F_2) /
+      (ker beta_+ + ker beta_- + sum_d im H_2(B_2 cap dGamma d^-1,F_2)).
+
+The noncommuting Jordan family vanishes there.  Future searches must
+quotient stabilizer homology, not merely fixed points or first-order
+deformation images.  This prevents the large unmarked local quotient from
+being mistaken for the radical filling obstruction.
+
+## 2026-08-11: every finite Jordan paired quotient is stabilizer-killed
+
+Full proof: `docs/FALSE_FINITE_JORDAN_PAIRED_QUOTIENT_NO_GO.md`.
+
+For
+
+    Q_m=(C_2)^(2m) semidirect C_2,
+    t(a_i)=a_i, t(b_i)=a_i+b_i,
+
+let `beta_+` and `beta_-` be the ordinary and sign Bocksteins.  The exact
+paired quotient is
+
+    H_2(Q_m,F_2)/(ker beta_+ + ker beta_-)
+      = directSum_i F_2 [b_i|b_i].
+
+Indeed, retraction onto the `i`-th `D_8` block proves independence of the
+square classes.  The split LHS spectral sequence gives
+
+    H_1(Q_m,Z_chi) = V_m/(t-1)V_m = (C_2)^m,
+
+so the sign Bockstein bounds the paired quotient dimension by `m`.  This
+matches the lower bound and proves that there are no additional cross-block
+paired classes.
+
+Each square basis class is the image of the explicit polynomial-stabilizer
+cycle constructed in the preceding note.  Consequently the entire paired
+quotient of every finite first-congruence Jordan sector vanishes after
+polynomial double-coset stabilizer homology is imposed.  Merely adding more
+independent first-order blocks cannot produce FALSE.  A survivor must use
+higher congruence depth, an infinite compatible class, a derived exterior
+class, or a different prime/local system.
+
+## 2026-08-11: cyclic Laurent-root Bocksteins are killed at every depth
+
+Full proof: `docs/FALSE_CYCLIC_ROOT_POWER_STABILIZER_NO_GO.md`.
+
+The polynomial-stabilizer filling is not special to the first mod-two
+Jordan layer.  For every prime `p`, depth `k>=1`, and Laurent monomial
+`x^v`, put
+
+    b=e_23(p^k x^v), u=e_24(p^k x^v), c=e_43(p).
+
+Then all three elements lie in the first congruence intermediate group and
+
+    b^p=[u,c].
+
+The same determinant-one Laurent diagonal with weights
+
+    lambda_2=0, lambda_3=lambda_4=-v, lambda_5=2v
+
+simultaneously conjugates `b,u,c` to constant polynomial roots.  Moreover,
+the standard cyclic bar chain
+
+    T_p(b)=sum_(j=1)^(p-1)[b^j|b]
+
+has boundary `p[b]-[b^p]`, while an explicit five-term commutator chain
+has boundary `[b^p]`.  Their sum modulo `p` is therefore a cycle in one
+polynomial double-coset stabilizer and maps to the standard generator of
+`H_2(C_p,F_p)`.
+
+Hence every single-root cyclic Bockstein class, at every congruence depth,
+has zero augmentation-module transgression.  Going deeper without adding
+genuinely noncyclic/exterior information cannot produce FALSE.  The live
+higher-depth targets are incompatible-support exterior classes,
+nonabelian higher-congruence commutators, or infinite compatible classes.
+
+## 2026-08-11: relative K2 leaves one cyclic class, and prime two kills it
+
+Full proof: `docs/FALSE_RELATIVE_K2_CYCLIC_REDUCTION.md`.
+
+Let `N_p=E(R,pR)` be the relative elementary normal closure inside the
+stable Laurent elementary group, and let `K_p` be the full mod-`p`
+congruence kernel.  The Steinberg extension gives the exact defect
+
+    K_p/N_p = coker(K_2(R) -> K_2(R/pR)).
+
+For `R=Z[Z^d]`, regular Bass--Heller--Swan and Quillen's finite-field
+calculation give
+
+    K_p/N_p = (F_p^x/{+-1})^d
+
+for odd `p`, and zero for `p=2`.  In particular the defect has no
+`p`-torsion.  Every relative-root class is the ordinary Bockstein of an
+explicit polynomial-stabilizer cycle, including all `E`-conjugates of the
+root.  The abstract identity
+
+    H_2/(ker beta_1 + ker beta_chi + J)
+      = H_1(Z)[p]/(beta_1(ker beta_chi)+beta_1(J))
+
+therefore reduces the whole stabilizer-paired quotient to at most the one
+cyclic direction generated by `h`.
+
+At `p=2` that last direction vanishes exactly.  The constant polynomial
+involution
+
+    c=diag(-1,1,-1,1,...)
+
+lies in `K_2 cap Gamma` and inverts `h`.  Put `d=ch`; then `c^2=d^2=1`
+and `h=cd`.  The square cycle `[c|c]` comes from the identity stabilizer,
+whereas `[d|d]` lies in the sign-Bockstein kernel because `chi(d)=-1`.
+Their ordinary Bocksteins add to `[h]`.  Hence, in stable rank,
+
+    H_2(B_2,F_2)/(ker beta_+ + ker beta_- + J_2)=0.
+
+This is complete prime-two base-row vanishing, not merely a no-go for the
+displayed Jordan blocks.  Only the corresponding odd-prime cyclic
+correlation remains locally unresolved.
+
+## 2026-08-11: a localized Baumslag--Solitar class survives every polynomial stabilizer
+
+Full proof: `docs/FALSE_LOCALIZED_BS_PAIRED_SURVIVOR.md`.
+
+Fix an odd prime `p`, put `q=p+1`, and place
+
+    Gamma=E_r(Z[x]) < E=E_r(Z[1/q][x^(+-1)]).
+
+Inside `E`, the elements
+
+    h=e_12(x^(-1)),
+    c=diag(q,1,q^(-1),1,...)
+
+generate `B=BS(1,q)`, with `c h c^(-1)=h^q`.  For the character
+`chi(h)=zeta_p`, `chi(c)=1`, the explicit integral bar chain
+
+    Z_p=sum_(j=1)^p [h^j|h]
+        -[c|h]-[ch|c^(-1)]+[c^(-1)|c]
+
+satisfies
+
+    partial Z_p=p[h],
+    partial_chi Z_p=(1-zeta_p)[c^(-1)].
+
+Thus its two Bocksteins are `[h]` and `-[c]`; both are injective on the
+one-dimensional group `H_2(B,F_p)`.  If
+`S_d=B cap d Gamma d^(-1)` is any polynomial double-coset stabilizer,
+trace integrality forces `S_d` into the translation subgroup
+`Z[1/q]`.  The latter maps trivially to the cyclotomic `H_1(B)`, so
+every stabilizer `H_2` maps trivially to `H_2(B,F_p)`.  Consequently
+
+    H_2(B,F_p)/(ker beta_1+ker beta_chi+sum_d im H_2(S_d,F_p))=F_p,
+
+and the augmentation transgression of `[Z_p]` is nonzero.  This is the
+first exact marked paired class in the Laurent-fold search that survives
+all stabilizers.
+
+This is not yet FALSE: the coefficient-mismatched inclusion above still
+has to satisfy the Kun--Thom infranormal hypothesis, and the standard
+same-coefficient substitution proof does not supply the localized scalar
+directions.  The next task is to decide that global gate exactly rather
+than assume it.
+
+## 2026-08-11: full matrix-order compressors cannot introduce localization
+
+Full proof: `docs/FALSE_MATRIX_ORDER_COMPRESSOR_NO_GO.md`.
+
+The preceding global gate has a definitive negative answer.  Let
+
+    S=Z[x], K=Q(x), T=Z[1/q][x^(+-1)],
+    Gamma=E_r(S)<E=E_r(T), r>=3.
+
+If `g Gamma g^(-1)<=Gamma`, then conjugating `1+e_ij` shows that
+`Ad_g` maps every matrix unit into `M_r(S)`.  Hence
+
+    Ad_g(M_r(S))<=M_r(S).
+
+But the determinant of the linear operator `Ad_g` on `M_r(K)` is exactly
+one.  Its integral matrix therefore has an integral inverse, and the
+inclusion is equality.  Local Smith normal form at every height-one prime
+of the UFD `S` then gives
+
+    g=lambda u, lambda in K^x, u in GL_r(S).
+
+For `g in E_r(T)`, determinant one forces `lambda^r=+-1`; the only roots
+of unity in `Q(x)` are `+-1`, so `g in GL_r(S)`.  Since `E_r(S)` is normal
+in `GL_r(S)`, every compressor actually normalizes `Gamma`.
+
+The normalizer is proper: for `h=e_12(x^(-1))`,
+
+    h(1+e_21)h^(-1)
+      =1+e_21+x^(-1)(e_11-e_22)-x^(-2)e_12
+
+is not polynomial.  Thus the compressor semigroup lies in a proper
+normalizer and cannot generate `E`.  The localized pair is not
+infranormal.
+
+This kills only the ambient pair, not the exact paired BS class.  Any
+replacement host must evade the matrix-order theorem, for example via a
+proper root semigroup, an outer endomorphism, a nonprincipal invertible
+ideal/Picard class, or transplantation into a known infranormal pair.
+
+## 2026-08-11: a square-zero BS class survives inside a genuine Kun--Thom pair
+
+Full proof: `docs/FALSE_SQUARE_ZERO_BS_KUN_THOM_PAIR.md`.
+
+The matrix-order no-go can be evaded without sacrificing any global
+hypothesis.  Fix odd `p`, put `q=p+1`, `A=Z[1/q]`, let
+`V=A^3` be the standard module for `Q=SL_3(A)`, and form the commutative
+square-zero ring `C=A directSum V`.  With `d>=3` and even `r>=4`, set
+
+    R_+=C[x_1,...,x_d],
+    R=C[x_1^(+-1),...,x_d^(+-1)],
+    Gamma=E_r(R_+) semidirect Q,
+    G=E_r(R) semidirect (Q times SL_d(Z)).
+
+Both groups are residually finite and Kazhdan.  Positive monomial
+substitutions are compressors, generate `SL_d(Z)`, and their conjugates of
+the positive elementary group generate `E_r(R)`.  Thus `Gamma<G` is a
+nonnormal infranormal Kun--Thom pair.
+
+Let `a=(0,e_1) in V`, `f=x_1+x_1^(-1)`, and
+
+    P=diag(1,-1,1,-1,...),
+    h=1+a f P,
+    c=diag(q,1,q^(-1)) in Q.
+
+Because `a^2=0`, the alternating diagonal `h` is elementary and
+`c h c^(-1)=h^q`; hence `<h,c>=BS(1,q)`.  The previous explicit bar cycle
+
+    Z_p=sum_(j=1)^p[h^j|h]-[c|h]-[ch|c^(-1)]+[c^(-1)|c]
+
+still has Bocksteins `[h]` and `-[c]`, both injective.
+
+The new determinant invariant proves exact stabilizer survival.  If a
+nonzero translation `h^s` were conjugate into `Gamma`, its square-zero
+component, after choosing a nonzero coordinate of the transformed vector
+`a`, would be a positive polynomial matrix of the form
+
+    s b (x^v+x^(-v)) g_0^(-1) P g_0.
+
+Its determinant is
+
+    (sb)^r det(P) (x^v+x^(-v))^r,
+
+which is not a positive polynomial: the two uncancellable extreme terms
+have exponents `rv` and `-rv`.  Therefore every double-coset stabilizer
+meets the BS translation subgroup trivially, injects into `Z`, and has
+zero `H_2(-,F_p)`.  Consequently the paired quotient is exactly `F_p` and
+the augmentation transgression of `[Z_p]` is nonzero.
+
+This closes the algebraic host and stabilizer gates simultaneously.  The
+remaining FALSE gate is analytic: realize this derived class in finite
+unitary models with positive normalized HS mass, rather than letting its
+cyclotomic carry dilute along finite quotient covers.
+
+## 2026-08-11: align the paired class with an explicit sofic-radical fold
+
+Full proof: `docs/FALSE_RADICAL_BS_PAIRED_KUN_THOM_DOUBLE.md`.
+
+There is a cleaner version of the square-zero construction in which the
+ordinary Bockstein is visibly the label of a strict-compressor fold and
+the BS stable letter is excluded from every stabilizer by a quotient map.
+
+Keep the same pair `Gamma<G`.  In the external substitution group
+`L=SL_d(Z)`, take
+
+    t=I+e_12, s=I+e_13, v=t^(-1)e_2=e_2-e_1.
+
+The transvections commute, `s v=v`, and `t` is a strict compressor.  Put
+
+    gamma=1+a x_2 P in Gamma,
+    h=t^(-1) gamma t=1+a x^v P,
+    c=(diag(q,1,q^(-1)),s) in Q times L.
+
+Then `h notin Gamma`, `h` lies in the normal closure
+`N=E_r(R) semidirect Q`, and
+
+    c h c^(-1)=h^q.
+
+Thus `<h,c>=BS(1,q)` and the same explicit paired bar cycle applies.
+
+The decisive simplification is the substitution projection
+
+    rho_L:G->L.
+
+Every conjugate of `Gamma` has trivial `rho_L`, whereas a BS element of
+stable-letter exponent `m` has projection `s^m`.  Since `s` has infinite
+order, every double-coset stabilizer lies in the translation subgroup
+`U=Z[1/q]`.  Its map to the cyclotomic `H_1(B)` is zero, so injectivity of
+the cyclotomic Bockstein annihilates every stabilizer `H_2` image.  The
+paired quotient and augmentation transgression are again nonzero.
+
+For the symmetric double
+
+    D=G *_Gamma G,
+    w=i_2(h)i_1(h)^(-1),
+
+the complete-radical formula
+
+    Rad_sof(D)=ker(D->G *_N G)
+
+puts `w` in the sofic radical, while amalgam normal form makes it
+nontrivial.  The Bass--Serre fold class is exactly
+`delta_(hGamma)-delta_Gamma`, so the ordinary Bockstein `[h]` is precisely
+the radical mark, not an unrelated local charge.
+
+All remaining work is now the quantitative finite-dimensional realization
+of this one fixed paired cycle.
+
+## 2026-08-11: the fold-aligned finite cycle is an exact integral amplifier
+
+Full proof: `docs/FALSE_RADICAL_BS_INTEGRAL_CYCLE_AMPLIFIER.md`.
+
+For `B=BS(1,q)`, `q=p+1`, acting on one cycle `X_M` of length `M` with
+translations trivial and the stable letter cyclic, put
+`I_M=Aug_Z(X_M)`.  The integral LHS calculation and the Smith form of the
+cyclic operator give
+
+    H_1(B,I_M) = Z/N_M Z,
+    N_M=(q^M-1)/(q-1).
+
+The explicit one-cycle obtained by taking the boundary of the paired bar
+chain with one point coefficient is a generator of this cyclic group, not
+merely a nonzero mod-`p` class.  For `M=p^k`, LTE gives
+
+    v_p(N_M)=k,
+
+so the marked class has exact `p`-primary order `p^k`.
+
+Its dual is the explicit clock representation
+
+    H_k xi_j=exp(2 pi i q^j/p^(k+1)) xi_j,
+    C_k xi_j=xi_(j-1),
+    C_k H_k C_k^(-1)=H_k^q.
+
+The adjacent phase increment is the primitive `p^k`-th root and hence has
+size `O(p^(-k))`, while the eigenvalues of `H_k` run through a full rotated
+set of `p^k`-th roots.  Therefore `tr(H_k)=0` and its normalized HS
+displacement from the identity is exactly `sqrt(2)`.  This completes the
+one-cycle quantitative amplification.  The sole remaining gate on this
+lane is global: extend the clock character from the BS orbit to the finite
+square-zero relative module while keeping every fixed polynomial elementary
+and `Q`-covariance relation asymptotically exact.
+
+### Correction: the translated clock increments have fixed average energy
+
+Full proof: `docs/FALSE_RADICAL_BS_CLOCK_AVERAGE_NO_GO.md`.
+
+The preceding paragraph made an invalid passage from one distinguished
+coordinate to normalized Hilbert--Schmidt average.  Although
+
+    lambda_k(e_0-e_1)=-1/p^k mod Z,
+
+the translate at coordinate `j` is
+
+    exp(-2 pi i q^j/p^k),  q=1+p.
+
+For every `k>=2`, the powers `q^j mod p^k` run through
+`1+p Z/p^k Z` exactly `p` times, so these translated phases have mean zero
+and
+
+    (1/p^k) sum_j |exp(-2 pi i q^j/p^k)-1|^2 = 2.
+
+Thus the naive orbitwise adjacent defect is macroscopic, not `o(1)`.  The
+integral Smith calculation, generator theorem, exact `p^k`-primary order,
+exact BS relation, and `tr(H_k)=0` remain valid.  What is reopened is the
+quantitative local gate: one needs an allowed twisted gauge/non-diagonal
+replacement that concentrates fixed-relation defect on `o(p^k)` dimensions,
+or a different character/model, before global square-zero extension can be
+attempted.  Do not cite the preceding paragraph's sentence “completes the
+one-cycle quantitative amplification.”
+
+#### Interpretation correction: average two is the fold witness, not the BS defect
+
+The preceding correction correctly rejects the claimed uniformly small
+translated increment, but it labels that increment too aggressively as a
+relation defect.  The clock/shift pair satisfies the Baumslag--Solitar
+relation exactly.  Taking the two local fold sectors
+
+    H_k^(1)=H_k,  H_k^(2)=H_k^q
+
+gives
+
+    H_k^(2)(H_k^(1))^(-1)=H_k^p,
+    ||H_k^p-1||_2^2=2  (k>=2).
+
+Thus the average-energy calculation supplies the desired macroscopic fold
+word.  What remains unsupported is smallness of the **additional**
+square-zero, `Q times L`, and amalgam-identification defects.  The frozen
+clock experiment is therefore still live: keep `H_k,H_k^q,C_k` exact and
+solve only for an extension whose extra fixed-relation defects tend to zero.
+
+## 2026-08-11: the frozen clock extends exactly over the full coefficient Q-orbit
+
+Full proof: `docs/FALSE_RADICAL_BS_Q_BIMODULE_EXTENSION.md`.
+
+Put `A_n=Z/p^(k+1)Z`, `V_n=A_n^3`, and `Q_n=SL_3(A_n)`.  On
+`ell^2(Q_n)`, for the first-coordinate additive character `ell`, define
+
+    D(v) delta_g=exp(2 pi i ell(g^(-1)v)) delta_g.
+
+Left translation gives exact covariance
+
+    L(u)D(v)L(u)^*=D(uv).
+
+For `c_0=diag(1+p,1,(1+p)^(-1))`, right translation commutes with all
+left `Q_n` operators and satisfies
+
+    R(c_0)D(v)R(c_0)^*=D(v)^(1+p).
+
+Thus with common polynomial operator `Gamma=D(e_1)`, the two compressor
+choices `1` and `R(c_0)^(-1)` give exact local fold sectors
+`Gamma,Gamma^(1+p)` while commuting with the entire common coefficient
+group.  Their fold is `Gamma^p`.  Uniformity of `g^(-1)e_1` on primitive
+vectors gives, for `k>=2`,
+
+    tr(Gamma^p)=0,
+    ||Gamma^p-1||_2^2=2.
+
+This is a real extension result: the square-zero additive relations, all
+coefficient-`Q_n` covariance, the stable-letter power relation, and the
+marked fold are exact simultaneously.
+
+The next constrained computation is now sharply smaller.  Every external
+`L=SL_d(Z)` generator must lie in the explicit commutant
+
+    A_n=L(Q_n)'=directSum_(pi in Irr Q_n) 1 tensor M_(dim pi),
+
+with the distinguished compressor fixed to `R(c_0)^(-1)`.  First minimize
+the finite `L`-presentation defects inside this algebra; then add only the
+remaining Laurent-monomial and base-elementary covariance variables.  A
+positive-decay sequence would solve the `Q times L` part of the frozen-clock
+extension; a positive lower bound would localize the obstruction at the
+external group.
+## 2026-08-11: exact paired Fourier--Q cell fixes the common-positive gap
+
+Full proof: `docs/FALSE_RADICAL_BS_PAIRED_FOURIER_Q_CELL.md`.
+
+The previous diagonal `Q_n` clock represented the Laurent marked element
+but did not itself exhibit the common positive operator required by the
+strict-compressor fold.  On
+
+    ell^2(Q_n times V_n times V_n)
+
+there is now an exact paired model.  The common positive tangent module
+acts by translations
+
+    A(v) delta_(g,x,y)=delta_(g,x+g^(-1)v,y),
+
+while its Fourier-dual Laurent realization acts by multipliers
+
+    D(v) delta_(g,x,y)=e(<y,g^(-1)v>)delta_(g,x,y).
+
+A fiberwise Fourier-swap `U` satisfies `U A(v)U^*=D(v)`.  The right
+bimodule gauge
+
+    T(g,x,y)=(g c_0,c_0^(-1)x,q^(-1)c_0^T y)
+
+commutes with every common translation `A(v)` and with the left `Q_n`
+action, but satisfies
+
+    T D(v)T^(-1)=D(v)^q.
+
+Hence the two compressor choices
+
+    S_0=U^(-1),  S_1=U^(-1)T^(-1)
+
+have identical forward action on the entire common translation module,
+whereas
+
+    S_0^(-1)A(a)S_0=D(a),
+    S_1^(-1)A(a)S_1=D(a)^q.
+
+The fold is `D(a)^p`, has trace zero, and has squared normalized HS norm
+two.  Left translation by `c_0` commutes with `U,T` and gives the exact
+coefficient-side `q`-scaling in both realizations.  This is only the
+`c_0` component of the actual stable letter `c=(c_0,s)`; representing the
+external transvection `s` so that it fixes the marked monomial remains in
+the global covariance gate.
+
+This closes a genuine local compatibility gate: the relative gauge now
+commutes with a literal common positive sector and becomes visible only
+after the Fourier wall.  It does not solve the full group.  The remaining
+theorem is to realize the Fourier wall as the actual strict monomial
+substitution on one finite Frobenius model of the full Laurent tangent and
+base elementary group, simultaneously for the external Kazhdan generators.
+## 2026-08-11: the paired Fourier cell has an exact external principal-bundle completion
+
+Full proof: `docs/FALSE_PAIRED_FOURIER_PRINCIPAL_BUNDLE_SPLICE.md`.
+
+The collaborator's exact principal-bundle gauge extends from a prescribed
+finite-group translation to any prescribed finite-order unitary in the
+commutant of the coefficient group.  The paired compressor matrices
+
+    S_0=U^(-1),  S_1=U^(-1)T^(-1)
+
+have finite order: their fiber parts normalize the finite Pauli group, so
+they have finite projective order, and the determinant of every Fourier,
+linear-permutation, and right-translation factor is a root of unity.
+
+Choose one modulus `m_n` divisible by both orders and reduce
+`SL_d(Z)` modulo `m_n`.  On the regular quotient, a block-diagonal gauge
+prescribes
+
+    t |-> S_i tensor L(t),
+    s |-> 1 tensor L(s)
+
+for each sector `i=0,1`, while keeping an exact representation of the
+entire external `SL_d(Z)`.  Because every gauge value commutes with the
+left `Q_n` action, all cross-commutators are exact.  The common forward
+positive module, the inverse Fourier fold, and its squared HS norm two are
+unchanged; the trivial `s` holonomy also completes the marked stable-letter
+relation with the coefficient operator `c_0`.
+
+Thus the external presentation and the whole marked `t,s,c_0` slice are no
+longer variables.  The exact remaining gate is only full Laurent tangent
+and base-elementary covariance under these frozen external matrices.
+## 2026-08-11: a long paired Fourier--Q chain agrees at every fixed positive depth
+
+Full proof: `docs/FALSE_LONG_PAIRED_FOURIER_Q_CHAIN.md`.
+
+The depth-one paired cell did not yet guarantee agreement on all fixed
+forward iterates `t^j gamma t^(-j)` in the common positive subgroup.  This
+is repaired by a cyclic Lagrangian chain of length `M`.
+
+On `ell^2(Q_n times V_n^M)`, use a multiplier family `B_0(v)` in coordinate
+zero and translation families `B_j(v)` in coordinates `1<=j<M`.  They are
+commuting, additive, and exactly `Q_n`-covariant.  If `F_0` Fourier-transforms
+coordinate zero and `P_M` cyclically shifts the canonical translation
+coordinates, then
+
+    S_0=F_0 P_M F_0^(-1)
+
+satisfies `S_0 B_j(v)S_0^(-1)=B_(j+1)(v)` exactly.  A right `Q_n` gauge `T`
+fixes every translation family `B_j`, `j>=1`, but sends
+
+    T B_0(v)T^(-1)=B_0(v)^q.
+
+Set `S_1=S_0T^(-1)`.  Starting at `B_1`, the two compressor choices have
+identical conjugation orbits for the first `M` forward levels.  In the
+inverse direction they give `B_0(a)` and `B_0(a)^q`; their fold `B_0(a)^p`
+has trace zero and squared normalized HS norm two.  Therefore `M->infinity`
+gives exact agreement at every fixed positive depth without diluting the
+inverse fold.
+
+Both compressors have finite order and hence admit the exact external
+principal-bundle completion already proved.  The only remaining theorem is
+the simultaneous coefficient functor: realize these Lagrangian depth
+families as the actual tangent images of a finite Frobenius model of the
+polynomial elementary group, including base Steinberg commutators and all
+tested compressor directions.
+## 2026-08-11: the long chain lifts to the full square-zero elementary kernel
+
+Full proof: `docs/FALSE_LONG_FROBENIUS_ELEMENTARY_COMPRESSOR.md`.
+
+The long Lagrangian chain is functorial for a finite Frobenius tangent
+module.  Take a finite commutative Frobenius algebra `B`,
+
+    E=sl_r(B),  H=E_r(B),  W=E tensor V_n.
+
+The trace--Frobenius pairing on `E`, tensored with the standard coefficient
+pairing, is perfect and invariant under base conjugation.  Hence the cyclic
+Fourier polarization commutes with the entire base elementary action.
+
+If `alpha` is the reduced monomial compressor, replace the plain coordinate
+cycle by the skew cycle
+
+    (j,z) |-> (j+1,alpha z).
+
+It implements `alpha` exactly on both the full tangent kernel and the base
+group.  The right `Q_n` gauge acts only on the coefficient factor, so it
+commutes with the base group, fixes every positive translation level, and
+shears only the predecessor multiplier level by `q`.  Thus the two sectors
+agree for `M` forward levels on the full tangent/base semidirect product,
+while the inverse marked fold still has squared HS norm two.
+
+For the Laurent model use the group algebra
+
+    B=A_n[(Z/mZ)^d]
+
+with coefficient-of-identity Frobenius trace.  Every reduced monomial
+substitution preserves that trace, so the theorem applies exactly.
+
+This closes full tangent and base-elementary covariance for the selected
+compressor over arbitrarily long windows.  The one remaining construction
+is simultaneous principal-bundle coherence for the other external
+`SL_d(Z)` generators: absorb their exact finite cocycle into these
+Frobenius fibers while keeping the two positive functors asymptotically
+equal.
+## 2026-08-11: exact fiberwise absorption of the principal cocycle is sterile
+
+Full proof: `docs/FALSE_PRINCIPAL_BUNDLE_TANGENT_STERILITY.md`.
+
+There is a tempting but invalid final splice.  Given a finite external
+action `K curvearrowright P`, a vertex representation `rho`, and a bundle
+potential `varphi:K->U(H)`, one can put on the fiber over `x`
+
+    Pi_varphi(p)|_x
+      =varphi(x) rho(alpha_(x^(-1))(p)) varphi(x)^(-1)
+
+and gauge left translation by the same `varphi`.  This gives exact tangent
+covariance for every external generator.  However the whole covariant pair
+is simply
+
+    (Pi_varphi,Lambda_varphi)
+      =Ad(W_varphi)(Pi,Lambda).
+
+It is a global gauge conjugate of one ordinary finite model.  If two such
+sectors agree exactly on `Gamma`, they define a finite-dimensional linear
+image of the double, which is sofic and therefore kills the marked
+sofic-radical word.  The apparent fiber holonomy is canceled by the moved
+vertex operator.
+
+Hence the exact external principal bundle may enforce the external group
+law, but its cocycle cannot be absorbed tautologically into the whole
+vertex functor.  The long Frobenius chain must remain nonperiodic on growing
+windows: every fixed positive word becomes correct, while the closure depth
+moves to infinity and the inverse fold remains visible.  The remaining
+simultaneous-coherence construction is necessarily non-Cartan in precisely
+this sense.
+# 2026-08-11: finite central-relator certificates reduce the frozen-clock search
+
+Full proof: `docs/FALSE_CENTRAL_RELATOR_SEPARATION_CRITERION.md`.
+
+Let `P=<S|R>` be finitely presented and let
+`1!=w in Rad_sof(P)`.  It is enough to find finite groups `E_n` with a
+central element `z_n` of order `m_n` and labels for `S` such that every
+defining relator evaluates to
+
+    r -> z_n^(b_(n,r)),
+
+while
+
+    w -> z_n^(a_n),
+
+with
+
+    max_r |b_(n,r)|_(m_n)/m_n -> 0
+
+but
+
+    liminf |exp(2 pi i a_n/m_n)-1| > 0.
+
+Restricting the finite regular representation to the central-character
+summand `z_n -> exp(2 pi i/m_n)` makes the relator defects exactly the
+corresponding small scalar phases.  Word evaluation therefore gives a
+homomorphism from `P` into a tracial matrix ultraproduct which retains `w`.
+Its image is hyperlinear and cannot be sofic.
+
+This turns the frozen-clock computation into an exact finite algebra
+certificate rather than a dense-unitary optimization.  Freeze the known
+clock/shift block, solve only for the square-zero, coefficient, external,
+and amalgam labels, and ask that all presentation relators land in the same
+cyclic center with sublinear exponent.  The fold word must have macroscopic
+central exponent.  If a relation fails even to land in the center, it
+pinpoints the remaining representation-theoretic obstruction.
+
+If all relator exponents vanish, the labels give an honest finite image and
+the sofic-radical word necessarily vanishes.  More generally the fold
+exponent lies in the subgroup generated by the relator exponents, so any
+positive construction must exhibit an unbounded finite collision
+coefficient.
+
+The certificate has a stronger multi-central form.  The finite group may
+have any central subgroup `Z_n` and any character `chi_n:Z_n->T`.  It is
+enough that every defining relator land in `Z_n` with character value
+tending to one, while the radical word also lands in `Z_n` and its character
+value stays away from one.  The `chi_n`-Fourier summand of the finite regular
+representation proves the theorem exactly as in the cyclic case.
+
+If `B_n` is generated by the central relator values, quotienting by `B_n`
+gives a finite image of the presented group, so radicality forces the marked
+value to lie in `B_n`.  Hence a positive construction is precisely a growing
+central incidence code whose individual carry phases vanish but whose
+marked linear combination does not.  This is the correct algebraic target
+after the bounded-degree cyclic-wall no-go: do not force all carry into one
+cyclic coordinate.
+
+## FALSE: canonical central quotients and finite relation-module ratio
+
+New proof in `FALSE_CANONICAL_CENTRAL_QUOTIENTS.md`.
+
+For a finite presentation `P=F/N`, a nontrivial radical word `w`, a finite
+quotient `F -> Q` with kernel `L`, and `m>=2`, define
+
+`E_{Q,m}=F/([F,L]L^m)` and `C_{Q,m}=L/([F,L]L^m)`.
+
+Then `E_{Q,m}` is a finite central extension of `Q`, it is a quotient of the
+relation-centralized group `F/[F,N]`, and the image of `w` lies in the central
+subgroup generated by the fixed presentation relators.  More strongly, these
+canonical covers are cofinal: every finite quotient of `F/[F,N]` factors
+through some `E_{Q,m}`.
+
+If `a_j` are the relator classes and `b` is the marked class, FALSE follows
+from characters with
+
+`sum_j |chi(a_j)-1|^2 / |chi(b)-1|^2 -> 0`.
+
+A character-powering lemma makes the marked phase uniformly macroscopic while
+preserving vanishing relator energy.  A Dirac-extraction proposition proves
+that arbitrary central spectral mixtures/direct sums give no more freedom
+than scalar characters.
+
+Homologically, the search module is
+
+`C_{Q,m} = (L/[F,L])/m = H_1(L;Z)_Q/m`.
+
+This sharply identifies the next bridge for the existing `p^k`
+Baumslag--Solitar amplifier: locate its generator and all fixed relator
+classes in this coinvariant relation module.  Exact growth of the marked
+order alone is not enough; the needed invariant is the dual marked/relator
+separation ratio.
+
+## FALSE: the real relation-filling escape is impossible
+
+The real LP in `FALSE_FINITE_QUOTIENT_RELATION_FILLING_CRITERION.md` is
+actually quotient-independent.  If `F_d -> Q` is finite with kernel `L`, the
+five-term exact sequence is
+
+`0 -> H_2(Q;Z) -> L/[F_d,L] -> Z^d -> H_1(Q;Z) -> 0`.
+
+The two `Q`-dependent end groups are finite.  Hence
+
+`(L/[F_d,L]) tensor R ~= R^d`,
+
+and a word class maps to its ordinary exponent-sum vector.  Therefore
+
+`D_Q(w;R)`
+` =min {sum_j |c_j| :`
+`          exp(w)=sum_j c_j exp(r_j) in R^d}`
+
+for every finite quotient `Q`.  In particular `D_Q` can never diverge.  A
+sofic-radical word is killed by the sofic abelianization of the presented
+group, so the displayed LP is feasible over the integers and has one fixed
+finite value; when `exp(w)=0`, that value is zero.
+
+Thus the canonical central-quotient search is not a rational LP campaign.
+Its only live information is torsion: compute relator and marked classes in
+`(L/[F_d,L])/m` at prime-power moduli.  This fits the `p^k` Baumslag--Solitar
+amplifier and rules out spending MSI time on a free-part quantity which is
+provably constant.  Full proof:
+`docs/FALSE_REAL_RELATION_FILLING_NO_GO.md`.
