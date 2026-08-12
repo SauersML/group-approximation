@@ -201,7 +201,7 @@ the exact shortest squared norm
 
 ```text
 10728712947256347312769663474250046223588321991244287411579243217706716447682408124247043381061430739101610963804926581168798385712509031664221661233926942927648326947018265651270215509953939044890
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------,
+/
 85972262746423736417259155028330220464981880775136938484153009367340055879270507706557239067951479601089455324716561313521323488223939657898054379190757733582342373522062836858431172996132966638507
 ```
 
@@ -216,6 +216,13 @@ SHA-256 18683a12a3010c354ab4e5e16ca5ad2ebbdf4c01af5bc04c19244cdcc3c20be9.
 This validates the arbitrary-rank path before applying it to the new
 rank-seven level-`121` harmonic lattice.
 
+The integral harmonic exporter uses a rational nullspace followed by exact
+intersection with the ambient integer lattice.  At level `79` this completed
+in `51` seconds on one MSI core and produced exactly the same integral row
+lattice and Gram matrix as the previous generic integer-kernel calculation.
+This avoids spending tens of minutes on a full ambient HNF before the
+rank-seven level-`121` screen.
+
 The decisive output is not merely the size of a selected modular lift.  If
 the harmonic lattice is nonzero, compute its compact dual systole `delta_121`
 and the spherical template bound `B_121`.  The harmonic plane is relevant to
@@ -229,6 +236,12 @@ If (PP4) fails, every localized harmonic maximum in the HIL22 reduction is
 trivial, just as at prime levels `61`, `79`, and `89`.  If (PP4) holds, level
 `121` becomes the next dangerous chart and warrants an exact compact CVP
 calculation of its paired-discriminant repair constant.
+
+Independently of the chart-specific value, the fixed cellular attaching word
+gives the uniform bound `B_level^2<=52` at every level; see
+`TRUE_UNIFORM_PROJECTIVE_SPHERICAL_BOUND.md`.  Thus
+`delta_level>=1/sqrt(52)` is already a chart-independent sufficient safety
+certificate.
 
 ## 5. Scope
 
