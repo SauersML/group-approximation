@@ -45451,6 +45451,48 @@ R_*/M -> 0,  A_*/M -> 0,  R_* A_*/M -> 0.
 The present theorem closes an operator-norm shortcut; it neither supplies
 nor refutes that genuinely tracial three-moment system.
 
+# 2026-08-12: boundary-reduced square packets and determinant-one primal section
+
+Full proof and certificates:
+`docs/TRUE_SQUARE_LEVEL_BOUNDARY_REDUCED_SECTIONS.md`.
+
+Adding literal integral `d_3` boundaries to the combined natural/reverse
+cycle packets gives full exact spanning packets with bounds
+
+```text
+level 121: max support=95,  max norm^2=95,  max coefficient=2;
+level 169: max support=133, max norm^2=133, max coefficient=2.
+```
+
+The prior maxima were `311/871/4` and `220/942/7`.  At level `121`, pairing
+the seven projected cycles with an exact basis of `Q_121^#` gives determinant
+one.  Therefore their projections form a `Z`-basis of the entire primal
+harmonic lattice `Q_121`, not merely a rational spanning packet.
+
+Transporting the known short primal LLL basis through this exact splitting
+and reducing again by boundaries gives seven integral cycles with
+coefficients only `0,+-1`, squared norms
+
+```text
+46,78,78,125,130,154,198,
+```
+
+and exact primal projection-section norm
+
+```text
+14.31737015304154014....
+```
+
+This closes integral saturation and bounded absolute realization for all
+seven new primal directions at level `121`.  It does not solve the dual carry
+extension `0 -> L -> M_Sigma -> Q^# -> 0`; that distinction is essential.
+
+The selected ambient Gram matrices split in the cusp/Eisenstein-sized blocks
+`2+5` and `4+8`, but exact harmonic testing disproves the tempting shortcut:
+the natural cycles are not harmonic and the projected blocks at `121` are not
+orthogonal.  The block split is representative-dependent, so the
+absolute-to-relative comparison map is still required.
+
 # 2026-08-12: the negative Heisenberg kernel is a center-valued Pauli bundle
 
 Full proof:
@@ -45624,3 +45666,55 @@ Frobenius/Steinberg fiber assignment functorial on those charts, equivalently
 to solve the matrix-valued relative-holonomy table from the stabilizer
 reduction.  Full proof and scope:
 `docs/FALSE_AMENABLE_STABILIZER_ORBIT_CHART_INDUCTION.md`.
+
+# Exact transfer-index loss in coinduced Frobenius bundles (2026-08-12)
+
+Full proof:
+`docs/FALSE_COINDUCED_TRANSFER_INDEX_COLLAPSE.md`.
+
+For a finite group `K`, subgroup `H`, and global `K`-module `W`, write
+
+`C=Coind_H^K Res_H^K W`.
+
+There are canonical equivariant maps
+
+`J(v)(k)=k^(-1)v`,
+
+`T(f)=sum_(kH in K/H) k f(k)`,
+
+and the exact transfer identity is
+
+`T J=[K:H] id_W`.                                      `(CTI7)`
+
+If `b` is a `K`-invariant Frobenius pairing and `B` is the direct-sum
+pairing on `C`, then
+
+`B(Jv,Jw)=[K:H] b(v,w)`.                               `(CTI10)`
+
+Thus a local Weyl phase of order `p^n` has order exactly
+
+`p^(max(n-v_p([K:H]),0))`                              `(CTI13)`
+
+on the canonical diagonal global copy. Transitivity also proves that no
+nonconstant scalar weighting of the orbit blocks can remove the index:
+every invariant weight is constant.
+
+For the natural external congruence quotient
+
+`K_e=SL_d(Z/p^e Z)`
+
+and the rank-two transvection subgroup `H_e~=(Z/p^e Z)^2`,
+
+`v_p([K_e:H_e])`
+` =(d^2-3)e-(d-1)(d+2)/2`.                             `(CTI17)`
+
+The long-chain compressor requires `e>=n-1`. For `d=3`, the lower bound is
+`6n-11`, so from `n>=3` onward the canonical coinduced pairing kills the
+entire depth-`p^n` clock; higher ranks are worse.
+
+This is an exact arithmetic no-go for the natural global congruence-bundle
+splice. It is not a no-go for the amenable-stabilizer orbit charts: their
+coordinates depend on the root and therefore carry no single global orbit
+index. Combined with the no-dilution lemma, this shows that root-dependent
+chart functoriality is the necessary live target rather than another exact
+principal bundle.
