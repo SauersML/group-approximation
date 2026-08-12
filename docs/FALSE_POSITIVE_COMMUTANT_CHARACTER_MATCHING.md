@@ -333,7 +333,62 @@ dimension-freely to the exact assignment theorem.  If it tends to zero,
 the near-colliding character pair selected by `(PCM31)` is the explicit
 clock direction which future global cocycle constraints must transport.
 
-## 8. Consequences for compute
+## 8. Branch-cut versus soft-clock dichotomy
+
+Theorems 1 and 4 give a precise local dichotomy for every proposed FALSE
+wall.  For a sequence `(A_n,pi_n,P_n,m_n,S_n,T_n)`, write
+
+`D_n=||T_n pi_n(m_n)T_n^*-pi_n(m_n)||_2,`
+`Delta_n^2=sum_(s in S_n)||[T_n,pi_n(s)]||_2^2,`
+`E_n=E_(pi_n)(P_n,m_n),`
+`eta_n=eta_(pi_n)(S_n).`                               `(PCM40)`
+
+Then `(PCM33)` is exactly
+
+`D_n<=sqrt(E_n)+4 Delta_n/sqrt(eta_n).`               `(PCM41)`
+
+**Corollary 5 (local escape dichotomy).**  Suppose
+
+`liminf D_n>=c>0`, `Delta_n->0`.                       `(PCM42)`
+
+Then at least one of the following occurs along a subsequence:
+
+1. **branch-cut escape:** `limsup E_n>0`, so two spectral characters agree
+   on `P_n` but distinguish `m_n`;
+2. **soft-clock escape:** `eta_n->0` fast enough that
+
+   `limsup Delta_n/sqrt(eta_n)>0`.                     `(PCM43)`
+
+More quantitatively, whenever `D_n>sqrt(E_n)`,
+
+`eta_n<=16 Delta_n^2/(D_n-sqrt(E_n))^2.`              `(PCM44)`
+
+In particular, if the marked class is absorbed in the sense `E_n=0` and
+`D_n>=c`, then
+
+`eta_n<=16 Delta_n^2/c^2->0.`                         `(PCM45)`
+
+### Proof
+
+The dichotomy and `(PCM44)` are direct rearrangements of `(PCM41)`.
+Equation `(PCM45)` is its specialization to `E_n=0`.  End proof.
+
+For regular tangent blocks, Theorem 1 makes the two branches completely
+arithmetic:
+
+* branch cut means `m_n notin P_n`, and already gives `E_n>=3`;
+* soft clock means `m_n in P_n` but the least nontrivial positive character
+  energy `(PCM37)` tends to zero.
+
+This unifies the two live local constructions.  Truncated long
+Fourier/Frobenius modules try to keep the inverse marked monomial outside
+the growing positive span.  Natural finite Laurent quotients absorb that
+monomial and therefore must use a high-order character whose positive
+chord is much smaller than its marked evaluation.  The global
+stabilizer/relative-cocycle equations decide whether either local escape can
+survive the Kazhdan matching barrier.
+
+## 9. Consequences for compute
 
 Do not optimize arbitrary unitaries at this gate.  The exact assignment
 formula proves that character permutations are optimal.  A useful MSI job
@@ -343,6 +398,7 @@ should instead emit:
 * the order of the marked quotient class;
 * the finite-window character gap `(PCM31)` and its minimizing character
   pair;
+* which side of the dichotomy `(PCM41)` supplies the marked energy;
 * the annihilator-character variables;
 * the sparse modular consistency matrix from external edges and
   stabilizers; and

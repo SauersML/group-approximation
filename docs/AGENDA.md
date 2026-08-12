@@ -46,6 +46,21 @@ The global FALSE problem is now to transport that minimizing clock character
 through the relative cocycle/stabilizer system without incurring positive
 mass elsewhere.
 
+Combining the exact assignment and finite-window estimates gives the local
+branch-cut/soft-clock dichotomy.  If the marked norm has a fixed lower bound
+while the positive commutator defect tends to zero, then either the marked
+class remains outside the positive spectral restriction fibers, or the
+positive character gap tends to zero.  Quantitatively,
+
+`D<=sqrt(E_exact)+4 Def_S/sqrt(eta(S))`.
+
+For a regular block the first branch is exactly `m notin P` and has energy
+at least three.  If `m in P`, then `E_exact=0` and a marked lower bound `c`
+forces `eta(S)<=16 Def_S^2/c^2`.  Thus every local escape is now classified
+as either a genuine growing branch cut or a high-order clock.  The remaining
+question is exclusively whether one of these arithmetic objects satisfies
+the nonliftable external cocycle/stabilizer equations.
+
 ## 1. Finite-action character transfer  [ACTIVE]
 
 Fix a finite multiplication table and let `F_T` be the free group on its
