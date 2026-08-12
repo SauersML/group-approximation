@@ -1118,10 +1118,20 @@ For the Kazhdan input, first apply the
 Ershov--Jaikin-Zapirain theorem to
 \(\EL_3(\F_2\langle X\rangle)\)~\cite{ErshovJaikin}.  Property~\((T)\)
 descends along the surjection induced by \(f\), so \(\EL_3(R)\) has
-property~\((T)\).  The formal proof follows this same route: it
-constructs the finite Kazhdan pair in rank three over the free
-algebra, descends it through \(f\), and does not use
-Lemma~\ref{lem:localized-plane} as a Kazhdan estimate.
+property~\((T)\).
+
+The formal proof establishes the same input internally rather than
+postulating the cited theorem.  The declaration
+\nolinkurl{A2MagicHilbert.elementary_exists_rootSet_isKazhdan}
+provides a Kazhdan constant \(\kappa\) for the union of the six
+rank-three root subgroups.  The plane estimate proves that the finite
+unit-and-generator control set controls that union with factor
+\(C=12\lvert X\rvert+13\).  The standard controlled-subset argument
+then makes this finite set a Kazhdan pair with constant
+\(\kappa/(2C)\); see
+\nolinkurl{FreeElementaryPropertyT.controlSet_isKazhdanPair}.  This is
+the additional step between Lemma~\ref{lem:localized-plane} and a
+rank-three spectral gap.  The resulting pair descends through \(f\).
 Lemma~\ref{lem:rank-equivalence} transports property
 \((T)\) to \(\EL_4(R)\).  The stabilized rank-three subgroup
 \(H\) is the upper-left copy of \(\EL_3(R)\), fixing the last basis
@@ -1466,6 +1476,9 @@ Theorem~\ref{thm:A} &
 \nolinkurl{leftClearFactors_make_coordinateBlock};
 \nolinkurl{boundedProduct_coordinateBlockOrRoot} \\
 Rank transport and rank-four assembly &
+\nolinkurl{A2MagicHilbert.elementary_exists_rootSet_isKazhdan};
+\nolinkurl{FreeElementaryPropertyT.controlSet_controls_rootSet};
+\nolinkurl{FreeElementaryPropertyT.controlSet_isKazhdanPair};
 \nolinkurl{FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT};
 \nolinkurl{LeavittFamily.rankSuccEquiv};
 \nolinkurl{elementaryBlockEquiv};
