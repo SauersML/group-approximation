@@ -70,6 +70,18 @@ integral denominator layer hidden by the rational splitting. This is the
 boundary counterpart of the paired-discriminant gluing already present in
 circle repair.
 
+It is not an independent source of torsion. The integral pair sequence gives
+a canonical injection
+
+```text
+E_sat/E -> Tor(H^3(M,partial M;Z)/delta Tor H^2(partial M;Z))
+        <-< Tor H_2(M;Z).                                   (BED7a)
+```
+
+Here the last notation means “is a subquotient of.” In particular, if
+`H_2(M;Z)` is torsion-free, then `E=E_sat`: the degree-two Eisenstein
+restriction image is automatically primitive.
+
 ## 1. The middle boundary image is Lagrangian
 
 Write
@@ -173,6 +185,55 @@ to be primitive. Even if bounded packets are known for the rational
 Eisenstein space, a uniform circle-repair theorem must still control this
 finite group and the metric norm of a section of `(BED7)`.
 
+There is an exact torsion localization of this group. Write
+
+```text
+A=H^2(M;Z),
+B=H^2(partial M;Z),
+C=H^3(M,partial M;Z),
+T_B=Tor(B).                                                (BED16a)
+```
+
+The pair sequence is exact at `B`:
+
+```text
+A --r--> B --delta--> C.                                  (BED16b)
+```
+
+The map `delta` descends to
+
+```text
+delta_bar:B/T_B -> C/delta(T_B).                          (BED16c)
+```
+
+Its kernel is exactly `E`. Indeed, if `delta(b)=delta(t)` for some
+`t in T_B`, then `b-t in ker(delta)=im(r)`, so the class of `b` in
+`B/T_B` lies in `E`; the converse is immediate. Hence
+
+```text
+(B/T_B)/E -> C/delta(T_B)                                 (BED16d)
+```
+
+is injective. The torsion subgroup of the source is exactly `E_sat/E`.
+Because `delta(T_B)` is torsion, the torsion subgroup of the target is a
+quotient of `Tor(C)`. Therefore
+
+```text
+E_sat/E embeds in Tor(C)/delta(T_B).                       (BED16e)
+```
+
+Integral Lefschetz duality identifies `C` with `H_2(M;Z)`, proving
+`(BED7a)`. Two useful consequences are immediate:
+
+```text
+exp(E_sat/E) divides exp Tor H_2(M;Z),
+Tor H_2(M;Z)=0  =>  E=E_sat.                              (BED16f)
+```
+
+Thus boundary saturation introduces no new prime or exponent beyond
+absolute degree-two homology torsion. In the projective program it belongs
+to the existing derived primary gate, not to the free harmonic packet gate.
+
 For arithmetic quotients with torsion, the rational statement follows after
 passing to a torsion-free normal finite cover and taking finite-group
 invariants. The integral assertion must retain stabilizer primes and transfer
@@ -188,7 +249,8 @@ The corrected TRUE-side division of labor is now:
    two-dimensional interior quotient when it is present.
 2. **Eisenstein kernel.** Construct bounded degree-two Eisenstein restriction
    packets; their boundary intersection duals give the absolute kernel.
-3. **Integral gluing.** Bound the saturation group in `(BED7)` and the metric
+3. **Integral gluing.** Control the already-existing `H_2` primary torsion,
+   which contains the saturation group by `(BED16e)`, and bound the metric
    section coupling the Eisenstein and cuspidal pieces.
 
 This is substantially sharper than asking for arbitrary boundary-stratum
