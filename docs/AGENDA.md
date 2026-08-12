@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the Ioana shortcut has a free-action scope gap
+
+The coherent-Schreier note needed one further correction.  Ioana's
+profinite cocycle-superrigidity theorem (`arXiv:0805.2998`) is stated for a
+**free ergodic profinite action**.  The natural inverse limit of the finite
+coset actions in the clock construction is nonfree: it retains conjugates
+of the amenable stabilizer.  Thus profiniteness and ergodicity alone do not
+authorize the application.
+
+The bounded-moment implication remains valid conditionally if one first
+constructs a free profinite realization carrying a coherent
+`BS(1,p+1)`-valued lift, or proves a suitable nonfree rigidity theorem.
+Neither bridge currently exists, and the primitive scalar system is in any
+case excluded by the Kazhdan moment lower bound.  The live globalization
+route is therefore the amenable-stabilizer **local orbit-chart** theorem,
+which genuinely applies to nonfree set actions, together with a
+chart-functorial matrix-valued fiber assignment.  Updated scope:
+`docs/FALSE_IOANA_COHERENT_SCHREIER_LIFT_CRITERION.md` and
+`docs/FALSE_IOANA_DRIMBE_SCHREIER_SCOPE_AUDIT.md`.
+
 ### 2026-08-12: finite fold kernels have an exact relative-abelian carrier
 
 For the fold `r:D=G *_Gamma G->G` and a quotient `q:G->Q` with kernel `N`,

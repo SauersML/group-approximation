@@ -2,7 +2,7 @@
 
 Date: 2026-08-11
 
-## 1. Outcome
+## 1. Outcome and scope correction
 
 The actual induced Weyl construction has one remaining scalar gate.  For the
 finite Schreier transition cocycle at clock order `M_k`, let
@@ -48,7 +48,8 @@ Thus the unresolved problem is sharply localized:
 > `B`-valued lift whose reductions are the finite transition cocycles?
 
 The theorem below says that a positive answer finishes the three-number
-screen.  It does **not** construct that lift.  A fixed element of
+screen **provided the action is one to which the quoted cocycle-rigidity
+theorem applies**.  It does **not** construct that lift.  A fixed element of
 `BS(1,p+1)` can have a nonintegral horocyclic coordinate whose centered
 reductions remain linear in `M_k`, but finite-stage factorization leaves only
 finitely many such denominators and one stable-letter conjugation clears all
@@ -56,9 +57,19 @@ of them.  Applying cocycle rigidity to each finite level separately, or
 replacing `B` by the uncountable profinite inverse limit of the `B_k`, does
 not prove the result.
 
+There is a further load-bearing restriction.  Ioana's theorem
+`arXiv:0805.2998` is stated for a **free ergodic profinite action**.  The
+natural inverse limit of finite coset actions used by the Schreier tower is
+not free: it retains conjugates of the amenable stabilizer.  Therefore that
+coset tower cannot be substituted below merely because it is profinite and
+ergodic.  One first needs either a free profinite realization carrying the
+same coherent transition cocycle, or a cocycle-rigidity theorem whose
+hypotheses genuinely cover this nonfree coset action.  Neither bridge is
+presently supplied.
+
 ## 2. Abstract setup
 
-Let `A` be a countable property `(T)` group with an ergodic profinite action
+Let `A` be a countable property `(T)` group with a **free ergodic** profinite action
 
 `A curvearrowright X = inverse_limit_n X_n`,             `(IC6)`
 
@@ -335,10 +346,13 @@ The next theorem to prove is not another clock identity and not another
 abstract cocycle reformulation.  It is one of the following two concrete
 statements.
 
-1. **Coherent lift form.**  Construct a single measurable cocycle
+1. **Free coherent lift form.**  Construct a free ergodic profinite
+   `A`-space `X` and a single measurable cocycle
    `beta:A times X -> BS(1,p+1)` whose reductions are, after pullback, the
    actual Kun--Thom finite Schreier transition systems.  Corollary 2 then
-   supplies the integral-horocyclic gauge automatically.
+   supplies the integral-horocyclic gauge automatically.  A coherent
+   cocycle on the nonfree coset inverse limit alone does not authorize the
+   quoted theorem.
 
 2. **Direct moment form.**  Construct finite transversals in the actual
    transition systems satisfying `(IC2)` without passing through a

@@ -46,8 +46,9 @@ Ioana considers one measurable cocycle
 
 `beta:A times X -> Lambda`                              `(IDS4)`
 
-from a profinite action of a property-`(T)` group (or the stated relative
-property-`(T)` generalization) into one fixed countable target `Lambda`.
+from a **free ergodic** profinite action of a property-`(T)` group (or the
+stated relative property-`(T)` generalization) into one fixed countable
+target `Lambda`.
 The theorem makes `(IDS4)` cohomologous to a cocycle factoring through one
 finite quotient of `X`.
 
@@ -62,7 +63,14 @@ approximation of the transfer function gives finite gauges with
 That conditional implication is proved in
 `FALSE_IOANA_COHERENT_SCHREIER_LIFT_CRITERION.md`.
 
-But the coherent lift is precisely what is absent.  The actual data are a
+There is first an action-scope gap.  The natural inverse limit of coset
+actions retains the amenable stabilizer and is nonfree, whereas the quoted
+theorem assumes freeness.  No free profinite realization carrying the same
+transition tables has been constructed, and no nonfree replacement theorem
+is being invoked here.
+
+Even after postulating such a free realization, the coherent lift is
+precisely what is absent.  The actual data are a
 sequence
 
 `beta_k:A times X_k -> B_k`                            `(IDS6)`
