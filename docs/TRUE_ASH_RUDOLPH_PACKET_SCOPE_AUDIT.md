@@ -22,7 +22,16 @@ Absolute classes map into the relative group as the kernel of a boundary-at-
 infinity map.  Short generators of the ambient relative group do not imply
 short generators of that integral kernel.
 
-Thus Ash--Rudolph reduces the family theorem to a sharper combinatorial
+There is also a second, previously suppressed distinction: the map from
+absolute to relative homology need not be injective. Its kernel is supplied
+by Borel--Serre boundary homology. At level `121`, the exact
+seven-dimensional absolute `H_2` has a five-dimensional boundary kernel and
+only a two-dimensional cuspidal image. Thus relative modular symbols cannot
+see five of the seven harmonic directions. See
+`TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md`.
+
+Thus Ash--Rudolph reduces the **interior part** of the family theorem to a
+sharper combinatorial
 statement:
 
 > Prove that the kernel of the signed boundary incidence on unimodular
@@ -32,6 +41,9 @@ statement:
 For the stronger circle-repair theorem, those combinations must also admit
 compatible bounded integral ambient lifts.  This is a genuine arithmetic
 closing theorem; it is not contained in modular-symbol reduction.
+The full absolute theorem separately needs bounded Borel--Serre boundary
+packets and bounded integral/metric gluing between the boundary and cuspidal
+filtrands.
 
 ## 1. What the modular-symbol theorem says
 
@@ -138,7 +150,8 @@ beta_X:R_X->E_X                                      (ARS8)
 ```
 
 be the signed boundary-at-infinity/cellular closing map, and let `K_X` be the
-absolute cuspidal kernel.  The denominator theorem would follow from:
+absolute cuspidal image. The interior part of the denominator theorem would
+follow from:
 
 ```text
 K_X tensor R is spanned by k in K_X with ||k||<=A,   (ARS9)
@@ -166,6 +179,21 @@ Real expansion alone solves the corresponding real correction problem but
 does not bound the integral kernel, exactly as the circle-carry analysis
 predicts.
 
+For the full absolute `H_2`, `(ARS9)` must be supplemented by a bounded packet
+theorem for
+
+```text
+B_X=coker(H^2(Ybar_X;Q)->H^2(partial Ybar_X;Q)),               (ARS10)
+```
+
+and by bounded integral/metric control of the extension
+
+```text
+0 -> B_X -> H_2(X;Q) -> H_cusp^3(X;Q) -> 0.                  (ARS11)
+```
+
+Neither follows formally from unimodular-symbol generation.
+
 ## 5. Relation to the exact finite screen
 
 The determinant-one Gram--LLL certificates in
@@ -173,6 +201,12 @@ The determinant-one Gram--LLL certificates in
 at every computed nonzero-rank chart except the sufficient-test exception
 `53`.  At level `121`, seven new directions admit one packet synthesis Gram
 matrix of maximum absolute row sum `8.7642<12`.
+
+The seven directions are now structurally classified: exactly two map to
+cuspidal degree-three cohomology and five lie in the boundary kernel of the
+absolute-to-relative map. Hence a unimodular-symbol support computation can
+explain at most the two-dimensional image; the five-dimensional kernel needs
+boundary-stratum packets.
 
 The modular-symbol theorem now explains where a family proof should search:
 among bounded combinations of unimodular symbols whose boundary faces cancel.
@@ -194,4 +228,3 @@ uniform closing rule.
   [*Modular Symbols*](https://mathstats.uncg.edu/sites/number-theory/summerschool/2017/gunnells-lectures.pdf),
   Exercises 4.13--4.15 for the `SL_3(Z)`, `Gamma_0(p)`, and
   `P^2(F_p)` function model.
-

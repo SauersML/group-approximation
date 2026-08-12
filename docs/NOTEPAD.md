@@ -43940,3 +43940,37 @@ system with proved
 `R_*/M -> 0`, `A_*/M -> 0`, `R_* A_*/M -> 0`
 
 has been constructed.
+
+# 2026-08-12: level 121 is five boundary directions plus two interior directions
+
+The seven-dimensional absolute harmonic space at projective level `121` is
+now structurally identified. The Borel--Serre pair sequence, together with
+Lee--Schwermer surjectivity of restriction in degree three, gives
+
+```text
+0 -> coker(H^2(Ybar;Q)->H^2(partial Ybar;Q))
+  -> H_2(Gamma;Q)
+  -> H_cusp^3(Gamma;Q)
+  -> 0.
+```
+
+Our exact cellular rank is `dim H_2=7`. Ash--Yasaki's exact cuspidal rank at
+level `121` is two. Hence the boundary kernel has dimension five:
+
+```text
+5 -> 7 -> 2.
+```
+
+This is not a cosmetic reinterpretation. Unimodular modular symbols live in
+the relative target and can see the two-dimensional cuspidal image, but the
+five absolute boundary-kernel classes map to zero there. The earlier single
+“bounded modular-symbol closing” target was therefore incomplete.
+
+TRUE now needs separate uniform theorems for cuspidal closing and
+Borel--Serre boundary packets, followed by bounded integral/metric gluing.
+The next exact chart experiment should push the seven existing primal packets
+through the absolute-to-relative comparison and recover two independent
+images plus five kernel packets. Their supports may expose the two different
+family templates directly.
+
+Full proof: `docs/TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md`.

@@ -4,6 +4,31 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: absolute H2 has an interior quotient and a boundary kernel
+
+The Borel--Serre pair sequence and Lee--Schwermer boundary theorem give the
+rational short exact sequence
+
+```text
+0 -> coker(H^2(Ybar)->H^2(partial Ybar))
+  -> H_2(Gamma;Q)
+  -> H_cusp^3(Gamma;Q)
+  -> 0.
+```
+
+This changes the packet strategy at level `121`. The exact projective
+computation gives absolute `H_2` dimension seven, while Ash--Yasaki compute
+cuspidal dimension two. Therefore the seven harmonic directions split as a
+five-dimensional boundary kernel and a two-dimensional cuspidal quotient.
+Relative unimodular symbols cannot see the five kernel directions.
+
+The corrected family theorem has three independent gates: bounded cuspidal
+closing in modular symbols, bounded Borel--Serre boundary packets, and
+bounded integral/metric gluing of the two filtrands. The immediate exact
+experiment is to apply the absolute-to-relative map to the seven level-`121`
+primal packets and isolate the predicted `5 -> 7 -> 2` decomposition. Full
+proof: `TRUE_ABSOLUTE_H2_INTERIOR_BOUNDARY_SPLIT.md`.
+
 ### 2026-08-11: Ash--Rudolph supplies templates but leaves the closing kernel
 
 The unimodular modular-symbol theorem gives canonical level-independent local
