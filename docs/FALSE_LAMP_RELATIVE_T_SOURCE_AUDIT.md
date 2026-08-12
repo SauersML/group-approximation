@@ -71,12 +71,15 @@ their `B_free`-fixed vectors are exactly their `B_sum`-fixed vectors.
 
 ## 4. Consequence for norm-to-trace amplification
 
-The tempting shortcut was to use relative property `(T)` to cut an
-operator-norm model to the complement of the lamp-fixed vectors, renormalize
-the matrix trace there, and thereby make a norm-visible lamp occupy positive
-normalized Hilbert--Schmidt mass.  Equations `(LRT2)` and `(LRT4)` show that
-the required relative Kazhdan projection does not exist for either the
-commuting or free Kun--Thom lamp kernel.
+The tempting shortcut was to use a norm-continuous projection onto the
+lamp-fixed vectors, cut an operator-norm model to its complement, and
+renormalize the matrix trace there.  Relative property `(T)` of a pair would
+not by itself produce that projection: for a normal subgroup `N normal H`,
+the normal-subgroup ideal in `C*_max(H)` is unital exactly when `N` itself
+has property `(T)`.  This sharper C-star criterion is proved in
+`FALSE_NORMAL_SUBGROUP_CORNER_EQ_PROPERTY_T.md`.  Equations `(LRT2)` and
+`(LRT4)` additionally show that even the weaker pair property fails for the
+two Kun--Thom lamp kernels.
 
 This rules out a whole-group lamp-corner argument, not every finite-sector
 corner.  Central finite torsion still gives an honest spectral projection,
@@ -93,4 +96,3 @@ mass for free from relative property `(T)` of the normal lamp subgroup.
 M. Neuhauser, *Relative property (T) and related properties of wreath
 products*, Math. Z. 251 (2005), 167--177, especially Proposition 3.2 and the
 proof of Theorem 1.2.
-

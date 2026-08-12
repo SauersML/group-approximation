@@ -9081,14 +9081,16 @@ be a nontrivial finite group, and put
 
 `B_sum=directSum_X K`,  `W=B_sum semidirect G`.
 
-If the pair `(W,B_sum)` had relative property `(T)`, the projection onto the
-`B_sum`-fixed vectors would be a central Kazhdan projection for every
-representation of `W`.  Cutting a faithful weak-MF representation by its
-nonfixed corner would then give a trace normalization on which one lamp is
-visible; transitivity would make every conjugate lamp equally visible.  This
-would finish the monolithic finite-simple-lamp route.  The required relative
-property `(T)` is false for a reason independent of the ambient Kazhdan
-group.
+A norm-continuous projection onto the `B_sum`-fixed vectors would let one
+cut a faithful weak-MF representation by its nonfixed corner and normalize a
+trace on which one lamp is visible; transitivity would make every conjugate
+lamp equally visible.  However, relative property `(T)` of `(W,B_sum)` would
+not by itself imply existence of that projection.  The exact criterion is
+stronger: for `N normal H`, the normal-subgroup ideal in `C*_max(H)` is
+unital exactly when `N` itself has property `(T)`; see
+`FALSE_NORMAL_SUBGROUP_CORNER_EQ_PROPERTY_T.md`.  Both lamp kernels fail
+that criterion.  In fact the pair property is also false, for a reason
+independent of the ambient Kazhdan group.
 
 **Theorem (Bernoulli failure of relative `(T)`).**  If `X` is infinite and
 `K` is a nontrivial finite group, then `(W,B_sum)` does not have relative
