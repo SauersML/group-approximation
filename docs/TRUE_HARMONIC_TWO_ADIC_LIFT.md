@@ -36,6 +36,12 @@ cuspidal levels.  It is not a uniform decoder theorem: the computed
 corrections are arbitrary exact solutions, and no minimum-norm or
 chart-uniform operator-norm bound follows from two levels.
 
+The stronger full-plane norm audit is now in
+`TRUE_HARMONIC_MODULAR_SECTION_PROFILE.md`.  Exhausting all `4095` nonzero
+combinations modulo `64` gives worst normalized correction ratios
+`0.5995627747` at `p=53` and `0.5970593451` at `p=61`.  These are constructive
+upper bounds from one selected section, not claims of minimum-norm lifting.
+
 ## 2. Exact module solver
 
 Let
