@@ -45829,3 +45829,37 @@ relative: extend the paired map from this permutation tangent submodule to
 fixed finite windows of the elementary semidirect product while preserving
 the root-dependent charts. Factoring through one honest finite Laurent ring
 is forbidden by the existing absorption and Kazhdan cyclic-seed no-gos.
+
+# Determinant-one packets reduce dual carry to one exact right inverse (2026-08-12)
+
+Full proof:
+`docs/TRUE_PACKET_TO_DUAL_CARRY_SECTION.md`.
+
+If integral cycles `c_1,...,c_r` project to a `Z`-basis of the primal
+harmonic lattice `Q`, then
+
+`K=S_sat directSum <c_1,...,c_r>_Z`.
+
+Let `u_i` be the packet-dual basis of `Q^#`, let `B` be any primitive
+integral cycle basis, and choose an integer right inverse `BR=I`. Writing
+
+`P_(ij)=<u_i,B_j>`,
+
+the exact formula
+
+`Z=(R P^T)^T`
+
+produces ambient integral lifts of all `u_i`. The rows of `Z` annihilate the
+saturated boundary lattice and define a section of
+
+`0 -> L -> M_Sigma -> Q^# -> 0`.
+
+For level `121`, this converts the seven-direction dual carry problem into
+seven right-hand sides for a `632 x 1940` primitive cycle lattice. It closes
+the logical bridge from the determinant-one primal packet to the actual dual
+carry sequence, but not the metric bound: a generic saturation run reached
+the exact rank decomposition in `496.173s` and timed out during the right
+inverse, while a direct integer-kernel replacement also hit its `15m` cap.
+No third job was submitted. The reusable implementation now follows the
+already validated rational-kernel/intersection route; the final numerical
+section norm remains open.

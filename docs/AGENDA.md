@@ -2659,6 +2659,29 @@ the reverse-order filtration symbolically and bound support/synthesis and
 integral saturation uniformly.  See
 `TRUE_SQUARE_LEVEL_EXACT_CYCLE_PACKETS.md`.
 
+The determinant-one level-`121` packet now has an exact bridge to the dual
+integral-carry sequence.  If packet cycles `c_i` project to a `Z`-basis of
+`Q`, then
+
+```text
+K=S_sat directSum <c_i>_Z.
+```
+
+For the packet-dual basis `u_i` of `Q^#`, any primitive cycle basis `B` and
+integral right inverse `BR=I` give the dual lifts explicitly by
+
+```text
+P_(ij)=<u_i,B_j>,       Z=(R P^T)^T.
+```
+
+The rows of `Z` annihilate the saturated boundary lattice, project to the
+`u_i`, and form an integral section of
+`0 -> L -> M_Sigma -> Q^# -> 0`.  Thus the full rank-seven carry problem is
+one exact right-inverse computation, not a nonlinear phase or modular-SAT
+problem.  Two capped MSI attempts exposed the performance bottleneck but did
+not produce the final section norm; no further job was launched.  See
+`TRUE_PACKET_TO_DUAL_CARRY_SECTION.md`.
+
 ## Banked (kernel-checked, this repo)
 
 Theorem A (nonsofic groups exist); the norm–trace interface; the free-lamp
