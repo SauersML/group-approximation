@@ -4,6 +4,37 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: paired HS models collapse to one relative commutant
+
+For `D=G *_Gamma G` and `w=i_2(h)i_1(h)^(-1)`, the paired tracial endpoint
+has an exact one-representation form.  A CE representation of `D` retaining
+`w` exists if and only if, after at most one `2 by 2` amplification, there
+are a CE finite algebra `M`, a homomorphism `pi:G->U(M)`, and a unitary
+
+```text
+v in pi(Gamma)' intersect M
+```
+
+with `[v,pi(h)]!=1`.  Equivalently,
+
+```text
+pi(h) notin (pi(Gamma)' intersect M)' intersect M.
+```
+
+Conjugating `pi` by `v` gives the two vertex maps; conversely the flip of
+the block sum of any two compatible vertex maps gives `v`.  Since the fixed
+double word lies in the full sofic radical, one such relative-bicommutant
+escape proves FALSE.
+
+The classical specialization is equally sharp: a CE pmp action of `G` with
+a `Gamma`-invariant function moved by `h` suffices.  A generalized Bernoulli
+action over `G/K` supplies the function when `Gamma<=K` and `h notin K`.
+This explains why the new amenable conjugacy stabilizer does not itself
+finish the proof: `C_G(h)` is amenable and therefore cannot contain the
+nonamenable Kazhdan group `Gamma`.  It supplies transport charts but no
+`Gamma`-fixed anchor.  Full proof:
+`FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md`.
+
 ### 2026-08-12: the framed FALSE endpoint is paired HS, not MF permanence
 
 The three-tag construction gives a radical-marked element `h` whose full

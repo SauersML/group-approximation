@@ -46001,3 +46001,43 @@ The remaining FALSE system must therefore contain two external transition
 fields and their relative holonomy. A computation which freezes one exact
 orbit representation is structurally guaranteed to return a positive
 Kazhdan defect floor and is not worth scaling.
+
+# 2026-08-12: the paired endpoint is one relative-bicommutant escape
+
+Full proof: `docs/FALSE_RELATIVE_BICOMMUTANT_ENDPOINT.md`.
+
+For
+
+```text
+D=G *_Gamma G,       w=i_2(h)i_1(h)^(-1),
+```
+
+the following are equivalent:
+
+1. some homomorphism from `D` into a CE finite von Neumann algebra retains
+   `w`;
+2. there are a CE finite algebra `M`, a homomorphism `pi:G->U(M)`, and
+   `v in pi(Gamma)' intersect M` with `[v,pi(h)]!=1`;
+3. `pi(h)` lies outside the relative bicommutant
+   `(pi(Gamma)' intersect M)' intersect M`.
+
+The forward implication uses the block representation
+`diag(pi_1,pi_2)` and the `2 by 2` flip.  The reverse implication uses the
+two copies `pi` and `Ad(v)pi`.  Thus the paired nonliftable-fiber problem is
+exactly one relative-commutant problem, not merely bounded by one.
+
+For the fixed Kun--Thom double, `1!=w in Rad_sof(D)`, so any such escape
+produces a hyperlinear nonsofic image.  In a pmp crossed product it is enough
+to find a `Gamma`-invariant function moved by `h`.  The coordinate at `K`
+in a generalized Bernoulli action over `G/K` does this precisely when
+`Gamma<=K` and `h notin K`.
+
+This also gives the exact scope of the amenable three-tag conjugacy orbit.
+Its stabilizer `C_G(h)` is amenable and cannot contain the nonamenable
+Kazhdan group `Gamma`.  Hence that orbit supplies the real root-dependent
+transport charts but not the fixed anchor needed to turn them directly
+into the CE relative commutant.  The live target is now the single formula
+
+```text
+pi(Gamma)' intersect M not contained in pi(h)' intersect M.
+```
