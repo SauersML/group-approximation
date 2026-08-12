@@ -144,39 +144,41 @@ def main() -> None:
         if exact_kernel.nrows() != 1:
             raise AssertionError(
                 "short modular circuit does not have a unique rational lift")
-        coefficients = [ZZ(value) for value in exact_kernel.row(0)]
-        common = gcd(coefficients)
-        coefficients = [value // common for value in coefficients]
-        first = next(value for value in coefficients if value)
+        exact_coefficients = [ZZ(value) for value in exact_kernel.row(0)]
+        common = gcd(exact_coefficients)
+        exact_coefficients = [value // common for value in exact_coefficients]
+        first = next(value for value in exact_coefficients if value)
         if first < 0:
-            coefficients = [-value for value in coefficients]
-        if subsystem * vector(ZZ, coefficients) != 0:
+            exact_coefficients = [-value for value in exact_coefficients]
+        if subsystem * vector(ZZ, exact_coefficients) != 0:
             raise AssertionError("exact short circuit has a nonzero residual")
 
         modular_row = kernel.row(index)
         pivot = next(
-            offset for offset, value in enumerate(coefficients)
+            offset for offset, value in enumerate(exact_coefficients)
             if field(value) != 0)
-        scalar = field(coefficients[pivot]) / modular_row[support[pivot]]
+        scalar = (
+            field(exact_coefficients[pivot]) / modular_row[support[pivot]])
         if any(
                 field(coefficient) != scalar * modular_row[column]
-                for column, coefficient in zip(support, coefficients)):
+                for column, coefficient in zip(support, exact_coefficients)):
             raise AssertionError(
                 "exact short circuit does not reduce to the modular circuit")
         exact_short_circuits.append({
             "kernel_row": int(index),
             "support_size": len(support),
-            "l1": int(sum(abs(value) for value in coefficients)),
-            "l2_squared": int(sum(value * value for value in coefficients)),
+            "l1": int(sum(abs(value) for value in exact_coefficients)),
+            "l2_squared": int(sum(
+                value * value for value in exact_coefficients)),
             "maximum_absolute_coefficient": int(max(
-                abs(value) for value in coefficients)),
-            "primitive": gcd(coefficients) == 1,
+                abs(value) for value in exact_coefficients)),
+            "primitive": gcd(exact_coefficients) == 1,
             "modular_homology_signature_nonzero": any(
                 quotient_dual[row, index] != 0
                 for row in range(quotient_dual.nrows())),
             "coordinates": [
                 {"coordinate": int(column), "coefficient": int(coefficient)}
-                for column, coefficient in zip(support, coefficients)
+                for column, coefficient in zip(support, exact_coefficients)
             ],
         })
 
