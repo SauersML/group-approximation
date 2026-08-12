@@ -44345,3 +44345,58 @@ lines: level primes, Eisenstein torsion, archimedean primes, and ramified
 local factors all require separate treatment.
 
 Full proof: `docs/TRUE_SQUARE_LEVEL_SCATTERING_LVALUE_GATE.md`.
+
+# 2026-08-12: exact Frobenius copy mixing is killed by one cyclic label
+
+For a finite commutative \(A\)-algebra \(B\) with \(2\) invertible, even
+\(r\ge4\),
+
+\[
+P=\operatorname{diag}(1,-1,\ldots,1,-1),\qquad
+H=E_r(B),
+\]
+
+and every unit \(b\in B^\times\), the vector \(bP\) is cyclic for the
+adjoint \(H\)-action on \(\mathfrak{sl}_r(B)\).  The proof is elementary:
+conjugation by \(1+uE_{ij}\) first gives every opposite-parity root space,
+a second root conjugation gives the same-parity roots, and conjugation by
+\(1+E_{ji}\) gives all diagonal differences.
+
+More sharply, for opposite-parity \(i,j\), every \(d\in B\), and
+
+\[
+u=-d/(2b),\qquad v=d/(2b),
+\]
+
+there is the four-orbit identity
+
+\[
+d(E_{ii}-E_{jj})
+=\operatorname{Ad}(1+uE_{ij})(bP)
+-\operatorname{Ad}((1+E_{ji})(1+uE_{ij}))(bP)
++\operatorname{Ad}(1+E_{ji})(bP)
+-\operatorname{Ad}(1+vE_{ji})(bP).
+\]
+
+Hence the Laurent inverse label \(P x^{e_2-e_1}\otimes e_1\) is a sum of
+only \(2r\) signed base translates of the positive label
+\(P x_2\otimes e_1\).
+
+All quotient growth is concentrated in the positive word length
+\(\lambda_n^-\) of one elementary root with coefficient
+\(x^{e_2-e_1}/x_2=x_1^{-1}\).  Therefore an exact base-equivariant linear
+copy mixer which aligns the positive label aligns the entire tangent module
+and kills the fold.  Quantitatively,
+
+\[
+\text{marked discrepancy}
+\le O_r\!\left(\epsilon_n+(1+\lambda_n^-)\eta_n\right),
+\]
+
+where \(\epsilon_n\) is the positive-label discrepancy and \(\eta_n\) is
+the base-covariance defect.  Thus a successful asymptotic construction must
+satisfy \(\lambda_n^-\eta_n\not\to0\): the defect has to live on the growing
+inverse-root branch cut.  Tensoring the local cells and applying one exact
+global commutant mixer cannot finish FALSE.
+
+Full proof: docs/FALSE_FROBENIUS_CYCLIC_VECTOR_MIXING_NO_GO.md.
