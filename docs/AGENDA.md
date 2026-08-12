@@ -141,9 +141,11 @@ missing `13`-direction has now been extracted explicitly: it has support
 restores full rank modulo `13`.  Hence the entire visible `13`-primary
 saturation defect is one certified row.
 
-Across the three exact square charts, the complete groups are now
+Across the five exact square charts, the complete groups are now
 
 ```text
+Tor H_1(X_9;Z)=0,
+Tor H_1(X_25;Z)=C_25,
 Tor H_1(X_49;Z)=C_49,
 Tor H_1(X_121;Z)=C_831875=C_(5^4 11^3),
 Tor H_1(X_169;Z)=C_13.
@@ -152,8 +154,11 @@ Tor H_1(X_169;Z)=C_13.
 Exact saturation indices give the orders, and one-dimensional modular rank
 drops at every divisor force cyclicity.  These groups are precisely the
 finite arithmetic directions missing from raw-row dual reduction.  The
-unexpected `5^4` at level `11^2` rules out a level-prime-only formula; the
-family theorem must include the fixed stabilizer primes.  Full proof:
+level-`9` lattice is already saturated, while levels `25` and `49` have the
+simple groups `C_25` and `C_49`.  The unexpected `5^4` at level `11^2` and
+the order-`13` rather than order-`169` group at level `13^2` rule out a
+level-prime-only formula; the family theorem must include the fixed
+stabilizer primes.  Full proof:
 `TRUE_SQUARE_LEVEL_H1_TORSION.md`.
 
 ### 2026-08-12: determinant-one primal section at level 121

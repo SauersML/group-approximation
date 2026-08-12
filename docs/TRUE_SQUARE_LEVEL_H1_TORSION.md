@@ -1,13 +1,15 @@
-# Exact first-homology torsion in three square projective charts
+# Exact first-homology torsion in five square projective charts
 
 Date: 2026-08-12
 
 ## 1. Outcome
 
-The integral first-homology torsion of the three computed square-level
+The integral first-homology torsion of the five computed square-level
 projective cellular complexes is now determined exactly:
 
 ```text
+Tor H_1(X_9;Z)   = 0,
+Tor H_1(X_25;Z)  ~= C_25,
 Tor H_1(X_49;Z)  ~= C_49,
 Tor H_1(X_121;Z) ~= C_831875 = C_(5^4 11^3),
 Tor H_1(X_169;Z) ~= C_13.                              (SHT1)
@@ -86,12 +88,33 @@ For each level, sparse unit elimination and the determinant of the tiny
 residual column HNF compute `[R_sat:R]`.  No full Smith transformation of
 the large boundary matrix is constructed.
 
+### Level 9
+
+```text
+rank_Q(d_2)=6,
+[R_sat:R]=1.                                          (SHT7)
+```
+
+Thus `H_1` is torsion-free at the first square level.  In particular, a
+formula assigning the factor `C_(p^2)` at every level `p^2` already fails
+at `p=3`.
+
+### Level 25
+
+```text
+rank_Q(d_2)=56,
+[R_sat:R]=25=5^2,
+rank_(F_5)(d_2)=55.                                   (SHT8)
+```
+
+The `5`-primary part has order `5^2` and one generator, hence is `C_25`.
+
 ### Level 49
 
 ```text
 rank_Q(d_2)=218,
 [R_sat:R]=49=7^2,
-rank_(F_7)(d_2)=217.                                  (SHT7)
+rank_(F_7)(d_2)=217.                                  (SHT9)
 ```
 
 The `7`-primary part has order `7^2` and one generator, hence is `C_49`.
@@ -101,7 +124,7 @@ The `7`-primary part has order `7^2` and one generator, hence is `C_49`.
 ```text
 rank_Q(d_2)=1308,
 [R_sat:R]=831875=5^4 11^3,
-rank_(F_5)(d_2)=rank_(F_11)(d_2)=1307.                (SHT8)
+rank_(F_5)(d_2)=rank_(F_11)(d_2)=1307.                (SHT10)
 ```
 
 Both primary parts have one generator.  Hence they are `C_(5^4)` and
@@ -116,7 +139,7 @@ small stabilizer primes as well as the congruence prime.
 ```text
 rank_Q(d_2)=2530,
 [R_sat:R]=13,
-rank_(F_13)(d_2)=2529.                                (SHT9)
+rank_(F_13)(d_2)=2529.                                (SHT11)
 ```
 
 Thus the torsion is exactly `C_13`.  The vector `v_13` already extracted
@@ -129,16 +152,18 @@ Let `K=ker(d_2)` in the ambient degree-two chain lattice.  The affine space
 of integral extensions of a fixed functional on `K` is a coset of
 
 ```text
-Ann_Z(K)=Sat(Row_Z(d_2^T)).                            (SHT10)
+Ann_Z(K)=Sat(Row_Z(d_2^T)).                            (SHT12)
 ```
 
-The quotient of `(SHT10)` by raw coboundary rows is `Ext^1(H_1,Z)`, which
+The quotient of `(SHT12)` by raw coboundary rows is `Ext^1(H_1,Z)`, which
 has the same invariant factors as `(SHT1)`.  Therefore:
 
-1. at level `49`, a complete raw-row reducer needs one order-`49` direction;
-2. at level `121`, it needs one order-`831875` direction, with distinct
+1. at level `9`, raw coboundary rows are already saturated;
+2. at level `25`, a complete raw-row reducer needs one order-`25` direction;
+3. at level `49`, it needs one order-`49` direction;
+4. at level `121`, it needs one order-`831875` direction, with distinct
    `5`- and `11`-primary depths; and
-3. at level `169`, it needs only the one explicit order-`13` direction.
+5. at level `169`, it needs only the one explicit order-`13` direction.
 
 This explains exactly what arithmetic a quantitative dual-lift algorithm
 must add.  It also separates two issues that were previously conflated:
@@ -148,6 +173,12 @@ shortening a generic lift requires navigation of the finite group `(SHT1)`.
 ## 5. Certificates
 
 ```text
+experiments/projective-cellular-n9-h1-torsion.json
+SHA-256 184aa66d9bc54c9d9b3c48bd4421f7ef9cb3f354c2e1c37f3c82219578ef223b
+
+experiments/projective-cellular-n25-h1-torsion.json
+SHA-256 4e91404163ec85db2122514154428d2f570a97901ca15e8758c222d76ca3b779
+
 experiments/projective-cellular-n49-h1-torsion.json
 SHA-256 8996d3560e92cda9e4556cd2337ad75d989e7c9a49936e77b2ec71539794ab7c
 
