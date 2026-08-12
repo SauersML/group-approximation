@@ -63,6 +63,19 @@ where `v_13` has support `1533`, squared norm `2103`, and maximum coefficient
 `projective-cellular-n169-modular-small.json` and
 `projective-cellular-n169-d2-saturation-p13.json`.
 
+The exact saturation computation now extends across all three square charts:
+
+    Tor H_1(X_49;Z)  = C_49,
+    Tor H_1(X_121;Z) = C_831875 = C_(5^4 11^3),
+    Tor H_1(X_169;Z) = C_13.
+
+The orders are exact HNF saturation indices.  At every prime divisor the
+modular rank drops by exactly one, so each primary part is cyclic and the
+displayed invariant factors follow.  This is the complete classification of
+the finite directions missed by raw coboundary reduction in these charts.
+The level-121 factor `5^4` is a warning against a naive level-prime-only
+formula.  Full proof: `docs/TRUE_SQUARE_LEVEL_H1_TORSION.md`.
+
 ## 2026-08-12: Shulman MF is not the FALSE endpoint
 
 The framed double now uses the correct conclusion in
