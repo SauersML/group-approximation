@@ -44294,3 +44294,54 @@ kernel-carry system; a central replacement must come from a genuine
 \(H_2\) extension or a different radical mechanism.
 
 Full proof: docs/FALSE_DIRECTED_COEFFICIENT_COMPACTNESS.md.
+
+# 2026-08-12: the square-level scattering slope is an exact critical-value gate
+
+The remaining operator in the square-level Eisenstein graph has now been
+specialized to the Harder--Raghuram rank-one formula. For the trivial
+`GL_3` coefficient system and the balanced length-one representative,
+
+```text
+mu=(0,-1), mu'=1,
+a_1=2, d=-1/2, w=2, d'=1, w'=0,
+m_0=-3/2+(w+w')/2-(d-d')=1.
+```
+
+Therefore, on each weight-three Hecke packet,
+
+```text
+C_f = alpha_f R_f,
+alpha_f = u_f c_infinity
+          L^coh(sigma_f x sigma_f'^vee,1)
+          /(Omega_f^epsilon L^coh(sigma_f x sigma_f'^vee,2)),
+```
+
+with `R_f` the normalized local intertwiner and `u_f` the arithmetic
+comparison factor. Harder--Raghuram prove algebraicity over the Hecke field;
+that rational theorem does not show that `u_f` is a unit in an integral
+lattice. All finite unramified factors are normalized lattice-neutral on
+spherical vectors; the only varying local calculation is at the level
+prime `p`.
+
+The exact integral interface is elementary but decisive. Over a DVR, if
+`R` is a lattice isomorphism and the graph slope is `alpha R`, the first
+and second projection indices of the primitive graph have total length
+
+```text
+r * |v(alpha)|.
+```
+
+The two faces see the negative and positive parts separately. Hence the
+numerator and denominator of the full scattering slope cannot be hidden by
+orienting the graph the other way.
+
+This decomposes the live square-level TRUE gate into four genuinely
+different problems: critical-value plus integral-comparison valuations, one
+ramified local newvector operator at `p`, the finite saturation defect of
+the integral Eisenstein image, and metric comparison with the cellular
+decoder norm. Narayanan--Raghuram's 2026 integral refinement for the
+analogous rank-one framework independently confirms these exact fault
+lines: level primes, Eisenstein torsion, archimedean primes, and ramified
+local factors all require separate treatment.
+
+Full proof: `docs/TRUE_SQUARE_LEVEL_SCATTERING_LVALUE_GATE.md`.

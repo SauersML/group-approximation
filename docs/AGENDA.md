@@ -4,6 +4,47 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: the scattering graph is a critical-value lattice gate
+
+The square-level graph operator is now split packetwise into its exact
+arithmetic factors. For the balanced `(2,1)` Kostant representative of the
+trivial `GL_3` coefficient system, the inducing weights are
+
+```text
+mu=(0,-1),   mu'=1,
+```
+
+so the Harder--Raghuram formula gives `m_0=1`. Hence on each weight-three
+Hecke packet
+
+```text
+C_f = alpha_f R_f,
+alpha_f = u_f c_infinity L^coh(f x chi,1)
+          / (Omega_f^epsilon L^coh(f x chi,2)),
+```
+
+where `R_f` is the normalized local intertwiner and `u_f` is the arithmetic
+comparison factor. Harder--Raghuram prove the critical ratio algebraic but,
+over a field, do not control the integral valuations of `u_f`. Every
+unramified finite factor sends the normalized spherical vector to its
+counterpart; only the level-`p` local factor varies.
+
+An exact DVR calculation shows that, wherever `R_f` is an integral lattice
+isomorphism, the two projection indices of the primitive graph have total
+length
+
+```text
+rank(V_f) * |v_q(alpha_f)|.
+```
+
+Thus swapping the two maximal faces only exchanges numerator and
+denominator; it cannot remove the height of the full scattering slope. The
+square-level integral gate now has four separate inputs: critical-value
+plus comparison-factor valuations, the ramified `p`-local conductor,
+Eisenstein saturation torsion, and automorphic-to-cellular metric
+comparison. Full proof:
+`TRUE_SQUARE_LEVEL_SCATTERING_LVALUE_GATE.md`.
+
 ### 2026-08-12: bounded central coefficients are one global vector
 
 For a finite presentation \(P=F/N\), put
