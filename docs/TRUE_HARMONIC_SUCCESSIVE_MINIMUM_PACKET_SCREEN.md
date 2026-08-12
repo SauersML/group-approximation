@@ -239,6 +239,20 @@ dual basis is extremely ill-conditioned, with squared norms of orders
 shows that this conditioning is a coordinate artifact rather than dangerous
 arithmetic.
 
+The same certificate also exports the full reduced Gram matrix.  Its maximum
+absolute row sum is
+
+```text
+8.7641238749...<12.                                  (HSM23)
+```
+
+Since the Gram matrix is symmetric, the Schur/Gershgorin bound gives
+`||T||^2<=8.7641238749...` for the packet synthesis operator.  Thus the
+level-`121` packet satisfies the stronger upper-Riesz criterion as well as
+the successive-minimum criterion.  The exact family screen in
+`TRUE_PROJECTIVE_PRIMAL_PACKET_FAMILY_SCREEN.md` finds the same row-sum
+success at levels `61,79,89`; `53` is the sole positive-rank tested exception.
+
 ## 7. Exact scope
 
 Theorem 1 is a systolic denominator theorem.  It does not choose integral

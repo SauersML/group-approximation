@@ -51,6 +51,18 @@ importantly, it shows that the whole new harmonic space is spanned by short
 integral projected cycles, exactly the family mechanism proposed in
 `TRUE_HARMONIC_SUCCESSIVE_MINIMUM_PACKET_SCREEN.md`.
 
+The full reduced primal Gram matrix satisfies the stronger exact inequality
+
+```text
+max_i sum_j |G_ij|=8.764123874938889...<12.          (N1211)
+```
+
+Therefore the synthesis operator of this determinant-one packet basis has
+`||T||^2<12`.  This controls the entire seven-dimensional packet at once,
+not only the norms of its basis vectors.  The corresponding finite-family
+comparison is recorded in
+`TRUE_PROJECTIVE_PRIMAL_PACKET_FAMILY_SCREEN.md`.
+
 ## Why this is stronger than the earlier lift tests
 
 The lower-level chart at level `11` has `H_2=0`, so all seven directions at
@@ -76,7 +88,7 @@ experiments/projective-cellular-n121-systole-span.json
 SHA-256 f9b5733277ba8c942710d6f24cf5407895478e13aa71d5014cbd28475a0c51b3
 
 experiments/projective-cellular-n121-primal-packet.json
-SHA-256 8f2f13d41a41a12066745cc8e85f679aa5cb2201415f53ebdeaafb4142a66eb2
+SHA-256 b4bf0172a7865da52eb8d1193b6d5206ba316d84cf48a8d9493da1d2349083c7
 ```
 
 The first certificate records rank seven and zero exact residual.  The

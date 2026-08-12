@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-11: exact primal-packet family screen isolates level 53
+
+Exact Gram--LLL has now been run on the primal harmonic lattices at levels
+`53,61,73,79,89,97,121`.  The ranks are `2,2,0,2,2,0,7`.  At every
+positive-rank level except `53`, a determinant-one packet basis has maximum
+absolute Gram row sum strictly below the chart's spherical threshold.  The
+values are `8.1805<28`, `8.0253<28`, `1.7218<12`, and `8.7642<12` at
+`61,79,89,121`, respectively.  Hence the entire packet synthesis operator,
+not just each basis vector, is chart-safe.  At `121`, all seven genuinely new
+directions satisfy this stronger certificate.
+
+Level `53` is the unique tested failure: its maximum squared packet norm is
+`14.0242>12` and maximum Gram row sum is `14.0825>12`.  This is a failure of
+the sufficient packet screen, not a negative result, and matches the already
+known exceptional paired-discriminant chart.  The theorem-shaped target is
+now a uniform bounded projected-packet construction for generic levels plus
+finite paired-discriminant treatment of exceptional levels.  Ambient
+integral lift norms remain a separate numerator gate.  Full proof and exact
+certificates: `TRUE_PROJECTIVE_PRIMAL_PACKET_FAMILY_SCREEN.md`.
+
 ### 2026-08-11: the local positive-commutant gate is exact character matching
 
 The paired-Fourier FALSE endpoint no longer contains a local dense-unitary

@@ -43856,3 +43856,28 @@ presentation does yield an MF reduced crossed product, but it cannot be
 descended through the relators: the reduced quotient exists only when the
 presentation kernel is amenable, whereas here it is a nonamenable
 infinite-rank free group.
+
+# 2026-08-11: exact primal-packet family screen isolates the exceptional chart
+
+The exact primal Gram--LLL calculation has now been replicated at every
+computed projective level `53,61,73,79,89,97,121`.  Their harmonic ranks are
+`2,2,0,2,2,0,7`.  At levels `61,79,89,121`, determinant-one primal packet
+bases have maximum absolute Gram row sums
+
+`8.18045032, 8.02524940, 1.72170173, 8.76412387`,
+
+strictly below the corresponding squared spherical thresholds
+`28,28,12,12`.  Since `||T||^2=lambda_max(G)<=||G||_infinity` for the
+symmetric packet Gram matrix, these are exact synthesis-operator
+certificates, stronger than separate short-vector bounds.  In particular,
+all seven genuinely new level-`121` directions form one chart-safe packet.
+
+Level `53` is the sole tested positive-rank exception: its maximum packet
+squared norm is `14.02417335>12`, and its maximum absolute Gram row sum is
+`14.08246543>12`.  This does not prove an obstruction; it says only that the
+elementary packet criterion is inconclusive there.  Its isolation matches
+the known subthreshold paired-discriminant class and suggests a generic
+short-packet theorem plus finite exceptional repair.  The compact Gram data
+do not encode short integral ambient lifts, so the numerator/section problem
+remains separate.  Full statement and certificates:
+`docs/TRUE_PROJECTIVE_PRIMAL_PACKET_FAMILY_SCREEN.md`.
