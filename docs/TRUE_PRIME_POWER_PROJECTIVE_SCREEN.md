@@ -188,6 +188,34 @@ SHA-256 58b7e3fae6ec5fc1c4c7b7d4095f35331919f4622a794c4a5f8a2482f0384fa8.
 This is precisely why the rank-independent systole screen must precede an
 ambient section computation.
 
+The rank-independent implementation is
+
+```text
+experiments/sl3_projective_cellular_systole.py.
+```
+
+It reconstructs `Q^#` from exact cycle pairings, clears denominators, and
+uses exact integer shortest-vector reduction.  As a regression test, its
+level-`79` output reproduces the previously certified discriminant group,
+the exact shortest squared norm
+
+```text
+10728712947256347312769663474250046223588321991244287411579243217706716447682408124247043381061430739101610963804926581168798385712509031664221661233926942927648326947018265651270215509953939044890
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------,
+85972262746423736417259155028330220464981880775136938484153009367340055879270507706557239067951479601089455324716561313521323488223939657898054379190757733582342373522062836858431172996132966638507
+```
+
+and `delta_79=0.3532601379363844...`.  In particular it again certifies
+`28 delta_79^2>1`.  The standalone regression certificate is
+
+```text
+experiments/projective-cellular-p79-systole-generic.json
+SHA-256 18683a12a3010c354ab4e5e16ca5ad2ebbdf4c01af5bc04c19244cdcc3c20be9.
+```
+
+This validates the arbitrary-rank path before applying it to the new
+rank-seven level-`121` harmonic lattice.
+
 The decisive output is not merely the size of a selected modular lift.  If
 the harmonic lattice is nonzero, compute its compact dual systole `delta_121`
 and the spherical template bound `B_121`.  The harmonic plane is relevant to
