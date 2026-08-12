@@ -43046,3 +43046,93 @@ before modular optimization.  The exact MSI output is now a Schur multiplier,
 one marked Hopf class, a rank-`d` lattice, and a prime-power character—not a
 large real Schreier LP.  Full proof:
 `docs/FALSE_SCHUR_MULTIPLIER_MARKED_REDUCTION.md`.
+
+## FALSE: an explicit finite family has the required growing Schur exponent
+
+The integral (p^k)-clock admits a finite reduction.  Put
+
+`M=p^k`, `n=p^(k+1)`,
+
+`B_k=<h,c | h^n=c^M=1, c h c^-1=h^(1+p)>`,
+
+and
+
+`J_k=Aug_(Z/n)(B_k/<h>)`.
+
+The translation subgroup `C_n` acts trivially on `J_k`, while `c` acts by
+the cyclic shift `S`.  In the split LHS sequence for
+
+`1 -> C_n -> B_k -> C_M -> 1`,
+
+the bottom filtration term of `H_1(B_k,J_k)` is
+
+`coker(S-(1+p):J_k->J_k)=C_(p^k)`.
+
+The exact order follows by reducing the integral clock cokernel and using
+
+`v_p(((1+p)^(p^k)-1)/p)=k`.
+
+Apply the split mixed-homology theorem once more to
+
+`G_k=J_k semidirect B_k`.
+
+Then `H_2(G_k;Z)` contains an element whose order is divisible by `p^k`.
+This is a closed-form finite group family with exactly the unbounded Schur
+exponent required by the curvature-necessity theorem.  It is not yet a main-
+problem counterexample: the class must still globalize into a finite quotient
+of the full Kun--Thom vertex and vanish on the positive edge restriction.
+Full proof: `docs/FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`, Theorem 5.
+
+## FALSE: split-LHS globalization and exact two-gauge fold criterion
+
+New notes:
+
+- `FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`
+- `FALSE_EQUIVARIANT_STEINBERG_GLOBALIZATION.md`
+- `FALSE_FOLDED_DOUBLE_PROJECTIVE_GAUGE_CRITERION.md`
+
+The split LHS spectral sequence gives a major simplification.  For a finite
+split square-zero group `N semidirect A` with `N` abelian,
+
+`E^2_{1,1}=H_1(A,N)`
+
+survives into `H_2(N semidirect A;Z)`: the sole possible incoming
+differential comes from the bottom row and vanishes by naturality with the
+splitting.  Therefore an induced summand gives
+
+`H_1(A,Ind_B^A I) = H_1(B,I)`
+
+as a Schur-multiplier subquotient.  If the finite-module functor contains the
+length-`p^k` clock summand with a coinvariant retraction, its exact `p^k`
+order globalizes automatically.  Relative compatibility is the finite
+question whether this class survives modulo the image of the positive
+subgroup's `H_1`.
+
+Functoriality of universal central extensions gives a complementary
+Steinberg/K2 formulation: external actions lift automatically, and quotienting
+the kernel by external commutators produces a central extension of the full
+semidirect product.  Exact order in the coinvariants forces the same growing
+order in the global Schur multiplier.
+
+Once a global finite projective class is available, the folded-double matrix
+problem is exactly scalar.  Use one projective regular model `U` in both
+vertex copies and independently rephase its `d` generator lifts by
+`t_1,t_2 in T^d`.  If `zeta_j` are the curvature phases of the vertex
+relators, then
+
+`vertex defect = |zeta_j t_i^{e(r_j)}-1|`,
+
+`amalgam defect = |(t_2/t_1)^{e(u_a)}-1|`,
+
+and
+
+`fold witness = |(t_2/t_1)^{e(h)}-1|`.
+
+All reference projective phases cancel exactly on the amalgam and marked
+words.  Hence only `2d` scalar phases remain, and the final problem is exactly
+the paired torus/discriminant repair problem already solved structurally on
+the TRUE side.
+
+Remaining links: identify the induced clock summand and its relative
+survival; compute its fixed relator phase vector; prove the paired repair
+ratio diverges.  No claim of a completed FALSE proof yet.

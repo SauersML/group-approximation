@@ -1724,6 +1724,39 @@ phase is not a certified radical word; it verifies the exact computation and
 the central-to-Schur interface before applying it to the Kun--Thom marked
 class.  See `experiments/atlas_schur_multiplier_validation_results.md`.
 
+The local growing-curvature existence problem is now explicit as well.  For
+`M=p^k`, `n=p^(k+1)`, take
+
+`B_k=C_n semidirect_(1+p) C_M`
+
+and the finite augmentation module
+
+`J_k=Aug_(Z/n)(B_k/<h>)`.
+
+The split LHS sequence and the integral clock Smith calculation give a
+literal subgroup `C_(p^k)<=H_1(B_k,J_k)`.  Hence the finite split group
+
+`G_k=J_k semidirect B_k`
+
+has Schur-multiplier exponent divisible by `p^k`.  Thus unbounded finite
+Schur curvature is not merely possible in an abstract module: it occurs in
+one closed-form finite group family.  The unresolved gates are relative—map
+this class into a quotient of the full Kun--Thom vertex, kill its restriction
+to the positive edge group, and choose the finite presentation gauge with
+vanishing relator phases.  See
+`FALSE_SPLIT_SQUARE_ZERO_H2_AMPLIFIER.md`, Theorem 5.
+
+The first exact instance has been checked on MSI.  For `p=3,k=1`, GAP
+converts the four-generator presentation of `G_1` to a pc group of order
+`2187` and computes
+
+`H_2(G_1;Z)=C_3 directSum C_3 directSum C_9`.
+
+The multiplier exponent is `9`, stronger than the theorem's required lower
+bound `3`.  This validates the finite reduction and the Schur computation;
+it does not address the relative positive-edge restriction.  See
+`experiments/split_clock_schur_k1_results.md`.
+
 The principal-bundle cocycle cannot be ignored by keeping the additive
 coefficient character constant over the external quotient.  Write its
 clock coordinate as `r_k:SL_d(Z/p^k Z)->Z/p^k Z`, with
