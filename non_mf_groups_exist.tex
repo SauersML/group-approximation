@@ -296,18 +296,52 @@ group $C^*$-algebras \cite{TWW} (Fact~\ref{fact:tww}).
 Theorem~\ref{thm:B} uses no external input.
 
 \subsection*{Relation to prior work}
-Kazhdan projections have long been used to detect failures of
-quasidiagonality in group $C^*$-algebras; see, for example, \cite{CDE} for
-related results.  The precise compression observation needed here is proved
-directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}, rather than invoked
-as a prior theorem.  In any event, non-MF-ness of one group $C^*$-algebra does
-not obstruct the \emph{group} from embedding into a corona, since group
-MF-ness only requires some quotient of $\Cmax$ to be MF.  The new
-ingredient here is the marked central involution $w$: the additional
-generator $c$ converts the compression phenomenon into a specific
-nontrivial group element that every corona representation must kill.
-For the cyclic-base comparison we use \cite{TWW}; for context on the
-approximation landscape see \cite{DGLT,BDL,KT,Shulman}.
+The closest conceptual analogue is the recent work on nonsofic groups.
+OpenAI's first example and Kun--Thom's analysis use one-sided containments
+$g\Gamma g^{-1}\leq\Gamma$, property (T), normalization of fixed or
+centralizer structures, and generalized lamps in a closely related
+architecture \cite{OAI,KT}.  We therefore make no novelty claim for the
+compression/lamp paradigm itself.  Their rigidity takes place in
+permutation models with normalized Hamming distance.  Here the decisive
+operator-norm step is instead
+\[
+  P\leq\beta(t)P\beta(t)^*
+  \quad\Longrightarrow\quad
+  P=\beta(t)P\beta(t)^*,
+\]
+because the conjugation representation lands in a stably finite norm
+matrix corona.  The central corner then converts this pinning into a fixed
+nontrivial element killed by every corona representation.
+
+There is also an older analytic ancestor.  The Ozawa--Thom argument
+recorded as \cite[Proposition~3.19]{Dadarlat} turns operator-norm
+quasidiagonal finite-rank projections into almost invariant normalized
+Hilbert--Schmidt vectors for a conjugation representation and invokes
+property (T) to obtain an invariant vector.  Its conclusion is that an
+infinite weakly quasidiagonal property-(T) group has an infinite residually
+finite quotient; it does not produce a universal marked kernel.  It is
+nevertheless direct prior art for the passage from operator-norm control to
+conjugation on Hilbert--Schmidt operators and property-(T) fixed vectors.
+
+The Kazhdan-projection compression observation needed here is proved
+directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}; we do not
+attribute that observation to Carri\'on--Dadarlat--Eckhardt.  Their work is
+used for the group-MF framework and for comparison examples.  In
+particular, their treatment of Abels' finitely presented solvable group
+already supplies an amenable MF group that is not residually finite
+\cite[Section~2.14 and Corollary~2.18]{CDE}.  Since a finitely generated
+maximally almost periodic group is residually finite by Mal'cev's theorem,
+the broad phenomenon ``finitely presented amenable MF but non-MAP'' is
+therefore not new.  Theorem~\ref{thm:C} instead gives a calibrated statement
+about the same marked-sign compression pattern used in Theorem~\ref{thm:A}.
+
+Finally, non-MF-ness of one group $C^*$-algebra alone does not obstruct the
+\emph{group} from embedding into a corona, since group MF-ness only requires
+some quotient of $\Cmax$ to be MF.  The contribution asserted here is
+narrower: stable-finite Kazhdan pinning in a norm matrix corona, together
+with the central-corner/marked-word device producing a specific nontrivial
+element in the kernel of every such representation.  For context on the
+approximation landscape see \cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat}.
 
 \subsection*{Organization}
 Section~\ref{sec:prelim} fixes notation and states the external inputs.
@@ -1215,6 +1249,12 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152.
 
+\bibitem[Dad]{Dadarlat}
+M.~Dadarlat,
+\emph{Obstructions to matricial stability of discrete groups and almost
+flat $K$-theory},
+Adv. Math. \textbf{384} (2021), Paper No.~107722.
+
 \bibitem[CRW]{CRW}
 M.~D.~E. Conder, E.~F. Robertson, and P.~D. Williams,
 \emph{Presentations for $3$-dimensional special linear groups over integer
@@ -1237,7 +1277,8 @@ preprint, 2026, \url{arXiv:2608.06222}.
 OpenAI,
 \emph{A counterexample to the soficity conjecture},
 in \emph{Ten advances in mathematics and theoretical computer science},
-2026, \url{https://openai.com/index/ten-advances-in-mathematics/}.
+Chapter~3, 77--93, 2026,
+\url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
