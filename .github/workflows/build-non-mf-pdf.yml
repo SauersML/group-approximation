@@ -75,9 +75,9 @@ jobs:
       - name: Calibrate and check visible Lean counterpart links
         run: |
           python3 scripts/check_non_mf_refs.py --self-test
-          # Pin the CDE predicate reformulation at its honest `equiv` status,
-          # and the canonical target isomorphism and finite-normal kernel
-          # theorem at `exact`.  The
+          # Pin the CDE predicate reformulation and the finite-type-indexed
+          # canonical target isomorphism at their honest `equiv` status, and
+          # the finite-normal kernel theorem at `exact`.  The
           # literal E endpoint is deliberately not required: it is not a Lean
           # theorem, and the manuscript says so explicitly.
           python3 scripts/check_non_mf_refs.py \
@@ -86,7 +86,7 @@ jobs:
             --require-status equivalent \
               Sofic/CDEOperatorMF \
               GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
-            --require-verified \
+            --require-status equivalent \
               Analysis/NormMatrixCoronaUnitary \
               GroupApproximation.normMatrixCoronaUnitaryEquiv \
             --require-verified \
