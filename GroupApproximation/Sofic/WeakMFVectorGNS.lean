@@ -108,6 +108,7 @@ theorem gramCorrelation_quadratic_nonneg (A : OpAlmostRepresentation G)
   simp_rw [z, sum_inner, inner_sum, real_inner_smul_left,
     real_inner_smul_right]
   simp only [gramCorrelation]
+  refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
   ring
 
 /-- On complex Euclidean space, the coordinatewise real inner product is
@@ -408,6 +409,7 @@ theorem finiteCombinationNormSq_eq_gram {I : Type*}
   rw [← real_inner_self_eq_norm_sq]
   simp_rw [sum_inner, inner_sum, real_inner_smul_left,
     real_inner_smul_right]
+  refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
   ring
 
 /-- Hyperreal squared norm of a fixed finite cyclic combination. -/
