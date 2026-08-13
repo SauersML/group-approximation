@@ -218,8 +218,7 @@ searchable.
 
 ## Tool and computational resource disclosure
 
-In the spirit of the Leiden Declaration on Artificial Intelligence and
-Mathematics (June 2026): the mathematics in this repository was developed
+The mathematics in this repository was developed
 and formalized with extensive use of large language models (Anthropic
 Claude models, GPT 5.6 Sol, multiple concurrent interactive sessions) operating under
 continuous human direction; the per-commit `Co-Authored-By` trailers are a
@@ -228,8 +227,7 @@ Lean 4 and Mathlib, with the Lean kernel as the final checker; builds and
 audits run on the Minnesota Supercomputing Institute cluster.
 Attribution-critical literature claims were verified against primary
 sources by direct reading; the successive credit audits are recorded in
-docs/CREDIT_AND_PRIORITY_AUDIT.md.    See
-docs/LEIDEN_COMPLIANCE.md for the full compliance map.
+docs/CREDIT_AND_PRIORITY_AUDIT.md.
 
 ## Trust and verification
 
