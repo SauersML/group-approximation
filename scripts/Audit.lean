@@ -380,7 +380,6 @@ def headlineTheorems : List Name :=
    ``OperatorMFMarkovWitness.positive_punit,
    ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
    ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
-   ``LiteralMarkedCylinder.literalCylinder_isClopen,
    ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
    ``LiteralCyclicCalibration.mark_ne_one,
    ``LiteralCyclicCalibration.finiteDimensional_kill,

@@ -136,12 +136,6 @@ group is part of the Lean API.
   quasi-identity.  No validity claim for operator-MF targets is asserted.
 * `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
   finite-radius bound for every printed relator.
-* `LiteralMarkedCylinder.literalCylinder_isClopen`,
-  `LiteralMarkedCylinder.cylinder_relator_eq_one`, and
-  `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
-  rank-eight clopen cylinder, with every printed relation retained and the
-  obstruction word surviving throughout it.
-
 ## Consequences and reusable obstruction APIs
 
 * `not_injective_of_coronaMFInvisible` and
@@ -370,9 +364,6 @@ export GroupApproximation.LiteralUniversalHorn
 export GroupApproximation.LiteralPresentationRadius
   (markedWord_length_le relator_wordLength_le_34
     relators_or_markedWord_length_le_34)
-export GroupApproximation.LiteralMarkedCylinder
-  (literalCylinder_nonempty literalCylinder_isClopen
-    cylinder_relator_eq_one cylinder_markedWord_ne_one)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
