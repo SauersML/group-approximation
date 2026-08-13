@@ -195,8 +195,7 @@ Lean 4 and Mathlib, with the Lean kernel as the final checker; builds and
 audits run on the Minnesota Supercomputing Institute cluster.
 Attribution-critical literature claims were verified against primary
 sources by direct reading; the successive credit audits are recorded in
-docs/CREDIT_AND_PRIORITY_AUDIT.md.  The human author of record retains
-exclusive responsibility for correctness and citations.  See
+docs/CREDIT_AND_PRIORITY_AUDIT.md.    See
 docs/LEIDEN_COMPLIANCE.md for the full compliance map.
 
 ## Trust and verification
