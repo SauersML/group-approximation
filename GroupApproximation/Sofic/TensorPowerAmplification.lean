@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.NormMFUniversalCorona
+import GroupApproximation.Sofic.NormTraceGap
 import Mathlib.LinearAlgebra.Matrix.Kronecker
 
 /-!
@@ -102,11 +102,6 @@ theorem exists_pow_re_lt_half (a : ℂ) {gap : ℝ}
   by_contra hnone
   push Not at hnone
   let S : ℂ := ∑ k ∈ Finset.range N, a ^ (k + 1)
-  have hNpos : 0 < N := by
-    by_contra hzero
-    have : N = 0 := Nat.eq_zero_of_not_pos hzero
-    subst N
-    norm_num at hN
   have hterm (k : ℕ) (hk : k ∈ Finset.range N) :
       (1 / 2 : ℝ) ≤ (a ^ (k + 1)).re := by
     have hkN : k + 1 ≤ N := by
@@ -177,23 +172,16 @@ theorem exists_pow_re_lt_half (a : ℂ) {gap : ℝ}
       exact inferInstanceAs (DecidableEq (Y × OpTensorIndex Y n))
 
 omit [Fintype Y] [DecidableEq Y] in
-private theorem opTensorIndexNonempty [Nonempty Y] :
+private theorem opTensorIndexNonempty (hY : Nonempty Y) :
     (n : ℕ) → Nonempty (OpTensorIndex Y n)
   | 0 => inferInstance
-  | n + 1 => by
-      letI : Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty n
-      exact inferInstanceAs (Nonempty (Y × OpTensorIndex Y n))
+  | n + 1 => ⟨hY.some, (opTensorIndexNonempty hY n).some⟩
 
 @[reducible, instance] def instOpTensorIndexFintype (n : ℕ) :
     Fintype (OpTensorIndex Y n) := opTensorIndexFintype n
 
 @[reducible, instance] def instOpTensorIndexDecidableEq (n : ℕ) :
     DecidableEq (OpTensorIndex Y n) := opTensorIndexDecidableEq n
-
-omit [Fintype Y] [DecidableEq Y] in
-omit [Fintype Y] [DecidableEq Y] in
-@[instance] theorem instOpTensorIndexNonempty [Nonempty Y] (n : ℕ) :
-    Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty n
 
 /-- The finite model underlying the recursively indexed tensor power. -/
 @[reducible] def opTensorModel (Y : FiniteModel) (n : ℕ) : FiniteModel :=
@@ -229,7 +217,6 @@ omit [Fintype Y] [DecidableEq Y] in
       rw [ih, pow_succ, mul_comm]
 
 omit [Fintype Y] in
-omit [Fintype Y] in
 theorem opTensorPow_one (n : ℕ) :
     opTensorPow (1 : Matrix Y Y ℂ) n = 1 := by
   induction n with
@@ -237,7 +224,6 @@ theorem opTensorPow_one (n : ℕ) :
   | succ n ih =>
       rw [opTensorPow_succ, ih, one_kronecker_one]
 
-omit [DecidableEq Y] in
 omit [DecidableEq Y] in
 theorem opTensorPow_mul (A B : Matrix Y Y ℂ) (n : ℕ) :
     opTensorPow (A * B) n = opTensorPow A n * opTensorPow B n := by
@@ -247,7 +233,6 @@ theorem opTensorPow_mul (A B : Matrix Y Y ℂ) (n : ℕ) :
       rw [opTensorPow_succ, opTensorPow_succ, opTensorPow_succ, ih,
         mul_kronecker_mul]
 
-omit [Fintype Y] [DecidableEq Y] in
 omit [Fintype Y] [DecidableEq Y] in
 theorem opTensorPow_conjTranspose (A : Matrix Y Y ℂ) (n : ℕ) :
     (opTensorPow A n)ᴴ = opTensorPow Aᴴ n := by
@@ -280,13 +265,15 @@ theorem l2_opNorm_opTensorPow_le (A : Matrix Y Y ℂ) (n : ℕ) :
 /-- **Tensor-power telescoping.**  On unitary inputs the operator-norm error
 of the `n`-fold tensor powers is at most `n` times the original error. -/
 theorem l2_opNorm_opTensorPow_sub_le {A B : Matrix Y Y ℂ}
-    [Nonempty Y]
+    (hY : Nonempty Y)
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) (n : ℕ) :
     ‖opTensorPow A n - opTensorPow B n‖ ≤ n * ‖A - B‖ := by
   induction n with
   | zero => simp
   | succ n ih =>
+      letI : Nonempty Y := hY
+      letI : Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty hY n
       rw [opTensorPow_succ, opTensorPow_succ]
       have hsplit :
           A ⊗ₖ opTensorPow A n - B ⊗ₖ opTensorPow B n =

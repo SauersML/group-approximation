@@ -14,9 +14,10 @@ of whatever used it, and `native_decide` shows up as `Lean.ofReduceBool`.
 This file is run by CI with `lake env lean scripts/Audit.lean` after the build.
 It fails, with a nonzero exit code, if either check below fails:
 
-1. **Statement pinning.**  The `example`s restate the headline theorems
-   verbatim.  If a statement is ever weakened or has a premise added, the
-   corresponding `example` stops typechecking.
+1. **Statement pinning.**  The `example`s restate the principal headline
+   theorems verbatim.  The complete manuscript-mapped surface is pinned by
+   `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
+   statement is weakened or gains a premise, that signature gate changes.
 2. **Transitive axiom closure.**  Every declaration in the
    `GroupApproximation` namespace is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three

@@ -121,7 +121,7 @@ specialist confirmation.
    consequence.  The internal rank-four estimate is an independent
    quantitative proof, not a theorem-novelty claim.
 2. **Strong-division coordinate-block factorization.**  If every nonzero
-   `a` admits `xay = 1`, then `GL_n(R)` has width at most `2n + 4` with
+   `a` admits `xay = 1`, then `GL_n(R)` has width at most `2n + 2` with
    respect to elementary transvections together with one fixed coordinate
    copy of `GL_{n-1}(R)`.  This is not described as bounded elementary
    generation.

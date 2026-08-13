@@ -22,7 +22,7 @@ variable {A : Type*} [CStarAlgebra A]
 
 /-- The normalized diagonal trace induced on a nonempty finite matrix block. -/
 def matrixDiagonalTrace (τ : FaithfulTracialState A) (n : Type*)
-    [Fintype n] [Nonempty n] : CStarMatrix n n A →ₗ[ℂ] ℂ where
+    [Fintype n] : CStarMatrix n n A →ₗ[ℂ] ℂ where
   toFun M := (Fintype.card n : ℂ)⁻¹ * ∑ i, τ (M i i)
   map_add' M N := by
     simp only [CStarMatrix.add_apply, map_add, Finset.sum_add_distrib, mul_add]
@@ -35,14 +35,16 @@ def matrixDiagonalTrace (τ : FaithfulTracialState A) (n : Type*)
 
 @[simp]
 theorem matrixDiagonalTrace_apply (τ : FaithfulTracialState A) (n : Type*)
-    [Fintype n] [Nonempty n] (M : CStarMatrix n n A) :
+    [Fintype n] (M : CStarMatrix n n A) :
     τ.matrixDiagonalTrace n M = (Fintype.card n : ℂ)⁻¹ * ∑ i, τ (M i i) :=
   rfl
 
 /-- A faithful tracial state amplifies to every nonempty finite matrix block. -/
 def matrix (τ : FaithfulTracialState A) [PartialOrder A] [StarOrderedRing A]
     (n : Type*) [Fintype n] [DecidableEq n]
-    [Nonempty n] : FaithfulTracialState (CStarMatrix n n A) where
+    (hn : Nonempty n) : FaithfulTracialState (CStarMatrix n n A) := by
+  letI := hn
+  exact {
   toLinearMap := τ.matrixDiagonalTrace n
   map_one := by
     simp only [matrixDiagonalTrace_apply, CStarMatrix.one_apply_eq, apply_one,
@@ -83,14 +85,14 @@ def matrix (τ : FaithfulTracialState A) [PartialOrder A] [StarOrderedRing A]
     have hentry : τ (star (M i j) * M i j) = 0 :=
       (Finset.sum_eq_zero_iff_of_nonneg fun l _ ↦
         τ.map_star_mul_self_nonneg (M l j)).mp hcolumn i (Finset.mem_univ i)
-    exact τ.eq_zero_of_map_star_mul_self_eq_zero hentry
+    exact τ.eq_zero_of_map_star_mul_self_eq_zero hentry }
 
 /-- Every isometry in a finite matrix amplification is unitary. -/
 theorem matrix_mul_star_eq_one_of_star_mul_eq_one (τ : FaithfulTracialState A)
     [PartialOrder A] [StarOrderedRing A]
-    (n : Type*) [Fintype n] [DecidableEq n] [Nonempty n]
+    (n : Type*) [Fintype n] [DecidableEq n] (hn : Nonempty n)
     {v : CStarMatrix n n A} (hv : star v * v = 1) : v * star v = 1 :=
-  (τ.matrix n).mul_star_eq_one_of_star_mul_eq_one hv
+  (τ.matrix n hn).mul_star_eq_one_of_star_mul_eq_one hv
 
 end FaithfulTracialState
 

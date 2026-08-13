@@ -4,11 +4,14 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
 # The cofinite-corona MF radical
 
 The manuscript defines the MF radical of a countable group as the intersection
-of the kernels of all homomorphisms to standard cofinite norm-matrix coronas.
-The older Lean API instead defined `normMFResidual` by quantifying over all
-operator-norm matrix ultraproducts.  This file proves that the two objects are
-equal for countable groups and states the manuscript's universal-quotient
-results using its literal cofinite-corona definition.
+of the kernels of all homomorphisms to unitary groups of standard cofinite
+norm-matrix C-star coronas.  Lean represents those unitary groups by quotients
+of unitary sequences.  The polar-correction isomorphism between the two models
+is mathematically standard but not formalized here; see `OperatorMF`.  The
+older Lean API instead defined `normMFResidual` by quantifying over all
+operator-norm matrix ultraproducts.  This file proves equality with the
+unitary-sequence radical for countable groups and states the corresponding
+universal-quotient results.
 -/
 
 namespace GroupApproximation
@@ -23,8 +26,9 @@ def CoronaMFInvisible (x : G) : Prop :=
   ∀ (X : ℕ → FiniteModel), (∀ n, 0 < Fintype.card (X n)) →
     ∀ rho : G →* NormMatrixCoronaUnitary X, rho x = 1
 
-/-- Elements invisible to all standard cofinite norm-matrix coronas form the
-literal MF radical used in the manuscript. -/
+/-- Elements invisible to all unitary-sequence presentations of standard
+cofinite norm-matrix coronas form the Lean presentation of the manuscript's
+MF radical. -/
 def coronaMFResidual (G : Type u) [Group G] : Subgroup G where
   carrier := {x | CoronaMFInvisible x}
   one_mem' := by
@@ -81,7 +85,7 @@ theorem coronaMFResidual_eq_normMFResidual [Countable G] :
   ext x
   exact coronaMFInvisible_iff_normMFInvisible
 
-/-- The literal cofinite-corona MF radical is functorial under arbitrary
+/-- The unitary-sequence cofinite-corona MF radical is functorial under arbitrary
 homomorphisms between countable groups. -/
 theorem map_coronaMFResidual_le
     {H : Type v} [Group H] [Countable G] [Countable H] (f : G →* H) :
@@ -98,7 +102,7 @@ instance coronaMFResidual_normal : (coronaMFResidual G).Normal := by
   rw [map_mul, map_mul, map_inv, hx X hX rho]
   group
 
-/-- The quotient by the literal cofinite-corona MF radical is MF. -/
+/-- The quotient by the unitary-sequence cofinite-corona MF radical is MF. -/
 theorem coronaMFQuotient_isOperatorMF [Countable G] :
     IsOperatorMF (G ⧸ coronaMFResidual G) := by
   let e : (G ⧸ coronaMFResidual G) ≃* normMFQuotient G :=
@@ -107,14 +111,14 @@ theorem coronaMFQuotient_isOperatorMF [Countable G] :
   obtain ⟨X, hX, rho, hrho⟩ := normMFQuotient_isOperatorMF (G := G)
   exact ⟨X, hX, rho.comp e.toMonoidHom, hrho.comp e.injective⟩
 
-/-- A countable group is MF exactly when its literal cofinite-corona radical
+/-- A countable group is MF exactly when its unitary-sequence corona radical
 is trivial. -/
 theorem isOperatorMF_iff_coronaMFResidual_eq_bot [Countable G] :
     IsOperatorMF G ↔ coronaMFResidual G = ⊥ := by
   rw [coronaMFResidual_eq_normMFResidual]
   exact isOperatorMF_iff_normMFResidual_eq_bot
 
-/-- The literal cofinite-corona MF radical is the kernel of one standard
+/-- The unitary-sequence cofinite-corona MF radical is the kernel of one standard
 corona representation. -/
 theorem exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual
     [Countable G] :

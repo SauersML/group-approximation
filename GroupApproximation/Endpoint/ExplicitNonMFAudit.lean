@@ -1,12 +1,25 @@
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+import GroupApproximation.Sofic.LiteralKazhdanCompression
+import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFPresentation
 
 /-!
 # Lightweight axiom audit for the explicit non-MF endpoint
 
-This deliberately imports only the public explicit theorem module.  It gives
+This deliberately imports the public explicit theorem module together with
+the finite-normal criterion whose endpoints are printed below.  It gives
 reviewers and CI a fast audit target without replaying the much larger
-project-wide endpoint audit.
+project-wide endpoint audit.  The reported closure contains only Lean's
+standard `propext`, `Classical.choice`, and `Quot.sound`; no mathematical or
+literature theorem is accepted as an axiom or premise of the closed non-MF
+endpoint.
+
+The literal eight-generator group is also printed below, but only at the
+boundary actually proved: its algebraic package, nontrivial mark, and
+finite-dimensional obstruction are unconditional; its operator-MF conclusion
+retains either a property-`(T)` premise or an exact rational SOS certificate.
 -/
 
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
@@ -23,3 +36,8 @@ project-wide endpoint audit.
 #print axioms GroupApproximation.coronaMFResidual_eq_normMFResidual
 #print axioms GroupApproximation.map_coronaMFResidual_le
 #print axioms GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot
+#print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
+#print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
+#print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
+#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate
