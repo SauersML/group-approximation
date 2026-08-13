@@ -33,57 +33,7 @@ open scoped commutatorElement Matrix.Norms.L2Operator
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
-/-- The part of marked-compression data used by the finite-normal analytic
-argument.  No marked element, torsion relation, or centrality relation is
-included. -/
-structure KazhdanCompressionCore (Γ E : Type) [Group Γ]
-    [Group E] where
-  /-- The Kazhdan group inside the ambient group. -/
-  iota : Γ →* E
-  /-- The element compressing the image of `Γ`. -/
-  t : E
-  /-- The root element centralized by the Kazhdan image. -/
-  c : E
-  /-- Property `(T)` for the source. -/
-  kazhdan : HasKazhdanPropertyT.{0, 0} Γ
-  /-- Conjugation by `t` carries `ι(Γ)` back into `ι(Γ)`. -/
-  compresses : ∀ γ : Γ, ∃ δ : Γ, t * iota γ * t⁻¹ = iota δ
-  /-- The root element centralizes `ι(Γ)`. -/
-  comm_c : ∀ γ : Γ, Commute c (iota γ)
-
 namespace KazhdanCompressionCore
-
-/-- Auxiliary marked data with the distinguished element set to `1`.
-Its marked word is tautologically trivial, so it supplies the existing
-compressor-corner APIs without assuming any central-torsion relation on a
-genuine defect. -/
-def toTrivialMarkedData (C : KazhdanCompressionCore Γ E) :
-    MarkedCompressionInclusionData Γ E where
-  iota := C.iota
-  t := C.t
-  c := C.c
-  a := 1
-  kazhdan := C.kazhdan
-  compresses := C.compresses
-  comm_c := C.comm_c
-  word_sq := by simp [markedCompressionWord]
-  word_central := by
-    intro g
-    simp [markedCompressionWord]
-
-@[simp] theorem toTrivialMarkedData_iota
-    (C : KazhdanCompressionCore Γ E) : C.toTrivialMarkedData.iota = C.iota :=
-  rfl
-
-@[simp] theorem toTrivialMarkedData_t
-    (C : KazhdanCompressionCore Γ E) : C.toTrivialMarkedData.t = C.t := rfl
-
-@[simp] theorem toTrivialMarkedData_c
-    (C : KazhdanCompressionCore Γ E) : C.toTrivialMarkedData.c = C.c := rfl
-
-/-- The transported root element `d = t c t⁻¹`. -/
-def transported (C : KazhdanCompressionCore Γ E) : E :=
-  C.t * C.c * C.t⁻¹
 
 /-- Hilbert--Schmidt triviality of every pointwise compression defect in an
 operator-norm almost representation. -/
@@ -93,15 +43,15 @@ def CompressionDefectsHSTrivial (C : KazhdanCompressionCore Γ E)
     hsDistSq (B.model n)
       (B.map n ⁅C.transported, C.iota γ⁆) (B.map n 1) ≤ epsilon
 
-/-- **Marker-parametric Kazhdan compression collapse.**  The marker-free root
-capture theorem applies to the trivial marked-data packaging of the core. -/
+/-- **Marker-free Kazhdan compression collapse.**  Root capture applies
+directly to the compression core; no distinguished word is introduced. -/
 theorem compressionDefects_hsTrivial
     (C : KazhdanCompressionCore Γ E) (B : OpAlmostRepresentation E) :
     CompressionDefectsHSTrivial C B := by
   intro gamma epsilon hepsilon
   simpa [transported] using
     KazhdanCompressorCorner.compressionDefect_hsDistSq_vanishing
-      B C.toTrivialMarkedData gamma epsilon hepsilon
+      B C gamma epsilon hepsilon
 
 /-- Every operator-norm almost representation canonically gives an
 asymptotic unitary representation for the normalized Hilbert--Schmidt
@@ -128,62 +78,9 @@ noncomputable def toAsymptoticUnitaryRepresentation
         nlinarith [norm_nonneg R, Real.sqrt_nonneg epsilon]
       _ = epsilon := Real.sq_sqrt hepsilon.le
 
-/-- The set of pointwise compression defects `[d, ι(γ)]`. -/
-def defectSet (C : KazhdanCompressionCore Γ E) : Set E :=
-  Set.range fun γ : Γ ↦ ⁅C.transported, C.iota γ⁆
-
-/-- The compression-defect normal subgroup. -/
-def defectNormal (C : KazhdanCompressionCore Γ E) : Subgroup E :=
-  Subgroup.normalClosure C.defectSet
-
-instance defectNormal_normal (C : KazhdanCompressionCore Γ E) :
-    C.defectNormal.Normal :=
-  Subgroup.normalClosure_normal
-
-/-- Every pointwise compression defect belongs to its normal closure. -/
-theorem defect_mem_defectNormal (C : KazhdanCompressionCore Γ E) (γ : Γ) :
-    ⁅C.transported, C.iota γ⁆ ∈ C.defectNormal :=
-  Subgroup.subset_normalClosure ⟨γ, rfl⟩
-
-/-- Any homomorphism killing every pointwise compression defect kills their
-entire normal closure.  This is the algebraic propagation used after the
-Kazhdan argument has made the generators Hilbert--Schmidt trivial. -/
-theorem defectNormal_le_ker {H : Type*} [Group H]
-    (C : KazhdanCompressionCore Γ E) (rho : E →* H)
-    (hdefect : ∀ γ : Γ, rho ⁅C.transported, C.iota γ⁆ = 1) :
-    C.defectNormal ≤ rho.ker := by
-  apply Subgroup.normalClosure_le_normal
-  rintro x ⟨γ, rfl⟩
-  exact MonoidHom.mem_ker.mpr (hdefect γ)
-
-/-- In particular, a subgroup contained in the compression defect is killed
-as soon as the pointwise defects are killed. -/
-theorem map_eq_one_of_mem_of_defects_eq_one {H : Type*} [Group H]
-    (C : KazhdanCompressionCore Γ E) (rho : E →* H)
-    (hdefect : ∀ γ : Γ, rho ⁅C.transported, C.iota γ⁆ = 1)
-    (F : Subgroup E) (hF : F ≤ C.defectNormal) (f : F) :
-    rho f = 1 :=
-  MonoidHom.mem_ker.mp (C.defectNormal_le_ker rho hdefect (hF f.property))
-
 end KazhdanCompressionCore
 
 namespace MarkedCompressionInclusionData
-
-/-- Forget the marked central involution and retain exactly the data used by
-the finite-normal compression theorem. -/
-def toCompressionCore (D : MarkedCompressionInclusionData Γ E) :
-    KazhdanCompressionCore Γ E where
-  iota := D.iota
-  t := D.t
-  c := D.c
-  kazhdan := D.kazhdan
-  compresses := D.compresses
-  comm_c := D.comm_c
-
-@[simp] theorem toCompressionCore_transported
-    (D : MarkedCompressionInclusionData Γ E) :
-    D.toCompressionCore.transported = D.t * D.c * D.t⁻¹ :=
-  rfl
 
 /-- The original marked commutator already lies in the broader
 compression-defect normal subgroup.  Indeed, after quotienting by all
@@ -191,8 +88,8 @@ compression-defect normal subgroup.  Indeed, after quotienting by all
 with the `ι(a)`-conjugate of `d` vanishes. -/
 theorem word_mem_compressionDefectNormal
     (D : MarkedCompressionInclusionData Γ E) :
-    D.word ∈ D.toCompressionCore.defectNormal := by
-  let C := D.toCompressionCore
+    D.word ∈ D.toKazhdanCompressionCore.defectNormal := by
+  let C := D.toKazhdanCompressionCore
   let N := C.defectNormal
   let q : E →* E ⧸ N := QuotientGroup.mk' N
   have hdefect : ⁅C.transported, C.iota D.a⁆ ∈ N :=
@@ -394,16 +291,16 @@ for the cyclic marked subgroup in the explicit construction. -/
 theorem word_normMFInvisible_of_mem_finiteNormal
     [Countable E] (D : MarkedCompressionInclusionData Γ E)
     (F : Subgroup E) [Finite F] [F.Normal]
-    (hF : F ≤ D.toCompressionCore.defectNormal)
+    (hF : F ≤ D.toKazhdanCompressionCore.defectNormal)
     (hword : D.word ∈ F) :
     NormMFInvisible D.word :=
-  D.toCompressionCore.finiteNormal_le_normMFResidual F hF hword
+  D.toKazhdanCompressionCore.finiteNormal_le_normMFResidual F hF hword
 
 /-- Endpoint form of the previous compatibility result. -/
 theorem not_isWeakMF_of_mem_finiteNormal
     [Countable E] (D : MarkedCompressionInclusionData Γ E)
     (F : Subgroup E) [Finite F] [F.Normal]
-    (hF : F ≤ D.toCompressionCore.defectNormal)
+    (hF : F ≤ D.toKazhdanCompressionCore.defectNormal)
     (hword : D.word ∈ F) (hne : D.word ≠ 1) :
     ¬ IsWeakMF E :=
   not_isWeakMF_of_normMFInvisible
