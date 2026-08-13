@@ -1994,9 +1994,15 @@ and marker-free Kazhdan collapse first assemble into the universal
 ultraproduct-residual theorem
 \leanverified{Sofic/FiniteNormalCompressionObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual}
 The formal equivalence between ultraproduct invisibility and invisibility in
-all cofinite norm-matrix coronas then gives the theorem in its literal printed
-form:
+all unitary-sequence presentations of cofinite norm-matrix coronas then gives
+the theorem in that equivalent presentation:
 \leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
+Here Lean defines the quotient of unitary matrix sequences by sequences
+converging to the identity.  The elementary polar-correction identification
+of this group with \(\U(\prod M_{d_n}/\bigoplus M_{d_n})\) is used
+mathematically but is not separately modeled as a C-star-algebra isomorphism
+in the companion.  Thus the linked declaration is not a definitional theorem
+about a formalized C-star quotient.
 The Clifford lamp group, central sign, and permutation action are also
 formalized,
 \leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
@@ -2011,8 +2017,9 @@ microstate before yielding the arbitrary-corona kernel theorem.
 Throughout this section, ``corona representation'' and ``MF'' are as
 in Section~\ref{sec:prelim}.
 \ifanonymous\else
-The formal companion identifies the literal cofinite-corona radical below
-with its ultraproduct residual and verifies portability and the largest-MF-
+The formal companion identifies the unitary-sequence presentation of the
+cofinite-corona radical below with its ultraproduct residual and verifies
+portability and the largest-MF-
 quotient proposition.  Later consequences in this section are paper-proved
 unless they carry their own explicit counterpart link.
 \fi
@@ -2029,9 +2036,12 @@ For a countable group $G_1$, the \emph{MF radical} is
 a normal subgroup of $G_1$.  This is the operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
 and of the approximation kernels studied in \cite{NST}.
-The formal companion defines this literal cofinite-corona intersection and
-proves it equal, for countable groups, to the independently defined
-operator-norm ultraproduct residual.
+The formal companion defines the corresponding intersection over
+unitary-sequence corona presentations and proves it equal, for countable
+groups, to the independently defined operator-norm ultraproduct residual.
+Passing from that presentation to the displayed C-star quotient uses the
+polar-correction identification recorded above, which is not itself a Lean
+declaration.
 \leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFResidual_eq_normMFResidual}
 \end{definition}
 
