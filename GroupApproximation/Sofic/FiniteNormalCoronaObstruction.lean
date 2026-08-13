@@ -6,9 +6,10 @@ import GroupApproximation.Sofic.NormMFCoronaRadical
 
 `FiniteNormalCompressionObstruction` proves the strongest analytic statement
 at the ultraproduct-residual level.  This file transports it through the
-countable equivalence between ultraproduct invisibility and literal
-cofinite-corona invisibility, yielding the theorem as printed in the
-manuscript.
+countable equivalence between ultraproduct invisibility and unitary-sequence
+cofinite-corona invisibility.  This is the standard sequence presentation of
+the manuscript's target; the polar-correction bridge to the unitary group of
+the C-star quotient is not itself formalized here.
 -/
 
 namespace GroupApproximation
@@ -19,7 +20,9 @@ variable {Γ E : Type} [Group Γ] [Group E]
 /-- **Finite-normal cofinite-corona obstruction.**  If a finite normal
 subgroup lies in the compression-defect normal closure, every homomorphism to
 every standard positive-size cofinite norm-matrix corona kills that subgroup.
-This is the literal statement of manuscript Theorem `thm:criterion`. -/
+After the standard polar-correction identification, this is manuscript
+Theorem `thm:criterion`; it is not definitionally a statement about a
+formalized C-star quotient. -/
 theorem finiteNormal_le_normMatrixCoronaKernel
     [Countable E] (C : KazhdanCompressionCore Γ E)
     (F : Subgroup E) [Finite F] [F.Normal]
@@ -55,7 +58,7 @@ theorem finiteNormal_le_kernel_of_target_embeds
     MonoidHom.mem_ker.mp hcomp
 
 /-- A nontrivial finite normal subgroup inside the compression defect rules
-out operator MF in the literal cofinite-corona sense. -/
+out operator MF in the unitary-sequence cofinite-corona presentation. -/
 theorem not_isOperatorMF_of_finiteNormal_le_defect
     [Countable E] (C : KazhdanCompressionCore Γ E)
     (F : Subgroup E) [Finite F] [F.Normal] [Nontrivial F]
