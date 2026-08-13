@@ -72,6 +72,73 @@ compression + lamp normalization architecture (OpenAI/Kun–Thom); simple- or
 (T)-envelope embedding theorems (Goryushkin–Schupp; SQ-universality —
 external, cite when used, tex-only).
 
+## 2026-08-13 second-pass attribution map (user-supplied deep audit)
+
+Non-negotiable additions before circulation (none subsumes Theorem A):
+
+1. **Slofstra–Vidick (arXiv:1711.10676), Prop. 2.7** — the central-involution
+   → exact involution → (−1)-eigenspace compression predates us.  Our
+   distinctive refinement: the norm-corona corner change renormalizes the
+   trace, so NO lower bound on relative rank/density is needed (their HS
+   setting requires positive relative dimension).  Highest-priority missing
+   citation.
+2. **Slofstra 2018 (arXiv:1806.05267)** — Clifford groups with distinguished
+   central sign + shift on Clifford generators + semidirect product + HNN
+   doubling, in approximate-representation theory, INCLUDING an
+   operator-norm variant.  Never claim "the operator-norm realization" as
+   the novelty; the defensible claim is the stable-finite Kazhdan
+   fixed-space pinning in a norm corona producing a universal marked
+   kernel.
+3. **Slofstra 2017 (arXiv:1703.08618)** — G^fin/G^fa: quotients by elements
+   invisible to exact vs approximate finite-dimensional representations.
+   Cite around Theorems B/C and the "MF radical" (the
+   universal-invisibility-quotient idea has this predecessor; the MF
+   instance and terminology may be new).
+4. **OpenAI Prop. 2.3 + Kun–Thom, precisely** — cite the compression
+   semigroup P_Γ = {g : gΓg⁻¹ ≤ Γ}, "infranormal", the sofic Mautner
+   envelope / fixed-algebra invariance, AND their explicit finite-quotient
+   observation that tΓt⁻¹ ≤ Γ becomes equality by cardinality.  Present
+   the trichotomy: finite group (cardinality) / finite-dimensional algebra
+   (dimension, Theorem B) / finite C*-algebra (Murray–von Neumann
+   finiteness, Theorem A) — all forcing one-sided self-compression to
+   equality.  Chronology: Kun–Thom 2026-08-06, Alekseev–Thom 2026-08-05;
+   state contemporaneity/independence exactly, never implied derivation.
+   Foundational lineage: Kun (arXiv:1606.04471) expander decomposition;
+   Kun–Thom (arXiv:1901.03963).
+5. **Dadarlat anatomy correction** — Lemma 3.18 (almost-commuting
+   finite-rank projections → almost-invariant normalized HS vectors; cites
+   Rosenberg, Andreas Thom's MathOverflow observation, Schneider) is
+   distinct from Prop. 3.19 ("Ozawa–Thom", + property (T) → infinite RF
+   quotient).  Cite both separately; the MathOverflow provenance is part
+   of the lineage.
+6. **Alekseev–Thom (arXiv:2608.05362), Open Problem 6.2** — commutant
+   structure of Kazhdan representations into tracial matrix ultraproducts:
+   cite in the limitations section; our tracial-side failure is exactly
+   adjacent to their live question.
+7. **DGLT (arXiv:1711.10238)** — credit the ARCHITECTURE (stability +
+   non-RF central extension → marked central obstruction to approximation),
+   not only the unnormalized-Frobenius result.
+8. **Fritz BS(2,3)** (via Slofstra–Vidick) — early explicit
+   exact-vs-approximate quantitative example; one sentence near the
+   BS(1,2) calibration.
+9. **Bader via Dogon–Vigdorovich** (+ Ozawa's sum-of-squares (T)
+   characterization; generalizing Manuilov–Yu) — operator-norm almost
+   representations of Kazhdan groups have a robust spectral gap.  THIS
+   BELONGS TO THE FORMAL COMPANION: our finite-stage Kazhdan spectral
+   projector layer (hermitianAverage gap for OpAlmostRepresentation) is
+   independently derived in-repo but is parallel machinery; cite in the
+   formalization remarks/README, and it becomes essential if the paper
+   ever adopts the finite-stage proof.
+
+Novelty claim, final narrowed form: the individual architectural pieces
+have substantial ancestry (Clifford signs, HNN doubling, negative-corner
+compression, one-sided Kazhdan compression, exact-vs-approximate marked
+elements); the new content is the chain norm-corona representation →
+adjoint norm-corona → Kazhdan projection inclusion → stable-finite
+equality → universal marked MF kernel, with the rank-density-free corner
+renormalization, and no prior explicit (finitely presented) group with a
+fixed w ≠ 1 killed by every norm-corona homomorphism.
+
 ## Checked non-collisions
 
 * Theorem B (finite-dimensional sterility) does not trivialize A: no

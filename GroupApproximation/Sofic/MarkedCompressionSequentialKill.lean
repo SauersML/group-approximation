@@ -872,6 +872,11 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
   classical
   intro ε hε
   have hθpos : 0 < 1 - θ := by linarith
+  -- ε-BUDGET COUPLING (exactly tight, zero slack): the final `linarith`
+  -- consumes 8·(ε/24) + 64·(ε/192) + 64·(ε/192) = ε against the committed
+  -- 8/64/64 constants of the vector-chain lemmas.  Changing any constant on
+  -- either side silently breaks the closing inequality; adjust both
+  -- together.
   set η : ℝ := (1 - θ) * ε / 192 with hηdef
   have hηpos : 0 < η := by positivity
   have he₂ : (0 : ℝ) < ε / 192 := by linarith
