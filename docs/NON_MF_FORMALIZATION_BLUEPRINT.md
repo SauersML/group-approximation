@@ -1,6 +1,8 @@
 # Formalization record: the marked-compression non-MF theorem
 
-Date: 2026-08-12. Status: **COMPLETE**.
+Date: 2026-08-12. Status: **COMPLETE for the unconditional Shalom-cover
+endpoint**; the literal eight-generator endpoint remains at the exact
+property-`(T)`/rational-SOS certificate boundary described below.
 
 This document records the proof architecture and audit surface of the completed
 Lean formalization. It supersedes the development-time workstream plan; there
@@ -88,8 +90,23 @@ The completed proof is split into independently useful layers.
     the compression-defect normal closure lies in the norm-MF residual.
 11. `LiteralNonMFPresentation.lean` and `LiteralNonMFLinearWitness.lean`
     machine-check the manuscript's literal eight-generator presentation and
-    its exact nontrivial affine--Clifford mark. No MF endpoint is asserted for
-    that literal group.
+    its exact nontrivial affine--Clifford mark. `LiteralBaseSOS.lean` and
+    `LiteralKazhdanCompression.lean` expose two honest conditional endpoints:
+    property `(T)` of the literal base, or an exact rational group-ring SOS
+    certificate implying it. Neither premise is postulated or discharged.
+12. `NormMFUniversalCorona.lean`, `NormMFCoronaRadical.lean`, and
+    `NormMFResidualExactQuotient.lean` identify residual triviality with
+    standard cofinite-corona operator MF and establish the universal quotient
+    and exact factorization properties.
+13. `NormMFPrintedConsequences.lean`, `OperatorMFPositiveControls.lean`, and
+    `OperatorMFQuotientNonclosure.lean` package portability, uniform
+    invisibility, positive permanence, and quotient nonclosure.
+14. `FaithfulTracialMatrix.lean` and `ProperIsometryFromCompression.lean`
+    isolate the matrix-trace and proper-isometry consequences used by the
+    manuscript. `MarkedGroupTopology.lean` and
+    `MarkovMFConsequences.lean` provide reusable topology and explicitly
+    conditional computability interfaces without asserting their external
+    transformation data.
 
 ## What is and is not formalized
 
@@ -100,9 +117,11 @@ endpoint for the standard `IsOperatorMF` cofinite-corona predicate, without
 assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
 presented Shalom-cover witness is literally the paper's displayed
 eight-generator group. The literal group's algebraic presentation and
-separating mark are formalized separately, without asserting that this
-literal group is MF or non-MF. The development also makes no claim that either witness
-is nonhyperlinear or nonsofic.
+separating mark are formalized separately. Its non-MF theorem is available
+only with an explicit property-`(T)` premise or an exact rational SOS
+certificate; neither is supplied, chosen, or assumed by the unconditional
+endpoint. The development also makes no claim that either witness is
+nonhyperlinear or nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
 `UniversalWeakMF U X`, namely operator-norm matrix ultraproducts. This is a
@@ -137,8 +156,10 @@ The proof files contain theorem-level credit for the closest mathematical
 antecedents: Slofstra--Vidick for negative-eigenspace compression, Slofstra
 for Clifford signs with shift/HNN machinery, Dadarlat's Lemma 3.18 and
 Proposition 3.19 for the operator-norm to Hilbert--Schmidt property-(T)
-lineage, and OpenAI Proposition 2.3 and Kun--Thom for one-sided compressors
-and fixed-space propagation.
+lineage, Bachner--Dogon--Lubotzky Lemmas 2.2--2.3 and Propositions 1.5 and
+2.4 for operator-norm involution rounding, corner-size renormalization, and
+polar-corrected compression, and OpenAI Proposition 2.3 and Kun--Thom for
+one-sided compressors and fixed-space propagation.
 
 The Lean proofs in this repository were written for this project. No Physlib,
 LeanQuantum, QECLean, or other external Lean source was copied. If external
