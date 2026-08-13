@@ -47,12 +47,24 @@ def preamble_macros(source: str) -> str:
     """
     preamble = source.split(r"\begin{document}")[0]
     lines = []
+    commands = set()
     for line in preamble.splitlines():
         stripped = line.strip()
-        if re.match(r"\\(newcommand|DeclareMathOperator\*?"
-                    r"|DeclarePairedDelimiter)\{\\[A-Za-z]+\}", stripped) \
+        declaration = re.match(
+            r"\\(?:newcommand|DeclareMathOperator\*?"
+            r"|DeclarePairedDelimiter)\{(\\[A-Za-z]+)\}", stripped)
+        if declaration \
                 and stripped.count("{") == stripped.count("}") \
-            and "lean" not in stripped:
+                and "lean" not in stripped:
+            # Conditional preambles can declare the same command once in each
+            # branch.  The probe does not copy the surrounding conditionals,
+            # so retaining both declarations would make the standalone check
+            # fail before it reaches the figure.  One definition is sufficient
+            # for geometry, and the first follows source order deterministically.
+            command = declaration.group(1)
+            if command in commands:
+                continue
+            commands.add(command)
             lines.append(stripped)
     lines.extend(re.findall(
         r"\\definecolor\{[^{}]+\}\{[^{}]+\}\{[^{}]+\}", preamble))
