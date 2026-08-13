@@ -208,35 +208,34 @@ theorem exists_one_sided_inverse (D : ProperProjectionCompression A) :
   ⟨star D.isometry, D.isometry,
     D.star_isometry_mul_isometry, D.isometry_mul_star_ne_one⟩
 
-/-- The explicit left-invertible element `star s` is not invertible.  This is
-the element-level formulation of failure of direct finiteness. -/
-theorem star_isometry_not_isUnit (D : ProperProjectionCompression A) :
-    ¬ IsUnit (star D.isometry) := by
+/-- The proper isometry `s` is not invertible: if it were a unit, its given
+left inverse `star s` would coincide with the two-sided inverse and hence
+`s * star s = 1`, contradicting properness. -/
+theorem isometry_not_isUnit (D : ProperProjectionCompression A) :
+    ¬ IsUnit D.isometry := by
   rintro ⟨u, hu⟩
-  have hus : (u : A) * D.isometry = 1 := by
+  have hleft : star D.isometry * (u : A) = 1 := by
     rw [hu]
     exact D.star_isometry_mul_isometry
-  have hs : D.isometry = ((u⁻¹ : Aˣ) : A) := by
+  have hstar : star D.isometry = ((u⁻¹ : Aˣ) : A) := by
     calc
-      D.isometry = 1 * D.isometry := (one_mul _).symm
-      _ = (((u⁻¹ : Aˣ) : A) * (u : A)) * D.isometry := by
-        rw [Units.inv_mul]
-      _ = ((u⁻¹ : Aˣ) : A) * ((u : A) * D.isometry) := by
+      star D.isometry = star D.isometry * 1 := (mul_one _).symm
+      _ = star D.isometry * ((u : A) * ((u⁻¹ : Aˣ) : A)) := by
+        rw [Units.mul_inv]
+      _ = (star D.isometry * (u : A)) * ((u⁻¹ : Aˣ) : A) := by
         rw [mul_assoc]
-      _ = ((u⁻¹ : Aˣ) : A) * 1 := by rw [hus]
-      _ = ((u⁻¹ : Aˣ) : A) := mul_one _
+      _ = 1 * ((u⁻¹ : Aˣ) : A) := by rw [hleft]
+      _ = ((u⁻¹ : Aˣ) : A) := one_mul _
   apply D.isometry_mul_star_ne_one
-  have hu' : (u : A) = star ((u⁻¹ : Aˣ) : A) := by
-    rw [← hs]
-    exact hu
-  rw [hs, ← hu']
-  exact Units.inv_mul u
+  rw [hstar, ← hu]
+  exact Units.mul_inv u
 
-/-- There is explicitly a left-invertible element which is not a unit. -/
+/-- There is explicitly a nonunit with a left inverse: take `a = s` and
+`b = star s`. -/
 theorem exists_leftInvertible_not_isUnit (D : ProperProjectionCompression A) :
-    ∃ a b : A, a * b = 1 ∧ ¬ IsUnit a :=
-  ⟨star D.isometry, D.isometry,
-    D.star_isometry_mul_isometry, D.star_isometry_not_isUnit⟩
+    ∃ a b : A, b * a = 1 ∧ ¬ IsUnit a :=
+  ⟨D.isometry, star D.isometry,
+    D.star_isometry_mul_isometry, D.isometry_not_isUnit⟩
 
 /-- A ring containing the compression data is not directly finite (also
 called Dedekind finite or von Neumann finite). -/
@@ -246,6 +245,36 @@ theorem not_isDedekindFiniteMonoid (D : ProperProjectionCompression A) :
   letI : IsDedekindFiniteMonoid A := hfinite
   exact D.isometry_mul_star_ne_one
     (mul_eq_one_symm D.star_isometry_mul_isometry)
+
+/-- **Stable-finite projection pinning.**  In a directly finite star ring,
+a projection cannot be properly contained in a unitarily conjugate copy of
+itself.  The two absorption identities are the ring-theoretic form of
+`p ≤ u p u⋆`.
+
+This is the algebraic core of the norm-corona pinning step: stable finiteness
+supplies direct finiteness, while the Kazhdan fixed-space argument supplies
+the absorption identities. -/
+theorem unitary_conjugate_eq_of_absorbs [IsDedekindFiniteMonoid A]
+    {p u : A}
+    (p_star : star p = p)
+    (p_mul_p : p * p = p)
+    (u_star_mul : star u * u = 1)
+    (u_mul_star : u * star u = 1)
+    (p_mul_conjugate : p * (u * p * star u) = p)
+    (conjugate_mul_p : (u * p * star u) * p = p) :
+    u * p * star u = p := by
+  by_contra conjugate_ne
+  let D : ProperProjectionCompression A :=
+    { p := p
+      u := u
+      p_star := p_star
+      p_mul_p := p_mul_p
+      u_star_mul := u_star_mul
+      u_mul_star := u_mul_star
+      p_mul_conjugate := p_mul_conjugate
+      conjugate_mul_p := conjugate_mul_p
+      conjugate_ne := conjugate_ne }
+  exact D.not_isDedekindFiniteMonoid inferInstance
 
 /-- In particular the ambient ring is not stably finite. -/
 theorem not_isStablyFiniteRing (D : ProperProjectionCompression A) :
