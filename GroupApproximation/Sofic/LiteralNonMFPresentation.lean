@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.MarkedCompressionInclusionData
+import GroupApproximation.Sofic.NormMFResidualDetector
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.Tactic.Group
@@ -17,15 +17,10 @@ displayed doubling relations, `c` is an involution centralising the base, and
 the marked word is imposed to be a central involution.
 
 No completeness theorem for the six-generator base presentation is used in
-this file.  In particular, the finite-presentation algebra below is logically
-independent of the two additional statements required for the final non-MF
-endpoint:
-
-* Kazhdan property `(T)` for the literal six-generator base; and
-* nontriviality of the marked word, supplied by a separate exact realization.
-
-Keeping those interfaces separate prevents a noncomputably chosen Kazhdan
-cover from being mistaken for the literal group printed in the manuscript.
+this file.  This module asserts only the literal finite-presentation algebra;
+the separate exact realization in `LiteralNonMFLinearWitness` proves that its
+marked word is nontrivial.  No Kazhdan or MF endpoint is asserted for this
+literal group.
 -/
 
 namespace GroupApproximation
@@ -562,38 +557,6 @@ theorem literal_algebraic_package :
       (∀ g : MarkedGroup, Commute mark g) := by
   exact ⟨inferInstance, stable_conjugates_base_into_base,
     lamp_commutes_base, mark_sq, mark_central⟩
-
-/-! ## The exact analytic interface, conditional only on the missing
-literal-base Kazhdan theorem -/
-
-/-- Once property `(T)` has been proved for the literal six-generator base,
-all remaining fields of the analytic marked-compression interface are already
-theorems of the finite presentation.  This definition is intentionally
-conditional: it records the exact remaining dependency without promoting it
-to an axiom or silently replacing the base by a different Kazhdan cover. -/
-noncomputable def inclusionData
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    MarkedCompressionInclusionData Base MarkedGroup where
-  iota := baseMap
-  t := stable
-  c := lamp
-  a := PresentedGroup.of v1Index
-  kazhdan := hT
-  compresses g := by
-    obtain ⟨q, hq⟩ := stable_conjugates_base_into_base g
-    exact ⟨q, hq.symm⟩
-  comm_c := lamp_commutes_base
-  word_sq := by
-    rw [← mark_eq_markedCompressionWord]
-    exact mark_sq
-  word_central g := by
-    rw [← mark_eq_markedCompressionWord]
-    exact mark_central g
-
-@[simp] theorem inclusionData_word
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    (inclusionData hT).word = mark :=
-  mark_eq_markedCompressionWord.symm
 
 end
 

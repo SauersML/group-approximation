@@ -4,8 +4,7 @@ import GroupApproximation.Leavitt.LeavittSimplicity
 # Strong division in the binary Leavitt algebra
 
 Simplicity supplies the strong-division lemma used by the window-reduction
-argument.  The former caller-supplied `ScalarReduction` endpoints have been
-removed: their unconditional replacements are proved in
+argument.  The completed diagonal-class and `GL = EL` results are proved in
 `KOne.RefineLoopDischarge`.
 -/
 

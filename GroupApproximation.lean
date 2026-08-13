@@ -8,7 +8,7 @@ import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.CyclicBaseCalibration
-import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -411,7 +411,6 @@ import GroupApproximation.Leavitt.FiniteTypeCountable
 import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
-import GroupApproximation.Steinberg.FinitePresentationReduction
 import GroupApproximation.Criterion.FiniteDimensionalKill
 
 /-!
