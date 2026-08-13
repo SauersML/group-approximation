@@ -9,7 +9,6 @@ import GroupApproximation.Kazhdan.LaplacianSOSCertificate
 import GroupApproximation.Kazhdan.RealGroupRing
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
 import GroupApproximation.Kazhdan.RationalGroupRingCertificate
-import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
@@ -23,7 +22,6 @@ import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
-import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
