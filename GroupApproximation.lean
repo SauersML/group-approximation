@@ -27,6 +27,7 @@ import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.ChosenMarkedCylinder
 import GroupApproximation.Sofic.LiteralPresentationRadius
+import GroupApproximation.Sofic.LiteralTranslationOrbit
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
