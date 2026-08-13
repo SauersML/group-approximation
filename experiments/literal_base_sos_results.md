@@ -54,12 +54,11 @@ without first changing the formulation.  Higher-yield alternatives are:
    `Z^3 semidirect SL_3(Z)` together with the classical property-`(T)` proof.
 
 The analytic non-MF theorem and the literal marked-word witness do not depend
-on this experiment. The open formal endpoint is an unconditional Lean proof
-of property `(T)` for the abstract literal base. Formalizing property `(T)`
-of the concrete affine group is not enough on its own: relator evaluation
-only gives a quotient map, and property `(T)` does not transfer backwards.
-The alternative classical route must also formalize completeness of the
-printed presentation.
+on this archived experiment.  The Lean trust surface contains no certificate
+placeholder or conditional literal non-MF endpoint.  A future unconditional
+route would have to prove property `(T)` for the abstract literal base, or
+prove completeness of the printed presentation and then establish property
+`(T)` for the concrete affine group internally.
 
 ## Reproduction
 

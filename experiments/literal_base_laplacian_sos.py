@@ -3,8 +3,7 @@
 This program never identifies words merely because their affine matrices are
 equal.  Every identification is a sequence of local rewrites, and every
 rewrite records a conjugate of one of the twenty defining relators (or its
-inverse).  The emitted JSON atoms have the same mathematical fields as
-``LiteralRelatorReduction.Atom``:
+inverse).  The emitted JSON atoms are self-contained records with fields:
 
 * ``conjugator``: a free word;
 * ``relator_index``: an index into the displayed literal relator list;
