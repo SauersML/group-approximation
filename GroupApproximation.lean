@@ -140,6 +140,7 @@ import GroupApproximation.Kun.KunUniformDecompositionStep
 import GroupApproximation.Criterion.CompressionSetup
 import GroupApproximation.Criterion.ExactCompression
 import GroupApproximation.Criterion.CommutantRigidity
+import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
 import GroupApproximation.Criterion.LocalizedApproximation
