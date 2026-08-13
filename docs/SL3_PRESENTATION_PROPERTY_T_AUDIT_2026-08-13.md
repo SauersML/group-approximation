@@ -140,7 +140,7 @@ inverses:
 
 ```text
 e12 = Y x z Y X        e13 = x z Y X Y
-e21 = Y x y x z        e23 = X y x z Y
+e21 = Y x y x z        e23 = X Y x z Y
 e31 = x Y x z Y x      e32 = X z Y X Y X.
 ```
 
