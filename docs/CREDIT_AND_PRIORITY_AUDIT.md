@@ -139,7 +139,7 @@ Non-negotiable additions before circulation (none subsumes Theorem A):
    exact-vs-approximate quantitative example; one sentence near the
    BS(1,2) calibration.
 9. **Bader via Dogon–Vigdorovich** (+ Ozawa's sum-of-squares (T)
-   characterization; generalizing Manuilov–Yu) — operator-norm almost
+   characterization; generalizing Manuilov–You) — operator-norm almost
    representations of Kazhdan groups have a robust spectral gap.  THIS
    BELONGS TO THE FORMAL COMPANION: our finite-stage Kazhdan spectral
    projector layer (hermitianAverage gap for OpAlmostRepresentation) is
