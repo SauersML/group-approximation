@@ -515,6 +515,26 @@ noncomputable def realizationHom {M : Type*} [Group M]
       exact commutatorElement_eq_one_iff_commute.mpr
         (R.marked_central (realizationGenerator R i))
 
+@[simp] theorem realizationHom_base_generator {M : Type*} [Group M]
+    (R : Realization M) (i : BaseGenerator) :
+    realizationHom R (baseMap (PresentedGroup.of i)) = R.baseGenerator i := by
+  rw [baseMap_generator]
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ (vertexLetter i)) = _
+  rw [presentedToGroup_mk]
+  simp [vertexLetter]
+
+@[simp] theorem realizationHom_stable {M : Type*} [Group M]
+    (R : Realization M) : realizationHom R stable = R.stable := by
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ stableWord) = _
+  rw [presentedToGroup_mk]
+  simp [stableWord]
+
+@[simp] theorem realizationHom_lamp {M : Type*} [Group M]
+    (R : Realization M) : realizationHom R lamp = R.lamp := by
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ lampWord) = _
+  rw [presentedToGroup_mk]
+  simp [lampWord]
+
 @[simp] theorem realizationHom_mark {M : Type*} [Group M]
     (R : Realization M) :
     realizationHom R mark =
