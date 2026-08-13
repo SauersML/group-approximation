@@ -143,6 +143,59 @@ noncomputable abbrev lampLetter : FreeGroup Generator :=
 def commutatorWord {X : Type*} [Group X] (x y : X) : X :=
   x * y * x⁻¹ * y⁻¹
 
+/-- Homomorphisms out of a free group agree on all words once they agree on
+the free generators. -/
+theorem freeHom_eq_on {X M : Type*} [Group M]
+    {f g : FreeGroup X →* M}
+    (h : ∀ i, f (FreeGroup.of i) = g (FreeGroup.of i)) :
+    ∀ w, f w = g w := by
+  intro w
+  refine FreeGroup.induction_on w ?_ ?_ ?_ ?_
+  · rw [map_one, map_one]
+  · exact h
+  · intro i hi
+    rw [map_inv, map_inv, hi]
+  · intro a b ha hb
+    rw [map_mul, map_mul, ha, hb]
+
+/-- The universal map from a presented group computes by free evaluation on
+each represented word. -/
+theorem presentedToGroup_mk {X M : Type*} [Group M]
+    {R : Set (FreeGroup X)} {f : X → M}
+    (h : ∀ r ∈ R, FreeGroup.lift f r = 1)
+    (w : FreeGroup X) :
+    PresentedGroup.toGroup h (PresentedGroup.mk R w) =
+      FreeGroup.lift f w := by
+  refine freeHom_eq_on
+    (f := (PresentedGroup.toGroup h).comp (PresentedGroup.mk R))
+    (g := FreeGroup.lift f) ?_ w
+  intro i
+  rw [MonoidHom.comp_apply,
+    show PresentedGroup.mk R (FreeGroup.of i) =
+      PresentedGroup.of i from rfl,
+    PresentedGroup.toGroup.of, FreeGroup.lift_apply_of]
+
+/-- Evaluation commutes with embedding a vertex word. -/
+theorem lift_embedVertexWord {M : Type*} [Group M]
+    (f : Generator → M) (w : FreeGroup (Fin generatorCount)) :
+    FreeGroup.lift f (embedVertexWord w) =
+      FreeGroup.lift (fun i ↦ f (Generator.vertex i)) w := by
+  change ((FreeGroup.lift f).comp embedVertexWord) w =
+    FreeGroup.lift (fun i ↦ f (Generator.vertex i)) w
+  apply freeHom_eq_on
+  intro i
+  simp [embedVertexWord]
+
+/-- Evaluating a free word in the generators of a presented group is the
+canonical quotient map. -/
+theorem lift_mk_generators {X : Type*} {R : Set (FreeGroup X)}
+    (w : FreeGroup X) :
+    FreeGroup.lift (fun i ↦ PresentedGroup.mk R (FreeGroup.of i)) w =
+      PresentedGroup.mk R w := by
+  apply freeHom_eq_on
+  intro i
+  simp
+
 /-- A raw word representing the chosen lift of the omitted base element. -/
 noncomputable def omittedWord : FreeGroup Generator :=
   embedVertexWord (liftWord omitted)
@@ -231,12 +284,29 @@ noncomputable def vertexMap : Vertex →* MarkedGroup := by
     (f := fun i : Fin generatorCount ↦
       wordInMarkedGroup (vertexLetter i))
   intro r hr
-  -- The transported Shalom relators are a subset of `relators`.
-  sorry
+  rw [← lift_embedVertexWord
+    (f := fun j : Generator ↦ wordInMarkedGroup (FreeGroup.of j))]
+  rw [lift_mk_generators]
+  apply PresentedGroup.one_of_mem
+  change embedVertexWord r ∈ relators
+  simp only [relators, Finset.mem_union]
+  exact Or.inl (Or.inl (Or.inl
+    (Finset.mem_image.mpr ⟨r, Finset.mem_coe.mp hr, rfl⟩)))
 
 @[simp] theorem vertexMap_generator (i : Fin generatorCount) :
     vertexMap (PresentedGroup.of i) = wordInMarkedGroup (vertexLetter i) := by
   exact PresentedGroup.toGroup.of _
+
+/-- The vertex map computes on every represented free word by embedding that
+word into the final presentation. -/
+theorem vertexMap_mk (w : FreeGroup (Fin generatorCount)) :
+    vertexMap (PresentedGroup.mk _ w) =
+      wordInMarkedGroup (embedVertexWord w) := by
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ w) = _
+  rw [presentedToGroup_mk]
+  rw [← lift_embedVertexWord
+    (f := fun j : Generator ↦ wordInMarkedGroup (FreeGroup.of j))]
+  rw [lift_mk_generators]
 
 /-- The stable relations hold on every displayed vertex generator. -/
 theorem stable_conjugates_generator_into_vertex (i : Fin generatorCount) :
@@ -245,8 +315,15 @@ theorem stable_conjugates_generator_into_vertex (i : Fin generatorCount) :
         (PresentedGroup.mk _
           (liftWord (compression
             (vertexQuotient (PresentedGroup.of i))))) := by
-  -- Unfold `stableRelator i` and use `PresentedGroup.one_of_mem`.
-  sorry
+  rw [vertexMap_generator, vertexMap_mk]
+  have hrel : wordInMarkedGroup (stableRelator i) = 1 := by
+    apply PresentedGroup.one_of_mem
+    change stableRelator i ∈ relators
+    simp only [relators, Finset.mem_union]
+    exact Or.inl (Or.inl (Or.inr (Finset.mem_image.mpr
+      ⟨i, Finset.mem_univ i, rfl⟩)))
+  simp only [stableRelator, map_mul, map_inv] at hrel
+  exact mul_inv_eq_one.mp hrel
 
 /-- **Finite-presentation compressor lemma.**  Conjugation by the stable
 letter sends the entire Kazhdan vertex into itself.  No endomorphism of the
@@ -254,10 +331,37 @@ Shalom cover is asserted or needed. -/
 theorem stable_conjugates_vertex_into_vertex :
     ∀ x : Vertex,
       stable * vertexMap x * stable⁻¹ ∈ vertexMap.range := by
-  -- Lift `x` to a free word and induct on that word.  The generator step is
-  -- `stable_conjugates_generator_into_vertex`; inverse and product steps use
-  -- that `vertexMap.range` is a subgroup.
-  sorry
+  intro x
+  obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ x
+  induction w using FreeGroup.induction_on with
+  | C1 =>
+      simp
+  | of i =>
+      rw [show PresentedGroup.mk _ (FreeGroup.of i) =
+        PresentedGroup.of i from rfl]
+      exact ⟨PresentedGroup.mk _
+        (liftWord (compression (vertexQuotient (PresentedGroup.of i)))),
+        (stable_conjugates_generator_into_vertex i).symm⟩
+  | inv_of i hi =>
+      have hinv := vertexMap.range.inv_mem hi
+      rw [map_inv]
+      have heq :
+          stable * (vertexMap (PresentedGroup.mk _ (FreeGroup.of i)))⁻¹ *
+              stable⁻¹ =
+            (stable * vertexMap (PresentedGroup.mk _ (FreeGroup.of i)) *
+              stable⁻¹)⁻¹ := by group
+      exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hinv
+  | mul a b ha hb =>
+      rw [map_mul]
+      have hmul := vertexMap.range.mul_mem ha hb
+      have heq :
+          stable *
+              (vertexMap (PresentedGroup.mk _ a) *
+                vertexMap (PresentedGroup.mk _ b)) * stable⁻¹ =
+            (stable * vertexMap (PresentedGroup.mk _ a) * stable⁻¹) *
+              (stable * vertexMap (PresentedGroup.mk _ b) * stable⁻¹) := by
+        group
+      exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hmul
 
 /-- The Kazhdan subgroup used by the analytic obstruction is the range of
 `vertexMap`. -/
@@ -271,14 +375,50 @@ theorem stable_conjugates_kazhdanVertex :
 
 /-- The marked word is an involution in the presented group. -/
 theorem mark_sq : mark ^ 2 = 1 := by
-  -- This is one of `markedCentralRelators`.
-  sorry
+  apply PresentedGroup.one_of_mem
+  change markedWord ^ 2 ∈ relators
+  simp [relators, markedCentralRelators]
 
 /-- The marked word commutes with every element of the presented group. -/
 theorem mark_central (x : MarkedGroup) : mark * x = x * mark := by
-  -- The relators give commutation with every finite generator; lift `x` to
-  -- the free group and induct on a word.
-  sorry
+  have hgen : ∀ j : Generator,
+      mark * wordInMarkedGroup (FreeGroup.of j) =
+        wordInMarkedGroup (FreeGroup.of j) * mark := by
+    intro j
+    have hcomm : wordInMarkedGroup
+        (commutatorWord markedWord (FreeGroup.of j)) = 1 := by
+      apply PresentedGroup.one_of_mem
+      change commutatorWord markedWord (FreeGroup.of j) ∈ relators
+      rcases j with i | j
+      · simp [relators, markedCentralRelators, vertexLetter]
+      · fin_cases j <;>
+          simp [relators, markedCentralRelators, stableLetter, lampLetter]
+    exact commutatorElement_eq_one_iff_mul_comm.mp hcomm
+  obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ x
+  induction w using FreeGroup.induction_on with
+  | C1 => simp
+  | of i => exact hgen i
+  | inv_of i hi =>
+      have hswap : wordInMarkedGroup (FreeGroup.of i) * mark =
+          mark * wordInMarkedGroup (FreeGroup.of i) := hi.symm
+      calc
+        mark * (wordInMarkedGroup (FreeGroup.of i))⁻¹ =
+            (wordInMarkedGroup (FreeGroup.of i))⁻¹ *
+              (wordInMarkedGroup (FreeGroup.of i) * mark) *
+              (wordInMarkedGroup (FreeGroup.of i))⁻¹ := by group
+        _ = (wordInMarkedGroup (FreeGroup.of i))⁻¹ *
+              (mark * wordInMarkedGroup (FreeGroup.of i)) *
+              (wordInMarkedGroup (FreeGroup.of i))⁻¹ := by rw [hswap]
+        _ = (wordInMarkedGroup (FreeGroup.of i))⁻¹ * mark := by group
+  | mul a b ha hb =>
+      rw [map_mul]
+      calc
+        mark * (wordInMarkedGroup a * wordInMarkedGroup b) =
+            (mark * wordInMarkedGroup a) * wordInMarkedGroup b := by group
+        _ = (wordInMarkedGroup a * mark) * wordInMarkedGroup b := by rw [ha]
+        _ = wordInMarkedGroup a * (mark * wordInMarkedGroup b) := by group
+        _ = wordInMarkedGroup a * (wordInMarkedGroup b * mark) := by rw [hb]
+        _ = (wordInMarkedGroup a * wordInMarkedGroup b) * mark := by group
 
 /-! ## Realization interface
 
@@ -308,18 +448,106 @@ structure Realization (M : Type*) [Group M] where
         (stable * lamp * stable⁻¹)
         (base omitted * (stable * lamp * stable⁻¹) * (base omitted)⁻¹)) x = 1
 
+/-- Evaluation of the finite generating alphabet in a realization. -/
+noncomputable def realizationGenerator {M : Type*} [Group M]
+    (R : Realization M) : Generator → M
+  | .inl i => R.base (vertexQuotient (PresentedGroup.of i))
+  | .inr j => if j = 0 then R.stable else R.lamp
+
+@[simp] theorem realizationGenerator_vertex {M : Type*} [Group M]
+    (R : Realization M) (i : Fin generatorCount) :
+    realizationGenerator R (Generator.vertex i) =
+      R.base (vertexQuotient (PresentedGroup.of i)) := rfl
+
+@[simp] theorem realizationGenerator_stable {M : Type*} [Group M]
+    (R : Realization M) :
+    realizationGenerator R Generator.stable = R.stable := by
+  simp [realizationGenerator]
+
+@[simp] theorem realizationGenerator_lamp {M : Type*} [Group M]
+    (R : Realization M) :
+    realizationGenerator R Generator.lamp = R.lamp := by
+  simp [realizationGenerator]
+
+/-- Embedded vertex words evaluate through the quotient to the base. -/
+theorem realization_eval_vertex {M : Type*} [Group M]
+    (R : Realization M) (w : FreeGroup (Fin generatorCount)) :
+    FreeGroup.lift (realizationGenerator R) (embedVertexWord w) =
+      R.base (freeToBase w) := by
+  rw [lift_embedVertexWord]
+  change (FreeGroup.lift fun i ↦
+      R.base (vertexQuotient (PresentedGroup.of i))) w =
+    R.base (freeToBase w)
+  change (FreeGroup.lift fun i ↦
+      R.base (vertexQuotient (PresentedGroup.of i))) w =
+    (R.base.comp freeToBase) w
+  apply freeHom_eq_on
+  intro i
+  rw [FreeGroup.lift_apply_of, MonoidHom.comp_apply]
+  change R.base (vertexQuotient (PresentedGroup.of i)) =
+    R.base (freeToBase (FreeGroup.of i))
+  rw [freeToBase, MonoidHom.comp_apply]
+  rfl
+
+@[simp] theorem realization_eval_omitted {M : Type*} [Group M]
+    (R : Realization M) :
+    FreeGroup.lift (realizationGenerator R) omittedWord = R.base omitted := by
+  rw [omittedWord, realization_eval_vertex, freeToBase_liftWord]
+
+@[simp] theorem realization_eval_displaced {M : Type*} [Group M]
+    (R : Realization M) :
+    FreeGroup.lift (realizationGenerator R) displacedLampWord =
+      R.stable * R.lamp * R.stable⁻¹ := by
+  simp [displacedLampWord]
+
+@[simp] theorem realization_eval_marked {M : Type*} [Group M]
+    (R : Realization M) :
+    FreeGroup.lift (realizationGenerator R) markedWord =
+      commutatorWord
+        (R.stable * R.lamp * R.stable⁻¹)
+        (R.base omitted * (R.stable * R.lamp * R.stable⁻¹) *
+          (R.base omitted)⁻¹) := by
+  simp [markedWord, commutatorWord]
+
 /-- Evaluate the finite marked presentation in any exact realization. -/
 noncomputable def realizationHom {M : Type*} [Group M]
     (R : Realization M) : MarkedGroup →* M := by
-  let gen : Generator → M
-    | .inl i => R.base (vertexQuotient (PresentedGroup.of i))
-    | .inr j => if j = 0 then R.stable else R.lamp
-  apply PresentedGroup.toGroup (f := gen)
+  apply PresentedGroup.toGroup (f := realizationGenerator R)
   intro r hr
-  -- Split membership in the four finite relator packets.  Cover relators use
-  -- `vertexQuotient`; stable relators use `compression_relation`; the other
-  -- packets use the lamp and marked-word fields.
-  sorry
+  change r ∈ relators at hr
+  simp only [relators, Finset.mem_union] at hr
+  rcases hr with ((hr | hr) | hr) | hr
+  · obtain ⟨q, hq, rfl⟩ := Finset.mem_image.mp hr
+    rw [realization_eval_vertex]
+    change R.base (vertexQuotient (PresentedGroup.mk _ q)) = 1
+    rw [PresentedGroup.one_of_mem (Finset.mem_coe.mpr hq), map_one, map_one]
+  · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
+    simp only [stableRelator, map_mul, map_inv]
+    rw [show FreeGroup.lift (realizationGenerator R) stableLetter =
+        R.stable by simp [stableLetter],
+      show FreeGroup.lift (realizationGenerator R) (vertexLetter i) =
+        R.base (vertexQuotient (PresentedGroup.of i)) by simp [vertexLetter],
+      show FreeGroup.lift (realizationGenerator R)
+          (compressedGeneratorWord i) =
+        R.base (compression (vertexQuotient (PresentedGroup.of i))) by
+          rw [compressedGeneratorWord, realization_eval_vertex,
+            freeToBase_liftWord]]
+    exact mul_inv_eq_one.mpr (R.compression_relation _)
+  · simp only [lampRelators, Finset.mem_union, Finset.mem_singleton,
+      Finset.mem_image] at hr
+    rcases hr with rfl | ⟨i, -, rfl⟩
+    · simpa using R.lamp_sq
+    · simpa [commutatorWord] using
+        R.lamp_centralizes_base
+          (vertexQuotient (PresentedGroup.of i))
+  · simp only [markedCentralRelators, Finset.mem_union,
+      Finset.mem_insert, Finset.mem_singleton, Finset.mem_image] at hr
+    rcases hr with (rfl | (rfl | rfl)) | ⟨i, -, rfl⟩
+    · simpa using R.marked_sq
+    · simpa [commutatorWord] using R.marked_central R.stable
+    · simpa [commutatorWord] using R.marked_central R.lamp
+    · simpa [commutatorWord] using
+        R.marked_central (R.base (vertexQuotient (PresentedGroup.of i)))
 
 /-- A realization which retains its marked word proves that the abstract
 marked word is nontrivial. -/
