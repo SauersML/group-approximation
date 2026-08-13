@@ -610,17 +610,16 @@ Use the six literal base generators and the relations displayed in
 \end{equation}
 where $w$ abbreviates the word
 $\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
-\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
-\end{definition}
-
-Thus \eqref{eq:E} is an explicit presentation with eight generators and a
-fully displayed finite list of relators.  In $E$ the defining relations make
-$w$ central and impose $w^2=1$; Proposition~\ref{prop:witness} below proves
-that $w\neq1$.  The relations on the six base generators imply
+This is an explicit finite presentation with eight generators.  Its defining
+relations make $w$ central and impose $w^2=1$; the relations on the six base
+generators also give
 \[
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
  \qquad [c,\iota(\mathcal B)]=1.
 \]
+Proposition~\ref{prop:witness} below proves that $w\neq1$.
+\leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
+\end{definition}
 
 Figure~\ref{fig:compression-pattern} isolates the geometry used later in
 the analytic argument: $d=tct^{-1}$ centralizes the compressed copy, not
@@ -714,7 +713,19 @@ Thus the certified gap is
  \gamma=\frac1{250}-\rho
        =\frac{28329113480286}{10^{16}}>0.
 \end{equation}
-For the analytic consequence, let $\pi$ be an orthogonal representation on a
+Let $\varepsilon_{13}>0$ be the explicit certified tolerance obtained from
+these rational data by the formula in the exact declaration.  Then the six
+displayed generators, with tolerance $\varepsilon_{13}$, form a Kazhdan pair
+for $P_{13}$.  Consequently $P_{13}$ has property~\textup{(T)} in both the
+real-orthogonal and textbook complex-unitary formulations, in every
+representation-space universe.
+\leanverified{Sofic/LiteralP13HodgeCertificate}{GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate}
+\end{proposition}
+
+\begin{proof}
+The relator replay, Fox identity, coefficient decomposition, and rational
+row and column bounds are the finite checks recorded in the proposition.
+For the analytic passage, let $\pi$ be an orthogonal representation on a
 real Hilbert space and put
 \[
  A=\sum_i(\pi(e_i)-1)^*(\pi(e_i)-1),\qquad
@@ -732,12 +743,10 @@ the usual self-adjoint gap estimate gives
 $\sigma\lVert\xi\rVert\le\lVert A\xi\rVert$ on the subspace without
 invariant vectors.  Since
 $\lVert A\xi\rVert\le2\sum_i\lVert\pi(e_i)\xi-\xi\rVert$, the six
-generators form a Kazhdan pair with tolerance $\sigma/12$.  In particular,
-$P_{13}$ has property~\textup{(T)} in both the real-orthogonal and the
-textbook complex-unitary formulations, in every representation-space
-universe.
-\leanverified{Sofic/LiteralP13HodgeCertificate}{GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate}
-\end{proposition}
+generators form a Kazhdan pair with tolerance $\sigma/12$, which is the
+certified value $\varepsilon_{13}$.  Realification and complexification
+identify the real and textbook complex formulations.
+\end{proof}
 
 Figure~\ref{fig:hodge-certificate} records the scale of the exact
 certificate.  Each heat-map cell represents an upper bound for the

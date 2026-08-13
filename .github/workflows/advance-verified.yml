@@ -60,7 +60,15 @@ jobs:
             'docs/CLAIM_SIGNATURES.md' 'docs/NON_MF_CLAIM_SIGNATURES.md' \
             'lakefile.toml' 'lean-toolchain' 'lake-manifest.json' \
             '.github/workflows/prover.yml' \
-            'non_mf_groups_exist.tex' '.github/workflows/build-non-mf-pdf.yml')
+            'non_mf_groups_exist.tex' '.github/workflows/build-non-mf-pdf.yml' \
+            'experiments/sl3-p13-reductions-complete.json' \
+            'experiments/sl3-sos-radius0-certificate.json' \
+            'experiments/sl3-sos-radius0-certificate.npz' \
+            'experiments/sl3_p13_certificate_lean_generator.py' \
+            'experiments/sl3_p13_hodge_lean_generator.py' \
+            'experiments/sl3_p13_pair_table_generator.py' \
+            'experiments/sl3_p13_relator_replay.py' \
+            'experiments/sl3_p13_replay_lean_generator.py')
           if git diff --quiet "$base" "$head" -- "${surface[@]}"; then
             if ! git merge-base --is-ancestor "$base" "$head"; then
               echo "Surface is identical, but verified ${base} is not an ancestor of ${head}; refusing to overwrite it."
