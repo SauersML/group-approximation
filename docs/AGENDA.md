@@ -4,6 +4,19 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: audited closure boundary for coefficient alignment
+
+`FALSE_EXISTING_REYNOLDS_DOES_NOT_ALIGN_COEFFICIENT_C4.md` verifies that the
+current property-`(T)`/finite-average library does not prove the simultaneous
+raw/comb `C^4` alignment.  The relative implementer has a fixed Reynolds norm
+deficit, so there is no already-commuting ultraproduct element to lift.  The
+terminal endpoint has a generous strict margin: trace-flat cuts satisfy
+`hsDistSq=7/32>1/8`, kernel-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The missing theorem must recover both
+finite multiplicity algebras in compatible coordinates and align one pair
+below squared distance `1/8`, or prove invariance of the trace-`1/120`
+spectral fallback.
+
 ### 2026-08-13: trace-flat spectral floor `1/120`
 
 `TRUE_TRACE_FLAT_BLOCK_SPECTRAL_FLOOR.md` removes two more analytic losses.

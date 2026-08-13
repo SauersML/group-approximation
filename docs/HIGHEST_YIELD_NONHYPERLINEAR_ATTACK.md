@@ -2,6 +2,20 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 audit: generic Reynolds recovery is insufficient
+
+Do not claim the `C^4` alignment from the existing Kazhdan or finite-normal
+corner files.  The relative comb implementer retains a fixed Reynolds norm
+deficit, so it is not an already-commuting ultraproduct element.  See
+`FALSE_EXISTING_REYNOLDS_DOES_NOT_ALIGN_COEFFICIENT_C4.md`.
+
+The sufficient new theorem is simultaneous and comb-compatible: recover both
+four-cut multiplicity algebras in the same finite coordinates and match one
+transported cut to one raw cut with squared HS error below `1/8`.  The exact
+trace moments force every such squared distance to tend to `7/32`, giving a
+strict contradiction.  This is the precise closure gate; generic commutant
+lifting or separate finite-packet exactification does not close it.
+
 ## 2026-08-13 spectral fallback: only invariance remains
 
 For any trace-flat coefficient block, `H=FGF` is a positive contraction with

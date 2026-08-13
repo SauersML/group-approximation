@@ -273,6 +273,22 @@ theorem hsDistSq_projections_eq_seven_div_thirty_two
     hPstar hPid hQstar hQid, hPtrace, hQtrace, hoverlap]
   norm_num
 
+/-- The anti-normalizer gap has a strict `1/8` safety margin.  Thus any
+coordinate-alignment theorem producing squared distance at most `1/8`
+already contradicts the trace-flat moments; convergence all the way to zero
+is unnecessary. -/
+theorem one_eighth_lt_hsDistSq_of_trace_flat_projections
+    (Y : FiniteModel) (P Q : Matrix Y Y ℂ)
+    (hPstar : Pᴴ = P) (hPid : P * P = P)
+    (hQstar : Qᴴ = Q) (hQid : Q * Q = Q)
+    (hPtrace : normTrace Y P = (8 : ℂ)⁻¹)
+    (hQtrace : normTrace Y Q = (8 : ℂ)⁻¹)
+    (hoverlap : normTrace Y (P * Q) = (64 : ℂ)⁻¹) :
+    (1 : ℝ) / 8 < hsDistSq Y P Q := by
+  rw [hsDistSq_projections_eq_seven_div_thirty_two Y P Q
+    hPstar hPid hQstar hQid hPtrace hQtrace hoverlap]
+  norm_num
+
 /-- Arithmetic core of the trace-flat spectral truncation.  A positive
 contraction of total normalized trace `1/64`, supported on trace `1/8`, has
 at least trace `1/120` above eigenvalue `1/16`.  `lowMass` and `highMass`
