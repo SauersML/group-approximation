@@ -4,6 +4,8 @@ import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Kazhdan.LaplacianSOSCertificate
 import GroupApproximation.Kazhdan.RealGroupRing
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
+import GroupApproximation.Kazhdan.RationalGroupRingCertificate
+import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
