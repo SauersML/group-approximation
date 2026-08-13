@@ -16,9 +16,10 @@ using only reductions that replay the twenty displayed relators?
 
 `literal_base_laplacian_sos.py` supplies the proof-carrying reducer.
 `literal_base_sos_sdp.py` uses that reducer to discover a numerical Gram
-matrix.  Solver output is not a proof; any positive candidate would still
-have to be rationalized and checked by Lean through
-`LiteralBaseSOS.IsRationalCertificate`.
+matrix.  Solver output is not a proof.  The earlier Lean-side certificate
+placeholder was removed from the trust surface because no certificate was
+found; any future positive candidate must first be rationalized and then
+formalized as an exact group-ring identity, not admitted as premise data.
 
 ## Results
 

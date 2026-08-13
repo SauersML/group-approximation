@@ -6,6 +6,8 @@ them. The root module is `GroupApproximation.lean`; it imports the formal
 library as a whole, while the subject directories provide smaller reading
 paths.
 
+This README was written by Sol 5.6 and Fable.
+
 ## An explicit finitely presented non-MF group
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
@@ -135,7 +137,7 @@ Reading path, front door first:
 | `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
-| `Kazhdan/LiteralBaseSOS.lean`, `Sofic/LiteralKazhdanCompression.lean` | Conditional property-`(T)`/exact-SOS boundary for the literal group; no unconditional MF endpoint or completed certificate |
+| `Sofic/LiteralUniversalHorn.lean`, `Sofic/LiteralMarkedCylinderTopology.lean` | Unconditional algebraic failure of the literal quasi-identity and the exact clopen cylinder; no analytic non-MF endpoint for the literal group |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
 | `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |

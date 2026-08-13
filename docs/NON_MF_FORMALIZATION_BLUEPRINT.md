@@ -94,14 +94,11 @@ The completed proof is split into independently useful layers.
     the compression-defect normal closure lies in the norm-MF residual.
 11. `LiteralNonMFPresentation.lean` and `LiteralNonMFLinearWitness.lean`
     machine-check the manuscript's literal eight-generator presentation and
-    its exact nontrivial affine--Clifford mark. `LiteralBaseSOS.lean` and
-    `LiteralKazhdanCompression.lean` expose two honest conditional endpoints:
-    property `(T)` of the abstract group presented by the twenty literal base
-    relators, or an exact rational group-ring SOS certificate implying it.
-    The classical affine-group route additionally requires a formal
-    presentation-completeness isomorphism; property `(T)` of the concrete
-    quotient does not transfer backwards. None of these inputs is postulated
-    or discharged.
+    its exact nontrivial affine--Clifford mark.  The library publishes no
+    analytic endpoint for that literal group: property `(T)` of the abstract
+    group presented by the twenty literal base relators and presentation
+    completeness are not proved.  Earlier premise-parametrized property-`(T)`
+    and absent-certificate endpoints were removed from the trust surface.
 12. `NormMFUniversalCorona.lean`, `NormMFCoronaRadical.lean`, and
     `NormMFResidualExactQuotient.lean` identify residual triviality with
     standard cofinite-corona operator MF and establish the universal quotient
