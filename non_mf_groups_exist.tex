@@ -1640,10 +1640,9 @@ Replace the target by the countable range $R=\Theta(H)$.  The subgroup
 $K'=\Theta(K)\le R$ is nontrivial and normal, has property~(T), and is
 contained in the compression defect of the transported pattern.
 
-The inclusion of $R$ into the original norm matrix corona is injective, so
-the universal MF radical of $R$ is trivial.  The universal-quotient
-diagonalization therefore gives a faithful representation of $R$ in
-one cofinite norm matrix corona.  Finally fix a finite test set
+The inclusion of $R$ into the original norm matrix corona, transported
+through $\kappa_{(d_n)}^{-1}$, is already a faithful corona representation.
+Fix a finite test set
 $F\subseteq R$.  Each ordered pair of distinct elements of $F$ is
 separated, by faithfulness, in infinitely many coordinates of the
 corona; Lemma~\ref{lem:amplifier} assigns to the pair a tensor
@@ -1656,45 +1655,34 @@ block sum is the maximum over blocks, so the assembled unitaries
 separate all pairs of $F$ by $1$ at once.  Hence $R$ has a uniformly
 separated operator-norm matrix approximation.
 
-We now cut by a second Kazhdan projection.  Let $p_{K'}$ be the
-Kazhdan projection of $K'$ and let $\tilde\Theta$ denote the uniformly
-separated matrix model.  For a surjective endomorphism $\theta$ of
-$K'$ and any representation $\pi$, the projection
-$\pi(\theta_*(p_{K'}))=$ the projection onto the
-$\pi(\theta(K'))$-fixed vectors is again the projection onto the
-$\pi(K')$-fixed vectors; applying this to the conjugation
-automorphisms of the normal subgroup $K'$ shows that
-$e:=1-\tilde\Theta(p_{K'})$ commutes with the image of
-$\tilde\Theta$, so cutting by $e$ is again a homomorphism of $H$.
-The corner is nonzero: if $e=0$ then, by the identity
-$u_kp_{K'}=p_{K'}$, every $k\in K'$ satisfies
-$\tilde\Theta(k)=\tilde\Theta(k)\tilde\Theta(p_{K'})
-=\tilde\Theta(p_{K'})=1$, contradicting faithfulness on the
-nontrivial $K'$.
+Choose a finite symmetric Kazhdan generating set $Q_0\subseteq K'$ and
+a Kazhdan constant $\kappa>0$.  In each matrix model, restrict the model
+to $K'$, take the Hermitian part of the average over $Q_0$, and choose a
+cutoff strictly between its Kazhdan spectral-gap bound and $1$.  Let
+$e_n$ be the spectral projection for the part below that cutoff, the
+\emph{moving corner}.  The Kazhdan gap and the uniform separation of the
+model imply that these corners are eventually nonzero and that, after
+passing to a subsequence, some $s\in Q_0$ remains nontrivial in normalized
+Hilbert--Schmidt norm on them.
 
-On the corner, the restriction to $K'$ has no invariant vectors, so by
-property~(T) it has no almost-invariant vectors either: fix a finite
-Kazhdan set $Q_0\subseteq K'$ with constant $\kappa>0$.  If a corner
-coordinate of size $r$ satisfied
-$\hsnorm{U_{k}-1}\le\varepsilon$ for all $k\in Q_0$, then averaging
-over an orthonormal basis $(e_i)$,
-\[
- \frac1r\sum_{i=1}^{r}\sum_{k\in Q_0}
- \lVert(U_{k}-1)e_i\rVert^2
- \;\le\;|Q_0|\,\varepsilon^2 ,
-\]
-so some $e_i$ is $(Q_0,\sqrt{|Q_0|}\,\varepsilon)$-almost invariant;
-for $\varepsilon<\kappa/\sqrt{|Q_0|}$ this is impossible.  Hence
-along the corner coordinates
-$\max_{k\in Q_0}\hsnorm{U_{k}-1}\ge\kappa/\sqrt{|Q_0|}$: the set
-$Q_0$ survives tracially.  On the other hand, the compressor argument
-of Steps 1--3 of Section~\ref{sec:proofA}, run in this corner model,
-sends $\hsnorm{\,\cdot\,-1}\to0$ for every generator
-$[tct^{-1},\iota(\lambda)]$ of the transported defect, and the
-telescoping of Step 4 propagates the collapse to every element of the
-subgroup $K'$ of its normal closure --- in particular to the finite
-set $Q_0$ --- a contradiction.  This second Kazhdan projection replaces
-the finite Reynolds average of Theorem~\ref{thm:criterion}.
+Normality of $K'$ is what makes this subgroup corner into an ambient
+one.  For every $g\in R$, conjugation by $g$ preserves $K'$; the Kazhdan
+gap then forces both off-diagonal blocks of the matrix for $g$, relative
+to $e_n\oplus(1-e_n)$, to tend to zero in operator norm.  Consequently
+the compressions $e_nU_{g,n}e_n$ are asymptotically unitary and
+multiplicative.  Polar correction, followed by a diagonal choice over
+the countable group $R$, gives an operator-norm almost representation of
+$R$ on the nonzero moving corners.  In its tracial ultraproduct the
+element $s$ chosen above is still nontrivial.
+
+Apply now the compressor argument of Steps 1--3 of
+Section~\ref{sec:proofA} to this same moving-corner model.  It sends every
+pointwise defect $[tct^{-1},\iota(\lambda)]$ to the identity in the
+tracial ultraproduct.  Normal-closure propagation, exactly as in Step~4,
+therefore kills all of $K'\le N_{\rm comp}$, including $s$.  This
+contradicts the surviving image of $s$ and proves the theorem.  The moving
+Kazhdan corner is thus the normal-subgroup substitute for the finite
+Reynolds average of Theorem~\ref{thm:criterion}.
 \end{proof}
 
 \begin{corollary}[Kazhdan part and exact radical]\label{cor:kazhdanpart}
