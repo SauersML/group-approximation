@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.MappingTelescope
+import GroupApproximation.Analysis.FaithfulTracialState
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
@@ -60,6 +61,7 @@ import GroupApproximation.PropertyT.ClassTwoApproximation
 import GroupApproximation.Matching.DirectedCoarea
 import GroupApproximation.Kazhdan.KazhdanImprovement
 import GroupApproximation.Kazhdan.Kazhdan
+import GroupApproximation.Kazhdan.KazhdanDisplacementCriterion
 import GroupApproximation.Kazhdan.HilbertComplexification
 import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Kazhdan.KazhdanUniverse
