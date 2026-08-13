@@ -21,6 +21,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
+import GroupApproximation.Sofic.LiteralBaseTwoGenerator
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
@@ -28,6 +29,8 @@ import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.ChosenMarkedCylinder
+import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.KazhdanCompressorCorner
 import GroupApproximation.Sofic.MarkedCompressionVectorChain
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
@@ -121,6 +124,7 @@ import GroupApproximation.Kazhdan.KazhdanGenerators
 import GroupApproximation.Kazhdan.KazhdanOrthogonal
 import GroupApproximation.Kazhdan.FixedSpaceCompression
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Kazhdan.KazhdanProjection
 import GroupApproximation.Kazhdan.InvariantDisplacement
 import GroupApproximation.Kazhdan.KazhdanFiniteModel
