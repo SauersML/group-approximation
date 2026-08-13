@@ -1994,16 +1994,18 @@ We now return from the ultraproduct to a single sequence, exactly where
 finiteness of $F$ is used a second time.  For each $k$, the finite
 intersection of the $\omega$-large sets
 \[
- \{n:\hsnorm{V_n(f)-1}<1/k\}\qquad(f\in F)
+ \{n:\hsnorm{V_n(f)-V_n(1)}<1/k\}\qquad(f\in F)
 \]
 with the cofinite tail is nonempty.  Choose a strictly increasing diagonal
-sequence $n_k$ in those intersections.  Replacing $V_k$ by $V_{n_k}$
-preserves \eqref{eq:finitecornersum} and gives, simultaneously for all
-$f\in F$,
+sequence $n_k$ in those intersections and relabel the resulting models by
+$k$.  This preserves \eqref{eq:finitecornersum} and gives, simultaneously
+for all $f\in F$,
 \[
- \hsnorm{V_k(f)-1}\longrightarrow0.
+ \hsnorm{V_k(f)-V_k(1)}\longrightarrow0.
 \]
-Taking normalized traces yields
+The identity defect gives
+$\opnorm{V_k(1)^2-V_k(1)}\to0$; multiplication by the unitary
+$V_k(1)^*$ shows $\opnorm{V_k(1)-1}\to0$.  Therefore
 \[
  \tr_{r_k}\!\left(\sum_{f\in F}V_k(f)\right)\longrightarrow |F|.
 \]
