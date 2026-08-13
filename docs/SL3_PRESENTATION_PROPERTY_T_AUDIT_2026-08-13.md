@@ -91,21 +91,20 @@ No separate finite-index or relative-property argument is needed.
 
 The literature checks establish the printed mathematics but cannot serve as
 axioms under the project's strict trust policy.  A literal, unconditional
-formal Theorem A still requires an internal proof of property (T), or a
-checked finite Kazhdan/SOS certificate, for the raw twenty-relator affine
-presented group.  The kernel-checked development now proves its intrinsic
-split-extension decomposition into the translation subgroup and the
-abstract eight-relator rotation retract.  It does not yet identify that
-rotation retract with the displayed matrix group `SL_3(Z)`, nor prove the
-required affine property-(T) estimate directly.
+formal Theorem A still requires the following internal result:
+
+1. a proof that the eight-relator presented group is isomorphic to the
+   displayed matrix group `SL_3(Z)` (or a formal derivation from an internally
+   proved transvection presentation), together with an internal proof of
+   property (T), or a checked finite Kazhdan/SOS certificate, for that
+   eight-relator rotation group.
 
 Direct matrix evaluation proves only that the matrices satisfy the eight
-rotation relations.  It does not prove that those relations are complete.
-The nine action relations and the intrinsic semidirect decomposition are
-already formalized; the remaining presentation-completeness issue is only
-the rotation factor.  Even resolving it would still leave the separate
-affine property-(T) proof.  Citing CRW or BHV is mathematically legitimate
-in the paper but does not discharge the premise-free Lean endpoint.
+relations.  It does not prove that those relations are complete.  Likewise,
+the nine action relations prove covariance only after the base presentation
+has been identified.  These are the precise missing group-generation and
+presentation facts; citing CRW or BHV is mathematically legitimate in the
+paper but does not discharge the premise-free Lean endpoint.
 
 The original CRW article was blocked by AMS/JSTOR anti-bot responses during
 this pass.  The exact presentation was nevertheless checked in the open
@@ -140,7 +139,7 @@ inverses:
 
 ```text
 e12 = Y x z Y X        e13 = x z Y X Y
-e21 = Y x y x z        e23 = X Y x z Y
+e21 = Y x y x z        e23 = X y x z Y
 e31 = x Y x z Y x      e32 = X z Y X Y X.
 ```
 
@@ -169,12 +168,16 @@ structure which identifies words merely because their matrices agree.
 Property `(T)` would then pass from `P13` to `S` by the already checked
 quotient theorem.
 
-This still does not prove property `(T)` of the affine group `P`: property
-`(T)` of the rotation quotient alone is insufficient.  One must additionally
-prove relative property `(T)` for the translation subgroup and combine the
-two estimates, or replay a direct exact Hodge/SOS certificate for the full
-twenty-relator presentation.  Any endpoint omitting this second step would
-be a false strengthening.
+Property `(T)` of the rotation presentation now *does* suffice for property
+`(T)` of the affine group `P`.  The internal theorem
+`base_hasKazhdanPropertyT_of_rotation` proves this directly from the twenty
+printed relators.  After projection to the rotation-fixed subspace, every
+translation has uniformly bounded displacement by the two-conjugate
+translation normal form; the Hilbert-space bounded-orbit fixed-point theorem
+then produces a vector fixed by translations and rotations.  Thus no
+external relative-property-`(T)` input and no separate affine SOS certificate
+is needed.  The remaining property-`(T)` obligation is exactly the abstract
+eight-relator rotation group.
 
 ## Why the existing characteristic-two theorem is not a shortcut
 
@@ -206,9 +209,9 @@ entrywise equality with the identity forces `a=b=c=0`.  Thus the map is
 injective.  Consequently `T ~= Z^3` can be formalized independently of the
 rotation presentation.
 
-This sharpens the remaining algebraic obligation: the only presentation
-completeness problem is the rotation factor.  The affine property-`(T)`
-obligation remains separate and unchanged.
+This sharpens both remaining obligations: the only presentation-completeness
+problem is the rotation factor, and the internal bounded-orbit argument has
+reduced affine property `(T)` to property `(T)` of that same rotation group.
 
 The unsuccessful Knuth--Bendix trial is also informative.  SymPy's completion
 of the eight-relator presentation did not terminate within a short bounded
