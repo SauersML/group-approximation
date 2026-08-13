@@ -80,8 +80,11 @@ every operator-norm matrix ultraproduct and rules out the library's
 independently from a noncomputably chosen Shalom cover; it is not the literal
 eight-generator group `E` displayed in the paper. The literal presentation,
 all displayed relations, and an exact affine--Clifford realization proving
-its marked word nontrivial are formalized separately. No MF endpoint is
-asserted for that literal group.
+its marked word nontrivial are formalized separately. The only MF endpoints
+for that literal group are explicitly conditional: one assumes property
+`(T)` of its displayed base, and the proof-carrying variant assumes an exact
+rational group-ring SOS certificate. No unconditional literal endpoint or
+certificate is asserted.
 
 The general finite-normal obstruction is formalized first as universal
 ultraproduct invisibility and then in the unitary-sequence presentation of the
@@ -110,8 +113,13 @@ Reading path, front door first:
 | `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
 | `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
-| `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark; no MF endpoint is asserted for this literal group |
-| `Criterion/FiniteDimensionalKill.lean` | Finite-dimensional obstruction over an arbitrary field |
+| `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
+| `Kazhdan/LiteralBaseSOS.lean`, `Sofic/LiteralKazhdanCompression.lean` | Explicit property-`(T)`/exact-SOS boundary for the literal group; no unconditional certificate or MF endpoint |
+| `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
+| `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
+| `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
+| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
+| `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
 
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no

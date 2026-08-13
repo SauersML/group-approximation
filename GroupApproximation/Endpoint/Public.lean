@@ -8,8 +8,21 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.NormMFPrintedConsequences
+import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Criterion.CompressionCentralizerDefect
+import GroupApproximation.Criterion.FiniteDimensionalKill
+import GroupApproximation.Monsters.CliffordAlgebraLamp
+import GroupApproximation.Monsters.ExplicitLinearModel
+import GroupApproximation.Sofic.CompressionDefectSquare
+import GroupApproximation.Sofic.IntrinsicCompressionDefect
+import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+import GroupApproximation.Sofic.LiteralKazhdanCompression
+import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -26,8 +39,8 @@ import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 The library is organized by the order the mathematics was discovered, which is
 not the order anyone should read it in.  This module is the reading path: the
 declarations a referee actually needs, each named against the theorem of
-`nonsofic_groups_exist.tex` it establishes, and nothing else.  Follow the
-imports downward from here.
+`nonsofic_groups_exist.tex` or `non_mf_groups_exist.tex` it establishes, and
+nothing else.  Follow the imports downward from here.
 
 Nothing is proved in this module.  It re-exports, so that `#check` on any name
 below lands on the real statement and its module.
@@ -80,6 +93,40 @@ generated from the manuscript's margin notes; this module is the short list.
   unitary-sequence presentation documented in `Sofic/OperatorMF`.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
+
+## The literal eight-generator boundary
+
+The paper's displayed group is formalized separately from the unconditional
+Shalom-cover witness.  The declarations below deliberately expose the exact
+boundary instead of conflating the two constructions.
+
+* `LiteralNonMFPresentation.literal_algebraic_package` and
+  `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
+  presentation, its relations, and a genuine nontrivial marked involution.
+* `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
+  -- every finite-dimensional linear representation of the literal group is
+  nonfaithful.
+* `LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT` -- the
+  remaining property-`(T)` boundary as an explicit premise.
+* `LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate` -- the
+  proof-carrying version: an exact rational group-ring SOS certificate would
+  close that premise.  No such certificate is asserted or selected here, so
+  this is not an unconditional endpoint for the literal group.
+
+## Consequences and reusable obstruction APIs
+
+* `not_injective_of_coronaMFInvisible` and
+  `KazhdanCompressionCore.finiteNormal_uniform_invisibility` -- portability
+  and uniform killing of the obstruction.
+* `existsUnique_quotient_factorization_to_normMatrixCorona` -- exact quotient
+  factorization in the cofinite-corona language.
+* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the generic
+  computability reduction, conditional on an explicitly supplied computable
+  Adian--Rabin transformation and its correctness proof; no such external
+  transformation is postulated by the library.
+* `ProperProjectionCompression` -- the one-sided compression API, including
+  its proper isometry, failure of stable finiteness, and obstruction to a
+  faithful tracial state.
 
 ## One endpoint per printed theorem
 
@@ -225,6 +272,55 @@ export GroupApproximation
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
+export GroupApproximation
+  (not_injective_of_coronaMFInvisible
+    not_injective_of_coronaMFInvisible_of_target_embeds
+    not_injective_to_isOperatorMF
+    existsUnique_quotient_factorization_to_normMatrixCorona
+    coronaMFResidual_eq_of_le_and_quotient_isOperatorMF)
+export GroupApproximation.KazhdanCompressionCore
+  (finiteNormal_uniform_invisibility
+    not_isWeakMF_of_normalKazhdan_le_defect
+    defectNormal_le_orbitDefectNormal
+    orbitDefectNormal_le_compressionCentralizerDefect)
+export GroupApproximation.MarkedCompressionInclusionData
+  (not_isOperatorMF_of_mem_finiteNormal)
+
+/-! ### The literal eight-generator boundary -/
+
+export GroupApproximation.LiteralNonMFPresentation (literal_algebraic_package)
+export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
+export GroupApproximation.LiteralFiniteDimensionalObstruction
+  (literal_finiteDimensional_rep_not_injective)
+export GroupApproximation.LiteralKazhdanCompression
+  (mark_normMFInvisible_of_hasKazhdanPropertyT
+    not_isOperatorMF_of_hasKazhdanPropertyT
+    not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
+    mark_normMFInvisible_of_isRationalCertificate
+    not_isOperatorMF_of_isRationalCertificate
+    not_injective_to_isOperatorMF_of_isRationalCertificate)
+export GroupApproximation.CliffordAlgebraLamp
+  (cliffordLamp_group_package cliffordLamp_permutation_package)
+export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
+export GroupApproximation
+  (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
+    compressionCentralizerDefect_le_ker
+    commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
+
+/-! ### Conditional computability interface and algebraic consequences -/
+
+export GroupApproximation.MarkovMFConsequences
+  (MarkovWitness FinitePresentationSemantics operatorMFProperty
+    AdianRabinReduction recognition_undecidable negative_side_not_re
+    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
+    operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
+export GroupApproximation (isOperatorMF_of_finite_standard
+  not_isOperatorMF_of_subgroup)
+export GroupApproximation.ProperProjectionCompression
+  (star_isometry_mul_eq_one_and_reverse_ne exists_one_sided_inverse
+    exists_leftInvertible_not_isUnit not_isDedekindFiniteMonoid
+    not_isStablyFiniteRing no_injective_monoidHom_to_dedekindFinite
+    no_faithfulTracialState)
 
 /-! ### Reach of the construction -/
 
