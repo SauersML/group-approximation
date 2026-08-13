@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 
 /-!
@@ -46,6 +47,21 @@ API boundary. -/
 theorem coprod_isFinitelyPresented [Group.IsFinitelyPresented G]
     [Group.IsFinitelyPresented H] : Group.IsFinitelyPresented (G ∗ H) :=
   inferInstance
+
+namespace ChosenFreeProductConsequences
+
+open ChosenMarkedPresentation ChosenNonMFTheorem
+
+/-- Unconditional finitely presented non-MF free product with an infinite
+cyclic factor, using the fully kernel-checked chosen Shalom-cover witness. -/
+theorem chosen_coprod_int_finitelyPresented_not_isOperatorMF :
+    Group.IsFinitelyPresented (MarkedGroup ∗ Multiplicative ℤ) ∧
+      ¬ IsOperatorMF (MarkedGroup ∗ Multiplicative ℤ) :=
+  ⟨inferInstance,
+    not_isOperatorMF_coprod_left
+      chosenFinitelyPresented_not_isOperatorMF.2⟩
+
+end ChosenFreeProductConsequences
 
 namespace LiteralFreeProductConsequences
 
