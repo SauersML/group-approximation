@@ -69,5 +69,34 @@ theorem map_subgroup_le_defectNormal
   rintro y ⟨x, hx, rfl⟩
   exact C.defectNormal_le_comap_map_defectNormal f (hK hx)
 
+/-! ## Property `(T)` and normality of subgroup images -/
+
+/-- The canonical quotient map from a subgroup to its image under an ambient
+homomorphism. -/
+def subgroupMapHom (K : Subgroup E) (f : E →* H) : K →* K.map f where
+  toFun x := ⟨f x, ⟨x, x.property, rfl⟩⟩
+  map_one' := by ext; simp
+  map_mul' x y := by ext; simp
+
+/-- The canonical map onto a subgroup image is surjective. -/
+theorem subgroupMapHom_surjective (K : Subgroup E) (f : E →* H) :
+    Function.Surjective (subgroupMapHom K f) := by
+  rintro ⟨y, x, hx, rfl⟩
+  exact ⟨⟨x, hx⟩, rfl⟩
+
+/-- Property `(T)` passes from a subgroup to its homomorphic image. -/
+theorem map_subgroup_hasKazhdanPropertyT
+    (K : Subgroup E) (f : E →* H)
+    (hT : HasKazhdanPropertyT.{u, 0} K) :
+    HasKazhdanPropertyT.{v, 0} (K.map f) :=
+  HasKazhdanPropertyT.of_surjective (subgroupMapHom K f)
+    (subgroupMapHom_surjective K f) hT
+
+/-- Under a surjective ambient homomorphism, the image of a normal subgroup
+is normal. -/
+theorem map_subgroup_normal (K : Subgroup E) [K.Normal]
+    (f : E →* H) (hf : Function.Surjective f) : (K.map f).Normal :=
+  (inferInstance : K.Normal).map f hf
+
 end KazhdanCompressionCore
 end GroupApproximation
