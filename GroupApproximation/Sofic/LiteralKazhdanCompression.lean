@@ -122,5 +122,41 @@ theorem not_injective_to_isOperatorMF_of_isRationalCertificate
     (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
     hH f
 
+/-! ## The affine--Clifford witness inherits the marked obstruction -/
+
+/-- The distinguished Clifford sign in the explicit witness is MF-invisible.
+This is the functorial marked-radical step in manuscript Proposition
+`prop:W`. -/
+theorem witness_sign_normMFInvisible_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base) :
+    NormMFInvisible
+      (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+        ExplicitLinearModel.conjD_injective) := by
+  have hmap :=
+    (mark_normMFInvisible_of_hasKazhdanPropertyT hT).map
+      LiteralNonMFLinearWitness.witnessHom
+  simpa using hmap
+
+/-- Consequently the explicit affine--Clifford witness group is not
+operator-MF. -/
+theorem witness_not_isOperatorMF_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base) :
+    ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup := by
+  intro hMF
+  exact not_injective_to_isOperatorMF
+    ((witness_sign_normMFInvisible_of_hasKazhdanPropertyT hT).toCoronaMFInvisible)
+    (MarkedCompression.signAmbient_ne_one
+      LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective)
+    hMF (MonoidHom.id LiteralNonMFLinearWitness.WitnessGroup)
+    Function.injective_id
+
+/-- The same witness conclusion from an exact rational SOS certificate for
+the literal base. -/
+theorem witness_not_isOperatorMF_of_isRationalCertificate {c : ℚ}
+    (hcert : LiteralBaseSOS.IsRationalCertificate c) :
+    ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
+  witness_not_isOperatorMF_of_hasKazhdanPropertyT
+    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
+
 end LiteralKazhdanCompression
 end GroupApproximation
