@@ -65,6 +65,12 @@ FORBIDDEN = [
     # `synthInstance.maxHeartbeats` and friends are caught by the same rule.
     ("maxHeartbeats budget bump",
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxHeartbeats(?![A-Za-z0-9_])")),
+    # A recursion-depth override is the same kind of proof-budget escape as a
+    # heartbeat override: it can make an accidentally enormous reduction
+    # elaborate without repairing its proof structure.  Exact generated
+    # certificates must instead be split into kernel-checkable pieces.
+    ("maxRecDepth budget bump",
+     re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxRecDepth(?![A-Za-z0-9_])")),
 ]
 
 # Strings known to have been fabricated by model sessions and purged from the
@@ -96,6 +102,7 @@ SCAN_TAGS: tuple[str, ...] = (
     "unsafe / implemented_by / opaque escape hatch",
     "warningAsError disabled",
     "maxHeartbeats budget bump",
+    "maxRecDepth budget bump",
     "unmapped result",
     "dangling Lean reference",
     "dangling Lean reference (wrapped note)",
@@ -378,6 +385,9 @@ PLANTS = {
     "maxHeartbeats budget bump":
         {f"{LIB}/Alpha.lean":
          "set_option maxHeartbeats 400000 in\ntheorem a : True := trivial\n"},
+    "maxRecDepth budget bump":
+        {f"{LIB}/Alpha.lean":
+         "set_option maxRecDepth 20000 in\ntheorem a : True := trivial\n"},
     # A result the paper states and never says anything about: the reader
     # cannot distinguish "not formalized" from "nobody wrote the note".
     "unmapped result":
