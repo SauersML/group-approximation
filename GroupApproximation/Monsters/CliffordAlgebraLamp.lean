@@ -40,6 +40,11 @@ The further group-theoretic packaging of the witness (the semidirect
 product with the acting group and the consumption of the marked word `w`)
 is deliberately out of scope here and lives with the group-side
 formalization.
+
+The mathematical Clifford-sign/shift package has a close predecessor in
+William Slofstra, *A group with at least subexponential hyperlinear profile*,
+arXiv:1806.05267, Section 2.  This implementation was written directly
+against mathlib's `CliffordAlgebra` API; no external Lean source was copied.
 -/
 
 namespace GroupApproximation
@@ -311,6 +316,19 @@ theorem commutator_lampGen {x y : X} (h : x ≠ y) :
   rw [commutatorElement_def] at h' ⊢
   exact Subtype.ext h'
 
+/-- The group-level Clifford-lamp package used by the manuscript's
+`con:clifford`: the distinguished sign is a nontrivial central involution,
+each site generator is an involution, and distinct site generators have
+commutator equal to that sign. -/
+theorem cliffordLamp_group_package :
+    zGen X ^ 2 = 1 ∧
+      zGen X ≠ 1 ∧
+      zGen X ∈ Subgroup.center ↥(lampGroup X) ∧
+      (∀ x : X, lampGen X x ^ 2 = 1) ∧
+      (∀ x y : X, x ≠ y → ⁅lampGen X x, lampGen X y⁆ = zGen X) := by
+  exact ⟨zGen_sq X, zGen_ne_one X, zGen_mem_center X,
+    lampGen_sq X, fun _ _ h ↦ commutator_lampGen X h⟩
+
 /-! ## The permutation action on the lamp group -/
 
 /-- Relabelings compose, pointwise on the base module. -/
@@ -438,6 +456,14 @@ noncomputable def permHom : Equiv.Perm X →* MulAut ↥(lampGroup X) where
 @[simp] theorem permHom_zGen (σ : Equiv.Perm X) :
     permHom X σ (zGen X) = zGen X :=
   Subtype.ext (unitsMap_zUnit X σ)
+
+/-- Every permutation of the site set acts by a lamp-group automorphism,
+relabels the site generators, and fixes the central sign. -/
+theorem cliffordLamp_permutation_package :
+    (∀ (σ : Equiv.Perm X) (x : X),
+      permHom X σ (lampGen X x) = lampGen X (σ x)) ∧
+      (∀ σ : Equiv.Perm X, permHom X σ (zGen X) = zGen X) := by
+  exact ⟨permHom_lampGen X, permHom_zGen X⟩
 
 end CliffordAlgebraLamp
 end GroupApproximation

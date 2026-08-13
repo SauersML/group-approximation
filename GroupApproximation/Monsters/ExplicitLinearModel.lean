@@ -391,6 +391,13 @@ theorem v1G_not_mem_range : v1G ∉ Set.range conjD := by
     exact_mod_cast h2
   omega
 
+/-- The two structural conclusions of the manuscript's explicit linear
+model: conjugation by the displayed doubling matrix is injective on the
+base subgroup, and the marked translation has no preimage under it. -/
+theorem doubling_linear_model_package :
+    Function.Injective conjD ∧ v1G ∉ Set.range conjD :=
+  ⟨conjD_injective, v1G_not_mem_range⟩
+
 /-! ## Countability -/
 
 private theorem mat_countable : Countable Mat := by
