@@ -44,6 +44,7 @@ import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.ExplicitMarkedPresentation
 import GroupApproximation.Sofic.ExplicitNonMFTheorem

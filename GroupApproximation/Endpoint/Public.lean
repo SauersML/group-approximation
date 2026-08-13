@@ -110,6 +110,9 @@ generated from the manuscript's margin notes; this module is the short list.
   cylinder witnessing every failure.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
+* `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
+  free product to be non-MF; the literal `E * ℤ` form retains the same
+  explicit presented-base property `(T)` premise.
 
 ## The literal eight-generator boundary
 
@@ -327,6 +330,13 @@ export GroupApproximation
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
+export GroupApproximation
+  (not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
+    coprod_isFinitelyPresented)
+export GroupApproximation.LiteralFreeProductConsequences
+  (literal_coprod_int_finitelyPresented_not_isOperatorMF
+    literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
+    witness_coprod_int_not_isOperatorMF)
 export GroupApproximation
   (not_injective_of_coronaMFInvisible
     not_injective_of_coronaMFInvisible_of_target_embeds
