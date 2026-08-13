@@ -177,23 +177,16 @@ theorem exists_pow_re_lt_half (a : ℂ) {gap : ℝ}
       exact inferInstanceAs (DecidableEq (Y × OpTensorIndex Y n))
 
 omit [Fintype Y] [DecidableEq Y] in
-private theorem opTensorIndexNonempty [Nonempty Y] :
+private theorem opTensorIndexNonempty (hY : Nonempty Y) :
     (n : ℕ) → Nonempty (OpTensorIndex Y n)
   | 0 => inferInstance
-  | n + 1 => by
-      letI : Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty n
-      exact inferInstanceAs (Nonempty (Y × OpTensorIndex Y n))
+  | n + 1 => ⟨hY.some, (opTensorIndexNonempty hY n).some⟩
 
 @[reducible, instance] def instOpTensorIndexFintype (n : ℕ) :
     Fintype (OpTensorIndex Y n) := opTensorIndexFintype n
 
 @[reducible, instance] def instOpTensorIndexDecidableEq (n : ℕ) :
     DecidableEq (OpTensorIndex Y n) := opTensorIndexDecidableEq n
-
-omit [Fintype Y] [DecidableEq Y] in
-omit [Fintype Y] [DecidableEq Y] in
-@[instance] theorem instOpTensorIndexNonempty [Nonempty Y] (n : ℕ) :
-    Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty n
 
 /-- The finite model underlying the recursively indexed tensor power. -/
 @[reducible] def opTensorModel (Y : FiniteModel) (n : ℕ) : FiniteModel :=
@@ -280,13 +273,15 @@ theorem l2_opNorm_opTensorPow_le (A : Matrix Y Y ℂ) (n : ℕ) :
 /-- **Tensor-power telescoping.**  On unitary inputs the operator-norm error
 of the `n`-fold tensor powers is at most `n` times the original error. -/
 theorem l2_opNorm_opTensorPow_sub_le {A B : Matrix Y Y ℂ}
-    [Nonempty Y]
+    (hY : Nonempty Y)
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ) (n : ℕ) :
     ‖opTensorPow A n - opTensorPow B n‖ ≤ n * ‖A - B‖ := by
   induction n with
   | zero => simp
   | succ n ih =>
+      letI : Nonempty Y := hY
+      letI : Nonempty (OpTensorIndex Y n) := opTensorIndexNonempty hY n
       rw [opTensorPow_succ, opTensorPow_succ]
       have hsplit :
           A ⊗ₖ opTensorPow A n - B ⊗ₖ opTensorPow B n =
