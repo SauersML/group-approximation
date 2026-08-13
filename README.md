@@ -112,6 +112,7 @@ Reading path, front door first:
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
 | `Monsters/LiteralCyclicCalibration.lean` | Literal cyclic comparison presentation, exact surviving mark, finite-dimensional kill, and conditional corona survival |
 | `Sofic/MarkedMFClosed.lean` | Closedness of the operator-MF locus in fixed-rank marked-group space and finite word-ball obstruction cylinders |
+| `Sofic/OperatorMFFreeProductConsequences.lean` | Subgroup-hereditary propagation of non-MF obstructions to group free products |
 | `Sofic/LiteralPresentationRadius.lean` | Kernel-checked radius-34 bound for every literal relator and the marked word |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
 | `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
