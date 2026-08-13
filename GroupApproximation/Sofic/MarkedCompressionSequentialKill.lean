@@ -702,7 +702,7 @@ from obscuring that the adjoint model is the product model. -/
 @[simp] def gammaRowVec (B : OpAlmostRepresentation E)
     (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
     (X : Matrix (B.model n) (B.model n) ℂ) :
-    (gammaAdjoint B D).model n → ℂ :=
+    B.adjoint.model n → ℂ :=
   fun p ↦ X p.1 p.2
 
 theorem gammaAdjoint_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
@@ -757,15 +757,7 @@ theorem gammaRowVec_sum (B : OpAlmostRepresentation E)
     {I : Type*} (s : Finset I) (X : I → Matrix (B.model n) (B.model n) ℂ) :
     gammaRowVec B D n (∑ i ∈ s, X i) =
       ∑ i ∈ s, gammaRowVec B D n (X i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty =>
-      rw [Finset.sum_empty, Finset.sum_empty]
-      funext p
-      rfl
-  | @insert i s hi ih =>
-      rw [Finset.sum_insert hi, Finset.sum_insert hi,
-        gammaRowVec_add, ih]
+  exact matVec_sum s X
 
 /-- The Laplacian displacement of the flattened lamp microstate is the
 flattening of an explicit averaged conjugation defect. -/
@@ -809,21 +801,33 @@ theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
         Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
         (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)) := by
     intro s
-    have h : ((gammaAdjoint B D).map n s :
+    have hmap : ((gammaAdjoint B D).map n s :
         Matrix ((gammaAdjoint B D).model n)
           ((gammaAdjoint B D).model n) ℂ)ᴴ =
-        conjDouble
-          ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
+        (conjDouble
+            ((B.map n (D.iota s) :
+              Matrix (B.model n) (B.model n) ℂ)ᴴ) :
+          Matrix ((gammaAdjoint B D).model n)
+            ((gammaAdjoint B D).model n) ℂ) :=
       (conjDouble_conjTranspose _).symm
-    let U : Matrix (B.model n) (B.model n) ℂ := B.map n (D.iota s)
-    have h2 : (conjDouble Uᴴ :
-        Matrix ((gammaAdjoint B D).model n)
-          ((gammaAdjoint B D).model n) ℂ) *ᵥ gammaRowVec B D n Vc =
-        gammaRowVec B D n (Uᴴ * Vc * U) := by
-      simpa only [Matrix.conjTranspose_conjTranspose] using
-        conjDouble_mulVec_gammaRowVec B D n Uᴴ Vc
-    rw [h]
-    exact h2
+    have hconj :
+        (conjDouble
+            ((B.map n (D.iota s) :
+              Matrix (B.model n) (B.model n) ℂ)ᴴ) :
+          Matrix ((gammaAdjoint B D).model n)
+            ((gammaAdjoint B D).model n) ℂ) *ᵥ gammaRowVec B D n Vc =
+          gammaRowVec B D n ((B.map n (D.iota s) :
+            Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
+            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)) := by
+      let U : Matrix (B.model n) (B.model n) ℂ := B.map n (D.iota s)
+      change (conjDouble Uᴴ :
+          Matrix ((gammaAdjoint B D).model n)
+            ((gammaAdjoint B D).model n) ℂ) *ᵥ rowVec Vc =
+        rowVec (Uᴴ * Vc * U)
+      have hraw := conjDouble_mulVec_rowVec Uᴴ Vc
+      simpa only [Matrix.conjTranspose_conjTranspose] using hraw
+    exact (congrArg (fun M : Matrix ((gammaAdjoint B D).model n)
+      ((gammaAdjoint B D).model n) ℂ ↦ M *ᵥ gammaRowVec B D n Vc) hmap).trans hconj
   -- expand the Hermitian average applied to the flattened lamp
   have haverage : hermitianAverage (gammaAdjoint B D) S n *ᵥ
       gammaRowVec B D n Vc =
