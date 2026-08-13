@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
+import GroupApproximation.Analysis.NormMatrixCorona
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
