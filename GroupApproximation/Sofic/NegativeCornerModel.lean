@@ -466,7 +466,7 @@ distance to `-1` is controlled.  Stated over an arbitrary coordinate type so
 the packaging theorem applies it without re-elaborating its large corner
 types. -/
 theorem norm_add_one_le_of_close {Y : Type*} [Fintype Y] [DecidableEq Y]
-    {P C : Matrix Y Y ℂ} {ε : ℝ}
+    (C P : Matrix Y Y ℂ) {ε : ℝ}
     (h1 : ‖P - C‖ ≤ ε / 2) (h2 : ‖C + 1‖ ≤ ε / 2) :
     ‖P + 1‖ ≤ ε := by
   have hsplit : P + 1 = (P - C) + (C + 1) := by abel
@@ -491,63 +491,138 @@ theorem nonempty_corner_eventually_of_separated
   exact ⟨N, fun n hn =>
     nonempty_negPredicate_of_negativeProjection_ne_zero _ (hN n hn)⟩
 
-/-- **The negative corner of a weak-MF approximation at a nontrivial central
-involution is an operator-norm almost representation on which the involution
-converges to `-1`.**  This is the finite-stage central-corner cut of the
-non-MF manuscript: no lower bound on the corner ranks is needed, and no
-spectral-gap input enters — leakage is controlled by the exact sign
-commutator identity, and exactness of the corner unitaries comes from polar
-correction. -/
-theorem exists_negativeCorner_opAlmostRepresentation
-    (A : OpAlmostRepresentation G) {z : G} (hz : z * z = 1)
-    (hcentral : ∀ g : G, z * g = g * z)
-    {delta : ℝ} (hdelta : 0 < delta)
-    (hsep : ∃ N, ∀ n ≥ N,
-      delta ≤ ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) :
-    ∃ B : OpAlmostRepresentation G,
-      ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
-        ‖(B.map n z : Matrix (B.model n) (B.model n) ℂ) + 1‖ ≤ ε := by
-  classical
-  set A₀ := A
-  obtain ⟨N₀, hN₀⟩ :=
-    nonempty_corner_eventually_of_separated A hz hdelta hsep
-  have hclose : ∀ g : G, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
-      ‖(cornerUnitary A₀ z n g :
+/-- A unitary matrix is a contraction; no nonemptiness hypothesis on the
+coordinate type is needed. -/
+theorem norm_le_one_of_mem_unitaryGroup {Y : Type*} [Fintype Y]
+    [DecidableEq Y] {U : Matrix Y Y ℂ}
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) : ‖U‖ ≤ 1 := by
+  rcases isEmpty_or_nonempty Y with hY | hY
+  · have hzero : U = 0 := funext fun i => (hY.false i).elim
+    rw [hzero, norm_zero]
+    exact zero_le_one
+  · exact le_of_eq (CStarRing.norm_of_mem_unitary hU)
+
+/-- Generic triangle assembly for the corner multiplicativity estimate,
+stated over an arbitrary coordinate type so that the packaged corner model
+applies it without re-elaborating its large corner types. -/
+theorem norm_mul_defect_le_of_close {Y : Type*} [Fintype Y] [DecidableEq Y]
+    (Cg Ch Cgh Pg Ph Pgh : Matrix Y Y ℂ) {ε : ℝ}
+    (hgh : ‖Pgh - Cgh‖ ≤ ε / 4) (hm : ‖Cgh - Cg * Ch‖ ≤ ε / 4)
+    (hg : ‖Pg - Cg‖ ≤ ε / 4) (hh : ‖Ph - Ch‖ ≤ ε / 4)
+    (hPh : ‖Ph‖ ≤ 1) (hCg : ‖Cg‖ ≤ 1) :
+    ‖Pgh - Pg * Ph‖ ≤ ε := by
+  have hε4 : (0 : ℝ) ≤ ε / 4 := le_trans (norm_nonneg _) hgh
+  have hsplit : Pgh - Pg * Ph =
+      (Pgh - Cgh) + ((Cgh - Cg * Ch) +
+        ((Cg - Pg) * Ph + Cg * (Ch - Ph))) := by
+    have hexpand : (Cg - Pg) * Ph + Cg * (Ch - Ph) =
+        Cg * Ch - Pg * Ph := by noncomm_ring
+    rw [hexpand]
+    abel
+  have hcross1 : ‖(Cg - Pg) * Ph‖ ≤ ε / 4 := by
+    refine (Matrix.l2_opNorm_mul _ _).trans ?_
+    calc ‖Cg - Pg‖ * ‖Ph‖ ≤ (ε / 4) * 1 := by
+          refine mul_le_mul ?_ hPh (norm_nonneg _) hε4
+          rw [norm_sub_rev]
+          exact hg
+      _ = ε / 4 := mul_one _
+  have hcross2 : ‖Cg * (Ch - Ph)‖ ≤ ε / 4 := by
+    refine (Matrix.l2_opNorm_mul _ _).trans ?_
+    calc ‖Cg‖ * ‖Ch - Ph‖ ≤ 1 * (ε / 4) := by
+          refine mul_le_mul hCg ?_ (norm_nonneg _) zero_le_one
+          rw [norm_sub_rev]
+          exact hh
+      _ = ε / 4 := one_mul _
+  calc ‖Pgh - Pg * Ph‖
+      = ‖(Pgh - Cgh) + ((Cgh - Cg * Ch) +
+          ((Cg - Pg) * Ph + Cg * (Ch - Ph)))‖ := by rw [hsplit]
+    _ ≤ ‖Pgh - Cgh‖ + (‖Cgh - Cg * Ch‖ +
+          (‖(Cg - Pg) * Ph‖ + ‖Cg * (Ch - Ph)‖)) := by
+        refine (norm_add_le _ _).trans (add_le_add le_rfl ?_)
+        exact (norm_add_le _ _).trans (add_le_add le_rfl (norm_add_le _ _))
+    _ ≤ ε / 4 + (ε / 4 + (ε / 4 + ε / 4)) :=
+        add_le_add hgh (add_le_add hm (add_le_add hcross1 hcross2))
+    _ = ε := by ring
+
+/-- The polar-corrected corner unitary is eventually within any tolerance of
+the corner compression. -/
+theorem cornerUnitary_close_eventually (A : OpAlmostRepresentation G)
+    {z : G} (hz : z * z = 1) (hcentral : ∀ g : G, z * g = g * z) (g : G) :
+    ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+      ‖(cornerUnitary A z n g :
           Matrix
-            {i : A₀.model n //
+            {i : A.model n //
               negPredicate
-                (A₀.map n z : Matrix (A₀.model n) (A₀.model n) ℂ) i}
-            {i : A₀.model n //
+                (A.map n z : Matrix (A.model n) (A.model n) ℂ) i}
+            {i : A.model n //
               negPredicate
-                (A₀.map n z : Matrix (A₀.model n) (A₀.model n) ℂ) i} ℂ) -
-        cornerMicrostate A₀ z n g‖ ≤ ε := by
-    intro g ε hε
-    obtain ⟨N, hN⟩ := cornerMicrostate_gram_eventually A₀ hz hcentral g
-      (min (ε / 2) (1 / 2)) (by positivity)
-    refine ⟨N, fun n hn => ?_⟩
-    have hb := norm_cornerUnitary_sub_cornerMicrostate A₀ z n g
-      (delta := min (ε / 2) (1 / 2)) (by positivity)
-      (min_le_right _ _) (hN n hn)
-    have hmin : min (ε / 2) (1 / 2) ≤ ε / 2 := min_le_left _ _
-    linarith
-  refine ⟨{
-    model := fun n =>
-      ⟨{i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i},
-        inferInstance, inferInstance⟩
-    modelNonempty := fun n =>
-      Fintype.card_pos_iff.mpr (hN₀ _ (le_max_right n N₀))
-    map := fun n g => cornerUnitary A₀ z (max n N₀) g
-    asymptoticallyMultiplicative := ?_ }, ?_⟩
-  · -- multiplicativity of the polar-corrected corner
+                (A.map n z : Matrix (A.model n) (A.model n) ℂ) i} ℂ) -
+        cornerMicrostate A z n g‖ ≤ ε := by
+  intro ε hε
+  obtain ⟨N, hN⟩ := cornerMicrostate_gram_eventually A hz hcentral g
+    (min (ε / 2) (1 / 2)) (by positivity)
+  refine ⟨N, fun n hn => ?_⟩
+  have hb := norm_cornerUnitary_sub_cornerMicrostate A z n g
+    (delta := min (ε / 2) (1 / 2)) (by positivity)
+    (min_le_right _ _) (hN n hn)
+  have hmin : min (ε / 2) (1 / 2) ≤ ε / 2 := min_le_left _ _
+  linarith
+
+/-- On the corner, the marked involution's polar-corrected unitary converges
+to `-1`. -/
+theorem cornerUnitary_involution_eventually (A : OpAlmostRepresentation G)
+    {z : G} (hz : z * z = 1) (hcentral : ∀ g : G, z * g = g * z) :
+    ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+      ‖(cornerUnitary A z n z :
+          Matrix
+            {i : A.model n //
+              negPredicate
+                (A.map n z : Matrix (A.model n) (A.model n) ℂ) i}
+            {i : A.model n //
+              negPredicate
+                (A.map n z : Matrix (A.model n) (A.model n) ℂ) i} ℂ) + 1‖
+        ≤ ε := by
+  intro ε hε
+  have hhalf : 0 < ε / 2 := half_pos hε
+  obtain ⟨Ni, hNi⟩ :=
+    cornerMicrostate_involution_eventually (z := z) A hz (ε / 2) hhalf
+  obtain ⟨Nz, hNz⟩ := cornerUnitary_close_eventually A hz hcentral z
+    (ε / 2) hhalf
+  refine ⟨max Ni Nz, fun n hn => ?_⟩
+  exact norm_add_one_le_of_close
+    (cornerMicrostate A z n z) (cornerUnitary A z n z)
+    (hNz n ((le_max_right Ni Nz).trans hn))
+    (hNi n ((le_max_left Ni Nz).trans hn))
+
+/-- The packaged negative-corner model at a fixed nonemptiness threshold
+`N₀`: the coordinates are the corner sites at time `max n N₀` and the maps
+are the polar-corrected corner unitaries.  A top-level definition with
+`@[simp]` projection lemmas, so consumers rewrite along the projections
+instead of unfolding a structure literal. -/
+noncomputable def cornerModel (A : OpAlmostRepresentation G) (z : G)
+    (hz : z * z = 1) (hcentral : ∀ g : G, z * g = g * z) (N₀ : ℕ)
+    (hN₀ : ∀ n ≥ N₀, Nonempty
+      {i : A.model n //
+        negPredicate (A.map n z : Matrix (A.model n) (A.model n) ℂ) i}) :
+    OpAlmostRepresentation G where
+  model n :=
+    ⟨{i : A.model (max n N₀) //
+        negPredicate
+          (A.map (max n N₀) z :
+            Matrix (A.model (max n N₀)) (A.model (max n N₀)) ℂ) i},
+      inferInstance, inferInstance⟩
+  modelNonempty n := Fintype.card_pos_iff.mpr (hN₀ _ (le_max_right n N₀))
+  map n g := cornerUnitary A z (max n N₀) g
+  asymptoticallyMultiplicative := by
     intro g h ε hε
-    obtain ⟨Nm, hNm⟩ := cornerMicrostate_multiplicative_eventually A₀ hz
+    obtain ⟨Nm, hNm⟩ := cornerMicrostate_multiplicative_eventually A hz
       hcentral g h (ε / 4) (by linarith)
-    obtain ⟨Ng, hNg⟩ := hclose g (ε / 4) (by linarith)
-    obtain ⟨Nh, hNh⟩ := hclose h (ε / 4) (by linarith)
-    obtain ⟨Ngh, hNgh⟩ := hclose (g * h) (ε / 4) (by linarith)
+    obtain ⟨Ng, hNg⟩ := cornerUnitary_close_eventually A hz hcentral g
+      (ε / 4) (by linarith)
+    obtain ⟨Nh, hNh⟩ := cornerUnitary_close_eventually A hz hcentral h
+      (ε / 4) (by linarith)
+    obtain ⟨Ngh, hNgh⟩ := cornerUnitary_close_eventually A hz hcentral
+      (g * h) (ε / 4) (by linarith)
     refine ⟨max (max Nm Ng) (max Nh Ngh), fun n hn => ?_⟩
     have hm : Nm ≤ max n N₀ := le_trans
       ((le_max_left Nm Ng).trans ((le_max_left _ _).trans hn))
@@ -561,92 +636,51 @@ theorem exists_negativeCorner_opAlmostRepresentation
     have hgh : Ngh ≤ max n N₀ := le_trans
       ((le_max_right Nh Ngh).trans ((le_max_right _ _).trans hn))
       (le_max_left n N₀)
-    letI : Nonempty
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i} :=
-      hN₀ _ (le_max_right n N₀)
-    set Cg := cornerMicrostate A₀ z (max n N₀) g with hCg
-    set Ch := cornerMicrostate A₀ z (max n N₀) h with hCh
-    set Cgh := cornerMicrostate A₀ z (max n N₀) (g * h) with hCgh
-    set Pg := (cornerUnitary A₀ z (max n N₀) g :
-      Matrix
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i} ℂ)
-      with hPg
-    set Ph := (cornerUnitary A₀ z (max n N₀) h :
-      Matrix
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i} ℂ)
-      with hPh
-    set Pgh := (cornerUnitary A₀ z (max n N₀) (g * h) :
-      Matrix
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-        {i : A₀.model (max n N₀) //
-          negPredicate
-            (A₀.map (max n N₀) z :
-              Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i} ℂ)
-      with hPgh
-    have hPh_norm : ‖Ph‖ ≤ 1 := by
-      rw [hPh]
-      exact le_of_eq (CStarRing.norm_of_mem_unitary
-        (cornerUnitary A₀ z (max n N₀) h).2)
-    have hCg_norm : ‖Cg‖ ≤ 1 := by
-      rw [hCg]
-      exact norm_cornerMicrostate_le_one A₀ z (max n N₀) g
-    have hexpand : (Cg - Pg) * Ph + Cg * (Ch - Ph) =
-        Cg * Ch - Pg * Ph := by noncomm_ring
-    have hsplit : Pgh - Pg * Ph =
-        (Pgh - Cgh) + (Cgh - Cg * Ch) +
-          ((Cg - Pg) * Ph + Cg * (Ch - Ph)) := by
-      rw [hexpand]
-      abel
-    calc
-      ‖Pgh - Pg * Ph‖ = ‖(Pgh - Cgh) + (Cgh - Cg * Ch) +
-          ((Cg - Pg) * Ph + Cg * (Ch - Ph))‖ := by rw [hsplit]
-      _ ≤ ‖Pgh - Cgh‖ + ‖Cgh - Cg * Ch‖ +
-          (‖(Cg - Pg) * Ph‖ + ‖Cg * (Ch - Ph)‖) := by
-        refine (norm_add_le _ _).trans ?_
-        exact add_le_add (norm_add_le _ _) (norm_add_le _ _)
-      _ ≤ ε / 4 + ε / 4 + (ε / 4 * 1 + 1 * (ε / 4)) := by
-        refine add_le_add (add_le_add ?_ ?_) (add_le_add ?_ ?_)
-        · exact hNgh _ hgh
-        · exact hNm _ hm
-        · refine (Matrix.l2_opNorm_mul _ _).trans ?_
-          refine mul_le_mul ?_ hPh_norm (norm_nonneg _) (by linarith)
-          rw [norm_sub_rev]
-          exact hNg _ hg
-        · refine (Matrix.l2_opNorm_mul _ _).trans ?_
-          refine mul_le_mul hCg_norm ?_ (norm_nonneg _) (by norm_num)
-          rw [norm_sub_rev]
-          exact hNh _ hh
-      _ = ε := by ring
-  · -- the involution converges to `-1` on the corner
-    intro ε hε
-    obtain ⟨Ni, hNi⟩ := cornerMicrostate_involution_eventually A₀ hz
-      (ε / 2) (by linarith)
-    obtain ⟨Nz, hNz⟩ := hclose z (ε / 2) (by linarith)
-    refine ⟨max Ni Nz, fun n hn => ?_⟩
-    have hi : Ni ≤ max n N₀ :=
-      le_trans ((le_max_left Ni Nz).trans hn) (le_max_left n N₀)
-    have hzc : Nz ≤ max n N₀ :=
-      le_trans ((le_max_right Ni Nz).trans hn) (le_max_left n N₀)
-    exact norm_add_one_le_of_close (hNz _ hzc) (hNi _ hi)
+    exact norm_mul_defect_le_of_close
+      (cornerMicrostate A z (max n N₀) g)
+      (cornerMicrostate A z (max n N₀) h)
+      (cornerMicrostate A z (max n N₀) (g * h))
+      (cornerUnitary A z (max n N₀) g)
+      (cornerUnitary A z (max n N₀) h)
+      (cornerUnitary A z (max n N₀) (g * h))
+      (hNgh _ hgh) (hNm _ hm) (hNg _ hg) (hNh _ hh)
+      (norm_le_one_of_mem_unitaryGroup (cornerUnitary A z (max n N₀) h).2)
+      (norm_cornerMicrostate_le_one A z (max n N₀) g)
+
+@[simp] theorem cornerModel_map (A : OpAlmostRepresentation G) (z : G)
+    (hz : z * z = 1) (hcentral : ∀ g : G, z * g = g * z) (N₀ : ℕ)
+    (hN₀ : ∀ n ≥ N₀, Nonempty
+      {i : A.model n //
+        negPredicate (A.map n z : Matrix (A.model n) (A.model n) ℂ) i})
+    (n : ℕ) (g : G) :
+    (cornerModel A z hz hcentral N₀ hN₀).map n g =
+      cornerUnitary A z (max n N₀) g := rfl
+
+/-- **The negative corner of a separated approximate central involution is
+an operator-norm almost representation on which the involution converges to
+`-1`.**  This is the finite-stage central-corner cut of the non-MF
+manuscript: no lower bound on the corner ranks is needed, and no
+spectral-gap input enters — leakage is controlled by the exact sign
+commutator identity, and exactness of the corner unitaries comes from polar
+correction. -/
+theorem exists_negativeCorner_opAlmostRepresentation
+    (A : OpAlmostRepresentation G) {z : G} (hz : z * z = 1)
+    (hcentral : ∀ g : G, z * g = g * z)
+    {delta : ℝ} (hdelta : 0 < delta)
+    (hsep : ∃ N, ∀ n ≥ N,
+      delta ≤ ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) :
+    ∃ B : OpAlmostRepresentation G,
+      ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+        ‖(B.map n z : Matrix (B.model n) (B.model n) ℂ) + 1‖ ≤ ε := by
+  classical
+  obtain ⟨N₀, hN₀⟩ :=
+    nonempty_corner_eventually_of_separated A hz hdelta hsep
+  refine ⟨cornerModel A z hz hcentral N₀ hN₀, ?_⟩
+  intro ε hε
+  obtain ⟨N, hN⟩ := cornerUnitary_involution_eventually A hz hcentral ε hε
+  refine ⟨N, fun n hn => ?_⟩
+  simpa only [cornerModel_map] using
+    hN (max n N₀) (le_trans hn (le_max_left n N₀))
+
 end NegativeCornerModel
 end GroupApproximation
