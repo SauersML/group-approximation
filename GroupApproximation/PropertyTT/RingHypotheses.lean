@@ -24,7 +24,12 @@ open MatrixDiagonalization
 
 /-- Every nonzero element sandwiches to the identity.  In the established
 ring literature, this is the operative characterization of a unital purely
-infinite simple ring (apart from the exclusion of division rings). -/
+infinite simple ring after the standard nontriviality and non-division-ring
+hypotheses are imposed.  The bare predicate intentionally records only the
+algebraic input used below: it also holds for division rings, and it is
+vacuously true for the zero ring.  Every paper-facing consumer therefore
+assumes `Nontrivial R` explicitly and never treats this predicate alone as a
+definition of pure infiniteness. -/
 def HasSingleSandwichDivision (R : Type*) [Ring R] : Prop :=
   ∀ a : R, a ≠ 0 → ∃ x y : R, x * a * y = 1
 

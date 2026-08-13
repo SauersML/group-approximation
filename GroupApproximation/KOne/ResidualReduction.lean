@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.BinaryLeavittWindow
 import GroupApproximation.KOne.ResidualMoves
+import GroupApproximation.KOne.GLIsElementary
 import GroupApproximation.Leavitt.LeavittBalancedUnits
 
 /-!
@@ -60,23 +61,27 @@ theorem stableUnits_eq_top_of_narrowReduction
     (hnarrow : NarrowReduction k) :
     ∀ u : (BinaryLeavittAlgebra k)ˣ,
       u ∈ stableUnits (BinaryLeavittAlgebra k) :=
-  stableUnits_eq_top k (scalarReduction_of_narrowReduction k hnarrow)
+  (family k).stableUnits_eq_top (division k)
+    (scalarReduction_of_narrowReduction k hnarrow)
 
 /-- `GL₂ = EL₂` from the narrow-window kill. -/
 theorem glTwo_eq_elementary_of_narrowReduction
     (hnarrow : NarrowReduction k)
     (M : (Matrix (Fin 2) (Fin 2) (BinaryLeavittAlgebra k))ˣ) :
     M ∈ elementaryGroup (Fin 2) (BinaryLeavittAlgebra k) :=
-  glTwo_eq_elementary k (scalarReduction_of_narrowReduction k hnarrow)
-    M
+  MatrixDiagonalization.mem_elementaryGroup_of_division_of_stable
+    (division k)
+    (fun u ↦ (mem_stableUnits_iff u).mp
+      (stableUnits_eq_top_of_narrowReduction k hnarrow u)) M
 
 /-- `GL₄ = EL₄` from the narrow-window kill. -/
 theorem glFour_eq_elementary_of_narrowReduction
     (hnarrow : NarrowReduction k)
     (M : (Matrix (Fin 4) (Fin 4) (BinaryLeavittAlgebra k))ˣ) :
     M ∈ elementaryGroup (Fin 4) (BinaryLeavittAlgebra k) :=
-  glFour_eq_elementary k (scalarReduction_of_narrowReduction k hnarrow)
-    M
+  (family k).glFour_eq_elementary_of_stable (division k)
+    (fun u ↦ (mem_stableUnits_iff u).mp
+      (stableUnits_eq_top_of_narrowReduction k hnarrow u)) M
 
 
 end BinaryLeavitt

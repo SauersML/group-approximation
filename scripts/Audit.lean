@@ -69,6 +69,35 @@ example :
   ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 
 example (G : Type) [Group G] [Countable G] :
+    IsOperatorMF G ↔ normMFResidual G = ⊥ :=
+  isOperatorMF_iff_normMFResidual_eq_bot
+
+example (G : Type) [Group G] [Countable G] :
+    IsOperatorMF G ↔ coronaMFResidual G = ⊥ :=
+  isOperatorMF_iff_coronaMFResidual_eq_bot
+
+example (G H : Type) [Group G] [Group H] [Countable G] [Countable H]
+    (f : G →* H) :
+    (coronaMFResidual G).map f ≤ coronaMFResidual H :=
+  map_coronaMFResidual_le f
+
+example (Gamma E : Type) [Group Gamma] [Group E] [Countable E]
+    (C : KazhdanCompressionCore Gamma E)
+    (F : Subgroup E) [Finite F] [F.Normal] [Nontrivial F]
+    (hF : F ≤ C.defectNormal) :
+    ¬ IsOperatorMF E :=
+  C.not_isOperatorMF_of_finiteNormal_le_defect F hF
+
+example (Gamma E : Type) [Group Gamma] [Group E] [Countable E]
+    (C : KazhdanCompressionCore Gamma E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
+    (rho : E →* NormMatrixCoronaUnitary X) :
+    F ≤ rho.ker :=
+  C.finiteNormal_le_normMatrixCoronaKernel F hF X hX rho
+
+example (G : Type) [Group G] [Countable G] :
     IsSofic G ↔ AdmitsEssentiallyFreeNearAction G :=
   isSofic_iff_admitsEssentiallyFreeNearAction G
 
@@ -339,6 +368,26 @@ def headlineTheorems : List Name :=
    ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
+   ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
+   ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,
+   ``isOperatorMF_iff_normMFResidual_eq_bot,
+   ``coronaMFResidual_eq_normMFResidual,
+   ``map_coronaMFResidual_le,
+   ``isOperatorMF_iff_coronaMFResidual_eq_bot,
+   ``normMFQuotient_isOperatorMF,
+   ``coronaMFQuotient_isOperatorMF,
+   ``exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual,
+   ``exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual,
+   ``existsUnique_normMFQuotient_factorization_to_isOperatorMF,
+   ``existsUnique_coronaMFQuotient_factorization_to_isOperatorMF,
+   ``isOperatorMF_of_residuallyFinite,
+   ``IsOperatorMF.subgroup,
+   ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
+   ``not_injective_of_coronaMFInvisible,
+   ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
+   ``FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one,
+   ``ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne,
+   ``ProperProjectionCompression.not_isStablyFiniteRing,
    ``universalLeavittEL4_not_isSofic,
    ``universalLeavittEL3_not_isSofic,
    ``universalLeavittUnits_not_isSofic,

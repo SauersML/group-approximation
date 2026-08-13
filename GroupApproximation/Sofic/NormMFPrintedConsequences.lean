@@ -32,6 +32,34 @@ theorem not_injective_of_coronaMFInvisible {x : G}
   apply hrho
   rw [hx X hX rho, map_one]
 
+/-- A nontrivial corona-invisible element also obstructs faithful maps into
+any group which itself embeds in a standard cofinite norm-matrix corona.
+This is the group-theoretic composition step behind the manuscript's
+`cor:nofaithful`; a unitary group of a C*-subalgebra is such a target via its
+inclusion in the ambient corona. -/
+theorem not_injective_of_coronaMFInvisible_of_target_embeds
+    {H : Type*} [Group H] {x : G}
+    (hx : CoronaMFInvisible x) (hne : x ≠ 1)
+    (f : G →* H)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
+    (j : H →* NormMatrixCoronaUnitary X)
+    (hj : Function.Injective j) :
+    ¬ Function.Injective f := by
+  intro hf
+  exact not_injective_of_coronaMFInvisible hx hne X hX (j.comp f)
+    (hj.comp hf)
+
+/-- Consequently, no homomorphism carrying a nontrivial corona-invisible
+element can be faithful when its target is operator-MF. -/
+theorem not_injective_to_isOperatorMF
+    {H : Type*} [Group H] {x : G}
+    (hx : CoronaMFInvisible x) (hne : x ≠ 1)
+    (hH : IsOperatorMF H) (f : G →* H) :
+    ¬ Function.Injective f := by
+  obtain ⟨X, hX, j, hj⟩ := hH
+  exact not_injective_of_coronaMFInvisible_of_target_embeds
+    hx hne f X hX j hj
+
 namespace KazhdanCompressionCore
 
 -- The finite-normal analytic core currently lives in Lean's base universe.

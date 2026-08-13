@@ -13,7 +13,7 @@ elementary groups over a binary Leavitt ring are mutually isomorphic.
 namespace GroupApproximation
 namespace LeavittFamily
 
-universe u
+universe u v
 
 variable {R : Type u} [Ring R]
 
@@ -50,15 +50,15 @@ def rankThreeEquivRankFour (L : LeavittFamily R) :
 /-- Property `(T)` transfers between arbitrary positive Leavitt ranks. -/
 theorem rankSucc_propertyT_of_rankSucc (L : LeavittFamily R) (n m : ℕ)
     (hn : 0 < n) (hm : 0 < m)
-    (hT : HasKazhdanPropertyT.{u, 0} (elementaryGroup (Fin (m + 1)) R)) :
-    HasKazhdanPropertyT.{u, 0} (elementaryGroup (Fin (n + 1)) R) :=
+    (hT : HasKazhdanPropertyT.{u, v} (elementaryGroup (Fin (m + 1)) R)) :
+    HasKazhdanPropertyT.{u, v} (elementaryGroup (Fin (n + 1)) R) :=
   HasKazhdanPropertyT.of_mulEquiv (L.rankSuccEquiv n m hn hm) hT
 
 /-- Consequently property `(T)` in rank three supplies property `(T)` in
 rank four; no second free-algebra theorem is required. -/
 theorem rankFour_propertyT_of_rankThree (L : LeavittFamily R)
-    (hT : HasKazhdanPropertyT.{u, 0} (elementaryGroup (Fin 3) R)) :
-    HasKazhdanPropertyT.{u, 0} (elementaryGroup (Fin 4) R) :=
+    (hT : HasKazhdanPropertyT.{u, v} (elementaryGroup (Fin 3) R)) :
+    HasKazhdanPropertyT.{u, v} (elementaryGroup (Fin 4) R) :=
   L.rankSucc_propertyT_of_rankSucc 3 2 (by omega) (by omega) hT
 
 end LeavittFamily
