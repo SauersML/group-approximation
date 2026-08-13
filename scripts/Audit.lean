@@ -164,6 +164,10 @@ noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
   inferInstance
 
 noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    CStarAlgebra (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
     NormMatrixCoronaUnitary X ≃*
       unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
   normMatrixCoronaUnitaryEquiv X
@@ -477,6 +481,7 @@ def headlineTheorems : List Name :=
    ``normMatrixCStarCoronaQuotient,
    ``normMatrixCStarCoronaMk_eq_zero_iff,
    ``normMatrixCStarCoronaMk_surjective,
+   ``normMatrixCStarCoronaCStarAlgebra,
    ``normMatrixCoronaUnitaryEquiv,
    ``unitaryCoronaToCStarCoronaUnitary_injective,
    ``unitaryCoronaToCStarCoronaUnitary_surjective,
