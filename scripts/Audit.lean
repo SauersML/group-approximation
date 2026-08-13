@@ -52,6 +52,19 @@ example :
       ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
   ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 
+example (H : Type*) [Group H] (hMF : IsOperatorMF H) :
+    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+      ChosenMarkedPresentation.relators
+      ChosenMarkedPresentation.markedWord H :=
+  ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity H hMF
+
+example :
+    ¬ SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+      ChosenMarkedPresentation.relators
+      ChosenMarkedPresentation.markedWord
+      ChosenMarkedPresentation.MarkedGroup :=
+  ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
+
 example : LiteralCyclicCalibration.mark ≠ 1 :=
   LiteralCyclicCalibration.mark_ne_one
 
@@ -395,6 +408,8 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity,
+   ``ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity,
    ``OperatorMFMarkovWitness.positive_punit,
    ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
    ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
