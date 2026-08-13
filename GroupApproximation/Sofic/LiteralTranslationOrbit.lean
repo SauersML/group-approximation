@@ -369,7 +369,6 @@ theorem latticeTranslation_eq_two_rotation_conjugates
         have hcomm := translations_commute v1_mem_translations
           v2_mem_translations
         rw [← mul_assoc, ← (hcomm.zpow_zpow m n).eq]
-        group
   have hs : (s : Base) * v2 * (s : Base)⁻¹ = v2 * v3 ^ k := by
     simpa only [s] using e32_zpow_conj_v2 k
   rw [lattice_eq_basis_product a, map_mul, map_mul, map_zpow, map_zpow,
@@ -388,8 +387,15 @@ theorem latticeTranslation_eq_two_rotation_conjugates
       rw [← zpow_add_one, sub_add_cancel]
     _ = (v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * v3) *
         (v2 * v3 ^ (a.toAdd 2 - 1)) := by
-      rw [(h23.zpow_left (a.toAdd 1 - 1)).eq]
-      group
+      calc
+        v1 ^ a.toAdd 0 * (v2 ^ (a.toAdd 1 - 1) * v2) *
+            (v3 * v3 ^ (a.toAdd 2 - 1)) =
+            v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * (v2 * v3) *
+              v3 ^ (a.toAdd 2 - 1) := by group
+        _ = v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * (v3 * v2) *
+              v3 ^ (a.toAdd 2 - 1) := by rw [h23.eq]
+        _ = (v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * v3) *
+              (v2 * v3 ^ (a.toAdd 2 - 1)) := by group
 
 /-- Subgroup-facing form of
 `latticeTranslation_eq_two_rotation_conjugates`. -/
@@ -428,12 +434,15 @@ private theorem norm_conjugate_displacement_eq
     (r : rotations) (v : Base) :
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ = ‖rho v p - p‖ := by
   have hr : rho (r : Base) p = p := hfixed r
+  have hri : (rho (r : Base))⁻¹ p = p := by
+    have h := congrArg (fun q : E ↦ (rho (r : Base))⁻¹ q) hr
+    simpa using h.symm
   calc
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ =
         ‖rho (r : Base) (rho v p - p)‖ := by
       congr 1
       simp only [map_mul, map_inv, LinearIsometryEquiv.coe_mul,
-        Function.comp_apply, map_sub, hr]
+        Function.comp_apply, map_sub, hri, hr]
     _ = ‖rho v p - p‖ := (rho (r : Base)).norm_map _
 
 /-- A vector fixed by all literal rotations has uniformly bounded
