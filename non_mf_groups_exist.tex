@@ -249,7 +249,9 @@ Definition~\ref{def:E}.  In particular, finitely presented non-MF
 groups exist.
 \leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 
-The proof is finite-stage throughout.  For orientation, it can be
+The analytic estimates are finite-stage throughout; a tracial ultraproduct
+is used only to propagate the collapsed generators through their normal
+closure.  For orientation, the proof can be
 organized into the following five steps.  The individual ingredients and
 the surrounding compression/lamp architecture have substantial antecedents.
 The specific combination here is a Reynolds corner, Kazhdan spectral
@@ -277,12 +279,13 @@ pinning, and an equal-rank reversal of a one-sided projection estimate.
     singular-value lists therefore gives
     $\lVert(1-P_n)Q_n\rVert=\lVert(1-Q_n)P_n\rVert\to0$.
     Thus the translated lamp vector remains in the almost-fixed sector.
-  \item\emph{The trace contradiction.}  Every compression defect, and hence
-    its normal closure, tends to the identity in normalized
-    Hilbert--Schmidt norm.  This applies to every $f\in F$, whereas the
-    Reynolds corner has $\lVert\sum_{f\in F}V_n(f)\rVert\to0$.
-    Normalized traces would then converge simultaneously to $|F|$ and to
-    $0$, a contradiction (Section~\ref{sec:proofA}).
+  \item\emph{Normal closure and trace.}  The corrected matrices define a
+    homomorphism to a tracial ultraproduct.  The compression defects lie in
+    its kernel, so their normal closure, including $F$, does too.  A diagonal
+    subsequence makes every $f\in F$ tend to $1$ in normalized
+    Hilbert--Schmidt norm, while the Reynolds sums still tend to zero in
+    operator norm.  Normalized traces would then converge simultaneously to
+    $|F|$ and to $0$ (Section~\ref{sec:proofA}).
 \end{enumerate}
 
 Figure~\ref{fig:mechanism} shows where the two halves of the proof meet.
@@ -1959,28 +1962,39 @@ unitary invariance and asymptotic multiplicativity give
 Suppose that a corona representation is nontrivial on $F$.
 Lemma~\ref{lem:finitecorner} gives an operator-norm asymptotic
 representation $V_n\colon H\to\U(M_{r_n}(\C))$, with $r_n\ge1$, for
-which \eqref{eq:finitecornersum} holds.  By
-Lemma~\ref{lem:compressorfinite}, every generator
-$[d,\iota(\lambda)]$ of the compression-defect subgroup tends to $1$ in
-normalized Hilbert--Schmidt norm.
-
-This convergence propagates through inverses, conjugates, and finite
-products.  Explicitly,
+which \eqref{eq:finitecornersum} holds.  Fix a free ultrafilter $\omega$
+on $\N$.  Operator-norm multiplicativity implies Hilbert--Schmidt
+multiplicativity, so the classes of $(V_n(g))_n$ define a homomorphism
 \[
- \hsnorm{AB-1}\le\hsnorm{A-1}+\hsnorm{B-1},\qquad
- \hsnorm{UXU^*-1}=\hsnorm{X-1}
+ \rho_2\colon H\longrightarrow
+ \prod_{n\to\omega}(\U(M_{r_n}(\C)),\hsnorm{\cdot}).
 \]
-for unitaries.  Thus every fixed element of $N_{\rm comp}$, and in
-particular every $f\in F$, satisfies
+Lemma~\ref{lem:compressorfinite} says that $\rho_2$ kills every generator
+$[d,\iota(\lambda)]$ of $N_{\rm comp}$.  Since $\ker\rho_2$ is normal,
 \[
- \hsnorm{V_n(f)-1}\longrightarrow0.
+ N_{\rm comp}\le\ker\rho_2,
+\]
+and in particular $\rho_2(f)=1$ for every $f\in F$.
+
+We now return from the ultraproduct to a single sequence, exactly where
+finiteness of $F$ is used a second time.  For each $k$, the finite
+intersection of the $\omega$-large sets
+\[
+ \{n:\hsnorm{V_n(f)-1}<1/k\}\qquad(f\in F)
+\]
+with the cofinite tail is nonempty.  Choose a strictly increasing diagonal
+sequence $n_k$ in those intersections.  Replacing $V_k$ by $V_{n_k}$
+preserves \eqref{eq:finitecornersum} and gives, simultaneously for all
+$f\in F$,
+\[
+ \hsnorm{V_k(f)-1}\longrightarrow0.
 \]
 Taking normalized traces yields
 \[
- \tr_{r_n}\!\left(\sum_{f\in F}V_n(f)\right)\longrightarrow |F|.
+ \tr_{r_k}\!\left(\sum_{f\in F}V_k(f)\right)\longrightarrow |F|.
 \]
 On the other hand, \eqref{eq:finitecornersum} and
-$|\tr_{r_n}(x)|\le\opnorm{x}$ force the same scalar to converge to $0$.
+$|\tr_{r_k}(x)|\le\opnorm{x}$ force the same scalar to converge to $0$.
 This contradicts $|F|\ge1$ and proves the theorem.
 \end{proof}
 
