@@ -23,10 +23,27 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
+\newif\ifleanlegend\leanlegendtrue
 \newcommand{\leanverified}[2]{%
+  \ifleanlegend\global\leanlegendfalse
+  \footnote{A gray margin mark indicates a statement with a
+  machine-checked counterpart in the accompanying Lean~4 development;
+  the mark shows the name of the corresponding declaration.  The formal
+  statements are phrased over the unitary norm coronas
+  \eqref{eq:unitary-corona}, which is the definition of MF used in this
+  paper; the identification with $\U(\mathcal Q)$ is
+  Lemma~\ref{lem:unitarycorona}.}%
+  \fi
   \marginnote{\raggedright\normalfont\tiny\color{gray!70!black}%
-  \ifanonymous\textsc{Lean 4}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\textsc{Lean 4}}\fi}}
+  \Urlmuskip=0mu plus 2mu\relax
+  \def\UrlBreaks{\do\.\do\_\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h
+    \do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t
+    \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F
+    \do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R
+    \do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}%
+  \ifanonymous\textsc{Lean:} \nolinkurl{#2}\else
+  \textsc{Lean:}
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi}}
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
 \allowdisplaybreaks
@@ -83,54 +100,27 @@
 extension, Clifford algebra, stable finiteness}
 
 \begin{abstract}
-A countable discrete group is MF in the Carri\'on--Dadarlat--Eckhardt--%
-Shulman sense if it embeds into a unitary norm corona: the metric quotient
-of a product of finite-dimensional unitary groups by the sequences
-converging to the identity in operator norm.  This quotient is canonically
-isomorphic to the unitary group of the associated norm matrix corona.  As of August 2026, whether
-every group is MF remained open.  The precise group notion dates to
-2012--2013 and has an operator-algebraic lineage going back to the
-Blackadar--Kirchberg MF program of 1997.  It is one of a family of metric
-approximation problems whose
-normalized-Hamming (sofic) case was solved recently by OpenAI and
-subsequently generalized by Kun and Thom, and whose unnormalized
-Frobenius case was solved by De Chiffre, Glebsky, Lubotzky and Thom.  We
-construct an explicit finitely
-presented group $E$, together with a designated central involution
-$w\in E$, such that $w\neq 1$ but \emph{every} homomorphism from $E$ to
-every unitary norm corona of the displayed form kills
-$w$.  Consequently $E$ is not MF, and neither its full nor its reduced
-group $C^*$-algebra is an MF algebra.  The group is built from
+A countable discrete group is MF if it embeds into the unitary group of
+a norm matrix corona
+$\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$ --- equivalently, if it
+admits approximately injective finite-dimensional approximate unitary
+representations, with all defects measured in operator norm.  Whether
+every group is MF has been a longstanding open question, going back to
+the Blackadar--Kirchberg MF program for $C^*$-algebras and, in the group
+formulation used here, to Carri\'on--Dadarlat--Eckhardt and Shulman.  We
+construct an explicit finitely presented group $E$ with a designated
+central involution $w\neq1$ such that every homomorphism from $E$ into
+every unitary norm corona kills $w$.  Consequently $E$ is not MF, and
+neither its maximal nor its reduced group $C^*$-algebra is an MF
+algebra; in particular $\Cred(E)$ is a separable stably finite
+$C^*$-algebra which is not MF.  The group is built from
 $\Gamma=\Z^3\rtimes\SL_3(\Z)$, one HNN letter implementing the proper
-endomorphism $(v,A)\mapsto(2v,A)$, and one additional involution; the
+endomorphism $(v,A)\mapsto(2v,A)$, and one further involution.  The
 proof combines finite-stage Kazhdan spectral pinning with an equal-rank
-projection argument in the matrix coordinates.  The finite-dimensional case of the kill theorem is
-elementary and uses neither property (T) nor unitarity; we also show,
-via quasidiagonality of amenable groups, that the same marked presentation
-with a cyclic base can have a corona representation in which the marked
-involution survives.  The kill theorem is proved as a general
-finite-normal criterion: if a countable group contains the image of a
-property (T) group, compressed by a letter $t$ and centralized by a
-letter $c$, then every finite normal subgroup contained in the
-compression-defect subgroup --- the normal closure of the commutators
-of $tct^{-1}$ with that image --- is killed by every homomorphism into
-the unitary group of every unital $C^*$-subalgebra of a norm matrix corona.
-More generally, finiteness can be replaced by property~(T): every normal
-property~(T) subgroup contained in the compression defect lies in the MF
-radical, and may be infinite, noncentral, and torsion-free.
-Among the consequences: $\Cred(E)$ is a unital separable $C^*$-algebra
-with a faithful tracial state --- hence stably finite --- that is not
-an MF algebra, giving an explicit reduced-group-$C^*$-algebra realization
-of the already known failure of stable finiteness to imply the MF property;
-MF groups are closed under neither quotients
-nor split extensions; every countable group has a largest MF quotient,
-by its MF radical, and the radical element $w$ is portable: any group
-receiving $E$ with $w$ surviving is non-MF; for every $m\ge2$ a scaled
-variant $E_m$ ($E=E_2$) is a finitely presented non-MF group, and
-there exist $2^{\aleph_0}$ pairwise non-isomorphic finitely generated
-non-MF groups; the MF locus is closed in every fixed-rank marked-group
-space, equivalently non-MF-ness is open; and the kill theorem holds in a
-uniform quantitative form over all matrix sizes at once.
+projection flip in the matrix coordinates, and is proved as a general
+finite-normal obstruction criterion.  The criterion is elementary in
+finite dimensions, and it fails for the same marked presentation over a
+cyclic base: property (T) of the base is essential to the argument.
 \end{abstract}
 
 \maketitle
@@ -166,8 +156,8 @@ canonical isomorphism
  \kappa_{(d_n)}\colon \Ucor((d_n))\ \xrightarrow{\ \cong\ }\
  \U(\mathcal Q),
 \end{equation}
-proved in Lemma~\ref{lem:unitarycorona} by polar correction.  Consequently
-this definition is the usual one.  Equivalently, $E$ admits finite-dimensional
+(Lemma~\ref{lem:unitarycorona}, by polar correction), so the definition
+agrees with the usual $C^*$-algebraic one.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
 with all defects measured in operator norm.
 Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
@@ -176,7 +166,7 @@ has dimension $d_n$, replace it by
 $g\mapsto 1_{d_1+\cdots+d_{n-1}}\oplus\phi_n(g)$.  The dimensions then
 increase, while every multiplicative defect and every distance from the
 identity is unchanged.
-This qualification matters:
+One further distinction matters:
 Shulman notes that a strictly stronger group property has also been called
 MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
 the approximating maps to be genuine finite-dimensional representations.
@@ -746,8 +736,8 @@ about the same marked-sign compression pattern used in Theorem~\ref{thm:A}.
 Finally, non-MF-ness of one group $C^*$-algebra alone does not obstruct the
 \emph{group} from embedding into a corona, since group MF-ness only requires
 an MF quotient of $\Cmax(E)$ in which the canonical image of $E$ remains
-faithful.  The contribution asserted here is
-    narrower: finite-stage Kazhdan spectral rigidity for operator-norm matrix models, together
+faithful.  The contribution asserted here is narrower:
+finite-stage Kazhdan spectral rigidity for operator-norm matrix models, together
 with the central-corner/marked-word device producing a specific nontrivial
 element in the kernel of every such representation.  For context on the
 approximation landscape see
