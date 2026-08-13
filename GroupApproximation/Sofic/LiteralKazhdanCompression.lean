@@ -197,30 +197,5 @@ theorem literal_operatorMF_not_closed_under_quotient_of_isRationalCertificate
   literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT
     (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
 
-/-! ## The reduced group C-star algebra obstruction -/
-
-/-- Under the literal property-`(T)` input, the reduced group C-star algebra
-admits no faithful unitary restriction into an operator-norm matrix
-ultraproduct.  Such a restriction is forced by any faithful C-star embedding
-into a norm matrix corona. -/
-theorem reduced_no_faithfulCoronaUnitaryRestriction_of_hasKazhdanPropertyT
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    IsEmpty
-      (FaithfulReducedCoronaUnitaryRestriction MarkedGroup) := by
-  constructor
-  intro D
-  exact D.false_of_mem_normMFResidual MarkedGroup
-    (mem_normMFResidual_iff.mpr
-      (mark_normMFInvisible_of_hasKazhdanPropertyT hT))
-    LiteralNonMFLinearWitness.literal_mark_ne_one
-
-/-- Proof-carrying SOS-certificate form of the reduced C-star obstruction. -/
-theorem reduced_no_faithfulCoronaUnitaryRestriction_of_isRationalCertificate
-    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
-    IsEmpty
-      (FaithfulReducedCoronaUnitaryRestriction MarkedGroup) :=
-  reduced_no_faithfulCoronaUnitaryRestriction_of_hasKazhdanPropertyT
-    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
-
 end LiteralKazhdanCompression
 end GroupApproximation
