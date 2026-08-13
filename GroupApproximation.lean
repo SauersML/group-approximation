@@ -1,6 +1,7 @@
 import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Kazhdan.LaplacianSOSCertificate
 import GroupApproximation.Kazhdan.RealGroupRing
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
