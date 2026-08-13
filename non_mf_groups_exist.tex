@@ -7,7 +7,7 @@
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,backgrounds,calc,fit,positioning}
+\usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \newif\ifanonymous\anonymoustrue
 % This review source is physically anonymized: author and repository
@@ -75,20 +75,12 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
-\definecolor{mfblue}{HTML}{255C99}
-\definecolor{mfteal}{HTML}{177E89}
-\definecolor{mfgold}{HTML}{C78D20}
-\definecolor{mfrose}{HTML}{A64B5D}
 \tikzset{
-  mfnode/.style={draw, rounded corners=2.5pt, very thick, align=center,
-    inner sep=6pt, text width=3.25cm, font=\small},
-  mfgroup/.style={mfnode, draw=mfblue, fill=mfblue!7},
-  mfmatrix/.style={mfnode, draw=mfteal, fill=mfteal!8},
-  mfend/.style={mfnode, draw=mfrose, fill=mfrose!8},
-  mfarr/.style={-{Latex[length=2.2mm,width=1.5mm]}, thick,
-    draw=gray!75!black},
-  mflabel/.style={font=\scriptsize\bfseries, text=gray!65!black,
-    inner sep=1pt}
+  figbox/.style={draw, line width=.4pt, align=center, inner sep=4.5pt,
+    text width=3.05cm, font=\small},
+  figout/.style={figbox, line width=.8pt},
+  figarr/.style={-{Latex[length=2mm,width=1.4mm]}, line width=.4pt},
+  fignote/.style={font=\footnotesize, inner sep=2pt}
 }
 
 \begin{document}
@@ -302,49 +294,44 @@ Reynolds corner.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=.95, transform shape, node distance=8mm and 8mm]
-  \node[mfgroup] (pattern) {Kazhdan pattern\\
+\begin{tikzpicture}[node distance=12mm and 7mm,
+    figbox/.append style={text width=3.25cm, minimum height=15mm}]
+  \node[figbox] (pattern) {Kazhdan pattern\\
     $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
     $[c,\iota(\Lambda)]=1$};
-  \node[mfgroup, right=of pattern] (defect) {transported root $d=tct^{-1}$\\
-    defect closure\\$N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
-  \node[mfgroup, right=of defect] (finite) {$F\triangleleft H$ finite\\
+  \node[figbox, right=of pattern] (defect) {transported root\\
+    $d=tct^{-1}$; defect\\
+    $N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
+  \node[figbox, right=of defect] (finite) {$F\triangleleft H$ finite\\
     and $F\le N_{\rm comp}$};
 
-  \node[mfmatrix, below=12mm of pattern] (kazhdan) {Kazhdan\\projection $P$\\
-    onto the $\Lambda$-fixed vectors};
-  \node[mfmatrix, right=of kazhdan] (pin) {$P\le TPT^*$ and equal finite ranks\\
-    force $P=TPT^*$};
-  \node[mfmatrix, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
-    tends to $1$ in normalized HS norm};
+  \node[figbox, below=of pattern] (kazhdan) {Kazhdan projection\\
+    $P$ onto the\\ $\Lambda$-fixed vectors};
+  \node[figbox, right=of kazhdan] (pin) {$P\le TPT^*$ and equal\\
+    finite ranks force\\ $P=TPT^*$};
+  \node[figbox, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
+    tends to $1$ in\\ normalized HS norm};
 
-  \node[mfend, below=12mm of pin, text width=5.25cm] (contradiction)
-    {on the complementary\\Reynolds corner\\
-     $\sum_{f\in F}\Theta(f)=0$, while each\\summand tends to $1$};
+  \node[figout, text width=4.2cm, anchor=north east] (contradiction)
+    at ($(collapse.south east)+(0,-10mm)$)
+    {on the complementary\\ Reynolds corner\\
+     $\sum_{f\in F}\Theta(f)=0$, while\\ each summand tends to $1$};
 
-  \draw[mfarr] (pattern) -- (defect);
-  \draw[mfarr] (defect) -- (finite);
-  \draw[mfarr] (pattern) -- node[mflabel,left] {property (T)} (kazhdan);
-  \draw[mfarr] (kazhdan) -- (pin);
-  \draw[mfarr] (pin) -- (collapse);
-  \draw[mfarr] (defect) -- (collapse);
-  \draw[mfarr] (finite) |- (contradiction.east);
-  \draw[mfarr] (collapse) |- (contradiction.east);
-
-  \begin{scope}[on background layer]
-    \node[draw=mfblue!35, fill=mfblue!2, rounded corners=5pt,
-      fit=(pattern)(defect)(finite), inner sep=5pt] {};
-    \node[draw=mfteal!35, fill=mfteal!2, rounded corners=5pt,
-      fit=(kazhdan)(pin)(collapse), inner sep=5pt] {};
-  \end{scope}
-  \node[mflabel, anchor=south west] at ($(pattern.north west)+(0,5pt)$)
-    {GROUP-THEORETIC LANE};
-  \node[mflabel, anchor=south west] at ($(kazhdan.north west)+(0,5pt)$)
-    {FINITE-MATRIX LANE};
+  \draw[figarr] (pattern) -- (defect);
+  \draw[figarr] (defect) -- (finite);
+  \draw[figarr] (pattern) -- node[fignote, right=2pt] {property~(T)}
+    (kazhdan);
+  \draw[figarr] (kazhdan) -- (pin);
+  \draw[figarr] (pin) -- (collapse);
+  \draw[figarr] (defect.south) -- ++(0,-4.5mm) -| (collapse.north);
+  \draw[figarr] (finite.east) -- ++(4.5mm,0) |- (contradiction.east);
+  \draw[figarr] (collapse.south) -- (collapse.south |- contradiction.north);
 \end{tikzpicture}
-\caption{The finite-normal obstruction.  Stable finiteness is used only in
-the middle lower box; property~(T) is used only to make the fixed-space
-projection uniform across the matrix sequence.}
+\caption{The finite-normal obstruction.  The upper lane is
+group-theoretic and the lower lane is the finite-matrix rigidity input.
+Stable finiteness is used only in the middle lower box; property~(T) is
+used only to make the fixed-space projection uniform across the matrix
+sequence.}
 \label{fig:mechanism}
 \end{figure}
 
@@ -955,6 +942,34 @@ make $w$ central and impose $w^2=1$; Proposition~\ref{prop:witness} below
 proves that $w\neq1$.  The relations
 $t\gamma t^{-1}=\alpha(\gamma)$, $[c,\gamma]=1$ hold for all
 $\gamma\in\Gamma$ because they hold on generators.
+Figure~\ref{fig:assembly} summarizes the three-stage assembly and the
+fate of the marked word.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=9mm]
+  \node[figbox, text width=7.2cm] (base) {base
+    $\Gamma=\Z^3\rtimes\SL_3(\Z)$:\ finitely presented\\ by
+    \eqref{eq:gamma-presentation}, with property~(T)};
+  \node[figbox, text width=7.2cm, below=of base] (hnn) {ascending HNN
+    extension $G$:\ the doubling\\ $\alpha(v,A)=(2v,A)$ is
+    injective,\\ and $a=v_1\notin\alpha(\Gamma)$};
+  \node[figout, text width=7.2cm, below=of hnn] (marked) {$E$ as in
+    \eqref{eq:E}:\ $w=\bigl[\,tct^{-1},a(tct^{-1})a^{-1}\bigr]$\\ is
+    central with $w^2=1$};
+  \draw[figarr] (base) -- node[fignote, right=3pt, align=left]
+    {adjoin the stable letter $t$:\\ $t\gamma t^{-1}=\alpha(\gamma)$}
+    (hnn);
+  \draw[figarr] (hnn) -- node[fignote, right=3pt, align=left]
+    {adjoin the involution $c$ with $[c,\Gamma]=1$;\\
+     make $w$ central of order dividing $2$} (marked);
+\end{tikzpicture}
+\caption{Assembly of the group $E$.  The marked word $w$ is nontrivial
+(Proposition~\ref{prop:witness}), yet every finite-dimensional
+representation over every field kills it (Theorem~\ref{thm:B}), and
+every norm matrix corona representation kills it (Theorem~\ref{thm:A}).}
+\label{fig:assembly}
+\end{figure}
 
 \begin{remark}[presentation robustness]\label{rem:anypresentation}
 Nothing in the proof of Theorem~\ref{thm:A} depends on the particular
@@ -1085,21 +1100,22 @@ sites is needed; their Clifford generators then anticommute automatically.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=.96, transform shape, node distance=13mm and 18mm]
-  \node[mfgroup, text width=2.65cm] (root) {root site\\$o=\Gamma$\\lamp $c_o$};
-  \node[mfgroup, right=of root, text width=2.65cm] (shift) {shifted site\\
-    $D\Gamma$\\lamp $c_{D\Gamma}$};
-  \node[mfgroup, right=of shift, text width=2.65cm] (moved) {moved site\\
-    $aD\Gamma$\\lamp $c_{aD\Gamma}$};
-  \draw[mfarr] (root) -- node[above, font=\small, fill=white, inner sep=1pt]
-    {$t\mapsto D$} (shift);
-  \draw[mfarr] (shift) -- node[above, font=\small] {$a$} (moved);
-  \node[mflabel, below=3mm of root] {$\Gamma$ fixes $o$};
-  \node[mfend, below=19mm of shift, text width=5.1cm] (sign)
-    {$D\Gamma\neq aD\Gamma$\\
+\begin{tikzpicture}[node distance=10mm and 14mm]
+  \node[figbox, text width=2.5cm] (root) {root site $o=\Gamma$\\
+    lamp $c_o$};
+  \node[figbox, text width=2.5cm, right=of root] (shift) {shifted site
+    $D\Gamma$\\ lamp $c_{D\Gamma}$};
+  \node[figbox, text width=2.5cm, right=of shift] (moved) {moved site
+    $aD\Gamma$\\ lamp $c_{aD\Gamma}$};
+  \node[figout, text width=4.9cm, anchor=north] (sign)
+    at ($(shift.south)!0.5!(moved.south)+(0,-12mm)$)
+    {$D\Gamma\neq aD\Gamma$, so\\
      $[c_{D\Gamma},c_{aD\Gamma}]=-1=z\neq1$};
-  \draw[mfarr, draw=mfgold] (shift.south) |- (sign.west);
-  \draw[mfarr, draw=mfgold] (moved.south) |- (sign.east);
+  \draw[figarr] (root) -- node[fignote, above=1pt] {$t\mapsto D$} (shift);
+  \draw[figarr] (shift) -- node[fignote, above=1pt] {$a$} (moved);
+  \node[fignote, below=2.5mm of root] {$\Gamma$ fixes $o$};
+  \draw[figarr] (shift.south) -- (shift.south |- sign.north);
+  \draw[figarr] (moved.south) -- (moved.south |- sign.north);
 \end{tikzpicture}
 \caption{The Clifford witness for $w\neq1$.  The base fixes the root lamp,
 while the proper doubling shift creates two distinct Clifford sites whose
@@ -3147,7 +3163,37 @@ with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
 $t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
 $E_0=\ClLamp(X_0)\rtimes G_0$ with central sign
 $z_0=-1\in\ClLamp(X_0)$ as in
-Construction~\ref{con:clifford}.
+Construction~\ref{con:clifford}.  Figure~\ref{fig:cyclic-comparison}
+summarizes the comparison.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=8mm and 12mm,
+    figbox/.append style={text width=4.7cm, minimum height=18mm}]
+  \node[figbox] (kbase) {$E$:\ the marked pattern over the Kazhdan base
+    $\Gamma=\Z^3\rtimes\SL_3(\Z)$};
+  \node[figbox, right=of kbase] (cbase) {$E_{\mathrm{BS}}$:\ the same
+    pattern over the cyclic base $\Gamma_0=\Z$};
+  \node[figbox, below=of kbase] (kfd) {every finite-dimensional
+    representation kills $w$ (Theorem~\ref{thm:B})};
+  \node[figbox, right=of kfd] (cfd) {every finite-dimensional
+    representation kills $w_{\mathrm{BS}}$ (Theorem~\ref{thm:B})};
+  \node[figout, below=of kfd] (kcor) {every corona representation kills
+    $w$:\ the group $E$ is not MF (Theorem~\ref{thm:A})};
+  \node[figout, right=of kcor] (ccor) {a corona representation\\
+    keeps $w_{\mathrm{BS}}\neq1$, via the\\ amenable MF quotient\\
+    $E_0$ (Theorem~\ref{thm:C})};
+  \draw[figarr] (kbase) -- (kfd);
+  \draw[figarr] (cbase) -- (cfd);
+  \draw[figarr] (kfd) -- (kcor);
+  \draw[figarr] (cfd) -- (ccor);
+\end{tikzpicture}
+\caption{The cyclic-base comparison.  The finite-dimensional
+obstruction does not see the base, while the corona conclusion holds
+exactly on the side where property~(T) supplies the uniform fixed-space
+projection.}
+\label{fig:cyclic-comparison}
+\end{figure}
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
 \emph{$z_0\neq1$:} immediate from Construction~\ref{con:clifford},
