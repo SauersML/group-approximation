@@ -103,6 +103,9 @@ generated from the manuscript's margin notes; this module is the short list.
   Clifford-free criterion: every finite normal subgroup contained in the
   compression-defect normal closure is invisible to all norm-matrix
   ultraproduct homomorphisms.
+* `KazhdanCompressionCore.finiteNormal_le_coronaMFResidual` -- the same
+  finite-normal criterion stated as containment in the intersection of all
+  cofinite norm-matrix-corona kernels.
 * `KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect` -- the
   same criterion as a direct obstruction to the standard cofinite-corona
   definition of operator MF.
@@ -355,6 +358,7 @@ export GroupApproximation.ChosenUniversalHorn
     markedGroup_not_satisfies_chosenQuasiIdentity)
 export GroupApproximation.KazhdanCompressionCore
   (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
+    finiteNormal_le_coronaMFResidual
     finiteNormal_le_normMatrixCoronaKernel
     not_isOperatorMF_of_finiteNormal_le_defect)
 export GroupApproximation
@@ -388,7 +392,8 @@ export GroupApproximation
 export GroupApproximation.KazhdanCompressionCore
   (finiteNormal_uniform_invisibility
     not_isWeakMF_of_normalKazhdan_le_defect
-    normalKazhdan_le_normMFResidual normalKazhdanDefectPart_le_normMFResidual
+    normalKazhdan_le_normMFResidual normalKazhdan_le_coronaMFResidual
+    normalKazhdanDefectPart_le_normMFResidual
     existsUnique_defectNormal_factorization_to_normMatrixCorona
     normMFResidual_eq_defectNormal
     defectNormal_le_orbitDefectNormal

@@ -481,6 +481,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.normMatrixCoronaMk_eq_zero_iff
 #print axioms GroupApproximation.c0MatrixSequenceIdeal_star_mem
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
+#print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
 #print axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot
 #print axioms GroupApproximation.normMFQuotient_isOperatorMF
@@ -561,6 +562,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
 #print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual
+#print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal
 #print axioms GroupApproximation.AffineSL3Scaling.scaling_package
