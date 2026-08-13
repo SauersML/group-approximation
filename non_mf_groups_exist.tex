@@ -162,7 +162,11 @@ In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
 \end{mainthm}
 
-The proof is a marked-word conversion of a $C^*$-algebraic finiteness
+A completely explicit presentation of $E$ --- eight generators, with
+every relation displayed --- appears as \eqref{eq:E} in
+Definition~\ref{def:E}.
+
+The proof implements a $C^*$-algebraic finiteness
 argument into a group-level kernel theorem.  For orientation, it can be
 organized into the following five steps.  The surrounding
 compression/lamp architecture has close antecedents; the point specific
@@ -174,13 +178,15 @@ universal marked kernel.
     $e=\tfrac12(1-\Theta(w))$ is a nonzero projection commuting with the
     image of $\Theta$; cutting by a lift of $e$ replaces $\mathcal Q$ by
     another norm matrix corona on which $\Theta(w)=-1$
-    (Lemma~\ref{lem:corner}).  This cut eliminates all relative-rank
-    (``rank blindness'') phenomena: on the corner, the deviation of $w$
+    (Lemma~\ref{lem:corner}).  This cut eliminates small-relative-rank
+    phenomena: on the corner, the deviation of $w$
     from $1$ has full normalized size.
   \item\emph{Conjugation representation.}  Unitary lifts $U_{g,n}$ of
     the corner representation conjugate the corner coordinates
-    $M_{r_n}(\C)$, and operator-norm multiplicativity of $\Theta$ makes
-    $g\mapsto (\Ad U_{g,n})_n$ an \emph{exact} homomorphism $\beta$ into
+    $M_{r_n}(\C)$, and exact multiplicativity of $\Theta$ in the quotient
+    makes arbitrary coordinate lifts asymptotically multiplicative in
+    operator norm.  Thus
+    $g\mapsto (\Ad U_{g,n})_n$ defines an \emph{exact} homomorphism $\beta$ into
     the norm corona of the algebras $B(L^2(M_{r_n}))$
     (Lemma~\ref{lem:beta}).
   \item\emph{Kazhdan projection.}  $\Gamma$ has property (T), so its
@@ -310,7 +316,7 @@ operator-norm step is instead
   P=\beta(t)P\beta(t)^*,
 \]
 because the conjugation representation lands in a stably finite norm
-matrix corona.  The central corner then converts this pinning into a fixed
+    matrix corona.  The central corner then converts this equality into a fixed
 nontrivial element killed by every corona representation.
 
 There is also an older analytic ancestor.  The Ozawa--Thom argument
@@ -338,7 +344,7 @@ about the same marked-sign compression pattern used in Theorem~\ref{thm:A}.
 Finally, non-MF-ness of one group $C^*$-algebra alone does not obstruct the
 \emph{group} from embedding into a corona, since group MF-ness only requires
 some quotient of $\Cmax$ to be MF.  The contribution asserted here is
-narrower: stable-finite Kazhdan pinning in a norm matrix corona, together
+    narrower: stable-finite Kazhdan fixed-space rigidity in a norm matrix corona, together
 with the central-corner/marked-word device producing a specific nontrivial
 element in the kernel of every such representation.  For context on the
 approximation landscape see \cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat}.
@@ -432,6 +438,38 @@ norm matrix corona.  Consequently every countable amenable group is MF.
 Throughout, $\Gamma=\Z^3\rtimes\SL_3(\Z)$ with multiplication
 $(v,A)(w,B)=(v+Aw,\,AB)$.
 
+We first record concrete presentation data.  By \cite[Theorem~2]{CRW},
+$\SL_3(\Z)$ has the presentation
+\begin{equation}\label{eq:sl3presentation}
+ \left\langle x,y,z\ \middle|\
+ \begin{gathered}
+ x^3=y^3=z^2=(xz)^3=(yz)^3=1,\\
+ (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
+ \end{gathered}\right\rangle,
+\end{equation}
+where the generators are the matrices
+\[
+x=\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},\qquad
+y=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},\qquad
+z=\begin{pmatrix}0&1&0\\1&0&0\\-1&-1&-1\end{pmatrix}.
+\]
+Let $v_i=(e_i,1)$ for $1\le i\le3$.  Reading off the columns of these
+matrices gives the following complete finite presentation of the semidirect
+product:
+\begin{equation}\label{eq:gamma-presentation}
+\Gamma=\left\langle v_1,v_2,v_3,x,y,z\ \middle|\
+\begin{gathered}
+\text{the eight relations in \eqref{eq:sl3presentation}},\\
+[v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
+xv_1x^{-1}=v_1,\quad xv_2x^{-1}=v_2^{-1}v_3,\quad
+xv_3x^{-1}=v_1v_2^{-1},\\
+yv_1y^{-1}=v_3,\quad yv_2y^{-1}=v_1,\quad
+yv_3y^{-1}=v_2,\\
+zv_1z^{-1}=v_2v_3^{-1},\quad zv_2z^{-1}=v_1v_3^{-1},\quad
+zv_3z^{-1}=v_3^{-1}
+\end{gathered}\right\rangle.
+\end{equation}
+
 \begin{lemma}\label{lem:alpha}
 The map $\alpha(v,A)=(2v,A)$ is an injective endomorphism of $\Gamma$
 with image $2\Z^3\rtimes\SL_3(\Z)$ of index $8$, and
@@ -463,23 +501,26 @@ identity or is verified inside an explicit linear quotient
 (Lemma~\ref{lem:linear}).
 
 \begin{definition}\label{def:E}
-Fix a finite presentation $\Gamma=\langle S\mid R\rangle$ and, for each
-$s\in S$, a word $\alpha(s)$ in $S$ representing the image of $s$ under
-$\alpha$.  Let $a\in\Gamma$ be as in Lemma~\ref{lem:alpha}, written as a
-word in $S$.  Define
+Use the six base generators and the relations displayed in
+\eqref{eq:gamma-presentation}, and put $a=v_1$.  Define
 \begin{equation}\label{eq:E}
-  E=\Bigl\langle\, S,\,t,\,c \;\Big|\;
-  \begin{aligned}
-   & R,\quad tst^{-1}=\alpha(s)\ (s\in S),\quad c^2=1,\quad [c,s]=1\ (s\in S),\\
-   & w^2=1,\quad [w,s]=[w,t]=[w,c]=1\ (s\in S)
-  \end{aligned}
-  \,\Bigr\rangle,
+  E=\left\langle v_1,v_2,v_3,x,y,z,t,c\ \middle|\
+  \begin{gathered}
+   \text{all relations in \eqref{eq:gamma-presentation}},\\
+   tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
+   txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
+   c^2=1,\qquad[c,g]=1\quad
+      (g\in\{v_1,v_2,v_3,x,y,z\}),\\
+   w^2=1,\qquad[w,g]=1\quad
+      (g\in\{v_1,v_2,v_3,x,y,z,t,c\})
+  \end{gathered}\right\rangle,
 \end{equation}
 where $w$ abbreviates the word
-$\bigl[\,tct^{-1},\,a\,(tct^{-1})\,a^{-1}\bigr]$.
+$\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
 \end{definition}
 
-Since $S$ and $R$ are finite, $E$ is finitely presented.  The
+Thus \eqref{eq:E} is an explicit presentation with eight generators and a
+fully displayed finite list of relators.  The
 presentation identities give a canonical homomorphism $G\to E$ and a
 canonical (not a priori injective) homomorphism $\Gamma\to E$; we write
 $\gamma$, $t$, $c$ for the images in $E$.  In $E$ the element $w$ is a
@@ -535,13 +576,20 @@ Let $\bar X=\bar G/\Gamma$ as in Lemma~\ref{lem:linear} and form
 $W:=\ClLamp(\bar X)\rtimes\bar G$ as in Construction~\ref{con:clifford}.
 Define a map on the generators of \eqref{eq:E} by
 \[
-  s\mapsto s\in\bar G\quad(s\in S),\qquad t\mapsto D\in\bar G,\qquad
+\begin{gathered}
+  g\mapsto g\in\bar G\quad
+  (g\in\{v_1,v_2,v_3,x,y,z\}),\\
+  t\mapsto D\in\bar G,\qquad
   c\mapsto c_{o},\quad o:=\Gamma\in\bar X .
+\end{gathered}
 \]
-We check the relations.  The relations $R$ and
-$tst^{-1}=\alpha(s)$ hold in $\bar G$ by Lemma~\ref{lem:linear}.  We
+We check the relations.  The base relations in
+\eqref{eq:gamma-presentation} and
+$tgt^{-1}=\alpha(g)$ for the six base generators hold in $\bar G$ by
+Lemma~\ref{lem:linear}.  We
 have $c_o^2=1$.  For $\gamma\in\Gamma$ we have $\gamma o=o$, so
-$\gamma c_o\gamma^{-1}=c_{\gamma o}=c_o$, giving $[c,s]=1$ for $s\in S$.
+$\gamma c_o\gamma^{-1}=c_{\gamma o}=c_o$, giving the six commutation
+relations for $c$.
 Under this assignment,
 \[
   tct^{-1}\mapsto c_{D\Gamma},\qquad
@@ -708,14 +756,17 @@ quotient map.
 \begin{proof}
 (1) Lift $e$ to a bounded sequence $(x_n)$; replacing $x_n$ by
 $\tfrac12(x_n+x_n^*)$ and then by the functional-calculus cutoff
-$\min(1,\max(0,x_n))$, we may assume $0\le x_n\le1$.  Since $q((x_n))$
+$f(x_n)$, where $f(t)=\min(1,\max(0,t))$, we may assume
+$0\le x_n\le1$.  These replacements preserve the quotient class because
+functional calculus commutes with the quotient map and
+$f(e)=e$.  Since $q((x_n))$
 is a projection, $\opnorm{x_n^2-x_n}\to0$, so the spectrum of $x_n$ is
 eventually contained in $[0,\tfrac13)\cup(\tfrac23,1]$; for such $n$
 put $e_n=\chi_{(\frac12,\,\infty)}(x_n)$, a projection with
 $\opnorm{e_n-x_n}\to0$, and set $e_n=0$ for the finitely many remaining
 $n$.  Then $(e_n)$ lifts $e$.
 
-(2) Lift $u$ to a bounded sequence $(x_n)$ with $\opnorm{x_n}\le 1$.
+(2) Lift $u$ to an arbitrary bounded sequence $(x_n)$.
 Since $q((x_n))$ is unitary, $\opnorm{x_n^*x_n-1}\to0$, so $x_n$ is
 eventually invertible; for such $n$ put $u_n=x_n(x_n^*x_n)^{-1/2}$, a
 unitary with $\opnorm{u_n-x_n}\to0$; set $u_n=1$ for the remaining $n$.
@@ -741,7 +792,10 @@ $M_k(\mathcal Q)\cong\mathcal Q((k\,d_n)_{n\in J})$, since matrix
 amplification commutes with products and with the ideal of null
 sequences.
 
-(2) As in any $C^*$-algebra, $v^*v=q$ gives $v=vq$ (because
+(2) This is the standard fact that in a finite algebra a projection is
+not equivalent to a proper subprojection; we include the short
+verification for completeness.  As in any $C^*$-algebra, $v^*v=q$ gives
+$v=vq$ (because
 $\opnorm{v(1-q)}^2=\opnorm{(1-q)v^*v(1-q)}=\opnorm{(1-q)q(1-q)}=0$) and
 $vv^*=p$ gives $v=pv$ (because
 $\opnorm{(1-p)v}^2=\opnorm{(1-p)vv^*(1-p)}=0$).  From $p\le q$ we get
@@ -827,10 +881,10 @@ $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
 \begin{enumerate}
   \item For unitaries $U,V\in M_r(\C)$ and every $x\in M_r(\C)$,
     \[
-      \opnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\opnorm{x},
+      \hsnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\hsnorm{x},
     \]
-    hence $\opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}$ as operators on
-    $B(K_n)$.
+    hence $\opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}$ as operators on the
+    Hilbert space $K_n$ (and therefore as elements of $B(K_n)$).
   \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in J'}$
     in $\mathcal B$ defines a group homomorphism
     $\beta\colon E\to\U(\mathcal B)$, independent of the choice of
@@ -842,7 +896,18 @@ $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
 \end{lemma}
 
 \begin{proof}
-(1) $UxU^*-VxV^*=(U-V)xU^*+Vx(U-V)^*$; take norms.
+(1) Since
+$UxU^*-VxV^*=(U-V)xU^*+Vx(U-V)^*$, the ideal property of the normalized
+Hilbert--Schmidt norm gives
+\[
+\begin{aligned}
+ \hsnorm{UxU^*-VxV^*}
+ &\le \hsnorm{(U-V)xU^*}+\hsnorm{Vx(U-V)^*}\\
+ &\le 2\opnorm{U-V}\,\hsnorm{x}.
+\end{aligned}
+\]
+Taking the supremum over $\hsnorm{x}=1$ proves the asserted operator-norm
+bound on $K_n$.
 
 (2) If $(U_{g,n})$ and $(U'_{g,n})$ both lift $\Theta_-(g)$ then
 $\opnorm{U_{g,n}-U'_{g,n}}\to0$, so by (1) the two sequences of adjoint
@@ -862,6 +927,10 @@ $\tilde\beta(x)$ lies in the norm closure of the linear span of
 $\{\beta(g):g\in E\}$, which is contained in the $C^*$-subalgebra
 $\mathcal B$.
 \end{proof}
+
+\ifanonymous\else
+\leanverified{Sofic/AdjointMatrix}{GroupApproximation.l2_opNorm_conjDouble_sub_le_two}
+\fi
 
 Recall the auxiliary HNN extension $G$ of \eqref{eq:G} and the
 canonical homomorphisms $\Gamma\to G\to E$.  Composing,
@@ -912,7 +981,7 @@ $\Cmax(G)$.  The final statement follows by applying the
 $*$-homomorphism $\tilde\beta$ (through $\Cmax(G)$).
 \end{proof}
 
-\begin{lemma}[compression pinning]\label{lem:pinning}
+\begin{lemma}[compression equality]\label{lem:pinning}
 $P=\beta(t)P\beta(t)^*$ in $\mathcal B$.
 \end{lemma}
 
@@ -1062,8 +1131,8 @@ is a nontrivial element of the ``MF radical'' of $E$.
 No lower bound on the corner ranks $r_n$, or on their density in
 $d_n$, is used anywhere: Lemma~\ref{lem:corner} renormalizes the trace
 so that all subsequent estimates are relative to the corner.  This is
-what makes the operator-norm setting immune to the rank-blindness that
-blocks the same argument in Hilbert--Schmidt metrics
+what makes the operator-norm setting insensitive to small relative ranks,
+which block the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
 \end{remark}
 
@@ -1085,7 +1154,7 @@ Lemma~\ref{lem:corner}: the rounded involution of an approximately
 involutive unitary, an exact self-adjoint unitary whose negative
 spectral sector carries the corner.
 \leanverified{Sofic/ApproxInvolutionCorner}{GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup}
-Third, the finite-stage shadow of the stable-finiteness pinning of
+Third, the finite-stage shadow of the stable-finiteness equality in
 Lemmas~\ref{lem:finite} and~\ref{lem:pinning}: orthogonal projections
 of equal rank with small one-sided leakage have small leakage in the
 reverse direction.
