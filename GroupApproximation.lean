@@ -110,6 +110,7 @@ import GroupApproximation.PropertyT.ClassTwoOrthogonality
 import GroupApproximation.PropertyT.NormalEdgeCodistance
 import GroupApproximation.Kazhdan.KazhdanGenerators
 import GroupApproximation.Kazhdan.KazhdanOrthogonal
+import GroupApproximation.Kazhdan.FixedSpaceCompression
 import GroupApproximation.Kazhdan.KazhdanProjection
 import GroupApproximation.Kazhdan.InvariantDisplacement
 import GroupApproximation.Kazhdan.KazhdanFiniteModel
