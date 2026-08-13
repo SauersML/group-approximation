@@ -199,4 +199,20 @@ theorem pauliBranchRange_mul_eq_zero (U R P Q : Matrix Y Y ℂ)
       rw [pauli_joint_mul_conj_eq_zero R P Q hPid hPQ hRsq hRQ hflip,
         Matrix.mul_zero, Matrix.zero_mul]
 
+/-- A larger-rank range cannot be contained in a smaller-rank carrier.  This
+is the finite-coordinate endpoint of the Pauli branch packet. -/
+theorem one_sub_mul_ne_zero_of_rank_lt (E F : Matrix Y Y ℂ)
+    (hrank : E.rank < F.rank) : (1 - E) * F ≠ 0 := by
+  intro hzero
+  have hF : F = E * F := by
+    calc
+      F = 1 * F := by rw [Matrix.one_mul]
+      _ = (E + (1 - E)) * F := by congr 1; module
+      _ = E * F + (1 - E) * F := by rw [Matrix.add_mul]
+      _ = E * F := by rw [hzero, add_zero]
+  have hle : F.rank ≤ E.rank := by
+    rw [hF]
+    exact Matrix.rank_mul_le_left E F
+  exact (Nat.not_le_of_lt hrank) hle
+
 end GroupApproximation

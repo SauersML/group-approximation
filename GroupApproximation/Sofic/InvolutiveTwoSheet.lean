@@ -62,8 +62,14 @@ theorem twoSheetSwap_sq (Y : FiniteModel) :
     twoSheetSwap Y * twoSheetSwap Y = 1 := by
   unfold twoSheetSwap
   rw [Matrix.fromBlocks_multiply]
-  simpa using (Matrix.fromBlocks_one :
-    Matrix.fromBlocks (1 : Matrix Y Y ℂ) 0 0 1 = 1)
+  have hone :
+      Matrix.fromBlocks
+          (1 : Matrix Y Y ℂ) (0 : Matrix Y Y ℂ)
+          (0 : Matrix Y Y ℂ) (1 : Matrix Y Y ℂ) =
+        (1 : Matrix (Y ⊕ Y) (Y ⊕ Y) ℂ) :=
+    Matrix.fromBlocks_one
+  simpa only [Matrix.zero_mul, Matrix.mul_zero, Matrix.one_mul,
+    Matrix.mul_one, add_zero, zero_add] using hone
 
 theorem twoSheetSwap_conjTranspose (Y : FiniteModel) :
     (twoSheetSwap Y)ᴴ = twoSheetSwap Y := by

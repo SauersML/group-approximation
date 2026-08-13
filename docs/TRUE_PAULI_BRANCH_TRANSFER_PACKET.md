@@ -74,6 +74,25 @@ Indeed `(PBT2)` and `(PBT3)` would place two orthogonal trace-`1/8` ranges
 under a trace-`1/8` projection.  Equivalently, taking traces would give
 `1/4 <= 1/8`.
 
+At a finite matrix coordinate this does not require an analytic estimate:
+the ranks are `d/4` and `d/8`, and
+
+```text
+(1-E)F=0  implies  F=EF  implies  rank(F)<=rank(E).
+```
+
+`one_sub_mul_ne_zero_of_rank_lt` kernel-checks this terminal dimension
+argument.  Quantitatively, for orthogonal projections the squared normalized
+Hilbert--Schmidt leakage satisfies
+
+```text
+||(1-E)F||_2^2 >= tau(F)-tau(E)=1/8.                  (PBT4)
+```
+
+Thus an approximate version of `(PBT3)` has a fixed gap; vanishing-density
+leakage is no longer available once the trace-`1/4` carrier has been
+identified.
+
 So the entire two-child obstruction is now one support-containment statement,
 not four unknown contraction operators and not a reconstruction of a full
 Leavitt family.
@@ -151,4 +170,3 @@ commutator signs alone cannot do it.
 
 The file passes Lean on the existing warm MSI build.  No local code or build
 was run.
-
