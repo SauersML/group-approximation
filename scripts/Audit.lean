@@ -36,6 +36,15 @@ example : ∃ (G : Type) (_ : Group G), ¬ IsSofic G :=
 example : ∃ (G : Type) (_ : Group G), Group.IsFinitelyPresented G ∧ ¬ IsSofic G :=
   exists_finitelyPresented_nonsofic_group
 
+example :
+    ∃ (E : Type) (_ : Group E), Countable E ∧ ¬ IsWeakMF E :=
+  ExplicitNonMFTheorem.exists_countable_not_isWeakMF
+
+example :
+    ∃ (E : Type) (_ : Group E),
+      Group.IsFinitelyPresented E ∧ ¬ IsWeakMF E :=
+  ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+
 example (G : Type) [Group G] [Countable G] :
     IsSofic G ↔ AdmitsEssentiallyFreeNearAction G :=
   isSofic_iff_admitsEssentiallyFreeNearAction G
@@ -298,6 +307,10 @@ def headlineTheorems : List Name :=
    ``countable_group_without_essentiallyFreeNearAction_exists,
    ``exists_finitelyPresented_nonsofic_group,
    ``exists_infinite_finitelyPresented_nonsofic_ambient_cover,
+   ``ExplicitNonMFTheorem.mark_normMFInvisible,
+   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF,
+   ``ExplicitNonMFTheorem.exists_countable_not_isWeakMF,
+   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
    ``universalLeavittEL4_not_isSofic,
    ``universalLeavittEL3_not_isSofic,
    ``universalLeavittUnits_not_isSofic,

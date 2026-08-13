@@ -422,3 +422,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.KunThomRounding.exists_pairProduct_relation_eventually
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.exists_countable_not_isWeakMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF

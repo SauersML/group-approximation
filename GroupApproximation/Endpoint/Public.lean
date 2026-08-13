@@ -1,5 +1,6 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
+import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -40,6 +41,16 @@ generated from the manuscript's margin notes; this module is the short list.
 * `exists_finitelyPresented_nonsofic_group` -- Theorem C, first assertion.
 * `exists_infinite_finitelyPresented_nonsofic_ambient_cover` -- and it covers
   the explicit ambient group.
+
+## The operator-norm MF obstruction
+
+* `ExplicitNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word is
+  killed by every homomorphism to every norm-matrix ultraproduct.
+* `ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF` -- the
+  independently constructed finitely presented marked group is not MF.
+* `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
+  `ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
+  headline existence forms.
 
 ## One endpoint per printed theorem
 
@@ -157,6 +168,13 @@ export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
   universalLeavittEL4_not_isSofic
   ambient_full_profile exists_finitelyPresented_nonsofic_group
   exists_infinite_finitelyPresented_nonsofic_ambient_cover)
+
+/-! ### The operator-norm MF obstruction -/
+
+export GroupApproximation.ExplicitNonMFTheorem
+  (mark_normMFInvisible explicit_finitelyPresented_not_isWeakMF
+    countableWitness_not_isWeakMF exists_countable_not_isWeakMF
+    exists_finitelyPresented_not_isWeakMF)
 
 /-! ### Reach of the construction -/
 
