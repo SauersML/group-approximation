@@ -43,11 +43,12 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  # NOT cancel-in-progress.  A cancelled job may lose the partial `.lake/build`
-  # it would otherwise have saved, and this build is long enough that throwing
-  # away an hour of oleans to start over is worse than letting the old run
-  # finish and seed the cache for the new one.
-  cancel-in-progress: false
+  # Keep the expensive exact gate aimed at the newest source snapshot.  The
+  # compiled-project cache is saved before the long single-threaded fresh
+  # kernel replay, so cancelling a stale replay does not discard its build;
+  # the replacement run restores that source-keyed cache and rechecks the
+  # newest oleans from a fresh kernel environment.
+  cancel-in-progress: true
 
 permissions:
   contents: read
