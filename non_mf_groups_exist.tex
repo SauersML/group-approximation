@@ -853,12 +853,10 @@ x=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},\qquad
 y=\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},\qquad
 z=\begin{pmatrix}0&1&0\\1&0&0\\-1&-1&-1\end{pmatrix}.
 \]
-(The matrix realization is assembled from the data of
-\cite[Sections~1, 2 and~4]{CRW}, which set $x=h$, $y=aha$, $z=p$ in the
-notation there; it is not displayed as a single statement in \cite{CRW}.
-We have verified directly that these three matrices satisfy the eight
-relations and generate $\SL_3(\Z)$, which suffices since the finitely
-generated linear group $\SL_3(\Z)$ is Hopfian \cite{Ma}.)
+The matrix-labelled presentation is also recorded explicitly in
+\cite[Introduction]{CLV}.  In particular, the displayed relations are
+defining relations, rather than merely relations satisfied by the three
+matrices.
 Let $v_i=(e_i,1)$ for $1\le i\le3$.  Reading off the columns of these
 matrices gives the following complete finite presentation of the semidirect
 product:
@@ -1355,8 +1353,10 @@ Let $\mathcal Q$ be a norm matrix corona.
 \begin{enumerate}
   \item Every isometry in $\mathcal Q$ is a unitary; the same holds in
     every matrix amplification $M_k(\mathcal Q)$.
-  \item If $p,q\in\mathcal Q$ are projections with $p\le q$ and
-    $v^*v=q$, $vv^*=p$ for some $v\in\mathcal Q$, then $p=q$.
+  \item In any unital $C^*$-algebra in which every isometry is a
+    unitary --- by (1), in $\mathcal Q$ and its matrix
+    amplifications --- if $p\le q$ are projections with $v^*v=q$ and
+    $vv^*=p$ for some element $v$, then $p=q$.
 \end{enumerate}
 \end{lemma}
 
@@ -1387,7 +1387,8 @@ so $s$ is an isometry, and
 \[
   ss^*=vv^*+v(1-q)+(1-q)v^*+(1-q)=p+0+0+(1-q)=p+(1-q).
 \]
-By part (1), $ss^*=1$, i.e.\ $p+(1-q)=1$, i.e.\ $p=q$.
+By finiteness of the ambient algebra, $ss^*=1$, i.e.\ $p+(1-q)=1$,
+i.e.\ $p=q$.
 \end{proof}
 
 \begin{lemma}[corner coronas]\label{lem:cornercorona}
@@ -1671,6 +1672,8 @@ of the quotient and Proposition~\ref{prop:univquot}.
 \end{proof}
 
 \begin{theorem}[faithfully tracial targets]\label{thm:tracialtarget}
+Let $(\Lambda,\iota,t,c)$ be a marked Kazhdan pattern in the countable
+group $H$ and $L=\iota(\Lambda)$, as in Definition~\ref{def:pattern}.
 Let $A$ be a unital $C^*$-algebra carrying a faithful tracial state
 $\tau$, and suppose that $A\otimes_{\max}A^{\rm op}$ is stably finite.
 For every homomorphism $\Theta\colon H\to\U(A)$,
@@ -2096,7 +2099,9 @@ $\Theta$ of $E$, which is part (2).
 For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
 $E$ would be an injective corona representation, which is impossible
 because every corona representation sends the nontrivial element $w$
-to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding
+to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding ---
+Corollary~\ref{cor:subalg} below reduces a non-unital one to this
+case ---
 $\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
   $E\to\U(\Cred(E))$, would exhibit an injective corona representation of
   $E$: the map $g\mapsto\lambda_g$ is injective, although the quotient map
@@ -2477,7 +2482,9 @@ $\iota_G(\Gamma)$-invariant, i.e.\
 $\pi(\bar p)\delta_b\neq\delta_b$ while $\pi(Q_1)\delta_b=\delta_b$;
 hence $Q_1\neq\bar p$ and $s$ is not a unitary.
 
-If $\Cmax(G)$ embedded unitally into a norm matrix corona, the image
+If $\Cmax(G)$ embedded unitally into a norm matrix corona
+(Corollary~\ref{cor:subalg} reduces a non-unital MF embedding to this
+case), the image
 of $s$ would be an isometry there, hence a unitary by
 Lemma~\ref{lem:finite}(1), and injectivity would force $ss^*=1$, a
 contradiction; so $\Cmax(G)$ is not an MF algebra, and the isometry
@@ -2697,7 +2704,8 @@ is therefore neither finite nor stably finite, and hence is not MF.
 The canonical trace on $\Cred(\Lambda_{\mathrm{univ}})$ is faithful, so
 the proof of Lemma~\ref{lem:faithfultrace}, applied to every finite matrix
 amplification, gives stable finiteness.  If the reduced algebra embedded
-faithfully in a norm matrix corona, restriction to its left-regular
+faithfully in a norm matrix corona --- unitally, by
+Corollary~\ref{cor:subalg} --- restriction to its left-regular
 unitaries would give an injective corona representation of
 $\Lambda_{\mathrm{univ}}$, contradicting its full MF radical.
 
@@ -2864,8 +2872,10 @@ of finite certificates for non-MF-ness of finitely presented groups.
 \end{theorem}
 
 \begin{proof}
-Fix a finitely presented group $N$ with undecidable word problem.  The
-effective test-group construction in the proof of Adian--Rabin associates
+Fix a finitely presented group $N$ with undecidable word problem
+\cite{Novikov,Boone}.  The
+effective test-group construction in the proof of Adian--Rabin
+(see \cite[Section~IV.4]{LyndonSchupp}) associates
 to every word $u$ a finite presentation $P_u$ such that $u=1$ in $N$
 implies $G(P_u)=1$, whereas $u\neq1$ implies that $E$ embeds in $G(P_u)$.
 Hence $G(P_u)$ is MF exactly when $u=1$.  Trivial words are recursively
@@ -2879,13 +2889,13 @@ recursively enumerable set.
 
 \begin{corollary}[$C^*$-recognition problems]\label{cor:Cstarrecognition}
 There is no algorithm which, from a finite presentation of a group $H$,
-decides any of the following five properties:
+decides any of the following four properties:
 \begin{enumerate}
 \item $\Cred(H)$ is MF;
 \item $\Cmax(H)$ is MF;
-\item $\Cmax(H)$ is finite;
-\item $\Cmax(H)$ is stably finite;
-\item $\Cmax(H)$ is directly finite.
+\item $\Cmax(H)$ is finite (equivalently, for a unital
+  $C^*$-algebra, directly finite);
+\item $\Cmax(H)$ is stably finite.
 \end{enumerate}
 For each property, the set of finite presentations on which it fails is
 not recursively enumerable.
@@ -2896,12 +2906,12 @@ For $H\le K$, the restriction of the left regular representation of $K$
 to $H$ is a direct sum of copies of the left regular representation of
 $H$, so $\Cred(H)\hookrightarrow\Cred(K)$.  The analogous maximal
 embedding was recalled in the proof of
-Corollary~\ref{cor:universalCstarcontrast}.  MF-ness, finiteness, stable
-finiteness, and direct finiteness pass to unital $C^*$-subalgebras.
+Corollary~\ref{cor:universalCstarcontrast}.  MF-ness, finiteness, and stable finiteness pass to unital
+$C^*$-subalgebras.
 Thus each property is subgroup-hereditary at the group level.
 
 For the first two properties, the forbidden finitely presented group is
-$E$.  For the last three it is the finitely presented group $G$ from
+$E$.  For the last two it is the finitely presented group $G$ from
 Proposition~\ref{prop:ambient}, whose maximal algebra contains a proper
 isometry.  The trivial group is a positive example in every case, so the
 Adian--Rabin theorem gives undecidability.  Applying its effective
@@ -3280,6 +3290,12 @@ I.~Chatterji and M.~Kassabov,
 properties and property (T)},
 preprint, \arxiv{2601.22907v1}, submitted January~30, 2026.
 
+\bibitem[CLV]{CLV}
+M.~D.~E. Conder, G.~Liversidge, and M.~Vsemirnov,
+\emph{Generating pairs for $\SL(n,\Z)$},
+J. Algebra \textbf{662} (2025), 123--137,
+\doi{10.1016/j.jalgebra.2024.08.008}.
+
 \bibitem[CIOS]{CIOS}
 I.~Chifan, A.~Ioana, D.~Osin, and B.~Sun,
 \emph{Wreath-like products of groups and their von Neumann algebras I:
@@ -3455,6 +3471,23 @@ F.~Peter and H.~Weyl,
 geschlossenen kontinuierlichen Gruppe},
 Math. Ann. \textbf{97} (1927), 737--755,
 \doi{10.1007/BF01447892}.
+
+\bibitem[No]{Novikov}
+P.~S. Novikov,
+\emph{On the algorithmic unsolvability of the word problem in group
+theory},
+Trudy Mat. Inst. Steklov \textbf{44} (1955), 1--143.
+
+\bibitem[Boo]{Boone}
+W.~W. Boone,
+\emph{The word problem},
+Ann. of Math. (2) \textbf{70} (1959), no.~2, 207--265.
+
+\bibitem[LS]{LyndonSchupp}
+R.~C. Lyndon and P.~E. Schupp,
+\emph{Combinatorial group theory},
+Classics in Mathematics, Springer-Verlag, Berlin, 2001,
+reprint of the 1977 edition.
 
 \bibitem[Rab]{Rabin}
 M.~O. Rabin,
