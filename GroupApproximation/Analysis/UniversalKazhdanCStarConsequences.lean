@@ -107,10 +107,11 @@ variable (G : Type w) [Group G]
 reduced group C⋆-algebra is unitary.  This is the operator-algebraic stable
 finiteness conclusion furnished by the canonical faithful trace. -/
 theorem reduced_matrix_mul_star_eq_one_of_star_mul_eq_one
-    (n : Type*) [Fintype n] [DecidableEq n] [Nonempty n]
+    (n : Type*) [Fintype n] [DecidableEq n] (hn : Nonempty n)
     {v : CStarMatrix n n (ReducedGroupCStar G)}
     (hv : star v * v = 1) : v * star v = 1 :=
-  (canonicalFaithfulTracialState G).matrix_mul_star_eq_one_of_star_mul_eq_one n hv
+  (canonicalFaithfulTracialState G).matrix_mul_star_eq_one_of_star_mul_eq_one
+    n hn hv
 
 /-- In particular, the reduced group C⋆-algebra itself contains no proper
 isometry. -/

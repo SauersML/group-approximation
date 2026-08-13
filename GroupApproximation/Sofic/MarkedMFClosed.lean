@@ -237,11 +237,12 @@ theorem isOpen_compl_operatorMFLocus : IsOpen (operatorMFLocus k)ᶜ :=
 
 /-- Filter form of marked-limit closure. -/
 theorem isOperatorMF_of_tendsto
-    {I : Type u} {l : Filter I} [NeBot l]
+    {I : Type u} {l : Filter I} (hl : NeBot l)
     {f : I → MarkedGroupSpace k} {M : MarkedGroupSpace k}
     (hf : Tendsto f l (𝓝 M))
     (hMF : ∀ᶠ i in l, IsOperatorMF (f i).Quotient) :
     IsOperatorMF M.Quotient := by
+  letI : NeBot l := hl
   exact isClosed_operatorMFLocus.mem_of_tendsto hf hMF
 
 end MarkedGroupSpace

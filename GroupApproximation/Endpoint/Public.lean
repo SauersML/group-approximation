@@ -15,6 +15,7 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
@@ -153,9 +154,10 @@ boundary instead of conflating the two constructions.
   `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
   rank-eight clopen cylinder, with every printed relation retained and the
   obstruction word surviving throughout it.
-* `LiteralMarkedCylinder.literalCylinder_subset_nonMF` -- every point of that
-  cylinder is non-MF, conditional on property `(T)` of the raw literal base;
-  the certificate form keeps the same boundary proof-carrying.
+* `LiteralMarkedCylinder.literalCylinder_subset_nonMF` -- conditional on
+  property `(T)` for the abstract printed base, that entire exact cylinder is
+  non-MF.  This is the neighborhood form of the same exposed boundary, not
+  an unconditional theorem about the displayed group.
 
 ## Consequences and reusable obstruction APIs
 
@@ -174,6 +176,10 @@ boundary instead of conflating the two constructions.
   computability reduction, conditional on an explicitly supplied computable
   Adian--Rabin transformation and its correctness proof; no such external
   transformation is postulated by the library.
+* `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
+  the unconditional group-theoretic positive/negative Markov witness used by
+  such a reduction; this does not manufacture the missing syntactic
+  Adian--Rabin transformation.
 * `CStarRecognitionConsequences.all_groupCStar_recognition_undecidable` -- the
   analogous five-predicate C-star recognition package, still conditional on
   explicit computable Adian--Rabin reductions and semantic predicate data;
