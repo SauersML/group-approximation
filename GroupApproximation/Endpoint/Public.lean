@@ -179,9 +179,11 @@ group is part of the Lean API.
   -- no finite quotient detects the genuine nontrivial literal mark.
 ## Consequences and reusable obstruction APIs
 
-* `not_injective_of_coronaMFInvisible` and
-  `KazhdanCompressionCore.finiteNormal_uniform_invisibility` -- portability
-  and uniform killing of the obstruction.
+* `not_injective_of_coronaMFInvisible`,
+  `KazhdanCompressionCore.finiteNormal_uniform_invisibility`, and its
+  positive-model formulation
+  `KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel` --
+  portability and uniform killing of the obstruction.
 * `KazhdanCompressionCore.normalKazhdan_le_normMFResidual` and
   `normalKazhdanDefectPart_le_normMFResidual` -- the printed strengthening
   from finite normal obstructions to arbitrary normal property-`(T)`
@@ -391,6 +393,7 @@ export GroupApproximation
     coronaMFResidual_eq_of_le_and_quotient_isOperatorMF)
 export GroupApproximation.KazhdanCompressionCore
   (finiteNormal_uniform_invisibility
+    finiteNormal_uniform_invisibility_positiveModel
     not_isWeakMF_of_normalKazhdan_le_defect
     normalKazhdan_le_normMFResidual normalKazhdan_le_coronaMFResidual
     normalKazhdanDefectPart_le_normMFResidual
