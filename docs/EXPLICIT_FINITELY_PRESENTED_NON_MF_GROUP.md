@@ -373,12 +373,16 @@ Lean now proves both layers.  The universal analytic endpoint is
 `Sofic/MarkedCompressionSequentialKill`; the independent Clifford/telescope
 construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
 `Sofic/ExplicitNonMFTheorem` assembles these into countable and finitely
-presented non-MF existence theorems.  The finitely presented Lean witness is
-an independent marked group built from a noncomputably chosen Shalom cover of
-the Lean base; it is not the literal eight-generator group displayed in the
-paper.  Thus the formal development verifies the marked-compression mechanism
-and the existence theorem, while the displayed presentation is established by
-the paper proof.
+presented non-MF existence theorems.  It also proves the direct standard
+cofinite-corona endpoints
+`ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF` and
+`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
+inferring them from an informal comparison with `IsWeakMF`.  The finitely
+presented Lean witness is an independent marked group built from a
+noncomputably chosen Shalom cover of the Lean base; it is not the literal
+eight-generator group displayed in the paper.  Thus the formal development
+verifies the marked-compression mechanism and both MF existence predicates,
+while the displayed presentation is established by the paper proof.
 
 The analytic proof above was written for the sequential norm corona.  It
 works verbatim for the ultrafilter quotients used by the formal definition:
@@ -604,7 +608,10 @@ realizations (`Sofic/CliffordLampGroup`,
 `Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
 (`Sofic/ExplicitNonMFEndpoint`).  The analytic assembly is now complete in
 `Sofic/MarkedCompressionSequentialKill`, and the public finitely presented
-existence endpoint is
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF`.  The arbitrary
-finite-normal-subgroup strengthening remains paper-only; its separate
-formalization is not claimed here.
+existence endpoints are
+`ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
+standard cofinite-corona theorem
+`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
+arbitrary finite-normal-subgroup strengthening is implemented separately in
+`Sofic/FiniteNormalCompressionObstruction`; its public kernel theorem is
+`KazhdanCompressionCore.finiteNormal_le_normMFResidual`.

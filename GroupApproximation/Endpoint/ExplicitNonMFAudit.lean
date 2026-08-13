@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 
 /-!
 # Lightweight axiom audit for the explicit non-MF endpoint
@@ -11,4 +12,8 @@ project-wide endpoint audit.
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_group_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual

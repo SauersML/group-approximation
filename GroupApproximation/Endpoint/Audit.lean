@@ -426,3 +426,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_group_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual

@@ -1,6 +1,7 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -54,6 +55,12 @@ generated from the manuscript's margin notes; this module is the short list.
 * `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
   `ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
   headline existence forms.
+* `KazhdanCompressionCore.finiteNormal_le_normMFResidual` -- the stronger
+  Clifford-free criterion: every finite normal subgroup contained in the
+  compression-defect normal closure is invisible to all norm-matrix
+  ultraproduct homomorphisms.
+* `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
+  answer to the universal operator-MF assertion.
 
 ## One endpoint per printed theorem
 
@@ -179,7 +186,10 @@ export GroupApproximation.ExplicitNonMFTheorem
     explicit_finitelyPresented_not_isOperatorMF
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF
     exists_finitelyPresented_not_isWeakMF
-    countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF)
+    countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
+    not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
+export GroupApproximation.KazhdanCompressionCore
+  (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect)
 
 /-! ### Reach of the construction -/
 

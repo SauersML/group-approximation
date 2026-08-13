@@ -15,15 +15,20 @@ The public theorem module is
 ```lean
 ExplicitNonMFTheorem.mark_normMFInvisible
 ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
+ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
 ExplicitNonMFTheorem.countableWitness_not_isWeakMF
+ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
 ExplicitNonMFTheorem.exists_countable_not_isWeakMF
 ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 ```
 
-In particular, Lean proves both that the concrete nontrivial mark belongs to
-the operator-norm MF residual and that a finitely presented non-MF group
-exists. The finitely presented Lean witness is the independently constructed
-marked group in `ExplicitMarkedPresentation.lean`; it is not asserted to be
+In particular, Lean proves both that the chosen nontrivial mark belongs to the
+operator-norm MF residual and that a finitely presented non-MF group exists,
+including the direct standard cofinite-corona statement `¬ IsOperatorMF`.
+The finitely presented Lean witness is the independently constructed marked
+group in `ExplicitMarkedPresentation.lean`, whose vertex uses a
+noncomputably chosen Shalom Kazhdan cover; it is not asserted to be
 definitionally identical to the eight-generator presentation displayed in the
 paper.
 
@@ -39,6 +44,7 @@ ultraproduct. Together with nontriviality of the word, this gives:
 
 ```lean
 MarkedCompressionInclusionData.not_isWeakMF
+MarkedCompressionInclusionData.not_isOperatorMF
 ```
 
 ## Proof chain
@@ -71,15 +77,25 @@ The completed proof is split into independently useful layers.
 7. `ExplicitMarkedPresentation.lean` and `ExplicitNonMFEndpoint.lean` provide
    an independently checkable finite presentation with the same analytic
    interface and a nontrivial marked word.
-8. `ExplicitNonMFTheorem.lean` joins the algebraic and analytic layers.
+8. `OperatorMF.lean` extracts a sequential marked model directly from a mark
+   surviving in the standard cofinite norm-matrix corona.
+9. `ExplicitNonMFTheorem.lean` joins the algebraic and analytic layers and
+   publishes both the ultraproduct/weak-MF and standard cofinite-corona
+   endpoints.
+10. `MarkedCompressionRootCapture.lean`, `FiniteNormalAverageCorner.lean`,
+    and `FiniteNormalCompressionObstruction.lean` remove the distinguished
+    central-involution hypothesis: every finite normal subgroup contained in
+    the compression-defect normal closure lies in the norm-MF residual.
 
 ## What is and is not formalized
 
 The Lean development machine-checks the universal marked-compression kill
 theorem, the nontrivial marked witness, and countable and finitely presented
-non-MF existence theorems. It does not claim that the finitely presented Lean
-witness is literally the paper's displayed eight-generator group. It also
-makes no claim that the witness is nonhyperlinear or nonsofic.
+non-MF existence theorems. It separately proves the finitely presented
+endpoint for the standard `IsOperatorMF` cofinite-corona predicate, without
+assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
+presented Lean witness is literally the paper's displayed eight-generator
+group. It also makes no claim that the witness is nonhyperlinear or nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
 `UniversalWeakMF U X`, namely operator-norm matrix ultraproducts. This is a
@@ -99,9 +115,10 @@ GroupApproximation.lean
 
 The focused audit target is
 `GroupApproximation/Endpoint/ExplicitNonMFAudit.lean`; it prints the axioms of
-the concrete invisibility and finitely presented non-MF declarations. The
-same declarations also appear in the project-wide endpoint and audit roster.
-No `sorry`, custom axiom, or theorem-shaped literature premise is part of the
+the chosen witness's invisibility theorem and both finitely presented non-MF
+declarations, including `exists_finitelyPresented_not_isOperatorMF`. The same
+declarations also appear in the project-wide endpoint and audit roster. No
+`sorry`, custom axiom, or theorem-shaped literature premise is part of the
 formal endpoint.
 
 All Lean builds and audits for this project are run on MSI against the warm

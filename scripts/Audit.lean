@@ -60,6 +60,14 @@ example :
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
   ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 
+example : ¬ (∀ (E : Type) [Group E], IsOperatorMF E) :=
+  ExplicitNonMFTheorem.not_every_group_isOperatorMF
+
+example :
+    ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
+      IsOperatorMF E) :=
+  ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+
 example (G : Type) [Group G] [Countable G] :
     IsSofic G ↔ AdmitsEssentiallyFreeNearAction G :=
   isSofic_iff_admitsEssentiallyFreeNearAction G
@@ -328,6 +336,9 @@ def headlineTheorems : List Name :=
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
    ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF,
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
+   ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
+   ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``universalLeavittEL4_not_isSofic,
    ``universalLeavittEL3_not_isSofic,
    ``universalLeavittUnits_not_isSofic,

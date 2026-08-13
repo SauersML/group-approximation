@@ -100,5 +100,27 @@ theorem exists_finitelyPresented_not_isOperatorMF :
     explicit_finitelyPresented_not_isOperatorMF.1,
     explicit_finitelyPresented_not_isOperatorMF.2⟩
 
+/-- **Negative solution of the universal operator-MF problem.**  Not every
+group embeds in a cofinite norm-matrix corona. -/
+theorem not_every_group_isOperatorMF :
+    ¬ (∀ (E : Type) [Group E], IsOperatorMF E) := by
+  intro hall
+  obtain ⟨E, groupE, _hfp, hE⟩ :=
+    exists_finitelyPresented_not_isOperatorMF
+  letI : Group E := groupE
+  exact hE (hall E)
+
+/-- The universal operator-MF assertion already fails inside the class of
+finitely presented groups. -/
+theorem not_every_finitelyPresented_group_isOperatorMF :
+    ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
+      IsOperatorMF E) := by
+  intro hall
+  obtain ⟨E, groupE, hfp, hE⟩ :=
+    exists_finitelyPresented_not_isOperatorMF
+  letI : Group E := groupE
+  letI : Group.IsFinitelyPresented E := hfp
+  exact hE (hall E)
+
 end ExplicitNonMFTheorem
 end GroupApproximation
