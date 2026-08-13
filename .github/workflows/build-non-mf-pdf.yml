@@ -9,6 +9,7 @@ on:
     branches: [main]
     paths:
       - non_mf_groups_exist.tex
+      - docs/NON_MF_CLAIM_DECLS.txt
       - GroupApproximation/Criterion/FiniteDimensionalKill.lean
       - lakefile.toml
       # All publication and source-audit helpers are part of the gate.  Watching
@@ -161,6 +162,7 @@ jobs:
           publication_inputs_digest() {
             git ls-tree -r "$1" -- \
               "$TEX_FILE" \
+              docs/NON_MF_CLAIM_DECLS.txt \
               GroupApproximation/Criterion/FiniteDimensionalKill.lean \
               lakefile.toml \
               scripts \
