@@ -250,3 +250,14 @@ center-valued dimension over the commutant of the finite Clifford
 coefficient factor.  It would also have to remain compatible with the
 compressor, which normalizes rather than centralizes that commutant.  No
 such relative-dimension inequality is currently proved.
+
+## 6. Where this argument now lives
+
+The theorem of this file is written up, with full referee-grade proofs
+and the finitely presented strengthening, as the standalone manuscript
+`non_mf_groups_exist.tex` (see also
+`EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md`).  The Clifford lamp
+witness has two independent machine-checked realizations: the presented
+group with the `ZMod 2` crossing model (`Sofic/CliffordLampGroup.lean`)
+and the concrete Clifford-algebra model with unconditional sign
+nontriviality (`Monsters/CliffordAlgebraLamp.lean`).

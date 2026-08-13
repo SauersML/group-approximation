@@ -572,3 +572,33 @@ set or graph.  For the quasi-regular model this would recover a sofic model
 of `G action G/Gamma`, whereas the Kun--Thom obstruction proves that this
 action is not sofic.  The crossed-product CE assertion in `(NMF9)` is the
 new content, not a consequence of existing action permanence.
+
+## 7. Status (2026-08-13)
+
+The result is written up as the standalone manuscript
+`non_mf_groups_exist.tex`.  The manuscript is referee-revised (45-item
+pass) and priority-corrected: the first nonsofic group is OpenAI's, with
+Kun--Thom as the subsequent generalization; the sofic metric is
+normalized Hamming; the paper's contribution is confined to the
+stable-finite Kazhdan pinning and the marked-word kernel device, per
+`CREDIT_AND_PRIORITY_AUDIT.md`.  The manuscript displays a complete
+eight-generator presentation of `E` inline (CRW presentation of
+`SL_3(Z)`), and the old "necessity of property `(T)`" framing is
+replaced by the cyclic-base calibration through the literal
+Baumslag--Solitar marked presentation.
+
+Machine-checked so far (kernel, warnings-as-errors): the
+finite-dimensional kill theorem (`map_marked_commutator_eq_one`,
+`Criterion/FiniteDimensionalKill`); the sequential extraction from a
+corona representation (`Sofic/NormUltraproductSequentialExtraction`);
+involution rounding and the negative corner
+(`Sofic/ApproxInvolutionCorner`, `Sofic/NegativeCornerModel`); the
+equal-rank flip (`Sofic/ProjectionRankFlip`); spectral capture
+(`Sofic/SpectralCapture`); the marked vector chain
+(`Sofic/MarkedCompressionVectorChain`); two independent Clifford lamp
+realizations (`Sofic/CliffordLampGroup`,
+`Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
+(`Sofic/ExplicitNonMFEndpoint`).  As of this writing exactly one
+assembly placeholder remains at committed HEAD, in
+`Sofic/MarkedCompressionKill.lean`; until it closes, no claim that
+Theorem A itself is formally verified.
