@@ -52,6 +52,36 @@ property (TT)/T paper neither states nor depends on a nonsoficity corollary.
 The repository still contains broader soficity and nonsoficity developments
 as part of the formal library.
 
+## The non-MF development
+
+non_mf_groups_exist.tex presents the marked Kazhdan-compression theorem: an
+explicit group with a designated central involution killed by every
+homomorphism into every operator-norm matrix corona, hence not MF in the
+Carrión–Dadarlat–Eckhardt sense.  The formal counterpart is developed in
+the Sofic/ directory with a deliberately narrow trust surface: the only
+mathematical inputs are Mathlib and the repository's own property (T)
+theorems; no literature statement enters as an assumption.
+
+Reading path (front door first):
+
+| Module | Role |
+| --- | --- |
+| Sofic/ExplicitNonMFTheorem.lean | Headline endpoints: the finitely presented and countable non-MF witnesses |
+| Sofic/MarkedCompressionSequentialKill.lean | The analytic kill: `MarkedCompressionInclusionData.not_isWeakMF` and `word_normMFInvisible` |
+| Sofic/MarkedCompressionInclusionData.lean | The exact hypothesis set of the criterion (inclusion-form compression; no injectivity, no endomorphism structure) |
+| Sofic/KazhdanCompressorCorner.lean | Steps 7–10: adjoint Kazhdan projection, displacement, compression order, equal-rank flip |
+| Sofic/NegativeCornerModel.lean, Sofic/ApproxInvolutionCorner.lean | Steps 2–5: involution rounding and the negative-corner almost representation |
+| Sofic/AdjointMatrix.lean, Sofic/ProjectionRankFlip.lean, Sofic/SpectralCapture.lean | The finite-dimensional operator lemmas (adjoint calculus, finite stable finiteness, capture) |
+| Sofic/MarkedCompressionGroup.lean, Sofic/CliffordLampGroup.lean, Algebra/MappingTelescope.lean | The countable witness: telescope ⋊ ℤ with the Clifford lamp, `w ≠ 1` |
+| Sofic/ExplicitMarkedPresentation.lean, Sofic/ExplicitNonMFEndpoint.lean | The finitely presented witness via the Shalom cover, no endomorphism lift |
+| Sofic/NormMFResidualDetector.lean, Sofic/NormMFResidualFunctorial.lean | The operator-norm MF residual: functoriality, normality, characteristic, simple envelopes |
+
+The two `#print axioms` entries for the headline theorems are part of the
+kernel audit roster (Endpoint/Audit.lean); the accepted closure is
+propext, Classical.choice, and Quot.sound only.  The paper distinguishes
+throughout between statements with Lean anchors and statements that are
+paper-only.
+
 ## Subject map
 
 | Directory | Contents |

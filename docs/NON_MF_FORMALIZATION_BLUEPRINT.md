@@ -267,6 +267,43 @@ Please identify yourself: append a note to this section or commit a file
 * Names must say what they prove; no vacuous strengthenings; thresholds and
   constants explicit.
 
+### Library-quality bar (W9, post-gate; user directive 2026-08-13)
+
+The corpus must be usable by outsiders, not merely green.  Binding
+checklist for the API-polish pass (sequenced AFTER the first green gate and
+after w8-deslop lands, to avoid triple-churning files):
+
+1. **Names say mathematics.**  Rename placeholder identifiers:
+   `theGroup → witnessGroup`, `theIota → witnessEmbedding`,
+   `theT → witnessShift`, `theC → witnessLamp`, `theCompress/theCommC/
+   theWordSq/theWordCentral/theWordNeOne` accordingly; no `the*` or
+   `foo'` names in any public declaration.  Update the audit roster and
+   claim map in the same commit.
+2. **One front door.**  `Endpoint/MainResults.lean` (or `Endpoint/Public`)
+   states the four headline results with full docstrings and paper
+   pointers: the criterion (`MarkedCompressionInclusionData.not_isWeakMF`),
+   invisibility (`word_normMFInvisible`), the countable witness, the
+   finitely presented witness, plus the residual technology
+   (functoriality, characteristic, simple-envelope).  A reader must reach
+   every main theorem in ≤ 2 clicks from the README.
+3. **Module docs state the theorem, constants, and design decisions** —
+   each new Sofic/ module's header explains what is proved, why the
+   hypothesis set is what it is (e.g. why inclusion-form, why no
+   injectivity), and names its paper counterpart.  The ε-budget coupling
+   and the θ threshold get named constants with docstrings, not inline
+   magic numbers, WITHOUT changing their values.
+4. **Upstreamable layer isolated.**  Move the genuinely general lemmas —
+   equal-rank flip, `adjointMatrix` calculus, spectral capture, involution
+   rounding identities, mapping telescope — under `ForMathlib/` with
+   Mathlib-style docs, so they can be PR'd upstream; repo modules import
+   them from there.  (Mining audit confirmed no upstream equivalents.)
+5. **README trust-surface section**: what is machine-checked, the exact
+   axiom closure (from the audit roster's `#print axioms`), how to
+   reproduce (lake build + Audit + Signatures), and what is deliberately
+   NOT claimed (hyperlinearity/soficity of E; the W6 candidates).
+6. **No API regressions**: every rename ships with the full build + audit
+   + signatures ritual in the same commit.
+
 ### Mathlib API gotchas collected during this development
 
 * `Finsupp.domLCongr` under a `≃ₗ[ℝ]` ascription sticks on a `Module`
