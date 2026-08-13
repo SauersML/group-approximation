@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.OpAlmostRepresentation
+import GroupApproximation.Sofic.NormMFResidualDetector
 
 /-!
 # Extracting a sequential model from an arbitrary norm ultraproduct
@@ -167,5 +168,18 @@ theorem exists_markedOpAlmostRepresentation_of_ne_one
     rw [div_lt_iff₀ hε] at hlt
     linarith
   exact ((hstage n).1 (g, h) (Finset.mem_product.mpr ⟨hg, hh⟩)).trans hsmall
+
+/-- To prove that a marked element is invisible in every arbitrary norm
+ultraproduct, it suffices to rule out sequential operator-norm almost
+representations retaining a uniform marked gap.  This is the exact logical
+interface consumed by the sequential Kazhdan-compression argument. -/
+theorem normMFInvisible_of_no_markedOpAlmostRepresentation
+    [Countable G] {z : G}
+    (hkill : MarkedOpAlmostRepresentation G z → False) :
+    NormMFInvisible z := by
+  intro I U X rho
+  by_contra hz
+  obtain ⟨A⟩ := exists_markedOpAlmostRepresentation_of_ne_one U X rho hz
+  exact hkill A
 
 end GroupApproximation
