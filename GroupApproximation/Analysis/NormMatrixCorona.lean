@@ -404,7 +404,6 @@ private theorem normMatrixCorona_mk_le_tailNorm
     (norm_tail_le_add X a
       (add_nonneg (matrixSequenceTailNorm_nonneg X a) hε.le) hN)
 
-omit [∀ n, Nonempty (X n)] in
 private theorem matrixSequenceTailNorm_le_norm_of_sub_isC0
     (a b : BoundedMatrixSequence X)
     (hab : a - b ∈ c0MatrixSequenceIdeal X) :
@@ -430,7 +429,6 @@ private theorem matrixSequenceTailNorm_le_norm_of_sub_isC0
     _ < ‖b‖ + (y - ‖b‖) := add_lt_add_left hn _
     _ = y := add_sub_cancel_left _ _
 
-omit [∀ n, Nonempty (X n)] in
 private theorem matrixSequenceTailNorm_le_normMatrixCorona_mk
     (a : BoundedMatrixSequence X) :
     matrixSequenceTailNorm X a ≤
@@ -467,8 +465,10 @@ private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
   have hmap := hmono.map_limsup_of_continuousAt
     (F := atTop) (fun n ↦ ‖a n‖) hcont.continuousAt
     (matrixNorm_isBoundedUnder X a) (matrixNorm_isCoboundedUnder X a)
-  simpa [Function.comp_def, max_eq_left, matrixSequenceTailNorm_nonneg X a]
-    using hmap
+  have htail : 0 ≤ Filter.limsup (fun n ↦ ‖a n‖) atTop := by
+    exact matrixSequenceTailNorm_nonneg X a
+  rw [max_eq_left htail] at hmap
+  simpa [Function.comp_def, max_eq_left] using hmap
 
 noncomputable instance normMatrixCoronaAlgebraCStarRing :
     CStarRing (NormMatrixCoronaAlgebra X) where
