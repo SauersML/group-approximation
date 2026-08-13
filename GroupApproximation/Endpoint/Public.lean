@@ -10,6 +10,7 @@ import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
@@ -407,6 +408,14 @@ export GroupApproximation.MarkedGroupSpace
 export GroupApproximation
   (l2_opNorm_kronecker_le exists_pow_re_lt_half
     exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap)
+export GroupApproximation
+  (IsOperatorMF.of_coprod_left IsOperatorMF.of_coprod_right
+    not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
+    coprod_isFinitelyPresented)
+export GroupApproximation.LiteralFreeProductConsequences
+  (literal_coprod_int_finitelyPresented_not_isOperatorMF
+    literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
+    witness_coprod_int_not_isOperatorMF)
 
 /-! ### Reach of the construction -/
 

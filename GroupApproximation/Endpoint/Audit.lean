@@ -20,6 +20,7 @@ import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
@@ -519,3 +520,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.AffineSL3Doubling.doubling_package
 #print axioms GroupApproximation.MarkedGroupSpace.tendsto_iff_eventually_relation
 #print axioms GroupApproximation.exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap
+#print axioms GroupApproximation.LiteralFreeProductConsequences.literal_coprod_int_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.LiteralFreeProductConsequences.literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate

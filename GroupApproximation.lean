@@ -174,6 +174,7 @@ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
+import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
