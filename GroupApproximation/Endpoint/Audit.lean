@@ -35,6 +35,7 @@ import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
@@ -519,6 +520,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
 #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
+#print axioms GroupApproximation.LiteralCyclicCalibration.mark_central
 #print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val
 #print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central
 #print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill

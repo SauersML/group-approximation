@@ -145,6 +145,26 @@ theorem mark_comm_lamp : Commute mark lamp := by
   apply PresentedGroup.one_of_mem
   simp [relators]
 
+/-- The three displayed commutation relators make the marked element central
+in the whole literal presented group. -/
+theorem mark_central (g : LiteralGroup) : Commute mark g := by
+  have hgen : ∀ i : Generator,
+      Commute mark (evalWord (FreeGroup.of i)) := by
+    intro i
+    fin_cases i
+    · exact mark_comm_gamma
+    · exact mark_comm_stable
+    · exact mark_comm_lamp
+  obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ g
+  induction w using FreeGroup.induction_on with
+  | C1 => exact Commute.one_right _
+  | of i => exact hgen i
+  | inv_of i hi =>
+      rw [map_inv]
+      exact hi.inv_right
+  | mul a b ha hb =>
+      simpa only [map_mul] using ha.mul_right hb
+
 /-! ## Exact realization in the Clifford cyclic model -/
 
 noncomputable def targetGenerator : Generator → CliffordBS
