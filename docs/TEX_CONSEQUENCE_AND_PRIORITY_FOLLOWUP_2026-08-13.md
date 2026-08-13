@@ -7,7 +7,7 @@ documentation, not part of the manuscript.
 ## Current presentation status
 
 - Verification links are compact margin annotations. The authoritative TeX
-  has seven annotations, each adjacent to a statement with the same
+  has nine annotations, each adjacent to a statement with the same
   mathematical shape as its target declaration. No verification-status prose
   remains in the mathematical body.
 - Group MF is defined primarily using the quotient of unitary sequences by
@@ -57,6 +57,9 @@ documentation, not part of the manuscript.
   four group-C-star variants inherit the argument because full and reduced
   group C-star inclusions induced by subgroup inclusions are injective, while
   MF, finiteness, and stable finiteness pass to unital subalgebras.
+  The recognition statement now uses the standard finite-C-star-algebra
+  terminology directly; the proof detects its failure by the explicit proper
+  isometry, without relying on a potentially ambiguous algebraic synonym.
 - The authoritative manuscript currently contains neither the proposed
   free-product simple/exact/unique-trace consequences. Those claims must not
   be described as manuscript results unless they are added and separately
