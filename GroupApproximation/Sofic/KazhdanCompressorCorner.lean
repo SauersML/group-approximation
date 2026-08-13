@@ -19,6 +19,16 @@ The compression step never needs an endomorphism of `Γ`: for each averaged
 generator `s` one chosen conjugate `δ` with `t (ι s) t⁻¹ = ι δ` suffices,
 because the top-spectral displacement theorem applies to every element of
 `Γ` at once.
+
+The operator-norm-to-Hilbert--Schmidt conjugation maneuver has an older
+ancestor in Dadarlat, Lemma 3.18 and Proposition 3.19 (Ozawa--Thom),
+*Obstructions to matricial stability of discrete groups and almost flat
+K-theory*.  The one-sided-compressor/fixed-space architecture is also the
+finite-stage operator-norm analogue of OpenAI, Proposition 2.3, and of the
+compression-semigroup and sofic-Mautner framework of Kun--Thom
+(arXiv:2608.06222).  The equal-rank reversal below is this development's
+finite-dimensional replacement for stable finiteness; no external code is
+copied.
 -/
 
 namespace GroupApproximation

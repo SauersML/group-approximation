@@ -12,6 +12,7 @@ import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.CentralCoverInheritance
+import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.KOne.PaperStatements
@@ -419,3 +420,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.MultiplicativeApproximation.inv_mul_close_eventually
 #print axioms GroupApproximation.KunThomCorrelation.finiteAveragingDisplacementNormSq_eventually_lt
 #print axioms GroupApproximation.KunThomRounding.exists_pairProduct_relation_eventually
+#print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
+#print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF

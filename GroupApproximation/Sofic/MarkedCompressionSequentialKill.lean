@@ -21,8 +21,19 @@ file forces a contradiction:
 * the distance between `1` and `-1` is `2`, ruling both out at once.
 
 Consequently a countable group carrying inclusion data with a nontrivial
-marked word is not weak/operator-norm MF, modulo the negative-corner input,
-which is constructed in `NegativeCornerModel` and discharged below.
+marked word is not weak/operator-norm MF.  The negative-corner input is proved
+in `NegativeCornerModel`; the assembled endpoint is
+`MarkedCompressionInclusionData.word_normMFInvisible`.
+
+The individual ideas have substantial prior art: see Slofstra--Vidick for
+negative-eigenspace compression, Slofstra (arXiv:1806.05267) for Clifford
+signs with shift/HNN machinery, Dadarlat's Lemma 3.18 and Proposition 3.19
+for the operator-norm/adjoint-Hilbert--Schmidt/property-(T) lineage, and
+OpenAI Proposition 2.3 plus Kun--Thom (arXiv:2608.06222) for one-sided
+compressors and fixed-space propagation.  The endpoint formalized here is
+the stable-finite/equal-rank pinning of that architecture to a universal
+operator-norm marked kernel.  All proofs are native to this repository; no
+external Lean implementation is copied.
 -/
 
 namespace GroupApproximation

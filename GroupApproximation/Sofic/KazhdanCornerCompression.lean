@@ -8,6 +8,13 @@ This file connects the finite-stage spectral gap to an almost reducing
 projection.  The first layer is dimension-free spectral-cutoff calculus; the
 later layer applies it to weak-MF matrix averages and compresses the
 microstates to the moving eigenspaces.
+
+For provenance, compare the operator-norm almost-spectral-gap theorem due to
+Uri Bader and recorded as Dogon--Vigdorovich, Theorem 7.10
+(arXiv:2506.20843v2), whose proof uses Ozawa's sum-of-squares
+characterization of property (T) and generalizes Manuilov--Yu.  The present
+file proves the concrete matrix cutoff estimates required by this project;
+it does not import or transcribe external Lean code.
 -/
 
 namespace GroupApproximation

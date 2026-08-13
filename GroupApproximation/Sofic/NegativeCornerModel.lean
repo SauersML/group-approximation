@@ -30,6 +30,15 @@ finite-stage form of the central-corner cut in the non-MF manuscript
 (`non_mf_groups_exist.tex`, Lemma `lem:corner`); no lower bound on the
 corner ranks is consumed anywhere.  The downstream Kazhdan compressor takes
 exactly the exported interface.
+
+Mathematical provenance: compression of an approximate central involution to
+its negative eigenspace appears in Slofstra--Vidick, *Entanglement in
+non-local games and the hyperlinear profile of groups*, Proposition 2.7
+(arXiv:1711.10676).  Their normalized Hilbert--Schmidt argument obtains a
+positive relative dimension.  The operator-norm construction here needs only
+that the corner is nonempty and then treats it as the whole finite model, so
+no rank-density estimate is used.  This file is an independent Lean proof;
+no external Lean code was copied.
 -/
 
 namespace GroupApproximation
@@ -145,6 +154,7 @@ theorem toSignBasis_roundedInvolution (U : Matrix Y Y ℂ) :
   · subst hij
     by_cases hi : 0 < (hermitianPart_isHermitian U).eigenvalues i
     · simp [hP, Matrix.diagonal_apply_eq, Matrix.one_apply_eq, hi]
+      norm_num
     · simp [hP, Matrix.diagonal_apply_eq, Matrix.one_apply_eq, hi]
   · simp [hP, Matrix.diagonal_apply_ne _ hij, Matrix.one_apply_ne hij]
 
@@ -289,7 +299,8 @@ theorem sign_commutator_vanishing (A : OpAlmostRepresentation G)
   intro ε hε
   obtain ⟨N, hN⟩ := roundedInvolution_commute_map_vanishing A hz hcomm ε hε
   refine ⟨N, fun n hn => ?_⟩
-  set U : Matrix (A.model n) (A.model n) ℂ := A.map n z
+  set U : Matrix (A.model n) (A.model n) ℂ :=
+    (A.map n z : Matrix (A.model n) (A.model n) ℂ)
   have hcollapse :
       signDiagonal U * signMicrostate A z n g -
         signMicrostate A z n g * signDiagonal U =
@@ -318,7 +329,8 @@ theorem cornerMicrostate_multiplicative_eventually
   obtain ⟨Nc, hNc⟩ := sign_commutator_vanishing A hz (hcentral g) ε hε
   refine ⟨max Nm Nc, fun n hn => ?_⟩
   letI : Nonempty (A.model n) := Fintype.card_pos_iff.mp (A.modelNonempty n)
-  set U : Matrix (A.model n) (A.model n) ℂ := A.map n z
+  set U : Matrix (A.model n) (A.model n) ℂ :=
+    (A.map n z : Matrix (A.model n) (A.model n) ℂ)
   have hmul : ‖signMicrostate A z n (g * h) -
       signMicrostate A z n g * signMicrostate A z n h‖ ≤ ε / 2 := by
     simp only [signMicrostate]
@@ -361,7 +373,8 @@ theorem cornerMicrostate_gram_eventually (A : OpAlmostRepresentation G)
   obtain ⟨N, hN⟩ := sign_commutator_vanishing A hz (hcentral g)
     (Real.sqrt ε) (Real.sqrt_pos.2 hε)
   refine ⟨N, fun n hn => ?_⟩
-  set U : Matrix (A.model n) (A.model n) ℂ := A.map n z
+  set U : Matrix (A.model n) (A.model n) ℂ :=
+    (A.map n z : Matrix (A.model n) (A.model n) ℂ)
   have hunit : (signMicrostate A z n g)ᴴ * signMicrostate A z n g = 1 := by
     have hmem := signMicrostate_mem_unitaryGroup A z n g
     rw [Matrix.mem_unitaryGroup_iff', Matrix.star_eq_conjTranspose] at hmem
@@ -370,17 +383,11 @@ theorem cornerMicrostate_gram_eventually (A : OpAlmostRepresentation G)
     (signMicrostate A z n g) hunit
   have hblock : ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n g)‖ ≤ Real.sqrt ε := by
-    have hc : ‖U * signMicrostate A z n g - signMicrostate A z n g * U‖ ≤
-        Real.sqrt ε := by
-      simpa [U] using hN n hn
-    have hsqrt : 0 ≤ Real.sqrt ε := Real.sqrt_nonneg ε
-    calc
-      ‖coordinateBlock (fun i => ¬ negPredicate U i)
-          (negPredicate U) (signMicrostate A z n g)‖
-          ≤ ‖U * signMicrostate A z n g - signMicrostate A z n g * U‖ / 2 :=
-        norm_posBlock_le_half_commutator U _
-      _ ≤ Real.sqrt ε / 2 := by gcongr
-      _ ≤ Real.sqrt ε := by linarith
+    refine (norm_posBlock_le_half_commutator U _).trans ?_
+    have hc := hN n hn
+    change ‖signDiagonal U * signMicrostate A z n g -
+      signMicrostate A z n g * signDiagonal U‖ ≤ Real.sqrt ε at hc
+    linarith [Real.sqrt_nonneg ε]
   refine hgram.trans ?_
   have hnonneg : (0 : ℝ) ≤ ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n g)‖ := norm_nonneg _
@@ -394,7 +401,8 @@ theorem cornerMicrostate_involution_eventually
   intro ε hε
   obtain ⟨N, hN⟩ := roundedInvolution_sub_map_vanishing A hz ε hε
   refine ⟨N, fun n hn => ?_⟩
-  set U : Matrix (A.model n) (A.model n) ℂ := A.map n z
+  set U : Matrix (A.model n) (A.model n) ℂ :=
+    (A.map n z : Matrix (A.model n) (A.model n) ℂ)
   have hplus : cornerMicrostate A z n z + 1 =
       principalBlock (negPredicate U)
         (signMicrostate A z n z - signDiagonal U) := by
@@ -451,6 +459,21 @@ theorem norm_cornerUnitary_sub_cornerMicrostate
   exact norm_polarCorrect_sub_le (cornerMicrostate A z n g)
     (cornerGram_isHermitian _) (norm_cornerMicrostate_le_one A z n g)
     hdelta hdeltaHalf hclose
+
+/-- Generic triangle assembly for the corner involution estimate: if a
+matrix is close to a compression whose distance to `-1` is small, its own
+distance to `-1` is controlled.  Stated over an arbitrary coordinate type so
+the packaging theorem applies it without re-elaborating its large corner
+types. -/
+theorem norm_add_one_le_of_close {Y : Type*} [Fintype Y] [DecidableEq Y]
+    {P C : Matrix Y Y ℂ} {ε : ℝ}
+    (h1 : ‖P - C‖ ≤ ε / 2) (h2 : ‖C + 1‖ ≤ ε / 2) :
+    ‖P + 1‖ ≤ ε := by
+  have hsplit : P + 1 = (P - C) + (C + 1) := by abel
+  calc ‖P + 1‖ = ‖(P - C) + (C + 1)‖ := by rw [hsplit]
+    _ ≤ ‖P - C‖ + ‖C + 1‖ := norm_add_le _ _
+    _ ≤ ε / 2 + ε / 2 := add_le_add h1 h2
+    _ = ε := by linarith
 
 /-- Eventual nonemptiness of the corner, from separation of the central
 involution. -/
@@ -600,18 +623,18 @@ theorem exists_negativeCorner_opAlmostRepresentation
       _ ≤ ‖Pgh - Cgh‖ + ‖Cgh - Cg * Ch‖ +
           (‖(Cg - Pg) * Ph‖ + ‖Cg * (Ch - Ph)‖) := by
         refine (norm_add_le _ _).trans ?_
-        exact add_le_add (norm_add_le _ _) le_rfl
+        exact add_le_add (norm_add_le _ _) (norm_add_le _ _)
       _ ≤ ε / 4 + ε / 4 + (ε / 4 * 1 + 1 * (ε / 4)) := by
         refine add_le_add (add_le_add ?_ ?_) (add_le_add ?_ ?_)
         · exact hNgh _ hgh
         · exact hNm _ hm
         · refine (Matrix.l2_opNorm_mul _ _).trans ?_
           refine mul_le_mul ?_ hPh_norm (norm_nonneg _) (by linarith)
-          rw [show Cg - Pg = -(Pg - Cg) by abel, norm_neg]
+          rw [norm_sub_rev]
           exact hNg _ hg
         · refine (Matrix.l2_opNorm_mul _ _).trans ?_
           refine mul_le_mul hCg_norm ?_ (norm_nonneg _) (by norm_num)
-          rw [show Ch - Ph = -(Ph - Ch) by abel, norm_neg]
+          rw [norm_sub_rev]
           exact hNh _ hh
       _ = ε := by ring
   · -- the involution converges to `-1` on the corner
@@ -624,58 +647,6 @@ theorem exists_negativeCorner_opAlmostRepresentation
       le_trans ((le_max_left Ni Nz).trans hn) (le_max_left n N₀)
     have hzc : Nz ≤ max n N₀ :=
       le_trans ((le_max_right Ni Nz).trans hn) (le_max_left n N₀)
-    have htriangle :
-        (cornerUnitary A₀ z (max n N₀) z :
-          Matrix
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            ℂ) + 1 =
-        ((cornerUnitary A₀ z (max n N₀) z :
-          Matrix
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            ℂ) - cornerMicrostate A₀ z (max n N₀) z) +
-          (cornerMicrostate A₀ z (max n N₀) z + 1) := by abel
-    calc
-      ‖(cornerUnitary A₀ z (max n N₀) z :
-          Matrix
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            {i : A₀.model (max n N₀) //
-              negPredicate
-                (A₀.map (max n N₀) z :
-                  Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-            ℂ) + 1‖ =
-          ‖((cornerUnitary A₀ z (max n N₀) z :
-            Matrix
-              {i : A₀.model (max n N₀) //
-                negPredicate
-                  (A₀.map (max n N₀) z :
-                    Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-              {i : A₀.model (max n N₀) //
-                negPredicate
-                  (A₀.map (max n N₀) z :
-                    Matrix (A₀.model (max n N₀)) (A₀.model (max n N₀)) ℂ) i}
-              ℂ) - cornerMicrostate A₀ z (max n N₀) z) +
-            (cornerMicrostate A₀ z (max n N₀) z + 1)‖ := by
-        rw [htriangle]
-      _ ≤ ε / 2 + ε / 2 :=
-        (norm_add_le _ _).trans (add_le_add (hNz _ hzc) (hNi _ hi))
-      _ = ε := by linarith
-
+    exact norm_add_one_le_of_close (hNz _ hzc) (hNi _ hi)
 end NegativeCornerModel
 end GroupApproximation
