@@ -22,6 +22,20 @@ This is the first explicit nonfinite direction found by the shortest
 raw/comb packet audit.  The other four first transported-generator/raw
 commutators have order two.
 
+## The direction is exactly bilateral
+
+Put `g=X'_1` and `r=raw`.  Since `g^2=r^2=1` and `h=(gr)^2`, direct group
+algebra gives
+
+```text
+g h g^(-1)=h^(-1),        r h r^(-1)=h^(-1).          (MCI1b)
+```
+
+Thus both reflections reverse the infinite translation direction.  The
+identity is formalized for arbitrary groups in
+`GroupApproximation/Sofic/MixedCommutatorDihedral.lean` as
+`involutions_conjugate_product_sq_to_inverse`.
+
 ## Grading proof
 
 Work in the binary Leavitt algebra over `F_2`, with its standard integer
@@ -77,11 +91,11 @@ are orthogonal to `F-1/8`.  This looks like a bilateral regular direction,
 which finite cyclic matrices can approximate.  By itself `(MCI1)` therefore
 does not contradict hyperlinearity.
 
-The remaining opportunity is more specific: combine this explicit graded
-direction with the raw compressor relations and determine whether one side
-of the bilateral coefficient orbit is algebraically absent in the recovered
-finite multiplicity module.  Only such a one-sided boundary would activate
-the already formalized finite-trace leakage contradiction.
+Relation `(MCI1b)` closes the most direct one-sided interpretation: the two
+packet involutions already provide both directions and exchange them.  Any
+one-sided boundary would therefore have to arise only after an additional
+coefficient or spectral compression that is not invariant under these
+reflections.  The mixed word `h` alone cannot supply it.
 
 ## Reproducible certificate
 

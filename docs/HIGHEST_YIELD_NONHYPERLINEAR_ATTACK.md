@@ -18,10 +18,12 @@ so `h^n` has unique least-degree term
 This is the smallest concrete cross-chart axis on which to search for the
 missing multiplication module.  Its first sixteen nontrivial translates of
 the top coefficient cut have overlap `1/64=tau(F)^2`, not zero.  Therefore
-do not pursue a wandering-projection proof from `h` alone.  Test instead
-whether the raw compressor relations delete one half of the resulting
-bilateral coefficient orbit after finite-multiplicity recovery; that is the
-specific condition needed for the one-cut leakage theorem.
+do not pursue a wandering-projection proof from `h` alone.  Moreover both
+packet involutions conjugate `h` to `h^(-1)`, a generic identity Lean-checked
+in `Sofic/MixedCommutatorDihedral.lean`.  The raw relations explicitly retain
+both directions.  A one-sided leakage module would need a further
+non-invariant coefficient/spectral compression; it does not come from this
+dihedral subgroup itself.
 
 ## 2026-08-13 live mixed direction: orbit fingerprint and `[X'_1,raw]`
 
@@ -40,8 +42,8 @@ permutation/gauge ambiguity after any simultaneous reconstruction.  It does
 not create the reconstruction or put a transported cut in the raw space.
 
 Among commutators of the five transported packet generators with `raw`, four
-have order 2 while `[X'_1,raw]` has no detected period through exponent 128.
-Analyze this explicit word next for a coherent multiplication module.  Do not
+have order 2 while `[X'_1,raw]` has infinite order by the graded argument
+above.  Its dihedral symmetry rules out a direct one-sided module.  Do not
 return to common-finite-subgroup averaging: the full raw/comb intersection is
 trivial and the orbit residual from the raw coefficient space is positive.
 

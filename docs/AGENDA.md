@@ -12,8 +12,9 @@ minimum-degree term `s_00 t_(00(10)^4)`; the minimum component of `h^n` is
 `s_00 t_(00(10)^(4n))`, of degree `-8n`.  The first sixteen nonzero
 coefficient-cut translates have overlap `1/64=tau(F)^2`, so this is a
 bilateral mixing direction rather than an orthogonal wandering-projection
-contradiction.  The live question is whether the raw relations cut this
-bilateral orbit to a one-sided finite-multiplicity module.
+contradiction.  Both generating involutions conjugate `h` to `h^(-1)`; the
+generic identity is Lean-checked in `Sofic/MixedCommutatorDihedral.lean`.
+Therefore `h` alone cannot furnish the missing one-sided module.
 
 ### 2026-08-13: transported Pauli orbit has a canonical fingerprint
 
@@ -25,8 +26,8 @@ quadratic polynomial with spectral gap `11/64`, formalized in
 `Sofic/DoublePauliCoefficient.lean`.  This removes permutation ambiguity once
 simultaneous coordinate recovery exists, but does not prove coefficient-space
 membership.  The same audit isolates `[X'_1,raw]` as the first mixed word
-with no period through exponent 128; this is the next cross-chart direction
-to analyze.
+outside the finite packet; the following entry proves it has infinite order
+and records why its dihedral symmetry does not close the endpoint.
 
 ### 2026-08-13: the full raw/comb finite intersection is trivial
 
