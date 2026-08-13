@@ -63,7 +63,11 @@ The paper also proves:
 - failure of closure of MF groups under quotients and split extensions;
 - the MF radical and largest MF quotient, scaling families `E_m`, continuum
   many finitely generated non-MF groups, and a uniform matrix-size version of
-  the kill theorem.
+  the kill theorem;
+- closedness of the MF locus in every fixed-rank marked-group space, hence
+  openness of non-MF-ness and finite reduced-word-ball certificates;
+- a residually finite (hence MF) group whose maximal group C*-algebra contains
+  a proper isometry and is therefore not directly finite.
 
 The result is specific to operator-norm approximation. It does not prove that
 `E` is nonhyperlinear or nonsofic, does not decide whether
@@ -74,8 +78,9 @@ finite C*-algebras.
 
 The Lean development verifies the marked-compression mechanism, a nontrivial
 Clifford mark, and a finitely presented group that is not MF in the standard
-cofinite norm-matrix-corona sense. Separately, it proves that the mark dies in
-every operator-norm matrix ultraproduct and rules out the library's
+cofinite norm-matrix-corona sense; this direct `IsOperatorMF` theorem is the
+formal headline. Separately, it proves that the mark dies in every
+operator-norm matrix ultraproduct and rules out the library's auxiliary
 `IsWeakMF` predicate. Its unconditional finitely presented witness is built
 independently from a noncomputably chosen Shalom cover; it is not the literal
 eight-generator group `E` displayed in the paper. The literal presentation,
@@ -90,8 +95,11 @@ route also needs a formal presentation-completeness isomorphism. No
 unconditional literal endpoint or certificate is asserted.
 
 The general finite-normal obstruction is formalized first as universal
-ultraproduct invisibility and then in the unitary-sequence presentation of the
-manuscript's cofinite-corona language. The elementary polar-correction
+ultraproduct invisibility: `NormMFInvisible` quantifies over every matrix
+ultraproduct and every ultrafilter, including principal ultrafilters, and is
+not definitionally the manuscript's cofinite-corona radical. It is then
+formalized in the unitary-sequence presentation of the cofinite-corona
+language. The elementary polar-correction
 isomorphism from this presentation to the unitary group of the C-star quotient
 is not separately modeled in Lean. For countable groups, the resulting
 cofinite-corona MF radical is proved equal
@@ -109,12 +117,12 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/ChosenNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints for the noncomputably chosen cover |
+| `Sofic/ChosenNonMFTheorem.lean` | Public standard operator-MF endpoint for the noncomputably chosen finitely presented cover, plus auxiliary weak-MF consequences |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
 | `Monsters/LiteralCyclicCalibration.lean` | Literal cyclic comparison presentation, exact surviving mark, finite-dimensional kill, and conditional corona survival |
-| `Sofic/MarkedMFClosed.lean` | Closedness of the operator-MF locus in fixed-rank marked-group space and finite word-ball obstruction cylinders |
+| `Sofic/OperatorMFLocalNormalization.lean`, `Sofic/MarkedMFClosed.lean`, `Sofic/MarkedGroupWordBall.lean` | Local separation normalization, closedness of the fixed-rank marked MF locus, and finite word-ball obstruction cylinders |
 | `Sofic/OperatorMFFreeProductConsequences.lean` | Subgroup-hereditary propagation of non-MF obstructions to group free products |
 | `Sofic/LiteralPresentationRadius.lean` | Kernel-checked radius-34 bound for every literal relator and the marked word |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
@@ -127,11 +135,11 @@ Reading path, front door first:
 | `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
-| `Kazhdan/LiteralBaseSOS.lean`, `Sofic/LiteralKazhdanCompression.lean` | Explicit property-`(T)`/exact-SOS boundary for the literal group; no unconditional certificate or MF endpoint |
+| `Kazhdan/LiteralBaseSOS.lean`, `Sofic/LiteralKazhdanCompression.lean` | Conditional property-`(T)`/exact-SOS boundary for the literal group; no unconditional MF endpoint or completed certificate |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
 | `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
-| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
+| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to direct/stable finiteness |
 | `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
 | `Computability/CStarRecognitionConsequences.lean` | Conditional five-predicate C-star recognition and negative-side non-r.e. reductions |
 

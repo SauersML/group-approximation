@@ -78,9 +78,10 @@ The completed proof is split into independently useful layers.
 6. `MappingTelescope.lean`, `CliffordLampGroup.lean`, and
    `MarkedCompressionGroup.lean` construct a countable witness and prove its
    marked word nontrivial.
-7. `ChosenMarkedPresentation.lean` and `ChosenNonMFEndpoint.lean` provide
-   an independently checkable finite presentation with the same analytic
-   interface and a nontrivial marked word.
+7. `ChosenMarkedPresentation.lean` and `ChosenNonMFEndpoint.lean` provide a
+   finite presentation selected noncomputably from a proved Shalom-cover
+   existence theorem, with the same analytic interface and a nontrivial
+   marked word. “Chosen” is essential: no printed relator list is extracted.
 8. `OperatorMF.lean` extracts a sequential marked model directly from a mark
    surviving in the unitary-sequence presentation of the standard cofinite
    norm-matrix corona.
@@ -110,10 +111,13 @@ The completed proof is split into independently useful layers.
     invisibility, positive permanence, and quotient nonclosure.
 14. `FaithfulTracialMatrix.lean` and `ProperIsometryFromCompression.lean`
     isolate the matrix-trace and proper-isometry consequences used by the
-    manuscript. `MarkedGroupTopology.lean` and
-    `MarkovMFConsequences.lean` provide reusable topology and explicitly
-    conditional computability interfaces without asserting their external
-    transformation data.
+    manuscript. `OperatorMFLocalNormalization.lean`,
+    `MarkedGroupTopology.lean`, `MarkedGroupWordBall.lean`, and
+    `MarkedMFClosed.lean` prove the normalized finite-model criterion,
+    closedness of the fixed-rank marked MF locus, openness of its complement,
+    and finite word-ball certificates. `MarkovMFConsequences.lean` provides
+    explicitly conditional computability interfaces without asserting their
+    external transformation data.
 
 ## What is and is not formalized
 
@@ -125,16 +129,22 @@ assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
 presented Shalom-cover witness is literally the paper's displayed
 eight-generator group. The literal group's algebraic presentation and
 separating mark are formalized separately. Its non-MF theorem is available
-only with an explicit property-`(T)` premise or an exact rational SOS
-certificate; neither is supplied, chosen, or assumed by the unconditional
-endpoint. The development also makes no claim that either witness is
-nonhyperlinear or nonsofic.
+only with an explicit property-`(T)` premise on Lean's raw twenty-relator
+`PresentedGroup`, or an exact rational SOS certificate. Known property `(T)`
+of the classical group `Z^3 semidirect SL_3(Z)` does not prove the raw premise
+without completeness of the presentation, an isomorphism, or a direct
+property-`(T)` proof. None of those, and no exact certificate, is supplied by
+the unconditional endpoint. The development also makes no claim that either
+witness is nonhyperlinear or nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
-`UniversalWeakMF U X`, namely operator-norm matrix ultraproducts. This is a
-stronger target family than the sequential `c_0` corona used in the paper's
-definition, and the sequential extraction layer is where the countability
-hypothesis enters.
+`UniversalWeakMF U X`, namely operator-norm matrix ultraproducts over every
+ultrafilter, including principal ultrafilters. This is a stronger target
+family than the sequential `c_0` corona used in the paper's definition, not a
+definitionally identical radical. For countable groups,
+`coronaMFResidual_eq_normMFResidual` proves equality with the unitary-sequence
+cofinite-corona radical, and `isOperatorMF_iff_normMFResidual_eq_bot` gives the
+standard operator-MF bridge.
 
 ## Audit surface
 
