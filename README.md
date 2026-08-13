@@ -220,18 +220,18 @@ searchable.
 
 ## Tool and computational resource disclosure
 
-In the spirit of the Leiden Declaration on Artificial Intelligence and
-Mathematics (June 2026): the mathematics in this repository was developed
-and formalized with extensive use of large language models (Anthropic
-Claude models, GPT 5.6 Sol, multiple concurrent interactive sessions) operating under
-continuous human direction; the per-commit `Co-Authored-By` trailers are a
-tool-provenance record, not an authorship claim.  Formal verification uses
-Lean 4 and Mathlib, with the Lean kernel as the final checker; builds and
-audits run on the Minnesota Supercomputing Institute cluster.
-Attribution-critical literature claims were verified against primary
-sources by direct reading; the successive credit audits are recorded in
-docs/CREDIT_AND_PRIORITY_AUDIT.md.    See
-docs/LEIDEN_COMPLIANCE.md for the full compliance map.
+SauersML is the repository maintainer and responsible author.  The
+mathematics and formalization were developed with extensive use of large
+language models, including Anthropic Claude and OpenAI Codex models in
+multiple concurrent interactive sessions.  Those systems are research and
+software tools, not the authors named in `CITATION.cff`; commit trailers and
+session records document tool provenance rather than authorship.  The
+responsible author reviewed the theorem statements, proofs, formal endpoints,
+and literature claims and accepts responsibility for their accuracy.
+
+Formal verification uses Lean 4 and Mathlib, with the Lean kernel as the
+final checker.  Model roles, source checks, and successive credit audits are
+recorded in [docs/CREDIT_AND_PRIORITY_AUDIT.md](docs/CREDIT_AND_PRIORITY_AUDIT.md).
 
 ## Trust and verification
 
