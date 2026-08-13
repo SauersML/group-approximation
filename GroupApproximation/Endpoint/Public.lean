@@ -32,7 +32,6 @@ import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -47,7 +46,6 @@ import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
 /-!
 # The public results
