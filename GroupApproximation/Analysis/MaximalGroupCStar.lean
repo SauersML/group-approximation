@@ -245,7 +245,12 @@ theorem maximalGroupCStar_existsUnique_lift
   rcases subsingleton_or_nontrivial B with hB | hB
   · letI : Subsingleton B := hB
     let f : MaximalGroupCStar G →⋆ₐ[ℂ] B :=
-      { (default : MaximalGroupCStar G →ₐ[ℂ] B) with
+      { toFun := fun _ ↦ 0
+        map_one' := Subsingleton.elim _ _
+        map_mul' := fun _ _ ↦ Subsingleton.elim _ _
+        map_zero' := rfl
+        map_add' := fun _ _ ↦ Subsingleton.elim _ _
+        commutes' := fun _ ↦ Subsingleton.elim _ _
         map_star' := fun _ ↦ Subsingleton.elim _ _ }
     refine ⟨f, fun _ ↦ Subsingleton.elim _ _, ?_⟩
     intro q _
