@@ -14,7 +14,9 @@ formal development includes the finite-dimensional core, the sequential
 Kazhdan-compression kill, an independently constructed finitely presented
 non-MF witness, the literal eight-generator presentation and its exact
 nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
-radical.  No MF endpoint is claimed for the literal group. Accordingly this checker enforces that
+radical.  No unconditional MF endpoint is claimed for the literal group: its
+two endpoints explicitly require either property `(T)` of the displayed base
+or an exact rational SOS certificate. Accordingly this checker enforces that
 every counterpart link that *is* claimed resolves to a real declaration in
 the named module; statement pinning and transitive axiom checking of the
 formal headline endpoints are performed separately by ``scripts/Audit.lean``.
@@ -35,6 +37,7 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
+DECLS_FILE = REPO / "docs" / "NON_MF_CLAIM_DECLS.txt"
 REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
 
 
@@ -61,6 +64,24 @@ def validate(repo: Path, tex: Path) -> list[str]:
                 f"GroupApproximation/{module}.lean"
             )
     return problems
+
+
+def resolved_declarations(repo: Path, tex: Path) -> list[str]:
+    """Fully qualified declarations named by valid visible counterpart links."""
+    source = tex.read_text(encoding="utf-8")
+    index = build_index(repo)
+    out: set[str] = set()
+    for module, declaration in REFERENCE_RE.findall(source):
+        full = (declaration if declaration.startswith("GroupApproximation.")
+                else f"GroupApproximation.{declaration}")
+        expected = repo / "GroupApproximation" / f"{module}.lean"
+        if index.get(full) == expected:
+            out.add(full)
+    return sorted(out)
+
+
+def render_declarations(repo: Path, tex: Path) -> str:
+    return "\n".join(resolved_declarations(repo, tex)) + "\n"
 
 
 def self_test() -> int:
@@ -91,6 +112,12 @@ def self_test() -> int:
         )
         if validate(repo, tex):
             print("self-test: valid reference was rejected", file=sys.stderr)
+            return 1
+
+        self_decls = resolved_declarations(repo, tex)
+        if self_decls != ["GroupApproximation.map_marked_commutator_eq_one"]:
+            print("self-test: valid reference was not added to declaration roster",
+                  file=sys.stderr)
             return 1
 
         tex.write_text(
@@ -129,6 +156,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
     parser.add_argument("--self-test", action="store_true")
+    parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     if args.self_test:
         return self_test()
@@ -139,6 +167,16 @@ def main() -> int:
         print(f"check-non-mf-refs: {len(problems)} problem(s):", file=sys.stderr)
         for problem in problems:
             print(f"  {problem}", file=sys.stderr)
+        return 1
+
+    rendered = render_declarations(REPO, tex)
+    if args.write:
+        DECLS_FILE.parent.mkdir(parents=True, exist_ok=True)
+        DECLS_FILE.write_text(rendered, encoding="utf-8")
+        print(f"wrote {DECLS_FILE.relative_to(REPO)}")
+    elif not DECLS_FILE.is_file() or DECLS_FILE.read_text(encoding="utf-8") != rendered:
+        print(f"check-non-mf-refs: stale {DECLS_FILE.relative_to(REPO)}; "
+              "run scripts/check_non_mf_refs.py --write", file=sys.stderr)
         return 1
 
     count = len(REFERENCE_RE.findall(tex.read_text(encoding="utf-8")))

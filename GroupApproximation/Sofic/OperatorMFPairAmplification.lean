@@ -24,7 +24,7 @@ variable {Y : Type} [Fintype Y] [DecidableEq Y]
 
 /-- A unitary change of basis exposes half the squared operator-norm
 displacement as a diagonal real-part gap. -/
-theorem exists_conjugate_diagonal_gap [Nonempty Y]
+theorem exists_conjugate_diagonal_gap (hY : Nonempty Y)
     {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ) :
     ∃ (V : Matrix Y Y ℂ) (i : Y),
       V ∈ Matrix.unitaryGroup Y ℂ ∧
@@ -34,7 +34,7 @@ theorem exists_conjugate_diagonal_gap [Nonempty Y]
   let hH : H.IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
   let V : Matrix Y Y ℂ := hH.eigenvectorUnitary
   obtain ⟨i, hi⟩ :=
-    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D inferInstance
+    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D hY
   have hVV : Vᴴ * V = 1 :=
     Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
   have hVVstar : V * Vᴴ = 1 :=
@@ -128,14 +128,14 @@ theorem exists_conjugate_diagonal_gap [Nonempty Y]
 /-- If a unitary is `δ`-far from the identity, one of the first `N`
 tensor powers of a common unitary conjugate is more than one away from the
 identity, provided `N δ² > 8`. -/
-theorem exists_conjugated_tensorPower_far_from_one [Nonempty Y]
+theorem exists_conjugated_tensorPower_far_from_one (hY : Nonempty Y)
     {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {δ : ℝ} (hδ : 0 < δ) (hsep : δ ≤ ‖W - 1‖)
     (N : ℕ) (hN : 8 < (N : ℝ) * δ ^ 2) :
     ∃ (V : Matrix Y Y ℂ) (p : ℕ),
       V ∈ Matrix.unitaryGroup Y ℂ ∧ 1 ≤ p ∧ p ≤ N ∧
       ‖opTensorPow (Vᴴ * W * V) p - 1‖ > 1 := by
-  obtain ⟨V, i, hV, hgap⟩ := exists_conjugate_diagonal_gap hW
+  obtain ⟨V, i, hV, hgap⟩ := exists_conjugate_diagonal_gap hY hW
   let WV : Matrix Y Y ℂ := Vᴴ * W * V
   have hWV : WV ∈ Matrix.unitaryGroup Y ℂ :=
     mul_mem (mul_mem (conjTranspose_mem_unitaryGroup hV) hW) hV

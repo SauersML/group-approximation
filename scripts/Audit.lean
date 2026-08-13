@@ -69,6 +69,16 @@ example :
       IsOperatorMF E) :=
   ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 
+example
+    (hT : HasKazhdanPropertyT.{0, 0}
+      LiteralNonMFPresentation.Base) :
+    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
+  LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT hT
+
+example {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
+    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
+  LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate hcert
+
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
   isOperatorMF_iff_normMFResidual_eq_bot
@@ -368,6 +378,8 @@ def headlineTheorems : List Name :=
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT,
+   ``LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
    ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,

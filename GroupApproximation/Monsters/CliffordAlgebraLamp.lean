@@ -108,10 +108,6 @@ theorem lamp_mul_lamp_of_ne {x y : X} (h : x ≠ y) :
   simp only [lamp]
   exact eq_neg_of_add_eq_zero_left h0
 
-/-- Each lamp generator is a unit (it is its own inverse). -/
-theorem isUnit_lamp (x : X) : IsUnit (lamp X x) :=
-  ⟨⟨lamp X x, lamp X x, lamp_mul_self X x, lamp_mul_self X x⟩, rfl⟩
-
 /-- **The sign wall**: the group commutator word of two lamps at distinct
 sites is the central sign `-1`.  Since each lamp is its own inverse, the
 word `c_x c_y c_x c_y` is literally `[c_x, c_y] = c_x c_y c_x⁻¹ c_y⁻¹`;

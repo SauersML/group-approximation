@@ -16,13 +16,16 @@ import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.ExplicitLinearModel
+import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -127,6 +130,14 @@ boundary instead of conflating the two constructions.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
+* `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
+  the printed construction, with injective doubling, index-eight image, and
+  an explicit translation outside that image.  This does not assert that the
+  literal six-generator presentation is isomorphic to the semantic group.
+* `MarkedGroupSpace.tendsto_iff_eventually_relation` and
+  `exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap` -- the fixed-rank
+  marked-group topology and the operator-norm tensor amplifier used by the
+  marked-limit program.
 
 ## One endpoint per printed theorem
 
@@ -284,12 +295,16 @@ export GroupApproximation.KazhdanCompressionCore
     defectNormal_le_orbitDefectNormal
     orbitDefectNormal_le_compressionCentralizerDefect)
 export GroupApproximation.MarkedCompressionInclusionData
-  (not_isOperatorMF_of_mem_finiteNormal)
+  (not_isWeakMF_of_mem_finiteNormal not_isOperatorMF_of_mem_finiteNormal)
+export GroupApproximation.KazhdanCompressionCore
+  (finiteNormal_le_kernel_of_target_embeds)
 
 /-! ### The literal eight-generator boundary -/
 
-export GroupApproximation.LiteralNonMFPresentation (literal_algebraic_package)
-export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
+export GroupApproximation.LiteralNonMFPresentation
+  (generator_card literal_algebraic_package)
+export GroupApproximation.LiteralNonMFLinearWitness
+  (literal_mark_ne_one literal_finitelyPresented_nontrivial_mark)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
 export GroupApproximation.LiteralKazhdanCompression
@@ -302,6 +317,7 @@ export GroupApproximation.LiteralKazhdanCompression
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
+export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker
@@ -321,6 +337,12 @@ export GroupApproximation.ProperProjectionCompression
     exists_leftInvertible_not_isUnit not_isDedekindFiniteMonoid
     not_isStablyFiniteRing no_injective_monoidHom_to_dedekindFinite
     no_faithfulTracialState)
+export GroupApproximation.MarkedGroupSpace
+  (mem_nhds_iff_exists_cylinder_subset tendsto_iff_eventually_relation
+    tendsto_iff_eventually_cylinder)
+export GroupApproximation
+  (l2_opNorm_kronecker_le exists_pow_re_lt_half
+    exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap)
 
 /-! ### Reach of the construction -/
 
@@ -363,5 +385,7 @@ export GroupApproximation.BinaryLeavitt (K1_trivial narrowReduction_holds
 /-! ### The definitions are the textbook ones -/
 
 export GroupApproximation (hasKazhdanPropertyT_iff_textbook isLEF_iff_textbook)
+export GroupApproximation
+  (ambient_hasKazhdanPropertyTComplex universalLeavitt_profile_textbook)
 
 end GroupApproximation.Public
