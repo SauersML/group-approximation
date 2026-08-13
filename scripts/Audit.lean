@@ -65,6 +65,14 @@ example :
       ChosenMarkedPresentation.MarkedGroup :=
   ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
 
+example : IsClopen ChosenMarkedCylinder.chosenCylinder :=
+  ChosenMarkedCylinder.chosenCylinder_isClopen
+
+example :
+    ChosenMarkedCylinder.chosenCylinder ⊆
+      {N | ¬ IsOperatorMF N.Quotient} :=
+  ChosenMarkedCylinder.chosenCylinder_subset_nonMF
+
 example : LiteralCyclicCalibration.mark ≠ 1 :=
   LiteralCyclicCalibration.mark_ne_one
 
@@ -410,6 +418,8 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
    ``ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity,
    ``ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity,
+   ``ChosenMarkedCylinder.chosenCylinder_isClopen,
+   ``ChosenMarkedCylinder.chosenCylinder_subset_nonMF,
    ``OperatorMFMarkovWitness.positive_punit,
    ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
    ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,

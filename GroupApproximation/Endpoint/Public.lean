@@ -2,6 +2,7 @@ import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.ChosenUniversalHorn
+import GroupApproximation.Sofic.ChosenMarkedCylinder
 import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
@@ -119,6 +120,10 @@ generated from the manuscript's margin notes; this module is the short list.
 * `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
   closed locus in each fixed-rank marked-group space, with a finite word-ball
   cylinder witnessing every failure.
+* `ChosenMarkedCylinder.chosenCylinder_isClopen` and
+  `ChosenMarkedCylinder.chosenCylinder_subset_nonMF` -- the chosen finite
+  presentation gives a nonempty explicit clopen cylinder all of whose marked
+  quotients are non-MF.
 * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 * `ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity` and
@@ -203,10 +208,7 @@ group is part of the Lean API.
 * `LiteralCyclicCalibration.mark_ne_one` and
   `LiteralCyclicCalibration.finiteDimensional_kill` -- the literal cyclic
   comparison presentation has a surviving marked involution although every
-  exact finite-dimensional representation kills it.  Its corona-survival
-  theorem keeps operator-MF of the concrete Clifford target as an explicit
-  premise; it is not advertised as a formal proof of all of manuscript
-  Theorem C.
+  exact finite-dimensional representation kills it.
 * `normMatrixCoronaMk_eq_zero_iff` -- the algebraic bounded-matrix-sequence
   quotient has exactly the cofinite operator-norm-null sequences as the
   kernel of its quotient map.  No normed or C-star structure on this
