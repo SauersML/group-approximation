@@ -15,7 +15,7 @@
 \newcommand{\leanrepo}{[repository link removed for anonymous review]}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
-  pdftitle={An explicit finitely presented non-MF group},
+  pdftitle={A finitely presented non-MF group},
   pdfauthor={\paperauthor},
   pdfsubject={matricial field approximation, property (T), Kazhdan projections},
   pdfkeywords={MF groups, matrix coronas, property (T), HNN extensions, Clifford algebras, stable finiteness}
@@ -23,19 +23,14 @@
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
 \newcommand{\leanverified}[2]{%
-  \par\smallskip\noindent
-  {\normalfont\footnotesize\color{gray!70!black}%
-  \raggedright\Urlmuskip=0mu plus 2mu\relax
-  Formal counterpart:\par\nobreak\noindent
-  \ifanonymous\nolinkurl{#2}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
+  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}%
+  \ifanonymous\textsc{Lean 4}\else
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\textsc{Lean 4}}\fi}}
 \newcommand{\leanconditional}[2]{%
-  \par\smallskip\noindent
-  {\normalfont\footnotesize\color{gray!70!black}%
-  \raggedright\Urlmuskip=0mu plus 2mu\relax
-  Conditional formal deduction (given the cited external data):\par\nobreak\noindent
-  \ifanonymous\nolinkurl{#2}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
+  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}%
+  \textsc{Lean 4: scope gap}}}
+\newcommand{\leannote}[1]{%
+  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}#1}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -85,8 +80,11 @@
 
 \begin{document}
 
-\title{An explicit finitely presented non-MF group}
+\title{A finitely presented non-MF group}
 \author{\paperauthor}
+\subjclass[2020]{Primary 46L05; Secondary 20F05, 20F65, 22D55}
+\keywords{MF group, norm matrix corona, property (T), ascending HNN
+extension, Clifford algebra, stable finiteness}
 
 \begin{abstract}
 A countable discrete group is MF in the Carri\'on--Dadarlat--Eckhardt--%
@@ -135,6 +133,12 @@ there exist $2^{\aleph_0}$ pairwise non-isomorphic finitely generated
 non-MF groups; the MF locus is closed in every fixed-rank marked-group
 space, equivalently non-MF-ness is open; and the kill theorem holds in a
 uniform quantitative form over all matrix sizes at once.
+An accompanying Lean~4 development independently proves the unconditional
+existence of a finitely presented non-MF group via a noncomputably chosen
+Shalom cover.  It formalizes the displayed group's finite presentation and
+its nontrivial marked involution, but does not identify the chosen formal
+witness with that displayed group or claim a machine-checked non-MF endpoint
+for the latter.
 \end{abstract}
 
 \maketitle
@@ -160,11 +164,10 @@ for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
 with all defects measured in operator norm.
 Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
-an arbitrary positive sequence, as we do, is equivalent: replace its $n$th
-term by the cumulative block sum through stage $n$ and place the old unitary
-in the newest block.  The operator norm of every difference is unchanged.
-The formal companion proves this normalization at the level of the
-unitary-sequence corona.
+an arbitrary positive sequence, as we do, is equivalent: at stage $n$, take
+the block sum of the first $n$ models and place each old unitary in its
+corresponding block.  Multiplicative defects are the maxima of the block
+defects, while every separation already obtained persists at all later stages.
 \leanverified{Sofic/OperatorMFIncreasingDimensions}{GroupApproximation.isOperatorMFIncreasing_iff}
 This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
@@ -412,6 +415,7 @@ kills the corresponding marked element.
 \leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.zBS_ne_one}
 \leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.clifford_findim_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.literalGroup_finitelyPresented}
+\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.mark_central}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_surjective}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one}
@@ -419,9 +423,14 @@ kills the corresponding marked element.
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one}
 \end{mainthm}
+
+\ifanonymous\else
+For the last two formal deductions, operator-MF of the ambient Clifford
+cyclic model is an explicit premise.  The amenability and TWW inputs proving
+that premise remain in the paper proof; the formal companion does not claim
+to reprove them.
+\fi
 
 The quotient statement makes the comparison at the level actually used by
 the proof: the marked-word relations and witness mechanism survive when the
@@ -491,8 +500,6 @@ $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
 \ifanonymous\else
-\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
 \fi
 \end{mainthm}
 
@@ -2544,10 +2551,11 @@ $s$ is an isometry with defect $1-ss^*=Q_1-\bar p$.
 Thus $s^*s=1$ makes $s$ left-invertible, with left inverse $s^*$,
 whereas $ss^*\neq1$ makes $s$ a nonunit.  Equivalently, with
 $a=s^*$ and $b=s$ one has $ab=1$ but $ba\neq1$, so
-$\Cmax(G)$ is not directly finite.  The purely algebraic
-projection-compression implication is checked in Lean; the formal companion
-does not model $\Cmax(G)$ itself.
+$\Cmax(G)$ is not directly finite.
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne}
+\leannote{The counterpart covers the purely algebraic
+projection-compression implication only; $\Cmax(G)$ itself is not
+modelled.}
 
 It remains to check $Q_1\neq\bar p$.  Let
 $H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the
@@ -2602,8 +2610,6 @@ then the group is MF --- is recorded in \cite{Shulman}.
 MF groups are not closed under quotients: the free group $F_8$ is
 MF, and $E$ is a quotient of $F_8$.
 \ifanonymous\else
-\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF}
-\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective}
 \fi
 \end{corollary}
 
@@ -2632,9 +2638,6 @@ sign $z=-1\in\ClLamp(\bar X)$ satisfies
 $z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
 \ifanonymous\else
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_surjective}
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated}
 \fi
 \end{proposition}
 
@@ -2714,9 +2717,8 @@ group $H$ and $1\neq h\in H$, there is an embedding
 $j\colon H\hookrightarrow\Lambda$ into a finitely presented
 property~(T) group $\Lambda$ which is normally generated by $j(h)$
 \cite[Theorem~3]{ChatterjiKassabov}.  The arXiv record
-\arxiv{2601.22907v1} was submitted on January~30, 2026; the manuscript
-itself is dated August~11, 2026.  We use only that theorem and make no
-claim that its construction is part of the present work.
+\arxiv{2601.22907v1} was submitted on January~30, 2026.  We use only that
+theorem and make no claim that its construction is part of the present work.
 
 \begin{theorem}[a finitely presented Kazhdan group with full MF radical]
 \label{thm:kazhdanfullradical}
@@ -2730,10 +2732,6 @@ $\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
 linear representation of $\Lambda$, over every field, is trivial, and
 $\Lambda$ is perfect.
 \ifanonymous\else
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelope_normMFResidual_eq_top}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.hom_eq_one_to_isOperatorMF}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.allFiniteDimensionalRepresentationsTrivial}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelopeIsPerfect_of_eq_commutator}
 \fi
 \end{theorem}
 
@@ -2775,7 +2773,6 @@ as a subgroup and satisfies
 Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
 trivial.
 \ifanonymous\else
-\leanconditional{Sofic/UniversalKazhdanMFObstruction}{GroupApproximation.UniversalNormallyGeneratedKazhdanEnvelopeData.consequence_package}
 \fi
 \end{theorem}
 
@@ -2809,11 +2806,6 @@ For the same universal Kazhdan group,
 whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
 is therefore neither finite nor stably finite, and hence is not MF.
 \ifanonymous\else
-\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
-\leanverified{Analysis/ReducedGroupCStarMFObstruction}{GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing}
 \fi
 \end{corollary}
 
@@ -2881,7 +2873,6 @@ $t\,\iota_m(\gamma)\,t^{-1}=\iota_m(\alpha_m(\gamma))$ for all
 $\gamma\in\Gamma$, and $c$ commutes with $\iota_m(\Gamma)$: the
 tuple $(\Gamma,\iota_m,t,c)$ is a marked Kazhdan pattern in $E_m$
 (Fact~\ref{fact:T}).
-\leanverified{Monsters/AffineSL3Scaling}{GroupApproximation.AffineSL3Scaling.scaling_package}
 As in the proof of Theorem~\ref{thm:A},
 $d^2=tc^2t^{-1}=1$ in $E_m$, and Lemma~\ref{lem:square} gives
 $w_m=[\,d,\iota_m(a)\,]^2\in N_{\mathrm{comp}}$; the subgroup
@@ -2982,7 +2973,6 @@ property is undecidable from finite presentations.
 There is no algorithm which, given a finite group presentation, decides
 whether the presented group is MF.
 \ifanonymous\else
-\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
 \fi
 \end{theorem}
 
@@ -3000,7 +2990,6 @@ of codes presenting non-MF groups is not recursively enumerable.
 Consequently there is no sound and complete recursively verifiable system
 of finite certificates for non-MF-ness of finitely presented groups.
 \ifanonymous\else
-\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
 \fi
 \end{theorem}
 
@@ -3031,8 +3020,6 @@ decides any of the following five properties:
 For each property, the set of finite presentations on which it fails is
 not recursively enumerable.
 \ifanonymous\else
-\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
-\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_negative_sides_not_re}
 \fi
 \end{corollary}
 
@@ -3134,10 +3121,6 @@ clopen neighborhood
 Every group in $\mathcal O_E$ is non-MF.  With the literal relator set of
 Definition~\ref{def:E}, membership is determined by the relation pattern
 on reduced words of length at most $34$.
-\leanverified{Sofic/OperatorMFLocalNormalization}{GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
-\leanverified{Sofic/LiteralPresentationRadius}{GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34}
 \end{theorem}
 
 \begin{proof}
@@ -3436,8 +3419,7 @@ J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 I.~Chatterji and M.~Kassabov,
 \emph{Examples of finitely presented groups with strong fixed point
 properties and property (T)},
-preprint, \arxiv{2601.22907v1}, submitted January~30, 2026;
-manuscript dated August~11, 2026.
+preprint, \arxiv{2601.22907v1}, submitted January~30, 2026.
 
 \bibitem[CIOS]{CIOS}
 I.~Chifan, A.~Ioana, D.~Osin, and B.~Sun,

@@ -1,10 +1,6 @@
 import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
-import GroupApproximation.Analysis.ReducedGroupCStarTrace
-import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
-import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
-import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
@@ -14,8 +10,6 @@ import GroupApproximation.Kazhdan.RealGroupRing
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
 import GroupApproximation.Kazhdan.RationalGroupRingCertificate
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
-import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
@@ -46,6 +40,7 @@ import GroupApproximation.Sofic.OperatorMF
 import GroupApproximation.Sofic.NormMFUniversalQuotient
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
+import GroupApproximation.Sofic.RadicalSeparation
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
@@ -123,6 +118,7 @@ import GroupApproximation.PropertyT.NormalEdgeCodistance
 import GroupApproximation.Kazhdan.KazhdanGenerators
 import GroupApproximation.Kazhdan.KazhdanOrthogonal
 import GroupApproximation.Kazhdan.FixedSpaceCompression
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Kazhdan.KazhdanProjection
 import GroupApproximation.Kazhdan.InvariantDisplacement
 import GroupApproximation.Kazhdan.KazhdanFiniteModel
@@ -440,7 +436,6 @@ import GroupApproximation.Endpoint.StructuralProfile
 import GroupApproximation.Leavitt.UnitsGLProfile
 import GroupApproximation.KOne.AllRanksElementary
 import GroupApproximation.Kazhdan.KazhdanTextbook
-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.Terminality
 import GroupApproximation.Monsters.TwoConjugacyClasses
 import GroupApproximation.Monsters.VerbalCompleteness
