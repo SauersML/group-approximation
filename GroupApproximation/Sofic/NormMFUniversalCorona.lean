@@ -35,10 +35,6 @@ variable {G : Type u} [Group G]
 abbrev blockSumModel (Y Z : FiniteModel) : FiniteModel :=
   ⟨Y ⊕ Z, inferInstance, inferInstance⟩
 
-@[simp] theorem card_blockSumModel (Y Z : FiniteModel) :
-    Fintype.card (blockSumModel Y Z) = Fintype.card Y + Fintype.card Z := by
-  exact Fintype.card_sum
-
 /-- A binary block-diagonal matrix. -/
 def blockDiagMatrix (Y Z : FiniteModel)
     (A : Matrix Y Y ℂ) (B : Matrix Z Z ℂ) :
@@ -236,10 +232,6 @@ spurious identity coordinate. -/
   fintype := blockListFintype Bs
   decidableEq := blockListDecidableEq Bs
 
-@[simp] theorem card_blockListModel_nil {G : Type*} :
-    Fintype.card (blockListModel ([] : List (UnitaryBlock G))) = 0 := by
-  simp [blockListModel, blockListCarrier, blockListFintype]
-
 @[simp] theorem card_blockListModel_cons {G : Type*}
     (B : UnitaryBlock G) (Bs : List (UnitaryBlock G)) :
     Fintype.card (blockListModel (B :: Bs)) =
@@ -330,12 +322,6 @@ theorem norm_blockListMap_sub_ge_of_mem {G : Type*}
 def blockListUnitary {G : Type*} (Bs : List (UnitaryBlock G)) (g : G) :
     Matrix.unitaryGroup (blockListModel Bs) ℂ :=
   ⟨blockListMap Bs g, blockListMap_mem_unitaryGroup Bs g⟩
-
-@[simp] theorem blockListUnitary_coe {G : Type*}
-    (Bs : List (UnitaryBlock G)) (g : G) :
-    (blockListUnitary Bs g : Matrix (blockListModel Bs) (blockListModel Bs) ℂ) =
-      blockListMap Bs g :=
-  rfl
 
 /-- Uniformize an eventual bound over a finite set. -/
 private theorem eventually_forall_finset_bound {I : Type*}
