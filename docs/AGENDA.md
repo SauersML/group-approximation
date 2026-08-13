@@ -4,6 +4,36 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-12: consolidated outcome — three exact gates remain open
+
+The current investigation does not prove that Thom's group `K` is nonsofic
+and does not produce a hyperlinear nonsofic group.  Its complete synthesis is
+now preserved in
+`docs/HYPERLINEAR_NONSOFIC_RESEARCH_OUTCOME_2026_08_12.md`.
+
+For `K`, the Prüfer tower forces divisibility of favorable centralizer
+orbits, and the root-commutator structure strengthens this to a `p^(2m)`
+divisibility constraint on repaired level-`m` sectors.  Neither statement
+controls normalized orbit size.  The exact missing theorem is a
+fiber-compatible matching of a sofic model with the amplified model obtained
+from `K/F_m~=K`, equivalently uniform approximate coboundary trivialization
+of the finite extension cocycles.  Property `(T)`, self-quotienting, and
+product/balanced amplification do not supply it.
+
+The strongest general converter is the finite-central-radical corner
+theorem: one weak-MF group with a nontrivial finite-order element in
+`Z(E) intersect Rad_sof(E)` would have a hyperlinear nonsofic image after
+spectral compression.  The Clifford cover is norm-MF sterile, while the
+shear cover's required antipodal compatibility is already the missing
+norm-to-trace breakthrough.
+
+The weak-MF Kun--Thom symmetric double remains blocked by trace selection.
+Its radical witness is operator-norm visible in the canonical Kazhdan
+corner, but Shulman's strong-* representation lifts do not force that corner
+to occupy positive normalized matrix rank.  The three live gates are
+therefore: relative matching for `K`, a weak-MF finite central-radical group,
+or a trace-visible matrix profile for the symmetric double.
+
 ### 2026-08-12: a first-order radical jet is already a complete FALSE certificate
 
 The quadratic trace-gap amplifier has a strong geometric consequence.  Let
