@@ -55,12 +55,16 @@ example :
 example : LiteralCyclicCalibration.mark ≠ 1 :=
   LiteralCyclicCalibration.mark_ne_one
 
-example : Function.Surjective LiteralBaseAffineQuotient.affineQuotient :=
-  LiteralBaseAffineQuotient.affineQuotient_surjective
+example : Function.Surjective LiteralNonMFLinearWitness.matrixBaseHom :=
+  LiteralNonMFLinearWitness.matrixBaseHom_surjective
 
 example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
     LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
   LiteralBaseRelations.x_conj_v1
+
+example : Subgroup.normalizer
+    (LiteralBaseTranslationNormal.translations : Set LiteralNonMFPresentation.Base) = ⊤ :=
+  LiteralBaseTranslationNormal.normalizer_translations_eq_top
 
 example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V]
@@ -387,7 +391,6 @@ def headlineTheorems : List Name :=
    ``OperatorMFMarkovWitness.positive_punit,
    ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
    ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
-   ``LiteralMarkedCylinder.literalCylinder_isClopen,
    ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
    ``LiteralCyclicCalibration.mark_ne_one,
    ``LiteralCyclicCalibration.finiteDimensional_kill,
