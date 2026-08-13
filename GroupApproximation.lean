@@ -163,6 +163,7 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
+import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
