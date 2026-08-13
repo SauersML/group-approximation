@@ -251,6 +251,7 @@ import GroupApproximation.Leavitt.AryProfile
 import GroupApproximation.Leavitt.SelfSimilarityAlgebra
 import GroupApproximation.Leavitt.PlaneEmbedding
 import GroupApproximation.Leavitt.GeneralRankWords
+import GroupApproximation.Leavitt.Collision19243
 import GroupApproximation.Leavitt.GeneralScheme
 import GroupApproximation.Leavitt.GeneralCornerTheorem
 import GroupApproximation.Sofic.LEFSofic

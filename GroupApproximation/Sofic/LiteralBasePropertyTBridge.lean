@@ -28,24 +28,27 @@ open LiteralBaseRotationRetract LiteralTranslationOrbit
 
 noncomputable section
 
+universe uE
+
 private abbrev Base := LiteralNonMFPresentation.Base
 
 local instance : DecidableEq Base := Classical.decEq Base
 local instance : DecidableEq rotations := Classical.decEq rotations
 
 private def baseControlSet (S : Finset rotations) : Finset Base :=
-  (S.image fun r ↦ (r : Base)) ∪ {v2, v3}
+  (S.image fun r : rotations ↦ (r : Base)) ∪
+    {LiteralBaseRelations.v2, LiteralBaseRelations.v3}
 
 private theorem mem_baseControlSet_of_mem {S : Finset rotations}
     {r : rotations} (hr : r ∈ S) : (r : Base) ∈ baseControlSet S := by
   exact Finset.mem_union_left _ (Finset.mem_image_of_mem _ hr)
 
 private theorem v2_mem_baseControlSet (S : Finset rotations) :
-    v2 ∈ baseControlSet S := by
+    LiteralBaseRelations.v2 ∈ baseControlSet S := by
   simp [baseControlSet]
 
 private theorem v3_mem_baseControlSet (S : Finset rotations) :
-    v3 ∈ baseControlSet S := by
+    LiteralBaseRelations.v3 ∈ baseControlSet S := by
   simp [baseControlSet]
 
 private theorem norm_displacement_at_near
@@ -60,17 +63,18 @@ private theorem norm_displacement_at_near
   calc
     ‖rho g (p - x) + (rho g x - x) + (x - p)‖ ≤
         ‖rho g (p - x)‖ + ‖rho g x - x‖ + ‖x - p‖ := by
-      exact (norm_add_le _ _).trans
-        (add_le_add_right (norm_add_le _ _) _)
+      have h1 := norm_add_le (rho g (p - x) + (rho g x - x)) (x - p)
+      have h2 := norm_add_le (rho g (p - x)) (rho g x - x)
+      linarith
     _ = ‖rho g x - x‖ + 2 * ‖p - x‖ := by
       rw [(rho g).norm_map, norm_sub_rev]
       ring
 
 private theorem movingProjection_norm_lt_one_div_sixtyFour
-    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {E : Type uE} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [CompleteSpace E]
     {S : Finset rotations} {kappa : ℝ}
-    (hS : IsKazhdanPair rotations S kappa) (hkappaOne : kappa ≤ 1)
+    (hS : IsKazhdanPair.{0, uE} rotations S kappa) (_hkappaOne : kappa ≤ 1)
     (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (x : E)
     (hnear : ∀ q ∈ baseControlSet S,
       ‖rho q x - x‖ < kappa / 64) :
@@ -79,13 +83,18 @@ private theorem movingProjection_norm_lt_one_div_sixtyFour
   have hmMem : m ∈ KazhdanFixedSpace.subgroupMovingSubspace rho rotations :=
     KazhdanFixedSpace.subgroupMovingProjection_mem rho rotations x
   by_cases hm : m = 0
-  · rw [hm, norm_zero]
+  · have hm' :
+        KazhdanFixedSpace.subgroupMovingProjection rho rotations x = 0 := hm
+    rw [hm', norm_zero]
     norm_num
   · let w : KazhdanFixedSpace.subgroupMovingSubspace rho rotations := ⟨m, hmMem⟩
     have hw : w ≠ 0 := by
       intro hw
       apply hm
       exact congrArg Subtype.val hw
+    haveI : CompleteSpace
+        (KazhdanFixedSpace.subgroupMovingSubspace rho rotations) :=
+      (Submodule.isClosed_orthogonal _).completeSpace_coe
     obtain ⟨q, hqS, hmove⟩ :=
       hS.exists_moved_mul_norm_of_noInvariant
         (KazhdanFixedSpace.subgroupMovingRepresentation rho rotations)
@@ -103,10 +112,10 @@ private theorem movingProjection_norm_lt_one_div_sixtyFour
     nlinarith [hgap.trans_lt (hprojected.trans_lt hsmall)]
 
 private theorem exists_global_fixed_near
-    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {E : Type uE} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [CompleteSpace E]
     {S : Finset rotations} {kappa : ℝ}
-    (hS : IsKazhdanPair rotations S kappa) (hkappaOne : kappa ≤ 1)
+    (hS : IsKazhdanPair.{0, uE} rotations S kappa) (hkappaOne : kappa ≤ 1)
     (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (x : E)
     (hnear : ∀ q ∈ baseControlSet S,
       ‖rho q x - x‖ < kappa / 64) :
@@ -115,10 +124,11 @@ private theorem exists_global_fixed_near
   let m : E := KazhdanFixedSpace.subgroupMovingProjection rho rotations x
   have hm : ‖m‖ < 1 / 64 :=
     movingProjection_norm_lt_one_div_sixtyFour hS hkappaOne rho x hnear
+  have hmxp : (m : E) = x - p :=
+    KazhdanFixedSpace.subgroupMovingProjection_eq_sub_fixedProjection
+      rho rotations x
   have hpx : ‖p - x‖ = ‖m‖ := by
-    rw [KazhdanFixedSpace.subgroupMovingProjection_eq_sub_fixedProjection]
-    change ‖p - x‖ = ‖x - p‖
-    exact norm_sub_rev _ _
+    rw [hmxp, norm_sub_rev]
   have hpRot : p ∈ KazhdanFixedSpace.fixedSubspace rho rotations :=
     (KazhdanFixedSpace.fixedProjection rho rotations x).property
   have hpFixed : ∀ r : rotations, rho (r : Base) p = p := by
@@ -126,16 +136,16 @@ private theorem exists_global_fixed_near
     exact (KazhdanFixedSpace.mem_fixedSubspace_iff rho rotations p).mp
       hpRot r r.2
   have hkappa64 : kappa / 64 ≤ 1 / 64 := by nlinarith
-  have hv2x : ‖rho v2 x - x‖ < kappa / 64 :=
-    hnear v2 (v2_mem_baseControlSet S)
-  have hv3x : ‖rho v3 x - x‖ < kappa / 64 :=
-    hnear v3 (v3_mem_baseControlSet S)
-  have hv2p : ‖rho v2 p - p‖ < 3 / 64 := by
-    have h := norm_displacement_at_near rho v2 x p
+  have hv2x : ‖rho LiteralBaseRelations.v2 x - x‖ < kappa / 64 :=
+    hnear LiteralBaseRelations.v2 (v2_mem_baseControlSet S)
+  have hv3x : ‖rho LiteralBaseRelations.v3 x - x‖ < kappa / 64 :=
+    hnear LiteralBaseRelations.v3 (v3_mem_baseControlSet S)
+  have hv2p : ‖rho LiteralBaseRelations.v2 p - p‖ < 3 / 64 := by
+    have h := norm_displacement_at_near rho LiteralBaseRelations.v2 x p
     rw [hpx] at h
     nlinarith
-  have hv3p : ‖rho v3 p - p‖ < 3 / 64 := by
-    have h := norm_displacement_at_near rho v3 x p
+  have hv3p : ‖rho LiteralBaseRelations.v3 p - p‖ < 3 / 64 := by
+    have h := norm_displacement_at_near rho LiteralBaseRelations.v3 x p
     rw [hpx] at h
     nlinarith
   have htranslation : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8 := by
@@ -178,11 +188,12 @@ private theorem exists_global_fixed_near
       exact ciInf_le
         ⟨0, Set.forall_mem_range.mpr fun u : U ↦ norm_nonneg (p - (u : E))⟩
         ⟨z, hzTrans⟩
-    rw [norm_sub_rev] at hmin ⊢
+    rw [norm_sub_rev] at hmin
+    rw [norm_sub_rev] at hzp
     exact hmin.trans hzp
   refine ⟨y, hyGlobal, ?_⟩
   calc
-    ‖y - x‖ = ‖(y - p) + (p - x)‖ := by congr 1 <;> abel
+    ‖y - x‖ = ‖(y - p) + (p - x)‖ := by congr 1 ; abel
     _ ≤ ‖y - p‖ + ‖p - x‖ := norm_add_le _ _
     _ < 1 := by rw [hpx]; nlinarith
 
