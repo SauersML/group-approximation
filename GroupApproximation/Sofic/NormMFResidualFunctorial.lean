@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.NormMFResidualDetector
+import GroupApproximation.Sofic.WeakMFTransfer
 
 /-!
 # Characteristic and simple-envelope consequences of the MF residual
@@ -7,7 +8,9 @@ import GroupApproximation.Sofic.NormMFResidualDetector
 detector file records normality.  This file adds the two envelope-level
 consequences: the residual is characteristic, and in a simple group one
 nontrivial invisible element poisons everything — the residual is the whole
-group, so every homomorphism into a countable weak-MF group is trivial.
+group.  For a countable source, every homomorphism into an arbitrary weak-MF
+group is then trivial: its range is countable and inherits weak-MF from the
+target.
 -/
 
 namespace GroupApproximation
@@ -43,15 +46,22 @@ theorem normMFResidual_eq_top_of_simple [IsSimpleGroup G]
     exact hne (Subgroup.mem_bot.mp hx')
   · exact htop
 
-/-- Full residual makes every homomorphism to a countable weak-MF group
-trivial. -/
+/-- For a countable source, full residual makes every homomorphism to an
+arbitrary weak-MF group trivial.  No countability assumption on the target is
+needed: the homomorphism factors through its countable range, and weak-MF
+passes to subgroups. -/
 theorem map_eq_one_of_normMFResidual_eq_top
-    (htop : normMFResidual G = ⊤) {H : Type*} [Group H] [Countable H]
+    [Countable G] (htop : normMFResidual G = ⊤) {H : Type*} [Group H]
     (hH : IsWeakMF H) (f : G →* H) (g : G) : f g = 1 := by
+  letI : Countable f.range :=
+    Function.Surjective.countable f.rangeRestrict_surjective
+  have hRangeMF : IsWeakMF f.range :=
+    isWeakMF_of_injective f.range.subtype Subtype.val_injective hH
   have hg : g ∈ normMFResidual G := by rw [htop]; exact Subgroup.mem_top g
-  have hfg : f g ∈ normMFResidual H :=
-    mem_normMFResidual_iff.mpr ((mem_normMFResidual_iff.mp hg).map f)
-  rw [normMFResidual_eq_bot_of_isWeakMF hH] at hfg
-  exact Subgroup.mem_bot.mp hfg
+  have hfg : f.rangeRestrict g ∈ normMFResidual f.range :=
+    mem_normMFResidual_iff.mpr
+      ((mem_normMFResidual_iff.mp hg).map f.rangeRestrict)
+  rw [normMFResidual_eq_bot_of_isWeakMF hRangeMF] at hfg
+  simpa using congrArg Subtype.val (Subgroup.mem_bot.mp hfg)
 
 end GroupApproximation
