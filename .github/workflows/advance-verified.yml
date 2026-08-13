@@ -62,8 +62,12 @@ jobs:
             '.github/workflows/prover.yml' \
             'non_mf_groups_exist.tex' '.github/workflows/build-non-mf-pdf.yml')
           if git diff --quiet "$base" "$head" -- "${surface[@]}"; then
-            echo "Surface identical to verified commit ${base}; advancing."
-            git push --force origin "${head}:refs/heads/verified"
+            if ! git merge-base --is-ancestor "$base" "$head"; then
+              echo "Surface is identical, but verified ${base} is not an ancestor of ${head}; refusing to overwrite it."
+              exit 1
+            fi
+            echo "Surface identical to verified ancestor ${base}; advancing."
+            git push origin "${head}:refs/heads/verified"
           else
             echo "Surface changed since ${base}; the full prover gate decides."
           fi

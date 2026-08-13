@@ -384,7 +384,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if ! git push --force origin HEAD:refs/heads/verified; then
+          if ! git push origin HEAD:refs/heads/verified; then
             echo "::warning::could not advance the verified branch; the proof and kernel audit still passed."
           fi
 
