@@ -142,6 +142,7 @@ import GroupApproximation.Criterion.ExactCompression
 import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
+import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
 import GroupApproximation.Criterion.LocalizedApproximation
