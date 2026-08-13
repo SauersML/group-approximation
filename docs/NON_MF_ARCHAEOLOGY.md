@@ -559,3 +559,383 @@ eight-generator presentation, the general finite-normal criterion, and the
 paper consequence section were paper-only at that point. Any later work on
 those items must be evaluated against its own commit and audit state rather
 than retroactively attributed to the completed central-involution endpoint.
+
+## Complete recursive repository import graph
+
+This appendix is a machine-extracted snapshot at commit `38436d9d`. Starting
+from `Sofic/ExplicitNonMFTheorem.lean`, the recursive repository closure has
+**115 modules and 190 internal import edges**. Mathlib imports are the
+external boundary and are omitted. An em dash means the module has no further
+repository import in this closure. This is the complete build/import graph,
+not a claim that every imported declaration occurs in the final proof term.
+
+### `Algebra/`
+
+- `Algebra/MappingTelescope` -> —
+
+### `Criterion/`
+
+- `Criterion/Scheme` -> `Leavitt/LeavittCorner`, `Sofic/ThompsonFObstruction`
+
+### `Kazhdan/`
+
+- `Kazhdan/AlmostMinimalDisplacement` -> `Kazhdan/KazhdanFixedSpace`
+- `Kazhdan/DelormeFixedPoint` -> `Kazhdan/GaussianPositiveDefinite`, `Kazhdan/KazhdanGNS`, `Kazhdan/KazhdanFixedSpace`, `Kazhdan/HilbertCircumcenter`
+- `Kazhdan/GaussianPositiveDefinite` -> `Kazhdan/KazhdanFiniteModel`
+- `Kazhdan/HilbertCircumcenter` -> —
+- `Kazhdan/HilbertConvexFixedPoint` -> `Kazhdan/KazhdanFixedSpace`
+- `Kazhdan/HilbertEpsilonOrthogonality` -> —
+- `Kazhdan/Kazhdan` -> —
+- `Kazhdan/KazhdanControl` -> `Kazhdan/Kazhdan`
+- `Kazhdan/KazhdanFiniteGeneration` -> `Kazhdan/Kazhdan`
+- `Kazhdan/KazhdanFiniteModel` -> `Kazhdan/KazhdanOrthogonal`, `Sofic/Sofic`
+- `Kazhdan/KazhdanFixedSpace` -> `Kazhdan/Kazhdan`
+- `Kazhdan/KazhdanGNS` -> `Kazhdan/KazhdanFiniteModel`
+- `Kazhdan/KazhdanGenerators` -> `Kazhdan/Kazhdan`, `Matching/GeneratorWords`
+- `Kazhdan/KazhdanOrthogonal` -> `Kazhdan/Kazhdan`
+- `Kazhdan/KazhdanProjection` -> `Kazhdan/KazhdanOrthogonal`, `Kazhdan/KazhdanFiniteGeneration`, `Kazhdan/KazhdanGenerators`
+- `Kazhdan/PositiveOperatorGap` -> —
+- `Kazhdan/ShalomFinitePresentation` -> `Kazhdan/UltralimitGeometry`, `Kazhdan/AlmostMinimalDisplacement`, `Kazhdan/DelormeFixedPoint`
+- `Kazhdan/UltralimitGeometry` -> `Kazhdan/KazhdanFiniteModel`
+
+### `Leavitt/`
+
+- `Leavitt/DiagonalCornerCompression` -> `Leavitt/DiagonalElementary`, `Leavitt/LeavittMatrixCompression`
+- `Leavitt/DiagonalElementary` -> `Leavitt/ElementaryGroup`
+- `Leavitt/ElementaryGroup` -> —
+- `Leavitt/ElementaryRoots` -> `Leavitt/ElementaryGroup`
+- `Leavitt/ElementaryStabilization` -> `Leavitt/ElementaryRoots`
+- `Leavitt/Leavitt` -> —
+- `Leavitt/LeavittCorner` -> `Leavitt/Leavitt`
+- `Leavitt/LeavittMatrixCompression` -> `Leavitt/ElementaryGroup`, `Leavitt/LeavittCorner`
+- `Leavitt/LeavittRankEquivalence` -> `Leavitt/PrefixCode`, `Kazhdan/Kazhdan`
+- `Leavitt/LeavittWords` -> `Leavitt/Leavitt`
+- `Leavitt/MatrixSelfSimilarity` -> —
+- `Leavitt/PrefixCode` -> `Leavitt/LeavittWords`, `Leavitt/MatrixSelfSimilarity`, `Leavitt/ElementaryGroup`
+- `Leavitt/RankFourCompressors` -> `Leavitt/ElementaryStabilization`, `Leavitt/LeavittMatrixCompression`
+- `Leavitt/ShiftEndomorphism` -> `Leavitt/ElementaryRoots`, `Leavitt/UniversalLeavittOver`
+- `Leavitt/ThompsonWitness` -> `Leavitt/LeavittWords`, `Criterion/Scheme`
+- `Leavitt/UniversalLeavitt` -> `Leavitt/UniversalLeavittOver`
+- `Leavitt/UniversalLeavittOver` -> `Leavitt/Leavitt`
+- `Leavitt/UniversalPropertyT` -> `PropertyT/FiniteTypeCharacteristicTwoPropertyT`, `Leavitt/LeavittRankEquivalence`, `Leavitt/UniversalRankFour`
+- `Leavitt/UniversalRankFour` -> `Leavitt/UniversalLeavitt`, `Leavitt/DiagonalCornerCompression`, `Leavitt/RankFourCompressors`, `Leavitt/ThompsonWitness`
+
+### `Matching/`
+
+- `Matching/GeneratorWords` -> —
+
+### `PropertyT/`
+
+- `PropertyT/A2ClassTwoOrthogonality` -> `PropertyT/A2System`, `PropertyT/ClassTwoOrthogonality`
+- `PropertyT/A2Kazhdan` -> `PropertyT/A2System`, `Kazhdan/HilbertConvexFixedPoint`, `Kazhdan/KazhdanControl`, `PropertyT/NormalEdgeCodistance`
+- `PropertyT/A2MagicEnergy` -> `PropertyT/A2MagicGraphEstimates`, `PropertyT/A2MagicLaplacian`
+- `PropertyT/A2MagicGraph` -> `PropertyT/A2System`, `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/A2MagicGraphEstimates` -> `PropertyT/A2Kazhdan`, `PropertyT/A2ClassTwoOrthogonality`, `PropertyT/A2MagicGraph`
+- `PropertyT/A2MagicHilbert` -> `PropertyT/A2MagicEnergy`, `Kazhdan/PositiveOperatorGap`
+- `PropertyT/A2MagicLaplacian` -> `PropertyT/A2MagicGraph`
+- `PropertyT/A2System` -> `Leavitt/ElementaryRoots`, `PropertyT/ClassTwoNormalForm`
+- `PropertyT/ClassTwoApproximation` -> `Kazhdan/HilbertEpsilonOrthogonality`, `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/ClassTwoNormalForm` -> —
+- `PropertyT/ClassTwoOrthogonality` -> `PropertyT/ClassTwoApproximation`, `PropertyT/ClassTwoNormalForm`, `PropertyT/FiniteClassTwoDecompositionBound`
+- `PropertyT/FiniteClassTwoDecompositionBound` -> `PropertyT/FiniteOrbitRepresentation`, `Kazhdan/HilbertEpsilonOrthogonality`, `PropertyT/OrthogonalRepresentationDecomposition`
+- `PropertyT/FiniteClassTwoOrthogonality` -> `PropertyT/FiniteGroupAverage`
+- `PropertyT/FiniteGroupAverage` -> `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/FiniteInvolutionDecomposition` -> `PropertyT/InvolutionSplitting`
+- `PropertyT/FiniteOrbitRepresentation` -> `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/FiniteTypeCharacteristicTwoPropertyT` -> `PropertyT/FreeElementaryPropertyT`, `Leavitt/ElementaryGroup`
+- `PropertyT/FreeAlgebraDegree` -> —
+- `PropertyT/FreeElementaryPropertyT` -> `PropertyT/A2MagicHilbert`, `PropertyT/ClassTwoNormalForm`, `PropertyT/FreeRootCharacterValuation`, `Kazhdan/KazhdanControl`
+- `PropertyT/FreeRootActions` -> `PropertyT/FreeRootFiltration`
+- `PropertyT/FreeRootCharacterValuation` -> `PropertyT/FreeRootCharacterValuationBase`, `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/FreeRootCharacterValuationBase` -> `PropertyT/FreeRootPlaneFourier`, `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/FreeRootFiltration` -> `Leavitt/ElementaryRoots`, `PropertyT/FreeAlgebraDegree`
+- `PropertyT/FreeRootPlane` -> `PropertyT/FreeRootActions`
+- `PropertyT/FreeRootPlaneFourier` -> `PropertyT/FiniteInvolutionDecomposition`, `PropertyT/FreeRootPlane`
+- `PropertyT/InvolutionSplitting` -> `Kazhdan/Kazhdan`
+- `PropertyT/NormalEdgeCodistance` -> `Kazhdan/HilbertEpsilonOrthogonality`, `Kazhdan/KazhdanFixedSpace`
+- `PropertyT/OrthogonalRepresentationDecomposition` -> `PropertyT/FiniteClassTwoOrthogonality`
+
+### `Sofic/`
+
+- `Sofic/AdjointMatrix` -> `Sofic/HyperlinearAmplification`, `Sofic/KazhdanCornerModel`, `Sofic/OpAlmostRepresentation`
+- `Sofic/ApproxInvolutionCorner` -> `Sofic/KazhdanCornerMatrices`
+- `Sofic/Asymptotics` -> —
+- `Sofic/CliffordLampGroup` -> —
+- `Sofic/ExplicitMarkedPresentation` -> `Algebra/MappingTelescope`, `Kazhdan/KazhdanFiniteGeneration`, `Kazhdan/ShalomFinitePresentation`, `Sofic/ExplicitNonMFBase`, `Sofic/MarkedCompressionGroup`
+- `Sofic/ExplicitNonMFBase` -> `Leavitt/ShiftEndomorphism`, `Leavitt/UniversalPropertyT`, `Leavitt/UniversalRankFour`
+- `Sofic/ExplicitNonMFEndpoint` -> `Sofic/ExplicitMarkedPresentation`, `Sofic/MarkedCompressionInclusionData`
+- `Sofic/ExplicitNonMFTheorem` -> `Sofic/ExplicitNonMFEndpoint`, `Sofic/MarkedCompressionGroup`, `Sofic/MarkedCompressionSequentialKill`
+- `Sofic/Hyperlinear` -> `Sofic/HyperlinearMetric`, `Sofic/SoficPositiveControl`
+- `Sofic/HyperlinearAmplification` -> `Sofic/Hyperlinear`
+- `Sofic/HyperlinearMetric` -> `Sofic/Sofic`
+- `Sofic/HyperlinearNonScalar` -> `Sofic/HyperlinearAmplification`
+- `Sofic/HyperlinearReduction` -> `Sofic/Hyperlinear`, `Sofic/SoficTransfer`, `Sofic/LEFSofic`
+- `Sofic/HyperlinearScalar` -> `Sofic/HyperlinearAmplification`
+- `Sofic/HyperlinearUltraproduct` -> `Sofic/PhasePropagation`, `Sofic/SoficUltraproduct`
+- `Sofic/HyperlinearUltraproductBridge` -> `Sofic/HyperlinearUltraproduct`, `Sofic/HyperlinearWeakBridge`
+- `Sofic/HyperlinearWeakBridge` -> `Sofic/HyperlinearNonScalar`, `Sofic/HyperlinearReduction`, `Sofic/HyperlinearScalar`, `Sofic/NormTraceGap`
+- `Sofic/KazhdanCompressorCorner` -> `Sofic/AdjointMatrix`, `Sofic/ProjectionRankFlip`, `Sofic/SpectralCapture`, `Sofic/MarkedCompressionInclusionData`
+- `Sofic/KazhdanCornerCompression` -> `Sofic/WeakMFVectorGNS`, `Sofic/KazhdanCornerPolar`
+- `Sofic/KazhdanCornerMatrices` -> `Kazhdan/KazhdanProjection`, `Sofic/OpAlmostRepresentation`
+- `Sofic/KazhdanCornerModel` -> `Sofic/KazhdanCornerCompression`, `Sofic/HyperlinearUltraproductBridge`
+- `Sofic/KazhdanCornerPolar` -> `Sofic/KazhdanCornerMatrices`
+- `Sofic/LEF` -> —
+- `Sofic/LEFSofic` -> `Sofic/Sofic`, `Sofic/LEF`
+- `Sofic/MarkedCompressionData` -> `Sofic/NormMFResidualDetector`, `Kazhdan/KazhdanProjection`
+- `Sofic/MarkedCompressionGroup` -> `Algebra/MappingTelescope`, `Sofic/CliffordLampGroup`, `Sofic/ExplicitNonMFBase`, `Sofic/NormMFResidualDetector`
+- `Sofic/MarkedCompressionInclusionData` -> `Sofic/MarkedCompressionData`
+- `Sofic/MarkedCompressionSequentialKill` -> `Sofic/KazhdanCompressorCorner`, `Sofic/MarkedCompressionVectorChain`, `Sofic/NegativeCornerModel`, `Sofic/NormUltraproductSequentialExtraction`, `Sofic/OperatorMF`
+- `Sofic/MarkedCompressionVectorChain` -> `Sofic/AdjointMatrix`, `Sofic/ProjectionRankFlip`
+- `Sofic/NegativeCornerModel` -> `Sofic/ApproxInvolutionCorner`, `Sofic/KazhdanCornerModel`, `Sofic/KazhdanCornerPolar`
+- `Sofic/NormMFResidualDetector` -> `Sofic/WeakMFUltraproduct`
+- `Sofic/NormTraceGap` -> `Sofic/HyperlinearAmplification`
+- `Sofic/NormUltraproductSequentialExtraction` -> `Sofic/OpAlmostRepresentation`, `Sofic/NormMFResidualDetector`
+- `Sofic/OpAlmostRepresentation` -> `Sofic/WeakMFUltraproduct`
+- `Sofic/OperatorMF` -> `Sofic/NormUltraproductSequentialExtraction`
+- `Sofic/PhaseOrder` -> `Sofic/HyperlinearScalar`
+- `Sofic/PhasePropagation` -> `Sofic/PhaseOrder`
+- `Sofic/ProjectionRankFlip` -> `Sofic/KazhdanCornerModel`
+- `Sofic/Sofic` -> `Sofic/Asymptotics`
+- `Sofic/SoficAmplification` -> `Sofic/Sofic`, `Sofic/SoficPositiveControl`
+- `Sofic/SoficPositiveControl` -> `Sofic/Sofic`, `Sofic/SoficTransfer`
+- `Sofic/SoficTransfer` -> `Sofic/Sofic`
+- `Sofic/SoficUltraproduct` -> `Sofic/SoficAmplification`
+- `Sofic/SpectralCapture` -> `Sofic/ProjectionRankFlip`
+- `Sofic/ThompsonFObstruction` -> `Sofic/LEF`
+- `Sofic/WeakMFUltraproduct` -> `Sofic/NormTraceGap`, `Sofic/SoficUltraproduct`
+- `Sofic/WeakMFVectorGNS` -> `Kazhdan/KazhdanGNS`, `Sofic/KazhdanCornerMatrices`
+
+## Computational and tool provenance
+
+### What was computationally used in the surrounding discovery program
+
+Yes: extensive computation occurred in the dependency **history**, but it is
+important to say precisely where it sits.
+
+The August 8--12 hyperlinear-versus-sofic campaign used a large experimental
+workspace. The committed `experiments/` tree contains Python, GAP, Sage,
+MILP/SMT/SAT, numerical linear algebra, and MSI batch artifacts. Proximate
+examples include:
+
+| Artifact | First commit | What it tested |
+| --- | --- | --- |
+| `experiments/displacement_coherence.py` | `7df367c9`, Aug 8 13:04 | A finite surrogate for coherent displacement; the result file later retracts an apparent positive signal caused by failing to recheck transport. |
+| `experiments/atlas_one_involution_search.py` | `2fa1d714`, Aug 11 03:16 | Riemannian searches for a one-involution normalized-HS model, with operator-norm diagnostics. |
+| `experiments/atlas_clifford_block.py` | `71de5eca`, Aug 11 05:30 | An exact 64-dimensional Clifford/Pauli block. |
+| `experiments/atlas_clifford_refine.py` | `83fda63b`, Aug 11 05:34 | Numerical refinement on the Pauli manifold. |
+| `experiments/atlas_clifford_window_search.py` | `7a8e72f1`, Aug 11 06:05 | A coherent finite Clifford wall-crossing window. |
+| `experiments/atlas_self_similarity_block8_search.py` | `7a478245`, Aug 11 07:07 | An eight-dimensional compression of the atlas phase search. |
+| `experiments/sl3_group_ring_sos.py` | `1c674a41`, Aug 11 04:09 | A finite group-ring sum-of-squares/Hodge-gap certificate in a neighboring property-(T) line. |
+
+The one-involution report is unusually explicit about the boundary: its GAP
+conversion and finite optimizer tested necessary relations only, not a group
+microstate or the full normal kernel. It reports exact finite controls,
+floating-point gradient checks, plateaus, and maximal operator-norm defects.
+Those experiments helped eliminate candidate routes and sharpen the
+operator-vs-HS distinction, but none of their numerical outputs appears as a
+hypothesis, constant, or certificate in Theorem A.
+
+The larger agenda immediately before the non-MF extraction also contains
+exact GAP computations, Sage identities, lattice reduction, finite quotient
+searches, MILP, SMT, CryptoMiniSat, and numerical unitary optimization for
+other candidate mechanisms. This explains the volume of `TRUE_` and `FALSE_`
+notes around the discovery. It does **not** make those branches mathematical
+ancestors of the non-MF proof. They are search-history ancestors: they closed
+alternatives and concentrated attention on the rank-renormalized central
+corner.
+
+### What is a logical computational dependency
+
+The logical computational chain is much smaller:
+
+- Lean 4 and Mathlib check the formal companion.
+- The Lean kernel is the final checker; the endpoint audit records only
+  `propext`, `Classical.choice`, and `Quot.sound`.
+- Finite enumerations and matrix identities inside Lean are proved by kernel-
+  checked terms and ordinary tactics. The audit rejects `sorry`, project
+  axioms, and compiler-trust shortcuts for the completed endpoint.
+- Builds and audits were run on the Minnesota Supercomputing Institute warm
+  cache. Commit messages repeatedly record green full builds and axiom scans.
+- CI checks the TeX-to-Lean anchors, TeX convergence, references, overflow,
+  rendering, PDF validity, and anonymous-build leakage.
+
+No Python, GAP, Sage, numerical optimizer, SAT solver, or experimental data
+file is imported by the Lean endpoint or used in the TeX proof.
+
+### External code mining
+
+`docs/EXTERNAL_CODE_AUDIT.md` records a deliberate search of Physlib,
+LeanQuantum, and Lean-QuantumInfo for reusable projection, spectral,
+Hilbert--Schmidt, and Clifford lemmas. The result was **zero ports**. The
+audit found that the repository's perturbative spectral layer was stronger
+for the needed operator-norm estimates, while other candidates were coupled
+to incompatible bundled types. No external Lean source was copied; the
+formal endpoint depends on Mathlib plus repository code.
+
+### Large-language-model and literature-search use
+
+The discovery and formalization used multiple concurrent Anthropic Claude
+sessions under human direction. Commit trailers record model provenance, not
+authorship. The density and near-simultaneity of commits in the formalization
+chronology reflect that parallel workflow, so author timestamps are evidence
+for first repository appearance, not a reliable total order of private
+reasoning.
+
+Web-connected model sessions assisted literature search. Attribution-critical
+claims were then checked against primary sources. This mattered materially:
+
+- the audit corrected the `SL_3(Z)` generator transcription;
+- it rejected an unsupported fetched-summary claim about Thom 2010;
+- it corrected the priority claim for stably finite non-MF C*-algebras;
+- it separated OpenAI's first nonsofic construction from Kun--Thom's later
+  extraction/generalization;
+- it identified Slofstra--Vidick, Slofstra, Dadarlat/Ozawa--Thom,
+  OpenAI/Kun--Thom, DGLT, and the Cornulier--Abels--Thom scaling pattern as
+  genuine ancestors of individual devices without claiming that any one of
+  them implies Theorem A.
+
+Thus language models and search were causally important, but neither model
+output nor a literature transcription is a trusted premise of the formal
+endpoint.
+
+## Discovery ancestry versus credit ancestry
+
+Some prior work was recognized only during the post-draft credit audit. It is
+part of the mathematical lineage but not necessarily the route by which the
+repository first found the proof.
+
+| Device | Recorded discovery route | Closest prior lineage identified in the audit |
+| --- | --- | --- |
+| One-sided Kazhdan compressor and centralizing lamp | Existing nonsofic/Kun--Thom work in the repository | OpenAI Proposition 2.3; Kun--Thom compression semigroup and sofic Mautner envelope; earlier Kun/Kun--Thom rigidity. |
+| Negative central-involution corner | Central-radical attempt in the hyperlinear-versus-sofic campaign | Slofstra--Vidick negative-eigenspace compression. |
+| Clifford sign and shifted lamps | CAR/Clifford candidate cover in the failed route | Slofstra's finite/infinite Clifford groups, central sign, shifts, and HNN machinery. |
+| Operator norm to conjugation on HS space | `NormTraceGap` and Kazhdan-corner development | Dadarlat Lemma 3.18 and Ozawa--Thom Proposition 3.19; foundational Bekka/Bekka--Valette conjugation-representation lineage. |
+| Marked element invisible to all approximations | Extraction from the Clifford sign | Slofstra's `G^fin`/`G^fa`; approximation kernels of Nikolov--Schneider--Thom. |
+| Central extension as approximation obstruction | Clifford cover and marked finite presentation | DGLT and the Glebsky--Rivera/Glebsky program, in different metrics. |
+| Proper self-embedding of a Kazhdan base | Existing Leavitt shift formally; `Z^3 semidirect SL_3(Z)` in TeX | Cornulier--Abels scaling machine and Thom's use of that pattern. |
+
+The audit's final narrowed novelty claim is correspondingly specific: the new
+chain is
+
+```text
+norm-corona representation
+    -> adjoint norm-corona
+    -> Kazhdan projection inclusion
+    -> stable-finite equality
+    -> rank-density-free central-corner renormalization
+    -> one fixed nontrivial marked element in every representation kernel.
+```
+
+## Minimal dependency chains
+
+The full import graph is large because the formal witness is entirely
+internal. For orientation, here are the irreducible chains after removing
+historical and import-only material.
+
+### Minimal TeX chain for the existence theorem
+
+```text
+property-(T) base with proper injective endomorphism and omitted a
+    + finite presentation of the base
+    -> finite marked presentation E
+
+Clifford coset witness
+    -> w != 1
+
+projection/unitary lifting in norm coronas
+    + Kazhdan projection
+    + stable finiteness of norm coronas
+    -> transported lamp remains fixed
+    -> w is killed by every corona representation
+
+w != 1 + universal kill
+    -> E is not MF.
+```
+
+The specific CRW presentation is needed only for the phrase “the following
+eight-generator presentation.” Any finitely presented Kazhdan base with the
+same compression data would support the proof.
+
+### Minimal formal chain for the public endpoint
+
+```text
+internal Kazhdan base + proper Leavitt shift
+    -> finite marked group with nontrivial realization
+
+surviving norm-ultraproduct mark
+    -> sequential separated almost representation
+    -> rounded nonempty negative corner
+    -> adjoint Kazhdan spectral capture
+    -> equal-rank reverse leakage
+    -> marked word HS-close to 1 and op-norm-close to -1
+    -> contradiction
+
+nontrivial realization + universal contradiction
+    -> finitely presented non-weak-MF group.
+```
+
+### What can be removed without affecting Theorem A
+
+The following were historically nearby but are not needed for the paper's
+core existence theorem:
+
+- the original sofic expander decomposition and matching theorem;
+- a proof that the Kun--Thom lamp group is nonsofic;
+- hyperlinear approximations or Connes embeddability;
+- the numerical atlas, Pauli, harmonic, and finite-quotient experiments;
+- the cyclic-base MF comparison;
+- residual finiteness of the ambient HNN extension;
+- the MF radical, simple envelope, scaling family, multiplicity, and uniform
+  compactness consequences;
+- finite-dimensional Theorem B.
+
+They explain the route, calibrate the mechanism, or extend its consequences,
+but the existence proof does not consume them.
+
+## Reproducing this archaeology
+
+The principal repository queries were:
+
+```text
+git log --follow --diff-filter=A -- <file>
+git log --all --reverse -S'<phrase>'
+git diff <commit>^ <commit> -- <note>
+git show <commit>:<historical-path>
+git grep '^import GroupApproximation' HEAD -- 'GroupApproximation/**/*.lean'
+```
+
+The import appendix was obtained by recursively following the last command
+from `GroupApproximation/Sofic/ExplicitNonMFTheorem.lean`. Commit bodies were
+used when they stated the purpose and trust status of a result; source and
+notes were used to check those descriptions. The key human-readable primary
+records are:
+
+- `docs/AGENDA.md`;
+- `docs/FALSE_CLIFFORD_NORM_MF_STERILITY.md`;
+- `docs/EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md`;
+- `docs/NON_MF_FORMALIZATION_BLUEPRINT.md`;
+- `docs/HYPERLINEAR_NONSOFIC_RESEARCH_OUTCOME_2026_08_12.md`;
+- `docs/CREDIT_AND_PRIORITY_AUDIT.md`;
+- `docs/EXTERNAL_CODE_AUDIT.md`;
+- `docs/LEIDEN_COMPLIANCE.md`.
+
+## Bottom line
+
+The earliest claim was not “here is an explicit eight-generator group.” It
+was “the Clifford sign in this attempted weak-MF cover cannot survive any
+norm-matrix representation.” The finite presentation came from noticing that
+the analytic proof used only one root lamp, one transported lamp, one moved
+copy, and one central sign relation. Everything else in the Clifford group
+could be moved out of the presentation and into the nontriviality witness.
+
+The theorem therefore sits at the intersection of three older repository
+capabilities:
+
+1. one-sided Kazhdan compression and exact commutant rigidity;
+2. operator-norm spectral corners and constructive Kazhdan projections; and
+3. a proper self-embedding plus a Clifford sign witness.
+
+The extensive computational campaign was causally part of the search and
+helped close alternatives, but the final TeX proof is conceptual and the
+formal endpoint is kernel-checked without experimental or external-code
+premises.
