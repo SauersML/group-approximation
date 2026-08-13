@@ -31,7 +31,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -44,6 +44,7 @@ import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
@@ -151,6 +152,9 @@ boundary instead of conflating the two constructions.
   `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
   rank-eight clopen cylinder, with every printed relation retained and the
   obstruction word surviving throughout it.
+* `LiteralMarkedCylinder.literalCylinder_subset_nonMF` -- every point of that
+  cylinder is non-MF, conditional on property `(T)` of the raw literal base;
+  the certificate form keeps the same boundary proof-carrying.
 
 ## Consequences and reusable obstruction APIs
 
@@ -392,7 +396,8 @@ export GroupApproximation.LiteralPresentationRadius
     relators_or_markedWord_length_le_34)
 export GroupApproximation.LiteralMarkedCylinder
   (literalCylinder_nonempty literalCylinder_isClopen
-    cylinder_relator_eq_one cylinder_markedWord_ne_one)
+    cylinder_relator_eq_one cylinder_markedWord_ne_one
+    literalCylinder_subset_nonMF literalCylinder_subset_nonMF_of_certificate)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
