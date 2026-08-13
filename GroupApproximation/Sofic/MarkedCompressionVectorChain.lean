@@ -44,9 +44,11 @@ variable {Y : Type*} [Fintype Y] [DecidableEq Y]
 noncomputable def vecMass (x : Y → ℂ) : ℝ :=
   ∑ i : Y, Complex.normSq (x i)
 
+omit [DecidableEq Y] in
 theorem vecMass_nonneg (x : Y → ℂ) : 0 ≤ vecMass x :=
   Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg (x i)
 
+omit [DecidableEq Y] in
 theorem vecMass_add_le (x y : Y → ℂ) :
     vecMass (x + y) ≤ 2 * vecMass x + 2 * vecMass y := by
   unfold vecMass
@@ -71,6 +73,14 @@ theorem vecMass_unitary_mulVec {U : Matrix Y Y ℂ}
   apply sum_normSq_mulVec_of_star_mul_self
   exact Unitary.star_mul_self_of_mem hU
 
+/-- Conjugate transpose preserves the unitary group. -/
+theorem conjTranspose_mem_unitaryGroup {U : Matrix Y Y ℂ}
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) :
+    Uᴴ ∈ Matrix.unitaryGroup Y ℂ := by
+  rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+    Matrix.conjTranspose_conjTranspose]
+  exact Unitary.star_mul_self_of_mem hU
+
 /-! ## Exact transport of a captured vector -/
 
 /-- If `Q = T P Tᴴ`, then the complementary part of `T ξ` is exactly the
@@ -79,18 +89,26 @@ theorem one_sub_conjugate_mulVec (P T : Matrix Y Y ℂ)
     (hT : T ∈ Matrix.unitaryGroup Y ℂ) (x : Y → ℂ) :
     (1 - T * P * Tᴴ) *ᵥ (T *ᵥ x) = T *ᵥ ((1 - P) *ᵥ x) := by
   have hTT : Tᴴ * T = 1 := Unitary.star_mul_self_of_mem hT
-  rw [Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_mulVec,
-    Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, Matrix.mul_assoc Tᴴ T,
-    hTT, Matrix.one_mul, Matrix.mulVec_mulVec, Matrix.sub_mulVec,
-    Matrix.one_mulVec]
+  have hmatrix : (1 - T * P * Tᴴ) * T = T * (1 - P) := by
+    calc
+      (1 - T * P * Tᴴ) * T = T - T * P * (Tᴴ * T) := by
+        noncomm_ring
+      _ = T - T * P := by rw [hTT, Matrix.mul_one]
+      _ = T * (1 - P) := by rw [Matrix.mul_sub, Matrix.mul_one]
+  calc
+    (1 - T * P * Tᴴ) *ᵥ (T *ᵥ x) =
+        ((1 - T * P * Tᴴ) * T) *ᵥ x :=
+      Matrix.mulVec_mulVec _ _ _
+    _ = (T * (1 - P)) *ᵥ x := by rw [hmatrix]
+    _ = T *ᵥ ((1 - P) *ᵥ x) := (Matrix.mulVec_mulVec _ _ _).symm
 
 /-- Exact unitary transport preserves the capture error. -/
 theorem vecMass_one_sub_conjugate (P T : Matrix Y Y ℂ)
     (hT : T ∈ Matrix.unitaryGroup Y ℂ) (x : Y → ℂ) :
     vecMass ((1 - T * P * Tᴴ) *ᵥ (T *ᵥ x)) =
       vecMass ((1 - P) *ᵥ x) := by
-  rw [one_sub_conjugate_mulVec P T hT x,
-    vecMass_unitary_mulVec hT]
+  rw [one_sub_conjugate_mulVec P T hT x]
+  exact vecMass_unitary_mulVec hT _
 
 /-! ## The dimension-free chain -/
 
@@ -121,16 +139,22 @@ theorem transported_displacement_le
   let y : Y → ℂ := T *ᵥ x
   have hyMass : vecMass y = vecMass x := vecMass_unitary_mulVec hT x
   have hQcapture : vecMass ((1 - Q) *ᵥ y) ≤ κ := by
-    rw [Q, y, vecMass_one_sub_conjugate P T hT x]
+    change vecMass ((1 - T * P * Tᴴ) *ᵥ (T *ᵥ x)) ≤ κ
+    rw [vecMass_one_sub_conjugate P T hT x]
     exact hcapture
   have hPcomp : IsOrthogonalProjectionMatrix (1 - P) :=
     one_sub_isOrthogonalProjection hP
   have hdecomp : (1 - P) *ᵥ y =
       ((1 - P) * Q) *ᵥ y + (1 - P) *ᵥ ((1 - Q) *ᵥ y) := by
-    rw [← Matrix.mulVec_mulVec]
-    have : (1 - P) = (1 - P) * Q + (1 - P) * (1 - Q) := by
-      noncomm_ring
-    rw [this, Matrix.add_mulVec]
+    calc
+      (1 - P) *ᵥ y = ((1 - P) * (Q + (1 - Q))) *ᵥ y := by
+        congr 2
+        noncomm_ring
+      _ = (((1 - P) * Q) + ((1 - P) * (1 - Q))) *ᵥ y := by
+        rw [Matrix.mul_add]
+      _ = ((1 - P) * Q) *ᵥ y + (1 - P) *ᵥ ((1 - Q) *ᵥ y) := by
+        rw [Matrix.add_mulVec]
+        exact congrArg₂ (· + ·) rfl (Matrix.mulVec_mulVec _ _ _).symm
   have hreverse' : ‖(1 - P) * Q‖ ≤ ε := by simpa [Q] using hreverse
   have hcompMass : vecMass ((1 - P) *ᵥ y) ≤
       2 * ε ^ 2 * vecMass x + 2 * κ := by
@@ -147,8 +171,9 @@ theorem transported_displacement_le
             vecMass (((1 - P) * Q) *ᵥ y) ≤
                 ‖(1 - P) * Q‖ ^ 2 * vecMass y := vecMass_mulVec_le _ _
             _ ≤ ε ^ 2 * vecMass y := by
-              gcongr
-              exact pow_le_pow_left (norm_nonneg _) hreverse' 2
+              have hsq : ‖(1 - P) * Q‖ ^ 2 ≤ ε ^ 2 := by
+                nlinarith [norm_nonneg ((1 - P) * Q)]
+              exact mul_le_mul_of_nonneg_right hsq (vecMass_nonneg y)
         · exact sum_normSq_mulVec_proj_le hPcomp _
       _ ≤ 2 * ε ^ 2 * vecMass x + 2 * κ := by
         rw [hyMass]
@@ -163,9 +188,15 @@ theorem transported_displacement_le
     have hy : A *ᵥ y - y = (A - 1) *ᵥ y := by
       rw [Matrix.sub_mulVec, Matrix.one_mulVec]
     rw [hy]
-    have hsplit : (A - 1) = (A - 1) * P + (A - 1) * (1 - P) := by
-      noncomm_ring
-    rw [hsplit, Matrix.add_mulVec, Matrix.mulVec_mulVec]
+    calc
+      (A - 1) *ᵥ y = ((A - 1) * (P + (1 - P))) *ᵥ y := by
+        congr 2
+        noncomm_ring
+      _ = (((A - 1) * P) + ((A - 1) * (1 - P))) *ᵥ y := by
+        rw [Matrix.mul_add]
+      _ = ((A - 1) * P) *ᵥ y + (A - 1) *ᵥ ((1 - P) *ᵥ y) := by
+        rw [Matrix.add_mulVec]
+        exact congrArg₂ (· + ·) rfl (Matrix.mulVec_mulVec _ _ _).symm
   rw [hdisp]
   calc
     vecMass (((A - 1) * P) *ᵥ y + (A - 1) *ᵥ ((1 - P) *ᵥ y)) ≤
@@ -179,16 +210,17 @@ theorem transported_displacement_le
           vecMass (((A - 1) * P) *ᵥ y) ≤
               ‖(A - 1) * P‖ ^ 2 * vecMass y := vecMass_mulVec_le _ _
           _ ≤ δ ^ 2 * vecMass y := by
-            gcongr
-            exact pow_le_pow_left (norm_nonneg _) hfix 2
+            have hsq : ‖(A - 1) * P‖ ^ 2 ≤ δ ^ 2 := by
+              nlinarith [norm_nonneg ((A - 1) * P)]
+            exact mul_le_mul_of_nonneg_right hsq (vecMass_nonneg y)
       · calc
           vecMass ((A - 1) *ᵥ ((1 - P) *ᵥ y)) ≤
               ‖A - 1‖ ^ 2 * vecMass ((1 - P) *ᵥ y) :=
             vecMass_mulVec_le _ _
           _ ≤ 4 * vecMass ((1 - P) *ᵥ y) := by
-            have hsquare : ‖A - 1‖ ^ 2 ≤ (2 : ℝ) ^ 2 :=
-              pow_le_pow_left (norm_nonneg _) hAone 2
-            norm_num at hsquare ⊢
+            have hsquare : ‖A - 1‖ ^ 2 ≤ (2 : ℝ) ^ 2 := by
+              nlinarith [norm_nonneg (A - 1)]
+            norm_num at hsquare
             exact mul_le_mul_of_nonneg_right hsquare
               (vecMass_nonneg ((1 - P) *ᵥ y))
     _ ≤ (2 * δ ^ 2 + 16 * ε ^ 2) * vecMass x + 16 * κ := by
@@ -198,7 +230,7 @@ theorem transported_displacement_le
 /-! ## Translation back to the original matrix model -/
 
 /-- A unitary matrix has Frobenius mass equal to the matrix dimension. -/
-theorem vecMass_rowVec_unitary {U : Matrix Y Y ℂ}
+theorem vecMass_rowVec_unitary {Y : FiniteModel} {U : Matrix Y Y ℂ}
     (hU : U ∈ Matrix.unitaryGroup Y ℂ) :
     vecMass (rowVec U) = Fintype.card Y := by
   rw [vecMass, sum_normSq_rowVec]
@@ -211,6 +243,7 @@ Here `P` lives on the row-vectorized matrix Hilbert space `Y × Y`,
 `T = Ad(Uₜ)`, `A = Ad(Uₐ)`, and `D = Uₜ C Uₜᴴ`.  The capture
 error is normalized by `card Y`, exactly as required by hyperlinearity. -/
 theorem conjugated_transport_hsDistSq_le
+    {Y : FiniteModel}
     (hY : 0 < Fintype.card Y)
     {Ua Ut C : Matrix Y Y ℂ}
     (hUa : Ua ∈ Matrix.unitaryGroup Y ℂ)
@@ -231,10 +264,11 @@ theorem conjugated_transport_hsDistSq_le
     conjDouble_mem_unitaryGroup hUt
   have hA : conjDouble Ua ∈ Matrix.unitaryGroup (Y × Y) ℂ :=
     conjDouble_mem_unitaryGroup hUa
-  have hYprod : 0 < Fintype.card (Y × Y) :=
-    Fintype.card_pos_iff.mpr inferInstance
-  have hchain := transported_displacement_le hYprod hP hT hA hfix hreverse
-    hcapture
+  have hYprod : 0 < Fintype.card (doubleModel Y) := by
+    rw [card_doubleModel]
+    exact Nat.mul_pos hY hY
+  have hchain := transported_displacement_le (Y := doubleModel Y) hYprod
+    hP hT hA hfix hreverse hcapture
   have hrow : conjDouble Ut *ᵥ rowVec C = rowVec D := by
     rw [conjDouble_mulVec_rowVec]
   have hdisp : conjDouble Ua *ᵥ (conjDouble Ut *ᵥ rowVec C) -
@@ -259,7 +293,8 @@ theorem conjugated_transport_hsDistSq_le
 /-- If two unitaries are close in normalized Hilbert--Schmidt distance, their
 commutator is close to the identity.  The squared constant `4` is
 dimension-independent. -/
-theorem hsDistSq_commutator_le_four (hY : 0 < Fintype.card Y)
+theorem hsDistSq_commutator_le_four {Y : FiniteModel}
+    (hY : 0 < Fintype.card Y)
     {D E : Matrix Y Y ℂ}
     (hD : D ∈ Matrix.unitaryGroup Y ℂ)
     (hE : E ∈ Matrix.unitaryGroup Y ℂ) :
@@ -271,7 +306,8 @@ theorem hsDistSq_commutator_le_four (hY : 0 < Fintype.card Y)
   have hterm1 : hsNormSq Y (D * (E - D) * Dᴴ * Eᴴ) =
       hsNormSq Y (E - D) := by
     have hright : Dᴴ * Eᴴ ∈ Matrix.unitaryGroup Y ℂ :=
-      mul_mem (star_mem hD) (star_mem hE)
+      mul_mem (conjTranspose_mem_unitaryGroup hD)
+        (conjTranspose_mem_unitaryGroup hE)
     rw [show D * (E - D) * Dᴴ * Eᴴ =
       D * ((E - D) * (Dᴴ * Eᴴ)) by noncomm_ring]
     rw [hsNormSq_mul_left Y hD hY, hsNormSq_mul_right Y hright]
@@ -293,6 +329,7 @@ theorem hsDistSq_commutator_le_four (hY : 0 < Fintype.card Y)
 /-- Combined finite-stage bound for the actual marked commutator built from
 `D = Uₜ C Uₜᴴ` and `E = Uₐ D Uₐᴴ`. -/
 theorem marked_commutator_hsDistSq_le
+    {Y : FiniteModel}
     (hY : 0 < Fintype.card Y)
     {Ua Ut C : Matrix Y Y ℂ}
     (hUa : Ua ∈ Matrix.unitaryGroup Y ℂ)
@@ -313,14 +350,13 @@ theorem marked_commutator_hsDistSq_le
   let D : Matrix Y Y ℂ := Ut * C * Utᴴ
   let E : Matrix Y Y ℂ := Ua * D * Uaᴴ
   have hD : D ∈ Matrix.unitaryGroup Y ℂ :=
-    mul_mem (mul_mem hUt hC) (star_mem hUt)
+    mul_mem (mul_mem hUt hC) (conjTranspose_mem_unitaryGroup hUt)
   have hE : E ∈ Matrix.unitaryGroup Y ℂ :=
-    mul_mem (mul_mem hUa hD) (star_mem hUa)
+    mul_mem (mul_mem hUa hD) (conjTranspose_mem_unitaryGroup hUa)
   have hdisp := conjugated_transport_hsDistSq_le hY hUa hUt hC hP
     hfix hreverse hcapture
   have hcomm := hsDistSq_commutator_le_four hY hD hE
-  dsimp [D, E] at hdisp ⊢
-  nlinarith
+  nlinarith [hdisp, hcomm]
 
 end MarkedCompressionVectorChain
 end GroupApproximation
