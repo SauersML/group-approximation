@@ -1,86 +1,133 @@
-# Group Approximation
+# Group Approximation and Rigidity
 
 A Lean 4 research library for finite models of groups and the rigidity,
 operator-algebraic, combinatorial, and ring-theoretic structures that govern
-them.
+them. The root module is `GroupApproximation.lean`; it imports the formal
+library as a whole, while the subject directories provide smaller reading
+paths.
 
-The project is not organized around one theorem or one paper. It contains
-several interacting developments:
+## An explicit finitely presented non-MF group
 
-- sofic, LEF, hyperlinear, and matrix approximation;
+[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
+countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
+embeddable as a group into the unitary group of an operator-norm matrix
+corona
+
+```text
+∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
+```
+
+The paper gives a finite presentation on eight generators. Start with
+
+```text
+Γ = ℤ³ ⋊ SL₃(ℤ),      α(v,A) = (2v,A),      a = (e₁,1),
+```
+
+adjoin an HNN letter `t` implementing `α`, and adjoin an involution `c`
+centralizing `Γ`. The presentation makes
+
+```text
+w = [tct⁻¹, a(tct⁻¹)a⁻¹]
+```
+
+a central involution. An explicit Clifford-group representation proves
+`w ≠ 1`, while the Kazhdan-compression argument proves that every
+homomorphism from the resulting group `E` to every norm matrix corona kills
+`w`. Thus `E` is not MF, and neither `C*max(E)` nor `C*red(E)` is an MF
+C*-algebra.
+
+The analytic mechanism has four ingredients: cut to the negative corner of
+the central involution; pass to the conjugation representation of matrix
+lifts; use the Kazhdan projection of `Γ` to obtain nested, unitarily
+equivalent fixed-space projections; and use stable finiteness of norm matrix
+coronas to force those projections to coincide. This pins `tct⁻¹` to the
+`Γ`-fixed space and forces the marked commutator to vanish.
+
+The paper also proves:
+
+- a finite-normal obstruction criterion for any marked Kazhdan-compression
+  pattern, without assuming that the map from the Kazhdan group is injective;
+- an elementary finite-dimensional kill theorem over every field, requiring
+  neither property (T), unitarity, nor centrality of the marked word;
+- a cyclic-base comparison showing that the analogous Baumslag–Solitar
+  presentation can have an MF representation in which the mark survives;
+- a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
+- failure of closure of MF groups under quotients and split extensions;
+- the MF radical and largest MF quotient, scaling families `E_m`, continuum
+  many finitely generated non-MF groups, and a uniform matrix-size version of
+  the kill theorem.
+
+The result is specific to operator-norm approximation. It does not prove that
+`E` is nonhyperlinear or nonsofic, does not decide whether
+`E/⟨w⟩` is MF, and does not address quasidiagonality of nuclear stably
+finite C*-algebras.
+
+### Formal counterpart
+
+The Lean development verifies the marked-compression mechanism, a nontrivial
+Clifford mark, and both countable and finitely presented non-MF existence
+theorems. Its finitely presented witness is built independently from a
+Shalom cover; it is not claimed to be the literal eight-generator group `E`
+displayed in the paper. The manuscript marks that presentation, its general
+finite-normal criterion, and the consequences derived from it as paper-only.
+
+Reading path, front door first:
+
+| Module | Role |
+| --- | --- |
+| `Sofic/ExplicitNonMFTheorem.lean` | Public countable and finitely presented non-MF endpoints |
+| `Sofic/MarkedCompressionSequentialKill.lean` | Universal operator-norm kill theorem: `word_normMFInvisible` and `not_isWeakMF` |
+| `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
+| `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
+| `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
+| `Sofic/AdjointMatrix.lean`, `Sofic/ProjectionRankFlip.lean`, `Sofic/SpectralCapture.lean` | Finite-dimensional operator lemmas |
+| `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
+| `Sofic/ExplicitMarkedPresentation.lean`, `Sofic/ExplicitNonMFEndpoint.lean` | Independent finitely presented witness via a Shalom cover |
+| `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
+| `Criterion/FiniteDimensionalKill.lean` | Finite-dimensional obstruction over an arbitrary field |
+
+The headline declarations are included in the kernel audit roster. Their
+accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
+literature theorem is introduced as a Lean axiom.
+
+## Property (TT)/T and the binary Leavitt algebra
+
+[`property_tt_leavitt.tex`](property_tt_leavitt.tex) develops a second part
+of the library: fixed-coordinate matrix factorization and property (TT)/T
+over finite-type noncommutative rings. Its principal application is property
+(TT)/T for the unit group of the binary Leavitt algebra.
+
+Every numbered result in that paper links visibly to a public Lean
+declaration. Its main formal surfaces are:
+
+| Module | Role |
+| --- | --- |
+| `PropertyTT/PaperStatements.lean` | Statement-level interface for the paper |
+| `PropertyTT/LocalizedComplexPlane.lean` | Homogeneous finite-control plane estimate |
+| `PropertyT/FreeRootCharacterValuation.lean` | Finite Fourier transport and boundary limits |
+| `PropertyTT/FiniteTypeLeavittTT.lean` | Rank-four assembly and all-ranks transport |
+| `KOne/PaperStatements.lean` | Rank-two elementary diagonal endpoint |
+| `KOne/AllRanksElementaryCore.lean` | All-ranks `GL = E` over the binary Leavitt algebra |
+
+The paper uses the published K-theoretic proof of `K₁ = 0` and `GLₙ = Eₙ`
+for the binary Leavitt algebra. Lean reaches the same endpoint independently
+through the constructive prefix-code pencil reduction in `KOne/`; external
+results are not imported as axioms.
+
+## Library scope
+
+The repository contains several interacting developments:
+
+- sofic, LEF, hyperlinear, and operator-norm matrix approximation;
 - Kazhdan property (T), explicit Kazhdan systems, and fixed-point methods;
 - expander decomposition and repair arguments;
 - matching, finite groupoids, and local-to-global approximation criteria;
 - elementary and Steinberg groups over noncommutative rings;
 - Leavitt algebras, matrix self-similarity, unstable elementary reduction,
-  and Whitehead K_1;
+  and Whitehead `K₁`;
 - quasi-cocycles and property (TT)/T;
 - domination, representation-theoretic obstructions, and finitely presented
   covers.
-
-The root module is GroupApproximation.lean. It imports the formal library as a
-whole; individual subject directories provide more manageable reading paths.
-
-## Current paper
-
-property_tt_leavitt.tex develops one part of the library: fixed-coordinate
-matrix factorization and property (TT)/T over finite-type noncommutative
-rings. Its principal new application is property (TT)/T for the unit group of
-the binary Leavitt algebra.
-
-Every numbered result in that paper links visibly to a public Lean
-declaration. The paper also gives a proof-order guide showing how the formal
-proof is assembled. Its public formal surfaces are:
-
-| Module | Role |
-| --- | --- |
-| PropertyTT/PaperStatements.lean | Statement-level interface for the paper |
-| PropertyTT/LocalizedComplexPlane.lean | Homogeneous finite-control plane estimate |
-| PropertyT/FreeRootCharacterValuation.lean | Finite Fourier transport and boundary limits |
-| PropertyTT/FiniteTypeLeavittTT.lean | Rank-four assembly and all-ranks transport |
-| KOne/PaperStatements.lean | Rank-two elementary diagonal endpoint |
-| KOne/AllRanksElementaryCore.lean | All-ranks GL=E over the binary Leavitt algebra |
-
-The paper uses the published K-theoretic proof of K_1=0 and GL_n=E_n for the
-binary Leavitt algebra. Lean reaches the same endpoint independently through
-the constructive prefix-code pencil reduction in KOne/. The manuscript names
-that formal route explicitly; external results are not smuggled into Lean as
-axioms.
-
-The earlier standalone nonsofic manuscript has been removed. The current
-property (TT)/T paper neither states nor depends on a nonsoficity corollary.
-The repository still contains broader soficity and nonsoficity developments
-as part of the formal library.
-
-## The non-MF development
-
-non_mf_groups_exist.tex presents the marked Kazhdan-compression theorem: an
-explicit group with a designated central involution killed by every
-homomorphism into every operator-norm matrix corona, hence not MF in the
-Carrión–Dadarlat–Eckhardt sense.  The formal counterpart is developed in
-the Sofic/ directory with a deliberately narrow trust surface: the only
-mathematical inputs are Mathlib and the repository's own property (T)
-theorems; no literature statement enters as an assumption.
-
-Reading path (front door first):
-
-| Module | Role |
-| --- | --- |
-| Sofic/ExplicitNonMFTheorem.lean | Headline endpoints: the finitely presented and countable non-MF witnesses |
-| Sofic/MarkedCompressionSequentialKill.lean | The analytic kill: `MarkedCompressionInclusionData.not_isWeakMF` and `word_normMFInvisible` |
-| Sofic/MarkedCompressionInclusionData.lean | The exact hypothesis set of the criterion (inclusion-form compression; no injectivity, no endomorphism structure) |
-| Sofic/KazhdanCompressorCorner.lean | Steps 7–10: adjoint Kazhdan projection, displacement, compression order, equal-rank flip |
-| Sofic/NegativeCornerModel.lean, Sofic/ApproxInvolutionCorner.lean | Steps 2–5: involution rounding and the negative-corner almost representation |
-| Sofic/AdjointMatrix.lean, Sofic/ProjectionRankFlip.lean, Sofic/SpectralCapture.lean | The finite-dimensional operator lemmas (adjoint calculus, finite stable finiteness, capture) |
-| Sofic/MarkedCompressionGroup.lean, Sofic/CliffordLampGroup.lean, Algebra/MappingTelescope.lean | The countable witness: telescope ⋊ ℤ with the Clifford lamp, `w ≠ 1` |
-| Sofic/ExplicitMarkedPresentation.lean, Sofic/ExplicitNonMFEndpoint.lean | The finitely presented witness via the Shalom cover, no endomorphism lift |
-| Sofic/NormMFResidualDetector.lean, Sofic/NormMFResidualFunctorial.lean | The operator-norm MF residual: functoriality, normality, characteristic, simple envelopes |
-
-The two `#print axioms` entries for the headline theorems are part of the
-kernel audit roster (Endpoint/Audit.lean); the accepted closure is
-propext, Classical.choice, and Quot.sound only.  The paper distinguishes
-throughout between statements with Lean anchors and statements that are
-paper-only.
 
 ## Subject map
 
@@ -126,30 +173,35 @@ docs/LEIDEN_COMPLIANCE.md for the full compliance map.
 
 ## Trust and verification
 
-The project pins Lean and Mathlib in lean-toolchain and lake-manifest.json.
+The project pins Lean and Mathlib in `lean-toolchain` and `lake-manifest.json`.
 GitHub Actions performs the computational checks:
 
 - Lean Prover CI builds with warnings as errors, runs source and compiled
   environment scans, checks transitive axiom closures, pins mapped theorem
   signatures, and replays compiled objects through a fresh Lean kernel.
-- Build and commit property TT PDF validates TeX-to-Lean references, compiles
-  and lints the current paper, rejects unresolved references and layout
-  overflow, renders every page, validates the PDF, and commits it to main.
+- The non-MF and property-(TT)/T PDF workflows validate visible TeX-to-Lean
+  references, compile and lint each manuscript, reject unresolved references
+  and layout overflow, render every page, validate the PDFs, and commit them
+  to `main`.
 - Independent kernel re-check is an additional manually triggered audit.
 - API documentation publishes the generated Lean documentation.
 
-The accepted axiom closure is restricted to propext, Classical.choice, and
-Quot.sound. The audit rejects sorry, project axioms, compiler-trust
+The accepted axiom closure is restricted to `propext`, `Classical.choice`,
+and `Quot.sound`. The audit rejects `sorry`, project axioms, compiler-trust
 shortcuts, and theorem-shaped literature assumptions.
 
 Key audit files:
 
-- scripts/check.py: source-level checks;
-- scripts/Audit.lean: statement pins, axiom closure, and environment scans;
-- scripts/Signatures.lean and docs/CLAIM_SIGNATURES.md: elaborated public
+- `scripts/check.py`: source-level checks;
+- `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
+- `GroupApproximation/Endpoint/ExplicitNonMFAudit.lean`: focused audit of
+  the explicit non-MF endpoints;
+- `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
-- scripts/check_property_tt_refs.py and docs/PROPERTY_TT_CLAIM_MAP.md:
-  statement mapping for the current paper.
+- `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
+  visible manuscript-to-Lean reference checks;
+- `docs/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
+  paper.
 
 Cold local builds are expensive. The maintained verification path is the
-GitHub Actions workflows in .github/workflows/.
+GitHub Actions workflows in `.github/workflows/`.
