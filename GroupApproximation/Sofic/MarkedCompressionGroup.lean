@@ -257,7 +257,8 @@ theorem signAmbient_central (g : Ambient α hα) :
     rw [map_one, lampAction_apply_sign]
     show sign (Cosets α hα) * n = n * sign (Cosets α hα)
     exact (sign_commute (Cosets α hα) n).eq
-  · simp
+  · change (1 : Vertical α hα) * v = v
+    exact one_mul v
 
 include hα in
 /-- The sign survives in the ambient group. -/
