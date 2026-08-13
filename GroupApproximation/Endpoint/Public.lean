@@ -31,6 +31,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -44,6 +45,7 @@ import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
 /-!
 # The public results
@@ -144,6 +146,11 @@ boundary instead of conflating the two constructions.
   the same presented-base property `(T)` input or an exact SOS certificate.
 * `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
   finite-radius bound for every printed relator.
+* `LiteralMarkedCylinder.literalCylinder_isClopen`,
+  `LiteralMarkedCylinder.cylinder_relator_eq_one`, and
+  `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
+  rank-eight clopen cylinder, with every printed relation retained and the
+  obstruction word surviving throughout it.
 
 ## Consequences and reusable obstruction APIs
 
@@ -163,6 +170,9 @@ boundary instead of conflating the two constructions.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
+* `FixedSpaceStabilizer.compressionGroup_le_stabilizer` -- the exact subgroup
+  closure step propagating fixed-sector stabilization from one-sided
+  compressors to the group they generate.
 * `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
   the printed construction, with injective doubling, index-eight image, and
   an explicit translation outside that image.  This does not assert that the
@@ -380,6 +390,9 @@ export GroupApproximation.LiteralUniversalHorn
 export GroupApproximation.LiteralPresentationRadius
   (markedWord_length_le relator_wordLength_le_34
     relators_or_markedWord_length_le_34)
+export GroupApproximation.LiteralMarkedCylinder
+  (literalCylinder_nonempty literalCylinder_isClopen
+    cylinder_relator_eq_one cylinder_markedWord_ne_one)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
@@ -395,6 +408,8 @@ export GroupApproximation.CStarRecognitionConsequences
     maximalCStar_directlyFinite_recognition_undecidable
     all_groupCStar_recognition_undecidable
     all_groupCStar_negative_sides_not_re)
+export GroupApproximation.FixedSpaceStabilizer
+  (compressionGroup_le_stabilizer compressionGroup_map_mem)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker

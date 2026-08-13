@@ -514,11 +514,11 @@ Function.Injective ⇑ExplicitLinearModel.conjD ∧
   ExplicitLinearModel.v1G ∉ Set.range ⇑ExplicitLinearModel.conjD
 ```
 
-## `GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF`
+## `GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF`
 
 ```lean
-Group.IsFinitelyPresented ExplicitMarkedPresentation.MarkedGroup ∧
-  ¬IsOperatorMF ExplicitMarkedPresentation.MarkedGroup
+Group.IsFinitelyPresented ChosenMarkedPresentation.MarkedGroup ∧
+  ¬IsOperatorMF ChosenMarkedPresentation.MarkedGroup
 ```
 
 ## `GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one`

@@ -112,6 +112,19 @@ theorem sign_commute (g : CliffordLamp X) : Commute (sign X) g := by
   rw [Subgroup.mem_centralizer_singleton_iff] at hmem
   exact Commute.symm hmem
 
+/-- The sign together with all lamp generators generates the presented
+Clifford lamp group.  This is the elimination principle used when proving
+surjectivity of the manuscript's affine--Clifford witness map. -/
+theorem mem_subgroup_of_sign_mem_of_lamp_mem
+    (H : Subgroup (CliffordLamp X))
+    (hsign : sign X ∈ H) (hlamp : ∀ x, lamp X x ∈ H)
+    (g : CliffordLamp X) : g ∈ H := by
+  apply PresentedGroup.generated_by (relators X) H
+  intro j
+  cases j with
+  | inl u => cases u; exact hsign
+  | inr x => exact hlamp x
+
 /-! ## The signed finite-support model
 
 The group law on the carrier `ZMod 2 × (X →₀ ZMod 2)` (a one-field structure

@@ -13,6 +13,8 @@ import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
 import GroupApproximation.Kazhdan.RationalGroupRingCertificate
 import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
@@ -29,6 +31,7 @@ import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -179,8 +182,6 @@ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
-import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
-import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.MarkedMFClosed

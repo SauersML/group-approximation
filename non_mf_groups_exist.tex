@@ -7,7 +7,7 @@
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,backgrounds,calc,fit,positioning}
+\usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \newif\ifanonymous\anonymoustrue
 % This review source is physically anonymized: author and repository
@@ -27,6 +27,13 @@
   {\normalfont\footnotesize\color{gray!70!black}%
   \raggedright\Urlmuskip=0mu plus 2mu\relax
   Formal counterpart:\par\nobreak\noindent
+  \ifanonymous\nolinkurl{#2}\else
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
+\newcommand{\leanconditional}[2]{%
+  \par\smallskip\noindent
+  {\normalfont\footnotesize\color{gray!70!black}%
+  \raggedright\Urlmuskip=0mu plus 2mu\relax
+  Conditional formal deduction (given the cited external data):\par\nobreak\noindent
   \ifanonymous\nolinkurl{#2}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
 
@@ -68,20 +75,12 @@
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
-\definecolor{mfblue}{HTML}{255C99}
-\definecolor{mfteal}{HTML}{177E89}
-\definecolor{mfgold}{HTML}{C78D20}
-\definecolor{mfrose}{HTML}{A64B5D}
 \tikzset{
-  mfnode/.style={draw, rounded corners=2.5pt, very thick, align=center,
-    inner sep=6pt, text width=3.25cm, font=\small},
-  mfgroup/.style={mfnode, draw=mfblue, fill=mfblue!7},
-  mfmatrix/.style={mfnode, draw=mfteal, fill=mfteal!8},
-  mfend/.style={mfnode, draw=mfrose, fill=mfrose!8},
-  mfarr/.style={-{Latex[length=2.2mm,width=1.5mm]}, thick,
-    draw=gray!75!black},
-  mflabel/.style={font=\scriptsize\bfseries, text=gray!65!black,
-    inner sep=1pt}
+  figbox/.style={draw, line width=.4pt, align=center, inner sep=4.5pt,
+    text width=3.05cm, font=\small},
+  figout/.style={figbox, line width=.8pt},
+  figarr/.style={-{Latex[length=2mm,width=1.4mm]}, line width=.4pt},
+  fignote/.style={font=\footnotesize, inner sep=2pt}
 }
 
 \begin{document}
@@ -120,9 +119,9 @@ letter $c$, then every finite normal subgroup contained in the
 compression-defect subgroup --- the normal closure of the commutators
 of $tct^{-1}$ with that image --- is killed by every homomorphism into
 the unitary group of every $C^*$-subalgebra of a norm matrix corona.
-At the uniformly separated approximation level, finiteness can be
-replaced by the assumption that the normal obstruction subgroup itself
-has property~(T); it may then be infinite, noncentral, and torsion-free.
+More generally, finiteness can be replaced by property~(T): every normal
+property~(T) subgroup contained in the compression defect lies in the MF
+radical, and may be infinite, noncentral, and torsion-free.
 Among the consequences: $\Cred(E)$ is a unital separable $C^*$-algebra
 with a faithful tracial state --- hence stably finite --- that is not
 an MF algebra, giving an explicit reduced-group-$C^*$-algebra realization
@@ -133,8 +132,9 @@ by its MF radical, and the radical element $w$ is portable: any group
 receiving $E$ with $w$ surviving is non-MF; for every $m\ge2$ a scaled
 variant $E_m$ ($E=E_2$) is a finitely presented non-MF group, and
 there exist $2^{\aleph_0}$ pairwise non-isomorphic finitely generated
-non-MF groups; and the kill theorem holds in a uniform quantitative
-form over all matrix sizes at once.
+non-MF groups; the MF locus is closed in every fixed-rank marked-group
+space, equivalently non-MF-ness is open; and the kill theorem holds in a
+uniform quantitative form over all matrix sizes at once.
 \end{abstract}
 
 \maketitle
@@ -294,49 +294,44 @@ Reynolds corner.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=.95, transform shape, node distance=8mm and 8mm]
-  \node[mfgroup] (pattern) {Kazhdan pattern\\
+\begin{tikzpicture}[node distance=12mm and 7mm,
+    figbox/.append style={text width=3.25cm, minimum height=15mm}]
+  \node[figbox] (pattern) {Kazhdan pattern\\
     $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
     $[c,\iota(\Lambda)]=1$};
-  \node[mfgroup, right=of pattern] (defect) {transported root $d=tct^{-1}$\\
-    defect closure\\$N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
-  \node[mfgroup, right=of defect] (finite) {$F\triangleleft H$ finite\\
+  \node[figbox, right=of pattern] (defect) {transported root\\
+    $d=tct^{-1}$; defect\\
+    $N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
+  \node[figbox, right=of defect] (finite) {$F\triangleleft H$ finite\\
     and $F\le N_{\rm comp}$};
 
-  \node[mfmatrix, below=12mm of pattern] (kazhdan) {Kazhdan\\projection $P$\\
-    onto the $\Lambda$-fixed vectors};
-  \node[mfmatrix, right=of kazhdan] (pin) {$P\le TPT^*$ and equal finite ranks\\
-    force $P=TPT^*$};
-  \node[mfmatrix, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
-    tends to $1$ in normalized HS norm};
+  \node[figbox, below=of pattern] (kazhdan) {Kazhdan projection\\
+    $P$ onto the\\ $\Lambda$-fixed vectors};
+  \node[figbox, right=of kazhdan] (pin) {$P\le TPT^*$ and equal\\
+    finite ranks force\\ $P=TPT^*$};
+  \node[figbox, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
+    tends to $1$ in\\ normalized HS norm};
 
-  \node[mfend, below=12mm of pin, text width=5.25cm] (contradiction)
-    {on the complementary\\Reynolds corner\\
-     $\sum_{f\in F}\Theta(f)=0$, while each\\summand tends to $1$};
+  \node[figout, text width=4.2cm, anchor=north east] (contradiction)
+    at ($(collapse.south east)+(0,-10mm)$)
+    {on the complementary\\ Reynolds corner\\
+     $\sum_{f\in F}\Theta(f)=0$, while\\ each summand tends to $1$};
 
-  \draw[mfarr] (pattern) -- (defect);
-  \draw[mfarr] (defect) -- (finite);
-  \draw[mfarr] (pattern) -- node[mflabel,left] {property (T)} (kazhdan);
-  \draw[mfarr] (kazhdan) -- (pin);
-  \draw[mfarr] (pin) -- (collapse);
-  \draw[mfarr] (defect) -- (collapse);
-  \draw[mfarr] (finite) |- (contradiction.east);
-  \draw[mfarr] (collapse) |- (contradiction.east);
-
-  \begin{scope}[on background layer]
-    \node[draw=mfblue!35, fill=mfblue!2, rounded corners=5pt,
-      fit=(pattern)(defect)(finite), inner sep=5pt] {};
-    \node[draw=mfteal!35, fill=mfteal!2, rounded corners=5pt,
-      fit=(kazhdan)(pin)(collapse), inner sep=5pt] {};
-  \end{scope}
-  \node[mflabel, anchor=south west] at ($(pattern.north west)+(0,5pt)$)
-    {GROUP-THEORETIC LANE};
-  \node[mflabel, anchor=south west] at ($(kazhdan.north west)+(0,5pt)$)
-    {FINITE-MATRIX LANE};
+  \draw[figarr] (pattern) -- (defect);
+  \draw[figarr] (defect) -- (finite);
+  \draw[figarr] (pattern) -- node[fignote, right=2pt] {property~(T)}
+    (kazhdan);
+  \draw[figarr] (kazhdan) -- (pin);
+  \draw[figarr] (pin) -- (collapse);
+  \draw[figarr] (defect.south) -- ++(0,-4.5mm) -| (collapse.north);
+  \draw[figarr] (finite.east) -- ++(4.5mm,0) |- (contradiction.east);
+  \draw[figarr] (collapse.south) -- (collapse.south |- contradiction.north);
 \end{tikzpicture}
-\caption{The finite-normal obstruction.  Stable finiteness is used only in
-the middle lower box; property~(T) is used only to make the fixed-space
-projection uniform across the matrix sequence.}
+\caption{The finite-normal obstruction.  The upper lane is
+group-theoretic and the lower lane is the finite-matrix rigidity input.
+Stable finiteness is used only in the middle lower box; property~(T) is
+used only to make the fixed-space projection uniform across the matrix
+sequence.}
 \label{fig:mechanism}
 \end{figure}
 
@@ -443,8 +438,8 @@ The \emph{finite-normal obstruction criterion}
 (Theorem~\ref{thm:criterion}) states: every finite normal subgroup of
 $H$ contained in $N_{\mathrm{comp}}$ is killed by every corona
 representation of $H$.  Theorem~\ref{thm:normalkazhdan} replaces the
-finite subgroup by an arbitrary nontrivial normal property~(T) subgroup
-for uniformly separated operator-norm approximations.  Theorem~\ref{thm:A}(2) is the instance $H=E$
+finite subgroup by an arbitrary normal property~(T) subgroup and places
+that entire subgroup in the MF radical.  Theorem~\ref{thm:A}(2) is the instance $H=E$
 with $F=\{1,w\}$: since $c^2=1$ forces $d^2=1$, the marked word
 satisfies the identity $w=[\,d,a\,]^2\in N_{\mathrm{comp}}$
 (Lemma~\ref{lem:square}).  The corner cut that starts the proof is the
@@ -482,6 +477,11 @@ finitely presented group constructed above.  Indeed, as recently as March
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
+\ifanonymous\else
+\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
+\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
+\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.reduced_no_faithfulCoronaUnitaryRestriction_of_hasKazhdanPropertyT}
+\fi
 \end{mainthm}
 
 Here $\Cred(E)$ is not nuclear ($E$ contains an isomorphic copy of
@@ -947,6 +947,34 @@ make $w$ central and impose $w^2=1$; Proposition~\ref{prop:witness} below
 proves that $w\neq1$.  The relations
 $t\gamma t^{-1}=\alpha(\gamma)$, $[c,\gamma]=1$ hold for all
 $\gamma\in\Gamma$ because they hold on generators.
+Figure~\ref{fig:assembly} summarizes the three-stage assembly and the
+fate of the marked word.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=9mm]
+  \node[figbox, text width=7.2cm] (base) {base
+    $\Gamma=\Z^3\rtimes\SL_3(\Z)$:\ finitely presented\\ by
+    \eqref{eq:gamma-presentation}, with property~(T)};
+  \node[figbox, text width=7.2cm, below=of base] (hnn) {ascending HNN
+    extension $G$:\ the doubling\\ $\alpha(v,A)=(2v,A)$ is
+    injective,\\ and $a=v_1\notin\alpha(\Gamma)$};
+  \node[figout, text width=7.2cm, below=of hnn] (marked) {$E$ as in
+    \eqref{eq:E}:\ $w=\bigl[\,tct^{-1},a(tct^{-1})a^{-1}\bigr]$\\ is
+    central with $w^2=1$};
+  \draw[figarr] (base) -- node[fignote, right=3pt, align=left]
+    {adjoin the stable letter $t$:\\ $t\gamma t^{-1}=\alpha(\gamma)$}
+    (hnn);
+  \draw[figarr] (hnn) -- node[fignote, right=3pt, align=left]
+    {adjoin the involution $c$ with $[c,\Gamma]=1$;\\
+     make $w$ central of order dividing $2$} (marked);
+\end{tikzpicture}
+\caption{Assembly of the group $E$.  The marked word $w$ is nontrivial
+(Proposition~\ref{prop:witness}), yet every finite-dimensional
+representation over every field kills it (Theorem~\ref{thm:B}), and
+every norm matrix corona representation kills it (Theorem~\ref{thm:A}).}
+\label{fig:assembly}
+\end{figure}
 
 \begin{remark}[presentation robustness]\label{rem:anypresentation}
 Nothing in the proof of Theorem~\ref{thm:A} depends on the particular
@@ -1077,21 +1105,22 @@ sites is needed; their Clifford generators then anticommute automatically.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[scale=.96, transform shape, node distance=13mm and 18mm]
-  \node[mfgroup, text width=2.65cm] (root) {root site\\$o=\Gamma$\\lamp $c_o$};
-  \node[mfgroup, right=of root, text width=2.65cm] (shift) {shifted site\\
-    $D\Gamma$\\lamp $c_{D\Gamma}$};
-  \node[mfgroup, right=of shift, text width=2.65cm] (moved) {moved site\\
-    $aD\Gamma$\\lamp $c_{aD\Gamma}$};
-  \draw[mfarr] (root) -- node[above, font=\small, fill=white, inner sep=1pt]
-    {$t\mapsto D$} (shift);
-  \draw[mfarr] (shift) -- node[above, font=\small] {$a$} (moved);
-  \node[mflabel, below=3mm of root] {$\Gamma$ fixes $o$};
-  \node[mfend, below=19mm of shift, text width=5.1cm] (sign)
-    {$D\Gamma\neq aD\Gamma$\\
+\begin{tikzpicture}[node distance=10mm and 14mm]
+  \node[figbox, text width=2.5cm] (root) {root site $o=\Gamma$\\
+    lamp $c_o$};
+  \node[figbox, text width=2.5cm, right=of root] (shift) {shifted site
+    $D\Gamma$\\ lamp $c_{D\Gamma}$};
+  \node[figbox, text width=2.5cm, right=of shift] (moved) {moved site
+    $aD\Gamma$\\ lamp $c_{aD\Gamma}$};
+  \node[figout, text width=4.9cm, anchor=north] (sign)
+    at ($(shift.south)!0.5!(moved.south)+(0,-12mm)$)
+    {$D\Gamma\neq aD\Gamma$, so\\
      $[c_{D\Gamma},c_{aD\Gamma}]=-1=z\neq1$};
-  \draw[mfarr, draw=mfgold] (shift.south) |- (sign.west);
-  \draw[mfarr, draw=mfgold] (moved.south) |- (sign.east);
+  \draw[figarr] (root) -- node[fignote, above=1pt] {$t\mapsto D$} (shift);
+  \draw[figarr] (shift) -- node[fignote, above=1pt] {$a$} (moved);
+  \node[fignote, below=2.5mm of root] {$\Gamma$ fixes $o$};
+  \draw[figarr] (shift.south) -- (shift.south |- sign.north);
+  \draw[figarr] (moved.south) -- (moved.south |- sign.north);
 \end{tikzpicture}
 \caption{The Clifford witness for $w\neq1$.  The base fixes the root lamp,
 while the proper doubling shift creates two distinct Clifford sites whose
@@ -1609,6 +1638,98 @@ then
 \leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.existsUnique_defectNormal_factorization_to_normMatrixCorona}
 \leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal}
 \end{corollary}
+
+\begin{theorem}[intrinsic normal-Kazhdan criterion]
+\label{thm:intrinsicnormalkazhdan}
+Let $L=\iota(\Lambda)\le H$ and let $\mathfrak D(H,L)$ be the
+compression--centralizer defect from \eqref{eq:intrinsicdefect}.  If
+$K\trianglelefteq H$ has property~\textup{(T)} and
+$K\le\mathfrak D(H,L)$, then
+\[
+ K\le\operatorname{Rad}_{\rm MF}(H).
+\]
+Consequently, if $\mathfrak D(H,L)$ itself has property~\textup{(T)},
+every corona representation factors through
+$H/\mathfrak D(H,L)$; if that quotient is MF, then
+\[
+ \operatorname{Rad}_{\rm MF}(H)=\mathfrak D(H,L).
+\]
+The same containment holds for the subgroup generated by all normal
+property~\textup{(T)} subgroups contained in $\mathfrak D(H,L)$.
+\end{theorem}
+
+\begin{proof}
+In the conjugation representation associated to a corona model, let $P$
+be the Kazhdan projection onto the $L$-fixed vectors.  For every one-sided
+compressor $s\in\mathcal C(L)$ the fixed-vector calculation gives
+$P\le\beta(s)P\beta(s)^*$.  Stable finiteness upgrades this to equality,
+so $P$ commutes with $\beta(s)$.  It therefore commutes with
+$\beta(g)$ for every $g\in G_{\rm comp}(L)$, including inverses and
+arbitrary finite products.
+\leanverified{Kazhdan/FixedSpaceStabilizer}{GroupApproximation.FixedSpaceStabilizer.compressionGroup_le_stabilizer}
+
+If $z\in C_H(L)$, then the vector represented by $\Theta(z)$ is
+$L$-fixed.  Hence the vector represented by
+$\Theta(gzg^{-1})$ is again $L$-fixed for every
+$g\in G_{\rm comp}(L)$.  It follows that every generator
+$[gzg^{-1},\ell]$ of \eqref{eq:intrinsicdefect}, and therefore its
+normal closure, is trivial in the associated tracial matrix
+ultraproduct.
+\leanverified{Kazhdan/FixedSpaceDefect}{GroupApproximation.FixedSpaceDefect.compressionCentralizerDefect_le_ker}
+The second Kazhdan-corner argument from
+Theorem~\ref{thm:normalkazhdan}, now with
+$K\le\mathfrak D(H,L)$, gives the radical containment.  The
+factorization and equality statements follow from the universal property
+of the quotient and Proposition~\ref{prop:univquot}.
+\end{proof}
+
+\begin{theorem}[faithfully tracial targets]\label{thm:tracialtarget}
+Let $A$ be a unital $C^*$-algebra carrying a faithful tracial state
+$\tau$, and suppose that $A\otimes_{\max}A^{\rm op}$ is stably finite.
+For every homomorphism $\Theta\colon H\to\U(A)$,
+\[
+ \Theta\bigl(\mathfrak D(H,L)\bigr)=1.
+\]
+In particular the conclusion holds when $A$ is nuclear and faithfully
+tracial.
+\end{theorem}
+
+\begin{proof}
+Consider the exact representation
+\[
+ \beta(g)=\Theta(g)\otimes\Theta(g)^{*,{\rm op}}
+ \quad\hbox{in }\U(A\otimes_{\max}A^{\rm op}).
+\]
+On $L^2(A,\tau)$ its left--right action is conjugation by $\Theta(g)$.
+The Kazhdan projection for $L$ therefore projects onto the fixed vectors
+of this conjugation action.  The one-sided compressor calculation gives
+the same projection order as above, and stable finiteness of the maximal
+tensor product turns it into equality.  Thus the fixed space is invariant
+under $G_{\rm comp}(L)$.  Since $\Theta(z)$ is fixed whenever
+$z\in C_H(L)$, so is $\Theta(gzg^{-1})$ for every
+$g\in G_{\rm comp}(L)$.  It commutes in $L^2(A,\tau)$ with every
+$\Theta(\ell)$, $\ell\in L$; faithfulness of $\tau$ promotes this
+$L^2$ equality to equality in $A$.  Hence all generators of
+$\mathfrak D(H,L)$ vanish under $\Theta$.
+
+If $A$ is nuclear, maximal and minimal tensor products agree.  The
+product trace on $A\otimes_{\min}A^{\rm op}$ is faithful, so this tensor
+product is stably finite.
+\end{proof}
+
+\begin{remark}[higher Kazhdan sectors]\label{rem:highersectors}
+The preceding arguments use the isolated trivial representation of
+$\Lambda$.  A plausible higher-sector extension replaces it by a
+finite-dimensional representation $\rho$ with
+$\rho\circ\alpha\simeq\rho$, where $\alpha$ is the compression
+endomorphism.  A tuple of lamp vectors transforming as $\rho$ should be
+pinned by the corresponding isotypic Kazhdan projection, producing
+vanishing covariance defects rather than commutators.  Brown's
+finite-dimensional-sector Kazhdan projections \cite{BrownKazhdan} suggest this formulation,
+but we do not claim the extension as a theorem here: the covariance data
+and the passage from a one-sided sector inclusion to its precise defect
+relations still have to be written out.
+\end{remark}
 
 \begin{remark}\label{rem:criterioncontext}
 Theorem~\ref{thm:A}(2) is the instance $H=E$, $\Lambda=\Gamma$,
@@ -2497,6 +2618,8 @@ $z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
 \ifanonymous\else
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
+\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_surjective}
+\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated}
 \leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.witness_sign_normMFInvisible_of_hasKazhdanPropertyT}
 \leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.witness_not_isOperatorMF_of_hasKazhdanPropertyT}
 \fi
@@ -2569,6 +2692,146 @@ representation, hence trivial, so $\varphi$ is trivial.  The
 simple-envelope theorem is entirely Goryushkin's; what is added here
 is the nontrivial portable radical element.
 \end{proof}
+
+\subsection{Finitely presented Kazhdan envelopes}
+
+We use the following recent external embedding theorem.  Chatterji and
+Kassabov prove that, given a finitely generated recursively presented
+group $H$ and $1\neq h\in H$, there is an embedding
+$j\colon H\hookrightarrow\Lambda$ into a finitely presented
+property~(T) group $\Lambda$ which is normally generated by $j(h)$
+\cite[Theorem~3]{ChatterjiKassabov}.  The arXiv record
+\arxiv{2601.22907v1} was submitted on January~30, 2026; the manuscript
+itself is dated August~11, 2026.  We use only that theorem and make no
+claim that its construction is part of the present work.
+
+\begin{theorem}[a finitely presented Kazhdan group with full MF radical]
+\label{thm:kazhdanfullradical}
+There exist a finitely presented property~(T) group $\Lambda$ and an
+embedding $j\colon E\hookrightarrow\Lambda$ such that
+\[
+  \operatorname{Rad}_{\mathrm{MF}}(\Lambda)=\Lambda .
+\]
+Every corona representation of $\Lambda$, and every homomorphism from
+$\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
+linear representation of $\Lambda$, over every field, is trivial, and
+$\Lambda$ is perfect.
+\ifanonymous\else
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelope_normMFResidual_eq_top}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.hom_eq_one_to_isOperatorMF}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.allFiniteDimensionalRepresentationsTrivial}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelopeIsPerfect_of_eq_commutator}
+\fi
+\end{theorem}
+
+\begin{proof}
+Apply \cite[Theorem~3]{ChatterjiKassabov} to $(E,w)$.  Portability gives
+$j(w)\in\operatorname{Rad}_{\mathrm{MF}}(\Lambda)$.  The radical is
+normal, whereas $j(w)$ normally generates $\Lambda$, so the radical is
+all of $\Lambda$.  The statements about corona representations and maps
+to MF groups follow from Proposition~\ref{prop:univquot}.
+
+Let $\pi\colon\Lambda\to\GL(V)$ with $V$ finite-dimensional over an
+arbitrary field.  Theorem~\ref{thm:B}, applied to $\pi\circ j$, gives
+$\pi(j(w))=1$; normal generation gives $\pi=1$.  Finally $w$ is a
+commutator, hence $j(w)$ lies in the commutator subgroup of $\Lambda$.
+That normal subgroup contains a normal generator, so it is all of
+$\Lambda$ and $\Lambda$ is perfect.
+\end{proof}
+
+In particular $\Lambda$ has no nontrivial finite or residually finite
+quotient.  It also has no nontrivial amenable quotient and no nontrivial
+finitely generated linear quotient: quotients of the finitely generated
+group $\Lambda$ are countable, amenable groups are MF by
+Facts~\ref{fact:tww} and~\ref{fact:qdcorona}, and finitely generated
+linear groups are residually finite by Mal'cev's theorem \cite{Ma}.
+Thus $\Lambda$ is minimally almost periodic.  By the classical
+Peter--Weyl theorem \cite{PeterWeyl}, its Bohr compactification is
+trivial; this last Peter--Weyl implication is not part of the formal
+companion.
+
+\begin{theorem}[a universal Kazhdan group with full MF radical]
+\label{thm:universalkazhdanradical}
+There exists a finitely presented property~(T) group
+$\Lambda_{\mathrm{univ}}$ which contains every finitely presented group
+as a subgroup and satisfies
+\[
+  \operatorname{Rad}_{\mathrm{MF}}(\Lambda_{\mathrm{univ}})
+  =\Lambda_{\mathrm{univ}}.
+\]
+Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
+trivial.
+\ifanonymous\else
+\leanconditional{Sofic/UniversalKazhdanMFObstruction}{GroupApproximation.UniversalNormallyGeneratedKazhdanEnvelopeData.consequence_package}
+\fi
+\end{theorem}
+
+\begin{proof}
+Enumerate all finite group presentations and form the free product of the
+groups they present.  The Higman--Neumann--Neumann and Higman embedding
+theorems \cite{HNN,Higman} embed this recursively presented countable
+group into a finitely presented group $U$.  Thus $U$ contains every
+finitely presented group.  Choose $i\colon E\hookrightarrow U$.
+Portability and injectivity give
+$1\neq i(w)\in\operatorname{Rad}_{\mathrm{MF}}(U)$.  Apply
+\cite[Theorem~3]{ChatterjiKassabov} to $(U,i(w))$.  Its image in the
+resulting finitely presented property~(T) envelope normally generates,
+so portability forces the final MF radical to be the entire group.
+Universality survives the embedding of $U$, and the last assertion follows
+from Proposition~\ref{prop:univquot}.
+\end{proof}
+
+The directionality is worth emphasizing:
+$\Lambda_{\mathrm{univ}}$ contains every finite group and every finitely
+presented residually finite, amenable, or linear group, while admitting no
+nontrivial quotient in any of those MF classes.
+
+\begin{corollary}[opposite full and reduced behavior in one group]
+\label{cor:universalCstarcontrast}
+For the same universal Kazhdan group,
+\[
+  \Cred(\Lambda_{\mathrm{univ}})
+  \quad\text{is stably finite but non-MF},
+\]
+whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
+is therefore neither finite nor stably finite, and hence is not MF.
+\ifanonymous\else
+\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
+\leanverified{Analysis/ReducedGroupCStarMFObstruction}{GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top}
+\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
+\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec}
+\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing}
+\fi
+\end{corollary}
+
+\begin{proof}
+The canonical trace on $\Cred(\Lambda_{\mathrm{univ}})$ is faithful, so
+the proof of Lemma~\ref{lem:faithfultrace}, applied to every finite matrix
+amplification, gives stable finiteness.  If the reduced algebra embedded
+faithfully in a norm matrix corona, restriction to its left-regular
+unitaries would give an injective corona representation of
+$\Lambda_{\mathrm{univ}}$, contradicting its full MF radical.
+
+The finitely presented ambient HNN group $G$ of
+Proposition~\ref{prop:ambient} embeds in
+$\Lambda_{\mathrm{univ}}$.  For $H\le K$, the canonical map
+$\Cmax(H)\to\Cmax(K)$ is injective: induce any unitary representation of
+$H$ to $K$ and recover the original representation on the identity-coset
+summand, so the maximal norm is preserved.  Thus the explicit proper
+isometry in $\Cmax(G)$ remains proper in
+$\Cmax(\Lambda_{\mathrm{univ}})$.  A proper isometry witnesses failure
+of finiteness and stable finiteness.
+\end{proof}
+
+The formal companion proves the deductions in this subsection from
+explicit records carrying the Chatterji--Kassabov and universal-embedding
+data.  It neither postulates those records as axioms nor claims to
+formalize the historical embedding theorems.  On the operator-algebra
+side it constructs the reduced group algebra and its canonical faithful
+trace, proves stable finiteness of all finite matrix amplifications, and
+formalizes the faithful-restriction obstruction and transport of a proper
+isometry along an injective $C^*$-embedding.  The maximal group-$C^*$
+construction and subgroup embedding theorem remain external inputs.
 
 \subsection{The scaling family}
 
@@ -2694,6 +2957,96 @@ set of cardinality $2^{\aleph_0}$ with countable fibres has image of
 cardinality $2^{\aleph_0}$; apply this to $i\mapsto[G_i]$.
 \end{proof}
 
+\subsection{Algorithmic unrecognizability}
+
+We use the Adian--Rabin theorem in its standard Markov-property form
+\cite{Adian58,Rabin}: if an isomorphism-invariant property has a finitely
+presented positive example and a finitely presented forbidden group which
+cannot embed in any finitely presented group having the property, then the
+property is undecidable from finite presentations.
+
+\begin{theorem}[MF recognition is undecidable]\label{thm:mfrecognition}
+There is no algorithm which, given a finite group presentation, decides
+whether the presented group is MF.
+\ifanonymous\else
+\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+\fi
+\end{theorem}
+
+\begin{proof}
+Being MF is inherited by subgroups (Lemma~\ref{lem:subgroupMF}).  The
+trivial group is a finitely presented positive example, while the finitely
+presented non-MF group $E$ cannot embed in any MF group.  Thus MF is a
+Markov property, and Adian--Rabin applies.
+\end{proof}
+
+\begin{theorem}[negative instances are not recursively enumerable]
+\label{thm:nonmfre}
+For any standard effective coding of finite group presentations, the set
+of codes presenting non-MF groups is not recursively enumerable.
+Consequently there is no sound and complete recursively verifiable system
+of finite certificates for non-MF-ness of finitely presented groups.
+\ifanonymous\else
+\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
+\fi
+\end{theorem}
+
+\begin{proof}
+Fix a finitely presented group $N$ with undecidable word problem.  The
+effective test-group construction in the proof of Adian--Rabin associates
+to every word $u$ a finite presentation $P_u$ such that $u=1$ in $N$
+implies $G(P_u)=1$, whereas $u\neq1$ implies that $E$ embeds in $G(P_u)$.
+Hence $G(P_u)$ is MF exactly when $u=1$.  Trivial words are recursively
+enumerable.  If non-MF finite presentations were also recursively
+enumerable, pulling that enumeration back along $u\mapsto P_u$ would
+enumerate the nontrivial words of $N$; running both enumerations in parallel
+would decide its word problem, a contradiction.  The certificate statement
+follows because the objects accepted by a recursive finite verifier form a
+recursively enumerable set.
+\end{proof}
+
+\begin{corollary}[$C^*$-recognition problems]\label{cor:Cstarrecognition}
+There is no algorithm which, from a finite presentation of a group $H$,
+decides any of the following five properties:
+\begin{enumerate}
+\item $\Cred(H)$ is MF;
+\item $\Cmax(H)$ is MF;
+\item $\Cmax(H)$ is finite;
+\item $\Cmax(H)$ is stably finite;
+\item $\Cmax(H)$ is directly finite.
+\end{enumerate}
+For each property, the set of finite presentations on which it fails is
+not recursively enumerable.
+\ifanonymous\else
+\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
+\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_negative_sides_not_re}
+\fi
+\end{corollary}
+
+\begin{proof}
+For $H\le K$, the restriction of the left regular representation of $K$
+to $H$ is a direct sum of copies of the left regular representation of
+$H$, so $\Cred(H)\hookrightarrow\Cred(K)$.  The analogous maximal
+embedding was recalled in the proof of
+Corollary~\ref{cor:universalCstarcontrast}.  MF-ness, finiteness, stable
+finiteness, and direct finiteness pass to unital $C^*$-subalgebras.
+Thus each property is subgroup-hereditary at the group level.
+
+For the first two properties, the forbidden finitely presented group is
+$E$.  For the last three it is the finitely presented group $G$ from
+Proposition~\ref{prop:ambient}, whose maximal algebra contains a proper
+isometry.  The trivial group is a positive example in every case, so the
+Adian--Rabin theorem gives undecidability.  Applying its effective
+test-group construction to the respective forbidden group gives the same
+pullback argument as in Theorem~\ref{thm:nonmfre}, hence failure of
+recursive enumerability on the negative side.
+\end{proof}
+
+The formal companion kernel-checks these computability-theoretic pullbacks
+from explicitly supplied effective Adian--Rabin transformations and their
+correctness equivalences.  It does not claim to formalize the historical
+test-group construction itself.
+
 \subsection{Uniform invisibility}
 
 \begin{theorem}[uniform invisibility]\label{thm:uniform}
@@ -2741,8 +3094,58 @@ require tracking the Kazhdan constant of $\Lambda$ through
 Sections~\ref{sec:conj}--\ref{sec:proofA}, which we do not pursue.
 \end{remark}
 
+\begin{theorem}[marked-space closedness and the literal cylinder]
+\label{thm:markedclosed}
+For every $k$, the MF locus in the space $\mathcal G_k$ of
+$k$-marked groups is closed; equivalently, the non-MF locus is open.
+More precisely, every non-MF marked group has a finite reduced-word ball
+whose relation pattern defines a neighborhood consisting entirely of
+non-MF groups.
+
+For the canonical eight-generator marking of $E$, there is the explicit
+clopen neighborhood
+\[
+ \mathcal O_E=\{(H;h_1,\ldots,h_8):
+ r(h_1,\ldots,h_8)=1\ (r\in R),\quad
+ w(h_1,\ldots,h_8)\neq1\}.
+\]
+Every group in $\mathcal O_E$ is non-MF.  With the literal relator set of
+Definition~\ref{def:E}, membership is determined by the relation pattern
+on reduced words of length at most $34$.
+\leanverified{Sofic/OperatorMFLocalNormalization}{GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one}
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
+\leanverified{Sofic/LiteralPresentationRadius}{GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34}
+\end{theorem}
+
+\begin{proof}
+The tensor-power separation amplifier gives the following normalized local
+criterion: a countable group is MF exactly when, for every finite subset
+and every positive error, it has an operator-norm unitary model whose
+distinct elements are separated by at least $1$.
+
+Suppose $(G_n,S_n)\to(G,S)$ and every $G_n$ is MF.  Given a finite
+$F\subseteq G$, choose words in the free marked generators representing
+every element of $F\cup F^2$.  On a sufficiently small cylinder, all
+equalities and inequalities among these finitely many words agree with
+those in $G$.  A normalized local model in one such $G_n$ therefore pulls
+back, word by word, to a local model of $G$ with the same multiplicative
+error and separation.  The criterion makes $G$ MF.  This proves
+closedness; recording the finitely many control words inside one reduced
+word ball gives the stronger finite-radius statement.
+
+For the literal neighborhood, the relators give a surjection
+$E\twoheadrightarrow H$.  If the marked word survives in $H$, portability
+of $w\in\operatorname{Rad}_{\rm MF}(E)$ puts its nontrivial image in
+$\operatorname{Rad}_{\rm MF}(H)$, so $H$ is non-MF.  Equality or
+inequality of each fixed word is clopen, and there are finitely many
+relators.  Direct reduction of the displayed words gives length at most
+$16$ for $w$ and at most $34$ for every relator (the longest are the
+centrality relators $[w,g]$), proving the asserted radius.
+\end{proof}
+
 \begin{remark}[open questions]\label{rem:openq}
-Three questions adjacent to this section.  (i) Is $E/\langle
+Two questions remain adjacent to this section.  (i) Is $E/\langle
 w\rangle$ MF, i.e.\ is the MF radical of $E$ exactly $\{1,w\}$?
 (ii) Does a \emph{torsion-free} non-MF group exist?  Theorem~\ref{thm:normalkazhdan}
 removes the former conceptual obstruction: it would suffice to construct
@@ -2753,18 +3156,8 @@ combine a torsion-free Rips construction, which supplies the normal
 Kazhdan kernel, with the one-sided-compressor geometry in
 Fournier-Facio's torsion-free nonsofic construction \cite{FF}; we do not
 carry out that construction here.  The previous question (iii) from
-earlier versions has a positive answer: for every number of generators,
-the MF locus in the space of marked groups is closed, and hence the
-non-MF locus is open.  More concretely, every non-MF marked group has a
-finite reduced-word ball whose relation pattern already forces non-MF-ness.
-Indeed, bounded tensor powers normalize operator-norm separation to $1$;
-failure of the resulting local criterion is witnessed on one finite set,
-and recording its finite multiplication table and inequalities gives the
-required marked-group cylinder.  We include this consequence in the formal
-companion; its paper proof is the same finite-cylinder argument.
-\leanverified{Sofic/OperatorMFLocalNormalization}{GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+earlier versions is answered affirmatively by
+Theorem~\ref{thm:markedclosed}.
 \end{remark}
 
 \section{The cyclic-base comparison}\label{sec:necessity}
@@ -2779,7 +3172,37 @@ with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
 $t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
 $E_0=\ClLamp(X_0)\rtimes G_0$ with central sign
 $z_0=-1\in\ClLamp(X_0)$ as in
-Construction~\ref{con:clifford}.
+Construction~\ref{con:clifford}.  Figure~\ref{fig:cyclic-comparison}
+summarizes the comparison.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[node distance=8mm and 12mm,
+    figbox/.append style={text width=4.7cm, minimum height=18mm}]
+  \node[figbox] (kbase) {$E$:\ the marked pattern over the Kazhdan base
+    $\Gamma=\Z^3\rtimes\SL_3(\Z)$};
+  \node[figbox, right=of kbase] (cbase) {$E_{\mathrm{BS}}$:\ the same
+    pattern over the cyclic base $\Gamma_0=\Z$};
+  \node[figbox, below=of kbase] (kfd) {every finite-dimensional
+    representation kills $w$ (Theorem~\ref{thm:B})};
+  \node[figbox, right=of kfd] (cfd) {every finite-dimensional
+    representation kills $w_{\mathrm{BS}}$ (Theorem~\ref{thm:B})};
+  \node[figout, below=of kfd] (kcor) {every corona representation kills
+    $w$:\ the group $E$ is not MF (Theorem~\ref{thm:A})};
+  \node[figout, right=of kcor] (ccor) {a corona representation\\
+    keeps $w_{\mathrm{BS}}\neq1$, via the\\ amenable MF quotient\\
+    $E_0$ (Theorem~\ref{thm:C})};
+  \draw[figarr] (kbase) -- (kfd);
+  \draw[figarr] (cbase) -- (cfd);
+  \draw[figarr] (kfd) -- (kcor);
+  \draw[figarr] (cfd) -- (ccor);
+\end{tikzpicture}
+\caption{The cyclic-base comparison.  The finite-dimensional
+obstruction does not see the base, while the corona conclusion holds
+exactly on the side where property~(T) supplies the uniform fixed-space
+projection.}
+\label{fig:cyclic-comparison}
+\end{figure}
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
 \emph{$z_0\neq1$:} immediate from Construction~\ref{con:clifford},
@@ -2904,6 +3327,11 @@ finite-stage universal marked-kernel endpoint, is available in the repository
 
 \begin{thebibliography}{TWW}
 
+\bibitem[Ad58]{Adian58}
+S.~I. Adian,
+\emph{On algorithmic problems in effectively complete classes of groups},
+Dokl. Akad. Nauk SSSR (N.S.) \textbf{123} (1958), no.~1, 13--16.
+
 \bibitem[AW]{AW}
 C.~A. Akemann and M.~E. Walter,
 \emph{Unbounded negative definite functions},
@@ -2966,6 +3394,12 @@ N.~P. Brown and N.~Ozawa,
 Graduate Studies in Mathematics, vol.~88,
 American Mathematical Society, Providence, RI, 2008.
 
+\bibitem[Br]{BrownKazhdan}
+N.~P. Brown,
+\emph{Kazhdan's property T and $C^*$-algebras},
+J. Funct. Anal. \textbf{240} (2006), no.~1, 290--296,
+\doi{10.1016/j.jfa.2006.05.003}.
+
 \bibitem[BR2]{BR2}
 O.~Bratteli and D.~W. Robinson,
 \emph{Operator algebras and quantum statistical mechanics~2},
@@ -2977,6 +3411,13 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 preprint first posted October~15, 2012, \arxiv{1210.4050};
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[CK]{ChatterjiKassabov}
+I.~Chatterji and M.~Kassabov,
+\emph{Examples of finitely presented groups with strong fixed point
+properties and property (T)},
+preprint, \arxiv{2601.22907v1}, submitted January~30, 2026;
+manuscript dated August~11, 2026.
 
 \bibitem[CIOS]{CIOS}
 I.~Chifan, A.~Ioana, D.~Osin, and B.~Sun,
@@ -3051,6 +3492,18 @@ A.~P. Goryushkin,
 Math. Notes Acad. Sci. USSR \textbf{16} (1974), no.~2, 725--727,
 \doi{10.1007/BF01105577}.
 
+\bibitem[Hig]{Higman}
+G.~Higman,
+\emph{Subgroups of finitely presented groups},
+Proc. Roy. Soc. London Ser. A \textbf{262} (1961), 455--475,
+\doi{10.1098/rspa.1961.0132}.
+
+\bibitem[HNN]{HNN}
+G.~Higman, B.~H. Neumann, and H.~Neumann,
+\emph{Embedding theorems for groups},
+J. London Math. Soc. \textbf{s1-24} (1949), no.~4, 247--254,
+\doi{10.1112/jlms/s1-24.4.247}.
+
 \bibitem[HT]{HT}
 U.~Haagerup and S.~Thorbj{\o}rnsen,
 \emph{A new application of random matrices:
@@ -3123,6 +3576,19 @@ G.~Prasad,
 \emph{Discrete subgroups isomorphic to lattices in semisimple Lie
 groups},
 Amer. J. Math. \textbf{98} (1976), no.~1, 241--261.
+
+\bibitem[PW]{PeterWeyl}
+F.~Peter and H.~Weyl,
+\emph{Die Vollst\"andigkeit der primitiven Darstellungen einer
+geschlossenen kontinuierlichen Gruppe},
+Math. Ann. \textbf{97} (1927), 737--755,
+\doi{10.1007/BF01447892}.
+
+\bibitem[Rab]{Rabin}
+M.~O. Rabin,
+\emph{Recursive unsolvability of group theoretic problems},
+Ann. of Math. (2) \textbf{67} (1958), no.~1, 172--194,
+\doi{10.2307/1969933}.
 
 \bibitem[Ra]{Rainone}
 T.~Rainone,

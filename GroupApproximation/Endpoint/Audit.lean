@@ -48,6 +48,7 @@ import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralPresentationRadius
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
@@ -71,6 +72,7 @@ import GroupApproximation.PropertyTT.NonsoficCorollary
 import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Kazhdan.InvariantSubsetRounding
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Kazhdan.DiagonalInvariantRelation
 import GroupApproximation.KOne.RefineLoopDischarge
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
@@ -267,7 +269,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.BinaryLeavitt.K1_trivial
 #print axioms GroupApproximation.KOnePaper.diagUnit_mem_elementary
 #print axioms GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
-#print axioms GroupApproximation.BinaryLeavitt.elementaryGroup_eq_top
 
 -- The unit-group and general-linear profiles (Theorem B(i) closed): finite
 -- generation, infinitude, property (T), and nonsoficity of `L_k(1,2)ˣ` and
@@ -511,6 +512,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package
 #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_permutation_package
 #print axioms GroupApproximation.compressionCentralizerDefect_le_ker
+#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_le_stabilizer
+#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_map_mem
 #print axioms GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
 #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
@@ -531,6 +534,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralPresentationRadius.markedWord_length_le
 #print axioms GroupApproximation.LiteralPresentationRadius.relator_wordLength_le_34
 #print axioms GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34
+#print axioms GroupApproximation.LiteralMarkedCylinder.literalCylinder_nonempty
+#print axioms GroupApproximation.LiteralMarkedCylinder.literalCylinder_isClopen
+#print axioms GroupApproximation.LiteralMarkedCylinder.cylinder_relator_eq_one
+#print axioms GroupApproximation.LiteralMarkedCylinder.cylinder_markedWord_ne_one
 #print axioms GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona
 #print axioms GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect

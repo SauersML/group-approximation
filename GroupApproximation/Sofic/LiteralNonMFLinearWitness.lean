@@ -406,6 +406,83 @@ sign in the witness group. -/
     witnessHom mark = signAmbient alpha conjD_injective := by
   rw [witnessHom, realizationHom_mark, realization_marked_word]
 
+@[simp] theorem witnessHom_base_generator (i : BaseGenerator) :
+    witnessHom (baseMap (PresentedGroup.of i)) =
+      iotaAmbient alpha conjD_injective (matrixBaseGenerator i) := by
+  rw [witnessHom, realizationHom_base_generator]
+  rfl
+
+@[simp] theorem witnessHom_stable :
+    witnessHom stable = tAmbient alpha conjD_injective := by
+  simp [witnessHom, realization]
+
+@[simp] theorem witnessHom_lamp :
+    witnessHom lamp = cAmbient alpha conjD_injective := by
+  simp [witnessHom, realization]
+
+/-- Every element of the affine base copy belongs to the range of the
+literal witness homomorphism. -/
+theorem iotaAmbient_mem_witnessHom_range (γ : gammaBar) :
+    iotaAmbient alpha conjD_injective γ ∈ witnessHom.range := by
+  let K : Subgroup gammaBar :=
+    witnessHom.range.comap (iotaAmbient alpha conjD_injective)
+  have hgen (i : BaseGenerator) : matrixBaseGenerator i ∈ K := by
+    exact ⟨baseMap (PresentedGroup.of i), witnessHom_base_generator i⟩
+  have hgenerators :
+      gammaBar.subtype ⁻¹' ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ) ⊆ K := by
+    intro u hu
+    rcases hu with h | h | h | h | h | h
+    · rw [show u = xG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex]
+        using hgen xIndex
+    · rw [show u = yG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex]
+        using hgen yIndex
+    · rw [show u = zG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex,
+        zIndex] using hgen zIndex
+    · rw [show u = v1G from Subtype.ext h]
+      simpa [matrixBaseGenerator] using hgen v1Index
+    · rw [show u = v2G from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index] using hgen v2Index
+    · rw [Set.mem_singleton_iff] at h
+      rw [show u = v3G from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index] using hgen v3Index
+  have hclosure :
+      Subgroup.closure
+          (gammaBar.subtype ⁻¹'
+            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) ≤ K :=
+    (Subgroup.closure_le _).mpr hgenerators
+  have htop :
+      Subgroup.closure
+          (gammaBar.subtype ⁻¹'
+            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) = ⊤ := by
+    exact Subgroup.closure_preimage_eq_top
+      ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)
+  exact hclosure (htop.symm ▸ Subgroup.mem_top γ)
+
+/-- The literal homomorphism onto the affine--Clifford witness is
+surjective, as asserted in manuscript Proposition `prop:W`. -/
+theorem witnessHom_surjective : Function.Surjective witnessHom := by
+  rw [← MonoidHom.range_eq_top]
+  apply top_unique
+  intro g _
+  apply ambient_mem_subgroup_of_generators_mem alpha conjD_injective
+    witnessHom.range
+  · exact iotaAmbient_mem_witnessHom_range
+  · exact ⟨stable, witnessHom_stable⟩
+  · exact ⟨lamp, witnessHom_lamp⟩
+  · exact ⟨mark, witnessHom_mark⟩
+
+/-- The explicit affine--Clifford witness is finitely generated, as the
+surjective image of the literal finite presentation. -/
+theorem witnessGroup_finitelyGenerated : Group.FG WitnessGroup := by
+  letI : Group.FG MarkedGroup :=
+    Group.fg_of_surjective
+      (PresentedGroup.mk_surjective
+        (relators : Set (FreeGroup Generator)))
+  exact Group.fg_of_surjective witnessHom_surjective
+
 /-- **Exact separation of the literal mark.** -/
 theorem literal_mark_ne_one : mark ≠ 1 := by
   apply mark_ne_one_of_realization realization

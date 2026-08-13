@@ -487,8 +487,8 @@ Leavitt shift
 MappingTelescope + CliffordLampGroup
     -> MarkedCompressionGroup (countable witness, word = sign != 1)
 ShalomFinitePresentation + Base + telescope/witness realization
-    -> ExplicitMarkedPresentation
-    -> ExplicitNonMFEndpoint (finitely presented marked inclusion data)
+    -> ChosenMarkedPresentation
+    -> ChosenNonMFEndpoint (finitely presented marked inclusion data)
 
 ANALYTIC KILL BRANCH
 
@@ -523,8 +523,8 @@ negative corner says the same word tends to -1 in operator norm
 
 JOIN
 
-ExplicitNonMFEndpoint.word_ne_one + universal analytic kill
-    -> ExplicitNonMFTheorem.mark_normMFInvisible
+ChosenNonMFEndpoint.word_ne_one + universal analytic kill
+    -> ChosenNonMFTheorem.mark_normMFInvisible
        |-> chosenFinitelyPresented_not_isWeakMF
        |      -> countable and finitely presented weak-MF endpoints
        `-> chosenFinitelyPresented_not_isOperatorMF
@@ -584,8 +584,8 @@ argument.
 | `Sofic/CliffordLampGroup` | A presented Clifford 2-group, nontrivial central sign, and functorial permutation action. |
 | `Sofic/MarkedCompressionGroup` | The countable semidirect witness; proves the marked word equals the sign and is nontrivial. |
 | `Kazhdan/ShalomFinitePresentation` | A finitely presented Kazhdan cover of the internal base. |
-| `Sofic/ExplicitMarkedPresentation` | Finite relator set, marked central involution, inclusion relations, and a realization proving the mark nontrivial. |
-| `Sofic/ExplicitNonMFEndpoint` | Packages exactly the inclusion data consumed by the analytic theorem. |
+| `Sofic/ChosenMarkedPresentation` | Noncomputably chosen finite relator set, marked central involution, inclusion relations, and a realization proving the mark nontrivial. |
+| `Sofic/ChosenNonMFEndpoint` | Packages exactly the chosen inclusion data consumed by the analytic theorem. |
 
 ### Formal trust boundary
 
@@ -606,7 +606,7 @@ central-involution endpoint.
 ## Complete recursive repository import graph
 
 This appendix is a machine-extracted snapshot at commit `38436d9d`. Starting
-from `Sofic/ExplicitNonMFTheorem.lean`, the recursive repository closure has
+from `Sofic/ChosenNonMFTheorem.lean`, the recursive repository closure has
 **115 modules and 190 internal import edges**. Mathlib imports are the
 external boundary and are omitted. An em dash means the module has no further
 repository import in this closure. This is the complete build/import graph,
@@ -704,10 +704,10 @@ not a claim that every imported declaration occurs in the final proof term.
 - `Sofic/ApproxInvolutionCorner` -> `Sofic/KazhdanCornerMatrices`
 - `Sofic/Asymptotics` -> —
 - `Sofic/CliffordLampGroup` -> —
-- `Sofic/ExplicitMarkedPresentation` -> `Algebra/MappingTelescope`, `Kazhdan/KazhdanFiniteGeneration`, `Kazhdan/ShalomFinitePresentation`, `Sofic/ExplicitNonMFBase`, `Sofic/MarkedCompressionGroup`
+- `Sofic/ChosenMarkedPresentation` -> `Algebra/MappingTelescope`, `Kazhdan/KazhdanFiniteGeneration`, `Kazhdan/ShalomFinitePresentation`, `Sofic/ExplicitNonMFBase`, `Sofic/MarkedCompressionGroup`
 - `Sofic/ExplicitNonMFBase` -> `Leavitt/ShiftEndomorphism`, `Leavitt/UniversalPropertyT`, `Leavitt/UniversalRankFour`
-- `Sofic/ExplicitNonMFEndpoint` -> `Sofic/ExplicitMarkedPresentation`, `Sofic/MarkedCompressionInclusionData`
-- `Sofic/ExplicitNonMFTheorem` -> `Sofic/ExplicitNonMFEndpoint`, `Sofic/MarkedCompressionGroup`, `Sofic/MarkedCompressionSequentialKill`
+- `Sofic/ChosenNonMFEndpoint` -> `Sofic/ChosenMarkedPresentation`, `Sofic/MarkedCompressionInclusionData`
+- `Sofic/ChosenNonMFTheorem` -> `Sofic/ChosenNonMFEndpoint`, `Sofic/MarkedCompressionGroup`, `Sofic/MarkedCompressionSequentialKill`
 - `Sofic/Hyperlinear` -> `Sofic/HyperlinearMetric`, `Sofic/SoficPositiveControl`
 - `Sofic/HyperlinearAmplification` -> `Sofic/Hyperlinear`
 - `Sofic/HyperlinearMetric` -> `Sofic/Sofic`
@@ -949,7 +949,7 @@ git grep '^import GroupApproximation' HEAD -- 'GroupApproximation/**/*.lean'
 ```
 
 The import appendix was obtained by recursively following the last command
-from `GroupApproximation/Sofic/ExplicitNonMFTheorem.lean`. Commit bodies were
+from `GroupApproximation/Sofic/ChosenNonMFTheorem.lean`. Commit bodies were
 used when they stated the purpose and trust status of a result; source and
 notes were used to check those descriptions. The key human-readable primary
 records are:
