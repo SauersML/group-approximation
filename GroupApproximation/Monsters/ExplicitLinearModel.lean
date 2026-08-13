@@ -127,9 +127,6 @@ The eight relations of the displayed `SL₃(ℤ)` presentation
 the translations; and the nine action relations, in the inverse-free form
 `g · vᵢ = (target) · g`. -/
 
-theorem rel_x_cube : xM * xM * xM = 1 := by verify_explicit_matrix
-theorem rel_y_cube : yM * yM * yM = 1 := by verify_explicit_matrix
-theorem rel_z_sq : zM * zM = 1 := by verify_explicit_matrix
 theorem rel_xz_cube : (xM * zM) * (xM * zM) * (xM * zM) = 1 := by
   verify_explicit_matrix
 theorem rel_yz_cube : (yM * zM) * (yM * zM) * (yM * zM) = 1 := by

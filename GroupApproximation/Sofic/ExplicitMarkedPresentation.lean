@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.MappingTelescope
+import GroupApproximation.Algebra.PresentedGroupEvaluation
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Sofic.ExplicitNonMFBase
@@ -143,21 +144,6 @@ noncomputable abbrev lampLetter : FreeGroup Generator :=
 def commutatorWord {X : Type*} [Group X] (x y : X) : X :=
   x * y * x⁻¹ * y⁻¹
 
-/-- Homomorphisms out of a free group agree on all words once they agree on
-the free generators. -/
-theorem freeHom_eq_on {X M : Type*} [Group M]
-    {f g : FreeGroup X →* M}
-    (h : ∀ i, f (FreeGroup.of i) = g (FreeGroup.of i)) :
-    ∀ w, f w = g w := by
-  intro w
-  refine FreeGroup.induction_on w ?_ ?_ ?_ ?_
-  · rw [map_one, map_one]
-  · exact h
-  · intro i hi
-    rw [map_inv, map_inv, hi]
-  · intro a b ha hb
-    rw [map_mul, map_mul, ha, hb]
-
 /-- The universal map from a presented group computes by free evaluation on
 each represented word. -/
 theorem presentedToGroup_mk {X M : Type*} [Group M]
@@ -166,7 +152,7 @@ theorem presentedToGroup_mk {X M : Type*} [Group M]
     (w : FreeGroup X) :
     PresentedGroup.toGroup h (PresentedGroup.mk R w) =
       FreeGroup.lift f w := by
-  refine freeHom_eq_on
+  refine freeGroup_hom_eq_on_generators
     (f := (PresentedGroup.toGroup h).comp (PresentedGroup.mk R))
     (g := FreeGroup.lift f) ?_ w
   intro i
@@ -182,19 +168,9 @@ theorem lift_embedVertexWord {M : Type*} [Group M]
       FreeGroup.lift (fun i ↦ f (Generator.vertex i)) w := by
   change ((FreeGroup.lift f).comp embedVertexWord) w =
     FreeGroup.lift (fun i ↦ f (Generator.vertex i)) w
-  apply freeHom_eq_on
+  apply freeGroup_hom_eq_on_generators
   intro i
   simp [embedVertexWord]
-
-/-- Evaluating a free word in the generators of a presented group is the
-canonical quotient map. -/
-theorem lift_mk_generators {X : Type*} {R : Set (FreeGroup X)}
-    (w : FreeGroup X) :
-    FreeGroup.lift (fun i ↦ PresentedGroup.mk R (FreeGroup.of i)) w =
-      PresentedGroup.mk R w := by
-  apply freeHom_eq_on
-  intro i
-  simp
 
 /-- A raw word representing the chosen lift of the omitted base element. -/
 noncomputable def omittedWord : FreeGroup Generator :=
@@ -286,7 +262,7 @@ noncomputable def vertexMap : Vertex →* MarkedGroup := by
   intro r hr
   rw [← lift_embedVertexWord
     (f := fun j : Generator ↦ wordInMarkedGroup (FreeGroup.of j))]
-  rw [lift_mk_generators]
+  rw [freeGroup_lift_presentedGroup_generators]
   apply PresentedGroup.one_of_mem
   change embedVertexWord r ∈ relators
   simp only [relators, Finset.mem_union]
@@ -306,7 +282,7 @@ theorem vertexMap_mk (w : FreeGroup (Fin generatorCount)) :
   rw [presentedToGroup_mk]
   rw [← lift_embedVertexWord
     (f := fun j : Generator ↦ wordInMarkedGroup (FreeGroup.of j))]
-  rw [lift_mk_generators]
+  rw [freeGroup_lift_presentedGroup_generators]
 
 /-- The stable relations hold on every displayed vertex generator. -/
 theorem stable_conjugates_generator_into_vertex (i : Fin generatorCount) :
@@ -482,7 +458,7 @@ theorem realization_eval_vertex {M : Type*} [Group M]
   change (FreeGroup.lift fun i ↦
       R.base (vertexQuotient (PresentedGroup.of i))) w =
     (R.base.comp freeToBase) w
-  apply freeHom_eq_on
+  apply freeGroup_hom_eq_on_generators
   intro i
   rw [FreeGroup.lift_apply_of, MonoidHom.comp_apply]
   change R.base (vertexQuotient (PresentedGroup.of i)) =
