@@ -7,7 +7,7 @@ documentation, not part of the manuscript.
 ## Current presentation status
 
 - Verification links are compact margin annotations. The authoritative TeX
-  has nine annotations, each adjacent to a statement with the same
+  has twelve annotations, each adjacent to a statement with the same
   mathematical shape as its target declaration. No verification-status prose
   remains in the mathematical body.
 - Group MF is defined primarily using the quotient of unitary sequences by
