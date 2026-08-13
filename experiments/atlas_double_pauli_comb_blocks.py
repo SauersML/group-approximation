@@ -10,11 +10,17 @@ not for a numerical representation or a large subgroup closure.
 from fractions import Fraction
 import json
 import sys
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, "experiments")
 
-from atlas_raw_branch_pauli_cell import root  # noqa: E402
+from atlas_raw_branch_pauli_cell import (  # noqa: E402
+    element_order,
+    generated_subgroup,
+    inverse,
+    root,
+)
 from atlas_raw_compressor_proper_infinite import (  # noqa: E402
     product,
     raw_and_comb,
@@ -82,13 +88,6 @@ def ga_mul(*values):
     return result
 
 
-def ga_star(value):
-    return ga_reduce([
-        (coefficient, leavitt_star(group_value))
-        for coefficient, group_value in value
-    ])
-
-
 def ga_sub(left, right):
     return ga_add(left, ga_scale(-1, right))
 
@@ -123,7 +122,8 @@ def cut(carrier, sign, negative=True):
 
 def conjugate(conjugator, value):
     unitary = ga_single(conjugator)
-    return ga_mul(ga_star(unitary), value, unitary)
+    inverse_unitary = ga_single(leavitt_star(conjugator))
+    return ga_mul(inverse_unitary, value, unitary)
 
 
 def main():
@@ -181,6 +181,98 @@ def main():
         key: conjugate(comb, value)
         for key, value in coefficient_cuts.items()
     }
+    raw_group_generators = (*x, *z, raw)
+    comb_group_generators = [
+        product(leavitt_star(comb), value, comb)
+        for value in raw_group_generators
+    ]
+    comb_generator_action_on_raw_coefficient_cuts = {}
+    comb_generator_raw_commutators = []
+    for generator_position, generator in enumerate(comb_group_generators):
+        generator_ga = ga_single(generator)
+        row = {}
+        for source, source_cut in coefficient_cuts.items():
+            moved = ga_mul(generator_ga, source_cut, generator_ga)
+            row[str(source)] = next((
+                str(target) for target, target_cut in coefficient_cuts.items()
+                if ga_equal(moved, target_cut)
+            ), None)
+        comb_generator_action_on_raw_coefficient_cuts[
+            str(generator_position)] = row
+        raw_commutator = product(generator, raw, generator, raw)
+        raw_commutator_inverse = product(raw, generator, raw, generator)
+        commutator_action = {}
+        for source, source_cut in coefficient_cuts.items():
+            moved = ga_mul(
+                ga_single(raw_commutator),
+                source_cut,
+                ga_single(raw_commutator_inverse),
+            )
+            commutator_action[str(source)] = next((
+                str(target) for target, target_cut in coefficient_cuts.items()
+                if ga_equal(moved, target_cut)
+            ), None)
+        comb_generator_raw_commutators.append({
+            "generator_position": generator_position,
+            "order_within_128": element_order(raw_commutator, 128),
+            "raw_coefficient_cut_action": commutator_action,
+        })
+    pauli_packet = generated_subgroup((*x, *z), limit=64)
+    transported_pauli_packet = [
+        product(leavitt_star(comb), value, comb) for value in pauli_packet
+    ]
+    transported_pauli_normalizer_actions = []
+    transported_pauli_cut_orbit = []
+    orbit_source_cut = next(iter(coefficient_cuts.values()))
+    for packet_index, packet_element in enumerate(transported_pauli_packet):
+        packet_ga = ga_single(packet_element)
+        packet_inverse_ga = ga_single(inverse(packet_element))
+        moved_orbit_cut = ga_mul(
+            packet_ga, orbit_source_cut, packet_inverse_ga)
+        if not any(ga_equal(moved_orbit_cut, old)
+                   for old in transported_pauli_cut_orbit):
+            transported_pauli_cut_orbit.append(moved_orbit_cut)
+        action = []
+        for source_cut in coefficient_cuts.values():
+            moved = ga_mul(packet_ga, source_cut, packet_inverse_ga)
+            target = next((
+                str(key) for key, target_cut in coefficient_cuts.items()
+                if ga_equal(moved, target_cut)
+            ), None)
+            action.append(target)
+        if all(target is not None for target in action):
+            transported_pauli_normalizer_actions.append({
+                "packet_index": packet_index,
+                "action": action,
+            })
+    transported_pauli_cut_orbit_sum = ga_add(*transported_pauli_cut_orbit)
+    orbit_base_overlap_traces = [
+        ga_trace(ga_mul(orbit_source_cut, value))
+        for value in transported_pauli_cut_orbit
+    ]
+    # The packet acts transitively on the orbit.  Hence every row of the Gram
+    # matrix is a permutation of the base row; do not expand all 256 products.
+    transported_pauli_cut_orbit_pair_trace_histogram = Counter(
+        rational_string(value) for value in orbit_base_overlap_traces
+    )
+    transported_pauli_cut_orbit_pair_trace_histogram = Counter({
+        key: 16 * multiplicity
+        for key, multiplicity
+        in transported_pauli_cut_orbit_pair_trace_histogram.items()
+    })
+    orbit_sum_raw_cut_overlaps = {
+        key: sum(
+            ga_trace(ga_mul(orbit_cut, raw_cut))
+            for orbit_cut in transported_pauli_cut_orbit
+        )
+        for key, raw_cut in coefficient_cuts.items()
+    }
+    orbit_sum_trace_sq = 16 * sum(orbit_base_overlap_traces)
+    orbit_sum_raw_coefficient_residual_hs_sq = (
+        orbit_sum_trace_sq
+        - 8 * sum(value * value
+                  for value in orbit_sum_raw_cut_overlaps.values())
+    )
     block_zero_table = {}
     block_trace_table = {}
     block_scaled_isometry_table = {}
@@ -242,6 +334,44 @@ def main():
         "comb_character_block_trace_table": block_trace_table,
         "comb_character_scaled_isometry_table":
             block_scaled_isometry_table,
+        "comb_generator_action_on_raw_coefficient_cuts":
+            comb_generator_action_on_raw_coefficient_cuts,
+        "comb_generator_raw_commutators":
+            comb_generator_raw_commutators,
+        "transported_pauli_packet_order": len(transported_pauli_packet),
+        "transported_pauli_coefficient_normalizer_order":
+            len(transported_pauli_normalizer_actions),
+        "transported_pauli_coefficient_normalizer_actions":
+            transported_pauli_normalizer_actions,
+        "transported_pauli_cut_orbit_order":
+            len(transported_pauli_cut_orbit),
+        "transported_pauli_cut_orbit_base_overlap_traces": sorted(
+            rational_string(value) for value in orbit_base_overlap_traces),
+        "transported_pauli_cut_orbit_pair_trace_histogram": dict(sorted(
+            transported_pauli_cut_orbit_pair_trace_histogram.items())),
+        "transported_pauli_cut_orbit_sum_terms":
+            len(transported_pauli_cut_orbit_sum),
+        "transported_pauli_cut_orbit_sum_trace_moments": [
+            rational_string(ga_trace(transported_pauli_cut_orbit_sum)),
+            rational_string(orbit_sum_trace_sq),
+        ],
+        "transported_pauli_cut_orbit_sum_invariant_by_orbit_construction":
+            True,
+        "transported_pauli_cut_orbit_sum_commutes_raw_coefficient_cuts": {
+            str(key): ga_commute(
+                transported_pauli_cut_orbit_sum, raw_cut)
+            for key, raw_cut in coefficient_cuts.items()
+        },
+        "transported_pauli_cut_orbit_sum_raw_cut_overlaps": {
+            str(key): rational_string(value)
+            for key, value in orbit_sum_raw_cut_overlaps.items()
+        },
+        "transported_pauli_cut_orbit_sum_raw_coefficient_residual_hs_sq":
+            rational_string(orbit_sum_raw_coefficient_residual_hs_sq),
+        "transported_pauli_cut_orbit_sum_is_two_identity": ga_equal(
+            transported_pauli_cut_orbit_sum, ga_scale(2, identity)),
+        "transported_pauli_cut_orbit_sum_is_four_q": ga_equal(
+            transported_pauli_cut_orbit_sum, ga_scale(4, q)),
         "comb_carrier_overlap_trace": rational_string(ga_trace(ga_mul(
             q, conjugate(comb, q)))),
         "pauli_carrier": {

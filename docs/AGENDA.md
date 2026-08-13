@@ -4,6 +4,19 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: transported Pauli orbit has a canonical fingerprint
+
+`TRUE_TRANSPORTED_PAULI_ORBIT_FINGERPRINT.md` computes the full orbit of one
+raw coefficient cut under the transported order-32 Pauli packet.  The orbit
+has size 16 and its average has raw expectation weights
+`75/256,31/256,15/256,15/256`.  The unique top cut is recovered by a fixed
+quadratic polynomial with spectral gap `11/64`, formalized in
+`Sofic/DoublePauliCoefficient.lean`.  This removes permutation ambiguity once
+simultaneous coordinate recovery exists, but does not prove coefficient-space
+membership.  The same audit isolates `[X'_1,raw]` as the first mixed word
+with no period through exponent 128; this is the next cross-chart direction
+to analyze.
+
 ### 2026-08-13: the full raw/comb finite intersection is trivial
 
 `FALSE_RAW_512_COMB_INTERSECTION_IS_TRIVIAL.md` closes the finite-Reynolds

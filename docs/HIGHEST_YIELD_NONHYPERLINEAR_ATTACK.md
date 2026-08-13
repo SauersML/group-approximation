@@ -2,6 +2,28 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 live mixed direction: orbit fingerprint and `[X'_1,raw]`
+
+The transported order-32 Pauli packet has only an order-2 pointwise
+stabilizer of the raw coefficient `C^4`.  Nevertheless its 16-cut orbit
+average retains the asymmetric raw expectation weights
+
+```text
+75/256, 31/256, 15/256, 15/256.
+```
+
+The top raw cut is canonically recovered by a quadratic polynomial with gap
+`11/64`; see `TRUE_TRANSPORTED_PAULI_ORBIT_FINGERPRINT.md` and the Lean theorem
+`recover_top_cut_from_pauli_orbit_fingerprint`.  Use this polynomial to kill
+permutation/gauge ambiguity after any simultaneous reconstruction.  It does
+not create the reconstruction or put a transported cut in the raw space.
+
+Among commutators of the five transported packet generators with `raw`, four
+have order 2 while `[X'_1,raw]` has no detected period through exponent 128.
+Analyze this explicit word next for a coherent multiplication module.  Do not
+return to common-finite-subgroup averaging: the full raw/comb intersection is
+trivial and the orbit residual from the raw coefficient space is positive.
+
 ## 2026-08-13 closed shortcut: no common raw/comb finite subgroup
 
 The full raw packet `K=<X0,X1,Z0,Z1,raw>` has order `512`, but

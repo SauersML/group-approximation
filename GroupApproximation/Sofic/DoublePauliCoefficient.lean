@@ -342,6 +342,30 @@ theorem hsNormSq_projection_sub_eighth_carrier_eq_fifteen_div_128
   norm_num at hreal ⊢
   exact hreal
 
+/-- The transported-Pauli orbit average has a canonical raw-coordinate
+fingerprint.  If its coefficient expectation has weights
+`75/256, 31/256, 15/256`, then the uniquely top-weighted cut is recovered by
+one fixed quadratic polynomial.  The third idempotent may be the sum of the
+two bottom character cuts. -/
+theorem recover_top_cut_from_pauli_orbit_fingerprint
+    (Ftop Fmiddle Fbottom : Matrix Y Y ℂ)
+    (htop : Ftop * Ftop = Ftop)
+    (hmiddle : Fmiddle * Fmiddle = Fmiddle)
+    (hbottom : Fbottom * Fbottom = Fbottom)
+    (htm : Ftop * Fmiddle = 0) (hmt : Fmiddle * Ftop = 0)
+    (htb : Ftop * Fbottom = 0) (hbt : Fbottom * Ftop = 0)
+    (hmb : Fmiddle * Fbottom = 0) (hbm : Fbottom * Fmiddle = 0) :
+    let Q := Ftop + Fmiddle + Fbottom
+    let S := ((75 : ℂ) / 256) • Ftop +
+      ((31 : ℂ) / 256) • Fmiddle + ((15 : ℂ) / 256) • Fbottom
+    ((4096 : ℂ) / 165) •
+        ((S - ((31 : ℂ) / 256) • Q) *
+          (S - ((15 : ℂ) / 256) • Q)) = Ftop := by
+  dsimp
+  noncomm_ring [htop, hmiddle, hbottom, htm, hmt, htb, hbt, hmb, hbm]
+  simp
+  module
+
 /-- Arithmetic core of the trace-flat spectral truncation.  A positive
 contraction of total normalized trace `1/64`, supported on trace `1/8`, has
 at least trace `1/120` above eigenvalue `1/16`.  `lowMass` and `highMass`
