@@ -15,17 +15,28 @@ from atlas_kernel_collision_enumerator import (
     factor_projections,
     spanning_tree_kernel_words,
 )
-from atlas_two_chart_search import leavitt_is_one, matrix_key
+from atlas_two_chart_search import I4, leavitt_is_one, matrix_key
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("indices", type=int, nargs="+")
     parser.add_argument("--radius", type=int, default=5)
+    parser.add_argument(
+        "--boundary",
+        action="store_true",
+        help="index the nontrivial factor-projection sublist",
+    )
     args = parser.parse_args()
 
     states, _ = enumerate_ball(args.radius)
     words, _, _ = spanning_tree_kernel_words(states)
+    if args.boundary:
+        identity = matrix_key(I4)
+        words = [word for word in words if any(
+            matrix_key(projection) != identity
+            for projection in factor_projections(word)
+        )]
     records = []
     for index in args.indices:
         word = words[index]
