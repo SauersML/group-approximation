@@ -55,3 +55,37 @@ states.
    conclusion for `E` itself is established by the paper proof, with the
    Lean side conditional on property (T) of the raw presented base until
    the presentation-completeness program closes it.
+
+## Triage of the external adversarial audit (2026-08-13, later snapshot)
+
+An independent external audit of an earlier archive reported eleven
+findings.  Status against the current tip:
+
+- Orphan modules: 0 on tip (`check.py` source scan clean; the two literal
+  cylinder modules are imported, `LiteralMarkedCylinderObstruction` was
+  removed in the chosen-cylinder restructure, `FixedSpaceDefect` is in the
+  import closure through `Endpoint/Public`).
+- Stale roster: regenerated; checker green.
+- `\leanconditional` unparsed by the checker: the macro and all its uses
+  were removed; every remaining link is `\leanverified` and
+  checker-validated.
+- Conditional theorems cited as plain counterparts (quotient corollary,
+  witness group): those links were removed in the premise-packaged-endpoint
+  purge; the corollaries are paper-proved and carry no formal claim.
+- Literal radius-34 cylinder: the manuscript theorem is paper-proved via
+  portability and Theorem A and carries no margin link; the Lean-verified
+  clopen non-MF cylinder is the separate existential corollary.
+- C*-MF semantic level: Theorems A (final clause) and D are paper-proved;
+  no margin link claims formal coverage; formalizing a C*-MF predicate over
+  the now-constructed corona algebra is the natural next Lean step.
+- Increasing dimensions, operator-norm authenticity, local-normalization
+  strength, property-(T) real/complex/universe bridges: confirmed sound by
+  the external audit; no action.
+- Uncountable-scope note on `IsOperatorMF` and the structure-packed-premise
+  blind spot in `Audit/Scan.lean`: real but non-exploited gate weaknesses,
+  recorded here as open hardening items.
+- The one substantive open mathematical item remains property (T) of the
+  literal presented base (isomorphism with the affine group, direct proof,
+  or an exact rational SOS certificate); until one route closes, the
+  literal-E endpoints stay conditional and the manuscript's legend footnote
+  discloses the boundary.
