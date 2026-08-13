@@ -4067,6 +4067,23 @@ cannot do so.  Continue either with that coordinate-commutant theorem or by
 extracting the hard/comb two-child arrows on the trace-half carrier.  See
 `TRUE_RAW_INVOLUTION_SPECTRAL_CUT.md`.
 
+### 2026-08-13: hard-pair Leavitt star is not group inverse
+
+The short formula for `p_001` cannot be converted into a complex spectral
+polynomial by reading Leavitt `star` as operator adjoint.  In the first
+class-11 pair, `q` has order four but `q^star != q^-1` (and likewise for
+`l`).  The correct four-term Leavitt-star formula is the nonzero `p_001`,
+whereas inverse substitution makes it exactly zero:
+
+```text
+1 + q^-2 + q^2 + q^-2 q^2 = 0.
+```
+
+Therefore retain the root-character/Steinberg coefficient disintegration;
+do not apply operator star to the printed characteristic-two certificate
+before that corner has been recovered.  See
+`FALSE_HARD_STAR_IS_GROUP_INVERSE.md`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
