@@ -20,6 +20,13 @@ the Lean development remains zero-premise and claims correctness, not novelty.
   central-corner/marked-word device converting the pinning into a group
   element killed by every MF representation.  The surrounding
   compression/lamp architecture is NOT ours to claim.
+* **Correction to the C*-algebra consequence:** Theorem D is not the first
+  counterexample to ``stably finite implies MF'' for arbitrary separable
+  C*-algebras.  The negative Connes embedding result from MIP*=RE already
+  refutes the general MF problem; Goldbring, Corollary 5.2, gives the direct
+  deduction.  What is new here is the explicit reduced group C*-algebra
+  realization.  Shulman still recorded in March 2026 that no full or
+  reduced group C*-algebra was known not to be MF.
 
 ## Manuscript corrections implemented
 
@@ -67,7 +74,8 @@ by every matrix-corona representation ("MF radical" element); non-MF of both
 C*max(E) and C*r(E) as a new corollary (Shulman explicitly noted no such
 examples were known); the central-corner rank-renormalization tactic.
 
-DO NOT CLAIM: property (T)/Kazhdan projections (classical); conjugation on
+DO NOT CLAIM: the first stably finite non-MF separable C*-algebra (known
+after MIP*=RE); property (T)/Kazhdan projections (classical); conjugation on
 L²(Mₙ) + (T) (Ozawa–Thom); stable finiteness of matrix coronas (standard);
 Clifford/extraspecial anticommutation (classical); one-sided subgroup
 compression + lamp normalization architecture (OpenAI/Kun–Thom); simple- or
@@ -156,10 +164,11 @@ sources the audit could not reach:
   σ(Γ) normalized by σ(G)), and NO operator-norm/MF/corona notion appears.
   Consequence: the marked-central-kernel strategy and the Clifford sign
   are NOT an adaptation of either; state the contrast explicitly.  Still
-  required: identify ClLamp(X) as the classical extraspecial/CAR sign
-  extension of ⊕ℤ/2 by the intersection-parity cocycle (Pauli sign
-  group), with classical references; see-also Chifan–Ioana–Osin–Sun for
-  modern (T)-on-lamps toolbox.
+  required: identify ClLamp(X) as the classical Clifford/CAR central-sign
+  extension of ⊕ℤ/2, with classical references; its multiplication uses
+  the ordered-inversion cocycle, while the associated commutator form is
+  the parity expression recorded in the fourth-pass correction below.
+  See also Chifan–Ioana–Osin–Sun for a modern (T)-on-lamps toolbox.
 * **Base-group machinery (mandatory adds):** Γ = ℤ³⋊SL₃(ℤ) with
   α(v,A) = (2v,A) is the simplest instance of the Cornulier–Abels
   non-(co-)Hopfian Kazhdan machine; Thom 2010 ("Examples of hyperlinear
@@ -425,3 +434,118 @@ supported by the direct read.  Thom 2010 is cited only for the
 Cornulier–Abels–Thom base-group machine.  Lesson reaffirmed: every
 attribution-critical claim gets primary-source verification by direct
 reading before it enters the manuscript.
+
+## Fourth pass (2026-08-12): unattributed machinery and proof-strategy audit
+
+This pass searched by proof device rather than theorem statement.  It also
+reopened every broad priority sentence affected by those devices.
+
+### Major priority correction — APPLIED
+
+The manuscript's old wording made Theorem D sound like the first negative
+solution of the general Blackadar–Kirchberg MF problem.  That is false.
+The failure of Connes embedding supplied by Ji–Natarajan–Vidick–Wright–Yuen,
+*MIP*=RE* (arXiv:2001.04383), already implies a separable stably finite
+non-MF C*-algebra.  Goldbring, *Model theory and ultrapower embedding
+problems in operator algebras*, Corollary 5.2, states and proves the direct
+deduction: a non-R^omega-embeddable II_1 factor cannot embed as a C*-algebra
+in an ultrapower of the universal UHF algebra; a separable elementary
+subalgebra gives the required counterexample.  Schafhauser–Tikuisis–White,
+*Nuclear C*-algebras: 99 problems* (arXiv:2506.10902), independently records
+the same status.
+
+The defensible new C*-algebra statement is narrower and more concrete:
+C*_r(E) is a reduced group C*-algebra, attached to the explicit finitely
+presented non-MF group, with faithful canonical trace, and is not MF.
+Shulman's March 2026 introduction explicitly says that no full or reduced
+group C*-algebra was then known not to be MF.  The abstract, introduction,
+Theorem D title, external-input accounting, and nonnuclearity remark have
+all been rewritten accordingly.  The proof of Theorem D remains elementary
+once Theorem A is known; the new citations correct priority, not a proof
+dependency.
+
+### Foundational analytic lineage — APPLIED
+
+The operator-norm-lifts -> conjugation representation -> Hilbert–Schmidt
+almost-invariant-vector step has a deeper lineage than the already-cited
+Dadarlat/Ozawa–Thom application.  Bekka's 1990 theory of amenable unitary
+representations makes the conjugation action on Hilbert–Schmidt operators,
+equivalently pi tensor conjugate-pi, a central object.  Bekka–Valette 1993,
+Theorem 1, ties property (T) to the resulting finite-dimensional
+subrepresentations/weak-mixing obstruction.  The manuscript now names this
+foundational layer, while retaining Dadarlat Lemma 3.18 and Proposition 3.19
+as the closer operator-norm approximation predecessors.
+
+### Clifford/cocycle correction — APPLIED
+
+The construction incorrectly called its cocycle "intersection parity."
+The displayed multiplication actually uses the ordered-inversion cocycle
+nu(F,G) = #{(x,y) in F x G : y < x}.  Its commutator form, not its
+multiplication cocycle, is determined by
+(-1)^{|F||G|-|F intersect G|}.  This was a real mathematical description
+error, not merely missing credit.  The text now uses the exact cocycle and
+calls the group a Clifford 2-group.  It also points locally to Slofstra
+Section 2, where the same finite- and infinite-rank Clifford groups and
+distinguished central sign occur, rather than relying only on a generic CAR
+reference.  Mermin–Peres/Pauli-group history was considered but is too
+distant from the actual algebraic construction to improve the attribution;
+Slofstra is the direct predecessor.
+
+### Scaling-machine and metric correction — APPLIED
+
+Direct comparison with Cornulier and Thom shows that Z^3 semidirect SL_3(Z)
+with scaling by 2 should be described as an elementary integral *analogue*
+of the Cornulier–Abels scaling pattern, not literally as a member of their
+specific matrix-group family.  The old follow-up sentence also put all of
+Thom's arguments in permutation/Hamming models; this was overbroad.
+Thom's conclusions include both sofic (Hamming) and hyperlinear (tracial
+Hilbert–Schmidt) approximation.  The manuscript now says exactly that and
+contrasts both with the present operator-norm corona mechanism.
+
+### Other unusual credit categories checked
+
+* The finite-normal-subgroup average |F|^{-1} sum_F Theta(f) is the standard
+  finite-group averaging/Reynolds projection onto F-invariants.  Naming this
+  as standard machinery is appropriate; no research-priority claim or
+  special citation is warranted because the manuscript proves all required
+  identities inline.
+* Theorem B's passage from one-sided inclusion to equality by dimension is
+  an elementary finite-dimensional shadow of the same compression paradigm
+  credited to OpenAI/Kun–Thom.  Searches found no closer theorem whose proof
+  is being reused.  The manuscript already disclaims novelty for the
+  paradigm and claims only its marked-kernel deployment.
+* The central corner is directly preceded by the negative-eigenspace cuts in
+  Slofstra–Vidick.  The genuinely different move is to regard the possibly
+  vanishing-density corner as a new matrix sequence, eliminating a relative
+  rank lower bound.  No earlier source for that rank-renormalized norm-corona
+  tactic was found.
+* Bachner–Dogon–Lubotzky, Proposition 1.6, is a particularly close item that
+  the earlier passes had cited only generically: for a finitely generated
+  group Lambda with finite normal N and hyperlinear Lambda/N, MF-ness of
+  Lambda implies hyperlinearity.  Thus finite normal extensions were already
+  being used to cross the operator/Hilbert–Schmidt boundary.  Their argument
+  does not kill N; the present proof instead averages N and changes the
+  ambient matrix sequence to keep a possibly zero-density obstruction.  This
+  distinction and the precise proposition are now stated in the prior-work
+  section.
+* The MF-radical/largest-quotient construction remains structural folklore,
+  with Slofstra's finite/finite-approximate kernels and
+  Nikolov–Schneider–Thom approximation kernels as the proper conceptual
+  anchors.  The manuscript already makes no novelty claim for the universal
+  quotient argument.
+* Kazhdan's 1982 epsilon-representation paper was checked as historical
+  background for operator-norm stability, but the present proof neither uses
+  finite-group stability nor reproduces its argument.  Adding it would imply
+  a false dependency and was rejected.
+
+### Access record
+
+Goldbring's De Gruyter chapter page is paywalled, but its complete author
+preprint (arXiv:2210.01223) was accessible and Corollary 5.2 was checked in
+full.  The complete arXiv versions of MIP*=RE, Schafhauser–Tikuisis–White,
+Shulman, Cornulier, and Thom were accessible.  Springer metadata for Bekka
+and Bekka–Valette was cross-checked through DOI records and institutional
+indexes; the publisher-hosted full articles were not openly retrievable in
+this session, so the precise theorem-level statement was cross-validated
+against later primary papers that quote Bekka–Valette Theorem 1.  No
+unverified content from an inaccessible source was used as a proof premise.
