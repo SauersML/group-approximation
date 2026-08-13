@@ -4102,6 +4102,20 @@ gate: the cut is honest, coefficient-valued, and positive-density.  Next
 compute comb/hard leakage relative to this cut.  See
 `TRUE_RAW_PAULI_COEFFICIENT_CUT.md`.
 
+### 2026-08-13: synchronize Leavitt star by one finite extension
+
+For group units, inverse followed by Leavitt/matrix transpose is an
+involutive automorphism `psi`.  The semidirect candidate
+`Q^sharp=Q semidirect_psi C2` supplies a spatial involution `J` with
+`pi(theta(g))=J pi(g)^* J`.  The raw involution is fixed by transpose, so
+`J` preserves its two equal Pauli coefficient halves.  On the compressed
+`GL3(2)`, `psi(g)=(g^-1)^T` is outer; the synchronized finite chart has
+order `336`, or `672` after adjoining the commuting raw sign.  This closes
+the adjoint half of root-character extraction without making the false
+`Leavitt star = group inverse` substitution.  Addition and multiplication
+must still be extracted through root products and Steinberg commutators.
+See `TRUE_RAW_STAR_SYNCHRONIZED_SECTOR.md`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
