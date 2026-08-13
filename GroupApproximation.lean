@@ -248,6 +248,7 @@ import GroupApproximation.Matching.ConservativeMatching
 import GroupApproximation.Criterion.CriterionAssembly
 import GroupApproximation.Leavitt.Leavitt
 import GroupApproximation.Leavitt.FiniteModuleObstruction
+import GroupApproximation.Leavitt.UnitAdditiveSpan
 import GroupApproximation.Leavitt.AryCorner
 import GroupApproximation.Leavitt.FamilyRankFour
 import GroupApproximation.Leavitt.RawSwapCompressors
