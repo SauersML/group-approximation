@@ -10,11 +10,11 @@ constructed in `ReducedGroupCStarTrace` has its canonical faithful trace, so
 all finite matrix amplifications are finite.
 
 Mathlib currently has no maximal group C⋆-algebra API.  Accordingly, the
-maximal-side result below does not introduce a fictitious one.  It accepts an
-explicit injective star-algebra homomorphism (the paper supplies this from a
-subgroup inclusion/universal property) and proper projection-compression data
-in its source.  Injectivity preserves properness, producing the advertised
-proper isometry in the target C⋆-algebra.
+general transport result below is stated solely for an explicit injective
+star-algebra homomorphism and proper projection-compression data in its
+source.  It makes no claim that a particular maximal group C⋆-algebra map has
+been constructed.  Injectivity preserves properness and yields a proper
+isometry in the target C⋆-algebra.
 -/
 
 namespace GroupApproximation
@@ -24,9 +24,7 @@ noncomputable section
 universe u v
 
 /-- Explicit data for an injective unital star-algebra map between complex
-C⋆-algebras.  In the group-algebra application this is the map induced by an
-injective subgroup homomorphism; that literature input is kept visible rather
-than hidden behind a nonexistent maximal-group-C⋆ API. -/
+C⋆-algebras. -/
 structure InjectiveCStarEmbedding (A : Type u) (B : Type v)
     [CStarAlgebra A] [CStarAlgebra B] where
   /-- The specified unital star-algebra map. -/

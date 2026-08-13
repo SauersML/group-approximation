@@ -387,7 +387,6 @@ def headlineTheorems : List Name :=
    ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
    ``LiteralCyclicCalibration.mark_ne_one,
    ``LiteralCyclicCalibration.finiteDimensional_kill,
-   ``LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
    ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,

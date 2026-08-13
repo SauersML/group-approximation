@@ -141,8 +141,7 @@ Reading path, front door first:
 | `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
 | `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to direct/stable finiteness |
-| `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
-| `Computability/CStarRecognitionConsequences.lean` | Conditional five-predicate C-star recognition and negative-side non-r.e. reductions |
+| `Computability/OperatorMFMarkovWitness.lean` | Unconditional positive and forbidden-subgroup witnesses; no undecidability endpoint is claimed without a formalized Adian--Rabin transformation |
 
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
