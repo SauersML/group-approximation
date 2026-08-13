@@ -34,13 +34,13 @@ Kazhdan projection.  This is the marker-free part of
 `commutatorMatrix_hsDistSq_vanishing`. -/
 theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
     (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Gamma E)
+    (C : KazhdanCompressionCore Gamma E)
     (hone : 1 ∈ S) (htheta1 : theta < 1) :
     ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
       MarkedCompressionVectorChain.vecMass
-          ((1 - cornerProjection B D S theta n) *ᵥ
-            gammaRowVec B D n
-              (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)) ≤
+          ((1 - cornerProjection B C S theta n) *ᵥ
+            gammaRowVec B n
+              (B.map n C.c : Matrix (B.model n) (B.model n) ℂ)) ≤
         epsilon * Fintype.card (B.model n) := by
   classical
   intro epsilon hepsilon
@@ -48,111 +48,111 @@ theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
   set eta : ℝ := (1 - theta) * epsilon with hetaDef
   have hetaPos : 0 < eta := mul_pos hthetaPos hepsilon
   have hfix : ∀ s ∈ S, ∀ epsilon' : ℝ, 0 < epsilon' → ∃ N, ∀ n ≥ N,
-      ‖(B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-        B.map n D.c *
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-        B.map n D.c‖ ≤ epsilon' := by
+      ‖(B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+        B.map n C.c *
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+        B.map n C.c‖ ≤ epsilon' := by
     intro s _ epsilon' hepsilon'
-    have hconj : D.iota s * D.c * (D.iota s)⁻¹ = D.c := by
-      have h := (D.comm_c s).eq
+    have hconj : C.iota s * C.c * (C.iota s)⁻¹ = C.c := by
+      have h := (C.comm_c s).eq
       calc
-        D.iota s * D.c * (D.iota s)⁻¹ =
-            (D.c * D.iota s) * (D.iota s)⁻¹ := by rw [h]
-        _ = D.c := by group
-    have h := conj_matrix_defect_vanishing B (D.iota s) D.c
+        C.iota s * C.c * (C.iota s)⁻¹ =
+            (C.c * C.iota s) * (C.iota s)⁻¹ := by rw [h]
+        _ = C.c := by group
+    have h := conj_matrix_defect_vanishing B (C.iota s) C.c
     rw [hconj] at h
     exact h epsilon' hepsilon'
   obtain ⟨N, hN⟩ := eventually_forall_finset S _ hfix hetaPos
   refine ⟨N, fun n hn ↦ ?_⟩
   have hterm : ∀ s ∈ S,
-      ‖(B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-          B.map n D.c *
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ ≤
+      ‖(B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+          B.map n C.c *
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ ≤
         eta := by
     intro s hs
     rw [norm_sub_rev]
     exact hN n hn s hs
   have htermStar : ∀ s ∈ S,
-      ‖(B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-          B.map n D.c *
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)‖ ≤
+      ‖(B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+          B.map n C.c *
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)‖ ≤
         eta := by
     intro s hs
-    have hmem := (B.map n (D.iota s)).2
+    have hmem := (B.map n (C.iota s)).2
     have hUUstar :
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 := by
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 := by
       have h := Matrix.mem_unitaryGroup_iff.mp hmem
       rwa [Matrix.star_eq_conjTranspose] at h
     have hkey :
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-          ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-              B.map n D.c * B.map n (D.iota s)) *
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ =
-        (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-          B.map n D.c *
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-          B.map n D.c := by
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+          ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+              B.map n C.c * B.map n (C.iota s)) *
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ =
+        (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+          B.map n C.c *
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+          B.map n C.c := by
       have hexp :
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-                B.map n D.c * B.map n (D.iota s)) *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ =
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            B.map n D.c *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-          ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) *
-            B.map n D.c *
-            ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+                B.map n C.c * B.map n (C.iota s)) *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ =
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            B.map n C.c *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+          ((B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) *
+            B.map n C.c *
+            ((B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
         noncomm_ring
       rw [hexp, hUUstar, Matrix.one_mul, Matrix.mul_one]
     calc
-      ‖(B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-            B.map n D.c * B.map n (D.iota s)‖ =
-          ‖(B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-                B.map n D.c * B.map n (D.iota s)) *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ :=
+      ‖(B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+            B.map n C.c * B.map n (C.iota s)‖ =
+          ‖(B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+                B.map n C.c * B.map n (C.iota s)) *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ :=
         (norm_unitary_conjugate hmem).symm
-      _ = ‖(B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            B.map n D.c *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-            B.map n D.c‖ := by rw [hkey]
+      _ = ‖(B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            B.map n C.c *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+            B.map n C.c‖ := by rw [hkey]
       _ ≤ eta := hN n hn s hs
   have hGnorm : ‖(2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
-      (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            B.map n D.c *
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-        ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-            B.map n D.c * B.map n (D.iota s))))‖ ≤ eta := by
+      (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            B.map n C.c *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+        ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+            B.map n C.c * B.map n (C.iota s))))‖ ≤ eta := by
     have hsumnorm : ‖∑ s ∈ S,
-        (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-              B.map n D.c *
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-          ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-              B.map n D.c * B.map n (D.iota s)))‖ ≤
+        (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+              B.map n C.c *
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+          ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+              B.map n C.c * B.map n (C.iota s)))‖ ≤
         S.card * (2 * eta) := by
       calc
         ‖∑ s ∈ S, _‖ ≤ ∑ s ∈ S, ‖
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-                B.map n D.c *
-                (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-                B.map n D.c * B.map n (D.iota s))‖ := norm_sum_le _ _
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n C.c *
+                (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+                B.map n C.c * B.map n (C.iota s))‖ := norm_sum_le _ _
         _ ≤ ∑ _s ∈ S, 2 * eta := by
           refine Finset.sum_le_sum fun s hs ↦ ?_
           calc
@@ -169,46 +169,46 @@ theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
       exact_mod_cast Finset.card_ne_zero.mpr ⟨1, hone⟩
     calc
       (1 / 2 : ℝ) * ((S.card : ℝ)⁻¹ * ‖∑ s ∈ S,
-          (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-                B.map n D.c *
-                (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-                B.map n D.c * B.map n (D.iota s)))‖) ≤
+          (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n C.c *
+                (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+                B.map n C.c * B.map n (C.iota s)))‖) ≤
           (1 / 2 : ℝ) * ((S.card : ℝ)⁻¹ * (S.card * (2 * eta))) := by
         gcongr
       _ = eta := by field_simp [hcardR]
-  let H := hermitianAverage (gammaAdjoint B D) S n
-  let P := cornerProjection B D S theta n
-  let xi : (gammaAdjoint B D).model n → ℂ :=
-    gammaRowVec B D n
-      (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)
+  let H := hermitianAverage (gammaAdjoint B C) S n
+  let P := cornerProjection B C S theta n
+  let xi : (gammaAdjoint B C).model n → ℂ :=
+    gammaRowVec B n
+      (B.map n C.c : Matrix (B.model n) (B.model n) ℂ)
   have hHherm : H.IsHermitian :=
-    hermitianAverage_conjTranspose (gammaAdjoint B D) S n
+    hermitianAverage_conjTranspose (gammaAdjoint B C) S n
   have hHnorm : ‖H‖ ≤ 1 := norm_hermitianAverage_le_one _ S n
   have hresidual :
-      ∑ i : (gammaAdjoint B D).model n,
+      ∑ i : (gammaAdjoint B C).model n,
         Complex.normSq ((xi - H *ᵥ xi) i) ≤
         Fintype.card (B.model n) * eta ^ 2 := by
-    have hid := lamp_laplacian_matVec B D S hone n
+    have hid := lamp_laplacian_matVec B C S hone n
     rw [show xi - H *ᵥ xi =
-        gammaRowVec B D n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
-          (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-                B.map n D.c *
-                (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-            ((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
-              (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-                B.map n D.c * B.map n (D.iota s))))) by exact hid]
+        gammaRowVec B n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
+          (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+                B.map n C.c *
+                (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+            ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+              (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+                B.map n C.c * B.map n (C.iota s))))) by exact hid]
     rw [sum_normSq_gammaRowVec]
     exact (sum_normSq_le_card_mul_sq _ _).trans (by gcongr)
-  have hxiMass : ∑ i : (gammaAdjoint B D).model n, Complex.normSq (xi i) =
+  have hxiMass : ∑ i : (gammaAdjoint B C).model n, Complex.normSq (xi i) =
       Fintype.card (B.model n) := by
-    rw [show xi = gammaRowVec B D n
-        (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) by rfl,
+    rw [show xi = gammaRowVec B n
+        (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) by rfl,
       sum_normSq_gammaRowVec]
-    exact sum_normSq_of_mem_unitary _ (B.map n D.c).2
+    exact sum_normSq_of_mem_unitary _ (B.map n C.c).2
   have henergy : (star xi ⬝ᵥ (xi - H *ᵥ xi)).re ≤
       eta * Fintype.card (B.model n) := by
     have hamgm := re_star_dotProduct_le hetaPos xi (xi - H *ᵥ xi)
@@ -216,7 +216,7 @@ theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
     calc
       (star xi ⬝ᵥ (xi - H *ᵥ xi)).re ≤
           (2 : ℝ)⁻¹ * (eta * Fintype.card (B.model n) + eta⁻¹ *
-            ∑ i : (gammaAdjoint B D).model n,
+            ∑ i : (gammaAdjoint B C).model n,
               Complex.normSq ((xi - H *ᵥ xi) i)) := hamgm
       _ ≤ (2 : ℝ)⁻¹ * (eta * Fintype.card (B.model n) + eta⁻¹ *
             (Fintype.card (B.model n) * eta ^ 2)) := by gcongr
@@ -226,9 +226,9 @@ theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
   have hbelow : spectralBelow H hHherm theta = 1 - P := by rfl
   rw [hbelow, zero_mul, add_zero] at hcaptureRaw
   rw [MarkedCompressionVectorChain.vecMass]
-  change ∑ i : (gammaAdjoint B D).model n,
+  change ∑ i : (gammaAdjoint B C).model n,
       Complex.normSq (((1 - P) *ᵥ xi) i) ≤ _
-  have hscaled : (1 - theta) * ∑ i : (gammaAdjoint B D).model n,
+  have hscaled : (1 - theta) * ∑ i : (gammaAdjoint B C).model n,
       Complex.normSq (((1 - P) *ᵥ xi) i) ≤
       eta * Fintype.card (B.model n) := hcaptureRaw.trans henergy
   rw [hetaDef] at hscaled
@@ -240,17 +240,17 @@ theorem root_capture_vanishing {S : Finset Gamma} {theta : ℝ}
 an arbitrary element of the Kazhdan image. -/
 theorem transportedRoot_displacement_hsDistSq_vanishing
     (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Gamma E) (gamma : Gamma) :
+    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
     ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
       hsDistSq (B.model n)
-        ((B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-          lampMatrix B D n *
-          (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
-        (lampMatrix B D n) ≤ epsilon := by
+        ((B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+          lampMatrix B C n *
+          (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
+        (lampMatrix B C n) ≤ epsilon := by
   classical
   obtain ⟨S, kappa, hone, hsymm, hgen, hkappaPos, hkappaOne, hpair⟩ :=
     KazhdanProjection.HasKazhdanPropertyT.exists_symmetric_generating_pair
-      D.kazhdan
+      C.kazhdan
   have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
   have hgap : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) :=
@@ -266,13 +266,13 @@ theorem transportedRoot_displacement_hsDistSq_vanishing
   intro epsilon hepsilon
   have heFix : 0 < epsilon / 6 := by linarith
   have heReverse : 0 < epsilon / 48 := by linarith
-  obtain ⟨N1, hN1⟩ := displacement_vanishing B D theta hpair hone hkappaOne
+  obtain ⟨N1, hN1⟩ := displacement_vanishing B C theta hpair hone hkappaOne
     hsymm hgen htheta4 gamma (Real.sqrt (epsilon / 6))
       (Real.sqrt_pos.mpr heFix)
-  obtain ⟨N2, hN2⟩ := one_sub_corner_mul_moved_vanishing B D theta hpair
+  obtain ⟨N2, hN2⟩ := one_sub_corner_mul_moved_vanishing B C theta hpair
     hone hkappaOne hsymm hgen htheta4 htheta1
       (Real.sqrt (epsilon / 48)) (Real.sqrt_pos.mpr heReverse)
-  obtain ⟨N3, hN3⟩ := root_capture_vanishing B D hone htheta1
+  obtain ⟨N3, hN3⟩ := root_capture_vanishing B C hone htheta1
     (epsilon / 48) heReverse
   refine ⟨max N1 (max N2 N3), fun n hn ↦ ?_⟩
   have hn1 : n ≥ N1 := le_trans (le_max_left _ _) hn
@@ -281,8 +281,8 @@ theorem transportedRoot_displacement_hsDistSq_vanishing
   have hn3 : n ≥ N3 :=
     le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hn
   have hstage := MarkedCompressionVectorChain.conjugated_transport_hsDistSq_le
-    (B.modelNonempty n) (B.map n (D.iota gamma)).2 (B.map n D.t).2
-    (B.map n D.c).2 (cornerProjection_isOrthogonalProjection B D S theta n)
+    (B.modelNonempty n) (B.map n (C.iota gamma)).2 (B.map n C.t).2
+    (B.map n C.c).2 (cornerProjection_isOrthogonalProjection B C S theta n)
     (hN1 n hn1) (hN2 n hn2) (hN3 n hn3)
   have hsqrtFix : (Real.sqrt (epsilon / 6)) ^ 2 = epsilon / 6 :=
     Real.sq_sqrt heFix.le
@@ -290,10 +290,10 @@ theorem transportedRoot_displacement_hsDistSq_vanishing
     Real.sq_sqrt heReverse.le
   have hstage' :
       hsDistSq (B.model n)
-        ((B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-          lampMatrix B D n *
-          (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
-        (lampMatrix B D n) ≤
+        ((B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+          lampMatrix B C n *
+          (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)
+        (lampMatrix B C n) ≤
       2 * (Real.sqrt (epsilon / 6)) ^ 2 +
         16 * (Real.sqrt (epsilon / 48)) ^ 2 + 16 * (epsilon / 48) := by
     simpa [lampMatrix, gammaAdjoint,
@@ -307,13 +307,13 @@ theorem transportedRoot_displacement_hsDistSq_vanishing
 tracks conjugation of the corresponding group element. -/
 theorem conjugatedLampGamma_defect_vanishing
     (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Gamma E) (gamma : Gamma) :
+    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
     OpNormVanishing B (fun n ↦
-      (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-          lampMatrix B D n *
-          (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-        B.map n (D.iota gamma * (D.t * D.c * D.t⁻¹) *
-          (D.iota gamma)⁻¹)) := by
+      (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+          lampMatrix B C n *
+          (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+        B.map n (C.iota gamma * (C.t * C.c * C.t⁻¹) *
+          (C.iota gamma)⁻¹)) := by
   have hb : ∀ (h : E) (n : ℕ),
       ‖(B.map n h : Matrix (B.model n) (B.model n) ℂ)‖ ≤ 1 :=
     fun h n ↦ norm_le_one_of_mem_unitary (B.map n h).2
@@ -323,13 +323,13 @@ theorem conjugatedLampGamma_defect_vanishing
     rw [← Matrix.star_eq_conjTranspose, norm_star]
     exact hb h n
   have h1 : OpNormVanishing B (fun n ↦
-      (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-        (lampMatrix B D n - B.map n (D.t * D.c * D.t⁻¹)) *
-        (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
-    ((lampMatrix_defect_vanishing B D).mul_left_of_norm_le_one _
-      (hb (D.iota gamma))).mul_right_of_norm_le_one _ (hbstar (D.iota gamma))
-  have h2 := conj_matrix_defect_vanishing B (D.iota gamma)
-    (D.t * D.c * D.t⁻¹)
+      (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
+        (lampMatrix B C n - B.map n (C.t * C.c * C.t⁻¹)) *
+        (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
+    ((lampMatrix_defect_vanishing B C).mul_left_of_norm_le_one _
+      (hb (C.iota gamma))).mul_right_of_norm_le_one _ (hbstar (C.iota gamma))
+  have h2 := conj_matrix_defect_vanishing B (C.iota gamma)
+    (C.t * C.c * C.t⁻¹)
   refine (h1.add h2).congr fun n ↦ ?_
   noncomm_ring
 
@@ -356,21 +356,21 @@ compression defect `[t c t⁻¹, iota gamma]` is Hilbert--Schmidt trivial in
 every operator-norm almost representation. -/
 theorem compressionDefect_hsDistSq_vanishing
     (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Gamma E) (gamma : Gamma) :
+    (C : KazhdanCompressionCore Gamma E) (gamma : Gamma) :
     ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
       hsDistSq (B.model n)
-        (B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆)
+        (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)
         (B.map n 1) ≤ epsilon := by
   classical
-  let x : E := D.t * D.c * D.t⁻¹
-  let y : E := D.iota gamma * x * (D.iota gamma)⁻¹
+  let x : E := C.t * C.c * C.t⁻¹
+  let y : E := C.iota gamma * x * (C.iota gamma)⁻¹
   intro epsilon hepsilon
   have heSmall : 0 < epsilon / 128 := by linarith
-  obtain ⟨N1, hN1⟩ := transportedRoot_displacement_hsDistSq_vanishing B D gamma
+  obtain ⟨N1, hN1⟩ := transportedRoot_displacement_hsDistSq_vanishing B C gamma
     (epsilon / 128) heSmall
-  obtain ⟨N2, hN2⟩ := lampMatrix_defect_vanishing B D
+  obtain ⟨N2, hN2⟩ := lampMatrix_defect_vanishing B C
     (Real.sqrt (epsilon / 128)) (Real.sqrt_pos.mpr heSmall)
-  obtain ⟨N3, hN3⟩ := conjugatedLampGamma_defect_vanishing B D gamma
+  obtain ⟨N3, hN3⟩ := conjugatedLampGamma_defect_vanishing B C gamma
     (Real.sqrt (epsilon / 128)) (Real.sqrt_pos.mpr heSmall)
   obtain ⟨N4, hN4⟩ := productInverse_defect_vanishing B x y
     (Real.sqrt (epsilon / 64)) (Real.sqrt_pos.mpr (by linarith))
@@ -395,10 +395,10 @@ theorem compressionDefect_hsDistSq_vanishing
       ((le_max_right N3 (max N4 N5)).trans
         ((le_max_right N2 (max N3 (max N4 N5))).trans
           ((le_max_right N1 (max N2 (max N3 (max N4 N5)))).trans hn)))
-  let Dm : Matrix (B.model n) (B.model n) ℂ := lampMatrix B D n
+  let Dm : Matrix (B.model n) (B.model n) ℂ := lampMatrix B C n
   let Em : Matrix (B.model n) (B.model n) ℂ :=
-    (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ) * Dm *
-      (B.map n (D.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ
+    (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ) * Dm *
+      (B.map n (C.iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ
   let Ux : Matrix (B.model n) (B.model n) ℂ := B.map n x
   let Uy : Matrix (B.model n) (B.model n) ℂ := B.map n y
   let Pm : Matrix (B.model n) (B.model n) ℂ := Ux * Uyᴴ
@@ -440,23 +440,23 @@ theorem compressionDefect_hsDistSq_vanishing
     change hsDistSq (B.model n) Ux Uy ≤ _
     rw [hsDistSq_comm]
     exact hUyUx
-  have hwordEq : x * y⁻¹ = ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆ := by
+  have hwordEq : x * y⁻¹ = ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆ := by
     dsimp [x, y]
     rw [commutatorElement_def]
     group
   have hdef : hsDistSq (B.model n) Pm
-      (B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆) ≤ epsilon / 64 := by
+      (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) ≤ epsilon / 64 := by
     exact (hsDistSq_le_sq_l2_opNorm _ _ _).trans (by
       have h := hN4 n hn4
       rw [hwordEq] at h
       have hop : ‖Pm -
-          B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆‖ ≤
+          B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆‖ ≤
           Real.sqrt (epsilon / 64) := by
         simpa [Pm, Ux, Uy] using h
       have hsqrt : (Real.sqrt (epsilon / 64)) ^ 2 = epsilon / 64 :=
         Real.sq_sqrt (by linarith)
       nlinarith [norm_nonneg
-        (Pm - B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆)])
+        (Pm - B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)])
   have hone : hsDistSq (B.model n) (1 : Matrix (B.model n) (B.model n) ℂ)
       (B.map n 1) ≤ epsilon / 64 := by
     exact (hsDistSq_le_sq_l2_opNorm _ _ _).trans (by
@@ -470,11 +470,11 @@ theorem compressionDefect_hsDistSq_vanishing
       nlinarith [norm_nonneg
         ((1 : Matrix (B.model n) (B.model n) ℂ) - B.map n 1)])
   have htri1 := hsDistSq_le_two_add_two (B.model n)
-    (B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆) 1 Pm
+    (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) 1 Pm
   have htri2 := hsDistSq_le_two_add_two (B.model n)
-    (B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆) (B.map n 1) 1
+    (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) (B.map n 1) 1
   rw [hsDistSq_comm (B.model n)
-    (B.map n ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆) Pm] at htri1
+    (B.map n ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) Pm] at htri1
   linarith [htri1, htri2, hPm, hdef, hone]
 
 end KazhdanCompressorCorner
