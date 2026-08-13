@@ -28,6 +28,11 @@ theorem isOperatorMF_of_residuallyFinite [Countable G]
     [Group.ResiduallyFinite G] : IsOperatorMF G :=
   (isWeakMF_of_residuallyFinite (H := G)).isOperatorMF
 
+/-- Every finite group is operator-MF. -/
+theorem isOperatorMF_of_finite_standard (K : Type) [Group K] [Finite K] :
+    IsOperatorMF K :=
+  (isWeakMF_of_finite K).isOperatorMF
+
 /-- Operator-MF pulls back along an injective homomorphism by restricting a
 faithful corona representation. -/
 theorem IsOperatorMF.comap {H : Type v} [Group H] (hG : IsOperatorMF G)
@@ -40,5 +45,11 @@ theorem IsOperatorMF.comap {H : Type v} [Group H] (hG : IsOperatorMF G)
 theorem IsOperatorMF.subgroup (hG : IsOperatorMF G) (H : Subgroup G) :
     IsOperatorMF H :=
   hG.comap H.subtype (fun _ _ h ↦ Subtype.ext h)
+
+/-- Contrapositive subgroup permanence: an ambient group containing a
+non-operator-MF subgroup is not operator-MF. -/
+theorem not_isOperatorMF_of_subgroup {H : Subgroup G}
+    (hH : ¬ IsOperatorMF H) : ¬ IsOperatorMF G :=
+  fun hG ↦ hH (hG.subgroup H)
 
 end GroupApproximation
