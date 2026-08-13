@@ -1,4 +1,5 @@
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
+import GroupApproximation.Kazhdan.RationalGroupRingCertificate
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 
 /-!
@@ -105,6 +106,25 @@ theorem base_hasKazhdanPropertyT_of_isCertificate {c : ℝ}
     HasKazhdanPropertyT.{0, 0} Base :=
   GroupRingSOSPropertyT.hasKazhdanPropertyT_of_sosCertificate
     baseControlSet (isKazhdanSOSCertificate_of_isCertificate hcert)
+
+/-- Rational certificate data is the preferred proof-carrying input format:
+all coefficients and the group-ring identity are exact. -/
+def IsRationalCertificate (c : ℚ) : Prop :=
+  0 < c ∧
+    (c : ℝ) ≤ (2 * baseControlSet.card : ℝ) ∧
+    RationalGroupRingCertificate.IsRationalSOSQuadraticGap
+      baseControlSet c
+
+/-- An exact rational certificate closes the literal-base property `(T)` gap
+after coefficientwise embedding into the real group ring. -/
+theorem base_hasKazhdanPropertyT_of_isRationalCertificate {c : ℚ}
+    (hcert : IsRationalCertificate c) :
+    HasKazhdanPropertyT.{0, 0} Base := by
+  rcases hcert with ⟨hc, hbound, hsos⟩
+  apply base_hasKazhdanPropertyT_of_isCertificate (c := (c : ℝ))
+  exact ⟨by exact_mod_cast hc, hbound,
+    RationalGroupRingCertificate.real_sos_of_rational_sos
+      baseControlSet hsos⟩
 
 end
 
