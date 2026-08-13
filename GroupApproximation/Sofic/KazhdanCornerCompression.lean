@@ -48,19 +48,21 @@ theorem norm_spectralAbove_le_one (H : Matrix Y Y ℂ) (hH : H.IsHermitian)
   refine (pi_norm_le_iff_of_nonneg zero_le_one).2 fun i ↦ ?_
   split <;> simp
 
-/-- Eigenvalues of a Hermitian contraction lie in `[-1,1]`. -/
-theorem abs_hermitianEigenvalue_le_norm (H : Matrix Y Y ℂ)
-    (hH : H.IsHermitian) (i : Y) : |hH.eigenvalues i| ≤ ‖H‖ := by
-  let x : EuclideanSpace ℂ Y := hH.eigenvectorBasis i
+/-- Eigenvalues of a Hermitian contraction lie in `[-1,1]`, over an
+arbitrary finite coordinate type. -/
+theorem abs_hermitianEigenvalue_le_norm {Z : Type*} [Fintype Z]
+    [DecidableEq Z] (H : Matrix Z Z ℂ)
+    (hH : H.IsHermitian) (i : Z) : |hH.eigenvalues i| ≤ ‖H‖ := by
+  let x : EuclideanSpace ℂ Z := hH.eigenvectorBasis i
   have hx : ‖x‖ = 1 := hH.eigenvectorBasis.orthonormal.1 i
   have heigen :
-      (Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H x =
+      (Matrix.toEuclideanCLM (n := Z) (𝕜 := ℂ)) H x =
         ((hH.eigenvalues i : ℝ) : ℂ) • x := by
     apply PiLp.ext
     intro j
     exact congrFun (hH.mulVec_eigenvectorBasis i) j
   have happly := ContinuousLinearMap.le_opNorm
-    ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H) x
+    ((Matrix.toEuclideanCLM (n := Z) (𝕜 := ℂ)) H) x
   rw [heigen, norm_smul, hx, mul_one,
     Matrix.l2_opNorm_toEuclideanCLM] at happly
   calc

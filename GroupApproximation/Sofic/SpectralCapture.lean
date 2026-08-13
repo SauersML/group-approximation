@@ -54,27 +54,6 @@ theorem re_star_dotProduct_le_sqrt (y z : Y → ℂ) :
     _ = Real.sqrt (∑ i : Y, Complex.normSq (y i)) *
         Real.sqrt (∑ i : Y, Complex.normSq (z i)) := by rw [hyE, hzE]
 
-/-- Eigenvalues of a Hermitian matrix are bounded by its operator norm, for
-an arbitrary finite coordinate type. -/
-theorem abs_hermitianEigenvalue_le_norm_of_fintype (H : Matrix Y Y ℂ)
-    (hH : H.IsHermitian) (i : Y) : |hH.eigenvalues i| ≤ ‖H‖ := by
-  let x : EuclideanSpace ℂ Y := hH.eigenvectorBasis i
-  have hx : ‖x‖ = 1 := hH.eigenvectorBasis.orthonormal.1 i
-  have heigen :
-      (Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H x =
-        ((hH.eigenvalues i : ℝ) : ℂ) • x := by
-    apply PiLp.ext
-    intro j
-    exact congrFun (hH.mulVec_eigenvectorBasis i) j
-  have happly := ContinuousLinearMap.le_opNorm
-    ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H) x
-  rw [heigen, norm_smul, hx, mul_one,
-    Matrix.l2_opNorm_toEuclideanCLM] at happly
-  calc
-    |hH.eigenvalues i| = ‖((hH.eigenvalues i : ℝ) : ℂ)‖ := by
-      rw [Complex.norm_real, Real.norm_eq_abs]
-    _ ≤ ‖H‖ := by simpa only [mul_one] using happly
-
 /-! ## The quadratic-form capture bound -/
 
 /-- The core spectral estimate:  the mass of a vector below the spectral
@@ -169,7 +148,7 @@ theorem spectralBelow_quadratic_bound {H : Matrix Y Y ℂ}
   · simp only [hi, if_true, zero_mul, mul_zero]
     have hup : hH.eigenvalues i ≤ 1 + δ :=
       le_trans (le_abs_self _)
-        ((abs_hermitianEigenvalue_le_norm_of_fintype H hH i).trans hHnorm)
+        ((abs_hermitianEigenvalue_le_norm H hH i).trans hHnorm)
     have hcoef : 0 ≤ 1 - hH.eigenvalues i + δ := by linarith
     nlinarith [mul_nonneg hcoef hnn]
   · simp only [hi, if_false, one_mul]
