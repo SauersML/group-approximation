@@ -54,6 +54,7 @@
 \newcommand{\SL}{\operatorname{SL}}
 \newcommand{\GL}{\operatorname{GL}}
 \newcommand{\U}{\mathcal U}
+\newcommand{\Ucor}{\mathsf U_{\mathrm{cor}}}
 \newcommand{\Fix}{\operatorname{Fix}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Ad}{\operatorname{Ad}}
@@ -144,12 +145,25 @@ Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
 if it embeds into some algebra of the form \eqref{eq:corona}.  We use
 \emph{MF group} exclusively in the sense introduced by
 Carri\'on--Dadarlat--Eckhardt and used by Shulman \cite{CDE,Shulman}: a
-countable discrete group $E$ is MF if there is an \emph{injective} group
-homomorphism
+countable discrete group $E$ is MF if it embeds into the \emph{unitary
+norm corona}
+\begin{equation}\label{eq:unitary-corona}
+ \Ucor((d_n))
+ :=\prod_n\U(M_{d_n}(\C))\Big/
+ \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
+\end{equation}
+Thus there must be an injective group homomorphism
 \[
-  E\;\longrightarrow\;\U(\mathcal Q)
+  E\;\longrightarrow\;\Ucor((d_n))
 \]
-for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
+for some choice of $(d_n)$.  The coordinate quotient map induces a
+canonical isomorphism
+\begin{equation}\label{eq:unitary-corona-iso}
+ \kappa_{(d_n)}\colon \Ucor((d_n))\ \xrightarrow{\ \cong\ }\
+ \U(\mathcal Q),
+\end{equation}
+proved in Lemma~\ref{lem:unitarycorona} by polar correction.  Consequently
+this definition is the usual one.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
 with all defects measured in operator norm.
 Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
@@ -776,10 +790,18 @@ infinite set $J\subseteq\N$, we write
 \]
 the quotient of the bounded $C^*$-product by the ideal of sequences with
 $\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
-corona}.  A \emph{corona representation} of a group $E$ is a group
-homomorphism $E\to\U(\mathcal Q)$ for some norm matrix corona
-$\mathcal Q$; the group $E$ is \emph{MF} if it admits an injective
-corona representation.
+corona}.  We also write
+\[
+ \Ucor((d_n)_{n\in J})
+ =\prod_{n\in J}\U(M_{d_n}(\C))\Big/
+ \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
+\]
+A \emph{corona representation} of a group $E$ is a homomorphism from
+$E$ into such a unitary norm corona; the group $E$ is \emph{MF} if it
+admits an injective corona representation.  Lemma~\ref{lem:unitarycorona}
+canonically identifies these maps with homomorphisms
+$E\to\U(\mathcal Q)$, and we freely use the latter form in the
+$C^*$-algebraic argument.
 
 For a group $H$, $\Cmax(H)$ denotes the maximal group $C^*$-algebra and
 $u_h\in\Cmax(H)$ the canonical unitaries.  Every unitary representation
@@ -1303,6 +1325,22 @@ $n$.  Then $(e_n)$ lifts $e$.
 Since $q((x_n))$ is unitary, $\opnorm{x_n^*x_n-1}\to0$, so $x_n$ is
 eventually invertible; for such $n$ put $u_n=x_n(x_n^*x_n)^{-1/2}$, a
 unitary with $\opnorm{u_n-x_n}\to0$; set $u_n=1$ for the remaining $n$.
+\end{proof}
+
+\begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
+For every sequence $(d_n)$, the map
+\[
+ \kappa_{(d_n)}\colon \Ucor((d_n))\longrightarrow\U(\mathcal Q),
+ \qquad [(u_n)]\longmapsto q((u_n)),
+\]
+is a canonical group isomorphism.
+\end{lemma}
+
+\begin{proof}
+The map is well defined, and its kernel consists exactly of the unitary
+sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
+surjective by Lemma~\ref{lem:lift}(2): every unitary in $\mathcal Q$ has a
+unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
 \end{proof}
 
 The following elementary amplification trick normalizes separation
