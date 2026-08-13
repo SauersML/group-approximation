@@ -149,7 +149,7 @@ def overlaps(a, b):
 
 
 def check_figure(label: str, tikz: str, macros: str, workdir: pathlib.Path,
-                 dump: bool = False):
+                 dump: bool = False, tex_image: str | None = None):
     names = node_names(tikz)
     if len(names) < 2:
         return []
@@ -159,9 +159,11 @@ def check_figure(label: str, tikz: str, macros: str, workdir: pathlib.Path,
     tex = workdir / f"{jobname}.tex"
     tex.write_text(PREAMBLE + macros + "\n\\begin{document}\n"
                    + body + "\n\\end{document}\n")
-    result = subprocess.run(
-        ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name],
-        cwd=workdir, capture_output=True, text=True)
+    command = ["pdflatex", "-interaction=nonstopmode", "-halt-on-error", tex.name]
+    if tex_image:
+        command = ["docker", "run", "--rm", "-v", f"{workdir}:/work",
+                   "-w", "/work", tex_image, *command]
+    result = subprocess.run(command, cwd=workdir, capture_output=True, text=True)
     bbox_path = workdir / f"{jobname}.bboxes"
     if result.returncode != 0 or not bbox_path.exists():
         tail = "\n".join(result.stdout.splitlines()[-25:])
@@ -187,6 +189,8 @@ def main():
     parser.add_argument("--tex", default="property_tt_leavitt.tex")
     parser.add_argument("--dump", action="store_true",
                         help="print every node's bounding box")
+    parser.add_argument("--tex-image",
+                        help="run pdflatex in this digest-pinned Docker image")
     args = parser.parse_args()
     source = pathlib.Path(args.tex).read_text()
     macros = preamble_macros(source)
@@ -194,7 +198,7 @@ def main():
     with tempfile.TemporaryDirectory() as tmp:
         for label, tikz in extract_figures(source):
             bad = check_figure(label, tikz, macros, pathlib.Path(tmp),
-                               dump=args.dump)
+                               dump=args.dump, tex_image=args.tex_image)
             if bad:
                 failures += len(bad)
                 print(f"{label}: OVERLAP")

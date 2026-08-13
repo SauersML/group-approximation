@@ -9,8 +9,8 @@ carrying:
   * the repository commit, the clean-checkout attestation, and the generated
     build-tree changes,
   * the Lean toolchain and the Mathlib commit from the manifest,
-  * a SHA-256 for every Lean source, the manuscript, the generated docs,
-    and the compiled PDF.
+  * a SHA-256 for every Lean source, the manuscript, generated docs, release
+    workflows, certificate-generation inputs, and the compiled PDF.
 
 A reviewer holding the archive and the manifest can verify every file
 against it; a reviewer holding only the archive can at least see which
@@ -45,9 +45,11 @@ def _sha256(path: Path) -> str:
 
 
 def build_manifest(*, commit: str | None = None,
-                   prover_run_id: str | None = None,
+                   kernel_audit_run_id: str | None = None,
                    pdf: Path | None = None,
-                   source_checkout_clean: bool = False) -> dict:
+                   source_checkout_clean: bool = False,
+                   publication_run_id: str | None = None,
+                   texlive_image: str | None = None) -> dict:
     manifest_path = REPO / "lake-manifest.json"
     mathlib = None
     if manifest_path.is_file():
@@ -58,10 +60,19 @@ def build_manifest(*, commit: str | None = None,
     files = sorted(
         p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
                           "Superseded/**/*.lean", "Superseded.lean",
-                          "scripts/*", "docs/*",
+                          "scripts/*", "docs/*", ".github/workflows/*.yml",
+                          "experiments/sl3-p13-reductions-complete.json",
+                          "experiments/sl3-sos-radius0-certificate.json",
+                          "experiments/sl3-sos-radius0-certificate.npz",
+                          "experiments/sl3_p13_certificate_lean_generator.py",
+                          "experiments/sl3_p13_hodge_lean_generator.py",
+                          "experiments/sl3_p13_pair_table_generator.py",
+                          "experiments/sl3_p13_relator_replay.py",
+                          "experiments/sl3_p13_replay_lean_generator.py",
                           "property_tt_leavitt.tex", "property_tt_leavitt.pdf",
                           "non_mf_groups_exist.tex", "non_mf_groups_exist.pdf",
-                          "lakefile.toml", "lean-toolchain", "lake-manifest.json")
+                          "README.md", "CITATION.cff", "lakefile.toml",
+                          "lean-toolchain", "lake-manifest.json")
         for p in REPO.glob(pattern) if p.is_file()
     )
 
@@ -78,7 +89,9 @@ def build_manifest(*, commit: str | None = None,
         "commit": commit or _git("rev-parse", "HEAD"),
         "source_checkout_clean_before_generation": source_checkout_clean,
         "generated_worktree_changes": generated_changes,
-        "prover_workflow_run_id": prover_run_id,
+        "kernel_audit_workflow_run_id": kernel_audit_run_id,
+        "publication_workflow_run_id": publication_run_id,
+        "texlive_image": texlive_image,
         "build_command": "lake build && lake env lean scripts/Audit.lean && "
                          "lake env lean scripts/Signatures.lean && "
                          "lake env leanchecker --fresh GroupApproximation",
@@ -93,18 +106,25 @@ def main() -> int:
     ap.add_argument("--write", action="store_true",
                     help="write docs/RELEASE_MANIFEST.json instead of stdout")
     ap.add_argument("--commit", help="source commit recorded by CI")
-    ap.add_argument("--prover-run-id", help="successful exact-revision prover run")
+    ap.add_argument("--kernel-audit-run-id",
+                    help="workflow run that built and kernel-audited this revision")
     ap.add_argument("--pdf", type=Path, help="PDF artifact to hash")
     ap.add_argument("--source-checkout-clean", action="store_true",
                     help="record that CI asserted a clean checkout before generation")
+    ap.add_argument("--publication-run-id",
+                    help="workflow run that built and attested the PDF")
+    ap.add_argument("--texlive-image",
+                    help="digest-pinned TeX Live image used for the PDF")
     ap.add_argument("--output", type=Path,
                     help="write to this path instead of stdout")
     args = ap.parse_args()
 
     manifest = build_manifest(commit=args.commit,
-                              prover_run_id=args.prover_run_id,
+                              kernel_audit_run_id=args.kernel_audit_run_id,
                               pdf=args.pdf,
-                              source_checkout_clean=args.source_checkout_clean)
+                              source_checkout_clean=args.source_checkout_clean,
+                              publication_run_id=args.publication_run_id,
+                              texlive_image=args.texlive_image)
     text = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
     if args.write or args.output:
         out = args.output or (REPO / "docs" / "RELEASE_MANIFEST.json")

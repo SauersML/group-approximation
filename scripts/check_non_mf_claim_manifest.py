@@ -43,6 +43,7 @@ RESULT_ENVS = (
     "lemma",
     "corollary",
     "definition",
+    "construction",
     "fact",
     "claim",
     "example",
