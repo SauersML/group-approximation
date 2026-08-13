@@ -189,6 +189,27 @@ the standard functorial descent implemented there cannot produce either
 a genuinely new abstract group quotient, not a change of coefficient ring;
 no such quotient has been constructed.
 
+## The translation subgroup is not an additional completeness gap
+
+There is a useful correction to the boundary stated above.  Once the exact
+affine matrix evaluation is available, freeness of the translation subgroup
+does **not** require CRW completeness.  The homomorphism
+
+```text
+(a,b,c) |-> v1^a v2^b v3^c
+```
+
+from `Z^3` onto `T` is well-defined and surjective because the three `vi`
+commute and generate `T`.  If its value is one, applying the already-defined
+affine quotient gives the translation matrix with last column `(a,b,c,1)`;
+entrywise equality with the identity forces `a=b=c=0`.  Thus the map is
+injective.  Consequently `T ~= Z^3` can be formalized independently of the
+rotation presentation.
+
+This sharpens the remaining algebraic obligation: the only presentation
+completeness problem is the rotation factor.  The affine property-`(T)`
+obligation remains separate and unchanged.
+
 The unsuccessful Knuth--Bendix trial is also informative.  SymPy's completion
 of the eight-relator presentation did not terminate within a short bounded
 MSI run and was stopped; the initial 53-rule reducer did not close even the
