@@ -4,9 +4,13 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 /-!
 # Lightweight axiom audit for the explicit non-MF endpoint
 
-This deliberately imports only the public explicit theorem module.  It gives
+This deliberately imports the public explicit theorem module together with
+the finite-normal criterion whose endpoints are printed below.  It gives
 reviewers and CI a fast audit target without replaying the much larger
-project-wide endpoint audit.
+project-wide endpoint audit.  The reported closure contains only Lean's
+standard `propext`, `Classical.choice`, and `Quot.sound`; no mathematical or
+literature theorem is accepted as an axiom or premise of the closed non-MF
+endpoint.
 -/
 
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
