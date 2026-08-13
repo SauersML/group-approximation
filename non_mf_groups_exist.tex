@@ -1709,21 +1709,27 @@ property~\textup{(T)} subgroups contained in $\mathfrak D(H,L)$.
 \end{theorem}
 
 \begin{proof}
-In the conjugation representation associated to a corona model, let $P$
-be the Kazhdan projection onto the $L$-fixed vectors.  For every one-sided
-compressor $s\in\mathcal C(L)$ the fixed-vector calculation gives
-$P\le\beta(s)P\beta(s)^*$.  Stable finiteness upgrades this to equality,
-so $P$ commutes with $\beta(s)$.  It therefore commutes with
-$\beta(g)$ for every $g\in G_{\rm comp}(L)$, including inverses and
-arbitrary finite products.
+Start with a corona model, choose unitary lifts $U_{g,n}$, and let
+$\beta_n(g)$ act on the normalized Hilbert--Schmidt space
+$M_{d_n}(\C)$ by $X\mapsto U_{g,n}XU_{g,n}^*$.  Their classes define
+an exact representation $\beta$ of $H$ in the norm matrix corona of
+the finite-dimensional operator spaces
+$\End(M_{d_n}(\C))\cong M_{d_n^2}(\C)$.  The image $P$ of the
+Kazhdan projection for $L$ acts on the corresponding tracial matrix
+ultraproduct as the projection onto the $L$-fixed vectors.
 
-If $z\in C_H(L)$, then the vector represented by $\Theta(z)$ is
-$L$-fixed.  Hence the vector represented by
-$\Theta(gzg^{-1})$ is again $L$-fixed for every
+For every one-sided compressor $s\in\mathcal C(L)$ the fixed-vector
+calculation gives $P\le\beta(s)P\beta(s)^*$.  Stable finiteness of this
+norm matrix corona upgrades the inclusion to equality, so $P$ commutes
+with $\beta(s)$, and therefore with $\beta(g)$ for every
+$g\in G_{\rm comp}(L)$, including inverses and arbitrary finite products.
+
+If $z\in C_H(L)$, the vector $[(U_{z,n})_n]$ in the tracial
+ultraproduct is $L$-fixed.  Hence its image under $\beta(g)$, represented
+by $\Theta(gzg^{-1})$, is again $L$-fixed for every
 $g\in G_{\rm comp}(L)$.  It follows that every generator
 $[gzg^{-1},\ell]$ of \eqref{eq:intrinsicdefect}, and therefore its
-normal closure, is trivial in the associated tracial matrix
-ultraproduct.
+normal closure, is trivial in that tracial matrix ultraproduct.
 Now apply the moving Kazhdan-corner construction from
 Theorem~\ref{thm:normalkazhdan} to $K$.  If a corona model were
 nontrivial on $K$, that construction would produce a new corona model on
