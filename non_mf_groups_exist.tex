@@ -101,8 +101,9 @@ of $tct^{-1}$ with that image --- is killed by every homomorphism into
 the unitary group of every $C^*$-subalgebra of a norm matrix corona.
 Among the consequences: $\Cred(E)$ is a unital separable $C^*$-algebra
 with a faithful tracial state --- hence stably finite --- that is not
-an MF algebra, so stable finiteness does not imply the MF property for
-separable $C^*$-algebras; MF groups are closed under neither quotients
+an MF algebra, giving an explicit reduced-group-$C^*$-algebra realization
+of the already known failure of stable finiteness to imply the MF property;
+MF groups are closed under neither quotients
 nor split extensions; every countable group has a largest MF quotient,
 by its MF radical, and the radical element $w$ is portable: any group
 receiving $E$ with $w$ surviving is non-MF; for every $m\ge2$ a scaled
@@ -346,9 +347,18 @@ algebras are stably finite and asked about the converse: whether
 every stably finite separable $C^*$-algebra is MF \cite{BK}, a
 question sometimes described --- in Kirchberg's stronger formulation,
 a conjecture --- as a $C^*$-analogue of the Connes embedding problem
-(see, e.g., the introduction of \cite{Rainone}).  It fails:
+(see, e.g., the introduction of \cite{Rainone}).  The converse was
+already known to fail after the negative solution of the Connes embedding
+problem from $\mathrm{MIP}^*=\mathrm{RE}$ \cite{JNVWY}: Goldbring gives
+the direct deduction by passing from a non-$\mathcal R^\omega$-embeddable
+$\mathrm{II}_1$ factor to a separable stably finite non-MF
+$C^*$-algebra \cite[Corollary~5.2]{GoldbringMF}.  The new point here is
+that the counterexample is the reduced group $C^*$-algebra of the explicit
+finitely presented group constructed above.  Indeed, as recently as March
+2026 no full or reduced group $C^*$-algebra was known not to be MF
+\cite[Introduction]{Shulman}:
 
-\begin{mainthm}[stable finiteness does not imply MF]\label{thm:D}
+\begin{mainthm}[a stably finite non-MF reduced group algebra]\label{thm:D}
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
@@ -451,9 +461,13 @@ countable groups into $2$-generator simple groups \cite{Go}
 (Corollary~\ref{cor:simple}).  The Haagerup--Thorbj{\o}rnsen theorem
 that $\Cred(F_k)$ is MF \cite{HT} is cited only to populate the list
 of example targets in Corollary~\ref{cor:subalg}.
-Theorem~\ref{thm:D} needs no input beyond Theorem~\ref{thm:A}: the
+The proof of Theorem~\ref{thm:D} needs no input beyond
+Theorem~\ref{thm:A}: the
 faithfulness of the canonical trace and the resulting stable
-finiteness are proved inline (Lemma~\ref{lem:faithfultrace}).
+finiteness are proved inline (Lemma~\ref{lem:faithfultrace}).  Its
+priority context uses the earlier negative solution of the general MF
+problem \cite[Corollary~5.2]{GoldbringMF}, ultimately derived from
+$\mathrm{MIP}^*=\mathrm{RE}$ \cite{JNVWY}.
 Remark~\ref{rem:nonnuclear} cites \cite{BHV,BO} for context only.
 
 \subsection*{Relation to prior work}
@@ -495,14 +509,15 @@ sign witness of the present paper are not adaptations of either.
 
 The base group itself also has a lineage.  A finitely presented Kazhdan
 group carrying a proper ``scaling'' endomorphism of an abelian normal
-subgroup is the Cornulier--Abels machine \cite{Cornulier,Abels}: Thom ran
-exactly this play, with the shift on a central $\mathbb F_p[t,t^{-1}]$-
+subgroup belongs to the Cornulier--Abels lineage \cite{Cornulier,Abels}:
+Thom followed this pattern, with the shift on a central $\mathbb F_p[t,t^{-1}]$-
 (or $\Z[1/p]$-)line inside a Kazhdan matrix group, to produce hyperlinear
 Kazhdan groups that are not residually finite \cite[Section~2]{Thom10}.
 Our $\Gamma=\Z^3\rtimes\SL_3(\Z)$ with $\alpha(v,A)=(2v,A)$ is the
-simplest integral member of this family
-(Remark~\ref{rem:whythisbase}).  Those arguments take place
-in permutation models with normalized Hamming distance.  Here the
+simplest integral analogue of this scaling pattern
+(Remark~\ref{rem:whythisbase}).  The approximation conclusions in
+\cite{Thom10} are sofic or hyperlinear and use Hamming or tracial
+Hilbert--Schmidt models, not operator-norm coronas.  Here the
 replacement for finite cardinality is the implication
 \[
   P\leq\beta(t)P\beta(t)^*
@@ -528,7 +543,13 @@ Hilbert--Schmidt argument needs quantitative negative-eigenspace dimension;
 our norm-corona cut passes to the corner as a new matrix corona, so a nonzero
 corner may have density tending to zero and no density bound is consumed.
 
-There is an older analytic ancestor as well.  Dadarlat's Lemma~3.18 shows
+There is an older analytic ancestor as well.  At the foundational level,
+the conjugation action on Hilbert--Schmidt operators is the
+$\pi\otimes\bar\pi$ model central to Bekka's theory of amenable unitary
+representations \cite{BekkaAmenable}; Bekka--Valette connect this model
+with property~(T) and the appearance of finite-dimensional
+subrepresentations \cite[Theorem~1]{BekkaValette}.  More directly for the
+operator-norm approximation setting, Dadarlat's Lemma~3.18 shows
 that operator-norm almost-commuting finite-rank projections force weak
 containment of the trivial representation in $\pi\otimes\bar\pi$; its proof
 turns the normalized projections into almost invariant normalized
@@ -872,11 +893,14 @@ $\Cl(X)$ mapping
 $c_x\mapsto c_{\sigma(x)}$ and fixing $z$; this gives an action of any
 group acting on $X$ by automorphisms of $\ClLamp(X)$, and a semidirect
 product $\ClLamp(X)\rtimes G$ for any $G$-set $X$.
-The group $\ClLamp(X)$ is the classical sign extension of
-$\bigoplus_X\Z/2$ by the intersection-parity cocycle: an
-extraspecial-type $2$-group of possibly infinite rank, familiar as the
-multiplicative group generated by the self-adjoint generators of the CAR
-algebra (see, e.g., \cite{BR2}); for a modern toolbox of
+The group $\ClLamp(X)$ is the central sign extension of
+$\bigoplus_X\Z/2$ defined by the ordered-inversion cocycle above; its
+commutator pairing is
+$(-1)^{|F||G|-|F\cap G|}$.  It is a Clifford $2$-group of
+possibly infinite rank, familiar as the multiplicative group generated by
+Clifford (Majorana) generators in the CAR algebra (see, e.g., \cite{BR2}).
+The same finite- and infinite-rank Clifford groups with their distinguished
+central sign appear explicitly in \cite[Section~2]{SlofstraProfile}; for a modern toolbox of
 property~(T) groups with wreath-like lamp structure see \cite{CIOS}.
 \end{construction}
 
@@ -1937,9 +1961,12 @@ Theorem~\ref{thm:A}.
 
 \begin{remark}\label{rem:nonnuclear}
 Blackadar and Kirchberg proved that MF algebras are stably finite
-\cite{BK}, so Theorem~\ref{thm:D} is the exact failure of the
-converse, in the strong form where the algebra carries a faithful
-trace.  The example is not nuclear: $\Gamma$ embeds into $E$
+\cite{BK}.  The general converse was already refuted as a consequence of
+the negative solution to the Connes embedding problem
+\cite[Corollary~5.2]{GoldbringMF}; Theorem~\ref{thm:D} instead realizes
+that failure as the reduced group $C^*$-algebra of an explicit finitely
+presented group, with a faithful trace.  The example is not nuclear:
+$\Gamma$ embeds into $E$
 (Corollary~\ref{cor:iotainj}); the infinite group $\Gamma$ has
 property (T) and is therefore not amenable, since amenable groups
 with property (T) are compact, hence finite when discrete
@@ -2518,6 +2545,18 @@ B.~Bachner, S.~Dogon, and A.~Lubotzky,
 J. Algebra \textbf{702} (2026), 235--243,
 \doi{10.1016/j.jalgebra.2026.04.041}.
 
+\bibitem[Be]{BekkaAmenable}
+M.~E.~B. Bekka,
+\emph{Amenable unitary representations of locally compact groups},
+Invent. Math. \textbf{100} (1990), no.~1, 383--401,
+\doi{10.1007/BF01231192}.
+
+\bibitem[BV]{BekkaValette}
+M.~E.~B. Bekka and A.~Valette,
+\emph{Kazhdan's property (T) and amenable representations},
+Math. Z. \textbf{212} (1993), no.~2, 293--299,
+\doi{10.1007/BF02571659}.
+
 \bibitem[BHV]{BHV}
 B.~Bekka, P.~de~la~Harpe, and A.~Valette,
 \emph{Kazhdan's property (T)},
@@ -2615,6 +2654,13 @@ L.~Glebsky and L.~M. Rivera,
 \emph{Sofic groups and profinite topology on free groups},
 J. Algebra \textbf{320} (2008), no.~9, 3512--3518.
 
+\bibitem[Go23]{GoldbringMF}
+I.~Goldbring,
+\emph{Model theory and ultrapower embedding problems in operator algebras},
+in \emph{Model theory of operator algebras},
+De Gruyter, Berlin--Boston, 2023, 425--452,
+\doi{10.1515/9783110768282-011}.
+
 \bibitem[Go]{Go}
 A.~P. Goryushkin,
 \emph{Imbedding of countable groups in $2$-generated simple groups},
@@ -2627,6 +2673,11 @@ U.~Haagerup and S.~Thorbj{\o}rnsen,
 $\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
 Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 \doi{10.4007/annals.2005.162.711}.
+
+\bibitem[JNVWY]{JNVWY}
+Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
+\emph{$\mathrm{MIP}^*=\mathrm{RE}$},
+preprint, 2020, \arxiv{2001.04383}.
 
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
