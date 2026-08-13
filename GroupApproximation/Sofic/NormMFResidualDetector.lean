@@ -14,10 +14,12 @@ The final section records the group word used by the explicit construction:
 
 `w = [t c t⁻¹, a (t c t⁻¹) a⁻¹]`.
 
-The analytic theorem in the accompanying paper proves that this word is
-`NormMFInvisible` for the marked Kazhdan-compression presentation.  The Lean
-theorem here then turns that kernel statement, together with `w ≠ 1`, into
-`¬ IsWeakMF G` using the repository's existing faithful-ultraproduct theorem.
+This module supplies the residual/detector layer: it turns a proof that the
+marked word is `NormMFInvisible`, together with `w ≠ 1`, into `¬ IsWeakMF G`
+using the repository's faithful-ultraproduct theorem.  The analytic
+invisibility theorem is proved downstream, without an added premise, in
+`MarkedCompressionSequentialKill`; the concrete public assembly is
+`ExplicitNonMFTheorem`.
 
 No C*-algebraic premise is hidden in the definitions below: the targets are
 literally `UniversalWeakMF`, the operator-norm matrix ultraproduct already
