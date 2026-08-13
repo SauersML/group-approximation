@@ -1326,16 +1326,25 @@ Loring \cite{Loring} for a systematic treatment.
 
 \begin{proof}
 (1) Lift $e$ to a bounded sequence $(x_n)$; replacing $x_n$ by
-$\tfrac12(x_n+x_n^*)$ and then by the functional-calculus cutoff
-$f(x_n)$, where $f(t)=\min(1,\max(0,t))$, we may assume
-$0\le x_n\le1$.  These replacements preserve the quotient class because
-functional calculus commutes with the quotient map and
-$f(e)=e$.  Since $q((x_n))$
+$y_n=\tfrac12(x_n+x_n^*)$ preserves its quotient class, because
+$q((y_n))=\tfrac12(e+e^*)=e$.  The sequence $(y_n)$ is bounded and
+self-adjoint.  For the continuous function
+$f(t)=\min(1,\max(0,t))$, coordinatewise continuous functional calculus
+gives a bounded positive-contraction sequence $(f(y_n))$, and functoriality
+of continuous functional calculus for the quotient $*$-homomorphism gives
+\[
+ q((f(y_n)))=f(q((y_n)))=f(e)=e.
+\]
+Renaming $f(y_n)$ as $x_n$, we may therefore assume $0\le x_n\le1$.
+Since $q((x_n))$
 is a projection, $\opnorm{x_n^2-x_n}\to0$, so the spectrum of $x_n$ is
 eventually contained in $[0,\tfrac13)\cup(\tfrac23,1]$; for such $n$
 put $e_n=\chi_{(\frac12,\,\infty)}(x_n)$, a projection with
-$\opnorm{e_n-x_n}\to0$, and set $e_n=0$ for the finitely many remaining
-$n$.  Then $(e_n)$ lifts $e$.
+\[
+ \opnorm{e_n-x_n}
+ \le \tfrac32\opnorm{x_n-x_n^2}\longrightarrow0.
+\]
+Set $e_n=0$ for the finitely many remaining $n$.  Then $(e_n)$ lifts $e$.
 
 (2) Lift $u$ to an arbitrary bounded sequence $(x_n)$.
 Since $q((x_n))$ is unitary, $\opnorm{x_n^*x_n-1}\to0$, so $x_n$ is
@@ -1389,7 +1398,9 @@ $u^{\otimes n}-v^{\otimes n}=u^{\otimes n}(1-w^{\otimes n})$,
  \opnorm{u^{\otimes n}-v^{\otimes n}}
  =\opnorm{1-w^{\otimes n}}\ge|1-e^{in\theta}|\ge1 ,
 \]
-and $n\le\lceil\pi/(3\varepsilon)\rceil$.  The last claim is the
+and $\varepsilon\le|\theta|$ gives
+$n=\lceil\pi/(3|\theta|)\rceil\le
+\lceil\pi/(3\varepsilon)\rceil$.  The last claim is the
 telescoping identity
 $a^{\otimes n}-b^{\otimes n}
  =\sum_{j=0}^{n-1}b^{\otimes j}\otimes(a-b)\otimes
