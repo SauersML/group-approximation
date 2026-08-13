@@ -410,6 +410,8 @@ export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
 export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation.LiteralCyclicCalibration
   (mark_ne_one finiteDimensional_kill
+    realizedQuotient_finiteDimensional_kill
+    realizedQuotient_isOperatorMF
     exists_coronaRepresentation_mark_ne_one)
 export GroupApproximation.CStarRecognitionConsequences
   (reducedCStarMF_recognition_undecidable
