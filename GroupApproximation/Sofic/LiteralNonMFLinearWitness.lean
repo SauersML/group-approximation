@@ -63,19 +63,19 @@ theorem matrix_kills_xCube :
   simp only [map_pow, FreeGroup.lift_apply_of, matrixBaseGenerator_x]
   apply Subtype.ext
   apply Units.ext
-  simpa [pow_succ, xG, xU] using rel_x_cube
+  simpa [pow_succ, xG, xU] using xM_orderThree'
 theorem matrix_kills_yCube :
     FreeGroup.lift matrixBaseGenerator baseRelYCube = 1 := by
   simp only [map_pow, FreeGroup.lift_apply_of, matrixBaseGenerator_y]
   apply Subtype.ext
   apply Units.ext
-  simpa [pow_succ, yG, yU] using rel_y_cube
+  simpa [pow_succ, yG, yU] using yM_orderThree'
 theorem matrix_kills_zSq :
     FreeGroup.lift matrixBaseGenerator baseRelZSq = 1 := by
   simp only [map_pow, FreeGroup.lift_apply_of, matrixBaseGenerator_z]
   apply Subtype.ext
   apply Units.ext
-  simpa [pow_succ, zG, zU] using rel_z_sq
+  simpa [pow_succ, zG, zU] using zM_orderTwo
 theorem matrix_kills_xzCube :
     FreeGroup.lift matrixBaseGenerator baseRelXZCube = 1 := by
   simp only [map_pow, map_mul, FreeGroup.lift_apply_of,
@@ -282,7 +282,7 @@ theorem witness_eval_base (q : FreeGroup BaseGenerator) :
   change (FreeGroup.lift witnessBaseGenerator) q =
     ((iotaAmbient alpha conjD_injective).comp
       (FreeGroup.lift matrixBaseGenerator)) q
-  apply LiteralNonMFPresentation.freeHom_eq_on
+  apply freeGroup_hom_eq_on_generators
   intro i
   simp [witnessBaseGenerator]
 

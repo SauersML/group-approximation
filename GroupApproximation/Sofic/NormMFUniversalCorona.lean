@@ -609,11 +609,30 @@ theorem exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual
 /-- Every homomorphism from `G` to an operator-norm MF group factors uniquely
 through the largest MF quotient. -/
 theorem existsUnique_normMFQuotient_factorization_to_isOperatorMF
-    [Countable G] {H : Type v} [Group H] [Countable H]
+    [Countable G] {H : Type v} [Group H]
     (f : G →* H) (hH : IsOperatorMF H) :
     ∃! fBar : normMFQuotient G →* H,
       fBar.comp (normMFQuotientMk G) = f := by
-  exact existsUnique_normMFQuotient_factorization_of_residual_eq_bot f
-    (normMFResidual_eq_bot_of_isOperatorMF hH)
+  obtain ⟨X, _hX, rho, hrho⟩ := hH
+  have hker : normMFResidual G ≤ f.ker := by
+    intro g hg
+    apply MonoidHom.mem_ker.mpr
+    by_contra hfg
+    have hcorona : (rho.comp f) g ≠ 1 := by
+      intro heq
+      exact hfg (hrho (by simpa using heq))
+    obtain ⟨A⟩ :=
+      exists_markedOpAlmostRepresentation_of_normMatrixCorona_ne_one
+        X (rho.comp f) hcorona
+    obtain ⟨detector, hdetector⟩ :=
+      exists_ultraproduct_detector_of_markedOpAlmostRepresentation A
+    exact hdetector (map_eq_one_of_mem_normMFResidual
+      (Ultrafilter.of Filter.cofinite) A.model detector hg)
+  refine ⟨QuotientGroup.lift (normMFResidual G) f hker,
+    QuotientGroup.lift_comp_mk' (normMFResidual G) f hker, ?_⟩
+  intro k hk
+  exact normMFQuotient_hom_ext
+    (hk.trans (QuotientGroup.lift_comp_mk'
+      (normMFResidual G) f hker).symm)
 
 end GroupApproximation
