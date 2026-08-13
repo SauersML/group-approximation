@@ -366,3 +366,40 @@ Ra metadata).
 * Fournier-Facio arXiv:2608.02025 (2026-08-03, 4pp): Theorem 1.3 = f.p.
   torsion-free nonsofic group via small cancellation + OAI Prop 2.3.
   Bibitem data verified.
+
+## Third pass, final installment: second-batch sources (all APPLIED)
+
+* **Borisov–Sapir SCOPE CONFIRMED**: Theorem 1.2 = free groups; **Theorem
+  1.6** = "the mapping torus of any injective endomorphism of a finitely
+  generated linear group is residually finite", footnote: "representable
+  by matrices of any size over any field" — no characteristic or size
+  restriction; covers G = HNN(Γ, α) for Γ = Z^3⋊SL_3(Z), α=(v,A)↦(2v,A)
+  verbatim.  Pinpoints upgraded to Thm 1.6.  TRUST SURFACE: Theorem 1.6
+  (unlike 1.2) is deduced from Hrushovski's Frobenius manuscript, which
+  BS's own abstract calls "a not yet published result" and which remains
+  an unrefereed preprint (arXiv:math/0406514); a caveat now appears in
+  the external-inputs paragraph.  Corroborated by BS's 2008 sequel
+  (arXiv:0810.0443) quoting "[BS, Theorem 1.6]" against the published
+  version.
+* Dogon–Vigdorovich Thm 7.10: metadata and v2 pin correct; the tex's
+  existing sentence (Bader's almost-spectral-gap argument, proved from
+  Ozawa's characterization) matches the actual statement — NO change
+  needed.  (Numbering is 6.10 in v1; the bibitem's v2 pin is
+  load-bearing, keep it.)
+* Haagerup–Thorbjørnsen: metadata exact; the MF statement is **Corollary
+  8.4**, valid for ALL r ∈ N ∪ {∞} (wider than the Ext corollary 8.5);
+  pinpoints added, "every k" made explicit in cor:subalg's proof.
+* Mal'cev 1940 (Mat. Sb. 8(50), 405–422): correct source for f.g. LINEAR
+  ⇒ RF (all tex uses are the linear form — checked) and for f.g. linear
+  ⇒ Hopfian (now cited for the SL_3(Z) Hopficity step in the CRW
+  parenthetical).  The abstract "f.g. RF ⇒ Hopfian" would be Mal'cev
+  1958 (Ivanov. Gos. Ped. Inst. Uchen. Zap. 18, 49–60) — not needed by
+  the current text; do not attribute the MAP⇒RF corollary to the 1940
+  paper as a stated theorem.
+* Goryushkin (Math. Notes 16 (1974) no. 2, 725–727 / Mat. Zametki 16,
+  231–235, doi:10.1007/BF01105577): verified incl. content (every
+  countable group embeds in a 2-generated simple group).
+* B. H. Neumann JLMS s1-12 (1937) 120–127: verified incl. continuum
+  family content.  Rainone JFA 267 (2014) no. 2, 542–578: verified.
+* Post-fix consistency: 31 cite keys ↔ 31 bibitems, no orphans either
+  direction (checked mechanically).
