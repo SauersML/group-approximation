@@ -483,6 +483,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.c0MatrixSequenceIdeal_star_mem
 #print axioms GroupApproximation.isClosed_c0MatrixSequenceIdeal
 #print axioms GroupApproximation.norm_normMatrixCorona_mul_le
+#print axioms GroupApproximation.norm_normMatrixCorona_star
 #print axioms GroupApproximation.ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction
 #print axioms GroupApproximation.ChosenReducedGroupCStar.matrix_isometry_is_unitary
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual

@@ -310,6 +310,11 @@ noncomputable instance normMatrixCoronaAlgebraNormedStarGroup :
     NormedStarGroup (NormMatrixCoronaAlgebra X) where
   norm_star_le := normMatrixCorona_norm_star_le X
 
+/-- Audit pin: the descended adjoint is an isometry for the quotient norm. -/
+theorem norm_normMatrixCorona_star (x : NormMatrixCoronaAlgebra X) :
+    ‖star x‖ = ‖x‖ :=
+  norm_star x
+
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/
 theorem norm_normMatrixCorona_mul_le (x y : NormMatrixCoronaAlgebra X) :
