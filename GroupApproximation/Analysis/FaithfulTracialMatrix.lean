@@ -18,7 +18,7 @@ noncomputable section
 
 namespace FaithfulTracialState
 
-variable {A : Type*} [CStarAlgebra A]
+variable {A : Type*} [Ring A] [StarRing A] [Algebra ℂ A]
 
 /-- The normalized diagonal trace induced on a nonempty finite matrix block. -/
 def matrixDiagonalTrace (τ : FaithfulTracialState A) (n : Type*)
@@ -40,8 +40,7 @@ theorem matrixDiagonalTrace_apply (τ : FaithfulTracialState A) (n : Type*)
   rfl
 
 /-- A faithful tracial state amplifies to every nonempty finite matrix block. -/
-def matrix (τ : FaithfulTracialState A) [PartialOrder A] [StarOrderedRing A]
-    (n : Type*) [Fintype n] [DecidableEq n]
+def matrix (τ : FaithfulTracialState A) (n : Type*) [Fintype n] [DecidableEq n]
     (hn : Nonempty n) : FaithfulTracialState (CStarMatrix n n A) := by
   letI := hn
   exact {
@@ -89,7 +88,6 @@ def matrix (τ : FaithfulTracialState A) [PartialOrder A] [StarOrderedRing A]
 
 /-- Every isometry in a finite matrix amplification is unitary. -/
 theorem matrix_mul_star_eq_one_of_star_mul_eq_one (τ : FaithfulTracialState A)
-    [PartialOrder A] [StarOrderedRing A]
     (n : Type*) [Fintype n] [DecidableEq n] (hn : Nonempty n)
     {v : CStarMatrix n n A} (hv : star v * v = 1) : v * star v = 1 :=
   (τ.matrix n hn).mul_star_eq_one_of_star_mul_eq_one hv

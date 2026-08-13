@@ -44,7 +44,7 @@ def mapCompression (e : InjectiveCStarEmbedding A B)
     (D : ProperProjectionCompression A) : ProperProjectionCompression B where
   p := e.hom D.p
   u := e.hom D.u
-  p_star := by rw [map_star, D.p_star]
+  p_star := by rw [← map_star, D.p_star]
   p_mul_p := by rw [← map_mul, D.p_mul_p]
   u_star_mul := by rw [← map_star, ← map_mul, D.u_star_mul, map_one]
   u_mul_star := by rw [← map_star, ← map_mul, D.u_mul_star, map_one]
