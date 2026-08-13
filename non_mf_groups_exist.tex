@@ -813,6 +813,23 @@ particular the consistency of the presentation \eqref{eq:E} is verified
 by an explicit linear-algebraic model.
 \end{remark}
 
+\begin{corollary}\label{cor:iotainj}
+The canonical homomorphisms $\Gamma\to E$ and $\Gamma\to G$ are
+injective; in particular $E$ contains an isomorphic copy of $\Gamma$.
+\end{corollary}
+
+\begin{proof}
+The homomorphism $E\to W$ constructed in the proof of
+Proposition~\ref{prop:witness} sends each of the six base generators
+to the corresponding element of $\bar G\le W$, so the composite
+$\Gamma\to E\to W$ agrees on generators with, hence equals, the
+faithful linear embedding
+$\Gamma\hookrightarrow\GL_4(\Z)\le\bar G$ of Lemma~\ref{lem:linear}.
+A homomorphism whose composite with another homomorphism is injective
+is itself injective; this gives injectivity of $\Gamma\to E$, and of
+$\Gamma\to G$, since the latter composes with $G\to E$ to the former.
+\end{proof}
+
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
 We prove Theorem~\ref{thm:B}.  Everything happens inside the
@@ -990,32 +1007,17 @@ so $s$ is an isometry, and
 By part (1), $ss^*=1$, i.e.\ $p+(1-q)=1$, i.e.\ $p=q$.
 \end{proof}
 
-\begin{lemma}[central corners]\label{lem:corner}
-Let $\Theta\colon E\to\U(\mathcal Q)$ be a corona representation and
-suppose $\Theta(w)\neq1$.  Then there are an infinite set
-$J'\subseteq J$, positive integers $(r_n)_{n\in J'}$ with $r_n\le
-d_n$, and a corona representation
-\[
-  \Theta_-\colon E\longrightarrow
-  \U\bigl(\mathcal Q'\bigr),\qquad
-  \mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr),
-\]
-with $\Theta_-(w)=-1$.
+\begin{lemma}[corner coronas]\label{lem:cornercorona}
+Let $e\in\mathcal Q$ be a nonzero projection.  Then there are an
+infinite set $J'\subseteq J$ and positive integers $(r_n)_{n\in J'}$
+with $r_n\le d_n$ such that $e\mathcal Qe$ is unitally
+$*$-isomorphic to the norm matrix corona
+$\mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr)$, by an
+isomorphism carrying $e$ to $1$.
 \end{lemma}
 
-This is the norm-corona counterpart of Slofstra--Vidick's compression to
-the $(-1)$-eigenspace of a repaired approximate central involution
-\cite[Proposition~2.7]{SlofstraVidick}.  In their normalized
-Hilbert--Schmidt setting a quantitative separation supplies a positive
-relative dimension.  Here nonzeroness of the corona projection is enough:
-passing to its corner changes the ambient matrix sequence and renormalizes
-all later traces there.
-
 \begin{proof}
-Since $w^2=1$ and $w$ is central in $E$, the element $\Theta(w)$ is a
-self-adjoint unitary commuting with $\Theta(E)$, and
-$e:=\tfrac12(1-\Theta(w))$ is a projection commuting with $\Theta(E)$,
-nonzero because $\Theta(w)\neq1$.  By Lemma~\ref{lem:lift}(1) lift $e$
+By Lemma~\ref{lem:lift}(1) lift $e$
 to projections $(e_n)$; let $J'=\{n\in J: e_n\neq0\}$ and
 $r_n=\operatorname{rank}e_n$ for $n\in J'$.  The set $J'$ is infinite,
 since otherwise $(e_n)$ would be a null sequence and $e=0$.
@@ -1038,9 +1040,67 @@ norms, so
   e\,\mathcal Q\,e\;\cong\;\mathcal Q\bigl((r_n)_{n\in J'}\bigr)
   =\mathcal Q' ,
 \]
-a unital isomorphism carrying $e$ to $1$.  Finally, since $e$ commutes
-with $\Theta(E)$, the map $\Theta_-(g):=\Theta(g)e$ is a unital group
-homomorphism $E\to\U(e\mathcal Qe)=\U(\mathcal Q')$, and
+a unital isomorphism carrying $e$ to $1$.
+\end{proof}
+
+\begin{lemma}[finite-normal corners]\label{lem:corner}
+Let $H$ be a group, $F\trianglelefteq H$ a finite normal subgroup,
+and $\Theta\colon H\to\U(\mathcal Q)$ a corona representation whose
+restriction to $F$ is nontrivial.  Then there are an infinite set
+$J'\subseteq J$, positive integers $(r_n)_{n\in J'}$ with
+$r_n\le d_n$, and a corona representation
+\[
+  \Theta_-\colon H\longrightarrow
+  \U\bigl(\mathcal Q'\bigr),\qquad
+  \mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr),
+\]
+with
+\[
+  \sum_{f\in F}\Theta_-(f)\;=\;0 .
+\]
+In the case $F=\{1,w\}$ with $w$ a central involution and
+$\Theta(w)\neq1$, the corner projection is
+$e=\tfrac12(1-\Theta(w))$ and the conclusion reads
+$\Theta_-(w)=-1$.
+\end{lemma}
+
+In the involution case, this is the norm-corona counterpart of
+Slofstra--Vidick's compression to
+the $(-1)$-eigenspace of a repaired approximate central involution
+\cite[Proposition~2.7]{SlofstraVidick}.  In their normalized
+Hilbert--Schmidt setting a quantitative separation supplies a positive
+relative dimension.  Here nonzeroness of the corona projection is enough:
+passing to its corner changes the ambient matrix sequence and renormalizes
+all later traces there.  For general $F$ the corner projection is the
+complement of the averaging projection of the finite normal subgroup.
+
+\begin{proof}
+Put
+\[
+  p_F\;=\;\frac1{|F|}\sum_{f\in F}\Theta(f) .
+\]
+Then $p_F^*=p_F$, because $\Theta(F)$ is closed under adjoints ($F$ is
+closed under inverses), and $p_F^2=p_F$: for each $f_0\in F$, left
+translation by $f_0$ permutes $F$, so $\Theta(f_0)\,p_F=p_F$, and
+averaging over $f_0$ gives $p_F^2=p_F$.  Thus $p_F$ is a projection.
+For $g\in H$, conjugation by $g$ permutes the normal subgroup $F$, so
+$\Theta(g)\,p_F\,\Theta(g)^{-1}=p_F$: the projection $p_F$ commutes
+with $\Theta(H)$.  If $p_F=1$ then, for every $f_0\in F$,
+$\Theta(f_0)=\Theta(f_0)\,p_F=p_F=1$, contradicting nontriviality of
+$\Theta|_F$; so $e:=1-p_F$ is a nonzero projection commuting with
+$\Theta(H)$.
+
+By Lemma~\ref{lem:cornercorona}, $e\mathcal Qe\cong\mathcal Q'$ by a
+unital $*$-isomorphism carrying $e$ to $1$.  Since $e$ commutes with
+$\Theta(H)$, the map $\Theta_-(g):=\Theta(g)e$ is a unital group
+homomorphism $H\to\U(e\mathcal Qe)=\U(\mathcal Q')$, and
+\[
+  \sum_{f\in F}\Theta_-(f)
+  =\Bigl(\sum_{f\in F}\Theta(f)\Bigr)e
+  =|F|\,p_F\,(1-p_F)=0 .
+\]
+For $F=\{1,w\}$ with $w$ central of order two,
+$p_F=\tfrac12(1+\Theta(w))$, so $e=\tfrac12(1-\Theta(w))$ and
 $\Theta_-(w)=\Theta(w)e=(1-2e)e=-e=-1$ in $\mathcal Q'$.
 \end{proof}
 
@@ -1580,7 +1640,7 @@ preprint, 2018, \url{arXiv:1806.05267}.
 W.~Slofstra and T.~Vidick,
 \emph{Entanglement in non-local games and the hyperlinear profile of groups},
 Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
-\url{doi:10.1007/s00023-018-0711-5}.
+\url{doi:10.1007/s00023-018-0718-y}.
 
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,
