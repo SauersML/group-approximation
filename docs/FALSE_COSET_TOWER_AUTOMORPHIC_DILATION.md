@@ -304,3 +304,92 @@ following genuinely new statements:
 
 Without one of these bridges, `(CTD27)` is a rigorous local CE reduction,
 not yet a hyperlinear-nonsofic group.
+
+## 7. The one-edge Clifford upgrade is Connes embeddable
+
+The central-commutator formulation in
+`EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md` needs only one
+anticommuting orbital edge, rather than the complete Clifford algebra on
+`G/Gamma`.  For the finite-index tower this stronger local wall can be
+constructed without any remaining CE hypothesis.
+
+Assume in this section that every `X_n=Gamma/beta^n(Gamma)` is finite and
+retain `X` and the injection `F` from `(CTD6)--(CTD8)`.  Let
+
+```text
+A_Cl=Cl_R(ell2(X))
+```
+
+be the tracial CAR/Clifford algebra with self-adjoint Majoranas `C_x`,
+`x in X`.  Thus
+
+```text
+C_x^2=1,
+C_x C_y=-C_y C_x             (x!=y).
+```
+
+The permutation action of `Gamma` on `X` gives trace-preserving Bogoliubov
+automorphisms.  The injection `F` gives a trace-preserving unital embedding
+
+```text
+alpha_A(C_x)=C_(F(x)).                                (CTD31)
+```
+
+Equation `(CTD8)` is precisely the covariance needed to extend `(CTD31)`
+to an endomorphism of
+
+```text
+N_Cl=A_Cl crossed_product Gamma,
+alpha(u_delta)=u_(beta(delta)).                       (CTD32)
+```
+
+Unlike the generalized CAR action on the full infinite coset space, the
+crossed product in `(CTD32)` is Connes embeddable for a direct finite-stage
+reason.  The union of the first `m` tower levels is a finite
+`Gamma`-invariant set.  Its Clifford algebra is finite dimensional, and
+the action on it factors through the finite permutation action on those
+levels.  The kernel is a finite-index subgroup of the residually finite
+group `Gamma`, hence has a Connes-embeddable group algebra.  Crossing the
+finite-dimensional Clifford algebra by the finite quotient preserves CE.
+The algebras from the finite level unions increase trace preservingly to
+`N_Cl`, so inductive-limit permanence gives
+
+```text
+N_Cl is Connes embeddable.                            (CTD33)
+```
+
+Take the automorphic dilation and crossed product by `Z` exactly as in
+`(CTD18)--(CTD21)`.  Put
+
+```text
+x_0=beta(Gamma) in X_1,
+a_0=C_(x_0),
+C=U^* a_0 U.
+```
+
+The point `x_0` is fixed by `beta(Gamma)`, so the calculation in `(CTD23)`
+gives
+
+```text
+C in pi(Gamma)'.                                     (CTD34)
+```
+
+For `gamma in Gamma-beta(Gamma)` and
+`h=t^(-1) gamma t`, conjugation by `U` identifies `C` and `pi(h)Cpi(h)^*`
+with the two distinct Majoranas `C_(x_0)` and `C_(gamma x_0)`.  Hence
+
+```text
+C pi(h)Cpi(h)^*=-pi(h)Cpi(h)^* C,                    (CTD35)
+[C,pi(h)Cpi(h)^*]=-1.
+```
+
+The dilation algebra is CE by `(CTD33)` and the permanence argument in
+`(CTD27)`.  Therefore `(CTD34)--(CTD35)` solve the complete one-edge
+Connes-embeddable character problem for the ascending HNN subsystem.
+
+This still does not finish FALSE.  The Kun--Thom full-sofic-radical theorem
+requires the full infranormal Kazhdan vertex `G`; the ascending HNN group
+maps onto `Z` and is not Kazhdan.  The remaining bridge is now purely the
+extension problem: extend this one-edge CE representation from the HNN
+subsystem to the full vertex while preserving `(CTD35)`, or prove an
+independent radical theorem for a group carrying the same local dilation.
