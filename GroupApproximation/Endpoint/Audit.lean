@@ -54,6 +54,7 @@ import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralTranslationOrbit
+import GroupApproximation.Sofic.LiteralBasePropertyTBridge
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBaseTwoGenerator
@@ -559,6 +560,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeEquivTranslations
 #print axioms GroupApproximation.LiteralTranslationOrbit.translation_eq_two_rotation_conjugates
 #print axioms GroupApproximation.LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed
+#print axioms GroupApproximation.LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation
 #print axioms GroupApproximation.LiteralBaseP13Replay.yFromUZXY_eq
 #print axioms GroupApproximation.LiteralBaseP13Replay.closure_Z_XY_eq_top
 #print axioms GroupApproximation.LiteralBaseTwoGenerator.rotationEquivTwoRotation

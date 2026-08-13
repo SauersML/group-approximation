@@ -37,6 +37,7 @@ import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralTranslationOrbit
+import GroupApproximation.Sofic.LiteralBasePropertyTBridge
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBaseTwoGenerator
@@ -170,6 +171,10 @@ group is part of the Lean API.
 * `LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed`
   -- a rotation-fixed vector has its entire translation displacement uniformly
   controlled by the two displayed basis displacements.
+* `LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` -- the
+  twenty-relator affine base has property `(T)` as soon as its exact
+  eight-relator rotation presentation does; the affine transfer itself is now
+  intrinsic, leaving only the rotation presentation as the open formal step.
 * `LiteralBaseRotationRetract.rotationToBase_injective` and
   `LiteralBaseRotationRetract.baseToRotation_ker_eq_translations` -- the
   eight-relator rotation group is a retract of the literal base, and the
@@ -459,6 +464,8 @@ export GroupApproximation.LiteralBaseTranslationLattice
 export GroupApproximation.LiteralTranslationOrbit
   (translation_eq_two_rotation_conjugates
     norm_translation_displacement_le_of_rotations_fixed)
+export GroupApproximation.LiteralBasePropertyTBridge
+  (base_hasKazhdanPropertyT_of_rotation)
 export GroupApproximation.LiteralBaseP13Replay
   (yFromUZXY_eq closure_Z_XY_eq_top)
 export GroupApproximation.LiteralBaseTwoGenerator

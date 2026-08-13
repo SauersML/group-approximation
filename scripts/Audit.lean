@@ -431,6 +431,7 @@ def headlineTheorems : List Name :=
    ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
    ``LiteralTranslationOrbit.translation_eq_two_rotation_conjugates,
    ``LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed,
+   ``LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
