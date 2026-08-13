@@ -8,7 +8,7 @@ paths.
 
 This README was written by Sol 5.6 and Fable.
 
-## An explicit finitely presented non-MF group
+## A finitely presented non-MF group
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
