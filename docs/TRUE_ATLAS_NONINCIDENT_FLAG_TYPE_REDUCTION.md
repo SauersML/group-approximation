@@ -210,3 +210,15 @@ sage -gap -q experiments/atlas_nonincident_flag_character.g
 
 The committed output is
 `experiments/atlas-nonincident-flag-character.txt`.
+
+The underlying finite geometry is independently kernel-checked in
+`GroupApproximation/Leavitt/NonincidentFlagGram.lean`.  It proves that
+`F_2^4` has 15 nonzero projective representatives, that the nonincident flag
+set has cardinality 120, and the entrywise Gram identity
+
+```text
+sum_h B(p,h) B(q,h) = 8 if p=q, and 4 otherwise.
+```
+
+This is the exact combinatorial input for `(NFG11)`; the ordinary-character
+decomposition `(NFG5)` remains certified by the GAP replay.
