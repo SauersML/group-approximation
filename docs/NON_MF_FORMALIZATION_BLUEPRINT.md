@@ -95,8 +95,12 @@ The completed proof is split into independently useful layers.
     machine-check the manuscript's literal eight-generator presentation and
     its exact nontrivial affine--Clifford mark. `LiteralBaseSOS.lean` and
     `LiteralKazhdanCompression.lean` expose two honest conditional endpoints:
-    property `(T)` of the literal base, or an exact rational group-ring SOS
-    certificate implying it. Neither premise is postulated or discharged.
+    property `(T)` of the abstract group presented by the twenty literal base
+    relators, or an exact rational group-ring SOS certificate implying it.
+    The classical affine-group route additionally requires a formal
+    presentation-completeness isomorphism; property `(T)` of the concrete
+    quotient does not transfer backwards. None of these inputs is postulated
+    or discharged.
 12. `NormMFUniversalCorona.lean`, `NormMFCoronaRadical.lean`, and
     `NormMFResidualExactQuotient.lean` identify residual triviality with
     standard cofinite-corona operator MF and establish the universal quotient

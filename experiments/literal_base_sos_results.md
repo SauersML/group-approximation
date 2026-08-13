@@ -48,13 +48,17 @@ without first changing the formulation.  Higher-yield alternatives are:
 1. an affine relative-`(T)` decomposition, combining a certified
    `SL_3(Z)` gap with a translation-moving-projection estimate;
 2. a sparse/chordal scalar SOS formulation with exact relator replay; or
-3. a direct formalization of the classical property-`(T)` theorem for
-   `Z^3 semidirect SL_3(Z)`.
+3. a direct property-`(T)` proof for the abstract group presented by the
+   twenty relators; or a formal isomorphism from it to
+   `Z^3 semidirect SL_3(Z)` together with the classical property-`(T)` proof.
 
 The analytic non-MF theorem and the literal marked-word witness do not depend
-on this experiment.  The only open formal endpoint is the unconditional
-Lean proof of property `(T)` for the literal base; the manuscript correctly
-uses the published theorem as an external input.
+on this experiment. The open formal endpoint is an unconditional Lean proof
+of property `(T)` for the abstract literal base. Formalizing property `(T)`
+of the concrete affine group is not enough on its own: relator evaluation
+only gives a quotient map, and property `(T)` does not transfer backwards.
+The alternative classical route must also formalize completeness of the
+printed presentation.
 
 ## Reproduction
 

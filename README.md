@@ -82,9 +82,12 @@ eight-generator group `E` displayed in the paper. The literal presentation,
 all displayed relations, and an exact affine--Clifford realization proving
 its marked word nontrivial are formalized separately. The only MF endpoints
 for that literal group are explicitly conditional: one assumes property
-`(T)` of its displayed base, and the proof-carrying variant assumes an exact
-rational group-ring SOS certificate. No unconditional literal endpoint or
-certificate is asserted.
+`(T)` of the abstract group presented by the twenty base relators, and the
+proof-carrying variant assumes an exact rational group-ring SOS certificate
+for that same presented group. Property `(T)` of the concrete
+`ℤ³ ⋊ SL₃(ℤ)` does not by itself discharge the Lean premise; the classical
+route also needs a formal presentation-completeness isomorphism. No
+unconditional literal endpoint or certificate is asserted.
 
 The general finite-normal obstruction is formalized first as universal
 ultraproduct invisibility and then in the unitary-sequence presentation of the
