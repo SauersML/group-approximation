@@ -2065,9 +2065,9 @@ $\Theta\colon E\to\Ucor((d_n))$.  This is part (2).
 For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
 $E$ would be an injective corona representation, which is impossible
 because every corona representation sends the nontrivial element $w$
-to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding ---
-Corollary~\ref{cor:subalg} below reduces a non-unital one to this
-case ---
+to $1$.  If $\Cred(E)$ were an MF algebra, Lemma~\ref{lem:cornercorona}
+would turn any non-unital MF embedding into a unital embedding in a norm
+matrix corona.  Such an embedding
 $\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
   $E\to\U(\Cred(E))$, and then with $\kappa_{(d_n)}^{-1}$, would exhibit
   an injective corona representation of
@@ -2501,9 +2501,8 @@ $\iota_G(\Gamma)$-invariant, i.e.\
 $\pi(\bar p)\delta_b\neq\delta_b$ while $\pi(Q_1)\delta_b=\delta_b$;
 hence $Q_1\neq\bar p$ and $s$ is not a unitary.
 
-If $\Cmax(G)$ embedded unitally into a norm matrix corona
-(Corollary~\ref{cor:subalg} reduces a non-unital MF embedding to this
-case), the image
+If $\Cmax(G)$ were MF, Lemma~\ref{lem:cornercorona} would turn an MF
+embedding into a unital embedding in a norm matrix corona.  The image
 of $s$ would be an isometry there, hence a unitary by
 Lemma~\ref{lem:finite}(1), and injectivity would force $ss^*=1$, a
 contradiction; so $\Cmax(G)$ is not an MF algebra, and the isometry
@@ -2724,9 +2723,9 @@ is therefore neither finite nor stably finite, and hence is not MF.
 \begin{proof}
 The canonical trace on $\Cred(\Lambda_{\mathrm{univ}})$ is faithful, so
 the proof of Lemma~\ref{lem:faithfultrace}, applied to every finite matrix
-amplification, gives stable finiteness.  If the reduced algebra embedded
-faithfully in a norm matrix corona --- unitally, by
-Corollary~\ref{cor:subalg} --- restriction to its left-regular
+amplification, gives stable finiteness.  If the reduced algebra were MF,
+Lemma~\ref{lem:cornercorona} would make an MF embedding unital after
+passing to a corner corona.  Restriction to its left-regular
 unitaries would give an injective corona representation of
 $\Lambda_{\mathrm{univ}}$, contradicting its full MF radical.
 
