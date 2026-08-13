@@ -71,6 +71,12 @@ APPROVED_REFERENCES = frozenset({
     ("Analysis/FaithfulTracialMatrix",
      "GroupApproximation.FaithfulTracialState."
      "matrix_mul_star_eq_one_of_star_mul_eq_one"),
+    ("Sofic/FiniteNormalCoronaObstruction",
+     "GroupApproximation.KazhdanCompressionCore."
+     "finiteNormal_le_coronaMFResidual"),
+    ("Sofic/NormalKazhdanMFRadical",
+     "GroupApproximation.KazhdanCompressionCore."
+     "normalKazhdan_le_coronaMFResidual"),
     ("Sofic/MarkedMFClosed",
      "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus"),
     ("Sofic/ChosenMarkedCylinder",
