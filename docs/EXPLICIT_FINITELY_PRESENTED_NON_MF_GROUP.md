@@ -644,9 +644,8 @@ arbitrary finite-normal-subgroup strengthening is implemented separately in
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
 
 For the manuscript's literal presentation, Lean additionally proves
-`LiteralNonMFLinearWitness.literal_mark_ne_one` and packages conditional
-standard operator-MF endpoints in `LiteralKazhdanCompression`. Those theorems
-assume property `(T)` of the abstract presented base or an exact SOS
-certificate. They are not unconditional endpoints, and property `(T)` of the
-concrete affine quotient alone is insufficient without presentation
-completeness.
+`LiteralNonMFLinearWitness.literal_mark_ne_one`, the displayed relations, and
+the exact marked-cylinder topology.  It publishes no operator-MF endpoint for
+that literal group.  Property `(T)` of the abstract presented base and
+presentation completeness are not formalized, so premise-parametrized and
+absent-certificate endpoints are excluded from the Lean trust surface.

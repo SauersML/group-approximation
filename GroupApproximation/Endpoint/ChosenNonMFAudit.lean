@@ -1,7 +1,6 @@
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
-import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralUniversalHorn
@@ -20,8 +19,8 @@ endpoint.
 
 The literal eight-generator group is also printed below, but only at the
 boundary actually proved: its algebraic package, nontrivial mark, and
-finite-dimensional obstruction are unconditional; its operator-MF conclusion
-retains either a property-`(T)` premise or an exact rational SOS certificate.
+finite-dimensional obstruction are unconditional.  No conditional analytic
+endpoint for that literal presentation is admitted to this audit surface.
 -/
 
 #print axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
@@ -41,11 +40,9 @@ retains either a property-`(T)` premise or an exact rational SOS certificate.
 #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
 #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+#print axioms GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF
+#print axioms GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
 #print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
 #print axioms GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one
-#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
-#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine
-#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate
 #print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
-#print axioms GroupApproximation.LiteralUniversalHorn.literalQuasiIdentity_separates_of_isRationalCertificate

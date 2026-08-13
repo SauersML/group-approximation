@@ -1,4 +1,3 @@
-import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import Mathlib.GroupTheory.FinitelyPresentedGroup
@@ -62,40 +61,5 @@ theorem chosen_coprod_int_finitelyPresented_not_isOperatorMF :
       chosenFinitelyPresented_not_isOperatorMF.2⟩
 
 end ChosenFreeProductConsequences
-
-namespace LiteralFreeProductConsequences
-
-open LiteralNonMFPresentation LiteralKazhdanCompression
-
-/-- Conditional kernel-checked form of the companion note's `E * Z`
-consequence.  The literal printed presentation is finitely presented
-unconditionally; its non-MF endpoint uses exactly the still-explicit
-property-`(T)` input for its six-generator base. -/
-theorem literal_coprod_int_finitelyPresented_not_isOperatorMF
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    Group.IsFinitelyPresented (MarkedGroup ∗ Multiplicative ℤ) ∧
-      ¬ IsOperatorMF (MarkedGroup ∗ Multiplicative ℤ) :=
-  ⟨inferInstance,
-    not_isOperatorMF_coprod_left
-      (not_isOperatorMF_of_hasKazhdanPropertyT hT)⟩
-
-/-- Proof-carrying rational-SOS version of the literal `E * Z` consequence. -/
-theorem literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
-    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
-    Group.IsFinitelyPresented (MarkedGroup ∗ Multiplicative ℤ) ∧
-      ¬ IsOperatorMF (MarkedGroup ∗ Multiplicative ℤ) :=
-  literal_coprod_int_finitelyPresented_not_isOperatorMF
-    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
-
-/-- The affine--Clifford witness remains non-MF after free product with an
-infinite cyclic group, under the same literal-base input. -/
-theorem witness_coprod_int_not_isOperatorMF
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    ¬ IsOperatorMF
-      (LiteralNonMFLinearWitness.WitnessGroup ∗ Multiplicative ℤ) :=
-  not_isOperatorMF_coprod_left
-    (witness_not_isOperatorMF_of_hasKazhdanPropertyT hT)
-
-end LiteralFreeProductConsequences
 
 end GroupApproximation

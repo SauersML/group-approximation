@@ -52,12 +52,6 @@ example :
       ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
   ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 
-example
-    (e : LiteralNonMFPresentation.Base ≃* AffineSL3Doubling.Gamma)
-    (hT : HasKazhdanPropertyT.{0, 0} AffineSL3Doubling.Gamma) :
-    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
-  LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine e hT
-
 example : LiteralCyclicCalibration.mark ≠ 1 :=
   LiteralCyclicCalibration.mark_ne_one
 
@@ -83,28 +77,6 @@ example :
     ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
       IsOperatorMF E) :=
   ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
-
-example
-    (hT : HasKazhdanPropertyT.{0, 0}
-      LiteralNonMFPresentation.Base) :
-    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
-  LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT hT
-
-example {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
-    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
-  LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate hcert
-
-example
-    (hT : HasKazhdanPropertyT.{0, 0}
-      LiteralNonMFPresentation.Base) :
-    LiteralMarkedCylinder.literalCylinder ⊆
-      (MarkedGroupSpace.operatorMFLocus 8)ᶜ :=
-  LiteralMarkedCylinder.literalCylinder_subset_nonMF hT
-
-example {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
-    LiteralMarkedCylinder.literalCylinder ⊆
-      (MarkedGroupSpace.operatorMFLocus 8)ᶜ :=
-  LiteralMarkedCylinder.literalCylinder_subset_nonMF_of_certificate hcert
 
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
@@ -408,11 +380,7 @@ def headlineTheorems : List Name :=
    ``OperatorMFMarkovWitness.positive_punit,
    ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
    ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
-   ``LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT,
-   ``LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate,
    ``LiteralMarkedCylinder.literalCylinder_isClopen,
-   ``LiteralMarkedCylinder.literalCylinder_subset_nonMF,
-   ``LiteralMarkedCylinder.literalCylinder_subset_nonMF_of_certificate,
    ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
    ``LiteralCyclicCalibration.mark_ne_one,
    ``LiteralCyclicCalibration.finiteDimensional_kill,
