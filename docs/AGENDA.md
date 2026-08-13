@@ -190,6 +190,22 @@ one anticommuting orbital edge is prescribed.  A solution gives a
 hyperlinear image retaining the full-sofic-radical word `w`, hence a
 hyperlinear nonsofic group.
 
+Equivalently, seek an orthogonal representation `rho:G->O(H_R)` with a
+`Gamma`-fixed unit vector `xi` and
+
+```text
+<rho(t)xi,rho(a t)xi>=0,
+```
+
+whose Bogoliubov CAR crossed product is Connes embeddable.  The
+quasi-regular representation on `ell2(G/Gamma)` has the required geometry.
+Any successful `rho` is necessarily infinite dimensional and not weakly
+contained in the regular representation: finite dimension makes the nested
+Kazhdan fixed spaces equal, while weak regularity plus a `Gamma`-fixed
+vector would force `Gamma` amenable.  Alekseev--Bradford's halo/graph
+permanence does not prove CE here, because it requires the underlying
+coset/graph action to be sofic, exactly what the Kun--Thom example forbids.
+
 ### 2026-08-12: Iwahori counterexamples require high-dimensional type escape
 
 The fixed-library theorem for the Dogon--Vigdorovich matching problem

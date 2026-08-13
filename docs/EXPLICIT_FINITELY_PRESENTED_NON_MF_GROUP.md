@@ -430,3 +430,92 @@ realize `(NMF6)`.  A successful model must be genuinely tracial and must
 allow the adjoint Kazhdan projection to be infinite.  This is a smaller
 direct-HS target than the complete CAR action, but it retains the same
 relative-commutant obstruction.
+
+## 9. Orthogonal/CAR formulation and its exact scope
+
+There is a useful functorial sufficient condition for `(NMF6)`.  Let
+
+```text
+rho:G->O(H_R)
+```
+
+be an orthogonal representation and let `xi` be a unit vector such that
+
+```text
+rho(gamma)xi=xi                 (gamma in Gamma),
+<rho(t)xi,rho(a t)xi>=0.                            (NMF7)
+```
+
+Let `CAR(H_R)` denote the tracial real-Clifford/CAR algebra and write
+`s(eta)` for the Majorana associated with a unit vector `eta`.  The
+Bogoliubov action of `G` satisfies
+
+```text
+alpha_g(s(eta))=s(rho(g)eta).
+```
+
+In the crossed product
+
+```text
+N_rho=CAR(H_R) crossed_rho G,
+```
+
+put `C=s(xi)`.  The first part of `(NMF7)` gives `C in u(Gamma)'`, while
+
+```text
+D=u_t C u_t^*=s(rho(t)xi),
+u_a D u_a^*=s(rho(a t)xi).
+```
+
+Orthogonal Majoranas anticommute.  Hence the second part of `(NMF7)` gives
+
+```text
+[D,u_a D u_a^*]=-1.                                  (NMF8)
+```
+
+Consequently:
+
+```text
+if N_rho is Connes embeddable, then hyperlinear does not imply sofic.
+                                                               (NMF9)
+```
+
+The quasi-regular representation on `ell2_R(G/Gamma)`, with
+`xi=delta_Gamma`, satisfies `(NMF7)`: the two vectors are the distinct
+cosets `t Gamma` and `a t Gamma`.  Thus the complete Clifford crossed
+product is one canonical instance of `(NMF9)`.  The value of `(NMF7)` is
+that it permits a different orthogonal representation with the same one-edge
+geometry; it does not require a labeled Majorana for every coset.
+
+Two elementary no-go statements calibrate the remaining search.
+
+1. `rho` cannot be finite dimensional.  Indeed
+
+   ```text
+   Fix_Gamma(rho) <= Fix_(t Gamma t^(-1))(rho)
+                   =rho(t)Fix_Gamma(rho).
+   ```
+
+   The two extreme spaces have equal finite dimension, so equality holds.
+   Hence `rho(t)xi` is `Gamma`-fixed and `rho(a t)xi=rho(t)xi`, contrary
+   to `(NMF7)`.
+
+2. `rho` cannot be weakly contained in the regular representation.  On
+   restriction to `Gamma`, the regular representation of `G` is a multiple
+   of `lambda_Gamma`.  The nonzero invariant vector `xi` would therefore
+   make the trivial representation of `Gamma` weakly contained in
+   `lambda_Gamma`, forcing `Gamma` to be amenable.  This contradicts the
+   Kazhdan infinite subgroup used in the Kun--Thom construction.
+
+Thus a successful CAR model is necessarily infinite dimensional and has a
+singular, non-weakly-regular `Gamma`-sector.  Standard finite-dimensional
+Bogoliubov models, profinite actions, and constructions controlling only
+the regular/absolutely-continuous part of an orthogonal representation do
+not reach `(NMF9)`.
+
+Nor does the current halo/graph-wreath permanence theorem bypass this
+issue.  Alekseev--Bradford require a sofic action on the underlying labeled
+set or graph.  For the quasi-regular model this would recover a sofic model
+of `G action G/Gamma`, whereas the Kun--Thom obstruction proves that this
+action is not sofic.  The crossed-product CE assertion in `(NMF9)` is the
+new content, not a consequence of existing action permanence.
