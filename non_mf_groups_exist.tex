@@ -1603,31 +1603,41 @@ $t^n$, including negative powers, lie in $G_{\rm comp}(L)$.  Hence
 \begin{theorem}[finite-normal obstruction criterion]\label{thm:criterion}
 Let $H$ be a countable group with a marked Kazhdan pattern
 $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
-normal subgroup with $F\subseteq N_{\mathrm{comp}}$.  Then every
-corona representation, written via \eqref{eq:unitary-corona-iso} in its
-$C^*$-corona form $\Theta\colon H\to\U(\mathcal Q)$, satisfies
-$\Theta(f)=1$ for all $f\in F$.
+normal subgroup with $F\subseteq N_{\mathrm{comp}}$.  For every sequence
+$(d_n)_{n\in\N}$ and every homomorphism
+$\Theta^{\rm u}\colon H\to\Ucor((d_n))$, one has
+$\Theta^{\rm u}(f)=1$ for all $f\in F$.  Equivalently, under the
+canonical isomorphism \eqref{eq:unitary-corona-iso}, every homomorphism
+$\Theta\colon H\to\U(\mathcal Q((d_n)))$ kills $F$.
 \end{theorem}
 
 \begin{theorem}[normal-Kazhdan radical criterion]\label{thm:normalkazhdan}
 Let $H$ be countable with a marked Kazhdan pattern, and let
 $K\trianglelefteq H$ have property~(T).  If $K\le N_{\rm comp}$, then
+for every sequence $(d_n)_{n\in\N}$ and every homomorphism
+$\Theta^{\rm u}\colon H\to\Ucor((d_n))$,
+\[
+  \Theta^{\rm u}(k)=1\qquad(k\in K).
+\]
+Equivalently,
 \[
   K\le \operatorname{Rad}_{\rm MF}(H).
 \]
-Thus every unitary-norm-corona representation of $H$ kills $K$.  In
-particular, if $K\neq1$, then $H$ is non-MF.  The obstruction subgroup
+In particular, if $K\neq1$, then $H$ is non-MF.  The obstruction subgroup
 need not be finite, central, or torsion.
 \end{theorem}
 
 \begin{proof}
-Fix a homomorphism $\Theta$ from $H$ to an operator-norm matrix
-ultraproduct, and suppose that $\Theta(k)\neq1$ for some $k\in K$.
+Fix a sequence $(d_n)_{n\in\N}$ and a homomorphism
+$\Theta^{\rm u}\colon H\to\Ucor((d_n))$.  Put
+$\mathcal Q=\mathcal Q((d_n)_{n\in\N})$ and
+$\Theta=\kappa_{(d_n)}\circ\Theta^{\rm u}$, and suppose that
+$\Theta(k)\neq1$ for some $k\in K$.
 Replace the target by the countable range $R=\Theta(H)$.  The subgroup
 $K'=\Theta(K)\le R$ is nontrivial and normal, has property~(T), and is
 contained in the compression defect of the transported pattern.
 
-The inclusion of $R$ into the original ultraproduct is injective, so
+The inclusion of $R$ into the original norm matrix corona is injective, so
 the universal MF radical of $R$ is trivial.  The universal-quotient
 diagonalization therefore gives a faithful representation of $R$ in
 one cofinite norm matrix corona.  Finally fix a finite test set
@@ -1804,8 +1814,9 @@ For the remainder of this section and in Section~\ref{sec:proofA},
 fix a countable group $H$ with a marked Kazhdan pattern
 $(\Lambda,\iota,t,c)$ and a finite normal subgroup
 $F\trianglelefteq H$ with $F\subseteq N_{\mathrm{comp}}$, and suppose
-given a corona representation $\Theta\colon H\to\U(\mathcal Q)$ whose
-restriction to $F$ is nontrivial; the proof of
+given a corona representation
+$\Theta^{\rm u}\colon H\to\Ucor((d_n))$ whose restriction to $F$ is
+nontrivial.  Put $\Theta=\kappa_{(d_n)}\circ\Theta^{\rm u}$; the proof of
 Theorem~\ref{thm:criterion} will derive a contradiction.  By
 Lemma~\ref{lem:corner} there is a corona representation
 $\Theta_-\colon H\to\U(\mathcal Q')$,
@@ -2012,7 +2023,8 @@ representation, which is $\Fix_\omega$.
 
 \begin{proof}[Proof of Theorem~\ref{thm:criterion}]
 Suppose, for contradiction, that some corona representation
-$\Theta\colon H\to\U(\mathcal Q)$ is nontrivial on $F$, and adopt all
+$\Theta^{\rm u}\colon H\to\Ucor((d_n))$ is nontrivial on $F$.  Put
+$\Theta=\kappa_{(d_n)}\circ\Theta^{\rm u}$ and adopt all
 notation fixed in Section~\ref{sec:conj}: the corner representation
 $\Theta_-$ with $\sum_{f\in F}\Theta_-(f)=0$, the unitary lifts
 $U_{g,n}$, the corona $\mathcal B$, the homomorphism $\beta$, the
