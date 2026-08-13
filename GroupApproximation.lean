@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
+import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.AffineSL3Scaling
@@ -170,6 +171,7 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
+import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization

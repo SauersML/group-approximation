@@ -16,6 +16,8 @@ import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
+import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
