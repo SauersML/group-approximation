@@ -986,6 +986,26 @@ blocks the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
 \end{remark}
 
+\begin{remark}[formal verification of the finite-stage argument]\label{rem:leanA}
+The finite-stage components of the proof of Theorem~\ref{thm:A} are
+being machine-checked in Lean~4 alongside this manuscript; the
+finite-dimensional Theorem~\ref{thm:B} is already fully verified
+(Remark~\ref{rem:lean}).  Two components of the present proof have
+landed so far, kernel-checked and with no unproven placeholders.
+First, the passage from a corona representation separating $w$ from
+$1$ to a sequence of finite-dimensional unitary microstates with
+vanishing multiplicative defect and persistent separation --- the
+sequential form of the standing assumption of
+Section~\ref{sec:conj}.
+\leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
+Second, the exact spectral objects behind the corner cut of
+Lemma~\ref{lem:corner}: the rounded involution of an approximately
+involutive unitary, an exact self-adjoint unitary whose negative
+spectral sector carries the corner.
+\leanverified{Sofic/ApproxInvolutionCorner}{GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup}
+The remaining finite-stage steps are under active formalization.
+\end{remark}
+
 \section{Necessity of property (T)}\label{sec:necessity}
 
 We prove Theorem~\ref{thm:C}.  Recall the setting: $G_0=\mathrm{BS}(1,2)$
