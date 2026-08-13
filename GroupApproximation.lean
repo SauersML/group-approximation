@@ -180,8 +180,6 @@ import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
-import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
-import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.MarkedMFClosed
