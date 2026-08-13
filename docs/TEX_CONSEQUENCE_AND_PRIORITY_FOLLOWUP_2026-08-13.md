@@ -58,9 +58,12 @@ documentation, not part of the manuscript.
   group C-star inclusions induced by subgroup inclusions are injective, while
   MF, finiteness, and stable finiteness pass to unital subalgebras.
 - The authoritative manuscript currently contains neither the proposed
-  free-product simple/exact/unique-trace consequences nor a universal-Horn
-  theorem. Those claims therefore must not be described as manuscript results
-  unless they are added and separately checked.
+  free-product simple/exact/unique-trace consequences. Those claims must not
+  be described as manuscript results unless they are added and separately
+  checked.
+- A finite universal Horn separator has now been included existentially. Its
+  two semantic clauses --- validity in every MF group and failure in the
+  chosen finitely presented witness --- match unconditional checked theorems.
 
 ## Priority-language repair
 
