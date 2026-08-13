@@ -175,6 +175,7 @@ import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
 import GroupApproximation.Criterion.LocalizedApproximation

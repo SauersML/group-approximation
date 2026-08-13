@@ -8,6 +8,7 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedGroupWordBall
+import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
@@ -99,6 +100,9 @@ generated from the manuscript's margin notes; this module is the short list.
 * `isOperatorMFIncreasing_iff` -- the arbitrary positive dimension sequences
   used internally are equivalent to the strictly increasing convention in
   Carrión--Dadarlat--Eckhardt.
+* `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
+  closed locus in each fixed-rank marked-group space, with a finite word-ball
+  cylinder witnessing every failure.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 
@@ -266,7 +270,9 @@ open GroupApproximation
 
 export GroupApproximation.MarkedGroupSpace
   (reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
-    cylinder_wordBall_subset_cylinder)
+    cylinder_wordBall_subset_cylinder
+    exists_wordBall_cylinder_subset_compl_operatorMFLocus
+    isClosed_operatorMFLocus isOperatorMF_of_tendsto)
 
 /-! ### The headline -/
 
