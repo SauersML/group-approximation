@@ -94,6 +94,18 @@ example {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
     ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
   LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate hcert
 
+example
+    (hT : HasKazhdanPropertyT.{0, 0}
+      LiteralNonMFPresentation.Base) :
+    LiteralMarkedCylinder.literalCylinder ⊆
+      (MarkedGroupSpace.operatorMFLocus 8)ᶜ :=
+  LiteralMarkedCylinder.literalCylinder_subset_nonMF hT
+
+example {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
+    LiteralMarkedCylinder.literalCylinder ⊆
+      (MarkedGroupSpace.operatorMFLocus 8)ᶜ :=
+  LiteralMarkedCylinder.literalCylinder_subset_nonMF_of_certificate hcert
+
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
   isOperatorMF_iff_normMFResidual_eq_bot
@@ -395,6 +407,10 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
    ``LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT,
    ``LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate,
+   ``LiteralMarkedCylinder.literalCylinder_isClopen,
+   ``LiteralMarkedCylinder.literalCylinder_subset_nonMF,
+   ``LiteralMarkedCylinder.literalCylinder_subset_nonMF_of_certificate,
+   ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
    ``LiteralCyclicCalibration.mark_ne_one,
    ``LiteralCyclicCalibration.finiteDimensional_kill,
    ``LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one,
