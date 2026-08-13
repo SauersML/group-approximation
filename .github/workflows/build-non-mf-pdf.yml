@@ -116,11 +116,14 @@ jobs:
             echo "The final LaTeX pass still has unresolved references or citations." >&2
             exit 1
           fi
+          # A cluster of genuine margin notes may be moved vertically by TeX
+          # precisely to avoid overlap.  Reject notes that are lost and boxes
+          # that overflow; a successful repositioning is not lost content.
           if grep -Eq \
-            'Overfull \\[hv]box|[Ll]ost marginpar|Marginpar on page [0-9]+ moved' \
+            'Overfull \\[hv]box|[Ll]ost marginpar' \
             "$log_file"; then
-            echo "Overflowing or colliding material in the final LaTeX pass:" >&2
-            grep -E 'Overfull \\[hv]box|[Ll]ost marginpar|Marginpar on page [0-9]+ moved' "$log_file" >&2
+            echo "Overflowing or lost material in the final LaTeX pass:" >&2
+            grep -E 'Overfull \\[hv]box|[Ll]ost marginpar' "$log_file" >&2
             exit 1
           fi
 
