@@ -478,6 +478,7 @@ theorem norm_normMatrixCorona_mk_eq_limsup
   le_antisymm (normMatrixCorona_mk_le_tailNorm X a)
     (matrixSequenceTailNorm_le_normMatrixCorona_mk X a)
 
+omit [∀ (n : ℕ), Nonempty (X n)] in
 private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
     (Filter.limsup (fun n ↦ ‖a n‖) atTop) ^ 2 =
       Filter.limsup (fun n ↦ ‖a n‖ ^ 2) atTop := by
