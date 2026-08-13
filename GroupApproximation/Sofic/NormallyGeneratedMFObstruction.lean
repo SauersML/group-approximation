@@ -244,7 +244,10 @@ theorem allFiniteDimensionalRepresentationsTrivial
       [Field k] [AddCommGroup V] [Module k V]
       [FiniteDimensional k V],
       ∀ π : E →* (Module.End k V)ˣ, π w = 1) :
-    AllFiniteDimensionalRepresentationsTrivial.{v, w, x} D.Envelope := by
+    ∀ {k : Type w} {V : Type x}
+      [Field k] [AddCommGroup V] [Module k V]
+      [FiniteDimensional k V],
+      ∀ π : D.Envelope →* (Module.End k V)ˣ, π = 1 := by
   intro k V _ _ _ _ π
   apply D.hom_eq_one_of_comp_embedding_map_eq_one π
   exact hkill (k := k) (V := V) (π.comp D.embedding)

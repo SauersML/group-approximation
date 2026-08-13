@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Kazhdan.LaplacianSOSCertificate
 import GroupApproximation.Kazhdan.RealGroupRing
 import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
@@ -15,13 +16,14 @@ import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
-import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.CyclicBaseCalibration
+import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
+import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -175,6 +177,7 @@ import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
 import GroupApproximation.Criterion.LocalizedApproximation

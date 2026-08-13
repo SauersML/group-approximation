@@ -1,4 +1,5 @@
 import GroupApproximation.Kazhdan.LiteralBaseSOS
+import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 import GroupApproximation.Sofic.NormMFPrintedConsequences
@@ -9,8 +10,15 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 This file connects the manuscript's literal eight-generator presentation to
 the general analytic obstruction.  Every group-theoretic field is discharged
 from the displayed relators.  The only input left explicit is property `(T)`
-of the literal six-generator base; alternatively, an exact rational
+of the abstract group presented by the literal twenty relators; alternatively, an exact rational
 sum-of-squares certificate supplies that input through `LiteralBaseSOS`.
+
+This distinction is load-bearing.  Verifying the relators in the concrete
+group `ℤ³ ⋊ SL₃(ℤ)` produces a quotient of this presented group, and
+property `(T)` does not transfer backwards from that quotient.  A route via
+the classical affine group therefore also needs a proved isomorphism (that
+is, completeness of the printed presentation).  The theorem
+`not_isOperatorMF_of_base_equiv_affine` records those two inputs separately.
 
 Thus this module pinpoints the formal trust boundary without replacing the
 literal group by the independent Shalom-cover witness.
@@ -66,6 +74,16 @@ theorem not_isOperatorMF_of_hasKazhdanPropertyT
   apply (data hT).not_isOperatorMF
   simpa only [data_word] using LiteralNonMFLinearWitness.literal_mark_ne_one
 
+/-- The precise presentation-completeness route to the conditional endpoint.
+Property `(T)` of the concrete affine group is useful only after an
+isomorphism from the literal presented base has been supplied. -/
+theorem not_isOperatorMF_of_base_equiv_affine
+    (e : Base ≃* AffineSL3Doubling.Gamma)
+    (hT : HasKazhdanPropertyT.{0, 0} AffineSL3Doubling.Gamma) :
+    ¬ IsOperatorMF MarkedGroup :=
+  not_isOperatorMF_of_hasKazhdanPropertyT
+    (HasKazhdanPropertyT.of_mulEquiv e hT)
+
 /-- Conditional form of the manuscript's no-faithful-target consequence:
 the literal group cannot inject into any operator-MF group. -/
 theorem not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
@@ -103,6 +121,42 @@ theorem not_injective_to_isOperatorMF_of_isRationalCertificate
   not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
     (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
     hH f
+
+/-! ## The affine--Clifford witness inherits the marked obstruction -/
+
+/-- The distinguished Clifford sign in the explicit witness is MF-invisible.
+This is the functorial marked-radical step in manuscript Proposition
+`prop:W`. -/
+theorem witness_sign_normMFInvisible_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base) :
+    NormMFInvisible
+      (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+        ExplicitLinearModel.conjD_injective) := by
+  have hmap :=
+    (mark_normMFInvisible_of_hasKazhdanPropertyT hT).map
+      LiteralNonMFLinearWitness.witnessHom
+  simpa using hmap
+
+/-- Consequently the explicit affine--Clifford witness group is not
+operator-MF. -/
+theorem witness_not_isOperatorMF_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base) :
+    ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup := by
+  intro hMF
+  exact not_injective_to_isOperatorMF
+    ((witness_sign_normMFInvisible_of_hasKazhdanPropertyT hT).toCoronaMFInvisible)
+    (MarkedCompression.signAmbient_ne_one
+      LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective)
+    hMF (MonoidHom.id LiteralNonMFLinearWitness.WitnessGroup)
+    Function.injective_id
+
+/-- The same witness conclusion from an exact rational SOS certificate for
+the literal base. -/
+theorem witness_not_isOperatorMF_of_isRationalCertificate {c : ℚ}
+    (hcert : LiteralBaseSOS.IsRationalCertificate c) :
+    ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
+  witness_not_isOperatorMF_of_hasKazhdanPropertyT
+    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
 
 end LiteralKazhdanCompression
 end GroupApproximation

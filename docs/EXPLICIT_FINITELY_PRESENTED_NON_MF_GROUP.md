@@ -375,7 +375,7 @@ construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
 `Sofic/ExplicitNonMFTheorem` assembles these into countable and finitely
 presented non-MF existence theorems.  It also proves the direct standard
 cofinite-corona endpoints
-`ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF` and
+`ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` and
 `ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
 inferring them from an informal comparison with `IsWeakMF`.  The finitely
 presented Lean witness is an independent marked group built from a

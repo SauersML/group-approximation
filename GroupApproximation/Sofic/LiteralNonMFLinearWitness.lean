@@ -395,6 +395,17 @@ theorem realization_marked_word :
   simp only [realization, witnessBaseGenerator, matrixBaseGenerator_v1]
   exact marked_word_eq_sign alpha conjD_injective v1G_not_mem_range
 
+/-- The homomorphism from the literal eight-generator presentation to its
+explicit affine--Clifford witness. -/
+noncomputable def witnessHom : MarkedGroup →* WitnessGroup :=
+  realizationHom realization
+
+/-- The literal marked word maps exactly to the nontrivial central Clifford
+sign in the witness group. -/
+@[simp] theorem witnessHom_mark :
+    witnessHom mark = signAmbient alpha conjD_injective := by
+  rw [witnessHom, realizationHom_mark, realization_marked_word]
+
 /-- **Exact separation of the literal mark.** -/
 theorem literal_mark_ne_one : mark ≠ 1 := by
   apply mark_ne_one_of_realization realization

@@ -42,7 +42,7 @@ theorem mark_normMFInvisible : NormMFInvisible mark := by
 
 /-- The finitely presented Shalom-cover marked-compression group is not
 weak/operator-norm MF. -/
-theorem explicit_finitelyPresented_not_isWeakMF :
+theorem chosenFinitelyPresented_not_isWeakMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsWeakMF MarkedGroup :=
   ⟨inferInstance, normCertificate.not_isWeakMF⟩
 
@@ -50,7 +50,7 @@ theorem explicit_finitelyPresented_not_isWeakMF :
 Shalom-cover marked-compression group is not MF in the standard cofinite
 norm-matrix-corona sense.  This theorem has no mathematical premise; all
 load-bearing construction and rigidity theorems are proved in-repository. -/
-theorem explicit_finitelyPresented_not_isOperatorMF :
+theorem chosenFinitelyPresented_not_isOperatorMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsOperatorMF MarkedGroup :=
   ⟨inferInstance, inclusionData.not_isOperatorMF inclusionData_word_ne_one⟩
 
@@ -95,8 +95,8 @@ theorem exists_finitelyPresented_not_isWeakMF :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsWeakMF E :=
   ⟨MarkedGroup, inferInstance,
-    explicit_finitelyPresented_not_isWeakMF.1,
-    explicit_finitelyPresented_not_isWeakMF.2⟩
+    chosenFinitelyPresented_not_isWeakMF.1,
+    chosenFinitelyPresented_not_isWeakMF.2⟩
 
 /-- There exists a finitely presented group that is not MF in the standard
 cofinite norm-matrix-corona sense. -/
@@ -104,8 +104,8 @@ theorem exists_finitelyPresented_not_isOperatorMF :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
   ⟨MarkedGroup, inferInstance,
-    explicit_finitelyPresented_not_isOperatorMF.1,
-    explicit_finitelyPresented_not_isOperatorMF.2⟩
+    chosenFinitelyPresented_not_isOperatorMF.1,
+    chosenFinitelyPresented_not_isOperatorMF.2⟩
 
 /-- **Negative solution of the universal operator-MF problem.**  Not every
 group embeds in a cofinite norm-matrix corona. -/

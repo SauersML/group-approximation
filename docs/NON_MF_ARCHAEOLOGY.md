@@ -525,9 +525,9 @@ JOIN
 
 ExplicitNonMFEndpoint.word_ne_one + universal analytic kill
     -> ExplicitNonMFTheorem.mark_normMFInvisible
-       |-> explicit_finitelyPresented_not_isWeakMF
+       |-> chosenFinitelyPresented_not_isWeakMF
        |      -> countable and finitely presented weak-MF endpoints
-       `-> explicit_finitelyPresented_not_isOperatorMF
+       `-> chosenFinitelyPresented_not_isOperatorMF
               -> finitely presented standard-MF existence theorem
 ```
 

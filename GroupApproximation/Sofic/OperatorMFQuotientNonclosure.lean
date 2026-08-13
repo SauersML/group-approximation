@@ -37,7 +37,7 @@ theorem operatorMF_not_closed_under_this_quotient :
         (PresentedGroup.mk (relators : Set (FreeGroup Generator))) ∧
       ¬ IsOperatorMF MarkedGroup :=
   ⟨source_isOperatorMF, quotientMap_surjective,
-    explicit_finitelyPresented_not_isOperatorMF.2⟩
+    chosenFinitelyPresented_not_isOperatorMF.2⟩
 
 end OperatorMFQuotientNonclosure
 end GroupApproximation

@@ -110,6 +110,8 @@ Reading path, front door first:
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
+| `Monsters/LiteralCyclicCalibration.lean` | Literal cyclic comparison presentation, exact surviving mark, finite-dimensional kill, and conditional corona survival |
+| `Sofic/MarkedMFClosed.lean` | Closedness of the operator-MF locus in fixed-rank marked-group space and finite word-ball obstruction cylinders |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
 | `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
 | `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
@@ -126,6 +128,7 @@ Reading path, front door first:
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
 | `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
 | `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
+| `Computability/CStarRecognitionConsequences.lean` | Conditional five-predicate C-star recognition and negative-side non-r.e. reductions |
 
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
