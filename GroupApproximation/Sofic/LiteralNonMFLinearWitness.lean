@@ -263,6 +263,64 @@ theorem matrixBaseGenerator_kills :
   · exact matrix_kills_zv2
   · exact matrix_kills_zv3
 
+/-- The homomorphism defined by the printed six-generator base presentation
+into the concrete affine matrix subgroup. -/
+noncomputable def matrixBaseHom : Base →* gammaBar :=
+  PresentedGroup.toGroup matrixBaseGenerator_kills
+
+@[simp] theorem matrixBaseHom_generator (i : BaseGenerator) :
+    matrixBaseHom (PresentedGroup.of i) = matrixBaseGenerator i :=
+  PresentedGroup.toGroup.of _
+
+/-- The printed generators generate the concrete affine matrix subgroup, so
+the presentation homomorphism is onto.  Injectivity is the separate
+presentation-completeness input. -/
+theorem matrixBaseHom_surjective : Function.Surjective matrixBaseHom := by
+  rw [← MonoidHom.range_eq_top]
+  apply top_unique
+  intro γ _
+  let K : Subgroup gammaBar := matrixBaseHom.range
+  have hgen (i : BaseGenerator) : matrixBaseGenerator i ∈ K :=
+    ⟨PresentedGroup.of i, matrixBaseHom_generator i⟩
+  have hgenerators :
+      gammaBar.subtype ⁻¹' ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ) ⊆ K := by
+    intro u hu
+    rcases hu with h | h | h | h | h | h
+    · rw [show u = xG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex]
+        using hgen xIndex
+    · rw [show u = yG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex]
+        using hgen yIndex
+    · rw [show u = zG from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index, xIndex, yIndex,
+        zIndex] using hgen zIndex
+    · rw [show u = v1G from Subtype.ext h]
+      simpa [matrixBaseGenerator] using hgen v1Index
+    · rw [show u = v2G from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index] using hgen v2Index
+    · rw [Set.mem_singleton_iff] at h
+      rw [show u = v3G from Subtype.ext h]
+      simpa [matrixBaseGenerator, v1Index, v2Index, v3Index] using hgen v3Index
+  have hclosure :
+      Subgroup.closure
+          (gammaBar.subtype ⁻¹'
+            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) ≤ K :=
+    (Subgroup.closure_le _).mpr hgenerators
+  have htop :
+      Subgroup.closure
+          (gammaBar.subtype ⁻¹'
+            ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)) = ⊤ := by
+    exact Subgroup.closure_preimage_eq_top
+      ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)
+  exact hclosure (htop.symm ▸ Subgroup.mem_top γ)
+
+/-- Once presentation completeness is supplied as injectivity, the printed
+base is explicitly isomorphic to the affine matrix subgroup. -/
+noncomputable def matrixBaseEquiv
+    (hinj : Function.Injective matrixBaseHom) : Base ≃* gammaBar :=
+  MulEquiv.ofBijective matrixBaseHom ⟨hinj, matrixBaseHom_surjective⟩
+
 /-! ## The generic telescope/Clifford target -/
 
 abbrev alpha : gammaBar →* gammaBar := conjD
@@ -411,6 +469,32 @@ sign in the witness group. -/
       iotaAmbient alpha conjD_injective (matrixBaseGenerator i) := by
   rw [witnessHom, realizationHom_base_generator]
   rfl
+
+/-- On the printed base, the literal witness is exactly the affine matrix
+homomorphism followed by the embedded base copy in the ambient witness. -/
+theorem witnessHom_comp_baseMap :
+    witnessHom.comp baseMap =
+      (iotaAmbient alpha conjD_injective).comp matrixBaseHom := by
+  apply PresentedGroup.ext
+  intro i
+  simp
+
+/-- Presentation completeness implies that the canonical printed base map
+into the literal eight-generator group is injective.  This is the exact
+formal boundary in manuscript Corollary `cor:iotainj`. -/
+theorem baseMap_injective_of_matrixBaseHom_injective
+    (hinj : Function.Injective matrixBaseHom) :
+    Function.Injective baseMap := by
+  intro x y hxy
+  apply hinj
+  apply iotaAmbient_injective alpha conjD_injective
+  calc
+    iotaAmbient alpha conjD_injective (matrixBaseHom x) =
+        witnessHom (baseMap x) :=
+      (DFunLike.congr_fun witnessHom_comp_baseMap x).symm
+    _ = witnessHom (baseMap y) := congrArg witnessHom hxy
+    _ = iotaAmbient alpha conjD_injective (matrixBaseHom y) :=
+      DFunLike.congr_fun witnessHom_comp_baseMap y
 
 @[simp] theorem witnessHom_stable :
     witnessHom stable = tAmbient alpha conjD_injective := by

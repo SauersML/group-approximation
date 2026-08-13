@@ -230,6 +230,10 @@ instance : Group (Ambient α hα) :=
 def iotaAmbient : Γ →* Ambient α hα :=
   (inr : Vertical α hα →* Ambient α hα).comp (iotaVertical α hα)
 
+/-- The base copy remains embedded after adjoining the Clifford lamps. -/
+theorem iotaAmbient_injective : Function.Injective (iotaAmbient α hα) :=
+  SemidirectProduct.inr_injective.comp (iotaVertical_injective α hα)
+
 /-- The stable letter in the ambient group. -/
 def tAmbient : Ambient α hα := inr (tVertical α hα)
 
