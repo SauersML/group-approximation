@@ -27,7 +27,7 @@ theorem chosenFinitelyPresented_not_all_analyticMFDefinitions :
       ¬ IsCDEOperatorMF MarkedGroup ∧
       ¬ IsUltraproductMF MarkedGroup ∧
       ¬ IsFiniteSetMF MarkedGroup ∧
-      ¬ IsMFAlgebraEmbedding MarkedGroup ∧
+      ¬ HasMFAlgebraUnitaryEmbedding MarkedGroup ∧
       ¬ IsTracePreservingMF MarkedGroup ∧
       ¬ IsRegularMF MarkedGroup ∧
       ¬ IsReducedGroupCStarMF MarkedGroup ∧
@@ -38,7 +38,7 @@ theorem chosenFinitelyPresented_not_all_analyticMFDefinitions :
     not_isCDEOperatorMF_of_not_isGroupTheoreticMF h,
     not_isUltraproductMF_of_not_isGroupTheoreticMF h,
     not_isFiniteSetMF_of_not_isGroupTheoreticMF h,
-    not_isMFAlgebraEmbedding_of_not_isGroupTheoreticMF h,
+    not_hasMFAlgebraUnitaryEmbedding_of_not_isGroupTheoreticMF h,
     not_isTracePreservingMF_of_not_isGroupTheoreticMF h,
     not_isRegularMF_of_not_isGroupTheoreticMF h,
     not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF h,

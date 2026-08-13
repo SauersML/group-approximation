@@ -81,22 +81,22 @@ theorem isUltraproductMF_iff_isGroupTheoreticMF [Countable G] :
   ⟨IsUltraproductMF.isGroupTheoreticMF,
     IsGroupTheoreticMF.isUltraproductMF⟩
 
-theorem isMFAlgebraEmbedding_iff_isGroupTheoreticMF [Countable G] :
-    IsMFAlgebraEmbedding G ↔ IsGroupTheoreticMF G :=
-  isMFAlgebraEmbedding_iff_isOperatorMF G
+theorem hasMFAlgebraUnitaryEmbedding_iff_isGroupTheoreticMF [Countable G] :
+    HasMFAlgebraUnitaryEmbedding G ↔ IsGroupTheoreticMF G :=
+  hasMFAlgebraUnitaryEmbedding_iff_isOperatorMF G
 
 /-- The four standard group meanings of MF, together with the literal CDE
 corona formulation, hold simultaneously exactly when any one of them holds. -/
 theorem standardMFDefinitions_iff [Countable G] :
     IsGroupTheoreticMF G ↔
       IsCDEOperatorMF G ∧ IsUltraproductMF G ∧ IsFiniteSetMF G ∧
-        IsMFAlgebraEmbedding G := by
+        HasMFAlgebraUnitaryEmbedding G := by
   constructor
   · intro h
     exact ⟨(isCDEOperatorMF_iff_isOperatorMF G).mpr h,
       h.isUltraproductMF,
       isFiniteSetMF_iff_isGroupTheoreticMF.mpr h,
-      isMFAlgebraEmbedding_iff_isGroupTheoreticMF.mpr h⟩
+      hasMFAlgebraUnitaryEmbedding_iff_isGroupTheoreticMF.mpr h⟩
   · rintro ⟨_hcde, _hultra, hfinite, _halgebra⟩
     exact isFiniteSetMF_iff_isGroupTheoreticMF.mp hfinite
 
@@ -198,18 +198,19 @@ C-star algebra. -/
 def IsReducedGroupCStarMF (G : Type u) [Group G] : Prop :=
   IsMFAlgebra (ReducedGroupCStarTrace.ReducedGroupCStar G)
 
+/-- The bare MF embedding property of the concrete reduced group C-star
+algebra already forces the group-theoretic MF property.  Separability is not
+used in this implication. -/
+theorem reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding [Countable G]
+    (h : HasMFEmbedding (ReducedGroupCStarTrace.ReducedGroupCStar G)) :
+    IsGroupTheoreticMF G :=
+  h.isOperatorMF
+    (reducedLeftRegularUnitaryHom G)
+    (reducedLeftRegularUnitaryHom_injective G)
+
 theorem IsReducedGroupCStarMF.isGroupTheoreticMF [Countable G]
     (h : IsReducedGroupCStarMF G) : IsGroupTheoreticMF G := by
-  rcases h with ⟨X, hne, hX, hmono, e, he⟩
-  letI : ∀ n, Nonempty (X n) := hne
-  let ue : unitary (ReducedGroupCStarTrace.ReducedGroupCStar G) →*
-      unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
-    (Unitary.map (starAlgHomToStarMonoidHom e)).toMonoidHom
-  have hcde : IsCDEOperatorMF G :=
-    ⟨X, hne, hX, hmono, ue.comp (reducedLeftRegularUnitaryHom G),
-      (Unitary.map_injective he).comp
-        (reducedLeftRegularUnitaryHom_injective G)⟩
-  exact (isCDEOperatorMF_iff_isOperatorMF G).mp hcde
+  exact reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h.2
 
 /-- A realization of the full group C-star algebra, expressed by its
 universal property for unitary representations. -/
@@ -232,19 +233,23 @@ def IsFullGroupCStarMF (G : Type u) [Group G] : Prop :=
     letI : CStarAlgebra C.carrier := C.inst
     IsMFAlgebra C.carrier
 
+/-- The bare MF embedding property of any full group C-star realization
+already forces the group-theoretic MF property.  Separability and the
+universal-property field are not needed for this one-way implication; the
+faithful canonical group inclusion is the precise required input. -/
+theorem FullGroupCStarAlgebra.isGroupTheoreticMF_of_hasMFEmbedding
+    [Countable G] (C : FullGroupCStarAlgebra G) :
+    letI : CStarAlgebra C.carrier := C.inst
+    HasMFEmbedding C.carrier → IsGroupTheoreticMF G := by
+  letI : CStarAlgebra C.carrier := C.inst
+  intro h
+  exact h.isOperatorMF C.inclusion C.inclusionInjective
+
 theorem IsFullGroupCStarMF.isGroupTheoreticMF [Countable G]
     (h : IsFullGroupCStarMF G) : IsGroupTheoreticMF G := by
   rcases h with ⟨C, hC⟩
   letI : CStarAlgebra C.carrier := C.inst
-  rcases hC with ⟨X, hne, hX, hmono, e, he⟩
-  letI : ∀ n, Nonempty (X n) := hne
-  let ue : unitary C.carrier →*
-      unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
-    (Unitary.map (starAlgHomToStarMonoidHom e)).toMonoidHom
-  have hcde : IsCDEOperatorMF G :=
-    ⟨X, hne, hX, hmono, ue.comp C.inclusion,
-      (Unitary.map_injective he).comp C.inclusionInjective⟩
-  exact (isCDEOperatorMF_iff_isOperatorMF G).mp hcde
+  exact C.isGroupTheoreticMF_of_hasMFEmbedding hC.2
 
 /-! ## Contrapositive obstruction package -/
 
@@ -261,9 +266,9 @@ theorem not_isFiniteSetMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsFiniteSetMF G :=
   mt isFiniteSetMF_iff_isGroupTheoreticMF.mp h
 
-theorem not_isMFAlgebraEmbedding_of_not_isGroupTheoreticMF [Countable G]
-    (h : ¬ IsGroupTheoreticMF G) : ¬ IsMFAlgebraEmbedding G :=
-  mt isMFAlgebraEmbedding_iff_isGroupTheoreticMF.mp h
+theorem not_hasMFAlgebraUnitaryEmbedding_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ HasMFAlgebraUnitaryEmbedding G :=
+  mt hasMFAlgebraUnitaryEmbedding_iff_isGroupTheoreticMF.mp h
 
 theorem not_isTracePreservingMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsTracePreservingMF G :=
@@ -277,9 +282,26 @@ theorem not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsReducedGroupCStarMF G :=
   mt IsReducedGroupCStarMF.isGroupTheoreticMF h
 
+/-- A non-MF group forbids even the bare faithful corona embedding of its
+concrete reduced group C-star algebra. -/
+theorem not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
+    [Countable G] (h : ¬ IsGroupTheoreticMF G) :
+    ¬ HasMFEmbedding (ReducedGroupCStarTrace.ReducedGroupCStar G) :=
+  mt reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h
+
 theorem not_isFullGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsFullGroupCStarMF G :=
   mt IsFullGroupCStarMF.isGroupTheoreticMF h
+
+/-- A non-MF group forbids the bare faithful corona embedding of every full
+group C-star realization. -/
+theorem not_hasMFEmbedding_fullGroupCStar_of_not_isGroupTheoreticMF
+    [Countable G] (h : ¬ IsGroupTheoreticMF G)
+    (C : FullGroupCStarAlgebra G) :
+    letI : CStarAlgebra C.carrier := C.inst
+    ¬ HasMFEmbedding C.carrier := by
+  letI : CStarAlgebra C.carrier := C.inst
+  exact mt C.isGroupTheoreticMF_of_hasMFEmbedding h
 
 /-! ## The unrelated modular-by-finite meaning -/
 

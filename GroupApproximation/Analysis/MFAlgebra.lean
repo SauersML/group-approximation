@@ -1,97 +1,212 @@
 import GroupApproximation.Sofic.CDEOperatorMF
-import Mathlib.Algebra.Star.Unitary
-import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.CStarAlgebra.Hom
+import Mathlib.Topology.Bases
 
 /-!
 # MF C-star algebras and group embeddings
 
-This file isolates the C-star-algebra formulation of the MF property.  An
-algebra is MF when it admits a faithful complex star-algebra homomorphism into
-a norm-matrix corona.  A group has an MF-algebra embedding when it embeds in
-the unitary group of such an algebra.
+For a separable complex C-star algebra, the Blackadar--Kirchberg MF property
+is faithful embeddability into a norm-matrix corona.  The embedding need not
+be unital.  We therefore distinguish two predicates:
 
-No separability hypothesis is built into `IsMFAlgebra`: separability is a
-size condition on the algebra, while the approximation property itself is the
-faithful corona embedding.  This makes the definition usable for both the
-usual separable algebras and ambient matrix coronas.
+* `HasMFEmbedding A` is the bare corona-embedding property, with no
+  separability assertion.  It applies in particular to the generally
+  nonseparable corona itself.
+* `IsMFAlgebra A` is the literature-standard property: separability together
+  with `HasMFEmbedding A`.
+
+The distinction prevents the ambient corona from being mislabeled as an MF
+algebra merely because it embeds into itself.
+
+For the implication from an MF group C-star algebra to an MF group, a
+possibly nonunital embedding `e` is enough.  Its restriction to unitaries is
+made unital by the canonical corner-complement correction
+
+`u ↦ e(u) + (1 - e(1))`.
+
+This construction is formalized below rather than silently assuming that the
+C-star embedding preserves the unit.
 -/
 
 namespace GroupApproximation
 
 universe u v
 
-/-- A star-algebra homomorphism, regarded as a star-monoid homomorphism. -/
-def starAlgHomToStarMonoidHom
-    {A : Type u} {B : Type v} [Semiring A] [Star A]
-    [Semiring B] [Star B] [Algebra ℂ A] [Algebra ℂ B]
-    (f : A →⋆ₐ[ℂ] B) : A →⋆* B where
-  toFun := f
-  map_one' := map_one f
-  map_mul' := map_mul f
-  map_star' := map_star f
-
-/-- A complex C-star algebra is MF when it embeds faithfully in a quotient
-`∏ M_(d n)(ℂ) / ⊕ M_(d n)(ℂ)` with positive matrix dimensions. -/
-def IsMFAlgebra (A : Type u) [CStarAlgebra A] : Prop :=
+/-- Bare Blackadar--Kirchberg corona embeddability.  This predicate contains
+no separability assertion and allows the faithful star homomorphism to be
+nonunital, as in the standard notion of a C-star subalgebra. -/
+def HasMFEmbedding (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
   ∃ X : ℕ → FiniteModel, ∃ hne : ∀ n, Nonempty (X n),
     letI : ∀ n, Nonempty (X n) := hne
-    (∀ n, 0 < Fintype.card (X n)) ∧
-      StrictMono (fun n ↦ Fintype.card (X n)) ∧
-        ∃ e : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-          Function.Injective e
+    ∃ e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
+      Function.Injective e
 
-/-- A norm-matrix corona is itself an MF algebra, witnessed by its identity
-embedding. -/
-theorem normMatrixCStarCorona_isMFAlgebra
-    (X : ℕ → FiniteModel) (hne : ∀ n, Nonempty (X n))
-    (hX : ∀ n, 0 < Fintype.card (X n))
-    (hmono : StrictMono (fun n ↦ Fintype.card (X n))) :
+/-- The Blackadar--Kirchberg MF property for a complex C-star algebra:
+separability and a faithful, possibly nonunital, star homomorphism into a
+norm-matrix corona. -/
+def IsMFAlgebra (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
+  TopologicalSpace.SeparableSpace A ∧ HasMFEmbedding A
+
+/-- A norm-matrix corona has the bare MF embedding property, witnessed by
+its identity map.  No separability claim is made. -/
+theorem normMatrixCStarCorona_hasMFEmbedding
+    (X : ℕ → FiniteModel) (hne : ∀ n, Nonempty (X n)) :
     letI : ∀ n, Nonempty (X n) := hne
-    IsMFAlgebra (NormMatrixCStarCorona (fun n ↦ X n)) := by
+    HasMFEmbedding (NormMatrixCStarCorona (fun n ↦ X n)) := by
   letI : ∀ n, Nonempty (X n) := hne
-  refine ⟨X, hne, hX, hmono, StarAlgHom.id ℂ _, ?_⟩
+  refine ⟨X, hne, NonUnitalStarAlgHom.id ℂ _, ?_⟩
   intro a b hab
   change a = b at hab
   exact hab
 
-/-- The group formulation through an arbitrary MF C-star algebra: the group
-embeds faithfully in the algebra's unitary group. -/
-def IsMFAlgebraEmbedding (G : Type u) [Group G] : Prop :=
+/-- A nonunital star homomorphism sends a unitary to a unitary after
+adjoining the complement of the image of the source unit. -/
+noncomputable def nonUnitalStarAlgHomUnitaryMap
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    (e : A →⋆ₙₐ[ℂ] B) : unitary A →* unitary B where
+  toFun u := ⟨e (u : A) + (1 - e 1), by
+    let x : B := e (u : A)
+    let p : B := e 1
+    have hp_star : star p = p := by
+      change star (e 1) = e 1
+      rw [← map_star]
+      simp
+    have hp_mul : p * p = p := by
+      change e 1 * e 1 = e 1
+      rw [← map_mul]
+      simp
+    have hpx : p * x = x := by
+      change e 1 * e (u : A) = e (u : A)
+      rw [← map_mul]
+      simp
+    have hxp : x * p = x := by
+      change e (u : A) * e 1 = e (u : A)
+      rw [← map_mul]
+      simp
+    have hstarxp : star x * p = star x := by
+      have h := congrArg star hpx
+      simpa only [star_mul, hp_star, star_star] using h
+    have hpstarx : p * star x = star x := by
+      have h := congrArg star hxp
+      simpa only [star_mul, hp_star, star_star] using h
+    have hstarx_mul_x : star x * x = p := by
+      change star (e (u : A)) * e (u : A) = e 1
+      rw [← map_star, ← map_mul]
+      exact congrArg e u.property.1
+    have hx_mul_starx : x * star x = p := by
+      change e (u : A) * star (e (u : A)) = e 1
+      rw [← map_star, ← map_mul]
+      exact congrArg e u.property.2
+    change
+      star (x + (1 - p)) * (x + (1 - p)) = 1 ∧
+        (x + (1 - p)) * star (x + (1 - p)) = 1
+    rw [star_add, star_sub, star_one, hp_star]
+    constructor <;>
+      simp only [mul_add, add_mul, mul_sub, sub_mul, mul_one, one_mul,
+        hstarxp, hpstarx, hpx, hxp, hp_mul, hstarx_mul_x,
+        hx_mul_starx] <;>
+      noncomm_ring⟩
+  map_one' := by
+    apply Subtype.ext
+    simp
+  map_mul' u v := by
+    apply Subtype.ext
+    change e ((u : A) * (v : A)) + (1 - e 1) =
+      (e (u : A) + (1 - e 1)) * (e (v : A) + (1 - e 1))
+    rw [map_mul]
+    have hu : e (u : A) * e 1 = e (u : A) := by
+      rw [← map_mul]
+      simp
+    have hv : e 1 * e (v : A) = e (v : A) := by
+      rw [← map_mul]
+      simp
+    have hp : e 1 * e 1 = e 1 := by
+      rw [← map_mul]
+      simp
+    simp only [mul_add, add_mul, mul_sub, sub_mul, mul_one, one_mul,
+      hu, hv, hp]
+    noncomm_ring
+
+/-- Injectivity on the source algebra implies injectivity of the corrected
+unitary-group homomorphism. -/
+theorem nonUnitalStarAlgHomUnitaryMap_injective
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    {e : A →⋆ₙₐ[ℂ] B} (he : Function.Injective e) :
+    Function.Injective (nonUnitalStarAlgHomUnitaryMap e) := by
+  intro a b hab
+  apply Subtype.ext
+  apply he
+  have h := congrArg Subtype.val hab
+  exact add_right_cancel h
+
+/-- A faithful group embedding into the unitary group of an algebra with a
+bare MF embedding gives the literal CDE group property. -/
+theorem HasMFEmbedding.isCDEOperatorMF
+    {G : Type u} [Group G] [Countable G]
+    {A : Type v} [CStarAlgebra A]
+    (hA : HasMFEmbedding A)
+    (rho : G →* unitary A) (hrho : Function.Injective rho) :
+    IsCDEOperatorMF G := by
+  rcases hA with ⟨X, hne, e, he⟩
+  letI : ∀ n, Nonempty (X n) := hne
+  let rhoCStar : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
+    (nonUnitalStarAlgHomUnitaryMap e).comp rho
+  let rhoSequence : G →* NormMatrixCoronaUnitary X :=
+    (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rhoCStar
+  have hop : IsOperatorMF G :=
+    ⟨X, fun n ↦ Fintype.card_pos_iff.mpr (hne n), rhoSequence,
+      (normMatrixCoronaUnitaryEquiv X).symm.injective.comp
+        ((nonUnitalStarAlgHomUnitaryMap_injective he).comp hrho)⟩
+  exact (isCDEOperatorMF_iff_isOperatorMF G).mpr hop
+
+/-- The corresponding implication to the internal group-theoretic MF
+predicate. -/
+theorem HasMFEmbedding.isOperatorMF
+    {G : Type u} [Group G] [Countable G]
+    {A : Type v} [CStarAlgebra A]
+    (hA : HasMFEmbedding A)
+    (rho : G →* unitary A) (hrho : Function.Injective rho) :
+    IsOperatorMF G :=
+  (isCDEOperatorMF_iff_isOperatorMF G).mp
+    (hA.isCDEOperatorMF rho hrho)
+
+/-- A group embeds in the unitary group of an algebra having the bare MF
+embedding property.  This auxiliary group predicate deliberately does not
+call the ambient algebra MF, because the ambient algebra need not be
+separable. -/
+def HasMFAlgebraUnitaryEmbedding (G : Type u) [Group G] : Prop :=
   ∃ (A : Type) (inst : CStarAlgebra A),
     letI : CStarAlgebra A := inst
-    IsMFAlgebra A ∧
+    HasMFEmbedding A ∧
       ∃ rho : G →* unitary A, Function.Injective rho
 
-/-- The literal CDE corona embedding gives an MF-algebra embedding. -/
-theorem IsCDEOperatorMF.isMFAlgebraEmbedding
+/-- The literal CDE corona embedding gives an embedding into the unitary
+group of an algebra having the bare MF embedding property. -/
+theorem IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding
     {G : Type u} [Group G] [Countable G]
-    (h : IsCDEOperatorMF G) : IsMFAlgebraEmbedding G := by
-  rcases h with ⟨X, hne, hX, hmono, rho, hrho⟩
+    (h : IsCDEOperatorMF G) : HasMFAlgebraUnitaryEmbedding G := by
+  rcases h with ⟨X, hne, _hX, _hmono, rho, hrho⟩
   letI : ∀ n, Nonempty (X n) := hne
   refine ⟨NormMatrixCStarCorona (fun n ↦ X n), inferInstance, ?_⟩
-  exact ⟨normMatrixCStarCorona_isMFAlgebra X hne hX hmono, rho, hrho⟩
+  exact ⟨normMatrixCStarCorona_hasMFEmbedding X hne, rho, hrho⟩
 
-/-- An embedding in the unitary group of an MF algebra composes with the
-algebra's corona embedding to give the literal CDE embedding. -/
-theorem IsMFAlgebraEmbedding.isCDEOperatorMF
+/-- An embedding into the unitary group of an algebra with a bare MF
+embedding composes, using the corner-complement correction above, to give
+the literal CDE group embedding. -/
+theorem HasMFAlgebraUnitaryEmbedding.isCDEOperatorMF
     {G : Type u} [Group G] [Countable G]
-    (h : IsMFAlgebraEmbedding G) : IsCDEOperatorMF G := by
+    (h : HasMFAlgebraUnitaryEmbedding G) : IsCDEOperatorMF G := by
   rcases h with ⟨A, inst, hA, rho, hrho⟩
   letI : CStarAlgebra A := inst
-  rcases hA with ⟨X, hne, hX, hmono, e, he⟩
-  letI : ∀ n, Nonempty (X n) := hne
-  let ue : unitary A →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
-    (Unitary.map (starAlgHomToStarMonoidHom e)).toMonoidHom
-  exact ⟨X, hne, hX, hmono, ue.comp rho,
-    (Unitary.map_injective he).comp hrho⟩
+  exact hA.isCDEOperatorMF rho hrho
 
-/-- For countable groups, embedding in an MF C-star algebra is exactly the
-standard group-theoretic MF property. -/
-theorem isMFAlgebraEmbedding_iff_isOperatorMF
+/-- For countable groups, unitary embeddability into an algebra with the bare
+MF embedding property is equivalent to the group-theoretic MF property. -/
+theorem hasMFAlgebraUnitaryEmbedding_iff_isOperatorMF
     (G : Type u) [Group G] [Countable G] :
-    IsMFAlgebraEmbedding G ↔ IsOperatorMF G := by
+    HasMFAlgebraUnitaryEmbedding G ↔ IsOperatorMF G := by
   rw [← isCDEOperatorMF_iff_isOperatorMF]
-  exact ⟨IsMFAlgebraEmbedding.isCDEOperatorMF,
-    IsCDEOperatorMF.isMFAlgebraEmbedding⟩
+  exact ⟨HasMFAlgebraUnitaryEmbedding.isCDEOperatorMF,
+    IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding⟩
 
 end GroupApproximation
