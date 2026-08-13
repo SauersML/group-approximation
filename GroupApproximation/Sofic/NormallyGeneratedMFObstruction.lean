@@ -18,7 +18,7 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-universe u v
+universe u v w x
 
 variable {Γ : Type u} [Group Γ]
 
@@ -27,7 +27,7 @@ trivial.  The explicit name records the field-general statement and avoids
 identifying it with any one topological convention for "almost periodic". -/
 def AllFiniteDimensionalRepresentationsTrivial
     (Γ : Type u) [Group Γ] : Prop :=
-  ∀ {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+  ∀ {k : Type v} {V : Type w} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V], ∀ π : Γ →* (Module.End k V)ˣ, π = 1
 
 /-- A homomorphism is trivial as soon as it kills an element which normally
@@ -240,13 +240,14 @@ theorem hom_eq_one_of_comp_embedding_map_eq_one
 precomposition and normal generation, to triviality of every
 finite-dimensional linear representation of the envelope. -/
 theorem allFiniteDimensionalRepresentationsTrivial
-    (hkill : ∀ {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+    (hkill : ∀ {k : Type w} {V : Type x}
+      [Field k] [AddCommGroup V] [Module k V]
       [FiniteDimensional k V],
       ∀ π : E →* (Module.End k V)ˣ, π w = 1) :
-    AllFiniteDimensionalRepresentationsTrivial D.Envelope := by
+    AllFiniteDimensionalRepresentationsTrivial.{v, w, x} D.Envelope := by
   intro k V _ _ _ _ π
   apply D.hom_eq_one_of_comp_embedding_map_eq_one π
-  exact hkill (π.comp D.embedding)
+  exact hkill (k := k) (V := V) (π.comp D.embedding)
 
 /-- The supplied envelope is perfect whenever its normally generating
 embedded mark belongs to its commutator subgroup. -/
@@ -260,7 +261,11 @@ embedding; if it is the normally generating mark, the envelope is perfect. -/
 theorem envelopeIsPerfect_of_eq_commutator (a b : E)
     (hw : w = ⁅a, b⁆) : Group.IsPerfect D.Envelope := by
   apply D.envelopeIsPerfect
-  rw [hw, map_commutatorElement]
+  have hmap : D.embedding w = ⁅D.embedding a, D.embedding b⁆ := by
+    calc
+      D.embedding w = D.embedding ⁅a, b⁆ := congrArg D.embedding hw
+      _ = ⁅D.embedding a, D.embedding b⁆ := map_commutatorElement D.embedding a b
+  rw [hmap]
   exact Subgroup.commutator_mem_commutator
     (Subgroup.mem_top _) (Subgroup.mem_top _)
 
