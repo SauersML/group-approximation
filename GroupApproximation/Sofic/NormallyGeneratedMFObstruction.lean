@@ -246,7 +246,7 @@ theorem allFiniteDimensionalRepresentationsTrivial
     AllFiniteDimensionalRepresentationsTrivial D.Envelope := by
   intro k V _ _ _ _ π
   apply D.hom_eq_one_of_comp_embedding_map_eq_one π
-  exact hkill (π.comp D.embedding)
+  exact hkill (k := k) (V := V) (π.comp D.embedding)
 
 /-- The supplied envelope is perfect whenever its normally generating
 embedded mark belongs to its commutator subgroup. -/
@@ -260,7 +260,12 @@ embedding; if it is the normally generating mark, the envelope is perfect. -/
 theorem envelopeIsPerfect_of_eq_commutator (a b : E)
     (hw : w = ⁅a, b⁆) : Group.IsPerfect D.Envelope := by
   apply D.envelopeIsPerfect
-  rw [hw, map_commutatorElement]
+  have himage : D.embedding w =
+      ⁅D.embedding a, D.embedding b⁆ := by
+    calc
+      D.embedding w = D.embedding ⁅a, b⁆ := congrArg D.embedding hw
+      _ = ⁅D.embedding a, D.embedding b⁆ := map_commutatorElement D.embedding a b
+  rw [himage]
   exact Subgroup.commutator_mem_commutator
     (Subgroup.mem_top _) (Subgroup.mem_top _)
 
