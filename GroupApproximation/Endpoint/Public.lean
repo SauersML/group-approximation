@@ -1,53 +1,33 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ChosenNonMFTheorem
-import GroupApproximation.Sofic.ChosenUniversalHorn
-import GroupApproximation.Sofic.ChosenMarkedCylinder
-import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
-import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
-import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
-import GroupApproximation.Analysis.NormMatrixCorona
-import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
-import GroupApproximation.Computability.OperatorMFMarkovWitness
+import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.ExplicitLinearModel
-import GroupApproximation.Monsters.AffineSL3Doubling
-import GroupApproximation.Monsters.AffineSL3Scaling
-import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
-import GroupApproximation.Sofic.LiteralBaseRelations
-import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
-import GroupApproximation.Sofic.LiteralTranslationOrbit
-import GroupApproximation.Sofic.LiteralBasePropertyTBridge
-import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralBaseP13Replay
-import GroupApproximation.Sofic.LiteralBaseTwoGenerator
-import GroupApproximation.Sofic.MarkedGroupTopology
-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
-import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
-import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -56,8 +36,6 @@ import GroupApproximation.KOne.RefineLoopDischarge
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
-import GroupApproximation.Kazhdan.FixedSpaceStabilizer
-import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 
 /-!
@@ -96,6 +74,10 @@ generated from the manuscript's margin notes; this module is the short list.
 * `ChosenNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word in
   the noncomputably chosen Shalom-cover witness is
   killed by every homomorphism to every norm-matrix ultraproduct.
+* `ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage` and
+  `ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage` -- the exact
+  algebraic packages carried by that chosen witness; these names deliberately
+  do not identify it with the paper's separate literal presentation.
 * `ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the chosen
   finitely presented marked group is not local weak-MF.
 * `ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
@@ -118,86 +100,54 @@ generated from the manuscript's margin notes; this module is the short list.
   `normMFQuotient_isOperatorMF` -- the universal norm-MF quotient is itself
   operator MF, and residual triviality exactly characterizes operator MF for
   countable groups.
-* `coronaMFResidual_eq_normMFResidual` and
-  `finiteNormal_le_normMatrixCoronaKernel` -- the same statements in the
-  manuscript's intersection-of-corona-kernels language, using the
-  unitary-sequence presentation documented in `Sofic/OperatorMF`.
+* `IsCDEOperatorMF` and `isCDEOperatorMF_iff_isOperatorMF` -- the literal
+  Carrión--Dadarlat--Eckhardt definition (countable group, strictly increasing
+  positive dimensions, and the unitary group of the actual C-star quotient)
+  and its proved equivalence with the coordinate model used internally.
+* `normMatrixCoronaUnitaryEquiv` -- the canonical polar-correction
+  equivalence from the coordinate quotient of exact unitaries to the unitary
+  group of the actual C-star quotient.
+* `finiteNormal_le_normMatrixCStarCoronaKernel` and
+  `normalKazhdan_le_normMatrixCStarCoronaKernel` -- the finite-normal and
+  normal-Kazhdan obstructions with the manuscript's actual C-star target.
 * `isOperatorMFIncreasing_iff` -- the arbitrary positive dimension sequences
-  used internally are equivalent to the strictly increasing convention in
-  Carrión--Dadarlat--Eckhardt.
-* `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
-  closed locus in each fixed-rank marked-group space, with a finite word-ball
-  cylinder witnessing every failure.
-* `ChosenMarkedCylinder.chosenCylinder_isClopen` and
-  `ChosenMarkedCylinder.chosenCylinder_subset_nonMF` -- the chosen finite
-  presentation gives a nonempty explicit clopen cylinder all of whose marked
-  quotients are non-MF.
+  used by the internal coordinate model are equivalent to the strictly
+  increasing convention.
 * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
-* `ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity` and
-  `ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity` -- an
-  unconditional finite universal Horn sentence valid in every operator-MF
-  group and false in the chosen finitely presented witness.
-* `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
-  free product to be non-MF; the unconditional chosen witness gives a
-  finitely presented example after free product with `ℤ`.
+
+## Marked-limit stability of operator MF
+
+* `OperatorNormAmplification.exists_tensorPower_pair_far` -- bounded tensor
+  powers amplify any positive unitary-pair gap beyond the universal threshold
+  one, with dimension-free error control.
+* `OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one` --
+  for countable groups, operator MF is equivalent to local norm approximation
+  with separation constant exactly one.
+* `MarkedGroupSpace.isClosed_operatorMFLocus` and
+  `MarkedGroupSpace.isOpen_compl_operatorMFLocus` -- operator-MF marked groups
+  form a closed locus, equivalently non-MF is open, in every fixed rank.
+* `MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus` --
+  every non-MF marked group has a finite-radius Cayley-ball certificate.
+* `MarkedGroupSpace.isOperatorMF_of_tendsto` -- the arbitrary-filter marked
+  limit theorem, of which sequential closure is an immediate instance.
 
 ## The literal eight-generator boundary
 
 The paper's displayed group is formalized separately from the unconditional
-Shalom-cover witness.  The declarations below expose only its verified
-algebraic boundary.  No conditional operator-MF endpoint for the literal
-group is part of the Lean API.
+Shalom-cover witness.  The declarations below deliberately expose the exact
+boundary instead of conflating the two constructions.
 
 * `LiteralNonMFPresentation.literal_algebraic_package` and
   `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
   presentation, its relations, and a genuine nontrivial marked involution.
-* `LiteralNonMFLinearWitness.matrixBaseHom_surjective` -- the exact direction
-  formally justified by the twenty relators: the raw presented base
-  surjects onto the displayed affine matrix group.  No injectivity or
-  backwards transfer of property `(T)` is asserted.
-* `LiteralBaseRelations.baseRelator_eq_one` and the named conjugation laws --
-  the twenty relations used intrinsically in the raw presented base, without
-  reflecting equality from the affine quotient.
-* `LiteralBaseTranslationNormal.normalizer_translations_eq_top` -- the
-  subgroup generated by the three literal translations is normal, proved
-  intrinsically from the printed relations.
-* `LiteralBaseTranslationLattice.latticeEquivTranslations` -- the
-  translation subgroup is canonically the full lattice `ℤ³`; exact affine
-  matrix entries prove that no nonzero exponent vector collapses.
-* `LiteralTranslationOrbit.translation_eq_two_rotation_conjugates` -- every
-  literal translation is a product of two conjugates of the two displayed
-  basis translations by literal rotations.
-* `LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed`
-  -- a rotation-fixed vector has its entire translation displacement uniformly
-  controlled by the two displayed basis displacements.
-* `LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` -- the
-  twenty-relator affine base has property `(T)` as soon as its exact
-  eight-relator rotation presentation does; the affine transfer itself is now
-  intrinsic, leaving only the rotation presentation as the open formal step.
-* `LiteralBaseRotationRetract.rotationToBase_injective` and
-  `LiteralBaseRotationRetract.baseToRotation_ker_eq_translations` -- the
-  eight-relator rotation group is a retract of the literal base, and the
-  retraction kernel is exactly the translation subgroup.
-* `LiteralBaseRotationRetract.internalSemidirectEquiv` -- the resulting
-  complement data identifies the literal base with its internal semidirect
-  product of translations by rotations.
 * `LiteralBaseP13Replay.yFromUZXY_eq` and `closure_Z_XY_eq_top` -- an exact
   finite-relator replay proving that the abstract rotation presentation is
   generated by `Z` and `X * Y`.
-* `LiteralBaseTwoGenerator.rotationEquivTwoRotation` -- the replay is upgraded
-  to a complete, internal Tietze equivalence with the presentation obtained by
-  substituting the two generators into all eight rotation relators.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
-* `LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity`
-  -- the canonical literal tuple unconditionally falsifies the printed finite
-  quasi-identity.  No validity claim for operator-MF targets is asserted.
-* `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
-  finite-radius bound for every printed relator.
-* `LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark`
-  -- no finite quotient detects the genuine nontrivial literal mark.
+
 ## Consequences and reusable obstruction APIs
 
 * `not_injective_of_coronaMFInvisible`,
@@ -205,49 +155,15 @@ group is part of the Lean API.
   positive-model formulation
   `KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel` --
   portability and uniform killing of the obstruction.
-* `KazhdanCompressionCore.normalKazhdan_le_normMFResidual` and
-  `normalKazhdanDefectPart_le_normMFResidual` -- the printed strengthening
-  from finite normal obstructions to arbitrary normal property-`(T)`
-  subgroups, including the subgroup generated by every such obstruction.
 * `existsUnique_quotient_factorization_to_normMatrixCorona` -- exact quotient
   factorization in the cofinite-corona language.
-* `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
-  the unconditional group-theoretic positive/negative Markov witness.  The
-  library makes no algorithmic undecidability claim without a formalized
-  Adian--Rabin transformation.
+* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the generic
+  computability reduction, conditional on an explicitly supplied computable
+  Adian--Rabin transformation and its correctness proof; no such external
+  transformation is postulated by the library.
 * `ProperProjectionCompression` -- the one-sided compression API, including
-  its proper isometry, failure of stable finiteness, and obstruction to a
-  faithful tracial state.
-* `FixedSpaceStabilizer.compressionGroup_le_stabilizer` -- the exact subgroup
-  closure step propagating fixed-sector stabilization from one-sided
-  compressors to the group they generate.
-* `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
-  the printed construction, with injective doubling, index-eight image, and
-  an explicit translation outside that image.  This does not assert that the
-  literal six-generator presentation is isomorphic to the semantic group.
-* `AffineSL3Scaling.scaling_package` -- the corresponding injectivity, image,
-  and escaping-translation calculation for every integral scale `m ≥ 2`.
-* `MarkedGroupSpace.tendsto_iff_eventually_relation` and
-  `exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap` -- the fixed-rank
-  marked-group topology and the operator-norm tensor amplifier used by the
-  marked-limit program.
-* `LiteralCyclicCalibration.mark_ne_one` and
-  `LiteralCyclicCalibration.finiteDimensional_kill` -- the literal cyclic
-  comparison presentation has a surviving marked involution although every
-  exact finite-dimensional representation kills it.
-* `normMatrixCoronaMk_eq_zero_iff` -- the complete normed
-  bounded-matrix-sequence quotient has exactly the cofinite
-  operator-norm-null sequences as the kernel of its quotient map.
-* `norm_normMatrixCorona_mk_eq_limsup` and
-  `norm_normMatrixCorona_star_mul_self` -- its quotient norm is exactly the
-  limsup of coordinate operator norms, and the resulting quotient is a
-  genuine C-star ring.
-* `ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction` -- the chosen
-  witness's canonical reduced-group unitaries admit no faithful restriction
-  to a norm-matrix ultraproduct.
-* `ChosenReducedGroupCStar.matrix_isometry_is_unitary` -- every finite matrix
-  amplification of the chosen witness's concrete reduced group C-star algebra
-  has no proper isometry.
+  an explicit left-invertible nonunit, failure of direct and stable finiteness,
+  and obstruction to a faithful tracial state.
 
 ## One endpoint per printed theorem
 
@@ -359,10 +275,18 @@ open GroupApproximation
 /-! ### Finite-radius marked-group neighborhoods -/
 
 export GroupApproximation.MarkedGroupSpace
-  (reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
-    cylinder_wordBall_subset_cylinder
+  (cylinder isClopen_cylinder tendsto_iff_eventually_relation
+    tendsto_iff_eventually_cylinder
+    reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
+    cylinder_wordBall_subset_cylinder operatorMFLocus
+    exists_cylinder_subset_compl_operatorMFLocus
     exists_wordBall_cylinder_subset_compl_operatorMFLocus
-    isClosed_operatorMFLocus isOperatorMF_of_tendsto)
+    isClosed_operatorMFLocus isOpen_compl_operatorMFLocus
+    isOperatorMF_of_tendsto)
+export GroupApproximation.OperatorNormAmplification
+  (exists_tensorPower_pair_far)
+export GroupApproximation.OperatorMFLocalNormalization
+  (isNormApproximable_one isOperatorMF_iff_isNormApproximable_one)
 
 /-! ### The headline -/
 
@@ -383,18 +307,23 @@ export GroupApproximation.ChosenNonMFTheorem
     exists_finitelyPresented_not_isWeakMF
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
+export GroupApproximation.ChosenMarkedPresentation
+  (chosenFinitelyPresented_markedPackage)
 export GroupApproximation.ChosenNonMFEndpoint
   (chosenFinitelyPresented_inclusionPackage)
-export GroupApproximation.ChosenUniversalHorn
-  (isOperatorMF_satisfies_chosenQuasiIdentity
-    markedGroup_not_satisfies_chosenQuasiIdentity)
 export GroupApproximation.KazhdanCompressionCore
   (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
     finiteNormal_le_coronaMFResidual
     finiteNormal_le_normMatrixCoronaKernel
+    finiteNormal_le_normMatrixCStarCoronaKernel
     not_isOperatorMF_of_finiteNormal_le_defect)
 export GroupApproximation
-  (isOperatorMF_iff_normMFResidual_eq_bot
+  (IsCDEOperatorMF isCDEOperatorMF_iff_isOperatorMF
+    normMatrixCoronaUnitaryEquiv
+    unitaryCoronaToCStarCoronaUnitary
+    unitaryCoronaToCStarCoronaUnitary_injective
+    unitaryCoronaToCStarCoronaUnitary_surjective
+    isOperatorMF_iff_normMFResidual_eq_bot
     isOperatorMFIncreasing_iff
     normMFQuotient_isOperatorMF
     exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual
@@ -408,13 +337,6 @@ export GroupApproximation
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
-export GroupApproximation.LiteralOperatorMFQuotientControls
-  (source_isOperatorMF quotientMap_surjective)
-export GroupApproximation
-  (not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
-    coprod_isFinitelyPresented)
-export GroupApproximation.ChosenFreeProductConsequences
-  (chosen_coprod_int_finitelyPresented_not_isOperatorMF)
 export GroupApproximation
   (not_injective_of_coronaMFInvisible
     not_injective_of_coronaMFInvisible_of_target_embeds
@@ -426,89 +348,39 @@ export GroupApproximation.KazhdanCompressionCore
     finiteNormal_uniform_invisibility_positiveModel
     not_isWeakMF_of_normalKazhdan_le_defect
     normalKazhdan_le_normMFResidual normalKazhdan_le_coronaMFResidual
+    normalKazhdan_le_normMatrixCStarCoronaKernel
     normalKazhdanDefectPart_le_normMFResidual
-    existsUnique_defectNormal_factorization_to_normMatrixCorona
-    normMFResidual_eq_defectNormal
+    existsUnique_defectNormal_factorization_to_normMatrixCStarCorona
     defectNormal_le_orbitDefectNormal
     orbitDefectNormal_le_compressionCentralizerDefect)
-export GroupApproximation.KazhdanCompressionCore
-  (defectNormal_le_compressionCentralizerDefect)
 export GroupApproximation.MarkedCompressionInclusionData
-  (word_eq_compressionDefect_sq
-    iota_a_not_in_compressed_image_of_word_ne_one
-    infinite_iota_range_of_word_ne_one)
-export GroupApproximation.MarkedCompressionData
-  (a_not_mem_range_alpha_of_word_ne_one)
-export GroupApproximation.MarkedCompressionInclusionData
-  (not_isWeakMF_of_mem_finiteNormal not_isOperatorMF_of_mem_finiteNormal)
-export GroupApproximation.KazhdanCompressionCore
-  (finiteNormal_le_kernel_of_target_embeds)
+  (not_isOperatorMF_of_mem_finiteNormal)
 
 /-! ### The literal eight-generator boundary -/
 
-export GroupApproximation.LiteralNonMFPresentation
-  (generator_card literal_algebraic_package)
-export GroupApproximation.LiteralNonMFLinearWitness
-  (matrixBaseHom matrixBaseHom_surjective literal_mark_ne_one
-    literal_finitelyPresented_nontrivial_mark witnessGroup_finitelyGenerated)
-export GroupApproximation.LiteralFiniteDimensionalObstruction
-  (no_finite_quotient_detects_literal_mark)
-export GroupApproximation.LiteralBaseRelations
-  (baseRelator_eq_one x_cube y_cube z_sq commute_v1_v2 commute_v1_v3
-    commute_v2_v3 x_conj_v1 x_conj_v2 x_conj_v3 y_conj_v1 y_conj_v2
-    y_conj_v3 z_conj_v1 z_conj_v2 z_conj_v3)
-export GroupApproximation.LiteralBaseTranslationNormal
-  (translations normalizer_translations_eq_top)
+export GroupApproximation.LiteralNonMFPresentation (literal_algebraic_package)
+export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
 export GroupApproximation.LiteralBaseTranslationLattice
   (latticeToBase_injective latticeToBase_range latticeEquivTranslations)
-export GroupApproximation.LiteralTranslationOrbit
-  (translation_eq_two_rotation_conjugates
-    norm_translation_displacement_le_of_rotations_fixed)
-export GroupApproximation.LiteralBasePropertyTBridge
-  (base_hasKazhdanPropertyT_of_rotation)
 export GroupApproximation.LiteralBaseP13Replay
   (yFromUZXY_eq closure_Z_XY_eq_top)
-export GroupApproximation.LiteralBaseTwoGenerator
-  (TwoRotation rotationEquivTwoRotation)
-export GroupApproximation.LiteralBaseRotationRetract
-  (Rotation rotationToBase baseToRotation rotationToBase_injective
-    baseToRotation_surjective baseToRotation_ker_eq_translations
-    translations_inf_rotations translations_isComplement_rotations
-    internalSemidirectEquiv rotationEquivRotations)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
-export GroupApproximation.LiteralUniversalHorn
-  (literalMarkedGroup_not_satisfies_literalQuasiIdentity)
-export GroupApproximation.LiteralPresentationRadius
-  (markedWord_length_le relator_wordLength_le_34
-    relators_or_markedWord_length_le_34)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
-export GroupApproximation.AffineSL3Doubling (doubling_package)
-export GroupApproximation.AffineSL3Scaling (scaling_package)
-export GroupApproximation.LiteralCyclicCalibration
-  (mark_ne_one mark_central quotientMap_mark_val quotientMap_mark_ne_one
-    quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
-    realizedQuotient_finiteDimensional_kill)
-export GroupApproximation.FixedSpaceStabilizer
-  (compressionGroup_le_stabilizer compressionGroup_map_mem)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker
     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
 
-/-! ### Algebraic consequences -/
-export GroupApproximation
-  (BoundedMatrixSequence boundedMatrixSequence_norm_eq_ciSup
-    IsC0MatrixSequence c0MatrixSequenceIdeal c0MatrixSequenceIdeal_star_mem
-    NormMatrixCoronaAlgebra normMatrixCoronaMk normMatrixCoronaMk_eq_zero_iff
-    norm_normMatrixCorona_mk_eq_limsup norm_normMatrixCorona_star_mul_self)
-export GroupApproximation.ChosenReducedGroupCStar
-  (no_faithfulCoronaUnitaryRestriction matrix_isometry_is_unitary)
-export GroupApproximation.OperatorMFMarkovWitness
-  (positive_punit chosen_forbidden_subgroup
-    exists_finitelyPresented_forbidden_subgroup)
+/-! ### Conditional computability interface and algebraic consequences -/
+
+export GroupApproximation.MarkovMFConsequences
+  (MarkovWitness FinitePresentationSemantics operatorMFProperty
+    AdianRabinReduction recognition_undecidable negative_side_not_re
+    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
+    operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
 export GroupApproximation (isOperatorMF_of_finite_standard
   not_isOperatorMF_of_subgroup)
 export GroupApproximation.ProperProjectionCompression
@@ -516,16 +388,6 @@ export GroupApproximation.ProperProjectionCompression
     exists_leftInvertible_not_isUnit not_isDedekindFiniteMonoid
     not_isStablyFiniteRing no_injective_monoidHom_to_dedekindFinite
     no_faithfulTracialState)
-export GroupApproximation.MarkedGroupSpace
-  (mem_nhds_iff_exists_cylinder_subset tendsto_iff_eventually_relation
-    tendsto_iff_eventually_cylinder)
-export GroupApproximation
-  (l2_opNorm_kronecker_le exists_pow_re_lt_half
-    exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap)
-export GroupApproximation
-  (IsOperatorMF.of_coprod_left IsOperatorMF.of_coprod_right
-    not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
-    coprod_isFinitelyPresented)
 
 /-! ### Reach of the construction -/
 
@@ -568,10 +430,5 @@ export GroupApproximation.BinaryLeavitt (K1_trivial narrowReduction_holds
 /-! ### The definitions are the textbook ones -/
 
 export GroupApproximation (hasKazhdanPropertyT_iff_textbook isLEF_iff_textbook)
-export GroupApproximation
-  (ambient_hasKazhdanPropertyTComplex universalLeavitt_profile_textbook)
-export GroupApproximation.FixedSpaceStabilizer
-  (stabilizer mem_stabilizer_iff compressionGroup_le_stabilizer
-    compressionGroup_map_mem)
 
 end GroupApproximation.Public

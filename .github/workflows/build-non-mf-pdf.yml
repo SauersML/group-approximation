@@ -26,11 +26,10 @@ permissions:
 
 concurrency:
   group: build-non-mf-pdf-main
-  # Let the running validation finish and provide a signal even while Lean
-  # commits continue to land.  The publish step fingerprints every input and
-  # refuses to push an artifact from a stale run, so cancellation is neither
-  # needed for correctness nor desirable for throughput.
-  cancel-in-progress: false
+  # Publication inputs change frequently while the proof and paper move
+  # together.  Keep only the newest validation run; the publish step below
+  # independently fingerprints every input before it pushes the artifact.
+  cancel-in-progress: true
 
 env:
   TEX_FILE: non_mf_groups_exist.tex
@@ -76,7 +75,23 @@ jobs:
       - name: Calibrate and check visible Lean counterpart links
         run: |
           python3 scripts/check_non_mf_refs.py --self-test
-          python3 scripts/check_non_mf_refs.py --tex "$TEX_FILE"
+          # Pin the CDE predicate reformulation at its honest `equiv` status,
+          # and the canonical target isomorphism and finite-normal kernel
+          # theorem at `exact`.  The
+          # literal E endpoint is deliberately not required: it is not a Lean
+          # theorem, and the manuscript says so explicitly.
+          python3 scripts/check_non_mf_refs.py \
+            --tex "$TEX_FILE" \
+            --check-decls \
+            --require-status equivalent \
+              Sofic/CDEOperatorMF \
+              GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
+            --require-verified \
+              Analysis/NormMatrixCoronaUnitary \
+              GroupApproximation.normMatrixCoronaUnitaryEquiv \
+            --require-verified \
+              Sofic/FiniteNormalCoronaObstruction \
+              GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
 
       - name: Check figure text boxes do not overlap
         run: python3 scripts/check_fig_overlap.py --tex "$TEX_FILE"

@@ -20,6 +20,7 @@ on:
       - 'docs/CLAIM_DECLS.txt'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
       - 'docs/CLAIM_SIGNATURES.md'
+      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
@@ -35,6 +36,7 @@ on:
       - 'docs/CLAIM_DECLS.txt'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
       - 'docs/CLAIM_SIGNATURES.md'
+      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
@@ -174,6 +176,7 @@ jobs:
         run: |
           python3 scripts/check.py --self-test
           python3 scripts/test_claim_map.py
+          python3 scripts/check_non_mf_refs.py --self-test
 
       # Source text: forbidden constructs, and the root import closure.  Runs
       # before the build because it is instant, and because the orphan-module
@@ -192,6 +195,28 @@ jobs:
         id: source-scan
         continue-on-error: true
         run: python3 scripts/check.py
+
+      # The non-MF paper has its own generated roster and verified/conditional
+      # vocabulary.  These requirements pin the CDE predicate reformulation
+      # as `equivalent` and reserve `verified` for the canonical target
+      # isomorphism and exact finite-normal kernel theorem.  No nonexistent
+      # literal-E endpoint is required.
+      - name: Non-MF counterpart contract
+        id: non-mf-contract
+        continue-on-error: true
+        run: |
+          python3 scripts/check_non_mf_refs.py \
+            --tex non_mf_groups_exist.tex \
+            --check-decls \
+            --require-status equivalent \
+              Sofic/CDEOperatorMF \
+              GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
+            --require-verified \
+              Analysis/NormMatrixCoronaUnitary \
+              GroupApproximation.normMatrixCoronaUnitaryEquiv \
+            --require-verified \
+              Sofic/FiniteNormalCoronaObstruction \
+              GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
 
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
@@ -246,10 +271,10 @@ jobs:
 
       # The name-level claim map says each mapped declaration exists; this
       # step pins what each one *states*.  It regenerates the elaborated
-      # signatures of every mapped declaration and fails if the committed
-      # `docs/CLAIM_SIGNATURES.md` differs -- so a mapped theorem cannot lose
-      # a conclusion or gain a hypothesis without a red run and a reviewed
-      # diff of the signature file.
+      # signatures of every mapped declaration and fails if either committed
+      # signature snapshot differs -- so a mapped theorem
+      # cannot lose a conclusion or gain a hypothesis without a red run and a
+      # reviewed diff of the signature files.
       - name: Signature pinning (elaborated types of mapped declarations)
         run: |
           if grep -q '^PLACEHOLDER:' docs/CLAIM_SIGNATURES.md; then
@@ -257,10 +282,14 @@ jobs:
             # not gate until a real signature file is committed.
             lake env lean scripts/Signatures.lean
             echo "::warning::docs/CLAIM_SIGNATURES.md is a placeholder; commit the generated file to arm this gate"
+          elif [ ! -s docs/NON_MF_CLAIM_SIGNATURES.md ]; then
+            echo "::error::docs/NON_MF_CLAIM_SIGNATURES.md is missing; generate it with 'lake env lean scripts/Signatures.lean' and commit it"
+            exit 1
           else
             lake env lean scripts/Signatures.lean
-            git diff --exit-code docs/CLAIM_SIGNATURES.md \
-              || { echo "::error::docs/CLAIM_SIGNATURES.md is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
+            git diff --exit-code \
+              docs/CLAIM_SIGNATURES.md docs/NON_MF_CLAIM_SIGNATURES.md \
+              || { echo "::error::a claim signature snapshot is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
           fi
 
       # The toolchain's built-in checker replays every olean through a fresh
@@ -270,7 +299,7 @@ jobs:
       - name: Fresh kernel re-check (leanchecker)
         run: lake env leanchecker --fresh GroupApproximation
 
-      # THE GATE.  The two scan steps above defer their verdict here so that one
+      # THE GATE.  The scan steps above defer their verdict here so that one
       # run names every finding; this step is what makes that deferral safe.
       # There are no budgets in either scan and there is no threshold here: a
       # single finding on either side is a red run.  If this step is ever
@@ -283,11 +312,16 @@ jobs:
         run: |
           failed=0
           src='${{ steps.source-scan.outcome }}'
+          nonmf='${{ steps.non-mf-contract.outcome }}'
           ker='${{ steps.kernel-audit.outcome }}'
           # `skipped` counts as failure: it means an earlier step (the build)
           # died, and an unrun scan is not a clean one.
           if [ "$src" != "success" ]; then
             echo "::error::source scan did not pass (outcome: ${src:-skipped}); see the 'Source scan' step"
+            failed=1
+          fi
+          if [ "$nonmf" != "success" ]; then
+            echo "::error::non-MF counterpart contract did not pass (outcome: ${nonmf:-skipped}); see the 'Non-MF counterpart contract' step"
             failed=1
           fi
           if [ "$ker" != "success" ]; then
@@ -298,4 +332,4 @@ jobs:
             echo "zero tolerance: the repository is not clean."
             exit 1
           fi
-          echo "zero tolerance: source scan and kernel audit both clean."
+          echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."

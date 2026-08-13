@@ -108,11 +108,10 @@ theorem exists_pairStage
     exact normMatrixCorona_lift_eventually_multiplicative X rho lift hlift
       r s (ε / N) (div_pos hε hNpos)
   obtain ⟨n, hnsep, hnmul⟩ := (hsep.and_eventually hmul).exists
-  have hnonempty : Nonempty (X n) := Fintype.card_pos_iff.mp (hX n)
-  letI : Nonempty (X n) := hnonempty
+  letI : Nonempty (X n) := Fintype.card_pos_iff.mp (hX n)
   obtain ⟨p, _hp1, hpN, hpsep⟩ :=
     OperatorNormAmplification.exists_tensorPower_pair_far
-      hnonempty (lift g n).property (lift h n).property hδ hnsep N hN
+      inferInstance (lift g n).property (lift h n).property hδ hnsep N hN
   exact ⟨{
     N := N
     n := n

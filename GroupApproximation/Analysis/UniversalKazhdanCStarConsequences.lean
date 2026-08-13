@@ -44,7 +44,7 @@ def mapCompression (e : InjectiveCStarEmbedding A B)
     (D : ProperProjectionCompression A) : ProperProjectionCompression B where
   p := e.hom D.p
   u := e.hom D.u
-  p_star := by rw [map_star, D.p_star]
+  p_star := by rw [← map_star, D.p_star]
   p_mul_p := by rw [← map_mul, D.p_mul_p]
   u_star_mul := by rw [← map_star, ← map_mul, D.u_star_mul, map_one]
   u_mul_star := by rw [← map_star, ← map_mul, D.u_mul_star, map_one]
@@ -107,10 +107,11 @@ variable (G : Type w) [Group G]
 reduced group C⋆-algebra is unitary.  This is the operator-algebraic stable
 finiteness conclusion furnished by the canonical faithful trace. -/
 theorem reduced_matrix_mul_star_eq_one_of_star_mul_eq_one
-    (n : Type*) [Fintype n] [DecidableEq n] [Nonempty n]
+    (n : Type*) [Fintype n] [DecidableEq n] (hn : Nonempty n)
     {v : CStarMatrix n n (ReducedGroupCStar G)}
     (hv : star v * v = 1) : v * star v = 1 :=
-  (canonicalFaithfulTracialState G).matrix_mul_star_eq_one_of_star_mul_eq_one n hv
+  (canonicalFaithfulTracialState G).matrix_mul_star_eq_one_of_star_mul_eq_one
+    n hn hv
 
 /-- In particular, the reduced group C⋆-algebra itself contains no proper
 isometry. -/

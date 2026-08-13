@@ -47,24 +47,24 @@ states.
 
 ## Boundary facts (disclosed in the manuscript's legend footnote)
 
-1. The formal statements range over unitary norm coronas; the passage to
-   `U(Q)` is the manuscript's Lemma `lem:unitarycorona` (paper-proved;
-   the C*-side formalization is in progress).
+1. The literal CDE predicate ranges over the unitary group of the genuine
+   norm-matrix C-star quotient.  `normMatrixCoronaUnitaryEquiv` formally
+   identifies it with the exact-unitary coordinate quotient by polar
+   correction.
 2. The unconditional existence witness is the internally constructed
    group, not identified with the displayed group `E`; the corona
    conclusion for `E` itself is established by the paper proof, with the
-   Lean side conditional on property (T) of the raw presented base until
-   the presentation-completeness program closes it.
+   Lean side has no analytic endpoint for the raw presented base until the
+   presentation-completeness/property-`(T)` program closes it.
 
 ## Triage of the external adversarial audit (2026-08-13, later snapshot)
 
 An independent external audit of an earlier archive reported eleven
 findings.  Status against the current tip:
 
-- Orphan modules: 0 on tip (`check.py` source scan clean; the two literal
-  cylinder modules are imported, `LiteralMarkedCylinderObstruction` was
-  removed in the chosen-cylinder restructure, `FixedSpaceDefect` is in the
-  import closure through `Endpoint/Public`).
+- Conditional literal analytic and literal-cylinder obstruction modules were
+  removed from the public API; the literal boundary now consists only of
+  unconditional algebraic declarations.
 - Stale roster: regenerated; checker green.
 - `\leanconditional` unparsed by the checker: the macro and all its uses
   were removed; every remaining link is `\leanverified` and

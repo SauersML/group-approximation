@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.LiteralBaseAffineQuotient
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 
 /-!
@@ -19,6 +20,7 @@ namespace GroupApproximation
 namespace LiteralTranslationOrbit
 
 open ExplicitLinearModel LiteralNonMFLinearWitness
+open LiteralBaseAffineQuotient
 open LiteralBaseRelations LiteralBaseTranslationNormal
 open LiteralBaseTranslationLattice
 
@@ -79,18 +81,18 @@ theorem latticeMatrixHom_injective : Function.Injective latticeMatrixHom := by
   fin_cases i <;> simpa [translationMatrix] using hentry
 
 /-- Evaluation of the public matrix realization on the embedded lattice. -/
-private theorem subtype_matrixBaseHom_latticeToBase
+private theorem subtype_affineQuotient_latticeToBase
     (u : Multiplicative LiteralBaseTranslationLattice.Lattice) :
-    gammaBar.subtype (matrixBaseHom (latticeToBase u)) = latticeMatrixHom u := by
+    gammaBar.subtype (affineQuotient (latticeToBase u)) = latticeMatrixHom u := by
   rw [lattice_eq_basis_product u]
   simp [latticeToBase_basis_zero, latticeToBase_basis_one,
     latticeToBase_basis_two, v1G, v2G, v3G]
 
 /-- The affine matrix realization is injective after restriction to the
 literal translation subgroup. -/
-theorem matrixBaseHom_injective_on_translations {a b : Base}
+theorem affineQuotient_injective_on_translations {a b : Base}
     (ha : a ∈ translations) (hb : b ∈ translations)
-    (hab : matrixBaseHom a = matrixBaseHom b) : a = b := by
+    (hab : affineQuotient a = affineQuotient b) : a = b := by
   have ha' : a ∈ latticeToBase.range := by
     rw [latticeToBase_range]
     exact ha
@@ -100,8 +102,8 @@ theorem matrixBaseHom_injective_on_translations {a b : Base}
   rcases ha' with ⟨u, rfl⟩
   rcases hb' with ⟨v, rfl⟩
   have hmatrix := congrArg gammaBar.subtype hab
-  rw [subtype_matrixBaseHom_latticeToBase u,
-    subtype_matrixBaseHom_latticeToBase v] at hmatrix
+  rw [subtype_affineQuotient_latticeToBase u,
+    subtype_affineQuotient_latticeToBase v] at hmatrix
   exact congrArg latticeToBase (latticeMatrixHom_injective hmatrix)
 
 private theorem e13_conj_v3_mem : e13 * v3 * e13⁻¹ ∈ translations := by
@@ -131,9 +133,9 @@ private theorem conjugate_mem_translations (g u : Base)
 
 /-- The first short word sends the third basis translation to `v1 * v3`. -/
 theorem e13_conj_v3 : e13 * v3 * e13⁻¹ = v1 * v3 := by
-  apply matrixBaseHom_injective_on_translations e13_conj_v3_mem
+  apply affineQuotient_injective_on_translations e13_conj_v3_mem
     (translations.mul_mem v1_mem_translations v3_mem_translations)
-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e13, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v1, matrixBaseGenerator_v3]
   apply Subtype.ext
@@ -146,9 +148,9 @@ theorem e13_conj_v3 : e13 * v3 * e13⁻¹ = v1 * v3 := by
 
 /-- The second short word sends the third basis translation to `v2 * v3`. -/
 theorem e23_conj_v3 : e23 * v3 * e23⁻¹ = v2 * v3 := by
-  apply matrixBaseHom_injective_on_translations e23_conj_v3_mem
+  apply affineQuotient_injective_on_translations e23_conj_v3_mem
     (translations.mul_mem v2_mem_translations v3_mem_translations)
-  simp only [e23, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e23, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v2, matrixBaseGenerator_v3]
   apply Subtype.ext
@@ -161,9 +163,9 @@ theorem e23_conj_v3 : e23 * v3 * e23⁻¹ = v2 * v3 := by
 
 /-- The third short word sends the second basis translation to `v2 * v3`. -/
 theorem e32_conj_v2 : e32 * v2 * e32⁻¹ = v2 * v3 := by
-  apply matrixBaseHom_injective_on_translations e32_conj_v2_mem
+  apply affineQuotient_injective_on_translations e32_conj_v2_mem
     (translations.mul_mem v2_mem_translations v3_mem_translations)
-  simp only [e32, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e32, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v2, matrixBaseGenerator_v3]
   apply Subtype.ext
@@ -176,10 +178,10 @@ theorem e32_conj_v2 : e32 * v2 * e32⁻¹ = v2 * v3 := by
 
 /-- The `E₁₃` word fixes the first basis translation. -/
 theorem e13_conj_v1 : e13 * v1 * e13⁻¹ = v1 := by
-  apply matrixBaseHom_injective_on_translations
+  apply affineQuotient_injective_on_translations
     (conjugate_mem_translations e13 v1 v1_mem_translations)
     v1_mem_translations
-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e13, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v1]
   apply Subtype.ext
@@ -192,10 +194,10 @@ theorem e13_conj_v1 : e13 * v1 * e13⁻¹ = v1 := by
 
 /-- The `E₁₃` word fixes the second basis translation. -/
 theorem e13_conj_v2 : e13 * v2 * e13⁻¹ = v2 := by
-  apply matrixBaseHom_injective_on_translations
+  apply affineQuotient_injective_on_translations
     (conjugate_mem_translations e13 v2 v2_mem_translations)
     v2_mem_translations
-  simp only [e13, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e13, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v2]
   apply Subtype.ext
@@ -208,10 +210,10 @@ theorem e13_conj_v2 : e13 * v2 * e13⁻¹ = v2 := by
 
 /-- The `E₂₃` word fixes the second basis translation. -/
 theorem e23_conj_v2 : e23 * v2 * e23⁻¹ = v2 := by
-  apply matrixBaseHom_injective_on_translations
+  apply affineQuotient_injective_on_translations
     (conjugate_mem_translations e23 v2 v2_mem_translations)
     v2_mem_translations
-  simp only [e23, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e23, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v2]
   apply Subtype.ext
@@ -224,10 +226,10 @@ theorem e23_conj_v2 : e23 * v2 * e23⁻¹ = v2 := by
 
 /-- The `E₃₂` word fixes the third basis translation. -/
 theorem e32_conj_v3 : e32 * v3 * e32⁻¹ = v3 := by
-  apply matrixBaseHom_injective_on_translations
+  apply affineQuotient_injective_on_translations
     (conjugate_mem_translations e32 v3 v3_mem_translations)
     v3_mem_translations
-  simp only [e32, map_mul, map_inv, matrixBaseHom_generator,
+  simp only [e32, map_mul, map_inv, affineQuotient_generator,
     matrixBaseGenerator_x, matrixBaseGenerator_y, matrixBaseGenerator_z,
     matrixBaseGenerator_v3]
   apply Subtype.ext

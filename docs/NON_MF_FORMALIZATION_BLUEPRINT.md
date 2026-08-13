@@ -1,10 +1,8 @@
 # Formalization record: the marked-compression non-MF theorem
 
 Date: 2026-08-12. Status: **COMPLETE for the unconditional Shalom-cover
-endpoint**; the literal eight-generator development exposes only its
-algebraic, finite-dimensional, and universal-Horn boundary.  It contains no
-analytic operator-MF endpoint: closing one still requires an internal
-property-`(T)` proof for the raw presented base.
+endpoint**; the literal eight-generator endpoint remains at the exact
+property-`(T)`/rational-SOS certificate boundary described below.
 
 This document records the proof architecture and audit surface of the completed
 Lean formalization. It supersedes the development-time workstream plan; there
@@ -30,8 +28,11 @@ ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 In particular, Lean proves both that the chosen nontrivial mark belongs to the
 operator-norm MF residual and that a finitely presented non-MF group exists,
 including `¬ IsOperatorMF` for the standard unitary-sequence presentation of
-the cofinite corona.  The polar-correction isomorphism to the unitary group of
-the C-star quotient is a mathematical bridge, not a Lean declaration.
+the cofinite corona.  `Analysis/NormMatrixCorona.lean` now constructs the
+genuine C-star quotient, `Analysis/NormMatrixCoronaUnitary.lean` proves the
+polar-correction isomorphism of unitary groups, and
+`Sofic/CDEOperatorMF.lean` proves that the literal countable CDE definition is
+equivalent to `IsOperatorMF`.
 The finitely presented Lean witness is the independently constructed marked
 group in `ChosenMarkedPresentation.lean`, whose vertex uses a
 noncomputably chosen Shalom Kazhdan cover; it is not asserted to be
@@ -96,11 +97,13 @@ The completed proof is split into independently useful layers.
     the compression-defect normal closure lies in the norm-MF residual.
 11. `LiteralNonMFPresentation.lean` and `LiteralNonMFLinearWitness.lean`
     machine-check the manuscript's literal eight-generator presentation and
-    its exact nontrivial affine--Clifford mark.  The library publishes no
-    analytic endpoint for that literal group: property `(T)` of the abstract
-    group presented by the twenty literal base relators and presentation
-    completeness are not proved.  Earlier premise-parametrized property-`(T)`
-    and absent-certificate endpoints were removed from the trust surface.
+    its exact nontrivial affine--Clifford mark.
+    `LiteralBasePropertyTBridge.lean` proves from the printed affine relations
+    that property `(T)` of the eight-relator rotation presentation implies
+    property `(T)` of the literal base.  The public API deliberately contains
+    no conditional analytic endpoint for the full group: property `(T)` of
+    that rotation presentation has not been discharged, and no exact rational
+    group-ring SOS certificate has been supplied.
 12. `NormMFUniversalCorona.lean`, `NormMFCoronaRadical.lean`, and
     `NormMFResidualExactQuotient.lean` identify residual triviality with
     standard cofinite-corona operator MF and establish the universal quotient
@@ -114,10 +117,15 @@ The completed proof is split into independently useful layers.
     `MarkedGroupTopology.lean`, `MarkedGroupWordBall.lean`, and
     `MarkedMFClosed.lean` prove the normalized finite-model criterion,
     closedness of the fixed-rank marked MF locus, openness of its complement,
-    and finite word-ball certificates. `OperatorMFMarkovWitness.lean` proves
-    the positive and forbidden-subgroup witnesses unconditionally; the Lean
-    library makes no undecidability claim without a formalized Adian--Rabin
-    transformation.
+    and finite word-ball certificates. `MarkovMFConsequences.lean` provides
+    explicitly conditional computability interfaces without asserting their
+    external transformation data.
+15. `Analysis/NormMatrixCorona.lean`,
+    `Analysis/NormMatrixCoronaUnitary.lean`, `Analysis/MFAlgebra.lean`,
+    `Sofic/CDEOperatorMF.lean`, `Sofic/CDEMFRadical.lean`, and
+    `Sofic/MFDefinitions.lean` formalize the genuine C-star-corona target,
+    the literal countable CDE predicate and radical, the MF-algebra notion,
+    and the valid one-way implications from reduced/full/regular notions.
 
 ## What is and is not formalized
 
@@ -128,14 +136,15 @@ endpoint for the standard `IsOperatorMF` cofinite-corona predicate, without
 assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
 presented Shalom-cover witness is literally the paper's displayed
 eight-generator group. The literal group's algebraic presentation and
-separating mark are formalized separately, but no analytic MF endpoint for
-that literal group is exported. Known property `(T)` of the classical group
-`Z^3 semidirect SL_3(Z)` would not prove property `(T)` of Lean's raw
-twenty-relator `PresentedGroup` without completeness of the presentation, an
-isomorphism, or a direct property-`(T)` proof. None of those is supplied by
-the unconditional endpoint; premise-parametrized and absent-certificate
-placeholders were removed from the trust surface. The development also makes
-no claim that either witness is nonhyperlinear or nonsofic.
+separating mark are formalized separately. No literal non-MF endpoint is
+exported, even conditionally. The checked affine bridge reduces property
+`(T)` of Lean's raw twenty-relator `PresentedGroup` to property `(T)` of its
+eight-relator rotation retract. Known property `(T)` of the intended matrix
+group does not discharge that premise without completeness of the rotation
+presentation, an isomorphism, or a direct property-`(T)` proof. None of those,
+and no exact certificate, is supplied by the unconditional endpoint. The
+development also makes no claim that either witness is nonhyperlinear or
+nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
 `UniversalWeakMF U X`, namely operator-norm matrix ultraproducts over every
@@ -144,7 +153,9 @@ family than the sequential `c_0` corona used in the paper's definition, not a
 definitionally identical radical. For countable groups,
 `coronaMFResidual_eq_normMFResidual` proves equality with the unitary-sequence
 cofinite-corona radical, and `isOperatorMF_iff_normMFResidual_eq_bot` gives the
-standard operator-MF bridge.
+standard operator-MF bridge.  The stronger statement
+`cdeMFResidual_eq_normMFResidual` now identifies both with the radical defined
+directly through unitary groups of genuine norm-matrix C-star quotients.
 
 ## Audit surface
 

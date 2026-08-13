@@ -6,9 +6,7 @@ them. The root module is `GroupApproximation.lean`; it imports the formal
 library as a whole, while the subject directories provide smaller reading
 paths.
 
-This README was written by Sol 5.6 and Fable.
-
-## A finitely presented non-MF group
+## An explicit finitely presented CDE-MF obstruction
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
@@ -67,7 +65,8 @@ The paper also proves:
   many finitely generated non-MF groups, and a uniform matrix-size version of
   the kill theorem;
 - closedness of the MF locus in every fixed-rank marked-group space, hence
-  openness of non-MF-ness and finite reduced-word-ball certificates;
+  openness of non-MF-ness and a finite reduced-word-ball certificate for every
+  non-MF marked group;
 - a residually finite (hence MF) group whose maximal group C*-algebra contains
   a proper isometry and is therefore not directly finite.
 
@@ -81,33 +80,37 @@ finite C*-algebras.
 The Lean development verifies the marked-compression mechanism, a nontrivial
 Clifford mark, and a finitely presented group that is not MF in the standard
 cofinite norm-matrix-corona sense; this direct `IsOperatorMF` theorem is the
-formal headline. Separately, it proves that the mark dies in every
-operator-norm matrix ultraproduct and rules out the library's auxiliary
-`IsWeakMF` predicate. Its unconditional finitely presented witness is built
-independently from a noncomputably chosen Shalom cover; it is not the literal
-eight-generator group `E` displayed in the paper. The literal presentation,
-all displayed relations, and an exact affine--Clifford realization proving
-its marked word nontrivial are formalized separately. No analytic MF endpoint
-for that literal group is exported. Property `(T)` of the concrete
-`ℤ³ ⋊ SL₃(ℤ)` would not by itself prove property `(T)` of Lean's raw
-twenty-relator `PresentedGroup`; the classical route also needs a formal
-presentation-completeness isomorphism. Premise-parametrized and
-absent-certificate placeholders were removed rather than advertised as
-formal results.
+formal headline. It also proves the stronger universal-ultraproduct kill and,
+as an auxiliary consequence, rules out the library's `IsWeakMF` predicate.
+The unconditional finitely presented witness is built independently from a
+noncomputably chosen Shalom cover; it is not the literal eight-generator
+group `E` displayed in the paper. The literal presentation, all displayed
+relations, and an exact affine--Clifford realization proving its marked word
+nontrivial are formalized separately. No analytic MF endpoint for that
+literal group is exported.  The checked theorem
+`LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` reduces
+property `(T)` of Lean's raw twenty-relator base to property `(T)` of its
+eight-relator rotation presentation.  That remaining rotation theorem has
+not been proved, and no exact rational group-ring SOS certificate is supplied.
+Known property `(T)` of `ℤ³ ⋊ SL₃(ℤ)` does not discharge it without
+completeness of the rotation presentation, an isomorphism to the classical
+matrix group, or a direct proof. No unconditional literal endpoint or
+certificate is asserted.
 
 The general finite-normal obstruction is formalized first as universal
 ultraproduct invisibility: `NormMFInvisible` quantifies over every matrix
-ultraproduct and every ultrafilter, including principal ultrafilters, and is
+ultraproduct and every ultrafilter, including principal ultrafilters. This is
 not definitionally the manuscript's cofinite-corona radical. It is then
 formalized in the unitary-sequence presentation of the cofinite-corona
-language. The elementary polar-correction
-isomorphism from this presentation to the unitary group of the C-star quotient
-is not separately modeled in Lean. For countable groups, the resulting
-cofinite-corona MF radical is proved equal
-to the ultraproduct residual; its quotient is MF, is represented faithfully in
-one corona, and has the expected universal factorization property. Other
-paper consequences are not claimed to be formalized unless they carry an
-explicit Lean counterpart link.
+language. The genuine C-star quotient and the polar-correction isomorphism
+from this presentation to its unitary group are formalized in
+`Analysis/NormMatrixCorona.lean` and
+`Analysis/NormMatrixCoronaUnitary.lean`. For countable groups, a proved bridge
+identifies the cofinite-corona MF radical with the ultraproduct residual and
+characterizes operator-MF by triviality of that residual; its quotient is MF,
+is represented faithfully in one corona, and has the expected universal
+factorization property. Other paper consequences are not claimed to be
+formalized unless they carry an explicit Lean counterpart link.
 
 The internal definition permits any positive dimension sequence. The
 Carrión--Dadarlat--Eckhardt convention requiring strictly increasing
@@ -118,30 +121,29 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/ChosenNonMFTheorem.lean` | Public standard operator-MF endpoint for the noncomputably chosen finitely presented cover, plus auxiliary weak-MF consequences |
+| `Sofic/ChosenNonMFTheorem.lean` | Public chosen finitely presented standard operator-MF endpoint, plus auxiliary weak-MF consequences |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
+| `Sofic/CDEOperatorMF.lean`, `Sofic/CDEMFRadical.lean` | Literal countable CDE predicate, genuine C-star-corona equivalence, and CDE radical |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
-| `Monsters/LiteralCyclicCalibration.lean` | Literal cyclic comparison presentation, exact surviving mark, finite-dimensional kill, and conditional corona survival |
-| `Sofic/OperatorMFLocalNormalization.lean`, `Sofic/MarkedMFClosed.lean`, `Sofic/MarkedGroupWordBall.lean` | Local separation normalization, closedness of the fixed-rank marked MF locus, and finite word-ball obstruction cylinders |
-| `Sofic/OperatorMFFreeProductConsequences.lean` | Subgroup-hereditary propagation of non-MF obstructions to group free products |
-| `Sofic/LiteralPresentationRadius.lean` | Kernel-checked radius-34 bound for every literal relator and the marked word |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
 | `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
 | `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
 | `Sofic/AdjointMatrix.lean`, `Sofic/ProjectionRankFlip.lean`, `Sofic/SpectralCapture.lean` | Finite-dimensional operator lemmas |
 | `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
-| `Sofic/ChosenMarkedPresentation.lean`, `Sofic/ChosenNonMFEndpoint.lean` | Independent finitely presented witness via a noncomputably chosen Shalom cover |
+| `Sofic/ChosenMarkedPresentation.lean`, `Sofic/ChosenNonMFEndpoint.lean` | Independent, noncomputably chosen finitely presented witness via a Shalom cover |
 | `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
 | `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
-| `Sofic/LiteralUniversalHorn.lean`, `Sofic/LiteralMarkedCylinderTopology.lean` | Unconditional algebraic failure of the literal quasi-identity and the exact clopen cylinder; no analytic non-MF endpoint for the literal group |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
+| `Sofic/TorsionFreeFullMFRadical.lean`, `Sofic/TorsionFreeFullMFConsequences.lean` | Proof-carrying Fournier--Facio/Hull defect-routing interface and full CDE-radical consequences; external existence remains explicit |
+| `Analysis/TorsionFreeFullMFCStarConsequences.lean` | Reduced-group-C-star non-MF and stable-finiteness consequences of routed data |
 | `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
-| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to direct/stable finiteness |
-| `Computability/OperatorMFMarkovWitness.lean` | Unconditional positive and forbidden-subgroup witnesses; no undecidability endpoint is claimed without a formalized Adian--Rabin transformation |
+| `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
+| `Sofic/OperatorMFLocalNormalization.lean`, `Sofic/MarkedMFClosed.lean`, `Sofic/MarkedGroupWordBall.lean` | Local separation normalization, closedness of the marked MF locus, and finite word-ball certificates |
+| `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
 
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
@@ -218,13 +220,18 @@ searchable.
 
 ## Tool and computational resource disclosure
 
-The mathematics in this repository was developed and formalized with
-extensive use of large language models (Anthropic Claude models, GPT 5.6
-Sol, multiple concurrent interactive sessions).  Formal verification uses
+In the spirit of the Leiden Declaration on Artificial Intelligence and
+Mathematics (June 2026): the mathematics in this repository was developed
+and formalized with extensive use of large language models (Anthropic
+Claude models, GPT 5.6 Sol, multiple concurrent interactive sessions) operating under
+continuous human direction; the per-commit `Co-Authored-By` trailers are a
+tool-provenance record, not an authorship claim.  Formal verification uses
 Lean 4 and Mathlib, with the Lean kernel as the final checker; builds and
-audits run on the Minnesota Supercomputing Institute cluster.  The
-successive credit audits are recorded in
-docs/CREDIT_AND_PRIORITY_AUDIT.md.
+audits run on the Minnesota Supercomputing Institute cluster.
+Attribution-critical literature claims were verified against primary
+sources by direct reading; the successive credit audits are recorded in
+docs/CREDIT_AND_PRIORITY_AUDIT.md.    See
+docs/LEIDEN_COMPLIANCE.md for the full compliance map.
 
 ## Trust and verification
 
@@ -250,7 +257,7 @@ Key audit files:
 - `scripts/check.py`: source-level checks;
 - `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
 - `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: focused audit of
-  the chosen-cover non-MF endpoints;
+  the noncomputably chosen non-MF endpoints;
 - `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
 - `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:

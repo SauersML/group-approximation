@@ -1,11 +1,9 @@
 import GroupApproximation.Sofic.ChosenNonMFTheorem
+import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
-import GroupApproximation.Sofic.LiteralUniversalHorn
-import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
-import GroupApproximation.Monsters.LiteralCyclicCalibration
 
 /-!
 # Lightweight axiom audit for the chosen non-MF endpoint
@@ -31,6 +29,8 @@ endpoint for that literal presentation is admitted to this audit surface.
 #print axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
 #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#print axioms GroupApproximation.ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage
+#print axioms GroupApproximation.ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
 #print axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot
@@ -41,6 +41,9 @@ endpoint for that literal presentation is admitted to this audit surface.
 #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
 #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
-#print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
-#print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
-#print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
+#print axioms GroupApproximation.OperatorNormAmplification.exists_tensorPower_pair_far
+#print axioms GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
+#print axioms GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus
+#print axioms GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus
+#print axioms GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus
+#print axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto

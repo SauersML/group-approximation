@@ -2,22 +2,12 @@
 
 # Elaborated types of the mapped declarations
 
-One entry per declaration named by either manuscript's formal counterpart links, in qualified-name order.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
+One entry per declaration named by a manuscript margin note, in the order of `docs/CLAIM_DECLS.txt`.  The types are printed by Lean from the elaborated environment, so this file records what each mapped declaration actually states -- the layer of the correspondence that name resolution alone cannot check.
 
 ## `GroupApproximation.AdmitsEssentiallyFreeNearAction`
 
 ```lean
 (G : Type u) → [Group G] → Prop
-```
-
-## `GroupApproximation.AffineSL3Doubling.doubling_package`
-
-```lean
-Function.Injective ⇑AffineSL3Doubling.alpha ∧
-  (∀ (g : AffineSL3Doubling.Gamma),
-      g ∈ Set.range ⇑AffineSL3Doubling.alpha ↔ ∃ v, Multiplicative.toAdd g.left = 2 • v) ∧
-    AffineSL3Doubling.alpha.range.index = 8 ∧
-      AffineSL3Doubling.a ∉ Set.range ⇑AffineSL3Doubling.alpha
 ```
 
 ## `GroupApproximation.BinaryLeavitt.K1_trivial`
@@ -351,40 +341,6 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 (k : Type) → [Field k] → Type
 ```
 
-## `GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen`
-
-```lean
-IsClopen ChosenMarkedCylinder.chosenCylinder
-```
-
-## `GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF`
-
-```lean
-ChosenMarkedCylinder.chosenCylinder ⊆ {N | ¬IsOperatorMF N.Quotient}
-```
-
-## `GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`
-
-```lean
-∃ E x, Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
-```
-
-## `GroupApproximation.ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity`
-
-```lean
-∀ (H : Type u_1) [inst : Group H],
-  IsOperatorMF H →
-    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator ChosenMarkedPresentation.relators
-      ChosenMarkedPresentation.markedWord H
-```
-
-## `GroupApproximation.ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity`
-
-```lean
-¬SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator ChosenMarkedPresentation.relators
-    ChosenMarkedPresentation.markedWord ChosenMarkedPresentation.MarkedGroup
-```
-
 ## `GroupApproximation.CompleteMatrixFamily.matrixAlgEquiv`
 
 ```lean
@@ -488,14 +444,6 @@ ChosenMarkedCylinder.chosenCylinder ⊆ {N | ¬IsOperatorMF N.Quotient}
       ∀ (M : ℕ),
         Negligible (fun n => ↑(Fintype.card (S.model n).carrier)) fun n =>
           ↑(smallBlockVertices (D.blocks n) M).card
-```
-
-## `GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one`
-
-```lean
-∀ {A : Type u_1} [inst : Ring A] [inst_1 : StarRing A] [inst_2 : Algebra ℂ A]
-  (τ : FaithfulTracialState A) (n : Type u_2) [inst_3 : Fintype n] [inst_4 : DecidableEq n],
-  Nonempty n → ∀ {v : CStarMatrix n n A}, star v * v = 1 → v * star v = 1
 ```
 
 ## `GroupApproximation.FamilyRankFour.ambient_not_isSofic`
@@ -846,41 +794,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 
 ```lean
 (G : Type u_2) → [Group G] → Prop
-```
-
-## `GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
-  F ≤ C.defectNormal → F ≤ coronaMFResidual E
-```
-
-## `GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
-  F ≤ C.defectNormal →
-    ∀ {f₀ : E},
-      f₀ ∈ F →
-        ∀ (ε : ℝ),
-          0 < ε →
-            ∃ δ F₀,
-              0 < δ ∧
-                ∀ (Y : FiniteModel),
-                  0 < Fintype.card Y.carrier →
-                    ∀ (φ : E → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
-                      (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) →
-                        ‖↑(φ f₀) - 1‖ < ε
-```
-
-## `GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (K : Subgroup E) [K.Normal],
-  HasKazhdanPropertyT ↥K → K ≤ C.defectNormal → K ≤ coronaMFResidual E
 ```
 
 ## `GroupApproximation.KunDecomposition.exists_expanderDecomposition`
@@ -1628,20 +1541,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A), L.z * L.z = 1
 ```
 
-## `GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
-
-```lean
-∀ {k : Type u} {V : Type v} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [FiniteDimensional k V]
-  (π : LiteralNonMFPresentation.MarkedGroup →* (Module.End k V)ˣ), ¬Function.Injective ⇑π
-```
-
-## `GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one`
-
-```lean
-LiteralNonMFPresentation.mark ≠ 1
-```
-
 ## `GroupApproximation.LocalCriterionData`
 
 ```lean
@@ -1818,12 +1717,6 @@ LiteralNonMFPresentation.mark ≠ 1
                 q₀ ∈ Q →
                   (∀ x ∈ Manuscript.conjSubgroup q₀ Γ, ∀ y ∈ J, x * y = y * x) →
                     Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
-```
-
-## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
-
-```lean
-∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
 ```
 
 ## `GroupApproximation.MatchingCertificate`
@@ -2568,12 +2461,6 @@ Group.FG ↥UniversalRankFour.Ambient ∧
       (∀ γ ∈ Γ, ((adjointRep π) (t * γ * t⁻¹)) x = x) ↔ ∀ γ ∈ Γ, ((adjointRep π) γ) x = x
 ```
 
-## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
-
-```lean
-∀ {G : Type u_1} [inst : Group G] (d a : G), d ^ 2 = 1 → ⁅d, a * d * a⁻¹⁆ = ⁅d, a⁆ ^ 2
-```
-
 ## `GroupApproximation.compressedImage_eq`
 
 ```lean
@@ -2592,14 +2479,6 @@ Group.FG ↥UniversalRankFour.Ambient ∧
   (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
     Subgroup.map (MulEquiv.toMonoidHom (MulAut.conj (φ t))) (Subgroup.map φ Γ) ≤
       Subgroup.map φ Γ
-```
-
-## `GroupApproximation.compressionCentralizerDefect_le_ker`
-
-```lean
-∀ {H k V : Type} [inst : Group H] [inst_1 : Field k] [inst_2 : AddCommGroup V]
-  [inst_3 : _root_.Module k V] [FiniteDimensional k V] (π : H →* V ≃ₗ[k] V) (L : Subgroup H),
-  compressionCentralizerDefect L ≤ π.ker
 ```
 
 ## `GroupApproximation.compressorImage_normalizes`

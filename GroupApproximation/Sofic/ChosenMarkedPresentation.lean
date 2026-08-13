@@ -340,6 +340,16 @@ theorem stable_conjugates_vertex_into_vertex :
         group
       exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hmul
 
+/-- The Kazhdan subgroup used by the analytic obstruction is the range of
+`vertexMap`. -/
+noncomputable def kazhdanVertex : Subgroup MarkedGroup := vertexMap.range
+
+theorem stable_conjugates_kazhdanVertex :
+    ∀ x : kazhdanVertex,
+      stable * (x : MarkedGroup) * stable⁻¹ ∈ kazhdanVertex := by
+  rintro ⟨x, y, rfl⟩
+  exact stable_conjugates_vertex_into_vertex y
+
 /-- The marked word is an involution in the presented group. -/
 theorem mark_sq : mark ^ 2 = 1 := by
   apply PresentedGroup.one_of_mem
@@ -558,6 +568,18 @@ theorem mark_ne_one : mark ≠ 1 := by
   apply mark_ne_one_of_realization R
   rw [realizationHom_mark]
   exact MarkedCompression.Explicit.theWordNeOne
+
+/-- The finite-presentation package needed by the non-MF theorem. -/
+theorem chosenFinitelyPresented_markedPackage :
+    Group.IsFinitelyPresented MarkedGroup ∧
+      HasKazhdanPropertyT.{0, 0} Vertex ∧
+      (∀ x : Vertex,
+        stable * vertexMap x * stable⁻¹ ∈ vertexMap.range) ∧
+      mark ^ 2 = 1 ∧
+      (∀ x : MarkedGroup, mark * x = x * mark) ∧
+      mark ≠ 1 := by
+  exact ⟨inferInstance, vertex_hasKazhdanPropertyT,
+    stable_conjugates_vertex_into_vertex, mark_sq, mark_central, mark_ne_one⟩
 
 end ChosenMarkedPresentation
 end GroupApproximation

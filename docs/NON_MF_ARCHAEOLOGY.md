@@ -299,10 +299,11 @@ principal ultrafilters, and is not definitionally the sequential cofinite
 radical; the later countable-group theorems
 `coronaMFResidual_eq_normMFResidual` and
 `isOperatorMF_iff_normMFResidual_eq_bot` supply the bridge. The later literal
-Lean stack has only a conditional MF endpoint: its property-`(T)` premise is
-on the raw twenty-relator `PresentedGroup`. Classical property `(T)` of the
-affine group does not fill that premise without presentation completeness, an
-isomorphism, or a direct proof for the raw presented group.
+Lean stack has no conditional MF endpoint.  It does prove the affine
+property-`(T)` reduction from the raw twenty-relator base to the eight-relator
+rotation presentation. Classical property `(T)` of the intended affine group
+does not fill the remaining rotation premise without presentation
+completeness, an isomorphism, or a direct proof for that presentation.
 
 ## Manuscript evolution after the first draft
 
@@ -593,7 +594,7 @@ argument.
 | `Sofic/CliffordLampGroup` | A presented Clifford 2-group, nontrivial central sign, and functorial permutation action. |
 | `Sofic/MarkedCompressionGroup` | The countable semidirect witness; proves the marked word equals the sign and is nontrivial. |
 | `Kazhdan/ShalomFinitePresentation` | A finitely presented Kazhdan cover of the internal base. |
-| `Sofic/ChosenMarkedPresentation` | Noncomputably chosen finite relator set, marked central involution, inclusion relations, and a realization proving the mark nontrivial. |
+| `Sofic/ChosenMarkedPresentation` | A finite relator set selected noncomputably from Shalom-cover existence data, a marked central involution, inclusion relations, and a realization proving the mark nontrivial. |
 | `Sofic/ChosenNonMFEndpoint` | Packages exactly the chosen inclusion data consumed by the analytic theorem. |
 
 ### Formal trust boundary
@@ -620,6 +621,9 @@ from `Sofic/ChosenNonMFTheorem.lean`, the recursive repository closure has
 external boundary and are omitted. An em dash means the module has no further
 repository import in this closure. This is the complete build/import graph,
 not a claim that every imported declaration occurs in the final proof term.
+The three chosen-witness module names below are normalized to their current
+names after the breaking rename; at the historical snapshot they carried the
+now-retired `Explicit*` names.
 
 ### `Algebra/`
 
@@ -969,7 +973,8 @@ records are:
 - `docs/NON_MF_FORMALIZATION_BLUEPRINT.md`;
 - `docs/HYPERLINEAR_NONSOFIC_RESEARCH_OUTCOME_2026_08_12.md`;
 - `docs/CREDIT_AND_PRIORITY_AUDIT.md`;
-- `docs/EXTERNAL_CODE_AUDIT.md`.
+- `docs/EXTERNAL_CODE_AUDIT.md`;
+- `docs/LEIDEN_COMPLIANCE.md`.
 
 ## Bottom line
 

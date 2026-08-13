@@ -4,9 +4,10 @@ import GroupApproximation.Sofic.NormMFResidualDetector
 /-!
 # Reduced group C⋆-algebras and norm-matrix-corona obstructions
 
-This file records only the unitary restriction data which a faithful unital
-star-algebra embedding into a norm matrix corona must provide.  The ambient
-algebra corona is not yet formalized, so no general C⋆-MF API is invented.
+This file records the older ultraproduct unitary-restriction interface needed
+by downstream residual arguments.  The genuine norm-matrix C-star corona and
+the general `IsMFAlgebra` API are now formalized separately in
+`Analysis.NormMatrixCorona` and `Analysis.MFAlgebra`.
 -/
 
 namespace GroupApproximation

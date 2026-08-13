@@ -20,6 +20,7 @@ import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseP13Replay
+import GroupApproximation.Sofic.LiteralBasePropertyTBridge
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
@@ -39,6 +40,7 @@ import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.MFDefinitions
 import GroupApproximation.Sofic.MFDefinitionConsequences
 import GroupApproximation.Sofic.CDEMFRadical
+import GroupApproximation.Sofic.RadicalSeparation
 import GroupApproximation.Sofic.NormMFUniversalQuotient
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical

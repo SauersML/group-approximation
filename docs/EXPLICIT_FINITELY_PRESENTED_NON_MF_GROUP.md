@@ -1,4 +1,4 @@
-# An explicit finitely presented non-MF group: paper construction and formal status
+# An explicit finitely presented non-MF group
 
 Date: 2026-08-12
 
@@ -386,12 +386,15 @@ while the displayed presentation is established by the paper proof.  A
 separate literal stack (`Sofic/LiteralNonMFPresentation` and
 `Sofic/LiteralNonMFLinearWitness`) machine-checks the eight-generator
 relators, an exact affine--Clifford realization, and nontriviality of the
-marked central involution. It exports no analytic MF endpoint for the literal
-group. Classical property `(T)` of `Z^3 semidirect SL_3(Z)` would not
-discharge property `(T)` of Lean's raw twenty-relator `PresentedGroup`
-without presentation completeness, an isomorphism, or a direct proof for
-that presented group. Premise-parametrized and absent-certificate endpoints
-were removed from the formal trust surface.
+marked central involution. It exports no analytic MF endpoint: property
+`(T)` of the eight-relator rotation presentation has not been proved and no
+exact rational SOS certificate is supplied.  The affine part of the bridge
+*is* formalized:
+`LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` derives
+property `(T)` of the raw twenty-relator base from the rotation theorem.
+Classical property `(T)` of `Z^3 semidirect SL_3(Z)` does not discharge the
+remaining rotation premise without presentation completeness, an isomorphism,
+or a direct property-`(T)` proof.
 
 The analytic proof above was written for the sequential norm corona.  The
 formal predicate `NormMFInvisible` instead quantifies over every operator-norm
@@ -416,7 +419,8 @@ records that a marked limit locally embeds in its approximating groups.
 `Analysis/ProperIsometryFromCompression` formalizes the generic algebraic
 calculation `s* s = 1`, `s s* != 1`, including a left-invertible nonunit and
 failure of direct finiteness.  It does not formalize the maximal group
-C*-algebra application itself.
+C*-algebra application itself; Mathlib has no such `C*max(G)` construction in
+this development.
 
 ## 7. Kun--Thom specialization: the same word is in the full sofic radical
 
@@ -644,8 +648,8 @@ arbitrary finite-normal-subgroup strengthening is implemented separately in
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
 
 For the manuscript's literal presentation, Lean additionally proves
-`LiteralNonMFLinearWitness.literal_mark_ne_one`, the displayed relations, and
-the exact marked-cylinder topology.  It publishes no operator-MF endpoint for
-that literal group.  Property `(T)` of the abstract presented base and
-presentation completeness are not formalized, so premise-parametrized and
-absent-certificate endpoints are excluded from the Lean trust surface.
+`LiteralNonMFLinearWitness.literal_mark_ne_one`. It deliberately exports no
+standard operator-MF endpoint until property `(T)` of the raw presented base
+is proved (or an exact rational SOS certificate is supplied); the
+unconditional chosen-witness theorem does not discharge that object-level
+gap.
