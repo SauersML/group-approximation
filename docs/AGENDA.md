@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: raw double-Pauli coefficient packet
+
+`TRUE_RAW_DOUBLE_PAULI_COEFFICIENT_PACKET.md` identifies the first exact
+multiplication-to-coefficient bridge in the atlas.  The raw compressor turns
+the original Pauli packet into a second Pauli packet with a distinct center;
+their equal signs cancel into a raw-invariant coefficient `C2^2` on the
+trace-half carrier.  The mixed cell has order `256`, its raw-normalized
+closure has order `512`, and the two-sheet splice
+
+```text
+B_i = ((1-c)/2) A_i + ((1+c)/2) X_i
+```
+
+is an involution, commutes with the Pauli coordinates sheetwise, and is fixed
+by raw.  The generic splice algebra is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The next exact gate is the off-diagonal
+comb action on these coefficient cuts.  A single transported carrier sign
+cannot supply it: `FALSE_COMB_TRANSPORTED_SIGN_STAYS_FINITE.md` gives the
+finite order-32 countercell and the trivial small-cell comb intersection.
+
 ### 2026-08-13: exact two-arrow Pauli transfer packet
 
 `TRUE_PAULI_BRANCH_TRANSFER_PACKET.md` identifies the two raw branch arrows

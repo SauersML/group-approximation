@@ -2,6 +2,37 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 live bridge: comb blocks of the raw-invariant coefficient
+
+The raw compressor now supplies a canonical positive-density coefficient
+`C2^2`, rather than merely another Pauli sign.  With original shifts `X_i`,
+raw commutators `C_i=[R,X_i]`, centers `c,d`, and
+`A_i=X_i C_i=R X_i R`, the exact relations are
+
+```text
+R c R = c d,       R d R = d,
+[A_i,Z_i] = c d,   [X_i,C_j]=1.
+```
+
+On the `d=-1` carrier, `R` swaps the two `c` sheets.  The splice
+
+```text
+B_i = ((1-c)/2) A_i + ((1+c)/2) X_i
+```
+
+is a raw-fixed coefficient involution commuting with the Pauli coordinates.
+See `TRUE_RAW_DOUBLE_PAULI_COEFFICIENT_PACKET.md`; the finite atlas audit and
+generic Lean certificate are checked.
+
+The highest-yield next calculation is no longer abstract radical-quotient
+recovery.  It is the fixed symbolic block table of `U* B_i U` relative to the
+joint `c,d,B_0,B_1` character cuts.  Success means deriving the transported
+carrier containment required by `PauliBranchTransfer`, or the three
+contraction products in `LeavittTraceFloor`.  Failure means exhibiting the
+resulting finite comb closure explicitly.  Do not retry a single transported
+sign: `FALSE_COMB_TRANSPORTED_SIGN_STAYS_FINITE.md` proves that route remains
+inside a finite order-32 cell.
+
 ## 2026-08-13 exact endpoint: one transported-carrier containment
 
 The two finite branch operators are now exact:

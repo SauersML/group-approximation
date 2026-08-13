@@ -12,6 +12,7 @@ import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
 import GroupApproximation.Sofic.InvolutiveTwoSheet
 import GroupApproximation.Sofic.PauliBranchTransfer
+import GroupApproximation.Sofic.DoublePauliCoefficient
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
