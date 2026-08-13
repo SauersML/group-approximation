@@ -66,6 +66,13 @@ example : Subgroup.normalizer
     (LiteralBaseTranslationNormal.translations : Set LiteralNonMFPresentation.Base) = ⊤ :=
   LiteralBaseTranslationNormal.normalizer_translations_eq_top
 
+example : Function.Injective LiteralBaseRotationRetract.rotationToBase :=
+  LiteralBaseRotationRetract.rotationToBase_injective
+
+example : LiteralBaseRotationRetract.baseToRotation.ker =
+    LiteralBaseTranslationNormal.translations :=
+  LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
+
 example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V]
     (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
