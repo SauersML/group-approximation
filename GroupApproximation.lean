@@ -296,6 +296,9 @@ import GroupApproximation.Sofic.DivisibleInvisible
 import GroupApproximation.Sofic.HyperlinearUltraproduct
 import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.WeakMFUltraproduct
+import GroupApproximation.Sofic.OpAlmostRepresentation
+import GroupApproximation.Sofic.NormMFResidualDetector
+import GroupApproximation.Sofic.ApproxInvolutionCorner
 import GroupApproximation.Sofic.WeakMFTransfer
 import GroupApproximation.Sofic.WeakMFRegularTrace
 import GroupApproximation.Sofic.RegularCharacterGNS

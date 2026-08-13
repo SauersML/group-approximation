@@ -37,6 +37,38 @@ theorem hermitianPart_isHermitian (U : Matrix Y Y ℂ) :
     (hermitianPart U).IsHermitian :=
   hermitianPart_conjTranspose U
 
+/-- For a unitary matrix, failure to be self-adjoint is exactly its
+involution defect.  Right multiplication by `Uᴴ` is isometric. -/
+theorem norm_sub_conjTranspose_eq_norm_sq_sub_one
+    (U : Matrix Y Y ℂ) (hU : U ∈ Matrix.unitaryGroup Y ℂ) :
+    ‖U - Uᴴ‖ = ‖U * U - 1‖ := by
+  have hUUstar : U * Uᴴ = 1 :=
+    Unitary.mul_star_self_of_mem hU
+  have hUstar : Uᴴ ∈ Matrix.unitaryGroup Y ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hU
+  have hfactor : U - Uᴴ = (U * U - 1) * Uᴴ := by
+    calc
+      U - Uᴴ = U * (U * Uᴴ) - Uᴴ := by rw [hUUstar, Matrix.mul_one]
+      _ = (U * U - 1) * Uᴴ := by noncomm_ring
+  rw [hfactor, CStarRing.norm_mul_mem_unitary _ hUstar]
+
+/-- Hermitian symmetrization costs exactly half the operator-norm
+involution defect of a unitary. -/
+theorem norm_hermitianPart_sub_eq_half_sq_defect
+    (U : Matrix Y Y ℂ) (hU : U ∈ Matrix.unitaryGroup Y ℂ) :
+    ‖hermitianPart U - U‖ =
+      (1 / 2 : ℝ) * ‖U * U - 1‖ := by
+  have hrewrite : hermitianPart U - U =
+      ((2 : ℂ)⁻¹) • (Uᴴ - U) := by
+    rw [hermitianPart]
+    module
+  rw [hrewrite, norm_smul]
+  have hscalar : ‖((2 : ℂ)⁻¹)‖ = (1 / 2 : ℝ) := by norm_num
+  rw [hscalar, show Uᴴ - U = -(U - Uᴴ) by abel, norm_neg,
+    norm_sub_conjTranspose_eq_norm_sq_sub_one U hU]
+
 /-- Positive spectral projection of the Hermitian part, with threshold zero. -/
 noncomputable def positiveProjection (U : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
   KazhdanCornerMatrices.spectralAbove (hermitianPart U)
@@ -120,6 +152,18 @@ theorem negativeProjection_eq_one_sub_rounded (U : Matrix Y Y ℂ) :
       ((2 : ℂ)⁻¹) • (1 - roundedInvolution U) := by
   simp [negativeProjection, roundedInvolution]
   module
+
+/-- A vanishing negative sector forces the rounded involution to be the
+identity. -/
+theorem roundedInvolution_eq_one_of_negativeProjection_eq_zero
+    (U : Matrix Y Y ℂ) (hneg : negativeProjection U = 0) :
+    roundedInvolution U = 1 := by
+  have h := negativeProjection_eq_one_sub_rounded U
+  rw [hneg] at h
+  have hscalar : ((2 : ℂ)⁻¹) ≠ 0 := by norm_num
+  have hone : 1 - roundedInvolution U = 0 := by
+    exact (smul_eq_zero.mp h.symm).resolve_left hscalar
+  exact (sub_eq_zero.mp hone).symm
 
 /-- The rounded involution acts by `-1` on its negative sector. -/
 theorem roundedInvolution_mul_negativeProjection (U : Matrix Y Y ℂ) :
