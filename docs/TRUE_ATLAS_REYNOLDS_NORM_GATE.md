@@ -122,3 +122,22 @@ The live endpoint now has two sufficient formulations:
 Both formulations retain the finite multiplicity trace and therefore do not
 apply inside the infinite-multiplicity regular representation of the exact
 Leavitt group.
+
+## 5. Relation to tracial commutant recovery
+
+Alekseev--Thom Open Problem 6.2 asks whether the commutant of a Kazhdan-group
+representation in a tracial matrix ultraproduct can be recovered from
+finite-dimensional coordinate algebras.  Its premise is that the
+ultraproduct element already commutes with the represented group.
+
+That premise fails for the relative atlas implementer.  Equations
+`(RNG7)--(RNG9)` show that any zero-defect hyperlinear atlas sequence would
+retain positive `H`-commutator energy and a positive Reynolds norm deficit.
+Thus even a positive answer to Open Problem 6.2 would not place this `U` in
+`rho(H)'`: there is no commuting ultraproduct element to lift.
+
+Accordingly the remaining atlas theorem should not be described merely as
+commutant recovery.  It must first derive Reynolds norm saturation from the
+full two-child relator packet, or extract the finite multiplicity arrows
+before taking the ultraproduct.  Either assertion is strictly additional to
+coordinate recovery of an already existing commutant.
