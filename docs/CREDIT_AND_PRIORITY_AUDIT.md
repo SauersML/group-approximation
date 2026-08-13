@@ -403,3 +403,25 @@ Ra metadata).
   family content.  Rainone JFA 267 (2014) no. 2, 542–578: verified.
 * Post-fix consistency: 31 cite keys ↔ 31 bibitems, no orphans either
   direction (checked mechanically).
+
+## 2026-08-13 late: Alekseev–Thom read obligation CLOSED
+
+Alekseev–Thom arXiv:2608.05362 read in full (19 pp) by the peer session.
+Theorem A: Kazhdan + sofic embedding with ergodically-acting centralizer ⇒
+LEF (f.p. ⇒ RF); technical Theorem 3.1: the centralizer of a sofic
+embedding of a Kazhdan group is a metric ultraproduct of finite permutation
+groups, via Kun's expander decomposition, cluster groupoids, and
+Becker–Chapman stability.  Footnote 1 documents completion mid-July 2026,
+before the OpenAI announcement.  Entirely Hamming/tracial: no
+operator-norm, corona, or MF notion appears; no marked element is produced.
+Overlap with our Lemmas 6.4–6.6 is ancestral only, and Open Problem 6.2
+sits exactly on the tracial side of our limitations section — the existing
+tex description is accurate.
+
+CORRECTION (hallucination caught): the earlier fetched summary attributing
+to Thom 2010 a "(T)-flavored central element invisible to
+finite-dimensional representations while hyperlinear" phenomenon was NOT
+supported by the direct read.  Thom 2010 is cited only for the
+Cornulier–Abels–Thom base-group machine.  Lesson reaffirmed: every
+attribution-critical claim gets primary-source verification by direct
+reading before it enters the manuscript.
