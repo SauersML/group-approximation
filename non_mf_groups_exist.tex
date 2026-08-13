@@ -36,6 +36,9 @@
   Conditional formal deduction (given the cited external data):\par\nobreak\noindent
   \ifanonymous\nolinkurl{#2}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
+\newcommand{\leannote}[1]{%
+  \par\smallskip\noindent
+  {\normalfont\footnotesize\color{gray!70!black}\raggedright #1\par}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -163,8 +166,6 @@ Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
 an arbitrary positive sequence, as we do, is equivalent: replace its $n$th
 term by the cumulative block sum through stage $n$ and place the old unitary
 in the newest block.  The operator norm of every difference is unchanged.
-The formal companion proves this normalization at the level of the
-unitary-sequence corona.
 \leanverified{Sofic/OperatorMFIncreasingDimensions}{GroupApproximation.isOperatorMFIncreasing_iff}
 This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
@@ -1285,8 +1286,9 @@ theorem.
 \leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible}
 The public endpoint combines that theorem with the internally constructed
 finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
-giving a kernel-checked finitely presented non-MF group.
-\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF}
+giving the following unconditional, kernel-checked existence statement: there
+exists a finitely presented group which is not operator-MF.
+\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 This formal marked group is an independent witness built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
@@ -2543,10 +2545,11 @@ $s$ is an isometry with defect $1-ss^*=Q_1-\bar p$.
 Thus $s^*s=1$ makes $s$ left-invertible, with left inverse $s^*$,
 whereas $ss^*\neq1$ makes $s$ a nonunit.  Equivalently, with
 $a=s^*$ and $b=s$ one has $ab=1$ but $ba\neq1$, so
-$\Cmax(G)$ is not directly finite.  The purely algebraic
-projection-compression implication is checked in Lean; the formal companion
-does not model $\Cmax(G)$ itself.
+$\Cmax(G)$ is not directly finite.
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne}
+\leannote{The counterpart covers the purely algebraic
+projection-compression implication only; $\Cmax(G)$ itself is not
+modelled.}
 
 It remains to check $Q_1\neq\bar p$.  Let
 $H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the

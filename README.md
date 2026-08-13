@@ -6,6 +6,8 @@ them. The root module is `GroupApproximation.lean`; it imports the formal
 library as a whole, while the subject directories provide smaller reading
 paths.
 
+This README was written by Sol 5.6 and Fable.
+
 ## An explicit finitely presented non-MF group
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
