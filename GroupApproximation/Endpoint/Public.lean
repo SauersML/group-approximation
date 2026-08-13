@@ -27,7 +27,6 @@ import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
-import GroupApproximation.Sofic.LiteralBaseAffineQuotient
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
@@ -129,7 +128,7 @@ group is part of the Lean API.
 * `LiteralNonMFPresentation.literal_algebraic_package` and
   `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
   presentation, its relations, and a genuine nontrivial marked involution.
-* `LiteralBaseAffineQuotient.affineQuotient_surjective` -- the exact direction
+* `LiteralNonMFLinearWitness.matrixBaseHom_surjective` -- the exact direction
   formally justified by the twenty relators: the raw presented base
   surjects onto the displayed affine matrix group.  No injectivity or
   backwards transfer of property `(T)` is asserted.
@@ -361,9 +360,8 @@ export GroupApproximation.KazhdanCompressionCore
 export GroupApproximation.LiteralNonMFPresentation
   (generator_card literal_algebraic_package)
 export GroupApproximation.LiteralNonMFLinearWitness
-  (literal_mark_ne_one literal_finitelyPresented_nontrivial_mark)
-export GroupApproximation.LiteralBaseAffineQuotient
-  (affineQuotient affineQuotient_surjective)
+  (matrixBaseHom matrixBaseHom_surjective literal_mark_ne_one
+    literal_finitelyPresented_nontrivial_mark)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
 export GroupApproximation.LiteralUniversalHorn
