@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.SemidirectProduct
+import Mathlib.GroupTheory.IndexNSmul
 import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
 
 /-!
@@ -29,9 +30,9 @@ abbrev Gamma := SemidirectProduct (Multiplicative Lattice) Linear action
 
 /-- Doubling on the additive lattice. -/
 def doubleAdd : Lattice →+ Lattice where
-  toFun v := 2 • v
-  map_zero' := by simp
-  map_add' _ _ := by module
+  toFun := nsmulAddMonoidHom 2
+  map_zero' := map_zero (nsmulAddMonoidHom 2)
+  map_add' := map_add (nsmulAddMonoidHom 2)
 
 /-- Doubling on the multiplicative copy used by the semidirect product. -/
 def doubleMul : Multiplicative Lattice →* Multiplicative Lattice :=
@@ -104,14 +105,74 @@ theorem mem_range_alpha_iff (g : Gamma) :
       exact hv.symm
     · rfl
 
+/-- The doubled lattice has index `2³ = 8`. -/
+theorem doubleMul_range_index : doubleMul.range.index = 8 := by
+  change (AddSubgroup.toSubgroup
+    (nsmulAddMonoidHom (α := Lattice) 2).range).index = 8
+  rw [AddSubgroup.index_toSubgroup, AddSubgroup.index_range_nsmul]
+  norm_num
+
+abbrev DoubleCosets := (Multiplicative Lattice) ⧸ doubleMul.range
+abbrev AlphaCosets := Gamma ⧸ alpha.range
+
+/-- Inclusion of the translation subgroup induces the map from doubled
+lattice cosets to affine doubled-image cosets. -/
+def cosetMap : DoubleCosets → AlphaCosets :=
+  Quotient.map' SemidirectProduct.inl (by
+    intro x y hxy
+    apply QuotientGroup.leftRel_apply.mpr
+    rw [QuotientGroup.leftRel_apply] at hxy
+    rcases hxy with ⟨z, hz⟩
+    refine ⟨SemidirectProduct.inl z, ?_⟩
+    apply SemidirectProduct.ext
+    · simpa [alpha] using hz
+    · simp)
+
+theorem cosetMap_injective : Function.Injective cosetMap := by
+  refine Quotient.ind' (fun x ↦ Quotient.ind' (fun y hxy ↦ ?_))
+  apply Quotient.sound'
+  apply QuotientGroup.leftRel_apply.mpr
+  have htarget : QuotientGroup.leftRel alpha.range
+      (SemidirectProduct.inl x) (SemidirectProduct.inl y) := by
+    exact Quotient.exact' hxy
+  rw [QuotientGroup.leftRel_apply] at htarget
+  rcases htarget with ⟨g, hg⟩
+  refine ⟨g.left, ?_⟩
+  simpa [alpha] using congrArg SemidirectProduct.left hg
+
+theorem cosetMap_surjective : Function.Surjective cosetMap := by
+  refine Quotient.ind' (fun g ↦ ?_)
+  refine ⟨Quotient.mk'' g.left, ?_⟩
+  rw [cosetMap, Quotient.map'_mk'']
+  apply Quotient.sound'
+  apply QuotientGroup.leftRel_apply.mpr
+  have hsplit : (SemidirectProduct.inl g.left)⁻¹ * g =
+      SemidirectProduct.inr g.right := by
+    apply SemidirectProduct.ext <;> simp
+  rw [hsplit]
+  refine ⟨SemidirectProduct.inr g.right, ?_⟩
+  apply SemidirectProduct.ext <;> simp [alpha]
+
+/-- Cosets of the affine doubled image are exactly parity classes in the
+translation lattice. -/
+noncomputable def cosetEquiv : DoubleCosets ≃ AlphaCosets :=
+  Equiv.ofBijective cosetMap ⟨cosetMap_injective, cosetMap_surjective⟩
+
+/-- The image of `α` has index eight in the affine group. -/
+theorem alpha_range_index : alpha.range.index = 8 := by
+  rw [Subgroup.index_eq_card, ← Nat.card_congr cosetEquiv,
+    ← Subgroup.index_eq_card]
+  exact doubleMul_range_index
+
 /-- The endomorphism and escaping-vector part of manuscript Lemma
 `lem:alpha`. -/
 theorem doubling_package :
     Function.Injective alpha ∧
       (∀ g : Gamma,
         g ∈ Set.range alpha ↔ ∃ v : Lattice, g.left.toAdd = 2 • v) ∧
+      alpha.range.index = 8 ∧
       a ∉ Set.range alpha :=
-  ⟨alpha_injective, mem_range_alpha_iff, a_not_mem_range⟩
+  ⟨alpha_injective, mem_range_alpha_iff, alpha_range_index, a_not_mem_range⟩
 
 end AffineSL3Doubling
 end GroupApproximation
