@@ -261,11 +261,12 @@ embedding; if it is the normally generating mark, the envelope is perfect. -/
 theorem envelopeIsPerfect_of_eq_commutator (a b : E)
     (hw : w = ⁅a, b⁆) : Group.IsPerfect D.Envelope := by
   apply D.envelopeIsPerfect
-  have hmap : D.embedding w = ⁅D.embedding a, D.embedding b⁆ := by
+  have himage : D.embedding w =
+      ⁅D.embedding a, D.embedding b⁆ := by
     calc
       D.embedding w = D.embedding ⁅a, b⁆ := congrArg D.embedding hw
       _ = ⁅D.embedding a, D.embedding b⁆ := map_commutatorElement D.embedding a b
-  rw [hmap]
+  rw [himage]
   exact Subgroup.commutator_mem_commutator
     (Subgroup.mem_top _) (Subgroup.mem_top _)
 
