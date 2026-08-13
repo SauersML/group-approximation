@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.Hyperlinear
+import GroupApproximation.Sofic.NormMFResidualDetector
 import GroupApproximation.Sofic.SoficTransfer
 
 /-!
@@ -76,6 +77,18 @@ theorem hyperlinear_range_and_failureOfSoficity_of_soficInvisible
   · exact isHyperlinear_of_injective rho.range.subtype
       Subtype.val_injective hH
   · exact not_isSofic_range_of_soficInvisible hx rho hdetect
+
+/-- One detected element which is both sofic-invisible and MF-invisible
+produces a range which is simultaneously hyperlinear, nonsofic, and non-MF.
+This is the strongest portable form of the marked-wall endpoint. -/
+theorem hyperlinear_range_notSofic_notMF_of_jointInvisible
+    [Countable G] (hH : IsHyperlinear H) {x : G}
+    (hsofic : SoficInvisible x) (hmf : NormMFInvisible x)
+    (rho : G →* H) (hdetect : rho x ≠ 1) :
+    IsHyperlinear rho.range ∧ ¬ IsSofic rho.range ∧ ¬ IsWeakMF rho.range := by
+  refine ⟨isHyperlinear_of_injective rho.range.subtype Subtype.val_injective hH,
+    not_isSofic_range_of_soficInvisible hsofic rho hdetect, ?_⟩
+  exact not_isWeakMF_range_of_normMFInvisible hmf rho hdetect
 
 /-- Existential form of the one-detector criterion: a single hyperlinear
 representation seeing a single sofic-residual element produces a

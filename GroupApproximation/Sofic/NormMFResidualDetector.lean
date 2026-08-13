@@ -30,6 +30,7 @@ open Filter
 open scoped commutatorElement
 
 universe u
+universe v
 
 variable {G : Type u} [Group G]
 
@@ -45,6 +46,14 @@ def NormMFInvisible (x : G) : Prop :=
 theorem normMFInvisible_one : NormMFInvisible (1 : G) := by
   intro I U X rho
   exact map_one rho
+
+/-- MF-invisibility is functorial: every homomorphic image of an invisible
+element is invisible.  Consequently, any image in which such an element
+survives is automatically non-MF. -/
+theorem NormMFInvisible.map {H : Type v} [Group H] {x : G}
+    (hx : NormMFInvisible x) (f : G →* H) : NormMFInvisible (f x) := by
+  intro I U X rho
+  exact hx I U X (rho.comp f)
 
 /-- Operator-norm MF-invisible elements form a subgroup. -/
 def normMFResidual (G : Type u) [Group G] : Subgroup G where
@@ -69,6 +78,22 @@ theorem map_eq_one_of_mem_normMFResidual
     (hx : x ∈ normMFResidual G) : rho x = 1 :=
   hx I U X rho
 
+/-- The image of the MF residual under any homomorphism lies in the MF
+residual of the target. -/
+theorem map_normMFResidual_le {H : Type v} [Group H] (f : G →* H) :
+    (normMFResidual G).map f ≤ normMFResidual H := by
+  rintro y ⟨x, hx, rfl⟩
+  exact (show NormMFInvisible x from hx).map f
+
+/-- The MF residual is normal. -/
+instance normMFResidual_normal : (normMFResidual G).Normal := by
+  constructor
+  intro x hx g
+  change NormMFInvisible (g * x * g⁻¹)
+  intro I U X rho
+  rw [map_mul, map_mul, map_inv, hx I U X rho]
+  group
+
 /-- **One-element non-MF criterion.**  A countable group containing a
 nonidentity element killed by every operator-norm matrix-ultraproduct
 representation is not weak/operator-norm MF.
@@ -89,6 +114,19 @@ theorem not_isWeakMF_of_mem_normMFResidual
     [Countable G] {x : G} (hx : x ∈ normMFResidual G) (hne : x ≠ 1) :
     ¬ IsWeakMF G :=
   not_isWeakMF_of_normMFInvisible hx hne
+
+/-- If an MF-invisible element survives in a homomorphic image, that image is
+not weak/operator-norm MF. -/
+theorem not_isWeakMF_range_of_normMFInvisible
+    [Countable G] {H : Type v} [Group H] {x : G}
+    (hx : NormMFInvisible x) (rho : G →* H) (hdetect : rho x ≠ 1) :
+    ¬ IsWeakMF rho.range := by
+  letI : Countable rho.range :=
+    Function.Surjective.countable rho.rangeRestrict_surjective
+  apply not_isWeakMF_of_normMFInvisible (hx.map rho.rangeRestrict)
+  intro h
+  apply hdetect
+  simpa using congrArg Subtype.val h
 
 /-- A weak-MF countable group has trivial operator-norm MF residual. -/
 theorem normMFResidual_eq_bot_of_isWeakMF
