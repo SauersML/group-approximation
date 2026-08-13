@@ -4,6 +4,16 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: coefficient expectation gap `15/128`
+
+`TRUE_COEFFICIENT_EXPECTATION_GAP.md` weakens the final alignment hypothesis.
+For every transported character cut `G`, its Hilbert--Schmidt projection onto
+the raw four-character coefficient space is `q/8`, while
+`hsNormSq(G-q/8)=15/128`.  The identity is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  It now suffices for simultaneous
+finite-multiplicity recovery to put one transported cut asymptotically in the
+raw coefficient space; no permutation or minimal-cut matching is needed.
+
 ### 2026-08-13: audited closure boundary for coefficient alignment
 
 `FALSE_EXISTING_REYNOLDS_DOES_NOT_ALIGN_COEFFICIENT_C4.md` verifies that the

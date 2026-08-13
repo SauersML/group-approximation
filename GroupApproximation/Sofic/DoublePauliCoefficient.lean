@@ -289,6 +289,59 @@ theorem one_eighth_lt_hsDistSq_of_trace_flat_projections
     hPstar hPid hQstar hQid hPtrace hQtrace hoverlap]
   norm_num
 
+/-- The trace-flat transported cut stays a fixed distance from its
+Hilbert--Schmidt conditional expectation onto the raw four-character
+coefficient algebra.  The expectation is `Q/8`, and the squared residual is
+`15/128`. -/
+theorem hsNormSq_projection_sub_eighth_carrier_eq_fifteen_div_128
+    (Y : FiniteModel) (G Q : Matrix Y Y ℂ)
+    (hGstar : Gᴴ = G) (hGid : G * G = G)
+    (hQstar : Qᴴ = Q) (hQid : Q * Q = Q)
+    (hGtrace : normTrace Y G = (8 : ℂ)⁻¹)
+    (hQtrace : normTrace Y Q = (2 : ℂ)⁻¹)
+    (hoverlap : normTrace Y (G * Q) = (16 : ℂ)⁻¹) :
+    hsNormSq Y (G - (8 : ℂ)⁻¹ • Q) = (15 : ℝ) / 128 := by
+  let a : ℂ := (8 : ℂ)⁻¹
+  have hastar : (G - a • Q)ᴴ = G - a • Q := by
+    rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_smul, hGstar, hQstar]
+    norm_num [a]
+  have hproduct : (G - a • Q) * (G - a • Q)ᴴ =
+      G - a • (G * Q) - a • (Q * G) + (a * a) • Q := by
+    rw [hastar]
+    simp only [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_smul,
+      Matrix.smul_mul, hGid, hQid]
+    module
+  have hQGtrace : normTrace Y (Q * G) = (16 : ℂ)⁻¹ := by
+    unfold normTrace at hoverlap ⊢
+    rw [Matrix.trace_mul_comm Q G]
+    exact hoverlap
+  have htrace :
+      normTrace Y
+          (G - a • (G * Q) - a • (Q * G) + (a * a) • Q) =
+        (15 : ℂ) / 128 := by
+    have ntAdd (A B : Matrix Y Y ℂ) :
+        normTrace Y (A + B) = normTrace Y A + normTrace Y B := by
+      unfold normTrace
+      rw [Matrix.trace_add, add_div]
+    have ntSub (A B : Matrix Y Y ℂ) :
+        normTrace Y (A - B) = normTrace Y A - normTrace Y B := by
+      unfold normTrace
+      rw [Matrix.trace_sub, sub_div]
+    have ntSmul (b : ℂ) (A : Matrix Y Y ℂ) :
+        normTrace Y (b • A) = b * normTrace Y A := by
+      unfold normTrace
+      rw [Matrix.trace_smul]
+      simp only [smul_eq_mul]
+      ring
+    rw [ntAdd, ntSub, ntSub, ntSmul, ntSmul, ntSmul,
+      hGtrace, hoverlap, hQGtrace, hQtrace]
+    norm_num [a]
+  have hcomplex := ofReal_hsNormSq Y (G - a • Q)
+  rw [hproduct, htrace] at hcomplex
+  have hreal := congrArg Complex.re hcomplex
+  norm_num at hreal ⊢
+  exact hreal
+
 /-- Arithmetic core of the trace-flat spectral truncation.  A positive
 contraction of total normalized trace `1/64`, supported on trace `1/8`, has
 at least trace `1/120` above eigenvalue `1/16`.  `lowMass` and `highMass`

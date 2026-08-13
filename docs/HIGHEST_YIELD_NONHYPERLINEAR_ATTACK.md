@@ -2,6 +2,23 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 weakest terminal gate: coefficient-space membership
+
+Let `A_0` be the span of the four raw coefficient cuts and `q` their sum.
+For every transported cut `G`, exact trace-flatness makes its orthogonal
+projection onto `A_0` equal to `q/8`, with
+
+```text
+||G-q/8||_2^2=15/128.
+```
+
+See `TRUE_COEFFICIENT_EXPECTATION_GAP.md`; the matrix identity is Lean-checked.
+The shortest sufficient theorem is therefore: simultaneous finite-coordinate
+recovery places one transported cut at `o(1)` distance from the raw
+coefficient space.  This is weaker than algebra equality or permutation
+alignment, and should be attempted first.  It is still not a consequence of
+generic Reynolds averaging.
+
 ## 2026-08-13 audit: generic Reynolds recovery is insufficient
 
 Do not claim the `C^4` alignment from the existing Kazhdan or finite-normal
