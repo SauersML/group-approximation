@@ -58,6 +58,7 @@ import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Kazhdan.InvariantSubsetRounding
 import GroupApproximation.Kazhdan.DiagonalInvariantRelation
+import GroupApproximation.Kazhdan.ExactHodgeCertificate
 import GroupApproximation.KOne.RefineLoopDischarge
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Covers.KazhdanCover
@@ -513,6 +514,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeEquivTranslations
 #print axioms GroupApproximation.LiteralBaseP13Replay.yFromUZXY_eq
 #print axioms GroupApproximation.LiteralBaseP13Replay.closure_Z_XY_eq_top
+#print axioms GroupApproximation.ExactHodgeCertificate.Certificate.hodge_gap
+#print axioms GroupApproximation.ExactHodgeCertificate.Certificate.isKazhdanPair
+#print axioms GroupApproximation.ExactHodgeCertificate.Certificate.hasKazhdanPropertyT
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
 #print axioms GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona
 #print axioms GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF
