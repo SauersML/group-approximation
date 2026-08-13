@@ -6,7 +6,8 @@ no commit, no toolchain, no link between the committed PDF and the committed
 sources.  This script prints (or writes, with --write) a JSON manifest
 carrying:
 
-  * the repository commit and whether the tree was dirty,
+  * the repository commit, the clean-checkout attestation, and the generated
+    build-tree changes,
   * the Lean toolchain and the Mathlib commit from the manifest,
   * a SHA-256 for every Lean source, the manuscript, the generated docs,
     and the compiled PDF.

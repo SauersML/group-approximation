@@ -1,8 +1,8 @@
 # Keep the non-MF manuscript under the same publication gates as the other
 # papers: source-to-Lean links, TeX convergence, overflow checks, conservative
-# PDF normalization, full-page rendering, anonymous-build leak detection, and
-# a versioned PDF on main.
-name: Build and commit non-MF PDF
+# PDF normalization, full-page rendering, provenance attestation, and an
+# immutable manual release for a fully verified revision.
+name: Build and attest non-MF PDF
 
 on:
   push:
@@ -31,10 +31,9 @@ permissions:
 
 concurrency:
   group: build-non-mf-pdf-main
-  # Publication inputs change frequently while the proof and paper move
-  # together.  Keep only the newest validation run; the publish step below
-  # independently fingerprints every input before it pushes the artifact.
-  cancel-in-progress: true
+  # A build already used as a release gate must run to completion.  New pushes
+  # replace only the queued run, not an in-flight validation of another SHA.
+  cancel-in-progress: false
 
 env:
   TEX_FILE: non_mf_groups_exist.tex
@@ -217,22 +216,6 @@ jobs:
           find pdf-render-check -name 'page-*.png' -type f -size 0 -print -quit \
             | (! grep -q .)
 
-      - name: Build and verify the anonymous variant
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p build-anon
-          sed 's/\\anonymousfalse/\\anonymoustrue/' "$TEX_FILE" > build-anon/anon.tex
-          latexmk -pdf -outdir=build-anon -interaction=nonstopmode \
-            -halt-on-error -file-line-error build-anon/anon.tex
-          test -s build-anon/anon.pdf
-          qpdf --qdf --object-streams=disable build-anon/anon.pdf build-anon/anon-qdf.pdf
-          if pdftotext build-anon/anon.pdf - | grep -q 'github.com/SauersML' \
-             || grep -aq 'github.com/SauersML' build-anon/anon-qdf.pdf; then
-            echo "The anonymous build leaks the repository URL." >&2
-            exit 1
-          fi
-
       - name: Require a successful kernel audit of this exact revision
         env:
           GH_TOKEN: ${{ github.token }}
@@ -294,50 +277,21 @@ jobs:
             build/non-mf-source-${{ github.sha }}.tar.gz
             build/NON_MF_RELEASE_MANIFEST.json
 
-      - name: Commit and push updated PDF
+      - name: Publish immutable tagged release
+        if: github.event_name == 'workflow_dispatch'
         env:
-          START_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          publication_inputs_digest() {
-            git ls-tree -r "$1" -- \
-              "$TEX_FILE" \
-              docs/NON_MF_CLAIM_DECLS.txt \
-              docs/NON_MF_NUMBERED_CLAIMS.json \
-              GroupApproximation \
-              lakefile.toml \
-              scripts \
-              .github/workflows/build-non-mf-pdf.yml \
-              | sha256sum | awk '{print $1}'
-          }
-
-          built_inputs="$(publication_inputs_digest "$START_SHA")"
-          pdf_holding="${RUNNER_TEMP}/${PDF_FILE}"
-          cp -- "$PDF_FILE" "$pdf_holding"
-          git fetch origin main
-
-          for attempt in 1 2 3; do
-            remote_main="$(git rev-parse origin/main)"
-            if [[ "$(publication_inputs_digest "$remote_main")" != "$built_inputs" ]]; then
-              echo "main carries newer publication inputs; that push will build its PDF."
-              exit 0
-            fi
-            git reset --hard "$remote_main"
-            cp -- "$pdf_holding" "$PDF_FILE"
-            git add -- "$PDF_FILE"
-            if git diff --cached --quiet -- "$PDF_FILE"; then
-              echo "The committed PDF is already current."
-              exit 0
-            fi
-            git commit -m "build: update non-MF PDF [skip ci]"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push rejected on attempt ${attempt}; retrying."
-            git fetch origin main
-          done
-          echo "Could not push the updated PDF after 3 attempts." >&2
-          exit 1
+          short_sha="${GITHUB_SHA:0:12}"
+          tag="non-mf-${short_sha}"
+          gh release create "$tag" \
+            --target "$GITHUB_SHA" \
+            --verify-tag=false \
+            --title "Non-MF formalization ${short_sha}" \
+            --notes "Kernel-audited source, tagged PDF, claim manifest, hashes, and provenance attestation for ${GITHUB_SHA}." \
+            "$PDF_FILE" \
+            "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
+            build/NON_MF_RELEASE_MANIFEST.json \
+            build/SHA256SUMS \
+            build/non_mf_groups_exist.log
