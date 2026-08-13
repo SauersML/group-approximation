@@ -19,6 +19,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Sofic.LiteralTranslationOrbit
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBaseTwoGenerator
@@ -27,7 +28,6 @@ import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.ChosenMarkedCylinder
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralTranslationOrbit
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare

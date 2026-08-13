@@ -429,6 +429,8 @@ def headlineTheorems : List Name :=
    ``LiteralBaseP13Replay.yFromUZXY_eq,
    ``LiteralBaseP13Replay.closure_Z_XY_eq_top,
    ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
+   ``LiteralTranslationOrbit.translation_eq_two_rotation_conjugates,
+   ``LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
