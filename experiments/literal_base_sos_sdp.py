@@ -16,6 +16,37 @@ import numpy as np
 import literal_base_laplacian_sos as literal
 
 
+def install_inverse_action_rules():
+    """Add certified `A v^-1 -> (A v A^-1)^-1 A` rewrites.
+
+    Each rule is a conjugate of the inverse of the corresponding displayed
+    action relator.  `Rule.validate` replays that identity in the free group
+    before the rule can enter the reducer.
+    """
+    derived = []
+    for relator_index in range(11, 20):
+        relator = literal.RELATORS[relator_index]
+        acting = relator.lhs[:1]
+        source = relator.lhs[1:]
+        image = relator.rhs[:-1]
+        if len(acting) != 1 or len(source) != 1 \
+                or relator.rhs[-1:] != acting:
+            raise AssertionError("unexpected action-relator shape")
+        rule = literal.Rule(
+            acting + literal.inverse(source),
+            literal.inverse(image) + acting,
+            relator_index,
+            inverted=True,
+            local_conjugator=literal.inverse(image),
+        )
+        rule.validate()
+        derived.append(rule)
+    literal.RULES += tuple(derived)
+
+
+install_inverse_action_rules()
+
+
 class CachedReductionRegistry(literal.ReductionRegistry):
     """Memoize exact relator-replay reductions by freely reduced input."""
 
