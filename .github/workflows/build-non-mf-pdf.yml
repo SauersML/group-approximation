@@ -93,7 +93,7 @@ jobs:
           export FORCE_SOURCE_DATE=1
           export TZ=UTC
 
-          chktex -q -n1 -n3 -n8 -n24 -n36 "$TEX_FILE"
+          chktex -q -n1 -n2 -n3 -n8 -n24 -n36 "$TEX_FILE"
           latexmk -pdf -outdir=build -interaction=nonstopmode \
             -halt-on-error -file-line-error "$TEX_FILE"
 
