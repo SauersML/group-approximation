@@ -304,21 +304,7 @@ theorem IsTraceRegularMF.isGroupTheoreticMF [Countable G]
     (h : IsTraceRegularMF G) : IsGroupTheoreticMF G :=
   h.isTracePreservingMF.isGroupTheoreticMF
 
-/-! ## Reduced and full group C-star algebra formulations -/
-
-/-- The concrete closed regular-representation algebra, bundled as a complex
-C-star algebra. -/
-noncomputable instance reducedGroupCStarCStarAlgebra :
-    CStarAlgebra (ReducedGroupCStarTrace.ReducedGroupCStar G) where
-  toNormedRing := inferInstance
-  toStarRing := inferInstance
-  toCompleteSpace :=
-    (StarSubalgebra.isClosed_topologicalClosure
-      (StarAlgebra.adjoin ℂ
-        (Set.range (ReducedGroupCStarTrace.leftRegularOperator G)))).completeSpace_coe
-  toCStarRing := inferInstance
-  toNormedAlgebra := inferInstance
-  toStarModule := inferInstance
+/-! ## Reduced group C-star algebra formulation -/
 
 /-- Reduced-C-star MF: the concrete reduced group C-star algebra is an MF
 C-star algebra. -/
@@ -338,43 +324,6 @@ theorem reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding [Countable G]
 theorem IsReducedGroupCStarMF.isGroupTheoreticMF [Countable G]
     (h : IsReducedGroupCStarMF G) : IsGroupTheoreticMF G := by
   exact reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h.2
-
-/-- A realization of the full group C-star algebra, expressed by its
-universal property for unitary representations. -/
-structure FullGroupCStarAlgebra (G : Type u) [Group G] where
-  carrier : Type u
-  inst : CStarAlgebra carrier
-  inclusion : letI : CStarAlgebra carrier := inst
-    G →* unitary carrier
-  inclusionInjective : Function.Injective inclusion
-  universal : ∀ (B : Type u) (instB : CStarAlgebra B),
-    letI : CStarAlgebra B := instB
-    letI : CStarAlgebra carrier := inst
-    ∀ rho : G →* unitary B,
-      ∃! f : carrier →⋆ₐ[ℂ] B,
-        ∀ g : G, f (inclusion g : carrier) = (rho g : B)
-
-/-- The bare MF embedding property of any full group C-star realization
-already forces the group-theoretic MF property.  Separability and the
-universal-property field are not needed for this one-way implication; the
-faithful canonical group inclusion is the precise required input. -/
-theorem FullGroupCStarAlgebra.isGroupTheoreticMF_of_hasMFEmbedding
-    [Countable G] (C : FullGroupCStarAlgebra G) :
-    letI : CStarAlgebra C.carrier := C.inst
-    HasMFEmbedding C.carrier → IsGroupTheoreticMF G := by
-  letI : CStarAlgebra C.carrier := C.inst
-  intro h
-  exact h.isOperatorMF C.inclusion C.inclusionInjective
-
-/-- If a supplied full group C-star realization is an MF algebra, then the
-group is group-theoretically MF. -/
-theorem FullGroupCStarAlgebra.isGroupTheoreticMF_of_isMFAlgebra
-    [Countable G] (C : FullGroupCStarAlgebra G) :
-    letI : CStarAlgebra C.carrier := C.inst
-    IsMFAlgebra C.carrier → IsGroupTheoreticMF G := by
-  letI : CStarAlgebra C.carrier := C.inst
-  intro h
-  exact C.isGroupTheoreticMF_of_hasMFEmbedding h.2
 
 /-! ## Contrapositive obstruction package -/
 
@@ -417,28 +366,6 @@ theorem not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
     [Countable G] (h : ¬ IsGroupTheoreticMF G) :
     ¬ HasMFEmbedding (ReducedGroupCStarTrace.ReducedGroupCStar G) :=
   mt reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h
-
-/-- A non-MF group forbids the bare faithful corona embedding of every full
-group C-star realization. -/
-theorem not_hasMFEmbedding_fullGroupCStar_of_not_isGroupTheoreticMF
-    [Countable G] (h : ¬ IsGroupTheoreticMF G)
-    (C : FullGroupCStarAlgebra G) :
-    letI : CStarAlgebra C.carrier := C.inst
-    ¬ HasMFEmbedding C.carrier := by
-  letI : CStarAlgebra C.carrier := C.inst
-  exact mt C.isGroupTheoreticMF_of_hasMFEmbedding h
-
-/-- In particular, a non-MF group forbids every supplied full group C-star
-realization from being an MF algebra.  This is pointwise in the supplied
-realization; it makes no vacuous existential claim that such a realization
-has been constructed in the formal library. -/
-theorem not_isMFAlgebra_fullGroupCStar_of_not_isGroupTheoreticMF
-    [Countable G] (h : ¬ IsGroupTheoreticMF G)
-    (C : FullGroupCStarAlgebra G) :
-    letI : CStarAlgebra C.carrier := C.inst
-    ¬ IsMFAlgebra C.carrier := by
-  letI : CStarAlgebra C.carrier := C.inst
-  exact mt C.isGroupTheoreticMF_of_isMFAlgebra h
 
 /-! ## The unrelated modular-by-finite meaning -/
 

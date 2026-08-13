@@ -22,6 +22,32 @@ variable (G : Type u) [Group G]
 
 local instance : DecidableEq G := Classical.decEq G
 
+/-- The concrete closed regular-representation algebra carries its canonical
+complex C-star-algebra structure.  This instance belongs with the concrete
+object, rather than in a downstream comparison of MF definitions. -/
+noncomputable instance reducedGroupCStarCStarAlgebra :
+    CStarAlgebra (ReducedGroupCStar G) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace :=
+    (StarSubalgebra.isClosed_topologicalClosure
+      (StarAlgebra.adjoin ℂ
+        (Set.range (leftRegularOperator G)))).completeSpace_coe
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+/-- The concrete reduced group C-star algebra is nontrivial.  Evaluate the
+zero and identity operators on the identity point mass to separate them. -/
+noncomputable instance reducedGroupCStarNontrivial :
+    Nontrivial (ReducedGroupCStar G) := by
+  refine ⟨⟨0, 1, ?_⟩⟩
+  intro h
+  have heval := congrArg
+    (fun T : ReducedGroupCStar G ↦
+      ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) 1) h
+  simp [deltaOne] at heval
+
 /-- The left regular operator inside the concrete reduced group C⋆-algebra. -/
 def reducedLeftRegular (g : G) : ReducedGroupCStar G :=
   ⟨leftRegularOperator G g,
