@@ -1,0 +1,636 @@
+# A computably complete exhaustion of the Leavitt atlas kernel
+
+Date: 2026-08-11
+
+## 1. Purpose
+
+The canonical two-chart atlas in `EXPLICIT_LEAVITT_ATLAS.md` uses
+
+\[
+ P=K_1*K_2\cong A_8*A_8
+   \mathop{\longrightarrow}^{\rho} Q=L_{\mathbb F_2}(1,2)^\times,
+ \qquad R=\ker\rho,
+ \qquad N=[P,R].                                      \tag{1}
+\]
+
+A fixed finite normal-generating list for `N` exists, but translating a
+Krsti\'c--McCool presentation into the two-chart coordinates has not been
+done.  That translation is useful for obtaining one fixed optimization, but
+it is **not necessary** for a mathematically complete constructive search.
+
+This note gives a nested, computable family of finite constraint sets whose
+union normally generates `N`.  It yields a complete sequence of finite
+one-unitary optimization problems using exactly the ordinary
+`A_8*A_8` source already implemented in `experiments/atlas_two_chart_search.py`.
+
+## 2. A decidable enumeration of the kernel
+
+In each copy of `A_8=GL_4(F_2)`, take the six adjacent elementary
+transvections
+
+\[
+ e_{12},e_{21},e_{23},e_{32},e_{34},e_{43}.             \tag{2}
+\]
+
+They generate `GL_4(F_2)`.  In characteristic two they are involutions.
+Let `X` be the resulting symmetric twelve-element generating set of `P`,
+six elements in each free factor.
+
+For `L>=1`, let
+
+\[
+ W_L=\{w:\ w\text{ is an }X\text{-word of length at most }L,
+                 \ \rho(w)=1\},                       \tag{3}
+\]
+
+and define the finite constraint set
+
+\[
+ \mathcal C_L=\{[x,w]:x\in X,\ w\in W_L\}.             \tag{4}
+\]
+
+Identity words may of course be deleted from (4).
+
+**Proposition 1 (effective kernel test).**  The sets `W_L` and
+`mathcal C_L` are computable from `L`.
+
+**Proof.**  The set of words of length at most `L` is finite.  The images of
+the twelve generators under `rho` are explicit finite leaf matrices in the
+binary Leavitt algebra.  Products are computed by multiplying finite sums of
+monomials `alpha beta^*`.  Equality is decidable by separating gauge degrees
+and refining the right paths in each degree to a common depth.  After that
+refinement, equality is equality of two finite matrices over `F_2`.
+
+Equivalently, this is the prefix-refinement normal-form calculation already
+used by `atlas_two_chart_search.py` to verify exactly that each of its 54
+source words maps to one.  Apply the same calculation to every word in the
+finite length window.  This decides membership in (3), after which (4) is
+literal word manipulation in the free product.  End proof.
+
+No word-problem oracle for an abstract presentation of `Q` is being assumed:
+only the concrete binary-prefix arithmetic of the displayed atlas is used.
+
+## 3. The exhaustion normally generates the exact kernel
+
+**Proposition 2 (commutator exhaustion).**
+
+\[
+ N=[P,R]
+  =\left\langle\!\left\langle
+       \bigcup_{L\ge1}\mathcal C_L
+    \right\rangle\!\right\rangle_P .                  \tag{5}
+\]
+
+**Proof.**  Every member of every `mathcal C_L` belongs to `[P,R]`, so the
+right side of (5) is contained in the left side.  In the quotient by the
+right side, every generator `x in X` commutes with every `r in R`, because
+`r` is represented by some finite word and hence belongs to some `W_L`.
+Since `X` generates `P`, the whole image of `P` centralizes the image of
+`R`.  Thus `[P,R]` dies in the quotient, proving the reverse inclusion.
+End proof.
+
+There is an unknown but finite stopping window.  Both `P` and
+`P/N` are finitely presented, so `N` is finitely normally generated in `P`.
+Choose finite normal generators of `N` and express each as a finite product
+of conjugates of constraints from the union in (5).  Only finitely many
+constraints occur.  Therefore:
+
+**Corollary 3 (existential finite stopping point).**  There is an
+`L_0<infinity` such that
+
+\[
+ N=\langle\!\langle\mathcal C_{L_0}\rangle\!\rangle_P. \tag{6}
+\]
+
+The value of `L_0` is not known, and the exhaustion theorem does not pretend
+to compute it.  Its advantage is that one can run a complete increasing
+search without knowing it.
+
+## 3.5 Meet-in-the-middle collision exhaustion
+
+The direct enumeration in (3) inspects exponentially many words through
+length `L`.  There is an exact meet-in-the-middle replacement which reaches
+the same kernel window after enumerating words through only half that
+length.
+
+Let `B_r` be the set of `X`-words of length at most `r`, including the empty
+word.  Partition `B_r` into buckets according to the exactly computed
+Leavitt image `rho(u)`.  In every nonempty bucket choose one anchor `a`, and
+put
+
+\[
+ \mathcal R_r^{\rm tree}
+   =\{u a_{\rho(u)}^{-1}:u\in B_r\},                 \tag{MIT1}
+\]
+
+where `a_(rho(u))` is the chosen anchor in the bucket containing `u`.
+Trivial differences may be deleted.  Define
+
+\[
+ \mathcal D_r
+   =\{[x,q]:x\in X,\ q\in\mathcal R_r^{\rm tree}\}.\tag{MIT2}
+\]
+
+**Proposition 4 (collision exhaustion).**  Every element of `R` represented
+by an `X`-word of length at most `2r` belongs to the subgroup generated by
+`mathcal R_r^(tree)`.  Consequently
+
+\[
+ N=[P,R]
+   =\left\langle\!\left\langle
+       \bigcup_{r\ge1}\mathcal D_r
+     \right\rangle\!\right\rangle_P .               \tag{MIT3}
+\]
+
+**Proof.**  Let a kernel word `w` have length at most `2r`.  Split its
+displayed word as `w=u y`, with both pieces of length at most `r`, and put
+`v=y^(-1)`.  Since `rho(w)=1`,
+
+\[
+ \rho(u)=\rho(y)^{-1}=\rho(v),\qquad w=uv^{-1}.       \tag{MIT4}
+\]
+
+If `a` is the anchor of this common-image bucket, then
+
+\[
+ uv^{-1}=(ua^{-1})(va^{-1})^{-1},                    \tag{MIT5}
+\]
+
+and both factors on the right belong to
+`mathcal R_r^(tree)`.  This proves the first assertion.  Every element of
+every `mathcal R_r^(tree)` lies in `R`.  Conversely every element of `R`
+has a finite word representative and hence, by the first assertion, belongs
+to the subgroup generated by the union of these sets.  In the quotient by
+the normal closure on the right of (MIT3), every `x in X` centralizes every
+generator of that subgroup, hence all of `R`.  Therefore `[P,R]` dies, and
+the reverse containment is immediate.  End proof.
+
+The anchor construction is stronger than merely listing all colliding
+pairs.  A bucket containing `m` words contributes only `m-1` kernel
+generators, not all `m(m-1)` ordered differences.  Thus one may:
+
+1. enumerate the words in `B_r`;
+2. hash their exact reduced binary-prefix images;
+3. retain a spanning tree in every collision bucket; and
+4. form the twelve commutators in (MIT2).
+
+This is a genuinely complete radius-`2r` kernel search.  It also supplies a
+second nested atlas criterion: in the definitions below one may replace
+`mathcal C_L` by the cumulative family
+`mathcal D_1 union ... union mathcal D_L`.  Proposition 4 gives the same
+proof verbatim.  The cumulative convention avoids any dependence on how
+bucket anchors change with `r`.
+
+## 3.6 A canonical exact solver through radius eight
+
+The first complete windows admit a canonical solution which is invisible if
+one only aligns the two regular actions by automorphisms.  Put `K=A_8`.  On
+`ell^2(K)` let
+
+\[
+ L_g\delta_h=\delta_{gh},\qquad
+ R_g\delta_h=\delta_{hg^{-1}},\qquad
+ J\delta_h=\delta_{h^{-1}}.                            \tag{TF1}
+\]
+
+Then `J L_g J=R_g`, so `U=J` is an allowed relative unitary in (7), already
+with multiplicity one.  Moreover `L(K)` and `R(K)` commute.
+
+For a word `w in K_1*K_2`, define `p_i(w) in K` by deleting all letters not
+belonging to factor `i` and multiplying the remaining letters in their
+original order.  The tensor-flip representation satisfies
+
+\[
+ \pi_J(w)=L_{p_1(w)}R_{p_2(w)}.                         \tag{TF2}
+\]
+
+**Proposition 5 (exact projection criterion).**  If `q in P`, then
+`pi_J(q)` centralizes both factor images if and only if
+
+\[
+ p_1(q)=p_2(q)=1.                                      \tag{TF3}
+\]
+
+**Proof.**  Since left and right translations commute, `L_aR_b` commutes
+with every `L_g` precisely when `a` is central in `K`; faithfulness of the
+left regular action gives the reverse implication.  Similarly it commutes
+with every `R_g` precisely when `b` is central.  The group `A_8` is
+centerless, so both conditions are equivalent to `a=b=1`.  End proof.
+
+The exact collision enumerator evaluates `(p_1(q),p_2(q))` for every tree
+generator.  It proves that (TF3) holds for all 20, 264, and 2,734 tree
+generators at half-radii two, three, and four.  By Proposition 4 these lists
+cover every kernel word through lengths four, six, and eight respectively.
+Thus the canonical tensor-flip model has exactly zero energy on every
+complete window through kernel-word length eight.
+
+The first failure occurs at half-radius five, hence kernel-word length ten.
+Of the 27,256 tree generators, 27,022 still satisfy (TF3).  The other 234
+collapse to only 24 distinct ordered pairs `(p_1(q),p_2(q))`.  Their identity
+patterns are
+
+\[
+ 116\,(1,b),\qquad 102\,(a,1),\qquad 16\,(a,b),
+ \quad a,b\ne1.                                      \tag{TF4}
+\]
+
+This is the first genuinely nonclassical boundary of the atlas problem.
+The remaining task is no longer to discover which short Leavitt relations
+matter: it is to decide whether the left-right regular model can be
+deformed or amplified so that the 24 explicit projection pairs in (TF4)
+become asymptotically central while both factor restrictions remain regular.
+
+There is a further exact compression.  The six one-sided nonidentity
+coordinates occurring in (TF4) generate
+
+\[
+ H=\{\operatorname{diag}(A,1):A\in GL_3(\mathbb F_2)\},
+ \qquad |H|=168.                                      \tag{TF5}
+\]
+
+Indeed four are the adjacent elementary transvections in the upper-left
+`3 x 3` block, and the other two recover the two remaining off-corner
+elementary transvections after multiplication by an adjacent one.  All 24
+pairs lie in `H x H`, while the list contains both `(h,1)` and `(1,h)` for
+these six generators.  Therefore the subgroup generated by the residual
+projection pairs is exactly `H x H`.  Since `H` has index 120 in `A8`,
+
+\[
+ \operatorname{Res}^{A_8}_H(\lambda_{A_8})
+   \cong 120\lambda_H.                                \tag{TF6}
+\]
+
+Thus the residual rank-three problem comes with a large canonical
+multiplicity space; this is the natural place for an induced or Hecke-type
+deformation of the tensor flip.
+
+### The 120-dimensional equivariant deformation is still rigid
+
+Choose left-coset representatives for `H` in `K=A8`.  They identify
+
+\[
+ \ell^2(K)\cong \ell^2(H)\otimes\mathbb C^{120}.       \tag{TF6a}
+\]
+
+with `L(H)` acting only on the first tensor factor.  For
+`V in U(120)`, put
+
+\[
+ W_V=I_{\ell^2(H)}\otimes V,\qquad U_V=W_VJ.           \tag{TF6b}
+\]
+
+This is an exact 120-dimensional reduction of a nonclassical search inside
+`U(20160)`.  Both factor restrictions remain regular because `U_V` is
+unitary.  Moreover, for every `h in H` and `g in K`,
+
+\[
+ [L_h,W_VR_gW_V^*]=0,                                \tag{TF6c}
+\]
+
+since `W_V` commutes with `L(H)` and every right translation commutes with
+every left translation.  Thus the ansatz preserves all cross-commutation
+relations whose factor-one letter lies in `H`, while allowing the two
+generators outside `H` to deform the tensor-flip boundary.  A nonmonomial
+`V` changes permutation support and is not covered by Proposition 6.
+
+This reduction does **not** permit replacing the radius-five words by their
+24 projection pairs.  Formula `(TF2)` is special to `V=I`; for general
+`V`, alternating words with the same `(p_1,p_2)` can have different values.
+The complete tree-word list must remain in the loss, with the 24 pairs used
+only to stratify the first failing directions.  The exact pair list and
+multiplicities are stored in
+`experiments/atlas-kernel-radius5-summary.json`.
+
+The exact support audit in that artifact in fact kills the whole ansatz.
+Of the 234 failing tree generators, 210 use only letters from `H` in both
+free factors.  Their projection patterns are
+
+\[
+ 104(1,b),\qquad 90(a,1),\qquad 16(a,b),quad a,b\ne1. \tag{TF6d}
+\]
+
+For such a word `q`, equation `(TF6c)` lets all alternating letters commute,
+so
+
+\[
+ \pi_{U_V}(q)=L_a\,W_VR_bW_V^*.                       \tag{TF6e}
+\]
+
+If `a!=1`, one of the four selected generators lying in `H` has nontrivial
+commutator with `a`, because those generators generate the centerless group
+`H`.  The corresponding centrality constraint is a nonidentity regular
+translation and has normalized-HS defect `sqrt(2)`.  If `b!=1`, the same
+argument uses a factor-two generator in `H`.  Hence every `V in U(120)` has
+maximum radius-five defect at least `sqrt(2)`.
+
+So the canonical restriction multiplicity is real, but deforming only its
+coset factor while retaining exact left-`H` equivariance cannot cross the
+boundary.  A successful model must also break that equivariance; no
+`U(120)` optimization in `(TF6b)` should be launched.
+
+The same exact filter identifies a smaller ansatz which survives.  Audit the
+15 point stabilizers and 15 hyperplane stabilizers `M` of `GL_4(F_2)`.  Each
+has order 1344 and index 15.  For 18 of these 30 subgroups, no one of the
+234 boundary words has all of its letters in `M` in both factors.  Hence the
+preceding rigidity proof has no witness for
+
+\[
+ U_V=(I_{\ell^2(M)}\otimes V)J,\qquad V\in U(15).      \tag{TF6f}
+\]
+
+This remains an exact regular-factor model in dimension 20,160, but its only
+continuous variable is a `15 x 15` unitary.  It is different from optimizing
+the 15-point permutation representation itself: `(TF6f)` deforms the coset
+multiplicity inside the full regular representation.  The complete
+30-subgroup audit is stored in the radius-five summary.  The zero-contained
+stabilizers are the next bounded primal search.
+
+## 3.7 Phase twists of the tensor flip cannot cross the boundary
+
+The most immediate deformation of `J` is already impossible.  Let `V` be
+any finite-dimensional multiplicity space, decompose
+
+\[
+ \ell^2(K)\otimes V=\bigoplus_{g\in K}(\mathbb C\delta_g\otimes V),
+\]
+
+and let `D=directsum_(g in K) D_g` be an arbitrary block-diagonal unitary,
+with `D_g in U(V)`.  Set
+
+\[
+ U=D(J\otimes1_V).                                    \tag{TF7}
+\]
+
+This includes arbitrary scalar phases and arbitrary matrix-valued cocycle
+gauges on the inversion alignment.
+
+**Proposition 6 (monomial phase no-go).**  For every word `w in P`, the
+base permutation of `pi_U(w)` is
+
+\[
+ L_{p_1(w)}R_{p_2(w)}.                                \tag{TF8}
+\]
+
+If `(p_1(w),p_2(w)) != (1,1)`, then at least one of the twelve generator
+commutators satisfies
+
+\[
+ \|\pi_U([x,w])-1\|_2=\sqrt2.                         \tag{TF9}
+\]
+
+In particular no sequence of block-phase twists (TF7), with arbitrary
+growing multiplicities, can solve the radius-ten window.
+
+**Proof.**  Conjugating a left translation by `D(J tensor 1)` changes its
+matrix weights but not its base permutation, which is the corresponding
+right translation.  Base permutations multiply independently of their
+block weights, proving (TF8).
+
+Write `(a,b)=(p_1(w),p_2(w))`.  If `a!=1`, centerlessness of `K=A_8` and the
+fact that the six selected transvections generate `K` give a factor-one
+generator `x` with `[x,a]!=1`.  The base permutation of `[x,w]` is the
+nonidentity left translation `L_[x,a]`, hence has no fixed point.  A
+block-monomial unitary with fixed-point-free base permutation has normalized
+trace zero, regardless of its block weights.  Therefore
+
+\[
+ \|\pi_U([x,w])-1\|_2^2
+ =2-2\operatorname{Re}\operatorname{tr}(\pi_U([x,w]))=2.
+\]
+
+If `a=1` and `b!=1`, use a factor-two generator and the identical argument
+with right translations.  This proves (TF9).  The radius-five tree list
+contains 234 words with nontrivial projection pair, so its maximum defect is
+at least `sqrt(2)` for every unitary of the form (TF7).  End proof.
+
+Thus neither diagonal phases nor nonabelian fiber gauges exploit the
+120-fold restriction multiplicity in (TF6).  A successful deformation must
+change the permutation support itself or leave the block-monomial category.
+
+## 3.8 The first obstruction has an exact Clifford repair
+
+The phase no-go is not a lower bound for arbitrary relative unitaries.
+The shortest one-sided failure contains an exact six-letter kernel word
+
+\[
+ q=s_1b_2t_1b_2(st)^{-1}_1b_2,                       \tag{LC1}
+\]
+
+inside two \(S_3<A_8\) subgroups.  It is the product of three conjugate
+involutions which form a Klein four group in the Leavitt quotient.
+FALSE_LOCAL_CLIFFORD_ATLAS.md constructs an exact pair of
+\(64\)-dimensional irreducible \(A_8\) charts in which those lifts are a
+Pauli triple:
+
+\[
+ q=-i,\qquad [p_i,p_j]=-1.                           \tag{LC2}
+\]
+
+An \(S_4\) branching calculation supplies phase-\(1\) completions on all
+other irreducible \(A_8\) sectors.  Assembling the regular character then
+gives a relative unitary already at multiplicity one for which all
+centrality constraints generated by this parity word and its three
+Klein-four commutators vanish exactly, while
+
+\[
+ \|\pi(q)-1\|_2^2={128\over315},\qquad
+ \|\pi([p_i,p_j])-1\|_2^2={256\over315}.              \tag{LC3}
+\]
+
+Thus the first tensor-flip failure can be crossed with a macroscopic central
+witness inside the canonical regular model.  The live problem is
+simultaneous compatibility with the other collision-tree generators and
+with later windows, not repair of this parity cluster in isolation.
+
+## 3.9 A coherent wall crossing reduces the shortest parity system to one pair
+
+The 34 shortest one-sided boundary words have a second exact compression,
+proved in `FALSE_COHERENT_WALL_CROSSING.md`.  Each is a product of three
+conjugates of one repeated involution.  Removing duplicate triples gives 24
+independent three-uniform parity edges on 44 vertices, split into eight
+connected components of sizes
+
+\[
+ 5,5,7,7,4,4,6,6.                                  \tag{CW1}
+\]
+
+There are exactly fourteen inner (A_8)-alignments which make all 34 words
+equal to one.  More usefully, on the (64)-dimensional irrep (W=(5,2,1))
+one may take
+
+\[
+ U=\rho(k){I-i\rho(d)\over\sqrt2},\qquad d^2=1,     \tag{CW2}
+\]
+
+for the explicit (k,d\in GL_4(2)) displayed in that note.  An exact
+rational-Gaussian character calculation shows that 32 of the 34 words still
+act as (1).  The remaining inverse-pair has
+
+\[
+ \operatorname{tr}_{64}(q_\partial)=\frac14,
+ \qquad\left\|q_\partial-\frac14I\right\|_2^2
+ =\frac{15}{16}.                                    \tag{CW3}
+\]
+
+Thus seven of the eight parity components can be crossed coherently by one
+quarter-turn between classical walls.  This construction does not retain a
+central phase: its 32 exact words all have phase (+1).  Moreover
+`FALSE_CLIFFORD_TORSION_GATE.md` proves that the apparent phase in the local
+Pauli block is globally trivial in (R/[P,R]).  Hence (CW2) is a structural
+boundary reduction and a regression test for truncated-window false
+positives, not a route for preserving that Clifford witness.
+
+The subsequent complete-boundary classification is in
+`FALSE_ATLAS_PERFECT_OVERLAP_SCAN.md`; it should be used before optimizing
+any further cross-chart phase.
+
+## 4. Canonical one-unitary models
+
+Let `lambda:A_8->U(20160)` be the left regular representation.  For
+`k>=1` and `U in U(20160k)`, define the exact representation
+
+\[
+ \begin{aligned}
+  \pi_{k,U}(h)&=\lambda(h)\otimes I_k &&(h\in K_1),\\
+  \pi_{k,U}(h)&=U(\lambda(h)\otimes I_k)U^* &&(h\in K_2).
+ \end{aligned}                                         \tag{7}
+\]
+
+For each finite window put
+
+\[
+ \delta_L=
+   \inf_{k\ge1}\ \inf_{U\in U(20160k)}
+       \max_{c\in\mathcal C_L}\|\pi_{k,U}(c)-1\|_2.  \tag{8}
+\]
+
+**Theorem 4 (recursive canonical-atlas criterion).**  The following are
+equivalent.
+
+1. `Q=L_(F_2)(1,2)^times` is hyperlinear.
+2. `delta_L=0` for every `L>=1`.
+3. There are `k_n>=1` and `U_n in U(20160k_n)` such that
+
+   \[
+    \max_{c\in\mathcal C_n}
+       \|\pi_{k_n,U_n}(c)-1\|_2\longrightarrow0.       \tag{9}
+   \]
+
+If these conditions hold, the already proved nonsofic group `Q` is a
+hyperlinear nonsofic group.
+
+**Proof.**  Suppose first that `Q` is hyperlinear.  Pull a regular
+hyperlinear model of `Q` back to `P`.  Hilbert--Schmidt stability of the
+virtually free group `P` corrects it to exact finite-dimensional
+representations of `P`.  On either finite factor, the normalized characters
+converge to the regular character.  Finite-group character orthogonality,
+followed by a harmless common amplification and replacement on an
+`o(1)`-dimensional summand, puts both factor restrictions in the canonical
+regular form (7).  Every fixed word changes by `o(1)`.  This is the
+canonicalization argument from Section 9 of `EXPLICIT_LEAVITT_ATLAS.md`.
+It applies to the finite set `mathcal C_L`, for arbitrary `L` and arbitrary
+tolerance, and proves `delta_L=0`.  Thus 1 implies 2.
+
+Assume 2.  For every `n`, choose `k_n,U_n` for which the expression in (8),
+with `L=n`, is less than `1/n`.  This is (9), so 2 implies 3.
+
+Assume 3 and pass to a tracial ultraproduct.  Since every `pi_(k_n,U_n)` is
+an exact representation, (9) defines a homomorphism
+
+\[
+ \Pi:P\longrightarrow\prod_\omega U(20160k_n).         \tag{10}
+\]
+
+Every member of the union in (5) lies in `ker Pi`; hence `N<=ker Pi`.
+The map factors through
+
+\[
+ V=P/N.                                                  \tag{11}
+\]
+
+This factor is a perfect central extension of `Q`: `R/N` is central by the
+definition of `N`, `V/(R/N)=Q`, and `V` is perfect because
+`P=A_8*A_8` is perfect.  It is therefore quasisimple.  Indeed, the image in
+the simple group `Q` of a normal subgroup of `V` is either trivial or all of
+`Q`; in the second case the corresponding quotient of `V` is abelian, hence
+trivial because `V` is perfect.
+
+The homomorphism induced by (10) on `V` is nontrivial.  Its restriction to
+the first `A_8` factor is the amplified left regular representation at every
+stage; any noncommuting pair in that factor has a nonidentity commutator at
+normalized distance `sqrt(2)` from one.  Quasisimplicity now puts the kernel
+of `V->Pi(V)` in the center.  Thus `Pi(V)` is hyperlinear and `Q` is its
+central quotient.  Hyperlinearity passes to central quotients, so `Q` is
+hyperlinear.  This proves 3 implies 1.  End proof.
+
+Notice that Theorem 4 does not need the stronger identification of `V` with
+the universal central extension, and it does not use finite presentability.
+Perfectness plus centrality over the simple quotient is sufficient.
+
+## 5. Smooth finite-window energies
+
+For computation it is convenient to replace the maximum by one smooth
+average.  Delete duplicate and identity constraints and put
+
+\[
+ E_{L,k}=\min_{U\in U(20160k)}
+   \frac1{|\mathcal C_L|}
+   \sum_{c\in\mathcal C_L}\|\pi_{k,U}(c)-1\|_2^2,
+ \qquad E_L=\inf_{k\ge1}E_{L,k}.                       \tag{12}
+\]
+
+Each finite-`k` minimum is attained.  It is the minimum of an explicit
+smooth word-trace polynomial on a compact unitary group.  Since a finite
+average tends to zero exactly when its finite maximum tends to zero,
+Theorem 4 gives
+
+(For a window left empty after deleting identities, set `E_(L,k)=0`.)
+
+\[
+ \boxed{Q\text{ is hyperlinear}\quad\Longleftrightarrow\quad
+        E_L=0\text{ for every }L.}                     \tag{13}
+\]
+
+Block direct sums of relative unitaries show
+
+\[
+ (k+\ell)E_{L,k+\ell}
+   \le kE_{L,k}+\ell E_{L,\ell}.                       \tag{14}
+\]
+
+Hence Fekete's lemma gives
+
+\[
+ E_L=\lim_{k\to\infty}E_{L,k}=\inf_k E_{L,k}.         \tag{15}
+\]
+
+Combining (6) and (13) produces a finite alternative even though the
+stopping window is unknown:
+
+* if `Q` is hyperlinear, every finite-window limiting energy `E_L` is zero;
+* if `Q` is nonhyperlinear, some finite computable window has `E_L>0`.
+
+Thus either outcome has a finite-window analytic certificate.  The hard
+part remains controlling the limit over multiplicity `k`, not extracting a
+printed presentation.
+
+## 6. Relation to the current experiments
+
+The 54 exactly validated source relations in
+`experiments/atlas_two_chart_search.py` belong to `R`.  Their 648
+commutators with the twelve factor generators therefore belong to the union
+in (5).  They are legitimate necessary constraints, but they are not a
+complete length window: other kernel words of comparable or smaller word
+length were not exhaustively included.
+
+The next complete computational step is now unambiguous:
+
+1. enumerate all `X`-words through a chosen length;
+2. retain exactly those whose binary-prefix image is one;
+3. form the commutators (4), reduce and deduplicate them; and
+4. optimize the energy (12), increasing both `L` and `k`.
+
+Extracting the fixed Krsti\'c--McCool/Tietze relator list would still make a
+single fixed-window SOS attack possible.  Theorem 4 shows that it is an
+optimization convenience, not a logical prerequisite for a complete
+FALSE-side search.

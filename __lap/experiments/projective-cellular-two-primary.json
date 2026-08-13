@@ -1,0 +1,739 @@
+[
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 3
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 3,
+          "unsigned_orbits": 5
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 3,
+          "unsigned_orbits": 3
+        },
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 5
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 3,
+          "unsigned_orbits": 3
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 2,
+      "2": 3,
+      "3": 2
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 3,
+      "3": 1
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      3,
+      8,
+      3
+    ],
+    "prime": 3,
+    "projective_degree": 13,
+    "rational_free_dimensions": [
+      3,
+      2,
+      0,
+      0
+    ],
+    "unsigned_mod_two_dimensions": [
+      3,
+      5,
+      8,
+      3
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 5
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 9
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 5
+        },
+        {
+          "orientation_torsion_orbits": 7,
+          "unsigned_orbits": 7
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 5
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 4,
+      "2": 5,
+      "3": 3
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 4,
+      "3": 2
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      5,
+      12,
+      5
+    ],
+    "prime": 5,
+    "projective_degree": 31,
+    "rational_free_dimensions": [
+      5,
+      4,
+      0,
+      0
+    ],
+    "unsigned_mod_two_dimensions": [
+      5,
+      9,
+      12,
+      5
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 7
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 13
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 7
+        },
+        {
+          "orientation_torsion_orbits": 9,
+          "unsigned_orbits": 11
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 5,
+          "unsigned_orbits": 7
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 6,
+      "2": 7,
+      "3": 6
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 5,
+      "3": 1
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      5,
+      14,
+      5
+    ],
+    "prime": 7,
+    "projective_degree": 57,
+    "rational_free_dimensions": [
+      7,
+      8,
+      4,
+      2
+    ],
+    "unsigned_mod_two_dimensions": [
+      7,
+      13,
+      18,
+      7
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 11
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 7,
+          "unsigned_orbits": 25
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 7,
+          "unsigned_orbits": 11
+        },
+        {
+          "orientation_torsion_orbits": 13,
+          "unsigned_orbits": 19
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 7,
+          "unsigned_orbits": 11
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 10,
+      "2": 15,
+      "3": 9
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 6,
+      "3": 2
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      7,
+      20,
+      7
+    ],
+    "prime": 11,
+    "projective_degree": 133,
+    "rational_free_dimensions": [
+      11,
+      18,
+      10,
+      4
+    ],
+    "unsigned_mod_two_dimensions": [
+      11,
+      25,
+      30,
+      11
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 15
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 9,
+          "unsigned_orbits": 33
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 9,
+          "unsigned_orbits": 15
+        },
+        {
+          "orientation_torsion_orbits": 15,
+          "unsigned_orbits": 25
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 9,
+          "unsigned_orbits": 15
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 14,
+      "2": 19,
+      "3": 13
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 8,
+      "3": 2
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      9,
+      24,
+      9
+    ],
+    "prime": 13,
+    "projective_degree": 183,
+    "rational_free_dimensions": [
+      15,
+      24,
+      16,
+      6
+    ],
+    "unsigned_mod_two_dimensions": [
+      15,
+      33,
+      40,
+      15
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 21
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 51
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 21
+        },
+        {
+          "orientation_torsion_orbits": 19,
+          "unsigned_orbits": 37
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 21
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 20,
+      "2": 30,
+      "3": 18
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 1,
+      "2": 10,
+      "3": 3
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      11,
+      30,
+      11
+    ],
+    "prime": 17,
+    "projective_degree": 307,
+    "rational_free_dimensions": [
+      21,
+      40,
+      28,
+      10
+    ],
+    "unsigned_mod_two_dimensions": [
+      21,
+      51,
+      58,
+      21
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 25
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 61
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 25
+        },
+        {
+          "orientation_torsion_orbits": 21,
+          "unsigned_orbits": 45
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 11,
+          "unsigned_orbits": 25
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 24,
+      "2": 37,
+      "3": 23
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 10,
+      "3": 2
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      11,
+      32,
+      11
+    ],
+    "prime": 19,
+    "projective_degree": 381,
+    "rational_free_dimensions": [
+      25,
+      50,
+      38,
+      14
+    ],
+    "unsigned_mod_two_dimensions": [
+      25,
+      61,
+      70,
+      25
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 33
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 13,
+          "unsigned_orbits": 85
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 13,
+          "unsigned_orbits": 33
+        },
+        {
+          "orientation_torsion_orbits": 25,
+          "unsigned_orbits": 61
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 13,
+          "unsigned_orbits": 33
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 32,
+      "2": 53,
+      "3": 30
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 11,
+      "3": 3
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      13,
+      38,
+      13
+    ],
+    "prime": 23,
+    "projective_degree": 553,
+    "rational_free_dimensions": [
+      33,
+      72,
+      56,
+      20
+    ],
+    "unsigned_mod_two_dimensions": [
+      33,
+      85,
+      94,
+      33
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 49
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 129
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 49
+        },
+        {
+          "orientation_torsion_orbits": 31,
+          "unsigned_orbits": 91
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 49
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 48,
+      "2": 81,
+      "3": 45
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 14,
+      "3": 4
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      17,
+      48,
+      17
+    ],
+    "prime": 29,
+    "projective_degree": 871,
+    "rational_free_dimensions": [
+      49,
+      112,
+      92,
+      32
+    ],
+    "unsigned_mod_two_dimensions": [
+      49,
+      129,
+      140,
+      49
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 55
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 145
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 55
+        },
+        {
+          "orientation_torsion_orbits": 33,
+          "unsigned_orbits": 103
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 17,
+          "unsigned_orbits": 55
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 54,
+      "2": 91,
+      "3": 52
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 15,
+      "3": 3
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      17,
+      50,
+      17
+    ],
+    "prime": 31,
+    "projective_degree": 993,
+    "rational_free_dimensions": [
+      55,
+      128,
+      108,
+      38
+    ],
+    "unsigned_mod_two_dimensions": [
+      55,
+      145,
+      158,
+      55
+    ]
+  },
+  {
+    "cell_orbit_counts": [
+      [
+        {
+          "orientation_torsion_orbits": 0,
+          "unsigned_orbits": 141
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 29,
+          "unsigned_orbits": 393
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 29,
+          "unsigned_orbits": 141
+        },
+        {
+          "orientation_torsion_orbits": 55,
+          "unsigned_orbits": 271
+        }
+      ],
+      [
+        {
+          "orientation_torsion_orbits": 29,
+          "unsigned_orbits": 141
+        }
+      ]
+    ],
+    "mod_two_boundary_ranks": {
+      "1": 140,
+      "2": 253,
+      "3": 135
+    },
+    "mod_two_boundary_squared_zero": {
+      "2": true,
+      "3": true
+    },
+    "mod_two_homology_dimensions": {
+      "0": 1,
+      "1": 0,
+      "2": 24,
+      "3": 6
+    },
+    "orientation_torsion_C2_coordinate_counts": [
+      0,
+      29,
+      84,
+      29
+    ],
+    "prime": 53,
+    "projective_degree": 2863,
+    "rational_free_dimensions": [
+      141,
+      364,
+      328,
+      112
+    ],
+    "unsigned_mod_two_dimensions": [
+      141,
+      393,
+      412,
+      141
+    ]
+  }
+]

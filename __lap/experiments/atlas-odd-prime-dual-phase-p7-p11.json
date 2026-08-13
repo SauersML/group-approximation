@@ -1,0 +1,102 @@
+{
+  "coefficient_rings": [
+    "F_7[eps]/(eps^2)",
+    "F_11[eps]/(eps^2)"
+  ],
+  "modules": [
+    "point_permutation_15",
+    "hyperplane_permutation_15"
+  ],
+  "centrality_condition": "every survivor block intertwines the first A8 chart",
+  "ordered_block_records": [
+    {
+      "prime": 7,
+      "left_module": "point_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 7,
+      "left_module": "point_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 7,
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 7,
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 11,
+      "left_module": "point_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 11,
+      "left_module": "point_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 11,
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "point_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    },
+    {
+      "prime": 11,
+      "left_module": "hyperplane_permutation_15",
+      "right_module": "hyperplane_permutation_15",
+      "hom_dimension": 225,
+      "constraint_rank": 212,
+      "constraint_nullity": 13,
+      "phase_image_dimension": 0,
+      "nonzero_central_phase_exists": false,
+      "witness": null
+    }
+  ],
+  "some_nonzero_central_phase_exists": false
+}

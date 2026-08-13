@@ -1,0 +1,291 @@
+name: Lean Prover CI
+
+on:
+  schedule:
+    # Every six hours: pushes already run the full pipeline, so the schedule
+    # exists to catch cache eviction and environment drift, not to re-verify
+    # commits it has already seen.
+    - cron: '0 */6 * * *'
+  push:
+    branches: [ "main" ]
+    paths:
+      - '**/*.lean'
+      # The source scan is a gate, so a change to it must re-run the gate.
+      # Without this, an edit to `check.py` alone -- including one that turns a
+      # detector off -- shipped without CI ever running.
+      - 'scripts/**'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - '.github/workflows/prover.yml'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**/*.lean'
+      # The source scan is a gate, so a change to it must re-run the gate.
+      # Without this, an edit to `check.py` alone -- including one that turns a
+      # detector off -- shipped without CI ever running.
+      - 'scripts/**'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - '.github/workflows/prover.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # NOT cancel-in-progress.  A cancelled job may lose the partial `.lake/build`
+  # it would otherwise have saved, and this build is long enough that throwing
+  # away an hour of oleans to start over is worse than letting the old run
+  # finish and seed the cache for the new one.
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Gate scheduled runs on recent changes
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 1
+      - id: check
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "Event ${{ github.event_name }} is not a schedule; running."
+            echo "run=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          latest=$(git log -1 --format=%ct)
+          now=$(date +%s)
+          age_min=$(( (now - latest) / 60 ))
+          window=420
+          if [ "$age_min" -lt "$window" ]; then
+            echo "Last commit ${age_min}m ago (< ${window}m); running scheduled job."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Last commit ${age_min}m ago (>= ${window}m); nothing changed, skipping."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  prove:
+    name: Build and audit
+    needs: gate
+    if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
+    runs-on: ubuntu-latest
+    # A few hundred modules of analysis on top of Mathlib.  A cold first build
+    # can run for hours; every run saves whatever it compiled (see the
+    # cache-save steps), so even a run that hits this ceiling leaves the next
+    # one strictly warmer.
+    timeout-minutes: 340
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # WARM START, part 1: dependencies.
+      #
+      # STABLE key, deliberately different from the build cache below: the
+      # dependency tree is COMPLETE the moment `lake exe cache get` finishes
+      # and is a function of the manifest alone, so the partial-entry hazard
+      # that forces the build cache onto unique keys does not exist here.  A
+      # stable key gives an exact hit on every unchanged-manifest run, which
+      # turns the ~5GB save step below into a no-op instead of a per-run
+      # upload.
+      - name: Restore Lake dependencies
+        id: lake-deps-restore
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      # WARM START, part 2: this project's own oleans.
+      #
+      # Keyed on the sources so an unchanged tree is an exact hit, with the
+      # prefix fallback carrying the previous run's build forward when sources
+      # did change.  Lake's own hashing decides what is actually reusable; a
+      # stale olean is rebuilt, never trusted.
+      - name: Restore compiled project
+        id: build-restore
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-
+
+      # Mathlib's own oleans, from the upstream build cache.  This is what makes
+      # the very first run warm rather than a from-scratch Mathlib compile:
+      # without it the toolchain would rebuild Mathlib itself, which alone
+      # exceeds this job's timeout.  Run unconditionally and let it no-op when
+      # the dependency cache already had everything.
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
+
+      # Saved BEFORE the long build, so a build that times out or fails still
+      # leaves the (expensive, ~5GB unpacked) Mathlib oleans cached for the
+      # next run.  The dependency tree is complete at this point; nothing the
+      # build does improves it.
+      - name: Save Lake dependencies
+        if: always() && steps.lake-deps-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ steps.lake-deps-restore.outputs.cache-primary-key }}
+
+      # The source scan is CALIBRATED before it is believed, exactly as gnomon
+      # calibrates its laundering detector before reading its verdict: a
+      # detector that reports nothing is indistinguishable from a clean corpus,
+      # so its silence is not evidence until both directions are asserted --
+      # every planted defect reported under its own tag, and a clean tree
+      # silent.  This step also fails if the calibration is deleted.
+      - name: Calibrate the source scan
+        run: |
+          python3 scripts/check.py --self-test
+          python3 scripts/test_claim_map.py
+
+      # Source text: forbidden constructs, and the root import closure.  Runs
+      # before the build because it is instant, and because the orphan-module
+      # check is the one finding a green build actively conceals: `lake build`
+      # compiles the root's import closure, so a module nothing imports is
+      # never compiled and never audited.
+      #
+      # `continue-on-error` is NOT tolerance -- the "Zero-tolerance verdict"
+      # step at the end of this job fails the run on this step's outcome, and
+      # deleting that step turns the gate off loudly rather than quietly.  It
+      # is here because the two scans see different things (source text vs.
+      # kernel environment) and a first failure that hides the second costs a
+      # multi-hour build to learn the other half.  One red run should name
+      # every finding in the repository, not the first one alphabetically.
+      - name: Source scan
+        id: source-scan
+        continue-on-error: true
+        run: python3 scripts/check.py
+
+      # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
+      # library, so an unused variable or a deprecated lemma is a failure here.
+      - name: Build project
+        run: lake build
+
+      # The detector library, built separately so a deprecation warning in the
+      # instrumentation can never take the corpus build down with it.
+      - name: Build the audit library
+        run: lake build Audit
+
+      # CALIBRATION BEFORE VERDICT, the third time in this file.  The scans in
+      # Audit.Scan report nothing on a clean corpus, and a scan that reports
+      # nothing because it is broken looks exactly the same.  Audit.Plants
+      # carries thirteen planted defects that must each be reported under their
+      # own tag, six shapes that must NOT be reported under a named tag (one
+      # row per false positive a real run emitted), and four clean
+      # declarations that must be reported by nothing.
+      # Needs no Mathlib and no corpus, so it still runs when the library does
+      # not build -- which is when a broken detector is most likely to be
+      # blamed on the corpus.
+      - name: Calibrate the environment scans
+        run: lake env lean scripts/Calibrate.lean
+
+      # Saved with `always()` so a run that dies partway through still banks the
+      # modules it did compile.  This is the mechanism that lets a build too
+      # long for one job converge over consecutive runs instead of restarting
+      # from zero each time.
+      # Skipped when the restore already matched the exact source hash: the
+      # snapshot on disk is then byte-identical to the one in the cache, and
+      # re-uploading several GB per run buys nothing.
+      - name: Save compiled project
+        if: always() && !startsWith(steps.build-restore.outputs.cache-matched-key, format('{0}-nonsofic-build-{1}-', runner.os, hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean')))
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ steps.build-restore.outputs.cache-primary-key }}
+
+      # A successful `lake build` says every module elaborates.  It says nothing
+      # about what the proof terms rest on.  This step pins the statements of
+      # the four public theorems and walks the transitive axiom closure of the
+      # whole namespace through the kernel environment, rejecting anything
+      # outside `propext` / `Classical.choice` / `Quot.sound`.  Without it,
+      # "0 sorries" is a grep result rather than a fact about the proof.
+      #
+      # `continue-on-error` for the same reason as the source scan, and with
+      # the same backstop: the verdict step below reads this outcome.
+      - name: Kernel audit (statements, axiom closure, environment scans)
+        id: kernel-audit
+        continue-on-error: true
+        run: lake env lean scripts/Audit.lean
+
+      # The name-level claim map says each mapped declaration exists; this
+      # step pins what each one *states*.  It regenerates the elaborated
+      # signatures of every mapped declaration and fails if the committed
+      # `docs/CLAIM_SIGNATURES.md` differs -- so a mapped theorem cannot lose
+      # a conclusion or gain a hypothesis without a red run and a reviewed
+      # diff of the signature file.
+      - name: Signature pinning (elaborated types of mapped declarations)
+        run: |
+          if grep -q '^PLACEHOLDER:' docs/CLAIM_SIGNATURES.md; then
+            # Not yet populated by a first build; generate for the log but do
+            # not gate until a real signature file is committed.
+            lake env lean scripts/Signatures.lean
+            echo "::warning::docs/CLAIM_SIGNATURES.md is a placeholder; commit the generated file to arm this gate"
+          else
+            lake env lean scripts/Signatures.lean
+            git diff --exit-code docs/CLAIM_SIGNATURES.md \
+              || { echo "::error::docs/CLAIM_SIGNATURES.md is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
+          fi
+
+      # The toolchain's built-in checker replays every olean through a fresh
+      # kernel environment, so a result that survives it does not rest on the
+      # elaborator being correct.  It is shipped with Lean from v4.28 onward;
+      # using the pinned toolchain also guarantees olean compatibility.
+      - name: Fresh kernel re-check (leanchecker)
+        run: lake env leanchecker --fresh GroupApproximation
+
+      # THE GATE.  The two scan steps above defer their verdict here so that one
+      # run names every finding; this step is what makes that deferral safe.
+      # There are no budgets in either scan and there is no threshold here: a
+      # single finding on either side is a red run.  If this step is ever
+      # removed, `continue-on-error` above silently becomes real tolerance --
+      # so it is the one step in this file that must not be deleted without
+      # deleting the `continue-on-error` lines with it.
+      - name: Zero-tolerance verdict
+        if: always()
+        shell: bash
+        run: |
+          failed=0
+          src='${{ steps.source-scan.outcome }}'
+          ker='${{ steps.kernel-audit.outcome }}'
+          # `skipped` counts as failure: it means an earlier step (the build)
+          # died, and an unrun scan is not a clean one.
+          if [ "$src" != "success" ]; then
+            echo "::error::source scan did not pass (outcome: ${src:-skipped}); see the 'Source scan' step"
+            failed=1
+          fi
+          if [ "$ker" != "success" ]; then
+            echo "::error::kernel audit did not pass (outcome: ${ker:-skipped}); see the 'Kernel audit' step"
+            failed=1
+          fi
+          if [ "$failed" -ne 0 ]; then
+            echo "zero tolerance: the repository is not clean."
+            exit 1
+          fi
+          echo "zero tolerance: source scan and kernel audit both clean."

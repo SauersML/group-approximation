@@ -1,0 +1,69 @@
+{
+  "overgroup": "A10 natural eight-point-support geometry",
+  "conjugators": "S10 modulo the pointwise-chart centralizer (both label parities)",
+  "conjugators_expected": 1814400,
+  "conjugators_tested": 1814400,
+  "boundary_words": 234,
+  "interior_indices": [
+    19243
+  ],
+  "sphere_sizes": [
+    1,
+    12,
+    116,
+    1098,
+    10372,
+    97800
+  ],
+  "boundary_survivor_count": 1,
+  "combined_survivor_count": 0,
+  "boundary_survivors": [
+    {
+      "conjugator": [
+        3,
+        5,
+        1,
+        8,
+        2,
+        7,
+        6,
+        4,
+        9,
+        10
+      ],
+      "second_chart_fixed_points": [
+        9,
+        10
+      ]
+    }
+  ],
+  "combined_survivors": [],
+  "first_boundary_failure_histogram": [
+    [
+      0,
+      1812096
+    ],
+    [
+      2,
+      2160
+    ],
+    [
+      11,
+      136
+    ],
+    [
+      30,
+      4
+    ],
+    [
+      44,
+      2
+    ],
+    [
+      55,
+      1
+    ]
+  ],
+  "timed_out": false,
+  "elapsed_seconds": 69.032
+}

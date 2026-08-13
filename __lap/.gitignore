@@ -1,0 +1,7 @@
+/.lake/
+/tmp/
+/*.aux
+/*.log
+/*.out
+scripts/msi-build.sh
+scripts/__pycache__/
