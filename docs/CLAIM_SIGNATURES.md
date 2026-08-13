@@ -1902,65 +1902,6 @@ IsOperatorMF CyclicBaseCalibration.CliffordBS →
 ¬∃ Q x, ∃ (_ : Finite Q), ∃ φ, φ LiteralNonMFPresentation.mark ≠ 1
 ```
 
-## `GroupApproximation.LiteralKazhdanCompression.literal_free_source_isOperatorMF`
-
-```lean
-IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT`
-
-```lean
-HasKazhdanPropertyT LiteralNonMFPresentation.Base →
-  IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator) ∧
-    Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators) ∧
-      ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.literal_quotientMap_surjective`
-
-```lean
-Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators)
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine`
-
-```lean
-∀ (e : LiteralNonMFPresentation.Base ≃* AffineSL3Doubling.Gamma),
-  HasKazhdanPropertyT AffineSL3Doubling.Gamma →
-    ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT`
-
-```lean
-HasKazhdanPropertyT LiteralNonMFPresentation.Base →
-  ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate`
-
-```lean
-∀ {c : ℚ},
-  LiteralBaseSOS.IsRationalCertificate c → ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.witness_not_isOperatorMF_of_hasKazhdanPropertyT`
-
-```lean
-HasKazhdanPropertyT LiteralNonMFPresentation.Base →
-  ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
-```
-
-## `GroupApproximation.LiteralKazhdanCompression.witness_sign_normMFInvisible_of_hasKazhdanPropertyT`
-
-```lean
-HasKazhdanPropertyT LiteralNonMFPresentation.Base →
-  NormMFInvisible
-    (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
-      ExplicitLinearModel.conjD_injective)
-```
-
 ## `GroupApproximation.LiteralNonMFLinearWitness.baseMap_injective_of_matrixBaseHom_injective`
 
 ```lean
@@ -2014,19 +1955,24 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
         ∀ (g : LiteralNonMFPresentation.MarkedGroup), Commute LiteralNonMFPresentation.mark g
 ```
 
+## `GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective`
+
+```lean
+Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators)
+```
+
+## `GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF`
+
+```lean
+IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
+```
+
 ## `GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34`
 
 ```lean
 ∀ {q : FreeGroup LiteralNonMFPresentation.Generator},
   q ∈ LiteralNonMFPresentation.relators ∨ q = LiteralNonMFPresentation.markedWord →
     LiteralPresentationRadius.wordLength q ≤ 34
-```
-
-## `GroupApproximation.LiteralReducedGroupCStar.no_faithfulCoronaUnitaryRestriction`
-
-```lean
-HasKazhdanPropertyT LiteralNonMFPresentation.Base →
-  IsEmpty (FaithfulReducedCoronaUnitaryRestriction LiteralNonMFPresentation.MarkedGroup)
 ```
 
 ## `GroupApproximation.LocalCriterionData`
