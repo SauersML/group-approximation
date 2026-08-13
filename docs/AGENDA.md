@@ -4006,6 +4006,19 @@ Continue the nonlinear coefficient audit only in this fixed annular regime.
 See `TRUE_RAW_WORD_REYNOLDS_GAP.md` and the one-core MSI replay
 `atlas_raw_reynolds_gap_audit.py`.
 
+The two named letters are involutions whose product has order three, and
+their exact subgroup closure has order six: `K=GL_2(2)~=S3`.  The six-term
+Reynolds identity upgrades the localized deficit to
+
+```text
+1-||E_K(U)||_2^2 >= 1/480-o(1).
+```
+
+Use the three irreducible `S3` types `1,sign,2` as the next finite
+multiplicity quiver.  The hard-pair/comb block products must either retain
+the two child branches there or furnish an exact certificate that the
+restriction is too coarse before the 168-element `H` quiver is expanded.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

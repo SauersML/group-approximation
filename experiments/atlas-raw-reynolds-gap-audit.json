@@ -57,10 +57,20 @@
     "01000000000100000001010000000001": 8,
     "01000000000101000000010000000001": 4
   },
+  "two_H_letter_subgroup": {
+    "order": 6,
+    "generator_orders": [
+      2,
+      2
+    ],
+    "product_order": 3,
+    "isomorphic_to": "S3 = GL(2,2)"
+  },
   "word_after_replacing_chart_2_H_by_chart_1": [],
   "replacement_count": 12,
   "normalized_HS_consequence": "hsNorm(raw(U)-1) <= 12 * Delta_H",
   "tracial_separation_consequence": "Delta_H >= sqrt(2)/12 - o(1)",
   "two_generator_energy_consequence": "if a,b are the two H-displacements, a^2+b^2 >= 1/40-o(1)",
-  "reynolds_consequence": "1-hsNorm(E_H(U))^2 >= 1/13440 - o(1)"
+  "reynolds_consequence": "1-hsNorm(E_H(U))^2 >= 1/13440 - o(1)",
+  "S3_reynolds_consequence": "1-hsNorm(E_S3(U))^2 >= 1/480 - o(1)"
 }

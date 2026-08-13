@@ -157,6 +157,29 @@ Therefore `(RWG5c)` yields the sharper estimate
 Thus every hypothetical hyperlinear atlas sequence lies not merely outside
 the aligned fold, but outside an explicit fixed Reynolds tube around it.
 
+The two letters `h_a,h_b` are involutions and their product has order three.
+Exact closure inside `H` has order six, so
+
+\[
+ K=\langle h_a,h_b\rangle\cong GL_2(2)\cong S_3.
+ \tag{RWG10a}
+\]
+
+Let `E_K` be the six-term Reynolds projection.  Its mean-displacement
+identity contains the same two nonnegative summands `a^2,b^2`, and therefore
+
+\[
+ \boxed{
+ 1-\|E_K(U)\|_2^2
+ \ge {a^2+b^2\over 2|K|}
+ \ge {1\over480}-o(1).}
+ \tag{RWG10b}
+\]
+
+This is the strongest useful localization: the compulsory transverse energy
+already occurs on an `S_3` slice, whose complex representation theory has
+only the trivial, sign, and two-dimensional standard types.
+
 ## 4. What this changes
 
 The exact classical collapse of the raw word is not sterile: it makes the
@@ -175,6 +198,12 @@ A valid nonlinear block argument may assume this explicit deficit from the
 start.  In particular, perturbative searches near `E_H(U)=U` are not merely
 unsuccessful; they are disjoint from every hypothetical zero-defect
 hyperlinear sequence.
+
+More sharply, the first block calculation should now be performed over the
+three-vertex `S_3` multiplicity quiver and may assume
+`||E_K(U)||_2^2 <= 1-1/480+o(1)`.  Only if the comb and hard-pair relations
+lose the necessary child labels under this smaller restriction should one
+return to the full 168-element `H` quiver.
 
 This still does not prove nonhyperlinearity.  A second inequality is needed:
 the comb/interior relations must force Reynolds saturation or extract the

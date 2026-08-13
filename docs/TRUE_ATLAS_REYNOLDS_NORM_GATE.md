@@ -70,6 +70,10 @@ Delta_H >= sqrt(2)/12-o(1),
 1-||E_H(U)||_2^2 >= 1/13440-o(1).                    (RNG6a)
 ```
 
+The two raw letters generate `K=GL_2(2)~=S3`, and averaging over this
+six-element subgroup gives the stronger localized estimate
+`1-||E_K(U)||_2^2 >= 1/480-o(1)`.
+
 See `TRUE_RAW_WORD_REYNOLDS_GAP.md`.
 
 Put

@@ -213,6 +213,14 @@ so their squared displacement sum is at least `1/40-o(1)`.  The live nonlinear c
 exclude a fixed tube around the aligned fold.  See
 `TRUE_RAW_WORD_REYNOLDS_GAP.md`.
 
+Those two `H`-elements generate the six-element subgroup
+`K=GL_2(2)~=S3`.  Its Reynolds projection satisfies the substantially
+stronger localized bound `1-||E_K(U)||_2^2 >= 1/480-o(1)`.  Therefore the
+next coefficient calculation should first use the three `S3` types
+`1,sign,2`, retaining the hard-pair child labels through their block
+products.  Expanding immediately to all `H`-types is unnecessary unless
+this three-vertex quiver provably forgets the cross branch.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the
