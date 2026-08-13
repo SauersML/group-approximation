@@ -2789,10 +2789,12 @@ trivial.
 \end{theorem}
 
 \begin{proof}
-Enumerate all finite group presentations and form the free product of the
-groups they present.  The Higman--Neumann--Neumann and Higman embedding
-theorems \cite{HNN,Higman} embed this recursively presented countable
-group into a finitely presented group $U$.  Thus $U$ contains every
+Enumerate all finite group presentations effectively and form the free product
+of the groups they present.  This is a countable group with a recursive
+presentation on a countable generating set.  The effective
+Higman--Neumann--Neumann construction embeds it in a $2$-generator
+recursively presented group; Higman's embedding theorem then embeds that
+group in a finitely presented group $U$ \cite{HNN,Higman}.  Thus $U$ contains every
 finitely presented group.  Choose $i\colon E\hookrightarrow U$.
 Portability and injectivity give
 $1\neq i(w)\in\operatorname{Rad}_{\mathrm{MF}}(U)$.  Apply
@@ -3108,11 +3110,18 @@ non-MF groups.
 \end{theorem}
 
 \begin{proof}
-Lemma~\ref{lem:amplifier}, applied pairwise and assembled by block
-sums exactly as in the proof of Theorem~\ref{thm:normalkazhdan}, gives
-the following normalized local criterion: a countable group is MF exactly when, for every finite subset
-and every positive error, it has an operator-norm unitary model whose
-distinct elements are separated by at least $1$.
+Lemma~\ref{lem:amplifier}, applied to the finitely many nontrivial
+elements under consideration and assembled by block sums exactly as in
+the proof of Theorem~\ref{thm:normalkazhdan}, gives the following
+normalized local criterion (cf.\ \cite[Proposition~3.2]{Dadarlat} and
+\cite[Proposition~7]{Korchagin}): a countable group $G$ is MF exactly
+when, for every finite $F\subseteq G$ and every $\varepsilon>0$, there
+are $d\ge1$ and a map $\phi\colon G\to\U(M_d(\C))$ such that
+\[
+ \opnorm{\phi(gh)-\phi(g)\phi(h)}<\varepsilon\quad(g,h\in F),
+ \qquad
+ \opnorm{\phi(g)-1}\ge1\quad(g\in F\setminus\{1\}).
+\]
 
 Suppose $(G_n,S_n)\to(G,S)$ and every $G_n$ is MF.  Given a finite
 $F\subseteq G$, choose words in the free marked generators representing
@@ -3120,9 +3129,15 @@ every element of $F\cup F^2$.  On a sufficiently small cylinder, all
 equalities and inequalities among these finitely many words agree with
 those in $G$.  A normalized local model in one such $G_n$ therefore pulls
 back, word by word, to a local model of $G$ with the same multiplicative
-error and separation.  The criterion makes $G$ MF.  This proves
-closedness; recording the finitely many control words inside one reduced
-word ball gives the stronger finite-radius statement.
+error and separation.  Explicitly, if $\iota_n$ denotes the resulting
+injective map on $F\cup F^2$, then
+$\iota_n(gh)=\iota_n(g)\iota_n(h)$ for $g,h\in F$.  Apply the criterion
+in $G_n$ to $\iota_n(F\cup F^2)$, compose the resulting model with
+$\iota_n$ on $F\cup F^2$, and define it arbitrarily elsewhere on $G$.
+This verifies both displayed conditions for $F$ with the same error.
+The criterion makes $G$ MF.  This proves closedness; recording the finitely
+many control words inside one reduced word ball gives the stronger
+finite-radius statement.
 \end{proof}
 
 \begin{corollary}[a finite clopen non-MF cylinder]
@@ -3657,7 +3672,7 @@ J. Funct. Anal. \textbf{267} (2014), no.~2, 542--578,
 \bibitem[STW]{Nuclear99}
 C.~Schafhauser, A.~Tikuisis, and S.~White,
 \emph{Nuclear $C^*$-algebras: 99 problems},
-preprint, 2026, \arxiv{2506.10902v2}.
+preprint, 2025, revised 2026, \arxiv{2506.10902v2}.
 
 \bibitem[Se]{Sela}
 Z.~Sela,
