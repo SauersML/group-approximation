@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.KazhdanCompressorCorner
 import GroupApproximation.Sofic.MarkedCompressionVectorChain
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
+import GroupApproximation.Sofic.OperatorMF
 
 /-!
 # The sequential marked-compression kill theorem
@@ -1145,6 +1146,14 @@ theorem not_isWeakMF [Countable E]
     (D : MarkedCompressionInclusionData Γ E) (hne : D.word ≠ 1) :
     ¬ IsWeakMF E :=
   not_isWeakMF_of_normMFInvisible D.word_normMFInvisible hne
+
+/-- A countable marked-compression group with nontrivial marked word is not MF
+in the standard cofinite norm-matrix-corona sense. -/
+theorem not_isOperatorMF [Countable E]
+    (D : MarkedCompressionInclusionData Γ E) (hne : D.word ≠ 1) :
+    ¬ IsOperatorMF E :=
+  not_isOperatorMF_of_no_markedOpAlmostRepresentation
+    (false_of_markedOpAlmostRepresentation D) hne
 
 /-- Package the proved kill theorem with a nontriviality witness as the
 marked-compression certificate. -/
