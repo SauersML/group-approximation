@@ -16,8 +16,6 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.OperatorMFMarkovWitness
-import GroupApproximation.Computability.MarkovMFConsequences
-import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
@@ -149,18 +147,10 @@ group is part of the Lean API.
   and uniform killing of the obstruction.
 * `existsUnique_quotient_factorization_to_normMatrixCorona` -- exact quotient
   factorization in the cofinite-corona language.
-* `MarkovMFConsequences.operatorMF_recognition_undecidable` -- the generic
-  computability reduction, conditional on an explicitly supplied computable
-  Adian--Rabin transformation and its correctness proof; no such external
-  transformation is postulated by the library.
 * `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
-  the unconditional group-theoretic positive/negative Markov witness used by
-  such a reduction; this does not manufacture the missing syntactic
+  the unconditional group-theoretic positive/negative Markov witness.  The
+  library makes no algorithmic undecidability claim without a formalized
   Adian--Rabin transformation.
-* `CStarRecognitionConsequences.all_groupCStar_recognition_undecidable` -- the
-  analogous five-predicate C-star recognition package, still conditional on
-  explicit computable Adian--Rabin reductions and semantic predicate data;
-  no group-C-star API or reduction is smuggled in as a theorem.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
@@ -380,17 +370,7 @@ export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation.LiteralCyclicCalibration
   (mark_ne_one mark_central quotientMap_mark_val quotientMap_mark_ne_one
     quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
-    realizedQuotient_finiteDimensional_kill
-    realizedQuotient_isOperatorMF
-    exists_coronaRepresentation_mark_ne_one)
-export GroupApproximation.CStarRecognitionConsequences
-  (reducedCStarMF_recognition_undecidable
-    maximalCStarMF_recognition_undecidable
-    maximalCStar_finite_recognition_undecidable
-    maximalCStar_stablyFinite_recognition_undecidable
-    maximalCStar_directlyFinite_recognition_undecidable
-    all_groupCStar_recognition_undecidable
-    all_groupCStar_negative_sides_not_re)
+    realizedQuotient_finiteDimensional_kill)
 export GroupApproximation.FixedSpaceStabilizer
   (compressionGroup_le_stabilizer compressionGroup_map_mem)
 export GroupApproximation
@@ -398,13 +378,7 @@ export GroupApproximation
     compressionCentralizerDefect_le_ker
     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
 
-/-! ### Conditional computability interface and algebraic consequences -/
-
-export GroupApproximation.MarkovMFConsequences
-  (MarkovWitness FinitePresentationSemantics operatorMFProperty
-    AdianRabinReduction recognition_undecidable negative_side_not_re
-    operatorMF_recognition_undecidable operatorMF_negative_side_not_re
-    operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
+/-! ### Algebraic consequences -/
 export GroupApproximation.OperatorMFMarkovWitness
   (positive_punit chosen_forbidden_subgroup
     exists_finitelyPresented_forbidden_subgroup)

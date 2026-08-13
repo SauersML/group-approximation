@@ -112,9 +112,10 @@ The completed proof is split into independently useful layers.
     `MarkedGroupTopology.lean`, `MarkedGroupWordBall.lean`, and
     `MarkedMFClosed.lean` prove the normalized finite-model criterion,
     closedness of the fixed-rank marked MF locus, openness of its complement,
-    and finite word-ball certificates. `MarkovMFConsequences.lean` provides
-    explicitly conditional computability interfaces without asserting their
-    external transformation data.
+    and finite word-ball certificates. `OperatorMFMarkovWitness.lean` proves
+    the positive and forbidden-subgroup witnesses unconditionally; the Lean
+    library makes no undecidability claim without a formalized Adian--Rabin
+    transformation.
 
 ## What is and is not formalized
 
