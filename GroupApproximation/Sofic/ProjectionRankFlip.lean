@@ -130,7 +130,7 @@ theorem sum_normSq_compress_ge {p q : Matrix Y Y ℂ}
 
 /-! ## The flip -/
 
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 1600000 in
 /-- **Equal-rank projection flip.**  If two orthogonal projection matrices
 have the same rank and `‖(1 - q) * p‖ ≤ ε < 1`, then
 `‖(1 - p) * q‖ ≤ ε / √(1 - ε²)`.
@@ -217,12 +217,18 @@ theorem norm_one_sub_mul_flip {p q : Matrix Y Y ℂ}
       have hneg : (q - 1) * p = -((1 - q) * p) := by noncomm_ring
       rw [hneg, norm_neg]
       exact hleak
+    have hprojContract :
+        ∑ i : Y, Complex.normSq
+            (((1 - p) *ᵥ (((q - 1) * p) *ᵥ (x : Y → ℂ))) i) ≤
+          ∑ i : Y, Complex.normSq ((((q - 1) * p) *ᵥ (x : Y → ℂ)) i) :=
+      sum_normSq_mulVec_proj_le (one_sub_isOrthogonalProjection hp)
+        (((q - 1) * p) *ᵥ (x : Y → ℂ))
     calc
       ∑ i : Y, Complex.normSq (((1 - p) *ᵥ y) i) =
           ∑ i : Y, Complex.normSq
             (((1 - p) *ᵥ (((q - 1) * p) *ᵥ (x : Y → ℂ))) i) := by rw [hyerr]
       _ ≤ ∑ i : Y, Complex.normSq ((((q - 1) * p) *ᵥ (x : Y → ℂ)) i) :=
-        sum_normSq_mulVec_proj_le (one_sub_isOrthogonalProjection hp) _
+        hprojContract
       _ ≤ ‖(q - 1) * p‖ ^ 2 * ∑ i : Y, Complex.normSq ((x : Y → ℂ) i) :=
         sum_normSq_mulVec_le_general _ _
       _ ≤ ε ^ 2 * ∑ i : Y, Complex.normSq ((x : Y → ℂ) i) := by
