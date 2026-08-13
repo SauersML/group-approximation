@@ -804,8 +804,8 @@ an explicit Kazhdan pair.  The certificate contains only finite group-ring
 identities and rational coefficient-`ℓ1` bounds; all Hilbert-space
 positivity and displacement estimates are proved here. -/
 theorem Certificate.isKazhdanPair
-    {I J K : Type*} [Fintype I] [Nonempty I] [DecidableEq I]
-    [Fintype J] [Fintype K]
+    {I J K : Type*} [Fintype I] [DecidableEq I]
+    [Fintype J] [Fintype K] (hI : Nonempty I)
     (s : I → G) (hgen : Subgroup.closure (Set.range s) = ⊤)
     {B : J → I → RatGroupRing G}
     {q : K → I → RatGroupRing G}
@@ -814,6 +814,7 @@ theorem Certificate.isKazhdanPair
     IsKazhdanPair.{u, v} G (generatorFinset s)
       (certifiedKazhdanTolerance (I := I) c r) := by
   classical
+  letI : Nonempty I := hI
   let gamma : ℝ := ((c - r : ℚ) : ℝ)
   let generatorUpper : ℝ := 4 * (Fintype.card I : ℝ)
   let upper : ℝ := max gamma generatorUpper
@@ -925,8 +926,8 @@ theorem Certificate.isKazhdanPair
 Kazhdan's property `(T)`, with no mathematical premise beyond the displayed
 finite identities, rational error bounds, and generation. -/
 theorem Certificate.hasKazhdanPropertyT
-    {I J K : Type*} [Fintype I] [Nonempty I] [DecidableEq I]
-    [Fintype J] [Fintype K]
+    {I J K : Type*} [Fintype I] [DecidableEq I]
+    [Fintype J] [Fintype K] (hI : Nonempty I)
     (s : I → G) (hgen : Subgroup.closure (Set.range s) = ⊤)
     {B : J → I → RatGroupRing G}
     {q : K → I → RatGroupRing G}
@@ -934,7 +935,7 @@ theorem Certificate.hasKazhdanPropertyT
     (C : Certificate (generatorCoboundary s) B q R c r) :
     HasKazhdanPropertyT.{u, v} G :=
   ⟨generatorFinset s, certifiedKazhdanTolerance (I := I) c r,
-    C.isKazhdanPair s hgen⟩
+    C.isKazhdanPair hI s hgen⟩
 
 end ExactHodgeCertificate
 end GroupApproximation
