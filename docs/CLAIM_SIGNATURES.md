@@ -357,6 +357,22 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 ∃ E x, Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
 ```
 
+## `GroupApproximation.ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity`
+
+```lean
+∀ (H : Type u_1) [inst : Group H],
+  IsOperatorMF H →
+    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator ChosenMarkedPresentation.relators
+      ChosenMarkedPresentation.markedWord H
+```
+
+## `GroupApproximation.ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity`
+
+```lean
+¬SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator ChosenMarkedPresentation.relators
+    ChosenMarkedPresentation.markedWord ChosenMarkedPresentation.MarkedGroup
+```
+
 ## `GroupApproximation.CompleteMatrixFamily.matrixAlgEquiv`
 
 ```lean
