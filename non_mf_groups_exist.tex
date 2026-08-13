@@ -426,10 +426,9 @@ kills the corresponding marked element.
 \end{mainthm}
 
 \ifanonymous\else
-For the last two formal deductions, operator-MF of the ambient Clifford
-cyclic model is an explicit premise.  The amenability and TWW inputs proving
-that premise remain in the paper proof; the formal companion does not claim
-to reprove them.
+\leannote{In the last two conditional deductions, operator-MF of the
+ambient Clifford cyclic model is an explicit premise; the amenability and
+TWW inputs proving that premise remain in the paper proof.}
 \fi
 
 The quotient statement makes the comparison at the level actually used by
@@ -2209,11 +2208,11 @@ microstate before yielding the arbitrary-corona kernel theorem.
 Throughout this section, ``corona representation'' and ``MF'' are as
 in Section~\ref{sec:prelim}.
 \ifanonymous\else
-The formal companion identifies the unitary-sequence presentation of the
-cofinite-corona radical below with its ultraproduct residual and verifies
-portability and the largest-MF-
-quotient proposition.  Later consequences in this section are paper-proved
-unless they carry their own explicit counterpart link.
+\leannote{The counterparts below identify the unitary-sequence
+presentation of the cofinite-corona radical with its ultraproduct
+residual and cover portability and the largest-MF-quotient proposition;
+later consequences in this section are paper-proved unless they carry
+their own counterpart link.}
 \fi
 
 \subsection{The MF radical}
@@ -2228,19 +2227,15 @@ For a countable group $G_1$, the \emph{MF radical} is
 a normal subgroup of $G_1$.  This is the operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
 and of the approximation kernels studied in \cite{NST}.
-The formal companion defines the corresponding intersection over
-unitary-sequence corona presentations.  Its predicate
-\texttt{NormMFInvisible} is a different, a priori stronger formulation: it
-quantifies over every operator-norm matrix ultraproduct and every ultrafilter,
-including principal ultrafilters.  These notions are not definitionally
-identified.  For countable groups the companion proves the bridge theorem
-equating the resulting subgroups and separately characterizes operator-MF
-groups by triviality of that residual.
-Passing from that presentation to the displayed C-star quotient uses the
-polar-correction identification recorded above, which is not itself a Lean
-declaration.
 \leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFResidual_eq_normMFResidual}
 \leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot}
+\leannote{The counterpart intersects over unitary-sequence corona
+presentations; its predicate \texttt{NormMFInvisible} is an a priori
+stronger formulation quantifying over every operator-norm matrix
+ultraproduct and every ultrafilter, and the linked bridge theorem equates
+the two subgroups for countable groups.  Passing to the displayed C-star
+quotient uses the polar-correction identification recorded above, which
+is not itself part of the counterpart.}
 \end{definition}
 
 \begin{lemma}[portability]\label{lem:portable}
@@ -2755,8 +2750,7 @@ Facts~\ref{fact:tww} and~\ref{fact:qdcorona}, and finitely generated
 linear groups are residually finite by Mal'cev's theorem \cite{Ma}.
 Thus $\Lambda$ is minimally almost periodic.  By the classical
 Peter--Weyl theorem \cite{PeterWeyl}, its Bohr compactification is
-trivial; this last Peter--Weyl implication is not part of the formal
-companion.
+trivial.
 
 \begin{theorem}[a universal Kazhdan group with full MF radical]
 \label{thm:universalkazhdanradical}
@@ -2825,15 +2819,16 @@ $\Cmax(\Lambda_{\mathrm{univ}})$.  A proper isometry witnesses failure
 of finiteness and stable finiteness.
 \end{proof}
 
-The formal companion proves the deductions in this subsection from
-explicit records carrying the Chatterji--Kassabov and universal-embedding
-data.  It neither postulates those records as axioms nor claims to
-formalize the historical embedding theorems.  On the operator-algebra
-side it constructs the reduced group algebra and its canonical faithful
-trace, proves stable finiteness of all finite matrix amplifications, and
-formalizes the faithful-restriction obstruction and transport of a proper
-isometry along an injective $C^*$-embedding.  The maximal group-$C^*$
-construction and subgroup embedding theorem remain external inputs.
+\leannote{The deductions in this subsection are covered from explicit
+records carrying the Chatterji--Kassabov and universal-embedding data;
+those records are neither postulated as axioms nor claimed as proofs of
+the historical embedding theorems.  On the operator-algebra side the
+counterpart constructs the reduced group algebra with its canonical
+faithful trace, proves stable finiteness of all finite matrix
+amplifications, and covers the faithful-restriction obstruction and the
+transport of a proper isometry along an injective $C^*$-embedding; the
+maximal group-$C^*$ construction and the subgroup embedding theorem
+remain external inputs.}
 
 \subsection{The scaling family}
 
@@ -3039,10 +3034,10 @@ pullback argument as in Theorem~\ref{thm:nonmfre}, hence failure of
 recursive enumerability on the negative side.
 \end{proof}
 
-The formal companion kernel-checks these computability-theoretic pullbacks
-from explicitly supplied effective Adian--Rabin transformations and their
-correctness equivalences.  It does not claim to formalize the historical
-test-group construction itself.
+\leannote{The computability-theoretic pullbacks are covered from
+explicitly supplied effective Adian--Rabin transformations and their
+correctness equivalences; the historical test-group construction itself
+is not formalized.}
 
 \subsection{Uniform invisibility}
 
