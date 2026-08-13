@@ -3944,6 +3944,19 @@ multiplicity-one sectors first and reduce to the fixed `2 x 2` doublet only
 if necessary.  See `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md` and the
 MSI replay `atlas_nonincident_flag_character.g`.
 
+### 2026-08-13: raw compressors compiled back into `A8*A8`
+
+The scalarized raw swap and comb compressor now have exact reduced source
+words of lengths `25` and `175` in the two finite atlas factors.  A recursive
+Steinberg compiler translates each prefix transvection through the thirty
+atlas roots and exact all-depth Leavitt evaluation replays both complete
+words.  This removes the last source-coordinate ambiguity before the
+spherical 35/56/14-doublet audit: every packet element can now be evaluated
+from the two chart representations and the relative unitary, without
+inserting characteristic-two matrix entries by hand.  See
+`TRUE_RAW_COMPRESSOR_TWO_CHART_SOURCE_WORDS.md` and
+`atlas-raw-compressor-source-words.json`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
