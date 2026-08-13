@@ -2235,7 +2235,7 @@ Passing from that presentation to the displayed C-star quotient uses the
 polar-correction identification recorded above, which is not itself a Lean
 declaration.
 \leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFResidual_eq_normMFResidual}
-\leanverified{Sofic/NormMFUniversalCorona}{GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot}
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot}
 \end{definition}
 
 \begin{lemma}[portability]\label{lem:portable}
@@ -2546,8 +2546,7 @@ $a=s^*$ and $b=s$ one has $ab=1$ but $ba\neq1$, so
 $\Cmax(G)$ is not directly finite.  The purely algebraic
 projection-compression implication is checked in Lean; the formal companion
 does not model $\Cmax(G)$ itself.
-\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.exists_leftInvertible_not_isUnit}
-\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isDedekindFiniteMonoid}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne}
 
 It remains to check $Q_1\neq\bar p$.  Let
 $H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the
