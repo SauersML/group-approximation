@@ -100,7 +100,7 @@ namespace FournierFacioDefectData
 variable {P : Type} {E : Type u} [Group P] [Group E]
     (D : FournierFacioDefectData P E)
 
-local instance : IsSimpleGroup D.simpleSubgroup := D.simple
+local instance defectSimpleSubgroup : IsSimpleGroup D.simpleSubgroup := D.simple
 
 /-- The marked Kazhdan-compression core hidden in the HNN skeleton.  Its root
 is `u⁻¹ s u`, so transporting the root by `u` recovers `s`. -/
@@ -266,8 +266,9 @@ variable {P : Type} {E : Type u} {B : Type}
     {D : FournierFacioDefectData P E}
     (C : RelativeCommonQuotientData D B)
 
-local instance : Group C.Quotient := C.groupQuotient
-local instance : Group.IsFinitelyPresented C.Quotient := C.finitelyPresented
+local instance relativeCommonQuotientGroup : Group C.Quotient := C.groupQuotient
+local instance relativeCommonQuotientFinitelyPresented :
+    Group.IsFinitelyPresented C.Quotient := C.finitelyPresented
 
 /-- A Kazhdan common-quotient input produces precisely the routed data used by
 the MF-radical argument.  In particular, property `(T)` is derived through
@@ -302,8 +303,9 @@ variable {P : Type} {E : Type u} [Group P] [Group E]
     {D : FournierFacioDefectData P E}
     (R : DefectRoutingData.{u} D)
 
-local instance : Group R.Quotient := R.groupQuotient
-local instance : Group.IsFinitelyPresented R.Quotient := R.finitelyPresented
+local instance routedRadicalQuotientGroup : Group R.Quotient := R.groupQuotient
+local instance routedRadicalQuotientFinitelyPresented :
+    Group.IsFinitelyPresented R.Quotient := R.finitelyPresented
 
 /-- A finitely presented routed quotient is countable. -/
 theorem quotientCountable : Countable R.Quotient := by
@@ -317,7 +319,8 @@ theorem quotientCountable : Countable R.Quotient := by
     exact hfree.countable
   exact hsurj.countable
 
-local instance : Countable R.Quotient := R.quotientCountable
+local instance routedRadicalQuotientCountable : Countable R.Quotient :=
+  R.quotientCountable
 
 /-- The routed quotient is nontrivial because the protected element survives. -/
 theorem quotientNontrivial : Nontrivial R.Quotient :=
@@ -443,9 +446,9 @@ theorem not_isOperatorMFIncreasing : ¬ IsOperatorMFIncreasing R.Quotient := by
   rw [isOperatorMFIncreasing_iff]
   exact R.not_isOperatorMF
 
-/-- The part of the proposed main theorem fully covered by the present Lean
-library: finite presentation, two-generation, torsion-freeness, property
-`(T)`, full MF radical, and failure of operator-MF. -/
+/-- Properties derived from a supplied routed quotient datum: finite
+presentation, two-generation, torsion-freeness, property `(T)`, full CDE-MF
+radical, and failure of operator-MF. -/
 theorem consequence_package :
     Group.IsFinitelyPresented R.Quotient ∧
       IsTwoGenerated R.Quotient ∧
@@ -482,9 +485,11 @@ variable {P : Type} {E : Type u} [Group P] [Group E]
     {D : FournierFacioDefectData P E}
     (R : DefectRoutingData.{u} D)
 
-local instance : Group R.Quotient := R.groupQuotient
-local instance : Group.IsFinitelyPresented R.Quotient := R.finitelyPresented
-local instance : Countable R.Quotient := R.quotientCountable
+local instance quotientInheritanceGroup : Group R.Quotient := R.groupQuotient
+local instance quotientInheritanceFinitelyPresented :
+    Group.IsFinitelyPresented R.Quotient := R.finitelyPresented
+local instance quotientInheritanceCountable : Countable R.Quotient :=
+  R.quotientCountable
 
 /-- Every quotient of the routed group again has full corona MF radical. -/
 theorem quotient_coronaMFResidual_eq_top

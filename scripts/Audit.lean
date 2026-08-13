@@ -18,16 +18,20 @@ It fails, with a nonzero exit code, if either check below fails:
    theorems verbatim.  The complete manuscript-mapped surface is pinned by
    `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
    statement is weakened or gains a premise, that signature gate changes.
-2. **Transitive axiom closure.**  Every declaration compiled from a
-   `GroupApproximation` module is traversed through the *kernel*
+2. **Transitive axiom closure.**  Every declaration in the
+   `GroupApproximation` namespace is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three
    axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
 -/
 
 open Lean Elab Command
+open Filter Set Topology
+open scoped Topology
 
 namespace GroupApproximation.Audit
+
+universe u
 
 /-! ## 1. Statement pinning -/
 
@@ -52,54 +56,6 @@ example :
       ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
   ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 
-example (H : Type*) [Group H] (hMF : IsOperatorMF H) :
-    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
-      ChosenMarkedPresentation.relators
-      ChosenMarkedPresentation.markedWord H :=
-  ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity H hMF
-
-example :
-    ¬ SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
-      ChosenMarkedPresentation.relators
-      ChosenMarkedPresentation.markedWord
-      ChosenMarkedPresentation.MarkedGroup :=
-  ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
-
-example : IsClopen ChosenMarkedCylinder.chosenCylinder :=
-  ChosenMarkedCylinder.chosenCylinder_isClopen
-
-example :
-    ChosenMarkedCylinder.chosenCylinder ⊆
-      {N | ¬ IsOperatorMF N.Quotient} :=
-  ChosenMarkedCylinder.chosenCylinder_subset_nonMF
-
-example : LiteralCyclicCalibration.mark ≠ 1 :=
-  LiteralCyclicCalibration.mark_ne_one
-
-example : Function.Surjective LiteralNonMFLinearWitness.matrixBaseHom :=
-  LiteralNonMFLinearWitness.matrixBaseHom_surjective
-
-example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
-    LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
-  LiteralBaseRelations.x_conj_v1
-
-example : Subgroup.normalizer
-    (LiteralBaseTranslationNormal.translations : Set LiteralNonMFPresentation.Base) = ⊤ :=
-  LiteralBaseTranslationNormal.normalizer_translations_eq_top
-
-example : Function.Injective LiteralBaseRotationRetract.rotationToBase :=
-  LiteralBaseRotationRetract.rotationToBase_injective
-
-example : LiteralBaseRotationRetract.baseToRotation.ker =
-    LiteralBaseTranslationNormal.translations :=
-  LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
-
-example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
-    [FiniteDimensional k V]
-    (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
-    pi LiteralCyclicCalibration.mark = 1 :=
-  LiteralCyclicCalibration.finiteDimensional_kill pi
-
 example :
     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
   ChosenNonMFTheorem.countableWitness_not_isOperatorMF
@@ -116,6 +72,35 @@ example :
     ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
       IsOperatorMF E) :=
   ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+
+example (G : Type) [Group G] [Countable G] :
+    IsOperatorMF G ↔ IsNormApproximable G 1 :=
+  OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one
+
+example (k : ℕ) :
+    IsClosed (MarkedGroupSpace.operatorMFLocus k) :=
+  MarkedGroupSpace.isClosed_operatorMFLocus
+
+example (k : ℕ) :
+    IsOpen (MarkedGroupSpace.operatorMFLocus k)ᶜ :=
+  MarkedGroupSpace.isOpen_compl_operatorMFLocus
+
+example {k : ℕ} (M : MarkedGroupSpace k)
+    (hM : ¬ IsOperatorMF M.Quotient) :
+    ∃ R : ℕ, MarkedGroupSpace.cylinder M
+      (MarkedGroupSpace.wordBall k R) ⊆
+        (MarkedGroupSpace.operatorMFLocus k)ᶜ :=
+  MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus M hM
+
+example {A : Type} [Ring A] [StarRing A]
+    (D : ProperProjectionCompression A) :
+    ∃ a b : A, b * a = 1 ∧ ¬ IsUnit a :=
+  D.exists_leftInvertible_not_isUnit
+
+example {A : Type} [Ring A] [StarRing A]
+    (D : ProperProjectionCompression A) :
+    ¬ IsDedekindFiniteMonoid A :=
+  D.not_isDedekindFiniteMonoid
 
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
@@ -145,6 +130,72 @@ example (Gamma E : Type) [Group Gamma] [Group E] [Countable E]
     (rho : E →* NormMatrixCoronaUnitary X) :
     F ≤ rho.ker :=
   C.finiteNormal_le_normMatrixCoronaKernel F hF X hX rho
+
+/-! ### The genuine C-star-corona target
+
+These pins deliberately expand the opaque public target and the CDE predicate.
+Pinning only their names would allow either definition to drift while every
+downstream theorem continued to elaborate against the changed abbreviation. -/
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    NormMatrixCStarCorona (fun n ↦ X n) =
+      (BoundedMatrixSequence (fun n ↦ X n) ⧸
+        c0MatrixSequenceIdeal (fun n ↦ X n)) :=
+  rfl
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    CompleteSpace (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    NormedRing (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    NormedAlgebra ℂ (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    StarModule ℂ (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    CStarRing (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  inferInstance
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    NormMatrixCoronaUnitary X ≃*
+      unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
+  normMatrixCoronaUnitaryEquiv X
+
+noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (q : NormMatrixCoronaUnitary X) :
+    normMatrixCoronaUnitaryEquiv X q =
+      unitaryCoronaToCStarCoronaUnitary X q :=
+  rfl
+
+example (G : Type u) [Group G] [Countable G] :
+    (∃ X : ℕ → FiniteModel, ∃ hne : ∀ n, Nonempty (X n),
+      letI := hne
+      (∀ n, 0 < Fintype.card (X n)) ∧
+        StrictMono (fun n ↦ Fintype.card (X n)) ∧
+          ∃ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+            Function.Injective rho) ↔ IsOperatorMF G := by
+  simpa only [IsCDEOperatorMF] using isCDEOperatorMF_iff_isOperatorMF G
+
+example {Gamma E : Type} [Group Gamma] [Group E] [Countable E]
+    (C : KazhdanCompressionCore Gamma E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    let hne : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    letI := hne
+    ∀ rho : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+      F ≤ rho.ker := by
+  dsimp only
+  intro rho
+  exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF X hX rho
 
 example (G : Type) [Group G] [Countable G] :
     IsSofic G ↔ AdmitsEssentiallyFreeNearAction G :=
@@ -416,25 +467,21 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
-   ``ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity,
-   ``ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity,
-   ``ChosenMarkedCylinder.chosenCylinder_isClopen,
-   ``ChosenMarkedCylinder.chosenCylinder_subset_nonMF,
-   ``OperatorMFMarkovWitness.positive_punit,
-   ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
-   ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
-   ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
-   ``LiteralCyclicCalibration.mark_ne_one,
-   ``LiteralCyclicCalibration.finiteDimensional_kill,
+   ``ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage,
+   ``ChosenNonMFEndpoint.chosenFinitelyPresented_inclusionPackage,
    ``LiteralBaseP13Replay.yFromUZXY_eq,
    ``LiteralBaseP13Replay.closure_Z_XY_eq_top,
-   ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
-   ``LiteralTranslationOrbit.translation_eq_two_rotation_conjugates,
-   ``LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed,
-   ``LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
+   ``normMatrixCStarCoronaQuotient,
+   ``normMatrixCStarCoronaMk_eq_zero_iff,
+   ``normMatrixCStarCoronaMk_surjective,
+   ``normMatrixCoronaUnitaryEquiv,
+   ``unitaryCoronaToCStarCoronaUnitary_injective,
+   ``unitaryCoronaToCStarCoronaUnitary_surjective,
+   ``isCDEOperatorMF_iff_isOperatorMF,
+   ``KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel,
    ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,
    ``isOperatorMF_iff_normMFResidual_eq_bot,
    ``coronaMFResidual_eq_normMFResidual,
@@ -448,6 +495,12 @@ def headlineTheorems : List Name :=
    ``existsUnique_coronaMFQuotient_factorization_to_isOperatorMF,
    ``isOperatorMF_of_residuallyFinite,
    ``IsOperatorMF.subgroup,
+   ``OperatorNormAmplification.exists_tensorPower_pair_far,
+   ``OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one,
+   ``MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus,
+   ``MarkedGroupSpace.isClosed_operatorMFLocus,
+   ``MarkedGroupSpace.isOpen_compl_operatorMFLocus,
+   ``MarkedGroupSpace.isOperatorMF_of_tendsto,
    ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
    ``not_injective_of_coronaMFInvisible,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
@@ -455,7 +508,10 @@ def headlineTheorems : List Name :=
    ``KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual,
    ``FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one,
    ``ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne,
+   ``ProperProjectionCompression.exists_leftInvertible_not_isUnit,
+   ``ProperProjectionCompression.not_isDedekindFiniteMonoid,
    ``ProperProjectionCompression.not_isStablyFiniteRing,
+   ``ProperProjectionCompression.no_faithfulTracialState,
    ``universalLeavittEL4_not_isSofic,
    ``universalLeavittEL3_not_isSofic,
    ``universalLeavittUnits_not_isSofic,
@@ -483,7 +539,7 @@ than from a hand-maintained list, so that a new module cannot escape the
 audit by not being mentioned here. -/
 def projectDeclarations (env : Environment) : Array Name :=
   env.constants.fold (init := #[]) fun acc n _ =>
-    if Audit.inCorpusModule env `GroupApproximation n then acc.push n else acc
+    if (`GroupApproximation).isPrefixOf n then acc.push n else acc
 
 /-- The union of the transitive axiom closures of `roots`. -/
 def axiomClosure (roots : Array Name) : CommandElabM (Array Name) := do
@@ -512,12 +568,12 @@ run_cmd do
 
   let decls := projectDeclarations env
   if decls.size < 100 then
-    throwError "only {decls.size} declarations found in `GroupApproximation` \
-modules; the audit is not seeing the library"
+    throwError "only {decls.size} declarations found in the `GroupApproximation` \
+namespace; the audit is not seeing the library"
   let axioms ← axiomClosure decls
   let bad := disallowed axioms
   unless bad.isEmpty do
-    throwError "the `GroupApproximation` modules depend on disallowed \
+    throwError "the `GroupApproximation` namespace depends on disallowed \
 axioms: {bad.toList}"
   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
 

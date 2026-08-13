@@ -36,7 +36,7 @@ variable {P : Type} {E : Type u} [Group P] [Group E]
     {D : FournierFacioDefectData P E}
     (R : DefectRoutingData.{u} D)
 
-local instance : Group R.Quotient := R.groupQuotient
+local instance nonsoficRoutingQuotientGroup : Group R.Quotient := R.groupQuotient
 
 /-! ## The Fournier--Facio nonsoficity endpoint -/
 
@@ -81,8 +81,10 @@ namespace MainTheoremData
 
 variable (M : MainTheoremData D)
 
-local instance : Group M.routing.Quotient := M.routing.groupQuotient
-local instance : Countable M.routing.Quotient := M.routing.quotientCountable
+local instance mainTheoremQuotientGroup : Group M.routing.Quotient :=
+  M.routing.groupQuotient
+local instance mainTheoremQuotientCountable : Countable M.routing.Quotient :=
+  M.routing.quotientCountable
 
 /-- The combined main-theorem package: finite presentation, two-generation,
 torsion-freeness, property `(T)`, full group-element MF radical, failure of
@@ -146,10 +148,12 @@ namespace TwoConjugacyClassQuotientData
 
 variable (C : TwoConjugacyClassQuotientData R)
 
-local instance : Group C.Carrier := C.groupCarrier
-local instance : Infinite C.Carrier := C.infinite
-local instance : Countable R.Quotient := R.quotientCountable
-local instance : Countable C.Carrier := C.quotient_surjective.countable
+local instance twoClassCarrierGroup : Group C.Carrier := C.groupCarrier
+local instance twoClassCarrierInfinite : Infinite C.Carrier := C.infinite
+local instance twoClassSourceCountable : Countable R.Quotient :=
+  R.quotientCountable
+local instance twoClassCarrierCountable : Countable C.Carrier :=
+  C.quotient_surjective.countable
 
 /-- Property `(T)` passes to the two-conjugacy-class quotient. -/
 theorem kazhdan : HasKazhdanPropertyT.{0, 0} C.Carrier :=
@@ -209,9 +213,11 @@ namespace SimpleEnvelopeData
 
 variable (S : SimpleEnvelopeData R)
 
-local instance : Group S.Envelope := S.groupEnvelope
-local instance : Countable S.Envelope := S.countableEnvelope
-local instance : IsSimpleGroup S.Envelope := S.simpleEnvelope
+local instance simpleEnvelopeGroup : Group S.Envelope := S.groupEnvelope
+local instance simpleEnvelopeCountable : Countable S.Envelope :=
+  S.countableEnvelope
+local instance simpleEnvelopeSimple : IsSimpleGroup S.Envelope :=
+  S.simpleEnvelope
 
 /-- The simple envelope has full norm-MF residual.  Functoriality first gives
 a nontrivial invisible element; simplicity then saturates the residual. -/
@@ -293,9 +299,11 @@ namespace UniversalContainerData
 
 variable {L : Type v} [Group L] (U : UniversalContainerData R L)
 
-local instance : Group U.Container := U.groupContainer
-local instance : Countable R.Quotient := R.quotientCountable
-local instance : Countable U.Container := U.quotient_surjective.countable
+local instance universalContainerGroup : Group U.Container := U.groupContainer
+local instance universalContainerSourceCountable : Countable R.Quotient :=
+  R.quotientCountable
+local instance universalContainerCountable : Countable U.Container :=
+  U.quotient_surjective.countable
 
 /-- The universal container inherits property `(T)` from its quotient map. -/
 theorem kazhdan : HasKazhdanPropertyT.{0, 0} U.Container :=
@@ -348,8 +356,9 @@ namespace UniversalFinitelyPresentedKazhdanData
 
 variable (U : UniversalFinitelyPresentedKazhdanData)
 
-local instance : Group U.Carrier := U.groupCarrier
-local instance : Group.IsFinitelyPresented U.Carrier := U.finitelyPresented
+local instance universalKazhdanCarrierGroup : Group U.Carrier := U.groupCarrier
+local instance universalKazhdanCarrierFinitelyPresented :
+    Group.IsFinitelyPresented U.Carrier := U.finitelyPresented
 
 /-- The routed quotient embeds by universality. -/
 theorem source_embeds :

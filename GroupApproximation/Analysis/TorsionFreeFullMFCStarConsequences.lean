@@ -37,7 +37,7 @@ variable {P : Type} {E : Type u} [Group P] [Group E]
     {D : FournierFacioDefectData P E}
     (R : DefectRoutingData.{u} D)
 
-local instance : Group R.Quotient := R.groupQuotient
+local instance routedCStarQuotientGroup : Group R.Quotient := R.groupQuotient
 
 /-- The protected element of the routed quotient is a nontrivial element of
 its norm-MF residual. -/
