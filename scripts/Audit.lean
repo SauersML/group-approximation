@@ -55,6 +55,9 @@ example :
 example : LiteralCyclicCalibration.mark ≠ 1 :=
   LiteralCyclicCalibration.mark_ne_one
 
+example : Function.Surjective LiteralBaseAffineQuotient.affineQuotient :=
+  LiteralBaseAffineQuotient.affineQuotient_surjective
+
 example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V]
     (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
