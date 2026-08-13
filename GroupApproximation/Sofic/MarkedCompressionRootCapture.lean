@@ -25,7 +25,9 @@ namespace KazhdanCompressorCorner
 open Matrix KazhdanCornerMatrices
 open scoped ComplexOrder Matrix.Norms.L2Operator commutatorElement
 
-variable {Gamma : Type} [Group Gamma] {E : Type} [Group E]
+universe u
+
+variable {Gamma : Type} [Group Gamma] {E : Type u} [Group E]
 
 /-! ## Root-vector capture -/
 
