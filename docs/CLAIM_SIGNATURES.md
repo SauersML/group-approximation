@@ -514,11 +514,11 @@ Function.Injective ⇑ExplicitLinearModel.conjD ∧
   ExplicitLinearModel.v1G ∉ Set.range ⇑ExplicitLinearModel.conjD
 ```
 
-## `GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF`
+## `GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF`
 
 ```lean
 Group.IsFinitelyPresented ExplicitMarkedPresentation.MarkedGroup ∧
-  ¬IsWeakMF ExplicitMarkedPresentation.MarkedGroup
+  ¬IsOperatorMF ExplicitMarkedPresentation.MarkedGroup
 ```
 
 ## `GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one`
@@ -916,6 +916,18 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   C.defectNormal ≤ C.orbitDefectNormal
 ```
 
+## `GroupApproximation.KazhdanCompressionCore.existsUnique_defectNormal_factorization_to_normMatrixCorona`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E),
+  HasKazhdanPropertyT ↥C.defectNormal →
+    ∀ (X : ℕ → FiniteModel),
+      (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) →
+        ∀ (rho : E →* NormMatrixCoronaUnitary X),
+          ∃! rhoBar, rhoBar.comp (QuotientGroup.mk' C.defectNormal) = rho
+```
+
 ## `GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual`
 
 ```lean
@@ -951,12 +963,28 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
                   (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) → ‖↑(φ f₀) - 1‖ < ε
 ```
 
-## `GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect`
+## `GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal`
 
 ```lean
 ∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (K : Subgroup E) [K.Normal] [Nontrivial ↥K],
-  HasKazhdanPropertyT ↥K → K ≤ C.defectNormal → ¬IsWeakMF E
+  (C : KazhdanCompressionCore Γ E),
+  HasKazhdanPropertyT ↥C.defectNormal →
+    IsOperatorMF (E ⧸ C.defectNormal) → normMFResidual E = C.defectNormal
+```
+
+## `GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E), C.normalKazhdanDefectPart ≤ normMFResidual E
+```
+
+## `GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E) (K : Subgroup E) [K.Normal],
+  HasKazhdanPropertyT ↥K → K ≤ C.defectNormal → K ≤ normMFResidual E
 ```
 
 ## `GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect`
@@ -1758,6 +1786,35 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ¬∃ Q x, ∃ (_ : Finite Q), ∃ φ, φ LiteralNonMFPresentation.mark ≠ 1
 ```
 
+## `GroupApproximation.LiteralKazhdanCompression.literal_free_source_isOperatorMF`
+
+```lean
+IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
+```
+
+## `GroupApproximation.LiteralKazhdanCompression.literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT`
+
+```lean
+HasKazhdanPropertyT LiteralNonMFPresentation.Base →
+  IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator) ∧
+    Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators) ∧
+      ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
+```
+
+## `GroupApproximation.LiteralKazhdanCompression.literal_quotientMap_surjective`
+
+```lean
+Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators)
+```
+
+## `GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine`
+
+```lean
+∀ (e : LiteralNonMFPresentation.Base ≃* AffineSL3Doubling.Gamma),
+  HasKazhdanPropertyT AffineSL3Doubling.Gamma →
+    ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
+```
+
 ## `GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT`
 
 ```lean
@@ -1772,10 +1829,34 @@ HasKazhdanPropertyT LiteralNonMFPresentation.Base →
   LiteralBaseSOS.IsRationalCertificate c → ¬IsOperatorMF LiteralNonMFPresentation.MarkedGroup
 ```
 
+## `GroupApproximation.LiteralKazhdanCompression.witness_not_isOperatorMF_of_hasKazhdanPropertyT`
+
+```lean
+HasKazhdanPropertyT LiteralNonMFPresentation.Base →
+  ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
+```
+
+## `GroupApproximation.LiteralKazhdanCompression.witness_sign_normMFInvisible_of_hasKazhdanPropertyT`
+
+```lean
+HasKazhdanPropertyT LiteralNonMFPresentation.Base →
+  NormMFInvisible
+    (MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+      ExplicitLinearModel.conjD_injective)
+```
+
 ## `GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one`
 
 ```lean
 LiteralNonMFPresentation.mark ≠ 1
+```
+
+## `GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark`
+
+```lean
+LiteralNonMFLinearWitness.witnessHom LiteralNonMFPresentation.mark =
+  MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
+    ExplicitLinearModel.conjD_injective
 ```
 
 ## `GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package`
@@ -1977,6 +2058,20 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
   (D : MarkedCompressionInclusionData Γ E), NormMFInvisible D.word
 ```
 
+## `GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus`
+
+```lean
+∀ {k : ℕ} (M : MarkedGroupSpace k),
+  ¬IsOperatorMF M.Quotient →
+    ∃ R, M.cylinder (MarkedGroupSpace.wordBall k R) ⊆ (MarkedGroupSpace.operatorMFLocus k)ᶜ
+```
+
+## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
+```
+
 ## `GroupApproximation.MatchingCertificate`
 
 ```lean
@@ -2108,6 +2203,12 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
                   g ≠ h →
                     (normTrace M.carrier (M.map g * (M.map h).conjTranspose)).re ≤ ε / 2) →
               HyperlinearModel G F ε
+```
+
+## `GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one`
+
+```lean
+∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF G ↔ IsNormApproximable G 1
 ```
 
 ## `GroupApproximation.OrbitChartData`
