@@ -15,8 +15,8 @@ Kazhdan-compression kill, an independently constructed finitely presented
 non-MF witness, the literal eight-generator presentation and its exact
 nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
 radical.  No unconditional MF endpoint is claimed for the literal group: its
-two endpoints explicitly require either property `(T)` of the displayed base
-or an exact rational SOS certificate.
+algebraic, finite-dimensional, and universal-Horn boundary is formalized,
+but no analytic operator-MF endpoint for it is part of the Lean API.
 
 This checker enforces both lexical resolution and a semantic contract for the
 margin links: exactly one must name the unconditional standard

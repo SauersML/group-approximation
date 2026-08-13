@@ -123,9 +123,6 @@ corona. -/
 def normMatrixCoronaMk : BoundedMatrixSequence X →+* NormMatrixCoronaAlgebra X :=
   Ideal.Quotient.mk (c0MatrixSequenceIdeal X)
 
-@[simp] theorem normMatrixCoronaMk_apply (a : BoundedMatrixSequence X) :
-    normMatrixCoronaMk X a = Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a := rfl
-
 theorem normMatrixCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
     normMatrixCoronaMk X a = 0 ↔ IsC0MatrixSequence X a := by
   change Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a = 0 ↔ _

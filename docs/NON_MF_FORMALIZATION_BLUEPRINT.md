@@ -1,8 +1,10 @@
 # Formalization record: the marked-compression non-MF theorem
 
 Date: 2026-08-12. Status: **COMPLETE for the unconditional Shalom-cover
-endpoint**; the literal eight-generator endpoint remains at the exact
-property-`(T)`/rational-SOS certificate boundary described below.
+endpoint**; the literal eight-generator development exposes only its
+algebraic, finite-dimensional, and universal-Horn boundary.  It contains no
+analytic operator-MF endpoint: closing one still requires an internal
+property-`(T)` proof for the raw presented base.
 
 This document records the proof architecture and audit surface of the completed
 Lean formalization. It supersedes the development-time workstream plan; there

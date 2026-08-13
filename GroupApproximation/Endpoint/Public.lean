@@ -16,6 +16,7 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Analysis.NormMatrixCorona
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
@@ -161,6 +162,12 @@ group is part of the Lean API.
   quasi-identity.  No validity claim for operator-MF targets is asserted.
 * `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
   finite-radius bound for every printed relator.
+* `LiteralNonMFLinearWitness.matrixBaseEquiv` and
+  `baseMap_injective_of_matrixBaseHom_injective` -- the exact conditional
+  algebraic bridge supplied by presentation completeness; no such
+  injectivity hypothesis is manufactured here.
+* `LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark`
+  -- no finite quotient detects the genuine nontrivial literal mark.
 ## Consequences and reusable obstruction APIs
 
 * `not_injective_of_coronaMFInvisible` and
@@ -199,6 +206,10 @@ group is part of the Lean API.
   theorem keeps operator-MF of the concrete Clifford target as an explicit
   premise; it is not advertised as a formal proof of all of manuscript
   Theorem C.
+* `normMatrixCoronaMk_eq_zero_iff` -- the algebraic bounded-matrix-sequence
+  quotient has exactly the cofinite operator-norm-null sequences as the
+  kernel of its quotient map.  No normed or C-star structure on this
+  noncommutative quotient is asserted.
 
 ## One endpoint per printed theorem
 
@@ -334,6 +345,8 @@ export GroupApproximation.ChosenNonMFTheorem
     exists_finitelyPresented_not_isWeakMF
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
+export GroupApproximation.ChosenNonMFEndpoint
+  (chosenFinitelyPresented_inclusionPackage)
 export GroupApproximation.ChosenUniversalHorn
   (isOperatorMF_satisfies_chosenQuasiIdentity
     markedGroup_not_satisfies_chosenQuasiIdentity)
@@ -361,6 +374,8 @@ export GroupApproximation.LiteralOperatorMFQuotientControls
 export GroupApproximation
   (not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
     coprod_isFinitelyPresented)
+export GroupApproximation.ChosenFreeProductConsequences
+  (chosen_coprod_int_finitelyPresented_not_isOperatorMF)
 export GroupApproximation
   (not_injective_of_coronaMFInvisible
     not_injective_of_coronaMFInvisible_of_target_embeds
@@ -375,6 +390,14 @@ export GroupApproximation.KazhdanCompressionCore
     normMFResidual_eq_defectNormal
     defectNormal_le_orbitDefectNormal
     orbitDefectNormal_le_compressionCentralizerDefect)
+export GroupApproximation.KazhdanCompressionCore
+  (defectNormal_le_compressionCentralizerDefect)
+export GroupApproximation.MarkedCompressionInclusionData
+  (word_eq_compressionDefect_sq
+    iota_a_not_in_compressed_image_of_word_ne_one
+    infinite_iota_range_of_word_ne_one)
+export GroupApproximation.MarkedCompressionData
+  (a_not_mem_range_alpha_of_word_ne_one)
 export GroupApproximation.MarkedCompressionInclusionData
   (not_isWeakMF_of_mem_finiteNormal not_isOperatorMF_of_mem_finiteNormal)
 export GroupApproximation.KazhdanCompressionCore
@@ -386,7 +409,10 @@ export GroupApproximation.LiteralNonMFPresentation
   (generator_card literal_algebraic_package)
 export GroupApproximation.LiteralNonMFLinearWitness
   (matrixBaseHom matrixBaseHom_surjective literal_mark_ne_one
-    literal_finitelyPresented_nontrivial_mark)
+    literal_finitelyPresented_nontrivial_mark matrixBaseEquiv
+    baseMap_injective_of_matrixBaseHom_injective witnessGroup_finitelyGenerated)
+export GroupApproximation.LiteralFiniteDimensionalObstruction
+  (no_finite_quotient_detects_literal_mark)
 export GroupApproximation.LiteralBaseRelations
   (baseRelator_eq_one x_cube y_cube z_sq commute_v1_v2 commute_v1_v3
     commute_v2_v3 x_conj_v1 x_conj_v2 x_conj_v3 y_conj_v1 y_conj_v2
@@ -422,6 +448,10 @@ export GroupApproximation
     commutator_conjugate_eq_commutator_sq_of_sq_eq_one)
 
 /-! ### Algebraic consequences -/
+export GroupApproximation
+  (BoundedMatrixSequence boundedMatrixSequence_norm_eq_ciSup
+    IsC0MatrixSequence c0MatrixSequenceIdeal c0MatrixSequenceIdeal_star_mem
+    NormMatrixCoronaAlgebra normMatrixCoronaMk normMatrixCoronaMk_eq_zero_iff)
 export GroupApproximation.OperatorMFMarkovWitness
   (positive_punit chosen_forbidden_subgroup
     exists_finitelyPresented_forbidden_subgroup)
