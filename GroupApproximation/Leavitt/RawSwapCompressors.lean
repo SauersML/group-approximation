@@ -64,6 +64,53 @@ def rawInvolutionMatrix (L : LeavittFamily A) : Matrix Index Index A :=
       Matrix.mul_apply, Matrix.one_apply, Fin.sum_univ_succ, coreIndex,
       lastIndex, hcorner, LeavittFamily.p0, mul_add, add_mul, mul_assoc]
 
+/-- Over the actual characteristic-two coefficient ring, the raw swap matrix
+is an involution even without the sign correction needed over a general
+ring. -/
+theorem rawInvolutionMatrix_sq [CharP A 2] (L : LeavittFamily A) :
+    rawInvolutionMatrix L * rawInvolutionMatrix L = 1 := by
+  ext r c
+  fin_cases r <;> fin_cases c <;>
+    simp [rawInvolutionMatrix, Matrix.mul_apply, Fin.sum_univ_succ,
+      LeavittFamily.p0, CharTwo.neg_eq, L.sum_range, mul_assoc]
+
+/-- The raw involution matrix is genuinely nonidentity over every nontrivial
+ring carrying the Leavitt family. -/
+theorem rawInvolutionMatrix_ne_one [Nontrivial A] (L : LeavittFamily A) :
+    rawInvolutionMatrix L ≠ 1 := by
+  intro h
+  have hentry := congrFun (congrFun h (0 : Index)) (3 : Index)
+  have hs1 : L.s1 = 0 := by
+    simpa [rawInvolutionMatrix, Matrix.one_apply] using hentry
+  have hone : (1 : A) = 0 := by
+    calc
+      (1 : A) = L.t1 * L.s1 := L.t1_s1.symm
+      _ = 0 := by rw [hs1, mul_zero]
+  exact one_ne_zero hone
+
+/-- The compiled raw group word itself has order dividing two in
+characteristic two. -/
+theorem rawInvolutionWord_sq [CharP A 2] (L : LeavittFamily A) :
+    rawInvolutionWord L * rawInvolutionWord L = 1 := by
+  apply Subtype.ext
+  apply Units.ext
+  change
+    (↑(↑(rawInvolutionWord L) : (Matrix Index Index A)ˣ) :
+      Matrix Index Index A) *
+      (↑(↑(rawInvolutionWord L) : (Matrix Index Index A)ˣ) :
+        Matrix Index Index A) = 1
+  rw [rawInvolutionWord_val, rawInvolutionMatrix_sq]
+
+/-- The characteristic-two raw group involution is nontrivial. -/
+theorem rawInvolutionWord_ne_one [Nontrivial A] (L : LeavittFamily A) :
+    rawInvolutionWord L ≠ 1 := by
+  intro h
+  apply rawInvolutionMatrix_ne_one L
+  rw [← rawInvolutionWord_val]
+  exact congrArg
+    (fun x : Ambient A ↦
+      (↑(↑x : (Matrix Index Index A)ˣ) : Matrix Index Index A)) h
+
 /-- The raw word commutes with every compressed elementary core generator:
 the corner entries `s₀bt₀` are annihilated by `t₁` on the left and by `s₁` on
 the right, exactly as for the sign-corrected involution, and the sign of the

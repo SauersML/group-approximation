@@ -4044,6 +4044,29 @@ retain the nonlinear multiplicity arrows through the shared standard
 `S3` channel.  See `FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md` and the MSI GAP
 replay `atlas_s4_s3_branching.g`.
 
+### 2026-08-13: the raw word is an intrinsic trace-half coefficient cut
+
+Over the actual characteristic-two Leavitt ring, the raw word is a
+nontrivial involution and centralizes the compressed core.  These statements
+are kernel-checked as `rawInvolutionWord_sq`,
+`rawInvolutionWord_ne_one`, and
+`rawInvolutionWord_commutes_compressed_core`.  In a hypothetical
+trace-preserving hyperlinear embedding,
+
+```text
+e=(1-r)/2
+```
+
+is therefore an intrinsic projection of trace exactly `1/2` in the
+compressed-core commutant.  If `C=Core'` and `D=alpha(Core)'`, then
+`C subset D=uCu*`, `e in D`, and `u*eu in C`.  This supplies a canonical
+positive-density carrier without interpreting any characteristic-two XOR
+sum over the complex matrices.  It does not yet recover the compatible
+finite-coordinate nesting `C_n subset D_n`, and ambient traciality alone
+cannot do so.  Continue either with that coordinate-commutant theorem or by
+extracting the hard/comb two-child arrows on the trace-half carrier.  See
+`TRUE_RAW_INVOLUTION_SPECTRAL_CUT.md`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

@@ -238,6 +238,17 @@ value, or kernel of the actual multiplicity arrows through the standard
 `S3` channel, where three `S4` extension types meet.  See
 `FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md`.
 
+There is now a canonical positive-density carrier for the nonlinear block
+calculation.  In characteristic two the raw word is a nontrivial involution
+which centralizes the compressed core.  Hence every hypothetical
+trace-preserving hyperlinear model contains
+`e=(1-r)/2` in the compressed-core commutant with trace exactly `1/2`.
+Writing `C=Core'` and `D=alpha(Core)'` gives
+`C subset D=uCu*`, with `e in D` and `u*eu in C`.  This does not by itself
+recover finite-coordinate commutants, but it removes the vanishing-rank and
+XOR-projection issues for the carrier cut.  See
+`TRUE_RAW_INVOLUTION_SPECTRAL_CUT.md`.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the

@@ -9,6 +9,7 @@ import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
+import GroupApproximation.Sofic.ExactInvolutionCut
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
