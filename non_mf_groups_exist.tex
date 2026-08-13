@@ -723,9 +723,15 @@ Theorem~\ref{thm:A} likewise lives in a finite central extension, though
 here the quotient $E/\langle w\rangle$ is not claimed to be residually
 finite.
 
-The finite-stage Kazhdan compression estimate and its equal-rank reversal
-are proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
-that observation to Carri\'on--Dadarlat--Eckhardt.  Their work is
+At the finite-stage spectral level, Dogon--Vigdorovich record a proof due
+to Uri Bader that operator-norm approximate representations of a
+property~(T) group retain a uniform spectral gap; their argument uses
+Ozawa's sum-of-squares characterization and generalizes an earlier result of
+Manuilov--Yu \cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
+a close general predecessor for the spectral-isolation step above.  The
+specific moving-projection estimates and equal-rank reversal needed here are
+proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
+those observations to Carri\'on--Dadarlat--Eckhardt.  Their work is
 used for the group-MF framework and for comparison examples.  In
 particular, their treatment of Abels' finitely presented solvable group
 already supplies an amenable MF group that is not residually finite
@@ -1951,7 +1957,11 @@ $\eta=\lVert(1-Q)P\rVert<1$ the two-projection estimate gives
 \[
  \lVert(1-P)Q\rVert\le\frac{\eta}{\sqrt{1-\eta^2}}.
 \]
-Consequently $\opnorm{(1-P_n)Q_n}\to0$.
+Indeed, $Q\colon\operatorname{ran}P\to\operatorname{ran}Q$ is bounded
+below by $\sqrt{1-\eta^2}$, hence injective; equality of the finite
+dimensions makes it surjective.  Its inverse has norm at most
+$1/\sqrt{1-\eta^2}$, and applying $(1-P)(Q-1)$ to a preimage gives
+the displayed estimate.  Consequently $\opnorm{(1-P_n)Q_n}\to0$.
 Combining this with \eqref{eq:rootcapture} shows that
 $T_nV_n(c)$ is asymptotically in the range of $P_n$.  It is therefore
 asymptotically fixed by every $\beta_n(\iota(\lambda))$.  Since
