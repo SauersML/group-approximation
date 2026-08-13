@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.NormMFResidualDetector
+import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.WeakMFTransfer
 
 /-!
@@ -63,5 +64,37 @@ theorem map_eq_one_of_normMFResidual_eq_top
       ((mem_normMFResidual_iff.mp hg).map f.rangeRestrict)
   rw [normMFResidual_eq_bot_of_isWeakMF hRangeMF] at hfg
   simpa using congrArg Subtype.val (Subgroup.mem_bot.mp hfg)
+
+/-- For a countable source, full residual makes every homomorphism to an
+arbitrary operator-MF group trivial.  The possibly uncountable target is
+replaced by the homomorphism's countable range, which remains operator-MF by
+subgroup permanence. -/
+theorem map_eq_one_of_normMFResidual_eq_top_to_isOperatorMF
+    [Countable G] (htop : normMFResidual G = ⊤)
+    {H : Type*} [Group H] (hH : IsOperatorMF H)
+    (f : G →* H) (g : G) : f g = 1 := by
+  letI : Countable f.range :=
+    Function.Surjective.countable f.rangeRestrict_surjective
+  have hRangeMF : IsOperatorMF f.range := hH.subgroup f.range
+  have hg : g ∈ normMFResidual G := by
+    rw [htop]
+    exact Subgroup.mem_top g
+  have hfg : f.rangeRestrict g ∈ normMFResidual f.range :=
+    mem_normMFResidual_iff.mpr
+      ((mem_normMFResidual_iff.mp hg).map f.rangeRestrict)
+  rw [normMFResidual_eq_bot_of_isOperatorMF hRangeMF] at hfg
+  simpa using congrArg Subtype.val (Subgroup.mem_bot.mp hfg)
+
+/-- A countable simple group containing one nontrivial MF-invisible element
+has only trivial homomorphisms into operator-MF groups.  This is the formal
+algebraic endpoint used by manuscript Corollary `cor:simple`; existence of
+the two-generator simple envelope is the separate Goryushkin input. -/
+theorem map_eq_one_of_simple_normMFInvisible_to_isOperatorMF
+    [Countable G] [IsSimpleGroup G]
+    {x : G} (hx : NormMFInvisible x) (hne : x ≠ 1)
+    {H : Type*} [Group H] (hH : IsOperatorMF H)
+    (f : G →* H) (g : G) : f g = 1 :=
+  map_eq_one_of_normMFResidual_eq_top_to_isOperatorMF
+    (normMFResidual_eq_top_of_simple hx hne) hH f g
 
 end GroupApproximation
