@@ -1,6 +1,7 @@
 import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
+import GroupApproximation.Sofic.NormMFPrintedConsequences
 
 /-!
 # The literal presentation as marked Kazhdan-compression data
@@ -65,6 +66,17 @@ theorem not_isOperatorMF_of_hasKazhdanPropertyT
   apply (data hT).not_isOperatorMF
   simpa only [data_word] using LiteralNonMFLinearWitness.literal_mark_ne_one
 
+/-- Conditional form of the manuscript's no-faithful-target consequence:
+the literal group cannot inject into any operator-MF group. -/
+theorem not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base)
+    {H : Type*} [Group H] (hH : IsOperatorMF H)
+    (f : MarkedGroup →* H) :
+    ¬ Function.Injective f := by
+  apply not_injective_to_isOperatorMF
+    ((mark_normMFInvisible_of_hasKazhdanPropertyT hT).toCoronaMFInvisible)
+    LiteralNonMFLinearWitness.literal_mark_ne_one hH f
+
 /-- An exact rational SOS certificate closes the literal universal-kernel
 endpoint without an additional property-`(T)` axiom. -/
 theorem mark_normMFInvisible_of_isRationalCertificate {c : ℚ}
@@ -80,6 +92,17 @@ theorem not_isOperatorMF_of_isRationalCertificate {c : ℚ}
     ¬ IsOperatorMF MarkedGroup :=
   not_isOperatorMF_of_hasKazhdanPropertyT
     (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
+
+/-- The proof-carrying rational-certificate form of the no-faithful-target
+consequence. -/
+theorem not_injective_to_isOperatorMF_of_isRationalCertificate
+    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c)
+    {H : Type*} [Group H] (hH : IsOperatorMF H)
+    (f : MarkedGroup →* H) :
+    ¬ Function.Injective f :=
+  not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
+    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
+    hH f
 
 end LiteralKazhdanCompression
 end GroupApproximation
