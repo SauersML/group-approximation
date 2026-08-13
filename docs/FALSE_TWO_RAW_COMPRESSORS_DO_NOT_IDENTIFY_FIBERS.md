@@ -188,13 +188,13 @@ path and its conjugate.  In coefficient language it must use both corner
 branches and a cross identity such as `t0 s1=0`; a diagonal identity such as
 `t1 s1=1` only verifies that one transport is invertible.
 
-## 6. Collision word 19243 is the first genuine refinement loop
+## 6. Collision word 19243 is a parent-block identity
 
 The fixed radius-five collision-tree word at index `19243` was reconstructed
 exactly by `experiments/atlas_decode_collision_words.py`.  Put
 
 ```text
-X = p2_01,   Y = p2_10,   Q = p1_21.
+X = p2_01,   Y = p2_10,   Q = p1_23.
 ```
 
 Then the word is
@@ -214,19 +214,39 @@ written as the closed conjugacy product
 Q.                                                     (RCH2)
 ```
 
-This is structurally different from the sterile adjacent-root square.  In
-the prefix realization the first-chart transvection `Q` connects the leaf
-`1` to the child leaf `000`, whereas `X,Y` act on the second-chart pair
-`00,1`.  Thus `(RCH1)` traverses the strict refinement `000 < 00`: it is not
-merely a path followed by the inverse of the same compressor transport.
+In the prefix realization the first-chart transvection `Q` shears the
+sibling leaves `001` and `000` inside the parent cylinder `00`, whereas
+`X,Y` act on the second-chart pair `00,1`.  This initially looks like the
+desired child-versus-parent refinement loop.  However, relative to the
+parent decomposition `00 + 1`, the three units have the two-by-two form
+
+```text
+X = [1 1]    Y = [1 0]    Q = [K 0]
+    [0 1],       [1 1],       [0 1],
+```
+
+where `K` is merely an involution.  No properness information about the
+child support of `K` remains.  Direct multiplication in every
+characteristic-two ring gives
+
+```text
+(Y X) Q Y Q (X Y) Q X Q = I                         (RCH3)
+```
+
+from the single equation `K^2=1`.  This generic identity is formalized in
+`Leavitt/Collision19243.lean` as
+`collision19243_parentBlock_identity`.
 
 The exact reconstruction is stored in `experiments/atlas-word-19243.json`.
-It explains why this word kills all previously audited affine and natural
-alternating-group alignments: after a classical fold its value is a
-noncentral involution.  It does **not** yet prove a normalized-HS gap for an
-arbitrary tracial matrix model.  The remaining task is now sharply local:
-compute `(RCH2)` in the raw-compressor Pauli disintegration and prove that
-its four conjugacy legs compare the two inequivalent extension branches,
-rather than closing inside a finite Clifford normalizer.  Only in the former
-case can its centrality relation force the cross coefficient `t0 s1=0` in a
-common multiplicity corner.
+It explains why this word kills the previously audited affine and natural
+alternating-group alignments: their classical fold does not preserve the
+required parent block, so the value becomes a noncentral involution.  But an
+arbitrary tracial matrix model can realize `(RCH3)` in a finite parent block
+without seeing that `K` came from a proper child.  Thus word `19243` is not
+the missing gauge-invariant cross-coefficient loop and cannot by itself
+force `t0 s1=0` or one-way leakage.
+
+This closes the shortest global collision candidate as well as the shortest
+local adjacent-root square.  A live word must retain **two distinct child
+branches after parent-block compression**.  Any word whose raw block
+reduction uses only a single involution `K` is automatically too coarse.

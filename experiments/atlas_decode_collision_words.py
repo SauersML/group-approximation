@@ -11,10 +11,11 @@ import json
 from atlas_kernel_collision_enumerator import (
     encode_word,
     enumerate_ball,
+    evaluate_word,
     factor_projections,
     spanning_tree_kernel_words,
 )
-from atlas_two_chart_search import matrix_key
+from atlas_two_chart_search import leavitt_is_one, matrix_key
 
 
 def main():
@@ -33,6 +34,7 @@ def main():
             "index": index,
             "length": len(word),
             "word": encode_word(word),
+            "leavitt_is_one": leavitt_is_one(evaluate_word(word)),
             "factor_projection_hex": [
                 matrix_key(value).hex() for value in projections
             ],
