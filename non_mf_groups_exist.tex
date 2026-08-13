@@ -103,8 +103,8 @@ $w$.  Consequently $E$ is not MF, and neither its full nor its reduced
 group $C^*$-algebra is an MF algebra.  The group is built from
 $\Gamma=\Z^3\rtimes\SL_3(\Z)$, one HNN letter implementing the proper
 endomorphism $(v,A)\mapsto(2v,A)$, and one additional involution; the
-proof combines the Kazhdan projection of $\Gamma$ with stable finiteness
-of matrix coronas.  The finite-dimensional case of the kill theorem is
+proof combines finite-stage Kazhdan spectral pinning with an equal-rank
+projection argument in the matrix coordinates.  The finite-dimensional case of the kill theorem is
 elementary and uses neither property (T) nor unitarity; we also show,
 via quasidiagonality of amenable groups, that the same marked presentation
 with a cyclic base can have a corona representation in which the marked
@@ -249,54 +249,40 @@ Definition~\ref{def:E}.  In particular, finitely presented non-MF
 groups exist.
 \leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 
-The proof turns a $C^*$-algebraic finiteness argument into a group-level
-kernel theorem.  For orientation, it can be organized into the following
-five steps.  The individual ingredients and the surrounding
-compression/lamp architecture have substantial antecedents.  The specific
-combination used here is stable-finite Kazhdan pinning in a norm matrix
-corona, followed by its conversion into a universal marked kernel.
+The proof is finite-stage throughout.  For orientation, it can be
+organized into the following five steps.  The individual ingredients and
+the surrounding compression/lamp architecture have substantial antecedents.
+The specific combination here is a Reynolds corner, Kazhdan spectral
+pinning, and an equal-rank reversal of a one-sided projection estimate.
 
 \begin{enumerate}
-  \item\emph{Central corner.}  If $\Theta(w)\neq 1$, then
-    $e=\tfrac12(1-\Theta(w))$ is a nonzero projection commuting with the
-    image of $\Theta$; cutting by a lift of $e$ replaces $\mathcal Q$ by
-    another norm matrix corona on which $\Theta(w)=-1$
-    (Lemma~\ref{lem:corner}).  This cut eliminates small-relative-rank
-    phenomena: on the corner, the deviation of $w$
-    from $1$ has full normalized size.  This is a norm-corona adaptation
-    of the negative-eigenspace compression for a central involution in
-    the proof of \cite[Proposition~2.7]{SlofstraVidick}; the distinction
-    is that no positive relative-rank estimate is needed here.
-  \item\emph{Conjugation representation.}  Unitary lifts $U_{g,n}$ of
-    the corner representation conjugate the corner coordinates
-    $M_{r_n}(\C)$, and exact multiplicativity of $\Theta$ in the quotient
-    makes arbitrary coordinate lifts asymptotically multiplicative in
-    operator norm.  Thus
-    $g\mapsto (\Ad U_{g,n})_n$ defines an \emph{exact} homomorphism $\beta$ into
-    the norm corona of the algebras $B(L^2(M_{r_n}))$
-    (Lemma~\ref{lem:beta}).
-  \item\emph{Kazhdan projection.}  $\Gamma$ has property (T), so its
-    maximal group $C^*$-algebra contains the Kazhdan projection
-    $p_\Gamma$, whose image under every representation is the projection
-    onto the invariant vectors.  The HNN relation
-    $t\Gamma t^{-1}=\alpha(\Gamma)\subseteq\Gamma$ forces, in
-    \emph{every} $C^*$-representation, the order relation
-    $P\le\beta(t)P\beta(t)^*$ between the images of $p_\Gamma$ and its
-    $t$-conjugate (Lemma~\ref{lem:order}).
-  \item\emph{Stable finiteness.}  A norm matrix corona is stably finite:
-    isometries in every matrix amplification are unitaries
-    (Lemma~\ref{lem:finite}).  Hence
-    the two unitarily equivalent projections in step (3) must be equal:
-    $\beta(t)$ \emph{preserves} the $\Gamma$-fixed space.
-  \item\emph{The marked word.}  The involution $c$ commutes with $\Gamma$, so
-    the matrix vector representing $\Theta(c)$ is $\Gamma$-fixed; by
-    step (4) so is the vector representing $\Theta(tct^{-1})$; hence
-    $a\in\Gamma$ asymptotically fixes it, and the commutator word $w$
-    is forced to $1$ in normalized Hilbert--Schmidt norm along the chosen
-    ultrafilter --- while the
-    corner normalization of step (1) says it equals $-1$ in operator
-    norm.  The two conclusions contradict each other
-    (Section~\ref{sec:proofA}).
+  \item\emph{Finite-normal corner.}  From a corona model nontrivial on the
+    finite normal subgroup $F$, average the coordinate lifts over $F$.
+    Hermitianization and spectral rounding produce nonzero complementary
+    projections $e_n$ which asymptotically commute with every lift and on
+    which the compressed Reynolds sums tend to zero.  Polar correction gives
+    an operator-norm asymptotic representation on the varying corners
+    (Lemma~\ref{lem:finitecorner}).
+  \item\emph{Adjoint almost-representation.}  Conjugation by the corrected
+    lifts acts unitarily on normalized Hilbert--Schmidt space.  Its
+    multiplicative defects tend to zero in operator norm.
+  \item\emph{Kazhdan spectral projection.}  For a finite Kazhdan generating
+    set, a fixed spectral cutoff in the Hermitian averaging operator gives
+    projections $P_n$ onto the almost-fixed sector.  The centralizing
+    relation captures the vector represented by $c$.  The one-sided HNN
+    relation gives, with $Q_n=\Ad(V_n(t))P_n\Ad(V_n(t))^*$,
+    $\lVert(1-Q_n)P_n\rVert\to0$.
+  \item\emph{Equal-rank flip.}  The projections $P_n$ and $Q_n$ have the same
+    finite rank.  The elementary identity between their two off-diagonal
+    singular-value lists therefore gives
+    $\lVert(1-P_n)Q_n\rVert=\lVert(1-Q_n)P_n\rVert\to0$.
+    Thus the translated lamp vector remains in the almost-fixed sector.
+  \item\emph{The trace contradiction.}  Every compression defect, and hence
+    its normal closure, tends to the identity in normalized
+    Hilbert--Schmidt norm.  This applies to every $f\in F$, whereas the
+    Reynolds corner has $\lVert\sum_{f\in F}V_n(f)\rVert\to0$.
+    Normalized traces would then converge simultaneously to $|F|$ and to
+    $0$, a contradiction (Section~\ref{sec:proofA}).
 \end{enumerate}
 
 Figure~\ref{fig:mechanism} shows where the two halves of the proof meet.
@@ -317,10 +303,10 @@ Reynolds corner.
   \node[figbox, right=of defect] (finite) {$F\triangleleft H$ finite\\
     and $F\le N_{\rm comp}$};
 
-  \node[figbox, below=of pattern] (kazhdan) {Kazhdan projection\\
-    $P$ onto the\\ $\Lambda$-fixed vectors};
-  \node[figbox, right=of kazhdan] (pin) {$P\le TPT^*$ and equal\\
-    finite ranks force\\ $P=TPT^*$};
+  \node[figbox, below=of pattern] (kazhdan) {finite-stage spectral\\
+    projection $P_n$ onto\\ the almost-fixed sector};
+  \node[figbox, right=of kazhdan] (pin) {$\lVert(1-Q_n)P_n\rVert\to0$;\\
+    the equal-rank flip gives\\ $\lVert(1-P_n)Q_n\rVert\to0$};
   \node[figbox, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
     tends to $1$ in\\ normalized HS norm};
 
@@ -341,9 +327,8 @@ Reynolds corner.
 \end{tikzpicture}
 \caption{The finite-normal obstruction.  The upper lane is
 group-theoretic and the lower lane is the finite-matrix rigidity input.
-Stable finiteness is used only in the middle lower box; property~(T) is
-used only to make the fixed-space projection uniform across the matrix
-sequence.}
+The middle lower box is the equal-rank flip; property~(T) supplies the
+uniform spectral cutoff defining the almost-fixed projections.}
 \label{fig:mechanism}
 \end{figure}
 
@@ -617,11 +602,11 @@ centralizer of any sofic embedding of a Kazhdan group is a metric
 ultraproduct of permutation groups, with LEF and residual-finiteness
 consequences \cite[Theorem~A]{AlekseevThom}.  All of these results live
 on the Hamming/tracial side: they extract structural information about
-the approximations themselves.  Lemmas~\ref{lem:beta},
-\ref{lem:order} and~\ref{lem:pinning} below instead run the conjugation
-representation of operator-norm lifts and extract an exact equality of
-Kazhdan projections from stable finiteness; the output is not structure
-of an approximation but a universal marked kernel element.
+the approximations themselves.  Lemma~\ref{lem:compressorfinite} below instead runs the conjugation
+almost-representation of the operator-norm lifts, isolates its almost-fixed
+sector by a finite-stage Kazhdan spectral projection, and reverses the
+one-sided leakage estimate by equality of finite ranks.  The output is not
+structure of an approximation but a universal marked kernel element.
 It also records the finite analogue: a
 one-sided inclusion $t\Gamma t^{-1}\le\Gamma$ becomes an equality in every
 finite quotient.
@@ -644,16 +629,13 @@ Our $\Gamma=\Z^3\rtimes\SL_3(\Z)$ with $\alpha(v,A)=(2v,A)$ is the
 simplest integral analogue of this scaling pattern
 (Remark~\ref{rem:whythisbase}).  The approximation conclusions in
 \cite{Thom10} are sofic or hyperlinear and use Hamming or tracial
-Hilbert--Schmidt models, not operator-norm coronas.  Here the
-replacement for finite cardinality is the implication
-\[
-  P\leq\beta(t)P\beta(t)^*
-  \quad\Longrightarrow\quad
-  P=\beta(t)P\beta(t)^*,
-\]
-because the conjugation representation lands in a stably finite norm
-matrix corona.  The central corner then converts this equality into a fixed
-nontrivial element killed by every corona representation.
+Hilbert--Schmidt models, not operator-norm coronas.  Here the finite-stage replacement for finite cardinality is an equal-rank
+projection flip.  The one-sided compression first gives
+$\lVert(1-Q_n)P_n\rVert\to0$; since $Q_n$ is unitarily conjugate to $P_n$
+in the same finite-dimensional space, the reverse leakage
+$\lVert(1-P_n)Q_n\rVert$ has the same norm and also tends to zero.  The
+finite-normal corner converts this two-sided asymptotic invariance into a
+fixed nontrivial element killed by every corona representation.
 
 The Clifford and marked-sign sides also have close antecedents.  Slofstra
 uses finite and infinite-rank Clifford groups with a distinguished central
@@ -678,7 +660,7 @@ operator--Hilbert--Schmidt stability
 matrix size to the negative eigenspace, without a positive relative-rank
 hypothesis, is prior art.  Our argument uses the same local corner technology
 but replaces operator--Hilbert--Schmidt stability and Mal'cev's theorem by
-Kazhdan adjoint pinning and stable finiteness, producing an unconditional
+finite-stage Kazhdan adjoint pinning and the equal-rank flip, producing an unconditional
 universal marked kernel.
 
 There is an older analytic ancestor as well.  At the foundational level,
@@ -726,7 +708,7 @@ its proof repairs the restriction to $N$ and passes to a nonzero
 character-isotypic corner before applying Proposition~2.4
 \cite[proof of Proposition~1.6]{BDL}.  This is direct local prior art for the
 finite-normal corner.  Our argument combines the corner with the one-sided
-Kazhdan compressor and stable finiteness to force universal annihilation of
+Kazhdan compressor and the equal-rank flip to force universal annihilation of
 the finite subgroup, without assuming hyperlinearity of the quotient.
 Reformulations of (weak) soficity through equations over groups and
 extensions involving residually finite groups, locating potential
@@ -736,9 +718,9 @@ Theorem~\ref{thm:A} likewise lives in a finite central extension, though
 here the quotient $E/\langle w\rangle$ is not claimed to be residually
 finite.
 
-The Kazhdan-projection compression observation needed here is proved
-directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}; we do not
-attribute that observation to Carri\'on--Dadarlat--Eckhardt.  Their work is
+The finite-stage Kazhdan compression estimate and its equal-rank reversal
+are proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
+that observation to Carri\'on--Dadarlat--Eckhardt.  Their work is
 used for the group-MF framework and for comparison examples.  In
 particular, their treatment of Abels' finitely presented solvable group
 already supplies an amenable MF group that is not residually finite
@@ -752,7 +734,7 @@ Finally, non-MF-ness of one group $C^*$-algebra alone does not obstruct the
 \emph{group} from embedding into a corona, since group MF-ness only requires
 an MF quotient of $\Cmax(E)$ in which the canonical image of $E$ remains
 faithful.  The contribution asserted here is
-    narrower: stable-finite Kazhdan fixed-space rigidity in a norm matrix corona, together
+    narrower: finite-stage Kazhdan spectral rigidity for operator-norm matrix models, together
 with the central-corner/marked-word device producing a specific nontrivial
 element in the kernel of every such representation.  For context on the
 approximation landscape see
@@ -766,8 +748,8 @@ Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
 Section~\ref{sec:corona} develops the corona lemmas.
 Section~\ref{sec:conj} defines marked Kazhdan patterns and their
 compression-defect subgroups, states the finite-normal obstruction
-criterion (Theorem~\ref{thm:criterion}), and develops the conjugation
-representation; Section~\ref{sec:proofA} proves the criterion and
+criterion (Theorem~\ref{thm:criterion}), and develops the finite-stage
+conjugation argument; Section~\ref{sec:proofA} proves the criterion and
 deduces Theorem~\ref{thm:A}.  Section~\ref{sec:consequences} derives
 Theorem~\ref{thm:D} and the further consequences.
 Section~\ref{sec:necessity} proves Theorem~\ref{thm:C}.
@@ -1296,13 +1278,12 @@ $c$, $a$ in $E$; the hypotheses hold by the defining relations
 \begin{remark}\label{rem:whytforcorona}
 The proof of Theorem~\ref{thm:B} used only that a finite-dimensional
 subspace cannot be properly contained in an isomorphic image of itself.
-The corona of \eqref{eq:corona} is not finite-dimensional, and the
-commutant of the image of $\Gamma$ there is not a coordinatewise
-object, so the argument does not transfer as stated.  Property (T)
-repairs exactly this: the Kazhdan projection turns ``the $\Gamma$-fixed
-subspace'' into a single element of the corona, to which the finiteness
-of the corona (Lemma~\ref{lem:finite}) can be applied.  The rest of the
-paper carries this out.
+A corona representation has no single finite-dimensional fixed space, so
+that proof does not transfer verbatim.  Property~(T) supplies a uniform
+finite-stage substitute: a fixed spectral cutoff isolates the almost-fixed
+sector in every sufficiently accurate matrix model.  The one-sided HNN
+relation gives one leakage estimate between two unitarily conjugate spectral
+projections; equality of their finite ranks gives the reverse estimate.
 \end{remark}
 
 \section{Norm matrix coronas}\label{sec:corona}
@@ -1560,7 +1541,7 @@ $p_F=\tfrac12(1+\Theta(w))$, so $e=\tfrac12(1-\Theta(w))$ and
 $\Theta_-(w)=\Theta(w)e=(1-2e)e=-e=-1$ in $\mathcal Q'$.
 \end{proof}
 
-\section{The conjugation representation and the Kazhdan projection}\label{sec:conj}
+\section{Finite-stage conjugation and Kazhdan compression}\label{sec:conj}
 
 The corona half of Theorem~\ref{thm:A} will be deduced from a general
 criterion, whose data we now fix.
@@ -1674,10 +1655,11 @@ $R$ on the nonzero moving corners.  The trace estimate for the average
 over the finite set $Q_0$ then supplies a single $s\in Q_0$ whose image
 in the resulting tracial ultraproduct is nontrivial.
 
-Apply now the compressor argument of Steps 1--3 of
-Section~\ref{sec:proofA} to this same moving-corner model.  It sends every
+Apply Lemma~\ref{lem:compressorfinite} to this same moving-corner model.
+It sends every
 pointwise defect $[tct^{-1},\iota(\lambda)]$ to the identity in the
-tracial ultraproduct.  Normal-closure propagation, exactly as in Step~4,
+tracial ultraproduct.  Normal-closure propagation, exactly as in the proof of
+Theorem~\ref{thm:criterion},
 therefore kills all of $K'\le N_{\rm comp}$, including $s$.  This
 contradicts the surviving image of $s$ and proves the theorem.  The moving
 Kazhdan corner is thus the normal-subgroup substitute for the finite
@@ -1754,10 +1736,12 @@ tracial.
 \begin{proof}
 Consider the exact representation
 \[
- \beta(g)=\Theta(g)\otimes\Theta(g)^{*,{\rm op}}
+ \beta(g)=\Theta(g)\otimes(\Theta(g)^*)^{\rm op}
  \quad\hbox{in }\U(A\otimes_{\max}A^{\rm op}).
 \]
-On $L^2(A,\tau)$ its left--right action is conjugation by $\Theta(g)$.
+Under the left--right representation on $L^2(A,\tau)$, an elementary
+tensor $a\otimes b^{\rm op}$ acts by $x\mapsto axb$; hence $\beta(g)$
+acts by conjugation with $\Theta(g)$.
 The Kazhdan projection for $L$ therefore projects onto the fixed vectors
 of this conjugation action.  The one-sided compressor calculation gives
 the same projection order as above, and stable finiteness of the maximal
@@ -1800,91 +1784,63 @@ proof must proceed through property (T); a substitute furnishing the
 uniform fixed-space projection is what the argument consumes.
 \end{remark}
 
-For the remainder of this section and in Section~\ref{sec:proofA},
-fix a countable group $H$ with a marked Kazhdan pattern
-$(\Lambda,\iota,t,c)$ and a finite normal subgroup
-$F\trianglelefteq H$ with $F\subseteq N_{\mathrm{comp}}$, and suppose
-given a corona representation
-$\Theta^{\rm u}\colon H\to\Ucor((d_n))$ whose restriction to $F$ is
-nontrivial.  Put $\Theta=\kappa_{(d_n)}\circ\Theta^{\rm u}$; the proof of
-Theorem~\ref{thm:criterion} will derive a contradiction.  By
-Lemma~\ref{lem:corner} there is a corona representation
-$\Theta_-\colon H\to\U(\mathcal Q')$,
-$\mathcal Q'=\mathcal Q((r_n)_{n\in\N})$, with
-$\sum_{f\in F}\Theta_-(f)=0$.  Using Lemma~\ref{lem:lift}(2), choose
-for every $g\in H$ a sequence of unitaries
-$U_{g,n}\in M_{r_n}(\C)$ lifting $\Theta_-(g)$, with $U_{1,n}=1$.
-
-Let $K_n=L^2\bigl(M_{r_n}(\C),\tr_{r_n}\bigr)$, a Hilbert space of
-dimension $r_n^2$ whose bounded operators $B(K_n)$ form the matrix
-algebra $M_{r_n^2}(\C)$, and let
+We use the following finite-stage language.  An
+\emph{operator-norm asymptotic representation} of a countable group $G$ is
+a sequence of maps $V_n\colon G\to\U(M_{r_n}(\C))$, with $V_n(1)=1$, such
+that
 \[
-  \mathcal B\;=\;\prod_{n\in\N}B(K_n)\Big/\bigoplus_{n\in\N}B(K_n),
+ \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
+ \qquad(g,h\in G).
 \]
-again a norm matrix corona.  For a unitary $U\in M_{r_n}(\C)$ let
-$\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
 
-\begin{lemma}\label{lem:beta}
-\leavevmode
-\begin{enumerate}
-  \item For unitaries $U,V\in M_r(\C)$ and every $x\in M_r(\C)$,
-    \[
-      \hsnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\hsnorm{x},
-    \]
-    hence $\opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}$ as operators on the
-    Hilbert space $K_n$ (and therefore as elements of $B(K_n)$).
-  \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in\N}$
-    in $\mathcal B$ defines a group homomorphism
-    $\beta\colon H\to\U(\mathcal B)$, independent of the choice of
-    unitary lifts.
-  \item $\beta$ extends to a unital $*$-homomorphism
-    $\tilde\beta\colon\Cmax(H)\to\mathcal B$ with
-    $\tilde\beta(u_g)=\beta(g)$.
-\end{enumerate}
+\begin{lemma}[finite-normal spectral corner]\label{lem:finitecorner}
+Let $H$ be a countable group and let $F\trianglelefteq H$ be finite.  If a homomorphism
+$H\to\Ucor((d_n))$ is nontrivial on $F$, then, after passing to a
+subsequence, there are integers $r_n\ge1$ and an operator-norm asymptotic
+representation $V_n\colon H\to\U(M_{r_n}(\C))$ such that
+\begin{equation}\label{eq:finitecornersum}
+ \opnorm{\sum_{f\in F}V_n(f)}\longrightarrow0.
+\end{equation}
 \end{lemma}
 
 \begin{proof}
-(1) Since
-$UxU^*-VxV^*=(U-V)xU^*+Vx(U-V)^*$, the ideal property of the normalized
-Hilbert--Schmidt norm gives
+Choose unitary representatives $U_{g,n}$ of the corona classes, with
+$U_{1,n}=1$, and put
 \[
-\begin{aligned}
- \hsnorm{UxU^*-VxV^*}
- &\le \hsnorm{(U-V)xU^*}+\hsnorm{Vx(U-V)^*}\\
- &\le 2\opnorm{U-V}\,\hsnorm{x}.
-\end{aligned}
+ A_n=\frac1{|F|}\sum_{f\in F}U_{f,n},\qquad
+ H_n=\frac12(A_n+A_n^*).
 \]
-Taking the supremum over $\hsnorm{x}=1$ proves the asserted operator-norm
-bound on $K_n$.
+The finite group law gives $\opnorm{A_n^2-A_n}\to0$ and
+$\opnorm{A_n^*-A_n}\to0$.  Normality of $F$ gives
+$\opnorm{U_{g,n}A_nU_{g,n}^*-A_n}\to0$ for every fixed $g\in H$.
+Functional calculus at the spectral gap about $1/2$ therefore produces
+projections
+\[
+ p_n=1_{[1/2,\infty)}(H_n),\qquad e_n=1-p_n,
+\]
+with $\opnorm{p_n-A_n}\to0$ and
+$\opnorm{[e_n,U_{g,n}]}\to0$ for every fixed $g$.
 
-(2) If $(U_{g,n})$ and $(U'_{g,n})$ both lift $\Theta_-(g)$ then
-$\opnorm{U_{g,n}-U'_{g,n}}\to0$, so by (1) the two sequences of adjoint
-maps agree in $\mathcal B$; this is independence of lifts.  For
-multiplicativity, $U_{g,n}U_{h,n}$ and $U_{gh,n}$ both lift
-$\Theta_-(gh)$, so $\opnorm{U_{g,n}U_{h,n}-U_{gh,n}}\to0$ and, by (1)
-again, $\beta(g)\beta(h)=\beta(gh)$.  Finally $\beta(1)=1$ since
-$U_{1,n}=1$, so each $\beta(g)$ is a unitary with inverse
-$\beta(g^{-1})$.
+The projections $e_n$ have positive rank along an infinite subsequence.
+Indeed, if $e_n=0$ eventually then $A_n\to1$.  But
+\[
+ \frac1{|F|}\sum_{f\in F}(U_{f,n}-1)^*(U_{f,n}-1)
+   =2-A_n-A_n^*
+\]
+would force $U_{f,n}\to1$ for every $f\in F$, contrary to the assumed
+survival of some element of $F$ in the corona.  Restrict to that
+subsequence and identify $e_n\C^{d_n}$ with $\C^{r_n}$.
 
-(3) This is precisely the universal property of the maximal group
-$C^*$-algebra: the homomorphism $\beta\colon H\to\U(\mathcal B)$ integrates
-uniquely to a unital $*$-homomorphism
-$\tilde\beta\colon\Cmax(H)\to\mathcal B$ satisfying
-$\tilde\beta(u_g)=\beta(g)$.
+The compressions $e_nU_{g,n}e_n$ are asymptotically unitary and
+multiplicative.  For each fixed $g$, replacing the compression by the unitary factor in its
+polar decomposition changes it by $o(1)$ in operator norm.  Use this polar
+correction whenever the compression is invertible and choose an arbitrary
+unitary otherwise; then set $V_n(1)=1$.  Finally
+$\opnorm{A_ne_n}\to0$, so compression and polar correction give
+\eqref{eq:finitecornersum}.  This is the coordinate form of the Reynolds
+corner; compare the dimension-changing compression in
+\cite[Lemmas~2.2--2.3 and Proposition~2.4]{BDL}.
 \end{proof}
-
-\ifanonymous\else
-\fi
-
-Let $\iota_*\colon\Cmax(\Lambda)\to\Cmax(H)$ be the unital
-$*$-homomorphism induced by $\iota$ (Section~\ref{sec:prelim}), and
-let $p_\Lambda\in\Cmax(\Lambda)$ be the Kazhdan projection of
-Fact~\ref{fact:kazhdan}.  Composing, $\tilde\beta\circ\iota_*$ is a
-unital $*$-homomorphism $\Cmax(\Lambda)\to\mathcal B$, and we write
-\[
-  P\;:=\;\tilde\beta\bigl(\iota_*(p_\Lambda)\bigr)\;\in\;\mathcal B ,
-\]
-a projection.
 
 \begin{lemma}[order identity]\label{lem:order}
 Let $H_1$ be a countable group, $\Lambda_1$ a countable group with
@@ -1900,9 +1856,6 @@ $\Cmax(H_1)$:
   \item $\bar p\,\bigl(u_{t_1}\,\bar p\,u_{t_1}^*\bigr)=\bar p$; that
     is, $\bar p\le u_{t_1}\bar pu_{t_1}^*$.
 \end{enumerate}
-Consequently, for the standing pattern, in $\mathcal B$:
-$\beta(\iota(\lambda))P=P$ for all $\lambda\in\Lambda$, and
-$P\le\beta(t)P\beta(t)^*$.
 \end{lemma}
 
 \begin{proof}
@@ -1939,188 +1892,96 @@ so $\eta\in\Fix(\pi\circ\iota_1)$ and $\xi=\pi(t_1)\eta$.  The
 inclusion of ranges gives
 $\pi(\bar p)\le\pi(u_{t_1}\bar pu_{t_1}^*)$, i.e.\ (2) in the
 representation $\pi$; as $\pi$ was arbitrary and some $\pi$ is
-faithful, (2) holds in $\Cmax(H_1)$.  The final statement follows by
-applying the $*$-homomorphism $\tilde\beta$ to the instance
-$(H_1,\Lambda_1,\iota_1,t_1)=(H,\Lambda,\iota,t)$, for which (M1) is
-the required one-sided containment.
+faithful, (2) holds in $\Cmax(H_1)$.
 \end{proof}
 
-\ifanonymous\else
-\fi
-
-\begin{lemma}[compression equality]\label{lem:pinning}
-$P=\beta(t)P\beta(t)^*$ in $\mathcal B$.
+\begin{lemma}[finite-stage Kazhdan compressor]\label{lem:compressorfinite}
+Let $H$ be a countable group, let $(\Lambda,\iota,t,c)$ be a marked
+Kazhdan pattern in $H$, and put
+$d=tct^{-1}$, and let $V_n\colon H\to\U(M_{r_n}(\C))$ be an
+operator-norm asymptotic representation.  Then, for every
+$\lambda\in\Lambda$,
+\begin{equation}\label{eq:finitecollapse}
+ \hsnorm{V_n([d,\iota(\lambda)])-1}\longrightarrow0.
+\end{equation}
 \end{lemma}
 
 \begin{proof}
-Put $Q_0=\beta(t)P\beta(t)^*$ and $v=\beta(t)P$.  Then
-$v^*v=P\beta(t)^*\beta(t)P=P$ and $vv^*=Q_0$, and $P\le Q_0$ by
-Lemma~\ref{lem:order}.  Apply Lemma~\ref{lem:finite}(2) with
-$p:=P$, $q:=Q_0$, and the element $v^*$, which satisfies
-$(v^*)^*(v^*)=vv^*=Q_0$ and $(v^*)(v^*)^*=v^*v=P$; it yields $P=Q_0$.
-\end{proof}
+Write $K_n=L^2(M_{r_n}(\C),\tr_{r_n})$ and
+$\beta_n(g)=\Ad V_n(g)\in\U(K_n)$.  The estimate
+\[
+ \opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}
+\]
+shows that $(\beta_n)$ is an operator-norm asymptotic representation.
+Choose a finite symmetric Kazhdan generating set $S\subseteq\Lambda$.
+Property~(T) gives a number $\theta<1$ such that, in every unitary
+representation of $\Lambda$, the Hermitian $S$-average has spectrum at
+most $\theta$ off the fixed space.  Fix a cutoff strictly between
+$\theta$ and $1$, and let $P_n$ be the spectral projection above that
+cutoff for the Hermitian part of
+$|S|^{-1}\sum_{s\in S}\beta_n(\iota(s))$.
 
-\ifanonymous\else
-\fi
+We record the three finite-stage consequences of this spectral choice.
+They follow uniformly by passing a contrary subsequence to the norm
+ultraproduct: there $(\beta_n\circ\iota)$ is an exact representation, and
+the class of $(P_n)$ is its fixed-space projection.  First,
+$\opnorm{[P_n,\beta_n(\iota(\lambda))]}\to0$ for each
+$\lambda\in\Lambda$.  Second, because $c$ centralizes $\iota(\Lambda)$,
+\begin{equation}\label{eq:rootcapture}
+ \lVert(1-P_n)V_n(c)\rVert_{K_n}\longrightarrow0.
+\end{equation}
+Third, with $T_n=\beta_n(t)$ and $Q_n=T_nP_nT_n^*$, the one-sided
+containment (M1) gives
+\begin{equation}\label{eq:oneleak}
+ \opnorm{(1-Q_n)P_n}\longrightarrow0.
+\end{equation}
 
-We now pass from the corona projection $P$ to its literal fixed-space action
-on a Hilbert-space ultraproduct.  Fix a free
-ultrafilter $\omega$ on $\N$, and let
+The missing reverse estimate is purely finite-dimensional.  The
+projections $P_n$ and $Q_n$ have equal rank.  For any equal-rank
+projections $P,Q$, the nonzero singular values of $(1-Q)P$ and $(1-P)Q$
+coincide: in orthonormal bases of their ranges, if $C$ is the cross-Gram
+matrix, then the squared singular values of the two operators are the
+eigenvalues of $1-C^*C$ and $1-CC^*$, respectively.  Hence
 \[
-  K_\omega\;=\;\Bigl\{(\xi_n)_{n\in\N}:\ \xi_n\in K_n,\
-  \sup_n\lVert\xi_n\rVert<\infty\Bigr\}\Big/
-  \bigl\{(\xi_n):\ \lim_{n\to\omega}\lVert\xi_n\rVert=0\bigr\},
+ \opnorm{(1-P_n)Q_n}=\opnorm{(1-Q_n)P_n}\longrightarrow0.
 \]
-the Hilbert-space ultraproduct with inner product
-$\langle[\xi],[\eta]\rangle=\lim_{n\to\omega}\langle\xi_n,\eta_n\rangle$.
-
-\begin{lemma}\label{lem:sigma}
-For a bounded sequence $(T_n)_{n\in\N}$ of operators with class
-$[T]\in\mathcal B$, the assignment
-$\sigma([T])\,[\,(\xi_n)\,]=[\,(T_n\xi_n)\,]$ is a well-defined unital
-$*$-homomorphism $\sigma\colon\mathcal B\to B(K_\omega)$.  Moreover
-$\sigma(P)$ is the orthogonal projection onto
-\[
-  \Fix_\omega\;=\;\bigl\{\zeta\in K_\omega:\
-  \sigma(\beta(\iota(\lambda)))\zeta=\zeta\ \text{for all}\
-  \lambda\in\Lambda\bigr\}.
-\]
-\end{lemma}
-
-\begin{proof}
-If $(T_n)$ is a null sequence in operator norm, then
-\[
-  \lVert T_n\xi_n\rVert
-  \le \opnorm{T_n}\sup_n\lVert\xi_n\rVert\longrightarrow0 .
-\]
-In particular this holds along $\omega$, so $\sigma$ is well defined on
-$\mathcal B$, and it is clearly a unital $*$-homomorphism.  The map
-\[
-  \sigma\circ\tilde\beta\circ\iota_*\colon
-  \Cmax(\Lambda)\longrightarrow B(K_\omega)
-\]
-is a $*$-representation on a Hilbert space extending the unitary representation
-$\lambda\mapsto\sigma(\beta(\iota(\lambda)))$; by uniqueness of
-integrated forms and Fact~\ref{fact:kazhdan},
-\[
-  \sigma(P)=\sigma\bigl(\tilde\beta(\iota_*(p_\Lambda))\bigr)
-\]
-is the orthogonal projection onto the fixed space of that
-representation, which is $\Fix_\omega$.
+Combining this with \eqref{eq:rootcapture} shows that
+$T_nV_n(c)$ is asymptotically in the range of $P_n$.  It is therefore
+asymptotically fixed by every $\beta_n(\iota(\lambda))$.  Since
+$T_nV_n(c)$ differs by $o(1)$ in $K_n$ from the vector $V_n(d)$,
+unitary invariance and asymptotic multiplicativity give
+\eqref{eq:finitecollapse}.
 \end{proof}
 
 \section{Proof of the criterion and of Theorem \ref{thm:A}}\label{sec:proofA}
 
 \begin{proof}[Proof of Theorem~\ref{thm:criterion}]
-Suppose, for contradiction, that some corona representation
-$\Theta^{\rm u}\colon H\to\Ucor((d_n))$ is nontrivial on $F$.  Put
-$\Theta=\kappa_{(d_n)}\circ\Theta^{\rm u}$ and adopt all
-notation fixed in Section~\ref{sec:conj}: the corner representation
-$\Theta_-$ with $\sum_{f\in F}\Theta_-(f)=0$, the unitary lifts
-$U_{g,n}$, the corona $\mathcal B$, the homomorphism $\beta$, the
-projection $P$, the ultraproduct $K_\omega$ and the representation
-$\sigma$.
+Suppose that a corona representation is nontrivial on $F$.
+Lemma~\ref{lem:finitecorner} gives an operator-norm asymptotic
+representation $V_n\colon H\to\U(M_{r_n}(\C))$, with $r_n\ge1$, for
+which \eqref{eq:finitecornersum} holds.  By
+Lemma~\ref{lem:compressorfinite}, every generator
+$[d,\iota(\lambda)]$ of the compression-defect subgroup tends to $1$ in
+normalized Hilbert--Schmidt norm.
 
-\medskip\noindent\emph{Step 1: the lamp vector is fixed.}
-Each $U_{c,n}$ is a unitary matrix, hence a vector in $K_n$ of norm
-$\hsnorm{U_{c,n}}=1$; let $\xi_c=[(U_{c,n})]\in K_\omega$, a unit
-vector.  For $\lambda\in\Lambda$ we have
-$\iota(\lambda)\,c\,\iota(\lambda)^{-1}=c$ in $H$ by (M2), so
-$U_{\iota(\lambda),n}U_{c,n}U_{\iota(\lambda),n}^*$ and $U_{c,n}$
-both lift $\Theta_-(c)$, whence
-$\opnorm{U_{\iota(\lambda),n}U_{c,n}U_{\iota(\lambda),n}^*-U_{c,n}}\to0$
-and a fortiori the $K_n$-norms tend to $0$.  Therefore
-$\sigma(\beta(\iota(\lambda)))\xi_c=\xi_c$ for every
-$\lambda\in\Lambda$, i.e.\ $\xi_c\in\Fix_\omega$, and by
-Lemma~\ref{lem:sigma}, $\sigma(P)\xi_c=\xi_c$.
-
-\medskip\noindent\emph{Step 2: the translated lamp vector is fixed.}
-Let $\xi_d:=\sigma(\beta(t))\xi_c=[(D_n)]$, where
-$D_n:=U_{t,n}U_{c,n}U_{t,n}^*$, an operator-norm lift of
-$\Theta_-(d)$.  By Lemma~\ref{lem:pinning} and Step 1,
+This convergence propagates through inverses, conjugates, and finite
+products.  Explicitly,
 \[
-  \sigma(P)\,\xi_d
-  =\sigma\bigl(\beta(t)P\beta(t)^*\bigr)\,\sigma(\beta(t))\,\xi_c
-  =\sigma(\beta(t))\,\sigma(P)\,\xi_c
-  =\xi_d ,
+ \hsnorm{AB-1}\le\hsnorm{A-1}+\hsnorm{B-1},\qquad
+ \hsnorm{UXU^*-1}=\hsnorm{X-1}
 \]
-so $\xi_d\in\Fix_\omega$: for every $\lambda\in\Lambda$,
-\begin{equation}\label{eq:afix}
-  \lim_{n\to\omega}\
-  \hsnorm{\,U_{\iota(\lambda),n}D_nU_{\iota(\lambda),n}^*-D_n\,}=0 .
-\end{equation}
-
-\medskip\noindent\emph{Step 3: every defect commutator collapses in
-Hilbert--Schmidt norm.}
-For $\lambda\in\Lambda$ put
+for unitaries.  Thus every fixed element of $N_{\rm comp}$, and in
+particular every $f\in F$, satisfies
 \[
-  X_{\lambda,n}
-  :=D_n\,U_{\iota(\lambda),n}\,D_n^{-1}\,U_{\iota(\lambda),n}^{-1},
+ \hsnorm{V_n(f)-1}\longrightarrow0.
 \]
-a unitary in $M_{r_n}(\C)$ and an operator-norm lift of
-$\Theta_-\bigl([\,d,\iota(\lambda)\,]\bigr)$.  Two applications of
-unitary invariance of $\hsnorm\cdot$ give
+Taking normalized traces yields
 \[
-  \hsnorm{X_{\lambda,n}-1}
-  =\hsnorm{D_nU_{\iota(\lambda),n}-U_{\iota(\lambda),n}D_n}
-  =\hsnorm{\,D_n-U_{\iota(\lambda),n}D_nU_{\iota(\lambda),n}^{-1}\,},
+ \tr_{r_n}\!\left(\sum_{f\in F}V_n(f)\right)\longrightarrow |F|.
 \]
-so by \eqref{eq:afix},
-\begin{equation}\label{eq:collapse}
-  \lim_{n\to\omega}\ \hsnorm{\,X_{\lambda,n}-1\,}\;=\;0
-  \qquad\text{for every }\lambda\in\Lambda .
-\end{equation}
-
-\medskip\noindent\emph{Step 4: the collapse propagates to the
-compression-defect subgroup.}
-Let $f\in F$.  Since $F\subseteq N_{\mathrm{comp}}$, there are
-finitely many (possibly zero) elements $h_1,\dots,h_L\in H$,
-$\lambda_1,\dots,\lambda_L\in\Lambda$ and signs
-$\varepsilon_1,\dots,\varepsilon_L\in\{\pm1\}$ with
-\[
-  f\;=\;\prod_{i=1}^{L}
-  h_i\,[\,d,\iota(\lambda_i)\,]^{\varepsilon_i}\,h_i^{-1} .
-\]
-Then
-\[
-  V_{f,n}\;:=\;\prod_{i=1}^{L}
-  U_{h_i,n}\,X_{\lambda_i,n}^{\varepsilon_i}\,U_{h_i,n}^{*}
-\]
-is an operator-norm lift of $\Theta_-(f)$, and the telescoping
-estimate $\hsnorm{AB-1}\le\hsnorm{A-1}+\hsnorm{B-1}$ for unitaries
-$A,B$, together with unitary invariance
-($\hsnorm{UXU^*-1}=\hsnorm{X-1}$ and
-$\hsnorm{X^{-1}-1}=\hsnorm{X-1}$), gives
-\[
-  \hsnorm{V_{f,n}-1}\;\le\;\sum_{i=1}^{L}\hsnorm{X_{\lambda_i,n}-1}
-  \;\xrightarrow[n\to\omega]{}\;0
-\]
-by \eqref{eq:collapse}.
-
-\medskip\noindent\emph{Step 5: the corner average forbids the
-collapse.}
-Each $V_{f,n}$ lifts $\Theta_-(f)$, so the finite sum
-$\sum_{f\in F}V_{f,n}$ is an operator-norm lift of
-$\sum_{f\in F}\Theta_-(f)=0$:
-\[
-  \opnorm{\,\sum_{f\in F}V_{f,n}\,}\;\longrightarrow\;0
-  \qquad(n\to\infty),
-\]
-hence also along $\omega$.  On the other hand, by Step 4,
-\[
-  \hsnorm{\,\sum_{f\in F}V_{f,n}\;-\;|F|\,}
-  \;\le\;\sum_{f\in F}\hsnorm{V_{f,n}-1}
-  \;\xrightarrow[n\to\omega]{}\;0 ,
-\]
-so, using $\hsnorm{x}\le\opnorm{x}$,
-\[
-  |F|\;=\;\hsnorm{\,|F|\cdot1\,}
-  \;\le\;\hsnorm{\,\sum_{f\in F}V_{f,n}-|F|\,}
-  +\opnorm{\,\sum_{f\in F}V_{f,n}\,}
-  \;\xrightarrow[n\to\omega]{}\;0 ,
-\]
-which is absurd since $|F|\ge1$.  This contradiction proves
-Theorem~\ref{thm:criterion}.
+On the other hand, \eqref{eq:finitecornersum} and
+$|\tr_{r_n}(x)|\le\opnorm{x}$ force the same scalar to converge to $0$.
+This contradicts $|F|\ge1$ and proves the theorem.
 \end{proof}
 
 \begin{lemma}[the marked word is a defect square]\label{lem:square}
@@ -3327,31 +3188,29 @@ defects measured in $\hsnorm\cdot$ rather than operator norm, and asks
 whether a hyperlinear-style embedding of $E$ must kill $w$.  Two steps
 break.
 
-First, Lemma~\ref{lem:beta} fails: Hilbert--Schmidt-multiplicative
-lifts need not be operator-norm multiplicative, so the adjoint maps
-$\Ad U_{g,n}$ need not assemble into a homomorphism into any norm
-corona.  One can instead pass to the conjugation representation on
-$L^2(\mathcal M)$, which is an honest representation of $E$.
+First, Hilbert--Schmidt-multiplicative lifts need not be
+operator-norm multiplicative.  Their adjoint maps therefore do not form the
+operator-norm asymptotic representations required by
+Lemma~\ref{lem:compressorfinite}; in particular the spectral projections
+$P_n$, their off-diagonal operator-norm estimates, and the polar-corrected
+moving corners are unavailable.  One can instead pass to the conjugation
+representation on $L^2(\mathcal M)$, which is an honest representation of
+$E$.
 
-The tracial ultraproduct $\mathcal M$ itself is a finite von Neumann algebra.
-Second, and decisively, Lemma~\ref{lem:finite} is unavailable after the
-argument passes to its conjugation action.  The available ambient algebra is
-$B(L^2(\mathcal M))$; when $L^2(\mathcal M)$ is infinite-dimensional this
-algebra is properly infinite and has no normalized finite trace with which
-to compare the fixed-space projections.  Thus the inclusion supplied by the
-analogue of Lemma~\ref{lem:order} is not forced to be equality.  Proper
-inclusion between nested unitarily equivalent projections is possible in
-such an ambient algebra (the unilateral-shift phenomenon), but we do not
-claim that it occurs for a tracial representation of the present group.
-In particular the present paper proves nothing about
-hyperlinearity or Connes embeddability of $E$, and nothing about the
-sofic-versus-hyperlinear problem.
+The tracial ultraproduct $\mathcal M$ itself is a finite von Neumann algebra,
+but the conjugation representation acts in $B(L^2(\mathcal M))$.  When
+$L^2(\mathcal M)$ is infinite-dimensional this algebra is properly infinite.
+An exact fixed-space inclusion there need not be equality (the unilateral-
+shift phenomenon), and there is no coordinatewise equal-rank identity left
+to reverse it.  We do not claim that such a proper inclusion occurs for a
+tracial representation of the present group.  In particular the present
+paper proves nothing about hyperlinearity or Connes embeddability of $E$,
+and nothing about the sofic-versus-hyperlinear problem.
 
-The dividing line in the present argument is thus: \emph{operator-norm matrix
-models form a stably finite world, in which property (T) compression is
-rigid; for tracial matrix models the available ambient algebra of the
-conjugation action can be properly infinite, so the same projection
-comparison need not collapse to equality.}
+The dividing line is therefore finite-stage operator-norm control: it
+produces equal-rank spectral projections in each matrix coordinate.  A
+tracial model supplies neither those operator-norm spectral estimates nor a
+coordinatewise equal-rank comparison for the limiting fixed spaces.
 
 This failure is closely related to a current structural question rather than
 to a known impossibility theorem.  Alekseev--Thom ask whether, for a Kazhdan
@@ -3359,8 +3218,8 @@ representation into a tracial ultraproduct of matrices, its commutant can be
 recovered as an ultraproduct of finite-dimensional subalgebras, possibly as
 coordinate centralizers of suitable lifts \cite[Open Problem~6.2]{AlekseevThom}.
 Such a coordinate model would provide finite-level structure absent from the
-argument above, but their question is open and does not restore the present
-stable-finiteness proof in the tracial setting.
+argument above, but their question is open and does not restore the
+finite-stage equal-rank argument in the tracial setting.
 
 \section*{Tool and computational resource disclosure}
 Anthropic's Claude Fable and OpenAI's GPT-5.6 Sol were used in developing
