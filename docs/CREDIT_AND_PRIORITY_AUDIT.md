@@ -528,6 +528,25 @@ contrasts both with the present operator-norm corona mechanism.
   ambient matrix sequence to keep a possibly zero-density obstruction.  This
   distinction and the precise proposition are now stated in the prior-work
   section.
+* The same paper has two further local antecedents that should be cited at the
+  analytic step, not merely in the introduction.  Proposition 2.4 compresses a
+  Schatten-`p` asymptotic representation to an almost-invariant projection and
+  polar-corrects the compressed maps; this includes `p = ∞` and is directly
+  adjacent to the finite-stage negative-corner construction.  Proposition 1.5
+  uses central-involution rounding, the nonzero negative eigenspace, and that
+  compression to show that operator--Hilbert--Schmidt stability would obstruct
+  MF for a Deligne-type group.  Neither result supplies the present theorem:
+  Proposition 1.5 assumes the unresolved stability input, while Proposition 2.4
+  supplies only the compressed asymptotic representation, not the subsequent
+  Kazhdan one-sided-inclusion, stable-finiteness pinning, or universal marked
+  kernel.  Cite Proposition 2.4 beside the corner/polar-correction discussion
+  and Proposition 1.5 in the operator/HS-boundary paragraph.
+* Bachner--Dogon--Lubotzky Lemma 2.2 records exact involution rounding for every
+  unitarily invariant norm (with the bound by `‖1-A²‖`), citing DGLT Proposition
+  1.4; Lemma 2.3 records the corresponding polar correction.  These are useful
+  historical anchors for the elementary analytic sublemmas, but the manuscript
+  should not imply that its rank-renormalized norm-corona corner or its Kazhdan
+  compressor theorem occurs there.
 * The MF-radical/largest-quotient construction remains structural folklore,
   with Slofstra's finite/finite-approximate kernels and
   Nikolov–Schneider–Thom approximation kernels as the proper conceptual
