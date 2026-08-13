@@ -23,6 +23,10 @@ on:
 
 permissions:
   contents: write
+  # Needed to query the prover workflow's run history for the Lean gate.
+  actions: read
+  id-token: write
+  attestations: write
 
 concurrency:
   group: build-non-mf-pdf-main
@@ -47,6 +51,14 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+
+      - name: Assert a clean source checkout
+        run: |
+          test -z "$(git status --porcelain)" || {
+            echo "The release checkout is dirty before generation." >&2
+            git status --short >&2
+            exit 1
+          }
 
       - name: Cache apt package downloads
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
@@ -96,9 +108,47 @@ jobs:
       - name: Check figure text boxes do not overlap
         run: python3 scripts/check_fig_overlap.py --tex "$TEX_FILE"
 
-      # The repository-wide Lean source audits run in the prover workflow;
-      # the paper PDF must publish from a clean tex regardless of the Lean
-      # tree's in-progress state, so they are deliberately not gated here.
+      # The repository-wide Lean source audits run in the prover workflow.
+      # The publish step below refuses to push a PDF unless some successful
+      # prover run covers the exact Lean tree this manuscript cites, so a PDF
+      # can no longer publish against a Lean tree that has never passed the
+      # kernel audit.
+      - name: Pin the repository revision into the manuscript links
+        run: |
+          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
+          import sys, pathlib
+          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
+          text = path.read_text()
+          pinned = text.replace(
+              r"\newcommand{\leancommit}{main}",
+              r"\newcommand{\leancommit}{%s}" % sha)
+          if pinned == text:
+              raise SystemExit("leancommit macro not found; refusing to build unpinned links")
+          path.write_text(pinned)
+          EOF
+
+      - name: Write exact release provenance into the manuscript
+        run: |
+          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
+          import json, pathlib, sys
+          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
+          manifest = json.loads(pathlib.Path("lake-manifest.json").read_text())
+          mathlib = next(p["rev"] for p in manifest["packages"] if p["name"] == "mathlib")
+          lean = pathlib.Path("lean-toolchain").read_text().strip()
+          text = path.read_text()
+          replacements = {
+              r"\newcommand{\leanversion}{unbuilt}": rf"\newcommand{{\leanversion}}{{{lean}}}",
+              r"\newcommand{\mathlibcommit}{unbuilt}": rf"\newcommand{{\mathlibcommit}}{{{mathlib}}}",
+              r"\newcommand{\formalizationrevision}{unbuilt}": rf"\newcommand{{\formalizationrevision}}{{{sha}}}",
+          }
+          for old, new in replacements.items():
+              updated = text.replace(old, new)
+              if updated == text:
+                  raise SystemExit(f"provenance macro missing: {old}")
+              text = updated
+          path.write_text(text)
+          EOF
+
       - name: Compile, lint, normalize, and validate PDF
         shell: bash
         run: |
@@ -143,12 +193,16 @@ jobs:
             exit 1
           fi
 
-          qpdf --linearize --object-streams=disable --force-version=1.4 \
+          qpdf --linearize --object-streams=disable --force-version=2.0 \
             --deterministic-id "$raw_pdf" "$temporary_pdf"
           mv -- "$temporary_pdf" "$PDF_FILE"
           qpdf --check "$PDF_FILE"
           pdfinfo "$PDF_FILE"
-          test "$(head -c 8 "$PDF_FILE")" = '%PDF-1.4'
+          test "$(head -c 8 "$PDF_FILE")" = '%PDF-2.0'
+          pdfinfo "$PDF_FILE" | grep -Eq '^Tagged:[[:space:]]+yes$'
+
+          pdfinfo -meta "$PDF_FILE" > build/pdf-metadata.xml
+          grep -Eq 'xml:lang="en-US"|dc:language[^>]*>en-US<' build/pdf-metadata.xml
 
           pdftoppm -png -r 72 "$PDF_FILE" pdf-render-check/page
           page_count="$(pdfinfo "$PDF_FILE" | awk '/^Pages:/ {print $2}')"
@@ -172,6 +226,67 @@ jobs:
             echo "The anonymous build leaks the repository URL." >&2
             exit 1
           fi
+
+      - name: Require a successful kernel audit of this exact revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          # Poll for a successful prover run whose head SHA is literally this
+          # SHA.  Digest-equivalent but different commits are rejected: the
+          # PDF, source links, signatures, and kernel audit name one revision.
+          for attempt in $(seq 1 12); do
+            run_id="$(gh run list --workflow=prover.yml --commit "$GITHUB_SHA" \
+              --status=success --limit 1 --json databaseId --jq '.[0].databaseId // empty')"
+            if [ -n "$run_id" ]; then
+              echo "$run_id" > build/prover-run-id.txt
+              echo "Exact revision $GITHUB_SHA passed prover run $run_id."
+              break
+            fi
+            echo "No successful prover run for $GITHUB_SHA yet (attempt $attempt); waiting."
+            sleep 120
+          done
+          test -s build/prover-run-id.txt || {
+            echo "No successful Lean kernel audit exists for exact revision $GITHUB_SHA; refusing to publish." >&2
+            exit 1
+          }
+
+      - name: Create source and artifact manifest
+        run: |
+          git archive --format=tar.gz \
+            --output="build/non-mf-source-${GITHUB_SHA}.tar.gz" "$GITHUB_SHA"
+          python3 scripts/release_manifest.py \
+            --commit "$GITHUB_SHA" \
+            --prover-run-id "$(cat build/prover-run-id.txt)" \
+            --source-checkout-clean \
+            --pdf "$PDF_FILE" \
+            --output build/NON_MF_RELEASE_MANIFEST.json
+          sha256sum "$PDF_FILE" \
+            "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
+            build/NON_MF_RELEASE_MANIFEST.json \
+            > build/SHA256SUMS
+
+      - name: Upload immutable review bundle
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
+        with:
+          name: non-mf-release-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 90
+          path: |
+            non_mf_groups_exist.tex
+            non_mf_groups_exist.pdf
+            build/non-mf-source-${{ github.sha }}.tar.gz
+            build/NON_MF_RELEASE_MANIFEST.json
+            build/SHA256SUMS
+            build/non_mf_groups_exist.log
+
+      - name: Attest the PDF and manifest
+        uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+        with:
+          subject-path: |
+            non_mf_groups_exist.pdf
+            build/non-mf-source-${{ github.sha }}.tar.gz
+            build/NON_MF_RELEASE_MANIFEST.json
 
       - name: Commit and push updated PDF
         env:

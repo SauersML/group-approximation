@@ -25,6 +25,11 @@ on:
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
+      # The PDF release gate requires a successful prover run for the exact
+      # source revision.  A manuscript or publication-workflow-only change
+      # therefore has to create an exact-SHA prover run as well.
+      - 'non_mf_groups_exist.tex'
+      - '.github/workflows/build-non-mf-pdf.yml'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -41,6 +46,8 @@ on:
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
+      - 'non_mf_groups_exist.tex'
+      - '.github/workflows/build-non-mf-pdf.yml'
   workflow_dispatch:
 
 concurrency:

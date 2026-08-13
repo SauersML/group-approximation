@@ -67,6 +67,19 @@ FORBIDDEN = [
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxHeartbeats(?![A-Za-z0-9_])")),
 ]
 
+# Strings known to have been fabricated by model sessions and purged from the
+# publication surface (see docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
+# "Leiden Declaration" and its Zenodo DOI do not exist; the reference was
+# purged once and reintroduced by a later merge, so it is gated here.  The
+# gate covers publication-facing files only: audit records under docs/
+# legitimately discuss these strings when recording the purges.
+FABRICATED = [
+    ("fabricated citation (Leiden Declaration)",
+     re.compile(r"Leiden\s+Declaration", re.IGNORECASE)),
+    ("fabricated citation (Leiden Declaration)",
+     re.compile(r"zenodo\.20302944")),
+]
+
 
 # There are no budgets: any finding, under any tag, fails the run.  Nothing is
 # report-only and nothing is a ratchet, so there is no number a reviewer can
@@ -200,6 +213,22 @@ def check_forbidden(root: Path, f: Findings) -> None:
 # What no longer gets checked anywhere: module docstrings (`/-! ... -/`), which
 # belong to no declaration.  One of the original four was exactly that.
 
+def check_fabricated_citations(root: Path, f: Findings) -> None:
+    """Publication-facing files must not cite known-fabricated references."""
+    candidates = sorted(root.glob("*.tex"))
+    for name in ("README.md", "CITATION.cff"):
+        p = root / name
+        if p.is_file():
+            candidates.append(p)
+    for path in candidates:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for label, pattern in FABRICATED:
+            for m in pattern.finditer(text):
+                line = text.count("\n", 0, m.start()) + 1
+                f.add(label,
+                      f"{path.name}:{line}: {text.splitlines()[line - 1].strip()}")
+
+
 def check_claim_map(root: Path, f: Findings) -> None:
     """The paper's margin notes must name declarations that exist.
 
@@ -297,6 +326,7 @@ CHECKS = [
     ("import closure", check_import_closure),
     ("claim map", check_claim_map),
     ("forbidden constructs", check_forbidden),
+    ("fabricated citations", check_fabricated_citations),
 ]
 
 
@@ -380,6 +410,9 @@ PLANTS = {
         {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
                 "\\leanverified{\\leanmod{Beta}{beta}}%\n"
                 "A statement.\n\\end{lemma}\n")},
+    # The fabricated reference that was purged once and came back in a merge.
+    "fabricated citation (Leiden Declaration)":
+        {"README.md": "In the spirit of the Leiden Declaration (2026).\n"},
 }
 
 

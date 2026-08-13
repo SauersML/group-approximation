@@ -1,24 +1,30 @@
+\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
 \documentclass[11pt]{amsart}
 
 \usepackage[T1]{fontenc}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{enumitem}
-\usepackage{marginfix}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-\newif\ifanonymous\anonymoustrue
-% This review source is physically anonymized: author and repository
-% identifiers are not retained in an inactive conditional branch.
-\newcommand{\leanrepo}{[repository link removed for anonymous review]}
+\newif\ifanonymous\anonymousfalse
+\ifanonymous
+  \newcommand{\leanrepo}{[repository link removed for anonymous review]}
+  \newcommand{\paperauthor}{Anonymous}
+\else
+  \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
+  \newcommand{\paperauthor}{SauersML}
+\fi
 % Pinned repository revision for all Lean links; the publication workflow
 % replaces `main` by the exact commit hash at build time so that published
 % links are immutable.
 \newcommand{\leancommit}{main}
-\newcommand{\paperauthor}{Anonymous}
+\newcommand{\leanversion}{unbuilt}
+\newcommand{\mathlibcommit}{unbuilt}
+\newcommand{\formalizationrevision}{unbuilt}
 \hypersetup{
   pdftitle={An explicit finitely presented operator-corona non-MF group},
   pdfauthor={\paperauthor},
@@ -28,16 +34,23 @@
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
 \newcommand{\leanbadge}[3]{%
-  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}%
-  \ifanonymous\textsc{Lean 4 #3}\else
-  \href{\leanrepo/blob/\leancommit/GroupApproximation/#1.lean}{\textsc{Lean 4 #3}}\fi}}
+  \par\smallskip\noindent
+  {\normalfont\scriptsize\color{gray!70!black}%
+   \textsc{Lean 4}\enspace#3\par\nobreak\noindent
+   \hspace*{1em}%
+   \ifanonymous
+     \nolinkurl{#2}%
+   \else
+     \href{\leanrepo/blob/\leancommit/GroupApproximation/#1.lean}{\nolinkurl{#2}}%
+   \fi
+  }\par\smallskip}
 % The exact badge is typographically distinct from the five weaker statuses.
-\newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\textbf{exact}}}
-\newcommand{\leanequivalent}[2]{\leanbadge{#1}{#2}{equiv}}
-\newcommand{\leansupporting}[2]{\leanbadge{#1}{#2}{support}}
-\newcommand{\leanconditional}[2]{\leanbadge{#1}{#2}{conditional}}
-\newcommand{\leanpartial}[2]{\leanbadge{#1}{#2}{partial}}
-\newcommand{\leandifferentwitness}[2]{\leanbadge{#1}{#2}{other witness}}
+\newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\fbox{\sffamily\bfseries EXACT}}}
+\newcommand{\leanequivalent}[2]{\leanbadge{#1}{#2}{\sffamily EQUIVALENT}}
+\newcommand{\leansupporting}[2]{\leanbadge{#1}{#2}{\sffamily SUPPORTING}}
+\newcommand{\leanconditional}[2]{\leanbadge{#1}{#2}{\sffamily CONDITIONAL}}
+\newcommand{\leanpartial}[2]{\leanbadge{#1}{#2}{\sffamily PARTIAL}}
+\newcommand{\leandifferentwitness}[2]{\leanbadge{#1}{#2}{\sffamily DIFFERENT WITNESS}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -95,8 +108,7 @@
 A countable discrete group is CDE-MF (operator-corona MF) if it embeds into
 the unitary group of a norm matrix corona.  Equivalently, it embeds into the
 metric quotient of a product of finite-dimensional unitary groups by the
-sequences converging to the identity in operator norm.  We
-construct an explicit
+sequences converging to the identity in operator norm.  We construct an explicit
 finitely presented group $E$, together with a designated central involution
 $w\in E$, such that $w\neq 1$ but \emph{every} homomorphism from $E$ to
 the unitary group of any norm matrix corona sends $w$ to $1$.  Thus $E$ is not
@@ -111,19 +123,11 @@ property~\textup{(T)} spectral projection, and equality of finite ranks.
 In general, for the resulting one-sided compression pattern, every finite
 normal subgroup $F$ inside the compression-defect normal closure lies in the
 kernel of every corona representation.  A normal property~\textup{(T)}
-subgroup may replace $F$.  By contrast, the finite-dimensional argument is
-elementary and needs neither property~\textup{(T)} nor unitarity.
-
-Consequences include a stably finite non-MF reduced group algebra, a
-finitely generated sofic non-MF group, permanence failures, scaling families,
-and structural and marked-space results for the MF radical.  An explicit
-Clifford tower also gives sofic and Connes-embeddable tracial representations
-in which $w$ survives.  Hence $w$ belongs to the MF radical but to neither
-the sofic nor the hyperlinear radical; this does not decide whether $E$ itself
-is hyperlinear.  Combining the normal-Kazhdan criterion with the torsion-free
-HNN construction of Fournier-Facio and Hull's acylindrical small cancellation
-also produces a two-generated, finitely presented, torsion-free, nonsofic
-property-\textup{(T)} group whose entire group is its MF radical.
+subgroup may replace $F$.  Two consequences are that $C^*_{\mathrm{red}}(E)$
+is stably finite but not MF, and that operator-corona MF is not preserved by
+quotients.  An explicit cyclic-base comparison shows that exact
+finite-dimensional invisibility alone does not imply corona invisibility and
+that the property-\textup{(T)} input cannot simply be removed.
 \end{abstract}
 
 \maketitle
@@ -204,8 +208,9 @@ The exact displayed presentation, word $w$, nontriviality witness,
 finite-dimensional obstruction, norm-matrix corona, and polar-correction
 equivalence are formalized.  The remaining gap for the literal group is the
 property-\textup{(T)} input: the formal development does not yet identify the
-eight CRW relators with $\Z^3\rtimes\SL_3(\Z)$ or certify property~\textup{(T)}
-for that abstract presentation.  A separate Lean theorem proves the same
+group defined by the eight CRW relators with $\SL_3(\Z)$, and therefore does
+not yet certify property~\textup{(T)} for the resulting abstract affine-base
+presentation.  A separate Lean theorem proves the same
 existential conclusion for a noncomputably selected finitely presented
 Kazhdan-cover witness, not for the displayed group $E$.
 \leandifferentwitness{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
@@ -217,10 +222,10 @@ target is constructed both as the unitary-sequence quotient and as the
 genuine $C^*$-quotient, with the polar-correction isomorphism between
 them proved and pinned in the audit.
 
-The margin labels distinguish exact formalizations, equivalent formulations,
+The inline labels distinguish exact formalizations, equivalent formulations,
 supporting lemmas, conditional or partial results, and results for another
 witness.  Only \textsc{exact} denotes a one-to-one certification of the
-printed claim.  A statement carrying no margin label has no formal
+printed claim.  A statement carrying no inline label has no formal
 counterpart and rests on the paper proof alone.
 
 A completely explicit presentation of $E$ --- eight generators, with
@@ -263,7 +268,7 @@ complementary finite-group corner.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[node distance=12mm and 7mm,
+\begin{tikzpicture}[alt={Two-lane proof diagram. A Kazhdan compression pattern and a finite normal subgroup feed coordinate spectral cuts. One-sided leakage plus equal ranks makes every compression defect Hilbert--Schmidt trivial, contradicting the complementary finite-group corner.},node distance=12mm and 7mm,
     figbox/.append style={text width=3.25cm, minimum height=15mm}]
   \node[figbox] (pattern) {Kazhdan pattern\\
     $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
@@ -358,7 +363,7 @@ Let $G_0=\mathrm{BS}(1,2)=\langle\, \gamma_0,t\mid
 t\gamma_0t^{-1}=\gamma_0^2\,\rangle$, let $\Gamma_0=\langle
 \gamma_0\rangle\cong\Z$, let $X_0=G_0/\Gamma_0$, and let
 $E_0=\ClLamp(X_0)\rtimes G_0$ be the corresponding Clifford extension
-(Construction~\ref{con:clifford}), with central sign $z_0$.  Also define
+(Construction~\ref{con:clifford}), with central sign $\zeta_0$.  Also define
 the literal marked-presentation analogue
 \[
  E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
@@ -371,9 +376,9 @@ the literal marked-presentation analogue
 \]
 where
 $w_{\mathrm{BS}}=[tct^{-1},\gamma_0(tct^{-1})\gamma_0^{-1}]$.
-Then $E_0$ is an amenable MF group and $z_0\neq1$.  There is a quotient
+Then $E_0$ is an amenable MF group and $\zeta_0\neq1$.  There is a quotient
 homomorphism $E_{\mathrm{BS}}\twoheadrightarrow E_0$ sending
-$w_{\mathrm{BS}}$ to $z_0$; consequently the literal analogous presentation
+$w_{\mathrm{BS}}$ to $\zeta_0$; consequently the literal analogous presentation
 has a corona representation in which its marked involution survives.
 Nevertheless, every finite-dimensional representation of either group sends
 the corresponding marked element to the identity.
@@ -626,7 +631,7 @@ We use the commutator convention $[x,y]=xyx^{-1}y^{-1}$.
 The following two classical facts are the only non-elementary external
 inputs to the analytic kernel argument of Theorem~\ref{thm:A}.
 
-\begin{fact}[{property (T); \cite[Example~1.7.4(i)]{BHV}}]\label{fact:T}
+\begin{fact}[property (T)]\label{fact:T}
 $\SL_3(\Z)$ and $\Gamma=\Z^3\rtimes\SL_3(\Z)$ have property (T)
 \cite[Example~1.7.4(i), via Corollary~1.4.16 and Theorem~1.7.1]{BHV};
 an explicit-constant proof for $\SL_n(\Z)$, $n\ge3$, is
@@ -636,7 +641,7 @@ presentability \cite[Section~3.4]{BHV}, but by the explicit presentation
 \eqref{eq:gamma-presentation} below, built on \cite[Theorem~2]{CRW}.
 \end{fact}
 
-\begin{fact}[{Kazhdan projection; \cite{AW,Valette}}]\label{fact:kazhdan}
+\begin{fact}[Kazhdan projection]\label{fact:kazhdan}
 Let $\Gamma$ be a group with property (T).  There is a projection
 $p_\Gamma\in\Cmax(\Gamma)$ such that for every unitary representation
 $\pi$ of $\Gamma$ on a Hilbert space $\mathcal H$, the operator
@@ -644,6 +649,7 @@ $\pi(p_\Gamma)$ is the orthogonal projection onto the subspace
 $\Fix(\pi)=\{\xi\in\mathcal H:\pi(\gamma)\xi=\xi
 \text{ for all }\gamma\in\Gamma\}$.  Moreover $u_\gamma
 p_\Gamma=p_\Gamma u_\gamma=p_\Gamma$ for every $\gamma\in\Gamma$.
+This is the Kazhdan projection of \cite{AW}; see also \cite{Valette}.
 \end{fact}
 
 The identities follow from the defining property: the left identity holds in
@@ -654,15 +660,16 @@ representation.
 The only additional input, used exclusively in
 Section~\ref{sec:necessity}, is:
 
-\begin{fact}[{\cite[Corollary C]{TWW}}]\label{fact:tww}
+\begin{fact}[amenability and quasidiagonality]\label{fact:tww}
 The reduced group $C^*$-algebra of a countable amenable group is
-quasidiagonal.
+quasidiagonal \cite[Corollary~C]{TWW}.
 \end{fact}
 
-\begin{fact}[{quasidiagonal embedding; \cite[Theorem~3.2.2]{BK}, see also \cite[Chapter 7]{BO}}]
+\begin{fact}[quasidiagonal embedding]
 \label{fact:qdcorona}
 Every separable unital quasidiagonal $C^*$-algebra embeds unitally into a
-norm matrix corona.  Consequently every countable amenable group is MF.
+norm matrix corona \cite[Theorem~3.2.2]{BK}; see also
+\cite[Chapter~7]{BO}.  Consequently every countable amenable group is MF.
 \end{fact}
 
 \section{The group}\label{sec:group}
@@ -784,7 +791,7 @@ that failure after conjugating $d$ by $a$.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm]
+\begin{tikzpicture}[alt={A large ellipse for Gamma contains the smaller compressed copy t Gamma t inverse. Conjugation transports c to d, which centralizes the compressed copy; an element a outside it creates the marked commutator w.},x=1cm,y=1cm]
   \draw[line width=.5pt] (0,0) ellipse (4.5 and 1.55);
   \node[anchor=north west,font=\small] at (-4.15,1.2)
     {$\Gamma$};
@@ -813,7 +820,7 @@ $a\notin t\Gamma t^{-1}$ supplies the marked failure of centrality.}
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[node distance=9mm]
+\begin{tikzpicture}[alt={Three-stage construction of E: the affine property-T base Gamma, its ascending HNN extension by the doubling map, and the final central marked involution w after adjoining c.},node distance=9mm]
   \node[figbox, text width=7.2cm] (base) {base
     $\Gamma=\Z^3\rtimes\SL_3(\Z)$:\ finitely presented\\ by
     \eqref{eq:gamma-presentation}, with property~(T)};
@@ -922,10 +929,10 @@ $\pm e_F$.  Thus these monomials are a basis, $\Cl(X)\neq0$, and
 $-1\neq1$ without invoking a normal-form theorem.
 
 Let $\ClLamp(X)\le\Cl(X)^{\times}$ be the subgroup generated by
-$\{\pm1\}\cup\{c_x:x\in X\}$ and write $z=-1\in\ClLamp(X)$, a central
+$\{\pm1\}\cup\{c_x:x\in X\}$ and write $\zeta=-1\in\ClLamp(X)$, a central
 involution.  Every permutation of $X$ induces an algebra automorphism of
 $\Cl(X)$ mapping
-$c_x\mapsto c_{\sigma(x)}$ and fixing $z$; this gives an action of any
+$c_x\mapsto c_{\sigma(x)}$ and fixing $\zeta$; this gives an action of any
 group acting on $X$ by automorphisms of $\ClLamp(X)$, and a semidirect
 product $\ClLamp(X)\rtimes G$ for any $G$-set $X$.
 The group $\ClLamp(X)$ is the central sign extension of
@@ -968,7 +975,7 @@ sites is needed; their Clifford generators then anticommute automatically.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[node distance=10mm and 14mm]
+\begin{tikzpicture}[alt={The Clifford witness moves the root lamp from Gamma to the distinct sites D Gamma and a D Gamma. Their Clifford generators anticommute, so the marked commutator is the nontrivial central sign.},node distance=10mm and 14mm]
   \node[figbox, text width=2.5cm] (root) {root site $o=\Gamma$\\
     lamp $c_o$};
   \node[figbox, text width=2.5cm, right=of root] (shift) {shifted site
@@ -978,7 +985,7 @@ sites is needed; their Clifford generators then anticommute automatically.
   \node[figout, text width=4.9cm, anchor=north] (sign)
     at ($(shift.south)!0.5!(moved.south)+(0,-12mm)$)
     {$D\Gamma\neq aD\Gamma$, so\\
-     $[c_{D\Gamma},c_{aD\Gamma}]=-1=z\neq1$};
+     $[c_{D\Gamma},c_{aD\Gamma}]=-1=\zeta\neq1$};
   \draw[figarr] (root) -- node[fignote, above=1pt] {$t\mapsto D$} (shift);
   \draw[figarr] (shift) -- node[fignote, above=1pt] {$a$} (moved);
   \node[fignote, below=2.5mm of root] {$\Gamma$ fixes $o$};
@@ -1024,13 +1031,13 @@ and the two sites are distinct by Lemma~\ref{lem:linear}, so
 \[
   w\mapsto[c_{D\Gamma}\,,\,c_{aD\Gamma}]
   = c_{D\Gamma}c_{aD\Gamma}c_{D\Gamma}^{-1}c_{aD\Gamma}^{-1}
-  = -1 = z .
+  = -1 = \zeta .
 \]
-Since $z$ is a central involution of $W$, the remaining relations
+Since $\zeta$ is a central involution of $W$, the remaining relations
 $w^2=1$ and $[w,g]=1$ for
 $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
-$z\neq1$, and therefore $w\neq1$ in $E$.
+$\zeta\neq1$, and therefore $w\neq1$ in $E$.
 \end{proof}
 
 \begin{remark}
@@ -1653,7 +1660,7 @@ a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} depicts the geometry.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=.94cm,y=.94cm]
+\begin{tikzpicture}[alt={Two equal-dimensional schematic subspaces inside the same finite-dimensional Hilbert space. Small leakage from the first into the complement of the second reverses because the ranks agree, forcing the projections to converge.},x=.94cm,y=.94cm]
   \draw[line width=.45pt] (-4.7,-1.75) rectangle (4.7,1.75);
   \node[anchor=north west,font=\footnotesize] at (-4.55,1.62)
     {$\mathcal H_n$};
@@ -2314,8 +2321,8 @@ Theorem~\ref{thm:A}.
 Let $W=\ClLamp(\bar X)\rtimes\bar G$ be the witness group of
 Proposition~\ref{prop:witness}.  Then $W$ is finitely generated, the
 homomorphism $E\to W$ of that proof is surjective, and the central
-sign $z=-1\in\ClLamp(\bar X)$ satisfies
-$z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
+sign $\zeta=-1\in\ClLamp(\bar X)$ satisfies
+$\zeta\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
 \leansupporting{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
 \end{proposition}
@@ -2327,14 +2334,14 @@ contains $\bar G=\langle\Gamma,D\rangle$.  It contains $c_o$, hence
 $c_{g\Gamma}=g\,c_o\,g^{-1}$ for every $g\in\bar G$, which is all of
 $\{c_x:x\in\bar X\}$ since $\bar G$ acts transitively on
 $\bar X=\bar G/\Gamma$.  Finally
-$(c_{D\Gamma}c_{aD\Gamma})^2=-c_{D\Gamma}^2c_{aD\Gamma}^2=-1=z$
+$(c_{D\Gamma}c_{aD\Gamma})^2=-c_{D\Gamma}^2c_{aD\Gamma}^2=-1=\zeta$
 because the two sites are distinct (Lemma~\ref{lem:linear}), so the
-image contains $z$ and therefore all of
+image contains $\zeta$ and therefore all of
 $\ClLamp(\bar X)=\langle\pm1,\,c_x:x\in\bar X\rangle$: the map is
 surjective, and $W$ is generated by the images of the eight
 generators of $E$.  The proof of Proposition~\ref{prop:witness}
-sends $w$ to $z$, so Lemma~\ref{lem:portable} gives
-$z\in\operatorname{Rad}_{\mathrm{MF}}(W)$, and $z\neq1$ in $W$ by
+sends $w$ to $\zeta$, so Lemma~\ref{lem:portable} gives
+$\zeta\in\operatorname{Rad}_{\mathrm{MF}}(W)$, and $\zeta\neq1$ in $W$ by
 Construction~\ref{con:clifford}.  A group whose MF radical is
 nontrivial admits no injective corona representation.
 \end{proof}
@@ -2384,9 +2391,9 @@ on $X$ is trace preserving, and
   u_\gamma\longmapsto u_{\alpha(\gamma)}
 \]
 extends to a trace-preserving injective endomorphism $\eta$ of
-\[
-  N=A_{\rm Cl}\rtimes\Gamma.                            \tag{*}
-\]
+\begin{equation}\label{eq:car-endomorphism}
+  N=A_{\rm Cl}\rtimes\Gamma.
+\end{equation}
 
 We first check Connes embeddability rather than assume it.  Let $A_m$ be
 the finite-dimensional Clifford algebra on
@@ -2414,7 +2421,7 @@ Take $x_0=\alpha(\Gamma)\in X_1$, put $a_0=C_{x_0}$, and define
   \pi(\gamma)=u_\gamma\quad(\gamma\in\Gamma),\qquad
   \pi(t)=U,\qquad \pi(c)=U^*a_0U.
 \]
-The HNN relations follow from $(*)$.  Moreover
+The HNN relations follow from \eqref{eq:car-endomorphism}.  Moreover
 \[
  U[U^*a_0U,u_\gamma]U^*
    =[a_0,u_{\alpha(\gamma)}]=0,
@@ -2446,9 +2453,10 @@ $K$.  Its automorphic direct limit $\widetilde K$ is again sofic.  Finally,
 where $T$ implements that automorphism, is sofic because its normal subgroup
 $\widetilde K$ is sofic and its quotient $\Z$ is amenable.  We use here the
 standard permanence of soficity under subgroups, direct limits, finite
-extensions, and extensions by amenable quotients \cite{ES05}.
+extensions, and extensions by amenable quotients
+\cite{ES05,ElekSzabo06}.
 
-Let $z$ be the central sign of the Clifford lamp group.  The assignments
+Let $\zeta$ be the central sign of the Clifford lamp group.  The assignments
 \[
  \rho(\gamma)=\gamma\quad(\gamma\in\Gamma),\qquad
  \rho(t)=T,\qquad
@@ -2456,7 +2464,7 @@ Let $z$ be the central sign of the Clifford lamp group.  The assignments
 \]
 satisfy the literal presentation by the same covariance calculation as
 above, and the two Majoranas in the marked commutator are distinct.  Thus
-$\rho(w)=z\neq1$.  Notice that this argument uses the valid permanence of
+$\rho(w)=\zeta\neq1$.  Notice that this argument uses the valid permanence of
 soficity under directed unions and extensions by an amenable \emph{quotient};
 it does not assert closure for arbitrary amenable-by-sofic extensions.
 
@@ -2564,9 +2572,9 @@ Kassabov prove that, given a finitely generated recursively presented
 group $H$ and $1\neq h\in H$, there is an embedding
 $j\colon H\hookrightarrow\Lambda$ into a finitely presented
 property~(T) group $\Lambda$ which is normally generated by $j(h)$
-\cite[Theorem~3]{ChatterjiKassabov}.  The arXiv record
-\arxiv{2601.22907v1} was submitted on January~30, 2026; the manuscript
-itself is dated February~2, 2026.  We use only that theorem and make no
+\cite[Theorem~3]{ChatterjiKassabov}.  The archived version
+\arxiv{2601.22907v1} was submitted on January~30, 2026.  We use only that
+version and make no
 claim that its construction is part of the present work.
 
 \begin{theorem}[a finitely presented Kazhdan group with full MF radical]
@@ -3215,13 +3223,13 @@ setting: $G_0=\mathrm{BS}(1,2)$
 with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
 $t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
 $E_0=\ClLamp(X_0)\rtimes G_0$ with central sign
-$z_0=-1\in\ClLamp(X_0)$ as in
+$\zeta_0=-1\in\ClLamp(X_0)$ as in
 Construction~\ref{con:clifford}.  Figure~\ref{fig:cyclic-comparison}
 summarizes the comparison.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[node distance=8mm and 12mm,
+\begin{tikzpicture}[alt={Comparison chart. Exact finite-dimensional representations kill the marked word for both the Kazhdan-base and cyclic-base groups. Corona representations kill it only for the Kazhdan-base group; it survives through the amenable cyclic quotient.},node distance=8mm and 12mm,
     figbox/.append style={text width=4.7cm, minimum height=18mm}]
   \node[figbox] (kbase) {$E$:\ the marked pattern over the Kazhdan base
     $\Gamma=\Z^3\rtimes\SL_3(\Z)$};
@@ -3249,7 +3257,7 @@ projection.}
 \end{figure}
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
-\emph{$z_0\neq1$:} immediate from Construction~\ref{con:clifford},
+\emph{$\zeta_0\neq1$:} immediate from Construction~\ref{con:clifford},
 since $\ClLamp(X_0)\le\Cl(X_0)^\times$ and $\Cl(X_0)\neq0$.
 
 \emph{Amenability:} every finitely generated subgroup of $\ClLamp(X_0)$ is
@@ -3264,7 +3272,7 @@ amenable $\ClLamp(X_0)$, the group $E_0$ is amenable.
 \emph{MF:} by Facts~\ref{fact:tww} and~\ref{fact:qdcorona}, the amenable
 group $E_0$ is MF, and
 an MF embedding $E_0\hookrightarrow\Ucor((d_n))$ is injective, so the
-image of $z_0$ is nontrivial; under $\kappa_{(d_n)}$ it is a nontrivial
+image of $\zeta_0$ is nontrivial; under $\kappa_{(d_n)}$ it is a nontrivial
 self-adjoint unitary in $\mathcal Q$:
 the central sign survives.
 
@@ -3281,12 +3289,12 @@ compute $t^{-1}\gamma_0t=(\tfrac12,0)\notin\Gamma_0=\Z\times\{0\}$.
 Consequently
 \[
  w_{\mathrm{BS}}\longmapsto
- [c_{t\Gamma_0},c_{\gamma_0t\Gamma_0}]=z_0.
+ [c_{t\Gamma_0},c_{\gamma_0t\Gamma_0}]=\zeta_0.
 \]
 The image is central of order two, so every relator of
 $E_{\mathrm{BS}}$ is respected.  The resulting homomorphism is surjective:
 $\gamma_0,t$ generate $G_0$, the conjugates of $c_o$ give all $c_x$ because
-$G_0$ acts transitively on $X_0$, and their commutators contain $z_0$.
+$G_0$ acts transitively on $X_0$, and their commutators contain $\zeta_0$.
 Composing this quotient with the MF embedding of $E_0$ gives the asserted
 corona representation of $E_{\mathrm{BS}}$.
 
@@ -3296,7 +3304,7 @@ $t=t$, $c=c_{o}$ ($o=\Gamma_0\in X_0$, fixed by $\Gamma_0$), and
 $a=\gamma_0\in\Gamma_0$.  We have
 $t\Gamma_0t^{-1}=\langle\gamma_0^2\rangle\subseteq\Gamma_0$ and
 $[c_o,\Gamma_0]=1$.  Thus Theorem~\ref{thm:B} says every
-finite-dimensional representation of $E_0$, over every field, kills $z_0$.
+finite-dimensional representation of $E_0$, over every field, kills $\zeta_0$.
 Applying the same theorem directly to the displayed presentation of
 $E_{\mathrm{BS}}$ shows that every finite-dimensional representation kills
 $w_{\mathrm{BS}}$.
@@ -3357,8 +3365,31 @@ essential.
 The mathematics in this paper and the accompanying machine-checked
 development were produced with extensive use of large language models,
 including Anthropic Claude and OpenAI Codex models in multiple concurrent
-interactive sessions.  Literature search was assisted by web-connected
-model sessions.
+interactive sessions.  Builds and audits ran on
+\ifanonymous a university high-performance computing
+cluster\else the Minnesota Supercomputing Institute
+cluster\fi.  Literature search was assisted by web-connected
+model sessions.  These systems are computational tools, not authors.
+\ifanonymous
+The author reviewed the mathematical statements, proofs, formal endpoints,
+and literature claims and accepts responsibility for the work.
+\else
+SauersML is the responsible author and repository maintainer, reviewed the
+mathematical statements, proofs, formal endpoints, and literature claims, and
+accepts responsibility for the work.
+\fi
+
+\section*{Verification record}
+\ifanonymous
+The formal companion and its machine-verification record are available to
+the editors for anonymous review.
+\else
+Formal companion revision \texttt{\formalizationrevision}; Lean toolchain
+\texttt{\leanversion}; Mathlib revision \texttt{\mathlibcommit}.  The release
+workflow requires this exact revision to pass the source scan, complete Lean
+build, transitive axiom audit, elaborated-signature comparison, and fresh
+kernel replay before it publishes and attests the PDF.
+\fi
 
 \section*{Acknowledgements}
 \ifanonymous
@@ -3366,10 +3397,10 @@ model sessions.
 \else
 The machine-checked companion to this paper is available in the repository
 \texttt{\leanrepo}, at the pinned revision \texttt{\leancommit}; every
-margin link resolves against that revision.
+inline Lean record resolves against that revision.
 \fi
 
-\begin{thebibliography}{TWW}
+\begin{thebibliography}{JNVWY}
 
 \bibitem[Ad58]{Adian58}
 S.~I. Adian,
@@ -3397,7 +3428,8 @@ preprint, 2026, \arxiv{2608.05362}.
 \bibitem[BDL]{BDL}
 B.~Bachner, A.~Dogon, and A.~Lubotzky,
 \emph{On $L^1$-approximation of groups},
-J. Algebra \textbf{702} (2026), 235--243,
+online-first article, 2026; assigned to J. Algebra \textbf{702}, 235--243
+(issue scheduled for September~15, 2026),
 \doi{10.1016/j.jalgebra.2026.04.041}.
 
 \bibitem[Be]{BekkaAmenable}
@@ -3466,8 +3498,7 @@ Ann. of Math. (2) \textbf{198} (2023), no.~3, 1261--1303.
 I.~Chatterji and M.~Kassabov,
 \emph{Examples of finitely presented groups with strong fixed point
 properties and property (T)},
-preprint, \arxiv{2601.22907v1}, submitted January~30, 2026;
-manuscript dated February~2, 2026.
+preprint, \arxiv{2601.22907v1}, submitted January~30, 2026.
 
 \bibitem[CLV]{CLV}
 M.~D.~E. Conder, G.~Liversidge, and M.~Vsemirnov,
@@ -3507,6 +3538,12 @@ G.~Elek and E.~Szab\'o,
 sofic property},
 Math. Ann. \textbf{332} (2005), no.~2, 421--441,
 \doi{10.1007/s00208-004-0624-6}.
+
+\bibitem[ES06]{ElekSzabo06}
+G.~Elek and E.~Szab\'o,
+\emph{On sofic groups},
+J. Group Theory \textbf{9} (2006), no.~2, 161--171,
+\doi{10.1515/JGT.2006.011}.
 
 \bibitem[FF]{FF}
 F.~Fournier-Facio,

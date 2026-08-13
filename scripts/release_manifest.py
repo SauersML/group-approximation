@@ -43,7 +43,10 @@ def _sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def build_manifest() -> dict:
+def build_manifest(*, commit: str | None = None,
+                   prover_run_id: str | None = None,
+                   pdf: Path | None = None,
+                   source_checkout_clean: bool = False) -> dict:
     manifest_path = REPO / "lake-manifest.json"
     mathlib = None
     if manifest_path.is_file():
@@ -56,13 +59,28 @@ def build_manifest() -> dict:
                           "Superseded/**/*.lean", "Superseded.lean",
                           "scripts/*", "docs/*",
                           "property_tt_leavitt.tex", "property_tt_leavitt.pdf",
+                          "non_mf_groups_exist.tex", "non_mf_groups_exist.pdf",
                           "lakefile.toml", "lean-toolchain", "lake-manifest.json")
         for p in REPO.glob(pattern) if p.is_file()
     )
 
+    if pdf is not None:
+        resolved = pdf if pdf.is_absolute() else REPO / pdf
+        if resolved.is_file() and resolved not in files:
+            files.append(resolved)
+            files.sort()
+
+    generated_changes = [line[3:] for line in
+                         _git("status", "--porcelain").splitlines()]
+
     return {
-        "commit": _git("rev-parse", "HEAD"),
-        "dirty": bool(_git("status", "--porcelain")),
+        "commit": commit or _git("rev-parse", "HEAD"),
+        "source_checkout_clean_before_generation": source_checkout_clean,
+        "generated_worktree_changes": generated_changes,
+        "prover_workflow_run_id": prover_run_id,
+        "build_command": "lake build && lake env lean scripts/Audit.lean && "
+                         "lake env lean scripts/Signatures.lean && "
+                         "lake env leanchecker --fresh GroupApproximation",
         "lean_toolchain": (REPO / "lean-toolchain").read_text().strip(),
         "mathlib_commit": mathlib,
         "files": {str(p.relative_to(REPO)): _sha256(p) for p in files},
@@ -73,16 +91,33 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true",
                     help="write docs/RELEASE_MANIFEST.json instead of stdout")
+    ap.add_argument("--commit", help="source commit recorded by CI")
+    ap.add_argument("--prover-run-id", help="successful exact-revision prover run")
+    ap.add_argument("--pdf", type=Path, help="PDF artifact to hash")
+    ap.add_argument("--source-checkout-clean", action="store_true",
+                    help="record that CI asserted a clean checkout before generation")
+    ap.add_argument("--output", type=Path,
+                    help="write to this path instead of stdout")
     args = ap.parse_args()
 
-    manifest = build_manifest()
+    manifest = build_manifest(commit=args.commit,
+                              prover_run_id=args.prover_run_id,
+                              pdf=args.pdf,
+                              source_checkout_clean=args.source_checkout_clean)
     text = json.dumps(manifest, indent=2, sort_keys=True) + "\n"
-    if args.write:
-        out = REPO / "docs" / "RELEASE_MANIFEST.json"
+    if args.write or args.output:
+        out = args.output or (REPO / "docs" / "RELEASE_MANIFEST.json")
+        if not out.is_absolute():
+            out = REPO / out
+        out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(text, encoding="utf-8")
-        print(f"wrote {out.relative_to(REPO)} "
+        try:
+            display = out.relative_to(REPO)
+        except ValueError:
+            display = out
+        print(f"wrote {display} "
               f"({len(manifest['files'])} files, commit {manifest['commit'][:12]}, "
-              f"dirty={manifest['dirty']})")
+              f"source-clean={manifest['source_checkout_clean_before_generation']})")
     else:
         sys.stdout.write(text)
     return 0
