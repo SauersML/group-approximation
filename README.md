@@ -188,7 +188,7 @@ searchable.
 In the spirit of the Leiden Declaration on Artificial Intelligence and
 Mathematics (June 2026): the mathematics in this repository was developed
 and formalized with extensive use of large language models (Anthropic
-Claude models, multiple concurrent interactive sessions) operating under
+Claude models, GPT 5.6 Sol, multiple concurrent interactive sessions) operating under
 continuous human direction; the per-commit `Co-Authored-By` trailers are a
 tool-provenance record, not an authorship claim.  Formal verification uses
 Lean 4 and Mathlib, with the Lean kernel as the final checker; builds and
