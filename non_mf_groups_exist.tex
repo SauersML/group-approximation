@@ -1794,8 +1794,8 @@ that
 \]
 
 \begin{lemma}[finite-normal spectral corner]\label{lem:finitecorner}
-Let $H$ be a countable group and let $F\trianglelefteq H$ be finite.  If a homomorphism
-$H\to\Ucor((d_n))$ is nontrivial on $F$, then, after passing to a
+Let $H$ be a countable group and let $F\trianglelefteq H$ be finite.
+If a homomorphism $H\to\Ucor((d_n))$ is nontrivial on $F$, then, after passing to a
 subsequence, there are integers $r_n\ge1$ and an operator-norm asymptotic
 representation $V_n\colon H\to\U(M_{r_n}(\C))$ such that
 \begin{equation}\label{eq:finitecornersum}
@@ -1816,7 +1816,7 @@ $\opnorm{U_{g,n}A_nU_{g,n}^*-A_n}\to0$ for every fixed $g\in H$.
 Functional calculus at the spectral gap about $1/2$ therefore produces
 projections
 \[
- p_n=1_{[1/2,\infty)}(H_n),\qquad e_n=1-p_n,
+ p_n=1_{(1/2,\infty)}(H_n),\qquad e_n=1-p_n,
 \]
 with $\opnorm{p_n-A_n}\to0$ and
 $\opnorm{[e_n,U_{g,n}]}\to0$ for every fixed $g$.
@@ -1827,13 +1827,14 @@ Indeed, if $e_n=0$ eventually then $A_n\to1$.  But
  \frac1{|F|}\sum_{f\in F}(U_{f,n}-1)^*(U_{f,n}-1)
    =2-A_n-A_n^*
 \]
-would force $U_{f,n}\to1$ for every $f\in F$, contrary to the assumed
+is a sum of positive operators; its convergence to zero would force
+$U_{f,n}\to1$ for every $f\in F$, contrary to the assumed
 survival of some element of $F$ in the corona.  Restrict to that
 subsequence and identify $e_n\C^{d_n}$ with $\C^{r_n}$.
 
 The compressions $e_nU_{g,n}e_n$ are asymptotically unitary and
-multiplicative.  For each fixed $g$, replacing the compression by the unitary factor in its
-polar decomposition changes it by $o(1)$ in operator norm.  Use this polar
+multiplicative.  For each fixed $g$, replacing the compression by the
+unitary factor in its polar decomposition changes it by $o(1)$ in operator norm.  Use this polar
 correction whenever the compression is invertible and choose an arbitrary
 unitary otherwise; then set $V_n(1)=1$.  Finally
 $\opnorm{A_ne_n}\to0$, so compression and polar correction give
@@ -1897,8 +1898,7 @@ faithful, (2) holds in $\Cmax(H_1)$.
 
 \begin{lemma}[finite-stage Kazhdan compressor]\label{lem:compressorfinite}
 Let $H$ be a countable group, let $(\Lambda,\iota,t,c)$ be a marked
-Kazhdan pattern in $H$, and put
-$d=tct^{-1}$, and let $V_n\colon H\to\U(M_{r_n}(\C))$ be an
+Kazhdan pattern in $H$, put $d=tct^{-1}$, and let $V_n\colon H\to\U(M_{r_n}(\C))$ be an
 operator-norm asymptotic representation.  Then, for every
 $\lambda\in\Lambda$,
 \begin{equation}\label{eq:finitecollapse}
