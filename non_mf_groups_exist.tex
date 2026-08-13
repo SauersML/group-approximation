@@ -423,8 +423,6 @@ kills the corresponding marked element.
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill}
-\leanconditional{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF}
-\leanconditional{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one}
 \end{mainthm}
 
 \ifanonymous\else
@@ -502,8 +500,6 @@ $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
 \ifanonymous\else
-\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
 \fi
 \end{mainthm}
 
@@ -2614,8 +2610,6 @@ then the group is MF --- is recorded in \cite{Shulman}.
 MF groups are not closed under quotients: the free group $F_8$ is
 MF, and $E$ is a quotient of $F_8$.
 \ifanonymous\else
-\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF}
-\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective}
 \fi
 \end{corollary}
 
@@ -2644,9 +2638,6 @@ sign $z=-1\in\ClLamp(\bar X)$ satisfies
 $z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
 \ifanonymous\else
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_surjective}
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated}
 \fi
 \end{proposition}
 
@@ -2741,10 +2732,6 @@ $\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
 linear representation of $\Lambda$, over every field, is trivial, and
 $\Lambda$ is perfect.
 \ifanonymous\else
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelope_normMFResidual_eq_top}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.hom_eq_one_to_isOperatorMF}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.allFiniteDimensionalRepresentationsTrivial}
-\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelopeIsPerfect_of_eq_commutator}
 \fi
 \end{theorem}
 
@@ -2786,7 +2773,6 @@ as a subgroup and satisfies
 Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
 trivial.
 \ifanonymous\else
-\leanconditional{Sofic/UniversalKazhdanMFObstruction}{GroupApproximation.UniversalNormallyGeneratedKazhdanEnvelopeData.consequence_package}
 \fi
 \end{theorem}
 
@@ -2820,11 +2806,6 @@ For the same universal Kazhdan group,
 whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
 is therefore neither finite nor stably finite, and hence is not MF.
 \ifanonymous\else
-\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
-\leanverified{Analysis/ReducedGroupCStarMFObstruction}{GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec}
-\leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing}
 \fi
 \end{corollary}
 
@@ -2892,7 +2873,6 @@ $t\,\iota_m(\gamma)\,t^{-1}=\iota_m(\alpha_m(\gamma))$ for all
 $\gamma\in\Gamma$, and $c$ commutes with $\iota_m(\Gamma)$: the
 tuple $(\Gamma,\iota_m,t,c)$ is a marked Kazhdan pattern in $E_m$
 (Fact~\ref{fact:T}).
-\leanverified{Monsters/AffineSL3Scaling}{GroupApproximation.AffineSL3Scaling.scaling_package}
 As in the proof of Theorem~\ref{thm:A},
 $d^2=tc^2t^{-1}=1$ in $E_m$, and Lemma~\ref{lem:square} gives
 $w_m=[\,d,\iota_m(a)\,]^2\in N_{\mathrm{comp}}$; the subgroup
@@ -2993,7 +2973,6 @@ property is undecidable from finite presentations.
 There is no algorithm which, given a finite group presentation, decides
 whether the presented group is MF.
 \ifanonymous\else
-\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
 \fi
 \end{theorem}
 
@@ -3011,7 +2990,6 @@ of codes presenting non-MF groups is not recursively enumerable.
 Consequently there is no sound and complete recursively verifiable system
 of finite certificates for non-MF-ness of finitely presented groups.
 \ifanonymous\else
-\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
 \fi
 \end{theorem}
 
@@ -3042,8 +3020,6 @@ decides any of the following five properties:
 For each property, the set of finite presentations on which it fails is
 not recursively enumerable.
 \ifanonymous\else
-\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
-\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_negative_sides_not_re}
 \fi
 \end{corollary}
 
@@ -3145,10 +3121,6 @@ clopen neighborhood
 Every group in $\mathcal O_E$ is non-MF.  With the literal relator set of
 Definition~\ref{def:E}, membership is determined by the relation pattern
 on reduced words of length at most $34$.
-\leanverified{Sofic/OperatorMFLocalNormalization}{GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
-\leanverified{Sofic/LiteralPresentationRadius}{GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34}
 \end{theorem}
 
 \begin{proof}
