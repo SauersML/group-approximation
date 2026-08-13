@@ -46,7 +46,9 @@ theorem compressionCentralizerDefect_le_ker
   let S : Submodule ℝ E :=
     KazhdanOrthogonal.invariantSubmodule (ρ.comp L.subtype)
   have hzfixed : v (φ z) ∈ S := by
-    rw [S, KazhdanOrthogonal.mem_invariantSubmodule]
+    change v (φ z) ∈
+      KazhdanOrthogonal.invariantSubmodule (ρ.comp L.subtype)
+    rw [KazhdanOrthogonal.mem_invariantSubmodule]
     intro delta
     have hconj : (delta : H) * z * (delta : H)⁻¹ = z := by
       rw [← (hz delta delta.property).eq]
