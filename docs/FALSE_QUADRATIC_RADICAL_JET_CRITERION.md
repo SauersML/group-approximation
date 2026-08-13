@@ -169,31 +169,33 @@ inverse predecessor `h`.
 
 In fact the obstruction is stronger than the folded-conjugation ansatz.
 
-**Theorem (complete finite-dimensional tangent sterility).**  Assume both
-`G` and `Gamma` have property `(T)` and
+**Theorem (complete finite-dimensional tangent sterility).**  Assume `G`
+has property `(T)`.  Assume also that `Gamma<G` is infranormal: the
+semigroup
 
 ```text
-t Gamma t^(-1)<=Gamma,       h=t^(-1) gamma t.
+S={s in G:s Gamma s^(-1)<=Gamma}
 ```
 
-For every finite-dimensional unitary representation
+generates `G`.  Put `N=normalClosure_G(Gamma)`.  For every finite-dimensional
+unitary representation
 
 ```text
 rho:D=G *_Gamma G -> U(d)
 ```
 
-and every unitary Zariski tangent `b` at `rho`,
+and every unitary Zariski tangent `b` at `rho`, one has
 
 ```text
-b(i_2(h)i_1(h)^(-1))=0.                              (QRJ12)
+b(i_2(n)i_1(n)^(-1))=0             for every n in N. (QRJ12)
 ```
 
 **Proof.**  Write `rho_j` and `b_j` for the restrictions to the two vertex
-copies.  Since the marked word belongs to the sofic radical and `rho(D)` is
-sofic,
+copies.  Every fold difference in `(QRJ12)` belongs to the full sofic
+radical, and `rho(D)` is sofic.  Hence
 
 ```text
-rho_1(h)=rho_2(h)=H.                                 (QRJ13)
+rho_1(n)=rho_2(n)                  for every n in N. (QRJ13)
 ```
 
 The tangent is a `1`-cocycle for the finite-dimensional unitary adjoint
@@ -206,36 +208,51 @@ b_j(g)=X_j-Ad(rho_j(g))X_j.                          (QRJ14)
 
 The two cocycles agree on the amalgamated subgroup.  Since the two
 representations also agree there, `Y=X_2-X_1` intertwines the restrictions
-of `rho_1` and `rho_2` to `Gamma`.  The finite-intertwiner propagation lemma
-then says
+of `rho_1` and `rho_2` to `Gamma`.  On `Hom(C^d,C^d)` put
 
 ```text
-rho_1(h)Y=Y rho_2(h).
+beta(g)T=rho_1(g)T rho_2(g)^*.
 ```
 
-Using `(QRJ13)`, this is `[Y,H]=0`.  The cocycle rule and `(QRJ14)` now give
+Then `Y in Fix_Gamma(beta)`.  For `s in S`,
 
 ```text
-b(i_2(h)i_1(h)^(-1))
- =b_2(h)-b_1(h)
- =Y-Ad(H)Y
+beta(s)Fix_Gamma(beta)=Fix_(s Gamma s^(-1))(beta)
+                      contains Fix_Gamma(beta).
+```
+
+The two spaces have equal finite dimension, so they are equal.  Since `S`
+generates `G`, `Fix_Gamma(beta)` is `G`-invariant.  Every conjugate of
+`Gamma` consequently fixes this space pointwise, and hence so does `N`.
+Therefore
+
+```text
+rho_1(n)Y=Y rho_2(n)                 (n in N).        (QRJ15)
+```
+
+For fixed `n in N`, write the common value in `(QRJ13)` as `H_n`.
+Equation `(QRJ15)` becomes `[Y,H_n]=0`.  The cocycle rule and `(QRJ14)` now
+give
+
+```text
+b(i_2(n)i_1(n)^(-1))
+ =b_2(n)-b_1(n)
+ =Y-Ad(H_n)Y
  =0.
 ```
 
 This proves `(QRJ12)`.  End proof.
 
-A cocycle which vanishes on this fold difference also vanishes on every
-conjugate and product of its conjugates.  Therefore the normal closure of
-the marked primitive radical word is tangent-zero at every
-finite-dimensional unitary point.  The complete sofic radical is generated
-by fold differences for all elements of the normal closure of `Gamma`; the
-argument above is asserted only for the displayed inverse-predecessor
-family, not automatically for every one of those generators.
+The complete-radical theorem identifies `Rad_sof(D)` with the normal closure
+of the fold differences in `(QRJ12)`.  A cocycle vanishing on those
+generators vanishes on every conjugate and product of them.  Therefore the
+evaluation map of the **entire sofic radical** has zero derivative at every
+finite-dimensional unitary point of the current double.
 
 Thus the new criterion does not merely fail on the same-model folded
 ansatz: the whole finite-dimensional representation scheme of this double
-is tangent-sterile on the marked radical direction we need.  A successful
-use of the criterion must change the radical presentation, or leave honest
+is tangent-sterile in every radical direction.  A successful use of the
+criterion must change the radical presentation, or leave honest
 finite-dimensional base points and use genuinely nonliftable approximate
 models.
 
@@ -260,3 +277,128 @@ a finite presentation with a certified sofic-radical word to a
 finite-dimensional unitary point and find a nonzero marked tangent modulo
 the derivatives of **all** defining relators.  That is an exact linear
 algebra problem.
+
+## 6. Higher-order radical jets
+
+The first-order statement is only the smallest case of the amplifier.
+Suppose, for some fixed `m>=1`, smooth unitary generator paths based at a
+finite-dimensional representation satisfy
+
+```text
+r(u(t))=1+O(t^(m+1))                  (r in R),       (QRJ16)
+q(u(t))=1+t^m A+O(t^(m+1)),           A!=0.           (QRJ17)
+```
+
+Then the induced multiplication defect is `O(t^(m+1))`, while
+
+```text
+1-Re tr(q(u(t)))
+ =(t^(2m)/2)||A||_2^2+o(t^(2m)).                     (QRJ18)
+```
+
+Consequently
+
+```text
+(multiplication defect)^2/(marked trace gap)=O(t^2). (QRJ19)
+```
+
+The same diagonalization and phase-cancelled tensor amplification prove:
+
+**Higher-jet criterion.**  Any finite-order unitary jet for which the
+sofic-radical word appears strictly before the defining-relator error gives
+a hyperlinear nonsofic group.
+
+This includes jets which are first-order tangent-zero but acquire a marked
+quadratic or higher obstruction.  The relevant search is therefore for a
+strict order gap, not specifically for a nonzero first derivative.
+
+## 7. The current symmetric double is sterile to every finite order
+
+The stronger criterion still cannot be realized at a fixed-dimensional
+unitary point of the present Kun--Thom double.
+
+**Theorem (finite-order radical-arc sterility).**  Retain the explicit
+infranormal pair, and assume both `G` and `Gamma` have property `(T)`.  Let
+`rho` be a finite-dimensional unitary representation of
+
+```text
+D=G *_Gamma G.
+```
+
+Suppose unitary generator paths based at `rho` make every defining relator
+`O(t^(m+1))`.  Then, for every `n in N=normalClosure_G(Gamma)`,
+
+```text
+i_2(n)(u(t)) i_1(n)(u(t))^(-1)=1+O(t^(m+1)).          (QRJ20)
+```
+
+In particular no element of `Rad_sof(D)` can first appear at an order at
+most `m`.
+
+**Proof.**  Restrict the paths to either vertex copy of `G`.  We first use
+the standard formal-rigidity induction.  Suppose that, after conjugating by
+a unitary polynomial path, the vertex assignment agrees with its base
+representation modulo `t^k`.  Its coefficient at order `t^k` satisfies the
+linearized group relations, hence is a `1`-cocycle for the finite-dimensional
+unitary adjoint representation.  Property `(T)` gives `H^1=0`, so this
+cocycle is inner.  Conjugating by `exp(t^k X)` removes it.  Induction for
+`k=1,...,m` gives unitary paths `V_j(t)`, `j=1,2`, such that
+
+```text
+u_j(g,t)=V_j(t)rho_j(g)V_j(t)^*+O_g(t^(m+1)).          (QRJ21)
+```
+
+Apply the edge relations to a finite Kazhdan set of `Gamma` and put
+
+```text
+Y(t)=V_1(t)^*V_2(t).
+```
+
+Then `Y(t)` is an `O(t^(m+1))` almost-intertwiner between `rho_2|Gamma`
+and `rho_1|Gamma`.  The Kazhdan projection puts it within
+`O(t^(m+1))` of an exact `Gamma`-intertwiner `Z(t)`.  Infranormal
+finite-intertwiner propagation, proved in Section 4, makes `Z(t)` intertwine
+every `n in N`.  Hence `Y(t)` intertwines every fixed `n in N` up to
+`O(t^(m+1))`.  Substitution in `(QRJ21)` gives
+
+```text
+u_1(n,t)-u_2(n,t)=O(t^(m+1)),
+```
+
+which is `(QRJ20)`.  Since the complete sofic radical is normally generated
+by these fold differences, finite telescoping gives the final assertion.
+End proof.
+
+This rules out exact Jacobian, Hessian, and all fixed-order power-series
+searches at every fixed-dimensional representation of the current double.
+The only surviving uses of `(QRJ19)` must have dimension growing with the
+window or must use a different nonsofic radical presentation whose vertex
+deformation theory is not Kazhdan-rigid.
+
+## 8. Tangent sterility survives the standard group gadgets
+
+The obstruction cannot be removed by repackaging the same radical word.
+
+1. If `f:D->K` is a quotient and `q=f(r)`, every representation and every
+   tangent of `K` pull back along `f`.  Hence tangent-zero of `r` on `D`
+   implies tangent-zero of `q` on `K`.
+2. If `D` embeds in a larger group and the marked element remains `r`, every
+   tangent of the larger group restricts to one of `D`, so it still kills
+   `r`.
+3. For a `1`-cocycle `b` based at a representation which kills `r`, the set
+   of elements in `ker(rho)` on which `b` vanishes is normal.  Indeed the
+   cocycle identities preserve products and inverses, and for
+   `rho(r)=1=b(r)` they give
+
+   ```text
+   b(g r g^(-1))=Ad(rho(g))b(r)=0.
+   ```
+
+   Thus every word in the normal closure of `r` is tangent-zero as well.
+
+Consequently abelianizing the double radical, passing to bounded-exponent
+lamp quotients, adding a central shear whose marked element lies in the old
+normal closure, or taking another quotient of the current double cannot
+create a finite-dimensional radical-moving jet.  The higher-jet criterion
+must either be fed by growing-dimensional approximate points or by a source
+of nonsoficity not inherited from this tangent-sterile radical.

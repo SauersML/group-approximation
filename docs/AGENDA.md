@@ -22,20 +22,66 @@ integration of the tangent is needed.
 
 For a folded double this reduces to one honest finite-dimensional
 representation with `rho(h)` outside the bicommutant of `rho(Gamma)`.
-The obstruction for the current strict Kun--Thom predecessor is actually
+The obstruction for the current infranormal Kun--Thom pair is actually
 complete: property `(T)` makes both vertex tangents inner, agreement on the
-edge leaves a finite-dimensional `Gamma`-intertwiner, and intertwiner
-propagation makes it intertwine `h`.  Hence every tangent at every
-finite-dimensional representation kills the marked fold word and its normal
-closure.  This closes a full-presentation linear search for the current
-marked witness, not merely the same-model ansatz.  It is not being claimed
-here that one displayed predecessor normally generates the complete radical.
+edge leaves a finite-dimensional `Gamma`-intertwiner, and infranormality
+propagates that intertwiner through the whole normal closure `N`.  Hence
+every tangent at every finite-dimensional representation kills every fold
+difference `i_2(n)i_1(n)^(-1)`, `n in N`, and therefore the complete sofic
+radical.  This closes every full-presentation finite-dimensional linear
+search on the current symmetric double, not merely the same-model ansatz.
 
 The criterion still changes the atlas stopping rule: quadratic obstruction
 of a tangent is irrelevant once the tangent satisfies the full presentation.
 The current outer `A_8` tangent satisfies only the 24 certified local zero
 classes, so it remains insufficient.  Full theorem and scope:
 `docs/FALSE_QUADRATIC_RADICAL_JET_CRITERION.md`.
+
+The statement extends to every finite order.  If defining relators are
+`O(t^(m+1))` and a radical word first moves at order `t^m`, then squared
+defect divided by trace gap is still `O(t^2)`.  Conversely the current
+double is fixed-dimension sterile at every such order: formal property-`(T)`
+rigidity conjugates each vertex jet back to an exact vertex representation,
+and the edge Kazhdan projection plus infranormal intertwiner propagation
+forces agreement on the full normal closure `N` to the same order.  Thus
+Jacobian, Hessian, and higher formal searches on fixed-dimensional
+representations of this double are closed; a live jet must have growing
+dimension or a different radical presentation.
+
+This sterility is inherited by the usual descendants.  Tangents pull back
+through quotients and restrict through overgroups, while a cocycle which
+kills a kernel element kills its entire normal closure.  Hence radical
+abelianization, bounded-exponent quotients, central-shear gadgets, and other
+repackagings of the same Kun--Thom radical cannot manufacture the missing
+jet.  A fixed-dimensional jet attack needs a genuinely different source of
+nonsoficity.
+
+The necessary growing-dimensional replacement has one exact finite
+statistic.  For an operator-norm microstate put
+
+```text
+A_n=phi_n(q)-1,
+r_eff(A_n)=||A_n||_F^2/||A_n||_op^2.
+```
+
+The phase-cancelled amplifier succeeds if
+
+```text
+epsilon_n^2 d_n/||A_n||_F^2 ->0,
+```
+
+or, under a fixed operator wall, if
+
+```text
+epsilon_n sqrt(d_n/r_eff(A_n))->0.
+```
+
+This interpolates rank-one square-root loss and positive-density trace
+visibility.  Exact finite-dimensional ambient `G`-sectors cannot satisfy
+it by the Kazhdan matching inequality; a successful Shulman coordinate must
+therefore exhibit genuine ambient Frobenius instability.  Full theorem and
+the required reporting tuple are in
+`docs/FALSE_WEAK_MF_EFFECTIVE_RANK_PROFILE.md`.
 
 ### 2026-08-12: phase-cancelled tensors lower the FALSE threshold by one power
 
@@ -73,6 +119,52 @@ order-one boundary completion is still sterile, but every genuinely
 convergent active covariance model is back in scope.  Full proof:
 `docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md`; corrected scope:
 `docs/FALSE_TANGENT_ACTIVE_CORNER_DILUTION_NO_GO.md`.
+
+### 2026-08-12: an explicit finitely presented non-MF group
+
+More generally than the ascending-HNN formulation, let `G` be finitely
+presented, let `Gamma<G` be a finitely generated property `(T)` subgroup,
+and suppose `t Gamma t^(-1)<Gamma`.  Adjoin an involution `c` centralizing
+`Gamma`.  For `a in Gamma-t Gamma t^(-1)`, put
+
+```text
+d=t c t^(-1),
+w=[d,a d a^(-1)]
+```
+
+and impose that `w` is a central involution.  The resulting finitely
+presented group `E` has `w!=1`: the coset Clifford semidirect product sends
+the two conjugates in the commutator to distinct Majoranas and sends `w`
+to the Clifford sign.
+
+Every homomorphism of `E` into a norm-matrix corona kills `w`.  If the
+negative spectral corner of `w` were nonzero, the adjoint representation
+would place the Kazhdan projection of `Gamma` in a stably finite
+norm-matrix corona.  The strict compression gives
+
+```text
+P<=Ad(t)P,
+```
+
+while unitary equivalence and stable finiteness force equality.  The root
+vector `c` is `Gamma`-fixed, so equality makes `d` `Gamma`-fixed and forces
+`[d,a d a^(-1)]` to converge to `1` in normalized HS norm.  On the selected
+corner the same word is `-1`, a contradiction.
+
+The uniform ascending-HNN source uses a finitely presented Kazhdan group
+with a proper injective endomorphism.  The concrete choice
+
+```text
+Gamma=Z^3 semidirect SL_3(Z),
+alpha(v,A)=(2v,A),
+a=(e_1,I)
+```
+
+gives an explicit finitely presented non-MF group.  This appears to answer
+the universal group-MF conjecture negatively, subject to specialist
+literature-priority review.  It does not settle hyperlinearity or the
+active hyperlinear-versus-sofic goal.  Full proof and scope audit:
+`docs/EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md`.
 
 ### 2026-08-12: Iwahori counterexamples require high-dimensional type escape
 
