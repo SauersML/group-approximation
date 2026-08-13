@@ -147,10 +147,13 @@ groups are MF, and a substantial permanence theory exists
 \cite{Shulman}.  As of this writing (August 2026), whether \emph{every}
 countable group is MF remained open; it is the operator-norm member of the family of approximation
 problems surveyed in \cite{DGLT,BDL}, whose unnormalized-Frobenius case
-was solved negatively in \cite{DGLT}.  OpenAI constructed the first
-nonsofic group \cite{OAI}; Kun and Thom subsequently analyzed its
-underlying mechanism and obtained nonsofic generalized wreath products
-\cite{KT}.  In the sofic problem the metric is normalized Hamming distance
+was solved negatively in \cite{DGLT}.  Building on rigidity theorems for
+sofic approximations of Kazhdan groups due to Kun \cite{Kun16} and
+Kun--Thom \cite{KT19}, OpenAI constructed the first nonsofic group
+\cite{OAI}; Kun and Thom then extracted and generalized the mechanism,
+obtaining nonsofic generalized wreath products \cite{KT}, and
+Fournier-Facio exhibited finitely presented torsion-free examples
+\cite{FF}.  In the sofic problem the metric is normalized Hamming distance
 on permutation groups, not rank distance; the three metric conventions are
 stated together in \cite[Introduction]{Shulman}.  Neither result supplies an
 operator-norm conclusion: \cite{DGLT} treats the unnormalized Frobenius norm,
@@ -462,11 +465,43 @@ is moved by a compressor \cite[Proposition~2.3]{OAI}.  Contemporaneous work
 of Kun--Thom isolates this mechanism through the compression semigroup
 $P_\Gamma=\{g:g\Gamma g^{-1}\leq\Gamma\}$, infranormality, normalization
 of centralizers, invariance of fixed algebras, and a sofic Mautner envelope
-\cite[Theorems~A, B and~C]{KT}.  It also records the finite analogue: a
+\cite[Theorems~A, B and~C]{KT}.
+The property-(T) rigidity engine behind these developments ---
+almost-invariant structure for expander sofic approximations of Kazhdan
+groups, upgraded and propagated --- originates in Kun's expander
+decomposition \cite{Kun16} and in Kun--Thom \cite{KT19}.
+Contemporaneously with \cite{OAI,KT}, and completed beforehand (see the
+dated footnote in \cite{AlekseevThom}), Alekseev--Thom proved that the
+centralizer of any sofic embedding of a Kazhdan group is a metric
+ultraproduct of permutation groups, with LEF and residual-finiteness
+consequences \cite[Theorem~A]{AlekseevThom}.  All of these results live
+on the Hamming/tracial side: they extract structural information about
+the approximations themselves.  Lemmas~\ref{lem:beta},
+\ref{lem:order} and~\ref{lem:pinning} below instead run the conjugation
+representation of operator-norm lifts and extract an exact equality of
+Kazhdan projections from stable finiteness; the output is not structure
+of an approximation but a universal marked kernel element.
+It also records the finite analogue: a
 one-sided inclusion $t\Gamma t^{-1}\le\Gamma$ becomes an equality in every
 finite quotient.
 We therefore make no novelty claim for the one-sided-compression/lamp or
-Mautner-type fixed-space-propagation paradigms.  Those arguments take place
+Mautner-type fixed-space-propagation paradigms.
+In the reverse direction the divergence is equally sharp: the lamp groups
+of \cite{KT} are plain abelian sums $\bigoplus_{G/\Gamma}\Z/2$, with no
+central extension, no distinguished sign, and no marked element, and the
+OpenAI construction uses a commuting Thompson-type witness subgroup with
+no Clifford structure.  The marked-central-kernel device and the Clifford
+sign witness of the present paper are not adaptations of either.
+
+The base group itself also has a lineage.  A finitely presented Kazhdan
+group carrying a proper ``scaling'' endomorphism of an abelian normal
+subgroup is the Cornulier--Abels machine \cite{Cornulier,Abels}: Thom ran
+exactly this play, with the shift on a central $\mathbb F_p[t,t^{-1}]$-
+(or $\Z[1/p]$-)line inside a Kazhdan matrix group, to produce hyperlinear
+Kazhdan groups that are not residually finite \cite[Section~2]{Thom10}.
+Our $\Gamma=\Z^3\rtimes\SL_3(\Z)$ with $\alpha(v,A)=(2v,A)$ is the
+simplest integral member of this family
+(Remark~\ref{rem:whythisbase}).  Those arguments take place
 in permutation models with normalized Hamming distance.  Here the
 replacement for finite cardinality is the implication
 \[
@@ -523,7 +558,13 @@ non-residually-finite central extensions to obstruct Frobenius approximation
 \cite[Introduction]{DGLT}.  Their norm, rigidity input, and conclusion differ
 from ours, but their strategy is an important predecessor for the broader
 architecture ``designated central obstruction plus rigidity of approximate
-representations.''
+representations.''  Reformulations of (weak) soficity through equations over groups and
+extensions involving residually finite groups, locating potential
+approximation obstructions in finite (central) extensions, appear in
+Glebsky--Rivera and Glebsky \cite{GR,Gl19}.  The obstruction of
+Theorem~\ref{thm:A} likewise lives in a finite central extension, though
+here the quotient $E/\langle w\rangle$ is not claimed to be residually
+finite.
 
 The Kazhdan-projection compression observation needed here is proved
 directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}; we do not
@@ -831,6 +872,12 @@ $\Cl(X)$ mapping
 $c_x\mapsto c_{\sigma(x)}$ and fixing $z$; this gives an action of any
 group acting on $X$ by automorphisms of $\ClLamp(X)$, and a semidirect
 product $\ClLamp(X)\rtimes G$ for any $G$-set $X$.
+The group $\ClLamp(X)$ is the classical sign extension of
+$\bigoplus_X\Z/2$ by the intersection-parity cocycle: an
+extraspecial-type $2$-group of possibly infinite rank, familiar as the
+multiplicative group generated by the self-adjoint generators of the CAR
+algebra (see, e.g., \cite{BR2}); for a modern toolbox of
+property~(T) groups with wreath-like lamp structure see \cite{CIOS}.
 \end{construction}
 
 \begin{lemma}[linear model]\label{lem:linear}
@@ -983,6 +1030,11 @@ The public endpoint combines that theorem with the internally constructed
 finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
 giving a kernel-checked finitely presented non-MF group.
 \leanverified{Sofic/ExplicitNonMFTheorem}{GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF}
+This formal marked group is an independent witness built from a
+noncomputably chosen Shalom cover of the Lean base; it is not the literal
+eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
+marked-compression mechanism and the finitely presented existence theorem,
+while the displayed presentation of $E$ is established by the paper proof.
 The cover formulation needs only
 $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
 many compressed generators; it does not require an endomorphism of the cover.
@@ -1033,6 +1085,9 @@ Throughout this section $\mathcal Q=\mathcal Q((d_n)_{n\in J})$ is a
 norm matrix corona, $q\colon\prod_{n\in J}M_{d_n}(\C)\to\mathcal Q$ the
 quotient map.
 
+The following lifting facts are standard perturbation theory; see
+Loring \cite{Loring} for a systematic treatment.
+
 \begin{lemma}[lifting]\label{lem:lift}
 \leavevmode
 \begin{enumerate}
@@ -1060,6 +1115,10 @@ Since $q((x_n))$ is unitary, $\opnorm{x_n^*x_n-1}\to0$, so $x_n$ is
 eventually invertible; for such $n$ put $u_n=x_n(x_n^*x_n)^{-1/2}$, a
 unitary with $\opnorm{u_n-x_n}\to0$; set $u_n=1$ for the remaining $n$.
 \end{proof}
+
+Stable finiteness of norm matrix coronas is standard and goes back to
+Blackadar--Kirchberg \cite{BK}; we include the short proofs to keep the
+external surface explicit.
 
 \begin{lemma}[stable finiteness]\label{lem:finite}
 Let $\mathcal Q$ be a norm matrix corona.
@@ -2408,6 +2467,21 @@ Such a coordinate model would provide finite-level structure absent from the
 argument above, but their question is open and does not restore the present
 stable-finiteness proof in the tracial setting.
 
+\section*{Tool and computational resource disclosure}
+The mathematics in this paper was developed and formalized with
+extensive use of large language models (Anthropic Claude models, in
+multiple concurrent interactive sessions) operating under continuous
+human direction.  The formal counterpart cited in the Lean-status
+remarks was produced the same way and is verified by the Lean~4 kernel
+against Mathlib, with the axiom closure and audit apparatus described in
+the repository.  Builds and audits ran on the Minnesota Supercomputing
+Institute cluster.  Literature search was assisted by web-connected
+model sessions; every attribution-critical claim was verified against
+primary sources by direct reading.  The author retains exclusive
+responsibility for the correctness and adequacy of the arguments and for
+the completeness and accuracy of the citations, in line with the Leiden
+Declaration on Artificial Intelligence and Mathematics (2026).
+
 \section*{Acknowledgements}
 \ifanonymous
 [Removed for anonymous review.]
@@ -2425,6 +2499,13 @@ C.~A. Akemann and M.~E. Walter,
 \emph{Unbounded negative definite functions},
 Canad. J. Math. \textbf{33} (1981), no.~4, 862--871,
 \doi{10.4153/CJM-1981-067-9}.
+
+\bibitem[Abe]{Abels}
+H.~Abels,
+\emph{An example of a finitely presented solvable group},
+in \emph{Homological group theory (Proc. Sympos., Durham, 1977)},
+London Math. Soc. Lecture Note Ser., vol.~36,
+Cambridge University Press, Cambridge, 1979, 205--211.
 
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
@@ -2463,11 +2544,28 @@ N.~P. Brown and N.~Ozawa,
 Graduate Studies in Mathematics, vol.~88,
 American Mathematical Society, Providence, RI, 2008.
 
+\bibitem[BR2]{BR2}
+O.~Bratteli and D.~W. Robinson,
+\emph{Operator algebras and quantum statistical mechanics~2},
+second ed., Texts and Monographs in Physics, Springer, Berlin, 1997.
+
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[CIOS]{CIOS}
+I.~Chifan, A.~Ioana, D.~Osin, and B.~Sun,
+\emph{Wreath-like products of groups and their von Neumann algebras I:
+$W^*$-superrigidity},
+Ann. of Math. (2) \textbf{198} (2023), no.~3, 1261--1303.
+
+\bibitem[Co]{Cornulier}
+Y.~de~Cornulier,
+\emph{Finitely presentable, non-Hopfian groups with Kazhdan's property
+(T) and infinite outer automorphism group},
+Proc. Amer. Math. Soc. \textbf{135} (2007), no.~4, 951--959.
 
 \bibitem[CRW]{CRW}
 M.~D.~E. Conder, E.~F. Robertson, and P.~D. Williams,
@@ -2506,6 +2604,17 @@ T.~Fritz,
 J. Math. Phys. \textbf{54} (2013), no.~5, 052107,
 \doi{10.1063/1.4807079}.
 
+\bibitem[Gl]{Gl19}
+L.~Glebsky,
+\emph{Extension of a residually finite group by a residually finite
+group is weakly sofic},
+preprint, 2019, \url{arXiv:1910.08631}.
+
+\bibitem[GR]{GR}
+L.~Glebsky and L.~M. Rivera,
+\emph{Sofic groups and profinite topology on free groups},
+J. Algebra \textbf{320} (2008), no.~9, 3512--3518.
+
 \bibitem[Go]{Go}
 A.~P. Goryushkin,
 \emph{Imbedding of countable groups in $2$-generated simple groups},
@@ -2529,6 +2638,22 @@ M.~Magee and M.~de~la~Salle,
 \emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
 C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
 \arxiv{2312.03220}.
+
+\bibitem[Ku16]{Kun16}
+G.~Kun,
+\emph{On sofic approximations of property (T) groups},
+preprint, 2016, \url{arXiv:1606.04471}.
+
+\bibitem[KT19]{KT19}
+G.~Kun and A.~Thom,
+\emph{Inapproximability of actions and Kazhdan's property (T)},
+preprint, 2019, \url{arXiv:1901.03963}.
+
+\bibitem[Lo]{Loring}
+T.~A. Loring,
+\emph{Lifting solutions to perturbing problems in $C^*$-algebras},
+Fields Institute Monographs, vol.~8,
+American Mathematical Society, Providence, RI, 1997.
 
 \bibitem[Ma]{Ma}
 A.~I. Mal'cev,
@@ -2596,6 +2721,11 @@ W.~Slofstra and T.~Vidick,
 \emph{Entanglement in non-local games and the hyperlinear profile of groups},
 Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
 \doi{10.1007/s00023-018-0718-y}.
+
+\bibitem[Th]{Thom10}
+A.~Thom,
+\emph{Examples of hyperlinear groups without factorization property},
+Groups Geom. Dyn. \textbf{4} (2010), no.~1, 195--208.
 
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,
