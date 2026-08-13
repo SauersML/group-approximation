@@ -856,6 +856,25 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   F ≤ C.defectNormal → F ≤ coronaMFResidual E
 ```
 
+## `GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
+  F ≤ C.defectNormal →
+    ∀ {f₀ : E},
+      f₀ ∈ F →
+        ∀ (ε : ℝ),
+          0 < ε →
+            ∃ δ F₀,
+              0 < δ ∧
+                ∀ (Y : FiniteModel),
+                  0 < Fintype.card Y.carrier →
+                    ∀ (φ : E → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
+                      (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) →
+                        ‖↑(φ f₀) - 1‖ < ε
+```
+
 ## `GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual`
 
 ```lean
