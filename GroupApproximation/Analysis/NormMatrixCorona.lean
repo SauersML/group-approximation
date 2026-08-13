@@ -133,7 +133,6 @@ theorem neg {a : BoundedMatrixSequence X}
 theorem mul_left (b : BoundedMatrixSequence X) {a : BoundedMatrixSequence X}
     (ha : IsC0MatrixSequence X a) : IsC0MatrixSequence X (b * a) := by
   obtain ⟨B, hB⟩ := b.2
-  have hB0 : 0 ≤ B := (norm_nonneg (b.1 0)).trans (hB 0)
   apply squeeze_zero' (Eventually.of_forall fun n ↦ norm_nonneg ((b * a).1 n))
   · filter_upwards with n
     exact (norm_mul_le (b.1 n) (a.1 n)).trans
@@ -145,7 +144,6 @@ theorem mul_right {a : BoundedMatrixSequence X}
     (ha : IsC0MatrixSequence X a) (b : BoundedMatrixSequence X) :
     IsC0MatrixSequence X (a * b) := by
   obtain ⟨B, hB⟩ := b.2
-  have hB0 : 0 ≤ B := (norm_nonneg (b.1 0)).trans (hB 0)
   apply squeeze_zero' (Eventually.of_forall fun n ↦ norm_nonneg ((a * b).1 n))
   · filter_upwards with n
     exact (norm_mul_le (a.1 n) (b.1 n)).trans
