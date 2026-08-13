@@ -4,6 +4,15 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: the full raw/comb finite intersection is trivial
+
+`FALSE_RAW_512_COMB_INTERSECTION_IS_TRIVIAL.md` closes the finite-Reynolds
+shortcut to coefficient membership.  The full raw double-Pauli closure and
+its comb conjugate both have order `512`, but their exact intersection is the
+identity.  Therefore separate finite-subgroup exactification cannot align the
+coefficient spaces; the missing `15/128` membership theorem must use genuine
+cross-chart kernel relators or a recovered multiplication module.
+
 ### 2026-08-13: coefficient expectation gap `15/128`
 
 `TRUE_COEFFICIENT_EXPECTATION_GAP.md` weakens the final alignment hypothesis.

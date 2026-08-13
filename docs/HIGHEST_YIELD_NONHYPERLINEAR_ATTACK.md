@@ -2,6 +2,20 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 closed shortcut: no common raw/comb finite subgroup
+
+The full raw packet `K=<X0,X1,Z0,Z1,raw>` has order `512`, but
+
+```text
+K intersect U* K U = 1.
+```
+
+See `FALSE_RAW_512_COMB_INTERSECTION_IS_TRIVIAL.md` and its bounded exact
+certificate.  Do not attempt to derive coefficient-space membership by
+Reynolds averaging a common finite subgroup.  The remaining proof must use a
+cross-chart kernel relator which constrains the relative multiplicity unitary,
+or directly recover the paired multiplication module.
+
 ## 2026-08-13 weakest terminal gate: coefficient-space membership
 
 Let `A_0` be the span of the four raw coefficient cuts and `q` their sum.
