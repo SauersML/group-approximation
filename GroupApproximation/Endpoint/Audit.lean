@@ -32,6 +32,7 @@ import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.AffineSL3Doubling
+import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.TensorPowerAmplification
