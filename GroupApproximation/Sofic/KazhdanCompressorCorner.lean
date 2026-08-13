@@ -30,7 +30,7 @@ compression-semigroup and sofic-Mautner framework of Kun--Thom
 representations of property-(T) groups, the closest finite-stage precedent is
 the proof of Uri Bader recorded as Dogon--Vigdorovich, arXiv:2506.20843,
 Theorem 7.10; it uses Ozawa's sum-of-squares characterization and generalizes
-Manuilov--Yu.  The equal-rank reversal below is this development's
+Manuilov--You.  The equal-rank reversal below is this development's
 finite-dimensional replacement for stable finiteness; no external code is
 copied.
 -/

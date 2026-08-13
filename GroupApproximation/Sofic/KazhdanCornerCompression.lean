@@ -12,7 +12,7 @@ microstates to the moving eigenspaces.
 For provenance, compare the operator-norm almost-spectral-gap theorem due to
 Uri Bader and recorded as Dogon--Vigdorovich, Theorem 7.10
 (arXiv:2506.20843v2), whose proof uses Ozawa's sum-of-squares
-characterization of property (T) and generalizes Manuilov--Yu.  The present
+characterization of property (T) and generalizes Manuilov--You.  The present
 file proves the concrete matrix cutoff estimates required by this project;
 it does not import or transcribe external Lean code.
 -/
