@@ -15,6 +15,7 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
+import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
@@ -31,7 +32,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -150,6 +151,10 @@ boundary instead of conflating the two constructions.
   `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
   rank-eight clopen cylinder, with every printed relation retained and the
   obstruction word surviving throughout it.
+* `LiteralMarkedCylinder.literalCylinder_subset_nonMF` -- conditional on
+  property `(T)` for the abstract printed base, that entire exact cylinder is
+  non-MF.  This is the neighborhood form of the same exposed boundary, not
+  an unconditional theorem about the displayed group.
 
 ## Consequences and reusable obstruction APIs
 
@@ -162,6 +167,10 @@ boundary instead of conflating the two constructions.
   computability reduction, conditional on an explicitly supplied computable
   Adian--Rabin transformation and its correctness proof; no such external
   transformation is postulated by the library.
+* `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
+  the unconditional group-theoretic positive/negative Markov witness used by
+  such a reduction; this does not manufacture the missing syntactic
+  Adian--Rabin transformation.
 * `CStarRecognitionConsequences.all_groupCStar_recognition_undecidable` -- the
   analogous five-predicate C-star recognition package, still conditional on
   explicit computable Adian--Rabin reductions and semantic predicate data;
@@ -391,7 +400,8 @@ export GroupApproximation.LiteralPresentationRadius
     relators_or_markedWord_length_le_34)
 export GroupApproximation.LiteralMarkedCylinder
   (literalCylinder_nonempty literalCylinder_isClopen
-    cylinder_relator_eq_one cylinder_markedWord_ne_one)
+    cylinder_relator_eq_one cylinder_markedWord_ne_one
+    literalCylinder_subset_nonMF literalCylinder_subset_nonMF_of_certificate)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
@@ -421,6 +431,9 @@ export GroupApproximation.MarkovMFConsequences
     AdianRabinReduction recognition_undecidable negative_side_not_re
     operatorMF_recognition_undecidable operatorMF_negative_side_not_re
     operatorMF_subgroup_hereditary exists_finitelyPresented_nonOperatorMF)
+export GroupApproximation.OperatorMFMarkovWitness
+  (positive_punit chosen_forbidden_subgroup
+    exists_finitelyPresented_forbidden_subgroup)
 export GroupApproximation (isOperatorMF_of_finite_standard
   not_isOperatorMF_of_subgroup)
 export GroupApproximation.ProperProjectionCompression
