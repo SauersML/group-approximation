@@ -89,6 +89,28 @@ theorem inner_orbitAverage_eq_of_fixed_right
   simp only [smul_eq_mul]
   field_simp
 
+/-- The finite Reynolds operator satisfies the exact Pythagorean identity.
+In the conjugation representation on Hilbert--Schmidt matrices, this says
+that distance to the recovered commutant is exactly the norm deficit of the
+finite-group average. -/
+theorem norm_sub_orbitAverage_sq
+    (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) :
+    ‖x - orbitAverage rho x‖ ^ 2 =
+      ‖x‖ ^ 2 - ‖orbitAverage rho x‖ ^ 2 := by
+  have havgFixed : ∀ g : G,
+      rho g (orbitAverage rho x) = orbitAverage rho x := by
+    intro g
+    exact orbitAverage_fixed rho x g
+  have hinner :
+      inner ℝ x (orbitAverage rho x) =
+        ‖orbitAverage rho x‖ ^ 2 := by
+    rw [← real_inner_self_eq_norm_sq]
+    symm
+    exact inner_orbitAverage_eq_of_fixed_right
+      rho x (orbitAverage rho x) havgFixed
+  rw [norm_sub_sq_real, hinner]
+  ring
+
 /-- The literal finite orbit average is the Hilbert orthogonal projection
 onto the invariant subspace. -/
 theorem orbitAverage_eq_fixedProjection [CompleteSpace E]
