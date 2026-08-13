@@ -1,0 +1,1083 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage[nopatch=footnote]{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newif\ifanonymous\anonymoustrue
+\hypersetup{
+  pdftitle={An explicit finitely presented non-MF group},
+  pdfauthor={Anonymous},
+  pdfsubject={matricial field approximation, property (T), Kazhdan projections},
+  pdfkeywords={MF groups, matrix ultraproducts, property (T), HNN extensions, Clifford algebras}
+}
+
+\ifanonymous
+  \newcommand{\leanrepo}{[repository link removed for anonymous review]}
+\else
+  \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
+\fi
+
+\setlist[enumerate]{leftmargin=2.35em}
+\setlist[itemize]{leftmargin=2.1em}
+\allowdisplaybreaks
+\raggedbottom
+\emergencystretch=1.5em
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{fact}[theorem]{Fact}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{construction}[theorem]{Construction}
+
+\theoremstyle{plain}
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Fix}{\operatorname{Fix}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Cmax}{C^*_{\mathrm{max}}}
+\newcommand{\Cred}{C^*_{\mathrm{red}}}
+\newcommand{\corona}[1]{\prod_{n} M_{#1_n}(\C)\Big/\bigoplus_{n} M_{#1_n}(\C)}
+\newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
+
+\begin{document}
+
+\title{An explicit finitely presented non-MF group}
+
+\begin{abstract}
+A countable discrete group is MF if it embeds into the unitary group of a
+norm quotient $\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$ of matrix
+algebras.  Whether every group is MF has been a longstanding open
+question; it is the operator-norm case of the family of metric
+approximation problems whose sofic (rank-metric) case was solved only
+recently, and whose unnormalized Frobenius case was solved by De
+Chiffre, Glebsky, Lubotzky and Thom.  We construct an explicit finitely
+presented group $E$, together with a designated central involution
+$w\in E$, such that $w\neq 1$ but \emph{every} homomorphism from $E$ to
+the unitary group of \emph{every} norm quotient of matrix algebras kills
+$w$.  Consequently $E$ is not MF, and neither its full nor its reduced
+group $C^*$-algebra is an MF algebra.  The group is built from
+$\Gamma=\Z^3\rtimes\SL_3(\Z)$, one HNN letter implementing the proper
+endomorphism $(v,A)\mapsto(2v,A)$, and one additional involution; the
+proof combines the Kazhdan projection of $\Gamma$ with stable finiteness
+of matrix coronas.  The finite-dimensional case of the kill theorem is
+elementary and uses neither property (T) nor unitarity; we also show,
+via quasidiagonality of amenable groups, that the property (T)
+hypothesis cannot be dropped.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}\label{sec:intro}
+
+Let $(d_n)_{n\in\N}$ be a sequence of positive integers and let
+\begin{equation}\label{eq:corona}
+  \mathcal Q\;=\;\prod_{n} M_{d_n}(\C)\Big/\bigoplus_{n} M_{d_n}(\C)
+\end{equation}
+be the associated \emph{norm matrix corona}: bounded sequences of
+matrices modulo sequences converging to $0$ in operator norm.  Following
+Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
+if it embeds into some algebra of the form \eqref{eq:corona}; following
+the group-theoretic usage (see, e.g., \cite{Shulman}), a countable
+discrete group $E$ is \emph{MF} if there is an \emph{injective} group
+homomorphism
+\[
+  E\;\longrightarrow\;\U(\mathcal Q)
+\]
+for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
+approximate unitary representations that are approximately injective,
+with all defects measured in operator norm.  Residually finite groups
+are MF, amenable groups are MF as a consequence of the
+Tikuisis--White--Winter theorem \cite{TWW}, free products of amenable
+groups are MF, and a substantial permanence theory exists
+\cite{Shulman}.  Whether \emph{every} countable group is MF has remained
+open; it is the operator-norm member of the family of approximation
+problems surveyed in \cite{DGLT,BDL}, whose unnormalized-Frobenius case
+was solved negatively in \cite{DGLT} and whose sofic case was solved
+negatively by Kun and Thom \cite{KT}.  The operator-norm case resisted
+both methods: the cohomological argument of \cite{DGLT} needs a
+submultiplicative norm interacting with a trace, and rank-metric
+arguments are blind to operator-norm defects.
+
+This paper answers the question negatively, with an explicit finitely
+presented example.
+
+\begin{mainthm}[non-MF group]\label{thm:A}
+Let $\Gamma=\Z^3\rtimes\SL_3(\Z)$, let
+$\alpha\colon\Gamma\to\Gamma$ be the injective endomorphism
+$\alpha(v,A)=(2v,A)$, and let $a=(e_1,1)\in\Gamma$, which does not lie
+in $\alpha(\Gamma)$.  Let $E$ be the finitely presented group obtained
+from $\Gamma$ by adjoining a stable letter $t$ with
+$t\gamma t^{-1}=\alpha(\gamma)$ for $\gamma\in\Gamma$, an involution $c$
+commuting with $\Gamma$, and by imposing that
+\[
+  w\;:=\;\bigl[\,tct^{-1},\;a\,(tct^{-1})\,a^{-1}\bigr]
+\]
+is a central involution (Definition~\ref{def:E}).  Then:
+\begin{enumerate}
+  \item $w\neq 1$ in $E$;
+  \item for every sequence $(d_n)$ and every group homomorphism
+    $\Theta\colon E\to\U(\mathcal Q)$ into the corresponding norm matrix
+    corona \eqref{eq:corona}, one has $\Theta(w)=1$.
+\end{enumerate}
+In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
+MF $C^*$-algebra.
+\end{mainthm}
+
+The mechanism is a marked-word conversion of a $C^*$-algebraic
+non-finiteness phenomenon into a group-level kernel theorem.  It has
+five steps, each elementary or classical in isolation.
+
+\begin{enumerate}
+  \item\emph{Central corner.}  If $\Theta(w)\neq 1$, then
+    $e=\tfrac12(1-\Theta(w))$ is a nonzero projection commuting with the
+    image of $\Theta$; cutting by a lift of $e$ replaces $\mathcal Q$ by
+    another norm matrix corona on which $\Theta(w)=-1$
+    (Lemma~\ref{lem:corner}).  This cut eliminates all relative-rank
+    (``rank blindness'') phenomena: on the corner, the deviation of $w$
+    from $1$ has full normalized size.
+  \item\emph{Conjugation representation.}  Unitary lifts $U_{g,n}$ of
+    the corner representation conjugate the corner coordinates
+    $M_{r_n}(\C)$, and operator-norm multiplicativity of $\Theta$ makes
+    $g\mapsto (\Ad U_{g,n})_n$ an \emph{exact} homomorphism $\beta$ into
+    the norm corona of the algebras $B(L^2(M_{r_n}))$
+    (Lemma~\ref{lem:beta}).
+  \item\emph{Kazhdan projection.}  $\Gamma$ has property (T), so its
+    maximal group $C^*$-algebra contains the Kazhdan projection
+    $p_\Gamma$, whose image under every representation is the projection
+    onto the invariant vectors.  The HNN relation
+    $t\Gamma t^{-1}=\alpha(\Gamma)\subseteq\Gamma$ forces, in
+    \emph{every} $C^*$-representation, the order relation
+    $P\le\beta(t)P\beta(t)^*$ between the images of $p_\Gamma$ and its
+    $t$-conjugate (Lemma~\ref{lem:order}).
+  \item\emph{Stable finiteness.}  A norm corona of matrix algebras is
+    finite: isometries are unitaries (Lemma~\ref{lem:finite}).  Hence
+    the two unitarily equivalent projections in step (3) must be equal:
+    $\beta(t)$ \emph{preserves} the $\Gamma$-fixed space.
+  \item\emph{The marked word.}  The lamp $c$ commutes with $\Gamma$, so
+    the matrix vector representing $\Theta(c)$ is $\Gamma$-fixed; by
+    step (4) so is the vector representing $\Theta(tct^{-1})$; hence
+    $a\in\Gamma$ asymptotically fixes it, and the commutator word $w$
+    is forced to $1$ in normalized Hilbert--Schmidt norm --- while the
+    corner normalization of step (1) says it equals $-1$ in operator
+    norm.  The two conclusions contradict each other
+    (Section~\ref{sec:proofA}).
+\end{enumerate}
+
+Nontriviality of $w$ is witnessed by a completely explicit
+representation of $E$ into a semidirect product of a Clifford group by a
+linear group over $\Z[1/2]$ (Section~\ref{sec:witness}); no
+combinatorial theory of HNN extensions is needed.
+
+Two companion results delimit the mechanism precisely.  First, in
+finite dimensions the kill theorem is elementary and needs neither
+property (T), nor unitarity, nor centrality of $w$:
+
+\begin{mainthm}[finite-dimensional sterility]\label{thm:B}
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
+group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
+with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
+$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
+satisfies
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
+\]
+\end{mainthm}
+
+Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
+finite-dimensional representation of $E$ over \emph{every} field kills
+$w$: the group $E$ is not residually finite-dimensional, no finite
+quotient can witness $w\neq 1$, and the infinite Clifford witness of
+Section~\ref{sec:witness} is not an artifact of the proof but a
+necessity.  Property (T) enters the corona case for exactly one reason:
+it makes ``the projection onto the $\Gamma$-fixed space'' an element of
+the corona, uniformly across all coordinates at once.
+
+Second, the property (T) hypothesis cannot be dropped:
+
+\begin{mainthm}[necessity of property (T)]\label{thm:C}
+Let $G_0=\mathrm{BS}(1,2)=\langle\, \gamma_0,t\mid
+t\gamma_0t^{-1}=\gamma_0^2\,\rangle$, let $\Gamma_0=\langle
+\gamma_0\rangle\cong\Z$, let $X_0=G_0/\Gamma_0$, and let
+$E_0=C(X_0)\rtimes G_0$ be the corresponding Clifford extension
+(Construction~\ref{con:clifford}), with central sign $z_0$.  Then
+$z_0\neq1$, the group $E_0$ is amenable, and $E_0$ \emph{is} MF: it
+embeds into a norm matrix corona, with $z_0$ surviving.  By
+Theorem~\ref{thm:B}, every finite-dimensional representation of $E_0$
+nevertheless kills $z_0$; thus $E_0$ is an amenable MF group that is not
+residually finite-dimensional.
+\end{mainthm}
+
+Theorem~\ref{thm:C} is the exact analogue of Theorem~\ref{thm:A} with
+the Kazhdan group $\Gamma$ replaced by $\Z$: every ingredient of the
+construction survives except the Kazhdan projection, and the conclusion
+fails.  The obstruction of this paper is therefore genuinely a property
+(T) phenomenon, not an artifact of lamps, signs, or HNN compression.
+
+\subsection*{What this paper does not prove}
+The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ fails the
+Connes embedding property or hyperlinearity, and it does not touch the
+question whether hyperlinear groups are sofic.  The finiteness step (4)
+is special to operator-norm coronas: in a tracial (Hilbert--Schmidt)
+matrix ultraproduct the conjugation representation acts on the infinite
+Hilbert space $L^2$ of the ultraproduct, the relevant fixed-space
+projections live in a properly infinite algebra, and a projection there
+can be properly contained in a unitarily equivalent one --- the
+unilateral-shift phenomenon.  Section~\ref{sec:limits} makes this
+precise.  The same distinction explains why the group $E/\langle
+w\rangle$ and the ambient groups $G$ remain untouched by our argument.
+
+\subsection*{External inputs}
+The proof of Theorem~\ref{thm:A} consumes exactly two classical facts
+beyond elementary linear algebra and $C^*$-basics: property (T) of
+$\Z^3\rtimes\SL_3(\Z)$ (Fact~\ref{fact:T}) and the existence and
+defining property of the Kazhdan projection (Fact~\ref{fact:kazhdan}).
+Theorem~\ref{thm:C} additionally uses quasidiagonality of amenable
+group $C^*$-algebras \cite{TWW} (Fact~\ref{fact:tww}).
+Theorem~\ref{thm:B} consumes nothing.
+
+\subsection*{Relation to prior work}
+That $\Cmax$ of a suitable group can fail to be stably finite --- so
+that $\Cmax$ itself is not MF --- is a known consequence of Kazhdan
+projections and compression, in the spirit of the non-quasidiagonality
+results of \cite{CDE}; but non-MF-ness of one group $C^*$-algebra does
+not obstruct the \emph{group} from embedding into a corona, since group
+MF-ness only requires some quotient of $\Cmax$ to be MF.  The new
+ingredient here is the marked central involution $w$: the additional
+generator $c$ converts the compression phenomenon into a specific
+nontrivial group element that every corona representation must kill.
+For the necessity theorem we use \cite{TWW}; for context on the
+approximation landscape see \cite{DGLT,BDL,KT,Shulman}.
+
+\subsection*{Organization}
+Section~\ref{sec:prelim} fixes notation and states the external inputs.
+Section~\ref{sec:group} constructs $E$.  Section~\ref{sec:witness}
+proves $w\neq 1$.  Section~\ref{sec:findim} proves
+Theorem~\ref{thm:B}.  Sections~\ref{sec:corona}--\ref{sec:proofA} prove
+Theorem~\ref{thm:A}.  Section~\ref{sec:necessity} proves
+Theorem~\ref{thm:C}.  Section~\ref{sec:limits} discusses limitations.
+
+\section{Notation and external inputs}\label{sec:prelim}
+
+All groups are discrete and countable.  For a unital $C^*$-algebra $A$
+we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
+normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
+normalized Hilbert--Schmidt norm
+$\hsnorm{x}=\tr_r(x^*x)^{1/2}$.  We will use three elementary facts
+without further comment: $\hsnorm{x}\le\opnorm{x}$;
+$|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
+$u,v$.
+
+Given a sequence $(d_n)_{n\in J}$ of positive integers indexed by an
+infinite set $J\subseteq\N$, we write
+\[
+  \mathcal Q\bigl((d_n)_{n\in J}\bigr)
+  \;=\;\prod_{n\in J} M_{d_n}(\C)\Big/\bigoplus_{n\in J} M_{d_n}(\C),
+\]
+the quotient of bounded sequences by sequences with
+$\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
+corona}.  A \emph{corona representation} of a group $E$ is a group
+homomorphism $E\to\U(\mathcal Q)$ for some norm matrix corona
+$\mathcal Q$; the group $E$ is \emph{MF} if it admits an injective
+corona representation.
+
+For a group $H$, $\Cmax(H)$ denotes the maximal group $C^*$-algebra and
+$u_h\in\Cmax(H)$ the canonical unitaries.  Every unitary representation
+$\pi$ of $H$ on a Hilbert space extends uniquely to a
+$*$-representation of $\Cmax(H)$, still denoted $\pi$.  Every group
+homomorphism $\varphi\colon H_1\to H_2$ induces a unital
+$*$-homomorphism $\Cmax(H_1)\to\Cmax(H_2)$, $u_h\mapsto
+u_{\varphi(h)}$.
+
+We use the commutator convention $[x,y]=xyx^{-1}y^{-1}$.
+
+The following two classical facts are the only external inputs to
+Theorem~\ref{thm:A}.
+
+\begin{fact}[{property (T); \cite[Sections 1.4--1.5 and 4.2]{BHV}}]\label{fact:T}
+$\SL_3(\Z)$ has property (T), the pair
+$\bigl(\Z^3\rtimes\SL_3(\Z),\,\Z^3\bigr)$ has relative property (T),
+and consequently $\Gamma=\Z^3\rtimes\SL_3(\Z)$ has property (T).
+$\Gamma$ is finitely presented.
+\end{fact}
+
+\begin{fact}[{Kazhdan projection; \cite{AW}, \cite[Chapter 6]{BHV}}]\label{fact:kazhdan}
+Let $\Gamma$ be a group with property (T).  There is a projection
+$p_\Gamma\in\Cmax(\Gamma)$ such that for every unitary representation
+$\pi$ of $\Gamma$ on a Hilbert space $\mathcal H$, the operator
+$\pi(p_\Gamma)$ is the orthogonal projection onto the subspace
+$\Fix(\pi)=\{\xi\in\mathcal H:\pi(\gamma)\xi=\xi
+\text{ for all }\gamma\in\Gamma\}$.  Moreover $u_\gamma
+p_\Gamma=p_\Gamma$ for every $\gamma\in\Gamma$.
+\end{fact}
+
+The last identity follows from the defining property: in every
+representation, $\pi(u_\gamma p_\Gamma)$ and $\pi(p_\Gamma)$ agree, and
+$\Cmax(\Gamma)$ has a faithful representation.
+
+The only additional input, used exclusively in
+Section~\ref{sec:necessity}, is:
+
+\begin{fact}[{\cite[Corollary B]{TWW}; see also \cite[Chapter 7]{BO}}]\label{fact:tww}
+The reduced group $C^*$-algebra of a countable amenable group is
+quasidiagonal.  Every separable quasidiagonal $C^*$-algebra embeds into
+a norm matrix corona; in particular every countable amenable group is
+MF.
+\end{fact}
+
+\section{The group}\label{sec:group}
+
+Throughout, $\Gamma=\Z^3\rtimes\SL_3(\Z)$ with multiplication
+$(v,A)(w,B)=(v+Aw,\,AB)$.
+
+\begin{lemma}\label{lem:alpha}
+The map $\alpha(v,A)=(2v,A)$ is an injective endomorphism of $\Gamma$
+with image $2\Z^3\rtimes\SL_3(\Z)$ of index $8$, and
+$a:=(e_1,1)\notin\alpha(\Gamma)$.
+\end{lemma}
+
+\begin{proof}
+$\alpha\bigl((v,A)(w,B)\bigr)=\alpha(v+Aw,AB)=(2v+2Aw,AB)
+=(2v,A)(2w,B)=\alpha(v,A)\alpha(w,B)$, so $\alpha$ is a homomorphism,
+clearly injective, with image $2\Z^3\rtimes\SL_3(\Z)$; the index equals
+$[\Z^3:2\Z^3]=8$.  If $(e_1,1)=(2v,A)$ then $A=1$ and $e_1=2v$, which is
+impossible in $\Z^3$.
+\end{proof}
+
+Let $G$ denote the ascending HNN extension
+\begin{equation}\label{eq:G}
+  G\;=\;\bigl\langle\,\Gamma,\;t\;\big|\;
+  t\gamma t^{-1}=\alpha(\gamma)\ (\gamma\in\Gamma)\,\bigr\rangle .
+\end{equation}
+We will use $G$ only as an auxiliary group receiving no injectivity
+claims; every statement we need about it is either a presentation
+identity or is verified inside an explicit linear quotient
+(Lemma~\ref{lem:linear}).
+
+\begin{definition}\label{def:E}
+Fix a finite presentation $\Gamma=\langle S\mid R\rangle$ and, for each
+$s\in S$, a word $\alpha(s)$ in $S$ representing the image of $s$ under
+$\alpha$.  Let $a\in\Gamma$ be as in Lemma~\ref{lem:alpha}, written as a
+word in $S$.  Define
+\begin{equation}\label{eq:E}
+  E=\Bigl\langle\, S,\,t,\,c \;\Big|\;
+  \begin{aligned}
+   & R,\quad tst^{-1}=\alpha(s)\ (s\in S),\quad c^2=1,\quad [c,s]=1\ (s\in S),\\
+   & w^2=1,\quad [w,s]=[w,t]=[w,c]=1\ (s\in S)
+  \end{aligned}
+  \,\Bigr\rangle,
+\end{equation}
+where $w$ abbreviates the word
+$\bigl[\,tct^{-1},\,a\,(tct^{-1})\,a^{-1}\bigr]$.
+\end{definition}
+
+Since $S$ and $R$ are finite, $E$ is finitely presented.  The
+presentation identities give a canonical homomorphism $G\to E$ and a
+canonical (not a priori injective) homomorphism $\Gamma\to E$; we write
+$\gamma$, $t$, $c$ for the images in $E$.  In $E$ the element $w$ is a
+central involution by fiat, and the relations
+$t\gamma t^{-1}=\alpha(\gamma)$, $[c,\gamma]=1$ hold for all
+$\gamma\in\Gamma$ because they hold on generators.
+
+\section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
+
+\begin{construction}[Clifford lamp groups]\label{con:clifford}
+Let $X$ be a set and let $\Cl(X)$ denote the real Clifford algebra of
+the free vector space $\R^{(X)}$ with the quadratic form for which the
+standard basis $(\varepsilon_x)_{x\in X}$ is orthonormal.  Thus
+$\Cl(X)$ is a unital associative $\R$-algebra containing elements
+$c_x:=\varepsilon_x$ with
+\[
+  c_x^2=1,\qquad c_xc_y=-\,c_yc_x\quad(x\neq y).
+\]
+The algebra $\Cl(X)$ is nonzero (for finite $X$ it has dimension
+$2^{|X|}$, and in general it is the directed union of the
+$\Cl(F)$ over finite $F\subseteq X$), so $-1\neq 1$ in $\Cl(X)$.  Let
+$C(X)\le\Cl(X)^{\times}$ be the subgroup generated by
+$\{\pm1\}\cup\{c_x:x\in X\}$ and write $z=-1\in C(X)$, a central
+involution.  Every permutation of $X$ induces an isometry of the
+quadratic space, hence an algebra automorphism of $\Cl(X)$ mapping
+$c_x\mapsto c_{\sigma(x)}$ and fixing $z$; this gives an action of any
+group acting on $X$ by automorphisms of $C(X)$, and a semidirect
+product $C(X)\rtimes G$ for any $G$-set $X$.
+\end{construction}
+
+\begin{lemma}[linear model]\label{lem:linear}
+Embed $\Gamma\hookrightarrow\GL_4(\Z)$ by
+$(v,A)\mapsto\begin{pmatrix}A&v\\0&1\end{pmatrix}$ and let
+$D=\operatorname{diag}(2,2,2,1)\in\GL_4(\Z[1/2])$.  Then
+$D\gamma D^{-1}=\alpha(\gamma)$ for all $\gamma\in\Gamma$, so
+$\bar G:=\langle\Gamma,D\rangle\le\GL_4(\Z[1/2])$ is a quotient of $G$
+via $t\mapsto D$.  In the $\bar G$-set $\bar X:=\bar G/\Gamma$ the
+cosets $D\Gamma$ and $aD\Gamma$ are distinct.
+\end{lemma}
+
+\begin{proof}
+$D\begin{pmatrix}A&v\\0&1\end{pmatrix}D^{-1}
+=\begin{pmatrix}A&2v\\0&1\end{pmatrix}$, which is the matrix of
+$\alpha(v,A)$; so the assignment $\gamma\mapsto\gamma$, $t\mapsto D$
+respects the relations \eqref{eq:G}.  If $aD\Gamma=D\Gamma$ then
+$D^{-1}aD\in\Gamma$ inside $\GL_4(\Z[1/2])$.  But
+$D^{-1}aD=\begin{pmatrix}1&\tfrac12 e_1\\0&1\end{pmatrix}$ has a
+non-integral entry, so it does not lie in the integral group $\Gamma$.
+\end{proof}
+
+\begin{proposition}\label{prop:witness}
+$w\neq1$ in $E$.
+\end{proposition}
+
+\begin{proof}
+Let $\bar X=\bar G/\Gamma$ as in Lemma~\ref{lem:linear} and form
+$W:=C(\bar X)\rtimes\bar G$ as in Construction~\ref{con:clifford}.
+Define a map on the generators of \eqref{eq:E} by
+\[
+  s\mapsto s\in\bar G\quad(s\in S),\qquad t\mapsto D\in\bar G,\qquad
+  c\mapsto c_{o},\quad o:=\Gamma\in\bar X .
+\]
+We check the relations.  The relations $R$ and
+$tst^{-1}=\alpha(s)$ hold in $\bar G$ by Lemma~\ref{lem:linear}.  We
+have $c_o^2=1$.  For $\gamma\in\Gamma$ we have $\gamma o=o$, so
+$\gamma c_o\gamma^{-1}=c_{\gamma o}=c_o$, giving $[c,s]=1$ for $s\in S$.
+Under this assignment,
+\[
+  tct^{-1}\mapsto c_{D\Gamma},\qquad
+  a(tct^{-1})a^{-1}\mapsto c_{aD\Gamma},
+\]
+and the two sites are distinct by Lemma~\ref{lem:linear}, so
+\[
+  w\mapsto[c_{D\Gamma}\,,\,c_{aD\Gamma}]
+  = c_{D\Gamma}c_{aD\Gamma}c_{D\Gamma}^{-1}c_{aD\Gamma}^{-1}
+  = -1 = z .
+\]
+Since $z$ is a central involution of $W$, the remaining relations
+$w^2=1$ and $[w,s]=[w,t]=[w,c]=1$ are also satisfied.  Hence the
+assignment extends to a group homomorphism $E\to W$ sending $w$ to
+$z\neq1$, and therefore $w\neq1$ in $E$.
+\end{proof}
+
+\begin{remark}
+The witness uses only matrices over $\Z[1/2]$ and finite pieces of a
+Clifford algebra; no normal-form theory for HNN extensions enters.  In
+particular the consistency of the presentation \eqref{eq:E} is verified
+by an explicit linear-algebraic model.
+\end{remark}
+
+\section{Finite-dimensional sterility}\label{sec:findim}
+
+We prove Theorem~\ref{thm:B}.  Everything happens inside the
+finite-dimensional algebra $\End_k(V)$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:B}]
+Let $\pi\colon H\to\GL(V)$ be a homomorphism and let
+\[
+  C\;=\;\{\,x\in\End_k(V)\;:\;\pi(\gamma)\,x=x\,\pi(\gamma)
+  \text{ for all }\gamma\in\Gamma\,\}
+\]
+be the commutant of $\pi(\Gamma)$, a linear subspace of $\End_k(V)$.
+Let $u=\pi(t)$ and consider the linear automorphism
+$\Phi(x)=uxu^{-1}$ of $\End_k(V)$.
+
+We claim $C\subseteq\Phi(C)$.  Let $x\in C$ and set $y=u^{-1}xu$, so
+that $x=\Phi(y)$.  For $\gamma\in\Gamma$ we have
+$t\gamma t^{-1}\in\Gamma$, hence $\pi(t\gamma t^{-1})$ commutes with
+$x$, and therefore
+\[
+  \pi(\gamma)\,y
+  = u^{-1}\,\pi(t\gamma t^{-1})\,x\,u
+  = u^{-1}\,x\,\pi(t\gamma t^{-1})\,u
+  = y\,\pi(\gamma).
+\]
+Thus $y\in C$, proving the claim.  Since $\Phi$ is a linear
+isomorphism, $\dim_k\Phi(C)=\dim_kC<\infty$, and the inclusion
+$C\subseteq\Phi(C)$ forces
+\begin{equation}\label{eq:pinning}
+  C\;=\;\Phi(C)\;=\;uCu^{-1}.
+\end{equation}
+
+Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$.  By
+\eqref{eq:pinning}, $\pi(tct^{-1})=u\,\pi(c)\,u^{-1}\in C$.  Since
+$a\in\Gamma$, the element $\pi(tct^{-1})$ commutes with $\pi(a)$, so
+$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and the commutator
+$\pi\bigl(\bigl[tct^{-1},a(tct^{-1})a^{-1}\bigr]\bigr)$ equals
+$\bigl[\pi(tct^{-1}),\pi(tct^{-1})\bigr]=1$.
+\end{proof}
+
+\begin{corollary}\label{cor:notRFD}
+The group $E$ of Definition~\ref{def:E} admits no injective
+homomorphism into $\GL(V)$ for any finite-dimensional vector space $V$
+over any field.  In particular $E$ is not residually
+finite-dimensional, not maximally almost periodic, and not residually
+finite, and no finite quotient of $E$ can witness $w\neq1$.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:B} with $H=E$ and the images of $\Gamma$, $t$,
+$c$, $a$ in $E$; the hypotheses hold by the defining relations
+\eqref{eq:E}.  Every finite-dimensional representation kills $w$, and
+$w\neq1$ by Proposition~\ref{prop:witness}.  A finite quotient is a
+finite-dimensional representation (via any faithful permutation
+representation), so it also kills $w$.
+\end{proof}
+
+\begin{remark}\label{rem:whytforcorona}
+The proof of Theorem~\ref{thm:B} used only that a finite-dimensional
+subspace cannot be properly contained in an isomorphic image of itself.
+The corona of \eqref{eq:corona} is not finite-dimensional, and the
+commutant of the image of $\Gamma$ there is not a coordinatewise
+object, so the argument does not transfer as stated.  Property (T)
+repairs exactly this: the Kazhdan projection turns ``the $\Gamma$-fixed
+subspace'' into a single element of the corona, to which the finiteness
+of the corona (Lemma~\ref{lem:finite}) can be applied.  The rest of the
+paper carries this out.
+\end{remark}
+
+\section{Norm matrix coronas}\label{sec:corona}
+
+Throughout this section $\mathcal Q=\mathcal Q((d_n)_{n\in J})$ is a
+norm matrix corona, $q\colon\prod_{n\in J}M_{d_n}(\C)\to\mathcal Q$ the
+quotient map.
+
+\begin{lemma}[lifting]\label{lem:lift}
+\leavevmode
+\begin{enumerate}
+  \item Every projection $e\in\mathcal Q$ lifts to a sequence
+    $(e_n)_{n\in J}$ of projections, $e_n\in M_{d_n}(\C)$.
+  \item Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Lift $e$ to a bounded sequence $(x_n)$; replacing $x_n$ by
+$\tfrac12(x_n+x_n^*)$ and then by the functional-calculus cutoff
+$\min(1,\max(0,x_n))$, we may assume $0\le x_n\le1$.  Since $q((x_n))$
+is a projection, $\opnorm{x_n^2-x_n}\to0$, so the spectrum of $x_n$ is
+eventually contained in $[0,\tfrac13)\cup(\tfrac23,1]$; for such $n$
+put $e_n=\chi_{(\frac12,\,\infty)}(x_n)$, a projection with
+$\opnorm{e_n-x_n}\to0$, and set $e_n=0$ for the finitely many remaining
+$n$.  Then $(e_n)$ lifts $e$.
+
+(2) Lift $u$ to a bounded sequence $(x_n)$ with $\opnorm{x_n}\le 1$.
+Since $q((x_n))$ is unitary, $\opnorm{x_n^*x_n-1}\to0$, so $x_n$ is
+eventually invertible; for such $n$ put $u_n=x_n(x_n^*x_n)^{-1/2}$, a
+unitary with $\opnorm{u_n-x_n}\to0$; set $u_n=1$ for the remaining $n$.
+\end{proof}
+
+\begin{lemma}[finiteness]\label{lem:finite}
+Let $\mathcal Q$ be a norm matrix corona.
+\begin{enumerate}
+  \item Every isometry in $\mathcal Q$ is a unitary; the same holds in
+    every matrix amplification $M_k(\mathcal Q)$.
+  \item If $p,q\in\mathcal Q$ are projections with $p\le q$ and
+    $v^*v=q$, $vv^*=p$ for some $v\in\mathcal Q$, then $p=q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Let $v\in\mathcal Q$ with $v^*v=1$ and lift $v$ to $(x_n)$ with
+$\opnorm{x_n^*x_n-1}\to0$.  Eventually $x_n$ is invertible (a
+left-invertible square matrix is invertible), and the unitary
+$u_n=x_n(x_n^*x_n)^{-1/2}$ satisfies $\opnorm{u_n-x_n}\to0$; hence
+$v=q((u_n))$ is unitary.  For $M_k(\mathcal Q)$ note
+$M_k(\mathcal Q)\cong\mathcal Q((k\,d_n)_{n\in J})$, since matrix
+amplification commutes with products and with the ideal of null
+sequences.
+
+(2) As in any $C^*$-algebra, $v^*v=q$ gives $v=vq$ (because
+$\opnorm{v(1-q)}^2=\opnorm{(1-q)v^*v(1-q)}=\opnorm{(1-q)q(1-q)}=0$) and
+$vv^*=p$ gives $v=pv$ (because
+$\opnorm{(1-p)v}^2=\opnorm{(1-p)vv^*(1-p)}=0$).  From $p\le q$ we get
+$qv=q(pv)=pv=v$, hence $(1-q)v=0$ and, taking adjoints,
+$v^*(1-q)=0$ and $(1-q)v^*=\bigl(v(1-q)\bigr)^*=0$.  Then
+$s:=v+(1-q)$ satisfies
+\[
+  s^*s=v^*v+v^*(1-q)+(1-q)v+(1-q)=q+0+0+(1-q)=1,
+\]
+so $s$ is an isometry, and
+\[
+  ss^*=vv^*+v(1-q)+(1-q)v^*+(1-q)=p+0+0+(1-q)=p+(1-q).
+\]
+By part (1), $ss^*=1$, i.e.\ $p+(1-q)=1$, i.e.\ $p=q$.
+\end{proof}
+
+\begin{lemma}[central corners]\label{lem:corner}
+Let $\Theta\colon E\to\U(\mathcal Q)$ be a corona representation and
+suppose $\Theta(w)\neq1$.  Then there are an infinite set
+$J'\subseteq J$, positive integers $(r_n)_{n\in J'}$ with $r_n\le
+d_n$, and a corona representation
+\[
+  \Theta_-\colon E\longrightarrow
+  \U\bigl(\mathcal Q'\bigr),\qquad
+  \mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr),
+\]
+with $\Theta_-(w)=-1$.
+\end{lemma}
+
+\begin{proof}
+Since $w^2=1$ and $w$ is central in $E$, the element $\Theta(w)$ is a
+self-adjoint unitary commuting with $\Theta(E)$, and
+$e:=\tfrac12(1-\Theta(w))$ is a projection commuting with $\Theta(E)$,
+nonzero because $\Theta(w)\neq1$.  By Lemma~\ref{lem:lift}(1) lift $e$
+to projections $(e_n)$; let $J'=\{n\in J: e_n\neq0\}$ and
+$r_n=\operatorname{rank}e_n$ for $n\in J'$.  The set $J'$ is infinite,
+since otherwise $(e_n)$ would be a null sequence and $e=0$.
+
+Consider the map
+\[
+  \Psi\colon \prod_{n\in J'} e_nM_{d_n}(\C)e_n
+  \longrightarrow e\,\mathcal Q\,e,\qquad
+  (x_n)_{n\in J'}\longmapsto q\bigl((\tilde x_n)_{n\in J}\bigr),
+\]
+where $\tilde x_n=x_n$ for $n\in J'$ and $\tilde x_n=0$ otherwise.
+$\Psi$ is a $*$-homomorphism onto $e\mathcal Qe$: surjectivity holds
+because any $y\in e\mathcal Qe$ lifts to $(y_n)$ with
+$\opnorm{e_ny_ne_n-y_n}\to0$, and $e_ny_ne_n=0$ off $J'$.  Its kernel
+is exactly the sequences with $\opnorm{x_n}\to0$.  Choosing unitary
+identifications $e_n\C^{d_n}\cong\C^{r_n}$ identifies
+$e_nM_{d_n}(\C)e_n$ with $M_{r_n}(\C)$ compatibly with adjoints and
+norms, so
+\[
+  e\,\mathcal Q\,e\;\cong\;\mathcal Q\bigl((r_n)_{n\in J'}\bigr)
+  =\mathcal Q' ,
+\]
+a unital isomorphism carrying $e$ to $1$.  Finally, since $e$ commutes
+with $\Theta(E)$, the map $\Theta_-(g):=\Theta(g)e$ is a unital group
+homomorphism $E\to\U(e\mathcal Qe)=\U(\mathcal Q')$, and
+$\Theta_-(w)=\Theta(w)e=(1-2e)e=-e=-1$ in $\mathcal Q'$.
+\end{proof}
+
+\section{The conjugation representation and the Kazhdan projection}\label{sec:conj}
+
+Fix now a corona representation $\Theta_-\colon
+E\to\U(\mathcal Q')$ with $\Theta_-(w)=-1$, where
+$\mathcal Q'=\mathcal Q((r_n)_{n\in J'})$ as produced by
+Lemma~\ref{lem:corner}.  Using Lemma~\ref{lem:lift}(2), choose for
+every $g\in E$ a sequence of unitaries
+$U_{g,n}\in M_{r_n}(\C)$ lifting $\Theta_-(g)$, with $U_{1,n}=1$.
+
+Let $K_n=L^2\bigl(M_{r_n}(\C),\tr_{r_n}\bigr)$, a Hilbert space of
+dimension $r_n^2$ whose bounded operators $B(K_n)$ form the matrix
+algebra $M_{r_n^2}(\C)$, and let
+\[
+  \mathcal B\;=\;\prod_{n\in J'}B(K_n)\Big/\bigoplus_{n\in J'}B(K_n),
+\]
+again a norm matrix corona.  For a unitary $U\in M_{r_n}(\C)$ let
+$\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
+
+\begin{lemma}\label{lem:beta}
+\leavevmode
+\begin{enumerate}
+  \item For unitaries $U,V\in M_r(\C)$ and all $x$,
+    $\opnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\opnorm{x}$; hence
+    $\opnorm{\Ad U-\Ad V}_{B(B(K))}\le2\opnorm{U-V}$.
+  \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in J'}$
+    in $\mathcal B$ defines a group homomorphism
+    $\beta\colon E\to\U(\mathcal B)$, independent of the choice of
+    unitary lifts.
+  \item $\beta$ extends to a unital $*$-homomorphism
+    $\tilde\beta\colon\Cmax(E)\to\mathcal B$ with
+    $\tilde\beta(u_g)=\beta(g)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) $UxU^*-VxV^*=(U-V)xU^*+Vx(U-V)^*$; take norms.
+
+(2) If $(U_{g,n})$ and $(U'_{g,n})$ both lift $\Theta_-(g)$ then
+$\opnorm{U_{g,n}-U'_{g,n}}\to0$, so by (1) the two sequences of adjoint
+maps agree in $\mathcal B$; this is independence of lifts.  For
+multiplicativity, $U_{g,n}U_{h,n}$ and $U_{gh,n}$ both lift
+$\Theta_-(gh)$, so $\opnorm{U_{g,n}U_{h,n}-U_{gh,n}}\to0$ and, by (1)
+again, $\beta(g)\beta(h)=\beta(gh)$.  Finally $\beta(1)=1$ since
+$U_{1,n}=1$, so each $\beta(g)$ is a unitary with inverse
+$\beta(g^{-1})$.
+
+(3) Represent $\mathcal B$ faithfully and unitally on a Hilbert space
+$\mathcal H_{\mathcal B}$.  Then $g\mapsto\beta(g)$ is a unitary
+representation of $E$ on $\mathcal H_{\mathcal B}$, which extends to a
+$*$-representation $\tilde\beta$ of $\Cmax(E)$ on
+$\mathcal H_{\mathcal B}$.  For $x\in\Cmax(E)$ the operator
+$\tilde\beta(x)$ lies in the norm closure of the linear span of
+$\{\beta(g):g\in E\}$, which is contained in the $C^*$-subalgebra
+$\mathcal B$.
+\end{proof}
+
+Recall the auxiliary HNN extension $G$ of \eqref{eq:G} and the
+canonical homomorphisms $\Gamma\to G\to E$.  Composing,
+$\tilde\beta$ restricts to unital $*$-homomorphisms of
+$\Cmax(G)$ and $\Cmax(\Gamma)$ into $\mathcal B$; we denote all of them
+$\tilde\beta$, and we write
+\[
+  P\;:=\;\tilde\beta(p_\Gamma)\;\in\;\mathcal B ,
+\]
+a projection.
+
+\begin{lemma}[order identity]\label{lem:order}
+Let $\iota\colon\Cmax(\Gamma)\to\Cmax(G)$ be induced by
+$\Gamma\to G$, and write $\bar p=\iota(p_\Gamma)$.  Then, in
+$\Cmax(G)$:
+\begin{enumerate}
+  \item $u_\gamma\,\bar p=\bar p$ for all $\gamma\in\Gamma$;
+  \item $\bar p\,\bigl(u_t\,\bar p\,u_t^*\bigr)=\bar p$; that is,
+    $\bar p\le u_t\bar pu_t^*$.
+\end{enumerate}
+Consequently, in $\mathcal B$: $\beta(\gamma)P=P$ for all
+$\gamma\in\Gamma$, and $P\le\beta(t)P\beta(t)^*$.
+\end{lemma}
+
+\begin{proof}
+Both identities may be checked in an arbitrary unitary representation
+$\pi$ of $G$ on a Hilbert space $\mathcal H$, since $\Cmax(G)$ admits a
+faithful one.  The composition $\pi\circ\iota$ is the integrated form
+of $\pi|_\Gamma$ (both are $*$-homomorphisms extending the same unitary
+representation of $\Gamma$), so by Fact~\ref{fact:kazhdan},
+$\pi(\bar p)$ is the orthogonal projection onto
+$\Fix(\pi|_\Gamma)$, and (1) holds.
+
+For (2): $\pi(u_t\bar pu_t^*)=\pi(t)\,\pi(\bar p)\,\pi(t)^*$ is the
+orthogonal projection onto $\pi(t)\Fix(\pi|_\Gamma)$.  We claim
+$\Fix(\pi|_\Gamma)\subseteq\pi(t)\Fix(\pi|_\Gamma)$.  Let
+$\xi\in\Fix(\pi|_\Gamma)$ and put $\eta=\pi(t)^{-1}\xi$.  For
+$\gamma\in\Gamma$, using $t\gamma t^{-1}=\alpha(\gamma)\in\Gamma$,
+\[
+  \pi(\gamma)\eta=\pi(t)^{-1}\pi(t\gamma t^{-1})\xi
+  =\pi(t)^{-1}\pi(\alpha(\gamma))\xi=\pi(t)^{-1}\xi=\eta ,
+\]
+so $\eta\in\Fix(\pi|_\Gamma)$ and $\xi=\pi(t)\eta$.  The claimed
+inclusion of ranges gives
+$\pi(\bar p)\le\pi(u_t\bar pu_t^*)$, i.e.\ (2) in the representation
+$\pi$; as $\pi$ was arbitrary and some $\pi$ is faithful, (2) holds in
+$\Cmax(G)$.  The final statement follows by applying the
+$*$-homomorphism $\tilde\beta$ (through $\Cmax(G)$).
+\end{proof}
+
+\begin{lemma}[compression pinning]\label{lem:pinning}
+$P=\beta(t)P\beta(t)^*$ in $\mathcal B$.
+\end{lemma}
+
+\begin{proof}
+Put $Q_0=\beta(t)P\beta(t)^*$ and $v=\beta(t)P$.  Then
+$v^*v=P\beta(t)^*\beta(t)P=P$ and $vv^*=Q_0$, and $P\le Q_0$ by
+Lemma~\ref{lem:order}.  Apply Lemma~\ref{lem:finite}(2) with
+$p:=P$, $q:=Q_0$, and the element $v^*$, which satisfies
+$(v^*)^*(v^*)=vv^*=Q_0$ and $(v^*)(v^*)^*=v^*v=P$; it yields $P=Q_0$.
+\end{proof}
+
+Finally we make the vector-level statements literal.  Fix a free
+ultrafilter $\omega$ on the infinite index set $J'$, and let
+\[
+  K_\omega\;=\;\Bigl\{(\xi_n)_{n\in J'}:\ \xi_n\in K_n,\
+  \sup_n\lVert\xi_n\rVert<\infty\Bigr\}\Big/
+  \bigl\{(\xi_n):\ \lim_{n\to\omega}\lVert\xi_n\rVert=0\bigr\},
+\]
+the Hilbert-space ultraproduct with inner product
+$\langle[\xi],[\eta]\rangle=\lim_{n\to\omega}\langle\xi_n,\eta_n\rangle$.
+
+\begin{lemma}\label{lem:sigma}
+For a bounded sequence $(T_n)_{n\in J'}$ of operators with class
+$[T]\in\mathcal B$, the assignment
+$\sigma([T])\,[\,(\xi_n)\,]=[\,(T_n\xi_n)\,]$ is a well-defined unital
+$*$-homomorphism $\sigma\colon\mathcal B\to B(K_\omega)$.  Moreover
+$\sigma(P)$ is the orthogonal projection onto
+\[
+  \Fix_\omega\;=\;\bigl\{\zeta\in K_\omega:\
+  \sigma(\beta(\gamma))\zeta=\zeta\ \text{for all}\
+  \gamma\in\Gamma\bigr\}.
+\]
+\end{lemma}
+
+\begin{proof}
+If $(T_n)$ is a null sequence in operator norm then
+$\lVert T_n\xi_n\rVert\le\opnorm{T_n}\sup\lVert\xi_n\rVert\to0$, in
+particular along $\omega$; so $\sigma$ is well defined on
+$\mathcal B$, and it is clearly a unital $*$-homomorphism.  The
+composition $\sigma\circ\tilde\beta\colon\Cmax(\Gamma)\to B(K_\omega)$
+is a $*$-representation on a Hilbert space extending the unitary
+representation $\gamma\mapsto\sigma(\beta(\gamma))$; by uniqueness of
+integrated forms and Fact~\ref{fact:kazhdan},
+$\sigma(P)=\sigma(\tilde\beta(p_\Gamma))$ is the orthogonal projection
+onto the fixed space of that representation, which is $\Fix_\omega$.
+\end{proof}
+
+\section{Proof of Theorem \ref{thm:A}}\label{sec:proofA}
+
+Part (1) is Proposition~\ref{prop:witness}.  For part (2), let
+$\Theta\colon E\to\U(\mathcal Q)$ be a corona representation and
+suppose, for contradiction, that $\Theta(w)\neq1$.  Apply
+Lemma~\ref{lem:corner} to obtain $\Theta_-$ with $\Theta_-(w)=-1$ on
+the corner corona $\mathcal Q'$, and adopt all notation of
+Section~\ref{sec:conj}: the unitary lifts $U_{g,n}$, the corona
+$\mathcal B$, the homomorphism $\beta$, the projection $P$, the
+ultraproduct $K_\omega$ and the representation $\sigma$.
+
+\medskip\noindent\emph{Step 1: the lamp vector is fixed.}
+Each $U_{c,n}$ is a unitary matrix, hence a vector in $K_n$ of norm
+$\hsnorm{U_{c,n}}=1$; let $\xi_c=[(U_{c,n})]\in K_\omega$, a unit
+vector.  For $\gamma\in\Gamma$ we have $\gamma c\gamma^{-1}=c$ in $E$,
+so $U_{\gamma,n}U_{c,n}U_{\gamma,n}^*$ and $U_{c,n}$ both lift
+$\Theta_-(c)$, whence
+$\opnorm{U_{\gamma,n}U_{c,n}U_{\gamma,n}^*-U_{c,n}}\to0$ and a fortiori
+the $K_n$-norms tend to $0$.  Therefore
+$\sigma(\beta(\gamma))\xi_c=\xi_c$ for every $\gamma\in\Gamma$, i.e.\
+$\xi_c\in\Fix_\omega$, and by Lemma~\ref{lem:sigma},
+$\sigma(P)\xi_c=\xi_c$.
+
+\medskip\noindent\emph{Step 2: the translated lamp vector is fixed.}
+Let $\xi_d:=\sigma(\beta(t))\xi_c=[(U_{t,n}U_{c,n}U_{t,n}^*)]$.  By
+Lemma~\ref{lem:pinning} and Step 1,
+\[
+  \sigma(P)\,\xi_d
+  =\sigma\bigl(\beta(t)P\beta(t)^*\bigr)\,\sigma(\beta(t))\,\xi_c
+  =\sigma(\beta(t))\,\sigma(P)\,\xi_c
+  =\xi_d ,
+\]
+so $\xi_d\in\Fix_\omega$.  In particular, since $a\in\Gamma$,
+\begin{equation}\label{eq:afix}
+  \lim_{n\to\omega}\ \hsnorm{\,U_{a,n}D_nU_{a,n}^*-D_n\,}=0,
+  \qquad D_n:=U_{t,n}U_{c,n}U_{t,n}^* .
+\end{equation}
+
+\medskip\noindent\emph{Step 3: the commutator word collapses in
+Hilbert--Schmidt norm.}
+Put $E_n:=U_{a,n}D_nU_{a,n}^*$ and
+$W_n:=D_nE_nD_n^{-1}E_n^{-1}$, unitaries in $M_{r_n}(\C)$.  For
+unitaries $D,E$,
+\[
+  \hsnorm{DED^{-1}E^{-1}-1}=\hsnorm{DE-ED}
+  \le\hsnorm{(D-E)E}+\hsnorm{E(E-D)}=2\hsnorm{D-E},
+\]
+using unitary invariance of $\hsnorm\cdot$.  With \eqref{eq:afix},
+\begin{equation}\label{eq:collapse}
+  \lim_{n\to\omega}\ \hsnorm{\,W_n-1\,}\;=\;0 .
+\end{equation}
+
+\medskip\noindent\emph{Step 4: the corner normalization forbids the
+collapse.}
+The finite product $W_n$ of the lifts
+$U_{t,n},U_{c,n},U_{a,n}$ and their adjoints is an operator-norm lift
+of
+\[
+  \Theta_-\bigl(\,(tct^{-1})\,\cdot\,a(tct^{-1})a^{-1}\,\cdot\,
+  (tct^{-1})^{-1}\,\cdot\,\bigl(a(tct^{-1})a^{-1}\bigr)^{-1}\,\bigr)
+  \;=\;\Theta_-(w)\;=\;-1 ,
+\]
+so $\opnorm{W_n+1}\to0$ as $n\to\infty$ in $J'$, hence also along
+$\omega$.  Therefore
+\[
+  \hsnorm{W_n-1}\;\ge\;\hsnorm{(-1)-1}-\hsnorm{W_n-(-1)}
+  \;\ge\;2-\opnorm{W_n+1}\;\xrightarrow[n\to\omega]{}\;2 ,
+\]
+contradicting \eqref{eq:collapse}.  This contradiction shows
+$\Theta(w)=1$, proving part (2).
+
+\medskip
+
+For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
+$E$ would be an injective corona representation, which is impossible
+because every corona representation sends the nontrivial element $w$
+to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding
+$\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
+$E\to\U(\Cred(E))$, which is injective on $E$ because the left regular
+representation is faithful as a group representation, would exhibit an
+injective corona representation of $E$; the same argument applies to
+$\Cmax(E)$ via the universal representation.  \qed
+
+\begin{remark}\label{rem:radical}
+The proof shows more than non-injectivity of each individual
+$\Theta$: the fixed element $w$ lies in the kernel of \emph{every}
+corona representation of $E$, so every corona representation factors
+through $E/\langle w\rangle$ (note $\langle w\rangle=\{1,w\}$ is
+central, hence normal).  In the language of approximation radicals, $w$
+is a nontrivial element of the ``MF radical'' of $E$.
+\end{remark}
+
+\begin{remark}
+No lower bound on the corner ranks $r_n$, or on their density in
+$d_n$, is used anywhere: Lemma~\ref{lem:corner} renormalizes the trace
+so that all subsequent estimates are relative to the corner.  This is
+what makes the operator-norm setting immune to the rank-blindness that
+blocks the same argument in Hilbert--Schmidt metrics
+(Section~\ref{sec:limits}).
+\end{remark}
+
+\section{Necessity of property (T)}\label{sec:necessity}
+
+We prove Theorem~\ref{thm:C}.  Recall the setting: $G_0=\mathrm{BS}(1,2)$
+with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
+$t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
+$E_0=C(X_0)\rtimes G_0$ with central sign $z_0=-1\in C(X_0)$ as in
+Construction~\ref{con:clifford}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:C}]
+\emph{$z_0\neq1$:} immediate from Construction~\ref{con:clifford},
+since $C(X_0)\le\Cl(X_0)^\times$ and $\Cl(X_0)\neq0$.
+
+\emph{Amenability:} every finitely generated subgroup of $C(X_0)$ is
+contained in the subgroup generated by $\pm1$ and finitely many
+$c_x$, which is a finite $2$-group (it has order at most
+$2^{k+1}$ for $k$ sites, since every element is $\pm$ a reduced product
+of distinct generators).  Hence $C(X_0)$ is locally finite, so
+amenable.  The group $G_0=\mathrm{BS}(1,2)\cong\Z[1/2]\rtimes\Z$ is
+metabelian, so amenable.  As an extension of the amenable $G_0$ by the
+amenable $C(X_0)$, the group $E_0$ is amenable.
+
+\emph{MF:} by Fact~\ref{fact:tww}, the amenable group $E_0$ is MF, and
+an MF embedding $E_0\hookrightarrow\U(\mathcal Q)$ is injective, so the
+image of $z_0$ is a nontrivial (self-adjoint) unitary in the corona:
+the central sign survives.
+
+\emph{Finite-dimensional sterility persists:} $E_0$ contains the
+pattern of Theorem~\ref{thm:B} with $H=E_0$, $\Gamma=\Gamma_0$,
+$t=t$, $c=c_{o}$ ($o=\Gamma_0\in X_0$, fixed by $\Gamma_0$), and
+$a=\gamma_0\in\Gamma_0$.  We have
+$t\Gamma_0t^{-1}=\langle\gamma_0^2\rangle\subseteq\Gamma_0$ and
+$[c_o,\Gamma_0]=1$.  Moreover $\gamma_0t\Gamma_0\neq t\Gamma_0$ in
+$G_0$: otherwise $t^{-1}\gamma_0t\in\Gamma_0$; in the faithful affine
+model $\mathrm{BS}(1,2)=\Z[1/2]\rtimes\Z$ with
+$\gamma_0=(1,0)$ and $t=(0,1)$ acting by multiplication by $2$, we
+compute $t^{-1}\gamma_0t=(\tfrac12,0)\notin\Gamma_0=\Z\times\{0\}$.
+Hence
+\[
+  \bigl[\,tc_ot^{-1},\;\gamma_0(tc_ot^{-1})\gamma_0^{-1}\bigr]
+  =[c_{t\Gamma_0},c_{\gamma_0t\Gamma_0}]=z_0
+\]
+in $E_0$, and Theorem~\ref{thm:B} says every finite-dimensional
+representation of $E_0$, over every field, kills $z_0$.  Since
+$z_0\neq1$, the group $E_0$ is not residually finite-dimensional.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:C} calibrates Theorem~\ref{thm:A} exactly.  The two
+constructions differ in a single hypothesis --- property (T) of the
+base --- and the conclusion flips.  In particular no proof of
+Theorem~\ref{thm:A} can avoid using property (T) (or some substitute
+producing the fixed-space projection inside the corona), and the
+elementary Theorem~\ref{thm:B} is genuinely weaker than
+Theorem~\ref{thm:A}: MF approximations of $E_0$ exist even though
+finite-dimensional representations all kill the sign.
+\end{remark}
+
+\section{Limitations: Hilbert--Schmidt metrics and hyperlinearity}\label{sec:limits}
+
+The proof of Theorem~\ref{thm:A} does not extend to tracial
+ultraproducts, for a structural reason worth recording.
+
+Suppose one replaces the norm corona $\mathcal Q$ by a tracial
+ultraproduct $\mathcal M=\prod^\omega(M_{d_n}(\C),\tr_{d_n})$, with
+defects measured in $\hsnorm\cdot$ rather than operator norm, and asks
+whether a hyperlinear-style embedding of $E$ must kill $w$.  Two steps
+break.
+
+First, Lemma~\ref{lem:beta} fails: Hilbert--Schmidt-multiplicative
+lifts need not be operator-norm multiplicative, so the adjoint maps
+$\Ad U_{g,n}$ need not assemble into a homomorphism into any norm
+corona.  One can instead pass to the conjugation representation on
+$L^2(\mathcal M)$, which is an honest representation of $E$.
+
+Second, and decisively, Lemma~\ref{lem:finite} is then unavailable:
+$B(L^2(\mathcal M))$ is properly infinite, and the Kazhdan projections
+onto the fixed spaces of $\Gamma$ and of $t\Gamma t^{-1}$, though
+unitarily equivalent via the shift and nested by the same argument as
+in Lemma~\ref{lem:order}, may satisfy a \emph{proper} inclusion
+$P<\beta(t)P\beta(t)^*$: exactly the unilateral-shift phenomenon.  The
+normalized traces of the two fixed-space projections agree, so the
+discrepancy is a trace-zero corner, which can moreover be diluted
+arbitrarily by tensoring a hypothetical microstate with an auxiliary
+regular representation; no normalized-rank argument can force it to be
+visible.  In particular the present paper proves nothing about
+hyperlinearity or Connes embeddability of $E$, and nothing about the
+sofic-versus-hyperlinear problem.
+
+The precise dividing line is thus: \emph{operator-norm matrix models
+form a stably finite world, in which property (T) compression is
+rigid; tracial matrix models form a properly infinite world at the
+level of their conjugation actions, in which the same compression can
+hide in a trace-zero corner.}
+
+\section*{Acknowledgements}
+\ifanonymous
+[Removed for anonymous review.]
+\else
+The formal verification companion to this paper, including a
+machine-checked proof of Theorem~\ref{thm:B}, is available in the
+repository \texttt{\leanrepo}.
+\fi
+
+\begin{thebibliography}{TWW}
+
+\bibitem[AW]{AW}
+C.~A. Akemann and M.~E. Walter,
+\emph{Unbounded negative definite functions},
+Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
+
+\bibitem[BDL]{BDL}
+G.~Bachner, S.~Dogon, and A.~Lubotzky,
+\emph{On $L^1$-approximation of groups},
+J. Algebra (2026).
+
+\bibitem[BHV]{BHV}
+B.~Bekka, P.~de~la~Harpe, and A.~Valette,
+\emph{Kazhdan's property (T)},
+New Mathematical Monographs, vol.~11,
+Cambridge University Press, Cambridge, 2008.
+
+\bibitem[BK]{BK}
+B.~Blackadar and E.~Kirchberg,
+\emph{Generalized inductive limits of finite-dimensional
+$C^*$-algebras},
+Math. Ann. \textbf{307} (1997), no.~3, 343--380.
+
+\bibitem[BO]{BO}
+N.~P. Brown and N.~Ozawa,
+\emph{$C^*$-algebras and finite-dimensional approximations},
+Graduate Studies in Mathematics, vol.~88,
+American Mathematical Society, Providence, RI, 2008.
+
+\bibitem[CDE]{CDE}
+J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
+\emph{On groups with quasidiagonal $C^*$-algebras},
+J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152.
+
+\bibitem[DGLT]{DGLT}
+M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
+\emph{Stability, cohomology vanishing, and nonapproximable groups},
+Forum Math. Sigma \textbf{8} (2020), Paper No. e18.
+
+\bibitem[KT]{KT}
+G.~Kun and A.~Thom,
+\emph{Nonsofic wreath products of residually finite groups},
+preprint (2026), arXiv:2608.06222.
+
+\bibitem[Sh]{Shulman}
+T.~Shulman,
+\emph{The MF property for amalgamated free products},
+preprint (2026), arXiv:2603.13564.
+
+\bibitem[TWW]{TWW}
+A.~Tikuisis, S.~White, and W.~Winter,
+\emph{Quasidiagonality of nuclear $C^*$-algebras},
+Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284.
+
+\end{thebibliography}
+
+\end{document}
