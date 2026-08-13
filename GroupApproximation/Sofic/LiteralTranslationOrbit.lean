@@ -78,6 +78,14 @@ theorem latticeMatrixHom_injective : Function.Injective latticeMatrixHom := by
     (translationMatrix b.toAdd) i.castSucc 3 at hentry
   fin_cases i <;> simpa [translationMatrix] using hentry
 
+/-- Evaluation of the public matrix realization on the embedded lattice. -/
+private theorem subtype_matrixBaseHom_latticeToBase
+    (u : Multiplicative LiteralBaseTranslationLattice.Lattice) :
+    gammaBar.subtype (matrixBaseHom (latticeToBase u)) = latticeMatrixHom u := by
+  rw [lattice_eq_basis_product u]
+  simp [latticeToBase_basis_zero, latticeToBase_basis_one,
+    latticeToBase_basis_two, v1G, v2G, v3G]
+
 /-- The affine matrix realization is injective after restriction to the
 literal translation subgroup. -/
 theorem matrixBaseHom_injective_on_translations {a b : Base}
@@ -92,8 +100,8 @@ theorem matrixBaseHom_injective_on_translations {a b : Base}
   rcases ha' with ⟨u, rfl⟩
   rcases hb' with ⟨v, rfl⟩
   have hmatrix := congrArg gammaBar.subtype hab
-  rw [DFunLike.congr_fun matrixBaseHom_comp_latticeToBase u,
-    DFunLike.congr_fun matrixBaseHom_comp_latticeToBase v] at hmatrix
+  rw [subtype_matrixBaseHom_latticeToBase u,
+    subtype_matrixBaseHom_latticeToBase v] at hmatrix
   exact congrArg latticeToBase (latticeMatrixHom_injective hmatrix)
 
 private theorem e13_conj_v3_mem : e13 * v3 * e13⁻¹ ∈ translations := by
@@ -233,48 +241,50 @@ theorem e32_conj_v3 : e32 * v3 * e32⁻¹ = v3 := by
 /-- Iterating a transvection conjugation adds the corresponding integral
 multiple of the fixed direction. -/
 private theorem zpow_conj_of_transvection {G : Type*} [Group G]
-    {e u v : G} (heu : Commute e u) (huv : Commute u v)
+    {e u v : G} (heu : Commute e u) (_huv : Commute u v)
     (hstep : e * v * e⁻¹ = u * v) (n : ℤ) :
     e ^ n * v * (e ^ n)⁻¹ = u ^ n * v := by
-  have hback : e⁻¹ * v * e = u⁻¹ * v := by
-    have hv : v = u * (e⁻¹ * v * e) := by
-      calc
-        v = e⁻¹ * (e * v * e⁻¹) * e := by group
-        _ = e⁻¹ * (u * v) * e := by rw [hstep]
-        _ = u * (e⁻¹ * v * e) := by rw [heu.eq]; group
-    rw [hv]
-    group
-  induction n using Int.induction_on with
-  | zero => simp
-  | succ n ih =>
-      rw [zpow_add_one]
-      calc
-        (e ^ (n : ℤ) * e) * v * (e ^ (n : ℤ) * e)⁻¹ =
-            e ^ (n : ℤ) * (e * v * e⁻¹) * (e ^ (n : ℤ))⁻¹ := by group
-        _ = e ^ (n : ℤ) * (u * v) * (e ^ (n : ℤ))⁻¹ := by rw [hstep]
-        _ = u * (e ^ (n : ℤ) * v * (e ^ (n : ℤ))⁻¹) := by
-          rw [(heu.zpow_left n).eq]
-          group
-        _ = u * (u ^ (n : ℤ) * v) := by rw [ih]
-        _ = u ^ ((n : ℤ) + 1) * v := by
-          rw [zpow_add_one]
-          group
-  | pred n ih =>
-      rw [zpow_sub_one]
-      calc
-        (e ^ (-(n : ℤ)) * e⁻¹) * v * (e ^ (-(n : ℤ)) * e⁻¹)⁻¹ =
-            e ^ (-(n : ℤ)) * (e⁻¹ * v * e) *
-              (e ^ (-(n : ℤ)))⁻¹ := by group
-        _ = e ^ (-(n : ℤ)) * (u⁻¹ * v) *
-              (e ^ (-(n : ℤ)))⁻¹ := by rw [hback]
-        _ = u⁻¹ * (e ^ (-(n : ℤ)) * v *
-              (e ^ (-(n : ℤ)))⁻¹) := by
-          rw [(heu.zpow_left (-(n : ℤ))).eq]
-          group
-        _ = u⁻¹ * (u ^ (-(n : ℤ)) * v) := by rw [ih]
-        _ = u ^ (-(n : ℤ) - 1) * v := by
-          rw [zpow_sub_one]
-          group
+  have hstep' : e * v = u * v * e := by rw [← hstep]; group
+  have hback' : e⁻¹ * v = u⁻¹ * v * e⁻¹ := by
+    have h1 : v * e⁻¹ = e⁻¹ * (u * v) := by rw [← hstep]; group
+    have h2 : e⁻¹ * (u * v) = u * (e⁻¹ * v) := by
+      rw [← mul_assoc, heu.inv_left.eq, mul_assoc]
+    calc
+      e⁻¹ * v = u⁻¹ * (u * (e⁻¹ * v)) := by group
+      _ = u⁻¹ * (e⁻¹ * (u * v)) := by rw [h2]
+      _ = u⁻¹ * (v * e⁻¹) := by rw [h1]
+      _ = u⁻¹ * v * e⁻¹ := by group
+  have key : e ^ n * v = u ^ n * v * e ^ n := by
+    induction n using Int.induction_on with
+    | zero => simp
+    | succ m ih =>
+        calc
+          e ^ ((m : ℤ) + 1) * v = e ^ (m : ℤ) * (e * v) := by
+            rw [zpow_add_one]; group
+          _ = e ^ (m : ℤ) * (u * v * e) := by rw [hstep']
+          _ = e ^ (m : ℤ) * u * v * e := by group
+          _ = u * e ^ (m : ℤ) * v * e := by
+            rw [(heu.zpow_left (m : ℤ)).eq]
+          _ = u * (e ^ (m : ℤ) * v) * e := by group
+          _ = u * (u ^ (m : ℤ) * v * e ^ (m : ℤ)) * e := by rw [ih]
+          _ = u ^ ((m : ℤ) + 1) * v * e ^ ((m : ℤ) + 1) := by
+            rw [zpow_add_one, zpow_add_one]; group
+    | pred m ih =>
+        calc
+          e ^ (-(m : ℤ) - 1) * v = e ^ (-(m : ℤ)) * (e⁻¹ * v) := by
+            rw [zpow_sub_one]; group
+          _ = e ^ (-(m : ℤ)) * (u⁻¹ * v * e⁻¹) := by rw [hback']
+          _ = e ^ (-(m : ℤ)) * u⁻¹ * v * e⁻¹ := by group
+          _ = u⁻¹ * e ^ (-(m : ℤ)) * v * e⁻¹ := by
+            rw [((heu.zpow_left (-(m : ℤ))).inv_right).eq]
+          _ = u⁻¹ * (e ^ (-(m : ℤ)) * v) * e⁻¹ := by group
+          _ = u⁻¹ * (u ^ (-(m : ℤ)) * v * e ^ (-(m : ℤ))) * e⁻¹ := by
+            rw [ih]
+          _ = u ^ (-(m : ℤ) - 1) * v * e ^ (-(m : ℤ) - 1) := by
+            rw [zpow_sub_one, zpow_sub_one]; group
+  calc
+    e ^ n * v * (e ^ n)⁻¹ = (u ^ n * v * e ^ n) * (e ^ n)⁻¹ := by rw [key]
+    _ = u ^ n * v := by group
 
 private theorem commute_of_conj_eq_self {G : Type*} [Group G] {g u : G}
     (h : g * u * g⁻¹ = u) : Commute g u := by
@@ -309,7 +319,8 @@ private theorem e32_zpow_conj_v2 (n : ℤ) :
     (commute_of_conj_eq_self e32_conj_v3)
     (translations_commute v3_mem_translations v2_mem_translations)
     (by
-      rw [(translations_commute v2_mem_translations v3_mem_translations).eq]
+      rw [← (translations_commute v2_mem_translations
+        v3_mem_translations).eq]
       exact e32_conj_v2) n
   calc
     e32 ^ n * v2 * (e32 ^ n)⁻¹ = v3 ^ n * v2 := h
@@ -350,10 +361,14 @@ theorem latticeTranslation_eq_two_rotation_conjugates
       _ = (e13 ^ m * v2 ^ n * (e13 ^ m)⁻¹) *
             (e13 ^ m * v3 * (e13 ^ m)⁻¹) := by group
       _ = v2 ^ n * (v1 ^ m * v3) := by
-        rw [← conj_zpow, e13_conj_v2, e13_zpow_conj_v3]
+        have hc :=
+          ((commute_of_conj_eq_self e13_conj_v2).zpow_zpow m n).eq
+        rw [hc, e13_zpow_conj_v3]
+        group
       _ = v1 ^ m * v2 ^ n * v3 := by
-        have hcomm := translations_commute v1_mem_translations v2_mem_translations
-        rw [(hcomm.zpow m n).eq]
+        have hcomm := translations_commute v1_mem_translations
+          v2_mem_translations
+        rw [← mul_assoc, ← (hcomm.zpow_zpow m n).eq]
         group
   have hs : (s : Base) * v2 * (s : Base)⁻¹ = v2 * v3 ^ k := by
     simpa only [s] using e32_zpow_conj_v2 k
@@ -383,13 +398,11 @@ theorem translation_eq_two_rotation_conjugates {t : Base}
     ∃ r s : rotations,
       t = (r : Base) * v3 * (r : Base)⁻¹ *
         ((s : Base) * v2 * (s : Base)⁻¹) := by
-  let a := latticeEquivTranslations.symm ⟨t, ht⟩
-  obtain ⟨r, s, hrs⟩ := latticeTranslation_eq_two_rotation_conjugates a
-  refine ⟨r, s, ?_⟩
-  have ha : latticeEquivTranslations a = ⟨t, ht⟩ :=
-    latticeEquivTranslations.apply_symm_apply ⟨t, ht⟩
-  change latticeToBase a = t at ha
-  exact ha.symm.trans hrs
+  have ht' : t ∈ latticeToBase.range := by
+    rw [latticeToBase_range]
+    exact ht
+  obtain ⟨a, rfl⟩ := ht'
+  exact latticeTranslation_eq_two_rotation_conjugates a
 
 section Displacement
 
@@ -403,7 +416,7 @@ private theorem norm_mul_displacement_le
         ‖rho a (rho b p - p) + (rho a p - p)‖ := by
       congr 1
       simp only [map_mul, LinearIsometryEquiv.coe_mul, Function.comp_apply,
-        map_sub, map_add]
+        map_sub]
       abel
     _ ≤ ‖rho a (rho b p - p)‖ + ‖rho a p - p‖ := norm_add_le _ _
     _ = ‖rho b p - p‖ + ‖rho a p - p‖ := by rw [(rho a).norm_map]
@@ -415,15 +428,12 @@ private theorem norm_conjugate_displacement_eq
     (r : rotations) (v : Base) :
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ = ‖rho v p - p‖ := by
   have hr : rho (r : Base) p = p := hfixed r
-  have hri : rho ((r : Base)⁻¹) p = p := by
-    have := congrArg (fun q : E ↦ rho ((r : Base)⁻¹) q) hr
-    simpa using this
   calc
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ =
         ‖rho (r : Base) (rho v p - p)‖ := by
       congr 1
       simp only [map_mul, map_inv, LinearIsometryEquiv.coe_mul,
-        Function.comp_apply, map_sub, hri, hr]
+        Function.comp_apply, map_sub, hr]
     _ = ‖rho v p - p‖ := (rho (r : Base)).norm_map _
 
 /-- A vector fixed by all literal rotations has uniformly bounded
