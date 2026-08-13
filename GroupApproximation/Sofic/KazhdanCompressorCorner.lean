@@ -26,7 +26,11 @@ ancestor in Dadarlat, Lemma 3.18 and Proposition 3.19 (Ozawa--Thom),
 K-theory*.  The one-sided-compressor/fixed-space architecture is also the
 finite-stage operator-norm analogue of OpenAI, Proposition 2.3, and of the
 compression-semigroup and sofic-Mautner framework of Kun--Thom
-(arXiv:2608.06222).  The equal-rank reversal below is this development's
+(arXiv:2608.06222).  For robust spectral separation of operator-norm almost
+representations of property-(T) groups, the closest finite-stage precedent is
+the proof of Uri Bader recorded as Dogon--Vigdorovich, arXiv:2506.20843,
+Theorem 7.10; it uses Ozawa's sum-of-squares characterization and generalizes
+Manuilov--Yu.  The equal-rank reversal below is this development's
 finite-dimensional replacement for stable finiteness; no external code is
 copied.
 -/
