@@ -250,3 +250,32 @@ This closes the shortest global collision candidate as well as the shortest
 local adjacent-root square.  A live word must retain **two distinct child
 branches after parent-block compression**.  Any word whose raw block
 reduction uses only a single involution `K` is automatically too coarse.
+
+## 7. The surviving two-branch packet
+
+The decoder also reconstructs the two hard boundary representatives at
+boundary indices `11` and `30`; see
+`experiments/atlas-boundary-11-30.json`.  Both have length eight and are
+exact Leavitt identities.  Their hard running-prefix/next-letter pairs are
+the six pairs audited in `FALSE_ATLAS_INFINITE_PROJECTION.md`.  Unlike word
+`19243`, each such pair generates both child cylinder projections and a
+partial isometry from a cylinder onto one proper child.
+
+This does not yet transfer to an arbitrary unitary group microstate.  The
+projection identities are additive identities over `F_2`, while the group
+relations initially supply only root involutions and their Weyl pairings.
+The exact finite endpoint is already proved by
+`two_sub_sqrt_three_le_max_unitary_pairing_defects`: four contraction arrows
+on one flat pairing space cannot satisfy the two diagonal products and one
+cross product.  The sole live atlas implication is therefore:
+
+```text
+hard two-branch prefix packet + raw compressor covariance
+  => one common reduced Fourier multiplicity space
+  => the four radical-quotient arrows on that space.
+```
+
+The first arrow is the remaining matrix-specific extraction theorem.  The
+relative-centralizer lemma and `(RCH3)` show exactly what it must retain:
+two child labels, not two implementations of one parent transport and not
+one abstract involution in the parent block.
