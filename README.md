@@ -97,12 +97,18 @@ one corona, and has the expected universal factorization property. Other
 paper consequences are not claimed to be formalized unless they carry an
 explicit Lean counterpart link.
 
+The internal definition permits any positive dimension sequence. The
+Carrión--Dadarlat--Eckhardt convention requiring strictly increasing
+dimensions is proved equivalent by a faithful cumulative block-diagonal
+corona embedding; see `Sofic/OperatorMFIncreasingDimensions.lean`.
+
 Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
 | `Sofic/ExplicitNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
+| `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
 | `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
