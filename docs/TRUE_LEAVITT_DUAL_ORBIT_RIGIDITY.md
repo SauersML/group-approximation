@@ -187,3 +187,23 @@ This theorem would make `H` explicitly nonhyperlinear.  It is a special
 abelian-normalizer recovery statement, not the general tracial commutant
 recovery problem.  The orbit calculation above proves that no finite-orbit
 escape remains once such a common model has been recovered.
+
+## 6. Two scope checks
+
+The finite-orbit theorem cannot be applied directly to the spectral measure
+in an arbitrary tracial representation.  The compact dual of `A` carries
+its diffuse Haar probability measure, and every automorphism coming from
+`Q x Q` preserves that measure.  Thus absence of nonzero *finite* orbits
+does not imply absence of invariant diffuse character models.  Any proof
+which silently replaces weak convergence on fixed root windows by
+total-variation or Hellinger convergence on one global finite character set
+is assuming the completion theorem above.
+
+There is also no automatic extension-permanence shortcut in the needed
+direction.  The standard hyperlinear extension theorem applies when the
+normal subgroup is hyperlinear and the quotient is amenable.  Here the
+normal subgroup `A` is amenable and the quotient `Q x Q` is the hard
+nonsofic group, so that theorem does not apply.  Since `Q x Q` embeds in
+`H`, proving `H` hyperlinear would itself produce a hyperlinear nonsofic
+group; proving it nonhyperlinear requires the missing stability/completion
+input rather than the exact finite-representation theorem alone.
