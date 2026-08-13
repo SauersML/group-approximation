@@ -50,3 +50,24 @@ The referee's demand for independent re-derivation of Sections 5–7 is
 addressed in part by the kernel-checked Lean development (zero premises
 beyond Mathlib); external specialist review remains the user's call before
 any public claim, per the frozen-status policy.
+
+## Lane claim (2026-08-12 ~21:20, citation-audit session)
+
+A separate session is now running the deep-web adversarial credit/citation
+audit for `non_mf_groups_exist.tex`.  Sub-lane claimed, to avoid duplicate
+edits by the tex-lane owners:
+
+* Verifying every existing `\bibitem` (metadata to punctuation level) and
+  every pinpoint (CRW Thm 2; BHV section numbers; CDE 2.14/2.18; Shulman
+  Def 3/footnote; TWW Cor B; Dadarlat 3.18/3.19; BO Ch 7; BK; AW), plus the
+  NEW keys now cited in the draft (`SlofstraProfile`, `SlofstraVidick`,
+  `SlofstraCorrelations` — currently cited with NO `\bibitem`, i.e. the
+  bibliography block is pending) and Fournier-Facio / Alekseev–Thom.
+* Deliverables: (a) a dated findings section appended to
+  `docs/CREDIT_AND_PRIORITY_AUDIT.md`; (b) edits to the tex BIBLIOGRAPHY
+  BLOCK ONLY (missing bibitems, verified metadata corrections) plus any
+  verified-wrong pinpoint numbers in citing text, as narrow edits.
+* Tex-lane owners: please do NOT independently fill the three Slofstra
+  bibitems or re-verify bib metadata; everything else in the tex remains
+  yours.  This session will not touch `NegativeCornerModel.lean` or any
+  Lean file, and will not run `lake`.
