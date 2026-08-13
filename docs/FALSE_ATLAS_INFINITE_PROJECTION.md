@@ -127,14 +127,47 @@ and its next syllable in one finite-dimensional star algebra. The theorem
 instead identifies the exact local phenomenon any such filling must bypass:
 crossing the hard edge creates a properly infinite corner immediately.
 
-## 4. Reproduction
+## 4. Exact scope of the characteristic-two certificates
+
+The archived artifact `experiments/atlas-prefix-obstruction.json` contains
+all 32 cyclic orientations of classes `11` and `30`.  Twelve orientations
+reach the hard generated-projection case, representing six distinct prefix
+pairs.  Eleven have projection certificates of monomial depth at most six;
+one has depth seven.  Every hard pair uses a genuinely mixed monomial in
+`q` and `l`, and each cylinder identity contains between four and 28
+monomials.
+
+These are identities in the **additive** \(\mathbb F _2\)-span of Leavitt
+monomials.  Thus their displayed sums are XOR sums.  They are not complex
+linear identities and cannot be evaluated by replacing `q,l` with arbitrary
+unitary matrices and adding the resulting matrices over \(\mathbb C\).
+Doing so would silently replace characteristic two by characteristic zero.
+
+At group level the additive identities can be retained only through the
+elementary-abelian root law
+
+\[
+ x_{13}(a+b)=x_{13}(a)x_{13}(b),
+\]
+
+followed by Fourier decomposition of the root subgroup.  The resulting
+spectral projections are ambient projections, and ambient finite-trace
+calculus alone cannot turn `(1)` into a proper isometry: the same group
+relations hold in the exact regular representation.  Consequently the JSON
+certificate confirms, but does not cross, the matrix-specific seam.  A
+hyperlinear obstruction still has to recover the characteristic-two
+coefficient operations in one finite coordinate multiplicity algebra.  This
+is precisely the fiber-identification / reduced-Fourier gate `(RPC128)` in
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.
+
+## 5. Reproduction
 
 ```text
 python3 experiments/atlas_survivor_prefix_obstruction.py \
-  > /tmp/atlas-prefix-obstruction.json
+  > experiments/atlas-prefix-obstruction.json
 
 python3 experiments/atlas_survivor_infinite_projection.py \
-  > /tmp/atlas-infinite-projection.json
+  > experiments/atlas-infinite-projection.json
 ```
 
 The second command reconstructs the six pairs independently, finds the
