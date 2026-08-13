@@ -430,9 +430,16 @@ kills the corresponding marked element.
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one}
+\leanconditional{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF}
+\leanconditional{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one}
 \end{mainthm}
+
+\ifanonymous\else
+For the last two formal deductions, operator-MF of the ambient Clifford
+cyclic model is an explicit premise.  The amenability and TWW inputs proving
+that premise remain in the paper proof; the formal companion does not claim
+to reprove them.
+\fi
 
 The quotient statement makes the comparison at the level actually used by
 the proof: the marked-word relations and witness mechanism survive when the

@@ -35,6 +35,7 @@ import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect

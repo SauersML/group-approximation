@@ -30,6 +30,7 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralUniversalHorn
