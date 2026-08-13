@@ -40,18 +40,18 @@ structure UniversalFinitelyPresentedGroupData
 namespace UniversalFinitelyPresentedGroupData
 
 variable {U : Type v} [Group U]
-    (D : UniversalFinitelyPresentedGroupData.{u, v} U)
-
-local instance : Group.IsFinitelyPresented U := D.finitelyPresented
 
 /-- Universality expressed without exposing the chosen embedding. -/
 theorem exists_embedding
+    (D : UniversalFinitelyPresentedGroupData.{u, v} U)
     (H : Type u) [Group H] [Group.IsFinitelyPresented H] :
     ∃ f : H →* U, Function.Injective f :=
-  ⟨D.embedding H, D.embedding_injective H⟩
+  ⟨UniversalFinitelyPresentedGroupData.embedding D H,
+    UniversalFinitelyPresentedGroupData.embedding_injective D H⟩
 
 end UniversalFinitelyPresentedGroupData
 
+set_option linter.checkUnivs false in
 /-- Explicit inputs for the universal Kazhdan full-residual construction.
 
 `Universal` is the Higman-style universal finitely presented group,
