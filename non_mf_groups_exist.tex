@@ -21,6 +21,12 @@
 \else
   \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
 \fi
+\newcommand{\leanverified}[2]{%
+  \par\smallskip\noindent
+  {\normalfont\footnotesize\color{gray!70!black}%
+  Formal counterpart:\par\nobreak\noindent
+  \ifanonymous\nolinkurl{#2}\else
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -358,8 +364,14 @@ $a:=(e_1,1)\notin\alpha(\Gamma)$.
 \end{lemma}
 
 \begin{proof}
-$\alpha\bigl((v,A)(w,B)\bigr)=\alpha(v+Aw,AB)=(2v+2Aw,AB)
-=(2v,A)(2w,B)=\alpha(v,A)\alpha(w,B)$, so $\alpha$ is a homomorphism,
+We compute
+\[
+\begin{aligned}
+  \alpha\bigl((v,A)(w,B)\bigr)&=\alpha(v+Aw,\,AB)=(2v+2Aw,\,AB)\\
+  &=(2v,A)(2w,B)=\alpha(v,A)\,\alpha(w,B),
+\end{aligned}
+\]
+so $\alpha$ is a homomorphism,
 clearly injective, with image $2\Z^3\rtimes\SL_3(\Z)$; the index equals
 $[\Z^3:2\Z^3]=8$.  If $(e_1,1)=(2v,A)$ then $A=1$ and $e_1=2v$, which is
 impossible in $\Z^3$.
@@ -518,10 +530,21 @@ $C\subseteq\Phi(C)$ forces
 Now $\pi(c)\in C$ because $c$ centralizes $\Gamma$.  By
 \eqref{eq:pinning}, $\pi(tct^{-1})=u\,\pi(c)\,u^{-1}\in C$.  Since
 $a\in\Gamma$, the element $\pi(tct^{-1})$ commutes with $\pi(a)$, so
-$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and the commutator
-$\pi\bigl(\bigl[tct^{-1},a(tct^{-1})a^{-1}\bigr]\bigr)$ equals
-$\bigl[\pi(tct^{-1}),\pi(tct^{-1})\bigr]=1$.
+$\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and therefore
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)
+  =\bigl[\,\pi(tct^{-1}),\;\pi(tct^{-1})\bigr]=1. \qedhere
+\]
 \end{proof}
+
+\begin{remark}[formal verification]\label{rem:lean}
+Theorem~\ref{thm:B} is machine-checked in Lean~4: the statement above,
+for an arbitrary monoid homomorphism into the endomorphism algebra of a
+finite-dimensional vector space over an arbitrary field, is the theorem
+\texttt{map\_marked\_commutator\_eq\_one}, with the invertible variant
+\texttt{map\_marked\_commutator\_eq\_one\_units}.
+\leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one}
+\end{remark}
 
 \begin{corollary}\label{cor:notRFD}
 The group $E$ of Definition~\ref{def:E} admits no injective
@@ -687,9 +710,12 @@ $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
 \begin{lemma}\label{lem:beta}
 \leavevmode
 \begin{enumerate}
-  \item For unitaries $U,V\in M_r(\C)$ and all $x$,
-    $\opnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\opnorm{x}$; hence
-    $\opnorm{\Ad U-\Ad V}_{B(B(K))}\le2\opnorm{U-V}$.
+  \item For unitaries $U,V\in M_r(\C)$ and every $x\in M_r(\C)$,
+    \[
+      \opnorm{UxU^*-VxV^*}\le2\opnorm{U-V}\,\opnorm{x},
+    \]
+    hence $\opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}$ as operators on
+    $B(K_n)$.
   \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in J'}$
     in $\mathcal B$ defines a group homomorphism
     $\beta\colon E\to\U(\mathcal B)$, independent of the choice of
@@ -863,8 +889,10 @@ Put $E_n:=U_{a,n}D_nU_{a,n}^*$ and
 $W_n:=D_nE_nD_n^{-1}E_n^{-1}$, unitaries in $M_{r_n}(\C)$.  For
 unitaries $D,E$,
 \[
-  \hsnorm{DED^{-1}E^{-1}-1}=\hsnorm{DE-ED}
-  \le\hsnorm{(D-E)E}+\hsnorm{E(E-D)}=2\hsnorm{D-E},
+\begin{aligned}
+  \hsnorm{DED^{-1}E^{-1}-1}&=\hsnorm{DE-ED}\\
+  &\le\hsnorm{(D-E)E}+\hsnorm{E(E-D)}=2\hsnorm{D-E},
+\end{aligned}
 \]
 using unitary invariance of $\hsnorm\cdot$.  With \eqref{eq:afix},
 \begin{equation}\label{eq:collapse}
