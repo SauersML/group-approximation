@@ -546,6 +546,39 @@ finite-dimensional vector space over an arbitrary field, is the theorem
 \leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one}
 \end{remark}
 
+\begin{remark}[status of the formal companion]\label{rem:leanstatus}
+The formalization of Theorem~\ref{thm:A} is being developed independently
+of the paper proof and is not used as evidence for any step of that proof.
+At the time of this version, the following ingredients have been checked by
+the Lean kernel (with warnings treated as errors): the operator-norm MF
+residual and its one-element non-MF criterion; the internal property~(T)
+construction and Shalom finitely presented Kazhdan-cover theorem; an explicit
+injective proper self-compression of the universal rank-four Kazhdan group;
+and the finite-dimensional identity
+\[
+ \bigl\|(1-P)UP\bigr\|_2^2
+   =\bigl\|PU(1-P)\bigr\|_2^2
+\]
+for every unitary matrix $U$ and orthogonal projection $P$.
+\leanverified{Sofic/NormMFResidualDetector}{GroupApproximation.not_isWeakMF_of_normMFInvisible}
+\leanverified{Leavitt/ShiftEndomorphism}{GroupApproximation.BinaryLeavitt.elementaryShift_injective}
+\leanverified{Sofic/UnitaryProjectionBalance}{GroupApproximation.hsNormSq_unitary_projection_balance}
+
+The remaining machine-checked endpoint is the finite-stage assembly which
+combines negative spectral-sector rounding, the adjoint Kazhdan projection,
+one-sided compression, and the displayed leakage balance.  In the source this
+is presently isolated as one explicit placeholder in
+\texttt{MarkedCompressionKill.lean}; consequently this version does
+\emph{not} claim that Theorem~\ref{thm:A} itself has already been formally
+verified.  A second, now useful, presentation refinement is to replace the
+base group by its internally constructed finitely presented Kazhdan cover:
+one chooses lifts of the finitely many compressed generator images.  The
+analytic argument uses only
+$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$, not an endomorphism of the
+cover.  This removes the need to import a separate finite-presentation theorem
+for the explicit self-compressing base.
+\end{remark}
+
 \begin{corollary}\label{cor:notRFD}
 The group $E$ of Definition~\ref{def:E} admits no injective
 homomorphism into $\GL(V)$ for any finite-dimensional vector space $V$
