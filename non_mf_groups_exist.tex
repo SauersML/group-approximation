@@ -10,6 +10,13 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+% Allow line breaks with stretch inside \nolinkurl'd Lean declaration names.
+\Urlmuskip=0mu plus 1mu\relax
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\.\do\_%
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
+  \do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
+  \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}
 \newif\ifanonymous\anonymousfalse
 \ifanonymous
   \newcommand{\leanrepo}{[repository link removed for anonymous review]}
@@ -3365,10 +3372,7 @@ essential.
 The mathematics in this paper and the accompanying machine-checked
 development were produced with extensive use of large language models,
 including Anthropic Claude and OpenAI Codex models in multiple concurrent
-interactive sessions.  Builds and audits ran on
-\ifanonymous a university high-performance computing
-cluster\else the Minnesota Supercomputing Institute
-cluster\fi.  Literature search was assisted by web-connected
+interactive sessions.  Literature search was assisted by web-connected
 model sessions.  These systems are computational tools, not authors.
 \ifanonymous
 The author reviewed the mathematical statements, proofs, formal endpoints,
