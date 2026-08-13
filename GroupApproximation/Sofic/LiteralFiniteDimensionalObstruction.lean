@@ -68,5 +68,14 @@ theorem map_literal_mark_eq_one_of_finite
   apply MonoidAlgebra.of_injective (R := ℚ)
   simpa [regularUnits] using hatOne
 
+/-- The literal mark has no detector in any finite quotient.  Since the mark
+is nontrivial, this is the precise marked-element failure of residual
+finiteness asserted in manuscript Corollary `cor:notRFD`. -/
+theorem no_finite_quotient_detects_literal_mark :
+    ¬ ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (φ : MarkedGroup →* Q), φ mark ≠ 1 := by
+  rintro ⟨Q, _, _, φ, hφ⟩
+  exact hφ (map_literal_mark_eq_one_of_finite φ)
+
 end LiteralFiniteDimensionalObstruction
 end GroupApproximation
