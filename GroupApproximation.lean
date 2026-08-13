@@ -455,3 +455,4 @@ for what the kernel cannot see, including files that are never compiled.
 -/
 import GroupApproximation.Sofic.ExplicitNonMFEndpoint
 import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
+import GroupApproximation.Sofic.NormMFConsequences
