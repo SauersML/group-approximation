@@ -27,6 +27,7 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Covers.KazhdanCover
@@ -132,6 +133,8 @@ boundary instead of conflating the two constructions.
   -- the canonical literal tuple unconditionally falsifies the printed finite
   quasi-identity; validity in all operator-MF targets remains conditional on
   the same presented-base property `(T)` input or an exact SOS certificate.
+* `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
+  finite-radius bound for every printed relator.
 
 ## Consequences and reusable obstruction APIs
 
@@ -346,6 +349,9 @@ export GroupApproximation.LiteralUniversalHorn
     operatorMF_satisfies_literalQuasiIdentity_of_isRationalCertificate
     literalMarkedGroup_not_satisfies_literalQuasiIdentity
     literalQuasiIdentity_separates_of_isRationalCertificate)
+export GroupApproximation.LiteralPresentationRadius
+  (markedWord_length_le relator_wordLength_le_34
+    relators_or_markedWord_length_le_34)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)

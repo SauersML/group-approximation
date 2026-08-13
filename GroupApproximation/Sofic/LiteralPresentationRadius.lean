@@ -27,7 +27,7 @@ attribute [local instance 10000]
 
 /-- The displayed marked commutator has reduced length at most sixteen. -/
 theorem markedWord_length_le : wordLength markedWord ≤ 16 := by
-  native_decide
+  decide
 
 private theorem transportedBaseRelator_length_le
     {r : FreeGroup Generator} (hr : r ∈ transportedBaseRelators) :
@@ -39,7 +39,7 @@ private theorem transportedBaseRelator_length_le
   rcases hq with
     rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl |
     rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
-    native_decide
+    decide
 
 private theorem stableRelator_length_le
     {r : FreeGroup Generator} (hr : r ∈ stableRelators) :
@@ -47,7 +47,7 @@ private theorem stableRelator_length_le
   classical
   rw [stableRelators] at hr
   obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
-  fin_cases i <;> native_decide
+  fin_cases i <;> decide
 
 private theorem lampRelator_length_le
     {r : FreeGroup Generator} (hr : r ∈ lampRelators) :
@@ -57,9 +57,9 @@ private theorem lampRelator_length_le
   rcases hr with hr | hr
   · simp only [Finset.mem_singleton] at hr
     subst r
-    native_decide
+    decide
   · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
-    fin_cases i <;> native_decide
+    fin_cases i <;> decide
 
 private theorem markedRelator_length_le
     {r : FreeGroup Generator} (hr : r ∈ markedRelators) :
@@ -69,9 +69,9 @@ private theorem markedRelator_length_le
   rcases hr with hr | hr
   · simp only [Finset.mem_singleton] at hr
     subst r
-    native_decide
+    decide
   · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
-    rcases i with i | i <;> fin_cases i <;> native_decide
+    rcases i with i | i <;> fin_cases i <;> decide
 
 /-- Every relator in the literal eight-generator presentation lies in the
 canonical reduced-word ball of radius `34`. -/

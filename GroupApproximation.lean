@@ -24,6 +24,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
+import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
