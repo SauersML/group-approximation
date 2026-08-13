@@ -18,7 +18,7 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-universe u v
+universe u v w x
 
 variable {Γ : Type u} [Group Γ]
 
@@ -27,7 +27,7 @@ trivial.  The explicit name records the field-general statement and avoids
 identifying it with any one topological convention for "almost periodic". -/
 def AllFiniteDimensionalRepresentationsTrivial
     (Γ : Type u) [Group Γ] : Prop :=
-  ∀ {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+  ∀ {k : Type v} {V : Type w} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V], ∀ π : Γ →* (Module.End k V)ˣ, π = 1
 
 /-- A homomorphism is trivial as soon as it kills an element which normally
@@ -240,10 +240,11 @@ theorem hom_eq_one_of_comp_embedding_map_eq_one
 precomposition and normal generation, to triviality of every
 finite-dimensional linear representation of the envelope. -/
 theorem allFiniteDimensionalRepresentationsTrivial
-    (hkill : ∀ {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+    (hkill : ∀ {k : Type w} {V : Type x}
+      [Field k] [AddCommGroup V] [Module k V]
       [FiniteDimensional k V],
       ∀ π : E →* (Module.End k V)ˣ, π w = 1) :
-    AllFiniteDimensionalRepresentationsTrivial D.Envelope := by
+    AllFiniteDimensionalRepresentationsTrivial.{v, w, x} D.Envelope := by
   intro k V _ _ _ _ π
   apply D.hom_eq_one_of_comp_embedding_map_eq_one π
   exact hkill (k := k) (V := V) (π.comp D.embedding)
