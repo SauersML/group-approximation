@@ -26,6 +26,7 @@ import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralBaseAffineQuotient
+import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
@@ -131,6 +132,9 @@ group is part of the Lean API.
   formally justified by the twenty relators: the raw presented base
   surjects onto the displayed affine matrix group.  No injectivity or
   backwards transfer of property `(T)` is asserted.
+* `LiteralBaseRelations.baseRelator_eq_one` and the named conjugation laws --
+  the twenty relations used intrinsically in the raw presented base, without
+  reflecting equality from the affine quotient.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
@@ -360,6 +364,10 @@ export GroupApproximation.LiteralNonMFLinearWitness
   (literal_mark_ne_one literal_finitelyPresented_nontrivial_mark)
 export GroupApproximation.LiteralBaseAffineQuotient
   (affineQuotient affineQuotient_surjective)
+export GroupApproximation.LiteralBaseRelations
+  (baseRelator_eq_one x_cube y_cube z_sq commute_v1_v2 commute_v1_v3
+    commute_v2_v3 x_conj_v1 x_conj_v2 x_conj_v3 y_conj_v1 y_conj_v2
+    y_conj_v3 z_conj_v1 z_conj_v2 z_conj_v3)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
 export GroupApproximation.LiteralUniversalHorn

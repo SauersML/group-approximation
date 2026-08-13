@@ -5,6 +5,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{enumitem}
 \usepackage[nopatch=footnote]{microtype}
+\usepackage{marginnote}
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,calc,positioning}
@@ -23,11 +24,11 @@
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
 \newcommand{\leanverified}[2]{%
-  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}%
+  \marginnote{\raggedright\normalfont\tiny\color{gray!70!black}%
   \ifanonymous\textsc{Lean 4}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\textsc{Lean 4}}\fi}}
 \newcommand{\leannote}[1]{%
-  \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}#1}}
+  \marginnote{\raggedright\normalfont\tiny\color{gray!70!black}#1}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
