@@ -1,5 +1,4 @@
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
-import GroupApproximation.Analysis.UniversalKazhdanCStarConsequences
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 
 /-!

@@ -27,6 +27,7 @@ import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.NormMatrixCorona
+import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Analysis.ReducedGroupCStarTrace
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
@@ -482,6 +483,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.c0MatrixSequenceIdeal_star_mem
 #print axioms GroupApproximation.isClosed_c0MatrixSequenceIdeal
 #print axioms GroupApproximation.norm_normMatrixCorona_mul_le
+#print axioms GroupApproximation.ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction
+#print axioms GroupApproximation.ChosenReducedGroupCStar.matrix_isometry_is_unitary
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
