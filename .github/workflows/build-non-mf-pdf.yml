@@ -73,12 +73,9 @@ jobs:
       - name: Check figure text boxes do not overlap
         run: python3 scripts/check_fig_overlap.py --tex "$TEX_FILE"
 
-      - name: Calibrate repository source audits
-        run: |
-          python3 scripts/check.py --self-test
-          python3 scripts/test_claim_map.py
-          python3 scripts/check.py
-
+      # The repository-wide Lean source audits run in the prover workflow;
+      # the paper PDF must publish from a clean tex regardless of the Lean
+      # tree's in-progress state, so they are deliberately not gated here.
       - name: Compile, lint, normalize, and validate PDF
         shell: bash
         run: |
