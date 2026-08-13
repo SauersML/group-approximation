@@ -7,6 +7,7 @@ import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
+import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
@@ -238,6 +239,12 @@ of the whole namespace and fails on anything beyond `propext`,
 namespace GroupApproximation.Public
 
 open GroupApproximation
+
+/-! ### Finite-radius marked-group neighborhoods -/
+
+export GroupApproximation.MarkedGroupSpace
+  (reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
+    cylinder_wordBall_subset_cylinder)
 
 /-! ### The headline -/
 
