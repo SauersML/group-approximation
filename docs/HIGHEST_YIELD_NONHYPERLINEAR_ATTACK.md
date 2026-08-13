@@ -249,6 +249,15 @@ recover finite-coordinate commutants, but it removes the vanishing-rank and
 XOR-projection issues for the carrier cut.  See
 `TRUE_RAW_INVOLUTION_SPECTRAL_CUT.md`.
 
+The carrier now lands in the correct finite coefficient factor.  The raw
+involution centralizes the compressed order-eight root Heisenberg group
+`H_0`, lies outside it, and generates `H_0 times C2`.  On the central
+`Z=-1` Pauli sector it therefore acts as `I_2 tensor r_hat`; its negative
+cut is a projection in the Pauli multiplicity algebra with relative trace
+exactly `1/2`.  The remaining bounded task is to compute the comb/hard
+transport on that same coefficient cut and obtain one-way leakage.  See
+`TRUE_RAW_PAULI_COEFFICIENT_CUT.md`.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the
