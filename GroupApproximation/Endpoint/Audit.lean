@@ -51,6 +51,7 @@ import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
@@ -545,6 +546,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona
 #print axioms GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
+#print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual
+#print axioms GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual
+#print axioms GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal
+#print axioms GroupApproximation.AffineSL3Scaling.scaling_package
 #print axioms GroupApproximation.ambient_hasKazhdanPropertyTComplex
 #print axioms GroupApproximation.universalLeavitt_profile_textbook
 #print axioms GroupApproximation.AffineSL3Doubling.doubling_package
