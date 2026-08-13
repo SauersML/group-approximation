@@ -258,12 +258,14 @@ literal eight-generator paper group.
 | 21:22 | `77369f38` | Focused axiom audit for the explicit non-MF theorem. |
 | 21:47--21:54 | `368332e7`, `c1a402a5`, `ddd09cca` | Final stabilization, coercion repair, and completion of the sequential proof. |
 | 21:56 | `85585534` | Explicit endpoint integration repaired. |
+| 22:07 | `ad30fc58`, `445a0353` | The standard cofinite norm-matrix corona and `IsOperatorMF` were defined directly; extraction from a surviving cofinite mark connected the existing finite-stage contradiction to explicit `not_isOperatorMF` endpoints. |
 
 The public endpoint proves that an independently constructed finitely
-presented group exists whose nontrivial marked element is invisible to every
-operator-norm matrix ultraproduct. The manuscript's concrete
-`Z^3 semidirect SL_3(Z)` presentation is proved in TeX, not identified with
-the formal witness.
+presented group is not MF in the Carrión--Dadarlat--Eckhardt, cofinite
+norm-matrix-corona sense. It also proves that its nontrivial marked element is
+invisible to every operator-norm matrix ultraproduct and hence that the group
+is not `IsWeakMF`. The manuscript's concrete `Z^3 semidirect SL_3(Z)`
+presentation is proved in TeX, not identified with the formal witness.
 
 ## Manuscript evolution after the first draft
 
@@ -467,6 +469,10 @@ WeakMFUltraproduct
     -> NormUltraproductSequentialExtraction
     -> separated MarkedOpAlmostRepresentation
 
+OperatorMF (standard cofinite norm-matrix corona)
+    -> direct extraction from any surviving marked element
+    -> separated MarkedOpAlmostRepresentation
+
 ApproxInvolutionCorner + NegativeCornerModel
     -> exact rounded involution
     -> nonempty negative corner
@@ -484,15 +490,17 @@ MarkedCompressionVectorChain
 
 negative corner says the same word tends to -1 in operator norm
     -> false_of_markedOpAlmostRepresentation
-    -> word_normMFInvisible
-    -> not_isWeakMF
+       |-> word_normMFInvisible -> not_isWeakMF
+       `-> not_isOperatorMF (via the direct cofinite extraction branch)
 
 JOIN
 
 ExplicitNonMFEndpoint.word_ne_one + universal analytic kill
     -> ExplicitNonMFTheorem.mark_normMFInvisible
-    -> explicit_finitelyPresented_not_isWeakMF
-    -> countable and finitely presented existence theorems
+       |-> explicit_finitelyPresented_not_isWeakMF
+       |      -> countable and finitely presented weak-MF endpoints
+       `-> explicit_finitelyPresented_not_isOperatorMF
+              -> finitely presented standard-MF existence theorem
 ```
 
 ### Why the formal base is different
@@ -523,6 +531,7 @@ logical premises, at the cost of a much larger import closure.
 | `Sofic/WeakMFUltraproduct` | Operator-norm matrix-ultraproduct target and weak-MF interface | Definition of a corona representation. |
 | `Sofic/NormMFResidualDetector` | `NormMFInvisible`; a nontrivial invisible element obstructs weak MF | MF radical/kernel language. |
 | `Sofic/NormUltraproductSequentialExtraction` | A surviving arbitrary-ultraproduct image yields one separated sequential almost representation | Choosing coordinate lifts and a diagonal subsequence. |
+| `Sofic/OperatorMF` | The standard cofinite norm-matrix corona, `IsOperatorMF`, and direct extraction from a surviving marked element | The paper's Carrión--Dadarlat--Eckhardt definition and the coordinate-lift reduction. |
 | `Sofic/ApproxInvolutionCorner` | Spectrally round an approximate central involution; its negative projection is eventually nonzero | Exact `e = (1-Theta(w))/2`. |
 | `Sofic/NegativeCornerModel` | Build the renormalized negative-corner almost representation | Corner-corona reduction. |
 | `Sofic/AdjointMatrix` | Vectorized conjugation representation and the dimension-free `2 ||U-V||` bound | `lem:beta`. |
@@ -554,11 +563,17 @@ argument.
 
 At the completion commits, the public endpoint and focused audit reported
 only `propext`, `Classical.choice`, and `Quot.sound`. No cited theorem was
-encoded as a project axiom. The manuscript explicitly says that its literal
-eight-generator presentation, the general finite-normal criterion, and the
-paper consequence section were paper-only at that point. Any later work on
-those items must be evaluated against its own commit and audit state rather
-than retroactively attributed to the completed central-involution endpoint.
+encoded as a project axiom. Commits `ad30fc58` and `445a0353` then closed a
+naming/interface gap: instead of relying on an informal comparison with
+`IsWeakMF`, the audit included direct endpoints for the standard cofinite
+property `IsOperatorMF`. This added an extraction interface, not a new
+analytic premise; the contradiction still terminates in the same
+`false_of_markedOpAlmostRepresentation` theorem. The manuscript explicitly
+says that its literal eight-generator presentation, the general finite-normal
+criterion, and the paper consequence section were paper-only at that point.
+Any later work on those items must be evaluated against its own commit and
+audit state rather than retroactively attributed to the completed
+central-involution endpoint.
 
 ## Complete recursive repository import graph
 
@@ -871,7 +886,8 @@ surviving norm-ultraproduct mark
     -> contradiction
 
 nontrivial realization + universal contradiction
-    -> finitely presented non-weak-MF group.
+    |-> finitely presented non-weak-MF group
+    `-> finitely presented non-MF group in the standard cofinite sense.
 ```
 
 ### What can be removed without affecting Theorem A

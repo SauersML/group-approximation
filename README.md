@@ -65,18 +65,22 @@ finite C*-algebras.
 ### Formal counterpart
 
 The Lean development verifies the marked-compression mechanism, a nontrivial
-Clifford mark, and both countable and finitely presented non-MF existence
-theorems. Its finitely presented witness is built independently from a
-Shalom cover; it is not claimed to be the literal eight-generator group `E`
-displayed in the paper. The manuscript marks that presentation, its general
-finite-normal criterion, and the consequences derived from it as paper-only.
+Clifford mark, and a finitely presented group that is not MF in the standard
+cofinite norm-matrix-corona sense. Separately, it proves that the mark dies in
+every operator-norm matrix ultraproduct and rules out the library's
+`IsWeakMF` predicate. Its finitely
+presented witness is built independently from a Shalom cover; it is not
+claimed to be the literal eight-generator group `E` displayed in the paper.
+The manuscript marks that presentation, its general finite-normal criterion,
+and the consequences derived from it as paper-only.
 
 Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/ExplicitNonMFTheorem.lean` | Public countable and finitely presented non-MF endpoints |
-| `Sofic/MarkedCompressionSequentialKill.lean` | Universal operator-norm kill theorem: `word_normMFInvisible` and `not_isWeakMF` |
+| `Sofic/ExplicitNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints |
+| `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
+| `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
 | `Sofic/NegativeCornerModel.lean`, `Sofic/ApproxInvolutionCorner.lean` | Involution rounding and negative-corner almost representations |
 | `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
@@ -89,6 +93,10 @@ Reading path, front door first:
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
 literature theorem is introduced as a Lean axiom.
+
+For the discovery history, first claims, full paper and Lean dependency
+graphs, and the role of computation, see
+[`docs/NON_MF_ARCHAEOLOGY.md`](docs/NON_MF_ARCHAEOLOGY.md).
 
 ## Property (TT)/T and the binary Leavitt algebra
 
