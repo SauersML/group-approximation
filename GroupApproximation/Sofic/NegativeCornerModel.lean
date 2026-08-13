@@ -679,16 +679,6 @@ theorem exists_negativeCorner_opAlmostRepresentation
   intro ε hε
   obtain ⟨N, hN⟩ := cornerUnitary_involution_eventually A hz hcentral ε hε
   refine ⟨N, fun n hn => ?_⟩
-  change ‖(cornerUnitary A z (max n N₀) z :
-      Matrix
-        {i : A.model (max n N₀) //
-          negPredicate
-            (A.map (max n N₀) z :
-              Matrix (A.model (max n N₀)) (A.model (max n N₀)) ℂ) i}
-        {i : A.model (max n N₀) //
-          negPredicate
-            (A.map (max n N₀) z :
-              Matrix (A.model (max n N₀)) (A.model (max n N₀)) ℂ) i} ℂ) + 1‖ ≤ ε
   exact hN (max n N₀) (le_trans hn (le_max_left n N₀))
 
 end NegativeCornerModel
