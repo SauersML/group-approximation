@@ -27,9 +27,6 @@
   \marginnote{\raggedright\normalfont\tiny\color{gray!70!black}%
   \ifanonymous\textsc{Lean 4}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\textsc{Lean 4}}\fi}}
-\newcommand{\leannote}[1]{%
-  \marginnote{\raggedright\normalfont\tiny\color{gray!70!black}#1}}
-
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
 \allowdisplaybreaks
@@ -160,7 +157,6 @@ an arbitrary positive sequence, as we do, is equivalent: at stage $n$, take
 the block sum of the first $n$ models and place each old unitary in its
 corresponding block.  Multiplicative defects are the maxima of the block
 defects, while every separation already obtained persists at all later stages.
-\leanverified{Sofic/OperatorMFIncreasingDimensions}{GroupApproximation.isOperatorMFIncreasing_iff}
 This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
 MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
@@ -363,7 +359,6 @@ satisfies
 \]
 More generally, every such $\pi$ kills the entire subgroup
 $\mathfrak D(H,\Gamma)$.
-\leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one_units}
 \leanverified{Criterion/CompressionCentralizerDefect}{GroupApproximation.compressionCentralizerDefect_le_ker}
 \end{mainthm}
 
@@ -403,25 +398,8 @@ $w_{\mathrm{BS}}$ to $z_0$; consequently the literal analogous presentation
 has a corona representation in which its marked involution survives.
 Nevertheless, every finite-dimensional representation of either group
 kills the corresponding marked element.
-\leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.markedWord_eq_zBS}
-\leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.zBS_ne_one}
-\leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.clifford_findim_kill}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.literalGroup_finitelyPresented}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.mark_central}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_surjective}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_sq}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill}
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill}
 \end{mainthm}
 
-\ifanonymous\else
-\leannote{In the last two conditional deductions, operator-MF of the
-ambient Clifford cyclic model is an explicit premise; the amenability and
-TWW inputs proving that premise remain in the paper proof.}
-\fi
 
 The quotient statement makes the comparison at the level actually used by
 the proof: the marked-word relations and witness mechanism survive when the
@@ -490,8 +468,6 @@ finitely presented group constructed above.  Indeed, as recently as March
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
-\ifanonymous\else
-\fi
 \end{mainthm}
 
 Here $\Cred(E)$ is not nuclear ($E$ contains an isomorphic copy of
@@ -1085,7 +1061,6 @@ The same finite- and infinite-rank Clifford groups with their distinguished
 central sign appear explicitly in \cite[Section~2]{SlofstraProfile}; for a modern toolbox of
 property~(T) groups with wreath-like lamp structure see \cite{CIOS}.
 \leanverified{Monsters/CliffordAlgebraLamp}{GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package}
-\leanverified{Monsters/CliffordAlgebraLamp}{GroupApproximation.CliffordAlgebraLamp.cliffordLamp_permutation_package}
 \end{construction}
 
 \begin{lemma}[linear model]\label{lem:linear}
@@ -1191,8 +1166,6 @@ by an explicit linear-algebraic model.
 \begin{corollary}\label{cor:iotainj}
 The canonical homomorphisms $\Gamma\to E$ and $\Gamma\to G$ are
 injective; in particular $E$ contains an isomorphic copy of $\Gamma$.
-\ifanonymous\else
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -1260,55 +1233,6 @@ $\pi(\ell)$, $\ell\in\Gamma$.  Hence $\pi$ kills all the generators
 in \eqref{eq:intrinsicdefect}, and normality of its kernel kills their
 normal closure.
 
-\ifanonymous\else
-\begin{remark}[formal verification]\label{rem:lean}
-Theorem~\ref{thm:B} is machine-checked in Lean~4: the statement above,
-for an arbitrary monoid homomorphism into the endomorphism algebra of a
-finite-dimensional vector space over an arbitrary field, is the theorem
-\texttt{map\_marked\_commutator\_eq\_one}, with the invertible variant
-\texttt{map\_marked\_commutator\_eq\_one\_units}.
-\leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one}
-\end{remark}
-
-\begin{remark}[status of the formal companion]\label{rem:leanstatus}
-The formal companion was developed independently of the paper proof and is
-not used as evidence for any paper step.  Its finite-stage analytic chain is
-now complete: negative-sector rounding, adjoint Kazhdan spectral projection,
-one-sided compressor capture, equal-rank reversal, marked-word collapse, and
-sequential extraction are assembled into a universal operator-norm MF-kernel
-theorem.
-\leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible}
-The public endpoint combines that theorem with the internally constructed
-finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
-giving the following unconditional, kernel-checked existence statement: there
-exists a finitely presented group which is not operator-MF.
-\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
-This formal marked group is an independent witness built from a
-noncomputably chosen Shalom cover of the Lean base; it is not the literal
-eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
-marked-compression mechanism and the finitely presented existence theorem,
-while the displayed presentation of $E$ is established by the paper proof.
-The companion also formalizes that literal eight-generator presentation,
-all of its displayed relations, and an exact affine--Clifford realization in
-which its marked central involution is nontrivial.
-\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
-It deliberately publishes no analytic endpoint for the literal group.
-Checking the printed relators in the concrete affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ gives only a quotient of the abstract
-presented base, and property~\textup{(T)} does not pass backwards from a
-quotient.  Since the companion proves neither presentation completeness nor
-property~\textup{(T)} for that abstract base, premise-parametrized non-MF and
-sum-of-squares-certificate placeholders have been removed from the Lean
-trust surface.  Its unconditional machine-checked non-MF endpoint is exactly
-the independent Shalom-cover witness above; no unconditional Lean endpoint
-is claimed for the literal group.
-The cover formulation needs only
-$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
-many compressed generators; it does not require an endomorphism of the cover.
-The endpoint and its universal marked-kernel theorem are included in the
-repository's explicit axiom audit.
-\end{remark}
-\fi
 
 \begin{corollary}\label{cor:notRFD}
 The group $E$ of Definition~\ref{def:E} admits no injective homomorphism
@@ -1319,9 +1243,6 @@ maximally almost periodic or residually finite, $\Cmax(E)$ is not residually
 finite-dimensional as a $C^*$-algebra, and no finite quotient of $E$ can
 witness $w\neq1$.
 \leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective}
-\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one}
-\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one_of_finite}
-\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark}
 \end{corollary}
 
 \begin{proof}
@@ -1573,9 +1494,6 @@ $t^n$, including negative powers, lie in $G_{\rm comp}(L)$.  Hence
  N_{\rm comp}\ \le\ N_{\rm orb}\ \le\ \mathfrak D(H,L).
 \end{equation}
 \leanverified{Sofic/KazhdanCompressionCore}{GroupApproximation.KazhdanCompressionCore}
-\leanverified{Sofic/KazhdanCompressionCore}{GroupApproximation.KazhdanCompressionCore.defectNormal}
-\leanverified{Sofic/IntrinsicCompressionDefect}{GroupApproximation.KazhdanCompressionCore.defectNormal_le_orbitDefectNormal}
-\leanverified{Sofic/IntrinsicCompressionDefect}{GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect}
 \end{definition}
 
 \begin{theorem}[finite-normal obstruction criterion]\label{thm:criterion}
@@ -1584,7 +1502,6 @@ $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
 normal subgroup with $F\subseteq N_{\mathrm{comp}}$.  Then every
 corona representation $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(f)=1$ for all $f\in F$.
-\leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
 \end{theorem}
 
 \begin{theorem}[normal-Kazhdan radical criterion]\label{thm:normalkazhdan}
@@ -1596,7 +1513,6 @@ $K\trianglelefteq H$ have property~(T).  If $K\le N_{\rm comp}$, then
 Thus every norm-matrix-corona representation of $H$ kills $K$.  In
 particular, if $K\neq1$, then $H$ is non-MF.  The obstruction subgroup
 need not be finite, central, or torsion.
-\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual}
 \end{theorem}
 
 \begin{proof}
@@ -1635,9 +1551,6 @@ then
 \[
  \operatorname{Rad}_{\rm MF}(H)=N_{\rm comp}.
 \]
-\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual}
-\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.existsUnique_defectNormal_factorization_to_normMatrixCorona}
-\leanverified{Sofic/NormalKazhdanMFRadical}{GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal}
 \end{corollary}
 
 \begin{theorem}[intrinsic normal-Kazhdan criterion]
@@ -2150,62 +2063,11 @@ which block the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
 \end{remark}
 
-\ifanonymous\else
-\begin{remark}[formal verification of the finite-stage argument]\label{rem:leanA}
-The formal companion proves the finite-normal obstruction criterion
-(Theorem~\ref{thm:criterion}) in the sequential finite-stage language,
-kernel-checked and without project axioms or unproven placeholders.
-Its finite-stage spectral-gap layer has a close
-recent predecessor in Bader's operator-norm almost-spectral-gap argument,
-recorded by Dogon--Vigdorovich and proved there from Ozawa's sum-of-squares
-characterization of property~(T) \cite[Theorem~7.10]{DogonVigdorovich}; the
-Lean development proves the particular matrix estimates it needs rather
-than importing code or a theorem axiom.  Its components include the passage
-from a separated
-corona image to operator-norm microstates,
-\leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
-the exact spectral rounding and negative corner, whose elementary analytic
-pipeline has the published antecedents
-\cite[Lemmas~2.2--2.3 and Proposition~2.4]{BDL},
-\leanverified{Sofic/ApproxInvolutionCorner}{GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup}
-and the finite-stage shadow of stable finiteness: equal-rank orthogonal
-projections with small one-sided leakage have small reverse leakage.
-\leanverified{Sofic/ProjectionRankFlip}{GroupApproximation.KazhdanCornerMatrices.norm_one_sub_mul_flip}
-For an arbitrary finite normal subgroup in the compression-defect normal
-closure, the coordinate Reynolds average, complementary spectral corner,
-and marker-free Kazhdan collapse first assemble into the universal
-ultraproduct-residual theorem
-\leanverified{Sofic/FiniteNormalCompressionObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual}
-The formal equivalence between ultraproduct invisibility and invisibility in
-all unitary-sequence presentations of cofinite norm-matrix coronas then gives
-the theorem in that equivalent presentation:
-\leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
-Here Lean defines the quotient of unitary matrix sequences by sequences
-converging to the identity.  The elementary polar-correction identification
-of this group with \(\U(\prod M_{d_n}/\bigoplus M_{d_n})\) is used
-mathematically but is not separately modeled as a C-star-algebra isomorphism
-in the companion.  Thus the linked declaration is not a definitional theorem
-about a formalized C-star quotient.
-The Clifford lamp group, central sign, and permutation action are also
-formalized,
-\leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
-and the assembled contradiction rules out every separated sequential
-microstate before yielding the arbitrary-corona kernel theorem.
-\leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation}
-\end{remark}
-\fi
 
 \section{Consequences}\label{sec:consequences}
 
 Throughout this section, ``corona representation'' and ``MF'' are as
 in Section~\ref{sec:prelim}.
-\ifanonymous\else
-\leannote{The counterparts below identify the unitary-sequence
-presentation of the cofinite-corona radical with its ultraproduct
-residual and cover portability and the largest-MF-quotient proposition;
-later consequences in this section are paper-proved unless they carry
-their own counterpart link.}
-\fi
 
 \subsection{The MF radical}
 
@@ -2219,15 +2081,6 @@ For a countable group $G_1$, the \emph{MF radical} is
 a normal subgroup of $G_1$.  This is the operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
 and of the approximation kernels studied in \cite{NST}.
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFResidual_eq_normMFResidual}
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot}
-\leannote{The counterpart intersects over unitary-sequence corona
-presentations; its predicate \texttt{NormMFInvisible} is an a priori
-stronger formulation quantifying over every operator-norm matrix
-ultraproduct and every ultrafilter, and the linked bridge theorem equates
-the two subgroups for countable groups.  Passing to the displayed C-star
-quotient uses the polar-correction identification recorded above, which
-is not itself part of the counterpart.}
 \end{definition}
 
 \begin{lemma}[portability]\label{lem:portable}
@@ -2240,7 +2093,6 @@ groups,
 the MF radical is functorial.  In particular, if
 $\varphi\colon E\to G_2$ satisfies $\varphi(w)\neq1$, then $G_2$ is
 not MF.
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.map_coronaMFResidual_le}
 \end{lemma}
 
 \begin{proof}
@@ -2266,10 +2118,6 @@ $G_1/R$.
 In particular $G_1$ is MF if and only if $R=\{1\}$.  The statement is
 presumably folklore once the radical is defined; we include a proof
 for completeness and claim no novelty for it.
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual}
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFQuotient_isOperatorMF}
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.existsUnique_coronaMFQuotient_factorization_to_isOperatorMF}
-\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot}
 \end{proposition}
 
 \begin{proof}
@@ -2337,8 +2185,6 @@ addition $G_1/N$ is MF, then
 Thus proving that a concrete defect subgroup is invisible and that its
 quotient is MF computes both the entire MF radical and the largest MF
 quotient.
-\leanverified{Sofic/NormMFResidualExactQuotient}{GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona}
-\leanverified{Sofic/NormMFResidualExactQuotient}{GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF}
 \end{corollary}
 
 \begin{proof}
@@ -2467,7 +2313,6 @@ $C^*$-algebra satisfying the UCT is quasidiagonal.
 
 \begin{lemma}[residually finite groups are MF]\label{lem:rfmf}
 Every countable residually finite group is MF.
-\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
 \end{lemma}
 
 \begin{proof}
@@ -2537,9 +2382,6 @@ whereas $ss^*\neq1$ makes $s$ a nonunit.  Equivalently, with
 $a=s^*$ and $b=s$ one has $ab=1$ but $ba\neq1$, so
 $\Cmax(G)$ is not directly finite.
 \leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne}
-\leannote{The counterpart covers the purely algebraic
-projection-compression implication only; $\Cmax(G)$ itself is not
-modelled.}
 
 It remains to check $Q_1\neq\bar p$.  Let
 $H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the
@@ -2593,8 +2435,6 @@ then the group is MF --- is recorded in \cite{Shulman}.
 \begin{corollary}[quotients]\label{cor:quotclosure}
 MF groups are not closed under quotients: the free group $F_8$ is
 MF, and $E$ is a quotient of $F_8$.
-\ifanonymous\else
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2621,8 +2461,6 @@ homomorphism $E\to W$ of that proof is surjective, and the central
 sign $z=-1\in\ClLamp(\bar X)$ satisfies
 $z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
-\ifanonymous\else
-\fi
 \end{proposition}
 
 \begin{proof}
@@ -2715,8 +2553,6 @@ Every corona representation of $\Lambda$, and every homomorphism from
 $\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
 linear representation of $\Lambda$, over every field, is trivial, and
 $\Lambda$ is perfect.
-\ifanonymous\else
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -2755,8 +2591,6 @@ as a subgroup and satisfies
 \]
 Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
 trivial.
-\ifanonymous\else
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -2788,8 +2622,6 @@ For the same universal Kazhdan group,
 \]
 whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
 is therefore neither finite nor stably finite, and hence is not MF.
-\ifanonymous\else
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2811,16 +2643,6 @@ $\Cmax(\Lambda_{\mathrm{univ}})$.  A proper isometry witnesses failure
 of finiteness and stable finiteness.
 \end{proof}
 
-\leannote{The deductions in this subsection are covered from explicit
-records carrying the Chatterji--Kassabov and universal-embedding data;
-those records are neither postulated as axioms nor claimed as proofs of
-the historical embedding theorems.  On the operator-algebra side the
-counterpart constructs the reduced group algebra with its canonical
-faithful trace, proves stable finiteness of all finite matrix
-amplifications, and covers the faithful-restriction obstruction and the
-transport of a proper isometry along an injective $C^*$-embedding; the
-maximal group-$C^*$ construction and the subgroup embedding theorem
-remain external inputs.}
 
 \subsection{The scaling family}
 
@@ -2901,7 +2723,6 @@ formal statement to $d=3$, where the presentation
 \begin{lemma}\label{lem:subgroupMF}
 Every subgroup of an MF group is MF; equivalently, a group
 containing a non-MF subgroup is not MF.
-\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
 \end{lemma}
 
 \begin{proof}
@@ -2956,8 +2777,6 @@ property is undecidable from finite presentations.
 \begin{theorem}[MF recognition is undecidable]\label{thm:mfrecognition}
 There is no algorithm which, given a finite group presentation, decides
 whether the presented group is MF.
-\ifanonymous\else
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -2973,8 +2792,6 @@ For any standard effective coding of finite group presentations, the set
 of codes presenting non-MF groups is not recursively enumerable.
 Consequently there is no sound and complete recursively verifiable system
 of finite certificates for non-MF-ness of finitely presented groups.
-\ifanonymous\else
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -3003,8 +2820,6 @@ decides any of the following five properties:
 \end{enumerate}
 For each property, the set of finite presentations on which it fails is
 not recursively enumerable.
-\ifanonymous\else
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -3026,10 +2841,6 @@ pullback argument as in Theorem~\ref{thm:nonmfre}, hence failure of
 recursive enumerability on the negative side.
 \end{proof}
 
-\leannote{The computability-theoretic pullbacks are covered from
-explicitly supplied effective Adian--Rabin transformations and their
-correctness equivalences; the historical test-group construction itself
-is not formalized.}
 
 \subsection{Uniform invisibility}
 
@@ -3044,7 +2855,6 @@ $r\ge1$ and every map $\varphi\colon H\to\U(M_r(\C))$ with
   \qquad\text{for all }g,h\in F_0,
 \]
 one has $\opnorm{\varphi(f_0)-1}<\varepsilon$.
-\leanverified{Sofic/NormMFPrintedConsequences}{GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility}
 \end{theorem}
 
 \begin{proof}
@@ -3084,8 +2894,10 @@ locally embeddable in MF groups are MF
 \cite[Proposition~3.2 and Remark~3.3(i)]{Dadarlat}, together with the standard
 fact that a marked limit locally embeds in its approximating groups; for a
 modern formulation see \cite[Theorem~2.16]{FFGS}.  We claim no novelty for
-that implication.  We record it because the word-ball certificate is useful
-here and because the full topological statement is machine-checked below.
+that implication.  Korchagin~\cite[Propositions~5 and~7]{Korchagin}
+records the equivalent uniform local criterion, with separation constant \(\sqrt{2}\).
+We record it because the word-ball certificate is useful
+here; the full topological statement will also be used below.
 
 \begin{theorem}[marked-space closedness and the literal cylinder]
 \label{thm:markedclosed}
@@ -3303,14 +3115,7 @@ The mathematics in this paper was developed and formalized with Anthropic's Clau
 Fable and OpenAI's GPT-5.6 Sol.
 
 \section*{Acknowledgements}
-\ifanonymous
 [Removed for anonymous review.]
-\else
-The formal verification companion to this paper, including a
-machine-checked proof of Theorem~\ref{thm:B} and the independently developed
-finite-stage universal marked-kernel endpoint, is available in the repository
-\texttt{\leanrepo}.
-\fi
 
 \begin{thebibliography}{TWW}
 
@@ -3507,6 +3312,11 @@ Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\mathrm{MIP}^*=\mathrm{RE}$},
 preprint, 2020, \arxiv{2001.04383}.
+
+\bibitem[Kor]{Korchagin}
+A.~Korchagin,
+\emph{MF-property for countable discrete groups},
+preprint, 2017, \arxiv{1704.06906}.
 
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
