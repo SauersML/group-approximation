@@ -44,23 +44,6 @@ open scoped Matrix.Norms.L2Operator
 
 universe u
 
-/-! ## Pointwise quadratic estimates -/
-
-theorem normSq_add_le (z w : ℂ) :
-    Complex.normSq (z + w) ≤ 2 * Complex.normSq z + 2 * Complex.normSq w := by
-  simp only [Complex.normSq_apply, Complex.add_re, Complex.add_im]
-  nlinarith [sq_nonneg (z.re - w.re), sq_nonneg (z.im - w.im)]
-
-theorem sum_normSq_matrix_add_le {Y : Type*} [Fintype Y]
-    (A C : Matrix Y Y ℂ) :
-    ∑ i : Y, ∑ j : Y, Complex.normSq (A i j + C i j) ≤
-      2 * ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) +
-        2 * ∑ i : Y, ∑ j : Y, Complex.normSq (C i j) := by
-  rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
-  refine Finset.sum_le_sum fun i _ ↦ ?_
-  rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
-  exact Finset.sum_le_sum fun j _ ↦ normSq_add_le (A i j) (C i j)
-
 /-- Arithmetic–geometric mean bound for the real part of a pairing; the
 elementary replacement for the Cauchy–Schwarz inequality. -/
 theorem re_star_dotProduct_le {Y : Type*} [Fintype Y]
@@ -119,12 +102,6 @@ theorem re_star_dotProduct_le {Y : Type*} [Fintype Y]
       ring
 
 /-! ## Frobenius mass bookkeeping -/
-
-/-- Division of both sides of an inequality by a positive constant. -/
-theorem div_le_div_of_le_pos {a b c : ℝ} (hc : 0 < c) (h : a ≤ b) :
-    a / c ≤ b / c := by
-  rw [div_le_div_iff₀ hc hc]
-  nlinarith
 
 /-- Entrywise mass is dominated by dimension times squared operator norm. -/
 theorem sum_normSq_le_card_mul_sq (Y : FiniteModel) (M : Matrix Y Y ℂ) :
@@ -242,167 +219,24 @@ theorem norm_le_one_of_mem_unitary {Y : Type*} [Fintype Y] [DecidableEq Y]
     rw [hzero]
     simp
 
-/-- Commutator mass control: the deviation of a unitary commutator from `1`
-is at most twice the deviation of the two unitaries, in normalized
-Hilbert–Schmidt distance (squared: factor `4`). -/
-theorem hsDistSq_commutator_one_le (Y : FiniteModel)
-    {Dm Mm : Matrix Y Y ℂ} (hD : Dm ∈ Matrix.unitaryGroup Y ℂ)
-    (hM : Mm ∈ Matrix.unitaryGroup Y ℂ) :
-    hsDistSq Y (Dm * Mm * Dmᴴ * Mmᴴ) 1 ≤ 4 * hsDistSq Y Mm Dm := by
-  classical
-  have hDstar : Dm * Dmᴴ = 1 := by
-    have h := Matrix.mem_unitaryGroup_iff.mp hD
-    rwa [Matrix.star_eq_conjTranspose] at h
-  have hMstar : Mm * Mmᴴ = 1 := by
-    have h := Matrix.mem_unitaryGroup_iff.mp hM
-    rwa [Matrix.star_eq_conjTranspose] at h
-  have hfactor : Dm * Mm * Dmᴴ * Mmᴴ - 1 =
-      (Dm * Mm - Mm * Dm) * (Dmᴴ * Mmᴴ) := by
-    have hexp : (Dm * Mm - Mm * Dm) * (Dmᴴ * Mmᴴ) =
-        Dm * Mm * Dmᴴ * Mmᴴ - Mm * (Dm * Dmᴴ) * Mmᴴ := by
-      noncomm_ring
-    rw [hexp, hDstar, Matrix.mul_one, hMstar]
-  have hBnorm : ‖Dmᴴ * Mmᴴ‖ ≤ 1 := by
-    calc
-      ‖Dmᴴ * Mmᴴ‖ ≤ ‖Dmᴴ‖ * ‖Mmᴴ‖ := Matrix.l2_opNorm_mul _ _
-      _ ≤ 1 * 1 := by
-        refine mul_le_mul ?_ ?_ (norm_nonneg _) zero_le_one
-        · rw [← Matrix.star_eq_conjTranspose, norm_star]
-          exact norm_le_one_of_mem_unitary hD
-        · rw [← Matrix.star_eq_conjTranspose, norm_star]
-          exact norm_le_one_of_mem_unitary hM
-      _ = 1 := one_mul _
-  have hMnorm : ‖Mm‖ ≤ 1 := norm_le_one_of_mem_unitary hM
-  -- mass estimates
-  have hmass1 : ∑ i : Y, ∑ j : Y,
-      Complex.normSq (((Dm * Mm - Mm * Dm) * (Dmᴴ * Mmᴴ)) i j) ≤
-      ∑ i : Y, ∑ j : Y, Complex.normSq ((Dm * Mm - Mm * Dm) i j) := by
-    calc
-      ∑ i : Y, ∑ j : Y,
-          Complex.normSq (((Dm * Mm - Mm * Dm) * (Dmᴴ * Mmᴴ)) i j) ≤
-          ‖Dmᴴ * Mmᴴ‖ ^ 2 * ∑ i : Y, ∑ j : Y,
-            Complex.normSq ((Dm * Mm - Mm * Dm) i j) :=
-        sum_normSq_mul_right_le _ _
-      _ ≤ 1 * ∑ i : Y, ∑ j : Y,
-          Complex.normSq ((Dm * Mm - Mm * Dm) i j) := by
-        refine mul_le_mul_of_nonneg_right ?_ ?_
-        · nlinarith [hBnorm, norm_nonneg (Dmᴴ * Mmᴴ)]
-        · exact Finset.sum_nonneg fun i _ ↦ Finset.sum_nonneg fun j _ ↦
-            Complex.normSq_nonneg _
-      _ = ∑ i : Y, ∑ j : Y,
-          Complex.normSq ((Dm * Mm - Mm * Dm) i j) := one_mul _
-  have hsplit : ∀ i j : Y, (Dm * Mm - Mm * Dm) i j =
-      ((Dm - Mm) * Mm) i j + (Mm * (Mm - Dm)) i j := by
-    intro i j
-    have h : Dm * Mm - Mm * Dm = (Dm - Mm) * Mm + Mm * (Mm - Dm) := by
-      noncomm_ring
-    rw [h]
-    rfl
-  have hmass2 : ∑ i : Y, ∑ j : Y,
-      Complex.normSq ((Dm * Mm - Mm * Dm) i j) ≤
-      4 * ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := by
-    have hstep : ∑ i : Y, ∑ j : Y,
-        Complex.normSq ((Dm * Mm - Mm * Dm) i j) ≤
-        2 * ∑ i : Y, ∑ j : Y, Complex.normSq (((Dm - Mm) * Mm) i j) +
-          2 * ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm * (Mm - Dm)) i j) := by
-      calc
-        ∑ i : Y, ∑ j : Y, Complex.normSq ((Dm * Mm - Mm * Dm) i j) =
-            ∑ i : Y, ∑ j : Y, Complex.normSq
-              (((Dm - Mm) * Mm) i j + (Mm * (Mm - Dm)) i j) := by
-          refine Finset.sum_congr rfl fun i _ ↦
-            Finset.sum_congr rfl fun j _ ↦ ?_
-          rw [hsplit i j]
-        _ ≤ _ := sum_normSq_matrix_add_le _ _
-    have hnn : (0 : ℝ) ≤
-        ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) :=
-      Finset.sum_nonneg fun i _ ↦ Finset.sum_nonneg fun j _ ↦
-        Complex.normSq_nonneg _
-    have hfirst : ∑ i : Y, ∑ j : Y,
-        Complex.normSq (((Dm - Mm) * Mm) i j) ≤
-        ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := by
-      calc
-        ∑ i : Y, ∑ j : Y, Complex.normSq (((Dm - Mm) * Mm) i j) ≤
-            ‖Mm‖ ^ 2 * ∑ i : Y, ∑ j : Y,
-              Complex.normSq ((Dm - Mm) i j) :=
-          sum_normSq_mul_right_le _ _
-        _ ≤ 1 * ∑ i : Y, ∑ j : Y, Complex.normSq ((Dm - Mm) i j) := by
-          refine mul_le_mul_of_nonneg_right ?_ ?_
-          · nlinarith [hMnorm, norm_nonneg Mm]
-          · exact Finset.sum_nonneg fun i _ ↦ Finset.sum_nonneg fun j _ ↦
-              Complex.normSq_nonneg _
-        _ = ∑ i : Y, ∑ j : Y, Complex.normSq ((Dm - Mm) i j) := one_mul _
-        _ = ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := by
-          refine Finset.sum_congr rfl fun i _ ↦
-            Finset.sum_congr rfl fun j _ ↦ ?_
-          rw [show (Dm - Mm) i j = -((Mm - Dm) i j) by
-            rw [Matrix.sub_apply, Matrix.sub_apply]; ring,
-            Complex.normSq_neg]
-    have hsecond : ∑ i : Y, ∑ j : Y,
-        Complex.normSq ((Mm * (Mm - Dm)) i j) ≤
-        ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := by
-      calc
-        ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm * (Mm - Dm)) i j) ≤
-            ‖Mm‖ ^ 2 * ∑ i : Y, ∑ j : Y,
-              Complex.normSq ((Mm - Dm) i j) :=
-          sum_normSq_mul_left_le _ _
-        _ ≤ 1 * ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := by
-          refine mul_le_mul_of_nonneg_right ?_ hnn
-          nlinarith [hMnorm, norm_nonneg Mm]
-        _ = ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := one_mul _
-    linarith [hstep, hfirst, hsecond]
-  -- assemble at the normalized level
-  rw [hsDistSq, hsDistSq]
-  by_cases hzero : Fintype.card Y = 0
-  · haveI hempty : IsEmpty Y := Fintype.card_eq_zero_iff.mp hzero
-    simp
-  · have hpos : (0 : ℝ) < Fintype.card Y := by
-      exact_mod_cast Nat.pos_of_ne_zero hzero
-    have hnum : ∑ i : Y, ∑ j : Y,
-        Complex.normSq ((Dm * Mm * Dmᴴ * Mmᴴ) i j -
-          (1 : Matrix Y Y ℂ) i j) ≤
-        4 * ∑ i : Y, ∑ j : Y, Complex.normSq (Mm i j - Dm i j) := by
-      calc
-      ∑ i : Y, ∑ j : Y,
-          Complex.normSq ((Dm * Mm * Dmᴴ * Mmᴴ) i j -
-            (1 : Matrix Y Y ℂ) i j) =
-          ∑ i : Y, ∑ j : Y,
-            Complex.normSq (((Dm * Mm - Mm * Dm) * (Dmᴴ * Mmᴴ)) i j) := by
-        refine Finset.sum_congr rfl fun i _ ↦
-          Finset.sum_congr rfl fun j _ ↦ ?_
-        rw [show (Dm * Mm * Dmᴴ * Mmᴴ) i j - (1 : Matrix Y Y ℂ) i j =
-            (Dm * Mm * Dmᴴ * Mmᴴ - 1) i j from rfl, hfactor]
-      _ ≤ ∑ i : Y, ∑ j : Y,
-          Complex.normSq ((Dm * Mm - Mm * Dm) i j) := hmass1
-      _ ≤ 4 * ∑ i : Y, ∑ j : Y, Complex.normSq ((Mm - Dm) i j) := hmass2
-      _ = 4 * ∑ i : Y, ∑ j : Y,
-          Complex.normSq (Mm i j - Dm i j) := by
-        refine congrArg (4 * ·) ?_
-        refine Finset.sum_congr rfl fun i _ ↦
-          Finset.sum_congr rfl fun j _ ↦ ?_
-        rw [Matrix.sub_apply]
-    calc
-      _ ≤ (4 * ∑ i : Y, ∑ j : Y, Complex.normSq (Mm i j - Dm i j)) /
-          Fintype.card Y := div_le_div_of_le_pos hpos hnum
-      _ = _ := by ring
-
 /-! ## Vectorization linearity -/
 
-@[simp] theorem matVec_sub {Y : Type*} [Fintype Y] [DecidableEq Y]
+@[simp] theorem matVec_sub {Y : Type*}
     (A C : Matrix Y Y ℂ) : rowVec (A - C) = rowVec A - rowVec C := by
   funext p
   rfl
 
-@[simp] theorem matVec_smul {Y : Type*} [Fintype Y] [DecidableEq Y]
+@[simp] theorem matVec_smul {Y : Type*}
     (c : ℂ) (A : Matrix Y Y ℂ) : rowVec (c • A) = c • rowVec A := by
   funext p
   rfl
 
-@[simp] theorem matVec_add {Y : Type*} [Fintype Y] [DecidableEq Y]
+@[simp] theorem matVec_add {Y : Type*}
     (A C : Matrix Y Y ℂ) : rowVec (A + C) = rowVec A + rowVec C := by
   funext p
   rfl
 
-theorem matVec_sum {Y : Type*} [Fintype Y] [DecidableEq Y]
+theorem matVec_sum {Y : Type*}
     {I : Type*} (s : Finset I) (A : I → Matrix Y Y ℂ) :
     rowVec (∑ i ∈ s, A i) = ∑ i ∈ s, rowVec (A i) := by
   funext p
@@ -715,14 +549,6 @@ theorem gammaAdjoint_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
           ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) * X *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
   exact conjDouble_mulVec_rowVec _ _
-
-theorem conjDouble_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
-    (U X : Matrix (B.model n) (B.model n) ℂ) :
-    (conjDouble U :
-        Matrix ((gammaAdjoint B D).model n) ((gammaAdjoint B D).model n) ℂ) *ᵥ
-      gammaRowVec B D n X = gammaRowVec B D n (U * X * Uᴴ) := by
-  exact conjDouble_mulVec_rowVec U X
 
 theorem sum_normSq_gammaRowVec (B : OpAlmostRepresentation E)
     (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
