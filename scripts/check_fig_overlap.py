@@ -30,10 +30,6 @@ PREAMBLE = r"""\documentclass[11pt]{amsart}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,backgrounds,calc,fit,positioning}
-%% The tagged full document supplies TikZ's accessibility alt key.  It has
-%% no effect on geometry, so the standalone bounding-box probe accepts and
-%% discards the value instead of requiring the tagging stack.
-\tikzset{alt/.code={}}
 %% Cross-references resolve only in the full document; stand in a fixed
 %% label of realistic width so text metrics match the real render.
 \renewcommand{\ref}[1]{9.9}

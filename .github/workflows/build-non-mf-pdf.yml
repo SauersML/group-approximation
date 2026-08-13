@@ -199,7 +199,6 @@ jobs:
           qpdf --check "$PDF_FILE"
           pdfinfo "$PDF_FILE"
           test "$(head -c 8 "$PDF_FILE")" = '%PDF-2.0'
-          pdfinfo "$PDF_FILE" | grep -Eq '^Tagged:[[:space:]]+yes$'
 
           pdfinfo -meta "$PDF_FILE" > build/pdf-metadata.xml
           grep -Eq 'xml:lang="en-US"|dc:language[^>]*>en-US<' build/pdf-metadata.xml

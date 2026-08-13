@@ -1,4 +1,4 @@
-\DocumentMetadata{lang=en-US,pdfversion=2.0,tagging=on}
+\DocumentMetadata{lang=en-US,pdfversion=2.0}
 \documentclass[11pt]{amsart}
 
 \usepackage[T1]{fontenc}
@@ -275,7 +275,7 @@ complementary finite-group corner.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={Two-lane proof diagram. A Kazhdan compression pattern and a finite normal subgroup feed coordinate spectral cuts. One-sided leakage plus equal ranks makes every compression defect Hilbert--Schmidt trivial, contradicting the complementary finite-group corner.},node distance=12mm and 7mm,
+\begin{tikzpicture}[node distance=12mm and 7mm,
     figbox/.append style={text width=3.25cm, minimum height=15mm}]
   \node[figbox] (pattern) {Kazhdan pattern\\
     $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
@@ -798,7 +798,7 @@ that failure after conjugating $d$ by $a$.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={A large ellipse for Gamma contains the smaller compressed copy t Gamma t inverse. Conjugation transports c to d, which centralizes the compressed copy; an element a outside it creates the marked commutator w.},x=1cm,y=1cm]
+\begin{tikzpicture}[x=1cm,y=1cm]
   \draw[line width=.5pt] (0,0) ellipse (4.5 and 1.55);
   \node[anchor=north west,font=\small] at (-4.15,1.2)
     {$\Gamma$};
@@ -827,7 +827,7 @@ $a\notin t\Gamma t^{-1}$ supplies the marked failure of centrality.}
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={Three-stage construction of E: the affine property-T base Gamma, its ascending HNN extension by the doubling map, and the final central marked involution w after adjoining c.},node distance=9mm]
+\begin{tikzpicture}[node distance=9mm]
   \node[figbox, text width=7.2cm] (base) {base
     $\Gamma=\Z^3\rtimes\SL_3(\Z)$:\ finitely presented\\ by
     \eqref{eq:gamma-presentation}, with property~(T)};
@@ -982,7 +982,7 @@ sites is needed; their Clifford generators then anticommute automatically.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={The Clifford witness moves the root lamp from Gamma to the distinct sites D Gamma and a D Gamma. Their Clifford generators anticommute, so the marked commutator is the nontrivial central sign.},node distance=10mm and 14mm]
+\begin{tikzpicture}[node distance=10mm and 14mm]
   \node[figbox, text width=2.5cm] (root) {root site $o=\Gamma$\\
     lamp $c_o$};
   \node[figbox, text width=2.5cm, right=of root] (shift) {shifted site
@@ -1667,7 +1667,7 @@ a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} depicts the geometry.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={Two equal-dimensional schematic subspaces inside the same finite-dimensional Hilbert space. Small leakage from the first into the complement of the second reverses because the ranks agree, forcing the projections to converge.},x=.94cm,y=.94cm]
+\begin{tikzpicture}[x=.94cm,y=.94cm]
   \draw[line width=.45pt] (-4.7,-1.75) rectangle (4.7,1.75);
   \node[anchor=north west,font=\footnotesize] at (-4.55,1.62)
     {$\mathcal H_n$};
@@ -3236,7 +3236,7 @@ summarizes the comparison.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[alt={Comparison chart. Exact finite-dimensional representations kill the marked word for both the Kazhdan-base and cyclic-base groups. Corona representations kill it only for the Kazhdan-base group; it survives through the amenable cyclic quotient.},node distance=8mm and 12mm,
+\begin{tikzpicture}[node distance=8mm and 12mm,
     figbox/.append style={text width=4.7cm, minimum height=18mm}]
   \node[figbox] (kbase) {$E$:\ the marked pattern over the Kazhdan base
     $\Gamma=\Z^3\rtimes\SL_3(\Z)$};
