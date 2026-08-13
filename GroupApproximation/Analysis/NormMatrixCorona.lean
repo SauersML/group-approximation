@@ -506,23 +506,23 @@ noncomputable instance normMatrixCoronaAlgebraStarRing :
 noncomputable instance normMatrixCoronaAlgebraCStarRing :
     CStarRing (NormMatrixCoronaAlgebra X) where
   norm_mul_self_le x := by
-    induction x using QuotientAddGroup.induction_on with
-    | _ a =>
-      rw [normMatrixCorona_star_mk]
-      change
-        ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
-            ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ ≤
-          ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (star a * a)‖
-      rw [norm_normMatrixCorona_mk_eq_limsup,
-        norm_normMatrixCorona_mk_eq_limsup]
-      rw [← pow_two]
-      rw [limsup_matrixNorm_sq X a]
-      apply le_of_eq
-      congr 1
+    obtain ⟨a, rfl⟩ :=
+      Ideal.Quotient.mk_surjective (I := c0MatrixSequenceIdeal X) x
+    refine le_of_eq ?_
+    have hpt : (fun n ↦ ‖a n‖ ^ 2) = fun n ↦ ‖(star a * a) n‖ := by
       funext n
-      have hcoord : (star a * a) n = star (a n) * a n := by
-        simp [lp.star_apply]
-      rw [hcoord, pow_two, CStarRing.norm_star_mul_self]
+      have hcoord : (star a * a) n = star (a n) * a n := by simp
+      rw [hcoord, CStarRing.norm_star_mul_self, sq]
+    have hmul :
+        star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a) *
+            Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a =
+          Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (star a * a) := by
+      rw [normMatrixCorona_star_mk]
+      exact ((Ideal.Quotient.mk (c0MatrixSequenceIdeal X)).map_mul
+        (star a) a).symm
+    rw [hmul, norm_normMatrixCorona_mk_eq_limsup,
+      norm_normMatrixCorona_mk_eq_limsup, ← pow_two,
+      limsup_matrixNorm_sq X a, hpt]
 
 /-- Audit pin: the concrete quotient norm satisfies the C-star identity. -/
 theorem norm_normMatrixCorona_star_mul_self
