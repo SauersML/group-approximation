@@ -73,13 +73,15 @@
 \author{\paperauthor}
 
 \begin{abstract}
-A countable discrete group is MF if it embeds into the unitary group of a
-norm quotient $\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$ of matrix
-algebras.  Whether every group is MF has been a longstanding open
-question; it is the operator-norm case of the family of metric
-approximation problems whose sofic (permutation/Hamming) case was solved only
-recently, and whose unnormalized Frobenius case was solved by De
-Chiffre, Glebsky, Lubotzky and Thom.  We construct an explicit finitely
+A countable discrete group is MF in the Carri\'on--Dadarlat--Eckhardt--
+Shulman sense if it embeds into the unitary group of a norm quotient
+$\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$ of matrix algebras.  Whether
+every group is MF has been a longstanding open question; it is the
+operator-norm case of a family of metric approximation problems whose
+normalized-Hamming (sofic) case was solved recently by OpenAI and
+subsequently generalized by Kun and Thom, and whose unnormalized
+Frobenius case was solved by De Chiffre, Glebsky, Lubotzky and Thom.  We
+construct an explicit finitely
 presented group $E$, together with a designated central involution
 $w\in E$, such that $w\neq 1$ but \emph{every} homomorphism from $E$ to
 the unitary group of \emph{every} norm quotient of matrix algebras kills
@@ -106,25 +108,31 @@ Let $(d_n)_{n\in\N}$ be a sequence of positive integers and let
 be the associated \emph{norm matrix corona}: bounded sequences of
 matrices modulo sequences converging to $0$ in operator norm.  Following
 Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
-if it embeds into some algebra of the form \eqref{eq:corona}; following
-the group-theoretic usage (see, e.g., \cite{Shulman}), a countable
-discrete group $E$ is \emph{MF} if there is an \emph{injective} group
+if it embeds into some algebra of the form \eqref{eq:corona}.  We use
+\emph{MF group} exclusively in the sense introduced by
+Carri\'on--Dadarlat--Eckhardt and used by Shulman \cite{CDE,Shulman}: a
+countable discrete group $E$ is MF if there is an \emph{injective} group
 homomorphism
 \[
   E\;\longrightarrow\;\U(\mathcal Q)
 \]
 for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
-with all defects measured in operator norm.  Residually finite groups
+with all defects measured in operator norm.  This qualification matters:
+Shulman notes that a strictly stronger group property has also been called
+MF \cite[Definition~3 and footnote~1]{Shulman}.  Residually finite groups
 are MF, amenable groups are MF as a consequence of the
 Tikuisis--White--Winter theorem \cite{TWW}, free products of amenable
 groups are MF, and a substantial permanence theory exists
 \cite{Shulman}.  Whether \emph{every} countable group is MF has remained
 open; it is the operator-norm member of the family of approximation
 problems surveyed in \cite{DGLT,BDL}, whose unnormalized-Frobenius case
-was solved negatively in \cite{DGLT} and whose permutation/Hamming case
-was first solved negatively in \cite{OAI}; Kun and Thom subsequently gave
-explicit nonsofic wreath-product examples \cite{KT}.  The operator-norm case resisted
+was solved negatively in \cite{DGLT}.  OpenAI constructed the first
+nonsofic group \cite{OAI}; Kun and Thom subsequently analyzed its
+underlying mechanism and obtained nonsofic generalized wreath products
+\cite{KT}.  In the sofic problem the metric is normalized Hamming distance
+on permutation groups, not rank distance; the three metric conventions are
+stated together in \cite[Introduction]{Shulman}.  The operator-norm case resisted
 both methods: the cohomological argument of \cite{DGLT} needs a
 submultiplicative norm interacting with a trace, while Hamming-metric
 arguments do not control operator-norm defects.
@@ -154,9 +162,12 @@ In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
 \end{mainthm}
 
-The mechanism is a marked-word conversion of a $C^*$-algebraic
-non-finiteness phenomenon into a group-level kernel theorem.  It has
-five steps, each elementary or classical in isolation.
+The proof is a marked-word conversion of a $C^*$-algebraic finiteness
+argument into a group-level kernel theorem.  For orientation, it can be
+organized into the following five steps.  The surrounding
+compression/lamp architecture has close antecedents; the point specific
+to this paper is its operator-norm realization and the resulting
+universal marked kernel.
 
 \begin{enumerate}
   \item\emph{Central corner.}  If $\Theta(w)\neq 1$, then
@@ -1053,61 +1064,74 @@ The remaining finite-stage steps are under active formalization.
 \end{remark}
 \fi
 
-\section{Necessity of property (T)}\label{sec:necessity}
+\section{The cyclic-base comparison}\label{sec:necessity}
 
 We prove Theorem~\ref{thm:C}.  Recall the setting: $G_0=\mathrm{BS}(1,2)$
 with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
 $t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
-$E_0=C(X_0)\rtimes G_0$ with central sign $z_0=-1\in C(X_0)$ as in
+$E_0=\ClLamp(X_0)\rtimes G_0$ with central sign
+$z_0=-1\in\ClLamp(X_0)$ as in
 Construction~\ref{con:clifford}.
 
 \begin{proof}[Proof of Theorem~\ref{thm:C}]
 \emph{$z_0\neq1$:} immediate from Construction~\ref{con:clifford},
-since $C(X_0)\le\Cl(X_0)^\times$ and $\Cl(X_0)\neq0$.
+since $\ClLamp(X_0)\le\Cl(X_0)^\times$ and $\Cl(X_0)\neq0$.
 
-\emph{Amenability:} every finitely generated subgroup of $C(X_0)$ is
+\emph{Amenability:} every finitely generated subgroup of $\ClLamp(X_0)$ is
 contained in the subgroup generated by $\pm1$ and finitely many
 $c_x$, which is a finite $2$-group (it has order at most
 $2^{k+1}$ for $k$ sites, since every element is $\pm$ a reduced product
-of distinct generators).  Hence $C(X_0)$ is locally finite, so
+of distinct generators).  Hence $\ClLamp(X_0)$ is locally finite, so
 amenable.  The group $G_0=\mathrm{BS}(1,2)\cong\Z[1/2]\rtimes\Z$ is
 metabelian, so amenable.  As an extension of the amenable $G_0$ by the
-amenable $C(X_0)$, the group $E_0$ is amenable.
+amenable $\ClLamp(X_0)$, the group $E_0$ is amenable.
 
-\emph{MF:} by Fact~\ref{fact:tww}, the amenable group $E_0$ is MF, and
+\emph{MF:} by Facts~\ref{fact:tww} and~\ref{fact:qdcorona}, the amenable
+group $E_0$ is MF, and
 an MF embedding $E_0\hookrightarrow\U(\mathcal Q)$ is injective, so the
 image of $z_0$ is a nontrivial (self-adjoint) unitary in the corona:
 the central sign survives.
 
-\emph{Finite-dimensional sterility persists:} $E_0$ contains the
-pattern of Theorem~\ref{thm:B} with $H=E_0$, $\Gamma=\Gamma_0$,
-$t=t$, $c=c_{o}$ ($o=\Gamma_0\in X_0$, fixed by $\Gamma_0$), and
-$a=\gamma_0\in\Gamma_0$.  We have
-$t\Gamma_0t^{-1}=\langle\gamma_0^2\rangle\subseteq\Gamma_0$ and
-$[c_o,\Gamma_0]=1$.  Moreover $\gamma_0t\Gamma_0\neq t\Gamma_0$ in
+\emph{The quotient from the literal presentation:} assign
+$\gamma_0\mapsto\gamma_0$, $t\mapsto t$, and $c\mapsto c_o$, where
+$o=\Gamma_0\in X_0$.  The point $o$ is fixed by $\Gamma_0$, so
+$[c_o,\gamma_0]=1$.  Also
+$t\Gamma_0t^{-1}=\langle\gamma_0^2\rangle\subseteq\Gamma_0$.
+Moreover $\gamma_0t\Gamma_0\neq t\Gamma_0$ in
 $G_0$: otherwise $t^{-1}\gamma_0t\in\Gamma_0$; in the faithful affine
 model $\mathrm{BS}(1,2)=\Z[1/2]\rtimes\Z$ with
 $\gamma_0=(1,0)$ and $t=(0,1)$ acting by multiplication by $2$, we
 compute $t^{-1}\gamma_0t=(\tfrac12,0)\notin\Gamma_0=\Z\times\{0\}$.
-Hence
+Consequently
 \[
-  \bigl[\,tc_ot^{-1},\;\gamma_0(tc_ot^{-1})\gamma_0^{-1}\bigr]
-  =[c_{t\Gamma_0},c_{\gamma_0t\Gamma_0}]=z_0
+ w_{\mathrm{BS}}\longmapsto
+ [c_{t\Gamma_0},c_{\gamma_0t\Gamma_0}]=z_0.
 \]
-in $E_0$, and Theorem~\ref{thm:B} says every finite-dimensional
-representation of $E_0$, over every field, kills $z_0$.  Since
-$z_0\neq1$, the group $E_0$ is not residually finite-dimensional.
+The image is central of order two, so every relator of
+$E_{\mathrm{BS}}$ is respected.  The resulting homomorphism is surjective:
+$\gamma_0,t$ generate $G_0$, the conjugates of $c_o$ give all $c_x$ because
+$G_0$ acts transitively on $X_0$, and their commutators contain $z_0$.
+Composing this quotient with the MF embedding of $E_0$ gives the asserted
+corona representation of $E_{\mathrm{BS}}$.
+
+\emph{The finite-dimensional obstruction persists:} $E_0$ contains the
+pattern of Theorem~\ref{thm:B} with $H=E_0$, $\Gamma=\Gamma_0$,
+$t=t$, $c=c_{o}$ ($o=\Gamma_0\in X_0$, fixed by $\Gamma_0$), and
+$a=\gamma_0\in\Gamma_0$.  We have
+$t\Gamma_0t^{-1}=\langle\gamma_0^2\rangle\subseteq\Gamma_0$ and
+$[c_o,\Gamma_0]=1$.  Thus Theorem~\ref{thm:B} says every
+finite-dimensional representation of $E_0$, over every field, kills $z_0$.
+Applying the same theorem directly to the displayed presentation of
+$E_{\mathrm{BS}}$ shows that every finite-dimensional representation kills
+$w_{\mathrm{BS}}$.
 \end{proof}
 
 \begin{remark}
-Theorem~\ref{thm:C} calibrates Theorem~\ref{thm:A} exactly.  The two
-constructions differ in a single hypothesis --- property (T) of the
-base --- and the conclusion flips.  In particular no proof of
-Theorem~\ref{thm:A} can avoid using property (T) (or some substitute
-producing the fixed-space projection inside the corona), and the
-elementary Theorem~\ref{thm:B} is genuinely weaker than
-Theorem~\ref{thm:A}: MF approximations of $E_0$ exist even though
-finite-dimensional representations all kill the sign.
+Theorem~\ref{thm:C} shows that the argument cannot be generalized merely by
+deleting its fixed-space rigidity input.  The elementary
+Theorem~\ref{thm:B} is genuinely weaker than the corona conclusion:
+$E_0$ has MF approximations even though its finite-dimensional
+representations all kill the sign.
 \end{remark}
 
 \section{Limitations: Hilbert--Schmidt metrics and hyperlinearity}\label{sec:limits}
@@ -1127,25 +1151,24 @@ $\Ad U_{g,n}$ need not assemble into a homomorphism into any norm
 corona.  One can instead pass to the conjugation representation on
 $L^2(\mathcal M)$, which is an honest representation of $E$.
 
-Second, and decisively, Lemma~\ref{lem:finite} is then unavailable:
+The tracial ultraproduct $\mathcal M$ itself is a finite von Neumann algebra.
+Second, and decisively, Lemma~\ref{lem:finite} is unavailable only after the
+argument passes to its conjugation action:
 $B(L^2(\mathcal M))$ is properly infinite, and the Kazhdan projections
 onto the fixed spaces of $\Gamma$ and of $t\Gamma t^{-1}$, though
 unitarily equivalent via the shift and nested by the same argument as
 in Lemma~\ref{lem:order}, may satisfy a \emph{proper} inclusion
-$P<\beta(t)P\beta(t)^*$: exactly the unilateral-shift phenomenon.  The
-normalized traces of the two fixed-space projections agree, so the
-discrepancy is a trace-zero corner, which can moreover be diluted
-arbitrarily by tensoring a hypothetical microstate with an auxiliary
-regular representation; no normalized-rank argument can force it to be
-visible.  In particular the present paper proves nothing about
+$P<\beta(t)P\beta(t)^*$: exactly the unilateral-shift phenomenon.  There is
+no normalized finite trace on $B(L^2(\mathcal M))$ with which to compare
+these projections.  In particular the present paper proves nothing about
 hyperlinearity or Connes embeddability of $E$, and nothing about the
 sofic-versus-hyperlinear problem.
 
-The precise dividing line is thus: \emph{operator-norm matrix models
+The dividing line in the present argument is thus: \emph{operator-norm matrix models
 form a stably finite world, in which property (T) compression is
 rigid; tracial matrix models form a properly infinite world at the
-level of their conjugation actions, in which the same compression can
-hide in a trace-zero corner.}
+level of their conjugation actions, in which the same projection comparison
+need not collapse to equality.}
 
 \section*{Acknowledgements}
 \ifanonymous
