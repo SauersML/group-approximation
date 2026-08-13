@@ -20,13 +20,6 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
       AffineSL3Doubling.a ∉ Set.range ⇑AffineSL3Doubling.alpha
 ```
 
-## `GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup`
-
-```lean
-∀ {Y : Type u_1} [inst : Fintype Y] [inst_1 : DecidableEq Y] (U : Matrix Y Y ℂ),
-  ApproxInvolutionCorner.roundedInvolution U ∈ Matrix.unitaryGroup Y ℂ
-```
-
 ## `GroupApproximation.BinaryLeavitt.K1_trivial`
 
 ```lean
@@ -364,38 +357,6 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 ∃ E x, Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
 ```
 
-## `GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package`
-
-```lean
-∀ (X : Type u_1),
-  CliffordAlgebraLamp.zGen X ^ 2 = 1 ∧
-    CliffordAlgebraLamp.zGen X ≠ 1 ∧
-      CliffordAlgebraLamp.zGen X ∈ Subgroup.center ↥(CliffordAlgebraLamp.lampGroup X) ∧
-        (∀ (x : X), CliffordAlgebraLamp.lampGen X x ^ 2 = 1) ∧
-          ∀ (x y : X),
-            x ≠ y →
-              ⁅CliffordAlgebraLamp.lampGen X x, CliffordAlgebraLamp.lampGen X y⁆ =
-                CliffordAlgebraLamp.zGen X
-```
-
-## `GroupApproximation.CliffordAlgebraLamp.cliffordLamp_permutation_package`
-
-```lean
-∀ (X : Type u_1),
-  (∀ (σ : Equiv.Perm X) (x : X),
-      ((CliffordAlgebraLamp.permHom X) σ) (CliffordAlgebraLamp.lampGen X x) =
-        CliffordAlgebraLamp.lampGen X (σ x)) ∧
-    ∀ (σ : Equiv.Perm X),
-      ((CliffordAlgebraLamp.permHom X) σ) (CliffordAlgebraLamp.zGen X) =
-        CliffordAlgebraLamp.zGen X
-```
-
-## `GroupApproximation.CliffordLamp.sign_ne_one`
-
-```lean
-∀ (X : Type u), CliffordLamp.sign X ≠ 1
-```
-
 ## `GroupApproximation.CompleteMatrixFamily.matrixAlgEquiv`
 
 ```lean
@@ -425,32 +386,6 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 (G : Type u_1) →
   (Γ : Type u_2) →
     (J : Type u_3) → [Group G] → [Group Γ] → [Group J] → Type (max (max u_1 u_2) u_3)
-```
-
-## `GroupApproximation.CyclicBaseCalibration.clifford_findim_kill`
-
-```lean
-∀ {k : Type u_1} {V : Type u_2} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [FiniteDimensional k V]
-  (pi : CyclicBaseCalibration.CliffordBS →* (Module.End k V)ˣ),
-  pi
-      (markedCompressionWord CyclicBaseCalibration.tBS CyclicBaseCalibration.gammaBS
-        CyclicBaseCalibration.cBS) =
-    1
-```
-
-## `GroupApproximation.CyclicBaseCalibration.markedWord_eq_zBS`
-
-```lean
-markedCompressionWord CyclicBaseCalibration.tBS CyclicBaseCalibration.gammaBS
-    CyclicBaseCalibration.cBS =
-  CyclicBaseCalibration.zBS
-```
-
-## `GroupApproximation.CyclicBaseCalibration.zBS_ne_one`
-
-```lean
-CyclicBaseCalibration.zBS ≠ 1
 ```
 
 ## `GroupApproximation.DiagonalElementary.firstDiagonalUnit_mem_of_mem_commutator`
@@ -525,13 +460,6 @@ CyclicBaseCalibration.zBS ≠ 1
       ∀ (M : ℕ),
         Negligible (fun n => ↑(Fintype.card (S.model n).carrier)) fun n =>
           ↑(smallBlockVertices (D.blocks n) M).card
-```
-
-## `GroupApproximation.ExplicitLinearModel.doubling_linear_model_package`
-
-```lean
-Function.Injective ⇑ExplicitLinearModel.conjD ∧
-  ExplicitLinearModel.v1G ∉ Set.range ⇑ExplicitLinearModel.conjD
 ```
 
 ## `GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one`
@@ -641,40 +569,6 @@ Function.Injective ⇑ExplicitLinearModel.conjD ∧
     ∀ (f : (k : κ) → (X k).vertex.carrier → ℝ),
       (∀ (k : κ), FiniteMultiGraph.IsMedian (f k) (1 / 2)) →
         Nonempty κ → ∑ k, ∑ x, |f k x - 1 / 2| ≤ 1 / h * ∑ k, (X k).edgeVariation (f k)
-```
-
-## `GroupApproximation.FixedSpaceCompression.invariantSubmodule_le_map`
-
-```lean
-∀ {Γ : Type u} [inst : Group Γ] {H : Type v} [inst_1 : Group H] {E : Type w}
-  [inst_2 : NormedAddCommGroup E] [inst_3 : InnerProductSpace ℝ E] (ρ : H →* E ≃ₗᵢ[ℝ] E)
-  (ι : Γ →* H) (t : H),
-  (∀ (γ : Γ), ∃ δ, t * ι γ * t⁻¹ = ι δ) →
-    KazhdanOrthogonal.invariantSubmodule (ρ.comp ι) ≤
-      Submodule.map (↑(ρ t).toLinearEquiv) (KazhdanOrthogonal.invariantSubmodule (ρ.comp ι))
-```
-
-## `GroupApproximation.FixedSpaceDefect.compressionCentralizerDefect_le_ker`
-
-```lean
-∀ {H K E : Type} [inst : Group H] [inst_1 : Group K] [inst_2 : NormedAddCommGroup E]
-  [inst_3 : InnerProductSpace ℝ E] (ρ : H →* E ≃ₗᵢ[ℝ] E) (φ : H →* K) (v : K → E),
-  Function.Injective v →
-    (∀ (g h : H), (ρ g) (v (φ h)) = v (φ (g * h * g⁻¹))) →
-      ∀ (L : Subgroup H),
-        compressionSet L ⊆
-            ↑(FixedSpaceStabilizer.stabilizer ρ
-                (KazhdanOrthogonal.invariantSubmodule (ρ.comp L.subtype))) →
-          compressionCentralizerDefect L ≤ φ.ker
-```
-
-## `GroupApproximation.FixedSpaceStabilizer.compressionGroup_le_stabilizer`
-
-```lean
-∀ {H : Type} [inst : Group H] {E : Type} [inst_1 : NormedAddCommGroup E]
-  [inst_2 : InnerProductSpace ℝ E] (ρ : H →* E ≃ₗᵢ[ℝ] E) (L : Subgroup H) (S : Submodule ℝ E),
-  compressionSet L ⊆ ↑(FixedSpaceStabilizer.stabilizer ρ S) →
-    compressionGroup L ≤ FixedSpaceStabilizer.stabilizer ρ S
 ```
 
 ## `GroupApproximation.FreeElementaryPropertyT.controlSet_isKazhdanPair`
@@ -908,12 +802,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
   Ultrafilter ι → (X : ι → FiniteModel) → ((i : ι) → Equiv.Perm (X i).carrier) → Prop
 ```
 
-## `GroupApproximation.IsOperatorMF.subgroup`
-
-```lean
-∀ {G : Type u} [inst : Group G], IsOperatorMF G → ∀ (H : Subgroup G), IsOperatorMF ↥H
-```
-
 ## `GroupApproximation.IsSofic`
 
 ```lean
@@ -930,121 +818,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 
 ```lean
 (G : Type u_2) → [Group G] → Prop
-```
-
-## `GroupApproximation.KazhdanCompressionCore`
-
-```lean
-(Γ : Type) → (E : Type u) → [Group Γ] → [Group E] → Type u
-```
-
-## `GroupApproximation.KazhdanCompressionCore.defectNormal`
-
-```lean
-{Γ : Type} →
-  {E : Type u} → [inst : Group Γ] → [inst_1 : Group E] → KazhdanCompressionCore Γ E → Subgroup E
-```
-
-## `GroupApproximation.KazhdanCompressionCore.defectNormal_le_orbitDefectNormal`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] (C : KazhdanCompressionCore Γ E),
-  C.defectNormal ≤ C.orbitDefectNormal
-```
-
-## `GroupApproximation.KazhdanCompressionCore.existsUnique_defectNormal_factorization_to_normMatrixCorona`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E),
-  HasKazhdanPropertyT ↥C.defectNormal →
-    ∀ (X : ℕ → FiniteModel),
-      (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) →
-        ∀ (rho : E →* NormMatrixCoronaUnitary X),
-          ∃! rhoBar, rhoBar.comp (QuotientGroup.mk' C.defectNormal) = rho
-```
-
-## `GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
-  F ≤ C.defectNormal → F ≤ normMFResidual E
-```
-
-## `GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
-  F ≤ C.defectNormal →
-    ∀ (X : ℕ → FiniteModel),
-      (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) →
-        ∀ (rho : E →* NormMatrixCoronaUnitary X), F ≤ rho.ker
-```
-
-## `GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
-  F ≤ C.defectNormal →
-    ∀ {f₀ : E},
-      f₀ ∈ F →
-        ∀ (ε : ℝ),
-          0 < ε →
-            ∃ δ F₀,
-              0 < δ ∧
-                ∀ (Y : FiniteModel) (φ : E → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
-                  (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) → ‖↑(φ f₀) - 1‖ < ε
-```
-
-## `GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E),
-  HasKazhdanPropertyT ↥C.defectNormal →
-    IsOperatorMF (E ⧸ C.defectNormal) → normMFResidual E = C.defectNormal
-```
-
-## `GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E), C.normalKazhdanDefectPart ≤ normMFResidual E
-```
-
-## `GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (C : KazhdanCompressionCore Γ E) (K : Subgroup E) [K.Normal],
-  HasKazhdanPropertyT ↥K → K ≤ C.defectNormal → K ≤ normMFResidual E
-```
-
-## `GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect`
-
-```lean
-∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] (C : KazhdanCompressionCore Γ E),
-  C.orbitDefectNormal ≤ compressionCentralizerDefect C.iota.range
-```
-
-## `GroupApproximation.KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation`
-
-```lean
-∀ {E : Type u} [inst : Group E] {Γ : Type} [inst_1 : Group Γ]
-  (D : MarkedCompressionInclusionData Γ E) (A : MarkedOpAlmostRepresentation E D.word), False
-```
-
-## `GroupApproximation.KazhdanCornerMatrices.norm_one_sub_mul_flip`
-
-```lean
-∀ {Y : Type u_1} [inst : Fintype Y] [inst_1 : DecidableEq Y] {p q : Matrix Y Y ℂ},
-  KazhdanCornerMatrices.IsOrthogonalProjectionMatrix p →
-    KazhdanCornerMatrices.IsOrthogonalProjectionMatrix q →
-      p.rank = q.rank →
-        ∀ {ε : ℝ}, 0 ≤ ε → ε < 1 → ‖(1 - q) * p‖ ≤ ε → ‖(1 - p) * q‖ ≤ ε / √(1 - ε ^ 2)
 ```
 
 ## `GroupApproximation.KunDecomposition.exists_expanderDecomposition`
@@ -1792,68 +1565,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A), L.z * L.z = 1
 ```
 
-## `GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill`
-
-```lean
-∀ {k : Type u_1} {V : Type u_2} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [FiniteDimensional k V]
-  (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ),
-  pi LiteralCyclicCalibration.mark = 1
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.literalGroup_finitelyPresented`
-
-```lean
-Group.IsFinitelyPresented LiteralCyclicCalibration.LiteralGroup
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.mark_central`
-
-```lean
-∀ (g : LiteralCyclicCalibration.LiteralGroup), Commute LiteralCyclicCalibration.mark g
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central`
-
-```lean
-∀ (g : LiteralCyclicCalibration.RealizedQuotient),
-  Commute (LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) g
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one`
-
-```lean
-LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_sq`
-
-```lean
-LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ^ 2 = 1
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val`
-
-```lean
-↑(LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) =
-  CyclicBaseCalibration.zBS
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.quotientMap_surjective`
-
-```lean
-Function.Surjective ⇑LiteralCyclicCalibration.quotientMap
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill`
-
-```lean
-∀ {k : Type u_1} {V : Type u_2} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [FiniteDimensional k V]
-  (pi : LiteralCyclicCalibration.RealizedQuotient →* (Module.End k V)ˣ),
-  pi (LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) = 1
-```
-
 ## `GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
 
 ```lean
@@ -1862,46 +1573,10 @@ Function.Surjective ⇑LiteralCyclicCalibration.quotientMap
   (π : LiteralNonMFPresentation.MarkedGroup →* (Module.End k V)ˣ), ¬Function.Injective ⇑π
 ```
 
-## `GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one`
-
-```lean
-∀ {k : Type u} {V : Type v} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [FiniteDimensional k V]
-  (π : LiteralNonMFPresentation.MarkedGroup →* (Module.End k V)ˣ),
-  π LiteralNonMFPresentation.mark = 1
-```
-
-## `GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one_of_finite`
-
-```lean
-∀ {Q : Type u_1} [inst : Group Q] [Finite Q] (φ : LiteralNonMFPresentation.MarkedGroup →* Q),
-  φ LiteralNonMFPresentation.mark = 1
-```
-
-## `GroupApproximation.LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark`
-
-```lean
-¬∃ Q x, ∃ (_ : Finite Q), ∃ φ, φ LiteralNonMFPresentation.mark ≠ 1
-```
-
 ## `GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one`
 
 ```lean
 LiteralNonMFPresentation.mark ≠ 1
-```
-
-## `GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package`
-
-```lean
-Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
-  (∀ (g : LiteralNonMFPresentation.Base),
-      LiteralNonMFPresentation.stable * LiteralNonMFPresentation.baseMap g *
-          LiteralNonMFPresentation.stable⁻¹ ∈
-        LiteralNonMFPresentation.baseMap.range) ∧
-    (∀ (g : LiteralNonMFPresentation.Base),
-        Commute LiteralNonMFPresentation.lamp (LiteralNonMFPresentation.baseMap g)) ∧
-      LiteralNonMFPresentation.mark ^ 2 = 1 ∧
-        ∀ (g : LiteralNonMFPresentation.MarkedGroup), Commute LiteralNonMFPresentation.mark g
 ```
 
 ## `GroupApproximation.LocalCriterionData`
@@ -2082,13 +1757,6 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
                     Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
 ```
 
-## `GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible`
-
-```lean
-∀ {Γ : Type} {E : Type u} [inst : Group Γ] [inst_1 : Group E] [Countable E]
-  (D : MarkedCompressionInclusionData Γ E), NormMFInvisible D.word
-```
-
 ## `GroupApproximation.MatchingCertificate`
 
 ```lean
@@ -2247,23 +1915,6 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
                       (∀ (g : H) (x : X), emb (g • x) = g • emb x) →
                         [inst_3 : DecidableEq D] →
                           OrbitChartData H D F (Finset.image emb E) ε → OrbitChartData H X F E ε
-```
-
-## `GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne`
-
-```lean
-∀ {A : Type u} [inst : Ring A] [inst_1 : StarRing A] (D : ProperProjectionCompression A),
-  star D.isometry * D.isometry = 1 ∧ D.isometry * star D.isometry ≠ 1
-```
-
-## `GroupApproximation.ProperProjectionCompression.unitary_conjugate_eq_of_absorbs`
-
-```lean
-∀ {A : Type u} [inst : Ring A] [inst_1 : StarRing A] [IsDedekindFiniteMonoid A] {p u : A},
-  star p = p →
-    p * p = p →
-      star u * u = 1 →
-        u * star u = 1 → p * (u * p * star u) = p → u * p * star u * p = p → u * p * star u = p
 ```
 
 ## `GroupApproximation.RankFour.compressionEnd_injective`
@@ -2898,25 +2549,6 @@ Group.FG ↥UniversalRankFour.Ambient ∧
   (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) → ∀ q ∈ Subgroup.map φ Γ, (φ t)⁻¹ * q * φ t ∈ Subgroup.map φ Γ
 ```
 
-## `GroupApproximation.coronaMFQuotient_isOperatorMF`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF (G ⧸ coronaMFResidual G)
-```
-
-## `GroupApproximation.coronaMFResidual_eq_normMFResidual`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G], coronaMFResidual G = normMFResidual G
-```
-
-## `GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G] (N : Subgroup G) [inst_2 : N.Normal],
-  N ≤ coronaMFResidual G → IsOperatorMF (G ⧸ N) → coronaMFResidual G = N
-```
-
 ## `GroupApproximation.correctedImplementer_defect`
 
 ```lean
@@ -2985,24 +2617,6 @@ CountableNonsoficGroupExists
 ```lean
 ∀ {R : Type u_1} [inst : Ring R] [Algebra.FiniteType ℤ R] (n : ℕ),
   2 < n → Group.FG ↥(elementaryGroup (Fin n) R)
-```
-
-## `GroupApproximation.existsUnique_coronaMFQuotient_factorization_to_isOperatorMF`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G] {H : Type v} [inst_2 : Group H] [Countable H]
-  (f : G →* H), IsOperatorMF H → ∃! fBar, fBar.comp (QuotientGroup.mk' (coronaMFResidual G)) = f
-```
-
-## `GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona`
-
-```lean
-∀ {G : Type u} [inst : Group G] (N : Subgroup G) [inst_1 : N.Normal],
-  N ≤ coronaMFResidual G →
-    ∀ (X : ℕ → FiniteModel),
-      (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) →
-        ∀ (rho : G →* NormMatrixCoronaUnitary X),
-          ∃! rhoBar, rhoBar.comp (QuotientGroup.mk' N) = rho
 ```
 
 ## `GroupApproximation.exists_counterexample_iff_exists_countable`
@@ -3079,21 +2693,6 @@ CountableNonsoficGroupExists
       ∃ Γ x φ,
         Function.Surjective ⇑φ ∧
           Infinite Γ ∧ Group.IsFinitelyPresented Γ ∧ HasKazhdanPropertyT Γ ∧ ¬IsSofic Γ
-```
-
-## `GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G] {I : Type} (U : Ultrafilter I)
-  (X : I → FiniteModel) (rho : G →* UniversalWeakMF U X) {z : G},
-  rho z ≠ 1 → Nonempty (MarkedOpAlmostRepresentation G z)
-```
-
-## `GroupApproximation.exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G],
-  ∃ X, (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) ∧ ∃ rho, rho.ker = coronaMFResidual G
 ```
 
 ## `GroupApproximation.exists_ratChar_close`
@@ -3560,24 +3159,6 @@ CountableNonsoficGroupExists
 ∀ (G : Type) [inst : Group G] [Finite G], IsNormApproximable G 1
 ```
 
-## `GroupApproximation.isOperatorMFIncreasing_iff`
-
-```lean
-∀ {G : Type u} [inst : Group G], IsOperatorMFIncreasing G ↔ IsOperatorMF G
-```
-
-## `GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF G ↔ coronaMFResidual G = ⊥
-```
-
-## `GroupApproximation.isOperatorMF_of_residuallyFinite`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G] [Group.ResiduallyFinite G], IsOperatorMF G
-```
-
 ## `GroupApproximation.isScalarCocycle_scalarPart`
 
 ```lean
@@ -3664,14 +3245,6 @@ CountableNonsoficGroupExists
     ∀ (f : G →* UniversalSofic 𝒰 X), Function.Injective ⇑f → IsSofic G
 ```
 
-## `GroupApproximation.l2_opNorm_conjDouble_sub_le_two`
-
-```lean
-∀ {Y : Type u_1} [inst : Fintype Y] [inst_1 : DecidableEq Y] {U V : Matrix Y Y ℂ},
-  U ∈ Matrix.unitaryGroup Y ℂ →
-    V ∈ Matrix.unitaryGroup Y ℂ → ‖conjDouble U - conjDouble V‖ ≤ 2 * ‖U - V‖
-```
-
 ## `GroupApproximation.l2_opNorm_cornerPad`
 
 ```lean
@@ -3693,41 +3266,12 @@ CountableNonsoficGroupExists
   t⁻¹ * γ * t ∉ Γ → ∀ {k : K}, k ≠ 1 → lampWitness G Γ K t γ k ≠ 1
 ```
 
-## `GroupApproximation.map_coronaMFResidual_le`
-
-```lean
-∀ {G : Type u} [inst : Group G] {H : Type v} [inst_1 : Group H] [Countable G] [Countable H]
-  (f : G →* H), Subgroup.map f (coronaMFResidual G) ≤ coronaMFResidual H
-```
-
 ## `GroupApproximation.map_eq_one_of_mem_divisible_subgroup`
 
 ```lean
 ∀ {G : Type u_1} [inst : Group G] (D : Subgroup G),
   (∀ (n : ℕ), 0 < n → ∀ (d : ↥D), ∃ e, e ^ n = d) →
     ∀ {B : Type u_2} [inst_1 : Group B] [Finite B] (f : G →* B) (d : ↥D), f ↑d = 1
-```
-
-## `GroupApproximation.map_marked_commutator_eq_one`
-
-```lean
-∀ {k : Type u_1} {V : Type u_2} {H : Type u_3} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [inst_3 : Group H] [FiniteDimensional k V]
-  (π : H →* Module.End k V) {Γ : Set H} {t c a : H},
-  a ∈ Γ →
-    (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
-      (∀ γ ∈ Γ, c * γ = γ * c) → π ⁅t * c * t⁻¹, a * (t * c * t⁻¹) * a⁻¹⁆ = 1
-```
-
-## `GroupApproximation.map_marked_commutator_eq_one_units`
-
-```lean
-∀ {k : Type u_1} {V : Type u_2} {H : Type u_3} [inst : Field k] [inst_1 : AddCommGroup V]
-  [inst_2 : _root_.Module k V] [inst_3 : Group H] [FiniteDimensional k V]
-  (π : H →* (Module.End k V)ˣ) {Γ : Set H} {t c a : H},
-  a ∈ Γ →
-    (∀ γ ∈ Γ, t * γ * t⁻¹ ∈ Γ) →
-      (∀ γ ∈ Γ, c * γ = γ * c) → π ⁅t * c * t⁻¹, a * (t * c * t⁻¹) * a⁻¹⁆ = 1
 ```
 
 ## `GroupApproximation.matching_injective`
