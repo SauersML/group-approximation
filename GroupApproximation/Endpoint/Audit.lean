@@ -462,6 +462,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.isOperatorMF_of_residuallyFinite
 #print axioms GroupApproximation.IsOperatorMF.subgroup
 #print axioms GroupApproximation.isOperatorMFIncreasing_iff
+#print axioms GroupApproximation.MarkedGroupSpace.cylinder_wordBall_subset_cylinder
 #print axioms GroupApproximation.OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
 #print axioms GroupApproximation.not_injective_of_coronaMFInvisible
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility
