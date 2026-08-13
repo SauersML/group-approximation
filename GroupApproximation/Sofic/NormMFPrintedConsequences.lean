@@ -97,5 +97,27 @@ theorem finiteNormal_uniform_invisibility
         (φ (g * h) : Matrix Y Y ℂ)‖ := by rw [neg_sub]
     _ ≤ δ := hφ g hg h hh
 
+/-- The positive-size formulation used for finite matrix models in the
+manuscript.  The positivity witness is placed before the model map, so the
+statement can be applied without first installing a nonemptiness instance. -/
+theorem finiteNormal_uniform_invisibility_positiveModel
+    [Countable E] (C : KazhdanCompressionCore Γ E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal) {f₀ : E} (hf₀ : f₀ ∈ F) :
+    ∀ ε : ℝ, 0 < ε → ∃ (δ : ℝ) (F₀ : Finset E), 0 < δ ∧
+      ∀ (Y : FiniteModel) (_hY : 0 < Fintype.card Y)
+        (φ : E → Matrix.unitaryGroup Y ℂ),
+        (∀ g ∈ F₀, ∀ h ∈ F₀,
+          ‖(φ g : Matrix Y Y ℂ) * φ h -
+            (φ (g * h) : Matrix Y Y ℂ)‖ ≤ δ) →
+        ‖(φ f₀ : Matrix Y Y ℂ) - 1‖ < ε := by
+  intro ε hε
+  obtain ⟨δ, F₀, hδ, huniform⟩ :=
+    C.finiteNormal_uniform_invisibility F hF hf₀ ε hε
+  refine ⟨δ, F₀, hδ, ?_⟩
+  intro Y hY φ hφ
+  obtain ⟨_⟩ := Fintype.card_pos_iff.mp hY
+  exact huniform Y φ hφ
+
 end KazhdanCompressionCore
 end GroupApproximation

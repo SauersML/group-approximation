@@ -1,4 +1,4 @@
-# An explicit finitely presented non-MF group
+# An explicit finitely presented non-MF group: paper construction and formal status
 
 Date: 2026-08-12
 
@@ -372,11 +372,11 @@ Lean now proves both layers.  The universal analytic endpoint is
 `MarkedCompressionInclusionData.word_normMFInvisible` in
 `Sofic/MarkedCompressionSequentialKill`; the independent Clifford/telescope
 construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
-`Sofic/ExplicitNonMFTheorem` assembles these into countable and finitely
+`Sofic/ChosenNonMFTheorem` assembles these into countable and finitely
 presented non-MF existence theorems.  It also proves the direct standard
 cofinite-corona endpoints
-`ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF` and
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
+`ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` and
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
 inferring them from an informal comparison with `IsWeakMF`.  The finitely
 presented Lean witness is an independent marked group built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
@@ -386,14 +386,37 @@ while the displayed presentation is established by the paper proof.  A
 separate literal stack (`Sofic/LiteralNonMFPresentation` and
 `Sofic/LiteralNonMFLinearWitness`) machine-checks the eight-generator
 relators, an exact affine--Clifford realization, and nontriviality of the
-marked central involution. It asserts no MF endpoint for that literal group.
+marked central involution. It exports no analytic MF endpoint for the literal
+group. Classical property `(T)` of `Z^3 semidirect SL_3(Z)` would not
+discharge property `(T)` of Lean's raw twenty-relator `PresentedGroup`
+without presentation completeness, an isomorphism, or a direct proof for
+that presented group. Premise-parametrized and absent-certificate endpoints
+were removed from the formal trust surface.
 
-The analytic proof above was written for the sequential norm corona.  It
-works verbatim for the ultrafilter quotients used by the formal definition:
-all limits are taken along the ultrafilter, polar correction is made on an
-ultrafilter-large set, and the final Hilbert-space ultraproduct uses the same
-ultrafilter.  Consequently the marked word is `NormMFInvisible`, not merely
-killed by one selected sequential representation.
+The analytic proof above was written for the sequential norm corona.  The
+formal predicate `NormMFInvisible` instead quantifies over every operator-norm
+matrix ultraproduct and every ultrafilter, including principal ultrafilters;
+it is therefore not definitionally the paper's cofinite-corona radical.  The
+proof works for those targets by taking limits, polar correction, and the
+Hilbert-space ultraproduct along the same ultrafilter.  For countable groups,
+`coronaMFResidual_eq_normMFResidual` proves equality with the unitary-sequence
+cofinite-corona radical, while `isOperatorMF_iff_normMFResidual_eq_bot`
+supplies the standard operator-MF bridge.
+
+The fixed-rank marked-group consequence is formalized in
+`Sofic/OperatorMFLocalNormalization`, `Sofic/MarkedMFClosed`, and
+`Sofic/MarkedGroupWordBall`: the MF locus is closed, its complement is open,
+and every non-MF marked group has a finite reduced-word-ball certificate.
+This is recorded as a standard consequence, not a new priority claim:
+[Dadarlat, Proposition 3.2 and Remark 3.3(i)](https://doi.org/10.1016/j.aim.2021.107722)
+gives the local MF criterion and local-embedding permanence, while
+[Fournier-Facio--Gerasimova--Spaas, Theorem 2.16](https://doi.org/10.1016/j.jalgebra.2024.08.042)
+records that a marked limit locally embeds in its approximating groups.
+
+`Analysis/ProperIsometryFromCompression` formalizes the generic algebraic
+calculation `s* s = 1`, `s s* != 1`, including a left-invertible nonunit and
+failure of direct finiteness.  It does not formalize the maximal group
+C*-algebra application itself.
 
 ## 7. Kun--Thom specialization: the same word is in the full sofic radical
 
@@ -610,16 +633,19 @@ equal-rank flip (`Sofic/ProjectionRankFlip`); spectral capture
 (`Sofic/MarkedCompressionVectorChain`); two independent Clifford lamp
 realizations (`Sofic/CliffordLampGroup`,
 `Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
-(`Sofic/ExplicitNonMFEndpoint`).  The analytic assembly is now complete in
+(`Sofic/ChosenNonMFEndpoint`).  The analytic assembly is now complete in
 `Sofic/MarkedCompressionSequentialKill`, and the public finitely presented
 existence endpoints are
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
 standard cofinite-corona theorem
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
 arbitrary finite-normal-subgroup strengthening is implemented separately in
 `Sofic/FiniteNormalCompressionObstruction`; its public kernel theorem is
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
 
 For the manuscript's literal presentation, Lean additionally proves
-`LiteralNonMFLinearWitness.literal_mark_ne_one`. No weak-MF or standard
-operator-MF endpoint is asserted for that literal group.
+`LiteralNonMFLinearWitness.literal_mark_ne_one`, the displayed relations, and
+the exact marked-cylinder topology.  It publishes no operator-MF endpoint for
+that literal group.  Property `(T)` of the abstract presented base and
+presentation completeness are not formalized, so premise-parametrized and
+absent-certificate endpoints are excluded from the Lean trust surface.

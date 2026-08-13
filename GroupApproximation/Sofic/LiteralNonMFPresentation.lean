@@ -20,8 +20,11 @@ the marked word is imposed to be a central involution.
 No completeness theorem for the six-generator base presentation is used in
 this file.  This module asserts only the literal finite-presentation algebra;
 the separate exact realization in `LiteralNonMFLinearWitness` proves that its
-marked word is nontrivial.  No Kazhdan or MF endpoint is asserted for this
-literal group.
+marked word is nontrivial.  The Lean library intentionally asserts no
+operator-MF endpoint for this literal group: it neither identifies the
+presented base with `ℤ³ ⋊ SL₃(ℤ)` nor proves property `(T)` for the abstract
+presented base.  The unconditional formal counterexample is the independent
+chosen Shalom-cover witness in `ChosenNonMFTheorem`.
 -/
 
 namespace GroupApproximation
@@ -511,6 +514,26 @@ noncomputable def realizationHom {M : Type*} [Group M]
         FreeGroup.lift_apply_of]
       exact commutatorElement_eq_one_iff_commute.mpr
         (R.marked_central (realizationGenerator R i))
+
+@[simp] theorem realizationHom_base_generator {M : Type*} [Group M]
+    (R : Realization M) (i : BaseGenerator) :
+    realizationHom R (baseMap (PresentedGroup.of i)) = R.baseGenerator i := by
+  rw [baseMap_generator]
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ (vertexLetter i)) = _
+  rw [presentedToGroup_mk]
+  simp [vertexLetter]
+
+@[simp] theorem realizationHom_stable {M : Type*} [Group M]
+    (R : Realization M) : realizationHom R stable = R.stable := by
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ stableWord) = _
+  rw [presentedToGroup_mk]
+  simp [stableWord]
+
+@[simp] theorem realizationHom_lamp {M : Type*} [Group M]
+    (R : Realization M) : realizationHom R lamp = R.lamp := by
+  change PresentedGroup.toGroup _ (PresentedGroup.mk _ lampWord) = _
+  rw [presentedToGroup_mk]
+  simp [lampWord]
 
 @[simp] theorem realizationHom_mark {M : Type*} [Group M]
     (R : Realization M) :

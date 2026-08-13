@@ -16,9 +16,10 @@ using only reductions that replay the twenty displayed relators?
 
 `literal_base_laplacian_sos.py` supplies the proof-carrying reducer.
 `literal_base_sos_sdp.py` uses that reducer to discover a numerical Gram
-matrix.  Solver output is not a proof; any positive candidate would still
-have to be rationalized and checked by Lean through
-`LiteralBaseSOS.IsRationalCertificate`.
+matrix.  Solver output is not a proof.  The earlier Lean-side certificate
+placeholder was removed from the trust surface because no certificate was
+found; any future positive candidate must first be rationalized and then
+formalized as an exact group-ring identity, not admitted as premise data.
 
 ## Results
 
@@ -48,13 +49,16 @@ without first changing the formulation.  Higher-yield alternatives are:
 1. an affine relative-`(T)` decomposition, combining a certified
    `SL_3(Z)` gap with a translation-moving-projection estimate;
 2. a sparse/chordal scalar SOS formulation with exact relator replay; or
-3. a direct formalization of the classical property-`(T)` theorem for
-   `Z^3 semidirect SL_3(Z)`.
+3. a direct property-`(T)` proof for the abstract group presented by the
+   twenty relators; or a formal isomorphism from it to
+   `Z^3 semidirect SL_3(Z)` together with the classical property-`(T)` proof.
 
 The analytic non-MF theorem and the literal marked-word witness do not depend
-on this experiment.  The only open formal endpoint is the unconditional
-Lean proof of property `(T)` for the literal base; the manuscript correctly
-uses the published theorem as an external input.
+on this archived experiment.  The Lean trust surface contains no certificate
+placeholder or conditional literal non-MF endpoint.  A future unconditional
+route would have to prove property `(T)` for the abstract literal base, or
+prove completeness of the printed presentation and then establish property
+`(T)` for the concrete affine group internally.
 
 ## Reproduction
 

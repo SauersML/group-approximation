@@ -37,8 +37,13 @@ non-local games and the hyperlinear profile of groups*, Proposition 2.7
 (arXiv:1711.10676).  Their normalized Hilbert--Schmidt argument obtains a
 positive relative dimension.  The operator-norm construction here needs only
 that the corner is nonempty and then treats it as the whole finite model, so
-no rank-density estimate is used.  This file is an independent Lean proof;
-no external Lean code was copied.
+no rank-density estimate is used. Bachner--Dogon--Lubotzky,
+*On L1-approximation of groups*, Lemma 2.3 and Propositions 1.5 and 2.4,
+already carry out the corresponding operator-norm, dimension-changing
+corner restriction and polar correction for a central involution. The new
+downstream ingredient here is not this local corner technology but its use in
+the Kazhdan-adjoint/stable-finiteness universal-kernel argument. This file is
+an independent Lean proof; no external Lean code was copied.
 -/
 
 namespace GroupApproximation

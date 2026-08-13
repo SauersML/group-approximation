@@ -18,8 +18,8 @@ It fails, with a nonzero exit code, if either check below fails:
    theorems verbatim.  The complete manuscript-mapped surface is pinned by
    `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
    statement is weakened or gains a premise, that signature gate changes.
-2. **Transitive axiom closure.**  Every declaration in the
-   `GroupApproximation` namespace is traversed through the *kernel*
+2. **Transitive axiom closure.**  Every declaration compiled from a
+   `GroupApproximation` module is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three
    axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
@@ -39,35 +39,83 @@ example : ∃ (G : Type) (_ : Group G), Group.IsFinitelyPresented G ∧ ¬ IsSof
 
 example :
     ∃ (E : Type) (_ : Group E), Countable E ∧ ¬ IsWeakMF E :=
-  ExplicitNonMFTheorem.exists_countable_not_isWeakMF
+  ChosenNonMFTheorem.exists_countable_not_isWeakMF
 
 example :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsWeakMF E :=
-  ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+  ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF
 
 example :
     Group.IsFinitelyPresented
-        ExplicitMarkedPresentation.MarkedGroup ∧
-      ¬ IsOperatorMF ExplicitMarkedPresentation.MarkedGroup :=
-  ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+        ChosenMarkedPresentation.MarkedGroup ∧
+      ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
+  ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+
+example (H : Type*) [Group H] (hMF : IsOperatorMF H) :
+    SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+      ChosenMarkedPresentation.relators
+      ChosenMarkedPresentation.markedWord H :=
+  ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity H hMF
+
+example :
+    ¬ SatisfiesQuasiIdentity ChosenMarkedPresentation.Generator
+      ChosenMarkedPresentation.relators
+      ChosenMarkedPresentation.markedWord
+      ChosenMarkedPresentation.MarkedGroup :=
+  ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
+
+example : IsClopen ChosenMarkedCylinder.chosenCylinder :=
+  ChosenMarkedCylinder.chosenCylinder_isClopen
+
+example :
+    ChosenMarkedCylinder.chosenCylinder ⊆
+      {N | ¬ IsOperatorMF N.Quotient} :=
+  ChosenMarkedCylinder.chosenCylinder_subset_nonMF
+
+example : LiteralCyclicCalibration.mark ≠ 1 :=
+  LiteralCyclicCalibration.mark_ne_one
+
+example : Function.Surjective LiteralNonMFLinearWitness.matrixBaseHom :=
+  LiteralNonMFLinearWitness.matrixBaseHom_surjective
+
+example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
+    LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
+  LiteralBaseRelations.x_conj_v1
+
+example : Subgroup.normalizer
+    (LiteralBaseTranslationNormal.translations : Set LiteralNonMFPresentation.Base) = ⊤ :=
+  LiteralBaseTranslationNormal.normalizer_translations_eq_top
+
+example : Function.Injective LiteralBaseRotationRetract.rotationToBase :=
+  LiteralBaseRotationRetract.rotationToBase_injective
+
+example : LiteralBaseRotationRetract.baseToRotation.ker =
+    LiteralBaseTranslationNormal.translations :=
+  LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
+
+example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+    [FiniteDimensional k V]
+    (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
+    pi LiteralCyclicCalibration.mark = 1 :=
+  LiteralCyclicCalibration.finiteDimensional_kill pi
 
 example :
     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
-  ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
+  ChosenNonMFTheorem.countableWitness_not_isOperatorMF
 
 example :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
-  ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+  ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 
 example : ¬ (∀ (E : Type) [Group E], IsOperatorMF E) :=
-  ExplicitNonMFTheorem.not_every_group_isOperatorMF
+  ChosenNonMFTheorem.not_every_group_isOperatorMF
 
 example :
     ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
       IsOperatorMF E) :=
-  ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+  ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ normMFResidual G = ⊥ :=
@@ -360,15 +408,32 @@ def headlineTheorems : List Name :=
    ``countable_group_without_essentiallyFreeNearAction_exists,
    ``exists_finitelyPresented_nonsofic_group,
    ``exists_infinite_finitelyPresented_nonsofic_ambient_cover,
-   ``ExplicitNonMFTheorem.mark_normMFInvisible,
-   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF,
-   ``ExplicitNonMFTheorem.exists_countable_not_isWeakMF,
-   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
-   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF,
-   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
-   ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
-   ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``ChosenNonMFTheorem.mark_normMFInvisible,
+   ``ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF,
+   ``ChosenNonMFTheorem.exists_countable_not_isWeakMF,
+   ``ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
+   ``ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
+   ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity,
+   ``ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity,
+   ``ChosenMarkedCylinder.chosenCylinder_isClopen,
+   ``ChosenMarkedCylinder.chosenCylinder_subset_nonMF,
+   ``OperatorMFMarkovWitness.positive_punit,
+   ``OperatorMFMarkovWitness.chosen_forbidden_subgroup,
+   ``OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup,
+   ``FixedSpaceDefect.compressionCentralizerDefect_le_ker,
+   ``LiteralCyclicCalibration.mark_ne_one,
+   ``LiteralCyclicCalibration.finiteDimensional_kill,
+   ``LiteralBaseP13Replay.yFromUZXY_eq,
+   ``LiteralBaseP13Replay.closure_Z_XY_eq_top,
+   ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
+   ``LiteralTranslationOrbit.translation_eq_two_rotation_conjugates,
+   ``LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed,
+   ``LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
+   ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
    ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,
    ``isOperatorMF_iff_normMFResidual_eq_bot,
@@ -386,6 +451,8 @@ def headlineTheorems : List Name :=
    ``OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient,
    ``not_injective_of_coronaMFInvisible,
    ``KazhdanCompressionCore.finiteNormal_uniform_invisibility,
+   ``KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel,
+   ``KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual,
    ``FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one,
    ``ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne,
    ``ProperProjectionCompression.not_isStablyFiniteRing,
@@ -416,7 +483,7 @@ than from a hand-maintained list, so that a new module cannot escape the
 audit by not being mentioned here. -/
 def projectDeclarations (env : Environment) : Array Name :=
   env.constants.fold (init := #[]) fun acc n _ =>
-    if (`GroupApproximation).isPrefixOf n then acc.push n else acc
+    if Audit.inCorpusModule env `GroupApproximation n then acc.push n else acc
 
 /-- The union of the transitive axiom closures of `roots`. -/
 def axiomClosure (roots : Array Name) : CommandElabM (Array Name) := do
@@ -445,12 +512,12 @@ run_cmd do
 
   let decls := projectDeclarations env
   if decls.size < 100 then
-    throwError "only {decls.size} declarations found in the `GroupApproximation` \
-namespace; the audit is not seeing the library"
+    throwError "only {decls.size} declarations found in `GroupApproximation` \
+modules; the audit is not seeing the library"
   let axioms ← axiomClosure decls
   let bad := disallowed axioms
   unless bad.isEmpty do
-    throwError "the `GroupApproximation` namespace depends on disallowed \
+    throwError "the `GroupApproximation` modules depend on disallowed \
 axioms: {bad.toList}"
   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
 

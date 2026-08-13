@@ -9,7 +9,11 @@ on:
     branches: [main]
     paths:
       - non_mf_groups_exist.tex
-      - GroupApproximation/Criterion/FiniteDimensionalKill.lean
+      - docs/NON_MF_CLAIM_DECLS.txt
+      # Visible counterpart links range across the library.  Any Lean source
+      # change can rename or move a mapped declaration, so the lexical gate
+      # must run on the whole source tree rather than one historical module.
+      - GroupApproximation/**
       - lakefile.toml
       # All publication and source-audit helpers are part of the gate.  Watching
       # the directory prevents a shared helper change from silently bypassing it.
@@ -22,7 +26,11 @@ permissions:
 
 concurrency:
   group: build-non-mf-pdf-main
-  cancel-in-progress: true
+  # Let the running validation finish and provide a signal even while Lean
+  # commits continue to land.  The publish step fingerprints every input and
+  # refuses to push an artifact from a stale run, so cancellation is neither
+  # needed for correctness nor desirable for throughput.
+  cancel-in-progress: false
 
 env:
   TEX_FILE: non_mf_groups_exist.tex
@@ -158,15 +166,26 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          built_tex="$(git rev-parse "$START_SHA:$TEX_FILE")"
+          publication_inputs_digest() {
+            git ls-tree -r "$1" -- \
+              "$TEX_FILE" \
+              docs/NON_MF_CLAIM_DECLS.txt \
+              GroupApproximation \
+              lakefile.toml \
+              scripts \
+              .github/workflows/build-non-mf-pdf.yml \
+              | sha256sum | awk '{print $1}'
+          }
+
+          built_inputs="$(publication_inputs_digest "$START_SHA")"
           pdf_holding="${RUNNER_TEMP}/${PDF_FILE}"
           cp -- "$PDF_FILE" "$pdf_holding"
           git fetch origin main
 
           for attempt in 1 2 3; do
             remote_main="$(git rev-parse origin/main)"
-            if [[ "$(git rev-parse "$remote_main:$TEX_FILE")" != "$built_tex" ]]; then
-              echo "main carries a newer $TEX_FILE; that push will build its PDF."
+            if [[ "$(publication_inputs_digest "$remote_main")" != "$built_inputs" ]]; then
+              echo "main carries newer publication inputs; that push will build its PDF."
               exit 0
             fi
             git reset --hard "$remote_main"

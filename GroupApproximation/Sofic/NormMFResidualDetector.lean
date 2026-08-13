@@ -2,13 +2,17 @@ import GroupApproximation.Sofic.WeakMFUltraproduct
 import Mathlib.GroupTheory.Commutator.Basic
 
 /-!
-# The operator-norm MF residual and the marked-compression endpoint
+# The universal-ultraproduct residual and the marked-compression endpoint
 
 This file isolates the exact formal endpoint of the marked Kazhdan-compression
 obstruction.  An element is `NormMFInvisible` when every homomorphism from its
-group to every operator-norm matrix ultraproduct kills it.  Such elements form
-the operator-norm MF residual.  A single nonidentity element in this residual
-precludes weak/operator-norm MF approximation.
+group to every operator-norm matrix ultraproduct kills it.  The quantifier is
+over every ultrafilter, including principal ultrafilters.  Such elements form
+the universal-ultraproduct residual defined below.  This is not definitionally
+the paper's cofinite-corona radical.  For countable groups,
+`NormMFCoronaRadical` proves elementwise equivalence and equality of the two
+subgroups.  A single nonidentity element in this residual precludes
+weak/operator-norm MF approximation.
 
 The final section records the group word used by the explicit construction:
 
@@ -19,7 +23,7 @@ marked word is `NormMFInvisible`, together with `w ≠ 1`, into `¬ IsWeakMF G`
 using the repository's faithful-ultraproduct theorem.  The analytic
 invisibility theorem is proved downstream, without an added premise, in
 `MarkedCompressionSequentialKill`; the concrete public assembly is
-`ExplicitNonMFTheorem`.
+`ChosenNonMFTheorem`.
 
 No C*-algebraic premise is hidden in the definitions below: the targets are
 literally `UniversalWeakMF`, the operator-norm matrix ultraproduct already
@@ -36,10 +40,12 @@ universe v
 
 variable {G : Type u} [Group G]
 
-/-! ## The operator-norm MF residual -/
+/-! ## The universal operator-norm-ultraproduct residual -/
 
 /-- An element is invisible to operator-norm matrix ultraproducts when every
-homomorphism into every such ultraproduct kills it. -/
+homomorphism into every such ultraproduct kills it.  This includes targets
+built from principal ultrafilters; use `CoronaMFInvisible` for the paper's
+cofinite-corona formulation. -/
 def NormMFInvisible (x : G) : Prop :=
   ∀ (I : Type) (U : Ultrafilter I) (X : I → FiniteModel)
     (rho : G →* UniversalWeakMF U X), rho x = 1
@@ -57,7 +63,10 @@ theorem NormMFInvisible.map {H : Type v} [Group H] {x : G}
   intro I U X rho
   exact hx I U X (rho.comp f)
 
-/-- Operator-norm MF-invisible elements form a subgroup. -/
+/-- Universal-ultraproduct-invisible elements form a subgroup.  The historical
+name `normMFResidual` is not a definitional identification with the paper's
+cofinite-corona radical; see `coronaMFResidual_eq_normMFResidual` for the
+countable-group comparison theorem. -/
 def normMFResidual (G : Type u) [Group G] : Subgroup G where
   carrier := {x | NormMFInvisible x}
   one_mem' := normMFInvisible_one

@@ -8,16 +8,18 @@ file routes its action items to lanes.
 
 ## Already satisfied by the Lean development (cite in the revision)
 
-* **Comment 1 (CRW presentation completeness risk).**  The Lean theorem is
-  ALREADY in the robust form the referee requests: the kill is stated for
-  `MarkedCompressionInclusionData` over an arbitrary Kazhdan group, and the
-  machine-checked witness chain never uses the CRW presentation — the
-  internal base (`ExplicitNonMFBase`, rank-4 elementary over the binary
-  Leavitt algebra, property (T) proved in-repo) carries it.  The tex should
-  restate Definition 3.3 as "fix any finite presentation of Γ" exactly as
-  the referee suggests; the CRW-explicit form becomes a corollary whose
-  only burden is explicitness, and the Lean anchor makes the robust form
-  independently checkable.
+* **Comment 1 (CRW presentation completeness risk).**  The reusable analytic
+  kill is in the robust form the referee requests:
+  `MarkedCompressionInclusionData` accepts an arbitrary Kazhdan base.  The
+  closed finitely presented Lean endpoint, however, instantiates it with a
+  noncomputably chosen Shalom cover of the separate `ExplicitNonMFBase`; it
+  is not the CRW-based literal group.  The literal Lean endpoint assumes
+  property `(T)` of the abstract twenty-relator base.  Discharging that
+  premise from the classical affine group requires a formal presentation-
+  completeness isomorphism as well as property `(T)`, because the verified
+  relators alone give a quotient in the wrong direction.  Thus the robust
+  mechanism is independently checkable, but the literal CRW instance is not
+  an unconditional Lean corollary.
 * **Comment 2 (criterion form; W itself non-MF).**  The standalone
   criterion IS the Lean theorem `MarkedCompressionInclusionData.not_isWeakMF`,
   and the countable witness `W = ClLamp(X̄) ⋊ Ḡ` is exactly the group the

@@ -8,7 +8,7 @@ import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 
 /-!
-# A finite marked presentation over the explicit Kazhdan compressor
+# A chosen finite marked presentation over the explicit Kazhdan compressor
 
 This file removes the finite-presentation bottleneck from the marked non-MF
 construction.  The explicit compressor group itself is only known here to be
@@ -38,7 +38,7 @@ a hypothesis of the final presentation.
 -/
 
 namespace GroupApproximation
-namespace ExplicitMarkedPresentation
+namespace ChosenMarkedPresentation
 
 open ExplicitNonMFBase
 
@@ -215,13 +215,13 @@ noncomputable def markedCentralRelators : Finset (FreeGroup Generator) :=
     Finset.univ.image (fun i : Fin generatorCount ↦
       commutatorWord markedWord (vertexLetter i))
 
-/-- All relators in the explicit marked presentation. -/
+/-- All relators in the chosen marked presentation. -/
 noncomputable def relators : Finset (FreeGroup Generator) :=
   transportedCoverRelators ∪
     Finset.univ.image stableRelator ∪
     lampRelators ∪ markedCentralRelators
 
-/-- The explicit finitely presented marked group. -/
+/-- The chosen finitely presented marked group. -/
 noncomputable abbrev MarkedGroup : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
@@ -339,16 +339,6 @@ theorem stable_conjugates_vertex_into_vertex :
               (stable * vertexMap (PresentedGroup.mk _ b) * stable⁻¹) := by
         group
       exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hmul
-
-/-- The Kazhdan subgroup used by the analytic obstruction is the range of
-`vertexMap`. -/
-noncomputable def kazhdanVertex : Subgroup MarkedGroup := vertexMap.range
-
-theorem stable_conjugates_kazhdanVertex :
-    ∀ x : kazhdanVertex,
-      stable * (x : MarkedGroup) * stable⁻¹ ∈ kazhdanVertex := by
-  rintro ⟨x, y, rfl⟩
-  exact stable_conjugates_vertex_into_vertex y
 
 /-- The marked word is an involution in the presented group. -/
 theorem mark_sq : mark ^ 2 = 1 := by
@@ -569,17 +559,5 @@ theorem mark_ne_one : mark ≠ 1 := by
   rw [realizationHom_mark]
   exact MarkedCompression.Explicit.theWordNeOne
 
-/-- The finite-presentation package needed by the non-MF theorem. -/
-theorem explicit_finitelyPresented_marked_package :
-    Group.IsFinitelyPresented MarkedGroup ∧
-      HasKazhdanPropertyT.{0, 0} Vertex ∧
-      (∀ x : Vertex,
-        stable * vertexMap x * stable⁻¹ ∈ vertexMap.range) ∧
-      mark ^ 2 = 1 ∧
-      (∀ x : MarkedGroup, mark * x = x * mark) ∧
-      mark ≠ 1 := by
-  exact ⟨inferInstance, vertex_hasKazhdanPropertyT,
-    stable_conjugates_vertex_into_vertex, mark_sq, mark_central, mark_ne_one⟩
-
-end ExplicitMarkedPresentation
+end ChosenMarkedPresentation
 end GroupApproximation

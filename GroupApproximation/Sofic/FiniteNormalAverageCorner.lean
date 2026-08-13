@@ -22,6 +22,13 @@ the finite-normal corner construction into reusable tasks:
 The first three bullets use only finite sums of the existing operator-norm
 multiplicative defects.  The final spectral-rounding/compression adapter is
 consumed by `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
+
+For provenance, the character-isotypic finite-normal corner appears in the
+proof of Bachner--Dogon--Lubotzky, arXiv:2508.17392, Proposition 1.6; their
+Propositions 1.5 and 2.4 provide the closely related central-involution and
+dimension-changing operator-norm corner constructions.  This file gives a
+native Lean implementation of the Reynolds-average version and copies no
+external code.
 -/
 
 namespace GroupApproximation

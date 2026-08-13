@@ -22,7 +22,7 @@ noncomputable section
 Positivity is stated on elements of the form `x⋆ * x`, which is equivalent to
 the usual positivity condition for linear functionals on a C⋆-algebra.
 Faithfulness is stated in the form used by the finiteness argument. -/
-structure FaithfulTracialState (A : Type*) [CStarAlgebra A] where
+structure FaithfulTracialState (A : Type*) [Ring A] [StarRing A] [Algebra ℂ A] where
   toLinearMap : A →ₗ[ℂ] ℂ
   map_one : toLinearMap 1 = 1
   map_star_mul_self_nonneg : ∀ x : A, 0 ≤ toLinearMap (star x * x)
@@ -32,7 +32,7 @@ structure FaithfulTracialState (A : Type*) [CStarAlgebra A] where
 
 namespace FaithfulTracialState
 
-variable {A : Type*} [CStarAlgebra A]
+variable {A : Type*} [Ring A] [StarRing A] [Algebra ℂ A]
 
 instance : CoeFun (FaithfulTracialState A) fun _ ↦ A → ℂ :=
   ⟨fun τ ↦ τ.toLinearMap⟩

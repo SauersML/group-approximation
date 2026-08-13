@@ -8,6 +8,15 @@ negative spectral sector of a central involution.  This file supplies the
 exact finite-dimensional objects used in that cut.  Quantitative proximity to
 the original approximate involution is proved in the subsequent analytic
 layer; here the spectral projections and rounded sign are exact.
+
+The local maneuver has substantial prior art.  Slofstra--Vidick,
+arXiv:1711.10676, Proposition 2.7, repair an approximate central involution and
+compress to its negative eigenspace in normalized Hilbert--Schmidt models.
+Bachner--Dogon--Lubotzky, arXiv:2508.17392, Lemmas 2.2--2.3 and
+Proposition 2.4, carry out the operator-norm rounding, corner restriction, and
+polar-correction pipeline while allowing the matrix dimension to change.  The
+proofs below were written directly against mathlib; no external Lean code is
+copied.
 -/
 
 namespace GroupApproximation

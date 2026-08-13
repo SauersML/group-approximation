@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitNonMFEndpoint
+import GroupApproximation.Sofic.ChosenNonMFEndpoint
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 # A finitely presented non-MF group from the Shalom-cover construction
 
 This module is the public junction between the independently checkable
-finite-presentation construction in `ExplicitNonMFEndpoint` and the analytic
+finite-presentation construction in `ChosenNonMFEndpoint` and the analytic
 marked-compression kill theorem.  The formal witness uses a noncomputably
 chosen finitely presented Kazhdan cover.  The existence theorem for that
 cover, the property-`(T)` theorem for the compressor base, and every analytic
@@ -24,12 +24,12 @@ in the paper.  This module exports both forms of the main result:
 -/
 
 namespace GroupApproximation
-namespace ExplicitNonMFTheorem
+namespace ChosenNonMFTheorem
 
-open ExplicitMarkedPresentation ExplicitNonMFEndpoint
+open ChosenMarkedPresentation ChosenNonMFEndpoint
 
 /-- The universal marked-compression certificate carried by the
-Shalom-cover finite presentation chosen in `ExplicitMarkedPresentation`. -/
+Shalom-cover finite presentation chosen in `ChosenMarkedPresentation`. -/
 noncomputable def normCertificate :
     MarkedCompressionNormCertificate MarkedGroup :=
   inclusionData.normCertificate inclusionData_word_ne_one
@@ -42,7 +42,7 @@ theorem mark_normMFInvisible : NormMFInvisible mark := by
 
 /-- The finitely presented Shalom-cover marked-compression group is not
 weak/operator-norm MF. -/
-theorem explicit_finitelyPresented_not_isWeakMF :
+theorem chosenFinitelyPresented_not_isWeakMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsWeakMF MarkedGroup :=
   ⟨inferInstance, normCertificate.not_isWeakMF⟩
 
@@ -50,7 +50,7 @@ theorem explicit_finitelyPresented_not_isWeakMF :
 Shalom-cover marked-compression group is not MF in the standard cofinite
 norm-matrix-corona sense.  This theorem has no mathematical premise; all
 load-bearing construction and rigidity theorems are proved in-repository. -/
-theorem explicit_finitelyPresented_not_isOperatorMF :
+theorem chosenFinitelyPresented_not_isOperatorMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsOperatorMF MarkedGroup :=
   ⟨inferInstance, inclusionData.not_isOperatorMF inclusionData_word_ne_one⟩
 
@@ -95,8 +95,8 @@ theorem exists_finitelyPresented_not_isWeakMF :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsWeakMF E :=
   ⟨MarkedGroup, inferInstance,
-    explicit_finitelyPresented_not_isWeakMF.1,
-    explicit_finitelyPresented_not_isWeakMF.2⟩
+    chosenFinitelyPresented_not_isWeakMF.1,
+    chosenFinitelyPresented_not_isWeakMF.2⟩
 
 /-- There exists a finitely presented group that is not MF in the standard
 cofinite norm-matrix-corona sense. -/
@@ -104,8 +104,8 @@ theorem exists_finitelyPresented_not_isOperatorMF :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
   ⟨MarkedGroup, inferInstance,
-    explicit_finitelyPresented_not_isOperatorMF.1,
-    explicit_finitelyPresented_not_isOperatorMF.2⟩
+    chosenFinitelyPresented_not_isOperatorMF.1,
+    chosenFinitelyPresented_not_isOperatorMF.2⟩
 
 /-- **Negative solution of the universal operator-MF problem.**  Not every
 group embeds in a cofinite norm-matrix corona. -/
@@ -129,5 +129,5 @@ theorem not_every_finitelyPresented_group_isOperatorMF :
   letI : Group.IsFinitelyPresented E := hfp
   exact hE (hall E)
 
-end ExplicitNonMFTheorem
+end ChosenNonMFTheorem
 end GroupApproximation

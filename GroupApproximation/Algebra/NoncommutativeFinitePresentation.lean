@@ -15,7 +15,7 @@ The relation itself is allowed to be Prop-valued, matching `RingQuot`; the
 finiteness condition is imposed on the set of pairs for which it holds.
 -/
 
-namespace Algebra
+namespace GroupApproximation.Algebra
 
 universe u v
 
@@ -28,9 +28,9 @@ class IsFinitelyPresentedNC (k : Type u) (A : Type v)
     Set.Finite {p : FreeAlgebra k (Fin n) × FreeAlgebra k (Fin n) | r p.1 p.2} ∧
       Nonempty (A ≃ₐ[k] RingQuot r)
 
-end Algebra
+end GroupApproximation.Algebra
 
-namespace Ring
+namespace GroupApproximation.Ring
 
 universe u
 
@@ -46,4 +46,4 @@ class IsFinitelyPresentedNC (A : Type u) [Ring A] : Prop where
         {p : FreeAlgebra ℤ (Fin n) × FreeAlgebra ℤ (Fin n) | r p.1 p.2} ∧
       Nonempty (A ≃+* RingQuot r)
 
-end Ring
+end GroupApproximation.Ring
