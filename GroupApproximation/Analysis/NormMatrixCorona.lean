@@ -118,10 +118,79 @@ quotient norm and its completeness are the next analytic layer. -/
 abbrev NormMatrixCoronaAlgebra :=
   BoundedMatrixSequence X ⧸ c0MatrixSequenceIdeal X
 
+private theorem normMatrixCorona_exists_rep_norm_lt
+    (x : NormMatrixCoronaAlgebra X) {ε : ℝ} (hε : 0 < ε) :
+    ∃ a : BoundedMatrixSequence X,
+      Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a = x ∧ ‖a‖ < ‖x‖ + ε :=
+  Submodule.Quotient.norm_mk_lt x hε
+
+private theorem normMatrixCorona_norm_mk_le (a : BoundedMatrixSequence X) :
+    ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ ≤ ‖a‖ :=
+  Submodule.Quotient.norm_mk_le (c0MatrixSequenceIdeal X) a
+
+private theorem real_mul_continuousAt (x y : ℝ) :
+    ContinuousAt (fun p : ℝ × ℝ ↦ p.1 * p.2) (x, y) :=
+  (continuous_fst.mul continuous_snd).continuousAt
+
+/-- The quotient seminorm is submultiplicative.  This is the missing
+noncommutative analogue of mathlib's commutative ideal-quotient instance. -/
+noncomputable instance normMatrixCoronaAlgebraSeminormedRing :
+    SeminormedRing (NormMatrixCoronaAlgebra X) where
+  dist_eq := dist_eq_norm_neg_add
+  norm_mul_le x y := _root_.le_of_forall_pos_le_add fun ε hε ↦ by
+    obtain ⟨δ, hδ, hbound⟩ :=
+      Metric.continuousAt_iff.mp (real_mul_continuousAt ‖x‖ ‖y‖) ε hε
+    let ε₁ := δ / 3
+    let ε₂ := δ / 3
+    have hε₁ : 0 < ε₁ := div_pos hδ (by norm_num)
+    have hε₂ : 0 < ε₂ := div_pos hδ (by norm_num)
+    obtain ⟨a, ha_eq, ha⟩ := normMatrixCorona_exists_rep_norm_lt X x hε₁
+    obtain ⟨b, hb_eq, hb⟩ := normMatrixCorona_exists_rep_norm_lt X y hε₂
+    rw [← ha_eq, ← hb_eq]
+    have hpair : dist (‖a‖, ‖b‖)
+          (‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖,
+            ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b‖) < δ := by
+      rw [Prod.dist_eq]
+      simp only [Real.dist_eq]
+      rw [max_lt_iff]
+      constructor
+      · rw [abs_of_nonneg]
+        · rw [← ha_eq] at ha
+          dsimp [ε₁] at ha
+          linarith
+        · exact sub_nonneg.mpr (normMatrixCorona_norm_mk_le X a)
+      · rw [abs_of_nonneg]
+        · rw [← hb_eq] at hb
+          dsimp [ε₂] at hb
+          linarith
+        · exact sub_nonneg.mpr (normMatrixCorona_norm_mk_le X b)
+    have hpair' : dist (‖a‖, ‖b‖) (‖x‖, ‖y‖) < δ := by
+      simpa only [ha_eq, hb_eq] using hpair
+    have hprod := hbound hpair'
+    simp only [Real.dist_eq] at hprod
+    have hupper : ‖a‖ * ‖b‖ < ‖x‖ * ‖y‖ + ε :=
+      sub_lt_iff_lt_add'.mp (abs_lt.mp hprod).2
+    calc
+      ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (a * b)‖
+          ≤ ‖a * b‖ := normMatrixCorona_norm_mk_le X (a * b)
+      _ ≤ ‖a‖ * ‖b‖ := norm_mul_le a b
+      _ ≤ ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
+            ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b‖ + ε :=
+        by simpa only [ha_eq, hb_eq] using hupper.le
+
+/-- Audit pin: multiplication in the algebraic corona is genuinely controlled
+by the quotient seminorm. -/
+theorem norm_normMatrixCorona_mul_le (x y : NormMatrixCoronaAlgebra X) :
+    ‖x * y‖ ≤ ‖x‖ * ‖y‖ :=
+  norm_mul_le x y
+
 /-- The quotient map from bounded sequences to the algebraic norm-matrix
 corona. -/
 def normMatrixCoronaMk : BoundedMatrixSequence X →+* NormMatrixCoronaAlgebra X :=
   Ideal.Quotient.mk (c0MatrixSequenceIdeal X)
+
+@[simp] theorem normMatrixCoronaMk_apply (a : BoundedMatrixSequence X) :
+    normMatrixCoronaMk X a = Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a := rfl
 
 theorem normMatrixCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
     normMatrixCoronaMk X a = 0 ↔ IsC0MatrixSequence X a := by

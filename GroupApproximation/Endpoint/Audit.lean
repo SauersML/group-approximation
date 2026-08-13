@@ -50,6 +50,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
+import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralUniversalHorn
@@ -537,6 +538,9 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralBaseRelations.x_conj_v1
 #print axioms GroupApproximation.LiteralBaseRelations.z_conj_v3
 #print axioms GroupApproximation.LiteralBaseTranslationNormal.normalizer_translations_eq_top
+#print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_injective
+#print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_range
+#print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeEquivTranslations
 #print axioms GroupApproximation.LiteralBaseRotationRetract.rotationToBase_injective
 #print axioms GroupApproximation.LiteralBaseRotationRetract.baseToRotation_ker_eq_translations
 #print axioms GroupApproximation.LiteralBaseRotationRetract.translations_inf_rotations
