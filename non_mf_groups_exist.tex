@@ -1286,8 +1286,9 @@ theorem.
 \leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible}
 The public endpoint combines that theorem with the internally constructed
 finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
-giving a kernel-checked finitely presented non-MF group.
-\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF}
+giving the following unconditional, kernel-checked existence statement: there
+exists a finitely presented group which is not operator-MF.
+\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 This formal marked group is an independent witness built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
