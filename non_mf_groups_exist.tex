@@ -16,7 +16,8 @@
   \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n%
   \do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
-  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
+  \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newif\ifanonymous\anonymousfalse
 \ifanonymous
   \newcommand{\leanrepo}{[repository link removed for anonymous review]}
@@ -3388,8 +3389,10 @@ accepts responsibility for the work.
 The formal companion and its machine-verification record are available to
 the editors for anonymous review.
 \else
-Formal companion revision \texttt{\formalizationrevision}; Lean toolchain
-\texttt{\leanversion}; Mathlib revision \texttt{\mathlibcommit}.  The release
+Formal companion revision
+\expandafter\nolinkurl\expandafter{\formalizationrevision}; Lean toolchain
+\expandafter\nolinkurl\expandafter{\leanversion}; Mathlib revision
+\expandafter\nolinkurl\expandafter{\mathlibcommit}.  The release
 workflow requires this exact revision to pass the source scan, complete Lean
 build, transitive axiom audit, elaborated-signature comparison, and fresh
 kernel replay before it publishes and attests the PDF.
