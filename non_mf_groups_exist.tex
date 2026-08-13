@@ -145,9 +145,11 @@ sense used here.  Residually finite groups
 are MF, amenable groups are MF as a consequence of the
 Tikuisis--White--Winter theorem \cite{TWW}, free products of amenable
 groups are MF, and a substantial permanence theory exists
-\cite{Shulman}.  As of this writing (August 2026), whether \emph{every}
-countable group is MF remained open; it is the operator-norm member of the family of approximation
-problems surveyed in \cite{DGLT,BDL}, whose unnormalized-Frobenius case
+\cite{Shulman}.  As late as May 2026, Bachner--Dogon--Lubotzky described
+whether every group is MF as a longstanding open problem
+\cite[pp.~235--238]{BDL}.  It is the operator-norm member of the family of
+approximation problems surveyed in \cite{DGLT,BDL}, whose
+unnormalized-Frobenius case
 was solved negatively in \cite{DGLT}.  Building on rigidity theorems for
 sofic approximations of Kazhdan groups due to Kun \cite{Kun16} and
 Kun--Thom \cite{KT19}, OpenAI constructed the first nonsofic group
@@ -540,9 +542,20 @@ nontriviality witness, and the conclusion is a universal kernel rather than
 a dimension lower bound.  Slofstra--Vidick's negative-eigenspace compression
 for an approximate central involution is the local predecessor of
 Lemma~\ref{lem:corner} \cite[proof of Proposition~2.7]{SlofstraVidick}.  Their
-Hilbert--Schmidt argument needs quantitative negative-eigenspace dimension;
-our norm-corona cut passes to the corner as a new matrix corona, so a nonzero
-corner may have density tending to zero and no density bound is consumed.
+Hilbert--Schmidt argument needs quantitative negative-eigenspace dimension.
+In the operator-norm setting, Bachner--Dogon--Lubotzky subsequently carried
+out the dimension-changing corner pipeline explicitly.  Their
+Lemmas~2.2--2.3 round an approximate involution and polar-correct an
+almost-unitary compression, Proposition~2.4 restricts an asymptotic
+representation to a nonzero almost-invariant corner, and Proposition~1.5
+applies these steps to a central Deligne involution before invoking
+operator--Hilbert--Schmidt stability
+\cite[Lemmas~2.2--2.3 and Propositions~1.5 and~2.4]{BDL}.  Thus changing the
+matrix size to the negative eigenspace, without a positive relative-rank
+hypothesis, is prior art.  Our argument uses the same local corner technology
+but replaces operator--Hilbert--Schmidt stability and Mal'cev's theorem by
+Kazhdan adjoint pinning and stable finiteness, producing an unconditional
+universal marked kernel.
 
 There is an older analytic ancestor as well.  At the foundational level,
 the conjugation action on Hilbert--Schmidt operators is the
@@ -585,8 +598,12 @@ Bachner--Dogon--Lubotzky use a finite normal subgroup as a bridge between
 the two approximation notions: if $N\trianglelefteq\Lambda$ is finite,
 $\Lambda/N$ is hyperlinear, and $\Lambda$ is MF, then $\Lambda$ is
 hyperlinear \cite[Proposition~1.6]{BDL}.  That result does not kill $N$;
-our averaging corner uses finite normality differently, to renormalize a
-possibly vanishing-rank obstruction before the Kazhdan argument.
+its proof repairs the restriction to $N$ and passes to a nonzero
+character-isotypic corner before applying Proposition~2.4
+\cite[proof of Proposition~1.6]{BDL}.  This is direct local prior art for the
+finite-normal corner.  Our argument combines the corner with the one-sided
+Kazhdan compressor and stable finiteness to force universal annihilation of
+the finite subgroup, without assuming hyperlinearity of the quotient.
 Reformulations of (weak) soficity through equations over groups and
 extensions involving residually finite groups, locating potential
 approximation obstructions in finite (central) extensions, appear in
@@ -1256,7 +1273,12 @@ the $(-1)$-eigenspace of a repaired approximate central involution
 Hilbert--Schmidt setting a quantitative separation supplies a positive
 relative dimension.  Here nonzeroness of the corona projection is enough:
 passing to its corner changes the ambient matrix sequence and renormalizes
-all later traces there.  For general $F$ the corner projection is the
+all later traces there.  The operator-norm involution version of this
+corner-and-polar-correction pipeline appears in
+\cite[Proposition~1.5]{BDL}, with rounding and compression inputs in
+\cite[Lemma~2.2 and Proposition~2.4]{BDL}; the character-isotypic
+finite-normal variant appears in the proof of
+\cite[Proposition~1.6]{BDL}.  For general $F$ the corner projection is the
 complement of the standard finite-group Reynolds projection of the finite
 normal subgroup.
 
@@ -1731,13 +1753,10 @@ which block the same argument in Hilbert--Schmidt metrics
 
 \ifanonymous\else
 \begin{remark}[formal verification of the finite-stage argument]\label{rem:leanA}
-The finite-normal obstruction criterion (Theorem~\ref{thm:criterion})
-and Lemma~\ref{lem:square} are at present paper-only; their
-formalization is in progress and no formal counterpart is claimed for
-them here.
-The formal companion proves the complete sequential finite-stage analogue
-of the analytic argument, kernel-checked and without project axioms or
-unproven placeholders.  Its finite-stage spectral-gap layer has a close
+The formal companion proves the finite-normal obstruction criterion
+(Theorem~\ref{thm:criterion}) in the sequential finite-stage language,
+kernel-checked and without project axioms or unproven placeholders.
+Its finite-stage spectral-gap layer has a close
 recent predecessor in Bader's operator-norm almost-spectral-gap argument,
 recorded by Dogon--Vigdorovich and proved there from Ozawa's sum-of-squares
 characterization of property~(T) \cite[Theorem~7.10]{DogonVigdorovich}; the
@@ -1746,11 +1765,18 @@ than importing code or a theorem axiom.  Its components include the passage
 from a separated
 corona image to operator-norm microstates,
 \leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
-the exact spectral rounding and negative corner,
+the exact spectral rounding and negative corner, whose elementary analytic
+pipeline has the published antecedents
+\cite[Lemmas~2.2--2.3 and Proposition~2.4]{BDL},
 \leanverified{Sofic/ApproxInvolutionCorner}{GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup}
 and the finite-stage shadow of stable finiteness: equal-rank orthogonal
 projections with small one-sided leakage have small reverse leakage.
 \leanverified{Sofic/ProjectionRankFlip}{GroupApproximation.KazhdanCornerMatrices.norm_one_sub_mul_flip}
+For an arbitrary finite normal subgroup in the compression-defect normal
+closure, the coordinate Reynolds average, complementary spectral corner,
+and marker-free Kazhdan collapse assemble into the universal kernel theorem
+\leanverified{Sofic/FiniteNormalCompressionObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual}
+which is the formal counterpart of Theorem~\ref{thm:criterion}.
 The Clifford lamp group, central sign, and permutation action are also
 formalized,
 \leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
@@ -2549,7 +2575,7 @@ V.~Alekseev and A.~Thom,
 preprint, 2026, \arxiv{2608.05362}.
 
 \bibitem[BDL]{BDL}
-B.~Bachner, S.~Dogon, and A.~Lubotzky,
+B.~Bachner, A.~Dogon, and A.~Lubotzky,
 \emph{On $L^1$-approximation of groups},
 J. Algebra \textbf{702} (2026), 235--243,
 \doi{10.1016/j.jalgebra.2026.04.041}.
