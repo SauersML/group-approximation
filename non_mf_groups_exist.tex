@@ -298,6 +298,107 @@ fixed-space projection, is essential to this argument; this is not a claim
 that every possible proof of the concrete Theorem~\ref{thm:A} must invoke
 property~(T).
 
+\subsection*{Generalizations and consequences}
+The corona half of Theorem~\ref{thm:A} is proved once, in the
+following generality (Definition~\ref{def:pattern}).  A \emph{marked
+Kazhdan pattern} in a countable group $H$ is a tuple
+$(\Lambda,\iota,t,c)$ consisting of a countable group $\Lambda$ with
+property (T), a homomorphism $\iota\colon\Lambda\to H$ ---
+injectivity is \emph{not} assumed --- and elements $t,c\in H$ with
+$t\,\iota(\Lambda)\,t^{-1}\subseteq\iota(\Lambda)$ and
+$[c,\iota(\Lambda)]=1$.  Writing $d=tct^{-1}$, the
+\emph{compression-defect subgroup} of the pattern is the normal
+closure
+\[
+  N_{\mathrm{comp}}
+  \;=\;\bigl\langle\!\bigl\langle\,[\,d,\iota(\lambda)\,]\;:\;
+  \lambda\in\Lambda\,\bigr\rangle\!\bigr\rangle_H .
+\]
+The \emph{finite-normal sterility criterion}
+(Theorem~\ref{thm:criterion}) states: every finite normal subgroup of
+$H$ contained in $N_{\mathrm{comp}}$ is killed by every corona
+representation of $H$.  Theorem~\ref{thm:A}(2) is the instance $H=E$
+with $F=\{1,w\}$: since $c^2=1$ forces $d^2=1$, the marked word
+satisfies the identity $w=[\,d,a\,]^2\in N_{\mathrm{comp}}$
+(Lemma~\ref{lem:square}).  The corner cut that starts the proof is the
+averaging projection $\smash{|F|^{-1}\sum_{f\in F}\Theta(f)}$, whose
+complement for $F=\{1,w\}$ is exactly the central corner of step (1)
+above.  Corollary~\ref{cor:subalg} upgrades the target from coronas to
+arbitrary $C^*$-subalgebras of coronas, so that, for instance, every
+homomorphism from $H$ into the unitary group of a unital separable
+quasidiagonal $C^*$-algebra, or of $\Cred(F_k)$ for a free group
+$F_k$ \cite{HT}, kills such an $F$.  Theorem~\ref{thm:C} calibrates
+the hypotheses: for the same pattern over the base $\Z$, the
+conclusion fails.
+
+Section~\ref{sec:consequences} records consequences in four
+directions.
+
+\emph{(i) $C^*$-algebras.}  Blackadar and Kirchberg proved that MF
+algebras are stably finite and asked about the converse: whether
+every stably finite separable $C^*$-algebra is MF \cite{BK}, a
+question sometimes described --- in Kirchberg's stronger formulation,
+a conjecture --- as a $C^*$-analogue of the Connes embedding problem
+(see, e.g., the introduction of \cite{Rainone}).  It fails:
+
+\begin{mainthm}[stable finiteness does not imply MF]\label{thm:D}
+$\Cred(E)$ is a unital separable $C^*$-algebra which carries a
+faithful tracial state --- and is therefore stably finite --- but is
+not an MF algebra.
+\end{mainthm}
+
+Here $\Cred(E)$ is not nuclear ($E$ contains an isomorphic copy of
+$\Gamma$ by Corollary~\ref{cor:iotainj}, and $\Gamma$ is not
+amenable), so the quasidiagonality problems for \emph{nuclear} stably
+finite algebras around \cite{BK,TWW} are untouched
+(Remark~\ref{rem:nonnuclear}).  In the opposite direction, for the
+ambient HNN extension $G$ of \eqref{eq:G} the algebra $\Cmax(G)$
+contains an explicit proper isometry --- so it is not finite, in
+particular not MF --- although the group $G$ itself is MF, being
+residually finite by the Borisov--Sapir mapping-torus theorem
+\cite{BoS} (Proposition~\ref{prop:ambient}).
+
+\emph{(ii) Permanence.}  MF groups are closed under neither quotients
+nor split extensions: $E$ is a quotient of the MF group $F_8$, and
+the witness group $W=\ClLamp(\bar X)\rtimes\bar G$ of
+Section~\ref{sec:witness} is a finitely generated non-MF group that
+is a split extension of the residually finite linear group $\bar G$
+by the locally finite group $\ClLamp(\bar X)$
+(Corollaries~\ref{cor:quotclosure} and~\ref{cor:extclosure}); both
+statements contrast with the positive permanence theory of
+\cite{Shulman}.
+
+\emph{(iii) Structure.}  The \emph{MF radical} of a countable group
+--- the intersection of the kernels of its corona representations,
+cf.\ the finite and finite-approximate quotients of
+\cite{SlofstraCorrelations} and the approximation radicals of
+\cite{NST} --- is functorial under arbitrary homomorphisms, and the
+quotient by it is the largest MF quotient, realized by a single
+corona representation (Lemma~\ref{lem:portable} and
+Proposition~\ref{prop:univquot}; the structural statement is
+presumably folklore, and we claim no novelty for it).  Portability of
+the radical element $w$ has a striking consequence: embedding $E$
+into a $2$-generator simple group $S$, which is possible by
+Goryushkin's theorem \cite{Go}, gives a $2$-generator simple group
+all of whose homomorphisms into MF groups are trivial
+(Corollary~\ref{cor:simple}).
+
+\emph{(iv) Multiplicity and uniformity.}  For every $m\ge2$ the
+construction with the endomorphism $(v,A)\mapsto(mv,A)$ yields a
+finitely presented non-MF group $E_m$ with $E=E_2$
+(Theorem~\ref{thm:family}); the groups $E\times\Z^k$, $k\in\N$, are
+pairwise non-isomorphic finitely presented non-MF groups, and there
+exist $2^{\aleph_0}$ pairwise non-isomorphic finitely generated
+non-MF groups (Corollary~\ref{cor:continuum}).  Finally, the kill
+theorem is uniform over all matrix sizes at once
+(Theorem~\ref{thm:uniform}): for every $\varepsilon>0$ there are
+$\delta>0$ and a finite $F_0\subseteq E$ such that every map
+$\varphi\colon E\to\U(M_r(\C))$, for any $r$, with
+$\opnorm{\varphi(g)\varphi(h)-\varphi(gh)}\le\delta$ for all
+$g,h\in F_0$, satisfies $\opnorm{\varphi(w)-1}<\varepsilon$; the
+proof is a compactness reduction to Theorem~\ref{thm:criterion} and
+yields no explicit pair $(\delta,F_0)$.
+
 \subsection*{What this paper does not prove}
 The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ is
 nonhyperlinear; equivalently, it does not show that the canonical group
@@ -311,7 +412,11 @@ projections live in a properly infinite algebra, and a projection there
 can be properly contained in a unitarily equivalent one --- the
 unilateral-shift phenomenon.  Section~\ref{sec:limits} makes this
 precise.  The same distinction explains why the group $E/\langle
-w\rangle$ and the ambient groups $G$ remain untouched by our argument.
+w\rangle$ remains untouched by our argument; the ambient group $G$ is
+in fact MF (Proposition~\ref{prop:ambient}).  Theorem~\ref{thm:D}
+likewise concerns only the operator-norm side: it does not bear on
+quasidiagonality of nuclear stably finite algebras, nor on tracial
+(Connes-embedding) approximation questions.
 
 \subsection*{External inputs}
 The proof of Theorem~\ref{thm:A} uses two non-elementary external inputs
@@ -321,6 +426,22 @@ defining property of the Kazhdan projection (Fact~\ref{fact:kazhdan}).
 Theorem~\ref{thm:C} additionally uses quasidiagonality of amenable
 group $C^*$-algebras \cite{TWW} (Fact~\ref{fact:tww}).
 Theorem~\ref{thm:B} uses no external input.
+Section~\ref{sec:consequences} uses a handful of classical external
+inputs, each confined to the single result citing it: Borisov--Sapir
+residual finiteness of mapping tori of endomorphisms of finitely
+generated linear groups \cite{BoS} (Proposition~\ref{prop:ambient});
+Mal'cev's residual finiteness of finitely generated linear groups
+\cite{Ma} (Corollary~\ref{cor:extclosure}); B.\,H.~Neumann's
+continuum family of $2$-generator groups \cite{Neumann}
+(Corollary~\ref{cor:continuum}); and Goryushkin's embedding of
+countable groups into $2$-generator simple groups \cite{Go}
+(Corollary~\ref{cor:simple}).  The Haagerup--Thorbj{\o}rnsen theorem
+that $\Cred(F_k)$ is MF \cite{HT} is cited only to populate the list
+of example targets in Corollary~\ref{cor:subalg}.
+Theorem~\ref{thm:D} needs no input beyond Theorem~\ref{thm:A}: the
+faithfulness of the canonical trace and the resulting stable
+finiteness are proved inline (Lemma~\ref{lem:faithfultrace}).
+Remark~\ref{rem:nonnuclear} cites \cite{BHV,BO} for context only.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -415,10 +536,17 @@ approximation landscape see
 \subsection*{Organization}
 Section~\ref{sec:prelim} fixes notation and states the external inputs.
 Section~\ref{sec:group} constructs $E$.  Section~\ref{sec:witness}
-proves $w\neq 1$.  Section~\ref{sec:findim} proves
-Theorem~\ref{thm:B}.  Sections~\ref{sec:corona}--\ref{sec:proofA} prove
-Theorem~\ref{thm:A}.  Section~\ref{sec:necessity} proves
-Theorem~\ref{thm:C}.  Section~\ref{sec:limits} discusses limitations.
+proves $w\neq 1$ and that $\Gamma$ embeds in $E$.
+Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
+Section~\ref{sec:corona} develops the corona lemmas.
+Section~\ref{sec:conj} defines marked Kazhdan patterns and their
+compression-defect subgroups, states the finite-normal sterility
+criterion (Theorem~\ref{thm:criterion}), and develops the conjugation
+representation; Section~\ref{sec:proofA} proves the criterion and
+deduces Theorem~\ref{thm:A}.  Section~\ref{sec:consequences} derives
+Theorem~\ref{thm:D} and the further consequences.
+Section~\ref{sec:necessity} proves Theorem~\ref{thm:C}.
+Section~\ref{sec:limits} discusses limitations.
 
 \section{Notation and external inputs}\label{sec:prelim}
 
@@ -738,41 +866,22 @@ finite-dimensional vector space over an arbitrary field, is the theorem
 \end{remark}
 
 \begin{remark}[status of the formal companion]\label{rem:leanstatus}
-The formalization of Theorem~\ref{thm:A} is being developed independently
-of the paper proof and is not used as evidence for any step of that proof.
-At the time of this version, the following ingredients have been checked by
-the Lean kernel (with warnings treated as errors): the operator-norm MF
-residual and its one-element non-MF criterion; the internal property~(T)
-construction and Shalom finitely presented Kazhdan-cover theorem; an explicit
-injective proper self-compression of the universal rank-four Kazhdan group;
-the reduction of an arbitrary ultrafilter-indexed nontrivial marked image to
-a sequential operator-norm almost representation with a uniform marked gap;
-and the finite-dimensional identity
-\[
- \bigl\|(1-P)UP\bigr\|_2^2
-   =\bigl\|PU(1-P)\bigr\|_2^2
-\]
-for every unitary matrix $U$ and orthogonal projection $P$.
-\leanverified{Sofic/NormMFResidualDetector}{GroupApproximation.not_isWeakMF_of_normMFInvisible}
-\leanverified{Leavitt/ShiftEndomorphism}{GroupApproximation.BinaryLeavitt.elementaryShift_injective}
-\leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
-\leanverified{Sofic/UnitaryProjectionBalance}{GroupApproximation.hsNormSq_unitary_projection_balance}
-
-Thus the arbitrary index set and ultrafilter no longer occur in the analytic
-gap.  The remaining machine-checked endpoint is the sequential finite-stage
-assembly which
-combines negative spectral-sector rounding, the adjoint Kazhdan projection,
-one-sided compression, and the displayed leakage balance.  In the source this
-is presently isolated as one explicit placeholder in
-\texttt{MarkedCompressionKill.lean}; consequently this version does
-\emph{not} claim that Theorem~\ref{thm:A} itself has already been formally
-verified.  A second, now useful, presentation refinement is to replace the
-base group by its internally constructed finitely presented Kazhdan cover:
-one chooses lifts of the finitely many compressed generator images.  The
-analytic argument uses only
-$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$, not an endomorphism of the
-cover.  This removes the need to import a separate finite-presentation theorem
-for the explicit self-compressing base.
+The formal companion was developed independently of the paper proof and is
+not used as evidence for any paper step.  Its finite-stage analytic chain is
+now complete: negative-sector rounding, adjoint Kazhdan spectral projection,
+one-sided compressor capture, equal-rank reversal, marked-word collapse, and
+sequential extraction are assembled into a universal operator-norm MF-kernel
+theorem.
+\leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible}
+The public endpoint combines that theorem with the internally constructed
+finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
+giving a kernel-checked finitely presented non-MF group.
+\leanverified{Sofic/ExplicitNonMFTheorem}{GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF}
+The cover formulation needs only
+$t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
+many compressed generators; it does not require an endomorphism of the cover.
+The endpoint and its universal marked-kernel theorem are included in the
+repository's explicit axiom audit.
 \end{remark}
 \fi
 
@@ -1219,38 +1328,39 @@ which block the same argument in Hilbert--Schmidt metrics
 
 \ifanonymous\else
 \begin{remark}[formal verification of the finite-stage argument]\label{rem:leanA}
-The finite-stage components of the proof of Theorem~\ref{thm:A} are
-being machine-checked in Lean~4 alongside this manuscript; the
-finite-dimensional Theorem~\ref{thm:B} is already fully verified
-(Remark~\ref{rem:lean}).  Two components of the present proof have
-landed so far, kernel-checked and with no unproven placeholders.
-First, the passage from a corona representation separating $w$ from
-$1$ to a sequence of finite-dimensional unitary microstates with
-vanishing multiplicative defect and persistent separation --- the
-sequential form of the standing assumption of
-Section~\ref{sec:conj}.
+The formal companion proves the complete sequential finite-stage analogue
+of the analytic argument, kernel-checked and without project axioms or
+unproven placeholders.  Its finite-stage spectral-gap layer has a close
+recent predecessor in Bader's operator-norm almost-spectral-gap argument,
+recorded by Dogon--Vigdorovich and proved there from Ozawa's sum-of-squares
+characterization of property~(T) \cite[Theorem~7.10]{DogonVigdorovich}; the
+Lean development proves the particular matrix estimates it needs rather
+than importing code or a theorem axiom.  Its components include the passage
+from a separated
+corona image to operator-norm microstates,
 \leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
-Second, the exact spectral objects behind the corner cut of
-Lemma~\ref{lem:corner}: the rounded involution of an approximately
-involutive unitary, an exact self-adjoint unitary whose negative
-spectral sector carries the corner.
+the exact spectral rounding and negative corner,
 \leanverified{Sofic/ApproxInvolutionCorner}{GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup}
-Third, the finite-stage shadow of the stable-finiteness equality in
-Lemmas~\ref{lem:finite} and~\ref{lem:pinning}: orthogonal projections
-of equal rank with small one-sided leakage have small leakage in the
-reverse direction.
+and the finite-stage shadow of stable finiteness: equal-rank orthogonal
+projections with small one-sided leakage have small reverse leakage.
 \leanverified{Sofic/ProjectionRankFlip}{GroupApproximation.KazhdanCornerMatrices.norm_one_sub_mul_flip}
-Fourth, the Clifford lamp group of
-Construction~\ref{con:clifford}, with its central sign, its
-nontriviality, and its permutation action.
+The Clifford lamp group, central sign, and permutation action are also
+formalized,
 \leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
-The remaining finite-stage steps are under active formalization.
+and the assembled contradiction rules out every separated sequential
+microstate before yielding the arbitrary-corona kernel theorem.
+\leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation}
 \end{remark}
 \fi
 
 \section{The cyclic-base comparison}\label{sec:necessity}
 
-We prove Theorem~\ref{thm:C}.  Recall the setting: $G_0=\mathrm{BS}(1,2)$
+We prove Theorem~\ref{thm:C}.  The broader phenomenon that a marked central
+involution can be invisible to every exact finite-dimensional representation
+but visible to approximate representations is central to Slofstra's work
+\cite{SlofstraCorrelations}; the point here is its occurrence in the same
+operator-norm marked-compression pattern as Theorem~\ref{thm:A}.  Recall the
+setting: $G_0=\mathrm{BS}(1,2)$
 with base $\Gamma_0=\langle\gamma_0\rangle\cong\Z$ and stable letter
 $t$ satisfying $t\gamma_0t^{-1}=\gamma_0^2$; $X_0=G_0/\Gamma_0$;
 $E_0=\ClLamp(X_0)\rtimes G_0$ with central sign
@@ -1354,6 +1464,15 @@ rigid; tracial matrix models form a properly infinite world at the
 level of their conjugation actions, in which the same projection comparison
 need not collapse to equality.}
 
+This failure is closely related to a current structural question rather than
+to a known impossibility theorem.  Alekseev--Thom ask whether, for a Kazhdan
+representation into a tracial ultraproduct of matrices, its commutant can be
+recovered as an ultraproduct of finite-dimensional subalgebras, possibly as
+coordinate centralizers of suitable lifts \cite[Open Problem~6.2]{AlekseevThom}.
+Such a coordinate model would provide finite-level structure absent from the
+argument above, but their question is open and does not restore the present
+stable-finiteness proof in the tracial setting.
+
 \section*{Acknowledgements}
 \ifanonymous
 [Removed for anonymous review.]
@@ -1369,6 +1488,11 @@ repository \texttt{\leanrepo}.
 C.~A. Akemann and M.~E. Walter,
 \emph{Unbounded negative definite functions},
 Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
+
+\bibitem[AT]{AlekseevThom}
+V.~Alekseev and A.~Thom,
+\emph{Centralizers of sofic approximations of Kazhdan groups},
+preprint, 2026, \url{arXiv:2608.05362}.
 
 \bibitem[BDL]{BDL}
 G.~Bachner, S.~Dogon, and A.~Lubotzky,
@@ -1418,6 +1542,12 @@ M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
 Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
 \url{doi:10.1017/fms.2020.5}.
 
+\bibitem[DV]{DogonVigdorovich}
+A.~Dogon and I.~Vigdorovich,
+\emph{Hyperlinearity, stability and asymptotic spectral gap of higher rank
+lattices},
+preprint, 2026, \url{arXiv:2506.20843v2}.
+
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
@@ -1434,6 +1564,23 @@ Chapter~3, 77--93, 2026,
 T.~Shulman,
 \emph{The MF property for amalgamated free products},
 preprint, 2026, \url{arXiv:2603.13564}.
+
+\bibitem[Slo17]{SlofstraCorrelations}
+W.~Slofstra,
+\emph{The set of quantum correlations is not closed},
+Forum Math. Pi \textbf{7} (2019), Paper No.~e1,
+\url{doi:10.1017/fmp.2018.3}.
+
+\bibitem[Slo18]{SlofstraProfile}
+W.~Slofstra,
+\emph{A group with at least subexponential hyperlinear profile},
+preprint, 2018, \url{arXiv:1806.05267}.
+
+\bibitem[SV]{SlofstraVidick}
+W.~Slofstra and T.~Vidick,
+\emph{Entanglement in non-local games and the hyperlinear profile of groups},
+Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
+\url{doi:10.1007/s00023-018-0711-5}.
 
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,
