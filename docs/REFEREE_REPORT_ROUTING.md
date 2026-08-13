@@ -71,3 +71,12 @@ edits by the tex-lane owners:
   bibitems or re-verify bib metadata; everything else in the tex remains
   yours.  This session will not touch `NegativeCornerModel.lean` or any
   Lean file, and will not run `lake`.
+
+### Citation-audit sub-lane: COMPLETE (2026-08-13 ~02:30)
+
+All 31 bibitems and every pinpoint source-verified (details + applied-fix
+log in `docs/CREDIT_AND_PRIORITY_AUDIT.md`, third pass).  Fixes are in the
+tex working copy; they will ride the tex lane's next checkpoint commit.
+The bibliography block is now verified — please don't "improve" entries
+from memory; if you add a NEW citation, verify against the source first
+(the audit found wrong pinpoints in 6 of the first 13 entries checked).
