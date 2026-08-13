@@ -142,6 +142,20 @@ noncomputable def baseRelators : Finset (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3].toFinset
 
+/-- Stable, decidability-independent membership interface for the twenty
+displayed base relators. -/
+theorem mem_baseRelators_iff (r : FreeGroup BaseGenerator) :
+    r ∈ baseRelators ↔
+      r = baseRelXCube ∨ r = baseRelYCube ∨ r = baseRelZSq ∨
+      r = baseRelXZCube ∨ r = baseRelYZCube ∨
+      r = baseRelXInvZXY ∨ r = baseRelYInvZYX ∨
+      r = baseRelXYSix ∨ r = baseRelV12 ∨ r = baseRelV13 ∨
+      r = baseRelV23 ∨ r = baseRelXV1 ∨ r = baseRelXV2 ∨
+      r = baseRelXV3 ∨ r = baseRelYV1 ∨ r = baseRelYV2 ∨
+      r = baseRelYV3 ∨ r = baseRelZV1 ∨ r = baseRelZV2 ∨
+      r = baseRelZV3 := by
+  simp [baseRelators]
+
 /-- The literal six-generator base group. -/
 noncomputable abbrev Base : Type :=
   PresentedGroup ((baseRelators : Finset (FreeGroup BaseGenerator)) :
