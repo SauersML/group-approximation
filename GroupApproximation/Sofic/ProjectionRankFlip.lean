@@ -130,7 +130,6 @@ theorem sum_normSq_compress_ge {p q : Matrix Y Y ℂ}
 
 /-! ## The flip -/
 
-set_option maxHeartbeats 1600000 in
 /-- **Equal-rank projection flip.**  If two orthogonal projection matrices
 have the same rank and `‖(1 - q) * p‖ ≤ ε < 1`, then
 `‖(1 - p) * q‖ ≤ ε / √(1 - ε²)`.

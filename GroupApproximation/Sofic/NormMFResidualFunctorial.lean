@@ -35,7 +35,8 @@ residual everything. -/
 theorem normMFResidual_eq_top_of_simple [IsSimpleGroup G]
     {x : G} (hx : NormMFInvisible x) (hne : x ≠ 1) :
     normMFResidual G = ⊤ := by
-  rcases Subgroup.Normal.eq_bot_or_eq_top normMFResidual_normal with hbot | htop
+  rcases Subgroup.Normal.eq_bot_or_eq_top (normMFResidual_normal (G := G)) with
+    hbot | htop
   · exfalso
     have hx' : x ∈ normMFResidual G := mem_normMFResidual_iff.mpr hx
     rw [hbot] at hx'

@@ -191,7 +191,6 @@ theorem subgroup_displacement_mul_ambient_top_vanishing
     rw [hgroup]
     noncomm_ring
 
-set_option maxHeartbeats 800000 in
 /-- The subgroup orbit average acts asymptotically as the identity on every
 ambient translate of the retained top corner. -/
 theorem matrixAverage_sub_one_mul_ambient_top_vanishing
