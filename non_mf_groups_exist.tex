@@ -371,8 +371,7 @@ statements contrast with the positive permanence theory of
 \emph{(iii) Structure.}  The \emph{MF radical} of a countable group
 --- the intersection of the kernels of its corona representations,
 cf.\ the finite and finite-approximate quotients of
-\cite{SlofstraCorrelations} and the approximation radicals of
-\cite{NST} --- is functorial under arbitrary homomorphisms, and the
+\cite{SlofstraCorrelations} --- is functorial under arbitrary homomorphisms, and the
 quotient by it is the largest MF quotient, realized by a single
 corona representation (Lemma~\ref{lem:portable} and
 Proposition~\ref{prop:univquot}; the structural statement is
@@ -613,12 +612,12 @@ representation.
 The only additional input, used exclusively in
 Section~\ref{sec:necessity}, is:
 
-\begin{fact}[{\cite[Corollary B]{TWW}}]\label{fact:tww}
+\begin{fact}[{\cite[Corollary C]{TWW}}]\label{fact:tww}
 The reduced group $C^*$-algebra of a countable amenable group is
 quasidiagonal.
 \end{fact}
 
-\begin{fact}[{quasidiagonal embedding; see \cite[Chapter 7]{BO}}]
+\begin{fact}[{quasidiagonal embedding; \cite[Theorem~3.2.2]{BK}, see also \cite[Chapter 7]{BO}}]
 \label{fact:qdcorona}
 Every separable unital quasidiagonal $C^*$-algebra embeds unitally into a
 norm matrix corona.  Consequently every countable amenable group is MF.
@@ -1106,11 +1105,63 @@ $\Theta_-(w)=\Theta(w)e=(1-2e)e=-e=-1$ in $\mathcal Q'$.
 
 \section{The conjugation representation and the Kazhdan projection}\label{sec:conj}
 
-Fix now a corona representation $\Theta_-\colon
-E\to\U(\mathcal Q')$ with $\Theta_-(w)=-1$, where
-$\mathcal Q'=\mathcal Q((r_n)_{n\in J'})$ as produced by
-Lemma~\ref{lem:corner}.  Using Lemma~\ref{lem:lift}(2), choose for
-every $g\in E$ a sequence of unitaries
+The corona half of Theorem~\ref{thm:A} will be deduced from a general
+criterion, whose data we now fix.
+
+\begin{definition}[marked Kazhdan pattern]\label{def:pattern}
+Let $H$ be a countable group.  A \emph{marked Kazhdan pattern} in $H$
+is a tuple $(\Lambda,\iota,t,c)$, where $\Lambda$ is a countable
+group with property (T), $\iota\colon\Lambda\to H$ is a group
+homomorphism --- \emph{not} assumed injective --- and $t,c\in H$,
+subject to
+\begin{enumerate}
+  \item[(M1)] $t\,\iota(\lambda)\,t^{-1}\in\iota(\Lambda)$ for every
+    $\lambda\in\Lambda$;
+  \item[(M2)] $c\,\iota(\lambda)=\iota(\lambda)\,c$ for every
+    $\lambda\in\Lambda$.
+\end{enumerate}
+Write $d:=tct^{-1}$.  The \emph{compression-defect subgroup} of the
+pattern is the normal closure
+\[
+  N_{\mathrm{comp}}
+  \;=\;\bigl\langle\!\bigl\langle\,
+  [\,d,\iota(\lambda)\,]\;:\;\lambda\in\Lambda
+  \,\bigr\rangle\!\bigr\rangle_H\;\trianglelefteq\;H .
+\]
+\end{definition}
+
+\begin{theorem}[finite-normal sterility criterion]\label{thm:criterion}
+Let $H$ be a countable group with a marked Kazhdan pattern
+$(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
+normal subgroup with $F\subseteq N_{\mathrm{comp}}$.  Then every
+corona representation $\Theta\colon H\to\U(\mathcal Q)$ satisfies
+$\Theta(f)=1$ for all $f\in F$.
+\end{theorem}
+
+\begin{remark}\label{rem:criterioncontext}
+Theorem~\ref{thm:A}(2) is the instance $H=E$, $\Lambda=\Gamma$,
+$\iota$ the canonical homomorphism, and $F=\{1,w\}$; the membership
+$w\in N_{\mathrm{comp}}$ is the identity $w=[d,\iota(a)]^2$ of
+Lemma~\ref{lem:square} below.  The property (T) hypothesis cannot
+simply be deleted: Theorem~\ref{thm:C} realizes the pattern over the
+base $\Z$ in an MF group in which the marked involution survives.
+As with Theorem~\ref{thm:A}, this is not a claim that every possible
+proof must proceed through property (T); a substitute furnishing the
+uniform fixed-space projection is what the argument consumes.
+\end{remark}
+
+For the remainder of this section and in Section~\ref{sec:proofA},
+fix a countable group $H$ with a marked Kazhdan pattern
+$(\Lambda,\iota,t,c)$ and a finite normal subgroup
+$F\trianglelefteq H$ with $F\subseteq N_{\mathrm{comp}}$, and suppose
+given a corona representation $\Theta\colon H\to\U(\mathcal Q)$ whose
+restriction to $F$ is nontrivial; the proof of
+Theorem~\ref{thm:criterion} will derive a contradiction.  By
+Lemma~\ref{lem:corner} there is a corona representation
+$\Theta_-\colon H\to\U(\mathcal Q')$,
+$\mathcal Q'=\mathcal Q((r_n)_{n\in J'})$, with
+$\sum_{f\in F}\Theta_-(f)=0$.  Using Lemma~\ref{lem:lift}(2), choose
+for every $g\in H$ a sequence of unitaries
 $U_{g,n}\in M_{r_n}(\C)$ lifting $\Theta_-(g)$, with $U_{1,n}=1$.
 
 Let $K_n=L^2\bigl(M_{r_n}(\C),\tr_{r_n}\bigr)$, a Hilbert space of
@@ -1133,10 +1184,10 @@ $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
     Hilbert space $K_n$ (and therefore as elements of $B(K_n)$).
   \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in J'}$
     in $\mathcal B$ defines a group homomorphism
-    $\beta\colon E\to\U(\mathcal B)$, independent of the choice of
+    $\beta\colon H\to\U(\mathcal B)$, independent of the choice of
     unitary lifts.
   \item $\beta$ extends to a unital $*$-homomorphism
-    $\tilde\beta\colon\Cmax(E)\to\mathcal B$ with
+    $\tilde\beta\colon\Cmax(H)\to\mathcal B$ with
     $\tilde\beta(u_g)=\beta(g)$.
 \end{enumerate}
 \end{lemma}
@@ -1166,11 +1217,11 @@ $\beta(g^{-1})$.
 
 (3) Represent $\mathcal B$ faithfully and unitally on a Hilbert space
 $\mathcal H_{\mathcal B}$.  Then $g\mapsto\beta(g)$ is a unitary
-representation of $E$ on $\mathcal H_{\mathcal B}$, which extends to a
-$*$-representation $\tilde\beta$ of $\Cmax(E)$ on
-$\mathcal H_{\mathcal B}$.  For $x\in\Cmax(E)$ the operator
+representation of $H$ on $\mathcal H_{\mathcal B}$, which extends to a
+$*$-representation $\tilde\beta$ of $\Cmax(H)$ on
+$\mathcal H_{\mathcal B}$.  For $x\in\Cmax(H)$ the operator
 $\tilde\beta(x)$ lies in the norm closure of the linear span of
-$\{\beta(g):g\in E\}$, which is contained in the $C^*$-subalgebra
+$\{\beta(g):g\in H\}$, which is contained in the $C^*$-subalgebra
 $\mathcal B$.
 \end{proof}
 
@@ -1178,53 +1229,72 @@ $\mathcal B$.
 \leanverified{Sofic/AdjointMatrix}{GroupApproximation.l2_opNorm_conjDouble_sub_le_two}
 \fi
 
-Recall the auxiliary HNN extension $G$ of \eqref{eq:G} and the
-canonical homomorphisms $\Gamma\to G\to E$.  Composing,
-$\tilde\beta$ restricts to unital $*$-homomorphisms of
-$\Cmax(G)$ and $\Cmax(\Gamma)$ into $\mathcal B$; we denote all of them
-$\tilde\beta$, and we write
+Let $\iota_*\colon\Cmax(\Lambda)\to\Cmax(H)$ be the unital
+$*$-homomorphism induced by $\iota$ (Section~\ref{sec:prelim}), and
+let $p_\Lambda\in\Cmax(\Lambda)$ be the Kazhdan projection of
+Fact~\ref{fact:kazhdan}.  Composing, $\tilde\beta\circ\iota_*$ is a
+unital $*$-homomorphism $\Cmax(\Lambda)\to\mathcal B$, and we write
 \[
-  P\;:=\;\tilde\beta(p_\Gamma)\;\in\;\mathcal B ,
+  P\;:=\;\tilde\beta\bigl(\iota_*(p_\Lambda)\bigr)\;\in\;\mathcal B ,
 \]
 a projection.
 
 \begin{lemma}[order identity]\label{lem:order}
-Let $\iota\colon\Cmax(\Gamma)\to\Cmax(G)$ be induced by
-$\Gamma\to G$, and write $\bar p=\iota(p_\Gamma)$.  Then, in
-$\Cmax(G)$:
+Let $H_1$ be a countable group, $\Lambda_1$ a countable group with
+property (T), $\iota_1\colon\Lambda_1\to H_1$ a homomorphism, and
+$t_1\in H_1$ an element with
+$t_1\,\iota_1(\lambda)\,t_1^{-1}\in\iota_1(\Lambda_1)$ for every
+$\lambda\in\Lambda_1$; write
+$\bar p=(\iota_1)_*(p_{\Lambda_1})\in\Cmax(H_1)$.  Then, in
+$\Cmax(H_1)$:
 \begin{enumerate}
-  \item $u_\gamma\,\bar p=\bar p$ for all $\gamma\in\Gamma$;
-  \item $\bar p\,\bigl(u_t\,\bar p\,u_t^*\bigr)=\bar p$; that is,
-    $\bar p\le u_t\bar pu_t^*$.
+  \item $u_{\iota_1(\lambda)}\,\bar p=\bar p$ for all
+    $\lambda\in\Lambda_1$;
+  \item $\bar p\,\bigl(u_{t_1}\,\bar p\,u_{t_1}^*\bigr)=\bar p$; that
+    is, $\bar p\le u_{t_1}\bar pu_{t_1}^*$.
 \end{enumerate}
-Consequently, in $\mathcal B$: $\beta(\gamma)P=P$ for all
-$\gamma\in\Gamma$, and $P\le\beta(t)P\beta(t)^*$.
+Consequently, for the standing pattern, in $\mathcal B$:
+$\beta(\iota(\lambda))P=P$ for all $\lambda\in\Lambda$, and
+$P\le\beta(t)P\beta(t)^*$.
 \end{lemma}
 
 \begin{proof}
-Both identities may be checked in an arbitrary unitary representation
-$\pi$ of $G$ on a Hilbert space $\mathcal H$, since $\Cmax(G)$ admits a
-faithful one.  The composition $\pi\circ\iota$ is the integrated form
-of $\pi|_\Gamma$ (both are $*$-homomorphisms extending the same unitary
-representation of $\Gamma$), so by Fact~\ref{fact:kazhdan},
-$\pi(\bar p)$ is the orthogonal projection onto
-$\Fix(\pi|_\Gamma)$, and (1) holds.
+(1) is the image under $(\iota_1)_*$ of the identity
+$u_\lambda\,p_{\Lambda_1}=p_{\Lambda_1}$ of Fact~\ref{fact:kazhdan},
+since $(\iota_1)_*(u_\lambda)=u_{\iota_1(\lambda)}$.
 
-For (2): $\pi(u_t\bar pu_t^*)=\pi(t)\,\pi(\bar p)\,\pi(t)^*$ is the
-orthogonal projection onto $\pi(t)\Fix(\pi|_\Gamma)$.  We claim
-$\Fix(\pi|_\Gamma)\subseteq\pi(t)\Fix(\pi|_\Gamma)$.  Let
-$\xi\in\Fix(\pi|_\Gamma)$ and put $\eta=\pi(t)^{-1}\xi$.  For
-$\gamma\in\Gamma$, using $t\gamma t^{-1}=\alpha(\gamma)\in\Gamma$,
+For (2), both sides may be evaluated in an arbitrary unitary
+representation $\pi$ of $H_1$ on a Hilbert space $\mathcal H$, since
+$\Cmax(H_1)$ admits a faithful one.  The composition
+$\pi\circ(\iota_1)_*$ is the integrated form of the unitary
+representation $\pi\circ\iota_1$ of $\Lambda_1$ (both are
+$*$-homomorphisms extending the same unitary representation), so by
+Fact~\ref{fact:kazhdan}, $\pi(\bar p)$ is the orthogonal projection
+onto
 \[
-  \pi(\gamma)\eta=\pi(t)^{-1}\pi(t\gamma t^{-1})\xi
-  =\pi(t)^{-1}\pi(\alpha(\gamma))\xi=\pi(t)^{-1}\xi=\eta ,
+  \Fix(\pi\circ\iota_1)=\{\xi\in\mathcal H:
+  \pi(\iota_1(\lambda))\xi=\xi\ \text{for all }\lambda\in\Lambda_1\},
 \]
-so $\eta\in\Fix(\pi|_\Gamma)$ and $\xi=\pi(t)\eta$.  The claimed
+and $\pi(u_{t_1}\bar pu_{t_1}^*)=\pi(t_1)\,\pi(\bar p)\,\pi(t_1)^*$
+is the orthogonal projection onto
+$\pi(t_1)\Fix(\pi\circ\iota_1)$.  We claim
+$\Fix(\pi\circ\iota_1)\subseteq\pi(t_1)\Fix(\pi\circ\iota_1)$.  Let
+$\xi\in\Fix(\pi\circ\iota_1)$ and put $\eta=\pi(t_1)^{-1}\xi$.  For
+$\lambda\in\Lambda_1$ choose $\lambda'\in\Lambda_1$ with
+$t_1\,\iota_1(\lambda)\,t_1^{-1}=\iota_1(\lambda')$; then
+\[
+  \pi(\iota_1(\lambda))\eta
+  =\pi(t_1)^{-1}\pi(t_1\,\iota_1(\lambda)\,t_1^{-1})\xi
+  =\pi(t_1)^{-1}\pi(\iota_1(\lambda'))\xi=\pi(t_1)^{-1}\xi=\eta ,
+\]
+so $\eta\in\Fix(\pi\circ\iota_1)$ and $\xi=\pi(t_1)\eta$.  The
 inclusion of ranges gives
-$\pi(\bar p)\le\pi(u_t\bar pu_t^*)$, i.e.\ (2) in the representation
-$\pi$; as $\pi$ was arbitrary and some $\pi$ is faithful, (2) holds in
-$\Cmax(G)$.  The final statement follows by applying the
-$*$-homomorphism $\tilde\beta$ (through $\Cmax(G)$).
+$\pi(\bar p)\le\pi(u_{t_1}\bar pu_{t_1}^*)$, i.e.\ (2) in the
+representation $\pi$; as $\pi$ was arbitrary and some $\pi$ is
+faithful, (2) holds in $\Cmax(H_1)$.  The final statement follows by
+applying the $*$-homomorphism $\tilde\beta$ to the instance
+$(H_1,\Lambda_1,\iota_1,t_1)=(H,\Lambda,\iota,t)$, for which (M1) is
+the required one-sided containment.
 \end{proof}
 
 \begin{lemma}[compression equality]\label{lem:pinning}
@@ -1258,8 +1328,8 @@ $*$-homomorphism $\sigma\colon\mathcal B\to B(K_\omega)$.  Moreover
 $\sigma(P)$ is the orthogonal projection onto
 \[
   \Fix_\omega\;=\;\bigl\{\zeta\in K_\omega:\
-  \sigma(\beta(\gamma))\zeta=\zeta\ \text{for all}\
-  \gamma\in\Gamma\bigr\}.
+  \sigma(\beta(\iota(\lambda)))\zeta=\zeta\ \text{for all}\
+  \lambda\in\Lambda\bigr\}.
 \]
 \end{lemma}
 
@@ -1268,12 +1338,14 @@ If $(T_n)$ is a null sequence in operator norm then
 $\lVert T_n\xi_n\rVert\le\opnorm{T_n}\sup\lVert\xi_n\rVert\to0$, in
 particular along $\omega$; so $\sigma$ is well defined on
 $\mathcal B$, and it is clearly a unital $*$-homomorphism.  The
-composition $\sigma\circ\tilde\beta\colon\Cmax(\Gamma)\to B(K_\omega)$
+composition
+$\sigma\circ\tilde\beta\circ\iota_*\colon\Cmax(\Lambda)\to B(K_\omega)$
 is a $*$-representation on a Hilbert space extending the unitary
-representation $\gamma\mapsto\sigma(\beta(\gamma))$; by uniqueness of
-integrated forms and Fact~\ref{fact:kazhdan},
-$\sigma(P)=\sigma(\tilde\beta(p_\Gamma))$ is the orthogonal projection
-onto the fixed space of that representation, which is $\Fix_\omega$.
+representation $\lambda\mapsto\sigma(\beta(\iota(\lambda)))$; by
+uniqueness of integrated forms and Fact~\ref{fact:kazhdan},
+$\sigma(P)=\sigma\bigl(\tilde\beta(\iota_*(p_\Lambda))\bigr)$ is the
+orthogonal projection onto the fixed space of that representation,
+which is $\Fix_\omega$.
 \end{proof}
 
 \section{Proof of Theorem \ref{thm:A}}\label{sec:proofA}
@@ -1572,6 +1644,13 @@ B.~Blackadar and E.~Kirchberg,
 $C^*$-algebras},
 Math. Ann. \textbf{307} (1997), no.~3, 343--380.
 
+\bibitem[BoS]{BoS}
+A.~Borisov and M.~Sapir,
+\emph{Polynomial maps over finite fields and residual finiteness of mapping
+tori of group endomorphisms},
+Invent. Math. \textbf{160} (2005), no.~2, 341--356,
+\url{doi:10.1007/s00222-004-0411-2}.
+
 \bibitem[BO]{BO}
 N.~P. Brown and N.~Ozawa,
 \emph{$C^*$-algebras and finite-dimensional approximations},
@@ -1608,10 +1687,34 @@ A.~Dogon and I.~Vigdorovich,
 lattices},
 preprint, 2026, \url{arXiv:2506.20843v2}.
 
+\bibitem[Go]{Go}
+A.~P. Goryushkin,
+\emph{Imbedding of countable groups in $2$-generated simple groups},
+Math. Notes Acad. Sci. USSR \textbf{16} (1974), no.~2, 725--727,
+\url{doi:10.1007/BF01105577}.
+
+\bibitem[HT]{HT}
+U.~Haagerup and S.~Thorbj{\o}rnsen,
+\emph{A new application of random matrices:
+$\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
+Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
+\url{doi:10.4007/annals.2005.162.711}.
+
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
 preprint, 2026, \url{arXiv:2608.06222}.
+
+\bibitem[Ma]{Ma}
+A.~I. Mal'cev,
+\emph{On isomorphic matrix representations of infinite groups},
+Mat. Sb. (N.S.) \textbf{8(50)} (1940), no.~3, 405--422.
+
+\bibitem[Neu]{Neumann}
+B.~H. Neumann,
+\emph{Some remarks on infinite groups},
+J. London Math. Soc. \textbf{s1-12} (1937), no.~2, 120--127,
+\url{doi:10.1112/jlms/s1-12.46.120}.
 
 \bibitem[OAI]{OAI}
 OpenAI,
@@ -1619,6 +1722,12 @@ OpenAI,
 in \emph{Ten advances in mathematics and theoretical computer science},
 Chapter~3, 77--93, 2026,
 \url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
+
+\bibitem[Ra]{Rainone}
+T.~Rainone,
+\emph{MF actions and $K$-theoretic dynamics},
+J. Funct. Anal. \textbf{267} (2014), no.~2, 542--578,
+\url{doi:10.1016/j.jfa.2014.04.005}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
