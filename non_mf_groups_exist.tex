@@ -1791,8 +1791,7 @@ uniform fixed-space projection is what the argument consumes.
 
 We use the following finite-stage language.  An
 \emph{operator-norm asymptotic representation} of a countable group $G$ is
-a sequence of maps $V_n\colon G\to\U(M_{r_n}(\C))$, with $V_n(1)=1$, such
-that
+a sequence of maps $V_n\colon G\to\U(M_{r_n}(\C))$ such that
 \[
  \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
  \qquad(g,h\in G).
@@ -1841,7 +1840,7 @@ The compressions $e_nU_{g,n}e_n$ are asymptotically unitary and
 multiplicative.  For each fixed $g$, replacing the compression by the
 unitary factor in its polar decomposition changes it by $o(1)$ in operator norm.  Use this polar
 correction whenever the compression is invertible and choose an arbitrary
-unitary otherwise; then set $V_n(1)=1$.  Finally
+unitary otherwise.  Finally
 $\opnorm{A_ne_n}\to0$, so compression and polar correction give
 \eqref{eq:finitecornersum}.  This is the coordinate form of the Reynolds
 corner; compare the dimension-changing compression in
