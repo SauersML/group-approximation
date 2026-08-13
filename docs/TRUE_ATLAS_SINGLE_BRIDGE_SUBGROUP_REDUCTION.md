@@ -164,6 +164,61 @@ matrix-specific commutant/normalizer recovery gate: the left regular
 representation of `Q` realizes the relations exactly while its two copies
 of `H` remain genuinely distinct.
 
+There is a completely explicit dimension-free estimate behind `(SBR13)`.
+Let `rho` be a regular multiple of the first `A8` chart and, after absorbing
+the fixed classical alignment, write the second chart as
+
+```text
+g |-> U rho(g) U*.                                    (SBR14)
+```
+
+Use the normalized Hilbert--Schmidt norm and put
+
+```text
+delta_H = max_(h in H) ||U rho(h)-rho(h)U||_2,
+epsilon_br = defect of the length-19 bridge relation. (SBR15)
+```
+
+Nine of the ten second-chart syllables in the bridge lie in `H`; the last
+one is the transverse root `b=x_21(f)`.  Replacing those nine syllables one
+at a time and using bi-invariance and the triangle inequality gives
+
+```text
+||U rho(b)-rho(b)U||_2 <= epsilon_br+9 delta_H.        (SBR16)
+```
+
+Let `D` be the diameter of `A8` for the generating set
+`H union {b,b^-1}`.  The equality `<H,b>=A8` makes `D` finite, and the crude
+spanning-tree estimate gives `D<=|A8|-1=20159`.  Telescoping a shortest word
+for each `g` gives
+
+```text
+max_(g in A8) ||U rho(g)-rho(g)U||_2
+  <= D (epsilon_br+9 delta_H).                         (SBR17)
+```
+
+Collision word 19243 has length eight, so replacing all its second-chart
+syllables costs at most `8D(epsilon_br+9delta_H)`.  Passing to its commutator
+with the fixed first-chart transvection costs at most twice that amount.  If
+`epsilon_int` is the defect of this centrality relator, its classically
+aligned value is a nonidentity group element in a regular `A8`
+representation and hence has normalized Hilbert--Schmidt distance `sqrt(2)`
+from the identity.  Therefore every such finite-coordinate model obeys
+
+```text
+sqrt(2) <= epsilon_int
+           + 16 D (epsilon_br+9 delta_H).              (SBR18)
+```
+
+Consequently an `o(1)` atlas microstate sequence cannot have
+`delta_H=o(1)`.  No qualitative stability theorem is needed after the
+`H`-commutant has been recovered: `(SBR18)` is the whole remaining
+contradiction.  Conversely, `(SBR18)` does not estimate `delta_H` from the
+atlas relators.  Supplying that estimate is exactly the unresolved
+matrix-coordinate recovery theorem, and none of the signed derivative
+certificates does so: they linearize at the already aligned fold, while the
+exact Leavitt model is a nonlinear branch.
+
 ## 5. Search limitation
 
 Radius eight already grows past several million candidate transitions, so
