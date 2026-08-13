@@ -477,7 +477,7 @@ theorem witnessHom_comp_baseMap :
       (iotaAmbient alpha conjD_injective).comp matrixBaseHom := by
   apply PresentedGroup.ext
   intro i
-  simp
+  exact witnessHom_base_generator i
 
 /-- Presentation completeness implies that the canonical printed base map
 into the literal eight-generator group is injective.  This is the exact

@@ -229,11 +229,11 @@ def canonicalFaithfulTracialState : FaithfulTracialState (ReducedGroupCStar G) w
     intro T hT
     change canonicalCoefficientAtOne G (star T * T) = 0 at hT
     rw [canonicalCoefficientAtOne_star_mul_self] at hT
-    have hsq : ‖(T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ ^ 2 = 0 := by
-      have hre := congrArg Complex.re hT
-      simpa using hre
+    have hnormComplex :
+        (‖(T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ : ℂ) = 0 := by
+      exact sq_eq_zero_iff.mp hT
     have hnorm : ‖(T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)‖ = 0 := by
-      exact sq_eq_zero_iff.mp hsq
+      exact_mod_cast hnormComplex
     apply eq_zero_of_apply_deltaOne_eq_zero G T
     exact norm_eq_zero.mp hnorm
 
