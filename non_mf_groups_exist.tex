@@ -14,6 +14,10 @@
 % This review source is physically anonymized: author and repository
 % identifiers are not retained in an inactive conditional branch.
 \newcommand{\leanrepo}{[repository link removed for anonymous review]}
+% Pinned repository revision for all Lean links; the publication workflow
+% replaces `main` by the exact commit hash at build time so that published
+% links are immutable.
+\newcommand{\leancommit}{main}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
   pdftitle={An explicit finitely presented operator-corona non-MF group},
@@ -26,8 +30,9 @@
 \newcommand{\leanbadge}[3]{%
   \marginpar{\raggedright\normalfont\tiny\color{gray!70!black}%
   \ifanonymous\textsc{Lean 4 #3}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\textsc{Lean 4 #3}}\fi}}
-\newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{exact}}
+  \href{\leanrepo/blob/\leancommit/GroupApproximation/#1.lean}{\textsc{Lean 4 #3}}\fi}}
+% The exact badge is typographically distinct from the five weaker statuses.
+\newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\textbf{exact}}}
 \newcommand{\leanequivalent}[2]{\leanbadge{#1}{#2}{equiv}}
 \newcommand{\leansupporting}[2]{\leanbadge{#1}{#2}{support}}
 \newcommand{\leanconditional}[2]{\leanbadge{#1}{#2}{conditional}}
@@ -115,7 +120,10 @@ and structural and marked-space results for the MF radical.  An explicit
 Clifford tower also gives sofic and Connes-embeddable tracial representations
 in which $w$ survives.  Hence $w$ belongs to the MF radical but to neither
 the sofic nor the hyperlinear radical; this does not decide whether $E$ itself
-is hyperlinear.
+is hyperlinear.  Combining the normal-Kazhdan criterion with the torsion-free
+HNN construction of Fournier-Facio and Hull's acylindrical small cancellation
+also produces a two-generated, finitely presented, torsion-free, nonsofic
+property-\textup{(T)} group whose entire group is its MF radical.
 \end{abstract}
 
 \maketitle
@@ -201,11 +209,19 @@ for that abstract presentation.  A separate Lean theorem proves the same
 existential conclusion for a noncomputably selected finitely presented
 Kazhdan-cover witness, not for the displayed group $E$.
 \leandifferentwitness{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
+Two interface conventions of the formal development are noted once here:
+property~\textup{(T)} is formalized as the Kazhdan-pair condition for
+orthogonal representations on real Hilbert spaces, at fixed universe
+levels, which is the form the analytic argument consumes; and the corona
+target is constructed both as the unitary-sequence quotient and as the
+genuine $C^*$-quotient, with the polar-correction isomorphism between
+them proved and pinned in the audit.
 
 The margin labels distinguish exact formalizations, equivalent formulations,
 supporting lemmas, conditional or partial results, and results for another
 witness.  Only \textsc{exact} denotes a one-to-one certification of the
-printed claim.
+printed claim.  A statement carrying no margin label has no formal
+counterpart and rests on the paper proof alone.
 
 A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
@@ -404,10 +420,8 @@ algorithmic consequences.  The principal $C^*$-algebraic application is:
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
-\ifanonymous\else
 \leanpartial{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
 \leansupporting{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
-\fi
 \end{mainthm}
 
 The faithful trace and matrix-level stable-finiteness argument are formalized
@@ -423,6 +437,28 @@ quotient, scaling families, infinitely and uncountably many examples, and
 uniform and marked-space forms of the obstruction.
 Section~\ref{sec:consequences} states each result and records the additional
 external input where it is used.
+
+The normal-Kazhdan criterion also removes torsion from the obstruction.
+
+\begin{mainthm}[torsion-free full MF radical]\label{thm:E}
+There exists a two-generated, finitely presented, torsion-free,
+acylindrically hyperbolic property-\textup{(T)} group $Q$ such that
+\[
+  \operatorname{Rad}_{\mathrm{MF}}(Q)=Q.
+\]
+The group $Q$ can be chosen nonsofic.  Equivalently, every corona
+representation of $Q$, and every homomorphism from $Q$ to an MF group, is
+trivial.
+\end{mainthm}
+
+Theorem~\ref{thm:E} is an unconditional paper theorem: the existence of its
+small-cancellation quotient is supplied by the cited theorems of
+Fournier-Facio, Hull, and Osin.  The Lean companion verifies the defect
+saturation and every MF-radical deduction after the corresponding
+proof-carrying quotient data are supplied; it does not formalize the external
+theory of acylindrically hyperbolic groups or Hull's quotient construction.
+The associated badges in Section~\ref{subsec:tf-full-radical} are therefore
+supporting declarations, not badges for an exact Lean proof of existence.
 
 \subsection*{What this paper does not prove}
 The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ is
@@ -444,7 +480,9 @@ The Clifford witness and the finite-dimensional obstruction are proved
 directly.  Section~\ref{sec:prelim} records the additional inputs for the
 cyclic comparison, and Section~\ref{sec:consequences} cites the classical
 embedding, residual-finiteness, and approximation results at their points of
-use.
+use.  Theorem~\ref{thm:E} additionally uses Fournier-Facio's torsion-free HNN
+skeleton, Osin's normal-subgroup lemma, and Hull's suitable-subgroup and
+small-cancellation quotient theorems \cite{FF,OsinAH,Hull}.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -536,7 +574,7 @@ criterion (Theorem~\ref{thm:criterion}), and develops the coordinate
 Reynolds and Kazhdan-compression estimates.
 Section~\ref{sec:proofA} proves the criterion and deduces
 Theorem~\ref{thm:A}.  Section~\ref{sec:consequences} derives
-Theorem~\ref{thm:D} and the further consequences.
+Theorems~\ref{thm:D} and~\ref{thm:E} and the further consequences.
 Section~\ref{sec:necessity} proves Theorem~\ref{thm:C}.
 Section~\ref{sec:limits} discusses limitations.
 
@@ -989,7 +1027,8 @@ and the two sites are distinct by Lemma~\ref{lem:linear}, so
   = -1 = z .
 \]
 Since $z$ is a central involution of $W$, the remaining relations
-$w^2=1$ and $[w,s]=[w,t]=[w,c]=1$ are also satisfied.  Hence the
+$w^2=1$ and $[w,g]=1$ for
+$g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $z\neq1$, and therefore $w\neq1$ in $E$.
 \end{proof}
@@ -1303,14 +1342,28 @@ set and then combined by block sum, normalize all pairwise separation
 constants to $1$.  Hence $R$ has a uniformly separated operator-norm
 matrix approximation.
 
-Apply the normal property~(T) corner construction to $K'$.  It produces
-from this ambient matrix model a tracial matrix-ultraproduct
-representation in which some element of $K'$ survives.  Applied to the
-same corner model, the compressor argument makes every generator
-$[tct^{-1},\iota(\lambda)]$ trivial, hence kills its normal closure and
-all of $K'$, a contradiction.  This is the second Kazhdan projection
-hidden in the finite-normal argument: it replaces the finite Reynolds
-average.
+Apply the normal property~(T) corner construction to $K'$.  In detail:
+in each coordinate of the uniformly separated model, form the Hermitian
+average of the adjoint microstates of a finite Kazhdan generating set of
+$K'$ and take its high spectral cut, exactly as in
+Lemma~\ref{lem:compressorcollapse} but with $K'$ in place of $\Lambda$.
+Normality of $K'$ in $R$ is used here, and only here: conjugation by any
+element of $R$ permutes $K'$, so the coordinate averages are
+asymptotically invariant under conjugation by every model unitary, and
+the resulting spectral projections are asymptotically central, not
+merely $K'$-invariant.  Compressing to the complementary block and
+polar-correcting, as in Lemma~\ref{lem:corner} with the Kazhdan cut in
+place of the Reynolds average, produces a tracial matrix-ultraproduct
+representation of $R$ in which some element of $K'$ survives.  Applied
+to the same corner model, the compressor argument of
+Lemma~\ref{lem:compressorcollapse} makes every generator
+$[tct^{-1},\iota(\lambda)]$ trivial in that tracial ultraproduct; the
+kernel is normal, so it contains $N_{\rm comp}$ and therefore the
+transported image of $K$, hence all of $K'$ --- contradicting the
+survival above.  This is the second Kazhdan projection hidden in the
+finite-normal argument: it replaces the finite Reynolds average, whose
+role in Lemma~\ref{lem:corner} was likewise to supply an asymptotically
+central projection with a nonvanishing complementary block.
 \end{proof}
 
 \begin{corollary}[Kazhdan part and exact radical]\label{cor:kazhdanpart}
@@ -1378,7 +1431,11 @@ For every homomorphism $\Theta\colon H\to\U(A)$,
  \Theta\bigl(\mathfrak D(H,L)\bigr)=1.
 \]
 In particular the conclusion holds when $A$ is nuclear and faithfully
-tracial.
+tracial.  Here $\tau$ is assumed faithful on all of $A$, no
+separability of $A$ or countability of $H$ is needed, and stable
+finiteness is used only through the statement that an isometry in
+$A\otimes_{\max}A^{\rm op}$ is a unitary.  This theorem has no formal
+counterpart.
 \end{theorem}
 
 \begin{proof}
@@ -1387,15 +1444,27 @@ Consider the exact representation
  \beta(g)=\Theta(g)\otimes\Theta(g)^{*,{\rm op}}
  \quad\text{in }\U(A\otimes_{\max}A^{\rm op}).
 \]
-On $L^2(A,\tau)$ its left--right action is conjugation by $\Theta(g)$.
-The Kazhdan projection for $L$ therefore projects onto the fixed vectors
-of this conjugation action.  The one-sided compressor calculation gives
-the same projection order as above, and stable finiteness of the maximal
-tensor product turns it into equality.  Thus the fixed space is invariant
+On $L^2(A,\tau)$ --- the GNS space of $\tau$, on which
+$A\otimes_{\max}A^{\rm op}$ acts by left--right multiplication, using
+traciality of $\tau$ for the right action --- the action of $\beta(g)$
+is conjugation by $\Theta(g)$.  The Kazhdan projection
+$p_\Lambda\in\Cmax(\Lambda)$ of Fact~\ref{fact:kazhdan}, pushed through
+$\beta\circ\iota$, therefore projects onto the fixed vectors
+of this conjugation action.  The one-sided compressor calculation of
+Lemma~\ref{lem:order} gives, for every $s\in\mathcal C(L)$, the
+projection order $p\le\beta(s)p\beta(s)^*$ inside
+$A\otimes_{\max}A^{\rm op}$, where $p$ denotes the image of
+$p_\Lambda$.  The isometry construction of
+Proposition~\ref{prop:ambient}(1), with $\beta(s)$ in place of $u_t$,
+exhibits $\beta(s)p\beta(s)^*-p$ as the defect projection of an
+isometry; stable finiteness of the maximal tensor product makes that
+isometry a unitary, so the order becomes equality and $p$ commutes with
+$\beta(s)$.  Thus the fixed space is invariant
 under $G_{\rm comp}(L)$.  Since $\Theta(z)$ is fixed whenever
 $z\in C_H(L)$, so is $\Theta(gzg^{-1})$ for every
 $g\in G_{\rm comp}(L)$.  It commutes in $L^2(A,\tau)$ with every
-$\Theta(\ell)$, $\ell\in L$; faithfulness of $\tau$ promotes this
+$\Theta(\ell)$, $\ell\in L$; faithfulness of $\tau$ makes the GNS
+representation of $A$ faithful and so promotes this
 $L^2$ equality to equality in $A$.  Hence all generators of
 $\mathfrak D(H,L)$ vanish under $\Theta$.
 
@@ -2038,7 +2107,7 @@ Theorem~\ref{thm:A}.
 Blackadar and Kirchberg proved that MF algebras are stably finite
 \cite{BK}.  The general converse was already refuted as a consequence of
 the negative solution to the Connes embedding problem
-\cite[Corollary~5.2]{GoldbringMF}; Theorem~\ref{thm:D} instead realizes
+\cite{JNVWY}, \cite[Corollary~5.2]{GoldbringMF}; Theorem~\ref{thm:D} instead realizes
 that failure as the reduced group $C^*$-algebra of an explicit finitely
 presented group, with a faithful trace.  The example is not nuclear:
 $\Gamma$ embeds into $E$
@@ -2115,9 +2184,7 @@ the range of $\pi(u_{t_1}\bar p u_{t_1}^*)$.  A faithful representation
 gives the asserted order in $\Cmax(H_1)$.
 \end{proof}
 
-\ifanonymous\else
 \leansupporting{Kazhdan/FixedSpaceCompression}{GroupApproximation.FixedSpaceCompression.invariantSubmodule_le_map}
-\fi
 
 \begin{proposition}[the ambient group]\label{prop:ambient}
 Let $G$ be the ascending HNN extension \eqref{eq:G}.
@@ -2200,7 +2267,11 @@ $s$ itself witnesses the failure of finiteness.
 (2) $G$ is the mapping torus of the injective endomorphism $\alpha$
 of the finitely generated linear group $\Gamma\le\GL_4(\Z)$, so $G$
 is residually finite by Borisov--Sapir \cite[Theorem~1.6]{BoS}; the MF property
-follows from Lemma~\ref{lem:rfmf}.
+follows from Lemma~\ref{lem:rfmf}.  We note that the proof of
+\cite[Theorem~1.6]{BoS} depends on Hrushovski's work on the elementary
+theory of the Frobenius automorphism, which remains unpublished; this
+external input affects only the present proposition, not
+Theorem~\ref{thm:A}.
 \end{proof}
 
 \begin{remark}
@@ -2218,10 +2289,8 @@ then the group is MF --- is recorded in \cite{Shulman}.
 \begin{corollary}[quotients]\label{cor:quotclosure}
 MF groups are not closed under quotients: the free group $F_8$ is
 MF, and $E$ is a quotient of $F_8$.
-\ifanonymous\else
 \leansupporting{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF}
 \leansupporting{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective}
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2248,9 +2317,7 @@ homomorphism $E\to W$ of that proof is surjective, and the central
 sign $z=-1\in\ClLamp(\bar X)$ satisfies
 $z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
 particular $W$ is not MF.
-\ifanonymous\else
 \leansupporting{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
-\fi
 \end{proposition}
 
 \begin{proof}
@@ -2293,9 +2360,7 @@ intersections of kernels over hyperlinear and sofic targets, then
    \operatorname{Rad}_{\mathrm{hyp}}(E)
    \cup\operatorname{Rad}_{\mathrm{sof}}(E)\bigr).
 \]
-\ifanonymous\else
 \leansupporting{Sofic/RadicalSeparation}{GroupApproximation.coronaMFInvisible_not_hyperlinearInvisible_not_soficInvisible_of_detector}
-\fi
 \end{proposition}
 
 \begin{proof}
@@ -2406,9 +2471,7 @@ There is an explicit finitely generated sofic group which is not MF.
 Namely, the image $Q=\rho(E)\leq S$ in
 Proposition~\ref{prop:CEvisible} is sofic, while
 $1\neq\rho(w)\in\operatorname{Rad}_{\mathrm{MF}}(Q)$.
-\ifanonymous\else
 \leansupporting{Sofic/RadicalSeparation}{GroupApproximation.sofic_range_not_isOperatorMF_of_coronaMFInvisible}
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2428,9 +2491,7 @@ There is a countable simple sofic group $S_{\mathrm{sof}}$ with
 \]
 Thus $S_{\mathrm{sof}}$ is hyperlinear, but every homomorphism from it into
 an MF group is trivial.
-\ifanonymous\else
 \leansupporting{Sofic/RadicalSeparation}{GroupApproximation.simple_envelope_full_normMFResidual_of_coronaMFInvisible}
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2481,7 +2542,8 @@ trivial.
 \end{corollary}
 
 \begin{proof}
-By Goryushkin's theorem \cite{Go}, the countable group $E$ embeds
+By the embedding theorem of Goryushkin \cite{Go} and Schupp
+\cite{Schupp}, proved independently, the countable group $E$ embeds
 into a $2$-generator simple group $S$.  By Lemma~\ref{lem:portable}
 applied to the embedding, the image of $w$ is a nontrivial element
 of $\operatorname{Rad}_{\mathrm{MF}}(S)$.  The radical is a normal
@@ -2491,8 +2553,8 @@ representation of $S$ is trivial.  If $\varphi\colon S\to M$ is a
 homomorphism to an MF group and $j$ an injective corona
 representation of $M$, then $j\circ\varphi$ is a corona
 representation, hence trivial, so $\varphi$ is trivial.  The
-simple-envelope theorem is entirely Goryushkin's; what is added here
-is the nontrivial image of the radical element.
+simple-envelope theorem belongs to Goryushkin and Schupp; what is
+added here is the nontrivial image of the radical element.
 \end{proof}
 
 \subsection{Finitely presented Kazhdan envelopes}
@@ -2504,7 +2566,7 @@ $j\colon H\hookrightarrow\Lambda$ into a finitely presented
 property~(T) group $\Lambda$ which is normally generated by $j(h)$
 \cite[Theorem~3]{ChatterjiKassabov}.  The arXiv record
 \arxiv{2601.22907v1} was submitted on January~30, 2026; the manuscript
-itself is dated August~11, 2026.  We use only that theorem and make no
+itself is dated February~2, 2026.  We use only that theorem and make no
 claim that its construction is part of the present work.
 
 \begin{theorem}[a finitely presented Kazhdan group with full MF radical]
@@ -2518,12 +2580,10 @@ Every corona representation of $\Lambda$, and every homomorphism from
 $\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
 linear representation of $\Lambda$, over every field, is trivial, and
 $\Lambda$ is perfect.
-\ifanonymous\else
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.normMFResidual_eq_top_of_mem_normalClosure_eq_top}
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.hom_eq_one_of_residual_eq_top_to_isOperatorMF}
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.hom_eq_one_of_map_eq_one_of_normalClosure_eq_top}
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.isPerfect_of_mem_commutator_normalClosure_eq_top}
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -2568,10 +2628,8 @@ as a subgroup and satisfies
 \]
 Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
 trivial.
-\ifanonymous\else
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.normMFResidual_eq_top_of_mem_normalClosure_eq_top}
 \leansupporting{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.hom_eq_one_of_residual_eq_top_to_isOperatorMF}
-\fi
 \end{theorem}
 
 \begin{proof}
@@ -2608,13 +2666,11 @@ For the same universal Kazhdan group,
 \]
 whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
 is therefore neither finite nor stably finite.
-\ifanonymous\else
 \leansupporting{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
 \leansupporting{Analysis/ReducedGroupCStarMFObstruction}{GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top}
 \leansupporting{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
 \leansupporting{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec}
 \leansupporting{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing}
-\fi
 \end{corollary}
 
 \begin{proof}
@@ -2763,10 +2819,16 @@ cardinality $2^{\aleph_0}$; apply this to $i\mapsto[G_i]$.
 \subsection{Algorithmic unrecognizability}
 
 We use the Adian--Rabin theorem in its standard Markov-property form
-\cite{Adian58,Rabin}: if an isomorphism-invariant property has a finitely
+\cite{Adian58,Rabin}; an English translation of Adian's original
+articles, with a modern statement of the theorem, is \cite{NybergBrodda}.
+The form used here: if an isomorphism-invariant property has a finitely
 presented positive example and a finitely presented forbidden group which
 cannot embed in any finitely presented group having the property, then the
-property is undecidable from finite presentations.
+property is undecidable from finite presentations.  All effectivity
+assertions below are relative to a fixed standard G\"odel coding of finite
+presentations; the accompanying formal statements are reductions
+parameterized by such a coding and by the Adian--Rabin test-group
+transformation, which is not itself formalized.
 
 \begin{theorem}[MF recognition is undecidable]\label{thm:mfrecognition}
 There is no algorithm which, given a finite group presentation, decides
@@ -2787,10 +2849,8 @@ of codes presenting non-MF groups is not recursively enumerable.
 Consequently there is no sound and complete recursively verifiable system
 of finite certificates for failure of the MF property in finitely presented
 groups.
-\ifanonymous\else
 \leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
 \leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
-\fi
 \end{theorem}
 
 The two Lean declarations are reduction theorems parameterized by a concrete
@@ -2814,9 +2874,7 @@ follows because the objects accepted by a recursive finite verifier form a
 recursively enumerable set.
 \end{proof}
 
-\ifanonymous\else
 \leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
-\fi
 
 \subsection{Uniform invisibility}
 
@@ -2921,19 +2979,230 @@ $16$ for $w$ and at most $34$ for every relator (the longest are the
 centrality relators $[w,g]$), proving the asserted radius.
 \end{proof}
 
-\begin{remark}[open questions]\label{rem:openq}
-Two questions remain adjacent to this section.  (i) Is $E/\langle
-w\rangle$ MF, i.e.\ is the MF radical of $E$ exactly $\{1,w\}$?
-(ii) Does a \emph{torsion-free} non-MF group exist?  Theorem~\ref{thm:normalkazhdan}
-removes the finite-normality requirement: it would suffice to construct
-a torsion-free finitely presented $H$ with a nontrivial normal
-property~(T) subgroup $K\le N_{\rm comp}$ (or, after the corresponding
-whole-defect upgrade, $K\le\mathfrak D(H,L)$).  A plausible route is to
-combine a torsion-free Rips construction, which supplies the normal
-Kazhdan kernel, with the one-sided-compressor geometry in
-Fournier-Facio's torsion-free nonsofic construction \cite{FF}; we do not
-carry out that construction here.
-\end{remark}
+\subsection{A torsion-free full-radical group}
+\label{subsec:tf-full-radical}
+
+We now combine Theorem~\ref{thm:normalkazhdan} with the torsion-free
+small-cancellation architecture of Fournier-Facio \cite{FF}.  This proves
+Theorem~\ref{thm:E} and removes the former torsion-free existence question.
+
+Use the input groups from \cite[Section~2]{FF}: a universal finitely
+presented torsion-free group $U$, a finitely presented infinite simple
+torsion-free group $S$, and a torsion-free hyperbolic property-\textup{(T)}
+group $H$.  The group $U$ embeds in a finitely presented torsion-free
+property-\textup{(T)} group $P$.  Universality gives an embedding
+\begin{equation}\label{eq:tf-direct-product}
+ P_1\times P_2\times S\ \le P,
+ \qquad P_1\cong P_2\cong P.
+\end{equation}
+For chosen isomorphisms $\phi_i\colon P\to P_i$, form the double ascending
+HNN extension
+\begin{equation}\label{eq:tf-double-hnn}
+ \mathcal E=
+ \left\langle P,u_1,u_2\ \middle|\
+ u_i p u_i^{-1}=\phi_i(p)\quad(p\in P,\ i=1,2)
+ \right\rangle .
+\end{equation}
+Fournier-Facio proves that $\mathcal E$ is finitely presented, torsion-free,
+and acylindrically hyperbolic \cite[Section~2]{FF}.
+
+Fix $1\ne s\in S$ and put
+\[
+ \Lambda=P,\qquad \iota\colon P\hookrightarrow\mathcal E,
+ \qquad t=u_1,\qquad c=u_1^{-1}su_1.
+\]
+
+\begin{lemma}[defect saturation]\label{lem:tf-defect-saturation}
+These data form a marked Kazhdan pattern in $\mathcal E$.  Its compression
+defect is
+\begin{equation}\label{eq:tf-defect}
+ D=\left\langle\!\left\langle [s,p]:p\in P
+   \right\rangle\!\right\rangle_{\mathcal E},
+\end{equation}
+and $D$ contains $S$ and a suitable subgroup of $\mathcal E$.
+\leansupporting{Sofic/TorsionFreeFullMFRadical}{GroupApproximation.FournierFacioDefectData.simpleSubgroup_le_defectNormal}
+\end{lemma}
+
+\begin{proof}
+The relation $u_1Pu_1^{-1}=P_1\le P$ is the one-sided compression
+condition.  For $p\in P$, the element $u_1pu_1^{-1}$ lies in $P_1$, which
+commutes with $S$ by \eqref{eq:tf-direct-product}; hence
+\[
+ [u_1^{-1}su_1,p]=u_1^{-1}[s,u_1pu_1^{-1}]u_1=1.
+\]
+Thus $c$ centralizes $P$, while $tct^{-1}=s$, proving
+\eqref{eq:tf-defect}.
+
+The infinite simple group $S$ is nonabelian and has trivial center.  Choose
+$r\in S$ with $[s,r]\ne1$.  Then $1\ne[s,r]\in D\cap S$, and
+$D\cap S\trianglelefteq S$; simplicity gives $S\le D$.
+
+Let $N=\langle\!\langle S\rangle\!\rangle_{\mathcal E}\le D$.  This is an
+infinite normal subgroup of the acylindrically hyperbolic group
+$\mathcal E$, so it acts non-elementarily by Osin's normal-subgroup lemma
+\cite[Lemma~7.1]{OsinAH}.  Torsion-freeness excludes every nontrivial finite
+subgroup.  Hull's suitable-subgroup criterion therefore supplies independent
+loxodromic elements in $N$ generating a suitable subgroup
+\cite[Corollary~5.7 and Lemma~5.8]{Hull}.
+\end{proof}
+
+The following relative form of Hull's common-quotient argument is the routing
+step needed below.
+
+\begin{lemma}[defect-routing common quotient]\label{lem:tf-routing}
+Let $A$ and $B$ be finitely presented torsion-free acylindrically hyperbolic
+groups, with $B$ having property~\textup{(T)}.  Suppose
+$D\trianglelefteq A$ contains a suitable subgroup.  For every finite
+$F_A\subset A$, there are epimorphisms
+\[
+ A\xrightarrow{\alpha}Q\xleftarrow{\beta}B
+\]
+such that:
+\begin{enumerate}
+ \item $Q$ is two-generated, finitely presented, torsion-free, and
+       acylindrically hyperbolic;
+ \item $Q$ has property~\textup{(T)};
+ \item $\alpha(D)=Q$;
+ \item $\alpha$ is injective on $F_A$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Set $F_0=A*B$.  Inside the prescribed suitable subgroup of $D$, choose a
+two-generated suitable subgroup $L=\langle a_1,a_2\rangle$.  Choose
+independent loxodromic elements $b_1,b_2\in B$.  The free factors are
+hyperbolically embedded in $F_0$, and transitivity of hyperbolic embedding
+gives
+\[
+ \{\langle a_1\rangle,\langle a_2\rangle,
+   \langle b_1\rangle,\langle b_2\rangle\}\hookrightarrow_h F_0.
+\]
+
+Apply Hull's Theorem~7.1 with suitable subgroup $L$, with a finite generating
+set of $B$ as the target elements, and with a protected ball containing
+$F_A$ and the four selected loxodromic elements.  It gives an epimorphism
+$\gamma\colon F_0\twoheadrightarrow F_1$ such that
+\begin{equation}\label{eq:tf-first-routing}
+ \gamma(B)\le\gamma(L)\le\gamma(D)\le\gamma(A),
+\end{equation}
+$F_1$ is acylindrically hyperbolic, and $\gamma$ is injective on $F_A$.
+The strengthened choice used in the proof of Hull's Corollary~7.4 preserves
+the two cyclic subgroups generated by the $b_i$ as an independent
+hyperbolically embedded pair.  Thus $\gamma(B)$ remains suitable in $F_1$
+\cite[proof of Corollary~7.4]{Hull}.  From
+\eqref{eq:tf-first-routing},
+\[
+ F_1=\langle\gamma(A),\gamma(B)\rangle=\gamma(A).
+\]
+
+Choose a two-generated suitable subgroup $T=\langle x,y\rangle$ inside
+$\gamma(B)$.  Apply Hull's Theorem~7.1 a second time, routing a finite
+generating set of $F_1$ into $T$ and protecting $\gamma(F_A)$.  The resulting
+epimorphism $\eta\colon F_1\twoheadrightarrow Q$ satisfies
+$Q=\eta(T)$, remains injective on $\gamma(F_A)$, and has acylindrically
+hyperbolic target.  Hence $Q$ is generated by two elements.  Moreover,
+\[
+ T\le\gamma(B)\le\gamma(D)
+ \quad\Longrightarrow\quad
+ \eta\gamma(D)=Q.
+\]
+Therefore $\alpha=\eta\gamma|_A$ and $\beta=\eta\gamma|_B$ are both
+epimorphisms, $\alpha(D)=Q$, and $\alpha$ is injective on $F_A$.
+
+Property~\textup{(T)} passes through the epimorphism $\beta$.  At each stage,
+Hull's torsion clause says that an element of finite order in the quotient is
+the image of an element of the same order in the preceding group; since
+$A*B$ is torsion-free, so is $Q$.  Both applications use finitely many target
+elements and add finitely many relators, so $Q$ is finitely presented.  This
+is the finite-presentation observation used in \cite[Section~2]{FF}.
+\leansupporting{Sofic/TorsionFreeFullMFRadical}{GroupApproximation.RelativeCommonQuotientData.toDefectRoutingData}
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:E}]
+Apply Lemma~\ref{lem:tf-routing} with
+\[
+ A=\mathcal E,\qquad B=H,\qquad
+ D\ \text{as in \eqref{eq:tf-defect}},
+ \qquad F_A=\{1,s\}.
+\]
+Lemma~\ref{lem:tf-defect-saturation} supplies the suitable subgroup.  We
+obtain epimorphisms
+\[
+ \pi\colon\mathcal E\twoheadrightarrow Q,
+ \qquad \rho\colon H\twoheadrightarrow Q,
+\]
+where $Q$ has every asserted geometric and finiteness property,
+$\pi(s)\ne1$, and $\pi(D)=Q$.
+
+The marked Kazhdan pattern descends to
+$(P,\pi\iota,\pi(u_1),\pi(c))$.  Since $\pi$ is onto, its compression
+defect is the image of the original defect, hence is all of $Q$.  The group
+$Q$ itself is a normal property-\textup{(T)} subgroup of $Q$, so
+Theorem~\ref{thm:normalkazhdan}, applied with $K=Q$, gives
+\[
+ Q\le\operatorname{Rad}_{\mathrm{MF}}(Q)\le Q.
+\]
+Thus $\operatorname{Rad}_{\mathrm{MF}}(Q)=Q$, and $Q$ is nontrivial because
+$\pi(s)\ne1$.
+
+It remains to verify that the quotient retains Fournier-Facio's nonsoficity
+configuration.  The restriction $\pi|_S$ is injective: its kernel is normal
+in the simple group $S$, and it is not all of $S$ because $\pi(s)\ne1$.
+Put
+\[
+ \Gamma'=\pi(P),\qquad t_i=\pi(u_i),\qquad
+ J=t_1^{-1}\pi(S)t_1.
+\]
+Then $Q=\langle\Gamma',t_1,t_2\rangle$ and
+$t_i\Gamma't_i^{-1}\le\Gamma'$.  The group $\Gamma'$ is infinite and has
+property~\textup{(T)}, $[\Gamma',J]=1$, and
+$t_1Jt_1^{-1}=\pi(S)\le\Gamma'$.
+
+We claim $\Gamma'\cap J=1$.  After conjugating by $t_1$, this is equivalent
+to
+\begin{equation}\label{eq:tf-intersection}
+ \pi(P_1)\cap\pi(S)=1.
+\end{equation}
+Let $K=(P_1\times S)\cap\ker\pi$.  If $(p,z)\in K$ and $x\in S$, normality
+gives
+\[
+ [(p,z),(1,x)]=(1,[z,x])\in K\cap S.
+\]
+Injectivity of $\pi|_S$ implies $[z,x]=1$ for every $x\in S$, and hence
+$z=1$ because $Z(S)=1$.  If $\pi(p)=\pi(z')$ with $p\in P_1$ and $z'\in S$,
+then $(p,(z')^{-1})\in K$, so the preceding argument gives $z'=1$ and then
+$\pi(p)=1$.  This proves \eqref{eq:tf-intersection}.
+
+Fournier-Facio's criterion \cite[Proposition~1.2]{FF} now applies to
+$\Gamma'\le Q$ and $J$.  If $Q$ were sofic, then $J\cong S$ would be LEF.
+But a finitely presented LEF group is residually finite, whereas an infinite
+simple group is not residually finite.  Therefore $Q$ is nonsofic.
+\leansupporting{Sofic/TorsionFreeFullMFRadical}{GroupApproximation.DefectRoutingData.consequence_package}
+\leansupporting{Sofic/TorsionFreeFullMFConsequences}{GroupApproximation.DefectRoutingData.MainTheoremData.consequence_package}
+\end{proof}
+
+\begin{corollary}[quotient-hereditary failure of MF]
+\label{cor:tf-full-radical-quotients}
+For every quotient map $q\colon Q\twoheadrightarrow R$,
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(R)=R.
+\]
+Consequently every nontrivial quotient of $Q$ is non-MF.  In particular,
+the MF group $F_2$ has a finitely presented torsion-free non-MF quotient, so
+MF groups are not closed under quotients even within finitely presented
+torsion-free groups.
+\leansupporting{Sofic/TorsionFreeFullMFRadical}{GroupApproximation.DefectRoutingData.quotient_not_isCDEOperatorMF}
+\end{corollary}
+
+\begin{proof}
+Functoriality gives
+\[
+ R=q(Q)=q(\operatorname{Rad}_{\mathrm{MF}}(Q))
+ \le\operatorname{Rad}_{\mathrm{MF}}(R)\le R.
+\]
+The final assertion follows because $Q$ is two-generated and hence is a
+quotient of $F_2$, while free groups are residually finite and therefore MF.
+\end{proof}
 
 \section{The cyclic-base comparison}\label{sec:necessity}
 
@@ -3085,22 +3354,19 @@ Proposition~\ref{prop:CEvisible}; some additional hypothesis would be
 essential.
 
 \section*{Tool and computational resource disclosure}
-The mathematics in this paper was developed with
-extensive use of large language models, including Anthropic Claude and
-OpenAI Codex models in multiple concurrent interactive sessions, operating
-under continuous human direction.  The accompanying machine-checked
-development was produced in the same way.  Builds and audits ran on the Minnesota Supercomputing
-Institute cluster.  Literature search was assisted by web-connected
-model sessions.  The author retains exclusive
-responsibility for the correctness and adequacy of the arguments and for
-the completeness and accuracy of the citations.
+The mathematics in this paper and the accompanying machine-checked
+development were produced with extensive use of large language models,
+including Anthropic Claude and OpenAI Codex models in multiple concurrent
+interactive sessions.  Literature search was assisted by web-connected
+model sessions.
 
 \section*{Acknowledgements}
 \ifanonymous
 [Removed for anonymous review.]
 \else
 The machine-checked companion to this paper is available in the repository
-\texttt{\leanrepo}.
+\texttt{\leanrepo}, at the pinned revision \texttt{\leancommit}; every
+margin link resolves against that revision.
 \fi
 
 \begin{thebibliography}{TWW}
@@ -3201,7 +3467,7 @@ I.~Chatterji and M.~Kassabov,
 \emph{Examples of finitely presented groups with strong fixed point
 properties and property (T)},
 preprint, \arxiv{2601.22907v1}, submitted January~30, 2026;
-manuscript dated August~11, 2026.
+manuscript dated February~2, 2026.
 
 \bibitem[CLV]{CLV}
 M.~D.~E. Conder, G.~Liversidge, and M.~Vsemirnov,
@@ -3302,6 +3568,18 @@ $\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
 Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 \doi{10.4007/annals.2005.162.711}.
 
+\bibitem[Hul]{Hull}
+M.~Hull,
+\emph{Small cancellation in acylindrically hyperbolic groups},
+Groups Geom. Dyn. \textbf{10} (2016), no.~4, 1077--1119;
+\arxiv{1308.4345}.
+
+\bibitem[JNVWY]{JNVWY}
+Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
+\emph{$\mathrm{MIP}^*=\mathrm{RE}$},
+Ann. of Math. (2) \textbf{196} (2022), no.~3, 957--1219;
+\arxiv{2001.04383}.
+
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
@@ -3345,6 +3623,11 @@ B.~H. Neumann,
 J. London Math. Soc. \textbf{s1-12} (1937), no.~2, 120--127,
 \doi{10.1112/jlms/s1-12.46.120}.
 
+\bibitem[NB]{NybergBrodda}
+C.-F. Nyberg-Brodda,
+\emph{The Adian--Rabin theorem --- an English translation},
+preprint, 2022, \arxiv{2208.08560}.
+
 \bibitem[NST]{NST}
 N.~Nikolov, J.~Schneider, and A.~Thom,
 \emph{Some remarks on finitarily approximable groups},
@@ -3361,6 +3644,12 @@ The chapter appeared under the title \emph{A counterexample to the
 soficity conjecture}, Chapter~3, 77--93, in the original version of the
 document, now at
 \url{https://cdn.openai.com/pdf/ten-proofs-oai-original.pdf}.
+
+\bibitem[Osi]{OsinAH}
+D.~Osin,
+\emph{Acylindrically hyperbolic groups},
+Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888;
+\arxiv{1304.1246}.
 
 \bibitem[Pr]{Prasad}
 G.~Prasad,
@@ -3380,6 +3669,12 @@ M.~O. Rabin,
 \emph{Recursive unsolvability of group theoretic problems},
 Ann. of Math. (2) \textbf{67} (1958), no.~1, 172--194,
 \doi{10.2307/1969933}.
+
+\bibitem[Sch]{Schupp}
+P.~E. Schupp,
+\emph{Embeddings into simple groups},
+J. London Math. Soc. (2) \textbf{13} (1976), no.~1, 90--94,
+\doi{10.1112/jlms/s2-13.1.90}.
 
 \bibitem[Se]{Sela}
 Z.~Sela,
