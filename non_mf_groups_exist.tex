@@ -137,7 +137,12 @@ for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
 with all defects measured in operator norm.  This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
-MF \cite[Definition~3 and footnote~1]{Shulman}.  Residually finite groups
+MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
+the approximating maps to be genuine finite-dimensional representations.
+The two properties must not be conflated when comparing with the
+literature: Magee--de la Salle proved that $\SL_4(\Z)$ is not purely MF
+\cite{MdlS}, while $\SL_4(\Z)$ is residually finite and hence MF in the
+sense used here.  Residually finite groups
 are MF, amenable groups are MF as a consequence of the
 Tikuisis--White--Winter theorem \cite{TWW}, free products of amenable
 groups are MF, and a substantial permanence theory exists
@@ -1281,8 +1286,9 @@ onto
   \Fix(\pi\circ\iota_1)=\{\xi\in\mathcal H:
   \pi(\iota_1(\lambda))\xi=\xi\ \text{for all }\lambda\in\Lambda_1\},
 \]
-and $\pi(u_{t_1}\bar pu_{t_1}^*)=\pi(t_1)\,\pi(\bar p)\,\pi(t_1)^*$
-is the orthogonal projection onto
+and, since
+$\pi(u_{t_1}\bar pu_{t_1}^*)=\pi(t_1)\,\pi(\bar p)\,\pi(t_1)^*$, the
+left-hand side is the orthogonal projection onto
 $\pi(t_1)\Fix(\pi\circ\iota_1)$.  We claim
 $\Fix(\pi\circ\iota_1)\subseteq\pi(t_1)\Fix(\pi\circ\iota_1)$.  Let
 $\xi\in\Fix(\pi\circ\iota_1)$ and put $\eta=\pi(t_1)^{-1}\xi$.  For
@@ -1344,14 +1350,16 @@ If $(T_n)$ is a null sequence in operator norm then
 $\lVert T_n\xi_n\rVert\le\opnorm{T_n}\sup\lVert\xi_n\rVert\to0$, in
 particular along $\omega$; so $\sigma$ is well defined on
 $\mathcal B$, and it is clearly a unital $*$-homomorphism.  The
-composition
-$\sigma\circ\tilde\beta\circ\iota_*\colon\Cmax(\Lambda)\to B(K_\omega)$
-is a $*$-representation on a Hilbert space extending the unitary
-representation $\lambda\mapsto\sigma(\beta(\iota(\lambda)))$; by
-uniqueness of integrated forms and Fact~\ref{fact:kazhdan},
-$\sigma(P)=\sigma\bigl(\tilde\beta(\iota_*(p_\Lambda))\bigr)$ is the
-orthogonal projection onto the fixed space of that representation,
-which is $\Fix_\omega$.
+composition $\sigma\circ\tilde\beta\circ\iota_*$, from
+$\Cmax(\Lambda)$ to $B(K_\omega)$, is a $*$-representation on a
+Hilbert space extending the unitary representation
+$\lambda\mapsto\sigma(\beta(\iota(\lambda)))$; by uniqueness of
+integrated forms and Fact~\ref{fact:kazhdan},
+\[
+  \sigma(P)=\sigma\bigl(\tilde\beta(\iota_*(p_\Lambda))\bigr)
+\]
+is the orthogonal projection onto the fixed space of that
+representation, which is $\Fix_\omega$.
 \end{proof}
 
 \section{Proof of the criterion and of Theorem \ref{thm:A}}\label{sec:proofA}
@@ -1850,13 +1858,19 @@ $Q_1u_t\bar p=u_t\bar p\,u_t^*u_t\,\bar p=u_t\bar p$, so
 $(1-Q_1)u_t\bar p=0$ and, taking adjoints,
 $\bar pu_t^*(1-Q_1)=0$.  Therefore
 \[
-  s^*s=u_t\bar p\,\bar pu_t^*+u_t\bar p(1-Q_1)+(1-Q_1)\bar pu_t^*
-  +(1-Q_1)=Q_1+(1-Q_1)=1
+\begin{aligned}
+  s^*s&=u_t\bar p\,\bar pu_t^*+u_t\bar p(1-Q_1)+(1-Q_1)\bar pu_t^*
+  +(1-Q_1)\\
+  &=Q_1+(1-Q_1)=1
+\end{aligned}
 \]
 and
 \[
-  ss^*=\bar pu_t^*u_t\bar p+\bar pu_t^*(1-Q_1)+(1-Q_1)u_t\bar p
-  +(1-Q_1)=\bar p+(1-Q_1)=1-(Q_1-\bar p):
+\begin{aligned}
+  ss^*&=\bar pu_t^*u_t\bar p+\bar pu_t^*(1-Q_1)+(1-Q_1)u_t\bar p
+  +(1-Q_1)\\
+  &=\bar p+(1-Q_1)=1-(Q_1-\bar p):
+\end{aligned}
 \]
 $s$ is an isometry with defect $1-ss^*=Q_1-\bar p$.
 
@@ -2009,14 +2023,14 @@ is the nontrivial portable radical element.
 
 \subsection{The scaling family}
 
-For an integer $m\ge2$ let $E_m$ be the group presented exactly as
-in \eqref{eq:E}, except that the three relations $tv_it^{-1}=v_i^2$
-are replaced by
+For an integer $m\ge2$ let $E_m$ be the group with the presentation
+\eqref{eq:E}, except that the three relations
+$tv_it^{-1}=v_i^2$ are replaced by
 \[
   tv_it^{-1}=v_i^m\qquad(1\le i\le3);
 \]
-thus $E=E_2$, and the marked word is unchanged,
-$w_m=[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}]$.
+thus $E=E_2$, while the marked word
+$w_m=[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}]$ is unchanged.
 
 \begin{theorem}[scaling family]\label{thm:family}
 For every $m\ge2$: the group $E_m$ is finitely presented, $w_m$ is a
@@ -2310,8 +2324,9 @@ stable-finiteness proof in the tracial setting.
 [Removed for anonymous review.]
 \else
 The formal verification companion to this paper, including a
-machine-checked proof of Theorem~\ref{thm:B}, is available in the
-repository \texttt{\leanrepo}.
+machine-checked proof of Theorem~\ref{thm:B} and the independently developed
+finite-stage universal marked-kernel endpoint, is available in the repository
+\texttt{\leanrepo}.
 \fi
 
 \begin{thebibliography}{TWW}
@@ -2413,6 +2428,12 @@ Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
 preprint, 2026, \url{arXiv:2608.06222}.
+
+\bibitem[MdlS]{MdlS}
+M.~Magee and M.~de~la~Salle,
+\emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
+C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
+\url{arXiv:2312.03220}.
 
 \bibitem[Ma]{Ma}
 A.~I. Mal'cev,
