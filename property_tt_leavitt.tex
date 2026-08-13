@@ -1128,9 +1128,11 @@ rank-three root subgroups.  The plane estimate proves that the finite
 unit-and-generator control set controls that union with factor
 \(C=12\lvert X\rvert+13\).  The standard controlled-subset argument
 then makes this finite set a Kazhdan pair with constant
-\(\kappa/(2C)\); see
-\nolinkurl{FreeElementaryPropertyT.controlSet_isKazhdanPair}.  This is
-the additional step between Lemma~\ref{lem:localized-plane} and a
+\(\kappa/(2C)\).  The relevant declaration is
+\begin{center}
+\nolinkurl{FreeElementaryPropertyT.controlSet_isKazhdanPair}.
+\end{center}
+This is the additional step between Lemma~\ref{lem:localized-plane} and a
 rank-three spectral gap.  The resulting pair descends through \(f\).
 Lemma~\ref{lem:rank-equivalence} transports property
 \((T)\) to \(\EL_4(R)\).  The stabilized rank-three subgroup
@@ -1516,8 +1518,9 @@ classical axioms used by Mathlib.  There are no \nolinkurl{sorry}
 terms in the development.
 
 The definitions used by the linked statements are in
-\nolinkurl{Basic.lean} in the \nolinkurl{PropertyTT} directory.  They quantify
-over complete complex Hilbert spaces and unitary representations;
+\nolinkurl{Basic.lean} in the \nolinkurl{PropertyTT} directory.  The public
+theorems are universe-polymorphic: they quantify over complete complex
+Hilbert spaces at an arbitrary universe level and over unitary representations;
 \nolinkurl{IsQuasiCocycle} includes \(D\ge0\) and
 ~\eqref{eq:quasicocycle}; \nolinkurl{HasTTmodT} excludes nonzero
 invariant vectors exactly as in Definition~\ref{def:tt}.  The
