@@ -230,6 +230,14 @@ extensions generate `GL3(2)` of order 168.  The minimal live quiver is thus
 cross-chart product whose first `S4` must be recovered rather than assumed.
 See `TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md`.
 
+The complex branching matrix for `S4 -> S3` is multiplicity-free, but its
+regular dimension vector is exactly balanced: one regular `S4` restricts to
+four regular `S3` representations.  Hence type incidence alone cannot
+produce Hall deficiency.  The live invariant is a closed product, singular
+value, or kernel of the actual multiplicity arrows through the standard
+`S3` channel, where three `S4` extension types meet.  See
+`FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md`.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the

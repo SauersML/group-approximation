@@ -4035,6 +4035,15 @@ The next-letter `S4` is an honest chart subgroup; the prefix `S4` is only
 the classical value of a cross-chart word and must be recovered
 quantitatively.  See `TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md`.
 
+The exact complex branching matrix `S4 -> S3` is multiplicity-free, with
+rows `1`, `sign`, `standard_2`, `1+standard_2`, and
+`sign+standard_2`.  Its regular dimension vector restricts as
+`(4,4,8)`, exactly four regular `S3` vectors.  The resulting type graph is
+Hall-balanced on both hard extensions.  Do not pursue type counts alone;
+retain the nonlinear multiplicity arrows through the shared standard
+`S3` channel.  See `FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md` and the MSI GAP
+replay `atlas_s4_s3_branching.g`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

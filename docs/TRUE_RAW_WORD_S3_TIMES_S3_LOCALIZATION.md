@@ -150,6 +150,12 @@ This is strictly smaller than an unrestricted `H`--`H` bimodule audit.  It
 starts with a fixed `S3*S3` transport cell, two index-four extensions, and
 known multiplicity-free branching from `S4` to `S3`.
 
+The ordinary type-support graph itself is Hall-balanced: the regular `S4`
+vector restricts to exactly four regular `S3` vectors.  Therefore the live
+calculation must retain the nonlinear block arrows through the shared
+standard `S3` type, not merely their dimensions.  See
+`FALSE_S3_S4_TYPE_ONLY_HALL_DEFICIT.md`.
+
 ## 5. Replay
 
 All subgroup orders, centralizers, factorizations, double-coset sizes, and
@@ -161,4 +167,3 @@ experiments/atlas-raw-reynolds-gap-audit.json
 ```
 
 The calculation is exact over `F_2` and was replayed on MSI with one core.
-
