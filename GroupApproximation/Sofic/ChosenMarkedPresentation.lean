@@ -8,7 +8,7 @@ import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 
 /-!
-# A finite marked presentation over the explicit Kazhdan compressor
+# A chosen finite marked presentation over the explicit Kazhdan compressor
 
 This file removes the finite-presentation bottleneck from the marked non-MF
 construction.  The explicit compressor group itself is only known here to be
@@ -38,7 +38,7 @@ a hypothesis of the final presentation.
 -/
 
 namespace GroupApproximation
-namespace ExplicitMarkedPresentation
+namespace ChosenMarkedPresentation
 
 open ExplicitNonMFBase
 
@@ -215,13 +215,13 @@ noncomputable def markedCentralRelators : Finset (FreeGroup Generator) :=
     Finset.univ.image (fun i : Fin generatorCount ↦
       commutatorWord markedWord (vertexLetter i))
 
-/-- All relators in the explicit marked presentation. -/
+/-- All relators in the chosen marked presentation. -/
 noncomputable def relators : Finset (FreeGroup Generator) :=
   transportedCoverRelators ∪
     Finset.univ.image stableRelator ∪
     lampRelators ∪ markedCentralRelators
 
-/-- The explicit finitely presented marked group. -/
+/-- The chosen finitely presented marked group. -/
 noncomputable abbrev MarkedGroup : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
@@ -559,5 +559,5 @@ theorem mark_ne_one : mark ≠ 1 := by
   rw [realizationHom_mark]
   exact MarkedCompression.Explicit.theWordNeOne
 
-end ExplicitMarkedPresentation
+end ChosenMarkedPresentation
 end GroupApproximation

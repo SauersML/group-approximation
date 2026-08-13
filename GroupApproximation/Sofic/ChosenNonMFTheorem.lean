@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitNonMFEndpoint
+import GroupApproximation.Sofic.ChosenNonMFEndpoint
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 # A finitely presented non-MF group from the Shalom-cover construction
 
 This module is the public junction between the independently checkable
-finite-presentation construction in `ExplicitNonMFEndpoint` and the analytic
+finite-presentation construction in `ChosenNonMFEndpoint` and the analytic
 marked-compression kill theorem.  The formal witness uses a noncomputably
 chosen finitely presented Kazhdan cover.  The existence theorem for that
 cover, the property-`(T)` theorem for the compressor base, and every analytic
@@ -24,12 +24,12 @@ in the paper.  This module exports both forms of the main result:
 -/
 
 namespace GroupApproximation
-namespace ExplicitNonMFTheorem
+namespace ChosenNonMFTheorem
 
-open ExplicitMarkedPresentation ExplicitNonMFEndpoint
+open ChosenMarkedPresentation ChosenNonMFEndpoint
 
 /-- The universal marked-compression certificate carried by the
-Shalom-cover finite presentation chosen in `ExplicitMarkedPresentation`. -/
+Shalom-cover finite presentation chosen in `ChosenMarkedPresentation`. -/
 noncomputable def normCertificate :
     MarkedCompressionNormCertificate MarkedGroup :=
   inclusionData.normCertificate inclusionData_word_ne_one
@@ -129,5 +129,5 @@ theorem not_every_finitelyPresented_group_isOperatorMF :
   letI : Group.IsFinitelyPresented E := hfp
   exact hE (hall E)
 
-end ExplicitNonMFTheorem
+end ChosenNonMFTheorem
 end GroupApproximation
