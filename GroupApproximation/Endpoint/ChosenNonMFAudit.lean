@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralUniversalHorn
+import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 
 /-!
