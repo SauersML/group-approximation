@@ -1348,79 +1348,156 @@ orthogonal projection onto the fixed space of that representation,
 which is $\Fix_\omega$.
 \end{proof}
 
-\section{Proof of Theorem \ref{thm:A}}\label{sec:proofA}
+\section{Proof of the criterion and of Theorem \ref{thm:A}}\label{sec:proofA}
 
-\begin{proof}[Proof of Theorem~\ref{thm:A}]
-Part (1) is Proposition~\ref{prop:witness}.  For part (2), let
-$\Theta\colon E\to\U(\mathcal Q)$ be a corona representation and
-suppose, for contradiction, that $\Theta(w)\neq1$.  Apply
-Lemma~\ref{lem:corner} to obtain $\Theta_-$ with $\Theta_-(w)=-1$ on
-the corner corona $\mathcal Q'$, and adopt all notation of
-Section~\ref{sec:conj}: the unitary lifts $U_{g,n}$, the corona
-$\mathcal B$, the homomorphism $\beta$, the projection $P$, the
-ultraproduct $K_\omega$ and the representation $\sigma$.
+\begin{proof}[Proof of Theorem~\ref{thm:criterion}]
+Suppose, for contradiction, that some corona representation
+$\Theta\colon H\to\U(\mathcal Q)$ is nontrivial on $F$, and adopt all
+notation fixed in Section~\ref{sec:conj}: the corner representation
+$\Theta_-$ with $\sum_{f\in F}\Theta_-(f)=0$, the unitary lifts
+$U_{g,n}$, the corona $\mathcal B$, the homomorphism $\beta$, the
+projection $P$, the ultraproduct $K_\omega$ and the representation
+$\sigma$.
 
 \medskip\noindent\emph{Step 1: the lamp vector is fixed.}
 Each $U_{c,n}$ is a unitary matrix, hence a vector in $K_n$ of norm
 $\hsnorm{U_{c,n}}=1$; let $\xi_c=[(U_{c,n})]\in K_\omega$, a unit
-vector.  For $\gamma\in\Gamma$ we have $\gamma c\gamma^{-1}=c$ in $E$,
-so $U_{\gamma,n}U_{c,n}U_{\gamma,n}^*$ and $U_{c,n}$ both lift
-$\Theta_-(c)$, whence
-$\opnorm{U_{\gamma,n}U_{c,n}U_{\gamma,n}^*-U_{c,n}}\to0$ and a fortiori
-the $K_n$-norms tend to $0$.  Therefore
-$\sigma(\beta(\gamma))\xi_c=\xi_c$ for every $\gamma\in\Gamma$, i.e.\
-$\xi_c\in\Fix_\omega$, and by Lemma~\ref{lem:sigma},
-$\sigma(P)\xi_c=\xi_c$.
+vector.  For $\lambda\in\Lambda$ we have
+$\iota(\lambda)\,c\,\iota(\lambda)^{-1}=c$ in $H$ by (M2), so
+$U_{\iota(\lambda),n}U_{c,n}U_{\iota(\lambda),n}^*$ and $U_{c,n}$
+both lift $\Theta_-(c)$, whence
+$\opnorm{U_{\iota(\lambda),n}U_{c,n}U_{\iota(\lambda),n}^*-U_{c,n}}\to0$
+and a fortiori the $K_n$-norms tend to $0$.  Therefore
+$\sigma(\beta(\iota(\lambda)))\xi_c=\xi_c$ for every
+$\lambda\in\Lambda$, i.e.\ $\xi_c\in\Fix_\omega$, and by
+Lemma~\ref{lem:sigma}, $\sigma(P)\xi_c=\xi_c$.
 
 \medskip\noindent\emph{Step 2: the translated lamp vector is fixed.}
-Let $\xi_d:=\sigma(\beta(t))\xi_c=[(U_{t,n}U_{c,n}U_{t,n}^*)]$.  By
-Lemma~\ref{lem:pinning} and Step 1,
+Let $\xi_d:=\sigma(\beta(t))\xi_c=[(D_n)]$, where
+$D_n:=U_{t,n}U_{c,n}U_{t,n}^*$, an operator-norm lift of
+$\Theta_-(d)$.  By Lemma~\ref{lem:pinning} and Step 1,
 \[
   \sigma(P)\,\xi_d
   =\sigma\bigl(\beta(t)P\beta(t)^*\bigr)\,\sigma(\beta(t))\,\xi_c
   =\sigma(\beta(t))\,\sigma(P)\,\xi_c
   =\xi_d ,
 \]
-so $\xi_d\in\Fix_\omega$.  In particular, since $a\in\Gamma$,
+so $\xi_d\in\Fix_\omega$: for every $\lambda\in\Lambda$,
 \begin{equation}\label{eq:afix}
-  \lim_{n\to\omega}\ \hsnorm{\,U_{a,n}D_nU_{a,n}^*-D_n\,}=0,
-  \qquad D_n:=U_{t,n}U_{c,n}U_{t,n}^* .
+  \lim_{n\to\omega}\
+  \hsnorm{\,U_{\iota(\lambda),n}D_nU_{\iota(\lambda),n}^*-D_n\,}=0 .
 \end{equation}
 
-\medskip\noindent\emph{Step 3: the commutator word collapses in
+\medskip\noindent\emph{Step 3: every defect commutator collapses in
 Hilbert--Schmidt norm.}
-Put $E_n:=U_{a,n}D_nU_{a,n}^*$ and
-$W_n:=D_nE_nD_n^{-1}E_n^{-1}$, unitaries in $M_{r_n}(\C)$.  For
-unitaries $D,E$,
+For $\lambda\in\Lambda$ put
 \[
-\begin{aligned}
-  \hsnorm{DED^{-1}E^{-1}-1}&=\hsnorm{DE-ED}\\
-  &\le\hsnorm{(D-E)E}+\hsnorm{E(E-D)}=2\hsnorm{D-E},
-\end{aligned}
+  X_{\lambda,n}
+  :=D_n\,U_{\iota(\lambda),n}\,D_n^{-1}\,U_{\iota(\lambda),n}^{-1},
 \]
-using unitary invariance of $\hsnorm\cdot$.  With \eqref{eq:afix},
+a unitary in $M_{r_n}(\C)$ and an operator-norm lift of
+$\Theta_-\bigl([\,d,\iota(\lambda)\,]\bigr)$.  Two applications of
+unitary invariance of $\hsnorm\cdot$ give
+\[
+  \hsnorm{X_{\lambda,n}-1}
+  =\hsnorm{D_nU_{\iota(\lambda),n}-U_{\iota(\lambda),n}D_n}
+  =\hsnorm{\,D_n-U_{\iota(\lambda),n}D_nU_{\iota(\lambda),n}^{-1}\,},
+\]
+so by \eqref{eq:afix},
 \begin{equation}\label{eq:collapse}
-  \lim_{n\to\omega}\ \hsnorm{\,W_n-1\,}\;=\;0 .
+  \lim_{n\to\omega}\ \hsnorm{\,X_{\lambda,n}-1\,}\;=\;0
+  \qquad\text{for every }\lambda\in\Lambda .
 \end{equation}
 
-\medskip\noindent\emph{Step 4: the corner normalization forbids the
+\medskip\noindent\emph{Step 4: the collapse propagates to the
+compression-defect subgroup.}
+Let $f\in F$.  Since $F\subseteq N_{\mathrm{comp}}$, there are
+finitely many (possibly zero) elements $h_1,\dots,h_L\in H$,
+$\lambda_1,\dots,\lambda_L\in\Lambda$ and signs
+$\varepsilon_1,\dots,\varepsilon_L\in\{\pm1\}$ with
+\[
+  f\;=\;\prod_{i=1}^{L}
+  h_i\,[\,d,\iota(\lambda_i)\,]^{\varepsilon_i}\,h_i^{-1} .
+\]
+Then
+\[
+  V_{f,n}\;:=\;\prod_{i=1}^{L}
+  U_{h_i,n}\,X_{\lambda_i,n}^{\varepsilon_i}\,U_{h_i,n}^{*}
+\]
+is an operator-norm lift of $\Theta_-(f)$, and the telescoping
+estimate $\hsnorm{AB-1}\le\hsnorm{A-1}+\hsnorm{B-1}$ for unitaries
+$A,B$, together with unitary invariance
+($\hsnorm{UXU^*-1}=\hsnorm{X-1}$ and
+$\hsnorm{X^{-1}-1}=\hsnorm{X-1}$), gives
+\[
+  \hsnorm{V_{f,n}-1}\;\le\;\sum_{i=1}^{L}\hsnorm{X_{\lambda_i,n}-1}
+  \;\xrightarrow[n\to\omega]{}\;0
+\]
+by \eqref{eq:collapse}.
+
+\medskip\noindent\emph{Step 5: the corner average forbids the
 collapse.}
-The finite product $W_n$ of the lifts
-$U_{t,n},U_{c,n},U_{a,n}$ and their adjoints is an operator-norm lift
-of
+Each $V_{f,n}$ lifts $\Theta_-(f)$, so the finite sum
+$\sum_{f\in F}V_{f,n}$ is an operator-norm lift of
+$\sum_{f\in F}\Theta_-(f)=0$:
 \[
-  \Theta_-\bigl(\,(tct^{-1})\,\cdot\,a(tct^{-1})a^{-1}\,\cdot\,
-  (tct^{-1})^{-1}\,\cdot\,\bigl(a(tct^{-1})a^{-1}\bigr)^{-1}\,\bigr)
-  \;=\;\Theta_-(w)\;=\;-1 ,
+  \opnorm{\,\sum_{f\in F}V_{f,n}\,}\;\longrightarrow\;0
+  \qquad(n\to\infty\ \text{in}\ J'),
 \]
-so $\opnorm{W_n+1}\to0$ as $n\to\infty$ in $J'$, hence also along
-$\omega$.  Therefore
+hence also along $\omega$.  On the other hand, by Step 4,
 \[
-  \hsnorm{W_n-1}\;\ge\;\hsnorm{(-1)-1}-\hsnorm{W_n-(-1)}
-  \;\ge\;2-\opnorm{W_n+1}\;\xrightarrow[n\to\omega]{}\;2 ,
+  \hsnorm{\,\sum_{f\in F}V_{f,n}\;-\;|F|\,}
+  \;\le\;\sum_{f\in F}\hsnorm{V_{f,n}-1}
+  \;\xrightarrow[n\to\omega]{}\;0 ,
 \]
-contradicting \eqref{eq:collapse}.  This contradiction shows
-$\Theta(w)=1$, proving part (2).
+so, using $\hsnorm{x}\le\opnorm{x}$,
+\[
+  |F|\;=\;\hsnorm{\,|F|\cdot1\,}
+  \;\le\;\hsnorm{\,\sum_{f\in F}V_{f,n}-|F|\,}
+  +\opnorm{\,\sum_{f\in F}V_{f,n}\,}
+  \;\xrightarrow[n\to\omega]{}\;0 ,
+\]
+which is absurd since $|F|\ge1$.  This contradiction proves
+Theorem~\ref{thm:criterion}.
+\end{proof}
+
+\begin{lemma}[the marked word is a defect square]\label{lem:square}
+Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
+\[
+  \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
+\]
+\end{lemma}
+
+\begin{proof}
+Put $b=a_1da_1^{-1}$, so $b^2=a_1d^2a_1^{-1}=1$; thus $b^{-1}=b$ and
+$d^{-1}=d$.  Then $[d,a_1]=da_1d^{-1}a_1^{-1}=d\,(a_1da_1^{-1})=db$,
+and
+\[
+  [d,a_1]^2=(db)^2=db\,db=d\,b\,d^{-1}b^{-1}=[d,b] . \qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
+Part (1) is Proposition~\ref{prop:witness}.  For part (2), let
+$\iota\colon\Gamma\to E$ be the canonical homomorphism and
+$a=v_1=(e_1,1)$.  The tuple $(\Gamma,\iota,t,c)$ is a marked Kazhdan
+pattern in $E$: $\Gamma$ has property (T) by Fact~\ref{fact:T}; (M1)
+holds because $t\,\iota(\gamma)\,t^{-1}=\iota(\alpha(\gamma))$ for
+every $\gamma\in\Gamma$ (both sides are homomorphisms in $\gamma$,
+and \eqref{eq:E} gives the identity on the six base generators);
+(M2) holds because $[c,g]=1$ in \eqref{eq:E} for the six base
+generators $g$.  In $E$ we have $d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so
+Lemma~\ref{lem:square} with $a_1=\iota(a)$ gives
+\[
+  w=\bigl[\,d,\;\iota(a)\,d\,\iota(a)^{-1}\bigr]
+  =[\,d,\iota(a)\,]^{\,2}\;\in\;N_{\mathrm{comp}} ,
+\]
+since $[\,d,\iota(a)\,]$ is one of the defining generators of
+$N_{\mathrm{comp}}$.  The subgroup $F=\{1,w\}=\langle w\rangle$ is
+finite and normal, $w$ being a central involution by fiat, and
+$F\subseteq N_{\mathrm{comp}}$.  Theorem~\ref{thm:criterion}
+therefore gives $\Theta(w)=1$ for every corona representation
+$\Theta$ of $E$, which is part (2).
 
 \medskip
 
@@ -1447,6 +1524,12 @@ This terminology is meant in analogy with Slofstra's earlier quotients
 $G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained by killing elements
 invisible to exact and approximate finite-dimensional representations,
 respectively \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
+By Theorem~\ref{thm:criterion} the same holds in every countable
+group with a marked Kazhdan pattern: every finite normal subgroup of
+the compression-defect subgroup lies in the MF radical.
+Section~\ref{sec:consequences} develops the radical systematically;
+we do not know whether $E/\langle w\rangle$ is MF, i.e.\ whether the
+MF radical of $E$ is exactly $\{1,w\}$.
 \end{remark}
 
 \begin{remark}
