@@ -249,7 +249,9 @@ Definition~\ref{def:E}.  In particular, finitely presented non-MF
 groups exist.
 \leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 
-The proof is finite-stage throughout.  For orientation, it can be
+The analytic estimates are finite-stage throughout; a tracial ultraproduct
+is used only to propagate the collapsed generators through their normal
+closure.  For orientation, the proof can be
 organized into the following five steps.  The individual ingredients and
 the surrounding compression/lamp architecture have substantial antecedents.
 The specific combination here is a Reynolds corner, Kazhdan spectral
@@ -272,17 +274,19 @@ pinning, and an equal-rank reversal of a one-sided projection estimate.
     relation captures the vector represented by $c$.  The one-sided HNN
     relation gives, with $Q_n=\Ad(V_n(t))P_n\Ad(V_n(t))^*$,
     $\lVert(1-Q_n)P_n\rVert\to0$.
-  \item\emph{Equal-rank flip.}  The projections $P_n$ and $Q_n$ have the same
-    finite rank.  The elementary identity between their two off-diagonal
-    singular-value lists therefore gives
-    $\lVert(1-P_n)Q_n\rVert=\lVert(1-Q_n)P_n\rVert\to0$.
+  \item\emph{Equal-rank flip.}  The projections $P_n$ and $Q_n$ have the
+    same finite rank.  The elementary two-projection estimate
+    $\lVert(1-P_n)Q_n\rVert\le
+    \eta_n/\sqrt{1-\eta_n^2}$, where
+    $\eta_n=\lVert(1-Q_n)P_n\rVert$, reverses the one-sided leakage.
     Thus the translated lamp vector remains in the almost-fixed sector.
-  \item\emph{The trace contradiction.}  Every compression defect, and hence
-    its normal closure, tends to the identity in normalized
-    Hilbert--Schmidt norm.  This applies to every $f\in F$, whereas the
-    Reynolds corner has $\lVert\sum_{f\in F}V_n(f)\rVert\to0$.
-    Normalized traces would then converge simultaneously to $|F|$ and to
-    $0$, a contradiction (Section~\ref{sec:proofA}).
+  \item\emph{Normal closure and trace.}  The corrected matrices define a
+    homomorphism to a tracial ultraproduct.  The compression defects lie in
+    its kernel, so their normal closure, including $F$, does too.  A diagonal
+    subsequence makes every $f\in F$ tend to $1$ in normalized
+    Hilbert--Schmidt norm, while the Reynolds sums still tend to zero in
+    operator norm.  Normalized traces would then converge simultaneously to
+    $|F|$ and to $0$ (Section~\ref{sec:proofA}).
 \end{enumerate}
 
 Figure~\ref{fig:mechanism} shows where the two halves of the proof meet.
@@ -631,9 +635,10 @@ simplest integral analogue of this scaling pattern
 \cite{Thom10} are sofic or hyperlinear and use Hamming or tracial
 Hilbert--Schmidt models, not operator-norm coronas.  Here the finite-stage replacement for finite cardinality is an equal-rank
 projection flip.  The one-sided compression first gives
-$\lVert(1-Q_n)P_n\rVert\to0$; since $Q_n$ is unitarily conjugate to $P_n$
-in the same finite-dimensional space, the reverse leakage
-$\lVert(1-P_n)Q_n\rVert$ has the same norm and also tends to zero.  The
+$\eta_n=\lVert(1-Q_n)P_n\rVert\to0$; since $Q_n$ is unitarily
+conjugate to $P_n$ in the same finite-dimensional space, the two-projection
+estimate $\lVert(1-P_n)Q_n\rVert\le
+\eta_n/\sqrt{1-\eta_n^2}$ gives the reverse leakage.  The
 finite-normal corner converts this two-sided asymptotic invariance into a
 fixed nontrivial element killed by every corona representation.
 
@@ -718,9 +723,15 @@ Theorem~\ref{thm:A} likewise lives in a finite central extension, though
 here the quotient $E/\langle w\rangle$ is not claimed to be residually
 finite.
 
-The finite-stage Kazhdan compression estimate and its equal-rank reversal
-are proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
-that observation to Carri\'on--Dadarlat--Eckhardt.  Their work is
+At the finite-stage spectral level, Dogon--Vigdorovich record a proof due
+to Uri Bader that operator-norm approximate representations of a
+property~(T) group retain a uniform spectral gap; their argument uses
+Ozawa's sum-of-squares characterization and generalizes an earlier result of
+Manuilov--Yu \cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
+a close general predecessor for the spectral-isolation step above.  The
+specific moving-projection estimates and equal-rank reversal needed here are
+proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
+those observations to Carri\'on--Dadarlat--Eckhardt.  Their work is
 used for the group-MF framework and for comparison examples.  In
 particular, their treatment of Abels' finitely presented solvable group
 already supplies an amenable MF group that is not residually finite
@@ -1786,8 +1797,7 @@ uniform fixed-space projection is what the argument consumes.
 
 We use the following finite-stage language.  An
 \emph{operator-norm asymptotic representation} of a countable group $G$ is
-a sequence of maps $V_n\colon G\to\U(M_{r_n}(\C))$, with $V_n(1)=1$, such
-that
+a sequence of maps $V_n\colon G\to\U(M_{r_n}(\C))$ such that
 \[
  \opnorm{V_n(gh)-V_n(g)V_n(h)}\longrightarrow0
  \qquad(g,h\in G).
@@ -1836,7 +1846,7 @@ The compressions $e_nU_{g,n}e_n$ are asymptotically unitary and
 multiplicative.  For each fixed $g$, replacing the compression by the
 unitary factor in its polar decomposition changes it by $o(1)$ in operator norm.  Use this polar
 correction whenever the compression is invertible and choose an arbitrary
-unitary otherwise; then set $V_n(1)=1$.  Finally
+unitary otherwise.  Finally
 $\opnorm{A_ne_n}\to0$, so compression and polar correction give
 \eqref{eq:finitecornersum}.  This is the coordinate form of the Reynolds
 corner; compare the dimension-changing compression in
@@ -1913,38 +1923,45 @@ $\beta_n(g)=\Ad V_n(g)\in\U(K_n)$.  The estimate
  \opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}
 \]
 shows that $(\beta_n)$ is an operator-norm asymptotic representation.
-Choose a finite symmetric Kazhdan generating set $S\subseteq\Lambda$.
-Property~(T) gives a number $\theta<1$ such that, in every unitary
-representation of $\Lambda$, the Hermitian $S$-average has spectrum at
-most $\theta$ off the fixed space.  Fix a cutoff strictly between
-$\theta$ and $1$, and let $P_n$ be the spectral projection above that
-cutoff for the Hermitian part of
+Choose a finite symmetric Kazhdan generating set $S\subseteq\Lambda$
+containing $1$, with Kazhdan constant $\kappa>0$, and put
+\[
+ c_0=1-\frac{\kappa^2}{4|S|}.
+\]
+Fix $\theta$ with $c_0<\theta<1$, and let $P_n$ be the spectral
+projection above $\theta$ for the Hermitian part of
 $|S|^{-1}\sum_{s\in S}\beta_n(\iota(s))$.
 
-We record the three finite-stage consequences of this spectral choice.
-They follow uniformly by passing a contrary subsequence to the norm
-ultraproduct: there $(\beta_n\circ\iota)$ is an exact representation, and
-the class of $(P_n)$ is its fixed-space projection.  First,
-$\opnorm{[P_n,\beta_n(\iota(\lambda))]}\to0$ for each
-$\lambda\in\Lambda$.  Second, because $c$ centralizes $\iota(\Lambda)$,
+The Kazhdan-pair inequality and the spectral cutoff give three direct,
+uniform finite-stage estimates.  First, for every $\lambda\in\Lambda$,
+\begin{equation}\label{eq:displacement}
+ \opnorm{(\beta_n(\iota(\lambda))-1)P_n}\longrightarrow0.
+\end{equation}
+Second, averaging the approximate relations expressing that $c$ centralizes
+$\iota(\Lambda)$ and applying the spectral inequality below the cutoff
+gives the root-capture estimate
 \begin{equation}\label{eq:rootcapture}
  \lVert(1-P_n)V_n(c)\rVert_{K_n}\longrightarrow0.
 \end{equation}
-Third, with $T_n=\beta_n(t)$ and $Q_n=T_nP_nT_n^*$, the one-sided
-containment (M1) gives
+Third, put $T_n=\beta_n(t)$ and $Q_n=T_nP_nT_n^*$.  Apply the same
+spectral inequality to $T_n^*P_n$ and use (M1) to rewrite the generator
+defects; this gives the one-sided leakage
 \begin{equation}\label{eq:oneleak}
- \opnorm{(1-Q_n)P_n}\longrightarrow0.
+ \eta_n:=\opnorm{(1-Q_n)P_n}\longrightarrow0.
 \end{equation}
 
 The missing reverse estimate is purely finite-dimensional.  The
-projections $P_n$ and $Q_n$ have equal rank.  For any equal-rank
-projections $P,Q$, the nonzero singular values of $(1-Q)P$ and $(1-P)Q$
-coincide: in orthonormal bases of their ranges, if $C$ is the cross-Gram
-matrix, then the squared singular values of the two operators are the
-eigenvalues of $1-C^*C$ and $1-CC^*$, respectively.  Hence
+projections $P_n$ and $Q_n$ have equal rank because $Q_n=T_nP_nT_n^*$.
+For equal-rank orthogonal projections $P,Q$, whenever
+$\eta=\lVert(1-Q)P\rVert<1$ the two-projection estimate gives
 \[
- \opnorm{(1-P_n)Q_n}=\opnorm{(1-Q_n)P_n}\longrightarrow0.
+ \lVert(1-P)Q\rVert\le\frac{\eta}{\sqrt{1-\eta^2}}.
 \]
+Indeed, $Q\colon\operatorname{ran}P\to\operatorname{ran}Q$ is bounded
+below by $\sqrt{1-\eta^2}$, hence injective; equality of the finite
+dimensions makes it surjective.  Its inverse has norm at most
+$1/\sqrt{1-\eta^2}$, and applying $(1-P)(Q-1)$ to a preimage gives
+the displayed estimate.  Consequently $\opnorm{(1-P_n)Q_n}\to0$.
 Combining this with \eqref{eq:rootcapture} shows that
 $T_nV_n(c)$ is asymptotically in the range of $P_n$.  It is therefore
 asymptotically fixed by every $\beta_n(\iota(\lambda))$.  Since
@@ -1959,28 +1976,41 @@ unitary invariance and asymptotic multiplicativity give
 Suppose that a corona representation is nontrivial on $F$.
 Lemma~\ref{lem:finitecorner} gives an operator-norm asymptotic
 representation $V_n\colon H\to\U(M_{r_n}(\C))$, with $r_n\ge1$, for
-which \eqref{eq:finitecornersum} holds.  By
-Lemma~\ref{lem:compressorfinite}, every generator
-$[d,\iota(\lambda)]$ of the compression-defect subgroup tends to $1$ in
-normalized Hilbert--Schmidt norm.
+which \eqref{eq:finitecornersum} holds.  Fix a free ultrafilter $\omega$
+on $\N$.  Operator-norm multiplicativity implies Hilbert--Schmidt
+multiplicativity, so the classes of $(V_n(g))_n$ define a homomorphism
+\[
+ \rho_2\colon H\longrightarrow
+ \prod_{n\to\omega}(\U(M_{r_n}(\C)),\hsnorm{\cdot}).
+\]
+Lemma~\ref{lem:compressorfinite} says that $\rho_2$ kills every generator
+$[d,\iota(\lambda)]$ of $N_{\rm comp}$.  Since $\ker\rho_2$ is normal,
+\[
+ N_{\rm comp}\le\ker\rho_2,
+\]
+and in particular $\rho_2(f)=1$ for every $f\in F$.
 
-This convergence propagates through inverses, conjugates, and finite
-products.  Explicitly,
+We now return from the ultraproduct to a single sequence, exactly where
+finiteness of $F$ is used a second time.  For each $k$, the finite
+intersection of the $\omega$-large sets
 \[
- \hsnorm{AB-1}\le\hsnorm{A-1}+\hsnorm{B-1},\qquad
- \hsnorm{UXU^*-1}=\hsnorm{X-1}
+ \{n:\hsnorm{V_n(f)-V_n(1)}<1/k\}\qquad(f\in F)
 \]
-for unitaries.  Thus every fixed element of $N_{\rm comp}$, and in
-particular every $f\in F$, satisfies
+with the cofinite tail is nonempty.  Choose a strictly increasing diagonal
+sequence $n_k$ in those intersections and relabel the resulting models by
+$k$.  This preserves \eqref{eq:finitecornersum} and gives, simultaneously
+for all $f\in F$,
 \[
- \hsnorm{V_n(f)-1}\longrightarrow0.
+ \hsnorm{V_k(f)-V_k(1)}\longrightarrow0.
 \]
-Taking normalized traces yields
+The identity defect gives
+$\opnorm{V_k(1)^2-V_k(1)}\to0$; multiplication by the unitary
+$V_k(1)^*$ shows $\opnorm{V_k(1)-1}\to0$.  Therefore
 \[
- \tr_{r_n}\!\left(\sum_{f\in F}V_n(f)\right)\longrightarrow |F|.
+ \tr_{r_k}\!\left(\sum_{f\in F}V_k(f)\right)\longrightarrow |F|.
 \]
 On the other hand, \eqref{eq:finitecornersum} and
-$|\tr_{r_n}(x)|\le\opnorm{x}$ force the same scalar to converge to $0$.
+$|\tr_{r_k}(x)|\le\opnorm{x}$ force the same scalar to converge to $0$.
 This contradicts $|F|\ge1$ and proves the theorem.
 \end{proof}
 

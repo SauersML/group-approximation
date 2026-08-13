@@ -19,6 +19,7 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.NormMatrixCorona
+import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
@@ -214,10 +215,17 @@ group is part of the Lean API.
   `LiteralCyclicCalibration.finiteDimensional_kill` -- the literal cyclic
   comparison presentation has a surviving marked involution although every
   exact finite-dimensional representation kills it.
-* `normMatrixCoronaMk_eq_zero_iff` -- the algebraic bounded-matrix-sequence
-  quotient has exactly the cofinite operator-norm-null sequences as the
-  kernel of its quotient map.  No normed or C-star structure on this
-  noncommutative quotient is asserted.
+* `normMatrixCoronaMk_eq_zero_iff` -- the complete normed
+  bounded-matrix-sequence quotient has exactly the cofinite
+  operator-norm-null sequences as the kernel of its quotient map.  Its star
+  and C-star layers are not exported here until their quotient laws are
+  proved.
+* `ChosenReducedGroupCStar.no_faithfulCoronaUnitaryRestriction` -- the chosen
+  witness's canonical reduced-group unitaries admit no faithful restriction
+  to a norm-matrix ultraproduct.
+* `ChosenReducedGroupCStar.matrix_isometry_is_unitary` -- every finite matrix
+  amplification of the chosen witness's concrete reduced group C-star algebra
+  has no proper isometry.
 
 ## One endpoint per printed theorem
 
@@ -464,6 +472,8 @@ export GroupApproximation
   (BoundedMatrixSequence boundedMatrixSequence_norm_eq_ciSup
     IsC0MatrixSequence c0MatrixSequenceIdeal c0MatrixSequenceIdeal_star_mem
     NormMatrixCoronaAlgebra normMatrixCoronaMk normMatrixCoronaMk_eq_zero_iff)
+export GroupApproximation.ChosenReducedGroupCStar
+  (no_faithfulCoronaUnitaryRestriction matrix_isometry_is_unitary)
 export GroupApproximation.OperatorMFMarkovWitness
   (positive_punit chosen_forbidden_subgroup
     exists_finitelyPresented_forbidden_subgroup)

@@ -12,10 +12,11 @@ dependent `ℓ∞` space supplied by mathlib, with pointwise ring and star
 operations.  The denominator is the genuine two-sided star-stable ideal of
 sequences whose operator norms tend to zero along the cofinite filter.
 
-The final quotient in this file is at present an algebra quotient.  Mathlib's
-normed ideal-quotient instance is restricted to commutative rings, while
-matrix algebras are noncommutative.  We therefore do not assert a normed or
-C-star structure for the quotient until that missing analytic layer is proved.
+The quotient carries the genuine quotient norm.  We prove directly that the
+noncommutative quotient multiplication is submultiplicative, that the `c₀`
+ideal is closed, and hence that the quotient is a complete normed ring.  The
+star and C-star layers are constructed below rather than inferred from the
+commutative ideal-quotient instance in mathlib.
 -/
 
 namespace GroupApproximation
@@ -158,10 +159,7 @@ noncomputable instance c0MatrixSequenceIdeal_isClosed :
     IsClosed (c0MatrixSequenceIdeal X : Set (BoundedMatrixSequence X)) :=
   isClosed_c0MatrixSequenceIdeal X
 
-/-- The actual algebra quotient `ℓ∞(M_{d_n}) / c₀(M_{d_n})`.
-
-No normed- or C-star-algebra instance is asserted yet; the noncommutative
-quotient norm and its completeness are the next analytic layer. -/
+/-- The actual quotient `ℓ∞(M_{d_n}) / c₀(M_{d_n})`. -/
 abbrev NormMatrixCoronaAlgebra :=
   BoundedMatrixSequence X ⧸ c0MatrixSequenceIdeal X
 
@@ -235,6 +233,70 @@ noncomputable instance normMatrixCoronaAlgebraNormedRing :
 noncomputable instance normMatrixCoronaAlgebraCompleteSpace :
     CompleteSpace (NormMatrixCoronaAlgebra X) :=
   Submodule.Quotient.completeSpace (c0MatrixSequenceIdeal X)
+
+private def boundedMatrixSequenceStarHom :
+    BoundedMatrixSequence X →+ NormMatrixCoronaAlgebra X :=
+  (Ideal.Quotient.mk (c0MatrixSequenceIdeal X)).toAddMonoidHom.comp
+    starAddEquiv.toAddMonoidHom
+
+private theorem c0MatrixSequenceIdeal_le_star_ker :
+    (c0MatrixSequenceIdeal X).toAddSubgroup ≤
+      (boundedMatrixSequenceStarHom X).ker := by
+  intro a ha
+  change Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (star a) = 0
+  rw [Ideal.Quotient.eq_zero_iff_mem]
+  exact c0MatrixSequenceIdeal_star_mem X ha
+
+/-- Coordinatewise adjoint descends to the matrix-corona quotient. -/
+noncomputable instance normMatrixCoronaAlgebraStar :
+    Star (NormMatrixCoronaAlgebra X) where
+  star := QuotientAddGroup.lift
+    (c0MatrixSequenceIdeal X).toAddSubgroup
+    (boundedMatrixSequenceStarHom X)
+    (c0MatrixSequenceIdeal_le_star_ker X)
+
+@[simp] theorem normMatrixCorona_star_mk (a : BoundedMatrixSequence X) :
+    star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a) =
+      Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (star a) :=
+  QuotientAddGroup.lift_mk _ _ _
+
+noncomputable instance normMatrixCoronaAlgebraInvolutiveStar :
+    InvolutiveStar (NormMatrixCoronaAlgebra X) where
+  star_involutive x := by
+    induction x using QuotientAddGroup.induction_on with
+    | _ a =>
+      change star (star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a)) =
+        Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a
+      rw [normMatrixCorona_star_mk, normMatrixCorona_star_mk, star_star]
+
+noncomputable instance normMatrixCoronaAlgebraStarAddMonoid :
+    StarAddMonoid (NormMatrixCoronaAlgebra X) where
+  star_add x y := by
+    induction x using QuotientAddGroup.induction_on with
+    | _ a =>
+      induction y using QuotientAddGroup.induction_on with
+      | _ b =>
+        change star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (a + b)) =
+          star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a) +
+            star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b)
+        rw [normMatrixCorona_star_mk, normMatrixCorona_star_mk,
+          normMatrixCorona_star_mk, star_add]
+        rfl
+
+noncomputable instance normMatrixCoronaAlgebraStarMul :
+    StarMul (NormMatrixCoronaAlgebra X) where
+  star_mul x y := by
+    induction x using QuotientAddGroup.induction_on with
+    | _ a =>
+      induction y using QuotientAddGroup.induction_on with
+      | _ b =>
+        change star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (a * b)) =
+          star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b) *
+            star (Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a)
+        rw [normMatrixCorona_star_mk, normMatrixCorona_star_mk,
+          normMatrixCorona_star_mk]
+        rw [show star (a * b) = star b * star a from StarMul.star_mul a b]
+        rfl
 
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/
