@@ -343,6 +343,7 @@ private theorem boundedMatrixSequence_sub_tail_isC0
 private def matrixSequenceTailNorm (a : BoundedMatrixSequence X) : ℝ :=
   Filter.limsup (fun n ↦ ‖a n‖) atTop
 
+omit [∀ n, Nonempty (X n)] in
 private theorem matrixNorm_isBoundedUnder (a : BoundedMatrixSequence X) :
     IsBoundedUnder (· ≤ ·) atTop (fun n : ℕ ↦ ‖a n‖) :=
   ⟨‖a‖, show ∀ᶠ n : ℕ in atTop, ‖a n‖ ≤ ‖a‖ from
@@ -353,6 +354,7 @@ private theorem matrixNorm_isCoboundedUnder (a : BoundedMatrixSequence X) :
     IsCoboundedUnder (· ≤ ·) atTop (fun n : ℕ ↦ ‖a n‖) :=
   Filter.isCoboundedUnder_le_of_le atTop fun n ↦ norm_nonneg (a n)
 
+omit [∀ n, Nonempty (X n)] in
 private theorem matrixSequenceTailNorm_nonneg (a : BoundedMatrixSequence X) :
     0 ≤ matrixSequenceTailNorm X a := by
   apply (Filter.le_limsup_iff
@@ -360,6 +362,7 @@ private theorem matrixSequenceTailNorm_nonneg (a : BoundedMatrixSequence X) :
   intro y hy
   exact Frequently.of_forall fun n ↦ hy.trans_le (norm_nonneg (a n))
 
+omit [∀ n, Nonempty (X n)] in
 private theorem matrixSequenceTailNorm_le_norm (a : BoundedMatrixSequence X) :
     matrixSequenceTailNorm X a ≤ ‖a‖ := by
   apply (Filter.limsup_le_iff
@@ -401,37 +404,70 @@ private theorem normMatrixCorona_mk_le_tailNorm
     (norm_tail_le_add X a
       (add_nonneg (matrixSequenceTailNorm_nonneg X a) hε.le) hN)
 
+omit [∀ n, Nonempty (X n)] in
+private theorem eventually_norm_sub_lt_of_isC0
+    (a b : BoundedMatrixSequence X)
+    (hab : IsC0MatrixSequence X (a - b)) {c : ℝ} (hc : 0 < c) :
+    ∀ᶠ n in atTop, ‖(a - b) n‖ < c := by
+  have hdiff : Tendsto (fun n ↦ ‖(a - b) n‖) atTop (nhds 0) := by
+    rw [← Nat.cofinite_eq_atTop]
+    exact hab
+  exact (Metric.tendsto_nhds.mp hdiff) c hc |>.mono fun n hn ↦ by
+    simpa only [Real.dist_eq, sub_zero, abs_norm] using hn
+
+omit [∀ n, Nonempty (X n)] in
+private theorem matrixNorm_le_coordNorm_add_norm_sub
+    (a b : BoundedMatrixSequence X) (n : ℕ) :
+    ‖a n‖ ≤ ‖b n‖ + ‖(a - b) n‖ := by
+  nth_rewrite 1 [← add_sub_cancel (b n) (a n)]
+  change ‖b n + (a n - b n)‖ ≤ ‖b n‖ + ‖a n - b n‖
+  exact norm_add_le _ _
+
+omit [∀ n, Nonempty (X n)] in
+private theorem matrixNorm_le_norm_add_norm_sub
+    (a b : BoundedMatrixSequence X) (n : ℕ) :
+    ‖a n‖ ≤ ‖b‖ + ‖(a - b) n‖ :=
+  (matrixNorm_le_coordNorm_add_norm_sub X a b n).trans
+    (add_le_add (boundedMatrixSequence_coord_norm_le X b n) le_rfl)
+
+omit [∀ n, Nonempty (X n)] in
+private theorem eventually_matrixNorm_lt_of_sub_isC0
+    (a b : BoundedMatrixSequence X)
+    (hab : IsC0MatrixSequence X (a - b)) {y : ℝ} (hy : ‖b‖ < y) :
+    ∀ᶠ n in atTop, ‖a n‖ < y := by
+  have hev : ∀ᶠ n in atTop, ‖(a - b) n‖ < y - ‖b‖ :=
+    eventually_norm_sub_lt_of_isC0 X a b hab (sub_pos.mpr hy)
+  filter_upwards [hev] with n hn
+  exact (matrixNorm_le_norm_add_norm_sub X a b n).trans_lt (by linarith)
+
+omit [∀ n, Nonempty (X n)] in
+private theorem matrixSequenceTailNorm_le_norm_of_sub_isC0
+    (a b : BoundedMatrixSequence X)
+    (hab : IsC0MatrixSequence X (a - b)) :
+    matrixSequenceTailNorm X a ≤ ‖b‖ := by
+  apply (Filter.limsup_le_iff
+    (matrixNorm_isCoboundedUnder X a) (matrixNorm_isBoundedUnder X a)).mpr
+  intro y hy
+  exact eventually_matrixNorm_lt_of_sub_isC0 X a b hab hy
+
+private theorem matrixSequenceTailNorm_le_norm_of_mk_eq
+    (a b : BoundedMatrixSequence X)
+    (hb : Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b =
+      Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a) :
+    matrixSequenceTailNorm X a ≤ ‖b‖ := by
+  have hba : b - a ∈ c0MatrixSequenceIdeal X :=
+    (Ideal.Quotient.mk_eq_mk_iff_sub_mem b a).mp hb
+  have hab : a - b ∈ c0MatrixSequenceIdeal X := by
+    simpa [neg_sub] using (c0MatrixSequenceIdeal X).neg_mem hba
+  exact matrixSequenceTailNorm_le_norm_of_sub_isC0 X a b hab
+
 private theorem matrixSequenceTailNorm_le_normMatrixCorona_mk
     (a : BoundedMatrixSequence X) :
     matrixSequenceTailNorm X a ≤
       ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ := by
   apply (QuotientAddGroup.le_norm_iff).mpr
   intro b hb
-  have hba : b - a ∈ c0MatrixSequenceIdeal X := by
-    change Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b =
-      Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a at hb
-    exact (Ideal.Quotient.mk_eq_mk_iff_sub_mem b a).mp hb
-  have hab : a - b ∈ c0MatrixSequenceIdeal X := by
-    simpa [neg_sub] using (c0MatrixSequenceIdeal X).neg_mem hba
-  have hdiff : Tendsto (fun n ↦ ‖(a - b) n‖) atTop (nhds 0) := by
-    rw [← Nat.cofinite_eq_atTop]
-    exact hab
-  apply (Filter.limsup_le_iff
-    (matrixNorm_isCoboundedUnder X a) (matrixNorm_isBoundedUnder X a)).mpr
-  intro y hy
-  have hpos : 0 < y - ‖b‖ := sub_pos.mpr hy
-  have hev : ∀ᶠ n in atTop, ‖(a - b) n‖ < y - ‖b‖ :=
-    (Metric.tendsto_nhds.mp hdiff) (y - ‖b‖) hpos |>.mono fun n hn ↦ by
-      simpa only [Real.dist_eq, sub_zero, abs_norm] using hn
-  filter_upwards [hev] with n hn
-  calc
-    ‖a n‖ ≤ ‖b n‖ + ‖(a - b) n‖ := by
-      nth_rewrite 1 [← add_sub_cancel (b n) (a n)]
-      rw [norm_sub_rev]
-      exact norm_add_le _ _
-    _ ≤ ‖b‖ + ‖(a - b) n‖ :=
-      add_le_add_right (boundedMatrixSequence_coord_norm_le X b n) _
-    _ < y := by linarith
+  exact matrixSequenceTailNorm_le_norm_of_mk_eq X a b hb
 
 /-- The quotient norm is exactly the limsup of the coordinate operator norms.
 This is the concrete norm formula for the norm-matrix corona. -/
