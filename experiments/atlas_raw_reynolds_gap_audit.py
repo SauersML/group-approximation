@@ -22,6 +22,7 @@ from atlas_boundary_amalgam_normal_form import (  # noqa: E402
 )
 from atlas_boundary_group_algebra_audit import matrix_from_key  # noqa: E402
 from atlas_boundary_h_tangent_screen import INNER_ALIGNMENT_HEX  # noqa: E402
+from atlas_certified_a8_alignment import boundary_words  # noqa: E402
 from atlas_two_chart_search import (  # noqa: E402
     I4,
     gf2_inv,
@@ -53,6 +54,51 @@ def element_order(matrix):
         if matrix_key(value) == matrix_key(I4):
             return order
     raise AssertionError("element order exceeded finite audit bound")
+
+
+def conjugate(matrix, element):
+    return gf2_mul(gf2_mul(matrix, element), gf2_inv(matrix))
+
+
+def normalizes_subgroup(matrix, subgroup):
+    keys = set(subgroup)
+    return all(matrix_key(conjugate(matrix, element)) in keys
+               for element in subgroup.values())
+
+
+def double_coset(subgroup, matrix):
+    return {
+        matrix_key(gf2_mul(gf2_mul(left, matrix), right))
+        for left in subgroup.values()
+        for right in subgroup.values()
+    }
+
+
+def centralizer(ambient, subgroup):
+    return {
+        key: matrix
+        for key, matrix in ambient.items()
+        if all(matrix_key(gf2_mul(matrix, element)) ==
+               matrix_key(gf2_mul(element, matrix))
+               for element in subgroup.values())
+    }
+
+
+def order_histogram(elements):
+    return dict(sorted(Counter(element_order(matrix)
+                               for matrix in elements.values()).items()))
+
+
+def direct_product_factor(matrix, left, right):
+    matches = [
+        (left_key, right_key)
+        for left_key, left_matrix in left.items()
+        for right_key, right_matrix in right.items()
+        if matrix_key(gf2_mul(left_matrix, right_matrix)) == matrix_key(matrix)
+    ]
+    if len(matches) != 1:
+        raise AssertionError("normalizer element lacks a unique direct factor")
+    return matches[0]
 
 
 def main():
@@ -91,6 +137,81 @@ def main():
     if len(subgroup) != 6 or generator_orders != [2, 2] or product_order != 3:
         raise AssertionError("the two raw H-letters no longer generate S3")
 
+    first_counts = Counter(matrix_key(matrix).hex()
+                           for _index, (factor, matrix) in enumerate(raw)
+                           if factor == 1)
+    first_distinct = {
+        matrix_key(matrix): matrix
+        for factor, matrix in raw if factor == 1
+    }
+    generated_with_first = generated_subgroup(
+        generators + list(first_distinct.values()))
+    commuting_complement = centralizer(generated_with_first, subgroup)
+    if (len(commuting_complement) != 6 or
+            order_histogram(commuting_complement) != {1: 1, 2: 3, 3: 2}):
+        raise AssertionError("the commuting normalizer complement is not S3")
+    intersection = set(subgroup).intersection(commuting_complement)
+    if intersection != {matrix_key(I4)}:
+        raise AssertionError("the two S3 factors have nontrivial intersection")
+    factor_products = {
+        matrix_key(gf2_mul(left, right))
+        for left in subgroup.values()
+        for right in commuting_complement.values()
+    }
+    if factor_products != set(generated_with_first):
+        raise AssertionError("the order-36 normalizer is not the direct product")
+    first_geometry = []
+    for key, matrix in sorted(first_distinct.items()):
+        coset = double_coset(subgroup, matrix)
+        left_key, right_key = direct_product_factor(
+            matrix, subgroup, commuting_complement)
+        first_geometry.append({
+            "matrix_hex": key.hex(),
+            "multiplicity": first_counts[key.hex()],
+            "normalizes_S3": normalizes_subgroup(matrix, subgroup),
+            "S3_double_coset_size": len(coset),
+            "S3_double_coset_id": min(coset).hex(),
+            "S3_times_commuting_S3_factorization": {
+                "raw_S3_factor_hex": left_key.hex(),
+                "commuting_S3_factor_hex": right_key.hex(),
+            },
+        })
+
+    hard_word = transported_word(
+        boundary_words()[11], alignment, alignment_inverse)
+    hard_prefix_normal = amalgam_normal_form(hard_word[:2])
+    hard_letter_normal = amalgam_normal_form(hard_word[2:3])
+    if (len(hard_prefix_normal) != 1 or len(hard_letter_normal) != 1 or
+            not lies_in_h(hard_prefix_normal[0][1]) or
+            not lies_in_h(hard_letter_normal[0][1])):
+        raise AssertionError("the hard class-11 pair did not reduce into H")
+    hard_prefix = hard_prefix_normal[0][1]
+    hard_letter = hard_letter_normal[0][1]
+    hard_geometry = []
+    hard_extensions = []
+    for name, matrix in (("prefix", hard_prefix), ("next_letter", hard_letter)):
+        coset = double_coset(subgroup, matrix)
+        extension = generated_subgroup(generators + [matrix])
+        if (len(extension) != 24 or
+                order_histogram(extension) != {1: 1, 2: 9, 3: 8, 4: 6}):
+            raise AssertionError("a hard K-extension is not S4")
+        hard_extensions.append(extension)
+        hard_geometry.append({
+            "name": name,
+            "matrix_hex": matrix_key(matrix).hex(),
+            "normalizes_S3": normalizes_subgroup(matrix, subgroup),
+            "S3_double_coset_size": len(coset),
+            "generated_with_S3_order": len(extension),
+            "generated_group_isomorphic_to": "S4",
+            "generated_group_order_histogram": order_histogram(extension),
+        })
+    hard_pair_generated = generated_subgroup(
+        generators + [hard_prefix, hard_letter])
+    hard_extension_intersection = (
+        set(hard_extensions[0]).intersection(hard_extensions[1]))
+    if hard_extension_intersection != set(subgroup):
+        raise AssertionError("the two hard S4 extensions do not intersect in K")
+
     print(json.dumps({
         "word": "compiled scalarized raw swap",
         "source_syllables": len(raw),
@@ -110,6 +231,22 @@ def main():
             "generator_orders": generator_orders,
             "product_order": product_order,
             "isomorphic_to": "S3 = GL(2,2)",
+        },
+        "first_chart_geometry_relative_to_S3": {
+            "distinct_letters": len(first_distinct),
+            "generated_with_S3_order": len(generated_with_first),
+            "generated_group_isomorphic_to": "S3 x S3",
+            "commuting_complement_order": len(commuting_complement),
+            "commuting_complement_order_histogram":
+                order_histogram(commuting_complement),
+            "factor_intersection_order": len(intersection),
+            "letters": first_geometry,
+        },
+        "hard_class11_geometry_relative_to_S3": {
+            "letters": hard_geometry,
+            "S4_extension_intersection_order":
+                len(hard_extension_intersection),
+            "pair_generated_with_S3_order": len(hard_pair_generated),
         },
         "word_after_replacing_chart_2_H_by_chart_1":
             record_normal_form(folded_normal),

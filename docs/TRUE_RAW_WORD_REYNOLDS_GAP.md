@@ -180,6 +180,12 @@ This is the strongest useful localization: the compulsory transverse energy
 already occurs on an `S_3` slice, whose complex representation theory has
 only the trivial, sign, and two-dimensional standard types.
 
+The four first-chart letters form a second `S3` which centralizes this one;
+the raw word is therefore confined exactly to an `S3*S3` transport cell.
+The hard class-11 pair expands the common `S3` through two order-24 `S4`
+subgroups which together generate `H=GL3(2)`.  See
+`TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md`.
+
 ## 4. What this changes
 
 The exact classical collapse of the raw word is not sterile: it makes the

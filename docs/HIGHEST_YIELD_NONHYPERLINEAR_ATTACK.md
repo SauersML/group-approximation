@@ -221,6 +221,15 @@ next coefficient calculation should first use the three `S3` types
 products.  Expanding immediately to all `H`-types is unnecessary unless
 this three-vertex quiver provably forgets the cross branch.
 
+Exact subgroup closure makes this localization structural.  The four
+first-chart raw letters generate a commuting `S3`, so the entire raw word
+lies in an `S3*S3` transport cell and the classical fold is `S3 x S3`.
+Each class-11 hard element extends the raw `S3` to an `S4`; the two distinct
+extensions generate `GL3(2)` of order 168.  The minimal live quiver is thus
+`S4 <- S3 -> S4`, with the caveat that the running hard prefix is a
+cross-chart product whose first `S4` must be recovered rather than assumed.
+See `TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md`.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the

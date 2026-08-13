@@ -4019,6 +4019,22 @@ multiplicity quiver.  The hard-pair/comb block products must either retain
 the two child branches there or furnish an exact certificate that the
 restriction is too coarse before the 168-element `H` quiver is expanded.
 
+Exact closure further identifies the raw cell.  Its four distinct
+first-chart letters generate another `S3` which centralizes `K`, intersects
+it trivially, and gives an order-36 direct product `S3 x S3`.  Hence the raw
+word is exactly a transport holonomy between two finite `S3` alphabets.
+The class-11 hard prefix and next letter do not normalize `K`: separately
+they extend it to order-24 `S4` subgroups, and together they generate the
+full order-168 `GL3(2)`.  The smallest live branching diagram is therefore
+
+```text
+S4 <- S3 -> S4.
+```
+
+The next-letter `S4` is an honest chart subgroup; the prefix `S4` is only
+the classical value of a cross-chart word and must be recovered
+quantitatively.  See `TRUE_RAW_WORD_S3_TIMES_S3_LOCALIZATION.md`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
