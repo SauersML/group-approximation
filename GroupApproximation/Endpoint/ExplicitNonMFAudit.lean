@@ -4,6 +4,8 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralUniversalHorn
+import GroupApproximation.Monsters.LiteralCyclicCalibration
 
 /-!
 # Lightweight axiom audit for the explicit non-MF endpoint
@@ -39,6 +41,11 @@ retains either a property-`(T)` premise or an exact rational SOS certificate.
 #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
 #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
+#print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
+#print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
+#print axioms GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one
 #print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
 #print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine
 #print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate
+#print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
+#print axioms GroupApproximation.LiteralUniversalHorn.literalQuasiIdentity_separates_of_isRationalCertificate

@@ -18,12 +18,14 @@ import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.ExplicitLinearModel
+import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
+import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
@@ -121,6 +123,10 @@ boundary instead of conflating the two constructions.
   proof-carrying version: an exact rational group-ring SOS certificate would
   close that premise.  No such certificate is asserted or selected here, so
   this is not an unconditional endpoint for the literal group.
+* `LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity`
+  -- the canonical literal tuple unconditionally falsifies the printed finite
+  quasi-identity; validity in all operator-MF targets remains conditional on
+  the same presented-base property `(T)` input or an exact SOS certificate.
 
 ## Consequences and reusable obstruction APIs
 
@@ -136,6 +142,13 @@ boundary instead of conflating the two constructions.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
+* `LiteralCyclicCalibration.mark_ne_one` and
+  `LiteralCyclicCalibration.finiteDimensional_kill` -- the literal cyclic
+  comparison presentation has a surviving marked involution although every
+  exact finite-dimensional representation kills it.  Its corona-survival
+  theorem keeps operator-MF of the concrete Clifford target as an explicit
+  premise; it is not advertised as a formal proof of all of manuscript
+  Theorem C.
 
 ## One endpoint per printed theorem
 
@@ -316,9 +329,18 @@ export GroupApproximation.LiteralKazhdanCompression
     mark_normMFInvisible_of_isRationalCertificate
     not_isOperatorMF_of_isRationalCertificate
     not_injective_to_isOperatorMF_of_isRationalCertificate)
+export GroupApproximation.LiteralUniversalHorn
+  (map_mark_eq_one_of_hasKazhdanPropertyT
+    operatorMF_satisfies_literalQuasiIdentity_of_hasKazhdanPropertyT
+    operatorMF_satisfies_literalQuasiIdentity_of_isRationalCertificate
+    literalMarkedGroup_not_satisfies_literalQuasiIdentity
+    literalQuasiIdentity_separates_of_isRationalCertificate)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
+export GroupApproximation.LiteralCyclicCalibration
+  (mark_ne_one finiteDimensional_kill
+    exists_coronaRepresentation_mark_ne_one)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker

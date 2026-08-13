@@ -58,6 +58,15 @@ example
     ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
   LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine e hT
 
+example : LiteralCyclicCalibration.mark ≠ 1 :=
+  LiteralCyclicCalibration.mark_ne_one
+
+example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+    [FiniteDimensional k V]
+    (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
+    pi LiteralCyclicCalibration.mark = 1 :=
+  LiteralCyclicCalibration.finiteDimensional_kill pi
+
 example :
     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
   ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
@@ -374,6 +383,9 @@ def headlineTheorems : List Name :=
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``LiteralCyclicCalibration.mark_ne_one,
+   ``LiteralCyclicCalibration.finiteDimensional_kill,
+   ``LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
    ``KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect,
