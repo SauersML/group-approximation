@@ -43,6 +43,7 @@ import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
 /-!
 # The public results
@@ -162,6 +163,9 @@ boundary instead of conflating the two constructions.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
+* `FixedSpaceStabilizer.compressionGroup_le_stabilizer` -- the exact subgroup
+  closure step propagating fixed-sector stabilization from one-sided
+  compressors to the group they generate.
 * `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
   the printed construction, with injective doubling, index-eight image, and
   an explicit translation outside that image.  This does not assert that the
@@ -394,6 +398,8 @@ export GroupApproximation.CStarRecognitionConsequences
     maximalCStar_directlyFinite_recognition_undecidable
     all_groupCStar_recognition_undecidable
     all_groupCStar_negative_sides_not_re)
+export GroupApproximation.FixedSpaceStabilizer
+  (compressionGroup_le_stabilizer compressionGroup_map_mem)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker

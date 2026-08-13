@@ -70,6 +70,7 @@ import GroupApproximation.PropertyTT.NonsoficCorollary
 import GroupApproximation.Kazhdan.KazhdanComplex
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Kazhdan.InvariantSubsetRounding
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Kazhdan.DiagonalInvariantRelation
 import GroupApproximation.KOne.RefineLoopDischarge
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
@@ -509,6 +510,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package
 #print axioms GroupApproximation.CliffordAlgebraLamp.cliffordLamp_permutation_package
 #print axioms GroupApproximation.compressionCentralizerDefect_le_ker
+#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_le_stabilizer
+#print axioms GroupApproximation.FixedSpaceStabilizer.compressionGroup_map_mem
 #print axioms GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
 #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one

@@ -13,6 +13,7 @@ import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
 import GroupApproximation.Kazhdan.RationalGroupRingCertificate
 import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture

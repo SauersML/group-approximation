@@ -109,7 +109,7 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/ExplicitNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints |
+| `Sofic/ChosenNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints for the noncomputably chosen cover |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
@@ -122,7 +122,7 @@ Reading path, front door first:
 | `Sofic/KazhdanCompressorCorner.lean`, `Sofic/MarkedCompressionVectorChain.lean` | Adjoint Kazhdan projection, capture, and marked-word collapse |
 | `Sofic/AdjointMatrix.lean`, `Sofic/ProjectionRankFlip.lean`, `Sofic/SpectralCapture.lean` | Finite-dimensional operator lemmas |
 | `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
-| `Sofic/ExplicitMarkedPresentation.lean`, `Sofic/ExplicitNonMFEndpoint.lean` | Independent finitely presented witness via a Shalom cover |
+| `Sofic/ChosenMarkedPresentation.lean`, `Sofic/ChosenNonMFEndpoint.lean` | Independent finitely presented witness via a noncomputably chosen Shalom cover |
 | `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
 | `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
@@ -246,7 +246,7 @@ Key audit files:
 
 - `scripts/check.py`: source-level checks;
 - `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
-- `GroupApproximation/Endpoint/ExplicitNonMFAudit.lean`: focused audit of
+- `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: focused audit of
   the explicit non-MF endpoints;
 - `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
