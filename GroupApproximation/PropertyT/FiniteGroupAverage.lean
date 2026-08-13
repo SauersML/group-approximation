@@ -111,6 +111,76 @@ theorem norm_sub_orbitAverage_sq
   rw [norm_sub_sq_real, hinner]
   ring
 
+/-- Mean squared displacement under a finite orthogonal action is twice the
+squared distance to the invariant subspace.  For conjugation on normalized
+Hilbert--Schmidt matrices this is the exact mean commutator-energy formula. -/
+noncomputable def meanSquaredDisplacement
+    (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) : ℝ := by
+  letI := Fintype.ofFinite G
+  exact (Nat.card G : ℝ)⁻¹ * ∑ g : G, ‖rho g x - x‖ ^ 2
+
+theorem mean_norm_rho_sub_sq
+    (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) :
+    meanSquaredDisplacement rho x =
+      2 * (‖x‖ ^ 2 - ‖orbitAverage rho x‖ ^ 2) := by
+  letI := Fintype.ofFinite G
+  unfold meanSquaredDisplacement
+  have hterm : ∀ g : G,
+      ‖rho g x - x‖ ^ 2 =
+        2 * ‖x‖ ^ 2 - 2 * inner ℝ (rho g x) x := by
+    intro g
+    rw [norm_sub_sq_real, (rho g).norm_map]
+    ring
+  have havgInner :
+      inner ℝ (orbitAverage rho x) x =
+        ‖orbitAverage rho x‖ ^ 2 := by
+    have havgFixed : ∀ g : G,
+        rho g (orbitAverage rho x) = orbitAverage rho x := by
+      intro g
+      exact orbitAverage_fixed rho x g
+    calc
+      inner ℝ (orbitAverage rho x) x
+          = inner ℝ x (orbitAverage rho x) := real_inner_comm _ _
+      _ = inner ℝ (orbitAverage rho x) (orbitAverage rho x) :=
+        (inner_orbitAverage_eq_of_fixed_right
+          rho x (orbitAverage rho x) havgFixed).symm
+      _ = ‖orbitAverage rho x‖ ^ 2 := real_inner_self_eq_norm_sq _
+  have hsumInner :
+      (Nat.card G : ℝ)⁻¹ * ∑ g : G, inner ℝ (rho g x) x =
+        ‖orbitAverage rho x‖ ^ 2 := by
+    rw [← havgInner]
+    unfold orbitAverage
+    rw [real_inner_smul_left, sum_inner]
+  rw [Finset.sum_congr rfl fun g _ ↦ hterm g,
+    Finset.sum_sub_distrib, Finset.sum_const, Finset.card_univ,
+    ← Nat.cast_smul_eq_nsmul ℝ]
+  simp only [smul_eq_mul]
+  rw [Nat.card_eq_fintype_card]
+  rw [← Finset.mul_sum]
+  have hsumInner' :
+      (Fintype.card G : ℝ)⁻¹ * ∑ g : G, inner ℝ (rho g x) x =
+        ‖orbitAverage rho x‖ ^ 2 := by
+    simpa [Nat.card_eq_fintype_card] using hsumInner
+  have hcard : (Fintype.card G : ℝ) ≠ 0 := by
+    exact_mod_cast (Fintype.card_ne_zero : Fintype.card G ≠ 0)
+  have hinv : (Fintype.card G : ℝ)⁻¹ * Fintype.card G = 1 :=
+    inv_mul_cancel₀ hcard
+  calc
+    (Fintype.card G : ℝ)⁻¹ *
+        (Fintype.card G * (2 * ‖x‖ ^ 2) -
+          2 * ∑ g : G, inner ℝ (rho g x) x) =
+      (Fintype.card G : ℝ)⁻¹ *
+          (Fintype.card G * (2 * ‖x‖ ^ 2)) -
+        (Fintype.card G : ℝ)⁻¹ *
+          (2 * ∑ g : G, inner ℝ (rho g x) x) := by ring
+    _ = ((Fintype.card G : ℝ)⁻¹ * Fintype.card G) *
+          (2 * ‖x‖ ^ 2) -
+        2 * ((Fintype.card G : ℝ)⁻¹ *
+          ∑ g : G, inner ℝ (rho g x) x) := by ring
+    _ = 2 * (‖x‖ ^ 2 - ‖orbitAverage rho x‖ ^ 2) := by
+      rw [hinv, hsumInner']
+      ring
+
 /-- The literal finite orbit average is the Hilbert orthogonal projection
 onto the invariant subspace. -/
 theorem orbitAverage_eq_fixedProjection [CompleteSpace E]

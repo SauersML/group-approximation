@@ -39,7 +39,8 @@ regular basis.
 
 The abstract Pythagorean identity behind `(RNG3)` is formalized in
 `GroupApproximation/PropertyT/FiniteGroupAverage.lean` as
-`norm_sub_orbitAverage_sq`.
+`norm_sub_orbitAverage_sq`; the exact mean-displacement formula `(RNG4)` is
+formalized there as `mean_norm_rho_sub_sq`.
 
 ## 2. Gauge invariance
 
