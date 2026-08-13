@@ -315,12 +315,6 @@ theorem matrixBaseHom_surjective : Function.Surjective matrixBaseHom := by
       ({xU, yU, zU, v1U, v2U, v3U} : Set Matˣ)
   exact hclosure (htop.symm ▸ Subgroup.mem_top γ)
 
-/-- Once presentation completeness is supplied as injectivity, the printed
-base is explicitly isomorphic to the affine matrix subgroup. -/
-noncomputable def matrixBaseEquiv
-    (hinj : Function.Injective matrixBaseHom) : Base ≃* gammaBar :=
-  MulEquiv.ofBijective matrixBaseHom ⟨hinj, matrixBaseHom_surjective⟩
-
 /-! ## The generic telescope/Clifford target -/
 
 abbrev alpha : gammaBar →* gammaBar := conjD
@@ -480,23 +474,6 @@ theorem witnessHom_comp_baseMap :
   change witnessHom (baseMap (PresentedGroup.of i)) =
     iotaAmbient alpha conjD_injective (matrixBaseHom (PresentedGroup.of i))
   rw [witnessHom_base_generator, matrixBaseHom_generator]
-
-/-- Presentation completeness implies that the canonical printed base map
-into the literal eight-generator group is injective.  This is the exact
-formal boundary in manuscript Corollary `cor:iotainj`. -/
-theorem baseMap_injective_of_matrixBaseHom_injective
-    (hinj : Function.Injective matrixBaseHom) :
-    Function.Injective baseMap := by
-  intro x y hxy
-  apply hinj
-  apply iotaAmbient_injective alpha conjD_injective
-  calc
-    iotaAmbient alpha conjD_injective (matrixBaseHom x) =
-        witnessHom (baseMap x) :=
-      (DFunLike.congr_fun witnessHom_comp_baseMap x).symm
-    _ = witnessHom (baseMap y) := congrArg witnessHom hxy
-    _ = iotaAmbient alpha conjD_injective (matrixBaseHom y) :=
-      DFunLike.congr_fun witnessHom_comp_baseMap y
 
 @[simp] theorem witnessHom_stable :
     witnessHom stable = tAmbient alpha conjD_injective := by

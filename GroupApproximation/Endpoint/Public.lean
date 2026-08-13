@@ -163,10 +163,6 @@ group is part of the Lean API.
   quasi-identity.  No validity claim for operator-MF targets is asserted.
 * `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
   finite-radius bound for every printed relator.
-* `LiteralNonMFLinearWitness.matrixBaseEquiv` and
-  `baseMap_injective_of_matrixBaseHom_injective` -- the exact conditional
-  algebraic bridge supplied by presentation completeness; no such
-  injectivity hypothesis is manufactured here.
 * `LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark`
   -- no finite quotient detects the genuine nontrivial literal mark.
 ## Consequences and reusable obstruction APIs
@@ -410,8 +406,7 @@ export GroupApproximation.LiteralNonMFPresentation
   (generator_card literal_algebraic_package)
 export GroupApproximation.LiteralNonMFLinearWitness
   (matrixBaseHom matrixBaseHom_surjective literal_mark_ne_one
-    literal_finitelyPresented_nontrivial_mark matrixBaseEquiv
-    baseMap_injective_of_matrixBaseHom_injective witnessGroup_finitelyGenerated)
+    literal_finitelyPresented_nontrivial_mark witnessGroup_finitelyGenerated)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (no_finite_quotient_detects_literal_mark)
 export GroupApproximation.LiteralBaseRelations
