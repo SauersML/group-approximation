@@ -14,6 +14,12 @@ on:
       # Without this, an edit to `check.py` alone -- including one that turns a
       # detector off -- shipped without CI ever running.
       - 'scripts/**'
+      # Signature pinning reads both generated declaration rosters and writes
+      # the committed signature snapshot.  Changes to any of the three must
+      # therefore run the same gate that checks their consistency.
+      - 'docs/CLAIM_DECLS.txt'
+      - 'docs/NON_MF_CLAIM_DECLS.txt'
+      - 'docs/CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
@@ -26,6 +32,9 @@ on:
       # Without this, an edit to `check.py` alone -- including one that turns a
       # detector off -- shipped without CI ever running.
       - 'scripts/**'
+      - 'docs/CLAIM_DECLS.txt'
+      - 'docs/NON_MF_CLAIM_DECLS.txt'
+      - 'docs/CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
