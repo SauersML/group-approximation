@@ -80,6 +80,17 @@
       "(1, 1)": "1/64"
     }
   },
+  "comb_character_scaled_isometry_table": {
+    "(-1, -1)": {
+      "(-1, -1)": {
+        "F_G_F_is_one_eighth_F": false,
+        "G_F_G_is_one_eighth_G": false
+      }
+    },
+    "(-1, 1)": {},
+    "(1, -1)": {},
+    "(1, 1)": {}
+  },
   "comb_carrier_overlap_trace": "1/4",
   "pauli_carrier": {
     "carrier_terms": 4,

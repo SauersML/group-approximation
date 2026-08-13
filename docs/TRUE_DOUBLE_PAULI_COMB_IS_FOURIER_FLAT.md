@@ -8,7 +8,8 @@ The raw-invariant coefficient `C2^2` from
 `TRUE_RAW_DOUBLE_PAULI_COEFFICIENT_PACKET.md` has an exact, positive-density
 comb transition table.  It is not Hall-deficient: every one of its sixteen
 raw-to-comb character blocks is nonzero, and all sixteen have exactly the same
-canonical tracial mass.
+canonical tracial mass.  Here "Fourier-flat" means trace-flat; it does not
+mean that the individual blocks are scaled isometries.
 
 Work in the trace-half carrier
 
@@ -73,7 +74,20 @@ positive normalized rank/mass.  There is no vanishing-density escape.
 
 This supplies the positive-density half of the proposed coefficient-pairing
 argument.  In the terminology of the radical-quotient program, the comb is
-Fourier-flat across the four raw coefficient characters.
+trace-Fourier-flat across the four raw coefficient characters.
+
+There is an exact limitation.  Already for the `(-1,-1)` character on both
+sides, the stronger mutually-unbiased identities fail:
+
+```text
+F G F != (1/8) F,            G F G != (1/8) G.       (FFC3a)
+```
+
+Thus `(FFC2)` controls total Hilbert--Schmidt mass but not the singular-value
+distribution of a block.  It does not by itself supply the reduced Fourier
+unitary in `(RPC128)` or a uniform condition-number bound.  The finite
+multiplicity extraction must still produce that operator-level structure (or
+use a spectral truncation with invariant leakage control).
 
 ## The falsification and the remaining theorem
 
@@ -101,10 +115,11 @@ The remaining matrix-specific target is now asymmetric and quantitative:
 > the reverse block to retain squared mass at least `1/64-o(1)`.
 
 Finite-dimensional unitary projection balance then contradicts the mismatch.
-The important advance is that the positive lower bound no longer has to be
+The important advance is that the total positive lower bound no longer has to be
 guessed, reconstructed from rank, or protected from dilution: it is the exact
 canonical trace `1/64`.  What remains is the one-sided module-support
-vanishing theorem.
+vanishing theorem together with operator-level control of the retained
+singular-value sector.
 
 ## Reproducible certificate
 
@@ -114,4 +129,3 @@ is `experiments/atlas-double-pauli-comb-blocks.json`.  The exact computation
 finishes in seconds on one MSI core; the first naïve equality-scan version was
 stopped and replaced rather than allowed to run indefinitely.  No local code
 or build was run.
-

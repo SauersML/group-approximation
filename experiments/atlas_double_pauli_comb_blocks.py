@@ -183,14 +183,25 @@ def main():
     }
     block_zero_table = {}
     block_trace_table = {}
+    block_scaled_isometry_table = {}
     for source, source_cut in coefficient_cuts.items():
         block_zero_table[str(source)] = {}
         block_trace_table[str(source)] = {}
+        block_scaled_isometry_table[str(source)] = {}
         for target, target_cut in transported_coefficient_cuts.items():
             block = ga_mul(source_cut, target_cut)
             block_zero_table[str(source)][str(target)] = not block
             block_trace_table[str(source)][str(target)] = rational_string(
                 ga_trace(block))
+            if source == (-1, -1) and target == (-1, -1):
+                block_scaled_isometry_table[str(source)][str(target)] = {
+                    "F_G_F_is_one_eighth_F": ga_equal(
+                        ga_mul(source_cut, target_cut, source_cut),
+                        ga_scale(Fraction(1, 8), source_cut)),
+                    "G_F_G_is_one_eighth_G": ga_equal(
+                        ga_mul(target_cut, source_cut, target_cut),
+                        ga_scale(Fraction(1, 8), target_cut)),
+                }
 
     result = {
         "two_sheet": {
@@ -229,6 +240,8 @@ def main():
         },
         "comb_character_block_zero_table": block_zero_table,
         "comb_character_block_trace_table": block_trace_table,
+        "comb_character_scaled_isometry_table":
+            block_scaled_isometry_table,
         "comb_carrier_overlap_trace": rational_string(ga_trace(ga_mul(
             q, conjugate(comb, q)))),
         "pauli_carrier": {

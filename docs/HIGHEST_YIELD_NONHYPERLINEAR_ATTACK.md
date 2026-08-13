@@ -16,6 +16,12 @@ for all sixteen pairs.  No block vanishes.  See
 group-algebra certificate.  Since `||FG||_2^2=tau(FG)` for projections, every
 block has a fixed microstate mass floor; the generic identity is Lean-checked.
 
+This trace-flatness is not operator-flatness.  The representative identity
+`F G F=(1/8)F` fails exactly, as does its reverse.  Hence the block singular
+values can be nonuniform and `(RPC128)` still needs either an actual reduced
+Fourier unitary or an invariant spectral truncation with a lower singular
+value bound.
+
 This removes positive-density recovery from the final analytic gate.  The
 highest-yield theorem is now one-sided finite-multiplicity vanishing: identify
 the coefficient multiplication module inside a matrix coordinate and prove

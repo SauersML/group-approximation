@@ -11,7 +11,9 @@ transition table between the raw-invariant coefficient characters and their
 comb conjugates.  Every character cut has trace `1/8`, every transition block
 has squared Hilbert--Schmidt mass `1/64`, and no block vanishes.  This supplies
 the fixed positive-density half of the multiplication-module attack and kills
-the Hall-zero variant.  The projection block-mass identity is Lean-checked in
+the Hall-zero variant.  It is trace-flat but not a scaled-isometry system:
+already one representative has `FGF != F/8`, so singular-value control remains
+part of reduced-Fourier extraction.  The projection block-mass identity is Lean-checked in
 `Sofic/DoublePauliCoefficient.lean`.  The remaining theorem must force a
 one-sided block to vanish only after finite-multiplicity module recovery; the
 reverse block then retains the canonical `1/64` mass and violates finite
