@@ -41,29 +41,29 @@ theorem explicit_finitelyPresented_not_isWeakMF :
 inclusion data. -/
 noncomputable def witnessInclusionData :
     MarkedCompressionInclusionData ExplicitNonMFBase.Base
-      MarkedCompressionGroup.theGroup where
-  iota := MarkedCompressionGroup.theIota
-  t := MarkedCompressionGroup.theT
-  c := MarkedCompressionGroup.theC
+      MarkedCompression.Explicit.theGroup where
+  iota := MarkedCompression.Explicit.theIota
+  t := MarkedCompression.Explicit.theT
+  c := MarkedCompression.Explicit.theC
   a := ExplicitNonMFBase.omitted
   kazhdan := ExplicitNonMFBase.base_hasKazhdanPropertyT
   compresses γ := ⟨ExplicitNonMFBase.compression γ,
-    MarkedCompressionGroup.theCompress γ⟩
-  comm_c := MarkedCompressionGroup.theCommC
-  word_sq := MarkedCompressionGroup.theWordSq
-  word_central := MarkedCompressionGroup.theWordCentral
+    MarkedCompression.Explicit.theCompress γ⟩
+  comm_c := MarkedCompression.Explicit.theCommC
+  word_sq := MarkedCompression.Explicit.theWordSq
+  word_central := MarkedCompression.Explicit.theWordCentral
 
 /-- The countable Clifford witness group is itself not weak/operator-norm
 MF: the finite presentation is needed only for finite presentability. -/
 theorem countableWitness_not_isWeakMF :
-    ¬ IsWeakMF MarkedCompressionGroup.theGroup :=
-  witnessInclusionData.not_isWeakMF MarkedCompressionGroup.theWordNeOne
+    ¬ IsWeakMF MarkedCompression.Explicit.theGroup :=
+  witnessInclusionData.not_isWeakMF MarkedCompression.Explicit.theWordNeOne
 
 /-- Existence form: there is a countable group that is not
 weak/operator-norm MF. -/
 theorem exists_countable_not_isWeakMF :
     ∃ (E : Type) (_ : Group E), Countable E ∧ ¬ IsWeakMF E :=
-  ⟨MarkedCompressionGroup.theGroup, inferInstance, inferInstance,
+  ⟨MarkedCompression.Explicit.theGroup, inferInstance, inferInstance,
     countableWitness_not_isWeakMF⟩
 
 /-- Existence form: there is a finitely presented group that is not

@@ -700,7 +700,7 @@ theorem eventually_forall_finset {I : Type*} (S : Finset I) (f : I → ℕ → �
 almost-representation.  Naming this transport prevents typeclass transparency
 from obscuring that the adjoint model is the product model. -/
 @[simp] def gammaRowVec (B : OpAlmostRepresentation E)
-    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (_D : MarkedCompressionInclusionData Γ E) (n : ℕ)
     (X : Matrix (B.model n) (B.model n) ℂ) :
     B.adjoint.model n → ℂ :=
   fun p ↦ X p.1 p.2
