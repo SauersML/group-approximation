@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralKazhdanCompression
@@ -8,9 +8,9 @@ import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 
 /-!
-# Lightweight axiom audit for the explicit non-MF endpoint
+# Lightweight axiom audit for the chosen non-MF endpoint
 
-This deliberately imports the public explicit theorem module together with
+This deliberately imports the public chosen-witness theorem module together with
 the finite-normal criterion whose endpoints are printed below.  It gives
 reviewers and CI a fast audit target without replaying the much larger
 project-wide endpoint audit.  The reported closure contains only Lean's
@@ -24,13 +24,13 @@ finite-dimensional obstruction are unconditional; its operator-MF conclusion
 retains either a property-`(T)` premise or an exact rational SOS certificate.
 -/
 
-#print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
-#print axioms GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_group_isOperatorMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.mark_normMFInvisible
+#print axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.countableWitness_not_isOperatorMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
+#print axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
 #print axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot

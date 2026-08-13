@@ -1,6 +1,6 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
@@ -77,15 +77,16 @@ generated from the manuscript's margin notes; this module is the short list.
 
 ## The operator-norm MF obstruction
 
-* `ExplicitNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word is
+* `ChosenNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word in
+  the noncomputably chosen Shalom-cover witness is
   killed by every homomorphism to every norm-matrix ultraproduct.
-* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the
-  independently constructed finitely presented marked group is not MF.
-* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
+* `ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the chosen
+  finitely presented marked group is not local weak-MF.
+* `ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
   same conclusion stated for the standard cofinite norm-matrix-corona
   predicate, rather than the local weak-MF predicate.
-* `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
-  `ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
+* `ChosenNonMFTheorem.exists_countable_not_isWeakMF` and
+  `ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
   headline existence forms.
 * `KazhdanCompressionCore.finiteNormal_le_normMFResidual` -- the stronger
   Clifford-free criterion: every finite normal subgroup contained in the
@@ -108,7 +109,7 @@ generated from the manuscript's margin notes; this module is the short list.
 * `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
   closed locus in each fixed-rank marked-group space, with a finite word-ball
   cylinder witnessing every failure.
-* `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
+* `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 * `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
   free product to be non-MF; the literal `E * ℤ` form retains the same
@@ -304,7 +305,7 @@ export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
 
 /-! ### The operator-norm MF obstruction -/
 
-export GroupApproximation.ExplicitNonMFTheorem
+export GroupApproximation.ChosenNonMFTheorem
   (mark_normMFInvisible chosenFinitelyPresented_not_isWeakMF
     chosenFinitelyPresented_not_isOperatorMF
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF

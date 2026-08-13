@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import Mathlib.Computability.RE
 
@@ -145,7 +145,7 @@ theorem operatorMF_subgroup_hereditary
 theorem exists_finitelyPresented_nonOperatorMF :
     ∃ (G : Type) (_ : Group G),
       Group.IsFinitelyPresented G ∧ ¬IsOperatorMF G :=
-  ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+  ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 
 end MarkovMFConsequences
 end GroupApproximation
