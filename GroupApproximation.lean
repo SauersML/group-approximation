@@ -10,8 +10,10 @@ import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.KazhdanCompressorCorner
 import GroupApproximation.Sofic.MarkedCompressionVectorChain
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
+import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.ExplicitMarkedPresentation
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Endpoint.ExplicitNonMFAudit
 import GroupApproximation.Sofic.Asymptotics
 import GroupApproximation.Sofic.ExteriorMFProfile
 import GroupApproximation.Sofic.UnitaryProjectionBalance
