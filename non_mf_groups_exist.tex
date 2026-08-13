@@ -1084,6 +1084,15 @@ noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
 marked-compression mechanism and the finitely presented existence theorem,
 while the displayed presentation of $E$ is established by the paper proof.
+The companion now also formalizes that literal eight-generator presentation,
+all of its displayed relations, and an exact affine--Clifford realization in
+which its marked central involution is nontrivial.
+\leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
+For the literal group it packages the analytic conclusion conditional only
+on property~\textup{(T)} of its six-generator base; that classical
+property~\textup{(T)} input has not yet been formalized in the companion, so
+the unconditional machine-checked non-MF endpoint remains the independent
+Shalom-cover witness above.
 The cover formulation needs only
 $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
 many compressed generators; it does not require an endomorphism of the cover.

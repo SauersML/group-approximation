@@ -86,6 +86,11 @@ The completed proof is split into independently useful layers.
     and `FiniteNormalCompressionObstruction.lean` remove the distinguished
     central-involution hypothesis: every finite normal subgroup contained in
     the compression-defect normal closure lies in the norm-MF residual.
+11. `LiteralNonMFPresentation.lean` and `LiteralNonMFLinearWitness.lean`
+    machine-check the manuscript's literal eight-generator presentation and
+    its exact nontrivial affine--Clifford mark. `LiteralNonMFEndpoint.lean`
+    packages the analytic conclusion conditional only on
+    `HasKazhdanPropertyT LiteralNonMFPresentation.Base`.
 
 ## What is and is not formalized
 
@@ -94,8 +99,11 @@ theorem, the nontrivial marked witness, and countable and finitely presented
 non-MF existence theorems. It separately proves the finitely presented
 endpoint for the standard `IsOperatorMF` cofinite-corona predicate, without
 assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
-presented Lean witness is literally the paper's displayed eight-generator
-group. It also makes no claim that the witness is nonhyperlinear or nonsofic.
+presented Shalom-cover witness is literally the paper's displayed
+eight-generator group. The literal group's algebraic presentation and
+separating mark are formalized separately, but its property-`(T)` input is not
+yet machine-checked. The development also makes no claim that either witness
+is nonhyperlinear or nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
 `UniversalWeakMF U X`, namely operator-norm matrix ultraproducts. This is a

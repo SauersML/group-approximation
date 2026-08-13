@@ -382,7 +382,13 @@ presented Lean witness is an independent marked group built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group displayed in the paper.  Thus the formal development
 verifies the marked-compression mechanism and both MF existence predicates,
-while the displayed presentation is established by the paper proof.
+while the displayed presentation is established by the paper proof.  A
+separate literal stack (`Sofic/LiteralNonMFPresentation`,
+`Sofic/LiteralNonMFLinearWitness`, and `Sofic/LiteralNonMFEndpoint`) now
+machine-checks the eight-generator relators, an exact affine--Clifford
+realization, and nontriviality of the marked central involution.  Its analytic
+endpoint is conditional on the one input not yet formalized for that literal
+base: `HasKazhdanPropertyT LiteralNonMFPresentation.Base`.
 
 The analytic proof above was written for the sequential norm corona.  It
 works verbatim for the ultrafilter quotients used by the formal definition:
@@ -615,3 +621,9 @@ standard cofinite-corona theorem
 arbitrary finite-normal-subgroup strengthening is implemented separately in
 `Sofic/FiniteNormalCompressionObstruction`; its public kernel theorem is
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
+
+For the manuscript's literal presentation, Lean additionally proves
+`LiteralNonMFLinearWitness.literal_mark_ne_one` and packages conditional
+weak-MF and standard operator-MF endpoints in `Sofic/LiteralNonMFEndpoint`.
+The condition is exactly property `(T)` for the literal six-generator base;
+no axiom or hidden replacement by the Shalom-cover witness is used.
