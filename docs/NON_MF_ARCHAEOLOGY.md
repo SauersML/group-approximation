@@ -969,8 +969,7 @@ records are:
 - `docs/NON_MF_FORMALIZATION_BLUEPRINT.md`;
 - `docs/HYPERLINEAR_NONSOFIC_RESEARCH_OUTCOME_2026_08_12.md`;
 - `docs/CREDIT_AND_PRIORITY_AUDIT.md`;
-- `docs/EXTERNAL_CODE_AUDIT.md`;
-- `docs/LEIDEN_COMPLIANCE.md`.
+- `docs/EXTERNAL_CODE_AUDIT.md`.
 
 ## Bottom line
 
