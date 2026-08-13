@@ -444,8 +444,10 @@ import GroupApproximation.Leavitt.UniversalCompressionSetup
 import GroupApproximation.Leavitt.ThompsonV
 import GroupApproximation.Leavitt.ThompsonVEmbedding
 import GroupApproximation.Leavitt.FamilyVEmbedding
+import GroupApproximation.Leavitt.AtlasProperInfiniteCorner
 import GroupApproximation.Leavitt.ThompsonVWitness
 import GroupApproximation.Leavitt.ThompsonWitness
+import GroupApproximation.Leavitt.TwoChildFiniteObstruction
 import GroupApproximation.Matching.MatchedComponents
 import GroupApproximation.Sofic.SoficTransfer
 import GroupApproximation.Sofic.HyperlinearResidualDetector
