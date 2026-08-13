@@ -10,6 +10,14 @@ sequence of finite complex matrix algebras by operator-norm-null sequences.
 The quotient below is built directly from sequences of unitary matrices.  Its
 null subgroup uses the cofinite filter, so it is the unitary-sequence model of
 the usual `ℓ∞/c₀` norm matrix corona, rather than an ultrafilter quotient.
+It is not definitionally the unitary group of a formalized C-star-algebra
+quotient.  Mathematically the two groups are canonically isomorphic: a matrix
+sequence representing a unitary in the quotient is asymptotically unitary and
+can be changed, by coordinatewise polar correction and a `c₀` perturbation,
+to a unitary sequence.  That C-star-algebra construction and the polar-lifting
+isomorphism are outside the present Lean development.  Consequently,
+declarations below verify the standard unitary-sequence presentation of the
+literature object, not a definitional equality with `U(∏ Mₙ / ⊕ Mₙ)`.
 
 The extraction theorem is deliberately direct.  If a marked element survives
 in a cofinite corona, a choice of unitary lifts is asymptotically
@@ -67,7 +75,12 @@ instance nullCofiniteOpSubgroup_normal :
     change opLength (X n) (t n * v n * (t n)⁻¹) < ε
     rwa [opLength_conj]
 
-/-- The unitary-sequence quotient of the norm matrix corona `∏ Mₙ / ⊕ Mₙ`.
+/-- The unitary-sequence presentation of the unitary group of the norm matrix
+corona `∏ Mₙ / ⊕ Mₙ`.
+
+The canonical isomorphism with the unitary group of the C-star quotient uses
+polar correction of asymptotically unitary representatives; that quotient and
+isomorphism are not themselves defined in this development.
 
 The matrix sizes are required to be positive in `IsOperatorMF`; keeping that
 condition on the embedding predicate makes this quotient reusable for

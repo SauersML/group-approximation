@@ -87,8 +87,11 @@ rational group-ring SOS certificate. No unconditional literal endpoint or
 certificate is asserted.
 
 The general finite-normal obstruction is formalized first as universal
-ultraproduct invisibility and then in the manuscript's literal cofinite-corona
-language. For countable groups, the cofinite-corona MF radical is proved equal
+ultraproduct invisibility and then in the unitary-sequence presentation of the
+manuscript's cofinite-corona language. The elementary polar-correction
+isomorphism from this presentation to the unitary group of the C-star quotient
+is not separately modeled in Lean. For countable groups, the resulting
+cofinite-corona MF radical is proved equal
 to the ultraproduct residual; its quotient is MF, is represented faithfully in
 one corona, and has the expected universal factorization property. Other
 paper consequences are not claimed to be formalized unless they carry an
@@ -108,8 +111,8 @@ Reading path, front door first:
 | `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
 | `Sofic/ExplicitMarkedPresentation.lean`, `Sofic/ExplicitNonMFEndpoint.lean` | Independent finitely presented witness via a Shalom cover |
 | `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
-| `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the literal cofinite-corona radical and largest MF quotient |
-| `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and literal corona language |
+| `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
+| `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
 | `Kazhdan/LiteralBaseSOS.lean`, `Sofic/LiteralKazhdanCompression.lean` | Explicit property-`(T)`/exact-SOS boundary for the literal group; no unconditional certificate or MF endpoint |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |

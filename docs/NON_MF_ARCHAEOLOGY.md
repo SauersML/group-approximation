@@ -286,7 +286,7 @@ literal eight-generator paper group.
 | 21:22 | `77369f38` | Focused axiom audit for the explicit non-MF theorem. |
 | 21:47--21:54 | `368332e7`, `c1a402a5`, `ddd09cca` | Final stabilization, coercion repair, and completion of the sequential proof. |
 | 21:56 | `85585534` | Explicit endpoint integration repaired. |
-| 22:07 | `ad30fc58`, `445a0353` | The standard cofinite norm-matrix corona and `IsOperatorMF` were defined directly; extraction from a surviving cofinite mark connected the existing finite-stage contradiction to explicit `not_isOperatorMF` endpoints. |
+| 22:07 | `ad30fc58`, `445a0353` | The unitary-sequence presentation of the standard cofinite norm-matrix corona and `IsOperatorMF` was defined; extraction from a surviving cofinite mark connected the existing finite-stage contradiction to explicit `not_isOperatorMF` endpoints. The polar-correction bridge to the unitary group of the C-star quotient was not formalized. |
 
 The public endpoint proves that an independently constructed finitely
 presented group is not MF in the Carrión--Dadarlat--Eckhardt, cofinite
@@ -559,7 +559,7 @@ logical premises, at the cost of a much larger import closure.
 | `Sofic/WeakMFUltraproduct` | Operator-norm matrix-ultraproduct target and weak-MF interface | Definition of a corona representation. |
 | `Sofic/NormMFResidualDetector` | `NormMFInvisible`; a nontrivial invisible element obstructs weak MF | MF radical/kernel language. |
 | `Sofic/NormUltraproductSequentialExtraction` | A surviving arbitrary-ultraproduct image yields one separated sequential almost representation | Choosing coordinate lifts and a diagonal subsequence. |
-| `Sofic/OperatorMF` | The standard cofinite norm-matrix corona, `IsOperatorMF`, and direct extraction from a surviving marked element | The paper's Carrión--Dadarlat--Eckhardt definition and the coordinate-lift reduction. |
+| `Sofic/OperatorMF` | The unitary-sequence cofinite-corona presentation, `IsOperatorMF`, and direct extraction from a surviving marked element | An equivalent presentation of the Carrión--Dadarlat--Eckhardt definition and the coordinate-lift reduction; the C-star quotient and polar-correction isomorphism are not formalized. |
 | `Sofic/ApproxInvolutionCorner` | Spectrally round an approximate central involution; its negative projection is eventually nonzero | Exact `e = (1-Theta(w))/2`. |
 | `Sofic/NegativeCornerModel` | Build the renormalized negative-corner almost representation | Corner-corona reduction. |
 | `Sofic/AdjointMatrix` | Vectorized conjugation representation and the dimension-free `2 ||U-V||` bound | `lem:beta`. |

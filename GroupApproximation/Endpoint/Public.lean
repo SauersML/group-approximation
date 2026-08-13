@@ -89,7 +89,8 @@ generated from the manuscript's margin notes; this module is the short list.
   countable groups.
 * `coronaMFResidual_eq_normMFResidual` and
   `finiteNormal_le_normMatrixCoronaKernel` -- the same statements in the
-  manuscript's literal intersection-of-cofinite-corona-kernels language.
+  manuscript's intersection-of-corona-kernels language, using the
+  unitary-sequence presentation documented in `Sofic/OperatorMF`.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 
