@@ -14,6 +14,9 @@ import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.ExplicitMarkedPresentation
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.Endpoint.ExplicitNonMFAudit
+import GroupApproximation.Sofic.ExplicitNonMFEndpoint
+import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
+import GroupApproximation.Sofic.NormMFConsequences
 import GroupApproximation.Sofic.Asymptotics
 import GroupApproximation.Sofic.ExteriorMFProfile
 import GroupApproximation.Sofic.UnitaryProjectionBalance
@@ -455,6 +458,3 @@ axiom closure of the whole namespace and fails on anything beyond `propext`,
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
-import GroupApproximation.Sofic.ExplicitNonMFEndpoint
-import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
-import GroupApproximation.Sofic.NormMFConsequences
