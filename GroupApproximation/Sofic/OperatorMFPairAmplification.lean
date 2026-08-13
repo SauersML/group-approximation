@@ -22,6 +22,27 @@ noncomputable section
 
 variable {Y : Type} [Fintype Y] [DecidableEq Y]
 
+/-- Tensor powers commute with unitary conjugacy, so distance from the
+identity is unchanged by a common unitary change of basis. -/
+theorem norm_tensorPower_conjugate_sub_one
+    {V W : Matrix Y Y ℂ}
+    (hV : V ∈ Matrix.unitaryGroup Y ℂ) (n : ℕ) :
+    ‖opTensorPow (Vᴴ * W * V) n - 1‖ = ‖opTensorPow W n - 1‖ := by
+  have hVstar : Vᴴ ∈ Matrix.unitaryGroup Y ℂ :=
+    conjTranspose_mem_unitaryGroup hV
+  have hTV := opTensorPow_mem_unitaryGroup hV n
+  have hTVstar := opTensorPow_mem_unitaryGroup hVstar n
+  have hconj :
+      opTensorPow (Vᴴ * W * V) n - 1 =
+        opTensorPow Vᴴ n * (opTensorPow W n - 1) * opTensorPow V n := by
+    rw [opTensorPow_mul, opTensorPow_mul]
+    have hcancel : opTensorPow Vᴴ n * opTensorPow V n = 1 := by
+      have hVV : Vᴴ * V = 1 := Unitary.star_mul_self_of_mem hV
+      rw [← opTensorPow_mul, hVV, opTensorPow_one]
+    rw [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one, hcancel]
+  rw [hconj, CStarRing.norm_mul_mem_unitary _ hTV]
+  exact CStarRing.norm_mem_unitary_mul _ hTVstar
+
 /-- A unitary change of basis exposes half the squared operator-norm
 displacement as a diagonal real-part gap. -/
 theorem exists_conjugate_diagonal_gap [Nonempty Y]
@@ -147,6 +168,52 @@ theorem exists_conjugated_tensorPower_far_from_one [Nonempty Y]
     exists_opTensorPow_norm_sub_one_gt_one_of_diagonal_gap
       hWV i (by positivity) hgap' N hN'
   exact ⟨V, p, hV, hp1, hpN, hp⟩
+
+/-- Basis-free form with the conjugation removed from the conclusion. -/
+theorem exists_tensorPower_far_from_one [Nonempty Y]
+    {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
+    {δ : ℝ} (hδ : 0 < δ) (hsep : δ ≤ ‖W - 1‖)
+    (N : ℕ) (hN : 8 < (N : ℝ) * δ ^ 2) :
+    ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧ ‖opTensorPow W p - 1‖ > 1 := by
+  obtain ⟨V, p, hV, hp1, hpN, hp⟩ :=
+    exists_conjugated_tensorPower_far_from_one hW hδ hsep N hN
+  refine ⟨p, hp1, hpN, ?_⟩
+  rw [← norm_tensorPower_conjugate_sub_one hV p]
+  exact hp
+
+/-- **Uniform bounded-power amplification for an arbitrary unitary pair.**
+If `A` and `B` are `δ`-separated, one of their first `N` tensor powers is
+more than one apart whenever `N δ² > 8`. -/
+theorem exists_tensorPower_pair_far [Nonempty Y]
+    {A B : Matrix Y Y ℂ}
+    (hA : A ∈ Matrix.unitaryGroup Y ℂ)
+    (hB : B ∈ Matrix.unitaryGroup Y ℂ)
+    {δ : ℝ} (hδ : 0 < δ) (hsep : δ ≤ ‖A - B‖)
+    (N : ℕ) (hN : 8 < (N : ℝ) * δ ^ 2) :
+    ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧
+      ‖opTensorPow A p - opTensorPow B p‖ > 1 := by
+  let W : Matrix Y Y ℂ := A * Bᴴ
+  have hW : W ∈ Matrix.unitaryGroup Y ℂ :=
+    mul_mem hA (conjTranspose_mem_unitaryGroup hB)
+  have hWsep : δ ≤ ‖W - 1‖ := by
+    rw [opNorm_mul_conjTranspose_sub_one hB]
+    exact hsep
+  obtain ⟨p, hp1, hpN, hp⟩ :=
+    exists_tensorPower_far_from_one hW hδ hWsep N hN
+  refine ⟨p, hp1, hpN, ?_⟩
+  have hprod :
+      opTensorPow A p * (opTensorPow B p)ᴴ = opTensorPow W p := by
+    change opTensorPow A p * (opTensorPow B p)ᴴ =
+      opTensorPow (A * Bᴴ) p
+    rw [opTensorPow_conjTranspose, ← opTensorPow_mul]
+  have hrel :
+      ‖opTensorPow A p * (opTensorPow B p)ᴴ - 1‖ =
+        ‖opTensorPow A p - opTensorPow B p‖ :=
+    opNorm_mul_conjTranspose_sub_one
+      (A := opTensorPow A p) (opTensorPow_mem_unitaryGroup hB p)
+  rw [hprod] at hrel
+  rw [← hrel]
+  exact hp
 
 end
 
