@@ -89,6 +89,11 @@ jobs:
     needs: gate
     if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
     runs-on: ubuntu-latest
+    # Write access exists solely for the final step, which advances the
+    # `verified` branch pointer after a fully green run.  Every other step
+    # only reads the repository.
+    permissions:
+      contents: write
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
     # can run for hours; every run saves whatever it compiled (see the
     # cache-save steps), so even a run that hits this ceiling leaves the next
@@ -333,3 +338,17 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
+
+      # A stable pointer for reviewers: after a fully green run on main --
+      # build, both scans, the counterpart contract, kernel audit, signature
+      # pins, fresh-kernel replay, and the zero-tolerance verdict above --
+      # fast-forward the `verified` branch to this commit.  Reviewers who
+      # want the newest CI-passing state of the formal development check out
+      # `verified` instead of racing a moving `main`.  This step runs under
+      # the default `success()` condition, so any failure upstream,
+      # including the verdict, leaves the pointer untouched.  Pushing
+      # `verified` triggers no workflows: every push trigger in this
+      # repository is filtered to `main`.
+      - name: Advance the verified branch
+        if: github.ref == 'refs/heads/main'
+        run: git push --force origin HEAD:refs/heads/verified
