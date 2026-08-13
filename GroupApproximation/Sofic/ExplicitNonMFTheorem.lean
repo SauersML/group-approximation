@@ -7,10 +7,15 @@ import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
 This module is the public junction between the independently checkable
 finite-presentation construction in `ExplicitNonMFEndpoint` and the analytic
-marked-compression kill theorem.  The formal witness uses the noncomputably
-chosen finitely presented Kazhdan cover supplied by Shalom's theorem; it is
-not definitionally the displayed finite presentation used in the paper.  The
-module exports both forms of the main result:
+marked-compression kill theorem.  The formal witness uses a noncomputably
+chosen finitely presented Kazhdan cover.  The existence theorem for that
+cover, the property-`(T)` theorem for the compressor base, and every analytic
+input consumed below are proved in this repository: no literature theorem is
+introduced as a premise or axiom.  Noncomputability here is only
+`Classical.choice` selecting data from the proved existence theorem.
+
+The chosen cover is not definitionally the displayed finite presentation used
+in the paper.  This module exports both forms of the main result:
 
 * the chosen witness's nontrivial mark belongs to the universal operator-norm MF
   residual, so every homomorphism to every norm matrix ultraproduct kills it;
@@ -41,8 +46,10 @@ theorem explicit_finitelyPresented_not_isWeakMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsWeakMF MarkedGroup :=
   ⟨inferInstance, normCertificate.not_isWeakMF⟩
 
-/-- The finitely presented Shalom-cover marked-compression group is not MF in
-the standard cofinite norm-matrix-corona sense. -/
+/-- **Closed operator-MF counterexample.**  The finitely presented
+Shalom-cover marked-compression group is not MF in the standard cofinite
+norm-matrix-corona sense.  This theorem has no mathematical premise; all
+load-bearing construction and rigidity theorems are proved in-repository. -/
 theorem explicit_finitelyPresented_not_isOperatorMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsOperatorMF MarkedGroup :=
   ⟨inferInstance, inclusionData.not_isOperatorMF inclusionData_word_ne_one⟩
