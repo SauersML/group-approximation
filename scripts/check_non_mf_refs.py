@@ -15,15 +15,15 @@ Kazhdan-compression kill, an independently constructed finitely presented
 non-MF witness, the literal eight-generator presentation and its exact
 nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
 radical.  No unconditional MF endpoint is claimed for the literal group: its
-two endpoints explicitly require either property `(T)` of the displayed base
-or an exact rational SOS certificate.
+algebraic, finite-dimensional, and universal-Horn boundary is formalized,
+but no analytic operator-MF endpoint for it is part of the Lean API.
 
-This checker enforces both lexical resolution and a semantic contract for the
-margin links: exactly one must name the unconditional standard
-``IsOperatorMF`` existence endpoint pinned by ``scripts/Audit.lean``.  No
-link may name the project-local ``IsWeakMF`` auxiliary predicate or one of the
-retired explicit-endpoint modules.  Transitive axiom checking remains the
-responsibility of ``scripts/Audit.lean``.
+This checker enforces both lexical resolution and an exact semantic contract
+for the margin links.  The reviewed whitelist below is deliberately closed:
+adding a true but weaker component theorem, a conditional bridge, or a badge
+whose surrounding prose claims more than its type is a source-review event,
+not something lexical declaration lookup may silently approve.  Transitive
+axiom checking remains the responsibility of ``scripts/Audit.lean``.
 """
 
 from __future__ import annotations
@@ -48,6 +48,45 @@ UNCONDITIONAL_ENDPOINT = (
     "GroupApproximation.ChosenNonMFTheorem."
     "exists_finitelyPresented_not_isOperatorMF",
 )
+APPROVED_REFERENCES = frozenset({
+    UNCONDITIONAL_ENDPOINT,
+    ("Criterion/CompressionCentralizerDefect",
+     "GroupApproximation.compressionCentralizerDefect_le_ker"),
+    ("Monsters/AffineSL3Doubling",
+     "GroupApproximation.AffineSL3Doubling.doubling_package"),
+    ("Sofic/LiteralNonMFLinearWitness",
+     "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one"),
+    ("Sofic/LiteralFiniteDimensionalObstruction",
+     "GroupApproximation.LiteralFiniteDimensionalObstruction."
+     "literal_finiteDimensional_rep_not_injective"),
+    ("Sofic/CompressionDefectSquare",
+     "GroupApproximation."
+     "commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),
+    ("Sofic/ChosenUniversalHorn",
+     "GroupApproximation.ChosenUniversalHorn."
+     "isOperatorMF_satisfies_chosenQuasiIdentity"),
+    ("Sofic/ChosenUniversalHorn",
+     "GroupApproximation.ChosenUniversalHorn."
+     "markedGroup_not_satisfies_chosenQuasiIdentity"),
+    ("Analysis/FaithfulTracialMatrix",
+     "GroupApproximation.FaithfulTracialState."
+     "matrix_mul_star_eq_one_of_star_mul_eq_one"),
+    ("Sofic/FiniteNormalCoronaObstruction",
+     "GroupApproximation.KazhdanCompressionCore."
+     "finiteNormal_le_coronaMFResidual"),
+    ("Sofic/NormalKazhdanMFRadical",
+     "GroupApproximation.KazhdanCompressionCore."
+     "normalKazhdan_le_coronaMFResidual"),
+    ("Sofic/NormMFPrintedConsequences",
+     "GroupApproximation.KazhdanCompressionCore."
+     "finiteNormal_uniform_invisibility_positiveModel"),
+    ("Sofic/MarkedMFClosed",
+     "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus"),
+    ("Sofic/ChosenMarkedCylinder",
+     "GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen"),
+    ("Sofic/ChosenMarkedCylinder",
+     "GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF"),
+})
 RETIRED_EXPLICIT_MODULES = frozenset({
     "Sofic/ExplicitMarkedPresentation",
     "Sofic/ExplicitNonMFEndpoint",
@@ -63,6 +102,31 @@ def validate(repo: Path, tex: Path) -> list[str]:
 
     index = build_index(repo)
     problems: list[str] = []
+
+    unapproved = sorted(set(references) - APPROVED_REFERENCES)
+    if unapproved:
+        problems.append(
+            "margin links outside the reviewed exact whitelist: "
+            + ", ".join(f"{module}:{declaration}"
+                        for module, declaration in unapproved)
+        )
+
+    missing = sorted(APPROVED_REFERENCES - set(references))
+    if missing:
+        problems.append(
+            "reviewed exact margin links missing from the manuscript: "
+            + ", ".join(f"{module}:{declaration}"
+                        for module, declaration in missing)
+        )
+
+    duplicates = sorted(reference for reference in APPROVED_REFERENCES
+                        if references.count(reference) > 1)
+    if duplicates:
+        problems.append(
+            "reviewed exact margin links must occur once each; duplicates: "
+            + ", ".join(f"{module}:{declaration}"
+                        for module, declaration in duplicates)
+        )
 
     if references.count(UNCONDITIONAL_ENDPOINT) != 1:
         problems.append(
@@ -173,10 +237,6 @@ def self_test() -> int:
             + r"{GroupApproximation.map_marked_commutator_eq_one}",
             encoding="utf-8",
         )
-        if validate(repo, tex):
-            print("self-test: valid reference was rejected", file=sys.stderr)
-            return 1
-
         self_decls = resolved_declarations(repo, tex)
         if self_decls != [
             "GroupApproximation.ChosenNonMFTheorem."
@@ -243,6 +303,19 @@ def self_test() -> int:
         problems = validate(repo, tex)
         if not any("retired explicit endpoint" in problem for problem in problems):
             print("self-test: retired explicit endpoint was not rejected",
+                  file=sys.stderr)
+            return 1
+
+        tex.write_text(
+            correct_endpoint
+            + r"\leanverified{Sofic/Stray}"
+            + r"{GroupApproximation.strayed}",
+            encoding="utf-8",
+        )
+        problems = validate(repo, tex)
+        if not any("outside the reviewed exact whitelist" in problem
+                   for problem in problems):
+            print("self-test: unapproved reference was not rejected",
                   file=sys.stderr)
             return 1
 

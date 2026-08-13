@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
+import GroupApproximation.Analysis.NormMatrixCorona
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
@@ -17,8 +18,12 @@ import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
+import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
+import GroupApproximation.Sofic.ChosenUniversalHorn
+import GroupApproximation.Sofic.ChosenMarkedCylinder
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
@@ -37,7 +42,6 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
-import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences

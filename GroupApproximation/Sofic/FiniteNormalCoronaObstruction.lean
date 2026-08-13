@@ -17,6 +17,18 @@ namespace KazhdanCompressionCore
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
+/-- A finite normal subgroup contained in the compression defect lies in the
+universal cofinite norm-matrix-corona residual.  This is the subgroup-valued
+form of `finiteNormal_le_normMatrixCoronaKernel`: it quantifies over all
+positive-size matrix sequences and all corona homomorphisms at once. -/
+theorem finiteNormal_le_coronaMFResidual
+    [Countable E] (C : KazhdanCompressionCore Γ E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal) :
+    F ≤ coronaMFResidual E := by
+  rw [coronaMFResidual_eq_normMFResidual]
+  exact C.finiteNormal_le_normMFResidual F hF
+
 /-- **Finite-normal cofinite-corona obstruction.**  If a finite normal
 subgroup lies in the compression-defect normal closure, every homomorphism to
 every standard positive-size cofinite norm-matrix corona kills that subgroup.

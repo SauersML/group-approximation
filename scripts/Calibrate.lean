@@ -65,8 +65,12 @@ def mustNotReport : List Name :=
 
 run_cmd do
   let env ← getEnv
+  -- `allScans` selects declarations by source-module root.  The planted
+  -- declarations live in module `Audit.Plants` while their namespace is
+  -- `AuditPlant`, so the module root—not the namespace—is the calibration
+  -- corpus selector.
   let findings ← liftTermElabM <|
-    Audit.allScans env `AuditPlant [``propext, ``Classical.choice, ``Quot.sound]
+    Audit.allScans env `Audit [``propext, ``Classical.choice, ``Quot.sound]
 
   let mut failures : Array String := #[]
 

@@ -3,7 +3,7 @@ import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import Mathlib.RepresentationTheory.Basic
 
 /-!
-# Finite-dimensional sterility of the literal non-MF presentation
+# Finite-dimensional sterility of the literal marked presentation
 
 This is the exact application of manuscript Theorem B to the literal
 eight-generator group.  It uses only the displayed one-sided compression and
