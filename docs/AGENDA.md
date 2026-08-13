@@ -4,6 +4,17 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: alternating Reynolds contracts to scalars
+
+`FALSE_ALTERNATING_REYNOLDS_CONTRACTS_COEFFICIENT_SIGNAL.md` computes the
+exact spectrum of `E_A E_(P')` on the five raw coefficient atoms:
+`1,19/64,11/64,11/64,1/16`.  Thus the scalar identity is the only common
+fixed direction, and every centered signal contracts at rate at most
+`19/64`.  The exact diagonalization and invertible eigenbasis are Lean-checked
+in `Sofic/CoefficientAlternatingReynolds.lean`.  Finite packet averaging
+cannot supply simultaneous coefficient recovery; a nonfinite cross-chart
+module is essential.
+
 ### 2026-08-13: an explicit infinite-order cross-chart direction
 
 `TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md` proves that

@@ -2,6 +2,23 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 closed: alternating finite Reynolds loses the fingerprint
+
+The exact alternating expectation `E_A E_(P')` on the four coefficient cuts
+plus `1-q` has spectrum
+
+```text
+1, 19/64, 11/64, 11/64, 1/16.
+```
+
+See `FALSE_ALTERNATING_REYNOLDS_CONTRACTS_COEFFICIENT_SIGNAL.md`; the
+diagonalization is Lean-checked.  Its only fixed vector is the scalar
+identity, and every centered coefficient mode contracts to at most
+`19/64` of its norm per iteration.  Do not try to obtain alignment by alternating the
+separately recovered finite packet expectations.  The `11/64` fingerprint
+is useful only after a genuinely simultaneous nonfinite reconstruction has
+already been supplied.
+
 ## 2026-08-13 explicit graded escape: `h=[U*X_1U,raw]`
 
 The exceptional mixed commutator from the packet scan has infinite order,
