@@ -294,13 +294,13 @@ theorem polarCorrect_mem_unitaryGroup (C : Matrix Y Y ℂ)
       simp
     _ = 1 := hUUstar
 
-/-- Polar correction changes a contraction by at most twice its Gram defect
-from the identity. -/
-theorem norm_polarCorrect_sub_le
+/-- Polar correction changes a matrix by at most its norm times twice its
+Gram defect from the identity. -/
+theorem norm_polarCorrect_sub_le_mul
     (C : Matrix Y Y ℂ) (hP : (cornerGram C).IsHermitian) {delta : ℝ}
-    (hC : ‖C‖ ≤ 1) (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
+    (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
     (hclose : ‖cornerGram C - 1‖ ≤ delta) :
-    ‖polarCorrect C hP - C‖ ≤ 2 * delta := by
+    ‖polarCorrect C hP - C‖ ≤ ‖C‖ * (2 * delta) := by
   have hrewrite : polarCorrect C hP - C =
       C * (cornerGramInvSqrt C hP - 1) := by
     rw [polarCorrect, Matrix.mul_sub, Matrix.mul_one]
@@ -309,9 +309,21 @@ theorem norm_polarCorrect_sub_le
     ‖C * (cornerGramInvSqrt C hP - 1)‖ ≤
         ‖C‖ * ‖cornerGramInvSqrt C hP - 1‖ :=
       Matrix.l2_opNorm_mul _ _
-    _ ≤ 1 * (2 * delta) := mul_le_mul hC
+    _ ≤ ‖C‖ * (2 * delta) := mul_le_mul_of_nonneg_left
       (norm_cornerGramInvSqrt_sub_one_le C hP hdelta hdeltaHalf hclose)
-      (norm_nonneg _) zero_le_one
+      (norm_nonneg _)
+
+/-- For a contraction, the polar correction is at most twice the Gram defect
+from the identity. -/
+theorem norm_polarCorrect_sub_le
+    (C : Matrix Y Y ℂ) (hP : (cornerGram C).IsHermitian) {delta : ℝ}
+    (hC : ‖C‖ ≤ 1) (hdelta : 0 ≤ delta) (hdeltaHalf : delta ≤ 1 / 2)
+    (hclose : ‖cornerGram C - 1‖ ≤ delta) :
+    ‖polarCorrect C hP - C‖ ≤ 2 * delta := by
+  calc
+    ‖polarCorrect C hP - C‖ ≤ ‖C‖ * (2 * delta) :=
+      norm_polarCorrect_sub_le_mul C hP hdelta hdeltaHalf hclose
+    _ ≤ 1 * (2 * delta) := mul_le_mul_of_nonneg_right hC (by positivity)
     _ = 2 * delta := one_mul _
 
 /-- The bundled exact unitary supplied by polar correction under a `1/2`

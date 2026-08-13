@@ -5,10 +5,10 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
 
 The manuscript defines the MF radical of a countable group as the intersection
 of the kernels of all homomorphisms to unitary groups of standard cofinite
-norm-matrix C-star coronas.  Lean represents those unitary groups by quotients
-of unitary sequences.  The polar-correction isomorphism between the two models
-is mathematically standard but not formalized here; see `OperatorMF`.  The
-older Lean API instead defined `normMFResidual` by quantifying over all
+norm-matrix C-star coronas.  This file uses the equivalent unitary-sequence
+presentation; `Analysis.NormMatrixCoronaUnitary` proves the polar-correction
+equivalence with the genuine quotient unitary group.  The older Lean API
+instead defined `normMFResidual` by quantifying over all
 operator-norm matrix ultraproducts.  This file proves equality with the
 unitary-sequence radical for countable groups and states the corresponding
 universal-quotient results.

@@ -8,16 +8,19 @@ sequence of positive matrix sizes.  `IsOperatorMF` allows an arbitrary
 positive sequence, which is convenient for constructions but should not be
 silently identified with the printed convention.
 
-This file proves the equivalence.  Replace `X n` by the cumulative block sum
-`X 0 ⊕ ... ⊕ X n` and put the old unitary in the newest block, with identities
-in all earlier blocks.  Operator norm is unchanged on differences, so the
-map preserves and reflects the cofinite null subgroup.  It therefore induces
-an injective homomorphism of unitary-sequence coronas, while positivity of the
-old blocks makes the cumulative dimensions strictly increase.
+This file proves the equivalence.  Replace the ambient type at coordinate `n`
+by the cumulative sum `X 0 ⊕ ... ⊕ X n`, but embed only the `n`th model:
+put its unitary in the newest block and identities in the other blocks.  Thus
+no earlier approximation error is carried into later coordinates.  Operator
+norm distance from the identity is unchanged, so the map preserves and
+reflects the cofinite null subgroup.  It therefore induces an injective
+homomorphism of unitary-sequence coronas, while positivity of the ambient
+summands makes their dimensions strictly increase.
 
-This normalization concerns matrix sizes only.  The separate polar-correction
-identification with the unitary group of the C-star-algebra quotient remains
-the boundary documented in `OperatorMF`.
+This normalization concerns matrix sizes only.  The polar-correction
+identification with the unitary group of the C-star-algebra quotient is proved
+separately in `Analysis.NormMatrixCoronaUnitary` and combined with this result
+in `Sofic.CDEOperatorMF`.
 -/
 
 namespace GroupApproximation
