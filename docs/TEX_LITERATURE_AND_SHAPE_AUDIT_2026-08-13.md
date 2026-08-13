@@ -26,11 +26,9 @@ the literal word, and the literal marked cylinder.
 
 ## Presentation findings
 
-- The verification macros currently published on `origin/main` render
-  ordinary paragraphs headed “Formal counterpart” rather than margin notes.
-  This contradicts the manuscript policy and visibly interrupts proofs.  The
-  macros should be genuine compact `marginpar` notes; conditional links should
-  not be presented as counterparts of unconditional statements.
+- An earlier draft rendered verification links as ordinary paragraphs headed
+  “Formal counterpart”.  They have since been replaced by sparse compact
+  margin notes, and links conditional on mathematical premises were removed.
 - An initial suspicion about the increasing-dimension normalization was
   rejected after checking the implementation.  At stage `n` it uses the
   cumulative space but places the `n`th old unitary only in the newest block,
@@ -78,3 +76,46 @@ the literal word, and the literal marked cylinder.
 - The official arXiv record for Chatterji--Kassabov exposes only version~1,
   submitted January 30, 2026.  The unverified “manuscript dated August 11,
   2026” wording was therefore removed from both the prose and bibliography.
+
+## Intrinsic normal-Kazhdan criterion: exact formal dependency map
+
+The printed theorem `thm:intrinsicnormalkazhdan` is mathematically stronger
+than the unconditional intrinsic-defect API currently exported by Lean.  The
+following pieces are already internal and unconditional:
+
+- `CompressionCentralizerDefect.compressionSet`, `compressionGroup`, and
+  `compressionCentralizerDefect` define the same algebraic objects as the
+  printed theorem.
+- `FixedSpaceStabilizer.compressionGroup_le_stabilizer` propagates two-sided
+  stabilization from every one-sided compressor to the subgroup they generate.
+- `FixedSpaceDefect.compressionCentralizerDefect_le_ker` proves the algebraic
+  back half: an exact orthogonal action with a faithful equivariant vector
+  model kills the whole intrinsic defect once the fixed-sector stabilization
+  hypothesis is supplied.
+- `NormalKazhdanCompressionObstruction.not_isWeakMF_of_normalKazhdan_le_defect`
+  and `NormalKazhdanMFRadical.normalKazhdan_le_normMFResidual` implement the
+  moving-Kazhdan-corner contradiction only for the marked defect subgroup of a
+  single `KazhdanCompressionCore`.
+
+The missing bridge is not a citation premise and must not be represented by a
+badge.  It must prove internally that, for every unitary-norm-corona model and
+every one-sided compressor of `L`, the Kazhdan fixed sector is stabilized;
+pass this through arbitrary products and inverses; deduce normalized
+Hilbert--Schmidt invisibility of the intrinsic commutators; and rerun the same
+argument inside the moving corner attached to an arbitrary normal
+property-(T) subgroup `K ≤ compressionCentralizerDefect L`.  The natural
+formal endpoint is an unconditional theorem
+
+```text
+K.Normal → HasKazhdanPropertyT K →
+K ≤ compressionCentralizerDefect L →
+K ≤ normMFResidual H.
+```
+
+The vector map from a norm corona to a tracial ultraproduct is not injective
+(small-rank defects are the obstruction), so the existing
+`FixedSpaceDefect.compressionCentralizerDefect_le_ker` cannot simply be
+instantiated with the norm-corona target.  Either the bridge must work in the
+tracial quotient, where the vector realization is faithful, or it must be
+proved by the same finite-stage estimates used in the printed moving-corner
+argument.  The latter route is closest to the present trusted Lean proof shape.

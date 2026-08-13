@@ -378,9 +378,9 @@ $w$: finite-dimensional linear representations do not separate the points
 of $E$, no finite
 quotient can witness $w\neq 1$, and the infinite Clifford witness of
 Section~\ref{sec:witness} cannot be replaced by a finite-dimensional one.
-Property (T) enters the corona argument for one reason:
-it makes ``the projection onto the $\Gamma$-fixed space'' an element of
-the corona, uniformly across all coordinates at once.
+Property (T) enters the corona argument for one reason: its uniform spectral
+gap isolates almost-fixed projections in the finite matrix coordinates,
+with estimates independent of the coordinate and the matrix size.
 
 Second, the fixed-space rigidity in that argument cannot simply be omitted:
 
@@ -415,7 +415,7 @@ The quotient statement makes the comparison at the level actually used by
 the proof: the marked-word relations and witness mechanism survive when the
 Kazhdan base is replaced by $\Z$, but the universal corona-kill conclusion
 does not.  Thus property~(T), or a substitute furnishing a uniform
-fixed-space projection, is essential to this argument; this is not a claim
+finite-stage spectral gap, is essential to this argument; this is not a claim
 that every possible proof of the concrete Theorem~\ref{thm:A} must invoke
 property~(T).
 
@@ -536,12 +536,11 @@ The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ is
 nonhyperlinear; equivalently, it does not show that the canonical group
 trace, or the associated group von Neumann algebra, fails the relevant
 Connes-embedding property.  It also does not touch the
-question whether hyperlinear groups are sofic.  The finiteness step (4)
-is special to operator-norm coronas: in a tracial (Hilbert--Schmidt)
-matrix ultraproduct the available conjugation representation acts on
-$L^2$ of the ultraproduct.  When that Hilbert space is infinite-dimensional,
-its full operator algebra is properly infinite, so the argument no longer
-forces nested unitarily equivalent fixed-space projections to be equal.
+question whether hyperlinear groups are sofic.  The equal-rank reversal in
+step (4) is special to finite-stage operator-norm models.  A tracial
+(Hilbert--Schmidt) model supplies neither the operator-norm spectral
+estimates producing those matrix-coordinate projections nor the
+coordinatewise equal-rank comparison reversing the one-sided leakage.
 Section~\ref{sec:limits} makes this
 precise.  The same distinction explains why the group $E/\langle
 w\rangle$ remains untouched by our argument; the ambient group $G$ is
@@ -551,10 +550,11 @@ quasidiagonality of nuclear stably finite algebras, nor on tracial
 (Connes-embedding) approximation questions.
 
 \subsection*{External inputs}
-The analytic kernel argument in Theorem~\ref{thm:A} uses two non-elementary
-external inputs beyond elementary linear algebra and $C^*$-basics: property (T) of
-$\Z^3\rtimes\SL_3(\Z)$ (Fact~\ref{fact:T}) and the existence and
-defining property of the Kazhdan projection (Fact~\ref{fact:kazhdan}).
+The analytic kernel argument in Theorem~\ref{thm:A} uses one
+non-elementary external input beyond elementary linear algebra and
+$C^*$-basics: property (T) of $\Z^3\rtimes\SL_3(\Z)$
+(Fact~\ref{fact:T}).  The finite-stage spectral cutoff used in the proof
+is obtained directly from a Kazhdan pair.
 The advertised explicit presentation additionally uses the
 Conder--Robertson--Williams presentation \cite{CRW}; the Clifford
 nontriviality witness is proved below by an elementary twisted-group-algebra
@@ -727,7 +727,8 @@ At the finite-stage spectral level, Dogon--Vigdorovich record a proof due
 to Uri Bader that operator-norm approximate representations of a
 property~(T) group retain a uniform spectral gap; their argument uses
 Ozawa's sum-of-squares characterization and generalizes an earlier result of
-Manuilov--You \cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
+Manuilov--You \cite{ManuilovYou}
+\cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
 a close general predecessor for the spectral-isolation step above.  The
 specific moving-projection estimates and equal-rank reversal needed here are
 proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
@@ -1033,7 +1034,7 @@ Theorem~\ref{thm:B} rules out linear and residually finite ones.
 A base for Definition~\ref{def:E} must be a finitely presented Kazhdan
 group with a proper self-embedding.  Infinite Kazhdan groups are
 typically co-Hopfian --- lattices in higher-rank semisimple groups by
-Prasad \cite{Prasad}, torsion-free hyperbolic groups by Sela
+Prasad \cite{Prasad}, torsion-free one-ended hyperbolic groups by Sela
 \cite{Sela} --- so such bases are scarce.  In
 $\Gamma=\Z^3\rtimes\SL_3(\Z)$ the abelian factor exists precisely to
 break co-Hopficity through the doubling endomorphism, while relative
@@ -1709,21 +1710,28 @@ property~\textup{(T)} subgroups contained in $\mathfrak D(H,L)$.
 \end{theorem}
 
 \begin{proof}
-In the conjugation representation associated to a corona model, let $P$
-be the Kazhdan projection onto the $L$-fixed vectors.  For every one-sided
-compressor $s\in\mathcal C(L)$ the fixed-vector calculation gives
-$P\le\beta(s)P\beta(s)^*$.  Stable finiteness upgrades this to equality,
-so $P$ commutes with $\beta(s)$.  It therefore commutes with
-$\beta(g)$ for every $g\in G_{\rm comp}(L)$, including inverses and
-arbitrary finite products.
+Fix a corona model $\Theta^{\rm u}\colon H\to\Ucor((d_n))$, choose
+unitary lifts $U_{g,n}$, and let
+$\beta_n(g)$ act on the normalized Hilbert--Schmidt space
+$M_{d_n}(\C)$ by $X\mapsto U_{g,n}XU_{g,n}^*$.  Their classes define
+an exact representation $\beta$ of $H$ in the norm matrix corona of
+the finite-dimensional operator spaces
+$\End(M_{d_n}(\C))\cong M_{d_n^2}(\C)$.  The image $P$ of the
+Kazhdan projection for $L$ acts on the corresponding tracial matrix
+ultraproduct as the projection onto the $L$-fixed vectors.
 
-If $z\in C_H(L)$, then the vector represented by $\Theta(z)$ is
-$L$-fixed.  Hence the vector represented by
-$\Theta(gzg^{-1})$ is again $L$-fixed for every
+For every one-sided compressor $s\in\mathcal C(L)$ the fixed-vector
+calculation gives $P\le\beta(s)P\beta(s)^*$.  Stable finiteness of this
+norm matrix corona upgrades the inclusion to equality, so $P$ commutes
+with $\beta(s)$, and therefore with $\beta(g)$ for every
+$g\in G_{\rm comp}(L)$, including inverses and arbitrary finite products.
+
+If $z\in C_H(L)$, the vector $[(U_{z,n})_n]$ in the tracial
+ultraproduct is $L$-fixed.  Hence its image under $\beta(g)$, namely
+$[(U_{gzg^{-1},n})_n]$, is again $L$-fixed for every
 $g\in G_{\rm comp}(L)$.  It follows that every generator
 $[gzg^{-1},\ell]$ of \eqref{eq:intrinsicdefect}, and therefore its
-normal closure, is trivial in the associated tracial matrix
-ultraproduct.
+normal closure, is trivial in that tracial matrix ultraproduct.
 Now apply the moving Kazhdan-corner construction from
 Theorem~\ref{thm:normalkazhdan} to $K$.  If a corona model were
 nontrivial on $K$, that construction would produce a new corona model on
@@ -2065,9 +2073,9 @@ $\Theta\colon E\to\Ucor((d_n))$.  This is part (2).
 For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
 $E$ would be an injective corona representation, which is impossible
 because every corona representation sends the nontrivial element $w$
-to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding ---
-Corollary~\ref{cor:subalg} below reduces a non-unital one to this
-case ---
+to $1$.  If $\Cred(E)$ were an MF algebra, Lemma~\ref{lem:cornercorona}
+would turn any non-unital MF embedding into a unital embedding in a norm
+matrix corona.  Such an embedding
 $\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
   $E\to\U(\Cred(E))$, and then with $\kappa_{(d_n)}^{-1}$, would exhibit
   an injective corona representation of
@@ -2501,9 +2509,8 @@ $\iota_G(\Gamma)$-invariant, i.e.\
 $\pi(\bar p)\delta_b\neq\delta_b$ while $\pi(Q_1)\delta_b=\delta_b$;
 hence $Q_1\neq\bar p$ and $s$ is not a unitary.
 
-If $\Cmax(G)$ embedded unitally into a norm matrix corona
-(Corollary~\ref{cor:subalg} reduces a non-unital MF embedding to this
-case), the image
+If $\Cmax(G)$ were MF, Lemma~\ref{lem:cornercorona} would turn an MF
+embedding into a unital embedding in a norm matrix corona.  The image
 of $s$ would be an isometry there, hence a unitary by
 Lemma~\ref{lem:finite}(1), and injectivity would force $ss^*=1$, a
 contradiction; so $\Cmax(G)$ is not an MF algebra, and the isometry
@@ -2724,9 +2731,9 @@ is therefore neither finite nor stably finite, and hence is not MF.
 \begin{proof}
 The canonical trace on $\Cred(\Lambda_{\mathrm{univ}})$ is faithful, so
 the proof of Lemma~\ref{lem:faithfultrace}, applied to every finite matrix
-amplification, gives stable finiteness.  If the reduced algebra embedded
-faithfully in a norm matrix corona --- unitally, by
-Corollary~\ref{cor:subalg} --- restriction to its left-regular
+amplification, gives stable finiteness.  If the reduced algebra were MF,
+Lemma~\ref{lem:cornercorona} would make an MF embedding unital after
+passing to a corner corona.  Restriction to its left-regular
 unitaries would give an injective corona representation of
 $\Lambda_{\mathrm{univ}}$, contradicting its full MF radical.
 
@@ -3497,6 +3504,11 @@ T.~A. Loring,
 \emph{Lifting solutions to perturbing problems in $C^*$-algebras},
 Fields Institute Monographs, vol.~8,
 American Mathematical Society, Providence, RI, 1997.
+
+\bibitem[MY]{ManuilovYou}
+V.~M. Manuilov and C.~You,
+\emph{On almost representations of property (T) groups},
+preprint, 2007, \arxiv{0708.1290v2}.
 
 \bibitem[Ma]{Ma}
 A.~I. Mal'cev,
