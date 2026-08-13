@@ -66,6 +66,34 @@ In short: the paper happened because a proposed route **through** weak MF
 proved a universal obstruction **to** weak MF, and because the obstruction
 could be localized to a single marked word.
 
+## How old was the problem?
+
+There are two correct dates, because the operator-algebraic problem predates
+the exact group terminology.
+
+- In 1997, Blackadar and Kirchberg introduced MF C*-algebras in
+  [*Generalized inductive limits of finite-dimensional C*-algebras*](https://doi.org/10.1007/s002080050039).
+  The broader stably-finite-to-MF embedding question attributed to Kirchberg
+  implies a positive answer to the associated operator-norm group
+  approximation problem; this implication and attribution are recorded in
+  the introduction of [De Chiffre--Glebsky--Lubotzky--Thom](https://doi.org/10.1017/fms.2020.5).
+- Carrión, Dadarlat, and Eckhardt introduced the precise property used by
+  the manuscript in Definition 2.7 of [their preprint](https://arxiv.org/abs/1210.4050),
+  posted October 15, 2012 and published in 2013: a countable group embeds in
+  the unitary group of a norm matrix corona.
+- The searchable CDE paper introduces and names the group property but does
+  not literally ask whether every countable group is MF. Later literature
+  states the universal question explicitly and attributes it to Kirchberg;
+  for example, the [2019 Oberwolfach report](https://ems.press/content/serial-article-files/46834)
+  does so, and Bachner--Dogon--Lubotzky still called it longstanding in
+  [2026](https://doi.org/10.1016/j.jalgebra.2026.04.041).
+
+Consequently, at the August 2026 result date the oldest defensible lineage
+was about **29 years old**, while the question in the exact named CDE group
+form was nearly **14 years old**. The manuscript keeps these claims separate:
+Blackadar--Kirchberg/Kirchberg receive the problem-lineage attribution, and
+CDE receive the exact-definition attribution.
+
 ## What “dependency” means here
 
 There are four different graphs, and conflating them gives a misleading

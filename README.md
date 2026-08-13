@@ -17,6 +17,14 @@ corona
 ∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
 ```
 
+The problem has two historical ages: its operator-algebraic lineage begins
+with the [1997 Blackadar–Kirchberg MF
+program](https://doi.org/10.1007/s002080050039), while the precise MF-group
+definition used here first appeared in the [October 2012
+Carrión–Dadarlat–Eckhardt preprint](https://arxiv.org/abs/1210.4050),
+published in 2013. Thus the result resolves a roughly 29-year-old problem
+lineage and a nearly 14-year-old problem in its exact named group form.
+
 The paper gives a finite presentation on eight generators. Start with
 
 ```text
