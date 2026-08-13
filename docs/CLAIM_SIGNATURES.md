@@ -351,6 +351,18 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 (k : Type) → [Field k] → Type
 ```
 
+## `GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen`
+
+```lean
+IsClopen ChosenMarkedCylinder.chosenCylinder
+```
+
+## `GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF`
+
+```lean
+ChosenMarkedCylinder.chosenCylinder ⊆ {N | ¬IsOperatorMF N.Quotient}
+```
+
 ## `GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`
 
 ```lean
@@ -1771,6 +1783,12 @@ LiteralNonMFPresentation.mark ≠ 1
                 q₀ ∈ Q →
                   (∀ x ∈ Manuscript.conjSubgroup q₀ Γ, ∀ y ∈ J, x * y = y * x) →
                     Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
+```
+
+## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
+
+```lean
+∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
 ```
 
 ## `GroupApproximation.MatchingCertificate`
