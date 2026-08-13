@@ -110,6 +110,15 @@ def validate(repo: Path, tex: Path) -> list[str]:
                         for module, declaration in missing)
         )
 
+    duplicates = sorted(reference for reference in APPROVED_REFERENCES
+                        if references.count(reference) > 1)
+    if duplicates:
+        problems.append(
+            "reviewed exact margin links must occur once each; duplicates: "
+            + ", ".join(f"{module}:{declaration}"
+                        for module, declaration in duplicates)
+        )
+
     if references.count(UNCONDITIONAL_ENDPOINT) != 1:
         problems.append(
             "margin links must name exactly once the pinned unconditional "
