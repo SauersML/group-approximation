@@ -19,9 +19,16 @@ variable {G : Type u} [Group G]
 /-- The operator-norm MF residual is characteristic. -/
 instance normMFResidual_characteristic :
     (normMFResidual G).Characteristic := by
-  refine Subgroup.characteristic_iff_le_comap.mpr fun φ x hx => ?_
-  have h := (mem_normMFResidual_iff.mp hx).map φ.toMonoidHom
-  simpa using h
+  constructor
+  intro φ
+  ext x
+  simp only [Subgroup.mem_comap, mem_normMFResidual_iff]
+  constructor
+  · intro hx
+    have h := hx.map φ.symm.toMonoidHom
+    simpa using h
+  · intro hx
+    exact hx.map φ.toMonoidHom
 
 /-- A simple group with one nontrivial norm-MF-invisible element has
 residual everything. -/
@@ -29,8 +36,10 @@ theorem normMFResidual_eq_top_of_simple [IsSimpleGroup G]
     {x : G} (hx : NormMFInvisible x) (hne : x ≠ 1) :
     normMFResidual G = ⊤ := by
   rcases Subgroup.Normal.eq_bot_or_eq_top normMFResidual_normal with hbot | htop
-  · exact absurd (hbot ▸ mem_normMFResidual_iff.mpr hx)
-      (by simpa [Subgroup.mem_bot] using hne)
+  · exfalso
+    have hx' : x ∈ normMFResidual G := mem_normMFResidual_iff.mpr hx
+    rw [hbot] at hx'
+    exact hne (Subgroup.mem_bot.mp hx')
   · exact htop
 
 /-- Full residual makes every homomorphism to a countable weak-MF group
@@ -38,10 +47,10 @@ trivial. -/
 theorem map_eq_one_of_normMFResidual_eq_top
     (htop : normMFResidual G = ⊤) {H : Type*} [Group H] [Countable H]
     (hH : IsWeakMF H) (f : G →* H) (g : G) : f g = 1 := by
-  have hg : g ∈ normMFResidual G := htop ▸ Subgroup.mem_top g
+  have hg : g ∈ normMFResidual G := by rw [htop]; exact Subgroup.mem_top g
   have hfg : f g ∈ normMFResidual H :=
     mem_normMFResidual_iff.mpr ((mem_normMFResidual_iff.mp hg).map f)
-  have hbot := normMFResidual_eq_bot_of_isWeakMF hH
-  simpa [Subgroup.mem_bot] using hbot ▸ hfg
+  rw [normMFResidual_eq_bot_of_isWeakMF hH] at hfg
+  exact Subgroup.mem_bot.mp hfg
 
 end GroupApproximation
