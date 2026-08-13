@@ -92,6 +92,13 @@ abbrev lampWord : FreeGroup Generator := FreeGroup.of Generator.lamp
 def commutatorWord {G : Type*} [Group G] (g h : G) : G :=
   g * h * g⁻¹ * h⁻¹
 
+/-- Homomorphisms evaluate the raw commutator word as the intrinsic group
+commutator. -/
+theorem map_commutatorWord {G H : Type*} [Group G] [Group H]
+    (f : G →* H) (g h : G) :
+    f (commutatorWord g h) = ⁅f g, f h⁆ := by
+  simp [commutatorWord, commutatorElement_def]
+
 /-- Embed words in the six base letters into the final alphabet. -/
 def embedBaseWord : FreeGroup BaseGenerator →* FreeGroup Generator :=
   FreeGroup.lift (fun i ↦ vertexLetter i)
@@ -359,10 +366,8 @@ theorem lamp_commutes_base_generator (i : BaseGenerator) :
     apply PresentedGroup.one_of_mem
     change commutatorWord lampWord (vertexLetter i) ∈ relators
     simp [relators, lampRelators]
-  apply commutatorElement_eq_one_iff_commute.mp
-  change lamp * wordInMarkedGroup (vertexLetter i) * lamp⁻¹ *
-      (wordInMarkedGroup (vertexLetter i))⁻¹ = 1
-  simpa only [lamp, commutatorWord, map_mul, map_inv] using hcomm
+  rw [map_commutatorWord] at hcomm
+  exact commutatorElement_eq_one_iff_commute.mp hcomm
 
 theorem lamp_commutes_base (g : Base) : Commute lamp (baseMap g) := by
   obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ g
@@ -397,10 +402,8 @@ theorem mark_central (g : MarkedGroup) : Commute mark g := by
       apply PresentedGroup.one_of_mem
       change commutatorWord markedWord (FreeGroup.of i) ∈ relators
       simp [relators, markedRelators]
-    apply commutatorElement_eq_one_iff_commute.mp
-    change mark * wordInMarkedGroup (FreeGroup.of i) * mark⁻¹ *
-        (wordInMarkedGroup (FreeGroup.of i))⁻¹ = 1
-    simpa only [mark, commutatorWord, map_mul, map_inv] using hcomm
+    rw [map_commutatorWord] at hcomm
+    exact commutatorElement_eq_one_iff_commute.mp hcomm
   obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective _ g
   induction w using FreeGroup.induction_on with
   | C1 => exact Commute.one_right _
@@ -504,8 +507,8 @@ noncomputable def realizationHom {M : Type*} [Group M]
       Finset.mem_image] at hr
     rcases hr with rfl | ⟨i, -, rfl⟩
     · simpa using R.lamp_sq
-    · simp only [commutatorWord, map_mul, map_inv]
-      rw [show FreeGroup.lift (realizationGenerator R) lampWord =
+    · rw [map_commutatorWord,
+        show FreeGroup.lift (realizationGenerator R) lampWord =
           R.lamp by simp [lampWord],
         show FreeGroup.lift (realizationGenerator R) (vertexLetter i) =
           R.baseGenerator i by simp [vertexLetter]]
@@ -515,9 +518,8 @@ noncomputable def realizationHom {M : Type*} [Group M]
       Finset.mem_image] at hr
     rcases hr with rfl | ⟨i, -, rfl⟩
     · simpa using R.marked_sq
-    · simp only [commutatorWord, map_mul, map_inv,
+    · rw [map_commutatorWord, realization_eval_marked,
         FreeGroup.lift_apply_of]
-      rw [realization_eval_marked]
       exact commutatorElement_eq_one_iff_commute.mpr
         (R.marked_central (realizationGenerator R i))
 
