@@ -637,12 +637,18 @@ $\SL_3(\Z)$ has the presentation
  (x^{-1}zxy)^2=(y^{-1}zyx)^2=(xy)^6=1
  \end{gathered}\right\rangle,
 \end{equation}
-where the generators are the matrices
+where the generators are realized by the matrices
 \[
-x=\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},\qquad
-y=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},\qquad
+x=\begin{pmatrix}0&1&0\\0&0&1\\1&0&0\end{pmatrix},\qquad
+y=\begin{pmatrix}1&0&1\\0&-1&-1\\0&1&0\end{pmatrix},\qquad
 z=\begin{pmatrix}0&1&0\\1&0&0\\-1&-1&-1\end{pmatrix}.
 \]
+(The matrix realization is assembled from the data of
+\cite[Sections~1, 2 and~4]{CRW}, which set $x=h$, $y=aha$, $z=p$ in the
+notation there; it is not displayed as a single statement in \cite{CRW}.
+We have verified directly that these three matrices satisfy the eight
+relations and generate $\SL_3(\Z)$, which suffices since $\SL_3(\Z)$ is
+Hopfian.)
 Let $v_i=(e_i,1)$ for $1\le i\le3$.  Reading off the columns of these
 matrices gives the following complete finite presentation of the semidirect
 product:
@@ -651,10 +657,10 @@ product:
 \begin{gathered}
 \text{the eight relations in \eqref{eq:sl3presentation}},\\
 [v_1,v_2]=[v_1,v_3]=[v_2,v_3]=1,\\
-xv_1x^{-1}=v_1,\ xv_2x^{-1}=v_2^{-1}v_3,\
-xv_3x^{-1}=v_1v_2^{-1},\\
-yv_1y^{-1}=v_3,\ yv_2y^{-1}=v_1,\
-yv_3y^{-1}=v_2,\\
+xv_1x^{-1}=v_3,\ xv_2x^{-1}=v_1,\
+xv_3x^{-1}=v_2,\\
+yv_1y^{-1}=v_1,\ yv_2y^{-1}=v_2^{-1}v_3,\
+yv_3y^{-1}=v_1v_2^{-1},\\
 zv_1z^{-1}=v_2v_3^{-1},\ zv_2z^{-1}=v_1v_3^{-1},\
 zv_3z^{-1}=v_3^{-1}
 \end{gathered}\right\rangle.
@@ -1568,6 +1574,617 @@ microstate before yielding the arbitrary-corona kernel theorem.
 \end{remark}
 \fi
 
+\section{Consequences}\label{sec:consequences}
+
+Throughout this section, ``corona representation'' and ``MF'' are as
+in Section~\ref{sec:prelim}.
+\ifanonymous\else
+None of the results of this section is claimed to have a formal
+counterpart at the time of writing; they are paper-proved
+consequences of Theorems~\ref{thm:A} and~\ref{thm:criterion}.
+\fi
+
+\subsection{The MF radical}
+
+\begin{definition}\label{def:radical}
+For a countable group $G_1$, the \emph{MF radical} is
+\[
+  \operatorname{Rad}_{\mathrm{MF}}(G_1)
+  \;=\;\bigcap\,\bigl\{\ker\Theta:\ \Theta\ \text{a corona
+  representation of }G_1\bigr\},
+\]
+a normal subgroup of $G_1$.  This is the operator-norm analogue of
+the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
+and of the approximation kernels studied in \cite{NST}.
+\end{definition}
+
+\begin{lemma}[portability]\label{lem:portable}
+For every homomorphism $\varphi\colon G_1\to G_2$ of countable
+groups,
+\[
+  \varphi\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1)\bigr)
+  \;\subseteq\;\operatorname{Rad}_{\mathrm{MF}}(G_2):
+\]
+the MF radical is functorial.  In particular, if
+$\varphi\colon E\to G_2$ satisfies $\varphi(w)\neq1$, then $G_2$ is
+not MF.
+\end{lemma}
+
+\begin{proof}
+If $x\in\operatorname{Rad}_{\mathrm{MF}}(G_1)$ and $\Theta$ is a
+corona representation of $G_2$, then $\Theta\circ\varphi$ is a corona
+representation of $G_1$, so $\Theta(\varphi(x))=1$.  For the second
+statement: $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
+Theorem~\ref{thm:A}, so
+$1\neq\varphi(w)\in\operatorname{Rad}_{\mathrm{MF}}(G_2)$, and an
+injective corona representation of $G_2$ would kill $\varphi(w)$, a
+contradiction.
+\end{proof}
+
+\begin{proposition}[the largest MF quotient]\label{prop:univquot}
+Let $G_1$ be a countable group and
+$R=\operatorname{Rad}_{\mathrm{MF}}(G_1)$.
+\begin{enumerate}
+\item $R$ is the kernel of a single corona representation of $G_1$.
+\item $G_1/R$ is MF.
+\item Every homomorphism from $G_1$ to an MF group factors through
+$G_1/R$.
+\end{enumerate}
+In particular $G_1$ is MF if and only if $R=\{1\}$.  The statement is
+presumably folklore once the radical is defined; we include a proof
+for completeness and claim no novelty for it.
+\end{proposition}
+
+\begin{proof}
+(3) If $\varphi\colon G_1\to M$ with $M$ MF and
+$j\colon M\to\U(\mathcal Q)$ is an injective corona representation,
+then $j\circ\varphi$ is a corona representation of $G_1$, so
+$j(\varphi(R))=1$ and, by injectivity of $j$, $\varphi(R)=1$.
+
+(1) and (2).  If $R=G_1$, the trivial representation has kernel $R$
+and $G_1/R$ is trivial, hence MF; so assume $R\neq G_1$ and let
+$(g_i)_{i\ge1}$ list, possibly with repetitions, elements of
+$G_1\setminus R$ meeting every nontrivial coset of $R$.  For each $i$
+choose a corona representation
+$\Theta_i\colon G_1\to\U(\mathcal Q_i)$,
+$\mathcal Q_i=\mathcal Q\bigl((d^{(i)}_n)_{n\in J_i}\bigr)$, with
+$\Theta_i(g_i)\neq1$; put
+$\varepsilon_i=\tfrac12\opnorm{\Theta_i(g_i)-1}>0$, and choose
+unitary lifts $\bigl(U^{(i)}_{g,n}\bigr)_{n\in J_i}$ of $\Theta_i(g)$
+for every $g\in G_1$ (Lemma~\ref{lem:lift}), with $U^{(i)}_{1,n}=1$.
+Recall that the quotient norm in a corona is the limit superior of
+the coordinate norms: subtracting a null sequence does not change the
+limit superior, and truncating finitely many coordinates realizes it.
+
+Enumerate $G_1=\{h_1,h_2,\dots\}$ and fix a stage $k\ge1$.  For each
+$i\le k$: the finitely many products
+$U^{(i)}_{g,n}U^{(i)}_{h,n}$ and $U^{(i)}_{gh,n}$ with
+$g,h\in\{h_1,\dots,h_k\}$ lift the same corona elements, so there is
+$n_0$ with all the corresponding defects at most $1/k$ for
+$n\ge n_0$; and since
+$\limsup_{n\in J_i}\opnorm{U^{(i)}_{g_i,n}-1}=2\varepsilon_i$, there
+are infinitely many $n\in J_i$ with
+$\opnorm{U^{(i)}_{g_i,n}-1}\ge\varepsilon_i$.  Choose
+$n_i(k)\in J_i$ satisfying both conditions and set
+\[
+  \Phi_k(g)\;=\;\bigoplus_{i\le k}U^{(i)}_{g,\,n_i(k)}
+  \;\in\;\U\bigl(M_{D_k}(\C)\bigr),\qquad
+  D_k=\sum_{i\le k}d^{(i)}_{n_i(k)} .
+\]
+Define $\Theta_\infty(g)$ as the class of $(\Phi_k(g))_{k\in\N}$ in
+$\mathcal Q\bigl((D_k)_{k\in\N}\bigr)$.  For fixed $g,h\in G_1$, both
+lie in $\{h_1,\dots,h_k\}$ for all large $k$, and the operator norm
+of a block sum is the maximum of the block norms, so
+$\opnorm{\Phi_k(g)\Phi_k(h)-\Phi_k(gh)}\le1/k\to0$; together with
+$\Phi_k(1)=1$ this makes $\Theta_\infty$ a corona representation of
+$G_1$.  Consequently $\Theta_\infty(R)=1$.  Conversely, if
+$g\notin R$, pick $i$ with $g\in g_iR$; then
+$\Theta_\infty(g)=\Theta_\infty(g_i)$, and for every $k\ge i$,
+$\opnorm{\Phi_k(g_i)-1}\ge\opnorm{U^{(i)}_{g_i,n_i(k)}-1}
+\ge\varepsilon_i$, so $\opnorm{\Theta_\infty(g_i)-1}\ge\varepsilon_i$
+and $\Theta_\infty(g)\neq1$.  Hence $\ker\Theta_\infty=R$, proving
+(1), and $\Theta_\infty$ descends to an injective corona
+representation of $G_1/R$, proving (2).  For the final equivalence:
+if $G_1$ is MF, an injective corona representation forces
+$R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
+\end{proof}
+
+\subsection{Targets beyond coronas}
+
+\begin{corollary}[subalgebras of coronas]\label{cor:subalg}
+Let $H$, $(\Lambda,\iota,t,c)$ and $F\subseteq N_{\mathrm{comp}}$ be
+as in Theorem~\ref{thm:criterion}.  Let $A$ be a nonzero
+$C^*$-subalgebra of a norm matrix corona $\mathcal Q$ whose unit
+$p:=1_A$ is not necessarily the unit of $\mathcal Q$, and let
+$\Theta\colon H\to\U(A)$ be a group homomorphism.  Then
+$\Theta(f)=1_A$ for every $f\in F$.  The same conclusion holds when
+$A$ is a unital separable MF algebra --- for instance a unital
+separable quasidiagonal algebra (Fact~\ref{fact:qdcorona}), in
+particular an AF algebra, or $\Cred(F_k)$ for a free group $F_k$
+\cite{HT}.
+\end{corollary}
+
+\begin{proof}
+Every unitary $u$ of $A$ satisfies $u=pup$ and $u^*u=uu^*=p$, so
+$\U(A)\subseteq\U(p\mathcal Qp)$, and $p\neq0$.  By
+Lemma~\ref{lem:cornercorona} there is a unital $*$-isomorphism of
+$p\mathcal Qp$ onto a norm matrix corona carrying $p$ to the unit.
+Composing, $\Theta$ becomes a corona representation of $H$, and
+Theorem~\ref{thm:criterion} gives $\Theta(f)=1_A$ for $f\in F$.  If
+$A$ is a unital separable MF algebra, fix a $*$-monomorphism
+$\psi\colon A\to\mathcal Q_1$ into a norm matrix corona, unital or
+not \cite{BK}; then $\psi(A)$ is a $C^*$-subalgebra of
+$\mathcal Q_1$ with unit $\psi(1_A)$, and applying the first part to
+$\psi\circ\Theta$ gives $\psi(\Theta(f))=\psi(1_A)$, whence
+$\Theta(f)=1_A$ by injectivity.  Unital separable quasidiagonal
+algebras embed unitally into coronas by Fact~\ref{fact:qdcorona}, AF
+algebras are quasidiagonal, and $\Cred(F_k)$ is MF by \cite{HT}.
+\end{proof}
+
+\begin{corollary}\label{cor:nofaithful}
+The group $E$ admits no injective homomorphism into the unitary
+group of any $C^*$-subalgebra of any norm matrix corona --- in
+particular, none into $\U(A)$ for $A$ a unital separable MF algebra,
+a unital separable quasidiagonal algebra, or $\Cred(F_k)$.
+\end{corollary}
+
+\begin{proof}
+By the proof of Theorem~\ref{thm:A}, the pattern
+$(\Gamma,\iota,t,c)$ and $F=\{1,w\}$ satisfy the hypotheses of
+Corollary~\ref{cor:subalg} in $H=E$; hence any such homomorphism
+kills $w$, while $w\neq1$ by Proposition~\ref{prop:witness}.
+\end{proof}
+
+\subsection{Stable finiteness does not imply MF}
+
+\begin{lemma}\label{lem:faithfultrace}
+Let $G_1$ be a countable discrete group.
+\begin{enumerate}
+\item The canonical tracial state $\tau$ on $\Cred(G_1)$ is
+faithful.
+\item Every unital $C^*$-algebra $A$ with a faithful tracial state
+is stably finite: for every $k\ge1$, every isometry in $M_k(A)$ is a
+unitary.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Realize $\Cred(G_1)\subseteq B(\ell^2G_1)$ as the norm closure
+of the span of the left translation unitaries $\lambda_g$, and let
+$\rho_g$ be the right translation unitaries,
+$(\rho_g\xi)(h)=\xi(hg)$; each $\rho_g$ commutes with each
+$\lambda_{g'}$, hence with every element of $\Cred(G_1)$.  The
+canonical trace is $\tau(x)=\langle x\delta_e,\delta_e\rangle$.  If
+$\tau(x^*x)=0$ then $\lVert x\delta_e\rVert=0$, so $x\delta_e=0$,
+and then
+$x\delta_g=x\rho_{g^{-1}}\delta_e=\rho_{g^{-1}}x\delta_e=0$ for
+every $g\in G_1$.  The vectors $\delta_g$ are total in
+$\ell^2G_1$, so $x=0$.
+
+(2) On $M_k(A)$ the functional
+$\tau_k\bigl([x_{ij}]\bigr)=\tfrac1k\sum_i\tau(x_{ii})$ is a state
+with the trace property
+$\tau_k(xy)=\tfrac1k\sum_{i,j}\tau(x_{ij}y_{ji})=\tau_k(yx)$, and it
+is faithful: the $i$-th diagonal entry of $x^*x$ is
+$\sum_jx_{ji}^*x_{ji}$, so $\tau_k(x^*x)=0$ forces
+$\tau(x_{ji}^*x_{ji})=0$, hence $x_{ji}=0$, for all $i,j$.  If
+$v\in M_k(A)$ satisfies $v^*v=1$, then $y:=1-vv^*$ is a projection
+with
+$\tau_k(y)=\tau_k(1)-\tau_k(vv^*)=\tau_k(1)-\tau_k(v^*v)=0$; since
+$y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+$\Cred(E)$ is unital and separable since $E$ is countable; by
+Lemma~\ref{lem:faithfultrace} it carries a faithful tracial state
+and is stably finite.  It is not an MF algebra by
+Theorem~\ref{thm:A}.
+\end{proof}
+
+\begin{remark}\label{rem:nonnuclear}
+Blackadar and Kirchberg proved that MF algebras are stably finite
+\cite{BK}, so Theorem~\ref{thm:D} is the exact failure of the
+converse, in the strong form where the algebra carries a faithful
+trace.  The example is not nuclear: $\Gamma$ embeds into $E$
+(Corollary~\ref{cor:iotainj}); the infinite group $\Gamma$ has
+property (T) and is therefore not amenable, since amenable groups
+with property (T) are compact, hence finite when discrete
+\cite[Theorem~1.1.6]{BHV}; and the reduced $C^*$-algebra of a
+nonamenable group is not nuclear \cite[Theorem~2.6.8]{BO}.  The
+nuclear territory is untouched: whether every stably finite
+separable \emph{nuclear} $C^*$-algebra is quasidiagonal remains
+open, and by \cite{TWW} every faithful trace on a separable nuclear
+$C^*$-algebra satisfying the UCT is quasidiagonal.
+\end{remark}
+
+\subsection{The ambient HNN extension}
+
+\begin{lemma}[residually finite groups are MF]\label{lem:rfmf}
+Every countable residually finite group is MF.
+\end{lemma}
+
+\begin{proof}
+Let $G_1$ be countable and residually finite; if $G_1$ is trivial
+the statement is vacuous, so enumerate its nontrivial elements
+$x_1,x_2,\dots$ (with repetitions if $G_1$ is finite).  For each $k$
+choose a finite-index normal subgroup $N_k\trianglelefteq G_1$ with
+$x_k\notin N_k$, put $M_k=N_1\cap\dots\cap N_k$, a finite-index
+normal subgroup, and let $\varphi_k\colon G_1\to G_1/M_k$ be the
+quotient map onto the finite group $G_1/M_k$.  Let $\pi_k$ be the
+left regular representation of $G_1/M_k$ composed with $\varphi_k$,
+a finite-dimensional unitary representation of $G_1$.  Define
+$\Theta(g)$ as the class of $(\pi_k(g))_k$ in
+$\mathcal Q\bigl((|G_1/M_k|)_k\bigr)$; each $\pi_k$ is an exact
+representation, so $\Theta$ is a corona representation.  For
+$g=x_i$ and $k\ge i$ the element $\varphi_k(x_i)$ is nontrivial, so
+the permutation matrix $\pi_k(x_i)$ moves some standard basis
+vector $\delta$, giving
+$\lVert(\pi_k(x_i)-1)\delta\rVert=\sqrt2$ and
+$\opnorm{\pi_k(x_i)-1}\ge\sqrt2$.  Hence
+$\opnorm{\Theta(x_i)-1}\ge\sqrt2$ and $\Theta$ is injective.
+\end{proof}
+
+\begin{proposition}[the ambient group]\label{prop:ambient}
+Let $G$ be the ascending HNN extension \eqref{eq:G}.
+\begin{enumerate}
+\item $\Cmax(G)$ contains an explicitly described nonunitary
+isometry.  In particular $\Cmax(G)$ is not finite, a fortiori not
+stably finite, and not an MF algebra.
+\item $G$ is residually finite, hence MF.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(1) Write $\iota_G\colon\Gamma\to G$ for the canonical homomorphism
+and $\bar p=(\iota_G)_*(p_\Gamma)\in\Cmax(G)$ for the image of the
+Kazhdan projection.  The data $(G,\Gamma,\iota_G,t)$ satisfy the
+hypotheses of Lemma~\ref{lem:order}, because
+$t\,\iota_G(\gamma)\,t^{-1}=\iota_G(\alpha(\gamma))$; hence
+$\bar p\le Q_1:=u_t\,\bar p\,u_t^*$.  Put
+\[
+  s\;=\;\bar p\,u_t^*\;+\;(1-Q_1) .
+\]
+From $\bar p\le Q_1$ we get $\bar pQ_1=Q_1\bar p=\bar p$, hence
+$(1-Q_1)\bar p=0$ and $\bar p(1-Q_1)=0$; also
+$Q_1u_t\bar p=u_t\bar p\,u_t^*u_t\,\bar p=u_t\bar p$, so
+$(1-Q_1)u_t\bar p=0$ and, taking adjoints,
+$\bar pu_t^*(1-Q_1)=0$.  Therefore
+\[
+  s^*s=u_t\bar p\,\bar pu_t^*+u_t\bar p(1-Q_1)+(1-Q_1)\bar pu_t^*
+  +(1-Q_1)=Q_1+(1-Q_1)=1
+\]
+and
+\[
+  ss^*=\bar pu_t^*u_t\bar p+\bar pu_t^*(1-Q_1)+(1-Q_1)u_t\bar p
+  +(1-Q_1)=\bar p+(1-Q_1)=1-(Q_1-\bar p):
+\]
+$s$ is an isometry with defect $1-ss^*=Q_1-\bar p$.
+
+It remains to check $Q_1\neq\bar p$.  Let
+$H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the
+quasi-regular representation of $G$ on $\ell^2(G/H_0)$, with
+basepoint $b=H_0\in G/H_0$.  As in the proof of
+Lemma~\ref{lem:order}, $\pi(\bar p)$ is the orthogonal projection
+onto the $\iota_G(\Gamma)$-invariant vectors, and
+$\pi(Q_1)=\pi(t)\pi(\bar p)\pi(t)^*$.  The vector
+$\pi(t)^{-1}\delta_b=\delta_{t^{-1}H_0}$ is
+$\iota_G(\Gamma)$-invariant: for $\gamma\in\Gamma$,
+\[
+  \iota_G(\gamma)\,t^{-1}H_0
+  =t^{-1}\bigl(t\,\iota_G(\gamma)\,t^{-1}\bigr)H_0=t^{-1}H_0 ,
+\]
+since $t\,\iota_G(\gamma)\,t^{-1}\in H_0$; hence
+$\pi(Q_1)\delta_b=\delta_b$.  On the other hand
+$\pi(\iota_G(a))\delta_b=\delta_{aH_0}\neq\delta_b$: if $aH_0=H_0$
+then $a\in H_0$, and applying the homomorphism $G\to\bar G$ of
+Lemma~\ref{lem:linear}, which restricts to the identity on $\Gamma$
+and sends $t$ to $D$, would give
+$a\in D\Gamma D^{-1}=\alpha(\Gamma)$ inside $\GL_4(\Z[1/2])$,
+contradicting Lemma~\ref{lem:alpha}.  So $\delta_b$ is not
+$\iota_G(\Gamma)$-invariant, i.e.\
+$\pi(\bar p)\delta_b\neq\delta_b$ while $\pi(Q_1)\delta_b=\delta_b$;
+hence $Q_1\neq\bar p$ and $s$ is not a unitary.
+
+If $\Cmax(G)$ embedded unitally into a norm matrix corona, the image
+of $s$ would be an isometry there, hence a unitary by
+Lemma~\ref{lem:finite}(1), and injectivity would force $ss^*=1$, a
+contradiction; so $\Cmax(G)$ is not an MF algebra, and the isometry
+$s$ itself witnesses the failure of finiteness.
+
+(2) $G$ is the mapping torus of the injective endomorphism $\alpha$
+of the finitely generated linear group $\Gamma\le\GL_4(\Z)$, so $G$
+is residually finite by Borisov--Sapir \cite{BoS}; MF-ness follows
+from Lemma~\ref{lem:rfmf}.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:ambient} separates group-level and
+$C^*$-level MF-ness in the direction opposite to
+Theorem~\ref{thm:D}: $G$ is an MF group whose maximal group
+$C^*$-algebra is not even finite, while $E$ is a non-MF group whose
+reduced group $C^*$-algebra is stably finite.  The one-way
+implication --- if $\Cmax$ or $\Cred$ of a group is an MF algebra
+then the group is MF --- is recorded in \cite{Shulman}.
+\end{remark}
+
+\subsection{Failure of permanence properties}
+
+\begin{corollary}[quotients]\label{cor:quotclosure}
+MF groups are not closed under quotients: the free group $F_8$ is
+MF, and $E$ is a quotient of $F_8$.
+\end{corollary}
+
+\begin{proof}
+$E$ is generated by eight elements \eqref{eq:E}, hence is a quotient
+of $F_8$.  Free groups are residually finite: $F_8$ embeds into
+$F_2$ (a subgroup of index $7$ of $F_2$ is free of rank $8$ by
+Nielsen--Schreier), $F_2$ embeds into $\SL_2(\Z)$ by Sanov's
+ping-pong pair
+$\bigl(\begin{smallmatrix}1&2\\0&1\end{smallmatrix}\bigr)$,
+$\bigl(\begin{smallmatrix}1&0\\2&1\end{smallmatrix}\bigr)$,
+residual finiteness passes to subgroups, and $\GL_2(\Z)$ is
+residually finite by reduction modulo primes (a nontrivial integer
+matrix stays nontrivial modulo any prime exceeding the absolute
+values of the entries of its difference from the identity).  So
+$F_8$ is MF by Lemma~\ref{lem:rfmf}, while $E$ is not MF by
+Theorem~\ref{thm:A}.
+\end{proof}
+
+\begin{proposition}[the witness group is non-MF]\label{prop:W}
+Let $W=\ClLamp(\bar X)\rtimes\bar G$ be the witness group of
+Proposition~\ref{prop:witness}.  Then $W$ is finitely generated, the
+homomorphism $E\to W$ of that proof is surjective, and the central
+sign $z=-1\in\ClLamp(\bar X)$ satisfies
+$z\in\operatorname{Rad}_{\mathrm{MF}}(W)\setminus\{1\}$.  In
+particular $W$ is not MF.
+\end{proposition}
+
+\begin{proof}
+The image of the homomorphism $E\to W$ contains the six base
+generators of $\Gamma$, hence $\Gamma$; it contains $D$; so it
+contains $\bar G=\langle\Gamma,D\rangle$.  It contains $c_o$, hence
+$c_{g\Gamma}=g\,c_o\,g^{-1}$ for every $g\in\bar G$, which is all of
+$\{c_x:x\in\bar X\}$ since $\bar G$ acts transitively on
+$\bar X=\bar G/\Gamma$.  Finally
+$(c_{D\Gamma}c_{aD\Gamma})^2=-c_{D\Gamma}^2c_{aD\Gamma}^2=-1=z$
+because the two sites are distinct (Lemma~\ref{lem:linear}), so the
+image contains $z$ and therefore all of
+$\ClLamp(\bar X)=\langle\pm1,\,c_x:x\in\bar X\rangle$: the map is
+surjective, and $W$ is generated by the images of the eight
+generators of $E$.  The proof of Proposition~\ref{prop:witness}
+sends $w$ to $z$, so Lemma~\ref{lem:portable} gives
+$z\in\operatorname{Rad}_{\mathrm{MF}}(W)$, and $z\neq1$ in $W$ by
+Construction~\ref{con:clifford}.  A group whose MF radical is
+nontrivial admits no injective corona representation.
+\end{proof}
+
+\begin{corollary}[extensions]\label{cor:extclosure}
+MF groups are not closed under extensions, even split ones: in the
+split exact sequence
+\[
+  1\longrightarrow\ClLamp(\bar X)\longrightarrow W
+  \longrightarrow\bar G\longrightarrow1,
+\]
+the kernel is locally finite, hence amenable and MF; the quotient
+$\bar G\le\GL_4(\Z[1/2])$ is a finitely generated linear group,
+hence residually finite by Mal'cev's theorem \cite{Ma} and MF by
+Lemma~\ref{lem:rfmf}; and $W$ is not MF
+(Proposition~\ref{prop:W}).  In particular there is a finitely
+generated non-MF group that is (locally finite)-by-(residually
+finite).  This contrasts with the positive permanence theory for MF
+groups in \cite{Shulman}.
+\end{corollary}
+
+\begin{proof}
+Exactness and splitting hold by construction of the semidirect
+product.  Every finite subset of $\ClLamp(\bar X)$ lies in the
+subgroup generated by $\pm1$ and finitely many $c_x$, a finite
+$2$-group, as in the proof of Theorem~\ref{thm:C}; so
+$\ClLamp(\bar X)$ is locally finite, hence amenable, hence MF by
+Facts~\ref{fact:tww} and~\ref{fact:qdcorona}.  The remaining
+assertions were proved above.
+\end{proof}
+
+\begin{corollary}[a simple envelope]\label{cor:simple}
+There exists a $2$-generator simple group $S$ with
+$\operatorname{Rad}_{\mathrm{MF}}(S)=S$: every corona representation
+of $S$, and every homomorphism from $S$ into any MF group, is
+trivial.
+\end{corollary}
+
+\begin{proof}
+By Goryushkin's theorem \cite{Go}, the countable group $E$ embeds
+into a $2$-generator simple group $S$.  By Lemma~\ref{lem:portable}
+applied to the embedding, the image of $w$ is a nontrivial element
+of $\operatorname{Rad}_{\mathrm{MF}}(S)$.  The radical is a normal
+subgroup of the simple group $S$, so
+$\operatorname{Rad}_{\mathrm{MF}}(S)=S$, i.e.\ every corona
+representation of $S$ is trivial.  If $\varphi\colon S\to M$ is a
+homomorphism to an MF group and $j$ an injective corona
+representation of $M$, then $j\circ\varphi$ is a corona
+representation, hence trivial, so $\varphi$ is trivial.  The
+simple-envelope theorem is entirely Goryushkin's; what is added here
+is the nontrivial portable radical element.
+\end{proof}
+
+\subsection{The scaling family}
+
+For an integer $m\ge2$ let $E_m$ be the group presented exactly as
+in \eqref{eq:E}, except that the three relations $tv_it^{-1}=v_i^2$
+are replaced by
+\[
+  tv_it^{-1}=v_i^m\qquad(1\le i\le3);
+\]
+thus $E=E_2$, and the marked word is unchanged,
+$w_m=[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}]$.
+
+\begin{theorem}[scaling family]\label{thm:family}
+For every $m\ge2$: the group $E_m$ is finitely presented, $w_m$ is a
+nontrivial central involution in $E_m$, and every corona
+representation of $E_m$ kills $w_m$.  Consequently $E_m$ is not MF,
+neither $\Cmax(E_m)$ nor $\Cred(E_m)$ is an MF algebra, and
+$\Cred(E_m)$ is stably finite but not MF.
+\end{theorem}
+
+\begin{proof}
+Finite presentation is clear from the displayed presentation.
+
+\emph{The pattern.}  Define $\alpha_m\colon\Gamma\to\Gamma$ by
+$\alpha_m(v,A)=(mv,A)$.  The computation of Lemma~\ref{lem:alpha}
+applies with $2$ replaced by $m$: $\alpha_m$ is an injective
+endomorphism with image $m\Z^3\rtimes\SL_3(\Z)$, and
+$a=(e_1,1)\notin\alpha_m(\Gamma)$ because $e_1\notin m\Z^3$.  On the
+six base generators $\alpha_m$ fixes $x,y,z$ and sends $v_i$ to
+$v_i^m$, so the relations of $E_m$ assert
+$t\gamma t^{-1}=\alpha_m(\gamma)$ on generators; hence, with
+$\iota_m\colon\Gamma\to E_m$ the canonical homomorphism,
+$t\,\iota_m(\gamma)\,t^{-1}=\iota_m(\alpha_m(\gamma))$ for all
+$\gamma\in\Gamma$, and $c$ commutes with $\iota_m(\Gamma)$: the
+tuple $(\Gamma,\iota_m,t,c)$ is a marked Kazhdan pattern in $E_m$
+(Fact~\ref{fact:T}).  As in the proof of Theorem~\ref{thm:A},
+$d^2=tc^2t^{-1}=1$ in $E_m$, and Lemma~\ref{lem:square} gives
+$w_m=[\,d,\iota_m(a)\,]^2\in N_{\mathrm{comp}}$; the subgroup
+$\{1,w_m\}$ is finite and normal, so Theorem~\ref{thm:criterion}
+kills $w_m$ in every corona representation.
+
+\emph{Nontriviality.}  Let
+$D_m=\operatorname{diag}(m,m,m,1)\in\GL_4(\Z[1/m])$.  As in
+Lemma~\ref{lem:linear},
+$D_m\bigl(\begin{smallmatrix}A&v\\0&1\end{smallmatrix}\bigr)
+D_m^{-1}
+=\bigl(\begin{smallmatrix}A&mv\\0&1\end{smallmatrix}\bigr)$ is the
+matrix of $\alpha_m(v,A)$, and
+$D_m^{-1}aD_m=\bigl(\begin{smallmatrix}1&\frac1me_1\\0&1
+\end{smallmatrix}\bigr)\notin\Gamma$, so in
+$\bar G_m:=\langle\Gamma,D_m\rangle\le\GL_4(\Z[1/m])$ the cosets
+$D_m\Gamma$ and $aD_m\Gamma$ of $\bar X_m:=\bar G_m/\Gamma$ are
+distinct.  The proof of Proposition~\ref{prop:witness} applies with
+$(\bar G,\bar X,D)$ replaced by $(\bar G_m,\bar X_m,D_m)$ --- its
+only inputs were the conjugation identity, the fixing of the base
+coset by $\Gamma$, and the coset separation --- and sends $w_m$ to
+$[c_{D_m\Gamma},c_{aD_m\Gamma}]=-1\neq1$ in
+$\ClLamp(\bar X_m)\rtimes\bar G_m$.
+
+The final assertions follow exactly as in the proofs of
+Theorems~\ref{thm:A} and~\ref{thm:D}, with $E_m$ in place of $E$.
+\end{proof}
+
+\begin{remark}\label{rem:familyscope}
+We do not claim the groups $E_m$ are pairwise non-isomorphic;
+multiplicity is addressed in Corollary~\ref{cor:continuum}.  For
+every $d\ge3$ the same construction runs with
+$\Z^d\rtimes\SL_d(\Z)$ in place of $\Gamma$ --- property (T) holds
+by the same references \cite[Sections 1.4--1.5 and 4.2]{BHV} ---
+once a finite presentation of the base is fixed; we confine the
+formal statement to $d=3$, where the presentation
+\eqref{eq:gamma-presentation} is completely explicit.
+\end{remark}
+
+\subsection{Multiplicity}
+
+\begin{lemma}\label{lem:subgroupMF}
+Every subgroup of an MF group is MF; equivalently, a group
+containing a non-MF subgroup is not MF.
+\end{lemma}
+
+\begin{proof}
+The restriction of an injective corona representation to a subgroup
+is an injective corona representation.
+\end{proof}
+
+\begin{corollary}[multiplicity]\label{cor:continuum}
+\leavevmode
+\begin{enumerate}
+\item The groups $E\times\Z^k$, $k\in\N$, are pairwise
+non-isomorphic, finitely presented, and non-MF.
+\item There exist $2^{\aleph_0}$ pairwise non-isomorphic finitely
+generated non-MF groups.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Every group in sight contains an isomorphic copy of $E$, hence is
+non-MF by Theorem~\ref{thm:A} and Lemma~\ref{lem:subgroupMF}.
+
+(1) $E\times\Z^k$ is finitely presented because $E$ is.  Its
+abelianization is $E^{\mathrm{ab}}\times\Z^k$; since $E$ is finitely
+generated, $E^{\mathrm{ab}}$ is a finitely generated abelian group,
+of some torsion-free rank $r_0<\infty$, so the abelianization of
+$E\times\Z^k$ has torsion-free rank $r_0+k$, an isomorphism
+invariant that separates distinct $k$.
+
+(2) By a classical construction of B.\,H.~Neumann \cite{Neumann}
+there is a family $(N_i)_{i\in I}$ with $|I|=2^{\aleph_0}$ of
+pairwise non-isomorphic $2$-generator groups.  Put
+$G_i=E\times N_i$, a finitely generated non-MF group.  For a fixed
+countable group $G_1$, the set $\{i\in I:G_i\cong G_1\}$ is
+countable: a countable group has only countably many finitely
+generated subgroups (each is determined by a finite generating
+subset), hence countably many isomorphism classes of such; if
+$G_i\cong G_1$ then $N_i$ embeds into $G_1$ as $\{1\}\times N_i$;
+and the $N_i$ are pairwise non-isomorphic, so
+$i\mapsto[N_i]$ is injective on the set in question.  A map from a
+set of cardinality $2^{\aleph_0}$ with countable fibres has image of
+cardinality $2^{\aleph_0}$; apply this to $i\mapsto[G_i]$.
+\end{proof}
+
+\subsection{Uniform invisibility}
+
+\begin{theorem}[uniform invisibility]\label{thm:uniform}
+Let $H$, $(\Lambda,\iota,t,c)$ and $F\subseteq N_{\mathrm{comp}}$ be
+as in Theorem~\ref{thm:criterion}, and fix $f_0\in F$ --- for
+instance $H=E$ and $f_0=w$.  For every $\varepsilon>0$ there exist
+$\delta>0$ and a finite subset $F_0\subseteq H$ such that for every
+$r\ge1$ and every map $\varphi\colon H\to\U(M_r(\C))$ with
+\[
+  \opnorm{\varphi(g)\varphi(h)-\varphi(gh)}\;\le\;\delta
+  \qquad\text{for all }g,h\in F_0,
+\]
+one has $\opnorm{\varphi(f_0)-1}<\varepsilon$.
+\end{theorem}
+
+\begin{proof}
+Suppose the statement fails for some $\varepsilon_0>0$.  Fix an
+enumeration $H=\{h_1,h_2,\dots\}$ and put $F_k=\{h_1,\dots,h_k\}$.
+For each $k\ge1$, the failure at $(\delta,F_0)=(1/k,F_k)$ produces
+$r_k\ge1$ and $\varphi_k\colon H\to\U(M_{r_k}(\C))$ with
+$\opnorm{\varphi_k(g)\varphi_k(h)-\varphi_k(gh)}\le1/k$ for all
+$g,h\in F_k$, but $\opnorm{\varphi_k(f_0)-1}\ge\varepsilon_0$.
+Define $\Theta(g)$ as the class of the sequence
+$(\varphi_k(g))_{k\in\N}$ in $\mathcal Q\bigl((r_k)_{k\in\N}\bigr)$,
+a unitary element.  For fixed $g,h\in H$ we have $g,h\in F_k$ for
+all large $k$, so the displayed defect tends to $0$ and
+$\Theta(g)\Theta(h)=\Theta(gh)$.  Taking $g=h=1$ gives
+$\opnorm{\varphi_k(1)^2-\varphi_k(1)}\le1/k$ for large $k$, hence
+$\opnorm{\varphi_k(1)-1}\le1/k$ after multiplying by the unitary
+$\varphi_k(1)^*$; so $\Theta(1)=1$, and then
+$\Theta(g)\Theta(g^{-1})=\Theta(1)=1$ for every $g$.  Thus $\Theta$
+is a corona representation of $H$, and Theorem~\ref{thm:criterion}
+gives $\Theta(f_0)=1$, i.e.\ $\opnorm{\varphi_k(f_0)-1}\to0$ ---
+contradicting $\opnorm{\varphi_k(f_0)-1}\ge\varepsilon_0$.
+\end{proof}
+
+\begin{remark}\label{rem:effective}
+Conversely, the uniform statement applied to unitary lifts recovers
+the kill part of Theorem~\ref{thm:criterion}, so the two are
+equivalent.  The compactness proof yields no explicit
+$(\delta,F_0)$, and none is claimed; an effective version would
+require tracking the Kazhdan constant of $\Lambda$ through
+Sections~\ref{sec:conj}--\ref{sec:proofA}, which we do not pursue.
+\end{remark}
+
+\begin{remark}[open questions]\label{rem:openq}
+Three questions adjacent to this section.  (i) Is $E/\langle
+w\rangle$ MF, i.e.\ is the MF radical of $E$ exactly $\{1,w\}$?
+(ii) Does a \emph{torsion-free} non-MF group exist?  The mechanism
+here is torsion-critical: the criterion kills a finite normal
+subgroup, which a torsion-free group cannot supply.  The analogous
+sofic-side emphasis on torsion appears in Fournier-Facio's
+torsion-free nonsofic group \cite{FF}.  (iii) Is non-MF-ness an open
+condition in the space of marked groups, as soficity questions are
+studied there \cite{FF}?
+\end{remark}
+
 \section{The cyclic-base comparison}\label{sec:necessity}
 
 We prove Theorem~\ref{thm:C}.  The broader phenomenon that a marked central
@@ -1702,7 +2319,8 @@ repository \texttt{\leanrepo}.
 \bibitem[AW]{AW}
 C.~A. Akemann and M.~E. Walter,
 \emph{Unbounded negative definite functions},
-Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
+Canad. J. Math. \textbf{33} (1981), no.~4, 862--871,
+\url{doi:10.4153/CJM-1981-067-9}.
 
 \bibitem[AT]{AlekseevThom}
 V.~Alekseev and A.~Thom,
@@ -1710,9 +2328,9 @@ V.~Alekseev and A.~Thom,
 preprint, 2026, \url{arXiv:2608.05362}.
 
 \bibitem[BDL]{BDL}
-G.~Bachner, S.~Dogon, and A.~Lubotzky,
+B.~Bachner, S.~Dogon, and A.~Lubotzky,
 \emph{On $L^1$-approximation of groups},
-J. Algebra \textbf{702} (2026), 235--243, to appear,
+J. Algebra \textbf{702} (2026), 235--243,
 \url{doi:10.1016/j.jalgebra.2026.04.041}.
 
 \bibitem[BHV]{BHV}
@@ -1725,7 +2343,8 @@ Cambridge University Press, Cambridge, 2008.
 B.~Blackadar and E.~Kirchberg,
 \emph{Generalized inductive limits of finite-dimensional
 $C^*$-algebras},
-Math. Ann. \textbf{307} (1997), no.~3, 343--380.
+Math. Ann. \textbf{307} (1997), no.~3, 343--380,
+\url{doi:10.1007/s002080050039}.
 
 \bibitem[BoS]{BoS}
 A.~Borisov and M.~Sapir,
@@ -1743,13 +2362,8 @@ American Mathematical Society, Providence, RI, 2008.
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
-J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152.
-
-\bibitem[Dad]{Dadarlat}
-M.~Dadarlat,
-\emph{Obstructions to matricial stability of discrete groups and almost
-flat $K$-theory},
-Adv. Math. \textbf{384} (2021), Paper No.~107722.
+J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
+\url{doi:10.1016/j.jfa.2013.04.004}.
 
 \bibitem[CRW]{CRW}
 M.~D.~E. Conder, E.~F. Robertson, and P.~D. Williams,
@@ -1758,9 +2372,16 @@ rings},
 Proc. Amer. Math. Soc. \textbf{115} (1992), no.~1, 19--26,
 \url{doi:10.2307/2159559}.
 
+\bibitem[Dad]{Dadarlat}
+M.~Dadarlat,
+\emph{Obstructions to matricial stability of discrete groups and almost
+flat $K$-theory},
+Adv. Math. \textbf{384} (2021), Paper No.~107722,
+\url{doi:10.1016/j.aim.2021.107722}.
+
 \bibitem[DGLT]{DGLT}
 M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
-\emph{Stability, cohomology vanishing, and non-approximable groups},
+\emph{Stability, cohomology vanishing, and nonapproximable groups},
 Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
 \url{doi:10.1017/fms.2020.5}.
 
@@ -1769,6 +2390,11 @@ A.~Dogon and I.~Vigdorovich,
 \emph{Hyperlinearity, stability and asymptotic spectral gap of higher rank
 lattices},
 preprint, 2026, \url{arXiv:2506.20843v2}.
+
+\bibitem[FF]{FF}
+F.~Fournier-Facio,
+\emph{A torsion-free non-sofic group},
+preprint, 2026, \url{arXiv:2608.02025}.
 
 \bibitem[Go]{Go}
 A.~P. Goryushkin,
@@ -1799,12 +2425,22 @@ B.~H. Neumann,
 J. London Math. Soc. \textbf{s1-12} (1937), no.~2, 120--127,
 \url{doi:10.1112/jlms/s1-12.46.120}.
 
+\bibitem[NST]{NST}
+N.~Nikolov, J.~Schneider, and A.~Thom,
+\emph{Some remarks on finitarily approximable groups},
+J. \'Ec. polytech. Math. \textbf{5} (2018), 239--258.
+
 \bibitem[OAI]{OAI}
 OpenAI,
-\emph{A counterexample to the soficity conjecture},
-in \emph{Ten advances in mathematics and theoretical computer science},
-Chapter~3, 77--93, 2026,
+\emph{Nonsofic groups exist},
+in \emph{Ten advances in mathematics and theoretical computer science}
+(non-refereed corporate research document),
+Chapter~3, 78--95, 2026,
 \url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
+The chapter appeared under the title \emph{A counterexample to the
+soficity conjecture}, Chapter~3, 77--93, in the original version of the
+document, now at
+\url{https://cdn.openai.com/pdf/ten-proofs-oai-original.pdf}.
 
 \bibitem[Ra]{Rainone}
 T.~Rainone,
@@ -1837,7 +2473,8 @@ Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,
 \emph{Quasidiagonality of nuclear $C^*$-algebras},
-Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284.
+Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284,
+\url{doi:10.4007/annals.2017.185.1.4}.
 
 \end{thebibliography}
 
