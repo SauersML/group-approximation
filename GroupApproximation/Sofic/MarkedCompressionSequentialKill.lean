@@ -22,7 +22,7 @@ file forces a contradiction:
 
 Consequently a countable group carrying inclusion data with a nontrivial
 marked word is not weak/operator-norm MF, modulo the negative-corner input,
-which is quarantined in one explicitly stated stub at the end of the file.
+which is constructed in `NegativeCornerModel` and discharged below.
 -/
 
 namespace GroupApproximation

@@ -30,11 +30,10 @@ Kazhdan vertex, and makes the marked commutator
 
 a central involution.  All relation sets below are genuinely finite.
 
-There are deliberately two explicitly labelled algebraic gaps at the bottom:
-the routine free-word induction proving the subgroup inclusion, and the map
-to the already constructed telescope/Clifford witness which proves `w != 1`.
-They are isolated as theorems rather than hidden as hypotheses of the final
-presentation.
+The free-word induction proving the subgroup inclusion and the map to the
+already constructed telescope/Clifford witness are both carried out below.
+Thus `w != 1` is proved from the concrete realization rather than accepted as
+a hypothesis of the final presentation.
 -/
 
 namespace GroupApproximation
@@ -570,9 +569,9 @@ theorem mark_ne_one_of_realization {M : Type*} [Group M]
   intro h
   exact hR (by rw [h, map_one])
 
-/-- **Remaining algebraic witness gap.**  The telescope and its strict range
-characterization provide a realization whose two displaced lamps are distinct
-Clifford sites, so the marked word is the nontrivial central sign. -/
+/-- The telescope and its strict range characterization provide a realization
+whose two displaced lamps are distinct Clifford sites, so the marked word is
+the nontrivial central sign. -/
 theorem mark_ne_one : mark ≠ 1 := by
   let R : Realization MarkedCompression.Explicit.theGroup := {
     base := MarkedCompression.Explicit.theIota
