@@ -2,6 +2,28 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 exact endpoint: one transported-carrier containment
+
+The two finite branch operators are now exact:
+
+```text
+E=P Q,       T0=U* P Q,       T1=U* R P Q.
+```
+
+They have common initial `E`, orthogonal ranges, and range sum `U* Q U`.
+The traces are `tau(E)=1/8` and `tau(Q)=1/4`.  Therefore the single
+containment `U* Q U <= E` gives the desired contradiction immediately.
+See `TRUE_PAULI_BRANCH_TRANSFER_PACKET.md`; every operator identity is
+Lean-checked in `Sofic/PauliBranchTransfer.lean`.
+
+Do not attempt to derive this containment pointwise on additive root
+characters.  The implication is false: `ef=f` gives
+`ell(ef)=ell(f)`, not `ell(f)=1 => ell(e)=1`.  The highest-yield remaining
+calculation is to construct the finite paired radical quotient on which
+multiplication by `e` really acts as identity on the `f` range, then prove
+the raw compressor identifies its positive-density carrier with the Pauli
+cut `E`.
+
 ## 2026-08-13 narrowing: star is closed; multiplication-to-support remains
 
 The finite star-synchronizing extension is now proved hyperlinearity-neutral.

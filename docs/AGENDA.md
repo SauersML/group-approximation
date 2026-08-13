@@ -4,6 +4,25 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: exact two-arrow Pauli transfer packet
+
+`TRUE_PAULI_BRANCH_TRANSFER_PACKET.md` identifies the two raw branch arrows
+on the synchronized finite coefficient sector:
+
+```text
+E=P Q,       T0=U* P Q,       T1=U* R P Q.
+```
+
+They have common initial projection `E`, orthogonal ranges, and range sum
+`U* Q U`.  The complete algebra is Lean-checked in
+`Sofic/PauliBranchTransfer.lean`.  Since `tau(Q)=1/4` and `tau(E)=1/8`, the
+packet is exactly balanced.  The whole atlas contradiction is now the single
+containment `U* Q U <= E`.  A direct root-character proof of this containment
+is impossible: `ef=f` implies `ell(ef)=ell(f)` but not
+`ell(f)=1 => ell(e)=1`.  The remaining proof must recover a positive-density
+paired radical quotient (a genuine multiplication module), and use the raw
+compressor to identify its carrier with `E`.
+
 ### 2026-08-13: the involutive star extension is hyperlinearity-neutral
 
 `TRUE_INVOLUTIVE_STAR_EXTENSION_PRESERVES_HYPERLINEARITY.md` closes the
