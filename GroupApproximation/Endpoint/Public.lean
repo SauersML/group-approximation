@@ -2,6 +2,7 @@ import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.ChosenUniversalHorn
+import GroupApproximation.Sofic.MarkedCompressionProperness
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
