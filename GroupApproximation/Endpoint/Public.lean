@@ -14,6 +14,7 @@ import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.MarkovMFConsequences
+import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Monsters.CliffordAlgebraLamp
@@ -139,6 +140,10 @@ boundary instead of conflating the two constructions.
   computability reduction, conditional on an explicitly supplied computable
   Adian--Rabin transformation and its correctness proof; no such external
   transformation is postulated by the library.
+* `CStarRecognitionConsequences.all_groupCStar_recognition_undecidable` -- the
+  analogous five-predicate C-star recognition package, still conditional on
+  explicit computable Adian--Rabin reductions and semantic predicate data;
+  no group-C-star API or reduction is smuggled in as a theorem.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
@@ -341,6 +346,14 @@ export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
 export GroupApproximation.LiteralCyclicCalibration
   (mark_ne_one finiteDimensional_kill
     exists_coronaRepresentation_mark_ne_one)
+export GroupApproximation.CStarRecognitionConsequences
+  (reducedCStarMF_recognition_undecidable
+    maximalCStarMF_recognition_undecidable
+    maximalCStar_finite_recognition_undecidable
+    maximalCStar_stablyFinite_recognition_undecidable
+    maximalCStar_directlyFinite_recognition_undecidable
+    all_groupCStar_recognition_undecidable
+    all_groupCStar_negative_sides_not_re)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker

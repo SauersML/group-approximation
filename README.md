@@ -127,6 +127,7 @@ Reading path, front door first:
 | `Sofic/OperatorMFPositiveControls.lean`, `Sofic/OperatorMFQuotientNonclosure.lean` | Positive permanence results and explicit quotient nonclosure |
 | `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
 | `Computability/MarkovMFConsequences.lean` | Generic conditional recognition reductions; requires an explicit computable Adian--Rabin transformation and correctness proof |
+| `Computability/CStarRecognitionConsequences.lean` | Conditional five-predicate C-star recognition and negative-side non-r.e. reductions |
 
 The headline declarations are included in the kernel audit roster. Their
 accepted axiom closure is `propext`, `Classical.choice`, and `Quot.sound`; no
