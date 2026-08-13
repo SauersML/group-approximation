@@ -74,6 +74,40 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
         CliffordAlgebraLamp.zGen X
 ```
 
+## `GroupApproximation.DefectRoutingData.MainTheoremData.consequence_package`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] {D : FournierFacioDefectData P E}
+  (M : DefectRoutingData.MainTheoremData D),
+  Group.IsFinitelyPresented M.routing.Quotient ∧
+    IsTwoGenerated M.routing.Quotient ∧
+      IsPowerTorsionFree M.routing.Quotient ∧
+        HasKazhdanPropertyT M.routing.Quotient ∧
+          cdeMFResidual M.routing.Quotient = ⊤ ∧
+            ¬IsOperatorMF M.routing.Quotient ∧
+              ¬IsCDEOperatorMF M.routing.Quotient ∧ ¬IsSofic M.routing.Quotient
+```
+
+## `GroupApproximation.DefectRoutingData.consequence_package`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] {D : FournierFacioDefectData P E}
+  (R : DefectRoutingData D),
+  Group.IsFinitelyPresented R.Quotient ∧
+    IsTwoGenerated R.Quotient ∧
+      IsPowerTorsionFree R.Quotient ∧
+        HasKazhdanPropertyT R.Quotient ∧
+          cdeMFResidual R.Quotient = ⊤ ∧ ¬IsOperatorMF R.Quotient ∧ ¬IsCDEOperatorMF R.Quotient
+```
+
+## `GroupApproximation.DefectRoutingData.quotient_not_isCDEOperatorMF`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] {D : FournierFacioDefectData P E}
+  (R : DefectRoutingData D) {H : Type u_1} [inst_2 : Group H] [inst_3 : Countable H]
+  [Nontrivial H] (q : R.Quotient →* H), Function.Surjective ⇑q → ¬IsCDEOperatorMF H
+```
+
 ## `GroupApproximation.ExplicitLinearModel.doubling_linear_model_package`
 
 ```lean
@@ -115,6 +149,13 @@ Function.Injective ⇑ExplicitLinearModel.conjD ∧
   [inst_2 : InnerProductSpace ℝ E] (ρ : H →* E ≃ₗᵢ[ℝ] E) (L : Subgroup H) (S : Submodule ℝ E),
   compressionSet L ⊆ ↑(FixedSpaceStabilizer.stabilizer ρ S) →
     compressionGroup L ≤ FixedSpaceStabilizer.stabilizer ρ S
+```
+
+## `GroupApproximation.FournierFacioDefectData.simpleSubgroup_le_defectNormal`
+
+```lean
+∀ {P : Type} {E : Type u} [inst : Group P] [inst_1 : Group E] (D : FournierFacioDefectData P E),
+  D.simpleSubgroup ≤ D.core.defectNormal
 ```
 
 ## `GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec`
@@ -357,6 +398,19 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
   Nonempty n →
     ∀ {v : CStarMatrix n n ↥(ReducedGroupCStarTrace.ReducedGroupCStar G)},
       star v * v = 1 → v * star v = 1
+```
+
+## `GroupApproximation.RelativeCommonQuotientData.toDefectRoutingData`
+
+```lean
+{P : Type} →
+  {E : Type u} →
+    {B : Type} →
+      [inst : Group P] →
+        [inst_1 : Group E] →
+          [inst_2 : Group B] →
+            {D : FournierFacioDefectData P E} →
+              RelativeCommonQuotientData D B → HasKazhdanPropertyT B → DefectRoutingData D
 ```
 
 ## `GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one`
