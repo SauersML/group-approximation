@@ -33,6 +33,27 @@ theorem finiteNormal_le_normMatrixCoronaKernel
       (C.finiteNormal_le_normMFResidual F hF hf)
   exact NormMFInvisible.toCoronaMFInvisible (G := E) hinvisible X hX rho
 
+/-- The same finite subgroup is killed by every homomorphism into a group
+which embeds in a standard cofinite norm-matrix corona.  This composition
+form is the group-theoretic core of the manuscript's extension from corona
+targets to unitary groups of C*-subalgebras of coronas. -/
+theorem finiteNormal_le_kernel_of_target_embeds
+    [Countable E] (C : KazhdanCompressionCore Γ E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal)
+    {H : Type*} [Group H] (rho : E →* H)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n))
+    (j : H →* NormMatrixCoronaUnitary X)
+    (hj : Function.Injective j) :
+    F ≤ rho.ker := by
+  intro f hf
+  have hcomp : f ∈ (j.comp rho).ker :=
+    C.finiteNormal_le_normMatrixCoronaKernel F hF X hX (j.comp rho) hf
+  apply MonoidHom.mem_ker.mpr
+  apply hj
+  simpa only [MonoidHom.coe_comp, Function.comp_apply, map_one] using
+    MonoidHom.mem_ker.mp hcomp
+
 /-- A nontrivial finite normal subgroup inside the compression defect rules
 out operator MF in the literal cofinite-corona sense. -/
 theorem not_isOperatorMF_of_finiteNormal_le_defect
