@@ -50,6 +50,15 @@ noncomputable def adjoint (a : RatGroupRing G) : RatGroupRing G :=
   ext g
   simp [adjoint]
 
+theorem adjoint_sum {I : Type*} [Fintype I]
+    (a : I → RatGroupRing G) :
+    adjoint (∑ i, a i) = ∑ i, adjoint (a i) := by
+  classical
+  induction (Finset.univ : Finset I) using Finset.induction_on with
+  | empty => simp
+  | insert i s hi ih =>
+      rw [Finset.sum_insert hi, Finset.sum_insert hi, adjoint_add, ih]
+
 @[simp] theorem adjoint_neg (a : RatGroupRing G) :
     adjoint (-a) = -adjoint a := by
   ext g
@@ -72,6 +81,37 @@ certificate can discharge its bounds by normalization of rational
 arithmetic after its finite supports have been exposed. -/
 noncomputable def l1 (a : RatGroupRing G) : ℚ :=
   a.coeff.sum fun _ q ↦ |q|
+
+@[simp] theorem l1_single (g : G) (q : ℚ) :
+    l1 (MonoidAlgebra.single g q) = |q| := by
+  classical
+  simp [l1]
+
+/-- Triangle inequality for the exact coefficient `ℓ1` norm. -/
+theorem l1_add_le (a b : RatGroupRing G) :
+    l1 (a + b) ≤ l1 a + l1 b := by
+  classical
+  let s := a.coeff.support ∪ b.coeff.support
+  unfold l1
+  rw [Finsupp.sum_of_support_subset (a + b).coeff (by
+        simpa [s] using Finsupp.support_add
+          (g₁ := a.coeff) (g₂ := b.coeff))
+      (fun _ q ↦ |q|) (by simp),
+    Finsupp.sum_of_support_subset a.coeff (Finset.subset_union_left)
+      (fun _ q ↦ |q|) (by simp),
+    Finsupp.sum_of_support_subset b.coeff (Finset.subset_union_right)
+      (fun _ q ↦ |q|) (by simp)]
+  simp only [MonoidAlgebra.coeff_add]
+  rw [← Finset.sum_add_distrib]
+  exact Finset.sum_le_sum fun g _ ↦ abs_add_le (a.coeff g) (b.coeff g)
+
+/-- A finite sum has `ℓ1` norm at most the sum of the individual norms. -/
+theorem l1_sum_le {I : Type*} [Fintype I]
+    (a : I → RatGroupRing G) :
+    l1 (∑ i, a i) ≤ ∑ i, l1 (a i) := by
+  classical
+  exact Finset.le_sum_of_subadditive l1 (by simp [l1]) l1_add_le
+    Finset.univ a
 
 /-- A real orthogonal representation, read as a monoid homomorphism into
 linear endomorphisms. -/

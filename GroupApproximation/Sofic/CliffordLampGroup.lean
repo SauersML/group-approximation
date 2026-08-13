@@ -100,6 +100,24 @@ theorem commutator_lamp_lamp {x y : X} (h : x ≠ y) :
     _ = 1 * sign X := by rw [h2]
     _ = sign X := one_mul _
 
+/-- **Derived Clifford phase.**  Commuting one lamp with the product of it
+and a distinct lamp gives the same central sign.  This is the algebraic
+identity used by the Kun--Thom phase lock: if the first commutator becomes
+`lamp x * lamp y`, then one more commutator with `lamp x` is exactly `sign`.
+-/
+theorem commutator_lamp_lamp_mul_lamp {x y : X} (h : x ≠ y) :
+    ⁅lamp X x, lamp X x * lamp X y⁆ = sign X := by
+  have hxx : lamp X x * lamp X x = 1 := by
+    simpa [pow_two] using lamp_sq X x
+  have hxinv : (lamp X x)⁻¹ = lamp X x :=
+    inv_eq_of_mul_eq_one_left hxx
+  calc
+    ⁅lamp X x, lamp X x * lamp X y⁆ = ⁅lamp X y, lamp X x⁆ := by
+      simp only [commutatorElement_def, mul_inv_rev, hxinv]
+      rw [← mul_assoc (lamp X x) (lamp X x) (lamp X y), hxx, one_mul]
+      simp only [mul_assoc]
+    _ = sign X := commutator_lamp_lamp X h.symm
+
 /-- The sign is central. -/
 theorem sign_commute (g : CliffordLamp X) : Commute (sign X) g := by
   have hmem : g ∈ Subgroup.centralizer {sign X} := by

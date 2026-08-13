@@ -1386,3 +1386,594 @@ condition at `1` can yield the required Hellinger gap.  A viable atomic
 argument must use additional noncentral/Pauli relations and control a
 larger regular Fourier window; the two compressor maps alone already admit
 the exact finite obstruction `(RPC78)--(RPC84)`.
+
+### 17.5 Exact finite atomic obstructions exist at every diagonal depth
+
+The four-atom model is not a low-depth accident.  At every prescribed
+binary depth there is an exactly two-compressor-invariant finite atomic
+measure whose Fourier transform is the regular character on the whole
+diagonal cylinder window at that depth.
+
+Let `D` be the diagonal cylinder subspace of the binary Leavitt algebra,
+with its standard basis projections
+
+\[
+ p_\mu=s_\mu t_\mu,
+ \qquad
+ p_\mu=p_{\mu0}+p_{\mu1}.
+ \tag{RPC85}
+\]
+
+Fix `r>=1`, let `B_r={0,1}^r`, and put
+
+\[
+ W_r=\mathbf F_2^{B_r}.
+ \tag{RPC86}
+\]
+
+For a word `mu` of length at most `r`, write `v_mu in W_r` for the
+indicator of the set of depth-`r` words beginning with `mu`.  Thus the
+vectors `v_mu`, `|mu|=r`, are the standard basis, and
+
+\[
+ v_\mu=v_{\mu0}+v_{\mu1}.
+ \tag{RPC87}
+\]
+
+Let `E_r` be the span of the `v_mu` with `|mu|=r-1`.  It has dimension
+`2^(r-1)`.  For `i=0,1`, the prescription
+
+\[
+ j_i(v_\mu)=v_{i\mu}
+ \qquad(|\mu|=r-1)
+ \tag{RPC88}
+\]
+
+defines an injective linear map `j_i:E_r->W_r`.  Extend it to an
+automorphism `A_i in GL(W_r)`.  Such an extension exists by completing a
+basis of `E_r` and its image.  If `v=v_emptyset` is the all-one vector,
+then `v in E_r` after expansion at depth `r-1`, and `(RPC88)` gives
+
+\[
+ A_0v=v_0,
+ \qquad A_1v=v_1,
+ \qquad v=A_0v+A_1v.
+ \tag{RPC89}
+\]
+
+More generally, if `mu=mu_1...mu_k` and `k<=r`, then
+
+\[
+ A_\mu v:=A_{\mu_1}\cdots A_{\mu_k}v=v_\mu.
+ \tag{RPC90}
+\]
+
+Indeed the rightmost maps successively create the suffix of `mu`, and each
+remaining `A_i` prefixes that suffix; every intermediate proper cylinder
+vector lies in `E_r` after expansion to depth `r-1`.
+
+Let the finite state space be the dual vector space `S_r=W_r^*`.  For
+`q in S_r`, define an `F_2`-linear functional on the diagonal cylinder
+algebra by
+
+\[
+ \ell_q(p_\mu)=q(A_\mu v).
+ \tag{RPC91}
+\]
+
+Equation `(RPC89)` implies
+
+\[
+ A_\mu v=A_\mu A_0v+A_\mu A_1v,
+ \tag{RPC92}
+\]
+
+so `(RPC91)` respects every refinement relation `(RPC85)` and is
+well-defined at all depths, including depths beyond `r`.  Put
+
+\[
+ \chi_q(a)=(-1)^{\ell_q(a)}.
+ \tag{RPC93}
+\]
+
+The dual automorphisms
+
+\[
+ P_i(q)=q\circ A_i
+ \tag{RPC94}
+\]
+
+permute `S_r`.  Since `alpha_i(p_mu)=p_(i mu)`, equations
+`(RPC90)--(RPC94)` give
+
+\[
+ \chi_q\circ\alpha_i=\chi_{P_i(q)}.
+ \tag{RPC95}
+\]
+
+Consequently the uniform atomic measure
+
+\[
+ \nu_r={1\over |S_r|}\sum_{q\in S_r}\delta_{\chi_q}
+ \tag{RPC96}
+\]
+
+is invariant under both dual compressor maps, exactly rather than
+asymptotically.
+
+Finally take a nonzero diagonal element in the depth-`r` window,
+
+\[
+ a=\sum_{|\mu|=r}c_\mu p_\mu\ne0.
+ \tag{RPC97}
+\]
+
+By `(RPC90)`, the vector paired with `q` in `ell_q(a)` is
+
+\[
+ \sum_{|\mu|=r}c_\mu A_\mu v
+ =\sum_{|\mu|=r}c_\mu v_\mu\ne0,
+ \tag{RPC98}
+\]
+
+because the depth-`r` cylinder vectors are a basis of `W_r`.  Exactly half
+of the functionals `q in W_r^*` take value one on this nonzero vector.
+Therefore
+
+\[
+ \int\chi(a)\,d\nu_r(\chi)=0
+ \qquad
+ (0\ne a\in\operatorname{span}\{p_\mu:|\mu|=r\}).
+ \tag{RPC99}
+\]
+
+Thus `nu_r` has the exact regular Fourier character on the entire
+`2^r`-dimensional diagonal root window while having zero two-compressor
+Hellinger displacement.  No argument using only the two corner-transfer
+maps and any fixed finite collection of diagonal root Fourier marginals can
+produce a positive gap: choose `r` large enough to contain that collection
+and use `(RPC96)--(RPC99)`.  A live character argument must therefore use
+genuinely off-diagonal coefficients or noncentral/Pauli relations.  Merely
+increasing the diagonal root depth is now closed.
+
+### 17.6 Local automorphism completion closes every additive-only window
+
+The preceding construction is a special case of a general finite-window
+lemma.  It closes not only diagonal cylinders but every argument which uses
+finitely many additive-root coefficients and only injective linear
+compressor covariance.
+
+**Lemma (finite-window automorphism completion).**  Let `V` be an
+`F_2`-vector space, let
+
+\[
+ \alpha_1,\ldots,\alpha_m:V\longrightarrow V
+ \tag{RPC100}
+\]
+
+be injective linear maps, let `K<=V` be finite-dimensional, and fix a word
+radius `r>=1`.  There are a finite-dimensional subspace `E<=V`,
+automorphisms `A_i in GL(E)`, and a linear projection `pi:V->E` with the
+following properties:
+
+1. `K<=E` and every `alpha_w(K)` with `|w|<=r` lies in `E`;
+2. if
+   \[
+    D=\operatorname{span}\{\alpha_w(K):|w|\le r-1\},
+    \tag{RPC101}
+   \]
+   then `A_i a=alpha_i(a)` for every `a in D`;
+3. `pi` is the identity on `E`.
+
+**Proof.**  Take
+
+\[
+ E=\operatorname{span}\{\alpha_w(K):|w|\le r\}.
+ \tag{RPC102}
+\]
+
+Each restriction `alpha_i|D:D->alpha_i(D)` is a linear isomorphism between
+two subspaces of `E`.  Complete a basis of `D` and its image to bases of
+`E`; the resulting basis bijection extends `alpha_i|D` to an automorphism
+`A_i` of `E`.  Finally extend a basis of `E` to one of `V` and let `pi` be
+the coordinate projection onto `E`.  This proves all three assertions.
+\(\square\)
+
+Let `S=E^*`.  For `q in S`, define a global additive character of `V` by
+
+\[
+ \chi_q(a)=(-1)^{q(\pi(a))}.
+ \tag{RPC103}
+\]
+
+The dual automorphisms
+
+\[
+ P_i(q)=q\circ A_i
+ \tag{RPC104}
+\]
+
+permute `S`.  For every `a in D`, `(RPC100)--(RPC104)` give the exact local
+covariance identity
+
+\[
+ \chi_q(\alpha_i(a))=\chi_{P_i(q)}(a).
+ \tag{RPC105}
+\]
+
+Moreover the uniform measure
+
+\[
+ \nu={1\over|E^*|}\sum_{q\in E^*}\delta_{\chi_q}
+ \tag{RPC106}
+\]
+
+is invariant under every `P_i`, and for every nonzero `a in E`,
+
+\[
+ \int\chi(a)\,d\nu(\chi)=0.
+ \tag{RPC107}
+\]
+
+The last equality is just orthogonality of the characters of the finite
+additive group `E`: a nonzero vector is detected by exactly half of `E^*`.
+
+Apply the lemma to `V=(L,+)` and the corner maps
+`alpha_i(a)=s_iat_i`.  On any prescribed finite coefficient window,
+`(RPC105)` supplies exact compressor transport while `(RPC107)` supplies
+the full regular root character.  The permutations `P_i` can be implemented
+by genuine permutation unitaries on `ell^2(E^*)`, so this is an exact finite
+matrix model of all additive and covariance data in that window.
+
+Consequently no dimension-free contradiction can use only:
+
+* finite additive root subgroups;
+* regular Fourier multiplicities on those subgroups; and
+* covariance under finitely many injective linear coefficient maps.
+
+This remains true for arbitrary finite windows and arbitrary finite word
+radius.  A successful atlas obstruction must use relations which are not
+contained in that linear-covariance language: for example Steinberg
+commutators coupling coefficient multiplication, cross-root Pauli blocks,
+or the raw second-chart relations which mix such blocks.  This is the exact
+reason the next live calculation is noncentral/Pauli coefficient extraction,
+not a larger additive Fourier decomposition.
+
+## 18. Three multiplicative relations suffice: no additive extraction is needed
+
+The original coefficient target `(RPC23)` asks for the additive relation
+
+\[
+ Y_0X_0+Y_1X_1=I.
+ \tag{RPC108}
+\]
+
+That is unnecessarily strong.  The cross relation `t_0s_1=0`, together
+with the two inverse relations `t_is_i=1`, already has a dimension-free
+matrix obstruction.  Crucially, all three are multiplicative coefficient
+identities and can in principle be read from Steinberg commutators; no
+source of operator addition has to be extracted from a group microstate.
+
+**Lemma (three-product contraction gap).**  Let `T_0,S_0,T_1,S_1` be
+contractions in a finite matrix algebra with normalized trace and normalized
+Hilbert--Schmidt norm.  Then
+
+\[
+ \boxed{
+ \max\bigl\{
+ \|T_0S_0-I\|_2,
+ \|T_1S_1-I\|_2,
+ \|T_0S_1\|_2
+ \bigr\}\ge 2-\sqrt3>{1\over4}.}
+ \tag{RPC109}
+\]
+
+**Proof.**  Let the maximum in `(RPC109)` be `epsilon` and suppose
+`epsilon<2-sqrt(3)`.  For any two contractions `A,B`, positivity of the two
+Gram deficiencies gives
+
+\[
+ 0\le\operatorname{Re}\operatorname{tr}
+ ((I-A^*A)(I-BB^*)),
+ \qquad
+ \|AB\|_2^2\ge\|A\|_2^2+\|B\|_2^2-1.
+ \tag{RPC110}
+\]
+
+The two approximate right inverses and normalized-trace Cauchy--Schwarz give
+
+\[
+ \begin{aligned}
+ 1-\varepsilon
+ &\le|\operatorname{tr}(T_0S_0)|
+ \le\|T_0\|_2\|S_0\|_2\le\|T_0\|_2,\\
+ 1-\varepsilon
+ &\le|\operatorname{tr}(T_1S_1)|
+ \le\|T_1\|_2\|S_1\|_2\le\|S_1\|_2.
+ \end{aligned}
+ \tag{RPC111}
+\]
+
+Apply `(RPC110)` to `A=T_0` and `B=S_1`.  Then
+
+\[
+ \varepsilon^2\ge\|T_0S_1\|_2^2
+ \ge2(1-\varepsilon)^2-1.
+ \tag{RPC112}
+\]
+
+Equivalently,
+
+\[
+ \varepsilon^2-4\varepsilon+1\le0.
+ \tag{RPC113}
+\]
+
+The smaller root is `2-sqrt(3)` and the larger root exceeds one.  This
+contradicts the assumption and proves `(RPC109)`.  The complete finite-matrix
+argument, including the operator-norm-to-Hilbert--Schmidt multiplication
+bound and positivity calculation, is formalized in
+`GroupApproximation/Sofic/LeavittTraceFloor.lean` as
+`two_sub_sqrt_three_le_of_leavitt_product_defects`; its rational corollary is
+`one_fourth_le_of_leavitt_product_defects`. \(\square\)
+
+This replaces `(RPC23)` by the strictly smaller extraction target:
+
+> **Multiplicative Pauli-coefficient extraction.**  From a canonical
+> regular-margin atlas microstate of defect `delta`, extract four
+> contractions `T_0,S_0,T_1,S_1` in one finite multiplicity corner such
+> that
+> \[
+>  \max\{\|T_0S_0-I\|_2,\|T_1S_1-I\|_2,
+>          \|T_0S_1\|_2\}
+>  \le C\delta^c
+>  \tag{RPC116}
+> \]
+> with `C,c>0` independent of the multiplicity.
+
+Equations `(RPC109)` and `(RPC116)` give the uniform atlas defect floor
+
+\[
+ \delta\ge\left({2-\sqrt3\over C}\right)^{1/c}.
+ \tag{RPC117}
+\]
+
+The three target identities are precisely
+
+\[
+ t_0s_0=1,
+ \qquad t_1s_1=1,
+ \qquad t_0s_1=0.
+ \tag{RPC118}
+\]
+
+At the group level their products occur in the fixed Steinberg packet
+
+\[
+ [x_{12}(t_i),x_{23}(s_j)]=x_{13}(t_is_j),
+ \tag{RPC119}
+\]
+
+so the two inverse cases land in `x_13(1)` and the cross case is the
+identity.  These commutator relations alone only encode the finite
+Heisenberg pairing and do not yet manufacture the coefficient contractions;
+compressor covariance and Pauli block disintegration are still required.
+But the former additivity gate is gone: once those four contraction blocks
+are identified, no reconstruction of `s_0t_0+s_1t_1=1`, no partial trace
+implementing a sum, and no full Leavitt family is necessary.
+
+The sharp next theorem is therefore `(RPC116)`, derived from the raw
+compressor and adjacent-root relations in one coherent Pauli gauge.  This is
+strictly weaker than `(RPC23)`, `(RPC23a)`, cross-orthogonality of two full
+columns, or the four-step flag theorem `(RPC42)`.
+
+## 19. The multiplicative commutator packet has an exact regular Pauli model
+
+The fact that `(RPC119)` mentions all three desired coefficient products
+does not by itself make it a coefficient extraction.  There is an exact
+finite model which gives the complete packet its regular trace and in which
+the products are only Weyl commutation signs.
+
+Let `E` be the extraspecial two-qubit group
+
+\[
+ \begin{split}
+ E=\langle X_0,X_1,Z_0,Z_1,c\mid {}&c^2=X_i^2=Z_j^2=1,
+ \quad c\text{ central},\\
+ &[X_i,X_j]=[Z_i,Z_j]=1,
+ \quad [X_i,Z_j]=c^{\delta_{ij}}\rangle .
+ \end{split}
+ \tag{RPC120}
+\]
+
+It has order `32`.  In its left regular representation put
+
+\[
+ x_{12}(t_i)\longmapsto\lambda_E(X_i),\qquad
+ x_{23}(s_j)\longmapsto\lambda_E(Z_j),\qquad
+ x_{13}(1)\longmapsto\lambda_E(c),\qquad
+ x_{13}(0)\longmapsto I.
+ \tag{RPC121}
+\]
+
+Then every relation in `(RPC119)` is exact:
+
+\[
+ [\lambda_E(X_i),\lambda_E(Z_j)]
+   =\lambda_E(c)^{\delta_{ij}}.
+ \tag{RPC122}
+\]
+
+Moreover the normalized trace of `lambda_E(g)` is zero for every
+`g!=1`.  Thus `(RPC121)` has the strongest possible finite regular margin;
+it is not a low-trace or trivial-sector escape.
+
+The representation-theoretic meaning is transparent.  On the `c=-1`
+sector, the regular representation is
+
+\[
+ \mathbf C^4\otimes\mathbf C^4,
+ \tag{RPC123}
+\]
+
+with `X_0,X_1,Z_0,Z_1` acting as the standard two-qubit Pauli matrices on
+the first factor and trivially on the multiplicity factor.  The equations
+`t_is_j=delta_ij` have therefore become a nondegenerate symplectic pairing
+of four labels, not products of four operators on the second factor.  In
+particular, no basis-free operation using only `(RPC119)` can produce the
+four contractions in `(RPC116)`: applying it to `(RPC121)` would contradict
+the exact gap `(RPC109)`.
+
+This gives a stricter stopping rule than the qualification after
+`(RPC119)`.  A successful extraction proof must exhibit a named relation
+involving a raw compressor (or an equivalent cross-chart word) whose Pauli
+block action is **not** already an automorphism of the finite symplectic
+label space `(RPC120)`.  Adding Clifford normalizers of `(RPC120)` does not
+help: the semidirect product of `E` by any finite group of symplectic label
+automorphisms again supplies an exact finite regular model.
+
+There is also a precise fiber mismatch behind this countermodel.  For an
+additive functional `ell:R->F_2`, let
+
+\[
+ \ell_i(a)=\ell(s_iat_i).
+ \tag{RPC124}
+\]
+
+The dual map `ell |-> ell_i` is many-to-one because the corner map is
+injective and proper.  Compressor covariance therefore relates the source
+spectral data at `ell_i` to the direct sum of all target fibers extending it;
+it does not canonically carry one target fiber `ell` onto one source fiber.
+Algebraically, right multiplication by the Leavitt generators acts on the
+infinite radical quotient `V_ell` from `(RPC29)`.  A finite Pauli truncation
+sees only arrows among the extension fibers, however.  The identities
+`t_is_j=delta_ij` compose their Weyl signs correctly, but do not turn the
+arrows into four endomorphisms of one finite multiplicity space.  That
+identification is exactly what `(RPC116)` needs.
+
+Consequently the remaining analytic statement can be sharpened once more:
+
+> **Fiber-identification gate.**  Use a fixed raw-compressor/adjacent-root
+> packet to resolve, with dimension-independent normalized-Hilbert--Schmidt
+> loss, the extension fibers of the two proper dual maps
+> `ell |-> ell_0,ell_1`, in a way which carries the four radical-quotient
+> arrows to contractions on one finite tracial multiplicity algebra.
+
+After this gate, `(RPC118)` gives `(RPC116)` and `(RPC109)` finishes the
+argument.  Before this gate, the exact regular model `(RPC120)--(RPC123)`
+shows that the Steinberg commutators contain no hidden matrix-product
+contradiction.
+
+## 20. The correct invariant is a pair of radical quotients
+
+There is a basis-free algebraic form of the four missing arrows.  For an
+additive functional `ell:R->F_2`, retain the bilinear form
+
+\[
+ b_\ell(a,b)=\ell(ab)
+ \tag{RPC125}
+\]
+
+and define its two radicals
+
+\[
+ L_\ell=\{a:b_\ell(a,R)=0\},\qquad
+ R_\ell=\{b:b_\ell(R,b)=0\}.
+ \tag{RPC126}
+\]
+
+The left radical is a right ideal and the right radical is a left ideal.
+Consequently right multiplication by `t_i` descends to
+`V_ell=R/L_ell`, while left multiplication by `s_j` descends to
+`W_ell=R/R_ell`.  The multiplicative Leavitt relations give the exact
+biorthogonality identity
+
+\[
+ b_\ell(a t_i,s_j b)
+   =\ell(a(t_i s_j)b)
+   =\delta_{ij}b_\ell(a,b).
+ \tag{RPC127}
+\]
+
+This gives a shorter proof of the infinite-rank statement `(RPC27)`, using
+only the multiplicative relations.  If `(RPC125)` had finite nonzero rank,
+the induced pairing `V_ell x W_ell->F_2` would be nondegenerate between two
+finite spaces of the same dimension.  The diagonal cases of `(RPC127)` make
+right multiplication by `t_0` on `V_ell` and left multiplication by `s_1`
+on `W_ell` injective, hence bijective.  The cross case then makes the pairing
+zero: for arbitrary `x,y`, write `x=a t_0` and `y=s_1b`, and obtain
+`b_ell(x,y)=0`.  This contradicts nondegeneracy (and `ell(1)=1`).
+
+The analytic endpoint should therefore not be phrased as recovering ring
+elements from arbitrary blocks.  There is one further Fourier qualification.
+If `V,W` are finite `F_2`-spaces with a perfect pairing `b`, the matrix of
+`b` in linear bases is invertible over `F_2`, but it is **not** a complex
+unitary.  The canonical complex unitary is the normalized Fourier transform
+
+\[
+ (\mathcal F_b)_{v,w}=|V|^{-1/2}(-1)^{b(v,w)}
+ \quad(v\in V,w\in W).
+ \tag{RPC127a}
+\]
+
+For linear arrows `R,L`, the identity `b(Rv,Lw)=b(v,w)` becomes the desired
+intertwining identity for their permutation operators.  But
+`b(Rv,Lw)=0` gives the constant Fourier kernel, a rank-one operator, rather
+than zero.  It vanishes only after deleting the trivial mode: on the source
+remove the constant vector, and on the target remove the delta mass at zero.
+The Fourier transform restricts to a unitary between these two codimension-one
+spaces, which are invariant under permutation operators induced by bijective
+linear arrows.
+
+This exact observation introduces two analytic obligations.  Approximate
+arrows must be made near-bijective before their pullback operators are
+contractions for uniform counting measure, and the two trivial modes must be
+removed with asymptotically invariant projections.  Algebraic
+nondegeneracy supplies neither assertion quantitatively.
+
+> **Robust radical-quotient gate.**  From a canonical regular-margin atlas
+> microstate, construct equally dimensional, canonically traced finite
+> multiplicity spaces `V_n,W_n`, contractions `R_i` on `V_n` and `L_j` on
+> `W_n`, and a reduced Fourier unitary `U_n:W_n->V_n` such that
+> \[
+>  \|R_0^*U_nL_0-U_n\|_2,
+>  \quad \|R_1^*U_nL_1-U_n\|_2,
+>  \quad \|R_0^*U_nL_1\|_2
+>  \le C\delta^c.
+>  \tag{RPC128}
+> \]
+
+Right multiplication in `(RPC128)` by `U_n^*` preserves normalized
+Hilbert--Schmidt norm.  Thus
+
+\[
+ T_i=R_i^*,\qquad S_j=U_nL_jU_n^*
+ \tag{RPC129}
+\]
+
+are contractions satisfying `(RPC116)`, and
+`two_sub_sqrt_three_le_max_leavitt_product_hsNorm` supplies the uniform gap.
+
+Here `V_n,W_n` denote the reduced complex Fourier spaces, not the original
+`F_2` radical quotients.  The word **unitary** in this gate is essential.  An arbitrary invertible, or
+merely ``quantitatively nondegenerate'', pairing matrix `J_n` does not give a
+dimension-free reduction: conjugation by `J_n` magnifies errors by its
+condition number, which can diverge with the microstate dimension.  A
+singular-value truncation is an acceptable alternative only if one proves
+all three missing estimates: a uniform lower singular-value bound on the
+retained sector, asymptotic invariance of that sector under all four arrows,
+and positive normalized tracial mass of the sector.  None of those estimates
+follows from algebraic nondegeneracy alone.  In the expected Pauli
+disintegration the normalized Fourier pairing is unitary, so the live task is
+to show that the raw compressor preserves the reduced flat pairing while
+resolving its extension fibers, makes the induced arrows near-bijective, and
+controls leakage through the two removed trivial modes.  This corrected
+formulation is gauge-invariant and does not hide a condition-number or
+rank-one-mode assumption.
+
+It also pinpoints why the finite Pauli model `(RPC120)` is harmless.  That
+model realizes one nondegenerate pairing table, but it contains no
+well-defined endomorphisms induced simultaneously by the four coefficient
+multiplications.  The raw compressor identities must manufacture precisely
+those quotient arrows and control leakage through the finite radicals.  No
+additional additive relation is needed.

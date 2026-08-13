@@ -810,8 +810,8 @@ The logical computational chain is much smaller:
 - Finite enumerations and matrix identities inside Lean are proved by kernel-
   checked terms and ordinary tactics. The audit rejects `sorry`, project
   axioms, and compiler-trust shortcuts for the completed endpoint.
-- Builds and audits were run on the Minnesota Supercomputing Institute warm
-  cache. Commit messages repeatedly record green full builds and axiom scans.
+- Builds and audits were run on a remote cluster with a warm cache.  Commit
+  messages repeatedly record green full builds and axiom scans.
 - CI checks the TeX-to-Lean anchors, TeX convergence, references, overflow,
   rendering, PDF validity, and anonymous-build leakage.
 

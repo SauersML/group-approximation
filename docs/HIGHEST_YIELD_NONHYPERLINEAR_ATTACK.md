@@ -105,6 +105,64 @@ contradiction.  This quiver formulation is the gauge-free version of the
 finite gauge-index theorem: search for invariant arrow-rank identities, not
 for zero entries of one arbitrarily gauged `20160`-by-`20160` block matrix.
 
+The multiplicative success condition is now smaller than full Leavitt-family
+or two-column reconstruction.  If four extracted coefficient blocks are
+contractions and approximately satisfy
+
+```text
+T_0 S_0 = 1,     T_1 S_1 = 1,     T_0 S_1 = 0,
+```
+
+then their maximum normalized-HS defect is at least `2-sqrt(3)>1/4`, uniformly
+in the matrix size.  The proof uses only trace Cauchy--Schwarz, positivity of
+Gram deficiencies, and the fact that an approximate right inverse makes a
+contraction almost full-rank.  It is formalized in
+`Sofic/LeavittTraceFloor.lean`.  Thus the
+additive relation `S_0T_0+S_1T_1=1` need not be extracted at all.  The live
+Pauli calculation should target these three products, which occur in the
+Steinberg commutators
+`[x_12(t_i),x_23(s_j)]=x_13(t_i s_j)`.  See
+`(RPC108)--(RPC119)`.
+
+Do not treat that commutator packet as the extraction itself.  The
+extraspecial group of order `32` has a left-regular two-qubit Pauli model in
+which the four commutators give exactly the table `delta_ij` and every
+nonidentity packet element has trace zero.  On its negative central sector
+the labels act on the Pauli factor and do nothing on the multiplicity
+factor.  Thus the missing step is specifically a raw-compressor relation
+which resolves the many-to-one extension fibers of the dual corner maps
+`ell |-> ell o (a |-> s_i a t_i)` and turns the resulting arrows into
+endomorphisms of one finite multiplicity space.  Finite Clifford normalizers
+of the Pauli packet remain exact countermodels.  See `(RPC120)--(RPC124)`.
+
+The gauge-free target can be stated exactly in terms of the pairing
+`b_ell(a,b)=ell(ab)`.  Its left radical is a right ideal and its right
+radical is a left ideal, so `a|->a t_i` and `b|->s_jb` act on the two radical
+quotients.  They satisfy
+`b_ell(a t_i,s_j b)=delta_ij b_ell(a,b)`.  On finite nondegenerate quotients
+the two diagonal identities make the relevant arrows bijective, while the
+cross identity makes the whole pairing zero.  Thus the live analytic theorem
+is a robust radical-quotient extraction from the raw compressor packet, not
+an arbitrary choice of regular-chart coefficients.  The analytic pairing
+must be unitary (Fourier-flat), not merely invertible: an uncontrolled
+condition number destroys any dimension-free defect estimate.  With a
+unitary pairing `U`, the three desired defects are
+`R_0^* U L_0-U`, `R_1^* U L_1-U`, and `R_0^* U L_1`; multiplying on the right
+by `U^*` gives the contraction packet formalized by the `2-sqrt(3)` gap.  A
+spectral truncation may replace flatness only after proving uniform lower
+singular-value, arrow-invariance, and positive-trace estimates.  See
+`(RPC125)--(RPC129)`.
+
+The unitary here is the normalized Fourier transform of the perfect
+`F_2`-pairing, not its `0/1` bilinear-form matrix.  The cross identity gives a
+rank-one constant Fourier kernel; it becomes zero only on the reduced Fourier
+spaces obtained by deleting the constant source mode and the target delta
+mass at zero.  Consequently the extraction must additionally prove that the
+approximate coefficient arrows are near-bijective and that these
+codimension-one modes can be removed with negligible invariant leakage.
+Treating algebraic nondegeneracy as a complex unitary, or treating the cross
+kernel as literally zero before this reduction, is invalid.
+
 A gauge-free variant is now equally high priority: exactify a finite binary
 root subgroup and track its atomic character multiplicities.  The correct
 vector is the square root of the multiplicity distribution, so property
@@ -138,6 +196,20 @@ weighted-Hall-balanced.  The first meaningful support calculation must
 include block coefficients of the raw second compressor and adjacent
 noncentral roots, which are the only displayed relations coupling the two
 subtrees after disintegration.
+
+The same closure now holds for atomic Hellinger arguments on every finite
+additive coefficient window, not merely at every diagonal depth.  Given a
+finite-dimensional `K<=(L,+)` and a finite word radius, take the span of
+its orbit under the injective maps `a|->s_iat_i`.  Each partially defined
+corner injection extends by basis completion to an automorphism of that
+finite span.  Averaging over the dual gives an exact finite atomic model
+with regular Fourier character on the entire window and exact local
+compressor covariance.  Therefore no fixed package consisting only of
+additive root moments and injective linear compressor transport can yield a
+Hellinger gap.  Increasing root depth or adding more additive coefficients
+is dead work; the next calculation must use coefficient multiplication,
+cross-root commutators, or noncentral/Pauli relations.  See
+`(RPC85)--(RPC107)`.
 
 The best independent fallback is:
 
@@ -257,6 +329,15 @@ Neither barrier rules out the target above.  It is nonuniform, may be enormous,
 and concerns one specially chosen non-CE algebra.  We should therefore avoid
 trying to repair the noisy long-code test and instead test direct algebraic
 linearizability of this single instance.
+
+There is now also an exact mask-distribution no-go.  Perfect completeness
+forces the mask to equal `1` on the support of the honest assignment PVM, so
+the Fourier coefficients supported there are completely undamped.  Putting
+noise only outside that support leaves a decoder of size at most the source
+projection game's random-guessing floor; adding a correction answer accepts
+all high-degree Fourier characters exactly.  See
+`FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md`.  Thus the missing theorem cannot
+come from retuning the noise or adding one more linear mask variable.
 
 ## First decisive gates
 

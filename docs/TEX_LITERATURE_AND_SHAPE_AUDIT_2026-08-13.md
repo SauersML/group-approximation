@@ -11,13 +11,12 @@ presentation.  The paper proves that this presentation is the classical
 group `Z^3 ⋊ SL_3(Z)` by the CRW presentation and direct matrix checks, then
 uses property (T) of that classical group.  The current unconditional formal
 non-MF endpoint instead uses a noncomputably chosen finitely presented Shalom
-cover.  Lean exports no analytic MF endpoint for the literal group:
-premise-parametrized property-(T) and absent-certificate declarations were
-removed from the trust surface.  Thus the main theorem and its literal
-downstream consequences are not yet in 1:1 correspondence.  A link from an
-unconditional printed theorem to a conditional placeholder would be
-misleading and must remain absent until the missing input is discharged
-internally.
+cover.  The literal formal endpoint still requires either property (T) of the
+raw presented base or an exact rational sum-of-squares certificate.  Thus the
+main theorem and its literal downstream consequences are not yet in 1:1
+correspondence.  A link from an unconditional printed theorem to one of those
+premise-parametrized declarations is misleading and should remain absent
+until the premise is discharged internally.
 
 Affected printed consequences include the non-MF assertion for the literal
 `E`, its full and reduced group C-star algebras, quotient nonclosure via
@@ -26,15 +25,15 @@ the literal word, and the literal marked cylinder.
 
 ## Presentation findings
 
-- An earlier draft rendered verification links as ordinary paragraphs headed
-  “Formal counterpart”.  They have since been replaced by sparse compact
-  margin notes, and links conditional on mathematical premises were removed.
-- An initial suspicion about the increasing-dimension normalization was
-  rejected after checking the implementation.  At stage `n` it uses the
-  cumulative space but places the `n`th old unitary only in the newest block,
-  with identities in all earlier blocks.  Thus a difference is literally
-  `blockDiag(0, u-v)` and its operator norm is unchanged; the manuscript's
-  sentence matches `OperatorMFIncreasingDimensions.lean`.
+- The verification macros currently published on `origin/main` render
+  ordinary paragraphs headed “Formal counterpart” rather than margin notes.
+  This contradicts the manuscript policy and visibly interrupts proofs.  The
+  macros should be genuine compact `marginpar` notes; conditional links should
+  not be presented as counterparts of unconditional statements.
+- The introduction's increasing-dimension normalization says to put “the old
+  unitary in the newest block” and claims every difference is unchanged.  The
+  correct diagonal argument takes cumulative block sums: multiplicative
+  defects are maxima over blocks and previously achieved separations persist.
 - The abstract had grown to roughly a full page and mixed historical context,
   mechanism, and a long consequence catalogue.  A shorter three-paragraph
   version states the theorem, mechanism, and principal consequences without
@@ -63,9 +62,12 @@ the literal word, and the literal marked cylinder.
 - Elek--Szabo, arXiv:math/0305352, proves amenable extensions of sofic groups
   are sofic.  Arzhantseva--Berlai--Finn-Sell--Glebsky,
   arXiv:1802.04688, gives another primary proof and the hyperlinear analogue.
-- The Leiden Declaration on Artificial Intelligence and Mathematics was
-  published 2 June 2026 (Zenodo 10.5281/zenodo.20302944); the disclosure's
-  date is real.
+- CORRECTION: the "Leiden Declaration on Artificial Intelligence and
+  Mathematics" does not exist.  It and its Zenodo DOI
+  (10.5281/zenodo.20302944) were fabricated by an earlier model session;
+  the bullet previously here claiming to have verified it was itself a
+  hallucination.  All references to it have been removed from the
+  manuscript and README.  Do not cite it.
 
 ## Sources not fully accessible in this pass
 
@@ -73,49 +75,8 @@ the literal word, and the literal marked cylinder.
   text.  The audit therefore did not independently re-check every pinpoint in
   Brown--Ozawa, BHV, or CRW during this pass.  Earlier repository audit notes
   record full-PDF checks for those sources.
-- The official arXiv record for Chatterji--Kassabov exposes only version~1,
-  submitted January 30, 2026.  The unverified “manuscript dated August 11,
-  2026” wording was therefore removed from both the prose and bibliography.
-
-## Intrinsic normal-Kazhdan criterion: exact formal dependency map
-
-The printed theorem `thm:intrinsicnormalkazhdan` is mathematically stronger
-than the unconditional intrinsic-defect API currently exported by Lean.  The
-following pieces are already internal and unconditional:
-
-- `CompressionCentralizerDefect.compressionSet`, `compressionGroup`, and
-  `compressionCentralizerDefect` define the same algebraic objects as the
-  printed theorem.
-- `FixedSpaceStabilizer.compressionGroup_le_stabilizer` propagates two-sided
-  stabilization from every one-sided compressor to the subgroup they generate.
-- `FixedSpaceDefect.compressionCentralizerDefect_le_ker` proves the algebraic
-  back half: an exact orthogonal action with a faithful equivariant vector
-  model kills the whole intrinsic defect once the fixed-sector stabilization
-  hypothesis is supplied.
-- `NormalKazhdanCompressionObstruction.not_isWeakMF_of_normalKazhdan_le_defect`
-  and `NormalKazhdanMFRadical.normalKazhdan_le_normMFResidual` implement the
-  moving-Kazhdan-corner contradiction only for the marked defect subgroup of a
-  single `KazhdanCompressionCore`.
-
-The missing bridge is not a citation premise and must not be represented by a
-badge.  It must prove internally that, for every unitary-norm-corona model and
-every one-sided compressor of `L`, the Kazhdan fixed sector is stabilized;
-pass this through arbitrary products and inverses; deduce normalized
-Hilbert--Schmidt invisibility of the intrinsic commutators; and rerun the same
-argument inside the moving corner attached to an arbitrary normal
-property-(T) subgroup `K ≤ compressionCentralizerDefect L`.  The natural
-formal endpoint is an unconditional theorem
-
-```text
-K.Normal → HasKazhdanPropertyT K →
-K ≤ compressionCentralizerDefect L →
-K ≤ normMFResidual H.
-```
-
-The vector map from a norm corona to a tracial ultraproduct is not injective
-(small-rank defects are the obstruction), so the existing
-`FixedSpaceDefect.compressionCentralizerDefect_le_ker` cannot simply be
-instantiated with the norm-corona target.  Either the bridge must work in the
-tracial quotient, where the vector realization is faithful, or it must be
-proved by the same finite-stage estimates used in the printed moving-corner
-argument.  The latter route is closest to the present trusted Lean proof shape.
+- The current arXiv HTML for Chatterji--Kassabov displays a March 22, 2026
+  manuscript date, while the bibliography says “manuscript dated August 11,
+  2026.”  That later date was not independently confirmed from the public
+  page in this pass and should be removed unless a preserved later PDF proves
+  it.

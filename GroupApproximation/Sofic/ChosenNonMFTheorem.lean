@@ -46,10 +46,12 @@ theorem chosenFinitelyPresented_not_isWeakMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsWeakMF MarkedGroup :=
   ⟨inferInstance, normCertificate.not_isWeakMF⟩
 
-/-- **Closed operator-MF counterexample.**  The finitely presented
+/-- **Unconditional operator-MF counterexample.**  The finitely presented
 Shalom-cover marked-compression group is not MF in the standard cofinite
 norm-matrix-corona sense.  This theorem has no mathematical premise; all
-load-bearing construction and rigidity theorems are proved in-repository. -/
+load-bearing construction and rigidity theorems are proved in-repository.
+("Unconditional" refers to the absence of premises, not to any topological
+closedness.) -/
 theorem chosenFinitelyPresented_not_isOperatorMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsOperatorMF MarkedGroup :=
   ⟨inferInstance, inclusionData.not_isOperatorMF inclusionData_word_ne_one⟩

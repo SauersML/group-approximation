@@ -4,6 +4,161 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: double-Clifford cancellation for the Kun--Thom group
+
+`TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md` proves that two identical
+Clifford systems cancel their fermionic signs: `a_x=c_x tensor c_x` are
+commuting independent Haar lamps. Hence the full Kun--Thom Bernoulli crossed
+product embeds trace preservingly in the diagonal tensor-square Clifford
+crossed product. CE of one permutation-Clifford crossed product already
+makes the explicit Kun--Thom nonsofic wreath product hyperlinear. The exact
+remaining gate is coherent Bogoliubov innerness; tensor squaring cancels the
+spin cocycle but not finite-mode permutation defects.
+
+### 2026-08-13: local BCS spectral exclusion cannot be groupified
+
+The restriction of a group's regular representation to any finite subgroup
+is a sum of regular representations. Hence every character of a commuting
+involution subgroup occurs with positive canonical trace, including in any
+compatible finite central-character corner. A local group gadget cannot
+forbid an arbitrary Boolean assignment without algebraically collapsing the
+subgroup; for commuting involutions the resulting constraints are affine.
+See `FALSE_LOCAL_BCS_SPECTRAL_EXCLUSION_BY_GROUP_RELATIONS.md`.
+
+### 2026-08-13: mixed-gap/sparse-kernel Iwahori dichotomy
+
+Projecting the identity matrix onto the exact mixed edge-intertwiner space
+gives a quantitative dichotomy. If the mixed Laplacian gap collapses, the
+remaining obstruction is an almost-invariant vector for the virtually-free
+edge. If the gap stays above `kappa`, polar decomposition exactly matches
+the two edge representations off invariant kernel/cokernel spaces of
+relative dimension at most `delta^2/kappa`. A negative sequence must then
+carry a sparse restriction-semiring mismatch which cannot be extended
+through the two index-three vertices. See
+`TRUE_IWAHORI_MIXED_GAP_DICHOTOMY.md`.
+
+### 2026-08-13: three-player XOR has the same completeness gate
+
+Vidick's earlier three-player XOR reduction does not avoid the LCS
+perfect-completeness problem. Its honest strategy wins with probability
+exactly `1-epsilon`, while the soundness extraction is proportional to
+`epsilon^3`; setting the noise to zero makes soundness vacuous. See
+`FALSE_THREE_PLAYER_XOR_PERFECT_COMPLETENESS.md`.
+
+### 2026-08-13: algebraic-Haar transfer criterion
+
+If a non-CE p.m.p. action can be realized as an action by automorphisms of a
+compact abelian group with Haar measure, Fourier transform identifies its
+crossed product with the group factor of a discrete semidirect product.
+That semidirect product is then nonhyperlinear. Manzoor's non-co-hyperlinear
+IRS does not yet meet this criterion: its GNS trace records stabilizer
+probabilities, its compact realization carries an arbitrary invariant
+measure, and isotropy is essential. See
+`ALGEBRAIC_HAAR_NONCE_TO_NONHYPERLINEAR.md`.
+
+For Manzoor's free group this route is actually impossible: a Haar
+algebraic action has crossed product `L(A semidirect F_r)` with `A`
+abelian, and `A semidirect F_r` is sofic by amenable-kernel extension
+closure. Thus its group factor is CE and cannot contain the non-CE IRS
+algebra trace-preservingly.
+
+### 2026-08-13: robust spectral gap does not repair the Iwahori edge
+
+The natural attempt to apply Dogon--Vigdorovich's robust spectral-gap
+theorem to the approximate Iwahori intertwiner is circular. The mixed
+left--right action is an exact representation only of the virtually-free
+edge group, which has no uniform spectral gap. The ambient adjoint
+almost-representation fixes the scalar identity vector tautologically, so
+its robust spectral gap does not produce an edge intertwiner. Moreover the
+Hilbert--Schmidt robust theorem only removes middle spectral mass and does
+not open an exact kernel. The remaining theorem must directly control the
+mixed edge action or the explicit high-dimensional flag coordinates. See
+`FALSE_ROBUST_T_IWAHORI_EDGE_REPAIR.md`.
+
+### 2026-08-13: the literal non-MF mark is sofic- and CE-visible
+
+The marked word in the explicit ascending-HNN non-MF group does not lie in
+the hyperlinear radical.  The finite tower
+
+```text
+X_n=Gamma/beta^n(Gamma)
+```
+
+supports a tracial Clifford crossed product which is an increasing union of
+Connes-embeddable finite-level crossed products.  The doubling injection
+extends to a trace-preserving endomorphism; its automorphic dilation and the
+crossed product by `Z` remain CE.  With the stable-letter implementer `U`,
+the assignment
+
+```text
+c=U^* C_(beta(Gamma)) U
+```
+
+represents every literal defining relation and sends
+
+```text
+w=[t c t^(-1),a t c t^(-1) a^(-1)]
+```
+
+to the scalar `-1`.  Therefore
+
+```text
+w in Rad_MF(E) minus (Rad_hyp(E) union Rad_sof(E)).
+```
+
+The extra sofic detector comes from the group-level tower.  Each finite-level
+Clifford semidirect product is a finite extension of `Gamma`; their directed
+union is sofic, its automorphic direct limit is sofic, and the final quotient
+is the amenable group `Z`.  The literal map sends `w` to the surviving
+central Clifford sign.  This is a genuine operator-norm versus sofic/tracial
+radical separation, but it is not a hyperlinear-nonsofic group because the
+marked word is specifically not in the sofic radical.  In particular the
+exact `M_16` spin block in the negative corner is real but cannot close a
+contradiction; the CE model realizes that block exactly.  Full proof and scope:
+`docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md`.
+
+The detecting image is a finitely generated sofic non-MF group.  Embedding it
+in a countable simple sofic group by Elek--Szabó and using portability makes
+the entire MF radical of that simple group equal to the group.  This is a
+strong operator-norm/tracial separation, but the envelope is still sofic.
+The complementary collision remains the exact universal target:
+
+```text
+x in Rad_sof(H) but x notin Rad_hyp(H).
+```
+
+The Lean theorem
+`not_soficResidual_le_hyperlinearResidual_of_detector` records this
+noncontainment, and
+`hyperlinear_range_and_failureOfSoficity_of_soficInvisible` extracts the
+hyperlinear nonsofic detecting range.
+
+The direct index-to-phase replacement also closes negatively.  For every
+finite coordinate, `PUP:PH->PH` is a square operator, so its Fredholm index
+is zero; equivalently `P` and `UPU^*` are already Murray--von Neumann
+equivalent and have zero `K_0` difference.  The same trace-index calculation
+holds in every finite von Neumann algebra.  A nonzero index would require
+extra asymmetric boundary data not supplied by the group relations.  See
+`docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md`.
+
+The active collision target is therefore unchanged on the Kun--Thom side:
+retain one explicit element of `Rad_sof` in a CE representation.  The
+smallest current form is CE of the one-orbit parity corner
+
+```text
+pL(J) *_pL(K) (pL(K) crossed_alpha C_2),
+```
+
+equivalently CE of the negative central corner of `H_theta`.  Large repeated
+edge multiplicities can support relative randomization only after compatible
+vertex restrictions have been constructed.  Exact finite-dimensional
+vertex representations are already ruled out by the Kazhdan matching gap,
+and matrix amplifications of the canonical regular vertex have a uniform
+twisted-innerness gap.  Hence multiplicity amplification does not by itself
+supply the missing edge-compatible embedding.  The exact quotient-block
+calculation and the surviving nonmonomial inclusion theorem are recorded in
+`docs/FALSE_RELATIVE_RANDOMIZATION_NEEDS_EDGE_TRACE_MODEL.md`.
+
 ### 2026-08-12: consolidated outcome — three exact gates remain open
 
 The current investigation does not prove that Thom's group `K` is nonsofic
@@ -3723,6 +3878,16 @@ leakage across the rank-three-versus-one comb cut.  See
 `ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md` and
 `HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md`.
 
+There is also a strictly smaller multiplicative endpoint.  Four contraction
+blocks satisfying `T_0S_0~=1`, `T_1S_1~=1`, and `T_0S_1~=0` have maximum
+normalized-HS defect at least `2-sqrt(3)>1/4`, independently of dimension.
+This stronger bound and its rational `1/4` corollary are now formalized in
+`Sofic/LeavittTraceFloor.lean`.  Hence no additive Cuntz--Leavitt relation has
+to be recovered from group microstates.  The extraction target is now just
+these three products in one coherent Pauli coefficient corner; their
+coefficient values are already the fixed Steinberg commutators landing at
+`1,1,0`.  See `(RPC108)--(RPC119)`.
+
 The existing exact radius-five collision scan also closes the naive linear
 Hecke version: after (H)-alignment there are zero words with exactly one
 transverse second-chart syllable, so this window yields no direct
@@ -3739,6 +3904,18 @@ only the chosen subtree sign, leaving the other subtree free.  A useful
 finite-support obstruction must therefore include the raw second compressor
 and adjacent noncentral roots, rather than merely deeper central roots.
 
+This no-go is now exact for atomic Hellinger arguments on every finite
+additive coefficient window, not only on diagonal cylinders.  Span the
+finite orbit window under the injective corner maps, extend each partial
+injection to an automorphism by basis completion, and average over the dual
+space.  The result has exact local compressor covariance and the regular
+Fourier law on the whole chosen window.  Hence every argument using only
+finite additive root moments and injective linear corner transport admits an
+exact finite countermodel.  The atlas attack must use coefficient
+multiplication, cross-root commutators, or noncentral/Pauli data.  See
+`(RPC85)--(RPC107)` in
+`ATLAS_RELATIVE_PERFECTNESS_AND_COEFFICIENT_ENDPOINT.md`.
+
 More generally, no Hall deficit can be built solely from ambient subgroup
 spectral projections: the exact Leavitt representation inside the finite
 tracial algebra `L(Q)` obeys the same universal support relations, and trace
@@ -3747,3 +3924,276 @@ still live only after the non-intrinsic canonical regular-chart
 disintegration, in the finite block-coefficient/multiplicity algebra.  The
 raw compressor and adjacent roots are inputs to that coefficient
 calculation, not themselves ambient deficient projections.
+
+The bare multiplicative commutator table is now also closed as a standalone
+endpoint.  It has an exact left-regular model in the order-32 extraspecial
+two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
+nonidentity element.  Hence the relations `t_i s_j=delta_ij` only produce a
+Pauli pairing until a raw-compressor relation identifies the three distinct
+central-character fibers.  The precise remaining statement is the
+fiber-identification gate in `(RPC120)--(RPC124)`; finite Clifford
+normalizers do not cross it.
+
+The fiber gate now has a basis-free algebraic formulation.  For
+`b_ell(a,b)=ell(ab)`, quotient the first variable by its left radical and the
+second by its right radical.  Right multiplication by `t_i` and left
+multiplication by `s_j` descend and obey
+`b_ell(a t_i,s_jb)=delta_ij b_ell(a,b)`.  No finite nonzero nondegenerate
+pairing can carry these four arrows: the diagonal cases make the `t_0` and
+`s_1` arrows bijective, and the cross case then annihilates the whole
+pairing.  The remaining atlas theorem is precisely a robust extraction of
+these two finite radical quotients and their arrows from normalized-HS
+microstates.  Analytically the extracted pairing must be Fourier-flat
+(unitary after normalization), not just nondegenerate.  Otherwise its
+condition number can diverge and the reduction to the dimension-free
+contraction gap is invalid.  The exact target is `(RPC128)`: control
+`R_0^*UL_0-U`, `R_1^*UL_1-U`, and `R_0^*UL_1` for a unitary pairing `U`.
+Any singular-value-truncation substitute must additionally retain positive
+normalized trace and be asymptotically invariant under all four arrows.  See
+`(RPC125)--(RPC129)`.
+
+There is also a mandatory trivial-mode reduction.  The perfect `F_2` pairing
+produces the unitary normalized Fourier matrix
+`|V|^(-1/2)(-1)^(b(v,w))`, not a unitary `0/1` pairing matrix.  Under the
+cross identity `b(Rv,Lw)=0`, this Fourier matrix becomes the rank-one
+constant kernel.  It vanishes only after deleting the constant source mode
+and target delta-at-zero mode.  The analytic gate must therefore prove
+near-bijectivity of the approximate arrows and asymptotic invariance of the
+reduced Fourier sectors; algebraic nondegeneracy alone does not do so.
+## 2026-08-13: perfect-completeness mask audit
+
+The Taller--Vidick LCS compiler was checked at the exact equations.  Its
+honest loss occurs precisely when the random mask satisfies
+`mu(phi)=-1`, while soundness uses the multiplier
+`(1-2 epsilon)^|beta|`.  A mask distribution is perfectly complete only if
+it is identically `1` on the support of the honest assignment PVM.  Noise
+outside that support gives at best the `1/|S|` uniform-decoding constant,
+which is exactly the source projection game's random-guessing floor.
+Exposing `mu(phi)` as a correction variable makes every Fourier character
+an exact solution.  Therefore mask retuning, support-tailored noise, and a
+linear correction variable cannot reach perfect completeness with a strict
+soundness gap.  Full proof: `FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md`.
+### 2026-08-13: two exact no-go theorems for the remaining routes
+
+- `FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md` proves that
+  infranormality makes the closure of `Gamma` normal in every compact image
+  of `G`.  Thus the distinguished quasi-regular coset mode cannot be
+  approximated through honest finite-dimensional representations, closing
+  the naive fermionic second-quantization construction.
+- `FALSE_PROPERLY_INFINITE_CENTRAL_GROUP_CORNER.md` records the canonical
+  regular-trace obstruction: every nonzero finite central-character corner
+  of a discrete group has positive finite trace.  The Leavitt atlas cannot
+  force proper infiniteness in such a group corner; a matrix-specific
+  non-CE separation remains indispensable.
+
+### 2026-08-13: an involutive twist is a normalizer-lifting problem
+
+`FALSE_INVOLUTIVE_TWIST_IS_NOT_SHULMAN_DOUBLE.md` audits the apparent
+extension of Shulman's swap proof to `A *_(id,alpha) A`.  After doubling,
+the swap implements `alpha` on the edge; it does not commute with the edge.
+The Halmos off-diagonal terms therefore contain the full difference
+`c-alpha(c)`, which quasicentrality cannot remove.  The virtually-cyclic
+central-radical shear still requires a genuine equivariant edge lift.
+
+### 2026-08-13: the opposite Kun--Thom endpoint is HS stability
+
+`KUN_THOM_HS_STABILITY_TO_NONHYPERLINEAR.md` proves that every
+finite-dimensional unitary representation kills the standard Kun--Thom
+commutator word, using normality of the Iwahori closure in compact images.
+Consequently flexible/local Hilbert--Schmidt stability of either the
+free-lamp or commuting-lamp witness would make it explicitly
+nonhyperlinear.  The recent ordinary-lamplighter stability theorem does not
+cover this nonsofic Kazhdan coset action, so this is a clean alternative
+endpoint rather than a completed proof.
+
+### 2026-08-13: measured-full-group density cannot groupify Manzoor
+
+There is an exact group-factor certificate: if a countable subgroup
+`Lambda` of the measured full group acts essentially freely and its
+canonical groupoid unitaries generate `L(R)`, then
+
+```text
+L(Lambda) = L(R).
+```
+
+Thus a non-CE relation would give a nonhyperlinear group.  Uniform density
+cannot provide such a subgroup.  If `T` has a positive-measure fixed set,
+every nonidentity element of an essentially free subgroup stays at uniform
+distance at least `mu(Fix(T))` from `T`.  Aperiodic full groups have
+nonidentity elements of arbitrarily small support, so no essentially free
+subgroup is uniformly dense.  Topological finite-generation and the 2026
+Cantor-minimal character classification therefore do not convert Manzoor's
+relation into a discrete group.
+
+There is a stronger exact no-go.  If `Lambda<=[R]` is essentially free, the
+Cartan expectation satisfies `E_A(u_g)=0` for every `g!=1`, hence
+`E_A(W*(u_Lambda))=C1`.  Therefore `W*(u_Lambda)` cannot equal `L(R)` on a
+nontrivial probability space, since the latter contains the diffuse Cartan
+`A` and `E_A|A=id`.  The proposed free W*-generating subgroup is therefore
+impossible, not merely difficult to construct.  Any Manzoor groupification
+must embed the non-CE algebra into a group factor by additional operators or
+as a corner, rather than identify it with the algebra of canonical full-group
+implementers.  See `FALSE_FULL_GROUP_DENSITY_GROUPIFICATION.md`,
+`(FDG4a)--(FDG4d)`.
+
+### 2026-08-13: an unnormalized Schatten-one central-radical corner is enough
+
+`TRUE_SCHATTEN_ONE_RADICAL_CORNER.md` proves a new norm-to-trace converter.
+If a countable group `E` has a nontrivial central involution
+`z in Rad_sof(E)`, then any unnormalized Schatten-one asymptotic
+representation which retains `z` can be rounded at `z`, compressed to its
+nonzero negative spectral corner, and renormalized.  On a corner of rank
+`r>=1`,
+
+```text
+||A||_(2,r)^2 <= 2||A||_1/r <= 2||A||_1,
+```
+
+so the compressed maps are normalized-HS asymptotic representations, while
+the rounded `z` becomes exactly `-1` before the negligible polar correction.
+Thus the radical element survives and the ultraproduct image is hyperlinear
+and nonsofic.  This requires neither positive original corner density nor
+hyperlinearity of `E/<z>`.  It supplies the new sufficient endpoint that the
+explicit cyclic shear be unnormalized-Schatten-one approximated.  It does
+not follow from Bachner--Dogon--Lubotzky's non-`G1` result, and normalized HS
+defect cannot be promoted to unnormalized `L1` without a missing
+dimension-versus-error rate.
+
+### 2026-08-13: the Kun--Thom radical and Clifford sign are the same phase
+
+`TRUE_KUN_THOM_CLIFFORD_PHASE.md` gives a direct algebraic phase lock.  For
+`H=<G,k | k^2=1,[k,Gamma]=1>`, choose
+`h=t^(-1)gamma t notin Gamma`.  Kun--Thom centralizer normalization puts
+`r=[k,h]` in `Rad_sof(H)`, hence also `x=[k,r]`.  In the Clifford crossed
+product on `X=G/Gamma`, map `G` to its canonical crossed-product unitaries
+and `k` to the Majorana at the base coset.  Then
+
+```text
+r |-> c_Gamma c_(hGamma),          x |-> -1.
+```
+
+Thus the radical-collision program no longer needs a separate algebraic
+phase coupler: the second commutator is already the scalar Clifford sign.
+The identity is Lean-verified by
+`CliffordLamp.commutator_lamp_lamp_mul_lamp`.
+The exact remaining gate is Connes embeddability of
+`Cl(G/Gamma) crossed_product G` for the explicit Kun--Thom pair.  The base
+is hyperfinite, but the action is nonsofic and not profinite; arbitrary
+crossed-product permanence would silently assume the missing theorem.
+An even weaker sufficient matrix gate is now explicit: find HS-asymptotic
+representations `rho_n` of `G` and self-adjoint involutions `C_n` which
+asymptotically centralize `rho_n(Gamma)` while `C_n` asymptotically
+anticommutes with `rho_n(h)C_n rho_n(h)^*`.  This alone sends the radical
+word `x` to `-1`.
+
+### 2026-08-13: the parity shear can be innerized, but the MF gate remains
+
+`TRUE_SHEAR_INNERIZATION_REDUCTION.md` gives an exact algebraic reduction.
+For an infinite-order `s in Rad_sof(G)`, the universal module
+
+```text
+A=F_2[G]/I(1+s),       E=A semidirect G
+```
+
+contains an involution `tau` with
+
+```text
+tau^(-1) s tau=z s,
+```
+
+where `z=(1+s)[1]` is a nontrivial central sofic-radical involution.  Hence
+the edge automorphism `s|->zs`, `z|->z` is inner in `E`, and the associated
+twisted double embeds, by Bass--Serre normal form, in the ordinary symmetric
+double `E *_C E`.  This makes Shulman's symmetric-amalgam theorem applicable
+*if* `E` is weak MF.  The qualification is essential: `z=[tau,s]` already
+lies in `Rad_sof(E)`, so weak MF of `E` alone would solve hyperlinear versus
+sofic by central-corner compression.  Innerization eliminates the twist as
+an additional obstruction; it does not establish the missing matrix
+approximation.
+
+### 2026-08-13: character rigidity does not splice into universality
+
+`FALSE_CHARACTER_RIGIDITY_EMBEDDING_UNIVERSALITY_SPLICE.md` audits the
+tempting use of Chifan--Drimbe--Ioana.  Their factor `Q` is generated by a
+representation of any chosen acylindrically hyperbolic group and can contain
+a non-CE algebra, but the resulting factor character is not the regular
+character of the image group.  Property `(T)`, hyperbolicity, and absence of
+one-dimensional characters do not repair this.  The missing statement is
+factor-character rigidity after kernels, which is available in higher-rank
+arithmetic settings incompatible with the embedding-universal source.  The
+splice therefore restates the open group-factor universality problem rather
+than solving it.
+
+### 2026-08-13: a relative Burton gate would make Kun--Thom nonhyperlinear
+
+`TRUE_RELATIVE_BURTON_KUN_THOM_REDUCTION.md` gives a direct reduction for
+the universal-hyperlinearity problem.  If the Kun--Thom commuting-lamp group
+
+```text
+W=(direct_sum_(G/Gamma) C_2) semidirect G
+```
+
+were hyperlinear, restrict a canonical-trace matrix model to its amenable
+lamp subgroup.  The quantitative theorem of
+Burton--Chaudkhari--Juschenko--Muliarchyk replaces that restriction, on
+increasing finite sets and in normalized HS norm, by permutation matrices.
+The quotient matrices still satisfy
+
+```text
+U_g sigma(a) U_g^* ~= sigma(gag^(-1))
+```
+
+and remain an HS-asymptotic representation of `G`.  Hence it is enough to
+prove one equivariant normalizer-transfer theorem: these coherent unitary
+normalizers can be replaced, after `o(d)` padding, by coherent permutation
+normalizers.  The resulting semidirect-product permutations would make `W`
+sofic, contradicting Kun--Thom; therefore `W` would be explicitly
+nonhyperlinear.
+
+The new endpoint is narrower than general tracial commutant recovery.  The
+fixed finite lamp restrictions have asymptotically regular character, so
+ordinary atom-weight and fixed-rank Gassmann defects disappear.  What
+remains is coherence across increasing non-invariant lamp patches.  The
+amenable conversion theorem alone does not preserve the ambient normalizer
+cocycle, and independently extending each partial coset permutation assumes
+the missing action-soficity.  The lamp patches have an additional exact
+quantization:
+
+```text
+[B_Y:B_Y intersect B_(gY)]=2^|Y-gY|.
+```
+
+Hence overlap tending to one forces eventual exact invariance; there is no
+Folner-style uniform-lamp interpolation.  A proof must recover coherence
+from the ambient unitary cocycle rather than from enlarging finite coordinate
+sets.
+
+`TRUE_FINITE_REGULAR_NORMALIZER_ROUNDING.md` now proves the complete
+finite-dimensional step after such a common lamp model has been recovered.
+For equal-rank spectral blocks, blockwise polar decomposition rounds an
+approximate transport with no dimension-dependent loss.  Fourier Parseval
+identifies the required block defect with the average lamp covariance defect,
+and multiplication descends to block-label Hamming distance.  For
+`(C_2)^m`, two distinct linear block actions have Hamming distance at least
+`1/2`, so sufficiently accurate relators become exact finite linear
+relators.  Thus phases and growing regular multiplicities are not a remaining
+obstruction; the sole gate is recovery of one common finite lamp algebra
+approximately normalized by the quotient generators.
+
+`TRUE_FINITE_LAMP_GROUPOID_ROUNDING.md` extends this to a finite diagram of
+different regular lamp partitions.  Every unitary arrow rounds with the same
+dimension-free constant, and coherent products descend to Hamming-coherent
+linear label maps; the `1/2` gap makes a fixed multiplication table exact.
+Thus moving between finitely many translated lamp windows creates no new
+analytic or block-cocycle loss.  What remains is completion of the finite
+prefix objects to one finite quotient-action object set.  Existing flexible
+stability of finite groupoids assumes that object set and therefore does not
+supply this completion.
+
+There is a necessary information warning.  The rounded linear label maps are
+canonical maps coming from the original coset action; by themselves they know
+nothing about the hypothetical hyperlinear model.  Completing them without
+using the internal regular-block unitaries would assume a finite approximation
+of the already nonsofic action.  The next live invariant is therefore the
+multiplicity-block holonomy around finite word-prefix diagrams: it must either
+force object completion or carry a uniform HS defect.

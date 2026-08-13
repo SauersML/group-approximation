@@ -215,12 +215,13 @@ MF $C^*$-algebra.
 The exact displayed presentation, word $w$, nontriviality witness,
 finite-dimensional obstruction, norm-matrix corona, and polar-correction
 equivalence are formalized.  The remaining gap for the literal group is the
-property-\textup{(T)} input: the formal development does not yet identify the
-group defined by the eight CRW relators with $\SL_3(\Z)$, and therefore does
-not yet certify property~\textup{(T)} for the resulting abstract affine-base
-presentation.  A separate Lean theorem proves the same
-existential conclusion for a noncomputably selected finitely presented
-Kazhdan-cover witness, not for the displayed group $E$.
+property-\textup{(T)} input.  The development now checks the exact P13
+presentation, all word replays needed for its quotient onto the rotation
+presentation, and the transfer from rotation property~\textup{(T)} to the
+literal affine base.  The final exact rational Hodge-certificate arithmetic
+for P13 is still being completed, so no unconditional literal endpoint is
+claimed here yet.  The independent chosen-witness theorem is retained only
+as a different-witness existence result.
 \leandifferentwitness{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 Two interface conventions of the formal development are noted once here:
 property~\textup{(T)} is formalized as the Kazhdan-pair condition for
@@ -2081,6 +2082,7 @@ faithful.
 is stably finite: for every nonempty finite index set $I$, every isometry
 in $M_I(A)$ is a unitary.  In particular this holds in $M_k(A)$ for every
 $k\ge1$.
+\leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
 \leanverified{Analysis/FaithfulTracialMatrix}{GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one}
 \end{enumerate}
 \end{lemma}
@@ -2905,7 +2907,7 @@ $r\ge1$ and every map $\varphi\colon H\to\U(M_r(\C))$ with
   \qquad\text{for all }g,h\in F_0,
 \]
 one has $\opnorm{\varphi(f_0)-1}<\varepsilon$.
-\leanverified{Sofic/NormMFPrintedConsequences}{GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility}
+\leanverified{Sofic/NormMFPrintedConsequences}{GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel}
 \end{theorem}
 
 \begin{proof}

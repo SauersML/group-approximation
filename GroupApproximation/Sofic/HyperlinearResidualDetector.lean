@@ -17,6 +17,8 @@ needed.
 
 namespace GroupApproximation
 
+open scoped commutatorElement
+
 universe u
 
 variable {G H : Type u} [Group G] [Group H]
@@ -31,6 +33,15 @@ def SoficInvisible (x : G) : Prop :=
 theorem soficInvisible_one : SoficInvisible (1 : G) := by
   intro S _ _ f
   exact map_one f
+
+/-- Sofic invisibility is closed under taking a commutator with an arbitrary
+group element.  This is the radical-propagation step used by the Kun--Thom
+Clifford phase: once `r` is killed by every sofic target, so is `⁅k,r⁆`. -/
+theorem SoficInvisible.commutator_left (k r : G) (hr : SoficInvisible r) :
+    SoficInvisible ⁅k, r⁆ := by
+  intro S _ hS f
+  rw [map_commutatorElement, hr S inferInstance hS f]
+  simp [commutatorElement_def]
 
 /-- The elements killed by every homomorphism to a sofic group form a
 subgroup.  This is the *sofic residual* (as opposed to a largest normal sofic
