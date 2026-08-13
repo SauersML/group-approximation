@@ -120,6 +120,9 @@ letter $c$, then every finite normal subgroup contained in the
 compression-defect subgroup --- the normal closure of the commutators
 of $tct^{-1}$ with that image --- is killed by every homomorphism into
 the unitary group of every $C^*$-subalgebra of a norm matrix corona.
+At the uniformly separated approximation level, finiteness can be
+replaced by the assumption that the normal obstruction subgroup itself
+has property~(T); it may then be infinite, noncentral, and torsion-free.
 Among the consequences: $\Cred(E)$ is a unital separable $C^*$-algebra
 with a faithful tracial state --- hence stably finite --- that is not
 an MF algebra, giving an explicit reduced-group-$C^*$-algebra realization
@@ -338,6 +341,19 @@ Two companion results clarify the mechanism.  First, in
 finite dimensions the kill theorem is elementary and needs neither
 property (T), nor unitarity, nor centrality of $w$:
 
+For a subgroup $L\le H$, put
+\[
+ \mathcal C(L)=\{s\in H:sLs^{-1}\subseteq L\},\qquad
+ G_{\rm comp}(L)=\langle\mathcal C(L)\rangle,
+\]
+and define the intrinsic \emph{compression--centralizer defect}
+\begin{equation}\label{eq:intrinsicdefect}
+ \mathfrak D(H,L)=
+ \left\langle\!\left\langle
+ [gzg^{-1},\ell]:g\in G_{\rm comp}(L),\ z\in C_H(L),\ \ell\in L
+ \right\rangle\!\right\rangle_H .
+\end{equation}
+
 \begin{mainthm}[finite-dimensional obstruction]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
@@ -347,7 +363,10 @@ satisfies
 \[
   \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
 \]
+More generally, every such $\pi$ kills the entire subgroup
+$\mathfrak D(H,\Gamma)$.
 \leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one_units}
+\leanverified{Criterion/CompressionCentralizerDefect}{GroupApproximation.compressionCentralizerDefect_le_ker}
 \end{mainthm}
 
 Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
@@ -415,7 +434,9 @@ closure
 The \emph{finite-normal obstruction criterion}
 (Theorem~\ref{thm:criterion}) states: every finite normal subgroup of
 $H$ contained in $N_{\mathrm{comp}}$ is killed by every corona
-representation of $H$.  Theorem~\ref{thm:A}(2) is the instance $H=E$
+representation of $H$.  Theorem~\ref{thm:normalkazhdan} replaces the
+finite subgroup by an arbitrary nontrivial normal property~(T) subgroup
+for uniformly separated operator-norm approximations.  Theorem~\ref{thm:A}(2) is the instance $H=E$
 with $F=\{1,w\}$: since $c^2=1$ forces $d^2=1$, the marked word
 satisfies the identity $w=[\,d,a\,]^2\in N_{\mathrm{comp}}$
 (Lemma~\ref{lem:square}).  The corner cut that starts the proof is the
@@ -1178,6 +1199,17 @@ $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and therefore
 \]
 \end{proof}
 
+The same calculation proves the final, subgroup-valued assertion of
+Theorem~\ref{thm:B}.  The elements of $H$ whose conjugation action
+preserves $C$ in both directions form a subgroup.  The argument above
+puts every one-sided compressor in that subgroup, and therefore puts all
+of $G_{\rm comp}(\Gamma)$ in it.  Thus, for $g\in
+G_{\rm comp}(\Gamma)$ and $z\in C_H(\Gamma)$, the operator
+$\pi(gzg^{-1})$ still belongs to $C$ and commutes with every
+$\pi(\ell)$, $\ell\in\Gamma$.  Hence $\pi$ kills all the generators
+in \eqref{eq:intrinsicdefect}, and normality of its kernel kills their
+normal closure.
+
 \ifanonymous\else
 \begin{remark}[formal verification]\label{rem:lean}
 Theorem~\ref{thm:B} is machine-checked in Lean~4: the statement above,
@@ -1475,8 +1507,23 @@ pattern is the normal closure
   [\,d,\iota(\lambda)\,]\;:\;\lambda\in\Lambda
   \,\bigr\rangle\!\bigr\rangle_H\;\trianglelefteq\;H .
 \]
+There are two canonical enlargements.  The integer-orbit defect is
+\[
+ N_{\rm orb}=\left\langle\!\left\langle
+ [t^nct^{-n},\iota(\lambda)]:n\in\Z,\ \lambda\in\Lambda
+ \right\rangle\!\right\rangle_H,
+\]
+and, for $L=\iota(\Lambda)$, the intrinsic defect is
+$\mathfrak D(H,L)$ from \eqref{eq:intrinsicdefect}.  Since $t$ is a
+one-sided compressor and $G_{\rm comp}(L)$ is a group, all powers
+$t^n$, including negative powers, lie in $G_{\rm comp}(L)$.  Hence
+\begin{equation}\label{eq:defectinclusions}
+ N_{\rm comp}\ \le\ N_{\rm orb}\ \le\ \mathfrak D(H,L).
+\end{equation}
 \leanverified{Sofic/KazhdanCompressionCore}{GroupApproximation.KazhdanCompressionCore}
 \leanverified{Sofic/KazhdanCompressionCore}{GroupApproximation.KazhdanCompressionCore.defectNormal}
+\leanverified{Sofic/IntrinsicCompressionDefect}{GroupApproximation.KazhdanCompressionCore.defectNormal_le_orbitDefectNormal}
+\leanverified{Sofic/IntrinsicCompressionDefect}{GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect}
 \end{definition}
 
 \begin{theorem}[finite-normal obstruction criterion]\label{thm:criterion}
@@ -1487,6 +1534,28 @@ corona representation $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(f)=1$ for all $f\in F$.
 \leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
 \end{theorem}
+
+\begin{theorem}[normal-Kazhdan obstruction]\label{thm:normalkazhdan}
+Let $H$ be countable with a marked Kazhdan pattern, and let
+$K\trianglelefteq H$ be a nontrivial subgroup with property~(T).  If
+$K\le N_{\rm comp}$, then $H$ admits no uniformly separated
+operator-norm matrix approximation.  In particular, the obstruction
+subgroup in this analytic criterion need not be finite, central, or
+torsion.
+\leanverified{Sofic/NormalKazhdanCompressionObstruction}{GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect}
+\end{theorem}
+
+\begin{proof}
+Assume such an approximation exists.  Apply the normal property~(T)
+corner construction to $K$.  It produces, from the given ambient
+matrix model, a tracial matrix-ultraproduct representation in which
+some element of $K$ survives.  Applied to the same corner model, the
+compressor argument makes every generator
+$[tct^{-1},\iota(\lambda)]$ trivial in that ultraproduct, hence kills
+its normal closure and therefore all of $K$, a contradiction.  This
+is the second Kazhdan projection hidden in the finite-normal argument:
+it replaces the finite Reynolds average.
+\end{proof}
 
 \begin{remark}\label{rem:criterioncontext}
 Theorem~\ref{thm:A}(2) is the instance $H=E$, $\Lambda=\Gamma$,
@@ -2062,6 +2131,30 @@ if $G_1$ is MF, an injective corona representation forces
 $R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
 \end{proof}
 
+\begin{corollary}[exact radical from a candidate quotient]\label{cor:exactradical}
+Let $N\trianglelefteq G_1$ satisfy
+$N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$.  Every corona
+representation of $G_1$ factors uniquely through $G_1/N$.  If in
+addition $G_1/N$ is MF, then
+\[
+ \operatorname{Rad}_{\mathrm{MF}}(G_1)=N.
+\]
+Thus proving that a concrete defect subgroup is invisible and that its
+quotient is MF computes both the entire MF radical and the largest MF
+quotient.
+\leanverified{Sofic/NormMFResidualExactQuotient}{GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona}
+\leanverified{Sofic/NormMFResidualExactQuotient}{GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF}
+\end{corollary}
+
+\begin{proof}
+The containment $N\le\ker\Theta$ gives the unique quotient
+factorization for every corona representation $\Theta$.  For the
+reverse containment in the displayed equality, compose the quotient
+map $G_1\to G_1/N$ with an injective corona representation of $G_1/N$:
+its kernel is exactly $N$, while the MF radical lies in the kernel of
+every corona representation.
+\end{proof}
+
 \subsection{Targets beyond coronas}
 
 \begin{corollary}[subalgebras of coronas]\label{cor:subalg}
@@ -2567,11 +2660,15 @@ Sections~\ref{sec:conj}--\ref{sec:proofA}, which we do not pursue.
 \begin{remark}[open questions]\label{rem:openq}
 Three questions adjacent to this section.  (i) Is $E/\langle
 w\rangle$ MF, i.e.\ is the MF radical of $E$ exactly $\{1,w\}$?
-(ii) Does a \emph{torsion-free} non-MF group exist?  The mechanism
-here is torsion-critical: the criterion kills a finite normal
-subgroup, which a torsion-free group cannot supply.  The analogous
-sofic-side emphasis on torsion appears in Fournier-Facio's
-torsion-free nonsofic group \cite{FF}.  (iii) Is non-MF-ness an open
+(ii) Does a \emph{torsion-free} non-MF group exist?  Theorem~\ref{thm:normalkazhdan}
+removes the former conceptual obstruction: it would suffice to construct
+a torsion-free finitely presented $H$ with a nontrivial normal
+property~(T) subgroup $K\le N_{\rm comp}$ (or, after the corresponding
+whole-defect upgrade, $K\le\mathfrak D(H,L)$).  A plausible route is to
+combine a torsion-free Rips construction, which supplies the normal
+Kazhdan kernel, with the one-sided-compressor geometry in
+Fournier-Facio's torsion-free nonsofic construction \cite{FF}; we do not
+carry out that construction here.  (iii) Is non-MF-ness an open
 condition in the space of marked groups, as soficity questions are
 studied there \cite{FF}?
 \end{remark}
