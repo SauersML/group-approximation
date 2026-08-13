@@ -65,18 +65,25 @@ structure Finding where
   detail : String
   deriving Inhabited
 
-/-- Is `n` declared in the corpus under audit, rather than in Mathlib?
+/-- Was `n` compiled in a module of the corpus source tree?
 
-`getRoot` and not `isPrefixOf`: they agree on every name in this corpus and
-`getRoot` says what is meant. -/
-def isOurs (root n : Name) : Bool := n.getRoot == root
+Membership is deliberately by module, not namespace.  A project file may
+open `Algebra`, `Ring`, or any other namespace; that must not let its
+declarations escape the audit. -/
+def inCorpusModule (env : Environment) (moduleRoot : Name) (n : Name) : Bool :=
+  match env.getModuleIdxFor? n with
+  | some idx =>
+      match env.header.moduleNames[idx.toNat]? with
+      | some m => m.getRoot == moduleRoot
+      | none => false
+  | none => false
 
 /-- Every hand-written declaration of the corpus, taken from the environment
 rather than from a list, so a new module cannot escape the audit by not being
 mentioned anywhere. -/
 def corpusNames (env : Environment) (root : Name) : Array Name :=
   env.constants.fold (init := #[]) fun acc n _ =>
-    if isOurs root n && userWritten env n then acc.push n else acc
+    if inCorpusModule env root n && userWritten env n then acc.push n else acc
 
 /-- Strip leading binders, returning the body.
 
@@ -406,17 +413,6 @@ exactly as banned as the name itself.
 Population is by MODULE, not namespace: a corpus file can open any namespace
 it likes, so membership is decided by where the declaration was compiled,
 which the author of a corpus file cannot spoof. -/
-
-/-- Was `n` compiled in a module of the corpus source tree?  Module-based,
-unlike `isOurs`: a declaration escapes its namespace by writing `namespace
-Anything`, but not the file it lives in. -/
-def inCorpusModule (env : Environment) (moduleRoot : Name) (n : Name) : Bool :=
-  match env.getModuleIdxFor? n with
-  | some idx =>
-      match env.header.moduleNames[idx.toNat]? with
-      | some m => m.getRoot == moduleRoot
-      | none => false
-  | none => false
 
 /-- Corpus constants from which some tagged name is reachable through types,
 bodies, and constructor types.  Always contains the tagged names themselves.
