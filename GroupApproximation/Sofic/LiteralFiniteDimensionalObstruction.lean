@@ -1,5 +1,6 @@
 import GroupApproximation.Criterion.FiniteDimensionalKill
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import Mathlib.RepresentationTheory.Basic
 
 /-!
 # Finite-dimensional sterility of the literal non-MF presentation
@@ -16,9 +17,9 @@ namespace LiteralFiniteDimensionalObstruction
 
 open LiteralNonMFPresentation LiteralNonMFLinearWitness
 
-universe u
+universe u v
 
-variable {k V : Type u} [Field k] [AddCommGroup V] [Module k V]
+variable {k : Type u} {V : Type v} [Field k] [AddCommGroup V] [Module k V]
 
 /-- Every finite-dimensional linear representation of the literal group
 kills its designated marked word (the literal-group instance of manuscript
@@ -50,6 +51,22 @@ theorem literal_finiteDimensional_rep_not_injective
   apply literal_mark_ne_one
   apply hπ
   rw [map_literal_mark_eq_one π, map_one]
+
+/-- Every homomorphism from the literal group to a finite group kills the
+marked element.  We apply the finite-dimensional theorem to the faithful left
+regular representation of the target over `ℚ`. -/
+theorem map_literal_mark_eq_one_of_finite
+    {Q : Type*} [Group Q] [Finite Q] (φ : MarkedGroup →* Q) :
+    φ mark = 1 := by
+  classical
+  letI : Fintype Q := Fintype.ofFinite Q
+  let regularUnits := (Representation.leftRegular ℚ Q).toHomUnits
+  have hkill := map_literal_mark_eq_one (regularUnits.comp φ)
+  have hmaps := congrArg Units.val hkill
+  have hatOne := congrArg
+    (fun f ↦ f (MonoidAlgebra.single (1 : Q) (1 : ℚ))) hmaps
+  apply MonoidAlgebra.of_injective (R := ℚ)
+  simpa [regularUnits] using hatOne
 
 end LiteralFiniteDimensionalObstruction
 end GroupApproximation
