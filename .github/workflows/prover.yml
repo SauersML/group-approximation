@@ -19,6 +19,7 @@ on:
       # therefore run the same gate that checks their consistency.
       - 'docs/CLAIM_DECLS.txt'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
+      - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
       - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
@@ -40,6 +41,7 @@ on:
       - 'scripts/**'
       - 'docs/CLAIM_DECLS.txt'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
+      - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
       - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'lakefile.toml'
@@ -204,6 +206,7 @@ jobs:
           python3 scripts/check.py --self-test
           python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
+          python3 scripts/check_non_mf_claim_manifest.py --self-test
 
       # Source text: forbidden constructs, and the root import closure.  Runs
       # before the build because it is instant, and because the orphan-module
@@ -235,6 +238,7 @@ jobs:
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
             --check-decls \
+            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
             --require-status equivalent \
               Sofic/CDEOperatorMF \
               GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
@@ -244,6 +248,10 @@ jobs:
             --require-verified \
               Sofic/FiniteNormalCoronaObstruction \
               GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
+          python3 scripts/check_non_mf_claim_manifest.py \
+            --tex non_mf_groups_exist.tex \
+            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
 
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.

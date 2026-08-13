@@ -10,6 +10,7 @@ on:
     paths:
       - non_mf_groups_exist.tex
       - docs/NON_MF_CLAIM_DECLS.txt
+      - docs/NON_MF_NUMBERED_CLAIMS.json
       # Visible counterpart links range across the library.  Any Lean source
       # change can rename or move a mapped declaration, so the lexical gate
       # must run on the whole source tree rather than one historical module.
@@ -87,6 +88,7 @@ jobs:
       - name: Calibrate and check visible Lean counterpart links
         run: |
           python3 scripts/check_non_mf_refs.py --self-test
+          python3 scripts/check_non_mf_claim_manifest.py --self-test
           # Pin the CDE predicate reformulation and the finite-type-indexed
           # canonical target isomorphism at their honest `equiv` status, and
           # the finite-normal kernel theorem at `exact`.  The
@@ -95,6 +97,7 @@ jobs:
           python3 scripts/check_non_mf_refs.py \
             --tex "$TEX_FILE" \
             --check-decls \
+            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
             --require-status equivalent \
               Sofic/CDEOperatorMF \
               GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
@@ -104,6 +107,10 @@ jobs:
             --require-verified \
               Sofic/FiniteNormalCoronaObstruction \
               GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
+          python3 scripts/check_non_mf_claim_manifest.py \
+            --tex "$TEX_FILE" \
+            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
 
       - name: Check figure text boxes do not overlap
         run: python3 scripts/check_fig_overlap.py --tex "$TEX_FILE"
@@ -299,6 +306,7 @@ jobs:
             git ls-tree -r "$1" -- \
               "$TEX_FILE" \
               docs/NON_MF_CLAIM_DECLS.txt \
+              docs/NON_MF_NUMBERED_CLAIMS.json \
               GroupApproximation \
               lakefile.toml \
               scripts \

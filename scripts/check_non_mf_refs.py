@@ -35,6 +35,7 @@ unrelated chosen-witness theorem.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 import tempfile
@@ -413,6 +414,11 @@ def main() -> int:
     parser.add_argument("--check-decls", action="store_true")
     parser.add_argument("--write-decls", action="store_true")
     parser.add_argument(
+        "--extra-declarations-from", action="append", type=Path, default=[],
+        help=("include declarations named by a numbered-claim JSON manifest "
+              "in the generated signature roster"),
+    )
+    parser.add_argument(
         "--require-verified", action="append", nargs=2,
         metavar=("MODULE", "DECLARATION"), default=[],
         help="require an unconditional verified citation of one exact endpoint",
@@ -443,7 +449,24 @@ def main() -> int:
          if entry[0] in STATUSES],
     ))
 
-    rendered = render_declarations(references)
+    rendered_names = set(render_declarations(references).splitlines())
+    for manifest_arg in args.extra_declarations_from:
+        manifest_path = (manifest_arg if manifest_arg.is_absolute()
+                         else REPO / manifest_arg)
+        try:
+            payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+            for entry in payload.get("claims", []):
+                for ref in entry.get("lean", []):
+                    declaration = ref.get("declaration")
+                    if isinstance(declaration, str) and declaration:
+                        rendered_names.add(
+                            declaration if declaration.startswith("GroupApproximation.")
+                            else f"GroupApproximation.{declaration}")
+        except (OSError, json.JSONDecodeError, AttributeError) as error:
+            problems.append(
+                f"cannot read declaration manifest {manifest_path}: {error}"
+            )
+    rendered = "\n".join(sorted(rendered_names)) + "\n"
     if args.write_decls:
         decls.parent.mkdir(parents=True, exist_ok=True)
         decls.write_text(rendered, encoding="utf-8")
