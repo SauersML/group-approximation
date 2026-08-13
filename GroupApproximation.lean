@@ -447,7 +447,7 @@ import GroupApproximation.Sofic.KazhdanCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Sofic.CliffordCosetModelInstance
-import GroupApproximation.Monsters.CliffordLampGroup
+import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.KazhdanCompressionOrder
