@@ -77,16 +77,6 @@ theorem norm_subgroupAverage_le_one (n : ℕ) :
     ‖subgroupAverage A F n‖ ≤ 1 :=
   norm_matrixAverage_le_one (restricted A F) Finset.univ n
 
-/-- The finite subgroup average is asymptotically self-adjoint. -/
-theorem subgroupAverage_selfAdjoint_vanishing :
-    OpNormVanishing A (fun n ↦ subgroupAverage A F n -
-      (subgroupAverage A F n)ᴴ) := by
-  change OpNormVanishing (restricted A F) (fun n ↦ subgroupAverage A F n -
-    (subgroupAverage A F n)ᴴ)
-  simpa [subgroupAverage, restricted] using
-    matrixAverage_selfAdjoint_vanishing (restricted A F) Finset.univ
-      (fun _ _ ↦ Finset.mem_univ _)
-
 /-- Every finite-subgroup microstate asymptotically absorbs the Reynolds
 average on the left. -/
 theorem map_mul_subgroupAverage_sub_vanishing (f : F) :
@@ -109,31 +99,6 @@ theorem map_mul_subgroupAverage_sub_vanishing (f : F) :
   simp only [R, restricted, subgroupAverage, matrixAverage, Finset.card_univ]
   rw [Finset.sum_sub_distrib, sum_map_mul_left A F f n, smul_sub,
     ← Finset.mul_sum, ← Matrix.mul_smul]
-  rfl
-
-/-- Every finite-subgroup microstate asymptotically absorbs the Reynolds
-average on the right. -/
-theorem subgroupAverage_mul_map_sub_vanishing (f : F) :
-    OpNormVanishing A (fun n ↦
-      subgroupAverage A F n *
-        (A.map n f : Matrix (A.model n) (A.model n) ℂ) -
-          subgroupAverage A F n) := by
-  let R := restricted A F
-  have hsum : OpNormVanishing R (fun n ↦
-      ∑ x : F, ((R.map n x : Matrix (R.model n) (R.model n) ℂ) *
-        R.map n f - R.map n (x * f))) := by
-    simpa only [Finset.sum_sub_distrib] using
-      OpNormVanishing.finset_sum (A := R) Finset.univ
-        (fun x n ↦ (R.map n x : Matrix (R.model n) (R.model n) ℂ) *
-          R.map n f - R.map n (x * f))
-        (fun x _ ↦ (multiplicativeDefect_vanishing R x f).neg.congr
-          (fun _ ↦ by abel))
-  have hscaled := hsum.smul ((Fintype.card F : ℂ)⁻¹)
-  change OpNormVanishing A _ at hscaled
-  refine hscaled.congr fun n ↦ ?_
-  simp only [R, restricted, subgroupAverage, matrixAverage, Finset.card_univ]
-  rw [Finset.sum_sub_distrib, sum_map_mul_right A F f n, smul_sub,
-    ← Finset.sum_mul, ← Matrix.smul_mul]
   rfl
 
 /-- The finite subgroup average is asymptotically idempotent. -/
@@ -373,20 +338,6 @@ theorem subgroupProjection_sub_average_vanishing :
 noncomputable def subgroupComplementProjection (n : ℕ) :
     Matrix (A.model n) (A.model n) ℂ :=
   1 - subgroupProjection A F n
-
-theorem subgroupComplementProjection_isOrthogonalProjection (n : ℕ) :
-    IsOrthogonalProjectionMatrix (subgroupComplementProjection A F n) := by
-  have hP := subgroupProjection_isOrthogonalProjection A F n
-  constructor
-  · rw [subgroupComplementProjection, Matrix.conjTranspose_sub,
-      Matrix.conjTranspose_one, hP.1]
-  · rw [subgroupComplementProjection]
-    calc
-      (1 - subgroupProjection A F n) * (1 - subgroupProjection A F n) =
-          1 - subgroupProjection A F n - subgroupProjection A F n +
-            subgroupProjection A F n * subgroupProjection A F n := by
-              noncomm_ring
-      _ = 1 - subgroupProjection A F n := by rw [hP.2]; abel
 
 end Average
 

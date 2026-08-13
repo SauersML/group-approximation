@@ -21,7 +21,7 @@ operator-norm matrix ultraproducts.
 The previously formalized central-involution theorem is the special case in
 which one distinguished element of the defect subgroup is central of order
 two.  The finite-normal theorem averages over the finite normal subgroup,
-cuts to the complementary central corner, and runs the marker-parametric
+cuts to the complementary central corner, and runs the marker-free
 Kazhdan-compressor argument there.  The resulting universal kernel theorem is
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
 -/

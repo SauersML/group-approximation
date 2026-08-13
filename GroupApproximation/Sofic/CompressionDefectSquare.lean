@@ -9,9 +9,11 @@ involution `d` by `a` gives the elementary identity
 
 `[d, a d a⁻¹] = [d,a]²`.
 
-Applied to `d = t c t⁻¹`, this places the marked compression word in the
-normal closure of the pointwise compression defects `[d, ι(γ)]`.  The
-involution hypothesis on `c` is explicit because
+Applied to `d = t c t⁻¹`, this identifies the marked compression word with
+the square of one pointwise compression defect.  The normal closure itself
+is defined once, in `KazhdanCompressionCore`; this file deliberately does
+not introduce a marked-data duplicate.  The involution hypothesis on `c` is
+explicit because
 `MarkedCompressionInclusionData` deliberately records only the analytic data
 and does not require `c` itself to have order two.
 -/
@@ -39,16 +41,6 @@ namespace MarkedCompressionInclusionData
 
 variable {Gamma : Type} {E : Type u} [Group Gamma] [Group E]
 
-/-- The pointwise defects associated to marked-compression inclusion data. -/
-def compressionDefectSet (D : MarkedCompressionInclusionData Gamma E) : Set E :=
-  Set.range fun gamma : Gamma ↦
-    ⁅D.t * D.c * D.t⁻¹, D.iota gamma⁆
-
-/-- The normal closure of the pointwise compression defects. -/
-def compressionDefectNormal
-    (D : MarkedCompressionInclusionData Gamma E) : Subgroup E :=
-  Subgroup.normalClosure D.compressionDefectSet
-
 /-- Conjugating an involution preserves its square relation. -/
 theorem transported_sq_eq_one (D : MarkedCompressionInclusionData Gamma E)
     (hc : D.c ^ 2 = 1) :
@@ -67,16 +59,6 @@ theorem word_eq_compressionDefect_sq
   rw [word, markedCompressionWord]
   exact commutator_conjugate_eq_commutator_sq_of_sq_eq_one
     (D.t * D.c * D.t⁻¹) (D.iota D.a) (D.transported_sq_eq_one hc)
-
-/-- The manuscript's marked word belongs to the normal closure of all
-pointwise compression defects. -/
-theorem word_mem_compressionDefectNormal_of_c_sq_eq_one
-    (D : MarkedCompressionInclusionData Gamma E) (hc : D.c ^ 2 = 1) :
-    D.word ∈ D.compressionDefectNormal := by
-  rw [D.word_eq_compressionDefect_sq hc, pow_two]
-  exact mul_mem
-    (Subgroup.subset_normalClosure ⟨D.a, rfl⟩)
-    (Subgroup.subset_normalClosure ⟨D.a, rfl⟩)
 
 end MarkedCompressionInclusionData
 
