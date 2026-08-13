@@ -2,6 +2,14 @@ import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ExplicitNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
+import GroupApproximation.Sofic.NormMFUniversalCorona
+import GroupApproximation.Sofic.NormMFCoronaRadical
+import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+import GroupApproximation.Sofic.NormMFPrintedConsequences
+import GroupApproximation.Analysis.FaithfulTracialMatrix
+import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Covers.KazhdanCover
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kun.KunDecomposition
@@ -59,6 +67,16 @@ generated from the manuscript's margin notes; this module is the short list.
   Clifford-free criterion: every finite normal subgroup contained in the
   compression-defect normal closure is invisible to all norm-matrix
   ultraproduct homomorphisms.
+* `KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect` -- the
+  same criterion as a direct obstruction to the standard cofinite-corona
+  definition of operator MF.
+* `isOperatorMF_iff_normMFResidual_eq_bot` and
+  `normMFQuotient_isOperatorMF` -- the universal norm-MF quotient is itself
+  operator MF, and residual triviality exactly characterizes operator MF for
+  countable groups.
+* `coronaMFResidual_eq_normMFResidual` and
+  `finiteNormal_le_normMatrixCoronaKernel` -- the same statements in the
+  manuscript's literal intersection-of-cofinite-corona-kernels language.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 
@@ -189,7 +207,23 @@ export GroupApproximation.ExplicitNonMFTheorem
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
 export GroupApproximation.KazhdanCompressionCore
-  (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect)
+  (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
+    finiteNormal_le_normMatrixCoronaKernel
+    not_isOperatorMF_of_finiteNormal_le_defect)
+export GroupApproximation
+  (isOperatorMF_iff_normMFResidual_eq_bot
+    normMFQuotient_isOperatorMF
+    exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual
+    existsUnique_normMFQuotient_factorization_to_isOperatorMF
+    coronaMFResidual_eq_normMFResidual
+    isOperatorMF_iff_coronaMFResidual_eq_bot
+    coronaMFQuotient_isOperatorMF
+    exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual
+    existsUnique_coronaMFQuotient_factorization_to_isOperatorMF
+    isOperatorMF_of_residuallyFinite)
+export GroupApproximation.IsOperatorMF (comap subgroup)
+export GroupApproximation.OperatorMFQuotientNonclosure
+  (operatorMF_not_closed_under_this_quotient)
 
 /-! ### Reach of the construction -/
 

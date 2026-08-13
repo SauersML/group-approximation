@@ -14,12 +14,12 @@ norm-MF residual: every one of its nonidentity elements is detected by some
 operator-norm matrix ultraproduct representation.  Consequently it is the
 largest quotient of `G` with this pointwise detection property.
 
-This exact universal statement does **not** assert `IsWeakMF
-(normMFQuotient G)`.  Passing from pointwise detection, potentially using a
-different ultraproduct for every nonidentity element, to one uniformly
-separated simultaneous matrix model requires a product/amplification
-construction not presently supplied by the repository API.  No such
-construction is assumed here.
+This file alone does **not** assert `IsWeakMF (normMFQuotient G)`: passing
+from pointwise detection, potentially using a different ultraproduct for
+every nonidentity element, to one simultaneous matrix model requires a
+diagonal block-amplification construction.  That construction, and the
+resulting standard cofinite-corona MF theorem, are supplied downstream in
+`NormMFUniversalCorona`; no such result is assumed in the proofs here.
 -/
 
 namespace GroupApproximation

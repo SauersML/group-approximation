@@ -6,6 +6,8 @@
 \usepackage{enumitem}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,calc,fit,positioning}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \newif\ifanonymous\anonymoustrue
 % This review source is physically anonymized: author and repository
@@ -23,9 +25,10 @@
 \newcommand{\leanverified}[2]{%
   \par\smallskip\noindent
   {\normalfont\footnotesize\color{gray!70!black}%
+  \raggedright\Urlmuskip=0mu plus 2mu\relax
   Formal counterpart:\par\nobreak\noindent
   \ifanonymous\nolinkurl{#2}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.}}
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -64,6 +67,22 @@
 \newcommand{\Cred}{C^*_{\mathrm{red}}}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
+
+\definecolor{mfblue}{HTML}{255C99}
+\definecolor{mfteal}{HTML}{177E89}
+\definecolor{mfgold}{HTML}{C78D20}
+\definecolor{mfrose}{HTML}{A64B5D}
+\tikzset{
+  mfnode/.style={draw, rounded corners=2.5pt, very thick, align=center,
+    inner sep=6pt, text width=3.25cm, font=\small},
+  mfgroup/.style={mfnode, draw=mfblue, fill=mfblue!7},
+  mfmatrix/.style={mfnode, draw=mfteal, fill=mfteal!8},
+  mfend/.style={mfnode, draw=mfrose, fill=mfrose!8},
+  mfarr/.style={-{Latex[length=2.2mm,width=1.5mm]}, thick,
+    draw=gray!75!black},
+  mflabel/.style={font=\scriptsize\bfseries, text=gray!65!black,
+    inner sep=1pt}
+}
 
 \begin{document}
 
@@ -257,6 +276,59 @@ corona and its conversion into a universal marked kernel.
     (Section~\ref{sec:proofA}).
 \end{enumerate}
 
+Figure~\ref{fig:mechanism} shows where the two halves of the proof meet.
+The upper lane is purely group-theoretic; the lower lane is the
+finite-matrix rigidity input.  Their common output is incompatible with the
+Reynolds corner.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.95, transform shape, node distance=8mm and 8mm]
+  \node[mfgroup] (pattern) {Kazhdan pattern\\
+    $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
+    $[c,\iota(\Lambda)]=1$};
+  \node[mfgroup, right=of pattern] (defect) {transported root $d=tct^{-1}$\\
+    defect closure\\$N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
+  \node[mfgroup, right=of defect] (finite) {$F\triangleleft H$ finite\\
+    and $F\le N_{\rm comp}$};
+
+  \node[mfmatrix, below=12mm of pattern] (kazhdan) {Kazhdan\\projection $P$\\
+    onto the $\Lambda$-fixed vectors};
+  \node[mfmatrix, right=of kazhdan] (pin) {$P\le TPT^*$ and equal finite ranks\\
+    force $P=TPT^*$};
+  \node[mfmatrix, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
+    tends to $1$ in normalized HS norm};
+
+  \node[mfend, below=12mm of pin, text width=5.25cm] (contradiction)
+    {on the complementary\\Reynolds corner\\
+     $\sum_{f\in F}\Theta(f)=0$, while each\\summand tends to $1$};
+
+  \draw[mfarr] (pattern) -- (defect);
+  \draw[mfarr] (defect) -- (finite);
+  \draw[mfarr] (pattern) -- node[mflabel,left] {property (T)} (kazhdan);
+  \draw[mfarr] (kazhdan) -- (pin);
+  \draw[mfarr] (pin) -- (collapse);
+  \draw[mfarr] (defect) -- (collapse);
+  \draw[mfarr] (finite) |- (contradiction.east);
+  \draw[mfarr] (collapse) |- (contradiction.east);
+
+  \begin{scope}[on background layer]
+    \node[draw=mfblue!35, fill=mfblue!2, rounded corners=5pt,
+      fit=(pattern)(defect)(finite), inner sep=5pt] {};
+    \node[draw=mfteal!35, fill=mfteal!2, rounded corners=5pt,
+      fit=(kazhdan)(pin)(collapse), inner sep=5pt] {};
+  \end{scope}
+  \node[mflabel, anchor=south west] at ($(pattern.north west)+(0,5pt)$)
+    {GROUP-THEORETIC LANE};
+  \node[mflabel, anchor=south west] at ($(kazhdan.north west)+(0,5pt)$)
+    {FINITE-MATRIX LANE};
+\end{tikzpicture}
+\caption{The finite-normal obstruction.  Stable finiteness is used only in
+the middle lower box; property~(T) is used only to make the fixed-space
+projection uniform across the matrix sequence.}
+\label{fig:mechanism}
+\end{figure}
+
 Nontriviality of $w$ is witnessed by a completely explicit
 representation of $E$ into a semidirect product of a Clifford group by a
 linear group over $\Z[1/2]$ (Section~\ref{sec:witness}); no
@@ -275,6 +347,7 @@ satisfies
 \[
   \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
 \]
+\leanverified{Criterion/FiniteDimensionalKill}{GroupApproximation.map_marked_commutator_eq_one_units}
 \end{mainthm}
 
 Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
@@ -966,6 +1039,34 @@ $D^{-1}aD=\begin{pmatrix}1&\tfrac12 e_1\\0&1\end{pmatrix}$ has a
 non-integral entry, so it does not lie in the integral group $\Gamma$.
 \end{proof}
 
+The three sites used by the witness are summarized in
+Figure~\ref{fig:clifford-witness}.  Only the inequality of the two right-hand
+sites is needed; their Clifford generators then anticommute automatically.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.96, transform shape, node distance=13mm and 18mm]
+  \node[mfgroup, text width=2.65cm] (root) {root site\\$o=\Gamma$\\lamp $c_o$};
+  \node[mfgroup, right=of root, text width=2.65cm] (shift) {shifted site\\
+    $D\Gamma$\\lamp $c_{D\Gamma}$};
+  \node[mfgroup, right=of shift, text width=2.65cm] (moved) {moved site\\
+    $aD\Gamma$\\lamp $c_{aD\Gamma}$};
+  \draw[mfarr] (root) -- node[above, font=\small, fill=white, inner sep=1pt]
+    {$t\mapsto D$} (shift);
+  \draw[mfarr] (shift) -- node[above, font=\small] {$a$} (moved);
+  \node[mflabel, below=3mm of root] {$\Gamma$ fixes $o$};
+  \node[mfend, below=19mm of shift, text width=5.1cm] (sign)
+    {$D\Gamma\neq aD\Gamma$\\
+     $[c_{D\Gamma},c_{aD\Gamma}]=-1=z\neq1$};
+  \draw[mfarr, draw=mfgold] (shift.south) |- (sign.west);
+  \draw[mfarr, draw=mfgold] (moved.south) |- (sign.east);
+\end{tikzpicture}
+\caption{The Clifford witness for $w\neq1$.  The base fixes the root lamp,
+while the proper doubling shift creates two distinct Clifford sites whose
+commutator is the central sign.}
+\label{fig:clifford-witness}
+\end{figure}
+
 \begin{proposition}\label{prop:witness}
 $w\neq1$ in $E$.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
@@ -1106,11 +1207,9 @@ The companion now also formalizes that literal eight-generator presentation,
 all of its displayed relations, and an exact affine--Clifford realization in
 which its marked central involution is nontrivial.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
-For the literal group it packages the analytic conclusion conditional only
-on property~\textup{(T)} of its six-generator base; that classical
-property~\textup{(T)} input has not yet been formalized in the companion, so
-the unconditional machine-checked non-MF endpoint remains the independent
-Shalom-cover witness above.
+No MF endpoint is asserted in Lean for that literal group; the unconditional
+machine-checked non-MF endpoint remains the independent Shalom-cover witness
+above.
 The cover formulation needs only
 $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
 many compressed generators; it does not require an endomorphism of the cover.
@@ -1127,6 +1226,7 @@ its points: they all identify $w$ with $1$.  In particular $E$ is not
 maximally almost periodic or residually finite, $\Cmax(E)$ is not residually
 finite-dimensional as a $C^*$-algebra, and no finite quotient of $E$ can
 witness $w\neq1$.
+\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective}
 \end{corollary}
 
 \begin{proof}
@@ -1374,6 +1474,7 @@ $(\Lambda,\iota,t,c)$, and let $F\trianglelefteq H$ be a finite
 normal subgroup with $F\subseteq N_{\mathrm{comp}}$.  Then every
 corona representation $\Theta\colon H\to\U(\mathcal Q)$ satisfies
 $\Theta(f)=1$ for all $f\in F$.
+\leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
 \end{theorem}
 
 \begin{remark}\label{rem:criterioncontext}
@@ -1704,7 +1805,7 @@ Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
 \[
   \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
 \]
-\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.MarkedCompressionInclusionData.word_eq_compressionDefect_sq}
+\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
 \end{lemma}
 
 \begin{proof}
@@ -1804,9 +1905,13 @@ projections with small one-sided leakage have small reverse leakage.
 \leanverified{Sofic/ProjectionRankFlip}{GroupApproximation.KazhdanCornerMatrices.norm_one_sub_mul_flip}
 For an arbitrary finite normal subgroup in the compression-defect normal
 closure, the coordinate Reynolds average, complementary spectral corner,
-and marker-free Kazhdan collapse assemble into the universal kernel theorem
+and marker-free Kazhdan collapse first assemble into the universal
+ultraproduct-residual theorem
 \leanverified{Sofic/FiniteNormalCompressionObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual}
-which is the formal counterpart of Theorem~\ref{thm:criterion}.
+The formal equivalence between ultraproduct invisibility and invisibility in
+all cofinite norm-matrix coronas then gives the theorem in its literal printed
+form:
+\leanverified{Sofic/FiniteNormalCoronaObstruction}{GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel}
 The Clifford lamp group, central sign, and permutation action are also
 formalized,
 \leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
@@ -1821,9 +1926,10 @@ microstate before yielding the arbitrary-corona kernel theorem.
 Throughout this section, ``corona representation'' and ``MF'' are as
 in Section~\ref{sec:prelim}.
 \ifanonymous\else
-None of the results of this section is claimed to have a formal
-counterpart at the time of writing; they are paper-proved
-consequences of Theorems~\ref{thm:A} and~\ref{thm:criterion}.
+The formal companion identifies the literal cofinite-corona radical below
+with its ultraproduct residual and verifies portability and the largest-MF-
+quotient proposition.  Later consequences in this section are paper-proved
+unless they carry their own explicit counterpart link.
 \fi
 
 \subsection{The MF radical}
@@ -1838,6 +1944,10 @@ For a countable group $G_1$, the \emph{MF radical} is
 a normal subgroup of $G_1$.  This is the operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
 and of the approximation kernels studied in \cite{NST}.
+The formal companion defines this literal cofinite-corona intersection and
+proves it equal, for countable groups, to the independently defined
+operator-norm ultraproduct residual.
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFResidual_eq_normMFResidual}
 \end{definition}
 
 \begin{lemma}[portability]\label{lem:portable}
@@ -1850,6 +1960,7 @@ groups,
 the MF radical is functorial.  In particular, if
 $\varphi\colon E\to G_2$ satisfies $\varphi(w)\neq1$, then $G_2$ is
 not MF.
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.map_coronaMFResidual_le}
 \end{lemma}
 
 \begin{proof}
@@ -1875,6 +1986,10 @@ $G_1/R$.
 In particular $G_1$ is MF if and only if $R=\{1\}$.  The statement is
 presumably folklore once the radical is defined; we include a proof
 for completeness and claim no novelty for it.
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual}
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.coronaMFQuotient_isOperatorMF}
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.existsUnique_coronaMFQuotient_factorization_to_isOperatorMF}
+\leanverified{Sofic/NormMFCoronaRadical}{GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot}
 \end{proposition}
 
 \begin{proof}
@@ -1988,6 +2103,7 @@ faithful.
 \item Every unital $C^*$-algebra $A$ with a faithful tracial state
 is stably finite: for every $k\ge1$, every isometry in $M_k(A)$ is a
 unitary.
+\leanverified{Analysis/FaithfulTracialMatrix}{GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one}
 \end{enumerate}
 \end{lemma}
 
@@ -2047,6 +2163,7 @@ $C^*$-algebra satisfying the UCT is quasidiagonal.
 
 \begin{lemma}[residually finite groups are MF]\label{lem:rfmf}
 Every countable residually finite group is MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
 \end{lemma}
 
 \begin{proof}
@@ -2111,6 +2228,9 @@ and
 \end{aligned}
 \]
 $s$ is an isometry with defect $1-ss^*=Q_1-\bar p$.
+The purely algebraic proper-isometry calculation from projection-compression
+data is also checked independently in the formal companion.
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.star_isometry_mul_eq_one_and_reverse_ne}
 
 It remains to check $Q_1\neq\bar p$.  Let
 $H_0=t\,\iota_G(\Gamma)\,t^{-1}\le G$ and let $\pi$ be the
@@ -2338,6 +2458,7 @@ formal statement to $d=3$, where the presentation
 \begin{lemma}\label{lem:subgroupMF}
 Every subgroup of an MF group is MF; equivalently, a group
 containing a non-MF subgroup is not MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
 \end{lemma}
 
 \begin{proof}

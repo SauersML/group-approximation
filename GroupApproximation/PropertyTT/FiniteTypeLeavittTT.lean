@@ -1,5 +1,6 @@
 import GroupApproximation.KOne.AllRanksElementaryCore
 import GroupApproximation.KOne.GLIsElementary
+import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Leavitt.LeavittRankEquivalence
 import GroupApproximation.PropertyTT.BoundedGeneration
 import GroupApproximation.PropertyTT.FiniteTypeRankFourRelativeTT
@@ -29,6 +30,8 @@ namespace FiniteTypeLeavittTT
 open RankFourParabolicGeometry
 
 noncomputable section
+
+universe v
 
 variable {R : Type} [Ring R] [Nontrivial R]
 
@@ -109,53 +112,55 @@ theorem rankFour_hasTTmodT
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R) :
-    HasTTmodT.{0, 0} (E4 (R := R)) := by
-  have hT3 : HasKazhdanPropertyT.{0, 0} (E3 (R := R)) :=
+    HasTTmodT.{0, v} (E4 (R := R)) := by
+  have hT3small : HasKazhdanPropertyT.{0, 0} (E3 (R := R)) :=
     HasKazhdanPropertyT.of_surjective
       (elementaryGroupMap (ι := Fin 3) f)
       (elementaryGroupMap_surjective_of_surjective f hf)
       (FreeElementaryPropertyT.freeElementary_hasKazhdanPropertyT X)
-  have hT4 : HasKazhdanPropertyT.{0, 0} (E4 (R := R)) :=
+  have hT3 : HasKazhdanPropertyT.{0, v} (E3 (R := R)) :=
+    hT3small.liftUniverse
+  have hT4 : HasKazhdanPropertyT.{0, v} (E4 (R := R)) :=
     L.rankFour_propertyT_of_rankThree hT3
-  have h03 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X03 (R := R)) := by
+  have h03 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X03 (R := R)) := by
     simpa only [FiniteTypeRankFourRelativeTT.X03,
       RankFourParabolicGeometry.X03] using
       (FiniteTypeRankFourRelativeTT.hasRelativeTTmodT_X03
         (R := R) X f hf)
-  have h13 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X13 (R := R)) := by
+  have h13 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X13 (R := R)) := by
     have h := h03.reindexRoot (Equiv.swap (0 : Fin 4) 1) 0 3 (by decide)
     simpa only [X13, Equiv.swap_apply_left,
       Equiv.swap_apply_of_ne_of_ne (by decide : (3 : Fin 4) ≠ 0)
         (by decide : (3 : Fin 4) ≠ 1)] using h
-  have h23 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X23 (R := R)) := by
+  have h23 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X23 (R := R)) := by
     have h := h03.reindexRoot (Equiv.swap (0 : Fin 4) 2) 0 3 (by decide)
     simpa only [X23, Equiv.swap_apply_left,
       Equiv.swap_apply_of_ne_of_ne (by decide : (3 : Fin 4) ≠ 0)
         (by decide : (3 : Fin 4) ≠ 2)] using h
-  have h30 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X30 (R := R)) := by
+  have h30 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X30 (R := R)) := by
     have h := h03.reindexRoot (Equiv.swap (0 : Fin 4) 3) 0 3 (by decide)
     simpa only [X30, Equiv.swap_apply_left, Equiv.swap_apply_right] using h
-  have h31 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X31 (R := R)) := by
+  have h31 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X31 (R := R)) := by
     let e : Equiv.Perm (Fin 4) :=
       (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 1)
     have he0 : e 0 = 3 := by simp [e, Equiv.swap_apply_def]
     have he3 : e 3 = 1 := by simp [e]
     have h := h03.reindexRoot e 0 3 (by decide)
     simpa only [X31, he0, he3] using h
-  have h32 : HasRelativeTTmodT.{0, 0} (E4 (R := R)) (X32 (R := R)) := by
+  have h32 : HasRelativeTTmodT.{0, v} (E4 (R := R)) (X32 (R := R)) := by
     let e : Equiv.Perm (Fin 4) :=
       (Equiv.swap (0 : Fin 4) 3).trans (Equiv.swap (0 : Fin 4) 2)
     have he0 : e 0 = 3 := by simp [e, Equiv.swap_apply_def]
     have he3 : e 3 = 2 := by simp [e]
     have h := h03.reindexRoot e 0 3 (by decide)
     simpa only [X32, he0, he3] using h
-  have hcore : HasRelativeTTmodT.{0, 0} (E4 (R := R))
+  have hcore : HasRelativeTTmodT.{0, v} (E4 (R := R))
       (RankFourGlobalization.coreRange (R := R)) :=
     RankFourGlobalization.hasRelativeTTmodT_coreRange_of_roots
       hT4 h03 h13 h23 h30 h31 h32
   let e4 : E4 (R := R) ≃* GL4 (R := R) :=
     elementaryEquivGL4 L hdiv hdiag
-  have hblock3 : HasRelativeTTmodT.{0, 0} (GL4 (R := R))
+  have hblock3 : HasRelativeTTmodT.{0, v} (GL4 (R := R))
       (coordinateBlock R (3 : Fin 4)) := by
     apply HasRelativeTTmodT.of_surjective e4.toMonoidHom e4.surjective
       (RankFourGlobalization.coreRange (R := R))
@@ -164,7 +169,7 @@ theorem rankFour_hasTTmodT
         coreRange_map_eq_coordinateBlock L hdiv hdiag]
     · exact hcore
   have hblock : ∀ j : Fin 4,
-      HasRelativeTTmodT.{0, 0} (GL4 (R := R))
+      HasRelativeTTmodT.{0, v} (GL4 (R := R))
         (coordinateBlock R j) := by
     intro j
     by_cases hj : (3 : Fin 4) = j
@@ -178,7 +183,7 @@ theorem rankFour_hasTTmodT
       (coordinateBlock R (3 : Fin 4)) (coordinateBlock R j)
     · rw [coordinateBlock_map_reindex, he]
     · exact hblock3
-  have hGL : HasTTmodT.{0, 0} (GL4 (R := R)) :=
+  have hGL : HasTTmodT.{0, v} (GL4 (R := R)) :=
     hasTTmodT_of_relative_coordinateBlocks_of_sandwich
       (R := R) (ι := Fin 4) (by decide) hdiv hblock
   exact HasTTmodT.of_mulEquiv e4 hGL
@@ -193,7 +198,7 @@ theorem elementaryGroup_hasTTmodT
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
     (n : ℕ) (hn : 2 ≤ n) :
-    HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) := by
+    HasTTmodT.{0, v} (elementaryGroup (Fin n) R) := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩
   exact HasTTmodT.of_mulEquiv
     (L.rankSuccEquiv m 3 (by omega) (by omega))

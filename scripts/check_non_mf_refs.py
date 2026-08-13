@@ -10,14 +10,14 @@ declaration index used by ``check_lean_refs.py``.
 
 One deliberate difference from ``check_property_tt_refs.py`` remains: not
 every numbered result in the non-MF manuscript has a formal counterpart.  The
-formal development now includes the finite-dimensional core, the sequential
-Kazhdan-compression kill, and an independently constructed finitely presented
-non-MF witness.  The paper's literal eight-generator presentation and its
-finite-normal strengthening are paper proofs, not Lean claims.  Accordingly
-this checker enforces that every counterpart link that *is* claimed resolves
-to a real declaration in the named module; statement pinning and transitive
-axiom checking of the formal headline endpoints are performed separately by
-``scripts/Audit.lean``.
+formal development includes the finite-dimensional core, the sequential
+Kazhdan-compression kill, an independently constructed finitely presented
+non-MF witness, the literal eight-generator presentation and its exact
+nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
+radical.  No MF endpoint is claimed for the literal group. Accordingly this checker enforces that
+every counterpart link that *is* claimed resolves to a real declaration in
+the named module; statement pinning and transitive axiom checking of the
+formal headline endpoints are performed separately by ``scripts/Audit.lean``.
 """
 
 from __future__ import annotations

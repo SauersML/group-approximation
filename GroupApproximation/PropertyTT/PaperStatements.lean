@@ -7,8 +7,8 @@ import Mathlib.RingTheory.FiniteType
 /-!
 # Paper statements for strong-division rings and `(TT)/T`
 
-This file is the rigidity paper's public theorem surface.  Each declaration is
-intended to correspond verbatim to one numbered theorem in the manuscript.
+This file is the rigidity paper's public theorem surface.  Each declaration
+has the exact hypotheses and conclusion of its numbered manuscript theorem.
 It contains no nonsoficity input; the combined nonsofic corollary belongs in a
 separate endpoint so that the rigidity theorem has an independent dependency
 closure.
@@ -34,7 +34,7 @@ This is deliberately stated as `HasRelativeTT`, rather than merely relative
 the rank-four argument. -/
 theorem freeCharacteristicTwo_root_hasRelativeTT
     (X : Type) [Fintype X] :
-    HasRelativeTT.{0, 0}
+    HasRelativeTT.{0, v}
       (elementaryGroup (Fin 4) (FreeAlgebra (ZMod 2) X))
       (elementaryRootSubgroup (0 : Fin 4) 3 (by decide)) :=
   RankFourRelativeTT.hasRelativeTT_X03 X
@@ -247,7 +247,7 @@ theorem finiteFreeQuotient_rankFour_hasTTmodT
     (L : LeavittFamily R)
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R) :
-    HasTTmodT.{0, 0} (elementaryGroup (Fin 4) R) :=
+    HasTTmodT.{0, v} (elementaryGroup (Fin 4) R) :=
   FiniteTypeLeavittTT.rankFour_hasTTmodT X f hf L hdiv hdiag
 
 /-- **Product estimate used in bounded generation.**  This is deliberately
@@ -274,7 +274,7 @@ theorem finiteFreeQuotient_elementaryGroup_hasTTmodT
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
     (n : ℕ) (hn : 2 ≤ n) :
-    HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) :=
+    HasTTmodT.{0, v} (elementaryGroup (Fin n) R) :=
   FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     X f hf L hdiv hdiag n hn
 
@@ -289,7 +289,7 @@ theorem finiteType_elementaryGroup_hasTTmodT
     (hdiv : HasSingleSandwichDivision R)
     (hdiag : HasElementaryDiagonalClass R)
     (n : ℕ) (hn : 2 ≤ n) :
-    HasTTmodT.{0, 0} (elementaryGroup (Fin n) R) := by
+    HasTTmodT.{0, v} (elementaryGroup (Fin n) R) := by
   obtain ⟨s, hs⟩ :=
     (Algebra.FiniteType.out : (⊤ : Subalgebra (ZMod 2) R).FG)
   let f : FreeAlgebra (ZMod 2) {x : R // x ∈ s} →ₐ[ZMod 2] R :=
@@ -316,7 +316,7 @@ elementary group over the binary Leavitt algebra over `F₂` has property
 `(TT)/T`. -/
 theorem binaryLeavitt_elementaryGroup_hasTTmodT
     (n : ℕ) (hn : 2 ≤ n) :
-    HasTTmodT.{0, 0}
+    HasTTmodT.{0, v}
       (elementaryGroup (Fin n) BinaryL) :=
   FiniteTypeLeavittTT.elementaryGroup_hasTTmodT
     BinaryLeavitt.Generator
@@ -350,7 +350,7 @@ noncomputable def binaryLeavitt_elementaryEquivUnits
 /-- **Unit-group form of the binary Leavitt theorem.**  The unit group of
 `L_{F₂}(1,2)` has property `(TT)/T`. -/
 theorem binaryLeavittUnits_hasTTmodT :
-    HasTTmodT.{0, 0} BinaryLˣ :=
+    HasTTmodT.{0, v} BinaryLˣ :=
   HasTTmodT.of_mulEquiv
     (binaryLeavitt_elementaryEquivUnits 2 (by omega)).symm
     (binaryLeavitt_elementaryGroup_hasTTmodT 2 (by omega))

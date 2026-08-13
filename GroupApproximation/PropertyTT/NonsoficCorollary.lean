@@ -14,6 +14,8 @@ only a corollary.
 namespace GroupApproximation
 namespace PropertyTTPaper
 
+universe v
+
 /-- For every `n ≥ 2`, the elementary group over the binary Leavitt algebra
 over `F₂` has property `(TT)/T` and is nonsofic.
 
@@ -22,7 +24,7 @@ nonsoficity assertion is imported from the prior nonsofic-group theorem and is
 not claimed here as a new proof or mechanism. -/
 theorem binaryLeavitt_elementaryGroup_hasTTmodT_and_not_isSofic
     (n : ℕ) (hn : 2 ≤ n) :
-    HasTTmodT.{0, 0}
+    HasTTmodT.{0, v}
         (elementaryGroup (Fin n) BinaryL) ∧
       ¬ IsSofic (elementaryGroup (Fin n) BinaryL) := by
   refine ⟨binaryLeavitt_elementaryGroup_hasTTmodT n hn, ?_⟩
