@@ -36,6 +36,7 @@ import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Sofic.LiteralTranslationOrbit
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBaseTwoGenerator
@@ -163,6 +164,12 @@ group is part of the Lean API.
 * `LiteralBaseTranslationLattice.latticeEquivTranslations` -- the
   translation subgroup is canonically the full lattice `ℤ³`; exact affine
   matrix entries prove that no nonzero exponent vector collapses.
+* `LiteralTranslationOrbit.translation_eq_two_rotation_conjugates` -- every
+  literal translation is a product of two conjugates of the two displayed
+  basis translations by literal rotations.
+* `LiteralTranslationOrbit.norm_translation_displacement_le_of_rotations_fixed`
+  -- a rotation-fixed vector has its entire translation displacement uniformly
+  controlled by the two displayed basis displacements.
 * `LiteralBaseRotationRetract.rotationToBase_injective` and
   `LiteralBaseRotationRetract.baseToRotation_ker_eq_translations` -- the
   eight-relator rotation group is a retract of the literal base, and the
@@ -449,6 +456,9 @@ export GroupApproximation.LiteralBaseTranslationNormal
   (translations normalizer_translations_eq_top)
 export GroupApproximation.LiteralBaseTranslationLattice
   (latticeToBase_injective latticeToBase_range latticeEquivTranslations)
+export GroupApproximation.LiteralTranslationOrbit
+  (translation_eq_two_rotation_conjugates
+    norm_translation_displacement_le_of_rotations_fixed)
 export GroupApproximation.LiteralBaseP13Replay
   (yFromUZXY_eq closure_Z_XY_eq_top)
 export GroupApproximation.LiteralBaseTwoGenerator
