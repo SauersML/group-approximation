@@ -446,13 +446,17 @@ theorem norm_cornerUnitary_sub_cornerMicrostate
 
 /-- Eventual nonemptiness of the corner, from separation of the central
 involution. -/
-theorem nonempty_corner_eventually (A : WeakMFApproximation G) {z : G}
-    (hz : z * z = 1) (hne : z ≠ 1) :
+theorem nonempty_corner_eventually_of_separated
+    (A : OpAlmostRepresentation G) {z : G}
+    (hz : z * z = 1) {delta : ℝ} (hdelta : 0 < delta)
+    (hsep : ∃ N, ∀ n ≥ N,
+      delta ≤ ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) :
     ∃ N, ∀ n ≥ N,
       Nonempty
         {i : A.model n //
           negPredicate (A.map n z : Matrix (A.model n) (A.model n) ℂ) i} := by
-  obtain ⟨N, hN⟩ := negativeProjection_eventually_ne_zero A hz hne
+  obtain ⟨N, hN⟩ := negativeProjection_eventually_ne_zero_of_separated
+    A hz hdelta hsep
   exact ⟨N, fun n hn =>
     nonempty_negPredicate_of_negativeProjection_ne_zero _ (hN n hn)⟩
 
@@ -464,14 +468,18 @@ spectral-gap input enters — leakage is controlled by the exact sign
 commutator identity, and exactness of the corner unitaries comes from polar
 correction. -/
 theorem exists_negativeCorner_opAlmostRepresentation
-    (A : WeakMFApproximation G) {z : G} (hz : z * z = 1)
-    (hcentral : ∀ g : G, z * g = g * z) (hne : z ≠ 1) :
+    (A : OpAlmostRepresentation G) {z : G} (hz : z * z = 1)
+    (hcentral : ∀ g : G, z * g = g * z)
+    {delta : ℝ} (hdelta : 0 < delta)
+    (hsep : ∃ N, ∀ n ≥ N,
+      delta ≤ ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) :
     ∃ B : OpAlmostRepresentation G,
       ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
         ‖(B.map n z : Matrix (B.model n) (B.model n) ℂ) + 1‖ ≤ ε := by
   classical
-  set A₀ := A.toOpAlmostRepresentation
-  obtain ⟨N₀, hN₀⟩ := nonempty_corner_eventually A hz hne
+  set A₀ := A
+  obtain ⟨N₀, hN₀⟩ :=
+    nonempty_corner_eventually_of_separated A hz hdelta hsep
   have hclose : ∀ g : G, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
       ‖(cornerUnitary A₀ z n g :
           Matrix

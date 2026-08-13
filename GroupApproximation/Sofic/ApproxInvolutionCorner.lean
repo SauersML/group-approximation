@@ -313,7 +313,10 @@ theorem norm_roundedInvolution_sub_hermitianPart_le
     ext i j
     by_cases hij : i = j
     · subst j
-      by_cases hi : 0 < hH.eigenvalues i <;> simp [P, L, R, hi]
+      by_cases hi : 0 < hH.eigenvalues i
+      · simp [P, L, R, hi]
+        norm_num
+      · simp [P, L, R, hi]
     · simp [P, L, R, hij]
   have hrewrite : roundedInvolution U - hermitianPart U = V * R * Vᴴ := by
     rw [roundedInvolution, hPdef]
