@@ -78,6 +78,51 @@ noncomputable def toAsymptoticUnitaryRepresentation
         nlinarith [norm_nonneg R, Real.sqrt_nonneg epsilon]
       _ = epsilon := Real.sq_sqrt hepsilon.le
 
+/-- Every pointwise compression defect is killed by the tracial
+ultraproduct homomorphism associated to an operator-norm almost
+representation.  This is the reusable bridge from the first Kazhdan
+compressor to any later corner argument. -/
+theorem compressionDefects_eq_one_in_hyperlinearHom
+    (C : KazhdanCompressionCore Γ E) (B : OpAlmostRepresentation E)
+    {U : Ultrafilter ℕ} (hcof : (U : Filter ℕ) ≤ Filter.cofinite) :
+    ∀ gamma : Γ,
+      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom hcof
+          ⁅C.transported, C.iota gamma⁆ = 1 := by
+  intro gamma
+  let S : AsymptoticUnitaryRepresentation E :=
+    KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B
+  let rhoHS : E →* UniversalHyperlinear U S.model S.modelNonempty :=
+    S.toUltraproductHom hcof
+  have hcollapse := compressionDefects_hsTrivial C B gamma
+  have hnull :
+      (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆)⁻¹ *
+          (fun n ↦ S.map n 1) ∈
+        nullUnitarySubgroup U S.model S.modelNonempty := by
+    intro epsilon hepsilon
+    obtain ⟨N, hN⟩ := hcollapse (epsilon / 2) (by linarith)
+    refine eventually_of_atTop hcof N (fun n hn ↦ ?_)
+    show hsLengthSq (S.model n)
+      (((S.map n ⁅C.transported, C.iota gamma⁆)⁻¹ * S.map n 1 :
+        Matrix.unitaryGroup (S.model n) ℂ)) < epsilon
+    rw [coe_inv_mul,
+      hsLengthSq_conjTranspose_mul (S.model n)
+        (S.map n ⁅C.transported, C.iota gamma⁆).2
+        (S.modelNonempty n),
+      KazhdanCompressorCorner.hsDistSq_comm]
+    exact lt_of_le_of_lt (hN n hn) (by linarith)
+  have heq :
+      QuotientGroup.mk (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆) =
+        QuotientGroup.mk (fun n ↦ S.map n 1) :=
+    QuotientGroup.eq.mpr hnull
+  change rhoHS ⁅C.transported, C.iota gamma⁆ = 1
+  calc
+    rhoHS ⁅C.transported, C.iota gamma⁆ =
+        QuotientGroup.mk
+          (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆) := rfl
+    _ = QuotientGroup.mk (fun n ↦ S.map n 1) := heq
+    _ = rhoHS 1 := rfl
+    _ = 1 := map_one rhoHS
+
 end KazhdanCompressionCore
 
 namespace MarkedCompressionInclusionData

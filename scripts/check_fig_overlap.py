@@ -29,7 +29,7 @@ PREAMBLE = r"""\documentclass[11pt]{amsart}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{tikz}
-\usetikzlibrary{positioning,arrows.meta}
+\usetikzlibrary{arrows.meta,backgrounds,calc,fit,positioning}
 %% Cross-references resolve only in the full document; stand in a fixed
 %% label of realistic width so text metrics match the real render.
 \renewcommand{\ref}[1]{9.9}
@@ -38,7 +38,13 @@ PREAMBLE = r"""\documentclass[11pt]{amsart}
 
 
 def preamble_macros(source: str) -> str:
-    """Single-line \newcommand definitions from the manuscript preamble."""
+    """Figure-relevant definitions from the manuscript preamble.
+
+    Besides compact command declarations, TikZ figures commonly depend on
+    manuscript color names and multi-line ``\\tikzset`` style blocks.  Copy
+    those definitions into the standalone probe so the overlap check measures
+    the same nodes as the full document.
+    """
     preamble = source.split(r"\begin{document}")[0]
     lines = []
     for line in preamble.splitlines():
@@ -46,8 +52,32 @@ def preamble_macros(source: str) -> str:
         if re.match(r"\\(newcommand|DeclareMathOperator\*?"
                     r"|DeclarePairedDelimiter)\{\\[A-Za-z]+\}", stripped) \
                 and stripped.count("{") == stripped.count("}") \
-                and "lean" not in stripped:
+            and "lean" not in stripped:
             lines.append(stripped)
+    lines.extend(re.findall(
+        r"\\definecolor\{[^{}]+\}\{[^{}]+\}\{[^{}]+\}", preamble))
+
+    marker = r"\tikzset{"
+    cursor = 0
+    while True:
+        start = preamble.find(marker, cursor)
+        if start < 0:
+            break
+        brace = start + len(marker) - 1
+        depth = 0
+        stop = None
+        for index in range(brace, len(preamble)):
+            if preamble[index] == "{":
+                depth += 1
+            elif preamble[index] == "}":
+                depth -= 1
+                if depth == 0:
+                    stop = index + 1
+                    break
+        if stop is None:
+            raise ValueError("unterminated \\tikzset block in manuscript preamble")
+        lines.append(preamble[start:stop])
+        cursor = stop
     return "\n".join(lines)
 
 

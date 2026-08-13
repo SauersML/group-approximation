@@ -1673,13 +1673,18 @@ $\sigma(P)$ is the orthogonal projection onto
 \end{lemma}
 
 \begin{proof}
-If $(T_n)$ is a null sequence in operator norm then
-$\lVert T_n\xi_n\rVert\le\opnorm{T_n}\sup\lVert\xi_n\rVert\to0$, in
-particular along $\omega$; so $\sigma$ is well defined on
-$\mathcal B$, and it is clearly a unital $*$-homomorphism.  The
-composition $\sigma\circ\tilde\beta\circ\iota_*$, from
-$\Cmax(\Lambda)$ to $B(K_\omega)$, is a $*$-representation on a
-Hilbert space extending the unitary representation
+If $(T_n)$ is a null sequence in operator norm, then
+\[
+  \lVert T_n\xi_n\rVert
+  \le \opnorm{T_n}\sup_n\lVert\xi_n\rVert\longrightarrow0 .
+\]
+In particular this holds along $\omega$, so $\sigma$ is well defined on
+$\mathcal B$, and it is clearly a unital $*$-homomorphism.  The map
+\[
+  \sigma\circ\tilde\beta\circ\iota_*\colon
+  \Cmax(\Lambda)\longrightarrow B(K_\omega)
+\]
+is a $*$-representation on a Hilbert space extending the unitary representation
 $\lambda\mapsto\sigma(\beta(\iota(\lambda)))$; by uniqueness of
 integrated forms and Fact~\ref{fact:kazhdan},
 \[
