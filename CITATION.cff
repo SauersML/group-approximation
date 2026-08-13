@@ -3,8 +3,9 @@ message: "If you use this formalization, please cite the repository and its arch
 title: "Group Approximation and Rigidity"
 type: software
 authors:
-  - name: "GPT-5.6 Sol"
-version: 0.1.0
-date-released: 2026-08-05
+  - name: "SauersML"
+    alias: "SauersML"
+version: 0.2.0
+date-released: 2026-08-13
 repository-code: "https://github.com/SauersML/group-approximation"
 license: Apache-2.0
