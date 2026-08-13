@@ -111,6 +111,49 @@ theorem c0MatrixSequenceIdeal_star_mem {a : BoundedMatrixSequence X}
     star a ∈ c0MatrixSequenceIdeal X :=
   IsC0MatrixSequence.star X ha
 
+omit [∀ n, Nonempty (X n)] in
+private theorem boundedMatrixSequence_coord_norm_le (a : BoundedMatrixSequence X) (n : ℕ) :
+    ‖a n‖ ≤ ‖a‖ :=
+  (lp.isLUB_norm a).1 ⟨n, rfl⟩
+
+private theorem boundedMatrixSequence_coord_dist_le
+    (a b : BoundedMatrixSequence X) (n : ℕ) :
+    dist (a n) (b n) ≤ dist a b := by
+  rw [dist_eq_norm, dist_eq_norm]
+  change ‖(a - b) n‖ ≤ ‖a - b‖
+  exact boundedMatrixSequence_coord_norm_le X (a - b) n
+
+/-- The c0 ideal is closed in the uniform operator norm. -/
+theorem isClosed_c0MatrixSequenceIdeal :
+    IsClosed (c0MatrixSequenceIdeal X : Set (BoundedMatrixSequence X)) := by
+  apply IsSeqClosed.isClosed
+  intro s a hs hsa
+  change IsC0MatrixSequence X a
+  rw [IsC0MatrixSequence, Metric.tendsto_nhds]
+  intro ε hε
+  have hclose : ∀ᶠ k in atTop, dist (s k) a < ε / 2 :=
+    (Metric.tendsto_nhds.mp hsa) (ε / 2) (half_pos hε)
+  obtain ⟨k, hk⟩ := hclose.exists
+  have hsk : IsC0MatrixSequence X (s k) := by
+    exact hs k
+  have htail : ∀ᶠ n in cofinite, ‖s k n‖ < ε / 2 :=
+    (Metric.tendsto_nhds.mp hsk) (ε / 2) (half_pos hε) |>.mono fun n hn ↦ by
+      simpa only [Real.dist_eq, sub_zero, abs_norm] using hn
+  filter_upwards [htail] with n hn
+  rw [Real.dist_eq, sub_zero, abs_norm]
+  calc
+    ‖a n‖ ≤ ‖a n - s k n‖ + ‖s k n‖ := by
+      nth_rewrite 1 [← sub_add_cancel (a n) (s k n)]
+      exact norm_add_le _ _
+    _ < ε := by
+      have hcoord : ‖a n - s k n‖ < ε / 2 := by
+        calc
+          ‖a n - s k n‖ = dist (a n) (s k n) := by rw [dist_eq_norm]
+          _ ≤ dist a (s k) := boundedMatrixSequence_coord_dist_le X a (s k) n
+          _ = dist (s k) a := dist_comm _ _
+          _ < ε / 2 := hk
+      linarith
+
 /-- The actual algebra quotient `ℓ∞(M_{d_n}) / c₀(M_{d_n})`.
 
 No normed- or C-star-algebra instance is asserted yet; the noncommutative
