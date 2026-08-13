@@ -521,6 +521,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
 #print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
+#print axioms GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill
+#print axioms GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF
 #print axioms GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one
 #print axioms GroupApproximation.map_marked_commutator_eq_one
 #print axioms GroupApproximation.map_marked_commutator_eq_one_units
