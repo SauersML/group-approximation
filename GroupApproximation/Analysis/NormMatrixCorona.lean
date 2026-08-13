@@ -5,7 +5,7 @@ import Mathlib.RingTheory.Ideal.Quotient.Operations
 import Mathlib.Topology.Order.LiminfLimsup
 
 /-!
-# The algebraic norm-matrix corona
+# The norm-matrix C-star corona
 
 The numerator constructed here is the genuine C-star algebra of uniformly
 operator-norm-bounded sequences of finite square complex matrices.  It is the
@@ -477,6 +477,50 @@ theorem norm_normMatrixCorona_mk_eq_limsup
       Filter.limsup (fun n ↦ ‖a n‖) atTop :=
   le_antisymm (normMatrixCorona_mk_le_tailNorm X a)
     (matrixSequenceTailNorm_le_normMatrixCorona_mk X a)
+
+private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
+    (Filter.limsup (fun n ↦ ‖a n‖) atTop) ^ 2 =
+      Filter.limsup (fun n ↦ ‖a n‖ ^ 2) atTop := by
+  have hmono : Monotone (fun x : ℝ ↦ (max x 0) ^ 2) := by
+    intro x y hxy
+    have hmax : max x 0 ≤ max y 0 := max_le_max_right 0 hxy
+    have hx : 0 ≤ max x 0 := le_max_right x 0
+    have hy : 0 ≤ max y 0 := le_max_right y 0
+    nlinarith
+  have hcont : Continuous (fun x : ℝ ↦ (max x 0) ^ 2) :=
+    (continuous_id.max continuous_const).pow 2
+  have hmap := hmono.map_limsup_of_continuousAt
+    (F := atTop) (fun n ↦ ‖a n‖) hcont.continuousAt
+    (matrixNorm_isBoundedUnder X a) (matrixNorm_isCoboundedUnder X a)
+  have htail : 0 ≤ Filter.limsup (fun n ↦ ‖a n‖) atTop := by
+    exact matrixSequenceTailNorm_nonneg X a
+  rw [max_eq_left htail] at hmap
+  simpa [Function.comp_def, max_eq_left] using hmap
+
+noncomputable instance normMatrixCoronaAlgebraCStarRing :
+    CStarRing (NormMatrixCoronaAlgebra X) where
+  norm_mul_self_le x := by
+    induction x using QuotientAddGroup.induction_on with
+    | _ a =>
+      rw [normMatrixCorona_star_mk]
+      change
+        ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
+            ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ ≤
+          ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) (star a * a)‖
+      rw [norm_normMatrixCorona_mk_eq_limsup,
+        norm_normMatrixCorona_mk_eq_limsup]
+      rw [← pow_two]
+      rw [limsup_matrixNorm_sq X a]
+      apply le_of_eq
+      congr 1
+      funext n
+      exact norm_star_mul_self
+
+/-- Audit pin: the concrete quotient norm satisfies the C-star identity. -/
+theorem norm_normMatrixCorona_star_mul_self
+    (x : NormMatrixCoronaAlgebra X) :
+    ‖star x * x‖ = ‖x‖ ^ 2 := by
+  simpa [pow_two] using (norm_star_mul_self (x := x))
 
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/
