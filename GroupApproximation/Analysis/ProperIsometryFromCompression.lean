@@ -227,8 +227,11 @@ theorem isometry_not_isUnit (D : ProperProjectionCompression A) :
       _ = 1 * ((u⁻¹ : Aˣ) : A) := by rw [hleft]
       _ = ((u⁻¹ : Aˣ) : A) := one_mul _
   apply D.isometry_mul_star_ne_one
-  rw [hstar, ← hu]
-  exact Units.mul_inv u
+  calc
+    D.isometry * star D.isometry =
+        D.isometry * ((u⁻¹ : Aˣ) : A) := by rw [hstar]
+    _ = (u : A) * ((u⁻¹ : Aˣ) : A) := by rw [hu]
+    _ = 1 := Units.mul_inv u
 
 /-- There is explicitly a nonunit with a left inverse: take `a = s` and
 `b = star s`. -/
