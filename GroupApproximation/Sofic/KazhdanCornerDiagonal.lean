@@ -88,10 +88,10 @@ theorem movingCornerSetup_punit : Nonempty (MovingCornerSetup PUnit) := by
 /-- Every fixed compressed element has vanishing Gram defect. -/
 theorem MovingCornerSetup.gram_eventually_small (D : MovingCornerSetup G)
     (g : G) : ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
-    ‖cornerGram (movingCompression D.approximation D.S D.cutoff n g) - 1‖ ≤
+    ‖cornerGram (movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff n g) - 1‖ ≤
       eta :=
   movingCompression_gram_eventually_small D.kazhdan D.S (by rfl)
-    D.one_mem D.epsilon_le_one D.symmetric D.generates D.approximation
+    D.one_mem D.epsilon_le_one D.symmetric D.generates D.approximation.toOpAlmostRepresentation
       D.gap_lt_cutoff g
 
 /-- Every pair of fixed compressed elements is asymptotically
@@ -99,19 +99,19 @@ multiplicative. -/
 theorem MovingCornerSetup.multiplicative_eventually
     (D : MovingCornerSetup G) (g h : G) :
     ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
-      ‖movingCompression D.approximation D.S D.cutoff n (g * h) -
-        movingCompression D.approximation D.S D.cutoff n g *
-          movingCompression D.approximation D.S D.cutoff n h‖ ≤ eta :=
+      ‖movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff n (g * h) -
+        movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff n g *
+          movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff n h‖ ≤ eta :=
   movingCompression_multiplicative_eventually D.kazhdan D.S (by rfl)
-    D.one_mem D.epsilon_le_one D.symmetric D.generates D.approximation
+    D.one_mem D.epsilon_le_one D.symmetric D.generates D.approximation.toOpAlmostRepresentation
       D.gap_lt_cutoff g h
 
 /-- The moving coordinate type is eventually inhabited. -/
 theorem MovingCornerSetup.eventually_nonempty [Nontrivial G]
     (D : MovingCornerSetup G) :
     ∃ N, ∀ n ≥ N, Nonempty
-      {i : D.approximation.model n //
-        movingPredicate D.approximation D.S D.cutoff n i} := by
+      {i : D.approximation.toOpAlmostRepresentation.model n //
+        movingPredicate D.approximation.toOpAlmostRepresentation D.S D.cutoff n i} := by
   simpa only [WeakMFMovingIndex] using
     eventually_nonempty_weakMFMovingIndex D.kazhdan D.S (by rfl)
       D.one_mem D.epsilon_le_one D.symmetric D.generates D.approximation
@@ -186,10 +186,10 @@ structure MovingCornerSchedule [Nontrivial G] (D : MovingCornerSetup G) where
   stage : ℕ → ℕ
   stage_ge : ∀ n, n ≤ stage n
   moving_nonempty : ∀ n, Nonempty
-    {i : D.approximation.model (stage n) //
-      movingPredicate D.approximation D.S D.cutoff (stage n) i}
+    {i : D.approximation.toOpAlmostRepresentation.model (stage n) //
+      movingPredicate D.approximation.toOpAlmostRepresentation D.S D.cutoff (stage n) i}
   gram_close : ∀ n k, k ≤ n →
-    ‖cornerGram (movingCompression D.approximation D.S D.cutoff
+    ‖cornerGram (movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff
       (stage n) (enumerate k)) - 1‖ ≤ diagonalTolerance n
 
 /-- Countability supplies a schedule satisfying all finite initial Gram
@@ -201,7 +201,7 @@ theorem exists_movingCornerSchedule [Nontrivial G] [Countable G]
   obtain ⟨Nzero, hNzero⟩ := D.eventually_nonempty
   let F : ℕ → Finset G := fun n ↦ (Finset.range (n + 1)).image e
   have hsimultaneous (n : ℕ) : ∃ N, ∀ m ≥ N, ∀ g ∈ F n,
-      ‖cornerGram (movingCompression D.approximation D.S D.cutoff m g) - 1‖ ≤
+      ‖cornerGram (movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff m g) - 1‖ ≤
         diagonalTolerance n := by
     apply eventually_finset (F n)
     intro g _
@@ -209,7 +209,7 @@ theorem exists_movingCornerSchedule [Nontrivial G] [Countable G]
       (diagonalTolerance_pos n)
   let threshold : ℕ → ℕ := fun n ↦ Classical.choose (hsimultaneous n)
   have hthreshold (n : ℕ) : ∀ m ≥ threshold n, ∀ g ∈ F n,
-      ‖cornerGram (movingCompression D.approximation D.S D.cutoff m g) - 1‖ ≤
+      ‖cornerGram (movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff m g) - 1‖ ≤
         diagonalTolerance n := Classical.choose_spec (hsimultaneous n)
   let stage : ℕ → ℕ := fun n ↦ max n (max Nzero (threshold n))
   refine ⟨{
@@ -241,7 +241,7 @@ noncomputable def MovingCornerSchedule.code [Nontrivial G]
 noncomputable abbrev MovingCornerSchedule.model [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D) (n : ℕ) :
     FiniteModel :=
-  weakMFMovingModel D.approximation D.S D.cutoff (R.stage n)
+  weakMFMovingModel D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n)
 
 theorem MovingCornerSchedule.model_nonempty [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D) (n : ℕ) :
@@ -260,7 +260,7 @@ noncomputable def MovingCornerSchedule.map [Nontrivial G]
   by_cases hg : R.code g ≤ n
   · have hclose := R.gram_close n (R.code g) hg
     rw [R.enumerate_code g] at hclose
-    exact polarCorrectedMovingCompression D.approximation D.S D.cutoff
+    exact polarCorrectedMovingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff
       (R.stage n) g (diagonalTolerance_le_half n) hclose
   · exact 1
 
@@ -270,10 +270,10 @@ theorem MovingCornerSchedule.map_close_of_code_le [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D)
     (n : ℕ) (g : G) (hg : R.code g ≤ n) :
     ‖(R.map n g : Matrix (R.model n) (R.model n) ℂ) -
-        movingCompression D.approximation D.S D.cutoff (R.stage n) g‖ ≤
+        movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g‖ ≤
       2 * diagonalTolerance n := by
   rw [MovingCornerSchedule.map, dif_pos hg]
-  exact norm_polarCorrectedMovingCompression_sub_le D.approximation D.S
+  exact norm_polarCorrectedMovingCompression_sub_le D.approximation.toOpAlmostRepresentation D.S
     D.cutoff (R.stage n) g (diagonalTolerance_pos n).le
       (diagonalTolerance_le_half n) (by
         simpa only [R.enumerate_code g] using
@@ -285,7 +285,7 @@ theorem MovingCornerSchedule.map_eventually_close [Nontrivial G]
     {D : MovingCornerSetup G} (R : MovingCornerSchedule D) (g : G) :
     ∃ N, ∀ n ≥ N,
       ‖(R.map n g : Matrix (R.model n) (R.model n) ℂ) -
-        movingCompression D.approximation D.S D.cutoff (R.stage n) g‖ ≤
+        movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g‖ ≤
           2 * diagonalTolerance n := by
   refine ⟨R.code g, fun n hn ↦ ?_⟩
   exact R.map_close_of_code_le n g hn
@@ -308,17 +308,17 @@ theorem MovingCornerSchedule.generator_trace_eventually_le
   have hterm (g : G) (hg : g ∈ D.S) :
       (normTrace (R.model n) (R.map n g)).re ≤
       (normTrace (R.model n)
-          (movingCompression D.approximation D.S D.cutoff (R.stage n) g)).re +
+          (movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g)).re +
             2 * diagonalTolerance n := by
     let C : Matrix (R.model n) (R.model n) ℂ :=
-      movingCompression D.approximation D.S D.cutoff (R.stage n) g
+      movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g
     have htrace := re_normTrace_le_add_l2_opNorm (R.model n) hmodel
       (R.map n g) C
     have hclose := R.map_close_of_code_le n g (hactive g hg)
     dsimp only [C] at htrace ⊢
     linarith
   have hsum := Finset.sum_le_sum fun g hg ↦ hterm g hg
-  have hcorner := sum_re_normTrace_movingCompression_le D.approximation D.S
+  have hcorner := sum_re_normTrace_movingCompression_le D.approximation.toOpAlmostRepresentation D.S
     D.one_mem D.cutoff (R.stage n) (R.moving_nonempty n)
   rw [Finset.sum_add_distrib, Finset.sum_const, nsmul_eq_mul] at hsum
   nlinarith
@@ -390,11 +390,11 @@ theorem MovingCornerSchedule.map_multiplicative_eventually_op
   let Wg : Matrix (R.model n) (R.model n) ℂ := R.map n g
   let Wh : Matrix (R.model n) (R.model n) ℂ := R.map n h
   let Cgh : Matrix (R.model n) (R.model n) ℂ :=
-    movingCompression D.approximation D.S D.cutoff (R.stage n) (g * h)
+    movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) (g * h)
   let Cg : Matrix (R.model n) (R.model n) ℂ :=
-    movingCompression D.approximation D.S D.cutoff (R.stage n) g
+    movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g
   let Ch : Matrix (R.model n) (R.model n) ℂ :=
-    movingCompression D.approximation D.S D.cutoff (R.stage n) h
+    movingCompression D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) h
   have hclosegh : ‖Wgh - Cgh‖ ≤ 2 * diagonalTolerance n :=
     R.map_close_of_code_le n (g * h) hghActive
   have hcloseg : ‖Wg - Cg‖ ≤ 2 * diagonalTolerance n :=
@@ -414,7 +414,7 @@ theorem MovingCornerSchedule.map_multiplicative_eventually_op
   have hWh : ‖Wh‖ = 1 :=
     CStarRing.norm_of_mem_unitary (R.map n h).2
   have hCg : ‖Cg‖ ≤ 1 :=
-    norm_movingCompression_le_one D.approximation D.S D.cutoff (R.stage n) g
+    norm_movingCompression_le_one D.approximation.toOpAlmostRepresentation D.S D.cutoff (R.stage n) g
   have htermg : ‖Cg - Wg‖ * ‖Wh‖ ≤
       (2 * diagonalTolerance n) * 1 :=
     mul_le_mul hcloseg' hWh.le (norm_nonneg _)

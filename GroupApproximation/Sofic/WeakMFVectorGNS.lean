@@ -21,7 +21,7 @@ open scoped InnerProduct Matrix.Norms.L2Operator
 variable {G : Type} [Group G]
 
 /-- A unit vector in every matrix model of a weak-MF approximation. -/
-structure UnitVectorSequence (A : WeakMFApproximation G) where
+structure UnitVectorSequence (A : OpAlmostRepresentation G) where
   vec : ∀ n, EuclideanSpace ℂ (A.model n)
   norm_eq_one : ∀ n, ‖vec n‖ = 1
 
@@ -29,7 +29,7 @@ structure UnitVectorSequence (A : WeakMFApproximation G) where
 vectors.  The positive model cardinality stored in the approximation supplies
 the coordinate at each stage. -/
 noncomputable def UnitVectorSequence.coordinate
-    (A : WeakMFApproximation G) : UnitVectorSequence A where
+    (A : OpAlmostRepresentation G) : UnitVectorSequence A where
   vec n := EuclideanSpace.single
     (Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))) 1
   norm_eq_one n := by
@@ -37,13 +37,13 @@ noncomputable def UnitVectorSequence.coordinate
     norm_num
 
 /-- The unitary assigned to a group element, acting on its Euclidean model. -/
-noncomputable def translate (A : WeakMFApproximation G) (n : ℕ) (g : G)
+noncomputable def translate (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
     (x : EuclideanSpace ℂ (A.model n)) : EuclideanSpace ℂ (A.model n) :=
   (Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
     (A.map n g : Matrix (A.model n) (A.model n) ℂ) x
 
 /-- A finite-stage unitary microstate acts isometrically. -/
-theorem norm_translate (A : WeakMFApproximation G) (n : ℕ) (g : G)
+theorem norm_translate (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
     (x : EuclideanSpace ℂ (A.model n)) :
     ‖translate A n g x‖ = ‖x‖ := by
   let u : unitary
@@ -55,24 +55,24 @@ theorem norm_translate (A : WeakMFApproximation G) (n : ℕ) (g : G)
   exact Unitary.norm_map u x
 
 /-- Real part of the matrix coefficient of the distinguished unit vector. -/
-noncomputable def correlation (A : WeakMFApproximation G)
+noncomputable def correlation (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g : G) : ℝ :=
   inner ℝ (v.vec n) (translate A n g (v.vec n))
 
 /-- Real Gram coefficient of two translates of the distinguished vector. -/
-noncomputable def gramCorrelation (A : WeakMFApproximation G)
+noncomputable def gramCorrelation (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g h : G) : ℝ :=
   inner ℝ (translate A n g (v.vec n))
     (translate A n h (v.vec n))
 
-theorem gramCorrelation_comm (A : WeakMFApproximation G)
+theorem gramCorrelation_comm (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g h : G) :
     gramCorrelation A v n g h = gramCorrelation A v n h g := by
   unfold gramCorrelation
   exact real_inner_comm _ _
 
 /-- Every coefficient is in the real unit interval. -/
-theorem abs_correlation_le_one (A : WeakMFApproximation G)
+theorem abs_correlation_le_one (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g : G) :
     |correlation A v n g| ≤ 1 := by
   unfold correlation
@@ -83,7 +83,7 @@ theorem abs_correlation_le_one (A : WeakMFApproximation G)
     _ = 1 := by rw [norm_translate, v.norm_eq_one]; norm_num
 
 /-- Every Gram coefficient is in the real unit interval. -/
-theorem abs_gramCorrelation_le_one (A : WeakMFApproximation G)
+theorem abs_gramCorrelation_le_one (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g h : G) :
     |gramCorrelation A v n g h| ≤ 1 := by
   unfold gramCorrelation
@@ -95,7 +95,7 @@ theorem abs_gramCorrelation_le_one (A : WeakMFApproximation G)
     _ = 1 := by rw [norm_translate, norm_translate, v.norm_eq_one]; norm_num
 
 /-- Finite real Gram quadratic forms are nonnegative. -/
-theorem gramCorrelation_quadratic_nonneg (A : WeakMFApproximation G)
+theorem gramCorrelation_quadratic_nonneg (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (F : Finset G) (c : G → ℝ) (n : ℕ) :
     0 ≤ ∑ i ∈ F, ∑ j ∈ F,
       c i * c j * gramCorrelation A v n i j := by
@@ -118,7 +118,7 @@ theorem real_inner_eq_re_inner {Y : Type*} [Fintype Y]
   simp [PiLp.inner_apply, Complex.inner]
 
 /-- The exact relative operator built from two assigned unitaries. -/
-noncomputable def relativeTranslate (A : WeakMFApproximation G)
+noncomputable def relativeTranslate (A : OpAlmostRepresentation G)
     (n : ℕ) (g h : G) (x : EuclideanSpace ℂ (A.model n)) :
     EuclideanSpace ℂ (A.model n) :=
   (Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
@@ -126,7 +126,7 @@ noncomputable def relativeTranslate (A : WeakMFApproximation G)
 
 /-- A Gram coefficient is the coefficient of the exact relative operator
 `U_g⁺ U_h`. -/
-theorem gramCorrelation_eq_relativeTranslate (A : WeakMFApproximation G)
+theorem gramCorrelation_eq_relativeTranslate (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g h : G) :
     gramCorrelation A v n g h =
       inner ℝ (v.vec n) (relativeTranslate A n g h (v.vec n)) := by
@@ -181,7 +181,7 @@ theorem abs_real_inner_matrix_apply_le {Y : Type*} [Fintype Y]
 /-- The coefficient assigned to `g⁻¹h` differs from the actual Gram
 coefficient by at most the corresponding operator-norm multiplicative
 defect. -/
-theorem abs_correlation_sub_gram_le (A : WeakMFApproximation G)
+theorem abs_correlation_sub_gram_le (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (n : ℕ) (g h : G) :
     |correlation A v n (g⁻¹ * h) - gramCorrelation A v n g h| ≤
       ‖(A.map n (g⁻¹ * h) : Matrix (A.model n) (A.model n) ℂ) -
@@ -204,7 +204,7 @@ theorem abs_correlation_sub_gram_le (A : WeakMFApproximation G)
 
 /-- Relative weak-MF coefficients converge to the corresponding Gram
 coefficients. -/
-theorem correlation_sub_gram_tendsto_zero (A : WeakMFApproximation G)
+theorem correlation_sub_gram_tendsto_zero (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) :
     Tendsto (fun n ↦ correlation A v n (g⁻¹ * h) -
       gramCorrelation A v n g h) atTop (nhds 0) := by
@@ -217,15 +217,15 @@ theorem correlation_sub_gram_tendsto_zero (A : WeakMFApproximation G)
 
 /-! ## The limiting positive-definite function -/
 
-noncomputable def correlationHyperreal (A : WeakMFApproximation G)
+noncomputable def correlationHyperreal (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g : G) : Hyperreal :=
   Hyperreal.ofSeq fun n ↦ correlation A v n g
 
-noncomputable def gramCorrelationHyperreal (A : WeakMFApproximation G)
+noncomputable def gramCorrelationHyperreal (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) : Hyperreal :=
   Hyperreal.ofSeq fun n ↦ gramCorrelation A v n g h
 
-theorem correlationHyperreal_finite (A : WeakMFApproximation G)
+theorem correlationHyperreal_finite (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g : G) :
     0 ≤ ArchimedeanClass.mk (correlationHyperreal A v g) := by
   apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
@@ -241,7 +241,7 @@ theorem correlationHyperreal_finite (A : WeakMFApproximation G)
     exact Filter.Eventually.of_forall fun n ↦
       (abs_le.mp (abs_correlation_le_one A v n g)).2
 
-theorem gramCorrelationHyperreal_finite (A : WeakMFApproximation G)
+theorem gramCorrelationHyperreal_finite (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) :
     0 ≤ ArchimedeanClass.mk (gramCorrelationHyperreal A v g h) := by
   apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
@@ -257,7 +257,7 @@ theorem gramCorrelationHyperreal_finite (A : WeakMFApproximation G)
     exact Filter.Eventually.of_forall fun n ↦
       (abs_le.mp (abs_gramCorrelation_le_one A v n g h)).2
 
-theorem gramCorrelationHyperreal_comm (A : WeakMFApproximation G)
+theorem gramCorrelationHyperreal_comm (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) :
     gramCorrelationHyperreal A v g h = gramCorrelationHyperreal A v h g := by
   apply congrArg Hyperreal.ofSeq
@@ -265,7 +265,7 @@ theorem gramCorrelationHyperreal_comm (A : WeakMFApproximation G)
   exact gramCorrelation_comm A v n g h
 
 theorem correlationHyperreal_sub_gram_mk_pos
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) (g h : G) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) (g h : G) :
     0 < ArchimedeanClass.mk
       (correlationHyperreal A v (g⁻¹ * h) -
         gramCorrelationHyperreal A v g h) := by
@@ -276,12 +276,12 @@ theorem correlationHyperreal_sub_gram_mk_pos
   exact (correlation_sub_gram_tendsto_zero A v g h).mono_left
     Nat.hyperfilter_le_atTop
 
-noncomputable def limitingCorrelation (A : WeakMFApproximation G)
+noncomputable def limitingCorrelation (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g : G) : ℝ :=
   ArchimedeanClass.stdPart (correlationHyperreal A v g)
 
 theorem limitingCorrelation_inv_mul_eq_stdPart_gram
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) (g h : G) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) (g h : G) :
     limitingCorrelation A v (g⁻¹ * h) =
       ArchimedeanClass.stdPart (gramCorrelationHyperreal A v g h) := by
   have hc := correlationHyperreal_finite A v (g⁻¹ * h)
@@ -297,7 +297,7 @@ theorem limitingCorrelation_inv_mul_eq_stdPart_gram
   exact sub_eq_zero.mp hsub.symm
 
 theorem limitingCorrelation_inv_mul_comm
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) (g h : G) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) (g h : G) :
     limitingCorrelation A v (g⁻¹ * h) =
       limitingCorrelation A v (h⁻¹ * g) := by
   rw [limitingCorrelation_inv_mul_eq_stdPart_gram A v g h,
@@ -305,7 +305,7 @@ theorem limitingCorrelation_inv_mul_comm
     gramCorrelationHyperreal_comm A v g h]
 
 theorem limitingCorrelation_isPositiveDefinite
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) :
     IsPositiveDefinite (limitingCorrelation A v) := by
   refine ⟨limitingCorrelation_inv_mul_comm A v, ?_⟩
   intro F c
@@ -383,7 +383,7 @@ theorem limitingCorrelation_isPositiveDefinite
 /-- The exact real positive-definite function obtained from the weak-MF
 vector state. -/
 noncomputable def limitingPositiveDefiniteFunction
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) :
     KazhdanGNS.PositiveDefiniteFunction G where
   toFun := limitingCorrelation A v
   isPositiveDefinite := limitingCorrelation_isPositiveDefinite A v
@@ -392,13 +392,13 @@ noncomputable def limitingPositiveDefiniteFunction
 
 /-- Squared norm of a finite linear combination of translated vectors. -/
 noncomputable def finiteCombinationNormSq {I : Type*}
-    (A : WeakMFApproximation G) (n : ℕ)
+    (A : OpAlmostRepresentation G) (n : ℕ)
     (x : EuclideanSpace ℂ (A.model n)) (F : Finset I)
     (w : I → G) (a : I → ℝ) : ℝ :=
   ‖∑ i ∈ F, a i • translate A n (w i) x‖ ^ 2
 
 theorem finiteCombinationNormSq_eq_gram {I : Type*}
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (n : ℕ) (F : Finset I) (w : I → G) (a : I → ℝ) :
     finiteCombinationNormSq A n (v.vec n) F w a =
       ∑ i ∈ F, ∑ j ∈ F,
@@ -412,14 +412,14 @@ theorem finiteCombinationNormSq_eq_gram {I : Type*}
 
 /-- Hyperreal squared norm of a fixed finite cyclic combination. -/
 noncomputable def combinationNormSqHyperreal {I : Type*}
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (F : Finset I) (w : I → G) (a : I → ℝ) : Hyperreal :=
   ∑ i ∈ F, ∑ j ∈ F,
     ((a i * a j : ℝ) : Hyperreal) *
       gramCorrelationHyperreal A v (w i) (w j)
 
 theorem combinationNormSqHyperreal_eq_ofSeq {I : Type*}
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (F : Finset I) (w : I → G) (a : I → ℝ) :
     combinationNormSqHyperreal A v F w a = Hyperreal.ofSeq (fun n ↦
       finiteCombinationNormSq A n (v.vec n) F w a) := by
@@ -444,7 +444,7 @@ theorem combinationNormSqHyperreal_eq_ofSeq {I : Type*}
   congr 1
 
 theorem combinationNormSqHyperreal_finite {I : Type*}
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (F : Finset I) (w : I → G) (a : I → ℝ) :
     0 ≤ ArchimedeanClass.mk (combinationNormSqHyperreal A v F w a) := by
   apply hyperreal_finset_sum_finite F
@@ -455,7 +455,7 @@ theorem combinationNormSqHyperreal_finite {I : Type*}
     (gramCorrelationHyperreal_finite A v (w i) (w j))
 
 theorem stdPart_combinationNormSqHyperreal {I : Type*}
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (F : Finset I) (w : I → G) (a : I → ℝ) :
     ArchimedeanClass.stdPart (combinationNormSqHyperreal A v F w a) =
       ‖KazhdanGNS.indexedCombination
@@ -498,13 +498,13 @@ theorem stdPart_combinationNormSqHyperreal {I : Type*}
 /-- Exact-word finite-stage version of the difference
 `Avg^(k+1)x - Avg^k x`. -/
 noncomputable def finiteAveragingDisplacementNormSq
-    (A : WeakMFApproximation G) (n : ℕ)
+    (A : OpAlmostRepresentation G) (n : ℕ)
     (x : EuclideanSpace ℂ (A.model n)) (S : Finset G) (k : ℕ) : ℝ :=
   let d := KazhdanGNS.averagingDisplacementCoefficients S k
   finiteCombinationNormSq A n x d.support id d
 
 theorem combinationNormSqHyperreal_displacement_eq_ofSeq
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (S : Finset G) (k : ℕ) :
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     combinationNormSqHyperreal A v d.support id d =
@@ -515,7 +515,7 @@ theorem combinationNormSqHyperreal_displacement_eq_ofSeq
     (KazhdanGNS.averagingDisplacementCoefficients S k)
 
 theorem stdPart_averagingDisplacementNormSq
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A)
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (S : Finset G) (k : ℕ) :
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     ArchimedeanClass.stdPart
@@ -542,7 +542,7 @@ theorem stdPart_averagingDisplacementNormSq
 theorem stdPart_averagingDisplacementNormSq_le
     {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : WeakMFApproximation G) (v : UnitVectorSequence A) (k : ℕ) :
+    (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) (k : ℕ) :
     let dk := KazhdanGNS.averagingDisplacementCoefficients S k
     let d0 := KazhdanGNS.averagingDisplacementCoefficients S 0
     ArchimedeanClass.stdPart
@@ -600,7 +600,7 @@ sufficiently late weak-MF models. -/
 theorem finiteAveragingDisplacementNormSq_eventually_lt
     {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : WeakMFApproximation G) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
+    (A : OpAlmostRepresentation G) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ x : EuclideanSpace ℂ (A.model n), ‖x‖ = 1 →
       finiteAveragingDisplacementNormSq A n x S k <
         (1 - ε ^ 2 / (4 * S.card)) ^ (2 * k) *
@@ -666,12 +666,12 @@ theorem finiteAveragingDisplacementNormSq_eventually_lt
 
 /-- Evaluate a real finitely supported group-ring element in one weak-MF
 matrix model. -/
-noncomputable def matrixFinsuppCombination (A : WeakMFApproximation G)
+noncomputable def matrixFinsuppCombination (A : OpAlmostRepresentation G)
     (n : ℕ) : (G →₀ ℝ) →ₗ[ℝ] Matrix (A.model n) (A.model n) ℂ :=
   Finsupp.linearCombination ℝ fun g ↦
     (A.map n g : Matrix (A.model n) (A.model n) ℂ)
 
-theorem matrixFinsuppCombination_eq_sum (A : WeakMFApproximation G)
+theorem matrixFinsuppCombination_eq_sum (A : OpAlmostRepresentation G)
     (n : ℕ) (c : G →₀ ℝ) :
     matrixFinsuppCombination A n c = ∑ g ∈ c.support,
       c g • (A.map n g : Matrix (A.model n) (A.model n) ℂ) := by
@@ -679,20 +679,20 @@ theorem matrixFinsuppCombination_eq_sum (A : WeakMFApproximation G)
   simp [matrixFinsuppCombination, Finsupp.linearCombination_apply, Finsupp.sum]
 
 /-- Exact left translation of a finite matrix combination. -/
-noncomputable def matrixExactTranslation (A : WeakMFApproximation G)
+noncomputable def matrixExactTranslation (A : OpAlmostRepresentation G)
     (n : ℕ) (s : G) (c : G →₀ ℝ) :
     Matrix (A.model n) (A.model n) ℂ :=
   matrixFinsuppCombination A n (KazhdanGNS.translateCoefficients s c)
 
 /-- Translation by multiplying the assigned matrices. -/
-noncomputable def matrixComposedTranslation (A : WeakMFApproximation G)
+noncomputable def matrixComposedTranslation (A : OpAlmostRepresentation G)
     (n : ℕ) (s : G) (c : G →₀ ℝ) :
     Matrix (A.model n) (A.model n) ℂ :=
   (A.map n s : Matrix (A.model n) (A.model n) ℂ) *
     matrixFinsuppCombination A n c
 
 theorem matrixExactTranslation_eq_linearCombination
-    (A : WeakMFApproximation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
+    (A : OpAlmostRepresentation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
     matrixExactTranslation A n s c =
       Finsupp.linearCombination ℝ (fun g ↦
         (A.map n (s * g) : Matrix (A.model n) (A.model n) ℂ)) c := by
@@ -706,7 +706,7 @@ theorem matrixExactTranslation_eq_linearCombination
       simp [matrixExactTranslation, matrixFinsuppCombination]
 
 theorem matrixComposedTranslation_eq_linearCombination
-    (A : WeakMFApproximation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
+    (A : OpAlmostRepresentation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
     matrixComposedTranslation A n s c =
       Finsupp.linearCombination ℝ (fun g ↦
         (A.map n s : Matrix (A.model n) (A.model n) ℂ) *
@@ -728,7 +728,7 @@ theorem matrixComposedTranslation_eq_linearCombination
   ring
 
 theorem matrixExact_sub_composed_eq_sum
-    (A : WeakMFApproximation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
+    (A : OpAlmostRepresentation G) (n : ℕ) (s : G) (c : G →₀ ℝ) :
     matrixExactTranslation A n s c - matrixComposedTranslation A n s c =
       ∑ g ∈ c.support, (c g : ℂ) •
         ((A.map n (s * g) : Matrix (A.model n) (A.model n) ℂ) -
@@ -746,7 +746,7 @@ theorem matrixExact_sub_composed_eq_sum
   ring
 
 theorem matrixExact_sub_composed_vanishing
-    (A : WeakMFApproximation G) (s : G) (c : G →₀ ℝ) :
+    (A : OpAlmostRepresentation G) (s : G) (c : G →₀ ℝ) :
     OpNormVanishing A (fun n ↦
       matrixExactTranslation A n s c - matrixComposedTranslation A n s c) := by
   rw [show (fun n ↦ matrixExactTranslation A n s c -
@@ -767,7 +767,7 @@ theorem matrixExact_sub_composed_vanishing
 /-- One recursive averaging step evaluated by exact group words agrees
 asymptotically with left multiplication by the finite matrix average. -/
 theorem averagingCoefficients_succ_vanishing
-    (A : WeakMFApproximation G) (S : Finset G) (k : ℕ) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (k : ℕ) :
     OpNormVanishing A (fun n ↦
       matrixFinsuppCombination A n
           (KazhdanGNS.averagingCoefficients S (k + 1)) -
@@ -806,7 +806,7 @@ theorem averagingCoefficients_succ_vanishing
 /-- Evaluated exact `k`-step averaging coefficients converge in operator
 norm to the `k`th power of the matrix average. -/
 theorem averagingCoefficients_sub_pow_vanishing
-    (A : WeakMFApproximation G) (S : Finset G) (k : ℕ) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (k : ℕ) :
     OpNormVanishing A (fun n ↦
       matrixFinsuppCombination A n
           (KazhdanGNS.averagingCoefficients S k) -
@@ -839,7 +839,7 @@ theorem averagingCoefficients_sub_pow_vanishing
 /-- The exact-word displacement combination converges to the corresponding
 difference of consecutive powers of the matrix average. -/
 theorem averagingDisplacement_sub_powers_vanishing
-    (A : WeakMFApproximation G) (S : Finset G) (k : ℕ) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (k : ℕ) :
     OpNormVanishing A (fun n ↦
       matrixFinsuppCombination A n
           (KazhdanGNS.averagingDisplacementCoefficients S k) -
@@ -865,7 +865,7 @@ theorem averagingDisplacement_sub_powers_vanishing
 /-- The finite exact-word displacement norm is the matrix operator encoded
 by the same finitely supported coefficients applied to the vector. -/
 theorem finiteAveragingDisplacementNormSq_eq_matrix
-    (A : WeakMFApproximation G) (n : ℕ)
+    (A : OpAlmostRepresentation G) (n : ℕ)
     (x : EuclideanSpace ℂ (A.model n)) (S : Finset G) (k : ℕ) :
     finiteAveragingDisplacementNormSq A n x S k =
       ‖(Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
@@ -898,7 +898,7 @@ theorem finiteAveragingDisplacementNormSq_eq_matrix
   rfl
 
 theorem opNormVanishing_pow_sub_pow
-    (A : WeakMFApproximation G)
+    (A : OpAlmostRepresentation G)
     (X Y : ∀ n, Matrix (A.model n) (A.model n) ℂ)
     (hXY : OpNormVanishing A (fun n ↦ X n - Y n))
     (hX : ∀ n, ‖X n‖ ≤ 1) (hY : ∀ n, ‖Y n‖ ≤ 1)
@@ -926,7 +926,7 @@ theorem opNormVanishing_pow_sub_pow
 /-- Exact-word displacement operators converge to the corresponding
 Hermitian-average displacement operators. -/
 theorem averagingDisplacement_sub_hermitianPowers_vanishing
-    (A : WeakMFApproximation G) (S : Finset G)
+    (A : OpAlmostRepresentation G) (S : Finset G)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (k : ℕ) :
     OpNormVanishing A (fun n ↦
       matrixFinsuppCombination A n
@@ -955,7 +955,7 @@ theorem averagingDisplacement_sub_hermitianPowers_vanishing
     abel
   simpa only [hrewrite] using hadd
 
-theorem norm_matrixFinsuppCombination_le (A : WeakMFApproximation G)
+theorem norm_matrixFinsuppCombination_le (A : OpAlmostRepresentation G)
     (n : ℕ) (c : G →₀ ℝ) :
     ‖matrixFinsuppCombination A n c‖ ≤ ∑ g ∈ c.support, |c g| := by
   classical
@@ -1013,7 +1013,7 @@ theorem abs_normSq_apply_sub_le {Y : Type*} [Fintype Y] [DecidableEq Y]
 /-! ## Spectral-gap transfer -/
 
 /-- A chosen unit eigenvector of every Hermitian finite-stage average. -/
-structure HermitianEigenpairSequence (A : WeakMFApproximation G)
+structure HermitianEigenpairSequence (A : OpAlmostRepresentation G)
     (S : Finset G) where
   vector : UnitVectorSequence A
   value : ℕ → ℝ
@@ -1025,7 +1025,7 @@ structure HermitianEigenpairSequence (A : WeakMFApproximation G)
 /-- A canonical finite-stage eigenpair sequence, obtained by taking the first
 available vector in the orthonormal eigenbasis of each Hermitian average. -/
 noncomputable def HermitianEigenpairSequence.coordinate
-    (A : WeakMFApproximation G) (S : Finset G) :
+    (A : OpAlmostRepresentation G) (S : Finset G) :
     HermitianEigenpairSequence A S := by
   let hH : ∀ n, (hermitianAverage A S n).IsHermitian := fun n ↦
     hermitianAverage_conjTranspose A S n
@@ -1044,7 +1044,7 @@ noncomputable def HermitianEigenpairSequence.coordinate
     }
 
 theorem HermitianEigenpairSequence.abs_value_le_one
-    {A : WeakMFApproximation G} {S : Finset G}
+    {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) (n : ℕ) : |e.value n| ≤ 1 := by
   have happly := ContinuousLinearMap.le_opNorm
     ((Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
@@ -1054,7 +1054,7 @@ theorem HermitianEigenpairSequence.abs_value_le_one
   simpa [Real.norm_eq_abs] using happly.trans (norm_hermitianAverage_le_one A S n)
 
 theorem HermitianEigenpairSequence.power_apply
-    {A : WeakMFApproximation G} {S : Finset G}
+    {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) (n k : ℕ) :
     (Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
       ((hermitianAverage A S n) ^ k) (e.vector.vec n) =
@@ -1074,7 +1074,7 @@ theorem HermitianEigenpairSequence.power_apply
       ring
 
 theorem HermitianEigenpairSequence.displacement_normSq
-    {A : WeakMFApproximation G} {S : Finset G}
+    {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) (n k : ℕ) :
     ‖(Matrix.toEuclideanCLM (n := A.model n) (𝕜 := ℂ))
       ((hermitianAverage A S n) ^ (k + 1) -
@@ -1092,7 +1092,7 @@ theorem HermitianEigenpairSequence.displacement_normSq
 /-- Along any chosen eigenvector sequence, the exact-word displacement
 norm converges to the scalar displacement polynomial of its eigenvalue. -/
 theorem eigen_displacementNormSq_sub_scalar_tendsto_zero
-    (A : WeakMFApproximation G) (S : Finset G)
+    (A : OpAlmostRepresentation G) (S : Finset G)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (e : HermitianEigenpairSequence A S) (k : ℕ) :
     Tendsto (fun n ↦
@@ -1142,12 +1142,12 @@ theorem eigen_displacementNormSq_sub_scalar_tendsto_zero
       linarith
 
 noncomputable def HermitianEigenpairSequence.valueHyperreal
-    {A : WeakMFApproximation G} {S : Finset G}
+    {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) : Hyperreal :=
   Hyperreal.ofSeq e.value
 
 theorem HermitianEigenpairSequence.valueHyperreal_finite
-    {A : WeakMFApproximation G} {S : Finset G}
+    {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) :
     0 ≤ ArchimedeanClass.mk e.valueHyperreal := by
   apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
@@ -1186,7 +1186,7 @@ theorem stdPart_hyperreal_pow {x : Hyperreal}
 polynomial evaluated at the standard-part eigenvalue. -/
 theorem stdPart_displacement_eq_eigenvaluePolynomial
     (S : Finset G) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) (e : HermitianEigenpairSequence A S)
+    (A : OpAlmostRepresentation G) (e : HermitianEigenpairSequence A S)
     (k : ℕ) :
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     ArchimedeanClass.stdPart
@@ -1249,7 +1249,7 @@ theorem hermitianAverage_eventually_no_intermediate_eigenvalues
     {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
     (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {a b : ℝ}
+    (A : OpAlmostRepresentation G) {a b : ℝ}
     (ha : 1 - ε ^ 2 / (4 * S.card) < a) (hb : b < 1) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
       ¬ (a ≤ Matrix.IsHermitian.eigenvalues

@@ -71,6 +71,26 @@ abbrev comap {H : Type*} [Group H] (A : OpAlmostRepresentation G)
     (A : OpAlmostRepresentation G) (iota : H →* G) (n : ℕ) (h : H) :
     (A.comap iota).map n h = A.map n (iota h) := rfl
 
+/-- Reindex an operator-norm almost representation along a pointwise cofinal
+map.  The inequality `n ≤ φ n` preserves all eventual operator-norm
+estimates, exactly as for `WeakMFApproximation.reindex`. -/
+def reindex (A : OpAlmostRepresentation G) (φ : ℕ → ℕ)
+    (hφ : ∀ n, n ≤ φ n) : OpAlmostRepresentation G where
+  model n := A.model (φ n)
+  modelNonempty n := A.modelNonempty (φ n)
+  map n := A.map (φ n)
+  asymptoticallyMultiplicative g h ε hε := by
+    obtain ⟨N, hN⟩ := A.asymptoticallyMultiplicative g h ε hε
+    exact ⟨N, fun n hn ↦ hN (φ n) (hn.trans (hφ n))⟩
+
+@[simp] theorem reindex_model (A : OpAlmostRepresentation G) (φ : ℕ → ℕ)
+    (hφ : ∀ n, n ≤ φ n) (n : ℕ) :
+    (A.reindex φ hφ).model n = A.model (φ n) := rfl
+
+@[simp] theorem reindex_map (A : OpAlmostRepresentation G) (φ : ℕ → ℕ)
+    (hφ : ∀ n, n ≤ φ n) (n : ℕ) :
+    (A.reindex φ hφ).map n = A.map (φ n) := rfl
+
 end OpAlmostRepresentation
 
 end GroupApproximation

@@ -351,52 +351,52 @@ variable {G : Type} [Group G]
 
 /-- The finite-stage Hermitian average, abbreviated for the moving-corner
 definitions. -/
-noncomputable def movingHermitianAverage (A : WeakMFApproximation G)
+noncomputable def movingHermitianAverage (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) : Matrix (A.model n) (A.model n) ℂ :=
   hermitianAverage A S n
 
 /-- The Hermitian proof used by the moving-coordinate type. -/
-theorem movingHermitianAverage_isHermitian (A : WeakMFApproximation G)
+theorem movingHermitianAverage_isHermitian (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) :
     (movingHermitianAverage A S n).IsHermitian :=
   hermitianAverage_conjTranspose A S n
 
 /-- Predicate cutting out the moving eigen-coordinates. -/
-def movingPredicate (A : WeakMFApproximation G) (S : Finset G)
+def movingPredicate (A : OpAlmostRepresentation G) (S : Finset G)
     (t : ℝ) (n : ℕ) (i : A.model n) : Prop :=
   (movingHermitianAverage_isHermitian A S n).eigenvalues i ≤ t
 
 /-- Every eigen-coordinate belongs to the cutoff taken at its own eigenvalue;
 this is a closed satisfiability witness for the moving-coordinate predicate. -/
-theorem movingPredicate_at_eigenvalue (A : WeakMFApproximation G)
+theorem movingPredicate_at_eigenvalue (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (i : A.model n) :
     movingPredicate A S
       ((movingHermitianAverage_isHermitian A S n).eigenvalues i) n i :=
   le_rfl
 
-noncomputable instance movingPredicate_decidable (A : WeakMFApproximation G)
+noncomputable instance movingPredicate_decidable (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) :
     DecidablePred (movingPredicate A S t n) := Classical.decPred _
 
 /-- The honest finite coordinate type of the moving spectral corner.  This is
 opaque so later matrix-instance synthesis does not repeatedly normalize the
 full spectral theorem proof stored in its defining predicate. -/
-noncomputable def WeakMFMovingIndex (A : WeakMFApproximation G) (S : Finset G)
+noncomputable def WeakMFMovingIndex (A : OpAlmostRepresentation G) (S : Finset G)
     (t : ℝ) (n : ℕ) :=
   {i : A.model n // movingPredicate A S t n i}
 
-noncomputable instance weakMFMovingIndexFintype (A : WeakMFApproximation G)
+noncomputable instance weakMFMovingIndexFintype (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) :
     Fintype (WeakMFMovingIndex A S t n) := by
   unfold WeakMFMovingIndex
   infer_instance
 
-noncomputable instance weakMFMovingIndexDecidableEq (A : WeakMFApproximation G)
+noncomputable instance weakMFMovingIndexDecidableEq (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) :
     DecidableEq (WeakMFMovingIndex A S t n) := Classical.decEq _
 
 /-- Conjugate a microstate into the eigenbasis of the Hermitian average. -/
-noncomputable def eigenbasisMicrostate (A : WeakMFApproximation G)
+noncomputable def eigenbasisMicrostate (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (g : G) :
     Matrix (A.model n) (A.model n) ℂ :=
   let U : Matrix (A.model n) (A.model n) ℂ :=
@@ -404,7 +404,7 @@ noncomputable def eigenbasisMicrostate (A : WeakMFApproximation G)
   Uᴴ * (A.map n g : Matrix (A.model n) (A.model n) ℂ) * U
 
 /-- Eigenbasis conjugation preserves membership in the unitary group. -/
-theorem eigenbasisMicrostate_mem_unitaryGroup (A : WeakMFApproximation G)
+theorem eigenbasisMicrostate_mem_unitaryGroup (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (g : G) :
     eigenbasisMicrostate A S n g ∈ Matrix.unitaryGroup (A.model n) ℂ := by
   let hH := movingHermitianAverage_isHermitian A S n
@@ -418,7 +418,7 @@ theorem eigenbasisMicrostate_mem_unitaryGroup (A : WeakMFApproximation G)
   exact mul_mem (mul_mem hUstar (A.map n g).2) hH.eigenvectorUnitary.2
 
 /-- The eigenbasis microstate has exact Gram matrix one. -/
-theorem eigenbasisMicrostate_star_mul_self (A : WeakMFApproximation G)
+theorem eigenbasisMicrostate_star_mul_self (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (g : G) :
     (eigenbasisMicrostate A S n g)ᴴ * eigenbasisMicrostate A S n g = 1 := by
   have hunit := eigenbasisMicrostate_mem_unitaryGroup A S n g
@@ -427,7 +427,7 @@ theorem eigenbasisMicrostate_star_mul_self (A : WeakMFApproximation G)
 
 /-- The multiplication defect in the Hermitian eigenbasis is the unitary
 conjugate of the original weak-MF defect. -/
-theorem eigenbasisMicrostate_mul_defect_eq (A : WeakMFApproximation G)
+theorem eigenbasisMicrostate_mul_defect_eq (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (g h : G) :
     eigenbasisMicrostate A S n (g * h) -
         eigenbasisMicrostate A S n g * eigenbasisMicrostate A S n h =
@@ -447,7 +447,7 @@ theorem eigenbasisMicrostate_mul_defect_eq (A : WeakMFApproximation G)
 /-- Eigenbasis conjugation preserves the norm of the weak-MF
 multiplication defect. -/
 theorem norm_eigenbasisMicrostate_mul_defect_eq
-    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) (g h : G) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (n : ℕ) (g h : G) :
     ‖eigenbasisMicrostate A S n (g * h) -
         eigenbasisMicrostate A S n g * eigenbasisMicrostate A S n h‖ =
       ‖(A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
@@ -468,7 +468,7 @@ theorem norm_eigenbasisMicrostate_mul_defect_eq
 /-- In its eigenbasis, the Hermitian average is the diagonal matrix of its
 real eigenvalues. -/
 theorem eigenbasis_movingHermitianAverage_eq_diagonal
-    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (n : ℕ) :
     let hH := movingHermitianAverage_isHermitian A S n
     let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
     Uᴴ * movingHermitianAverage A S n * U =
@@ -499,13 +499,13 @@ theorem eigenbasis_movingHermitianAverage_eq_diagonal
       rw [hUU, Matrix.one_mul, Matrix.mul_one]
 
 /-- The weak-MF orbit average written in the Hermitian eigenbasis. -/
-noncomputable def eigenbasisAverage (A : WeakMFApproximation G)
+noncomputable def eigenbasisAverage (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) : Matrix (A.model n) (A.model n) ℂ :=
   ((S.card : ℂ)⁻¹) • ∑ g ∈ S, eigenbasisMicrostate A S n g
 
 /-- Conjugating the original orbit average gives the average of the
 conjugated microstates. -/
-theorem eigenbasisAverage_eq (A : WeakMFApproximation G)
+theorem eigenbasisAverage_eq (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) :
     let U : Matrix (A.model n) (A.model n) ℂ :=
       (movingHermitianAverage_isHermitian A S n).eigenvectorUnitary
@@ -522,7 +522,7 @@ theorem eigenbasisAverage_eq (A : WeakMFApproximation G)
 /-- The Hermitian average in its eigenbasis is the exact Hermitian
 symmetrization of `eigenbasisAverage`. -/
 theorem eigenbasis_movingHermitianAverage_eq_symmetrized
-    (A : WeakMFApproximation G) (S : Finset G) (n : ℕ) :
+    (A : OpAlmostRepresentation G) (S : Finset G) (n : ℕ) :
     let hH := movingHermitianAverage_isHermitian A S n
     let U : Matrix (A.model n) (A.model n) ℂ := hH.eigenvectorUnitary
     Uᴴ * movingHermitianAverage A S n * U =
@@ -540,7 +540,7 @@ theorem eigenbasis_movingHermitianAverage_eq_symmetrized
 
 /-- Each Hermitian-average eigenvalue is the average real diagonal entry of
 the conjugated microstates. -/
-theorem movingEigenvalue_eq_average_re (A : WeakMFApproximation G)
+theorem movingEigenvalue_eq_average_re (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (i : A.model n) :
     (movingHermitianAverage_isHermitian A S n).eigenvalues i =
       ((S.card : ℝ)⁻¹) * ∑ g ∈ S, (eigenbasisMicrostate A S n g i i).re := by
@@ -561,7 +561,7 @@ theorem movingEigenvalue_eq_average_re (A : WeakMFApproximation G)
 /-- Clearing the nonzero generator-cardinality denominator in the preceding
 eigenvalue identity. -/
 theorem sum_re_eigenbasisMicrostate_diagonal_eq
-    (A : WeakMFApproximation G) (S : Finset G) (hone : 1 ∈ S)
+    (A : OpAlmostRepresentation G) (S : Finset G) (hone : 1 ∈ S)
     (n : ℕ) (i : A.model n) :
     ∑ g ∈ S, (eigenbasisMicrostate A S n g i i).re =
       (S.card : ℝ) *
@@ -572,7 +572,7 @@ theorem sum_re_eigenbasisMicrostate_diagonal_eq
   field_simp
 
 /-- The canonical finite model carried by the moving coordinate subtype. -/
-noncomputable abbrev weakMFMovingModel (A : WeakMFApproximation G)
+noncomputable abbrev weakMFMovingModel (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) : FiniteModel :=
   ⟨{i : A.model n // movingPredicate A S t n i}, inferInstance,
     inferInstance⟩
@@ -624,7 +624,7 @@ theorem re_normTrace_le_add_l2_opNorm (Y : FiniteModel)
   linarith
 
 /-- Principal compression of a weak-MF microstate to the moving eigenspace. -/
-noncomputable def movingCompression (A : WeakMFApproximation G)
+noncomputable def movingCompression (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     Matrix {i : A.model n // movingPredicate A S t n i}
       {i : A.model n // movingPredicate A S t n i} ℂ :=
@@ -635,7 +635,7 @@ noncomputable def movingCompression (A : WeakMFApproximation G)
 /-- The average real normalized trace of the moving generator blocks is at
 most the spectral cutoff. -/
 theorem sum_re_normTrace_movingCompression_le
-    (A : WeakMFApproximation G) (S : Finset G) (hone : 1 ∈ S)
+    (A : OpAlmostRepresentation G) (S : Finset G) (hone : 1 ∈ S)
     (t : ℝ) (n : ℕ)
     (hY : Nonempty {i : A.model n // movingPredicate A S t n i}) :
     ∑ g ∈ S, (normTrace (weakMFMovingModel A S t n)
@@ -673,7 +673,7 @@ theorem sum_re_normTrace_movingCompression_le
 
 /-- In the Hermitian eigenbasis, the residual on the top coordinates is
 unitarily conjugate to `topSpectralDisplacement`. -/
-theorem eigenbasis_top_residual_eq (A : WeakMFApproximation G)
+theorem eigenbasis_top_residual_eq (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     (eigenbasisMicrostate A S n g - 1) *
         Matrix.diagonal (fun i ↦
@@ -712,7 +712,7 @@ theorem eigenbasis_top_residual_eq (A : WeakMFApproximation G)
 
 /-- The moving-to-top off-diagonal block is controlled by the already
 formalized top displacement. -/
-theorem norm_movingToTopBlock_le (A : WeakMFApproximation G)
+theorem norm_movingToTopBlock_le (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     ‖coordinateBlock (movingPredicate A S t n)
         (fun i ↦ ¬movingPredicate A S t n i)
@@ -743,7 +743,7 @@ theorem norm_movingToTopBlock_le (A : WeakMFApproximation G)
 
 /-- The opposite off-diagonal block is controlled by the inverse top
 displacement, up to the weak-MF inverse defect. -/
-theorem norm_topToMovingBlock_le (A : WeakMFApproximation G)
+theorem norm_topToMovingBlock_le (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
         (movingPredicate A S t n)
@@ -825,7 +825,7 @@ theorem offDiagonalBlocks_eventually_small_of_generates
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g : G) :
     ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
       ‖coordinateBlock (movingPredicate A S t n)
@@ -858,7 +858,7 @@ theorem offDiagonalBlocks_eventually_small_of_generates
       _ = eta := by ring
 
 /-- Eigenbasis conjugation preserves the norm-one property of a microstate. -/
-theorem norm_eigenbasisMicrostate_eq_one (A : WeakMFApproximation G)
+theorem norm_eigenbasisMicrostate_eq_one (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) (g : G) :
     ‖eigenbasisMicrostate A S n g‖ = 1 := by
   letI : Nonempty (A.model n) :=
@@ -869,7 +869,7 @@ theorem norm_eigenbasisMicrostate_eq_one (A : WeakMFApproximation G)
 /-- Pointwise multiplicativity estimate for the uncorrected moving
 compression. -/
 theorem norm_movingCompression_mul_defect_le
-    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (A : OpAlmostRepresentation G) (S : Finset G) (t : ℝ)
     (n : ℕ) (g h : G) :
     ‖movingCompression A S t n (g * h) -
         movingCompression A S t n g * movingCompression A S t n h‖ ≤
@@ -898,7 +898,7 @@ theorem movingCompression_multiplicative_eventually
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g h : G) :
     ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
       ‖movingCompression A S t n (g * h) -
@@ -930,7 +930,7 @@ theorem movingCompression_multiplicative_eventually
 
 /-- Pointwise Gram-defect estimate for the moving compression. -/
 theorem norm_movingCompression_gram_sub_one_le
-    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (A : OpAlmostRepresentation G) (S : Finset G) (t : ℝ)
     (n : ℕ) (g : G) :
     ‖cornerGram (movingCompression A S t n g) - 1‖ ≤
       ‖coordinateBlock (fun i ↦ ¬movingPredicate A S t n i)
@@ -941,7 +941,7 @@ theorem norm_movingCompression_gram_sub_one_le
       (eigenbasisMicrostate_star_mul_self A S n g)
 
 /-- A moving compression is a contraction. -/
-theorem norm_movingCompression_le_one (A : WeakMFApproximation G)
+theorem norm_movingCompression_le_one (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     ‖movingCompression A S t n g‖ ≤ 1 := by
   classical
@@ -951,7 +951,7 @@ theorem norm_movingCompression_le_one (A : WeakMFApproximation G)
 
 /-- Exact unitary obtained by polar-correcting a good moving compression. -/
 noncomputable def polarCorrectedMovingCompression
-    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (A : OpAlmostRepresentation G) (S : Finset G) (t : ℝ)
     (n : ℕ) (g : G) {delta : ℝ} (hdeltaHalf : delta ≤ 1 / 2)
     (hclose : ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ delta) :
     Matrix.unitaryGroup {i : A.model n // movingPredicate A S t n i} ℂ :=
@@ -961,7 +961,7 @@ noncomputable def polarCorrectedMovingCompression
 /-- Polar correction moves a good compression by at most twice its Gram
 defect bound. -/
 theorem norm_polarCorrectedMovingCompression_sub_le
-    (A : WeakMFApproximation G) (S : Finset G) (t : ℝ)
+    (A : OpAlmostRepresentation G) (S : Finset G) (t : ℝ)
     (n : ℕ) (g : G) {delta : ℝ} (hdelta : 0 ≤ delta)
     (hdeltaHalf : delta ≤ 1 / 2)
     (hclose : ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ delta) :
@@ -980,7 +980,7 @@ theorem movingCompression_gram_eventually_small
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g : G) :
     ∀ eta : ℝ, 0 < eta → ∃ N, ∀ n ≥ N,
       ‖cornerGram (movingCompression A S t n g) - 1‖ ≤ eta := by
@@ -1017,26 +1017,27 @@ theorem eventually_nonempty_weakMFMovingIndex [Nontrivial G]
     (hgen : Subgroup.closure (S : Set G) = ⊤)
     (A : WeakMFApproximation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) :
-    ∃ N, ∀ n ≥ N, Nonempty (WeakMFMovingIndex A S t n) := by
+    ∃ N, ∀ n ≥ N,
+      Nonempty (WeakMFMovingIndex A.toOpAlmostRepresentation S t n) := by
   classical
   obtain ⟨g, hg⟩ := exists_ne (1 : G)
   have hg1 : g ≠ 1 := hg
   have hdisp := topSpectralDisplacement_vanishing_of_generates
-    hQ S hQS hone hepsilonOne hsymm hgen A ht g
+    hQ S hQS hone hepsilonOne hsymm hgen A.toOpAlmostRepresentation ht g
   obtain ⟨Nd, hNd⟩ := hdisp (A.separation / 4) (by
     linarith [A.separation_pos])
-  obtain ⟨N1, hN1⟩ := map_one_vanishing A (A.separation / 4) (by
+  obtain ⟨N1, hN1⟩ := map_one_vanishing A.toOpAlmostRepresentation (A.separation / 4) (by
     linarith [A.separation_pos])
   obtain ⟨Ns, hNs⟩ := A.separatedEventually g 1 hg1
   refine ⟨max (max Nd N1) Ns, fun n hn ↦ ?_⟩
   by_contra hempty
   have hall : ∀ i : A.model n,
-      t < (movingHermitianAverage_isHermitian A S n).eigenvalues i := by
+      t < (movingHermitianAverage_isHermitian A.toOpAlmostRepresentation S n).eigenvalues i := by
     intro i
     exact lt_of_not_ge fun hi ↦
       hempty ⟨⟨i, hi⟩⟩
-  have hP : spectralAbove (hermitianAverage A S n)
-      (hermitianAverage_conjTranspose A S n) t = 1 :=
+  have hP : spectralAbove (hermitianAverage A.toOpAlmostRepresentation S n)
+      (hermitianAverage_conjTranspose A.toOpAlmostRepresentation S n) t = 1 :=
     spectralAbove_eq_one_of_forall_lt _ _ _ hall
   have hNdle : Nd ≤ n :=
     (le_max_left Nd N1).trans (le_max_left (max Nd N1) Ns) |>.trans hn
@@ -1046,8 +1047,8 @@ theorem eventually_nonempty_weakMFMovingIndex [Nontrivial G]
   have h1 := hN1 n hN1le
   have hs := hNs n ((le_max_right _ _).trans hn)
   change ‖((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
-    spectralAbove (hermitianAverage A S n)
-      (hermitianAverage_conjTranspose A S n) t‖ ≤ A.separation / 4 at hd
+    spectralAbove (hermitianAverage A.toOpAlmostRepresentation S n)
+      (hermitianAverage_conjTranspose A.toOpAlmostRepresentation S n) t‖ ≤ A.separation / 4 at hd
   rw [hP, Matrix.mul_one] at hd
   have hcontra : A.separation < A.separation := calc
     A.separation ≤

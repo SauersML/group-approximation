@@ -1,5 +1,5 @@
 import GroupApproximation.Kazhdan.KazhdanProjection
-import GroupApproximation.Sofic.WeakMFUltraproduct
+import GroupApproximation.Sofic.OpAlmostRepresentation
 import Mathlib.Analysis.Matrix.Spectrum
 
 /-!
@@ -22,11 +22,11 @@ open scoped Matrix.Norms.L2Operator
 variable {G : Type*} [Group G]
 
 /-- Operator-norm convergence to zero for a dependent sequence of matrices. -/
-def OpNormVanishing (A : WeakMFApproximation G)
+def OpNormVanishing (A : OpAlmostRepresentation G)
     (x : ∀ n, Matrix (A.model n) (A.model n) ℂ) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N, ‖x n‖ ≤ ε
 
-theorem OpNormVanishing.congr {A : WeakMFApproximation G}
+theorem OpNormVanishing.congr {A : OpAlmostRepresentation G}
     {x y : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x) (hxy : ∀ n, x n = y n) :
     OpNormVanishing A y := by
@@ -34,19 +34,19 @@ theorem OpNormVanishing.congr {A : WeakMFApproximation G}
   obtain ⟨N, hN⟩ := hx ε hε
   exact ⟨N, fun n hn ↦ by rw [← hxy n]; exact hN n hn⟩
 
-theorem opNormVanishing_zero (A : WeakMFApproximation G) :
+theorem opNormVanishing_zero (A : OpAlmostRepresentation G) :
     OpNormVanishing A (fun n ↦ (0 : Matrix (A.model n) (A.model n) ℂ)) := by
   intro ε hε
   exact ⟨0, fun n _ ↦ by simp [hε.le]⟩
 
-theorem OpNormVanishing.neg {A : WeakMFApproximation G}
+theorem OpNormVanishing.neg {A : OpAlmostRepresentation G}
     {x : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x) : OpNormVanishing A (fun n ↦ -x n) := by
   intro ε hε
   obtain ⟨N, hN⟩ := hx ε hε
   exact ⟨N, fun n hn ↦ by rw [norm_neg]; exact hN n hn⟩
 
-theorem OpNormVanishing.add {A : WeakMFApproximation G}
+theorem OpNormVanishing.add {A : OpAlmostRepresentation G}
     {x y : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x) (hy : OpNormVanishing A y) :
     OpNormVanishing A (fun n ↦ x n + y n) := by
@@ -61,13 +61,13 @@ theorem OpNormVanishing.add {A : WeakMFApproximation G}
       (hNy n ((le_max_right _ _).trans hn))
     _ = ε := by ring
 
-theorem OpNormVanishing.sub {A : WeakMFApproximation G}
+theorem OpNormVanishing.sub {A : OpAlmostRepresentation G}
     {x y : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x) (hy : OpNormVanishing A y) :
     OpNormVanishing A (fun n ↦ x n - y n) := by
   simpa [sub_eq_add_neg] using hx.add hy.neg
 
-theorem OpNormVanishing.smul {A : WeakMFApproximation G}
+theorem OpNormVanishing.smul {A : OpAlmostRepresentation G}
     {x : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x) (c : ℂ) :
     OpNormVanishing A (fun n ↦ c • x n) := by
@@ -85,7 +85,7 @@ theorem OpNormVanishing.smul {A : WeakMFApproximation G}
       nlinarith [norm_nonneg c]
 
 theorem OpNormVanishing.mul_left_of_norm_le_one
-    {A : WeakMFApproximation G}
+    {A : OpAlmostRepresentation G}
     {x : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x)
     (b : ∀ n, Matrix (A.model n) (A.model n) ℂ)
@@ -100,7 +100,7 @@ theorem OpNormVanishing.mul_left_of_norm_le_one
     _ = ε := one_mul _
 
 theorem OpNormVanishing.mul_right_of_norm_le_one
-    {A : WeakMFApproximation G}
+    {A : OpAlmostRepresentation G}
     {x : ∀ n, Matrix (A.model n) (A.model n) ℂ}
     (hx : OpNormVanishing A x)
     (b : ∀ n, Matrix (A.model n) (A.model n) ℂ)
@@ -114,7 +114,7 @@ theorem OpNormVanishing.mul_right_of_norm_le_one
     _ ≤ ε * 1 := mul_le_mul (hN n hn) (hb n) (norm_nonneg _) hε.le
     _ = ε := mul_one _
 
-theorem OpNormVanishing.finset_sum {A : WeakMFApproximation G}
+theorem OpNormVanishing.finset_sum {A : OpAlmostRepresentation G}
     {I : Type*} (s : Finset I)
     (x : I → ∀ n, Matrix (A.model n) (A.model n) ℂ)
     (hx : ∀ i ∈ s, OpNormVanishing A (x i)) :
@@ -128,7 +128,7 @@ theorem OpNormVanishing.finset_sum {A : WeakMFApproximation G}
       simpa [Finset.sum_insert, hi] using hiV.add hsV
 
 /-- The defining multiplicative defects are operator-norm vanishing. -/
-theorem multiplicativeDefect_vanishing (A : WeakMFApproximation G)
+theorem multiplicativeDefect_vanishing (A : OpAlmostRepresentation G)
     (g h : G) :
     OpNormVanishing A (fun n ↦
       (A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
@@ -137,7 +137,7 @@ theorem multiplicativeDefect_vanishing (A : WeakMFApproximation G)
 
 /-- Unitary weak-MF microstates send the identity to the identity
 asymptotically in operator norm. -/
-theorem map_one_vanishing (A : WeakMFApproximation G) :
+theorem map_one_vanishing (A : OpAlmostRepresentation G) :
     OpNormVanishing A (fun n ↦
       (A.map n 1 : Matrix (A.model n) (A.model n) ℂ) - 1) := by
   intro ε hε
@@ -154,7 +154,7 @@ theorem map_one_vanishing (A : WeakMFApproximation G) :
 
 /-- Inversion of the group variable becomes conjugate transpose of the
 microstate, asymptotically in operator norm. -/
-theorem map_inv_vanishing (A : WeakMFApproximation G) (g : G) :
+theorem map_inv_vanishing (A : OpAlmostRepresentation G) (g : G) :
     OpNormVanishing A (fun n ↦
       (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ) := by
@@ -188,7 +188,7 @@ theorem map_inv_vanishing (A : WeakMFApproximation G) (g : G) :
 
 /-- Relative products of weak-MF microstates agree asymptotically with the
 exact Hilbert-space relative operator. -/
-theorem map_inv_mul_vanishing (A : WeakMFApproximation G) (g h : G) :
+theorem map_inv_mul_vanishing (A : OpAlmostRepresentation G) (g h : G) :
     OpNormVanishing A (fun n ↦
       (A.map n (g⁻¹ * h) : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ * A.map n h) := by
@@ -224,13 +224,13 @@ theorem map_inv_mul_vanishing (A : WeakMFApproximation G) (g h : G) :
     _ = ε := by ring
 
 /-- The finite-stage orbit average evaluated in weak-MF microstates. -/
-noncomputable def matrixAverage (A : WeakMFApproximation G) (S : Finset G)
+noncomputable def matrixAverage (A : OpAlmostRepresentation G) (S : Finset G)
     (n : ℕ) : Matrix (A.model n) (A.model n) ℂ :=
   ((S.card : ℂ)⁻¹) • ∑ g ∈ S,
     (A.map n g : Matrix (A.model n) (A.model n) ℂ)
 
 /-- Every finite-stage unitary orbit average has operator norm at most one. -/
-theorem norm_matrixAverage_le_one (A : WeakMFApproximation G) (S : Finset G)
+theorem norm_matrixAverage_le_one (A : OpAlmostRepresentation G) (S : Finset G)
     (n : ℕ) : ‖matrixAverage A S n‖ ≤ 1 := by
   classical
   by_cases hS : S = ∅
@@ -258,7 +258,7 @@ theorem norm_matrixAverage_le_one (A : WeakMFApproximation G) (S : Finset G)
 
 /-- A symmetric averaging set makes the weak-MF matrix average
 asymptotically self-adjoint. -/
-theorem matrixAverage_selfAdjoint_vanishing (A : WeakMFApproximation G)
+theorem matrixAverage_selfAdjoint_vanishing (A : OpAlmostRepresentation G)
     (S : Finset G) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) :
     OpNormVanishing A (fun n ↦ matrixAverage A S n -
       (matrixAverage A S n)ᴴ) := by
@@ -302,11 +302,11 @@ theorem matrixAverage_selfAdjoint_vanishing (A : WeakMFApproximation G)
   simpa only [hrewrite] using hv.smul ((S.card : ℂ)⁻¹)
 
 /-- Exact Hermitian symmetrization of the finite-stage orbit average. -/
-noncomputable def hermitianAverage (A : WeakMFApproximation G) (S : Finset G)
+noncomputable def hermitianAverage (A : OpAlmostRepresentation G) (S : Finset G)
     (n : ℕ) : Matrix (A.model n) (A.model n) ℂ :=
   (2 : ℂ)⁻¹ • (matrixAverage A S n + (matrixAverage A S n)ᴴ)
 
-theorem hermitianAverage_conjTranspose (A : WeakMFApproximation G)
+theorem hermitianAverage_conjTranspose (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) :
     (hermitianAverage A S n)ᴴ = hermitianAverage A S n := by
   rw [hermitianAverage, Matrix.conjTranspose_smul, Matrix.conjTranspose_add,
@@ -315,7 +315,7 @@ theorem hermitianAverage_conjTranspose (A : WeakMFApproximation G)
   rw [hc, add_comm]
 
 /-- Hermitian symmetrization does not increase the unit-ball bound. -/
-theorem norm_hermitianAverage_le_one (A : WeakMFApproximation G)
+theorem norm_hermitianAverage_le_one (A : OpAlmostRepresentation G)
     (S : Finset G) (n : ℕ) : ‖hermitianAverage A S n‖ ≤ 1 := by
   rw [hermitianAverage, norm_smul]
   have hc : ‖((2 : ℂ)⁻¹)‖ = (1 / 2 : ℝ) := by norm_num
@@ -333,7 +333,7 @@ theorem norm_hermitianAverage_le_one (A : WeakMFApproximation G)
 
 /-- The exact Hermitian average is asymptotically equal to the original
 weak-MF average. -/
-theorem matrixAverage_sub_hermitian_vanishing (A : WeakMFApproximation G)
+theorem matrixAverage_sub_hermitian_vanishing (A : OpAlmostRepresentation G)
     (S : Finset G) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) :
     OpNormVanishing A (fun n ↦ matrixAverage A S n -
       hermitianAverage A S n) := by

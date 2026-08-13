@@ -217,7 +217,7 @@ theorem hermitianAverage_eventually_top_spectral_residual
     (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {t delta : ℝ}
+    (A : OpAlmostRepresentation G) {t delta : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (hdelta : 0 < delta) :
     ∃ N : ℕ, ∀ n ≥ N,
       ‖(hermitianAverage A S n - 1) *
@@ -244,7 +244,7 @@ theorem matrixAverage_sub_one_mul_spectralAbove_vanishing
     (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) :
     OpNormVanishing A (fun n ↦
       (matrixAverage A S n - 1) *
@@ -283,7 +283,7 @@ theorem matrixAverage_sub_one_mul_spectralAbove_vanishing
     _ = eta := by ring
 
 /-- Displacement of the top spectral subspace by one weak-MF microstate. -/
-noncomputable def topSpectralDisplacement (A : WeakMFApproximation G)
+noncomputable def topSpectralDisplacement (A : OpAlmostRepresentation G)
     (S : Finset G) (t : ℝ) (n : ℕ) (g : G) :
     Matrix (A.model n) (A.model n) ℂ :=
   ((A.map n g : Matrix (A.model n) (A.model n) ℂ) - 1) *
@@ -293,7 +293,7 @@ noncomputable def topSpectralDisplacement (A : WeakMFApproximation G)
 /-- The sum of the generator displacement squares is the Kazhdan Laplacian
 compressed to the top spectral subspace. -/
 theorem sum_topSpectralDisplacement_gram
-    (A : WeakMFApproximation G) (S : Finset G) (hone : 1 ∈ S)
+    (A : OpAlmostRepresentation G) (S : Finset G) (hone : 1 ∈ S)
     (t : ℝ) (n : ℕ) :
     (∑ g ∈ S, (topSpectralDisplacement A S t n g)ᴴ *
         topSpectralDisplacement A S t n g) =
@@ -387,7 +387,7 @@ theorem sum_topSpectralDisplacement_gram_vanishing
     (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) :
     OpNormVanishing A (fun n ↦
       ∑ g ∈ S, (topSpectralDisplacement A S t n g)ᴴ *
@@ -429,7 +429,7 @@ theorem topSpectralDisplacement_vanishing
     (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t)
     {g : G} (hg : g ∈ S) :
     OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n g) := by
@@ -460,7 +460,7 @@ theorem topSpectralDisplacement_vanishing_of_mem_closure
     (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) {g : G}
     (hg : g ∈ Subgroup.closure (S : Set G)) :
     OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n g) := by
@@ -516,7 +516,7 @@ theorem topSpectralDisplacement_vanishing_of_generates
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
     (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
     (hgen : Subgroup.closure (S : Set G) = ⊤)
-    (A : WeakMFApproximation G) {t : ℝ}
+    (A : OpAlmostRepresentation G) {t : ℝ}
     (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) (g : G) :
     OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n g) := by
   classical

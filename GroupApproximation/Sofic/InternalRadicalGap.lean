@@ -102,11 +102,13 @@ theorem exists_setup (A : WeakMFApproximation H) (N : Subgroup H)
     gap_lt_cutoff := hct
     cutoff_lt_one := htOne }⟩
 
-/-- Restrict the given ambient weak-MF approximation to the subgroup.  Its
-finite matrix carriers are definitionally the ambient carriers. -/
+/-- Restrict the given ambient weak-MF approximation to the subgroup, as an
+operator-norm almost representation.  Its finite matrix carriers are
+definitionally the ambient carriers.  Separation is deliberately dropped: the
+compressed corner arguments below never use it. -/
 abbrev restrictedApproximation (A : WeakMFApproximation H) (N : Subgroup H) :
-    WeakMFApproximation N :=
-  A.comap N.subtype Subtype.val_injective
+    OpAlmostRepresentation N :=
+  A.toOpAlmostRepresentation.comap N.subtype
 
 /-- Every subgroup element asymptotically fixes the retained top spectral
 subspace.  Generation is used only inside the subgroup; no ambient
@@ -139,7 +141,7 @@ invariance of an ambient translate of that corner. -/
 theorem subgroup_displacement_mul_ambient_top_vanishing
     (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
     (D : Setup A N) (g : H) (s : N) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+    KazhdanCornerMatrices.OpNormVanishing A.toOpAlmostRepresentation (fun n ↦
       ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
           KazhdanCornerMatrices.spectralAbove
@@ -159,9 +161,9 @@ theorem subgroup_displacement_mul_ambient_top_vanishing
   have hP : ∀ n, ‖P n‖ ≤ 1 := fun n ↦
     KazhdanCornerMatrices.norm_spectralAbove_le_one _ _ _
   have hsg := (KazhdanCornerMatrices.multiplicativeDefect_vanishing
-    A (s : H) g).mul_right_of_norm_le_one P hP
+    A.toOpAlmostRepresentation (s : H) g).mul_right_of_norm_le_one P hP
   have hgx := (KazhdanCornerMatrices.multiplicativeDefect_vanishing
-    A g (x : H)).mul_right_of_norm_le_one P hP
+    A.toOpAlmostRepresentation g (x : H)).mul_right_of_norm_le_one P hP
   have hmapNorm : ∀ n,
       ‖(A.map n g : Matrix (A.model n) (A.model n) ℂ)‖ ≤ 1 := fun n ↦ by
     letI : Nonempty (A.model n) :=
@@ -169,7 +171,7 @@ theorem subgroup_displacement_mul_ambient_top_vanishing
     exact (CStarRing.norm_of_mem_unitary (A.map n g).2).le
   have hx := (subgroupTopSpectralDisplacement_vanishing A N D x).mul_left_of_norm_le_one
     (fun n ↦ (A.map n g : Matrix (A.model n) (A.model n) ℂ)) hmapNorm
-  change KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+  change KazhdanCornerMatrices.OpNormVanishing A.toOpAlmostRepresentation (fun n ↦
     (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
       (((A.map n (x : H) : Matrix (A.model n) (A.model n) ℂ) - 1) * P n)) at hx
   have htotal := hx.add hgx |>.sub hsg
@@ -189,12 +191,13 @@ theorem subgroup_displacement_mul_ambient_top_vanishing
     rw [hgroup]
     noncomm_ring
 
+set_option maxHeartbeats 800000 in
 /-- The subgroup orbit average acts asymptotically as the identity on every
 ambient translate of the retained top corner. -/
 theorem matrixAverage_sub_one_mul_ambient_top_vanishing
     (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
     (D : Setup A N) (g : H) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+    KazhdanCornerMatrices.OpNormVanishing A.toOpAlmostRepresentation (fun n ↦
       (KazhdanCornerMatrices.matrixAverage
           (restrictedApproximation A N) D.S n - 1) *
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
@@ -215,7 +218,8 @@ theorem matrixAverage_sub_one_mul_ambient_top_vanishing
   let X : N → ∀ n, Matrix (A.model n) (A.model n) ℂ := fun s n ↦
     ((A.map n (s : H) : Matrix (A.model n) (A.model n) ℂ) - 1) *
       (A.map n g : Matrix (A.model n) (A.model n) ℂ) * P n
-  have hsum := KazhdanCornerMatrices.OpNormVanishing.finset_sum D.S X
+  have hsum := KazhdanCornerMatrices.OpNormVanishing.finset_sum
+    (A := A.toOpAlmostRepresentation) D.S X
     (fun s _ ↦ subgroup_displacement_mul_ambient_top_vanishing A N D g s)
   have hscaled := hsum.smul (((D.S.card : ℂ)⁻¹))
   have hcard : (D.S.card : ℂ) ≠ 0 := by
@@ -249,7 +253,7 @@ ambient top-corner invariance. -/
 theorem hermitianAverage_sub_one_mul_ambient_top_vanishing
     (A : WeakMFApproximation H) (N : Subgroup H) [N.Normal]
     (D : Setup A N) (g : H) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
+    KazhdanCornerMatrices.OpNormVanishing A.toOpAlmostRepresentation (fun n ↦
       (KazhdanCornerMatrices.hermitianAverage
           (restrictedApproximation A N) D.S n - 1) *
         (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
@@ -514,7 +518,7 @@ theorem ambientTopToMovingBlock_vanishing
   intro eta heta
   obtain ⟨Nmove, hmove⟩ := ambientMovingToTopBlock_vanishing A N D g⁻¹
     (eta / 2) (by linarith)
-  obtain ⟨Ninv, hinv⟩ := KazhdanCornerMatrices.map_inv_vanishing A g
+  obtain ⟨Ninv, hinv⟩ := KazhdanCornerMatrices.map_inv_vanishing A.toOpAlmostRepresentation g
     (eta / 2) (by linarith)
   refine ⟨max Nmove Ninv, fun n hn ↦ ?_⟩
   classical
@@ -789,7 +793,7 @@ theorem eventually_nonempty_movingIndex
   simpa only [MovingIndex, KazhdanCornerMatrices.WeakMFMovingIndex] using
     KazhdanCornerMatrices.eventually_nonempty_weakMFMovingIndex
       D.kazhdan D.S (by rfl) D.one_mem D.epsilon_le_one D.symmetric
-      D.generates (restrictedApproximation A N) D.gap_lt_cutoff
+      D.generates (A.comap N.subtype Subtype.val_injective) D.gap_lt_cutoff
 
 /-- A cofinal schedule on which the moving corner is nonempty and the first
 `n + 1` ambient elements all have controlled Gram defect. -/
