@@ -166,6 +166,30 @@ literature-priority review.  It does not settle hyperlinearity or the
 active hyperlinear-versus-sofic goal.  Full proof and scope audit:
 `docs/EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md`.
 
+For a Kun--Thom Kazhdan infranormal pair the same marked word satisfies the
+stronger statement
+
+```text
+w in Rad_sof(E).
+```
+
+Given an arbitrary map from `E` to a sofic group, pair it with the
+retraction `E->G`; the restriction to the diagonal copy of `G` is then a
+sofic representation.  Kun--Thom centralizer normalization sends
+`d=tct^(-1)` into the centralizer of `Gamma`, so it kills
+`w=[d,a d a^(-1)]`.  Consequently the active FALSE endpoint needs only one
+CE negative character: find a CE tracial representation `pi` of `G` and a
+`Gamma`-central involution `C` such that
+
+```text
+[pi(t)Cpi(t)^*, pi(a)pi(t)Cpi(t)^*pi(a)^*]=-1.
+```
+
+This is strictly weaker than embedding the full CAR crossed product: only
+one anticommuting orbital edge is prescribed.  A solution gives a
+hyperlinear image retaining the full-sofic-radical word `w`, hence a
+hyperlinear nonsofic group.
+
 ### 2026-08-12: Iwahori counterexamples require high-dimensional type escape
 
 The fixed-library theorem for the Dogon--Vigdorovich matching problem

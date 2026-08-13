@@ -1313,3 +1313,76 @@ The graded Hochschild-homology calculation used in `(RPC76)` is Theorem
 algebras*, Proc. Amer. Math. Soc. 141 (2013), 2629--2639,
 arXiv:1108.0352.  For nonzero degree it identifies `HH_0` with the
 cokernel of `1-rotation` on closed paths of that degree.
+
+### 17.4 Even the regular margin at `1` has a four-atom invariant model
+
+The fact that every simultaneously fixed algebraic trace in `(RPC75)` has
+`ell(1)=0` does not revive the two-compressor argument.  There is an exact
+finite atomic model which is invariant under both dual compressor maps and
+already has regular trace on the root element labelled by `1`.
+
+Let
+
+\[
+ S=\mathbf Z/3\mathbf Z\sqcup\{*\}.
+ \tag{RPC78}
+\]
+
+On the three-cycle let `P_0(q)=q+1` and `P_1(q)=q-1`, and fix `*` under
+both permutations.  Define an `F_2`-valued output by
+
+\[
+ x(0)=x(1)=1,\qquad x(2)=x(*)=0.
+ \tag{RPC79}
+\]
+
+Then, at every state,
+
+\[
+ x(s)=x(P_0s)+x(P_1s).
+ \tag{RPC80}
+\]
+
+For a binary word `mu`, let `P_mu` be the corresponding composition and
+define an additive functional on the diagonal cylinder algebra by
+
+\[
+ \ell_s(s_\mu t_\mu)=x(P_\mu s).
+ \tag{RPC81}
+\]
+
+Set `ell_s(s_mu t_nu)=0` when `mu!=nu` and extend linearly.  Equation
+`(RPC80)` is precisely the cylinder-expansion consistency
+
+\[
+ \ell_s(s_\mu t_\mu)
+ =\ell_s(s_{\mu0}t_{\mu0})+
+  \ell_s(s_{\mu1}t_{\mu1}),
+ \tag{RPC82}
+\]
+
+while off-diagonal expansions remain off diagonal.  Hence `(RPC81)` gives
+four well-defined additive functionals on the binary Leavitt algebra.  The
+two dual corner maps permute them according to `P_0` and `P_1`.  Therefore
+
+\[
+ \mu={1\over4}\sum_{s\in S}\delta_{\chi_s},
+ \qquad \chi_s(a)=(-1)^{\ell_s(a)},
+ \tag{RPC83}
+\]
+
+is an exactly invariant four-atom measure for both compressors.  Since
+`ell_s(1)=x(s)`, exactly two atoms take the value `-1` at `1` and two take
+the value `+1`.  Thus
+
+\[
+ \int\chi(1)\,d\mu(\chi)=0.
+ \tag{RPC84}
+\]
+
+This is the regular-character margin at the first nonzero root element.
+Consequently neither common fixed characters nor the single regular trace
+condition at `1` can yield the required Hellinger gap.  A viable atomic
+argument must use additional noncentral/Pauli relations and control a
+larger regular Fourier window; the two compressor maps alone already admit
+the exact finite obstruction `(RPC78)--(RPC84)`.

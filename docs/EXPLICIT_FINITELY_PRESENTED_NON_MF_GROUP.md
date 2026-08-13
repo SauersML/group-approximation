@@ -329,3 +329,104 @@ focused on:
 The internal audit above resolves the mathematical details of items 1--3.
 The remaining uncertainty is principally literature priority, not an
 identified gap in the proof.
+
+## 7. Kun--Thom specialization: the same word is in the full sofic radical
+
+Assume now that `Gamma<G` is one of the Kun--Thom pairs: `Gamma` and `G`
+are Kazhdan, `G` is sofic (in the explicit constructions it is residually
+finite), and `Gamma` is infranormal in `G`.  Their centralizer-normalization
+theorem says that for every sofic representation `sigma` of `G`,
+
+```text
+C(sigma(Gamma)) is normalized by sigma(G).
+```
+
+For the group `E` above, let
+
+```text
+r:E->G
+```
+
+be the retraction which is the identity on `G` and sends `c` and `w` to
+`1`.  Then
+
+```text
+w in Rad_sof(E).                                      (NMF5)
+```
+
+Indeed, let `psi:E->S` be any homomorphism to a sofic group.  The paired
+map
+
+```text
+Psi=(r,psi):E->G times S
+```
+
+has sofic target and is injective on the distinguished copy of `G`.
+Realize its restriction to `G` as a sofic representation.  Since `c`
+centralizes `Gamma`, centralizer normalization says that
+
+```text
+d=t c t^(-1)
+```
+
+also centralizes `Gamma`.  In particular it commutes with the chosen
+`a in Gamma-t Gamma t^(-1)`, and hence
+
+```text
+Psi(w)=Psi([d,a d a^(-1)])=1.
+```
+
+The second coordinate gives `psi(w)=1`.  Since `psi` was arbitrary,
+`(NMF5)` follows.  Together with `w!=1`, this proves that `E` is nonsofic.
+
+Thus any Kun--Thom pair for which the displayed construction is finitely
+presented supplies a finitely presented group which is simultaneously
+nonsofic and non-MF.  This still does not prove hyperlinearity.
+
+## 8. Minimal Connes-embeddable character endpoint
+
+The Kun--Thom specialization sharply reduces the active FALSE problem.  It
+is enough to construct a Connes-embeddable finite tracial algebra `(M,tau)`,
+a homomorphism
+
+```text
+pi:G->U(M),
+```
+
+and an involution
+
+```text
+C in pi(Gamma)'
+```
+
+such that, with
+
+```text
+D=pi(t) C pi(t)^*,
+A=pi(a),
+```
+
+one has
+
+```text
+[D,A D A^*]=-1.                                      (NMF6)
+```
+
+Then the presentation gives a homomorphism `E->U(M)` sending `w` to
+`-1`.  Its image is hyperlinear because `M` is Connes embeddable, and it
+is nonsofic because every homomorphism from `E` to a sofic group kills
+`w`.  Hence `(NMF6)` would disprove hyperlinear implies sofic.
+
+This endpoint is strictly smaller than Connes embeddability of the full
+Clifford crossed product.  That crossed product supplies one solution by
+taking `C` to be the root Majorana, but `(NMF6)` asks for only one
+anticommuting orbital edge, not a Clifford family indexed by all of
+`G/Gamma`.  Equivalently, after conjugating by `pi(t)^*`, it asks for a
+`Gamma`-central involution whose conjugate by the strict predecessor
+`t^(-1) a t` is its Clifford partner.
+
+The norm-corona theorem proves that no operator-norm MF construction can
+realize `(NMF6)`.  A successful model must be genuinely tracial and must
+allow the adjoint Kazhdan projection to be infinite.  This is a smaller
+direct-HS target than the complete CAR action, but it retains the same
+relative-commutant obstruction.
