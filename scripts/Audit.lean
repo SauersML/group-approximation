@@ -478,6 +478,8 @@ def headlineTheorems : List Name :=
    ``ExactHodgeCertificate.Certificate.hodge_gap,
    ``ExactHodgeCertificate.Certificate.isKazhdanPair,
    ``ExactHodgeCertificate.Certificate.hasKazhdanPropertyT,
+   ``LiteralBaseP13RotationQuotient.p13GeneratorToRotation_kills,
+   ``LiteralBaseP13RotationQuotient.p13ToRotation_surjective,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,

@@ -76,6 +76,7 @@ import GroupApproximation.PropertyT.A2MagicEnergy
 import GroupApproximation.PropertyT.A2MagicHilbert
 import GroupApproximation.Kazhdan.PositiveOperatorGap
 import GroupApproximation.Kazhdan.ExactHodgeCertificate
+import GroupApproximation.Sofic.LiteralBaseP13RotationQuotient
 import GroupApproximation.PropertyT.FreeAlgebraDegree
 import GroupApproximation.PropertyT.FreeRootFiltration
 import GroupApproximation.PropertyT.FreeRootActions

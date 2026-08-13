@@ -42,6 +42,22 @@ noncomputable def rotationRelators : Finset (FreeGroup RotationGenerator) :=
   [relXCube, relYCube, relZSq, relXZCube, relYZCube,
     relXInvZXY, relYInvZYX, relXYSix].toFinset
 
+/-- Stable indexed interface to the eight printed rotation relators.  It is
+used by proof-carrying finite relator replays. -/
+def rotationRelator : Fin 8 → FreeGroup RotationGenerator
+  | 0 => relXCube
+  | 1 => relYCube
+  | 2 => relZSq
+  | 3 => relXZCube
+  | 4 => relYZCube
+  | 5 => relXInvZXY
+  | 6 => relYInvZYX
+  | 7 => relXYSix
+
+@[simp] theorem rotationRelator_mem (i : Fin 8) :
+    rotationRelator i ∈ rotationRelators := by
+  fin_cases i <;> simp [rotationRelator, rotationRelators]
+
 theorem mem_rotationRelators_iff (r : FreeGroup RotationGenerator) :
     r ∈ rotationRelators ↔
       r = relXCube ∨ r = relYCube ∨ r = relZSq ∨
