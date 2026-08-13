@@ -58,6 +58,10 @@ example : LiteralCyclicCalibration.mark ≠ 1 :=
 example : Function.Surjective LiteralNonMFLinearWitness.matrixBaseHom :=
   LiteralNonMFLinearWitness.matrixBaseHom_surjective
 
+example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
+    LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
+  LiteralBaseRelations.x_conj_v1
+
 example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V]
     (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :

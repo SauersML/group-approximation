@@ -20,18 +20,6 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
       AffineSL3Doubling.a ∉ Set.range ⇑AffineSL3Doubling.alpha
 ```
 
-## `GroupApproximation.AffineSL3Scaling.scaling_package`
-
-```lean
-∀ (m : ℕ),
-  2 ≤ m →
-    Function.Injective ⇑(AffineSL3Scaling.alpha m) ∧
-      (∀ (g : AffineSL3Doubling.Gamma),
-          g ∈ Set.range ⇑(AffineSL3Scaling.alpha m) ↔
-            ∃ v, Multiplicative.toAdd g.left = m • v) ∧
-        AffineSL3Doubling.a ∉ Set.range ⇑(AffineSL3Scaling.alpha m)
-```
-
 ## `GroupApproximation.ApproxInvolutionCorner.roundedInvolution_mem_unitaryGroup`
 
 ```lean
@@ -887,22 +875,6 @@ Type u_1 → Type u_1
 ```lean
 ∀ {R : Type u_1} [inst : CommRing R] (x y : Heis R),
   x * y * x⁻¹ * y⁻¹ ∈ Subgroup.center (Heis R)
-```
-
-## `GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec`
-
-```lean
-∀ {A : Type u} {B : Type v} [inst : CStarAlgebra A] [inst_1 : CStarAlgebra B]
-  (e : InjectiveCStarEmbedding A B) (D : ProperProjectionCompression A),
-  star (e.properIsometry D) * e.properIsometry D = 1 ∧
-    e.properIsometry D * star (e.properIsometry D) ≠ 1
-```
-
-## `GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing`
-
-```lean
-∀ {A : Type u} {B : Type v} [inst : CStarAlgebra A] [inst_1 : CStarAlgebra B]
-  (e : InjectiveCStarEmbedding A B) (D : ProperProjectionCompression A), ¬IsStablyFiniteRing B
 ```
 
 ## `GroupApproximation.IsEssentialExpanderSequence`
@@ -1912,43 +1884,10 @@ Function.Surjective ⇑LiteralCyclicCalibration.quotientMap
 ¬∃ Q x, ∃ (_ : Finite Q), ∃ φ, φ LiteralNonMFPresentation.mark ≠ 1
 ```
 
-## `GroupApproximation.LiteralNonMFLinearWitness.baseMap_injective_of_matrixBaseHom_injective`
-
-```lean
-Function.Injective ⇑LiteralNonMFLinearWitness.matrixBaseHom →
-  Function.Injective ⇑LiteralNonMFPresentation.baseMap
-```
-
 ## `GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one`
 
 ```lean
 LiteralNonMFPresentation.mark ≠ 1
-```
-
-## `GroupApproximation.LiteralNonMFLinearWitness.matrixBaseHom_surjective`
-
-```lean
-Function.Surjective ⇑LiteralNonMFLinearWitness.matrixBaseHom
-```
-
-## `GroupApproximation.LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated`
-
-```lean
-Group.FG LiteralNonMFLinearWitness.WitnessGroup
-```
-
-## `GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark`
-
-```lean
-LiteralNonMFLinearWitness.witnessHom LiteralNonMFPresentation.mark =
-  MarkedCompression.signAmbient LiteralNonMFLinearWitness.alpha
-    ExplicitLinearModel.conjD_injective
-```
-
-## `GroupApproximation.LiteralNonMFLinearWitness.witnessHom_surjective`
-
-```lean
-Function.Surjective ⇑LiteralNonMFLinearWitness.witnessHom
 ```
 
 ## `GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package`
@@ -1963,26 +1902,6 @@ Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
         Commute LiteralNonMFPresentation.lamp (LiteralNonMFPresentation.baseMap g)) ∧
       LiteralNonMFPresentation.mark ^ 2 = 1 ∧
         ∀ (g : LiteralNonMFPresentation.MarkedGroup), Commute LiteralNonMFPresentation.mark g
-```
-
-## `GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective`
-
-```lean
-Function.Surjective ⇑(PresentedGroup.mk ↑LiteralNonMFPresentation.relators)
-```
-
-## `GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF`
-
-```lean
-IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
-```
-
-## `GroupApproximation.LiteralPresentationRadius.relators_or_markedWord_length_le_34`
-
-```lean
-∀ {q : FreeGroup LiteralNonMFPresentation.Generator},
-  q ∈ LiteralNonMFPresentation.relators ∨ q = LiteralNonMFPresentation.markedWord →
-    LiteralPresentationRadius.wordLength q ≤ 34
 ```
 
 ## `GroupApproximation.LocalCriterionData`
@@ -2163,32 +2082,11 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
                     Manuscript.conjSubgroup q₀ Γ ⊓ J = ⊥ → IsSofic G → IsLEF ↥J
 ```
 
-## `GroupApproximation.MarkedCompression.iotaVertical_injective`
-
-```lean
-∀ {Γ : Type u} [inst : Group Γ] (α : Γ →* Γ) (hα : Function.Injective ⇑α),
-  Function.Injective ⇑(MarkedCompression.iotaVertical α hα)
-```
-
 ## `GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible`
 
 ```lean
 ∀ {Γ : Type} {E : Type u} [inst : Group Γ] [inst_1 : Group E] [Countable E]
   (D : MarkedCompressionInclusionData Γ E), NormMFInvisible D.word
-```
-
-## `GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus`
-
-```lean
-∀ {k : ℕ} (M : MarkedGroupSpace k),
-  ¬IsOperatorMF M.Quotient →
-    ∃ R, M.cylinder (MarkedGroupSpace.wordBall k R) ⊆ (MarkedGroupSpace.operatorMFLocus k)ᶜ
-```
-
-## `GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus`
-
-```lean
-∀ {k : ℕ}, IsClosed (MarkedGroupSpace.operatorMFLocus k)
 ```
 
 ## `GroupApproximation.MatchingCertificate`
@@ -2324,12 +2222,6 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
               HyperlinearModel G F ε
 ```
 
-## `GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one`
-
-```lean
-∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF G ↔ IsNormApproximable G 1
-```
-
 ## `GroupApproximation.OrbitChartData`
 
 ```lean
@@ -2452,22 +2344,6 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
 ```lean
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A),
   ↑↑(RankFour.rawInvolutionWord L) = RankFour.rawInvolutionMatrix L
-```
-
-## `GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState`
-
-```lean
-(G : Type u) →
-  [inst : Group G] → FaithfulTracialState ↥(ReducedGroupCStarTrace.ReducedGroupCStar G)
-```
-
-## `GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one`
-
-```lean
-∀ (G : Type w) [inst : Group G] (n : Type u_1) [inst_1 : Fintype n] [inst_2 : DecidableEq n],
-  Nonempty n →
-    ∀ {v : CStarMatrix n n ↥(ReducedGroupCStarTrace.ReducedGroupCStar G)},
-      star v * v = 1 → v * star v = 1
 ```
 
 ## `GroupApproximation.Shalom.exists_finitelyPresented_kazhdan_cover`
@@ -3881,13 +3757,6 @@ CountableNonsoficGroupExists
       monomialMatrix Y e τ ^ (Fintype.card Y.carrier).factorial =
     monomialMatrix Y e τ ^ (Fintype.card Y.carrier).factorial *
       monomialMatrix Y d σ ^ (Fintype.card Y.carrier).factorial
-```
-
-## `GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top`
-
-```lean
-∀ (G : Type u) [inst : Group G] [Nontrivial G],
-  normMFResidual G = ⊤ → IsEmpty (FaithfulReducedCoronaUnitaryRestriction G)
 ```
 
 ## `GroupApproximation.no_pointwise_rounding`

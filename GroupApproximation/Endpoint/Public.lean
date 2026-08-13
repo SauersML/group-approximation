@@ -131,9 +131,9 @@ group is part of the Lean API.
   formally justified by the twenty relators: the raw presented base
   surjects onto the displayed affine matrix group.  No injectivity or
   backwards transfer of property `(T)` is asserted.
-* `LiteralBaseRelations.baseRelator_eq_one` and its named consequences --
-  the twenty defining relators interpreted intrinsically in the literal
-  presented base, without reflecting equality from a matrix quotient.
+* `LiteralBaseRelations.baseRelator_eq_one` and the named conjugation laws --
+  the twenty relations used intrinsically in the raw presented base, without
+  reflecting equality from the affine quotient.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
