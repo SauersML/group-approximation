@@ -293,7 +293,16 @@ presented group is not MF in the Carrión--Dadarlat--Eckhardt, cofinite
 norm-matrix-corona sense. It also proves that its nontrivial marked element is
 invisible to every operator-norm matrix ultraproduct and hence that the group
 is not `IsWeakMF`. The manuscript's concrete `Z^3 semidirect SL_3(Z)`
-presentation is proved in TeX, not identified with the formal witness.
+presentation is proved in TeX, not identified with the formal witness. In
+particular, `NormMFInvisible` ranges over every ultrafilter, including
+principal ultrafilters, and is not definitionally the sequential cofinite
+radical; the later countable-group theorems
+`coronaMFResidual_eq_normMFResidual` and
+`isOperatorMF_iff_normMFResidual_eq_bot` supply the bridge. The later literal
+Lean stack has only a conditional MF endpoint: its property-`(T)` premise is
+on the raw twenty-relator `PresentedGroup`. Classical property `(T)` of the
+affine group does not fill that premise without presentation completeness, an
+isomorphism, or a direct proof for the raw presented group.
 
 ## Manuscript evolution after the first draft
 
@@ -488,7 +497,7 @@ MappingTelescope + CliffordLampGroup
     -> MarkedCompressionGroup (countable witness, word = sign != 1)
 ShalomFinitePresentation + Base + telescope/witness realization
     -> ChosenMarkedPresentation
-    -> ChosenNonMFEndpoint (finitely presented marked inclusion data)
+    -> ChosenNonMFEndpoint (noncomputably chosen finitely presented marked inclusion data)
 
 ANALYTIC KILL BRANCH
 
