@@ -21,6 +21,7 @@ import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralBaseRotationRetract
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
+import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.MarkedCompressionInclusionData

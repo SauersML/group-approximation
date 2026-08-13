@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
 import GroupApproximation.Sofic.CentralCoverInheritance
 import GroupApproximation.Sofic.ChosenNonMFTheorem
+import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
@@ -470,6 +471,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_group_isOperatorMF
 #print axioms GroupApproximation.ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+#print axioms GroupApproximation.ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity
+#print axioms GroupApproximation.ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
 #print axioms GroupApproximation.isOperatorMF_iff_normMFResidual_eq_bot

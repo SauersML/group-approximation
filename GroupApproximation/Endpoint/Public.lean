@@ -1,6 +1,7 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Sofic.ChosenNonMFTheorem
+import GroupApproximation.Sofic.ChosenUniversalHorn
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
@@ -117,6 +118,10 @@ generated from the manuscript's margin notes; this module is the short list.
   cylinder witnessing every failure.
 * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
+* `ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity` and
+  `ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity` -- an
+  unconditional finite universal Horn sentence valid in every operator-MF
+  group and false in the chosen finitely presented witness.
 * `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
   free product to be non-MF; the unconditional chosen witness gives a
   finitely presented example after free product with `ℤ`.
@@ -329,6 +334,9 @@ export GroupApproximation.ChosenNonMFTheorem
     exists_finitelyPresented_not_isWeakMF
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
+export GroupApproximation.ChosenUniversalHorn
+  (isOperatorMF_satisfies_chosenQuasiIdentity
+    markedGroup_not_satisfies_chosenQuasiIdentity)
 export GroupApproximation.KazhdanCompressionCore
   (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
     finiteNormal_le_normMatrixCoronaKernel
