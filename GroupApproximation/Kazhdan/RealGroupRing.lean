@@ -33,6 +33,33 @@ noncomputable def convolution (a b : Element G) : Element G := a * b
 noncomputable def adjoint (a : Element G) : Element G :=
   MonoidAlgebra.mapDomain (fun g ↦ g⁻¹) a
 
+@[simp] theorem adjoint_zero : adjoint (0 : Element G) = 0 := by
+  simp [adjoint]
+
+@[simp] theorem adjoint_single (g : G) (c : ℝ) :
+    adjoint (MonoidAlgebra.single g c) =
+      MonoidAlgebra.single g⁻¹ c := by
+  simp [adjoint]
+
+@[simp] theorem adjoint_add (a b : Element G) :
+    adjoint (a + b) = adjoint a + adjoint b := by
+  exact MonoidAlgebra.mapDomain_add _ _ _
+
+@[simp] theorem adjoint_sub (a b : Element G) :
+    adjoint (a - b) = adjoint a - adjoint b := by
+  apply eq_sub_iff_add_eq.mpr
+  rw [← adjoint_add]
+  congr 1
+  abel
+
+@[simp] theorem adjoint_finset_sum {ι : Type*} (s : Finset ι)
+    (a : ι → Element G) :
+    adjoint (∑ i ∈ s, a i) = ∑ i ∈ s, adjoint (a i) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty => simp
+  | @insert i s hi ih => simp [hi, ih]
+
 /-- An orthogonal representation regarded as a representation by linear
 endomorphisms. -/
 def endRepresentation (ρ : G →* (E ≃ₗᵢ[ℝ] E)) :
@@ -138,6 +165,25 @@ theorem evaluate_laplacianElement (S : Finset G)
   classical
   rw [GroupRingLaplacian.laplacian_apply]
   simp [laplacianElement, Nat.cast_smul_eq_nsmul]
+
+/-- An inverse-closed finite set has an algebraically self-adjoint
+Laplacian. -/
+theorem adjoint_laplacianElement_of_inv_closed
+    (S : Finset G) (hinv : ∀ g, g ∈ S ↔ g⁻¹ ∈ S) :
+    adjoint (laplacianElement S) = laplacianElement S := by
+  classical
+  rw [laplacianElement, adjoint_finset_sum]
+  simp only [adjoint_sub, adjoint_single, inv_one]
+  apply Finset.sum_bij (fun g _ ↦ g⁻¹)
+  · intro g hg
+    exact (hinv g).mp hg
+  · intro a ha b hb hab
+    exact inv_injective hab
+  · intro g hg
+    refine ⟨g⁻¹, (hinv g⁻¹).mpr ?_, by simp⟩
+    simpa using hg
+  · intro g hg
+    simp
 
 /-! ## Exact sum-of-squares certificates -/
 
