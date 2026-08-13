@@ -143,6 +143,9 @@ group is part of the Lean API.
   `LiteralBaseRotationRetract.baseToRotation_ker_eq_translations` -- the
   eight-relator rotation group is a retract of the literal base, and the
   retraction kernel is exactly the translation subgroup.
+* `LiteralBaseRotationRetract.internalSemidirectEquiv` -- the resulting
+  complement data identifies the literal base with its internal semidirect
+  product of translations by rotations.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
@@ -374,7 +377,8 @@ export GroupApproximation.LiteralBaseTranslationNormal
 export GroupApproximation.LiteralBaseRotationRetract
   (Rotation rotationToBase baseToRotation rotationToBase_injective
     baseToRotation_surjective baseToRotation_ker_eq_translations
-    translations_inf_rotations)
+    translations_inf_rotations translations_isComplement_rotations
+    internalSemidirectEquiv rotationEquivRotations)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
 export GroupApproximation.LiteralUniversalHorn
