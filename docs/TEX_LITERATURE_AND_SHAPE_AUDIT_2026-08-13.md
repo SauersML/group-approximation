@@ -11,12 +11,13 @@ presentation.  The paper proves that this presentation is the classical
 group `Z^3 ⋊ SL_3(Z)` by the CRW presentation and direct matrix checks, then
 uses property (T) of that classical group.  The current unconditional formal
 non-MF endpoint instead uses a noncomputably chosen finitely presented Shalom
-cover.  The literal formal endpoint still requires either property (T) of the
-raw presented base or an exact rational sum-of-squares certificate.  Thus the
-main theorem and its literal downstream consequences are not yet in 1:1
-correspondence.  A link from an unconditional printed theorem to one of those
-premise-parametrized declarations is misleading and should remain absent
-until the premise is discharged internally.
+cover.  Lean exports no analytic MF endpoint for the literal group:
+premise-parametrized property-(T) and absent-certificate declarations were
+removed from the trust surface.  Thus the main theorem and its literal
+downstream consequences are not yet in 1:1 correspondence.  A link from an
+unconditional printed theorem to a conditional placeholder would be
+misleading and must remain absent until the missing input is discharged
+internally.
 
 Affected printed consequences include the non-MF assertion for the literal
 `E`, its full and reduced group C-star algebras, quotient nonclosure via
@@ -30,10 +31,12 @@ the literal word, and the literal marked cylinder.
   This contradicts the manuscript policy and visibly interrupts proofs.  The
   macros should be genuine compact `marginpar` notes; conditional links should
   not be presented as counterparts of unconditional statements.
-- The introduction's increasing-dimension normalization says to put “the old
-  unitary in the newest block” and claims every difference is unchanged.  The
-  correct diagonal argument takes cumulative block sums: multiplicative
-  defects are maxima over blocks and previously achieved separations persist.
+- An initial suspicion about the increasing-dimension normalization was
+  rejected after checking the implementation.  At stage `n` it uses the
+  cumulative space but places the `n`th old unitary only in the newest block,
+  with identities in all earlier blocks.  Thus a difference is literally
+  `blockDiag(0, u-v)` and its operator norm is unchanged; the manuscript's
+  sentence matches `OperatorMFIncreasingDimensions.lean`.
 - The abstract had grown to roughly a full page and mixed historical context,
   mechanism, and a long consequence catalogue.  A shorter three-paragraph
   version states the theorem, mechanism, and principal consequences without
@@ -72,9 +75,6 @@ the literal word, and the literal marked cylinder.
   text.  The audit therefore did not independently re-check every pinpoint in
   Brown--Ozawa, BHV, or CRW during this pass.  Earlier repository audit notes
   record full-PDF checks for those sources.
-- The current arXiv HTML for Chatterji--Kassabov displays a March 22, 2026
-  manuscript date, while the bibliography says “manuscript dated August 11,
-  2026.”  That later date was not independently confirmed from the public
-  page in this pass and should be removed unless a preserved later PDF proves
-  it.
-
+- The official arXiv record for Chatterji--Kassabov exposes only version~1,
+  submitted January 30, 2026.  The unverified “manuscript dated August 11,
+  2026” wording was therefore removed from both the prose and bibliography.

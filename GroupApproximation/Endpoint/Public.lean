@@ -30,6 +30,7 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralUniversalHorn
@@ -379,7 +380,7 @@ export GroupApproximation.CliffordAlgebraLamp
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
 export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation.LiteralCyclicCalibration
-  (mark_ne_one quotientMap_mark_val quotientMap_mark_ne_one
+  (mark_ne_one mark_central quotientMap_mark_val quotientMap_mark_ne_one
     quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
     realizedQuotient_finiteDimensional_kill
     realizedQuotient_isOperatorMF
