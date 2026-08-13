@@ -4,6 +4,17 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: trace-flat spectral floor `1/120`
+
+`TRUE_TRACE_FLAT_BLOCK_SPECTRAL_FLOOR.md` removes two more analytic losses.
+For every trace-flat comb block, truncating `FGF` above eigenvalue `1/16`
+retains trace at least `1/120` and gives singular values at least `1/4`.
+The rational endpoint is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  Thus the spectral version of `(RPC128)`
+now has one structural gate: make the retained cut invariant under the
+recovered multiplication arrows.  Density and condition number no longer
+need separate recovery arguments.
+
 ### 2026-08-13: fixed `7/32` coefficient anti-normalizer gap
 
 `TRUE_DOUBLE_PAULI_COMB_ANTINORMALIZER_GAP.md` turns the constant overlap table

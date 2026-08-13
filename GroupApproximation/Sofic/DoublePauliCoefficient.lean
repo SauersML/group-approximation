@@ -273,4 +273,18 @@ theorem hsDistSq_projections_eq_seven_div_thirty_two
     hPstar hPid hQstar hQid, hPtrace, hQtrace, hoverlap]
   norm_num
 
+/-- Arithmetic core of the trace-flat spectral truncation.  A positive
+contraction of total normalized trace `1/64`, supported on trace `1/8`, has
+at least trace `1/120` above eigenvalue `1/16`.  `lowMass` and `highMass`
+are the two spectral contributions; the spectral theorem supplies the two
+displayed upper bounds. -/
+theorem one_div_120_le_of_trace_flat_spectral_split
+    (lowMass highMass retainedTrace : ℝ)
+    (hsplit : lowMass + highMass = (1 : ℝ) / 64)
+    (hlow : lowMass ≤ (1 : ℝ) / 16 * ((1 : ℝ) / 8 - retainedTrace))
+    (hhigh : highMass ≤ retainedTrace) :
+    (1 : ℝ) / 120 ≤ retainedTrace := by
+  norm_num at hsplit hlow ⊢
+  linarith
+
 end GroupApproximation

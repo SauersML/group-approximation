@@ -2,6 +2,20 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 spectral fallback: only invariance remains
+
+For any trace-flat coefficient block, `H=FGF` is a positive contraction with
+support trace `1/8` and total trace `1/64`.  Its spectral cut above `1/16`
+has trace at least `1/120`, and the retained transition has singular values
+at least `1/4`.  See `TRUE_TRACE_FLAT_BLOCK_SPECTRAL_FLOOR.md`; the arithmetic
+constant is Lean-checked.
+
+Therefore a reduced-Fourier proof no longer needs to establish density or a
+lower singular-value bound.  It only needs to prove approximate invariance of
+one such retained cut under the recovered multiplication arrows.  The direct
+`C^4` alignment gate below remains shorter; use this spectral route if exact
+algebra alignment is too strong.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut
