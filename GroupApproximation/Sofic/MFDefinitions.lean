@@ -85,6 +85,21 @@ theorem isMFAlgebraEmbedding_iff_isGroupTheoreticMF [Countable G] :
     IsMFAlgebraEmbedding G ↔ IsGroupTheoreticMF G :=
   isMFAlgebraEmbedding_iff_isOperatorMF G
 
+/-- The four standard group meanings of MF, together with the literal CDE
+corona formulation, hold simultaneously exactly when any one of them holds. -/
+theorem standardMFDefinitions_iff [Countable G] :
+    IsGroupTheoreticMF G ↔
+      IsCDEOperatorMF G ∧ IsUltraproductMF G ∧ IsFiniteSetMF G ∧
+        IsMFAlgebraEmbedding G := by
+  constructor
+  · intro h
+    exact ⟨(isCDEOperatorMF_iff_isOperatorMF G).mpr h,
+      h.isUltraproductMF,
+      isFiniteSetMF_iff_isGroupTheoreticMF.mpr h,
+      isMFAlgebraEmbedding_iff_isGroupTheoreticMF.mpr h⟩
+  · rintro ⟨_hcde, _hultra, hfinite, _halgebra⟩
+    exact isFiniteSetMF_iff_isGroupTheoreticMF.mp hfinite
+
 /-! ## Trace-preserving and regular MF -/
 
 /-- The regular character, equal to `1` at the identity and `0` elsewhere. -/
