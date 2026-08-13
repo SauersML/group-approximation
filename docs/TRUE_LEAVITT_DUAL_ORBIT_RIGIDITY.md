@@ -24,14 +24,45 @@ windows.  Turning those local windows into one global finite atomic
 
 ## 2. Units additively span the ring
 
-The three-leaf prefix equivalence identifies `R` with `M_3(R)`.  In any
-matrix ring `M_3(S)` over a characteristic-two ring, every matrix lies in
-the additive span of the units.
+In fact the unit-span statement does not require characteristic two and
+does not require passing to a matrix presentation.  For a binary Leavitt
+family, every off-diagonal corner
+
+\[
+ x=s_iat_j\qquad(i\ne j)
+\]
+
+has square zero.  Hence `1+x` is a unit and `x=(1+x)-1` is in the additive
+span of the units.  A diagonal corner is a product of two square-zero
+off-diagonal corners.  If `x^2=y^2=0`, then
+
+\[
+ xy=(1+x)(1+y)-1-x-y,                                  \tag{DOR1}
+\]
+
+so it too lies in the unit span.  Finally
+
+\[
+ a=(s_0t_0+s_1t_1)a(s_0t_0+s_1t_1)                   \tag{DOR2}
+\]
+
+is the sum of its four corners.  Therefore, over every coefficient ring
+carrying a binary Leavitt family,
+
+\[
+ \operatorname{span}_{\mathbb Z}(R^\times)=R.          \tag{DOR3}
+\]
+
+This stronger proof is formalized in
+`GroupApproximation/Leavitt/UnitAdditiveSpan.lean`.
+
+For comparison, the same fact is visible in the three-leaf prefix
+equivalence `R ~= M_3(R)`.  For `i != j`,
 
 For `i != j`, the off-diagonal matrix unit satisfies
 
 \[
- E_{ij}(a)=I+(I+E_{ij}(a)),                            \tag{DOR1}
+ E_{ij}(a)=(I+E_{ij}(a))-I,
 \]
 
 and both terms on the right are units.  For a diagonal matrix unit, put
@@ -43,15 +74,10 @@ and both terms on the right are units.  For a diagonal matrix unit, put
 Then `U` is a unit and
 
 \[
- U=I+E_{ij}(a)+E_{ji}(1)+E_{ii}(a).                  \tag{DOR2}
+ U=I+E_{ij}(a)+E_{ji}(1)+E_{ii}(a).
 \]
 
-Equations `(DOR1)--(DOR2)` express every diagonal matrix unit as a sum of
-units as well.  Matrix units additively span `M_3(S)`, proving
-
-\[
- \operatorname{span}_{\mathbb F _2}(R^\times)=R.       \tag{DOR3}
-\]
+This gives the same conclusion in the concrete atlas coordinates.
 
 ## 3. No nonzero finite dual orbit
 
@@ -154,4 +180,3 @@ This theorem would make `H` explicitly nonhyperlinear.  It is a special
 abelian-normalizer recovery statement, not the general tracial commutant
 recovery problem.  The orbit calculation above proves that no finite-orbit
 escape remains once such a common model has been recovered.
-
