@@ -3,6 +3,7 @@ import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Algebra.CharP.Two
 import Mathlib.Data.Finsupp.Basic
+import Mathlib.SetTheory.Cardinal.Order
 import Mathlib.Tactic.Group
 import Mathlib.Tactic.Abel
 
@@ -21,7 +22,7 @@ Two facts are proved without ever claiming injectivity for the presentation:
   homomorphism onto an explicit finite-support model:
   `ZMod 2 × (X →₀ ZMod 2)` with multiplication twisted by the
   strictly-ordered crossing form of a linear order on `X` (any linear order;
-  one is manufactured from countability at the final call site).
+  one always exists by the well-ordering theorem).
 
 * `permHom : Equiv.Perm X →* MulAut (CliffordLamp X)`: every permutation of
   `X` acts on the presented group fixing `sign` and permuting the lamps —
@@ -371,12 +372,11 @@ end SignedComputations
 
 end Model
 
-/-- **The sign is nontrivial.**  Stated for countable `X`; the linear order
-on `X` used by the crossing-form model is manufactured from an injection
-into `ℕ`. -/
-theorem sign_ne_one [Countable X] : sign X ≠ 1 := by
-  obtain ⟨f, hf⟩ := Countable.exists_injective_nat X
-  letI : LinearOrder X := LinearOrder.lift' f hf
+/-- **The sign is nontrivial**, for every index type: the crossing-form
+model runs over an arbitrary linear order on `X`, and one always exists by
+the well-ordering theorem. -/
+theorem sign_ne_one : sign X ≠ 1 := by
+  letI : LinearOrder X := IsWellOrder.linearOrder WellOrderingRel
   exact sign_ne_one_of_linearOrder X
 
 /-! ## The permutation action -/

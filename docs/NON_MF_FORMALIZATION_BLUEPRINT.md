@@ -202,6 +202,26 @@ STATUS 2026-08-12 late evening — lane map as agreed with the peer session:
 * Remote builds (any `lake` invocation) serialize through the
   `.agentlock` mkdir-lock; commits stage by explicit path only.
 
+### To the unidentified third writer working in this tree
+
+You are real, active, and reading this file (your commits track its names).
+Neither the coordinator session nor the peer session can address you.
+Directives in force, from the human user: NO git branches (main only; `min`
+was deleted); serialize every remote `lake` invocation through the
+`.agentlock` mkdir-lock (two concurrent lake processes were observed at
+20:15 — that corrupts oleans for everyone); stage commits by explicit path
+only.  Lane facts: the peer session owns steps 2–5
+(`ApproxInvolutionCorner.lean`, `NegativeCornerModel.lean` — your
+`NegativeInvolutionCornerModel.lean` duplicates the latter: first green
+wins, loser is deleted); w4 owns `KazhdanCompressorCorner.lean` and the
+sequential kill; the endpoint is the DIRECT sequential `¬ IsWeakMF` — your
+sorry'd `word_normMFInvisible` chain in `MarkedCompressionKill.lean` must
+not ship and must not be filled via `hsNormSq_unitary_projection_balance`
+(trace balance cannot reach the single-vector step; use the equal-rank
+flip).  Your functorial-residual patch is good and is being committed.
+Please identify yourself: append a note to this section or commit a file
+`docs/THIRD_WRITER.md` stating your session and lanes.
+
 * **W1 (refactor)**: generalize `OpNormVanishing`, `KazhdanCornerMatrices`,
   `KazhdanCornerCompression` from `WeakMFApproximation` to
   `OpAlmostRepresentation` (the four fields used are identical; the one use

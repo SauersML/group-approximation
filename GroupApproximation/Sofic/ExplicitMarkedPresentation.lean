@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Sofic.ExplicitNonMFBase
+import GroupApproximation.Sofic.MarkedCompressionGroup
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 
@@ -549,6 +550,17 @@ noncomputable def realizationHom {M : Type*} [Group M]
     · simpa [commutatorWord] using
         R.marked_central (R.base (vertexQuotient (PresentedGroup.of i)))
 
+@[simp] theorem realizationHom_mark {M : Type*} [Group M]
+    (R : Realization M) :
+    realizationHom R mark =
+      commutatorWord
+        (R.stable * R.lamp * R.stable⁻¹)
+        (R.base omitted * (R.stable * R.lamp * R.stable⁻¹) *
+          (R.base omitted)⁻¹) := by
+  change PresentedGroup.toGroup _
+      (PresentedGroup.mk _ markedWord) = _
+  rw [presentedToGroup_mk, realization_eval_marked]
+
 /-- A realization which retains its marked word proves that the abstract
 marked word is nontrivial. -/
 theorem mark_ne_one_of_realization {M : Type*} [Group M]
@@ -561,12 +573,32 @@ theorem mark_ne_one_of_realization {M : Type*} [Group M]
 characterization provide a realization whose two displaced lamps are distinct
 Clifford sites, so the marked word is the nontrivial central sign. -/
 theorem mark_ne_one : mark ≠ 1 := by
-  -- Instantiate `Realization` in the Clifford lamp semidirect product over
-  -- the coset action of the mapping-telescope ascending HNN group.  The key
-  -- inequality is exactly
-  -- `MappingTelescope.level_succ_mem_range_level_iff` together with
-  -- `omitted_not_mem_range`.
-  sorry
+  let R : Realization MarkedCompression.Explicit.theGroup where
+    base := MarkedCompression.Explicit.theIota
+    stable := MarkedCompression.Explicit.theT
+    lamp := MarkedCompression.Explicit.theC
+    compression_relation := MarkedCompression.Explicit.theCompress
+    lamp_sq := by
+      show (SemidirectProduct.inl
+        (CliffordLamp.lamp
+          (MarkedCompression.Cosets ExplicitNonMFBase.compression
+            ExplicitNonMFBase.compression_injective)
+          (MarkedCompression.rootCoset ExplicitNonMFBase.compression
+            ExplicitNonMFBase.compression_injective)) :
+          MarkedCompression.Explicit.theGroup) ^ 2 = 1
+      rw [← map_pow, CliffordLamp.lamp_sq, map_one]
+    lamp_centralizes_base := by
+      intro g
+      exact commutatorElement_eq_one_iff_commute.mpr
+        (MarkedCompression.Explicit.theCommC g)
+    marked_sq := MarkedCompression.Explicit.theWordSq
+    marked_central := by
+      intro x
+      exact commutatorElement_eq_one_iff_commute.mpr
+        (MarkedCompression.Explicit.theWordCentral x)
+  apply mark_ne_one_of_realization R
+  rw [realizationHom_mark]
+  exact MarkedCompression.Explicit.theWordNeOne
 
 /-- The finite-presentation package needed by the non-MF theorem. -/
 theorem explicit_finitelyPresented_marked_package :

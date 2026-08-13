@@ -1,7 +1,6 @@
 \documentclass[11pt]{amsart}
 
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{enumitem}
@@ -9,18 +8,20 @@
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
 \newif\ifanonymous\anonymoustrue
-\hypersetup{
-  pdftitle={An explicit finitely presented non-MF group},
-  pdfauthor={Anonymous},
-  pdfsubject={matricial field approximation, property (T), Kazhdan projections},
-  pdfkeywords={MF groups, matrix ultraproducts, property (T), HNN extensions, Clifford algebras}
-}
 
 \ifanonymous
   \newcommand{\leanrepo}{[repository link removed for anonymous review]}
+  \newcommand{\paperauthor}{Anonymous}
 \else
   \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
+  \newcommand{\paperauthor}{Sauers}
 \fi
+\hypersetup{
+  pdftitle={An explicit finitely presented non-MF group},
+  pdfauthor={\paperauthor},
+  pdfsubject={matricial field approximation, property (T), Kazhdan projections},
+  pdfkeywords={MF groups, matrix ultraproducts, property (T), HNN extensions, Clifford algebras}
+}
 \newcommand{\leanverified}[2]{%
   \par\smallskip\noindent
   {\normalfont\footnotesize\color{gray!70!black}%
@@ -58,25 +59,25 @@
 \newcommand{\Fix}{\operatorname{Fix}}
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Ad}{\operatorname{Ad}}
-\newcommand{\ran}{\operatorname{ran}}
 \newcommand{\End}{\operatorname{End}}
 \newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\ClLamp}{\mathsf{ClLamp}}
 \newcommand{\Cmax}{C^*_{\mathrm{max}}}
 \newcommand{\Cred}{C^*_{\mathrm{red}}}
-\newcommand{\corona}[1]{\prod_{n} M_{#1_n}(\C)\Big/\bigoplus_{n} M_{#1_n}(\C)}
 \newcommand{\opnorm}[1]{\left\lVert #1\right\rVert}
 \newcommand{\hsnorm}[1]{\left\lVert #1\right\rVert_{2}}
 
 \begin{document}
 
 \title{An explicit finitely presented non-MF group}
+\author{\paperauthor}
 
 \begin{abstract}
 A countable discrete group is MF if it embeds into the unitary group of a
 norm quotient $\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$ of matrix
 algebras.  Whether every group is MF has been a longstanding open
 question; it is the operator-norm case of the family of metric
-approximation problems whose sofic (rank-metric) case was solved only
+approximation problems whose sofic (permutation/Hamming) case was solved only
 recently, and whose unnormalized Frobenius case was solved by De
 Chiffre, Glebsky, Lubotzky and Thom.  We construct an explicit finitely
 presented group $E$, together with a designated central involution
@@ -89,8 +90,9 @@ endomorphism $(v,A)\mapsto(2v,A)$, and one additional involution; the
 proof combines the Kazhdan projection of $\Gamma$ with stable finiteness
 of matrix coronas.  The finite-dimensional case of the kill theorem is
 elementary and uses neither property (T) nor unitarity; we also show,
-via quasidiagonality of amenable groups, that the property (T)
-hypothesis cannot be dropped.
+via quasidiagonality of amenable groups, that the same marked presentation
+with a cyclic base can have a corona representation in which the marked
+involution survives.
 \end{abstract}
 
 \maketitle
@@ -120,11 +122,12 @@ groups are MF, and a substantial permanence theory exists
 \cite{Shulman}.  Whether \emph{every} countable group is MF has remained
 open; it is the operator-norm member of the family of approximation
 problems surveyed in \cite{DGLT,BDL}, whose unnormalized-Frobenius case
-was solved negatively in \cite{DGLT} and whose sofic case was solved
-negatively by Kun and Thom \cite{KT}.  The operator-norm case resisted
+was solved negatively in \cite{DGLT} and whose permutation/Hamming case
+was first solved negatively in \cite{OAI}; Kun and Thom subsequently gave
+explicit nonsofic wreath-product examples \cite{KT}.  The operator-norm case resisted
 both methods: the cohomological argument of \cite{DGLT} needs a
-submultiplicative norm interacting with a trace, and rank-metric
-arguments are blind to operator-norm defects.
+submultiplicative norm interacting with a trace, while Hamming-metric
+arguments do not control operator-norm defects.
 
 This paper answers the question negatively, with an explicit finitely
 presented example.
@@ -181,11 +184,12 @@ five steps, each elementary or classical in isolation.
     finite: isometries are unitaries (Lemma~\ref{lem:finite}).  Hence
     the two unitarily equivalent projections in step (3) must be equal:
     $\beta(t)$ \emph{preserves} the $\Gamma$-fixed space.
-  \item\emph{The marked word.}  The lamp $c$ commutes with $\Gamma$, so
+  \item\emph{The marked word.}  The involution $c$ commutes with $\Gamma$, so
     the matrix vector representing $\Theta(c)$ is $\Gamma$-fixed; by
     step (4) so is the vector representing $\Theta(tct^{-1})$; hence
     $a\in\Gamma$ asymptotically fixes it, and the commutator word $w$
-    is forced to $1$ in normalized Hilbert--Schmidt norm --- while the
+    is forced to $1$ in normalized Hilbert--Schmidt norm along the chosen
+    ultrafilter --- while the
     corner normalization of step (1) says it equals $-1$ in operator
     norm.  The two conclusions contradict each other
     (Section~\ref{sec:proofA}).
@@ -196,11 +200,11 @@ representation of $E$ into a semidirect product of a Clifford group by a
 linear group over $\Z[1/2]$ (Section~\ref{sec:witness}); no
 combinatorial theory of HNN extensions is needed.
 
-Two companion results delimit the mechanism precisely.  First, in
+Two companion results clarify the mechanism.  First, in
 finite dimensions the kill theorem is elementary and needs neither
 property (T), nor unitarity, nor centrality of $w$:
 
-\begin{mainthm}[finite-dimensional sterility]\label{thm:B}
+\begin{mainthm}[finite-dimensional obstruction]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
 with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
@@ -213,37 +217,54 @@ satisfies
 
 Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
 finite-dimensional representation of $E$ over \emph{every} field kills
-$w$: the group $E$ is not residually finite-dimensional, no finite
+$w$: finite-dimensional linear representations do not separate the points
+of $E$, no finite
 quotient can witness $w\neq 1$, and the infinite Clifford witness of
-Section~\ref{sec:witness} is not an artifact of the proof but a
-necessity.  Property (T) enters the corona case for exactly one reason:
+Section~\ref{sec:witness} cannot be replaced by a finite-dimensional one.
+Property (T) enters the corona argument for one reason:
 it makes ``the projection onto the $\Gamma$-fixed space'' an element of
 the corona, uniformly across all coordinates at once.
 
-Second, the property (T) hypothesis cannot be dropped:
+Second, the fixed-space rigidity in that argument cannot simply be omitted:
 
-\begin{mainthm}[necessity of property (T)]\label{thm:C}
+\begin{mainthm}[cyclic-base comparison]\label{thm:C}
 Let $G_0=\mathrm{BS}(1,2)=\langle\, \gamma_0,t\mid
 t\gamma_0t^{-1}=\gamma_0^2\,\rangle$, let $\Gamma_0=\langle
 \gamma_0\rangle\cong\Z$, let $X_0=G_0/\Gamma_0$, and let
-$E_0=C(X_0)\rtimes G_0$ be the corresponding Clifford extension
-(Construction~\ref{con:clifford}), with central sign $z_0$.  Then
-$z_0\neq1$, the group $E_0$ is amenable, and $E_0$ \emph{is} MF: it
-embeds into a norm matrix corona, with $z_0$ surviving.  By
-Theorem~\ref{thm:B}, every finite-dimensional representation of $E_0$
-nevertheless kills $z_0$; thus $E_0$ is an amenable MF group that is not
-residually finite-dimensional.
+$E_0=\ClLamp(X_0)\rtimes G_0$ be the corresponding Clifford extension
+(Construction~\ref{con:clifford}), with central sign $z_0$.  Also define
+the literal marked-presentation analogue
+\[
+ E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
+ \begin{aligned}
+  &t\gamma_0t^{-1}=\gamma_0^2,\quad c^2=1,\quad[c,\gamma_0]=1,\\
+  &w_{\mathrm{BS}}^2=1,\quad
+    [w_{\mathrm{BS}},\gamma_0]=[w_{\mathrm{BS}},t]
+      =[w_{\mathrm{BS}},c]=1
+ \end{aligned}\right\rangle,
+\]
+where
+$w_{\mathrm{BS}}=[tct^{-1},\gamma_0(tct^{-1})\gamma_0^{-1}]$.
+Then $E_0$ is an amenable MF group and $z_0\neq1$.  There is a quotient
+homomorphism $E_{\mathrm{BS}}\twoheadrightarrow E_0$ sending
+$w_{\mathrm{BS}}$ to $z_0$; consequently the literal analogous presentation
+has a corona representation in which its marked involution survives.
+Nevertheless, every finite-dimensional representation of either group
+kills the corresponding marked element.
 \end{mainthm}
 
-Theorem~\ref{thm:C} is the exact analogue of Theorem~\ref{thm:A} with
-the Kazhdan group $\Gamma$ replaced by $\Z$: every ingredient of the
-construction survives except the Kazhdan projection, and the conclusion
-fails.  The obstruction of this paper is therefore genuinely a property
-(T) phenomenon, not an artifact of lamps, signs, or HNN compression.
+The quotient statement makes the comparison at the level actually used by
+the proof: the marked-word relations and witness mechanism survive when the
+Kazhdan base is replaced by $\Z$, but the universal corona-kill conclusion
+does not.  Thus some substitute for the Kazhdan-projection step is essential
+to this mechanism; this is not a claim that every proof of the concrete
+Theorem~\ref{thm:A} must invoke property (T).
 
 \subsection*{What this paper does not prove}
-The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ fails the
-Connes embedding property or hyperlinearity, and it does not touch the
+The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ is
+nonhyperlinear; equivalently, it does not show that the canonical group
+trace, or the associated group von Neumann algebra, fails the relevant
+Connes-embedding property.  It also does not touch the
 question whether hyperlinear groups are sofic.  The finiteness step (4)
 is special to operator-norm coronas: in a tracial (Hilbert--Schmidt)
 matrix ultraproduct the conjugation representation acts on the infinite
@@ -255,25 +276,26 @@ precise.  The same distinction explains why the group $E/\langle
 w\rangle$ and the ambient groups $G$ remain untouched by our argument.
 
 \subsection*{External inputs}
-The proof of Theorem~\ref{thm:A} consumes exactly two classical facts
+The proof of Theorem~\ref{thm:A} uses two non-elementary external inputs
 beyond elementary linear algebra and $C^*$-basics: property (T) of
 $\Z^3\rtimes\SL_3(\Z)$ (Fact~\ref{fact:T}) and the existence and
 defining property of the Kazhdan projection (Fact~\ref{fact:kazhdan}).
 Theorem~\ref{thm:C} additionally uses quasidiagonality of amenable
 group $C^*$-algebras \cite{TWW} (Fact~\ref{fact:tww}).
-Theorem~\ref{thm:B} consumes nothing.
+Theorem~\ref{thm:B} uses no external input.
 
 \subsection*{Relation to prior work}
-That $\Cmax$ of a suitable group can fail to be stably finite --- so
-that $\Cmax$ itself is not MF --- is a known consequence of Kazhdan
-projections and compression, in the spirit of the non-quasidiagonality
-results of \cite{CDE}; but non-MF-ness of one group $C^*$-algebra does
+Kazhdan projections have long been used to detect failures of
+quasidiagonality in group $C^*$-algebras; see, for example, \cite{CDE} for
+related results.  The precise compression observation needed here is proved
+directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}, rather than invoked
+as a prior theorem.  In any event, non-MF-ness of one group $C^*$-algebra does
 not obstruct the \emph{group} from embedding into a corona, since group
 MF-ness only requires some quotient of $\Cmax$ to be MF.  The new
 ingredient here is the marked central involution $w$: the additional
 generator $c$ converts the compression phenomenon into a specific
 nontrivial group element that every corona representation must kill.
-For the necessity theorem we use \cite{TWW}; for context on the
+For the cyclic-base comparison we use \cite{TWW}; for context on the
 approximation landscape see \cite{DGLT,BDL,KT,Shulman}.
 
 \subsection*{Organization}
@@ -286,7 +308,9 @@ Theorem~\ref{thm:C}.  Section~\ref{sec:limits} discusses limitations.
 
 \section{Notation and external inputs}\label{sec:prelim}
 
-All groups are discrete and countable.  For a unital $C^*$-algebra $A$
+All groups are discrete and countable.  All $C^*$-homomorphisms and
+$C^*$-algebra embeddings are understood to be unital unless explicitly
+stated otherwise.  For a unital $C^*$-algebra $A$
 we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
 normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
 normalized Hilbert--Schmidt norm
@@ -299,9 +323,10 @@ Given a sequence $(d_n)_{n\in J}$ of positive integers indexed by an
 infinite set $J\subseteq\N$, we write
 \[
   \mathcal Q\bigl((d_n)_{n\in J}\bigr)
-  \;=\;\prod_{n\in J} M_{d_n}(\C)\Big/\bigoplus_{n\in J} M_{d_n}(\C),
+  \;=\;\prod_{n\in J}^{\ell^\infty} M_{d_n}(\C)
+  \Big/\bigoplus_{n\in J}^{c_0} M_{d_n}(\C),
 \]
-the quotient of bounded sequences by sequences with
+the quotient of the bounded $C^*$-product by the ideal of sequences with
 $\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
 corona}.  A \emph{corona representation} of a group $E$ is a group
 homomorphism $E\to\U(\mathcal Q)$ for some norm matrix corona
@@ -335,21 +360,26 @@ $\pi$ of $\Gamma$ on a Hilbert space $\mathcal H$, the operator
 $\pi(p_\Gamma)$ is the orthogonal projection onto the subspace
 $\Fix(\pi)=\{\xi\in\mathcal H:\pi(\gamma)\xi=\xi
 \text{ for all }\gamma\in\Gamma\}$.  Moreover $u_\gamma
-p_\Gamma=p_\Gamma$ for every $\gamma\in\Gamma$.
+p_\Gamma=p_\Gamma u_\gamma=p_\Gamma$ for every $\gamma\in\Gamma$.
 \end{fact}
 
-The last identity follows from the defining property: in every
-representation, $\pi(u_\gamma p_\Gamma)$ and $\pi(p_\Gamma)$ agree, and
-$\Cmax(\Gamma)$ has a faithful representation.
+The identities follow from the defining property: the left identity holds in
+every representation, and the right identity follows by taking adjoints (or
+replacing $\gamma$ by $\gamma^{-1}$); $\Cmax(\Gamma)$ has a faithful
+representation.
 
 The only additional input, used exclusively in
 Section~\ref{sec:necessity}, is:
 
-\begin{fact}[{\cite[Corollary B]{TWW}; see also \cite[Chapter 7]{BO}}]\label{fact:tww}
+\begin{fact}[{\cite[Corollary B]{TWW}}]\label{fact:tww}
 The reduced group $C^*$-algebra of a countable amenable group is
-quasidiagonal.  Every separable quasidiagonal $C^*$-algebra embeds into
-a norm matrix corona; in particular every countable amenable group is
-MF.
+quasidiagonal.
+\end{fact}
+
+\begin{fact}[{quasidiagonal embedding; see \cite[Chapter 7]{BO}}]
+\label{fact:qdcorona}
+Every separable unital quasidiagonal $C^*$-algebra embeds unitally into a
+norm matrix corona.  Consequently every countable amenable group is MF.
 \end{fact}
 
 \section{The group}\label{sec:group}
@@ -414,25 +444,21 @@ $\gamma\in\Gamma$ because they hold on generators.
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
-\begin{construction}[Clifford lamp groups]\label{con:clifford}
-Let $X$ be a set and let $\Cl(X)$ denote the real Clifford algebra of
-the free vector space $\R^{(X)}$ with the quadratic form for which the
-standard basis $(\varepsilon_x)_{x\in X}$ is orthonormal.  Thus
-$\Cl(X)$ is a unital associative $\R$-algebra containing elements
-$c_x:=\varepsilon_x$ with
+\begin{construction}[Clifford groups]\label{con:clifford}
+Let $X$ be a set.  Define $\Cl(X)$ to be the quotient of the free unital
+associative real algebra on symbols $(c_x)_{x\in X}$ by the relations
 \[
   c_x^2=1,\qquad c_xc_y=-\,c_yc_x\quad(x\neq y).
 \]
-The algebra $\Cl(X)$ is nonzero (for finite $X$ it has dimension
-$2^{|X|}$, and in general it is the directed union of the
-$\Cl(F)$ over finite $F\subseteq X$), so $-1\neq 1$ in $\Cl(X)$.  Let
-$C(X)\le\Cl(X)^{\times}$ be the subgroup generated by
-$\{\pm1\}\cup\{c_x:x\in X\}$ and write $z=-1\in C(X)$, a central
-involution.  Every permutation of $X$ induces an isometry of the
-quadratic space, hence an algebra automorphism of $\Cl(X)$ mapping
+The ordered square-free monomials form the usual basis (for arbitrary $X$,
+each monomial has finite support), so the algebra is nonzero and
+$-1\neq1$.  Let $\ClLamp(X)\le\Cl(X)^{\times}$ be the subgroup generated by
+$\{\pm1\}\cup\{c_x:x\in X\}$ and write $z=-1\in\ClLamp(X)$, a central
+involution.  Every permutation of $X$ induces an algebra automorphism of
+$\Cl(X)$ mapping
 $c_x\mapsto c_{\sigma(x)}$ and fixing $z$; this gives an action of any
-group acting on $X$ by automorphisms of $C(X)$, and a semidirect
-product $C(X)\rtimes G$ for any $G$-set $X$.
+group acting on $X$ by automorphisms of $\ClLamp(X)$, and a semidirect
+product $\ClLamp(X)\rtimes G$ for any $G$-set $X$.
 \end{construction}
 
 \begin{lemma}[linear model]\label{lem:linear}
@@ -461,7 +487,7 @@ $w\neq1$ in $E$.
 
 \begin{proof}
 Let $\bar X=\bar G/\Gamma$ as in Lemma~\ref{lem:linear} and form
-$W:=C(\bar X)\rtimes\bar G$ as in Construction~\ref{con:clifford}.
+$W:=\ClLamp(\bar X)\rtimes\bar G$ as in Construction~\ref{con:clifford}.
 Define a map on the generators of \eqref{eq:E} by
 \[
   s\mapsto s\in\bar G\quad(s\in S),\qquad t\mapsto D\in\bar G,\qquad
@@ -489,13 +515,15 @@ $z\neq1$, and therefore $w\neq1$ in $E$.
 \end{proof}
 
 \begin{remark}
-The witness uses only matrices over $\Z[1/2]$ and finite pieces of a
-Clifford algebra; no normal-form theory for HNN extensions enters.  In
+The target uses the infinite group $\ClLamp(\bar X)$ when $\bar X$ is
+infinite, but each group element involves only finitely many Clifford sites;
+the remaining data are matrices over $\Z[1/2]$.  No normal-form theory for
+HNN extensions enters.  In
 particular the consistency of the presentation \eqref{eq:E} is verified
 by an explicit linear-algebraic model.
 \end{remark}
 
-\section{Finite-dimensional sterility}\label{sec:findim}
+\section{The finite-dimensional obstruction}\label{sec:findim}
 
 We prove Theorem~\ref{thm:B}.  Everything happens inside the
 finite-dimensional algebra $\End_k(V)$.
@@ -537,6 +565,7 @@ $\pi\bigl(a(tct^{-1})a^{-1}\bigr)=\pi(tct^{-1})$, and therefore
 \]
 \end{proof}
 
+\ifanonymous\else
 \begin{remark}[formal verification]\label{rem:lean}
 Theorem~\ref{thm:B} is machine-checked in Lean~4: the statement above,
 for an arbitrary monoid homomorphism into the endomorphism algebra of a
@@ -583,22 +612,25 @@ $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$, not an endomorphism of the
 cover.  This removes the need to import a separate finite-presentation theorem
 for the explicit self-compressing base.
 \end{remark}
+\fi
 
 \begin{corollary}\label{cor:notRFD}
-The group $E$ of Definition~\ref{def:E} admits no injective
-homomorphism into $\GL(V)$ for any finite-dimensional vector space $V$
-over any field.  In particular $E$ is not residually
-finite-dimensional, not maximally almost periodic, and not residually
-finite, and no finite quotient of $E$ can witness $w\neq1$.
+The group $E$ of Definition~\ref{def:E} admits no injective homomorphism
+into $\GL(V)$ for any finite-dimensional vector space $V$ over any field.
+More strongly, finite-dimensional linear representations do not separate
+its points: they all identify $w$ with $1$.  In particular $E$ is not
+maximally almost periodic or residually finite, $\Cmax(E)$ is not residually
+finite-dimensional as a $C^*$-algebra, and no finite quotient of $E$ can
+witness $w\neq1$.
 \end{corollary}
 
 \begin{proof}
 Apply Theorem~\ref{thm:B} with $H=E$ and the images of $\Gamma$, $t$,
 $c$, $a$ in $E$; the hypotheses hold by the defining relations
 \eqref{eq:E}.  Every finite-dimensional representation kills $w$, and
-$w\neq1$ by Proposition~\ref{prop:witness}.  A finite quotient is a
-finite-dimensional representation (via any faithful permutation
-representation), so it also kills $w$.
+  $w\neq1$ by Proposition~\ref{prop:witness}.  A finite quotient gives a
+  finite-dimensional representation after composition with a faithful
+  permutation representation, so it also kills $w$.
 \end{proof}
 
 \begin{remark}\label{rem:whytforcorona}
@@ -847,7 +879,8 @@ $p:=P$, $q:=Q_0$, and the element $v^*$, which satisfies
 $(v^*)^*(v^*)=vv^*=Q_0$ and $(v^*)(v^*)^*=v^*v=P$; it yields $P=Q_0$.
 \end{proof}
 
-Finally we make the vector-level statements literal.  Fix a free
+We now pass from the corona projection $P$ to its literal fixed-space action
+on a Hilbert-space ultraproduct.  Fix a free
 ultrafilter $\omega$ on the infinite index set $J'$, and let
 \[
   K_\omega\;=\;\Bigl\{(\xi_n)_{n\in J'}:\ \xi_n\in K_n,\
@@ -885,6 +918,7 @@ onto the fixed space of that representation, which is $\Fix_\omega$.
 
 \section{Proof of Theorem \ref{thm:A}}\label{sec:proofA}
 
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
 Part (1) is Proposition~\ref{prop:witness}.  For part (2), let
 $\Theta\colon E\to\U(\mathcal Q)$ be a corona representation and
 suppose, for contradiction, that $\Theta(w)\neq1$.  Apply
@@ -963,10 +997,12 @@ $E$ would be an injective corona representation, which is impossible
 because every corona representation sends the nontrivial element $w$
 to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding
 $\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
-$E\to\U(\Cred(E))$, which is injective on $E$ because the left regular
-representation is faithful as a group representation, would exhibit an
-injective corona representation of $E$; the same argument applies to
-$\Cmax(E)$ via the universal representation.  \qed
+  $E\to\U(\Cred(E))$, would exhibit an injective corona representation of
+  $E$: the map $g\mapsto\lambda_g$ is injective, although the quotient map
+  $\Cmax(E)\to\Cred(E)$ need not be faithful.  The canonical map
+  $E\to\U(\Cmax(E))$ is also injective, since its composition with the
+  regular representation is $g\mapsto\lambda_g$; this treats $\Cmax(E)$.
+\end{proof}
 
 \begin{remark}\label{rem:radical}
 The proof shows more than non-injectivity of each individual
@@ -986,6 +1022,7 @@ blocks the same argument in Hilbert--Schmidt metrics
 (Section~\ref{sec:limits}).
 \end{remark}
 
+\ifanonymous\else
 \begin{remark}[formal verification of the finite-stage argument]\label{rem:leanA}
 The finite-stage components of the proof of Theorem~\ref{thm:A} are
 being machine-checked in Lean~4 alongside this manuscript; the
@@ -1014,6 +1051,7 @@ nontriviality, and its permutation action.
 \leanverified{Sofic/CliffordLampGroup}{GroupApproximation.CliffordLamp.sign_ne_one}
 The remaining finite-stage steps are under active formalization.
 \end{remark}
+\fi
 
 \section{Necessity of property (T)}\label{sec:necessity}
 
@@ -1128,7 +1166,8 @@ Canad. J. Math. \textbf{33} (1981), no.~4, 862--871.
 \bibitem[BDL]{BDL}
 G.~Bachner, S.~Dogon, and A.~Lubotzky,
 \emph{On $L^1$-approximation of groups},
-J. Algebra (2026).
+J. Algebra \textbf{702} (2026), 235--243, to appear,
+\url{doi:10.1016/j.jalgebra.2026.04.041}.
 
 \bibitem[BHV]{BHV}
 B.~Bekka, P.~de~la~Harpe, and A.~Valette,
@@ -1153,20 +1192,34 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 \emph{On groups with quasidiagonal $C^*$-algebras},
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152.
 
+\bibitem[CRW]{CRW}
+M.~D.~E. Conder, E.~F. Robertson, and P.~D. Williams,
+\emph{Presentations for $3$-dimensional special linear groups over integer
+rings},
+Proc. Amer. Math. Soc. \textbf{115} (1992), no.~1, 19--26,
+\url{doi:10.2307/2159559}.
+
 \bibitem[DGLT]{DGLT}
 M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
-\emph{Stability, cohomology vanishing, and nonapproximable groups},
-Forum Math. Sigma \textbf{8} (2020), Paper No. e18.
+\emph{Stability, cohomology vanishing, and non-approximable groups},
+Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
+\url{doi:10.1017/fms.2020.5}.
 
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
-preprint (2026), arXiv:2608.06222.
+preprint, 2026, \url{arXiv:2608.06222}.
+
+\bibitem[OAI]{OAI}
+OpenAI,
+\emph{A counterexample to the soficity conjecture},
+in \emph{Ten advances in mathematics and theoretical computer science},
+2026, \url{https://openai.com/index/ten-advances-in-mathematics/}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
 \emph{The MF property for amalgamated free products},
-preprint (2026), arXiv:2603.13564.
+preprint, 2026, \url{arXiv:2603.13564}.
 
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,

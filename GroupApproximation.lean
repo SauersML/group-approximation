@@ -301,6 +301,7 @@ import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
 import GroupApproximation.Sofic.MarkedCompressionData
+import GroupApproximation.Sofic.NormMFResidualFunctorial
 import GroupApproximation.Sofic.ApproxInvolutionCorner
 import GroupApproximation.Sofic.WeakMFTransfer
 import GroupApproximation.Sofic.WeakMFRegularTrace
