@@ -158,7 +158,15 @@ homomorphism
 \]
 for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
-with all defects measured in operator norm.  This qualification matters:
+with all defects measured in operator norm.
+Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
+an arbitrary positive sequence, as we do, is equivalent: replace its $n$th
+term by the cumulative block sum through stage $n$ and place the old unitary
+in the newest block.  The operator norm of every difference is unchanged.
+The formal companion proves this normalization at the level of the
+unitary-sequence corona.
+\leanverified{Sofic/OperatorMFIncreasingDimensions}{GroupApproximation.isOperatorMFIncreasing_iff}
+This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
 MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
 the approximating maps to be genuine finite-dimensional representations.
