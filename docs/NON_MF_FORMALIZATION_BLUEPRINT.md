@@ -177,6 +177,31 @@ Construction (avoid HNN normal forms and order-cocycle actions entirely):
 
 ## 2. Workstreams (parallel)
 
+STATUS 2026-08-12 late evening — lane map as agreed with the peer session:
+
+* W1 DONE (commit 094b7f32): corner machinery generalized to
+  `OpAlmostRepresentation`; the sole separation user
+  (`eventually_nonempty_weakMFMovingIndex`) stays on `WeakMFApproximation`.
+* Steps 2–5 (`ApproxInvolutionCorner.lean`) are owned by the PEER session,
+  deliverable: from `A : WeakMFApproximation E` and central involution
+  `z ≠ 1`, an `OpAlmostRepresentation E` on nonzero negative-corner models
+  with `∀ ε > 0, ∃ N, ∀ n ≥ N, ‖map n z + 1‖ ≤ ε`.  The +365-line
+  uncommitted rounding layer in that file is being handed over, not
+  discarded.
+* The Clifford lamp may land as either the presented group + ZMod 2 order
+  model (w3) or the peer fork's realization inside Mathlib's
+  `CliffordAlgebra` over `X →₀ ℝ` (`Monsters/CliffordLampGroup.lean`);
+  first working `z ≠ 1` wins.  Either way the consumed interface is
+  group-level: `lamp : X → C`, `z : C`, `z ≠ 1`, lamp involutions, `z`
+  central, `⁅lamp x, lamp y⁆ = z` for `x ≠ y`, and
+  `permHom : Equiv.Perm X →* MulAut C` moving lamps along the permutation
+  and fixing `z`.
+* W4a fork builds steps 7–10 (`KazhdanCompressorCorner.lean`) and 11–12
+  (kill theorem) now, with clearly tagged `sorry` stubs for in-flight
+  W2/peer APIs; the endpoint ships sorry-free.
+* Remote builds (any `lake` invocation) serialize through the
+  `.agentlock` mkdir-lock; commits stage by explicit path only.
+
 * **W1 (refactor)**: generalize `OpNormVanishing`, `KazhdanCornerMatrices`,
   `KazhdanCornerCompression` from `WeakMFApproximation` to
   `OpAlmostRepresentation` (the four fields used are identical; the one use
