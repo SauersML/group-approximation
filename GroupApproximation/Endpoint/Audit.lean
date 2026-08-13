@@ -267,7 +267,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.BinaryLeavitt.K1_trivial
 #print axioms GroupApproximation.KOnePaper.diagUnit_mem_elementary
 #print axioms GroupApproximation.KOnePaper.elementaryGroup_two_eq_top
-#print axioms GroupApproximation.BinaryLeavitt.elementaryGroup_eq_top
 
 -- The unit-group and general-linear profiles (Theorem B(i) closed): finite
 -- generation, infinitude, property (T), and nonsoficity of `L_k(1,2)ˣ` and
@@ -488,8 +487,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.MarkedGroupSpace.isOperatorMF_of_tendsto
 #print axioms GroupApproximation.OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
 #print axioms GroupApproximation.not_isOperatorMF_coprod_left
-#print axioms GroupApproximation.LiteralFreeProductConsequences.literal_coprod_int_finitelyPresented_not_isOperatorMF
-#print axioms GroupApproximation.LiteralFreeProductConsequences.literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
 #print axioms GroupApproximation.not_injective_of_coronaMFInvisible
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility
 #print axioms GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one
