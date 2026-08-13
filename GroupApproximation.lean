@@ -15,6 +15,7 @@ import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.AffineSL3Doubling
+import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
