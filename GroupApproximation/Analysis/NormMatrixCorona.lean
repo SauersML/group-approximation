@@ -5,7 +5,7 @@ import Mathlib.RingTheory.Ideal.Quotient.Operations
 import Mathlib.Topology.Order.LiminfLimsup
 
 /-!
-# The algebraic norm-matrix corona
+# The norm-matrix C-star corona
 
 The numerator constructed here is the genuine C-star algebra of uniformly
 operator-norm-bounded sequences of finite square complex matrices.  It is the
