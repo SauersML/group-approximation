@@ -50,6 +50,36 @@ through a length-19 bridge and then using a diameter bound as large as
 `20159`.  The new constant comes from the raw packet itself and has no group
 diameter loss.
 
+There is a sharper form.  The twelve second-chart letters consist of only
+two distinct elements `h_a,h_b in H`, occurring eight and four times.  Put
+
+\[
+ a=\|U\rho(h_a)-\rho(h_a)U\|_2,
+ \qquad
+ b=\|U\rho(h_b)-\rho(h_b)U\|_2.
+ \tag{RWG5a}
+\]
+
+The same telescope gives
+
+\[
+ \sqrt2-o(1)\le8a+4b.
+ \tag{RWG5b}
+\]
+
+Since
+
+\[
+ (8a+4b)^2\le80(a^2+b^2),
+\]
+
+we obtain the localized energy floor
+
+\[
+ \boxed{a^2+b^2\ge {1\over40}-o(1).}
+ \tag{RWG5c}
+\]
+
 ## 2. Telescoping proof
 
 Write the transported raw word as
@@ -113,13 +143,14 @@ the exact mean-displacement identity is
  \tag{RWG9}
 \]
 
-One summand attains `Delta_H^2`.  Therefore `(RWG5)` yields
+The two named summands from `(RWG5a)` both occur in the full Reynolds sum.
+Therefore `(RWG5c)` yields the sharper estimate
 
 \[
  \boxed{
  1-\|E_H(U)\|_2^2
- \ge {\Delta_H^2\over336}
- \ge {1\over24192}-o(1).}
+ \ge {a^2+b^2\over336}
+ \ge {1\over13440}-o(1).}
  \tag{RWG10}
 \]
 
@@ -136,7 +167,7 @@ misalignment required for the nontrivial raw word to survive.
 The remaining obstruction is now localized to the compact annular regime
 
 \[
- \|E_H(U)\|_2^2\le1-{1\over24192}+o(1).
+ \|E_H(U)\|_2^2\le1-{1\over13440}+o(1).
  \tag{RWG11}
 \]
 
@@ -173,4 +204,3 @@ PYTHONPATH=experiments \
   python3 experiments/atlas_raw_reynolds_gap_audit.py \
   > experiments/atlas-raw-reynolds-gap-audit.json
 ```
-

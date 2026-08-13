@@ -80,4 +80,30 @@ theorem raw_word_forces_Reynolds_deficit {delta deficit : ℝ}
       nlinarith
     _ ≤ deficit := hdeficit
 
+/-- The raw word uses only two distinct `H`-letters, eight copies of the
+first and four of the second.  Cauchy--Schwarz converts tracial separation
+into the sharper two-generator energy floor `1/40`. -/
+theorem raw_word_forces_twoGenerator_energy {a b : ℝ}
+    (ha : 0 ≤ a) (hb : 0 ≤ b)
+    (hraw : Real.sqrt 2 ≤ 8 * a + 4 * b) :
+    (1 : ℝ) / 40 ≤ a ^ 2 + b ^ 2 := by
+  have hsqrt : (Real.sqrt 2) ^ 2 = 2 := Real.sq_sqrt (by norm_num)
+  have hsum : 0 ≤ 8 * a + 4 * b := by positivity
+  have hsq := (sq_le_sq₀ (Real.sqrt_nonneg 2) hsum).2 hraw
+  nlinarith [sq_nonneg (a - 2 * b)]
+
+/-- Including the two named displacements in the full Reynolds energy sum
+improves the explicit squared norm deficit to `1/13440`. -/
+theorem raw_word_forces_sharp_Reynolds_deficit {a b deficit : ℝ}
+    (ha : 0 ≤ a) (hb : 0 ≤ b)
+    (hraw : Real.sqrt 2 ≤ 8 * a + 4 * b)
+    (hdeficit : (a ^ 2 + b ^ 2) / 336 ≤ deficit) :
+    (1 : ℝ) / 13440 ≤ deficit := by
+  have henergy : (1 : ℝ) / 40 ≤ a ^ 2 + b ^ 2 :=
+    raw_word_forces_twoGenerator_energy ha hb hraw
+  calc
+    (1 : ℝ) / 13440 = ((1 : ℝ) / 40) / 336 := by norm_num
+    _ ≤ (a ^ 2 + b ^ 2) / 336 := by gcongr
+    _ ≤ deficit := hdeficit
+
 end GroupApproximation

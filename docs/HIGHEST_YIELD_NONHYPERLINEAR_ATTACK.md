@@ -207,7 +207,9 @@ them by first-chart letters makes the word exactly trivial.  Telescoping
 therefore gives `||r_src(U)-1||_2 <= 12 Delta_H`.  Since `r_src` is a
 nonidentity group element, tracial separation forces
 `Delta_H >= sqrt(2)/12-o(1)` and hence the explicit Reynolds deficit
-`1-||E_H(U)||_2^2 >= 1/24192-o(1)`.  The live nonlinear calculation may now
+`1-||E_H(U)||_2^2 >= 1/13440-o(1)`.  The sharper constant uses the fact that
+the twelve replacements are eight and four copies of only two `H`-elements,
+so their squared displacement sum is at least `1/40-o(1)`.  The live nonlinear calculation may now
 exclude a fixed tube around the aligned fold.  See
 `TRUE_RAW_WORD_REYNOLDS_GAP.md`.
 

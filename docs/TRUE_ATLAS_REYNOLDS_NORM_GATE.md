@@ -67,7 +67,7 @@ bridge/interior packet rather than tracial separation of the raw word.  The
 
 ```text
 Delta_H >= sqrt(2)/12-o(1),
-1-||E_H(U)||_2^2 >= 1/24192-o(1).                    (RNG6a)
+1-||E_H(U)||_2^2 >= 1/13440-o(1).                    (RNG6a)
 ```
 
 See `TRUE_RAW_WORD_REYNOLDS_GAP.md`.

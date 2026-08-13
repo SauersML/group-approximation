@@ -3995,11 +3995,13 @@ separation makes the left side tend to `sqrt(2)`.  Consequently
 
 ```text
 Delta_H >= sqrt(2)/12-o(1),
-1-||E_H(U)||_2^2 >= 1/24192-o(1).
+1-||E_H(U)||_2^2 >= 1/13440-o(1).
 ```
 
-This removes the enormous `A8` diameter loss from the earlier Weyl-bridge
-bound and excludes an explicit Reynolds tube around the classical fold.
+The improved Reynolds constant uses the exact multiplicities `8,4` of the
+only two distinct second-chart `H`-letters: their squared displacement sum
+is at least `1/40-o(1)`.  This removes the enormous `A8` diameter loss from
+the earlier Weyl-bridge bound and excludes an explicit Reynolds tube around the classical fold.
 Continue the nonlinear coefficient audit only in this fixed annular regime.
 See `TRUE_RAW_WORD_REYNOLDS_GAP.md` and the one-core MSI replay
 `atlas_raw_reynolds_gap_audit.py`.

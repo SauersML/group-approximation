@@ -9,6 +9,7 @@ twelve times the maximum H-covariance defect.
 
 import json
 import sys
+from collections import Counter
 
 sys.path.insert(0, "experiments")
 
@@ -45,6 +46,11 @@ def main():
     if folded_normal:
         raise AssertionError("the H-folded raw word is not the identity")
 
+    second_counts = Counter(matrix_key(matrix).hex()
+                            for _index, matrix in second)
+    if sorted(second_counts.values()) != [4, 8]:
+        raise AssertionError("the raw H-letter multiplicities changed")
+
     print(json.dumps({
         "word": "compiled scalarized raw swap",
         "source_syllables": len(raw),
@@ -57,6 +63,8 @@ def main():
             }
             for index, matrix in second
         ],
+        "distinct_second_chart_H_letter_multiplicities": dict(
+            sorted(second_counts.items())),
         "word_after_replacing_chart_2_H_by_chart_1":
             record_normal_form(folded_normal),
         "replacement_count": len(second),
@@ -64,11 +72,12 @@ def main():
             "hsNorm(raw(U)-1) <= 12 * Delta_H",
         "tracial_separation_consequence":
             "Delta_H >= sqrt(2)/12 - o(1)",
+        "two_generator_energy_consequence":
+            "if a,b are the two H-displacements, a^2+b^2 >= 1/40-o(1)",
         "reynolds_consequence":
-            "1-hsNorm(E_H(U))^2 >= 1/24192 - o(1)",
+            "1-hsNorm(E_H(U))^2 >= 1/13440 - o(1)",
     }, indent=2))
 
 
 if __name__ == "__main__":
     main()
-
