@@ -126,4 +126,46 @@ theorem normTrace_jointExactInvolutionNegativeCut
   field_simp
   norm_num
 
+/-- An anticommuting involution flips the negative cut of the other
+involution to its complementary cut. -/
+theorem exactInvolutionNegativeCut_conj_of_anticommute
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (R Z : Matrix Y Y ℂ)
+    (hRsq : R * R = 1) (hanti : R * Z = -(Z * R)) :
+    R * exactInvolutionNegativeCut Z * R =
+      1 - exactInvolutionNegativeCut Z := by
+  unfold exactInvolutionNegativeCut
+  rw [Matrix.mul_smul, Matrix.smul_mul]
+  calc
+    (2 : ℂ)⁻¹ • (R * (1 - Z) * R) =
+        (2 : ℂ)⁻¹ • (1 + Z) := by
+          congr 1
+          calc
+            R * (1 - Z) * R = R * R - (R * Z) * R := by noncomm_ring
+            _ = R * R + Z * (R * R) := by rw [hanti]; noncomm_ring
+            _ = 1 + Z := by simp only [hRsq, Matrix.mul_one]
+    _ = 1 - (2 : ℂ)⁻¹ • (1 - Z) := by
+      module
+
+/-- The original negative cut and its anticommuting conjugate are
+orthogonal. -/
+theorem exactInvolutionNegativeCut_mul_conj_eq_zero
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (R Z : Matrix Y Y ℂ)
+    (hZstar : Zᴴ = Z) (hZsq : Z * Z = 1)
+    (hRsq : R * R = 1) (hanti : R * Z = -(Z * R)) :
+    exactInvolutionNegativeCut Z *
+        (R * exactInvolutionNegativeCut Z * R) = 0 := by
+  rw [exactInvolutionNegativeCut_conj_of_anticommute R Z hRsq hanti]
+  have hP := (exactInvolutionNegativeCut_isOrthogonalProjection
+    Z hZstar hZsq).2
+  rw [Matrix.mul_sub, Matrix.mul_one, hP, sub_self]
+
+/-- The two Pauli halves exactly fill their common carrier. -/
+theorem exactInvolutionNegativeCut_add_conj_eq_one
+    {Y : Type*} [Fintype Y] [DecidableEq Y] (R Z : Matrix Y Y ℂ)
+    (hRsq : R * R = 1) (hanti : R * Z = -(Z * R)) :
+    exactInvolutionNegativeCut Z +
+        R * exactInvolutionNegativeCut Z * R = 1 := by
+  rw [exactInvolutionNegativeCut_conj_of_anticommute R Z hRsq hanti]
+  abel
+
 end GroupApproximation
