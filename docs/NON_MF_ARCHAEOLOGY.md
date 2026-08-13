@@ -296,3 +296,266 @@ fetched-summary claim about Thom 2010 after the primary paper did not support
 it. These are important examples of why the final paper cannot be
 reconstructed safely from commit subjects alone.
 
+## The paper's result graph
+
+The paper contains one core construction, one general analytic criterion,
+three calibrations, and a family of consequences. The logical graph is:
+
+```text
+explicit base and presentation                     analytic corona facts
+--------------------------------                   ----------------------
+Gamma = Z^3 semidirect SL_3(Z)                     unitary/projection lifts
+property (T) of Gamma                              corners are coronas
+alpha(v,A) = (2v,A), a not in alpha(Gamma)         matrix coronas stably finite
+eight-generator presentation E                     Kazhdan projection
+              |                                                 |
+              |                                                 v
+              |                                  finite-normal obstruction
+              |                                  criterion for marked patterns
+              |                                                 |
+              +----------------------+--------------------------+
+                                     |
+                                     v
+                         every corona representation kills w
+                                     |
+Clifford/linear witness               |
+proves w != 1 ------------------------+
+                                     |
+                                     v
+                         Theorem A: E is not MF
+                          /          |          \
+                         /           |           \
+             C*max and C*red    MF radical      permanence/families
+                 not MF          consequences       and uniformity
+                    |
+faithful canonical trace on C*red(E)
+                    |
+                    v
+      Theorem D: explicit reduced group C*-algebra,
+              stably finite but not MF
+
+independent finite-dimensional branch:
+one-sided inclusion + finite-dimensional End(V)
+    -> commutant dimension equality
+    -> Theorem B kills the marked commutator over every field
+
+calibration branch:
+cyclic base + amenability + quasidiagonality
+    -> a corona representation in which the mark survives
+    -> Theorem C shows why uniform fixed-space rigidity is needed
+```
+
+### Primitive paper inputs
+
+The paper proves most local facts inline. Its non-elementary external inputs
+are sharply separated.
+
+| Input | Used for | Dependency status |
+| --- | --- | --- |
+| Property (T) of `Z^3 semidirect SL_3(Z)` | The uniform fixed-space projection in Theorem A and the general criterion | External classical theorem. |
+| Existence and defining property of the Kazhdan projection | Turns property (T) into an element that can be evaluated in the conjugation corona | External classical theorem. |
+| Conder--Robertson--Williams presentation of `SL_3(Z)` | Makes the displayed group literally eight-generated and finitely presented | External presentation only; the analytic argument is presentation-independent. |
+| Quasidiagonality of amenable reduced group C*-algebras and the quasidiagonal-to-corona embedding | The positive cyclic-base comparison, Theorem C | External; not used to prove non-MF. |
+| Borisov--Sapir mapping-torus residual finiteness | Shows the ambient HNN group `G` is MF although `C*max(G)` is not finite | Consequence only. |
+| Mal'cev residual finiteness | Shows the linear quotient in the split extension is MF | Consequence only. |
+| Goryushkin simple embedding theorem | The two-generator simple envelope | Consequence only. |
+| B. H. Neumann's continuum family | Continuum many non-isomorphic finitely generated examples | Consequence only. |
+| Haagerup--Thorbjornsen for `C*red(F_k)` | Supplies example target algebras killed by the criterion | Illustration only. |
+
+Theorem B uses none of these inputs. Theorem D needs no new external theorem
+once Theorem A is known: the faithful canonical trace and the implication
+“faithful trace implies stable finiteness” are proved in the paper.
+
+### Core lemmas and what consumes them
+
+| Brick | What it proves | Immediate consumers |
+| --- | --- | --- |
+| `lem:alpha` | Doubling is an injective endomorphism of index eight and omits `a` | The presentation, witness, marked pattern, and scaling variants. |
+| `con:clifford` + `lem:linear` | A consistent Clifford 2-group and a linear model of the ascending HNN relations | `prop:witness`. |
+| `prop:witness` | The marked word maps to the nontrivial Clifford sign | Theorem A(1), embedding of `Gamma`, all nontriviality-based consequences. |
+| Theorem B | Every exact finite-dimensional representation kills the marked commutator | Non-MAP, non-RFD, no finite quotient detects `w`; cyclic calibration. |
+| `lem:lift` | Projections and unitaries lift through a norm matrix corona | Corner reduction and construction of coordinate adjoint maps. |
+| `lem:finite` | Norm matrix coronas are stably finite; nested equivalent projections coincide | `lem:pinning`, non-MF of `C*max(G)`. |
+| `lem:cornercorona` | A nonzero projection corner is another norm matrix corona | Rank-density-free renormalization. |
+| `lem:corner` | A finite normal subgroup has a central Reynolds projection; its complement gives a nonzero corner with zero group average | General finite-normal criterion. |
+| `lem:beta` | Operator-norm lifts give an exact conjugation representation in a second norm corona | Evaluation of the Kazhdan projection. |
+| `lem:order` | One-sided compression gives `P <= beta(t)Pbeta(t)*` | `lem:pinning` and the ambient HNN isometry. |
+| `lem:pinning` | Stable finiteness upgrades the order relation to equality | Fixed-space propagation. |
+| `lem:sigma` and the ultraproduct fixed-space argument | Realizes the corona Kazhdan projection as the literal fixed-vector projection | Collapse of all compression defects in normalized HS norm. |
+| Normal-closure propagation | If all basic defects vanish, every element of `N_comp` vanishes | Contradicts the zero Reynolds average of nontrivial `F`. |
+| `lem:square` | For involutory `d`, the paper's `w` is a square of a basic compression defect | Inserts `{1,w}` into the general criterion. |
+
+The crucial point is that **strictness** of the compression is needed to
+construct a nontrivial witness, but not to prove the analytic kill theorem.
+The general marked pattern assumes only image inclusion. Likewise, the map
+from the Kazhdan group into the ambient group need not be injective.
+
+### Headline theorems and exact prerequisites
+
+**Theorem A** is the conjunction of two independent branches:
+
+- `w != 1`: explicit presentation relations + the linear HNN model + two
+  distinct cosets + the Clifford sign;
+- every corona representation kills `w`: the marked pattern + `{1,w}` finite
+  normal + `w in N_comp` + the finite-normal obstruction criterion.
+
+The non-MF conclusion needs both. The C*-algebra conclusions then use the
+canonical group unitaries: an MF embedding of either group C*-algebra would
+restrict to an injective corona representation of `E`.
+
+**Theorem B** uses only the finite-dimensional vector space
+`End_k(V)`. If `C` is the commutant of the image of `Gamma` and
+`Phi(x) = pi(t)xpi(t)^{-1}`, one-sided compression gives
+`C subseteq Phi(C)`. Equal finite dimensions force equality, so the
+transported lamp remains in the commutant and the marked commutator is one.
+No property (T), unitary structure, centrality of `w`, or analytic input is
+used.
+
+**Theorem C** has two sides. Algebraically, the Baumslag--Solitar pattern
+maps onto a Clifford extension and its mark maps to the nontrivial sign.
+Analytically, that extension is amenable and therefore MF through the
+TWW/quasidiagonality inputs. Theorem B still kills the mark in every exact
+finite-dimensional representation. Thus exact finite-dimensional
+invisibility and approximate operator-norm invisibility are genuinely
+different.
+
+**Theorem D** uses Theorem A plus `lem:faithfultrace`. The novelty correction
+in `936c7be9` is important: it is not the first abstract stably finite non-MF
+C*-algebra; it is an explicit reduced group C*-algebra realization attached
+to the paper's finitely presented group.
+
+### Consequence graph
+
+The consequences are not additional inputs to Theorem A.
+
+| Result | Depends on |
+| --- | --- |
+| MF radical portability | Definition as an intersection of kernels; composition of homomorphisms. |
+| Largest MF quotient | Countability, diagonal block sums of separating corona representations. |
+| Targets inside arbitrary corona subalgebras | Corner-corona lemma + finite-normal criterion. |
+| Ambient `G` is MF but `C*max(G)` is not finite | Kazhdan order relation + explicit strictness witness + Borisov--Sapir + residual-finite-implies-MF. |
+| MF not closed under quotients | `E` is an eight-generator quotient of residually finite `F_8`. |
+| MF not closed under split extensions | The Clifford witness group surjectively receives `E`; its lamp kernel is locally finite and its linear quotient residually finite. |
+| Two-generator simple group with total MF radical | Portability + Goryushkin embedding + simplicity. |
+| Scaling family `E_m` | Replace doubling by multiplication by `m`; reuse the criterion and Clifford witness. |
+| Infinitely/continuum many examples | Subgroup inheritance + abelianization rank; then B. H. Neumann's continuum family. |
+| Uniform invisibility | Compactness/diagonal contradiction: failure would assemble a corona representation contradicting the criterion. |
+
+## The formal theorem graph
+
+The formal development proves the same marked-compression mechanism by a
+finite-stage route. It does **not** formalize the paper proof line by line.
+
+```text
+ALGEBRAIC WITNESS BRANCH
+
+Leavitt family + elementary groups + internal property-(T) proof
+    -> UniversalPropertyT
+Leavitt shift
+    -> injective non-surjective Base endomorphism + omitted element
+    -> ExplicitNonMFBase
+MappingTelescope + CliffordLampGroup
+    -> MarkedCompressionGroup (countable witness, word = sign != 1)
+ShalomFinitePresentation + Base + telescope/witness realization
+    -> ExplicitMarkedPresentation
+    -> ExplicitNonMFEndpoint (finitely presented marked inclusion data)
+
+ANALYTIC KILL BRANCH
+
+WeakMFUltraproduct
+    -> NormMFResidualDetector
+    -> NormUltraproductSequentialExtraction
+    -> separated MarkedOpAlmostRepresentation
+
+ApproxInvolutionCorner + NegativeCornerModel
+    -> exact rounded involution
+    -> nonempty negative corner
+    -> corner operator-norm almost representation with mark near -1
+
+KazhdanProjection + KazhdanCornerMatrices
+AdjointMatrix + SpectralCapture
+ProjectionRankFlip
+    -> KazhdanCompressorCorner
+    -> one-sided leakage and equal-rank reverse leakage
+
+MarkedCompressionVectorChain
+    -> transported lamp is almost Gamma-fixed
+    -> marked commutator tends to 1 in normalized HS norm
+
+negative corner says the same word tends to -1 in operator norm
+    -> false_of_markedOpAlmostRepresentation
+    -> word_normMFInvisible
+    -> not_isWeakMF
+
+JOIN
+
+ExplicitNonMFEndpoint.word_ne_one + universal analytic kill
+    -> ExplicitNonMFTheorem.mark_normMFInvisible
+    -> explicit_finitelyPresented_not_isWeakMF
+    -> countable and finitely presented existence theorems
+```
+
+### Why the formal base is different
+
+The paper chooses `Gamma = Z^3 semidirect SL_3(Z)` because it gives a short,
+classical, literal presentation. The formal development instead reuses the
+repository's internally proved rank-four elementary group over the universal
+binary Leavitt algebra over `ZMod 2`:
+
+```text
+Base = EL_4(Universal binary Leavitt algebra over ZMod 2).
+```
+
+`Leavitt/ShiftEndomorphism.lean` supplies the coefficientwise binary shift
+`a |-> s0 a t0 + s1 a t1`, proves it injective, and proves that `s0` is not
+in its image. `Sofic/ExplicitNonMFBase.lean` lifts this to the elementary
+group and chooses an omitted elementary transvection. Property (T) comes from
+the internally proved characteristic-two elementary-group theorem and a
+rank equivalence.
+
+This choice eliminated every literature theorem from the formal endpoint's
+logical premises, at the cost of a much larger import closure.
+
+### Analytic formal bricks
+
+| Formal module | Necessary result | Paper analogue |
+| --- | --- | --- |
+| `Sofic/WeakMFUltraproduct` | Operator-norm matrix-ultraproduct target and weak-MF interface | Definition of a corona representation. |
+| `Sofic/NormMFResidualDetector` | `NormMFInvisible`; a nontrivial invisible element obstructs weak MF | MF radical/kernel language. |
+| `Sofic/NormUltraproductSequentialExtraction` | A surviving arbitrary-ultraproduct image yields one separated sequential almost representation | Choosing coordinate lifts and a diagonal subsequence. |
+| `Sofic/ApproxInvolutionCorner` | Spectrally round an approximate central involution; its negative projection is eventually nonzero | Exact `e = (1-Theta(w))/2`. |
+| `Sofic/NegativeCornerModel` | Build the renormalized negative-corner almost representation | Corner-corona reduction. |
+| `Sofic/AdjointMatrix` | Vectorized conjugation representation and the dimension-free `2 ||U-V||` bound | `lem:beta`. |
+| `Sofic/SpectralCapture` | Convert Kazhdan energy into quantitative capture by the top spectral projection | Kazhdan projection acting on fixed vectors. |
+| `Sofic/ProjectionRankFlip` | Equal-rank projections with small one-sided leakage have small reverse leakage | Stable finiteness turns `P <= tPt*` into equality. |
+| `Sofic/KazhdanCompressorCorner` | Applies compression inclusion, spectral capture, and rank flip | `lem:order` + `lem:pinning`. |
+| `Sofic/MarkedCompressionVectorChain` | Propagates fixedness to the transported lamp and bounds the marked commutator | The Hilbert-ultraproduct vector argument. |
+| `Sofic/MarkedCompressionSequentialKill` | Contradicts HS convergence to `1` with operator-norm convergence to `-1` | Final proof of Theorem A(2). |
+
+The finite-stage rank flip is not merely a different implementation detail.
+It is the exact finite-dimensional shadow of the paper's stable-finiteness
+step and is what lets Lean avoid constructing the abstract C*-algebra corona
+argument.
+
+### Algebraic formal bricks
+
+| Formal module | Necessary result |
+| --- | --- |
+| `Leavitt/UniversalRankFour`, `Leavitt/UniversalPropertyT` | A countable finitely generated internal Kazhdan base. |
+| `Leavitt/ShiftEndomorphism` | A proper injective self-embedding and an explicit omitted element. |
+| `Algebra/MappingTelescope` | Turns the injective endomorphism into an automorphic vertical group carrying the one-sided compression pattern. |
+| `Sofic/CliffordLampGroup` | A presented Clifford 2-group, nontrivial central sign, and functorial permutation action. |
+| `Sofic/MarkedCompressionGroup` | The countable semidirect witness; proves the marked word equals the sign and is nontrivial. |
+| `Kazhdan/ShalomFinitePresentation` | A finitely presented Kazhdan cover of the internal base. |
+| `Sofic/ExplicitMarkedPresentation` | Finite relator set, marked central involution, inclusion relations, and a realization proving the mark nontrivial. |
+| `Sofic/ExplicitNonMFEndpoint` | Packages exactly the inclusion data consumed by the analytic theorem. |
+
+### Formal trust boundary
+
+At the completion commits, the public endpoint and focused audit reported
+only `propext`, `Classical.choice`, and `Quot.sound`. No cited theorem was
+encoded as a project axiom. The manuscript explicitly says that its literal
+eight-generator presentation, the general finite-normal criterion, and the
+paper consequence section were paper-only at that point. Any later work on
+those items must be evaluated against its own commit and audit state rather
+than retroactively attributed to the completed central-involution endpoint.
