@@ -157,7 +157,7 @@ noncomputable def targetGenerator : Generator → CliffordBS
 
 /-- Evaluation of a represented word under the universal map out of a
 presented group. -/
-theorem presentedToGroup_mk {H : Type*} [Group H]
+@[simp] theorem presentedToGroup_mk {H : Type*} [Group H]
     {R : Set (FreeGroup Generator)} {f : Generator → H}
     (h : ∀ r ∈ R, FreeGroup.lift f r = 1)
     (w : FreeGroup Generator) :

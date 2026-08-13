@@ -170,13 +170,13 @@ theorem exists_conjugated_tensorPower_far_from_one (hY : Nonempty Y)
   exact ⟨V, p, hV, hp1, hpN, hp⟩
 
 /-- Basis-free form with the conjugation removed from the conclusion. -/
-theorem exists_tensorPower_far_from_one [Nonempty Y]
+theorem exists_tensorPower_far_from_one (hY : Nonempty Y)
     {W : Matrix Y Y ℂ} (hW : W ∈ Matrix.unitaryGroup Y ℂ)
     {δ : ℝ} (hδ : 0 < δ) (hsep : δ ≤ ‖W - 1‖)
     (N : ℕ) (hN : 8 < (N : ℝ) * δ ^ 2) :
     ∃ p : ℕ, 1 ≤ p ∧ p ≤ N ∧ ‖opTensorPow W p - 1‖ > 1 := by
   obtain ⟨V, p, hV, hp1, hpN, hp⟩ :=
-    exists_conjugated_tensorPower_far_from_one hW hδ hsep N hN
+    exists_conjugated_tensorPower_far_from_one hY hW hδ hsep N hN
   refine ⟨p, hp1, hpN, ?_⟩
   rw [← norm_tensorPower_conjugate_sub_one hV p]
   exact hp
@@ -184,7 +184,7 @@ theorem exists_tensorPower_far_from_one [Nonempty Y]
 /-- **Uniform bounded-power amplification for an arbitrary unitary pair.**
 If `A` and `B` are `δ`-separated, one of their first `N` tensor powers is
 more than one apart whenever `N δ² > 8`. -/
-theorem exists_tensorPower_pair_far [Nonempty Y]
+theorem exists_tensorPower_pair_far (hY : Nonempty Y)
     {A B : Matrix Y Y ℂ}
     (hA : A ∈ Matrix.unitaryGroup Y ℂ)
     (hB : B ∈ Matrix.unitaryGroup Y ℂ)
@@ -199,7 +199,7 @@ theorem exists_tensorPower_pair_far [Nonempty Y]
     rw [opNorm_mul_conjTranspose_sub_one hB]
     exact hsep
   obtain ⟨p, hp1, hpN, hp⟩ :=
-    exists_tensorPower_far_from_one hW hδ hWsep N hN
+    exists_tensorPower_far_from_one hY hW hδ hWsep N hN
   refine ⟨p, hp1, hpN, ?_⟩
   have hprod :
       opTensorPow A p * (opTensorPow B p)ᴴ = opTensorPow W p := by
