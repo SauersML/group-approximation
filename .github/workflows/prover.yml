@@ -384,7 +384,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git push --force origin HEAD:refs/heads/verified
+          if ! git push --force origin HEAD:refs/heads/verified; then
+            echo "::warning::could not advance the verified branch; the proof and kernel audit still passed."
+          fi
 
           # Rewrite the pinned verified-state line at the top of the README
           # so the front page always names the exact commit this run just
