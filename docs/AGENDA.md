@@ -3979,6 +3979,31 @@ gauge-invariant two-child or one-cut leakage contradiction.  See
 `FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md` and the MSI replay
 `atlas_raw_compressor_amalgam_audit.py`.
 
+### 2026-08-13: the raw word gives a direct fixed Reynolds gap
+
+The classical collapse has a sharp quantitative converse.  Every one of the
+twelve second-chart syllables in the 25-letter raw source word lies in `H`,
+and replacing those twelve copies by the first chart makes the word exactly
+trivial.  Bi-unitary invariance and telescoping give
+
+```text
+||r_src(U)-1||_2 <= 12 Delta_H.
+```
+
+The Leavitt image proves `r_src!=1`, so trace-preserving hyperlinear
+separation makes the left side tend to `sqrt(2)`.  Consequently
+
+```text
+Delta_H >= sqrt(2)/12-o(1),
+1-||E_H(U)||_2^2 >= 1/24192-o(1).
+```
+
+This removes the enormous `A8` diameter loss from the earlier Weyl-bridge
+bound and excludes an explicit Reynolds tube around the classical fold.
+Continue the nonlinear coefficient audit only in this fixed annular regime.
+See `TRUE_RAW_WORD_REYNOLDS_GAP.md` and the one-core MSI replay
+`atlas_raw_reynolds_gap_audit.py`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

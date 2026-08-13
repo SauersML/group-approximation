@@ -60,6 +60,18 @@ implementer.
 
 ## 3. What the Weyl bridge forces
 
+The bound below has now been superseded quantitatively by a direct raw-word
+estimate, but remains a useful independent check because it uses the
+bridge/interior packet rather than tracial separation of the raw word.  The
+25-syllable raw source word gives
+
+```text
+Delta_H >= sqrt(2)/12-o(1),
+1-||E_H(U)||_2^2 >= 1/24192-o(1).                    (RNG6a)
+```
+
+See `TRUE_RAW_WORD_REYNOLDS_GAP.md`.
+
 Put
 
 ```text

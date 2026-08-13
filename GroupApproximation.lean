@@ -258,6 +258,7 @@ import GroupApproximation.Leavitt.ElementaryWeylBridge
 import GroupApproximation.Leavitt.AtlasProperInfiniteCorner
 import GroupApproximation.Leavitt.TwoChildFiniteObstruction
 import GroupApproximation.Leavitt.NonincidentFlagGram
+import GroupApproximation.Leavitt.RawWordReynoldsGap
 import GroupApproximation.Leavitt.AryCorner
 import GroupApproximation.Leavitt.FamilyRankFour
 import GroupApproximation.Leavitt.RawSwapCompressors

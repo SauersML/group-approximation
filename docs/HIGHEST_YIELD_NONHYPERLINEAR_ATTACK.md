@@ -201,6 +201,16 @@ elements carries a nontrivial closed holonomy on the aligned spherical
 module, in the scalar sectors or the 14-doublet.  See
 `FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md`.
 
+The same collapse certificate has a positive quantitative use.  All twelve
+second-chart letters of the 25-syllable raw word lie in `H`, and replacing
+them by first-chart letters makes the word exactly trivial.  Telescoping
+therefore gives `||r_src(U)-1||_2 <= 12 Delta_H`.  Since `r_src` is a
+nonidentity group element, tracial separation forces
+`Delta_H >= sqrt(2)/12-o(1)` and hence the explicit Reynolds deficit
+`1-||E_H(U)||_2^2 >= 1/24192-o(1)`.  The live nonlinear calculation may now
+exclude a fixed tube around the aligned fold.  See
+`TRUE_RAW_WORD_REYNOLDS_GAP.md`.
+
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the

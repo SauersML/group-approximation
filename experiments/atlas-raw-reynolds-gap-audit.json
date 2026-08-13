@@ -1,0 +1,61 @@
+{
+  "word": "compiled scalarized raw swap",
+  "source_syllables": 25,
+  "second_chart_syllables": 12,
+  "all_second_chart_syllables_lie_in_H": true,
+  "second_chart_H_letters": [
+    {
+      "source_position": 1,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 3,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 5,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 7,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 9,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 11,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 13,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 15,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 17,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 19,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 21,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 23,
+      "matrix_hex": "01000000000100000001010000000001"
+    }
+  ],
+  "word_after_replacing_chart_2_H_by_chart_1": [],
+  "replacement_count": 12,
+  "normalized_HS_consequence": "hsNorm(raw(U)-1) <= 12 * Delta_H",
+  "tracial_separation_consequence": "Delta_H >= sqrt(2)/12 - o(1)",
+  "reynolds_consequence": "1-hsNorm(E_H(U))^2 >= 1/24192 - o(1)"
+}
