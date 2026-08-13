@@ -14,10 +14,13 @@ formal development includes the finite-dimensional core, the sequential
 Kazhdan-compression kill, an independently constructed finitely presented
 non-MF witness, the literal eight-generator presentation and its exact
 nontrivial mark, the finite-normal obstruction, and the cofinite-corona MF
-radical.  No MF endpoint is claimed for the literal group. Accordingly this checker enforces that
-every counterpart link that *is* claimed resolves to a real declaration in
-the named module; statement pinning and transitive axiom checking of the
-formal headline endpoints are performed separately by ``scripts/Audit.lean``.
+radical.  No unconditional MF endpoint is claimed for the literal group.
+
+This checker enforces both lexical resolution and a semantic contract for the
+formal-status paragraph: its finitely presented non-MF sentence must link to
+the standard ``IsOperatorMF`` endpoint pinned by ``scripts/Audit.lean``, not
+to the project-local ``IsWeakMF`` auxiliary endpoint.  Transitive axiom
+checking remains the responsibility of ``scripts/Audit.lean``.
 """
 
 from __future__ import annotations
@@ -36,6 +39,16 @@ from lean_decls import build_index
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
 REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
+STATUS_RE = re.compile(
+    r"\\begin\{remark\}\[status of the formal companion\]"
+    r"\\label\{rem:leanstatus\}(.*?)\\end\{remark\}",
+    re.DOTALL,
+)
+STATUS_ENDPOINT = (
+    "Sofic/ExplicitNonMFTheorem",
+    "GroupApproximation.ExplicitNonMFTheorem."
+    "chosenFinitelyPresented_not_isOperatorMF",
+)
 
 
 def validate(repo: Path, tex: Path) -> list[str]:
@@ -46,6 +59,29 @@ def validate(repo: Path, tex: Path) -> list[str]:
 
     index = build_index(repo)
     problems: list[str] = []
+
+    status_matches = STATUS_RE.findall(source)
+    if len(status_matches) != 1:
+        problems.append(
+            "expected exactly one formal-status remark labelled rem:leanstatus"
+        )
+    else:
+        status_references = REFERENCE_RE.findall(status_matches[0])
+        if status_references.count(STATUS_ENDPOINT) != 1:
+            problems.append(
+                "formal-status finitely presented non-MF claim must link exactly "
+                "once to the pinned chosen IsOperatorMF endpoint"
+            )
+        weak_endpoints = [
+            declaration for _module, declaration in status_references
+            if declaration.endswith("not_isWeakMF")
+        ]
+        if weak_endpoints:
+            problems.append(
+                "formal-status remark links an IsWeakMF auxiliary endpoint: "
+                + ", ".join(weak_endpoints)
+            )
+
     for module, declaration in references:
         expected = repo / "GroupApproximation" / f"{module}.lean"
         full_name = (declaration if declaration.startswith("GroupApproximation.")
@@ -74,8 +110,17 @@ def self_test() -> int:
             "end GroupApproximation\n",
             encoding="utf-8",
         )
+        endpoint = repo / "GroupApproximation" / "Sofic" / "ExplicitNonMFTheorem.lean"
+        endpoint.parent.mkdir(parents=True)
+        endpoint.write_text(
+            "namespace GroupApproximation.ExplicitNonMFTheorem\n"
+            "theorem chosenFinitelyPresented_not_isOperatorMF : True := by trivial\n"
+            "theorem chosenFinitelyPresented_not_isWeakMF : True := by trivial\n"
+            "end GroupApproximation.ExplicitNonMFTheorem\n",
+            encoding="utf-8",
+        )
         elsewhere = repo / "GroupApproximation" / "Sofic"
-        elsewhere.mkdir(parents=True)
+        elsewhere.mkdir(parents=True, exist_ok=True)
         (elsewhere / "Stray.lean").write_text(
             "namespace GroupApproximation\n"
             "theorem strayed : True := by trivial\n"
@@ -84,9 +129,18 @@ def self_test() -> int:
         )
         tex = repo / "paper.tex"
 
+        correct_status = (
+            r"\begin{remark}[status of the formal companion]"
+            r"\label{rem:leanstatus}"
+            r"\leanverified{Sofic/ExplicitNonMFTheorem}"
+            r"{GroupApproximation.ExplicitNonMFTheorem."
+            r"chosenFinitelyPresented_not_isOperatorMF}"
+            r"\end{remark}"
+        )
         tex.write_text(
-            r"\leanverified{Criterion/FiniteDimensionalKill}"
-            r"{GroupApproximation.map_marked_commutator_eq_one}",
+            correct_status
+            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+            + r"{GroupApproximation.map_marked_commutator_eq_one}",
             encoding="utf-8",
         )
         if validate(repo, tex):
@@ -94,8 +148,9 @@ def self_test() -> int:
             return 1
 
         tex.write_text(
-            r"\leanverified{Criterion/FiniteDimensionalKill}"
-            r"{GroupApproximation.map_marked_commutator_eq_two}",
+            correct_status
+            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+            + r"{GroupApproximation.map_marked_commutator_eq_two}",
             encoding="utf-8",
         )
         problems = validate(repo, tex)
@@ -104,13 +159,26 @@ def self_test() -> int:
             return 1
 
         tex.write_text(
-            r"\leanverified{Criterion/FiniteDimensionalKill}"
-            r"{GroupApproximation.strayed}",
+            correct_status
+            + r"\leanverified{Criterion/FiniteDimensionalKill}"
+            + r"{GroupApproximation.strayed}",
             encoding="utf-8",
         )
         problems = validate(repo, tex)
         if not any("is in" in problem for problem in problems):
             print("self-test: wrong-module reference was not detected",
+                  file=sys.stderr)
+            return 1
+
+        weak_status = correct_status.replace(
+            "chosenFinitelyPresented_not_isOperatorMF",
+            "chosenFinitelyPresented_not_isWeakMF",
+        )
+        tex.write_text(weak_status, encoding="utf-8")
+        problems = validate(repo, tex)
+        if not any("pinned chosen IsOperatorMF endpoint" in problem
+                   for problem in problems):
+            print("self-test: WeakMF status drift was not detected",
                   file=sys.stderr)
             return 1
 

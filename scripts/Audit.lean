@@ -50,7 +50,13 @@ example :
     Group.IsFinitelyPresented
         ExplicitMarkedPresentation.MarkedGroup ∧
       ¬ IsOperatorMF ExplicitMarkedPresentation.MarkedGroup :=
-  ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+  ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+
+example
+    (e : LiteralNonMFPresentation.Base ≃* AffineSL3Doubling.Gamma)
+    (hT : HasKazhdanPropertyT.{0, 0} AffineSL3Doubling.Gamma) :
+    ¬ IsOperatorMF LiteralNonMFPresentation.MarkedGroup :=
+  LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine e hT
 
 example :
     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
@@ -361,10 +367,10 @@ def headlineTheorems : List Name :=
    ``exists_finitelyPresented_nonsofic_group,
    ``exists_infinite_finitelyPresented_nonsofic_ambient_cover,
    ``ExplicitNonMFTheorem.mark_normMFInvisible,
-   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF,
+   ``ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF,
    ``ExplicitNonMFTheorem.exists_countable_not_isWeakMF,
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
-   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF,
+   ``ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF,
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
    ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,

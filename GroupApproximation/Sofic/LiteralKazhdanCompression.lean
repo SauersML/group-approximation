@@ -1,4 +1,5 @@
 import GroupApproximation.Kazhdan.LiteralBaseSOS
+import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 import GroupApproximation.Sofic.NormMFPrintedConsequences
@@ -9,8 +10,15 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 This file connects the manuscript's literal eight-generator presentation to
 the general analytic obstruction.  Every group-theoretic field is discharged
 from the displayed relators.  The only input left explicit is property `(T)`
-of the literal six-generator base; alternatively, an exact rational
+of the abstract group presented by the literal twenty relators; alternatively, an exact rational
 sum-of-squares certificate supplies that input through `LiteralBaseSOS`.
+
+This distinction is load-bearing.  Verifying the relators in the concrete
+group `ℤ³ ⋊ SL₃(ℤ)` produces a quotient of this presented group, and
+property `(T)` does not transfer backwards from that quotient.  A route via
+the classical affine group therefore also needs a proved isomorphism (that
+is, completeness of the printed presentation).  The theorem
+`not_isOperatorMF_of_base_equiv_affine` records those two inputs separately.
 
 Thus this module pinpoints the formal trust boundary without replacing the
 literal group by the independent Shalom-cover witness.
@@ -65,6 +73,16 @@ theorem not_isOperatorMF_of_hasKazhdanPropertyT
     ¬ IsOperatorMF MarkedGroup := by
   apply (data hT).not_isOperatorMF
   simpa only [data_word] using LiteralNonMFLinearWitness.literal_mark_ne_one
+
+/-- The precise presentation-completeness route to the conditional endpoint.
+Property `(T)` of the concrete affine group is useful only after an
+isomorphism from the literal presented base has been supplied. -/
+theorem not_isOperatorMF_of_base_equiv_affine
+    (e : Base ≃* AffineSL3Doubling.Gamma)
+    (hT : HasKazhdanPropertyT.{0, 0} AffineSL3Doubling.Gamma) :
+    ¬ IsOperatorMF MarkedGroup :=
+  not_isOperatorMF_of_hasKazhdanPropertyT
+    (HasKazhdanPropertyT.of_mulEquiv e hT)
 
 /-- Conditional form of the manuscript's no-faithful-target consequence:
 the literal group cannot inject into any operator-MF group. -/

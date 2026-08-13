@@ -70,9 +70,9 @@ generated from the manuscript's margin notes; this module is the short list.
 
 * `ExplicitNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word is
   killed by every homomorphism to every norm-matrix ultraproduct.
-* `ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF` -- the
+* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the
   independently constructed finitely presented marked group is not MF.
-* `ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF` -- the
+* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
   same conclusion stated for the standard cofinite norm-matrix-corona
   predicate, rather than the local weak-MF predicate.
 * `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
@@ -112,7 +112,11 @@ boundary instead of conflating the two constructions.
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
 * `LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT` -- the
-  remaining property-`(T)` boundary as an explicit premise.
+  remaining property-`(T)` boundary as an explicit premise on the abstract
+  presented base.
+* `LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine` -- the
+  classical-group route, exposing both property `(T)` of the concrete affine
+  group and presentation completeness as separate premises.
 * `LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate` -- the
   proof-carrying version: an exact rational group-ring SOS certificate would
   close that premise.  No such certificate is asserted or selected here, so
@@ -259,8 +263,8 @@ export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
 /-! ### The operator-norm MF obstruction -/
 
 export GroupApproximation.ExplicitNonMFTheorem
-  (mark_normMFInvisible explicit_finitelyPresented_not_isWeakMF
-    explicit_finitelyPresented_not_isOperatorMF
+  (mark_normMFInvisible chosenFinitelyPresented_not_isWeakMF
+    chosenFinitelyPresented_not_isOperatorMF
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF
     exists_finitelyPresented_not_isWeakMF
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
@@ -307,6 +311,7 @@ export GroupApproximation.LiteralFiniteDimensionalObstruction
 export GroupApproximation.LiteralKazhdanCompression
   (mark_normMFInvisible_of_hasKazhdanPropertyT
     not_isOperatorMF_of_hasKazhdanPropertyT
+    not_isOperatorMF_of_base_equiv_affine
     not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
     mark_normMFInvisible_of_isRationalCertificate
     not_isOperatorMF_of_isRationalCertificate

@@ -23,8 +23,8 @@ retains either a property-`(T)` premise or an exact rational SOS certificate.
 -/
 
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
-#print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
-#print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.not_every_group_isOperatorMF
@@ -40,4 +40,5 @@ retains either a property-`(T)` premise or an exact rational SOS certificate.
 #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
 #print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT
+#print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine
 #print axioms GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate

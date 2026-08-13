@@ -1240,7 +1240,7 @@ theorem.
 The public endpoint combines that theorem with the internally constructed
 finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
 giving a kernel-checked finitely presented non-MF group.
-\leanverified{Sofic/ExplicitNonMFTheorem}{GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF}
+\leanverified{Sofic/ExplicitNonMFTheorem}{GroupApproximation.ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF}
 This formal marked group is an independent witness built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
@@ -1251,14 +1251,24 @@ all of its displayed relations, and an exact affine--Clifford realization in
 which its marked central involution is nontrivial.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
 It also packages the literal relators as the exact marked-compression data
-and derives the universal-kernel and non-MF endpoints conditional only on
-property~\textup{(T)} of the literal six-generator base.
+and derives the universal-kernel and non-MF endpoints conditional on
+property~\textup{(T)} of the \emph{abstract group presented by those twenty
+relators}.
 \leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT}
+This premise is not discharged merely by formalizing property~\textup{(T)}
+of the concrete affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$: checking
+the relators gives a quotient of the presented base, and property~\textup{(T)}
+does not pass backwards from a quotient.  The companion therefore records
+the classical-group route with two separate hypotheses, namely property
+\textup{(T)} of the concrete affine group and an isomorphism from the printed
+base presentation to it.
+\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine}
 An exact rational sum-of-squares certificate is a second, proof-carrying
 route to the same endpoint.
 \leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate}
-The companion does not yet supply a closed proof of that classical
-property~\textup{(T)} input, nor a completed exact certificate.  Thus its
+The companion does not yet supply the required presentation-completeness
+isomorphism, a direct property~\textup{(T)} proof for the presented base, or a
+completed exact certificate.  Thus its
 unconditional machine-checked non-MF endpoint remains the independent
 Shalom-cover witness above; no unconditional Lean endpoint is claimed for
 the literal group.
