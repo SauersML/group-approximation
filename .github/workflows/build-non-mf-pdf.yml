@@ -10,7 +10,10 @@ on:
     paths:
       - non_mf_groups_exist.tex
       - docs/NON_MF_CLAIM_DECLS.txt
-      - GroupApproximation/Criterion/FiniteDimensionalKill.lean
+      # Visible counterpart links range across the library.  Any Lean source
+      # change can rename or move a mapped declaration, so the lexical gate
+      # must run on the whole source tree rather than one historical module.
+      - GroupApproximation/**
       - lakefile.toml
       # All publication and source-audit helpers are part of the gate.  Watching
       # the directory prevents a shared helper change from silently bypassing it.
@@ -163,7 +166,7 @@ jobs:
             git ls-tree -r "$1" -- \
               "$TEX_FILE" \
               docs/NON_MF_CLAIM_DECLS.txt \
-              GroupApproximation/Criterion/FiniteDimensionalKill.lean \
+              GroupApproximation \
               lakefile.toml \
               scripts \
               .github/workflows/build-non-mf-pdf.yml \
