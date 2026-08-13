@@ -31,7 +31,7 @@ import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
+import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -440,6 +440,7 @@ import GroupApproximation.Endpoint.StructuralProfile
 import GroupApproximation.Leavitt.UnitsGLProfile
 import GroupApproximation.KOne.AllRanksElementary
 import GroupApproximation.Kazhdan.KazhdanTextbook
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.Terminality
 import GroupApproximation.Monsters.TwoConjugacyClasses
 import GroupApproximation.Monsters.VerbalCompleteness

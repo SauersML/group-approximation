@@ -153,16 +153,13 @@ theorem hasSum_product_coefficient (T S : ReducedGroupCStar G) :
     ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))).mapL evalAfterT
   convert hs using 1
   · ext g
-    dsimp only [evalAfterT, ContinuousLinearMap.comp_apply]
+    dsimp [evalAfterT]
     rw [apply_single]
-    change
-      ((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g *
-          ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g⁻¹ =
-        (((S : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G)) g •
-          rightRegularOperator G g
-            ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))) 1
-    rw [Pi.smul_apply, rightRegularOperator_apply]
-    rfl
+    rw [map_smul]
+    change _ = _ * (rightRegularOperator G g
+      ((T : GroupHilbert G →L[ℂ] GroupHilbert G) (deltaOne G))) 1
+    rw [rightRegularOperator_apply]
+    rw [one_mul]
   · rfl
 
 /-- The canonical coefficient is tracial on the reduced group C⋆-algebra. -/
@@ -174,7 +171,9 @@ theorem canonicalCoefficientAtOne_mul_comm (T S : ReducedGroupCStar G) :
   apply hTS.unique
   convert hSTinv using 1
   · ext g
-    simp only [Function.comp_apply, Equiv.inv_apply, inv_inv, mul_comm]
+    rw [Function.comp_apply]
+    rw [show (Equiv.inv G) g = g⁻¹ from rfl, inv_inv]
+    rw [mul_comm]
   · rfl
 
 /-- The identity coefficient of `T⋆T` is the squared norm of `Tδ₁`. -/
@@ -184,15 +183,17 @@ theorem canonicalCoefficientAtOne_star_mul_self (T : ReducedGroupCStar G) :
   change
     (((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
       (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)) 1 = _
-  calc
-    _ = ⟨deltaOne G,
-        ((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
-          (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)⟩_ℂ := by
+  rw [show
+    (((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
+      (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)) 1 =
+        ⟪deltaOne G,
+          ((star (T : GroupHilbert G →L[ℂ] GroupHilbert G)) *
+            (T : GroupHilbert G →L[ℂ] GroupHilbert G)) (deltaOne G)⟫_ℂ by
       rw [deltaOne, lp.inner_single_left]
-      simp
-    _ = _ := by
-      simp only [mul_apply_eq_comp, ContinuousLinearMap.star_eq_adjoint,
-        ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
+      simp]
+  simp only [mul_apply_eq_comp, ContinuousLinearMap.star_eq_adjoint,
+    ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
+  rfl
 
 /-- The identity vector separates the concrete reduced group C⋆-algebra. -/
 theorem eq_zero_of_apply_deltaOne_eq_zero (T : ReducedGroupCStar G)

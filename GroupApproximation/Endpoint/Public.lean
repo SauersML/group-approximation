@@ -44,6 +44,8 @@ import GroupApproximation.KOne.RefineLoopDischarge
 import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
+import GroupApproximation.Kazhdan.FixedSpaceDefect
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
@@ -499,5 +501,8 @@ export GroupApproximation.BinaryLeavitt (K1_trivial narrowReduction_holds
 export GroupApproximation (hasKazhdanPropertyT_iff_textbook isLEF_iff_textbook)
 export GroupApproximation
   (ambient_hasKazhdanPropertyTComplex universalLeavitt_profile_textbook)
+export GroupApproximation.FixedSpaceStabilizer
+  (stabilizer mem_stabilizer_iff compressionGroup_le_stabilizer
+    compressionGroup_map_mem)
 
 end GroupApproximation.Public
