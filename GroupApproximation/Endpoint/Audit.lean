@@ -551,9 +551,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isWeakMF_of_normalKazhdan_le_defect
 #print axioms GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable
 #print axioms GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re
-#print axioms GroupApproximation.OperatorMFMarkovWitness.positive_punit
-#print axioms GroupApproximation.OperatorMFMarkovWitness.chosen_forbidden_subgroup
-#print axioms GroupApproximation.OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup
 #print axioms GroupApproximation.ambient_hasKazhdanPropertyTComplex
 #print axioms GroupApproximation.universalLeavitt_profile_textbook
 #print axioms GroupApproximation.AffineSL3Doubling.doubling_package

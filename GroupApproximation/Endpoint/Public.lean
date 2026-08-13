@@ -17,7 +17,6 @@ import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.MarkovMFConsequences
-import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
@@ -160,12 +159,6 @@ boundary instead of conflating the two constructions.
   an unconditional theorem about the displayed group.
 
 ## Consequences and reusable obstruction APIs
-
-* `OperatorMFMarkovWitness.exists_finitelyPresented_forbidden_subgroup` --
-  the fully kernel-checked positive/negative group-theoretic witnesses used by
-  an Adian--Rabin reduction: the trivial group is operator-MF, while a chosen
-  finitely presented group cannot embed in any operator-MF group.  The
-  computability reduction itself remains an explicit separate input.
 
 * `not_injective_of_coronaMFInvisible` and
   `KazhdanCompressionCore.finiteNormal_uniform_invisibility` -- portability
