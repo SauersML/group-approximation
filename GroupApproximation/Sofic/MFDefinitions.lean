@@ -11,9 +11,10 @@ import Mathlib.GroupTheory.Index
 
 The phrase “MF group” occurs with several distinct meanings.  This file gives
 each meaning a separate Lean name.  It proves the unconditional equivalences
-between the group-corona, matrix-ultraproduct, finite-set, and MF-algebra
+between the group-corona, matrix-ultraproduct, finite-set, and ambient-algebra
 formulations, and records the valid one-way implications from the stronger
-trace, regular, reduced-C-star, and full-C-star formulations.
+trace-preserving, trace-regular, reduced-C-star, and supplied full-C-star
+formulations.
 
 `IsModularByFiniteMF` is deliberately kept separate: its letters stand for
 “modular-by-finite” and it is an unrelated subgroup-lattice property.
@@ -28,7 +29,7 @@ universe u
 
 variable {G : Type u} [Group G]
 
-/-! ## Four equivalent group approximation formulations -/
+/-! ## Equivalent group approximation formulations -/
 
 /-- Group-theoretic MF: a faithful homomorphism into the unitary group of a
 cofinite norm-matrix corona. -/
@@ -85,8 +86,8 @@ theorem hasMFAlgebraUnitaryEmbedding_iff_isGroupTheoreticMF [Countable G] :
     HasMFAlgebraUnitaryEmbedding G ↔ IsGroupTheoreticMF G :=
   hasMFAlgebraUnitaryEmbedding_iff_isOperatorMF G
 
-/-- The four standard group meanings of MF, together with the literal CDE
-corona formulation, hold simultaneously exactly when any one of them holds. -/
+/-- The group-corona, ultraproduct, finite-set, and bare-MF-ambient
+formulations hold simultaneously exactly when any one of them holds. -/
 theorem standardMFDefinitions_iff [Countable G] :
     IsGroupTheoreticMF G ↔
       IsCDEOperatorMF G ∧ IsUltraproductMF G ∧ IsFiniteSetMF G ∧
@@ -100,7 +101,7 @@ theorem standardMFDefinitions_iff [Countable G] :
   · rintro ⟨_hcde, _hultra, hfinite, _halgebra⟩
     exact isFiniteSetMF_iff_isGroupTheoreticMF.mp hfinite
 
-/-! ## Trace-preserving and regular MF -/
+/-! ## Trace-preserving and trace-regular MF -/
 
 /-- The regular character, equal to `1` at the identity and `0` elsewhere. -/
 noncomputable def regularCharacter (g : G) : ℂ :=
@@ -140,9 +141,133 @@ noncomputable def reducedGroupRingEvaluation :
   Finsupp.linearCombination ℂ fun g ↦
     reducedLeftRegular G g
 
-/-- A regular MF approximation is trace-preserving and, in addition,
-recovers the reduced operator norm of every algebraic group-ring element. -/
-structure RegularMFApproximation (G : Type u) [Group G]
+/-- Distinct left-regular unitaries are uniformly separated in reduced
+operator norm.  The lower bound `1` follows by applying their difference to
+the identity point mass and evaluating the `g` coordinate. -/
+theorem one_le_norm_reducedGroupRingEvaluation_single_sub
+    (g h : G) (hgh : g ≠ h) :
+    1 ≤ ‖reducedGroupRingEvaluation (G := G)
+      (Finsupp.single g 1 - Finsupp.single h 1)‖ := by
+  let T : ReducedGroupCStarTrace.ReducedGroupCStar G :=
+    reducedGroupRingEvaluation (G := G)
+      (Finsupp.single g 1 - Finsupp.single h 1)
+  have hT : T = reducedLeftRegular G g - reducedLeftRegular G h := by
+    simp [T, reducedGroupRingEvaluation]
+  have hdelta : ‖ReducedGroupCStarTrace.deltaOne G‖ = 1 := by
+    classical
+    rw [ReducedGroupCStarTrace.deltaOne,
+      lp.norm_single (by norm_num : (0 : ENNReal) < 2)]
+    simp
+  have hcoord :
+      (((T : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+          ReducedGroupCStarTrace.GroupHilbert G)
+        (ReducedGroupCStarTrace.deltaOne G)) g) = 1 := by
+    rw [hT]
+    change
+      ((reducedLeftRegular G g : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+          ReducedGroupCStarTrace.GroupHilbert G) -
+        (reducedLeftRegular G h : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+          ReducedGroupCStarTrace.GroupHilbert G))
+          (ReducedGroupCStarTrace.deltaOne G) g = 1
+    rw [_root_.sub_apply,
+      reducedLeftRegular_deltaOne, reducedLeftRegular_deltaOne]
+    simp [hgh]
+  have hpoint :
+      1 ≤ ‖(T : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+          ReducedGroupCStarTrace.GroupHilbert G)
+        (ReducedGroupCStarTrace.deltaOne G)‖ := by
+    calc
+      1 = ‖(((T : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+          ReducedGroupCStarTrace.GroupHilbert G)
+        (ReducedGroupCStarTrace.deltaOne G)) g)‖ := by simp [hcoord]
+      _ ≤ _ := lp.norm_apply_le_norm (by norm_num) _ g
+  have hop := (T : ReducedGroupCStarTrace.GroupHilbert G →L[ℂ]
+    ReducedGroupCStarTrace.GroupHilbert G).le_opNorm
+      (ReducedGroupCStarTrace.deltaOne G)
+  rw [hdelta, mul_one] at hop
+  exact hpoint.trans hop
+
+/-- Strong MF in the reduced-norm sense used in the manuscript: a sequence
+of positive-dimensional unitary models that is asymptotically multiplicative
+in operator norm and recovers the reduced norm of every algebraic group-ring
+element.  No trace-convergence premise is added. -/
+structure StrongMFApproximation (G : Type u) [Group G] where
+  model : ℕ → FiniteModel
+  modelNonempty : ∀ n, 0 < Fintype.card (model n)
+  map : ∀ n, G → Matrix.unitaryGroup (model n) ℂ
+  asymptoticallyMultiplicative : ∀ g h : G, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+    ‖(map n (g * h) : Matrix (model n) (model n) ℂ) -
+        (map n g : Matrix (model n) (model n) ℂ) * map n h‖ ≤ ε
+  reducedNormConverges : ∀ c : G →₀ ℂ,
+    Tendsto
+      (fun n ↦ ‖matrixGroupRingEvaluation model map n c‖)
+      Filter.atTop
+      (nhds ‖reducedGroupRingEvaluation (G := G) c‖)
+
+/-- Strong MF, with exactly reduced-norm convergence and no separately
+assumed trace convergence. -/
+def IsStrongMF (G : Type u) [Group G] : Prop :=
+  Nonempty (StrongMFApproximation G)
+
+namespace StrongMFApproximation
+
+/-- Reduced-norm convergence supplies the uniform point separation omitted
+from the definition of strong MF, so every strong model is a weak/operator-
+corona MF model. -/
+noncomputable def toWeakMFApproximation
+    (A : StrongMFApproximation G) : WeakMFApproximation G where
+  separation := 1 / 2
+  separation_pos := by norm_num
+  model := A.model
+  modelNonempty := A.modelNonempty
+  map := A.map
+  asymptoticallyMultiplicative := A.asymptoticallyMultiplicative
+  separatedEventually := by
+    intro g h hgh
+    let c : G →₀ ℂ := Finsupp.single g 1 - Finsupp.single h 1
+    have htarget : 1 ≤ ‖reducedGroupRingEvaluation (G := G) c‖ := by
+      exact one_le_norm_reducedGroupRingEvaluation_single_sub g h hgh
+    have hev : ∀ᶠ n in Filter.atTop,
+        dist (‖matrixGroupRingEvaluation A.model A.map n c‖)
+          ‖reducedGroupRingEvaluation (G := G) c‖ < 1 / 2 :=
+      (Metric.tendsto_nhds.mp (A.reducedNormConverges c))
+        (1 / 2) (by norm_num)
+    obtain ⟨N, hN⟩ := eventually_atTop.1 hev
+    refine ⟨N, fun n hn ↦ ?_⟩
+    have hdist := hN n hn
+    rw [Real.dist_eq] at hdist
+    have heval :
+        matrixGroupRingEvaluation A.model A.map n c =
+          (A.map n g : Matrix (A.model n) (A.model n) ℂ) - A.map n h := by
+      simp [c, matrixGroupRingEvaluation]
+    rw [heval] at hdist
+    have hlower := (abs_lt.mp hdist).1
+    linarith
+
+end StrongMFApproximation
+
+/-- Strong MF implies the operator-norm ultraproduct formulation without a
+countability assumption. -/
+theorem IsStrongMF.isUltraproductMF
+    (h : IsStrongMF G) : IsUltraproductMF G := by
+  rcases h with ⟨A⟩
+  let U : Ultrafilter ℕ := Ultrafilter.of Filter.cofinite
+  have hU : ((U : Ultrafilter ℕ) : Filter ℕ) ≤ Filter.cofinite :=
+    Ultrafilter.of_le _
+  obtain ⟨rho, hrho⟩ := A.toWeakMFApproximation.exists_normUltraproductEmbedding hU
+  exact ⟨U, hU, A.model, A.modelNonempty, rho, hrho⟩
+
+/-- Strong MF implies CDE/operator-corona MF for countable groups. -/
+theorem IsStrongMF.isGroupTheoreticMF [Countable G]
+    (h : IsStrongMF G) : IsGroupTheoreticMF G :=
+  h.isUltraproductMF.isGroupTheoreticMF
+
+/-- A trace-regular MF approximation is trace-preserving and, in addition,
+recovers the reduced operator norm of every algebraic group-ring element.
+This is deliberately not named `StrongMFApproximation`: the manuscript's
+strong-MF definition requires reduced-norm convergence but does not separately
+assume trace convergence. -/
+structure TraceRegularMFApproximation (G : Type u) [Group G]
     extends TracePreservingMFApproximation G where
   reducedNormConverges : ∀ c : G →₀ ℂ,
     Tendsto
@@ -150,12 +275,14 @@ structure RegularMFApproximation (G : Type u) [Group G]
       Filter.atTop
       (nhds ‖reducedGroupRingEvaluation (G := G) c‖)
 
-/-- Regular MF in the strong, reduced-norm-preserving sense. -/
-def IsRegularMF (G : Type u) [Group G] : Prop :=
-  Nonempty (RegularMFApproximation G)
+/-- Existence of a trace-preserving, reduced-norm-preserving MF
+approximation.  This property is stronger on its face than the manuscript's
+strong-MF predicate. -/
+def IsTraceRegularMF (G : Type u) [Group G] : Prop :=
+  Nonempty (TraceRegularMFApproximation G)
 
-theorem IsRegularMF.isTracePreservingMF
-    (h : IsRegularMF G) : IsTracePreservingMF G := by
+theorem IsTraceRegularMF.isTracePreservingMF
+    (h : IsTraceRegularMF G) : IsTracePreservingMF G := by
   rcases h with ⟨A⟩
   exact ⟨A.toTracePreservingMFApproximation⟩
 
@@ -173,8 +300,8 @@ theorem IsTracePreservingMF.isGroupTheoreticMF [Countable G]
     (h : IsTracePreservingMF G) : IsGroupTheoreticMF G :=
   h.isUltraproductMF.isGroupTheoreticMF
 
-theorem IsRegularMF.isGroupTheoreticMF [Countable G]
-    (h : IsRegularMF G) : IsGroupTheoreticMF G :=
+theorem IsTraceRegularMF.isGroupTheoreticMF [Countable G]
+    (h : IsTraceRegularMF G) : IsGroupTheoreticMF G :=
   h.isTracePreservingMF.isGroupTheoreticMF
 
 /-! ## Reduced and full group C-star algebra formulations -/
@@ -227,12 +354,6 @@ structure FullGroupCStarAlgebra (G : Type u) [Group G] where
       ∃! f : carrier →⋆ₐ[ℂ] B,
         ∀ g : G, f (inclusion g : carrier) = (rho g : B)
 
-/-- Full-C-star MF: a full group C-star realization is an MF algebra. -/
-def IsFullGroupCStarMF (G : Type u) [Group G] : Prop :=
-  ∃ C : FullGroupCStarAlgebra G,
-    letI : CStarAlgebra C.carrier := C.inst
-    IsMFAlgebra C.carrier
-
 /-- The bare MF embedding property of any full group C-star realization
 already forces the group-theoretic MF property.  Separability and the
 universal-property field are not needed for this one-way implication; the
@@ -245,11 +366,15 @@ theorem FullGroupCStarAlgebra.isGroupTheoreticMF_of_hasMFEmbedding
   intro h
   exact h.isOperatorMF C.inclusion C.inclusionInjective
 
-theorem IsFullGroupCStarMF.isGroupTheoreticMF [Countable G]
-    (h : IsFullGroupCStarMF G) : IsGroupTheoreticMF G := by
-  rcases h with ⟨C, hC⟩
+/-- If a supplied full group C-star realization is an MF algebra, then the
+group is group-theoretically MF. -/
+theorem FullGroupCStarAlgebra.isGroupTheoreticMF_of_isMFAlgebra
+    [Countable G] (C : FullGroupCStarAlgebra G) :
+    letI : CStarAlgebra C.carrier := C.inst
+    IsMFAlgebra C.carrier → IsGroupTheoreticMF G := by
   letI : CStarAlgebra C.carrier := C.inst
-  exact C.isGroupTheoreticMF_of_hasMFEmbedding hC.2
+  intro h
+  exact C.isGroupTheoreticMF_of_hasMFEmbedding h.2
 
 /-! ## Contrapositive obstruction package -/
 
@@ -274,9 +399,13 @@ theorem not_isTracePreservingMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsTracePreservingMF G :=
   mt IsTracePreservingMF.isGroupTheoreticMF h
 
-theorem not_isRegularMF_of_not_isGroupTheoreticMF [Countable G]
-    (h : ¬ IsGroupTheoreticMF G) : ¬ IsRegularMF G :=
-  mt IsRegularMF.isGroupTheoreticMF h
+theorem not_isStrongMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsStrongMF G :=
+  mt IsStrongMF.isGroupTheoreticMF h
+
+theorem not_isTraceRegularMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsTraceRegularMF G :=
+  mt IsTraceRegularMF.isGroupTheoreticMF h
 
 theorem not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
     (h : ¬ IsGroupTheoreticMF G) : ¬ IsReducedGroupCStarMF G :=
@@ -289,10 +418,6 @@ theorem not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
     ¬ HasMFEmbedding (ReducedGroupCStarTrace.ReducedGroupCStar G) :=
   mt reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h
 
-theorem not_isFullGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
-    (h : ¬ IsGroupTheoreticMF G) : ¬ IsFullGroupCStarMF G :=
-  mt IsFullGroupCStarMF.isGroupTheoreticMF h
-
 /-- A non-MF group forbids the bare faithful corona embedding of every full
 group C-star realization. -/
 theorem not_hasMFEmbedding_fullGroupCStar_of_not_isGroupTheoreticMF
@@ -302,6 +427,18 @@ theorem not_hasMFEmbedding_fullGroupCStar_of_not_isGroupTheoreticMF
     ¬ HasMFEmbedding C.carrier := by
   letI : CStarAlgebra C.carrier := C.inst
   exact mt C.isGroupTheoreticMF_of_hasMFEmbedding h
+
+/-- In particular, a non-MF group forbids every supplied full group C-star
+realization from being an MF algebra.  This is pointwise in the supplied
+realization; it makes no vacuous existential claim that such a realization
+has been constructed in the formal library. -/
+theorem not_isMFAlgebra_fullGroupCStar_of_not_isGroupTheoreticMF
+    [Countable G] (h : ¬ IsGroupTheoreticMF G)
+    (C : FullGroupCStarAlgebra G) :
+    letI : CStarAlgebra C.carrier := C.inst
+    ¬ IsMFAlgebra C.carrier := by
+  letI : CStarAlgebra C.carrier := C.inst
+  exact mt C.isGroupTheoreticMF_of_isMFAlgebra h
 
 /-! ## The unrelated modular-by-finite meaning -/
 

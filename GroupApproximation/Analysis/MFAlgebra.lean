@@ -38,8 +38,10 @@ nonunital, as in the standard notion of a C-star subalgebra. -/
 def HasMFEmbedding (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
   ∃ X : ℕ → FiniteModel, ∃ hne : ∀ n, Nonempty (X n),
     letI : ∀ n, Nonempty (X n) := hne
-    ∃ e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-      Function.Injective e
+    (∀ n, 0 < Fintype.card (X n)) ∧
+      StrictMono (fun n ↦ Fintype.card (X n)) ∧
+        ∃ e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
+          Function.Injective e
 
 /-- The Blackadar--Kirchberg MF property for a complex C-star algebra:
 separability and a faithful, possibly nonunital, star homomorphism into a
@@ -51,10 +53,13 @@ def IsMFAlgebra (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
 its identity map.  No separability claim is made. -/
 theorem normMatrixCStarCorona_hasMFEmbedding
     (X : ℕ → FiniteModel) (hne : ∀ n, Nonempty (X n)) :
-    letI : ∀ n, Nonempty (X n) := hne
-    HasMFEmbedding (NormMatrixCStarCorona (fun n ↦ X n)) := by
+    (hX : ∀ n, 0 < Fintype.card (X n)) →
+    (hmono : StrictMono (fun n ↦ Fintype.card (X n))) →
+      letI : ∀ n, Nonempty (X n) := hne
+      HasMFEmbedding (NormMatrixCStarCorona (fun n ↦ X n)) := by
+  intro hX hmono
   letI : ∀ n, Nonempty (X n) := hne
-  refine ⟨X, hne, NonUnitalStarAlgHom.id ℂ _, ?_⟩
+  refine ⟨X, hne, hX, hmono, NonUnitalStarAlgHom.id ℂ _, ?_⟩
   intro a b hab
   change a = b at hab
   exact hab
@@ -147,14 +152,14 @@ theorem HasMFEmbedding.isCDEOperatorMF
     (hA : HasMFEmbedding A)
     (rho : G →* unitary A) (hrho : Function.Injective rho) :
     IsCDEOperatorMF G := by
-  rcases hA with ⟨X, hne, e, he⟩
+  rcases hA with ⟨X, hne, hX, _hmono, e, he⟩
   letI : ∀ n, Nonempty (X n) := hne
   let rhoCStar : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
     (nonUnitalStarAlgHomUnitaryMap e).comp rho
   let rhoSequence : G →* NormMatrixCoronaUnitary X :=
     (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rhoCStar
   have hop : IsOperatorMF G :=
-    ⟨X, fun n ↦ Fintype.card_pos_iff.mpr (hne n), rhoSequence,
+    ⟨X, hX, rhoSequence,
       (normMatrixCoronaUnitaryEquiv X).symm.injective.comp
         ((nonUnitalStarAlgHomUnitaryMap_injective he).comp hrho)⟩
   exact (isCDEOperatorMF_iff_isOperatorMF G).mpr hop
@@ -185,10 +190,10 @@ group of an algebra having the bare MF embedding property. -/
 theorem IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding
     {G : Type u} [Group G] [Countable G]
     (h : IsCDEOperatorMF G) : HasMFAlgebraUnitaryEmbedding G := by
-  rcases h with ⟨X, hne, _hX, _hmono, rho, hrho⟩
+  rcases h with ⟨X, hne, hX, hmono, rho, hrho⟩
   letI : ∀ n, Nonempty (X n) := hne
   refine ⟨NormMatrixCStarCorona (fun n ↦ X n), inferInstance, ?_⟩
-  exact ⟨normMatrixCStarCorona_hasMFEmbedding X hne, rho, hrho⟩
+  exact ⟨normMatrixCStarCorona_hasMFEmbedding X hne hX hmono, rho, hrho⟩
 
 /-- An embedding into the unitary group of an algebra with a bare MF
 embedding composes, using the corner-complement correction above, to give

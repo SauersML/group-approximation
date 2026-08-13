@@ -4,10 +4,13 @@ import GroupApproximation.Sofic.ChosenNonMFTheorem
 /-!
 # The non-MF witness under every analytic meaning
 
-The standard group, CDE-corona, ultraproduct, finite-set, and MF-algebra
-meanings are equivalent for the chosen countable group.  The trace-preserving,
-regular, reduced-C-star, and full-C-star meanings are stronger, so the same
-counterexample rules them out by contraposition.
+The group-corona, CDE-corona, ultraproduct, finite-set, and bare
+MF-embeddable-ambient formulations are equivalent for the chosen countable
+group.  The trace-preserving,
+trace-regular, and reduced-C-star meanings are stronger, so the same
+counterexample rules them out by contraposition.  Full group C-star
+consequences are pointwise in a supplied formal realization and therefore do
+not appear in this closed aggregate.
 
 The unrelated modular-by-finite predicate is intentionally absent: the
 letters “MF” have a different meaning there, and no implication between that
@@ -19,8 +22,8 @@ namespace ChosenNonMFTheorem
 
 open ChosenMarkedPresentation
 
-/-- The chosen finitely presented counterexample fails every matrix and
-C-star-algebra meaning of MF formalized in `MFDefinitions`. -/
+/-- The chosen finitely presented counterexample fails every closed matrix
+and reduced-C-star MF predicate formalized in `MFDefinitions`. -/
 theorem chosenFinitelyPresented_not_all_analyticMFDefinitions :
     Group.IsFinitelyPresented MarkedGroup ∧
       ¬ IsGroupTheoreticMF MarkedGroup ∧
@@ -28,10 +31,10 @@ theorem chosenFinitelyPresented_not_all_analyticMFDefinitions :
       ¬ IsUltraproductMF MarkedGroup ∧
       ¬ IsFiniteSetMF MarkedGroup ∧
       ¬ HasMFAlgebraUnitaryEmbedding MarkedGroup ∧
+      ¬ IsStrongMF MarkedGroup ∧
       ¬ IsTracePreservingMF MarkedGroup ∧
-      ¬ IsRegularMF MarkedGroup ∧
-      ¬ IsReducedGroupCStarMF MarkedGroup ∧
-      ¬ IsFullGroupCStarMF MarkedGroup := by
+      ¬ IsTraceRegularMF MarkedGroup ∧
+      ¬ IsReducedGroupCStarMF MarkedGroup := by
   have h : ¬ IsGroupTheoreticMF MarkedGroup :=
     chosenFinitelyPresented_not_isOperatorMF.2
   exact ⟨chosenFinitelyPresented_not_isOperatorMF.1, h,
@@ -39,10 +42,10 @@ theorem chosenFinitelyPresented_not_all_analyticMFDefinitions :
     not_isUltraproductMF_of_not_isGroupTheoreticMF h,
     not_isFiniteSetMF_of_not_isGroupTheoreticMF h,
     not_hasMFAlgebraUnitaryEmbedding_of_not_isGroupTheoreticMF h,
+    not_isStrongMF_of_not_isGroupTheoreticMF h,
     not_isTracePreservingMF_of_not_isGroupTheoreticMF h,
-    not_isRegularMF_of_not_isGroupTheoreticMF h,
-    not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF h,
-    not_isFullGroupCStarMF_of_not_isGroupTheoreticMF h⟩
+    not_isTraceRegularMF_of_not_isGroupTheoreticMF h,
+    not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF h⟩
 
 end ChosenNonMFTheorem
 end GroupApproximation
