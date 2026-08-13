@@ -554,6 +554,8 @@ the Lean kernel (with warnings treated as errors): the operator-norm MF
 residual and its one-element non-MF criterion; the internal property~(T)
 construction and Shalom finitely presented Kazhdan-cover theorem; an explicit
 injective proper self-compression of the universal rank-four Kazhdan group;
+the reduction of an arbitrary ultrafilter-indexed nontrivial marked image to
+a sequential operator-norm almost representation with a uniform marked gap;
 and the finite-dimensional identity
 \[
  \bigl\|(1-P)UP\bigr\|_2^2
@@ -562,9 +564,12 @@ and the finite-dimensional identity
 for every unitary matrix $U$ and orthogonal projection $P$.
 \leanverified{Sofic/NormMFResidualDetector}{GroupApproximation.not_isWeakMF_of_normMFInvisible}
 \leanverified{Leavitt/ShiftEndomorphism}{GroupApproximation.BinaryLeavitt.elementaryShift_injective}
+\leanverified{Sofic/NormUltraproductSequentialExtraction}{GroupApproximation.exists_markedOpAlmostRepresentation_of_ne_one}
 \leanverified{Sofic/UnitaryProjectionBalance}{GroupApproximation.hsNormSq_unitary_projection_balance}
 
-The remaining machine-checked endpoint is the finite-stage assembly which
+Thus the arbitrary index set and ultrafilter no longer occur in the analytic
+gap.  The remaining machine-checked endpoint is the sequential finite-stage
+assembly which
 combines negative spectral-sector rounding, the adjoint Kazhdan projection,
 one-sided compression, and the displayed leakage balance.  In the source this
 is presently isolated as one explicit placeholder in
