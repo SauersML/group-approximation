@@ -1,0 +1,98 @@
+{
+  "two_sheet": {
+    "q_terms": 2,
+    "B_terms": [4, 4],
+    "B_corner_terms": [8, 8],
+    "B_corner_sq_is_q": [true, true],
+    "B_corner_raw_fixed": [true, true],
+    "B_corner_pair_commutes": true,
+    "B_corner_commutes_Z": [
+      [true, true],
+      [true, true]
+    ]
+  },
+  "coefficient_character_cuts": {
+    "count": 4,
+    "term_counts": {
+      "(-1, -1)": 26,
+      "(-1, 1)": 26,
+      "(1, -1)": 26,
+      "(1, 1)": 26
+    },
+    "traces": {
+      "(-1, -1)": "1/8",
+      "(-1, 1)": "1/8",
+      "(1, -1)": "1/8",
+      "(1, 1)": "1/8"
+    },
+    "pairwise_orthogonal": true,
+    "sum_is_q": true
+  },
+  "comb_character_block_zero_table": {
+    "(-1, -1)": {
+      "(-1, -1)": false,
+      "(-1, 1)": false,
+      "(1, -1)": false,
+      "(1, 1)": false
+    },
+    "(-1, 1)": {
+      "(-1, -1)": false,
+      "(-1, 1)": false,
+      "(1, -1)": false,
+      "(1, 1)": false
+    },
+    "(1, -1)": {
+      "(-1, -1)": false,
+      "(-1, 1)": false,
+      "(1, -1)": false,
+      "(1, 1)": false
+    },
+    "(1, 1)": {
+      "(-1, -1)": false,
+      "(-1, 1)": false,
+      "(1, -1)": false,
+      "(1, 1)": false
+    }
+  },
+  "comb_character_block_trace_table": {
+    "(-1, -1)": {
+      "(-1, -1)": "1/64",
+      "(-1, 1)": "1/64",
+      "(1, -1)": "1/64",
+      "(1, 1)": "1/64"
+    },
+    "(-1, 1)": {
+      "(-1, -1)": "1/64",
+      "(-1, 1)": "1/64",
+      "(1, -1)": "1/64",
+      "(1, 1)": "1/64"
+    },
+    "(1, -1)": {
+      "(-1, -1)": "1/64",
+      "(-1, 1)": "1/64",
+      "(1, -1)": "1/64",
+      "(1, 1)": "1/64"
+    },
+    "(1, 1)": {
+      "(-1, -1)": "1/64",
+      "(-1, 1)": "1/64",
+      "(1, -1)": "1/64",
+      "(1, 1)": "1/64"
+    }
+  },
+  "comb_carrier_overlap_trace": "1/4",
+  "pauli_carrier": {
+    "carrier_terms": 4,
+    "initial_terms": 8,
+    "transported_carrier_terms": 4,
+    "raw_coefficient_cuts_commute_initial": true,
+    "transported_coefficient_cuts_commute_transported_carrier": true,
+    "full_containment_leakage_is_zero": false,
+    "raw_character_sector_leakage_zero": {
+      "(-1, -1)": false,
+      "(-1, 1)": false,
+      "(1, -1)": false,
+      "(1, 1)": false
+    }
+  }
+}

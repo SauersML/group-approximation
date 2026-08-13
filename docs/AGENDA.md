@@ -4,6 +4,19 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: the comb is Fourier-flat on the coefficient packet
+
+`TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md` computes the exact `4 x 4`
+transition table between the raw-invariant coefficient characters and their
+comb conjugates.  Every character cut has trace `1/8`, every transition block
+has squared Hilbert--Schmidt mass `1/64`, and no block vanishes.  This supplies
+the fixed positive-density half of the multiplication-module attack and kills
+the Hall-zero variant.  The projection block-mass identity is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The remaining theorem must force a
+one-sided block to vanish only after finite-multiplicity module recovery; the
+reverse block then retains the canonical `1/64` mass and violates finite
+projection balance.
+
 ### 2026-08-13: raw double-Pauli coefficient packet
 
 `TRUE_RAW_DOUBLE_PAULI_COEFFICIENT_PACKET.md` identifies the first exact

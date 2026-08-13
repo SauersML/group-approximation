@@ -2,6 +2,28 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 exact mass floor: every comb coefficient block is `1/64`
+
+The fixed symbolic block table is complete.  If `F_epsilon` are the four
+trace-`1/8` character cuts of the raw-invariant coefficient `C2^2`, then
+
+```text
+tau(F_epsilon U* F_eta U)=1/64
+```
+
+for all sixteen pairs.  No block vanishes.  See
+`TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md` and the exact rational
+group-algebra certificate.  Since `||FG||_2^2=tau(FG)` for projections, every
+block has a fixed microstate mass floor; the generic identity is Lean-checked.
+
+This removes positive-density recovery from the final analytic gate.  The
+highest-yield theorem is now one-sided finite-multiplicity vanishing: identify
+the coefficient multiplication module inside a matrix coordinate and prove
+that one orientation of a chosen `F_epsilon`/comb block is `o(1)`, while the
+opposite orientation retains `1/64-o(1)`.  `UnitaryProjectionBalance` then
+gives the contradiction.  An ambient support or Hall proof cannot work,
+because the exact `4 x 4` graph is complete and Fourier-flat.
+
 ## 2026-08-13 live bridge: comb blocks of the raw-invariant coefficient
 
 The raw compressor now supplies a canonical positive-density coefficient

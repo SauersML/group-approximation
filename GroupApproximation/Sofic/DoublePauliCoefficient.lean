@@ -205,4 +205,32 @@ theorem twoSheetCoefficient_sq_one
       rw [hPAsq, hcrossLeft, hcrossRight, hcompXsq]
     _ = 1 := by module
 
+/-- For two orthogonal projections, the squared Hilbert--Schmidt mass of the
+transition block is the real part of their tracial overlap.  This converts
+the exact `1/64` double-Pauli overlap table into a fixed block-mass table. -/
+theorem hsNormSq_projection_product_eq_re_normTrace
+    (Y : FiniteModel) (P Q : Matrix Y Y ℂ)
+    (hPstar : Pᴴ = P) (hPid : P * P = P)
+    (hQstar : Qᴴ = Q) (hQid : Q * Q = Q) :
+    hsNormSq Y (P * Q) = (normTrace Y (P * Q)).re := by
+  have htrace :
+      normTrace Y ((P * Q) * (P * Q)ᴴ) = normTrace Y (P * Q) := by
+    unfold normTrace
+    rw [Matrix.conjTranspose_mul, hPstar, hQstar]
+    congr 1
+    have hmul : (P * Q) * (Q * P) = (P * Q) * P := by
+      calc
+        (P * Q) * (Q * P) = P * (Q * Q) * P := by noncomm_ring
+        _ = P * Q * P := by rw [hQid]
+        _ = (P * Q) * P := by rfl
+    calc
+      Matrix.trace ((P * Q) * (Q * P)) =
+          Matrix.trace ((P * Q) * P) := by rw [hmul]
+      _ = Matrix.trace (P * (P * Q)) := Matrix.trace_mul_comm _ _
+      _ = Matrix.trace (P * Q) := by rw [← Matrix.mul_assoc, hPid]
+  have hcomplex := ofReal_hsNormSq Y (P * Q)
+  rw [htrace] at hcomplex
+  have hreal := congrArg Complex.re hcomplex
+  simpa using hreal
+
 end GroupApproximation
