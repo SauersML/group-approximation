@@ -786,19 +786,18 @@ without further comment: $\hsnorm{x}\le\opnorm{x}$;
 $|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
 $u,v$.
 
-Given a sequence $(d_n)_{n\in J}$ of positive integers indexed by an
-infinite set $J\subseteq\N$, we write
+Given a sequence $(d_n)_{n\in\N}$ of positive integers, we write
 \[
-  \mathcal Q\bigl((d_n)_{n\in J}\bigr)
-  \;=\;\prod_{n\in J}^{\ell^\infty} M_{d_n}(\C)
-  \Big/\bigoplus_{n\in J}^{c_0} M_{d_n}(\C),
+  \mathcal Q\bigl((d_n)_{n\in\N}\bigr)
+  \;=\;\prod_{n\in\N}^{\ell^\infty} M_{d_n}(\C)
+  \Big/\bigoplus_{n\in\N}^{c_0} M_{d_n}(\C),
 \]
 the quotient of the bounded $C^*$-product by the ideal of sequences with
 $\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
 corona}.  We also write
 \[
- \Ucor((d_n)_{n\in J})
- =\prod_{n\in J}\U(M_{d_n}(\C))\Big/
+ \Ucor((d_n)_{n\in\N})
+ =\prod_{n\in\N}\U(M_{d_n}(\C))\Big/
  \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
 \]
 A \emph{corona representation} of a group $E$ is a homomorphism from
@@ -1308,8 +1307,8 @@ paper carries this out.
 
 \section{Norm matrix coronas}\label{sec:corona}
 
-Throughout this section $\mathcal Q=\mathcal Q((d_n)_{n\in J})$ is a
-norm matrix corona, $q\colon\prod_{n\in J}M_{d_n}(\C)\to\mathcal Q$ the
+Throughout this section $\mathcal Q=\mathcal Q((d_n)_{n\in\N})$ is a
+norm matrix corona, $q\colon\prod_{n\in\N}M_{d_n}(\C)\to\mathcal Q$ the
 quotient map.
 
 The following lifting facts are standard perturbation theory; see
@@ -1319,7 +1318,7 @@ Loring \cite{Loring} for a systematic treatment.
 \leavevmode
 \begin{enumerate}
   \item Every projection $e\in\mathcal Q$ lifts to a sequence
-    $(e_n)_{n\in J}$ of projections, $e_n\in M_{d_n}(\C)$.
+    $(e_n)_{n\in\N}$ of projections, $e_n\in M_{d_n}(\C)$.
   \item Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
 \end{enumerate}
 \end{lemma}
@@ -1431,7 +1430,7 @@ $\opnorm{x_n^*x_n-1}\to0$.  Eventually $x_n$ is invertible (a
 left-invertible square matrix is invertible), and the unitary
 $u_n=x_n(x_n^*x_n)^{-1/2}$ satisfies $\opnorm{u_n-x_n}\to0$; hence
 $v=q((u_n))$ is unitary.  For $M_k(\mathcal Q)$ note
-$M_k(\mathcal Q)\cong\mathcal Q((k\,d_n)_{n\in J})$, since matrix
+$M_k(\mathcal Q)\cong\mathcal Q((k\,d_n)_{n\in\N})$, since matrix
 amplification commutes with products and with the ideal of null
 sequences.
 
@@ -1457,36 +1456,38 @@ i.e.\ $p=q$.
 \end{proof}
 
 \begin{lemma}[corner coronas]\label{lem:cornercorona}
-Let $e\in\mathcal Q$ be a nonzero projection.  Then there are an
-infinite set $J'\subseteq J$ and positive integers $(r_n)_{n\in J'}$
-with $r_n\le d_n$ such that $e\mathcal Qe$ is unitally
+Let $e\in\mathcal Q$ be a nonzero projection.  Then there are a strictly
+increasing sequence $(j_k)_{k\in\N}$ in $\N$ and positive integers
+$(r_k)_{k\in\N}$ with $r_k\le d_{j_k}$ such that $e\mathcal Qe$ is unitally
 $*$-isomorphic to the norm matrix corona
-$\mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr)$, by an
+$\mathcal Q'=\mathcal Q\bigl((r_k)_{k\in\N}\bigr)$, by an
 isomorphism carrying $e$ to $1$.
 \end{lemma}
 
 \begin{proof}
 By Lemma~\ref{lem:lift}(1) lift $e$
-to projections $(e_n)$; let $J'=\{n\in J: e_n\neq0\}$ and
-$r_n=\operatorname{rank}e_n$ for $n\in J'$.  The set $J'$ is infinite,
+to projections $(e_n)$; let $S=\{n\in\N:e_n\neq0\}$.  The set $S$ is infinite,
 since otherwise $(e_n)$ would be a null sequence and $e=0$.
+Enumerate it increasingly as $S=\{j_0<j_1<\cdots\}$ and put
+$r_k=\operatorname{rank}e_{j_k}$.  In particular $j_k\to\infty$.
 
 Consider the map
 \[
-  \Psi\colon \prod_{n\in J'} e_nM_{d_n}(\C)e_n
+  \Psi\colon \prod_{k\in\N} e_{j_k}M_{d_{j_k}}(\C)e_{j_k}
   \longrightarrow e\,\mathcal Q\,e,\qquad
-  (x_n)_{n\in J'}\longmapsto q\bigl((\tilde x_n)_{n\in J}\bigr),
+  (x_k)_{k\in\N}\longmapsto q\bigl((\tilde x_n)_{n\in\N}\bigr),
 \]
-where $\tilde x_n=x_n$ for $n\in J'$ and $\tilde x_n=0$ otherwise.
+where $\tilde x_{j_k}=x_k$ and $\tilde x_n=0$ for $n\notin S$.
 $\Psi$ is a $*$-homomorphism onto $e\mathcal Qe$: surjectivity holds
 because any $y\in e\mathcal Qe$ lifts to $(y_n)$ with
-$\opnorm{e_ny_ne_n-y_n}\to0$, and $e_ny_ne_n=0$ off $J'$.  Its kernel
-is exactly the sequences with $\opnorm{x_n}\to0$.  Choosing unitary
-identifications $e_n\C^{d_n}\cong\C^{r_n}$ identifies
-$e_nM_{d_n}(\C)e_n$ with $M_{r_n}(\C)$ compatibly with adjoints and
+$\opnorm{e_ny_ne_n-y_n}\to0$, and $e_ny_ne_n=0$ off $S$.  Because
+$j_k\to\infty$, its kernel is exactly the sequences with
+$\opnorm{x_k}\to0$.  Choosing unitary
+identifications $e_{j_k}\C^{d_{j_k}}\cong\C^{r_k}$ identifies
+$e_{j_k}M_{d_{j_k}}(\C)e_{j_k}$ with $M_{r_k}(\C)$ compatibly with adjoints and
 norms, so
 \[
-  e\,\mathcal Q\,e\;\cong\;\mathcal Q\bigl((r_n)_{n\in J'}\bigr)
+  e\,\mathcal Q\,e\;\cong\;\mathcal Q\bigl((r_k)_{k\in\N}\bigr)
   =\mathcal Q' ,
 \]
 a unital isomorphism carrying $e$ to $1$.
@@ -1495,13 +1496,13 @@ a unital isomorphism carrying $e$ to $1$.
 \begin{lemma}[finite-normal corners]\label{lem:corner}
 Let $H$ be a group, $F\trianglelefteq H$ a finite normal subgroup,
 and $\Theta\colon H\to\U(\mathcal Q)$ a corona representation whose
-restriction to $F$ is nontrivial.  Then there are an infinite set
-$J'\subseteq J$, positive integers $(r_n)_{n\in J'}$ with
-$r_n\le d_n$, and a corona representation
+restriction to $F$ is nontrivial.  Then there are a strictly
+increasing sequence $(j_n)_{n\in\N}$ and positive integers
+$(r_n)_{n\in\N}$ with $r_n\le d_{j_n}$, and a corona representation
 \[
   \Theta_-\colon H\longrightarrow
   \U\bigl(\mathcal Q'\bigr),\qquad
-  \mathcal Q'=\mathcal Q\bigl((r_n)_{n\in J'}\bigr),
+  \mathcal Q'=\mathcal Q\bigl((r_n)_{n\in\N}\bigr),
 \]
 with
 \[
@@ -1808,7 +1809,7 @@ restriction to $F$ is nontrivial; the proof of
 Theorem~\ref{thm:criterion} will derive a contradiction.  By
 Lemma~\ref{lem:corner} there is a corona representation
 $\Theta_-\colon H\to\U(\mathcal Q')$,
-$\mathcal Q'=\mathcal Q((r_n)_{n\in J'})$, with
+$\mathcal Q'=\mathcal Q((r_n)_{n\in\N})$, with
 $\sum_{f\in F}\Theta_-(f)=0$.  Using Lemma~\ref{lem:lift}(2), choose
 for every $g\in H$ a sequence of unitaries
 $U_{g,n}\in M_{r_n}(\C)$ lifting $\Theta_-(g)$, with $U_{1,n}=1$.
@@ -1817,7 +1818,7 @@ Let $K_n=L^2\bigl(M_{r_n}(\C),\tr_{r_n}\bigr)$, a Hilbert space of
 dimension $r_n^2$ whose bounded operators $B(K_n)$ form the matrix
 algebra $M_{r_n^2}(\C)$, and let
 \[
-  \mathcal B\;=\;\prod_{n\in J'}B(K_n)\Big/\bigoplus_{n\in J'}B(K_n),
+  \mathcal B\;=\;\prod_{n\in\N}B(K_n)\Big/\bigoplus_{n\in\N}B(K_n),
 \]
 again a norm matrix corona.  For a unitary $U\in M_{r_n}(\C)$ let
 $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
@@ -1831,7 +1832,7 @@ $\Ad U\in\U(B(K_n))$ denote $x\mapsto UxU^*$.
     \]
     hence $\opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}$ as operators on the
     Hilbert space $K_n$ (and therefore as elements of $B(K_n)$).
-  \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in J'}$
+  \item The class $\beta(g)$ of the sequence $(\Ad U_{g,n})_{n\in\N}$
     in $\mathcal B$ defines a group homomorphism
     $\beta\colon H\to\U(\mathcal B)$, independent of the choice of
     unitary lifts.
@@ -1963,9 +1964,9 @@ $(v^*)^*(v^*)=vv^*=Q_0$ and $(v^*)(v^*)^*=v^*v=P$; it yields $P=Q_0$.
 
 We now pass from the corona projection $P$ to its literal fixed-space action
 on a Hilbert-space ultraproduct.  Fix a free
-ultrafilter $\omega$ on the infinite index set $J'$, and let
+ultrafilter $\omega$ on $\N$, and let
 \[
-  K_\omega\;=\;\Bigl\{(\xi_n)_{n\in J'}:\ \xi_n\in K_n,\
+  K_\omega\;=\;\Bigl\{(\xi_n)_{n\in\N}:\ \xi_n\in K_n,\
   \sup_n\lVert\xi_n\rVert<\infty\Bigr\}\Big/
   \bigl\{(\xi_n):\ \lim_{n\to\omega}\lVert\xi_n\rVert=0\bigr\},
 \]
@@ -1973,7 +1974,7 @@ the Hilbert-space ultraproduct with inner product
 $\langle[\xi],[\eta]\rangle=\lim_{n\to\omega}\langle\xi_n,\eta_n\rangle$.
 
 \begin{lemma}\label{lem:sigma}
-For a bounded sequence $(T_n)_{n\in J'}$ of operators with class
+For a bounded sequence $(T_n)_{n\in\N}$ of operators with class
 $[T]\in\mathcal B$, the assignment
 $\sigma([T])\,[\,(\xi_n)\,]=[\,(T_n\xi_n)\,]$ is a well-defined unital
 $*$-homomorphism $\sigma\colon\mathcal B\to B(K_\omega)$.  Moreover
@@ -2101,7 +2102,7 @@ $\sum_{f\in F}V_{f,n}$ is an operator-norm lift of
 $\sum_{f\in F}\Theta_-(f)=0$:
 \[
   \opnorm{\,\sum_{f\in F}V_{f,n}\,}\;\longrightarrow\;0
-  \qquad(n\to\infty\ \text{in}\ J'),
+  \qquad(n\to\infty),
 \]
 hence also along $\omega$.  On the other hand, by Step 4,
 \[
@@ -2278,10 +2279,10 @@ $G_1\setminus R$ meeting every nontrivial coset of $R$.  For each $i$
 choose a corona representation and write it, through
 $\kappa_{(d_n^{(i)})}$, as
 $\Theta_i\colon G_1\to\U(\mathcal Q_i)$,
-$\mathcal Q_i=\mathcal Q\bigl((d^{(i)}_n)_{n\in J_i}\bigr)$, with
+$\mathcal Q_i=\mathcal Q\bigl((d^{(i)}_n)_{n\in\N}\bigr)$, with
 $\Theta_i(g_i)\neq1$; put
 $\varepsilon_i=\tfrac12\opnorm{\Theta_i(g_i)-1}>0$, and choose
-unitary lifts $\bigl(U^{(i)}_{g,n}\bigr)_{n\in J_i}$ of $\Theta_i(g)$
+unitary lifts $\bigl(U^{(i)}_{g,n}\bigr)_{n\in\N}$ of $\Theta_i(g)$
 for every $g\in G_1$ (Lemma~\ref{lem:lift}), with $U^{(i)}_{1,n}=1$.
 Recall that the quotient norm in a corona is the limit superior of
 the coordinate norms: subtracting a null sequence does not change the
@@ -2293,10 +2294,10 @@ $U^{(i)}_{g,n}U^{(i)}_{h,n}$ and $U^{(i)}_{gh,n}$ with
 $g,h\in\{h_1,\dots,h_k\}$ lift the same corona elements, so there is
 $n_0$ with all the corresponding defects at most $1/k$ for
 $n\ge n_0$; and since
-$\limsup_{n\in J_i}\opnorm{U^{(i)}_{g_i,n}-1}=2\varepsilon_i$, there
-are infinitely many $n\in J_i$ with
+$\limsup_{n\to\infty}\opnorm{U^{(i)}_{g_i,n}-1}=2\varepsilon_i$, there
+are infinitely many $n\in\N$ with
 $\opnorm{U^{(i)}_{g_i,n}-1}\ge\varepsilon_i$.  Choose
-$n_i(k)\in J_i$ satisfying both conditions and set
+$n_i(k)\in\N$ satisfying both conditions and set
 \[
   \Phi_k(g)\;=\;\bigoplus_{i\le k}U^{(i)}_{g,\,n_i(k)}
   \;\in\;\U\bigl(M_{D_k}(\C)\bigr),\qquad
