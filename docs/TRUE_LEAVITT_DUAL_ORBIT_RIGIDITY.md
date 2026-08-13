@@ -58,8 +58,7 @@ This stronger proof is formalized in
 
 For comparison, the same fact is visible in the three-leaf prefix
 equivalence `R ~= M_3(R)`.  For `i != j`,
-
-For `i != j`, the off-diagonal matrix unit satisfies
+the off-diagonal matrix unit satisfies
 
 \[
  E_{ij}(a)=(I+E_{ij}(a))-I,
