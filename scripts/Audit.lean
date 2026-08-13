@@ -311,6 +311,8 @@ def headlineTheorems : List Name :=
    ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF,
    ``ExplicitNonMFTheorem.exists_countable_not_isWeakMF,
    ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
+   ``ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF,
+   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
    ``universalLeavittEL4_not_isSofic,
    ``universalLeavittEL3_not_isSofic,
    ``universalLeavittUnits_not_isSofic,

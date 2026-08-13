@@ -48,6 +48,9 @@ generated from the manuscript's margin notes; this module is the short list.
   killed by every homomorphism to every norm-matrix ultraproduct.
 * `ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF` -- the
   independently constructed finitely presented marked group is not MF.
+* `ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF` -- the
+  same conclusion stated for the standard cofinite norm-matrix-corona
+  predicate, rather than the local weak-MF predicate.
 * `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
   `ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
   headline existence forms.
@@ -173,8 +176,10 @@ export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
 
 export GroupApproximation.ExplicitNonMFTheorem
   (mark_normMFInvisible explicit_finitelyPresented_not_isWeakMF
+    explicit_finitelyPresented_not_isOperatorMF
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF
-    exists_finitelyPresented_not_isWeakMF)
+    exists_finitelyPresented_not_isWeakMF
+    countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF)
 
 /-! ### Reach of the construction -/
 

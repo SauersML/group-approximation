@@ -10,3 +10,5 @@ project-wide endpoint audit.
 
 #print axioms GroupApproximation.ExplicitNonMFTheorem.mark_normMFInvisible
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF

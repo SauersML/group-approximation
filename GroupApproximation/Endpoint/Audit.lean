@@ -424,3 +424,5 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isWeakMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_countable_not_isWeakMF
 #print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.explicit_finitelyPresented_not_isOperatorMF
+#print axioms GroupApproximation.ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
