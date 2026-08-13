@@ -261,7 +261,7 @@ theorem signAmbient_central (g : Ambient α hα) :
 
 include hα in
 /-- The sign survives in the ambient group. -/
-theorem signAmbient_ne_one [Countable Γ] : signAmbient α hα ≠ 1 := by
+theorem signAmbient_ne_one : signAmbient α hα ≠ 1 := by
   intro h
   have h1 : sign (Cosets α hα) = 1 := by
     apply (inl_injective (N := CliffordLamp (Cosets α hα))
