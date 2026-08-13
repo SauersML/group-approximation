@@ -51,13 +51,6 @@ theorem normSq_add_le (z w : ℂ) :
   simp only [Complex.normSq_apply, Complex.add_re, Complex.add_im]
   nlinarith [sq_nonneg (z.re - w.re), sq_nonneg (z.im - w.im)]
 
-theorem sum_normSq_add_le {Y : Type*} [Fintype Y] (x y : Y → ℂ) :
-    ∑ i : Y, Complex.normSq ((x + y) i) ≤
-      2 * ∑ i : Y, Complex.normSq (x i) +
-        2 * ∑ i : Y, Complex.normSq (y i) := by
-  rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
-  exact Finset.sum_le_sum fun i _ ↦ normSq_add_le (x i) (y i)
-
 theorem sum_normSq_matrix_add_le {Y : Type*} [Fintype Y]
     (A C : Matrix Y Y ℂ) :
     ∑ i : Y, ∑ j : Y, Complex.normSq (A i j + C i j) ≤
@@ -67,12 +60,6 @@ theorem sum_normSq_matrix_add_le {Y : Type*} [Fintype Y]
   refine Finset.sum_le_sum fun i _ ↦ ?_
   rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
   exact Finset.sum_le_sum fun j _ ↦ normSq_add_le (A i j) (C i j)
-
-theorem sum_normSq_matrix_neg {Y : Type*} [Fintype Y] (A : Matrix Y Y ℂ) :
-    ∑ i : Y, ∑ j : Y, Complex.normSq (-A i j) =
-      ∑ i : Y, ∑ j : Y, Complex.normSq (A i j) := by
-  refine Finset.sum_congr rfl fun i _ ↦ Finset.sum_congr rfl fun j _ ↦ ?_
-  rw [Complex.normSq_neg]
 
 /-- Arithmetic–geometric mean bound for the real part of a pairing; the
 elementary replacement for the Cauchy–Schwarz inequality. -/
@@ -121,11 +108,14 @@ theorem re_star_dotProduct_le {Y : Type*} [Fintype Y]
     _ ≤ ∑ i : Y, (2 : ℝ)⁻¹ *
         (δ * Complex.normSq (a i) + δ⁻¹ * Complex.normSq (b i)) :=
       Finset.sum_le_sum fun i _ ↦ hpt i
+    _ = ∑ i : Y, (((2 : ℝ)⁻¹ * δ) * Complex.normSq (a i) +
+        ((2 : ℝ)⁻¹ * δ⁻¹) * Complex.normSq (b i)) := by
+      apply Finset.sum_congr rfl
+      intro i _
+      ring
     _ = (2 : ℝ)⁻¹ * (δ * ∑ i : Y, Complex.normSq (a i) +
         δ⁻¹ * ∑ i : Y, Complex.normSq (b i)) := by
-      rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
-      congr 1
-      funext i
+      rw [Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum]
       ring
 
 /-! ## Frobenius mass bookkeeping -/
@@ -199,28 +189,10 @@ theorem sum_normSq_of_mem_unitary (Y : FiniteModel) {u : Matrix Y Y ℂ}
 distance. -/
 theorem hsDistSq_le_two_add_two (Y : FiniteModel) (A C M : Matrix Y Y ℂ) :
     hsDistSq Y A C ≤ 2 * hsDistSq Y A M + 2 * hsDistSq Y M C := by
-  have hnum : ∑ i : Y, ∑ j : Y, Complex.normSq (A i j - C i j) ≤
-      2 * ∑ i : Y, ∑ j : Y, Complex.normSq (A i j - M i j) +
-        2 * ∑ i : Y, ∑ j : Y, Complex.normSq (M i j - C i j) := by
-    calc
-      ∑ i : Y, ∑ j : Y, Complex.normSq (A i j - C i j) =
-          ∑ i : Y, ∑ j : Y,
-            Complex.normSq ((A i j - M i j) + (M i j - C i j)) := by
-        refine Finset.sum_congr rfl fun i _ ↦
-          Finset.sum_congr rfl fun j _ ↦ ?_
-        congr 1
-        ring
-      _ ≤ 2 * ∑ i : Y, ∑ j : Y, Complex.normSq (A i j - M i j) +
-          2 * ∑ i : Y, ∑ j : Y, Complex.normSq (M i j - C i j) :=
-        sum_normSq_matrix_add_le _ _
-  by_cases hzero : Fintype.card Y = 0
-  · haveI hempty : IsEmpty Y := Fintype.card_eq_zero_iff.mp hzero
-    simp [hsDistSq]
-  · have hpos : (0 : ℝ) < Fintype.card Y := by
-      exact_mod_cast Nat.pos_of_ne_zero hzero
-    rw [hsDistSq, hsDistSq, hsDistSq, mul_div_assoc, mul_div_assoc,
-      ← add_div]
-    exact div_le_div_of_le_pos hpos hnum
+  change hsNormSq Y (A - C) ≤
+    2 * hsNormSq Y (A - M) + 2 * hsNormSq Y (M - C)
+  rw [show A - C = (A - M) + (M - C) by abel]
+  exact hsNormSq_add_le Y _ _
 
 theorem hsDistSq_comm (Y : FiniteModel) (A C : Matrix Y Y ℂ) :
     hsDistSq Y A C = hsDistSq Y C A := by
@@ -244,13 +216,11 @@ theorem hsDistSq_one_neg_one (Y : FiniteModel) (hY : 0 < Fintype.card Y) :
           ∑ i : Y, ∑ j : Y, (if i = j then (4 : ℝ) else 0) := by
         refine Finset.sum_congr rfl fun i _ ↦
           Finset.sum_congr rfl fun j _ ↦ ?_
-        rw [Matrix.neg_apply, sub_neg_eq_add, Matrix.one_apply,
-          Matrix.one_apply]
         by_cases hij : i = j
-        · rw [if_pos hij, if_pos hij, if_pos hij]
-          norm_num [Complex.normSq_apply]
-        · rw [if_neg hij, if_neg hij, if_neg hij]
-          norm_num
+        · subst j
+          norm_num [Matrix.neg_apply, sub_neg_eq_add, Matrix.one_apply,
+            Complex.normSq_apply]
+        · simp [Matrix.neg_apply, hij, Complex.normSq_apply]
       _ = ∑ _i : Y, (4 : ℝ) := by
         refine Finset.sum_congr rfl fun i _ ↦ ?_
         rw [Finset.sum_ite_eq (Finset.univ : Finset Y) i fun _ ↦ (4 : ℝ)]
@@ -387,9 +357,11 @@ theorem hsDistSq_commutator_one_le (Y : FiniteModel)
     simp
   · have hpos : (0 : ℝ) < Fintype.card Y := by
       exact_mod_cast Nat.pos_of_ne_zero hzero
-    rw [mul_div_assoc]
-    refine div_le_div_of_le_pos hpos ?_
-    calc
+    have hnum : ∑ i : Y, ∑ j : Y,
+        Complex.normSq ((Dm * Mm * Dmᴴ * Mmᴴ) i j -
+          (1 : Matrix Y Y ℂ) i j) ≤
+        4 * ∑ i : Y, ∑ j : Y, Complex.normSq (Mm i j - Dm i j) := by
+      calc
       ∑ i : Y, ∑ j : Y,
           Complex.normSq ((Dm * Mm * Dmᴴ * Mmᴴ) i j -
             (1 : Matrix Y Y ℂ) i j) =
@@ -408,6 +380,10 @@ theorem hsDistSq_commutator_one_le (Y : FiniteModel)
         refine Finset.sum_congr rfl fun i _ ↦
           Finset.sum_congr rfl fun j _ ↦ ?_
         rw [Matrix.sub_apply]
+    calc
+      _ ≤ (4 * ∑ i : Y, ∑ j : Y, Complex.normSq (Mm i j - Dm i j)) /
+          Fintype.card Y := div_le_div_of_le_pos hpos hnum
+      _ = _ := by ring
 
 /-! ## Vectorization linearity -/
 
@@ -430,18 +406,16 @@ theorem matVec_sum {Y : Type*} [Fintype Y] [DecidableEq Y]
     {I : Type*} (s : Finset I) (A : I → Matrix Y Y ℂ) :
     rowVec (∑ i ∈ s, A i) = ∑ i ∈ s, rowVec (A i) := by
   funext p
-  simp [rowVec, Finset.sum_apply]
+  simp only [rowVec, Matrix.sum_apply, Finset.sum_apply]
 
 theorem sum_mulVec {Y : Type*} [Fintype Y] {I : Type*} (s : Finset I)
     (A : I → Matrix Y Y ℂ) (x : Y → ℂ) :
     (∑ i ∈ s, A i) *ᵥ x = ∑ i ∈ s, A i *ᵥ x := by
-  funext j
-  simp only [Matrix.mulVec, dotProduct, Finset.sum_apply, Finset.sum_mul]
-  rw [Finset.sum_comm]
+  exact Matrix.sum_mulVec s A x
 
 /-! ## Group-word microstate telescopes -/
 
-variable {E : Type u} [Group E]
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-- Conjugate-transposition preserves operator-norm vanishing. -/
 theorem OpNormVanishing.conjT {B : OpAlmostRepresentation E}
@@ -451,6 +425,7 @@ theorem OpNormVanishing.conjT {B : OpAlmostRepresentation E}
   intro ε hε
   obtain ⟨N, hN⟩ := hx ε hε
   refine ⟨N, fun n hn ↦ ?_⟩
+  change ‖(x n)ᴴ‖ ≤ ε
   rw [← Matrix.star_eq_conjTranspose, norm_star]
   exact hN n hn
 
@@ -558,7 +533,7 @@ theorem lampMatrix_defect_vanishing (B : OpAlmostRepresentation E)
     (D : MarkedCompressionInclusionData Γ E) :
     OpNormVanishing B (fun n ↦
       lampMatrix B D n - B.map n (D.t * D.c * D.t⁻¹)) :=
-  (conj_matrix_defect_vanishing B D.t D.c).congr fun n ↦ rfl
+  (conj_matrix_defect_vanishing B D.t D.c).congr fun _ ↦ rfl
 
 theorem conjLampMatrix_defect_vanishing (B : OpAlmostRepresentation E)
     (D : MarkedCompressionInclusionData Γ E) :
@@ -611,7 +586,7 @@ theorem commutatorMatrix_defect_vanishing (B : OpAlmostRepresentation E)
   have hAh : OpNormVanishing B (fun n ↦
       (lampMatrix B D n)ᴴ -
         (B.map n x⁻¹ : Matrix (B.model n) (B.model n) ℂ)) := by
-    have h1 := (lampMatrix_defect_vanishing B D).conjT
+    have h1 := OpNormVanishing.conjT (lampMatrix_defect_vanishing B D)
     have h2 := (map_inv_vanishing B x).neg
     refine (h1.add h2).congr fun n ↦ ?_
     rw [Matrix.conjTranspose_sub]
@@ -619,7 +594,7 @@ theorem commutatorMatrix_defect_vanishing (B : OpAlmostRepresentation E)
   have hBh : OpNormVanishing B (fun n ↦
       (conjLampMatrix B D n)ᴴ -
         (B.map n y⁻¹ : Matrix (B.model n) (B.model n) ℂ)) := by
-    have h1 := (conjLampMatrix_defect_vanishing B D).conjT
+    have h1 := OpNormVanishing.conjT (conjLampMatrix_defect_vanishing B D)
     have h2 := (map_inv_vanishing B y).neg
     refine (h1.add h2).congr fun n ↦ ?_
     rw [Matrix.conjTranspose_sub]
@@ -710,7 +685,7 @@ theorem eventually_forall_finset {I : Type*} (S : Finset I) (f : I → ℕ → �
   revert h
   refine Finset.induction_on S ?_ ?_
   · intro _
-    exact ⟨0, fun n _ s hs ↦ absurd hs (Finset.not_mem_empty s)⟩
+    exact ⟨0, by simp⟩
   · intro i s _ ih h
     obtain ⟨N₁, h₁⟩ := h i (Finset.mem_insert_self i s) ε hε
     obtain ⟨N₂, h₂⟩ := ih fun j hj ↦ h j (Finset.mem_insert_of_mem hj)
@@ -721,15 +696,81 @@ theorem eventually_forall_finset {I : Type*} (S : Finset I) (f : I → ℕ → �
 
 /-! ## The lamp Laplacian identity -/
 
+/-- Row-vectorization with the coordinate type fixed to the adjoint
+almost-representation.  Naming this transport prevents typeclass transparency
+from obscuring that the adjoint model is the product model. -/
+@[simp] def gammaRowVec (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (X : Matrix (B.model n) (B.model n) ℂ) :
+    (gammaAdjoint B D).model n → ℂ :=
+  fun p ↦ X p.1 p.2
+
+theorem gammaAdjoint_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ) (s : Γ)
+    (X : Matrix (B.model n) (B.model n) ℂ) :
+    ((gammaAdjoint B D).map n s :
+        Matrix ((gammaAdjoint B D).model n) ((gammaAdjoint B D).model n) ℂ) *ᵥ
+      gammaRowVec B D n X =
+        gammaRowVec B D n
+          ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) * X *
+            (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
+  exact conjDouble_mulVec_rowVec _ _
+
+theorem conjDouble_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (U X : Matrix (B.model n) (B.model n) ℂ) :
+    (conjDouble U :
+        Matrix ((gammaAdjoint B D).model n) ((gammaAdjoint B D).model n) ℂ) *ᵥ
+      gammaRowVec B D n X = gammaRowVec B D n (U * X * Uᴴ) := by
+  exact conjDouble_mulVec_rowVec U X
+
+theorem sum_normSq_gammaRowVec (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (X : Matrix (B.model n) (B.model n) ℂ) :
+    ∑ p : (gammaAdjoint B D).model n,
+        Complex.normSq (gammaRowVec B D n X p) =
+      ∑ i : B.model n, ∑ j : B.model n, Complex.normSq (X i j) := by
+  exact sum_normSq_rowVec X
+
+@[simp] theorem gammaRowVec_smul (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ) (c : ℂ)
+    (X : Matrix (B.model n) (B.model n) ℂ) :
+    gammaRowVec B D n (c • X) = c • gammaRowVec B D n X := by
+  rfl
+
+@[simp] theorem gammaRowVec_add (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (X Y : Matrix (B.model n) (B.model n) ℂ) :
+    gammaRowVec B D n (X + Y) =
+      gammaRowVec B D n X + gammaRowVec B D n Y := by
+  rfl
+
+@[simp] theorem gammaRowVec_sub (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    (X Y : Matrix (B.model n) (B.model n) ℂ) :
+    gammaRowVec B D n (X - Y) =
+      gammaRowVec B D n X - gammaRowVec B D n Y := by
+  rfl
+
+theorem gammaRowVec_sum (B : OpAlmostRepresentation E)
+    (D : MarkedCompressionInclusionData Γ E) (n : ℕ)
+    {I : Type*} (s : Finset I) (X : I → Matrix (B.model n) (B.model n) ℂ) :
+    gammaRowVec B D n (∑ i ∈ s, X i) =
+      ∑ i ∈ s, gammaRowVec B D n (X i) := by
+  funext p
+  simp only [gammaRowVec, Matrix.sum_apply, Finset.sum_apply]
+
 /-- The Laplacian displacement of the flattened lamp microstate is the
 flattening of an explicit averaged conjugation defect. -/
 theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
     (D : MarkedCompressionInclusionData Γ E) (S : Finset Γ) (hone : 1 ∈ S)
     (n : ℕ) :
-    rowVec (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
+    gammaRowVec B D n
+        (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
       hermitianAverage (gammaAdjoint B D) S n *ᵥ
-        rowVec (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) =
-    rowVec ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
+        gammaRowVec B D n
+          (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) =
+    gammaRowVec B D n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
       (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
           (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
             B.map n D.c *
@@ -741,104 +782,108 @@ theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
   classical
   have hcardC : ((S.card : ℂ)) ≠ 0 := by
     exact_mod_cast Finset.card_ne_zero.mpr ⟨1, hone⟩
-  set Vc : Matrix (B.model n) (B.model n) ℂ := B.map n D.c with hVc
+  set Vc : Matrix (B.model n) (B.model n) ℂ :=
+    (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) with hVc
   -- the adjoint microstates act on the flattened lamp by conjugation
   have hdict : ∀ s : Γ,
       ((gammaAdjoint B D).map n s :
-        Matrix ((B.adjoint.model n) : Type)
-          ((B.adjoint.model n) : Type) ℂ) *ᵥ rowVec Vc =
-      rowVec ((B.map n (D.iota s) :
+        Matrix ((gammaAdjoint B D).model n)
+          ((gammaAdjoint B D).model n) ℂ) *ᵥ gammaRowVec B D n Vc =
+      gammaRowVec B D n ((B.map n (D.iota s) :
         Matrix (B.model n) (B.model n) ℂ) * Vc *
         (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
     intro s
-    exact conjDouble_mulVec_rowVec _ _
+    exact gammaAdjoint_mulVec_gammaRowVec B D n s Vc
   have hdictStar : ∀ s : Γ,
       ((gammaAdjoint B D).map n s :
-        Matrix ((B.adjoint.model n) : Type)
-          ((B.adjoint.model n) : Type) ℂ)ᴴ *ᵥ rowVec Vc =
-      rowVec ((B.map n (D.iota s) :
+        Matrix ((gammaAdjoint B D).model n)
+          ((gammaAdjoint B D).model n) ℂ)ᴴ *ᵥ gammaRowVec B D n Vc =
+      gammaRowVec B D n ((B.map n (D.iota s) :
         Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
         (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)) := by
     intro s
     have h : ((gammaAdjoint B D).map n s :
-        Matrix ((B.adjoint.model n) : Type)
-          ((B.adjoint.model n) : Type) ℂ)ᴴ =
+        Matrix ((gammaAdjoint B D).model n)
+          ((gammaAdjoint B D).model n) ℂ)ᴴ =
         conjDouble
           ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
       (conjDouble_conjTranspose _).symm
+    let U : Matrix (B.model n) (B.model n) ℂ := B.map n (D.iota s)
+    have h2 : (conjDouble Uᴴ :
+        Matrix ((gammaAdjoint B D).model n)
+          ((gammaAdjoint B D).model n) ℂ) *ᵥ gammaRowVec B D n Vc =
+        gammaRowVec B D n (Uᴴ * Vc * U) := by
+      simpa only [Matrix.conjTranspose_conjTranspose] using
+        conjDouble_mulVec_gammaRowVec B D n Uᴴ Vc
     rw [h]
-    have h2 := conjDouble_mulVec_rowVec
-      ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) Vc
-    rw [h2, Matrix.conjTranspose_conjTranspose]
+    simpa [U] using h2
   -- expand the Hermitian average applied to the flattened lamp
-  have haverage : hermitianAverage (gammaAdjoint B D) S n *ᵥ rowVec Vc =
+  have haverage : hermitianAverage (gammaAdjoint B D) S n *ᵥ
+      gammaRowVec B D n Vc =
       (2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
-        (rowVec ((B.map n (D.iota s) :
+        (gammaRowVec B D n ((B.map n (D.iota s) :
             Matrix (B.model n) (B.model n) ℂ) * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-          rowVec ((B.map n (D.iota s) :
+          gammaRowVec B D n ((B.map n (D.iota s) :
             Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)))) := by
-    rw [hermitianAverage, Matrix.add_mulVec, Matrix.smul_mulVec_assoc]
-    have hM : matrixAverage (gammaAdjoint B D) S n *ᵥ rowVec Vc =
+    rw [hermitianAverage, Matrix.smul_mulVec, Matrix.add_mulVec]
+    have hM : matrixAverage (gammaAdjoint B D) S n *ᵥ gammaRowVec B D n Vc =
         (S.card : ℂ)⁻¹ • ∑ s ∈ S,
-          rowVec ((B.map n (D.iota s) :
+          gammaRowVec B D n ((B.map n (D.iota s) :
             Matrix (B.model n) (B.model n) ℂ) * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
-      rw [matrixAverage, Matrix.smul_mulVec_assoc, sum_mulVec]
+      rw [matrixAverage, Matrix.smul_mulVec, sum_mulVec]
       congr 1
       exact Finset.sum_congr rfl fun s _ ↦ hdict s
-    have hMstar : (matrixAverage (gammaAdjoint B D) S n)ᴴ *ᵥ rowVec Vc =
+    have hMstar : (matrixAverage (gammaAdjoint B D) S n)ᴴ *ᵥ
+        gammaRowVec B D n Vc =
         (S.card : ℂ)⁻¹ • ∑ s ∈ S,
-          rowVec ((B.map n (D.iota s) :
+          gammaRowVec B D n ((B.map n (D.iota s) :
             Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)) := by
       have hexpand : (matrixAverage (gammaAdjoint B D) S n)ᴴ =
           (S.card : ℂ)⁻¹ • ∑ s ∈ S,
             ((gammaAdjoint B D).map n s :
-              Matrix ((B.adjoint.model n) : Type)
-                ((B.adjoint.model n) : Type) ℂ)ᴴ := by
+              Matrix ((gammaAdjoint B D).model n)
+                ((gammaAdjoint B D).model n) ℂ)ᴴ := by
         rw [matrixAverage, Matrix.conjTranspose_smul,
           Matrix.conjTranspose_sum]
         congr 1
         rw [star_inv₀]
         norm_cast
-      rw [hexpand, Matrix.smul_mulVec_assoc, sum_mulVec]
+      rw [hexpand, Matrix.smul_mulVec, sum_mulVec]
       congr 1
       exact Finset.sum_congr rfl fun s _ ↦ hdictStar s
     rw [hM, hMstar, ← smul_add, ← Finset.sum_add_distrib]
   rw [haverage]
   -- pull the flattening out and finish with a matrix identity
   have hlin : (2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
-      (rowVec ((B.map n (D.iota s) :
+      (gammaRowVec B D n ((B.map n (D.iota s) :
           Matrix (B.model n) (B.model n) ℂ) * Vc *
           (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-        rowVec ((B.map n (D.iota s) :
+        gammaRowVec B D n ((B.map n (D.iota s) :
           Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
           (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)))) =
-      rowVec ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
+      gammaRowVec B D n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
         ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ +
           (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ * Vc *
             (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)))) := by
-    rw [matVec_smul, matVec_smul, matVec_sum]
+    rw [gammaRowVec_smul, gammaRowVec_smul, gammaRowVec_sum]
     congr 2
-    exact Finset.sum_congr rfl fun s _ ↦ (matVec_add _ _).symm
-  rw [hlin, ← matVec_sub]
+    -- The preceding rewrites already reduce the claim definitionally.
+  rw [hlin, ← gammaRowVec_sub]
   congr 1
   -- the pure matrix rearrangement
   have honeM : Vc = (2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ _s ∈ S,
       (Vc + Vc)) := by
-    rw [Finset.sum_const, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, smul_smul,
-      smul_smul]
-    have : (2 : ℂ)⁻¹ * ((S.card : ℂ)⁻¹ * (S.card : ℂ)) • (Vc + Vc) =
-        (2 : ℂ)⁻¹ • (Vc + Vc) := by
-      rw [inv_mul_cancel₀ hcardC]
-      norm_num
-    rw [show (2 : ℂ)⁻¹ * ((S.card : ℂ)⁻¹ * (S.card : ℂ)) =
-        (2 : ℂ)⁻¹ * (S.card : ℂ)⁻¹ * (S.card : ℂ) by ring] at this
-    rw [this]
-    match_scalars <;> field_simp
+    rw [Finset.sum_const, ← Nat.cast_smul_eq_nsmul ℂ, smul_smul, smul_smul]
+    have hcoef : (2 : ℂ)⁻¹ * (S.card : ℂ)⁻¹ * (S.card : ℂ) = (2 : ℂ)⁻¹ := by
+      field_simp [hcardC]
+    rw [hcoef]
+    rw [← two_smul ℂ Vc, smul_smul]
+    norm_num
   calc
     Vc - (2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
         ((B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) * Vc *
@@ -1034,7 +1079,9 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
           norm_sum_le _ _
         _ ≤ ∑ _s ∈ S, (2 * η) := by
           refine Finset.sum_le_sum fun s hs ↦ ?_
-          exact (norm_add_le _ _).trans (add_le_add (hterm s hs) (htermStar s hs))
+          calc
+            ‖_ + _‖ ≤ ‖_‖ + ‖_‖ := norm_add_le _ _
+            _ ≤ 2 * η := by linarith [hterm s hs, htermStar s hs]
         _ = S.card * (2 * η) := by
           rw [Finset.sum_const, nsmul_eq_mul]
     rw [norm_smul, norm_smul]
@@ -1042,8 +1089,10 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
       rw [norm_inv, norm_natCast]
     rw [hcardC]
     norm_num
+    have hcardR : (S.card : ℝ) ≠ 0 := by
+      exact_mod_cast Finset.card_ne_zero.mpr ⟨1, hone⟩
     calc
-      (S.card : ℝ)⁻¹ * ‖∑ s ∈ S,
+      (1 / 2 : ℝ) * ((S.card : ℝ)⁻¹ * ‖∑ s ∈ S,
           (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
               (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
                 B.map n D.c *
@@ -1053,24 +1102,27 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
               (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
                 B.map n D.c *
                 (B.map n (D.iota s) :
-                  Matrix (B.model n) (B.model n) ℂ)))‖ / 2 ≤
-          (S.card : ℝ)⁻¹ * (S.card * (2 * η)) / 2 := by
+                  Matrix (B.model n) (B.model n) ℂ)))‖) ≤
+          (1 / 2 : ℝ) * ((S.card : ℝ)⁻¹ * (S.card * (2 * η))) := by
         gcongr
       _ = η := by
-        field_simp
+        field_simp [hcardR]
   -- Spectral capture of the root lamp vector.
   let H := hermitianAverage (gammaAdjoint B D) S n
   let P := cornerProjection B D S θ n
-  let ξ := rowVec (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)
+  let ξ : (gammaAdjoint B D).model n → ℂ :=
+    gammaRowVec B D n
+      (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)
   have hHherm : H.IsHermitian := by
     exact hermitianAverage_conjTranspose (gammaAdjoint B D) S n
-  have hHnorm : ‖H‖ ≤ 1 := norm_hermitianAverage_le_one _ S hone n
+  have hHnorm : ‖H‖ ≤ 1 := norm_hermitianAverage_le_one _ S n
   have hresidual :
-      ∑ i : (B.adjoint.model n), Complex.normSq ((ξ - H *ᵥ ξ) i) ≤
+      ∑ i : (gammaAdjoint B D).model n,
+        Complex.normSq ((ξ - H *ᵥ ξ) i) ≤
         Fintype.card (B.model n) * η ^ 2 := by
     have hid := lamp_laplacian_matVec B D S hone n
     rw [show ξ - H *ᵥ ξ =
-        rowVec ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
+        gammaRowVec B D n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
           (((B.map n D.c : Matrix (B.model n) (B.model n) ℂ) -
               (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
                 B.map n D.c *
@@ -1080,23 +1132,24 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
                 B.map n D.c *
                 (B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ))))) by
           exact hid]
-    rw [sum_normSq_rowVec]
+    rw [sum_normSq_gammaRowVec]
     exact (sum_normSq_le_card_mul_sq _ _).trans (by
       gcongr)
-  have hxiMass : ∑ i : (B.adjoint.model n), Complex.normSq (ξ i) =
+  have hxiMass : ∑ i : (gammaAdjoint B D).model n, Complex.normSq (ξ i) =
       Fintype.card (B.model n) := by
-    rw [show ξ = rowVec (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) by rfl,
-      sum_normSq_rowVec]
+    rw [show ξ = gammaRowVec B D n
+        (B.map n D.c : Matrix (B.model n) (B.model n) ℂ) by rfl,
+      sum_normSq_gammaRowVec]
     exact sum_normSq_of_mem_unitary _ (B.map n D.c).2
   have henergy : (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re ≤
       η * Fintype.card (B.model n) := by
     have hamgm := re_star_dotProduct_le hηpos ξ (ξ - H *ᵥ ξ)
-    rw [hxiMass]
+    rw [hxiMass] at hamgm
     calc
       (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re ≤
           (2 : ℝ)⁻¹ *
             (η * Fintype.card (B.model n) + η⁻¹ *
-              ∑ i : (B.adjoint.model n),
+              ∑ i : (gammaAdjoint B D).model n,
                 Complex.normSq ((ξ - H *ᵥ ξ) i)) := hamgm
       _ ≤ (2 : ℝ)⁻¹ *
             (η * Fintype.card (B.model n) + η⁻¹ *
@@ -1112,13 +1165,13 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
   rw [hbelow, zero_mul, add_zero] at hcaptureRaw
   have hcapture :
       MarkedCompressionVectorChain.vecMass ((1 - P) *ᵥ
-        rowVec
+        gammaRowVec B D n
           (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)) ≤
         (ε / 192) * Fintype.card (B.model n) := by
     rw [MarkedCompressionVectorChain.vecMass]
-    change ∑ i : (B.adjoint.model n),
+    change ∑ i : (gammaAdjoint B D).model n,
       Complex.normSq (((1 - P) *ᵥ ξ) i) ≤ _
-    have hscaled : (1 - θ) * ∑ i : (B.adjoint.model n),
+    have hscaled : (1 - θ) * ∑ i : (gammaAdjoint B D).model n,
         Complex.normSq (((1 - P) *ᵥ ξ) i) ≤
         η * Fintype.card (B.model n) := hcaptureRaw.trans henergy
     rw [hηdef] at hscaled
@@ -1137,7 +1190,6 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
     simpa [lampMatrix, conjLampMatrix, commutatorMatrix, gammaAdjoint,
       OpAlmostRepresentation.adjoint_map, P] using hstage
   rw [hsqrt₂, hsqrt₃] at hstage'
-  norm_num at hstage' ⊢
   linarith
 
 /-! ## Step 12: the marked word cannot converge to the negative identity -/
@@ -1240,7 +1292,7 @@ namespace MarkedCompressionInclusionData
 
 open KazhdanCompressorCorner
 
-variable {E : Type u} [Group E]
+variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
 
 /-- The marked word is killed by every homomorphism into every operator-norm
 matrix ultraproduct.  Countability is used only to extract a sequential
