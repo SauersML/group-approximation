@@ -56,9 +56,11 @@ jobs:
           fi
           surface=('*.lean' 'scripts' \
             'docs/CLAIM_DECLS.txt' 'docs/NON_MF_CLAIM_DECLS.txt' \
+            'docs/NON_MF_NUMBERED_CLAIMS.json' \
             'docs/CLAIM_SIGNATURES.md' 'docs/NON_MF_CLAIM_SIGNATURES.md' \
             'lakefile.toml' 'lean-toolchain' 'lake-manifest.json' \
-            '.github/workflows/prover.yml')
+            '.github/workflows/prover.yml' \
+            'non_mf_groups_exist.tex' '.github/workflows/build-non-mf-pdf.yml')
           if git diff --quiet "$base" "$head" -- "${surface[@]}"; then
             echo "Surface identical to verified commit ${base}; advancing."
             git push --force origin "${head}:refs/heads/verified"

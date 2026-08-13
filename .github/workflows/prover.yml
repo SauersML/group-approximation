@@ -52,12 +52,15 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  # Keep the expensive exact gate aimed at the newest source snapshot.  The
-  # compiled-project cache is saved before the long single-threaded fresh
-  # kernel replay, so cancelling a stale replay does not discard its build;
-  # the replacement run restores that source-keyed cache and rechecks the
-  # newest oleans from a fresh kernel environment.
-  cancel-in-progress: true
+  # Let the running gate finish; do not cancel it for a newer push.  At this
+  # repository's push frequency, cancel-in-progress starved the gate: runs
+  # were superseded before the fresh kernel replay ended, so hours passed
+  # with no completed verification and the `verified` pointer stalled.  With
+  # cancellation off, GitHub keeps at most one pending run and replaces it
+  # as newer pushes arrive, so the gate still processes the newest snapshot
+  # next while every started run completes and advances the pointer.  The
+  # compiled-project cache is saved before the long replay either way.
+  cancel-in-progress: false
 
 permissions:
   contents: read
