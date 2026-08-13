@@ -156,7 +156,7 @@ norm corona}
 \end{equation}
 The denominator is a normal subgroup, by unitary invariance of the
 operator norm, so \eqref{eq:unitary-corona} is a quotient group.
-Thus there must be an injective group homomorphism
+Thus $E$ is MF precisely when there is an injective group homomorphism
 \[
   E\;\longrightarrow\;\Ucor((d_n))
 \]
@@ -1976,6 +1976,10 @@ below by $\sqrt{1-\eta^2}$, hence injective; equality of the finite
 dimensions makes it surjective.  Its inverse has norm at most
 $1/\sqrt{1-\eta^2}$, and applying $(1-P)(Q-1)$ to a preimage gives
 the displayed estimate.  Consequently $\opnorm{(1-P_n)Q_n}\to0$.
+This reversal is the elementary quantitative form needed here of the
+classical equality of the two directed gaps between equal-dimensional
+subspaces, equivalently a principal-angle identity
+\cite[Theorem~3.2]{Taslaman}.
 Combining this with \eqref{eq:rootcapture} shows that
 $T_nV_n(c)$ is asymptotically in the range of $P_n$.  It is therefore
 asymptotically fixed by every $\beta_n(\iota(\lambda))$.  Since
@@ -2131,7 +2135,11 @@ For a countable group $G_1$, the \emph{MF radical} is
 \]
 a normal subgroup of $G_1$.  This is the operator-norm analogue of
 the invisible subgroups of \cite[Definitions~2.5--2.7]{SlofstraCorrelations}
-and of the approximation kernels studied in \cite{NST}.
+and of the approximation kernels studied in \cite{NST}.  The terminology
+also follows the general class-relative radical paradigm of
+\cite[Section~2.2]{MyasnikovRemeslennikov};
+Proposition~\ref{prop:univquot} proves the corresponding largest-quotient
+statement in the present setting.
 \end{definition}
 
 \begin{lemma}[portability]\label{lem:portable}
@@ -3515,6 +3523,12 @@ A.~I. Mal'cev,
 \emph{On isomorphic matrix representations of infinite groups},
 Mat. Sb. (N.S.) \textbf{8(50)} (1940), no.~3, 405--422.
 
+\bibitem[MR]{MyasnikovRemeslennikov}
+A.~G. Myasnikov and V.~N. Remeslennikov,
+\emph{Algebraic geometry over groups II: Logical foundations},
+J. Algebra \textbf{234} (2000), no.~1, 225--276,
+\doi{10.1006/jabr.2000.8414}.
+
 \bibitem[Neu]{Neumann}
 B.~H. Neumann,
 \emph{Some remarks on infinite groups},
@@ -3611,6 +3625,12 @@ W.~Slofstra and T.~Vidick,
 \emph{Entanglement in non-local games and the hyperlinear profile of groups},
 Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
 \doi{10.1007/s00023-018-0718-y}.
+
+\bibitem[Ta]{Taslaman}
+L.~Taslaman,
+\emph{The principal angles and the gap},
+MIMS EPrint 2014.9, Manchester Institute for Mathematical Sciences, 2014,
+\url{https://eprints.maths.manchester.ac.uk/2105/}.
 
 \bibitem[Th]{Thom10}
 A.~Thom,
