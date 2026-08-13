@@ -498,6 +498,11 @@ private theorem limsup_matrixNorm_sq (a : BoundedMatrixSequence X) :
   rw [max_eq_left htail] at hmap
   simpa [Function.comp_def, max_eq_left] using hmap
 
+noncomputable instance normMatrixCoronaAlgebraStarRing :
+    StarRing (NormMatrixCoronaAlgebra X) :=
+  { normMatrixCoronaAlgebraStarMul X with
+    star_add := star_add }
+
 noncomputable instance normMatrixCoronaAlgebraCStarRing :
     CStarRing (NormMatrixCoronaAlgebra X) where
   norm_mul_self_le x := by
@@ -515,13 +520,15 @@ noncomputable instance normMatrixCoronaAlgebraCStarRing :
       apply le_of_eq
       congr 1
       funext n
-      exact norm_star_mul_self
+      have hcoord : (star a * a) n = star (a n) * a n := by
+        simp [lp.star_apply]
+      rw [hcoord, pow_two, CStarRing.norm_star_mul_self]
 
 /-- Audit pin: the concrete quotient norm satisfies the C-star identity. -/
 theorem norm_normMatrixCorona_star_mul_self
     (x : NormMatrixCoronaAlgebra X) :
     ‖star x * x‖ = ‖x‖ ^ 2 := by
-  simpa [pow_two] using (norm_star_mul_self (x := x))
+  simpa [pow_two] using (CStarRing.norm_star_mul_self (x := x))
 
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/
