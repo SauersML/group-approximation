@@ -409,7 +409,8 @@ export GroupApproximation.CliffordAlgebraLamp
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
 export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation.LiteralCyclicCalibration
-  (mark_ne_one finiteDimensional_kill
+  (mark_ne_one quotientMap_mark_val quotientMap_mark_ne_one
+    quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
     realizedQuotient_finiteDimensional_kill
     realizedQuotient_isOperatorMF
     exists_coronaRepresentation_mark_ne_one)

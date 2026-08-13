@@ -520,6 +520,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
 #print axioms GroupApproximation.ExplicitLinearModel.doubling_linear_model_package
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
+#print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val
+#print axioms GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central
 #print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
 #print axioms GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill
 #print axioms GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF
