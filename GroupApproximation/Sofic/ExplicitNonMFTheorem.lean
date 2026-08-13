@@ -3,15 +3,18 @@ import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
 /-!
-# The explicit finitely presented non-MF group
+# A finitely presented non-MF group from the Shalom-cover construction
 
 This module is the public junction between the independently checkable
 finite-presentation construction in `ExplicitNonMFEndpoint` and the analytic
-marked-compression kill theorem.  It exports both forms of the main result:
+marked-compression kill theorem.  The formal witness uses the noncomputably
+chosen finitely presented Kazhdan cover supplied by Shalom's theorem; it is
+not definitionally the displayed finite presentation used in the paper.  The
+module exports both forms of the main result:
 
-* the concrete nontrivial mark belongs to the universal operator-norm MF
+* the chosen witness's nontrivial mark belongs to the universal operator-norm MF
   residual, so every homomorphism to every norm matrix ultraproduct kills it;
-* the concrete finitely presented group is therefore neither weak-MF nor MF
+* that finitely presented group is therefore neither weak-MF nor MF
   in the standard cofinite norm-matrix-corona sense.
 -/
 
@@ -20,26 +23,26 @@ namespace ExplicitNonMFTheorem
 
 open ExplicitMarkedPresentation ExplicitNonMFEndpoint
 
-/-- The universal marked-compression certificate carried by the explicit
-finite presentation. -/
+/-- The universal marked-compression certificate carried by the
+Shalom-cover finite presentation chosen in `ExplicitMarkedPresentation`. -/
 noncomputable def normCertificate :
     MarkedCompressionNormCertificate MarkedGroup :=
   inclusionData.normCertificate inclusionData_word_ne_one
 
-/-- The concrete nontrivial central mark is killed by every homomorphism to
-every operator-norm matrix ultraproduct. -/
+/-- The chosen presentation's nontrivial central mark is killed by every
+homomorphism to every operator-norm matrix ultraproduct. -/
 theorem mark_normMFInvisible : NormMFInvisible mark := by
   rw [← inclusionData_word]
   exact inclusionData.word_normMFInvisible
 
-/-- The explicit finitely presented marked-compression group is not
+/-- The finitely presented Shalom-cover marked-compression group is not
 weak/operator-norm MF. -/
 theorem explicit_finitelyPresented_not_isWeakMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsWeakMF MarkedGroup :=
   ⟨inferInstance, normCertificate.not_isWeakMF⟩
 
-/-- The named finitely presented marked-compression group is not MF in the
-standard cofinite norm-matrix-corona sense. -/
+/-- The finitely presented Shalom-cover marked-compression group is not MF in
+the standard cofinite norm-matrix-corona sense. -/
 theorem explicit_finitelyPresented_not_isOperatorMF :
     Group.IsFinitelyPresented MarkedGroup ∧ ¬ IsOperatorMF MarkedGroup :=
   ⟨inferInstance, inclusionData.not_isOperatorMF inclusionData_word_ne_one⟩
