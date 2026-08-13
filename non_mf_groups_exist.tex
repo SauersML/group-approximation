@@ -1917,12 +1917,13 @@ $\beta_n(g)=\Ad V_n(g)\in\U(K_n)$.  The estimate
  \opnorm{\Ad U-\Ad V}\le2\opnorm{U-V}
 \]
 shows that $(\beta_n)$ is an operator-norm asymptotic representation.
-Choose a finite symmetric Kazhdan generating set $S\subseteq\Lambda$.
-Property~(T) gives a number $\theta<1$ such that, in every unitary
-representation of $\Lambda$, the Hermitian $S$-average has spectrum at
-most $\theta$ off the fixed space.  Fix a cutoff strictly between
-$\theta$ and $1$, and let $P_n$ be the spectral projection above that
-cutoff for the Hermitian part of
+Choose a finite symmetric Kazhdan generating set $S\subseteq\Lambda$
+containing $1$, with Kazhdan constant $\kappa>0$, and put
+\[
+ c_0=1-\frac{\kappa^2}{4|S|}.
+\]
+Fix $\theta$ with $c_0<\theta<1$, and let $P_n$ be the spectral
+projection above $\theta$ for the Hermitian part of
 $|S|^{-1}\sum_{s\in S}\beta_n(\iota(s))$.
 
 The Kazhdan-pair inequality and the spectral cutoff give three direct,
