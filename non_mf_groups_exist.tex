@@ -3084,24 +3084,15 @@ records the equivalent uniform local criterion, with separation constant \(\sqrt
 We record it because the word-ball certificate is useful
 here; the full topological statement will also be used below.
 
-\begin{theorem}[marked-space closedness and the literal cylinder]
+\begin{theorem}[marked-space closedness]
 \label{thm:markedclosed}
 For every $k$, the MF locus in the space $\mathcal G_k$ of
-$k$-marked groups is closed; equivalently, the non-MF locus is open.
+$k$-marked groups is closed.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+Equivalently, the non-MF locus is open.
 More precisely, every non-MF marked group has a finite reduced-word ball
 whose relation pattern defines a neighborhood consisting entirely of
 non-MF groups.
-
-For the canonical eight-generator marking of $E$, there is the explicit
-clopen neighborhood
-\[
- \mathcal O_E=\{(H;h_1,\ldots,h_8):
- r(h_1,\ldots,h_8)=1\ (r\in R),\quad
- w(h_1,\ldots,h_8)\neq1\}.
-\]
-Every group in $\mathcal O_E$ is non-MF.  With the literal relator set of
-Definition~\ref{def:E}, membership is determined by the relation pattern
-on reduced words of length at most $34$.
 \end{theorem}
 
 \begin{proof}
@@ -3120,7 +3111,50 @@ back, word by word, to a local model of $G$ with the same multiplicative
 error and separation.  The criterion makes $G$ MF.  This proves
 closedness; recording the finitely many control words inside one reduced
 word ball gives the stronger finite-radius statement.
+\end{proof}
 
+\begin{corollary}[a finite clopen non-MF cylinder]
+\label{cor:chosencylinder}
+There are a finite presentation $P=\langle Y\mid S\rangle$ and a word
+$q\in F(Y)$ for which
+\[
+ \mathcal O_P=\{(H;(h_y)_{y\in Y}):
+ s((h_y))=1\ (s\in S),\quad q((h_y))\neq1\}
+\]
+is nonempty.  It is a clopen subset of the corresponding marked-group space.
+\leanverified{Sofic/ChosenMarkedCylinder}{GroupApproximation.ChosenMarkedCylinder.chosenCylinder_isClopen}
+Every group in $\mathcal O_P$ is non-MF.
+\leanverified{Sofic/ChosenMarkedCylinder}{GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF}
+\end{corollary}
+
+\begin{proof}
+Take the finite presentation and marked word chosen in the proof of
+Theorem~\ref{thm:horn}.  The canonical marked tuple of $P$ belongs to
+$\mathcal O_P$, so this set is nonempty.  Equality or inequality of each
+fixed word is clopen in marked-group space, and $S$ is finite; hence
+$\mathcal O_P$ is clopen.  If a group in $\mathcal O_P$ were MF, the
+quasi-identity of Theorem~\ref{thm:horn} would force its value of $q$ to be
+trivial, contrary to the definition of $\mathcal O_P$.
+\end{proof}
+
+The literal presentation gives a numerically explicit version of this
+phenomenon.
+
+\begin{theorem}[the literal radius-$34$ cylinder]
+\label{thm:literalcylinder}
+For the canonical eight-generator marking of $E$, the set
+\[
+ \mathcal O_E=\{(H;h_1,\ldots,h_8):
+ r(h_1,\ldots,h_8)=1\ (r\in R),\quad
+ w(h_1,\ldots,h_8)\neq1\}
+\]
+is a nonempty clopen neighborhood, and every group in $\mathcal O_E$ is
+non-MF.  With the literal relator set of Definition~\ref{def:E}, membership
+is determined by the relation pattern on reduced words of length at most
+$34$.
+\end{theorem}
+
+\begin{proof}
 For the literal neighborhood, the relators give a surjection
 $E\twoheadrightarrow H$.  If the marked word survives in $H$, portability
 of $w\in\operatorname{Rad}_{\rm MF}(E)$ puts its nontrivial image in
