@@ -48,6 +48,31 @@ theorem baseRelator_eq_one {r : FreeGroup BaseGenerator}
   simpa only [baseRelZSq, map_pow, baseWord_of] using
     baseRelator_eq_one (show baseRelZSq ∈ baseRelators by simp [baseRelators])
 
+@[simp] theorem xz_cube : (x * z) ^ 3 = 1 := by
+  simpa only [baseRelXZCube, map_pow, map_mul, baseWord_of] using
+    baseRelator_eq_one
+      (show baseRelXZCube ∈ baseRelators by simp [baseRelators])
+
+@[simp] theorem yz_cube : (y * z) ^ 3 = 1 := by
+  simpa only [baseRelYZCube, map_pow, map_mul, baseWord_of] using
+    baseRelator_eq_one
+      (show baseRelYZCube ∈ baseRelators by simp [baseRelators])
+
+@[simp] theorem x_inv_z_x_y_sq : (x⁻¹ * z * x * y) ^ 2 = 1 := by
+  simpa only [baseRelXInvZXY, map_pow, map_mul, map_inv, baseWord_of] using
+    baseRelator_eq_one
+      (show baseRelXInvZXY ∈ baseRelators by simp [baseRelators])
+
+@[simp] theorem y_inv_z_y_x_sq : (y⁻¹ * z * y * x) ^ 2 = 1 := by
+  simpa only [baseRelYInvZYX, map_pow, map_mul, map_inv, baseWord_of] using
+    baseRelator_eq_one
+      (show baseRelYInvZYX ∈ baseRelators by simp [baseRelators])
+
+@[simp] theorem xy_six : (x * y) ^ 6 = 1 := by
+  simpa only [baseRelXYSix, map_pow, map_mul, baseWord_of] using
+    baseRelator_eq_one
+      (show baseRelXYSix ∈ baseRelators by simp [baseRelators])
+
 theorem commute_v1_v2 : Commute v1 v2 := by
   have h : baseWord (commutatorWord bv1 bv2) = 1 :=
     baseRelator_eq_one (show baseRelV12 ∈ baseRelators by simp [baseRelators])
