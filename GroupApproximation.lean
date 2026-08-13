@@ -40,7 +40,6 @@ import GroupApproximation.Sofic.OperatorMF
 import GroupApproximation.Sofic.NormMFUniversalQuotient
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
-import GroupApproximation.Sofic.RadicalSeparation
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
