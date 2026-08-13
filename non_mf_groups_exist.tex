@@ -1307,6 +1307,45 @@ eventually invertible; for such $n$ put $u_n=x_n(x_n^*x_n)^{-1/2}$, a
 unitary with $\opnorm{u_n-x_n}\to0$; set $u_n=1$ for the remaining $n$.
 \end{proof}
 
+The following elementary amplification trick normalizes separation
+constants; it is used in Section~\ref{sec:consequences}.
+
+\begin{lemma}[separation amplifier]\label{lem:amplifier}
+Let $u,v\in\U(M_r(\C))$ with $\opnorm{u-v}=\varepsilon>0$.  Then
+there is an integer $1\le n\le\lceil\pi/(3\varepsilon)\rceil$ with
+\[
+  \opnorm{\,u^{\otimes n}-v^{\otimes n}\,}\;\ge\;1 .
+\]
+Moreover $\opnorm{a^{\otimes n}-b^{\otimes n}}\le n\opnorm{a-b}$
+for all contractions $a,b\in M_r(\C)$ and all $n\ge1$.
+\end{lemma}
+
+\begin{proof}
+Write $w=u^*v$, so that $\opnorm{u-v}=\opnorm{1-w}$, and choose an
+eigenvalue $e^{i\theta}$ of the unitary $w$ with
+$|1-e^{i\theta}|=\varepsilon$ and $0<|\theta|\le\pi$; then
+$\varepsilon=2\sin(|\theta|/2)\le|\theta|$.  Let
+$n=\lceil\pi/(3|\theta|)\rceil$, the least integer with
+$n|\theta|\ge\pi/3$.  If $n=1$ then $n|\theta|=|\theta|\le\pi$;
+otherwise $|\theta|<\pi/3$ and minimality gives
+$n|\theta|<\pi/3+|\theta|<2\pi/3$.  In both cases
+$\pi/3\le n|\theta|\le\pi$, so
+$|1-e^{in\theta}|=2\sin(n|\theta|/2)\ge2\sin(\pi/6)=1$.  Since
+$e^{in\theta}$ is an eigenvalue of $w^{\otimes n}$ and
+$u^{\otimes n}-v^{\otimes n}=u^{\otimes n}(1-w^{\otimes n})$,
+\[
+ \opnorm{u^{\otimes n}-v^{\otimes n}}
+ =\opnorm{1-w^{\otimes n}}\ge|1-e^{in\theta}|\ge1 ,
+\]
+and $n\le\lceil\pi/(3\varepsilon)\rceil$.  The last claim is the
+telescoping identity
+$a^{\otimes n}-b^{\otimes n}
+ =\sum_{j=0}^{n-1}b^{\otimes j}\otimes(a-b)\otimes
+ a^{\otimes(n-1-j)}$
+together with submultiplicativity of the operator norm under tensor
+products of contractions.
+\end{proof}
+
 Stable finiteness of norm matrix coronas is standard and goes back to
 Blackadar--Kirchberg \cite{BK}; we include the short proofs to keep the
 external surface explicit.
@@ -1523,20 +1562,58 @@ contained in the compression defect of the transported pattern.
 The inclusion of $R$ into the original ultraproduct is injective, so
 the universal MF radical of $R$ is trivial.  The universal-quotient
 diagonalization therefore gives a faithful representation of $R$ in
-one cofinite norm matrix corona.  Finally, bounded tensor powers,
-taken separately for the finitely many ordered pairs in a local test
-set and then combined by block sum, normalize all pairwise separation
-constants to $1$.  Hence $R$ has a uniformly separated operator-norm
-matrix approximation.
+one cofinite norm matrix corona.  Finally fix a finite test set
+$F\subseteq R$.  Each ordered pair of distinct elements of $F$ is
+separated, by faithfulness, in infinitely many coordinates of the
+corona; Lemma~\ref{lem:amplifier} assigns to the pair a tensor
+exponent --- different pairs need different exponents --- which raises
+that pair's separation to $1$ while multiplying the multiplicative
+defect by a bounded factor.  Because the pairs' infinite sets of good
+coordinates need not intersect, the amplified coordinates are combined
+by a block sum, one block per ordered pair; the operator norm of a
+block sum is the maximum over blocks, so the assembled unitaries
+separate all pairs of $F$ by $1$ at once.  Hence $R$ has a uniformly
+separated operator-norm matrix approximation.
 
-Apply the normal property~(T) corner construction to $K'$.  It produces
-from this ambient matrix model a tracial matrix-ultraproduct
-representation in which some element of $K'$ survives.  Applied to the
-same corner model, the compressor argument makes every generator
-$[tct^{-1},\iota(\lambda)]$ trivial, hence kills its normal closure and
-all of $K'$, a contradiction.  This is the second Kazhdan projection
-hidden in the finite-normal argument: it replaces the finite Reynolds
-average.
+We now cut by a second Kazhdan projection.  Let $p_{K'}$ be the
+Kazhdan projection of $K'$ and let $\tilde\Theta$ denote the uniformly
+separated matrix model.  For a surjective endomorphism $\theta$ of
+$K'$ and any representation $\pi$, the projection
+$\pi(\theta_*(p_{K'}))=$ the projection onto the
+$\pi(\theta(K'))$-fixed vectors is again the projection onto the
+$\pi(K')$-fixed vectors; applying this to the conjugation
+automorphisms of the normal subgroup $K'$ shows that
+$e:=1-\tilde\Theta(p_{K'})$ commutes with the image of
+$\tilde\Theta$, so cutting by $e$ is again a homomorphism of $H$.
+The corner is nonzero: if $e=0$ then, by the identity
+$u_kp_{K'}=p_{K'}$, every $k\in K'$ satisfies
+$\tilde\Theta(k)=\tilde\Theta(k)\tilde\Theta(p_{K'})
+=\tilde\Theta(p_{K'})=1$, contradicting faithfulness on the
+nontrivial $K'$.
+
+On the corner, the restriction to $K'$ has no invariant vectors, so by
+property~(T) it has no almost-invariant vectors either: fix a finite
+Kazhdan set $Q_0\subseteq K'$ with constant $\kappa>0$.  If a corner
+coordinate of size $r$ satisfied
+$\hsnorm{U_{k}-1}\le\varepsilon$ for all $k\in Q_0$, then averaging
+over an orthonormal basis $(e_i)$,
+\[
+ \frac1r\sum_{i=1}^{r}\sum_{k\in Q_0}
+ \lVert(U_{k}-1)e_i\rVert^2
+ \;\le\;|Q_0|\,\varepsilon^2 ,
+\]
+so some $e_i$ is $(Q_0,\sqrt{|Q_0|}\,\varepsilon)$-almost invariant;
+for $\varepsilon<\kappa/\sqrt{|Q_0|}$ this is impossible.  Hence
+along the corner coordinates
+$\max_{k\in Q_0}\hsnorm{U_{k}-1}\ge\kappa/\sqrt{|Q_0|}$: the set
+$Q_0$ survives tracially.  On the other hand, the compressor argument
+of Steps 1--3 of Section~\ref{sec:proofA}, run in this corner model,
+sends $\hsnorm{\,\cdot\,-1}\to0$ for every generator
+$[tct^{-1},\iota(\lambda)]$ of the transported defect, and the
+telescoping of Step 4 propagates the collapse to every element of the
+subgroup $K'$ of its normal closure --- in particular to the finite
+set $Q_0$ --- a contradiction.  This second Kazhdan projection replaces
+the finite Reynolds average of Theorem~\ref{thm:criterion}.
 \end{proof}
 
 \begin{corollary}[Kazhdan part and exact radical]\label{cor:kazhdanpart}
@@ -2912,8 +2989,9 @@ on reduced words of length at most $34$.
 \end{theorem}
 
 \begin{proof}
-The tensor-power separation amplifier gives the following normalized local
-criterion: a countable group is MF exactly when, for every finite subset
+Lemma~\ref{lem:amplifier}, applied pairwise and assembled by block
+sums exactly as in the proof of Theorem~\ref{thm:normalkazhdan}, gives
+the following normalized local criterion: a countable group is MF exactly when, for every finite subset
 and every positive error, it has an operator-norm unitary model whose
 distinct elements are separated by at least $1$.
 
