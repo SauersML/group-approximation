@@ -77,6 +77,9 @@ APPROVED_REFERENCES = frozenset({
     ("Sofic/NormalKazhdanMFRadical",
      "GroupApproximation.KazhdanCompressionCore."
      "normalKazhdan_le_coronaMFResidual"),
+    ("Sofic/NormMFPrintedConsequences",
+     "GroupApproximation.KazhdanCompressionCore."
+     "finiteNormal_uniform_invisibility_positiveModel"),
     ("Sofic/MarkedMFClosed",
      "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus"),
     ("Sofic/ChosenMarkedCylinder",
