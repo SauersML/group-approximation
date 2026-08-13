@@ -22,6 +22,7 @@ immediate fixed Hilbert--Schmidt obstruction once the boundary has been
 H-exactified.
 """
 
+import argparse
 import json
 from collections import Counter, defaultdict
 
@@ -99,10 +100,10 @@ def first_noncommuting_factor_one_generator(value):
     raise AssertionError("nonidentity A8 element commutes with all generators")
 
 
-def run():
+def run(radius=5):
     alignment = matrix_from_key(bytes.fromhex(INNER_ALIGNMENT_HEX))
     alignment_inverse = gf2_inv(alignment)
-    states, sphere_sizes = enumerate_ball(5)
+    states, sphere_sizes = enumerate_ball(radius)
     words, _, _ = spanning_tree_kernel_words(states)
     equations = []
     target_by_bridge = defaultdict(set)
@@ -159,7 +160,7 @@ def run():
         for bridge, targets in target_by_bridge.items() if len(targets) > 1
     }
     return {
-        "radius": 5,
+        "radius": radius,
         "sphere_sizes": sphere_sizes,
         "collision_tree_words": len(words),
         "classical_alignment_failures": failed,
@@ -181,4 +182,9 @@ def run():
 
 
 if __name__ == "__main__":
-    print(json.dumps(run(), indent=2))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--radius", type=int, default=5)
+    args = parser.parse_args()
+    if args.radius < 0:
+        raise ValueError("radius must be nonnegative")
+    print(json.dumps(run(args.radius), indent=2))
