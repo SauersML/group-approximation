@@ -370,9 +370,17 @@ theorem cornerMicrostate_gram_eventually (A : OpAlmostRepresentation G)
     (signMicrostate A z n g) hunit
   have hblock : ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n g)‖ ≤ Real.sqrt ε := by
-    refine (norm_posBlock_le_half_commutator U _).trans ?_
-    have hc := hN n hn
-    linarith
+    have hc : ‖U * signMicrostate A z n g - signMicrostate A z n g * U‖ ≤
+        Real.sqrt ε := by
+      simpa [U] using hN n hn
+    have hsqrt : 0 ≤ Real.sqrt ε := Real.sqrt_nonneg ε
+    calc
+      ‖coordinateBlock (fun i => ¬ negPredicate U i)
+          (negPredicate U) (signMicrostate A z n g)‖
+          ≤ ‖U * signMicrostate A z n g - signMicrostate A z n g * U‖ / 2 :=
+        norm_posBlock_le_half_commutator U _
+      _ ≤ Real.sqrt ε / 2 := by gcongr
+      _ ≤ Real.sqrt ε := by linarith
   refine hgram.trans ?_
   have hnonneg : (0 : ℝ) ≤ ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n g)‖ := norm_nonneg _

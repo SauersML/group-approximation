@@ -163,7 +163,7 @@ structure MarkedCompressionNormCertificate (G : Type u) [Group G] where
   witness_ne_one : markedCompressionWord t a c ≠ 1
   witness_invisible : NormMFInvisible (markedCompressionWord t a c)
 
-/-- **Formal non-MF endpoint for the new construction.**  Any countable group
+/-- **Formal non-MF endpoint for the marked construction.**  Any countable group
 carrying the marked-compression certificate is not weak/operator-norm MF. -/
 theorem MarkedCompressionNormCertificate.not_isWeakMF
     [Countable G] (C : MarkedCompressionNormCertificate G) :

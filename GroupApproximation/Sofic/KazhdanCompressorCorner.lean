@@ -1,6 +1,6 @@
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
-import GroupApproximation.Sofic.KazhdanCapture
+import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 
 /-!
@@ -31,107 +31,18 @@ open scoped ComplexOrder Matrix.Norms.L2Operator
 
 /-- **Vector spectral capture.**  The mass of a vector below the spectral
 threshold is controlled by its Laplacian energy.  This is the quadratic-form
-shadow of the operator capture lemma
-`one_sub_threshold_mul_norm_spectralBelow_mul_sq_le`, proved by the same
-positive-semidefinite comparison matrix. -/
+shadow of the operator capture lemma `norm_spectralBelow_mul_sq_le`, proved
+by the same positive-semidefinite comparison matrix. -/
 theorem capture_vec {Y : FiniteModel} (H : Matrix Y Y ℂ)
-    (hH : H.IsHermitian) (t delta : ℝ) (ht : t ≤ 1) (hdelta : 0 ≤ delta)
+    (hH : H.IsHermitian) (t delta : ℝ) (_ht : t ≤ 1) (hdelta : 0 ≤ delta)
     (hHnorm : ‖H‖ ≤ 1 + delta) (ξ : Y → ℂ) :
     (1 - t) * ∑ i : Y, Complex.normSq ((spectralBelow H hH t *ᵥ ξ) i) ≤
       (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re +
         delta * ∑ i : Y, Complex.normSq (ξ i) := by
-  classical
-  let U : Matrix Y Y ℂ := hH.eigenvectorUnitary
-  let L : Matrix Y Y ℂ :=
-    Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ))
-  let R : Matrix Y Y ℂ :=
-    Matrix.diagonal (fun i ↦ if t < hH.eigenvalues i then 0 else 1)
-  let d : Y → ℝ := fun i ↦
-    if t < hH.eigenvalues i then 1 - hH.eigenvalues i + delta
-    else t - hH.eigenvalues i + delta
-  let Bmat : Matrix Y Y ℂ :=
-    1 - H + (delta : ℂ) • (1 : Matrix Y Y ℂ) -
-      ((1 - t : ℝ) : ℂ) • spectralBelow H hH t
-  have hUUstar : U * Uᴴ = 1 :=
-    Unitary.mul_star_self_of_mem hH.eigenvectorUnitary.2
-  have hHdiag : H = U * L * Uᴴ := by
-    calc
-      H = Unitary.conjStarAlgAut ℂ _ hH.eigenvectorUnitary
-          (Matrix.diagonal (RCLike.ofReal ∘ hH.eigenvalues)) :=
-        hH.spectral_theorem
-      _ = U * L * Uᴴ := by rfl
-  have hRdiag : spectralBelow H hH t = U * R * Uᴴ := by
-    unfold spectralBelow spectralAbove
-    rw [← hUUstar]
-    congr 1
-    ext i j
-    by_cases hij : i = j
-    · subst j
-      by_cases hi : t < hH.eigenvalues i <;> simp [R, hi]
-    · simp [R, hij]
-  have hdnonneg : ∀ i, 0 ≤ d i := by
-    intro i
-    by_cases hi : t < hH.eigenvalues i
-    · simp only [d, hi, if_true]
-      have heig := abs_hermitianEigenvalue_le_norm H hH i
-      have hupper : hH.eigenvalues i ≤ 1 + delta :=
-        (le_abs_self _).trans (heig.trans hHnorm)
-      linarith
-    · simp only [d, hi, if_false]
-      exact add_nonneg (sub_nonneg.mpr (le_of_not_gt hi)) hdelta
-  have hBdiag : Bmat = U * Matrix.diagonal (fun i ↦ (d i : ℂ)) * Uᴴ := by
-    rw [show Bmat = 1 - H + (delta : ℂ) • 1 -
-      ((1 - t : ℝ) : ℂ) • spectralBelow H hH t by rfl,
-      hHdiag, hRdiag, ← hUUstar]
-    have hdiag :
-        (1 : Matrix Y Y ℂ) - L + (delta : ℂ) • 1 -
-            ((1 - t : ℝ) : ℂ) • R =
-          Matrix.diagonal (fun i ↦ (d i : ℂ)) := by
-      ext i j
-      by_cases hij : i = j
-      · subst j
-        by_cases hi : t < hH.eigenvalues i <;>
-          simp [L, R, d, hi] <;> push_cast <;> ring
-      · simp [L, R, d, hij]
-    rw [← hdiag]
-    module
-    noncomm_ring
-  have hBpos : Bmat.PosSemidef := by
-    rw [hBdiag]
-    exact (diagonal_posSemidef_of_nonneg d hdnonneg).mul_mul_conjTranspose_same U
-  -- expand the nonnegative quadratic form of `Bmat`
-  have hform := hBpos.2 ξ
-  have hre : 0 ≤ (star ξ ⬝ᵥ (Bmat *ᵥ ξ)).re := by
-    have h := hform
-    rw [Complex.le_def] at h
-    simpa using h.1
-  have hproj := spectralBelow_isOrthogonalProjection H hH t
-  have hprojGram : (spectralBelow H hH t)ᴴ * spectralBelow H hH t =
-      spectralBelow H hH t := by
-    rw [hproj.1, hproj.2]
-  have hmass : (star ξ ⬝ᵥ (spectralBelow H hH t *ᵥ ξ)).re =
-      ∑ i : Y, Complex.normSq ((spectralBelow H hH t *ᵥ ξ) i) := by
-    have h := sum_normSq_mulVec_eq_re_gram_general (spectralBelow H hH t) ξ
-    rw [hprojGram] at h
-    exact h.symm
-  have hexpand : (star ξ ⬝ᵥ (Bmat *ᵥ ξ)).re =
-      (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re +
-        delta * ∑ i : Y, Complex.normSq (ξ i) -
-        (1 - t) * ∑ i : Y,
-          Complex.normSq ((spectralBelow H hH t *ᵥ ξ) i) := by
-    have hBvec : Bmat *ᵥ ξ =
-        (ξ - H *ᵥ ξ) + (delta : ℂ) • ξ -
-          ((1 - t : ℝ) : ℂ) • (spectralBelow H hH t *ᵥ ξ) := by
-      show (1 - H + (delta : ℂ) • (1 : Matrix Y Y ℂ) -
-          ((1 - t : ℝ) : ℂ) • spectralBelow H hH t) *ᵥ ξ = _
-      rw [Matrix.sub_mulVec, Matrix.add_mulVec, Matrix.sub_mulVec,
-        Matrix.smul_mulVec_assoc, Matrix.smul_mulVec_assoc,
-        Matrix.one_mulVec]
-    rw [hBvec, dotProduct_sub, dotProduct_add, dotProduct_smul,
-      dotProduct_smul, Complex.sub_re, Complex.add_re, smul_eq_mul,
-      smul_eq_mul, Complex.re_ofReal_mul, Complex.re_ofReal_mul,
-      re_dotProduct_self, hmass]
-  linarith [hexpand ▸ hre]
+  have h := spectralBelow_quadratic_bound hH hdelta hHnorm (t := t) ξ
+  have hvec : (1 - H) *ᵥ ξ = ξ - H *ᵥ ξ := by
+    rw [Matrix.sub_mulVec, Matrix.one_mulVec]
+  rwa [hvec] at h
 
 /-! ## Unitary bookkeeping -/
 
@@ -246,7 +157,7 @@ theorem conj_defect_vanishing {s δ : Γ}
       (fun n ↦ (B.adjoint.map n (D.iota s) :
         Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ))
       (fun n ↦ hnormlemma n _ (B.adjoint.map n (D.iota s)).2)
-    exact this.congr fun n ↦ by rw [neg_sub, Matrix.mul_sub, Matrix.mul_sub]
+    exact this.congr fun n ↦ by noncomm_ring
   have h2 : OpNormVanishing B.adjoint (fun n ↦
       (B.adjoint.map n (D.iota s) :
           Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) *
@@ -309,8 +220,8 @@ theorem one_sub_map_mul_rotated_vanishing {κ : ℝ}
       (fun n ↦ (B.adjoint.map n D.t :
         Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ)ᴴ) hnormT
     exact this.congr fun n ↦ by
-      rw [neg_mul, ← Matrix.neg_mul, neg_sub]
-      rfl
+      simp only [gammaAdjoint]
+      noncomm_ring
   -- second piece: the conjugation chain against the projection
   have hsecond : OpNormVanishing B.adjoint (fun n ↦
       ((B.adjoint.map n D.t :
@@ -443,8 +354,8 @@ theorem rotated_laplacian_vanishing {κ : ℝ}
       (S.card : ℂ)⁻¹ • ∑ s ∈ S,
         ((1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) -
           B.adjoint.map n (D.iota s)) := by
-    rw [matrixAverage, Finset.sum_sub_distrib, smul_sub, ← honeM]
-    rfl
+    unfold matrixAverage
+    rw [Finset.sum_sub_distrib, smul_sub, ← honeM]
   have hMstar : (1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) -
       (matrixAverage (gammaAdjoint B D) S n)ᴴ =
       (S.card : ℂ)⁻¹ • ∑ s ∈ S,
@@ -455,8 +366,7 @@ theorem rotated_laplacian_vanishing {κ : ℝ}
     rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_one,
       Matrix.conjTranspose_smul, Matrix.conjTranspose_sum] at h
     have hstarcard : (star ((S.card : ℂ)⁻¹)) = ((S.card : ℂ))⁻¹ := by
-      rw [star_inv₀]
-      norm_cast
+      rw [star_inv₀, star_natCast]
     rw [hstarcard] at h
     rw [h]
     congr 1
@@ -525,12 +435,11 @@ theorem one_sub_moved_mul_corner_vanishing {κ : ℝ}
         CStarRing.norm_mem_unitary_mul _
           (conjTranspose_mem_unitaryGroup hTmem)
       _ ≤ 1 := norm_cornerProjection_le_one B D S θ n
-  have hcapture := one_sub_threshold_mul_norm_spectralBelow_mul_sq_le
-    (hermitianAverage (gammaAdjoint B D) S n)
+  have hcapture := norm_spectralBelow_mul_sq_le
     (hermitianAverage_conjTranspose (gammaAdjoint B D) S n)
-    (Tᴴ * P) θ 0 hθ1.le le_rfl
+    (show 0 ≤ (0 : ℝ) by norm_num)
     (by simpa using norm_hermitianAverage_le_one (gammaAdjoint B D) S n)
-    hC
+    hθ1 hC
   have hdisp : ‖Tᴴ * P - hermitianAverage (gammaAdjoint B D) S n *
       (Tᴴ * P)‖ ≤ (1 - θ) * ε ^ 2 := by
     have h := hN n hn
@@ -556,8 +465,7 @@ theorem one_sub_moved_mul_corner_vanishing {κ : ℝ}
   have hnormsq : ‖spectralBelow (hermitianAverage (gammaAdjoint B D) S n)
       (hermitianAverage_conjTranspose (gammaAdjoint B D) S n) θ *
       (Tᴴ * P)‖ ^ 2 ≤ ε ^ 2 := by
-    have := (mul_le_mul_left hθpos).mp hsq
-    exact this
+    exact le_of_mul_le_mul_left hsq hθpos
   have hnn : 0 ≤ ‖spectralBelow (hermitianAverage (gammaAdjoint B D) S n)
       (hermitianAverage_conjTranspose (gammaAdjoint B D) S n) θ *
       (Tᴴ * P)‖ := norm_nonneg _
