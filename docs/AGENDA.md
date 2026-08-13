@@ -3925,6 +3925,25 @@ disintegration, in the finite block-coefficient/multiplicity algebra.  The
 raw compressor and adjacent roots are inputs to that coefficient
 calculation, not themselves ambient deficient projections.
 
+### 2026-08-13: the overlap spherical gauge is only one `2 x 2` block
+
+An exact `GL_4(2)` character calculation identifies the atlas overlap
+`H=diag(GL_3(2),1)` as the stabilizer of a nonincident point--hyperplane flag.
+Its 120-point permutation module is
+
+```text
+Ind_H^A8(1) = 1 + 2(14) + 35 + 56.
+```
+
+The point and hyperplane modules are both `1+14`; their normalized cross Gram
+operator has singular value `1/4` on the zero-sum 14-space.  Consequently the
+spherical commutant has dimension seven and the entire non-scalar ambiguity
+is a single `U(2)` rotation on the two 14 copies.  The 35 and 56 sectors have
+scalar gauge.  The raw-compressor recovery audit should now test those two
+multiplicity-one sectors first and reduce to the fixed `2 x 2` doublet only
+if necessary.  See `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md` and the
+MSI replay `atlas_nonincident_flag_character.g`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

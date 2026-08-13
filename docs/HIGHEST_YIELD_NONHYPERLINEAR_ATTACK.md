@@ -182,6 +182,23 @@ path `000...` gives a nontrivial additive character fixed by
 first exhibiting an additional relation which moves this fixed character.
 See `(RPC59)--(RPC73)`.
 
+The overlap quiver has now been reduced further by exact character theory.
+The subgroup `H=diag(GL_3(2),1)` is the stabilizer of a nonincident
+point--hyperplane flag, and
+
+```text
+Ind_H^A8(1) = 1 + 2(14) + 35 + 56.
+```
+
+Thus its spherical commutant has dimension seven, and the only non-scalar
+representation-type gauge is one `2 x 2` block on the repeated
+14-dimensional constituent.  The 35 and 56 sectors are multiplicity-one
+scalar channels.  The next exact packet audit should first test whether the
+raw two-child holonomy descends functorially to those scalar sectors; only if
+both are balanced is a `2 x 2` calculation on the point/hyperplane 14-doublet
+needed.  Do not return to arbitrary `15 x 15` or `120 x 120` optimization.
+See `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md`.
+
 Do not search the current radius-five collision tree for a single linear
 Hecke edge.  The exact archived scan has no word with exactly one transverse
 second-chart syllable, hence no direct equation `W A = B W` after
