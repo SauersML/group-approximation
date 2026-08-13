@@ -208,6 +208,36 @@ theorem exists_one_sided_inverse (D : ProperProjectionCompression A) :
   ⟨star D.isometry, D.isometry,
     D.star_isometry_mul_isometry, D.isometry_mul_star_ne_one⟩
 
+/-- The explicit left-invertible element `star s` is not invertible.  This is
+the element-level formulation of failure of direct finiteness. -/
+theorem star_isometry_not_isUnit (D : ProperProjectionCompression A) :
+    ¬ IsUnit (star D.isometry) := by
+  rintro ⟨u, hu⟩
+  have hus : (u : A) * D.isometry = 1 := by
+    rw [hu]
+    exact D.star_isometry_mul_isometry
+  have hs : D.isometry = ((u⁻¹ : Aˣ) : A) := by
+    calc
+      D.isometry = 1 * D.isometry := (one_mul _).symm
+      _ = (((u⁻¹ : Aˣ) : A) * (u : A)) * D.isometry := by
+        rw [Units.inv_mul]
+      _ = ((u⁻¹ : Aˣ) : A) * ((u : A) * D.isometry) := by
+        rw [mul_assoc]
+      _ = ((u⁻¹ : Aˣ) : A) * 1 := by rw [hus]
+      _ = ((u⁻¹ : Aˣ) : A) := mul_one _
+  apply D.isometry_mul_star_ne_one
+  have hu' : (u : A) = star ((u⁻¹ : Aˣ) : A) := by
+    rw [← hs]
+    exact hu
+  rw [hs, ← hu']
+  exact Units.inv_mul u
+
+/-- There is explicitly a left-invertible element which is not a unit. -/
+theorem exists_leftInvertible_not_isUnit (D : ProperProjectionCompression A) :
+    ∃ a b : A, a * b = 1 ∧ ¬ IsUnit a :=
+  ⟨star D.isometry, D.isometry,
+    D.star_isometry_mul_isometry, D.star_isometry_not_isUnit⟩
+
 /-- A ring containing the compression data is not directly finite (also
 called Dedekind finite or von Neumann finite). -/
 theorem not_isDedekindFiniteMonoid (D : ProperProjectionCompression A) :
