@@ -455,4 +455,3 @@ import GroupApproximation.Sofic.KazhdanCompressorCorner
 import GroupApproximation.Sofic.MarkedCompressionVectorChain
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 import GroupApproximation.Sofic.ExplicitMarkedPresentation
-import GroupApproximation.Monsters.CliffordAlgebraLamp
