@@ -2332,6 +2332,50 @@ its kernel is exactly $N$, while the MF radical lies in the kernel of
 every corona representation.
 \end{proof}
 
+\subsection{A finite universal Horn obstruction}
+
+\begin{theorem}[finite quasi-identity]\label{thm:horn}
+There exist a finite set $X$, a finite set
+$R\subseteq F(X)$, and a word $q\in F(X)$ such that the universal Horn
+sentence
+\begin{equation}\label{eq:horn}
+ \forall (h_x)_{x\in X}\quad
+ \left(\bigwedge_{r\in R}r((h_x))=1\ \Longrightarrow\
+ q((h_x))=1\right)
+\end{equation}
+holds in every MF group, but fails in the finitely presented group
+$\langle X\mid R\rangle$.
+\end{theorem}
+
+\begin{proof}
+Choose a finitely presented non-MF group $P$, whose existence follows from
+Theorem~\ref{thm:A}, and put
+$N=\operatorname{Rad}_{\mathrm{MF}}(P)$.  By
+Proposition~\ref{prop:univquot}, $N\neq\{1\}$; fix
+$1\neq p\in N$.  Choose a finite presentation
+$P=\langle X\mid R\rangle$ and a word $q\in F(X)$ representing $p$.
+
+Let $H$ be MF and let $(h_x)_{x\in X}$ satisfy all the relations in $R$.
+The universal property of the presentation gives a homomorphism
+$\varphi\colon P\to H$ with $\varphi(x)=h_x$.  Portability
+(Lemma~\ref{lem:portable}) gives
+$\varphi(p)\in\operatorname{Rad}_{\mathrm{MF}}(H)=\{1\}$, so
+$q((h_x))=1$.  Thus \eqref{eq:horn} holds in every MF group.
+\leanverified{Sofic/ChosenUniversalHorn}{GroupApproximation.ChosenUniversalHorn.isOperatorMF_satisfies_chosenQuasiIdentity}
+
+For the canonical generating tuple in $P$, every relation in $R$ holds,
+whereas $q$ evaluates to $p\neq1$.  Hence the same sentence fails in
+$P=\langle X\mid R\rangle$.
+\leanverified{Sofic/ChosenUniversalHorn}{GroupApproximation.ChosenUniversalHorn.markedGroup_not_satisfies_chosenQuasiIdentity}
+\end{proof}
+
+\begin{remark}
+After the existence theorem is established, the assertion is purely
+algebraic: it packages a nontrivial radical element as a finite
+quasi-identity.  It does not identify the full universal Horn theory of MF
+groups.
+\end{remark}
+
 \subsection{Targets beyond coronas}
 
 \begin{corollary}[subalgebras of coronas]\label{cor:subalg}
