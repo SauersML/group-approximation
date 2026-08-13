@@ -66,7 +66,7 @@ def mustNotReport : List Name :=
 run_cmd do
   let env ← getEnv
   let findings ← liftTermElabM <|
-    Audit.allScans env `AuditPlant [``propext, ``Classical.choice, ``Quot.sound]
+    Audit.allScans env `Audit [``propext, ``Classical.choice, ``Quot.sound]
 
   let mut failures : Array String := #[]
 
