@@ -370,11 +370,10 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 (k : Type) → [Field k] → Type
 ```
 
-## `GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF`
+## `GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`
 
 ```lean
-Group.IsFinitelyPresented ChosenMarkedPresentation.MarkedGroup ∧
-  ¬IsOperatorMF ChosenMarkedPresentation.MarkedGroup
+∃ E, ∃ (_ : Group E), Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
 ```
 
 ## `GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package`
@@ -1821,14 +1820,6 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 ∀ {A : Type u_1} [inst : Ring A] (L : LeavittFamily A), L.z * L.z = 1
 ```
 
-## `GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one`
-
-```lean
-IsOperatorMF CyclicBaseCalibration.CliffordBS →
-  ∃ X,
-    (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) ∧ ∃ rho, rho LiteralCyclicCalibration.mark ≠ 1
-```
-
 ## `GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill`
 
 ```lean
@@ -1844,10 +1835,36 @@ IsOperatorMF CyclicBaseCalibration.CliffordBS →
 Group.IsFinitelyPresented LiteralCyclicCalibration.LiteralGroup
 ```
 
+## `GroupApproximation.LiteralCyclicCalibration.mark_central`
+
+```lean
+∀ (g : LiteralCyclicCalibration.LiteralGroup), Commute LiteralCyclicCalibration.mark g
+```
+
+## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central`
+
+```lean
+∀ (g : LiteralCyclicCalibration.RealizedQuotient),
+  Commute (LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) g
+```
+
 ## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one`
 
 ```lean
 LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ≠ 1
+```
+
+## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_sq`
+
+```lean
+LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark ^ 2 = 1
+```
+
+## `GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val`
+
+```lean
+↑(LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) =
+  CyclicBaseCalibration.zBS
 ```
 
 ## `GroupApproximation.LiteralCyclicCalibration.quotientMap_surjective`
@@ -1863,13 +1880,6 @@ Function.Surjective ⇑LiteralCyclicCalibration.quotientMap
   [inst_2 : _root_.Module k V] [FiniteDimensional k V]
   (pi : LiteralCyclicCalibration.RealizedQuotient →* (Module.End k V)ˣ),
   pi (LiteralCyclicCalibration.quotientMap LiteralCyclicCalibration.mark) = 1
-```
-
-## `GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF`
-
-```lean
-IsOperatorMF CyclicBaseCalibration.CliffordBS →
-  IsOperatorMF LiteralCyclicCalibration.RealizedQuotient
 ```
 
 ## `GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`

@@ -43,5 +43,4 @@ endpoint for that literal presentation is admitted to this audit surface.
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
 #print axioms GroupApproximation.LiteralCyclicCalibration.mark_ne_one
 #print axioms GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill
-#print axioms GroupApproximation.LiteralCyclicCalibration.exists_coronaRepresentation_mark_ne_one
 #print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity

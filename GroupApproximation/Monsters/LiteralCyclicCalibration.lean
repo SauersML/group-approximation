@@ -1,6 +1,4 @@
 import GroupApproximation.Monsters.CyclicBaseCalibration
-import GroupApproximation.Sofic.OperatorMF
-import GroupApproximation.Sofic.OperatorMFPositiveControls
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
 
@@ -12,9 +10,7 @@ of the manuscript.  It maps that presentation to the existing exact Clifford
 cyclic model, where the marked central involution survives, and proves that
 every finite-dimensional linear representation kills the marked element.
 
-No amenability-to-MF theorem is assumed or postulated here.  The final corona
-statement takes operator-MF of the concrete Clifford target as an explicit
-hypothesis.
+This module makes no analytic MF or corona-survival claim.
 -/
 
 namespace GroupApproximation
@@ -303,7 +299,7 @@ theorem realizedQuotient_finitelyGenerated : Group.FG RealizedQuotient := by
           Set (FreeGroup Generator)))
   exact Group.fg_of_surjective quotientMap_surjective
 
-/-! ## Finite-dimensional kill and the conditional MF calibration -/
+/-! ## Finite-dimensional kill -/
 
 def cyclicBase : Set LiteralGroup := {g | ∃ n : ℤ, g = gamma ^ n}
 
@@ -341,28 +337,6 @@ theorem realizedQuotient_finiteDimensional_kill
     [FiniteDimensional k V] (pi : RealizedQuotient →* (Module.End k V)ˣ) :
     pi (quotientMap mark) = 1 := by
   simpa using finiteDimensional_kill (pi.comp quotientMap)
-
-/-- The realized Clifford quotient is operator-MF whenever the ambient
-Clifford cyclic model is.  The manuscript supplies the premise from
-amenability and quasidiagonality; Lean records only the formal subgroup
-permanence step here. -/
-theorem realizedQuotient_isOperatorMF
-    (hMF : IsOperatorMF CliffordBS) : IsOperatorMF RealizedQuotient :=
-  hMF.subgroup realization.range
-
-/-- If the concrete Clifford cyclic target is operator-MF, the literal group
-has a standard corona representation in which its marked involution survives.
-This keeps the paper-side amenability/TWW input explicit. -/
-theorem exists_coronaRepresentation_mark_ne_one
-    (hMF : IsOperatorMF CliffordBS) :
-    ∃ (X : ℕ → FiniteModel), (∀ n, 0 < Fintype.card (X n)) ∧
-      ∃ rho : LiteralGroup →* NormMatrixCoronaUnitary X, rho mark ≠ 1 := by
-  obtain ⟨X, hX, rho, hrho⟩ := hMF
-  refine ⟨X, hX, rho.comp realization, ?_⟩
-  intro h
-  apply markedWord_ne_one
-  apply hrho
-  simpa [MonoidHom.comp_apply, realization_mark] using h
 
 end
 end LiteralCyclicCalibration
