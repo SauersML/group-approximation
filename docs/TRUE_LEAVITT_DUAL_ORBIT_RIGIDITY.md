@@ -56,6 +56,14 @@ carrying a binary Leavitt family,
 This stronger proof is formalized in
 `GroupApproximation/Leavitt/UnitAdditiveSpan.lean`.
 
+The finite-orbit conclusion itself is now formalized in
+`GroupApproximation/Leavitt/FiniteDualOrbit.lean`.  The Lean statement avoids
+any choice of bases or dimension calculation: a finite family of additive
+`F_2`-characters that is closed under every left-unit translate has a common
+kernel which is a left ideal.  The quotient embeds in the finite simultaneous
+evaluation space, hence is a finite Leavitt module and must be trivial.  In
+particular every character in the family is zero.
+
 For comparison, the same fact is visible in the three-leaf prefix
 equivalence `R ~= M_3(R)`.  For `i != j`,
 the off-diagonal matrix unit satisfies
