@@ -19,10 +19,11 @@ two endpoints explicitly require either property `(T)` of the displayed base
 or an exact rational SOS certificate.
 
 This checker enforces both lexical resolution and a semantic contract for the
-formal-status paragraph: its finitely presented non-MF sentence must link to
-the standard ``IsOperatorMF`` endpoint pinned by ``scripts/Audit.lean``, not
-to the project-local ``IsWeakMF`` auxiliary endpoint.  Transitive axiom
-checking remains the responsibility of ``scripts/Audit.lean``.
+margin links: exactly one must name the unconditional standard
+``IsOperatorMF`` existence endpoint pinned by ``scripts/Audit.lean``.  No
+link may name the project-local ``IsWeakMF`` auxiliary predicate or one of the
+retired explicit-endpoint modules.  Transitive axiom checking remains the
+responsibility of ``scripts/Audit.lean``.
 """
 
 from __future__ import annotations
@@ -42,16 +43,16 @@ REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
 DECLS_FILE = REPO / "docs" / "NON_MF_CLAIM_DECLS.txt"
 REFERENCE_RE = re.compile(r"\\leanverified\{([^{}]+)\}\{([^{}]+)\}")
-STATUS_RE = re.compile(
-    r"\\begin\{remark\}\[status of the formal companion\]"
-    r"\\label\{rem:leanstatus\}(.*?)\\end\{remark\}",
-    re.DOTALL,
-)
-STATUS_ENDPOINT = (
+UNCONDITIONAL_ENDPOINT = (
     "Sofic/ChosenNonMFTheorem",
     "GroupApproximation.ChosenNonMFTheorem."
     "exists_finitelyPresented_not_isOperatorMF",
 )
+RETIRED_EXPLICIT_MODULES = frozenset({
+    "Sofic/ExplicitMarkedPresentation",
+    "Sofic/ExplicitNonMFEndpoint",
+    "Sofic/ExplicitNonMFTheorem",
+})
 
 
 def validate(repo: Path, tex: Path) -> list[str]:
@@ -63,27 +64,30 @@ def validate(repo: Path, tex: Path) -> list[str]:
     index = build_index(repo)
     problems: list[str] = []
 
-    status_matches = STATUS_RE.findall(source)
-    if len(status_matches) != 1:
+    if references.count(UNCONDITIONAL_ENDPOINT) != 1:
         problems.append(
-            "expected exactly one formal-status remark labelled rem:leanstatus"
+            "margin links must name exactly once the pinned unconditional "
+            "IsOperatorMF existence endpoint"
         )
-    else:
-        status_references = REFERENCE_RE.findall(status_matches[0])
-        if status_references.count(STATUS_ENDPOINT) != 1:
-            problems.append(
-                "formal-status finitely presented non-MF claim must link exactly "
-                "once to the pinned unconditional IsOperatorMF existence endpoint"
-            )
-        weak_endpoints = [
-            declaration for _module, declaration in status_references
-            if declaration.endswith("not_isWeakMF")
-        ]
-        if weak_endpoints:
-            problems.append(
-                "formal-status remark links an IsWeakMF auxiliary endpoint: "
-                + ", ".join(weak_endpoints)
-            )
+
+    weak_endpoints = [
+        declaration for _module, declaration in references
+        if "WeakMF" in declaration
+    ]
+    if weak_endpoints:
+        problems.append(
+            "margin links an IsWeakMF auxiliary endpoint: "
+            + ", ".join(weak_endpoints)
+        )
+
+    retired = [
+        f"{module}:{declaration}" for module, declaration in references
+        if module in RETIRED_EXPLICIT_MODULES
+    ]
+    if retired:
+        problems.append(
+            "margin links a retired explicit endpoint: " + ", ".join(retired)
+        )
 
     for module, declaration in references:
         expected = repo / "GroupApproximation" / f"{module}.lean"
@@ -141,6 +145,13 @@ def self_test() -> int:
             "end GroupApproximation.ChosenNonMFTheorem\n",
             encoding="utf-8",
         )
+        retired = repo / "GroupApproximation" / "Sofic" / "ExplicitNonMFTheorem.lean"
+        retired.write_text(
+            "namespace GroupApproximation.ExplicitNonMFTheorem\n"
+            "theorem retired : True := by trivial\n"
+            "end GroupApproximation.ExplicitNonMFTheorem\n",
+            encoding="utf-8",
+        )
         elsewhere = repo / "GroupApproximation" / "Sofic"
         elsewhere.mkdir(parents=True, exist_ok=True)
         (elsewhere / "Stray.lean").write_text(
@@ -151,16 +162,13 @@ def self_test() -> int:
         )
         tex = repo / "paper.tex"
 
-        correct_status = (
-            r"\begin{remark}[status of the formal companion]"
-            r"\label{rem:leanstatus}"
+        correct_endpoint = (
             r"\leanverified{Sofic/ChosenNonMFTheorem}"
             r"{GroupApproximation.ChosenNonMFTheorem."
             r"exists_finitelyPresented_not_isOperatorMF}"
-            r"\end{remark}"
         )
         tex.write_text(
-            correct_status
+            correct_endpoint
             + r"\leanverified{Criterion/FiniteDimensionalKill}"
             + r"{GroupApproximation.map_marked_commutator_eq_one}",
             encoding="utf-8",
@@ -180,7 +188,7 @@ def self_test() -> int:
             return 1
 
         tex.write_text(
-            correct_status
+            correct_endpoint
             + r"\leanverified{Criterion/FiniteDimensionalKill}"
             + r"{GroupApproximation.map_marked_commutator_eq_two}",
             encoding="utf-8",
@@ -191,7 +199,7 @@ def self_test() -> int:
             return 1
 
         tex.write_text(
-            correct_status
+            correct_endpoint
             + r"\leanverified{Criterion/FiniteDimensionalKill}"
             + r"{GroupApproximation.strayed}",
             encoding="utf-8",
@@ -202,15 +210,39 @@ def self_test() -> int:
                   file=sys.stderr)
             return 1
 
-        weak_status = correct_status.replace(
-            "exists_finitelyPresented_not_isOperatorMF",
-            "chosenFinitelyPresented_not_isWeakMF",
+        tex.write_text(
+            correct_endpoint
+            + correct_endpoint,
+            encoding="utf-8",
         )
-        tex.write_text(weak_status, encoding="utf-8")
         problems = validate(repo, tex)
-        if not any("pinned unconditional IsOperatorMF existence endpoint" in problem
+        if not any("exactly once" in problem
                    for problem in problems):
-            print("self-test: WeakMF status drift was not detected",
+            print("self-test: duplicate unconditional endpoint was not detected",
+                  file=sys.stderr)
+            return 1
+
+        tex.write_text(
+            correct_endpoint
+            + r"\leanverified{Sofic/ChosenNonMFTheorem}"
+            + r"{GroupApproximation.ChosenNonMFTheorem."
+            + r"chosenFinitelyPresented_not_isWeakMF}",
+            encoding="utf-8",
+        )
+        problems = validate(repo, tex)
+        if not any("IsWeakMF auxiliary endpoint" in problem for problem in problems):
+            print("self-test: WeakMF endpoint was not rejected", file=sys.stderr)
+            return 1
+
+        tex.write_text(
+            correct_endpoint
+            + r"\leanverified{Sofic/ExplicitNonMFTheorem}"
+            + r"{GroupApproximation.ExplicitNonMFTheorem.retired}",
+            encoding="utf-8",
+        )
+        problems = validate(repo, tex)
+        if not any("retired explicit endpoint" in problem for problem in problems):
+            print("self-test: retired explicit endpoint was not rejected",
                   file=sys.stderr)
             return 1
 
