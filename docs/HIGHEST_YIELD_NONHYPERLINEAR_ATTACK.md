@@ -2,6 +2,24 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 narrowing: star is closed; multiplication-to-support remains
+
+The finite star-synchronizing extension is now proved hyperlinearity-neutral.
+For an involution `psi`, two-sheet block matrices prove
+`Q semidirect_psi C2` hyperlinear if and only if `Q` is.  See
+`TRUE_INVOLUTIVE_STAR_EXTENSION_PRESERVES_HYPERLINEARITY.md` and the
+Lean-checked identities in `Sofic/InvolutiveTwoSheet.lean`.
+
+This removes star/adjoint compatibility from the attack list.  The raw
+compressed carrier, trace-half coefficient cut, synchronized star, and exact
+finite branch Pauli cell are all available.  The single highest-yield atlas
+question is now whether the cross-root Steinberg multiplication relations
+force the ring identity `ef=f` to become support containment between those
+finite coefficient cuts.  Any proof that only uses ambient finite-subgroup
+spectral projections is already ruled out by the balanced finite chart; the
+new argument must recover a coherent finite radical quotient or equivalent
+matrix-coordinate character completion.
+
 ## Revised decision
 
 The active construction target should no longer be another deformation of the

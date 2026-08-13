@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: the involutive star extension is hyperlinearity-neutral
+
+`TRUE_INVOLUTIVE_STAR_EXTENSION_PRESERVES_HYPERLINEARITY.md` closes the
+logical cost of the star synchronizer.  For every involution `psi` of `Q`,
+the two-sheet model
+
+```text
+q |-> diag(U_q,U_(psi q)),      j |-> [0 I; I 0]
+```
+
+proves `Q semidirect_psi C2` hyperlinear exactly when `Q` is.  Different
+`C2` sheets have normalized trace zero and hence maximal HS separation;
+same-sheet defects are the average of two defects in the old model.  The
+exact block identities are Lean-checked in
+`Sofic/InvolutiveTwoSheet.lean`.  Therefore the synchronized Leavitt-star
+extension is a legitimate target, and star/adjoint compatibility is no
+longer a gate.  The remaining atlas gate is strictly multiplication-to-
+support: recover the child--parent identity `ef=f` as inclusion of finite
+Pauli coefficient supports through the cross-root Steinberg relations.
+
 ### 2026-08-13: double-Clifford cancellation for the Kun--Thom group
 
 `TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md` proves that two identical
