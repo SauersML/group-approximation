@@ -515,19 +515,20 @@ contrasts both with the present operator-norm corona mechanism.
   is being reused.  The manuscript already disclaims novelty for the
   paradigm and claims only its marked-kernel deployment.
 * The central corner is directly preceded by the negative-eigenspace cuts in
-  Slofstra–Vidick.  The genuinely different move is to regard the possibly
-  vanishing-density corner as a new matrix sequence, eliminating a relative
-  rank lower bound.  No earlier source for that rank-renormalized norm-corona
-  tactic was found.
+  Slofstra–Vidick.  Bachner--Dogon--Lubotzky Proposition 1.5 is closer still:
+  it rounds a central involution, passes to its nonzero negative eigenspace,
+  changes the matrix dimension to that corner, and polar-corrects the
+  compression.  Thus eliminating a positive relative-rank requirement by
+  changing matrix size is prior art and must not be claimed as novel here.
 * Bachner–Dogon–Lubotzky, Proposition 1.6, is a particularly close item that
   the earlier passes had cited only generically: for a finitely generated
   group Lambda with finite normal N and hyperlinear Lambda/N, MF-ness of
   Lambda implies hyperlinearity.  Thus finite normal extensions were already
   being used to cross the operator/Hilbert–Schmidt boundary.  Their argument
-  does not kill N; the present proof instead averages N and changes the
-  ambient matrix sequence to keep a possibly zero-density obstruction.  This
-  distinction and the precise proposition are now stated in the prior-work
-  section.
+  does not kill N; the present proof instead combines the corner with the
+  one-sided Kazhdan compressor and stable finiteness to kill the finite
+  subgroup universally.  This distinction and the precise proposition are
+  now stated in the prior-work section.
 * The same paper has two further local antecedents that should be cited at the
   analytic step, not merely in the introduction.  Proposition 2.4 compresses a
   Schatten-`p` asymptotic representation to an almost-invariant projection and
@@ -544,9 +545,9 @@ contrasts both with the present operator-norm corona mechanism.
 * Bachner--Dogon--Lubotzky Lemma 2.2 records exact involution rounding for every
   unitarily invariant norm (with the bound by `‖1-A²‖`), citing DGLT Proposition
   1.4; Lemma 2.3 records the corresponding polar correction.  These are useful
-  historical anchors for the elementary analytic sublemmas, but the manuscript
-  should not imply that its rank-renormalized norm-corona corner or its Kazhdan
-  compressor theorem occurs there.
+  historical anchors for the elementary analytic sublemmas.  The corner and
+  dimension change do occur there; the Kazhdan compressor, stable-finiteness
+  pinning, and unconditional universal marked kernel do not.
 * The MF-radical/largest-quotient construction remains structural folklore,
   with Slofstra's finite/finite-approximate kernels and
   Nikolov–Schneider–Thom approximation kernels as the proper conceptual
