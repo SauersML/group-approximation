@@ -93,7 +93,14 @@ jobs:
           export FORCE_SOURCE_DATE=1
           export TZ=UTC
 
-          chktex -q -n1 -n2 -n3 -n8 -n24 -n36 "$TEX_FILE"
+          # ChkTeX's warnings 9, 12, 13, 25, and 38 are not reliable for this
+          # mathematical manuscript: they flag half-open interval notation,
+          # adjacent math atoms, abbreviations such as "MF.", and the paper's
+          # TeX-style closing quotes.  Keep ChkTeX as a gate for its remaining
+          # diagnostics while leaving compilation, references, overflows,
+          # rendering, and PDF integrity to the dedicated checks below.
+          chktex -q -n1 -n2 -n3 -n8 -n9 -n12 -n13 -n24 -n25 -n36 -n38 \
+            "$TEX_FILE"
           latexmk -pdf -outdir=build -interaction=nonstopmode \
             -halt-on-error -file-line-error "$TEX_FILE"
 
