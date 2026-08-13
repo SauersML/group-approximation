@@ -18,8 +18,8 @@ It fails, with a nonzero exit code, if either check below fails:
    theorems verbatim.  The complete manuscript-mapped surface is pinned by
    `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`; if a mapped
    statement is weakened or gains a premise, that signature gate changes.
-2. **Transitive axiom closure.**  Every declaration in the
-   `GroupApproximation` namespace is traversed through the *kernel*
+2. **Transitive axiom closure.**  Every declaration compiled from a
+   `GroupApproximation` module is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three
    axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
@@ -449,7 +449,7 @@ than from a hand-maintained list, so that a new module cannot escape the
 audit by not being mentioned here. -/
 def projectDeclarations (env : Environment) : Array Name :=
   env.constants.fold (init := #[]) fun acc n _ =>
-    if (`GroupApproximation).isPrefixOf n then acc.push n else acc
+    if Audit.inCorpusModule env `GroupApproximation n then acc.push n else acc
 
 /-- The union of the transitive axiom closures of `roots`. -/
 def axiomClosure (roots : Array Name) : CommandElabM (Array Name) := do
@@ -478,12 +478,12 @@ run_cmd do
 
   let decls := projectDeclarations env
   if decls.size < 100 then
-    throwError "only {decls.size} declarations found in the `GroupApproximation` \
-namespace; the audit is not seeing the library"
+    throwError "only {decls.size} declarations found in `GroupApproximation` \
+modules; the audit is not seeing the library"
   let axioms ← axiomClosure decls
   let bad := disallowed axioms
   unless bad.isEmpty do
-    throwError "the `GroupApproximation` namespace depends on disallowed \
+    throwError "the `GroupApproximation` modules depend on disallowed \
 axioms: {bad.toList}"
   logInfo m!"audited {decls.size} declarations; no disallowed axioms"
 
