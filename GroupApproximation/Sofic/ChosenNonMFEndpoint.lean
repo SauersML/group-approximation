@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitMarkedPresentation
+import GroupApproximation.Sofic.ChosenMarkedPresentation
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 
 /-!
@@ -6,9 +6,9 @@ import GroupApproximation.Sofic.MarkedCompressionInclusionData
 
 This file connects the fully algebraic finite presentation to the analytic
 marked-compression theorem.  Its vertex is the noncomputably chosen finitely
-presented Kazhdan cover supplied in `ExplicitMarkedPresentation`; this Lean
+presented Kazhdan cover supplied in `ChosenMarkedPresentation`; this Lean
 witness is not asserted to be the paper's displayed finite presentation.  All
-group-theoretic input is proved here or in `ExplicitMarkedPresentation`:
+group-theoretic input is proved here or in `ChosenMarkedPresentation`:
 
 * the group is finitely presented and countable;
 * its Kazhdan vertex has property `(T)`;
@@ -23,9 +23,9 @@ independently checkable and contains no analytic assumption.
 -/
 
 namespace GroupApproximation
-namespace ExplicitNonMFEndpoint
+namespace ChosenNonMFEndpoint
 
-open ExplicitMarkedPresentation
+open ChosenMarkedPresentation
 
 /-- The presented Shalom-cover witness group is countable. -/
 noncomputable instance markedGroup_countable : Countable MarkedGroup :=
@@ -102,10 +102,10 @@ theorem inclusionData_word_ne_one : inclusionData.word ≠ 1 := by
 /-- **Top-level algebraic endpoint.**  The chosen Shalom-cover finite
 presentation supplies nontrivial marked-compression inclusion data, exactly
 in the form required by the analytic kill theorem. -/
-theorem explicit_finitelyPresented_inclusion_package :
+theorem chosenFinitelyPresented_inclusionPackage :
     Group.IsFinitelyPresented MarkedGroup ∧
       Countable MarkedGroup ∧ inclusionData.word ≠ 1 := by
   exact ⟨inferInstance, inferInstance, inclusionData_word_ne_one⟩
 
-end ExplicitNonMFEndpoint
+end ChosenNonMFEndpoint
 end GroupApproximation

@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 
@@ -16,7 +16,7 @@ literal source `F_8` belongs to the separate eight-generator presentation.
 namespace GroupApproximation
 namespace OperatorMFQuotientNonclosure
 
-open ExplicitMarkedPresentation ExplicitNonMFTheorem
+open ChosenMarkedPresentation ChosenNonMFTheorem
 
 /-- The finite-rank free group on the chosen marked presentation's generator
 type is operator-MF. -/

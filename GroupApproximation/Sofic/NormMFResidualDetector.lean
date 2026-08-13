@@ -23,7 +23,7 @@ marked word is `NormMFInvisible`, together with `w ≠ 1`, into `¬ IsWeakMF G`
 using the repository's faithful-ultraproduct theorem.  The analytic
 invisibility theorem is proved downstream, without an added premise, in
 `MarkedCompressionSequentialKill`; the concrete public assembly is
-`ExplicitNonMFTheorem`.
+`ChosenNonMFTheorem`.
 
 No C*-algebraic premise is hidden in the definitions below: the targets are
 literally `UniversalWeakMF`, the operator-norm matrix ultraproduct already

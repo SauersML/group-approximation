@@ -39,18 +39,18 @@ example : ∃ (G : Type) (_ : Group G), Group.IsFinitelyPresented G ∧ ¬ IsSof
 
 example :
     ∃ (E : Type) (_ : Group E), Countable E ∧ ¬ IsWeakMF E :=
-  ExplicitNonMFTheorem.exists_countable_not_isWeakMF
+  ChosenNonMFTheorem.exists_countable_not_isWeakMF
 
 example :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsWeakMF E :=
-  ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+  ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF
 
 example :
     Group.IsFinitelyPresented
-        ExplicitMarkedPresentation.MarkedGroup ∧
-      ¬ IsOperatorMF ExplicitMarkedPresentation.MarkedGroup :=
-  ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+        ChosenMarkedPresentation.MarkedGroup ∧
+      ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
+  ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
 
 example
     (e : LiteralNonMFPresentation.Base ≃* AffineSL3Doubling.Gamma)
@@ -69,20 +69,20 @@ example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
 
 example :
     ¬ IsOperatorMF MarkedCompression.Explicit.theGroup :=
-  ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
+  ChosenNonMFTheorem.countableWitness_not_isOperatorMF
 
 example :
     ∃ (E : Type) (_ : Group E),
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
-  ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+  ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 
 example : ¬ (∀ (E : Type) [Group E], IsOperatorMF E) :=
-  ExplicitNonMFTheorem.not_every_group_isOperatorMF
+  ChosenNonMFTheorem.not_every_group_isOperatorMF
 
 example :
     ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
       IsOperatorMF E) :=
-  ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+  ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
 
 example
     (hT : HasKazhdanPropertyT.{0, 0}
@@ -385,14 +385,14 @@ def headlineTheorems : List Name :=
    ``countable_group_without_essentiallyFreeNearAction_exists,
    ``exists_finitelyPresented_nonsofic_group,
    ``exists_infinite_finitelyPresented_nonsofic_ambient_cover,
-   ``ExplicitNonMFTheorem.mark_normMFInvisible,
-   ``ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF,
-   ``ExplicitNonMFTheorem.exists_countable_not_isWeakMF,
-   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
-   ``ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF,
-   ``ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
-   ``ExplicitNonMFTheorem.not_every_group_isOperatorMF,
-   ``ExplicitNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
+   ``ChosenNonMFTheorem.mark_normMFInvisible,
+   ``ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF,
+   ``ChosenNonMFTheorem.exists_countable_not_isWeakMF,
+   ``ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
+   ``ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
+   ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
    ``LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT,
    ``LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate,
    ``LiteralCyclicCalibration.mark_ne_one,

@@ -1,6 +1,6 @@
 import GroupApproximation.Endpoint.MainResults
 import GroupApproximation.Endpoint.ManuscriptStatements
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
+import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
@@ -43,6 +43,7 @@ import GroupApproximation.KOne.ClassicalKOne
 import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.Kazhdan.KazhdanTextbook
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 
 /-!
 # The public results
@@ -77,15 +78,16 @@ generated from the manuscript's margin notes; this module is the short list.
 
 ## The operator-norm MF obstruction
 
-* `ExplicitNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word is
+* `ChosenNonMFTheorem.mark_normMFInvisible` -- the nontrivial marked word in
+  the noncomputably chosen Shalom-cover witness is
   killed by every homomorphism to every norm-matrix ultraproduct.
-* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the
-  independently constructed finitely presented marked group is not MF.
-* `ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
+* `ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF` -- the chosen
+  finitely presented marked group is not local weak-MF.
+* `ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` -- the
   same conclusion stated for the standard cofinite norm-matrix-corona
   predicate, rather than the local weak-MF predicate.
-* `ExplicitNonMFTheorem.exists_countable_not_isWeakMF` and
-  `ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
+* `ChosenNonMFTheorem.exists_countable_not_isWeakMF` and
+  `ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF` -- the two
   headline existence forms.
 * `KazhdanCompressionCore.finiteNormal_le_normMFResidual` -- the stronger
   Clifford-free criterion: every finite normal subgroup contained in the
@@ -108,7 +110,7 @@ generated from the manuscript's margin notes; this module is the short list.
 * `MarkedGroupSpace.isClosed_operatorMFLocus` -- operator-MF groups form a
   closed locus in each fixed-rank marked-group space, with a finite word-ball
   cylinder witnessing every failure.
-* `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
+* `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 * `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
   free product to be non-MF; the literal `E * ℤ` form retains the same
@@ -161,6 +163,9 @@ boundary instead of conflating the two constructions.
 * `ProperProjectionCompression` -- the one-sided compression API, including
   its proper isometry, failure of stable finiteness, and obstruction to a
   faithful tracial state.
+* `FixedSpaceStabilizer.compressionGroup_le_stabilizer` -- the exact subgroup
+  closure step propagating fixed-sector stabilization from one-sided
+  compressors to the group they generate.
 * `AffineSL3Doubling.doubling_package` -- the semantic affine group used by
   the printed construction, with injective doubling, index-eight image, and
   an explicit translation outside that image.  This does not assert that the
@@ -304,7 +309,7 @@ export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
 
 /-! ### The operator-norm MF obstruction -/
 
-export GroupApproximation.ExplicitNonMFTheorem
+export GroupApproximation.ChosenNonMFTheorem
   (mark_normMFInvisible chosenFinitelyPresented_not_isWeakMF
     chosenFinitelyPresented_not_isOperatorMF
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF
@@ -393,6 +398,8 @@ export GroupApproximation.CStarRecognitionConsequences
     maximalCStar_directlyFinite_recognition_undecidable
     all_groupCStar_recognition_undecidable
     all_groupCStar_negative_sides_not_re)
+export GroupApproximation.FixedSpaceStabilizer
+  (compressionGroup_le_stabilizer compressionGroup_map_mem)
 export GroupApproximation
   (map_marked_commutator_eq_one map_marked_commutator_eq_one_units
     compressionCentralizerDefect_le_ker

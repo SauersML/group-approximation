@@ -13,6 +13,7 @@ import GroupApproximation.Kazhdan.GroupRingSOSPropertyT
 import GroupApproximation.Kazhdan.RationalGroupRingCertificate
 import GroupApproximation.Kazhdan.LiteralBaseSOS
 import GroupApproximation.Kazhdan.LiteralRelatorReduction
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
@@ -50,10 +51,10 @@ import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
-import GroupApproximation.Sofic.ExplicitMarkedPresentation
-import GroupApproximation.Sofic.ExplicitNonMFTheorem
-import GroupApproximation.Endpoint.ExplicitNonMFAudit
-import GroupApproximation.Sofic.ExplicitNonMFEndpoint
+import GroupApproximation.Sofic.ChosenMarkedPresentation
+import GroupApproximation.Sofic.ChosenNonMFTheorem
+import GroupApproximation.Endpoint.ChosenNonMFAudit
+import GroupApproximation.Sofic.ChosenNonMFEndpoint
 import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
 import GroupApproximation.Sofic.NormMFConsequences
 import GroupApproximation.Sofic.Asymptotics

@@ -12,17 +12,17 @@ presented endpoint is not deferred.
 ## Headline declarations
 
 The public theorem module is
-`GroupApproximation/Sofic/ExplicitNonMFTheorem.lean`. It exports:
+`GroupApproximation/Sofic/ChosenNonMFTheorem.lean`. It exports:
 
 ```lean
-ExplicitNonMFTheorem.mark_normMFInvisible
-ExplicitNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
-ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
-ExplicitNonMFTheorem.countableWitness_not_isWeakMF
-ExplicitNonMFTheorem.countableWitness_not_isOperatorMF
-ExplicitNonMFTheorem.exists_countable_not_isWeakMF
-ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF
-ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
+ChosenNonMFTheorem.mark_normMFInvisible
+ChosenNonMFTheorem.chosenFinitelyPresented_not_isWeakMF
+ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF
+ChosenNonMFTheorem.countableWitness_not_isWeakMF
+ChosenNonMFTheorem.countableWitness_not_isOperatorMF
+ChosenNonMFTheorem.exists_countable_not_isWeakMF
+ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF
+ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 ```
 
 In particular, Lean proves both that the chosen nontrivial mark belongs to the
@@ -31,7 +31,7 @@ including `¬ IsOperatorMF` for the standard unitary-sequence presentation of
 the cofinite corona.  The polar-correction isomorphism to the unitary group of
 the C-star quotient is a mathematical bridge, not a Lean declaration.
 The finitely presented Lean witness is the independently constructed marked
-group in `ExplicitMarkedPresentation.lean`, whose vertex uses a
+group in `ChosenMarkedPresentation.lean`, whose vertex uses a
 noncomputably chosen Shalom Kazhdan cover; it is not asserted to be
 definitionally identical to the eight-generator presentation displayed in the
 paper.
@@ -78,13 +78,13 @@ The completed proof is split into independently useful layers.
 6. `MappingTelescope.lean`, `CliffordLampGroup.lean`, and
    `MarkedCompressionGroup.lean` construct a countable witness and prove its
    marked word nontrivial.
-7. `ExplicitMarkedPresentation.lean` and `ExplicitNonMFEndpoint.lean` provide
+7. `ChosenMarkedPresentation.lean` and `ChosenNonMFEndpoint.lean` provide
    an independently checkable finite presentation with the same analytic
    interface and a nontrivial marked word.
 8. `OperatorMF.lean` extracts a sequential marked model directly from a mark
    surviving in the unitary-sequence presentation of the standard cofinite
    norm-matrix corona.
-9. `ExplicitNonMFTheorem.lean` joins the algebraic and analytic layers and
+9. `ChosenNonMFTheorem.lean` joins the algebraic and analytic layers and
    publishes both the ultraproduct/weak-MF and unitary-sequence cofinite-corona
    endpoints.
 10. `MarkedCompressionRootCapture.lean`, `FiniteNormalAverageCorner.lean`,
@@ -95,8 +95,12 @@ The completed proof is split into independently useful layers.
     machine-check the manuscript's literal eight-generator presentation and
     its exact nontrivial affine--Clifford mark. `LiteralBaseSOS.lean` and
     `LiteralKazhdanCompression.lean` expose two honest conditional endpoints:
-    property `(T)` of the literal base, or an exact rational group-ring SOS
-    certificate implying it. Neither premise is postulated or discharged.
+    property `(T)` of the abstract group presented by the twenty literal base
+    relators, or an exact rational group-ring SOS certificate implying it.
+    The classical affine-group route additionally requires a formal
+    presentation-completeness isomorphism; property `(T)` of the concrete
+    quotient does not transfer backwards. None of these inputs is postulated
+    or discharged.
 12. `NormMFUniversalCorona.lean`, `NormMFCoronaRadical.lean`, and
     `NormMFResidualExactQuotient.lean` identify residual triviality with
     standard cofinite-corona operator MF and establish the universal quotient
@@ -139,11 +143,11 @@ The public import path is:
 ```text
 GroupApproximation.lean
   -> GroupApproximation/Endpoint/Public.lean
-  -> GroupApproximation/Sofic/ExplicitNonMFTheorem.lean
+  -> GroupApproximation/Sofic/ChosenNonMFTheorem.lean
 ```
 
 The focused audit target is
-`GroupApproximation/Endpoint/ExplicitNonMFAudit.lean`; it prints the axioms of
+`GroupApproximation/Endpoint/ChosenNonMFAudit.lean`; it prints the axioms of
 the chosen witness's invisibility theorem and both finitely presented non-MF
 declarations, including `exists_finitelyPresented_not_isOperatorMF`. The same
 declarations also appear in the project-wide endpoint and audit roster. No

@@ -372,11 +372,11 @@ Lean now proves both layers.  The universal analytic endpoint is
 `MarkedCompressionInclusionData.word_normMFInvisible` in
 `Sofic/MarkedCompressionSequentialKill`; the independent Clifford/telescope
 construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
-`Sofic/ExplicitNonMFTheorem` assembles these into countable and finitely
+`Sofic/ChosenNonMFTheorem` assembles these into countable and finitely
 presented non-MF existence theorems.  It also proves the direct standard
 cofinite-corona endpoints
-`ExplicitNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` and
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
+`ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` and
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
 inferring them from an informal comparison with `IsWeakMF`.  The finitely
 presented Lean witness is an independent marked group built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
@@ -610,16 +610,20 @@ equal-rank flip (`Sofic/ProjectionRankFlip`); spectral capture
 (`Sofic/MarkedCompressionVectorChain`); two independent Clifford lamp
 realizations (`Sofic/CliffordLampGroup`,
 `Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
-(`Sofic/ExplicitNonMFEndpoint`).  The analytic assembly is now complete in
+(`Sofic/ChosenNonMFEndpoint`).  The analytic assembly is now complete in
 `Sofic/MarkedCompressionSequentialKill`, and the public finitely presented
 existence endpoints are
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
 standard cofinite-corona theorem
-`ExplicitNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
+`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
 arbitrary finite-normal-subgroup strengthening is implemented separately in
 `Sofic/FiniteNormalCompressionObstruction`; its public kernel theorem is
 `KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
 
 For the manuscript's literal presentation, Lean additionally proves
-`LiteralNonMFLinearWitness.literal_mark_ne_one`. No weak-MF or standard
-operator-MF endpoint is asserted for that literal group.
+`LiteralNonMFLinearWitness.literal_mark_ne_one` and packages conditional
+standard operator-MF endpoints in `LiteralKazhdanCompression`. Those theorems
+assume property `(T)` of the abstract presented base or an exact SOS
+certificate. They are not unconditional endpoints, and property `(T)` of the
+concrete affine quotient alone is insufficient without presentation
+completeness.
