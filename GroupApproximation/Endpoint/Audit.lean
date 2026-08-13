@@ -47,6 +47,7 @@ import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.LiteralBaseRelations
+import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
@@ -531,6 +532,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralBaseRelations.baseRelator_eq_one
 #print axioms GroupApproximation.LiteralBaseRelations.x_conj_v1
 #print axioms GroupApproximation.LiteralBaseRelations.z_conj_v3
+#print axioms GroupApproximation.LiteralBaseTranslationNormal.normalizer_translations_eq_top
 #print axioms GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective
 #print axioms GroupApproximation.LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity
 #print axioms GroupApproximation.LiteralPresentationRadius.markedWord_length_le

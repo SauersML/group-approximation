@@ -62,6 +62,11 @@ example : LiteralBaseRelations.x * LiteralBaseRelations.v1 *
     LiteralBaseRelations.x⁻¹ = LiteralBaseRelations.v3 :=
   LiteralBaseRelations.x_conj_v1
 
+example : Subgroup.normalizer
+    (LiteralBaseTranslationNormal.translations :
+      Set LiteralBaseTranslationNormal.Base) = ⊤ :=
+  LiteralBaseTranslationNormal.normalizer_translations_eq_top
+
 example {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
     [FiniteDimensional k V]
     (pi : LiteralCyclicCalibration.LiteralGroup →* (Module.End k V)ˣ) :
