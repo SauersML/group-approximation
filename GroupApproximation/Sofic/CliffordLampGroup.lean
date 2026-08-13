@@ -203,14 +203,14 @@ instance : Mul (SignedModel X) :=
 instance : Inv (SignedModel X) :=
   ⟨fun p => ⟨p.signPart + crossing X p.config p.config, p.config⟩⟩
 
-theorem mul_def (p q : SignedModel X) :
+@[simp] theorem mul_def (p q : SignedModel X) :
     p * q = ⟨p.signPart + q.signPart + crossing X p.config q.config,
       p.config + q.config⟩ := rfl
 
 omit [LinearOrder X] in
-theorem one_def : (1 : SignedModel X) = ⟨0, 0⟩ := rfl
+@[simp] theorem one_def : (1 : SignedModel X) = ⟨0, 0⟩ := rfl
 
-theorem inv_def (p : SignedModel X) :
+@[simp] theorem inv_def (p : SignedModel X) :
     p⁻¹ = ⟨p.signPart + crossing X p.config p.config, p.config⟩ := rfl
 
 instance : Group (SignedModel X) where

@@ -42,7 +42,7 @@ def iterateHom (α : Γ →* Γ) : ℕ → Γ →* Γ
 @[simp] theorem iterateHom_zero_apply (α : Γ →* Γ) (x : Γ) :
     iterateHom α 0 x = x := rfl
 
-theorem iterateHom_succ_apply (α : Γ →* Γ) (n : ℕ) (x : Γ) :
+@[simp] theorem iterateHom_succ_apply (α : Γ →* Γ) (n : ℕ) (x : Γ) :
     iterateHom α (n + 1) x = iterateHom α n (α x) := rfl
 
 theorem iterateHom_add_apply (α : Γ →* Γ) (m n : ℕ) (x : Γ) :
@@ -113,7 +113,7 @@ theorem mk_add_iterate (n k : ℕ) (x : Γ) :
 
 instance : One (Telescope α hα) := ⟨mk α hα 0 1⟩
 
-theorem one_def : (1 : Telescope α hα) = mk α hα 0 1 := rfl
+@[simp] theorem one_def : (1 : Telescope α hα) = mk α hα 0 1 := rfl
 
 /-- Multiplication lifts the two factors to the sum of their levels. -/
 instance : Mul (Telescope α hα) :=
@@ -142,7 +142,7 @@ instance : Mul (Telescope α hα) :=
               rw [← iterateHom_add_apply, ← iterateHom_add_apply,
                 show n' + n + m = n + m + n' by omega])⟩
 
-theorem mk_mul_mk (n m : ℕ) (x y : Γ) :
+@[simp] theorem mk_mul_mk (n m : ℕ) (x y : Γ) :
     mk α hα n x * mk α hα m y =
       mk α hα (n + m) (iterateHom α m x * iterateHom α n y) := rfl
 
@@ -159,7 +159,7 @@ instance : Inv (Telescope α hα) :=
       show iterateHom α m x⁻¹ = iterateHom α n y⁻¹
       rw [map_inv, map_inv, h])⟩
 
-theorem mk_inv (n : ℕ) (x : Γ) : (mk α hα n x)⁻¹ = mk α hα n x⁻¹ := rfl
+@[simp] theorem mk_inv (n : ℕ) (x : Γ) : (mk α hα n x)⁻¹ = mk α hα n x⁻¹ := rfl
 
 /-- The identity is represented at every level. -/
 theorem one_eq_mk (n : ℕ) : (1 : Telescope α hα) = mk α hα n 1 := by
@@ -287,7 +287,7 @@ def shift : Telescope α hα ≃* Telescope α hα where
     (shift α hα).symm (mk α hα n x) = mk α hα (n + 1) x := rfl
 
 /-- The shift compresses each level copy of `Γ` along `α`. -/
-theorem shift_level (n : ℕ) (x : Γ) :
+@[simp] theorem shift_level (n : ℕ) (x : Γ) :
     shift α hα (level α hα n x) = level α hα n (α x) := rfl
 
 include hα in
