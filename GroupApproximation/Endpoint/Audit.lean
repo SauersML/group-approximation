@@ -20,6 +20,7 @@ import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Analysis.NormMatrixCoronaUnitary
+import GroupApproximation.Analysis.MaximalGroupCStar
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
@@ -461,6 +462,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.normMatrixCStarCoronaMk_eq_zero_iff
 #print axioms GroupApproximation.normMatrixCStarCoronaMk_surjective
 #print axioms GroupApproximation.normMatrixCStarCoronaCStarAlgebra
+#print axioms GroupApproximation.maximalGroupCStarUnitaryHom_injective
+#print axioms GroupApproximation.maximalGroupCStar_existsUnique_lift
+#print axioms GroupApproximation.maximalGroupCStar_not_hasMFEmbedding_of_not_isOperatorMF
+#print axioms GroupApproximation.maximalGroupCStar_not_isMFAlgebra_of_not_isOperatorMF
 #print axioms GroupApproximation.normMatrixCoronaUnitaryEquiv
 #print axioms GroupApproximation.unitaryCoronaToCStarCoronaUnitary_injective
 #print axioms GroupApproximation.unitaryCoronaToCStarCoronaUnitary_surjective
