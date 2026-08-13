@@ -1209,9 +1209,18 @@ The companion now also formalizes that literal eight-generator presentation,
 all of its displayed relations, and an exact affine--Clifford realization in
 which its marked central involution is nontrivial.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
-No MF endpoint is asserted in Lean for that literal group; the unconditional
-machine-checked non-MF endpoint remains the independent Shalom-cover witness
-above.
+It also packages the literal relators as the exact marked-compression data
+and derives the universal-kernel and non-MF endpoints conditional only on
+property~\textup{(T)} of the literal six-generator base.
+\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT}
+An exact rational sum-of-squares certificate is a second, proof-carrying
+route to the same endpoint.
+\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate}
+The companion does not yet supply a closed proof of that classical
+property~\textup{(T)} input, nor a completed exact certificate.  Thus its
+unconditional machine-checked non-MF endpoint remains the independent
+Shalom-cover witness above; no unconditional Lean endpoint is claimed for
+the literal group.
 The cover formulation needs only
 $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
 many compressed generators; it does not require an endomorphism of the cover.
