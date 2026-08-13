@@ -154,6 +154,8 @@ norm corona}
  :=\prod_n\U(M_{d_n}(\C))\Big/
  \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
 \end{equation}
+The denominator is a normal subgroup, by unitary invariance of the
+operator norm, so \eqref{eq:unitary-corona} is a quotient group.
 Thus there must be an injective group homomorphism
 \[
   E\;\longrightarrow\;\Ucor((d_n))
@@ -169,10 +171,11 @@ this definition is the usual one.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
 with all defects measured in operator norm.
 Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
-an arbitrary positive sequence, as we do, is equivalent: at stage $n$, take
-the block sum of the first $n$ models and place each old unitary in its
-corresponding block.  Multiplicative defects are the maxima of the block
-defects, while every separation already obtained persists at all later stages.
+an arbitrary positive sequence, as we do, is equivalent.  If the $n$th model
+has dimension $d_n$, replace it by
+$g\mapsto 1_{d_1+\cdots+d_{n-1}}\oplus\phi_n(g)$.  The dimensions then
+increase, while every multiplicative defect and every distance from the
+identity is unchanged.
 This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
 MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
