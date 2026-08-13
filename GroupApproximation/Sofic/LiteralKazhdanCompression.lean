@@ -3,6 +3,8 @@ import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 import GroupApproximation.Sofic.NormMFPrintedConsequences
+import GroupApproximation.Sofic.FreeGroupResiduallyFinite
+import GroupApproximation.Sofic.OperatorMFPositiveControls
 
 /-!
 # The literal presentation as marked Kazhdan-compression data
@@ -156,6 +158,42 @@ theorem witness_not_isOperatorMF_of_isRationalCertificate {c : ℚ}
     (hcert : LiteralBaseSOS.IsRationalCertificate c) :
     ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
   witness_not_isOperatorMF_of_hasKazhdanPropertyT
+    (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
+
+/-! ## The literal rank-eight quotient -/
+
+/-- The free group on the literal eight-letter alphabet is operator-MF. -/
+theorem literal_free_source_isOperatorMF :
+    IsOperatorMF (FreeGroup Generator) :=
+  isOperatorMF_of_residuallyFinite
+
+/-- The canonical map from the rank-eight free group onto the displayed
+literal presentation is surjective. -/
+theorem literal_quotientMap_surjective :
+    Function.Surjective
+      (PresentedGroup.mk (relators : Set (FreeGroup Generator))) :=
+  PresentedGroup.mk_surjective (relators : Set (FreeGroup Generator))
+
+/-- Conditional literal instance of failure of quotient permanence: an
+operator-MF rank-eight free group surjects onto the displayed non-MF group. -/
+theorem literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT
+    (hT : HasKazhdanPropertyT.{0, 0} Base) :
+    IsOperatorMF (FreeGroup Generator) ∧
+      Function.Surjective
+        (PresentedGroup.mk (relators : Set (FreeGroup Generator))) ∧
+      ¬ IsOperatorMF MarkedGroup :=
+  ⟨literal_free_source_isOperatorMF, literal_quotientMap_surjective,
+    not_isOperatorMF_of_hasKazhdanPropertyT hT⟩
+
+/-- Proof-carrying rational-certificate form of the same literal quotient
+counterexample. -/
+theorem literal_operatorMF_not_closed_under_quotient_of_isRationalCertificate
+    {c : ℚ} (hcert : LiteralBaseSOS.IsRationalCertificate c) :
+    IsOperatorMF (FreeGroup Generator) ∧
+      Function.Surjective
+        (PresentedGroup.mk (relators : Set (FreeGroup Generator))) ∧
+      ¬ IsOperatorMF MarkedGroup :=
+  literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT
     (LiteralBaseSOS.base_hasKazhdanPropertyT_of_isRationalCertificate hcert)
 
 end LiteralKazhdanCompression
