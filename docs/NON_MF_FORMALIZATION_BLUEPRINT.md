@@ -255,3 +255,23 @@ Please identify yourself: append a note to this section or commit a file
   `include x in` before the declaration.
 * Names must say what they prove; no vacuous strengthenings; thresholds and
   constants explicit.
+
+### Mathlib API gotchas collected during this development
+
+* `Finsupp.domLCongr` under a `≃ₗ[ℝ]` ascription sticks on a `Module`
+  metavariable — pin it in a small `def` first.
+* Algebra-only imports silently auto-bind `ℝ` as a type variable — add
+  `import Mathlib.Data.Real.Basic`.
+* `isUnit_of_mul_eq_one` is commutative-only.
+* Orthonormal forms on `X →₀ ℝ`: `LinearMap.BilinMap.toQuadraticMap` +
+  nested `Finsupp.lhom_ext'`/`LinearMap.ext_ring` +
+  `CliffordAlgebra.ι_mul_ι_add_swap_of_isOrtho`.
+* `(-1 : CliffordAlgebra Q) ≠ 1` via the `Nontrivial` instance from
+  `CliffordAlgebra.Contraction`; no `algebraMap` injectivity needed.  (That
+  Mathlib olean was missing from the warm cache once; now built.)
+* `MulAut`-of-subgroup ext goals want `congrArg Units.val`, not
+  `Subtype.ext`.
+* `Subgroup.characteristic_iff_le_comap` can leave a stuck `Characteristic`
+  instance mid-`refine`; prove via the raw constructor + `ext` instead.
+* `▸` casts on subgroup-equality hypotheses (`hbot ▸ hx`) often fail
+  elaboration where `rw [hbot] at hx` succeeds.
