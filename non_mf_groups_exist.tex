@@ -20,7 +20,7 @@
   pdftitle={An explicit finitely presented non-MF group},
   pdfauthor={\paperauthor},
   pdfsubject={matricial field approximation, property (T), Kazhdan projections},
-  pdfkeywords={MF groups, matrix ultraproducts, property (T), HNN extensions, Clifford algebras}
+  pdfkeywords={MF groups, matrix ultraproducts, property (T), HNN extensions, Clifford algebras, stable finiteness}
 }
 \newcommand{\leanverified}[2]{%
   \par\smallskip\noindent
@@ -94,7 +94,24 @@ of matrix coronas.  The finite-dimensional case of the kill theorem is
 elementary and uses neither property (T) nor unitarity; we also show,
 via quasidiagonality of amenable groups, that the same marked presentation
 with a cyclic base can have a corona representation in which the marked
-involution survives.
+involution survives.  The kill theorem is proved as a general
+finite-normal criterion: if a countable group contains the image of a
+property (T) group, compressed by a letter $t$ and centralized by a
+letter $c$, then every finite normal subgroup contained in the
+compression-defect subgroup --- the normal closure of the commutators
+of $tct^{-1}$ with that image --- is killed by every homomorphism into
+the unitary group of every $C^*$-subalgebra of a norm matrix corona.
+Among the consequences: $\Cred(E)$ is a unital separable $C^*$-algebra
+with a faithful tracial state --- hence stably finite --- that is not
+an MF algebra, so stable finiteness does not imply the MF property for
+separable $C^*$-algebras; MF groups are closed under neither quotients
+nor split extensions; every countable group has a largest MF quotient,
+by its MF radical, and the radical element $w$ is portable: any group
+receiving $E$ with $w$ surviving is non-MF; for every $m\ge2$ a scaled
+variant $E_m$ ($E=E_2$) is a finitely presented non-MF group, and
+there exist $2^{\aleph_0}$ pairwise non-isomorphic finitely generated
+non-MF groups; and the kill theorem holds in a uniform quantitative
+form over all matrix sizes at once.
 \end{abstract}
 
 \maketitle
@@ -166,12 +183,12 @@ A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
 Definition~\ref{def:E}.
 
-The proof implements a $C^*$-algebraic finiteness
-argument into a group-level kernel theorem.  For orientation, it can be
-organized into the following five steps.  The surrounding
-compression/lamp architecture has close antecedents; the point specific
-to this paper is its operator-norm realization and the resulting
-universal marked kernel.
+The proof turns a $C^*$-algebraic finiteness argument into a group-level
+kernel theorem.  For orientation, it can be organized into the following
+five steps.  The individual ingredients and the surrounding
+compression/lamp architecture have substantial antecedents.  What is new
+here is the specific stable-finite Kazhdan pinning argument in a norm matrix
+corona and its conversion into a universal marked kernel.
 
 \begin{enumerate}
   \item\emph{Central corner.}  If $\Theta(w)\neq 1$, then
@@ -180,7 +197,10 @@ universal marked kernel.
     another norm matrix corona on which $\Theta(w)=-1$
     (Lemma~\ref{lem:corner}).  This cut eliminates small-relative-rank
     phenomena: on the corner, the deviation of $w$
-    from $1$ has full normalized size.
+    from $1$ has full normalized size.  This is a norm-corona adaptation
+    of the negative-eigenspace compression for a central involution in
+    \cite[Proposition~2.7]{SlofstraVidick}; the distinction is that no
+    positive relative-rank estimate is needed here.
   \item\emph{Conjugation representation.}  Unitary lifts $U_{g,n}$ of
     the corner representation conjugate the corner coordinates
     $M_{r_n}(\C)$, and exact multiplicativity of $\Theta$ in the quotient
@@ -273,9 +293,10 @@ kills the corresponding marked element.
 The quotient statement makes the comparison at the level actually used by
 the proof: the marked-word relations and witness mechanism survive when the
 Kazhdan base is replaced by $\Z$, but the universal corona-kill conclusion
-does not.  Thus some substitute for the Kazhdan-projection step is essential
-to this mechanism; this is not a claim that every proof of the concrete
-Theorem~\ref{thm:A} must invoke property (T).
+does not.  Thus property~(T), or a substitute furnishing a uniform
+fixed-space projection, is essential to this argument; this is not a claim
+that every possible proof of the concrete Theorem~\ref{thm:A} must invoke
+property~(T).
 
 \subsection*{What this paper does not prove}
 The proof of Theorem~\ref{thm:A} does \emph{not} show that $E$ is
@@ -303,31 +324,72 @@ Theorem~\ref{thm:B} uses no external input.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
-OpenAI's first example and Kun--Thom's analysis use one-sided containments
-$g\Gamma g^{-1}\leq\Gamma$, property (T), normalization of fixed or
-centralizer structures, and generalized lamps in a closely related
-architecture \cite{OAI,KT}.  We therefore make no novelty claim for the
-compression/lamp paradigm itself.  Their rigidity takes place in
-permutation models with normalized Hamming distance.  Here the decisive
-operator-norm step is instead
+The group-level skeleton in OpenAI's Proposition~2.3 consists of a
+property-(T) subgroup $\Gamma$, one-sided containments
+$t_i\Gamma t_i^{-1}\leq\Gamma$, and a subgroup centralizing $\Gamma$ that
+is moved by a compressor \cite[Proposition~2.3]{OAI}.  Contemporaneous work
+of Kun--Thom isolates this mechanism through the compression semigroup
+$P_\Gamma=\{g:g\Gamma g^{-1}\leq\Gamma\}$, infranormality, normalization
+of centralizers, invariance of fixed algebras, and a sofic Mautner envelope
+\cite[Theorems~B and C]{KT}.  It also records the finite analogue: a
+one-sided inclusion becomes equality in a finite quotient by cardinality.
+We therefore make no novelty claim for the one-sided-compression/lamp or
+Mautner-type fixed-space-propagation paradigms.  Those arguments take place
+in permutation models with normalized Hamming distance.  Here the
+replacement for finite cardinality is the implication
 \[
   P\leq\beta(t)P\beta(t)^*
   \quad\Longrightarrow\quad
   P=\beta(t)P\beta(t)^*,
 \]
 because the conjugation representation lands in a stably finite norm
-    matrix corona.  The central corner then converts this equality into a fixed
+matrix corona.  The central corner then converts this equality into a fixed
 nontrivial element killed by every corona representation.
 
-There is also an older analytic ancestor.  The Ozawa--Thom argument
-recorded as \cite[Proposition~3.19]{Dadarlat} turns operator-norm
-quasidiagonal finite-rank projections into almost invariant normalized
-Hilbert--Schmidt vectors for a conjugation representation and invokes
-property (T) to obtain an invariant vector.  Its conclusion is that an
-infinite weakly quasidiagonal property-(T) group has an infinite residually
-finite quotient; it does not produce a universal marked kernel.  It is
-nevertheless direct prior art for the passage from operator-norm control to
-conjugation on Hilbert--Schmidt operators and property-(T) fixed vectors.
+The Clifford and marked-sign sides also have close antecedents.  Slofstra
+uses finite and infinite-rank Clifford groups with a distinguished central
+involution, a shift semidirect product, and an HNN extension implementing a
+doubling map in an approximate-representation problem; he also explicitly
+records an operator-norm variant \cite[Section~3 and Remark~3.3]{SlofstraProfile}.
+The placement and purpose of those pieces differ here: the proper
+compression is in the Kazhdan base, the Clifford group supplies an external
+nontriviality witness, and the conclusion is a universal kernel rather than
+a dimension lower bound.  Slofstra--Vidick's negative-eigenspace compression
+for an approximate central involution is the local predecessor of
+Lemma~\ref{lem:corner} \cite[Proposition~2.7]{SlofstraVidick}.  Their
+Hilbert--Schmidt argument needs quantitative negative-eigenspace dimension;
+our norm-corona cut passes to the corner as a new matrix corona, so a nonzero
+corner may have density tending to zero and no density bound is consumed.
+
+There is an older analytic ancestor as well.  Dadarlat's Lemma~3.18 turns
+operator-norm almost-commuting finite-rank projections into almost invariant
+normalized Hilbert--Schmidt vectors for a conjugation representation
+\cite[Lemma~3.18]{Dadarlat}.  Proposition~3.19, labeled Ozawa--Thom and
+described there as essentially pointed out by Thom on MathOverflow, then
+uses property~(T) to derive an infinite residually finite quotient
+\cite[Proposition~3.19]{Dadarlat}.  These results do not produce a universal
+marked kernel, but they are direct prior art for the operator-norm-to-Hilbert--
+Schmidt conjugation maneuver used here.
+
+The broad exact-versus-asymptotic marked-element phenomenon is also older.
+Slofstra defines the quotients $G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$ by
+elements invisible, respectively, to finite-dimensional representations and
+to finite-dimensional approximate representations \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
+This is the natural precedent for the informal ``MF radical'' language below
+and for the philosophy of Theorem~\ref{thm:C}.  Theorem~\ref{thm:C} is not a
+claim to originate that separation; it calibrates the same marked
+compression presentation used in Theorem~\ref{thm:A} in the operator-norm/MF
+setting.  Slofstra--Vidick also recall Fritz's earlier marked
+$\mathrm{BS}(2,3)$ hyperlinear-profile example
+\cite[Section~2.2]{SlofstraVidick}, providing further Baumslag--Solitar
+context for the cyclic comparison.
+
+De Chiffre--Glebsky--Lubotzky--Thom combine cohomological stability with
+non-residually-finite central extensions to obstruct Frobenius approximation
+\cite[Introduction]{DGLT}.  Their norm, rigidity input, and conclusion differ
+from ours, but their strategy is an important predecessor for the broader
+architecture ``designated central obstruction plus rigidity of approximate
+representations.''
 
 The Kazhdan-projection compression observation needed here is proved
 directly in Lemmas~\ref{lem:order} and~\ref{lem:pinning}; we do not
@@ -347,7 +409,8 @@ some quotient of $\Cmax$ to be MF.  The contribution asserted here is
     narrower: stable-finite Kazhdan fixed-space rigidity in a norm matrix corona, together
 with the central-corner/marked-word device producing a specific nontrivial
 element in the kernel of every such representation.  For context on the
-approximation landscape see \cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat}.
+approximation landscape see
+\cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
 
 \subsection*{Organization}
 Section~\ref{sec:prelim} fixes notation and states the external inputs.
@@ -528,6 +591,13 @@ $t\gamma t^{-1}=\alpha(\gamma)$, $[c,\gamma]=1$ hold for all
 $\gamma\in\Gamma$ because they hold on generators.
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
+
+Clifford signs, shifts, and HNN doubling have appeared together before in
+approximate-representation theory, notably in Slofstra's hyperlinear-profile
+construction \cite[Section~3]{SlofstraProfile}.  The construction below uses
+the Clifford lamp only as an explicit algebraic witness: the one-sided HNN
+compression relevant to the obstruction remains in the separate Kazhdan
+base $\Gamma$.
 
 \begin{construction}[Clifford groups]\label{con:clifford}
 Let $X$ be a set.  Define $\Cl(X)$ to be the quotient of the free unital
@@ -823,6 +893,14 @@ d_n$, and a corona representation
 \]
 with $\Theta_-(w)=-1$.
 \end{lemma}
+
+This is the norm-corona counterpart of Slofstra--Vidick's compression to
+the $(-1)$-eigenspace of a repaired approximate central involution
+\cite[Proposition~2.7]{SlofstraVidick}.  In their normalized
+Hilbert--Schmidt setting a quantitative separation supplies a positive
+relative dimension.  Here nonzeroness of the corona projection is enough:
+passing to its corner changes the ambient matrix sequence and renormalizes
+all later traces there.
 
 \begin{proof}
 Since $w^2=1$ and $w$ is central in $E$, the element $\Theta(w)$ is a
@@ -1124,6 +1202,10 @@ corona representation of $E$, so every corona representation factors
 through $E/\langle w\rangle$ (note $\langle w\rangle=\{1,w\}$ is
 central, hence normal).  In the language of approximation radicals, $w$
 is a nontrivial element of the ``MF radical'' of $E$.
+This terminology is meant in analogy with Slofstra's earlier quotients
+$G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained by killing elements
+invisible to exact and approximate finite-dimensional representations,
+respectively \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
 \end{remark}
 
 \begin{remark}
