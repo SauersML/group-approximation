@@ -245,6 +245,25 @@ Function.Injective ⇑ExplicitLinearModel.conjD ∧
                   (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) → ‖↑(φ f₀) - 1‖ < ε
 ```
 
+## `GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
+  F ≤ C.defectNormal →
+    ∀ {f₀ : E},
+      f₀ ∈ F →
+        ∀ (ε : ℝ),
+          0 < ε →
+            ∃ δ F₀,
+              0 < δ ∧
+                ∀ (Y : FiniteModel),
+                  0 < Fintype.card Y.carrier →
+                    ∀ (φ : E → ↥(Matrix.unitaryGroup Y.carrier ℂ)),
+                      (∀ g ∈ F₀, ∀ h ∈ F₀, ‖↑(φ g) * ↑(φ h) - ↑(φ (g * h))‖ ≤ δ) →
+                        ‖↑(φ f₀) - 1‖ < ε
+```
+
 ## `GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal`
 
 ```lean
@@ -437,6 +456,12 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
         rho x ≠ 1 → CoronaMFInvisible x ∧ ¬HyperlinearInvisible x ∧ ¬SoficInvisible x
 ```
 
+## `GroupApproximation.coronaMFQuotient_isOperatorMF`
+
+```lean
+∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF (G ⧸ coronaMFResidual G)
+```
+
 ## `GroupApproximation.coronaMFResidual_eq_normMFResidual`
 
 ```lean
@@ -468,6 +493,13 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
           ∃! rhoBar, rhoBar.comp (QuotientGroup.mk' N) = rho
 ```
 
+## `GroupApproximation.exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual`
+
+```lean
+∀ {G : Type u} [inst : Group G] [Countable G],
+  ∃ X, (∀ (n : ℕ), 0 < Fintype.card (X n).carrier) ∧ ∃ rho, rho.ker = coronaMFResidual G
+```
+
 ## `GroupApproximation.hom_eq_one_of_map_eq_one_of_normalClosure_eq_top`
 
 ```lean
@@ -494,6 +526,12 @@ IsOperatorMF (FreeGroup LiteralNonMFPresentation.Generator)
 
 ```lean
 ∀ {G : Type u} [inst : Group G], IsOperatorMFIncreasing G ↔ IsOperatorMF G
+```
+
+## `GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot`
+
+```lean
+∀ {G : Type u} [inst : Group G] [Countable G], IsOperatorMF G ↔ coronaMFResidual G = ⊥
 ```
 
 ## `GroupApproximation.isOperatorMF_of_residuallyFinite`
