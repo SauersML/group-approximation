@@ -368,13 +368,17 @@ MarkedCompressionNormCertificate.not_isWeakMF
 is the machine-checked final logical reduction from that certificate to
 non-MF.
 
-At this stage Lean does **not** yet prove that the concrete compressor group
-has `witness_invisible`, nor does it yet construct the concrete group and
-prove `witness_ne_one`.  Those are the two remaining formalization layers;
-the first is the analytic Kazhdan-compression theorem discussed above, and
-the second is the algebraic HNN/Clifford witness construction.  Thus this
-section records verified infrastructure, not a completed formal proof of the
-new theorem.
+Lean now proves both layers.  The universal analytic endpoint is
+`MarkedCompressionInclusionData.word_normMFInvisible` in
+`Sofic/MarkedCompressionSequentialKill`; the independent Clifford/telescope
+construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
+`Sofic/ExplicitNonMFTheorem` assembles these into countable and finitely
+presented non-MF existence theorems.  The finitely presented Lean witness is
+an independent marked group built from a noncomputably chosen Shalom cover of
+the Lean base; it is not the literal eight-generator group displayed in the
+paper.  Thus the formal development verifies the marked-compression mechanism
+and the existence theorem, while the displayed presentation is established by
+the paper proof.
 
 The analytic proof above was written for the sequential norm corona.  It
 works verbatim for the ultrafilter quotients used by the formal definition:
@@ -598,7 +602,9 @@ equal-rank flip (`Sofic/ProjectionRankFlip`); spectral capture
 (`Sofic/MarkedCompressionVectorChain`); two independent Clifford lamp
 realizations (`Sofic/CliffordLampGroup`,
 `Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
-(`Sofic/ExplicitNonMFEndpoint`).  As of this writing exactly one
-assembly placeholder remains at committed HEAD, in
-`Sofic/MarkedCompressionKill.lean`; until it closes, no claim that
-Theorem A itself is formally verified.
+(`Sofic/ExplicitNonMFEndpoint`).  The analytic assembly is now complete in
+`Sofic/MarkedCompressionSequentialKill`, and the public finitely presented
+existence endpoint is
+`ExplicitNonMFTheorem.exists_finitelyPresented_not_isWeakMF`.  The arbitrary
+finite-normal-subgroup strengthening remains paper-only; its separate
+formalization is not claimed here.

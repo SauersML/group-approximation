@@ -8,17 +8,16 @@ The non-MF paper uses the same
 surface as the property-(TT)/T paper, resolved against the same lexical Lean
 declaration index used by ``check_lean_refs.py``.
 
-One deliberate difference from ``check_property_tt_refs.py``: that checker
-also requires every numbered result to carry a Lean reference, because the
-property-(TT)/T paper formalizes all of its numbered statements.  The non-MF
-manuscript formalizes exactly its finite-dimensional core (Theorem B); the
-corona theorem consumes the Kazhdan projection and operator-algebra inputs
-that are out of scope for the current formalization, and the repository
-doctrine is that a manuscript must claim formal counterparts for precisely
-the results that have them.  Requiring a link on every numbered result would
-therefore force false claims, so this checker enforces only that every link
-that IS claimed resolves to a real declaration in the named module — in both
-directions, calibrated by ``--self-test``.
+One deliberate difference from ``check_property_tt_refs.py`` remains: not
+every numbered result in the non-MF manuscript has a formal counterpart.  The
+formal development now includes the finite-dimensional core, the sequential
+Kazhdan-compression kill, and an independently constructed finitely presented
+non-MF witness.  The paper's literal eight-generator presentation and its
+finite-normal strengthening are paper proofs, not Lean claims.  Accordingly
+this checker enforces that every counterpart link that *is* claimed resolves
+to a real declaration in the named module; statement pinning and transitive
+axiom checking of the formal headline endpoints are performed separately by
+``scripts/Audit.lean``.
 """
 
 from __future__ import annotations
