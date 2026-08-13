@@ -216,6 +216,16 @@ jobs:
           find pdf-render-check -name 'page-*.png' -type f -size 0 -print -quit \
             | (! grep -q .)
 
+      - name: Upload PDF validation preview
+        uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
+        with:
+          name: non-mf-preview-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            non_mf_groups_exist.pdf
+            build/non_mf_groups_exist.log
+
       - name: Require a successful kernel audit of this exact revision
         env:
           GH_TOKEN: ${{ github.token }}
