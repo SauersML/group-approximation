@@ -13,8 +13,10 @@ import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
+import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.AffineSL3Doubling
+import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
@@ -35,6 +37,8 @@ import GroupApproximation.Sofic.NormMFUniversalQuotient
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.NormMFPrintedConsequences
+import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
+import GroupApproximation.Sofic.UniversalKazhdanMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.MarkedCompressionProperness
@@ -107,6 +111,7 @@ import GroupApproximation.PropertyT.ClassTwoOrthogonality
 import GroupApproximation.PropertyT.NormalEdgeCodistance
 import GroupApproximation.Kazhdan.KazhdanGenerators
 import GroupApproximation.Kazhdan.KazhdanOrthogonal
+import GroupApproximation.Kazhdan.FixedSpaceCompression
 import GroupApproximation.Kazhdan.KazhdanProjection
 import GroupApproximation.Kazhdan.InvariantDisplacement
 import GroupApproximation.Kazhdan.KazhdanFiniteModel
@@ -162,8 +167,11 @@ import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+import GroupApproximation.Sofic.KazhdanCompressionFunctorial
+import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
+import GroupApproximation.Sofic.OperatorMFLocalNormalization
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion

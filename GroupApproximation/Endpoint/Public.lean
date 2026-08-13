@@ -6,6 +6,8 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
+import GroupApproximation.Sofic.MarkedGroupWordBall
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
@@ -94,6 +96,9 @@ generated from the manuscript's margin notes; this module is the short list.
   `finiteNormal_le_normMatrixCoronaKernel` -- the same statements in the
   manuscript's intersection-of-corona-kernels language, using the
   unitary-sequence presentation documented in `Sofic/OperatorMF`.
+* `isOperatorMFIncreasing_iff` -- the arbitrary positive dimension sequences
+  used internally are equivalent to the strictly increasing convention in
+  Carrión--Dadarlat--Eckhardt.
 * `ExplicitNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 
@@ -246,6 +251,12 @@ namespace GroupApproximation.Public
 
 open GroupApproximation
 
+/-! ### Finite-radius marked-group neighborhoods -/
+
+export GroupApproximation.MarkedGroupSpace
+  (reducedWordLength wordBall mem_wordBall_iff exists_subset_wordBall
+    cylinder_wordBall_subset_cylinder)
+
 /-! ### The headline -/
 
 export GroupApproximation (nonsofic_groups_exist countable_nonsofic_groups_exist
@@ -271,6 +282,7 @@ export GroupApproximation.KazhdanCompressionCore
     not_isOperatorMF_of_finiteNormal_le_defect)
 export GroupApproximation
   (isOperatorMF_iff_normMFResidual_eq_bot
+    isOperatorMFIncreasing_iff
     normMFQuotient_isOperatorMF
     exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual
     existsUnique_normMFQuotient_factorization_to_isOperatorMF

@@ -158,7 +158,15 @@ homomorphism
 \]
 for some choice of $(d_n)$.  Equivalently, $E$ admits finite-dimensional
 approximate unitary representations that are approximately injective,
-with all defects measured in operator norm.  This qualification matters:
+with all defects measured in operator norm.
+Carri\'on--Dadarlat--Eckhardt take the dimensions to be increasing.  Allowing
+an arbitrary positive sequence, as we do, is equivalent: replace its $n$th
+term by the cumulative block sum through stage $n$ and place the old unitary
+in the newest block.  The operator norm of every difference is unchanged.
+The formal companion proves this normalization at the level of the
+unitary-sequence corona.
+\leanverified{Sofic/OperatorMFIncreasingDimensions}{GroupApproximation.isOperatorMFIncreasing_iff}
+This qualification matters:
 Shulman notes that a strictly stronger group property has also been called
 MF \cite[Definition~3 and footnote~1]{Shulman}: \emph{purely} MF requires
 the approximating maps to be genuine finite-dimensional representations.
@@ -1271,6 +1279,9 @@ maximally almost periodic or residually finite, $\Cmax(E)$ is not residually
 finite-dimensional as a $C^*$-algebra, and no finite quotient of $E$ can
 witness $w\neq1$.
 \leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective}
+\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one}
+\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.map_literal_mark_eq_one_of_finite}
+\leanverified{Sofic/LiteralFiniteDimensionalObstruction}{GroupApproximation.LiteralFiniteDimensionalObstruction.no_finite_quotient_detects_literal_mark}
 \end{corollary}
 
 \begin{proof}
@@ -1714,6 +1725,10 @@ applying the $*$-homomorphism $\tilde\beta$ to the instance
 $(H_1,\Lambda_1,\iota_1,t_1)=(H,\Lambda,\iota,t)$, for which (M1) is
 the required one-sided containment.
 \end{proof}
+
+\ifanonymous\else
+\leanverified{Kazhdan/FixedSpaceCompression}{GroupApproximation.FixedSpaceCompression.invariantSubmodule_le_map}
+\fi
 
 \begin{lemma}[compression equality]\label{lem:pinning}
 $P=\beta(t)P\beta(t)^*$ in $\mathcal B$.
@@ -2538,7 +2553,9 @@ $\iota_m\colon\Gamma\to E_m$ the canonical homomorphism,
 $t\,\iota_m(\gamma)\,t^{-1}=\iota_m(\alpha_m(\gamma))$ for all
 $\gamma\in\Gamma$, and $c$ commutes with $\iota_m(\Gamma)$: the
 tuple $(\Gamma,\iota_m,t,c)$ is a marked Kazhdan pattern in $E_m$
-(Fact~\ref{fact:T}).  As in the proof of Theorem~\ref{thm:A},
+(Fact~\ref{fact:T}).
+\leanverified{Monsters/AffineSL3Scaling}{GroupApproximation.AffineSL3Scaling.scaling_package}
+As in the proof of Theorem~\ref{thm:A},
 $d^2=tc^2t^{-1}=1$ in $E_m$, and Lemma~\ref{lem:square} gives
 $w_m=[\,d,\iota_m(a)\,]^2\in N_{\mathrm{comp}}$; the subgroup
 $\{1,w_m\}$ is finite and normal, so Theorem~\ref{thm:criterion}
