@@ -848,6 +848,22 @@ AsymptoticScale → (ℕ → FiniteMultiGraph) → Prop
 (G : Type u_2) → [Group G] → Prop
 ```
 
+## `GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E) (F : Subgroup E) [Finite ↥F] [F.Normal],
+  F ≤ C.defectNormal → F ≤ coronaMFResidual E
+```
+
+## `GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_coronaMFResidual`
+
+```lean
+∀ {Γ E : Type} [inst : Group Γ] [inst_1 : Group E] [Countable E]
+  (C : KazhdanCompressionCore Γ E) (K : Subgroup E) [K.Normal],
+  HasKazhdanPropertyT ↥K → K ≤ C.defectNormal → K ≤ coronaMFResidual E
+```
+
 ## `GroupApproximation.KunDecomposition.exists_expanderDecomposition`
 
 ```lean
