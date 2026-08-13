@@ -26,7 +26,7 @@ variable (G : Type u) [Group G]
 
 local instance : DecidableEq G := Classical.decEq G
 
-local instance reducedGroupCStarSubalgebra_isClosed :
+instance reducedGroupCStarSubalgebra_isClosed :
     IsClosed (reducedGroupCStarSubalgebra G :
       Set (GroupHilbert G →L[ℂ] GroupHilbert G)) :=
   StarSubalgebra.isClosed_topologicalClosure _
