@@ -250,15 +250,13 @@ theorem signAmbient_central (g : Ambient α hα) :
   show signAmbient α hα * ⟨n, v⟩ = ⟨n, v⟩ * signAmbient α hα
   show (⟨sign (Cosets α hα), 1⟩ : Ambient α hα) * ⟨n, v⟩ =
     ⟨n, v⟩ * ⟨sign (Cosets α hα), 1⟩
-  rw [SemidirectProduct.mul_def, SemidirectProduct.mul_def]
   apply SemidirectProduct.ext
   · show sign (Cosets α hα) * lampAction α hα 1 n =
       n * lampAction α hα v (sign (Cosets α hα))
     rw [map_one, lampAction_apply_sign]
     show sign (Cosets α hα) * n = n * sign (Cosets α hα)
     exact (sign_commute (Cosets α hα) n).eq
-  · change (1 : Vertical α hα) * v = v
-    exact one_mul v
+  · simp only [SemidirectProduct.mul_right, one_mul, mul_one]
 
 include hα in
 /-- The sign survives in the ambient group. -/
