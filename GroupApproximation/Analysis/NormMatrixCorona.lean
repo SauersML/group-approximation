@@ -298,6 +298,23 @@ noncomputable instance normMatrixCoronaAlgebraStarMul :
         rw [show star (a * b) = star b * star a from StarMul.star_mul a b]
         rfl
 
+private theorem normMatrixCorona_norm_star_le (x : NormMatrixCoronaAlgebra X) :
+    ‖star x‖ ≤ ‖x‖ := by
+  apply _root_.le_of_forall_pos_le_add
+  intro ε hε
+  obtain ⟨a, rfl, ha⟩ := normMatrixCorona_exists_rep_norm_lt X x hε
+  rw [normMatrixCorona_star_mk]
+  exact ((normMatrixCorona_norm_mk_le X (star a)).trans_lt (by simpa using ha)).le
+
+noncomputable instance normMatrixCoronaAlgebraNormedStarGroup :
+    NormedStarGroup (NormMatrixCoronaAlgebra X) where
+  norm_star_le := normMatrixCorona_norm_star_le X
+
+/-- Audit pin: the descended adjoint is an isometry for the quotient norm. -/
+theorem norm_normMatrixCorona_star (x : NormMatrixCoronaAlgebra X) :
+    ‖star x‖ = ‖x‖ :=
+  norm_star x
+
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/
 theorem norm_normMatrixCorona_mul_le (x y : NormMatrixCoronaAlgebra X) :

@@ -114,7 +114,7 @@ property (T) group, compressed by a letter $t$ and centralized by a
 letter $c$, then every finite normal subgroup contained in the
 compression-defect subgroup --- the normal closure of the commutators
 of $tct^{-1}$ with that image --- is killed by every homomorphism into
-the unitary group of every $C^*$-subalgebra of a norm matrix corona.
+the unitary group of every unital $C^*$-subalgebra of a norm matrix corona.
 More generally, finiteness can be replaced by property~(T): every normal
 property~(T) subgroup contained in the compression defect lies in the MF
 radical, and may be infinite, noncentral, and torsion-free.
@@ -448,7 +448,7 @@ finite-group averaging (Reynolds) projection
 $\smash{|F|^{-1}\sum_{f\in F}\Theta(f)}$, whose
 complement for $F=\{1,w\}$ is exactly the central corner of step (1)
 above.  Corollary~\ref{cor:subalg} upgrades the target from coronas to
-arbitrary $C^*$-subalgebras of coronas, so that, for instance, every
+arbitrary unital $C^*$-subalgebras of coronas, so that, for instance, every
 homomorphism from $H$ into the unitary group of a unital separable
 quasidiagonal $C^*$-algebra, or of $\Cred(F_k)$ for a free group
 $F_k$ \cite{HT}, kills such an $F$.  Theorem~\ref{thm:C} calibrates
@@ -727,7 +727,7 @@ At the finite-stage spectral level, Dogon--Vigdorovich record a proof due
 to Uri Bader that operator-norm approximate representations of a
 property~(T) group retain a uniform spectral gap; their argument uses
 Ozawa's sum-of-squares characterization and generalizes an earlier result of
-Manuilov--Yu \cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
+Manuilov--You \cite[Section~7.1 and Theorem~7.10]{DogonVigdorovich}.  This is
 a close general predecessor for the spectral-isolation step above.  The
 specific moving-projection estimates and equal-rank reversal needed here are
 proved directly in Lemma~\ref{lem:compressorfinite}; we do not attribute
@@ -1724,9 +1724,15 @@ $g\in G_{\rm comp}(L)$.  It follows that every generator
 $[gzg^{-1},\ell]$ of \eqref{eq:intrinsicdefect}, and therefore its
 normal closure, is trivial in the associated tracial matrix
 ultraproduct.
-The second Kazhdan-corner argument from
-Theorem~\ref{thm:normalkazhdan}, now with
-$K\le\mathfrak D(H,L)$, gives the radical containment.  The
+Now apply the moving Kazhdan-corner construction from
+Theorem~\ref{thm:normalkazhdan} to $K$.  If a corona model were
+nontrivial on $K$, that construction would produce a new corona model on
+nonzero moving corners, together with a nontrivial image of some element
+of $K$ in its normalized tracial ultraproduct.  Repeating the preceding
+fixed-sector argument in this new model kills
+$\mathfrak D(H,L)$, and hence $K\le\mathfrak D(H,L)$, in that same
+tracial ultraproduct, a contradiction.  This gives the radical
+containment.  The
 factorization and equality statements follow from the universal property
 of the quotient and Proposition~\ref{prop:univquot}.
 \end{proof}
@@ -2283,7 +2289,7 @@ groups.
 
 \begin{corollary}[subalgebras of coronas]\label{cor:subalg}
 Let $H$, $(\Lambda,\iota,t,c)$ and $F\subseteq N_{\mathrm{comp}}$ be
-as in Theorem~\ref{thm:criterion}.  Let $A$ be a nonzero
+as in Theorem~\ref{thm:criterion}.  Let $A$ be a nonzero unital
 $C^*$-subalgebra of a norm matrix corona $\mathcal Q$ whose unit
 $p:=1_A$ is not necessarily the unit of $\mathcal Q$, and let
 $\Theta\colon H\to\U(A)$ be a group homomorphism.  Then
@@ -2314,7 +2320,7 @@ $k\in\N\cup\{\infty\}$ by \cite[Corollary~8.4]{HT}.
 
 \begin{corollary}\label{cor:nofaithful}
 The group $E$ admits no injective homomorphism into the unitary
-group of any $C^*$-subalgebra of any norm matrix corona --- in
+group of any unital $C^*$-subalgebra of any norm matrix corona --- in
 particular, none into $\U(A)$ for $A$ a unital separable MF algebra,
 a unital separable quasidiagonal algebra, or $\Cred(F_k)$.
 \end{corollary}
