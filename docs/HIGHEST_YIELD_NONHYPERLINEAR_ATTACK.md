@@ -2,6 +2,27 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 explicit graded escape: `h=[U*X_1U,raw]`
+
+The exceptional mixed commutator from the packet scan has infinite order,
+not merely undetected bounded order.  Its unique least-degree Leavitt term is
+
+```text
+s_00 t_(00(10)^4),
+```
+
+so `h^n` has unique least-degree term
+`s_00 t_(00(10)^(4n))` and degree `-8n`.  See
+`TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md`.
+
+This is the smallest concrete cross-chart axis on which to search for the
+missing multiplication module.  Its first sixteen nontrivial translates of
+the top coefficient cut have overlap `1/64=tau(F)^2`, not zero.  Therefore
+do not pursue a wandering-projection proof from `h` alone.  Test instead
+whether the raw compressor relations delete one half of the resulting
+bilateral coefficient orbit after finite-multiplicity recovery; that is the
+specific condition needed for the one-cut leakage theorem.
+
 ## 2026-08-13 live mixed direction: orbit fingerprint and `[X'_1,raw]`
 
 The transported order-32 Pauli packet has only an order-2 pointwise

@@ -4,6 +4,17 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: an explicit infinite-order cross-chart direction
+
+`TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md` proves that
+`h=[U*X_1U,raw]` has infinite order.  Its Leavitt expansion has a unique
+minimum-degree term `s_00 t_(00(10)^4)`; the minimum component of `h^n` is
+`s_00 t_(00(10)^(4n))`, of degree `-8n`.  The first sixteen nonzero
+coefficient-cut translates have overlap `1/64=tau(F)^2`, so this is a
+bilateral mixing direction rather than an orthogonal wandering-projection
+contradiction.  The live question is whether the raw relations cut this
+bilateral orbit to a one-sided finite-multiplicity module.
+
 ### 2026-08-13: transported Pauli orbit has a canonical fingerprint
 
 `TRUE_TRANSPORTED_PAULI_ORBIT_FINGERPRINT.md` computes the full orbit of one
