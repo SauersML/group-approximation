@@ -141,6 +141,53 @@ equality → universal marked MF kernel, with the rank-density-free corner
 renormalization, and no prior explicit (finitely presented) group with a
 fixed w ≠ 1 killed by every norm-corona homomorphism.
 
+## 2026-08-13 third-pass audit: INHERITANCE (machinery/strategy lineage)
+
+User-supplied; two open items resolved by the coordinator against primary
+sources the audit could not reach:
+
+* **RESOLVED — Clifford-lamp provenance is clean.**  (a) The OpenAI
+  nonsofic chapter (full source in `official/`) contains ZERO
+  anticommutation/central-sign/Clifford/extraspecial machinery; its
+  commuting object is a Thompson-type subgroup J.  (b) Kun–Thom
+  arXiv:2608.06222 (checked against the full HTML): lamps are PLAIN
+  ABELIAN ⊕_{G/Γ} ℤ/2 — no central extension, no marked/sign element;
+  nonsoficity is proved via the normalizer obstruction (centralizer of
+  σ(Γ) normalized by σ(G)), and NO operator-norm/MF/corona notion appears.
+  Consequence: the marked-central-kernel strategy and the Clifford sign
+  are NOT an adaptation of either; state the contrast explicitly.  Still
+  required: identify ClLamp(X) as the classical extraspecial/CAR sign
+  extension of ⊕ℤ/2 by the intersection-parity cocycle (Pauli sign
+  group), with classical references; see-also Chifan–Ioana–Osin–Sun for
+  modern (T)-on-lamps toolbox.
+* **Base-group machinery (mandatory adds):** Γ = ℤ³⋊SL₃(ℤ) with
+  α(v,A) = (2v,A) is the simplest instance of the Cornulier–Abels
+  non-(co-)Hopfian Kazhdan machine; Thom 2010 ("Examples of hyperlinear
+  groups without factorization property") runs the same
+  scaling-endomorphism play and — verify against its §2 before citing for
+  this — may already exhibit (T)-flavored groups with a central element
+  invisible to finite-dimensional reps while hyperlinear (the Theorem
+  B/Cor 4.5 phenomenon).  Cite Cornulier 2007, Abels 1979, Thom 2010.
+* **Strategy credit:** the "(RF)-by-finite central sign carries the
+  obstruction" program was published AS a program: Glebsky–Rivera 2008,
+  Glebsky 2019 (with the DGLT example noted there as
+  RF-by-finite).  Theorem A executes it in operator norm; say so.
+* **Two-norm engine:** beyond Ozawa–Thom/Dadarlat, credit Kun 2016 and
+  Kun–Thom 2019 for the (T)-rigidity-of-approximations engine
+  (almost-invariant vector for the conjugation action, upgraded and
+  propagated) in the Hamming metric.
+* **Obligation:** read Alekseev–Thom arXiv:2608.05362 (19 pp) line by
+  line and delimit overlap with the manuscript's Lemmas 6.4–6.6
+  explicitly (their title IS Step 1's object).
+* **Folklore anchors:** Lemma 5.4 = Blackadar–Kirchberg stable finiteness
+  of MF; Lemma 5.2 = Loring's perturbation/lifting book; "MF radical" →
+  anchor to Nikolov–Schneider–Thom approximation kernels (in addition to
+  the Slofstra G^fin/G^fa anchor from pass two).
+* **Borisov–Sapir** (already landed in prop:ambient): ascending HNN
+  extensions of f.g. linear groups are residually finite ⟹ G is RF hence
+  MF ⟹ the lamp generator is provably necessary — keep as a stated
+  proposition, not a hand-wave.
+
 ## Checked non-collisions
 
 * Theorem B (finite-dimensional sterility) does not trivialize A: no
@@ -254,3 +301,68 @@ Section 3/Remark 3.3 pinpoints are right; OAI Prop 2.3 skeleton check;
 AT Open Problem 6.2; second batch (BoS linear-mapping-torus SCOPE — this
 one is load-bearing for Prop `prop:ambient` —, DV Thm 7.10, Go, Ma, Neu,
 Ra metadata).
+
+## Third pass, continued: BHV and the new prior-work citations
+
+### BHV — both pinpoints were WRONG; APPLIED fixes
+
+* `fact:T` cited "Sections 1.4–1.5 and 4.2": §1.4 is SL_n over LOCAL
+  fields; §1.5 is symplectic (irrelevant); §4.2 stops at the n=2 relative
+  statement.  The correct numbered source for both SL_3(Z) and
+  Z^3⋊SL_3(Z) having (T) is **Example 1.7.4(i)** (via Cor. 1.4.16 +
+  lattice Thm 1.7.1); explicit constants: Thm 4.2.5.  WORSE: the fact
+  bundled "Γ is finitely presented" under the BHV cite, but (T) does NOT
+  imply finite presentability and BHV §3.4 exists to refute exactly that
+  (Behr / de Cornulier examples).  Fixed: fact:T now cites Example
+  1.7.4(i) (+4.2.5), drops the unused relative-(T) clause, and derives
+  finite presentation from the displayed CRW-based presentation instead.
+* `fact:kazhdan` cited "BHV Chapter 6" — that chapter (expanders, ergodic
+  theory, invariant means) contains NO Kazhdan projection; the book never
+  treats it (index has no entry; C*max only in Appendix F.4).  Fixed:
+  cite Akemann–Walter (confirmed the original source, per Drutu–Nowak
+  arXiv:1501.03473) + Valette, *Minimal projections, integrable
+  representations and property (T)*, Arch. Math. (Basel) 43 (1984)
+  397–406, doi:10.1007/BF01193846 (verified; new bibitem [Va]).
+* Numbering cross-checked between the free 2007 BHV PDF and the printed
+  2008 edition via arXiv:1007.4463's quotations; section TITLES changed in
+  print, numbers did not.  Do not quote BHV section titles from the PDF.
+
+### Slofstra trio, OAI, KT, AT, FF — verified; six pinpoints APPLIED
+
+* The three keys are three DISTINCT papers (peer's split was right):
+  [SV] Slofstra–Vidick, Ann. Henri Poincaré 19 (2018) no. 10, 2979–3005,
+  arXiv:1711.10676; [Slo18] Slofstra solo, arXiv:1806.05267, STILL
+  UNPUBLISHED v1 (bibitem correctly says preprint); [Slo17] Slofstra,
+  Forum Math. Pi 7 (2019) e1 (Definitions 2.5–2.7 range is fair; the
+  quotients G^fin/G^fa live in surrounding prose — don't quote a single
+  numbered definition as defining the quotient).
+* SV Prop 2.7's STATEMENT is a profile inequality; the negative-eigenspace
+  compression is its PROOF.  All three tex citations now say "proof of
+  Proposition 2.7".  Same pattern for Dadarlat Lemma 3.18 (statement =
+  weak containment of trivial rep in π⊗π̄; HS vectors = proof); tex
+  rephrased and cites "Lemma 3.18 and its proof".
+* Slofstra 1806.05267: Clifford/shift/HNN construction is **Section 2**
+  (tex said 3, twice — fixed); Remark 3.3 (operator-norm + Schatten-p
+  variant) is in §3 (correct).  Fritz BS(2,3) is **Example 3.1** of SV,
+  not "§2.2" (neither paper has subsections) — fixed, plus original
+  source added: [Fri] T. Fritz, J. Math. Phys. 54 (2013) no. 5, 052107,
+  doi:10.1063/1.4807079.
+* KT: wreath headline is Theorem A (B = centralizer normality, C =
+  fixed-algebra invariance, Cor. D = Bernoulli, E = explicit examples);
+  tex now cites Theorems A, B and C.  KT do NOT say "by cardinality" for
+  the finite-quotient equality; gloss removed.  Compression semigroup /
+  infranormality / sofic Mautner envelope terminology all verbatim-real.
+* OAI Prop 2.3: number stable across BOTH PDF versions but hypotheses
+  differ (original: Γ≤G both f.g. with (T), soficity ⇒ J LEF; current:
+  (T) only on Γ, expander-approximation hypothesis).  Tex skeleton
+  description is version-agnostic and stays.  Announcement 2026-08-01;
+  update 2026-08-06; the redacted priority claim ("no progress ... for at
+  least a decade", redacted 2026-08-03) is citable via Fournier-Facio's
+  footnote 2 in arXiv:2608.02025.
+* Alekseev–Thom Open Problem 6.2: statement checked against full text —
+  the tex's description (commutant of a Kazhdan representation into a
+  tracial matrix ultraproduct as an ultraproduct of finite-dimensional
+  subalgebras / coordinate centralizers of lifts) is accurate.
+* Fournier-Facio arXiv:2608.02025 (2026-08-03, 4pp): Theorem 1.3 = f.p.
+  torsion-free nonsofic group via small cancellation + OAI Prop 2.3.
+  Bibitem data verified.
