@@ -4,6 +4,19 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: fixed `7/32` coefficient anti-normalizer gap
+
+`TRUE_DOUBLE_PAULI_COMB_ANTINORMALIZER_GAP.md` turns the constant overlap table
+into an exact terminal separation.  Every raw coefficient character cut and
+every comb-transported character cut have squared HS distance `7/32`.  The
+formula and constant are Lean-checked in `Sofic/DoublePauliCoefficient.lean`.
+Thus any simultaneous finite-multiplicity recovery which aligns the two
+four-dimensional coefficient algebras (necessarily by a permutation of
+minimal cuts) immediately contradicts the canonical trace.  The remaining
+gate is precisely that comb-compatible coordinate alignment; abstract group
+relations cannot imply it because the regular representation realizes the
+anti-normalizer gap exactly.
+
 ### 2026-08-13: the comb is Fourier-flat on the coefficient packet
 
 `TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md` computes the exact `4 x 4`

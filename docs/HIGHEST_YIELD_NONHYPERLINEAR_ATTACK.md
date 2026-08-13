@@ -2,6 +2,29 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
+
+For every raw coefficient character cut `F_epsilon` and every transported cut
+`G_eta=U*F_eta U`, the exact trace table gives
+
+```text
+||F_epsilon-G_eta||_2^2=7/32.
+```
+
+See `TRUE_DOUBLE_PAULI_COMB_ANTINORMALIZER_GAP.md`; the projection-distance
+identity and the constant are Lean-checked.  Since every automorphism of
+`C^4` permutes its minimal cuts, a comb-compatible coordinate recovery which
+aligns the raw and transported finite-multiplicity coefficient algebras gives
+an immediate contradiction.
+
+This is now the shortest terminal theorem to target.  Prove simultaneous
+matrix-coordinate recovery of the two `C^4` coefficient algebras and their
+comb covariance, with `o(1)` loss.  It is stronger than recovering one
+ultraproduct commutant and is false in arbitrary finite von Neumann algebras;
+its justification must use finite matrix coordinates and the two Kazhdan
+chart restrictions.  If this alignment cannot be obtained, fall back to the
+one-sided spectral-truncation formulation below.
+
 ## 2026-08-13 exact mass floor: every comb coefficient block is `1/64`
 
 The fixed symbolic block table is complete.  If `F_epsilon` are the four

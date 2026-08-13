@@ -233,4 +233,44 @@ theorem hsNormSq_projection_product_eq_re_normTrace
   have hreal := congrArg Complex.re hcomplex
   simpa using hreal
 
+/-- Squared Hilbert--Schmidt distance between two projections, expressed by
+their three tracial overlaps. -/
+theorem hsDistSq_projections_eq_re_normTrace
+    (Y : FiniteModel) (P Q : Matrix Y Y ℂ)
+    (hPstar : Pᴴ = P) (hPid : P * P = P)
+    (hQstar : Qᴴ = Q) (hQid : Q * Q = Q) :
+    hsDistSq Y P Q =
+      (normTrace Y P).re + (normTrace Y Q).re -
+        2 * (normTrace Y (P * Q)).re := by
+  change hsNormSq Y (P - Q) = _
+  have hproduct : (P - Q) * (P - Q)ᴴ =
+      P + Q - P * Q - Q * P := by
+    rw [Matrix.conjTranspose_sub, hPstar, hQstar]
+    noncomm_ring [hPid, hQid]
+  have htrace :
+      normTrace Y (P + Q - P * Q - Q * P) =
+        normTrace Y P + normTrace Y Q - 2 * normTrace Y (P * Q) := by
+    unfold normTrace
+    rw [Matrix.trace_sub, Matrix.trace_sub, Matrix.trace_add,
+      Matrix.trace_mul_comm Q P]
+    ring
+  have hcomplex := ofReal_hsNormSq Y (P - Q)
+  rw [hproduct, htrace] at hcomplex
+  have hreal := congrArg Complex.re hcomplex
+  simpa using hreal
+
+/-- A trace-`1/8` projection and a trace-`1/8` projection with overlap
+`1/64` are separated by the fixed squared distance `7/32`. -/
+theorem hsDistSq_projections_eq_seven_div_thirty_two
+    (Y : FiniteModel) (P Q : Matrix Y Y ℂ)
+    (hPstar : Pᴴ = P) (hPid : P * P = P)
+    (hQstar : Qᴴ = Q) (hQid : Q * Q = Q)
+    (hPtrace : normTrace Y P = (8 : ℂ)⁻¹)
+    (hQtrace : normTrace Y Q = (8 : ℂ)⁻¹)
+    (hoverlap : normTrace Y (P * Q) = (64 : ℂ)⁻¹) :
+    hsDistSq Y P Q = (7 : ℝ) / 32 := by
+  rw [hsDistSq_projections_eq_re_normTrace Y P Q
+    hPstar hPid hQstar hQid, hPtrace, hQtrace, hoverlap]
+  norm_num
+
 end GroupApproximation
