@@ -124,7 +124,8 @@ theorem hermitianPart_sq_sub_one
           (U * U + U * Uᴴ + Uᴴ * U + Uᴴ * Uᴴ) - 1 := by
             rw [smul_mul_smul_comm]
             norm_num
-            noncomm_ring
+            rw [Matrix.add_mul, Matrix.mul_add, Matrix.mul_add]
+            module
     _ = (1 / 4 : ℂ) •
           ((U * U - 1) + (Uᴴ * Uᴴ - 1)) := by
             rw [hUUstar, hUstarU]
@@ -312,8 +313,7 @@ theorem norm_roundedInvolution_sub_hermitianPart_le
     ext i j
     by_cases hij : i = j
     · subst j
-      by_cases hi : 0 < hH.eigenvalues i <;>
-        simp [P, L, R, hi] <;> norm_num
+      by_cases hi : 0 < hH.eigenvalues i <;> simp [P, L, R, hi]
     · simp [P, L, R, hij]
   have hrewrite : roundedInvolution U - hermitianPart U = V * R * Vᴴ := by
     rw [roundedInvolution, hPdef]
@@ -322,9 +322,11 @@ theorem norm_roundedInvolution_sub_hermitianPart_le
     calc
       (2 : ℂ) • (V * P * Vᴴ) - V * Vᴴ - V * L * Vᴴ =
           V * ((2 : ℂ) • P - 1 - L) * Vᴴ := by
-            rw [Matrix.mul_sub, Matrix.sub_mul, Matrix.mul_one,
-              Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_assoc]
-            simp only [mul_smul_comm]
+            have hsmul : (2 : ℂ) • (V * P * Vᴴ) =
+                V * ((2 : ℂ) • P) * Vᴴ := by
+              rw [Matrix.mul_smul, Matrix.smul_mul]
+            rw [hsmul]
+            noncomm_ring
       _ = V * R * Vᴴ := by rw [hcore]
   have hVstar : Vᴴ ∈ Matrix.unitaryGroup Y ℂ := by
     rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
@@ -431,20 +433,19 @@ theorem roundedInvolution_sub_map_vanishing
 
 /-- Separation of a nontrivial central involution forces its rounded
 negative spectral sector to be nonzero eventually. -/
-theorem negativeProjection_eventually_ne_zero
-    (A : WeakMFApproximation G) {z : G} (hz : z * z = 1)
-    (hne : z ≠ 1) :
+theorem negativeProjection_eventually_ne_zero_of_separated
+    (A : OpAlmostRepresentation G) {z : G} (hz : z * z = 1)
+    {delta : ℝ} (hdelta : 0 < delta)
+    (hsep : ∃ N, ∀ n ≥ N,
+      delta ≤ ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖) :
     ∃ N, ∀ n ≥ N,
       negativeProjection
         (A.map n z : Matrix (A.model n) (A.model n) ℂ) ≠ 0 := by
-  let B := A.toOpAlmostRepresentation
-  have hround := roundedInvolution_sub_map_vanishing B hz
-  have hone := KazhdanCornerMatrices.map_one_vanishing B
-  obtain ⟨Nr, hNr⟩ := hround (A.separation / 4) (by
-    linarith [A.separation_pos])
-  obtain ⟨N1, hN1⟩ := hone (A.separation / 4) (by
-    linarith [A.separation_pos])
-  obtain ⟨Ns, hNs⟩ := A.separatedEventually z 1 hne
+  have hround := roundedInvolution_sub_map_vanishing A hz
+  have hone := KazhdanCornerMatrices.map_one_vanishing A
+  obtain ⟨Nr, hNr⟩ := hround (delta / 4) (by linarith)
+  obtain ⟨N1, hN1⟩ := hone (delta / 4) (by linarith)
+  obtain ⟨Ns, hNs⟩ := hsep
   refine ⟨max (max Nr N1) Ns, fun n hn hzero ↦ ?_⟩
   have hnNr : Nr ≤ n := (le_max_left Nr N1).trans
     ((le_max_left (max Nr N1) Ns).trans hn)
@@ -465,7 +466,7 @@ theorem negativeProjection_eventually_ne_zero
     noncomm_ring
   have hstrict :
       ‖(A.map n z : Matrix (A.model n) (A.model n) ℂ) - A.map n 1‖ <
-        A.separation := by
+        delta := by
     rw [hsplit]
     calc
       ‖((A.map n z : Matrix (A.model n) (A.model n) ℂ) -
@@ -477,7 +478,7 @@ theorem negativeProjection_eventually_ne_zero
               (A.map n z : Matrix (A.model n) (A.model n) ℂ)‖ +
           ‖1 - (A.map n 1 : Matrix (A.model n) (A.model n) ℂ)‖ :=
         norm_add_le _ _
-      _ ≤ A.separation / 4 + A.separation / 4 := by
+      _ ≤ delta / 4 + delta / 4 := by
         apply add_le_add
         · rw [show (A.map n z : Matrix (A.model n) (A.model n) ℂ) -
               roundedInvolution
@@ -491,8 +492,19 @@ theorem negativeProjection_eventually_ne_zero
             -((A.map n 1 : Matrix (A.model n) (A.model n) ℂ) - 1) by abel,
             norm_neg]
           exact hN1 n hnN1
-      _ < A.separation := by linarith [A.separation_pos]
+      _ < delta := by linarith
   exact (not_lt_of_ge (hNs n hnNs)) hstrict
+
+/-- Weak-MF separation is a convenient special case of marked separation. -/
+theorem negativeProjection_eventually_ne_zero
+    (A : WeakMFApproximation G) {z : G} (hz : z * z = 1)
+    (hne : z ≠ 1) :
+    ∃ N, ∀ n ≥ N,
+      negativeProjection
+        (A.map n z : Matrix (A.model n) (A.model n) ℂ) ≠ 0 :=
+  negativeProjection_eventually_ne_zero_of_separated
+    A.toOpAlmostRepresentation hz A.separation_pos
+      (A.separatedEventually z 1 hne)
 
 /-- An exact commutation relation in the group becomes operator-norm
 commutation of the corresponding almost-representation matrices. -/
@@ -559,7 +571,14 @@ theorem negativeProjection_commute_map_vanishing
       ((2 : ℂ)⁻¹)
   apply hrounded.congr
   intro n
-  module
+  rw [negativeProjection_eq_one_sub_rounded]
+  let Z : Matrix (A.model n) (A.model n) ℂ :=
+    roundedInvolution (A.map n z)
+  let V : Matrix (A.model n) (A.model n) ℂ := A.map n g
+  change (2 : ℂ)⁻¹ • -(Z * V - V * Z) =
+    ((2 : ℂ)⁻¹ • (1 - Z)) * V - V * ((2 : ℂ)⁻¹ • (1 - Z))
+  rw [Matrix.smul_mul, Matrix.mul_smul, ← smul_sub]
+  congr 1
   noncomm_ring
 
 end AlmostRepresentation
