@@ -182,6 +182,23 @@ p<=q,  p Murray--von Neumann equivalent to q,
 
 then `p=q`.
 
+For completeness, the last implication is algebraic.  If
+`v^*v=p`, `vv^*=q`, and `p<=q`, put
+
+```text
+s=v+(1-q).
+```
+
+The corner relations give
+
+```text
+s s^*=1,
+s^*s=1-(q-p).
+```
+
+Direct finiteness forces `s^*s=1`, hence `q-p=0`.  Thus the proof is not
+silently assuming cancellation in an abstract ordered `K_0` group.
+
 Corners obtained from lifted projections are again norm-matrix coronas and
 are therefore stably finite as well.
 
@@ -329,6 +346,42 @@ focused on:
 The internal audit above resolves the mathematical details of items 1--3.
 The remaining uncertainty is principally literature priority, not an
 identified gap in the proof.
+
+### Formal endpoint (current scope)
+
+`GroupApproximation/Sofic/NormMFResidualDetector.lean` defines
+`NormMFInvisible x` by quantifying over the repository's actual
+operator-norm matrix ultraproducts `UniversalWeakMF`.  It proves that these
+elements form `normMFResidual G` and establishes the one-element criterion
+
+```text
+not_isWeakMF_of_normMFInvisible.
+```
+
+It also defines the exact word `markedCompressionWord t a c` and packages
+the required output as `MarkedCompressionNormCertificate`; the theorem
+
+```text
+MarkedCompressionNormCertificate.not_isWeakMF
+```
+
+is the machine-checked final logical reduction from that certificate to
+non-MF.
+
+At this stage Lean does **not** yet prove that the concrete compressor group
+has `witness_invisible`, nor does it yet construct the concrete group and
+prove `witness_ne_one`.  Those are the two remaining formalization layers;
+the first is the analytic Kazhdan-compression theorem discussed above, and
+the second is the algebraic HNN/Clifford witness construction.  Thus this
+section records verified infrastructure, not a completed formal proof of the
+new theorem.
+
+The analytic proof above was written for the sequential norm corona.  It
+works verbatim for the ultrafilter quotients used by the formal definition:
+all limits are taken along the ultrafilter, polar correction is made on an
+ultrafilter-large set, and the final Hilbert-space ultraproduct uses the same
+ultrafilter.  Consequently the marked word is `NormMFInvisible`, not merely
+killed by one selected sequential representation.
 
 ## 7. Kun--Thom specialization: the same word is in the full sofic radical
 
