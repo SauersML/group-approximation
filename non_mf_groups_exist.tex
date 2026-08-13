@@ -231,8 +231,8 @@ is central and satisfies $w^2=1$ (Definition~\ref{def:E}).  Then:
 \begin{enumerate}
   \item $w\neq 1$ in $E$, so $w$ is a central involution;
   \item for every sequence $(d_n)$ and every group homomorphism
-    $\Theta\colon E\to\U(\mathcal Q)$ into the corresponding norm matrix
-    corona \eqref{eq:corona}, one has $\Theta(w)=1$.
+    $\Theta\colon E\to\Ucor((d_n))$ into the corresponding unitary norm
+    corona \eqref{eq:unitary-corona}, one has $\Theta(w)=1$.
 \end{enumerate}
 In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
@@ -2129,8 +2129,10 @@ $N_{\mathrm{comp}}$.  The subgroup $F=\{1,w\}=\langle w\rangle$ is
 finite and normal: centrality and $w^2=1$ are defining relations, while
 Proposition~\ref{prop:witness} gives $w\neq1$.  Moreover
 $F\subseteq N_{\mathrm{comp}}$.  Theorem~\ref{thm:criterion}
-therefore gives $\Theta(w)=1$ for every corona representation
-$\Theta$ of $E$, which is part (2).
+therefore kills $w$ after composing any
+$\Theta\colon E\to\Ucor((d_n))$ with the canonical isomorphism
+$\kappa_{(d_n)}$ of Lemma~\ref{lem:unitarycorona}.  Since
+$\kappa_{(d_n)}$ is injective, $\Theta(w)=1$.  This is part (2).
 
 \medskip
 
@@ -2141,11 +2143,13 @@ to $1$.  If $\Cred(E)$ were an MF algebra, a unital $C^*$-embedding ---
 Corollary~\ref{cor:subalg} below reduces a non-unital one to this
 case ---
 $\Cred(E)\hookrightarrow\mathcal Q$ composed with the canonical map
-  $E\to\U(\Cred(E))$, would exhibit an injective corona representation of
+  $E\to\U(\Cred(E))$, and then with $\kappa_{(d_n)}^{-1}$, would exhibit
+  an injective corona representation of
   $E$: the map $g\mapsto\lambda_g$ is injective, although the quotient map
   $\Cmax(E)\to\Cred(E)$ need not be faithful.  The canonical map
   $E\to\U(\Cmax(E))$ is also injective, since its composition with the
-  regular representation is $g\mapsto\lambda_g$; this treats $\Cmax(E)$.
+  regular representation is $g\mapsto\lambda_g$; after the same
+  $\kappa_{(d_n)}^{-1}$ conversion, this treats $\Cmax(E)$.
 \end{proof}
 
 \begin{remark}\label{rem:radical}
