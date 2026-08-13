@@ -1,4 +1,4 @@
-# An explicit finitely presented non-MF group
+# An explicit finitely presented non-MF group: paper construction and formal status
 
 Date: 2026-08-12
 

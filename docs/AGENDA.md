@@ -150,7 +150,7 @@ convergent active covariance model is back in scope.  Full proof:
 `docs/FALSE_ONE_NUMBER_RELATIVE_COMMUTANT_CRITERION.md`; corrected scope:
 `docs/FALSE_TANGENT_ACTIVE_CORNER_DILUTION_NO_GO.md`.
 
-### 2026-08-12: an explicit finitely presented non-MF group
+### 2026-08-12: paper-level explicit finitely presented non-MF group
 
 More generally than the ascending-HNN formulation, let `G` be finitely
 presented, let `Gamma<G` be a finitely generated property `(T)` subgroup,
@@ -195,6 +195,12 @@ the universal group-MF conjecture negatively, subject to specialist
 literature-priority review.  It does not settle hyperlinearity or the
 active hyperlinear-versus-sofic goal.  Full proof and scope audit:
 `docs/EXPLICIT_FINITELY_PRESENTED_NON_MF_GROUP.md`.
+
+Formal-status qualification: the unconditional Lean theorem uses an
+independently chosen Shalom-cover presentation.  Lean checks the literal
+eight-generator presentation and its nontrivial marked word, but its
+operator-MF conclusion still awaits an internal property `(T)` proof for the
+raw presented base.
 
 For a Kun--Thom Kazhdan infranormal pair the same marked word satisfies the
 stronger statement

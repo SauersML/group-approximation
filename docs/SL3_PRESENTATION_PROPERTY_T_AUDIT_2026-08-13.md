@@ -91,21 +91,21 @@ No separate finite-index or relative-property argument is needed.
 
 The literature checks establish the printed mathematics but cannot serve as
 axioms under the project's strict trust policy.  A literal, unconditional
-formal Theorem A still requires both of the following internal results:
-
-1. a proof that the eight-relator presented group is isomorphic to the
-   displayed matrix group `SL_3(Z)` (or a formal derivation from an internally
-   proved transvection presentation), followed by the semidirect-product
-   inverse above; and
-2. an internal proof of property (T), or a checked finite Kazhdan/SOS
-   certificate, for the resulting affine group.
+formal Theorem A still requires an internal proof of property (T), or a
+checked finite Kazhdan/SOS certificate, for the raw twenty-relator affine
+presented group.  The kernel-checked development now proves its intrinsic
+split-extension decomposition into the translation subgroup and the
+abstract eight-relator rotation retract.  It does not yet identify that
+rotation retract with the displayed matrix group `SL_3(Z)`, nor prove the
+required affine property-(T) estimate directly.
 
 Direct matrix evaluation proves only that the matrices satisfy the eight
-relations.  It does not prove that those relations are complete.  Likewise,
-the nine action relations prove covariance only after the base presentation
-has been identified.  These are the precise missing group-generation and
-presentation facts; citing CRW or BHV is mathematically legitimate in the
-paper but does not discharge the premise-free Lean endpoint.
+rotation relations.  It does not prove that those relations are complete.
+The nine action relations and the intrinsic semidirect decomposition are
+already formalized; the remaining presentation-completeness issue is only
+the rotation factor.  Even resolving it would still leave the separate
+affine property-(T) proof.  Citing CRW or BHV is mathematically legitimate
+in the paper but does not discharge the premise-free Lean endpoint.
 
 The original CRW article was blocked by AMS/JSTOR anti-bot responses during
 this pass.  The exact presentation was nevertheless checked in the open

@@ -250,7 +250,7 @@ Key audit files:
 - `scripts/check.py`: source-level checks;
 - `scripts/Audit.lean`: statement pins, axiom closure, and environment scans;
 - `GroupApproximation/Endpoint/ChosenNonMFAudit.lean`: focused audit of
-  the explicit non-MF endpoints;
+  the chosen-cover non-MF endpoints;
 - `scripts/Signatures.lean` and `docs/CLAIM_SIGNATURES.md`: elaborated public
   signatures;
 - `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
