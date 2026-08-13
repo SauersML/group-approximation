@@ -29,6 +29,13 @@
   Formal counterpart:\par\nobreak\noindent
   \ifanonymous\nolinkurl{#2}\else
   \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
+\newcommand{\leanconditional}[2]{%
+  \par\smallskip\noindent
+  {\normalfont\footnotesize\color{gray!70!black}%
+  \raggedright\Urlmuskip=0mu plus 2mu\relax
+  Conditional formal deduction (given the cited external data):\par\nobreak\noindent
+  \ifanonymous\nolinkurl{#2}\else
+  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.\par}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -2685,10 +2692,10 @@ $\Lambda$ to an MF group, is trivial.  Moreover every finite-dimensional
 linear representation of $\Lambda$, over every field, is trivial, and
 $\Lambda$ is perfect.
 \ifanonymous\else
-\leanverified{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelope_normMFResidual_eq_top}
-\leanverified{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.hom_eq_one_to_isOperatorMF}
-\leanverified{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.allFiniteDimensionalRepresentationsTrivial}
-\leanverified{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelopeIsPerfect_of_eq_commutator}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelope_normMFResidual_eq_top}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.hom_eq_one_to_isOperatorMF}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.allFiniteDimensionalRepresentationsTrivial}
+\leanconditional{Sofic/NormallyGeneratedMFObstruction}{GroupApproximation.NormallyGeneratedKazhdanEnvelopeData.envelopeIsPerfect_of_eq_commutator}
 \fi
 \end{theorem}
 
@@ -2730,7 +2737,7 @@ as a subgroup and satisfies
 Every homomorphism from $\Lambda_{\mathrm{univ}}$ to an MF group is
 trivial.
 \ifanonymous\else
-\leanverified{Sofic/UniversalKazhdanMFObstruction}{GroupApproximation.UniversalNormallyGeneratedKazhdanEnvelopeData.consequence_package}
+\leanconditional{Sofic/UniversalKazhdanMFObstruction}{GroupApproximation.UniversalNormallyGeneratedKazhdanEnvelopeData.consequence_package}
 \fi
 \end{theorem}
 
@@ -2762,7 +2769,7 @@ For the same universal Kazhdan group,
   \quad\text{is stably finite but non-MF},
 \]
 whereas $\Cmax(\Lambda_{\mathrm{univ}})$ contains a proper isometry and
-is therefore neither finite nor stably finite.
+is therefore neither finite nor stably finite, and hence is not MF.
 \ifanonymous\else
 \leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
 \leanverified{Analysis/ReducedGroupCStarMFObstruction}{GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top}
@@ -2936,6 +2943,9 @@ property is undecidable from finite presentations.
 \begin{theorem}[MF recognition is undecidable]\label{thm:mfrecognition}
 There is no algorithm which, given a finite group presentation, decides
 whether the presented group is MF.
+\ifanonymous\else
+\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+\fi
 \end{theorem}
 
 \begin{proof}
@@ -2952,8 +2962,7 @@ of codes presenting non-MF groups is not recursively enumerable.
 Consequently there is no sound and complete recursively verifiable system
 of finite certificates for non-MF-ness of finitely presented groups.
 \ifanonymous\else
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
+\leanconditional{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re}
 \fi
 \end{theorem}
 
@@ -2984,8 +2993,8 @@ decides any of the following five properties:
 For each property, the set of finite presentations on which it fails is
 not recursively enumerable.
 \ifanonymous\else
-\leanverified{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
-\leanverified{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_negative_sides_not_re}
+\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_recognition_undecidable}
+\leanconditional{Computability/CStarRecognitionConsequences}{GroupApproximation.CStarRecognitionConsequences.all_groupCStar_negative_sides_not_re}
 \fi
 \end{corollary}
 
