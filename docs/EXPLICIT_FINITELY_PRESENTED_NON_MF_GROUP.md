@@ -386,12 +386,12 @@ while the displayed presentation is established by the paper proof.  A
 separate literal stack (`Sofic/LiteralNonMFPresentation` and
 `Sofic/LiteralNonMFLinearWitness`) machine-checks the eight-generator
 relators, an exact affine--Clifford realization, and nontriviality of the
-marked central involution. The later literal stack packages only conditional
-MF endpoints: property `(T)`
-of Lean's raw twenty-relator `PresentedGroup`, or an exact rational SOS
-certificate. Classical property `(T)` of `Z^3 semidirect SL_3(Z)` does not
-discharge the raw premise without presentation completeness, an isomorphism,
-or a direct proof for that presented group.
+marked central involution. It exports no analytic MF endpoint for the literal
+group. Classical property `(T)` of `Z^3 semidirect SL_3(Z)` would not
+discharge property `(T)` of Lean's raw twenty-relator `PresentedGroup`
+without presentation completeness, an isomorphism, or a direct proof for
+that presented group. Premise-parametrized and absent-certificate endpoints
+were removed from the formal trust surface.
 
 The analytic proof above was written for the sequential norm corona.  The
 formal predicate `NormMFInvisible` instead quantifies over every operator-norm

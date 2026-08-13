@@ -87,14 +87,13 @@ operator-norm matrix ultraproduct and rules out the library's auxiliary
 independently from a noncomputably chosen Shalom cover; it is not the literal
 eight-generator group `E` displayed in the paper. The literal presentation,
 all displayed relations, and an exact affine--Clifford realization proving
-its marked word nontrivial are formalized separately. The only MF endpoints
-for that literal group are explicitly conditional: one assumes property
-`(T)` of the abstract group presented by the twenty base relators, and the
-proof-carrying variant assumes an exact rational group-ring SOS certificate
-for that same presented group. Property `(T)` of the concrete
-`ℤ³ ⋊ SL₃(ℤ)` does not by itself discharge the Lean premise; the classical
-route also needs a formal presentation-completeness isomorphism. No
-unconditional literal endpoint or certificate is asserted.
+its marked word nontrivial are formalized separately. No analytic MF endpoint
+for that literal group is exported. Property `(T)` of the concrete
+`ℤ³ ⋊ SL₃(ℤ)` would not by itself prove property `(T)` of Lean's raw
+twenty-relator `PresentedGroup`; the classical route also needs a formal
+presentation-completeness isomorphism. Premise-parametrized and
+absent-certificate placeholders were removed rather than advertised as
+formal results.
 
 The general finite-normal obstruction is formalized first as universal
 ultraproduct invisibility: `NormMFInvisible` quantifies over every matrix

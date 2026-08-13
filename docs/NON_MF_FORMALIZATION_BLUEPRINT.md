@@ -125,14 +125,14 @@ endpoint for the standard `IsOperatorMF` cofinite-corona predicate, without
 assuming an equivalence with `IsWeakMF`. It does not claim that the finitely
 presented Shalom-cover witness is literally the paper's displayed
 eight-generator group. The literal group's algebraic presentation and
-separating mark are formalized separately. Its non-MF theorem is available
-only with an explicit property-`(T)` premise on Lean's raw twenty-relator
-`PresentedGroup`, or an exact rational SOS certificate. Known property `(T)`
-of the classical group `Z^3 semidirect SL_3(Z)` does not prove the raw premise
-without completeness of the presentation, an isomorphism, or a direct
-property-`(T)` proof. None of those, and no exact certificate, is supplied by
-the unconditional endpoint. The development also makes no claim that either
-witness is nonhyperlinear or nonsofic.
+separating mark are formalized separately, but no analytic MF endpoint for
+that literal group is exported. Known property `(T)` of the classical group
+`Z^3 semidirect SL_3(Z)` would not prove property `(T)` of Lean's raw
+twenty-relator `PresentedGroup` without completeness of the presentation, an
+isomorphism, or a direct property-`(T)` proof. None of those is supplied by
+the unconditional endpoint; premise-parametrized and absent-certificate
+placeholders were removed from the trust surface. The development also makes
+no claim that either witness is nonhyperlinear or nonsofic.
 
 `NormMFInvisible` quantifies over the repository's
 `UniversalWeakMF U X`, namely operator-norm matrix ultraproducts over every
