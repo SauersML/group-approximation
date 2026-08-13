@@ -1,9 +1,11 @@
 # Credit and priority audit for the non-MF manuscript
 
-Date: 2026-08-12 (user-supplied adversarial literature audit; time-sensitive:
-the adjacent sofic breakthrough is six days old).  These are PAPER-facing
-facts and directives.  Nothing here enters Lean as a premise; the Lean
-development remains zero-premise and claims correctness, not novelty.
+Date: 2026-08-12.  This began from an adversarial literature review and was
+then checked against the cited primary papers, including theorem-level checks
+of every attribution added to the manuscript.  The adjacent sofic
+breakthrough is six days old, so the audit remains time-sensitive.  These are
+paper-facing facts and directives.  Nothing here enters Lean as a premise;
+the Lean development remains zero-premise and claims correctness, not novelty.
 
 ## Verdict summary
 
@@ -19,9 +21,9 @@ development remains zero-premise and claims correctness, not novelty.
   element killed by every MF representation.  The surrounding
   compression/lamp architecture is NOT ours to claim.
 
-## Mandatory manuscript corrections
+## Manuscript corrections implemented
 
-1. HISTORY/PRIORITY FIX (currently wrong in the tex): the first nonsofic
+1. HISTORY/PRIORITY: the first nonsofic
    group is OpenAI's; Kun–Thom (arXiv:2608.06222, posted 2026-08-06)
    explicitly build on it and extract/generalize the mechanism.  Do not say
    the sofic case "was solved negatively by Kun and Thom" without the
@@ -148,3 +150,107 @@ fixed w ≠ 1 killed by every norm-corona homomorphism.
   "C*(G) or C*r(G) MF ⟹ G MF" is on record (Shulman); the group-level
   theorem is strictly stronger content.
 * GitHub search surfaced only this repository, no external predecessor.
+
+## Third pass (2026-08-12/13 night, citation-audit session): source-level verification
+
+Deep-web verification with PDFs in hand (CDE, Dadarlat, Shulman v2, TWW,
+CRW via Wayback, both OpenAI PDF versions).  Fixes marked APPLIED are in the
+tex working copy as of this note.
+
+### Errors found and APPLIED to the tex
+
+1. TWW pinpoint was WRONG: amenable⇒quasidiagonal is **Corollary C**, not
+   Corollary B (Cor. B is the UCT/faithful-trace statement).  Fixed at
+   `fact:tww`.  (Cor. C says "discrete, amenable" — no countability
+   hypothesis; our statement restricts, which is harmless.)
+2. CRW matrices: the paper's x and y were SWAPPED relative to CRW's own
+   assignment (CRW: x = h = the 3-cycle permutation matrix, y = aha, z = p;
+   Theorem 2 relator list is exact, character for character).  The relator
+   set is invariant under x↔y so nothing downstream was false, but as
+   transcription it was wrong.  Fixed: matrices swapped, the v_i-action
+   lines swapped to match the columns, and a provenance parenthetical added
+   (CRW never display the integer realization as a single statement; it is
+   assembled from their §§1,2,4; we verify relations + generation directly,
+   enough by Hopficity).  Source: Wayback copy of PAMS 115 (1992) 19–26.
+3. BDL: first author is **B.** (Benjamin) Bachner, not "G."; volume+pages
+   are final (J. Algebra 702 (2026) 235–243, issue dated 2026-09-15), so
+   "to appear" dropped.  arXiv:2508.17392.
+4. DGLT published title spells **"nonapproximable"** (one word); fixed.
+5. OAI: the cited URL now serves the REVISED PDF (updated 2026-08-06) in
+   which Chapter 3 is titled "Nonsofic groups exist", pp. 78–95; the old
+   title "A counterexample to the soficity conjecture" and pp. 77–93 belong
+   to the original, which OpenAI moved to .../ten-proofs-oai-original.pdf.
+   Entry updated to the current PDF's metadata, marked non-refereed, with
+   the original-version pointer retained.
+6. Bibliography order: [CRW] moved before [Dad] (author-alphabetical).
+7. DOIs added where verified: AW 10.4153/CJM-1981-067-9, BK
+   10.1007/s002080050039, CDE 10.1016/j.jfa.2013.04.004, TWW
+   10.4007/annals.2017.185.1.4, Dad 10.1016/j.aim.2021.107722 (resolution
+   to PII S0001870821001602 checked directly).
+8. PMF≠MF guard added to the introduction with new entry [MdlS]
+   Magee–de la Salle, "SL_4(Z) is not purely matricial field", C. R. Math.
+   362 (2024) 903–910, arXiv:2312.03220.  Rationale: nearest published
+   negative result in the MF family; a referee who knows PMF as a named
+   property (standard since Gao–Kunnawalkam Elayavalli–Manzoor–Patchell,
+   arXiv:2603.24502) could think "SL4(Z) non-MF was known"; the intro now
+   states the distinction explicitly (SL4(Z) is RF, hence MF as used here).
+
+### Verified correct (no change needed)
+
+* CDE pinpoint §2.14 + Cor 2.18 exact (§2.14 = "An MF group that is not
+  LEF", Abels' group; Cor 2.18 verbatim MF-not-LEF; non-RF via Hopf in the
+  §2.14 body — citing both is right).  CDE Def 2.7 defines MF groups and
+  claims the coinage; attribution "introduced by CDE" is correct.
+* Shulman arXiv:2603.13564 (v2, 2026-03-22): Definition 3 + footnote 1 as
+  cited; the three-metric sentence is there (her wording: "Hamming
+  distance" on Sym(n), unnormalized wording — ours is a paraphrase, fine);
+  "There are no examples of groups whose full or reduced C*-algebra is not
+  MF" verbatim — anchor for both openness and the C*-corollary novelty.
+* Dadarlat: Prop 3.19 labeled "(Ozawa-Thom)", preceded by "essentially
+  pointed out by Thom on MathOverflow"; Lemma 3.18 is the HS-vector step.
+  arXiv id is 2007.12655.  Joint Ozawa–Thom attribution is the fair one.
+* AW, BHV(book data), BK, BO, CDE, CRW, Dad, DGLT(rest), KT (v1,
+  2026-08-06, 16pp), Shulman, TWW metadata all verified.  BK Theorem 3.2.2
+  is the corona-embedding characterization: `fact:qdcorona` now cites BK
+  Thm 3.2.2 + BO Ch. 7 (BO sub-numbers vary across printings; avoid 7.x.y
+  pinpoints).  CRW metadata rests on converging indexes + MR1079696 (AMS
+  and zbMATH 403-block bots) — weakest sourcing, nothing contradicts.
+
+### Priority sweep (fresh, 2026-08-13): NO COLLISION
+
+* No paper or preprint claims a non-MF group through 2026-08-13.  Openness
+  independently attested: Shulman (Mar 2026, verbatim above);
+  Gao–KE–Manzoor–Patchell arXiv:2603.24502 (positive-direction PMF/PFF
+  permanence); Korchagin arXiv:1704.06906 ("existence of non MF-groups is
+  also open question", corona formulation, Higman candidate).
+* Kun–Thom 2608.06222 v1 contains NO operator-norm/MF content (grep of
+  full text: "MF", "matricial", "operator norm", "corona" absent).  Their
+  Theorems: A = nonsofic wreath products; B = centralizer normality for
+  sofic G; C = fixed-algebra invariance; E = explicit RF Kazhdan examples.
+* OpenAI Ten Advances nonsofic chapter's open-problems list names
+  hyperlinearity, surjunctivity, determinant conjecture etc. — MF is never
+  mentioned.  The operator-norm lane was unoccupied.
+* arXiv:2510.17003 = Mehdi Moradi, "Quasidiagonality of Kazhdan Groups"
+  (Oct 2025), claimed infinite (T) groups never have FDD; WITHDRAWN in 3
+  days ("serious gap in the proof of Theorem 3.2").  Same *shape* as our
+  engine (property (T) vs finite-dimensional approximation), hence extra
+  scrutiny expected on the Kazhdan step; our Lean lane covers exactly that.
+* Adjacent but non-threatening: De Bondt–Thom arXiv:2607.19556 (trace-norm
+  rigidity of reduced products); a July-2026 "Z^2 flexibly stable in
+  operator norm" listing (arXiv id unconfirmed — do NOT cite without
+  checking); Ersoy arXiv:2604.19174 (minimal nonsofic).
+* Known alternative route worth one distinguishing sentence in the tex: a
+  f.g. non-RF operator-norm-stable group would also refute MF (stability
+  literature); no such group is known — our route does not go through
+  stability.
+* "MF radical with HNN theory" prior-art lead was a search-engine artifact
+  (conflation with amenable radical); checked against Korchagin full text.
+
+### Still pending (agents out)
+
+BHV section-number check for `fact:T`/`fact:kazhdan`; Slofstra trio
+(SlofstraCorrelations/Profile/Vidick) incl. whether Prop 2.7 and the
+Section 3/Remark 3.3 pinpoints are right; OAI Prop 2.3 skeleton check;
+AT Open Problem 6.2; second batch (BoS linear-mapping-torus SCOPE — this
+one is load-bearing for Prop `prop:ambient` —, DV Thm 7.10, Go, Ma, Neu,
+Ra metadata).
