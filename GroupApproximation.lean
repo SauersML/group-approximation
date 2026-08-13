@@ -161,6 +161,7 @@ import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
+import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Criterion.LocalCriterion
 import GroupApproximation.Criterion.LocalizedApproximation
