@@ -33,6 +33,7 @@ import GroupApproximation.Sofic.FiniteNormalAverageCorner
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMF
+import GroupApproximation.Sofic.MFDefinitions
 import GroupApproximation.Sofic.NormMFUniversalQuotient
 import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
