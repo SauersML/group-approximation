@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.MarkedCompressionData
+import GroupApproximation.Sofic.KazhdanCompressionCore
 
 /-!
 # Marked compression from an image inclusion
@@ -23,22 +24,9 @@ universe u
 argument.  In contrast to `MarkedCompressionData`, no endomorphism of `Γ` is
 part of the data: only conjugate-image containment is retained. -/
 structure MarkedCompressionInclusionData (Γ : Type) (E : Type u) [Group Γ]
-    [Group E] where
-  /-- The Kazhdan group inside the marked group; injectivity is unnecessary. -/
-  iota : Γ →* E
-  /-- The element compressing the image of `Γ`. -/
-  t : E
-  /-- The element centralized by the image of `Γ`. -/
-  c : E
+    [Group E] extends KazhdanCompressionCore Γ E where
   /-- The element used to mark two distinct transported lamp sites. -/
   a : Γ
-  /-- Property `(T)` for the source of `iota`. -/
-  kazhdan : HasKazhdanPropertyT.{0, 0} Γ
-  /-- Conjugation by `t` carries every element of `iota(Γ)` back into
-  `iota(Γ)`. -/
-  compresses : ∀ γ : Γ, ∃ δ : Γ, t * iota γ * t⁻¹ = iota δ
-  /-- The lamp centralizes the Kazhdan image. -/
-  comm_c : ∀ γ : Γ, Commute c (iota γ)
   /-- The marked commutator is an involution. -/
   word_sq : markedCompressionWord t (iota a) c ^ 2 = 1
   /-- The marked commutator is central. -/
