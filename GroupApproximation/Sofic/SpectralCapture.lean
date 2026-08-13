@@ -32,6 +32,7 @@ theorem star_mulVec_dotProduct_mulVec {U : Matrix Y Y ℂ}
   rw [Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul,
     hU, Matrix.vecMul_one]
 
+omit [DecidableEq Y] in
 /-- Cauchy–Schwarz for the complex dot product, in `normSq`-sum form. -/
 theorem re_star_dotProduct_le_sqrt (y z : Y → ℂ) :
     (star y ⬝ᵥ z).re ≤
@@ -53,6 +54,27 @@ theorem re_star_dotProduct_le_sqrt (y z : Y → ℂ) :
     _ = Real.sqrt (∑ i : Y, Complex.normSq (y i)) *
         Real.sqrt (∑ i : Y, Complex.normSq (z i)) := by rw [hyE, hzE]
 
+/-- Eigenvalues of a Hermitian matrix are bounded by its operator norm, for
+an arbitrary finite coordinate type. -/
+theorem abs_hermitianEigenvalue_le_norm_of_fintype (H : Matrix Y Y ℂ)
+    (hH : H.IsHermitian) (i : Y) : |hH.eigenvalues i| ≤ ‖H‖ := by
+  let x : EuclideanSpace ℂ Y := hH.eigenvectorBasis i
+  have hx : ‖x‖ = 1 := hH.eigenvectorBasis.orthonormal.1 i
+  have heigen :
+      (Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H x =
+        ((hH.eigenvalues i : ℝ) : ℂ) • x := by
+    apply PiLp.ext
+    intro j
+    exact congrFun (hH.mulVec_eigenvectorBasis i) j
+  have happly := ContinuousLinearMap.le_opNorm
+    ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H) x
+  rw [heigen, norm_smul, hx, mul_one,
+    Matrix.l2_opNorm_toEuclideanCLM] at happly
+  calc
+    |hH.eigenvalues i| = ‖((hH.eigenvalues i : ℝ) : ℂ)‖ := by
+      rw [Complex.norm_real, Real.norm_eq_abs]
+    _ ≤ ‖H‖ := by simpa only [mul_one] using happly
+
 /-! ## The quadratic-form capture bound -/
 
 /-- The core spectral estimate:  the mass of a vector below the spectral
@@ -65,113 +87,93 @@ theorem spectralBelow_quadratic_bound {H : Matrix Y Y ℂ}
       (star y ⬝ᵥ ((1 - H) *ᵥ y)).re +
         δ * ∑ i : Y, Complex.normSq (y i) := by
   classical
-  set U : Matrix Y Y ℂ := (hH.eigenvectorUnitary : Matrix Y Y ℂ) with hUdef
+  let U : Matrix Y Y ℂ := hH.eigenvectorUnitary
+  let L : Matrix Y Y ℂ := Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ))
+  let D : Matrix Y Y ℂ :=
+    Matrix.diagonal (fun i ↦ if t < hH.eigenvalues i then (1 : ℂ) else 0)
+  let v : Y → ℂ := Uᴴ *ᵥ y
   have hUU : Uᴴ * U = 1 :=
     Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
   have hUUstar : U * Uᴴ = 1 :=
     Unitary.mul_star_self_of_mem hH.eigenvectorUnitary.2
-  set w : Y → ℂ := Uᴴ *ᵥ y with hwdef
-  have hyw : y = U *ᵥ w := by
-    rw [hwdef, Matrix.mulVec_mulVec, hUUstar, Matrix.one_mulVec]
-  have hHdiag : H = U * Matrix.diagonal
-      (fun i ↦ (hH.eigenvalues i : ℂ)) * Uᴴ := by
+  have hyv : y = U *ᵥ v := by
+    show y = U *ᵥ (Uᴴ *ᵥ y)
+    rw [Matrix.mulVec_mulVec, hUUstar, Matrix.one_mulVec]
+  have hHdiag : H = U * L * Uᴴ := by
     calc
       H = Unitary.conjStarAlgAut ℂ _ hH.eigenvectorUnitary
           (Matrix.diagonal (RCLike.ofReal ∘ hH.eigenvalues)) :=
         hH.spectral_theorem
-      _ = U * Matrix.diagonal (fun i ↦ (hH.eigenvalues i : ℂ)) * Uᴴ := by
-        rfl
+      _ = U * L * Uᴴ := by rfl
   -- the compression in eigencoordinates
-  have hRy : spectralBelow H hH t *ᵥ y = U *ᵥ (Matrix.diagonal
-      (fun i ↦ if t < hH.eigenvalues i then (0 : ℂ) else 1) *ᵥ w) := by
-    have hRdiag : spectralBelow H hH t = U * Matrix.diagonal
-        (fun i ↦ if t < hH.eigenvalues i then (0 : ℂ) else 1) * Uᴴ := by
-      unfold spectralBelow spectralAbove
-      have hone : (1 : Matrix Y Y ℂ) = U * 1 * Uᴴ := by
-        rw [Matrix.mul_one, hUUstar]
-      calc
-        1 - (hH.eigenvectorUnitary : Matrix Y Y ℂ) *
-            Matrix.diagonal
-              (fun i ↦ if t < hH.eigenvalues i then (1 : ℂ) else 0) *
-            (hH.eigenvectorUnitary : Matrix Y Y ℂ)ᴴ =
-            U * (1 - Matrix.diagonal
-              (fun i ↦ if t < hH.eigenvalues i then (1 : ℂ) else 0)) *
-              Uᴴ := by
-          rw [hone]
-          noncomm_ring
-        _ = U * Matrix.diagonal
-            (fun i ↦ if t < hH.eigenvalues i then (0 : ℂ) else 1) * Uᴴ := by
-          congr 2
-          ext i j
-          by_cases hij : i = j
-          · subst j
-            by_cases hi : t < hH.eigenvalues i <;>
-              simp [Matrix.diagonal_apply_eq, hi]
-          · simp [Matrix.diagonal_apply_ne _ hij, hij]
-    rw [hRdiag, hyw, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec,
-      Matrix.mul_assoc (U * Matrix.diagonal _), hUU, Matrix.mul_one,
-      ← Matrix.mulVec_mulVec]
+  have hSA : spectralAbove H hH t = U * D * Uᴴ := rfl
+  have hRconj : U * (1 - D) * Uᴴ = spectralBelow H hH t := by
+    show U * (1 - D) * Uᴴ = 1 - spectralAbove H hH t
+    rw [hSA, Matrix.mul_sub, Matrix.mul_one, Matrix.sub_mul, hUUstar]
+  have hRy : spectralBelow H hH t *ᵥ y = U *ᵥ ((1 - D) *ᵥ v) := by
+    rw [← hRconj]
+    show (U * (1 - D) * Uᴴ) *ᵥ y = U *ᵥ ((1 - D) *ᵥ (Uᴴ *ᵥ y))
+    rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec]
   -- squared masses in eigencoordinates
+  have hNv : ∑ i : Y, Complex.normSq (y i) =
+      ∑ i : Y, Complex.normSq (v i) := by
+    conv_lhs => rw [hyv]
+    exact sum_normSq_mulVec_of_star_mul_self hUU v
   have hNRy : ∑ i : Y, Complex.normSq ((spectralBelow H hH t *ᵥ y) i) =
       ∑ i : Y, (if t < hH.eigenvalues i then (0 : ℝ) else 1) *
-        Complex.normSq (w i) := by
+        Complex.normSq (v i) := by
     rw [hRy, sum_normSq_mulVec_of_star_mul_self hUU]
     refine Finset.sum_congr rfl fun i _ ↦ ?_
-    rw [Matrix.mulVec_diagonal]
-    by_cases hi : t < hH.eigenvalues i <;> simp [hi]
-  have hNy : ∑ i : Y, Complex.normSq (y i) =
-      ∑ i : Y, Complex.normSq (w i) := by
-    rw [hyw]
-    exact sum_normSq_mulVec_of_star_mul_self hUU w
+    have hentry : ((1 - D) *ᵥ v) i =
+        (1 - (if t < hH.eigenvalues i then (1 : ℂ) else 0)) * v i := by
+      simp only [D, Matrix.sub_mulVec, Matrix.one_mulVec, Pi.sub_apply,
+        Matrix.mulVec_diagonal]
+      ring
+    rw [hentry]
+    by_cases hi : t < hH.eigenvalues i
+    · simp [hi]
+    · simp [hi]
   -- the quadratic form in eigencoordinates
+  have h1Hconj : U * (1 - L) * Uᴴ = 1 - H := by
+    rw [Matrix.mul_sub, Matrix.mul_one, Matrix.sub_mul, hUUstar, ← hHdiag]
+  have hvec1H : (1 - H) *ᵥ y = U *ᵥ ((1 - L) *ᵥ v) := by
+    rw [← h1Hconj]
+    show (U * (1 - L) * Uᴴ) *ᵥ y = U *ᵥ ((1 - L) *ᵥ (Uᴴ *ᵥ y))
+    rw [← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec]
   have hgram : (star y ⬝ᵥ ((1 - H) *ᵥ y)).re =
-      ∑ i : Y, (1 - hH.eigenvalues i) * Complex.normSq (w i) := by
-    have hdiagform : (1 - H) *ᵥ y = U *ᵥ (Matrix.diagonal
-        (fun i ↦ 1 - (hH.eigenvalues i : ℂ)) *ᵥ w) := by
-      have hdiag : (1 : Matrix Y Y ℂ) - H = U * Matrix.diagonal
-          (fun i ↦ 1 - (hH.eigenvalues i : ℂ)) * Uᴴ := by
-        have hone : (1 : Matrix Y Y ℂ) = U * 1 * Uᴴ := by
-          rw [Matrix.mul_one, hUUstar]
-        calc
-          (1 : Matrix Y Y ℂ) - H = U * (1 - Matrix.diagonal
-              (fun i ↦ (hH.eigenvalues i : ℂ))) * Uᴴ := by
-            rw [hHdiag, hone]
-            noncomm_ring
-          _ = U * Matrix.diagonal
-              (fun i ↦ 1 - (hH.eigenvalues i : ℂ)) * Uᴴ := by
-            congr 2
-            rw [← Matrix.diagonal_one, Matrix.diagonal_sub]
-      rw [hdiag, hyw, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec,
-        Matrix.mul_assoc (U * Matrix.diagonal _), hUU, Matrix.mul_one,
-        ← Matrix.mulVec_mulVec]
-    rw [hdiagform, hyw, star_mulVec_dotProduct_mulVec hUU]
-    rw [show (star w ⬝ᵥ (Matrix.diagonal
-        (fun i ↦ 1 - (hH.eigenvalues i : ℂ)) *ᵥ w)) =
-        ∑ i : Y, star (w i) * ((1 - (hH.eigenvalues i : ℂ)) * w i) from
-      rfl]
+      ∑ i : Y, (1 - hH.eigenvalues i) * Complex.normSq (v i) := by
+    have hiso := star_mulVec_dotProduct_mulVec hUU v ((1 - L) *ᵥ v)
+    rw [← hyv] at hiso
+    rw [hvec1H, hiso]
+    simp only [dotProduct, Pi.star_apply]
     rw [Complex.re_sum]
     refine Finset.sum_congr rfl fun i _ ↦ ?_
-    have hrearr : star (w i) * ((1 - (hH.eigenvalues i : ℂ)) * w i) =
-        (1 - (hH.eigenvalues i : ℂ)) * (star (w i) * w i) := by ring
-    rw [hrearr, ← Complex.normSq_eq_conj_mul_self]
+    have hentry : ((1 - L) *ᵥ v) i = (1 - (hH.eigenvalues i : ℂ)) * v i := by
+      simp only [L, Matrix.sub_mulVec, Matrix.one_mulVec, Pi.sub_apply,
+        Matrix.mulVec_diagonal]
+      ring
+    rw [hentry]
+    have hrearr : star (v i) * ((1 - (hH.eigenvalues i : ℂ)) * v i) =
+        (1 - (hH.eigenvalues i : ℂ)) * (star (v i) * v i) := by ring
+    rw [hrearr, Complex.star_def, ← Complex.normSq_eq_conj_mul_self]
     have hcast : (1 - (hH.eigenvalues i : ℂ)) =
         (((1 - hH.eigenvalues i : ℝ)) : ℂ) := by push_cast; ring
     rw [hcast, ← Complex.ofReal_mul]
     exact Complex.ofReal_re _
   -- per-eigenvalue comparison
-  rw [hNRy, hNy, hgram, Finset.mul_sum, Finset.mul_sum,
+  rw [hNRy, hNv, hgram, Finset.mul_sum, Finset.mul_sum,
     ← Finset.sum_add_distrib]
   refine Finset.sum_le_sum fun i _ ↦ ?_
-  have hnn : 0 ≤ Complex.normSq (w i) := Complex.normSq_nonneg _
+  have hnn : 0 ≤ Complex.normSq (v i) := Complex.normSq_nonneg _
   by_cases hi : t < hH.eigenvalues i
-  · simp only [hi, if_true, mul_zero]
+  · simp only [hi, if_true, zero_mul, mul_zero]
     have hup : hH.eigenvalues i ≤ 1 + δ :=
       le_trans (le_abs_self _)
-        ((abs_hermitianEigenvalue_le_norm H hH i).trans hHnorm)
+        ((abs_hermitianEigenvalue_le_norm_of_fintype H hH i).trans hHnorm)
     have hcoef : 0 ≤ 1 - hH.eigenvalues i + δ := by linarith
     nlinarith [mul_nonneg hcoef hnn]
-  · simp only [hi, if_false, mul_one]
-    push_neg at hi
+  · simp only [hi, if_false, one_mul]
+    have hi' : hH.eigenvalues i ≤ t := not_lt.mp hi
     have hcoef : 1 - t ≤ 1 - hH.eigenvalues i := by linarith
     nlinarith [mul_le_mul_of_nonneg_right hcoef hnn, mul_nonneg hδ hnn]
 
@@ -305,8 +307,8 @@ theorem norm_spectralBelow_mul_sq_le {H : Matrix Y Y ℂ}
       _ ≤ (‖C - H * C‖ + δ) * ∑ i : Y, Complex.normSq (x i) := h
   have hsq : ‖spectralBelow H hH t * C‖ ^ 2 ≤
       (‖C - H * C‖ + δ) / (1 - t) := by
-    exact (sq_le_sq₀ (norm_nonneg _) (Real.sqrt_nonneg _)).2 hop |>.trans_eq
-      (Real.sq_sqrt hs)
+    have h := (sq_le_sq₀ (norm_nonneg _) (Real.sqrt_nonneg _)).2 hop
+    rwa [Real.sq_sqrt hs] at h
   calc
     (1 - t) * ‖spectralBelow H hH t * C‖ ^ 2 ≤
         (1 - t) * ((‖C - H * C‖ + δ) / (1 - t)) :=

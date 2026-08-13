@@ -439,3 +439,19 @@ axiom closure of the whole namespace and fails on anything beyond `propext`,
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+import GroupApproximation.Algebra.MappingTelescope
+import GroupApproximation.Sofic.AdjointMatrix
+import GroupApproximation.Sofic.ProjectionRankFlip
+import GroupApproximation.Sofic.SpectralCapture
+import GroupApproximation.Sofic.KazhdanCapture
+import GroupApproximation.Sofic.NegativeCornerModel
+import GroupApproximation.Sofic.CliffordLampGroup
+import GroupApproximation.Sofic.CliffordCosetModelInstance
+import GroupApproximation.Monsters.CliffordLampGroup
+import GroupApproximation.Sofic.MarkedCompressionInclusionData
+import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Sofic.KazhdanCompressionOrder
+import GroupApproximation.Sofic.KazhdanCompressorCorner
+import GroupApproximation.Sofic.MarkedCompressionVectorChain
+import GroupApproximation.Sofic.MarkedCompressionSequentialKill
+import GroupApproximation.Sofic.ExplicitMarkedPresentation
