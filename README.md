@@ -109,7 +109,7 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/ExplicitNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints |
+| `Sofic/ChosenNonMFTheorem.lean` | Public finitely presented standard-MF and weak-MF endpoints |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |

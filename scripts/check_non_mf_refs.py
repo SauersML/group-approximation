@@ -48,8 +48,8 @@ STATUS_RE = re.compile(
     re.DOTALL,
 )
 STATUS_ENDPOINT = (
-    "Sofic/ExplicitNonMFTheorem",
-    "GroupApproximation.ExplicitNonMFTheorem."
+    "Sofic/ChosenNonMFTheorem",
+    "GroupApproximation.ChosenNonMFTheorem."
     "chosenFinitelyPresented_not_isOperatorMF",
 )
 
@@ -131,13 +131,13 @@ def self_test() -> int:
             "end GroupApproximation\n",
             encoding="utf-8",
         )
-        endpoint = repo / "GroupApproximation" / "Sofic" / "ExplicitNonMFTheorem.lean"
+        endpoint = repo / "GroupApproximation" / "Sofic" / "ChosenNonMFTheorem.lean"
         endpoint.parent.mkdir(parents=True)
         endpoint.write_text(
-            "namespace GroupApproximation.ExplicitNonMFTheorem\n"
+            "namespace GroupApproximation.ChosenNonMFTheorem\n"
             "theorem chosenFinitelyPresented_not_isOperatorMF : True := by trivial\n"
             "theorem chosenFinitelyPresented_not_isWeakMF : True := by trivial\n"
-            "end GroupApproximation.ExplicitNonMFTheorem\n",
+            "end GroupApproximation.ChosenNonMFTheorem\n",
             encoding="utf-8",
         )
         elsewhere = repo / "GroupApproximation" / "Sofic"
@@ -153,8 +153,8 @@ def self_test() -> int:
         correct_status = (
             r"\begin{remark}[status of the formal companion]"
             r"\label{rem:leanstatus}"
-            r"\leanverified{Sofic/ExplicitNonMFTheorem}"
-            r"{GroupApproximation.ExplicitNonMFTheorem."
+            r"\leanverified{Sofic/ChosenNonMFTheorem}"
+            r"{GroupApproximation.ChosenNonMFTheorem."
             r"chosenFinitelyPresented_not_isOperatorMF}"
             r"\end{remark}"
         )
@@ -170,7 +170,7 @@ def self_test() -> int:
 
         self_decls = resolved_declarations(repo, tex)
         if self_decls != [
-            "GroupApproximation.ExplicitNonMFTheorem."
+            "GroupApproximation.ChosenNonMFTheorem."
             "chosenFinitelyPresented_not_isOperatorMF",
             "GroupApproximation.map_marked_commutator_eq_one",
         ]:

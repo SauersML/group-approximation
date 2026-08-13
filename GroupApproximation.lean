@@ -439,6 +439,7 @@ import GroupApproximation.Endpoint.StructuralProfile
 import GroupApproximation.Leavitt.UnitsGLProfile
 import GroupApproximation.KOne.AllRanksElementary
 import GroupApproximation.Kazhdan.KazhdanTextbook
+import GroupApproximation.Kazhdan.FixedSpaceStabilizer
 import GroupApproximation.Monsters.Terminality
 import GroupApproximation.Monsters.TwoConjugacyClasses
 import GroupApproximation.Monsters.VerbalCompleteness
