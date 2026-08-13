@@ -173,6 +173,7 @@ def main():
     parser.add_argument("--tolerance", type=float, default=1e-7)
     parser.add_argument("--gram-output")
     parser.add_argument("--reduction-output")
+    parser.add_argument("--result-output")
     parser.add_argument("--ball-only", action="store_true")
     parser.add_argument("--describe-only", action="store_true")
     args = parser.parse_args()
@@ -182,13 +183,19 @@ def main():
     if args.describe_only:
         print(json.dumps(describe(args.radius), sort_keys=True))
         return
-    print(json.dumps(solve(
+    result = solve(
         args.radius,
         args.max_iterations,
         args.tolerance,
         args.gram_output,
         args.reduction_output,
-    ), sort_keys=True))
+    )
+    rendered = json.dumps(result, sort_keys=True)
+    if args.result_output:
+        with open(args.result_output, "w", encoding="utf-8") as handle:
+            handle.write(rendered)
+            handle.write("\n")
+    print(rendered)
 
 
 if __name__ == "__main__":
