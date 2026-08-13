@@ -163,8 +163,17 @@ commutant gauge.
 
 ## 4. Revised finite calculation
 
-The raw-compressor projection-recovery problem can now be split into two
-strictly smaller exact tests.
+The first version of this section proposed a direct scalar spherical test.
+That test has now been run and falsified exactly.  The compiled raw swap and
+comb reduce to the identity in the classical amalgam `A8 *_H A8`, and the
+hard class-11 pair reduces into `H`.  Thus no constituent in `(NFG5)` sees a
+nontrivial zeroth-order holonomy.  The decomposition remains the exact gauge
+atlas for any later recovered edge module, but it cannot itself recover the
+transverse coefficient corner.  See
+`FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md`.
+
+For the record, the now-closed proposal split the raw-compressor
+projection-recovery problem into two tests.
 
 1. **Scalar spherical test.**  Project the hard pair and the two raw
    compressor transports to the 35 and 56 spherical constituents.  Any
@@ -190,10 +199,12 @@ The remaining algebraic question is now explicit:
 > properly-infinite two-child class survive in the scalar 35/56 sectors or
 > in the fixed `2 x 2` 14-holonomy?
 
-A negative answer is also decisive: it would show that finite-chart
-isotypic decomposition cannot recover the characteristic-two coefficient
-corner, and the atlas program must return to the full root-pairing or
-perfect-completeness endpoint.
+The exact amalgam audit gives this negative answer.  Finite-chart isotypic
+decomposition at the aligned fold cannot recover the characteristic-two
+coefficient corner.  The atlas program must extract nonlinear coefficient
+arrows on the Reynolds-misaligned branch before applying any spherical
+decomposition, or return to the full root-pairing or perfect-completeness
+endpoint.
 
 ## 5. Exact replay
 

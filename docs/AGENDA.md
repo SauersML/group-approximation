@@ -3957,6 +3957,28 @@ inserting characteristic-two matrix entries by hand.  See
 `TRUE_RAW_COMPRESSOR_TWO_CHART_SOURCE_WORDS.md` and
 `atlas-raw-compressor-source-words.json`.
 
+### 2026-08-13: the direct classical spherical packet collapses
+
+Exact amalgam normal forms close the proposed 35/56 scalar test negatively.
+After the certified inner alignment, the 25-syllable raw swap and the
+175-syllable comb both reduce to the identity in `A8 *_H A8`.  The hard
+class-11 prefix and next letter each reduce to a single element of the
+amalgamated subgroup `H`.  Hence the complete packet has no nontrivial
+closed holonomy on the aligned `1+2(14)+35+56` flag module; neither the
+multiplicity-one scalar channels nor the 14-doublet can see the Leavitt
+two-child class at order zero.
+
+This does not trivialize the source words in the Leavitt atlas group.  It
+proves that their nontriviality is transverse coefficient data killed by the
+classical amalgam quotient.  Together with the all-fields first-order
+certificate, it rules out fixed spherical characters and formal
+deformations of the aligned fold.  Continue only on the nonclassical branch:
+condition on the certified Reynolds misalignment, extract the nonlinear
+`H`--`H` bimodule block products of the compiled words, and then seek a
+gauge-invariant two-child or one-cut leakage contradiction.  See
+`FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md` and the MSI replay
+`atlas_raw_compressor_amalgam_audit.py`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every

@@ -111,8 +111,14 @@ of same-root transvections, so `(RCS7)` uses group multiplication only.
 
 ## 3. Exact next calculation
 
-Together with `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md`, `(RCS1)`
-makes the next bounded audit literal:
+This calculation has now been completed, with a negative result for the
+direct classical projection.  Both compiled compressor words reduce to the
+identity in `A8 *_H A8`, while the hard class-11 pair reduces into `H`.
+Consequently the aligned spherical module sees no nontrivial holonomy to
+project.  See `FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md`.
+
+Together with `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md`, `(RCS1)` made
+the now-completed bounded audit literal:
 
 1. represent both `A8` factors on a regular chart;
 2. form the right-`H` nonincident-flag spherical module;
@@ -122,10 +128,11 @@ makes the next bounded audit literal:
 
 The hard class-11 prefix and next-letter words are already explicit in
 `experiments/atlas-boundary-11-30.json`.  Thus every group element in the
-finite packet now has source coordinates.  What remains is the substantive
-functoriality question: whether the coefficient two-child identities induce
-a closed spherical holonomy rather than merely an identity in the preferred
-Leavitt ring chart.
+finite packet now has source coordinates.  The audit proves that the
+coefficient two-child identities do not induce a nontrivial closed spherical
+holonomy at the classical fold.  The live use of these words is instead in a
+nonlinear block calculation on a Reynolds-misaligned two-chart microstate,
+before fixed spherical projection.
 
 ## 4. Replay
 

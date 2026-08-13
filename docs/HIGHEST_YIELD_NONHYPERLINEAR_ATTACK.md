@@ -193,21 +193,25 @@ Ind_H^A8(1) = 1 + 2(14) + 35 + 56.
 Thus its spherical commutant has dimension seven, and the only non-scalar
 representation-type gauge is one `2 x 2` block on the repeated
 14-dimensional constituent.  The 35 and 56 sectors are multiplicity-one
-scalar channels.  The next exact packet audit should first test whether the
-raw two-child holonomy descends functorially to those scalar sectors; only if
-both are balanced is a `2 x 2` calculation on the point/hyperplane 14-doublet
-needed.  Do not return to arbitrary `15 x 15` or `120 x 120` optimization.
-See `TRUE_ATLAS_NONINCIDENT_FLAG_TYPE_REDUCTION.md`.
+scalar channels.  However, the proposed direct scalar-sector test has now
+been killed exactly: in the classical amalgam `A8 *_H A8`, the compiled raw
+swap and comb both reduce to the identity, while the hard class-11 prefix
+and next letter reduce to elements of `H`.  Therefore none of the four
+elements carries a nontrivial closed holonomy on the aligned spherical
+module, in the scalar sectors or the 14-doublet.  See
+`FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md`.
 
 The raw swap and comb are now also explicit in the two-chart source: exact
 Steinberg compilation gives reduced words of lengths `25` and `175` in
 `A8*A8`, verified against their scalarized Leavitt values.  Hence the
 spherical-sector test no longer needs to treat their printed ring matrices
 as if those entries were already available in a unitary microstate.  Use the
-encoded words in `atlas-raw-compressor-source-words.json`; the remaining gate
-is the actual descent of the two-child coefficient holonomy to the
-`1+2(14)+35+56` flag module.  See
-`TRUE_RAW_COMPRESSOR_TWO_CHART_SOURCE_WORDS.md`.
+encoded words in `atlas-raw-compressor-source-words.json`.  Their exact
+classical collapse shows that they must be evaluated before projection to a
+fixed aligned flag module: the remaining gate is nonlinear coefficient
+recovery on the Reynolds-misaligned branch, followed by gauge-invariant
+quiver compression.  See `TRUE_RAW_COMPRESSOR_TWO_CHART_SOURCE_WORDS.md` and
+`FALSE_CLASSICAL_SPHERICAL_RAW_PACKET_COLLAPSE.md`.
 
 Do not search the current radius-five collision tree for a single linear
 Hecke edge.  The exact archived scan has no word with exactly one transverse
