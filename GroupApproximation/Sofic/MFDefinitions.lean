@@ -246,6 +246,41 @@ theorem IsFullGroupCStarMF.isGroupTheoreticMF [Countable G]
       (Unitary.map_injective he).comp C.inclusionInjective⟩
   exact (isCDEOperatorMF_iff_isOperatorMF G).mp hcde
 
+/-! ## Contrapositive obstruction package -/
+
+theorem not_isCDEOperatorMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsCDEOperatorMF G := by
+  simpa [IsGroupTheoreticMF] using
+    (mt (isCDEOperatorMF_iff_isOperatorMF G).mp h)
+
+theorem not_isUltraproductMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsUltraproductMF G :=
+  mt IsUltraproductMF.isGroupTheoreticMF h
+
+theorem not_isFiniteSetMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsFiniteSetMF G :=
+  mt isFiniteSetMF_iff_isGroupTheoreticMF.mp h
+
+theorem not_isMFAlgebraEmbedding_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsMFAlgebraEmbedding G :=
+  mt isMFAlgebraEmbedding_iff_isGroupTheoreticMF.mp h
+
+theorem not_isTracePreservingMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsTracePreservingMF G :=
+  mt IsTracePreservingMF.isGroupTheoreticMF h
+
+theorem not_isRegularMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsRegularMF G :=
+  mt IsRegularMF.isGroupTheoreticMF h
+
+theorem not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsReducedGroupCStarMF G :=
+  mt IsReducedGroupCStarMF.isGroupTheoreticMF h
+
+theorem not_isFullGroupCStarMF_of_not_isGroupTheoreticMF [Countable G]
+    (h : ¬ IsGroupTheoreticMF G) : ¬ IsFullGroupCStarMF G :=
+  mt IsFullGroupCStarMF.isGroupTheoreticMF h
+
 /-! ## The unrelated modular-by-finite meaning -/
 
 /-- A modular subgroup is a modular element of the subgroup lattice. -/
