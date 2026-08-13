@@ -428,6 +428,7 @@ def headlineTheorems : List Name :=
    ``LiteralCyclicCalibration.finiteDimensional_kill,
    ``LiteralBaseP13Replay.yFromUZXY_eq,
    ``LiteralBaseP13Replay.closure_Z_XY_eq_top,
+   ``LiteralBaseTwoGenerator.rotationEquivTwoRotation,
    ``KazhdanCompressionCore.finiteNormal_le_normMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_coronaMFResidual,
    ``KazhdanCompressionCore.finiteNormal_le_normMatrixCoronaKernel,
