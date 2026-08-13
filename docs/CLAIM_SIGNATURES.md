@@ -361,7 +361,7 @@ Function.Injective ⇑AffineSL3Doubling.alpha ∧
 ## `GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`
 
 ```lean
-∃ E, ∃ (_ : Group E), Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
+∃ E x, Group.IsFinitelyPresented E ∧ ¬IsOperatorMF E
 ```
 
 ## `GroupApproximation.CliffordAlgebraLamp.cliffordLamp_group_package`
