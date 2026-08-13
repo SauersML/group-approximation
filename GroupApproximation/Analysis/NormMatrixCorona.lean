@@ -154,6 +154,10 @@ theorem isClosed_c0MatrixSequenceIdeal :
           _ < ε / 2 := hk
       linarith
 
+noncomputable instance c0MatrixSequenceIdeal_isClosed :
+    IsClosed (c0MatrixSequenceIdeal X : Set (BoundedMatrixSequence X)) :=
+  isClosed_c0MatrixSequenceIdeal X
+
 /-- The actual algebra quotient `ℓ∞(M_{d_n}) / c₀(M_{d_n})`.
 
 No normed- or C-star-algebra instance is asserted yet; the noncommutative
@@ -220,6 +224,17 @@ noncomputable instance normMatrixCoronaAlgebraSeminormedRing :
       _ ≤ ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) a‖ *
             ‖Ideal.Quotient.mk (c0MatrixSequenceIdeal X) b‖ + ε :=
         by simpa only [ha_eq, hb_eq] using hupper.le
+
+/-- Because the c0 ideal is closed, the quotient seminorm is a norm. -/
+noncomputable instance normMatrixCoronaAlgebraNormedRing :
+    NormedRing (NormMatrixCoronaAlgebra X) :=
+  { normMatrixCoronaAlgebraSeminormedRing X,
+    Submodule.Quotient.normedAddCommGroup (c0MatrixSequenceIdeal X) with }
+
+/-- The normed matrix-corona algebra is complete. -/
+noncomputable instance normMatrixCoronaAlgebraCompleteSpace :
+    CompleteSpace (NormMatrixCoronaAlgebra X) :=
+  Submodule.Quotient.completeSpace (c0MatrixSequenceIdeal X)
 
 /-- Audit pin: multiplication in the algebraic corona is genuinely controlled
 by the quotient seminorm. -/

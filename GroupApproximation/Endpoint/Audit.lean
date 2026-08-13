@@ -480,6 +480,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.ChosenMarkedCylinder.chosenCylinder_subset_nonMF
 #print axioms GroupApproximation.normMatrixCoronaMk_eq_zero_iff
 #print axioms GroupApproximation.c0MatrixSequenceIdeal_star_mem
+#print axioms GroupApproximation.isClosed_c0MatrixSequenceIdeal
+#print axioms GroupApproximation.norm_normMatrixCorona_mul_le
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.finiteNormal_le_coronaMFResidual
 #print axioms GroupApproximation.KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect
