@@ -757,8 +757,15 @@ theorem gammaRowVec_sum (B : OpAlmostRepresentation E)
     {I : Type*} (s : Finset I) (X : I → Matrix (B.model n) (B.model n) ℂ) :
     gammaRowVec B D n (∑ i ∈ s, X i) =
       ∑ i ∈ s, gammaRowVec B D n (X i) := by
-  funext p
-  simp only [gammaRowVec, Matrix.sum_apply, Finset.sum_apply]
+  classical
+  induction s using Finset.induction_on with
+  | empty =>
+      rw [Finset.sum_empty, Finset.sum_empty]
+      funext p
+      rfl
+  | @insert i s hi ih =>
+      rw [Finset.sum_insert hi, Finset.sum_insert hi,
+        gammaRowVec_add, ih]
 
 /-- The Laplacian displacement of the flattened lamp microstate is the
 flattening of an explicit averaged conjugation defect. -/
@@ -816,7 +823,7 @@ theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
       simpa only [Matrix.conjTranspose_conjTranspose] using
         conjDouble_mulVec_gammaRowVec B D n Uᴴ Vc
     rw [h]
-    simpa [U] using h2
+    exact h2
   -- expand the Hermitian average applied to the flattened lamp
   have haverage : hermitianAverage (gammaAdjoint B D) S n *ᵥ
       gammaRowVec B D n Vc =
