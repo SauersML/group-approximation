@@ -354,6 +354,7 @@ theorem stable_conjugates_vertex_into_vertex :
       exact (congrArg (fun z : MarkedGroup ↦ z ∈ vertexMap.range) heq).mpr hinv
   | mul a b ha hb =>
       rw [map_mul]
+      rw [map_mul vertexMap]
       have hmul := vertexMap.range.mul_mem ha hb
       have heq :
           stable *
@@ -573,20 +574,12 @@ theorem mark_ne_one_of_realization {M : Type*} [Group M]
 characterization provide a realization whose two displaced lamps are distinct
 Clifford sites, so the marked word is the nontrivial central sign. -/
 theorem mark_ne_one : mark ≠ 1 := by
-  let R : Realization MarkedCompression.Explicit.theGroup where
+  let R : Realization MarkedCompression.Explicit.theGroup := {
     base := MarkedCompression.Explicit.theIota
     stable := MarkedCompression.Explicit.theT
     lamp := MarkedCompression.Explicit.theC
     compression_relation := MarkedCompression.Explicit.theCompress
-    lamp_sq := by
-      show (SemidirectProduct.inl
-        (CliffordLamp.lamp
-          (MarkedCompression.Cosets ExplicitNonMFBase.compression
-            ExplicitNonMFBase.compression_injective)
-          (MarkedCompression.rootCoset ExplicitNonMFBase.compression
-            ExplicitNonMFBase.compression_injective)) :
-          MarkedCompression.Explicit.theGroup) ^ 2 = 1
-      rw [← map_pow, CliffordLamp.lamp_sq, map_one]
+    lamp_sq := MarkedCompression.Explicit.theCSq
     lamp_centralizes_base := by
       intro g
       exact commutatorElement_eq_one_iff_commute.mpr
@@ -596,6 +589,7 @@ theorem mark_ne_one : mark ≠ 1 := by
       intro x
       exact commutatorElement_eq_one_iff_commute.mpr
         (MarkedCompression.Explicit.theWordCentral x)
+  }
   apply mark_ne_one_of_realization R
   rw [realizationHom_mark]
   exact MarkedCompression.Explicit.theWordNeOne

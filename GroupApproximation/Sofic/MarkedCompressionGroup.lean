@@ -184,6 +184,11 @@ def cAmbient : Ambient α hα := inl (lamp (Cosets α hα) (rootCoset α hα))
 /-- The image of the central Clifford sign in the ambient group. -/
 def signAmbient : Ambient α hα := inl (sign (Cosets α hα))
 
+/-- The root lamp remains an involution in the ambient semidirect product. -/
+theorem cAmbient_sq : cAmbient α hα ^ 2 = 1 := by
+  show (inl (lamp (Cosets α hα) (rootCoset α hα)) : Ambient α hα) ^ 2 = 1
+  rw [← map_pow, lamp_sq, map_one]
+
 /-- Conjugation of a lamp by a vertical element moves its coset. -/
 theorem conj_inl_lamp (v : Vertical α hα) (x : Cosets α hα) :
     (inr v : Ambient α hα) * inl (lamp (Cosets α hα) x) * (inr v)⁻¹ =
@@ -326,6 +331,10 @@ theorem theCompress (γ : Base) :
 /-- The root lamp centralises the base. -/
 theorem theCommC (γ : Base) : Commute theC (theIota γ) :=
   comm_c (BinaryLeavitt.elementaryShift (ZMod 2)) compression_injective γ
+
+/-- The root lamp is an involution. -/
+theorem theCSq : theC ^ 2 = 1 := by
+  exact cAmbient_sq _ _
 
 /-- The marked word squares to one. -/
 theorem theWordSq :
