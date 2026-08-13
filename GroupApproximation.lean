@@ -1,5 +1,7 @@
 import GroupApproximation.Sofic.Asymptotics
 import GroupApproximation.Sofic.ExteriorMFProfile
+import GroupApproximation.Sofic.UnitaryProjectionBalance
+import GroupApproximation.Sofic.ExplicitNonMFBase
 import GroupApproximation.Domination.Audit
 import GroupApproximation.Sofic.AlmostAutomorphism
 import GroupApproximation.PropertyT.A2System
@@ -298,6 +300,7 @@ import GroupApproximation.Sofic.NormTraceGap
 import GroupApproximation.Sofic.WeakMFUltraproduct
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import GroupApproximation.Sofic.NormMFResidualDetector
+import GroupApproximation.Sofic.MarkedCompressionData
 import GroupApproximation.Sofic.ApproxInvolutionCorner
 import GroupApproximation.Sofic.WeakMFTransfer
 import GroupApproximation.Sofic.WeakMFRegularTrace
@@ -378,6 +381,7 @@ import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
 import GroupApproximation.Steinberg.FinitePresentationReduction
+import GroupApproximation.Criterion.FiniteDimensionalKill
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
