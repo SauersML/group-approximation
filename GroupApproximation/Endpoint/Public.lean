@@ -27,12 +27,10 @@ import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
-import GroupApproximation.Sofic.LiteralKazhdanCompression
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.MarkedGroupTopology
 import GroupApproximation.Sofic.LiteralPresentationRadius
-import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralUniversalHorn
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.TensorPowerAmplification
@@ -117,14 +115,15 @@ generated from the manuscript's margin notes; this module is the short list.
 * `ChosenNonMFTheorem.not_every_group_isOperatorMF` -- the direct negative
   answer to the universal operator-MF assertion.
 * `not_isOperatorMF_coprod_left` -- a non-MF factor forces the entire group
-  free product to be non-MF; the literal `E * ℤ` form retains the same
-  explicit presented-base property `(T)` premise.
+  free product to be non-MF; the unconditional chosen witness gives a
+  finitely presented example after free product with `ℤ`.
 
 ## The literal eight-generator boundary
 
 The paper's displayed group is formalized separately from the unconditional
-Shalom-cover witness.  The declarations below deliberately expose the exact
-boundary instead of conflating the two constructions.
+Shalom-cover witness.  The declarations below expose only its verified
+algebraic boundary.  No conditional operator-MF endpoint for the literal
+group is part of the Lean API.
 
 * `LiteralNonMFPresentation.literal_algebraic_package` and
   `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
@@ -132,20 +131,9 @@ boundary instead of conflating the two constructions.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
-* `LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT` -- the
-  remaining property-`(T)` boundary as an explicit premise on the abstract
-  presented base.
-* `LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine` -- the
-  classical-group route, exposing both property `(T)` of the concrete affine
-  group and presentation completeness as separate premises.
-* `LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate` -- the
-  proof-carrying version: an exact rational group-ring SOS certificate would
-  close that premise.  No such certificate is asserted or selected here, so
-  this is not an unconditional endpoint for the literal group.
 * `LiteralUniversalHorn.literalMarkedGroup_not_satisfies_literalQuasiIdentity`
   -- the canonical literal tuple unconditionally falsifies the printed finite
-  quasi-identity; validity in all operator-MF targets remains conditional on
-  the same presented-base property `(T)` input or an exact SOS certificate.
+  quasi-identity.  No validity claim for operator-MF targets is asserted.
 * `LiteralPresentationRadius.relator_wordLength_le_34` -- a kernel-checked
   finite-radius bound for every printed relator.
 * `LiteralMarkedCylinder.literalCylinder_isClopen`,
@@ -153,10 +141,6 @@ boundary instead of conflating the two constructions.
   `LiteralMarkedCylinder.cylinder_markedWord_ne_one` -- the exact nonempty
   rank-eight clopen cylinder, with every printed relation retained and the
   obstruction word surviving throughout it.
-* `LiteralMarkedCylinder.literalCylinder_subset_nonMF` -- conditional on
-  property `(T)` for the abstract printed base, that entire exact cylinder is
-  non-MF.  This is the neighborhood form of the same exposed boundary, not
-  an unconditional theorem about the displayed group.
 
 ## Consequences and reusable obstruction APIs
 
@@ -352,13 +336,11 @@ export GroupApproximation
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
+export GroupApproximation.LiteralOperatorMFQuotientControls
+  (source_isOperatorMF quotientMap_surjective)
 export GroupApproximation
   (not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
     coprod_isFinitelyPresented)
-export GroupApproximation.LiteralFreeProductConsequences
-  (literal_coprod_int_finitelyPresented_not_isOperatorMF
-    literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
-    witness_coprod_int_not_isOperatorMF)
 export GroupApproximation
   (not_injective_of_coronaMFInvisible
     not_injective_of_coronaMFInvisible_of_target_embeds
@@ -383,33 +365,21 @@ export GroupApproximation.LiteralNonMFLinearWitness
   (literal_mark_ne_one literal_finitelyPresented_nontrivial_mark)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
-export GroupApproximation.LiteralKazhdanCompression
-  (mark_normMFInvisible_of_hasKazhdanPropertyT
-    not_isOperatorMF_of_hasKazhdanPropertyT
-    not_isOperatorMF_of_base_equiv_affine
-    not_injective_to_isOperatorMF_of_hasKazhdanPropertyT
-    mark_normMFInvisible_of_isRationalCertificate
-    not_isOperatorMF_of_isRationalCertificate
-    not_injective_to_isOperatorMF_of_isRationalCertificate)
 export GroupApproximation.LiteralUniversalHorn
-  (map_mark_eq_one_of_hasKazhdanPropertyT
-    operatorMF_satisfies_literalQuasiIdentity_of_hasKazhdanPropertyT
-    operatorMF_satisfies_literalQuasiIdentity_of_isRationalCertificate
-    literalMarkedGroup_not_satisfies_literalQuasiIdentity
-    literalQuasiIdentity_separates_of_isRationalCertificate)
+  (literalMarkedGroup_not_satisfies_literalQuasiIdentity)
 export GroupApproximation.LiteralPresentationRadius
   (markedWord_length_le relator_wordLength_le_34
     relators_or_markedWord_length_le_34)
 export GroupApproximation.LiteralMarkedCylinder
   (literalCylinder_nonempty literalCylinder_isClopen
-    cylinder_relator_eq_one cylinder_markedWord_ne_one
-    literalCylinder_subset_nonMF literalCylinder_subset_nonMF_of_certificate)
+    cylinder_relator_eq_one cylinder_markedWord_ne_one)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
 export GroupApproximation.AffineSL3Doubling (doubling_package)
 export GroupApproximation.LiteralCyclicCalibration
-  (mark_ne_one finiteDimensional_kill
+  (mark_ne_one quotientMap_mark_val quotientMap_mark_ne_one
+    quotientMap_mark_sq quotientMap_mark_central finiteDimensional_kill
     realizedQuotient_finiteDimensional_kill
     realizedQuotient_isOperatorMF
     exists_coronaRepresentation_mark_ne_one)
@@ -455,10 +425,6 @@ export GroupApproximation
   (IsOperatorMF.of_coprod_left IsOperatorMF.of_coprod_right
     not_isOperatorMF_coprod_left not_isOperatorMF_coprod_right
     coprod_isFinitelyPresented)
-export GroupApproximation.LiteralFreeProductConsequences
-  (literal_coprod_int_finitelyPresented_not_isOperatorMF
-    literal_coprod_int_finitelyPresented_not_isOperatorMF_of_certificate
-    witness_coprod_int_not_isOperatorMF)
 
 /-! ### Reach of the construction -/
 

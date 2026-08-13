@@ -20,11 +20,11 @@ the marked word is imposed to be a central involution.
 No completeness theorem for the six-generator base presentation is used in
 this file.  This module asserts only the literal finite-presentation algebra;
 the separate exact realization in `LiteralNonMFLinearWitness` proves that its
-marked word is nontrivial.  No Kazhdan or MF endpoint is asserted *in this
-module*.  Downstream, `LiteralKazhdanCompression` proves a conditional
-operator-MF endpoint from property `(T)` of this presented base (or an exact
-SOS certificate); it does not identify the presented base with the concrete
-group `ℤ³ ⋊ SL₃(ℤ)` or prove the unconditional endpoint.
+marked word is nontrivial.  The Lean library intentionally asserts no
+operator-MF endpoint for this literal group: it neither identifies the
+presented base with `ℤ³ ⋊ SL₃(ℤ)` nor proves property `(T)` for the abstract
+presented base.  The unconditional formal counterexample is the independent
+chosen Shalom-cover witness in `ChosenNonMFTheorem`.
 -/
 
 namespace GroupApproximation

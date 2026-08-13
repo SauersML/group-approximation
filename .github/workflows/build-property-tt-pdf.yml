@@ -158,15 +158,24 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          built_tex="$(git rev-parse "$START_SHA:$TEX_FILE")"
+          publication_inputs_digest() {
+            git ls-tree -r "$1" -- \
+              "$TEX_FILE" \
+              lakefile.toml \
+              scripts \
+              .github/workflows/build-property-tt-pdf.yml \
+              | sha256sum | awk '{print $1}'
+          }
+
+          built_inputs="$(publication_inputs_digest "$START_SHA")"
           pdf_holding="${RUNNER_TEMP}/${PDF_FILE}"
           cp -- "$PDF_FILE" "$pdf_holding"
           git fetch origin main
 
           for attempt in 1 2 3; do
             remote_main="$(git rev-parse origin/main)"
-            if [[ "$(git rev-parse "$remote_main:$TEX_FILE")" != "$built_tex" ]]; then
-              echo "main carries a newer $TEX_FILE; that push will build its PDF."
+            if [[ "$(publication_inputs_digest "$remote_main")" != "$built_inputs" ]]; then
+              echo "main carries newer publication inputs; that push will build its PDF."
               exit 0
             fi
             git reset --hard "$remote_main"

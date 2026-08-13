@@ -50,7 +50,7 @@ STATUS_RE = re.compile(
 STATUS_ENDPOINT = (
     "Sofic/ChosenNonMFTheorem",
     "GroupApproximation.ChosenNonMFTheorem."
-    "chosenFinitelyPresented_not_isOperatorMF",
+    "exists_finitelyPresented_not_isOperatorMF",
 )
 
 
@@ -73,7 +73,7 @@ def validate(repo: Path, tex: Path) -> list[str]:
         if status_references.count(STATUS_ENDPOINT) != 1:
             problems.append(
                 "formal-status finitely presented non-MF claim must link exactly "
-                "once to the pinned chosen IsOperatorMF endpoint"
+                "once to the pinned unconditional IsOperatorMF existence endpoint"
             )
         weak_endpoints = [
             declaration for _module, declaration in status_references
@@ -136,6 +136,7 @@ def self_test() -> int:
         endpoint.write_text(
             "namespace GroupApproximation.ChosenNonMFTheorem\n"
             "theorem chosenFinitelyPresented_not_isOperatorMF : True := by trivial\n"
+            "theorem exists_finitelyPresented_not_isOperatorMF : True := by trivial\n"
             "theorem chosenFinitelyPresented_not_isWeakMF : True := by trivial\n"
             "end GroupApproximation.ChosenNonMFTheorem\n",
             encoding="utf-8",
@@ -155,7 +156,7 @@ def self_test() -> int:
             r"\label{rem:leanstatus}"
             r"\leanverified{Sofic/ChosenNonMFTheorem}"
             r"{GroupApproximation.ChosenNonMFTheorem."
-            r"chosenFinitelyPresented_not_isOperatorMF}"
+            r"exists_finitelyPresented_not_isOperatorMF}"
             r"\end{remark}"
         )
         tex.write_text(
@@ -171,7 +172,7 @@ def self_test() -> int:
         self_decls = resolved_declarations(repo, tex)
         if self_decls != [
             "GroupApproximation.ChosenNonMFTheorem."
-            "chosenFinitelyPresented_not_isOperatorMF",
+            "exists_finitelyPresented_not_isOperatorMF",
             "GroupApproximation.map_marked_commutator_eq_one",
         ]:
             print("self-test: valid reference was not added to declaration roster",
@@ -202,12 +203,12 @@ def self_test() -> int:
             return 1
 
         weak_status = correct_status.replace(
-            "chosenFinitelyPresented_not_isOperatorMF",
+            "exists_finitelyPresented_not_isOperatorMF",
             "chosenFinitelyPresented_not_isWeakMF",
         )
         tex.write_text(weak_status, encoding="utf-8")
         problems = validate(repo, tex)
-        if not any("pinned chosen IsOperatorMF endpoint" in problem
+        if not any("pinned unconditional IsOperatorMF existence endpoint" in problem
                    for problem in problems):
             print("self-test: WeakMF status drift was not detected",
                   file=sys.stderr)

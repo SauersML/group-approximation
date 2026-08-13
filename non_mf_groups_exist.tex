@@ -413,7 +413,10 @@ kills the corresponding marked element.
 \leanverified{Monsters/CyclicBaseCalibration}{GroupApproximation.CyclicBaseCalibration.clifford_findim_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.literalGroup_finitelyPresented}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_surjective}
+\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_val}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one}
+\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_sq}
+\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_central}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_finiteDimensional_kill}
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.realizedQuotient_isOperatorMF}
@@ -490,7 +493,6 @@ not an MF algebra.
 \ifanonymous\else
 \leanverified{Analysis/ReducedGroupCStarTraceFaithful}{GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState}
 \leanverified{Analysis/UniversalKazhdanCStarConsequences}{GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one}
-\leanverified{Analysis/ExplicitReducedGroupCStarConsequences}{GroupApproximation.LiteralReducedGroupCStar.no_faithfulCoronaUnitaryRestriction}
 \fi
 \end{mainthm}
 
@@ -1283,39 +1285,28 @@ theorem.
 \leanverified{Sofic/MarkedCompressionSequentialKill}{GroupApproximation.MarkedCompressionInclusionData.word_normMFInvisible}
 The public endpoint combines that theorem with the internally constructed
 finitely presented Kazhdan cover and the explicit nontrivial Clifford mark,
-giving a kernel-checked finitely presented non-MF group.
-\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF}
+giving the following unconditional, kernel-checked existence statement: there
+exists a finitely presented group which is not operator-MF.
+\leanverified{Sofic/ChosenNonMFTheorem}{GroupApproximation.ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF}
 This formal marked group is an independent witness built from a
 noncomputably chosen Shalom cover of the Lean base; it is not the literal
 eight-generator group $E$ of Definition~\ref{def:E}.  Thus Lean verifies the
 marked-compression mechanism and the finitely presented existence theorem,
 while the displayed presentation of $E$ is established by the paper proof.
-The companion now also formalizes that literal eight-generator presentation,
+The companion also formalizes that literal eight-generator presentation,
 all of its displayed relations, and an exact affine--Clifford realization in
 which its marked central involution is nontrivial.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one}
-It also packages the literal relators as the exact marked-compression data
-and derives the universal-kernel and non-MF endpoints conditional on
-property~\textup{(T)} of the \emph{abstract group presented by those twenty
-relators}.
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_hasKazhdanPropertyT}
-This premise is not discharged merely by formalizing property~\textup{(T)}
-of the concrete affine group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$: checking
-the relators gives a quotient of the presented base, and property~\textup{(T)}
-does not pass backwards from a quotient.  The companion therefore records
-the classical-group route with two separate hypotheses, namely property
-\textup{(T)} of the concrete affine group and an isomorphism from the printed
-base presentation to it.
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_base_equiv_affine}
-An exact rational sum-of-squares certificate is a second, proof-carrying
-route to the same endpoint.
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.not_isOperatorMF_of_isRationalCertificate}
-The companion does not yet supply the required presentation-completeness
-isomorphism, a direct property~\textup{(T)} proof for the presented base, or a
-completed exact certificate.  Thus its
-unconditional machine-checked non-MF endpoint remains the independent
-Shalom-cover witness above; no unconditional Lean endpoint is claimed for
-the literal group.
+It deliberately publishes no analytic endpoint for the literal group.
+Checking the printed relators in the concrete affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ gives only a quotient of the abstract
+presented base, and property~\textup{(T)} does not pass backwards from a
+quotient.  Since the companion proves neither presentation completeness nor
+property~\textup{(T)} for that abstract base, premise-parametrized non-MF and
+sum-of-squares-certificate placeholders have been removed from the Lean
+trust surface.  Its unconditional machine-checked non-MF endpoint is exactly
+the independent Shalom-cover witness above; no unconditional Lean endpoint
+is claimed for the literal group.
 The cover formulation needs only
 $t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma)$ and chosen lifts of finitely
 many compressed generators; it does not require an endomorphism of the cover.
@@ -2611,9 +2602,8 @@ then the group is MF --- is recorded in \cite{Shulman}.
 MF groups are not closed under quotients: the free group $F_8$ is
 MF, and $E$ is a quotient of $F_8$.
 \ifanonymous\else
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.literal_free_source_isOperatorMF}
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.literal_quotientMap_surjective}
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.literal_operatorMF_not_closed_under_quotient_of_hasKazhdanPropertyT}
+\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF}
+\leanverified{Sofic/OperatorMFQuotientNonclosure}{GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective}
 \fi
 \end{corollary}
 
@@ -2645,8 +2635,6 @@ particular $W$ is not MF.
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark}
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessHom_surjective}
 \leanverified{Sofic/LiteralNonMFLinearWitness}{GroupApproximation.LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated}
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.witness_sign_normMFInvisible_of_hasKazhdanPropertyT}
-\leanverified{Sofic/LiteralKazhdanCompression}{GroupApproximation.LiteralKazhdanCompression.witness_not_isOperatorMF_of_hasKazhdanPropertyT}
 \fi
 \end{proposition}
 
