@@ -54,9 +54,9 @@ theorem transM_pow (a b c : ℚ) (n : ℕ) :
       rw [pow_succ, ih, transM_mul]
       congr 1 <;> push_cast <;> ring
 
-theorem v1M_eq : v1M = transM 1 0 0 := rfl
-theorem v2M_eq : v2M = transM 0 1 0 := rfl
-theorem v3M_eq : v3M = transM 0 0 1 := rfl
+@[simp] theorem v1M_eq : v1M = transM 1 0 0 := rfl
+@[simp] theorem v2M_eq : v2M = transM 0 1 0 := rfl
+@[simp] theorem v3M_eq : v3M = transM 0 0 1 := rfl
 
 /-! ## The scaling matrices -/
 
@@ -233,7 +233,7 @@ theorem conjScale_injective (hm : m ≠ 0) :
       dScaleU m hm * (v : Matˣ) * (dScaleU m hm)⁻¹ := congrArg Subtype.val h
   exact Subtype.ext (mul_left_cancel (mul_right_cancel h'))
 
-theorem conjScale_apply (hm : m ≠ 0) (u : gammaBar) :
+@[simp] theorem conjScale_apply (hm : m ≠ 0) (u : gammaBar) :
     ((conjScale m hm u : gammaBar) : Matˣ) =
       dScaleU m hm * (u : Matˣ) * (dScaleU m hm)⁻¹ := rfl
 

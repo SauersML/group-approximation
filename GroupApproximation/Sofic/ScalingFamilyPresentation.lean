@@ -46,7 +46,7 @@ def compressedBaseWord (m : ℕ) (i : BaseGenerator) : FreeGroup BaseGenerator :
   else bz
 
 /-- Scaling factor `2` is the literal manuscript presentation. -/
-theorem compressedBaseWord_two :
+@[simp] theorem compressedBaseWord_two :
     compressedBaseWord 2 = LiteralNonMFPresentation.compressedBaseWord := rfl
 
 /-- The right-hand side of the stable-letter relation for a base generator. -/
@@ -70,7 +70,7 @@ noncomputable abbrev MarkedGroup (m : ℕ) : Type :=
     Set (FreeGroup Generator))
 
 /-- The family's second member is the literal manuscript group `E`. -/
-theorem relators_two : relators 2 = LiteralNonMFPresentation.relators := rfl
+@[simp] theorem relators_two : relators 2 = LiteralNonMFPresentation.relators := rfl
 
 instance markedGroup_finitelyPresented (m : ℕ) :
     Group.IsFinitelyPresented (MarkedGroup m) := inferInstance

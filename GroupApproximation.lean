@@ -35,6 +35,7 @@ import GroupApproximation.Sofic.ScalingFamilyEndpoint
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
+import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
 import GroupApproximation.Sofic.LiteralBaseTwoGenerator
@@ -483,6 +484,7 @@ import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
 import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
 import GroupApproximation.Sofic.SoficInvariantFiniteKernel
+import GroupApproximation.Sofic.FiniteOrbitInvariantKernel
 import GroupApproximation.Sofic.SoficIntegerExtension
 import GroupApproximation.Sofic.SoficTelescope
 import GroupApproximation.Monsters.ExplicitIntegralLinearModel

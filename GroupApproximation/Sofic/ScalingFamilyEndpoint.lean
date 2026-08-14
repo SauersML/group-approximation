@@ -73,7 +73,7 @@ noncomputable def familyInclusionData (m : ℕ) :
   (mark_eq_markedCompressionWord m).symm
 
 /-- At `m = 2` this is the literal manuscript datum. -/
-theorem familyInclusionData_two :
+@[simp] theorem familyInclusionData_two :
     familyInclusionData 2 = LiteralNonMFEndpoint.inclusionData := rfl
 
 /-- The transported involution `d = t c t⁻¹`. -/

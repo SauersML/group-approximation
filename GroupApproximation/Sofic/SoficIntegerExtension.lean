@@ -263,10 +263,10 @@ theorem tw_injective (j : ℤ) : Function.Injective (tw φ j) :=
 /-- The integer shift of an element of the split extension. -/
 def shiftOf (g : N ⋊[φ] Multiplicative ℤ) : ℤ := Multiplicative.toAdd g.right
 
-theorem shiftOf_mul (g h : N ⋊[φ] Multiplicative ℤ) :
+@[simp] theorem shiftOf_mul (g h : N ⋊[φ] Multiplicative ℤ) :
     shiftOf φ (g * h) = shiftOf φ g + shiftOf φ h := rfl
 
-theorem left_mul (g h : N ⋊[φ] Multiplicative ℤ) :
+@[simp] theorem left_mul (g h : N ⋊[φ] Multiplicative ℤ) :
     (g * h).left = g.left * tw φ (shiftOf φ g) h.left := rfl
 
 variable {Y : Type*}
