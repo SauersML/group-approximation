@@ -80,6 +80,24 @@ use growing extension-fiber covariance, not merely the finite four-root
 packet, to make the outer transition blocks deterministic and transfer their
 labels to the long-root character with vanishing total mismatch.
 
+### 2026-08-14: one comb compressor gives one joint outer PVM
+
+In rank five, place the complete four-root chain in the rank-four core. The
+same comb compressor then implements `alpha(a)=s_0 a t_0` on both commuting
+outer root groups. Exactify their product group and apply covariance once to
+`alpha x alpha`. If the two marginal RMS defects are `e_L,e_R`, the joint
+defect is at most `e_L+e_R`, so one joint extension-character PVM is obtained
+with total rounding error below `9(e_L+e_R)^2`.
+
+The two outer transition measurements are exact coarsenings of this one PVM;
+there is no remaining PVM synchronization or marginal-matching gate. See
+`TRUE_ONE_COMPRESSOR_JOINTLY_RECOVERS_BOTH_OUTER_TRANSITIONS.md`.
+
+The live theorem is now the finite-window endomorphism decoder: extract from
+the joint outer characters common finite paired-radical label spaces on
+which the four one-sided Leavitt maps act with vanishing boundary and pairing
+error.
+
 ### 2026-08-14: covariance closes total single-edge transition variance
 
 `TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md` corrects the apparent

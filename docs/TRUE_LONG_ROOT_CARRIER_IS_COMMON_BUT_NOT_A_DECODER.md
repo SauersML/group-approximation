@@ -86,6 +86,18 @@ but stronger than the local nested identity:
 > the outer character atoms, with the nested word transferring those maps to
 > `ell(a t_i s_j b)` with vanishing total mismatch.
 
+The two outer transition measurements themselves can now be recovered
+jointly. In rank five the entire four-root chain lies in the rank-four core,
+so one comb compressor acts on the product of the two commuting outer root
+groups. Product-group covariance gives one joint extension-character PVM,
+whose outer measurements are exact marginals. See
+`TRUE_ONE_COMPRESSOR_JOINTLY_RECOVERS_BOTH_OUTER_TRANSITIONS.md`.
+
+Accordingly the remaining content of the decoder gate is the finite-window
+endomorphism step: turn a joint pair of complete outer characters into common
+finite paired-radical label spaces invariant, up to vanishing error, under
+all four one-sided Leavitt maps.
+
 The word **proper-compressor** is load bearing. Every bounded finite
 unitriangular/Clifford envelope satisfies all local relations above. The
 missing estimate must compare successive many-to-one extension fibers of

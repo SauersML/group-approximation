@@ -438,6 +438,17 @@ vanishing total mismatch. The finite `UT_4(F_2)` regular model proves that
 the local nested table alone cannot supply this decoder. See
 `TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
 
+The two outer transitions need not be synchronized after the fact. In rank
+five the four-root chain lies inside the rank-four core, and the same comb
+compressor implements `alpha` on both commuting outer root groups. Apply
+finite-group exactification and covariance to their product group. This
+produces one joint extension-character PVM, with the two outer measurements
+as commuting marginals and total rounding error below
+`9(e_L+e_R)^2`. See
+`TRUE_ONE_COMPRESSOR_JOINTLY_RECOVERS_BOTH_OUTER_TRANSITIONS.md`. The live
+gate is therefore only the finite-window endomorphism decoder for the four
+one-sided Leavitt maps, not joint transition-PVM recovery.
+
 The raw swap itself now supplies the complete local branch decoder: it fixes
 the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last
 coordinate, while their Steinberg commutators give the full
