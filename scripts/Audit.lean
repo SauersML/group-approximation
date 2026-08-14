@@ -622,7 +622,7 @@ def zeroInputEndpoints : List Name :=
    ``NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
-partial def hasLeadingInput : Expr → Bool
+def hasLeadingInput : Expr → Bool
   | .forallE .. => true
   | .mdata _ body => hasLeadingInput body
   | _ => false
