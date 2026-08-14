@@ -553,7 +553,6 @@ theorem hsNormSq_range_deficiency_le_mass_loss
     rw [hleft, hRtrace, hQtrace]
     dsimp [Q]
     simp only [Matrix.sub_mul, Matrix.trace_sub, Matrix.one_mul]
-    ring
   have hcard : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
   have hnormNonneg :
       0 ≤ (normTrace Y (Xᴴ * (Q - Q * Q) * X)).re := by
