@@ -2,6 +2,22 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 finite paired endpoint is formalized
+
+The paired-radical quotient contradiction now has a basis-free, kernel-checked
+finite form.  A nonempty pairing separating points on both sides cannot carry
+the two diagonal transports and the crossed-zero transport: the diagonal
+identities make `R0` and `L1` injective, finiteness makes them surjective, and
+the cross identity then annihilates every pair.  See
+`TRUE_FINITE_PAIRED_QUOTIENT_OBSTRUCTION.md` and
+`Leavitt/FinitePairedQuotientObstruction.lean`.
+
+This sharpens the analytic target.  Recovering the entire coefficient ring is
+unnecessary; it suffices to recover two finite separating quotients, the two
+diagonal transport pairs, and one crossed-zero pair in common finite
+multiplicity coordinates.  The construction of those quotients from
+normalized-HS microstates remains open.
+
 ## 2026-08-13 all-depth hard-packet quotient and the live holonomy
 
 The hard `11/30` pairs preserve a common three-dimensional eventual-zero

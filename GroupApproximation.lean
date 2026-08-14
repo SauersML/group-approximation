@@ -263,6 +263,7 @@ import GroupApproximation.Leavitt.FiniteDualOrbit
 import GroupApproximation.Leavitt.ElementaryWeylBridge
 import GroupApproximation.Leavitt.AtlasProperInfiniteCorner
 import GroupApproximation.Leavitt.TwoChildFiniteObstruction
+import GroupApproximation.Leavitt.FinitePairedQuotientObstruction
 import GroupApproximation.Leavitt.NonincidentFlagGram
 import GroupApproximation.Leavitt.RawWordReynoldsGap
 import GroupApproximation.Leavitt.S3S4BranchingBalance

@@ -4,6 +4,21 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: finite paired-radical endpoint is closed
+
+The exact finite contradiction behind the paired-radical program is now
+kernel-checked in
+`GroupApproximation/Leavitt/FinitePairedQuotientObstruction.lean`.  Two
+diagonal pairing-preserving transports force the relevant left and right
+maps to be bijective on finite separating quotients; the crossed-zero
+transport then annihilates the whole pairing.  See
+`TRUE_FINITE_PAIRED_QUOTIENT_OBSTRUCTION.md`.
+
+This does not close hyperlinearity.  The sole live step is analytic: extract
+the two finite separating quotients and those three transport identities,
+with a flat/reduced Fourier pairing and dimension-independent normalized-HS
+loss, from one common atlas microstate.
+
 ### 2026-08-13: an all-depth germ quotient closes the hard-only branch
 
 `FALSE_HARD_PACKET_EVENTUAL_ZERO_GERM.md` upgrades the bounded hard-pair
