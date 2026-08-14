@@ -4,6 +4,17 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: antipodal conjugacy is a quantitative trace certificate
+
+`TRUE_ANTIPODAL_TRACE_EXTRACTION.md` closes the local analytic step of the
+antipodal route.  For finite matrices, unitary `S` and arbitrary `U` satisfy
+`4 |tr(U)|^2 <= ||SUS*+U||_2^2`.  Exact antipodality therefore forces trace
+zero, and a unitary `U` then has squared Hilbert--Schmidt distance exactly `2`
+from the identity.  All three statements are Lean-checked in
+`Sofic/AntipodalTraceExtraction.lean`.  The remaining gate is wholly global:
+derive or compatibly recover an asymptotically antipodal pair from the marked
+group relations.
+
 ### 2026-08-13: `SL2F13` radical implantation and extension audit
 
 `SL2F13_RADICAL_APPLICATION_AUDIT.md` credits the exact arithmetic and GAP
