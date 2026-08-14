@@ -2,6 +2,30 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 central-regular Iwahori mismatch is a sparse outlier
+
+In the only unresolved Dogon--Vigdorovich sector, the mixed edge
+representation on `M_(d_n)` has normalized character
+
+```text
+tr(rho_n(b)) conjugate(tr(sigma_n(b))),
+```
+
+which converges to the regular character of
+`B/<z> ~= Z*C_2`.  Kesten's gap therefore implies that every fixed
+low-energy spectral window has dimension `o(d_n^2)`.  The identity matrix is
+an almost invariant unit vector, so it lies asymptotically inside that
+sparse window.  See
+`TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md`.
+
+Thus diffuse mixed-gap collapse is impossible.  The Iwahori endpoint is now
+a full-rank outlier-repair theorem: an `o(d_n^2)` low-energy operator space
+contains a matrix near the full-rank identity, and one must use its origin
+from two exact modular vertex representations to turn it into an exact
+invertible edge intertwiner after only `o(d_n)` padding.  Spectral sparsity
+alone is insufficient because even the scalar line contains invertible
+matrices.
+
 ## 2026-08-14 equivariant whole maps still admit rectangular escape
 
 The whole-map theorem does not identify the source and target paired label

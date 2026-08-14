@@ -5839,6 +5839,24 @@ provides that rate. Thus the existing coefficientwise `H^2` gate cannot
 be advertised as closing the Clifford argument. Full proof and scope:
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
 
+### 2026-08-14: the central-regular Iwahori obstruction is a sparse outlier
+
+`TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md` sharpens the
+Dogon--Vigdorovich lane.  On the remaining central-regular sequence, the
+mixed edge representation on Hilbert--Schmidt space converges in normalized
+character to the regular representation of `Z*C_2`.  Nonamenability and
+Kesten's gap force every fixed low-energy spectral projection to have rank
+`o(d_n^2)`, while the near-intertwining identity vector lies asymptotically
+inside it.
+
+The bulk is therefore closed.  The remaining statement is full-rank
+outlier repair: exploit the fact that the sparse low-energy space comes from
+restrictions of two exact `SL_2(Z)` representations, and turn its vector
+near `1_(d_n)` into an exact invertible edge intertwiner with only `o(d_n)`
+padding.  An arbitrary sparse operator subspace need not give sparse
+physical rank, so this is still a genuine theorem rather than a dimension
+count.
+
 ### 2026-08-14: equivariant whole maps permit exact rectangular escape
 
 `FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md` corrects the
