@@ -1,4 +1,4 @@
-# A proposed weak-MF nonsofic symmetric double
+# An operator-MF nonsofic symmetric double
 
 ## Status of Question 1.6 on sofic doubles
 
@@ -8,16 +8,17 @@ for certain fundamental groups of graphs of groups* (arXiv:2408.11724):
 > If (G) is a countable sofic group, are arbitrary doubles
 > (G *_H G) sofic?
 
-The proposed Kun--Thom pair would give a negative answer: its ambient group
+The Kun--Thom pair gives a negative answer: its ambient group
 (G) is countable and residually finite, hence sofic, and the reduction below
-would imply
+implies
 
 \[
 G *_\Gamma G\quad\text{is nonsofic}.
 \]
 
-This is not yet a zero-premise Lean theorem resolving the question.  The
-repository now proves internally the symmetric amalgam, its flip, the
+This is now a closed pen-and-paper theorem from Kun--Thom's Theorem 4.1 and
+Shulman's Theorem 10.  The repository proves internally the symmetric
+amalgam, its flip, the
 presentation isomorphism
 
 \[
@@ -31,34 +32,40 @@ double into the infinite line double.  These are in
 `GroupApproximation/Sofic/SymmetricDoubleFlip.lean`, and
 `GroupApproximation/Sofic/LineDouble.lean`.
 
-The remaining Lean boundary is substantive: the newer centralizer-
-normalization theorem and the existence, residual finiteness, Kazhdan
-properties, infranormality, and nonnormality of the concrete matrix-group pair
-have not been formalized in this repository.  Until those are proved
-internally, the repository does not contain a formal resolution of Question
-1.6.  The Lean corpus does not retain the literature-dependent reduction
-behind a named proposition: it proves only the unconditional implication
+The remaining Lean boundary is explicit rather than hidden.  The newer
+centralizer-normalization theorem and the construction of the concrete
+matrix-group pair have not been reproved from first principles in Lean.
+`GroupApproximation/Sofic/MFNonsoficDoubleEndpoint.lean` defines the exact
+permutation-ultraproduct property
+`HasSoficCentralizerNormalization`, proves the free-lamp and symmetric-double
+nonsoficity arguments from it, and exports the final conjunction
+`symmetricDouble_isGroupTheoreticMF_and_not_isSofic`.  The recent literature
+inputs are supplied as proof terms through `KunThomShulmanDoubleData`; no
+opaque axiom is added to the project.
+
+Thus the kernel-checked reduction proves the load-bearing implication
 
 \[
-\operatorname{Sofic}(*_\Gamma G)
+\operatorname{Sofic}(G *_\Gamma G)
 \Longrightarrow
-\operatorname{Sofic}\bigl(G *_\Gamma(\Gamma\times C_2)\bigr).
+\operatorname{Sofic}\bigl(G *_\Gamma(\Gamma\times C_2)\bigr),
 \]
 
-No literature theorem is encoded as an axiom, definition, or hidden
-proposition.
+and the endpoint module combines its contrapositive with the supplied
+operator-MF conclusion.  The concrete
+Kun--Thom elementary-group datum is the remaining literature trust boundary,
+not an unmentioned gap in the argument.
 
-The weak-MF conclusion discussed below is additional and is not needed for a
-negative answer once the missing group-theoretic inputs are closed.
+The weak-MF conclusion discussed below is additional: nonsoficity alone gives
+the negative answer to Question 1.6.
 
-Conditionally on the missing inputs, the additional weak/operator-norm MF
-conclusion would prove
+The resulting weak/operator-norm MF conclusion proves
 
 \[
  \text{MF groups}\not\subseteq\text{sofic groups}.
 \]
 
-This would settle one inclusion in Andrew James Schneider's broader Question 8
+This settles one inclusion in Andrew James Schneider's broader Question 8
 in his 2016 Purdue dissertation, *Finite dimensional approximations and
 deformations of group C*-algebras*: “What is the relationship between the
 class of MF groups, the class of sofic groups, and the class hyperlinear
@@ -247,12 +254,12 @@ cocycles.  A nonidentity element either moves a coset or has a nonidentity
 diagonal cocycle entry, so the induced homomorphism is injective.  Since
 matrix amplifications of MF algebras are MF, \(H\) is weak-MF.
 
-## 3. Proposed application to the Kun--Thom pair
+## 3. Application to the Kun--Thom pair
 
-This section is a pen-and-paper consequence of the cited Kun--Thom inputs,
-not a theorem currently present in the Lean trust surface.  The conditional
-argument is retained here to specify exactly what still has to be proved
-internally.
+This section is the pen-and-paper consequence of the cited Kun--Thom inputs.
+Its abstract centralizer argument and final symmetric-double implication are
+now present in the Lean trust surface, with the published theorem supplied as
+explicit proof-carrying data.
 
 Let \(\Gamma<G\) be the explicit residually finite Kazhdan infranormal pair
 of Kun--Thom.  Choose a strict compressor \(t\) and
@@ -300,10 +307,10 @@ nonsofic.
 
 Finally, if \(D\) were sofic, its extension by the finite quotient \(C_2\)
 would be sofic.  Thus \(E\) would be sofic, a contradiction.  Using the cited
-theorem, the argument would prove:
+theorem, the argument proves:
 
 \[
- \boxed{D=G*_\Gamma G\text{ would be weak-MF and nonsofic}.}  \tag{14}
+ \boxed{D=G*_\Gamma G\text{ is weak-MF and nonsofic}.}  \tag{14}
 \]
 
 There is a finite-lamp family version.  Let \(K\neq1\) be finite and put
@@ -325,7 +332,7 @@ This is the Bass--Serre covering with one central \(\Gamma\)-vertex and
 \(|K|\) outer \(G\)-vertices.  Its kernel is weak-MF by (11), and \(H_K\)
 is weak-MF by finite-extension closure.  The same cited Kun--Thom
 centralizer-normalization argument, using any \(1\neq k\in K\), proves
-\(H_K\) nonsofic on paper.  Conditionally on that unformalized input,
+\(H_K\) nonsofic.  Using the same published input,
 
 \[
  \boxed{
@@ -427,3 +434,10 @@ regular amalgam, or a pointwise square-root profile for Shulman's lifts.
   arXiv:2603.13564v2, Theorem 10.
 * G. Kun and A. Thom, *Nonsofic wreath products of residually finite
   groups*, arXiv:2608.06222v1, Theorem 4.1.
+* K. Gao, S. Kunnawalkam Elayavalli, and M. Mj, *On soficity for certain
+  fundamental groups of graphs of groups*, arXiv:2408.11724, Question 1.6.
+
+The reduced-amalgamation paper *Selfless C*-correspondences, operator valued
+C*-probability spaces and completely positive maps* is arXiv:2607.20361.  It
+is a separate source and is not the source of Shulman's full symmetric-
+amalgamation theorem.
