@@ -552,6 +552,7 @@ export GroupApproximation.NonMFImpact
   (literal_sixGenerated_finitelyPresented_nonMF
     literal_nonempty_clopen_nonMF_cylinder
     witness_locallyFinite_MF_kernel_nonMF_total
+    witness_reducedGroupCStar_stablyFinite_nonMF
     affineBase_residuallyFinite_sofic_MF
     scalingFamily_finitelyPresented_nonMF
     cyclicBase_exactModel_obstruction

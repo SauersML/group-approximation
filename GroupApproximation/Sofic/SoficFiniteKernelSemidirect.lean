@@ -58,8 +58,9 @@ theorem hammingDistance_finiteKernelPerm_mul
           (hammingDisagreement (σ (g.right * h.right))
             (σ g.right * σ h.right)) := by
     ext p
-    simp only [Finset.mem_product, Finset.mem_univ, true_and,
-      mem_hammingDisagreement, finiteKernelPerm_apply,
+    rw [Finset.product_eq_sprod, Finset.mem_product]
+    simp only [Finset.mem_univ, true_and, mem_hammingDisagreement,
+      finiteKernelPerm_apply,
       Equiv.Perm.mul_apply, SemidirectProduct.mul_left,
       SemidirectProduct.mul_right, map_mul]
     constructor
@@ -70,8 +71,8 @@ theorem hammingDistance_finiteKernelPerm_mul
       · exact hsecond
     · intro hp heq
       exact hp (congrArg Prod.snd heq)
-  rw [hammingDistance, hammingDistance, hdis, Finset.card_product,
-    Finset.card_univ, Fintype.card_prod]
+  rw [hammingDistance, hammingDistance, hdis, Finset.product_eq_sprod,
+    Finset.card_product, Finset.card_univ, Fintype.card_prod]
   push_cast
   have hNR : (Fintype.card N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
   have hYR : (Fintype.card Y : ℝ) ≠ 0 := by exact_mod_cast hY.ne'
@@ -95,7 +96,8 @@ theorem hammingDistance_finiteKernelPerm_of_right_eq
     rw [mem_hammingDisagreement]
     intro heq
     apply hleft
-    have hfirst := congrArg Prod.fst heq
+    have hfirst : g.left * φ g.right p.1 = h.left * φ h.right p.1 := by
+      simpa [finiteKernelPerm_apply] using congrArg Prod.fst heq
     rw [hright] at hfirst
     exact mul_right_cancel hfirst
   rw [hammingDistance, hdis, Finset.card_univ]
@@ -118,7 +120,7 @@ theorem hammingDistance_finiteKernelPerm_right_le
     (finiteKernelPerm Y φ σ g) (finiteKernelPerm Y φ σ h)
   have hsub : (Finset.univ : Finset N).product D ⊆ E := by
     intro p hp
-    rw [Finset.mem_product] at hp
+    rw [Finset.product_eq_sprod, Finset.mem_product] at hp
     rw [mem_hammingDisagreement]
     intro heq
     exact (show σ g.right p.2 ≠ σ h.right p.2 from hp.2)
@@ -128,6 +130,7 @@ theorem hammingDistance_finiteKernelPerm_right_le
   change (D.card : ℝ) / Fintype.card Y ≤
     (E.card : ℝ) / Fintype.card (N × Y)
   rw [Fintype.card_prod]
+  push_cast
   have hNreal : (0 : ℝ) < Fintype.card N := by exact_mod_cast hN
   have hYreal : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
   rw [div_le_div_iff₀ hYreal (mul_pos hNreal hYreal)]

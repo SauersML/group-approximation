@@ -21,6 +21,11 @@ The release-facing collection is
 - `NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total` proves that the
   concrete Clifford witness is finitely generated and non-MF, while its
   canonical lamp kernel is locally finite, LEF, sofic, and operator-MF.
+- `NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF` proves that the
+  witness's reduced group C-star algebra is separable, has its canonical
+  faithful trace, is stably finite in every finite matrix amplification, and
+  is not MF.  Exactness is the only part of the manuscript's corresponding
+  paragraph outside the present formal vocabulary.
 - `NonMFImpact.affineBase_residuallyFinite_sofic_MF` proves internally that
   the concrete affine matrix base is residually finite, sofic, and
   operator-MF.  The proof reduces its explicit integral matrix realization

@@ -514,6 +514,7 @@ def headlineTheorems : List Name :=
    ``NonMFImpact.literal_sixGenerated_finitelyPresented_nonMF,
    ``NonMFImpact.literal_nonempty_clopen_nonMF_cylinder,
    ``NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total,
+   ``NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF,
    ``NonMFImpact.affineBase_residuallyFinite_sofic_MF,
    ``NonMFImpact.scalingFamily_finitelyPresented_nonMF,
    ``NonMFImpact.cyclicBase_exactModel_obstruction,

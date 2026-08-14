@@ -42,7 +42,7 @@ def sixGeneratorHom : FreeGroup SixGenerator →* MarkedGroup :=
 
 @[simp] theorem sixGeneratorHom_of (i : SixGenerator) :
     sixGeneratorHom (FreeGroup.of i) = sixGenerator i :=
-  FreeGroup.lift_apply_of _ _
+  FreeGroup.lift_apply_of
 
 private theorem v3_eq_x_v1_x_inv : v3 = x * v1 * x⁻¹ := by
   have h := congrArg baseMap LiteralBaseRelations.x_conj_v1
@@ -62,16 +62,21 @@ theorem sixGeneratorHom_surjective : Function.Surjective sixGeneratorHom := by
   apply PresentedGroup.generated_by
     ((relators : Finset (FreeGroup Generator)) : Set (FreeGroup Generator))
     sixGeneratorHom.range
+  have hretained (i : SixGenerator) :
+      sixGenerator i ∈ sixGeneratorHom.range :=
+    ⟨FreeGroup.of i, sixGeneratorHom_of i⟩
   intro i
   cases i with
   | inl j =>
       fin_cases j
-      · exact ⟨FreeGroup.of 0, by simp [sixGeneratorHom, sixGenerator]⟩
-      · rw [v2_eq_x_v3_x_inv, v3_eq_x_v1_x_inv]
+      · change v1 ∈ sixGeneratorHom.range
+        exact hretained 0
+      · change v2 ∈ sixGeneratorHom.range
+        rw [v2_eq_x_v3_x_inv, v3_eq_x_v1_x_inv]
         have hx : x ∈ sixGeneratorHom.range :=
-          ⟨FreeGroup.of 1, by simp [sixGeneratorHom, sixGenerator]⟩
+          hretained 1
         have hv1 : v1 ∈ sixGeneratorHom.range :=
-          ⟨FreeGroup.of 0, by simp [sixGeneratorHom, sixGenerator]⟩
+          hretained 0
         exact sixGeneratorHom.range.mul_mem
           (sixGeneratorHom.range.mul_mem
             hx
@@ -79,28 +84,44 @@ theorem sixGeneratorHom_surjective : Function.Surjective sixGeneratorHom := by
               (sixGeneratorHom.range.mul_mem hx hv1)
               (sixGeneratorHom.range.inv_mem hx)))
           (sixGeneratorHom.range.inv_mem hx)
-      · rw [v3_eq_x_v1_x_inv]
+      · change v3 ∈ sixGeneratorHom.range
+        rw [v3_eq_x_v1_x_inv]
         have hx : x ∈ sixGeneratorHom.range :=
-          ⟨FreeGroup.of 1, by simp [sixGeneratorHom, sixGenerator]⟩
+          hretained 1
         have hv1 : v1 ∈ sixGeneratorHom.range :=
-          ⟨FreeGroup.of 0, by simp [sixGeneratorHom, sixGenerator]⟩
+          hretained 0
         exact sixGeneratorHom.range.mul_mem
           (sixGeneratorHom.range.mul_mem hx hv1)
           (sixGeneratorHom.range.inv_mem hx)
-      · exact ⟨FreeGroup.of 1, by simp [sixGeneratorHom, sixGenerator]⟩
-      · exact ⟨FreeGroup.of 2, by simp [sixGeneratorHom, sixGenerator]⟩
-      · exact ⟨FreeGroup.of 3, by simp [sixGeneratorHom, sixGenerator]⟩
+      · change x ∈ sixGeneratorHom.range
+        exact hretained 1
+      · change y ∈ sixGeneratorHom.range
+        exact hretained 2
+      · change z ∈ sixGeneratorHom.range
+        exact hretained 3
   | inr j =>
       fin_cases j
-      · exact ⟨FreeGroup.of 4, by simp [sixGeneratorHom, sixGenerator]⟩
-      · exact ⟨FreeGroup.of 5, by simp [sixGeneratorHom, sixGenerator]⟩
+      · change stable ∈ sixGeneratorHom.range
+        exact hretained 4
+      · change lamp ∈ sixGeneratorHom.range
+        exact hretained 5
 
 /-- The literal finitely presented non-MF group has group rank at most six. -/
 theorem literal_rank_le_six : Group.rank MarkedGroup ≤ 6 := by
+  classical
   letI : Group.FG (FreeGroup SixGenerator) := inferInstance
   letI : Group.FG MarkedGroup := Group.fg_of_surjective sixGeneratorHom_surjective
+  have hfree : Group.rank (FreeGroup SixGenerator) ≤ 6 := by
+    let S : Finset (FreeGroup SixGenerator) :=
+      Finset.univ.image FreeGroup.of
+    have hS : Subgroup.closure (S : Set (FreeGroup SixGenerator)) = ⊤ := by
+      simpa [S] using FreeGroup.closure_range_of SixGenerator
+    apply (Group.rank_le hS).trans
+    simpa [S, SixGenerator] using
+      (Finset.card_image_le (s := (Finset.univ : Finset SixGenerator))
+        FreeGroup.of)
   exact (Group.rank_le_of_surjective sixGeneratorHom
-    sixGeneratorHom_surjective).trans_eq (by simp)
+    sixGeneratorHom_surjective).trans hfree
 
 /-- Exact six-generator endpoint bundled with the unconditional non-MF
 conclusion. -/

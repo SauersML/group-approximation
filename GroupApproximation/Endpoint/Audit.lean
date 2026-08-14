@@ -570,6 +570,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.NonMFImpact.literal_sixGenerated_finitelyPresented_nonMF
 #print axioms GroupApproximation.NonMFImpact.literal_nonempty_clopen_nonMF_cylinder
 #print axioms GroupApproximation.NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total
+#print axioms GroupApproximation.NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF
 #print axioms GroupApproximation.NonMFImpact.affineBase_residuallyFinite_sofic_MF
 #print axioms GroupApproximation.NonMFImpact.scalingFamily_finitelyPresented_nonMF
 #print axioms GroupApproximation.NonMFImpact.cyclicBase_exactModel_obstruction

@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.Sofic
+import Mathlib.Algebra.Group.Subgroup.Basic
 
 /-!
 # Soficity is local over subgroups

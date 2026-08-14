@@ -20,7 +20,7 @@ theorem finiteSubgroup_eq_bot_of_isMulTorsionFree :
     ∀ (G : Type u) [Group G] [IsMulTorsionFree G]
       (F : Subgroup G) [Finite F], F = ⊥ := by
   intro G _ _ F _
-  apply Subgroup.eq_bot_iff.mpr
+  apply (Subgroup.eq_bot_iff_forall F).mpr
   intro x hx
   let y : F := ⟨x, hx⟩
   have hy : IsOfFinOrder y := isOfFinOrder_of_finite y

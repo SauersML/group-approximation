@@ -115,7 +115,9 @@ We give an explicit eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
 most six.  Its Clifford witness is a
 six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
-are closed under neither quotients nor extensions.  The obstruction is a
+are closed under neither quotients nor extensions.  Its reduced group algebra
+is separable, exact, faithfully tracial, stably finite, and non-MF.  The
+obstruction is a
 finite universal Horn sentence and hence defines a nonempty
 clopen set of non-MF marked groups.
 \end{abstract}
@@ -697,6 +699,16 @@ Elek--Szab\'o \cite{ElekSzabo}, and their simple sofic embedding theorem
 \cite{ElekSzaboHyper}.  The exact twenty-relator base is
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
+
+\subsection*{Formal verification}
+Each gray ``formalized in Lean'' tag marks a closed theorem in the accompanying
+Lean~4 development with the same outer proposition as the printed statement.
+The formal track has no theorem inputs: in particular it derives
+property~\textup{(T)} of the literal twenty-relator base from an explicit
+rational spectral certificate rather than importing \cite{CRW} or \cite{BHV}.
+Untagged literature consequences, including the soficity calculation below,
+remain deliberately outside that claim.  The public version of each tag links
+to the corresponding declaration on the reviewed source branch.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -1865,6 +1877,20 @@ finite by Mal'cev's theorem
 MF by the preceding construction.
 \end{proof}
 
+\paragraph{An exact stably finite non-MF algebra.}
+The same witness gives a concrete separable exact example:
+$\Cred(W)$ is exact, has a faithful tracial state, is stably finite, and is
+not MF.  Indeed, the locally finite lamp kernel is amenable and hence exact,
+while the linear group $V\leq\GL_4(\mathbb Q)$ is exact
+\cite{GHW}.  Exact groups are closed under extensions
+\cite{KWPermanence}, so $W$ is exact; for discrete groups this is equivalent
+to exactness of the reduced group algebra \cite{KWExact}.  The canonical trace
+and stable finiteness follow as in Lemma~\ref{lem:faithfultrace}.  Finally, an
+MF embedding of $\Cred(W)$ would restrict to a faithful norm-corona model of
+the canonical group unitaries, contradicting that $W$ is not MF.  All parts
+of this paragraph except exactness are also proved by a closed Lean endpoint;
+the present formal library has no definition of exact $C^*$-algebras.
+
 \paragraph{A simple sofic envelope.}
 There is a countable simple sofic group $S_{\mathrm{simp}}$ with
 \[
@@ -2218,6 +2244,12 @@ L.~Glebsky and L.~M. Rivera,
 J. Algebra \textbf{320} (2008), no.~9, 3512--3518,
 \doi{10.1016/j.jalgebra.2008.08.008}.
 
+\bibitem[GHW]{GHW}
+E.~Guentner, N.~Higson, and S.~Weinberger,
+\emph{The Novikov conjecture for linear groups},
+Publ. Math. Inst. Hautes \`Etudes Sci. \textbf{101} (2005), 243--268,
+\doi{10.1007/s10240-005-0030-5}.
+
 \bibitem[HT]{HT}
 U.~Haagerup and S.~Thorbj{\o}rnsen,
 \emph{A new application of random matrices:
@@ -2230,6 +2262,18 @@ Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
 Commun. ACM \textbf{64} (2021), no.~11, 131--138,
 \doi{10.1145/3485628}, \arxiv{2001.04383}.
+
+\bibitem[KW1]{KWExact}
+E.~Kirchberg and S.~Wassermann,
+\emph{Exact groups and continuous bundles of $C^*$-algebras},
+Math. Ann. \textbf{315} (1999), no.~2, 169--203,
+\doi{10.1007/s002080050364}.
+
+\bibitem[KW2]{KWPermanence}
+E.~Kirchberg and S.~Wassermann,
+\emph{Permanence properties of $C^*$-exact groups},
+Doc. Math. \textbf{4} (1999), 513--558,
+\doi{10.4171/DM/67}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,

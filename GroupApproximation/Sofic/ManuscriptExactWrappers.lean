@@ -270,20 +270,20 @@ theorem manuscriptCoordinateFiniteNormalCorner :
       {I : Type} (U : Ultrafilter I) (d : I → ℕ)
       (_hd : ∀ i, 0 < d i)
       (rho : H →* UniversalWeakMF U (fun i ↦ naturalFiniteModel (d i)))
-      (hnontrivial : ∃ f : F, rho f ≠ 1),
+      (_hnontrivial : ∃ f : F, rho f ≠ 1),
     ∃ B : OpAlmostRepresentation H,
       (∀ n, 0 < Fintype.card (B.model n)) ∧
       letI : Fintype F := Fintype.ofFinite F
       KazhdanCornerMatrices.OpNormVanishing B (fun n ↦
         ∑ f : F, (B.map n (f : H) :
           Matrix (B.model n) (B.model n) ℂ)) := by
-  intro H _ _ F _ _ I U d _hd rho hnontrivial
+  intro H _ _ F _ _ I U d _hd rho _hnontrivial
   letI : ∀ i, Nonempty (naturalFiniteModel (d i)) := fun i ↦
     Fintype.card_pos_iff.mp (by
       simpa using _hd i)
   obtain ⟨B, hsum⟩ :=
     FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing
-      F U (fun i ↦ naturalFiniteModel (d i)) rho hnontrivial
+      F U (fun i ↦ naturalFiniteModel (d i)) rho _hnontrivial
   exact ⟨B, B.modelNonempty, hsum⟩
 
 /-- Exact outer-form version of the manuscript's compression-defect collapse:

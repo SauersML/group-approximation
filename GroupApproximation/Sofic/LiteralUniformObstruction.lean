@@ -15,6 +15,7 @@ namespace GroupApproximation
 namespace LiteralUniformObstruction
 
 open Matrix
+open scoped Matrix.Norms.L2Operator
 open LiteralNonMFPresentation
 
 /-- There is one positive multiplicative-defect threshold and one finite

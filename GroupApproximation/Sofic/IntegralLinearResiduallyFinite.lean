@@ -34,7 +34,8 @@ theorem intCast_zmod_natAbs_add_one_ne_zero {z : ℤ} (hz : z ≠ 0) :
     (CharP.intCast_eq_zero_iff (ZMod (z.natAbs + 1))
       (z.natAbs + 1) z).mp hzero
   have hle := Int.natAbs_le_of_dvd_ne_zero hdiv hz
-  have : z.natAbs + 1 ≤ z.natAbs := by simpa using hle
+  have : z.natAbs + 1 ≤ z.natAbs := by
+    simpa only [Int.natAbs_natCast] using hle
   omega
 
 /-- **Integral general linear groups are residually finite.** -/
@@ -44,7 +45,7 @@ theorem generalLinearGroup_int_residuallyFinite :
   intro g hg
   have hentry : ∃ i j, ((g : Matrix ι ι ℤ) i j - (1 : Matrix ι ι ℤ) i j) ≠ 0 := by
     by_contra h
-    push_neg at h
+    push Not at h
     apply hg
     apply Units.ext
     ext i j
@@ -59,9 +60,15 @@ theorem generalLinearGroup_int_residuallyFinite :
   have hmatrix := congrArg
     (fun u : GeneralLinearGroup ι (ZMod m) ↦
       ((u : Matrix ι ι (ZMod m)) i j)) heq
+  have hentrymod :
+      ((g : Matrix ι ι ℤ) i j : ZMod m) =
+        (1 : Matrix ι ι (ZMod m)) i j := by
+    simpa [integralGLReduction, GeneralLinearGroup.map_apply] using hmatrix
   have hcast : (z : ZMod m) = 0 := by
-    simpa [integralGLReduction, GeneralLinearGroup.map_apply, z] using
-      congrArg (fun q : ZMod m ↦ q - (1 : Matrix ι ι (ZMod m)) i j) hmatrix
+    change
+      ((((g : Matrix ι ι ℤ) i j - (1 : Matrix ι ι ℤ) i j : ℤ) : ZMod m) = 0)
+    rw [Int.cast_sub, sub_eq_zero]
+    exact hentrymod.trans (by simp [Matrix.one_apply])
   exact intCast_zmod_natAbs_add_one_ne_zero (z := z) hij hcast
 
 /-- Consequently every integral general linear group is LEF. -/
