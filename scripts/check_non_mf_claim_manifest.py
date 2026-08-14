@@ -247,6 +247,12 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         status = entry.get("status")
         if status not in STATUSES:
             problems.append(f"{prefix}: invalid status `{status}`")
+        if len(claim.badges) != 1:
+            problems.append(
+                f"{prefix}: exact claim must carry exactly one \\leanverified badge"
+            )
+        elif claim.badges[0][0] != "exact":
+            problems.append(f"{prefix}: manuscript badge must have the exact role")
 
         for field in ("dependencies", "extra_assumptions", "external_inputs"):
             value = entry.get(field)
@@ -379,15 +385,48 @@ def self_test() -> int:
         if not any("cannot retain extra" in p for p in validate(repo, tex, manifest)):
             print("self-test accepted a hidden premise on an exact claim", file=sys.stderr)
             return 1
-        bad = json.loads(json.dumps(base))
-        bad["claims"][0]["status"] = "paper-only"
-        bad["claims"][0]["lean"] = []
-        bad["claims"][0]["coverage_gap"] = "No exact declaration."
-        manifest.write_text(json.dumps(bad), encoding="utf-8")
-        if not any("invalid status `paper-only`" in p
-                   for p in validate(repo, tex, manifest)):
-            print("self-test accepted a paper-only numbered claim", file=sys.stderr)
-            return 1
+        former_statuses = (
+            "equivalent", "partial", "supporting", "conditional",
+            "different-witness", "paper-only",
+        )
+        for forbidden_status in former_statuses:
+            bad = json.loads(json.dumps(base))
+            bad["claims"][0]["status"] = forbidden_status
+            manifest.write_text(json.dumps(bad), encoding="utf-8")
+            expected = f"invalid status `{forbidden_status}`"
+            if not any(expected in p for p in validate(repo, tex, manifest)):
+                print(f"self-test accepted status {forbidden_status}", file=sys.stderr)
+                return 1
+        former_roles = (
+            "equivalent", "partial", "supporting", "conditional",
+            "different-witness",
+        )
+        for forbidden_role in former_roles:
+            bad = json.loads(json.dumps(base))
+            bad["claims"][0]["lean"][0]["role"] = forbidden_role
+            manifest.write_text(json.dumps(bad), encoding="utf-8")
+            expected = f"invalid role `{forbidden_role}`"
+            if not any(expected in p for p in validate(repo, tex, manifest)):
+                print(f"self-test accepted role {forbidden_role}", file=sys.stderr)
+                return 1
+        former_badges = (
+            "equivalent", "partial", "supporting", "conditional",
+            "differentwitness",
+        )
+        for forbidden_badge in former_badges:
+            tex.write_text(
+                "\\begin{theorem}[Demo]\\label{thm:demo}\nTrue.\n"
+                f"\\lean{forbidden_badge}{{Demo/Exact}}"
+                "{GroupApproximation.demo_exact}\n"
+                "\\end{theorem}\n", encoding="utf-8")
+            bad_claim = read_printed_claims(tex)[0]
+            bad = json.loads(json.dumps(base))
+            bad["claims"][0]["statement_sha256"] = bad_claim.statement_sha256
+            manifest.write_text(json.dumps(bad), encoding="utf-8")
+            if not any("exactly one \\leanverified badge" in p
+                       for p in validate(repo, tex, manifest)):
+                print(f"self-test accepted badge {forbidden_badge}", file=sys.stderr)
+                return 1
         bad = json.loads(json.dumps(base))
         bad["claims"] = []
         manifest.write_text(json.dumps(bad), encoding="utf-8")

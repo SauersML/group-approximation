@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition.",
+  "status_policy": "Every numbered theorem-like environment is exact. Each has one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition.",
   "claims": [
     {
       "id": "prop:mf-equivalences",

@@ -195,9 +195,9 @@ def generate(tex: Path) -> dict:
         "schema_version": 1,
         "manuscript": tex.name,
         "status_policy": (
-            "Every numbered theorem-like environment is recorded. Exact claims "
-            "have one linked declaration and an independently mapped wrapper with "
-            "the same literal objects and outer proposition."),
+            "Every numbered theorem-like environment is exact. Each has one "
+            "linked declaration and an independently mapped wrapper with the "
+            "same literal objects and outer proposition."),
         "claims": entries,
     }
 

@@ -270,16 +270,6 @@ jobs:
             exit 1
           }
 
-      - name: Assert generation changed only release artifacts
-        run: |
-          allowed='^( M non_mf_groups_exist\.pdf|\?\? build/|\?\? leanchecker\.log$|\?\? kernel-audit\.log$|\?\? signatures\.log$|\?\? non_mf_groups_exist\.pdf$|\?\? pdf-render-check/)$'
-          unexpected="$(git status --porcelain | grep -Ev "$allowed" || true)"
-          test -z "$unexpected" || {
-            echo "Unexpected source change during release generation:" >&2
-            printf '%s\n' "$unexpected" >&2
-            exit 1
-          }
-
       - name: Upload PDF validation preview
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
@@ -306,6 +296,16 @@ jobs:
             "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
             build/NON_MF_RELEASE_MANIFEST.json \
             > build/SHA256SUMS
+
+      - name: Assert manifest generation preserved tracked sources
+        run: |
+          allowed='^( M non_mf_groups_exist\.pdf|\?\? build/|\?\? leanchecker\.log$|\?\? kernel-audit\.log$|\?\? signatures\.log$|\?\? non_mf_groups_exist\.pdf$|\?\? pdf-render-check/)$'
+          unexpected="$(git status --porcelain | grep -Ev "$allowed" || true)"
+          test -z "$unexpected" || {
+            echo "A tracked source changed during manifest generation:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          }
 
       - name: Upload immutable review bundle
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
