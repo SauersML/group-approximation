@@ -27,6 +27,7 @@ import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.ExplicitLinearModelScaling
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
+import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyLinearWitness
 import GroupApproximation.Sofic.ScalingFamilyEndpoint
@@ -480,6 +481,7 @@ import GroupApproximation.Sofic.SoficTransfer
 import GroupApproximation.Sofic.SoficDirectedUnion
 import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
+import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
 import GroupApproximation.Sofic.HyperlinearResidualDetector
 import GroupApproximation.Sofic.FiniteLinearHammingGap
 import GroupApproximation.Sofic.RelativeImplementerCentralizer
