@@ -153,6 +153,14 @@ The last item strengthens the algebraic endpoint from the presented group
 `E` to the concrete Clifford witness `W` without introducing a theorem
 input.  Soficity of `W` is proved separately in the manuscript.
 
+The reusable supporting theorem in
+`GroupApproximation/Sofic/FiniteOrbitInvariantKernel.lean` is necessarily
+quantified over an action: finite site orbits force every finite
+Clifford-lamp window into a finite invariant subgroup, without choosing a
+normal form for the presented lamp group.  It is not advertised as a closed
+manuscript endpoint; the eventual concrete `W` endpoint must discharge its
+site-orbit premise internally.
+
 ## Exactness upgrade
 
 The manuscript now proves that `C*_r(W)` is exact as well as separable,
@@ -193,9 +201,12 @@ paper does not claim them.
    proof uses standard sofic permanence.  Lean has the finite lamp groups,
    finite-kernel semidirect permanence, directed unions, the affine base,
    mapping-telescope permanence, locally finite invariant-kernel permanence,
-   and split integer-extension permanence.  The remaining issue is the
-   complete concrete finite-orbit/dilation identification with the literal
-   witness.
+   split integer-extension permanence, and the theorem that finite site
+   orbits give finite invariant subgroups containing any finite Clifford-lamp
+   window.  The remaining issue is now purely the concrete telescope
+   calculation: its finite-index levels must be shown to have finite orbits
+   on the literal coset site set, followed by the dilation identification
+   with the literal witness.
 4. **Soficity and structure of `E`.**  The kernel of `E -> W`, a normal form,
    the word problem, and soficity of the finitely presented group `E` remain
    unresolved.
@@ -237,9 +248,9 @@ particular:
   multiplicity questions, broader tracial targets, and comparison with the
   known nonsofic constructions are explicit frontier roots.
 
-Cairn's duplicate check is clean.  The compiled graph has 75 claims and 69
-routes: 47 claims are established, 11 routes are invalidated by proved
-obstructions, and 20 frontier holes remain.  This prevents, among other
+Cairn's duplicate check is clean.  The compiled graph has 87 claims and 81
+routes: 55 claims are established, 11 routes are invalidated by proved
+obstructions, and 24 frontier holes remain.  This prevents, among other
 mistakes, treating radical membership as an exact radical calculation,
 confusing the established sofic quotient `W` with the unresolved soficity of
 `E`, or trying to detect the unsquared defect by residual finiteness.
@@ -265,7 +276,7 @@ local compilation:
 - all 42 cited declarations have closed theorem headers;
 - all 35 numbered theorem-like claims match the exact-claim manifest and its
   declaration roster;
-- the Cairn graph compiles with 75 claims and 69 routes, its changed-file
+- the Cairn graph compiles with 87 claims and 81 routes, its changed-file
   duplicate/lint check is clean, and its static site generator completes;
 - the changed non-MF release, public, and axiom-audit Lean targets build with
   warnings as errors;

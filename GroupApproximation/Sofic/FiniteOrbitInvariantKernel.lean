@@ -39,13 +39,15 @@ def finiteOrbitSubgroup (ψ : H →* MulAut N) : Subgroup N where
     intro a b ha hb
     refine (ha.mul hb).subset ?_
     rintro _ ⟨h, rfl⟩
+    change ψ h (a * b) ∈
+      (Set.range fun k : H ↦ ψ k a) * Set.range fun k : H ↦ ψ k b
     rw [map_mul]
     exact Set.mul_mem_mul ⟨h, rfl⟩ ⟨h, rfl⟩
   inv_mem' := by
     intro a ha
     refine (ha.image fun n : N ↦ n⁻¹).subset ?_
     rintro _ ⟨h, rfl⟩
-    exact ⟨ψ h a, ⟨⟨h, rfl⟩, by rw [map_inv]⟩⟩
+    exact ⟨ψ h a, ⟨⟨h, rfl⟩, (map_inv (ψ h) a).symm⟩⟩
 
 /-- Finite orbits of a finite window generate a finite invariant subgroup in
 a locally finite group. -/
@@ -63,13 +65,15 @@ theorem exists_finite_invariant_subgroup_of_finite_orbits
   letI : Finite L := hLfin
   let K : Subgroup N := Subgroup.closure S
   have hKle : K ≤ L := by
-    rw [K, Subgroup.closure_le]
+    change Subgroup.closure S ≤ L
+    rw [Subgroup.closure_le]
     intro n hn
     exact hSL n (hSfin.mem_toFinset.mpr hn)
   have hKfin : Finite K :=
     Finite.of_injective
       (fun n : K ↦ (⟨n, hKle n.2⟩ : L))
-      (fun _ _ h ↦ Subtype.ext (congrArg Subtype.val h))
+      (fun a b h ↦ Subtype.ext
+        (show (a : N) = (b : N) from congrArg (fun x : L ↦ (x : N)) h))
   refine ⟨K, hKfin, ?_, ?_⟩
   · intro h n hn
     induction hn using Subgroup.closure_induction with
@@ -79,14 +83,19 @@ theorem exists_finite_invariant_subgroup_of_finite_orbits
         rcases Set.mem_iUnion.mp hn with ⟨ha, hn⟩
         rcases hn with ⟨k, rfl⟩
         exact Set.mem_iUnion_of_mem a
-          (Set.mem_iUnion_of_mem ha ⟨h * k, by rw [map_mul, MulAut.mul_apply]⟩)
+          (Set.mem_iUnion_of_mem ha ⟨h * k, by
+            change ψ (h * k) a = ψ h (ψ k a)
+            rw [map_mul, MulAut.mul_apply]⟩)
     | one => rw [map_one]; exact Subgroup.one_mem _
     | mul a b _ _ ha hb => rw [map_mul]; exact Subgroup.mul_mem _ ha hb
     | inv a _ ha => rw [map_inv]; exact Subgroup.inv_mem _ ha
   · intro n hn
     apply Subgroup.subset_closure
     exact Set.mem_iUnion_of_mem n
-      (Set.mem_iUnion_of_mem (Finset.mem_coe.mpr hn) ⟨1, by rw [map_one]; rfl⟩)
+      (Set.mem_iUnion_of_mem (Finset.mem_coe.mpr hn) ⟨1, by
+        change ψ 1 n = n
+        rw [map_one]
+        rfl⟩)
 
 namespace CliffordLamp
 
@@ -121,7 +130,7 @@ theorem finite_orbit_of_finite_site_orbits (ρ : H →* Equiv.Perm X)
     show (Set.range fun h : H ↦ actionHom ρ h (lamp X x)).Finite
     refine (hsite x).image (lamp X) |>.subset ?_
     rintro _ ⟨h, rfl⟩
-    exact ⟨ρ h x, ⟨⟨h, rfl⟩, by rw [actionHom_apply_lamp]⟩⟩
+    exact ⟨ρ h x, ⟨⟨h, rfl⟩, (actionHom_apply_lamp ρ h x).symm⟩⟩
 
 /-- Finite site orbits give the finite invariant Clifford subgroups used by
 the witness soficity argument. -/

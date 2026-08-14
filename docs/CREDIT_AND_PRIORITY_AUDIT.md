@@ -1,11 +1,33 @@
 # Credit and priority audit for the non-MF manuscript
 
-Date: 2026-08-12.  This began from an adversarial literature review and was
+Date: 2026-08-14.  This began from an adversarial literature review and was
 then checked against the cited primary papers, including theorem-level checks
 of every attribution added to the manuscript.  The adjacent sofic
-breakthrough is six days old, so the audit remains time-sensitive.  These are
-paper-facing facts and directives.  Nothing here enters Lean as a premise;
+breakthrough is eight days old, so the audit remains time-sensitive.  These
+are paper-facing facts and directives.  Nothing here enters Lean as a premise;
 the Lean development remains zero-premise and claims correctness, not novelty.
+
+## 2026-08-14 submission-day sweep
+
+A fresh search of the 2026 arXiv record found no independent operator-norm
+non-MF group theorem.  The closest current primary sources remain sharply
+separated from the paper's claim:
+
+* Shulman, arXiv:2603.13564v2 (22 March), studies positive MF permanence and
+  uses the same operator-norm definition;
+* Fournier--Facio, arXiv:2608.02025 (3 August), constructs a torsion-free
+  nonsofic group;
+* Alekseev--Thom, arXiv:2608.05362 (5 August), proves a centralizer theorem
+  for sofic embeddings of Kazhdan groups; and
+* Kun--Thom, arXiv:2608.06222 (6 August), constructs nonsofic generalized
+  wreath products with ordinary abelian lamps.
+
+None of the three August papers claims a non-MF group or an operator-norm
+matrix-corona obstruction.  This supports the manuscript's narrow priority
+language as of the date above; it does not justify a claim to the first
+stably finite non-MF C-star algebra, which remains expressly disallowed
+below.  Because the area is moving on a scale of days, this sweep must still
+be repeated at actual submission.
 
 ## Verdict summary
 
