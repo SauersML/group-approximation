@@ -2,6 +2,35 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 locally finite commutants recover at the wrong scale
+
+The increasing finite unitriangular envelopes do solve elementwise
+coordinate commutant recovery. After finite-group exactification, choose the
+envelope size slowly and Reynolds-average a bounded lift. The exact identity
+
+```text
+||X-E_K(X)||_2^2
+ =(1/(2|K|))sum_g||rho(g)Xrho(g)*-X||_2^2
+```
+
+puts every fixed finite family from the ultraproduct commutant within
+`o(1)` of exact coordinate commutants. See
+`TRUE_LOCALLY_FINITE_COMMUTANTS_RECOVER_BUT_AT_SHIFTED_SCALES.md`; the
+Reynolds identity is already formalized in
+`PropertyT/FiniteGroupAverage.lean`.
+
+The compressor nevertheless shifts the exhaustion. If
+`alpha(K_m)<=K_(r(m))`, coordinate recovery gives only
+
+```text
+C_(r(m)) <= D_m=U C_m U*,
+```
+
+not `C_m<=D_m=UC_mU*`. For the unilateral binary shift the left regular
+model has `dim(D_m)=2 dim(C_(m+1))` exactly. Thus separate commutant recovery
+is closed; the live obstruction is a quantized scale index or a two-branch
+relation synchronizing the two scales in one multiplicity corner.
+
 ## 2026-08-14 intrinsic transition effects are already positive
 
 The positivity gap in operator-valued coproduct rounding can be avoided.
