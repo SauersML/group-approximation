@@ -59,13 +59,14 @@ BEGIN_RE = re.compile(
 )
 LABEL_RE = re.compile(r"\\label\{([^{}]+)\}")
 BADGE_RE = re.compile(
-    r"\\lean(?P<status>verified)"
-    r"\{(?P<module>[^{}]+)\}\{(?P<declaration>[^{}]+)\}"
+    r"\\lean(?P<status>verified)\s*"
+    r"\{(?P<module>[^{}]+)\}\s*\{(?P<declaration>[^{}]+)\}"
 )
 ANY_BADGE_RE = re.compile(
-    r"\\lean(?P<status>[A-Za-z]+)"
-    r"\{(?P<module>[^{}]+)\}\{(?P<declaration>[^{}]+)\}"
+    r"\\lean(?P<status>[A-Za-z]+)\s*"
+    r"\{(?P<module>[^{}]+)\}\s*\{(?P<declaration>[^{}]+)\}"
 )
+BADGE_HEAD_RE = re.compile(r"\\lean(?P<status>[A-Za-z]+)\b")
 COMMENT_RE = re.compile(r"(?<!\\)%[^\n]*")
 
 
@@ -130,8 +131,11 @@ def read_printed_claims(tex: Path) -> list[PrintedClaim]:
              b.group("declaration").strip())
             for b in BADGE_RE.finditer(block)
         )
+        # Scan macro heads independently of their arguments.  Otherwise a
+        # legacy nonexact badge could hide beside a valid badge merely by
+        # inserting TeX-legal whitespace before its first argument.
         badge_macros = tuple(
-            b.group("status") for b in ANY_BADGE_RE.finditer(block)
+            b.group("status") for b in BADGE_HEAD_RE.finditer(block)
         )
         # A few status badges intentionally sit immediately after the theorem
         # environment.  Associate only a consecutive badge run; ordinary prose
@@ -461,6 +465,22 @@ def self_test() -> int:
                     "self-test accepted coexisting badge "
                     f"{forbidden_badge}", file=sys.stderr)
                 return 1
+        for forbidden_badge in former_badges:
+            for separator in (" ", "\n  "):
+                tex.write_text(
+                    "\\begin{theorem}[Demo]\\label{thm:demo}\nTrue.\n"
+                    "\\leanverified{Demo/Exact}{GroupApproximation.demo_exact}\n"
+                    f"\\lean{forbidden_badge}{separator}{{Demo/Exact}}"
+                    f"{separator}{{GroupApproximation.demo_exact}}\n"
+                    "\\end{theorem}\n", encoding="utf-8")
+                manifest.write_text(json.dumps(base), encoding="utf-8")
+                if not any("forbidden nonexact manuscript badge" in p
+                           for p in validate(repo, tex, manifest)):
+                    print(
+                        "self-test accepted whitespace-separated badge "
+                        f"{forbidden_badge!r} with {separator!r}",
+                        file=sys.stderr)
+                    return 1
         bad = json.loads(json.dumps(base))
         bad["claims"] = []
         manifest.write_text(json.dumps(bad), encoding="utf-8")
