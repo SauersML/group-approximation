@@ -986,6 +986,11 @@ logarithms give the path `u_n(t)=exp(t log u_n)`, and the logarithms remain
 HS-null by `|theta|<=(pi/2)|exp(i theta)-1|`.  Therefore every continuous
 discrete phase on that kernel is trivial.  Any surviving parity must be a
 discontinuous invariant protected by additional presentation relations.
+The determinant square-root cover cannot be descended either: the HS-null
+rank-one loop `diag(exp(2 pi i t),1,...,1)` has odd determinant winding, so
+its lift closes at the opposite central sign.  Hence the cover has no
+continuous splitting over the subgroup which must be killed in the tracial
+quotient.
 
 The active collision target is therefore unchanged on the Kun--Thom side:
 retain one explicit element of `Rad_sof` in a CE representation.  The

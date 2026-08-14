@@ -161,11 +161,31 @@ This does not forbid a discontinuous parity protected by additional exact
 relations.  It proves that such protection cannot come from normalized-HS
 topology alone.
 
+The determinant square-root cover does not evade this conclusion.  The
+HS-null subgroup contains the loop
+
+```text
+ell_n(t)=diag(exp(2 pi i t),1,...,1),  0<=t<=1.      (DHS15)
+```
+
+Indeed `||ell_n(t)-1||_2<=2/sqrt(d_n)` uniformly in `t`.  But its determinant
+has winding number one.  In the double cover
+
+```text
+U_d_tilde={(u,z):z^2=det(u)},                        (DHS16)
+```
+
+the lift beginning at `(1,1)` ends at `(1,-1)`.  Thus the determinant double
+cover has no continuous splitting over `N_2`.  Such a splitting is required
+before quotienting a product extension by the HS-null subgroup.  The
+rank-one loop therefore prevents the central sign from descending to the
+tracial matrix quotient, rather than producing a phase there.
+
 This closes the automatic implication
 
 ```text
 operator-norm determinant extension
-  => normalized-HS index-to-phase extension.        (DHS15)
+  => normalized-HS index-to-phase extension.        (DHS17)
 ```
 
 It also complements `FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md`.  The
