@@ -77,7 +77,9 @@ theorem markedCompressionWord_sq_eq_one_of_c_sq_of_central
     simp only [_root_.mul_inv_rev, hdInv, hbInv]
     calc
       d * (d * b * d * b) * d = (d * d) * b * d * b * d := by group
-      _ = b * d * b * d := by rw [hdd]; simp [mul_assoc]
+      _ = b * (d * (b * d)) := by
+        rw [hdd]
+        simp only [one_mul, mul_assoc]
   have hconjFix :
       d * markedCompressionWord t a c * d⁻¹ =
         markedCompressionWord t a c := by

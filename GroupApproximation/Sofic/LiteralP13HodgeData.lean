@@ -88,8 +88,6 @@ in this definition. -/
 def support : Fin 22 → P13
   | i => p13Word (supportFreeWord i)
 
-attribute [local simp] LiteralP13HodgeReplay.supportFreeWord
-
 /-! ## Exact rational Gram factor -/
 /-- Numerator row 0 of the exact Gram factor. -/
 def qNumeratorRow0 : Fin 6 → Fin 22 → ℤ
