@@ -73,8 +73,9 @@ theorem hammingDistance_finiteKernelPerm_mul
   rw [hammingDistance, hammingDistance, hdis, Finset.card_product,
     Finset.card_univ, Fintype.card_prod]
   push_cast
-  field_simp [ne_of_gt (by exact_mod_cast hN : (0 : ℝ) < Fintype.card N),
-    ne_of_gt (by exact_mod_cast hY : (0 : ℝ) < Fintype.card Y)]
+  have hNR : (Fintype.card N : ℝ) ≠ 0 := by exact_mod_cast hN.ne'
+  have hYR : (Fintype.card Y : ℝ) ≠ 0 := by exact_mod_cast hY.ne'
+  field_simp [hNR, hYR]
 
 /-- Distinct normal coordinates are separated perfectly when the quotient
 coordinates agree. -/
@@ -95,7 +96,8 @@ theorem hammingDistance_finiteKernelPerm_of_right_eq
     intro heq
     apply hleft
     have hfirst := congrArg Prod.fst heq
-    simpa [hright] using mul_right_cancel hfirst
+    rw [hright] at hfirst
+    exact mul_right_cancel hfirst
   rw [hammingDistance, hdis, Finset.card_univ]
   exact div_self (by
     rw [Fintype.card_prod]
