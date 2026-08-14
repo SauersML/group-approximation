@@ -4,6 +4,24 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: finite stabilizers cannot groupify a diffuse relation algebra
+
+`FALSE_FINITE_STABILIZER_FULL_GROUP_GROUPIFICATION.md` closes the finite
+isotropy version of the Manzoor/full-group bridge. For an ergodic action, the
+stabilizer IRS is ergodic. If it is supported on finite subgroups, countability
+of the finite-subgroup space forces it to be supported on one finite
+conjugacy orbit. Hence every fixed-set indicator belongs to a single
+finite-dimensional subalgebra `B` of the Cartan. The canonical Cartan
+expectation maps the entire subgroup von Neumann algebra into `B`, so those
+unitaries cannot generate a diffuse relation algebra.
+
+The only stabilizer version left uses infinite stabilizers. Amenability gives
+quasi-regular weak containment in the group regular representation, but only
+at the reduced-C-star level; it does not give normal containment of the GNS
+factor in the group factor. That upgrade is again the regular-to-natural
+trace-selection problem. Thus finite isotropy is now ruled out rather than
+left as a possible compromise between essential freeness and Cartan recovery.
+
 ### 2026-08-14: projective unitary groups reduce cardinality, not trace selection
 
 The shortcut through a separable non-Connes-embeddable factor `M` has now been
