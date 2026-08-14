@@ -382,7 +382,8 @@ theorem manuscriptExactRadicalFromCandidateQuotient
 
 /-! ## Faithful trace and stable finiteness -/
 
-/-- Both clauses of the manuscript's faithful-trace lemma. -/
+/-- Every clause of the manuscript's faithful-trace lemma, including the
+explicit natural-matrix specialization of stable finiteness. -/
 theorem manuscriptFaithfulTraceAndStableFiniteness :
     (∀ (G : Type u) [Group G] [_countableG : Countable G],
       let tau := canonicalFaithfulTracialState G
@@ -392,12 +393,19 @@ theorem manuscriptFaithfulTraceAndStableFiniteness :
         (tau : FaithfulTracialState A)
         (I : Type*) [Fintype I] [DecidableEq I], Nonempty I →
         ∀ v : CStarMatrix I I A,
+          star v * v = 1 → v * star v = 1) ∧
+      (∀ (A : Type u) [CStarAlgebra A]
+        (tau : FaithfulTracialState A) (k : ℕ), 0 < k →
+        ∀ v : CStarMatrix (Fin k) (Fin k) A,
           star v * v = 1 → v * star v = 1) := by
-  constructor
+  refine ⟨?_, ?_, ?_⟩
   · intro G _ _countableG
     exact (canonicalFaithfulTracialState G).map_star_mul_self_eq_zero_iff
   · intro A _ tau I _ _ hI v hv
     exact tau.matrix_mul_star_eq_one_of_star_mul_eq_one I hI hv
+  · intro A _ tau k hk v hv
+    exact tau.matrix_mul_star_eq_one_of_star_mul_eq_one
+      (Fin k) ⟨⟨0, hk⟩⟩ hv
 
 end
 

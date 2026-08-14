@@ -147,8 +147,9 @@ is required.
 ## 5. Formalization status
 
 `GroupApproximation/Leavitt/RobustPairedQuotientFloor.lean` now formalizes
-the gauge-free table endpoint after permutation repair.  Its main theorem,
-`robust_floor_of_permutation_repairs`, proves the exact integer inequality
+the gauge-free table endpoint and the canonical permutation repair.  Its
+arithmetic theorem, `robust_floor_of_permutation_repairs`, proves the exact
+integer inequality
 
 ```text
 N(N-1) <= 2 e01 + 8 e00 + 8 e11,
@@ -159,11 +160,33 @@ pairing one-count.  The supporting theorem
 `card_oneSet_repaired_le` kernel-checks the dimension-free fact that changing
 `dR` rows and `dL` columns changes at most `N*dR+N*dL` table entries.
 
-The file intentionally does not assume that this is the whole robust theorem.
-The fiber-collision argument producing the two permutation repairs from the
-diagonal mismatch counts remains to be formalized.  Keeping that premise
-visible prevents the matrix-coordinate extraction gate from being confused
-with a completed nonhyperlinearity proof.
+The new repair layer defines `collisionSources R` to be the sources in
+non-singleton fibers of `R`.  It constructs `repairMap R`, a permutation which
+agrees with `R` away from that set, and proves
+
+```text
+#{v : repairMap R v != R v} <= #collisionSources R.  (RPF11)
+```
+
+The theorem `collision_pair_charge` also formalizes the local content of
+`(RPF4)`: if two distinct sources collide and distinct perfect-pairing rows
+differ on exactly `N/2` columns, then their two row-error counts have doubled
+sum at least `N`.  Finally, `robust_floor_of_collision_budgets` wires the
+canonical repairs directly into the robust floor.  Thus no unspecified
+permutation repair remains.
+
+The remaining finite combinatorial lemma is now precisely the global fiber
+summation
+
+```text
+N * #collisionSources R <= 4 * totalDiagonalMismatch. (RPF12)
+```
+
+obtained by summing `collision_pair_charge` over the unordered pairs inside
+each non-singleton fiber.  This is an elementary finite-sum lemma, but it is
+still an explicit hypothesis of the integrated theorem until its Lean proof
+is added.  Beyond it, the genuinely research-level gate remains the
+matrix-coordinate extraction of the common paired labels and kernels.
 
 ## 6. Gain for the hyperlinear program
 
