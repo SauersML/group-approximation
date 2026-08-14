@@ -29,7 +29,7 @@
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "Kazhdan transport of asymptotic commutants",
-      "statement_sha256": "b38ea95c15ee2db6cb1cf4ba5806583254be073dd2548a925330afdbfeb6c4ca",
+      "statement_sha256": "4e8d1741cfd71a993833f9c26d2ee92b3b5e367e2d287ab009605b6d2005c110",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -49,7 +49,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "e491fc6e10d312efa4fe3bbe0253b12a141b5fc500d76344ed0124b84febdb71",
+      "statement_sha256": "0ac500dc7d2e4a2cfe630077699ff8de7cbb01b5a936baafde922eebf286f8d3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -99,7 +99,7 @@
       "id": "thm:compression-radical",
       "environment": "theorem",
       "title": "compression radical",
-      "statement_sha256": "47fa02cbb53dd646aa8e639970e3517d6ad5f4d0eb445b74764283cbdb1c0c4b",
+      "statement_sha256": "12334b5a1314dbee07650a768a947ede7cbd696af639c0ab27b4f549514aaa3e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -141,7 +141,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
+          "module": "Sofic/ConceptualNonMFProof",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
         }
@@ -207,7 +207,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
+          "module": "Sofic/ConceptualNonMFProof",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
           "covers": "the complete printed proposition"
         }
