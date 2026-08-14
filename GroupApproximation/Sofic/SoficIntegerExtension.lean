@@ -71,11 +71,10 @@ theorem levelPerm_mul (p q : ZMod L → Equiv.Perm Y) (c d : ZMod L) :
 abbrev levelModel (Y : FiniteModel) (L : ℕ) [NeZero L] : FiniteModel :=
   ⟨Y × ZMod L, inferInstance, inferInstance⟩
 
-set_option maxHeartbeats 1000000 in
 /-- **Fibrewise average.**  Two level permutations with the same shift are at
 the average of their fibrewise distances. -/
 theorem hammingDistance_levelPerm (Y : FiniteModel) {L : ℕ} [NeZero L]
-    (p q : ZMod L → Equiv.Perm Y) (c : ZMod L) (_hY : 0 < Fintype.card Y) :
+    (p q : ZMod L → Equiv.Perm Y) (c : ZMod L) :
     hammingDistance (levelModel Y L) (levelPerm p c) (levelPerm q c) =
       (∑ i : ZMod L, hammingDistance Y (p i) (q i)) / L := by
   classical
@@ -249,11 +248,6 @@ variable (φ : Multiplicative ℤ →* MulAut N)
 /-- The `j`-th power of the acting automorphism, as a map on `N`. -/
 def tw (j : ℤ) (n : N) : N := φ (Multiplicative.ofAdd j) n
 
-@[simp] theorem tw_zero (n : N) : tw φ 0 n = n := by
-  show φ (Multiplicative.ofAdd (0 : ℤ)) n = n
-  rw [ofAdd_zero, map_one]
-  rfl
-
 theorem tw_add (j₁ j₂ : ℤ) (n : N) :
     tw φ (j₁ + j₂) n = tw φ j₁ (tw φ j₂ n) := by
   show φ (Multiplicative.ofAdd (j₁ + j₂)) n = _
@@ -380,7 +374,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
   · -- multiplicativity: exact off the wrap-around boundary
     intro g hg h hh
     rw [modelPerm_mul_right, modelPerm_mul_left,
-      hammingDistance_levelPerm M.carrier _ _ _ M.nonempty]
+      hammingDistance_levelPerm M.carrier _ _ _]
     set sg : ZMod L := ((shiftOf φ g : ℤ) : ZMod L) with hsg
     set sh : ZMod L := ((shiftOf φ h : ℤ) : ZMod L) with hsh
     set d : ZMod L → ℝ := fun i ↦
@@ -466,7 +460,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
       have hleft : g.left ≠ h.left := fun heq ↦
         hne (SemidirectProduct.ext heq hright)
       rw [modelPerm, modelPerm, ← hs,
-        hammingDistance_levelPerm M.carrier _ _ _ M.nonempty]
+        hammingDistance_levelPerm M.carrier _ _ _]
       have hfib : ∀ i : ZMod L,
           1 - ε / 2 ≤ hammingDistance M.carrier
             (M.map (labelAt φ L g (i + ((shiftOf φ g : ℤ) : ZMod L))))
