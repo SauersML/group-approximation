@@ -86,12 +86,12 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  # Preserve every queued gate.  The reusable P13 workflow can leave its
-  # caller classified as pending at job boundaries even while shard jobs are
-  # active; the default single pending slot therefore canceled two live proof
-  # replays after newer pushes arrived.  GitHub's explicit maximal queue keeps
-  # those runs FIFO instead of replacing them.  Promotion remains non-force
-  # and advances only from a fully successful exact-SHA gate.
+  # Preserve a gate that has actually started.  The maximal FIFO queue avoids
+  # GitHub classifying a caller with active reusable-workflow children as
+  # merely pending and replacing it.  The first job below rejects stale push
+  # SHAs before P13 starts, so queued historical commits cost one tiny runner
+  # job rather than a full proof replay.  Promotion remains non-force and
+  # advances only from a fully successful exact-SHA gate.
   queue: max
   cancel-in-progress: false
 
@@ -111,9 +111,24 @@ jobs:
       - id: check
         shell: bash
         run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "push" ]; then
+            git fetch --no-tags origin \
+              '+refs/heads/main:refs/remotes/origin/main'
+            latest=$(git rev-parse refs/remotes/origin/main)
+            if [ '${{ github.sha }}' != "$latest" ]; then
+              echo "Push ${{ github.sha }} is stale; main is $latest."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Push ${{ github.sha }} is the current main tip; running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           if [ "${{ github.event_name }}" != "schedule" ]; then
-            echo "Event ${{ github.event_name }} is not a schedule; running."
-            echo "run=true" >> "$GITHUB_OUTPUT"; exit 0
+            echo "Event ${{ github.event_name }} runs at its requested SHA."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
           latest=$(git log -1 --format=%ct)
           now=$(date +%s)
@@ -129,13 +144,13 @@ jobs:
 
   p13:
     needs: gate
-    if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
+    if: ${{ needs.gate.outputs.run == 'true' }}
     uses: ./.github/workflows/p13-sharded-build.yml
 
   prove:
     name: Build and audit
     needs: [gate, p13]
-    if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
+    if: ${{ needs.gate.outputs.run == 'true' }}
     runs-on: ubuntu-latest
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
     # can run for hours; every run saves whatever it compiled (see the
