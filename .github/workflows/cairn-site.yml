@@ -1,0 +1,63 @@
+# Cairn research-graph site.  Rebuilds and republishes the public site
+# whenever the research state or the generator changes.  Fast (seconds,
+# no toolchain): the site is compiled from research/*.md by tools/cairn.py.
+#
+# Coexistence with docs.yml (doc-gen4, weekly): Pages serves one tree per
+# repo, so this workflow also folds the latest API docs under /api/ when a
+# branch named `api-docs` exists.  Until docs.yml publishes that branch, a
+# Sunday docs deploy will temporarily replace this site (and the next
+# research push replaces it back).
+name: Cairn site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/**'
+      - 'tools/cairn.py'
+      - '.github/workflows/cairn-site.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: cairn-site
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    name: Compile the research graph
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Build the site
+        run: python3 tools/cairn.py site
+
+      - name: Fold in the latest API docs, if published
+        run: |
+          if git fetch --depth 1 origin api-docs 2>/dev/null; then
+            mkdir -p .cairn/site/api
+            git --work-tree=.cairn/site/api checkout FETCH_HEAD -- .
+          else
+            echo "no api-docs branch yet; publishing the research site alone"
+          fi
+
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: .cairn/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

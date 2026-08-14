@@ -932,7 +932,7 @@ INDEX_TMPL = """<!doctype html><meta charset="utf-8">
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <style>
 :root{--paper:#fbfaf7;--ink:#22261f;--mut:#8a8f86;--line:#e2e0d8;
---est:#2aa198;--open:#b58900;--dead:#c0564a;--root:#268bd2}
+--est:#17805a;--open:#c98a00;--dead:#c0392b;--root:#2b6cb0;--edge:#7c8377}
 html,body{height:100%;margin:0}
 body{background:var(--paper);color:var(--ink);font:14px/1.5 Georgia,serif}
 header{display:flex;align-items:baseline;gap:1.2em;padding:.55em 1.1em;
@@ -941,10 +941,10 @@ border-bottom:1px solid var(--line);background:#fff}
 .stats{color:var(--mut);font-size:12.5px;font-variant-numeric:tabular-nums}
 header label{margin-left:auto;color:var(--mut);font-size:12.5px;cursor:pointer}
 header a{color:var(--root);text-decoration:none;font-size:12.5px}
-main{display:flex;height:calc(100% - 44px)}
-#view{flex:1;min-width:0;background:radial-gradient(#e9e7df 1px,transparent 1px);
-background-size:22px 22px;cursor:grab}
-aside{width:350px;border-left:1px solid var(--line);background:#fff;
+main{display:flex;height:calc(100% - 44px);position:relative}
+#view{flex:1;min-width:0;background:radial-gradient(#edebe4 1px,transparent 1px);
+background-size:24px 24px;cursor:grab}
+aside{width:360px;border-left:1px solid var(--line);background:#fff;
 padding:1em 1.2em;overflow-y:auto}
 aside h2{font:600 16px "Iowan Old Style",Palatino,serif;margin:.3em 0 .5em}
 .chip{display:inline-block;padding:.1em .6em;border-radius:1em;color:#fff;
@@ -952,40 +952,70 @@ font:bold 10.5px Menlo,monospace}
 .chip.ESTABLISHED{background:var(--est)}.chip.OPEN{background:var(--open)}
 .chip.INVALIDATED{background:var(--dead)}.chip.route{background:#9a9e94}
 aside code{font:11.5px Menlo,monospace;color:var(--mut)}
-.stmt{font:12px/1.55 Menlo,monospace;white-space:pre-wrap;background:#faf9f5;
-border:1px solid var(--line);padding:.7em;max-height:38vh;overflow-y:auto}
+.stmt{font:13px/1.55 Georgia,serif;background:#faf9f5;
+border:1px solid var(--line);padding:.2em .8em;max-height:36vh;overflow-y:auto}
+.stmt code{font:11px Menlo,monospace;background:#f0efe8}
+.stmt pre{font:11px/1.5 Menlo,monospace;background:#f0efe8;padding:.5em;overflow-x:auto}
+.stmt a{color:var(--root);text-decoration:none}
 .fr{list-style:none;padding:0;margin:.4em 0}
 .fr li{padding:.32em 0;border-bottom:1px solid #f0eee7;font-size:13px;cursor:pointer}
 .fr li:hover{color:var(--root)}
 .fr .imp{color:var(--mut);font:11px Menlo,monospace}
 .hint{color:var(--mut);font-size:12px}
-svg text{font:10px Menlo,monospace;fill:#666;pointer-events:none}
-.lk{stroke:#b9bcb2;stroke-width:1.3}
-.lk.kill,.lk.dead{stroke:var(--dead);stroke-dasharray:4 3}
-g.deadbit{display:none}line.dead{display:none}
-.showdead g.deadbit{display:inline}.showdead line.dead{display:inline}
-.dim{opacity:.16}
+details summary{cursor:pointer;font:600 14px Georgia,serif;margin:.9em 0 .3em;color:#555}
+svg text{font:10px Menlo,monospace;fill:#5a5f57;pointer-events:none}
+.lk{stroke:var(--edge);stroke-width:1.7}
+.lk.kill{stroke:var(--dead);stroke-dasharray:5 3;stroke-width:1.5}
+.lk.dead{stroke:var(--dead);stroke-dasharray:5 3;stroke-width:1.5}
+g.deadbit,line.dead{visibility:hidden}
+.showdead g.deadbit,.showdead line.dead{visibility:visible}
+g.orphan{display:none}
+.dim{opacity:.13}
 a.open-page{color:var(--root)}
+#key{position:absolute;left:14px;bottom:12px;background:rgba(255,253,249,.94);
+border:1px solid var(--line);border-radius:3px;padding:.6em .9em;
+font-size:12px;color:#444;display:flex;flex-direction:column;gap:.32em;
+box-shadow:0 1px 4px rgba(0,0,0,.06)}
+#key b{font:600 11px Menlo,monospace;letter-spacing:.08em;color:#888}
+#key svg{vertical-align:-3px;margin-right:.5em}
+#key .foot{color:#999;font-size:11px;max-width:240px}
 </style>
 <body>
 <header><span class="wordmark">CAIRN</span><span class="stats">__STATS__</span>
 <label><input type="checkbox" id="showdead"> show ruled-out space</label>
 <a href="nodes.html">all nodes</a></header>
-<main><svg id="view"></svg><aside id="panel"></aside></main>
+<main><svg id="view"></svg>
+<div id="key"><b>KEY</b>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#17805a"/></svg>established claim</span>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#fff" stroke="#c98a00" stroke-width="2.4"/></svg>open claim</span>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="6.5" fill="none" stroke="#2b6cb0" stroke-width="1.6"/><circle cx="8" cy="7" r="3.4" fill="#fff" stroke="#c98a00" stroke-width="2"/></svg>program root</span>
+<span><svg width="18" height="14"><rect x="3" y="2" width="10" height="10" fill="#9a9e94"/></svg>&and; join of a multi-premise route</span>
+<span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#7c8377" stroke-width="1.7"/><path d="M19,3.5L25,7L19,10.5z" fill="#7c8377"/></svg>route: premises &#10230; target</span>
+<span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/><path d="M19,3.5L25,7L19,10.5z" fill="#c0392b"/></svg>invalidation (obstruction kills route)</span>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="5.5" fill="#fff" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="3,2"/></svg>ruled-out route (toggle to show)</span>
+<span class="foot">placement: statements with similar content drift together, even without an explicit edge</span>
+</div>
+<aside id="panel"></aside></main>
 <script>
 const DATA=__DATA__;
 const panel=document.getElementById('panel');
 const esc=t=>{const d=document.createElement('i');d.textContent=t;return d.innerHTML};
-function frontierList(){
- let h='<h2>Frontier</h2><p class="hint">Open, reachable, undecomposed claims. Click a node or a row; drag to arrange; scroll to zoom.</p><ul class="fr">';
+function sidebarHome(){
+ let h='<h2>Frontier</h2><p class="hint">Open, reachable, undecomposed claims - the work surface. Click a node or a row; drag to arrange; scroll to zoom.</p><ul class="fr">';
  for(const c of DATA.claims.filter(c=>c.frontier).sort((a,b)=>b.impact-a.impact))
-  h+=`<li data-id="${c.id}">${esc(c.title)}<br><span class="imp">${c.id} \\u00b7 ${c.impact} live route(s)${c.lock?' \\u00b7 locked by '+esc(c.lock):''}</span></li>`;
- panel.innerHTML=h+'</ul>';
+  h+=`<li data-id="${c.id}">${esc(c.title)}<br><span class="imp">${c.id} &middot; ${c.impact} live route(s)${c.lock?' &middot; locked by '+esc(c.lock):''}</span></li>`;
+ h+='</ul>';
+ const lib=DATA.claims.filter(c=>c.status==='ESTABLISHED').sort((a,b)=>a.title.localeCompare(b.title));
+ h+=`<details><summary>Library &mdash; ${lib.length} established claims</summary><ul class="fr">`;
+ for(const c of lib)h+=`<li data-id="${c.id}">${esc(c.title)}<br><span class="imp">${c.id}</span></li>`;
+ h+='</ul></details>';
+ panel.innerHTML=h;
  panel.querySelectorAll('li').forEach(li=>li.onclick=()=>selectById(li.dataset.id));
 }
+let selectById=id=>{};
 if(typeof d3==='undefined'){
- document.getElementById('view').outerHTML='<div style="padding:2em">d3 CDN unreachable \\u2014 use <a href="nodes.html">all nodes</a>.</div>';
- frontierList();
+ document.getElementById('view').outerHTML='<div style="padding:2em">d3 CDN unreachable &mdash; use <a href="nodes.html">all nodes</a>.</div>';
+ sidebarHome();
 }else{
 const nodes=[],links=[],byId={};
 for(const c of DATA.claims){c.type='claim';nodes.push(c);byId[c.id]=c}
@@ -1004,20 +1034,24 @@ for(const d of DATA.dead){
  links.push({source:st.id,target:d.target,kind:'arrow',dead:true});
  for(const k of d.killers)if(byId[k])links.push({source:k,target:st.id,kind:'kill',dead:true});
 }
+for(const a of DATA.affinity)links.push({source:a.a,target:a.b,kind:'aff',w:a.w});
+const real=l=>l.kind!=='aff';
 const svg=d3.select('#view'),W=svg.node().clientWidth,H=svg.node().clientHeight;
-svg.append('defs').html('<marker id="m" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L8,4L0,8z" fill="#b9bcb2"/></marker><marker id="mr" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L8,4L0,8z" fill="#c0564a"/></marker>');
+svg.append('defs').html('<marker id="m" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7.5" markerHeight="7.5" orient="auto"><path d="M0,0L8,4L0,8z" fill="#7c8377"/></marker><marker id="mr" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="7.5" markerHeight="7.5" orient="auto"><path d="M0,0L8,4L0,8z" fill="#c0392b"/></marker>');
 const g=svg.append('g');
 svg.call(d3.zoom().scaleExtent([.25,3]).on('zoom',e=>g.attr('transform',e.transform)))
    .on('dblclick.zoom',null);
+const linkForce=d3.forceLink(links).id(d=>d.id)
+ .distance(l=>l.kind==='aff'?150:(l.kind==='in'?60:115))
+ .strength(l=>l.kind==='aff'?.03+.1*l.w:.55);
 const sim=d3.forceSimulation(nodes)
- .force('link',d3.forceLink(links).id(d=>d.id)
-   .distance(l=>l.kind==='in'?55:105).strength(.55))
- .force('charge',d3.forceManyBody().strength(-420))
+ .force('link',linkForce)
+ .force('charge',d3.forceManyBody().strength(-430))
  .force('x',d3.forceX(W/2).strength(.06))
  .force('y',d3.forceY(H/2).strength(.09))
- .force('collide',d3.forceCollide(d=>d.type==='claim'?34:12));
-const line=g.selectAll('line').data(links).join('line')
- .attr('class',l=>'lk '+(l.kind==='kill'?'kill':'')+(l.dead?' dead':''))
+ .force('collide',d3.forceCollide(d=>d.type==='claim'?38:13));
+const line=g.selectAll('line').data(links.filter(real)).join('line')
+ .attr('class',l=>'lk'+(l.kind==='kill'?' kill':'')+(l.dead?' dead':''))
  .attr('marker-end',l=>l.kind==='in'?null:(l.dead||l.kind==='kill'?'url(#mr)':'url(#m)'));
 const node=g.selectAll('g.n').data(nodes).join('g')
  .attr('class',d=>'n'+(d.dead?' deadbit':''))
@@ -1027,25 +1061,33 @@ const node=g.selectAll('g.n').data(nodes).join('g')
    .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y})
    .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null}));
 node.filter(d=>d.type==='claim'&&d.root).append('circle')
- .attr('r',19).attr('fill','none').attr('stroke','var(--root)').attr('stroke-width',1.4);
+ .attr('r',21).attr('fill','none').attr('stroke','var(--root)').attr('stroke-width',1.8);
 node.filter(d=>d.type==='claim').append('circle')
- .attr('r',d=>d.root?14:9+Math.min(d.impact*1.5,4))
+ .attr('r',d=>d.root?14:10+Math.min(d.impact*1.5,4))
  .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fff')
- .attr('stroke',d=>d.status==='ESTABLISHED'?'var(--est)':'var(--open)')
- .attr('stroke-width',2);
+ .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f5c40':'var(--open)')
+ .attr('stroke-width',2.4);
 node.filter(d=>d.type==='junction').append('rect')
- .attr('x',-4).attr('y',-4).attr('width',8).attr('height',8)
+ .attr('x',-5).attr('y',-5).attr('width',10).attr('height',10)
  .attr('fill',d=>d.dead?'var(--dead)':'#9a9e94');
 node.filter(d=>d.type==='stub').append('circle')
- .attr('r',6).attr('fill','#fff').attr('stroke','var(--dead)')
- .attr('stroke-width',1.6).attr('stroke-dasharray','3 2');
-node.filter(d=>d.type==='claim').append('text')
- .attr('text-anchor','middle').attr('dy',d=>(d.root?32:26))
- .text(d=>d.id.length>26?d.id.slice(0,25)+'\\u2026':d.id);
-node.append('title').text(d=>d.type==='claim'?`${d.title} [${d.status}]`:(d.rtitle||d.route));
+ .attr('r',6.5).attr('fill','#fff').attr('stroke','var(--dead)')
+ .attr('stroke-width',1.7).attr('stroke-dasharray','3 2');
+node.filter(d=>d.type==='claim').each(function(d){
+ let l1='',l2='';
+ for(const w of d.title.split(' ')){
+  if(!l2&&(l1+' '+w).trim().length<=26)l1=(l1+' '+w).trim();
+  else l2=(l2+' '+w).trim();
+ }
+ if(l2.length>28)l2=l2.slice(0,27)+'\\u2026';
+ const txt=d3.select(this).append('text').attr('text-anchor','middle');
+ txt.append('tspan').attr('x',0).attr('dy',d.root?33:27).text(l1);
+ if(l2)txt.append('tspan').attr('x',0).attr('dy',11).text(l2);
+});
+node.append('title').text(d=>d.type==='claim'?`${d.id} [${d.status}]`:(d.rtitle||d.route));
 function neighbors(d){
  const keep=new Set([d.id]);
- links.forEach(l=>{if(l.source.id===d.id)keep.add(l.target.id);
+ links.filter(real).forEach(l=>{if(l.source.id===d.id)keep.add(l.target.id);
    if(l.target.id===d.id)keep.add(l.source.id)});
  node.classed('dim',n=>!keep.has(n.id));
  line.classed('dim',l=>l.source.id!==d.id&&l.target.id!==d.id);
@@ -1057,45 +1099,82 @@ function show(d){
   panel.innerHTML=`<span class="chip ${d.status}">${d.status}</span>
    <h2>${esc(d.title)}</h2><code>${d.id}</code>
    ${d.lock?`<p class="hint">locked by ${esc(d.lock)}</p>`:''}
-   <p class="stmt">${esc(d.body||'(no statement)')}</p>
-   <a class="open-page" href="${d.id}.html">open page \\u2192</a>`;
+   <div class="stmt">${d.html||'(no statement)'}</div>
+   <p><a class="open-page" href="${d.id}.html">open page &#8594;</a></p>`;
  }else{
   const imp=(d.requires&&d.requires.length?d.requires.join(' \\u2227 '):'\\u22a4')+' \\u27f9 '+d.tgt;
-  panel.innerHTML=`<span class="chip route">route${d.dead?' \\u00b7 invalidated':''}</span>
+  panel.innerHTML=`<span class="chip route">route${d.dead?' &middot; invalidated':''}</span>
    <h2>${esc(d.rtitle||d.route)}</h2><code>${esc(imp)}</code>
    ${d.killers&&d.killers.length?`<p class="hint">invalidated by ${d.killers.join(', ')}</p>`:''}
-   <p><a class="open-page" href="${d.route}.html">open page \\u2192</a></p>`;
+   <p><a class="open-page" href="${d.route}.html">open page &#8594;</a></p>`;
  }
  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([panel]);
 }
-function selectById(id){const d=byId[id];if(d){show(d);neighbors(d);
- setTimeout(()=>{node.classed('dim',false);line.classed('dim',false)},1600)}}
+selectById=id=>{const d=byId[id];if(d){show(d);if(!d.orphan){neighbors(d);
+ setTimeout(()=>{node.classed('dim',false);line.classed('dim',false)},1600)}}};
 node.on('click',(e,d)=>{e.stopPropagation();show(d)});
-svg.on('click',frontierList);
-document.getElementById('showdead').onchange=e=>
- g.classed('showdead',e.target.checked);
+svg.on('click',sidebarHome);
+function refreshVis(){
+ const sd=document.getElementById('showdead').checked;
+ const deg={};
+ links.forEach(l=>{if(real(l)&&(!l.dead||sd)){
+  const a=l.source.id||l.source,b=l.target.id||l.target;
+  deg[a]=(deg[a]||0)+1;deg[b]=(deg[b]||0)+1}});
+ nodes.forEach(d=>{d.orphan=d.type==='claim'&&!d.root&&!d.frontier&&!(deg[d.id]>0)});
+ node.classed('orphan',d=>d.orphan);
+ g.classed('showdead',sd);
+ sim.force('charge',d3.forceManyBody().strength(d=>d.orphan?-10:-430));
+ linkForce.strength(l=>l.kind==='aff'
+  ?((l.source.orphan||l.target.orphan)?0:.03+.1*l.w):.55);
+ sim.alpha(.5).restart();
+}
+document.getElementById('showdead').onchange=refreshVis;
 sim.on('tick',()=>{
  line.attr('x1',l=>l.source.x).attr('y1',l=>l.source.y)
      .attr('x2',l=>l.target.x).attr('y2',l=>l.target.y);
  node.attr('transform',d=>`translate(${d.x},${d.y})`);
 });
-frontierList();
+refreshVis();
+sidebarHome();
 }
 </script>
 """
 
 
+def autolink(html_str, ids):
+    """Hyperlink every mention of a known node id in already-rendered HTML."""
+    pat = re.compile(r"[a-z0-9][a-z0-9-]{3,63}")
+    parts = re.split(r"(<[^>]+>)", html_str)
+    out, in_a = [], 0
+    for part in parts:
+        if part.startswith("<"):
+            if part.startswith("<a"):
+                in_a += 1
+            elif part.startswith("</a"):
+                in_a = max(0, in_a - 1)
+            out.append(part)
+            continue
+        if in_a:
+            out.append(part)
+            continue
+        out.append(pat.sub(
+            lambda m: (f'<a href="{m.group(0)}.html">{m.group(0)}</a>'
+                       if m.group(0) in ids else m.group(0)), part))
+    return "".join(out)
+
+
 def generate_site(graph, locks):
     os.makedirs(SITE_DIR, exist_ok=True)
     # index = the graph, full viewport
-    data = {"claims": [], "links": [], "junctions": [], "dead": []}
+    idset = set(graph.nodes)
+    data = {"claims": [], "links": [], "junctions": [], "dead": [], "affinity": []}
     for cid, c in graph.claims.items():
         data["claims"].append({
             "id": cid, "status": c.status, "root": bool(c.meta.get("root")),
             "title": c.title, "impact": graph.claim_impact.get(cid, 0),
             "frontier": cid in graph.frontier,
             "lock": locks.get(cid, {}).get("owner"),
-            "body": c.body[:700]})
+            "html": autolink(md_to_html(c.body), idset)})
     for rid, r in graph.routes.items():
         tgt = r.meta.get("target")
         if tgt not in graph.claims:
@@ -1113,6 +1192,47 @@ def generate_site(graph, locks):
             data["links"].append({**rec, "source": reqs[0]})
         else:
             data["junctions"].append({**rec, "requires": reqs})
+    # semantic affinity: TF-IDF cosine over statements -> invisible
+    # attraction links, so conceptually close claims sit close on screen
+    import math
+
+    def _feats(text):
+        words = [w for w in re.findall(r"[a-z0-9]+", text.lower())
+                 if len(w) > 2 and w not in STOPWORDS]
+        return set(words) | {a + "_" + b for a, b in zip(words, words[1:])}
+
+    docs = {cid: _feats(c.title + " " + c.body) for cid, c in graph.claims.items()}
+    df = {}
+    for toks in docs.values():
+        for t in toks:
+            df[t] = df.get(t, 0) + 1
+    N = max(1, len(docs))
+    cutoff = 0.35 * N   # program-wide jargon carries no signal
+    vecs = {cid: {t: math.log(N / df[t]) for t in toks if df[t] <= cutoff}
+            for cid, toks in docs.items()}
+
+    def _cos(u, v):
+        if len(v) < len(u):
+            u, v = v, u
+        num = sum(w * v.get(t, 0.0) for t, w in u.items())
+        du = math.sqrt(sum(w * w for w in u.values()))
+        dv = math.sqrt(sum(w * w for w in v.values()))
+        return num / (du * dv) if du and dv else 0.0
+
+    cids = list(docs)
+    pairs = []
+    for i in range(len(cids)):
+        for j in range(i + 1, len(cids)):
+            w = _cos(vecs[cids[i]], vecs[cids[j]])
+            if w >= 0.16:
+                pairs.append((w, cids[i], cids[j]))
+    pairs.sort(reverse=True)
+    percap = {}
+    for w, x, y in pairs:
+        if percap.get(x, 0) < 3 and percap.get(y, 0) < 3:
+            data["affinity"].append({"a": x, "b": y, "w": round(min(1.0, w), 2)})
+            percap[x] = percap.get(x, 0) + 1
+            percap[y] = percap.get(y, 0) + 1
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
     stats = (f"{len(graph.claims)} claims · {est} established · "
              f"{len(graph.routes)} routes · {len(graph.invalidated)} ruled out · "
@@ -1168,7 +1288,8 @@ def generate_site(graph, locks):
             B.extend(f"<li><code>{html.escape(str(a))}</code></li>" for a in arts)
             B.append("</ul>")
         B.append("<h2>Statement</h2>")
-        B.append(md_to_html(n.body) if n.body else "<p class='muted'>(no body)</p>")
+        B.append(autolink(md_to_html(n.body), set(graph.nodes))
+                 if n.body else "<p class='muted'>(no body)</p>")
         with open(os.path.join(SITE_DIR, f"{nid}.html"), "w", encoding="utf-8") as f:
             f.write(page(f"{nid}", "\n".join(B)))
     return SITE_DIR
