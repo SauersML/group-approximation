@@ -6,6 +6,33 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: only the two left Leavitt arrows need spectral invariance
+
+`TRUE_TWO_LEFT_ARROWS_SUFFICE_FOR_SPECTRAL_LEAVITT.md` closes the
+post-selection analytic bookkeeping and halves the synchronization family.
+For a carrier projection `P`,
+
+```text
+P Ri P Sj P-P
+ =P(Ri Sj-I)P-P Ri(1-P)SjP.
+```
+
+Hence passing the three products `R0S0=I`, `R1S1=I`, `R0S1=0` to the corner
+requires leakage control only for `R0,R1`; no invariance of `S0,S1` is
+needed.  If `alpha=tau(P)`, `eta` bounds the three ambient product defects,
+and `lambda` bounds the two left-arrow leakages, the corner Leavitt theorem
+gives
+
+```text
+eta+lambda >=sqrt(alpha)(2-sqrt(3)).
+```
+
+The coarea cut has `alpha>=1/120`, yielding the fixed ambient floor
+`(2-sqrt(3))/sqrt(120)`.  Therefore the spectral fallback now asks for only
+two forward/reverse transition pairs, for `R0` and `R1`.  The two exact
+compression identities are transcribed in `LeavittTraceFloor.lean`; no local
+build was run.
+
 ### 2026-08-14: transition intertwinings imply the spectral commutators
 
 `TRUE_TRANSITION_INTERTWINING_CONTROLS_SPECTRAL_LEAKAGE.md` removes the

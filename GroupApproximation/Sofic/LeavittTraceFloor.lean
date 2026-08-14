@@ -306,6 +306,24 @@ theorem hsNormSq_transitionGram_commutator_le_four
     _ = 4 * hsNormSq Y (T * A - B * T) := by
       rfl
 
+/-! ## Compression identities for an almost invariant carrier -/
+
+/-- Inserting a carrier projection between two factors costs exactly one
+one-sided leakage term.  This identity shows that only the left factor of a
+Leavitt product needs carrier invariance. -/
+theorem compressed_product_sub_carrier_identity
+    (P T S : Matrix Y Y ℂ) :
+    P * T * P * S * P - P =
+      P * (T * S - 1) * P - P * T * (1 - P) * S * P := by
+  noncomm_ring
+
+/-- Cross-product form of `compressed_product_sub_carrier_identity`. -/
+theorem compressed_cross_product_identity
+    (P T S : Matrix Y Y ℂ) :
+    P * T * P * S * P =
+      P * (T * S) * P - P * T * (1 - P) * S * P := by
+  noncomm_ring
+
 /-- The normalized trace of a product of two positive semidefinite matrices
 has nonnegative real part.  The product itself need not be self-adjoint. -/
 theorem re_normTrace_mul_nonneg_of_posSemidef (Y : FiniteModel)

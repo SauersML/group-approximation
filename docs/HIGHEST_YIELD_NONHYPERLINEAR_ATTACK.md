@@ -347,6 +347,32 @@ contractions.  The two-sided version is formalized as
 `hsNormSq_transitionGram_commutator_le_two_sided` and makes no unitary
 assumption on `A_k,B_k`.
 
+The four-arrow family can be reduced further.  In the terminal products
+
+```text
+R0 S0=I,       R1 S1=I,       R0 S1=0,
+```
+
+inserting a carrier projection produces only the errors
+
+```text
+P Ri(1-P)SjP,              i=0,1.
+```
+
+Thus only `R0,R1` need to almost preserve the coarea cut.  If `eta` is the
+maximum of the three compressed ambient product defects and `lambda` is the
+maximum of `||P R_i(1-P)||_2`, the trace-`alpha` corner theorem gives
+
+```text
+eta+lambda>=sqrt(alpha)(2-sqrt(3)).
+```
+
+Since `alpha>=1/120`, the ambient floor is
+`(2-sqrt(3))/sqrt(120)`.  See
+`TRUE_TWO_LEFT_ARROWS_SUFFICE_FOR_SPECTRAL_LEAVITT.md`.  The smallest
+spectral gate is consequently two forward/reverse transition pairs, not
+four-arrow invariance.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut
