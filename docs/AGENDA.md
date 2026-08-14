@@ -43,6 +43,34 @@ already gives the nonhyperlinear quotient.  Synchrony alone is insufficient:
 the standard synchronous trace lives on a one-player/opposite-algebra model,
 and the full two-player toric words need not descend without order reversal.
 
+The direct BCS answer-algebra compiler is now closed exactly.  For one
+constraint with satisfying set `R<={+1,-1}^k`, its coordinate consistency
+observables can all be scalar group monomials in a finite abelian answer
+group algebra iff `R` is affine.  On the group spectrum the coordinates are
+characters, so their joint image is affine; conversely an affine `R` is
+realized by its translation space.  Finite answer duplication has the same
+joint-image obstruction.  Thus the standard constraint--variable BCS format
+is locally toric precisely in the LCS case.  Any broader phase-safe toric
+compiler must use a genuinely nonlocal/nonabelian multi-question gadget.
+
+There is an exact corner-level escape.  For any Boolean predicate
+`R subseteq {+1,-1}^k`, the sum `p_R` of its allowed Fourier atoms in
+`C[(C_2)^k]` has canonical trace `|R|/2^k`, and
+
+```text
+p_R C[(C_2)^k] p_R = C^R.
+```
+
+Thus arbitrary predicates, including nonaffine ones, are exact local finite
+group-algebra corners.  The global obstruction is now one reducing
+projection: local context projections need not commute, their product is not
+a projection, and a projection commuting with all variable generators is
+central in the bare context group factor.  The surviving alternative target
+is a canonical Hecke corner `p_K L(Gamma) p_K`, for finite `K`, containing a
+trace-preserving copy of one non-CE synchronous BCS algebra.  Hyperlinearity
+of `Gamma` would make this positive corner CE and give the contradiction.
+See `TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
+
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
 `FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the

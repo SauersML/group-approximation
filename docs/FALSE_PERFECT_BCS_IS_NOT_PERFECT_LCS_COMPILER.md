@@ -60,6 +60,56 @@ It has three elements and therefore is not affine over `F_2`.  No system of
 commuting-involution group relators, even with existential commuting
 ancillas, has `(PBL4)` as its allowed character set.
 
+### Exact answer-algebra form of the obstruction
+
+The same boundary can be stated directly in the language of the
+constraint--variable game.  Let
+
+```text
+R subseteq {+1,-1}^k
+```
+
+be the nonempty satisfying-answer set for one constraint.  Its answer
+algebra is `C^R`, and the `j`th consistency check uses the coordinate
+observable
+
+```text
+f_j(r)=r_j.
+```
+
+Suppose one tries to make this answer algebra a finite abelian group algebra
+`C[A]` so that every `f_j` is a scalar phase times a group monomial.  On the
+Gelfand spectrum `Ahat`, group monomials are characters.  Therefore, after
+identifying `R` with `Ahat`, the map
+
+```text
+r |-> (f_1(r),...,f_k(r))
+```
+
+is a translate of a homomorphism from `Ahat` to `{+1,-1}^k`.  Its image is
+an affine subgroup.  Since the coordinate tuple is the assignment `r`
+itself and separates the points of `R`, its image is exactly `R`.  Thus `R`
+must be affine.
+
+Conversely, if `R` is an affine subspace, translate it to a vector subspace
+`V<=F_2^k`, take the answer group dual to `V`, and use the coordinate
+characters.  Hence:
+
+```text
+all BCS answer coordinates are group monomials
+    <=> the satisfying set is affine.                         (PBL4a)
+```
+
+Finite answer duplication does not evade this.  If a finite group spectrum
+maps onto `R` and the pulled-back coordinate functions are characters, their
+joint image is still affine; surjectivity makes that image `R`.
+
+This proves that the standard constraint--variable BCS game reaches a toric
+consistency presentation by local answer re-encoding exactly in the
+affine/LCS case.  It does not rule out a genuinely nonlocal, nonabelian toric
+gadget involving several new questions, but it closes cyclic answer
+relabeling, finite hidden labels, and local abelian ancillas.
+
 This is why an arbitrary BCS constraint cannot simply be read as a solution
 group relation.  Its operator form is a polynomial projection equation which
 removes forbidden joint spectral atoms; group relators only identify products
