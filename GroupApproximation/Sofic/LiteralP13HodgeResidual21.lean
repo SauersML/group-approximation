@@ -2,16 +2,16 @@ import GroupApproximation.Sofic.LiteralP13HodgeResidual21Part0
 import GroupApproximation.Sofic.LiteralP13HodgeResidual21Part1
 import GroupApproximation.Sofic.LiteralP13HodgeResidual21Part2
 import GroupApproximation.Sofic.LiteralP13HodgeResidual21Part3
+import GroupApproximation.Sofic.LiteralP13HodgeResidualComposition
 
 namespace GroupApproximation
 namespace LiteralP13HodgeCertificate
 
 theorem residual_block_natAbs_2_1 :
     ∑ c : Fin 293, (residualNumerator 2 1 c).natAbs = 7915229999 := by
-  rw [sum_natAbs_eq_parts]
-  rw [Fin.sum_univ_four]
-  simp only [add_assoc]
-  rw [residual_part_sum_2_1_0, residual_part_sum_2_1_1, residual_part_sum_2_1_2, residual_part_sum_2_1_3]
+  refine (sum_natAbs_eq_of_part_sums 2 1
+    residual_part_sum_2_1_0 residual_part_sum_2_1_1
+    residual_part_sum_2_1_2 residual_part_sum_2_1_3).trans ?_
   norm_num
 
 end LiteralP13HodgeCertificate

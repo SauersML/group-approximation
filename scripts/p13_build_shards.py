@@ -29,8 +29,15 @@ SHARD_COUNT = 6
 BLOCK_WIDTH = 6
 PART_COUNT = 4
 MODULE_PREFIX = "GroupApproximation.Sofic.LiteralP13HodgeResidual"
-FOUNDATION_MODULE = (
+FOUNDATION_CORE_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeCertificateCore"
+)
+FOUNDATION_COMPOSITION_MODULE = (
+    "GroupApproximation.Sofic.LiteralP13HodgeResidualComposition"
+)
+FOUNDATION_MODULES = (
+    FOUNDATION_CORE_MODULE,
+    FOUNDATION_COMPOSITION_MODULE,
 )
 RESIDUAL_AGGREGATOR_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeResidual"
@@ -229,7 +236,7 @@ def content_cache_key(
 
 def foundation_cache_key(root: Path) -> str:
     return content_cache_key(
-        root, scope="foundation", roots=(FOUNDATION_MODULE,)
+        root, scope="foundation", roots=FOUNDATION_MODULES
     )
 
 
@@ -321,7 +328,8 @@ def all_foundation_files(root: Path) -> list[Path]:
                 raise RuntimeError(f"refusing symlinked build artifact: {path}")
             if path.is_file():
                 files.append(path)
-    missing = [relative for relative in required_artifacts(FOUNDATION_MODULE)
+    missing = [relative for module in FOUNDATION_MODULES
+               for relative in required_artifacts(module)
                if not (root / relative).is_file()]
     if missing:
         raise RuntimeError(
@@ -342,8 +350,9 @@ def write_archive(root: Path, archive: Path, files: Sequence[Path]) -> None:
 
 
 def build_foundation(root: Path, archive: Path) -> None:
-    assert_sources(root, (FOUNDATION_MODULE,))
-    run_module_build(root, FOUNDATION_MODULE)
+    assert_sources(root, FOUNDATION_MODULES)
+    for module in FOUNDATION_MODULES:
+        run_module_build(root, module)
     write_archive(root, archive, all_foundation_files(root))
 
 
@@ -427,7 +436,8 @@ def extract_archive(
 
 def restore_foundation(root: Path, archive: Path) -> None:
     restored = extract_archive(root, archive, allowed_modules=None)
-    missing = [relative for relative in required_artifacts(FOUNDATION_MODULE)
+    missing = [relative for module in FOUNDATION_MODULES
+               for relative in required_artifacts(module)
                if relative not in restored]
     if missing:
         raise RuntimeError(
@@ -550,7 +560,7 @@ def self_test(root: Path) -> None:
         raise RuntimeError("P13 shard module roster has the wrong size")
     if len(set(modules)) != len(modules):
         raise RuntimeError("P13 shard module roster contains duplicates")
-    assert_sources(root, (FOUNDATION_MODULE, *modules))
+    assert_sources(root, (*FOUNDATION_MODULES, *modules))
 
     def closure_modules(roots: Sequence[str]) -> set[str]:
         return {
@@ -560,14 +570,15 @@ def self_test(root: Path) -> None:
 
     wrappers = {RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE}
     generated_modules = set(modules)
-    foundation_closure = closure_modules((FOUNDATION_MODULE,))
+    foundation_closure = closure_modules(FOUNDATION_MODULES)
     unexpected_foundation = sorted(
         foundation_closure.intersection(generated_modules | wrappers)
     )
-    if FOUNDATION_MODULE not in foundation_closure or unexpected_foundation:
+    missing_foundation = sorted(set(FOUNDATION_MODULES) - foundation_closure)
+    if missing_foundation or unexpected_foundation:
         raise RuntimeError(
             "P13 foundation cache closure crosses a generated-module boundary:\n"
-            + "\n".join(unexpected_foundation)
+            + "\n".join(missing_foundation + unexpected_foundation)
         )
 
     keys = [("foundation", foundation_cache_key(root))]

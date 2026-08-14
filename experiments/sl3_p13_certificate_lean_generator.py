@@ -215,19 +215,20 @@ def emit_block(output, module_prefix, residual, i, k):
     imports = "".join(
         "import GroupApproximation.Sofic.%s%d%dPart%d\n" %
         (module_prefix, i, k, part) for part in range(4))
-    names = ", ".join(
+    names = [
         "residual_part_sum_%d_%d_%d" % (i, k, part)
-        for part in range(4))
+        for part in range(4)]
     output.write_text(
-        imports + "\nnamespace GroupApproximation\n" +
+        imports +
+        "import GroupApproximation.Sofic.LiteralP13HodgeResidualComposition\n" +
+        "\nnamespace GroupApproximation\n" +
         "namespace LiteralP13HodgeCertificate\n\n" +
         "theorem residual_block_natAbs_%d_%d :\n" % (i, k) +
         "    ∑ c : Fin 293, (residualNumerator %d %d c).natAbs = %d := by\n"
         % (i, k, total) +
-        "  rw [sum_natAbs_eq_parts]\n" +
-        "  rw [Fin.sum_univ_four]\n" +
-        "  simp only [add_assoc]\n" +
-        "  rw [%s]\n" % names +
+        "  refine (sum_natAbs_eq_of_part_sums %d %d\n" % (i, k) +
+        "    %s %s\n" % (names[0], names[1]) +
+        "    %s %s).trans ?_\n" % (names[2], names[3]) +
         "  norm_num\n" + MODULE_END)
 
 
