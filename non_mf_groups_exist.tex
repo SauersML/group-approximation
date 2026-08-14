@@ -38,7 +38,7 @@
   \ifanonymous
     \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace formalized in Lean\thinspace]}%
   \else
-    \href{\coderepository/blob/main/GroupApproximation/#1.lean}{%
+    \href{\coderepository/blob/verified/GroupApproximation/#1.lean}{%
       \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}}%
   \fi}
 \setlist[enumerate]{leftmargin=2.35em}
@@ -115,12 +115,8 @@ We give an explicit eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
 most six.  Its Clifford witness is a
 six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
-are closed under neither quotients nor extensions.  The core non-MF theorem
-and every result carrying a formalization tag are machine-verified in Lean;
-the formal development is self-contained, deriving property~\textup{(T)} of
-the base from an explicit rational spectral certificate.  The untagged
-soficity and amenability consequences use the cited permanence theorems.  The
-obstruction is a finite universal Horn sentence and hence defines a nonempty
+are closed under neither quotients nor extensions.  The obstruction is a
+finite universal Horn sentence and hence defines a nonempty
 clopen set of non-MF marked groups.
 \end{abstract}
 
@@ -142,7 +138,7 @@ separable $C^*$-algebra was known not to be MF \cite{BK,CDE}, and their
 natural candidate $\Cred(F_2)$ was in fact proved MF by Haagerup and
 Thorbj{\o}rnsen \cite{HT}.  The negative solution of the Connes embedding
 problem subsequently supplied abstract stably finite non-MF algebras
-\cite{FGH}.  No countable group was known whose reduced or maximal group
+\cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
 These questions sit at the endpoint of a program of finitary
@@ -155,12 +151,13 @@ Bachner--Dogon--Lubotzky \cite{BDL}, who describe the three remaining
 metrics --- the Hamming metric (soficity), the Hilbert--Schmidt norm
 (hyperlinearity), and the operator norm (MF) --- as ``the holy-grail of
 the subject.''  The Hamming case was disproved in 2026: the first
-nonsofic group was constructed by OpenAI \cite{OAI}, and Kun--Thom
-generalized the construction \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
+nonsofic group was constructed by OpenAI \cite{OAI}, Fournier--Facio then
+gave a finitely presented torsion-free example \cite{FFF}, and Kun--Thom
+developed further wreath-product examples \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
 driving those arguments, is also the conceptual ancestor of the present
 one.  Soficity concerns permutations in the Hamming metric, while MF concerns
-unitaries in operator norm; before the present work no implication between
-the two approximation properties was known.  The operator-norm setting
+unitaries in operator norm, so there is no direct metric comparison between
+the two approximation properties.  The operator-norm setting
 requires a different rigidity theorem, proved here by applying the Kazhdan
 projection inside a finite norm ultraproduct.  This paper settles the
 operator-norm case by one explicit finitely presented group; it also
@@ -243,6 +240,20 @@ For norm-matrix coronas, property~\textup{(T)} supplies a Kazhdan projection
 in a finite norm ultraproduct, and the right-hand implication turns its
 one-sided inclusion into equality.  This yields the reusable theorem behind
 every result below.
+
+We use the following terminology before collecting the remaining notation in
+Section~\ref{sec:prelim}.  A \emph{corona representation} of a group $H$ is a
+homomorphism $H\to\U(\mathcal Q)$, and it \emph{detects} $g\in H$ when it
+does not send $g$ to $1$.  An \emph{operator-norm asymptotic representation}
+is a sequence of maps $U_n\colon H\to\U(d_n)$ such that
+\[
+ \opnorm{U_n(g)U_n(h)-U_n(gh)}\longrightarrow0
+ \qquad(g,h\in H).
+\]
+For coordinate sequences, $a_n\sim_2 b_n$ means
+$\hsnorm{a_n-b_n}\to0$, where
+$\hsnorm{x}=\tr_{d_n}(x^*x)^{1/2}$ is the normalized
+Hilbert--Schmidt norm.
 
 \begin{theorem}[Kazhdan transport of asymptotic commutants]
 \label{thm:kazhdan-transport}
