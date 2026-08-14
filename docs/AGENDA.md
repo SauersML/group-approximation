@@ -6,6 +6,25 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
+
+`FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the
+most direct canonical-trace shortcut from a perfect game to a group factor.
+For every representation `pi:G->U(K)`, the diagonal representation
+
+```text
+g |-> pi(g) tensor lambda_G(g)
+```
+
+has the regular character, but the fiberwise Fell unitary
+`W(xi tensor delta_h)=pi(h^(-1))xi tensor delta_h` conjugates it to
+`1 tensor lambda_G`.  Hence its generated von Neumann algebra is spatially
+just `L(G)`; the possibly non-CE game representation has been absorbed, not
+implanted.  A genuine Hecke-corner route would have to place the game algebra
+normally and trace-preservingly inside a canonical group-factor corner, which
+is essentially the still-open groupification theorem itself.  This leaves
+the one-instance perfect BCS-to-LCS compiler as the direct game lane.
+
 ### 2026-08-14: the full Fourier space already has a quantum unitary gap
 
 The constant kernel produced by the crossed-zero pairing relation should not
