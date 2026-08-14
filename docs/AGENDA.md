@@ -4,6 +4,24 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: one symmetry witnesses the Pauli multiplicity floor
+
+`TRUE_PAULI_MULTIPLICITY_HAS_ONE_SYMMETRY_WITNESS.md` sharpens the current
+nonhyperlinear endpoint. In every finite coordinate, balanced-symmetry Haar
+averaging turns the fixed multiplicity variance `1/8+2y` into one
+self-adjoint involution `V` with `[V,E]=0` and
+
+```text
+||[V,Phi_E(F)]||_2^2 >= 1/4+4y >= 1/4.
+```
+
+The full coefficient algebra therefore need not be reconstructed at the
+terminal step. The live theorem is a single-symmetry relative-bicommutant
+statement binding every coordinate `E`-commuting involution to the
+cross-root multiplication module. The involution is coordinate-dependent,
+so this is not yet a fixed group word or a proof of nonhyperlinearity.
+Another finite Pauli commutator does not address the gate.
+
 ### 2026-08-14: exact no-signaling boxes close the label-law shortcut
 
 `FALSE_NONSIGNALING_PAIRED_QUOTIENT_SHORTCUT.md` gives an elementary exact

@@ -894,6 +894,24 @@ and verify the distinguished central involution is visible in the commuting
 model and uniformly invisible in matrices.  This is the final
 nonhyperlinearity proof.
 
+## One-symmetry form of the atlas multiplicity gate
+
+The Pauli multiplicity floor has a smaller finite-coordinate witness than a
+recovered coefficient algebra. Balanced-symmetry averaging gives, in every
+matrix coordinate, one self-adjoint involution `V_n` with
+
+```text
+[V_n,E_n]=0,
+||[V_n,Phi_(E_n)(F_n)]||_2^2 >= 1/4-o(1).
+```
+
+Thus the terminal atlas theorem need not explicitly reconstruct the whole
+multiplicity algebra. It is enough to prove that every recovered
+`E_n`-commuting symmetry asymptotically commutes with the block-diagonal
+transported carrier. The coordinate dependence of `V_n` is the remaining
+gate; it cannot be replaced by a fixed Pauli word. See
+`TRUE_PAULI_MULTIPLICITY_HAS_ONE_SYMMETRY_WITNESS.md`.
+
 ## Resource allocation
 
 Stop:

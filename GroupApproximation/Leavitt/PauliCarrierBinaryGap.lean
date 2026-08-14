@@ -115,5 +115,25 @@ theorem one_eighth_le_actualPacketMultiplicityResidual
   unfold actualPacketMultiplicityResidual
   linarith
 
+/-- Lower bound supplied by balanced-symmetry averaging. If the actual
+packet has `y=τ(EFEF)`, a self-adjoint involution in the binary commutant has
+squared commutator energy at least this number. -/
+def actualPacketSymmetryWitnessEnergy (y : ℝ) : ℝ :=
+  2 * actualPacketMultiplicityResidual y
+
+/-- The symmetry-witness energy is exactly `1/4+4y`. -/
+theorem actualPacketSymmetryWitnessEnergy_eq (y : ℝ) :
+    actualPacketSymmetryWitnessEnergy y = (1 : ℝ) / 4 + 4 * y := by
+  unfold actualPacketSymmetryWitnessEnergy actualPacketMultiplicityResidual
+  ring
+
+/-- Positivity of `τ(EFEF)` gives the dimension-free squared-commutator floor
+`1/4` for one coordinate commutant symmetry. -/
+theorem one_fourth_le_actualPacketSymmetryWitnessEnergy
+    (y : ℝ) (hy : 0 ≤ y) :
+    (1 : ℝ) / 4 ≤ actualPacketSymmetryWitnessEnergy y := by
+  rw [actualPacketSymmetryWitnessEnergy_eq]
+  linarith
+
 end PauliCarrierBinaryGap
 end GroupApproximation
