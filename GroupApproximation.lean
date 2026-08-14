@@ -481,6 +481,7 @@ import GroupApproximation.Sofic.SoficDirectedUnion
 import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
 import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
+import GroupApproximation.Sofic.SoficIntegerExtension
 import GroupApproximation.Monsters.ExplicitIntegralLinearModel
 import GroupApproximation.Endpoint.NonMFImpact
 import GroupApproximation.Sofic.HyperlinearResidualDetector
