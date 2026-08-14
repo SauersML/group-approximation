@@ -49,7 +49,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "0ac500dc7d2e4a2cfe630077699ff8de7cbb01b5a936baafde922eebf286f8d3",
+      "statement_sha256": "308df3ecde9a3edc891b5872323a58299743298921f76d704d9ce0a934e85bd5",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -120,7 +120,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "e8874983ac1703cc05fbdf919511092067bb6b4714c64083eac6a6310b377194",
+      "statement_sha256": "0d7f1f85463b95b21c6bb79155370bc8a3fcf4a32a1421b92638fa3179806a0d",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -147,7 +147,7 @@
     },
     {
       "id": "thm:B",
-      "environment": "theorem",
+      "environment": "mainthm",
       "title": "finite-dimensional shadow",
       "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
       "status": "exact",
@@ -167,8 +167,8 @@
     },
     {
       "id": "thm:C",
-      "environment": "proposition",
-      "title": "cyclic-base comparison",
+      "environment": "mainthm",
+      "title": "cyclic-base calibration",
       "statement_sha256": "4f7eb9ba53bb223d4a16bfc5ff4a8e64f68c81c0624580858e16a2a8d7b9abee",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -235,7 +235,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "7e7f6eb6a67d3e594580b6634f567398381866ce00bda752f1a6f05787b45cac",
+      "statement_sha256": "a54f7111443147f72a0f7e928ceab58516b23d203ea1c05a98208d35713feffe",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
