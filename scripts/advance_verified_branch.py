@@ -288,6 +288,9 @@ def self_test() -> int:
     assert not is_publication_only("docs/PROPERTY_TT_CLAIM_MAP.md")
     assert not is_publication_only("official/counterexample.tex")
     assert not is_publication_only("docs/new_proof.lean")
+    assert not is_publication_only("scripts/advance_verified_branch.py")
+    assert not is_publication_only(".github/workflows/verified-promote.yml")
+    assert not is_publication_only(".github/workflows/verified-fast-forward.yml")
     assert not is_publication_only("unknown/new-file.txt")
 
     docs_only = compare_tree_maps(

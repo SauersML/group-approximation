@@ -314,7 +314,7 @@ jobs:
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
       - name: Build project
-        # The large P13 leaves were built one block at a time in 36 bounded
+        # The large P13 leaves were built three blocks at a time in 12 bounded
         # shards and sealed above.  The ordinary root build can now schedule
         # the remaining modules without exposing those 144 leaves together.
         run: lake build

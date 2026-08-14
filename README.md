@@ -22,10 +22,12 @@ them. The root module is `GroupApproximation.lean`; it imports the formal
 library as a whole, while the subject directories provide smaller reading
 paths.
 
-The `verified` branch described above records the last completed public
-audit. The paragraphs below describe the current source revision; publication of a new
-verified pin is blocked until the exact claim manifest, full build, axiom
-audit, fresh-kernel replay, and PDF provenance gate all pass for one commit.
+The `verified` branch described above records the last completed public proof
+audit. The paragraphs below describe the current source revision; publication
+of a new verified pin is blocked until the exact claim manifest, full build,
+axiom audit, signature pinning, and fresh-kernel replay all pass for one
+commit. Separate release workflows build and attest the PDFs from an exact
+prover-certified source revision.
 
 ## Non-MF groups exist: a concrete finitely presented counterexample
 
@@ -60,9 +62,9 @@ representation proves `w ≠ 1`. The manuscript proves property (T) by identifyi
 the twenty-relator base with `ℤ³ ⋊ SL₃(ℤ)` from the displayed presentation
 and applying the classical affine-lattice theorem. Independently, the companion
 derives the same property from its canonical rational P13 certificate and
-the intrinsic fixed-point argument. These claims are not part
-of the verified pin above until the full build, manifest, axiom, replay, and
-PDF provenance gates all succeed at one commit.
+the intrinsic fixed-point argument. These claims are not part of the verified
+pin above until the full build, manifest, axiom, signature, and fresh-kernel
+replay gates all succeed at one commit.
 
 The conceptual proof is organized around
 

@@ -97,9 +97,9 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
-      # One block (four large kernel computations) per runner.  Twelve-way
-      # bounded parallelism gives three short waves instead of six runners
-      # each replaying 24 leaves serially for hours.
+      # Three blocks (twelve large kernel computations) per runner.  Twelve-way
+      # bounded parallelism avoids both the old six long serial jobs and a
+      # 36-job fan-out.
       max-parallel: 12
       matrix:
         shard:
@@ -115,30 +115,6 @@ jobs:
           - 9
           - 10
           - 11
-          - 12
-          - 13
-          - 14
-          - 15
-          - 16
-          - 17
-          - 18
-          - 19
-          - 20
-          - 21
-          - 22
-          - 23
-          - 24
-          - 25
-          - 26
-          - 27
-          - 28
-          - 29
-          - 30
-          - 31
-          - 32
-          - 33
-          - 34
-          - 35
 
     steps:
       - name: Check out repository
