@@ -34,10 +34,12 @@ theorem reducedGroupCStar_separableSpace
   have hsStar : (star s : Set A).Countable := by
     rw [← Set.image_star]
     exact hs.image _
-  have hgen : (s ∪ star s).Countable := hs.union hsStar
-  letI : Countable ↥(s ∪ star s) := hgen.to_subtype
+  let t : Set A := s ∪ star s
+  have ht : t.Countable := by
+    simpa [t] using hs.union hsStar
+  letI : Countable ↥t := ht.to_subtype
   have hmonoid :
-      ((Submonoid.closure (s ∪ star s) : Submonoid A) : Set A).Countable := by
+      ((Submonoid.closure t : Submonoid A) : Set A).Countable := by
     rw [Submonoid.closure_eq_mrange, MonoidHom.coe_mrange]
     exact Set.countable_range _
   have hadjoin :
@@ -46,7 +48,7 @@ theorem reducedGroupCStar_separableSpace
     change TopologicalSpace.IsSeparable
       ((StarAlgebra.adjoin ℂ s).toSubalgebra.toSubmodule : Set A)
     rw [StarAlgebra.adjoin_eq_span]
-    exact hmonoid.isSeparable.span
+    simpa [t] using hmonoid.isSeparable.span
   have hclosed : TopologicalSpace.IsSeparable
       ((reducedGroupCStarSubalgebra G : StarSubalgebra ℂ A) : Set A) := by
     change TopologicalSpace.IsSeparable
