@@ -2,6 +2,23 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 one finite envelope removes pairwise root gauges
+
+Every finite coefficient window and all of its positive-root products fit
+inside one finite group `U(V)=1+N(V)`, where `N(V)` is a graded nilpotent
+algebra of strictly upper-triangular matrices.  For five coordinates the
+closure uses at most four coefficient factors.  The complete
+`t_l s_k=delta_(l,k)` branch table can therefore be exactified in one finite
+group representation, rather than in separately gauged Heisenberg cells.
+
+See `TRUE_FINITE_UNITRIANGULAR_MULTIPLICATION_ENVELOPE.md`.  This removes
+pairwise Stone--von Neumann synchronization from the live gate.  It does not
+classicalize the finite packet: its regular representation is still an exact
+Pauli countermodel.  The sole remaining datum is the comb compressor matrix
+on the multiplicity spaces of this one repaired envelope.  The target is to
+derive the two diagonal and one crossed common-coordinate pairing defects
+from that matrix.
+
 ## 2026-08-14 closed: perfect no-signaling labels are still not whole maps
 
 For every perfect binary pairing of size `N>=4`, let `q_c` be uniform on the
