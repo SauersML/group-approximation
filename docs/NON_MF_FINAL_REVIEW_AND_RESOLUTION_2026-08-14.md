@@ -94,11 +94,13 @@ background.
   permanence gives exactness of the witness, and discrete group exactness
   gives exactness of its reduced group algebra.  This literature-dependent
   chain is stated openly and receives no Lean badge.
-- **Soficity.**  The manuscript identifies the finite Clifford stages, their
-  sofic finite-index structure, the directed telescope, and the final split
-  integer extension.  The last equality with the earlier coset-action witness
-  uses the stabilizer computation and transitivity, not merely a suggestive
-  similarity of constructions.
+- **Soficity.**  Successive telescope levels are commensurable with the base,
+  and the whole vertical group commensurates the base; orbit--stabilizer
+  therefore makes every level orbit on the coset site set finite.  Finite
+  Clifford windows then lie in finite level-invariant lamp subgroups.  Local
+  finite-kernel permanence, semidirect-product reassociation, and the split
+  integer-extension theorem prove the concrete witness sofic without an
+  auxiliary model or an identification step.
 - **Radical scope.**  What is proved is `w`-membership and functorial
   portability.  Exact computation of the radical is never inferred from
   membership alone.
@@ -138,6 +140,8 @@ non-MF theorem it now contains premise-free endpoints for:
 - the full scaling family for every integer factor at least two;
 - the concrete locally finite/LEF/sofic/MF lamp kernel and the finitely
   generated non-MF witness;
+- the concrete finitely generated witness being simultaneously sofic and
+  non-MF;
 - residual finiteness, soficity, and MF of the affine base through explicit
   congruence quotients;
 - a concrete MF group with a non-MF quotient;
@@ -149,17 +153,18 @@ non-MF theorem it now contains premise-free endpoints for:
   faithful canonical trace, stable finiteness in every finite matrix
   amplification, and failure of MF.
 
-The last item strengthens the algebraic endpoint from the presented group
-`E` to the concrete Clifford witness `W` without introducing a theorem
-input.  Soficity of `W` is proved separately in the manuscript.
+The last two witness items strengthen the algebraic endpoint from the
+presented group `E` to the concrete Clifford witness `W` without introducing
+a theorem input.  The premise-free theorem
+`NonMFImpact.witness_sofic_nonMF` now certifies the headline separation.
 
-The reusable supporting theorem in
-`GroupApproximation/Sofic/FiniteOrbitInvariantKernel.lean` is necessarily
-quantified over an action: finite site orbits force every finite
-Clifford-lamp window into a finite invariant subgroup, without choosing a
-normal form for the presented lamp group.  It is not advertised as a closed
-manuscript endpoint; the eventual concrete `W` endpoint must discharge its
-site-orbit premise internally.
+The reusable supporting theorems separate the argument cleanly.
+`MappingTelescopeFiniteOrbits.lean` proves the finite site-orbit calculation;
+`FiniteOrbitInvariantKernel.lean` turns those orbits into finite invariant
+Clifford subgroups without choosing lamp normal forms; and
+`SoficMarkedCompression.lean` combines them with the local finite-kernel and
+integer-extension permanence theorems.  These modules are necessarily
+quantified, but the concrete manuscript endpoint discharges every input.
 
 ## Exactness upgrade
 
@@ -197,25 +202,15 @@ paper does not claim them.
    positive, dimension-independent defect threshold.  It does not compute a
    numerical threshold on the displayed relators from the `1/500` rational
    spectral gap.  An effective modulus remains valuable new work.
-3. **Closed Lean soficity of the total witness.**  The manuscript's tower
-   proof uses standard sofic permanence.  Lean has the finite lamp groups,
-   finite-kernel semidirect permanence, directed unions, the affine base,
-   mapping-telescope permanence, locally finite invariant-kernel permanence,
-   split integer-extension permanence, and the theorem that finite site
-   orbits give finite invariant subgroups containing any finite Clifford-lamp
-   window.  The remaining issue is now purely the concrete telescope
-   calculation: its finite-index levels must be shown to have finite orbits
-   on the literal coset site set, followed by the dilation identification
-   with the literal witness.
-4. **Soficity and structure of `E`.**  The kernel of `E -> W`, a normal form,
+3. **Soficity and structure of `E`.**  The kernel of `E -> W`, a normal form,
    the word problem, and soficity of the finitely presented group `E` remain
    unresolved.
-5. **Multiplicity results.**  Pairwise non-isomorphism of the scaling family
+4. **Multiplicity results.**  Pairwise non-isomorphism of the scaling family
    and continuum-many isomorphism types in the clopen cylinder are not proved.
-6. **Broader targets.**  Extending transport from matrix coronas to arbitrary
+5. **Broader targets.**  Extending transport from matrix coronas to arbitrary
    norm ultraproducts of finite traced C-star algebras is plausible but needs
    a precisely chosen target category and a new proof.
-7. **MF versus hyperlinearity in the paper's convention.**  For the weak CDE
+6. **MF versus hyperlinearity in the paper's convention.**  For the weak CDE
    norm-corona definition, operator-norm multiplicativity controls the
    Hilbert--Schmidt defect but does not supply faithful coordinate traces.
    The manuscript therefore asks whether MF implies hyperlinearity and
@@ -248,9 +243,10 @@ particular:
   multiplicity questions, broader tracial targets, and comparison with the
   known nonsofic constructions are explicit frontier roots.
 
-Cairn's duplicate check is clean.  The compiled graph has 87 claims and 81
-routes: 55 claims are established, 11 routes are invalidated by proved
-obstructions, and 24 frontier holes remain.  This prevents, among other
+Cairn's duplicate check is clean.  The compiled graph has 96 claims and 93
+routes: 61 claims are established, 14 routes are invalidated by proved
+obstructions, and 27 frontier holes remain.  The graph now names both the
+commensurated-level orbit theorem and its direct proof route.  This prevents, among other
 mistakes, treating radical membership as an exact radical calculation,
 confusing the established sofic quotient `W` with the unresolved soficity of
 `E`, or trying to detect the unsquared defect by residual finiteness.
@@ -272,11 +268,11 @@ confusing the established sofic quotient `W` with the unresolved soficity of
 The following were run on MSI only, using shared warm caches and no CI or
 local compilation:
 
-- all 42 manuscript Lean references resolve;
-- all 42 cited declarations have closed theorem headers;
+- all 44 manuscript Lean references resolve;
+- all 44 cited declarations have closed theorem headers;
 - all 35 numbered theorem-like claims match the exact-claim manifest and its
   declaration roster;
-- the Cairn graph compiles with 87 claims and 81 routes, its changed-file
+- the Cairn graph compiles with 96 claims and 93 routes, its changed-file
   duplicate/lint check is clean, and its static site generator completes;
 - the changed non-MF release, public, and axiom-audit Lean targets build with
   warnings as errors;

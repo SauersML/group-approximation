@@ -1802,6 +1802,7 @@ prove $w\ne1$.
 The group $W=\ClLamp(X)\rtimes V$ of Proposition~\ref{prop:witness} is a
 six-generated sofic group that is not MF.  In particular, soficity does
 not imply the MF property.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_nonMF}
 Since every sofic group is hyperlinear, every sofic non-MF group is also a
 hyperlinear non-MF group.
 \leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF}
@@ -1809,40 +1810,32 @@ Consequently $W$ also shows that hyperlinearity --- equivalently, Connes
 embeddability at the group level --- does not imply MF.
 
 \begin{proof}
-Write $\beta=\bar\alpha$ and, for $n\ge1$, put
-\[
- X_n=\bar\Gamma/\beta^n(\bar\Gamma),\qquad
- X^+=\coprod_{n\ge1}X_n.
-\]
-These sets are finite (in fact $|X_n|=8^n$).  The formula
-\[
- F(g\beta^n(\bar\Gamma))
-   =\beta(g)\beta^{n+1}(\bar\Gamma)
-\]
-defines an injective map $F\colon X^+\to X^+$ satisfying
-$F(\gamma x)=\beta(\gamma)F(x)$.  If
-$Y_m=X_1\amalg\cdots\amalg X_m$, then
-\[
- K_m=\ClLamp(Y_m)\rtimes\bar\Gamma
-\]
-is sofic: its displayed copy of the residually finite group $\bar\Gamma$
-has finite index; passing to its finite-index normal core reduces this to an
-extension by a finite quotient.  Hence $K=\bigcup_mK_m$ is sofic.  The maps $F$ and
-$\beta$ give an injective endomorphism of $K$; its automorphic direct limit
-$\widetilde K$ is again sofic.  Therefore
-$S=\widetilde K\rtimes\Z$ is sofic, since sofic groups are closed under
-directed unions and under extensions by amenable quotients
-\cite{ElekSzabo}.
+Write $T=\varinjlim(\bar\Gamma,\bar\alpha)$, so
+$V=T\rtimes\mathbb Z$, and let $B\le V$ be the level-zero copy of
+$\bar\Gamma$.  The image of $\bar\alpha$ has finite index (at most eight,
+by the parity classes of the translation lattice).  Thus every telescope
+level $\bar\Gamma_n\le T$ is commensurable with $B$.  The stable letter
+conjugates $B$ onto $\bar\alpha(\bar\Gamma)$, so all of $V$ commensurates
+$B$.  Orbit--stabilizer now shows that every $\bar\Gamma_n$-orbit in
+$X=V/B$ is finite.
 
-This $S$ is precisely the earlier witness $W$.  If
-$x_0=\beta(\bar\Gamma)\in X_1$, $T$ is the final shift, and
-$o=T^{-1}x_0$, then the stabilizer of $o$ in the mapping-telescope group is
-the level-zero copy of $\bar\Gamma$.  Indeed, a height-zero element has the
-form $T^{-m}\gamma T^m$; if it fixes $o$, translating forward shows
-$\beta(\gamma)\in\beta^{m+1}(\bar\Gamma)$, hence
-$\gamma\in\beta^m(\bar\Gamma)$ and the element already lies in
-$\bar\Gamma$.  Its orbit is the entire dilated site set, so that site set is $V/\bar\Gamma=X$ and
-$S\cong\ClLamp(X)\rtimes V=W$.
+Consider a finite subset of $\ClLamp(X)\rtimes T$.  Its $T$-coordinates
+lie in one level $\bar\Gamma_n$.  Each of its lamp coordinates has finite
+$\bar\Gamma_n$-orbit: this holds for the central sign and for each site
+lamp, hence for every Clifford word.  The finitely many resulting orbits
+generate a finite $\bar\Gamma_n$-invariant subgroup $L\le\ClLamp(X)$,
+because $\ClLamp(X)$ is locally finite.  Our original finite set therefore
+lies in $L\rtimes\bar\Gamma_n$, which is sofic (finite-by-sofic).  Soficity
+is local over finite subsets, so $\ClLamp(X)\rtimes T$ is sofic.
+
+Reassociating the semidirect products gives
+\[
+ W=\ClLamp(X)\rtimes(T\rtimes\mathbb Z)
+   \cong (\ClLamp(X)\rtimes T)\rtimes\mathbb Z.
+\]
+The final group is sofic by permanence under extensions with amenable
+quotient \cite{ElekSzabo}.  Here $\bar\Gamma$ is sofic because its six
+matrices are integral and generate a residually finite linear group.
 
 The map $E\to W$ of Proposition~\ref{prop:witness} is surjective: its image
 contains $V$, the root lamp $c_o$, and hence every lamp by transitivity of
