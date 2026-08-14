@@ -50,10 +50,11 @@ import claim_map  # noqa: E402  (path set above)
 # invisible to this one.
 FORBIDDEN = [
     ("sorry / sorryAx", re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])|sorryAx")),
-    ("hand-declared axiom", re.compile(r"^[ \t]*axiom[ \t]")),
+    ("hand-declared axiom", re.compile(r"^[ \t]*axiom[ \t]", re.MULTILINE)),
     ("native_decide (trusts the compiler, not the kernel)", NATIVE_DECIDE_RE),
     ("unsafe / implemented_by / opaque escape hatch",
-     re.compile(r"^[ \t]*unsafe[ \t]|@\[implemented_by|^[ \t]*opaque[ \t]")),
+     re.compile(r"^[ \t]*unsafe[ \t]|@\[implemented_by|^[ \t]*opaque[ \t]",
+                re.MULTILINE)),
     ("warningAsError disabled", re.compile(r"warningAsError[ \t]*(:=)?[ \t]*false")),
     # Any value, not just 0: `maxHeartbeats 400000` and `maxHeartbeats 0` differ
     # only in how long the same unfixed proof is allowed to flail.  A timeout is
@@ -70,6 +71,15 @@ FORBIDDEN = [
     ("maxRecDepth budget bump",
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxRecDepth(?![A-Za-z0-9_])")),
 ]
+
+# The environment-scan calibration corpus must contain one real defect.  This
+# is the only exception to the repository-wide lexical prohibition, pinned to
+# its exact path, line, tag, and source text so it cannot become a general
+# escape hatch.
+FORBIDDEN_ALLOWLIST = {
+    ("hand-declared axiom", "scripts/Audit/Plants.lean", 28,
+     "axiom plantedAxiom : True"),
+}
 
 # Strings known to have been fabricated in earlier edits and purged from the
 # publication surface (see docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
@@ -196,29 +206,21 @@ def check_import_closure(root: Path, f: Findings) -> None:
 
 
 def check_forbidden(root: Path, f: Findings) -> None:
-    module_paths = set(all_module_files(root).values())
-    for name, path in sorted(all_module_files(root).items()):
+    # Scan every Lean source, including standalone audits, generated probes,
+    # and files outside the import closure.  A clean build cannot certify code
+    # it never imports, but the source prohibition still applies there.
+    for path in sorted(root.rglob("*.lean")):
+        if ".lake" in path.parts or ".git" in path.parts:
+            continue
         text = path.read_text(encoding="utf-8", errors="replace")
         rel = path.relative_to(root)
         for label, pattern in FORBIDDEN:
             for m in pattern.finditer(text):
                 line = text.count("\n", 0, m.start()) + 1
-                f.add(label, f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
-
-    # Standalone audit programs and generated probes are Lean sources too.
-    # Scan every remaining `.lean` file so an unimported script cannot evade
-    # the native-decision ban merely by living outside a library root.  This
-    # makes the ban repository-wide rather than an accidental property of the
-    # main module graph.
-    for path in sorted(root.rglob("*.lean")):
-        if path in module_paths or ".lake" in path.parts or ".git" in path.parts:
-            continue
-        text = path.read_text(encoding="utf-8", errors="replace")
-        rel = path.relative_to(root)
-        for m in NATIVE_DECIDE_RE.finditer(text):
-            line = text.count("\n", 0, m.start()) + 1
-            f.add("native_decide (trusts the compiler, not the kernel)",
-                  f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
+                source_line = text.splitlines()[line - 1].strip()
+                key = (label, str(rel), line, source_line)
+                if key not in FORBIDDEN_ALLOWLIST:
+                    f.add(label, f"{rel}:{line}: {source_line}")
 
 
 # The "stale conditionality disclaimer" scan used to live here.  It moved to
@@ -387,11 +389,12 @@ CLEAN_TREE = {
 PLANTS = {
     "orphan module": {f"{LIB}/Orphan.lean": "theorem orphan : False := by sorry\n"},
     "sorry / sorryAx": {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"},
-    "hand-declared axiom": {f"{LIB}/Alpha.lean": "axiom alpha : True\n"},
+    "hand-declared axiom":
+        {f"{LIB}/Alpha.lean": "-- declaration below the first line\naxiom alpha : True\n"},
     "native_decide (trusts the compiler, not the kernel)":
         {"scripts/Standalone.lean": "theorem standalone : True := by native_decide\n"},
     "unsafe / implemented_by / opaque escape hatch":
-        {f"{LIB}/Alpha.lean": "opaque alpha : Nat\n"},
+        {f"{LIB}/Alpha.lean": "-- declaration below the first line\nopaque alpha : Nat\n"},
     "warningAsError disabled":
         {f"{LIB}/Alpha.lean": "set_option warningAsError false\n"},
     # A raise, not `0`: the plant is the case the old `maxHeartbeats 0` regex

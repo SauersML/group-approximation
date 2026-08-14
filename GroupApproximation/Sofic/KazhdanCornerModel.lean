@@ -379,7 +379,7 @@ noncomputable instance movingPredicate_decidable (A : OpAlmostRepresentation G)
     DecidablePred (movingPredicate A S t n) := Classical.decPred _
 
 /-- The honest finite coordinate type of the moving spectral corner.  This is
-opaque so later matrix-instance synthesis does not repeatedly normalize the
+kept irreducible so later matrix-instance synthesis does not repeatedly normalize the
 full spectral theorem proof stored in its defining predicate. -/
 noncomputable def WeakMFMovingIndex (A : OpAlmostRepresentation G) (S : Finset G)
     (t : ℝ) (n : ℕ) :=

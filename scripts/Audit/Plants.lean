@@ -29,7 +29,7 @@ axiom plantedAxiom : True
 
 /-- TAUTOLOGY: the conclusion is the premise, under a name claiming the
 conclusion.  Note that its `#print axioms` is perfectly clean, which is why the
-axiom scan cannot see it. -/
+dependency scan cannot see it. -/
 theorem plantedTautology (h : 0 = 0) : 0 = 0 := h
 
 /-- UNCONDITIONAL: the name promises existence; the type still takes a
