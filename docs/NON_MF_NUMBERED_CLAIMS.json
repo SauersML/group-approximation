@@ -122,7 +122,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "df76de2007f64861e33d7ccb3ffd3dab602521424181876bca93db0b00ddcda1",
+      "statement_sha256": "27615a365d6594ca96de33b90c57e8ed5c65ac42b0d6564356c29c60888a7fd7",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -216,8 +216,8 @@
     {
       "id": "prop:maximal-cstar",
       "environment": "proposition",
-      "title": "universe-relative maximal model",
-      "statement_sha256": "6086b7ae0483eadeb3cb3065d7a5e9a5ccfceb46b36e052717e906781d2be7c3",
+      "title": "maximal group algebra",
+      "statement_sha256": "ae7b12825629bb54c755f2a565b6525cfeb40c795196477bfbe2b5652f1be973",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
