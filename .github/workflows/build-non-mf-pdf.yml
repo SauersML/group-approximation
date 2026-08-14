@@ -158,10 +158,10 @@ jobs:
             --check-decls \
             --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/ConceptualNonMFProof \
+              Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
             --require-verified \
-              Sofic/ConceptualNonMFProof \
+              Sofic/LiteralNonMFEndpoint \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
             --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \

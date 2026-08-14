@@ -34,7 +34,7 @@ import GroupApproximation.Monsters.TorsionFreeConjugacyExtension
 import GroupApproximation.Monsters.HitchhikerPayload
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
-import GroupApproximation.Sofic.ConceptualNonMFProof
+import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.ManuscriptExactWrappers
 import GroupApproximation.Sofic.LiteralMFQuotientControls
@@ -182,9 +182,10 @@ proof is exposed in the same conceptual order as the manuscript: the exact
 P13 property-`(T)` certificate, `w = u²`, Kazhdan pinning, finite-normal
 annihilation, and Clifford detection.
 
-* `LiteralNonMFPresentation.literal_algebraic_package` and
-  `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the displayed finite
-  presentation, its relations, and a genuine nontrivial marked involution.
+* `LiteralNonMFPresentation.manuscriptLiteralPresentation` and
+  `LiteralNonMFLinearWitness.literal_mark_ne_one` -- the exact displayed
+  finite presentation, its relations, and a genuine nontrivial marked
+  involution.
 * `LiteralNonMFEndpoint.manuscriptTheoremA` -- the hypothesis-free printed
   theorem, including the corona kernel statement and the group and C-star
   non-MF conclusions.
@@ -505,21 +506,30 @@ export GroupApproximation.MarkedCompressionInclusionData
 
 /-! ### The literal eight-generator theorem -/
 
-export GroupApproximation.LiteralNonMFPresentation (literal_algebraic_package)
+export GroupApproximation.LiteralNonMFPresentation
+  (literalEightGeneratorPresentation manuscriptLiteralPresentation)
 export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
 export GroupApproximation.LiteralNonMFEndpoint
-  (literalBase_hasKazhdanPropertyT conceptualInclusionData
-    compressionRoot compressionDefect mark_eq_compressionDefect_sq
+  (conceptualInclusionData compressionRoot compressionDefect
+    mark_eq_compressionDefect_sq
     compressionDefect_sq_ne_one kazhdanPinning
     negativeCorner_kazhdanTransport_contradiction
     literalInvolutionSubgroup_le_defectNormal
     literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
     literalInvolutionSubgroup_le_normMatrixCoronaKernel
-    literal_mark_eq_one_in_unitaryCorona literal_mark_normMFInvisible
+    literal_mark_eq_one_in_normMatrixCStarCorona
+    literal_mark_eq_one_in_CStarCorona
+    literal_mark_eq_one_in_unitaryCorona
+    literal_mark_mem_manuscriptCoronaMFResidual
+    literal_mark_normMFInvisible
     cliffordSign_blackHole literal_not_isOperatorMF
     literal_not_isCDEOperatorMF
+    literal_failsAllFormalizedMFVariants
+    literal_maximalGroupCStar_not_hasMFEmbedding
     literal_maximalGroupCStar_not_isMFAlgebra
-    literal_not_isReducedGroupCStarMF manuscriptTheoremA manuscriptTheoremD)
+    literal_reducedGroupCStar_not_hasMFEmbedding
+    literal_reducedGroupCStar_not_isMFAlgebra
+    manuscriptTheoremA manuscriptTheoremD)
 export GroupApproximation.LiteralBaseTranslationLattice
   (latticeToBase_injective latticeToBase_range latticeEquivTranslations)
 export GroupApproximation.LiteralBaseP13Replay

@@ -41,7 +41,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/KazhdanCliffordConstruction",
         "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction"),
     "thm:A": (
-        "Sofic/ConceptualNonMFProof",
+        "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA"),
     "thm:B": (
         "Sofic/ManuscriptExactWrappers",
@@ -50,7 +50,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Monsters/LiteralCyclicCalibration",
         "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration"),
     "thm:D": (
-        "Sofic/ConceptualNonMFProof",
+        "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",

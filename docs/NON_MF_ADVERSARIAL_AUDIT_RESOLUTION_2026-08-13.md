@@ -8,7 +8,7 @@ than a list of files that happen to compile.
 
 - The literal eight-generator group now has a kernel-checked MF obstruction.
   `LiteralNonMFEndpoint.manuscriptTheoremA` is the exact hypothesis-free
-  endpoint, assembled in `ConceptualNonMFProof` from the staged P13
+  endpoint, assembled in `LiteralNonMFEndpoint` from the exact P13
   certificate, Kazhdan pinning, finite-normal annihilation, and the Clifford
   witness.
 - `ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF` is retained

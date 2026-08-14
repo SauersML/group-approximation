@@ -61,7 +61,7 @@ Eleven earlier findings were checked against the current tip:
 
 - The literal analytic endpoint is now public and unconditional.  The exact
   P13 certificate and intrinsic bridge discharge property (T), while
-  `ConceptualNonMFProof` exposes the short proof spine.
+  `LiteralNonMFEndpoint` exposes the short proof spine and final theorem.
 - Stale roster: regenerated; checker green.
 - `\leanconditional` unparsed by the checker: the macro and all its uses
   were removed; every remaining link is `\leanverified` and

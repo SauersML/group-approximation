@@ -139,7 +139,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConceptualNonMFProof",
+          "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
         }
@@ -205,7 +205,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConceptualNonMFProof",
+          "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
           "covers": "the complete printed proposition"
         }

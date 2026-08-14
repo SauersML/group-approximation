@@ -11,7 +11,7 @@ presentation.  The exact staged P13 certificate now proves property (T) of
 that raw presentation through checked quotient and intrinsic affine bridges.
 Consequently the literal group, marked word, and its full and reduced group
 C-star conclusions correspond directly to the zero-input declarations in
-`ConceptualNonMFProof.lean`.  The independent Shalom-cover witness remains a
+`LiteralNonMFEndpoint.lean`.  The independent Shalom-cover witness remains a
 separate theorem and is not used to certify the printed literal group.
 
 ## Presentation findings

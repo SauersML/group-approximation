@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.FiniteNormalAverageCorner
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 
@@ -318,13 +319,15 @@ theorem manuscriptRadicalPortability
       (manuscriptCoronaMFResidual G1).map f ≤ manuscriptCoronaMFResidual G2) ∧
       (∀ (phi : MarkedGroup →* G2),
         phi mark ≠ 1 →
-          mark ∈ manuscriptCoronaMFResidual MarkedGroup →
-            ¬ IsCDEOperatorMF G2) := by
+          ¬ IsCDEOperatorMF G2) := by
   constructor
   · exact map_manuscriptCoronaMFResidual_le
-  · intro phi hsurvive hmark hMF
+  · intro phi hsurvive hMF
     have himage : phi mark ∈ manuscriptCoronaMFResidual G2 :=
-      map_manuscriptCoronaMFResidual_le phi ⟨mark, hmark, rfl⟩
+      map_manuscriptCoronaMFResidual_le phi
+        ⟨mark,
+          LiteralNonMFEndpoint.literal_mark_mem_manuscriptCoronaMFResidual,
+          rfl⟩
     have hbot : manuscriptCoronaMFResidual G2 = ⊥ :=
       isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot.mp hMF
     rw [hbot] at himage
