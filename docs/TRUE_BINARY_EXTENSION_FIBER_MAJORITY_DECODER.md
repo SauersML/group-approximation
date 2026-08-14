@@ -4,11 +4,12 @@ Date: 2026-08-14
 
 ## 1. Outcome
 
-The raw-to-comb synchronization gate has a sharper scalar form.  Once the
-extension-character PVM is exact, no separate combinatorial decoder theorem
-is needed for its binary raw branch label.  Fiberwise majority decoding is
-canonical up to ties, and its total error is equivalent within a factor of
-two to conditional two-copy branch disagreement.
+Each binary layer of the raw-to-comb synchronization gate has a sharper
+scalar form.  Once the extension-character PVM and a named diagonal binary
+routing statistic are exact, no separate combinatorial decoder theorem is
+needed for that statistic.  Fiberwise majority decoding is canonical up to
+ties, and its total error is equivalent within a factor of two to conditional
+two-copy branch disagreement.
 
 Let `pi:X->Y` be the restriction map from extension characters to source
 characters.  Give the finite extension atoms nonnegative masses `mu(x)`.  If
@@ -111,7 +112,11 @@ norm.  Local Pauli normalizers cannot do this because they act inside each
 extension packet and leave the multiplicity centralizer free.  The word must
 couple the raw router to the comb restriction map.
 
-Once `(BFD9)` holds at each of the four endpoints, majority decoding gives
-the multiplication-coherent character decoder, deterministic coarsening
+For a finite response window one must apply `(BFD9)` to every binary routing
+decision used to assemble its response map and control the sum of their
+errors.  Only after those decisions are known to be compatible with the
+cross-root multiplication table does majority decoding give the
+multiplication-coherent character decoder.  Deterministic coarsening then
 gives whole-map PVMs, tree gluing gives the common latent-map law, and the
-robust `1/36` floor closes the contradiction.
+robust `1/36` floor closes the contradiction.  The scalar theorem does not by
+itself construct the named branch statistics or prove their compatibility.

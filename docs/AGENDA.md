@@ -36,8 +36,10 @@ most
 
 The scalar factor-two comparison is formalized source-first in
 `FiniteBinaryFiberDecoder.lean`.  The next relation search should therefore
-target asymptotic `L^2` membership of `B` in `A_Y`, rather than construct a
-decoder or whole-map PVM directly.
+target asymptotic `L^2` membership of each named binary branch statistic in
+`A_Y`, rather than construct a decoder or whole-map PVM directly.  The
+finite-window sum of these binary errors and multiplication compatibility
+remain part of the gate; one branch bit alone is not the whole response map.
 
 On the existing Pauli-carrier route this becomes an even shorter terminal
 statement.  If `E` is the trace-`1/8` parent cut and `F=U*QU` the
