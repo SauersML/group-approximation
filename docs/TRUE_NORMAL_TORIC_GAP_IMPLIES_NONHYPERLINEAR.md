@@ -214,6 +214,46 @@ one finite two-player toric game
 Perfect LCS groupification is one structured way to achieve the last line,
 but it is not the only logically possible one.
 
+### A tracial toric model certifies phase survival
+
+There is a second sufficient criterion which is often more natural for
+synchronous games.  Suppose there is a tracial state `tau` on a
+representation of the full universal game algebra such that every clause
+satisfies
+
+```text
+||beta_i pi(g_i)-1||_(2,tau)=0.
+```
+
+Extend `pi` to `Gtilde=B times G` by making `b in B` act as its defining
+complex scalar.  In the trace GNS von Neumann algebra, each clause is then
+equal to the identity.  The group kernel of this representation is normal,
+so it contains `N`, the normal closure of the clauses.  If `b in N intersect
+B`, then
+
+```text
+1=pi(b)=chi(b)1.
+```
+
+The defining character `chi:B->T` is faithful because `B` is literally a
+subgroup of the unit circle.  Hence `b=1`, proving
+
+```text
+N intersect B={1}.
+```
+
+Consequently:
+
+> **Corollary (tracial toric gap).**  A finite two-player torically
+> determined game with finite phase group, a perfect tracial model of its
+> full universal game algebra, and `omega_qa<1` yields an explicit finitely
+> presented nonhyperlinear group.
+
+This criterion packages the normal-closure calculation into trace-kernel
+normality.  It is potentially useful because the known `C_qc` versus `C_qa`
+separations can be put in synchronous/tracial form.  The remaining issue is
+to make their determining relations toric in the same tracial algebra.
+
 ### Synchrony does not supply normality for free
 
 For a synchronous game, perfect strategies can be described by tracial states
@@ -356,6 +396,10 @@ game with
 1. finite phase group;
 2. `omega_qa<1`;
 3. scalar phase surviving the normal closure of its clauses.
+
+For the third item it is enough to provide a perfect trace representation of
+the full toric universal group.  A synchronous trace on a different
+one-player/opposite-algebra presentation does not automatically qualify.
 
 [MIP*=RE](https://arxiv.org/abs/2001.04383) supplies finite two-player games
 whose commuting correlations separate from `C_qa`, but no verified compiler

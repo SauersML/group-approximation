@@ -35,6 +35,14 @@ and finite-index clauses give a finite-dimensional induced strategy.  The
 new live compiler target is therefore a toric gap with phase-safe normal
 closure, not necessarily an LCS game.
 
+Phase safety has a useful trace certificate.  If the clauses are satisfied
+in `L2` by a tracial representation of the *full* toric universal group, its
+trace kernel is normal and contains the normal closure; the faithful scalar
+character then forces `N intersect B={1}`.  Hence a tracial toric `qc/qa` gap
+already gives the nonhyperlinear quotient.  Synchrony alone is insufficient:
+the standard synchronous trace lives on a one-player/opposite-algebra model,
+and the full two-player toric words need not descend without order reversal.
+
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
 `FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the

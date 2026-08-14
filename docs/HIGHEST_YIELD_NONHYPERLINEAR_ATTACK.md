@@ -773,6 +773,11 @@ constants \(c,C>0\) with:
    most \(C\delta^c\); and
 3. **phase-safe normal closure:** `N intersect B={1}`.
 
+For item 3 it is enough that the perfect target representation be tracial on
+the full toric universal group: its trace kernel is normal, contains every
+clause, and cannot contain a nontrivial element of the faithfully represented
+scalar phase group.
+
 Then
 
 \[
