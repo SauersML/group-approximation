@@ -333,6 +333,38 @@ theorem pairing_defect_transition_decomposition
       R * (Rᴴ * W * L - W) + (1 - R * Rᴴ) * (W * L) := by
   noncomm_ring
 
+/-- Squared-HS propagation through
+`pairing_defect_transition_decomposition`.  The remaining hypothesis is
+exactly the positive range-deficiency estimate supplied by mass saturation. -/
+theorem hsNormSq_pairing_transition_le_of_range_deficiency
+    (W L R : Matrix Y Y ℂ) (κ : ℝ)
+    (hR : ‖R‖ ≤ 1)
+    (hdeficiency :
+      hsNormSq Y ((1 - R * Rᴴ) * (W * L)) ≤ κ) :
+    hsNormSq Y (W * L - R * W) ≤
+      2 * hsNormSq Y (Rᴴ * W * L - W) + 2 * κ := by
+  let D := Rᴴ * W * L - W
+  have hRSq : ‖R‖ ^ 2 ≤ 1 := by
+    nlinarith [norm_nonneg R]
+  have hDnonneg : 0 ≤ hsNormSq Y D := hsNormSq_nonneg Y D
+  have hRD : hsNormSq Y (R * D) ≤ hsNormSq Y D := by
+    calc
+      hsNormSq Y (R * D) ≤ ‖R‖ ^ 2 * hsNormSq Y D :=
+        hsNormSq_mul_le_sq_l2_opNorm_mul Y R D
+      _ ≤ 1 * hsNormSq Y D :=
+        mul_le_mul_of_nonneg_right hRSq hDnonneg
+      _ = hsNormSq Y D := one_mul _
+  rw [pairing_defect_transition_decomposition]
+  calc
+    hsNormSq Y
+        (R * (Rᴴ * W * L - W) + (1 - R * Rᴴ) * (W * L)) ≤
+        2 * hsNormSq Y (R * (Rᴴ * W * L - W)) +
+          2 * hsNormSq Y ((1 - R * Rᴴ) * (W * L)) :=
+      hsNormSq_add_le Y _ _
+    _ ≤ 2 * hsNormSq Y (Rᴴ * W * L - W) + 2 * κ := by
+      dsimp [D] at hRD
+      linarith
+
 /-- A diagonal unitary pairing defect already controls the source Gram
 commutator.  Thus spectral invariance is not a separate hypothesis once the
 two diagonal pairing arrows have been repaired to unitaries. -/

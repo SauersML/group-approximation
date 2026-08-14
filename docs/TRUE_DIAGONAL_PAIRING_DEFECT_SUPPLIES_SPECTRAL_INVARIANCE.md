@@ -181,6 +181,8 @@ The exact decomposition `(DPI10)` is transcribed without placeholders as
 as `hsNormSq_transitionGram_commutator_le_two_sided`, and the unitary special
 case as `hsNormSq_pairing_defect_controls_sourceGram_commutator` in
 `GroupApproximation/Sofic/LeavittTraceFloor.lean`.  Its scalar squared-mass
-arithmetic is transcribed as `contraction_sq_mass_loss_le_two`.  The remaining
-formal step is the matrix positivity bridge `(DPI7)--(DPI8)`.  Per
-instruction, no local build was run.
+arithmetic is transcribed as `contraction_sq_mass_loss_le_two`, and
+`hsNormSq_pairing_transition_le_of_range_deficiency` propagates any proved
+range-deficiency bound through `(DPI10)`.  The remaining formal step is only
+the matrix positivity bridge `(DPI7)--(DPI8)`.  Per instruction, no local
+build was run.
