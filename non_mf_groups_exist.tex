@@ -92,8 +92,7 @@ A countable discrete group is MF here if it embeds in the unitary group of a
 norm matrix corona.  We construct an explicit finitely presented group that
 is not MF, refuting the conjecture that every countable group is MF.
 Its reduced group $C^*$-algebra is a separable, stably finite $C^*$-algebra
-that is not an MF algebra, answering a question of Blackadar and Kirchberg
-in the non-nuclear case.
+that is not an MF algebra; no such algebra was previously known.
 The mechanism is a rigidity theorem for one-sided compressions
 of Kazhdan subgroups: in operator-norm matrix models, every compressor
 preserves the asymptotic commutant.  Thus a certain commutator $u$ converges
@@ -180,8 +179,6 @@ left-regular norm on every group-ring element, or with purely MF (PMF), where
 those strongly convergent models are genuine finite-dimensional
 representations \cite[Definition~1.2]{MdlS}.  Every assertion below uses only
 the MF property fixed here.
-The conceptual result is the following explicit finitely presented
-Kazhdan--Clifford construction.
 
 Throughout, $[g,h]=ghg^{-1}h^{-1}$ for group elements, while for matrices
 $[x,y]=xy-yx$; the arguments always make the reading unambiguous.
@@ -259,6 +256,9 @@ $B_\omega$; hence
 \[
  \boxed{P=VPV^*.}
 \]
+Indeed, writing $VPV^*=Q$ and $w=V^*Q$, one has $w^*w=Q$ and
+$ww^*=P\le Q$, so $s=w+(1-Q)$ satisfies $s^*s=1$ and $ss^*=P+(1-Q)$;
+finiteness of $B_\omega$ forces $ss^*=1$, that is, $P=Q$.
 Uniform boundedness makes $x=(x_n)_\omega$ a vector in $K_\omega$, and the
 hypothesis says $x\in PK_\omega$.  Therefore $Vx\in PK_\omega$, contrary to
 the choice of $\gamma_0$ and the subsequence.  This proves the ordinary,
@@ -441,8 +441,8 @@ where Clifford anticommutation produces $-1$.  Thus $a$ lives on the boundary
 of the self-compression: rigidity cannot detect that boundary, while the
 Clifford representation detects it by a sign.
 
-The following theorem is the fully explicit finite presentation developed in
-the second half of the paper.
+The following theorem is the fully explicit instance, developed in
+Sections~\ref{sec:group}--\ref{sec:proofA}.
 
 \begin{mainthm}[explicit Kazhdan--Clifford group]\label{thm:A}
 Let $E$ be the group on the eight generators
@@ -463,10 +463,6 @@ In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
-
-A completely explicit presentation of $E$ --- eight generators, with
-every relation displayed --- appears as \eqref{eq:E} in
-Definition~\ref{def:E}.
 
 For the proof, put $d=tct^{-1}$ and $u=[d,v_1]$.
 Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
@@ -493,10 +489,8 @@ combinatorial theory of HNN extensions is needed.
 
 Two companion results clarify the mechanism.  First, in
 finite dimensions the obstruction is elementary and needs neither
-property (T), nor unitarity, nor centrality of $w$:
-
-We use the intrinsic compression--centralizer defect
-$\mathfrak D(H,L)$ defined above.
+property (T), nor unitarity, nor centrality of $w$; it kills the entire
+intrinsic defect \eqref{eq:intrinsicdefect}:
 
 \begin{mainthm}[finite-dimensional shadow]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
@@ -569,10 +563,10 @@ Theorem~\ref{thm:C} shows that finite-dimensional collapse by itself does
 not decide whether the marked word is trivial.
 
 Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
-consequences.  Every MF algebra is stably finite \cite{BK}, and whether the
-converse fails for separable $C^*$-algebras had remained open since
-\cite{BK} posed it; no reduced group $C^*$-algebra was known to be non-MF
-\cite{Shulman}, and even for $\Cred(\SL_3(\mathbb Z))$ and
+consequences.  Every MF algebra is stably finite \cite{BK}, and, as
+recalled at the outset, no stably finite separable $C^*$-algebra --- in
+particular no reduced group $C^*$-algebra --- was known to fail MF
+\cite{BK,CDE,Shulman}; even for $\Cred(\SL_3(\mathbb Z))$ and
 $\Cred(\SL_4(\mathbb Z))$ the MF property is undecided \cite{MdlS}.  The
 principal $C^*$-algebraic application here settles the general separable
 question:
@@ -711,7 +705,7 @@ Section~\ref{sec:limits} explains the
 operator-norm boundary of the argument.
 Appendix~\ref{app:equivalences} proves the MF equivalences.
 
-\section{Notation and external inputs}\label{sec:prelim}
+\section{Notation and corona lemmas}\label{sec:prelim}
 
 All groups are discrete and countable.  Property~\textup{(T)} is the
 textbook complex-unitary property.  A $C^*$-homomorphism is unital only when
@@ -1650,29 +1644,30 @@ $\mathfrak D(H,L)$.
 Let $(r_n)$ and $V_{g,n}\in\U(r_n)$ be an operator-norm asymptotic
 representation of $H$, let $\Lambda$ have property~\textup{(T)}, let
 $\iota\colon\Lambda\to H$ be a homomorphism, and put $L=\iota(\Lambda)$.
-Then for every $g\in G_{\rm comp}(L)$, every $z\in C_H(L)$, and every
-$\lambda\in\Lambda$,
+Suppose that $(x_n\in M_{r_n}(\C))$ is uniformly bounded in operator norm
+and belongs to the asymptotic commutant of $L$:
 \[
- \hsnorm{V_{[gzg^{-1},\iota(\lambda)],n}-V_{1,n}}\longrightarrow0 .
+ \hsnorm{x_n-V_{\iota(\lambda),n}x_nV_{\iota(\lambda),n}^*}
+ \longrightarrow0
+ \qquad(\lambda\in\Lambda).
 \]
+Then every $g\in G_{\rm comp}(L)$ acts in both directions on that
+asymptotic commutant.  Explicitly, both
+\[
+ V_{g,n}x_nV_{g,n}^*
+ \quad\text{and}\quad
+ V_{g,n}^*x_nV_{g,n}
+\]
+satisfy the preceding convergence for every $\lambda\in\Lambda$.
+\leanverified{Sofic/KazhdanAsymptoticCommutant}{GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both}
 \end{corollary}
 
 \begin{proof}
-Two modifications of the proof of Lemma~\ref{lem:compressorcollapse}
-suffice.  First, the estimate
-$\opnorm{P_n-\Ad V_{s,n}P_n\Ad V_{s,n}^{\,*}}\to0$ used only that
-conjugation by $s=t$ carries $L$ into $L$; the identical argument ---
-spectral capture, one-sided leakage, and the equal-rank flip --- applies
-to every element $s$ with $sLs^{-1}\subseteq L$.  Conjugating the estimate
-by the unitary $\Ad V_{s,n}^{\,*}$ reverses it, so the same convergence
-holds for $s^{-1}$, and the multiplicative defects chain it to every word
-in compressors and their inverses, that is, to every
-$g\in G_{\rm comp}(L)$.  Second, the root-capture estimate
-\eqref{eq:root-capture} used only that $c$ centralizes $L$, so it holds
-verbatim with $\xi_n=\operatorname{vec}(V_{z,n})$ for every $z\in C_H(L)$.
-Combining the two as in the last paragraph of the proof of
-Lemma~\ref{lem:compressorcollapse} captures $\Ad V_{g,n}\,\xi_n$ by $P_n$
-and yields the displayed convergence.
+For one compressor, the proof of Lemma~\ref{lem:compressorcollapse} gives
+forward transport; the equal-rank flip gives reverse transport.  The
+elements acting in both directions form a subgroup of $H$.  Since it
+contains every one-sided compressor of $L$, it contains the group they
+generate, namely $G_{\rm comp}(L)$.
 \end{proof}
 
 \begin{theorem}[compression radical]
@@ -1689,10 +1684,13 @@ matrix corona kills $F$.
 \begin{proof}
 Repeat the proof of Theorem~\ref{thm:criterion} verbatim, with
 Corollary~\ref{cor:generaltransport} in place of
-Lemma~\ref{lem:compressorcollapse}: it places every displayed generator of
-$\mathfrak D(H,L)$ in the normal subgroup $K_2$, hence all of
-$\mathfrak D(H,L)$, and therefore $F$.  The Reynolds contradiction is
-unchanged.
+Lemma~\ref{lem:compressorcollapse}.  If $z\in C_H(L)$, then
+$(V_{z,n})$ lies in the asymptotic commutant; the corollary puts
+$(V_{gzg^{-1},n})$ there for every $g\in G_{\rm comp}(L)$.  Translating
+that commutation relation through the operator-norm multiplicative defects
+places every displayed generator of $\mathfrak D(H,L)$ in the normal
+subgroup $K_2$, hence all of $\mathfrak D(H,L)$, and therefore $F$.
+The Reynolds contradiction is unchanged.
 \end{proof}
 
 
@@ -1924,7 +1922,7 @@ and is stably finite.  It is not an MF algebra by
 Theorem~\ref{thm:A}.
 \end{proof}
 
-\section{The cyclic-base comparison}\label{sec:necessity}
+\section{The cyclic-base calibration}\label{sec:necessity}
 
 We prove Theorem~\ref{thm:C} for the literal seven-relator presentation.
 The stable relation gives
@@ -1989,11 +1987,10 @@ An \emph{operator-norm local model} for a countable group $E$, a finite
 set $F\subseteq E$, a separation constant $\delta>0$, and a tolerance
 $\varepsilon>0$ is a map $V\colon E\to\U(r)$, for some positive
 dimension $r$, such that
-\[
- \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),
- \qquad
+\begin{gather*}
+ \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),\\
  \opnorm{V(g)-V(h)}\ge\delta\quad(g\ne h\in F).
-\]
+\end{gather*}
 The local formulation in Proposition~\ref{prop:mf-equivalences} asks for
 such a model with $\delta=1$ for every finite $F$ and every
 $\varepsilon>0$.
