@@ -1,5 +1,12 @@
 # Full review and redesign of non_mf_groups_exist.tex (2026-08-14)
 
+> **Historical audit snapshot.**  This records the defects found in the first
+> full pass and is retained as the detailed audit trail.  Several operational
+> statements and implementation statuses below describe commit `c4babb17`, not
+> the final revision.  The current verdict, resolved status, MSI-only
+> verification record, and remaining open mathematics are in
+> `NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md`.
+
 Scope: complete independent line-by-line read of the current 2,060-line
 manuscript (post-rewrite, HEAD `c4babb17`), independent re-derivation of every
 printed proof, direct inspection of the Lean statement surface (endpoints,
