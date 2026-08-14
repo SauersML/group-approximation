@@ -57,10 +57,20 @@ containing `E` has trivial intersection with its comb conjugate containing
 ||F-(1/4)1||_2^2=3/16.
 ```
 
-The final Pauli gate is therefore one fixed polynomial collapse: derive
-`F -> (1/4)1` in normalized Hilbert--Schmidt norm from the recovered
-multiplication module.  No overlap parameter, orientation choice, or
-conditional-expectation computation remains at the endpoint.
+For arbitrary binary coefficients `a,b`, the stronger completed-square
+identity is
+
+```text
+||F-(aE+b(1-E))||_2^2
+ =3/16+(1/8)(a-1/4)^2+(7/8)(b-1/4)^2.
+```
+
+Thus the minimal Pauli recovery gate is still
+`dist_2(F,W*(E))->0`; the canonical moment then forces the best coefficients
+to be `1/4,1/4` and yields the scalar formulation `F -> (1/4)1`.  Scalar
+collapse is a consequence, not an independently justified shortcut.  No
+overlap parameter or orientation choice remains in the terminal
+contradiction.
 
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 

@@ -58,10 +58,19 @@ containing `F` only in the identity, so the canonical trace gives
 ||F-(1/4)1||_2^2=3/16.
 ```
 
-The shortest remaining Pauli statement is now: multiplication-module
-recovery forces the fixed transported-carrier polynomial `F` to converge to
-the scalar `(1/4)1`.  This is recorded in the final section of
-`TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md`.
+More precisely, for every `a,b` the actual packet satisfies
+
+```text
+||F-(aE+b(1-E))||_2^2
+ =3/16+(1/8)(a-1/4)^2+(7/8)(b-1/4)^2.
+```
+
+The shortest remaining Pauli hypothesis is therefore still binary-algebra
+membership `dist_2(F,W*(E))->0`.  The canonical mixed moment then identifies
+the unique best coefficients as `1/4,1/4`, so scalar collapse is a consequence
+of the gate rather than a stronger premise silently substituted for it.  The
+completed-square identity is recorded source-first in
+`PauliCarrierBinaryGap.lean`.
 
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 

@@ -155,14 +155,30 @@ This value is formalized by
 the previously archived exact intersection certificate, and
 `(PCG11)--(PCG13)` are group-trace arithmetic.
 
-Thus the shortest live theorem can be stated without conditional-expectation
-notation:
+Equivalently, for arbitrary real coefficients `a,b`, direct expansion gives
+
+```text
+||F-(aE+b(1-E))||_2^2
+ =3/16+(1/8)(a-1/4)^2+(7/8)(b-1/4)^2.              (PCG14)
+```
+
+Thus `(1/4)1` is the unique best binary-algebra approximation and every
+binary approximation has squared error at least `3/16`.  The completed-square
+identity and lower bound are formalized source-first as
+`actualPacketApproximationResidual_eq` and
+`three_div_sixteen_le_actualPacketApproximationResidual`.
+
+The binary-membership gate from Section 4 is therefore already enough for the
+sharp contradiction.  With the canonical mixed moment included, it implies
+the more concrete scalar-collapse conclusion
 
 > Cross-root multiplication and raw/comb covariance force the matrix lift
 > of the transported carrier polynomial `F` to converge in normalized
 > Hilbert--Schmidt norm to `(1/4)1`.
 
-That conclusion directly contradicts `(PCG13)`.  It remains unproved, but it
-is a single fixed polynomial-collapse statement.  The parent-sheet choice,
-the overlap parameter, and all conditional-expectation coefficients have
-now disappeared from the terminal formulation.
+That conclusion directly contradicts `(PCG13)`.  It remains unproved.
+Importantly, scalar collapse is a consequence of binary membership plus the
+fixed mixed moment, not a replacement premise that is known to be easier to
+derive.  The minimal recovery target remains `(PCG3)`; `(PCG14)` merely shows
+that its terminal obstruction is scalar and has the stronger constant
+`3/16` for this packet.

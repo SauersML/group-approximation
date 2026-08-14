@@ -63,5 +63,32 @@ theorem binaryExpectation_coefficients_one_thirty_second :
       ((8 : ℝ) / 7) * ((1 : ℝ) / 4 - (1 : ℝ) / 32) = (1 : ℝ) / 4 := by
   norm_num
 
+/-- Squared `L²` error of approximating the actual transported carrier by
+`a E + b (1-E)`.  Here `τ(F)=1/4`, `τ(E)=1/8`, and `τ(EF)=1/32`. -/
+def actualPacketApproximationResidual (a b : ℝ) : ℝ :=
+  (1 : ℝ) / 4 - a / 16 - 7 * b / 16 + a ^ 2 / 8 + 7 * b ^ 2 / 8
+
+/-- Completing the two squares isolates the exact `3/16` distance floor. -/
+theorem actualPacketApproximationResidual_eq (a b : ℝ) :
+    actualPacketApproximationResidual a b =
+      (3 : ℝ) / 16 + (1 : ℝ) / 8 * (a - (1 : ℝ) / 4) ^ 2 +
+        (7 : ℝ) / 8 * (b - (1 : ℝ) / 4) ^ 2 := by
+  unfold actualPacketApproximationResidual
+  ring
+
+/-- No element of the binary algebra can approximate the actual carrier more
+closely than squared distance `3/16`. -/
+theorem three_div_sixteen_le_actualPacketApproximationResidual (a b : ℝ) :
+    (3 : ℝ) / 16 ≤ actualPacketApproximationResidual a b := by
+  rw [actualPacketApproximationResidual_eq]
+  positivity
+
+/-- The scalar `(1/4)1` realizes the unique coefficient pair at the distance
+floor.  This is the conditional expectation of the actual carrier. -/
+@[simp] theorem actualPacketApproximationResidual_one_quarter :
+    actualPacketApproximationResidual ((1 : ℝ) / 4) ((1 : ℝ) / 4) =
+      (3 : ℝ) / 16 := by
+  norm_num [actualPacketApproximationResidual]
+
 end PauliCarrierBinaryGap
 end GroupApproximation
