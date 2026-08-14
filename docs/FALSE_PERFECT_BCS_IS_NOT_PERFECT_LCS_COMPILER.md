@@ -1,0 +1,112 @@
+# Perfect-completeness BCS conversion is not an LCS group compiler
+
+Date: 2026-08-14
+
+## 1. Outcome
+
+Fu--Mastel--Zhang prove a quantitative conversion from
+constraint--constraint binary constraint-system games to synchronous
+constraint--variable BCS games, preserving perfect completeness and
+soundness.  This is not the perfect-completeness LCS theorem needed to
+produce a nonhyperlinear group.
+
+The terminology is the important boundary:
+
+```text
+BCS: arbitrary Boolean constraint on a finite set of binary variables;
+LCS: an affine linear/parity constraint over F_2.                    (PBL1)
+```
+
+Solution groups encode LCS constraints by multiplicative relations among
+commuting involutions.  A general BCS predicate is instead a spectral-support
+condition on a joint measurement.  The recent conversion changes the two
+game formats; it does not linearize the Boolean predicates into solution-group
+relations.
+
+Consequently it does not fill the `epsilon=0` gate isolated by
+Taller--Vidick.  Their current LCS theorem still has completeness
+`1-epsilon`, and they explicitly state that reaching `epsilon=0` would imply
+a nonhyperlinear group.
+
+## 2. The elementary affine obstruction
+
+Let `x_1,...,x_k` be commuting involutions and work in a central sector in
+which an optional distinguished involution `J` has fixed value `-1`.  A group
+word in these generators reduces to
+
+```text
+x_1^(a_1) ... x_k^(a_k) J^b,       a_i,b in F_2.       (PBL2)
+```
+
+On a joint character `chi in F_2^k`, imposing that this word is one gives
+one affine equation
+
+```text
+a_1 chi_1 + ... + a_k chi_k = b.                       (PBL3)
+```
+
+Hence any family of relators involving only the commuting Boolean variables
+cuts out an affine subspace of the character cube.  Introducing additional
+commuting involutions and then forgetting them does not help: a coordinate
+projection of an affine subspace is affine.
+
+For example, the satisfying set of the two-bit OR predicate is
+
+```text
+{(0,1),(1,0),(1,1)}.                                   (PBL4)
+```
+
+It has three elements and therefore is not affine over `F_2`.  No system of
+commuting-involution group relators, even with existential commuting
+ancillas, has `(PBL4)` as its allowed character set.
+
+This is why an arbitrary BCS constraint cannot simply be read as a solution
+group relation.  Its operator form is a polynomial projection equation which
+removes forbidden joint spectral atoms; group relators only identify products
+of unitaries.
+
+## 3. What a genuine compiler would still have to prove
+
+Noncommuting ancillas, central extensions, or Steinberg commutator gadgets can
+encode multiplication and therefore can go beyond affine predicates.  But a
+useful construction must prove all of the following for one fixed separated
+game:
+
+1. a perfect commuting-operator strategy maps to a representation with the
+   distinguished central phase nontrivial;
+2. every normalized-Hilbert--Schmidt approximate representation retaining
+   that phase decodes to a near-perfect strategy for the source BCS game; and
+3. the decoding constants remain dimension independent.
+
+The second item is the difficult direction.  An exact finite gadget can have
+extra projective sectors, and pointwise perfect-strategy equivalence does not
+control sequences of almost representations.  This is the same quantitative
+matrix-coordinate issue encountered in the Leavitt/Steinberg atlas.
+
+Thus the Fu--Mastel--Zhang conversion is useful upstream--it supplies a clean
+synchronous BCS format with perfect completeness--but it does not yet attach
+a solution group whose central element is invisible to all tracial matrix
+models.
+
+## 4. Status of the independent game route
+
+The precise independent target remains:
+
+```text
+one finite LCS game with perfect commuting completeness
+and a uniform gap for finite-dimensional strategies.                  (PBL5)
+```
+
+Equivalently, one needs a quantitative group-valued linearization of a
+perfect-completeness separated BCS instance.  The affine calculation above
+rules out the direct commuting-ancilla translation; it does not rule out a
+new nonabelian multiplication gadget.
+
+## Primary sources
+
+- H. Fu, K. Mastel, and X. Zhang, *Succinct Perfect Zero-knowledge for
+  MIP\**, [arXiv:2503.04517](https://arxiv.org/abs/2503.04517), especially
+  the constraint--constraint to synchronous constraint--variable BCS
+  conversion.
+- A. Taller and T. Vidick, *Approximating the quantum value of an LCS game
+  is RE-hard*, [arXiv:2507.22444](https://arxiv.org/abs/2507.22444).

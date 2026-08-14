@@ -5030,6 +5030,22 @@ Exposing `mu(phi)` as a correction variable makes every Fourier character
 an exact solution.  Therefore mask retuning, support-tailored noise, and a
 linear correction variable cannot reach perfect completeness with a strict
 soundness gap.  Full proof: `FALSE_PERFECT_COMPLETENESS_MASK_NO_GO.md`.
+
+## 2026-08-14: perfect BCS conversion stops before solution groups
+
+Fu--Mastel--Zhang's perfect-completeness conversion is between two formats
+of **general** binary constraint-system games.  It preserves arbitrary
+Boolean predicates; it does not turn them into affine/parity LCS predicates.
+The obvious group-relator translation cannot do so.  Relations among
+commuting involutions cut the joint character cube by affine equations, and
+adding then eliminating commuting ancillas still produces an affine set.
+For instance the three-point satisfying set of two-bit OR is not affine.
+
+Therefore this recent compiler does not close Taller--Vidick's explicit
+`epsilon=0` LCS gate.  A successful groupification still needs a nonabelian
+multiplication gadget together with a dimension-independent decoding theorem
+for approximate representations.  See
+`FALSE_PERFECT_BCS_IS_NOT_PERFECT_LCS_COMPILER.md`.
 ### 2026-08-13: two exact no-go theorems for the remaining routes
 
 - `FALSE_COMPACT_BOGOLIUBOV_APPROXIMATION_FOR_KUN_THOM.md` proves that
