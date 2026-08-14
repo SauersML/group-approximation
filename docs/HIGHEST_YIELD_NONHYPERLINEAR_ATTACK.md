@@ -24,6 +24,14 @@ multiplicity, the exact corepresentation equation makes the coefficients a
 PVM, so the gauge is a direct sum of classical right translations. See
 `TRUE_COPRODUCT_DEFECT_PINS_COMMUTANT_GAUGE.md`.
 
+Regular-basis Parseval moreover identifies the squared coproduct defect with
+the total coefficient idempotence and cross-orthogonality energy. For the
+fixed four-label Pauli packet, ultraproduct PVM lifting therefore gives a
+dimension-independent qualitative rounding theorem. For growing envelopes,
+de la Salle's cardinality-free POVM orthogonalization supplies the final
+rounding step once positivity of the coefficient family has been recovered;
+that positivization is not automatic for an arbitrary commutant unitary.
+
 This removes a separate gauge-fixing theorem after coefficient
 identification. The remaining load-bearing interface is now one
 gauge-covariant Parseval statement: identify the averaged four-root word

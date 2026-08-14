@@ -95,6 +95,21 @@ Suppose `C` is unitary and satisfies the exact corepresentation equation
 (Delta tensor id)(C)=C_13 C_23.                       (CGP8)
 ```
 
+Before taking the defect to zero, regular-basis Parseval gives the exact
+operator-valued identity
+
+```text
+||(Delta tensor id)(C)-C_13 C_23||_2^2
+ =sum_g ||C_g-C_g^2||_(2,N)^2
+   +sum_(g!=h)||C_g C_h||_(2,N)^2.                    (CGP8a)
+```
+
+The tensor-product trace is normalized, but the regular unitaries are an
+orthonormal basis, so there is no missing factor of `|K|` in `(CGP8a)`.
+This is the operator-valued analogue of `(CGP3)`: the single coproduct
+defect is already the *total* idempotence and cross-orthogonality error of
+all coefficient blocks.
+
 Comparing regular-basis coefficients in `(CGP8)` gives
 
 ```text
@@ -125,9 +140,27 @@ which the full-space Fourier contraction gap is invariant.
 For a fixed group `K`, the approximate version follows qualitatively by a
 tracial-ultraproduct argument: an asymptotically vanishing defect gives the
 exact PVM `(CGP10)` in the ultraproduct, and a finite PVM lifts to coordinate
-PVMs. A growing-`K` application needs a total-error PVM-rounding estimate;
-the scalar estimate `(CGP6)` already shows that there is no cardinality loss
-in multiplicity one.
+PVMs. More explicitly, if `C_n` has defect tending to zero, the coefficient
+families define the projections `(C_g)_omega` in the ultraproduct. Lift that
+finite PVM to coordinate PVMs `(P_(g,n))`; then
+
+```text
+D_n=sum_g lambda_g tensor P_(g,n)                     (CGP10a)
+```
+
+is an exact classical gauge and `||C_n-D_n||_2->0`. Thus for the fixed
+four-label Pauli packet the multiplicity dimension causes no loss.
+
+A growing-`K` application needs a total-error PVM-rounding estimate. Mikael
+de la Salle's
+[orthogonalization theorem](https://arxiv.org/abs/2103.14126) gives the
+optimal kind of cardinality-free conclusion once one has a positive POVM:
+if `sum a_g=1` and `tau(sum a_g^2)>1-epsilon`, it produces a PVM with total
+squared `L2` error below `9 epsilon`. The raw coefficients `C_g` in
+`(CGP7)` are not positive, so that theorem cannot be applied without an
+additional positivization estimate. The scalar estimate `(CGP6)` already
+shows that no such issue occurs in multiplicity one; `(CGP8a)` identifies
+the exact total budget available in general.
 
 ## 4. What this changes in the four-root program
 
