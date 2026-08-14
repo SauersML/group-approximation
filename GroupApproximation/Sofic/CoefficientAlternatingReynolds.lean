@@ -1,4 +1,6 @@
-import GroupApproximation.Sofic.DoublePauliCoefficient
+import Mathlib.LinearAlgebra.Matrix.Notation
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+import Mathlib.Tactic
 
 /-!
 # Exact spectrum of the double-Pauli alternating Reynolds operator
@@ -41,13 +43,45 @@ theorem coefficientAlternatingReynolds_diagonalization :
         coefficientAlternatingReynoldsEigenvectors =
       coefficientAlternatingReynoldsEigenvectors *
         coefficientAlternatingReynoldsEigenvalues := by
-  decide
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    norm_num [coefficientAlternatingReynolds,
+      coefficientAlternatingReynoldsEigenvectors,
+      coefficientAlternatingReynoldsEigenvalues, Matrix.mul_apply,
+      Matrix.diagonal_apply, Fin.sum_univ_succ]
+
+private def coefficientAlternatingReynoldsEigenvectorsRowReduced :
+    Matrix (Fin 5) (Fin 5) ℚ :=
+  !![1, 1, 1, 0, 1;
+     0, 0, -2, 0, 0;
+     0, -2, -1, 1, 0;
+     0, -2, -1, -1, 0;
+     0, -1, -1, 0, -2]
 
 /-- The eigenvector matrix is invertible; hence the five displayed modes
 are the complete spectrum, not merely five checked vectors. -/
 theorem coefficientAlternatingReynolds_eigenvectors_det :
     coefficientAlternatingReynoldsEigenvectors.det = -16 := by
-  decide
+  calc
+    coefficientAlternatingReynoldsEigenvectors.det =
+        coefficientAlternatingReynoldsEigenvectorsRowReduced.det := by
+      apply Matrix.det_eq_of_forall_row_eq_smul_add_const
+        (![0, 1, 1, 1, 1] : Fin 5 → ℚ) 0
+      · rfl
+      · intro i j
+        fin_cases i <;> fin_cases j <;>
+          norm_num [coefficientAlternatingReynoldsEigenvectors,
+            coefficientAlternatingReynoldsEigenvectorsRowReduced]
+    _ = -16 := by
+      rw [Matrix.det_succ_column_zero]
+      simp [coefficientAlternatingReynoldsEigenvectorsRowReduced,
+        Fin.sum_univ_succ]
+      rw [Matrix.det_succ_row_zero]
+      simp [Fin.sum_univ_succ]
+      change (2 : ℚ) * Matrix.det
+        !![-2, 1, 0; -2, -1, 0; -1, 0, -2] = -16
+      rw [Matrix.det_fin_three]
+      norm_num [Matrix.cons_val_two]
 
 /-- Every non-scalar eigenvalue is strictly below the exact contraction
 factor `19/64`. -/
