@@ -369,11 +369,16 @@ theorem not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
 
 /-! ## Simultaneous failure package -/
 
-/-- Simultaneous failure of every equivalent MF formulation and every
-stronger MF variant formalized in this development.  The package deliberately
-excludes soficity and hyperlinearity: neither is definitionally one of these
-MF properties, and no converse implication is asserted here.  It also
-excludes the unrelated modular-by-finite predicate defined below. -/
+/-- Simultaneous failure of the equivalent MF formulations and the stronger
+MF variants defined in this file.  The representation-theoretic PMatF,
+PPermF, trace-PMF, PFF, and PPF conventions and the concrete maximal/reduced
+C-star consequences are assembled separately in
+`MFRepresentationVariants`.
+
+This core package deliberately excludes soficity and hyperlinearity: neither
+is definitionally one of these MF properties, and no converse implication is
+asserted here.  It also excludes the unrelated modular-by-finite predicate
+defined below. -/
 structure FailsAllFormalizedMFVariants
     (G : Type u) [Group G] [Countable G] : Prop where
   not_isWeakMF : ¬ IsWeakMF G
@@ -389,8 +394,8 @@ structure FailsAllFormalizedMFVariants
   not_isTraceRegularMF : ¬ IsTraceRegularMF G
   not_isReducedGroupCStarMF : ¬ IsReducedGroupCStarMF G
 
-/-- Failure of the group-theoretic MF property simultaneously rules out all
-equivalent MF formulations and stronger MF variants formalized above. -/
+/-- Failure of the group-theoretic MF property simultaneously rules out the
+equivalent MF formulations and stronger variants defined above. -/
 theorem failsAllFormalizedMFVariants_of_not_isGroupTheoreticMF
     [Countable G] (h : ¬ IsGroupTheoreticMF G) :
     FailsAllFormalizedMFVariants G := by

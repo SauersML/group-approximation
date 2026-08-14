@@ -7,6 +7,7 @@ import GroupApproximation.Sofic.NormMFUniversalCorona
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.CDEOperatorMF
+import GroupApproximation.Sofic.MFRepresentationVariants
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedMFClosed
@@ -380,6 +381,8 @@ export GroupApproximation.ChosenNonMFTheorem
     countableWitness_not_isWeakMF exists_countable_not_isWeakMF
     exists_finitelyPresented_not_isWeakMF
     countableWitness_not_isOperatorMF exists_finitelyPresented_not_isOperatorMF
+    exists_countable_finitelyPresented_not_isOperatorMF
+    not_every_countable_group_isOperatorMF
     not_every_group_isOperatorMF not_every_finitelyPresented_group_isOperatorMF)
 export GroupApproximation.ChosenMarkedPresentation
   (chosenFinitelyPresented_markedPackage)
@@ -452,6 +455,10 @@ export GroupApproximation.LiteralP13HodgeCertificate
     p13_generatorLaplacian_quadratic_gap p13_hasKazhdanPropertyT)
 export GroupApproximation
   (IsCDEOperatorMF isCDEOperatorMF_iff_isOperatorMF
+    IsPurelyMatricialField IsPurelyPermutationField IsTracePMF IsPFF IsPPF
+    FailsEveryStandardMFConvention
+    not_of_implies_isOperatorMF
+    failsEveryStandardMFConvention_of_not_isOperatorMF
     normMatrixCoronaUnitaryEquiv
     unitaryCoronaToCStarCoronaUnitary
     unitaryCoronaToCStarCoronaUnitary_injective
@@ -467,6 +474,7 @@ export GroupApproximation
     exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual
     existsUnique_coronaMFQuotient_factorization_to_isOperatorMF
     isOperatorMF_of_residuallyFinite)
+export GroupApproximation.IsPurelyPermutationField (isOperatorMF)
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
@@ -501,7 +509,7 @@ export GroupApproximation.LiteralNonMFPresentation
   (literalEightGeneratorPresentation manuscriptLiteralPresentation)
 export GroupApproximation.LiteralNonMFLinearWitness (literal_mark_ne_one)
 export GroupApproximation.LiteralNonMFEndpoint
-  (conceptualInclusionData compressionRoot compressionDefect
+  (inclusionData compressionRoot compressionDefect
     mark_eq_compressionDefect_sq
     compressionDefect_sq_ne_one kazhdanPinning
     negativeCorner_kazhdanTransport_contradiction
@@ -515,7 +523,8 @@ export GroupApproximation.LiteralNonMFEndpoint
     literal_mark_normMFInvisible
     cliffordSign_blackHole literal_not_isOperatorMF
     literal_not_isCDEOperatorMF
-    literal_failsAllFormalizedMFVariants
+    literal_not_of_implies_isOperatorMF
+    literal_failsEveryStandardMFConvention
     literal_maximalGroupCStar_not_hasMFEmbedding
     literal_maximalGroupCStar_not_isMFAlgebra
     literal_reducedGroupCStar_not_hasMFEmbedding

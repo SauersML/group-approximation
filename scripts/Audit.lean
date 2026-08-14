@@ -65,6 +65,14 @@ example :
       Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
   ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF
 
+example :
+    ∃ (E : Type) (_ : Group E),
+      Countable E ∧ Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
+  ChosenNonMFTheorem.exists_countable_finitelyPresented_not_isOperatorMF
+
+example : ¬ (∀ (E : Type) [Group E] [Countable E], IsOperatorMF E) :=
+  ChosenNonMFTheorem.not_every_countable_group_isOperatorMF
+
 example : ¬ (∀ (E : Type) [Group E], IsOperatorMF E) :=
   ChosenNonMFTheorem.not_every_group_isOperatorMF
 
@@ -75,6 +83,14 @@ example :
 
 example : ¬ IsMixedApproximable SimultaneousStabilitySeed :=
   simultaneousStabilitySeed_not_isMixedApproximable
+
+example (G : Type) [Group G] [Countable G] :
+    IsPurelyPermutationField G → IsOperatorMF G :=
+  IsPurelyPermutationField.isOperatorMF
+
+example :
+    FailsEveryStandardMFConvention LiteralNonMFPresentation.MarkedGroup :=
+  LiteralNonMFEndpoint.literal_failsEveryStandardMFConvention
 
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ IsNormApproximable G 1 :=
@@ -473,6 +489,8 @@ def headlineTheorems : List Name :=
    ``ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF,
    ``ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF,
    ``ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.exists_countable_finitelyPresented_not_isOperatorMF,
+   ``ChosenNonMFTheorem.not_every_countable_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_group_isOperatorMF,
    ``ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF,
    ``ChosenMarkedPresentation.chosenFinitelyPresented_markedPackage,
@@ -487,7 +505,7 @@ def headlineTheorems : List Name :=
    ``LiteralNonMFEndpoint.kazhdanPinning,
    ``LiteralNonMFEndpoint.literal_mark_mem_manuscriptCoronaMFResidual,
    ``LiteralNonMFEndpoint.cliffordSign_blackHole,
-   ``LiteralNonMFEndpoint.literal_failsAllFormalizedMFVariants,
+   ``LiteralNonMFEndpoint.literal_failsEveryStandardMFConvention,
    ``LiteralNonMFEndpoint.literal_maximalGroupCStar_not_hasMFEmbedding,
    ``LiteralNonMFEndpoint.literal_maximalGroupCStar_not_isMFAlgebra,
    ``LiteralNonMFEndpoint.literal_reducedGroupCStar_not_hasMFEmbedding,

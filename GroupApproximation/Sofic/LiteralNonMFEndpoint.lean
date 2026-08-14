@@ -9,7 +9,7 @@ import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
-import GroupApproximation.Sofic.MFDefinitions
+import GroupApproximation.Sofic.MFRepresentationVariants
 
 /-!
 # The literal eight-generator non-MF endpoint
@@ -41,7 +41,7 @@ noncomputable section
 
 /-- The exact marked-compression datum for the literal group.  Its
 property-`(T)` field is discharged by the premise-free P13 bridge. -/
-noncomputable def conceptualInclusionData :
+noncomputable def inclusionData :
     MarkedCompressionInclusionData Base MarkedGroup where
   iota := baseMap
   t := stable
@@ -59,24 +59,24 @@ noncomputable def conceptualInclusionData :
     rw [← mark_eq_markedCompressionWord]
     exact mark_central g
 
-@[simp] theorem conceptualInclusionData_word :
-    conceptualInclusionData.word = mark :=
+@[simp] theorem inclusionData_word :
+    inclusionData.word = mark :=
   mark_eq_markedCompressionWord.symm
 
 /-- The transported involution `d = t c t⁻¹`. -/
 abbrev compressionRoot : MarkedGroup :=
-  conceptualInclusionData.toKazhdanCompressionCore.transported
+  inclusionData.toKazhdanCompressionCore.transported
 
 /-- The distinguished pointwise compression defect `u = [d,a]`. -/
 abbrev compressionDefect : MarkedGroup :=
-  ⁅compressionRoot, conceptualInclusionData.iota conceptualInclusionData.a⁆
+  ⁅compressionRoot, inclusionData.iota inclusionData.a⁆
 
 /-! ## The algebraic box: `w = u²` -/
 
 /-- The literal mark is the square of the distinguished compression defect. -/
 theorem mark_eq_compressionDefect_sq : mark = compressionDefect ^ 2 := by
-  have h := conceptualInclusionData.word_eq_compressionDefect_sq lamp_sq
-  rw [conceptualInclusionData_word] at h
+  have h := inclusionData.word_eq_compressionDefect_sq lamp_sq
+  rw [inclusionData_word] at h
   exact h
 
 /-- The square identity together with the Clifford realization: the square
@@ -92,16 +92,16 @@ normalized Hilbert--Schmidt distance in every operator-norm almost
 representation. -/
 theorem kazhdanPinning (B : OpAlmostRepresentation MarkedGroup) :
     KazhdanCompressionCore.CompressionDefectsHSTrivial
-      conceptualInclusionData.toKazhdanCompressionCore B :=
-  conceptualInclusionData.toKazhdanCompressionCore.compressionDefects_hsTrivial B
+      inclusionData.toKazhdanCompressionCore B :=
+  inclusionData.toKazhdanCompressionCore.compressionDefects_hsTrivial B
 
 /-- A separated negative corner for the literal mark contradicts Kazhdan
 transport and the identity `mark = compressionDefect²`. -/
 theorem negativeCorner_kazhdanTransport_contradiction
     (A : MarkedOpAlmostRepresentation MarkedGroup mark) : False := by
-  rw [← conceptualInclusionData_word] at A
+  rw [← inclusionData_word] at A
   exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
-    conceptualInclusionData A
+    inclusionData A
 
 /-! ## The explicit finite normal subgroup `{1, mark}` -/
 
@@ -138,11 +138,11 @@ instance literalInvolutionSubgroup_nontrivial :
 pinned compression defects. -/
 theorem literalInvolutionSubgroup_le_defectNormal :
     literalInvolutionSubgroup ≤
-      conceptualInclusionData.toKazhdanCompressionCore.defectNormal := by
+      inclusionData.toKazhdanCompressionCore.defectNormal := by
   rw [literalInvolutionSubgroup,
     centralInvolutionSubgroup_le_iff_mem mark mark_sq]
-  rw [← conceptualInclusionData_word]
-  exact conceptualInclusionData.word_mem_compressionDefectNormal
+  rw [← inclusionData_word]
+  exact inclusionData.word_mem_compressionDefectNormal
 
 /-! ## Corona annihilation -/
 
@@ -155,7 +155,7 @@ theorem literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
     ∀ rho : MarkedGroup →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       literalInvolutionSubgroup ≤ rho.ker := by
   exact KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
-    conceptualInclusionData.toKazhdanCompressionCore
+    inclusionData.toKazhdanCompressionCore
     literalInvolutionSubgroup literalInvolutionSubgroup_le_defectNormal X hX
 
 /-- Every homomorphism into every positive-size unitary-sequence norm corona
@@ -230,7 +230,7 @@ theorem literal_mark_mem_manuscriptCoronaMFResidual :
 /-- The mark also belongs to the basis-free unitary-sequence MF residual. -/
 theorem literal_mark_normMFInvisible : NormMFInvisible mark :=
   KazhdanCompressionCore.finiteNormal_le_normMFResidual
-    conceptualInclusionData.toKazhdanCompressionCore
+    inclusionData.toKazhdanCompressionCore
     literalInvolutionSubgroup literalInvolutionSubgroup_le_defectNormal
     mark_mem_literalInvolutionSubgroup
 
@@ -245,13 +245,13 @@ theorem cliffordSign_blackHole :
 /-- The literal eight-generator group is not operator MF. -/
 theorem literal_not_isOperatorMF : ¬ IsOperatorMF MarkedGroup :=
   MarkedCompressionInclusionData.not_isOperatorMF_of_mem_finiteNormal
-    conceptualInclusionData literalInvolutionSubgroup
+    inclusionData literalInvolutionSubgroup
     literalInvolutionSubgroup_le_defectNormal
     (by
-      rw [conceptualInclusionData_word]
+      rw [inclusionData_word]
       exact mark_mem_literalInvolutionSubgroup)
     (by
-      rw [conceptualInclusionData_word]
+      rw [inclusionData_word]
       exact LiteralNonMFLinearWitness.literal_mark_ne_one)
 
 /-- The same conclusion in the manuscript's genuine-corona CDE predicate. -/
@@ -259,12 +259,10 @@ theorem literal_not_isCDEOperatorMF : ¬ IsCDEOperatorMF MarkedGroup := by
   rw [isCDEOperatorMF_iff_isOperatorMF]
   exact literal_not_isOperatorMF
 
-/-- The literal group fails every equivalent MF formulation and every
-stronger MF variant formalized in this development. -/
-theorem literal_failsAllFormalizedMFVariants :
-    FailsAllFormalizedMFVariants MarkedGroup :=
-  failsAllFormalizedMFVariants_of_not_isGroupTheoreticMF
-    literal_not_isOperatorMF
+/-- Every proposition implying operator MF fails for the literal group. -/
+theorem literal_not_of_implies_isOperatorMF
+    (P : Prop) (hP : P → IsOperatorMF MarkedGroup) : ¬ P :=
+  not_of_implies_isOperatorMF literal_not_isOperatorMF P hP
 
 /-- The concrete reduced group C-star algebra admits no faithful embedding
 into any norm-matrix C-star corona. -/
@@ -290,6 +288,16 @@ theorem literal_maximalGroupCStar_not_hasMFEmbedding :
 theorem literal_maximalGroupCStar_not_isMFAlgebra :
     ¬ IsMFAlgebra (MaximalGroupCStar MarkedGroup) :=
   maximalGroupCStar_not_isMFAlgebra_of_not_isOperatorMF MarkedGroup
+    literal_not_isOperatorMF
+
+/-- The literal group fails every standard MF convention formalized in the
+development, including PMatF, trace-free PPermF, trace-PMF, PFF, and PPF.
+The same package records failure of the embedding and MF-algebra predicates
+for the universe-relative maximal model and the concrete reduced group
+C-star algebra. -/
+theorem literal_failsEveryStandardMFConvention :
+    FailsEveryStandardMFConvention MarkedGroup :=
+  failsEveryStandardMFConvention_of_not_isOperatorMF
     literal_not_isOperatorMF
 
 /-! ## Exact manuscript endpoints -/

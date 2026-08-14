@@ -74,7 +74,7 @@ noncomputable def familyInclusionData (m : ℕ) :
 
 /-- At `m = 2` this is the literal manuscript datum. -/
 theorem familyInclusionData_two :
-    familyInclusionData 2 = LiteralNonMFEndpoint.conceptualInclusionData := rfl
+    familyInclusionData 2 = LiteralNonMFEndpoint.inclusionData := rfl
 
 /-- The transported involution `d = t c t⁻¹`. -/
 abbrev compressionRoot (m : ℕ) : MarkedGroup m :=
@@ -260,12 +260,11 @@ theorem scalingFamily_not_isCDEOperatorMF (m : ℕ) (hm : 2 ≤ m) :
   rw [isCDEOperatorMF_iff_isOperatorMF]
   exact scalingFamily_not_isOperatorMF m hm
 
-/-- Every member with `m ≥ 2` fails every equivalent MF formulation and every
-stronger MF variant formalized in this development. -/
-theorem scalingFamily_failsAllFormalizedMFVariants (m : ℕ) (hm : 2 ≤ m) :
-    FailsAllFormalizedMFVariants (MarkedGroup m) :=
-  failsAllFormalizedMFVariants_of_not_isGroupTheoreticMF
-    (scalingFamily_not_isOperatorMF m hm)
+/-- Every proposition implying operator MF fails for the `m`-th group. -/
+theorem scalingFamily_not_of_implies_isOperatorMF
+    (m : ℕ) (hm : 2 ≤ m) (P : Prop)
+    (hP : P → IsOperatorMF (MarkedGroup m)) : ¬ P :=
+  not_of_implies_isOperatorMF (scalingFamily_not_isOperatorMF m hm) P hP
 
 /-- The concrete reduced group C-star algebra of the `m`-th member admits no
 faithful embedding into any norm-matrix C-star corona. -/
@@ -286,6 +285,17 @@ theorem scalingFamily_maximalGroupCStar_not_isMFAlgebra (m : ℕ) (hm : 2 ≤ m)
   maximalGroupCStar_not_isMFAlgebra_of_not_isOperatorMF (MarkedGroup m)
     (scalingFamily_not_isOperatorMF m hm)
 
+/-- Every member with `m ≥ 2` fails every standard MF convention formalized
+in the development, including PMatF, trace-free PPermF, trace-PMF, PFF, and
+PPF.  The same package records failure of the embedding and MF-algebra
+predicates for the universe-relative maximal model and the concrete reduced
+group C-star algebra. -/
+theorem scalingFamily_failsEveryStandardMFConvention
+    (m : ℕ) (hm : 2 ≤ m) :
+    FailsEveryStandardMFConvention (MarkedGroup m) :=
+  failsEveryStandardMFConvention_of_not_isOperatorMF
+    (scalingFamily_not_isOperatorMF m hm)
+
 /-! ## Exact manuscript endpoint for the family -/
 
 /-- **Unconditional manuscript Theorem A for the whole scaling family.**
@@ -294,7 +304,8 @@ For every scaling factor `m ≥ 2` the presented group with stable relations
 `t vᵢ t⁻¹ = vᵢ^m` carries a nontrivial central involution that is killed by
 every genuine matrix corona representation, and the group is not MF in any
 of the formalized senses.  `m = 2` is the literal manuscript group. -/
-theorem manuscriptTheoremFamily (m : ℕ) (hm : 2 ≤ m) :
+theorem manuscriptTheoremFamily :
+    ∀ (m : ℕ), 2 ≤ m →
     Group.IsFinitelyPresented (MarkedGroup m) ∧
       (mark m ≠ 1 ∧ mark m ^ 2 = 1 ∧ ∀ g : MarkedGroup m, Commute (mark m) g) ∧
       (∀ (d : ℕ → ℕ), (∀ n, 0 < d n) →
@@ -304,12 +315,13 @@ theorem manuscriptTheoremFamily (m : ℕ) (hm : 2 ≤ m) :
       ¬ IsCDEOperatorMF (MarkedGroup m) ∧
       ¬ IsMFAlgebra (MaximalGroupCStar (MarkedGroup m)) ∧
       ¬ IsMFAlgebra (ReducedGroupCStar (MarkedGroup m)) :=
-  ⟨inferInstance,
-    ⟨(cliffordSign_blackHole hm).2, mark_sq m, mark_central m⟩,
-    scaling_mark_eq_one_in_unitaryCorona m,
-    scalingFamily_not_isCDEOperatorMF m hm,
-    scalingFamily_maximalGroupCStar_not_isMFAlgebra m hm,
-    scalingFamily_reducedGroupCStar_not_isMFAlgebra m hm⟩
+  fun m hm ↦
+    ⟨inferInstance,
+      ⟨(cliffordSign_blackHole hm).2, mark_sq m, mark_central m⟩,
+      scaling_mark_eq_one_in_unitaryCorona m,
+      scalingFamily_not_isCDEOperatorMF m hm,
+      scalingFamily_maximalGroupCStar_not_isMFAlgebra m hm,
+      scalingFamily_reducedGroupCStar_not_isMFAlgebra m hm⟩
 
 end
 

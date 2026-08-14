@@ -109,6 +109,21 @@ theorem exists_finitelyPresented_not_isOperatorMF :
     chosenFinitelyPresented_not_isOperatorMF.1,
     chosenFinitelyPresented_not_isOperatorMF.2⟩
 
+/-- A single witness carrying both countability and finite presentability. -/
+theorem exists_countable_finitelyPresented_not_isOperatorMF :
+    ∃ (E : Type) (_ : Group E),
+      Countable E ∧ Group.IsFinitelyPresented E ∧ ¬ IsOperatorMF E :=
+  ⟨MarkedGroup, inferInstance, inferInstance,
+    chosenFinitelyPresented_not_isOperatorMF.1,
+    chosenFinitelyPresented_not_isOperatorMF.2⟩
+
+/-- The universal operator-MF assertion fails even after restricting to
+countable groups. -/
+theorem not_every_countable_group_isOperatorMF :
+    ¬ (∀ (E : Type) [Group E] [Countable E], IsOperatorMF E) := by
+  intro hall
+  exact chosenFinitelyPresented_not_isOperatorMF.2 (hall MarkedGroup)
+
 /-- **Negative solution of the universal operator-MF problem.**  Not every
 group embeds in a cofinite norm-matrix corona. -/
 theorem not_every_group_isOperatorMF :

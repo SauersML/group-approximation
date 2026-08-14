@@ -59,7 +59,7 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.OperatorMF
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.MFDefinitions
-import GroupApproximation.Sofic.MFDefinitionConsequences
+import GroupApproximation.Sofic.MFRepresentationVariants
 import GroupApproximation.Sofic.CDEMFRadical
 import GroupApproximation.Sofic.RadicalSeparation
 import GroupApproximation.Sofic.NormMFUniversalQuotient
