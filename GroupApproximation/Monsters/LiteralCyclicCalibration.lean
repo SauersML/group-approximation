@@ -362,9 +362,9 @@ theorem manuscriptCyclicCalibration :
           markedGammaRelator, markedStableRelator,
           markedLampRelator].toFinset ∧
       markedWord =
-        let displaced := stableWord * lampWord * stableWord⁻¹
-        displaced * (gammaWord * displaced * gammaWord⁻¹) * displaced⁻¹ *
-          (gammaWord * displaced * gammaWord⁻¹)⁻¹ ∧
+        (let displaced := stableWord * lampWord * stableWord⁻¹
+         displaced * (gammaWord * displaced * gammaWord⁻¹) * displaced⁻¹ *
+          (gammaWord * displaced * gammaWord⁻¹)⁻¹) ∧
       Group.IsFinitelyPresented LiteralGroup ∧
       mark ≠ 1 ∧
       Function.Surjective quotientMap ∧

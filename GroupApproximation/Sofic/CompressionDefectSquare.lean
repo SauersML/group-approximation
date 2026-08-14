@@ -67,6 +67,7 @@ theorem markedCompressionWord_sq_eq_one_of_c_sq_of_central
   have hbInv : b⁻¹ = b := by
     apply inv_eq_of_mul_eq_one_left
     simpa [pow_two] using hb
+  have hdd : d * d = 1 := by simpa [pow_two] using hd
   have hword : markedCompressionWord t a c = d * b * d * b := by
     simp [markedCompressionWord, d, b, commutatorElement_def, hdInv, hbInv]
   have hconjInv :
@@ -74,7 +75,9 @@ theorem markedCompressionWord_sq_eq_one_of_c_sq_of_central
         (markedCompressionWord t a c)⁻¹ := by
     rw [hword, hdInv]
     simp only [_root_.mul_inv_rev, hdInv, hbInv]
-    group
+    calc
+      d * (d * b * d * b) * d = (d * d) * b * d * b * d := by group
+      _ = b * d * b * d := by rw [hdd]; simp
   have hconjFix :
       d * markedCompressionWord t a c * d⁻¹ =
         markedCompressionWord t a c := by
@@ -85,8 +88,9 @@ theorem markedCompressionWord_sq_eq_one_of_c_sq_of_central
       _ = markedCompressionWord t a c := by simp
   have hinv : (markedCompressionWord t a c)⁻¹ =
       markedCompressionWord t a c := hconjInv.symm.trans hconjFix
-  rw [pow_two, ← hinv]
-  simp
+  have hcancel := inv_mul_cancel (markedCompressionWord t a c)
+  rw [hinv] at hcancel
+  simpa [pow_two] using hcancel
 
 namespace MarkedCompressionInclusionData
 

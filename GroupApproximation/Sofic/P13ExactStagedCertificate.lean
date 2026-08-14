@@ -66,7 +66,7 @@ structure ManuscriptP13Presentation : Prop where
      (0, true), (2, false), (0, true)]
 
 theorem manuscriptP13Presentation : ManuscriptP13Presentation := by
-  constructor <;> intro <;> rfl
+  constructor <;> first | rfl | (intro <;> rfl)
 
 def residualBlockL1Numerator : Fin 6 → Fin 6 → ℕ
   | 0, 0 => 11626413589061
@@ -229,7 +229,8 @@ structure ManuscriptCertificate : Prop where
     generatorCoboundary p13Generator
   fox_boundary_definition : ∀ relator,
     LiteralP13HodgeData.B relator =
-      boundary p13Generator (p13RelatorLetters relator)
+      PresentedGroupRelatorReplay.boundary p13Generator
+        (p13RelatorLetters relator)
   q_coefficient_definition : ∀ row root supportIndex,
     LiteralP13HodgeData.qCoefficient row root supportIndex =
       (LiteralP13HodgeData.qNumerator row root supportIndex : ℚ) /

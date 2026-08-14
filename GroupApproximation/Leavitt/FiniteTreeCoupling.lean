@@ -1,5 +1,6 @@
 import Mathlib.Algebra.BigOperators.Field
 import Mathlib.Data.Fintype.Order
+import Mathlib.Data.Real.Basic
 
 /-!
 # Finite gluing along a common marginal
@@ -75,10 +76,10 @@ theorem sum_glueAlongFirst_left
         (hACnonneg a) ((hACmarginal a).trans ha) c
     simp [glueAlongFirst, ha, hac]
   · simp_rw [glueAlongFirst, if_neg ha]
-    rw [show (∑ b, μAB a b * μAC a c / α a) =
-        (∑ b, μAB a b) * μAC a c / α a by
-          rw [← Finset.sum_div, Finset.sum_mul]],
-      hABmarginal]
+    have hsum : (∑ b, μAB a b * μAC a c / α a) =
+        (∑ b, μAB a b) * μAC a c / α a := by
+      rw [← Finset.sum_div, Finset.sum_mul]
+    rw [hsum, hABmarginal]
     rw [mul_comm (α a) (μAC a c), mul_div_cancel_right₀ _ ha]
 
 /-- The glued law is normalized whenever either input pair-law is. -/

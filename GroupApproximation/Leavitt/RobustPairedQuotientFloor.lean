@@ -147,11 +147,12 @@ theorem rowSeparation_subset_mismatch_union_of_collision
       rowMismatchSet pair R L v ∪ rowMismatchSet pair R L v' := by
   intro w hw
   by_contra hmem
+  simp only [Finset.mem_union, not_or] at hmem
   have hv : pair (R v) (L w) = pair v w := by
-    have := (Finset.not_mem_union.mp hmem).1
+    have := hmem.1
     simpa [rowMismatchSet] using this
   have hv' : pair (R v') (L w) = pair v' w := by
-    have := (Finset.not_mem_union.mp hmem).2
+    have := hmem.2
     simpa [rowMismatchSet] using this
   have heq : pair v w = pair v' w :=
     hv.symm.trans ((congrArg (fun x ↦ pair x (L w)) hcollision).trans hv')
@@ -240,7 +241,8 @@ theorem card_collisionSources_eq_sum_mapFiber
   have hfilter : collisionSources f =
       Finset.univ.filter fun x ↦ f x ∈ collisionTargets f := by
     ext x
-    simp [mem_collisionSources_iff_image_mem_collisionTargets]
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and]
+    exact mem_collisionSources_iff_image_mem_collisionTargets f x
   calc
     (collisionSources f).card =
         (Finset.univ.filter fun x ↦ f x ∈ collisionTargets f).card :=

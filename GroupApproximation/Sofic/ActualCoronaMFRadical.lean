@@ -22,7 +22,7 @@ variable {G : Type u} [Group G]
 /-- The quotient of a countable group is countable. Mathlib does not install
 this globally because quotient presentations are not unique; every quotient
 in this module is the canonical `QuotientGroup` one. -/
-local instance quotientGroupCountable (N : Subgroup G) [Countable G] :
+local instance quotientGroupCountable (N : Subgroup G) [N.Normal] [Countable G] :
     Countable (G ⧸ N) :=
   Function.Surjective.countable (QuotientGroup.mk'_surjective N)
 

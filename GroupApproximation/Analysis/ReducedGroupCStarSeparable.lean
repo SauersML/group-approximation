@@ -35,7 +35,7 @@ theorem reducedGroupCStar_separableSpace
     rw [← Set.image_star]
     exact hs.image _
   have hgen : (s ∪ star s).Countable := hs.union hsStar
-  letI : Countable (s ∪ star s) := hgen.to_subtype
+  letI : Countable ↥(s ∪ star s) := hgen.to_subtype
   have hmonoid :
       ((Submonoid.closure (s ∪ star s) : Submonoid A) : Set A).Countable := by
     rw [Submonoid.closure_eq_mrange, MonoidHom.coe_mrange]
