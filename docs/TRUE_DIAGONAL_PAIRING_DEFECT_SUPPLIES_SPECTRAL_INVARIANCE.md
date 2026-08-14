@@ -183,6 +183,17 @@ case as `hsNormSq_pairing_defect_controls_sourceGram_commutator` in
 `GroupApproximation/Sofic/LeavittTraceFloor.lean`.  Its scalar squared-mass
 arithmetic is transcribed as `contraction_sq_mass_loss_le_two`, and
 `hsNormSq_pairing_transition_le_of_range_deficiency` propagates any proved
-range-deficiency bound through `(DPI10)`.  The remaining formal step is only
-the matrix positivity bridge `(DPI7)--(DPI8)`.  Per instruction, no local
-build was run.
+range-deficiency bound through `(DPI10)`.  The matrix positivity bridge
+`(DPI7)--(DPI8)` is now transcribed as
+`hsNormSq_range_deficiency_le_mass_loss`: it proves
+
+```text
+||(1-RR*)X||_2^2 <= ||X||_2^2-||R*X||_2^2
+```
+
+for every contraction `R`, by applying trace positivity to
+`Q-Q^2=R(1-R*R)R*`.  The remaining formal work is to combine this matrix
+lemma with the already transcribed scalar saturation bound and its adjoint
+copy, yielding the full contraction form of `(DPI2)--(DPI3)` as one exported
+theorem.  This is source-level formalization pending a kernel build; per
+instruction, no local build was run.
