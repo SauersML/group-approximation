@@ -11,7 +11,6 @@ import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
-import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
@@ -468,14 +467,6 @@ export GroupApproximation
     exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual
     existsUnique_coronaMFQuotient_factorization_to_isOperatorMF
     isOperatorMF_of_residuallyFinite)
-export GroupApproximation
-  (HasSoficCentralizerNormalization
-    not_isSofic_freeLamp_of_centralizerNormalization
-    not_isSofic_symmetricDouble_of_centralizerNormalization
-    symmetricDouble_isGroupTheoreticMF_and_not_isSofic
-    KunThomShulmanDoubleData)
-export GroupApproximation.KunThomShulmanDoubleData
-  (conclusion exists_groupTheoreticMF_not_sofic)
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)

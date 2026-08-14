@@ -12,7 +12,6 @@ import GroupApproximation.Sofic.WeakMFNonsoficDouble
 import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
-import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.CentralCoverInheritance
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.MarkedMFClosed
@@ -229,11 +228,6 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.doubleToLine_injective
 #print axioms GroupApproximation.isSofic_freeLamp_flip_of_isSofic_lineDouble
 #print axioms GroupApproximation.not_isSofic_lineDouble_of_not_isSofic_freeLamp_flip
-#print axioms GroupApproximation.not_isSofic_freeLamp_of_centralizerNormalization
-#print axioms GroupApproximation.not_isSofic_symmetricDouble_of_centralizerNormalization
-#print axioms GroupApproximation.symmetricDouble_isGroupTheoreticMF_and_not_isSofic
-#print axioms GroupApproximation.KunThomShulmanDoubleData.conclusion
-#print axioms GroupApproximation.KunThomShulmanDoubleData.exists_groupTheoreticMF_not_sofic
 #print axioms GroupApproximation.isSofic_multiplicative_int
 #print axioms GroupApproximation.isSofic_iff_productRestricted
 #print axioms GroupApproximation.isSofic_of_soficApproximation
