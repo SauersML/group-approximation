@@ -24,6 +24,21 @@ line.  The live theorem is unchanged but now strictly delimited: synchronize
 the raw branch decoder with every source in each comb extension fiber by
 using the special cross-root multiplication relations.
 
+`TRUE_BINARY_EXTENSION_FIBER_MAJORITY_DECODER.md` converts that live
+synchronization statement into one quantitative operator estimate.  If `B`
+is the binary raw-branch projection and `A_Y` is the coarse algebra generated
+by source-character fibers, fiberwise majority decoding has total error at
+most
+
+```text
+2 ||B-E_{A_Y}(B)||_2^2.
+```
+
+The scalar factor-two comparison is formalized source-first in
+`FiniteBinaryFiberDecoder.lean`.  The next relation search should therefore
+target asymptotic `L^2` membership of `B` in `A_Y`, rather than construct a
+decoder or whole-map PVM directly.
+
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 
 `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and

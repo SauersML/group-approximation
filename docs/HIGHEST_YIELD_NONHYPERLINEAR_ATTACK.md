@@ -21,6 +21,19 @@ table.  The shortest live route is now the special atlas statement that the
 raw branch decoder is constant on the comb compressor's extension-character
 fibers, forced by cross-root multiplication.
 
+This fiber statement now has a single quantitative target.  Let `B` be the
+raw binary branch projection and `A_Y` the coarse source-character algebra.
+Fiberwise majority decoding and conditional-variance arithmetic give
+
+```text
+decoder error <= 2 ||B-E_{A_Y}(B)||_2^2.
+```
+
+See `TRUE_BINARY_EXTENSION_FIBER_MAJORITY_DECODER.md` and the source-level
+formalization in `Leavitt/FiniteBinaryFiberDecoder.lean`.  Search for one
+cross-root word proving `B` is asymptotically in `A_Y`; that estimate now
+subsumes the entire binary fiber-decoder step.
+
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 
 A perfect finite binary pairing turns the two diagonal transport relations
