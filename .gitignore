@@ -7,3 +7,6 @@
 /*.out
 scripts/msi-build.sh
 **/__pycache__/
+
+# cairn runtime state (locks, cache, generated site) — disposable
+.cairn/

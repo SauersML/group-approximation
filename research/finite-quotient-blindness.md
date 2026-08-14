@@ -1,0 +1,14 @@
+---
+rg: 2
+id: finite-quotient-blindness
+kind: claim
+title: Finite quotients are blind to the compression
+invalidates: [finite-quotient-models]
+---
+
+`compressedImage_eq` (formalized). For any `φ` into a finite group, `φ(t)`
+normalizes `φ(Γ)`; since `Γ` and the compressors generate, the image of `Γ`
+is normal in every finite quotient. The compression data is quotiented away
+before any finite-quotient construction starts. Specializes to
+`⟨ā⟩ = ⟨ā²⟩` in every finite quotient of `BS(1,2)`. Manuscript:
+`rem:finiteblind`.
