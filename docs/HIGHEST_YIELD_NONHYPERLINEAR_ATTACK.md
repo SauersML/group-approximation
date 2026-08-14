@@ -289,11 +289,16 @@ has trace at least `1/120`, and the retained transition has singular values
 at least `1/4`.  See `TRUE_TRACE_FLAT_BLOCK_SPECTRAL_FLOOR.md`; the arithmetic
 constant is Lean-checked.
 
-Therefore a reduced-Fourier proof no longer needs to establish density or a
-lower singular-value bound.  It only needs to prove approximate invariance of
-one such retained cut under the recovered multiplication arrows.  The direct
-`C^4` alignment gate below remains shorter; use this spectral route if exact
-algebra alignment is too strong.
+Spectral coarea removes the need to postulate that invariance separately.
+If the four recovered arrows are contractions and
+`||[H,A_k]||_2->0`, averaging the cuts `1_[t,infinity)(H)` over
+`t in [1/32,1/16]` selects one common coordinate-dependent cut of trace at
+least `1/120`, with singular values at least `1/sqrt(32)`, whose two-sided
+leakage under all four arrows tends to zero.  See
+`TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md`.  Therefore the reduced-Fourier
+fallback now needs only the four polynomial commutator estimates
+`||[FGF,A_k]||_2->0`.  The direct `C^4` alignment gate below remains shorter;
+use this route if exact algebra alignment is too strong.
 
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 

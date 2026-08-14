@@ -6,6 +6,39 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: spectral coarea removes the eigenvalue-gap gate
+
+`TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md` reduces the spectral fallback to a
+strictly algebraic commutator estimate.  For `P_t=1_[t,infinity)(H)`, finite
+spectral decomposition gives
+
+```text
+integral_0^1 ||[P_t,A]||_2^2 dt
+ <=||[H,A]||_2 ||A||_2.
+```
+
+Summing this for the four coefficient arrows and averaging over
+`t in [1/32,1/16]` selects one common coordinate-dependent cut satisfying
+
+```text
+tau(P_t)>=1/120,
+sum_k ||[P_t,A_k]||_2^2
+  <=32 sum_k ||[FGF,A_k]||_2,
+```
+
+while the retained singular values are at least `1/sqrt(32)`.  Therefore no
+uniform eigenvalue spacing or separately postulated invariant spectral
+projection is needed.  The new smallest fallback gate is just
+
+```text
+||[FGF,A_k]||_2 -> 0
+```
+
+for the four recovered multiplication arrows.  Proving these commutator
+estimates from the cross-chart relations would automatically supply one
+positive-density, well-conditioned, simultaneously invariant coefficient
+sector.
+
 ### 2026-08-14: aggregate all negative root characters
 
 `TRUE_NEGATIVE_CHARACTER_SECTOR_AGGREGATION.md` removes a density concern
