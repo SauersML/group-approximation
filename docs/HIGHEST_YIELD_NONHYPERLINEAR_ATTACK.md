@@ -2,6 +2,30 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 nested commutators recover the paired translations directly
+
+On a long-root character sector `ell`, the named middle-root commutators
+
+```text
+D_b=[x_23(1),x_34(b)],       C_a=[x_12(a),x_23(1)]
+```
+
+translate the two outer-root character PVMs by the functionals
+`a |-> ell(ab)` and `b |-> ell(ab)`.  Their kernels are exactly the right
+and left radicals of `b_ell(a,b)=ell(ab)`.  Unitarity makes character
+multiplicity constant along every translation orbit.  Averaged approximate
+nested-commutator error is exactly twice the total mass outside the required
+shift graph, by Fourier Parseval.  See
+`TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md`.
+
+This removes arbitrary multiplicity-gauge recovery from the label-level
+paired-quotient route.  The remaining analytic gate is closure rather than
+reconstruction:
+make the four maps `[a] |-> [a t_i]`, `[b] |-> [s_j b]` act with vanishing
+boundary leakage on the same finite translation groups recovered above.
+Then the exact table `ell(a t_i s_j b)=delta_ij ell(ab)` reaches the existing
+`1/36` or `2-sqrt(3)` endpoint directly.
+
 ## 2026-08-14 exact joint covariance can retain maximal fiber variance
 
 One common compressor does synchronize the two commuting outer transition

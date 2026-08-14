@@ -5839,6 +5839,23 @@ provides that rate. Thus the existing coefficientwise `H^2` gate cannot
 be advertised as closing the Clifford argument. Full proof and scope:
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
 
+### 2026-08-14: nested commutators recover both radical translations
+
+`TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md` replaces an
+arbitrary coefficient-gauge decoder by named group words.  On the long-root
+sector `ell`, `[x_23(1),x_34(b)]` shifts the `x_12` character by
+`a |-> ell(ab)`, while `[x_12(a),x_23(1)]` shifts the `x_34` character by
+`b |-> ell(ab)`.  The kernels are exactly the two radicals.  The physical
+unitaries force flat spectral multiplicity on their translation orbits, and
+Fourier Parseval identifies approximate nested-commutator error with twice
+the total wrong-shift mass, uniformly in packet size.
+
+The paired quotient is therefore already visible inside the mixed root
+representation.  The remaining theorem is only a growing-window closure
+estimate: the four right/left Leavitt transports must have vanishing boundary
+leakage on these same recovered finite translation groups.  Once that is
+proved, the `1/36` or `2-sqrt(3)` contradiction is immediate.
+
 ### 2026-08-14: exact joint compressor covariance permits maximal fiber variance
 
 `FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md` gives the exact
