@@ -28,9 +28,10 @@ invariance/synchronization assumption after the three common-coordinate
 pairing defects have been extracted.
 
 The exact transition decomposition is transcribed as
-`pairing_defect_transition_decomposition`; the remaining positive-contraction
-mass-saturation estimate is proved in the note but not yet transcribed.  The
-unresolved theorem is now common-coordinate extraction of the four
+`pairing_defect_transition_decomposition`; the scalar mass-loss bound is
+transcribed as `contraction_sq_mass_loss_le_two`.  The remaining formal step
+inside this lemma is the matrix positivity bridge.  The unresolved research
+theorem is now common-coordinate extraction of the four
 paired-radical contractions with the three diagonal/cross defects.
 
 ### 2026-08-14: only the two left Leavitt arrows need spectral invariance

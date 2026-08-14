@@ -180,6 +180,7 @@ The exact decomposition `(DPI10)` is transcribed without placeholders as
 `pairing_defect_transition_decomposition`, the two-sided identity `(DPI12)`
 as `hsNormSq_transitionGram_commutator_le_two_sided`, and the unitary special
 case as `hsNormSq_pairing_defect_controls_sourceGram_commutator` in
-`GroupApproximation/Sofic/LeavittTraceFloor.lean`.  The positive-contraction
-mass-saturation estimate `(DPI7)--(DPI9)` has not yet been transcribed into
-Lean.  Per instruction, no local build was run.
+`GroupApproximation/Sofic/LeavittTraceFloor.lean`.  Its scalar squared-mass
+arithmetic is transcribed as `contraction_sq_mass_loss_le_two`.  The remaining
+formal step is the matrix positivity bridge `(DPI7)--(DPI8)`.  Per
+instruction, no local build was run.

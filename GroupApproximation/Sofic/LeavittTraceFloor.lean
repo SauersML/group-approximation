@@ -37,6 +37,24 @@ theorem hsNorm_nonneg (Y : FiniteModel) (A : Matrix Y Y ℂ) :
     0 ≤ hsNorm Y A :=
   Real.sqrt_nonneg _
 
+/-- Scalar mass-saturation estimate used by the diagonal-pairing argument.
+If two successive contractions have masses `x` and `y`, both bounded by the
+original mass `w`, and the final mass is within `η` of `w`, then the total
+squared mass loss is at most `2η`. -/
+theorem contraction_sq_mass_loss_le_two
+    (x y w η : ℝ)
+    (hy : 0 ≤ y) (hyx : y ≤ x) (hxw : x ≤ w) (hw : w ≤ 1)
+    (hη : 0 ≤ η) (hclose : w ≤ y + η) :
+    x ^ 2 - y ^ 2 ≤ 2 * η := by
+  have hdiff0 : 0 ≤ x - y := sub_nonneg.mpr hyx
+  have hdiff : x - y ≤ η := by linarith
+  have hsum0 : 0 ≤ x + y := add_nonneg (hy.trans hyx) hy
+  have hsum : x + y ≤ 2 := by linarith
+  calc
+    x ^ 2 - y ^ 2 = (x - y) * (x + y) := by ring
+    _ ≤ η * 2 := mul_le_mul hdiff hsum hsum0 hη
+    _ = 2 * η := by ring
+
 /-- The normalized trace is dominated by the normalized Hilbert--Schmidt
 norm.  This is the square-root form of
 `normSq_normTrace_le_hsNormSq`. -/
