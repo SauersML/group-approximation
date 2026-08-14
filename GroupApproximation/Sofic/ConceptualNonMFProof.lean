@@ -15,9 +15,9 @@ spine seen by a reader:
 
 1. `u = [d,a]` is the compression defect, where `d = t c t⁻¹`;
 2. the marked central involution is exactly `w = u²`;
-3. Kazhdan pinning makes every compression defect Hilbert--Schmidt trivial;
-4. the Reynolds-corner theorem therefore kills `{1,w}` in every norm-matrix
-   corona;
+3. Kazhdan transport makes every compression defect Hilbert--Schmidt trivial;
+4. the negative central corner makes `w` converge to `-1`, contradicting
+   `w = u² → 1`;
 5. the Clifford model detects `w`, so the literal group is not MF.
 
 There are no hypotheses in the final theorem and no duplicated analytic
@@ -83,6 +83,21 @@ theorem kazhdanPinning (B : OpAlmostRepresentation MarkedGroup) :
     KazhdanCompressionCore.CompressionDefectsHSTrivial
       conceptualInclusionData.toKazhdanCompressionCore B :=
   conceptualInclusionData.toKazhdanCompressionCore.compressionDefects_hsTrivial B
+
+/-- **The short negative-corner proof.**  A separated operator-norm almost
+representation of the literal mark cuts to a nonzero corner on which the
+central involution tends to `-1`.  Kazhdan transport simultaneously makes
+the root defect `u` tend to `1` in normalized Hilbert--Schmidt norm and hence
+makes `w = u²` tend to `1`, a contradiction.
+
+This is the formal reader-facing endpoint; the spectral cut, polar repair,
+and finite-stage transport estimates remain its checked implementation. -/
+theorem negativeCorner_kazhdanTransport_contradiction
+    (A : MarkedOpAlmostRepresentation MarkedGroup mark) : False := by
+  rw [← inclusionDataOfHasKazhdanPropertyT_word
+    literalBase_hasKazhdanPropertyT] at A
+  exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
+    conceptualInclusionData A
 
 /-! ## The Reynolds corner -/
 

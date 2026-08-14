@@ -191,6 +191,9 @@ import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
+import GroupApproximation.Sofic.KazhdanSignCriterion
+import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
+import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
@@ -426,6 +429,7 @@ import GroupApproximation.Sofic.SoficFiniteSemidirect
 import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
+import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.FreeLampRigidity
 import GroupApproximation.Sofic.ProfiniteClosure
 import GroupApproximation.Sofic.CentralFreeLampCover

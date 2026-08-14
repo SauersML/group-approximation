@@ -163,28 +163,32 @@ end MarkedCompressionInclusionData
 
 namespace KazhdanCompressionCore
 
-/-- **Finite-normal Kazhdan-compression obstruction (analytic core).**
+/-- **Finite-normal cancellation from an arbitrary tracial kill theorem.**
 
-If a finite normal subgroup is contained in the normal closure of the
-compression defects, every operator-norm matrix-ultraproduct homomorphism
-kills it.
+If every element of a subgroup is killed in the tracial ultraproduct attached
+to every operator-norm almost representation, then every finite normal
+subgroup it contains lies in the norm-MF residual.
 
 The proof has two reusable components:
 
-1. parameterize `commutatorMatrix_hsDistSq_vanishing` by an arbitrary
-   `γ : Γ`, showing that every `[d, ι(γ)]` becomes Hilbert--Schmidt trivial in
-   the adjoint Kazhdan corner, and propagate this through the normal closure;
+1. use the supplied tracial kill theorem on the finite subgroup;
 2. for a homomorphism that is nontrivial on the finite normal subgroup `F`,
    form `p_F = |F|⁻¹ ∑_{f∈F} ρ(f)`, cut to `q_F = 1 - p_F`, and extract a
    sequential matrix-corner model.  On that corner the same finite average is
    exactly zero, whereas (1) makes every summand Hilbert--Schmidt converge to
    one, a contradiction.
 
-Everything after this lemma is a purely formal residual argument. -/
-theorem finiteNormal_le_normMFResidual
-    [Countable E] (C : KazhdanCompressionCore Γ E)
+This formulation is independent of Kazhdan compression.  The old
+single-compressor theorem and the intrinsic all-compressors theorem are both
+short wrappers around it. -/
+theorem finiteNormal_le_normMFResidual_of_hyperlinear_killed
+    [Countable E] (D : Subgroup E)
+    (hDkill : ∀ (B : OpAlmostRepresentation E) (U : Ultrafilter ℕ)
+      (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : E), x ∈ D →
+      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+        hcof x = 1)
     (F : Subgroup E) [Finite F] [F.Normal]
-    (hF : F ≤ C.defectNormal) :
+    (hF : F ≤ D) :
     F ≤ normMFResidual E := by
   classical
   letI : Fintype F := Fintype.ofFinite F
@@ -202,41 +206,9 @@ theorem finiteNormal_le_normMFResidual
   let S := toAsymptoticUnitaryRepresentation B
   let rhoHS : E →* UniversalHyperlinear U₀ S.model S.modelNonempty :=
     S.toUltraproductHom hcof
-  have hdefect : ∀ gamma : Γ,
-      rhoHS ⁅C.transported, C.iota gamma⁆ = 1 := by
-    intro gamma
-    have hcollapse := compressionDefects_hsTrivial C B gamma
-    have hnull :
-        (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆)⁻¹ *
-            (fun n ↦ S.map n 1) ∈
-          nullUnitarySubgroup U₀ S.model S.modelNonempty := by
-      intro epsilon hepsilon
-      obtain ⟨N, hN⟩ := hcollapse (epsilon / 2) (by linarith)
-      refine eventually_of_atTop hcof N (fun n hn ↦ ?_)
-      show hsLengthSq (S.model n)
-        (((S.map n ⁅C.transported, C.iota gamma⁆)⁻¹ * S.map n 1 :
-          Matrix.unitaryGroup (S.model n) ℂ)) < epsilon
-      rw [coe_inv_mul,
-        hsLengthSq_conjTranspose_mul (S.model n)
-          (S.map n ⁅C.transported, C.iota gamma⁆).2
-          (S.modelNonempty n),
-        KazhdanCompressorCorner.hsDistSq_comm]
-      exact lt_of_le_of_lt (hN n hn) (by linarith)
-    have heq :
-        QuotientGroup.mk
-            (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆) =
-          QuotientGroup.mk (fun n ↦ S.map n 1) :=
-      QuotientGroup.eq.mpr hnull
-    calc
-      rhoHS ⁅C.transported, C.iota gamma⁆ =
-          QuotientGroup.mk
-            (fun n ↦ S.map n ⁅C.transported, C.iota gamma⁆) := rfl
-      _ = QuotientGroup.mk (fun n ↦ S.map n 1) := heq
-      _ = rhoHS 1 := rfl
-      _ = 1 := map_one rhoHS
   have hkillF : ∀ x : F, rhoHS (x : E) = 1 := by
     intro x
-    exact C.map_eq_one_of_mem_of_defects_eq_one rhoHS hdefect F hF x
+    exact hDkill B U₀ hcof x (hF x.property)
   have hcloseU : ∀ x : F, ∀ epsilon : ℝ, 0 < epsilon →
       ∀ᶠ n in (U₀ : Filter ℕ),
         hsDistSq (B.model n) (B.map n (x : E)) (B.map n 1) < epsilon := by
@@ -308,6 +280,19 @@ theorem finiteNormal_le_normMFResidual
     exact le_trans (le_of_lt ((hstage n).2 x)) hsmall
   exact FiniteNormalAverageCorner.false_of_finite_sum_vanishing_of_hsTrivial
     B' F hsum' hclose'
+
+/-- **Finite-normal Kazhdan-compression obstruction (analytic core).** -/
+theorem finiteNormal_le_normMFResidual
+    [Countable E] (C : KazhdanCompressionCore Γ E)
+    (F : Subgroup E) [Finite F] [F.Normal]
+    (hF : F ≤ C.defectNormal) :
+    F ≤ normMFResidual E := by
+  refine finiteNormal_le_normMFResidual_of_hyperlinear_killed
+    C.defectNormal ?_ F hF
+  intro B U hcof x hx
+  exact MonoidHom.mem_ker.mp (C.defectNormal_le_ker
+    ((toAsymptoticUnitaryRepresentation B).toUltraproductHom hcof)
+    (compressionDefects_eq_one_in_hyperlinearHom C B hcof) hx)
 
 /-- A nontrivial finite normal subgroup inside the compression defect rules
 out weak/operator-norm MF approximation. -/

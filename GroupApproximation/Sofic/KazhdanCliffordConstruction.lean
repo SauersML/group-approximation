@@ -3,6 +3,7 @@ import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.MarkedCompressionGroup
+import GroupApproximation.Kazhdan.KazhdanUniverse
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.Group
@@ -20,9 +21,10 @@ property-`(T)` group `Γ`, an injective endomorphism `alpha`, and an element
 
 is required only to be central.  Its square relation is *derived*, not
 imposed.  A homomorphism to the mapping-telescope Clifford model sends `w`
-to the nontrivial Clifford sign.  The finite-normal Kazhdan compression
-obstruction then proves that every norm-matrix-corona representation kills
-`w`, and hence that the constructed finitely presented group is not MF.
+to the nontrivial Clifford sign.  The short negative-central-corner
+Kazhdan transport contradiction proves directly that the constructed
+finitely presented group is not MF.  The stronger finite-normal theorem is
+retained separately for the universal corona-kernel conclusion.
 -/
 
 namespace GroupApproximation
@@ -31,6 +33,8 @@ namespace KazhdanCliffordConstruction
 open scoped commutatorElement
 
 noncomputable section
+
+universe w
 
 variable {Γ : Type} [Group Γ] [Group.IsFinitelyPresented Γ]
 
@@ -413,6 +417,37 @@ noncomputable def compressionCore :
   compresses g := ⟨alpha g, stable_compresses alpha a g⟩
   comm_c := lamp_commutes alpha a
 
+/-- The conceptual construction as marked inclusion data.  The central-sign
+order-two relation is filled by the derived theorem `mark_sq`; it is not a
+presentation relator. -/
+noncomputable def inclusionData :
+    MarkedCompressionInclusionData Γ (Extension alpha a) where
+  iota := iota alpha a
+  t := stable alpha a
+  c := lamp alpha a
+  a := a
+  kazhdan := hT
+  compresses g := ⟨alpha g, stable_compresses alpha a g⟩
+  comm_c := lamp_commutes alpha a
+  word_sq := by simpa [MarkedCompressionInclusionData.word, mark] using
+    mark_sq alpha a
+  word_central g := by
+    simpa [MarkedCompressionInclusionData.word, mark] using mark_central alpha a g
+
+@[simp] theorem inclusionData_word :
+    (inclusionData alpha a hT).word = mark alpha a := rfl
+
+/-- The short negative-corner contradiction for the general conceptual
+construction.  A separated sign cuts to a nonzero corner on which the mark
+tends to `-1`; Kazhdan transport makes its compression-defect square tend to
+`1` in normalized Hilbert--Schmidt norm. -/
+theorem negativeCorner_kazhdanTransport_contradiction
+    (A : MarkedOpAlmostRepresentation (Extension alpha a) (mark alpha a)) :
+    False := by
+  rw [← inclusionData_word alpha a hT] at A
+  exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
+    (inclusionData alpha a hT) A
+
 theorem mark_eq_defect_sq :
     mark alpha a =
       ⁅(compressionCore alpha a hT).transported,
@@ -468,23 +503,17 @@ theorem every_cstar_corona_hom_kills_mark
 /-- The Kazhdan--Clifford extension is unconditionally non-MF. -/
 theorem not_isOperatorMF (ha : a ∉ Set.range alpha) :
     ¬ IsOperatorMF (Extension alpha a) := by
-  let F := centralInvolutionSubgroup (mark alpha a) (mark_sq alpha a)
-  letI : F.Normal := centralInvolutionSubgroup_normal
-    (mark alpha a) (mark_sq alpha a) (mark_central alpha a)
-  letI : Nontrivial F := centralInvolutionSubgroup_nontrivial
-    (mark alpha a) (mark_sq alpha a) (mark_ne_one alpha hAlpha a ha)
-  exact (compressionCore alpha a hT).not_isOperatorMF_of_finiteNormal_le_defect
-    F ((centralInvolutionSubgroup_le_iff_mem
-      (mark alpha a) (mark_sq alpha a)
-      (compressionCore alpha a hT).defectNormal).mpr
-      (mark_mem_defectNormal alpha a hT))
+  simpa using (inclusionData alpha a hT).not_isOperatorMF
+    (mark_ne_one alpha hAlpha a ha)
 
 /-- **Kazhdan--Clifford construction (formal headline theorem).**  A
 finitely presented Kazhdan group with a proper injective self-map produces a
 finitely presented non-MF group.  The distinguished central involution is
 nontrivial in the Clifford model and is killed by every norm-matrix-corona
 representation. -/
-theorem kazhdanCliffordConstruction (ha : a ∉ Set.range alpha) :
+theorem kazhdanCliffordConstruction
+    (hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ)
+    (ha : a ∉ Set.range alpha) :
     Group.IsFinitelyPresented (Extension alpha a) ∧
       Function.Injective (iota alpha a) ∧
       mark alpha a ≠ 1 ∧
@@ -498,14 +527,16 @@ theorem kazhdanCliffordConstruction (ha : a ∉ Set.range alpha) :
             unitary (NormMatrixCStarCorona (fun n ↦ X n)),
           rho (mark alpha a) = 1) ∧
       ¬ IsCDEOperatorMF (Extension alpha a) := by
+  let hTReal : HasKazhdanPropertyT.{0, 0} Γ :=
+    hasKazhdanPropertyT_iff_textbook.mpr hTTextbook
   refine ⟨inferInstance, iota_injective alpha hAlpha a ha,
     mark_ne_one alpha hAlpha a ha, mark_sq alpha a, mark_central alpha a,
     ?_, ?_⟩
   · intro d hd
-    exact every_cstar_corona_hom_kills_mark alpha a hT
+    exact every_cstar_corona_hom_kills_mark alpha a hTReal
       (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd)
   · rw [isCDEOperatorMF_iff_isOperatorMF]
-    exact not_isOperatorMF alpha hAlpha a hT ha
+    exact not_isOperatorMF alpha hAlpha a hTReal ha
 
 end
 

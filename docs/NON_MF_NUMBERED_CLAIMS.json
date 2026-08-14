@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every retained numbered theorem-like environment has one exact wrapper with the same outer proposition, no extra formal premise, and no paper-only mathematical input.",
+  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition; paper-only claims state their external inputs and precise mechanization gap.",
   "claims": [
     {
       "id": "prop:mf-equivalences",
@@ -26,15 +26,60 @@
       ]
     },
     {
+      "id": "thm:kazhdan-transport",
+      "environment": "theorem",
+      "title": "Kazhdan transport of asymptotic commutants",
+      "statement_sha256": "b38ea95c15ee2db6cb1cf4ba5806583254be073dd2548a925330afdbfeb6c4ca",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptKazhdanTransport",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:sign-criterion",
+      "environment": "theorem",
+      "title": "central-sign criterion",
+      "statement_sha256": "f39caa79b9c6d8c326e180ac3efa5f1aa7fbe1677836c12d7676adeff7988cba",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:kazhdan-transport",
+        "lem:corner"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/KazhdanSignCriterion",
+          "declaration": "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "f815923bac018b10d0e6ea709ff3480a22bfc4c0230491b0a40bad31f67c424f",
+      "statement_sha256": "c4c716c1d2041663ed684516eb52debfd4d6273b5e42d73bd1aad466803eb944",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "prop:mf-equivalences",
         "thm:criterion",
+        "thm:sign-criterion",
+        "thm:kazhdan-transport",
         "lem:square",
         "con:clifford"
       ],
@@ -51,10 +96,33 @@
       ]
     },
     {
+      "id": "thm:compression-radical",
+      "environment": "theorem",
+      "title": "compression radical",
+      "statement_sha256": "47fa02cbb53dd646aa8e639970e3517d6ad5f4d0eb445b74764283cbdb1c0c4b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:kazhdan-transport",
+        "lem:corner"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptKazhdanTransport",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "def951918792afaf59783bb0c949d0020ff407d632cd13a3d9bd5b145c3a13a6",
+      "statement_sha256": "df76de2007f64861e33d7ccb3ffd3dab602521424181876bca93db0b00ddcda1",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -81,8 +149,8 @@
     },
     {
       "id": "thm:B",
-      "environment": "mainthm",
-      "title": "finite-dimensional obstruction",
+      "environment": "theorem",
+      "title": "finite-dimensional shadow",
       "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -101,7 +169,7 @@
     },
     {
       "id": "thm:C",
-      "environment": "mainthm",
+      "environment": "proposition",
       "title": "cyclic-base comparison",
       "statement_sha256": "4f7eb9ba53bb223d4a16bfc5ff4a8e64f68c81c0624580858e16a2a8d7b9abee",
       "status": "exact",
@@ -186,35 +254,14 @@
       ]
     },
     {
-      "id": "prop:p13-certificate",
-      "environment": "proposition",
-      "title": "exact rational Hodge certificate",
-      "statement_sha256": "aa10b929a977eefdb3a69e60dca2161f3daaed31f9ae1b52260501a3e888da37",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/P13ExactStagedCertificate",
-          "declaration": "GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "prop:literal-base-T",
       "environment": "proposition",
       "title": "",
-      "statement_sha256": "e76626bc366a36426bfe35abd71a9a9ed1d4a3ece629073dfd5bd34b70797065",
+      "statement_sha256": "4955bce3c162ac27864633e4c35dd3484798530f2190589df83653678709ee1e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:E",
-        "prop:p13-certificate"
+        "def:E"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -222,8 +269,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConceptualNonMFProof",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.literalBase_hasKazhdanPropertyT",
+          "module": "Sofic/LiteralBaseP13PropertyTBridge",
+          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
           "covers": "the complete printed proposition"
         }
       ]
@@ -293,6 +340,27 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "thm:sofic-detector",
+      "environment": "theorem",
+      "title": "sofic Clifford detector",
+      "statement_sha256": "58b7026d17fee3ee1f332f17941259c420490789b454ba608615e597df00596e",
+      "status": "paper-only",
+      "object_identity": "The printed theorem concerns the concrete Clifford target W and the explicit quotient map constructed in Proposition prop:witness.",
+      "dependencies": [
+        "prop:witness",
+        "thm:A"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Malcev residual finiteness for finitely generated characteristic-zero linear groups.",
+        "Sofic groups are closed under directed unions; the split finite stages are sofic by the sofic-by-amenable theorem applied to a finite-index normal core.",
+        "Elek--Szabo: extensions of sofic groups by amenable groups are sofic.",
+        "Elek--Szabo: every sofic group is hyperlinear."
+      ],
+      "coverage_gap": "The abstract radical-separation implications are formalized, but the concrete finite-orbit tower proving that W is sofic has no theorem-level Lean counterpart in this repository.",
+      "lean": []
     },
     {
       "id": "cor:notRFD",

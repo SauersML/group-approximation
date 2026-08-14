@@ -56,11 +56,11 @@ w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]
 
 a central element; its order-two relation follows from centrality and
 `c² = 1` rather than being imposed separately. An explicit affine--Clifford
-representation proves `w ≠ 1`. The manuscript's property-(T) proof uses an exact rational Hodge
-certificate for a six-generator, thirteen-relator presentation, a checked
-surjection onto the rotation presentation, and an intrinsic fixed-point
-argument for the translations. The current source contains the staged exact
-certificate and the hypothesis-free endpoint, but these claims are not part
+representation proves `w ≠ 1`. The manuscript proves property (T) by identifying
+the twenty-relator base with `ℤ³ ⋊ SL₃(ℤ)` from the displayed presentation
+and applying the classical affine-lattice theorem. Independently, the companion
+derives the same property from its canonical rational P13 certificate and
+the intrinsic fixed-point argument. These claims are not part
 of the verified pin above until the full build, manifest, axiom, replay, and
 PDF provenance gates all succeed at one commit.
 
@@ -70,16 +70,23 @@ The conceptual proof is organized around
 u = [tct⁻¹,v₁],       w = u².
 ```
 
-Kazhdan pinning makes `u` Hilbert--Schmidt trivial in every operator-norm
-almost representation; the finite-normal Reynolds argument therefore kills
-`w` in every norm-matrix corona. The independent Clifford model has
-`w = -1`, so `w ≠ 1`. The finite-stage spectral-cut and rank calculations
-are the formal implementation of the pinning step.
+The short reader-facing architecture, including the redundant-sign
+presentation and the affine family, is recorded in
+[`docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md`](docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md).
+
+The reusable theorem is transport of the entire bounded asymptotic
+commutant.  If `s iota(Γ) s⁻¹ <= iota(Γ)`, then property (T) and finiteness
+turn the one-sided inclusion of fixed projections into equality, so every
+compressor and its inverse preserve the asymptotic commutant.  For the marked
+construction this makes `u` Hilbert--Schmidt trivial.  Cutting a separated
+central sign to its negative corner then gives simultaneously `w = u² -> 1`
+and `w -> -1`.  The finite-stage spectral-cut, polar-repair, and rank
+calculations are the checked implementation of this short contradiction.
 
 The paper also proves:
 
-- a finite-normal obstruction criterion for any marked Kazhdan-compression
-  pattern, without assuming that the map from the Kazhdan group is injective;
+- the intrinsic all-compressors defect theorem: every finite normal subgroup
+  of the compression--centralizer defect lies in the MF radical;
 - an elementary finite-dimensional kill theorem over every field, requiring
   neither property (T), unitarity, nor centrality of the marked word;
 - a cyclic-base comparison showing that exact finite-dimensional
@@ -88,8 +95,16 @@ The paper also proves:
 - failure of closure of MF groups under quotients;
 - the MF radical, its single-corona detector, and the largest MF quotient.
 
-The result is specific to operator-norm approximation. It does not prove that
-`E` is nonhyperlinear or nonsofic, does not decide whether
+The paper additionally proves by a finite-coset-tower argument that the
+Clifford witness is a finitely generated sofic non-MF group.  Thus the same
+marked sign is MF-invisible but visible in both sofic and hyperlinear targets.
+The abstract detector/radical implications are formalized in
+`Sofic/RadicalSeparation.lean`; the concrete tower, finite-extension, and
+sofic-by-amenable permanence proof is currently classified explicitly as a
+paper-only claim in the numbered-claim manifest.
+
+The result is specific to operator-norm approximation. It does not decide
+whether the presenting group `E` itself is hyperlinear or sofic, or whether
 `E/⟨w⟩` is MF, and does not address quasidiagonality of nuclear stably
 finite C*-algebras.
 
@@ -106,12 +121,12 @@ kills it.
 
 The literal theorem is definitionally the same eight-generator presentation
 and marked word as the manuscript. The affine--Clifford nontriviality witness,
-exact P13 tables and relator replays, the rotation quotient, the intrinsic
-property-(T) bridge, Kazhdan pinning, and the finite-normal obstruction are
+canonical P13 tables and relator replays, the rotation quotient, the intrinsic
+property-(T) bridge, Kazhdan transport, and the negative-corner obstruction are
 joined by the zero-input declarations
 `LiteralNonMFEndpoint.manuscriptTheoremA` and
 `LiteralNonMFEndpoint.manuscriptTheoremD` in
-`Sofic/ConceptualNonMFProof.lean`; the quantitative modules remain their
+`Sofic/LiteralNonMFEndpoint.lean`; the quantitative modules remain their
 backend.
 A revision is described as formally complete only after the headline theorem,
 all exact wrappers, the signature roster, source scan, kernel audit, and fresh
@@ -134,10 +149,12 @@ Reading path, front door first:
 | Module | Role |
 | --- | --- |
 | `Sofic/KazhdanCliffordConstruction.lean` | General finitely presented Kazhdan self-embedding construction, HNN--Clifford witness, universal corona kernel, and non-MF endpoint |
-| `Sofic/ConceptualNonMFProof.lean` | Hypothesis-free proof spine: `w = u²`, Kazhdan pinning, Reynolds annihilation, Clifford detection, and Theorem A |
-| `Sofic/LiteralNonMFEndpoint.lean` | Reusable endpoint assembly parameterized by the property-(T) certificate |
-| `Sofic/P13ExactStagedCertificate.lean` | Exact rational P13 Hodge certificate assembled from kernel-checked residual blocks |
-| `Sofic/LiteralBaseP13RotationQuotient.lean`, `Sofic/LiteralBaseP13PropertyTBridge.lean` | Checked P13-to-rotation quotient and intrinsic literal-base bridge |
+| `Sofic/LiteralNonMFEndpoint.lean` | Hypothesis-free proof spine: `w = u²`, Kazhdan transport, the negative-corner contradiction, Clifford detection, and Theorems A and D |
+| `Sofic/KazhdanAsymptoticCommutant.lean` | Transport of every bounded asymptotic-commutant sequence by every one-sided compressor and by the generated compression group |
+| `Sofic/IntrinsicCompressionMFRadical.lean` | Intrinsic compression--centralizer defect and its finite-normal MF-radical theorem |
+| `Sofic/ManuscriptKazhdanTransport.lean` | Natural-matrix-coordinate wrappers matching the two new manuscript theorems exactly |
+| `Sofic/LiteralP13HodgeCertificate.lean` | Canonical rational P13 Hodge certificate assembled from exact residual blocks |
+| `Sofic/LiteralBaseP13RotationQuotient.lean`, `Sofic/LiteralBaseP13PropertyTBridge.lean` | P13-to-rotation quotient and intrinsic literal-base bridge |
 | `Sofic/ManuscriptExactWrappers.lean` | Shared exact outer-proposition wrappers for the generic retained claims |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/CDEOperatorMF.lean`, `Sofic/ActualCoronaMFRadical.lean` | Literal natural-dimension CDE predicate and genuine-corona radical |

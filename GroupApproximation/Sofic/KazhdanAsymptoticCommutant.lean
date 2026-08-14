@@ -44,6 +44,13 @@ theorem HSSqVanishing.neg {B : OpAlmostRepresentation E}
   rw [hnorm]
   exact hN n hn
 
+/-- Reversing a difference preserves squared Hilbert--Schmidt nullity. -/
+theorem HSSqVanishing.sub_symm {B : OpAlmostRepresentation E}
+    {x y : ∀ n, Matrix (B.model n) (B.model n) ℂ}
+    (hxy : HSSqVanishing B (fun n ↦ x n - y n)) :
+    HSSqVanishing B (fun n ↦ y n - x n) :=
+  hxy.neg.congr fun n ↦ by abel
+
 theorem HSSqVanishing.add {B : OpAlmostRepresentation E}
     {x y : ∀ n, Matrix (B.model n) (B.model n) ℂ}
     (hx : HSSqVanishing B x) (hy : HSSqVanishing B y) :
@@ -62,7 +69,8 @@ theorem HSSqVanishing.smul {B : OpAlmostRepresentation E}
     (hx : HSSqVanishing B x) (c : ℂ) :
     HSSqVanishing B (fun n ↦ c • x n) := by
   intro ε hε
-  have hden : 0 < Complex.normSq c + 1 := by positivity
+  have hden : 0 < Complex.normSq c + 1 := by
+    nlinarith [Complex.normSq_nonneg c]
   obtain ⟨N, hN⟩ := hx (ε / (Complex.normSq c + 1)) (div_pos hε hden)
   refine ⟨N, fun n hn ↦ ?_⟩
   rw [hsNormSq_smul]
@@ -71,8 +79,13 @@ theorem HSSqVanishing.smul {B : OpAlmostRepresentation E}
         Complex.normSq c * (ε / (Complex.normSq c + 1)) :=
       mul_le_mul_of_nonneg_left (hN n hn) (Complex.normSq_nonneg c)
     _ ≤ ε := by
-      rw [div_le_iff₀ hden]
-      nlinarith [Complex.normSq_nonneg c]
+      calc
+        Complex.normSq c * (ε / (Complex.normSq c + 1)) =
+            ε * (Complex.normSq c / (Complex.normSq c + 1)) := by ring
+        _ ≤ ε := by
+          have hratio : Complex.normSq c / (Complex.normSq c + 1) ≤ 1 :=
+            (div_le_one hden).2 (by linarith [Complex.normSq_nonneg c])
+          simpa using mul_le_mul_of_nonneg_left hratio hε.le
 
 theorem HSSqVanishing.finset_sum {B : OpAlmostRepresentation E}
     {I : Type} (s : Finset I)
@@ -112,8 +125,9 @@ theorem HSSqVanishing.of_opNormVanishing
   intro epsilon hepsilon
   obtain ⟨N, hN⟩ := hx (Real.sqrt epsilon) (Real.sqrt_pos.2 hepsilon)
   refine ⟨N, fun n hn ↦ ?_⟩
-  have hdom := hsDistSq_le_sq_l2_opNorm (B.model n) (x n) 0
-  rw [hsDistSq, sub_zero] at hdom
+  have hdom : hsNormSq (B.model n) (x n) ≤ ‖x n‖ ^ 2 := by
+    simpa [hsNormSq, hsDistSq] using
+      (hsDistSq_le_sq_l2_opNorm (B.model n) (x n) 0)
   calc
     hsNormSq (B.model n) (x n) ≤ ‖x n‖ ^ 2 := hdom
     _ ≤ (Real.sqrt epsilon) ^ 2 := by
@@ -147,28 +161,267 @@ theorem IsUniformlyBounded.unitary_conjugate
         (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
   obtain ⟨M, hM, hMx⟩ := hx
   refine ⟨M, hM, fun n ↦ ?_⟩
-  rw [CStarRing.norm_mem_unitary_mul _ (u n).2,
+  change ‖(u n : Matrix (B.model n) (B.model n) ℂ) * x n *
+    (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ ≤ M
+  rw [← Matrix.mul_assoc,
+    CStarRing.norm_mem_unitary_mul _ (u n).2,
     CStarRing.norm_mul_mem_unitary _ (conjTranspose_mem_unitaryGroup (u n).2)]
   exact hMx n
 
 /-- Hilbert--Schmidt-equivalent bounded sequences have the same asymptotic
 commutation relations. -/
 theorem IsAsymptoticCommutant.congr_hs
-    {B : OpAlmostRepresentation E} {C : KazhdanCompressionCore Γ E}
+    {B : OpAlmostRepresentation E} {iota : Γ →* E}
     {x y : ∀ n, Matrix (B.model n) (B.model n) ℂ}
-    (hx : IsAsymptoticCommutant B C x)
+    (hx : IsAsymptoticCommutantOf B iota x)
     (hxy : HSSqVanishing B (fun n ↦ x n - y n)) :
-    IsAsymptoticCommutant B C y := by
+    IsAsymptoticCommutantOf B iota y := by
   intro gamma
   let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ :=
-    fun n ↦ B.map n (C.iota gamma)
+    fun n ↦ B.map n (iota gamma)
   have hconj := hxy.unitary_conjugate u
-  exact ((hx gamma).add hxy.neg |>.add hconj).congr fun n ↦ by
+  have hsum := ((hx gamma).add hxy.neg).add hconj
+  exact hsum.congr fun n ↦ by
     have hu : (u n : Matrix (B.model n) (B.model n) ℂ) *
         (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 :=
       Unitary.mul_star_self_of_mem (u n).2
     simp only [u]
     noncomm_ring [hu]
+
+/-- Operator-norm nullity is preserved by conjugate transpose. -/
+theorem OpNormVanishing.conjTranspose
+    {B : OpAlmostRepresentation E}
+    {x : ∀ n, Matrix (B.model n) (B.model n) ℂ}
+    (hx : OpNormVanishing B x) :
+    OpNormVanishing B (fun n ↦ (x n)ᴴ) := by
+  intro epsilon hepsilon
+  obtain ⟨N, hN⟩ := hx epsilon hepsilon
+  refine ⟨N, fun n hn ↦ ?_⟩
+  change ‖(x n)ᴴ‖ ≤ epsilon
+  rw [← Matrix.star_eq_conjTranspose, norm_star]
+  exact hN n hn
+
+/-- Conjugating a uniformly bounded sequence by operator-norm-equivalent
+unitaries changes it by a Hilbert--Schmidt-null sequence. -/
+theorem conjugation_hsSqVanishing_of_opNormVanishing
+    {B : OpAlmostRepresentation E}
+    (u v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x)
+    (huv : OpNormVanishing B (fun n ↦
+      (u n : Matrix (B.model n) (B.model n) ℂ) - v n)) :
+    HSSqVanishing B (fun n ↦
+      (u n : Matrix (B.model n) (B.model n) ℂ) * x n *
+          (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ -
+        (v n : Matrix (B.model n) (B.model n) ℂ) * x n *
+          (v n : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
+  apply HSSqVanishing.of_opNormVanishing
+  obtain ⟨M, hM, hMx⟩ := hbound
+  intro epsilon hepsilon
+  have hden : 0 < 2 * (M + 1) := by positivity
+  obtain ⟨N, hN⟩ := huv (epsilon / (2 * (M + 1))) (div_pos hepsilon hden)
+  refine ⟨N, fun n hn ↦ ?_⟩
+  let U : Matrix (B.model n) (B.model n) ℂ := u n
+  let V : Matrix (B.model n) (B.model n) ℂ := v n
+  let X : Matrix (B.model n) (B.model n) ℂ := x n
+  have hsplit : U * X * Uᴴ - V * X * Vᴴ =
+      (U - V) * X * Uᴴ + V * X * (U - V)ᴴ := by
+    rw [Matrix.conjTranspose_sub]
+    noncomm_ring
+  change ‖U * X * Uᴴ - V * X * Vᴴ‖ ≤ epsilon
+  rw [hsplit]
+  have hleft : ‖(U - V) * X * Uᴴ‖ ≤ ‖U - V‖ * ‖X‖ := by
+    calc
+      ‖(U - V) * X * Uᴴ‖ = ‖(U - V) * X‖ :=
+        CStarRing.norm_mul_mem_unitary _
+          (conjTranspose_mem_unitaryGroup (u n).2)
+      _ ≤ ‖U - V‖ * ‖X‖ := Matrix.l2_opNorm_mul _ _
+  have hright : ‖V * X * (U - V)ᴴ‖ ≤ ‖X‖ * ‖U - V‖ := by
+    calc
+      ‖V * X * (U - V)ᴴ‖ ≤ ‖V * X‖ * ‖(U - V)ᴴ‖ :=
+        Matrix.l2_opNorm_mul _ _
+      _ = ‖X‖ * ‖U - V‖ := by
+        rw [CStarRing.norm_mem_unitary_mul _ (v n).2,
+          ← Matrix.star_eq_conjTranspose, norm_star]
+  calc
+    ‖(U - V) * X * Uᴴ + V * X * (U - V)ᴴ‖ ≤
+        ‖(U - V) * X * Uᴴ‖ + ‖V * X * (U - V)ᴴ‖ := norm_add_le _ _
+    _ ≤ ‖U - V‖ * ‖X‖ + ‖X‖ * ‖U - V‖ := add_le_add hleft hright
+    _ ≤ 2 * M * (epsilon / (2 * (M + 1))) := by
+      have hUV : ‖U - V‖ ≤ epsilon / (2 * (M + 1)) := by
+        simpa [U, V] using hN n hn
+      have hX : ‖X‖ ≤ M := by simpa [X] using hMx n
+      nlinarith [norm_nonneg (U - V), norm_nonneg X]
+    _ = epsilon * (M / (M + 1)) := by field_simp
+    _ ≤ epsilon := by
+      have hM1 : 0 < M + 1 := by linarith
+      have hratio : M / (M + 1) ≤ 1 := (div_le_one hM1).2 (by linarith)
+      simpa using mul_le_mul_of_nonneg_left hratio hepsilon.le
+
+/-- Coordinate adjoint action of a group element. -/
+def adjointSequence (B : OpAlmostRepresentation E) (g : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ) := fun n ↦
+  (B.map n g : Matrix (B.model n) (B.model n) ℂ) * x n *
+    (B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ
+
+/-- Coordinate inverse adjoint action of a group element. -/
+def coadjointSequence (B : OpAlmostRepresentation E) (g : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ) := fun n ↦
+  (B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n * B.map n g
+
+theorem IsUniformlyBounded.adjointSequence
+    {B : OpAlmostRepresentation E} {g : E}
+    {x : ∀ n, Matrix (B.model n) (B.model n) ℂ}
+    (hx : IsUniformlyBounded B x) : IsUniformlyBounded B (adjointSequence B g x) :=
+  hx.unitary_conjugate (fun n ↦ B.map n g)
+
+theorem IsUniformlyBounded.coadjointSequence
+    {B : OpAlmostRepresentation E} {g : E}
+    {x : ∀ n, Matrix (B.model n) (B.model n) ℂ}
+    (hx : IsUniformlyBounded B x) : IsUniformlyBounded B (coadjointSequence B g x) := by
+  obtain ⟨M, hM, hMx⟩ := hx
+  refine ⟨M, hM, fun n ↦ ?_⟩
+  change ‖(B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
+    (B.map n g : Matrix (B.model n) (B.model n) ℂ)‖ ≤ M
+  rw [← Matrix.mul_assoc,
+    CStarRing.norm_mem_unitary_mul _
+      (conjTranspose_mem_unitaryGroup (B.map n g).2),
+    CStarRing.norm_mul_mem_unitary _ (B.map n g).2]
+  exact hMx n
+
+/-- Almost multiplicativity makes adjoint action multiplicative modulo
+Hilbert--Schmidt-null sequences. -/
+theorem adjointSequence_mul_hs
+    (B : OpAlmostRepresentation E) (g h : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦
+      adjointSequence B (g * h) x n -
+        adjointSequence B g (adjointSequence B h x) n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦ B.map n (g * h)
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h,
+      mul_mem (B.map n g).2 (B.map n h).2⟩
+  simpa [adjointSequence, u, v, Matrix.mul_assoc] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound
+      (multiplicativeDefect_vanishing B g h)
+
+/-- Almost multiplicativity makes inverse adjoint action anti-multiplicative
+modulo Hilbert--Schmidt-null sequences. -/
+theorem coadjointSequence_mul_hs
+    (B : OpAlmostRepresentation E) (g h : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦
+      coadjointSequence B (g * h) x n -
+        coadjointSequence B h (coadjointSequence B g x) n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ)ᴴ,
+      conjTranspose_mem_unitaryGroup (B.map n (g * h)).2⟩
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨((B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h)ᴴ,
+      conjTranspose_mem_unitaryGroup (mul_mem (B.map n g).2 (B.map n h).2)⟩
+  have hdef := OpNormVanishing.conjTranspose
+    (B := B) (multiplicativeDefect_vanishing B g h)
+  have hdef' : OpNormVanishing B (fun n ↦
+      (u n : Matrix (B.model n) (B.model n) ℂ) - v n) := by
+    simpa only [u, v, Matrix.conjTranspose_sub] using hdef
+  simpa [coadjointSequence, u, v, Matrix.conjTranspose_mul, Matrix.mul_assoc] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound hdef'
+
+theorem adjointSequence_inv_hs
+    (B : OpAlmostRepresentation E) (g : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦
+      adjointSequence B g⁻¹ x n - coadjointSequence B g x n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦ B.map n g⁻¹
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ,
+      conjTranspose_mem_unitaryGroup (B.map n g).2⟩
+  simpa [adjointSequence, coadjointSequence, u, v] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound
+      (map_inv_vanishing B g)
+
+theorem coadjointSequence_inv_hs
+    (B : OpAlmostRepresentation E) (g : E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦
+      coadjointSequence B g⁻¹ x n - adjointSequence B g x n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n g⁻¹ : Matrix (B.model n) (B.model n) ℂ)ᴴ,
+      conjTranspose_mem_unitaryGroup (B.map n g⁻¹).2⟩
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦ B.map n g
+  have hdef := OpNormVanishing.conjTranspose (B := B) (map_inv_vanishing B g)
+  have hdef' : OpNormVanishing B (fun n ↦
+      (u n : Matrix (B.model n) (B.model n) ℂ) - v n) := by
+    simpa only [u, v, Matrix.conjTranspose_sub,
+      Matrix.conjTranspose_conjTranspose] using hdef
+  simpa [adjointSequence, coadjointSequence, u, v] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound hdef'
+
+theorem adjointSequence_one_hs
+    (B : OpAlmostRepresentation E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦ adjointSequence B 1 x n - x n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦ B.map n 1
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨1, by simp⟩
+  simpa [adjointSequence, u, v] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound
+      (map_one_vanishing B)
+
+theorem coadjointSequence_one_hs
+    (B : OpAlmostRepresentation E)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x) :
+    HSSqVanishing B (fun n ↦ coadjointSequence B 1 x n - x n) := by
+  let u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n 1 : Matrix (B.model n) (B.model n) ℂ)ᴴ,
+      conjTranspose_mem_unitaryGroup (B.map n 1).2⟩
+  let v : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨1, by simp⟩
+  have hdef := OpNormVanishing.conjTranspose (B := B) (map_one_vanishing B)
+  have hdef' : OpNormVanishing B (fun n ↦
+      (u n : Matrix (B.model n) (B.model n) ℂ) - v n) := by
+    simpa only [u, v, Matrix.conjTranspose_sub, Matrix.conjTranspose_one] using hdef
+  simpa [coadjointSequence, u, v] using
+    conjugation_hsSqVanishing_of_opNormVanishing u v x hbound hdef'
+
+/-- Elements whose coordinate adjoint and inverse-adjoint actions both
+preserve every bounded asymptotic-commutant sequence. -/
+def asymptoticCommutantStabilizer (B : OpAlmostRepresentation E)
+    (iota : Γ →* E) : Subgroup E where
+  carrier := {g | ∀ x, IsUniformlyBounded B x → IsAsymptoticCommutantOf B iota x →
+    IsAsymptoticCommutantOf B iota (adjointSequence B g x) ∧
+      IsAsymptoticCommutantOf B iota (coadjointSequence B g x)}
+  one_mem' := by
+    intro x hbound hx
+    exact ⟨IsAsymptoticCommutant.congr_hs hx
+        (adjointSequence_one_hs B x hbound).sub_symm,
+      IsAsymptoticCommutant.congr_hs hx
+        (coadjointSequence_one_hs B x hbound).sub_symm⟩
+  mul_mem' := by
+    intro g h hg hh x hbound hx
+    have hhx := hh x hbound hx
+    have hforward := hg (adjointSequence B h x)
+      (IsUniformlyBounded.adjointSequence hbound) hhx.1
+    have hbackward := hh (coadjointSequence B g x)
+      (IsUniformlyBounded.coadjointSequence hbound)
+      (hg x hbound hx).2
+    exact ⟨IsAsymptoticCommutant.congr_hs hforward.1
+        (adjointSequence_mul_hs B g h x hbound).sub_symm,
+      IsAsymptoticCommutant.congr_hs hbackward.2
+        (coadjointSequence_mul_hs B g h x hbound).sub_symm⟩
+  inv_mem' := by
+    intro g hg x hbound hx
+    have hgx := hg x hbound hx
+    exact ⟨IsAsymptoticCommutant.congr_hs hgx.2
+        (adjointSequence_inv_hs B g x hbound).sub_symm,
+      IsAsymptoticCommutant.congr_hs hgx.1
+        (coadjointSequence_inv_hs B g x hbound).sub_symm⟩
 
 /-- Conjugating the reverse displacement by the implementing unitary turns it
 into the negative forward displacement. -/
@@ -190,7 +443,12 @@ theorem reverse_hsSqVanishing
     have huuh : (u n : Matrix (B.model n) (B.model n) ℂ) *
         (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 :=
       Unitary.mul_star_self_of_mem (u n).2
-    simp only [u]
+    change (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+          (-(x n - (u n : Matrix (B.model n) (B.model n) ℂ) * x n *
+            (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ)) *
+          ((u n : Matrix (B.model n) (B.model n) ℂ)ᴴ)ᴴ =
+        x n - (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n * u n
+    rw [Matrix.conjTranspose_conjTranspose]
     noncomm_ring [huu, huuh]
 
 /-- The Hermitian Kazhdan-average residual of an asymptotic-commutant
@@ -200,7 +458,7 @@ theorem laplacian_hsSqVanishing
     {C : KazhdanCompressionCore Γ E}
     {x : ∀ n, Matrix (B.model n) (B.model n) ℂ}
     (hx : IsAsymptoticCommutant B C x)
-    (S : Finset Γ) (hone : 1 ∈ S) :
+    (S : Finset Γ) (_hone : 1 ∈ S) :
     HSSqVanishing B (fun n ↦
       (2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
         ((x n - (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
@@ -282,7 +540,7 @@ theorem capture_vanishing
         field_simp
         nlinarith [sq_nonneg M]
   have hcapture := capture_vec H
-    (by simpa [H] using
+    (by simpa [H, Matrix.IsHermitian, Matrix.star_eq_conjTranspose] using
       hermitianAverage_conjTranspose (gammaAdjoint B C) S n)
     θ 0 hθ.le (by positivity)
     (by simpa [H] using norm_hermitianAverage_le_one (gammaAdjoint B C) S n) ξ
@@ -309,9 +567,14 @@ private theorem transport_of_leakage
     (htheta1 : theta < 1)
     (u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ)
     (hleak : ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
-      ‖(1 - cornerProjection B C S theta n) *
-        (conjDouble (u n) * cornerProjection B C S theta n *
-          (conjDouble (u n))ᴴ)‖ ≤ epsilon) :
+      ‖(1 - (cornerProjection B C S theta n :
+            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ)) *
+        ((conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) :
+            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ) *
+          (cornerProjection B C S theta n :
+            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ) *
+          (conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) :
+            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ)ᴴ)‖ ≤ epsilon) :
     IsAsymptoticCommutant B C (fun n ↦
       (u n : Matrix (B.model n) (B.model n) ℂ) * x n *
         (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
@@ -331,19 +594,28 @@ private theorem transport_of_leakage
   let Ua : Matrix (B.model n) (B.model n) ℂ := B.map n (C.iota γ)
   let Ut : Matrix (B.model n) (B.model n) ℂ := u n
   let X : Matrix (B.model n) (B.model n) ℂ := x n
-  let P := cornerProjection B C S theta n
-  have hfix : ‖(conjDouble Ua - 1) * P‖ ≤ q := by
-    simpa [Ua, P, gammaAdjoint] using
+  let P : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
+    cornerProjection B C S theta n
+  let Ta : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
+    conjDouble Ua
+  let Tt : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
+    conjDouble Ut
+  have hfix : ‖(Ta - 1) * P‖ ≤ q := by
+    simpa [Ta, Ua, P, gammaAdjoint] using
       hNfix n ((le_max_left _ _).trans hn)
-  have hrev : ‖(1 - P) * (conjDouble Ut * P * (conjDouble Ut)ᴴ)‖ ≤ q := by
-    simpa [P, Ut] using
-      hNrev n ((le_max_left _ _).trans (le_max_right _ _).trans hn)
-  have hcap := hNcap n ((le_max_right _ _).trans (le_max_right _ _).trans hn)
+  have hrev : ‖(1 - P) * (Tt * P * Ttᴴ)‖ ≤ q := by
+    simpa [Tt, P, Ut] using
+      hNrev n ((le_max_left Nrev Ncap).trans
+        ((le_max_right Nfix (max Nrev Ncap)).trans hn))
+  have hcap := hNcap n ((le_max_right Nrev Ncap).trans
+    ((le_max_right Nfix (max Nrev Ncap)).trans hn))
   have hchain := MarkedCompressionVectorChain.transported_displacement_le
     (Y := doubleModel (B.model n)) (by rw [card_doubleModel]; positivity)
     (cornerProjection_isOrthogonalProjection B C S theta n)
-    (conjDouble_mem_unitaryGroup (u n).2)
-    (conjDouble_mem_unitaryGroup (B.map n (C.iota γ)).2)
+    (show Tt ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ by
+      exact conjDouble_mem_unitaryGroup (u n).2)
+    (show Ta ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ by
+      exact conjDouble_mem_unitaryGroup (B.map n (C.iota γ)).2)
     hfix hrev hcap
   have hxmass : MarkedCompressionVectorChain.vecMass (gammaRowVec B n X) ≤
       Fintype.card (B.model n) * M ^ 2 := by
@@ -359,16 +631,16 @@ private theorem transport_of_leakage
       _ = ε := by field_simp
   have hmass :
       MarkedCompressionVectorChain.vecMass
-        (conjDouble Ua *ᵥ (conjDouble Ut *ᵥ gammaRowVec B n X) -
-          conjDouble Ut *ᵥ gammaRowVec B n X) ≤
+        (Ta *ᵥ (Tt *ᵥ gammaRowVec B n X) -
+          Tt *ᵥ gammaRowVec B n X) ≤
         (2 * q ^ 2 + 16 * q ^ 2) *
             MarkedCompressionVectorChain.vecMass (gammaRowVec B n X) +
           16 * (q * Fintype.card (B.model n)) :=
     hchain
   have hmass' :
       MarkedCompressionVectorChain.vecMass
-        (conjDouble Ua *ᵥ (conjDouble Ut *ᵥ gammaRowVec B n X) -
-          conjDouble Ut *ᵥ gammaRowVec B n X) ≤
+        (Ta *ᵥ (Tt *ᵥ gammaRowVec B n X) -
+          Tt *ᵥ gammaRowVec B n X) ≤
         Fintype.card (B.model n) *
           (18 * q ^ 2 * M ^ 2 + 16 * q) := by
     calc
@@ -398,8 +670,11 @@ private theorem transport_of_leakage
         Complex.normSq
           ((Ut * X * Utᴴ - Ua * (Ut * X * Utᴴ) * Uaᴴ) i j)) =
         MarkedCompressionVectorChain.vecMass
-          (conjDouble Ua *ᵥ (conjDouble Ut *ᵥ gammaRowVec B n X) -
-            conjDouble Ut *ᵥ gammaRowVec B n X) := by
+          (Ta *ᵥ (Tt *ᵥ gammaRowVec B n X) -
+            Tt *ᵥ gammaRowVec B n X) := by
+      change _ = MarkedCompressionVectorChain.vecMass
+        (conjDouble Ua *ᵥ (conjDouble Ut *ᵥ gammaRowVec B n X) -
+          conjDouble Ut *ᵥ gammaRowVec B n X)
       rw [conjDouble_mulVec_rowVec, conjDouble_mulVec_rowVec,
         MarkedCompressionVectorChain.vecMass, sum_normSq_rowVec]
       refine Finset.sum_congr rfl fun i _ ↦
@@ -429,10 +704,14 @@ theorem transport
   let theta : ℝ := ((1 - kappa ^ 2 / (4 * S.card)) + 1) / 2
   have htheta4 : 1 - kappa ^ 2 / (4 * S.card) < theta := by
     dsimp [theta]
+    have hcard : 0 < (S.card : ℝ) := by
+      exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
     have : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) := by positivity
     linarith
   have htheta1 : theta < 1 := by
     dsimp [theta]
+    have hcard : 0 < (S.card : ℝ) := by
+      exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
     have : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) := by positivity
     linarith
   apply transport_of_leakage B C x hx hbound S kappa theta hone hsymm hgen
@@ -453,15 +732,19 @@ theorem transport_star
       (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
         (B.map n C.t : Matrix (B.model n) (B.model n) ℂ)) := by
   classical
-  obtain ⟨S, kappa, hone, hsymm, hgen, _hkappa, hkappaOne, hpair⟩ :=
+  obtain ⟨S, kappa, hone, hsymm, hgen, hkappa, hkappaOne, hpair⟩ :=
     KazhdanProjection.HasKazhdanPropertyT.exists_symmetric_generating_pair C.kazhdan
   let theta : ℝ := ((1 - kappa ^ 2 / (4 * S.card)) + 1) / 2
   have htheta4 : 1 - kappa ^ 2 / (4 * S.card) < theta := by
     dsimp [theta]
+    have hcard : 0 < (S.card : ℝ) := by
+      exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
     have : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) := by positivity
     linarith
   have htheta1 : theta < 1 := by
     dsimp [theta]
+    have hcard : 0 < (S.card : ℝ) := by
+      exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
     have : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) := by positivity
     linarith
   apply transport_of_leakage B C x hx hbound S kappa theta hone hsymm hgen
@@ -519,8 +802,8 @@ def coreOfCompressor (iota : Γ →* E) (hkazhdan : HasKazhdanPropertyT.{0, 0} �
   kazhdan := hkazhdan
   compresses gamma := by
     obtain ⟨delta, hdelta⟩ := hs (iota gamma) ⟨gamma, rfl⟩
-    exact ⟨delta, hdelta⟩
-  comm_c gamma := one_comm _
+    exact ⟨delta, hdelta.symm⟩
+  comm_c gamma := Commute.one_left _
 
 /-- Every one-sided compressor, not merely a distinguished stable letter,
 acts in both directions on the bounded asymptotic commutant. -/
@@ -533,22 +816,50 @@ theorem compressionSet_transport_both
         x n * (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ))
     (hbound : IsUniformlyBounded B x)
     {s : E} (hs : s ∈ compressionSet iota.range) :
-    (∀ gamma : Γ, HSSqVanishing B (fun n ↦
-      (B.map n s : Matrix (B.model n) (B.model n) ℂ) * x n *
-          (B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ -
-        (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-          ((B.map n s : Matrix (B.model n) (B.model n) ℂ) * x n *
-            (B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ) *
-          (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)) ∧
-    (∀ gamma : Γ, HSSqVanishing B (fun n ↦
-      (B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n * B.map n s -
-        (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ) *
-          ((B.map n s : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n * B.map n s) *
-          (B.map n (iota gamma) : Matrix (B.model n) (B.model n) ℂ)ᴴ)) := by
+    IsAsymptoticCommutantOf B iota (adjointSequence B s x) ∧
+      IsAsymptoticCommutantOf B iota (coadjointSequence B s x) := by
   let C := coreOfCompressor iota hkazhdan s hs
-  have htransport := transport_both B C x (by simpa [IsAsymptoticCommutant, C] using hx)
-    hbound
-  simpa [IsAsymptoticCommutant, C] using htransport
+  have hxC : IsAsymptoticCommutant B C x := by
+    change IsAsymptoticCommutantOf B iota x
+    exact hx
+  have htransport := transport_both B C x hxC hbound
+  change IsAsymptoticCommutantOf B C.iota (adjointSequence B C.t x) ∧
+    IsAsymptoticCommutantOf B C.iota (coadjointSequence B C.t x) at htransport
+  change IsAsymptoticCommutantOf B iota (adjointSequence B s x) ∧
+    IsAsymptoticCommutantOf B iota (coadjointSequence B s x)
+  exact htransport
+
+/-- Every one-sided compressor belongs to the asymptotic-commutant
+stabilizer. -/
+theorem compressionSet_subset_asymptoticCommutantStabilizer
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ) :
+    compressionSet iota.range ⊆ asymptoticCommutantStabilizer B iota := by
+  intro s hs x hbound hx
+  exact compressionSet_transport_both B iota hkazhdan x hx hbound hs
+
+/-- **All-compressors Kazhdan transport.**  The group generated by every
+one-sided compressor acts as a two-sided symmetry of the entire bounded
+asymptotic commutant. -/
+theorem compressionGroup_le_asymptoticCommutantStabilizer
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ) :
+    compressionGroup iota.range ≤ asymptoticCommutantStabilizer B iota := by
+  rw [compressionGroup, Subgroup.closure_le]
+  exact compressionSet_subset_asymptoticCommutantStabilizer B iota hkazhdan
+
+/-- Pointwise form of the all-compressors transport theorem. -/
+theorem compressionGroup_transport_both
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ)
+    {g : E} (hg : g ∈ compressionGroup iota.range)
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : IsUniformlyBounded B x)
+    (hx : IsAsymptoticCommutantOf B iota x) :
+    IsAsymptoticCommutantOf B iota (adjointSequence B g x) ∧
+      IsAsymptoticCommutantOf B iota (coadjointSequence B g x) :=
+  compressionGroup_le_asymptoticCommutantStabilizer B iota hkazhdan hg
+    x hbound hx
 
 end KazhdanAsymptoticCommutant
 end GroupApproximation

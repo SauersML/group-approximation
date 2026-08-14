@@ -11,6 +11,7 @@ import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
+import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
@@ -23,6 +24,9 @@ import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
+import GroupApproximation.Sofic.KazhdanSignCriterion
+import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
+import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.LiteralFiniteDimensionalObstruction
 import GroupApproximation.Monsters.UniversalMFEventHorizon
 import GroupApproximation.Monsters.UniversalFinitelyPresentedTorsionFreeGroup
@@ -118,6 +122,11 @@ generated from the manuscript's margin notes; this module is the short list.
 * `KazhdanCompressionCore.not_isOperatorMF_of_finiteNormal_le_defect` -- the
   same criterion as a direct obstruction to the standard cofinite-corona
   definition of operator MF.
+* `KazhdanCompressionCore.defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel`
+  and `not_isOperatorMF_of_defectSquare_eq_centralInvolution` -- the
+  reader-facing one-sign specialization: if the square of one compression
+  defect is a nontrivial central involution, every genuine corona model kills
+  it and the ambient group is not operator MF.
 * `isOperatorMF_iff_normMFResidual_eq_bot` and
   `normMFQuotient_isOperatorMF` -- the universal norm-MF quotient is itself
   operator MF, and residual triviality exactly characterizes operator MF for
@@ -167,6 +176,12 @@ annihilation, and Clifford detection.
 * `LiteralNonMFEndpoint.manuscriptTheoremA` -- the hypothesis-free printed
   theorem, including the corona kernel statement and the group and C-star
   non-MF conclusions.
+* `LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction` -- the
+  short reader-facing proof: cut a separated central sign to its negative
+  corner, then contradict `w = u² → 1` from Kazhdan transport.
+* `KazhdanCliffordConstruction.negativeCorner_kazhdanTransport_contradiction`
+  -- the same short proof for the reusable construction from any finitely
+  presented Kazhdan group with a proper injective self-embedding.
 * `LiteralNonMFEndpoint.manuscriptTheoremD` -- the hypothesis-free reduced
   group C-star endpoint: separable, faithfully tracial, stably finite in every
   finite matrix amplification, and non-MF.
@@ -397,7 +412,13 @@ export GroupApproximation.Monsters
 export GroupApproximation.Monsters.IsVerballyComplete
   (exists_conj_pow_eq exists_commutatorElement_conj_eq)
 export GroupApproximation.KazhdanCompressionCore
-  (finiteNormal_le_normMFResidual not_isWeakMF_of_finiteNormal_le_defect
+  (finiteNormal_le_normMFResidual finiteNormal_le_normMFResidual_of_hyperlinear_killed
+    not_isWeakMF_of_finiteNormal_le_defect
+    centralInvolution_mem_normMatrixCStarCoronaKernel
+    defectSquare_centralInvolution_mem_normMatrixCStarCoronaKernel
+    not_isOperatorMF_of_centralInvolution_mem_defect
+    not_isOperatorMF_of_defectSquare_eq_centralInvolution
+    manuscriptCentralSignCriterion
     finiteNormal_le_coronaMFResidual
     finiteNormal_le_normMatrixCoronaKernel
     finiteNormal_le_normMatrixCStarCoronaKernel
@@ -419,6 +440,14 @@ export GroupApproximation
     exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual
     existsUnique_coronaMFQuotient_factorization_to_isOperatorMF
     isOperatorMF_of_residuallyFinite)
+export GroupApproximation
+  (HasSoficCentralizerNormalization
+    not_isSofic_freeLamp_of_centralizerNormalization
+    not_isSofic_symmetricDouble_of_centralizerNormalization
+    symmetricDouble_isGroupTheoreticMF_and_not_isSofic
+    KunThomShulmanDoubleData)
+export GroupApproximation.KunThomShulmanDoubleData
+  (conclusion exists_groupTheoreticMF_not_sofic)
 export GroupApproximation.IsOperatorMF (comap subgroup)
 export GroupApproximation.OperatorMFQuotientNonclosure
   (operatorMF_not_closed_under_this_quotient)
@@ -438,6 +467,12 @@ export GroupApproximation.KazhdanCompressionCore
     existsUnique_defectNormal_factorization_to_normMatrixCStarCorona
     defectNormal_le_orbitDefectNormal
     orbitDefectNormal_le_compressionCentralizerDefect)
+export GroupApproximation.KazhdanAsymptoticCommutant
+  (transport transport_star transport_both
+    compressionGroup_le_asymptoticCommutantStabilizer
+    compressionGroup_transport_both
+    compressionCentralizerDefect_eq_one_in_hyperlinearHom
+    finiteNormal_le_normMFResidual_of_le_compressionCentralizerDefect)
 export GroupApproximation.MarkedCompressionInclusionData
   (not_isOperatorMF_of_mem_finiteNormal)
 
@@ -449,6 +484,7 @@ export GroupApproximation.LiteralNonMFEndpoint
   (literalBase_hasKazhdanPropertyT conceptualInclusionData
     compressionRoot compressionDefect mark_eq_compressionDefect_sq
     compressionDefect_sq_ne_one kazhdanPinning
+    negativeCorner_kazhdanTransport_contradiction
     literalInvolutionSubgroup_le_defectNormal
     literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
     literalInvolutionSubgroup_le_normMatrixCoronaKernel

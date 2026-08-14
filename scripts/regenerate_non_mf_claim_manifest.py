@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 r"""Regenerate the exact numbered-claim manifest from the manuscript boundary.
 
-The manuscript is deliberately strict: every numbered theorem-like object has
-exactly one ``\leanverified`` record, and that record names a wrapper with the
-same outer proposition.  This generator records those pairs, statement hashes,
-and explicit numbered-claim dependencies.  Semantic review remains necessary
-when a wrapper or printed proposition changes; the generated diff makes that
-review unavoidable and complete.
+The paper keeps its mathematical prose standalone while displaying one compact
+linked declaration identifier in the margin of every numbered claim.  This
+generator verifies those margin records against an independent claim map and
+records statement hashes, signatures, and explicit dependencies.  Semantic
+review remains necessary when either proposition changes; the generated diff
+makes that review unavoidable and complete.
 """
 
 from __future__ import annotations
@@ -21,20 +21,144 @@ from check_non_mf_claim_manifest import read_printed_claims
 REPO = Path(__file__).resolve().parent.parent
 
 
+# Exact formal counterpart of each numbered mathematical claim.  This map is
+# independent of the margin records so that a manuscript edit cannot silently
+# redirect its own audit target.
+CLAIM_TARGETS: dict[str, tuple[str, str]] = {
+    "prop:mf-equivalences": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences"),
+    "thm:kazhdan-transport": (
+        "Sofic/ManuscriptKazhdanTransport",
+        "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport"),
+    "thm:sign-criterion": (
+        "Sofic/KazhdanSignCriterion",
+        "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion"),
+    "thm:compression-radical": (
+        "Sofic/ManuscriptKazhdanTransport",
+        "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical"),
+    "thm:kazhdan-clifford": (
+        "Sofic/KazhdanCliffordConstruction",
+        "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction"),
+    "thm:A": (
+        "Sofic/ConceptualNonMFProof",
+        "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA"),
+    "thm:B": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),
+    "thm:C": (
+        "Monsters/LiteralCyclicCalibration",
+        "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration"),
+    "thm:D": (
+        "Sofic/ConceptualNonMFProof",
+        "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
+    "prop:maximal-cstar": (
+        "Analysis/MaximalGroupCStar",
+        "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
+    "def:E": (
+        "Sofic/LiteralNonMFPresentation",
+        "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation"),
+    "prop:literal-base-T": (
+        "Sofic/LiteralBaseP13PropertyTBridge",
+        "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT"),
+    "con:clifford": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction"),
+    "lem:linear": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel"),
+    "prop:witness": (
+        "Sofic/LiteralNonMFLinearWitness",
+        "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one"),
+    "cor:notRFD": (
+        "Sofic/LiteralFiniteDimensionalObstruction",
+        "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences"),
+    "lem:lift": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting"),
+    "lem:unitarycorona": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence"),
+    "def:pattern": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern"),
+    "thm:criterion": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion"),
+    "lem:corner": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptCoordinateFiniteNormalCorner"),
+    "lem:compressorcollapse": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptCompressionDefectsCollapse"),
+    "lem:square": (
+        "Sofic/CompressionDefectSquare",
+        "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),
+    "def:radical": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical"),
+    "lem:portable": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability"),
+    "prop:univquot": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptLargestMFQuotient"),
+    "cor:exactradical": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient"),
+    "cor:nofaithful": (
+        "Sofic/LiteralNonMFConsequences",
+        "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target"),
+    "lem:faithfultrace": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness"),
+    "cor:quotclosure": (
+        "Sofic/LiteralMFQuotientControls",
+        "GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure"),
+}
+
+
+# Unconditional paper theorems whose external sofic-permanence inputs and
+# concrete finite-coset construction do not yet have a theorem-level Lean
+# counterpart.  They deliberately carry no `\lean...` badge.
+PAPER_ONLY_CLAIMS: dict[str, dict[str, object]] = {
+    "thm:sofic-detector": {
+        "object_identity": (
+            "The printed theorem concerns the concrete Clifford target W and "
+            "the explicit quotient map constructed in Proposition prop:witness."),
+        "dependencies": ["prop:witness", "thm:A"],
+        "external_inputs": [
+            "Malcev residual finiteness for finitely generated characteristic-zero linear groups.",
+            "Sofic groups are closed under directed unions; the split finite stages are sofic by the sofic-by-amenable theorem applied to a finite-index normal core.",
+            "Elek--Szabo: extensions of sofic groups by amenable groups are sofic.",
+            "Elek--Szabo: every sofic group is hyperlinear.",
+        ],
+        "coverage_gap": (
+            "The abstract radical-separation implications are formalized, but the "
+            "concrete finite-orbit tower proving that W is sofic has no theorem-level "
+            "Lean counterpart in this repository."),
+    },
+}
+
+
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
+    "thm:sign-criterion": ["thm:kazhdan-transport", "lem:corner"],
+    "thm:compression-radical": ["thm:kazhdan-transport", "lem:corner"],
     "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
-                              "lem:square", "con:clifford"],
+                              "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
+                              "con:clifford"],
     "thm:A": ["def:E", "prop:mf-equivalences", "prop:maximal-cstar",
               "prop:literal-base-T", "prop:witness", "thm:criterion",
               "lem:unitarycorona", "lem:square"],
     "thm:C": ["thm:B", "con:clifford"],
     "thm:D": ["thm:A", "lem:faithfultrace"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
-    "prop:literal-base-T": ["def:E", "prop:p13-certificate"],
+    "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
+    "thm:sofic-detector": ["prop:witness", "thm:A"],
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
     "thm:criterion": ["def:pattern", "lem:compressorcollapse"],
@@ -49,14 +173,47 @@ DEPENDENCIES: dict[str, list[str]] = {
 
 def generate(tex: Path) -> dict:
     entries = []
-    for claim in read_printed_claims(tex):
+    claims = read_printed_claims(tex)
+    claim_ids = {claim.claim_id for claim in claims}
+    routed_ids = CLAIM_TARGETS.keys() | PAPER_ONLY_CLAIMS.keys()
+    missing = sorted(claim_ids - routed_ids)
+    stale = sorted(routed_ids - claim_ids)
+    if missing:
+        raise SystemExit(f"numbered claims missing formal targets: {', '.join(missing)}")
+    if stale:
+        raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
+    for claim in claims:
+        if claim.claim_id in PAPER_ONLY_CLAIMS:
+            if claim.badges:
+                raise SystemExit(
+                    f"{claim.claim_id}: paper-only claims must not display Lean badges")
+            metadata = PAPER_ONLY_CLAIMS[claim.claim_id]
+            entries.append({
+                "id": claim.claim_id,
+                "environment": claim.environment,
+                "title": claim.title,
+                "statement_sha256": claim.statement_sha256,
+                "status": "paper-only",
+                "object_identity": metadata["object_identity"],
+                "dependencies": metadata["dependencies"],
+                "extra_assumptions": [],
+                "external_inputs": metadata["external_inputs"],
+                "coverage_gap": metadata["coverage_gap"],
+                "lean": [],
+            })
+            continue
+        module, declaration = CLAIM_TARGETS[claim.claim_id]
         if len(claim.badges) != 1:
             raise SystemExit(
-                f"{claim.claim_id}: expected exactly one exact badge, found "
-                f"{len(claim.badges)}")
-        role, module, declaration = claim.badges[0]
+                f"{claim.claim_id}: expected exactly one margin declaration, "
+                f"found {len(claim.badges)}")
+        role, printed_module, printed_declaration = claim.badges[0]
         if role != "exact":
             raise SystemExit(f"{claim.claim_id}: retained claims must be exact")
+        if (printed_module, printed_declaration) != (module, declaration):
+            raise SystemExit(
+                f"{claim.claim_id}: margin declaration differs from the "
+                "independent claim map")
         entries.append({
             "id": claim.claim_id,
             "environment": claim.environment,
@@ -81,9 +238,10 @@ def generate(tex: Path) -> dict:
         "schema_version": 1,
         "manuscript": tex.name,
         "status_policy": (
-            "Every retained numbered theorem-like environment has one exact "
-            "wrapper with the same outer proposition, no extra formal premise, "
-            "and no paper-only mathematical input."),
+            "Every numbered theorem-like environment is recorded. Exact claims "
+            "have one linked declaration and an independently mapped wrapper with "
+            "the same literal objects and outer proposition; paper-only claims "
+            "state their external inputs and precise mechanization gap."),
         "claims": entries,
     }
 
