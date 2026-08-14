@@ -6,6 +6,37 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: transition intertwinings imply the spectral commutators
+
+`TRUE_TRANSITION_INTERTWINING_CONTROLS_SPECTRAL_LEAKAGE.md` removes the
+remaining separately stated commutator hypothesis from the spectral decoder.
+For a contraction `T`, source unitary `A`, target unitary `B`, and `H=T* T`,
+
+```text
+||[H,A]||_2 <=2||T A-B T||_2.
+```
+
+Indeed, with `X=TA` and `Y=BT`, unitary invariance and the Gram factorization
+give
+
+```text
+||[H,A]||_2=||X*X-Y*Y||_2
+ <=||X*(X-Y)||_2+||(X*-Y*)Y||_2.
+```
+
+For the Pauli block `T=GF`, spectral coarea now selects one projection of
+trace at least `1/120`, with inverse bound `4 sqrt(2)`, satisfying
+
+```text
+sum_k ||[P,A_k]||_2^2
+ <=64 sum_k ||GF A_k-B_k GF||_2.
+```
+
+The new smallest fallback gate is therefore four natural cross-chart
+transition-intertwining defects.  Proving those identities from the
+multiplication-module packet automatically supplies positive density,
+conditioning, one common cut, and two-sided leakage.
+
 ### 2026-08-14: spectral coarea removes the eigenvalue-gap gate
 
 `TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md` reduces the spectral fallback to a

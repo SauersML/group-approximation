@@ -300,6 +300,33 @@ fallback now needs only the four polynomial commutator estimates
 `||[FGF,A_k]||_2->0`.  The direct `C^4` alignment gate below remains shorter;
 use this route if exact algebra alignment is too strong.
 
+Those commutator estimates themselves follow from the natural transition
+intertwinings.  Put `T=GF`, and let `A_k,B_k` be the source and target
+coefficient arrows.  The dimension-free Gram estimate
+
+```text
+||[T* T,A_k]||_2 <=2||T A_k-B_k T||_2
+```
+
+shows that it is enough to prove
+
+```text
+||GF A_k-B_k GF||_2->0,       k=1,...,4.
+```
+
+Combined with coarea, these four errors give a common cut `P` of trace at
+least `1/120` and
+
+```text
+sum_k ||[P,A_k]||_2^2
+ <=64 sum_k ||GF A_k-B_k GF||_2.
+```
+
+See `TRUE_TRANSITION_INTERTWINING_CONTROLS_SPECTRAL_LEAKAGE.md`.  This is now
+the smallest spectral fallback gate: it is phrased entirely in the
+cross-chart multiplication-module transport which the group packet is
+supposed to encode.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut

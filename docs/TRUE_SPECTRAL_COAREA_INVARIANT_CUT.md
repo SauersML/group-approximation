@@ -137,6 +137,24 @@ use the cross-chart multiplication-module relations.  Once `(SCI13)` is
 proved, however, spectral selection, positive density, conditioning, and
 simultaneous arrow leakage are no longer separate gates.
 
+There is a further reduction.  If `T=GF`, so that `H=T* T=FGF`, and the
+source and target arrows satisfy
+
+```text
+||T A_k-B_k T||_2 -> 0,
+```
+
+then the elementary Gram estimate
+
+```text
+||[T* T,A_k]||_2 <=2||T A_k-B_k T||_2
+```
+
+implies `(SCI13)`.  See
+`TRUE_TRANSITION_INTERTWINING_CONTROLS_SPECTRAL_LEAKAGE.md`.  Thus the
+smallest spectral gate is now the four natural source--target transition
+intertwinings, not a separately postulated commutator estimate.
+
 ## 5. Formalization status
 
 The trace and threshold arithmetic `(SCI7)--(SCI8)` is kernel-represented by
