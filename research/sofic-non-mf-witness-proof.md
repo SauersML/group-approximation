@@ -4,12 +4,13 @@ id: sofic-non-mf-witness-proof
 kind: route
 title: Build the sofic telescope and transport the invisible sign to it
 target: sofic-non-mf-witness
-requires: [literal-central-mark-corona-invisible]
+requires: [literal-central-mark-corona-invisible, finite-site-orbits-invariant-clifford-kernel]
 artifacts:
   - non_mf_groups_exist.tex
   - GroupApproximation/Sofic/LiteralWitnessConsequences.lean
   - GroupApproximation/Sofic/SoficTelescope.lean
   - GroupApproximation/Sofic/SoficInvariantFiniteKernel.lean
+  - GroupApproximation/Sofic/FiniteOrbitInvariantKernel.lean
   - GroupApproximation/Sofic/SoficIntegerExtension.lean
 ---
 

@@ -4,7 +4,7 @@ id: mixed-relator-route
 kind: route
 title: Mixed-relator route through the Leavitt atlas
 target: non-hyperlinear-group
-requires: [common-self-map-law, outer-pvm-synchronization, relator-energy-variance-bound]
+requires: [common-self-map-law, outer-pvm-synchronization, relator-energy-variance-bound, leavitt-multiplicative-trace-floor]
 artifacts:
   - docs/HIGHEST_YIELD_NONHYPERLINEAR_ATTACK.md
 ---
@@ -17,7 +17,8 @@ Claimed reduction assembled from the 2026-08-14 AGENDA state: given
   (relator-energy-variance-bound),
 
 the majority decoder and the exact table `ℓ(a tᵢ sⱼ b) = δᵢⱼ ℓ(ab)` reach
-the existing `1/36` (or `2−√3`) endpoint directly, contradicting
-hyperlinearity of the atlas group. Single-edge measurement recovery,
+the established dimension-free contraction floor
+(leavitt-multiplicative-trace-floor), hence the existing `1/36` or
+`2−√3` contradiction to hyperlinearity of the atlas group. Single-edge measurement recovery,
 positivity, source gauge (covariance-variance-control), simultaneous PVM rounding (path-pvm-classicalization), and
 paired-translation reconstruction (nested-commutator-translations) are already closed.

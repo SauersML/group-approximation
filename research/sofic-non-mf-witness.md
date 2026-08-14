@@ -10,6 +10,7 @@ artifacts:
   - GroupApproximation/Sofic/LiteralWitnessConsequences.lean
   - GroupApproximation/Sofic/SoficTelescope.lean
   - GroupApproximation/Sofic/SoficInvariantFiniteKernel.lean
+  - GroupApproximation/Sofic/FiniteOrbitInvariantKernel.lean
   - GroupApproximation/Sofic/SoficIntegerExtension.lean
 ---
 
