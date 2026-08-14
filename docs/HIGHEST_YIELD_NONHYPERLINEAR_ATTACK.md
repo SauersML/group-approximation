@@ -373,6 +373,20 @@ Since `alpha>=1/120`, the ambient floor is
 spectral gate is consequently two forward/reverse transition pairs, not
 four-arrow invariance.
 
+There is a choice of which two.  The insertion error for an edge `Ri Sj` is
+bounded by either endpoint leakage, so the problem is the minimum vertex
+cover of
+
+```text
+(R0,S0),       (R1,S1),       (R0,S1).
+```
+
+The crossed pair `{R0,S1}` is a size-two cover and matches the exact finite
+paired-quotient proof: the two diagonal relations make these two maps
+bijective, and their crossed relation is zero.  Prioritize synchronization
+of `R0,S1`; it unifies the spectral and radical-quotient routes and avoids
+recovering either unused arrow's invariant cut.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut

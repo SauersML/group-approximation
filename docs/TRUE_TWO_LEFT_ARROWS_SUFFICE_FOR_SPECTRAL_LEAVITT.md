@@ -28,6 +28,30 @@ P Ri(1-P),                 i=0,1.                   (TLS3)
 
 No commutator or leakage hypothesis on `S0,S1` is needed.
 
+There is a symmetric improvement.  The leakage term in `(TLS1)` satisfies
+
+```text
+||P Ri(1-P)SjP||_2
+ <=min { ||P Ri(1-P)||_2, ||(1-P)SjP||_2 }.          (TLS3a)
+```
+
+Thus one may control either endpoint of each of the three product edges
+
+```text
+(R0,S0),          (R1,S1),          (R0,S1).         (TLS3b)
+```
+
+Any vertex cover of this three-edge graph is sufficient.  Its minimum size
+is two.  Besides `{R0,R1}`, the especially natural choice is
+
+```text
+{R0,S1}.                                             (TLS3c)
+```
+
+This is exactly the crossed pair in the finite paired-quotient proof: the
+`00` diagonal makes `R0` injective, the `11` diagonal makes `S1` injective,
+and the `01` relation is the crossed zero.
+
 ## 2. Quantitative corner contradiction
 
 Write `alpha=tau(P)>0`, and set
@@ -78,6 +102,17 @@ eta+lambda >=(2-sqrt(3))/sqrt(120).                  (TLS8)
 
 This is the complete analytic contradiction after carrier selection.
 
+For the crossed-pair choice `(TLS3c)`, replace `lambda` in `(TLS4)` by
+
+```text
+lambda_cross=max {
+  ||P R0(1-P)||_2,
+  ||(1-P)S1P||_2 }.                                  (TLS8a)
+```
+
+The same proof and the same constants `(TLS6)--(TLS8)` apply.  The `00` and
+`01` edges are charged to `R0`; the `11` edge is charged to `S1`.
+
 ## 3. Combine with transition synchronization
 
 Let `W=GF` be the trace-flat transition block and `H=W*W=FGF`.  Spectral
@@ -112,6 +147,12 @@ necessary.  The live spectral decoder needs:
 3. the already proved trace-flat moments of `W`.
 
 Everything after those inputs is dimension-free and quantitative.
+
+Alternatively, synchronize the crossed pair `R0,S1`.  This is likely the
+better interface with the radical-quotient construction because those are
+the two maps whose injectivity/surjectivity drives the finite obstruction.
+Coarea controls both orientations of each cut leakage, so no additional
+argument is needed to use `(TLS8a)`.
 
 ## 4. What remains unproved
 

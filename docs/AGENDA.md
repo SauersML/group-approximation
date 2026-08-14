@@ -33,6 +33,13 @@ two forward/reverse transition pairs, for `R0` and `R1`.  The two exact
 compression identities are transcribed in `LeavittTraceFloor.lean`; no local
 build was run.
 
+More generally, each product leakage can be charged to either factor, so any
+vertex cover of the three edges `(R0,S0)`, `(R1,S1)`, `(R0,S1)` suffices.
+The minimum size is two.  The preferred cover is the crossed pair
+`{R0,S1}`, precisely the maps whose diagonal injectivity and crossed-zero
+relation drive `FinitePairedQuotientObstruction`.  This aligns the spectral
+and radical-quotient endpoints around the same two synchronized arrows.
+
 ### 2026-08-14: transition intertwinings imply the spectral commutators
 
 `TRUE_TRANSITION_INTERTWINING_CONTROLS_SPECTRAL_LEAKAGE.md` removes the
