@@ -964,6 +964,23 @@ holds in every finite von Neumann algebra.  A nonzero index would require
 extra asymmetric boundary data not supplied by the group relations.  See
 `docs/FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md`.
 
+The de la Harpe--Skandalis determinant does not automatically restore that
+missing phase in normalized Hilbert--Schmidt models.  For
+`u_d=diag(-1,1,...,1)`, one has `||u_d-1||_2=2/sqrt(d)->0`, but the principal
+normalized logarithm satisfies
+
+```text
+2L_d(u_d)-L_d(u_d^2)=1/d.
+```
+
+The sequence `(1/d)` is nonzero in `c_0/c_00`, so the logarithm is not
+additive on the HS-null subgroup with values in the coefficient group which
+retains microscopic winding.  Modding out by the normalized `K_0` lattice
+repairs additivity but kills exactly this index/parity class.  Thus the
+operator-norm central-extension theorem of Dadarlat--Glebe cannot simply be
+ported to the tracial matrix ultraproduct.  See
+`docs/FALSE_DETERMINANT_INDEX_TO_PHASE_HS_EXTENSION.md`.
+
 The active collision target is therefore unchanged on the Kun--Thom side:
 retain one explicit element of `Rad_sof` in a CE representation.  The
 smallest current form is CE of the one-orbit parity corner
