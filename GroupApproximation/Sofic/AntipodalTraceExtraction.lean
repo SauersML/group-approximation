@@ -82,4 +82,25 @@ theorem hsDistSq_one_eq_two_of_unitary_conj_eq_neg (Y : FiniteModel)
     Matrix.mul_one, normTrace_eq_zero_of_unitary_conj_eq_neg Y hS hanti]
   norm_num
 
+/-- A defect of squared size at most one already keeps the antipodal unitary
+at squared distance at least one from the identity.  This coarse form is the
+one needed to prove that an ultraproduct class is nontrivial. -/
+theorem one_le_hsDistSq_one_of_antipodalDefect_le_one (Y : FiniteModel)
+    {S U : Matrix Y Y ℂ} (hS : S ∈ Matrix.unitaryGroup Y ℂ)
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) (hY : 0 < Fintype.card Y)
+    (hdefect : hsNormSq Y (S * U * Sᴴ + U) ≤ 1) :
+    1 ≤ hsDistSq Y U 1 := by
+  have htrace := four_normSq_normTrace_le_antipodalDefect Y (U := U) hS
+  have hnorm : Complex.normSq (normTrace Y U) ≤ 1 / 4 := by
+    nlinarith
+  have hre : (normTrace Y U).re ≤ 1 / 2 := by
+    rw [Complex.normSq_apply] at hnorm
+    nlinarith [sq_nonneg ((normTrace Y U).re - 1 / 2),
+      sq_nonneg (normTrace Y U).im]
+  have hone : (1 : Matrix Y Y ℂ) ∈ Matrix.unitaryGroup Y ℂ :=
+    Submonoid.one_mem _
+  rw [hsDistSq_of_unitary Y hU hone hY, Matrix.conjTranspose_one,
+    Matrix.mul_one]
+  linarith
+
 end GroupApproximation

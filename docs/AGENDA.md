@@ -11,7 +11,9 @@ antipodal route.  For finite matrices, unitary `S` and arbitrary `U` satisfy
 `4 |tr(U)|^2 <= ||SUS*+U||_2^2`.  Exact antipodality therefore forces trace
 zero, and a unitary `U` then has squared Hilbert--Schmidt distance exactly `2`
 from the identity.  All three statements are Lean-checked in
-`Sofic/AntipodalTraceExtraction.lean`.  The remaining gate is wholly global:
+`Sofic/AntipodalTraceExtraction.lean`.  The induced ultraproduct detector and
+the final sofic-radical collision theorem are Lean-checked in
+`Sofic/AntipodalRadicalCollision.lean`.  The remaining gate is wholly global:
 derive or compatibly recover an asymptotically antipodal pair from the marked
 group relations.
 

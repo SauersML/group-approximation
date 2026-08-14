@@ -66,3 +66,8 @@ a unitary `S` and a marked unitary `U` whose antipodal defect tends to zero.
 
 Lean source:
 [`GroupApproximation/Sofic/AntipodalTraceExtraction.lean`](../GroupApproximation/Sofic/AntipodalTraceExtraction.lean).
+
+The ultraproduct/radical endpoint is also formalized in
+[`GroupApproximation/Sofic/AntipodalRadicalCollision.lean`](../GroupApproximation/Sofic/AntipodalRadicalCollision.lean): an asymptotic
+unitary representation with this profile detects its marked element, and a
+sofic-residual marked element then yields a hyperlinear nonsofic range.

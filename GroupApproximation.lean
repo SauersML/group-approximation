@@ -376,6 +376,7 @@ import GroupApproximation.Sofic.HyperlinearAmplification
 import GroupApproximation.Sofic.HyperlinearNonScalar
 import GroupApproximation.Sofic.HyperlinearScalar
 import GroupApproximation.Sofic.AntipodalTraceExtraction
+import GroupApproximation.Sofic.AntipodalRadicalCollision
 import GroupApproximation.Sofic.PhaseOrder
 import GroupApproximation.Sofic.MonomialModel
 import GroupApproximation.Sofic.PhasePropagation
