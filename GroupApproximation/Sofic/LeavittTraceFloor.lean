@@ -400,10 +400,10 @@ theorem hsNormSq_pairing_defect_controls_sourceGram_commutator
 one-sided leakage term.  This identity shows that only the left factor of a
 Leavitt product needs carrier invariance. -/
 theorem compressed_product_sub_carrier_identity
-    (Y : FiniteModel) (P T S : Matrix Y Y ℂ) :
+    (Y : FiniteModel) (P T S : Matrix Y Y ℂ) (hP : P * P = P) :
     P * T * P * S * P - P =
       P * (T * S - 1) * P - P * T * (1 - P) * S * P := by
-  noncomm_ring
+  noncomm_ring [hP]
 
 /-- Cross-product form of `compressed_product_sub_carrier_identity`. -/
 theorem compressed_cross_product_identity
@@ -467,6 +467,118 @@ theorem one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one
       _ = ∑ i : Y, Complex.normSq (x i) := one_mul _
   rw [Matrix.sub_mulVec, Matrix.one_mulVec, dotProduct_sub, hself, hgram]
   exact RCLike.nonneg_iff.mpr ⟨sub_nonneg.mpr hreal, by simp⟩
+
+/-- The positive range-deficiency estimate behind contraction mass
+saturation.  For `Q=1-RRᴴ`, positivity of
+`Q-Q²=R(1-RᴴR)Rᴴ` shows that applying `Q` costs no more squared HS mass than
+was lost by applying `Rᴴ`. -/
+theorem hsNormSq_range_deficiency_le_mass_loss
+    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    (R X : Matrix Y Y ℂ) (hR : ‖R‖ ≤ 1) :
+    hsNormSq Y ((1 - R * Rᴴ) * X) ≤
+      hsNormSq Y X - hsNormSq Y (Rᴴ * X) := by
+  let Q : Matrix Y Y ℂ := 1 - R * Rᴴ
+  have hcore : (1 - Rᴴ * R).PosSemidef :=
+    one_sub_conjTranspose_mul_posSemidef_of_l2_opNorm_le_one Y R hR
+  have hQdiff : (Q - Q * Q).PosSemidef := by
+    have hpos : (R * (1 - Rᴴ * R) * Rᴴ).PosSemidef :=
+      hcore.mul_mul_conjTranspose_same R
+    have hid : Q - Q * Q = R * (1 - Rᴴ * R) * Rᴴ := by
+      dsimp [Q]
+      noncomm_ring
+    rw [hid]
+    exact hpos
+  have hweighted : (Xᴴ * (Q - Q * Q) * X).PosSemidef :=
+    hQdiff.conjTranspose_mul_mul_same X
+  have htraceNonneg :
+      0 ≤ (Matrix.trace (Xᴴ * (Q - Q * Q) * X)).re :=
+    (RCLike.nonneg_iff.mp hweighted.trace_nonneg).1
+  have hQstar : Qᴴ = Q := by
+    dsimp [Q]
+    simp
+  have hRtrace :
+      Matrix.trace ((Rᴴ * X) * (Rᴴ * X)ᴴ) =
+        Matrix.trace ((R * Rᴴ) * (X * Xᴴ)) := by
+    rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
+    calc
+      Matrix.trace ((Rᴴ * X) * (Xᴴ * R)) =
+          Matrix.trace (Rᴴ * (X * Xᴴ * R)) := by
+            congr 1
+            noncomm_ring
+      _ = Matrix.trace ((X * Xᴴ * R) * Rᴴ) :=
+        Matrix.trace_mul_comm Rᴴ (X * Xᴴ * R)
+      _ = Matrix.trace ((R * Rᴴ) * (X * Xᴴ)) := by
+        calc
+          Matrix.trace ((X * Xᴴ * R) * Rᴴ) =
+              Matrix.trace ((X * Xᴴ) * (R * Rᴴ)) := by
+                congr 1
+                noncomm_ring
+          _ = Matrix.trace ((R * Rᴴ) * (X * Xᴴ)) := by
+            exact Matrix.trace_mul_comm (X * Xᴴ) (R * Rᴴ)
+  have hQtrace :
+      Matrix.trace ((Q * X) * (Q * X)ᴴ) =
+        Matrix.trace ((Q * Q) * (X * Xᴴ)) := by
+    rw [Matrix.conjTranspose_mul, hQstar]
+    calc
+      Matrix.trace ((Q * X) * (Xᴴ * Q)) =
+          Matrix.trace ((Q * X * Xᴴ) * Q) := by
+            congr 1
+            noncomm_ring
+      _ = Matrix.trace (Q * (Q * X * Xᴴ)) :=
+        Matrix.trace_mul_comm (Q * X * Xᴴ) Q
+      _ = Matrix.trace ((Q * Q) * (X * Xᴴ)) := by
+        congr 1
+        noncomm_ring
+  have hcycle :
+      Matrix.trace (Xᴴ * (Q - Q * Q) * X) =
+        Matrix.trace (X * Xᴴ) -
+          Matrix.trace ((Rᴴ * X) * (Rᴴ * X)ᴴ) -
+            Matrix.trace ((Q * X) * (Q * X)ᴴ) := by
+    have hleft :
+        Matrix.trace (Xᴴ * (Q - Q * Q) * X) =
+          Matrix.trace ((Q - Q * Q) * (X * Xᴴ)) := by
+      calc
+        Matrix.trace (Xᴴ * (Q - Q * Q) * X) =
+            Matrix.trace (((Q - Q * Q) * X) * Xᴴ) := by
+              calc
+                Matrix.trace (Xᴴ * (Q - Q * Q) * X) =
+                    Matrix.trace (Xᴴ * ((Q - Q * Q) * X)) := by
+                      congr 1
+                      noncomm_ring
+                _ = Matrix.trace (((Q - Q * Q) * X) * Xᴴ) :=
+                  Matrix.trace_mul_comm Xᴴ ((Q - Q * Q) * X)
+        _ = Matrix.trace ((Q - Q * Q) * (X * Xᴴ)) := by
+          congr 1
+          noncomm_ring
+    rw [hleft, hRtrace, hQtrace]
+    dsimp [Q]
+    rw [Matrix.sub_mul, Matrix.trace_sub, Matrix.one_mul]
+    ring
+  have hcard : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
+  have hnormNonneg :
+      0 ≤ (normTrace Y (Xᴴ * (Q - Q * Q) * X)).re := by
+    unfold normTrace
+    simpa using div_nonneg htraceNonneg hcard.le
+  have hnormIdentity :
+      normTrace Y (Xᴴ * (Q - Q * Q) * X) =
+        (hsNormSq Y X : ℂ) - (hsNormSq Y (Rᴴ * X) : ℂ) -
+          (hsNormSq Y (Q * X) : ℂ) := by
+    calc
+      normTrace Y (Xᴴ * (Q - Q * Q) * X) =
+          normTrace Y (X * Xᴴ) -
+            normTrace Y ((Rᴴ * X) * (Rᴴ * X)ᴴ) -
+              normTrace Y ((Q * X) * (Q * X)ᴴ) := by
+        unfold normTrace
+        rw [hcycle]
+        ring
+      _ = (hsNormSq Y X : ℂ) - (hsNormSq Y (Rᴴ * X) : ℂ) -
+          (hsNormSq Y (Q * X) : ℂ) := by
+        rw [← ofReal_hsNormSq Y X, ← ofReal_hsNormSq Y (Rᴴ * X),
+          ← ofReal_hsNormSq Y (Q * X)]
+  rw [hnormIdentity] at hnormNonneg
+  norm_num at hnormNonneg
+  dsimp [Q] at hnormNonneg ⊢
+  linarith
 
 /-- The trace expansion behind the contraction product inequality. -/
 theorem normTrace_gram_deficiency_product (Y : FiniteModel)
