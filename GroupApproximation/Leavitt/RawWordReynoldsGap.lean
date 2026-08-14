@@ -16,6 +16,41 @@ distance, so twelve `H`-covariance replacements cost at most `12 * Delta_H`.
 
 namespace GroupApproximation
 
+open scoped BigOperators
+
+/-- The scalar arithmetic core of coproduct gauge pinning. If `weight` is a
+probability vector and `defectSq` is twice one minus its weighted average of
+the real coefficients, then one coefficient has squared basis distance at
+most `defectSq`. Applied to the Fourier coefficients `c_i` of a unitary in a
+finite group algebra, take `weight i = |c_i|^2` and
+`realCoeff i = re (c_i)`. This is the finite maximum step in the
+dimension-free estimate
+`min_g ||C-lambda_g||_2 <= ||Delta C-C tensor C||_2`. -/
+theorem exists_scalar_gauge_coefficient_distSq_le_defectSq
+    {ι : Type*} [Fintype ι] [Nonempty ι]
+    (weight realCoeff : ι → ℝ) (defectSq : ℝ)
+    (hweight : ∀ i, 0 ≤ weight i)
+    (hsum : ∑ i, weight i = 1)
+    (hdefect : defectSq = 2 - 2 * ∑ i, weight i * realCoeff i) :
+    ∃ i, 2 - 2 * realCoeff i ≤ defectSq := by
+  classical
+  obtain ⟨i, -, hmax⟩ :=
+    Finset.exists_max_image (Finset.univ : Finset ι) realCoeff
+      Finset.univ_nonempty
+  have havg : (∑ j, weight j * realCoeff j) ≤ realCoeff i := by
+    calc
+      (∑ j, weight j * realCoeff j) ≤
+          ∑ j, weight j * realCoeff i := by
+            exact Finset.sum_le_sum fun j _ ↦
+              mul_le_mul_of_nonneg_left
+                (hmax j (Finset.mem_univ j)) (hweight j)
+      _ = (∑ j, weight j) * realCoeff i := by
+            rw [Finset.sum_mul]
+      _ = realCoeff i := by rw [hsum, one_mul]
+  refine ⟨i, ?_⟩
+  rw [hdefect]
+  linarith
+
 /-- A noncommutative product telescope for any explicitly bi-invariant
 distance.  The distance is supplied as data so this applies directly to the
 normalized Hilbert--Schmidt distance, which is not installed as the ambient

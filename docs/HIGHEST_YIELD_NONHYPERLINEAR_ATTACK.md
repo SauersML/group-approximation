@@ -2,6 +2,34 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 coproduct defects pin commutant gauges
+
+The arbitrary commutant unitary in a finite regular envelope becomes
+classical as soon as its genuine group-like coproduct defect is controlled.
+If
+
+```text
+C=sum_g c_g lambda_g
+```
+
+is a scalar unitary gauge, then
+
+```text
+min_h ||C-lambda_h||_2
+  <= ||Delta(C)-C tensor C||_2,
+```
+
+with constant one, uniformly in the finite group. With operator-valued
+multiplicity, the exact corepresentation equation makes the coefficients a
+PVM, so the gauge is a direct sum of classical right translations. See
+`TRUE_COPRODUCT_DEFECT_PINS_COMMUTANT_GAUGE.md`.
+
+This removes a separate gauge-fixing theorem after coefficient
+identification. The remaining load-bearing interface is now one
+gauge-covariant Parseval statement: identify the averaged four-root word
+discrepancy with the coproduct defect of the actual repaired implementer.
+Abstract associativity alone still does not provide that identification.
+
 ## 2026-08-14 one finite envelope removes pairwise root gauges
 
 Every finite coefficient window and all of its positive-root products fit
