@@ -1,8 +1,11 @@
 # Formalization record: the marked-compression non-MF theorem
 
-Date: 2026-08-12. Status: **COMPLETE for the unconditional Shalom-cover
-endpoint**; the literal eight-generator endpoint remains at the exact
-property-`(T)`/rational-SOS certificate boundary described below.
+Date: 2026-08-12.
+
+> **Historical formalization snapshot.** This file records the earlier
+> Shalom-cover endpoint and the then-open literal-certificate boundary.  It is
+> superseded for current status by the README, the generated numbered-claim
+> manifest, and `non_mf_groups_exist.tex`.
 
 This document records the proof architecture and audit surface of the completed
 Lean formalization. It supersedes the development-time workstream plan; there

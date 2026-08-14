@@ -1,5 +1,9 @@
 # The classical `SL_3(Z)` presentation closes the paper-level property-(T) gate
 
+> **Historical route audit.** The current literal proof uses the exact P13
+> certificate and checked quotient bridge, so this older semantic-presentation
+> shortcut is not a release dependency or a current status report.
+
 ## Conclusion
 
 The shortcut is valid at the level of ordinary mathematics:
