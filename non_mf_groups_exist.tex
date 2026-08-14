@@ -114,8 +114,9 @@ proper injective self-embedding produces a finitely presented non-MF group.
 We give an explicit eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
 most six.  Its Clifford witness is a
-six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
-are closed under neither quotients nor extensions.  Its reduced group algebra
+finitely generated sofic --- hence hyperlinear --- group that is not MF.
+Thus neither soficity nor hyperlinearity implies MF, and MF groups are
+closed under neither quotients nor extensions.  Its reduced group algebra
 is separable, exact, faithfully tracial, stably finite, and non-MF.  The
 finite universal Horn obstruction also defines a nonempty clopen set of
 non-MF marked groups.
@@ -652,7 +653,7 @@ failures of quotient and extension permanence
 (Corollary~\ref{cor:quotclosure} and Section~\ref{sec:consequences}).
 
 Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
-consequences, including a finitely generated sofic non-MF group and failures
+consequences, including Theorem~\ref{thm:E} and failures
 of quotient and extension permanence.  Every MF algebra is stably finite
 \cite{BK}, so Theorem~\ref{thm:D} exhibits a separable stably finite
 $C^*$-algebra that is not MF.  Abstract examples follow from the failure
@@ -680,6 +681,17 @@ nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
 Theorem~\ref{thm:D}.
+
+The witness that proves $w\ne1$ carries the final separation:
+
+\begin{mainthm}[sofic and hyperlinear groups that are not MF]\label{thm:E}
+The Clifford witness $W=\ClLamp(X)\rtimes V$ of
+Proposition~\ref{prop:witness} is a finitely generated sofic group that
+is not MF; since sofic groups are hyperlinear, $W$ is likewise a
+hyperlinear group that is not MF.  In particular, neither soficity nor
+hyperlinearity implies the MF property.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
+\end{mainthm}
 
 \subsection*{Operator norm versus tracial approximation}
 The argument is specific to operator norm: operator-norm multiplicative
@@ -1797,16 +1809,7 @@ Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 The Clifford witness has substantially more structure than was needed to
 prove $w\ne1$.
 
-\begin{corollary}[sofic and hyperlinear separations]\label{cor:sofic-nonmf}
-The group $W=\ClLamp(X)\rtimes V$ of Proposition~\ref{prop:witness} is a
-six-generated sofic group that is not MF.  In particular, soficity does
-not imply the MF property.
-The group $W$ is also hyperlinear; consequently hyperlinearity ---
-equivalently, Connes embeddability at the group level --- does not imply MF.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
-\end{corollary}
-
-\begin{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:E}]
 Write $T=\varinjlim(\bar\Gamma,\bar\alpha)$, so
 $V=T\rtimes\mathbb Z$, and let $B\le V$ be the level-zero copy of
 $\bar\Gamma$.  The image of $\bar\alpha$ has finite index (at most eight,

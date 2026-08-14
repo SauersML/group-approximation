@@ -58,6 +58,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:D": (
         "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
+    "thm:E": (
+        "Endpoint/NonMFImpact",
+        "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
         "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
@@ -148,6 +151,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "thm:C": ["thm:B", "con:clifford"],
     "thm:D": ["thm:A", "lem:faithfultrace"],
+    "thm:E": ["prop:witness", "lem:portable"],
     "prop:mf-equivalences": ["lem:unitarycorona"],
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
