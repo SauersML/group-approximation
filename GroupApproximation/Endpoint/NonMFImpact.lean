@@ -159,8 +159,7 @@ theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
   finiteSubgroup_eq_bot_of_isMulTorsionFree
 
 /-- The formal "free win": any sofic non-MF group is at once a hyperlinear
-non-MF group.  Applying this closed implication to the concrete witness only
-awaits the closed Lean proof of that witness's soficity. -/
+non-MF group.  `witness_sofic_nonMF` supplies the concrete closed input. -/
 theorem sofic_nonMF_is_hyperlinear_nonMF :
     SoficNonMFIsHyperlinearNonMF := by
   intro G _ hsofic hnonMF

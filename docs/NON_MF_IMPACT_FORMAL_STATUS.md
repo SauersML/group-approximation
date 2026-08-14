@@ -21,6 +21,8 @@ The release-facing collection is
 - `NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total` proves that the
   concrete Clifford witness is finitely generated and non-MF, while its
   canonical lamp kernel is locally finite, LEF, sofic, and operator-MF.
+- `NonMFImpact.witness_sofic_nonMF` proves, with no inputs, that the same
+  concrete finitely generated witness is sofic and not operator-MF.
 - `NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF` proves that the
   witness's reduced group C-star algebra is separable, has its canonical
   faithful trace, is stably finite in every finite matrix amplification, and
@@ -71,6 +73,14 @@ result and are used to discharge concrete endpoints:
   endomorphism of a sofic group.
 - `isSofic_semidirectProduct_of_invariant_finite`: a local criterion that
   assembles finite invariant kernel windows acted on by sofic subgroups.
+- `MappingTelescopeFiniteOrbits.finite_verticalLevel_orbit`: finite-index
+  compression makes every telescope level orbit on the marked coset space
+  finite, via commensuration and orbit--stabilizer.
+- `CliffordLamp.exists_finite_invariant_clifford_subgroup`: finite site
+  orbits place any finite Clifford window in a finite invariant subgroup.
+- `SoficMarkedCompression.isSofic_ambient`: the intrinsic combination of
+  the telescope-orbit, invariant-kernel, reassociation, and integer-extension
+  arguments.
 - `CliffordLamp.finite_cliffordLamp` and
   `CliffordLamp.isLocallyFiniteGroup_cliffordLamp`: finite-site finiteness and
   arbitrary-site local finiteness of the presented Clifford lamp group.
@@ -79,24 +89,16 @@ result and are used to discharge concrete endpoints:
 - `ExplicitIntegralLinearModel.gammaBar_residuallyFinite`: the closed
   specialization to the literal affine base.
 
-## Not yet a closed Lean endpoint
+## Remaining formal boundary
 
-The manuscript's finite-coset-tower proof that the **total** Clifford witness
-is sofic is not yet represented by a premise-free Lean theorem.  The pieces
-above establish the finite lamp groups, split finite-kernel permanence,
-directed-union permanence, split integer-extension permanence, mapping-
-telescope permanence, locally finite invariant-kernel permanence, and
-residual finiteness of the concrete base.  The remaining formal work is the
-concrete finite-orbit/dilation identification that connects those reusable
-pieces to the literal witness.
+The total witness is now a premise-free closed Lean endpoint.  In particular,
+the manuscript's concrete separation "sofic does not imply MF" may carry an
+exact badge.  The reusable proof is intrinsic: it does not posit an auxiliary
+tower and then leave an isomorphism to the concrete witness unproved.
 
-Consequently, the following prose consequences must not receive an `EXACT`
-badge until that endpoint is completed:
-
-- the total witness is sofic;
-- sofic does not imply MF via this witness;
-- MF is not closed under extensions via this witness;
-- the simple sofic envelope has full MF radical.
+Literature-dependent consequences such as the simple sofic envelope still
+remain outside the closed Lean surface unless their cited permanence theorem
+has itself been formalized.  No conditional facade is used in their place.
 
 The exact-radical computation
 `Rad_MF(E) = {1,w}` is also open: the development proves the universal
@@ -107,10 +109,9 @@ uniform theorem above gives existential `δ` and `F₀`, not a numerical modulus
 on the displayed relators.
 
 There is currently no definition of exact C-star algebras or exact groups in
-the imported mathlib surface.  Thus the proposed exactness corollary for the
-Clifford witness requires both the still-missing closed sofic/tower endpoint
-and substantial new operator-algebra infrastructure; it is not represented
-by a conditional facade or a literature axiom.
+the imported mathlib surface.  Thus the exactness corollary for the Clifford
+witness would require substantial new operator-algebra infrastructure; it is
+not represented by a conditional facade or a literature axiom.
 
 Their mathematical proofs may cite the stated Elek--Szabó permanence and
 simple-envelope theorems, but those citations are outside the current closed
