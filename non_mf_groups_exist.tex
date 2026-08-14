@@ -23,7 +23,7 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
-  pdftitle={The MF conjecture is false: An explicit finitely presented counterexample},
+  pdftitle={The MF conjecture is false: An explicit finitely presented non-MF group},
   pdfauthor={\paperauthor},
   pdfsubject={Explicit finitely presented non-MF groups and matrix coronas},
   pdfkeywords={MF groups, matrix coronas, property (T), asymptotic commutants, Clifford lamps, Kazhdan compression}
@@ -84,7 +84,7 @@
 
 \begin{document}
 
-\title[The MF conjecture is false]{The MF conjecture is false: An explicit finitely presented counterexample}
+\title[The MF conjecture is false]{The MF conjecture is false: An explicit finitely presented non-MF group}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20F05, 22D25, 20E26, 68V20}
 \keywords{MF groups, matrix coronas, property (T), Kazhdan compression,
@@ -105,8 +105,9 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
-We give a six-generator, thirty-two-relator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Its Clifford witness is a
+We give an explicit eight-generator, forty-one-relator instance based on
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
+most six.  Its Clifford witness is a
 six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
 are closed under neither quotients nor extensions.  Property~\textup{(T)} of
 the base follows from an explicit rational spectral certificate.  The
@@ -135,19 +136,29 @@ problem subsequently supplied abstract stably finite non-MF algebras
 \cite{FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
-The MF conjecture is the operator-norm counterpart of the soficity
-conjecture, which was disproved in 2026: the first nonsofic group was constructed
-by OpenAI \cite{OAI}, and Kun--Thom generalized the construction
-\cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
+These questions sit at the endpoint of a program of finitary
+approximation.  In his 2018 ICM address, Thom asked for which Schatten
+$p$-norms there exist non-approximable groups
+\cite[Question~3.11]{Th}: the Frobenius case $p=2$ was settled by
+De~Chiffre--Glebsky--Lubotzky--Thom \cite{DGLT}, the cases $1<p<\infty$
+by Lubotzky--Oppenheim \cite{LuO}, and the case $p=1$ by
+Bachner--Dogon--Lubotzky \cite{BDL}, who describe the three remaining
+metrics --- the Hamming metric (soficity), the Hilbert--Schmidt norm
+(hyperlinearity), and the operator norm (MF) --- as ``the holy-grail of
+the subject.''  The Hamming case was disproved in 2026: the first
+nonsofic group was constructed by OpenAI \cite{OAI}, and Kun--Thom
+generalized the construction \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
 driving those arguments, is also the conceptual ancestor of the present
 one.  Soficity concerns permutations in the Hamming metric, while MF concerns
 unitaries in operator norm; before the present work no implication between
 the two approximation properties was known.  The operator-norm setting
 requires a different rigidity theorem, proved here by applying the Kazhdan
-projection inside a finite norm ultraproduct.  This paper answers the
-group-approximation question by one explicit finitely presented group; it
-also proves that soficity does not imply MF and produces an explicit reduced
-group $C^*$-algebra that is stably finite but not MF.
+projection inside a finite norm ultraproduct.  This paper settles the
+operator-norm case by one explicit finitely presented group; it also
+proves that soficity does not imply MF and produces an explicit reduced
+group $C^*$-algebra that is stably finite but not MF.  Of the three
+problems, only the Hilbert--Schmidt case --- hyperlinearity --- remains
+open.
 
 Let $(d_n)_{n\in\N}$ be a sequence of positive integers and let
 \begin{equation}\label{eq:corona}
@@ -158,7 +169,8 @@ matrices modulo sequences converging to $0$ in operator norm.  Following
 Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
 if it embeds into some algebra of the form \eqref{eq:corona}.  We use
 \emph{MF group} exclusively in the sense introduced by
-Carri\'on--Dadarlat--Eckhardt and used by Shulman \cite{CDE,Shulman}: a
+Carri\'on--Dadarlat--Eckhardt and used by Shulman and
+Bachner--Dogon--Lubotzky \cite{CDE,Shulman,BDL}: a
 countable discrete group $E$ is MF if, for some strictly increasing sequence
 of positive integers $(d_n)$, there is an injective homomorphism
 \[
@@ -559,6 +571,11 @@ $w$ to the identity: finite-dimensional linear representations do not separate t
 of $E$, no finite
 quotient can witness $w\neq 1$, and the infinite Clifford witness of
 Section~\ref{sec:witness} cannot be replaced by a finite-dimensional one.
+In the terminology of \cite[Definition~1.2]{BDL}, the central involution
+$w$, invisible in every finite quotient, makes $E$ a group of
+\emph{Deligne type}; such groups were proposed there as the natural
+candidate counterexamples for all three remaining approximation problems,
+and $E$ realizes that proposal at the operator-norm endpoint.
 Property~\textup{(T)} enters the corona argument through the Kazhdan
 projection for the adjoint representation on the Hilbert ultraproduct.
 Finiteness of the accompanying norm ultraproduct turns the one-sided
@@ -643,9 +660,11 @@ Hilbert ultraproduct.  Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
 \subsection*{Group-theoretic inputs}
-The printed proof uses two literature inputs: the displayed presentation of
-$\SL_3(\mathbb Z)$ and property~\textup{(T)} of
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  The exact twenty-relator base is
+The printed proof uses three literature inputs: the displayed presentation
+of $\SL_3(\mathbb Z)$, property~\textup{(T)} of
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and --- only in the sharpness
+remark of Section~\ref{sec:necessity} --- quasidiagonality of amenable
+groups \cite{TWW}.  The exact twenty-relator base is
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
 
@@ -919,9 +938,12 @@ generators also give
 \leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
 \end{definition}
 
-\paragraph{A compact presentation.}
-The group $E$ admits a presentation with six generators and thirty-two
-relators.
+\paragraph{Six generators suffice.}
+The group $E$ is generated by $v_1,x,y,z,t,c$; in particular its group rank
+is at most six.
+\leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
+There is also a Tietze-equivalent presentation on these six generators with
+thirty-two relators.
 In \eqref{eq:E}, eliminate $v_3$ and $v_2$ by the Tietze substitutions
 \[
  v_3=xv_1x^{-1},\qquad v_2=x^2v_1x^{-2}.
@@ -1777,6 +1799,10 @@ an exact sequence
  \longrightarrow1
 \]
 whose kernel and quotient are MF, while $W$ is not.
+The locally finite, LEF, sofic, and MF status of the concrete lamp kernel,
+together with finite generation and non-MF-ness of the total witness, is
+verified without hypotheses in Lean.
+\leanverified{Sofic/LiteralWitnessConsequences}{GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF}
 
 \begin{proof}
 The Clifford lamp group is locally finite, hence MF by
@@ -1897,6 +1923,15 @@ solvable.  The Clifford lamp group on its coset space is locally finite, so
 their semidirect product is amenable.  The realized quotient is a subgroup
 of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
 Its marked word is the nontrivial Clifford sign by the calculation above.
+
+This MF detector is necessarily genuinely approximate: neither the literal
+cyclic group nor its realized Clifford quotient is LEF, and the latter is not
+residually finite.  Indeed, in every finite group the doubling relation makes
+the image of $\langle\gamma_0^2\rangle$ equal to the image of
+$\langle\gamma_0\rangle$; the lamp therefore commutes with the required
+``halved'' element and the marked word collapses.  Lean formalizes this
+finite-window obstruction and its three concrete consequences.
+\leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \section{The operator-norm boundary}\label{sec:limits}
 
@@ -2163,6 +2198,11 @@ A.~I.~Mal'cev,
 Mat. Sb. \textbf{8(50)} (1940), 405--422;
 English translation, Amer. Math. Soc. Transl. (2) \textbf{45} (1965), 1--18.
 
+\bibitem[LuO]{LuO}
+A.~Lubotzky and I.~Oppenheim,
+\emph{Non $p$-norm approximated groups},
+J. Anal. Math., \arxiv{1807.06790}.
+
 \bibitem[NST]{NST}
 N.~Nikolov, J.~Schneider, and A.~Thom,
 \emph{Some remarks on finitarily approximable groups},
@@ -2208,6 +2248,12 @@ W.~Slofstra and T.~Vidick,
 \emph{Entanglement in non-local games and the hyperlinear profile of groups},
 Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
 \doi{10.1007/s00023-018-0718-y}.
+
+\bibitem[Th]{Th}
+A.~Thom,
+\emph{Finitary approximations of groups and their applications},
+Proceedings of the International Congress of Mathematicians --- Rio de
+Janeiro 2018, \arxiv{1712.01052}.
 
 \bibitem[TWW]{TWW}
 A.~Tikuisis, S.~White, and W.~Winter,
