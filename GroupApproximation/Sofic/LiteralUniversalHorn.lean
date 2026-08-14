@@ -46,7 +46,7 @@ noncomputable def assignmentHom {H : Type*} [Group H]
 
 /-- Evaluation through the induced homomorphism is free evaluation at the
 chosen tuple. -/
-theorem assignmentHom_mk {H : Type*} [Group H]
+@[simp] theorem assignmentHom_mk {H : Type*} [Group H]
     (assignment : Generator → H)
     (hrel : ∀ r ∈ relators, FreeGroup.lift assignment r = 1)
     (word : FreeGroup Generator) :
