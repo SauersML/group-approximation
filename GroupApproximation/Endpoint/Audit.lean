@@ -16,6 +16,7 @@ import GroupApproximation.Sofic.CentralCoverInheritance
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.MarkedMFClosed
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
+import GroupApproximation.Sofic.KazhdanCliffordConstruction
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
