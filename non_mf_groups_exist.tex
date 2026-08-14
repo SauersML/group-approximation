@@ -90,7 +90,11 @@
 \begin{abstract}
 A countable discrete group is MF here if it embeds in the unitary group of a
 norm matrix corona.  We construct an explicit finitely presented group that
-is not MF.  The mechanism is a rigidity theorem for one-sided compressions
+is not MF, refuting the conjecture that every countable group is MF.
+Its reduced group $C^*$-algebra is a separable, stably finite $C^*$-algebra
+that is not an MF algebra, answering a question of Blackadar and Kirchberg
+in the non-nuclear case.
+The mechanism is a rigidity theorem for one-sided compressions
 of Kazhdan subgroups: in operator-norm matrix models, every compressor
 preserves the asymptotic commutant.  Thus a certain commutator $u$ converges
 to $1$ in normalized Hilbert--Schmidt norm.  A Clifford representation makes
@@ -98,15 +102,33 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
-We give an eight-generator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Consequently MF groups are not closed
-under quotients, and the reduced group $C^*$-algebra of this explicit group
-is separable, stably finite, and non-MF.
+We give an eight-generator, forty-one-relator instance based on
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Consequently MF groups are closed
+under neither quotients nor extensions.  Property~\textup{(T)} is necessary:
+over a cyclic base the same marked pattern has a corona-visible sign.  The
+results, including property~\textup{(T)} of the base via an explicit
+spectral certificate, are machine-checked in Lean.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}\label{sec:intro}
+
+Can every countable discrete group be realized by matrices, if
+multiplication is only required to hold up to operator-norm errors that
+vanish along a sequence of finite dimensions?  Shulman calls the positive
+assertion the \emph{MF conjecture} \cite{Shulman}, and no group was known
+to fail it \cite{Schafhauser,Shulman}.  Residually finite groups satisfy
+it through their finite quotients, as do LEF groups \cite{CDE} and, by
+quasidiagonality \cite{TWW}, all amenable groups; recent work establishes
+it for many amalgamated free products \cite{Schafhauser,Shulman,GKEMP}.
+The corresponding $C^*$-algebra question is older: Blackadar and
+Kirchberg, who introduced MF algebras, remarked that no stably finite
+separable $C^*$-algebra was known not to be MF \cite{BK,CDE}, and their
+natural candidate $\Cred(F_2)$ was in fact proved MF by Haagerup and
+Thorbj{\o}rnsen \cite{HT}.  No countable group was known whose reduced or
+maximal group $C^*$-algebra fails to be MF \cite{Shulman}.  This paper
+answers these questions by one explicit finitely presented group.
 
 Let $(d_n)_{n\in\N}$ be a sequence of positive integers and let
 \begin{equation}\label{eq:corona}
@@ -147,63 +169,9 @@ be strictly increasing.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
 \end{proposition}
 
-\begin{proof}
-Lemma~\ref{lem:unitarycorona} identifies the unitary-sequence quotient with
-the unitary group of the actual $C^*$-quotient.  Replacing an arbitrary
-finite coordinate set by a standard set of the same cardinality merely
-conjugates that coordinate by a permutation unitary.  This proves the first
-equivalence once the dimension convention is normalized.
-
-Suppose first that
-$\rho\colon G\to\Ucor((d_n))$ is injective, and choose unitary lifts
-$u_n(g)$ of $\rho(g)$.  Fix a finite set $F\subseteq G$ and $\varepsilon>0$.
-For each ordered pair $g\ne h$ in $F$, injectivity says that
-$(u_n(g)^{-1}u_n(h))_n$ does not converge to the identity in operator norm.
-Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
-\[
- \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
-\]
-For each number $\delta_{g,h}$, compactness of
-\[
- \{\lambda\in\mathbb T:|1-\lambda|\ge\delta_{g,h}\}
-\]
-gives an integer $M_{g,h}$ such that every point of this set has a power
-$1\le m\le M_{g,h}$ whose distance from $1$ is greater than $1$.
-The quotient homomorphism law makes all multiplicative defects for pairs in
-$F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
-each $g\ne h$, a coordinate with the displayed separation and with every
-required defect at most $\varepsilon/M_{g,h}$; then choose the corresponding
-power $m\le M_{g,h}$.  The $m$th tensor power separates the designated pair
-by more than $1$, while the tensor-product telescoping identity bounds each
-new defect by $m\varepsilon/M_{g,h}\le\varepsilon$.  Finally take the block
-sum of these finitely many pair-specific models.  Operator norms of block
-diagonal matrices are maxima, so every pair in $F$ is separated by at least
-$1$ and every required product has defect at most $\varepsilon$.  This gives
-the normalized local model.
-
-Conversely, enumerate the countable group and choose increasing finite sets
-$F_n$ exhausting it.  Apply the local condition to $F_n$ with errors tending
-to zero.  For each fixed $g,h$, the resulting unitary maps are eventually
-multiplicative on $g,h$, so their classes define a homomorphism into the
-unitary-sequence quotient.  If $g\ne h$, both eventually lie in $F_n$ and
-their distance is at least $1$; their quotient classes are therefore
-distinct.  The homomorphism is injective.
-
-It remains only to normalize dimensions.  Given positive dimensions $d_n$,
-choose recursively
-\[
- D_0=d_0+1,\qquad D_{n+1}\ge\max\{d_{n+1}+1,D_n+1\}.
-\]
-Pad every coordinate model by an identity block:
-\[
- u_n(g)\longmapsto u_n(g)\oplus 1_{D_n-d_n}.
-\]
-The dimensions $D_n$ increase strictly.  Products, multiplicative defects,
-and pairwise operator-norm distances are unchanged, because the added block
-is the same identity representation for every group element.  Thus the
-construction preserves and reflects the quotient relation and injectivity.
-Forgetting strict increase proves the converse.
-\end{proof}
+The routine amplification proof, together with the precise
+formulation of the operator-norm local models, is deferred to
+Appendix~\ref{app:equivalences}.
 
 Hereafter ``MF'' means this equivalent actual-corona/local-operator-norm
 property.  It should not be confused with the stronger reduced-norm
@@ -617,8 +585,13 @@ Theorem~\ref{thm:C} shows that finite-dimensional collapse by itself does
 not decide whether the marked word is trivial.
 
 Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
-consequences.  Its principal $C^*$-algebraic application is the following
-explicit reduced group algebra:
+consequences.  Every MF algebra is stably finite \cite{BK}, and whether the
+converse fails for separable $C^*$-algebras had remained open since
+\cite{BK} posed it; no reduced group $C^*$-algebra was known to be non-MF
+\cite{Shulman}, and even for $\Cred(\SL_3(\mathbb Z))$ and
+$\Cred(\SL_4(\mathbb Z))$ the MF property is undecided \cite{MdlS}.  The
+principal $C^*$-algebraic application here settles the general separable
+question:
 
 \begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
@@ -627,19 +600,42 @@ not an MF algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
+The group $E$ contains the infinite Kazhdan group $\mathcal B$, so $E$ is
+not amenable and $\Cred(E)$ is not nuclear.  The nuclear form of the
+Blackadar--Kirchberg problem --- whether every stably finite separable
+nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
+Theorem~\ref{thm:D}.
+
 \subsection*{Operator norm versus tracial approximation}
 The finite projection argument is specific to operator norm.  In a tracial
 ultraproduct, normalized Hilbert--Schmidt-small leakage does not retain the
 coordinate ranks needed for the equal-rank reversal, so the argument below
 does not by itself give a hyperlinear obstruction.
 
-\subsection*{External inputs}
-The numbered core uses two group-theoretic inputs: the displayed presentation
-of $\SL_3(\mathbb Z)$ and the classical fact that
+\subsection*{External inputs and formal verification}
+The printed proofs use two group-theoretic literature inputs: the displayed
+presentation of $\SL_3(\mathbb Z)$ and the classical fact that
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ has property~\textup{(T)}.  The exact
 twenty-relator base is identified with that affine group in
 Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
-obstruction are proved directly.
+obstruction are proved directly.  Section~\ref{sec:necessity} additionally
+uses quasidiagonality of amenable reduced group $C^*$-algebras \cite{TWW}.
+
+Statements carrying a gray tag
+{\normalfont\scriptsize\textcolor{gray!72!black}{[\thinspace
+Lean: \nolinkurl{\dots}\thinspace]}} have machine-checked counterparts.
+Each tag links to a named declaration in the accompanying Lean~4
+development whose statement is the faithful translation of the printed one
+and whose proof is accepted by the Lean kernel, with no axioms beyond
+Lean's three classical primitives; a statement without a tag has no formal
+counterpart.  The formal development is \emph{self-contained}: it consumes
+no literature input.  In particular, property~\textup{(T)} of the literal
+twenty-relator base of Definition~\ref{def:E} is itself machine-checked,
+through an explicit rational spectral-gap certificate for the presentation,
+independently of \cite{CRW,BHV}.  The two printed literature inputs are
+thus conveniences of exposition rather than of trust, and the citation of
+\cite{TWW} in Section~\ref{sec:necessity} is the only use below of an
+unformalized input.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -1904,6 +1900,82 @@ coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
 coordinate description is separate from the operator-norm theorem proved
 here.
 
+
+\appendix
+
+\section{Proof of the MF equivalences}\label{app:equivalences}
+
+An \emph{operator-norm local model} for a countable group $E$, a finite
+set $F\subseteq E$, a separation constant $\delta>0$, and a tolerance
+$\varepsilon>0$ is a map $V\colon E\to\U(r)$, for some positive
+dimension $r$, such that
+\[
+ \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),
+ \qquad
+ \opnorm{V(g)-V(h)}\ge\delta\quad(g\ne h\in F).
+\]
+The local formulation in Proposition~\ref{prop:mf-equivalences} asks for
+such a model with $\delta=1$ for every finite $F$ and every
+$\varepsilon>0$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:mf-equivalences}]
+Lemma~\ref{lem:unitarycorona} identifies the unitary-sequence quotient with
+the unitary group of the actual $C^*$-quotient.  Replacing an arbitrary
+finite coordinate set by a standard set of the same cardinality merely
+conjugates that coordinate by a permutation unitary.  This proves the first
+equivalence once the dimension convention is normalized.
+
+Suppose first that
+$\rho\colon G\to\Ucor((d_n))$ is injective, and choose unitary lifts
+$u_n(g)$ of $\rho(g)$.  Fix a finite set $F\subseteq G$ and $\varepsilon>0$.
+For each ordered pair $g\ne h$ in $F$, injectivity says that
+$(u_n(g)^{-1}u_n(h))_n$ does not converge to the identity in operator norm.
+Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
+\[
+ \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
+\]
+For each number $\delta_{g,h}$, compactness of
+\[
+ \{\lambda\in\mathbb T:|1-\lambda|\ge\delta_{g,h}\}
+\]
+gives an integer $M_{g,h}$ such that every point of this set has a power
+$1\le m\le M_{g,h}$ whose distance from $1$ is greater than $1$.
+The quotient homomorphism law makes all multiplicative defects for pairs in
+$F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
+each $g\ne h$, a coordinate with the displayed separation and with every
+required defect at most $\varepsilon/M_{g,h}$; then choose the corresponding
+power $m\le M_{g,h}$.  The $m$th tensor power separates the designated pair
+by more than $1$, while the tensor-product telescoping identity bounds each
+new defect by $m\varepsilon/M_{g,h}\le\varepsilon$.  Finally take the block
+sum of these finitely many pair-specific models.  Operator norms of block
+diagonal matrices are maxima, so every pair in $F$ is separated by at least
+$1$ and every required product has defect at most $\varepsilon$.  This gives
+the normalized local model.
+
+Conversely, enumerate the countable group and choose increasing finite sets
+$F_n$ exhausting it.  Apply the local condition to $F_n$ with errors tending
+to zero.  For each fixed $g,h$, the resulting unitary maps are eventually
+multiplicative on $g,h$, so their classes define a homomorphism into the
+unitary-sequence quotient.  If $g\ne h$, both eventually lie in $F_n$ and
+their distance is at least $1$; their quotient classes are therefore
+distinct.  The homomorphism is injective.
+
+It remains only to normalize dimensions.  Given positive dimensions $d_n$,
+choose recursively
+\[
+ D_0=d_0+1,\qquad D_{n+1}\ge\max\{d_{n+1}+1,D_n+1\}.
+\]
+Pad every coordinate model by an identity block:
+\[
+ u_n(g)\longmapsto u_n(g)\oplus 1_{D_n-d_n}.
+\]
+The dimensions $D_n$ increase strictly.  Products, multiplicative defects,
+and pairwise operator-norm distances are unchanged, because the added block
+is the same identity representation for every group element.  Thus the
+construction preserves and reflects the quotient relation and injectivity.
+Forgetting strict increase proves the converse.
+\end{proof}
+
 \begin{thebibliography}{GKEMP}
 
 \bibitem[AT]{AlekseevThom}
@@ -1994,6 +2066,18 @@ L.~Glebsky and L.~M. Rivera,
 J. Algebra \textbf{320} (2008), no.~9, 3512--3518,
 \doi{10.1016/j.jalgebra.2008.08.008}.
 
+\bibitem[GKEMP]{GKEMP}
+D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
+\emph{A new source of purely finite matricial fields},
+preprint, 2026, \arxiv{2603.24502}.
+
+\bibitem[HT]{HT}
+U.~Haagerup and S.~Thorbj{\o}rnsen,
+\emph{A new application of random matrices:
+$\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
+Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
+\doi{10.4007/annals.2005.162.711}, \arxiv{math/0212265}.
+
 \bibitem[KT]{KT}
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
@@ -2005,11 +2089,6 @@ M.~Magee and M.~de~la~Salle,
 \emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
 C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
 \doi{10.5802/crmath.617}, \arxiv{2312.03220}.
-
-\bibitem[GKEMP]{GKEMP}
-D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
-\emph{A new source of purely finite matricial fields},
-preprint, 2026, \arxiv{2603.24502}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,
@@ -2072,6 +2151,12 @@ W.~Slofstra and T.~Vidick,
 \emph{Entanglement in non-local games and the hyperlinear profile of groups},
 Ann. Henri Poincar\'e \textbf{19} (2018), no.~10, 2979--3005,
 \doi{10.1007/s00023-018-0718-y}.
+
+\bibitem[TWW]{TWW}
+A.~Tikuisis, S.~White, and W.~Winter,
+\emph{Quasidiagonality of nuclear $C^*$-algebras},
+Ann. of Math. (2) \textbf{185} (2017), no.~1, 229--284,
+\doi{10.4007/annals.2017.185.1.4}, \arxiv{1509.08318}.
 
 \end{thebibliography}
 
