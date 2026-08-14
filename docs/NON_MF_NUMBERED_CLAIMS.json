@@ -29,12 +29,14 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "387913e6c595e531743890e2da1434d066820b96865ae6b753dff06edbeb9e4c",
+      "statement_sha256": "b2d467dce6bbcff09934fa61e2756b01c33c0a48456e3b04f0690b5c031cbe58",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
+        "prop:mf-equivalences",
         "thm:criterion",
-        "lem:square"
+        "lem:square",
+        "con:clifford"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
