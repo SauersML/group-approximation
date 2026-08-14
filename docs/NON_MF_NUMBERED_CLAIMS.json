@@ -29,7 +29,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "non-MF group",
-      "statement_sha256": "797d72b69f2d2edad49cb7d4d8630253f81d5d0922fdbc7b5d055c6941660a69",
+      "statement_sha256": "9c11d03c3e9592d6a78fd2bac872613fdc8b83a8019f7c694fbb9f3b294de3d2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -144,7 +144,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "a80374ecaa9e0c5dbc1d765fc75ee94672b256ab16abd84dc8060002b4443aff",
+      "statement_sha256": "9337cb509d57521e84a03917ff06991c4f03d0e90b947706ea778e31d83bfbd5",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

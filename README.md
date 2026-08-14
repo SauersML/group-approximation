@@ -122,7 +122,7 @@ Reading path, front door first:
 | `Sofic/LiteralNonMFEndpoint.lean` | Reusable endpoint assembly parameterized by the property-(T) certificate |
 | `Sofic/P13ExactStagedCertificate.lean` | Exact rational P13 Hodge certificate assembled from kernel-checked residual blocks |
 | `Sofic/LiteralBaseP13RotationQuotient.lean`, `Sofic/LiteralBaseP13PropertyTBridge.lean` | Checked P13-to-rotation quotient and intrinsic literal-base bridge |
-| `Sofic/ManuscriptExactWrappers.lean` | One-to-one outer propositions for all 27 retained claims |
+| `Sofic/ManuscriptExactWrappers.lean` | Shared exact outer-proposition wrappers for the generic retained claims |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
 | `Sofic/CDEOperatorMF.lean`, `Sofic/ActualCoronaMFRadical.lean` | Literal natural-dimension CDE predicate and genuine-corona radical |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
