@@ -229,6 +229,7 @@ unsquared-defect-mf-visible [OPEN] MF visibility of the unsquared compression de
 
 ## Recently touched
 
+- 2026-08-14 · hyperlinear-not-imply-mf [ESTABLISHED] Hyperlinearity does not imply the MF property
 - 2026-08-14 · infranormal-compact-closure-normal [ESTABLISHED] Infranormal subgroups have normal closure in every compact image
 - 2026-08-14 · compact-bogoliubov-clifford-model [INVALIDATED] Approximate the Kun--Thom coset mode by honest finite-dimensional representations
 - 2026-08-14 · infranormal-compact-closure-normal-proof [COMPLETE] Reverse compact semigroup inclusions by recurrence
@@ -236,7 +237,6 @@ unsquared-defect-mf-visible [OPEN] MF visibility of the unsquared compression de
 - 2026-08-14 · kun-thom-clifford-relative-wall [OPEN] Finite normalized-HS Clifford wall for the Kun--Thom pair
 - 2026-08-14 · kun-thom-clifford-ce-route [OPEN] Realize the sofic-radical Clifford phase in a matrix tracial ultraproduct
 - 2026-08-14 · kun-thom-clifford-crossed-product-ce [OPEN] Connes embeddability of the Kun--Thom Clifford crossed product
-- 2026-08-14 · kun-thom-clifford-radical-phase-proof [COMPLETE] Combine centralizer normalization with two-Majorana anticommutation
 
 ## Active locks
 
