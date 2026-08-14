@@ -27,7 +27,7 @@ audit. The paragraphs below describe the current source revision; publication of
 verified pin is blocked until the exact claim manifest, full build, axiom
 audit, fresh-kernel replay, and PDF provenance gate all pass for one commit.
 
-## Non-MF groups exist: an explicit finitely presented example
+## Non-MF groups exist: a concrete finitely presented counterexample
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
