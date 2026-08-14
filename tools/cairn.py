@@ -987,8 +987,8 @@ box-shadow:0 1px 4px rgba(0,0,0,.06)}
 <main><svg id="view"></svg>
 <div id="key"><b>KEY</b>
 <span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#17805a"/></svg>established claim</span>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#fff" stroke="#c98a00" stroke-width="2.4"/></svg>open claim</span>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="6.5" fill="none" stroke="#2b6cb0" stroke-width="1.6"/><circle cx="8" cy="7" r="3.4" fill="#fff" stroke="#c98a00" stroke-width="2"/></svg>program root</span>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#fbedcd" stroke="#c98a00" stroke-width="2.4"/></svg>open claim (unproved)</span>
+<span><svg width="18" height="14"><circle cx="8" cy="7" r="6.5" fill="none" stroke="#2b6cb0" stroke-width="1.6"/><circle cx="8" cy="7" r="3.4" fill="#fbedcd" stroke="#c98a00" stroke-width="2"/></svg>program root</span>
 <span><svg width="18" height="14"><rect x="3" y="2" width="10" height="10" fill="#9a9e94"/></svg>&and; join of a multi-premise route</span>
 <span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#7c8377" stroke-width="1.7"/><path d="M19,3.5L25,7L19,10.5z" fill="#7c8377"/></svg>route: premises &#10230; target</span>
 <span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/><path d="M19,3.5L25,7L19,10.5z" fill="#c0392b"/></svg>invalidation (obstruction kills route)</span>
@@ -1064,12 +1064,15 @@ node.filter(d=>d.type==='claim'&&d.root).append('circle')
  .attr('r',21).attr('fill','none').attr('stroke','var(--root)').attr('stroke-width',1.8);
 node.filter(d=>d.type==='claim').append('circle')
  .attr('r',d=>d.root?14:10+Math.min(d.impact*1.5,4))
- .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fff')
+ .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fbedcd')
  .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f5c40':'var(--open)')
  .attr('stroke-width',2.4);
 node.filter(d=>d.type==='junction').append('rect')
- .attr('x',-5).attr('y',-5).attr('width',10).attr('height',10)
+ .attr('x',-6).attr('y',-6).attr('width',12).attr('height',12)
  .attr('fill',d=>d.dead?'var(--dead)':'#9a9e94');
+node.filter(d=>d.type==='junction').append('text')
+ .attr('text-anchor','middle').attr('dy',3.5)
+ .style('fill','#fff').style('font-size','9px').text('\u2227');
 node.filter(d=>d.type==='stub').append('circle')
  .attr('r',6.5).attr('fill','#fff').attr('stroke','var(--dead)')
  .attr('stroke-width',1.7).attr('stroke-dasharray','3 2');
