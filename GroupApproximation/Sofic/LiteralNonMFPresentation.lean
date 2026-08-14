@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.PresentedGroupEvaluation
+import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.NormMFResidualDetector
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
@@ -16,7 +17,8 @@ in Definition `def:E` of `non_mf_groups_exist.tex`.  Its generators are
 so the advertised number of generators is indeed eight.  The first six
 generators carry the twenty displayed base relators, `t` satisfies the six
 displayed doubling relations, `c` is an involution centralising the base, and
-the marked word is imposed to be a central involution.
+the marked word is imposed to be central.  Its involution relation is derived
+from these relations and is not imposed.
 
 No completeness theorem for the six-generator base presentation is used in
 this file.  This module asserts only the literal finite-presentation algebra;
@@ -212,9 +214,8 @@ noncomputable def lampRelators : Finset (FreeGroup Generator) :=
       commutatorWord lampWord (vertexLetter i))
 
 noncomputable def markedRelators : Finset (FreeGroup Generator) :=
-  {markedWord ^ 2} ∪
-    Finset.univ.image (fun i : Generator ↦
-      commutatorWord markedWord (FreeGroup.of i))
+  Finset.univ.image (fun i : Generator ↦
+    commutatorWord markedWord (FreeGroup.of i))
 
 /-- All relators in the literal eight-generator presentation. -/
 noncomputable def relators : Finset (FreeGroup Generator) :=
@@ -384,11 +385,6 @@ theorem lamp_sq : lamp ^ 2 = 1 := by
   change lampWord ^ 2 ∈ relators
   simp [relators, lampRelators]
 
-theorem mark_sq : mark ^ 2 = 1 := by
-  apply PresentedGroup.one_of_mem
-  change markedWord ^ 2 ∈ relators
-  simp [relators, markedRelators]
-
 theorem mark_central (g : MarkedGroup) : Commute mark g := by
   have hgen : ∀ i : Generator,
       Commute mark (wordInMarkedGroup (FreeGroup.of i)) := by
@@ -419,6 +415,14 @@ theorem mark_eq_markedCompressionWord :
     baseMap_generator]
   group
 
+/-- The marked involution relation is a consequence of centrality and of the
+root-lamp involution relation; it is not a defining relator. -/
+theorem mark_sq : mark ^ 2 = 1 := by
+  rw [mark_eq_markedCompressionWord]
+  exact markedCompressionWord_sq_eq_one_of_c_sq_of_central
+    stable (baseMap (PresentedGroup.of v1Index)) lamp lamp_sq
+    (fun g ↦ by simpa [← mark_eq_markedCompressionWord] using mark_central g)
+
 /-! ## Exact-realization interface -/
 
 /-- Data sufficient to evaluate every displayed relator in an arbitrary
@@ -434,8 +438,6 @@ structure Realization (M : Type*) [Group M] where
       FreeGroup.lift baseGenerator (compressedBaseWord i)
   lamp_sq : lamp ^ 2 = 1
   lamp_centralizes_base : ∀ i, Commute lamp (baseGenerator i)
-  marked_sq :
-    markedCompressionWord stable (baseGenerator v1Index) lamp ^ 2 = 1
   marked_central : ∀ g : M,
     Commute (markedCompressionWord stable (baseGenerator v1Index) lamp) g
 
@@ -510,14 +512,12 @@ noncomputable def realizationHom {M : Type*} [Group M]
           R.baseGenerator i by simp [vertexLetter]]
       exact commutatorElement_eq_one_iff_commute.mpr
         (R.lamp_centralizes_base i)
-  · simp only [markedRelators, Finset.mem_union, Finset.mem_singleton,
-      Finset.mem_image] at hr
-    rcases hr with rfl | ⟨i, -, rfl⟩
-    · simpa using R.marked_sq
-    · rw [map_commutatorWord, realization_eval_marked,
-        FreeGroup.lift_apply_of]
-      exact commutatorElement_eq_one_iff_commute.mpr
-        (R.marked_central (realizationGenerator R i))
+  · simp only [markedRelators, Finset.mem_image] at hr
+    obtain ⟨i, -, rfl⟩ := hr
+    rw [map_commutatorWord, realization_eval_marked,
+      FreeGroup.lift_apply_of]
+    exact commutatorElement_eq_one_iff_commute.mpr
+      (R.marked_central (realizationGenerator R i))
 
 @[simp] theorem realizationHom_base_generator {M : Type*} [Group M]
     (R : Realization M) (i : BaseGenerator) :
@@ -617,7 +617,7 @@ theorem manuscriptLiteralPresentation :
          displaced * (v1Word * displaced * v1Word⁻¹) * displaced⁻¹ *
            (v1Word * displaced * v1Word⁻¹)⁻¹) ∧
       markedRelators =
-        {markedWord ^ 2} ∪ Finset.univ.image (fun i : Generator ↦
+        Finset.univ.image (fun i : Generator ↦
           markedWord * FreeGroup.of i * markedWord⁻¹ *
             (FreeGroup.of i)⁻¹) ∧
       relators =

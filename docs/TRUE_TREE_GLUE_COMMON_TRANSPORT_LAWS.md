@@ -119,3 +119,8 @@ The middle implication is elementary and exact.  The first implication is
 the live matrix-specific step.  This formulation is narrower than a general
 commutant-lifting theorem: only three pair contexts and two shared marginals
 must be recovered.
+
+An exact operator-algebraic sufficient condition for those pair-laws is given
+in `TRUE_EDGE_PVM_LOCALITY_CRITERION.md`: projection-valued measurements
+indexed by whole maps, commuting only along the three tree edges, produce the
+compatible laws by taking traces of projection products.

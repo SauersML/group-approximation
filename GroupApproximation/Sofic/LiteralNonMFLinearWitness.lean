@@ -379,10 +379,6 @@ noncomputable def realization : Realization WitnessGroup where
     exact witness_eval_base (compressedBaseWord i)
   lamp_sq := cAmbient_sq alpha conjD_injective
   lamp_centralizes_base i := comm_c alpha conjD_injective _
-  marked_sq := by
-    simp only [witnessBaseGenerator, matrixBaseGenerator_v1]
-    rw [marked_word_eq_sign alpha conjD_injective v1G_not_mem_range]
-    exact signAmbient_sq alpha conjD_injective
   marked_central g := by
     simp only [witnessBaseGenerator, matrixBaseGenerator_v1]
     rw [marked_word_eq_sign alpha conjD_injective v1G_not_mem_range]

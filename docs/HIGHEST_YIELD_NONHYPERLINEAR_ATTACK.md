@@ -35,6 +35,13 @@ pairwise classicalization of the normalized-HS four-index correlations while
 matching the shared `R0` and `L1` marginals.  It is not a four-way Birkhoff
 synchronization problem.
 
+The smallest operator form of that step is now explicit.  Edgewise commuting
+PVMs indexed by **whole response maps** give the three pair-laws by trace and
+match the shared marginals automatically.  See
+`TRUE_EDGE_PVM_LOCALITY_CRITERION.md`.  The Pauli packet supplies label PVMs,
+not these whole-map PVMs; producing the latter is the live use of the raw
+compressor and Kazhdan chart restrictions.
+
 Do not apply this directly to the four raw `C2^2` cuts.  Their conditioned
 comb transition matrix is the uniform `1/4` kernel, so it is maximally far
 from the required diagonal transports.  The labels must be the deeper

@@ -32,6 +32,12 @@ shared marginals gives a global law by finite conditional-product gluing.
 See `TRUE_TREE_GLUE_COMMON_TRANSPORT_LAWS.md`.  The live matrix theorem is
 pairwise classicalization at whole-map level, not four-way synchronization.
 
+`TRUE_EDGE_PVM_LOCALITY_CRITERION.md` gives the smallest exact operator
+premise for this step: four PVMs indexed by whole response maps, commuting
+only on the three context edges.  Their trace products are compatible edge
+laws and tree gluing applies.  The atlas currently supplies finite Pauli
+label PVMs but not whole-map PVMs; this is the precise locality gap.
+
 The independent-kernel endpoint is nevertheless exact and stronger: after
 averaging source labels, independently sampled bistochastic targets are
 uniform, so their crossed one-density is exactly `(N-1)/(2N)`.  This is

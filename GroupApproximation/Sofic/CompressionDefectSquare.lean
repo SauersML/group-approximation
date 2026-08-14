@@ -37,6 +37,57 @@ theorem commutator_conjugate_eq_commutator_sq_of_sq_eq_one
     pow_two]
   group
 
+/-- If `d` is an involution, then centrality of
+`[d, a d a⁻¹]` already forces that commutator to be an involution.  Thus the
+square relator in the Kazhdan--Clifford presentation is redundant. -/
+theorem markedCompressionWord_sq_eq_one_of_c_sq_of_central
+    {G : Type*} [Group G] (t a c : G) (hc : c ^ 2 = 1)
+    (hcentral : ∀ g : G, Commute (markedCompressionWord t a c) g) :
+    markedCompressionWord t a c ^ 2 = 1 := by
+  let d := t * c * t⁻¹
+  let b := a * d * a⁻¹
+  have hd : d ^ 2 = 1 := by
+    dsimp [d]
+    simp only [pow_two]
+    have hcc : c * c = 1 := by simpa [pow_two] using hc
+    calc
+      (t * c * t⁻¹) * (t * c * t⁻¹) =
+          t * (c * c) * t⁻¹ := by group
+      _ = 1 := by rw [hcc]; group
+  have hb : b ^ 2 = 1 := by
+    dsimp [b]
+    simp only [pow_two]
+    have hdd : d * d = 1 := by simpa [pow_two] using hd
+    calc
+      (a * d * a⁻¹) * (a * d * a⁻¹) = a * (d * d) * a⁻¹ := by group
+      _ = 1 := by rw [hdd]; group
+  have hdInv : d⁻¹ = d := by
+    apply inv_eq_of_mul_eq_one_left
+    simpa [pow_two] using hd
+  have hbInv : b⁻¹ = b := by
+    apply inv_eq_of_mul_eq_one_left
+    simpa [pow_two] using hb
+  have hword : markedCompressionWord t a c = d * b * d * b := by
+    simp [markedCompressionWord, d, b, commutatorElement_def, hdInv, hbInv]
+  have hconjInv :
+      d * markedCompressionWord t a c * d⁻¹ =
+        (markedCompressionWord t a c)⁻¹ := by
+    rw [hword, hdInv]
+    simp only [_root_.mul_inv_rev, hdInv, hbInv]
+    group
+  have hconjFix :
+      d * markedCompressionWord t a c * d⁻¹ =
+        markedCompressionWord t a c := by
+    calc
+      d * markedCompressionWord t a c * d⁻¹ =
+          markedCompressionWord t a c * d * d⁻¹ := by
+            rw [(hcentral d).eq]
+      _ = markedCompressionWord t a c := by simp
+  have hinv : (markedCompressionWord t a c)⁻¹ =
+      markedCompressionWord t a c := hconjInv.symm.trans hconjFix
+  rw [pow_two, ← hinv]
+  simp
+
 namespace MarkedCompressionInclusionData
 
 variable {Gamma : Type} {E : Type u} [Group Gamma] [Group E]
