@@ -65,11 +65,22 @@ Thus arbitrary predicates, including nonaffine ones, are exact local finite
 group-algebra corners.  The global obstruction is now one reducing
 projection: local context projections need not commute, their product is not
 a projection, and a projection commuting with all variable generators is
-central in the bare context group factor.  The surviving alternative target
-is a canonical Hecke corner `p_K L(Gamma) p_K`, for finite `K`, containing a
-trace-preserving copy of one non-CE synchronous BCS algebra.  Hyperlinearity
-of `Gamma` would make this positive corner CE and give the contradiction.
-See `TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
+central in the bare context group factor.
+
+The first alternative target, an algebraic subgroup-average Hecke corner
+`p_K C[Gamma] p_K`, is now ruled out exactly.  Group-ring augmentation maps
+`p_K` to `1`, so every such corner has a unital character; any BCS operators
+inside it would therefore give a classical satisfying assignment.  The
+corrected target is an augmentation-zero signed Hecke corner
+`z_rho L(Gamma) z_rho`, where `rho` is a higher-dimensional irreducible type
+of a finite subgroup.  Its block projection has positive canonical trace and
+is killed by every scalar group character.  Every Boolean predicate still
+has an exact character-free local model: for `r` allowed assignments, place
+the coordinate signs diagonally in the standard `r`-dimensional block of
+`C[S_(r+1)]`.  The sole remaining gate is global trace-preserving gluing of
+these nontrivial finite types.  See
+`TRUE_AUGMENTATION_ZERO_HECKE_GATE.md` and
+`TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
 
 Ordinary Bass--Serre gluing of these local gadgets is ruled out: the
 fundamental group of a finite graph of finite groups is virtually free and

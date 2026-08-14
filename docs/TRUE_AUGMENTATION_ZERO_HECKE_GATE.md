@@ -1,0 +1,213 @@
+# The augmentation-zero gate for algebraic Hecke compilers
+
+Status: exact obstruction, exact replacement target, and exact local finite
+group construction; not a nonhyperlinear-group proof.
+
+## 1. The subgroup-average target has a hidden classical character
+
+Let `Gamma` be a group.  The augmentation
+
+```text
+epsilon : C[Gamma] -> C,
+epsilon(sum_g a_g g)=sum_g a_g
+```
+
+is a unital `*`-homomorphism.  If `q=q^*=q^2` is an algebraic projection,
+then `epsilon(q)` is a self-adjoint idempotent scalar, hence belongs to
+`{0,1}`.
+
+If `epsilon(q)=1`, restriction gives a unital character
+
+```text
+epsilon_q : q C[Gamma] q -> C,
+```
+
+where the unit of the corner is `q`.  This elementary observation rules out
+the subgroup-average version of the BCS corner compiler.
+
+Indeed, for every finite subgroup `K<=Gamma`,
+
+```text
+p_K=|K|^(-1) sum_(k in K) k
+```
+
+satisfies `epsilon(p_K)=1`.  Therefore `p_K C[Gamma] p_K` always has the
+augmentation character.
+
+> **Augmentation obstruction.**  Let `B` be the universal algebra of a
+> classically unsatisfiable BCS.  There is no unital `*`-homomorphism
+>
+> ```text
+> B -> p_K C[Gamma] p_K
+> ```
+>
+> for any group `Gamma` and finite subgroup `K<=Gamma`.
+
+The statement is stronger than non-embeddability.  If algebraic Hecke
+operators `V_x in p_K C[Gamma] p_K` merely satisfied all BCS relations,
+the universal property would give such a homomorphism.  Composing with
+augmentation would send every self-adjoint involution `V_x` to a sign and
+every forbidden joint spectral atom to zero.  Those signs would be a
+classical satisfying assignment, a contradiction.
+
+Consequently the canonical `p_K` target in
+`TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md` cannot possibly
+groupify any of the non-Connes-embeddable BCS witnesses: those witnesses have
+no finite-dimensional representation, in particular no character.
+
+This obstruction is specifically algebraic.  It does not exclude operators
+in the von Neumann corner `p_K L(Gamma) p_K` that do not belong to the group
+ring, because augmentation need not extend continuously to the reduced
+completion.
+
+## 2. Every viable algebraic corner must kill augmentation
+
+The same proof gives the general design rule.
+
+> **Augmentation-zero necessity.**  If a unital `*`-algebra with no
+> characters embeds unitally into `q C[Gamma] q`, for an algebraic
+> projection `q`, then
+>
+> ```text
+> epsilon(q)=0.
+> ```
+
+Thus a successful finite-word compiler cannot use a trivial-representation
+subgroup average as its unit.  It must use either
+
+1. an algebraic projection in a nontrivial finite representation sector; or
+2. genuinely analytic operators outside `C[Gamma]`.
+
+The first alternative preserves the finite-presentation character of the
+program and has a canonical positive group trace.
+
+## 3. Signed Hecke corners
+
+Let `K<=Gamma` be finite, and let `rho` be a nontrivial irreducible complex
+representation of `K`, of dimension `d_rho`, with character `chi_rho`.  Its
+central block projection is
+
+```text
+z_rho=(d_rho/|K|) sum_(k in K) chi_rho(k^(-1)) k in C[K].
+```
+
+Character orthogonality gives
+
+```text
+z_rho=z_rho^*=z_rho^2,
+epsilon(z_rho)=0,
+tau_Gamma(z_rho)=d_rho^2/|K|>0.                 (AZH1)
+```
+
+The corner
+
+```text
+z_rho C[Gamma] z_rho
+```
+
+is the natural nontrivial-type, or signed, Hecke algebra.  Unlike the
+trivial-type corner `p_K C[Gamma] p_K`, its unit is invisible to
+augmentation.
+
+There is a useful stronger firewall.  Every scalar group character
+`eta:Gamma->T` induces a `*`-homomorphism `epsilon_eta:C[Gamma]->C`.  If
+`d_rho>1`, then `eta|_K` is one-dimensional and character orthogonality gives
+
+```text
+epsilon_eta(z_rho)=0.                            (AZH2)
+```
+
+Thus choosing a higher-dimensional irreducible type kills not just the
+ordinary augmentation, but every character of the ambient group arising
+from a scalar group representation.
+
+## 4. Arbitrary predicates also have character-free local blocks
+
+The augmentation gate does not reinstate the affine restriction.  Every
+finite Boolean predicate has an exact local realization in a
+higher-dimensional irreducible finite-group block.
+
+Let `R subseteq {+1,-1}^k` be nonempty and put `r=|R|`.  For `r>=2`, take
+the standard irreducible representation `rho` of `S_(r+1)`, which has
+dimension `r`, and its central block projection `z_rho`.  Then
+
+```text
+z_rho C[S_(r+1)] z_rho = M_r(C).
+```
+
+Choose an orthonormal basis `(delta_a)_(a in R)` of the representation
+space and, inside this matrix block, put
+
+```text
+Z_j delta_a = a_j delta_a.                       (AZH3)
+```
+
+The `Z_j` are commuting self-adjoint involutions relative to the corner unit
+`z_rho`, and their joint spectrum is exactly `R`.  The normalized restriction
+of the canonical group trace to the block is the normalized matrix trace, so
+it assigns weight `1/r` to every allowed assignment.
+
+For `r=1`, use any irreducible finite-group representation of dimension at
+least two (for example the standard representation of `S_3`) and set
+`Z_j=a_j z_rho`; the unique joint spectral value is the sole member `a` of
+`R`.
+
+Therefore:
+
+> **Character-free local predicate theorem.**  Every nonempty finite Boolean
+> predicate is realized exactly by commuting involutions in a positive
+> canonical-trace finite-group corner `z_rho C[K] z_rho`, where `rho` can be
+> chosen irreducible of dimension greater than one.  Every scalar group
+> character annihilates the corner unit.
+
+This replaces the earlier allowed-atom corner by a local packet which cannot
+collapse to a classical assignment through augmentation.
+
+## 5. The corrected nonhyperlinear target
+
+Choose a finitely presented BCS algebra `B` with a tracial state but no
+Connes-embeddable tracial state.  It is enough to construct:
+
+1. a finitely presented group `Gamma`;
+2. a finite subgroup `K<=Gamma` and a higher-dimensional irreducible
+   representation `rho` of `K`;
+3. a unital trace-preserving embedding
+
+```text
+B -> z_rho C[Gamma] z_rho,                       (AZH4)
+```
+
+where the corner has its normalized canonical group trace.
+
+If `Gamma` were hyperlinear, `L(Gamma)` would be Connes embeddable.  Its
+positive corner `z_rho L(Gamma) z_rho` would be Connes embeddable, as would
+the trace-preserving von Neumann subalgebra generated by the image of `B`.
+This contradicts the chosen trace on `B`.  Hence `(AZH4)` would produce an
+explicit finitely presented nonhyperlinear group.
+
+This is an exact reduction, not the missing construction.  The global
+problem is still to identify the different context blocks while retaining
+the canonical trace.  Ordinary Bass--Serre gluing over amenable subgroups
+cannot do this, because it remains hyperlinear.  The new information is that
+the local packets should be nontrivial representation types and that any
+compiler using the trivial `K`-type is algebraically impossible before one
+reaches the Connes-embedding question.
+
+## 6. Audited endpoint
+
+The finite-subgroup Hecke program now has a clean dichotomy:
+
+```text
+trivial K-type p_K:
+    impossible algebraically, by augmentation;
+
+nontrivial type z_rho, dim(rho)>1:
+    arbitrary local predicates remain exact and all scalar characters vanish;
+    global trace-preserving compatibility is the sole remaining gate.
+```
+
+The relevant object is therefore not an ordinary spherical Hecke corner but
+a matrix-valued signed Hecke corner.  This aligns the game route with the
+fixed spin/Pauli packets already present in the atlas program: the finite
+matrix packet must carry the local predicate, while genuinely
+higher-dimensional holonomy must perform the global identifications.
