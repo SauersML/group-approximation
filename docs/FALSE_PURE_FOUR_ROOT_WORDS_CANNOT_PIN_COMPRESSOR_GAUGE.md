@@ -128,26 +128,51 @@ The correct positive target is consequently:
 Pure root associativity may enter the proof after this construction, but it
 cannot construct or identify the coefficient operator by itself.
 
-## 5. Shortest falsification test for the compiled route
+## 5. Coordinate gauge is not a deformation of the compiled word
 
-Before attempting a quantitative proof, test the following exact statement.
-Let both `A_8` chart restrictions be finite regular representations with
-arbitrary multiplicity and let their relative unitary vary. Evaluate the
-literal 175-syllable word `u_src`. If there is a one-parameter relative
-commutant gauge for which
+There is a crucial distinction between the HNN gauge in Section 2 and the
+redundancy in a two-chart parametrization. Write the exact chart model as
 
-1. all defining atlas relators remain exact;
-2. the value of `u_src` changes by the gauge `C` in `(PFG5)` on a surviving
-   multiplicity corner; and
-3. the marked coefficient/Pauli sector remains nonzero,
+```text
+pi_1(g)=rho_1(g),
+pi_2(g)=U rho_2(g) U*.                                (PFG9)
+```
 
-then the compiled-word coproduct route is also locally sterile. If no such
-deformation exists, the failed deformation equations identify the exact
-mixed relators capable of pinning the gauge.
+If `C` commutes with `rho_2(A_8)`, replacing `U` by `UC` leaves `pi_2`
+literally unchanged. It therefore leaves the value of every free-product
+word, including `u_src`, unchanged. This is only a change of tensor
+coordinates. It cannot realize the physical replacement
 
-This is now the highest-signal finite calculation. It concerns a fixed word
-and a fixed `C_2` phase path; it does not require a growing table, a large
-numerical optimization, or a local build.
+```text
+pi(u_src) |-> pi(u_src) C.                            (PFG10)
+```
+
+This observation is favorable to the compiled route: once the chart images
+are fixed, the compressor word has a fixed ambient matrix. But it also means
+that any proposed coproduct defect must be defined intrinsically from those
+chart images. A defect which changes under `U |-> UC` is a defect of the
+chosen chart coordinates, not of the represented group word.
+
+The correct falsification test must therefore vary the **relative chart
+position modulo both chart commutants**. Let `U(theta)` be a genuine path in
+that double quotient, not a redundant right-commutant path. Evaluate all
+atlas relator polynomials and the literal word `u_src` along `U(theta)`.
+Then ask whether there is a sequence for which
+
+1. the normalized-Hilbert--Schmidt atlas relator energy tends to zero;
+2. the marked coefficient/Pauli sector retains positive trace; and
+3. every intrinsic candidate for the compiled-word coproduct law retains a
+   positive defect or a nonclassical multiplicity holonomy.
+
+Such a sequence would falsify the compiled-word route. Conversely, a
+dimension-free inequality controlling item 3 by item 1 would pin the
+physical relative position and close the coefficient-identification gate.
+
+This is a fixed noncommutative-polynomial stability problem in one relative
+chart unitary, indexed by finitely many `A_8` representation types but
+arbitrary multiplicities. The already identified commutant directions must
+first be quotiented out; testing them as if they changed `u_src` would be a
+category error.
 
 ## 6. Status
 
@@ -156,13 +181,13 @@ The following implications remain valid:
 ```text
 genuine coproduct defect -> classical gauge,
 homomorphism covariance  -> intrinsic spectral paths,
-four-root associativity  -> uniform table-size error budget. (PFG9)
+four-root associativity  -> uniform table-size error budget. (PFG11)
 ```
 
 What is false is the missing arrow
 
 ```text
-pure four-root error -> genuine compressor coproduct defect. (PFG10)
+pure four-root error -> genuine compressor coproduct defect. (PFG12)
 ```
 
 That arrow must be replaced by a compiled-word or mixed-relator theorem.

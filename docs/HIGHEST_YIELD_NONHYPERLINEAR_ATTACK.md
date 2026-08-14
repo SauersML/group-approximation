@@ -19,11 +19,13 @@ root-only four-root word unchanged. See
 
 Therefore the current positive target must explicitly use the comb
 compressor's fixed 175-syllable source word, or another mixed relator which
-changes under this commutant deformation. The highest-signal next test is
-whether the literal source word admits the displayed `C2` phase deformation
-inside an exact two-chart model. If it does, the local coproduct route is
-sterile; if it does not, the failed deformation equations identify the
-mixed relators that can pin the gauge.
+changes under a physical commutant deformation. Right-multiplying the
+relative chart conjugator by a chart commutant does **not** provide such a
+test: it leaves the represented second chart and every compiled word
+literally unchanged. The highest-signal next problem is instead the fixed
+one-unitary stability problem on relative chart positions modulo both chart
+commutants: bound an intrinsic compiled-word coproduct defect by the atlas
+relator energy, uniformly over all representation multiplicities.
 
 ## 2026-08-14 proper compressor paths can be synchronized intrinsically
 
