@@ -46,6 +46,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:A": (
         "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA"),
+    "cor:scaling-family": (
+        "Sofic/ScalingFamilyEndpoint",
+        "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily"),
     "thm:B": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),
@@ -142,6 +145,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:A": ["def:E", "prop:mf-equivalences", "prop:maximal-cstar",
               "prop:literal-base-T", "prop:witness", "thm:criterion",
               "lem:unitarycorona", "lem:square"],
+    "cor:scaling-family": ["thm:A", "thm:kazhdan-clifford"],
     "thm:C": ["thm:B", "con:clifford"],
     "thm:D": ["thm:A", "lem:faithfultrace"],
     "prop:mf-equivalences": ["lem:unitarycorona"],

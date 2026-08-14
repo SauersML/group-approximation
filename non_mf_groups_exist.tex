@@ -479,6 +479,31 @@ MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
+The exponent $2$ is not special.  For $m\ge2$, let $E_m$ be the same
+eight-generator presentation, replacing the three relations
+$tv_i t^{-1}=v_i^2$ by $tv_i t^{-1}=v_i^m$ and leaving every other
+relator unchanged; thus $E_2=E$.  Write $w_m$ for the image of the same
+marked word $w$.
+
+\begin{corollary}[the scaling family]\label{cor:scaling-family}
+For every integer $m\ge2$, the group $E_m$ is finitely presented and
+$w_m$ is a nontrivial central involution killed by every homomorphism from
+$E_m$ to every unitary norm matrix corona.  Consequently $E_m$ is not MF,
+and neither $\Cmax(E_m)$ nor $\Cred(E_m)$ is an MF $C^*$-algebra.
+\leanverified{Sofic/ScalingFamilyEndpoint}{GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily}
+\end{corollary}
+
+\begin{proof}
+Replace the affine dilation
+$\operatorname{diag}(2,2,2,1)$ by
+$\operatorname{diag}(m,m,m,1)$.  It conjugates each integral translation
+$v_i$ to $v_i^m$ and fixes the three linear generators.  Its inverse sends
+$v_1$ to translation by $e_1/m$, which is not integral; hence the two
+Clifford sites remain distinct and $w_m$ maps to $-1$.  The Kazhdan base,
+the one-sided compression argument, and the central-sign criterion are
+independent of $m$.
+\end{proof}
+
 For the proof, put $d=tct^{-1}$ and $u=[d,v_1]$.
 Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
 The proof has two opposed halves, both centered on $u$:
