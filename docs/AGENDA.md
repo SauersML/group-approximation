@@ -6,6 +6,26 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: full multiplication coherence forces classical maps
+
+`TRUE_MULTIPLICATION_TABLE_QUANTUM_CLASSICALIZATION.md` identifies a
+strictly stronger replacement for the false Hadamard-classicality shortcut.
+Kasprzak--Sołtan--Woronowicz prove that quantum automorphisms of finite
+quantum groups are classical. For a finite ordinary group `Q`, a magic
+transport matrix satisfying the full Hopf/multiplication table therefore has
+commuting coefficients. Their products give an explicit PVM indexed by
+`Aut(Q)`, so the entire response map is one classical latent outcome rather
+than a collection of unrelated label marginals.
+
+This plugs directly into the existing edgewise whole-map PVM and tree-gluing
+endpoint. The remaining atlas theorem is now operator-native: recover a
+magic transition matrix satisfying the full finite multiplication table from
+the cross-root relations. For fixed `Q`, tracial-ultraproduct compactness
+already gives asymptotic coefficient commutation. For growing `Q_n`, one
+must either exactify the table coordinatewise or prove a size-uniform
+multiplicative-unitary estimate. The primary theorem supplies exact
+classicalization, not that still-missing uniform extraction.
+
 ### 2026-08-14: a literal extension-fiber mixer is impossible
 
 `FALSE_LITERAL_FIBER_MIXER_SHORTCUT.md` closes the attempted synthesis of the
