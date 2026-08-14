@@ -148,7 +148,11 @@ intersection_n ker(rho_n)={1}.                        (NFC15)
 ```
 
 The finite quotients in `(NFC14)` separate points, proving that `Lambda` is
-residually finite.
+residually finite. This final algebraic implication is formalized source-first
+as `residuallyFinite_of_separating_finite_actions` in
+`GroupApproximation/Sofic/HyperlinearReduction.lean`. No build was run for
+that edit. The preceding normal-Fourier and Cartan-expectation arguments are
+not claimed to be formalized.
 
 ## 5. Normality would make the non-CE factor a group-factor summand
 

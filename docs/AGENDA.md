@@ -18,6 +18,11 @@ therefore profinite and faithful, so its finite atom actions separate
 representation would then make the relation factor a central summand of the
 CE algebra `L(Lambda)`, impossible for a non-CE relation factor.
 
+The algebraic endpoint is now formalized source-first as
+`residuallyFinite_of_separating_finite_actions`: any point-separating family
+of finite atom actions gives residual finiteness. The analytic normal-state
+and Cartan-expectation portions remain paper proofs; no build was run.
+
 Thus infinite stabilizers do not rescue the canonical construction by
 upgrading weak containment to a normal group-factor representation. Any
 Manzoor conversion must be noncanonical at the operator level.

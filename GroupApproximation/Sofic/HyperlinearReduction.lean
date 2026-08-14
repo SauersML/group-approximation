@@ -241,6 +241,20 @@ constraints assembled below.
 theorem isSofic_of_residuallyFinite [Group.ResiduallyFinite G] : IsSofic G :=
   isSofic_of_isLEF isLEF_of_residuallyFinite
 
+/-- A point-separating family of finite permutation actions makes a group
+residually finite.  This is the algebraic endpoint of the profinite-action
+argument: once finite invariant partitions separate every nonidentity group
+element, their atom actions are the required finite quotients. -/
+theorem residuallyFinite_of_separating_finite_actions
+    {I : Type} (X : I → Type) [(i : I) → Fintype (X i)]
+    (rho : (i : I) → G →* Equiv.Perm (X i))
+    (hsep : ∀ g : G, g ≠ 1 → ∃ i : I, rho i g ≠ 1) :
+    Group.ResiduallyFinite G := by
+  apply Group.residuallyFinite_of_forall_exists_finite_monoidHom
+  intro g hg
+  obtain ⟨i, hi⟩ := hsep g hg
+  exact ⟨Equiv.Perm (X i), inferInstance, inferInstance, rho i, hi⟩
+
 /-- **A counterexample is not locally embeddable into finite groups**, hence not
 residually finite. -/
 theorem not_isLEF_of_hyperlinear_not_isSofic (hns : ¬ IsSofic G) : ¬ IsLEF G :=
