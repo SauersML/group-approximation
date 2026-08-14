@@ -396,6 +396,17 @@ match the shared marginals automatically.  See
 not these whole-map PVMs; producing the latter is the live use of the raw
 compressor and Kazhdan chart restrictions.
 
+The growing number of whole-map outcomes creates no further simultaneous
+rounding problem. If the three path-edge total commutator energies tend to
+zero, blockwise POVM orthogonalization repairs the PVMs successively along
+`L0--R0--L1--R1`, with universal constants and no alphabet loss. For exact
+finite abelian root representations, the total spectral-PVM commutator
+energy is exactly the subgroup-averaged unitary commutator defect by
+operator-valued Parseval. See
+`TRUE_PATH_PVMS_CLASSICALIZE_WITHOUT_OUTCOME_LOSS.md`. The live input is
+therefore the multiplication-coherent decoder together with its three total
+edge energies, not an abstract growing-family PVM rounding theorem.
+
 The raw swap itself now supplies the complete local branch decoder: it fixes
 the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last
 coordinate, while their Steinberg commutators give the full

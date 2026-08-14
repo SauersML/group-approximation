@@ -89,10 +89,13 @@ sum_(a,b) ||[P_i(a),Q_j(b)]||_2^2 -> 0.               (EPL6)
 ```
 
 The sums, rather than pointwise maxima, are the correct scale when the label
-spaces grow.  After discarding an `o(1)` trace part, a simultaneous PVM
-rounding theorem would turn `(EPL6)` into the exact criterion above.  Such a
-rounding theorem is standard for a fixed number of projections but is not
-automatic when the number of map outcomes grows with the microstate.
+spaces grow. There is no additional growing-outcome simultaneous-rounding
+hypothesis. `TRUE_PATH_PVMS_CLASSICALIZE_WITHOUT_OUTCOME_LOSS.md` proves
+that the three path-edge PVMs can be perturbed to satisfy `(EPL2)` exactly,
+with total squared error controlled by universal constants times the three
+summed commutator energies in `(EPL6)`. The proof compresses one PVM through
+the other, applies cardinality-free POVM orthogonalization in each block, and
+repairs the three edges successively along the path.
 
 ## 4. Application to the atlas packet
 
@@ -111,13 +114,14 @@ map-outcome algebra.
 The narrow live theorem is therefore:
 
 > Use the raw compressor and the two Kazhdan chart restrictions to recover
-> edgewise commuting whole-map PVMs satisfying `(EPL6)` for the paired
-> radical quotient.
+> whole-map PVMs whose three total edge commutator energies and three
+> diagonal/crossed multiplication mismatch rates tend to zero.
 
-This is weaker than simultaneous recovery of both full coefficient
-commutants.  It asks only for three edge contexts and no unused-edge
-commutation.  It is stronger than four bistochastic block-mass matrices, and
-the distinction is forced by the exact Pauli countermodel.
+The cardinality-free path theorem then makes the three edge contexts exactly
+commuting. This is weaker than simultaneous recovery of both full
+coefficient commutants and asks for nothing on the unused edge. It is still
+stronger than four bistochastic block-mass matrices, and the distinction is
+forced by the exact Pauli countermodel.
 
 There is no separate exponential-outcome construction problem here.  If a
 joint character PVM on a finite coefficient window carries a deterministic

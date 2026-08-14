@@ -6,6 +6,28 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: path-shaped PVM classicalization has no outcome loss
+
+For finite PVMs `P,Q`, compress `Q_j` into every `P_i` corner and apply
+cardinality-free POVM orthogonalization there. This keeps `P` fixed and
+produces a commuting PVM `Q'` with
+
+```text
+sum_j ||Q'_j-Q_j||_2^2
+ <=5 sum_(i,j)||[P_i,Q_j]||_2^2.
+```
+
+Applying this successively along `L0--R0--L1--R1` makes all three required
+edges commute exactly with universal error bounds, even when the map-outcome
+sets grow. Moreover, for exact finite abelian root representations, the
+total character-PVM commutator energy equals the full subgroup-averaged
+unitary commutator defect by Parseval. See
+`TRUE_PATH_PVMS_CLASSICALIZE_WITHOUT_OUTCOME_LOSS.md`.
+
+Thus simultaneous PVM rounding is closed. The live gate is to construct the
+whole-map decoder and prove vanishing total commutator energy plus the three
+Leavitt multiplication mismatch rates for its path edges.
+
 ### 2026-08-14: covariance closes total single-edge transition variance
 
 `TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md` corrects the apparent
