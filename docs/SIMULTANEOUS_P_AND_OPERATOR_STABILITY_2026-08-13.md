@@ -51,7 +51,7 @@ direct-finiteness counterexample.
 
 ## The mathematical target
 
-Assume the following two repository endpoints.
+Use the following two proved repository endpoints.
 
 1. The group
 
