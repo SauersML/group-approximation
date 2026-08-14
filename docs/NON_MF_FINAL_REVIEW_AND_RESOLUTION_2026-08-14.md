@@ -142,6 +142,7 @@ non-MF theorem it now contains premise-free endpoints for:
   generated non-MF witness;
 - the concrete finitely generated witness being simultaneously sofic and
   non-MF;
+- the same concrete witness being hyperlinear and non-MF;
 - residual finiteness, soficity, and MF of the affine base through explicit
   congruence quotients;
 - a concrete MF group with a non-MF quotient;
@@ -268,8 +269,8 @@ confusing the established sofic quotient `W` with the unresolved soficity of
 The following were run on MSI only, using shared warm caches and no CI or
 local compilation:
 
-- all 44 manuscript Lean references resolve;
-- all 44 cited declarations have closed theorem headers;
+- all 45 manuscript Lean references resolve;
+- all 45 cited declarations have closed theorem headers;
 - all 35 numbered theorem-like claims match the exact-claim manifest and its
   declaration roster;
 - the Cairn graph compiles with 96 claims and 93 routes, its changed-file

@@ -23,6 +23,8 @@ The release-facing collection is
   canonical lamp kernel is locally finite, LEF, sofic, and operator-MF.
 - `NonMFImpact.witness_sofic_nonMF` proves, with no inputs, that the same
   concrete finitely generated witness is sofic and not operator-MF.
+- `NonMFImpact.witness_hyperlinear_nonMF` proves, again for that concrete
+  witness and with no inputs, that hyperlinearity does not imply MF.
 - `NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF` proves that the
   witness's reduced group C-star algebra is separable, has its canonical
   faithful trace, is stably finite in every finite matrix amplification, and

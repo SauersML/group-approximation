@@ -85,6 +85,15 @@ theorem witness_sofic_nonMF :
       ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
   LiteralWitnessConsequences.literalWitness_sofic_nonMF
 
+/-- The same concrete witness is hyperlinear but not operator-MF. -/
+theorem witness_hyperlinear_nonMF :
+    Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
+      IsHyperlinear LiteralNonMFLinearWitness.WitnessGroup ∧
+      ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
+  ⟨LiteralNonMFLinearWitness.witnessGroup_finitelyGenerated,
+    isHyperlinear_of_isSofic LiteralWitnessConsequences.witnessGroup_isSofic,
+    LiteralWitnessConsequences.witnessGroup_not_isOperatorMF⟩
+
 /-- The concrete witness also gives a separable, faithfully tracial, stably
 finite reduced group C-star algebra that is not MF. -/
 theorem witness_reducedGroupCStar_stablyFinite_nonMF :
