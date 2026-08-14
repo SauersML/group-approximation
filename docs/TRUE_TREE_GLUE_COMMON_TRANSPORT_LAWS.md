@@ -112,6 +112,15 @@ must use the special atlas multiplication, Kazhdan pinning, or a recovered
 common finite-multiplicity Cartan.  Tree gluing itself cannot supply
 classicality.
 
+There is also an exact countermodel internal to the present finite-pairing
+setup.  Uniformly sample a nonzero output pair with whichever pairing value
+the context requires.  In every perfect binary pairing of size at least
+four, the output marginals are uniform on the nonzero vectors independently
+of the required value.  Thus all three contexts win perfectly and have
+matching no-signaling marginals, but the choices vary jointly with the
+source pair and do not define whole maps.  See
+`FALSE_NONSIGNALING_PAIRED_QUOTIENT_SHORTCUT.md`.
+
 ## 4. Sharpened endpoint
 
 The hierarchy of sufficient extraction statements is now:

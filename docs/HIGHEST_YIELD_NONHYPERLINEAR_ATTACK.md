@@ -2,6 +2,25 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 closed: perfect no-signaling labels are still not whole maps
+
+For every perfect binary pairing of size `N>=4`, let `q_c` be uniform on the
+nonzero output pairs with pairing value `c`.  Each marginal of both `q_0`
+and `q_1` is uniform on the nonzero labels.  Therefore the two diagonal
+contexts can use `q_(b(v,w))` and the crossed context can use `q_0`: all
+three pairing requirements hold exactly and all shared endpoint marginals
+match.  See `FALSE_NONSIGNALING_PAIRED_QUOTIENT_SHORTCUT.md`.
+
+This exact countermodel proves that no-signaling label PVMs, even with zero
+pairing error, cannot replace a law on whole response maps.  Generic
+Walsh--Hadamard rigidity does not fix the issue either: Hadamard matrices of
+size at least four possess nonclassical quantum symmetries; see
+`FALSE_HADAMARD_QUANTUM_SYMMETRY_CLASSICALIZATION.md`.  Do not spend further
+effort on marginal/tree arguments or automatic classicality of the pairing
+table.  The shortest live route is now the special atlas statement that the
+raw branch decoder is constant on the comb compressor's extension-character
+fibers, forced by cross-root multiplication.
+
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 
 A perfect finite binary pairing turns the two diagonal transport relations

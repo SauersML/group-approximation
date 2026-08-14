@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: exact no-signaling boxes close the label-law shortcut
+
+`FALSE_NONSIGNALING_PAIRED_QUOTIENT_SHORTCUT.md` gives an elementary exact
+countermodel to the idea that compatible labelwise pair laws might suffice.
+For every perfect binary pairing of size `N>=4`, the uniform law on nonzero
+pairs of prescribed pairing value has uniform nonzero marginals.  Using the
+prescribed value on the two diagonal contexts and value zero on the crossed
+context wins all three constraints exactly with common no-signaling
+marginals.  These laws depend jointly on each source pair and therefore do
+not come from whole response maps.
+
+The corresponding Fourier sign table is Walsh--Hadamard.  Generic Hadamard
+rigidity cannot classicalize it: every Hadamard matrix of size at least four
+has nonclassical quantum symmetries.  See
+`FALSE_HADAMARD_QUANTUM_SYMMETRY_CLASSICALIZATION.md`.  Rank one is not a
+replacement because the coefficient arrows need not preserve a selected
+line.  The live theorem is unchanged but now strictly delimited: synchronize
+the raw branch decoder with every source in each comb extension fiber by
+using the special cross-root multiplication relations.
+
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 
 `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and
