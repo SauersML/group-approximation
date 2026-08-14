@@ -59,6 +59,7 @@ import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
+import GroupApproximation.Sofic.LocallyFiniteMF
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
