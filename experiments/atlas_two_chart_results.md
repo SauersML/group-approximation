@@ -16,7 +16,7 @@ leaf charts:
 
 - Steinberg commutator identities with one scalar coefficient;
 - `e*e = f*f = 1`, `e*f = f*e = 0`, and `ee* + ff* = 1`;
-- a representative family of orthogonal-root commutators.
+- a representative family of commuting-root commutators.
 
 After exact free-product reduction there are 54 distinct relation words
 `r` in the kernel `R`.  For each `r`, the experiment uses six elementary

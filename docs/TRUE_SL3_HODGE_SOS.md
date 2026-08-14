@@ -6,7 +6,7 @@ Date: 2026-08-11
 
 Let `Gamma=SL_3(Z)` use the six elementary transvections and the thirteen
 relators in `experiments/sl3_degree_one_spectrum.py`: six Steinberg
-commutators, six orthogonal-root commutators, and
+commutators, six displayed commuting-root commutators, and
 
 `(x_12 x_21^(-1) x_12)^4=1`.                         `(SHS1)`
 

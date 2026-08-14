@@ -6,5 +6,4 @@ authors:
   - name: "Anonymous"
 version: 0.2.0
 date-released: 2026-08-13
-repository-code: "https://github.com/SauersML/group-approximation"
 license: Apache-2.0

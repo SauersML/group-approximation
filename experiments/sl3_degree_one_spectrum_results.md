@@ -15,7 +15,7 @@ instead supply a degree-one linear repair estimate.
 
 of a fixed six-generator presentation of `SL_3(Z)`.  The generators are the
 six elementary transvections.  The 13 relators are the six Steinberg
-commutator relations, the six allowed orthogonal-root commutators, and the
+commutator relations, the six displayed commuting-root commutators, and the
 Conder--Robertson--Williams torsion relation
 
 `(x_12 x_21^(-1) x_12)^4 = 1`.
@@ -141,7 +141,7 @@ characters, not extrapolate only the two initially recognized blocks.
 
 The low-mode structure diagnostics show a repeated local pattern.  At
 `p=23` and `p=37` the six generator energies are close to uniform, and the
-Steinberg/orthogonal-root relators carry nearly all the coexact energy.  The
+Steinberg/commuting-root relators carry nearly all the coexact energy.  The
 single torsion relator contributes only `0.0004414` and `0.0002257`,
 respectively.  This was the signal to search for one fixed group-ring
 inequality instead of extending the prime table.
