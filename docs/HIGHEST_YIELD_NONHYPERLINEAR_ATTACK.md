@@ -36,10 +36,14 @@ arbitrarily large finite coefficient table is therefore at most
 `TRUE_FOUR_ROOT_ASSOCIATIVITY_HAS_UNIFORM_HS_BUDGET.md`.
 
 This supplies the size-uniform multiplication-coherence budget required by
-the approximate bi-corepresentation route.  The remaining gate is exactly
-to assemble the raw/comb blocks into one (asymptotically) unitary coefficient
-matrix `V`; neither table cardinality nor associativity produces a further
-loss.
+the approximate bi-corepresentation route, conditional on identifying its
+coproduct coefficients with these word evaluations.  The remaining gate has
+two inseparable parts: assemble the raw/comb blocks into one asymptotically
+unitary coefficient matrix `V`, and prove that its dual-coproduct expansion
+is the averaged four-root expansion above.  An arbitrary commutant unitary in
+the regular finite-envelope model preserves the group words but defeats that
+identification.  Table cardinality produces no further loss; coefficient
+identification remains substantive.
 
 ## 2026-08-14 closed: perfect no-signaling labels are still not whole maps
 

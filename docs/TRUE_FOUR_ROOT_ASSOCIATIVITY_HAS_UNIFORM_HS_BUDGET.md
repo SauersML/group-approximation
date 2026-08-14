@@ -34,8 +34,11 @@ associativity defect over any finite table is at most
 ```
 
 This closes a possible quantitative escape in the approximate
-bi-corepresentation program.  The live gap is the construction of its one
-coefficient unitary `V`, not accumulation over the multiplication table.
+bi-corepresentation program.  It is a **conditional budget**: the extracted
+coefficient tensor must first be identified with these four-root word
+evaluations.  The live gap is that identification together with construction
+of the one coefficient unitary `V`, not accumulation over the multiplication
+table.
 
 ## 2. Exact four-root identity
 
@@ -128,10 +131,16 @@ the four-index coefficient blocks have been assembled into one unitary
 V in Ahat tensor M_d tensor A.                        (FRA11)
 ```
 
-It does not construct `(FRA11)`.  The missing theorem must identify the
-raw/comb block coefficients in the single repaired unitriangular envelope
-and prove that they are the coefficients of one unitary (or one asymptotically
-unitary corner).  Once that is done:
+It does not construct `(FRA11)`, and assembly as a unitary is not by itself
+enough.  The missing theorem must both
+
+1. identify the raw/comb block coefficients in the single repaired
+   unitriangular envelope as the coefficients of one unitary (or one
+   asymptotically unitary corner); and
+2. identify the coproduct expansion of those coefficients with the averaged
+   four-root word evaluations in `(FRA10)`.
+
+Once both identifications are done:
 
 ```text
 four-root associativity
@@ -144,8 +153,15 @@ whole-map decoder
  -> robust 1/36 contradiction.                       (FRA12)
 ```
 
-The source of difficulty is therefore a single completeness/unitarity
-identity for the coefficient blocks.  It is not multiplication-table size,
-associativity error, or Pauli gauge matching.
+The second item is load bearing.  In the exact regular representation of the
+finite envelope, a compressor intertwiner can be multiplied by an arbitrary
+unitary in the source-group commutant.  This preserves every covariance and
+four-root group relation but can destroy the desired dual-coproduct law for
+the proposed coefficient tensor.  Thus neither group-word associativity nor
+unitarity automatically identifies the tensor coefficients.
+
+The source of difficulty is therefore one coefficient-identification theorem
+with two outputs: completeness/unitarity and the four-root coproduct formula.
+It is not multiplication-table size or associativity error.
 
 No local computation or build was run for this note.
