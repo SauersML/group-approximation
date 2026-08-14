@@ -522,6 +522,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package
 #print axioms GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one
 #print axioms GroupApproximation.LiteralNonMFEndpoint.literalBase_hasKazhdanPropertyT
+#print axioms GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction
 #print axioms GroupApproximation.LiteralNonMFEndpoint.mark_eq_compressionDefect_sq
 #print axioms GroupApproximation.LiteralNonMFEndpoint.kazhdanPinning
 #print axioms GroupApproximation.LiteralNonMFEndpoint.literalInvolutionSubgroup_le_defectNormal

@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.CentralInvolutionSubgroup
 import GroupApproximation.Sofic.CompressionDefectSquare
+import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import Mathlib.GroupTheory.FinitelyPresentedGroup
@@ -434,7 +435,8 @@ noncomputable def baseCountable : Countable Γ := by
 
 noncomputable local instance : Countable Γ := baseCountable (Γ := Γ)
 
-noncomputable local instance raw_countable : Countable (Raw Γ) := inferInstance
+noncomputable local instance raw_countable : Countable (Raw Γ) :=
+  Monoid.Coprod.mk_surjective.countable
 
 noncomputable instance extension_countable : Countable (Extension alpha a) :=
   (QuotientGroup.mk'_surjective (relations alpha a)).countable
@@ -488,17 +490,22 @@ theorem kazhdanCliffordConstruction (ha : a ∉ Set.range alpha) :
       mark alpha a ≠ 1 ∧
       mark alpha a ^ 2 = 1 ∧
       (∀ g : Extension alpha a, Commute (mark alpha a) g) ∧
-      (∀ (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)),
+      (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+        let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
         letI : ∀ n, Nonempty (X n) :=
-          fun n ↦ Fintype.card_pos_iff.mp (hX n)
+          fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
         ∀ rho : Extension alpha a →*
             unitary (NormMatrixCStarCorona (fun n ↦ X n)),
           rho (mark alpha a) = 1) ∧
-      ¬ IsOperatorMF (Extension alpha a) := by
-  exact ⟨inferInstance, iota_injective alpha hAlpha a ha,
+      ¬ IsCDEOperatorMF (Extension alpha a) := by
+  refine ⟨inferInstance, iota_injective alpha hAlpha a ha,
     mark_ne_one alpha hAlpha a ha, mark_sq alpha a, mark_central alpha a,
-    every_cstar_corona_hom_kills_mark alpha a hT,
-    not_isOperatorMF alpha hAlpha a hT ha⟩
+    ?_, ?_⟩
+  · intro d hd
+    exact every_cstar_corona_hom_kills_mark alpha a hT
+      (fun n ↦ naturalFiniteModel (d n)) (by simpa using hd)
+  · rw [isCDEOperatorMF_iff_isOperatorMF]
+    exact not_isOperatorMF alpha hAlpha a hT ha
 
 end
 

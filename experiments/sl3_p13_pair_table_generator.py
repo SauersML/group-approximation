@@ -85,7 +85,7 @@ def main():
         raise ValueError("the 293 fibers must partition all 484 pairs")
 
     out = [
-        "import GroupApproximation.Sofic.P13ExactStagedReplay\n\n",
+        "import GroupApproximation.Sofic.LiteralP13HodgeReplay\n\n",
         "/-!\n# Sparse support-pair fibers for the exact P13 certificate\n\n",
         "The explicit list is only a fast representation of the replayed\n",
         "product-class table.  Each fiber is proved equal to the definitional\n",

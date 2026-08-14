@@ -60,9 +60,18 @@ marginals unchanged.
 
 The one-edge gluing step, including nonnegativity, normalization, both
 recovered marginals, and zero-marginal fibers, is formalized in
-`GroupApproximation/Leavitt/FiniteTreeCoupling.lean`.  Its existence theorem
-is `FiniteTreeCoupling.exists_gluing`; applying it twice gives the path
-construction above.
+`GroupApproximation/Leavitt/FiniteTreeCoupling.lean`.  Its one-junction
+existence theorem is `FiniteTreeCoupling.exists_gluing`.  The explicit
+four-variable construction is `FiniteTreeCoupling.glueTransportPath`, and
+`sum_glueTransportPath_00`, `sum_glueTransportPath_01`, and
+`sum_glueTransportPath_11` state the three preserved edge marginals.  This
+removes “apply the gluing lemma twice” as an informal step.
+
+These declarations were added source-first and have not been compiled in
+this iteration, following the explicit no-compilation instruction.  Their
+mathematical content is the elementary conditional-product identity; kernel
+checking remains a later verification task, not evidence for the research
+claim.
 
 This is the finite form of the standard fact that compatible marginals on an
 acyclic context hypergraph have a global distribution.  No Birkhoff choices

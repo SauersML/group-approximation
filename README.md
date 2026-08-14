@@ -93,7 +93,16 @@ finite C*-algebras.
 
 ### Formal counterpart
 
-The formal headline is definitionally the same eight-generator presentation
+The conceptual headline is now
+`KazhdanCliffordConstruction.kazhdanCliffordConstruction`: every finitely
+presented property-(T) group with a proper injective endomorphism yields a
+finitely presented non-MF extension.  The same theorem constructs the HNN--
+Clifford representation, proves the base embeds, derives the marked sign's
+square relation from centrality instead of imposing it, proves the sign is
+nontrivial, and proves that every genuine norm-matrix C*-corona homomorphism
+kills it.
+
+The literal theorem is definitionally the same eight-generator presentation
 and marked word as the manuscript. The affine--Clifford nontriviality witness,
 exact P13 tables and relator replays, the rotation quotient, the intrinsic
 property-(T) bridge, Kazhdan pinning, and the finite-normal obstruction are
@@ -122,6 +131,7 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
+| `Sofic/KazhdanCliffordConstruction.lean` | General finitely presented Kazhdan self-embedding construction, HNN--Clifford witness, universal corona kernel, and non-MF endpoint |
 | `Sofic/ConceptualNonMFProof.lean` | Hypothesis-free proof spine: `w = u²`, Kazhdan pinning, Reynolds annihilation, Clifford detection, and Theorem A |
 | `Sofic/LiteralNonMFEndpoint.lean` | Reusable endpoint assembly parameterized by the property-(T) certificate |
 | `Sofic/P13ExactStagedCertificate.lean` | Exact rational P13 Hodge certificate assembled from kernel-checked residual blocks |

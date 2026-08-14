@@ -14,4 +14,4 @@ fi
 
 cd "$1"
 "$2" build \
-  GroupApproximation.Sofic.P13ExactStagedCertificate
+  GroupApproximation.Sofic.LiteralP13HodgeCertificate

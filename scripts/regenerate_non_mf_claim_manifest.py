@@ -24,6 +24,8 @@ REPO = Path(__file__).resolve().parent.parent
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
+    "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
+                              "lem:square", "con:clifford"],
     "thm:A": ["def:E", "prop:mf-equivalences", "prop:maximal-cstar",
               "prop:literal-base-T", "prop:witness", "thm:criterion",
               "lem:unitarycorona", "lem:square"],
@@ -35,7 +37,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
-    "thm:criterion": ["def:pattern", "lem:corner", "lem:compressorcollapse"],
+    "thm:criterion": ["def:pattern", "lem:compressorcollapse"],
     "lem:compressorcollapse": ["def:pattern"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],

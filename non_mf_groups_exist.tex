@@ -160,10 +160,10 @@ Hereafter ``MF'' means this equivalent actual-corona/local-operator-norm
 property.  It should not be confused with the stronger reduced-norm
 convention called MF in \cite{Schafhauser,GKEMP}, where approximately
 multiplicative maps must also recover the canonical trace and the
-left-regular norm on every group-ring element, or with PMF variants in which
+left-regular norm on every group-ring element, or with purely MF (PMF), where
 those strongly convergent models are genuine finite-dimensional
-representations \cite[Definition~1.2]{MdlS}.  These are genuinely different
-conventions; every assertion below uses only the MF property fixed here.
+representations \cite[Definition~1.2]{MdlS}.  Every assertion below uses only
+the MF property fixed here.
 The conceptual result is the following explicit finitely presented
 Kazhdan--Clifford construction.
 
@@ -176,11 +176,7 @@ choose $a\in\Gamma\setminus\alpha(\Gamma)$.  Adjoin elements $t,c$ and impose
  t\gamma t^{-1}=\alpha(\gamma),\qquad c^2=1,qquad[c,\gamma]=1
  \quad(\gamma\in\Gamma),
 \]
-together with centrality of
-\[
- d=tct^{-1},\qquad
- w=[d,ada^{-1}].
-\]
+Put $d=tct^{-1}$ and $w=[d,ada^{-1}]$, and impose centrality of $w$.
 It is enough to impose these relations on a finite generating set of
 $\Gamma$.  The resulting group $E(\Gamma,\alpha,a)$ is finitely presented,
 the canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
@@ -193,6 +189,50 @@ $E(\Gamma,\alpha,a)$ is not MF.
 \leanverified{Sofic/KazhdanCliffordConstruction}{GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction}
 \end{theorem}
 
+\begin{proof}
+Finite presentability follows from a relative finite presentation: start with
+the free product of $\Gamma$ and the free group on $t,c$, and quotient by the
+finitely many displayed relations for a finite generating set of $\Gamma$.
+
+The relation $w^2=1$ is redundant.  Put $b=ada^{-1}$.  Both $d$ and $b$ are
+involutions, $w=[d,b]=(db)^2$, and direct cancellation gives
+\[
+ dwd^{-1}=w^{-1}.
+\]
+Centrality also gives $dwd^{-1}=w$, whence $w=w^{-1}$ and $w^2=1$.
+
+For nontriviality, form the ascending HNN extension
+\[
+ G=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)\rangle
+\]
+and let $X=G/\Gamma$.  The mapping-telescope model of this extension embeds
+$\Gamma$.  Let $G$ permute the Clifford generators $(e_x)_{x\in X}$ and map
+$c$ to $e_\Gamma$.  Then
+\[
+ d\longmapsto e_{t\Gamma},\qquad
+ ada^{-1}\longmapsto e_{at\Gamma}.
+\]
+The two cosets are distinct: equality would give
+$t^{-1}at\in\Gamma$, equivalently $a\in\alpha(\Gamma)$.  Hence the two
+Clifford generators anticommute and
+\[
+ w\longmapsto(e_{t\Gamma}e_{at\Gamma})^2=-1.
+\]
+The Clifford sign is central, so the map respects every defining relation.
+It follows simultaneously that $w\ne1$ and that the canonical map of
+$\Gamma$ is injective.
+
+For the corona statement, the identity of Lemma~\ref{lem:square} gives
+\[
+ w=[d,a]^2\in N_{\mathrm{comp}}.
+\]
+Thus $F=\{1,w\}$ is a finite normal subgroup of the compression-defect
+normal closure.  The finite-normal obstruction criterion,
+Theorem~\ref{thm:criterion}, kills $F$ in every norm matrix corona.  Since
+$w\ne1$, no such homomorphism is injective, so $E(\Gamma,\alpha,a)$ is not
+MF.
+\end{proof}
+
 The same element $a$ drives both halves of the proof.  Analytically,
 $a\in\Gamma$, so fixed-space transport forces the displaced lamp to commute
 with its image in finite-dimensional norm models.  Geometrically,
@@ -200,6 +240,13 @@ $a\notin\alpha(\Gamma)$, so $a$ moves that lamp to a different HNN coset,
 where Clifford anticommutation produces $-1$.  Thus $a$ lives on the boundary
 of the self-compression: rigidity cannot detect that boundary, while the
 Clifford representation detects it by a sign.
+
+Concrete bases are abundant.  For example, Cornulier proves that
+$\SL_n(\Z)\ltimes\operatorname{Mat}_{m,n}(\Z)$ is finitely presented, has
+property~\textup{(T)}, and is non-co-Hopfian for $n\ge3$; multiplication of
+the abelian factor by any integer $k\ge2$ realizes a proper self-embedding
+\cite[Proposition~1.1]{Cornulier}.  Taking $n=3$, $m=1$, and $k=2$ therefore
+feeds directly into Theorem~\ref{thm:kazhdan-clifford}.
 
 The following theorem is the fully explicit finite presentation developed in
 the second half of the paper.
@@ -604,7 +651,7 @@ Use the six literal base generators and the relations displayed in
    \text{all relations in \eqref{eq:gamma-presentation}},\\
    tv_i t^{-1}=v_i^2\ (1\le i\le3),\\
    txt^{-1}=x,\quad tyt^{-1}=y,\quad tzt^{-1}=z,\\
-   c^2=1,\qquad w^2=1,\\
+   c^2=1,\\
    [c,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z\}),\\
    [w,g]=1\quad(g\in\{v_1,v_2,v_3,x,y,z,t,c\})
   \end{gathered}\right\rangle,
@@ -612,7 +659,9 @@ Use the six literal base generators and the relations displayed in
 where $w$ abbreviates the word
 $\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
 This is an explicit finite presentation with eight generators.  Its defining
-relations make $w$ central and impose $w^2=1$; the relations on the six base
+relations make $w$ central, and centrality together with $c^2=1$ implies
+$w^2=1$ by the calculation in the proof of
+Theorem~\ref{thm:kazhdan-clifford}; the relations on the six base
 generators also give
 \[
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
@@ -964,8 +1013,7 @@ and the two sites are distinct by Lemma~\ref{lem:linear}, so
 \[
   w\mapsto[c_{\tau o},c_{j(\bar v_1)\tau o}]=-1=\zeta .
 \]
-Since $\zeta$ is a central involution of $W$, the remaining relations
-$w^2=1$ and $[w,g]=1$ for
+Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
 $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $\zeta\neq1$, and therefore $w\neq1$ in $E$.
@@ -1109,7 +1157,7 @@ surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
 unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
 \end{proof}
 
-\section{Kazhdan compression and the finite-normal corner}\label{sec:conj}
+\section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
 
 The corona half of Theorem~\ref{thm:A} will be deduced from a general
 criterion, whose data we now fix.
@@ -1146,6 +1194,42 @@ $\Theta(f)=1$ for all $f\in F$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion}
 \end{theorem}
 
+\begin{proof}
+Suppose that a corona representation $\Theta$ is nontrivial on $F$.  Form the
+Reynolds projection directly in the quotient,
+\[
+ p=\frac1{|F|}\sum_{f\in F}\Theta(f),\qquad q=1-p.
+\]
+Normality of $F$ makes $p$ central relative to $\Theta(H)$, and nontriviality
+on $F$ gives $q\ne0$.  Pass to the nonzero corner $q\mathcal Qq$.  There
+\[
+ \sum_{f\in F}\Theta(f)=0
+ \tag{\ensuremath{\ast}}
+\]
+exactly.
+
+Lift the corner projection coordinatewise and choose unitary lifts
+$U_{g,n}$ of the corner representation.  Put
+\[
+ K_2=\{g\in H:\hsnorm{U_{g,n}-1}\longrightarrow0\}.
+\]
+Unitary invariance and asymptotic multiplicativity make
+$K_2\trianglelefteq H$.  The quantitative Kazhdan fixed-space transport of
+Lemma~\ref{lem:compressorcollapse} gives
+\[
+ [d,\iota(\lambda)]\in K_2\qquad(\lambda\in\Lambda).
+\]
+Hence $N_{\mathrm{comp}}\subseteq K_2$, and therefore $F\subseteq K_2$.
+Because $F$ is finite,
+\[
+ \sum_{f\in F}U_{f,n}\longrightarrow |F|1
+ \quad\text{in normalized Hilbert--Schmidt norm}.
+\]
+On the other hand, the exact quotient identity \((\ast)\) says that the same
+sum converges to $0$ in operator norm, hence also in normalized
+Hilbert--Schmidt norm.  This contradiction proves the theorem.
+\end{proof}
+
 Theorem~\ref{thm:A}(2) is the instance \(H=E\),
 \(\Lambda=\mathcal B\), \(\iota\) the canonical homomorphism, and
 \(F=\{1,w\}\).  The membership \(w\in N_{\mathrm{comp}}\) is the identity
@@ -1153,6 +1237,14 @@ Theorem~\ref{thm:A}(2) is the instance \(H=E\),
 The proof uses the following coordinate construction.  This formulation is
 important: the Reynolds average is formed before passing to any quotient,
 and its complementary spectral corner is repaired coordinate by coordinate.
+
+\subsection{Quantitative realization of Kazhdan cancellation}
+
+The remainder of this section gives the coordinate-level realization used
+by the formal development.  It is not needed to see the preceding
+fixed-space/Reynolds proof conceptually; it records dimension-free estimates
+that implement the same projection equality without hiding spectral cuts or
+polar correction inside the quotient.
 
 \begin{lemma}[coordinate finite-normal corner]\label{lem:corner}
 Let $F\trianglelefteq H$ be finite, let $\omega$ be an ultrafilter on an
@@ -1241,7 +1333,7 @@ polar correction preserves this limit and proves the lemma.
 
 The second ingredient is the finite-stage Kazhdan-compression calculation.
 
-\begin{lemma}[compression defects collapse]\label{lem:compressorcollapse}
+\begin{lemma}[Kazhdan fixed-space transport]\label{lem:compressorcollapse}
 Let $(V_{g,n})$ be any operator-norm asymptotic unitary representation of
 $H$.  For a marked Kazhdan pattern $(\Lambda,\iota,t,c)$, with
 $d=tct^{-1}$, for every $\lambda\in\Lambda$ and $\varepsilon>0$ there is
@@ -1396,64 +1488,7 @@ This proves the claim with constants independent of $r_n$.  The theorem
 with explicit $\varepsilon/128$ and $\varepsilon/64$ allocations.
 \end{proof}
 
-\section{Proof of the criterion and of Theorem \ref{thm:A}}\label{sec:proofA}
-
-\begin{proof}[Proof of Theorem~\ref{thm:criterion}]
-Suppose, for contradiction, that some corona representation
-$\Theta\colon H\to\U(\mathcal Q)$ is nontrivial on $F$.  Compose with
-$\kappa_{(d_n)}^{-1}$ to obtain its coordinate model.  For some $f_0\in F$
-the distance from its image to $1$ has positive limit superior.  Pass to a
-subsequence on which that distance is uniformly positive and then to any
-free ultrafilter on the subsequence.  Lemma~\ref{lem:corner} produces an
-operator-norm asymptotic unitary
-representation $(V_{g,n})$ such that
-\begin{equation}\label{eq:corner-sum}
-  \opnorm{\sum_{f\in F}V_{f,n}}\longrightarrow0.
-\end{equation}
-
-Regard the same matrices as an asymptotic representation for the normalized
-Hilbert--Schmidt metric, and fix a free ultrafilter $\omega$ containing the
-cofinite filter.  They define a homomorphism $\rho_2$ into the corresponding
-tracial unitary ultraproduct.  By Lemma~\ref{lem:compressorcollapse},
-\[
- \rho_2([d,\iota(\lambda)])=1
- \qquad(\lambda\in\Lambda).
-\]
-The kernel of a homomorphism is normal; hence it contains
-$N_{\mathrm{comp}}$, and therefore $F$.  Consequently, for every $f\in F$,
-\begin{equation}\label{eq:finite-hs-collapse}
- \lim_{n\to\omega}\hsnorm{V_{f,n}-V_{1,n}}=0.
-\end{equation}
-
-To return from the ultrafilter statement to an ordinary sequence, put
-$\eta_k=1/(k+1)$.  Since $F$ is finite, for every $k$ the set of indices
-$n\ge k$ for which
-\[
- \hsnorm{V_{f,n}-V_{1,n}}^2<\eta_k\qquad(f\in F)
-\]
-belongs to $\omega$ and is therefore nonempty.  Choose one such index
-$\phi(k)\ge k$ and reindex by $W_{g,k}=V_{g,\phi(k)}$.  Cofinality of
-$\phi$ preserves asymptotic multiplicativity and
-\eqref{eq:corner-sum}, while
-\[
- \hsnorm{W_{f,k}-W_{1,k}}\longrightarrow0
- \qquad(f\in F).
-\]
-Because $F$ is finite,
-\[
- \hsnorm{\sum_{f\in F}W_{f,k}-|F|W_{1,k}}
- \le\sum_{f\in F}\hsnorm{W_{f,k}-W_{1,k}}\longrightarrow0.
-\]
-On the other hand, $W_{1,k}$ is unitary, so
-$\hsnorm{|F|W_{1,k}}=|F|$, whereas
-\[
- \hsnorm{\sum_{f\in F}W_{f,k}}
- \le\opnorm{\sum_{f\in F}W_{f,k}}\longrightarrow0
-\]
-by \eqref{eq:corner-sum} after reindexing.  The triangle inequality would
-force $|F|=0$, a contradiction.  Thus every corona representation kills
-$F$.
-\end{proof}
+\section{The defect square and the explicit instance}\label{sec:proofA}
 
 \begin{lemma}[the marked word is a defect square]\label{lem:square}
 Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
@@ -1489,7 +1524,8 @@ Lemma~\ref{lem:square} with $a_1=\iota(v_1)$ gives
 \]
 since $[\,d,\iota(v_1)\,]$ is one of the defining generators of
 $N_{\mathrm{comp}}$.  The subgroup $F=\{1,w\}=\langle w\rangle$ is
-finite and normal: centrality and $w^2=1$ are defining relations, while
+finite and normal: centrality is a defining relation and $w^2=1$ follows
+from centrality together with $c^2=1$, while
 Proposition~\ref{prop:witness} gives $w\neq1$.  Moreover
 $F\subseteq N_{\mathrm{comp}}$.  Theorem~\ref{thm:criterion}
 therefore kills $w$ after composing any
@@ -1872,6 +1908,13 @@ J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
 preprint first posted October~15, 2012, \arxiv{1210.4050};
 J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152,
 \doi{10.1016/j.jfa.2013.04.004}.
+
+\bibitem[Cor]{Cornulier}
+Y.~de~Cornulier,
+\emph{Finitely presentable, non-Hopfian groups with Kazhdan's property
+\textup{(T)} and infinite outer automorphism group},
+Proc. Amer. Math. Soc. \textbf{135} (2007), no.~4, 951--959,
+\doi{10.1090/S0002-9939-06-08588-1}, \arxiv{math/0502140}.
 
 \bibitem[Dad]{Dadarlat}
 M.~Dadarlat,

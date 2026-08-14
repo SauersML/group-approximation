@@ -117,5 +117,149 @@ theorem exists_gluing
   · exact sum_glueAlongFirst μAB μAC α hABnonneg
       hABmarginal hACmarginal hABtotal
 
+/-! ## The three-edge transport path
+
+The paired-quotient obstruction uses the contexts `A₀-B₀`, `A₀-B₁`,
+and `A₁-B₁`.  Their context graph is a path.  The construction below
+performs both conditional-product gluings explicitly. -/
+
+section TransportPath
+
+variable {A₀ A₁ B₀ B₁ : Type*}
+  [Fintype A₀] [Fintype A₁] [Fintype B₀] [Fintype B₁]
+
+/-- The inner law on `A₀-B₀-B₁`, re-indexed with `B₁` first for
+the second gluing. -/
+def innerTransportLaw
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ) (α₀ : A₀ → ℝ) :
+    B₁ → (A₀ × B₀) → ℝ :=
+  fun b₁ p ↦ glueAlongFirst μ₀₀ μ₀₁ α₀ p.1 p.2 b₁
+
+/-- Conditional-product gluing of compatible laws on the path
+`B₀-A₀-B₁-A₁`. -/
+def glueTransportPath
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (μ₁₁ : A₁ → B₁ → ℝ) (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ) :
+    A₀ → A₁ → B₀ → B₁ → ℝ :=
+  fun a₀ a₁ b₀ b₁ ↦
+    glueAlongFirst
+      (innerTransportLaw μ₀₀ μ₀₁ α₀)
+      (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁
+      b₁ (a₀, b₀) a₁
+
+/-- The inner law has the shared `B₁` marginal. -/
+theorem sum_innerTransportLaw
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ)
+    (h₀₁nonneg : ∀ a₀ b₁, 0 ≤ μ₀₁ a₀ b₁)
+    (h₀₀row : ∀ a₀, ∑ b₀, μ₀₀ a₀ b₀ = α₀ a₀)
+    (h₀₁row : ∀ a₀, ∑ b₁, μ₀₁ a₀ b₁ = α₀ a₀)
+    (h₀₁col : ∀ b₁, ∑ a₀, μ₀₁ a₀ b₁ = β₁ b₁)
+    (b₁ : B₁) :
+    ∑ p, innerTransportLaw μ₀₀ μ₀₁ α₀ b₁ p = β₁ b₁ := by
+  rw [Fintype.sum_prod_type]
+  simp_rw [innerTransportLaw,
+    sum_glueAlongFirst_left μ₀₀ μ₀₁ α₀ h₀₁nonneg
+      h₀₀row h₀₁row]
+  exact h₀₁col b₁
+
+/-- The path law is nonnegative whenever its three edge laws and two shared
+marginals are nonnegative. -/
+theorem glueTransportPath_nonnegative
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (μ₁₁ : A₁ → B₁ → ℝ) (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ)
+    (h₀₀nonneg : ∀ a₀ b₀, 0 ≤ μ₀₀ a₀ b₀)
+    (h₀₁nonneg : ∀ a₀ b₁, 0 ≤ μ₀₁ a₀ b₁)
+    (h₁₁nonneg : ∀ a₁ b₁, 0 ≤ μ₁₁ a₁ b₁)
+    (hα₀nonneg : ∀ a₀, 0 ≤ α₀ a₀) (hβ₁nonneg : ∀ b₁, 0 ≤ β₁ b₁) :
+    ∀ a₀ a₁ b₀ b₁,
+      0 ≤ glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ := by
+  intro a₀ a₁ b₀ b₁
+  exact glueAlongFirst_nonnegative
+    (innerTransportLaw μ₀₀ μ₀₁ α₀)
+    (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁
+    (fun b₁' p ↦ glueAlongFirst_nonnegative μ₀₀ μ₀₁ α₀
+      h₀₀nonneg h₀₁nonneg hα₀nonneg p.1 p.2 b₁')
+    (fun b₁' a₁' ↦ h₁₁nonneg a₁' b₁') hβ₁nonneg
+    b₁ (a₀, b₀) a₁
+
+/-- The four-variable path law recovers the `A₀-B₀` edge. -/
+theorem sum_glueTransportPath_00
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (μ₁₁ : A₁ → B₁ → ℝ) (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ)
+    (h₀₀nonneg : ∀ a₀ b₀, 0 ≤ μ₀₀ a₀ b₀)
+    (h₀₁nonneg : ∀ a₀ b₁, 0 ≤ μ₀₁ a₀ b₁)
+    (h₀₀row : ∀ a₀, ∑ b₀, μ₀₀ a₀ b₀ = α₀ a₀)
+    (h₀₁row : ∀ a₀, ∑ b₁, μ₀₁ a₀ b₁ = α₀ a₀)
+    (h₀₁col : ∀ b₁, ∑ a₀, μ₀₁ a₀ b₁ = β₁ b₁)
+    (h₁₁col : ∀ b₁, ∑ a₁, μ₁₁ a₁ b₁ = β₁ b₁)
+    (a₀ : A₀) (b₀ : B₀) :
+    ∑ a₁, ∑ b₁, glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ =
+      μ₀₀ a₀ b₀ := by
+  rw [Finset.sum_comm]
+  simp_rw [glueTransportPath,
+    sum_glueAlongFirst_right
+      (innerTransportLaw μ₀₀ μ₀₁ α₀)
+      (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁
+      (fun b₁' p ↦ glueAlongFirst_nonnegative μ₀₀ μ₀₁ α₀
+        h₀₀nonneg h₀₁nonneg (fun a₀' ↦ by
+          rw [← h₀₀row a₀']
+          exact Finset.sum_nonneg fun b₀' _ ↦ h₀₀nonneg a₀' b₀') p.1 p.2 b₁')
+      (sum_innerTransportLaw μ₀₀ μ₀₁ α₀ β₁ h₀₁nonneg
+        h₀₀row h₀₁row h₀₁col)
+      h₁₁col]
+  exact sum_glueAlongFirst_right μ₀₀ μ₀₁ α₀ h₀₀nonneg
+    h₀₀row h₀₁row a₀ b₀
+
+/-- The four-variable path law recovers the `A₀-B₁` edge. -/
+theorem sum_glueTransportPath_01
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (μ₁₁ : A₁ → B₁ → ℝ) (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ)
+    (h₀₀nonneg : ∀ a₀ b₀, 0 ≤ μ₀₀ a₀ b₀)
+    (h₀₁nonneg : ∀ a₀ b₁, 0 ≤ μ₀₁ a₀ b₁)
+    (h₀₀row : ∀ a₀, ∑ b₀, μ₀₀ a₀ b₀ = α₀ a₀)
+    (h₀₁row : ∀ a₀, ∑ b₁, μ₀₁ a₀ b₁ = α₀ a₀)
+    (h₀₁col : ∀ b₁, ∑ a₀, μ₀₁ a₀ b₁ = β₁ b₁)
+    (h₁₁col : ∀ b₁, ∑ a₁, μ₁₁ a₁ b₁ = β₁ b₁)
+    (a₀ : A₀) (b₁ : B₁) :
+    ∑ a₁, ∑ b₀, glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ =
+      μ₀₁ a₀ b₁ := by
+  simp_rw [glueTransportPath,
+    sum_glueAlongFirst_right
+      (innerTransportLaw μ₀₀ μ₀₁ α₀)
+      (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁
+      (fun b₁' p ↦ glueAlongFirst_nonnegative μ₀₀ μ₀₁ α₀
+        h₀₀nonneg h₀₁nonneg (fun a₀' ↦ by
+          rw [← h₀₀row a₀']
+          exact Finset.sum_nonneg fun b₀' _ ↦ h₀₀nonneg a₀' b₀') p.1 p.2 b₁')
+      (sum_innerTransportLaw μ₀₀ μ₀₁ α₀ β₁ h₀₁nonneg
+        h₀₀row h₀₁row h₀₁col)
+      h₁₁col]
+  exact sum_glueAlongFirst_left μ₀₀ μ₀₁ α₀ h₀₁nonneg
+    h₀₀row h₀₁row a₀ b₁
+
+/-- The four-variable path law recovers the `A₁-B₁` edge. -/
+theorem sum_glueTransportPath_11
+    (μ₀₀ : A₀ → B₀ → ℝ) (μ₀₁ : A₀ → B₁ → ℝ)
+    (μ₁₁ : A₁ → B₁ → ℝ) (α₀ : A₀ → ℝ) (β₁ : B₁ → ℝ)
+    (h₀₁nonneg : ∀ a₀ b₁, 0 ≤ μ₀₁ a₀ b₁)
+    (h₀₀row : ∀ a₀, ∑ b₀, μ₀₀ a₀ b₀ = α₀ a₀)
+    (h₀₁row : ∀ a₀, ∑ b₁, μ₀₁ a₀ b₁ = α₀ a₀)
+    (h₀₁col : ∀ b₁, ∑ a₀, μ₀₁ a₀ b₁ = β₁ b₁)
+    (h₁₁nonneg : ∀ a₁ b₁, 0 ≤ μ₁₁ a₁ b₁)
+    (h₁₁col : ∀ b₁, ∑ a₁, μ₁₁ a₁ b₁ = β₁ b₁)
+    (a₁ : A₁) (b₁ : B₁) :
+    ∑ a₀, ∑ b₀, glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ =
+      μ₁₁ a₁ b₁ := by
+  rw [← Fintype.sum_prod_type]
+  exact sum_glueAlongFirst_left
+    (innerTransportLaw μ₀₀ μ₀₁ α₀)
+    (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁ h₁₁nonneg
+    (sum_innerTransportLaw μ₀₀ μ₀₁ α₀ β₁ h₀₁nonneg
+      h₀₀row h₀₁row h₀₁col)
+    h₁₁col b₁ a₁
+
+end TransportPath
+
 end FiniteTreeCoupling
 end GroupApproximation

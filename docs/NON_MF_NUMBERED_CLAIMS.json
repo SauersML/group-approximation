@@ -26,10 +26,33 @@
       ]
     },
     {
+      "id": "thm:kazhdan-clifford",
+      "environment": "theorem",
+      "title": "Kazhdan--Clifford construction",
+      "statement_sha256": "387913e6c595e531743890e2da1434d066820b96865ae6b753dff06edbeb9e4c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:criterion",
+        "lem:square"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/KazhdanCliffordConstruction",
+          "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:A",
       "environment": "mainthm",
-      "title": "non-MF group",
-      "statement_sha256": "9c11d03c3e9592d6a78fd2bac872613fdc8b83a8019f7c694fbb9f3b294de3d2",
+      "title": "explicit Kazhdan--Clifford group",
+      "statement_sha256": "def951918792afaf59783bb0c949d0020ff407d632cd13a3d9bd5b145c3a13a6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -144,7 +167,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "9337cb509d57521e84a03917ff06991c4f03d0e90b947706ea778e31d83bfbd5",
+      "statement_sha256": "7e7f6eb6a67d3e594580b6634f567398381866ce00bda752f1a6f05787b45cac",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -363,7 +386,6 @@
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:pattern",
-        "lem:corner",
         "lem:compressorcollapse"
       ],
       "extra_assumptions": [],
@@ -401,7 +423,7 @@
     {
       "id": "lem:compressorcollapse",
       "environment": "lemma",
-      "title": "compression defects collapse",
+      "title": "Kazhdan fixed-space transport",
       "statement_sha256": "288a663f68cfd087cf2220da12166a5fce841195411ad56e89a2daa74d1d065b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

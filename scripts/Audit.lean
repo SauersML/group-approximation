@@ -483,6 +483,7 @@ def headlineTheorems : List Name :=
    ``LiteralNonMFEndpoint.kazhdanPinning,
    ``LiteralNonMFEndpoint.cliffordSign_blackHole,
    ``LiteralNonMFEndpoint.manuscriptTheoremA,
+   ``KazhdanCliffordConstruction.kazhdanCliffordConstruction,
    ``LiteralNonMFEndpoint.manuscriptTheoremD,
    ``LiteralBaseP13Replay.yFromUZXY_eq,
    ``LiteralBaseP13Replay.closure_Z_XY_eq_top,

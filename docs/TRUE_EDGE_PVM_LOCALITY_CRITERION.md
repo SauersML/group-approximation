@@ -45,11 +45,12 @@ sum_b mu00(a,b)=tau(P0(a))=sum_b mu01(a,b),
 sum_a mu01(a,b)=tau(Q1(b))=sum_a mu11(a,b).           (EPL4)
 ```
 
-Thus the shared `R0` and `L1` marginals agree automatically.  The finite
-tree-gluing theorem produces one law on `(R0,R1,L0,L1)` preserving all three
-edge laws.  If the trace expectations of the three pairing-error functions
-are small, `robust_floor_of_common_latent_maps` gives the fixed
-contradiction.
+Thus the shared `R0` and `L1` marginals agree automatically.  The explicit
+`FiniteTreeCoupling.glueTransportPath` construction produces one law on
+`(R0,R1,L0,L1)` preserving all three edge laws; its three marginal identities
+are now written separately in Lean.  If the trace expectations of the three
+pairing-error functions are small, `robust_floor_of_common_latent_maps` gives
+the fixed contradiction.
 
 This criterion is exact and uses only the path-shaped commutation graph.
 
