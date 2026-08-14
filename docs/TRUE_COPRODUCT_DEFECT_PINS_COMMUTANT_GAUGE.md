@@ -162,6 +162,17 @@ additional positivization estimate. The scalar estimate `(CGP6)` already
 shows that no such issue occurs in multiplicity one; `(CGP8a)` identifies
 the exact total budget available in general.
 
+There is now an intrinsic way to bypass this positivization issue. Given a
+source spectral projection `P`, target PVM `(Q_j)`, and actual compressor
+matrix `U`, the transition effects `P U*Q_j U P` form a POVM automatically.
+Their total non-idempotence is exactly one half of the total commutator
+energy of `UPU*` against `(Q_j)`, after converting between ambient and corner
+trace. De la Salle then rounds them with ambient total squared error at most
+`9/2` times that commutator energy. See
+`TRUE_TRANSITION_EFFECTS_REMOVE_THE_POSITIVIZATION_GATE.md`. Thus the growing
+application should use intrinsic transition effects rather than attempt to
+positivize the arbitrary coefficients in `(CGP7)`.
+
 ## 4. What this changes in the four-root program
 
 `TRUE_FOUR_ROOT_ASSOCIATIVITY_HAS_UNIFORM_HS_BUDGET.md` established that the

@@ -2,6 +2,37 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 intrinsic transition effects are already positive
+
+The positivity gap in operator-valued coproduct rounding can be avoided.
+For a source projection `P`, target character PVM `(Q_j)`, and the actual
+compressor matrix `U`, the intrinsic transition effects
+
+```text
+A_j=P U*Q_j U P
+```
+
+form a POVM in `PMP`. With `E=UPU*`, their total non-idempotence satisfies
+the exact identity
+
+```text
+sum_j tau_P(A_j-A_j^2)
+ =1/(2tau(P)) sum_j ||[E,Q_j]||_2^2.
+```
+
+De la Salle's cardinality-free theorem therefore gives a PVM `(R_j)` with
+
+```text
+sum_j||A_j-R_j||_2^2
+ <(9/2)sum_j||[E,Q_j]||_2^2.
+```
+
+See `TRUE_TRANSITION_EFFECTS_REMOVE_THE_POSITIVIZATION_GATE.md`. This removes
+positivization and target-alphabet size from the live problem. The remaining
+mixed atlas theorem is precisely to force the displayed total commutator
+energy to zero using the literal compiled compressor word and cross-chart
+multiplication relations.
+
 ## 2026-08-14 correction: pure four-root words cannot pin the gauge
 
 The coproduct-identification gate cannot use only root covariance and pure
