@@ -93,7 +93,8 @@ noncomputable def lampRelators : Finset (Raw Γ) := by
   classical
   exact {rawLamp ^ 2} ∪ Finset.univ.image
     (fun i : Fin (generatorCount Γ) ↦
-      ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆)
+      ⁅(rawLamp : Raw Γ),
+        rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆)
 
 /-- Centrality relators for the marked word.  There is deliberately no
 `rawMark a ^ 2` relator. -/
@@ -222,6 +223,9 @@ theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
     Commute (lamp alpha a)
       (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i))) := by
+  change Commute (quotientMap alpha a rawLamp)
+    (quotientMap alpha a
+      (rawBase (baseEval (Γ := Γ) (FreeGroup.of i))))
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
@@ -240,6 +244,8 @@ theorem lamp_commutes (alpha : Γ →* Γ) (a g : Γ) :
 
 theorem mark_commutes_stable (alpha : Γ →* Γ) (a : Γ) :
     Commute (mark alpha a) (stable alpha a) := by
+  change Commute (quotientMap alpha a (rawMark a))
+    (quotientMap alpha a rawStable)
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
@@ -248,6 +254,8 @@ theorem mark_commutes_stable (alpha : Γ →* Γ) (a : Γ) :
 
 theorem mark_commutes_lamp (alpha : Γ →* Γ) (a : Γ) :
     Commute (mark alpha a) (lamp alpha a) := by
+  change Commute (quotientMap alpha a (rawMark a))
+    (quotientMap alpha a rawLamp)
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
@@ -258,6 +266,9 @@ theorem mark_commutes_base_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
     Commute (mark alpha a)
       (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i))) := by
+  change Commute (quotientMap alpha a (rawMark a))
+    (quotientMap alpha a
+      (rawBase (baseEval (Γ := Γ) (FreeGroup.of i))))
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
@@ -357,6 +368,7 @@ theorem rawRealization_mark (ha : a ∉ Set.range alpha) :
 
 theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
     relations alpha a ≤ (rawRealization alpha hAlpha).ker := by
+  classical
   apply Subgroup.normalClosure_le_normal
   intro r hr
   change r ∈ relators alpha a at hr
@@ -367,8 +379,7 @@ theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
     simp only [stableRelator, map_mul, map_inv, rawRealization_stable,
       rawRealization_base]
     exact mul_inv_eq_one.mpr (MarkedCompression.compress alpha hAlpha _)
-  · simp only [lampRelators, Finset.mem_union, Finset.mem_singleton,
-      Finset.mem_image] at hr
+  · simp only [lampRelators] at hr
     rcases hr with rfl | ⟨i, -, rfl⟩
     · apply MonoidHom.mem_ker.mpr
       simpa using MarkedCompression.cAmbient_sq alpha hAlpha
@@ -380,15 +391,18 @@ theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
       Finset.mem_singleton, Finset.mem_image] at hr
     rcases hr with (rfl | rfl) | ⟨i, -, rfl⟩
     · apply MonoidHom.mem_ker.mpr
-      rw [map_commutatorElement, rawRealization_mark ha]
+      rw [map_commutatorElement,
+        rawRealization_mark alpha hAlpha a ha]
       exact commutatorElement_eq_one_iff_commute.mpr
         (MarkedCompression.signAmbient_central alpha hAlpha _)
     · apply MonoidHom.mem_ker.mpr
-      rw [map_commutatorElement, rawRealization_mark ha]
+      rw [map_commutatorElement,
+        rawRealization_mark alpha hAlpha a ha]
       exact commutatorElement_eq_one_iff_commute.mpr
         (MarkedCompression.signAmbient_central alpha hAlpha _)
     · apply MonoidHom.mem_ker.mpr
-      rw [map_commutatorElement, rawRealization_mark ha]
+      rw [map_commutatorElement,
+        rawRealization_mark alpha hAlpha a ha]
       exact commutatorElement_eq_one_iff_commute.mpr
         (MarkedCompression.signAmbient_central alpha hAlpha _)
 
@@ -424,8 +438,17 @@ theorem iota_injective (ha : a ∉ Set.range alpha) :
     Function.Injective (iota alpha a) := by
   intro x y hxy
   apply MarkedCompression.iotaAmbient_injective alpha hAlpha
-  have := congrArg (cliffordHom alpha hAlpha a ha) hxy
-  simpa [iota, cliffordHom_quotientMap, rawRealization_base] using this
+  have hmap (g : Γ) :
+      cliffordHom alpha hAlpha a ha (iota alpha a g) =
+        MarkedCompression.iotaAmbient alpha hAlpha g := by
+    change cliffordHom alpha hAlpha a ha
+      (quotientMap alpha a (rawBase g)) = _
+    rw [cliffordHom_quotientMap, rawRealization_base]
+  calc
+    MarkedCompression.iotaAmbient alpha hAlpha x =
+        cliffordHom alpha hAlpha a ha (iota alpha a x) := (hmap x).symm
+    _ = cliffordHom alpha hAlpha a ha (iota alpha a y) := by rw [hxy]
+    _ = MarkedCompression.iotaAmbient alpha hAlpha y := hmap y
 
 /-! ## Kazhdan cancellation and the non-MF endpoint -/
 
