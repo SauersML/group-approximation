@@ -31,6 +31,11 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
+      - name: Reject forbidden source constructs
+        run: |
+          python3 scripts/check.py --self-test
+          python3 scripts/check.py
+
       - name: Install elan
         run: |
           curl -sSfL https://github.com/leanprover/elan/releases/latest/download/elan-x86_64-unknown-linux-gnu.tar.gz \
