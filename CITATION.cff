@@ -3,8 +3,7 @@ message: "If you use this formalization, please cite the repository and its arch
 title: "Group Approximation and Rigidity"
 type: software
 authors:
-  - name: "SauersML"
-    alias: "SauersML"
+  - name: "Anonymous"
 version: 0.2.0
 date-released: 2026-08-13
 repository-code: "https://github.com/SauersML/group-approximation"

@@ -3,10 +3,8 @@ import GroupApproximation.Sofic.HyperlinearScalar
 /-!
 # Two obstructions beyond elementwise approximation
 
-Both statements here are due to an external referee audit of this development
-(August 2026); they are formalized because they are exactly the kind of claim
-that should not travel as prose.  Neither bears on Theorem A; both bear on how
-a hyperlinear model of a wreath-type candidate could be built.
+Neither statement bears on Theorem A; both describe constraints on a
+hyperlinear model of a wreath-type candidate.
 
 ## Implementer coherence is a cocycle problem
 

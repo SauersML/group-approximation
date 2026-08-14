@@ -7,7 +7,7 @@ than a list of files that happen to compile.
 ## Specification and object identity
 
 - The literal eight-generator group is **not** advertised as having a
-  kernel-checked operator-corona obstruction.  Conditional literal analytic
+  kernel-checked MF obstruction.  Conditional literal analytic
   modules and badges were removed.  The manuscript says directly that no such
   Lean declaration currently exists.
 - `ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF` is retained
@@ -25,7 +25,7 @@ than a list of files that happen to compile.
 
 ## MF terminology and C-star targets
 
-- The manuscript now reserves **CDE-MF** or **operator-corona MF** for the
+- The manuscript uses **MF** for the
   weak group property studied here.  It defines strong MF through convergence
   of reduced group-ring norms and strong PMF by additionally requiring the
   approximating maps to be homomorphisms.

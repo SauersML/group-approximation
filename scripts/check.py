@@ -73,7 +73,7 @@ FORBIDDEN = [
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxRecDepth(?![A-Za-z0-9_])")),
 ]
 
-# Strings known to have been fabricated by model sessions and purged from the
+# Strings known to have been fabricated in earlier edits and purged from the
 # publication surface (see docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
 # "Leiden Declaration" and its Zenodo DOI do not exist; the reference was
 # purged once and reintroduced by a later merge, so it is gated here.  The

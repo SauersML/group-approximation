@@ -6,13 +6,13 @@
 
 set -euo pipefail
 
-if [ "$#" -ne 1 ]; then
-    echo "usage: sbatch msi_sl3_projective_cuspidal_profile.sbatch PRIME" >&2
+if [ "$#" -ne 2 ]; then
+    echo "usage: sbatch msi_sl3_projective_cuspidal_profile.sbatch PRIME PROJECT_HOME" >&2
     exit 2
 fi
 
 PROJECTIVE_PRIME="$1"
-PROJECTIVE_HOME="/projects/standard/hsiehph/sauer354"
+PROJECTIVE_HOME="$2"
 TOOLS_DIR="$PROJECTIVE_HOME/research-tools"
 GAP_ROOTS="$PROJECTIVE_HOME/gaproot;/opt/sage/local/lib/gap;/opt/sage/local/share/gap"
 COMPACT_PREFIX="$TOOLS_DIR/projective-cellular-p$PROJECTIVE_PRIME"

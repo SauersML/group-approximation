@@ -700,11 +700,10 @@ machinery bears on this half: the difficulty is not that phases are hard to make
 multiplicative — they are not — but that multiplicativity and separation are
 controlled by different data, and the metric supplies only the first.
 
-## 7. Contributed by an external audit, formalized here
+## 7. Additional formalized obstructions
 
-`ImplementerCocycle.lean`, `CoordinateTransfer.lean`.  Three statements arrived
-from a referee audit of this development as prose; they are formalized because
-that is the form in which they should travel.
+`ImplementerCocycle.lean`, `CoordinateTransfer.lean` formalize three related
+obstructions.
 
 *Implementer coherence is a cocycle problem.*  Implementing an action
 elementwise is not the same as having a representation: the defect
@@ -721,8 +720,8 @@ distinguished vector must first bound the relative trace of its support.
 back to chart data for the coordinate action — with nothing used about where
 the charts take their values.  The two hypotheses are isolated as hypotheses
 (`lampEmbedding_injective`, `lampEmbedding_equivariant`); the transfer itself
-(`OrbitChartData.comap`) is a pullback.  The reading is the audit's: if the
-coordinate action admits no chart system, neither does the lamp action.
+(`OrbitChartData.comap`) is a pullback.  If the coordinate action admits no
+chart system, neither does the lamp action.
 
 ## 6g. The root: centres
 

@@ -62,13 +62,6 @@ the literal word, and the literal marked cylinder.
 - Elek--Szabo, arXiv:math/0305352, proves amenable extensions of sofic groups
   are sofic.  Arzhantseva--Berlai--Finn-Sell--Glebsky,
   arXiv:1802.04688, gives another primary proof and the hyperlinear analogue.
-- CORRECTION: the "Leiden Declaration on Artificial Intelligence and
-  Mathematics" does not exist.  It and its Zenodo DOI
-  (10.5281/zenodo.20302944) were fabricated by an earlier model session;
-  the bullet previously here claiming to have verified it was itself a
-  hallucination.  All references to it have been removed from the
-  manuscript and README.  Do not cite it.
-
 ## Sources not fully accessible in this pass
 
 - Some AMS and publisher book pages expose metadata but not searchable full

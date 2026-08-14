@@ -1488,10 +1488,7 @@ silently walking *types only* and will report a closure far smaller than the
 truth.  Re-checking actual proof terms requires a tool that reads the oleans
 directly: `leanchecker` (already in CI) or `lean4export`.
 
-State: MSI auth works (breaker off; pushes via one-off credential helper
-pinned to SauersML: `git -c credential.helper= -c credential.helper='!f() {
-echo "username=SauersML"; echo "password=$(gh auth token -u SauersML)"; }; f'
-push origin main`). Build loop: put changed files with `msi put f
+State: MSI auth works (breaker off). Build loop: put changed files with `msi put f
 /projects/standard/PROJECT_ACCOUNT/nonsofic_existence/f`, then `lake build`
 remotely. 3685/3689 targets green; four modules remain, errors fully
 diagnosed from full bodies (task byuok6c6f):
@@ -5445,7 +5442,7 @@ moment a module moved:
 
    ```latex
    \newcommand{\leanfileurl}[1]{%
-     https://github.com/SauersML/nonsofic_existence/blob/main/GroupApproximation/#1.lean}
+     https://github.com/OWNER/REPOSITORY/blob/main/GroupApproximation/#1.lean}
    ```
 
    It appends `.lean` to a bare module name.  After the move the file is at
@@ -36334,8 +36331,8 @@ Remark 3.4.
 
 # Zeta23 rank--trace audit: an exact interface, not a missing source of mass (2026-08-10)
 
-The self-contained linear-algebra core of Anthropic's `zeta-23-lean`
-formalizes three tools that are directly legible in the approximation-group
+The self-contained linear-algebra core used in this audit formalizes three
+tools that are directly legible in the approximation-group
 problem: inertia under pullback, Weyl stability of the positive index, and the
 rank--trace inequality.  Its thresholded Cauchy--Schwarz theorem has the
 following normalized consequence.

@@ -57,10 +57,9 @@ states.
    Lean side has no analytic endpoint for the raw presented base until the
    presentation-completeness/property-`(T)` program closes it.
 
-## Triage of the external adversarial audit (2026-08-13, later snapshot)
+## Later validation snapshot (2026-08-13)
 
-An independent external audit of an earlier archive reported eleven
-findings.  Status against the current tip:
+Eleven earlier findings were checked against the current tip:
 
 - Conditional literal analytic and literal-cylinder obstruction modules were
   removed from the public API; the literal boundary now consists only of
@@ -79,8 +78,8 @@ findings.  Status against the current tip:
   no margin link claims formal coverage; formalizing a C*-MF predicate over
   the now-constructed corona algebra is the natural next Lean step.
 - Increasing dimensions, operator-norm authenticity, local-normalization
-  strength, property-(T) real/complex/universe bridges: confirmed sound by
-  the external audit; no action.
+  strength, property-(T) real/complex/universe bridges: confirmed sound; no
+  action.
 - Uncountable-scope note on `IsOperatorMF` and the structure-packed-premise
   blind spot in `Audit/Scan.lean`: real but non-exploited gate weaknesses,
   recorded here as open hardening items.

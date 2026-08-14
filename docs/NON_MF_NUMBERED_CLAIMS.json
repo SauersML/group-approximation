@@ -575,7 +575,7 @@
       "id": "cor:quotclosure",
       "environment": "corollary",
       "title": "quotients",
-      "statement_sha256": "460006e5c8adfde08d1ddb82c2e18a533e1de10a2367283259692c8cf75854d4",
+      "statement_sha256": "084c7882c0037336aaf924f3c36b48e25a614ff65a2f96b16990fe214cd12ed6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -587,8 +587,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralOperatorMFQuotientControls",
-          "declaration": "GroupApproximation.LiteralOperatorMFQuotientControls.manuscriptQuotientNonclosure",
+          "module": "Sofic/LiteralMFQuotientControls",
+          "declaration": "GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure",
           "covers": "the complete printed proposition"
         }
       ]

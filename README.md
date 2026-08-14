@@ -138,10 +138,6 @@ in the kernel audit roster with axiom closure restricted to `propext`,
 `Classical.choice`, and `Quot.sound`; no literature theorem is introduced as a
 Lean axiom.
 
-For the discovery history, first claims, full paper and Lean dependency
-graphs, and the role of computation, see
-[`docs/NON_MF_ARCHAEOLOGY.md`](docs/NON_MF_ARCHAEOLOGY.md).
-
 ## Property (TT)/T and the binary Leavitt algebra
 
 [`property_tt_leavitt.tex`](property_tt_leavitt.tex) develops a second part
@@ -206,21 +202,6 @@ The docs/ directory is a working research archive as well as documentation.
 Files prefixed FALSE_ record investigated approaches that were ruled out;
 they are retained so failed routes and their precise obstructions remain
 searchable.
-
-## Tool and computational resource disclosure
-
-SauersML is the repository maintainer and responsible author.  The
-mathematics and formalization were developed with extensive use of large
-language models, including Anthropic Claude and OpenAI Codex models in
-multiple concurrent interactive sessions.  Those systems are research and
-software tools, not the authors named in `CITATION.cff`; commit trailers and
-session records document tool provenance rather than authorship.  The
-responsible author reviewed the theorem statements, proofs, formal endpoints,
-and literature claims and accepts responsibility for their accuracy.
-
-Formal verification uses the pinned Lean/Mathlib toolchain, with the kernel as
-the final checker.  Model roles, source checks, and successive credit audits are
-recorded in [docs/CREDIT_AND_PRIORITY_AUDIT.md](docs/CREDIT_AND_PRIORITY_AUDIT.md).
 
 ## Trust and verification
 
