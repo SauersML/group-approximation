@@ -31,6 +31,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:kazhdan-transport": (
         "Sofic/ManuscriptKazhdanTransport",
         "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptKazhdanTransport"),
+    "cor:generaltransport": (
+        "Sofic/KazhdanAsymptoticCommutant",
+        "GroupApproximation.KazhdanAsymptoticCommutant.compressionGroup_transport_both"),
     "thm:sign-criterion": (
         "Sofic/KazhdanSignCriterion",
         "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion"),
@@ -109,6 +112,12 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:nofaithful": (
         "Sofic/LiteralNonMFConsequences",
         "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target"),
+    "lem:subgroupMF": (
+        "Sofic/OperatorMFPositiveControls",
+        "GroupApproximation.IsOperatorMF.subgroup"),
+    "lem:rfmf": (
+        "Sofic/OperatorMFPositiveControls",
+        "GroupApproximation.isOperatorMF_of_residuallyFinite"),
     "lem:faithfultrace": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness"),
@@ -122,6 +131,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
     "thm:sign-criterion": ["thm:kazhdan-transport"],
+    "cor:generaltransport": ["thm:kazhdan-transport"],
     "thm:compression-radical": ["thm:kazhdan-transport"],
     "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
                               "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
@@ -143,7 +153,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
-    "cor:quotclosure": ["thm:A"],
+    "cor:quotclosure": ["thm:A", "lem:rfmf"],
 }
 
 
