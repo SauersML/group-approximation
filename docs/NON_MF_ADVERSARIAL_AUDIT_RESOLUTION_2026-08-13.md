@@ -6,22 +6,20 @@ than a list of files that happen to compile.
 
 ## Specification and object identity
 
-- The literal eight-generator group is **not** advertised as having a
-  kernel-checked MF obstruction.  Conditional literal analytic
-  modules and badges were removed.  The manuscript says directly that no such
-  Lean declaration currently exists.
+- The literal eight-generator group now has a kernel-checked MF obstruction.
+  `LiteralNonMFEndpoint.manuscriptTheoremA` is the exact hypothesis-free
+  endpoint, assembled in `ConceptualNonMFProof` from the staged P13
+  certificate, Kazhdan pinning, finite-normal annihilation, and the Clifford
+  witness.
 - `ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF` is retained
   only as an independent existential theorem and is labeled `other witness`.
   It is not an object-level certification of Theorem A.
 - The literal presentation, literal marked word, nontriviality witness, and
   all-fields finite-dimensional obstruction remain separately formalized.
-- `LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` proves,
-  from the printed affine relations, that property `(T)` of the eight-relator
-  rotation presentation implies property `(T)` of the raw literal base.  The
-  unresolved object-identity step is property `(T)` of that rotation
-  presentation (equivalently, a complete rotation-presentation isomorphism
-  bridge or a checked Kazhdan certificate).  The repository contains no axiom
-  or placeholder pretending to discharge it.
+- `LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT_of_p13` combines the
+  checked P13 rotation quotient with the intrinsic affine bridge.  The staged
+  rational Hodge certificate supplies property `(T)` of P13, so no
+  object-identity premise remains.
 
 ## MF terminology and C-star targets
 

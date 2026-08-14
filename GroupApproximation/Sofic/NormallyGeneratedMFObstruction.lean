@@ -37,6 +37,42 @@ theorem hom_eq_one_of_map_eq_one_of_normalClosure_eq_top {x : Γ}
   rw [hgen]
   exact Subgroup.mem_top g
 
+/-- A perfect normally generated group cannot send its normal generator to a
+central phase.  Indeed, quotienting the target by its center kills the
+generator and therefore the entire map.  The original map consequently has
+commutative range, while a homomorphic image of a perfect group is perfect.
+
+This is the algebraic obstruction to extending the scalar Clifford detector
+across a radical-implantation amalgam with a perfect attached group. -/
+theorem hom_eq_one_of_isPerfect_of_map_normalGenerator_mem_center
+    [Group.IsPerfect Γ] {x : Γ}
+    (hgen : Subgroup.normalClosure ({x} : Set Γ) = ⊤)
+    {M : Type v} [Group M] (f : Γ →* M)
+    (hx : f x ∈ Subgroup.center M) :
+    f = 1 := by
+  let q : Γ →* (M ⧸ Subgroup.center M) :=
+    (QuotientGroup.mk' (Subgroup.center M)).comp f
+  have hqx : q x = 1 := by
+    exact (QuotientGroup.eq_one_iff (f x)).mpr hx
+  have hq : q = 1 :=
+    hom_eq_one_of_map_eq_one_of_normalClosure_eq_top hgen q hqx
+  have hcentral : ∀ g : Γ, f g ∈ Subgroup.center M := by
+    intro g
+    apply (QuotientGroup.eq_one_iff (f g)).mp
+    change q g = 1
+    rw [hq]
+    rfl
+  letI : IsMulCommutative f.range := ⟨⟨by
+    rintro ⟨_, g, rfl⟩ ⟨_, h, rfl⟩
+    apply Subtype.ext
+    exact (Subgroup.mem_center_iff.mp (hcentral g) (f h)).symm⟩⟩
+  letI : Group.IsPerfect f.range := Group.IsPerfect.range f
+  haveI : Subsingleton f.range := inferInstance
+  apply MonoidHom.ext
+  intro g
+  exact congrArg Subtype.val
+    (Subsingleton.elim (⟨f g, ⟨g, rfl⟩⟩ : f.range) 1)
+
 /-- If a normally generating element lies in the commutator subgroup, then
 the whole group is perfect. -/
 theorem isPerfect_of_mem_commutator_normalClosure_eq_top {x : Γ}
@@ -66,6 +102,24 @@ theorem normMFResidual_eq_top_of_mem_normalClosure_eq_top {x : Γ}
   intro y hy
   rw [Set.mem_singleton_iff] at hy
   simpa [hy] using hx
+
+/-- **Radical implantation.**  If a homomorphic image of an MF-invisible
+element normally generates the target, then the target has full MF residual.
+
+The group-theoretic amalgam construction used in the accompanying research
+note supplies such a homomorphism while keeping a prescribed target factor
+embedded.  This theorem isolates the radical argument itself: functoriality
+puts `f x` in the target residual, and normal generation propagates that one
+element to the whole target. -/
+theorem normMFResidual_eq_top_of_image_normalClosure_eq_top
+    {G : Type v} [Group G] {x : Γ} (hx : x ∈ normMFResidual Γ)
+    (f : Γ →* G)
+    (hgen : Subgroup.normalClosure ({f x} : Set G) = ⊤) :
+    normMFResidual G = ⊤ := by
+  apply normMFResidual_eq_top_of_mem_normalClosure_eq_top
+  · exact mem_normMFResidual_iff.mpr
+      ((mem_normMFResidual_iff.mp hx).map f)
+  · exact hgen
 
 /-- Full source residual and trivial target residual force every homomorphism
 to be pointwise trivial.  No countability hypothesis is needed. -/

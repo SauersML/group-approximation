@@ -50,11 +50,13 @@ w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]
 ```
 
 a central involution. An explicit affine--Clifford representation proves
-`w ≠ 1`. The property-(T) proof uses an exact rational Hodge certificate for
-a six-generator, thirteen-relator presentation, a checked surjection onto the
-rotation presentation, and an intrinsic fixed-point argument for the
-translations. These ingredients are assembled without hypotheses in
-`LiteralNonMFEndpoint.manuscriptTheoremA`.
+`w ≠ 1`. The manuscript's property-(T) proof uses an exact rational Hodge
+certificate for a six-generator, thirteen-relator presentation, a checked
+surjection onto the rotation presentation, and an intrinsic fixed-point
+argument for the translations. The current source contains the staged exact
+certificate and the hypothesis-free endpoint, but these claims are not part
+of the verified pin above until the full build, manifest, axiom, replay, and
+PDF provenance gates all succeed at one commit.
 
 The conceptual proof is organized around
 
@@ -66,7 +68,7 @@ Kazhdan pinning makes `u` Hilbert--Schmidt trivial in every operator-norm
 almost representation; the finite-normal Reynolds argument therefore kills
 `w` in every norm-matrix corona. The independent Clifford model has
 `w = -1`, so `w ≠ 1`. The finite-stage spectral-cut and rank calculations
-remain the kernel-checked implementation of the pinning step.
+are the formal implementation of the pinning step.
 
 The paper also proves:
 
@@ -91,10 +93,12 @@ The formal headline is definitionally the same eight-generator presentation
 and marked word as the manuscript. The affine--Clifford nontriviality witness,
 exact P13 tables and relator replays, the rotation quotient, the intrinsic
 property-(T) bridge, Kazhdan pinning, and the finite-normal obstruction are
-joined by the hypothesis-free theorem
+joined in the current source by
 `LiteralNonMFEndpoint.manuscriptTheoremA`. The shorter reading interface is
-`Sofic/ConceptualNonMFProof.lean`; the quantitative modules remain its checked
-backend.
+`Sofic/ConceptualNonMFProof.lean`; the quantitative modules remain its backend.
+A revision is described as formally complete only after the headline theorem,
+all exact wrappers, the signature roster, source scan, kernel audit, and fresh
+replay pass at one commit.
 
 The public CDE predicate and MF radical quantify literally over genuine
 C*-coronas with natural matrix dimensions. Coordinate reindexing and polar

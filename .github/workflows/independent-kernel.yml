@@ -43,6 +43,11 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
+      - name: Reject forbidden source constructs
+        run: |
+          python3 scripts/check.py --self-test
+          python3 scripts/check.py
+
       - name: Cache Lean toolchain
         id: elan-cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4

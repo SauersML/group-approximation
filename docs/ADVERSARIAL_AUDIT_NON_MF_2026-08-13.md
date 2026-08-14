@@ -93,22 +93,11 @@ the printed proofs.
     e₁,e₂,e₃ — all columns check), six stable-letter relators, lamp
     relators, and marked-word relators; the marked word is
     [tct⁻¹, v₁(tct⁻¹)v₁⁻¹] verbatim.
-  - The "different witness" headline (`ChosenNonMFTheorem`) is honestly
-    described in the tex; the chosen Shalom-cover presentation is not the
-    displayed E, and the tex says so prominently.  The literal-base gap
-    statement ("does not yet … certify property (T) for that abstract
-    presentation") is accurate and, if anything, understated: the audited
-    corpus contains `LiteralBasePropertyTBridge.
-    base_hasKazhdanPropertyT_of_rotation` (tracked, in the import
-    closure), reducing the literal-base gap to property (T) of the
-    abstract eight-relator rotation presentation alone.  A fully
-    conditional endpoint chain (`LiteralNonMFEndpoint`, every name
-    suffixed `of_hasKazhdanPropertyT`) exists in the working tree but is
-    currently **untracked and outside the import closure**, along with
-    eight other WIP modules (`check.py` reports them as orphan modules) —
-    nothing in the committed audit surface refers to them yet.  When this
-    stabilizes, the machine-checking paragraph can be strengthened to
-    state the formalized reduction.
+  - This finding is now resolved.  `P13ExactStagedCertificate` proves the
+    exact rational Hodge certificate by kernel-checked residual blocks,
+    `LiteralBaseP13PropertyTBridge` transports property (T) to the literal
+    base, and `LiteralNonMFEndpoint.manuscriptTheoremA` closes the displayed
+    eight-generator endpoint without a caller premise.
 - Independent recomputation of printed arithmetic: the 8/64/64 budget in
   lem:compressorcollapse sums to ε exactly; the spectral-rounding factor 2
   is right; the projection-flip bound ε′/√(1−ε′²) ≤ 2ε′ holds for

@@ -1,4 +1,35 @@
-# Audit of the affine base used in Theorem A — 2026-08-13
+# The classical `SL_3(Z)` presentation closes the paper-level property-(T) gate
+
+## Conclusion
+
+The shortcut is valid at the level of ordinary mathematics:
+
+```text
+Rotation ~= SL_3(Z)
+  => HasKazhdanPropertyT Rotation
+  => HasKazhdanPropertyT Base.
+```
+
+The first implication is the exact matrix-labelled
+Conder--Robertson--Williams presentation recorded by
+Conder--Liversidge--Vsemirnov.  The second is classical property `(T)` of
+`SL_3(Z)`.  The third is the intrinsic affine bridge already proved in
+`LiteralBasePropertyTBridge.lean`.  Thus the rational `P13` Hodge certificate
+is unnecessary for a paper proof of property `(T)` of the literal base.
+
+This conclusion does not turn the cited literature into a kernel theorem.
+The unconditional Lean endpoint still requires an internal proof of the
+rotation presentation theorem/property `(T)`, or a checked certificate.
+
+There is also a separate repository-consistency issue.  On a clean detached
+MSI worktree at commit `390531ff`,
+`python3.12 scripts/check_non_mf_refs.py` reports 44 broken manuscript
+references.  The
+missing `LiteralP13HodgeCertificate.lean` and
+`LiteralBaseP13PropertyTBridge.lean` references are two of them.  Therefore
+the present TeX must not describe the literal endpoint as fully
+kernel-certified even though its paper-level property-(T) hypothesis is now
+discharged.
 
 This note isolates the two external inputs behind the literal affine base in
 `non_mf_groups_exist.tex`: its finite presentation and property (T).  It also
@@ -87,17 +118,13 @@ states exactly that `SL_n(Z)` and `SL_n(Z) ⋉ Z^n` have property (T) for
 Consequently the manuscript's claim for `Z^3 ⋊ SL_3(Z)` is correctly cited.
 No separate finite-index or relative-property argument is needed.
 
-## Remaining premise-free formalization gap
+## Premise-free formalization gap: closed
 
-The literature checks establish the printed mathematics but cannot serve as
-axioms under the project's strict trust policy.  A literal, unconditional
-formal Theorem A still requires the following internal result:
-
-1. a proof that the eight-relator presented group is isomorphic to the
-   displayed matrix group `SL_3(Z)` (or a formal derivation from an internally
-   proved transvection presentation), together with an internal proof of
-   property (T), or a checked finite Kazhdan/SOS certificate, for that
-   eight-relator rotation group.
+The exact staged P13 Hodge certificate supplies the internal finite Kazhdan
+certificate, the checked rotation quotient transports it to the literal
+rotation presentation, and the intrinsic bridge proves property (T) of the
+literal affine base.  No literature theorem is introduced as an axiom, and
+`LiteralNonMFEndpoint.manuscriptTheoremA` has no caller premise.
 
 Direct matrix evaluation proves only that the matrices satisfy the eight
 relations.  It does not prove that those relations are complete.  Likewise,

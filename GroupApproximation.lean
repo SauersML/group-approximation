@@ -10,6 +10,11 @@ import GroupApproximation.Computability.CStarRecognitionConsequences
 import GroupApproximation.Sofic.AdjointMatrix
 import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.ExactInvolutionCut
+import GroupApproximation.Sofic.InvolutiveTwoSheet
+import GroupApproximation.Sofic.PauliBranchTransfer
+import GroupApproximation.Sofic.DoublePauliCoefficient
+import GroupApproximation.Sofic.CoefficientAlternatingReynolds
+import GroupApproximation.Sofic.MixedCommutatorDihedral
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
@@ -259,6 +264,8 @@ import GroupApproximation.Leavitt.FiniteDualOrbit
 import GroupApproximation.Leavitt.ElementaryWeylBridge
 import GroupApproximation.Leavitt.AtlasProperInfiniteCorner
 import GroupApproximation.Leavitt.TwoChildFiniteObstruction
+import GroupApproximation.Leavitt.FinitePairedQuotientObstruction
+import GroupApproximation.Leavitt.RobustPairedQuotientFloor
 import GroupApproximation.Leavitt.NonincidentFlagGram
 import GroupApproximation.Leavitt.RawWordReynoldsGap
 import GroupApproximation.Leavitt.S3S4BranchingBalance
@@ -371,6 +378,9 @@ import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.HyperlinearAmplification
 import GroupApproximation.Sofic.HyperlinearNonScalar
 import GroupApproximation.Sofic.HyperlinearScalar
+import GroupApproximation.Sofic.AntipodalTraceExtraction
+import GroupApproximation.Sofic.AntipodalRadicalCollision
+import GroupApproximation.Sofic.CliffordPhaseExtraction
 import GroupApproximation.Sofic.PhaseOrder
 import GroupApproximation.Sofic.MonomialModel
 import GroupApproximation.Sofic.PhasePropagation
@@ -439,6 +449,7 @@ import GroupApproximation.Leavitt.RankFourCompressors
 import GroupApproximation.Leavitt.UniversalLeavitt
 import GroupApproximation.Leavitt.UniversalRankFour
 import GroupApproximation.Leavitt.UniversalPropertyT
+import GroupApproximation.Leavitt.ZeroRangeObstruction
 import GroupApproximation.PropertyTT.PaperStatements
 import GroupApproximation.PropertyTT.NonsoficCorollary
 import GroupApproximation.Leavitt.UniversalCompressionSetup

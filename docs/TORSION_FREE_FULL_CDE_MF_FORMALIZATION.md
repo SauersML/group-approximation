@@ -94,12 +94,8 @@ input data.
 
 ## Relation to the literal eight-generator manuscript group
 
-This development does not close the distinct literal `E` gap in
-`non_mf_groups_exist.tex`.  For that presentation Lean proves the relators,
-nontriviality of the marked word, and the finite-dimensional obstruction.
-It also proves the exact affine reduction
-`LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation`: property
-`(T)` of the eight-relator rotation presentation implies property `(T)` of
-the raw six-generator base.  Property `(T)` of that rotation presentation is
-still unproved, so the literal MF endpoint does not follow.  No
-conditional literal endpoint is exported.
+The distinct literal `E` gap in `non_mf_groups_exist.tex` is now closed.
+`P13ExactStagedCertificate` proves the exact rational property-`(T)` input,
+`LiteralBaseP13PropertyTBridge` transports it to the raw six-generator base,
+and `LiteralNonMFEndpoint.manuscriptTheoremA` gives the literal MF endpoint
+without a caller premise.

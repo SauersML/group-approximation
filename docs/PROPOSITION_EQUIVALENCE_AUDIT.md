@@ -51,19 +51,17 @@ states.
    norm-matrix C-star quotient.  `normMatrixCoronaUnitaryEquiv` formally
    identifies it with the exact-unitary coordinate quotient by polar
    correction.
-2. The unconditional existence witness is the internally constructed
-   group, not identified with the displayed group `E`; the corona
-   conclusion for `E` itself is established by the paper proof, with the
-   Lean side has no analytic endpoint for the raw presented base until the
-   presentation-completeness/property-`(T)` program closes it.
+2. The unconditional formal witness is the displayed group `E` itself.
+   `LiteralNonMFEndpoint.manuscriptTheoremA` contains the corona conclusion
+   for the raw presented group with no caller premise.
 
 ## Later validation snapshot (2026-08-13)
 
 Eleven earlier findings were checked against the current tip:
 
-- Conditional literal analytic and literal-cylinder obstruction modules were
-  removed from the public API; the literal boundary now consists only of
-  unconditional algebraic declarations.
+- The literal analytic endpoint is now public and unconditional.  The exact
+  P13 certificate and intrinsic bridge discharge property (T), while
+  `ConceptualNonMFProof` exposes the short proof spine.
 - Stale roster: regenerated; checker green.
 - `\leanconditional` unparsed by the checker: the macro and all its uses
   were removed; every remaining link is `\leanverified` and
@@ -83,8 +81,6 @@ Eleven earlier findings were checked against the current tip:
 - Uncountable-scope note on `IsOperatorMF` and the structure-packed-premise
   blind spot in `Audit/Scan.lean`: real but non-exploited gate weaknesses,
   recorded here as open hardening items.
-- The one substantive open mathematical item remains property (T) of the
-  literal presented base (isomorphism with the affine group, direct proof,
-  or an exact rational SOS certificate); until one route closes, the
-  literal-E endpoints stay conditional and the manuscript's legend footnote
-  discloses the boundary.
+- The former property-(T) gap is closed by the exact staged rational Hodge
+  certificate.  The literal-E endpoint is hypothesis-free and included in
+  the kernel axiom audit.

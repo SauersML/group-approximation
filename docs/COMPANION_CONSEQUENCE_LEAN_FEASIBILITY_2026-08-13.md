@@ -56,8 +56,8 @@ sources, but do not yet have unconditional one-to-one formal counterparts.
 
 1. Keep generic marked closedness, the chosen clopen cylinder, and the chosen
    Horn separator in the manuscript with exact theorem-level margin links.
-2. Keep the literal radius-34 theorem mathematically separate and unbadged
-   until the literal property-(T) endpoint is unconditional.
+2. The literal property-(T) endpoint is now unconditional; literal
+   consequences may cite `LiteralNonMFEndpoint.manuscriptTheoremA` directly.
 3. Add only the chosen group free-product consequence if a new consequence is
    wanted before additional foundations are built.
 4. Do not add exactness, C-star simplicity, monotraciality, or unconditional

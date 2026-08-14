@@ -4,6 +4,344 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: perfect paired labels have a universal `1/36` error floor
+
+`TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and
+near-bijectivity subgates from the paired-radical endpoint.  For a nonzero
+finite perfect binary pairing, two approximate diagonal transports and one
+crossed-zero transport satisfy
+
+```text
+eps01 + 4 eps00 + 4 eps11 >= (N-1)/(2N),
+max(eps01,eps00,eps11) >= 1/36.
+```
+
+The diagonal relations themselves force the two relevant label maps within
+`4 eps` of permutations.  By Birkhoff decomposition the same inequality
+holds for arbitrary doubly stochastic unitary block-mass kernels.  Thus the
+remaining analytic theorem only has to extract finite perfect-pairing labels
+and four such kernels with vanishing averaged error from common normalized-HS
+coordinates; Fourier-flatness, trivial-mode removal, and singular-value
+invariance are no longer separate obligations.
+
+The existing four raw coefficient cuts are not those labels: their comb
+kernel is exactly uniform after carrier conditioning.  The required kernels
+must be extracted from the deeper multiplication/radical quotient.
+
+### 2026-08-13: finite paired-radical endpoint is closed
+
+The exact finite contradiction behind the paired-radical program is now
+kernel-checked in
+`GroupApproximation/Leavitt/FinitePairedQuotientObstruction.lean`.  Two
+diagonal pairing-preserving transports force the relevant left and right
+maps to be bijective on finite separating quotients; the crossed-zero
+transport then annihilates the whole pairing.  See
+`TRUE_FINITE_PAIRED_QUOTIENT_OBSTRUCTION.md`.
+
+This does not close hyperlinearity.  The sole live step is analytic: extract
+the two finite separating quotients and those three transport identities,
+with a flat/reduced Fourier pairing and dimension-independent normalized-HS
+loss, from one common atlas microstate.
+
+### 2026-08-13: an all-depth germ quotient closes the hard-only branch
+
+`FALSE_HARD_PACKET_EVENTUAL_ZERO_GERM.md` upgrades the bounded hard-pair
+search to a structural theorem.  All six hard pairs and their stars preserve
+the same three eventually-zero rays.  The resulting `M_3(F_2)` star
+representation sends each recovered parent and its `0` child to the same
+rank-one idempotent and kills the `1` child.  Hence no word at any depth in
+the combined hard-pair algebra can implement the complementary equivalence.
+The zero-range algebraic endpoint is Lean-checked in
+`Leavitt/ZeroRangeObstruction.lean`.
+
+The full raw and comb elements act identically on this quotient, but their
+source factorizations do not: four of six raw syllables and eleven of 28 comb
+syllables leave the germ sector before returning.  The properly infinite
+packet is not refuted, because its parent `p_11` is killed by the quotient.
+The live theorem remains recovery of `p_11,p_001` and the completed
+compressor corners in one finite multiplicity algebra.  Intermediate
+source-prefix holonomy is a possible tool for that recovery, not a premise
+silently inserted into the endpoint.
+
+### 2026-08-13: hard two-branch search extended without a complementary child
+
+`FALSE_HARD_PAIR_TWO_CHILD_SHORT_PACKET.md` now records an exact all-pair
+search through mixed-word depth seven (`60,240` reduced Leavitt values) and a
+targeted search of the smallest-growth hard representative through depth
+nine (`39,364` values).  Every recovered base-to-child matrix unit still
+ends in the `0` child; no complementary `1`-child equivalence appears.  The
+search CLI now requires explicit depth, target bits, and pair scope so deeper
+bounded audits do not silently reuse the archived depth-six parameters.
+
+The bounded scan itself is not an all-depth theorem, and a depth-ten run was
+deliberately killed by the 50-second MSI bound.  The preceding germ-quotient
+entry now supplies the structural all-depth closure.  Brute-force hard-pair
+word growth is retired; only the separate finite-multiplicity recovery of the
+known raw/comb properly infinite packet remains live.
+
+### 2026-08-13: the classical `SL_3(Z)` shortcut closes only the non-MF paper gate
+
+`SL3_PRESENTATION_PROPERTY_T_AUDIT_2026-08-13.md` verifies that the literal
+rotation presentation is the matrix-labelled CRW presentation of
+`SL_3(Z)`.  Classical property `(T)` and the checked intrinsic affine bridge
+therefore discharge the property-(T) hypothesis in the paper proof of the
+literal non-MF example.  The proposed `P13` Hodge certificate is unnecessary
+for that mathematical argument.  It remains a kernel boundary because Lean
+does not import a published presentation theorem as an axiom.
+
+This does not advance the same marked word toward nonhyperlinearity.  The
+finite coset-tower model in `TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` sends
+that word to `-1` in a Connes-embeddable representation, and Becker--Lubotzky
+show that infinite hyperlinear property-(T) groups such as `SL_3(Z)` are not
+stable in normalized Hilbert--Schmidt metric.  Thus classical property `(T)`
+cannot supply the missing flexible-HS stability input in
+`TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.  The live
+hyperlinear gate remains coefficient/multiplicity recovery, not the base
+property-(T) certificate.
+
+### 2026-08-13: differential audit from non-MF to nonhyperlinearity
+
+`NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md` records the repository-first
+comparison.  The literal MF-radical mark cannot be upgraded to a tracial
+kill because an explicit CE model sends it to `-1`.  The direct surviving
+descendant is the Leavitt--Steinberg HS-stability fork.  Its first live,
+not-already-refuted input is finite-multiplicity coefficient extraction, not
+generic commutant recovery.  The semantic endpoint is now Lean-checked:
+a nonidentity member of `hyperlinearResidual` implies `¬ IsHyperlinear`.
+
+### 2026-08-13: the Kun--Thom Clifford phase has no quantitative loss
+
+The finite-coordinate endpoint in `TRUE_KUN_THOM_CLIFFORD_PHASE.md` is now
+closed quantitatively.  For involutive unitaries `C,D`, the second-commutator
+matrix `X=DCDC` satisfies the exact factorization
+`D(CD+DC)C=X+1`; hence
+`hsDistSq(X,-1)=hsNormSq(CD+DC)`.  This is Lean-checked in
+`Sofic/CliffordPhaseExtraction.lean`.  Therefore the sole remaining content
+of the Clifford route is constructing the almost-`Gamma`-central,
+anticommuting pair; no error-propagation or phase-detection estimate remains.
+The scalar endpoint is now wired to the radical collision as well:
+`negOnePhase_detects` and
+`negOnePhase_soficInvisible_yields_hyperlinear_nonsofic` are checked in
+`Sofic/AntipodalRadicalCollision.lean`.
+
+### 2026-08-13: antipodal conjugacy is a quantitative trace certificate
+
+`TRUE_ANTIPODAL_TRACE_EXTRACTION.md` closes the local analytic step of the
+antipodal route.  For finite matrices, unitary `S` and arbitrary `U` satisfy
+`4 |tr(U)|^2 <= ||SUS*+U||_2^2`.  Exact antipodality therefore forces trace
+zero, and a unitary `U` then has squared Hilbert--Schmidt distance exactly `2`
+from the identity.  All three statements are Lean-checked in
+`Sofic/AntipodalTraceExtraction.lean`.  The induced ultraproduct detector and
+the final sofic-radical collision theorem are Lean-checked in
+`Sofic/AntipodalRadicalCollision.lean`.  The remaining gate is wholly global:
+derive or compatibly recover an asymptotically antipodal pair from the marked
+group relations.
+
+### 2026-08-13: `SL2F13` radical implantation and extension audit
+
+`SL2F13_RADICAL_APPLICATION_AUDIT.md` credits the exact arithmetic and GAP
+certificates in `eekarabiyik/SL2F13` and extracts a valid general application:
+amalgamating the marked MF-radical involution with a normal generator of a
+group `A` implants the whole embedded copy of `A` into the MF radical.  For
+`A=PSL(2,13)` this gives a concrete inverse-Galois-labelled finite simple
+radical subgroup.  The radical propagation step is Lean-checked in
+`Sofic/NormallyGeneratedMFObstruction.lean`.
+
+The direct hyperlinear splice is now closed algebraically.  If a perfect
+group is normally generated by `a`, every homomorphism sending `a` to a
+central target element is trivial.  Hence the CE detector of the literal
+non-MF group, in which `w=-1` is scalar, cannot extend across the amalgam
+identifying `w` with a normal generator of `PSL(2,13)`.  See
+`FALSE_PERFECT_RADICAL_IMPLANTATION_CANNOT_CARRY_SCALAR_PHASE.md`; the general
+lemma is Lean-checked in `Sofic/NormallyGeneratedMFObstruction.lean`.
+
+There is nevertheless a balanced repair, recorded in
+`TRUE_BALANCED_RADICAL_IMPLANTATION_IS_CE_VISIBLE.md`.  Direct-sum the scalar
+`w=-1` detector with the trivial `w=+1` sector in equal trace, identify the
+resulting balanced `C^2` with the involution algebra in the regular
+representation of the attached finite group, and take the reduced tracial
+amalgam.  Brown--Dykema--Jung's hyperfinite-amalgam theorem makes the target
+CE.  Hence for `A=PSL(2,13)` the whole embedded simple group lies in the MF
+radical while its intersection with the hyperlinear radical is trivial.  The
+abstract detector step is Lean-checked in `Sofic/RadicalSeparation.lean`.
+This strengthens MF-versus-hyperlinear separation but still does not create
+the required sofic-versus-hyperlinear radical collision.
+
+The same audit corrects the tempting proof that the original Clifford witness
+`W` is sofic merely because it is locally-finite-by-residually-finite.  That
+reverses Elek--Szabo's extension theorem.  A specific repair does identify the
+finite-stage/direct-limit tower with the original coset witness: its dilation
+site set is the transitive `V`-set `V/Gamma`.  Hence `W` really is finitely
+generated, locally-finite-by-residually-finite, sofic, and non-MF, but for this
+special tower reason.  None of these operator-norm applications closes the
+hyperlinear trace-selection gate.
+
+### 2026-08-13: alternating Reynolds contracts to scalars
+
+`FALSE_ALTERNATING_REYNOLDS_CONTRACTS_COEFFICIENT_SIGNAL.md` computes the
+exact spectrum of `E_A E_(P')` on the five raw coefficient atoms:
+`1,19/64,11/64,11/64,1/16`.  Thus the scalar identity is the only common
+fixed direction, and every centered signal contracts at rate at most
+`19/64`.  The exact diagonalization and invertible eigenbasis are Lean-checked
+in `Sofic/CoefficientAlternatingReynolds.lean`.  Finite packet averaging
+cannot supply simultaneous coefficient recovery; a nonfinite cross-chart
+module is essential.
+
+### 2026-08-13: an explicit infinite-order cross-chart direction
+
+`TRUE_MIXED_COMMUTATOR_HAS_INFINITE_ORDER.md` proves that
+`h=[U*X_1U,raw]` has infinite order.  Its Leavitt expansion has a unique
+minimum-degree term `s_00 t_(00(10)^4)`; the minimum component of `h^n` is
+`s_00 t_(00(10)^(4n))`, of degree `-8n`.  The first sixteen nonzero
+coefficient-cut translates have overlap `1/64=tau(F)^2`, so this is a
+bilateral mixing direction rather than an orthogonal wandering-projection
+contradiction.  Both generating involutions conjugate `h` to `h^(-1)`; the
+generic identity is Lean-checked in `Sofic/MixedCommutatorDihedral.lean`.
+Therefore `h` alone cannot furnish the missing one-sided module.
+
+### 2026-08-13: transported Pauli orbit has a canonical fingerprint
+
+`TRUE_TRANSPORTED_PAULI_ORBIT_FINGERPRINT.md` computes the full orbit of one
+raw coefficient cut under the transported order-32 Pauli packet.  The orbit
+has size 16 and its average has raw expectation weights
+`75/256,31/256,15/256,15/256`.  The unique top cut is recovered by a fixed
+quadratic polynomial with spectral gap `11/64`, formalized in
+`Sofic/DoublePauliCoefficient.lean`.  This removes permutation ambiguity once
+simultaneous coordinate recovery exists, but does not prove coefficient-space
+membership.  The same audit isolates `[X'_1,raw]` as the first mixed word
+outside the finite packet; the following entry proves it has infinite order
+and records why its dihedral symmetry does not close the endpoint.
+
+### 2026-08-13: the full raw/comb finite intersection is trivial
+
+`FALSE_RAW_512_COMB_INTERSECTION_IS_TRIVIAL.md` closes the finite-Reynolds
+shortcut to coefficient membership.  The full raw double-Pauli closure and
+its comb conjugate both have order `512`, but their exact intersection is the
+identity.  Therefore separate finite-subgroup exactification cannot align the
+coefficient spaces; the missing `15/128` membership theorem must use genuine
+cross-chart kernel relators or a recovered multiplication module.
+
+### 2026-08-13: coefficient expectation gap `15/128`
+
+`TRUE_COEFFICIENT_EXPECTATION_GAP.md` weakens the final alignment hypothesis.
+For every transported character cut `G`, its Hilbert--Schmidt projection onto
+the raw four-character coefficient space is `q/8`, while
+`hsNormSq(G-q/8)=15/128`.  The identity is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  It now suffices for simultaneous
+finite-multiplicity recovery to put one transported cut asymptotically in the
+raw coefficient space; no permutation or minimal-cut matching is needed.
+
+### 2026-08-13: audited closure boundary for coefficient alignment
+
+`FALSE_EXISTING_REYNOLDS_DOES_NOT_ALIGN_COEFFICIENT_C4.md` verifies that the
+current property-`(T)`/finite-average library does not prove the simultaneous
+raw/comb `C^4` alignment.  The relative implementer has a fixed Reynolds norm
+deficit, so there is no already-commuting ultraproduct element to lift.  The
+terminal endpoint has a generous strict margin: trace-flat cuts satisfy
+`hsDistSq=7/32>1/8`, kernel-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The missing theorem must recover both
+finite multiplicity algebras in compatible coordinates and align one pair
+below squared distance `1/8`, or prove invariance of the trace-`1/120`
+spectral fallback.
+
+### 2026-08-13: trace-flat spectral floor `1/120`
+
+`TRUE_TRACE_FLAT_BLOCK_SPECTRAL_FLOOR.md` removes two more analytic losses.
+For every trace-flat comb block, truncating `FGF` above eigenvalue `1/16`
+retains trace at least `1/120` and gives singular values at least `1/4`.
+The rational endpoint is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  Thus the spectral version of `(RPC128)`
+now has one structural gate: make the retained cut invariant under the
+recovered multiplication arrows.  Density and condition number no longer
+need separate recovery arguments.
+
+### 2026-08-13: fixed `7/32` coefficient anti-normalizer gap
+
+`TRUE_DOUBLE_PAULI_COMB_ANTINORMALIZER_GAP.md` turns the constant overlap table
+into an exact terminal separation.  Every raw coefficient character cut and
+every comb-transported character cut have squared HS distance `7/32`.  The
+formula and constant are Lean-checked in `Sofic/DoublePauliCoefficient.lean`.
+Thus any simultaneous finite-multiplicity recovery which aligns the two
+four-dimensional coefficient algebras (necessarily by a permutation of
+minimal cuts) immediately contradicts the canonical trace.  The remaining
+gate is precisely that comb-compatible coordinate alignment; abstract group
+relations cannot imply it because the regular representation realizes the
+anti-normalizer gap exactly.
+
+### 2026-08-13: the comb is Fourier-flat on the coefficient packet
+
+`TRUE_DOUBLE_PAULI_COMB_IS_FOURIER_FLAT.md` computes the exact `4 x 4`
+transition table between the raw-invariant coefficient characters and their
+comb conjugates.  Every character cut has trace `1/8`, every transition block
+has squared Hilbert--Schmidt mass `1/64`, and no block vanishes.  This supplies
+the fixed positive-density half of the multiplication-module attack and kills
+the Hall-zero variant.  It is trace-flat but not a scaled-isometry system:
+already one representative has `FGF != F/8`, so singular-value control remains
+part of reduced-Fourier extraction.  The projection block-mass identity is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The remaining theorem must force a
+one-sided block to vanish only after finite-multiplicity module recovery; the
+reverse block then retains the canonical `1/64` mass and violates finite
+projection balance.
+
+### 2026-08-13: raw double-Pauli coefficient packet
+
+`TRUE_RAW_DOUBLE_PAULI_COEFFICIENT_PACKET.md` identifies the first exact
+multiplication-to-coefficient bridge in the atlas.  The raw compressor turns
+the original Pauli packet into a second Pauli packet with a distinct center;
+their equal signs cancel into a raw-invariant coefficient `C2^2` on the
+trace-half carrier.  The mixed cell has order `256`, its raw-normalized
+closure has order `512`, and the two-sheet splice
+
+```text
+B_i = ((1-c)/2) A_i + ((1+c)/2) X_i
+```
+
+is an involution, commutes with the Pauli coordinates sheetwise, and is fixed
+by raw.  The generic splice algebra is Lean-checked in
+`Sofic/DoublePauliCoefficient.lean`.  The next exact gate is the off-diagonal
+comb action on these coefficient cuts.  A single transported carrier sign
+cannot supply it: `FALSE_COMB_TRANSPORTED_SIGN_STAYS_FINITE.md` gives the
+finite order-32 countercell and the trivial small-cell comb intersection.
+
+### 2026-08-13: exact two-arrow Pauli transfer packet
+
+`TRUE_PAULI_BRANCH_TRANSFER_PACKET.md` identifies the two raw branch arrows
+on the synchronized finite coefficient sector:
+
+```text
+E=P Q,       T0=U* P Q,       T1=U* R P Q.
+```
+
+They have common initial projection `E`, orthogonal ranges, and range sum
+`U* Q U`.  The complete algebra is Lean-checked in
+`Sofic/PauliBranchTransfer.lean`.  Since `tau(Q)=1/4` and `tau(E)=1/8`, the
+packet is exactly balanced.  The whole atlas contradiction is now the single
+containment `U* Q U <= E`.  A direct root-character proof of this containment
+is impossible: `ef=f` implies `ell(ef)=ell(f)` but not
+`ell(f)=1 => ell(e)=1`.  The remaining proof must recover a positive-density
+paired radical quotient (a genuine multiplication module), and use the raw
+compressor to identify its carrier with `E`.
+
+### 2026-08-13: the involutive star extension is hyperlinearity-neutral
+
+`TRUE_INVOLUTIVE_STAR_EXTENSION_PRESERVES_HYPERLINEARITY.md` closes the
+logical cost of the star synchronizer.  For every involution `psi` of `Q`,
+the two-sheet model
+
+```text
+q |-> diag(U_q,U_(psi q)),      j |-> [0 I; I 0]
+```
+
+proves `Q semidirect_psi C2` hyperlinear exactly when `Q` is.  Different
+`C2` sheets have normalized trace zero and hence maximal HS separation;
+same-sheet defects are the average of two defects in the old model.  The
+exact block identities are Lean-checked in
+`Sofic/InvolutiveTwoSheet.lean`.  Therefore the synchronized Leavitt-star
+extension is a legitimate target, and star/adjoint compatibility is no
+longer a gate.  The remaining atlas gate is strictly multiplication-to-
+support: recover the child--parent identity `ef=f` as inclusion of finite
+Pauli coefficient supports through the cross-root Steinberg relations.
+
 ### 2026-08-13: double-Clifford cancellation for the Kun--Thom group
 
 `TRUE_DOUBLE_CLIFFORD_KUN_THOM_REDUCTION.md` proves that two identical
@@ -4067,6 +4405,70 @@ cannot do so.  Continue either with that coordinate-commutant theorem or by
 extracting the hard/comb two-child arrows on the trace-half carrier.  See
 `TRUE_RAW_INVOLUTION_SPECTRAL_CUT.md`.
 
+### 2026-08-13: hard-pair Leavitt star is not group inverse
+
+The short formula for `p_001` cannot be converted into a complex spectral
+polynomial by reading Leavitt `star` as operator adjoint.  In the first
+class-11 pair, `q` has order four but `q^star != q^-1` (and likewise for
+`l`).  The correct four-term Leavitt-star formula is the nonzero `p_001`,
+whereas inverse substitution makes it exactly zero:
+
+```text
+1 + q^-2 + q^2 + q^-2 q^2 = 0.
+```
+
+Therefore retain the root-character/Steinberg coefficient disintegration;
+do not apply operator star to the printed characteristic-two certificate
+before that corner has been recovered.  See
+`FALSE_HARD_STAR_IS_GROUP_INVERSE.md`.
+
+### 2026-08-13: the raw cut lies in the Pauli coefficient factor
+
+Let `H_0` be the compressed order-eight root Heisenberg group generated by
+`x_12(p_0),x_23(p_0)`, with central commutator `Z=x_13(p_0)`.  Exact
+Leavitt arithmetic gives
+
+```text
+<H_0,r> = H_0 times C2,
+```
+
+of order `16`.  On the `Z=-1` Pauli sector, `r` therefore acts only on the
+multiplicity factor.  Regular trace makes the joint `(Z=-1,r=-1)` corner
+have trace `1/4`, so after normalizing the Pauli sector the raw negative cut
+has coefficient trace exactly `1/2`.  This crosses the carrier-placement
+gate: the cut is honest, coefficient-valued, and positive-density.  Next
+compute comb/hard leakage relative to this cut.  See
+`TRUE_RAW_PAULI_COEFFICIENT_CUT.md`.
+
+### 2026-08-13: synchronize Leavitt star by one finite extension
+
+For group units, inverse followed by Leavitt/matrix transpose is an
+involutive automorphism `psi`.  The semidirect candidate
+`Q^sharp=Q semidirect_psi C2` supplies a spatial involution `J` with
+`pi(theta(g))=J pi(g)^* J`.  The raw involution is fixed by transpose, so
+`J` preserves its two equal Pauli coefficient halves.  On the compressed
+`GL3(2)`, `psi(g)=(g^-1)^T` is outer; the synchronized finite chart has
+order `336`, or `672` after adjoining the commuting raw sign.  This closes
+the adjoint half of root-character extraction without making the false
+`Leavitt star = group inverse` substitution.  Addition and multiplication
+must still be extracted through root products and Steinberg commutators.
+See `TRUE_RAW_STAR_SYNCHRONIZED_SECTOR.md`.
+
+### 2026-08-13: the finite raw branch cell is `D8 times D8`
+
+The compressed root `D8` commutes with a second `D8` generated by the raw
+word and `x_13(p_1)`, giving an exact order-64 Pauli cell.  Lifting the two
+hard cylinder projections into one root subgroup gives
+`<r,z_11,z_001> = D8 times C2`.  In the joint central negative sector the
+two candidate arrows are orthogonal trace-`1/8` arrows, but they fill a
+trace-`1/4` carrier, so ambient Pauli calculus is exactly trace-balanced.
+The remaining operation is no longer star, canonicity, or positive density:
+it is converting the ring product identity `p_child p_parent=p_child` into
+spectral support containment through cross-root Steinberg coefficients.
+The first hard prefix meets the order-64 cell only in `1`, confirming that
+ordinary finite-subgroup branching cannot supply this multiplication.  See
+`TRUE_RAW_BRANCH_PAULI_CELL.md`.
+
 The bare multiplicative commutator table is now also closed as a standalone
 endpoint.  It has an exact left-regular model in the order-32 extraspecial
 two-qubit group: `[X_i,Z_j]=c^(delta_ij)`, with zero trace on every
@@ -4339,3 +4741,24 @@ using the internal regular-block unitaries would assume a finite approximation
 of the already nonsofic action.  The next live invariant is therefore the
 multiplicity-block holonomy around finite word-prefix diagrams: it must either
 force object completion or carry a uniform HS defect.
+
+### 2026-08-13: Clifford hyperlinearity forces instability of the ambient group alone
+
+The perfect even Clifford cover sharpens the existing stability endpoint.
+If the cover were hyperlinear, its regular character would have a trace-`1/2`
+negative central corner. Character rigidity identifies that corner with the
+canonical CAR trace. CAR microstates then give a normalized-HS asymptotic
+representation of the classical ambient group `G`, together with a root
+Majorana commuting asymptotically with `Gamma` but staying at distance
+`sqrt(2)` from its strict predecessor conjugate. The relative-wall theorem
+therefore implies that `G` is not flexibly normalized-HS stable.
+Equivalently, flexible normalized-HS stability of `G` alone would make the
+perfect Clifford cover an explicit nonhyperlinear group.
+
+There is a crucial normalization firewall: 2-Kazhdan cohomology yields
+stability for the unnormalized Frobenius norm, whereas arbitrary CE
+microstates provide only normalized-HS defects. One additionally needs
+`sqrt(d_n) epsilon_n -> 0`, and neither CE nor subsequence selection
+provides that rate. Thus the existing coefficientwise `H^2` gate cannot
+be advertised as closing the Clifford argument. Full proof and scope:
+`TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
