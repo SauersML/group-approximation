@@ -118,28 +118,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 }
 
 
-# Unconditional paper theorems whose external permanence input has not yet
-# been mechanized in this repository. They deliberately carry no Lean badge.
-PAPER_ONLY_CLAIMS: dict[str, dict[str, object]] = {
-    "thm:sofic-detector": {
-        "object_identity": (
-            "The printed theorem concerns the concrete Clifford target W and "
-            "the explicit quotient map constructed in Proposition prop:witness."),
-        "external_inputs": [
-            "Residual finiteness of the displayed integral affine matrix group.",
-            "Soficity passes to finite extensions and directed unions.",
-            "Elek--Szabo: extensions of sofic groups by amenable quotients are sofic.",
-            "Elek--Szabo: every sofic group is hyperlinear.",
-        ],
-        "coverage_gap": (
-            "RadicalSeparation.lean formalizes the detector/radical logic; "
-            "the concrete finite-coset tower and sofic permanence proof are "
-            "currently verified in the manuscript rather than by one closed "
-            "Lean declaration."),
-    },
-}
-
-
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
@@ -157,7 +135,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
-    "thm:sofic-detector": ["prop:witness", "thm:A"],
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
     "thm:criterion": ["def:pattern", "lem:compressorcollapse"],
@@ -174,7 +151,7 @@ def generate(tex: Path) -> dict:
     entries = []
     claims = read_printed_claims(tex)
     claim_ids = {claim.claim_id for claim in claims}
-    routed_ids = CLAIM_TARGETS.keys() | PAPER_ONLY_CLAIMS.keys()
+    routed_ids = CLAIM_TARGETS.keys()
     missing = sorted(claim_ids - routed_ids)
     stale = sorted(routed_ids - claim_ids)
     if missing:
@@ -182,25 +159,6 @@ def generate(tex: Path) -> dict:
     if stale:
         raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
-        if claim.claim_id in PAPER_ONLY_CLAIMS:
-            if claim.badges:
-                raise SystemExit(
-                    f"{claim.claim_id}: paper-only claim must not display a Lean badge")
-            record = PAPER_ONLY_CLAIMS[claim.claim_id]
-            entries.append({
-                "id": claim.claim_id,
-                "environment": claim.environment,
-                "title": claim.title,
-                "statement_sha256": claim.statement_sha256,
-                "status": "paper-only",
-                "object_identity": record["object_identity"],
-                "dependencies": DEPENDENCIES.get(claim.claim_id, []),
-                "extra_assumptions": [],
-                "external_inputs": record["external_inputs"],
-                "coverage_gap": record["coverage_gap"],
-                "lean": [],
-            })
-            continue
         module, declaration = CLAIM_TARGETS[claim.claim_id]
         if len(claim.badges) != 1:
             raise SystemExit(
@@ -239,8 +197,7 @@ def generate(tex: Path) -> dict:
         "status_policy": (
             "Every numbered theorem-like environment is recorded. Exact claims "
             "have one linked declaration and an independently mapped wrapper with "
-            "the same literal objects and outer proposition. Paper-only claims "
-            "have no badge and record every external input and coverage gap."),
+            "the same literal objects and outer proposition."),
         "claims": entries,
     }
 
