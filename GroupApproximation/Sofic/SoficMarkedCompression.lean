@@ -44,7 +44,7 @@ theorem finite_levelSiteAction_orbit [α.range.FiniteIndex] (n : ℕ)
 
 /-- The level action on Clifford lamps is the restriction of the inner
 action obtained by reassociating the witness tower. -/
-theorem level_action_eq_baseAction (n : ℕ)
+@[simp] theorem level_action_eq_baseAction (n : ℕ)
     (h : (level α hα n).range) :
     CliffordLamp.actionHom (levelSiteAction α hα n) h =
       SemidirectAssoc.baseAction (shiftHom α hα) (lampAction α hα) h :=
