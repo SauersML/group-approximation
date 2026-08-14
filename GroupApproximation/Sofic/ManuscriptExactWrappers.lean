@@ -40,11 +40,12 @@ universe u v w
 /-- The three equivalences stated with the manuscript's definition of an MF
 group: genuine C-star corona versus unitary sequences, normalized local
 models, and arbitrary versus strictly increasing positive dimensions. -/
-theorem manuscriptMFDefinitionEquivalences
-    (G : Type u) [Group G] [Countable G] :
+theorem manuscriptMFDefinitionEquivalences :
+    ∀ (G : Type u) [Group G] [Countable G],
     (IsCDEOperatorMF G ↔ IsOperatorMF G) ∧
       (IsOperatorMF G ↔ IsNormApproximable G 1) ∧
       (IsOperatorMFIncreasing G ↔ IsOperatorMF G) := by
+  intro G _ _
   exact ⟨isCDEOperatorMF_iff_isOperatorMF G,
     OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one,
     isOperatorMFIncreasing_iff⟩
@@ -88,7 +89,8 @@ theorem manuscriptTheoremB :
 distinguished sign is a nontrivial central involution, site generators are
 involutions with the Clifford commutator law, and permutations relabel the
 sites while fixing the sign. -/
-theorem manuscriptCliffordConstruction (X : Type u) :
+theorem manuscriptCliffordConstruction :
+    ∀ X : Type u,
     (CliffordAlgebraLamp.euclidQ X =
         LinearMap.BilinMap.toQuadraticMap
           (CliffordAlgebraLamp.dotForm X) ∧
@@ -131,6 +133,7 @@ theorem manuscriptCliffordConstruction (X : Type u) :
         CliffordAlgebraLamp.permHom X σ
             (CliffordAlgebraLamp.zGen X) =
           CliffordAlgebraLamp.zGen X)) := by
+  intro X
   refine ⟨?_, CliffordAlgebraLamp.cliffordLamp_permutation_package X⟩
   refine ⟨rfl, fun _ ↦ rfl, rfl, fun _ ↦ rfl, rfl, rfl,
     CliffordAlgebraLamp.zGen_sq X,
@@ -176,8 +179,8 @@ theorem manuscriptLinearModel :
 /-! ## Corona and marked-pattern packages -/
 
 /-- Exact natural-dimension form of the manuscript's unitary lifting lemma. -/
-theorem manuscriptUnitaryLifting
-    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
+theorem manuscriptUnitaryLifting :
+    ∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
         simpa using hd n)
@@ -185,6 +188,7 @@ theorem manuscriptUnitaryLifting
         (fun n ↦ naturalFiniteModel (d n))),
       ∃ u : ∀ n, Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ,
         unitarySequenceToCorona (fun n ↦ naturalFiniteModel (d n)) u = x := by
+  intro d hd
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   dsimp only
@@ -196,8 +200,8 @@ theorem manuscriptUnitaryLifting
 
 /-- The canonical unitary-sequence/C-star-corona isomorphism, including its
 formula on every represented sequence. -/
-theorem manuscriptUnitaryCoronaEquivalence
-    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
+theorem manuscriptUnitaryCoronaEquivalence :
+    ∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
         simpa using hd n)
@@ -210,6 +214,7 @@ theorem manuscriptUnitaryCoronaEquivalence
         ∀ u : ∀ n, Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ,
           kappa (QuotientGroup.mk u) = unitarySequenceToCorona
             (fun n ↦ naturalFiniteModel (d n)) u := by
+  intro d hd
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
     fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
   dsimp only
@@ -219,10 +224,10 @@ theorem manuscriptUnitaryCoronaEquivalence
       (fun n ↦ naturalFiniteModel (d n))⟩
 
 /-- Exact data and defect subgroup of a marked Kazhdan pattern. -/
-theorem manuscriptMarkedKazhdanPattern
-    {Gamma : Type} {H : Type u} [Group Gamma] [Group H]
-    [_countableGamma : Countable Gamma] [_countableH : Countable H]
-    (C : KazhdanCompressionCore Gamma H) :
+theorem manuscriptMarkedKazhdanPattern :
+    ∀ {Gamma : Type} {H : Type u} [Group Gamma] [Group H]
+      [_countableGamma : Countable Gamma] [_countableH : Countable H]
+      (C : KazhdanCompressionCore Gamma H),
     HasKazhdanPropertyT.{0, 0} Gamma ∧
       HasKazhdanPropertyTComplex.{0, w} Gamma ∧
       (∀ gamma : Gamma, ∃ delta : Gamma,
@@ -232,44 +237,47 @@ theorem manuscriptMarkedKazhdanPattern
         (Set.range fun gamma : Gamma ↦
           ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) ∧
       C.defectNormal.Normal := by
+  intro Gamma H _ _ _ _ C
   exact ⟨C.kazhdan, hasKazhdanPropertyT_iff_textbook.mp C.kazhdan,
     C.compresses, C.comm_c, rfl, inferInstance⟩
 
 /-- Exact natural-dimension form of the finite-normal obstruction criterion:
 every homomorphism into the unitary group of the genuine norm-matrix C-star
 corona maps the specified finite normal subgroup to the identity. -/
-theorem manuscriptFiniteNormalObstructionCriterion
-    {Gamma H : Type} [Group Gamma] [Group H]
-    [_countableGamma : Countable Gamma] [Countable H]
-    (C : KazhdanCompressionCore Gamma H)
-    (F : Subgroup H) [Finite F] [F.Normal]
-    (hF : F ≤ C.defectNormal)
-    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
+theorem manuscriptFiniteNormalObstructionCriterion :
+    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+      [_countableGamma : Countable Gamma] [Countable H]
+      (C : KazhdanCompressionCore Gamma H)
+      (F : Subgroup H) [Finite F] [F.Normal]
+      (hF : F ≤ C.defectNormal)
+      (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
     let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
     letI : ∀ n, Nonempty (X n) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
         simpa [X] using hd n)
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       F ≤ Theta.ker := by
+  intro Gamma H _ _ _ _ C F _ _ hF d hd
   exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF
     (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
       simpa using hd n)
 
 /-- Exact coordinate finite-normal-corner conclusion for literal positive
 natural matrix dimensions. -/
-theorem manuscriptCoordinateFiniteNormalCorner
-    {H : Type} [Group H] [Countable H]
-    (F : Subgroup H) [Finite F] [F.Normal]
-    {I : Type} (U : Ultrafilter I) (d : I → ℕ)
-    (_hd : ∀ i, 0 < d i)
-    (rho : H →* UniversalWeakMF U (fun i ↦ naturalFiniteModel (d i)))
-    (hnontrivial : ∃ f : F, rho f ≠ 1) :
+theorem manuscriptCoordinateFiniteNormalCorner :
+    ∀ {H : Type} [Group H] [Countable H]
+      (F : Subgroup H) [Finite F] [F.Normal]
+      {I : Type} (U : Ultrafilter I) (d : I → ℕ)
+      (_hd : ∀ i, 0 < d i)
+      (rho : H →* UniversalWeakMF U (fun i ↦ naturalFiniteModel (d i)))
+      (hnontrivial : ∃ f : F, rho f ≠ 1),
     ∃ B : OpAlmostRepresentation H,
       (∀ n, 0 < Fintype.card (B.model n)) ∧
       letI : Fintype F := Fintype.ofFinite F
       KazhdanCornerMatrices.OpNormVanishing B (fun n ↦
         ∑ f : F, (B.map n (f : H) :
           Matrix (B.model n) (B.model n) ℂ)) := by
+  intro H _ _ F _ _ I U d _hd rho hnontrivial
   letI : ∀ i, Nonempty (naturalFiniteModel (d i)) := fun i ↦
     Fintype.card_pos_iff.mp (by
       simpa using _hd i)
@@ -281,24 +289,25 @@ theorem manuscriptCoordinateFiniteNormalCorner
 /-- Exact outer-form version of the manuscript's compression-defect collapse:
 the squared normalized Hilbert--Schmidt distance tends to zero, which is
 equivalent to convergence of the normalized Hilbert--Schmidt norm itself. -/
-theorem manuscriptCompressionDefectsCollapse
-    {Gamma H : Type} [Group Gamma] [Group H]
-    (C : KazhdanCompressionCore Gamma H)
-    (B : OpAlmostRepresentation H) :
+theorem manuscriptCompressionDefectsCollapse :
+    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+      (C : KazhdanCompressionCore Gamma H)
+      (B : OpAlmostRepresentation H),
     ∀ gamma : Gamma, ∀ epsilon : ℝ, 0 < epsilon →
       ∃ N, ∀ n ≥ N,
         hsDistSq (B.model n)
           (B.map n
             ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)
           (B.map n 1) ≤ epsilon := by
+  intro Gamma H _ _ C B
   exact C.compressionDefects_hsTrivial B
 
 /-! ## MF radical and quotient -/
 
 /-- The MF radical is literally the intersection-of-kernels predicate and is
 a normal subgroup. -/
-theorem manuscriptMFRadical
-    (G : Type u) [Group G] [_countableG : Countable G] :
+theorem manuscriptMFRadical :
+    ∀ (G : Type u) [Group G] [_countableG : Countable G],
     ((∀ x : G, x ∈ manuscriptCoronaMFResidual G ↔
       ∀ (d : ℕ → ℕ), ∀ hd : ∀ n, 0 < d n,
         letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
@@ -307,18 +316,20 @@ theorem manuscriptMFRadical
             (fun n ↦ naturalFiniteModel (d n))),
           rho x = 1)) ∧
       (manuscriptCoronaMFResidual G).Normal := by
+  intro G _ _
   exact ⟨fun _ ↦ Iff.rfl, inferInstance⟩
 
 /-- Functoriality of the MF radical together with the literal marked-word
 consequence printed in the portability lemma. -/
-theorem manuscriptRadicalPortability
-    (G1 : Type u) [Group G1] [_countableG1 : Countable G1]
-    (G2 : Type v) [Group G2] [Countable G2] :
+theorem manuscriptRadicalPortability :
+    ∀ (G1 : Type u) [Group G1] [_countableG1 : Countable G1]
+      (G2 : Type v) [Group G2] [Countable G2],
     (∀ f : G1 →* G2,
       (manuscriptCoronaMFResidual G1).map f ≤ manuscriptCoronaMFResidual G2) ∧
       (∀ (phi : MarkedGroup →* G2),
         phi mark ≠ 1 →
           ¬ IsCDEOperatorMF G2) := by
+  intro G1 _ _ G2 _ _
   constructor
   · exact map_manuscriptCoronaMFResidual_le
   · intro phi hsurvive hMF
@@ -336,8 +347,8 @@ theorem manuscriptRadicalPortability
 CDE definition at the public boundary.  The faithful corona representation
 is constructed on the quotient first and then composed with the quotient
 map, so no coordinatewise radical-killing diagonal condition is omitted. -/
-theorem manuscriptUniversalMFQuotient
-    (G : Type u) [Group G] [Countable G] :
+theorem manuscriptUniversalMFQuotient :
+    ∀ (G : Type u) [Group G] [Countable G],
     letI : Countable (G ⧸ manuscriptCoronaMFResidual G) :=
       Function.Surjective.countable
         (QuotientGroup.mk'_surjective (manuscriptCoronaMFResidual G))
@@ -353,6 +364,7 @@ theorem manuscriptUniversalMFQuotient
           ∃ fBar : (G ⧸ manuscriptCoronaMFResidual G) →* H,
             fBar.comp (QuotientGroup.mk' (manuscriptCoronaMFResidual G)) = f) ∧
       (IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥) := by
+  intro G _ _
   refine
     ⟨exists_manuscriptCoronaRepresentation_ker_eq_manuscriptCoronaMFResidual,
       manuscriptCoronaMFQuotient_isCDEOperatorMF, ?_, ?_⟩
@@ -363,9 +375,9 @@ theorem manuscriptUniversalMFQuotient
   · exact isCDEOperatorMF_iff_manuscriptCoronaMFResidual_eq_bot
 
 /-- Exact factorization and equality criterion for a proposed radical. -/
-theorem manuscriptExactRadicalFromCandidateQuotient
-    (G : Type u) [Group G] [Countable G]
-    (N : Subgroup G) [N.Normal] (hN : N ≤ manuscriptCoronaMFResidual G) :
+theorem manuscriptExactRadicalFromCandidateQuotient :
+    ∀ (G : Type u) [Group G] [Countable G]
+      (N : Subgroup G) [N.Normal] (hN : N ≤ manuscriptCoronaMFResidual G),
     letI : Countable (G ⧸ N) :=
       Function.Surjective.countable (QuotientGroup.mk'_surjective N)
     (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
@@ -378,6 +390,7 @@ theorem manuscriptExactRadicalFromCandidateQuotient
             (fun n ↦ naturalFiniteModel (d n))),
         rhoBar.comp (QuotientGroup.mk' N) = rho) ∧
       (IsCDEOperatorMF (G ⧸ N) → manuscriptCoronaMFResidual G = N) := by
+  intro G _ _ N _ hN
   constructor
   · intro d hd rho
     exact existsUnique_quotient_factorization_to_manuscriptCorona
