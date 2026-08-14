@@ -14,13 +14,14 @@ group `A` implants the whole embedded copy of `A` into the MF radical.  For
 radical subgroup.  The radical propagation step is Lean-checked in
 `Sofic/NormallyGeneratedMFObstruction.lean`.
 
-The same audit corrects the tempting claim that the original Clifford witness
+The same audit corrects the tempting proof that the original Clifford witness
 `W` is sofic merely because it is locally-finite-by-residually-finite.  That
-reverses Elek--Szabo's extension theorem.  The already established
-finitely-generated sofic non-MF image remains valid through the separate
-finite-stage/direct-limit tower, but the short exact sequence alone cannot
-prove it.  None of these operator-norm applications closes the hyperlinear
-trace-selection gate.
+reverses Elek--Szabo's extension theorem.  A specific repair does identify the
+finite-stage/direct-limit tower with the original coset witness: its dilation
+site set is the transitive `V`-set `V/Gamma`.  Hence `W` really is finitely
+generated, locally-finite-by-residually-finite, sofic, and non-MF, but for this
+special tower reason.  None of these operator-norm applications closes the
+hyperlinear trace-selection gate.
 
 ### 2026-08-13: alternating Reynolds contracts to scalars
 

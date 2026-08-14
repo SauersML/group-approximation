@@ -61,8 +61,28 @@ target retains the MF-radical mark.  Thus the valid conclusion is
 there exists an explicit finitely generated sofic non-MF group,
 ```
 
-but the current proof should use that tower image, not the unproved assertion
-that the original witness `W` is sofic.
+but the proof must use that tower, not the bare extension theorem.
+
+There is a further specific repair.  The automorphic dilation of the tower
+has site set equivariantly isomorphic to `V/Gamma`: if `x_0` is the root of
+`Gamma/beta(Gamma)` and `y=T^(-1)x_0`, the dilation group `V` acts
+transitively on the site set and `Stab_V(y)=Gamma`.  Thus the final tower
+group is canonically
+
+```text
+ClLamp(V/Gamma) semidirect V = W.
+```
+
+This proves that the original witness `W` **is** sofic, but for the special
+finite-tower reason, not from general amenable-by-sofic permanence.  The
+detailed level/stabilizer calculation is recorded in
+`TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md`.  Consequently the strongest
+structural statement survives the audit:
+
+```text
+W is finitely generated, locally-finite-by-residually-finite,
+sofic, and non-MF.
+```
 
 ## 2. General radical implantation theorem
 
