@@ -41,6 +41,7 @@ import GroupApproximation.Sofic.LiteralPresentationRadius
 import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralSixGenerator
+import GroupApproximation.Sofic.LiteralWitnessConsequences
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
