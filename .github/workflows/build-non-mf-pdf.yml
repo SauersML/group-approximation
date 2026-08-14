@@ -134,8 +134,11 @@ jobs:
             --check-decls \
             --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
+              Sofic/ConceptualNonMFProof \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+            --require-verified \
+              Sofic/ConceptualNonMFProof \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
             --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \
@@ -146,6 +149,12 @@ jobs:
             --tex "$TEX_FILE" \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
             --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+
+      - name: Install the pinned P13 generator runtime
+        run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
+
+      - name: Replay the exact P13 source generators
+        run: python3 scripts/check_p13_generated.py
 
       - name: Source scan
         run: python3 scripts/check.py

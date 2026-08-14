@@ -530,6 +530,8 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralNonMFEndpoint.cliffordSign_blackHole
 #print axioms GroupApproximation.LiteralNonMFEndpoint.literal_not_isOperatorMF
 #print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA
+#print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD
+#print axioms GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_injective
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_range
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeEquivTranslations

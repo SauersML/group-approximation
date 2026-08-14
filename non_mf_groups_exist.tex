@@ -178,9 +178,11 @@ Let $E$ be the group on the eight generators
 $v_1,v_2,v_3,x,y,z,t,c$ with the finite list of relators in
 Definition~\ref{def:E}, and put
 \[
-  w\;:=\;\bigl[\,tct^{-1},\;v_1(tct^{-1})v_1^{-1}\bigr].
+  d=tct^{-1},\qquad u=[d,v_1],\qquad w=u^2.
 \]
-The defining relations make $w$ central and give $w^2=1$.  Then:
+Equivalently,
+$w=[d,v_1dv_1^{-1}]$ by Lemma~\ref{lem:square}.  The defining
+relations make $w$ central and give $w^2=1$.  Then:
 \begin{enumerate}
   \item $w\neq 1$ in $E$, so $w$ is a central involution;
   \item for every sequence $(d_n)$ of positive integers and every group homomorphism
@@ -189,7 +191,7 @@ The defining relations make $w$ central and give $w^2=1$.  Then:
 \end{enumerate}
 In particular $E$ is not MF, and neither the universe-relative algebra
 $\Cmax(E)$ fixed below nor $\Cred(E)$ is an MF $C^*$-algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
 The inline label links the theorem directly to its declaration.  Similar
@@ -199,85 +201,62 @@ A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
 Definition~\ref{def:E}.
 
-The proof is coordinatewise and has five steps.  Let $F\trianglelefteq H$ be
-the finite normal subgroup in the general criterion; for Theorem~\ref{thm:A},
-$F=\{1,w\}$.
+The proof has two opposed halves, both centered on $u$:
+\[
+ \boxed{\text{matrix-corona rigidity: }u\sim_2 1}
+ \qquad\text{and}\qquad
+ \boxed{\text{Clifford model: }u^2=-1.}
+\]
+Here is the rigidity half in its conceptual form.  Let $P$ be the spectral
+projection onto the $\Lambda$-fixed vectors for the adjoint representation in
+the Hilbert--Schmidt matrix corona.  Property~\textup{(T)} makes this one
+projection exist uniformly.  One-sided compression gives
+\[
+ P\le \Theta(t)P\Theta(t)^*.
+\]
+The two projections are unitarily equivalent, and a norm-matrix corona is
+finite.  Hence
+\[
+ \boxed{P=\Theta(t)P\Theta(t)^*.}
+\]
+The vector represented by $\Theta(c)$ is $\Lambda$-fixed because $c$
+centralizes $\Lambda$.  The boxed equality says that its $t$-translate,
+represented by $\Theta(d)$, is fixed as well.  Therefore every compression
+defect $[d,\iota(\lambda)]$ tends to the identity in normalized
+Hilbert--Schmidt norm.  This is the Kazhdan-pinning lemma
+(Lemma~\ref{lem:compressorcollapse}).
 
-\begin{enumerate}
-  \item\emph{Finite-group averaging.}  From a coordinate model nontrivial on a
-    finite normal subgroup $F$, form the coordinate averages
-    $A_n=|F|^{-1}\sum_{f\in F}U_{f,n}$.  Hermitianize and spectrally round
-    them, then retain the complementary nonzero spectral blocks.
-  \item\emph{Compression and polar repair.}  Normality of $F$ makes the
-    rounded projections asymptotically central.  Principal compression
-    therefore preserves multiplication up to vanishing operator-norm error;
-    its Gram defects vanish, and polar correction gives honest unitary
-    matrices without changing the asymptotics (Lemma~\ref{lem:corner}).
-  \item\emph{Vanishing finite sum.}  On the complementary blocks the
-    Reynolds averages vanish asymptotically.  Consequently the repaired
-    matrices satisfy
-    \[
-      \opnorm{\sum_{f\in F}V_{f,n}}\longrightarrow0.
-    \]
-  \item\emph{Property-\textup{(T)} spectral projection.}  A finite-stage
-    spectral projection for the adjoint microstates of $\Gamma$ is almost
-    contained in its $t$-translate.  The two projections have equal rank, so the complementary
-    block estimate reverses the containment.  This forces every generator
-    $[tct^{-1},\iota(\lambda)]$ to be Hilbert--Schmidt trivial
-    (Lemma~\ref{lem:compressorcollapse}).
-  \item\emph{Contradiction.}  In a tracial matrix ultraproduct the whole
-    normal closure, hence $F$, is trivial.  A cofinal diagonal extraction
-    makes every $V_{f,n}$ Hilbert--Schmidt close to $V_{1,n}$, contradicting
-    the vanishing finite sum from step (3) (Section~\ref{sec:proofA}).
-\end{enumerate}
+The short passage from Hilbert--Schmidt pinning to an exact corona statement
+is the Reynolds-corner argument.  If a corona homomorphism were nontrivial on
+a finite normal subgroup $F$ contained in the normal closure of the defects,
+form in the quotient
+\[
+ p=\frac1{|F|}\sum_{f\in F}\Theta(f),\qquad q=1-p.
+\]
+Then $q\ne0$, and in the corner $q\mathcal Qq$ the Reynolds sum is exactly
+zero.  For unitary coordinate lifts $V_{g,n}$, the set
+\[
+ K=\{g:\lVert V_{g,n}-1\rVert_2\longrightarrow0\}
+\]
+is normal.  Kazhdan pinning puts all compression defects in $K$, hence puts
+$F$ in $K$.  Thus
+\[
+ \sum_{f\in F}V_{f,n}\longrightarrow |F|1
+ \quad\text{in }\lVert\cdot\rVert_2,
+ \qquad
+ \sum_{f\in F}V_{f,n}\longrightarrow0
+ \quad\text{in }\lVert\cdot\rVert,
+\]
+an immediate contradiction.
 
-Figure~\ref{fig:mechanism} shows where the two halves of the proof meet.
-The upper lane is purely group-theoretic; the lower lane is the
-finite-matrix rigidity input.  Their common output is incompatible with the
-complementary finite-group corner.
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[node distance=12mm and 7mm,
-    figbox/.append style={text width=3.25cm, minimum height=15mm}]
-  \node[figbox] (pattern) {Kazhdan pattern\\
-    $t\iota(\Lambda)t^{-1}\subseteq\iota(\Lambda)$,\\
-    $[c,\iota(\Lambda)]=1$};
-  \node[figbox, right=of pattern] (defect) {transported root\\
-    $d=tct^{-1}$; defect\\
-    $N_{\rm comp}=\langle\!\langle[d,\iota(\lambda)]\rangle\!\rangle$};
-  \node[figbox, right=of defect] (finite) {$F\triangleleft H$ finite\\
-    and $F\le N_{\rm comp}$};
-
-  \node[figbox, below=of pattern] (kazhdan) {finite-stage Kazhdan\\
-    spectral cuts $P_n$ for\\ the adjoint microstates};
-  \node[figbox, right=of kazhdan] (pin) {one-sided leakage and\\
-    equal ranks force\\ $\lVert P_n-R_n\rVert\to0$};
-  \node[figbox, right=of pin] (collapse) {every $[d,\iota(\lambda)]$\\
-    tends to $1$ in\\ normalized HS norm};
-
-  \node[figout, text width=4.2cm, anchor=north east] (contradiction)
-    at ($(collapse.south east)+(0,-10mm)$)
-    {on the complementary\\ finite-group corner\\
-     $\lVert\sum_{f\in F}V_{f,n}\rVert\to0$, while\\
-     each $V_{f,n}$ tends to $V_{1,n}$};
-
-  \draw[figarr] (pattern) -- (defect);
-  \draw[figarr] (defect) -- (finite);
-  \draw[figarr] (pattern) -- node[fignote, right=2pt] {property~(T)}
-    (kazhdan);
-  \draw[figarr] (kazhdan) -- (pin);
-  \draw[figarr] (pin) -- (collapse);
-  \draw[figarr] (defect.south) -- ++(0,-4.5mm) -| (collapse.north);
-  \draw[figarr] (finite.east) -- ++(4.5mm,0) |- (contradiction.east);
-  \draw[figarr] (collapse.south) -- (collapse.south |- contradiction.north);
-\end{tikzpicture}
-\caption{The finite-normal obstruction.  The upper lane is
-group-theoretic and the lower lane is the finite-matrix rigidity input.
-Property~(T) supplies a uniform spectral cut, and equality of finite ranks
-turns its one-sided leakage estimate into two-sided control.}
-\label{fig:mechanism}
-\end{figure}
+For the literal group, $F=\{1,w\}$ and $w=u^2$ already lies in the normal
+closure of the pinned defects.  Hence every norm-matrix-corona representation
+kills $w$.  The independent Clifford construction sends $w=u^2$ to $-1$,
+so $w\ne1$.  An injective corona representation is therefore impossible.
+That is the entire proof of Theorem~\ref{thm:A}.  The coordinatewise spectral
+cuts, polar repair, and rank estimates later in the paper are the
+kernel-checkable finite-stage realization of the single projection equality
+above.
 
 Nontriviality of $w$ is witnessed by a completely explicit
 representation of $E$ into a semidirect product of a Clifford group by a
@@ -377,7 +356,7 @@ consequences.  The principal $C^*$-algebraic application is:
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
 \subsection*{What this paper does not prove}

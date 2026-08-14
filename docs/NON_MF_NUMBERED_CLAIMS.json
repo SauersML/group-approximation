@@ -29,7 +29,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "non-MF group",
-      "statement_sha256": "546caf80b6ede229947437119691230542a9ead187f39a321cb7ccba3fb78ad6",
+      "statement_sha256": "797d72b69f2d2edad49cb7d4d8630253f81d5d0922fdbc7b5d055c6941660a69",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -48,7 +48,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
+          "module": "Sofic/ConceptualNonMFProof",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
         }
@@ -114,7 +114,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
+          "module": "Sofic/ConceptualNonMFProof",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
           "covers": "the complete printed proposition"
         }

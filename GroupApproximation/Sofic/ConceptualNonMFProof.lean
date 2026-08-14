@@ -1,4 +1,3 @@
-import GroupApproximation.Sofic.P13ExactStagedCertificate
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.CompressionDefectSquare
@@ -41,8 +40,7 @@ certificate descends through the checked P13 rotation quotient and the
 intrinsic affine bridge. -/
 theorem literalBase_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Base :=
-  LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT_of_p13
-    LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT
+  LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
 
 /-- The marked Kazhdan-compression datum with its property-`(T)` premise
 already discharged. -/

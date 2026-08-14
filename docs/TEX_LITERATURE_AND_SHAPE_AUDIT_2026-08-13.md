@@ -4,24 +4,15 @@ This note records the manuscript-facing audit of `non_mf_groups_exist.tex`.
 It distinguishes mathematical claims from the scope of their current formal
 counterparts.  It is not part of the manuscript.
 
-## Blocking proof-shape mismatch
+## Former proof-shape mismatch: resolved
 
 The printed group `E` uses the literal twenty-relator affine-base
-presentation.  The paper proves that this presentation is the classical
-group `Z^3 ⋊ SL_3(Z)` by the CRW presentation and direct matrix checks, then
-uses property (T) of that classical group.  The current unconditional formal
-non-MF endpoint instead uses a noncomputably chosen finitely presented Shalom
-cover.  The literal formal endpoint still requires either property (T) of the
-raw presented base or an exact rational sum-of-squares certificate.  Thus the
-main theorem and its literal downstream consequences are not yet in 1:1
-correspondence.  A link from an unconditional printed theorem to one of those
-premise-parametrized declarations is misleading and should remain absent
-until the premise is discharged internally.
-
-Affected printed consequences include the non-MF assertion for the literal
-`E`, its full and reduced group C-star algebras, quotient nonclosure via
-`F_8 -> E`, non-MF-ness of the explicit witness group `W`, portability from
-the literal word, and the literal marked cylinder.
+presentation.  The exact staged P13 certificate now proves property (T) of
+that raw presentation through checked quotient and intrinsic affine bridges.
+Consequently the literal group, marked word, and its full and reduced group
+C-star conclusions correspond directly to the zero-input declarations in
+`ConceptualNonMFProof.lean`.  The independent Shalom-cover witness remains a
+separate theorem and is not used to certify the printed literal group.
 
 ## Presentation findings
 

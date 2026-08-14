@@ -1,4 +1,5 @@
 import Mathlib.Data.Fintype.Card
+import Mathlib.Data.Finset.Prod
 
 /-!
 # The robust paired-quotient floor after permutation repair
@@ -60,10 +61,8 @@ theorem oneSet_subset_oneSet_union_changedPairs
     · apply Finset.mem_union_left
       simpa [oneSet, hR, hL] using hp
     · apply Finset.mem_union_right
-      apply Finset.mem_union_right
       simp [changedPairs, disagreementSet, hL]
   · apply Finset.mem_union_right
-    apply Finset.mem_union_left
     simp [changedPairs, disagreementSet, hR]
 
 /-- A row repair on `dV` labels and a column repair on `dW` labels changes at
@@ -85,7 +84,12 @@ theorem card_oneSet_repaired_le
     _ ≤ (oneSet pair R L).card +
         ((disagreementSet R Rbar).product (Finset.univ : Finset W)).card +
           ((Finset.univ : Finset V).product (disagreementSet L Lbar)).card := by
-      exact Nat.add_le_add_left (Finset.card_union_le _ _) _
+      simpa [changedPairs, Nat.add_assoc] using
+        Nat.add_le_add_left
+          (Finset.card_union_le
+            ((disagreementSet R Rbar).product (Finset.univ : Finset W))
+            ((Finset.univ : Finset V).product (disagreementSet L Lbar)))
+          (oneSet pair R L).card
     _ = (oneSet pair R L).card +
         (disagreementSet R Rbar).card * Fintype.card W +
           Fintype.card V * (disagreementSet L Lbar).card := by
@@ -109,7 +113,24 @@ theorem robust_floor_of_permutation_repairs
       2 * (oneSet pair R₀ L₁).card + 8 * e₀₀ + 8 * e₁₁ := by
   have htable := card_oneSet_repaired_le pair R₀ Rbar₀ L₁ Lbar₁
   rw [hV, hW] at htable
-  omega
+  calc
+    N * (N - 1) = 2 * (oneSet pair Rbar₀ Lbar₁).card :=
+      hperfectCount.symm
+    _ ≤ 2 * ((oneSet pair R₀ L₁).card +
+        (disagreementSet R₀ Rbar₀).card * N +
+          N * (disagreementSet L₁ Lbar₁).card) :=
+      Nat.mul_le_mul_left 2 htable
+    _ = 2 * (oneSet pair R₀ L₁).card +
+        2 * (N * (disagreementSet R₀ Rbar₀).card) +
+          2 * (N * (disagreementSet L₁ Lbar₁).card) := by
+      simp [Nat.mul_add, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+    _ ≤ 2 * (oneSet pair R₀ L₁).card +
+        2 * (4 * e₀₀) + 2 * (4 * e₁₁) := by
+      exact Nat.add_le_add
+        (Nat.add_le_add_left (Nat.mul_le_mul_left 2 hR) _)
+        (Nat.mul_le_mul_left 2 hL)
+    _ = 2 * (oneSet pair R₀ L₁).card + 8 * e₀₀ + 8 * e₁₁ := by
+      simp [Nat.mul_assoc]
 
 end RobustPairedQuotient
 end GroupApproximation

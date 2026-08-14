@@ -85,9 +85,10 @@ known raw/comb properly infinite packet remains live.
 rotation presentation is the matrix-labelled CRW presentation of
 `SL_3(Z)`.  Classical property `(T)` and the checked intrinsic affine bridge
 therefore discharge the property-(T) hypothesis in the paper proof of the
-literal non-MF example.  The proposed `P13` Hodge certificate is unnecessary
-for that mathematical argument.  It remains a kernel boundary because Lean
-does not import a published presentation theorem as an axiom.
+literal non-MF example.  The staged `P13` Hodge certificate is unnecessary
+for that human argument but now supplies the kernel proof: Lean checks its
+exact rational residual blocks and transports the result through the literal
+quotient and affine bridge without importing a published theorem as an axiom.
 
 This does not advance the same marked word toward nonhyperlinearity.  The
 finite coset-tower model in `TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` sends
@@ -98,6 +99,26 @@ cannot supply the missing flexible-HS stability input in
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.  The live
 hyperlinear gate remains coefficient/multiplicity recovery, not the base
 property-(T) certificate.
+
+### Retired eight-lamp spin note: keep only the future gate
+
+The former root manuscript `nonhyperlinear_spin_reduction.tex` has been
+removed from the main project because it was a reduction and stopping theorem,
+not an unconditional nonhyperlinear endpoint.  Two proved lessons remain
+useful for future work:
+
+- in a hypothetical trace-preserving model with the central mark equal to
+  `-1`, the eight affine-coset lamps generate the canonical spin factor
+  `Cl_8(C) ≅ M_16(C)`, leaving an inverse-projective coefficient action;
+- regular tensor amplification preserves that spin packet while forcing the
+  ordinary normalized low-spectral adjoint rank to vanish, so a
+  positive-density argument from the fixed `M_16` factor cannot close the
+  problem.
+
+The viable future gate is therefore a relative or center-valued multiplicity
+invariant compatible with the HNN letter, or a simultaneous
+coordinate-commutant recovery theorem stronger than ordinary spectral-gap
+recovery.  None of this is used by the unconditional non-MF proof.
 
 ### 2026-08-13: differential audit from non-MF to nonhyperlinearity
 

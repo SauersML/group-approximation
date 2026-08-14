@@ -219,6 +219,16 @@ jobs:
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
 
+      # The finite P13 tables are committed Lean source, but their discovery
+      # inputs and emitters are committed too.  Regenerate into a temporary
+      # directory and compare before Lean sees the certificate, so neither a
+      # stale generator nor hand-edited generated data can pass unnoticed.
+      - name: Install the pinned P13 generator runtime
+        run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
+
+      - name: Replay the exact P13 source generators
+        run: python3 scripts/check_p13_generated.py
+
       # Source text: forbidden constructs, and the root import closure.  Runs
       # before the build because it is instant, and because the orphan-module
       # check is the one finding a green build actively conceals: `lake build`
@@ -255,8 +265,11 @@ jobs:
             --check-decls \
             --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
             --require-verified \
-              Sofic/LiteralNonMFEndpoint \
+              Sofic/ConceptualNonMFProof \
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+            --require-verified \
+              Sofic/ConceptualNonMFProof \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
             --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \

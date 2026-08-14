@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.LiteralBaseP13RotationQuotient
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
+import GroupApproximation.Sofic.P13ExactStagedCertificate
 
 /-!
 # Property (T) transfer from P13 to the literal affine base
@@ -24,6 +25,13 @@ theorem base_hasKazhdanPropertyT_of_p13
   apply base_hasKazhdanPropertyT_of_rotation
   exact HasKazhdanPropertyT.of_surjective p13ToRotation
     p13ToRotation_surjective hP13
+
+/-- The literal twenty-relator affine base has property `(T)`, with the exact
+P13 certificate and every transfer premise discharged inside the kernel. -/
+theorem manuscriptBaseHasKazhdanPropertyT :
+    HasKazhdanPropertyT.{0, 0} Base :=
+  base_hasKazhdanPropertyT_of_p13
+    LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT
 
 end LiteralBaseP13PropertyTBridge
 end GroupApproximation

@@ -93,9 +93,11 @@ The formal headline is definitionally the same eight-generator presentation
 and marked word as the manuscript. The affine--Clifford nontriviality witness,
 exact P13 tables and relator replays, the rotation quotient, the intrinsic
 property-(T) bridge, Kazhdan pinning, and the finite-normal obstruction are
-joined in the current source by
-`LiteralNonMFEndpoint.manuscriptTheoremA`. The shorter reading interface is
-`Sofic/ConceptualNonMFProof.lean`; the quantitative modules remain its backend.
+joined by the zero-input declarations
+`LiteralNonMFEndpoint.manuscriptTheoremA` and
+`LiteralNonMFEndpoint.manuscriptTheoremD` in
+`Sofic/ConceptualNonMFProof.lean`; the quantitative modules remain their
+backend.
 A revision is described as formally complete only after the headline theorem,
 all exact wrappers, the signature roster, source scan, kernel audit, and fresh
 replay pass at one commit.

@@ -70,9 +70,10 @@ than a list of files that happen to compile.
   `support`; proved target-model equivalences are labeled `equiv`; effective
   consequences that still require a supplied transformation are labeled
   `conditional`.
-- Theorem C is labeled partial, and Theorem D has only its faithful-trace and
-  matrix-finiteness components labeled.  Neither inherits a nonexistent
-  literal Theorem A badge.
+- Theorem D is now a single zero-input declaration combining separability,
+  the canonical faithful trace, stable finiteness of every finite matrix
+  amplification, and failure of MF for the literal reduced group C-star
+  algebra.  Its badge points directly to that declaration.
 
 ## Effectivity and external constructions
 
@@ -88,16 +89,12 @@ than a list of files that happen to compile.
 
 ## Remaining work that is not being mislabeled as complete
 
-1. Prove property `(T)` of the literal rotation presentation, either by a
-   complete isomorphism with the intended matrix group or by a checked
-   certificate.  The affine bridge then proves property `(T)` of the literal
-   base; only after that can a literal Theorem A wrapper exist.
-2. Formalize the Fournier--Facio/Hull acylindrical small-cancellation existence
+1. Formalize the Fournier--Facio/Hull acylindrical small-cancellation existence
    theorems before asserting the torsion-free main theorem unconditionally in
    Lean.
-3. A future single-source generator for the long TeX and Lean relator lists
+2. A future single-source generator for the long TeX and Lean relator lists
    would reduce transcription risk.  The current release instead keeps the
    literal relator proof package and does not claim generated identity.
-4. Reproducible release artifacts should include a clean remote build log,
+3. Reproducible release artifacts should include a clean remote build log,
    axiom audit, source commit, and archive checksum.  These are release-process
    tasks, not mathematical theorems.

@@ -144,7 +144,28 @@ are one because both families of atomic projections sum to the identity.
 No choice of bases inside the atoms and no rounding to a single permutation
 is required.
 
-## 5. Gain for the hyperlinear program
+## 5. Formalization status
+
+`GroupApproximation/Leavitt/RobustPairedQuotientFloor.lean` now formalizes
+the gauge-free table endpoint after permutation repair.  Its main theorem,
+`robust_floor_of_permutation_repairs`, proves the exact integer inequality
+
+```text
+N(N-1) <= 2 e01 + 8 e00 + 8 e11,
+```
+
+from the two repair bounds `N*dR <= 4*e00`, `N*dL <= 4*e11` and the perfect
+pairing one-count.  The supporting theorem
+`card_oneSet_repaired_le` kernel-checks the dimension-free fact that changing
+`dR` rows and `dL` columns changes at most `N*dR+N*dL` table entries.
+
+The file intentionally does not assume that this is the whole robust theorem.
+The fiber-collision argument producing the two permutation repairs from the
+diagonal mismatch counts remains to be formalized.  Keeping that premise
+visible prevents the matrix-coordinate extraction gate from being confused
+with a completed nonhyperlinearity proof.
+
+## 6. Gain for the hyperlinear program
 
 The previous robust-radical gate asked for a normalized complex Fourier
 unitary, near-bijective arrows, removal of two trivial modes, invariance of
