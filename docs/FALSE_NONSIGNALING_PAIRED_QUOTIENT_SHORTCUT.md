@@ -114,4 +114,9 @@ Cartan.  Marginal consistency, perfect pairing values, and tree gluing alone
 cannot close the hyperlinearity argument.
 
 This is a mathematical no-go result, not a computational observation.  It
-was added source-first without running a local or MSI build.
+has also been encoded for the smallest case `V=W=F_2^2` in
+`GroupApproximation/Leavitt/FiniteNoSignalingPairingBox.lean`.  The theorem
+`exists_exact_three_context_pairing_box` packages the two exact diagonal
+laws, the crossed-zero law, their common marginals, and their support
+conditions.  This source was added without running a local or MSI build, so
+kernel checking is deliberately deferred rather than claimed.

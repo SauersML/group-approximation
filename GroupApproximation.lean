@@ -495,6 +495,7 @@ import GroupApproximation.KOne.FactorizationCertificate
 import GroupApproximation.KOne.PaperStatements
 import GroupApproximation.Leavitt.FiniteTypeCountable
 import GroupApproximation.Leavitt.FiniteOutcomeCoarsening
+import GroupApproximation.Leavitt.FiniteNoSignalingPairingBox
 import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg
