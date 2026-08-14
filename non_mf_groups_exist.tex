@@ -1132,12 +1132,12 @@ $*$-homomorphism $e\colon\Cred(E)\to\mathcal Q$ would give the injective
 unitary homomorphism $u\mapsto e(u)+(1-e(1))$.  Composing it with the
 canonical map $E\to\U(\Cred(E))$, and then with
 $\kappa_{(d_n)}^{-1}$, would exhibit an injective corona representation of
-  $E$: the map $g\mapsto\lambda_g$ is injective.  The canonical map
-  $E\to\U(\Cmax(E))$ is injective as well, because coordinate evaluation at
-  the reduced left-regular representation sends $u_g$ to $\lambda_g$.
-  Thus an MF embedding of $\Cmax(E)$ would again produce an
-  injective corona representation of $E$ after the same
-  $\kappa_{(d_n)}^{-1}$ conversion.
+$E$: the map $g\mapsto\lambda_g$ is injective.  The canonical map
+$E\to\U(\Cmax(E))$ is injective as well, because the left regular
+representation factors through $\Cmax(E)$ and sends $u_g$ to $\lambda_g$.
+Thus an MF embedding of $\Cmax(E)$ would again produce an
+injective corona representation of $E$ after the same
+$\kappa_{(d_n)}^{-1}$ conversion.
 \end{proof}
 
 \paragraph{The marked radical element.}
@@ -1251,8 +1251,12 @@ flip supplies the reverse estimate.  This is the route used below.
 
 \section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
 
-The corona half of Theorem~\ref{thm:A} will be deduced from a general
-criterion, whose data we now fix.
+Theorem~\ref{thm:A} is already proved.  This section establishes the
+general finite-normal obstruction behind it, together with the
+ultrafilter-free coordinate estimates that the formal development checks
+end-to-end; a reader content with the ultraproduct proof of
+Theorem~\ref{thm:kazhdan-transport} may treat this section as an
+effective second pass.  We fix the data of the criterion.
 
 \begin{definition}[marked Kazhdan pattern]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{marked Kazhdan pattern} in $H$
