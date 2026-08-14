@@ -202,14 +202,26 @@ Neumann algebra and every positive finite-subgroup Hecke corner are Connes
 embeddable.  Such a corner cannot contain a trace-preserving copy of the
 chosen non-CE BCS algebra.
 
+There is a stronger permanence firewall.  Hyperlinear groups are closed
+under amalgamated free products over amenable subgroups; the corresponding
+HNN statement follows from the same embeddable amalgamated-free-product
+machinery.  See Brown--Dykema--Jung,
+[Free entropy dimension in amalgamated free products](https://arxiv.org/abs/math/0609080).
+Iterating along a finite graph shows that a graph of hyperlinear vertex
+groups with amenable edge groups is again hyperlinear.  Therefore replacing
+some finite predicate gadgets by already-hyperlinear infinite vertices does
+not help.  A Bass--Serre construction could escape only by inserting an
+already nonhyperlinear vertex, or by using a nonamenable edge where the
+required trace control is itself a new hard theorem.
+
 Hence the local construction cannot be completed by ordinary one-dimensional
 Bass--Serre gluing of finite gadgets.  A successful realization must use at
 least one of:
 
 1. genuinely higher-dimensional compatibility relations, such as a
    developable complex of groups;
-2. an infinite vertex/coefficient group together with a separately proved
-   canonical-trace theorem; or
+2. a nonamenable-edge or non-Bass--Serre coefficient construction together
+   with a separately proved canonical-trace theorem; or
 3. non-group Hecke data followed by a new groupification theorem.
 
 The first option is the one closest to the existing Steinberg/Leavitt atlas:

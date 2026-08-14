@@ -78,6 +78,13 @@ CE.  Any successful corner compiler must introduce genuinely
 higher-dimensional compatibility/holonomy or an infinite coefficient group;
 a tree of finite predicate gadgets cannot carry the non-CE trace.
 
+The firewall extends to infinite pieces: hyperlinear groups are closed under
+amalgamated free products and HNN extensions over amenable subgroups.  Hence
+a finite graph of hyperlinear vertex groups with amenable edges is still
+hyperlinear.  Merely replacing a finite predicate vertex by an infinite
+hyperlinear gadget cannot work; the escape must be higher-dimensional or
+must introduce nonamenable gluing with genuinely new trace control.
+
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
 `FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the
