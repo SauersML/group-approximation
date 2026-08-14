@@ -6,6 +6,29 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: fixed density removes the decoder's corner-normalization gate
+
+`TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md` corrects a small but
+important quantifier in the finite-multiplicity decoder.  A merely nonzero
+matrix corner is not quantitatively useful: normalized corner error is the
+ambient normalized-HS error divided by the square root of the corner trace.
+For the existing Pauli packet the initial cut has canonical trace `1/8`.
+Consequently the local `2-sqrt(3)` Leavitt floor is already the ambient floor
+
+```text
+(2-sqrt(3))/sqrt(8)>0.
+```
+
+The missing decoder can therefore be stated without renormalized-corner
+estimates: recover the four contractions in the exactified trace-`1/8`
+corner and make the three **ambient** product defects tend to zero.  This
+also explains why the fixed Pauli packet should be attempted before a
+growing Heisenberg-character sector: a vanishing sector would require the
+extra rate `error=o(sqrt(corner trace))` or a positive-mass selection
+theorem.  The terminal contradiction and its constants were already
+formalized; common-coordinate coefficient extraction remains the only new
+mathematical gate.
+
 ### 2026-08-14: a phase-safe toric gap would be enough
 
 `TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` proves a broader exact
