@@ -6,6 +6,26 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: finite normal generation does not give a uniform atlas repair
+
+`FALSE_ATLAS_KERNEL_BOUNDED_NORMAL_WIDTH.md` closes the shortcut that tried
+to propagate the finite atlas-relator defect to every dimension-dependent
+coefficient word with one uniform telescoping constant.  The source
+`P=A8*A8` is non-elementary virtually free and its nontrivial kernel
+`N=[P,R]` acts non-elementarily on the Bass--Serre tree.  A homogeneous
+Bestvina--Fujiwara quasimorphism is nonzero on `N`.  Since such a
+quasimorphism is conjugation invariant and grows linearly on powers, the
+number of conjugates of any fixed finite normal-generating set required to
+express elements of `N` is unbounded.
+
+The quotient's normal-width-two survivor theorem is therefore irrelevant to
+kernel area.  The paired-radical extraction cannot request relations whose
+word decompositions depend on the coordinate dimension and then appeal only
+to finite normal generation.  A successful proof must control the carrier
+by a fixed analytic cross-root estimate, without paying dimension-dependent
+normal area.  The quantitative quasimorphism/product bound is formalized
+source-first in `Monsters/TwoConjugacyClasses.lean`; no build was run.
+
 ### 2026-08-14: `(TT)/T` does not cross the growing-dimension HS gate
 
 `FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md` audits the strongest

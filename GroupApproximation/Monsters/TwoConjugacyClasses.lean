@@ -17,6 +17,8 @@ mathematical hypothesis and derives, with no theorem-shaped callback:
   powers;
 * every conjugation-invariant real function is constant off the identity, so
   every conjugation-invariant norm is bounded and stably zero;
+* a quantitative obstruction from homogeneous quasimorphisms to bounded
+  products of signed conjugates;
 * every homogeneous quasimorphism vanishes identically.
 
 The quasimorphism argument is the only one with any content.  Homogeneous
@@ -152,6 +154,109 @@ quasimorphism machinery rather than by unfolding: the definition is
 satisfiable, and the two witnesses above compose. -/
 theorem isConjInvariant_zero : IsConjInvariant (fun _ : G => (0 : ℝ)) :=
   isConjInvariant_of_quasimorphism isQuasimorphism_zero isHomogeneous_zero
+
+/-! ### Quasimorphisms obstruct bounded normal width -/
+
+/-- An element is a signed conjugate of a member of `S`.  Allowing the
+inverse is the convention used for normal-generation length. -/
+def IsSignedConjugate (S : Set G) (x : G) : Prop :=
+  ∃ s ∈ S, IsConj x s ∨ IsConj x s⁻¹
+
+/-- A homogeneous quasimorphism has the same absolute value on every signed
+conjugate of an element. -/
+theorem abs_le_of_isSignedConjugate {q : G → ℝ} {D M : ℝ}
+    (hq : IsQuasimorphism q D) (hh : IsHomogeneous q)
+    {S : Set G} (hS : ∀ s ∈ S, |q s| ≤ M) {x : G}
+    (hx : IsSignedConjugate S x) : |q x| ≤ M := by
+  have hconj := isConjInvariant_of_quasimorphism hq hh
+  obtain ⟨s, hs, hxs | hxs⟩ := hx
+  · rw [hconj x s hxs]
+    exact hS s hs
+  · rw [hconj x s⁻¹ hxs, homogeneous_inv hh, abs_neg]
+    exact hS s hs
+
+/-- The defect accumulates at most linearly along a finite product.  This is
+the quantitative estimate behind the normal-width obstruction below. -/
+theorem abs_list_prod_le_of_quasimorphism {q : G → ℝ} {D M : ℝ}
+    (hq : IsQuasimorphism q D) (hh : IsHomogeneous q)
+    (hD : 0 ≤ D) (hM : 0 ≤ M) (xs : List G)
+    (hxs : ∀ x ∈ xs, |q x| ≤ M) :
+    |q xs.prod| ≤ (xs.length : ℝ) * (M + D) := by
+  induction xs with
+  | nil => simp [homogeneous_one hh]
+  | cons x xs ih =>
+      have hx : |q x| ≤ M := hxs x (by simp)
+      have htail : ∀ y ∈ xs, |q y| ≤ M := by
+        intro y hy
+        exact hxs y (by simp [hy])
+      have hi := ih htail
+      have hdef := hq x xs.prod
+      have htriangle :
+          |q (x * xs.prod)| ≤
+            |q (x * xs.prod) - q x - q xs.prod| + |q x| + |q xs.prod| := by
+        calc
+          |q (x * xs.prod)| =
+              |(q (x * xs.prod) - q x - q xs.prod) + (q x + q xs.prod)| := by
+                congr 1
+                ring
+          _ ≤ |q (x * xs.prod) - q x - q xs.prod| + |q x + q xs.prod| :=
+                abs_add _ _
+          _ ≤ |q (x * xs.prod) - q x - q xs.prod| + (|q x| + |q xs.prod|) :=
+                add_le_add_left (abs_add _ _) _
+          _ = |q (x * xs.prod) - q x - q xs.prod| + |q x| + |q xs.prod| := by
+                ring
+      rw [List.prod_cons]
+      calc
+        |q (x * xs.prod)| ≤
+            |q (x * xs.prod) - q x - q xs.prod| + |q x| + |q xs.prod| :=
+              htriangle
+        _ ≤ D + M + (xs.length : ℝ) * (M + D) := by gcongr
+        _ = ((x :: xs).length : ℝ) * (M + D) := by
+              simp only [List.length_cons, Nat.cast_add, Nat.cast_one]
+              ring
+
+/-- Products of signed conjugates satisfy the same linear bound, because a
+homogeneous quasimorphism is conjugation invariant and changes sign under
+inversion. -/
+theorem abs_list_prod_le_of_signedConjugates {q : G → ℝ} {D M : ℝ}
+    (hq : IsQuasimorphism q D) (hh : IsHomogeneous q)
+    (hD : 0 ≤ D) (hM : 0 ≤ M) {S : Set G}
+    (hS : ∀ s ∈ S, |q s| ≤ M) (xs : List G)
+    (hxs : ∀ x ∈ xs, IsSignedConjugate S x) :
+    |q xs.prod| ≤ (xs.length : ℝ) * (M + D) := by
+  apply abs_list_prod_le_of_quasimorphism hq hh hD hM xs
+  intro x hx
+  exact abs_le_of_isSignedConjugate hq hh hS (hxs x hx)
+
+/-- If a homogeneous quasimorphism is nonzero on `g`, then no fixed number
+of signed conjugates from a uniformly `q`-bounded set can represent all
+powers of `g`.  This is the reusable obstruction to bounded normal width. -/
+theorem signedConjugate_length_unbounded_on_powers
+    {q : G → ℝ} {D M : ℝ} (hq : IsQuasimorphism q D)
+    (hh : IsHomogeneous q) (hD : 0 ≤ D) (hM : 0 ≤ M)
+    {S : Set G} (hS : ∀ s ∈ S, |q s| ≤ M)
+    {g : G} (hg : q g ≠ 0) (C : ℕ) :
+    ∃ k : ℕ, ∀ xs : List G,
+      xs.prod = g ^ k →
+      (∀ x ∈ xs, IsSignedConjugate S x) →
+      C < xs.length := by
+  have hqpos : 0 < |q g| := abs_pos.mpr hg
+  have hMD : 0 ≤ M + D := add_nonneg hM hD
+  obtain ⟨k, hk⟩ := exists_nat_gt ((C : ℝ) * (M + D) / |q g|)
+  refine ⟨k, fun xs hprod hxs ↦ ?_⟩
+  by_contra hnot
+  have hlen : xs.length ≤ C := Nat.le_of_not_gt hnot
+  have hbound := abs_list_prod_le_of_signedConjugates
+    hq hh hD hM hS xs hxs
+  have hhom : q (g ^ k) = (k : ℝ) * q g := by
+    simpa using hh (k : ℤ) g
+  rw [hprod, hhom, abs_mul, abs_of_nonneg (Nat.cast_nonneg k)] at hbound
+  have hupper : (xs.length : ℝ) * (M + D) ≤ (C : ℝ) * (M + D) := by
+    gcongr
+    exact_mod_cast hlen
+  have hlower : (C : ℝ) * (M + D) < (k : ℝ) * |q g| := by
+    rwa [div_lt_iff₀ hqpos] at hk
+  linarith
 
 namespace HasTwoConjugacyClasses
 
