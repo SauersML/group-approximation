@@ -50,15 +50,16 @@ theorem pushforwardWeight_isProbability
 
 /-- Push a joint law through one deterministic decoder on each side. -/
 def pushforwardPairWeight
-    {Y B : Type*} [Fintype Y] [Fintype B] [DecidableEq B]
+    {Y B : Type*} [Fintype Y] [DecidableEq B]
     (μ : X → Y → ℝ) (decodeA : X → A) (decodeB : Y → B) :
     A → B → ℝ :=
   fun a b ↦ pushforwardWeight
     (fun p : X × Y ↦ μ p.1 p.2)
     (fun p : X × Y ↦ (decodeA p.1, decodeB p.2)) (a, b)
 
+omit [Fintype A] in
 theorem pushforwardPairWeight_nonnegative
-    {Y B : Type*} [Fintype Y] [Fintype B] [DecidableEq B]
+    {Y B : Type*} [Fintype Y] [DecidableEq B]
     (μ : X → Y → ℝ) (decodeA : X → A) (decodeB : Y → B)
     (hμ : ∀ x y, 0 ≤ μ x y) :
     ∀ a b, 0 ≤ pushforwardPairWeight μ decodeA decodeB a b := by
@@ -74,7 +75,7 @@ theorem sum_pushforwardPairWeight
     (μ : X → Y → ℝ) (decodeA : X → A) (decodeB : Y → B) :
     ∑ a, ∑ b, pushforwardPairWeight μ decodeA decodeB a b =
       ∑ x, ∑ y, μ x y := by
-  simpa only [Fintype.sum_prod_type] using
+  simpa only [pushforwardPairWeight, Fintype.sum_prod_type] using
     (sum_pushforwardWeight
     (fun p : X × Y ↦ μ p.1 p.2)
     (fun p : X × Y ↦ (decodeA p.1, decodeB p.2)))
