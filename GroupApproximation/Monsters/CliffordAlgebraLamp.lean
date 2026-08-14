@@ -43,8 +43,7 @@ formalization.
 
 The mathematical Clifford-sign/shift package has a close predecessor in
 William Slofstra, *A group with at least subexponential hyperlinear profile*,
-arXiv:1806.05267, Section 2.  This implementation was written directly
-against mathlib's `CliffordAlgebra` API; no external Lean source was copied.
+arXiv:1806.05267, Section 2.
 -/
 
 namespace GroupApproximation

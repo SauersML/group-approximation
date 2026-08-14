@@ -5,13 +5,11 @@ import Mathlib.GroupTheory.GroupAction.Defs
 /-!
 # Coordinate reverse transfer: a lamp chart is a coordinate chart
 
-An external referee audit (August 2026) observed that the action-level route to
-hyperlinearity of a generalized wreath product cannot help a candidate whose
-coordinate action is not already sofic, because the lamp data *contains* the
-coordinate data.  This file formalizes that observation.
+The action-level route to hyperlinearity of a generalized wreath product
+cannot help a candidate whose coordinate action is not already sofic, because
+the lamp data *contains* the coordinate data.
 
-The proof in the audit is written against two papers' definitions, but its
-content does not depend on either: it is the remark that if one encodes a
+The proof does not depend on a particular paper's definitions: if one encodes a
 coordinate `x` as the lamp `δ_x(k₀)` for a fixed `k₀ ≠ 1`, then the encoding is
 injective and equivariant, so charts for the lamp action restrict along it to
 charts for the coordinate action, and the covariance identity transports

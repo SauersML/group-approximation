@@ -144,8 +144,8 @@ jobs:
             -halt-on-error -file-line-error build-anon/anon.tex
           test -s build-anon/anon.pdf
           qpdf --qdf --object-streams=disable build-anon/anon.pdf build-anon/anon-qdf.pdf
-          if pdftotext build-anon/anon.pdf - | grep -q 'github.com/SauersML' \
-             || grep -aq 'github.com/SauersML' build-anon/anon-qdf.pdf; then
+          if pdftotext build-anon/anon.pdf - | grep -q 'github.com/' \
+             || grep -aq 'github.com/' build-anon/anon-qdf.pdf; then
             echo "The anonymous build leaks the repository URL." >&2
             exit 1
           fi

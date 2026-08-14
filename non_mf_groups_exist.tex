@@ -21,23 +21,15 @@
   \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
-\newcommand{\paperauthor}{SauersML}
+\newcommand{\paperauthor}{Anonymous}
 % Pinned repository revision for all verification links; the publication workflow
 % replaces `main` by the exact commit hash at build time so that published
 % links are immutable.
 \newcommand{\leancommit}{main}
-\newcommand{\leanversion}{unbuilt}
-\newcommand{\mathlibcommit}{unbuilt}
-\newcommand{\formalizationrevision}{unbuilt}
-\newcommand{\claimmanifesthash}{unbuilt}
-\newcommand{\publicationrun}{unbuilt}
-\newcommand{\paperversion}{1.0.0}
 \hypersetup{
-  pdftitle={An explicit finitely presented operator-corona non-MF group},
+  pdftitle={An explicit finitely presented non-MF group},
   pdfauthor={\paperauthor},
-  pdfsubject={Manuscript \paperversion; formalization \formalizationrevision;
-    toolchain \leanversion; Mathlib \mathlibcommit; claim manifest
-    \claimmanifesthash; publication run \publicationrun},
+  pdfsubject={Explicit finitely presented non-MF groups and matrix coronas},
   pdfkeywords={MF groups, matrix coronas, property (T), Clifford lamps, Kazhdan compression}
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
@@ -99,18 +91,18 @@
 
 \begin{document}
 
-\title{An explicit finitely presented operator-corona non-MF group}
+\title{An explicit finitely presented non-MF group}
 \author{\paperauthor}
 
 \begin{abstract}
-A countable discrete group is CDE-MF (operator-corona MF) if it embeds into
+A countable discrete group is MF here if it embeds into
 the unitary group of a norm matrix corona.  Equivalently, it embeds into the
 metric quotient of a product of finite-dimensional unitary groups by the
 sequences converging to the identity in operator norm.  We construct an explicit
 finitely presented group $E$, together with a designated central involution
 $w\in E$, such that $w\neq 1$ but \emph{every} homomorphism from $E$ to
 the unitary group of any norm matrix corona sends $w$ to $1$.  Thus $E$ is not
-operator-corona MF, and neither its concrete universe-relative maximal nor
+MF, and neither its concrete universe-relative maximal nor
 its reduced group $C^*$-algebra is MF.
 
 The eight-generator presentation contains a literal six-generator base and
@@ -124,10 +116,10 @@ spectral projection, and equality of finite ranks.
 In general, for the resulting one-sided compression pattern, every finite
 normal subgroup $F$ inside the compression-defect normal closure lies in the
 kernel of every corona representation.  Two consequences are that $C^*_{\mathrm{red}}(E)$
-is stably finite but not MF, and that operator-corona MF is not preserved by
+is stably finite but not MF, and that MF is not preserved by
 quotients.  An explicit cyclic-base comparison shows that exact
 finite-dimensional invisibility alone does not force the marked word to be
-trivial.  The operator-corona conclusion is a separate uniform statement;
+trivial.  The MF conclusion is a separate uniform statement;
 here the property-\textup{(T)} step supplies that additional control.
 \end{abstract}
 
@@ -177,12 +169,13 @@ be strictly increasing.
 For the final equivalence, place the $n$th model in the last block of
 dimension $d_0+\cdots+d_n$ and fill the earlier blocks with identities.
 This preserves every defect and distance from the identity.
-Hereafter ``MF'' means this CDE, or operator-corona, property.  It should not
+Hereafter ``MF'' means this equivalent actual-corona/local-operator-norm
+property.  It should not
 be confused with the stronger convention based on reduced-norm convergence
 of asymptotic representations \cite{Schafhauser,GKEMP}, or with strongly PMF,
 where the approximants are genuine finite-dimensional representations
 \cite[Definition~1.2]{MdlS}.  These are genuinely different conventions;
-every assertion below uses only the CDE/operator-corona property.  The
+every assertion below uses only this MF property.  The
 following theorem gives an explicit finitely presented non-MF group.
 
 \begin{mainthm}[non-MF group]\label{thm:A}
@@ -363,7 +356,7 @@ $E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
 
 The quotient statement makes the comparison at the level actually used by
 the proof: exact finite-dimensional invisibility does not by itself force
-triviality of the marked word.  The operator-corona conclusion in
+triviality of the marked word.  The MF conclusion in
 Theorem~\ref{thm:A} is the separate uniform assertion supplied by the
 fixed-space argument.
 
@@ -754,42 +747,52 @@ coefficient $\ell^1$-mass of one block of $R$; both its row and column sums
 are checked.
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[x=7.2mm,y=7.2mm,font=\scriptsize]
+\begin{tikzpicture}[x=6.4mm,y=6.4mm,font=\scriptsize]
+  \node[anchor=west,font=\small\bfseries] at (-1.25,1.45)
+    {Residual block bounds};
   \foreach \i/\lab in {0/12,1/13,2/21,3/23,4/31,5/32} {
-    \node at (-.55,-\i-.5) {$\lab$};
-    \node at (\i+.5,.45) {$\lab$};
+    \node[anchor=east] at (-.18,-\i-.5) {$\lab$};
+    \node at (\i+.5,.30) {$\lab$};
   }
   \foreach \i in {0,...,5} {
     \foreach \j in {0,...,5} {
-      \pgfmathparse{\i==\j ? 62 : 12}
+      \pgfmathparse{\i==\j ? 68 : 10}
       \edef\shade{\pgfmathresult}
-      \fill[black!\shade] (\j,-\i) rectangle +(1,-1);
-      \draw[white,line width=.25pt] (\j,-\i) rectangle +(1,-1);
+      \fill[blue!\shade] (\j,-\i) rectangle +(1,-1);
+      \draw[white,line width=.45pt] (\j,-\i) rectangle +(1,-1);
     }
   }
-  \node[rotate=90] at (-1.25,-3) {row root};
-  \node at (3,1.0) {column root};
-  \node[align=center,anchor=north] at (3,-6.35)
-    {diagonal blocks $\approx1.162\cdot10^{-3}$;\\
-     off-diagonal blocks $<9.3\cdot10^{-7}$};
+  \draw[line width=.55pt] (0,0) rectangle (6,-6);
+  \node[rotate=90,anchor=south] at (-1.0,-3) {row root};
+  \node[anchor=south] at (3,.72) {column root};
+  \node[align=left,anchor=north west,text width=4.5cm] at (-.05,-6.45)
+    {dark diagonal: $1.162\times10^{-3}$ scale\\
+     pale off-diagonal: below $9.3\times10^{-7}$};
 
-  \begin{scope}[xshift=6.45cm,yshift=-.55cm,x=.94cm,y=1cm]
-    \node[anchor=west,font=\small] at (0,1.15) {exact scalar slack};
-    \fill[black!25] (0,0) rectangle (1.51,.55);
-    \fill[black!65] (1.51,0) rectangle (5.2,.55);
-    \draw (0,0) rectangle (5.2,.55);
-    \draw (1.51,0) -- (1.51,.55);
-    \node[anchor=north,align=center] at (.755,-.08)
-      {$\rho\approx0.001167$};
-    \node[anchor=north,align=center] at (3.355,-.08)
-      {$\gamma\approx0.002833$};
-    \node[anchor=south east] at (5.2,.65) {$c=1/250=0.004$};
-    \node[anchor=west] at (0,-1.1) {$\rho+\gamma=c$};
+  \begin{scope}[xshift=6.0cm,yshift=-.9cm,x=.88cm,y=1cm]
+    \node[anchor=west,font=\small\bfseries] at (0,1.15)
+      {Certified gap};
+    \node[anchor=west] at (0,.72) {$c=1/250=0.004$};
+    \fill[orange!42] (0,0) rectangle (1.28,.58);
+    \fill[teal!58] (1.28,0) rectangle (4.4,.58);
+    \draw[line width=.6pt] (0,0) rectangle (4.4,.58);
+    \draw[line width=.6pt] (1.28,0) -- (1.28,.58);
+    \fill[orange!42] (0,-.48) rectangle +(.24,-.24);
+    \node[anchor=west] at (.38,-.60)
+      {$\rho=1.167088652\times10^{-3}$};
+    \fill[teal!58] (0,-1.08) rectangle +(.24,-.24);
+    \node[anchor=west] at (.38,-1.20)
+      {$\gamma=2.832911348\times10^{-3}$};
+    \node[anchor=west,font=\small] at (0,-1.78)
+      {$\rho+\gamma=c$};
+    \node[anchor=west,align=left,text width=4.4cm] at (0,-2.40)
+      {The same $\rho$ bounds every checked row sum and every checked column sum.};
   \end{scope}
 \end{tikzpicture}
-\caption{Anatomy of the rational Hodge certificate.  The qualitative heat
-map distinguishes the scale of the diagonal and off-diagonal residual
-blocks; the bar displays the certified positive slack $\gamma=c-\rho$.}
+\caption{Exact Hodge-certificate scale.  The residual grid distinguishes the
+diagonal and off-diagonal block bounds; the separate bar partitions
+$c=1/250$ into the certified residual radius $\rho$ and positive gap
+$\gamma=c-\rho$.}
 \label{fig:hodge-certificate}
 \end{figure}
 
@@ -1016,7 +1019,7 @@ group via permutation matrices, so it also maps $w$ to the identity.
 \paragraph{Why the corona argument is different.}
 The proof of Theorem~\ref{thm:B} used only that a finite-dimensional
 subspace cannot be properly contained in an isomorphic image of itself.
-An operator-corona model is only asymptotically multiplicative, so its
+An MF model is only asymptotically multiplicative, so its
 fixed spaces are not literal invariant subspaces.  Property~(T) repairs
 this at finite stages: a uniform spectral cut of the adjoint averages
 captures the almost-fixed vectors.  One-sided compression gives a leakage
@@ -1269,33 +1272,40 @@ a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} depicts the geometry.
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[x=.94cm,y=.94cm]
-  \draw[line width=.45pt] (-4.7,-1.75) rectangle (4.7,1.75);
-  \node[anchor=north west,font=\footnotesize] at (-4.55,1.62)
-    {$\mathcal H_n$};
-  \draw[line width=.7pt] (-3.35,-.65) -- (-.8,.12);
-  \draw[line width=.7pt] (-3.05,-.9) -- (-.5,-.13);
-  \node[font=\small,anchor=east] at (-3.38,-.66)
-    {$\operatorname{ran} P_n$};
-  \draw[line width=.7pt] (.8,-.65) -- (3.35,.12);
-  \draw[line width=.7pt] (1.1,-.9) -- (3.65,-.13);
-  \node[font=\small,anchor=west] at (3.42,.14)
-    {$\operatorname{ran} R_n$};
-  \node[font=\footnotesize] at (0,.18) {small leakage};
-  \node[font=\small,align=center] at (0,-1.35)
-    {$\operatorname{rank}P_n=\operatorname{rank}R_n$};
-  \node[font=\scriptsize,align=center,text width=3.3cm] at (-2.25,1.3)
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+  \draw[rounded corners=4pt,line width=.65pt,fill=black!2]
+    (-5.15,-1.75) rectangle (5.15,1.78);
+
+  \node[draw=blue!55!black,rounded corners=3pt,fill=blue!5,
+    inner sep=4pt,font=\footnotesize] at (-2.55,1.32)
     {$\opnorm{(1-R_n)P_n}\to0$};
-  \node[font=\scriptsize,align=center,text width=3.3cm] at (2.25,1.3)
+  \node[draw=teal!55!black,rounded corners=3pt,fill=teal!5,
+    inner sep=4pt,font=\footnotesize] at (2.55,1.32)
     {$\opnorm{(1-P_n)R_n}\to0$};
-  \node[font=\footnotesize] at (0,.72) {equal-rank reversal};
-  \draw[<->,>=Latex,line width=.45pt] (-.7,.46) -- (.7,.46);
+
+  \begin{scope}[shift={(-2.55,-.05)}]
+    \fill[blue!12,draw=blue!65!black,line width=.8pt]
+      (-1.55,-.47) -- (1.42,.30) -- (1.66,.71) -- (-1.31,-.06) -- cycle;
+    \node[fill=white,fill opacity=.86,text opacity=1,inner sep=1.5pt]
+      at (0,.12) {$\operatorname{ran}P_n$};
+  \end{scope}
+  \begin{scope}[shift={(2.55,-.05)}]
+    \fill[teal!14,draw=teal!65!black,line width=.8pt]
+      (-1.52,-.44) -- (1.45,.33) -- (1.68,.74) -- (-1.29,-.03) -- cycle;
+    \node[fill=white,fill opacity=.86,text opacity=1,inner sep=1.5pt]
+      at (0,.12) {$\operatorname{ran}R_n$};
+  \end{scope}
+  \node[draw,rounded corners=3pt,fill=white,inner sep=5pt,
+    align=center,font=\footnotesize] at (0,.42)
+    {$\operatorname{rank}P_n=\operatorname{rank}R_n$};
+  \node[draw,rounded corners=3pt,fill=black!4,inner sep=5pt,
+    align=center,font=\small,text width=6.1cm] at (0,-1.20)
+    {one-sided leakage $+$ equal rank $\Longrightarrow$
+     reverse leakage $\Longrightarrow\opnorm{P_n-R_n}\to0$};
 \end{tikzpicture}
-\caption{Finite-dimensional reversal.  One-sided spectral leakage and
-equality of ranks control the complementary block in the reverse direction;
-together the two estimates force $\opnorm{P_n-R_n}\to0$.  The drawn planes
-are schematic ranges inside the common finite-dimensional space
-$\mathcal H_n$.}
+\caption{Equal-rank reversal.  One-sided spectral leakage between the two
+schematic ranges, together with equality of their finite dimensions, forces
+the reverse leakage and hence convergence of the two projections.}
 \label{fig:equal-rank-flip}
 \end{figure}
 
@@ -1690,17 +1700,17 @@ Theorem~\ref{thm:A}.
 \subsection{Failure of quotient permanence}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
-Operator-corona MF groups are not closed under quotients: the free group
-\(F_8\) is operator-corona MF, and the literal group \(E\) is its quotient
-but is not operator-corona MF.
-\leanverified{Sofic/LiteralOperatorMFQuotientControls}{GroupApproximation.LiteralOperatorMFQuotientControls.manuscriptQuotientNonclosure}
+MF groups are not closed under quotients: the free group
+\(F_8\) is MF, and the literal group \(E\) is its quotient
+but is not MF.
+\leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
 \end{corollary}
 
 \begin{proof}
 Map the eight free generators onto the eight displayed generators of \(E\).
 The resulting homomorphism is surjective because those generators define the
 literal presentation.  The group \(F_8\) is residually finite and hence
-operator-corona MF, while Theorem~\ref{thm:A} shows that \(E\) is not.
+MF, while Theorem~\ref{thm:A} shows that \(E\) is not.
 \end{proof}
 
 \section{The cyclic-base comparison}\label{sec:necessity}
@@ -1748,7 +1758,7 @@ argument needs operator-norm spectral leakage estimates before it passes to
 normalized Hilbert--Schmidt norm.  A tracial ultraproduct retains only the
 latter information, so the equal-rank coordinate flip cannot be invoked.
 The present argument therefore gives no universal tracial analogue of the
-operator-corona theorem and decides neither hyperlinearity of $E$ nor the
+MF theorem and decides neither hyperlinearity of $E$ nor the
 sofic-versus-hyperlinear problem.
 
 The dividing line in the present argument is thus: \emph{operator-norm matrix
@@ -1766,24 +1776,6 @@ Such a coordinate model would provide finite-level structure absent from the
 argument above, but their question is open.  Some additional hypothesis is
 therefore essential before the operator-norm proof can be transferred to a
 tracial setting.
-
-\section*{Disclosure and verification record}
-Anthropic Claude and OpenAI Codex models were used extensively as
-computational tools in concurrent interactive sessions; web-connected model
-sessions also assisted literature search.  They are not authors.  SauersML
-reviewed the mathematical statements, proofs, formal endpoints, and
-literature claims, maintains the repository, and accepts responsibility for
-the work.  The machine-checked companion is at \nolinkurl{\leanrepo}:
-manuscript version \expandafter\nolinkurl\expandafter{\paperversion},
-formalization \expandafter\nolinkurl\expandafter{\formalizationrevision},
-toolchain \expandafter\nolinkurl\expandafter{\leanversion}, and Mathlib
-revision \expandafter\nolinkurl\expandafter{\mathlibcommit}.  The numbered-claim
-manifest has SHA-256
-\expandafter\nolinkurl\expandafter{\claimmanifesthash}; the publication workflow
-run is \expandafter\nolinkurl\expandafter{\publicationrun}.  Every inline record
-links the pinned revision \texttt{\leancommit}.  Publication requires that exact
-revision to pass the source scan, complete build, transitive axiom audit,
-signature comparison, and fresh kernel replay before PDF attestation.
 
 \begin{thebibliography}{GKEMP}
 

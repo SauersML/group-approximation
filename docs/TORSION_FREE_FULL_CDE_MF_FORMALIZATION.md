@@ -101,5 +101,5 @@ It also proves the exact affine reduction
 `LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation`: property
 `(T)` of the eight-relator rotation presentation implies property `(T)` of
 the raw six-generator base.  Property `(T)` of that rotation presentation is
-still unproved, so the literal operator-corona endpoint does not follow.  No
+still unproved, so the literal MF endpoint does not follow.  No
 conditional literal endpoint is exported.

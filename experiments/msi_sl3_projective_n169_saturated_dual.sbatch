@@ -6,7 +6,12 @@
 
 set -euo pipefail
 
-PROJECTIVE_HOME="/projects/standard/hsiehph/sauer354"
+if [ "$#" -ne 1 ]; then
+    echo "usage: sbatch msi_sl3_projective_n169_saturated_dual.sbatch PROJECT_HOME" >&2
+    exit 2
+fi
+
+PROJECTIVE_HOME="$1"
 TOOLS_DIR="$PROJECTIVE_HOME/research-tools"
 
 module load sagemath/10.7

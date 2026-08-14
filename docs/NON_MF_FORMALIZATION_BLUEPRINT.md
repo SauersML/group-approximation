@@ -177,19 +177,3 @@ formal endpoint.
 
 All Lean builds and audits for this project are run on MSI against the warm
 cache. They are never run locally.
-
-## Credit and provenance
-
-The proof files contain theorem-level credit for the closest mathematical
-antecedents: Slofstra--Vidick for negative-eigenspace compression, Slofstra
-for Clifford signs with shift/HNN machinery, Dadarlat's Lemma 3.18 and
-Proposition 3.19 for the operator-norm to Hilbert--Schmidt property-(T)
-lineage, Bachner--Dogon--Lubotzky Lemmas 2.2--2.3 and Propositions 1.5 and
-2.4 for operator-norm involution rounding, corner-size renormalization, and
-polar-corrected compression, and OpenAI Proposition 2.3 and Kun--Thom for
-one-sided compressors and fixed-space propagation.
-
-The Lean proofs in this repository were written for this project. No Physlib,
-LeanQuantum, QECLean, or other external Lean source was copied. If external
-code is adopted later, its license and source-level attribution must be
-recorded in the importing file and repository notices before it is merged.

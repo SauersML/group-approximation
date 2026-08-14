@@ -257,7 +257,7 @@ theorem IsStrongMF.isUltraproductMF
   obtain ⟨rho, hrho⟩ := A.toWeakMFApproximation.exists_normUltraproductEmbedding hU
   exact ⟨U, hU, A.model, A.modelNonempty, rho, hrho⟩
 
-/-- Strong MF implies CDE/operator-corona MF for countable groups. -/
+/-- Strong MF implies the standard group-theoretic MF property for countable groups. -/
 theorem IsStrongMF.isGroupTheoreticMF [Countable G]
     (h : IsStrongMF G) : IsGroupTheoreticMF G :=
   h.isUltraproductMF.isGroupTheoreticMF

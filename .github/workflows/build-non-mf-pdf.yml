@@ -196,33 +196,6 @@ jobs:
           path.write_text(pinned)
           EOF
 
-      - name: Write exact release provenance into the manuscript
-        run: |
-          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
-          import json, pathlib, sys
-          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
-          manifest = json.loads(pathlib.Path("lake-manifest.json").read_text())
-          mathlib = next(p["rev"] for p in manifest["packages"] if p["name"] == "mathlib")
-          lean = pathlib.Path("lean-toolchain").read_text().strip()
-          claim_manifest = pathlib.Path("docs/NON_MF_NUMBERED_CLAIMS.json").read_bytes()
-          import hashlib
-          claim_hash = hashlib.sha256(claim_manifest).hexdigest()
-          text = path.read_text()
-          replacements = {
-              r"\newcommand{\leanversion}{unbuilt}": rf"\newcommand{{\leanversion}}{{{lean}}}",
-              r"\newcommand{\mathlibcommit}{unbuilt}": rf"\newcommand{{\mathlibcommit}}{{{mathlib}}}",
-              r"\newcommand{\formalizationrevision}{unbuilt}": rf"\newcommand{{\formalizationrevision}}{{{sha}}}",
-              r"\newcommand{\claimmanifesthash}{unbuilt}": rf"\newcommand{{\claimmanifesthash}}{{{claim_hash}}}",
-              r"\newcommand{\publicationrun}{unbuilt}": r"\newcommand{\publicationrun}{${{ github.run_id }}}",
-          }
-          for old, new in replacements.items():
-              updated = text.replace(old, new)
-              if updated == text:
-                  raise SystemExit(f"provenance macro missing: {old}")
-              text = updated
-          path.write_text(text)
-          EOF
-
       - name: Compile and lint in pinned TeX Live
         run: |
           rm -rf build
