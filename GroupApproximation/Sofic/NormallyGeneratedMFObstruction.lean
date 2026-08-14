@@ -67,6 +67,24 @@ theorem normMFResidual_eq_top_of_mem_normalClosure_eq_top {x : Γ}
   rw [Set.mem_singleton_iff] at hy
   simpa [hy] using hx
 
+/-- **Radical implantation.**  If a homomorphic image of an MF-invisible
+element normally generates the target, then the target has full MF residual.
+
+The group-theoretic amalgam construction used in the accompanying research
+note supplies such a homomorphism while keeping a prescribed target factor
+embedded.  This theorem isolates the radical argument itself: functoriality
+puts `f x` in the target residual, and normal generation propagates that one
+element to the whole target. -/
+theorem normMFResidual_eq_top_of_image_normalClosure_eq_top
+    {G : Type v} [Group G] {x : Γ} (hx : x ∈ normMFResidual Γ)
+    (f : Γ →* G)
+    (hgen : Subgroup.normalClosure ({f x} : Set G) = ⊤) :
+    normMFResidual G = ⊤ := by
+  apply normMFResidual_eq_top_of_mem_normalClosure_eq_top
+  · exact mem_normMFResidual_iff.mpr
+      ((mem_normMFResidual_iff.mp hx).map f)
+  · exact hgen
+
 /-- Full source residual and trivial target residual force every homomorphism
 to be pointwise trivial.  No countability hypothesis is needed. -/
 theorem map_eq_one_of_residual_eq_top_to_residual_eq_bot

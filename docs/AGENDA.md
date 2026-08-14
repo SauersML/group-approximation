@@ -4,6 +4,24 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: `SL2F13` radical implantation and extension audit
+
+`SL2F13_RADICAL_APPLICATION_AUDIT.md` credits the exact arithmetic and GAP
+certificates in `eekarabiyik/SL2F13` and extracts a valid general application:
+amalgamating the marked MF-radical involution with a normal generator of a
+group `A` implants the whole embedded copy of `A` into the MF radical.  For
+`A=PSL(2,13)` this gives a concrete inverse-Galois-labelled finite simple
+radical subgroup.  The radical propagation step is Lean-checked in
+`Sofic/NormallyGeneratedMFObstruction.lean`.
+
+The same audit corrects the tempting claim that the original Clifford witness
+`W` is sofic merely because it is locally-finite-by-residually-finite.  That
+reverses Elek--Szabo's extension theorem.  The already established
+finitely-generated sofic non-MF image remains valid through the separate
+finite-stage/direct-limit tower, but the short exact sequence alone cannot
+prove it.  None of these operator-norm applications closes the hyperlinear
+trace-selection gate.
+
 ### 2026-08-13: alternating Reynolds contracts to scalars
 
 `FALSE_ALTERNATING_REYNOLDS_CONTRACTS_COEFFICIENT_SIGNAL.md` computes the
