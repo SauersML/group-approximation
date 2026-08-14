@@ -123,8 +123,10 @@ theorem hammingDistance_finiteKernelPerm_right_le
     rw [Finset.product_eq_sprod, Finset.mem_product] at hp
     rw [mem_hammingDisagreement]
     intro heq
-    exact ((mem_hammingDisagreement (σ g.right) (σ h.right) p.2).1 hp.2)
-      (congrArg Prod.snd heq)
+    have hp2 : p.2 ∈ hammingDisagreement (σ g.right) (σ h.right) := by
+      simpa [D] using hp.2
+    rw [mem_hammingDisagreement] at hp2
+    exact hp2 (congrArg Prod.snd heq)
   have hcard := Finset.card_le_card hsub
   rw [hammingDistance, hammingDistance]
   change (D.card : ℝ) / Fintype.card Y ≤
