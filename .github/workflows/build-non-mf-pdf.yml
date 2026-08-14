@@ -182,20 +182,6 @@ jobs:
           python3 scripts/check_fig_overlap.py --tex "$TEX_FILE" \
             --tex-image "$TEXLIVE_IMAGE"
 
-      - name: Pin the repository revision into the manuscript links
-        run: |
-          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
-          import sys, pathlib
-          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
-          text = path.read_text()
-          pinned = text.replace(
-              r"\newcommand{\leancommit}{main}",
-              r"\newcommand{\leancommit}{%s}" % sha)
-          if pinned == text:
-              raise SystemExit("leancommit macro not found; refusing to build unpinned links")
-          path.write_text(pinned)
-          EOF
-
       - name: Compile and lint in pinned TeX Live
         run: |
           rm -rf build
