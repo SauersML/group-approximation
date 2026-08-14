@@ -47,6 +47,38 @@ theorem isLocallyFiniteGroup_cliffordLamp :
       rw [commutator_lamp_lamp X hxy]
       exact Subgroup.mem_zpowers (sign X)
 
+/-- On a finite site set the entire Clifford lamp group is finite. -/
+theorem finite_cliffordLamp [Finite X] : Finite (CliffordLamp X) := by
+  classical
+  let T : Set (CliffordLamp X) := Set.range (lamp X)
+  have hTfin : T.Finite := Set.finite_range _
+  have hgen : Subgroup.closure (insert (sign X) T) = ⊤ := by
+    apply top_unique
+    intro g _
+    apply mem_subgroup_of_sign_mem_of_lamp_mem X
+    · exact Subgroup.subset_closure (Set.mem_insert (sign X) T)
+    · intro x
+      exact Subgroup.subset_closure
+        (Set.mem_insert_of_mem _ ⟨x, rfl⟩)
+  haveI hclosure : Finite (Subgroup.closure (insert (sign X) T)) :=
+    finite_closure_of_central_involution (sign_sq X) (sign_commute X) hTfin
+      (by rintro _ ⟨x, rfl⟩; exact lamp_sq X x)
+      (by
+        rintro _ ⟨x, rfl⟩ _ ⟨y, rfl⟩
+        by_cases hxy : x = y
+        · subst y
+          change ⁅lamp X x, lamp X x⁆ ∈ Subgroup.zpowers (sign X)
+          rw [commutatorElement_self]
+          exact Subgroup.one_mem _
+        · change ⁅lamp X x, lamp X y⁆ ∈ Subgroup.zpowers (sign X)
+          rw [commutator_lamp_lamp X hxy]
+          exact Subgroup.mem_zpowers (sign X))
+  exact Finite.of_injective
+    (fun g : CliffordLamp X ↦
+      (⟨g, hgen.symm ▸ Subgroup.mem_top g⟩ :
+        Subgroup.closure (insert (sign X) T)))
+    (fun _ _ h ↦ congrArg Subtype.val h)
+
 /-- Every Clifford lamp group is LEF. -/
 theorem isLEF_cliffordLamp : IsLEF (CliffordLamp X) :=
   isLEF_of_locallyFinite (isLocallyFiniteGroup_cliffordLamp X)
