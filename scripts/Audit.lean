@@ -449,8 +449,8 @@ conclusion other than by proving it, is a LITERATURE_INPUT finding and fails
 the audit.  The kernel cannot make this distinction: such an implication is
 genuinely proved, and its axiom report is clean.  The point of the gate is
 that a conditional result must not LIVE on the trust surface, however honest
-its type: it belongs in `Superseded`, or its antecedent belongs in the
-corpus as a theorem, after which its name comes off this list.
+its type: delete it, or prove its antecedent in the corpus and remove that
+antecedent from the public statement.
 
 The roster is empty: literature-transcription premises are not permitted in
 the corpus.  Keep this mechanism in place so adding one cannot silently turn

@@ -31,12 +31,9 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 LIB = "GroupApproximation"
 
-# Every Lean library in the repository.  `Superseded` holds superseded
-# developments: off the trust surface, since the audit walks the environment of
-# `GroupApproximation` only and never loads it -- but still compiled, and
-# still scanned here.  Superseded is not the same as unchecked, and a `sorry`
-# in code CI builds is a defect wherever it lives.
-LIBS = (LIB, "Superseded")
+# Every Lean library in the repository.  Dead and superseded developments are
+# deleted rather than kept behind an unbuilt compatibility root.
+LIBS = (LIB,)
 
 IMPORT_RE = re.compile(r"^import\s+([A-Za-z0-9_.]+)", re.MULTILINE)
 NATIVE_DECIDE_RE = re.compile(
