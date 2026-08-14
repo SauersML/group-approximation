@@ -34,6 +34,17 @@ The release-facing collection is
   the realized quotient is not residually finite.
 - `NonMFImpact.operatorMF_not_closed_under_quotients` supplies a concrete MF
   group with a non-MF quotient.
+- `NonMFImpact.literal_uniform_operatorNorm_obstruction` supplies one finite
+  test set and one positive defect threshold, uniform in matrix dimension,
+  that force the literal mark within operator norm `< 1` of the identity.
+  This is a compactness theorem; it does not yet compute the test set or
+  threshold from the rational P13 certificate.
+- `NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups`
+  proves that every finite subgroup of a torsion-free group is trivial,
+  precisely delimiting the finite-normal method.
+- `NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF` formalizes the general
+  implication used to pass from a sofic non-MF witness to a hyperlinear
+  non-MF witness.
 
 The logical and topological obstruction is also exposed separately by
 `LiteralUniversalHorn.manuscriptLiteralUniversalHorn` and
@@ -73,6 +84,20 @@ badge until that endpoint is completed:
 - sofic does not imply MF via this witness;
 - MF is not closed under extensions via this witness;
 - the simple sofic envelope has full MF radical.
+
+The exact-radical computation
+`Rad_MF(E) = {1,w}` is also open: the development proves the universal
+factorization criterion reducing it to operator-MF of `E / ⟨w⟩`, but does
+not construct the genuinely approximate models that quotient would require.
+The effective quantitative strengthening is likewise open: the closed
+uniform theorem above gives existential `δ` and `F₀`, not a numerical modulus
+on the displayed relators.
+
+There is currently no definition of exact C-star algebras or exact groups in
+the imported mathlib surface.  Thus the proposed exactness corollary for the
+Clifford witness requires both the still-missing closed sofic/tower endpoint
+and substantial new operator-algebra infrastructure; it is not represented
+by a conditional facade or a literature axiom.
 
 Their mathematical proofs may cite the stated Elek--Szabó permanence and
 simple-envelope theorems, but those citations are outside the current closed

@@ -138,7 +138,7 @@ separable $C^*$-algebra was known not to be MF \cite{BK,CDE}, and their
 natural candidate $\Cred(F_2)$ was in fact proved MF by Haagerup and
 Thorbj{\o}rnsen \cite{HT}.  The negative solution of the Connes embedding
 problem subsequently supplied abstract stably finite non-MF algebras
-\cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
+\cite{FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
 These questions sit at the endpoint of a program of finitary
@@ -151,8 +151,7 @@ Bachner--Dogon--Lubotzky \cite{BDL}, who describe the three remaining
 metrics --- the Hamming metric (soficity), the Hilbert--Schmidt norm
 (hyperlinearity), and the operator norm (MF) --- as ``the holy-grail of
 the subject.''  The Hamming case was disproved in 2026: the first
-nonsofic group was constructed by OpenAI \cite{OAI}, Fournier--Facio then
-gave a finitely presented torsion-free example \cite{FFF}, and Kun--Thom
+nonsofic group was constructed by OpenAI \cite{OAI}, and Kun--Thom
 developed further wreath-product examples \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
 driving those arguments, is also the conceptual ancestor of the present
 one.  Soficity concerns permutations in the Hamming metric, while MF concerns
@@ -432,9 +431,9 @@ finitely many displayed relations for a finite generating set of $\Gamma$.
 
 The relation $w^2=1$ is redundant.  Put $b=ada^{-1}$.  Both $d$ and $b$ are
 involutions, $w=[d,b]=(db)^2$, and direct cancellation gives
-\[
+\begin{equation}\label{eq:involution-reversal}
  dwd^{-1}=w^{-1}.
-\]
+\end{equation}
 Centrality also gives $dwd^{-1}=w$, whence $w=w^{-1}$ and $w^2=1$.
 
 For nontriviality, realize the ascending HNN extension
@@ -975,8 +974,7 @@ This is an explicit finite presentation with eight generators and
 forty-one relators: the twenty base relators, six stable-letter relators,
 $c^2$, six lamp relators, and eight centrality relators.  Its defining
 relations make $w$ central, and centrality together with $c^2=1$ implies
-$w^2=1$ by the calculation in the proof of
-Theorem~\ref{thm:kazhdan-clifford}; the relations on the six base
+$w^2=1$ by \eqref{eq:involution-reversal}; the relations on the six base
 generators also give
 \[
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
@@ -1232,8 +1230,7 @@ the square of the compression defect $u=[d,\iota(v_1)]$:
   =[\,d,\iota(v_1)\,]^{\,2}=u^2 .
 \]
 Centrality of $w$ is a defining relator; together with $c^2=1$ it forces
-$w^2=1$ by the involution calculation in the proof of
-Theorem~\ref{thm:kazhdan-clifford}; and $w\ne1$ by part (1).  The
+$w^2=1$ by \eqref{eq:involution-reversal}; and $w\ne1$ by part (1).  The
 criterion therefore kills $w$ in every corona representation of $E$.
 Since $\kappa_{(d_n)}$ is injective, $\Theta(w)=1$.  This proves part (2).
 
@@ -1275,8 +1272,8 @@ MF radical of $E$ is exactly $\{1,w\}$.
 
 \paragraph{No density hypothesis.}
 No lower bound on the corner ranks $r_n$, or on their density in
-$d_n$, is used anywhere: the central-corner reduction of
-Section~\ref{sec:intro} equips each nonzero corner block with its own
+$d_n$, is used anywhere: the central-corner reduction preceding
+Theorem~\ref{thm:sign-criterion} equips each nonzero corner block with its own
 normalized trace.  Thus all subsequent
 Hilbert--Schmidt estimates are relative to that block.  This is
 what makes the operator-norm setting insensitive to small relative ranks,
@@ -1634,9 +1631,8 @@ detects $q$.  Thus the intersection of the kernels of all corona
 representations of the countable group $Q$ is trivial.
 
 Enumerate the nonidentity elements of $Q$ and choose a detecting corona
-representation for each.  Apply the block-diagonal local-model diagonalization from the proof of
-Proposition~\ref{prop:mf-equivalences} (Appendix~\ref{app:equivalences})
-to $Q$: at stage $k$, impose multiplicativity within $1/k$
+representation for each.  Diagonalize these local models directly: at stage
+$k$, impose multiplicativity within $1/k$
 on the first $k$ group elements in the first $k$ representations and retain
 a fixed positive separation for each of the first $k$ marked elements.
 This gives one faithful representation of $Q$ in a norm matrix corona and
@@ -1892,14 +1888,11 @@ trivial.
 
 \begin{proof}
 By Elek--Szab\'o, every countable sofic group embeds in a countable simple
-sofic group \cite{ElekSzaboHyper}.  Embed $W$ in such a group.  Portability
+sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Portability
 sends its nontrivial radical element $\zeta$ to a nontrivial element of the
 MF radical of the simple group.  That radical is normal, so it is the whole
 group.  Every homomorphism to an MF group kills the MF radical.
 \end{proof}
-
-Like the sharpness remark of Section~\ref{sec:necessity}, this paragraph
-relies on an unformalized literature input and carries no Lean tag.
 
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
@@ -1952,11 +1945,10 @@ Theorem~\ref{thm:A}.
 
 \section{The cyclic-base calibration}\label{sec:necessity}
 
-We prove Theorem~\ref{thm:C} for the displayed seven-relator
-presentation.  As with $w$, the relator $w_{\mathrm{BS}}^2=1$ is redundant
+\begin{proof}[Proof of Theorem~\ref{thm:C}]
+As with $w$, the relator $w_{\mathrm{BS}}^2=1$ is redundant
 --- $tct^{-1}$ and $\gamma_0(tct^{-1})\gamma_0^{-1}$ are involutions, so
-centrality forces it, by the calculation in the proof of
-Theorem~\ref{thm:kazhdan-clifford} --- and is retained only to display the
+centrality forces it by \eqref{eq:involution-reversal} --- and is retained only to display the
 marked pattern.  Deleting it gives a six-relator presentation of the same
 group.
 The stable relation gives
@@ -1982,6 +1974,7 @@ generated by the three displayed images gives the asserted surjective
 realized quotient.  This comparison isolates the precise limitation of the
 finite-dimensional argument: exact finite-dimensional invisibility does not
 itself imply that the marked word is trivial.
+\end{proof}
 
 \paragraph{Sharpness of the Kazhdan hypothesis.}
 The realized Clifford quotient in Theorem~\ref{thm:C} is amenable, hence MF,
@@ -2024,7 +2017,11 @@ The finite-normal mechanism has a precise torsion limitation: every finite
 subgroup of a torsion-free group is trivial.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 Consequently a torsion-free example would require a different final
-obstruction, even if its transport step were similar.
+obstruction, even if its transport step were similar.  Fournier--Facio
+removed the analogous torsion obstacle for nonsoficity by a small-cancellation
+construction \cite{FFF}.  That strategy does not transfer directly here:
+the final operator-norm contradiction uses a nontrivial finite normal
+subgroup, which a torsion-free group cannot contain.
 \begin{enumerate}
 \item Is $E/\langle w\rangle$ MF?  By
 Corollary~\ref{cor:exactradical}, a positive answer would compute
