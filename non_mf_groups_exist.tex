@@ -163,17 +163,54 @@ of asymptotic representations \cite{Schafhauser,GKEMP}, or with strongly PMF,
 where the approximants are genuine finite-dimensional representations
 \cite[Definition~1.2]{MdlS}.  These are genuinely different conventions;
 every assertion below uses only this MF property.  The
-following theorem gives an explicit finitely presented non-MF group.
+The conceptual result is the following Kazhdan--Clifford construction.
 
-\begin{mainthm}[non-MF group]\label{thm:A}
+\begin{theorem}[Kazhdan--Clifford construction]
+\label{thm:kazhdan-clifford}
+Let $\Gamma$ be a finitely presented group with property~\textup{(T)}, let
+$\alpha\colon\Gamma\hookrightarrow\Gamma$ be an injective endomorphism, and
+choose $a\in\Gamma\setminus\alpha(\Gamma)$.  Adjoin elements $t,c$ and impose
+\[
+ t\gamma t^{-1}=\alpha(\gamma),\qquad c^2=1,qquad[c,\gamma]=1
+ \quad(\gamma\in\Gamma),
+\]
+together with centrality of
+\[
+ d=tct^{-1},\qquad
+ w=[d,ada^{-1}].
+\]
+It is enough to impose these relations on a finite generating set of
+$\Gamma$.  The resulting group $E(\Gamma,\alpha,a)$ is finitely presented,
+the canonical map $\Gamma\to E(\Gamma,\alpha,a)$ is injective, and $w$ is a
+nontrivial central involution.  Every homomorphism
+\[
+ E(\Gamma,\alpha,a)\longrightarrow \U(\mathcal Q)
+\]
+to the unitary group of every norm matrix corona kills $w$.  Consequently
+$E(\Gamma,\alpha,a)$ is not MF.
+\leanverified{Sofic/KazhdanCliffordConstruction}{GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction}
+\end{theorem}
+
+The same element $a$ drives both halves of the proof.  Analytically,
+$a\in\Gamma$, so fixed-space transport forces the displaced lamp to commute
+with its image in finite-dimensional norm models.  Geometrically,
+$a\notin\alpha(\Gamma)$, so $a$ moves that lamp to a different HNN coset,
+where Clifford anticommutation produces $-1$.  Thus $a$ lives on the boundary
+of the self-compression: rigidity cannot detect that boundary, while the
+Clifford representation detects it by a sign.
+
+The following theorem is the fully explicit finite presentation developed in
+the second half of the paper.
+
+\begin{mainthm}[explicit Kazhdan--Clifford group]\label{thm:A}
 Let $E$ be the group on the eight generators
 $v_1,v_2,v_3,x,y,z,t,c$ with the finite list of relators in
 Definition~\ref{def:E}, and put
 \[
  w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
 \]
-The defining
-relations make $w$ central and give $w^2=1$.  Then:
+The defining relations make $w$ central; together with $c^2=1$, centrality
+implies $w^2=1$.  Then:
 \begin{enumerate}
   \item $w\neq 1$ in $E$, so $w$ is a central involution;
   \item for every sequence $(d_n)$ of positive integers and every group homomorphism
