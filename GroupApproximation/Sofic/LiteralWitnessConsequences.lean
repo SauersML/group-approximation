@@ -17,6 +17,7 @@ namespace LiteralWitnessConsequences
 
 open CliffordLamp ExplicitLinearModel LiteralNonMFPresentation
   LiteralNonMFLinearWitness MarkedCompression
+open ReducedGroupCStarTrace
 
 noncomputable section
 
