@@ -141,7 +141,7 @@ jobs:
               GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD \
             --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
-              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \
+              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
