@@ -480,6 +480,7 @@ import GroupApproximation.Leavitt.TwoChildFiniteObstruction
 import GroupApproximation.Matching.MatchedComponents
 import GroupApproximation.Sofic.SoficTransfer
 import GroupApproximation.Sofic.SoficDirectedUnion
+import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.HyperlinearResidualDetector
 import GroupApproximation.Sofic.FiniteLinearHammingGap
 import GroupApproximation.Sofic.RelativeImplementerCentralizer
