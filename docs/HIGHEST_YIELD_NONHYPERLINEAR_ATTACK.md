@@ -72,21 +72,20 @@ sum_j||A_j-R_j||_2^2
  <(9/2)sum_j||[E,Q_j]||_2^2.
 ```
 
-See `TRUE_TRANSITION_EFFECTS_REMOVE_THE_POSITIVIZATION_GATE.md`. This removes
-positivization and target-alphabet size from the live problem. The remaining
-mixed atlas theorem is precisely to force the displayed total commutator
-energy to zero using the literal compiled compressor word and cross-chart
-multiplication relations.
+See `TRUE_TRANSITION_EFFECTS_REMOVE_THE_POSITIVIZATION_GATE.md`. Unitary
+Fourier covariance now also bounds the displayed total commutator energy by
+twice the covariance RMS defect, with no target-alphabet loss; see
+`TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md`. Thus positivity,
+rounding, and the entire single-edge measurement problem are closed.
 
 The source commutant gauge cancels from this particular target exactly. If
 `[C,P]=0`, replacing `U` by `UC` leaves `UPU*` fixed and conjugates the
 effects `P U*Q_j U P` inside the source corner. Hence their total variance is
 unchanged. See `TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md`.
-The single-edge gate is therefore only fine-fiber multiplication: coarse
-homomorphism twirling already separates distinct restricted characters, and
-cross-root multiplication must eliminate coherence between extensions with
-the same restriction. Compiled-word gauge pinning is relevant only when
-assembling several edges or whole-map outcomes.
+The live gate is multi-edge compatibility. Cross-root multiplication must
+make the separately rounded transition PVMs commute in the required edge
+contexts and label them by one multiplication-compatible character system.
+Compiled-word gauge pinning is relevant only at this assembly stage.
 
 This fine-fiber statement itself has a constant-one finite-partition
 reduction. For a fine PVM `(Q_x)` and jointly injective coarse label maps,
@@ -99,11 +98,11 @@ R=direct-sum_(i,j in {0,1}) s_i R t_j.
 ```
 
 Their four restrictions jointly determine every fine character. See
-`TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md`. Comb covariance
-controls the `(0,0)` coarse energy. The live assertion is that the raw
-adjacent-root diagonal-one/cross-zero packet controls the other three corner
-energies for the same transported carrier. The words `u` and `wu` cannot
-supply them because they implement the same compression.
+`TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md`. This refinement
+is no longer needed for an individual edge, but it gives a constant-one
+endpoint once the four corner-label PVMs from different adjacent-root
+occurrences have been made compatible. The words `u` and `wu` cannot supply
+independent labels because they implement the same compression.
 
 ## 2026-08-14 correction: pure four-root words cannot pin the gauge
 

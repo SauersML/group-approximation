@@ -181,9 +181,12 @@ form needed by the atlas packet.
 
 ## 6. Interaction with the actual compressor packet
 
-Homomorphism twirling for the comb compressor controls the `(0,0)` coarse
-energy: it makes the transported source character projection block diagonal
-for restriction along the compressed corner.
+For the actual unitary comb compressor, covariance gives more than the
+`(0,0)` coarse energy. Fourier expansion identifies the conjugated source
+cut with the entire coarse target restriction cut up to the covariance RMS
+error. Since that coarse cut is a sum of all fine extension-character cuts,
+the total fine commutator energy is already small. See
+`TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md`.
 
 The second raw compressor `w u` does **not** provide the other restriction.
 As proved in `FALSE_TWO_RAW_COMPRESSORS_DO_NOT_IDENTIFY_FIBERS.md`, both `u`
@@ -191,33 +194,35 @@ and `w u` implement the same compression endomorphism and differ by a unitary
 in the compressed-core centralizer. Their covariance equations therefore
 repeat the same coarse partition.
 
-The other three corner restrictions must instead come from the adjacent-root
-multiplication packet. `TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md` supplies the
-complete table
+Thus the four-corner refinement `(TCP15)` is not needed to construct a
+single-edge transition PVM. It remains useful when a later repair retains
+only several coarse partitions, or when comparing the corner labels of
+different edge measurements.
+
+`TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md` supplies the complete multiplication
+table
 
 ```text
 t_l s_k=delta_lk,                                    (TCP16)
 ```
 
-including the cross-zero terms. Those are exactly the relations which
-distinguish the row and column corner labels in `(TCP14b)`. The existing
-double-Pauli coefficient `C_2^2` is the fixed finite shadow of these two
-binary corner coordinates.
+including the cross-zero terms. Those relations are now needed to make the
+separately obtained edge PVMs jointly compatible, not to diagonalize one
+edge.
 
 ## 7. Corrected smallest live theorem
 
-The fine-fiber multiplication gate is now one quantitative assertion:
+The remaining multi-edge gate is now one quantitative assertion:
 
-> **Complementary-corner-energy gate.** For the same transported carrier
-> projection already controlled by comb covariance on corner `(0,0)`, use
-> the raw adjacent-root diagonal-one/cross-zero packet to make its total
-> commutator energies against the other three corner-restriction PVMs tend
-> to zero.
+> **Joint corner-label gate.** Use the raw adjacent-root
+> diagonal-one/cross-zero packet to couple the individually exactified
+> transition PVMs so that their four corner labels arise from one joint
+> fine-character outcome and obey the multiplication table with vanishing
+> total error.
 
-Once that holds, `(TCP4a)` makes the full fine-character energy tend to zero
-with constant one. The intrinsic transition-effect identity then gives a
-nearby PVM without cardinality loss, and the binary majority/whole-map
-decoder can proceed.
+Once compatible coarse label PVMs are available, `(TCP4a)` recovers their
+joint fine label with constant one. Character-to-map coarsening and the
+binary majority/whole-map decoder can then proceed.
 
 This formulation avoids three false requirements:
 
@@ -227,7 +232,7 @@ This formulation avoids three false requirements:
    transition variance.
 
 The remaining statement is still matrix-specific. The finite double-Pauli
-router realizes the local table `(TCP16)` while retaining quantum coherence
-between the corner partitions. A proof must use the common transported
-carrier and the full adjacent-root packet, rather than the local commutator
-signs alone.
+router realizes every one-edge transition statement and the local table
+`(TCP16)` while retaining quantum incompatibility between edge
+measurements. A proof must use the common multi-edge/four-root packet rather
+than the separate covariance relations.

@@ -6,6 +6,26 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: covariance closes total single-edge transition variance
+
+`TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md` corrects the apparent
+fine-fiber gate. Conjugating the explicit source Fourier cut by the actual
+unitary compressor puts it within the covariance RMS defect of the entire
+coarse target Fourier cut. That cut is a sum of fine extension-character
+cuts, so
+
+```text
+sum_zeta ||[U P_chi U*,Q_zeta]||_2^2
+ <=2 (covariance RMS defect)^2.
+```
+
+The intrinsic effects therefore round to a fine-outcome PVM with total error
+below nine times the squared covariance defect, independent of all fiber
+sizes. Positivity, source gauge, and single-edge measurement recovery are
+closed. The live theorem is multi-edge multiplication compatibility of the
+separately recovered PVMs; the finite Pauli model shows that separate exact
+measurements need not be jointly classical.
+
 ### 2026-08-14: two coarse branch partitions recover the fine PVM
 
 `TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md` proves a
@@ -18,12 +38,12 @@ D_fine(T) <= sum_i D_i(T)
 ```
 
 with constant one. Because the compressor is the corner map
-`a |-> s_0 a t_0`, the relevant decomposition is the four-corner sum
-`R=direct-sum_(i,j) s_i R t_j`. Comb covariance controls corner `(0,0)`.
-The live gate is the other three coarse energies for the same transported
-carrier, forced by the raw adjacent-root `t_l s_k=delta_lk` packet. The two
-compressor words `u,wu` do not provide independent restrictions, as already
-proved by the centralizer no-go.
+`a |-> s_0 a t_0`, the relevant additive decomposition has four corners.
+Actual-unitary covariance already recovers the fine PVM on each single edge;
+the lemma is now the endpoint for combining compatible corner-label PVMs
+across multiple adjacent-root occurrences. The two compressor words `u,wu`
+do not provide independent labels, as already proved by the centralizer
+no-go.
 
 ### 2026-08-14: intrinsic transition variance cancels source gauge exactly
 

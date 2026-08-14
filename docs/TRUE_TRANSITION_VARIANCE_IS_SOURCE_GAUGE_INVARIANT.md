@@ -75,32 +75,31 @@ conj_idempotenceDefect.
 
 No local build or computation was run.
 
-## 3. Coarse covariance versus fine fiber variance
+## 3. Actual-unitary covariance closes the single-edge variance
 
-This does not make the transition variance vanish automatically. Let
-`alpha:F->G` be the finite coefficient homomorphism implemented by the
-compressor. A repaired exact `alpha`-intertwiner sends a source character
-cut `P_chi` into the coarse target cut
+Let `alpha:F->G` be the finite coefficient homomorphism implemented by the
+compressor. The coarse target cut is
 
 ```text
 R_chi=sum_(zeta: zeta composed_with alpha=chi) Q_zeta. (TGI8)
 ```
 
-Therefore the transported projection commutes with the coarse PVM
-`(R_chi)`. But it may retain off-diagonal matrix coefficients between two
-different target characters `zeta` having the same restriction to `F`.
-Those coefficients are exactly the proper-extension-fiber variance.
-
-Homomorphism twirling controls leakage between distinct coarse fibers with
-dimension-free constants. It cannot distinguish characters inside one
-fiber, because they are identical on `alpha(F)`. The remaining mixed
-multiplication theorem is precisely the fine-fiber refinement
+For the actual unitary compressor, Fourier expansion gives directly
 
 ```text
-coarse alpha-intertwining
- + cross-root multiplication
- -> commutation with every fine Q_zeta.              (TGI9)
+||U P_chi U*-R_chi||_2^2
+ <= average_a ||U rho(a) U*-sigma(alpha(a))||_2^2.  (TGI9)
 ```
+
+Because `R_chi` is already a sum of fine target cuts, orthogonal projection
+onto the fine block-diagonal algebra bounds the total fine commutator energy
+by twice the right side of `(TGI9)`. See
+`TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md`.
+
+The earlier apparent within-fiber obstruction applies to an arbitrary
+nonunitary twirled intertwiner, whose range may be a proper subspace of
+`R_chi`. It does not apply to conjugation of the explicit Fourier cut by the
+actual unitary `U`.
 
 ## 4. Consequence for the research program
 
@@ -108,23 +107,21 @@ The previous research map mixed two different issues:
 
 1. arbitrary commutant gauges in a chosen regular-basis coefficient
    expansion; and
-2. intrinsic fine-character variance of the transported source projection.
+2. compatibility of the fine-character transition PVMs belonging to
+   different compressor/root occurrences.
 
-Equation `(TGI2)` shows that issue 1 cancels from issue 2 exactly. The
-compiled compressor word may still be required to synchronize several
-edges or whole-map decoders, but it is not required to pin a source gauge
-before proving a single-edge transition-variance estimate.
+Equation `(TGI2)` shows that issue 1 cancels before issue 2 is considered,
+and `(TGI9)` closes each single edge. The compiled compressor word may still
+be required to synchronize several edges or whole-map decoders.
 
 The corrected smallest live theorem is:
 
-> **Fine-fiber multiplication gate.** For the actual proper Leavitt
-> coefficient inclusion, use the cross-root multiplication relations to
-> show that the transported coarse source cut is asymptotically block
-> diagonal for the fine target-character PVM, with total Hilbert--Schmidt
-> error tending to zero.
+> **Multiplication-compatible transition-PVM gate.** Use the cross-root
+> multiplication relations to put the individually rounded transition PVMs
+> for all required adjacent-root occurrences on one common classical
+> multiplicity coordinate, with their labels obeying the Leavitt product
+> table up to vanishing total error.
 
-This statement is invariant under every source-commutant gauge and therefore
-cannot be falsified by the `C_2` deformation in
-`FALSE_PURE_FOUR_ROOT_WORDS_CANNOT_PIN_COMPRESSOR_GAUGE.md`. Its exact
-countermodels must instead retain nonzero coherence inside an extension
-fiber while satisfying the mixed multiplication packet.
+The fixed Pauli model shows why separate exact PVMs are insufficient: the
+measurements attached to different edges can remain noncommuting even though
+every individual covariance and transition statement is exact.

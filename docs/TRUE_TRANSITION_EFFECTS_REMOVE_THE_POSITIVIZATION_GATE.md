@@ -162,21 +162,26 @@ the variance measured in
 `TRUE_BINARY_EXTENSION_FIBER_MAJORITY_DECODER.md`. Fiberwise majority is
 the commutative shadow of rounding the two-outcome POVM.
 
-For the Pauli carrier endpoint, the fixed multiplicity-variance floor in
-`TRUE_PAULI_BINARY_GAP_IS_MULTIPLICITY_VARIANCE.md` says that the required
-within-sheet scalarization cannot hold in the canonical exact packet. Once
-the target fiber PVM has been identified with the multiplicity coordinates
-used by that endpoint, a successful microstate contradiction can target the
-upper bound
+For an actual unitary compressor satisfying approximate covariance, one
+already has
 
 ```text
 sum_j ||[U P U*,Q_j]||_2^2 ->0                       (TER16)
 ```
 
-for the named compressor/source/target projections. The identification in
-the preceding sentence remains part of the mixed atlas gate; it is not a
-formal consequence of `(TER2)`. After it is established, the rounding and
-finite contradiction are dimension-free.
+for the named compressor/source/target projections. The estimate is
+dimension-free: Fourier averaging gives
+the transported source projection within the covariance RMS error of the
+coarse target Fourier cut, which is a sum of fine target cuts. Hence
+
+```text
+sum_j ||[U P U*,Q_j]||_2^2
+ <=2 (covariance RMS defect)^2.                      (TER16a)
+```
+
+See `TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md`. Thus every
+single compressor edge already supplies an asymptotically exact fine-outcome
+PVM after rounding.
 
 ## 6. Exact remaining gate
 
@@ -190,22 +195,17 @@ intrinsic transition effects P U*Q_j U P
   -> automatic POVM + exact variance identity.       (TER17)
 ```
 
-What remains is not positivity, PVM rounding, or extension-fiber
-representative selection. It is the mixed atlas estimate `(TER16)`. Source
-commutant gauge is not an obstruction to this estimate: replacing `U` by
-`UC`, with `[C,P]=0`, leaves `UPU*` unchanged and conjugates every transition
-effect inside `PMP`. See
-`TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md`.
+Positivity, PVM rounding, extension-fiber representatives, source gauge, and
+the single-edge estimate `(TER16)` are all closed. What remains is
+compatibility between the separately obtained transition PVMs. Different
+adjacent-root occurrences may produce noncommuting measurements or labels
+which do not obey the multiplication table on one common multiplicity
+coordinate.
 
-The genuine missing content is fine-fiber resolution. Root covariance sees
-only the restriction of a target character along the proper coefficient
-homomorphism, so it cannot distinguish different target characters in the
-same restriction fiber. A cross-root multiplication relation must kill that
-within-fiber coherence. The literal compiled word may still be needed to
-synchronize several edges, but not to pin a source gauge for this single
-transition variance.
-
-If that fixed mixed estimate is proved, `(TER3)` supplies the exact finite
-transition PVMs required by the whole-map decoder, and the robust `1/36`
-paired-quotient floor closes the contradiction. No nonhyperlinear group is
-claimed before that estimate is established.
+The mixed atlas theorem must therefore make the finite family of rounded
+PVMs jointly multiplication-compatible, with total error tending to zero.
+Only then can character-to-map coarsening, tree gluing, and the robust
+`1/36` paired-quotient floor apply. The fixed Pauli model is the calibration:
+it realizes every single-edge transition PVM exactly while keeping the
+different edge measurements quantum-incompatible. No nonhyperlinear group
+is claimed before this multi-edge compatibility estimate is established.
