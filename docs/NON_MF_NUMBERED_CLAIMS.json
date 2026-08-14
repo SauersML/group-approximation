@@ -559,7 +559,7 @@
       "id": "prop:univquot",
       "environment": "proposition",
       "title": "the universal MF quotient",
-      "statement_sha256": "2231209e13d0bc80d5ef44f1d2138e9e365de63e995fb623dbe418003aeb3157",
+      "statement_sha256": "c8376f92abfc33945e70b3a2808fb94b22fa423a5f589099a355360c4af42eca",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -650,7 +650,7 @@
       "id": "cor:cylinder",
       "environment": "corollary",
       "title": "a clopen non-MF cylinder",
-      "statement_sha256": "1ef030144b4d4ab523e5d9e4cf402a921c41e305e638fc7bde03a870858a641f",
+      "statement_sha256": "847c38b2b21a9d92e23cd827741a7a8cfe4f121ebf1ad8b874bb755b726b13c4",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
