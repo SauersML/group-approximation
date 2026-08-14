@@ -4,36 +4,23 @@
 name: Build and commit property TT PDF
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Lean Prover CI"]
     branches: [main]
-    paths:
-      - property_tt_leavitt.tex
-      - GroupApproximation/**
-      - GroupApproximation.lean
-      - scripts/**
-      - docs/PROPERTY_TT_CLAIM_MAP.md
-      - docs/PROPERTY_TT_PROVENANCE.md
-      - docs/CLAIM_DECLS.txt
-      - docs/CLAIM_SIGNATURES.md
-      - docs/NON_MF_CLAIM_DECLS.txt
-      - docs/NON_MF_CLAIM_SIGNATURES.md
-      - docs/NON_MF_NUMBERED_CLAIMS.json
-      - experiments/sl3-p13-reductions-complete.json
-      - experiments/sl3-sos-radius0-certificate.json
-      - experiments/sl3-sos-radius0-certificate.npz
-      - experiments/sl3_p13_certificate_lean_generator.py
-      - experiments/sl3_p13_hodge_lean_generator.py
-      - experiments/sl3_p13_pair_table_generator.py
-      - experiments/sl3_p13_relator_replay.py
-      - experiments/sl3_p13_replay_lean_generator.py
-      - lakefile.toml
-      - lean-toolchain
-      - lake-manifest.json
-      - .github/workflows/build-property-tt-pdf.yml
-      - .github/workflows/p13-sharded-build.yml
+    types: [completed]
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full main-branch commit already accepted by Lean Prover CI
+        required: true
+        type: string
+      prover_run_id:
+        description: Successful Lean Prover CI run for source_sha
+        required: true
+        type: string
 
 permissions:
+  actions: read
   contents: write
 
 concurrency:
@@ -45,21 +32,38 @@ env:
   PDF_FILE: property_tt_leavitt.pdf
 
 jobs:
-  p13:
-    uses: ./.github/workflows/p13-sharded-build.yml
-
   build-pdf:
     name: Build and validate PDF
-    needs: p13
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 360
+    env:
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha || inputs.source_sha }}
+      PROVER_RUN_ID: ${{ github.event.workflow_run.id || inputs.prover_run_id }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
+          ref: ${{ env.SOURCE_SHA }}
           fetch-depth: 0
           persist-credentials: true
+
+      - name: Bind publication to the exact successful Prover run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_json="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${PROVER_RUN_ID}")"
+          test "$(jq -r .path <<<"$run_json")" = '.github/workflows/prover.yml'
+          test "$(jq -r .status <<<"$run_json")" = completed
+          test "$(jq -r .conclusion <<<"$run_json")" = success
+          test "$(jq -r .head_branch <<<"$run_json")" = main
+          test "$(jq -r .head_sha <<<"$run_json")" = "$SOURCE_SHA"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
 
       - name: Assert a clean source checkout
         run: test -z "$(git status --porcelain)"
@@ -100,8 +104,10 @@ jobs:
       - name: Download the bounded P13 build
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
-          pattern: p13-*-${{ github.sha }}
+          pattern: p13-*-${{ env.SOURCE_SHA }}
           path: build/p13-prebuild
+          run-id: ${{ env.PROVER_RUN_ID }}
+          github-token: ${{ github.token }}
 
       - name: Restore and seal the P13 build
         run: |
@@ -249,7 +255,7 @@ jobs:
 
       - name: Commit and push updated PDF
         env:
-          START_SHA: ${{ github.sha }}
+          START_SHA: ${{ env.SOURCE_SHA }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"

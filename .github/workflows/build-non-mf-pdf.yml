@@ -5,38 +5,26 @@
 name: Build and attest non-MF PDF
 
 on:
-  push:
+  # The Prover workflow is the sole producer of the memory-intensive P13
+  # archive.  Publication starts only after that exact source revision has
+  # passed, rather than launching a competing six-runner copy of the proof.
+  workflow_run:
+    workflows: ["Lean Prover CI"]
     branches: [main]
-    paths:
-      - non_mf_groups_exist.tex
-      - docs/NON_MF_CLAIM_DECLS.txt
-      - docs/NON_MF_CLAIM_SIGNATURES.md
-      - docs/NON_MF_NUMBERED_CLAIMS.json
-      # Visible counterpart links range across the library.  Any Lean source
-      # change can rename or move a mapped declaration, so the lexical gate
-      # must run on the whole source tree rather than one historical module.
-      - GroupApproximation/**
-      - GroupApproximation.lean
-      - experiments/sl3-p13-reductions-complete.json
-      - experiments/sl3-sos-radius0-certificate.json
-      - experiments/sl3-sos-radius0-certificate.npz
-      - experiments/sl3_p13_certificate_lean_generator.py
-      - experiments/sl3_p13_hodge_lean_generator.py
-      - experiments/sl3_p13_pair_table_generator.py
-      - experiments/sl3_p13_relator_replay.py
-      - experiments/sl3_p13_replay_lean_generator.py
-      - lakefile.toml
-      - lean-toolchain
-      - lake-manifest.json
-      # All publication and source-audit helpers are part of the gate.  Watching
-      # the directory prevents a shared helper change from silently bypassing it.
-      - scripts/**
-      - .github/workflows/build-non-mf-pdf.yml
-      - .github/workflows/p13-sharded-build.yml
-      - .github/workflows/prover.yml
+    types: [completed]
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full main-branch commit already accepted by Lean Prover CI
+        required: true
+        type: string
+      prover_run_id:
+        description: Successful Lean Prover CI run for source_sha
+        required: true
+        type: string
 
 permissions:
+  actions: read
   contents: write
   id-token: write
   attestations: write
@@ -56,21 +44,38 @@ env:
   TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
 
 jobs:
-  p13:
-    uses: ./.github/workflows/p13-sharded-build.yml
-
   build-pdf:
     name: Build, kernel-audit, and validate PDF
-    needs: p13
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 360
+    env:
+      SOURCE_SHA: ${{ github.event.workflow_run.head_sha || inputs.source_sha }}
+      PROVER_RUN_ID: ${{ github.event.workflow_run.id || inputs.prover_run_id }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
+          ref: ${{ env.SOURCE_SHA }}
           fetch-depth: 0
           persist-credentials: true
+
+      - name: Bind publication to the exact successful Prover run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run_json="$(gh api "/repos/${GITHUB_REPOSITORY}/actions/runs/${PROVER_RUN_ID}")"
+          test "$(jq -r .path <<<"$run_json")" = '.github/workflows/prover.yml'
+          test "$(jq -r .status <<<"$run_json")" = completed
+          test "$(jq -r .conclusion <<<"$run_json")" = success
+          test "$(jq -r .head_branch <<<"$run_json")" = main
+          test "$(jq -r .head_sha <<<"$run_json")" = "$SOURCE_SHA"
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
 
       - name: Assert a clean source checkout
         run: |
@@ -116,8 +121,10 @@ jobs:
       - name: Download the bounded P13 build
         uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
-          pattern: p13-*-${{ github.sha }}
+          pattern: p13-*-${{ env.SOURCE_SHA }}
           path: build/p13-prebuild
+          run-id: ${{ env.PROVER_RUN_ID }}
+          github-token: ${{ github.token }}
 
       - name: Restore and seal the P13 build
         run: |
@@ -291,7 +298,7 @@ jobs:
       - name: Upload PDF validation preview
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
-          name: non-mf-preview-${{ github.sha }}
+          name: non-mf-preview-${{ env.SOURCE_SHA }}
           if-no-files-found: error
           retention-days: 14
           path: |
@@ -301,17 +308,17 @@ jobs:
       - name: Create source and artifact manifest
         run: |
           git archive --format=tar.gz \
-            --output="build/non-mf-source-${GITHUB_SHA}.tar.gz" "$GITHUB_SHA"
+            --output="build/non-mf-source-${SOURCE_SHA}.tar.gz" "$SOURCE_SHA"
           python3 scripts/release_manifest.py \
-            --commit "$GITHUB_SHA" \
-            --kernel-audit-run-id "$GITHUB_RUN_ID" \
+            --commit "$SOURCE_SHA" \
+            --kernel-audit-run-id "$PROVER_RUN_ID" \
             --publication-run-id "$GITHUB_RUN_ID" \
             --texlive-image "$TEXLIVE_IMAGE" \
             --source-checkout-clean \
             --pdf "$PDF_FILE" \
             --output build/NON_MF_RELEASE_MANIFEST.json
           sha256sum "$PDF_FILE" \
-            "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
+            "build/non-mf-source-${SOURCE_SHA}.tar.gz" \
             build/NON_MF_RELEASE_MANIFEST.json \
             > build/SHA256SUMS
 
@@ -328,13 +335,13 @@ jobs:
       - name: Upload immutable review bundle
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
-          name: non-mf-release-${{ github.sha }}
+          name: non-mf-release-${{ env.SOURCE_SHA }}
           if-no-files-found: error
           retention-days: 90
           path: |
             non_mf_groups_exist.tex
             non_mf_groups_exist.pdf
-            build/non-mf-source-${{ github.sha }}.tar.gz
+            build/non-mf-source-${{ env.SOURCE_SHA }}.tar.gz
             build/NON_MF_RELEASE_MANIFEST.json
             build/SHA256SUMS
             build/non_mf_groups_exist.log
@@ -347,7 +354,7 @@ jobs:
         with:
           subject-path: |
             non_mf_groups_exist.pdf
-            build/non-mf-source-${{ github.sha }}.tar.gz
+            build/non-mf-source-${{ env.SOURCE_SHA }}.tar.gz
             build/NON_MF_RELEASE_MANIFEST.json
 
       - name: Publish immutable tagged release
@@ -356,15 +363,15 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          short_sha="${GITHUB_SHA:0:12}"
+          short_sha="${SOURCE_SHA:0:12}"
           tag="non-mf-${short_sha}"
           gh release create "$tag" \
-            --target "$GITHUB_SHA" \
+            --target "$SOURCE_SHA" \
             --verify-tag=false \
             --title "Non-MF formalization ${short_sha}" \
-            --notes "Kernel-audited source, tagged PDF, claim manifest, hashes, and provenance attestation for ${GITHUB_SHA}." \
+            --notes "Kernel-audited source, tagged PDF, claim manifest, hashes, and provenance attestation for ${SOURCE_SHA}." \
             "$PDF_FILE" \
-            "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
+            "build/non-mf-source-${SOURCE_SHA}.tar.gz" \
             build/NON_MF_RELEASE_MANIFEST.json \
             build/SHA256SUMS \
             build/non_mf_groups_exist.log \
