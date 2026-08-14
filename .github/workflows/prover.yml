@@ -26,6 +26,7 @@ on:
       - '!docs/**/*.md'
       - 'docs/CLAIM_MAP.md'
       - 'docs/CLAIM_SIGNATURES.md'
+      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'docs/PROPERTY_TT_CLAIM_MAP.md'
       - 'docs/PROPERTY_TT_PROVENANCE.md'
   pull_request:
@@ -45,6 +46,7 @@ on:
       - '!docs/**/*.md'
       - 'docs/CLAIM_MAP.md'
       - 'docs/CLAIM_SIGNATURES.md'
+      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'docs/PROPERTY_TT_CLAIM_MAP.md'
       - 'docs/PROPERTY_TT_PROVENANCE.md'
   workflow_dispatch:
