@@ -21,12 +21,12 @@ rounding then gives one base PVM with total squared error below
 `18 epsilon`; transporting it around the orbit gives an exact whole-map PVM.
 No factor depends on the orbit size, response alphabet, or matrix dimension.
 
-This result converts the remaining decoder problem into a literal covariance
-audit.  For each of the four one-sided Leavitt transports, prove that the
-actual raw/comb transition PVM approximately intertwines the named middle-
-root translations.  If those four covariance identities hold on the common
-long-root sector, the common-map extraction required by the robust `1/36`
-floor is available.
+This result closes the common-map extraction **after source and target have
+been placed in the same finite paired orbit**.  A literal covariance audit
+still proves equivariance, but equivariance alone permits a proper map into a
+larger target orbit.  The exact direct-sum countermodel is recorded in
+`FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md`.  The remaining
+theorem must therefore combine raw/comb covariance with same-orbit closure.
 
 ## 2. Exact orbit construction
 
@@ -257,7 +257,8 @@ word changes root indices, so those target translations must be written in
 the routed last-row/last-column coordinates before applying `(ETM21)`.
 
 If all four versions of `(ETM19)` are present in the selected rank-five
-packet, then:
+packet **and their target translation images close on the same source-sized
+paired orbits**, then:
 
 ```text
 paired translations
@@ -268,6 +269,9 @@ paired translations
  -> robust 1/36 contradiction.                      (ETM23)
 ```
 
-The remaining task is therefore a finite literal conjugation audit, not an
-abstract matrix-coordinate commutant-recovery theorem.  No local computation
-or build was run for this note.
+The literal conjugation audit closes equivariance, but it does not by itself
+prove the boldfaced same-orbit clause.  A proper translation embedding can
+split matrix multiplicity into a larger target Weyl factor while preserving
+total dimension and every equivariance relation.  The live input is a
+carrier-coupled matrix-coordinate closure theorem ruling out that conversion.
+No local computation or build was run for this note.

@@ -5839,6 +5839,23 @@ provides that rate. Thus the existing coefficientwise `H^2` gate cannot
 be advertised as closing the Clifford argument. Full proof and scope:
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
 
+### 2026-08-14: equivariant whole maps permit exact rectangular escape
+
+`FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md` corrects the
+scope of the new orbit-summing theorem.  If `b` is a finite perfect pairing,
+the direct-sum target pairing and the four coordinate embeddings satisfy the
+entire diagonal-one/cross-zero Leavitt table exactly.  These maps are already
+deterministic and translation-equivariant.  Source Weyl multiplicity can be
+traded for a larger target Weyl factor in the same total matrix dimension,
+so unitary compressor covariance does not identify source and target label
+sizes.
+
+The remaining theorem is same-orbit paired-translation closure on positive
+trace.  Once the child images are known to stay in one source-sized finite
+orbit, equivariant orbit-summing supplies a common law of self-maps and the
+robust `1/36` floor applies.  A literal covariance audit alone cannot prove
+the closure clause.
+
 ### 2026-08-14: equivariant transition PVMs give whole response maps
 
 `TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md` closes the abstract
@@ -5850,12 +5867,13 @@ maps.  For approximate equivariance, averaging and de la Salle rounding give
 a universal total squared error bound `40 epsilon`, with no orbit-size,
 alphabet, or matrix-dimension loss.
 
-The only remaining input for this step is literal: check that each raw/comb
-one-sided Leavitt transport conjugates the named middle-root commutators to
-the corresponding target translations.  The intrinsic transition PVM is
-then equivariant by a direct conjugation calculation.  Combined with outer-
-root commutation, path PVM classicalization, and tree gluing, this would
-supply the common latent map law consumed by the robust `1/36` floor.
+The literal input for this step is to check that each raw/comb one-sided
+Leavitt transport conjugates the named middle-root commutators to the
+corresponding target translations.  The intrinsic transition PVM is then
+equivariant by a direct conjugation calculation.  Applying the `1/36` floor
+still additionally requires the source and target translations to act on
+the same finite paired orbit; rectangular enlargement is the remaining
+matrix-specific gate.
 
 ### 2026-08-14: nested commutators recover both radical translations
 

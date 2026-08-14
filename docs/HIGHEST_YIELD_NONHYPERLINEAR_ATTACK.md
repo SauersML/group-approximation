@@ -2,6 +2,29 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 equivariant whole maps still admit rectangular escape
+
+The whole-map theorem does not identify the source and target paired label
+spaces.  For every finite perfect pairing `b:V x W->F_2`, the direct-sum
+pairing on `V'=V+V`, `W'=W+W` and the four coordinate embeddings satisfy
+
+```text
+b'(R_i v,L_j w)=delta_ij b(v,w)
+```
+
+exactly.  The maps are deterministic and fully translation-equivariant.
+They evade the `1/36` theorem only because their codomains are larger.  At
+the matrix level, a source Weyl factor with multiplicity `N` and a target
+Weyl factor of size `N^2` both act on dimension `N^2`, so unitary covariance
+and trace balance do not close the escape.  See
+`FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md`.
+
+The live theorem is therefore same-orbit closure: on positive total trace,
+the two child translation images must remain inside one source-sized paired
+orbit up to vanishing boundary leakage.  Equivariant orbit-summing then
+supplies the common self-map law, and `1/36` finishes.  Without this closure,
+the four-word covariance audit is insufficient.
+
 ## 2026-08-14 equivariant transitions produce whole-map PVMs
 
 The named paired translations close the counterfactual-response gap whenever
@@ -20,12 +43,11 @@ variance is maximal.  The Leavitt multiplication table, not source-only
 measurability, is what rules out a common mixture of such sections via the
 `1/36` floor.
 
-The live task has become a finite word audit.  Verify for all four one-sided
-maps that the raw/comb transition unitary carries each named middle-root
-translation to its transported translation.  Conjugation covariance then
-makes the transition PVM equivariant automatically.  If the four routed
-identities coexist in the rank-five packet, the common-map extraction gate
-is closed.
+The next literal task is to verify for all four one-sided maps that the
+raw/comb transition unitary carries each named middle-root translation to
+its transported translation.  This makes the transition PVM equivariant.
+It closes the common-map extraction only after the separate same-orbit
+closure theorem excludes rectangular target enlargement.
 
 ## 2026-08-14 nested commutators recover the paired translations directly
 
