@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.NonMFImpact
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Endpoint.SimultaneousStability
 import GroupApproximation.Sofic.SoficSequential
@@ -566,6 +567,15 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralNonMFEndpoint.literal_reducedGroupCStar_not_isMFAlgebra
 #print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA
 #print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD
+#print axioms GroupApproximation.NonMFImpact.literal_sixGenerated_finitelyPresented_nonMF
+#print axioms GroupApproximation.NonMFImpact.literal_nonempty_clopen_nonMF_cylinder
+#print axioms GroupApproximation.NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total
+#print axioms GroupApproximation.NonMFImpact.affineBase_residuallyFinite_sofic_MF
+#print axioms GroupApproximation.NonMFImpact.scalingFamily_finitelyPresented_nonMF
+#print axioms GroupApproximation.NonMFImpact.cyclicBase_exactModel_obstruction
+#print axioms GroupApproximation.NonMFImpact.operatorMF_not_closed_under_quotients
+#print axioms GroupApproximation.NonMFImpact.literal_uniform_operatorNorm_obstruction
+#print axioms GroupApproximation.NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.cleanP13Certificate
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_hodge_gap
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_generatorLaplacian_quadratic_gap

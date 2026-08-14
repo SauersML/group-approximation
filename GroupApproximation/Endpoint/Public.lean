@@ -1,4 +1,5 @@
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.NonMFImpact
 import GroupApproximation.Endpoint.ManuscriptStatements
 import GroupApproximation.Endpoint.SimultaneousStability
 import GroupApproximation.Sofic.ChosenNonMFTheorem
@@ -212,6 +213,17 @@ annihilation, and Clifford detection.
 * `LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective`
   -- every finite-dimensional linear representation of the literal group is
   nonfaithful.
+
+## Closed impact endpoints
+
+`NonMFImpact` collects only premise-free conclusions.  In particular it pins
+the six-generator bound, the nonempty clopen non-MF cylinder, the locally
+finite MF lamp kernel inside the finitely generated non-MF witness, the
+residually finite/sofic/MF affine base, the entire scaling family, the cyclic
+exact-model obstruction, quotient nonclosure, the uniform finite obstruction,
+and the torsion-free limitation of finite-normal methods.  None accepts a
+property-`(T)`, approximation, permanence, or literature premise from a
+caller.
 
 ## Consequences and reusable obstruction APIs
 
@@ -536,6 +548,16 @@ export GroupApproximation.LiteralBaseP13Replay
   (yFromUZXY_eq closure_Z_XY_eq_top)
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
+export GroupApproximation.NonMFImpact
+  (literal_sixGenerated_finitelyPresented_nonMF
+    literal_nonempty_clopen_nonMF_cylinder
+    witness_locallyFinite_MF_kernel_nonMF_total
+    affineBase_residuallyFinite_sofic_MF
+    scalingFamily_finitelyPresented_nonMF
+    cyclicBase_exactModel_obstruction
+    operatorMF_not_closed_under_quotients
+    literal_uniform_operatorNorm_obstruction
+    finiteNormal_obstruction_is_trivial_in_torsionFree_groups)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)

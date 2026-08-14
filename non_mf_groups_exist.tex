@@ -115,9 +115,11 @@ We give an explicit eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
 most six.  Its Clifford witness is a
 six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
-are closed under neither quotients nor extensions.  The results are machine-verified in Lean; the formal development is
-self-contained, deriving property~\textup{(T)} of the base from an
-explicit rational spectral certificate.  The
+are closed under neither quotients nor extensions.  The core non-MF theorem
+and every result carrying a formalization tag are machine-verified in Lean;
+the formal development is self-contained, deriving property~\textup{(T)} of
+the base from an explicit rational spectral certificate.  The untagged
+soficity and amenability consequences use the cited permanence theorems.  The
 obstruction is a finite universal Horn sentence and hence defines a nonempty
 clopen set of non-MF marked groups.
 \end{abstract}
@@ -674,11 +676,13 @@ Hilbert ultraproduct.  Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
 \subsection*{Group-theoretic inputs}
-The printed proofs use four literature inputs: the displayed presentation
-of $\SL_3(\mathbb Z)$; property~\textup{(T)} of
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$; and, only in two explicitly
-marked unformalized paragraphs, quasidiagonality of amenable groups
-\cite{TWW} and the simple sofic embedding theorem \cite{ElekSzaboHyper}.  The exact twenty-relator base is
+The printed proof of the core theorem uses the displayed presentation of
+$\SL_3(\mathbb Z)$ and property~\textup{(T)} of
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Later untagged consequences use
+quasidiagonality of amenable groups \cite{TWW}, Mal'cev residual finiteness
+for finitely generated linear groups, the sofic permanence results of
+Elek--Szab\'o \cite{ElekSzabo}, and their simple sofic embedding theorem
+\cite{ElekSzaboHyper}.  The exact twenty-relator base is
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
 
@@ -689,8 +693,10 @@ each tag names a declaration in the accompanying Lean~4 development whose
 statement is the faithful translation of the printed one and whose proof
 the Lean kernel accepts with no axioms beyond Lean's three classical
 primitives.  A tag certifies the stated theorem, not the surrounding
-prose; a statement without a tag has no formal counterpart, and the two
-unformalized paragraphs above are marked as such in place.  The formal
+prose; a statement without a tag has no claimed formal counterpart.  In
+particular, the soficity of the total Clifford witness, extension
+nonclosure, the amenable cyclic detector, and the simple sofic envelope use
+the cited external permanence theorems and are intentionally untagged.  The formal
 development consumes no literature input at all: in particular it uses
 neither \cite{CRW} nor \cite{BHV}, proving property~\textup{(T)} of the
 twenty-relator base directly from an explicit rational spectral-gap
