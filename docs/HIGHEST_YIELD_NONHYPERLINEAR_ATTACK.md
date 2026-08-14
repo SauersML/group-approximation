@@ -2,6 +2,29 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 correction: pure four-root words cannot pin the gauge
+
+The coproduct-identification gate cannot use only root covariance and pure
+four-root associativity. In the regular representation of `C2`, the
+commutant unitary
+
+```text
+C=(1+i)/2+(1-i)/2 lambda_s
+```
+
+has group-like coproduct defect exactly `1`. Multiplying an exact
+intertwiner by `C` preserves every covariance relation and leaves every
+root-only four-root word unchanged. See
+`FALSE_PURE_FOUR_ROOT_WORDS_CANNOT_PIN_COMPRESSOR_GAUGE.md`.
+
+Therefore the current positive target must explicitly use the comb
+compressor's fixed 175-syllable source word, or another mixed relator which
+changes under this commutant deformation. The highest-signal next test is
+whether the literal source word admits the displayed `C2` phase deformation
+inside an exact two-chart model. If it does, the local coproduct route is
+sterile; if it does not, the failed deformation equations identify the
+mixed relators that can pin the gauge.
+
 ## 2026-08-14 proper compressor paths can be synchronized intrinsically
 
 Finite Fourier twirling works for an arbitrary homomorphism of finite

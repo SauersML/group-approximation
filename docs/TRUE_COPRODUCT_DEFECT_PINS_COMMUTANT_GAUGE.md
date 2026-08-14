@@ -188,12 +188,21 @@ The present calculation splits that qualification in two.
 
 Thus the missing theorem no longer needs to choose a preferred regular
 basis or prove entrywise block coherence directly. It needs one
-gauge-covariant Parseval identity:
+gauge-covariant Parseval identity, but that identity cannot be derived from
+the pure four-root words alone:
 
 > **Coproduct-identification gate.** Construct the coefficient expansion of
 > the repaired finite-envelope implementer and prove that its total
 > corepresentation defect is the normalized four-root associativity energy,
 > up to a dimension-free `o(1)` error.
+
+The `C_2` counterexample in
+`FALSE_PURE_FOUR_ROOT_WORDS_CANNOT_PIN_COMPRESSOR_GAUGE.md` shows that the
+construction of the coefficient expansion must explicitly use the comb
+compressor's compiled source word, or another mixed relator detecting the
+compressor gauge. Root covariance and root-only associativity both remain
+exact under a nongroup-like commutant deformation, while the coproduct
+defect changes.
 
 After that gate, the gauge becomes a PVM of classical translations. The
 existing whole-map decoder and robust `1/36` paired-quotient floor, or the
