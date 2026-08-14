@@ -44,7 +44,7 @@ the quotient model. -/
 theorem hammingDistance_finiteKernelPerm_mul
     [Fintype N] [DecidableEq N] (Y : FiniteModel)
     (φ : G →* MulAut N) (σ : G → Equiv.Perm Y) (g h : N ⋊[φ] G)
-    (hN : 0 < Fintype.card N) :
+    (hN : 0 < Fintype.card N) (hY : 0 < Fintype.card Y) :
     hammingDistance (finiteKernelModel N Y)
         (finiteKernelPerm Y φ σ (g * h))
         (finiteKernelPerm Y φ σ g * finiteKernelPerm Y φ σ h) =
@@ -73,7 +73,8 @@ theorem hammingDistance_finiteKernelPerm_mul
   rw [hammingDistance, hammingDistance, hdis, Finset.card_product,
     Finset.card_univ, Fintype.card_prod]
   push_cast
-  field_simp
+  field_simp [ne_of_gt (by exact_mod_cast hN : (0 : ℝ) < Fintype.card N),
+    ne_of_gt (by exact_mod_cast hY : (0 : ℝ) < Fintype.card Y)]
 
 /-- Distinct normal coordinates are separated perfectly when the quotient
 coordinates agree. -/
@@ -151,7 +152,7 @@ theorem isSofic_finiteKernel_semidirectProduct
     separated := ?_ }⟩
   · intro g hg h hh
     rw [hammingDistance_finiteKernelPerm_mul
-      M.carrier φ M.map g h (Fintype.card_pos_iff.mpr ⟨1⟩)]
+      M.carrier φ M.map g h (Fintype.card_pos_iff.mpr ⟨1⟩) M.nonempty]
     exact M.multiplicative _ (Finset.mem_image_of_mem _ hg)
       _ (Finset.mem_image_of_mem _ hh)
   · intro g hg h hh hne
