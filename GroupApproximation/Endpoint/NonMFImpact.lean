@@ -52,7 +52,17 @@ theorem witness_locallyFinite_MF_kernel_nonMF_total :
 
 /-- The concrete witness also gives a separable, faithfully tracial, stably
 finite reduced group C-star algebra that is not MF. -/
-theorem witness_reducedGroupCStar_stablyFinite_nonMF :=
+theorem witness_reducedGroupCStar_stablyFinite_nonMF :
+    TopologicalSpace.SeparableSpace
+        (ReducedGroupCStar LiteralNonMFLinearWitness.WitnessGroup) ∧
+      Nonempty (FaithfulTracialState
+        (ReducedGroupCStar LiteralNonMFLinearWitness.WitnessGroup)) ∧
+      (∀ (I : Type) [Fintype I] [DecidableEq I], Nonempty I →
+        ∀ v : CStarMatrix I I
+          (ReducedGroupCStar LiteralNonMFLinearWitness.WitnessGroup),
+          star v * v = 1 → v * star v = 1) ∧
+      ¬ IsMFAlgebra
+        (ReducedGroupCStar LiteralNonMFLinearWitness.WitnessGroup) :=
   LiteralWitnessConsequences.literalWitness_reducedGroupCStar_stablyFinite_nonMF
 
 /-- The concrete affine base is residually finite, sofic, and operator-MF;
@@ -69,8 +79,8 @@ theorem affineBase_residuallyFinite_sofic_MF :
 factor `m ≥ 2` produces a finitely presented non-MF group. -/
 theorem scalingFamily_finitelyPresented_nonMF :
     ∀ m : ℕ, 2 ≤ m →
-      Group.IsFinitelyPresented (ScalingFamilyEndpoint.MarkedGroup m) ∧
-        ¬ IsOperatorMF (ScalingFamilyEndpoint.MarkedGroup m) := by
+      Group.IsFinitelyPresented (ScalingFamilyPresentation.MarkedGroup m) ∧
+        ¬ IsOperatorMF (ScalingFamilyPresentation.MarkedGroup m) := by
   intro m hm
   exact ⟨inferInstance,
     ScalingFamilyEndpoint.scalingFamily_not_isOperatorMF m hm⟩
@@ -88,12 +98,25 @@ theorem cyclicBase_exactModel_obstruction :
   CyclicBaseLEFObstruction.cyclicBase_exactModel_package
 
 /-- A concrete operator-MF group has a non-operator-MF quotient. -/
-theorem operatorMF_not_closed_under_quotients :=
+theorem operatorMF_not_closed_under_quotients :
+    IsOperatorMF (FreeGroup ChosenMarkedPresentation.Generator) ∧
+      Function.Surjective
+        (PresentedGroup.mk
+          (ChosenMarkedPresentation.relators :
+            Set (FreeGroup ChosenMarkedPresentation.Generator))) ∧
+      ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
   OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
 
 /-- A single positive defect threshold and finite test set force the literal
 mark uniformly close to the identity in every matrix dimension. -/
-theorem literal_uniform_operatorNorm_obstruction :=
+theorem literal_uniform_operatorNorm_obstruction :
+    ∃ (δ : ℝ) (F₀ : Finset MarkedGroup), 0 < δ ∧
+      ∀ (Y : FiniteModel)
+        (φ : MarkedGroup → Matrix.unitaryGroup Y ℂ),
+        (∀ g ∈ F₀, ∀ h ∈ F₀,
+          ‖(φ (g * h) : Matrix Y Y ℂ) -
+            (φ g : Matrix Y Y ℂ) * φ h‖ ≤ δ) →
+        ‖(φ mark : Matrix Y Y ℂ) - 1‖ < 1 :=
   LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
 
 /-- The finite-normal obstruction cannot directly produce a nontrivial
