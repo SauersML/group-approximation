@@ -2,6 +2,12 @@
 
 Date: 2026-08-12
 
+> **Historical design note.** This snapshot is retained only as research
+> history.  Its formal-status sections are superseded by the repository
+> README, `NON_MF_ADVERSARIAL_AUDIT_RESOLUTION_2026-08-13.md`, the generated
+> numbered-claim manifest, and the current manuscript; they are not release
+> evidence.
+
 ## 1. Outcome
 
 The general mechanism needs only a finitely presented group `G`, a finitely
@@ -19,10 +25,11 @@ d=t c t^(-1),
 w=[d,a d a^(-1)],
 ```
 
-and impose that `w` is a central involution.  If the inclusion of `Gamma`
-and the element `t` are given by finite words, the resulting group `E` is
-finitely presented.  Then `w!=1`, but every norm-matrix-corona
-representation kills `w`.
+and impose that `w` is central.  Since `c^2=1`, both `d` and
+`a d a^(-1)` are involutions.  Centrality of their commutator gives
+`w=w^(-1)`, hence `w^2=1`.  If the inclusion of `Gamma` and the element `t`
+are given by finite words, the resulting group `E` is finitely presented.
+Then `w!=1`, but every norm-matrix-corona representation kills `w`.
 
 A uniform source of such pairs starts with a finitely presented property
 `(T)` group `Gamma` having a proper injective endomorphism
@@ -79,7 +86,6 @@ For the ascending-HNN source, fix a finite presentation
     t s t^(-1)=alpha(s)                 (s in S),
     c^2=1,
     [c,s]=1                             (s in S),
-    w^2=1,
     [w,s]=[w,t]=[w,c]=1                 (s in S)
 >,
 ```
@@ -148,8 +154,9 @@ contrary to the choice of `a`.  Therefore
 w |-> [c_(t Gamma),c_(a t Gamma)]=z!=1.
 ```
 
-The defining central-involution relations for `w` hold in this target, so
-this is a homomorphism from `E`.  Hence `w!=1` in `E`.
+The defining centrality relations for `w` hold in this target; the
+involution relation is derived as above.  Thus this is a homomorphism from
+`E`, and `w!=1` in `E`.
 
 ## 4. The norm-matrix corona is stably finite
 
@@ -347,7 +354,7 @@ The internal audit above resolves the mathematical details of items 1--3.
 The remaining uncertainty is principally literature priority, not an
 identified gap in the proof.
 
-### Formal endpoint (current scope)
+### Formal endpoint at the time of this snapshot
 
 `GroupApproximation/Sofic/NormMFResidualDetector.lean` defines
 `NormMFInvisible x` by quantifying over the repository's actual
@@ -612,19 +619,10 @@ of `G action G/Gamma`, whereas the Kun--Thom obstruction proves that this
 action is not sofic.  The crossed-product CE assertion in `(NMF9)` is the
 new content, not a consequence of existing action permanence.
 
-## 7. Status (2026-08-13)
+## 10. Historical status snapshot (2026-08-13; superseded)
 
-The result is written up as the standalone manuscript
-`non_mf_groups_exist.tex`.  The manuscript is referee-revised (45-item
-pass) and priority-corrected: the first nonsofic group is OpenAI's, with
-Kun--Thom as the subsequent generalization; the sofic metric is
-normalized Hamming; the paper's contribution is confined to the
-stable-finite Kazhdan pinning and the marked-word kernel device, per
-`CREDIT_AND_PRIORITY_AUDIT.md`.  The manuscript displays a complete
-eight-generator presentation of `E` inline (CRW presentation of
-`SL_3(Z)`), and the old "necessity of property `(T)`" framing is
-replaced by the cyclic-base calibration through the literal
-Baumslag--Solitar marked presentation.
+This section records the implementation state on its stated date.  It is
+not the current release status; use the sources named in the banner above.
 
 Machine-checked so far (kernel, warnings-as-errors): the
 finite-dimensional kill theorem (`map_marked_commutator_eq_one`,
