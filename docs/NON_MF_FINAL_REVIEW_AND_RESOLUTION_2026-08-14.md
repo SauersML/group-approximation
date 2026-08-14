@@ -212,21 +212,37 @@ paper does not claim them.
 
 ## Cairn research frontier
 
-The unresolved mathematics is represented in the repository's Cairn graph,
-not only in prose.  The graph now records:
+The manuscript's research state is represented in the repository's Cairn
+graph, not only in prose.  Proof artifacts remain in the manuscript, Lean
+modules, and review documents; Cairn names the reusable propositions and the
+valid implications between them.  The migrated graph records the complete
+conceptual spine from Kazhdan transport through the central-sign and
+Kazhdan--Clifford criteria to the literal non-MF mark.  It also records the
+scaling family, finite-normal criterion, universal MF quotient, radical
+functoriality, finite Horn obstruction, clopen cylinder, positive MF controls,
+quotient and extension failures, the sofic/hyperlinear non-MF witness, the
+two reduced-group-C-star consequences, the simple sofic envelope, and the
+cyclic-base sharpness example.
 
-- `literal-mark-quotient-mf` as the unique named prerequisite on the route to
-  `literal-mf-radical-exact`;
-- `commuting-lamp-quotient-mf` as the remaining prerequisite on the route to
-  `unsquared-defect-mf-visible`;
-- the direct proof that the unsquared defect survives the commuting-lamp
-  quotient; and
-- the direct finite-commutant-dimension proof that every exact
-  finite-dimensional model nevertheless kills that defect.
+Open questions are first-class roots rather than prose afterthoughts.  In
+particular:
 
-Cairn's duplicate check is clean.  Its compiled frontier therefore prevents
-two common research mistakes: treating radical membership as an exact radical
-calculation, or trying to detect the unsquared defect by residual finiteness.
+- `literal-mark-quotient-mf` is the unique open prerequisite on the displayed
+  route to `literal-mf-radical-exact`;
+- `commuting-lamp-quotient-mf` is the remaining prerequisite on the route to
+  `unsquared-defect-mf-visible`, alongside the established survival proof;
+- `literal-witness-kernel-amenable` gives a concrete live route to soficity of
+  the finitely presented source `E`; and
+- the effective modulus, torsion-free example, MF-to-hyperlinear direction,
+  multiplicity questions, broader tracial targets, and comparison with the
+  known nonsofic constructions are explicit frontier roots.
+
+Cairn's duplicate check is clean.  The compiled graph has 75 claims and 69
+routes: 47 claims are established, 11 routes are invalidated by proved
+obstructions, and 20 frontier holes remain.  This prevents, among other
+mistakes, treating radical membership as an exact radical calculation,
+confusing the established sofic quotient `W` with the unresolved soficity of
+`E`, or trying to detect the unsquared defect by residual finiteness.
 
 ## Submission actions outside the repository
 
@@ -249,8 +265,8 @@ local compilation:
 - all 42 cited declarations have closed theorem headers;
 - all 35 numbered theorem-like claims match the exact-claim manifest and its
   declaration roster;
-- the Cairn graph compiles with 41 claims and 44 routes, and its changed-file
-  duplicate/lint check is clean;
+- the Cairn graph compiles with 75 claims and 69 routes, its changed-file
+  duplicate/lint check is clean, and its static site generator completes;
 - the changed non-MF release, public, and axiom-audit Lean targets build with
   warnings as errors;
 - LuaLaTeX/`latexmk` completes with no undefined citations or references and
