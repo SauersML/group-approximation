@@ -208,7 +208,7 @@ theorem p13_hodge_gap
     (1 / 500 : ℝ) * familyNormSq z ≤
       matrixEnergy rho
         (hodgeMatrix LiteralP13HodgeData.D LiteralP13HodgeData.B) z := by
-  convert cleanP13Certificate.hodge_gap rho z using 1 <;> norm_num
+  convert cleanP13Certificate.hodge_gap rho z using 1 ; norm_num
 
 /-- Testing the clean Hodge estimate on exact coboundaries gives the clean
 quadratic gap `A² ≥ (1/500) A` for the six-generator Laplacian. -/
@@ -219,7 +219,7 @@ theorem p13_generatorLaplacian_quadratic_gap
         (generatorLaplacianOperator p13Generator rho) x ≤
       ‖generatorLaplacianOperator p13Generator rho x‖ ^ 2 := by
   convert cleanP13Certificate.generatorLaplacian_quadratic_gap
-    p13Generator rho x using 1 <;> norm_num
+    p13Generator rho x using 1 ; norm_num
 
 theorem p13_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} P13 :=
   cleanP13Certificate.hasKazhdanPropertyT (by exact ⟨0⟩) p13Generator
