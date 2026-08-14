@@ -237,7 +237,8 @@ theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
       left
       apply Finset.mem_union.mpr
       right
-      show ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
+      show ⁅(rawLamp : Raw Γ),
+          (rawBase (baseEval (Γ := Γ) (FreeGroup.of i)) : Raw Γ)⁆ ∈
         lampRelators (Γ := Γ)
       apply Finset.mem_union.mpr
       right
