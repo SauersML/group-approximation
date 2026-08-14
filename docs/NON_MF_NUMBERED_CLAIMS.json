@@ -164,7 +164,7 @@
       "id": "prop:p13-certificate",
       "environment": "proposition",
       "title": "exact rational Hodge certificate",
-      "statement_sha256": "637160237d2add0267e4264c9a30a07085879a205143d9cd550dc8ab298c292a",
+      "statement_sha256": "aa10b929a977eefdb3a69e60dca2161f3daaed31f9ae1b52260501a3e888da37",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
