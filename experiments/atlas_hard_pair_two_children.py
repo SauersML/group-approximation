@@ -9,6 +9,7 @@ of ``q``.  Two complementary children of the same base cylinder would give
 an immediate Cuntz--Leavitt trace obstruction.
 """
 
+import argparse
 import json
 import sys
 
@@ -102,7 +103,7 @@ def value_key(value):
                         for (left, right), coefficient in value.items()))
 
 
-def short_child_corners(q, letter, max_depth=6):
+def short_child_corners(q, letter, target_bits, max_depth=6):
     """Find direct child/base matrix-unit corners in short mixed words."""
     generators = (q, letter, leavitt_star(q), leavitt_star(letter))
     generator_names = ("q", "l", "q*", "l*")
@@ -113,7 +114,7 @@ def short_child_corners(q, letter, max_depth=6):
         following = []
         for value, word in layer:
             for base in BASE_CODE:
-                for bit in ("0", "1"):
+                for bit in target_bits:
                     child = base + bit
                     forward = single_monomial(corner(child, value, base))
                     if forward == (child, base):
@@ -227,11 +228,34 @@ def combined_one_letter_scan(pairs):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--max-depth", type=int, required=True)
+    parser.add_argument("--target-bit", choices=("0", "1"), action="append",
+                        required=True)
+    selection = parser.add_mutually_exclusive_group(required=True)
+    selection.add_argument("--all-pairs", action="store_true")
+    selection.add_argument("--pair-index", type=int, action="append")
+    args = parser.parse_args()
+    if args.max_depth < 0:
+        parser.error("--max-depth must be nonnegative")
+    target_bits = tuple(sorted(set(args.target_bit)))
+
     pairs = hard_pairs()
+    if args.pair_index is not None:
+        invalid = [index for index in args.pair_index
+                   if index < 0 or index >= len(pairs)]
+        if invalid:
+            parser.error(f"--pair-index outside 0..{len(pairs) - 1}: {invalid}")
+        selected_indices = sorted(set(args.pair_index))
+        selected_pairs = [pairs[index] for index in selected_indices]
+    else:
+        selected_indices = list(range(len(pairs)))
+        selected_pairs = pairs
     results = []
-    for boundary_index, inverted, rotation, prefix_length, q, letter in pairs:
+    for boundary_index, inverted, rotation, prefix_length, q, letter in selected_pairs:
         edges = child_edges(q, letter)
-        short_corners, distinct_values = short_child_corners(q, letter)
+        short_corners, distinct_values = short_child_corners(
+            q, letter, target_bits=target_bits, max_depth=args.max_depth)
         children_by_base = {}
         for edge in edges:
             children_by_base.setdefault(edge["base"], set()).add(edge["child"])
@@ -240,6 +264,9 @@ def main():
             if {base + "0", base + "1"} <= children
         )
         short_children_by_base = {}
+        for edge in edges:
+            short_children_by_base.setdefault(edge["base"], set()).add(
+                edge["child"])
         for corner_certificate in short_corners:
             short_children_by_base.setdefault(
                 corner_certificate["base"], set()).add(
@@ -255,17 +282,19 @@ def main():
             "prefix_length": prefix_length,
             "child_edges": edges,
             "two_child_bases": two_children,
-            "short_search_max_depth": 6,
+            "short_search_max_depth": args.max_depth,
             "short_search_distinct_values": distinct_values,
             "short_child_corners": short_corners,
             "short_two_child_bases": short_two_children,
         })
     print(json.dumps({
+        "selected_pair_indices": selected_indices,
+        "target_bits": target_bits,
         "pair_count": len(results),
         "all_pairs_have_two_children": all(r["two_child_bases"] for r in results),
         "all_pairs_have_short_two_children": all(
             r["short_two_child_bases"] for r in results),
-        "combined_one_letter_scan": combined_one_letter_scan(pairs),
+        "combined_one_letter_scan": combined_one_letter_scan(selected_pairs),
         "results": results,
     }, indent=2))
 

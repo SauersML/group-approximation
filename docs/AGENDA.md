@@ -4,6 +4,42 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: an all-depth germ quotient closes the hard-only branch
+
+`FALSE_HARD_PACKET_EVENTUAL_ZERO_GERM.md` upgrades the bounded hard-pair
+search to a structural theorem.  All six hard pairs and their stars preserve
+the same three eventually-zero rays.  The resulting `M_3(F_2)` star
+representation sends each recovered parent and its `0` child to the same
+rank-one idempotent and kills the `1` child.  Hence no word at any depth in
+the combined hard-pair algebra can implement the complementary equivalence.
+The zero-range algebraic endpoint is Lean-checked in
+`Leavitt/ZeroRangeObstruction.lean`.
+
+The full raw and comb elements act identically on this quotient, but their
+source factorizations do not: four of six raw syllables and eleven of 28 comb
+syllables leave the germ sector before returning.  The properly infinite
+packet is not refuted, because its parent `p_11` is killed by the quotient.
+The live theorem remains recovery of `p_11,p_001` and the completed
+compressor corners in one finite multiplicity algebra.  Intermediate
+source-prefix holonomy is a possible tool for that recovery, not a premise
+silently inserted into the endpoint.
+
+### 2026-08-13: hard two-branch search extended without a complementary child
+
+`FALSE_HARD_PAIR_TWO_CHILD_SHORT_PACKET.md` now records an exact all-pair
+search through mixed-word depth seven (`60,240` reduced Leavitt values) and a
+targeted search of the smallest-growth hard representative through depth
+nine (`39,364` values).  Every recovered base-to-child matrix unit still
+ends in the `0` child; no complementary `1`-child equivalence appears.  The
+search CLI now requires explicit depth, target bits, and pair scope so deeper
+bounded audits do not silently reuse the archived depth-six parameters.
+
+The bounded scan itself is not an all-depth theorem, and a depth-ten run was
+deliberately killed by the 50-second MSI bound.  The preceding germ-quotient
+entry now supplies the structural all-depth closure.  Brute-force hard-pair
+word growth is retired; only the separate finite-multiplicity recovery of the
+known raw/comb properly infinite packet remains live.
+
 ### 2026-08-13: the classical `SL_3(Z)` shortcut closes only the non-MF paper gate
 
 `SL3_PRESENTATION_PROPERTY_T_AUDIT_2026-08-13.md` verifies that the literal
