@@ -12,6 +12,7 @@ on:
 # succeeded, then checks out exactly that certified SHA.
 concurrency:
   group: verified-certified-promotion
+  queue: max
   cancel-in-progress: false
 
 permissions:

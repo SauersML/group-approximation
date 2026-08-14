@@ -122,11 +122,37 @@ jobs:
           git fetch --no-tags origin \
             '+refs/heads/main:refs/remotes/origin/main' \
             '+refs/heads/verified:refs/remotes/origin/verified'
-          python3 scripts/advance_verified_branch.py self-test
 
           target='${{ github.sha }}'
           main=$(git rev-parse refs/remotes/origin/main)
           verified=$(git rev-parse refs/remotes/origin/verified)
+
+          if git merge-base --is-ancestor "$target" "$verified"; then
+            echo "Requested proof tree is already contained in verified."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if ! git merge-base --is-ancestor "$verified" "$target"; then
+            echo "verified and the requested proof tree diverge; verifying explicitly."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # A not-yet-certified classifier or workflow must not decide that its
+          # own commit can skip verification.  The first full green run
+          # certifies the new control plane; later equivalent runs may use it.
+          if ! git diff --quiet "$verified" "$target" -- \
+            scripts/advance_verified_branch.py \
+            scripts/p13_build_shards.py \
+            .github/workflows/prover.yml \
+            .github/workflows/p13-sharded-build.yml \
+            .github/workflows/verified-fast-forward.yml \
+            .github/workflows/verified-promote.yml; then
+            echo "Verification control code differs from verified; running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python3 scripts/advance_verified_branch.py self-test
 
           if ! git merge-base --is-ancestor "$target" "$main"; then
             echo "Requested SHA $target is not an ancestor of main; verifying it explicitly."
@@ -153,12 +179,6 @@ jobs:
                 exit "$newer_delta"
                 ;;
             esac
-            exit 0
-          fi
-
-          if ! git merge-base --is-ancestor "$verified" "$target"; then
-            echo "verified is not an ancestor of the current proof tree; running."
-            echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
