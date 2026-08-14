@@ -209,6 +209,15 @@ theorem not_isLEF_of_markedCompression {G : Type*} [Group G] (t a c : G)
     _ = 1 := hψmark
     _ = f 1 := hlocal.map_one.symm
 
+/-- The same pattern rules out residual finiteness, since a residually finite
+group is LEF. -/
+theorem not_residuallyFinite_of_markedCompression {G : Type*} [Group G]
+    (t a c : G) (hst : t * a * t⁻¹ = a ^ 2) (hca : Commute c a)
+    (hne : markedCompressionWord t a c ≠ 1) : ¬ Group.ResiduallyFinite G := by
+  intro h
+  haveI := h
+  exact not_isLEF_of_markedCompression t a c hst hca hne isLEF_of_residuallyFinite
+
 /-! ## The three cyclic-base groups -/
 
 /-- Every homomorphism from the literal presented group to a finite group
@@ -269,6 +278,33 @@ theorem cyclicBase_exactModel_package :
   ⟨quotientMap_mark_ne_one, fun pi ↦ finite_image_mark_eq_one pi,
     literalGroup_not_isLEF, realizedQuotient_not_isLEF,
     realizedQuotient_not_residuallyFinite⟩
+
+/-! ## Positive controls
+
+Two things could make `not_isLEF_of_markedCompression` say less than it
+appears to.  Its hypotheses could be unsatisfiable, in which case it excludes
+nothing; or the nontriviality hypothesis could be redundant, in which case
+the two relations alone would already exclude LEF and the marked word would
+be beside the point.  Neither holds. -/
+
+/-- The hypotheses are inhabited: the Clifford cyclic model satisfies all
+three at once, so the criterion is not vacuous. -/
+theorem obstruction_hypotheses_inhabited :
+    ∃ t a c : CliffordBS,
+      t * a * t⁻¹ = a ^ 2 ∧ Commute c a ∧
+        markedCompressionWord t a c ≠ 1 :=
+  ⟨tBS, gammaBS, cBS, tBS_conj_gammaBS, cBS_comm_gammaBS, markedWord_ne_one⟩
+
+/-- The nontriviality hypothesis carries the argument: the two relations on
+their own are compatible with LEF, as the infinite cyclic group with all
+three elements trivial shows.  So `hne` cannot simply be dropped. -/
+theorem relations_alone_compatible_with_isLEF :
+    ∃ t a c : Multiplicative ℤ,
+      t * a * t⁻¹ = a ^ 2 ∧ Commute c a ∧
+        markedCompressionWord t a c = 1 ∧ IsLEF (Multiplicative ℤ) :=
+  ⟨1, 1, 1, by simp, Commute.one_left 1,
+    by simp [markedCompressionWord],
+    isLEF_multiplicative_int⟩
 
 end CyclicBaseLEFObstruction
 end GroupApproximation
