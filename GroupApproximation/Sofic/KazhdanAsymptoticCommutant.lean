@@ -163,9 +163,9 @@ theorem IsUniformlyBounded.unitary_conjugate
   refine ⟨M, hM, fun n ↦ ?_⟩
   change ‖(u n : Matrix (B.model n) (B.model n) ℂ) * x n *
     (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ‖ ≤ M
-  rw [← Matrix.mul_assoc,
-    CStarRing.norm_mem_unitary_mul _ (u n).2,
-    CStarRing.norm_mul_mem_unitary _ (conjTranspose_mem_unitaryGroup (u n).2)]
+  rw [CStarRing.norm_mul_mem_unitary _
+      (conjTranspose_mem_unitaryGroup (u n).2),
+    CStarRing.norm_mem_unitary_mul _ (u n).2]
   exact hMx n
 
 /-- Hilbert--Schmidt-equivalent bounded sequences have the same asymptotic
@@ -283,11 +283,41 @@ theorem IsUniformlyBounded.coadjointSequence
   refine ⟨M, hM, fun n ↦ ?_⟩
   change ‖(B.map n g : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n *
     (B.map n g : Matrix (B.model n) (B.model n) ℂ)‖ ≤ M
-  rw [← Matrix.mul_assoc,
+  rw [CStarRing.norm_mul_mem_unitary _ (B.map n g).2,
     CStarRing.norm_mem_unitary_mul _
-      (conjTranspose_mem_unitaryGroup (B.map n g).2),
-    CStarRing.norm_mul_mem_unitary _ (B.map n g).2]
+      (conjTranspose_mem_unitaryGroup (B.map n g).2)]
   exact hMx n
+
+/-- The conjugate-double matrix with its type fixed to the adjoint model.
+This wrapper prevents semireducible finite-model instances from obscuring
+that `B.adjoint.model n` is definitionally the doubled model. -/
+def adjointMatrixSequence (B : OpAlmostRepresentation E)
+    (u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ) (n : ℕ) :
+    Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ := by
+  change Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ
+  exact conjDouble (u n : Matrix (B.model n) (B.model n) ℂ)
+
+theorem adjointMatrixSequence_mem_unitaryGroup
+    (B : OpAlmostRepresentation E)
+    (u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ) (n : ℕ) :
+    adjointMatrixSequence B u n ∈
+      Matrix.unitaryGroup (B.adjoint.model n) ℂ := by
+  change conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) ∈
+    Matrix.unitaryGroup (doubleModel (B.model n)) ℂ
+  exact conjDouble_mem_unitaryGroup (u n).2
+
+theorem adjointMatrixSequence_mulVec_gammaRowVec
+    (B : OpAlmostRepresentation E)
+    (u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ) (n : ℕ)
+    (X : Matrix (B.model n) (B.model n) ℂ) :
+    adjointMatrixSequence B u n *ᵥ gammaRowVec B n X =
+      gammaRowVec B n
+        ((u n : Matrix (B.model n) (B.model n) ℂ) * X *
+          (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
+  change conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) *ᵥ rowVec X =
+    rowVec ((u n : Matrix (B.model n) (B.model n) ℂ) * X *
+      (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ)
+  exact conjDouble_mulVec_rowVec _ _
 
 /-- Almost multiplicativity makes adjoint action multiplicative modulo
 Hilbert--Schmidt-null sequences. -/
@@ -440,16 +470,17 @@ theorem reverse_hsSqVanishing
   exact h.congr fun n ↦ by
     have huu : (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ * u n = 1 :=
       Unitary.star_mul_self_of_mem (u n).2
-    have huuh : (u n : Matrix (B.model n) (B.model n) ℂ) *
-        (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ = 1 :=
-      Unitary.mul_star_self_of_mem (u n).2
+    have hux : (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+        ((u n : Matrix (B.model n) (B.model n) ℂ) * x n) = x n := by
+      rw [← Matrix.mul_assoc, huu, one_mul]
     change (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ *
           (-(x n - (u n : Matrix (B.model n) (B.model n) ℂ) * x n *
             (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ)) *
           ((u n : Matrix (B.model n) (B.model n) ℂ)ᴴ)ᴴ =
         x n - (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ * x n * u n
     rw [Matrix.conjTranspose_conjTranspose]
-    noncomm_ring [huu, huuh]
+    noncomm_ring
+    rw [huu, mul_one, hux]
 
 /-- The Hermitian Kazhdan-average residual of an asymptotic-commutant
 sequence is Hilbert--Schmidt null. -/
@@ -567,14 +598,9 @@ private theorem transport_of_leakage
     (htheta1 : theta < 1)
     (u : ∀ n, Matrix.unitaryGroup (B.model n) ℂ)
     (hleak : ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
-      ‖(1 - (cornerProjection B C S theta n :
-            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ)) *
-        ((conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) :
-            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ) *
-          (cornerProjection B C S theta n :
-            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ) *
-          (conjDouble (u n : Matrix (B.model n) (B.model n) ℂ) :
-            Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ)ᴴ)‖ ≤ epsilon) :
+      ‖(1 - cornerProjection B C S theta n) *
+        (adjointMatrixSequence B u n * cornerProjection B C S theta n *
+          (adjointMatrixSequence B u n)ᴴ)‖ ≤ epsilon) :
     IsAsymptoticCommutant B C (fun n ↦
       (u n : Matrix (B.model n) (B.model n) ℂ) * x n *
         (u n : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
@@ -594,12 +620,12 @@ private theorem transport_of_leakage
   let Ua : Matrix (B.model n) (B.model n) ℂ := B.map n (C.iota γ)
   let Ut : Matrix (B.model n) (B.model n) ℂ := u n
   let X : Matrix (B.model n) (B.model n) ℂ := x n
-  let P : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
+  let P : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
     cornerProjection B C S theta n
-  let Ta : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
-    conjDouble Ua
-  let Tt : Matrix (doubleModel (B.model n)) (doubleModel (B.model n)) ℂ :=
-    conjDouble Ut
+  let Ta : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
+    B.adjoint.map n (C.iota γ)
+  let Tt : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
+    adjointMatrixSequence B u n
   have hfix : ‖(Ta - 1) * P‖ ≤ q := by
     simpa [Ta, Ua, P, gammaAdjoint] using
       hNfix n ((le_max_left _ _).trans hn)
@@ -610,12 +636,12 @@ private theorem transport_of_leakage
   have hcap := hNcap n ((le_max_right Nrev Ncap).trans
     ((le_max_right Nfix (max Nrev Ncap)).trans hn))
   have hchain := MarkedCompressionVectorChain.transported_displacement_le
-    (Y := doubleModel (B.model n)) (by rw [card_doubleModel]; positivity)
+    (Y := B.adjoint.model n) (B.adjoint.modelNonempty n)
     (cornerProjection_isOrthogonalProjection B C S theta n)
     (show Tt ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ by
-      exact conjDouble_mem_unitaryGroup (u n).2)
+      exact adjointMatrixSequence_mem_unitaryGroup B u n)
     (show Ta ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ by
-      exact conjDouble_mem_unitaryGroup (B.map n (C.iota γ)).2)
+      exact (B.adjoint.map n (C.iota γ)).2)
     hfix hrev hcap
   have hxmass : MarkedCompressionVectorChain.vecMass (gammaRowVec B n X) ≤
       Fintype.card (B.model n) * M ^ 2 := by
@@ -661,6 +687,17 @@ private theorem transport_of_leakage
       _ ≤ ε := hqeps
   have hcardR : (0 : ℝ) < Fintype.card (B.model n) := by
     exact_mod_cast B.modelNonempty n
+  let D : Matrix (B.model n) (B.model n) ℂ := Ut * X * Utᴴ
+  let E' : Matrix (B.model n) (B.model n) ℂ := Ua * D * Uaᴴ
+  have hTt : Tt *ᵥ gammaRowVec B n X = gammaRowVec B n D := by
+    simpa [Tt, Ut, D] using
+      adjointMatrixSequence_mulVec_gammaRowVec B u n X
+  have hTa : Ta *ᵥ gammaRowVec B n D = gammaRowVec B n E' := by
+    simpa [Ta, Ua, E', gammaAdjoint] using
+      gammaAdjoint_mulVec_gammaRowVec B C n γ D
+  have hvec : Ta *ᵥ (Tt *ᵥ gammaRowVec B n X) -
+      Tt *ᵥ gammaRowVec B n X = gammaRowVec B n (E' - D) := by
+    rw [hTt, hTa, ← gammaRowVec_sub]
   change hsNormSq (B.model n)
       (Ut * X * Utᴴ - Ua * (Ut * X * Utᴴ) * Uaᴴ) ≤ ε
   rw [hsNormSq]
@@ -672,21 +709,18 @@ private theorem transport_of_leakage
         MarkedCompressionVectorChain.vecMass
           (Ta *ᵥ (Tt *ᵥ gammaRowVec B n X) -
             Tt *ᵥ gammaRowVec B n X) := by
-      change _ = MarkedCompressionVectorChain.vecMass
-        (conjDouble Ua *ᵥ (conjDouble Ut *ᵥ gammaRowVec B n X) -
-          conjDouble Ut *ᵥ gammaRowVec B n X)
-      rw [conjDouble_mulVec_rowVec, conjDouble_mulVec_rowVec,
-        MarkedCompressionVectorChain.vecMass, sum_normSq_rowVec]
+      rw [hvec, MarkedCompressionVectorChain.vecMass,
+        sum_normSq_gammaRowVec]
       refine Finset.sum_congr rfl fun i _ ↦
         Finset.sum_congr rfl fun j _ ↦ ?_
       rw [show (Ut * X * Utᴴ - Ua * (Ut * X * Utᴴ) * Uaᴴ) i j =
-          -((Ua * (Ut * X * Utᴴ) * Uaᴴ - Ut * X * Utᴴ) i j) by
-            simp; ring,
+          -((E' - D) i j) by simp [E', D],
         Complex.normSq_neg]
     _ ≤ Fintype.card (B.model n) *
         (18 * q ^ 2 * M ^ 2 + 16 * q) := hmass'
     _ ≤ Fintype.card (B.model n) * ε :=
       mul_le_mul_of_nonneg_left hsmall hcardR.le
+    _ = ε * Fintype.card (B.model n) := by ring
 
 /-- **Forward Kazhdan transport.**  A one-sided compressor preserves every
 uniformly bounded normalized-Hilbert--Schmidt asymptotic commutant sequence. -/
@@ -717,7 +751,7 @@ theorem transport
   apply transport_of_leakage B C x hx hbound S kappa theta hone hsymm hgen
     hkappaOne hpair htheta4 htheta1 (fun n ↦ B.map n C.t)
   intro epsilon hepsilon
-  simpa [movedProjection] using
+  simpa [movedProjection, adjointMatrixSequence] using
     one_sub_corner_mul_moved_vanishing B C theta hpair hone hkappaOne
       hsymm hgen htheta4 htheta1 epsilon hepsilon
 
@@ -747,34 +781,41 @@ theorem transport_star
       exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
     have : 0 < kappa ^ 2 / (4 * (S.card : ℝ)) := by positivity
     linarith
-  apply transport_of_leakage B C x hx hbound S kappa theta hone hsymm hgen
-    hkappaOne hpair htheta4 htheta1 (fun n ↦
-      ⟨(B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ,
-        conjTranspose_mem_unitaryGroup (B.map n C.t).2⟩)
-  intro epsilon hepsilon
-  obtain ⟨N, hN⟩ := one_sub_moved_mul_corner_vanishing B C theta hpair
-    hone hkappaOne hsymm hgen htheta4 htheta1 epsilon hepsilon
-  refine ⟨N, fun n hn ↦ ?_⟩
-  let T : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
-    conjDouble (B.map n C.t)
-  let P : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
-    cornerProjection B C S theta n
-  have hT : T ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ :=
-    conjDouble_mem_unitaryGroup (B.map n C.t).2
-  have hTstar : Tᴴ ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ :=
-    conjTranspose_mem_unitaryGroup hT
-  have hTTstar : T * Tᴴ = 1 := Unitary.mul_star_self_of_mem hT
-  have hTstarT : Tᴴ * T = 1 := Unitary.star_mul_self_of_mem hT
-  have hraw : ‖(1 - T * P * Tᴴ) * P‖ ≤ epsilon := by
-    simpa [T, P, movedProjection] using hN n hn
-  have hfactor :
-      (1 - P) * (Tᴴ * P * T) = Tᴴ * ((1 - T * P * Tᴴ) * P) * T := by
-    noncomm_ring [hTTstar, hTstarT]
-  have htarget : ‖(1 - P) * (Tᴴ * P * T)‖ ≤ epsilon := by
-    rw [hfactor, CStarRing.norm_mem_unitary_mul _ hTstar,
-      CStarRing.norm_mul_mem_unitary _ hT]
-    exact hraw
-  simpa [T, P, conjDouble_conjTranspose] using htarget
+  let ustar : ∀ n, Matrix.unitaryGroup (B.model n) ℂ := fun n ↦
+    ⟨(B.map n C.t : Matrix (B.model n) (B.model n) ℂ)ᴴ,
+      conjTranspose_mem_unitaryGroup (B.map n C.t).2⟩
+  have hleak : ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
+      ‖(1 - cornerProjection B C S theta n) *
+        (adjointMatrixSequence B ustar n * cornerProjection B C S theta n *
+          (adjointMatrixSequence B ustar n)ᴴ)‖ ≤ epsilon := by
+    intro epsilon hepsilon
+    obtain ⟨N, hN⟩ := one_sub_moved_mul_corner_vanishing B C theta hpair
+      hone hkappaOne hsymm hgen htheta4 htheta1 epsilon hepsilon
+    refine ⟨N, fun n hn ↦ ?_⟩
+    let T : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
+      conjDouble (B.map n C.t)
+    let P : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ :=
+      cornerProjection B C S theta n
+    have hT : T ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ :=
+      conjDouble_mem_unitaryGroup (B.map n C.t).2
+    have hTstar : Tᴴ ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ :=
+      conjTranspose_mem_unitaryGroup hT
+    have hTstarT : Tᴴ * T = 1 := Unitary.star_mul_self_of_mem hT
+    have hraw : ‖(1 - T * P * Tᴴ) * P‖ ≤ epsilon := by
+      simpa [T, P, movedProjection] using hN n hn
+    have hfactor :
+        (1 - P) * (Tᴴ * P * T) = Tᴴ * ((1 - T * P * Tᴴ) * P) * T := by
+      noncomm_ring
+      rw [← Matrix.mul_assoc, hTstarT, one_mul]
+    have htarget : ‖(1 - P) * (Tᴴ * P * T)‖ ≤ epsilon := by
+      rw [hfactor, CStarRing.norm_mul_mem_unitary _ hT,
+        CStarRing.norm_mem_unitary_mul _ hTstar]
+      exact hraw
+    simpa [T, P, ustar, adjointMatrixSequence,
+      conjDouble_conjTranspose] using htarget
+  have htransport := transport_of_leakage B C x hx hbound S kappa theta hone
+    hsymm hgen hkappaOne hpair htheta4 htheta1 ustar hleak
+  simpa [ustar, Matrix.conjTranspose_conjTranspose] using htransport
 
 /-- A one-sided compressor acts as a two-sided symmetry of the bounded
 normalized-Hilbert--Schmidt asymptotic commutant. -/
