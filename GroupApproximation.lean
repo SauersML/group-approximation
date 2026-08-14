@@ -21,6 +21,7 @@ import GroupApproximation.Sofic.NegativeCornerModel
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
+import GroupApproximation.Monsters.CliffordLampLocallyFinite
 import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.ExplicitLinearModelScaling
@@ -67,6 +68,7 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.LocallyFiniteMF
+import GroupApproximation.Sofic.CentralInvolutionFinite
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
@@ -477,6 +479,7 @@ import GroupApproximation.Leavitt.ThompsonWitness
 import GroupApproximation.Leavitt.TwoChildFiniteObstruction
 import GroupApproximation.Matching.MatchedComponents
 import GroupApproximation.Sofic.SoficTransfer
+import GroupApproximation.Sofic.SoficDirectedUnion
 import GroupApproximation.Sofic.HyperlinearResidualDetector
 import GroupApproximation.Sofic.FiniteLinearHammingGap
 import GroupApproximation.Sofic.RelativeImplementerCentralizer

@@ -34,6 +34,11 @@ universe u
 
 variable {G : Type u} [Group G]
 
+/-- **Every countable LEF group is operator-MF.**  Recorded here because the
+two halves of this composition live in different files. -/
+theorem isOperatorMF_of_isLEF [Countable G] (hG : IsLEF G) : IsOperatorMF G :=
+  (isWeakMF_of_isLEF hG).isOperatorMF
+
 /-! ## The local finiteness predicate -/
 
 /-- A group is locally finite when every finite subset lies in a finite
