@@ -18,20 +18,26 @@ on:
       # the committed signature snapshot.  Changes to any of the three must
       # therefore run the same gate that checks their consistency.
       - 'docs/CLAIM_DECLS.txt'
+      - 'docs/CLAIM_MAP.md'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
       - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
       - 'docs/NON_MF_CLAIM_SIGNATURES.md'
+      - 'docs/PROPERTY_TT_CLAIM_MAP.md'
+      - 'docs/PROPERTY_TT_PROVENANCE.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
       - '.github/workflows/p13-sharded-build.yml'
+      - '.github/workflows/verified-fast-forward.yml'
       # The PDF release gate requires a successful prover run for the exact
       # source revision.  A manuscript or publication-workflow-only change
       # therefore has to create an exact-SHA prover run as well.
       - 'non_mf_groups_exist.tex'
+      - 'property_tt_leavitt.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
+      - '.github/workflows/build-property-tt-pdf.yml'
       - 'experiments/sl3-p13-reductions-complete.json'
       - 'experiments/sl3-sos-radius0-certificate.json'
       - 'experiments/sl3-sos-radius0-certificate.npz'
@@ -49,17 +55,23 @@ on:
       # detector off -- shipped without CI ever running.
       - 'scripts/**'
       - 'docs/CLAIM_DECLS.txt'
+      - 'docs/CLAIM_MAP.md'
       - 'docs/NON_MF_CLAIM_DECLS.txt'
       - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
       - 'docs/NON_MF_CLAIM_SIGNATURES.md'
+      - 'docs/PROPERTY_TT_CLAIM_MAP.md'
+      - 'docs/PROPERTY_TT_PROVENANCE.md'
       - 'lakefile.toml'
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
       - '.github/workflows/p13-sharded-build.yml'
+      - '.github/workflows/verified-fast-forward.yml'
       - 'non_mf_groups_exist.tex'
+      - 'property_tt_leavitt.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
+      - '.github/workflows/build-property-tt-pdf.yml'
       - 'experiments/sl3-p13-reductions-complete.json'
       - 'experiments/sl3-sos-radius0-certificate.json'
       - 'experiments/sl3-sos-radius0-certificate.npz'
@@ -431,47 +443,19 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Fast-forward the verified branch
+      - name: Refresh main and verified
         shell: bash
         run: |
           set -euo pipefail
-          target='${{ github.sha }}'
           git fetch --no-tags origin \
             '+refs/heads/main:refs/remotes/origin/main' \
             '+refs/heads/verified:refs/remotes/origin/verified'
-          main=$(git rev-parse refs/remotes/origin/main)
-          current=$(git rev-parse refs/remotes/origin/verified)
 
-          if ! git merge-base --is-ancestor "$target" "$main"; then
-            echo "::error::verified target $target is not on current main $main"
-            exit 1
-          fi
-          if [ "$current" = "$target" ]; then
-            echo "verified already points at $target"
-            exit 0
-          fi
-          if git merge-base --is-ancestor "$target" "$current"; then
-            echo "verified already contains this certified commit at $current"
-            exit 0
-          fi
-          if ! git merge-base --is-ancestor "$current" "$target"; then
-            echo "::error::verified diverged at $current; refusing to overwrite it"
-            exit 1
-          fi
-
-          if git push origin "$target:refs/heads/verified"; then
-            echo "verified fast-forwarded from $current to $target"
-            exit 0
-          fi
-
-          # A newer successful run may have advanced the pointer during the
-          # push.  Accept that race only if the remote now contains target.
-          git fetch --no-tags origin \
-            '+refs/heads/verified:refs/remotes/origin/verified'
-          current=$(git rev-parse refs/remotes/origin/verified)
-          if git merge-base --is-ancestor "$target" "$current"; then
-            echo "verified advanced concurrently to $current"
-            exit 0
-          fi
-          echo "::error::verified did not advance and no longer contains $target"
-          exit 1
+      - name: Advance the certified commit and safe publication descendants
+        run: |
+          python3 scripts/advance_verified_branch.py self-test
+          python3 scripts/advance_verified_branch.py advance \
+            --certified-ref '${{ github.sha }}' \
+            --main-ref refs/remotes/origin/main \
+            --verified-ref refs/remotes/origin/verified \
+            --remote origin
