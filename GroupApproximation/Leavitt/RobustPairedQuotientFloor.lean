@@ -173,9 +173,9 @@ theorem card_rowSeparation_le_mismatch_add_of_collision
     (rowSeparation_subset_mismatch_union_of_collision
       pair R L hcollision)).trans (Finset.card_union_le _ _)
 
+omit [Fintype V] [DecidableEq V] in
 /-- Local collision charge.  Under perfect row separation, two distinct
 sources in the same transported fiber consume at least `N/2` row errors. -/
-omit [Fintype V] [DecidableEq V] in
 theorem collision_pair_charge
     (pair : V → W → Prop) [DecidableRel pair]
     (R : V → V) (L : W → W) (N : ℕ) {v v' : V}
@@ -279,7 +279,7 @@ theorem sum_offDiag_pairCost
     rw [Finset.sum_product]
     simp only [Finset.sum_add_distrib, Finset.sum_const, Nat.nsmul_eq_mul]
     rw [← Finset.mul_sum]
-    omega
+    ring
   by_cases hF : F.Nonempty
   · have hcard : F.card = (F.card - 1) + 1 := by
       have hone : 1 ≤ F.card := Finset.one_le_card.mpr hF

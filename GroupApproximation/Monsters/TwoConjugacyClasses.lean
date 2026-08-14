@@ -179,8 +179,7 @@ theorem abs_le_of_isSignedConjugate {q : G → ℝ} {D M : ℝ}
 the quantitative estimate behind the normal-width obstruction below. -/
 theorem abs_list_prod_le_of_quasimorphism {q : G → ℝ} {D M : ℝ}
     (hq : IsQuasimorphism q D) (hh : IsHomogeneous q)
-    (hD : 0 ≤ D) (hM : 0 ≤ M) (xs : List G)
-    (hxs : ∀ x ∈ xs, |q x| ≤ M) :
+    (xs : List G) (hxs : ∀ x ∈ xs, |q x| ≤ M) :
     |q xs.prod| ≤ (xs.length : ℝ) * (M + D) := by
   induction xs with
   | nil => simp [homogeneous_one hh]
@@ -220,11 +219,10 @@ homogeneous quasimorphism is conjugation invariant and changes sign under
 inversion. -/
 theorem abs_list_prod_le_of_signedConjugates {q : G → ℝ} {D M : ℝ}
     (hq : IsQuasimorphism q D) (hh : IsHomogeneous q)
-    (hD : 0 ≤ D) (hM : 0 ≤ M) {S : Set G}
-    (hS : ∀ s ∈ S, |q s| ≤ M) (xs : List G)
+    {S : Set G} (hS : ∀ s ∈ S, |q s| ≤ M) (xs : List G)
     (hxs : ∀ x ∈ xs, IsSignedConjugate S x) :
     |q xs.prod| ≤ (xs.length : ℝ) * (M + D) := by
-  apply abs_list_prod_le_of_quasimorphism hq hh hD hM xs
+  apply abs_list_prod_le_of_quasimorphism hq hh xs
   intro x hx
   exact abs_le_of_isSignedConjugate hq hh hS (hxs x hx)
 
@@ -247,7 +245,7 @@ theorem signedConjugate_length_unbounded_on_powers
   by_contra hnot
   have hlen : xs.length ≤ C := Nat.le_of_not_gt hnot
   have hbound := abs_list_prod_le_of_signedConjugates
-    hq hh hD hM hS xs hxs
+    hq hh hS xs hxs
   have hhom : q (g ^ k) = (k : ℝ) * q g := by
     simpa using hh (k : ℤ) g
   rw [hprod, hhom, abs_mul, abs_of_nonneg (Nat.cast_nonneg k)] at hbound

@@ -264,7 +264,7 @@ theorem sum_glueTransportPath_11
     (a₁ : A₁) (b₁ : B₁) :
     ∑ a₀, ∑ b₀, glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ =
       μ₁₁ a₁ b₁ := by
-  simpa only [Fintype.sum_prod_type] using
+  simpa only [glueTransportPath, Fintype.sum_prod_type] using
     (sum_glueAlongFirst_left
     (innerTransportLaw μ₀₀ μ₀₁ α₀)
     (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁
