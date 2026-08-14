@@ -180,7 +180,10 @@ jobs:
         run: python3 scripts/check_p13_generated.py
 
       - name: Source scan
-        run: python3 scripts/check.py
+        run: |
+          python3 scripts/check.py
+          bin/cairn check
+          git diff --exit-code -- research/FRONTIER.md
 
       - name: Build the complete formal development
         # The memory-intensive P13 leaves are already present and sealed.
