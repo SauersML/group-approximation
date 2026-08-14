@@ -72,6 +72,21 @@ collapse is a consequence, not an independently justified shortcut.  No
 overlap parameter or orientation choice remains in the terminal
 contradiction.
 
+The binary residual itself now splits orthogonally into Pauli parity and
+within-sheet multiplicity variance.  If `y=tau(EFEF)>=0`, then for the
+canonical packet
+
+```text
+parity defect       =1/16-2y,
+multiplicity defect =1/8+2y.
+```
+
+Thus the multiplicity defect alone is always at least `1/8`.  Merely forcing
+the transported carrier to commute with the parent Pauli sign cannot finish
+the argument; the next relation must scalarize the two multiplicity-valued
+diagonal blocks.  See
+`TRUE_PAULI_BINARY_GAP_IS_MULTIPLICITY_VARIANCE.md`.
+
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 
 A perfect finite binary pairing turns the two diagonal transport relations

@@ -90,5 +90,30 @@ floor.  This is the conditional expectation of the actual carrier. -/
       (3 : ℝ) / 16 := by
   norm_num [actualPacketApproximationResidual]
 
+/-- If `y=τ(EFEF)`, this is the squared off-diagonal (Pauli-parity)
+component of the actual packet's binary-algebra residual. -/
+def actualPacketParityResidual (y : ℝ) : ℝ :=
+  (1 : ℝ) / 16 - 2 * y
+
+/-- If `y=τ(EFEF)`, this is the sum of the two centered diagonal-block
+(multiplicity) variances. -/
+def actualPacketMultiplicityResidual (y : ℝ) : ℝ :=
+  (1 : ℝ) / 8 + 2 * y
+
+/-- The parity and multiplicity pieces always sum to the full `3/16` gap. -/
+theorem actualPacketResidual_split (y : ℝ) :
+    actualPacketParityResidual y + actualPacketMultiplicityResidual y =
+      (3 : ℝ) / 16 := by
+  unfold actualPacketParityResidual actualPacketMultiplicityResidual
+  ring
+
+/-- Positivity of `τ(EFEF)=‖EFE‖₂²` puts a dimension-free `1/8` floor on
+the multiplicity part alone. -/
+theorem one_eighth_le_actualPacketMultiplicityResidual
+    (y : ℝ) (hy : 0 ≤ y) :
+    (1 : ℝ) / 8 ≤ actualPacketMultiplicityResidual y := by
+  unfold actualPacketMultiplicityResidual
+  linarith
+
 end PauliCarrierBinaryGap
 end GroupApproximation

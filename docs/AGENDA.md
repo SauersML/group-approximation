@@ -72,6 +72,15 @@ of the gate rather than a stronger premise silently substituted for it.  The
 completed-square identity is recorded source-first in
 `PauliCarrierBinaryGap.lean`.
 
+The gap has an exact two-stage decomposition.  With
+`y=tau(EFEF)=||EFE||_2^2>=0`, its Pauli off-diagonal part is `1/16-2y`, while
+the sum of the two centered diagonal-block variances is `1/8+2y`.  The latter
+is therefore at least `1/8` by itself.  See
+`TRUE_PAULI_BINARY_GAP_IS_MULTIPLICITY_VARIANCE.md`.  This closes the idea
+that one more finite Pauli commutator might suffice: parity rounding leaves a
+fixed multiplicity-variance obstruction.  The live cross-root estimate must
+act on the multiplicity coefficients and scalarize both parent sheets.
+
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 
 `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and
