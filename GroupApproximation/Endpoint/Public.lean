@@ -446,8 +446,7 @@ export GroupApproximation.KazhdanCompressionCore
 export GroupApproximation.KazhdanAsymptoticCommutant
   (manuscriptKazhdanTransport manuscriptCompressionRadical)
 export GroupApproximation.KazhdanCliffordConstruction
-  (negativeCorner_kazhdanTransport_contradiction
-    every_cstar_corona_hom_kills_mark kazhdanCliffordConstruction)
+  (every_cstar_corona_hom_kills_mark kazhdanCliffordConstruction)
 export GroupApproximation.LiteralP13HodgeCertificate
   (cleanP13Certificate p13_hodge_gap
     p13_generatorLaplacian_quadratic_gap p13_hasKazhdanPropertyT)
