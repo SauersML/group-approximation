@@ -375,33 +375,9 @@ MarkedCompressionNormCertificate.not_isWeakMF
 is the machine-checked final logical reduction from that certificate to
 non-MF.
 
-Lean now proves both layers.  The universal analytic endpoint is
-`MarkedCompressionInclusionData.word_normMFInvisible` in
-`Sofic/MarkedCompressionSequentialKill`; the independent Clifford/telescope
-construction proves its mark nontrivial in `Sofic/MarkedCompressionGroup`.
-`Sofic/ChosenNonMFTheorem` assembles these into countable and finitely
-presented non-MF existence theorems.  It also proves the direct standard
-cofinite-corona endpoints
-`ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF` and
-`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`, rather than
-inferring them from an informal comparison with `IsWeakMF`.  The finitely
-presented Lean witness is an independent marked group built from a
-noncomputably chosen Shalom cover of the Lean base; it is not the literal
-eight-generator group displayed in the paper.  Thus the formal development
-verifies the marked-compression mechanism and both MF existence predicates,
-while the displayed presentation is established by the paper proof.  A
-separate literal stack (`Sofic/LiteralNonMFPresentation` and
-`Sofic/LiteralNonMFLinearWitness`) machine-checks the eight-generator
-relators, an exact affine--Clifford realization, and nontriviality of the
-marked central involution. It exports no analytic MF endpoint: property
-`(T)` of the eight-relator rotation presentation has not been proved and no
-exact rational SOS certificate is supplied.  The affine part of the bridge
-*is* formalized:
-`LiteralBasePropertyTBridge.base_hasKazhdanPropertyT_of_rotation` derives
-property `(T)` of the raw twenty-relator base from the rotation theorem.
-Classical property `(T)` of `Z^3 semidirect SL_3(Z)` does not discharge the
-remaining rotation premise without presentation completeness, an isomorphism,
-or a direct property-`(T)` proof.
+The mutable source-state inventory that originally followed this paragraph
+has been removed.  The generated claim manifest and current manuscript are
+the authoritative declaration map.
 
 The analytic proof above was written for the sequential norm corona.  The
 formal predicate `NormMFInvisible` instead quantifies over every operator-norm
@@ -422,12 +398,6 @@ This is recorded as a standard consequence, not a new priority claim:
 gives the local MF criterion and local-embedding permanence, while
 [Fournier-Facio--Gerasimova--Spaas, Theorem 2.16](https://doi.org/10.1016/j.jalgebra.2024.08.042)
 records that a marked limit locally embeds in its approximating groups.
-
-`Analysis/ProperIsometryFromCompression` formalizes the generic algebraic
-calculation `s* s = 1`, `s s* != 1`, including a left-invertible nonunit and
-failure of direct finiteness.  It does not formalize the maximal group
-C*-algebra application itself; Mathlib has no such `C*max(G)` construction in
-this development.
 
 ## 7. Kun--Thom specialization: the same word is in the full sofic radical
 
@@ -621,33 +591,5 @@ new content, not a consequence of existing action permanence.
 
 ## 10. Historical status snapshot (2026-08-13; superseded)
 
-This section records the implementation state on its stated date.  It is
-not the current release status; use the sources named in the banner above.
-
-Machine-checked so far (kernel, warnings-as-errors): the
-finite-dimensional kill theorem (`map_marked_commutator_eq_one`,
-`Criterion/FiniteDimensionalKill`); the sequential extraction from a
-corona representation (`Sofic/NormUltraproductSequentialExtraction`);
-involution rounding and the negative corner
-(`Sofic/ApproxInvolutionCorner`, `Sofic/NegativeCornerModel`); the
-equal-rank flip (`Sofic/ProjectionRankFlip`); spectral capture
-(`Sofic/SpectralCapture`); the marked vector chain
-(`Sofic/MarkedCompressionVectorChain`); two independent Clifford lamp
-realizations (`Sofic/CliffordLampGroup`,
-`Monsters/CliffordAlgebraLamp`); and the packaged explicit witness data
-(`Sofic/ChosenNonMFEndpoint`).  The analytic assembly is now complete in
-`Sofic/MarkedCompressionSequentialKill`, and the public finitely presented
-existence endpoints are
-`ChosenNonMFTheorem.exists_finitelyPresented_not_isWeakMF` and the direct
-standard cofinite-corona theorem
-`ChosenNonMFTheorem.exists_finitelyPresented_not_isOperatorMF`.  The
-arbitrary finite-normal-subgroup strengthening is implemented separately in
-`Sofic/FiniteNormalCompressionObstruction`; its public kernel theorem is
-`KazhdanCompressionCore.finiteNormal_le_normMFResidual`.
-
-For the manuscript's literal presentation, Lean additionally proves
-`LiteralNonMFLinearWitness.literal_mark_ne_one`. It deliberately exports no
-standard operator-MF endpoint until property `(T)` of the raw presented base
-is proved (or an exact rational SOS certificate is supplied); the
-unconditional chosen-witness theorem does not discharge that object-level
-gap.
+The mutable implementation roster has been removed from this historical
+note.  Use the sources named in the banner for the current release status.
