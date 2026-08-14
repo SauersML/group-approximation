@@ -5838,3 +5838,21 @@ microstates provide only normalized-HS defects. One additionally needs
 provides that rate. Thus the existing coefficientwise `H^2` gate cannot
 be advertised as closing the Clifford argument. Full proof and scope:
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
+
+### 2026-08-14: exact joint compressor covariance permits maximal fiber variance
+
+`FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md` gives the exact
+finite countermodel to an additive-only completion of the new common-
+compressor route.  For an injection `F->G`, diagonalize `G` on `l2(G^)`,
+restrict to `F`, and take the compressor to be the identity.  The intrinsic
+extension-character PVM, joint left/right covariance, and every finite-depth
+path identity are exact.  A branch bit balanced on every restriction fiber
+still has conditional variance `1/4`, and this can be repeated at every
+level of a growing chain.
+
+Thus common-compressor synchronization closes the relative PVM gauge but
+does not approach the decoder by itself.  The next positive statement must
+be a mixed multiplication-to-variance estimate: the nested middle-root
+Leavitt table must bound the two outer fiber variances with constants
+independent of packet size and matrix dimension.  Pure covariance energy is
+zero in the countermodel and cannot appear as the missing term.

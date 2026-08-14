@@ -2,6 +2,32 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 exact joint covariance can retain maximal fiber variance
+
+One common compressor does synchronize the two commuting outer transition
+PVMs, but covariance alone cannot decode their many-to-one character fibers.
+For every proper finite binary inclusion `alpha:F->G`, represent `G`
+diagonally on `l2(G^)`, restrict that representation to `F`, and take the
+compressor to be the identity.  Joint `alpha x alpha` covariance and every
+finite-depth path identity are then exact.  Nevertheless a branch bit which
+is balanced on each restriction fiber has
+
+```text
+||B-E_(A_F)(B)||_2^2=1/4,
+```
+
+the maximum binary conditional variance.  The construction works on a
+whole chain by restricting terminal characters, so deeper windows do not
+remove the fresh Bernoulli directions.  See
+`FALSE_EXACT_JOINT_COMPRESSOR_HAS_MAXIMAL_FIBER_VARIANCE.md`.
+
+This closes further additive/Fourier refinement as an endpoint.  The live
+theorem must quantitatively use the mixed middle-root multiplication words
+to rule out the balanced-fiber model on the common long-root carrier.  The
+target is now a size-uniform bound from mixed relator energy to the two
+outer conditional variances; after it, the majority decoder and `1/36`
+floor are already available.
+
 ## 2026-08-14 closed: additive index cannot produce a fixed finite phase
 
 The naive transducer `KInd |-> (-1)^KInd` is incompatible with amplification.
