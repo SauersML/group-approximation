@@ -6,6 +6,31 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: a toric game gap cannot use finite normalized clauses
+
+`TRUE_TORIC_GAP_REQUIRES_INFINITE_OR_NONNORMAL_CLAUSES.md` audits the
+Watts--Helton--Klep subgroup-membership route.  If the clause subgroup `H` of
+a finite two-player torically determined game is finite, scalar-free, and
+normalized by the universal game group, then
+
+```text
+p_H=|H|^(-1) sum_(h in H) h
+```
+
+is a nonzero central projection of canonical trace `1/|H|`.  Its corner is
+Connes embeddable because the universal game group is residually finite, and
+the normalized corner trace satisfies every clause exactly.  Matrix
+microstates plus left/right multiplication then give finite-dimensional
+tensor strategies approaching value one.  Hence a toric
+`omega_qc=1>omega_qa` gap forces `H` to be infinite or genuinely nonnormal.
+
+This also isolates why the exact toric Nullstellensatz is not already a
+groupification theorem: it proves scalar phase nonmembership in `H`, while a
+marked quotient needs nonmembership in the normal closure of `H`; normal
+closure can kill the phase.  The surviving targets remain a robust
+solution-group quotient (the perfect-LCS lane) or a new infinite-subgroup
+Hecke corner.
+
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
 `FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the
