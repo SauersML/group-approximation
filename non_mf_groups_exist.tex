@@ -31,7 +31,7 @@
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
 \newcommand{\coderepository}{https://github.com/SauersML/group-approximation}
-\newcommand{\leancommit}{9d8fb2f23e6e3cd5196418da588ae4507a7659f1}
+\newcommand{\leancommit}{2d2bb87efccc0957ecc92d9ceefcba88c8a562fb}
 \setlength{\marginparwidth}{1.35in}
 \setlength{\marginparsep}{0.12in}
 \newcommand{\leanverified}[2]{%
@@ -276,12 +276,13 @@ $v^*v=1$, polar correction replaces any
 representing sequence for $v$ by unitaries along $\omega$, so $vv^*=1$.
 
 Let $p_\Gamma\in C^*_{\max}(\Gamma)$ be the Kazhdan projection
-\cite{BHV}, put $P=\pi\!\restriction_\Gamma(p_\Gamma)\in B_\omega$, and
-write $V=\pi(s)$.  The range of $P$ is $K_\omega^\Gamma$.  The one-sided
-compression gives
+\cite{BHV}, let $\pi_\Gamma=\pi\circ\iota$, put
+$P=\pi_\Gamma(p_\Gamma)\in B_\omega$ using the integrated form of
+$\pi_\Gamma$, and write $V=\pi(s)$.  The range of $P$ is the fixed space
+$K_\omega^{\iota(\Gamma)}$.  The one-sided compression gives
 \[
- PK_\omega=K_\omega^\Gamma
- \subseteq K_\omega^{s\Gamma s^{-1}}=VPK_\omega,
+ PK_\omega=K_\omega^{\iota(\Gamma)}
+ \subseteq K_\omega^{s\iota(\Gamma)s^{-1}}=VPK_\omega,
  \qquad\text{so}\qquad P\le VPV^*.
 \]
 The two projections are unitarily equivalent in the finite algebra
@@ -309,6 +310,21 @@ the leakage:
 The two estimates transport the asymptotic fixed space.  The uniform
 spectral-cut argument is given in Section~\ref{sec:conj}.
 
+\paragraph{Central-corner reduction.}
+Let $\Theta\colon H\to\U(\mathcal Q)$ be a corona representation and let
+$0\ne q\in\mathcal Q$ be a projection commuting with $\Theta(H)$.  Then
+$\Theta_q(g)=q\Theta(g)q$ is a homomorphism into the unitary group of the
+corner $q\mathcal Qq$, whose unit is $q$, and this corner is itself a
+positive-rank norm matrix corona.  Indeed, a spectral cut at $1/2$ of a
+self-adjoint lift of $q$ gives coordinate projections $(q_n)$ representing
+$q$.  Put $r_n=\operatorname{rank}q_n$.  Nonzeroness makes
+$J=\{n:r_n>0\}$ infinite.  Compression identifies
+$q_nM_{d_n}(\C)q_n$ with $M_{r_n}(\C)$ on $J$; the zero coordinates
+contribute nothing, and relabeling $J$ by $\N$ identifies $q\mathcal Qq$
+with a corona of positive matrix ranks.  Compression of $\Theta$ is
+multiplicative because $q$ is central relative to its image, and unitary
+coordinate lifts follow by polar correction.
+
 The entire non-MF argument is the following two-element consequence.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
@@ -335,10 +351,9 @@ central relative to $\Theta(H)$,
 \[
 q=\frac{1-\Theta(z)}{2}
 \]
-cuts it to a representation in which $\Theta(z)=-1$.  Lift $q$ to coordinate
-projections, discard its zero-rank coordinates, and identify the corner with
-the resulting positive-rank norm matrix corona, exactly as in the proof of
-Theorem~\ref{thm:criterion}.  The element $c$ belongs to the asymptotic
+cuts it to a representation in which $\Theta(z)=-1$.  The central-corner
+reduction above regards this as a representation into a positive-rank norm
+matrix corona.  The element $c$ belongs to the asymptotic
 commutant of $\iota(\Gamma)$, so
 Theorem~\ref{thm:kazhdan-transport} puts $d=tct^{-1}$ there as well.  Hence
 $u=[d,\iota(a)]\to_2 1$, and therefore $z=u^2\to_2 1$.  On the $q$-corner,
@@ -506,9 +521,10 @@ The proof has two opposed halves, both centered on $u$:
 \]
 For a corona representation that detects $w$, cut to the negative central
 corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
-the corner identity gives $w=-1$.  This contradiction is the entire analytic
-proof of Theorem~\ref{thm:A}.  Section~\ref{sec:conj} proves the transport
-theorem and its stronger finite-normal form.
+the corner identity gives $w=-1$.  This contradiction is the analytic core
+of Theorem~\ref{thm:A}.  Section~\ref{sec:conj} proves the finite-normal
+criterion and its coordinate estimates, and Section~\ref{sec:proofA} applies
+them to the literal group.
 \leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -595,9 +611,10 @@ Theorem~\ref{thm:C} shows that finite-dimensional collapse by itself does
 not decide whether the marked word is trivial.
 
 Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
-consequences.  The principal $C^*$-algebraic application is:
+consequences.  Its principal $C^*$-algebraic application is the following
+explicit reduced group algebra:
 
-\begin{mainthm}[a stably finite non-MF reduced group algebra]\label{thm:D}
+\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
@@ -698,10 +715,10 @@ for its literal base.  Section~\ref{sec:witness} proves $w\neq 1$.
 Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
 Section~\ref{sec:corona} develops the corona lemmas.
 Section~\ref{sec:conj} defines marked Kazhdan patterns and their
-compression-defect subgroups, states the finite-normal obstruction
+compression-defect subgroups, proves the finite-normal obstruction
 criterion (Theorem~\ref{thm:criterion}), and develops the coordinate
 Reynolds and Kazhdan-compression estimates.
-Section~\ref{sec:proofA} proves the criterion and deduces
+Section~\ref{sec:proofA} proves the defect-square identity and deduces
 Theorem~\ref{thm:A}.  Section~\ref{sec:consequences} derives
 Theorem~\ref{thm:D} and further consequences.
 Section~\ref{sec:necessity} records the cyclic comparison as a secondary
@@ -853,21 +870,24 @@ precisely that failure after conjugating $d$ by $\iota(v_1)$.
     {marked defect\\[3pt]
      $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
      {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
-      no relation constrains\\ $[\,d,\iota(v_1)]$}};
+      no relation forces\\ $[\,d,\iota(v_1)]=1$}};
   \draw[figarr] (d) -| (mark);
 \end{tikzpicture}
 \caption{The marked-compression pattern.  Conjugation by $t$ carries the
 image of the literal base into itself.  It sends $c$ to $d=tct^{-1}$: the
-relations tie $c$ to all of $\iota(\mathcal B)$ but tie $d$ only to the
-compressed copy, and the marked word $w$ records the unconstrained
-commutation with $\iota(v_1)$.  Only the one-sided inclusion is used;
-no injectivity or strict containment is asserted.}
+relations force $c$ to commute with all of $\iota(\mathcal B)$ and force
+$d$ to commute with the compressed copy, but do not require $d$ to commute
+with $\iota(v_1)$.  The marked word $w$ records that commutation defect.
+Only the one-sided inclusion is used by the analytic criterion; the separate
+Clifford witness proves that the canonical base map in this explicit group
+is injective.}
 \label{fig:compression-pattern}
 \end{figure}
 
 In particular the compression argument needs only the one-sided inclusion
 and centralizer relations shown in Figure~\ref{fig:compression-pattern}; it
-never uses injectivity or properness of the base map.
+never uses injectivity or properness of the base map.  Injectivity for the
+constructed group is established independently by the Clifford realization.
 
 \subsection{Property~\textup{(T)} of the base}
 
@@ -878,12 +898,13 @@ the real-orthogonal and complex-unitary formulations.
 \end{proposition}
 
 \begin{proof}
-The eight relations in \eqref{eq:sl3presentation}, with the matrix labels
-for $x,y,z$ displayed in Lemma~\ref{lem:linear}, are the
-Conder--Robertson--Williams presentation of $\SL_3(\mathbb Z)$, as recorded
-in \cite{CLV}.  The remaining relations say that
-$v_1,v_2,v_3$ commute and that $x,y,z$ act on them by the columns of those
-three matrices.  For completeness, this does more than define a quotient.
+The eight relations in \eqref{eq:sl3presentation} are the
+Conder--Robertson--Williams presentation of $\SL_3(\mathbb Z)$
+\cite[Theorem~2]{CRW}.  The matrix-labelled form for $x,y,z$ displayed in
+Lemma~\ref{lem:linear} is also recorded in \cite{CLV}.  The remaining
+relations say that $v_1,v_2,v_3$ commute and that $x,y,z$ act on them by the
+columns of those three matrices.  For completeness, this does more than
+define a quotient.
 The map from the presentation to $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ sends
 $v_i$ to $(e_i,1)$ and each rotation generator to its labelled matrix.  In
 the other direction, send $(n_1,n_2,n_3,A)$ to
@@ -1256,8 +1277,9 @@ the quotient, and the reverse leakage estimate is obtained from equality of
 finite coordinate ranks.
 
 \begin{lemma}[coordinate finite-normal corner]\label{lem:corner}
-Let $F\trianglelefteq H$ be finite, let $\omega$ be an ultrafilter on an
-index set $I$, and let
+Let $H$ be a countable group, let $F\trianglelefteq H$ be finite, let
+$(d_i)_{i\in I}$ be a family of positive integers, let $\omega$ be an
+ultrafilter on $I$, and let
 $\rho$ be a homomorphism from $H$ into the operator-norm metric ultraproduct
 of the groups $\U(M_{d_i}(\C))$, $i\in I$.  If $\rho|_F$ is nontrivial,
 then there are nonempty finite coordinate sets $Y_n$ and unitaries
@@ -1273,8 +1295,9 @@ $V_{g,n}\in\U(M_{Y_n}(\C))$ such that
 
 \begin{proof}
 Choose $f_0\in F$ with $\rho(f_0)\neq1$.  A standard sequential extraction
-from the ultraproduct gives representatives $U_{g,n}$ which are
-asymptotically multiplicative in operator norm and a constant $\delta>0$
+from the ultraproduct gives indices $i_n\in I$ and representatives
+$U_{g,n}\in\U(M_{d_{i_n}}(\C))$ which are asymptotically multiplicative in
+operator norm, together with a constant $\delta>0$
 such that
 \[
   \opnorm{U_{f_0,n}-U_{1,n}}\ge\delta
@@ -1302,11 +1325,12 @@ $U_{g,n}P_nU_{g,n}^*-P_n\to0$ for every fixed $g$.  The separation of
 $f_0$ forces $Q_n\neq0$ eventually: if $Q_n=0$, then $P_n=1$, and the
 relations $U_{f_0,n}A_n-A_n\to0$, $P_n-A_n\to0$, and
 $U_{1,n}-1\to0$ would imply
-$\opnorm{U_{f_0,n}-U_{1,n}}<\delta$.
+$\opnorm{U_{f_0,n}-U_{1,n}}<\delta$.  Discard these finitely many indices and
+relabel, so that $Q_n\ne0$ for every $n$.
 
-Conjugate into an eigenbasis of $H_n$ and let $C_{g,n}$ be the principal
-block of $U_{g,n}$ on $Q_n\C^{d_n}$; put
-$r_n=\operatorname{rank}Q_n>0$.  The preceding
+Conjugate into an eigenbasis of $H_n$, choose a nonempty finite set $Y_n$
+indexing $Q_n\C^{d_{i_n}}$, and let $C_{g,n}\in M_{Y_n}(\C)$ be the
+corresponding principal block of $U_{g,n}$.  The preceding
 commutator estimate makes both off-diagonal blocks tend to zero.  Hence
 \[
  \opnorm{C_{g,n}C_{h,n}-C_{gh,n}}\longrightarrow0,
@@ -1343,8 +1367,9 @@ polar correction preserves this limit and proves the lemma.
 The second ingredient is the finite-stage Kazhdan-compression calculation.
 
 \begin{lemma}[Kazhdan fixed-space transport]\label{lem:compressorcollapse}
-Let $(V_{g,n})$ be any operator-norm asymptotic unitary representation of
-$H$.  For a marked Kazhdan pattern $(\Lambda,\iota,t,c)$, with
+Let $(r_n)$ be a sequence of positive integers and let
+$V_{g,n}\in\U(r_n)$ be any operator-norm asymptotic unitary representation
+of $H$.  For a marked Kazhdan pattern $(\Lambda,\iota,t,c)$, with
 $d=tct^{-1}$, for every $\lambda\in\Lambda$ and $\varepsilon>0$ there is
 $N$ such that, for all $n\ge N$,
 \[
@@ -1652,7 +1677,7 @@ injective corona representation of $G_2$ would kill $\varphi(w)$, a
 contradiction.
 \end{proof}
 
-\begin{proposition}[the largest MF quotient]\label{prop:univquot}
+\begin{proposition}[the universal MF quotient]\label{prop:univquot}
 Let $G_1$ be a countable group and
 $R=\operatorname{Rad}_{\mathrm{MF}}(G_1)$.
 \begin{enumerate}
@@ -1664,7 +1689,7 @@ $G_1/R$.
 In particular $G_1$ is MF if and only if $R=\{1\}$.  The statement is
 presumably folklore once the radical is defined; we include a proof
 for completeness and claim no novelty for it.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptLargestMFQuotient}
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient}
 \end{proposition}
 
 \begin{proof}
@@ -1673,54 +1698,23 @@ $j\colon M\to\Ucor((d_n))$ is an injective corona representation,
 then $j\circ\varphi$ is a corona representation of $G_1$, so
 $j(\varphi(R))=1$ and, by injectivity of $j$, $\varphi(R)=1$.
 
-(1) and (2).  If $R=G_1$, the trivial representation has kernel $R$
-and $G_1/R$ is trivial, hence MF; so assume $R\neq G_1$ and let
-$(g_i)_{i\ge1}$ list, possibly with repetitions, elements of
-$G_1\setminus R$ meeting every nontrivial coset of $R$.  For each $i$
-choose a corona representation and write it, through
-$\kappa_{(d_n^{(i)})}$, as
-$\Theta_i\colon G_1\to\U(\mathcal Q_i)$,
-$\mathcal Q_i=\mathcal Q\bigl((d^{(i)}_n)_{n\in\N}\bigr)$, with
-$\Theta_i(g_i)\neq1$; put
-$\varepsilon_i=\tfrac12\opnorm{\Theta_i(g_i)-1}>0$, and choose
-unitary lifts $\bigl(U^{(i)}_{g,n}\bigr)_{n\in\N}$ of $\Theta_i(g)$
-for every $g\in G_1$ (Lemma~\ref{lem:lift}), with $U^{(i)}_{1,n}=1$.
-Recall that the quotient norm in a corona is the limit superior of
-the coordinate norms: subtracting a null sequence does not change the
-limit superior, and truncating finitely many coordinates realizes it.
+(1) and (2).  Work on $Q=G_1/R$ from the outset.  If $1\ne q\in Q$ and
+$g\in G_1$ represents $q$, then $g\notin R$.  Hence some corona
+representation of $G_1$ detects $g$.  Every corona representation kills
+$R$ by definition, so this representation descends to one of $Q$ that
+detects $q$.  Thus the intersection of the kernels of all corona
+representations of the countable group $Q$ is trivial.
 
-Enumerate $G_1=\{h_1,h_2,\dots\}$ and fix a stage $k\ge1$.  For each
-$i\le k$: the finitely many products
-$U^{(i)}_{g,n}U^{(i)}_{h,n}$ and $U^{(i)}_{gh,n}$ with
-$g,h\in\{h_1,\dots,h_k\}$ lift the same corona elements, so there is
-$n_0$ with all the corresponding defects at most $1/k$ for
-$n\ge n_0$; and since
-$\limsup_{n\to\infty}\opnorm{U^{(i)}_{g_i,n}-1}=2\varepsilon_i$, there
-are infinitely many $n\in\N$ with
-$\opnorm{U^{(i)}_{g_i,n}-1}\ge\varepsilon_i$.  Choose
-$n_i(k)\in\N$ satisfying both conditions and set
-\[
-  \Phi_k(g)\;=\;\bigoplus_{i\le k}U^{(i)}_{g,\,n_i(k)}
-  \;\in\;\U\bigl(M_{D_k}(\C)\bigr),\qquad
-  D_k=\sum_{i\le k}d^{(i)}_{n_i(k)} .
-\]
-Define $\Theta_\infty(g)$ as the class of $(\Phi_k(g))_{k\in\N}$ in
-$\Ucor((D_k)_{k\in\N})$.  For fixed $g,h\in G_1$, both
-lie in $\{h_1,\dots,h_k\}$ for all large $k$, and the operator norm
-of a block sum is the maximum of the block norms, so
-$\opnorm{\Phi_k(g)\Phi_k(h)-\Phi_k(gh)}\le1/k\to0$; together with
-$\Phi_k(1)=1$ this makes $\Theta_\infty$ a corona representation of
-$G_1$.  Consequently $\Theta_\infty(R)=1$.  Conversely, if
-$g\notin R$, pick $i$ with $g\in g_iR$; then
-$\Theta_\infty(g)=\Theta_\infty(g_i)$, and for every $k\ge i$,
-$\opnorm{\Phi_k(g_i)-1}\ge\opnorm{U^{(i)}_{g_i,n_i(k)}-1}
-\ge\varepsilon_i$, so the representative of
-$\Theta_\infty(g_i)$ stays at least $\varepsilon_i$ from the identity
-and $\Theta_\infty(g)\neq1$.  Hence $\ker\Theta_\infty=R$, proving
-(1), and $\Theta_\infty$ descends to an injective corona
-representation of $G_1/R$; arbitrary positive coordinate dimensions are
-allowed by Proposition~\ref{prop:mf-equivalences}.  This proves (2).  For the
-final equivalence:
+Enumerate the nonidentity elements of $Q$ and choose a detecting corona
+representation for each.  Apply the standard block-diagonal local-model
+diagonalization on $Q$: at stage $k$, impose multiplicativity within $1/k$
+on the first $k$ group elements in the first $k$ representations and retain
+a fixed positive separation for each of the first $k$ marked elements.
+This gives one faithful representation of $Q$ in a norm matrix corona and
+proves (2).  Composing it with $G_1\twoheadrightarrow Q$ gives a single
+corona representation of $G_1$ with kernel exactly $R$, proving (1).
+This quotient-first construction has no separate radical-killing condition
+to lose in a growing block maximum.  For the final equivalence:
 if $G_1$ is MF, an injective corona representation forces
 $R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
 \end{proof}
@@ -1738,7 +1732,7 @@ addition $G_1/N$ is MF, then
 
 Together with Proposition~\ref{prop:univquot}, this says that proving a
 concrete defect subgroup invisible and its quotient MF computes both the
-entire MF radical and the largest MF quotient.
+entire MF radical and the universal MF quotient.
 
 \begin{proof}
 The containment $N\le\ker\Theta$ gives the unique quotient
@@ -1769,7 +1763,7 @@ literal kernel theorem sends \(w\) to the identity there; injectivity of
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
 
-\subsection{Stable finiteness does not imply MF}
+\subsection{The reduced group algebra of $E$}
 
 \begin{lemma}\label{lem:faithfultrace}
 Let $G_1$ be a countable discrete group.
@@ -1930,6 +1924,13 @@ M.~D.~E. Conder, G.~Liversidge, and M.~R. Vsemirnov,
 \emph{Generating pairs for $\SL(n,\mathbb Z)$},
 J. Algebra \textbf{662} (2025), 123--137,
 \doi{10.1016/j.jalgebra.2024.08.008}.
+
+\bibitem[CRW]{CRW}
+M.~D.~E. Conder, E.~F. Robertson, and P.~Williams,
+\emph{Presentations for 3-dimensional special linear groups over integer
+rings},
+Proc. Amer. Math. Soc. \textbf{115} (1992), no.~1, 19--26,
+\doi{10.2307/2159559}.
 
 \bibitem[Dad]{Dadarlat}
 M.~Dadarlat,
