@@ -3,8 +3,10 @@ import GroupApproximation.Monsters.ExplicitIntegralLinearModel
 import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralWitnessConsequences
+import GroupApproximation.Sofic.LiteralUniformObstruction
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.ScalingFamilyEndpoint
+import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
 
 /-!
 # Closed high-impact non-MF endpoints
@@ -82,6 +84,18 @@ theorem cyclicBase_exactModel_obstruction :
 /-- A concrete operator-MF group has a non-operator-MF quotient. -/
 theorem operatorMF_not_closed_under_quotients :=
   OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
+
+/-- A single positive defect threshold and finite test set force the literal
+mark uniformly close to the identity in every matrix dimension. -/
+theorem literal_uniform_operatorNorm_obstruction :=
+  LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
+
+/-- The finite-normal obstruction cannot directly produce a nontrivial
+marked element in a torsion-free group. -/
+theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
+    ∀ (G : Type) [Group G] [IsMulTorsionFree G]
+      (F : Subgroup G) [Finite F], F = ⊥ :=
+  finiteSubgroup_eq_bot_of_isMulTorsionFree
 
 end NonMFImpact
 end GroupApproximation
