@@ -104,8 +104,8 @@ More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
 We give an eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Consequently MF groups are not
-closed under quotients.  The results, including property~\textup{(T)} of
-the base, are obtained from an explicit spectral certificate.
+closed under quotients.  Property~\textup{(T)} of the base follows from an
+explicit rational spectral certificate.
 \end{abstract}
 
 \maketitle
@@ -130,7 +130,7 @@ problem subsequently supplied abstract stably finite non-MF algebras
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
 The MF conjecture is the operator-norm counterpart of the soficity
-conjecture, which fell in 2026: the first nonsofic group was constructed
+conjecture, which was disproved in 2026: the first nonsofic group was constructed
 by OpenAI \cite{OAI}, and Kun--Thom generalized the construction
 \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
 driving those arguments, is also the conceptual ancestor of the present
@@ -197,6 +197,7 @@ definition.  Every assertion below uses only the MF property fixed here.
 
 Throughout, $[g,h]=ghg^{-1}h^{-1}$ for group elements, while for matrices
 $[x,y]=xy-yx$; the arguments always make the reading unambiguous.
+\section{One-sided Kazhdan transport}\label{sec:transport}
 
 The rigidity mechanism is best remembered before the construction.  The
 same elementary principle appears in three finite worlds:
@@ -216,7 +217,7 @@ coordinate size.  This yields the reusable theorem behind every result below.
 
 \begin{theorem}[Kazhdan transport of asymptotic commutants]
 \label{thm:kazhdan-transport}
-Let $\Gamma$ and $H$ be countable groups, let $\Gamma$ have
+Let $\Gamma$ and $H$ be groups, let $\Gamma$ have
 property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a homomorphism, let
 $s\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
 \[
@@ -271,9 +272,10 @@ $B_\omega$; hence
 \[
  \boxed{P=VPV^*.}
 \]
-Indeed, writing $VPV^*=Q$ and $w=V^*Q$, one has $w^*w=Q$ and
-$ww^*=P\le Q$, so $s=w+(1-Q)$ satisfies $s^*s=1$ and $ss^*=P+(1-Q)$;
-finiteness of $B_\omega$ forces $ss^*=1$, that is, $P=Q$.
+Indeed, writing $VPV^*=Q$ and $r=V^*Q$, one has $r^*r=Q$ and
+$rr^*=P\le Q$, so $\sigma=r+(1-Q)$ satisfies $\sigma^*\sigma=1$ and
+$\sigma\sigma^*=P+(1-Q)$; finiteness of $B_\omega$ forces
+$\sigma\sigma^*=1$, that is, $P=Q$.
 Uniform boundedness makes $x=(x_n)_\omega$ a vector in $K_\omega$, and the
 hypothesis says $x\in PK_\omega$.  Therefore $Vx\in PK_\omega$, contrary to
 the choice of $\gamma_0$ and the subsequence.  This proves the ordinary,
@@ -350,6 +352,8 @@ faithful.
 
 This is the proof to keep in mind.
 
+\section{The Kazhdan--Clifford construction}\label{sec:construction}
+
 Given $\Gamma,\alpha,a$ as in the theorem below, the construction is most
 readable with one redundant generator $\varepsilon$: declare it to be a
 central involution and impose
@@ -406,13 +410,21 @@ involutions, $w=[d,b]=(db)^2$, and direct cancellation gives
 \]
 Centrality also gives $dwd^{-1}=w$, whence $w=w^{-1}$ and $w^2=1$.
 
-For nontriviality, form the ascending HNN extension
+For nontriviality, realize the ascending HNN extension
 \[
  G=\langle\Gamma,t\mid t\gamma t^{-1}=\alpha(\gamma)\rangle
 \]
-and let $X=G/\Gamma$.  The mapping-telescope model of this extension embeds
-$\Gamma$.  Let $G$ permute the Clifford generators $(e_x)_{x\in X}$ and map
-$c$ to $e_\Gamma$.  Then
+as a mapping telescope.  Let $\Gamma_\infty$ be the direct limit of the
+system $\Gamma\xrightarrow{\alpha}\Gamma\xrightarrow{\alpha}\cdots$;
+injectivity of $\alpha$ passes to the limit, so the level-zero map embeds
+$\Gamma$ in $\Gamma_\infty$.  Applying $\alpha$ levelwise induces an
+\emph{automorphism} $\sigma$ of $\Gamma_\infty$: it is injective, and it
+is surjective because an element at level $k$ equals $\sigma$ of the same
+element at level $k+1$.  Put $G=\Gamma_\infty\rtimes_\sigma\Z$, with
+stable letter $t$ implementing $\sigma$; then $t\gamma t^{-1}=\alpha(\gamma)$
+for $\gamma\in\Gamma$, and we write $X=G/\Gamma$ for the coset space of
+the level-zero copy.  Let $G$ permute the Clifford generators
+$(e_x)_{x\in X}$ and map $c$ to $e_\Gamma$.  Then
 \[
  d\longmapsto e_{t\Gamma},\qquad
  ada^{-1}\longmapsto e_{at\Gamma}.
@@ -517,8 +529,7 @@ corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
 the corner identity gives $w=-1$.  This contradiction is the analytic core
 of Theorem~\ref{thm:A}: Section~\ref{sec:proofA} deduces the theorem from
 the sign criterion and the witness, and Section~\ref{sec:conj} proves the
-general finite-normal criterion with its ultrafilter-free coordinate
-estimates.
+general finite-normal criterion.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -617,8 +628,10 @@ not an MF algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
-The group $E$ contains the infinite Kazhdan group $\mathcal B$, so $E$ is
-not amenable and $\Cred(E)$ is not nuclear.  The nuclear form of the
+The canonical homomorphism $\mathcal B\to E$ is injective by
+Theorem~\ref{thm:kazhdan-clifford}; since the infinite Kazhdan group
+$\mathcal B$ is nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
+\cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
 Theorem~\ref{thm:D}.
@@ -711,7 +724,8 @@ such representation.  For broader context see
 \cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
 
 \subsection*{Organization}
-Section~\ref{sec:prelim} fixes notation, proves the corona lifting
+Sections~\ref{sec:transport}--\ref{sec:construction} isolate the analytic
+mechanism and the general construction.  Section~\ref{sec:prelim} fixes notation, proves the corona lifting
 lemmas, and states the conventions.  Section~\ref{sec:group} constructs
 $E$ and proves property~\textup{(T)} for its literal base.
 Section~\ref{sec:witness} proves $w\neq 1$.
@@ -721,8 +735,7 @@ Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
 Section~\ref{sec:conj} defines marked Kazhdan patterns and their
 compression-defect subgroups, proves the finite-normal obstruction
 criterion (Theorem~\ref{thm:criterion}) and the compression radical
-(Theorem~\ref{thm:compression-radical}), and develops the coordinate
-Reynolds and Kazhdan-compression estimates.
+(Theorem~\ref{thm:compression-radical}).
 Section~\ref{sec:consequences} derives
 Theorem~\ref{thm:D} and further consequences.
 Section~\ref{sec:necessity} proves the cyclic-base calibration.
@@ -830,28 +843,13 @@ $\opnorm{U_n(1)-1}\to0$ automatically, since $U_n(1)$ is unitary.
 Coordinate unitary lifts of a corona representation of a countable group
 form exactly such a sequence.
 
-Fix a set-theoretic universe $\mathfrak U$.  For a $\mathfrak U$-small
-group $H$, define $C^*_{\mathrm{max},\mathfrak U}(H)$ to be the closed
-$*$-subalgebra generated by the diagonal copy of $H$ in the bounded product
-of all its nontrivial unitary representations on $\mathfrak U$-small unital
-$C^*$-algebras.  This algebra lives in the next universe.  We suppress the
-subscript $\mathfrak U$ below and write $u_h$ for the canonical unitary
-associated with $h\in H$.
-
-\begin{proposition}[universe-relative maximal group algebra]
-\label{prop:maximal-cstar}
-The canonical map $h\mapsto u_h$ is injective.  For every
-$\mathfrak U$-small unital $C^*$-algebra $B$ and every homomorphism
-$\rho\colon H\to\U(B)$, there is a unique unital $*$-homomorphism
-$C^*_{\mathrm{max},\mathfrak U}(H)\to B$ mapping $u_h$ to $\rho(h)$ for
-every $h\in H$.
-\leanverified{Analysis/MaximalGroupCStar}{GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar}
-\end{proposition}
-
-For a nontrivial target, projection to its coordinate gives the extension;
-for a trivial target, the map is unique.  Density of the generated
-$*$-subalgebra gives uniqueness, while the left-regular coordinate proves
-injectivity.
+For a countable group $H$, $\Cmax(H)$ denotes the usual universal completion
+of $\C[H]$.  Its canonical map contains $H$ faithfully (the left-regular
+representation separates its elements), and every homomorphism
+$H\to\U(B)$ into a unital $C^*$-algebra extends uniquely to a unital
+$*$-homomorphism $\Cmax(H)\to B$.  The Lean development implements the same
+universal property by a bounded-product construction; that set-theoretic
+realization plays no role in the argument.
 
 \section{The literal group and its Kazhdan source}\label{sec:group}
 
@@ -1279,11 +1277,13 @@ flip supplies the reverse estimate.  This is the route used below.
 \section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
 
 Theorem~\ref{thm:A} is already proved.  This section establishes the
-general finite-normal obstruction behind it, together with the
-ultrafilter-free coordinate estimates needed for an effective version; a
+general finite-normal obstruction behind it, together with finite-stage
+coordinate estimates: spectral cuts and polar corrections performed in the
+matrix coordinates rather than in an ultraproduct.  The convergence proofs
+below still argue by compactness, so no explicit modulus is extracted; a
 reader content with the ultraproduct proof of
-Theorem~\ref{thm:kazhdan-transport} may treat this section as an
-effective second pass.  We fix the data of the criterion.
+Theorem~\ref{thm:kazhdan-transport} may treat this section as a
+coordinate-level second pass.  We fix the data of the criterion.
 
 \begin{definition}[marked Kazhdan pattern]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{marked Kazhdan pattern} in $H$
@@ -1323,8 +1323,11 @@ Reynolds projection directly in the quotient,
 \[
  p=\frac1{|F|}\sum_{f\in F}\Theta(f),\qquad q=1-p.
 \]
-Normality of $F$ makes $p$ central relative to $\Theta(H)$, and nontriviality
-on $F$ gives $q\ne0$.  Since $q$ commutes with $\Theta(H)$, the formula
+The group average satisfies $p^*=p=p^2$ and projects onto the vectors fixed
+by $\Theta(F)$.  Normality of $F$ makes $p$ central relative to
+$\Theta(H)$.  If $q=0$, then $p=1$ and
+$\Theta(f)p=p$ for every $f\in F$, so $\Theta|_F$ is trivial; hence $q\ne0$.
+Since $q$ commutes with $\Theta(H)$, the formula
 \[
   \Theta_q(g)=q\Theta(g)q
 \]
@@ -1359,11 +1362,13 @@ $U_{g,n}\in\U(r_n)$, and at the finitely many remaining indices choose an
 arbitrary unitary.  The homomorphism identity for $\Theta_q$ then makes these
 lifts asymptotically multiplicative.  Put
 \[
- K_2=\{g\in H:\hsnorm{U_{g,n}-1}\longrightarrow0\}.
+  K_2=\{g\in H:\hsnorm{U_{g,n}-1}\longrightarrow0\}.
 \]
 Unitary invariance and asymptotic multiplicativity make
-$K_2\trianglelefteq H$.  The quantitative Kazhdan fixed-space transport of
-Lemma~\ref{lem:compressorcollapse} gives
+$K_2\trianglelefteq H$.  Since $c$ centralizes $\iota(\Lambda)$, its lifts
+belong to the asymptotic commutant of $\iota(\Lambda)$.  Applying
+Theorem~\ref{thm:kazhdan-transport} to $x_n=U_{c,n}$ shows that the lifts of
+$d=tct^{-1}$ do as well, and therefore
 \[
  [d,\iota(\lambda)]\in K_2\qquad(\lambda\in\Lambda).
 \]
@@ -1383,284 +1388,9 @@ sign criterion, is also the instance \(H=E\), \(\Lambda=\mathcal B\),
 \(\iota\) the canonical homomorphism, and \(F=\{1,w\}\) of
 Theorem~\ref{thm:criterion}; the membership \(w\in N_{\mathrm{comp}}\)
 is the identity \(w=[d,\iota(v_1)]^{\,2}\) of Lemma~\ref{lem:square}.
-The following complementary coordinate construction forms the Reynolds
-average at finite stages and repairs its complementary spectral corner
-coordinate by coordinate.
-
-\subsection{Quantitative realization of Kazhdan cancellation}
-
-The remainder of this section proves the dimension-free coordinate estimates
-used above.  Spectral cuts and polar correction are performed before taking
-the quotient, and the reverse leakage estimate is obtained from equality of
-finite coordinate ranks.
-
-The first lemma is the ultrafilter-model form of the corner extraction
-performed inside the proof of Theorem~\ref{thm:criterion}.
-
-\begin{lemma}[coordinate finite-normal corner]\label{lem:corner}
-Let $H$ be a countable group, let $F\trianglelefteq H$ be finite, let
-$(d_i)_{i\in I}$ be a family of positive integers, let $\omega$ be an
-ultrafilter on $I$, and let
-$\rho$ be a homomorphism from $H$ into the operator-norm metric ultraproduct
-of the groups $\U(M_{d_i}(\C))$, $i\in I$.  If $\rho|_F$ is nontrivial,
-then there are nonempty finite coordinate sets $Y_n$ and unitaries
-$V_{g,n}\in\U(M_{Y_n}(\C))$ such that
-\[
- \opnorm{V_{g,n}V_{h,n}-V_{gh,n}}\longrightarrow0
- \quad(g,h\in H),
- \qquad
- \opnorm{\sum_{f\in F}V_{f,n}}\longrightarrow0.
-\]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptCoordinateFiniteNormalCorner}
-\end{lemma}
-
-\begin{proof}
-Choose $f_0\in F$ with $\rho(f_0)\neq1$.  A standard sequential extraction
-from the ultraproduct gives indices $i_n\in I$ and representatives
-$U_{g,n}\in\U(M_{d_{i_n}}(\C))$ which are asymptotically multiplicative in
-operator norm, together with a constant $\delta>0$
-such that
-\[
-  \opnorm{U_{f_0,n}-U_{1,n}}\ge\delta
-\]
-for every $n$.  We now construct the corner model from these coordinates.
-Put
-\[
- A_n=\frac1{|F|}\sum_{f\in F}U_{f,n},
- \qquad H_n=\frac12(A_n+A_n^*).
-\]
-Left and right translation permute $F$, while conjugation by any $g\in H$
-permutes $F$ by normality.  Expanding the finitely many multiplicative
-defects therefore shows, in operator norm, that
-\[
- A_n^2-A_n\longrightarrow0,\qquad A_n-H_n\longrightarrow0,
- \qquad U_{g,n}A_nU_{g,n}^*-A_n\longrightarrow0.
-\]
-Let $P_n=\chi_{(1/2,\infty)}(H_n)$ and $Q_n=1-P_n$.  Spectral rounding gives
-\[
- \opnorm{P_n-H_n}\le
- 2\opnorm{H_n^2-H_n}\longrightarrow0,
-\]
-so $P_n-A_n\to0$ and
-$U_{g,n}P_nU_{g,n}^*-P_n\to0$ for every fixed $g$.  The separation of
-$f_0$ forces $Q_n\neq0$ eventually: if $Q_n=0$, then $P_n=1$, and the
-relations $U_{f_0,n}A_n-A_n\to0$, $P_n-A_n\to0$, and
-$U_{1,n}-1\to0$ would imply
-$\opnorm{U_{f_0,n}-U_{1,n}}<\delta$.  Discard these finitely many indices and
-relabel, so that $Q_n\ne0$ for every $n$.
-
-Conjugate into an eigenbasis of $H_n$, choose a nonempty finite set $Y_n$
-indexing $Q_n\C^{d_{i_n}}$, and let $C_{g,n}\in M_{Y_n}(\C)$ be the
-corresponding principal block of $U_{g,n}$.  The preceding
-commutator estimate makes both off-diagonal blocks tend to zero.  Hence
-\[
- \opnorm{C_{g,n}C_{h,n}-C_{gh,n}}\longrightarrow0,
- \qquad
- \opnorm{C_{g,n}^*C_{g,n}-1}\longrightarrow0.
-\]
-For each fixed $g$ and all sufficiently large $n$ the compressed Gram
-matrix is invertible; take the polar correction
-\[
- V_{g,n}=C_{g,n}(C_{g,n}^*C_{g,n})^{-1/2}.
-\]
-When the Gram defect is at most $1/2$, functional calculus gives the
-dimension-free estimate
-\[
- \opnorm{V_{g,n}-C_{g,n}}
- \le2\opnorm{C_{g,n}^*C_{g,n}-1}.
-\]
-For each fixed $g$, use this polar unitary on the cofinite tail and set
-$V_{g,n}=1$ at its finitely many exceptional indices.  Thus polar correction
-is asymptotically invisible and the $V_{g,n}$ remain asymptotically
-multiplicative.
-
-Finally, the $Q_n$-block of $A_n$ is the normalized sum.  Since
-$P_n-A_n\to0$ and $Q_nP_n=0$,
-\[
- \opnorm{|F|^{-1}\sum_{f\in F}C_{f,n}}\longrightarrow0.
-\]
-Multiplying by the fixed factor $|F|$ gives
-$\opnorm{\sum_{f\in F}C_{f,n}}\to0$.
-There are only finitely many $f\in F$, so replacing every $C_{f,n}$ by its
-polar correction preserves this limit and proves the lemma.
-\end{proof}
-
-The second ingredient is the finite-stage Kazhdan-compression calculation.
-
-\begin{lemma}[Kazhdan fixed-space transport]\label{lem:compressorcollapse}
-Let $(r_n)$ be a sequence of positive integers and let
-$V_{g,n}\in\U(r_n)$ be any operator-norm asymptotic unitary representation
-of $H$.  For a marked Kazhdan pattern $(\Lambda,\iota,t,c)$, with
-$d=tct^{-1}$, for every $\lambda\in\Lambda$ and $\varepsilon>0$ there is
-$N$ such that, for all $n\ge N$,
-\[
- \hsnorm{V_{[d,\iota(\lambda)],n}-V_{1,n}}^2\le\varepsilon.
-\]
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptCompressionDefectsCollapse}
-\end{lemma}
-
-\begin{proof}
-Apply the adjoint microstates $\Ad V_{\iota(\lambda),n}$ to
-$K_n=L^2(M_{r_n},\operatorname{Tr})$ with its unnormalized Frobenius
-inner product.  In this proof $\lVert\cdot\rVert_2$ denotes the resulting
-Euclidean norm, so
-$\hsnorm{x}=r_n^{-1/2}\lVert x\rVert_2$.  Choose a finite symmetric Kazhdan set
-$S\subseteq\Lambda$, with $1\in S$, generating $\Lambda$, and a Kazhdan
-constant $0<\kappa\le1$.  Fix
-\[
-  1-\frac{\kappa^2}{4|S|}<\theta<1,
-\]
-let $H_n$ be the Hermitian average of the adjoint $S$-microstates, and put
-$P_n=\chi_{(\theta,\infty)}(H_n)$.  Spectral capture gives, for every fixed
-$\lambda\in\Lambda$,
-\[
- \opnorm{(\Ad V_{\iota(\lambda),n}-1)P_n}\longrightarrow0.
-\]
-Here are the details behind this dimension-free assertion.  If, along a
-subsequence, $H_n$ had an eigenvalue in a fixed interval
-\[
- \left[\theta,1-\delta\right]
- \qquad(\delta>0),
-\]
-take corresponding unit eigenvectors and pass to their Hilbert-space
-ultraproduct.  The operator-norm multiplicative defects vanish there, so the
-adjoint microstates define an actual unitary representation of $\Lambda$.
-The limiting vector is an eigenvector of the Hermitian $S$-average with
-eigenvalue at least $\theta$ and strictly below $1$.  It is therefore
-orthogonal to the invariant subspace.  On that orthogonal complement the
-Kazhdan-pair inequality bounds the Hermitian average by
-$1-\kappa^2/(4|S|)$, contradicting the choice of $\theta$.  Hence the
-spectrum of $H_n$ above $\theta$ is eventually contained arbitrarily close
-to $1$, uniformly in $r_n$.
-
-For $P_n=\chi_{(\theta,\infty)}(H_n)$ this says
-$\lVert(H_n-1)P_n\rVert\to0$.  The exact identity
-\[
- \sum_{s\in S}\bigl((\Ad V_{\iota(s),n}-1)P_n\bigr)^*
-                    \bigl((\Ad V_{\iota(s),n}-1)P_n\bigr)
- =2|S|\,P_n(1-H_n)P_n
-\]
-then gives the asserted displacement first for $s\in S$.  The set of group
-elements having vanishing displacement is closed under products: expand the
-displacement of a product, use the two known displacements, and absorb its
-operator-norm multiplicative defect.  Since the symmetric set $S$ generates
-$\Lambda$, the conclusion follows for every fixed $\lambda$.
-
-Put $\xi_n=\operatorname{vec}(V_{c,n})$, so
-$\lVert\xi_n\rVert_2^2=r_n$.  Because $c$ centralizes
-$\iota(\Lambda)$, asymptotic multiplicativity gives
-\[
- r_n^{-1/2}\lVert(I-H_n)\xi_n\rVert_2\longrightarrow0.
-\]
-The normalization is supplied by the elementary energy estimate
-\[
- 0\le \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle
- \le \lVert\xi_n\rVert_2\,
-      \lVert(I-H_n)\xi_n\rVert_2=o(r_n).
-\]
-Since the spectrum of $H_n$ on $(1-P_n)K_n$ is at most $\theta$,
-functional calculus gives
-\[
- (1-\theta)\lVert(1-P_n)\xi_n\rVert_2^2
- \le \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle.
-\]
-These two inequalities give the root-capture estimate
-\begin{equation}\label{eq:root-capture}
- r_n^{-1/2}\lVert(1-P_n)\xi_n\rVert_2\longrightarrow0.
-\end{equation}
-
-For each $s\in S$, (M1) supplies an $s'\in\Lambda$ with
-$t\iota(s)t^{-1}=\iota(s')$.  The multiplicative defects then
-give, with $T_n=\Ad V_{t,n}$ and
-$\beta_{g,n}=\Ad V_{\iota(g),n}$,
-\[
- \lVert\beta_{s,n}T_n^*-T_n^*\beta_{s',n}\rVert\longrightarrow0.
-\]
-Multiplying on the right by $P_n$ and using
-$\lVert(\beta_{s',n}-1)P_n\rVert\to0$ shows that
-$T_n^*P_n$ is asymptotically fixed by every $\beta_{s,n}$; symmetry of $S$
-gives the same statement for the adjoints.  Averaging the two statements
-yields
-\[
- \lVert(1-H_n)T_n^*P_n\rVert\longrightarrow0.
-\]
-The operator spectral-cut inequality
-\[
- (1-\theta)\lVert(1-P_n)T_n^*P_n\rVert^2
- \le \lVert(1-H_n)T_n^*P_n\rVert
-\]
-therefore shows that the adjoint-conjugated spectral corner has
-asymptotically no leakage below the same cut.  More precisely, if
-$R_n=T_nP_nT_n^*$, unitary invariance gives
-\[
- \opnorm{(1-R_n)P_n}\longrightarrow0.
-\]
-They have equal rank at every coordinate.  The finite-dimensional
-projection flip bounds the reverse leakage by
-$\eta/\sqrt{1-\eta^2}$ whenever the forward leakage is at most
-$\eta<1$.  Thus
-\[
- \opnorm{(1-P_n)R_n}\longrightarrow0,
-\]
-and hence
-\[
- \opnorm{P_n-R_n}\longrightarrow0.
-\]
-This equal-rank projection argument is the finite-dimensional replacement for
-the stable-finiteness step one might be tempted to perform only after taking
-a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} displays the implication.
-
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small,
-    figbox/.append style={text width=3.0cm,minimum height=2.35cm}]
-  \node[figbox] (leak) at (0,1.45)
-    {one-sided leakage\\[3pt] $\opnorm{(1-R_n)P_n}\to0$\\[3pt]
-     {\footnotesize $\operatorname{ran}P_n$ tilts into\\ $\operatorname{ran}R_n$}};
-  \node[figbox] (rank) at (0,-1.45)
-    {equal finite ranks\\[3pt] $\operatorname{rank}P_n=\operatorname{rank}R_n$\\[3pt]
-     {\footnotesize $R_n$ is a unitary\\ conjugate of $P_n$}};
-  \node[figbox] (mech) at (4.15,0)
-    {projection flip\\[3pt]
-     {\footnotesize no strictly one-sided\\ leakage at equal\\ finite rank}};
-  \node[figout,text width=3.2cm,minimum height=0pt] (concl) at (8.45,0)
-    {$\opnorm{(1-P_n)R_n}\to0$,\\[3pt]
-     hence $\opnorm{P_n-R_n}\to0$};
-  \draw[figarr] (leak.east) -| (mech.north);
-  \draw[figarr] (rank.east) -| (mech.south);
-  \draw[figarr] (mech) -- (concl);
-  \node[fignote,align=center,anchor=north] (fails) at (8.45,-.95)
-    {not forced by normalized\\ Hilbert--Schmidt leakage\\ alone (Section \ref{sec:limits})};
-\end{tikzpicture}
-\caption{Equal-rank reversal.  One-sided spectral leakage, together with
-equality of the two finite ranks, forces the reverse leakage --- bounded by
-$\eta/\sqrt{1-\eta^2}$ --- and hence convergence of the two
-projections.  The reversal uses equality of the finite coordinate ranks;
-normalized Hilbert--Schmidt-small leakage alone neither controls those ranks
-nor yields the reverse operator-norm estimate (Section~\ref{sec:limits}).}
-\label{fig:equal-rank-flip}
-\end{figure}
-
-Write $T_n=\Ad V_{t,n}$.  Since $R_n=T_nP_nT_n^*$, root capture and
-$\opnorm{P_n-R_n}\to0$ imply
-\[
- r_n^{-1/2}\lVert(1-P_n)T_n\xi_n\rVert_2\longrightarrow0.
-\]
-For every fixed $\lambda\in\Lambda$, spectral capture gives
-$\opnorm{(\Ad V_{\iota(\lambda),n}-1)P_n}\to0$.  Splitting
-$T_n\xi_n$ at $P_n$ therefore yields
-\[
- r_n^{-1/2}
- \lVert(\Ad V_{\iota(\lambda),n}-1)T_n\xi_n\rVert_2
- \longrightarrow0.
-\]
-
-This is normalized Hilbert--Schmidt commutation of the transported lamp
-$tct^{-1}$ with $\iota(\lambda)$.  The operator-norm multiplicative defects
-identify the corresponding matrix commutator with the microstate value of
-$[d,\iota(\lambda)]$, and identify the identity word with $V_{1,n}$, up to
-an error tending to zero.  This proves the lemma.
-\end{proof}
+The ultraproduct proof of Theorem~\ref{thm:kazhdan-transport} is the shortest
+form of the argument and already gives the ordinary sequential convergence
+needed above.  No quantitative modulus is asserted or needed.
 
 \subsection{The compression radical}
 
@@ -1693,11 +1423,12 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 \end{corollary}
 
 \begin{proof}
-For one compressor, the proof of Lemma~\ref{lem:compressorcollapse} gives
-forward transport; the equal-rank flip gives reverse transport.  The
-elements acting in both directions form a subgroup of $H$.  Since it
-contains every one-sided compressor of $L$, it contains the group they
-generate, namely $G_{\rm comp}(L)$.
+For a one-sided compressor $s$, Theorem~\ref{thm:kazhdan-transport} gives
+forward transport.  In that theorem's proof the Kazhdan projection satisfies
+$P=VPV^*$, so both $V$ and $V^*$ preserve its range; the identical
+subsequence argument gives reverse transport.  The elements acting in both
+directions form a subgroup of $H$, and hence contain the subgroup generated
+by all one-sided compressors, namely $G_{\rm comp}(L)$.
 \end{proof}
 
 \begin{theorem}[compression radical]
@@ -1712,15 +1443,17 @@ matrix corona kills $F$.
 \end{theorem}
 
 \begin{proof}
-Repeat the proof of Theorem~\ref{thm:criterion} verbatim, with
-Corollary~\ref{cor:generaltransport} in place of
-Lemma~\ref{lem:compressorcollapse}.  If $z\in C_H(L)$, then
-$(V_{z,n})$ lies in the asymptotic commutant; the corollary puts
-$(V_{gzg^{-1},n})$ there for every $g\in G_{\rm comp}(L)$.  Translating
-that commutation relation through the operator-norm multiplicative defects
-places every displayed generator of $\mathfrak D(H,L)$ in the normal
-subgroup $K_2$, hence all of $\mathfrak D(H,L)$, and therefore $F$.
-The Reynolds contradiction is unchanged.
+Suppose a corona representation is nontrivial on $F$.  Its complementary
+Reynolds corner, constructed in the proof of Theorem~\ref{thm:criterion},
+has positive coordinate ranks and satisfies
+$\sum_{f\in F}U_{f,n}\to0$ in operator norm.  Put
+$K_2=\{h:\hsnorm{U_{h,n}-1}\to0\}$; this is a normal subgroup of $H$.
+If $z\in C_H(L)$, then $(U_{z,n})$ lies in the asymptotic commutant, and
+Corollary~\ref{cor:generaltransport} puts $(U_{gzg^{-1},n})$ there for every
+$g\in G_{\rm comp}(L)$.  Thus every displayed generator of
+$\mathfrak D(H,L)$ belongs to $K_2$, so $F\le K_2$.  Finiteness of $F$
+now gives $\sum_{f\in F}U_{f,n}\to |F|1$ in normalized
+Hilbert--Schmidt norm, contradicting its operator-norm convergence to zero.
 \end{proof}
 
 
@@ -1853,8 +1586,8 @@ corona and let $\phi\colon E\to\U(A)$.  Complement correction gives
    \widehat j(u)=j(u)+1-j(1_A)\in\U(Q).
 \]
 This is an injective homomorphism on \(\U(A)\), so
-\(\widehat j\circ\phi\) is a corona representation of \(E\).  The exact
-literal kernel theorem sends \(w\) to the identity there; injectivity of
+\(\widehat j\circ\phi\) is a corona representation of \(E\).  The universal
+kernel theorem sends \(w\) to the identity there; injectivity of
 \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
@@ -1997,12 +1730,12 @@ itself imply that the marked word is trivial.
 \section{The operator-norm boundary}\label{sec:limits}
 
 The proof is genuinely operator-norm in its present form.  If multiplication
-is controlled only in normalized Hilbert--Schmidt norm, the off-diagonal
-blocks cut out by spectral projections need not be small in operator norm.
-The compressed maps therefore need not admit the dimension-free polar repair
-used in Lemma~\ref{lem:corner}.  More importantly, Hilbert--Schmidt-small
-leakage does not determine finite ranks and does not imply reverse
-operator-norm leakage in \eqref{eq:no-one-sided-growth}.
+is controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
+operators on the Hilbert--Schmidt spaces need not be close in operator norm.
+They therefore need not define the Hilbert-ultraproduct representation to
+which the Kazhdan projection is applied.  Equivalently, normalized
+Hilbert--Schmidt control does not supply the operator-norm spectral-subspace
+transport used in Theorem~\ref{thm:kazhdan-transport}.
 
 This identifies a boundary of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
@@ -2227,6 +1960,11 @@ preprint, 2016, \arxiv{1606.04471}.
 G.~Kun and A.~Thom,
 \emph{Inapproximability of actions and Kazhdan's property (T)},
 preprint, 2019, \arxiv{1901.03963}.
+
+\bibitem[Lan]{Lance}
+E.~C.~Lance,
+\emph{On nuclear $C^*$-algebras},
+J. Funct. Anal. \textbf{12} (1973), 157--176.
 
 \bibitem[Lo]{Loring}
 T.~A. Loring,
