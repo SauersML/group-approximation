@@ -124,6 +124,29 @@
       ]
     },
     {
+      "id": "cor:scaling-family",
+      "environment": "corollary",
+      "title": "the scaling family",
+      "statement_sha256": "82532cee2d755e6c7c4b73c5ce828e2603fb4b372aec9e5aab773d16536d005e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "thm:kazhdan-clifford"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ScalingFamilyEndpoint",
+          "declaration": "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:B",
       "environment": "mainthm",
       "title": "finite-dimensional shadow",
