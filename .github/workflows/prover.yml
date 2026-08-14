@@ -8,80 +8,45 @@ on:
     - cron: '0 */6 * * *'
   push:
     branches: [ "main" ]
+    # Fail closed like advance_verified_branch.py: every unknown path runs the
+    # prover.  Only the classifier's narrow publication-only surface is
+    # excluded, with verification-sensitive Markdown files re-included last.
     paths:
-      - '**/*.lean'
-      # The source scan is a gate, so a change to it must re-run the gate.
-      # Without this, an edit to `check.py` alone -- including one that turns a
-      # detector off -- shipped without CI ever running.
-      - 'scripts/**'
-      # Signature pinning reads both generated declaration rosters and writes
-      # the committed signature snapshot.  Changes to any of the three must
-      # therefore run the same gate that checks their consistency.
-      - 'docs/CLAIM_DECLS.txt'
+      - '**'
+      - '!.gitignore'
+      - '!CITATION.cff'
+      - '!LICENSE'
+      - '!README.md'
+      - '!docbuild/lake-manifest.json'
+      - '!docbuild/lakefile.toml'
+      - '!docbuild/lean-toolchain'
+      - '!non_mf_groups_exist.pdf'
+      - '!official/README.md'
+      - '!property_tt_leavitt.pdf'
+      - '!docs/**/*.md'
       - 'docs/CLAIM_MAP.md'
-      - 'docs/NON_MF_CLAIM_DECLS.txt'
-      - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
-      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'docs/PROPERTY_TT_CLAIM_MAP.md'
       - 'docs/PROPERTY_TT_PROVENANCE.md'
-      - 'lakefile.toml'
-      - 'lean-toolchain'
-      - 'lake-manifest.json'
-      - '.github/workflows/prover.yml'
-      - '.github/workflows/p13-sharded-build.yml'
-      - '.github/workflows/verified-fast-forward.yml'
-      - '.github/workflows/verified-promote.yml'
-      # The PDF release gate requires a successful prover run for the exact
-      # source revision.  A manuscript or publication-workflow-only change
-      # therefore has to create an exact-SHA prover run as well.
-      - 'non_mf_groups_exist.tex'
-      - 'property_tt_leavitt.tex'
-      - '.github/workflows/build-non-mf-pdf.yml'
-      - '.github/workflows/build-property-tt-pdf.yml'
-      - 'experiments/sl3-p13-reductions-complete.json'
-      - 'experiments/sl3-sos-radius0-certificate.json'
-      - 'experiments/sl3-sos-radius0-certificate.npz'
-      - 'experiments/sl3_p13_certificate_lean_generator.py'
-      - 'experiments/sl3_p13_hodge_lean_generator.py'
-      - 'experiments/sl3_p13_pair_table_generator.py'
-      - 'experiments/sl3_p13_relator_replay.py'
-      - 'experiments/sl3_p13_replay_lean_generator.py'
   pull_request:
     branches: [ "main" ]
     paths:
-      - '**/*.lean'
-      # The source scan is a gate, so a change to it must re-run the gate.
-      # Without this, an edit to `check.py` alone -- including one that turns a
-      # detector off -- shipped without CI ever running.
-      - 'scripts/**'
-      - 'docs/CLAIM_DECLS.txt'
+      - '**'
+      - '!.gitignore'
+      - '!CITATION.cff'
+      - '!LICENSE'
+      - '!README.md'
+      - '!docbuild/lake-manifest.json'
+      - '!docbuild/lakefile.toml'
+      - '!docbuild/lean-toolchain'
+      - '!non_mf_groups_exist.pdf'
+      - '!official/README.md'
+      - '!property_tt_leavitt.pdf'
+      - '!docs/**/*.md'
       - 'docs/CLAIM_MAP.md'
-      - 'docs/NON_MF_CLAIM_DECLS.txt'
-      - 'docs/NON_MF_NUMBERED_CLAIMS.json'
       - 'docs/CLAIM_SIGNATURES.md'
-      - 'docs/NON_MF_CLAIM_SIGNATURES.md'
       - 'docs/PROPERTY_TT_CLAIM_MAP.md'
       - 'docs/PROPERTY_TT_PROVENANCE.md'
-      - 'lakefile.toml'
-      - 'lean-toolchain'
-      - 'lake-manifest.json'
-      - '.github/workflows/prover.yml'
-      - '.github/workflows/p13-sharded-build.yml'
-      - '.github/workflows/verified-fast-forward.yml'
-      - '.github/workflows/verified-promote.yml'
-      - 'non_mf_groups_exist.tex'
-      - 'property_tt_leavitt.tex'
-      - '.github/workflows/build-non-mf-pdf.yml'
-      - '.github/workflows/build-property-tt-pdf.yml'
-      - 'experiments/sl3-p13-reductions-complete.json'
-      - 'experiments/sl3-sos-radius0-certificate.json'
-      - 'experiments/sl3-sos-radius0-certificate.npz'
-      - 'experiments/sl3_p13_certificate_lean_generator.py'
-      - 'experiments/sl3_p13_hodge_lean_generator.py'
-      - 'experiments/sl3_p13_pair_table_generator.py'
-      - 'experiments/sl3_p13_relator_replay.py'
-      - 'experiments/sl3_p13_replay_lean_generator.py'
   workflow_dispatch:
 
 concurrency:
