@@ -73,7 +73,8 @@ theorem isSofic_lamp_telescope [α.range.FiniteIndex] (hΓ : IsSofic Γ) :
   refine ⟨K, H, hKfinite, isSofic_level_range α hα hΓ N, ?_, ?_⟩
   · intro h hh n hn
     have hmem := hKinvariant (⟨h, hh⟩ : H) n hn
-    simpa [ρ, level_action_eq_baseAction] using hmem
+    rw [level_action_eq_baseAction α hα N (⟨h, hh⟩ : H)] at hmem
+    exact hmem
   · intro g hg
     constructor
     · exact hKcontains g.left (Finset.mem_image.mpr ⟨g, hg, rfl⟩)
