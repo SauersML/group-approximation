@@ -124,9 +124,12 @@ algebra.  There are two valid ways to cross that quantifier boundary:
 
 The multiplicative-unitary proof in the cited paper is a promising source
 for (2): its key identity makes two tensor-leg copies commute, and all maps
-involved are unitary or trace-preserving.  A uniform estimate must still be
-written down; classicality of each exact universal algebra alone does not
-provide a uniform stability modulus.
+involved are unitary or trace-preserving.  The required estimate has now been
+written down in `TRUE_UNIFORM_MULTIPLICATIVE_UNITARY_CLASSICALIZATION.md`.
+For exact primal and dual table homomorphisms with compatibility defect
+`epsilon`, the averaged coefficient commutator is bounded by
+`81 epsilon^2`, uniformly in `|Q|`.  The remaining issue is construction of
+those two exact coordinate homomorphisms from the atlas root packets.
 
 ## 5. Consequence for the atlas endpoint
 

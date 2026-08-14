@@ -53,6 +53,59 @@ theorem list_prod_distance_le_sum {A : Type*} [Monoid A]
                   linarith [ih ys htail]
             _ = ((x :: xs).zipWith d (y :: ys)).sum := by simp [add_comm]
 
+/-- If two fourfold products which differ only by swapping their middle
+factors are close to one common comparison point, bi-invariance removes the
+outer factors and bounds the middle-factor commutator.  This is the metric
+last step in the quantitative multiplicative-unitary classicalization
+argument. -/
+theorem middle_swap_distance_le_of_common_approximation
+    {A : Type*} [Monoid A]
+    (d : A → A → ℝ)
+    (triangle : ∀ x y z, d x z ≤ d x y + d y z)
+    (symm : ∀ x y, d x y = d y x)
+    (mul_left : ∀ a x y, d (a * x) (a * y) = d x y)
+    (mul_right : ∀ x y a, d (x * a) (y * a) = d x y)
+    (p x y z t : A) (a b : ℝ)
+    (h₁ : d p (x * y * z * t) ≤ a)
+    (h₂ : d p (x * z * y * t) ≤ b) :
+    d (y * z) (z * y) ≤ a + b := by
+  have hprod : d (x * y * z * t) (x * z * y * t) ≤ a + b := by
+    calc
+      d (x * y * z * t) (x * z * y * t) ≤
+          d (x * y * z * t) p + d p (x * z * y * t) :=
+        triangle _ p _
+      _ = d p (x * y * z * t) + d p (x * z * y * t) := by
+        rw [symm]
+      _ ≤ a + b := add_le_add h₁ h₂
+  have hcancel :
+      d (x * y * z * t) (x * z * y * t) = d (y * z) (z * y) := by
+    calc
+      d (x * y * z * t) (x * z * y * t) =
+          d (x * (y * z) * t) (x * (z * y) * t) := by
+            simp only [mul_assoc]
+      _ = d (x * (y * z)) (x * (z * y)) := mul_right _ _ t
+      _ = d (y * z) (z * y) := mul_left x _ _
+  rw [hcancel] at hprod
+  exact hprod
+
+/-- The `3ε+6ε=9ε` specialization used by the five-leg
+multiplicative-unitary comparison. -/
+theorem middle_swap_distance_le_nine_mul
+    {A : Type*} [Monoid A]
+    (d : A → A → ℝ)
+    (triangle : ∀ x y z, d x z ≤ d x y + d y z)
+    (symm : ∀ x y, d x y = d y x)
+    (mul_left : ∀ a x y, d (a * x) (a * y) = d x y)
+    (mul_right : ∀ x y a, d (x * a) (y * a) = d x y)
+    (p x y z t : A) (epsilon : ℝ)
+    (h₁ : d p (x * y * z * t) ≤ 3 * epsilon)
+    (h₂ : d p (x * z * y * t) ≤ 6 * epsilon) :
+    d (y * z) (z * y) ≤ 9 * epsilon := by
+  have h := middle_swap_distance_le_of_common_approximation
+    d triangle symm mul_left mul_right p x y z t
+    (3 * epsilon) (6 * epsilon) h₁ h₂
+  linarith
+
 /-- The exact arithmetic conversion used after the twelve-letter telescope. -/
 theorem raw_word_forces_H_gap {epsilon delta : ℝ}
     (h : Real.sqrt 2 ≤ epsilon + 12 * delta) :

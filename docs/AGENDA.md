@@ -6,6 +6,33 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: the multiplication classicalizer is size-uniform
+
+`TRUE_UNIFORM_MULTIPLICATIVE_UNITARY_CLASSICALIZATION.md` quantifies the
+Kasprzak--Sołtan--Woronowicz five-leg proof. For exact primal and dual finite
+Kac-table star-homomorphisms `beta,gamma`, let
+
+```text
+V=(id tensor beta)W,   V'=(gamma tensor id)W.
+```
+
+If `||V-V'||_2=epsilon`, the two five-leg expansions are within
+`3 epsilon` and `6 epsilon` of the same operator. Cancelling their common
+outer unitaries gives
+
+```text
+||V_234 V_135-V_135 V_234||_2<=9 epsilon.
+```
+
+Parseval turns its square into normalized average coefficient-commutator
+energy, bounded by `81 epsilon^2` with no dependence on matrix dimension or
+finite-table size. This crosses the growing-quotient stability boundary at
+the correct total-error scale. The live interface is now construction of
+the two exact coordinate table homomorphisms and control of their single
+Fourier compatibility defect by the fixed cross-root relators. The terminal
+`3+6=9` bi-invariant metric argument is formalized source-first; no build was
+run.
+
 ### 2026-08-14: full multiplication coherence forces classical maps
 
 `TRUE_MULTIPLICATION_TABLE_QUANTUM_CLASSICALIZATION.md` identifies a
