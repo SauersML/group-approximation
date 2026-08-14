@@ -86,14 +86,13 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  # Let the running gate finish; do not cancel it for a newer push.  At this
-  # repository's push frequency, cancel-in-progress starved the gate: runs
-  # were superseded before the fresh kernel replay ended, so hours passed
-  # with no completed verification.  With cancellation off, GitHub keeps at
-  # most one pending run and replaces it as newer pushes arrive, so the gate
-  # still processes the newest snapshot next while every started run
-  # completes.  The compiled-project cache is saved before the long replay
-  # either way.
+  # Preserve every queued gate.  The reusable P13 workflow can leave its
+  # caller classified as pending at job boundaries even while shard jobs are
+  # active; the default single pending slot therefore canceled two live proof
+  # replays after newer pushes arrived.  GitHub's explicit maximal queue keeps
+  # those runs FIFO instead of replacing them.  Promotion remains non-force
+  # and advances only from a fully successful exact-SHA gate.
+  queue: max
   cancel-in-progress: false
 
 permissions:
