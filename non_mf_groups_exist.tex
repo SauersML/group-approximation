@@ -109,8 +109,9 @@ We give an explicit eight-generator, forty-one-relator instance based on
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and prove that its group rank is at
 most six.  Its Clifford witness is a
 six-generated sofic non-MF group.  Thus soficity does not imply MF, and MF groups
-are closed under neither quotients nor extensions.  Property~\textup{(T)} of
-the base follows from an explicit rational spectral certificate.  The
+are closed under neither quotients nor extensions.  The results are machine-verified in Lean; the formal development is
+self-contained, deriving property~\textup{(T)} of the base from an
+explicit rational spectral certificate.  The
 obstruction is a finite universal Horn sentence and hence defines a nonempty
 clopen set of non-MF marked groups.
 \end{abstract}
@@ -317,7 +318,8 @@ with a corona of positive matrix ranks.  Compression of $\Theta$ is
 multiplicative because $q$ is central relative to its image, and unitary
 coordinate lifts follow by polar correction.
 
-The entire non-MF argument is the following two-element consequence.
+The entire non-MF argument is the following consequence, applied to the
+two-element central subgroup $\{1,\varepsilon\}$.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -349,7 +351,7 @@ central-corner reduction above regards this as a representation into a
 positive-rank norm matrix corona.  The element $c$ belongs to the asymptotic
 commutant of $\iota(\Gamma)$, so
 Theorem~\ref{thm:kazhdan-transport} puts $d=tct^{-1}$ there as well.  Hence
-$u=[d,\iota(a)]\to_2 1$, and therefore $\varepsilon=u^2\to_2 1$.  On the
+$u=[d,\iota(a)]\sim_2 1$, and therefore $\varepsilon=u^2\sim_2 1$.  On the
 $q$-corner, however, $\varepsilon=-1$, whose normalized Hilbert--Schmidt
 distance from $1$ is $2$.  This contradiction kills $\varepsilon$ in every
 corona representation; since $\varepsilon\ne1$, no such representation is
@@ -366,7 +368,7 @@ central involution and impose
 \begin{equation}\label{eq:conceptual-sign}
  \boxed{\varepsilon=u^2,\qquad u=[tct^{-1},a].}
 \end{equation}
-This is the conceptual presentation: rigidity forces $u\to_2 1$, whereas
+This is the conceptual presentation: rigidity forces $u\sim_2 1$, whereas
 the Clifford model makes $u^2=-1$.  The theorem below uses the
 Tietze-eliminated version.  Since $d=tct^{-1}$ is an involution,
 $u^2=[d,ada^{-1}]$; conversely, centrality of $u^2$ forces $(u^2)^2=1$.
@@ -512,9 +514,9 @@ and neither $\Cmax(E_m)$ nor $\Cred(E_m)$ is an MF $C^*$-algebra.
 \end{corollary}
 
 \begin{proof}
-Replace the affine dilation
-$\operatorname{diag}(2,2,2,1)$ by
-$\operatorname{diag}(m,m,m,1)$.  It conjugates each integral translation
+Replace the affine dilation $\operatorname{diag}(2,2,2,1)$ by
+$\operatorname{diag}(m,m,m,1)$ (both acting as in
+Lemma~\ref{lem:linear}).  It conjugates each integral translation
 $v_i$ to $v_i^m$ and fixes the three linear generators.  Its inverse sends
 $v_1$ to translation by $e_1/m$, which is not integral; hence the two
 Clifford sites remain distinct and $w_m$ maps to $-1$.  The Kazhdan base,
@@ -524,12 +526,10 @@ independent of $m$.
 
 For the proof, put $d=tct^{-1}$ and $u=[d,v_1]$.
 Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
-The proof has two opposed halves, both centered on $u$
-(write $a\sim_2 b$ when the normalized Hilbert--Schmidt distance of the
-coordinate representatives of $a$ and $b$ tends to zero):
+The proof has two opposed halves, both centered on $u$:
 \[
  \boxed{\text{matrix-corona rigidity: }u\sim_2 1}
- \qquad\text{and}\qquad
+ \quad\text{and}\quad
  \boxed{\text{Clifford model: }u^2=-1.}
 \]
 For a corona representation that detects $w$, cut to the negative central
@@ -624,17 +624,24 @@ For $E$, the relevant subgroup is $\{1,w\}$.  Corollary~\ref{cor:nofaithful}
 records the resulting obstruction for $C^*$-subalgebras of norm matrix coronas,
 while
 Theorem~\ref{thm:C} shows that finite-dimensional collapse by itself does
-not decide whether the marked word is trivial.
+not decide whether the marked word is trivial.  The same instance yields a
+finite universal Horn sentence valid in every MF group and falsified by
+$E$, hence a nonempty clopen set of non-MF marked groups
+(Proposition~\ref{prop:horn} and Corollary~\ref{cor:cylinder}), and the
+failures of quotient and extension permanence
+(Corollary~\ref{cor:quotclosure} and Section~\ref{sec:consequences}).
 
 Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
 consequences, including a finitely generated sofic non-MF group and failures
 of quotient and extension permanence.  Every MF algebra is stably finite
-\cite{BK}.  The point of
-the principal $C^*$-algebraic application here is concrete rather than an
-abstract first existence result: it identifies the reduced group
-$C^*$-algebra of an explicit finitely presented group.  Even for
+\cite{BK}, so Theorem~\ref{thm:D} exhibits a separable stably finite
+$C^*$-algebra that is not MF.  Abstract examples follow from the failure
+of the Connes embedding problem \cite{FGH}; the point here is
+concreteness: the algebra is the reduced group $C^*$-algebra of an
+explicit finitely presented group.  Even for
 $\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is
-undecided \cite{MdlS}.  Our example has the following properties:
+undecided; only the stronger PMF property is known to fail, for
+$\SL_4(\mathbb Z)$ \cite{MdlS}.  Our example has the following properties:
 
 \begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
@@ -643,11 +650,12 @@ not an MF algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
-The canonical homomorphism $\mathcal B\to E$ is injective: the
-identification of Proposition~\ref{prop:literal-base-T} exhibits $E$ as
-the instance $E(\mathbb Z^3\rtimes\SL_3(\mathbb Z),\alpha,v_1)$ of
-Theorem~\ref{thm:kazhdan-clifford}, whose base map is injective; since the infinite Kazhdan group
-$\mathcal B$ is nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
+The canonical homomorphism $\mathcal B\to E$ is injective: composing it
+with the homomorphism $E\to W$ of Proposition~\ref{prop:witness} gives
+$g\mapsto j(\bar g)$, and $\mathcal B\to\bar\Gamma$ is injective by
+Proposition~\ref{prop:literal-base-T} together with
+Lemma~\ref{lem:linear}.  Since the infinite Kazhdan group $\mathcal B$ is
+nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
 \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
@@ -660,11 +668,11 @@ Hilbert ultraproduct.  Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
 \subsection*{Group-theoretic inputs}
-The printed proof uses three literature inputs: the displayed presentation
-of $\SL_3(\mathbb Z)$, property~\textup{(T)} of
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and --- only in the sharpness
-remark of Section~\ref{sec:necessity} --- quasidiagonality of amenable
-groups \cite{TWW}.  The exact twenty-relator base is
+The printed proofs use four literature inputs: the displayed presentation
+of $\SL_3(\mathbb Z)$; property~\textup{(T)} of
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$; and, only in two explicitly
+marked unformalized paragraphs, quasidiagonality of amenable groups
+\cite{TWW} and the simple sofic embedding theorem \cite{ElekSzaboHyper}.  The exact twenty-relator base is
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
 
@@ -766,7 +774,8 @@ a unital $C^*$-algebra $A$
 we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
 normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
 normalized Hilbert--Schmidt norm
-$\hsnorm{x}=\tr_r(x^*x)^{1/2}$.  We will use three elementary facts
+$\hsnorm{x}=\tr_r(x^*x)^{1/2}$; for coordinate sequences we write
+$a\sim_2 b$ when $\hsnorm{a_n-b_n}\to0$.  We will use three elementary facts
 without further comment: $\hsnorm{x}\le\opnorm{x}$;
 $|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
 $u,v$.  For a nonempty finite set $Y$, write
@@ -1018,8 +1027,7 @@ Conder--Robertson--Williams presentation of $\SL_3(\mathbb Z)$
 \cite[Theorem~2]{CRW}.  The matrix-labelled form for $x,y,z$ displayed in
 Lemma~\ref{lem:linear} is also recorded in \cite{CLV}.  The remaining
 relations say that $v_1,v_2,v_3$ commute and that $x,y,z$ act on them by the
-columns of those three matrices.  For completeness, this does more than
-define a quotient.
+columns of those three matrices.  This does more than define a quotient.
 The map from the presentation to $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ sends
 $v_i$ to $(e_i,1)$ and each rotation generator to its labelled matrix.  In
 the other direction, send $(n_1,n_2,n_3,A)$ to
@@ -1501,9 +1509,6 @@ Hilbert--Schmidt norm, contradicting its operator-norm convergence to zero.
 
 \section{Consequences}\label{sec:consequences}
 
-Throughout this section, ``corona representation'' and ``MF'' are as
-in Section~\ref{sec:prelim}.
-
 We record the universal MF radical, the reduced-group-$C^*$ consequence, a
 sofic non-MF detector, and failures of quotient and extension permanence.
 They all come from the same marked element.
@@ -1556,11 +1561,12 @@ $R=\operatorname{Rad}_{\mathrm{MF}}(G_1)$.
 \item Every homomorphism from $G_1$ to an MF group factors through
 $G_1/R$.
 \end{enumerate}
-In particular $G_1$ is MF if and only if $R=\{1\}$.  The statement is
-presumably folklore once the radical is defined; we include a proof
-for completeness and claim no novelty for it.
+In particular $G_1$ is MF if and only if $R=\{1\}$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient}
 \end{proposition}
+
+The statement is presumably folklore once the radical is defined; the
+proof is included for completeness, with no claim of novelty.
 
 \begin{proof}
 (3) If $\varphi\colon G_1\to M$ with $M$ MF and
@@ -1584,8 +1590,7 @@ a fixed positive separation for each of the first $k$ marked elements.
 This gives one faithful representation of $Q$ in a norm matrix corona and
 proves (2).  Composing it with $G_1\twoheadrightarrow Q$ gives a single
 corona representation of $G_1$ with kernel exactly $R$, proving (1).
-This quotient-first construction has no separate radical-killing condition
-to lose in a growing block maximum.  For the final equivalence:
+For the final equivalence:
 if $G_1$ is MF, an injective corona representation forces
 $R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
 \end{proof}
@@ -1662,7 +1667,9 @@ word is nontrivial by Theorem~\ref{thm:A}(1).
 \end{proof}
 
 \begin{corollary}[a clopen non-MF cylinder]\label{cor:cylinder}
-In the space of eight-generator marked groups, the marked groups
+In the space of eight-generator marked groups --- quotients of the free
+group $F_8$, topologized so that a basic clopen set fixes the truth of
+finitely many equations among words in the generators --- the marked groups
 satisfying all relators of $R$ and $w\ne1$ form a nonempty clopen set
 consisting entirely of non-MF groups.
 \leanverified{Sofic/LiteralMarkedCylinder}{GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder}
@@ -1672,9 +1679,11 @@ consisting entirely of non-MF groups.
 Both conditions constrain finitely many values of the marked
 multiplication, so the set is clopen; it contains the marked group $E$ by
 Theorem~\ref{thm:A}(1), and Proposition~\ref{prop:horn} excludes every MF
-point.  Thus the obstruction is finite, local, and stable under
-perturbation in marked-group space.
+point.
 \end{proof}
+
+Thus the obstruction of Theorem~\ref{thm:A} is finite, local, and stable
+under perturbation in marked-group space.
 
 \subsection{Permanence and its failure}
 
@@ -1698,7 +1707,8 @@ Every countable residually finite group is MF.
 Choose a sequence of finite quotients separating the nonidentity elements
 and intersect kernels, so that the family is descending.  At coordinate
 $n$ take the left regular representation of the $n$th quotient.  Every
-pair of group elements is eventually represented exactly multiplicatively.
+pair of group elements is represented exactly multiplicatively at every
+coordinate, since each coordinate map is a genuine homomorphism.
 A nonidentity element $g$ eventually survives to the $n$th quotient, where
 left translation by it is a fixed-point-free permutation $\pi_n(g)$; a
 fixed-point-free permutation matrix has an eigenvalue at angle at least
@@ -1718,7 +1728,8 @@ regular representation of $F_n$, extended by the identity outside $F_n$.
 Every pair of elements is eventually multiplied exactly, and a nonidentity
 element eventually acts by left translation on some $F_n$ containing it
 --- a fixed-point-free permutation --- so the separation
-$\opnorm{\pi_n(g)-1}\ge\sqrt3$ of the previous proof applies verbatim.
+$\opnorm{\pi_n(g)-1}\ge\sqrt3$ from the proof of Lemma~\ref{lem:rfmf}
+applies verbatim.
 \end{proof}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
@@ -1771,7 +1782,7 @@ $S=\widetilde K\rtimes\Z$ is sofic, since sofic groups are closed under
 directed unions and under extensions by amenable quotients
 \cite{ElekSzabo}.
 
-For completeness, this $S$ is precisely the earlier witness $W$.  If
+This $S$ is precisely the earlier witness $W$.  If
 $x_0=\beta(\bar\Gamma)\in X_1$, $T$ is the final shift, and
 $o=T^{-1}x_0$, then the stabilizer of $o$ in the mapping-telescope group is
 the level-zero copy of $\bar\Gamma$.  Indeed, a height-zero element has the
@@ -1829,6 +1840,9 @@ sends its nontrivial radical element $\zeta$ to a nontrivial element of the
 MF radical of the simple group.  That radical is normal, so it is the whole
 group.  Every homomorphism to an MF group kills the MF radical.
 \end{proof}
+
+Like the sharpness remark of Section~\ref{sec:necessity}, this paragraph
+relies on an unformalized literature input and carries no Lean tag.
 
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
@@ -2050,17 +2064,17 @@ online-first article, 2026; assigned to J. Algebra \textbf{702}, 235--243
 (issue scheduled for September~15, 2026),
 \doi{10.1016/j.jalgebra.2026.04.041}.
 
-\bibitem[BHV]{BHV}
-B.~Bekka, P.~de~la~Harpe, and A.~Valette,
-\emph{Kazhdan's property \textup{(T)}},
-New Mathematical Monographs, vol.~11,
-Cambridge University Press, Cambridge, 2008.
-
 \bibitem[Be]{BekkaAmenable}
 M.~E.~B. Bekka,
 \emph{Amenable unitary representations of locally compact groups},
 Invent. Math. \textbf{100} (1990), no.~2, 383--401,
 \doi{10.1007/BF01231192}.
+
+\bibitem[BHV]{BHV}
+B.~Bekka, P.~de~la~Harpe, and A.~Valette,
+\emph{Kazhdan's property \textup{(T)}},
+New Mathematical Monographs, vol.~11,
+Cambridge University Press, Cambridge, 2008.
 
 \bibitem[BV]{BekkaValette}
 M.~E.~B. Bekka and A.~Valette,
@@ -2133,6 +2147,11 @@ T.~Fritz,
 J. Math. Phys. \textbf{54} (2013), no.~5, 052107,
 \doi{10.1063/1.4807079}.
 
+\bibitem[GKEMP]{GKEMP}
+D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
+\emph{A new source of purely finite matricial fields},
+preprint, 2026, \arxiv{2603.24502}.
+
 \bibitem[Gl]{Gl19}
 L.~Glebsky,
 \emph{Extension of a residually finite group by a residually finite
@@ -2145,11 +2164,6 @@ L.~Glebsky and L.~M. Rivera,
 J. Algebra \textbf{320} (2008), no.~9, 3512--3518,
 \doi{10.1016/j.jalgebra.2008.08.008}.
 
-\bibitem[GKEMP]{GKEMP}
-D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
-\emph{A new source of purely finite matricial fields},
-preprint, 2026, \arxiv{2603.24502}.
-
 \bibitem[HT]{HT}
 U.~Haagerup and S.~Thorbj{\o}rnsen,
 \emph{A new application of random matrices:
@@ -2161,13 +2175,6 @@ Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 G.~Kun and A.~Thom,
 \emph{Nonsofic wreath products of residually finite groups},
 preprint, 2026, \arxiv{2608.06222}.
-
-\pagebreak[4]
-\bibitem[MdlS]{MdlS}
-M.~Magee and M.~de~la~Salle,
-\emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
-C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
-\doi{10.5802/crmath.617}, \arxiv{2312.03220}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,
@@ -2190,16 +2197,22 @@ T.~A. Loring,
 Fields Institute Monographs, vol.~8,
 American Mathematical Society, Providence, RI, 1997.
 
+\bibitem[LuO]{LuO}
+A.~Lubotzky and I.~Oppenheim,
+\emph{Non $p$-norm approximated groups},
+\arxiv{1807.06790}.
+
 \bibitem[Mal]{Malcev}
 A.~I.~Mal'cev,
 \emph{On isomorphic matrix representations of infinite groups},
 Mat. Sb. \textbf{8(50)} (1940), 405--422;
 English translation, Amer. Math. Soc. Transl. (2) \textbf{45} (1965), 1--18.
 
-\bibitem[LuO]{LuO}
-A.~Lubotzky and I.~Oppenheim,
-\emph{Non $p$-norm approximated groups},
-\arxiv{1807.06790}.
+\bibitem[MdlS]{MdlS}
+M.~Magee and M.~de~la~Salle,
+\emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
+C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
+\doi{10.5802/crmath.617}, \arxiv{2312.03220}.
 
 \bibitem[NST]{NST}
 N.~Nikolov, J.~Schneider, and A.~Thom,
