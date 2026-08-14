@@ -95,9 +95,12 @@ growing Heisenberg-sector extraction whenever both are available.
 1. The Pauli packet has a fixed finite type and canonical trace `1/8`, so
    `(PDL2)` converts ambient microstate control directly into a uniform
    contradiction.
-2. A growing central-character sector may have vanishing weight.  It then
-   needs either a positive-total-mass selection theorem or the stronger
-   rate `(PDL5)` before the same local Leavitt floor is usable.
+2. A *single selected* growing central-character sector may have vanishing
+   weight.  Selecting one therefore needs either a positive-mass theorem or
+   the stronger rate `(PDL5)`.  This selection can be avoided: the sum of all
+   root characters with `ell(1)=1` is the trace-`1/2` negative phase sector,
+   and blockwise radical-quotient decoders can be aggregated there.  See
+   `TRUE_NEGATIVE_CHARACTER_SECTOR_AGGREGATION.md`.
 3. The fixed `3/28` binary-algebra distance floor is even less demanding if
    one can prove membership of the transported carrier in the parent binary
    algebra.  The four-contraction decoder remains the fallback when that

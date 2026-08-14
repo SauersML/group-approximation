@@ -6,6 +6,28 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: aggregate all negative root characters
+
+`TRUE_NEGATIVE_CHARACTER_SECTOR_AGGREGATION.md` removes a density concern
+from the growing Heisenberg/radical-quotient route.  On a finite root window,
+each central-character atom has trace `1/|A|`, but the sum of every character
+with `ell(1)=1` is exactly the negative cut `(1-u(1))/2` and has trace `1/2`.
+If the four quotient contractions are constructed block-diagonally over all
+these characters, take their direct sums first and apply the
+`2-sqrt(3)` theorem once on the full negative sector.  Unequal block sizes
+are absorbed automatically by normalized trace, with no atom selection,
+minimum mass, or union bound.  The resulting ambient defect floor is
+
+```text
+(2-sqrt(3))/sqrt(2)>0.
+```
+
+The missing statement is correspondingly sharper: build the radical-
+quotient module operations measurably over the entire negative character
+PVM.  The fixed Pauli route remains smaller because it has a fixed four-label
+coordinate system, but the growing route no longer needs a positive-mass
+single-character theorem.
+
 ### 2026-08-14: fixed density removes the decoder's corner-normalization gate
 
 `TRUE_POSITIVE_DENSITY_LEAVITT_DECODER_ENDGAME.md` corrects a small but
