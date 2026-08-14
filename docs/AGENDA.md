@@ -104,6 +104,28 @@ group algebra--the existing projective/central-extension gate.  A genuinely
 nonnormal Hecke compiler must instead make at least one variable a linear
 combination of multiple double cosets whose cross terms cancel exactly.
 
+The signed-corner endpoint does **not** require a trace-preserving embedding
+of a preselected non-CE trace.  Choose a finitely presented BCS algebra which
+has tracial states but no CE tracial state at all.  Any unital homomorphism
+from it into `q C[Gamma] q` pulls the normalized canonical corner trace back
+to a tracial state.  If `Gamma` were hyperlinear, the corner and the GNS
+algebra of that pulled-back trace would be CE, an immediate contradiction.
+Thus the remaining signed-Hecke target is purely algebraic: construct one
+positive augmentation-zero corner and self-adjoint involutions satisfying
+the finite BCS relations.  Injectivity, prescribed moment matching, and a
+trace decoder have all disappeared.
+
+`TRUE_PIECEWISE_SIGNED_HECKE_COMPILER.md` supplies an exact constructive
+normal form for the required multi-double-coset involutions.  If
+`q=sum p_i=sum r_i` are two algebraic projection partitions and group words
+`g_i` carry `p_i` to `r_i`, then `sum g_i p_i` is a corner unitary; pairing
+the arrows with their inverses makes it self-adjoint.  With two pieces,
+`q=p_0+p_1` and `g p_0 g^(-1)=p_1` already give the nonnormal involution
+`g p_0+g^(-1)p_1`.  A whole BCS representation is equivalently a finite
+projection atlas: one allowed-atom partition per context, with equality of
+the signed coordinate sums on every overlap.  This is now the smallest
+purely algebraic groupification gate.
+
 Ordinary Bass--Serre gluing of these local gadgets is ruled out: the
 fundamental group of a finite graph of finite groups is virtually free and
 hence hyperlinear, so all of its positive finite-subgroup Hecke corners are
