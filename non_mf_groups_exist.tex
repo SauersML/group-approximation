@@ -216,6 +216,9 @@ the MF property fixed here.
 The conceptual result is the following explicit finitely presented
 Kazhdan--Clifford construction.
 
+Throughout, $[g,h]=ghg^{-1}h^{-1}$ for group elements, while for matrices
+$[x,y]=xy-yx$; the arguments always make the reading unambiguous.
+
 The rigidity mechanism is best remembered before the construction.  The
 same elementary principle appears in three finite worlds:
 \[
@@ -337,28 +340,30 @@ $\iota\colon\Gamma\to H$ be a homomorphism, and suppose
 Put $d=tct^{-1}$ and $u=[d,\iota(a)]$ for some $a\in\Gamma$.
 If
 \[
- z=u^2\ne1,\qquad z^2=1,\qquad z\in Z(H),
+ \varepsilon=u^2\ne1,\qquad \varepsilon^2=1,\qquad \varepsilon\in Z(H),
 \]
-then every homomorphism from $H$ to a norm matrix corona kills $z$, and
-$H$ is not MF.
+then every homomorphism from $H$ to a norm matrix corona kills
+$\varepsilon$, and $H$ is not MF.
 \leanverified{Sofic/KazhdanSignCriterion}{GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion}
 \end{theorem}
 
 \begin{proof}
-Suppose a corona representation $\Theta$ detects $z$.  The nonzero projection,
-central relative to $\Theta(H)$,
+Suppose a corona representation $\Theta$ detects $\varepsilon$, that is,
+$\Theta(\varepsilon)\ne1$.  The nonzero projection, central relative to
+$\Theta(H)$,
 \[
-q=\frac{1-\Theta(z)}{2}
+q=\frac{1-\Theta(\varepsilon)}{2}
 \]
-cuts it to a representation in which $\Theta(z)=-1$.  The central-corner
-reduction above regards this as a representation into a positive-rank norm
-matrix corona.  The element $c$ belongs to the asymptotic
+cuts it to a representation in which $\Theta(\varepsilon)=-1$.  The
+central-corner reduction above regards this as a representation into a
+positive-rank norm matrix corona.  The element $c$ belongs to the asymptotic
 commutant of $\iota(\Gamma)$, so
 Theorem~\ref{thm:kazhdan-transport} puts $d=tct^{-1}$ there as well.  Hence
-$u=[d,\iota(a)]\to_2 1$, and therefore $z=u^2\to_2 1$.  On the $q$-corner,
-however, $z=-1$, whose normalized Hilbert--Schmidt distance from $1$ is $2$.
-This contradiction kills $z$ in every corona representation; since $z\ne1$,
-no such representation is faithful.
+$u=[d,\iota(a)]\to_2 1$, and therefore $\varepsilon=u^2\to_2 1$.  On the
+$q$-corner, however, $\varepsilon=-1$, whose normalized Hilbert--Schmidt
+distance from $1$ is $2$.  This contradiction kills $\varepsilon$ in every
+corona representation; since $\varepsilon\ne1$, no such representation is
+faithful.
 \end{proof}
 
 This is the proof to keep in mind.
@@ -488,7 +493,7 @@ the second half of the paper.
 
 \begin{mainthm}[explicit Kazhdan--Clifford group]\label{thm:A}
 Let $E$ be the group on the eight generators
-$v_1,v_2,v_3,x,y,z,t,c$ with the finite list of relators in
+$v_1,v_2,v_3,x,y,z,t,c$ with the forty-one relators displayed in
 Definition~\ref{def:E}.  Put
 \[
  w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
@@ -541,7 +546,7 @@ property (T), nor unitarity, nor centrality of $w$:
 We use the intrinsic compression--centralizer defect
 $\mathfrak D(H,L)$ defined above.
 
-\begin{theorem}[finite-dimensional shadow]\label{thm:B}
+\begin{mainthm}[finite-dimensional shadow]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
 group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
 with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
@@ -553,7 +558,7 @@ satisfies
 More generally, every such $\pi$ sends the entire subgroup
 $\mathfrak D(H,\Gamma)$ to the identity.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
-\end{theorem}
+\end{mainthm}
 
 Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
 finite-dimensional representation of $E$ over \emph{every} field sends
@@ -569,7 +574,7 @@ of the matrix dimensions.
 Second, the elementary finite-dimensional calculation does not determine
 whether its marked word is trivial:
 
-\begin{proposition}[cyclic-base comparison]\label{thm:C}
+\begin{mainthm}[cyclic-base calibration]\label{thm:C}
 Define the literal marked presentation
 \[
  E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
@@ -588,7 +593,7 @@ realized Clifford quotient that maps $w_{\mathrm{BS}}$ to the nontrivial
 central sign.  Nevertheless every finite-dimensional representation of
 $E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
 \leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration}
-\end{proposition}
+\end{mainthm}
 
 The quotient statement makes the comparison at the level actually used by
 the proof: exact finite-dimensional invisibility does not by itself force
@@ -766,6 +771,19 @@ model.  The group $E$ is \emph{MF} if it admits an injective corona
 representation for a strictly increasing dimension sequence.  By the
 dimension-amplification equivalence discussed in the introduction, allowing
 an arbitrary positive dimension sequence gives the same class of groups.
+A corona representation \emph{detects} $g\in E$ if it does not send $g$
+to $1$.
+
+An \emph{operator-norm asymptotic representation} of a group $H$ is a
+sequence of maps $U_n\colon H\to\U(d_n)$, for some positive dimensions
+$(d_n)$, such that
+\[
+ \opnorm{U_n(g)U_n(h)-U_n(gh)}\longrightarrow0\qquad(g,h\in H).
+\]
+No condition is imposed at the identity: taking $g=h=1$ gives
+$\opnorm{U_n(1)-1}\to0$ automatically, since $U_n(1)$ is unitary.
+Coordinate unitary lifts of a corona representation of a countable group
+form exactly such a sequence.
 
 Fix a set-theoretic universe $\mathfrak U$.  For the following construction,
 let $H$ and all representation targets be $\mathfrak U$-small; countability
@@ -789,8 +807,6 @@ For a nontrivial target, projection to its coordinate gives the extension;
 for a trivial target, the map is unique.  Density of the generated
 $*$-subalgebra gives uniqueness, while the left-regular coordinate proves
 injectivity.
-
-We use the commutator convention $[x,y]=xyx^{-1}y^{-1}$.
 
 \section{The literal group and its Kazhdan source}\label{sec:group}
 
@@ -840,7 +856,9 @@ Use the six literal base generators and the relations displayed in
 \end{equation}
 where $w$ abbreviates the word
 $\bigl[\,tct^{-1},\,v_1(tct^{-1})v_1^{-1}\bigr]$.
-This is an explicit finite presentation with eight generators.  Its defining
+This is an explicit finite presentation with eight generators and
+forty-one relators: the twenty base relators, six stable-letter relators,
+$c^2$, six lamp relators, and eight centrality relators.  Its defining
 relations make $w$ central, and centrality together with $c^2=1$ implies
 $w^2=1$ by the calculation in the proof of
 Theorem~\ref{thm:kazhdan-clifford}; the relations on the six base
