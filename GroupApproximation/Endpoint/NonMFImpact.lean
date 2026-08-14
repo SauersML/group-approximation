@@ -78,6 +78,13 @@ theorem witness_locallyFinite_MF_kernel_nonMF_total :
       ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
   LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF
 
+/-- The concrete finitely generated witness is sofic but not operator-MF. -/
+theorem witness_sofic_nonMF :
+    Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
+      IsSofic LiteralNonMFLinearWitness.WitnessGroup ∧
+      ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
+  LiteralWitnessConsequences.literalWitness_sofic_nonMF
+
 /-- The concrete witness also gives a separable, faithfully tracial, stably
 finite reduced group C-star algebra that is not MF. -/
 theorem witness_reducedGroupCStar_stablyFinite_nonMF :

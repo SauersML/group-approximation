@@ -1,6 +1,9 @@
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.CliffordLampPermanence
+import GroupApproximation.Sofic.LiteralBaseDoublingIndex
+import GroupApproximation.Sofic.SoficMarkedCompression
+import GroupApproximation.Monsters.ExplicitIntegralLinearModel
 
 /-!
 # Operator-MF consequences for the explicit Clifford witness
@@ -41,6 +44,13 @@ theorem witnessLamp_isSofic : IsSofic WitnessLampGroup :=
 /-- The concrete witness's lamp kernel is operator-MF. -/
 theorem witnessLamp_isOperatorMF : IsOperatorMF WitnessLampGroup :=
   CliffordLamp.isOperatorMF_cliffordLamp _
+
+/-- The full concrete affine--Clifford witness is sofic.  The base is
+residually finite, the compressing range has finite index, and the generic
+marked-compression permanence theorem supplies the remaining layers. -/
+theorem witnessGroup_isSofic : IsSofic WitnessGroup :=
+  SoficMarkedCompression.isSofic_ambient alpha conjD_injective
+    ExplicitIntegralLinearModel.gammaBar_isSofic
 
 /-- The lamp kernel is exactly the kernel of the canonical projection from
 the witness semidirect product onto its vertical factor. -/
@@ -122,6 +132,14 @@ theorem literalWitness_locallyFiniteKernel_nonMF :
     witnessLamp_isSofic,
     witnessLamp_isOperatorMF,
     witnessGroup_finitelyGenerated,
+    witnessGroup_not_isOperatorMF⟩
+
+/-- **Closed sofic non-MF endpoint.**  The same concrete, finitely generated
+witness is simultaneously sofic and non-operator-MF. -/
+theorem literalWitness_sofic_nonMF :
+    Group.FG WitnessGroup ∧ IsSofic WitnessGroup ∧
+      ¬ IsOperatorMF WitnessGroup :=
+  ⟨witnessGroup_finitelyGenerated, witnessGroup_isSofic,
     witnessGroup_not_isOperatorMF⟩
 
 /-- **Closed reduced-C-star endpoint for the explicit witness.**  Its reduced
