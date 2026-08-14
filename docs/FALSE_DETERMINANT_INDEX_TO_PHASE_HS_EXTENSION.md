@@ -126,11 +126,46 @@ but tracial convergence and the determinant formalism alone do not.
 
 ## 5. Consequence for the active hyperlinear program
 
+There is also a topological formulation of the obstruction.  Let
+
+```text
+N_2={ (u_n) : ||u_n-1||_(2,d_n) -> 0 }.              (DHS11)
+```
+
+This null subgroup is path connected.  Choose principal self-adjoint
+logarithms `u_n=exp(i h_n)` with spectrum of `h_n` in `[-pi,pi]`.  The scalar
+inequality
+
+```text
+|theta| <= (pi/2)|exp(i theta)-1|,  |theta|<=pi,     (DHS12)
+```
+
+gives
+
+```text
+||h_n||_2 <= (pi/2)||u_n-1||_2 -> 0.                (DHS13)
+```
+
+Hence
+
+```text
+gamma(t)=(exp(i t h_n))_n,       0<=t<=1,            (DHS14)
+```
+
+is a path in `N_2` from `1` to `(u_n)`.  It is continuous even for the
+uniform product of the normalized `2`-metrics, since `||h_n||<=pi`.
+Consequently every continuous homomorphism from `N_2` to a discrete phase
+group such as `{+1,-1}` is trivial.
+
+This does not forbid a discontinuous parity protected by additional exact
+relations.  It proves that such protection cannot come from normalized-HS
+topology alone.
+
 This closes the automatic implication
 
 ```text
 operator-norm determinant extension
-  => normalized-HS index-to-phase extension.        (DHS11)
+  => normalized-HS index-to-phase extension.        (DHS15)
 ```
 
 It also complements `FALSE_KAZHDAN_COMPRESSION_INDEX_TO_PHASE.md`.  The

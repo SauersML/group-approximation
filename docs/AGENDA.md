@@ -981,6 +981,12 @@ operator-norm central-extension theorem of Dadarlat--Glebe cannot simply be
 ported to the tracial matrix ultraproduct.  See
 `docs/FALSE_DETERMINANT_INDEX_TO_PHASE_HS_EXTENSION.md`.
 
+Topologically, the HS-null unitary subgroup is path connected: principal
+logarithms give the path `u_n(t)=exp(t log u_n)`, and the logarithms remain
+HS-null by `|theta|<=(pi/2)|exp(i theta)-1|`.  Therefore every continuous
+discrete phase on that kernel is trivial.  Any surviving parity must be a
+discontinuous invariant protected by additional presentation relations.
+
 The active collision target is therefore unchanged on the Kun--Thom side:
 retain one explicit element of `Rad_sof` in a CE representation.  The
 smallest current form is CE of the one-orbit parity corner
