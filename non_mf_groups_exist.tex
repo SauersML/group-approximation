@@ -167,12 +167,13 @@ For the final equivalence, place the $n$th model in the last block of
 dimension $d_0+\cdots+d_n$ and fill the earlier blocks with identities.
 This preserves every defect and distance from the identity.
 Hereafter ``MF'' means this equivalent actual-corona/local-operator-norm
-property.  It should not
-be confused with the stronger convention based on reduced-norm convergence
-of asymptotic representations \cite{Schafhauser,GKEMP}, or with strongly PMF,
-where the approximants are genuine finite-dimensional representations
-\cite[Definition~1.2]{MdlS}.  These are genuinely different conventions;
-every assertion below uses only this MF property.  The
+property.  It should not be confused with the stronger reduced-norm
+convention called MF in \cite{Schafhauser,GKEMP}, where approximately
+multiplicative maps must also recover the canonical trace and the
+left-regular norm on every group-ring element, or with purely MF (PMF), where
+those strongly convergent models are genuine finite-dimensional
+representations \cite[Definition~1.2]{MdlS}.  Every assertion below uses only
+the MF property fixed here.  The
 following theorem gives an explicit finitely presented non-MF group.
 
 \begin{mainthm}[non-MF group]\label{thm:A}
@@ -213,15 +214,16 @@ The proof has two opposed halves, both centered on $u$:
 \]
 Here is the rigidity half in its conceptual form.  Let $P$ be the spectral
 projection onto the $\Lambda$-fixed vectors for the adjoint representation in
-the Hilbert--Schmidt matrix corona.  Property~\textup{(T)} makes this one
-projection exist uniformly.  One-sided compression gives
+the Hilbert--Schmidt matrix corona, and write $T=\Ad_{\Theta(t)}$ for
+conjugation by $\Theta(t)$ on that Hilbert space.  Property~\textup{(T)} makes
+this one projection exist uniformly.  One-sided compression gives
 \[
- P\le \Theta(t)P\Theta(t)^*.
+ P\le TPT^*.
 \]
 The two projections are unitarily equivalent, and a norm-matrix corona is
 finite.  Hence
 \[
- \boxed{P=\Theta(t)P\Theta(t)^*.}
+ \boxed{P=TPT^*.}
 \]
 The vector represented by $\Theta(c)$ is $\Lambda$-fixed because $c$
 centralizes $\Lambda$.  The boxed equality says that its $t$-translate,
@@ -1198,8 +1200,8 @@ $V_{g,n}=1$ at its finitely many exceptional indices.  Thus polar correction
 is asymptotically invisible and the $V_{g,n}$ remain asymptotically
 multiplicative.
 
-Finally, the $Q_n$-block of $A_n$ is exactly the normalized sum
-$|F|^{-1}\sum_{f\in F}C_{f,n}$.  Since $P_n-A_n\to0$ and $Q_nP_n=0$,
+Finally, the $Q_n$-block of $A_n$ is the normalized sum.  Since
+$P_n-A_n\to0$ and $Q_nP_n=0$,
 \[
  \opnorm{|F|^{-1}\sum_{f\in F}C_{f,n}}\longrightarrow0.
 \]
@@ -1882,7 +1884,7 @@ preprint, 2026, \arxiv{2608.06222}.
 M.~Magee and M.~de~la~Salle,
 \emph{$\mathrm{SL}_4(\mathbb{Z})$ is not purely matricial field},
 C. R. Math. Acad. Sci. Paris \textbf{362} (2024), 903--910,
-\arxiv{2312.03220}.
+\doi{10.5802/crmath.617}, \arxiv{2312.03220}.
 
 \bibitem[GKEMP]{GKEMP}
 D.~Gao, S.~Kunnawalkam Elayavalli, A.~Manzoor, and G.~Patchell,
