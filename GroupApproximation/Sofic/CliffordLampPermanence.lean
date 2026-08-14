@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.CentralInvolutionFinite
+import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Sofic.LEFSofic
 
 /-!
