@@ -16,8 +16,10 @@ project build without recompiling the expensive leaves.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import os
 from pathlib import Path, PurePosixPath
+import re
 import subprocess
 import tarfile
 from typing import Iterable, Sequence
@@ -37,6 +39,19 @@ FINAL_CERTIFICATE_MODULE = (
     "GroupApproximation.Sofic.LiteralP13HodgeCertificate"
 )
 FOUNDATION_ARCHIVE = "p13-foundation.tar.gz"
+CACHE_KEY_FILES = (
+    "lean-toolchain",
+    "lake-manifest.json",
+    "lakefile.toml",
+    "scripts/p13_build_shards.py",
+    ".github/workflows/p13-sharded-build.yml",
+)
+LOCAL_MODULE_PREFIX = "GroupApproximation"
+IMPORT_RE = re.compile(
+    r"^[ \t]*(?:(?:public|private|meta)[ \t]+)*"
+    r"import(?:[ \t]+all)?[ \t]+([A-Za-z0-9_.]+)",
+    re.MULTILINE,
+)
 
 
 def repo_root() -> Path:
@@ -74,6 +89,154 @@ def source_path(root: Path, module: str) -> Path:
 
 def module_stem(module: str) -> str:
     return module.replace(".", "/")
+
+
+def mask_lean_comments_and_strings(text: str) -> str:
+    """Mask nested comments and strings while preserving lines and offsets."""
+    masked = list(text)
+    depth = 0
+    in_string = False
+    index = 0
+    while index < len(text):
+        if depth == 0 and not in_string and text.startswith("--", index):
+            while index < len(text) and text[index] != "\n":
+                masked[index] = " "
+                index += 1
+            continue
+        if not in_string and text.startswith("/-", index):
+            depth += 1
+            masked[index] = masked[index + 1] = " "
+            index += 2
+            continue
+        if depth > 0 and text.startswith("-/", index):
+            depth -= 1
+            masked[index] = masked[index + 1] = " "
+            index += 2
+            continue
+        if depth > 0:
+            if text[index] != "\n":
+                masked[index] = " "
+            index += 1
+            continue
+        if in_string:
+            if text[index] == "\\" and index + 1 < len(text):
+                masked[index] = " "
+                if text[index + 1] != "\n":
+                    masked[index + 1] = " "
+                index += 2
+                continue
+            if text[index] == '"':
+                in_string = False
+            if text[index] != "\n":
+                masked[index] = " "
+            index += 1
+            continue
+        if text[index] == '"':
+            in_string = True
+            masked[index] = " "
+        index += 1
+    if depth != 0:
+        raise RuntimeError("unterminated block comment while reading Lean imports")
+    if in_string:
+        raise RuntimeError("unterminated string while reading Lean imports")
+    return "".join(masked)
+
+
+def local_module_files(root: Path) -> dict[str, Path]:
+    library = root / LOCAL_MODULE_PREFIX
+    modules = {
+        ".".join(path.relative_to(root).with_suffix("").parts): path
+        for path in library.rglob("*.lean")
+    }
+    root_module = root / f"{LOCAL_MODULE_PREFIX}.lean"
+    if root_module.is_file():
+        modules[LOCAL_MODULE_PREFIX] = root_module
+    return modules
+
+
+def source_closure(root: Path, roots: Sequence[str]) -> tuple[Path, ...]:
+    if not roots:
+        raise RuntimeError("P13 cache import closure has no roots")
+    modules = local_module_files(root)
+    seen: set[str] = set()
+    pending = list(roots)
+    while pending:
+        module = pending.pop()
+        if module in seen:
+            continue
+        path = modules.get(module)
+        if path is None:
+            raise RuntimeError(f"missing local module in P13 cache closure: {module}")
+        if path.is_symlink():
+            raise RuntimeError(f"refusing symlinked P13 source: {path}")
+        seen.add(module)
+        source = mask_lean_comments_and_strings(
+            path.read_text(encoding="utf-8", errors="strict")
+        )
+        for imported in IMPORT_RE.findall(source):
+            if imported == LOCAL_MODULE_PREFIX or imported.startswith(
+                f"{LOCAL_MODULE_PREFIX}."
+            ):
+                if imported not in modules:
+                    raise RuntimeError(
+                        f"{module} imports missing local module {imported}"
+                    )
+                pending.append(imported)
+    return tuple(
+        sorted((modules[module] for module in seen), key=lambda path: path.as_posix())
+    )
+
+
+def cache_key_inputs(root: Path, roots: Sequence[str]) -> tuple[Path, ...]:
+    inputs = set(source_closure(root, roots))
+    for relative in CACHE_KEY_FILES:
+        path = root / relative
+        if not path.is_file():
+            raise RuntimeError(f"missing P13 cache-key input: {path}")
+        if path.is_symlink():
+            raise RuntimeError(f"refusing symlinked P13 cache-key input: {path}")
+        inputs.add(path)
+    return tuple(sorted(inputs, key=lambda p: p.relative_to(root).as_posix()))
+
+
+def update_digest_frame(digest, value: bytes) -> None:
+    digest.update(len(value).to_bytes(8, "big"))
+    digest.update(value)
+
+
+def content_cache_key(
+    root: Path, *, scope: str, roots: Sequence[str]
+) -> str:
+    root_modules = tuple(sorted(set(roots)))
+    inputs = cache_key_inputs(root, root_modules)
+    digest = hashlib.sha256()
+    digest.update(b"canonical-p13-build-cache-v2\0")
+    digest.update(b"scope\0")
+    update_digest_frame(digest, scope.encode("utf-8"))
+    digest.update(b"roots\0")
+    digest.update(len(root_modules).to_bytes(8, "big"))
+    for module in root_modules:
+        update_digest_frame(digest, module.encode("utf-8"))
+    digest.update(b"inputs\0")
+    digest.update(len(inputs).to_bytes(8, "big"))
+    for path in inputs:
+        update_digest_frame(
+            digest, path.relative_to(root).as_posix().encode("utf-8")
+        )
+        update_digest_frame(digest, hashlib.sha256(path.read_bytes()).digest())
+    return digest.hexdigest()
+
+
+def foundation_cache_key(root: Path) -> str:
+    return content_cache_key(
+        root, scope="foundation", roots=(FOUNDATION_MODULE,)
+    )
+
+
+def shard_cache_key(root: Path, shard: int) -> str:
+    return content_cache_key(
+        root, scope=f"shard-{shard}", roots=modules_for_shard(shard)
+    )
 
 
 def required_artifacts(module: str) -> tuple[str, ...]:
@@ -388,9 +551,56 @@ def self_test(root: Path) -> None:
     if len(set(modules)) != len(modules):
         raise RuntimeError("P13 shard module roster contains duplicates")
     assert_sources(root, (FOUNDATION_MODULE, *modules))
+
+    def closure_modules(roots: Sequence[str]) -> set[str]:
+        return {
+            path.relative_to(root).with_suffix("").as_posix().replace("/", ".")
+            for path in source_closure(root, roots)
+        }
+
+    wrappers = {RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE}
+    generated_modules = set(modules)
+    foundation_closure = closure_modules((FOUNDATION_MODULE,))
+    unexpected_foundation = sorted(
+        foundation_closure.intersection(generated_modules | wrappers)
+    )
+    if FOUNDATION_MODULE not in foundation_closure or unexpected_foundation:
+        raise RuntimeError(
+            "P13 foundation cache closure crosses a generated-module boundary:\n"
+            + "\n".join(unexpected_foundation)
+        )
+
+    keys = [("foundation", foundation_cache_key(root))]
+    shard_closure_sizes: list[int] = []
+    for shard in range(SHARD_COUNT):
+        roots = set(modules_for_shard(shard))
+        closure = closure_modules(tuple(roots))
+        missing = sorted((roots | foundation_closure) - closure)
+        if missing:
+            raise RuntimeError(
+                f"P13 shard {shard} cache closure misses required modules:\n"
+                + "\n".join(missing)
+            )
+        foreign = sorted(closure.intersection(generated_modules - roots))
+        unexpected_wrappers = sorted(closure.intersection(wrappers))
+        if foreign or unexpected_wrappers:
+            raise RuntimeError(
+                f"P13 shard {shard} cache closure crosses a shard boundary:\n"
+                + "\n".join(foreign + unexpected_wrappers)
+            )
+        shard_closure_sizes.append(len(closure))
+        keys.append((f"shard {shard}", shard_cache_key(root, shard)))
+
+    for label, key in keys:
+        if not re.fullmatch(r"[0-9a-f]{64}", key):
+            raise RuntimeError(f"invalid P13 {label} content cache key: {key!r}")
+    if len({key for _, key in keys}) != len(keys):
+        raise RuntimeError("P13 cache scopes produced duplicate content keys")
     print(
         f"P13 shard roster: {BLOCK_WIDTH**2 * PART_COUNT} part modules and "
-        f"{BLOCK_WIDTH**2} block modules across {SHARD_COUNT} disjoint shards"
+        f"{BLOCK_WIDTH**2} block modules across {SHARD_COUNT} disjoint shards; "
+        f"cache closures: {len(foundation_closure)} foundation modules and "
+        f"{min(shard_closure_sizes)}--{max(shard_closure_sizes)} modules per shard"
     )
 
 
@@ -411,6 +621,11 @@ def parse_args() -> argparse.Namespace:
     restore_everything = subparsers.add_parser("restore-all")
     restore_everything.add_argument("--directory", type=Path, required=True)
 
+    cache_key = subparsers.add_parser("cache-key")
+    cache_scopes = cache_key.add_subparsers(dest="cache_scope", required=True)
+    cache_scopes.add_parser("foundation")
+    cache_shard = cache_scopes.add_parser("shard")
+    cache_shard.add_argument("--shard", type=int, required=True)
     subparsers.add_parser("seal")
     subparsers.add_parser("self-test")
     return parser.parse_args()
@@ -427,6 +642,13 @@ def main() -> None:
         restore_foundation(root, args.archive.resolve())
     elif args.command == "restore-all":
         restore_all(root, args.directory.resolve())
+    elif args.command == "cache-key":
+        if args.cache_scope == "foundation":
+            print(foundation_cache_key(root))
+        elif args.cache_scope == "shard":
+            print(shard_cache_key(root, args.shard))
+        else:
+            raise AssertionError(f"unhandled cache scope: {args.cache_scope}")
     elif args.command == "seal":
         seal_restored_shards(root)
     elif args.command == "self-test":

@@ -19,12 +19,23 @@ jobs:
       - name: Validate the P13 shard roster
         run: python3 scripts/p13_build_shards.py self-test
 
-      - name: Restore exact-revision foundation archive
+      - name: Compute the P13 foundation content cache key
+        id: p13-foundation-cache-key
+        shell: bash
+        run: |
+          digest=$(python3 scripts/p13_build_shards.py cache-key foundation)
+          if [[ ! "$digest" =~ ^[0-9a-f]{64}$ ]]; then
+            echo "::error::invalid P13 foundation content cache key: $digest"
+            exit 1
+          fi
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+
+      - name: Restore content-identical foundation archive
         id: foundation-archive-cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: build/p13-artifacts/p13-foundation.tar.gz
-          key: ${{ runner.os }}-p13-foundation-v1-${{ github.sha }}
+          key: ${{ runner.os }}-${{ runner.arch }}-p13-foundation-v3-${{ steps.p13-foundation-cache-key.outputs.digest }}
 
       - name: Cache Lean toolchain
         if: steps.foundation-archive-cache.outputs.cache-hit != 'true'
@@ -94,12 +105,23 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
-      - name: Restore exact-revision shard archive
+      - name: Compute this P13 shard content cache key
+        id: p13-shard-cache-key
+        shell: bash
+        run: |
+          digest=$(python3 scripts/p13_build_shards.py cache-key shard --shard "${{ matrix.shard }}")
+          if [[ ! "$digest" =~ ^[0-9a-f]{64}$ ]]; then
+            echo "::error::invalid P13 shard content cache key: $digest"
+            exit 1
+          fi
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+
+      - name: Restore content-identical shard archive
         id: shard-archive-cache
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: build/p13-artifacts/p13-shard-${{ matrix.shard }}.tar.gz
-          key: ${{ runner.os }}-p13-shard-v1-${{ github.sha }}-${{ matrix.shard }}
+          key: ${{ runner.os }}-${{ runner.arch }}-p13-shard-v3-${{ steps.p13-shard-cache-key.outputs.digest }}
 
       - name: Cache Lean toolchain
         if: steps.shard-archive-cache.outputs.cache-hit != 'true'
