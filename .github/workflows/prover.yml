@@ -85,13 +85,12 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  # Preserve a gate that has actually started.  The maximal FIFO queue avoids
-  # GitHub classifying a caller with active reusable-workflow children as
-  # merely pending and replacing it.  The first job below rejects stale push
-  # SHAs before P13 starts, so queued historical commits cost one tiny runner
-  # job rather than a full proof replay.  Promotion remains non-force and
-  # advances only from a fully successful exact-SHA gate.
+  # A reusable-workflow caller can briefly return to the queued state between
+  # its foundation and shard jobs.  Distinct proof revisions therefore use
+  # distinct groups: a newer push must never replace a partially completed
+  # exact-SHA certificate.  Same-SHA duplicates may queue together, while the
+  # fail-closed gate below rejects obsolete proof trees before P13 starts.
+  group: lean-prover-${{ github.sha }}
   queue: max
   cancel-in-progress: false
 
