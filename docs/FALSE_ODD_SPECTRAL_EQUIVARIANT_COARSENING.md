@@ -194,7 +194,19 @@ therefore exact, and both conjugacy defects tend to zero.  Nevertheless,
 the relative permutation `Q` cannot be absorbed by a fine equivariant
 coarsening.
 
-The missing hypothesis is exactly the one intentionally absent here:
+The displayed construction in Sections 2--5 omits the full modular-vertex
+hypothesis.  It also omits its common-square/reflection consequence.  That
+second omission can be removed: Section 6 below gives a strengthened prime
+cycle for which
+
+```text
+A^2=B^2=1,       C=AB,       A^(-1)CA=C^(-1)          (PEC19a)
+```
+
+hold exactly, while the same fixed-orbit coarsening obstruction survives.
+What still fails is the order-three modular relation.
+
+The full missing hypothesis is
 
 ```text
 (A,X^2) and (B,X) must extend to exact modular-group
@@ -205,15 +217,151 @@ Nothing in `(PEC1)--(PEC18)` asserts `(PEC19)`.  Hence this is not a
 counterexample to Dogon--Vigdorovich's Iwahori matching question.  It is a
 counterexample to the proposed **spectral-only** terminal lemma.
 
-## 6. Corrected endpoint
+## 6. The counterexample can satisfy the reflection exactly
+
+The preceding example can be strengthened so that the projective-dihedral
+part of the factorized presentation is exact.  Let `L>=3` be an odd prime,
+put
+
+```text
+m=4^L-1,                                               (PEC21)
+```
+
+and choose an integer `a` nearest to `m/5`.  Then
+
+```text
+|a/m-1/5|<=1/(2m).                                    (PEC22)
+```
+
+The residue `a` has a full fourth-power orbit of length `L`.  Indeed, for
+prime `L` a shorter orbit would be fixed, hence would satisfy `3a=0 mod m`.
+But `(PEC22)` puts `3a/m` in a small neighborhood of `3/5`, which is not an
+integer.
+
+Define `z_k` as in `(PEC2)` and put
+
+```text
+r_k=exp(2 pi i 4^k/5).
+```
+
+Since `4=-1 mod 5`, the sequence `r_k` alternates between the two distinct
+fifth roots
+
+```text
+r=exp(2 pi i/5),       conjugate(r).                  (PEC23)
+```
+
+Chord distance is bounded by angular distance.  Equations `(PEC21)--(PEC22)`
+therefore give
+
+```text
+E_L^2
+ :=(1/L)sum_(k=0)^(L-1)|z_k-r_k|^2
+ <=pi^2/(L m^2) sum_(k=0)^(L-1)16^k
+ =pi^2/(15L) (4^L+1)/(4^L-1)
+ <=2pi^2/(15L).                                       (PEC24)
+```
+
+On `Z/L`, let `T(k)=k+1` and take the dihedral reflection
+
+```text
+q(k)=1-k.                                             (PEC25)
+```
+
+Then `qTq=T^(-1)`.  For `k>=2`, reduction modulo the odd number `L` shows
+that `q(k)=L+1-k` has the same parity as `k`; only `k=0,1` have the opposite
+parity.  Hence
+
+```text
+||(r_(q(k)))_k-(r_k)_k||_(2,Z/L)<=sqrt(8/L).          (PEC26)
+```
+
+Combining `(PEC24)--(PEC26)` yields
+
+```text
+||(z_(q(k)))_k-(z_k)_k||_(2,Z/L)
+ <=2E_L+sqrt(8/L)
+ ->0.                                                 (PEC27)
+```
+
+Let `X=diag(z_0,...,z_(L-1))`, and let `P,Q` be the permutation unitaries
+implementing `T,q`, with the orientation of `P` chosen so that
+
+```text
+PXP^*=X^4.                                            (PEC28)
+```
+
+Put
+
+```text
+A=1,       C=PQ,       B=C.                           (PEC29)
+```
+
+The dihedral identity in `(PEC25)` gives
+
+```text
+C^2=(PQ)^2=1.                                         (PEC30)
+```
+
+Consequently the common-square, factorization, and reflection relations are
+all exact:
+
+```text
+A^2=B^2=1,
+C=AB,
+A^(-1)CA=C=C^(-1).                                   (PEC31)
+```
+
+At the same time, `(PEC27)--(PEC29)` give
+
+```text
+||CXC^(-1)-X^4||_2
+ =||P(QXQ^*-X)P^*||_2
+ <=2E_L+sqrt(8/L)
+ ->0.                                                 (PEC32)
+```
+
+Thus `(A,C,X)` is an exact projective reflection with vanishing
+reflection--`BS(1,4)` defect.
+
+The fixed-orbit coarsening obstruction remains.  The `P`-orbit has prime
+length, so its only equivariant partitions are still the singleton and
+indiscrete partitions.  The reflection `q` has one fixed point, so its
+cross-block mass on the singleton partition is `1-1/L`.  On the other hand,
+`(PEC24)` shows that the empirical spectrum converges to the equally
+weighted two-point measure on `{r,conjugate(r)}`.  Its distance from every
+scalar stays positive, so the indiscrete partition still has a fixed
+spectral-collapse cost.
+
+This does not contradict flexible reflection--`BS(1,4)` repair.  The
+alternating fifth-root model has a single parity seam on an odd cycle;
+adding or cutting `o(L)` coordinates may repair that seam.  It does prove
+that a repair cannot be obtained merely by choosing an invariant partition
+of the original prime orbit.
+
+Finally, the first modular order-three word is uniformly wrong.  Since
+`A=1`, it equals
+
+```text
+(A X^2)^3=X^6,                                        (PEC33)
+```
+
+and `(PEC24)` shows that its spectrum converges to `{r^6,conjugate(r)^6}`
+`={r,conjugate(r)}`, a fixed positive distance from `1`.  Therefore the
+strengthened example still does not extend to the required exact modular
+vertices.  It isolates the order-three relation, rather than the reflection,
+as the missing rigidity input.
+
+## 7. Corrected endpoint
 
 The odd spectral shadow remains useful: it removes open fourth-power towers
 and two-adic spectral drift.  The dimension-free one-conjugator flag theorem
 also remains valid.  What fails is the inference that these facts alone
 produce one common equivariant partition.
 
-The live theorem must use a relation unavailable to `(PEC16)`, for example
-the order-three modular relator coupling each Weyl unitary to its unipotent:
+The live theorem must use a relation unavailable even to the strengthened
+reflection-exact construction `(PEC21)--(PEC33)`, namely the order-three
+modular relator coupling each Weyl unitary to its unipotent:
 
 ```text
 (w u)^3=w^2.                                           (PEC20)

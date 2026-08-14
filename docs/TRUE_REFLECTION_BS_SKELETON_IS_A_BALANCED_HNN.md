@@ -262,6 +262,18 @@ HNN** problem.
 
 The first nonlinear target can now be separated from the modular constraints.
 
+The prime-cycle construction in
+`FALSE_ODD_SPECTRAL_EQUIVARIANT_COARSENING.md`, Section 6, already lies in
+the exact reflection locus of `(BH17)`: its common squares, factorization,
+and reflection relation are exact, and its balanced HNN defect tends to zero.
+Nevertheless, every invariant partition of the original prime orbit has
+either asymptotically full reflection leakage or a fixed spectral-collapse
+cost.  Therefore a proof of the theorem below cannot keep the original orbit
+decomposition fixed.  It must permit negligible padding, cutting, or joining
+of orbits.  That example does not refute such a flexible repair: it has only
+one parity seam, supported on `o(L)` coordinates.  It does show that an
+``equivariant coarsening of the given orbit'' is not a valid proof strategy.
+
 > **Balanced-HNN equivariant repair.**  Every normalized-HS almost
 > representation of `(BH4)` obtained from an exact projective reflection as
 > in `(BH17)` is, after negligible padding, close to an exact representation
