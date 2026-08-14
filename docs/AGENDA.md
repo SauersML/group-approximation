@@ -49,6 +49,14 @@ The existing four raw coefficient cuts are not those labels: their comb
 kernel is exactly uniform after carrier conditioning.  The required kernels
 must be extracted from the deeper multiplication/radical quotient.
 
+`TRUE_CHARACTER_PVM_COARSENING_TO_MAP_OUTCOMES.md` removes a misleading
+large-outcome subgate.  Once one finite additive character PVM has a
+multiplication-coherent decoder, its atoms coarsen canonically to the required
+whole-map PVM; positivity, normalization, edge commutation, and shared
+marginals are preserved.  The unresolved theorem is therefore precisely
+construction of that decoder from cross-root multiplication, not rounding
+`|V|^|V|` unrelated projections.
+
 ### 2026-08-13: finite paired-radical endpoint is closed
 
 The exact finite contradiction behind the paired-radical program is now

@@ -118,3 +118,11 @@ This is weaker than simultaneous recovery of both full coefficient
 commutants.  It asks only for three edge contexts and no unused-edge
 commutation.  It is stronger than four bistochastic block-mass matrices, and
 the distinction is forced by the exact Pauli countermodel.
+
+There is no separate exponential-outcome construction problem here.  If a
+joint character PVM on a finite coefficient window carries a deterministic
+decoder to whole response maps, summing character atoms over decoder fibers
+produces `(EPL1)` exactly and preserves edgewise commutation.  See
+`TRUE_CHARACTER_PVM_COARSENING_TO_MAP_OUTCOMES.md`.  The live content is the
+multiplication-coherent decoder, not direct rounding of one independently
+constructed projection for every map.
