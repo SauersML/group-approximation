@@ -1797,17 +1797,14 @@ Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 The Clifford witness has substantially more structure than was needed to
 prove $w\ne1$.
 
-\paragraph{Soficity does not imply MF.}
+\begin{corollary}[sofic and hyperlinear separations]\label{cor:sofic-nonmf}
 The group $W=\ClLamp(X)\rtimes V$ of Proposition~\ref{prop:witness} is a
 six-generated sofic group that is not MF.  In particular, soficity does
 not imply the MF property.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_nonMF}
-Since every sofic group is hyperlinear, every sofic non-MF group is also a
-hyperlinear non-MF group.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF}
-Consequently $W$ also shows that hyperlinearity --- equivalently, Connes
-embeddability at the group level --- does not imply MF.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_hyperlinear_nonMF}
+The group $W$ is also hyperlinear; consequently hyperlinearity ---
+equivalently, Connes embeddability at the group level --- does not imply MF.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
+\end{corollary}
 
 \begin{proof}
 Write $T=\varinjlim(\bar\Gamma,\bar\alpha)$, so

@@ -554,6 +554,7 @@ export GroupApproximation.NonMFImpact
     witness_locallyFinite_MF_kernel_nonMF_total
     witness_sofic_nonMF
     witness_hyperlinear_nonMF
+    witness_sofic_hyperlinear_nonMF
     witness_reducedGroupCStar_stablyFinite_nonMF
     affineBase_residuallyFinite_sofic_MF
     scalingFamily_finitelyPresented_nonMF

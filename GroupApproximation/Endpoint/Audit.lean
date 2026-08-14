@@ -572,6 +572,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total
 #print axioms GroupApproximation.NonMFImpact.witness_sofic_nonMF
 #print axioms GroupApproximation.NonMFImpact.witness_hyperlinear_nonMF
+#print axioms GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF
 #print axioms GroupApproximation.NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF
 #print axioms GroupApproximation.NonMFImpact.affineBase_residuallyFinite_sofic_MF
 #print axioms GroupApproximation.NonMFImpact.scalingFamily_finitelyPresented_nonMF

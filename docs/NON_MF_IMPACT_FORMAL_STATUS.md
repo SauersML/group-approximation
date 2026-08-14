@@ -25,6 +25,9 @@ The release-facing collection is
   concrete finitely generated witness is sofic and not operator-MF.
 - `NonMFImpact.witness_hyperlinear_nonMF` proves, again for that concrete
   witness and with no inputs, that hyperlinearity does not imply MF.
+- `NonMFImpact.witness_sofic_hyperlinear_nonMF` packages finite generation,
+  soficity, hyperlinearity, and failure of MF in the single closed theorem
+  cited by the manuscript.
 - `NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF` proves that the
   witness's reduced group C-star algebra is separable, has its canonical
   faithful trace, is stably finite in every finite matrix amplification, and

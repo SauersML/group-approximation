@@ -269,8 +269,8 @@ confusing the established sofic quotient `W` with the unresolved soficity of
 The following were run on MSI only, using shared warm caches and no CI or
 local compilation:
 
-- all 45 manuscript Lean references resolve;
-- all 45 cited declarations have closed theorem headers;
+- all 43 manuscript Lean references resolve;
+- all 43 cited declarations have closed theorem headers;
 - all 35 numbered theorem-like claims match the exact-claim manifest and its
   declaration roster;
 - the Cairn graph compiles with 96 claims and 93 routes, its changed-file
