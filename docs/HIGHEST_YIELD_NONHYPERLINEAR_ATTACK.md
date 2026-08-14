@@ -19,6 +19,28 @@ on the multiplicity spaces of this one repaired envelope.  The target is to
 derive the two diagonal and one crossed common-coordinate pairing defects
 from that matrix.
 
+## 2026-08-14 four-root coherence has no table-size loss
+
+The two parenthesizations of coefficient multiplication are the bounded
+four-root Steinberg identity
+
+```text
+[[x_12(a),x_23(b)],x_34(c)]
+ =[x_12(a),[x_23(b),x_34(c)]].
+```
+
+On a `delta`-multiplicative unitary packet, the two evaluated words are at
+HS distance at most `30 delta`; their normalized mean squared defect over an
+arbitrarily large finite coefficient table is therefore at most
+`900 delta^2`.  See
+`TRUE_FOUR_ROOT_ASSOCIATIVITY_HAS_UNIFORM_HS_BUDGET.md`.
+
+This supplies the size-uniform multiplication-coherence budget required by
+the approximate bi-corepresentation route.  The remaining gate is exactly
+to assemble the raw/comb blocks into one (asymptotically) unitary coefficient
+matrix `V`; neither table cardinality nor associativity produces a further
+loss.
+
 ## 2026-08-14 closed: perfect no-signaling labels are still not whole maps
 
 For every perfect binary pairing of size `N>=4`, let `q_c` be uniform on the
