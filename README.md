@@ -92,9 +92,6 @@ The paper also proves:
 - a cyclic-base comparison showing that exact finite-dimensional
   invisibility does not force the marked word to be trivial;
 - a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
-- a finitely generated sofic non-MF Clifford quotient in which the same
-  operator-norm-invisible sign survives, separating the MF radical from the
-  sofic and hyperlinear radicals;
 - failure of closure of MF groups under quotients;
 - the MF radical, its single-corona detector, and the largest MF quotient.
 
@@ -104,9 +101,9 @@ whether the presenting group `E` itself is hyperlinear or sofic, or whether
 finite C*-algebras.
 
 Kazhdan transport is a rigidity mechanism, not a new fourth approximation
-class alongside MF, sofic, and hyperlinear groups.  The sofic Clifford
-quotient shows exactly what the mechanism separates: operator-norm matrix
-visibility from Hamming/tracial visibility.
+class alongside MF, sofic, and hyperlinear groups.  The present result is an
+operator-norm obstruction and makes no additional sofic or hyperlinear
+classification claim.
 
 ### Formal counterpart
 
