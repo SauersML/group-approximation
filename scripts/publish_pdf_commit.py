@@ -1,0 +1,425 @@
+#!/usr/bin/env python3
+"""Publish one generated PDF without overwriting a concurrent publication.
+
+The source revision has already passed the full Prover workflow.  ``main`` may
+have acquired later human-facing commits while a PDF was building, so the
+publisher accepts only descendants that pass ``advance_verified_branch.py
+compare``.  It then constructs a new commit from the current remote tree with a
+temporary Git index, replacing exactly one tracked PDF.  No branch, checkout,
+worktree, reset, force push, or merge operation is involved.
+"""
+
+from __future__ import annotations
+
+import argparse
+from enum import Enum
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+from typing import Mapping, Sequence
+
+
+ALLOWED_PDFS = frozenset(
+    {
+        "non_mf_groups_exist.pdf",
+        "property_tt_leavitt.pdf",
+    }
+)
+CLASSIFIER = Path(__file__).with_name("advance_verified_branch.py")
+REMOTE = "origin"
+REMOTE_MAIN = "refs/remotes/origin/main"
+PUSH_ATTEMPTS = 3
+
+
+class PublicationDeferred(RuntimeError):
+    """The certified source is stale relative to verification-relevant main."""
+
+
+class Outcome(Enum):
+    PUBLISHED = "published"
+    CURRENT = "current"
+
+
+def repo_root() -> Path:
+    root = Path(__file__).resolve().parent.parent
+    if not (root / ".git").exists():
+        raise RuntimeError(f"repository root has no .git directory: {root}")
+    return root
+
+
+def run(
+    arguments: Sequence[str],
+    *,
+    cwd: Path,
+    check: bool = True,
+    input_text: str | None = None,
+    env_updates: Mapping[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
+    environment = None
+    if env_updates is not None:
+        environment = os.environ.copy()
+        environment.update(env_updates)
+    result = subprocess.run(
+        list(arguments),
+        cwd=cwd,
+        env=environment,
+        input=input_text,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if check and result.returncode != 0:
+        command = " ".join(arguments)
+        details = result.stderr.strip() or result.stdout.strip()
+        raise RuntimeError(f"{command} failed ({result.returncode}): {details}")
+    return result
+
+
+def git(
+    root: Path,
+    *arguments: str,
+    check: bool = True,
+    input_text: str | None = None,
+    env_updates: Mapping[str, str] | None = None,
+) -> subprocess.CompletedProcess[str]:
+    return run(
+        ("git", *arguments),
+        cwd=root,
+        check=check,
+        input_text=input_text,
+        env_updates=env_updates,
+    )
+
+
+def resolve(root: Path, revision: str) -> str:
+    return git(root, "rev-parse", "--verify", f"{revision}^{{commit}}").stdout.strip()
+
+
+def fetch_main(root: Path) -> str:
+    git(
+        root,
+        "fetch",
+        "--no-tags",
+        REMOTE,
+        f"refs/heads/main:{REMOTE_MAIN}",
+    )
+    return resolve(root, REMOTE_MAIN)
+
+
+def require_publication_only_descendants(
+    root: Path, source: str, current_main: str
+) -> None:
+    result = run(
+        (
+            sys.executable,
+            str(CLASSIFIER),
+            "compare",
+            source,
+            current_main,
+        ),
+        cwd=root,
+        check=False,
+    )
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.returncode == 0:
+        return
+    if result.stderr:
+        print(result.stderr, end="", file=sys.stderr)
+    if result.returncode == 1:
+        raise PublicationDeferred(
+            f"main {current_main} contains verification-relevant changes after "
+            f"certified source {source}; leaving main untouched"
+        )
+    raise RuntimeError(
+        "the verified-tree classifier could not compare the publication base "
+        f"and main (exit {result.returncode})"
+    )
+
+
+def tracked_blob_entry(root: Path, revision: str, path: str) -> tuple[str, str]:
+    raw = git(root, "ls-tree", "-z", revision, "--", path).stdout
+    records = [record for record in raw.split("\0") if record]
+    if len(records) != 1:
+        raise RuntimeError(
+            f"expected exactly one tracked {path} entry at {revision}, "
+            f"found {len(records)}"
+        )
+    metadata, recorded_path = records[0].split("\t", 1)
+    mode, object_type, object_id = metadata.split(" ")
+    if recorded_path != path or mode != "100644" or object_type != "blob":
+        raise RuntimeError(
+            f"refusing non-regular tracked PDF entry at {revision}: {records[0]!r}"
+        )
+    return mode, object_id
+
+
+def hash_worktree_file(root: Path, path: str) -> str:
+    return git(
+        root,
+        "hash-object",
+        "-w",
+        f"--path={path}",
+        "--",
+        path,
+    ).stdout.strip()
+
+
+def build_commit(
+    root: Path,
+    *,
+    parent: str,
+    path: str,
+    blob: str,
+    message: str,
+) -> str | None:
+    mode, old_blob = tracked_blob_entry(root, parent, path)
+    if old_blob == blob:
+        return None
+
+    with tempfile.TemporaryDirectory(prefix="publish-pdf-index-") as directory:
+        index = str(Path(directory) / "index")
+        index_environment = {"GIT_INDEX_FILE": index}
+        git(root, "read-tree", parent, env_updates=index_environment)
+        git(
+            root,
+            "update-index",
+            "--add",
+            "--cacheinfo",
+            f"{mode},{blob},{path}",
+            env_updates=index_environment,
+        )
+        tree = git(root, "write-tree", env_updates=index_environment).stdout.strip()
+
+    parent_tree = git(root, "rev-parse", f"{parent}^{{tree}}").stdout.strip()
+    if tree == parent_tree:
+        raise RuntimeError(
+            "the replacement blob changed but the candidate tree did not"
+        )
+    return git(
+        root,
+        "commit-tree",
+        tree,
+        "-p",
+        parent,
+        input_text=f"{message}\n",
+    ).stdout.strip()
+
+
+def validate_pdf(root: Path, pdf: str) -> None:
+    if pdf not in ALLOWED_PDFS:
+        raise RuntimeError(f"refusing non-publication PDF path: {pdf!r}")
+    path = root / pdf
+    if path.is_symlink() or not path.is_file():
+        raise RuntimeError(f"publication PDF is not a regular file: {path}")
+
+
+def publish_pdf(
+    root: Path, *, source_ref: str, pdf: str, message: str
+) -> tuple[Outcome, str]:
+    validate_pdf(root, pdf)
+    if not message.strip() or "\n" in message:
+        raise RuntimeError("the publication commit message must be one nonempty line")
+    source = resolve(root, source_ref)
+    blob = hash_worktree_file(root, pdf)
+    last_push_error = ""
+
+    for attempt in range(1, PUSH_ATTEMPTS + 1):
+        current_main = fetch_main(root)
+        require_publication_only_descendants(root, source, current_main)
+        candidate = build_commit(
+            root,
+            parent=current_main,
+            path=pdf,
+            blob=blob,
+            message=message,
+        )
+        if candidate is None:
+            print(f"{pdf} is already current at {current_main}")
+            return Outcome.CURRENT, current_main
+
+        push = git(
+            root,
+            "push",
+            "--porcelain",
+            REMOTE,
+            f"{candidate}:refs/heads/main",
+            check=False,
+        )
+        if push.returncode == 0:
+            print(
+                f"published {pdf} as {candidate} atop {current_main} "
+                f"on attempt {attempt}"
+            )
+            return Outcome.PUBLISHED, candidate
+        last_push_error = push.stderr.strip() or push.stdout.strip()
+        print(
+            f"non-force publication push attempt {attempt}/{PUSH_ATTEMPTS} "
+            "lost a race; refreshing main",
+            file=sys.stderr,
+        )
+
+    current_main = fetch_main(root)
+    require_publication_only_descendants(root, source, current_main)
+    _, current_blob = tracked_blob_entry(root, current_main, pdf)
+    if current_blob == blob:
+        print(f"{pdf} was published concurrently at {current_main}")
+        return Outcome.CURRENT, current_main
+    raise RuntimeError(
+        f"could not publish {pdf} after {PUSH_ATTEMPTS} non-force attempts: "
+        f"{last_push_error}"
+    )
+
+
+def remote_main(root: Path) -> str:
+    output = git(root, "ls-remote", "--refs", REMOTE, "refs/heads/main").stdout
+    records = [line.split() for line in output.splitlines() if line.strip()]
+    if len(records) != 1 or len(records[0]) != 2:
+        raise RuntimeError("test remote does not have exactly one main ref")
+    return records[0][0]
+
+
+def blob_contents(root: Path, revision: str, path: str) -> bytes:
+    result = subprocess.run(
+        ["git", "cat-file", "blob", f"{revision}:{path}"],
+        cwd=root,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.decode(errors="replace"))
+    return result.stdout
+
+
+def self_test() -> None:
+    if PUSH_ATTEMPTS != 3:
+        raise RuntimeError("publication retry calibration no longer has three attempts")
+    with tempfile.TemporaryDirectory(prefix="publish-pdf-self-test-") as directory:
+        test_root = Path(directory) / "work"
+        remote = Path(directory) / "remote.git"
+        git(directory_root := Path(directory), "init", "--bare", str(remote))
+        git(directory_root, "init", "--initial-branch=main", str(test_root))
+        git(test_root, "config", "user.name", "Publication Self-Test")
+        git(test_root, "config", "user.email", "publication-self-test@example.invalid")
+        git(test_root, "remote", "add", REMOTE, str(remote))
+
+        (test_root / "proof.txt").write_text("proof-v1\n", encoding="utf-8")
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v1\n")
+        (test_root / "property_tt_leavitt.pdf").write_bytes(b"property-v1\n")
+        git(
+            test_root,
+            "add",
+            "--",
+            "proof.txt",
+            "non_mf_groups_exist.pdf",
+            "property_tt_leavitt.pdf",
+        )
+        git(test_root, "commit", "-m", "certified base")
+        certified = resolve(test_root, "HEAD")
+        git(test_root, "push", REMOTE, "HEAD:refs/heads/main")
+
+        (test_root / "property_tt_leavitt.pdf").write_bytes(b"property-v2\n")
+        git(test_root, "add", "--", "property_tt_leavitt.pdf")
+        git(test_root, "commit", "-m", "publish sibling PDF")
+        sibling = resolve(test_root, "HEAD")
+        git(test_root, "push", REMOTE, "HEAD:refs/heads/main")
+
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v2\n")
+        outcome, published = publish_pdf(
+            test_root,
+            source_ref=certified,
+            pdf="non_mf_groups_exist.pdf",
+            message="publish target PDF",
+        )
+        assert outcome is Outcome.PUBLISHED
+        assert remote_main(test_root) == published
+        assert resolve(test_root, f"{published}^") == sibling
+        assert (
+            blob_contents(test_root, published, "property_tt_leavitt.pdf")
+            == b"property-v2\n"
+        )
+        assert (
+            blob_contents(test_root, published, "non_mf_groups_exist.pdf")
+            == b"non-mf-v2\n"
+        )
+
+        outcome, current = publish_pdf(
+            test_root,
+            source_ref=certified,
+            pdf="non_mf_groups_exist.pdf",
+            message="do not duplicate current PDF",
+        )
+        assert outcome is Outcome.CURRENT
+        assert current == published
+        assert remote_main(test_root) == published
+
+        (test_root / "proof.txt").write_text("proof-v2\n", encoding="utf-8")
+        proof_blob = hash_worktree_file(test_root, "proof.txt")
+        proof_commit = build_commit(
+            test_root,
+            parent=published,
+            path="proof.txt",
+            blob=proof_blob,
+            message="verification-relevant change",
+        )
+        assert proof_commit is not None
+        git(test_root, "push", REMOTE, f"{proof_commit}:refs/heads/main")
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v3\n")
+        try:
+            publish_pdf(
+                test_root,
+                source_ref=published,
+                pdf="non_mf_groups_exist.pdf",
+                message="must not cross proof change",
+            )
+        except PublicationDeferred:
+            pass
+        else:
+            raise RuntimeError("publisher crossed a verification-relevant commit")
+        assert remote_main(test_root) == proof_commit
+
+    print(
+        "self-test: temporary-index publication preserved the sibling PDF, "
+        "was idempotent, and refused a proof-changing descendant"
+    )
+
+
+def parse_args(argv: Sequence[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    publish = subparsers.add_parser("publish")
+    publish.add_argument("--source-sha", required=True)
+    publish.add_argument("--pdf", required=True, choices=sorted(ALLOWED_PDFS))
+    publish.add_argument("--message", required=True)
+    subparsers.add_parser("self-test")
+    return parser.parse_args(argv)
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    try:
+        if args.command == "self-test":
+            self_test()
+        elif args.command == "publish":
+            publish_pdf(
+                repo_root(),
+                source_ref=args.source_sha,
+                pdf=args.pdf,
+                message=args.message,
+            )
+        else:
+            raise AssertionError(f"unhandled command: {args.command}")
+    except PublicationDeferred as error:
+        print(f"publication deferred: {error}")
+    except (OSError, RuntimeError, AssertionError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

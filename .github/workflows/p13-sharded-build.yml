@@ -88,7 +88,7 @@ jobs:
           path: build/p13-artifacts/p13-foundation.tar.gz
           if-no-files-found: error
           compression-level: 0
-          retention-days: 2
+          retention-days: 7
 
   shard:
     name: Build P13 shard ${{ matrix.shard }}
@@ -188,4 +188,4 @@ jobs:
           path: build/p13-artifacts/p13-shard-${{ matrix.shard }}.tar.gz
           if-no-files-found: error
           compression-level: 0
-          retention-days: 2
+          retention-days: 7

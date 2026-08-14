@@ -29,12 +29,6 @@ permissions:
   id-token: write
   attestations: write
 
-concurrency:
-  group: build-non-mf-pdf-main
-  # A build already used as a release gate must run to completion.  New pushes
-  # replace only the queued run, not an in-flight validation of another SHA.
-  cancel-in-progress: false
-
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
@@ -47,9 +41,13 @@ jobs:
   build-pdf:
     name: Build, kernel-audit, and validate PDF
     if: >-
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_dispatch' &&
+       github.ref == 'refs/heads/main') ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.event == 'push')
+    concurrency:
+      group: publish-pdfs-main
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 360
     env:
@@ -73,7 +71,9 @@ jobs:
           test "$(jq -r .path <<<"$run_json")" = '.github/workflows/prover.yml'
           test "$(jq -r .status <<<"$run_json")" = completed
           test "$(jq -r .conclusion <<<"$run_json")" = success
+          test "$(jq -r .event <<<"$run_json")" = push
           test "$(jq -r .head_branch <<<"$run_json")" = main
+          test "$(jq -r .head_repository.full_name <<<"$run_json")" = "$GITHUB_REPOSITORY"
           test "$(jq -r .head_sha <<<"$run_json")" = "$SOURCE_SHA"
           test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
 
@@ -357,55 +357,148 @@ jobs:
             build/non-mf-source-${{ env.SOURCE_SHA }}.tar.gz
             build/NON_MF_RELEASE_MANIFEST.json
 
-      - name: Publish immutable tagged release
-        if: github.event_name == 'workflow_dispatch'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          short_sha="${SOURCE_SHA:0:12}"
-          tag="non-mf-${short_sha}"
-          gh release create "$tag" \
-            --target "$SOURCE_SHA" \
-            --verify-tag=false \
-            --title "Non-MF formalization ${short_sha}" \
-            --notes "Kernel-audited source, tagged PDF, claim manifest, hashes, and provenance attestation for ${SOURCE_SHA}." \
-            "$PDF_FILE" \
-            "build/non-mf-source-${SOURCE_SHA}.tar.gz" \
-            build/NON_MF_RELEASE_MANIFEST.json \
-            build/SHA256SUMS \
-            build/non_mf_groups_exist.log \
-            kernel-audit.log \
-            signatures.log \
-            leanchecker.log
-
-      - name: Commit and push the current tagged PDF
+      - name: Commit and push the current tagged PDF without clobbering publication descendants
         env:
           START_SHA: ${{ env.SOURCE_SHA }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin main
-          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
-            echo "main advanced during publication; its own verified run will publish the current PDF."
-            exit 0
+          python3 scripts/publish_pdf_commit.py self-test
+          python3 scripts/publish_pdf_commit.py publish \
+            --source-sha "$START_SHA" \
+            --pdf "$PDF_FILE" \
+            --message "build: update non-MF PDF"
+
+      - name: Publish immutable tagged release idempotently
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          short_sha="${SOURCE_SHA:0:12}"
+          tag="non-mf-${short_sha}"
+          title="Non-MF formalization ${short_sha}"
+          notes="Kernel-audited source, tagged PDF, claim manifest, hashes, and provenance attestation for ${SOURCE_SHA}."
+          release_files=(
+            "$PDF_FILE"
+            "build/non-mf-source-${SOURCE_SHA}.tar.gz"
+            build/NON_MF_RELEASE_MANIFEST.json
+            build/SHA256SUMS
+            build/non_mf_groups_exist.log
+            kernel-audit.log
+            signatures.log
+            leanchecker.log
+          )
+
+          declare -A expected_assets=()
+          for file in "${release_files[@]}"; do
+            test -f "$file"
+            expected_assets["$(basename -- "$file")"]="$file"
+          done
+          test "${#expected_assets[@]}" -eq "${#release_files[@]}"
+
+          verify_release() {
+            local release_json="$1"
+            jq -e \
+              --arg tag "$tag" \
+              --arg title "$title" \
+              --arg notes "$notes" \
+              '.tag_name == $tag and .name == $title and
+               .body == $notes and
+               .draft == false and .prerelease == false' \
+              <<<"$release_json" >/dev/null
+
+            local expected_names actual_names
+            expected_names="$(printf '%s\n' "${!expected_assets[@]}" | LC_ALL=C sort)"
+            actual_names="$(jq -r '.assets[].name' <<<"$release_json" | LC_ALL=C sort)"
+            diff -u <(printf '%s\n' "$expected_names") \
+              <(printf '%s\n' "$actual_names")
+
+            local name file local_digest remote_digest
+            for name in "${!expected_assets[@]}"; do
+              file="${expected_assets[$name]}"
+              local_digest="sha256:$(sha256sum -- "$file" | awk '{print $1}')"
+              remote_digest="$(
+                jq -er --arg name "$name" '
+                  [.assets[] | select(.name == $name and .state == "uploaded")] |
+                  if length == 1 and .[0].digest != null
+                  then .[0].digest
+                  else error("release asset is missing, duplicated, incomplete, or undigested")
+                  end
+                ' <<<"$release_json"
+              )"
+              test "$remote_digest" = "$local_digest"
+            done
+
+            local tag_record tag_sha tag_ref
+            tag_record="$(git ls-remote --refs origin "refs/tags/${tag}")"
+            read -r tag_sha tag_ref <<<"$tag_record"
+            test -n "$tag_sha"
+            test "$tag_ref" = "refs/tags/${tag}"
+            test "$tag_sha" = "$SOURCE_SHA"
+          }
+
+          release_pages="$(
+            gh api --paginate --slurp \
+              "/repos/${GITHUB_REPOSITORY}/releases?per_page=100"
+          )"
+          release_matches="$(
+            jq -c --arg tag "$tag" \
+              '[.[][] | select(.tag_name == $tag)]' \
+              <<<"$release_pages"
+          )"
+          release_count="$(jq 'length' <<<"$release_matches")"
+          if [[ "$release_count" -eq 0 ]]; then
+            existing_tag="$(git ls-remote --refs origin "refs/tags/${tag}")"
+            if [[ -n "$existing_tag" ]]; then
+              read -r existing_tag_sha existing_tag_ref <<<"$existing_tag"
+              test "$existing_tag_ref" = "refs/tags/${tag}"
+              test "$existing_tag_sha" = "$SOURCE_SHA"
+            fi
+            gh release create "$tag" \
+              --target "$SOURCE_SHA" \
+              --verify-tag=false \
+              --title "$title" \
+              --notes "$notes" \
+              "${release_files[@]}"
+          elif [[ "$release_count" -eq 1 ]]; then
+            release_json="$(jq -c '.[0]' <<<"$release_matches")"
+            jq -e \
+              --arg tag "$tag" \
+              --arg title "$title" \
+              --arg notes "$notes" \
+              '.tag_name == $tag and .name == $title and
+               .body == $notes and
+               .draft == false and .prerelease == false' \
+              <<<"$release_json" >/dev/null
+            while IFS= read -r existing_name; do
+              if [[ -z "${expected_assets[$existing_name]+present}" ]]; then
+                echo "Unexpected immutable release asset ${existing_name}." >&2
+                exit 1
+              fi
+            done < <(jq -r '.assets[].name' <<<"$release_json")
+            for name in "${!expected_assets[@]}"; do
+              asset_count="$(
+                jq --arg name "$name" \
+                  '[.assets[] | select(.name == $name)] | length' \
+                  <<<"$release_json"
+              )"
+              if [[ "$asset_count" -eq 0 ]]; then
+                gh release upload "$tag" "${expected_assets[$name]}"
+              elif [[ "$asset_count" -ne 1 ]]; then
+                echo "Release asset ${name} is duplicated." >&2
+                exit 1
+              fi
+            done
+          else
+            echo "More than one release has tag ${tag}." >&2
+            exit 1
           fi
 
-          git add -- "$PDF_FILE"
-          if git diff --cached --quiet -- "$PDF_FILE"; then
-            echo "The committed non-MF PDF is already current."
-            exit 0
-          fi
-          git commit -m "build: update non-MF PDF [skip ci]"
-          if git push origin HEAD:main; then
-            exit 0
-          fi
-
-          git fetch origin main
-          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
-            echo "main advanced before the push; its own verified run will publish the current PDF."
-            exit 0
-          fi
-          echo "Could not push the updated non-MF PDF." >&2
-          exit 1
+          release_json="$(
+            gh api "/repos/${GITHUB_REPOSITORY}/releases/tags/${tag}"
+          )"
+          verify_release "$release_json"
+          echo "Release ${tag} exists with the exact immutable asset set."
