@@ -14,6 +14,10 @@ matrix `X=DCDC` satisfies the exact factorization
 `Sofic/CliffordPhaseExtraction.lean`.  Therefore the sole remaining content
 of the Clifford route is constructing the almost-`Gamma`-central,
 anticommuting pair; no error-propagation or phase-detection estimate remains.
+The scalar endpoint is now wired to the radical collision as well:
+`negOnePhase_detects` and
+`exists_hyperlinear_nonsofic_of_negOnePhase_soficInvisible` are checked in
+`Sofic/AntipodalRadicalCollision.lean`.
 
 ### 2026-08-13: antipodal conjugacy is a quantitative trace certificate
 

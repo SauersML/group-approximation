@@ -67,6 +67,26 @@ theorem hsDistSq_doubleCliffordWord_neg_one
   rw [sub_neg_eq_add,
     hsNormSq_doubleCliffordWord_add_one Y hC hD hY hCsq hDsq]
 
+/-- A unitary within squared distance one of the scalar `-1` is uniformly
+separated from the identity.  This is the coarse scalar-phase estimate used
+to detect a nontrivial tracial-ultraproduct class. -/
+theorem one_le_hsDistSq_one_of_negOneDefect_le_one
+    (Y : FiniteModel) {U : Matrix Y Y ℂ}
+    (hU : U ∈ Matrix.unitaryGroup Y ℂ) (hY : 0 < Fintype.card Y)
+    (hdefect : hsDistSq Y U (-1) ≤ 1) :
+    1 ≤ hsDistSq Y U 1 := by
+  have hscalar : (-1 : Matrix Y Y ℂ) = (-1 : ℂ) • 1 := by simp
+  change hsNormSq Y (U - (-1)) ≤ 1 at hdefect
+  rw [hscalar, hsNormSq_sub_smul_one Y hU hY] at hdefect
+  have hre : (normTrace Y U).re ≤ -1 / 2 := by
+    norm_num at hdefect ⊢
+    linarith
+  have hone : (1 : Matrix Y Y ℂ) ∈ Matrix.unitaryGroup Y ℂ :=
+    Submonoid.one_mem _
+  rw [hsDistSq_of_unitary Y hU hone hY, Matrix.conjTranspose_one,
+    Matrix.mul_one]
+  linarith
+
 /-- Exact anticommutation makes the double Clifford word the scalar `-1`. -/
 theorem doubleCliffordWord_eq_neg_one_of_anticommute
     {Y : Type*} [Fintype Y] [DecidableEq Y]

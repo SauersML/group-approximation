@@ -150,6 +150,15 @@ Thus `(KCP13)` is exactly, with constant one, convergence of the radical
 word to `-1`.  The factorization and norm identity are Lean-checked in
 `GroupApproximation/Sofic/CliffordPhaseExtraction.lean`.
 
+The passage from this scalar convergence to the final group-theoretic
+conclusion is also formalized.  The theorem
+`AsymptoticUnitaryRepresentation.negOnePhase_detects` proves that a word
+converging to `-1` is nontrivial in the induced tracial matrix ultraproduct,
+and
+`exists_hyperlinear_nonsofic_of_negOnePhase_soficInvisible` combines this
+with membership in the full sofic residual.  Both are in
+`GroupApproximation/Sofic/AntipodalRadicalCollision.lean`.
+
 The resulting tracial-ultraproduct image is hyperlinear and cannot be
 sofic.  Thus `(KCP12)--(KCP13)` is already a complete finite-coordinate
 target for the open problem.
