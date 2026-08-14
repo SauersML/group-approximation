@@ -24,7 +24,7 @@ argument are insensitive to the exponent:
 * the separating half is the explicit affine--Clifford witness, which
   `ScalingFamilyLinearWitness` supplies for every `m ≥ 2`.
 
-So the entire pipeline runs uniformly in `m`, and every member of the family
+So the entire pipeline runs uniformly in `m`, and every member with `m ≥ 2`
 is a finitely presented non-MF group.  Specializing at `m = 2` returns the
 declarations of `LiteralNonMFEndpoint` (`relators_two` identifies the group
 itself on the nose).
@@ -119,7 +119,7 @@ theorem negativeCorner_kazhdanTransport_contradiction (m : ℕ)
 
 /-! ## The explicit finite normal subgroup `{1, mark}` -/
 
-/-- The two-point subgroup used in the finite-normal obstruction. -/
+/-- The central-involution subgroup used in the finite-normal obstruction. -/
 noncomputable def familyInvolutionSubgroup (m : ℕ) : Subgroup (MarkedGroup m) :=
   centralInvolutionSubgroup (mark m) (mark_sq m)
 
@@ -143,7 +143,7 @@ instance familyInvolutionSubgroup_normal (m : ℕ) :
     (familyInvolutionSubgroup m).Normal :=
   centralInvolutionSubgroup_normal (mark m) (mark_sq m) (mark_central m)
 
-/-- The two-point subgroup belongs to the normal closure of the pinned
+/-- The central-involution subgroup belongs to the normal closure of the pinned
 compression defects. -/
 theorem familyInvolutionSubgroup_le_defectNormal (m : ℕ) :
     familyInvolutionSubgroup m ≤
@@ -240,7 +240,7 @@ theorem cliffordSign_blackHole (hm : 2 ≤ m) :
   ⟨scaling_mark_normMFInvisible m,
     ScalingFamilyLinearWitness.scaling_mark_ne_one hm⟩
 
-/-- **Every member of the scaling family is not operator MF.** -/
+/-- **Every member of the scaling family with `m ≥ 2` is not operator MF.** -/
 theorem scalingFamily_not_isOperatorMF (m : ℕ) (hm : 2 ≤ m) :
     ¬ IsOperatorMF (MarkedGroup m) :=
   MarkedCompressionInclusionData.not_isOperatorMF_of_mem_finiteNormal
@@ -253,15 +253,15 @@ theorem scalingFamily_not_isOperatorMF (m : ℕ) (hm : 2 ≤ m) :
       rw [familyInclusionData_word]
       exact ScalingFamilyLinearWitness.scaling_mark_ne_one hm)
 
-/-- **Every member of the scaling family fails the manuscript's genuine-corona
-CDE predicate.** -/
+/-- **Every member of the scaling family with `m ≥ 2` fails the manuscript's
+genuine-corona CDE predicate.** -/
 theorem scalingFamily_not_isCDEOperatorMF (m : ℕ) (hm : 2 ≤ m) :
     ¬ IsCDEOperatorMF (MarkedGroup m) := by
   rw [isCDEOperatorMF_iff_isOperatorMF]
   exact scalingFamily_not_isOperatorMF m hm
 
-/-- Every member fails every equivalent MF formulation and every stronger MF
-variant formalized in this development. -/
+/-- Every member with `m ≥ 2` fails every equivalent MF formulation and every
+stronger MF variant formalized in this development. -/
 theorem scalingFamily_failsAllFormalizedMFVariants (m : ℕ) (hm : 2 ≤ m) :
     FailsAllFormalizedMFVariants (MarkedGroup m) :=
   failsAllFormalizedMFVariants_of_not_isGroupTheoreticMF
@@ -295,7 +295,8 @@ For every scaling factor `m ≥ 2` the presented group with stable relations
 every genuine matrix corona representation, and the group is not MF in any
 of the formalized senses.  `m = 2` is the literal manuscript group. -/
 theorem manuscriptTheoremFamily (m : ℕ) (hm : 2 ≤ m) :
-    (mark m ≠ 1 ∧ mark m ^ 2 = 1 ∧ ∀ g : MarkedGroup m, Commute (mark m) g) ∧
+    Group.IsFinitelyPresented (MarkedGroup m) ∧
+      (mark m ≠ 1 ∧ mark m ^ 2 = 1 ∧ ∀ g : MarkedGroup m, Commute (mark m) g) ∧
       (∀ (d : ℕ → ℕ), (∀ n, 0 < d n) →
         ∀ Theta : MarkedGroup m →*
           NormMatrixCoronaUnitary (fun n ↦ naturalFiniteModel (d n)),
@@ -303,7 +304,8 @@ theorem manuscriptTheoremFamily (m : ℕ) (hm : 2 ≤ m) :
       ¬ IsCDEOperatorMF (MarkedGroup m) ∧
       ¬ IsMFAlgebra (MaximalGroupCStar (MarkedGroup m)) ∧
       ¬ IsMFAlgebra (ReducedGroupCStar (MarkedGroup m)) :=
-  ⟨⟨(cliffordSign_blackHole hm).2, mark_sq m, mark_central m⟩,
+  ⟨inferInstance,
+    ⟨(cliffordSign_blackHole hm).2, mark_sq m, mark_central m⟩,
     scaling_mark_eq_one_in_unitaryCorona m,
     scalingFamily_not_isCDEOperatorMF m hm,
     scalingFamily_maximalGroupCStar_not_isMFAlgebra m hm,
