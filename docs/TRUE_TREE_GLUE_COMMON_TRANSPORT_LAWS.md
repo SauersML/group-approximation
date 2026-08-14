@@ -58,6 +58,12 @@ result has the same `L1` marginal as `mu01`.  Glue it to `mu11` over `L1`.
 This produces the required law on the path `(TGC2)`, with all three edge
 marginals unchanged.
 
+The one-edge gluing step, including nonnegativity, normalization, both
+recovered marginals, and zero-marginal fibers, is formalized in
+`GroupApproximation/Leavitt/FiniteTreeCoupling.lean`.  Its existence theorem
+is `FiniteTreeCoupling.exists_gluing`; applying it twice gives the path
+construction above.
+
 This is the finite form of the standard fact that compatible marginals on an
 acyclic context hypergraph have a global distribution.  No Birkhoff choices
 have to be synchronized after the pair-laws have been obtained.
