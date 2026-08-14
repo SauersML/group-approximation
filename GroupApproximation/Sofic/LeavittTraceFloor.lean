@@ -445,4 +445,59 @@ theorem two_sub_sqrt_three_le_max_unitary_pairing_defects
     hR₀star hUL₀Ustar hR₁star hUL₁Ustar
   rwa [hdef00, hdef11, hdef01] at hgap
 
+/-! ## Why a positive-rank carrier is not enough
+
+The full-space hypotheses above are essential.  On a proper carrier, exact
+right-inverse and cross-product relations can coexist: one forward arrow may
+leave the carrier and its matching backward arrow may return it.  The
+following `2 x 2` packet is the smallest exact counterexample.
+-/
+
+/-- The rank-one carrier used by the compressed-product counterexample. -/
+def weightedLeavittCarrier : Matrix (Fin 2) (Fin 2) ℂ :=
+  !![(1 : ℂ), 0; 0, 0]
+
+/-- A partial isometry taking the carrier line to its orthogonal line. -/
+def weightedLeavittForward : Matrix (Fin 2) (Fin 2) ℂ :=
+  !![(0 : ℂ), 0; 1, 0]
+
+/-- The reverse partial isometry returning the orthogonal line to the
+carrier. -/
+def weightedLeavittBackward : Matrix (Fin 2) (Fin 2) ℂ :=
+  !![(0 : ℂ), 1; 0, 0]
+
+/-- A proper carrier can satisfy the two diagonal compressed products and
+one crossed compressed product exactly.  Here the zeroth forward and
+backward arrows are both the carrier projection itself, while the first
+arrows are `weightedLeavittForward` and `weightedLeavittBackward`.
+
+Thus a trace floor for the carrier alone cannot replace an invariance (or
+common reducing-sector) theorem for the arrows. -/
+theorem properCarrier_exact_weighted_leavitt_relations :
+    weightedLeavittCarrier * weightedLeavittCarrier * weightedLeavittCarrier =
+        weightedLeavittCarrier ∧
+      weightedLeavittBackward * weightedLeavittForward *
+          weightedLeavittCarrier = weightedLeavittCarrier ∧
+      weightedLeavittCarrier * weightedLeavittForward *
+          weightedLeavittCarrier = 0 := by
+  constructor
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      norm_num [weightedLeavittCarrier, Matrix.mul_apply, Fin.sum_univ_succ]
+  constructor
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      norm_num [weightedLeavittCarrier, weightedLeavittForward,
+        weightedLeavittBackward, Matrix.mul_apply, Fin.sum_univ_succ]
+  · ext i j
+    fin_cases i <;> fin_cases j <;>
+      norm_num [weightedLeavittCarrier, weightedLeavittForward,
+        Matrix.mul_apply, Fin.sum_univ_succ]
+
+/-- The counterexample carrier is visibly nonzero and proper: its two
+diagonal entries are `1` and `0`. -/
+theorem weightedLeavittCarrier_diagonal :
+    weightedLeavittCarrier 0 0 = 1 ∧ weightedLeavittCarrier 1 1 = 0 := by
+  norm_num [weightedLeavittCarrier]
+
 end GroupApproximation

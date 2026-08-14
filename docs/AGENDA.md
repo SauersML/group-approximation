@@ -4,6 +4,29 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: positive-rank carriers do not inherit the Leavitt gap
+
+`FALSE_WEIGHTED_LEAVITT_CONTRACTION_GAP.md` closes the shortcut that tried to
+combine the `1/120` trace-flat spectral sector directly with the full-space
+contraction obstruction.  There is an exact `2 x 2` countermodel on the
+rank-one carrier `P`: with `S0=T0=P`, `S1=E21`, and `T1=E12`, all four maps
+are contractions and
+
+```text
+T0 S0 P=P,    T1 S1 P=P,    T0 S1 P=0.
+```
+
+The forward arrow exits `P` and the reverse arrow returns it.  Thus neither
+positive density nor a singular-value floor prevents perfect compressed
+Leavitt relations.  The exact products are formalized source-first as
+`properCarrier_exact_weighted_leavitt_relations` in
+`Sofic/LeavittTraceFloor.lean`; no local build was run.
+
+The live spectral endpoint is consequently exact: prove that the selected
+sector has a common positive-density reducing subprojection for the four
+actual multiplication arrows, or turn its leakage into a fixed imbalance.
+No weighted trace-only argument can replace this invariance/leakage theorem.
+
 ### 2026-08-14: normal full-group characters force residual finiteness
 
 `FALSE_NORMAL_FIXED_POINT_CHARACTER_GROUPIFICATION.md` closes the entire

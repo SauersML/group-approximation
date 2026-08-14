@@ -62,6 +62,13 @@ The rational endpoint `(SFF2)` is kernel-checked in
 finite-dimensional spectral calculus uses the existing `spectralAbove`
 infrastructure.
 
+The density and conditioning conclusions do **not** imply a compressed
+Leavitt obstruction without invariance.  The exact rank-one countermodel in
+`FALSE_WEIGHTED_LEAVITT_CONTRACTION_GAP.md` has carrier trace `1/2`, singular
+value `1`, and zero compressed product defects: one arrow simply exits the
+carrier and its mate returns it.  Hence the third obligation below is
+logically load-bearing, not an artifact of the proof organization.
+
 ## Consequence for the robust radical-quotient gate
 
 The earlier formulation `(RPC128)` listed three obligations for a spectral
@@ -82,10 +89,11 @@ left is the third:
 If this holds, polar decomposition on the retained sector has condition
 number at most `4`, and the reduced Fourier/contraction argument becomes
 dimension-free.  If it fails, the failure itself is a fixed leakage term and
-should be compared with the one-cut balance obstruction.
+must be compared with the one-cut balance obstruction.  Positive spectral
+mass, even at density `1/2` and with perfect conditioning, cannot substitute
+for this comparison.
 
 This spectral route is a fallback to the shorter coefficient-algebra
 alignment gate in `TRUE_DOUBLE_PAULI_COMB_ANTINORMALIZER_GAP.md`.  It matters
 because it shows that nonuniform singular values are not, by themselves, a
 fatal escape.
-
