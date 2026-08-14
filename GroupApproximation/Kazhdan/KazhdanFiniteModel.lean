@@ -94,6 +94,21 @@ theorem invariant_iff_constant (σ : G →* Equiv.Perm Y)
     ext y
     exact hconstant _ _
 
+/-- If an action is transitive inside the fibers of `π`, every invariant
+label is constant on those fibers.  This is the finite-set obstruction to
+using literal group words as an extension-fiber mixer: invariance plus exact
+fiber transitivity already supplies the desired decoder. -/
+theorem invariant_label_eq_of_same_fiber
+    {Z A : Type*} (σ : G →* Equiv.Perm Y) (π : Y → Z) (r : Y → A)
+    (htrans : ∀ x y : Y, π x = π y → ∃ g : G, σ g x = y)
+    (hinv : ∀ g : G, ∀ x : Y, r (σ g x) = r x)
+    {x y : Y} (hxy : π x = π y) :
+    r x = r y := by
+  obtain ⟨g, hg⟩ := htrans x y hxy
+  calc
+    r x = r (σ g x) := (hinv g x).symm
+    _ = r y := congrArg r hg
+
 /-- The constant vector with prescribed value. -/
 noncomputable def constantVector (c : ℝ) : EuclideanSpace ℝ Y :=
   WithLp.toLp 2 fun _ ↦ c

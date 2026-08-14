@@ -6,6 +6,26 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: a literal extension-fiber mixer is impossible
+
+`FALSE_LITERAL_FIBER_MIXER_SHORTCUT.md` closes the attempted synthesis of the
+binary conditional-variance endpoint with a fixed word library. If a group
+action is transitive inside every extension fiber and a binary label is
+invariant under that action, the label is already constant on each fiber.
+Equivalently, Reynolds averaging on the diagonal atom algebra is the coarse
+fiber conditional expectation, and its mean commutator energy is twice the
+conditional variance.
+
+If fixed literal atlas words supplied both the fiber action and label
+invariance, the same exact identities would hold in the regular
+representation and would make the canonical transported carrier measurable
+in the parent binary algebra. This contradicts its exact squared residual
+`3/16`. Thus another literal word search cannot manufacture the missing
+mixer. The live route is necessarily matrix-specific: recover a
+coordinate-dependent multiplicity action or whole-map PVM, then apply the
+Reynolds/majority identities. The finite-set implication is formalized
+source-first as `invariant_label_eq_of_same_fiber`; no build was run.
+
 ### 2026-08-14: finite normal generation does not give a uniform atlas repair
 
 `FALSE_ATLAS_KERNEL_BOUNDED_NORMAL_WIDTH.md` closes the shortcut that tried
