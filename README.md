@@ -82,8 +82,9 @@ turn the one-sided inclusion of fixed projections into equality, so every
 compressor and its inverse preserve the asymptotic commutant.  For the marked
 construction this makes `u` Hilbert--Schmidt trivial.  Cutting a separated
 central sign to its negative corner then gives simultaneously `w = u² -> 1`
-and `w -> -1`.  The finite-stage spectral-cut, polar-repair, and rank
-calculations are the checked implementation of this short contradiction.
+and `w -> -1`.  The manuscript uses the shorter finite-norm-ultraproduct
+proof; the formal backend also supplies the spectral-cut and polar-repair
+lemmas needed to return from corners to positive matrix coordinates.
 
 The paper also proves:
 
@@ -95,7 +96,11 @@ The paper also proves:
   invisibility does not force the marked word to be trivial;
 - a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
 - failure of closure of MF groups under quotients;
-- the MF radical, its single-corona detector, and the universal MF quotient.
+- the MF radical, its single-corona detector, and the universal MF quotient;
+- a finite universal Horn obstruction and a nonempty clopen cylinder of
+  non-MF eight-marked groups;
+- a dimension-independent finite test set and positive defect threshold
+  forcing the literal mark within operator norm `< 1` of the identity.
 
 The result is specific to operator-norm approximation. It does not decide
 whether the presenting group `E` itself is hyperlinear or sofic, or whether
@@ -273,6 +278,12 @@ Key audit files:
   signatures;
 - `scripts/check_non_mf_refs.py` and `scripts/check_property_tt_refs.py`:
   visible manuscript-to-Lean reference checks;
+- `scripts/check_non_mf_zero_input.py`: enforces that every Lean declaration
+  cited by the non-MF manuscript has no declaration inputs (all quantifiers
+  occur inside the proposition);
+- `docs/NON_MF_IMPACT_FORMAL_STATUS.md`: records which stronger consequences
+  have closed Lean endpoints and which still use literature or require new
+  mathematics;
 - `docs/PROPERTY_TT_CLAIM_MAP.md`: statement mapping for the property-(TT)/T
   paper.
 
