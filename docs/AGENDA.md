@@ -28,7 +28,30 @@ remaining gate is specifically to recover a positive-trace common
 coefficient packet with a flat pairing Fourier operator and complete
 cross-operator control.  Leakage only matters through the error in that
 complete identity.  Local Pauli signs and separate block-mass marginals do
-not supply the packet.  See `TRUE_FULL_SPACE_QUANTUM_FOURIER_GAP.md`.
+not supply the packet.  A common multiplicity holonomy `C` is harmless,
+because right multiplication reduces
+`N^(-1/2)J_N tensor C` to the scalar kernel.  On the already forced
+two-qubit Pauli packet `N=4`, the contraction gap is exactly `1/4`; a
+growing radical quotient is unnecessary if one can align the sixteen
+crossed blocks to one coefficient operator.  See
+`TRUE_FULL_SPACE_QUANTUM_FOURIER_GAP.md`.
+
+The exact trace-flat masses close the amplitude part of that fixed-packet
+endpoint.  In the normalized trace-half carrier, every one of the sixteen
+operator blocks has coefficient `L2` mass squared `1/8`.  If phase-corrected
+row/column covariance makes them asymptotically equal to `C_n/2`, then
+`||C_n||_2->1/sqrt(2)`.  But a constant-block contraction satisfies
+
+```text
+||T-(J_4/2) tensor C_n||_2 >= ||C_n||_2-1/2,
+```
+
+leaving the fixed squared gap `3/4-1/sqrt(2)`.  The sole analytic gate is
+therefore a sixteen-block coherence estimate.  It can be phrased as
+Reynolds invariance under the fixed group `C_2^2 times C_2^2`, requiring only
+four translation defects and no growing-outcome rounding.  The next group
+audit should identify those four defects as bounded raw/comb word defects.
+See `TRUE_TRACE_FLAT_COMMON_BLOCK_CONTRACTION_GAP.md`.
 
 ### 2026-08-14: two coproduct defects suffice for classicalization
 

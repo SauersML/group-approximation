@@ -103,6 +103,21 @@ This proof is operator-valued.  It does not assume that the entries of `T`
 commute, are projections, or arise from a classical permutation.  The
 contraction version does not even use a trace-overlap estimate.
 
+The estimate is also immune to one common multiplicity holonomy.  If
+`C in M` is unitary and
+
+```text
+K_(N,C)=N^(-1/2)J_N tensor C,                         (QFG9a)
+```
+
+then right multiplication by `1 tensor C*` sends `K_(N,C)` to `K_N` and
+sends every contraction to a contraction.  Hence `(QFG3)--(QFG4)` hold
+unchanged with `K_(N,C)` in place of `K_N`.  Stone--von Neumann
+factorizations of the form `S_fixed tensor C` therefore introduce no gauge
+loss at this endpoint.  What would be insufficient is a different
+coefficient operator in every matrix entry; aligning those entries is part
+of complete cross-operator control.
+
 ## 3. Application to a perfect binary pairing
 
 Let `V,W` be finite `F_2`-spaces with a perfect pairing `b`.  The normalized
@@ -166,6 +181,24 @@ analytic step:
 The recent multiplicative-unitary classicalization results remain correct
 fallback endpoints.  They are strictly stronger than what `(QFG11)` asks
 for.
+
+For the existing two-qubit Pauli packet the label space is already
+`C_2^2`, so `N=4`.  On that fixed packet `(QFG3)` reads
+
+```text
+||T-K_4||_2^2>=1/4,                                  (QFG11a)
+```
+
+and the unitary version reads `||T-K_4||_2^2>=1`.  Thus a successful atlas
+application need not pass to growing radical-quotient rank.  It may instead
+use the forced four-label Pauli Fourier factor and prove one complete
+crossed-operator identity on its multiplicity space.  The present raw/comb
+trace-flat calculation controls only the sixteen block masses, not their
+common coefficient operator, so it does not yet establish `(QFG11a)`.
+Those exact masses are nevertheless already large enough: common-block
+coherence would force the common coefficient to have `L2` norm
+`1/sqrt(2)>1/2`, and the variable-coefficient contraction gap would finish.
+See `TRUE_TRACE_FLAT_COMMON_BLOCK_CONTRACTION_GAP.md`.
 
 ## 5. The exact remaining atlas gate
 
