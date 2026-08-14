@@ -89,6 +89,23 @@ theorem canonicalAssignment_markedWord_ne_one :
   rw [freeGroup_lift_presentedGroup_generators]
   exact LiteralNonMFLinearWitness.literal_mark_ne_one
 
+/-- **Exact manuscript package for the literal finite Horn obstruction.**
+Every operator-MF group satisfies the displayed quasi-identity, while the
+canonical tuple in the literal group satisfies all premises and violates its
+conclusion. -/
+theorem manuscriptLiteralUniversalHorn :
+    (∀ (H : Type*) [Group H], IsOperatorMF H →
+      SatisfiesQuasiIdentity Generator relators markedWord H) ∧
+      (∀ r ∈ relators,
+        FreeGroup.lift
+          (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i)) r = 1) ∧
+      FreeGroup.lift
+          (fun i : Generator ↦ wordInMarkedGroup (FreeGroup.of i)) markedWord ≠
+        1 :=
+  ⟨fun H _ hMF ↦ isOperatorMF_satisfies_literalQuasiIdentity H hMF,
+    canonicalAssignment_satisfies_relators,
+    canonicalAssignment_markedWord_ne_one⟩
+
 /-- The literal group itself falsifies the finite quasi-identity satisfied by
 every operator-MF group. -/
 theorem literalMarkedGroup_not_satisfies_literalQuasiIdentity :

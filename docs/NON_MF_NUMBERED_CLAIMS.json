@@ -29,7 +29,7 @@
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "Kazhdan transport of asymptotic commutants",
-      "statement_sha256": "4e8d1741cfd71a993833f9c26d2ee92b3b5e367e2d287ab009605b6d2005c110",
+      "statement_sha256": "c204794f249ea15628f9e0fc379ee70348c1c85a3c2c7bd0f628acdfcc173b59",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -258,7 +258,7 @@
       "id": "prop:maximal-cstar",
       "environment": "proposition",
       "title": "universe-relative maximal group algebra",
-      "statement_sha256": "989aad573a60d75d0f5676ef1ce343f4904ff9d7ede436d1dda60289e5c56395",
+      "statement_sha256": "f3771d0c10a636af7ad8b58d5f4b09267c41abff01ec8684e77ee13086d7b495",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -454,7 +454,7 @@
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:pattern",
-        "lem:compressorcollapse"
+        "thm:kazhdan-transport"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -464,48 +464,6 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:corner",
-      "environment": "lemma",
-      "title": "coordinate finite-normal corner",
-      "statement_sha256": "8dd0103558406092d446dec2bf9529686b5285890a92bc40bb76f83c26e79ffb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCoordinateFiniteNormalCorner",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:compressorcollapse",
-      "environment": "lemma",
-      "title": "Kazhdan fixed-space transport",
-      "statement_sha256": "c0e4abc6417e27b9a0664e88bab68d1e16aeb1df0a90c49b141bafba74eeda7f",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "def:pattern"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCompressionDefectsCollapse",
           "covers": "the complete printed proposition"
         }
       ]
@@ -661,6 +619,52 @@
           "role": "exact",
           "module": "Sofic/LiteralNonMFConsequences",
           "declaration": "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:horn",
+      "environment": "proposition",
+      "title": "finite quasi-identity",
+      "statement_sha256": "3e2c6bb45f9627c7406cf50c0e3cef609bcdfc9ae3c2071f974ee9d11c52ba6b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "lem:portable"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralUniversalHorn",
+          "declaration": "GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:cylinder",
+      "environment": "corollary",
+      "title": "a clopen non-MF cylinder",
+      "statement_sha256": "1ef030144b4d4ab523e5d9e4cf402a921c41e305e638fc7bde03a870858a641f",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:horn",
+        "thm:A"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralMarkedCylinder",
+          "declaration": "GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder",
           "covers": "the complete printed proposition"
         }
       ]

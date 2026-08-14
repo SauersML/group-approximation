@@ -91,12 +91,6 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:criterion": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion"),
-    "lem:corner": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptCoordinateFiniteNormalCorner"),
-    "lem:compressorcollapse": (
-        "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptCompressionDefectsCollapse"),
     "lem:square": (
         "Sofic/CompressionDefectSquare",
         "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),
@@ -115,6 +109,12 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:nofaithful": (
         "Sofic/LiteralNonMFConsequences",
         "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target"),
+    "prop:horn": (
+        "Sofic/LiteralUniversalHorn",
+        "GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn"),
+    "cor:cylinder": (
+        "Sofic/LiteralMarkedCylinder",
+        "GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder"),
     "lem:subgroupMF": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.IsOperatorMF.subgroup"),
@@ -154,12 +154,13 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
-    "thm:criterion": ["def:pattern", "lem:compressorcollapse"],
-    "lem:compressorcollapse": ["def:pattern"],
+    "thm:criterion": ["def:pattern", "thm:kazhdan-transport"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
     "cor:nofaithful": ["thm:A"],
+    "prop:horn": ["thm:A", "lem:portable"],
+    "cor:cylinder": ["prop:horn", "thm:A"],
     "cor:quotclosure": ["thm:A", "lem:rfmf"],
 }
 
