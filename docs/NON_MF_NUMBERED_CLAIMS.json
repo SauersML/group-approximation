@@ -258,7 +258,7 @@
       "id": "prop:maximal-cstar",
       "environment": "proposition",
       "title": "universe-relative maximal group algebra",
-      "statement_sha256": "f3771d0c10a636af7ad8b58d5f4b09267c41abff01ec8684e77ee13086d7b495",
+      "statement_sha256": "e804583acb4798be88ed20146578c7063c54aa35bdefe8418af654e66873fcaf",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
