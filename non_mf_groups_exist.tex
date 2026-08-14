@@ -1796,6 +1796,11 @@ prove $w\ne1$.
 The group $W=\ClLamp(X)\rtimes V$ of Proposition~\ref{prop:witness} is a
 six-generated sofic group that is not MF.  In particular, soficity does
 not imply the MF property.
+Since every sofic group is hyperlinear, every sofic non-MF group is also a
+hyperlinear non-MF group.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF}
+Consequently $W$ also shows that hyperlinearity --- equivalently, Connes
+embeddability at the group level --- does not imply MF.
 
 \begin{proof}
 Write $\beta=\bar\alpha$ and, for $n\ge1$, put
@@ -2019,6 +2024,9 @@ normal subgroup.
 \item Is $E$ sofic, or hyperlinear?  The adjoint Hilbert-ultraproduct
 representation requires operator-norm multiplicative control, and neither
 property is decided by the results above.
+\item Does MF imply hyperlinearity?  A faithful embedding into a norm
+matrix corona need not make any coordinate trace faithful, so the defining
+MF representation does not immediately supply a hyperlinear model.
 \end{enumerate}
 
 
