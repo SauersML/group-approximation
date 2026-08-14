@@ -6,6 +6,31 @@ name: Build and commit property TT PDF
 on:
   push:
     branches: [main]
+    paths:
+      - property_tt_leavitt.tex
+      - GroupApproximation/**
+      - GroupApproximation.lean
+      - scripts/**
+      - docs/PROPERTY_TT_CLAIM_MAP.md
+      - docs/PROPERTY_TT_PROVENANCE.md
+      - docs/CLAIM_DECLS.txt
+      - docs/CLAIM_SIGNATURES.md
+      - docs/NON_MF_CLAIM_DECLS.txt
+      - docs/NON_MF_CLAIM_SIGNATURES.md
+      - docs/NON_MF_NUMBERED_CLAIMS.json
+      - experiments/sl3-p13-reductions-complete.json
+      - experiments/sl3-sos-radius0-certificate.json
+      - experiments/sl3-sos-radius0-certificate.npz
+      - experiments/sl3_p13_certificate_lean_generator.py
+      - experiments/sl3_p13_hodge_lean_generator.py
+      - experiments/sl3_p13_pair_table_generator.py
+      - experiments/sl3_p13_relator_replay.py
+      - experiments/sl3_p13_replay_lean_generator.py
+      - lakefile.toml
+      - lean-toolchain
+      - lake-manifest.json
+      - .github/workflows/build-property-tt-pdf.yml
+      - .github/workflows/p13-sharded-build.yml
   workflow_dispatch:
 
 permissions:
@@ -20,8 +45,12 @@ env:
   PDF_FILE: property_tt_leavitt.pdf
 
 jobs:
+  p13:
+    uses: ./.github/workflows/p13-sharded-build.yml
+
   build-pdf:
     name: Build and validate PDF
+    needs: p13
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -68,6 +97,18 @@ jobs:
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
 
+      - name: Download the bounded P13 build
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: p13-*-${{ github.sha }}
+          path: build/p13-prebuild
+
+      - name: Restore and seal the P13 build
+        run: |
+          python3 scripts/p13_build_shards.py restore-all \
+            --directory build/p13-prebuild
+          python3 scripts/p13_build_shards.py seal
+
       - name: Cache apt package downloads
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
@@ -106,7 +147,14 @@ jobs:
           python3 scripts/test_claim_map.py
           python3 scripts/check.py
 
+      - name: Install the pinned P13 generator runtime
+        run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
+
+      - name: Replay the exact P13 source generators
+        run: python3 scripts/check_p13_generated.py
+
       - name: Build the complete formal development
+        # The memory-intensive P13 leaves are already present and sealed.
         run: lake build
 
       - name: Build and calibrate the audit library

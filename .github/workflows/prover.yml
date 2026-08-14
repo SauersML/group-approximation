@@ -26,6 +26,7 @@ on:
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
+      - '.github/workflows/p13-sharded-build.yml'
       # The PDF release gate requires a successful prover run for the exact
       # source revision.  A manuscript or publication-workflow-only change
       # therefore has to create an exact-SHA prover run as well.
@@ -56,6 +57,7 @@ on:
       - 'lean-toolchain'
       - 'lake-manifest.json'
       - '.github/workflows/prover.yml'
+      - '.github/workflows/p13-sharded-build.yml'
       - 'non_mf_groups_exist.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
       - 'experiments/sl3-p13-reductions-complete.json'
@@ -112,9 +114,14 @@ jobs:
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
 
+  p13:
+    needs: gate
+    if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
+    uses: ./.github/workflows/p13-sharded-build.yml
+
   prove:
     name: Build and audit
-    needs: gate
+    needs: [gate, p13]
     if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
     runs-on: ubuntu-latest
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
@@ -194,6 +201,18 @@ jobs:
       # the dependency cache already had everything.
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
+
+      - name: Download the bounded P13 build
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: p13-*-${{ github.sha }}
+          path: build/p13-prebuild
+
+      - name: Restore and seal the P13 build
+        run: |
+          python3 scripts/p13_build_shards.py restore-all \
+            --directory build/p13-prebuild
+          python3 scripts/p13_build_shards.py seal
 
       # Saved BEFORE the long build, so a build that times out or fails still
       # leaves the (expensive, ~5GB unpacked) Mathlib oleans cached for the
@@ -281,6 +300,9 @@ jobs:
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
       - name: Build project
+        # The large P13 leaves were built one at a time on six independent
+        # runners and sealed above.  The ordinary root build can now schedule
+        # the remaining modules without exposing those 144 leaves together.
         run: lake build
 
       # The detector library, built separately so a deprecation warning in the
@@ -305,11 +327,11 @@ jobs:
       # modules it did compile.  This is the mechanism that lets a build too
       # long for one job converge over consecutive runs instead of restarting
       # from zero each time.
-      # Skipped when the restore already matched the exact source hash: the
-      # snapshot on disk is then byte-identical to the one in the cache, and
-      # re-uploading several GB per run buys nothing.
+      # Every run writes a unique cache key.  A same-source restore can still
+      # be a partial snapshot from an earlier failed run, so it must not be
+      # mistaken for a complete exact hit and suppress the newer checkpoint.
       - name: Save compiled project
-        if: always() && !startsWith(steps.build-restore.outputs.cache-matched-key, format('{0}-nonsofic-build-{1}-', runner.os, hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean')))
+        if: always()
         uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .lake/build

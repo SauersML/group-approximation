@@ -32,6 +32,7 @@ on:
       # the directory prevents a shared helper change from silently bypassing it.
       - scripts/**
       - .github/workflows/build-non-mf-pdf.yml
+      - .github/workflows/p13-sharded-build.yml
       - .github/workflows/prover.yml
   workflow_dispatch:
 
@@ -55,8 +56,12 @@ env:
   TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
 
 jobs:
+  p13:
+    uses: ./.github/workflows/p13-sharded-build.yml
+
   build-pdf:
     name: Build, kernel-audit, and validate PDF
+    needs: p13
     runs-on: ubuntu-latest
     timeout-minutes: 360
 
@@ -108,6 +113,18 @@ jobs:
       - name: Fetch precompiled Mathlib
         run: lake exe cache get
 
+      - name: Download the bounded P13 build
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: p13-*-${{ github.sha }}
+          path: build/p13-prebuild
+
+      - name: Restore and seal the P13 build
+        run: |
+          python3 scripts/p13_build_shards.py restore-all \
+            --directory build/p13-prebuild
+          python3 scripts/p13_build_shards.py seal
+
       - name: Install PDF validation tools
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -157,6 +174,7 @@ jobs:
         run: python3 scripts/check.py
 
       - name: Build the complete formal development
+        # The memory-intensive P13 leaves are already present and sealed.
         run: lake build
 
       - name: Build and calibrate the audit library

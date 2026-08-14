@@ -1,0 +1,439 @@
+#!/usr/bin/env python3
+"""Build and transport the expensive canonical P13 certificate in bounded shards.
+
+The generated residual certificate has 36 blocks, each split into four large
+kernel computations.  Asking Lake to build their common aggregator exposes all
+144 computations to its scheduler at once.  This helper instead builds one
+module target per Lake invocation and fixes Lean's worker pool at one thread.
+
+Six shards are used in CI.  Each shard owns six blocks (24 large part modules),
+and therefore stays comfortably within both the memory and wall-clock limits of
+a hosted runner.  The resulting Lake artifacts are archived with their trace
+files so a later job can merge the six disjoint shards and finish the ordinary
+project build without recompiling the expensive leaves.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+from pathlib import Path, PurePosixPath
+import subprocess
+import tarfile
+from typing import Iterable, Sequence
+
+
+SHARD_COUNT = 6
+BLOCK_WIDTH = 6
+PART_COUNT = 4
+MODULE_PREFIX = "GroupApproximation.Sofic.LiteralP13HodgeResidual"
+FOUNDATION_MODULE = (
+    "GroupApproximation.Sofic.LiteralP13HodgeCertificateCore"
+)
+RESIDUAL_AGGREGATOR_MODULE = (
+    "GroupApproximation.Sofic.LiteralP13HodgeResidual"
+)
+FINAL_CERTIFICATE_MODULE = (
+    "GroupApproximation.Sofic.LiteralP13HodgeCertificate"
+)
+FOUNDATION_ARCHIVE = "p13-foundation.tar.gz"
+
+
+def repo_root() -> Path:
+    root = Path(__file__).resolve().parent.parent
+    if not (root / "lakefile.toml").is_file():
+        raise RuntimeError(f"repository root has no lakefile.toml: {root}")
+    return root
+
+
+def block_names(shard: int) -> tuple[str, ...]:
+    if not 0 <= shard < SHARD_COUNT:
+        raise ValueError(f"shard must be in [0, {SHARD_COUNT}), got {shard}")
+    return tuple(
+        f"{row}{column}"
+        for row in range(BLOCK_WIDTH)
+        for column in range(BLOCK_WIDTH)
+        if (row * BLOCK_WIDTH + column) % SHARD_COUNT == shard
+    )
+
+
+def modules_for_shard(shard: int) -> tuple[str, ...]:
+    modules: list[str] = []
+    for block in block_names(shard):
+        modules.extend(
+            f"{MODULE_PREFIX}{block}Part{part}"
+            for part in range(PART_COUNT)
+        )
+        modules.append(f"{MODULE_PREFIX}{block}")
+    return tuple(modules)
+
+
+def source_path(root: Path, module: str) -> Path:
+    return root / f"{module.replace('.', '/')}.lean"
+
+
+def module_stem(module: str) -> str:
+    return module.replace(".", "/")
+
+
+def required_artifacts(module: str) -> tuple[str, ...]:
+    stem = module_stem(module)
+    return (
+        f".lake/build/lib/lean/{stem}.olean",
+        f".lake/build/lib/lean/{stem}.olean.hash",
+        f".lake/build/lib/lean/{stem}.ilean",
+        f".lake/build/lib/lean/{stem}.ilean.hash",
+        f".lake/build/lib/lean/{stem}.trace",
+        f".lake/build/ir/{stem}.c",
+        f".lake/build/ir/{stem}.c.hash",
+        f".lake/build/ir/{stem}.setup.json",
+    )
+
+
+def assert_sources(root: Path, modules: Iterable[str]) -> None:
+    missing = [str(source_path(root, module)) for module in modules
+               if not source_path(root, module).is_file()]
+    if missing:
+        raise RuntimeError("missing P13 source modules:\n" + "\n".join(missing))
+
+
+def run_lake(root: Path, arguments: Sequence[str]) -> None:
+    env = os.environ.copy()
+    # Lake 5 schedules builds through Lean's task pool and has no build-command
+    # jobs flag.  This runtime control bounds both Lake and the compiler child.
+    env["LEAN_NUM_THREADS"] = "1"
+    subprocess.run(
+        ["taskset", "-c", "0", "lake", *arguments],
+        cwd=root,
+        env=env,
+        check=True,
+    )
+
+
+def run_module_build(root: Path, module: str) -> None:
+    run_lake(root, ("build", f"+{module}:olean"))
+
+
+def artifact_files_for_modules(root: Path, modules: Sequence[str]) -> list[Path]:
+    files: set[Path] = set()
+    for module in modules:
+        stem = module_stem(module)
+        for artifact_root in (
+            root / ".lake/build/lib/lean",
+            root / ".lake/build/ir",
+        ):
+            parent = artifact_root / str(PurePosixPath(stem).parent)
+            basename = PurePosixPath(stem).name
+            if parent.is_dir():
+                for path in parent.glob(f"{basename}.*"):
+                    if path.is_symlink():
+                        raise RuntimeError(f"refusing symlinked build artifact: {path}")
+                    if path.is_file():
+                        files.add(path)
+
+    missing = [relative for module in modules
+               for relative in required_artifacts(module)
+               if not (root / relative).is_file()]
+    if missing:
+        raise RuntimeError(
+            "Lake did not produce the required P13 artifacts:\n"
+            + "\n".join(missing)
+        )
+    return sorted(files)
+
+
+def all_foundation_files(root: Path) -> list[Path]:
+    build = root / ".lake/build"
+    if not build.is_dir():
+        raise RuntimeError("foundation build produced no .lake/build directory")
+    files: list[Path] = []
+    # A foundation job deliberately starts without a project-build restore.
+    # Keep only Lake's module-output trees; configuration and any future
+    # top-level products do not belong in a transport artifact.
+    for artifact_root in (build / "lib", build / "ir"):
+        if not artifact_root.is_dir():
+            continue
+        for path in artifact_root.rglob("*"):
+            if path.is_symlink():
+                raise RuntimeError(f"refusing symlinked build artifact: {path}")
+            if path.is_file():
+                files.append(path)
+    missing = [relative for relative in required_artifacts(FOUNDATION_MODULE)
+               if not (root / relative).is_file()]
+    if missing:
+        raise RuntimeError(
+            "Lake did not produce the required P13 foundation artifacts:\n"
+            + "\n".join(missing)
+        )
+    return sorted(files)
+
+
+def write_archive(root: Path, archive: Path, files: Sequence[Path]) -> None:
+    if not files:
+        raise RuntimeError("refusing to create an empty P13 artifact archive")
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    with tarfile.open(archive, mode="w:gz", compresslevel=6) as output:
+        for path in files:
+            output.add(path, arcname=path.relative_to(root).as_posix(), recursive=False)
+    print(f"wrote {archive} with {len(files)} files")
+
+
+def build_foundation(root: Path, archive: Path) -> None:
+    assert_sources(root, (FOUNDATION_MODULE,))
+    run_module_build(root, FOUNDATION_MODULE)
+    write_archive(root, archive, all_foundation_files(root))
+
+
+def build_shard(root: Path, shard: int, archive: Path) -> None:
+    modules = modules_for_shard(shard)
+    assert_sources(root, modules)
+    for module in modules:
+        run_module_build(root, module)
+    write_archive(root, archive, artifact_files_for_modules(root, modules))
+
+
+def normalized_member_name(name: str) -> PurePosixPath:
+    path = PurePosixPath(name)
+    if path.is_absolute() or not path.parts or ".." in path.parts:
+        raise RuntimeError(f"unsafe path in P13 artifact archive: {name!r}")
+    if path.as_posix() != name:
+        raise RuntimeError(f"non-normalized path in P13 artifact archive: {name!r}")
+    if path.parts[:3] != (".lake", "build", "lib") and path.parts[:3] != (
+        ".lake", "build", "ir"
+    ):
+        raise RuntimeError(f"unexpected path in P13 artifact archive: {name!r}")
+    return path
+
+
+def validate_archive(
+    archive: Path, *, allowed_modules: Sequence[str] | None
+) -> tuple[tarfile.TarInfo, ...]:
+    if not archive.is_file():
+        raise RuntimeError(f"missing P13 artifact archive: {archive}")
+    allowed_stems = None if allowed_modules is None else tuple(
+        module_stem(module) for module in allowed_modules
+    )
+    seen: set[str] = set()
+    with tarfile.open(archive, mode="r:gz") as source:
+        members = tuple(source.getmembers())
+    if not members:
+        raise RuntimeError(f"empty P13 artifact archive: {archive}")
+    for member in members:
+        path = normalized_member_name(member.name)
+        if not member.isfile():
+            raise RuntimeError(
+                f"non-regular member in P13 artifact archive: {member.name!r}"
+            )
+        if member.name in seen:
+            raise RuntimeError(
+                f"duplicate member in P13 artifact archive: {member.name!r}"
+            )
+        seen.add(member.name)
+        if allowed_stems is not None:
+            if path.parts[:5] == (".lake", "build", "lib", "lean", "GroupApproximation"):
+                relative = "/".join(path.parts[4:])
+            elif path.parts[:4] == (".lake", "build", "ir", "GroupApproximation"):
+                relative = "/".join(path.parts[3:])
+            else:
+                raise RuntimeError(
+                    f"non-module path in P13 shard archive: {member.name!r}"
+                )
+            if not any(relative.startswith(f"{stem}.") for stem in allowed_stems):
+                raise RuntimeError(
+                    f"artifact does not belong to this P13 shard: {member.name!r}"
+                )
+    if allowed_modules is not None:
+        missing = [relative for module in allowed_modules
+                   for relative in required_artifacts(module)
+                   if relative not in seen]
+        if missing:
+            raise RuntimeError(
+                f"incomplete P13 shard archive {archive}:\n" + "\n".join(missing)
+            )
+    return members
+
+
+def extract_archive(
+    root: Path, archive: Path, *, allowed_modules: Sequence[str] | None
+) -> set[str]:
+    members = validate_archive(archive, allowed_modules=allowed_modules)
+    with tarfile.open(archive, mode="r:gz") as source:
+        source.extractall(root, members=members, filter="data")
+    return {member.name for member in members}
+
+
+def restore_foundation(root: Path, archive: Path) -> None:
+    restored = extract_archive(root, archive, allowed_modules=None)
+    missing = [relative for relative in required_artifacts(FOUNDATION_MODULE)
+               if relative not in restored]
+    if missing:
+        raise RuntimeError(
+            f"incomplete P13 foundation archive {archive}:\n"
+            + "\n".join(missing)
+        )
+    print(f"restored P13 foundation from {archive}")
+
+
+def find_one(directory: Path, name: str) -> Path:
+    matches = sorted(directory.rglob(name))
+    if len(matches) != 1:
+        raise RuntimeError(
+            f"expected exactly one {name} below {directory}, found {len(matches)}"
+        )
+    return matches[0]
+
+
+def restore_all(root: Path, directory: Path) -> None:
+    archives: list[tuple[Path, Sequence[str] | None]] = [
+        (find_one(directory, FOUNDATION_ARCHIVE), None)
+    ]
+    archives.extend(
+        (find_one(directory, f"p13-shard-{shard}.tar.gz"),
+         modules_for_shard(shard))
+        for shard in range(SHARD_COUNT)
+    )
+
+    member_sets: list[set[str]] = []
+    for archive, modules in archives:
+        members = validate_archive(archive, allowed_modules=modules)
+        names = {member.name for member in members}
+        overlap = set().union(*member_sets).intersection(names) if member_sets else set()
+        if overlap:
+            raise RuntimeError(
+                "P13 artifact archives overlap:\n" + "\n".join(sorted(overlap))
+            )
+        member_sets.append(names)
+
+    for archive, modules in archives:
+        extract_archive(root, archive, allowed_modules=modules)
+
+    expected_modules = tuple(
+        module
+        for shard in range(SHARD_COUNT)
+        for module in modules_for_shard(shard)
+    )
+    missing = [relative for module in expected_modules
+               for relative in required_artifacts(module)
+               if not (root / relative).is_file()]
+    if missing:
+        raise RuntimeError(
+            "merged P13 artifacts are incomplete:\n" + "\n".join(missing)
+        )
+    print(
+        f"restored the foundation and {SHARD_COUNT} P13 shards "
+        f"({len(expected_modules)} modules)"
+    )
+
+
+def seal_restored_shards(root: Path) -> None:
+    """Replay every restored trace under the bounded scheduler.
+
+    The no-build pass rejects a missing or stale block (and therefore a missing
+    or stale part) without compiling anything.  Only after that succeeds may
+    the tiny common aggregator itself be built.
+    """
+    assert_sources(root, (RESIDUAL_AGGREGATOR_MODULE, FINAL_CERTIFICATE_MODULE))
+    blocks = tuple(
+        f"{MODULE_PREFIX}{row}{column}"
+        for row in range(BLOCK_WIDTH)
+        for column in range(BLOCK_WIDTH)
+    )
+    run_lake(
+        root,
+        ("build", "--no-build", *(f"+{module}:olean" for module in blocks)),
+    )
+    restored_modules = tuple(
+        module
+        for shard in range(SHARD_COUNT)
+        for module in modules_for_shard(shard)
+    )
+
+    def snapshot() -> dict[str, tuple[int, int]]:
+        result: dict[str, tuple[int, int]] = {}
+        for module in restored_modules:
+            for relative in required_artifacts(module):
+                stat = (root / relative).stat()
+                result[relative] = (stat.st_size, stat.st_mtime_ns)
+        return result
+
+    before = snapshot()
+    run_module_build(root, RESIDUAL_AGGREGATOR_MODULE)
+    run_module_build(root, FINAL_CERTIFICATE_MODULE)
+    after = snapshot()
+    if before != after:
+        changed = sorted(
+            relative for relative in before.keys() | after.keys()
+            if before.get(relative) != after.get(relative)
+        )
+        raise RuntimeError(
+            "sealing unexpectedly changed a restored P13 leaf/block artifact:\n"
+            + "\n".join(changed)
+        )
+    print(
+        f"sealed {len(restored_modules)} restored P13 modules and the final "
+        "certificate without rebuilding a leaf or block"
+    )
+
+
+def self_test(root: Path) -> None:
+    blocks = [block for shard in range(SHARD_COUNT) for block in block_names(shard)]
+    expected_blocks = [f"{row}{column}" for row in range(BLOCK_WIDTH)
+                       for column in range(BLOCK_WIDTH)]
+    if sorted(blocks) != expected_blocks or len(set(blocks)) != BLOCK_WIDTH**2:
+        raise RuntimeError("P13 shard partition is not exhaustive and disjoint")
+    modules = [module for shard in range(SHARD_COUNT)
+               for module in modules_for_shard(shard)]
+    if len(modules) != BLOCK_WIDTH**2 * (PART_COUNT + 1):
+        raise RuntimeError("P13 shard module roster has the wrong size")
+    if len(set(modules)) != len(modules):
+        raise RuntimeError("P13 shard module roster contains duplicates")
+    assert_sources(root, (FOUNDATION_MODULE, *modules))
+    print(
+        f"P13 shard roster: {BLOCK_WIDTH**2 * PART_COUNT} part modules and "
+        f"{BLOCK_WIDTH**2} block modules across {SHARD_COUNT} disjoint shards"
+    )
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    foundation = subparsers.add_parser("build-foundation")
+    foundation.add_argument("--archive", type=Path, required=True)
+
+    shard = subparsers.add_parser("build-shard")
+    shard.add_argument("--shard", type=int, required=True)
+    shard.add_argument("--archive", type=Path, required=True)
+
+    restore = subparsers.add_parser("restore-foundation")
+    restore.add_argument("--archive", type=Path, required=True)
+
+    restore_everything = subparsers.add_parser("restore-all")
+    restore_everything.add_argument("--directory", type=Path, required=True)
+
+    subparsers.add_parser("seal")
+    subparsers.add_parser("self-test")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    root = repo_root()
+    if args.command == "build-foundation":
+        build_foundation(root, args.archive.resolve())
+    elif args.command == "build-shard":
+        build_shard(root, args.shard, args.archive.resolve())
+    elif args.command == "restore-foundation":
+        restore_foundation(root, args.archive.resolve())
+    elif args.command == "restore-all":
+        restore_all(root, args.directory.resolve())
+    elif args.command == "seal":
+        seal_restored_shards(root)
+    elif args.command == "self-test":
+        self_test(root)
+    else:
+        raise AssertionError(f"unhandled command: {args.command}")
+
+
+if __name__ == "__main__":
+    main()
