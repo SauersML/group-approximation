@@ -270,6 +270,16 @@ jobs:
             exit 1
           }
 
+      - name: Assert generation changed only release artifacts
+        run: |
+          allowed='^( M non_mf_groups_exist\.pdf|\?\? build/|\?\? leanchecker\.log$|\?\? kernel-audit\.log$|\?\? signatures\.log$|\?\? non_mf_groups_exist\.pdf$|\?\? pdf-render-check/)$'
+          unexpected="$(git status --porcelain | grep -Ev "$allowed" || true)"
+          test -z "$unexpected" || {
+            echo "Unexpected source change during release generation:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          }
+
       - name: Upload PDF validation preview
         uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4
         with:
@@ -313,16 +323,6 @@ jobs:
             kernel-audit.log
             signatures.log
             leanchecker.log
-
-      - name: Assert generation changed only release artifacts
-        run: |
-          allowed='^( M non_mf_groups_exist\.pdf|\?\? build/|\?\? leanchecker\.log$|\?\? kernel-audit\.log$|\?\? signatures\.log$|\?\? non_mf_groups_exist\.pdf$|\?\? pdf-render-check/)$'
-          unexpected="$(git status --porcelain | grep -Ev "$allowed" || true)"
-          test -z "$unexpected" || {
-            echo "Unexpected source change during release generation:" >&2
-            printf '%s\n' "$unexpected" >&2
-            exit 1
-          }
 
       - name: Attest the PDF and manifest
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
