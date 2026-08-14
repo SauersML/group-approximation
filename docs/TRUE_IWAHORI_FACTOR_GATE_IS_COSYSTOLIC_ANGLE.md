@@ -39,10 +39,20 @@ This gives a more precise endpoint for factorized `BS(1,4)` repair:
 2. prove a uniform upper-Laplacian gap on the orthogonal complement of the
    harmonic space for the finite congruence coefficient systems.
 
-Those two statements support a dimension-free Newton iteration.  The first
-is an integrability statement special to the factorization `C=AB`; the
-second is a cosystolic spectral estimate.  This separates the actual target
-from the false demand that all of `H^2` disappear.
+Those two statements support a dimension-free Newton iteration **inside a
+uniform neighborhood of the compatible locus**.  They do not by themselves
+put an arbitrary small-defect pair in that neighborhood.  A third statement
+is required:
+
+3. prove a uniform basin-capture theorem saying that sufficiently small
+   Iwahori defect forces the pair into the Newton neighborhood of some
+   compatible representation.
+
+The first statement is an integrability assertion special to the
+factorization `C=AB`; the second is a cosystolic spectral estimate; the third
+is the global microstate-uniqueness input.  This separates the actual target
+from both the false demand that all of `H^2` disappear and the false inference
+from local rigidity to global stability.
 
 ## 2. The Euler characteristic forces degree-two harmonic mass
 
@@ -279,18 +289,23 @@ cohomology vanishing.
 
 > **Iwahori cosystolic Newton theorem.**  There are constants
 > `kappa,c,r>0`, independent of the matrix dimension and of the congruence
-> type, with the following property.  For every compatible representation
-> `rho` and every pair of exact modular vertex representations within
-> `r` of `rho`:
+> type, and a function `b(delta)->0`, with the following properties.
 >
-> 1. the positive singular values of `R_(Ad rho)` are at least `kappa`;
-> 2. after exact `BS(1,4)` repair, the harmonic component of the edge
->    mismatch is at most `c delta^2`; and
-> 3. the modular representation strata admit local retractions with a
+> 0. Every exact modular vertex pair of Iwahori defect at most `delta` is,
+>    after the permitted negligible padding, within `b(delta)` of some
+>    compatible representation.
+> 1. For every compatible representation `rho` and every pair of exact
+>    modular vertex representations within `r` of `rho`, the positive
+>    singular values of `R_(Ad rho)` are at least `kappa`.
+> 2. After exact `BS(1,4)` repair in this neighborhood, the harmonic
+>    component of the edge mismatch is at most `c delta^2`.
+> 3. The modular representation strata admit local retractions with a
 >    dimension-free quadratic remainder.
 
-Given this theorem, solve the image component using `(ICA21)`, retract to
-the two exact vertex varieties, and use item 2 to obtain
+Choose `delta` small enough that `b(delta)<r`.  Item 0 supplies a compatible
+base point in the Newton neighborhood.  Solve the image component using
+`(ICA21)`, retract to the two exact vertex varieties, and use item 2 to
+obtain
 
 ```text
 delta_(next)<=C delta^2,
@@ -319,11 +334,21 @@ The following parts of this note are exact:
 5. factorized repair needs a positive singular-value estimate modulo the
    kernel, not vanishing of the cokernel.
 
-The Iwahori cosystolic Newton theorem in Section 6 is not proved here.  It
-is the new terminal gate.  Its advantage over the previous formulation is
+The Iwahori cosystolic Newton theorem in Section 6 is not proved here.  In
+particular, item 0 is not a consequence of items 1--3.  Items 1--3 are local
+statements at an honest finite-dimensional representation of `G`; item 0
+rules out sequences of small-defect vertex pairs which remain a fixed
+distance from every honest representation.  Such a sequence becomes an
+exact representation only after passage to a tracial matrix ultraproduct,
+so excluding it is precisely a matrix-coordinate lifting or microstate-
+uniqueness assertion.
+
+This corrects an earlier overstatement in this note: a dimension-free Newton
+iteration cannot be started from small defect alone.  Its advantage remains
 that it permits the harmonic mass which arithmetic topology forces, while
-isolating the additional claim that the special `BS(1,4)` correction never
-enters that mass.
+isolating the additional local claim that the special `BS(1,4)` correction
+never enters that mass.  The global basin-capture claim is an independent,
+load-bearing gate.
 
 ## References
 
