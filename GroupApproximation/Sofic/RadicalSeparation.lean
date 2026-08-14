@@ -74,6 +74,25 @@ theorem not_mem_hyperlinearResidual_of_hyperlinear_detector
     x ∉ hyperlinearResidual G :=
   not_hyperlinearInvisible_of_hyperlinear_detector hH rho hdetect
 
+/-- A hyperlinear detector which is faithful on a mapped subgroup makes the
+hyperlinear residual meet that subgroup trivially.  This is the semantic
+kernel step in the balanced radical-implantation construction: the operator
+algebra supplies `rho`, while this theorem records that every nonidentity
+element of the implanted finite group is detected simultaneously. -/
+theorem comap_hyperlinearResidual_eq_bot_of_detector_injective
+    {A : Type u} [Group A]
+    (i : A →* G) (hH : IsHyperlinear H) (rho : G →* H)
+    (hinj : Function.Injective (rho.comp i)) :
+    (hyperlinearResidual G).comap i = ⊥ := by
+  apply le_antisymm
+  · intro a ha
+    apply Subgroup.mem_bot.mpr
+    apply hinj
+    change rho (i a) = rho (i 1)
+    rw [map_one, map_one]
+    exact ha H inferInstance hH rho
+  · exact bot_le
+
 /-- A hyperlinear group has trivial hyperlinear residual: its identity
 homomorphism is already a hyperlinear detector for every nonidentity element. -/
 theorem hyperlinearResidual_eq_bot_of_isHyperlinear (hG : IsHyperlinear G) :

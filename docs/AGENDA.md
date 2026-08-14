@@ -60,6 +60,18 @@ identifying `w` with a normal generator of `PSL(2,13)`.  See
 `FALSE_PERFECT_RADICAL_IMPLANTATION_CANNOT_CARRY_SCALAR_PHASE.md`; the general
 lemma is Lean-checked in `Sofic/NormallyGeneratedMFObstruction.lean`.
 
+There is nevertheless a balanced repair, recorded in
+`TRUE_BALANCED_RADICAL_IMPLANTATION_IS_CE_VISIBLE.md`.  Direct-sum the scalar
+`w=-1` detector with the trivial `w=+1` sector in equal trace, identify the
+resulting balanced `C^2` with the involution algebra in the regular
+representation of the attached finite group, and take the reduced tracial
+amalgam.  Brown--Dykema--Jung's hyperfinite-amalgam theorem makes the target
+CE.  Hence for `A=PSL(2,13)` the whole embedded simple group lies in the MF
+radical while its intersection with the hyperlinear radical is trivial.  The
+abstract detector step is Lean-checked in `Sofic/RadicalSeparation.lean`.
+This strengthens MF-versus-hyperlinear separation but still does not create
+the required sofic-versus-hyperlinear radical collision.
+
 The same audit corrects the tempting proof that the original Clifford witness
 `W` is sofic merely because it is locally-finite-by-residually-finite.  That
 reverses Elek--Szabo's extension theorem.  A specific repair does identify the
