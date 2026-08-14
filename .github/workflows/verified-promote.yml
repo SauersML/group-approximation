@@ -1,0 +1,52 @@
+name: Promote successful Lean gate to verified
+
+on:
+  workflow_run:
+    workflows: ["Lean Prover CI"]
+    types: [completed]
+
+# Promotion is deliberately a separate, short workflow.  The Prover workflow
+# remains read-only and its success means exactly that every proof gate passed.
+# This workflow then checks out that exact certified SHA, so the classifier it
+# executes is the one the successful gate actually verified.
+concurrency:
+  group: verified-certified-promotion
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  advance:
+    name: Fast-forward the certified revision
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the exact certified commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Refresh main and verified
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin \
+            '+refs/heads/main:refs/remotes/origin/main' \
+            '+refs/heads/verified:refs/remotes/origin/verified'
+
+      - name: Calibrate and advance
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/advance_verified_branch.py self-test
+          python3 scripts/advance_verified_branch.py advance \
+            --certified-ref '${{ github.event.workflow_run.head_sha }}' \
+            --main-ref refs/remotes/origin/main \
+            --verified-ref refs/remotes/origin/verified \
+            --remote origin

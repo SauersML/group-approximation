@@ -31,6 +31,7 @@ on:
       - '.github/workflows/prover.yml'
       - '.github/workflows/p13-sharded-build.yml'
       - '.github/workflows/verified-fast-forward.yml'
+      - '.github/workflows/verified-promote.yml'
       # The PDF release gate requires a successful prover run for the exact
       # source revision.  A manuscript or publication-workflow-only change
       # therefore has to create an exact-SHA prover run as well.
@@ -68,6 +69,7 @@ on:
       - '.github/workflows/prover.yml'
       - '.github/workflows/p13-sharded-build.yml'
       - '.github/workflows/verified-fast-forward.yml'
+      - '.github/workflows/verified-promote.yml'
       - 'non_mf_groups_exist.tex'
       - 'property_tt_leavitt.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
@@ -312,8 +314,8 @@ jobs:
       # The build itself.  `lakefile.toml` sets `-DwarningAsError=true` for the
       # library, so an unused variable or a deprecated lemma is a failure here.
       - name: Build project
-        # The large P13 leaves were built one at a time on six independent
-        # runners and sealed above.  The ordinary root build can now schedule
+        # The large P13 leaves were built one block at a time in 36 bounded
+        # shards and sealed above.  The ordinary root build can now schedule
         # the remaining modules without exposing those 144 leaves together.
         run: lake build
 
@@ -427,35 +429,3 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
-
-  advance-verified:
-    name: Fast-forward verified after the exact Lean gate
-    needs: [gate, prove]
-    if: ${{ needs.prove.result == 'success' && github.ref == 'refs/heads/main' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write
-    steps:
-      - name: Check out the verified commit
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          fetch-depth: 0
-          persist-credentials: true
-
-      - name: Refresh main and verified
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch --no-tags origin \
-            '+refs/heads/main:refs/remotes/origin/main' \
-            '+refs/heads/verified:refs/remotes/origin/verified'
-
-      - name: Advance the certified commit and safe publication descendants
-        run: |
-          python3 scripts/advance_verified_branch.py self-test
-          python3 scripts/advance_verified_branch.py advance \
-            --certified-ref '${{ github.sha }}' \
-            --main-ref refs/remotes/origin/main \
-            --verified-ref refs/remotes/origin/verified \
-            --remote origin

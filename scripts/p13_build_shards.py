@@ -6,11 +6,12 @@ kernel computations.  Asking Lake to build their common aggregator exposes all
 144 computations to its scheduler at once.  This helper instead builds one
 module target per Lake invocation and fixes Lean's worker pool at one thread.
 
-Six shards are used in CI.  Each shard owns six blocks (24 large part modules),
-and therefore stays comfortably within both the memory and wall-clock limits of
-a hosted runner.  The resulting Lake artifacts are archived with their trace
-files so a later job can merge the six disjoint shards and finish the ordinary
-project build without recompiling the expensive leaves.
+CI uses one shard per block.  Each bounded job owns four large part modules and
+their small block wrapper; the workflow limits concurrent shards explicitly.
+This keeps both peak memory and wall time bounded without making one runner
+perform 24 large kernel replays serially.  The resulting Lake artifacts are
+archived with their trace files so a later job can merge the 36 disjoint shards
+and finish the ordinary project build without recompiling an expensive leaf.
 """
 
 from __future__ import annotations
@@ -25,8 +26,8 @@ import tarfile
 from typing import Iterable, Sequence
 
 
-SHARD_COUNT = 6
 BLOCK_WIDTH = 6
+SHARD_COUNT = BLOCK_WIDTH**2
 PART_COUNT = 4
 MODULE_PREFIX = "GroupApproximation.Sofic.LiteralP13HodgeResidual"
 FOUNDATION_CORE_MODULE = (

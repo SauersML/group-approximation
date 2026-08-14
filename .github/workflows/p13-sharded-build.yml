@@ -94,12 +94,51 @@ jobs:
     name: Build P13 shard ${{ matrix.shard }}
     needs: foundation
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 120
     strategy:
       fail-fast: false
-      max-parallel: 6
+      # One block (four large kernel computations) per runner.  Twelve-way
+      # bounded parallelism gives three short waves instead of six runners
+      # each replaying 24 leaves serially for hours.
+      max-parallel: 12
       matrix:
-        shard: [0, 1, 2, 3, 4, 5]
+        shard:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 16
+          - 17
+          - 18
+          - 19
+          - 20
+          - 21
+          - 22
+          - 23
+          - 24
+          - 25
+          - 26
+          - 27
+          - 28
+          - 29
+          - 30
+          - 31
+          - 32
+          - 33
+          - 34
+          - 35
 
     steps:
       - name: Check out repository
