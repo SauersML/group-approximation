@@ -4646,3 +4646,24 @@ using the internal regular-block unitaries would assume a finite approximation
 of the already nonsofic action.  The next live invariant is therefore the
 multiplicity-block holonomy around finite word-prefix diagrams: it must either
 force object completion or carry a uniform HS defect.
+
+### 2026-08-13: Clifford hyperlinearity forces instability of the ambient group alone
+
+The perfect even Clifford cover sharpens the existing stability endpoint.
+If the cover were hyperlinear, its regular character would have a trace-`1/2`
+negative central corner. Character rigidity identifies that corner with the
+canonical CAR trace. CAR microstates then give a normalized-HS asymptotic
+representation of the classical ambient group `G`, together with a root
+Majorana commuting asymptotically with `Gamma` but staying at distance
+`sqrt(2)` from its strict predecessor conjugate. The relative-wall theorem
+therefore implies that `G` is not flexibly normalized-HS stable.
+Equivalently, flexible normalized-HS stability of `G` alone would make the
+perfect Clifford cover an explicit nonhyperlinear group.
+
+There is a crucial normalization firewall: 2-Kazhdan cohomology yields
+stability for the unnormalized Frobenius norm, whereas arbitrary CE
+microstates provide only normalized-HS defects. One additionally needs
+`sqrt(d_n) epsilon_n -> 0`, and neither CE nor subsequence selection
+provides that rate. Thus the existing coefficientwise `H^2` gate cannot
+be advertised as closing the Clifford argument. Full proof and scope:
+`TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
