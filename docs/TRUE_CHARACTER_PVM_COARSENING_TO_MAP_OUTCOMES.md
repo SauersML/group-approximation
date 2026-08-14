@@ -81,6 +81,12 @@ use the same character PVM and the same decoder on their shared endpoint.
 The tree-gluing theorem then produces the common law needed by the robust
 `1/36` floor.
 
+Nor must the decoder land in one fixed quotient rank.  Each character atom
+may carry its own nonzero paired radical quotient.  The pointwise weighted
+error floor is at least `1/4` for every such fiber, independently of its
+dimension, and convex averaging preserves it.  Consequently no rank
+pigeonhole or positive-density fixed-rank selection is part of `(CPC6)`.
+
 ## 3. The remaining word is multiplication-coherent
 
 Additive exactification already supplies character PVMs on every fixed
@@ -131,4 +137,3 @@ sofic kernel + amenable quotient => sofic extension,
 not “amenable kernel + sofic quotient.”  Therefore it cannot establish
 soficity or hyperlinearity of the generalized Kun--Thom wreath product, and
 the CAR detour does not bypass `(CPC6)`.
-

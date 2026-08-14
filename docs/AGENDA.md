@@ -57,6 +57,12 @@ marginals are preserved.  The unresolved theorem is therefore precisely
 construction of that decoder from cross-root multiplication, not rounding
 `|V|^|V|` unrelated projections.
 
+The radical quotient rank may also vary across character atoms.  Since the
+pointwise weighted error floor is at least `1/4` for every nonzero binary
+fiber, averaging over a bundle of different ranks preserves the same floor.
+No positive-trace fixed-rank selection lemma is needed; the decoder may be
+fibered by character and rank.
+
 ### 2026-08-13: finite paired-radical endpoint is closed
 
 The exact finite contradiction behind the paired-radical program is now

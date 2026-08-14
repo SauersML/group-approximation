@@ -150,6 +150,26 @@ independence has not been extracted.  See
 `FALSE_INDEPENDENT_BISTOCHASTIC_KERNEL_EXTRACTION.md` for the two-point
 counterexample and the corrected common-latent-permutation gate.
 
+The finite quotient dimension need not be constant across latent atoms.
+For every nonzero binary pairing fiber, `N>=2`, so
+
+```text
+(N-1)/(2N) >= 1/4.                                  (RPF10a)
+```
+
+Apply `(RPF10)` separately on each atom with its own radical quotients and
+then average.  The resulting global bound is
+
+```text
+E eps01 + 4 E eps00 + 4 E eps11 >= 1/4.              (RPF10b)
+```
+
+Thus the extraction theorem does not need to select a single quotient rank
+of positive trace.  It may retain a finite bundle of arbitrary nonzero
+ranks, provided the three edge laws glue over the same latent atom.  The
+convex step is formalized source-first as
+`one_fourth_le_weighted_three_error`; it was not compiled in this iteration.
+
 ## 5. Formalization status
 
 `GroupApproximation/Leavitt/RobustPairedQuotientFloor.lean` now formalizes

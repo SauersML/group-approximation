@@ -577,6 +577,40 @@ theorem weightedNatAverage_mono
   intro ω _
   exact mul_le_mul_of_nonneg_left (by exact_mod_cast hfg ω) (hμ ω)
 
+/-- Weighted average of a real-valued statistic on a finite latent
+probability space. -/
+def weightedRealAverage {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ) (f : Ω → ℝ) : ℝ :=
+  ∑ ω, μ ω * f ω
+
+theorem weightedRealAverage_mono
+    {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ) (f g : Ω → ℝ)
+    (hμ : ∀ ω, 0 ≤ μ ω) (hfg : ∀ ω, f ω ≤ g ω) :
+    weightedRealAverage μ f ≤ weightedRealAverage μ g := by
+  apply Finset.sum_le_sum
+  intro ω _
+  exact mul_le_mul_of_nonneg_left (hfg ω) (hμ ω)
+
+/-- Uniform pointwise error floors survive disintegration over fibers of
+different finite ranks.  In the paired-quotient application `1/4` is the
+minimum of `(N-1)/(2*N)` over every nonzero binary fiber (`N ≥ 2`). -/
+theorem one_fourth_le_weighted_three_error
+    {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ) (e₀₁ e₀₀ e₁₁ : Ω → ℝ)
+    (hμnonneg : ∀ ω, 0 ≤ μ ω) (hμsum : ∑ ω, μ ω = 1)
+    (hfloor : ∀ ω, (1 : ℝ) / 4 ≤ e₀₁ ω + 4 * e₀₀ ω + 4 * e₁₁ ω) :
+    (1 : ℝ) / 4 ≤
+      weightedRealAverage μ e₀₁ +
+        4 * weightedRealAverage μ e₀₀ +
+          4 * weightedRealAverage μ e₁₁ := by
+  have havg := weightedRealAverage_mono μ
+    (fun _ ↦ (1 : ℝ) / 4)
+    (fun ω ↦ e₀₁ ω + 4 * e₀₀ ω + 4 * e₁₁ ω)
+    hμnonneg hfloor
+  simpa [weightedRealAverage, hμsum, Finset.mul_sum,
+    Finset.sum_add_distrib, mul_add, mul_assoc] using havg
+
 /-- Averaged robust floor for one common classical law on four map-valued
 transports.  This is the precise classicalization endpoint needed from the
 matrix-coordinate extraction: all three errors use the same latent `ω`. -/
