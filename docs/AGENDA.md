@@ -4,6 +4,16 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: differential audit from non-MF to nonhyperlinearity
+
+`NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md` records the repository-first
+comparison.  The literal MF-radical mark cannot be upgraded to a tracial
+kill because an explicit CE model sends it to `-1`.  The direct surviving
+descendant is the Leavitt--Steinberg HS-stability fork.  Its first live,
+not-already-refuted input is finite-multiplicity coefficient extraction, not
+generic commutant recovery.  The semantic endpoint is now Lean-checked:
+a nonidentity member of `hyperlinearResidual` implies `¬ IsHyperlinear`.
+
 ### 2026-08-13: the Kun--Thom Clifford phase has no quantitative loss
 
 The finite-coordinate endpoint in `TRUE_KUN_THOM_CLIFFORD_PHASE.md` is now
