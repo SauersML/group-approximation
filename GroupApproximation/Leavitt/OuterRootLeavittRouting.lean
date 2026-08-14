@@ -68,7 +68,12 @@ theorem leavitt_outerRoot_nested_00 (L : LeavittFamily R) (a b : R) :
       ⁅elementaryRoot (1 : Fin 4) 2 (by decide) (1 : R),
         elementaryRoot (2 : Fin 4) 3 (by decide) (L.s0 * b)⁆⁆ =
       elementaryRoot (0 : Fin 4) 3 (by decide) (a * b) := by
-  simpa [mul_assoc] using
+  have hcoeff : (a * L.t0) * (1 : R) * (L.s0 * b) = a * b := by
+    calc
+      (a * L.t0) * (1 : R) * (L.s0 * b) =
+          a * ((L.t0 * L.s0) * b) := by noncomm_ring
+      _ = a * b := by rw [L.t0_s0, one_mul]
+  simpa only [hcoeff] using
     outerRoot_middle_nested_commutator (a * L.t0) (1 : R) (L.s0 * b)
 
 /-- The crossed `(t₀,s₁)` outer-root path vanishes. -/
@@ -76,7 +81,12 @@ theorem leavitt_outerRoot_nested_01 (L : LeavittFamily R) (a b : R) :
     ⁅elementaryRoot (0 : Fin 4) 1 (by decide) (a * L.t0),
       ⁅elementaryRoot (1 : Fin 4) 2 (by decide) (1 : R),
         elementaryRoot (2 : Fin 4) 3 (by decide) (L.s1 * b)⁆⁆ = 1 := by
-  simpa [mul_assoc] using
+  have hcoeff : (a * L.t0) * (1 : R) * (L.s1 * b) = 0 := by
+    calc
+      (a * L.t0) * (1 : R) * (L.s1 * b) =
+          a * ((L.t0 * L.s1) * b) := by noncomm_ring
+      _ = 0 := by rw [L.t0_s1, zero_mul, mul_zero]
+  simpa only [hcoeff, elementaryRoot_zero] using
     outerRoot_middle_nested_commutator (a * L.t0) (1 : R) (L.s1 * b)
 
 /-- The crossed `(t₁,s₀)` outer-root path vanishes. -/
@@ -84,7 +94,12 @@ theorem leavitt_outerRoot_nested_10 (L : LeavittFamily R) (a b : R) :
     ⁅elementaryRoot (0 : Fin 4) 1 (by decide) (a * L.t1),
       ⁅elementaryRoot (1 : Fin 4) 2 (by decide) (1 : R),
         elementaryRoot (2 : Fin 4) 3 (by decide) (L.s0 * b)⁆⁆ = 1 := by
-  simpa [mul_assoc] using
+  have hcoeff : (a * L.t1) * (1 : R) * (L.s0 * b) = 0 := by
+    calc
+      (a * L.t1) * (1 : R) * (L.s0 * b) =
+          a * ((L.t1 * L.s0) * b) := by noncomm_ring
+      _ = 0 := by rw [L.t1_s0, zero_mul, mul_zero]
+  simpa only [hcoeff, elementaryRoot_zero] using
     outerRoot_middle_nested_commutator (a * L.t1) (1 : R) (L.s0 * b)
 
 /-- The `(t₁,s₁)` outer-root path gives the original coefficient product. -/
@@ -93,7 +108,12 @@ theorem leavitt_outerRoot_nested_11 (L : LeavittFamily R) (a b : R) :
       ⁅elementaryRoot (1 : Fin 4) 2 (by decide) (1 : R),
         elementaryRoot (2 : Fin 4) 3 (by decide) (L.s1 * b)⁆⁆ =
       elementaryRoot (0 : Fin 4) 3 (by decide) (a * b) := by
-  simpa [mul_assoc] using
+  have hcoeff : (a * L.t1) * (1 : R) * (L.s1 * b) = a * b := by
+    calc
+      (a * L.t1) * (1 : R) * (L.s1 * b) =
+          a * ((L.t1 * L.s1) * b) := by noncomm_ring
+      _ = a * b := by rw [L.t1_s1, one_mul]
+  simpa only [hcoeff] using
     outerRoot_middle_nested_commutator (a * L.t1) (1 : R) (L.s1 * b)
 
 end GroupApproximation

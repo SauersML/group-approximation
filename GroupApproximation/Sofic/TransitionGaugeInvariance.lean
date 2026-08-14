@@ -53,6 +53,13 @@ theorem conj_idempotenceDefect
     (C A : Matrix Y Y ℂ) (hCunit : C * Cᴴ = 1) :
     Cᴴ * A * C - (Cᴴ * A * C) * (Cᴴ * A * C) =
       Cᴴ * (A - A * A) * C := by
-  noncomm_ring [hCunit]
+  have hproduct :
+      (Cᴴ * A * C) * (Cᴴ * A * C) = Cᴴ * (A * A) * C := by
+    calc
+      (Cᴴ * A * C) * (Cᴴ * A * C) =
+          Cᴴ * A * (C * Cᴴ) * A * C := by noncomm_ring
+      _ = Cᴴ * (A * A) * C := by rw [hCunit]; noncomm_ring
+  rw [hproduct]
+  noncomm_ring
 
 end GroupApproximation
