@@ -11,4 +11,6 @@ distinct_from:
 Let `A` be a unital C-star algebra admitting an injective, possibly
 nonunital, star homomorphism into a positive natural-dimension norm-matrix
 C-star corona.  Then every homomorphism `E -> U(A)` from the literal group
-is noninjective.
+is noninjective.  In particular, neither the development's
+universe-relative maximal group-C-star model of `E` nor its concrete reduced
+group C-star algebra admits an MF embedding.

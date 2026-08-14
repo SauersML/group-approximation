@@ -26,4 +26,6 @@ putatively injective representation `E -> U(A)` would give an injective
 corona representation of `E`.  This contradicts
 `literal-central-mark-corona-invisible`, because the resulting map kills the
 nontrivial marked involution.  The exact natural-dimension statement is
-`literal_no_faithful_corona_subalgebra_target`.
+`literal_no_faithful_corona_subalgebra_target`; restricting the canonical
+faithful group-unitary maps gives the two group-C-star embedding
+consequences.

@@ -13,7 +13,9 @@ The explicit eight-generator finitely presented group `E` has a nontrivial
 central involution `w` that every homomorphism from `E` to the unitary group
 of every positive natural-dimension norm-matrix C-star corona sends to the
 identity.  Consequently `E` is not MF in any of the equivalent
-actual-corona, unitary-sequence, local, increasing-dimension, ultraproduct,
-or finite-set formulations, and it fails the stronger PMatF, trace-free
-PPermF, trace-PMF, PFF, PPF, strong, trace-preserving, and trace-regular
-variants formalized in the development.
+weak, actual-corona, unitary-sequence, local, increasing-dimension,
+ultraproduct, finite-set, group-theoretic, or ambient-unitary formulations.
+It also fails PMatF, trace-free PPermF, trace-PMF, PFF, PPF, strong,
+trace-preserving, trace-regular, and reduced-group-C-star MF, and neither its
+universe-relative maximal model nor its concrete reduced group C-star
+algebra admits an MF embedding.

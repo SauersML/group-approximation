@@ -182,14 +182,14 @@ unsquared-defect-mf-visible [OPEN] MF visibility of the unsquared compression de
 
 ## Recently touched
 
+- 2026-08-14 · literal-no-faithful-corona-subalgebra-representation-proof [COMPLETE] Complement-correct a nonunital corona inclusion
+- 2026-08-14 · literal-no-faithful-corona-subalgebra-representation [ESTABLISHED] No faithful literal-group representation inside a norm-matrix corona
+- 2026-08-14 · literal-group-fails-mf-conventions [ESTABLISHED] The literal finitely presented group fails every formalized MF convention
 - 2026-08-14 · mf-positive-controls-proof [COMPLETE] Restrict corona models and use regular representations of finite stages
 - 2026-08-14 · mf-positive-controls [ESTABLISHED] Basic positive controls for the MF property
 - 2026-08-14 · mf-radical-functoriality-proof [COMPLETE] Pull corona representations back along group homomorphisms
 - 2026-08-14 · mf-radical-functoriality [ESTABLISHED] Functorial portability of the MF radical
 - 2026-08-14 · literal-stably-finite-non-mf-reduced-group-algebra [ESTABLISHED] Literal reduced group algebra is stably finite but not MF
-- 2026-08-14 · simple-sofic-envelope-proof [COMPLETE] Embed the witness in a simple sofic envelope
-- 2026-08-14 · literal-reduced-group-algebra-proof [COMPLETE] Pass the literal group obstruction to its reduced C-star algebra
-- 2026-08-14 · scaling-family-non-mf [ESTABLISHED] Infinite scaling family of finitely presented non-MF groups
 
 ## Active locks
 
