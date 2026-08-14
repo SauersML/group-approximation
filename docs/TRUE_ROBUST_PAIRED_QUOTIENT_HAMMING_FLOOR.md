@@ -175,18 +175,26 @@ sum at least `N`.  Finally, `robust_floor_of_collision_budgets` wires the
 canonical repairs directly into the robust floor.  Thus no unspecified
 permutation repair remains.
 
-The remaining finite combinatorial lemma is now precisely the global fiber
-summation
+The global fiber summation is now formalized as
+`collisionSources_mul_le_totalRowMismatch`:
 
 ```text
 N * #collisionSources R <= 4 * totalDiagonalMismatch. (RPF12)
 ```
 
-obtained by summing `collision_pair_charge` over the unordered pairs inside
-each non-singleton fiber.  This is an elementary finite-sum lemma, but it is
-still an explicit hypothesis of the integrated theorem until its Lean proof
-is added.  Beyond it, the genuinely research-level gate remains the
-matrix-coordinate extraction of the common paired labels and kernels.
+The proof sums `collision_pair_charge` over all ordered off-diagonal pairs
+inside each non-singleton fiber.  If the fiber has size `s`, every row-error
+term occurs exactly `2(s-1)` times.  Cancelling the positive factor `s-1`
+gives the optimal factor four, and summing over target fibers gives `(RPF12)`.
+The generic double-counting identity is the theorem `sum_offDiag_pairCost`.
+
+The theorem `robust_deterministic_floor` now combines both diagonal collision
+budgets with the crossed-table estimate.  Its conclusion is the full integer
+form of `(RPF2)` for deterministic transports.  Thus the deterministic finite
+combinatorics has no remaining repair hypothesis.  The genuinely
+research-level gate is the matrix-coordinate extraction of common paired
+labels and bistochastic kernels; the convex/bistochastic formalization is the
+next formal layer.
 
 ## 6. Gain for the hyperlinear program
 

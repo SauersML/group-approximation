@@ -38,6 +38,10 @@ corona
 ∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
 ```
 
+Building this manuscript requires LaTeX2e dated 2025-06-01 or newer.  Its
+tagged PDF uses the `\DocumentMetadata{tagging=on}` interface introduced in
+that release; the release workflow uses a digest-pinned TeX Live 2026 image.
+
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is used as a
 presented group: no unproved identification with a semantic affine matrix

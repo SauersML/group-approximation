@@ -217,9 +217,10 @@ theorem manuscriptMarkedKazhdanPattern
       (∀ gamma : Gamma, Commute C.c (C.iota gamma)) ∧
       C.defectNormal = Subgroup.normalClosure
         (Set.range fun gamma : Gamma ↦
-          ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) := by
+          ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆) ∧
+      C.defectNormal.Normal := by
   exact ⟨C.kazhdan, hasKazhdanPropertyT_iff_textbook.mp C.kazhdan,
-    C.compresses, C.comm_c, rfl⟩
+    C.compresses, C.comm_c, rfl, inferInstance⟩
 
 /-- Exact natural-dimension form of the finite-normal obstruction criterion:
 every homomorphism into the unitary group of the genuine norm-matrix C-star

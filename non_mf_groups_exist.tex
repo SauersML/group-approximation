@@ -1,3 +1,4 @@
+\NeedsTeXFormat{LaTeX2e}[2025-06-01]
 \DocumentMetadata{lang=en-US,pdfversion=2.0,pdfstandard=UA-2,tagging=on}
 \documentclass[11pt]{amsart}
 
@@ -29,12 +30,13 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
+\newcommand{\leanrepository}{https://github.com/SauersML/group-approximation}
 \newcommand{\leanbadge}[3]{%
   \par\smallskip\noindent
   {\normalfont\scriptsize\color{gray!70!black}%
    #3\par\nobreak\noindent
    \hspace*{1em}%
-   \nolinkurl{#2}%
+   \href{\leanrepository/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}%
   }\par\smallskip}
 % Every displayed record certifies the full printed claim.
 \newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\fbox{\sffamily\bfseries EXACT}}}
@@ -194,8 +196,9 @@ $\Cmax(E)$ fixed below nor $\Cred(E)$ is an MF $C^*$-algebra.
 \leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
-The inline label links the theorem directly to its declaration.  Similar
-labels below give the declaration name for each numbered claim.
+The inline label prints the fully qualified declaration name and links to the
+Lean source module containing it.  Similar labels below identify the exact
+counterpart for each numbered claim.
 
 A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
@@ -596,32 +599,33 @@ precisely that failure after conjugating $d$ by $\iota(v_1)$.
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[x=1cm,y=1cm,font=\small]
-  \draw[rounded corners=2mm,line width=.55pt]
-    (-5.15,-.1) rectangle (.85,2.85);
-  \node[anchor=north west] at (-4.9,2.62) {$\iota(\mathcal B)$};
-  \draw[rounded corners=2mm,line width=.55pt,fill=black!4]
-    (-2.95,.55) rectangle (.35,2.15);
-  \node[align=center] at (-1.3,1.35)
-    {$t\iota(\mathcal B)t^{-1}$\\[-1pt]$\subseteq\iota(\mathcal B)$\\[3pt]
-     {\footnotesize $[d,t\iota(\mathcal B)t^{-1}]=1$}};
-  \node[align=center] at (-4.15,1.1)
-    {$\iota(v_1)\in\iota(\mathcal B)$\\[3pt]
-     {\footnotesize $[c,\iota(\mathcal B)]=1$}};
-
-  \node[draw,circle,inner sep=1.8pt] (c) at (-4.15,-1.0) {$c$};
-  \node[draw,circle,inner sep=1.8pt] (d) at (-1.3,-1.0) {$d$};
-  \draw[figarr] (c) -- node[fignote,above=2pt]
-    {conjugation by $t$} (d);
-
-  \node[draw,rounded corners=2mm,line width=.55pt,align=center,
-    text width=4.55cm,minimum height=2.1cm] at (3.55,1.35)
-    {marked defect\\[2pt]
-     $w=[d,\,\iota(v_1)d\iota(v_1)^{-1}]$\\[3pt]
-     {\footnotesize $d^2=1$ gives $w=[d,\iota(v_1)]^2$}};
+  \draw[rounded corners=2.5mm,line width=.4pt] (0,0) rectangle (6.5,3.1);
+  \node[fignote] (iblab) at (1.05,2.7) {$\iota(\mathcal B)$};
+  \draw[rounded corners=2mm,line width=.4pt] (2.95,.45) rectangle (6.15,2.4);
+  \node (complab) at (4.55,1.62) {$t\iota(\mathcal B)t^{-1}$};
+  \node (v1) at (1.35,1.15) {$\iota(v_1)$};
+  \draw[figarr] (1.75,2.62) -- (3.35,2.62);
+  \node[fignote] (setconj) at (2.55,2.88) {$t(\,\cdot\,)t^{-1}$};
+  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (c) at (1.35,-1.5) {$c$};
+  \node[draw,circle,line width=.4pt,inner sep=1.5pt] (d) at (4.55,-1.5) {$d$};
+  \draw[figarr] (c) -- node[fignote,below=3pt] {conjugation by $t$} (d);
+  \draw[line width=.4pt] (c) -- (1.35,0);
+  \node[fignote,anchor=east] (crel) at (1.17,-.68) {$[c,\iota(\mathcal B)]=1$};
+  \draw[line width=.4pt] (d) -- (4.55,.45);
+  \node[fignote,anchor=west] (drel) at (4.73,-.68)
+    {$[\,d,\,t\iota(\mathcal B)t^{-1}]=1$};
+  \node[figout,text width=3.7cm] (mark) at (9.35,1.0)
+    {marked defect\\[3pt]
+     $w=[\,d,\ \iota(v_1)\,d\,\iota(v_1)^{-1}]$\\[3pt]
+     {\footnotesize $=[\,d,\iota(v_1)]^{\,2}$ since $d^2=1$;\\
+      no relation constrains\\ $[\,d,\iota(v_1)]$}};
+  \draw[figarr] (d) -| (mark);
 \end{tikzpicture}
 \caption{The marked-compression pattern.  Conjugation by $t$ carries the
-image of the literal base into itself.  It sends $c$ to $d=tct^{-1}$, which
-centralizes that compressed copy.  Only the one-sided inclusion is used;
+image of the literal base into itself.  It sends $c$ to $d=tct^{-1}$: the
+relations tie $c$ to all of $\iota(\mathcal B)$ but tie $d$ only to the
+compressed copy, and the marked word $w$ records the unconstrained
+commutation with $\iota(v_1)$.  Only the one-sided inclusion is used;
 no injectivity or strict containment is asserted.}
 \label{fig:compression-pattern}
 \end{figure}
@@ -688,9 +692,29 @@ representation-space universe.
 \leanverified{Sofic/P13ExactStagedCertificate}{GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate}
 \end{proposition}
 
+The complete certificate is supplementary machine-readable data, rather than
+data printed in this article.  A content-pinned copy is at repository commit
+\href{\leanrepository/tree/4a210700577810996eae94d2912d2ed621b7b359}%
+{\nolinkurl{4a210700577810996eae94d2912d2ed621b7b359}}.  The
+$102\times6\times22$ exact integer table for $Q$ and its denominator are in
+\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedData.lean}%
+{\nolinkurl{P13ExactStagedData.lean}}.  The 22 support words, the 293 product
+classes, and their relator proofs are in
+\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedReplay.lean}%
+{\nolinkurl{P13ExactStagedReplay.lean}} and
+\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedPairTable.lean}%
+{\nolinkurl{P13ExactStagedPairTable.lean}}.  The 36 independently checked
+residual blocks are aggregated by
+\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedResidual.lean}%
+{\nolinkurl{P13ExactStagedResidual.lean}}, and the final certificate theorem is
+in
+\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedCertificate.lean}%
+{\nolinkurl{P13ExactStagedCertificate.lean}}.
+
 \begin{proof}
 The relator replay, Fox identity, coefficient decomposition, and rational
-row and column bounds are the finite checks recorded in the proposition.
+row and column bounds are the finite checks recorded in the supplementary
+Lean artifacts just listed.
 The 293 coordinates need not be distinct in the abstract group: collecting
 additional collisions can only decrease the true group-ring coefficient
 $\ell^1$-norm, so the checked coordinate sums give valid upper bounds.
@@ -718,60 +742,65 @@ identify the real and textbook complex formulations.
 \end{proof}
 
 Figure~\ref{fig:hodge-certificate} records the scale of the exact
-certificate.  Each heat-map cell represents an upper bound for the
-coefficient $\ell^1$-mass of one block of $R$; both its row and column sums
-are checked.
+certificate and the route the certified gap travels to reach the literal
+base.  The same $\rho$ bounds every checked row sum and every checked
+column sum of $R$; the residual mass sits in the six diagonal blocks, each
+bounded near $1.162\times10^{-3}$, while every off-diagonal block stays
+below $9.3\times10^{-7}$.
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[x=6.4mm,y=6.4mm,font=\scriptsize]
-  \node[anchor=west,font=\small\bfseries] at (-1.25,1.45)
-    {Residual block bounds};
-  \foreach \i/\lab in {0/12,1/13,2/21,3/23,4/31,5/32} {
-    \node[anchor=east] at (-.18,-\i-.5) {$\lab$};
-    \node at (\i+.5,.30) {$\lab$};
-  }
-  \foreach \i in {0,...,5} {
-    \foreach \j in {0,...,5} {
-      \pgfmathparse{\i==\j ? 68 : 10}
-      \edef\shade{\pgfmathresult}
-      \fill[blue!\shade] (\j,-\i) rectangle +(1,-1);
-      \draw[white,line width=.45pt] (\j,-\i) rectangle +(1,-1);
-    }
-  }
-  \draw[line width=.55pt] (0,0) rectangle (6,-6);
-  \node[rotate=90,anchor=south] at (-1.0,-3) {row root};
-  \node[anchor=south] at (3,.72) {column root};
-  \node[align=left,anchor=north west,text width=4.5cm] at (-.05,-6.45)
-    {dark diagonal: $1.162\times10^{-3}$ scale\\
-     pale off-diagonal: below $9.3\times10^{-7}$};
-
-  \begin{scope}[xshift=6.0cm,yshift=-.9cm,x=.88cm,y=1cm]
-    \node[anchor=west,font=\small\bfseries] at (0,1.15)
-      {Certified gap};
-    \node[anchor=west] at (0,.72) {$c=1/250=0.004$};
-    \fill[orange!42] (0,0) rectangle (1.28,.58);
-    \fill[teal!58] (1.28,0) rectangle (4.4,.58);
-    \draw[line width=.6pt] (0,0) rectangle (4.4,.58);
-    \draw[line width=.6pt] (1.28,0) -- (1.28,.58);
-    \fill[orange!42] (0,-.48) rectangle +(.24,-.24);
-    \node[anchor=west] at (.38,-.60)
-      {$\rho=1.167088652\times10^{-3}$};
-    \fill[teal!58] (0,-1.08) rectangle +(.24,-.24);
-    \node[anchor=west] at (.38,-1.20)
-      {$\gamma=2.832911348\times10^{-3}$};
-    \node[anchor=west,font=\small] at (0,-1.78)
-      {$\rho+\gamma=c$};
-    \node[anchor=west,align=left,text width=4.4cm] at (0,-2.40)
-      {The same $\rho$ bounds every checked row sum and every checked column sum.};
-  \end{scope}
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small,
+    figbox/.append style={text width=2.55cm,minimum height=3.0cm}]
+  \draw[line width=.55pt] (0,5.7) rectangle (11,6.3);
+  \draw[line width=.55pt] (3.21,5.7) -- (3.21,6.3);
+  \node[fignote] (rin) at (1.6,6.0) {residual $\rho$};
+  \node[fignote] (gin) at (7.1,6.0) {certified gap $\gamma=c-\rho$};
+  \draw[line width=.3pt] (0,6.65) -- (3.21,6.65)
+    (0,6.52) -- (0,6.78) (3.21,6.52) -- (3.21,6.78);
+  \node[fignote,anchor=south] (rval) at (1.6,6.82)
+    {$\rho=1.1670886519714\times10^{-3}$};
+  \draw[line width=.3pt] (3.21,7.62) -- (11,7.62)
+    (3.21,7.49) -- (3.21,7.75) (11,7.49) -- (11,7.75);
+  \node[fignote,anchor=south] (gval) at (7.1,7.79)
+    {$\gamma=2.8329113480286\times10^{-3}>0$};
+  \node[fignote,anchor=north] (zerolab) at (0,5.5) {$0$};
+  \node[fignote,anchor=north east] (clab) at (11.3,5.5)
+    {$c=\tfrac{1}{250}=4\times10^{-3}$};
+  \node[figbox] (p13) at (1.4,2.8)
+    {$P_{13}$\\[3pt]{\footnotesize six generators,\\ thirteen relators\\[3pt]
+     Kazhdan pair\\ $(S,\varepsilon_{13})$ from\\ the gap $\gamma$}};
+  \node[figbox] (rot) at (5.5,2.8)
+    {$\mathcal R$\\[3pt]{\footnotesize three generators,\\ eight relators\\[3pt]
+     (T) descends\\ along the checked\\ surjection}};
+  \node[figout] (base) at (9.6,2.8)
+    {$\mathcal B$\\[3pt]{\footnotesize six generators,\\ twenty relators\\[3pt]
+     property (T)\\ (Proposition \ref{prop:literal-base-T})}};
+  \draw[figarr] (p13) -- (rot);
+  \draw[figarr] (rot) -- (base);
+  \draw[line width=.3pt] (3.45,2.8) -- (3.45,1.1);
+  \node[fignote,anchor=north,align=center] (sub) at (3.45,1.05)
+    {substitution $e_{ij}\mapsto$\\ words in $x,y,z$;\\
+     replay $\mathcal R=\langle z,xy\rangle$};
+  \draw[line width=.3pt] (7.55,2.8) -- (7.55,1.1);
+  \node[fignote,anchor=north,align=center] (fix) at (7.55,1.05)
+    {translations from\\ $\mathcal R$-conjugates;\\ bounded-orbit fixed point};
 \end{tikzpicture}
-\caption{Exact Hodge-certificate scale.  The residual grid distinguishes the
-diagonal and off-diagonal block bounds; the separate bar partitions
-$c=1/250$ into the certified residual radius $\rho$ and positive gap
-$\gamma=c-\rho$.}
+\caption{Exact certificate and descent.  Top: the spectral floor
+$c=1/250$ of \eqref{eq:p13-hodge} splits into the certified residual radius
+$\rho$ of \eqref{eq:p13-residual} and the positive gap $\gamma=c-\rho$ of
+\eqref{eq:p13-gap}; the partition is drawn to scale.  Bottom:
+property~\textup{(T)} travels from $P_{13}$ through the checked surjection
+onto $\mathcal R$, then to the literal base $\mathcal B$ by the fixed-point
+argument in the proof of Proposition~\ref{prop:literal-base-T}.}
 \label{fig:hodge-certificate}
 \end{figure}
 
+\begin{proposition}\label{prop:literal-base-T}
+The literal twenty-relator group $\mathcal B$ has property~\textup{(T)}.
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.literalBase_hasKazhdanPropertyT}
+\end{proposition}
+
+\begin{proof}
 To pass from $P_{13}$ to the literal base, substitute
 \begin{align*}
 e_{12}&=y^{-1}xzy^{-1}x^{-1},&
@@ -796,8 +825,8 @@ property~\textup{(T)} descends to $\mathcal R$.
 
 Finally let $(S,\kappa)$ be a Kazhdan pair for $\mathcal R$, with
 $\kappa\le1$.  For the image of $S\cup\{v_2,v_3\}$ in $\mathcal B$, use
-tolerance $\kappa/64$.  Project an almost invariant unit vector to an
-$\mathcal R$-fixed vector $p$ within $1/64$.  The literal conjugation
+tolerance $\kappa/64$.  Let $\xi$ be an almost invariant unit vector, and
+project $\xi$ to an $\mathcal R$-fixed vector $p$ within $1/64$.  The literal conjugation
 relations express every translation as a product of two
 $\mathcal R$-conjugates; hence every translation moves $p$ by at most
 $1/8$.  The bounded-orbit fixed-point theorem bounds the distance from $p$
@@ -806,13 +835,9 @@ orthogonal projection of $p$ onto that subspace.  Rotations normalize the
 translation subgroup and fix $p$; uniqueness and equivariance of orthogonal
 projection therefore make $q$ rotation-fixed as well.  Hence $q$ is fixed by
 all of $\mathcal B$.  Moreover
-$\lVert q-p\rVert\le1/8$ and $\lVert p-x\rVert<1/64$, so
-$\lVert q-x\rVert<1$; since $x$ is a unit vector, $q\ne0$.
-
-\begin{proposition}\label{prop:literal-base-T}
-The literal twenty-relator group $\mathcal B$ has property~\textup{(T)}.
-\leanverified{Sofic/LiteralBaseP13PropertyTBridge}{GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT}
-\end{proposition}
+$\lVert q-p\rVert\le1/8$ and $\lVert p-\xi\rVert<1/64$, so
+$\lVert q-\xi\rVert<1$; since $\xi$ is a unit vector, $q\ne0$.
+\end{proof}
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
@@ -864,9 +889,10 @@ $v_1$ does not lie in $\operatorname{range}(\bar\alpha)$.
 The twenty relator checks reduce to sixteen rational identities for each
 matrix equation.  Conjugation by $D$ gives the six stable-letter equations
 and is injective because it is conjugation by an invertible matrix.  Every
-generator of $\bar\Gamma$ has integral entries, and integrality is preserved
-under products and inverses; however $D^{-1}\bar v_1D$ has entry $1/2$ in
-position $(1,4)$.  Thus it is not in $\bar\Gamma$, which proves the last
+displayed generator and its explicitly computed inverse has integral entries;
+equivalently, all six generators lie in $\GL_4(\mathbb Z)$.  Hence
+$\bar\Gamma\le\GL_4(\mathbb Z)$.  However $D^{-1}\bar v_1D$ has entry $1/2$
+in position $(1,4)$, so it is not in $\bar\Gamma$.  This proves the last
 assertion.
 \end{proof}
 
@@ -1164,18 +1190,20 @@ When the Gram defect is at most $1/2$, functional calculus gives the
 dimension-free estimate
 \[
  \opnorm{V_{g,n}-C_{g,n}}
- \le2\opnorm{C_{g,n}^*C_{g,n}-1},
+ \le2\opnorm{C_{g,n}^*C_{g,n}-1}.
 \]
 For each fixed $g$, use this polar unitary on the cofinite tail and set
 $V_{g,n}=1$ at its finitely many exceptional indices.  Thus polar correction
 is asymptotically invisible and the $V_{g,n}$ remain asymptotically
 multiplicative.
 
-Finally, the normalized sum of the uncorrected corner matrices is precisely
-the $Q_n$-block of $A_n$.  Since $P_n-A_n\to0$ and $Q_nP_n=0$,
+Finally, the $Q_n$-block of $A_n$ is precisely the normalized sum
+$|F|^{-1}\sum_{f\in F}C_{f,n}$.  Since $P_n-A_n\to0$ and $Q_nP_n=0$,
 \[
- \opnorm{\sum_{f\in F}C_{f,n}}\longrightarrow0.
+ \opnorm{|F|^{-1}\sum_{f\in F}C_{f,n}}\longrightarrow0.
 \]
+Multiplying by the fixed factor $|F|$ gives
+$\opnorm{\sum_{f\in F}C_{f,n}}\to0$.
 There are only finitely many $f\in F$, so replacing every $C_{f,n}$ by its
 polar correction preserves this limit and proves the lemma.
 \end{proof}
@@ -1214,8 +1242,25 @@ squared Hilbert--Schmidt error $\varepsilon>0$, set
 \]
 At a sufficiently large common stage, each of the two conjugation defects of
 $V_{c,n}$ associated to every $s\in S$ is at most $\eta$ in operator norm.
-The Hermitian average therefore has residual norm at most $\eta$, and the
-spectral-cut inequality gives the normalized root-capture estimate
+Put $\xi_n=\operatorname{vec}(V_{c,n})$, so
+$\lVert\xi_n\rVert_2^2=r_n$.  The Hermitian average therefore satisfies
+\[
+ \lVert(I-H_n)\xi_n\rVert_2^2\le \eta^2r_n.
+\]
+Cauchy--Schwarz in weighted AM--GM form gives the energy estimate
+\[
+ \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle
+ \le \frac12\left(\eta\lVert\xi_n\rVert_2^2
+       +\eta^{-1}\lVert(I-H_n)\xi_n\rVert_2^2\right)
+ \le \eta r_n.
+\]
+The spectral-cut inequality now gives
+\[
+ (1-\theta)\lVert(1-P_n)\xi_n\rVert_2^2
+ \le \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle.
+\]
+Dividing by $(1-\theta)r_n$ and using the definition of $\eta$ yields the
+normalized root-capture estimate
 \begin{equation}\label{eq:root-capture-budget}
  \frac1{r_n}\bigl\|(1-P_n)\operatorname{vec}(V_{c,n})\bigr\|_2^2
  \le \frac{\varepsilon}{192}.
@@ -1244,44 +1289,36 @@ and hence
 \]
 This equal-rank projection argument is the finite-dimensional replacement for
 the stable-finiteness step one might be tempted to perform only after taking
-a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} depicts the geometry.
+a $C^*$-quotient; Figure~\ref{fig:equal-rank-flip} displays the implication.
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
-  \draw[rounded corners=4pt,line width=.65pt,fill=black!2]
-    (-5.15,-1.75) rectangle (5.15,1.78);
-
-  \node[draw=blue!55!black,rounded corners=3pt,fill=blue!5,
-    inner sep=4pt,font=\footnotesize] at (-2.55,1.32)
-    {$\opnorm{(1-R_n)P_n}\to0$};
-  \node[draw=teal!55!black,rounded corners=3pt,fill=teal!5,
-    inner sep=4pt,font=\footnotesize] at (2.55,1.32)
-    {$\opnorm{(1-P_n)R_n}\to0$};
-
-  \begin{scope}[shift={(-2.55,-.05)}]
-    \fill[blue!12,draw=blue!65!black,line width=.8pt]
-      (-1.55,-.47) -- (1.42,.30) -- (1.66,.71) -- (-1.31,-.06) -- cycle;
-    \node[fill=white,fill opacity=.86,text opacity=1,inner sep=1.5pt]
-      at (0,.12) {$\operatorname{ran}P_n$};
-  \end{scope}
-  \begin{scope}[shift={(2.55,-.05)}]
-    \fill[teal!14,draw=teal!65!black,line width=.8pt]
-      (-1.52,-.44) -- (1.45,.33) -- (1.68,.74) -- (-1.29,-.03) -- cycle;
-    \node[fill=white,fill opacity=.86,text opacity=1,inner sep=1.5pt]
-      at (0,.12) {$\operatorname{ran}R_n$};
-  \end{scope}
-  \node[draw,rounded corners=3pt,fill=white,inner sep=5pt,
-    align=center,font=\footnotesize] at (0,.42)
-    {$\operatorname{rank}P_n=\operatorname{rank}R_n$};
-  \node[draw,rounded corners=3pt,fill=black!4,inner sep=5pt,
-    align=center,font=\small,text width=6.1cm] at (0,-1.20)
-    {one-sided leakage $+$ equal rank $\Longrightarrow$
-     reverse leakage $\Longrightarrow\opnorm{P_n-R_n}\to0$};
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small,
+    figbox/.append style={text width=3.0cm,minimum height=2.35cm}]
+  \node[figbox] (leak) at (0,1.45)
+    {one-sided leakage\\[3pt] $\opnorm{(1-R_n)P_n}\to0$\\[3pt]
+     {\footnotesize $\operatorname{ran}P_n$ tilts into\\ $\operatorname{ran}R_n$}};
+  \node[figbox] (rank) at (0,-1.45)
+    {equal finite ranks\\[3pt] $\operatorname{rank}P_n=\operatorname{rank}R_n$\\[3pt]
+     {\footnotesize $R_n$ is a unitary\\ conjugate of $P_n$}};
+  \node[figbox] (mech) at (4.15,0)
+    {projection flip\\[3pt]
+     {\footnotesize no strictly one-sided\\ leakage at equal\\ finite rank}};
+  \node[figout,text width=3.2cm,minimum height=0pt] (concl) at (8.45,0)
+    {$\opnorm{(1-P_n)R_n}\to0$,\\[3pt]
+     hence $\opnorm{P_n-R_n}\to0$};
+  \draw[figarr] (leak.east) -| (mech.north);
+  \draw[figarr] (rank.east) -| (mech.south);
+  \draw[figarr] (mech) -- (concl);
+  \node[fignote,align=center,anchor=north] (fails) at (8.45,-.95)
+    {fails when the ambient\\ algebra is properly\\ infinite (Section \ref{sec:limits})};
 \end{tikzpicture}
-\caption{Equal-rank reversal.  One-sided spectral leakage between the two
-schematic ranges, together with equality of their finite dimensions, forces
-the reverse leakage and hence convergence of the two projections.}
+\caption{Equal-rank reversal.  One-sided spectral leakage, together with
+equality of the two finite ranks, forces the reverse leakage --- bounded by
+$\varepsilon'/\sqrt{1-(\varepsilon')^2}$ --- and hence convergence of the two
+projections.  In a properly infinite algebra, nested unitarily equivalent
+projections need not coincide, which is why the argument does not transfer
+to tracial ultraproducts (Section~\ref{sec:limits}).}
 \label{fig:equal-rank-flip}
 \end{figure}
 
@@ -1292,28 +1329,40 @@ $V_{\iota(\lambda),n}$ moves $V_{d,n}$ by a quantity tending to zero in
 normalized Hilbert--Schmidt norm.  Unitary invariance identifies this
 quantity with
 $\hsnorm{V_{[d,\iota(\lambda)],n}-V_{1,n}}$, up to the vanishing
-multiplicative defects.  More explicitly, the finite-stage vector chain gives
+multiplicative defects.  More explicitly, first put
+$D_n=V_{t,n}V_{c,n}V_{t,n}^*$ and
+$E_n=V_{\iota(\lambda),n}D_nV_{\iota(\lambda),n}^*$.  The finite-stage vector
+chain gives the transported-root estimate
 \begin{equation}\label{eq:vector-chain-budget}
- \operatorname{dist}_{2,n}([d,\iota(\lambda)],1)^2
- \le 8\delta_n^2+64\ell_n^2+64\rho_n,
+ \hsnorm{E_n-D_n}^2
+ \le 2\delta_n^2+16\ell_n^2+16\rho_n,
 \end{equation}
 where $\delta_n$ is the fixed-element Kazhdan displacement, $\ell_n$ is the
 reverse compressor leakage, and $\rho_n$ is the normalized mass in
-\eqref{eq:root-capture-budget}.  Choose their eventual bounds as
+\eqref{eq:root-capture-budget}.  The coefficients $8,64,64$ belong instead
+to the subsequent factor-$4$ estimate for the different marked commutator
+$[D_n,E_n]$.
+
+To return from the synthetic matrices $D_n,E_n$ to the actual microstate
+values of the group word $[d,\iota(\lambda)]$ and of $1$, the formal proof
+separately pays the multiplication, inverse, conjugation, and identity
+defects.  Thus there is a nonnegative sequence $e_n\to0$ such that
 \[
- \delta_n\le\sqrt{\varepsilon/24},\qquad
- \ell_n\le\sqrt{\varepsilon/192},\qquad
- \rho_n\le\varepsilon/192.
+ \hsnorm{V_{[d,\iota(\lambda)],n}-V_{1,n}}^2
+ \le 2\delta_n^2+16\ell_n^2+16\rho_n+e_n.
+\]
+Given $\varepsilon>0$, choose the eventual bounds
+\[
+ \delta_n\le\sqrt{\varepsilon/12},\qquad
+ \ell_n\le\sqrt{\varepsilon/96},\qquad
+ \rho_n\le\varepsilon/96,\qquad e_n\le\varepsilon/2.
 \]
 Then the right side of \eqref{eq:vector-chain-budget} is at most
-\[
- 8\frac{\varepsilon}{24}
- +64\frac{\varepsilon}{192}
- +64\frac{\varepsilon}{192}=\varepsilon.
-\]
-This proves the claim with constants independent of $r_n$.  These are the
-same $8/64/64$ finite-stage estimates used by the formal proof; no passage to
-an abstract limiting projection is hidden here.
+$\varepsilon/2$, and the added microstate error is at most $\varepsilon/2$.
+This proves the claim with constants independent of $r_n$.  In
+\texttt{MarkedCompressionRootCapture.lean}, the theorem
+\texttt{compressionDefect\_hsDistSq\_vanishing} performs this last translation
+with explicit $\varepsilon/128$ and $\varepsilon/64$ allocations.
 \end{proof}
 
 \section{Proof of the criterion and of Theorem \ref{thm:A}}\label{sec:proofA}
@@ -1749,9 +1798,8 @@ representation into a tracial ultraproduct of matrices, its commutant can be
 recovered as an ultraproduct of finite-dimensional subalgebras, possibly as
 coordinate centralizers of suitable lifts \cite[Open Problem~6.2]{AlekseevThom}.
 Such a coordinate model would provide finite-level structure absent from the
-argument above, but their question is open.  Some additional hypothesis is
-therefore essential before the operator-norm proof can be transferred to a
-tracial setting.
+argument above, but their question is open.  Additional input is therefore
+currently required to transfer this proof strategy to a tracial setting.
 
 \begin{thebibliography}{GKEMP}
 

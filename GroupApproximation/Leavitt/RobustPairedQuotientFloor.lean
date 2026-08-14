@@ -1,6 +1,8 @@
 import Mathlib.Data.Fintype.Card
 import Mathlib.Data.Finset.Prod
 import Mathlib.Logic.Equiv.Fintype
+import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
 
 /-!
 # The robust paired-quotient floor after permutation repair
@@ -28,9 +30,9 @@ After division by `2*N^2`, this is exactly
 
 This file also constructs the permutation repairs canonically: it preserves
 every singleton fiber and changes only collision sources.  Perfect row
-separation gives the local collision charge.  The remaining combinatorial
-step is the global summation of those local charges over the non-singleton
-fibers; that budget is kept visible rather than silently assumed.
+separation gives the local collision charge.  Double counting all ordered
+off-diagonal pairs in each non-singleton fiber gives the sharp global repair
+budget, so the deterministic robust floor is proved end to end.
 -/
 
 namespace GroupApproximation
@@ -186,6 +188,186 @@ theorem collision_pair_charge
         (card_rowSeparation_le_mismatch_add_of_collision
           pair R L hcollision)
 
+/-- The fiber of a finite self-map over one target. -/
+def mapFiber {X : Type*} [Fintype X] [DecidableEq X]
+    (f : X → X) (y : X) : Finset X :=
+  Finset.univ.filter fun x ↦ f x = y
+
+@[simp] theorem mem_mapFiber {X : Type*} [Fintype X] [DecidableEq X]
+    (f : X → X) (x y : X) :
+    x ∈ mapFiber f y ↔ f x = y := by
+  simp [mapFiber]
+
+/-- Targets whose fibers contain at least two sources. -/
+def collisionTargets {X : Type*} [Fintype X] [DecidableEq X]
+    (f : X → X) : Finset X :=
+  Finset.univ.filter fun y ↦ 1 < (mapFiber f y).card
+
+@[simp] theorem mem_collisionTargets
+    {X : Type*} [Fintype X] [DecidableEq X]
+    (f : X → X) (y : X) :
+    y ∈ collisionTargets f ↔ 1 < (mapFiber f y).card := by
+  simp [collisionTargets]
+
+/-- A source is a collision source exactly when its image is a collision
+target. -/
+theorem mem_collisionSources_iff_image_mem_collisionTargets
+    {X : Type*} [Fintype X] [DecidableEq X]
+    (f : X → X) (x : X) :
+    x ∈ collisionSources f ↔ f x ∈ collisionTargets f := by
+  rw [mem_collisionSources, mem_collisionTargets]
+  constructor
+  · rintro ⟨y, hyx, hfy⟩
+    rw [Finset.one_lt_card]
+    exact ⟨x, by simp [mapFiber], y, by simpa [mapFiber] using hfy, hyx.symm⟩
+  · intro hcard
+    rw [Finset.one_lt_card] at hcard
+    obtain ⟨a, ha, b, hb, hab⟩ := hcard
+    have hfa : f a = f x := by simpa [mapFiber] using ha
+    have hfb : f b = f x := by simpa [mapFiber] using hb
+    by_cases hax : a = x
+    · refine ⟨b, ?_, hfb⟩
+      intro hbx
+      exact hab (hax.trans hbx.symm)
+    · exact ⟨a, hax, hfa⟩
+
+/-- Collision sources are partitioned by the non-singleton fibers. -/
+theorem card_collisionSources_eq_sum_mapFiber
+    {X : Type*} [Fintype X] [DecidableEq X] (f : X → X) :
+    (collisionSources f).card =
+      ∑ y ∈ collisionTargets f, (mapFiber f y).card := by
+  have hfilter : collisionSources f =
+      Finset.univ.filter fun x ↦ f x ∈ collisionTargets f := by
+    ext x
+    simp [mem_collisionSources_iff_image_mem_collisionTargets]
+  calc
+    (collisionSources f).card =
+        (Finset.univ.filter fun x ↦ f x ∈ collisionTargets f).card :=
+      congrArg Finset.card hfilter
+    _ = ∑ y ∈ collisionTargets f, (mapFiber f y).card := by
+      simpa [mapFiber] using
+        (Finset.sum_card_fiberwise_eq_card_filter
+          (Finset.univ : Finset X) (collisionTargets f) f).symm
+
+/-- Exact double counting on an off-diagonal square.  Each value `cost x`
+occurs once in the first and once in the second coordinate for each of the
+other `|F|-1` elements. -/
+theorem sum_offDiag_pairCost
+    {X : Type*} [DecidableEq X]
+    (F : Finset X) (cost : X → ℕ) :
+    ∑ p ∈ F.offDiag, (cost p.1 + cost p.2) =
+      2 * (F.card - 1) * ∑ x ∈ F, cost x := by
+  have hsplit :
+      (∑ p ∈ F.diag, (cost p.1 + cost p.2)) +
+          (∑ p ∈ F.offDiag, (cost p.1 + cost p.2)) =
+        ∑ p ∈ F.product F, (cost p.1 + cost p.2) := by
+    rw [← Finset.sum_union (Finset.disjoint_diag_offDiag F),
+      Finset.diag_union_offDiag]
+  have hdiag :
+      ∑ p ∈ F.diag, (cost p.1 + cost p.2) =
+        2 * ∑ x ∈ F, cost x := by
+    simp [Finset.sum_diag, Nat.two_mul]
+  have hproduct :
+      ∑ p ∈ F.product F, (cost p.1 + cost p.2) =
+        2 * F.card * ∑ x ∈ F, cost x := by
+    rw [Finset.sum_product]
+    simp [Finset.sum_add_distrib, Nat.mul_add, Nat.add_mul,
+      Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+  by_cases hF : F.Nonempty
+  · have hcard : F.card = (F.card - 1) + 1 := by
+      omega
+    rw [hdiag, hproduct, hcard] at hsplit
+    omega
+  · have : F = ∅ := Finset.not_nonempty_iff_eq_empty.mp hF
+    simp [this]
+
+/-- Summing the pair charge over every ordered off-diagonal pair in one
+non-singleton fiber gives the optimal factor-four fiber budget. -/
+theorem fiber_collision_budget
+    {X : Type*} [DecidableEq X]
+    (F : Finset X) (cost : X → ℕ) (N : ℕ)
+    (hF : 1 < F.card)
+    (hcharge : ∀ x ∈ F, ∀ y ∈ F, x ≠ y →
+      N ≤ 2 * (cost x + cost y)) :
+    N * F.card ≤ 4 * ∑ x ∈ F, cost x := by
+  have hsum :
+      ∑ p ∈ F.offDiag, N ≤
+        ∑ p ∈ F.offDiag, 2 * (cost p.1 + cost p.2) := by
+    apply Finset.sum_le_sum
+    intro p hp
+    have hpdata := (Finset.mem_offDiag.mp hp)
+    exact hcharge p.1 hpdata.1 p.2 hpdata.2.1 hpdata.2.2
+  have hoffcard : F.offDiag.card = F.card * (F.card - 1) := by
+    rw [Finset.offDiag_card]
+    rw [Nat.mul_sub_left_distrib]
+    simp
+  have hsum' :
+      F.offDiag.card * N ≤
+        2 * ∑ p ∈ F.offDiag, (cost p.1 + cost p.2) := by
+    simpa [Finset.mul_sum] using hsum
+  have hfactor :
+      (F.card - 1) * (N * F.card) ≤
+        (F.card - 1) * (4 * ∑ x ∈ F, cost x) := by
+    rw [hoffcard, sum_offDiag_pairCost F cost] at hsum'
+    simpa [Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc] using hsum'
+  exact Nat.le_of_mul_le_mul_left hfactor (by omega)
+
+/-- The total row mismatch count of a deterministic pairing transport. -/
+def totalRowMismatch (pair : V → W → Prop) [DecidableRel pair]
+    (R : V → V) (L : W → W) : ℕ :=
+  ∑ v, (rowMismatchSet pair R L v).card
+
+/-- The local pair charge supplies the factor-four budget on every collision
+fiber of the transported row map. -/
+theorem mapFiber_collision_budget
+    (pair : V → W → Prop) [DecidableRel pair]
+    (R : V → V) (L : W → W) (N : ℕ)
+    (hperfectRows : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet pair x y).card = N)
+    (z : V) (hz : z ∈ collisionTargets R) :
+    N * (mapFiber R z).card ≤
+      4 * ∑ v ∈ mapFiber R z, (rowMismatchSet pair R L v).card := by
+  apply fiber_collision_budget (mapFiber R z)
+    (fun v ↦ (rowMismatchSet pair R L v).card) N
+  · simpa using (mem_collisionTargets R z).mp hz
+  · intro x hx y hy hxy
+    apply collision_pair_charge pair R L N hxy
+    · have hxz := (mem_mapFiber R x z).mp hx
+      have hyz := (mem_mapFiber R y z).mp hy
+      exact hxz.trans hyz.symm
+    · exact hperfectRows
+
+/-- Global collision repair budget.  This is the finite-fiber summation step:
+the non-singleton fibers partition the collision sources, and fiberwise row
+errors form a sub-sum of the total diagonal mismatch. -/
+theorem collisionSources_mul_le_totalRowMismatch
+    (pair : V → W → Prop) [DecidableRel pair]
+    (R : V → V) (L : W → W) (N : ℕ)
+    (hperfectRows : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet pair x y).card = N) :
+    N * (collisionSources R).card ≤ 4 * totalRowMismatch pair R L := by
+  rw [card_collisionSources_eq_sum_mapFiber]
+  calc
+    N * ∑ z ∈ collisionTargets R, (mapFiber R z).card =
+        ∑ z ∈ collisionTargets R, N * (mapFiber R z).card := by
+      simp [Finset.mul_sum]
+    _ ≤ ∑ z ∈ collisionTargets R,
+        4 * ∑ v ∈ mapFiber R z,
+          (rowMismatchSet pair R L v).card := by
+      apply Finset.sum_le_sum
+      intro z hz
+      exact mapFiber_collision_budget pair R L N hperfectRows z hz
+    _ = 4 * ∑ z ∈ collisionTargets R,
+        ∑ v ∈ mapFiber R z, (rowMismatchSet pair R L v).card := by
+      simp [Finset.mul_sum]
+    _ ≤ 4 * totalRowMismatch pair R L := by
+      apply Nat.mul_le_mul_left 4
+      have hpartial := Finset.sum_fiberwise_le_sum_of_sum_fiber_nonneg
+        (s := (Finset.univ : Finset V)) (t := collisionTargets R)
+        (g := R) (f := fun v ↦ (rowMismatchSet pair R L v).card)
+        (fun _ _ ↦ Nat.zero_le _)
+      simpa [mapFiber, totalRowMismatch] using hpartial
+
 /-- Pairs whose left or right label map differs from a proposed repair. -/
 def changedPairs (R Rbar : V → V) (L Lbar : W → W) : Finset (V × W) :=
   (disagreementSet R Rbar).product Finset.univ ∪
@@ -292,6 +474,38 @@ theorem robust_floor_of_collision_budgets
       R₀ N e₀₀ hRcollision
   · exact repairMap_disagreement_mul_le_of_collision_budget
       L₁ N e₁₁ hLcollision
+
+/-- The pairing with its two label spaces exchanged. -/
+def transposePair (pair : V → W → Prop) : W → V → Prop :=
+  fun w v ↦ pair v w
+
+/-- Full deterministic robust paired-quotient floor.  Perfect row separation
+controls collisions of `R₀`; perfect column separation is the same row
+statement for the transposed pairing and controls collisions of `L₁`.
+The two diagonal errors are now concrete total mismatch counts rather than
+abstract repair budgets. -/
+theorem robust_deterministic_floor
+    (pair : V → W → Prop) [DecidableRel pair]
+    (R₀ R₁ : V → V) (L₀ L₁ : W → W) (N : ℕ)
+    (hV : Fintype.card V = N) (hW : Fintype.card W = N)
+    (hperfectRows : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet pair x y).card = N)
+    (hperfectColumns : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet (transposePair pair) x y).card = N)
+    (hperfectCount :
+      2 * (oneSet pair (repairMap R₀) (repairMap L₁)).card = N * (N - 1)) :
+    N * (N - 1) ≤
+      2 * (oneSet pair R₀ L₁).card +
+        8 * totalRowMismatch pair R₀ L₀ +
+          8 * totalRowMismatch (transposePair pair) L₁ R₁ := by
+  apply robust_floor_of_collision_budgets pair R₀ L₁ N
+    (totalRowMismatch pair R₀ L₀)
+    (totalRowMismatch (transposePair pair) L₁ R₁)
+    hV hW hperfectCount
+  · exact collisionSources_mul_le_totalRowMismatch
+      pair R₀ L₀ N hperfectRows
+  · exact collisionSources_mul_le_totalRowMismatch
+      (transposePair pair) L₁ R₁ N hperfectColumns
 
 end RobustPairedQuotient
 end GroupApproximation

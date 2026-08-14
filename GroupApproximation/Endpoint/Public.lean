@@ -30,6 +30,9 @@ import GroupApproximation.Monsters.HitchhikerPayload
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.ConceptualNonMFProof
+import GroupApproximation.Sofic.ManuscriptExactWrappers
+import GroupApproximation.Sofic.LiteralMFQuotientControls
+import GroupApproximation.Sofic.LiteralNonMFConsequences
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction

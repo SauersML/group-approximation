@@ -59,12 +59,23 @@ def lean_tokens(text: str) -> str:
 
 def check_factor_fragment(generated: Path) -> None:
     generated_tokens = lean_tokens(generated.read_text(encoding="utf-8"))
-    data_tokens = lean_tokens(
-        (LEAN / "LiteralP13HodgeData.lean").read_text(encoding="utf-8"))
-    if generated_tokens not in data_tokens:
+    data_text = (LEAN / "LiteralP13HodgeData.lean").read_text(
+        encoding="utf-8")
+    start_marker = "def qNumeratorRow0 :"
+    end_marker = "def qCoefficient (row : Fin 102)"
+    if data_text.count(start_marker) != 1 or data_text.count(end_marker) != 1:
         raise RuntimeError(
-            "generated exact Q-factor fragment is not present in "
-            "GroupApproximation/Sofic/LiteralP13HodgeData.lean")
+            "canonical P13 Data module must contain exactly one Q-factor "
+            "start marker and exactly one coefficient-definition marker")
+    start = data_text.index(start_marker)
+    end = data_text.index(end_marker)
+    if start >= end:
+        raise RuntimeError("canonical P13 Q-factor markers are out of order")
+    canonical_tokens = lean_tokens(data_text[start:end])
+    if generated_tokens != canonical_tokens:
+        raise RuntimeError(
+            "generated exact Q-factor fragment differs from the uniquely "
+            "delimited operative factor in LiteralP13HodgeData.lean")
 
 
 def generated_residual_names() -> list[str]:

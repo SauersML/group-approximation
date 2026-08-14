@@ -197,8 +197,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralBaseP13PropertyTBridge",
-          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
+          "module": "Sofic/ConceptualNonMFProof",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.literalBase_hasKazhdanPropertyT",
           "covers": "the complete printed proposition"
         }
       ]
