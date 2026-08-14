@@ -325,8 +325,44 @@ concrete presentation is visibly an optimization of the conceptual one; the
 first non-MF proof is the two-point sign corner, Reynolds averaging comes
 later.
 
-## Part V — Citation verification
+## Part V — Citation verification (arXiv-API sweep, completed)
 
-(See the arXiv-API sweep results appended below when complete; entries
-previously source-verified in the 2026-08-13 audit were spot-rechecked only
-where the rewrite touched them.)
+All 11 arXiv entries and all 15 DOIs in the bibliography verified clean
+(titles, authors, volumes, pages; the future-dated BDL J. Algebra 702 entry
+matches Crossref exactly; both OAI CDN URLs resolve with content-lengths and
+Aug-6-2026 timestamps consistent with the citation).  One cosmetic defect:
+[GKEMP] was out of alphabetical order (fixed).  Landscape facts established
+from primary sources: Shulman (arXiv:2603.13564v2, §1) names "the MF
+conjecture states that every countable group is MF"; Schafhauser
+(arXiv:2306.02498, §1): "there are no known examples of groups which are not
+MF"; Rainone (arXiv:1404.4389) quotes Blackadar–Kirchberg's remark that no
+stably finite separable C*-algebra was known not to be MF, with candidate
+C*_red(F_r) later proved MF by Haagerup–Thorbjørnsen (math/0212265,
+Cor. 8.4); CDE (arXiv:1210.4050, intro) states the general stably-finite ⟹
+MF question open; Magee–de la Salle state the MF property of
+C*_red(SL₃(ℤ)), C*_red(SL₄(ℤ)) is not known.  The explicitly *posed*
+Blackadar–Kirchberg question was the nuclear/quasidiagonal form; the general
+separable form is sourced as a BK remark plus folklore-open status — the
+manuscript's framing now matches this record exactly.
+
+## Part VI — Implementation status (this session, commits 0eb8ca35..f3b9b7e9)
+
+Implemented in the tex: sign renamed to ε; Theorems A–D lettered; conventions
+and asymptotic-representation/local-model/"detects" definitions added;
+41-relator count; motivation opening with MF-conjecture and BK framing;
+equivalences proof moved to Appendix A; formal-verification paragraph
+(self-contained trust surface); classical C*_max with formalization remark;
+Theorem A rerouted through the sign criterion (proof now in §5); corona
+lemmas merged into §2; compression radical moved to §7 with a complete proof
+via a both-directions transport corollary (a concurrent session upgraded the
+corollary to the Lean-anchored `compressionGroup_transport_both` — kept);
+ultrafilter corner lemma's role marked; permanence subsection with
+badge-anchored subgroup/RF/locally-finite lemmas; questions subsection;
+organization updated; TWW+HT bib entries; overfull fixed.  Repo gates green
+(35 verified references resolve; zero-tolerance scan clean).
+
+Gated on the background Lean agent (zero-conditional rule): scaling family
+E_m; necessity of (T) via LEF of the realized cyclic quotient; extension
+nonclosure for the witness subgroup.  Manuscript claims for these are
+deliberately withheld until the premise-free Lean endpoints land.
+Dead badge links self-heal when CI promotes `verified` past the rewrite.
