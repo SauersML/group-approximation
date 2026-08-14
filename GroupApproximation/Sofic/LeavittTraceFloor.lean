@@ -159,6 +159,62 @@ theorem hsNormSq_mul_le_sq_l2_opNorm_right (Y : FiniteModel)
     _ = ‖B‖ ^ 2 * hsNormSq Y A := by
       rw [Matrix.l2_opNorm_conjTranspose, hsNormSq_conjTranspose]
 
+/-- **Two-sided transition control.**  Forward and reverse intertwining
+defects control the commutator of the source arrow with the transition Gram
+operator.  Unlike the one-sided theorem below, this statement does not
+require either arrow to be unitary. -/
+theorem hsNormSq_transitionGram_commutator_le_two_sided
+    (Y : FiniteModel) (T A B : Matrix Y Y ℂ)
+    (hT : ‖T‖ ≤ 1) :
+    hsNormSq Y ((Tᴴ * T) * A - A * (Tᴴ * T)) ≤
+      2 * hsNormSq Y (T * A - B * T) +
+        2 * hsNormSq Y (Tᴴ * B - A * Tᴴ) := by
+  let Eforward := T * A - B * T
+  let Ereversed := Tᴴ * B - A * Tᴴ
+  have hTstar : ‖Tᴴ‖ ≤ 1 := by
+    rw [Matrix.l2_opNorm_conjTranspose]
+    exact hT
+  have hforward :
+      hsNormSq Y (Tᴴ * Eforward) ≤ hsNormSq Y Eforward := by
+    have hTstarSq : ‖Tᴴ‖ ^ 2 ≤ 1 := by
+      nlinarith [norm_nonneg Tᴴ]
+    calc
+      hsNormSq Y (Tᴴ * Eforward) ≤
+          ‖Tᴴ‖ ^ 2 * hsNormSq Y Eforward :=
+        hsNormSq_mul_le_sq_l2_opNorm_mul Y Tᴴ Eforward
+      _ ≤ 1 * hsNormSq Y Eforward :=
+        mul_le_mul_of_nonneg_right hTstarSq
+          (hsNormSq_nonneg Y Eforward)
+      _ = hsNormSq Y Eforward := one_mul _
+  have hreversed :
+      hsNormSq Y (Ereversed * T) ≤ hsNormSq Y Ereversed := by
+    have hTSq : ‖T‖ ^ 2 ≤ 1 := by
+      nlinarith [norm_nonneg T]
+    calc
+      hsNormSq Y (Ereversed * T) ≤
+          ‖T‖ ^ 2 * hsNormSq Y Ereversed :=
+        hsNormSq_mul_le_sq_l2_opNorm_right Y Ereversed T
+      _ ≤ 1 * hsNormSq Y Ereversed :=
+        mul_le_mul_of_nonneg_right hTSq
+          (hsNormSq_nonneg Y Ereversed)
+      _ = hsNormSq Y Ereversed := one_mul _
+  have hfactor :
+      (Tᴴ * T) * A - A * (Tᴴ * T) =
+        Tᴴ * Eforward + Ereversed * T := by
+    dsimp [Eforward, Ereversed]
+    noncomm_ring
+  rw [hfactor]
+  calc
+    hsNormSq Y (Tᴴ * Eforward + Ereversed * T) ≤
+        2 * hsNormSq Y (Tᴴ * Eforward) +
+          2 * hsNormSq Y (Ereversed * T) :=
+      hsNormSq_add_le Y _ _
+    _ ≤ 2 * hsNormSq Y Eforward + 2 * hsNormSq Y Ereversed := by
+      linarith
+    _ = 2 * hsNormSq Y (T * A - B * T) +
+        2 * hsNormSq Y (Tᴴ * B - A * Tᴴ) := by
+      rfl
+
 /-- **Transition-Gram control.**  If a contraction `T` approximately
 intertwines a source unitary `A` with a target unitary `B`, then its Gram
 operator `Tᴴ * T` approximately commutes with `A`.  The estimate is

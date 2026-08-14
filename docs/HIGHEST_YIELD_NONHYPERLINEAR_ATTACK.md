@@ -327,6 +327,26 @@ the smallest spectral fallback gate: it is phrased entirely in the
 cross-chart multiplication-module transport which the group packet is
 supposed to encode.
 
+If the recovered arrows are contractions rather than coordinate unitaries,
+use the exact two-sided identity
+
+```text
+[T* T,A]=T*(T A-B T)+(T* B-A T*)T.
+```
+
+It is then enough to prove both
+
+```text
+||T A_k-B_k T||_2->0,
+||T* B_k-A_k T*||_2->0.
+```
+
+This distinction matters: the first one-sided estimate uses unitarity of
+the coordinate shifts, whereas the Leavitt coefficient arrows are only
+contractions.  The two-sided version is formalized as
+`hsNormSq_transitionGram_commutator_le_two_sided` and makes no unitary
+assumption on `A_k,B_k`.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut

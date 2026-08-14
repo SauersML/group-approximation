@@ -42,6 +42,18 @@ The squared matrix estimate is transcribed without placeholders as
 `GroupApproximation/Sofic/LeavittTraceFloor.lean`.  It has not been locally
 built.
 
+For contraction-valued decoded arrows, the stronger exact identity
+
+```text
+[T* T,A]=T*(T A-B T)+(T* B-A T*)T
+```
+
+removes the unitary hypothesis.  Its squared estimate is transcribed as
+`hsNormSq_transitionGram_commutator_le_two_sided`.  The remaining gate in
+that setting is the forward/reverse pair of transition laws; coarea then
+bounds the total cut leakage by `32` times the sum of their unsquared
+normalized-HS defects.
+
 ### 2026-08-14: spectral coarea removes the eigenvalue-gap gate
 
 `TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md` reduces the spectral fallback to a

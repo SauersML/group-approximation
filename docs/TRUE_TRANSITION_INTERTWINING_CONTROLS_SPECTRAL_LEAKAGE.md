@@ -56,6 +56,32 @@ useful form is
 ||[H,A]||_2^2 <=4 ||T A-B T||_2^2.                  (TGI6)
 ```
 
+There is a more general two-sided identity which is the correct interface
+when the recovered arrows are contractions rather than unitaries:
+
+```text
+[T* T,A]
+ =T*(T A-B T)+(T* B-A T*)T.                         (TGI6a)
+```
+
+Consequently, for arbitrary `A,B` and contractive `T`,
+
+```text
+||[T* T,A]||_2
+ <=||T A-B T||_2+||T* B-A T*||_2.                  (TGI6b)
+```
+
+In squared form,
+
+```text
+||[T* T,A]||_2^2
+ <=2||T A-B T||_2^2+2||T* B-A T*||_2^2.            (TGI6c)
+```
+
+Thus the unitary one-sided estimate is convenient for coordinate shifts,
+while `(TGI6b)` handles the coefficient contractions used by the Leavitt
+decoder.  It is enough to recover the transition law in both orientations.
+
 ## 3. Apply it to the Pauli transition block
 
 For projections `F,G`, take
@@ -96,6 +122,21 @@ intertwining errors because spectral coarea uses Cauchy--Schwarz once.  This
 is harmless for a fixed four-arrow family: `delta_k -> 0` still gives the
 required leakage convergence.
 
+If the arrows are merely contractions, combine coarea with `(TGI6b)`
+instead.  Writing
+
+```text
+delta_k^+=||T A_k-B_k T||_2,
+delta_k^-=||T* B_k-A_k T*||_2,
+```
+
+one obtains the equally dimension-free bound
+
+```text
+sum_k ||[P,A_k]||_2^2
+ <=32 sum_k (delta_k^+ + delta_k^-).                 (TGI9a)
+```
+
 ## 4. The new terminal synchronization gate
 
 The spectral route no longer needs a separately proved estimate
@@ -108,6 +149,14 @@ It is enough to prove the more structural statement
 
 ```text
 ||G F A_k-B_k G F||_2 -> 0,       k=1,...,4.         (new gate)
+```
+
+for unitary coordinate shifts.  For contraction-valued coefficient arrows,
+the honest replacement is the two-orientation pair
+
+```text
+||G F A_k-B_k G F||_2 -> 0,
+||F G B_k-A_k F G||_2 -> 0.                          (TGI11)
 ```
 
 These are exactly transition-intertwining identities: the raw-to-comb
@@ -125,11 +174,13 @@ formally from `(TGI2)` and spectral coarea.
 
 ## 5. Formalization status
 
-The matrix identity `(TGI4)` and the squared estimate `(TGI6)` have been
-transcribed as `hsNormSq_transitionGram_commutator_le_four` in
+The matrix identities and squared estimates `(TGI6)` and `(TGI6c)` have
+been transcribed respectively as
+`hsNormSq_transitionGram_commutator_le_four` and
+`hsNormSq_transitionGram_commutator_le_two_sided` in
 `GroupApproximation/Sofic/LeavittTraceFloor.lean`, using only the existing
-normalized-HS transport lemmas.  The exact threshold and trace arithmetic in
-`(TGI9)` is already represented by
+normalized-HS transport lemmas.  The exact threshold and trace arithmetic
+in `(TGI9)` is already represented by
 `one_div_120_le_of_trace_flat_spectral_split` in
 `GroupApproximation/Sofic/DoublePauliCoefficient.lean`.  Per the development
 constraint, the new source was not locally built; it is source-level rather
