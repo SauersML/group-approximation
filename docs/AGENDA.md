@@ -6,6 +6,23 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: full-packet gap splits into bounded and multiplicity stages
+
+`TRUE_FULL_PACKET_GAP_SPLITS_INTO_RIGHT_SHIFT_OR_MULTIPLICITY.md` factors the
+new `3/16` distance through
+
+```text
+C[lambda(K)] tensor 1
+ subset C[lambda(K)] tensor M_m.
+```
+
+Pythagoras forces at least `3/32-o(1)` into one stage. Reynolds/Haar energy
+then yields either a `3/16-o(1)` commutator against one member of a recovered
+sixteen-element right-regular packet, or the same energy against one pure
+multiplicity unitary. The live compatibility theorem is thereby split into
+a fixed finite right-shift assertion and a coefficient-scalarization
+assertion; the latter is the only genuinely unbounded part.
+
 ### 2026-08-14: the full raw-packet commutant has one fixed-energy witness
 
 `TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md` upgrades the binary-cut symmetry

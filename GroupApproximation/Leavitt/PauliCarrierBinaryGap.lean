@@ -155,6 +155,25 @@ theorem one_fourth_lt_actualPacketFullCommutantWitnessEnergy :
   rw [actualPacketFullCommutantWitnessEnergy_eq]
   norm_num
 
+/-- Half of the full `3/16` packet-algebra distance.  Orthogonal splitting
+through the right-regular fixed algebra forces at least this much squared
+distance into one of the two stages. -/
+def actualPacketHalfStageDistance : ℝ :=
+  ((3 : ℝ) / 16) / 2
+
+@[simp] theorem actualPacketHalfStageDistance_eq :
+    actualPacketHalfStageDistance = (3 : ℝ) / 32 := by
+  norm_num [actualPacketHalfStageDistance]
+
+/-- Reynolds or Haar averaging doubles the half-stage squared distance. -/
+def actualPacketHalfStageWitnessEnergy : ℝ :=
+  2 * actualPacketHalfStageDistance
+
+@[simp] theorem actualPacketHalfStageWitnessEnergy_eq :
+    actualPacketHalfStageWitnessEnergy = (3 : ℝ) / 16 := by
+  norm_num [actualPacketHalfStageWitnessEnergy,
+    actualPacketHalfStageDistance]
+
 /-- Average squared commutator energy forced by an adjoint-channel gap
 `kappa` on the actual packet's centered multiplicity vector. -/
 def actualPacketFixedLibraryAverageEnergy (kappa y : ℝ) : ℝ :=
