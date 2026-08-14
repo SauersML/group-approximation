@@ -193,7 +193,7 @@
     {
       "id": "thm:D",
       "environment": "mainthm",
-      "title": "a stably finite non-MF reduced group algebra",
+      "title": "the reduced group algebra of $E$",
       "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -453,7 +453,7 @@
       "id": "lem:corner",
       "environment": "lemma",
       "title": "coordinate finite-normal corner",
-      "statement_sha256": "3551a5ada6989e573df34aa78c700d31291f364e1f48a9f5461b46146e72fcaf",
+      "statement_sha256": "8dd0103558406092d446dec2bf9529686b5285890a92bc40bb76f83c26e79ffb",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -473,7 +473,7 @@
       "id": "lem:compressorcollapse",
       "environment": "lemma",
       "title": "Kazhdan fixed-space transport",
-      "statement_sha256": "288a663f68cfd087cf2220da12166a5fce841195411ad56e89a2daa74d1d065b",
+      "statement_sha256": "c0e4abc6417e27b9a0664e88bab68d1e16aeb1df0a90c49b141bafba74eeda7f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
