@@ -67,6 +67,10 @@ result and are used to discharge concrete endpoints:
   split extensions with finite normal factor.
 - `isSofic_int_semidirectProduct`: a direct truncated-level proof that a
   split extension of a sofic group by the integers is sofic.
+- `isSofic_telescope`: soficity of the mapping telescope of an injective
+  endomorphism of a sofic group.
+- `isSofic_semidirectProduct_of_invariant_finite`: a local criterion that
+  assembles finite invariant kernel windows acted on by sofic subgroups.
 - `CliffordLamp.finite_cliffordLamp` and
   `CliffordLamp.isLocallyFiniteGroup_cliffordLamp`: finite-site finiteness and
   arbitrary-site local finiteness of the presented Clifford lamp group.
@@ -80,10 +84,11 @@ result and are used to discharge concrete endpoints:
 The manuscript's finite-coset-tower proof that the **total** Clifford witness
 is sofic is not yet represented by a premise-free Lean theorem.  The pieces
 above establish the finite lamp groups, split finite-kernel permanence,
-directed-union permanence, split integer-extension permanence, and residual
-finiteness of the concrete base.  The remaining formal work is the concrete
-tower/dilation identification that connects those reusable pieces to the
-literal witness.
+directed-union permanence, split integer-extension permanence, mapping-
+telescope permanence, locally finite invariant-kernel permanence, and
+residual finiteness of the concrete base.  The remaining formal work is the
+concrete finite-orbit/dilation identification that connects those reusable
+pieces to the literal witness.
 
 Consequently, the following prose consequences must not receive an `EXACT`
 badge until that endpoint is completed:
