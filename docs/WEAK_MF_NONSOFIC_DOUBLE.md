@@ -1,4 +1,4 @@
-# An operator-MF nonsofic symmetric double
+# An operator-MF nonsofic symmetric double: paper argument and formal reduction
 
 ## Status of Question 1.6 on sofic doubles
 
@@ -8,17 +8,17 @@ for certain fundamental groups of graphs of groups* (arXiv:2408.11724):
 > If (G) is a countable sofic group, are arbitrary doubles
 > (G *_H G) sofic?
 
-The Kun--Thom pair gives a negative answer: its ambient group
-(G) is countable and residually finite, hence sofic, and the reduction below
-implies
+At the paper level, the Kun--Thom pair gives a negative answer: its ambient
+group (G) is countable and residually finite, hence sofic, and the reduction
+below implies
 
 \[
 G *_\Gamma G\quad\text{is nonsofic}.
 \]
 
-This is now a closed pen-and-paper theorem from Kun--Thom's Theorem 4.1 and
+This paper-level conclusion follows by combining Kun--Thom's Theorem 4.1 with
 Shulman's Theorem 10.  The repository proves internally the symmetric
-amalgam, its flip, the
+amalgam, its flip, and the
 presentation isomorphism
 
 \[
@@ -32,40 +32,45 @@ double into the infinite line double.  These are in
 `GroupApproximation/Sofic/SymmetricDoubleFlip.lean`, and
 `GroupApproximation/Sofic/LineDouble.lean`.
 
-The remaining Lean boundary is explicit rather than hidden.  The newer
-centralizer-normalization theorem and the construction of the concrete
-matrix-group pair have not been reproved from first principles in Lean.
+The remaining formal boundary is explicit rather than hidden.  The newer
+centralizer-normalization theorem, the operator-MF conclusion, and the
+construction of the concrete matrix-group pair have neither been reproved
+from first principles nor instantiated as proof terms in the repository.
 `GroupApproximation/Sofic/MFNonsoficDoubleEndpoint.lean` defines the exact
 permutation-ultraproduct property
 `HasSoficCentralizerNormalization`, proves the free-lamp and symmetric-double
-nonsoficity arguments from it, and exports the final conjunction
-`symmetricDouble_isGroupTheoreticMF_and_not_isSofic`.  The recent literature
-inputs are supplied as proof terms through `KunThomShulmanDoubleData`; no
-opaque axiom is added to the project.
+nonsoficity arguments from it, and proves the conditional conjunction
+`symmetricDouble_isGroupTheoreticMF_and_not_isSofic` from explicit hypotheses.
+`KunThomShulmanDoubleData` is a proof-carrying interface for exactly those
+hypotheses; the repository currently contains no concrete inhabitant of that
+structure.  No opaque axiom is added to the project.
 
-Thus the kernel-checked reduction proves the load-bearing implication
+Given the centralizer-normalization and strict-compressor fields, the formal
+reduction proves the load-bearing implication:
 
 \[
 \operatorname{Sofic}(G *_\Gamma G)
 \Longrightarrow
-\operatorname{Sofic}\bigl(G *_\Gamma(\Gamma\times C_2)\bigr),
+\operatorname{Sofic}\bigl(G *_\Gamma(\Gamma\times C_2)\bigr)
 \]
 
-and the endpoint module combines its contrapositive with the supplied
-operator-MF conclusion.  The concrete
-Kun--Thom elementary-group datum is the remaining literature trust boundary,
-not an unmentioned gap in the argument.
+The endpoint theorem combines its contrapositive with an operator-MF
+hypothesis supplied by its caller.  It does not construct the concrete
+Kun--Thom elementary-group datum or discharge either recent literature input.
+Those inputs are the stated boundary between the paper argument and the
+conditional formal reduction.
 
 The weak-MF conclusion discussed below is additional: nonsoficity alone gives
 the negative answer to Question 1.6.
 
-The resulting weak/operator-norm MF conclusion proves
+At the paper level, the resulting weak/operator-norm MF conclusion gives
 
 \[
  \text{MF groups}\not\subseteq\text{sofic groups}.
 \]
 
-This settles one inclusion in Andrew James Schneider's broader Question 8
+Thus the cited paper-level argument settles one inclusion in Andrew James
+Schneider's broader Question 8
 in his 2016 Purdue dissertation, *Finite dimensional approximations and
 deformations of group C*-algebras*: “What is the relationship between the
 class of MF groups, the class of sofic groups, and the class hyperlinear
@@ -256,10 +261,11 @@ matrix amplifications of MF algebras are MF, \(H\) is weak-MF.
 
 ## 3. Application to the Kun--Thom pair
 
-This section is the pen-and-paper consequence of the cited Kun--Thom inputs.
-Its abstract centralizer argument and final symmetric-double implication are
-now present in the Lean trust surface, with the published theorem supplied as
-explicit proof-carrying data.
+This section gives the pen-and-paper consequence of the cited Kun--Thom
+inputs.  The repository contains the abstract centralizer argument and the
+final symmetric-double implication only in conditional form.  Applying that
+formal implication to the concrete pair still requires an inhabitant of
+`KunThomShulmanDoubleData`; none is currently defined.
 
 Let \(\Gamma<G\) be the explicit residually finite Kazhdan infranormal pair
 of Kun--Thom.  Choose a strict compressor \(t\) and
@@ -345,17 +351,17 @@ centralizer-normalization argument, using any \(1\neq k\in K\), proves
 
 ## 4. The forced exotic MF corner
 
-The weak-MF statement makes an operator-norm localization theorem
-unconditional.  Let \(H_K=G *_\Gamma(\Gamma\times K)\) be one of the groups
-above and let
+At the paper level, the weak-MF statement makes the following operator-norm
+localization theorem unconditional.  Let
+\(H_K=G *_\Gamma(\Gamma\times K)\) be one of the groups above and let
 
 \[
  \varphi:H_K\longrightarrow U(F)
 \]
 
 be an injective homomorphism into a unital finite C*-algebra \(F\).  This
-includes the faithful realization in an MF norm ultraproduct just
-constructed.  Let \(p_\Gamma\in C^*_{\max}(\Gamma)\) be the Kazhdan
+includes the faithful realization in an MF norm ultraproduct constructed in
+the paper argument above.  Let \(p_\Gamma\in C^*_{\max}(\Gamma)\) be the Kazhdan
 projection and set
 
 \[
