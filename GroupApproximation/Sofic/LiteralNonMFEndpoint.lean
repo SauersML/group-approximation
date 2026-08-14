@@ -97,8 +97,9 @@ theorem kazhdanPinning (B : OpAlmostRepresentation MarkedGroup) :
 
 /-- A separated negative corner for the literal mark contradicts Kazhdan
 transport and the identity `mark = compressionDefect²`. -/
-theorem negativeCorner_kazhdanTransport_contradiction
-    (A : MarkedOpAlmostRepresentation MarkedGroup mark) : False := by
+theorem negativeCorner_kazhdanTransport_contradiction :
+    ∀ (_A : MarkedOpAlmostRepresentation MarkedGroup mark), False := by
+  intro A
   rw [← inclusionData_word] at A
   exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
     inclusionData A
