@@ -100,47 +100,86 @@ permissions:
 
 jobs:
   gate:
-    name: Gate scheduled runs on recent changes
+    name: Decide whether the exact proof tree needs verification
     runs-on: ubuntu-latest
     outputs:
       run: ${{ steps.check.outputs.run }}
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - id: check
         shell: bash
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "push" ]; then
-            git fetch --no-tags origin \
-              '+refs/heads/main:refs/remotes/origin/main'
-            latest=$(git rev-parse refs/remotes/origin/main)
-            if [ '${{ github.sha }}' != "$latest" ]; then
-              echo "Push ${{ github.sha }} is stale; main is $latest."
-              echo "run=false" >> "$GITHUB_OUTPUT"
-              exit 0
-            fi
-            echo "Push ${{ github.sha }} is the current main tip; running."
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          if [ "${{ github.event_name }}" != "schedule" ]; then
+          if [ "${{ github.event_name }}" != "push" ] && \
+             [ "${{ github.event_name }}" != "schedule" ]; then
             echo "Event ${{ github.event_name }} runs at its requested SHA."
             echo "run=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          latest=$(git log -1 --format=%ct)
-          now=$(date +%s)
-          age_min=$(( (now - latest) / 60 ))
-          window=420
-          if [ "$age_min" -lt "$window" ]; then
-            echo "Last commit ${age_min}m ago (< ${window}m); running scheduled job."
+
+          git fetch --no-tags origin \
+            '+refs/heads/main:refs/remotes/origin/main' \
+            '+refs/heads/verified:refs/remotes/origin/verified'
+          python3 scripts/advance_verified_branch.py self-test
+
+          target='${{ github.sha }}'
+          main=$(git rev-parse refs/remotes/origin/main)
+          verified=$(git rev-parse refs/remotes/origin/verified)
+
+          if ! git merge-base --is-ancestor "$target" "$main"; then
+            echo "Requested SHA $target is not an ancestor of main; verifying it explicitly."
             echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Last commit ${age_min}m ago (>= ${window}m); nothing changed, skipping."
-            echo "run=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
+
+          if [ "$target" != "$main" ]; then
+            set +e
+            python3 scripts/advance_verified_branch.py compare "$target" "$main"
+            newer_delta=$?
+            set -e
+            case "$newer_delta" in
+              0)
+                echo "Later commits are publication-only; this SHA certifies their proof tree."
+                echo "run=true" >> "$GITHUB_OUTPUT"
+                ;;
+              1)
+                echo "A newer verification-relevant proof tree is queued; skipping this SHA."
+                echo "run=false" >> "$GITHUB_OUTPUT"
+                ;;
+              *)
+                echo "Proof-tree comparison failed with status $newer_delta." >&2
+                exit "$newer_delta"
+                ;;
+            esac
+            exit 0
+          fi
+
+          if ! git merge-base --is-ancestor "$verified" "$target"; then
+            echo "verified is not an ancestor of the current proof tree; running."
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          set +e
+          python3 scripts/advance_verified_branch.py compare "$verified" "$target"
+          verified_delta=$?
+          set -e
+          case "$verified_delta" in
+            0)
+              echo "The current verification-relevant tree is already certified."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              ;;
+            1)
+              echo "The current proof tree differs from verified; running."
+              echo "run=true" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Verified-tree comparison failed with status $verified_delta." >&2
+              exit "$verified_delta"
+              ;;
+          esac
 
   p13:
     needs: gate
