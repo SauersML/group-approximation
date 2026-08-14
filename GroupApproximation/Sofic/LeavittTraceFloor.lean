@@ -328,7 +328,7 @@ theorem hsNormSq_transitionGram_commutator_le_four
 transition and one range-deficiency term.  Positivity of the latter supplies
 the square-root estimate recorded in the accompanying research note. -/
 theorem pairing_defect_transition_decomposition
-    (W L R : Matrix Y Y ℂ) :
+    (Y : FiniteModel) (W L R : Matrix Y Y ℂ) :
     W * L - R * W =
       R * (Rᴴ * W * L - W) + (1 - R * Rᴴ) * (W * L) := by
   noncomm_ring
@@ -337,7 +337,7 @@ theorem pairing_defect_transition_decomposition
 `pairing_defect_transition_decomposition`.  The remaining hypothesis is
 exactly the positive range-deficiency estimate supplied by mass saturation. -/
 theorem hsNormSq_pairing_transition_le_of_range_deficiency
-    (W L R : Matrix Y Y ℂ) (κ : ℝ)
+    (Y : FiniteModel) (W L R : Matrix Y Y ℂ) (κ : ℝ)
     (hR : ‖R‖ ≤ 1)
     (hdeficiency :
       hsNormSq Y ((1 - R * Rᴴ) * (W * L)) ≤ κ) :
@@ -379,11 +379,12 @@ theorem hsNormSq_pairing_defect_controls_sourceGram_commutator
   have hRRstar : R * Rᴴ = 1 := Unitary.mul_star_self_of_mem hR
   have hfactor :
       W * L - R * W = R * (Rᴴ * W * L - W) := by
-    rw [Matrix.mul_sub]
     calc
-      R * (Rᴴ * W * L) - R * W =
-          (R * Rᴴ) * W * L - R * W := by noncomm_ring
-      _ = W * L - R * W := by rw [hRRstar, Matrix.one_mul]
+      W * L - R * W = (R * Rᴴ) * W * L - R * W := by
+        rw [hRRstar, Matrix.one_mul]
+      _ = R * (Rᴴ * W * L - W) := by
+        rw [Matrix.mul_sub]
+        noncomm_ring
   have htransition :=
     hsNormSq_transitionGram_commutator_le_four
       Y hY W L R hW hL hR
@@ -399,14 +400,14 @@ theorem hsNormSq_pairing_defect_controls_sourceGram_commutator
 one-sided leakage term.  This identity shows that only the left factor of a
 Leavitt product needs carrier invariance. -/
 theorem compressed_product_sub_carrier_identity
-    (P T S : Matrix Y Y ℂ) :
+    (Y : FiniteModel) (P T S : Matrix Y Y ℂ) :
     P * T * P * S * P - P =
       P * (T * S - 1) * P - P * T * (1 - P) * S * P := by
   noncomm_ring
 
 /-- Cross-product form of `compressed_product_sub_carrier_identity`. -/
 theorem compressed_cross_product_identity
-    (P T S : Matrix Y Y ℂ) :
+    (Y : FiniteModel) (P T S : Matrix Y Y ℂ) :
     P * T * P * S * P =
       P * (T * S) * P - P * T * (1 - P) * S * P := by
   noncomm_ring
