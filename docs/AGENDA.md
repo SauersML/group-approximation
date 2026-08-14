@@ -1,8 +1,10 @@
 # Research agenda (owned and maintained by the formalization side)
 
-Started 2026-08-08. This is my program for Question 3.4 — is every
-hyperlinear group sofic? — maintained across sessions. Doctrine: every
-claim is kernel-checked, cited-from-source, or explicitly conjectural.
+Started 2026-08-08. This is my program for the universal-hyperlinearity and
+hyperlinear-versus-sofic frontiers, maintained across sessions.  The primary
+target is an explicit nonhyperlinear group; the radical-collision program is
+the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
+kernel-checked, cited from a source, or explicitly conjectural.
 
 ### 2026-08-14: positive-rank carriers do not inherit the Leavitt gap
 
