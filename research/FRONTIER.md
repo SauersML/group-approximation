@@ -147,7 +147,7 @@ non-hyperlinear-group [OPEN] Exhibit an explicit non-hyperlinear group
     leavitt-multiplicative-trace-floor [✓] Dimension-free multiplicative Leavitt trace floor
       ├ leavitt-multiplicative-trace-floor-proof [✓] Prove the contraction product inequality and solve its quadratic floor
   ├ pauli-binary-membership-route [OPEN] Close nonhyperlinearity with one Pauli binary-membership estimate
-    pauli-carrier-membership-decoder [OPEN] 🔒codex-root Decode the transported Pauli carrier inside the raw binary algebra
+    pauli-carrier-membership-decoder [OPEN] Decode the transported Pauli carrier inside the raw binary algebra
     pauli-binary-algebra-gap [✓] Fixed Pauli carrier has a dimension-free binary-algebra distance gap
       ├ pauli-binary-algebra-gap-proof [✓] Minimize the two-projection conditional-expectation quadratic
   ├ rigidity-route [OPEN] Rigidity route via flexible HS-stability
@@ -199,7 +199,7 @@ unsquared-defect-mf-visible [OPEN] MF visibility of the unsquared compression de
 - **leavitt-steinberg-hs-unstable** [1 live route(s) need it] [The binary Leavitt Steinberg cover is normalized-HS unstable](leavitt-steinberg-hs-unstable.md) — unclaimed
 - **literal-mark-quotient-mf** [1 live route(s) need it] [MF property of the literal marked quotient](literal-mark-quotient-mf.md) — unclaimed
 - **literal-witness-kernel-amenable** [1 live route(s) need it] [Amenability of the kernel from the literal group to its Clifford witness](literal-witness-kernel-amenable.md) — unclaimed
-- **pauli-carrier-membership-decoder** [1 live route(s) need it] [Decode the transported Pauli carrier inside the raw binary algebra](pauli-carrier-membership-decoder.md) — 🔒 `codex-root` (96m41s remaining)
+- **pauli-carrier-membership-decoder** [1 live route(s) need it] [Decode the transported Pauli carrier inside the raw binary algebra](pauli-carrier-membership-decoder.md) — unclaimed
 - **quantized-scale-index** [1 live route(s) need it] [Quantized scale index synchronizing the two commutant exhaustion scales](quantized-scale-index.md) — unclaimed
 - **relator-energy-variance-bound** [1 live route(s) need it] [Size-uniform bound from mixed relator energy to outer conditional variances](relator-energy-variance-bound.md) — unclaimed
 - **same-orbit-closure** [1 live route(s) need it] [Same-orbit closure for the child translation images](same-orbit-closure.md) — unclaimed
@@ -240,4 +240,4 @@ unsquared-defect-mf-visible [OPEN] MF visibility of the unsquared compression de
 
 ## Active locks
 
-- 🔒 pauli-carrier-membership-decoder — `codex-root`, 96m41s remaining
+*(none)*
