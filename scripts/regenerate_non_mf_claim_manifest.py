@@ -118,6 +118,30 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 }
 
 
+# Unconditional manuscript theorems whose infrastructure has not yet been
+# mechanized.  They deliberately carry no Lean badge.  Keeping this map next
+# to CLAIM_TARGETS makes omission impossible without misrepresenting their
+# formal status.
+PAPER_ONLY_CLAIMS: dict[str, dict[str, object]] = {
+    "thm:sofic-detector": {
+        "dependencies": ["thm:A", "prop:witness"],
+        "external_inputs": [
+            "residual finiteness of finitely generated integral linear groups",
+            "closure of sofic groups under finite extensions and directed unions",
+            "closure of sofic groups under extensions by amenable quotients",
+            "sofic groups are hyperlinear",
+        ],
+        "coverage_gap": (
+            "The concrete finite-coset-tower and sofic permanence argument is "
+            "proved in the manuscript; Lean formalizes the abstract detector "
+            "consequences but not this concrete soficity construction."),
+        "object_identity": (
+            "The printed theorem concerns the same literal group E, mark w, and "
+            "Clifford witness W used by Proposition prop:witness."),
+    },
+}
+
+
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
@@ -151,7 +175,7 @@ def generate(tex: Path) -> dict:
     entries = []
     claims = read_printed_claims(tex)
     claim_ids = {claim.claim_id for claim in claims}
-    routed_ids = CLAIM_TARGETS.keys()
+    routed_ids = CLAIM_TARGETS.keys() | PAPER_ONLY_CLAIMS.keys()
     missing = sorted(claim_ids - routed_ids)
     stale = sorted(routed_ids - claim_ids)
     if missing:
@@ -159,6 +183,25 @@ def generate(tex: Path) -> dict:
     if stale:
         raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
+        if claim.claim_id in PAPER_ONLY_CLAIMS:
+            if claim.badges:
+                raise SystemExit(
+                    f"{claim.claim_id}: paper-only claim must not carry a Lean badge")
+            metadata = PAPER_ONLY_CLAIMS[claim.claim_id]
+            entries.append({
+                "id": claim.claim_id,
+                "environment": claim.environment,
+                "title": claim.title,
+                "statement_sha256": claim.statement_sha256,
+                "status": "paper-only",
+                "object_identity": metadata["object_identity"],
+                "dependencies": metadata["dependencies"],
+                "extra_assumptions": [],
+                "external_inputs": metadata["external_inputs"],
+                "coverage_gap": metadata["coverage_gap"],
+                "lean": [],
+            })
+            continue
         module, declaration = CLAIM_TARGETS[claim.claim_id]
         if len(claim.badges) != 1:
             raise SystemExit(
