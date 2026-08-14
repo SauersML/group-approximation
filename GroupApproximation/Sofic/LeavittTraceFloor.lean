@@ -552,7 +552,7 @@ theorem hsNormSq_range_deficiency_le_mass_loss
           noncomm_ring
     rw [hleft, hRtrace, hQtrace]
     dsimp [Q]
-    rw [Matrix.sub_mul, Matrix.trace_sub, Matrix.one_mul]
+    simp only [Matrix.sub_mul, Matrix.trace_sub, Matrix.one_mul]
     ring
   have hcard : (0 : ℝ) < Fintype.card Y := by exact_mod_cast hY
   have hnormNonneg :
