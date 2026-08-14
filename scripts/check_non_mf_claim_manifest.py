@@ -3,10 +3,9 @@
 
 Unlike the margin-link checker, this gate starts from *every* numbered
 theorem-like environment.  Each environment must occur exactly once in the
-JSON manifest, even when its honest status is ``paper-only``.  The manifest
-records the source module and declaration for every formal component, every
-extra formal premise, paper dependencies, external inputs, and the precise
-coverage gap for non-exact entries.
+JSON manifest and must carry one exact declaration mapping.  The manifest
+records the source module and declaration, paper dependencies, external
+inputs, and the proposition's object identity.
 
 The normalized SHA-256 digest is deliberately a digest of the printed
 statement, not of its proof or nearby prose.  Editing a quantified object,
@@ -48,23 +47,10 @@ RESULT_ENVS = (
     "claim",
     "example",
 )
-STATUSES = {
-    "exact",
-    "equivalent",
-    "partial",
-    "supporting",
-    "conditional",
-    "different-witness",
-    "paper-only",
-}
-ROLES = STATUSES - {"paper-only"}
+STATUSES = {"exact"}
+ROLES = {"exact"}
 BADGE_TO_ROLE = {
     "verified": "exact",
-    "equivalent": "equivalent",
-    "supporting": "supporting",
-    "conditional": "conditional",
-    "partial": "partial",
-    "differentwitness": "different-witness",
 }
 
 BEGIN_RE = re.compile(
@@ -73,7 +59,7 @@ BEGIN_RE = re.compile(
 )
 LABEL_RE = re.compile(r"\\label\{([^{}]+)\}")
 BADGE_RE = re.compile(
-    r"\\lean(?P<status>verified|equivalent|supporting|conditional|partial|differentwitness)"
+    r"\\lean(?P<status>verified)"
     r"\{(?P<module>[^{}]+)\}\{(?P<declaration>[^{}]+)\}"
 )
 COMMENT_RE = re.compile(r"(?<!\\)%[^\n]*")
@@ -276,10 +262,8 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         gap = entry.get("coverage_gap")
         if not isinstance(gap, str):
             problems.append(f"{prefix}: `coverage_gap` must be a string")
-        elif status == "exact" and gap:
+        elif gap:
             problems.append(f"{prefix}: exact claim cannot record a coverage gap")
-        elif status != "exact" and not gap:
-            problems.append(f"{prefix}: non-exact claim must state its coverage gap")
 
         identity = entry.get("object_identity")
         if not isinstance(identity, str) or not identity:
@@ -289,12 +273,8 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         if not isinstance(lean, list):
             problems.append(f"{prefix}: `lean` must be a list")
             lean = []
-        if status == "paper-only" and lean:
-            # Paper-only means no theorem-level counterpart.  Supporting
-            # formal components belong under a partial/supporting status.
-            problems.append(f"{prefix}: paper-only claim cannot list Lean counterparts")
-        if status != "paper-only" and not lean:
-            problems.append(f"{prefix}: non-paper-only claim must list Lean declarations")
+        if not lean:
+            problems.append(f"{prefix}: exact claim must list a Lean declaration")
 
         declared_refs: set[tuple[str, str, str]] = set()
         for position, ref in enumerate(lean, 1):
@@ -341,17 +321,10 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
                 )
 
         roles = {ref.get("role") for ref in lean if isinstance(ref, dict)}
-        if status == "exact" and "exact" not in roles:
+        if "exact" not in roles:
             problems.append(f"{prefix}: exact status requires an exact Lean mapping")
-        if status == "conditional" and "conditional" not in roles:
-            problems.append(f"{prefix}: conditional status requires a conditional mapping")
-        if status == "conditional" and not entry.get("extra_assumptions"):
-            problems.append(f"{prefix}: conditional status must name its extra assumptions")
-        if status == "exact" and entry.get("extra_assumptions"):
+        if entry.get("extra_assumptions"):
             problems.append(f"{prefix}: exact status cannot retain extra formal assumptions")
-        if status in {"equivalent", "supporting", "different-witness"} \
-                and status not in roles:
-            problems.append(f"{prefix}: {status} status requires a {status} mapping")
 
     return problems
 
@@ -397,7 +370,7 @@ def self_test() -> int:
         bad = json.loads(json.dumps(base))
         bad["claims"][0]["lean"] = []
         manifest.write_text(json.dumps(bad), encoding="utf-8")
-        if not any("must list Lean declarations" in p for p in validate(repo, tex, manifest)):
+        if not any("must list a Lean declaration" in p for p in validate(repo, tex, manifest)):
             print("self-test missed empty exact mapping", file=sys.stderr)
             return 1
         bad = json.loads(json.dumps(base))
@@ -405,6 +378,15 @@ def self_test() -> int:
         manifest.write_text(json.dumps(bad), encoding="utf-8")
         if not any("cannot retain extra" in p for p in validate(repo, tex, manifest)):
             print("self-test accepted a hidden premise on an exact claim", file=sys.stderr)
+            return 1
+        bad = json.loads(json.dumps(base))
+        bad["claims"][0]["status"] = "paper-only"
+        bad["claims"][0]["lean"] = []
+        bad["claims"][0]["coverage_gap"] = "No exact declaration."
+        manifest.write_text(json.dumps(bad), encoding="utf-8")
+        if not any("invalid status `paper-only`" in p
+                   for p in validate(repo, tex, manifest)):
+            print("self-test accepted a paper-only numbered claim", file=sys.stderr)
             return 1
         bad = json.loads(json.dumps(base))
         bad["claims"] = []
