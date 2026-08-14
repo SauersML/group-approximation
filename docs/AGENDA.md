@@ -69,10 +69,16 @@ in `Leavitt/OuterRootLeavittRouting.lean`. It removes the local Pauli
 noncommutation from the three path contexts without losing the two
 diagonal-one and two cross-zero identities.
 
-The live theorem is now the common-carrier outer-root decoder: place both
-outer transition PVMs on the same positive-density long-root character cut
-and show that the nested word transfers their labels to the long-root
-character with vanishing total mismatch.
+The long root commutes with both outer packets and the middle root, so its
+nontrivial spectral cut is already an exact common positive-density carrier.
+The finite `UT_4(F_2)` regular model nevertheless realizes this carrier and
+the full nested table without a classical decoder. See
+`TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
+
+The live theorem is therefore the **proper-compressor** outer-root decoder:
+use growing extension-fiber covariance, not merely the finite four-root
+packet, to make the outer transition blocks deterministic and transfer their
+labels to the long-root character with vanishing total mismatch.
 
 ### 2026-08-14: covariance closes total single-edge transition variance
 

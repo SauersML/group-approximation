@@ -429,10 +429,14 @@ the fixed middle root `x_23(1)` gives
 
 See `TRUE_COMMUTING_OUTER_ROOTS_RETAIN_LEAVITT_TABLE.md` and
 `Leavitt/OuterRootLeavittRouting.lean`. The live compatibility theorem is
-therefore reduced to a common-carrier statement: identify the two outer-root
-transition PVMs on one positive-density long-root character cut and show
-that the nested word decodes their long-root character with vanishing total
-mismatch.
+not carrier alignment: `x_14(1)` commutes with both outer packets and the
+middle root, so its nontrivial spectral corner is automatically common and
+has positive trace. The remaining statement is proper-compressor decoding:
+show that the outer transition blocks become deterministic response maps on
+that carrier and that the nested word decodes their long-root character with
+vanishing total mismatch. The finite `UT_4(F_2)` regular model proves that
+the local nested table alone cannot supply this decoder. See
+`TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
 
 The raw swap itself now supplies the complete local branch decoder: it fixes
 the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last

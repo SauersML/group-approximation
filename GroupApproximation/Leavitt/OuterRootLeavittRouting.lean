@@ -25,6 +25,30 @@ theorem outerRootPackets_commute (a b : R) :
   elementaryRoot_commute_of_ne
     (0 : Fin 4) 1 2 3 (by decide) (by decide) (by decide) (by decide) a b
 
+/-- The long root commutes with the left outer packet. -/
+theorem longRoot_commutes_leftOuter (z a : R) :
+    Commute
+      (elementaryRoot (0 : Fin 4) 3 (by decide) z)
+      (elementaryRoot (0 : Fin 4) 1 (by decide) a) :=
+  elementaryRoot_commute_of_ne
+    (0 : Fin 4) 3 0 1 (by decide) (by decide) (by decide) (by decide) z a
+
+/-- The long root commutes with the fixed middle packet. -/
+theorem longRoot_commutes_middle (z b : R) :
+    Commute
+      (elementaryRoot (0 : Fin 4) 3 (by decide) z)
+      (elementaryRoot (1 : Fin 4) 2 (by decide) b) :=
+  elementaryRoot_commute_of_ne
+    (0 : Fin 4) 3 1 2 (by decide) (by decide) (by decide) (by decide) z b
+
+/-- The long root commutes with the right outer packet. -/
+theorem longRoot_commutes_rightOuter (z c : R) :
+    Commute
+      (elementaryRoot (0 : Fin 4) 3 (by decide) z)
+      (elementaryRoot (2 : Fin 4) 3 (by decide) c) :=
+  elementaryRoot_commute_of_ne
+    (0 : Fin 4) 3 2 3 (by decide) (by decide) (by decide) (by decide) z c
+
 /-- A fixed middle root converts the two commuting outer coefficients into
 their product in the long root. -/
 theorem outerRoot_middle_nested_commutator (a b c : R) :

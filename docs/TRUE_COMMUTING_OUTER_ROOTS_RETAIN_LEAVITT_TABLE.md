@@ -83,24 +83,29 @@ for each of `(R0,L0)`, `(R0,L1)`, `(R1,L1)`, use the corresponding outer
 coefficients `a t_i` and `s_j b`. Their target root packets commute exactly,
 and the nested word supplies the correct diagonal/crossed product.
 
+The common carrier itself is automatic. The long root `x_14(1)` commutes
+with both outer packets and the middle root, so its nontrivial spectral
+corner is a common positive-density invariant carrier in a faithful tracial
+ultraproduct. See
+`TRUE_LONG_ROOT_CARRIER_IS_COMMON_BUT_NOT_A_DECODER.md`.
+
 What remains is a smaller synchronization statement:
 
-> **Common-carrier outer-root decoder gate.** Show that the compressor
-> transition PVM for `a |-> a t_i` in `X_12` and the transition PVM for
-> `b |-> s_j b` in `X_34` are compressions through the same
-> positive-density central-character carrier, and that the nested word
-> `(COR4)` makes their character labels decode the long-root character with
-> vanishing total mismatch.
+> **Proper-compressor outer-root decoder gate.** Show that the compressor
+> transitions for `a |-> a t_i` in `X_12` and `b |-> s_j b` in `X_34`
+> become asymptotically deterministic response maps on the common long-root
+> carrier, and that `(COR4)` makes their labels decode the long-root
+> character with vanishing total mismatch.
 
-If the common-carrier statement holds, single-edge covariance supplies the
-two leakage bounds. The commuting-target transition theorem gives vanishing
-edge commutator energy; path PVM classicalization makes the three edges
-exactly commuting; character-to-map coarsening and tree gluing give a common
-latent law; and the robust `1/36` paired-quotient floor finishes the
-contradiction.
+If this statement holds, single-edge covariance supplies the leakage bounds.
+The commuting-target transition theorem gives vanishing edge commutator
+energy; path PVM classicalization makes the three edges exactly commuting;
+character-to-map coarsening and tree gluing give a common latent law; and the
+robust `1/36` paired-quotient floor finishes the contradiction.
 
 The remaining clause is not automatic from the group identity alone. The
-middle root may transport between character sectors, and one must prove that
-the same long-root central cut supports both outer transition systems. This
-is now the unique operator-coordinate issue in this route; neither local
-Pauli noncommutation nor growing-outcome rounding remains.
+left regular representation of `UT_4(F_2)` already realizes the common
+trace-`1/2` carrier, commuting outer roots, and the complete nested table,
+while retaining a finite Clifford transition. Thus proper-compressor
+extension-fiber coherence is the unique operator-coordinate issue in this
+route; neither carrier alignment nor growing-outcome rounding remains.
