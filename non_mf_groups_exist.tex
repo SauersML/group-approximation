@@ -138,7 +138,7 @@ separable $C^*$-algebra was known not to be MF \cite{BK,CDE}, and their
 natural candidate $\Cred(F_2)$ was in fact proved MF by Haagerup and
 Thorbj{\o}rnsen \cite{HT}.  The negative solution of the Connes embedding
 problem subsequently supplied abstract stably finite non-MF algebras
-\cite{FGH}.  No countable group was known whose reduced or maximal group
+\cite{MIPRE,FGH}.  No countable group was known whose reduced or maximal group
 $C^*$-algebra fails to be MF \cite{Shulman}.
 
 These questions sit at the endpoint of a program of finitary
@@ -151,8 +151,9 @@ Bachner--Dogon--Lubotzky \cite{BDL}, who describe the three remaining
 metrics --- the Hamming metric (soficity), the Hilbert--Schmidt norm
 (hyperlinearity), and the operator norm (MF) --- as ``the holy-grail of
 the subject.''  The Hamming case was disproved in 2026: the first
-nonsofic group was constructed by OpenAI \cite{OAI}, and Kun--Thom
-developed further wreath-product examples \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
+nonsofic group was constructed by OpenAI \cite{OAI}, Fournier-Facio then
+gave a torsion-free example \cite{FFF}, and Kun--Thom developed further
+wreath-product examples \cite{KT}.  One-sided compression of a Kazhdan subgroup, the mechanism
 driving those arguments, is also the conceptual ancestor of the present
 one.  Soficity concerns permutations in the Hamming metric, while MF concerns
 unitaries in operator norm, so there is no direct metric comparison between
@@ -686,32 +687,16 @@ Hilbert ultraproduct.  Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
 \subsection*{Group-theoretic inputs}
-The printed proof of the core theorem uses the displayed presentation of
-$\SL_3(\mathbb Z)$ and property~\textup{(T)} of
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Later untagged consequences use
+The proof of Theorem~\ref{thm:A} uses two external sources: the displayed
+presentation of $\SL_3(\mathbb Z)$ from \cite{CRW}, and \cite{BHV} for both
+property~\textup{(T)} of $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and the
+Kazhdan projection.  Later consequences use
 quasidiagonality of amenable groups \cite{TWW}, Mal'cev residual finiteness
 for finitely generated linear groups, the sofic permanence results of
 Elek--Szab\'o \cite{ElekSzabo}, and their simple sofic embedding theorem
 \cite{ElekSzaboHyper}.  The exact twenty-relator base is
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
-
-Statements carrying a gray tag
-{\normalfont\scriptsize\textcolor{gray!72!black}{[\thinspace
-Lean: \nolinkurl{\dots}\thinspace]}} have machine-checked counterparts:
-each tag names a declaration in the accompanying Lean~4 development whose
-statement is the faithful translation of the printed one and whose proof
-the Lean kernel accepts with no axioms beyond Lean's three classical
-primitives.  A tag certifies the stated theorem, not the surrounding
-prose; a statement without a tag has no claimed formal counterpart.  In
-particular, the soficity of the total Clifford witness, extension
-nonclosure, the amenable cyclic detector, and the simple sofic envelope use
-the cited external permanence theorems and are intentionally untagged.  The formal
-development consumes no literature input at all: in particular it uses
-neither \cite{CRW} nor \cite{BHV}, proving property~\textup{(T)} of the
-twenty-relator base directly from an explicit rational spectral-gap
-certificate for the presentation.  The printed and formal proofs are thus
-two independent routes to the same statements.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -726,6 +711,8 @@ enlarging its range.  The complementary finite-group corner then converts
 that rigidity into a fixed nontrivial element sent to the identity by every
 corona representation.  The Clifford central extension supplies the element
 whose survival is proved independently.
+The results of \cite{OAI,KT} provide context only: no theorem in this paper
+uses either one as an input.
 
 Slofstra's constructions supply close precedents for the Clifford group,
 distinguished central involution, shift, and HNN doubling map
@@ -2017,7 +2004,7 @@ The finite-normal mechanism has a precise torsion limitation: every finite
 subgroup of a torsion-free group is trivial.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 Consequently a torsion-free example would require a different final
-obstruction, even if its transport step were similar.  Fournier--Facio
+obstruction, even if its transport step were similar.  Fournier-Facio
 removed the analogous torsion obstacle for nonsoficity by a small-cancellation
 construction \cite{FFF}.  That strategy does not transfer directly here:
 the final operator-norm contradiction uses a nontrivial finite normal
@@ -2197,6 +2184,11 @@ G.~Elek and E.~Szab\'o,
 J. Group Theory \textbf{9} (2006), no.~2, 161--171,
 \doi{10.1515/JGT.2006.011}, \arxiv{math/0305352}.
 
+\bibitem[FFF]{FFF}
+F.~Fournier-Facio,
+\emph{A torsion-free non-sofic group},
+preprint, 2026, \arxiv{2608.02025}.
+
 \bibitem[FGH]{FGH}
 A.~Fox, I.~Goldbring, and B.~Hart,
 \emph{Locally universal $C^*$-algebras with computable presentations},
@@ -2233,10 +2225,11 @@ $\operatorname{Ext}(C^*_{\mathrm{red}}(F_2))$ is not a group},
 Ann. of Math. (2) \textbf{162} (2005), no.~2, 711--775,
 \doi{10.4007/annals.2005.162.711}, \arxiv{math/0212265}.
 
-\bibitem[KT]{KT}
-G.~Kun and A.~Thom,
-\emph{Nonsofic wreath products of residually finite groups},
-preprint, 2026, \arxiv{2608.06222}.
+\bibitem[JNVWY]{MIPRE}
+Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
+\emph{$\operatorname{MIP}^*=\operatorname{RE}$},
+Commun. ACM \textbf{64} (2021), no.~11, 131--138,
+\doi{10.1145/3485628}, \arxiv{2001.04383}.
 
 \bibitem[Ku16]{Kun16}
 G.~Kun,
@@ -2247,6 +2240,11 @@ preprint, 2016, \arxiv{1606.04471}.
 G.~Kun and A.~Thom,
 \emph{Inapproximability of actions and Kazhdan's property (T)},
 preprint, 2019, \arxiv{1901.03963}.
+
+\bibitem[KT26]{KT}
+G.~Kun and A.~Thom,
+\emph{Nonsofic wreath products of residually finite groups},
+preprint, 2026, \arxiv{2608.06222}.
 
 \bibitem[Lan]{Lance}
 E.~C.~Lance,
