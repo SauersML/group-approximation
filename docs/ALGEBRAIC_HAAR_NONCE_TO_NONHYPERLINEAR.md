@@ -111,6 +111,16 @@ The second statement must retain isotropy. A construction which merely
 realizes the same p.m.p. orbit relation after adding a free coordinate is
 insufficient.
 
+There is also no shortcut through the ambient binary shift containing the
+subgroup space. Product Haar measure on `{0,1}^F` gives measure zero to
+`Sub(F)`: infinitely many independent multiplication-closure tests each
+fail with probability `1/8`. The canonical Haar-supported alternative,
+obtained from kernels of random maps `F->C2`, has character
+`(1/2)1+(1/2)1_N` for `N=[F,F]F^2`, so its GNS representation is built from
+the trivial and regular representations of the amenable quotient `F/N`.
+See
+`FALSE_MANZOOR_IRS_AMBIENT_HAAR_GROUPIFICATION.md`.
+
 ## References
 
 - A. Manzoor, *There is an equivalence relation whose von Neumann algebra
