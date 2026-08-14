@@ -468,7 +468,7 @@
       "id": "def:radical",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "a1880a409e194646bcd35c283acceed8a9c74df0a0c0e3f1eaebce253d98523e",
+      "statement_sha256": "ca8a9454d0a4e558c87d785074fcb7d6edc6b1649d8d41a0b0839b5ee328f1a5",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
