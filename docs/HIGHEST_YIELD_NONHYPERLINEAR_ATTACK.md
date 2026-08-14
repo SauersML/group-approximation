@@ -2,6 +2,31 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 equivariant transitions produce whole-map PVMs
+
+The named paired translations close the counterfactual-response gap whenever
+the actual transition PVM is equivariant under them.  On a free translation
+orbit, pull every source-conditioned response PVM to one base block.  Under
+exact equivariance these PVMs coincide; orbit-summing each base outcome gives
+a PVM indexed by whole equivariant response maps.  With mean total squared
+equivariance error `epsilon`, orbit averaging plus cardinality-free POVM
+rounding gives an exact whole-map PVM within `40 epsilon`, independently of
+orbit size, response alphabet, and matrix dimension.  See
+`TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md`.
+
+The additive extension-fiber model is consistent with this theorem: it is a
+classical mixture of affine sections even though its branch conditional
+variance is maximal.  The Leavitt multiplication table, not source-only
+measurability, is what rules out a common mixture of such sections via the
+`1/36` floor.
+
+The live task has become a finite word audit.  Verify for all four one-sided
+maps that the raw/comb transition unitary carries each named middle-root
+translation to its transported translation.  Conjugation covariance then
+makes the transition PVM equivariant automatically.  If the four routed
+identities coexist in the rank-five packet, the common-map extraction gate
+is closed.
+
 ## 2026-08-14 nested commutators recover the paired translations directly
 
 On a long-root character sector `ell`, the named middle-root commutators

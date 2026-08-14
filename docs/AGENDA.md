@@ -5839,6 +5839,24 @@ provides that rate. Thus the existing coefficientwise `H^2` gate cannot
 be advertised as closing the Clifford argument. Full proof and scope:
 `TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.
 
+### 2026-08-14: equivariant transition PVMs give whole response maps
+
+`TRUE_EQUIVARIANT_TRANSITIONS_COARSEN_TO_WHOLE_MAPS.md` closes the abstract
+gap from per-source extension outcomes to counterfactual whole maps under
+paired-translation equivariance.  Pull all response PVMs on a free
+translation orbit to one base block.  Exact equivariance makes them equal,
+and orbit-summing base outcomes yields a PVM indexed by whole affine response
+maps.  For approximate equivariance, averaging and de la Salle rounding give
+a universal total squared error bound `40 epsilon`, with no orbit-size,
+alphabet, or matrix-dimension loss.
+
+The only remaining input for this step is literal: check that each raw/comb
+one-sided Leavitt transport conjugates the named middle-root commutators to
+the corresponding target translations.  The intrinsic transition PVM is
+then equivariant by a direct conjugation calculation.  Combined with outer-
+root commutation, path PVM classicalization, and tree gluing, this would
+supply the common latent map law consumed by the robust `1/36` floor.
+
 ### 2026-08-14: nested commutators recover both radical translations
 
 `TRUE_NESTED_COMMUTATORS_RECOVER_PAIRED_TRANSLATIONS.md` replaces an
