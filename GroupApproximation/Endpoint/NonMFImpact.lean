@@ -50,6 +50,11 @@ theorem witness_locallyFinite_MF_kernel_nonMF_total :
       ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
   LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF
 
+/-- The concrete witness also gives a separable, faithfully tracial, stably
+finite reduced group C-star algebra that is not MF. -/
+theorem witness_reducedGroupCStar_stablyFinite_nonMF :=
+  LiteralWitnessConsequences.literalWitness_reducedGroupCStar_stablyFinite_nonMF
+
 /-- The concrete affine base is residually finite, sofic, and operator-MF;
 all three facts are proved through its explicit integral matrix model. -/
 theorem affineBase_residuallyFinite_sofic_MF :

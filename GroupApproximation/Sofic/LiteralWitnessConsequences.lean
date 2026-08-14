@@ -15,7 +15,8 @@ analysis.
 namespace GroupApproximation
 namespace LiteralWitnessConsequences
 
-open LiteralNonMFPresentation LiteralNonMFLinearWitness MarkedCompression
+open CliffordLamp ExplicitLinearModel LiteralNonMFPresentation
+  LiteralNonMFLinearWitness MarkedCompression
 
 noncomputable section
 
@@ -78,6 +79,19 @@ theorem witnessGroup_not_isOperatorMF : ¬ IsOperatorMF WitnessGroup := by
   exact witness_normMFResidual_ne_bot
     (normMFResidual_eq_bot_of_isOperatorMF hMF)
 
+/-- The concrete witness's reduced group C-star algebra admits no faithful
+embedding into a norm-matrix C-star corona. -/
+theorem witness_reducedGroupCStar_not_hasMFEmbedding :
+    ¬ HasMFEmbedding (ReducedGroupCStar WitnessGroup) :=
+  not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
+    witnessGroup_not_isOperatorMF
+
+/-- The concrete witness's reduced group C-star algebra is not MF. -/
+theorem witness_reducedGroupCStar_not_isMFAlgebra :
+    ¬ IsMFAlgebra (ReducedGroupCStar WitnessGroup) := by
+  intro hMF
+  exact witness_reducedGroupCStar_not_hasMFEmbedding hMF.2
+
 /-- **Exact witness endpoint.**  The concrete quotient target is finitely
 generated, its central Clifford sign is nontrivial and MF-invisible, and the
 target is not operator-MF. -/
@@ -108,6 +122,23 @@ theorem literalWitness_locallyFiniteKernel_nonMF :
     witnessLamp_isOperatorMF,
     witnessGroup_finitelyGenerated,
     witnessGroup_not_isOperatorMF⟩
+
+/-- **Closed reduced-C-star endpoint for the explicit witness.**  Its reduced
+group C-star algebra is separable, carries its canonical faithful trace, is
+stably finite in every nonempty finite matrix amplification, and is not MF. -/
+theorem literalWitness_reducedGroupCStar_stablyFinite_nonMF :
+    TopologicalSpace.SeparableSpace (ReducedGroupCStar WitnessGroup) ∧
+      Nonempty (FaithfulTracialState (ReducedGroupCStar WitnessGroup)) ∧
+      (∀ (I : Type) [Fintype I] [DecidableEq I], Nonempty I →
+        ∀ v : CStarMatrix I I (ReducedGroupCStar WitnessGroup),
+          star v * v = 1 → v * star v = 1) ∧
+      ¬ IsMFAlgebra (ReducedGroupCStar WitnessGroup) := by
+  refine ⟨reducedGroupCStar_separableSpace WitnessGroup,
+    ⟨canonicalFaithfulTracialState WitnessGroup⟩, ?_,
+    witness_reducedGroupCStar_not_isMFAlgebra⟩
+  intro I _ _ hI v hv
+  exact (canonicalFaithfulTracialState WitnessGroup).matrix_mul_star_eq_one_of_star_mul_eq_one
+    I hI hv
 
 end
 end LiteralWitnessConsequences
