@@ -563,7 +563,7 @@ general finite-normal criterion.
 
 Nontriviality of $w$ is witnessed by a completely explicit
 representation of $E$ into a semidirect product of a Clifford group by a
-mapping-telescope group built from exact affine matrices over $\Z[1/2]$
+mapping-telescope group built from the exact rational affine matrix model
 (Section~\ref{sec:witness}); no
 combinatorial theory of HNN extensions is needed.
 
@@ -680,7 +680,11 @@ nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
 \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
-Theorem~\ref{thm:D}.
+Theorem~\ref{thm:D}.  The two classical facts used in this paragraph ---
+nonamenability of infinite Kazhdan groups and nonnuclearity of the
+reduced algebra of a nonamenable group --- are literature results quoted
+for orientation only; they are outside the formal development, and no
+theorem below depends on them.
 
 The witness that proves $w\ne1$ carries the final separation:
 
@@ -1356,9 +1360,12 @@ identity.
 Apply Theorem~\ref{thm:B} with $H=E$, the image of $\mathcal B$, and the
 elements $t,c,v_1$; the hypotheses hold by the defining relations
 \eqref{eq:E}.  Every finite-dimensional representation kills $w$, and
-$w\neq1$ by Proposition~\ref{prop:witness}.  A finite target embeds into a
-finite symmetric group and hence into a finite-dimensional general linear
-group via permutation matrices, so it also maps $w$ to the identity.
+$w\neq1$ by Proposition~\ref{prop:witness}.  For a finite target, compose
+with its faithful left regular representation on the group algebra over
+$\mathbb Q$: the composite is a finite-dimensional linear representation,
+so it kills $w$, and evaluating the resulting identity matrix at the basis
+vector of the identity element returns the image of $w$ in the finite
+group.
 \end{proof}
 
 \paragraph{Why the corona argument is different.}
@@ -1691,8 +1698,8 @@ corona and let $\phi\colon E\to\U(A)$.  Complement correction gives
    \widehat j(u)=j(u)+1-j(1_A)\in\U(Q).
 \]
 This is an injective homomorphism on \(\U(A)\), so
-\(\widehat j\circ\phi\) is a corona representation of \(E\).  The universal
-kernel theorem sends \(w\) to the identity there; injectivity of
+\(\widehat j\circ\phi\) is a corona representation of \(E\).
+Theorem~\ref{thm:A}(2) sends \(w\) to the identity there; injectivity of
 \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
@@ -1752,8 +1759,7 @@ Every subgroup of an MF group is MF.
 
 \begin{proof}
 Restrict an injective corona representation to the subgroup: injectivity
-and the homomorphism law are preserved, and the dimension normalization of
-Proposition~\ref{prop:mf-equivalences} is unaffected.
+and the homomorphism law are preserved.
 \end{proof}
 
 \begin{lemma}[residually finite groups]\label{lem:rfmf}
@@ -1762,16 +1768,17 @@ Every countable residually finite group is MF.
 \end{lemma}
 
 \begin{proof}
-Choose a sequence of finite quotients separating the nonidentity elements
-and intersect kernels, so that the family is descending.  At coordinate
-$n$ take the left regular representation of the $n$th quotient.  Every
-pair of group elements is represented exactly multiplicatively at every
-coordinate, since each coordinate map is a genuine homomorphism.
-A nonidentity element $g$ eventually survives to the $n$th quotient, where
-left translation by it is a fixed-point-free permutation $\pi_n(g)$; a
-fixed-point-free permutation matrix has an eigenvalue at angle at least
-$2\pi/3$ from $1$, so $\opnorm{\pi_n(g)-1}\ge\sqrt3$.  The induced map to
-the corona is therefore an injective homomorphism.
+Residual finiteness makes the group LEF: for each finite test set $F$
+there are a finite quotient injective on $F$ and, composing with its left
+regular permutation action, an \emph{exact} finite local model --- every
+product of elements of $F$ is represented with zero multiplicative
+defect.  Distinct elements of $F$ map to distinct permutations; at a
+point where the two permutations disagree, the difference of the two
+permutation matrices has a column of norm at least $1$, so the model
+separates distinct elements of $F$ by operator norm at least $1$.  These
+exact permutation models are operator-norm local models with separation
+constant $1$, so the group is MF by the local-to-corona direction of
+Proposition~\ref{prop:mf-equivalences}.
 \end{proof}
 
 \begin{lemma}[locally finite groups]\label{lem:lfmf}
@@ -1780,14 +1787,15 @@ Every countable locally finite group is MF.
 \end{lemma}
 
 \begin{proof}
-A countable locally finite group is the increasing union of a chain of
-finite subgroups $F_1\le F_2\le\cdots$.  At coordinate $n$ take the left
-regular representation of $F_n$, extended by the identity outside $F_n$.
-Every pair of elements is eventually multiplied exactly, and a nonidentity
-element eventually acts by left translation on some $F_n$ containing it
---- a fixed-point-free permutation --- so the separation
-$\opnorm{\pi_n(g)-1}\ge\sqrt3$ from the proof of Lemma~\ref{lem:rfmf}
-applies verbatim.
+The proof is local: no exhaustion, direct limit, or diagonal argument is
+needed.  Given a finite test set $F$, local finiteness supplies one
+finite subgroup $K$ containing it.  The left regular permutation action
+of $K$, applied to a retraction of the group onto $K$ that is only
+required to restrict to the identity map on the test set, is an exact
+finite local model on $F$, separating distinct elements by operator norm
+at least $1$ exactly as in Lemma~\ref{lem:rfmf}.  Thus the group is LEF,
+and the same local-to-corona direction of
+Proposition~\ref{prop:mf-equivalences} makes it MF.
 \end{proof}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
