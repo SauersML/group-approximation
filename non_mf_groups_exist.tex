@@ -1863,6 +1863,21 @@ $2\pi/3$ from $1$, so $\opnorm{\pi_n(g)-1}\ge\sqrt3$.  The induced map to
 the corona is therefore an injective homomorphism.
 \end{proof}
 
+\begin{lemma}[locally finite groups]\label{lem:lfmf}
+Every countable locally finite group is MF.
+\leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
+\end{lemma}
+
+\begin{proof}
+A countable locally finite group is the increasing union of a chain of
+finite subgroups $F_1\le F_2\le\cdots$.  At coordinate $n$ take the left
+regular representation of $F_n$, extended by the identity outside $F_n$.
+Every pair of elements is eventually multiplied exactly, and a nonidentity
+element eventually acts by left translation on some $F_n$ containing it
+--- a fixed-point-free permutation --- so the separation
+$\opnorm{\pi_n(g)-1}\ge\sqrt3$ of the previous proof applies verbatim.
+\end{proof}
+
 \begin{corollary}[quotients]\label{cor:quotclosure}
 MF groups are not closed under quotients: the free group
 \(F_8\) is MF, and the literal group \(E\) is its quotient
