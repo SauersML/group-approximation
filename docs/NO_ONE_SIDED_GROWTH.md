@@ -1,5 +1,19 @@
 # No one-sided growth: the Kazhdan--Clifford proof architecture
 
+## What kind of object this is
+
+Kazhdan transport is **not** a fourth approximation class alongside MF,
+sofic, and hyperlinear groups.  Those three names describe classes defined by
+the existence of particular finite models.  Kazhdan transport is instead a
+rigidity theorem about what operator-norm matrix models are forced to do in
+the presence of a one-sided compression of a property-`(T)` subgroup.
+
+Its novelty is structural: it produces an operator-norm obstruction and, via
+the Clifford detector below, separates MF visibility from sofic and
+hyperlinear visibility.  One could package arbitrary target families into a
+new formal approximation class, but that packaging is not the mathematical
+phenomenon proved here.
+
 ## The reusable theorem
 
 Let `iota : Gamma -> H`, with `Gamma` Kazhdan, and let
