@@ -125,11 +125,13 @@ formally from `(TGI2)` and spectral coarea.
 
 ## 5. Formalization status
 
-The matrix identity `(TGI4)` and the squared estimate `(TGI6)` use only the
-existing normalized-HS transport lemmas in
-`GroupApproximation/Sofic/HyperlinearScalar.lean`.  The exact threshold and
-trace arithmetic in `(TGI9)` is already represented by
+The matrix identity `(TGI4)` and the squared estimate `(TGI6)` have been
+transcribed as `hsNormSq_transitionGram_commutator_le_four` in
+`GroupApproximation/Sofic/LeavittTraceFloor.lean`, using only the existing
+normalized-HS transport lemmas.  The exact threshold and trace arithmetic in
+`(TGI9)` is already represented by
 `one_div_120_le_of_trace_flat_spectral_split` in
-`GroupApproximation/Sofic/DoublePauliCoefficient.lean`.  The transition-Gram
-estimate has not yet been transcribed into Lean.  No build or computation was
+`GroupApproximation/Sofic/DoublePauliCoefficient.lean`.  Per the development
+constraint, the new source was not locally built; it is source-level rather
+than kernel-checked until the remote verifier accepts it.  No computation was
 run for this note.

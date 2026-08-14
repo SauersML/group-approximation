@@ -37,6 +37,11 @@ transition-intertwining defects.  Proving those identities from the
 multiplication-module packet automatically supplies positive density,
 conditioning, one common cut, and two-sided leakage.
 
+The squared matrix estimate is transcribed without placeholders as
+`hsNormSq_transitionGram_commutator_le_four` in
+`GroupApproximation/Sofic/LeavittTraceFloor.lean`.  It has not been locally
+built.
+
 ### 2026-08-14: spectral coarea removes the eigenvalue-gap gate
 
 `TRUE_SPECTRAL_COAREA_INVARIANT_CUT.md` reduces the spectral fallback to a

@@ -145,6 +145,111 @@ theorem hsNormSq_mul_le_sq_l2_opNorm_mul (Y : FiniteModel)
           rw [← Finset.mul_sum, Finset.sum_comm]
           ring
 
+/-- Right multiplication by an arbitrary matrix costs at most its squared
+operator norm in normalized Hilbert--Schmidt norm. -/
+theorem hsNormSq_mul_le_sq_l2_opNorm_right (Y : FiniteModel)
+    (A B : Matrix Y Y ℂ) :
+    hsNormSq Y (A * B) ≤ ‖B‖ ^ 2 * hsNormSq Y A := by
+  calc
+    hsNormSq Y (A * B) = hsNormSq Y ((A * B)ᴴ) :=
+      (hsNormSq_conjTranspose Y (A * B)).symm
+    _ = hsNormSq Y (Bᴴ * Aᴴ) := by rw [Matrix.conjTranspose_mul]
+    _ ≤ ‖Bᴴ‖ ^ 2 * hsNormSq Y Aᴴ :=
+      hsNormSq_mul_le_sq_l2_opNorm_mul Y Bᴴ Aᴴ
+    _ = ‖B‖ ^ 2 * hsNormSq Y A := by
+      rw [Matrix.l2_opNorm_conjTranspose, hsNormSq_conjTranspose]
+
+/-- **Transition-Gram control.**  If a contraction `T` approximately
+intertwines a source unitary `A` with a target unitary `B`, then its Gram
+operator `Tᴴ * T` approximately commutes with `A`.  The estimate is
+dimension-free and is the algebraic input to spectral coarea. -/
+theorem hsNormSq_transitionGram_commutator_le_four
+    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    (T A B : Matrix Y Y ℂ)
+    (hT : ‖T‖ ≤ 1)
+    (hA : A ∈ Matrix.unitaryGroup Y ℂ)
+    (hB : B ∈ Matrix.unitaryGroup Y ℂ) :
+    hsNormSq Y ((Tᴴ * T) * A - A * (Tᴴ * T)) ≤
+      4 * hsNormSq Y (T * A - B * T) := by
+  let X := T * A
+  let Z := B * T
+  let E := X - Z
+  have hAstar : Aᴴ ∈ Matrix.unitaryGroup Y ℂ := by
+    rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
+      Matrix.conjTranspose_conjTranspose]
+    exact Unitary.star_mul_self_of_mem hA
+  have hAA : Aᴴ * A = 1 := Unitary.star_mul_self_of_mem hA
+  have hBB : Bᴴ * B = 1 := Unitary.star_mul_self_of_mem hB
+  have hX : ‖X‖ ≤ 1 := by
+    dsimp [X]
+    rw [CStarRing.norm_mul_mem_unitary _ hA]
+    exact hT
+  have hZ : ‖Z‖ ≤ 1 := by
+    dsimp [Z]
+    rw [CStarRing.norm_mem_unitary_mul _ hB]
+    exact hT
+  have hXstar : ‖Xᴴ‖ ≤ 1 := by
+    rw [Matrix.l2_opNorm_conjTranspose]
+    exact hX
+  have hleft : hsNormSq Y (Xᴴ * E) ≤ hsNormSq Y E := by
+    have hXstarSq : ‖Xᴴ‖ ^ 2 ≤ 1 := by
+      nlinarith [norm_nonneg Xᴴ]
+    calc
+      hsNormSq Y (Xᴴ * E) ≤ ‖Xᴴ‖ ^ 2 * hsNormSq Y E :=
+        hsNormSq_mul_le_sq_l2_opNorm_mul Y Xᴴ E
+      _ ≤ 1 * hsNormSq Y E :=
+        mul_le_mul_of_nonneg_right hXstarSq (hsNormSq_nonneg Y E)
+      _ = hsNormSq Y E := one_mul _
+  have hright : hsNormSq Y (Eᴴ * Z) ≤ hsNormSq Y E := by
+    have hZSq : ‖Z‖ ^ 2 ≤ 1 := by
+      nlinarith [norm_nonneg Z]
+    calc
+      hsNormSq Y (Eᴴ * Z) ≤ ‖Z‖ ^ 2 * hsNormSq Y Eᴴ :=
+        hsNormSq_mul_le_sq_l2_opNorm_right Y Eᴴ Z
+      _ = ‖Z‖ ^ 2 * hsNormSq Y E := by
+        rw [hsNormSq_conjTranspose]
+      _ ≤ 1 * hsNormSq Y E :=
+        mul_le_mul_of_nonneg_right hZSq (hsNormSq_nonneg Y E)
+      _ = hsNormSq Y E := one_mul _
+  have hXX : Xᴴ * X = Aᴴ * (Tᴴ * T) * A := by
+    dsimp [X]
+    rw [Matrix.conjTranspose_mul]
+    noncomm_ring
+  have hZZ : Zᴴ * Z = Tᴴ * T := by
+    dsimp [Z]
+    rw [Matrix.conjTranspose_mul]
+    calc
+      (Tᴴ * Bᴴ) * (B * T) = Tᴴ * (Bᴴ * B) * T := by
+        noncomm_ring
+      _ = Tᴴ * T := by rw [hBB, Matrix.mul_one]
+  have hfactor :
+      Aᴴ * ((Tᴴ * T) * A - A * (Tᴴ * T)) =
+        Xᴴ * E + Eᴴ * Z := by
+    calc
+      Aᴴ * ((Tᴴ * T) * A - A * (Tᴴ * T)) =
+          Aᴴ * (Tᴴ * T) * A - Tᴴ * T := by
+            rw [Matrix.mul_sub]
+            rw [← Matrix.mul_assoc Aᴴ A (Tᴴ * T), hAA, Matrix.one_mul]
+            simp only [Matrix.mul_assoc]
+      _ = Xᴴ * X - Zᴴ * Z := by rw [hXX, hZZ]
+      _ = Xᴴ * E + Eᴴ * Z := by
+        dsimp [E]
+        rw [Matrix.conjTranspose_sub]
+        noncomm_ring
+  have hinvariant :
+      hsNormSq Y ((Tᴴ * T) * A - A * (Tᴴ * T)) =
+        hsNormSq Y (Aᴴ * ((Tᴴ * T) * A - A * (Tᴴ * T))) := by
+    symm
+    exact hsNormSq_mul_left Y hAstar hY _
+  rw [hinvariant, hfactor]
+  calc
+    hsNormSq Y (Xᴴ * E + Eᴴ * Z) ≤
+        2 * hsNormSq Y (Xᴴ * E) + 2 * hsNormSq Y (Eᴴ * Z) :=
+      hsNormSq_add_le Y _ _
+    _ ≤ 4 * hsNormSq Y E := by linarith
+    _ = 4 * hsNormSq Y (T * A - B * T) := by
+      rfl
+
 /-- The normalized trace of a product of two positive semidefinite matrices
 has nonnegative real part.  The product itself need not be self-adjoint. -/
 theorem re_normTrace_mul_nonneg_of_posSemidef (Y : FiniteModel)
