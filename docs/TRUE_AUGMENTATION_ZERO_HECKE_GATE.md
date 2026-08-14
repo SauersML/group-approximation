@@ -185,7 +185,40 @@ Therefore:
 This replaces the earlier allowed-atom corner by a local packet which cannot
 collapse to a classical assignment through augmentation.
 
-## 5. The corrected nonhyperlinear target
+## 5. A scalar central phase is still too coarse
+
+The full irreducible-type projection is essential.  It cannot in general be
+replaced by one scalar central phase.
+
+Let `Z<=Z(K)` be finite, let `chi` be a character of `Z`, and let `p_chi` be
+its central spectral projection.  Suppose first that the `chi`-sector of
+`C[K]` is one full matrix block, with unique irreducible representation
+`rho`.  If `D<=K` is abelian and contains `Z`, then every character
+`psi:D->T` extending `chi` occurs in `rho|D`.  Indeed,
+
+```text
+Ind_D^K(psi)
+```
+
+is nonzero and belongs entirely to the `chi`-sector.  Every irreducible
+constituent is therefore `rho`, and Frobenius reciprocity puts `psi` in
+`rho|D`.
+
+The same induction argument, without the uniqueness hypothesis, says that
+every extension `psi` occurs somewhere in the whole `p_chi` sector.  Thus a
+scalar central phase cannot delete an arbitrary subset of the joint
+characters of commuting Boolean group elements.  In the unique-block case
+it cannot do so even inside that one matrix block.
+
+This applies directly to extraspecial/Clifford packets: the negative central
+sign selects their unique spin representation, but that spin block contains
+every Boolean character compatible with the sign.  The fixed `M_16` packet
+in the eight-lamp reduction is therefore not a universal nonlinear predicate
+selector.  It may carry coefficient or holonomy data, but the predicate
+selection itself must retain a fuller nonabelian type such as `z_R` from
+Section 4.
+
+## 6. The corrected nonhyperlinear target
 
 Choose a finitely presented BCS algebra `B` with a tracial state but no
 Connes-embeddable tracial state.  It is enough to construct:
@@ -215,7 +248,7 @@ the local packets should be nontrivial representation types and that any
 compiler using the trivial `K`-type is algebraically impossible before one
 reaches the Connes-embedding question.
 
-## 6. Audited endpoint
+## 7. Audited endpoint
 
 The finite-subgroup Hecke program now has a clean dichotomy:
 

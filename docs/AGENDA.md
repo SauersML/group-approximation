@@ -84,6 +84,16 @@ trace-preserving selection and gluing of these nontrivial finite types.  See
 `TRUE_AUGMENTATION_ZERO_HECKE_GATE.md` and
 `TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
 
+The full irreducible type cannot be simplified to the existing central
+Clifford sign.  If a finite central character selects a unique irreducible
+block and `D` is any abelian subgroup containing that center, induction of
+each character of `D` extending the central phase lies entirely in the
+selected sector; Frobenius reciprocity forces every such character to occur
+in the unique block.  Hence an extraspecial negative spin packet, including
+the fixed eight-lamp `M_16`, cannot locally prune a nonlinear Boolean
+predicate.  It can still carry coefficient holonomy, but the selector must
+remember the full nonabelian irreducible type.
+
 Ordinary Bass--Serre gluing of these local gadgets is ruled out: the
 fundamental group of a finite graph of finite groups is virtually free and
 hence hyperlinear, so all of its positive finite-subgroup Hecke corners are
