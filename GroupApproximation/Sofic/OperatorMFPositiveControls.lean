@@ -24,9 +24,11 @@ theorem IsWeakMF.isOperatorMF [Countable G] (hG : IsWeakMF G) :
 
 /-- Every countable residually finite group is operator-MF in the literal
 cofinite norm-matrix-corona sense (manuscript Lemma `lem:rfmf`). -/
-theorem isOperatorMF_of_residuallyFinite [Countable G]
-    [Group.ResiduallyFinite G] : IsOperatorMF G :=
-  (isWeakMF_of_residuallyFinite (H := G)).isOperatorMF
+theorem isOperatorMF_of_residuallyFinite :
+    ∀ {K : Type u} [Group K] [Countable K] [Group.ResiduallyFinite K],
+      IsOperatorMF K := by
+  intro K _ _ _
+  exact (isWeakMF_of_residuallyFinite (H := K)).isOperatorMF
 
 /-- Every finite group is operator-MF. -/
 theorem isOperatorMF_of_finite_standard (K : Type) [Group K] [Finite K] :
@@ -42,9 +44,11 @@ theorem IsOperatorMF.comap {H : Type v} [Group H] (hG : IsOperatorMF G)
 
 /-- Every subgroup of an operator-MF group is operator-MF (manuscript Lemma
 `lem:subgroupMF`). -/
-theorem IsOperatorMF.subgroup (hG : IsOperatorMF G) (H : Subgroup G) :
-    IsOperatorMF H :=
-  hG.comap H.subtype (fun _ _ h ↦ Subtype.ext h)
+theorem IsOperatorMF.subgroup :
+    ∀ {K : Type u} [Group K] (_hG : IsOperatorMF K) (H : Subgroup K),
+      IsOperatorMF H := by
+  intro K _ hG H
+  exact hG.comap H.subtype (fun _ _ h ↦ Subtype.ext h)
 
 /-- Contrapositive subgroup permanence: an ambient group containing a
 non-operator-MF subgroup is not operator-MF. -/

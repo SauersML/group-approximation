@@ -27,9 +27,10 @@ universe u
 /-- If `d` is an involution, its commutator with its `a`-conjugate is the
 square of the pointwise defect `[d,a]`.  This is the group identity used by
 the manuscript's `lem:square`. -/
-theorem commutator_conjugate_eq_commutator_sq_of_sq_eq_one
-    {G : Type*} [Group G] (d a : G) (hd : d ^ 2 = 1) :
+theorem commutator_conjugate_eq_commutator_sq_of_sq_eq_one :
+    ∀ {G : Type*} [Group G] (d a : G), d ^ 2 = 1 →
     ⁅d, a * d * a⁻¹⁆ = ⁅d, a⁆ ^ 2 := by
+  intro G _ d a hd
   have hd_inv : d⁻¹ = d := by
     apply inv_eq_of_mul_eq_one_left
     simpa [pow_two] using hd

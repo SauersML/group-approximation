@@ -100,8 +100,8 @@ If the square of one compression defect is a nontrivial central involution,
 then every homomorphism into every positive natural-dimensional genuine
 norm-matrix C-star corona kills it, and the ambient countable group is not
 MF in the literal CDE sense. -/
-theorem manuscriptCentralSignCriterion
-    [Countable E]
+theorem manuscriptCentralSignCriterion :
+    ∀ {Γ E : Type} [Group Γ] [Group E] [Countable E]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* E) (t c : E)
     (hcompresses : ∀ γ : Γ, ∃ δ : Γ,
@@ -110,7 +110,7 @@ theorem manuscriptCentralSignCriterion
     (a : Γ) (z : E)
     (hz : z = ⁅t * c * t⁻¹, iota a⁆ ^ 2)
     (hz_ne : z ≠ 1) (hz_sq : z ^ 2 = 1)
-    (hz_central : ∀ g : E, Commute z g) :
+    (hz_central : ∀ g : E, Commute z g),
     (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
       letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
         fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
@@ -118,6 +118,7 @@ theorem manuscriptCentralSignCriterion
           (fun n ↦ naturalFiniteModel (d n))),
         rho z = 1) ∧
       ¬ IsCDEOperatorMF E := by
+  intro Γ E _ _ _ hT iota t c hcompresses hcomm a z hz hz_ne hz_sq hz_central
   let C : KazhdanCompressionCore Γ E := {
     iota := iota
     t := t

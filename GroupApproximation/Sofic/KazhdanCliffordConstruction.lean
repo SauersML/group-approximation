@@ -504,14 +504,17 @@ noncomputable def inclusionData :
 @[simp] theorem inclusionData_word :
     (inclusionData alpha a hT).word = mark alpha a := rfl
 
-include hT in
 /-- The short negative-corner contradiction for the general conceptual
 construction.  A separated sign cuts to a nonzero corner on which the mark
 tends to `-1`; Kazhdan transport makes its compression-defect square tend to
 `1` in normalized Hilbert--Schmidt norm. -/
-theorem negativeCorner_kazhdanTransport_contradiction
-    (A : MarkedOpAlmostRepresentation (Extension alpha a) (mark alpha a)) :
-    False := by
+theorem negativeCorner_kazhdanTransport_contradiction :
+    ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
+      (alpha : Γ₀ →* Γ₀) (a : Γ₀)
+      (_hT : HasKazhdanPropertyT.{0, 0} Γ₀)
+      (_A : MarkedOpAlmostRepresentation (Extension alpha a) (mark alpha a)),
+      False := by
+  intro Γ₀ _ _ alpha a hT A
   rw [← inclusionData_word alpha a hT] at A
   exact KazhdanCompressorCorner.false_of_markedOpAlmostRepresentation
     (inclusionData alpha a hT) A
@@ -575,15 +578,16 @@ theorem not_isOperatorMF (ha : a ∉ Set.range alpha) :
   simpa using (inclusionData alpha a hT).not_isOperatorMF
     (mark_ne_one alpha hAlpha a ha)
 
-include hAlpha in
 /-- **Kazhdan--Clifford construction (formal headline theorem).**  A
 finitely presented Kazhdan group with a proper injective self-map produces a
 finitely presented non-MF group.  The distinguished central involution is
 nontrivial in the Clifford model and is killed by every norm-matrix-corona
 representation. -/
-theorem kazhdanCliffordConstruction
-    (hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ)
-    (ha : a ∉ Set.range alpha) :
+theorem kazhdanCliffordConstruction :
+    ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
+    (alpha : Γ₀ →* Γ₀) (hAlpha : Function.Injective alpha) (a : Γ₀)
+    (hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ₀)
+    (ha : a ∉ Set.range alpha),
     Group.IsFinitelyPresented (Extension alpha a) ∧
       Function.Injective (iota alpha a) ∧
       mark alpha a ≠ 1 ∧
@@ -598,7 +602,8 @@ theorem kazhdanCliffordConstruction
             unitary (NormMatrixCStarCorona (fun n ↦ X n)),
           rho (mark alpha a) = 1) ∧
       ¬ IsCDEOperatorMF (Extension alpha a) := by
-  let hTReal : HasKazhdanPropertyT.{0, 0} Γ :=
+  intro Γ₀ _ _ alpha hAlpha a hTTextbook ha
+  let hTReal : HasKazhdanPropertyT.{0, 0} Γ₀ :=
     hasKazhdanPropertyT_iff_textbook.mpr hTTextbook
   refine ⟨inferInstance, iota_injective alpha hAlpha a ha,
     mark_ne_one alpha hAlpha a ha, mark_sq alpha a, mark_central alpha a,

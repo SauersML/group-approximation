@@ -39,28 +39,29 @@ def NaturalHSCommutatorVanishing
 /-- **Kazhdan transport in the exact manuscript coordinates.**  No lamp or
 centralizer datum is an input: the proof internally applies the general
 compression theorem with the harmless root `1`. -/
-theorem manuscriptKazhdanTransport
-    {Γ : Type} [Group Γ]
-    (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
+theorem manuscriptKazhdanTransport :
+    ∀ {Γ H : Type} [Group Γ] [Group H]
+    (_hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H) (s : H)
-    (hs : ∀ γ : Γ, ∃ δ : Γ,
+    (_hs : ∀ γ : Γ, ∃ δ : Γ,
       s * iota γ * s⁻¹ = iota δ)
-    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n)
+    (d : ℕ → ℕ) (_hd : ∀ n, 0 < d n)
     (U : ∀ n, H → Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ)
-    (hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
+    (_hU : ∀ g h : H, ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,
       ‖(U n (g * h) : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ) -
         (U n g : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ) * U n h‖ ≤ ε)
     (x : ∀ n, Matrix (naturalFiniteModel (d n))
       (naturalFiniteModel (d n)) ℂ)
-    (hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
-    (hx : ∀ γ : Γ, NaturalHSCommutatorVanishing d U x (iota γ)) :
+    (_hbound : ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M)
+    (_hx : ∀ γ : Γ, NaturalHSCommutatorVanishing d U x (iota γ)),
     ∀ γ : Γ, NaturalHSCommutatorVanishing d U (fun n ↦
       (U n s : Matrix (naturalFiniteModel (d n))
         (naturalFiniteModel (d n)) ℂ) * x n *
         (U n s : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ)ᴴ) (iota γ) := by
+  intro Γ H _ _ hT iota s hs d hd U hU x hbound hx
   let B : OpAlmostRepresentation H := {
     model := fun n ↦ naturalFiniteModel (d n)
     modelNonempty := fun n ↦ by
@@ -135,12 +136,12 @@ For a countable ambient group, every finite normal subgroup of the intrinsic
 compression--centralizer defect of a Kazhdan image lies in the literal
 natural-dimension C-star-corona radical.  The second conjunct spells out the
 equivalent kernel statement for every printed norm-matrix corona. -/
-theorem manuscriptCompressionRadical
-    {Γ H : Type} [Group Γ] [Group H] [Countable H]
-    (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
+theorem manuscriptCompressionRadical :
+    ∀ {Γ H : Type} [Group Γ] [Group H] [Countable H]
+    (_hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H)
     (F : Subgroup H) [Finite F] [F.Normal]
-    (hF : F ≤ compressionCentralizerDefect iota.range) :
+    (_hF : F ≤ compressionCentralizerDefect iota.range),
     F ≤ manuscriptCoronaMFResidual H ∧
       ∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
         letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
@@ -148,6 +149,7 @@ theorem manuscriptCompressionRadical
         ∀ rho : H →* unitary (NormMatrixCStarCorona
             (fun n ↦ naturalFiniteModel (d n))),
           F ≤ rho.ker := by
+  intro Γ H _ _ _ hT iota F _ _ hF
   have hnorm : F ≤ normMFResidual H :=
     finiteNormal_le_normMFResidual_of_le_compressionCentralizerDefect
       iota (hasKazhdanPropertyT_iff_textbook.mpr hT) F hF

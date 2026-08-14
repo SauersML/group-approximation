@@ -279,11 +279,13 @@ group C-star algebra: the canonical unitary representation is faithful, and
 every unitary representation on a same-universe C-star algebra extends
 uniquely across the canonical generators. -/
 theorem manuscriptUniverseRelativeMaximalGroupCStar :
+    ∀ (G : Type u) [Group G],
     Function.Injective (maximalGroupCStarUnitaryHom G) ∧
       ∀ (B : Type u) [CStarAlgebra B] (rho : G →* unitary B),
         ∃! f : MaximalGroupCStar G →⋆ₐ[ℂ] B,
           ∀ g : G,
             f (maximalGroupCStarGenerator G g) = (rho g : B) := by
+  intro G _
   exact ⟨maximalGroupCStarUnitaryHom_injective G,
     fun _ _ rho ↦ maximalGroupCStar_existsUnique_lift G rho⟩
 

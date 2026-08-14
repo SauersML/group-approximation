@@ -118,9 +118,11 @@ theorem isWeakMF_of_locallyFinite (hG : IsLocallyFiniteGroup G) : IsWeakMF G :=
 /-- **Every countable locally finite group is operator-MF** in the literal
 cofinite norm-matrix-corona sense, exactly as for countable residually finite
 groups. -/
-theorem isOperatorMF_of_locallyFinite [Countable G]
-    (hG : IsLocallyFiniteGroup G) : IsOperatorMF G :=
-  (isWeakMF_of_locallyFinite hG).isOperatorMF
+theorem isOperatorMF_of_locallyFinite :
+    ∀ {K : Type u} [Group K] [Countable K],
+      IsLocallyFiniteGroup K → IsOperatorMF K := by
+  intro K _ _ hG
+  exact (isWeakMF_of_locallyFinite hG).isOperatorMF
 
 /-- Contrapositive form: a group that is not operator-MF and is countable
 cannot be locally finite. -/

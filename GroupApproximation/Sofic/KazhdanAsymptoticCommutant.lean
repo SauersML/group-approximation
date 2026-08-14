@@ -894,17 +894,20 @@ theorem compressionGroup_le_asymptoticCommutantStabilizer
   exact compressionSet_subset_asymptoticCommutantStabilizer B iota hkazhdan
 
 /-- Pointwise form of the all-compressors transport theorem. -/
-theorem compressionGroup_transport_both
-    (B : OpAlmostRepresentation E) (iota : Γ →* E)
-    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ)
-    {g : E} (hg : g ∈ compressionGroup iota.range)
+theorem compressionGroup_transport_both :
+    ∀ {Γ₀ E₀ : Type} [Group Γ₀] [Group E₀]
+    (B : OpAlmostRepresentation E₀) (iota : Γ₀ →* E₀)
+    (_hkazhdan : HasKazhdanPropertyT.{0, 0} Γ₀)
+    {g : E₀} (_hg : g ∈ compressionGroup iota.range)
     (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
-    (hbound : IsUniformlyBounded B x)
-    (hx : IsAsymptoticCommutantOf B iota x) :
+    (_hbound : IsUniformlyBounded B x)
+    (_hx : IsAsymptoticCommutantOf B iota x),
     IsAsymptoticCommutantOf B iota (adjointSequence B g x) ∧
       IsAsymptoticCommutantOf B iota (coadjointSequence B g x) :=
-  compressionGroup_le_asymptoticCommutantStabilizer B iota hkazhdan hg
-    x hbound hx
+  by
+    intro Γ₀ E₀ _ _ B iota hkazhdan g hg x hbound hx
+    exact compressionGroup_le_asymptoticCommutantStabilizer B iota hkazhdan hg
+      x hbound hx
 
 end KazhdanAsymptoticCommutant
 end GroupApproximation
