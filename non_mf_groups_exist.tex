@@ -1198,7 +1198,7 @@ $V_{g,n}=1$ at its finitely many exceptional indices.  Thus polar correction
 is asymptotically invisible and the $V_{g,n}$ remain asymptotically
 multiplicative.
 
-Finally, the $Q_n$-block of $A_n$ is precisely the normalized sum
+Finally, the $Q_n$-block of $A_n$ is exactly the normalized sum
 $|F|^{-1}\sum_{f\in F}C_{f,n}$.  Since $P_n-A_n\to0$ and $Q_nP_n=0$,
 \[
  \opnorm{|F|^{-1}\sum_{f\in F}C_{f,n}}\longrightarrow0.
@@ -1360,9 +1360,9 @@ Given $\varepsilon>0$, choose the eventual bounds
 \]
 Then the right side of \eqref{eq:vector-chain-budget} is at most
 $\varepsilon/2$, and the added microstate error is at most $\varepsilon/2$.
-This proves the claim with constants independent of $r_n$.  In
-\texttt{MarkedCompressionRootCapture.lean}, the theorem
-\texttt{compressionDefect\_hsDistSq\_vanishing} performs this last translation
+This proves the claim with constants independent of $r_n$.  The theorem
+\texttt{compressionDefect\_hsDistSq\_vanishing} in
+\texttt{MarkedCompressionRootCapture.lean} performs this last translation
 with explicit $\varepsilon/128$ and $\varepsilon/64$ allocations.
 \end{proof}
 
