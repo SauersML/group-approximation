@@ -4,6 +4,17 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: the Kun--Thom Clifford phase has no quantitative loss
+
+The finite-coordinate endpoint in `TRUE_KUN_THOM_CLIFFORD_PHASE.md` is now
+closed quantitatively.  For involutive unitaries `C,D`, the second-commutator
+matrix `X=DCDC` satisfies the exact factorization
+`D(CD+DC)C=X+1`; hence
+`hsDistSq(X,-1)=hsNormSq(CD+DC)`.  This is Lean-checked in
+`Sofic/CliffordPhaseExtraction.lean`.  Therefore the sole remaining content
+of the Clifford route is constructing the almost-`Gamma`-central,
+anticommuting pair; no error-propagation or phase-detection estimate remains.
+
 ### 2026-08-13: antipodal conjugacy is a quantitative trace certificate
 
 `TRUE_ANTIPODAL_TRACE_EXTRACTION.md` closes the local analytic step of the

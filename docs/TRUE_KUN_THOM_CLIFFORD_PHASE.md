@@ -126,6 +126,30 @@ gives
 x |-> -1.                                              (KCP14)
 ```
 
+There is no hidden quantitative loss in this last implication.  If
+`D_n=C_(h,n)`, the coordinate matrix for the second commutator is
+
+```text
+X_n=D_n C_n D_n C_n,
+```
+
+and involutivity gives the exact factorization
+
+```text
+D_n(C_nD_n+D_nC_n)C_n=X_n+1.
+```
+
+Left and right multiplication by unitaries preserve normalized
+Hilbert--Schmidt norm, so
+
+```text
+||X_n+1||_2^2=||C_nD_n+D_nC_n||_2^2.                 (KCP14a)
+```
+
+Thus `(KCP13)` is exactly, with constant one, convergence of the radical
+word to `-1`.  The factorization and norm identity are Lean-checked in
+`GroupApproximation/Sofic/CliffordPhaseExtraction.lean`.
+
 The resulting tracial-ultraproduct image is hyperlinear and cannot be
 sofic.  Thus `(KCP12)--(KCP13)` is already a complete finite-coordinate
 target for the open problem.
