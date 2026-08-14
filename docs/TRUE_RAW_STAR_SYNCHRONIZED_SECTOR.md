@@ -125,6 +125,14 @@ This is strictly narrower than the previous unsynchronized projection
 recovery problem: the carrier, its trace, its finite coefficient placement,
 and the correct adjoint operation are all fixed.
 
+The two-sheet operation also cannot create the required directionality.
+`FALSE_STAR_SYNCHRONIZATION_DOES_NOT_CREATE_LEAKAGE.md` proves that forward
+and reverse leakage of every diagonal doubled transport are exactly the
+averages of the corresponding sheet leakages.  Since `theta(r)=r`, the
+sheet swap commutes with the doubled raw cut.  Thus star synchronization
+solves adjoint compatibility only; a cross-root multiplication relation is
+still indispensable for restricting the multiplicity holonomy.
+
 ## 5. Replay
 
 The exact audit is

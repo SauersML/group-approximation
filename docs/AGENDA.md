@@ -6,6 +6,24 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: the star synchronizer cannot orient leakage
+
+`FALSE_STAR_SYNCHRONIZATION_DOES_NOT_CREATE_LEAKAGE.md` closes the combined
+shortcut "spatialize Leavitt star, then obtain a one-way coefficient cut."
+For doubled matrices `W=diag(W0,W1)` and `P=diag(P0,P1)`, both forward and
+reverse leakage are diagonal and their squared normalized-HS masses are the
+averages of the corresponding sheet masses.  One-cut balance holds on each
+unitary sheet, hence also after doubling.  The sheet swap commutes with the
+raw cut `diag(e,e)` because the involutive automorphism fixes the raw
+involution.
+
+The exact block and mass identities are formalized source-first in
+`Sofic/InvolutiveTwoSheet.lean`; no local build was run.  Star
+synchronization remains useful only for identifying opposite-root blocks as
+adjoints.  The live theorem must still use a cross-root multiplication word
+to restrict multiplicity holonomy and create support containment or
+asymmetric leakage.
+
 ### 2026-08-14: positive-rank carriers do not inherit the Leavitt gap
 
 `FALSE_WEIGHTED_LEAVITT_CONTRACTION_GAP.md` closes the shortcut that tried to

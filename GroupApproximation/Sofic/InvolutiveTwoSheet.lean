@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.HyperlinearAmplification
+import GroupApproximation.Sofic.HyperlinearScalar
 import Mathlib.Data.Matrix.Block
 
 /-!
@@ -148,5 +148,72 @@ theorem hsDistSq_twoSheetDiagonal (Y : FiniteModel)
     Matrix.fromBlocks_apply₂₂]
   simp
   ring
+
+/-- The normalized Hilbert--Schmidt mass of a diagonal double is the average
+of the masses on its two sheets. -/
+theorem hsNormSq_twoSheetDiagonal (Y : FiniteModel)
+    (A B : Matrix Y Y ℂ) :
+    hsNormSq (twoSheetModel Y) (twoSheetDiagonal Y A B) =
+      (hsNormSq Y A + hsNormSq Y B) / 2 := by
+  classical
+  simp only [hsNormSq]
+  rw [card_twoSheetModel]
+  simp only [twoSheetDiagonal, Fintype.sum_sum_type,
+    Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂,
+    Matrix.fromBlocks_apply₂₁, Matrix.fromBlocks_apply₂₂]
+  simp
+  ring
+
+/-- Forward leakage across a doubled cut is diagonal, sheet by sheet. -/
+theorem twoSheetDiagonal_forwardLeakage (Y : FiniteModel)
+    (A B P Q : Matrix Y Y ℂ) :
+    (1 - twoSheetDiagonal Y P Q) * twoSheetDiagonal Y A B *
+        twoSheetDiagonal Y P Q =
+      twoSheetDiagonal Y ((1 - P) * A * P) ((1 - Q) * B * Q) := by
+  have hsub :
+      (1 : Matrix (Y ⊕ Y) (Y ⊕ Y) ℂ) - twoSheetDiagonal Y P Q =
+        twoSheetDiagonal Y (1 - P) (1 - Q) := by
+    rw [← twoSheetDiagonal_one Y]
+    unfold twoSheetDiagonal
+    ext i j
+    rcases i with i | i <;> rcases j with j | j <;> simp
+  rw [hsub, twoSheetDiagonal_mul, twoSheetDiagonal_mul]
+
+/-- Reverse leakage across a doubled cut is likewise diagonal, sheet by
+sheet. -/
+theorem twoSheetDiagonal_reverseLeakage (Y : FiniteModel)
+    (A B P Q : Matrix Y Y ℂ) :
+    twoSheetDiagonal Y P Q * twoSheetDiagonal Y A B *
+        (1 - twoSheetDiagonal Y P Q) =
+      twoSheetDiagonal Y (P * A * (1 - P)) (Q * B * (1 - Q)) := by
+  have hsub :
+      (1 : Matrix (Y ⊕ Y) (Y ⊕ Y) ℂ) - twoSheetDiagonal Y P Q =
+        twoSheetDiagonal Y (1 - P) (1 - Q) := by
+    rw [← twoSheetDiagonal_one Y]
+    unfold twoSheetDiagonal
+    ext i j
+    rcases i with i | i <;> rcases j with j | j <;> simp
+  rw [hsub, twoSheetDiagonal_mul, twoSheetDiagonal_mul]
+
+/-- Consequently the forward leakage mass of a two-sheet transport is the
+average of the two original forward leakage masses. -/
+theorem hsNormSq_twoSheetDiagonal_forwardLeakage (Y : FiniteModel)
+    (A B P Q : Matrix Y Y ℂ) :
+    hsNormSq (twoSheetModel Y)
+        ((1 - twoSheetDiagonal Y P Q) * twoSheetDiagonal Y A B *
+          twoSheetDiagonal Y P Q) =
+      (hsNormSq Y ((1 - P) * A * P) +
+        hsNormSq Y ((1 - Q) * B * Q)) / 2 := by
+  rw [twoSheetDiagonal_forwardLeakage, hsNormSq_twoSheetDiagonal]
+
+/-- The same averaging formula holds for reverse leakage. -/
+theorem hsNormSq_twoSheetDiagonal_reverseLeakage (Y : FiniteModel)
+    (A B P Q : Matrix Y Y ℂ) :
+    hsNormSq (twoSheetModel Y)
+        (twoSheetDiagonal Y P Q * twoSheetDiagonal Y A B *
+          (1 - twoSheetDiagonal Y P Q)) =
+      (hsNormSq Y (P * A * (1 - P)) +
+        hsNormSq Y (Q * B * (1 - Q))) / 2 := by
+  rw [twoSheetDiagonal_reverseLeakage, hsNormSq_twoSheetDiagonal]
 
 end GroupApproximation
