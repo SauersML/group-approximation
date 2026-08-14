@@ -55,6 +55,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:D": (
         "Sofic/LiteralNonMFEndpoint",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
+    "prop:maximal-cstar": (
+        "Analysis/MaximalGroupCStar",
+        "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar"),
     "def:E": (
         "Sofic/LiteralNonMFPresentation",
         "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation"),
@@ -136,7 +139,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
                               "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
                               "con:clifford"],
-    "thm:A": ["def:E", "prop:mf-equivalences",
+    "thm:A": ["def:E", "prop:mf-equivalences", "prop:maximal-cstar",
               "prop:literal-base-T", "prop:witness", "thm:criterion",
               "lem:unitarycorona", "lem:square"],
     "thm:C": ["thm:B", "con:clifford"],
