@@ -214,7 +214,9 @@ theorem stable_compresses (alpha : Γ →* Γ) (a g : Γ) :
               (alpha (baseEval x) * alpha (baseEval y)) := by rw [map_mul]
 
 theorem lamp_sq (alpha : Γ →* Γ) (a : Γ) : lamp alpha a ^ 2 = 1 := by
-  simpa using quotientMap_relator_eq_one
+  change (quotientMap alpha a rawLamp) ^ 2 = 1
+  rw [← map_pow]
+  exact quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
     (show rawLamp ^ 2 ∈ relators alpha a by
       simp [relators, lampRelators])
@@ -230,7 +232,16 @@ theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
     (show ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
-        relators alpha a by simp [relators, lampRelators])
+        relators alpha a by
+      apply Finset.mem_union.mpr
+      left
+      apply Finset.mem_union.mpr
+      right
+      show ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
+        lampRelators
+      apply Finset.mem_union.mpr
+      right
+      exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩)
 
 /-- The lamp centralizes the whole base. -/
 theorem lamp_commutes (alpha : Γ →* Γ) (a g : Γ) :
@@ -379,11 +390,15 @@ theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
     simp only [stableRelator, map_mul, map_inv, rawRealization_stable,
       rawRealization_base]
     exact mul_inv_eq_one.mpr (MarkedCompression.compress alpha hAlpha _)
-  · simp only [lampRelators] at hr
-    rcases hr with rfl | ⟨i, -, rfl⟩
-    · apply MonoidHom.mem_ker.mpr
+  · rw [lampRelators, Finset.mem_union] at hr
+    rcases hr with hsquare | hcomm
+    · have hr : r = rawLamp ^ 2 := Finset.mem_singleton.mp hsquare
+      subst r
+      apply MonoidHom.mem_ker.mpr
       simpa using MarkedCompression.cAmbient_sq alpha hAlpha
-    · apply MonoidHom.mem_ker.mpr
+    · obtain ⟨i, -, hr⟩ := Finset.mem_image.mp hcomm
+      subst r
+      apply MonoidHom.mem_ker.mpr
       rw [map_commutatorElement]
       exact commutatorElement_eq_one_iff_commute.mpr
         (MarkedCompression.comm_c alpha hAlpha _)

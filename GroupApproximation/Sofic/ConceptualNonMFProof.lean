@@ -127,7 +127,7 @@ theorem literal_mark_eq_one_in_CStarCorona
     (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
-        simpa only [card_naturalFiniteModel] using hd n)
+        simpa using hd n)
     ∀ rho : MarkedGroup →* unitary (NormMatrixCStarCorona
         (fun n ↦ naturalFiniteModel (d n))),
       rho mark = 1 := by
@@ -135,7 +135,7 @@ theorem literal_mark_eq_one_in_CStarCorona
   exact MonoidHom.mem_ker.mp
     (literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-        simpa only [card_naturalFiniteModel] using hd n)
+        simpa using hd n)
       rho mark_mem_literalInvolutionSubgroup)
 
 /-- The equivalent unitary-sequence-corona kernel statement. -/

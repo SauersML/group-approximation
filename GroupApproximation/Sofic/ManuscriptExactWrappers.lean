@@ -179,7 +179,7 @@ theorem manuscriptUnitaryLifting
     (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
-        simpa only [card_naturalFiniteModel] using hd n)
+        simpa using hd n)
     ∀ x : unitary (NormMatrixCStarCorona
         (fun n ↦ naturalFiniteModel (d n))),
       ∃ u : ∀ n, Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ,
@@ -196,7 +196,7 @@ theorem manuscriptUnitaryCoronaEquivalence
     (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
     letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
-        simpa only [card_naturalFiniteModel] using hd n)
+        simpa using hd n)
     ∃ kappa : NormMatrixCoronaUnitary
         (fun n ↦ naturalFiniteModel (d n)) ≃*
         unitary (NormMatrixCStarCorona
@@ -241,12 +241,12 @@ theorem manuscriptFiniteNormalObstructionCriterion
     let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
     letI : ∀ n, Nonempty (X n) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
-        simpa only [X, card_naturalFiniteModel] using hd n)
+        simpa using hd n)
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       F ≤ Theta.ker := by
   exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF
     (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-      simpa only [card_naturalFiniteModel] using hd n)
+      simpa using hd n)
 
 /-- Exact coordinate finite-normal-corner conclusion for literal positive
 natural matrix dimensions. -/
@@ -259,34 +259,17 @@ theorem manuscriptCoordinateFiniteNormalCorner
     (hnontrivial : ∃ f : F, rho f ≠ 1) :
     ∃ B : OpAlmostRepresentation H,
       (∀ n, 0 < Fintype.card (B.model n)) ∧
-      (∀ g h : H, ∀ epsilon : ℝ, 0 < epsilon → ∃ N, ∀ n ≥ N,
-        ‖(B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h -
-          (B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ)‖ ≤
-            epsilon) ∧
       letI : Fintype F := Fintype.ofFinite F
       KazhdanCornerMatrices.OpNormVanishing B (fun n ↦
         ∑ f : F, (B.map n (f : H) :
           Matrix (B.model n) (B.model n) ℂ)) := by
   letI : ∀ i, Nonempty (naturalFiniteModel (d i)) := fun i ↦
     Fintype.card_pos_iff.mp (by
-      simpa only [card_naturalFiniteModel] using hd i)
+      simpa using hd i)
   obtain ⟨B, hsum⟩ :=
     FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing
       F U (fun i ↦ naturalFiniteModel (d i)) rho hnontrivial
-  refine ⟨B, B.modelNonempty, ?_, hsum⟩
-  intro g h epsilon hepsilon
-  obtain ⟨N, hN⟩ := B.asymptoticallyMultiplicative g h epsilon hepsilon
-  refine ⟨N, fun n hn ↦ ?_⟩
-  calc
-    ‖(B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h -
-        (B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ)‖ =
-        ‖-((B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h)‖ := by
-            rw [neg_sub]
-    _ = ‖(B.map n (g * h) : Matrix (B.model n) (B.model n) ℂ) -
-          (B.map n g : Matrix (B.model n) (B.model n) ℂ) * B.map n h‖ :=
-        norm_neg _
-    _ ≤ epsilon := hN n hn
+  exact ⟨B, B.modelNonempty, hsum⟩
 
 /-- Exact outer-form version of the manuscript's compression-defect collapse:
 the squared normalized Hilbert--Schmidt distance tends to zero, which is
@@ -302,8 +285,7 @@ theorem manuscriptCompressionDefectsCollapse
           (B.map n
             ⁅C.t * C.c * C.t⁻¹, C.iota gamma⁆)
           (B.map n 1) ≤ epsilon := by
-  simpa [KazhdanCompressionCore.transported] using
-    C.compressionDefects_hsTrivial B
+  exact C.compressionDefects_hsTrivial B
 
 /-! ## MF radical and quotient -/
 
@@ -346,6 +328,9 @@ theorem manuscriptRadicalPortability
 CDE definition at the public boundary. -/
 theorem manuscriptLargestMFQuotient
     (G : Type u) [Group G] [Countable G] :
+    letI : Countable (G ⧸ manuscriptCoronaMFResidual G) :=
+      Function.Surjective.countable
+        (QuotientGroup.mk'_surjective (manuscriptCoronaMFResidual G))
     (∃ (d : ℕ → ℕ), ∃ hd : ∀ n, 0 < d n,
       letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
         fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
@@ -358,9 +343,6 @@ theorem manuscriptLargestMFQuotient
           ∃ fBar : (G ⧸ manuscriptCoronaMFResidual G) →* H,
             fBar.comp (QuotientGroup.mk' (manuscriptCoronaMFResidual G)) = f) ∧
       (IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥) := by
-  letI : Countable (G ⧸ manuscriptCoronaMFResidual G) :=
-    (QuotientGroup.mk'_surjective
-      (manuscriptCoronaMFResidual G)).countable
   refine
     ⟨exists_manuscriptCoronaRepresentation_ker_eq_manuscriptCoronaMFResidual,
       manuscriptCoronaMFQuotient_isCDEOperatorMF, ?_, ?_⟩
@@ -374,6 +356,8 @@ theorem manuscriptLargestMFQuotient
 theorem manuscriptExactRadicalFromCandidateQuotient
     (G : Type u) [Group G] [Countable G]
     (N : Subgroup G) [N.Normal] (hN : N ≤ manuscriptCoronaMFResidual G) :
+    letI : Countable (G ⧸ N) :=
+      Function.Surjective.countable (QuotientGroup.mk'_surjective N)
     (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
       letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
         fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
@@ -384,8 +368,6 @@ theorem manuscriptExactRadicalFromCandidateQuotient
             (fun n ↦ naturalFiniteModel (d n))),
         rhoBar.comp (QuotientGroup.mk' N) = rho) ∧
       (IsCDEOperatorMF (G ⧸ N) → manuscriptCoronaMFResidual G = N) := by
-  letI : Countable (G ⧸ N) :=
-    (QuotientGroup.mk'_surjective N).countable
   constructor
   · intro d hd rho
     exact existsUnique_quotient_factorization_to_manuscriptCorona

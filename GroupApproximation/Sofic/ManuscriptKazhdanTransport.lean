@@ -64,17 +64,18 @@ theorem manuscriptKazhdanTransport
   let B : OpAlmostRepresentation H := {
     model := fun n ↦ naturalFiniteModel (d n)
     modelNonempty := fun n ↦ by
-      simpa only [card_naturalFiniteModel] using hd n
+      simpa using hd n
     map := U
     asymptoticallyMultiplicative := hU
   }
-  let C : KazhdanCompressionCore Γ H where
+  let C : KazhdanCompressionCore Γ H := {
     iota := iota
     t := s
     c := 1
     kazhdan := hasKazhdanPropertyT_iff_textbook.mpr hT
     compresses := hs
     comm_c γ := one_comm (iota γ)
+  }
   have hx_sq : IsAsymptoticCommutant B C x := by
     intro γ ε hε
     obtain ⟨N, hN⟩ := hx γ (Real.sqrt ε) (Real.sqrt_pos.2 hε)
