@@ -38,9 +38,10 @@ corona
 ∏ₙ M_{dₙ}(ℂ) / ⊕ₙ M_{dₙ}(ℂ).
 ```
 
-Building this manuscript requires LaTeX2e dated 2025-06-01 or newer.  Its
-tagged PDF uses the `\DocumentMetadata{tagging=on}` interface introduced in
-that release; the release workflow uses a digest-pinned TeX Live 2026 image.
+Building this manuscript requires LaTeX2e dated 2025-06-01 or newer.  The
+attested release PDF uses the `\DocumentMetadata{tagging=on}` interface
+introduced in that release; the release workflow uses a digest-pinned TeX
+Live 2026 image.
 
 The current manuscript draft gives a literal finite presentation on eight
 generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is used as a
@@ -53,8 +54,9 @@ base. The defining relations make
 w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]
 ```
 
-a central involution. An explicit affine--Clifford representation proves
-`w ≠ 1`. The manuscript's property-(T) proof uses an exact rational Hodge
+a central element; its order-two relation follows from centrality and
+`c² = 1` rather than being imposed separately. An explicit affine--Clifford
+representation proves `w ≠ 1`. The manuscript's property-(T) proof uses an exact rational Hodge
 certificate for a six-generator, thirteen-relator presentation, a checked
 surjection onto the rotation presentation, and an intrinsic fixed-point
 argument for the translations. The current source contains the staged exact
