@@ -21,6 +21,8 @@
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
   \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
+\newif\ifanonymous
+\anonymoustrue
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
   pdftitle={The MF conjecture is false: An explicit finitely presented non-MF group},
@@ -33,8 +35,12 @@
 \newcommand{\coderepository}{https://github.com/SauersML/group-approximation}
 \newcommand{\leanverified}[2]{%
   \unskip\quad
-  \href{\coderepository/blob/verified/GroupApproximation/#1.lean}{%
-    \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}}}
+  \ifanonymous
+    \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace formalized in Lean\thinspace]}%
+  \else
+    \href{\coderepository/blob/main/GroupApproximation/#1.lean}{%
+      \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}}%
+  \fi}
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
 \allowdisplaybreaks
@@ -1455,7 +1461,21 @@ Theorem~\ref{thm:criterion}; the membership \(w\in N_{\mathrm{comp}}\)
 is the identity \(w=[d,\iota(v_1)]^{\,2}\) of Lemma~\ref{lem:square}.
 The ultraproduct proof of Theorem~\ref{thm:kazhdan-transport} is the shortest
 form of the argument and already gives the ordinary sequential convergence
-needed above.  No quantitative modulus is asserted or needed.
+needed above.
+
+\paragraph{A uniform finite obstruction.}
+There are a number $\delta>0$ and a finite set $F_0\subset E$ such that,
+in every matrix dimension, any unitary-valued map $\phi$ satisfying
+\[
+ \opnorm{\phi(gh)-\phi(g)\phi(h)}\leq\delta
+ \qquad(g,h\in F_0)
+\]
+also satisfies $\opnorm{\phi(w)-1}<1$.
+\leanverified{Sofic/LiteralUniformObstruction}{GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction}
+Thus the non-MF conclusion has a finite, dimension-free formulation that
+does not mention an ultrafilter.  The compactness proof does not compute
+$\delta$ or $F_0$; obtaining an effective modulus directly from the
+rational spectral certificate remains a sharper quantitative problem.
 
 \subsection{The compression radical}
 
@@ -1978,6 +1998,11 @@ coordinate description is separate from the operator-norm theorem proved
 here.
 
 \subsection*{Questions}
+The finite-normal mechanism has a precise torsion limitation: every finite
+subgroup of a torsion-free group is trivial.
+\leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
+Consequently a torsion-free example would require a different final
+obstruction, even if its transport step were similar.
 \begin{enumerate}
 \item Is $E/\langle w\rangle$ MF?  By
 Corollary~\ref{cor:exactradical}, a positive answer would compute
