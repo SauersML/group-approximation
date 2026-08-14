@@ -190,6 +190,7 @@ import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
+import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
@@ -497,6 +498,7 @@ import GroupApproximation.Leavitt.FiniteTypeCountable
 import GroupApproximation.Leavitt.FiniteOutcomeCoarsening
 import GroupApproximation.Leavitt.FiniteNoSignalingPairingBox
 import GroupApproximation.Leavitt.FiniteBinaryFiberDecoder
+import GroupApproximation.Leavitt.PauliCarrierBinaryGap
 import GroupApproximation.Leavitt.ShiftEndomorphism
 import GroupApproximation.Sofic.LocalCentralQuotientLifting
 import GroupApproximation.Steinberg.KervaireSteinberg

@@ -34,6 +34,20 @@ formalization in `Leavitt/FiniteBinaryFiberDecoder.lean`.  Search for one
 cross-root word proving `B` is asymptotically in `A_Y`; that estimate now
 subsumes the entire binary fiber-decoder step.
 
+For the fixed Pauli carrier, orientation can be discarded altogether.  Put
+`E=PQ` and `F=U*QU`, with traces `1/8` and `1/4`.  The squared distance of
+`F` from `W*(E)=span{E,1-E}` is always at least `3/28`.  Hence the shortest
+Pauli endpoint is now binary-algebra membership
+
+```text
+dist_2(F,W*(E)) -> 0,
+```
+
+not the stronger containment `F<=E`.  See
+`TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md`.  The live word search may forget
+which parent sheet is selected and only force vanishing conditional
+variance.
+
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 
 A perfect finite binary pairing turns the two diagonal transport relations

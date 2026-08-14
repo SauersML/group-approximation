@@ -39,6 +39,14 @@ The scalar factor-two comparison is formalized source-first in
 target asymptotic `L^2` membership of `B` in `A_Y`, rather than construct a
 decoder or whole-map PVM directly.
 
+On the existing Pauli-carrier route this becomes an even shorter terminal
+statement.  If `E` is the trace-`1/8` parent cut and `F=U*QU` the
+trace-`1/4` transported carrier, then every `F` has squared distance at least
+`3/28` from the binary algebra `W*(E)`.  Therefore it is enough to prove
+`dist_2(F,W*(E))->0`; the former directed containment `F<=E` is unnecessary.
+See `TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md` and the source-first scalar
+certificate `PauliCarrierBinaryGap.lean`.
+
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 
 `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and
