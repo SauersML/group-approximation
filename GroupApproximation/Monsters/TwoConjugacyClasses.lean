@@ -202,7 +202,7 @@ theorem abs_list_prod_le_of_quasimorphism {q : G → ℝ} {D M : ℝ}
           _ ≤ |q (x * xs.prod) - q x - q xs.prod| + |q x + q xs.prod| :=
                 abs_add_le _ _
           _ ≤ |q (x * xs.prod) - q x - q xs.prod| + (|q x| + |q xs.prod|) :=
-                add_le_add_left (abs_add_le _ _) _
+                add_le_add le_rfl (abs_add_le _ _)
           _ = |q (x * xs.prod) - q x - q xs.prod| + |q x| + |q xs.prod| := by
                 ring
       rw [List.prod_cons]

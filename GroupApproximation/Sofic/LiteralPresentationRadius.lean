@@ -65,13 +65,9 @@ private theorem markedRelator_length_le
     {r : FreeGroup Generator} (hr : r ∈ markedRelators) :
     wordLength r ≤ 34 := by
   classical
-  rw [markedRelators, Finset.mem_union] at hr
-  rcases hr with hr | hr
-  · simp only [Finset.mem_singleton] at hr
-    subst r
-    decide
-  · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
-    rcases i with i | i <;> fin_cases i <;> decide
+  rw [markedRelators] at hr
+  obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
+  rcases i with i | i <;> fin_cases i <;> decide
 
 /-- Every relator in the literal eight-generator presentation lies in the
 canonical reduced-word ball of radius `34`. -/

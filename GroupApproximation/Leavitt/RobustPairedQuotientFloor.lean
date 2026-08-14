@@ -175,6 +175,7 @@ theorem card_rowSeparation_le_mismatch_add_of_collision
 
 /-- Local collision charge.  Under perfect row separation, two distinct
 sources in the same transported fiber consume at least `N/2` row errors. -/
+omit [Fintype V] [DecidableEq V] in
 theorem collision_pair_charge
     (pair : V → W → Prop) [DecidableRel pair]
     (R : V → V) (L : W → W) (N : ℕ) {v v' : V}
@@ -277,7 +278,8 @@ theorem sum_offDiag_pairCost
         2 * F.card * ∑ x ∈ F, cost x := by
     rw [Finset.sum_product]
     simp only [Finset.sum_add_distrib, Finset.sum_const, Nat.nsmul_eq_mul]
-    ring
+    rw [← Finset.mul_sum]
+    omega
   by_cases hF : F.Nonempty
   · have hcard : F.card = (F.card - 1) + 1 := by
       have hone : 1 ≤ F.card := Finset.one_le_card.mpr hF
@@ -551,7 +553,7 @@ theorem independentKernelOneMass_eq_oneSet_card
   simp only [one_mul]
   change (∑ x, ∑ y, if pair x y then 1 else 0) =
     ((oneSet pair id id).card : ℝ)
-  rw [← Fintype.sum_prod_type]
+  rw [← Fintype.sum_prod_type']
   simp [oneSet]
 
 /-- For a perfect binary pairing, the independent bistochastic crossed mass
@@ -687,10 +689,10 @@ theorem robust_floor_of_common_latent_maps
   have hconstant : weightedNatAverage μ (fun _ ↦ N * (N - 1)) =
       ((N * (N - 1) : ℕ) : ℝ) := by
     unfold weightedNatAverage
-    rw [Finset.sum_mul, hμsum]
+    rw [← Finset.sum_mul, hμsum]
     simp
   rw [hconstant] at havg
-  simpa only [weightedNatAverage, Nat.cast_add, Nat.cast_mul, mul_add,
+  simpa only [weightedNatAverage, Nat.cast_add, Nat.cast_mul, Nat.cast_ofNat, mul_add,
     Finset.sum_add_distrib, Finset.mul_sum, mul_comm, mul_left_comm,
     mul_assoc] using havg
 
