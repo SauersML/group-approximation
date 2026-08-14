@@ -75,8 +75,8 @@ theorem cyclicBase_exactModel_obstruction :
         (pi : LiteralCyclicCalibration.LiteralGroup →* H),
         pi LiteralCyclicCalibration.mark = 1) ∧
       ¬ IsLEF LiteralCyclicCalibration.LiteralGroup ∧
-      ¬ IsLEF CyclicBaseCalibration.RealizedQuotient ∧
-      ¬ Group.ResiduallyFinite CyclicBaseCalibration.RealizedQuotient :=
+      ¬ IsLEF LiteralCyclicCalibration.RealizedQuotient ∧
+      ¬ Group.ResiduallyFinite LiteralCyclicCalibration.RealizedQuotient :=
   CyclicBaseLEFObstruction.cyclicBase_exactModel_package
 
 /-- A concrete operator-MF group has a non-operator-MF quotient. -/
