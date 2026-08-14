@@ -105,38 +105,49 @@ finite-dimensional representations is the substantive missing theorem.
 ## 4. What a genuine compiler would still have to prove
 
 An infinite rigidity gadget or a Steinberg commutator construction can encode
-multiplication and therefore go beyond affine predicates.  But a useful
-construction must prove all of the following for one fixed separated game:
+multiplication and therefore go beyond affine predicates.  The target need
+not be an LCS game.  By
+`TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md`, it is enough to construct a
+two-player torically determined game whose finite scalar phase group survives
+the normal closure of the toric clauses.  A useful construction must prove
+all of the following for one fixed separated game:
 
-1. a perfect commuting-operator strategy maps to a representation with the
-   distinguished central phase nontrivial;
-2. every normalized-Hilbert--Schmidt approximate representation retaining
-   that phase decodes to a near-perfect strategy for the source BCS game; and
-3. the decoding constants remain dimension independent.
+1. perfect commuting completeness is preserved;
+2. every near-perfect finite-dimensional strategy for the toric target
+   decodes to a near-perfect strategy for the source BCS game, with
+   dimension-independent constants; and
+3. the target clause subgroup has phase-safe normal closure.
 
 The second item is the difficult direction.  An exact finite gadget can have
 extra projective sectors, and pointwise perfect-strategy equivalence does not
-control sequences of almost representations.  This is the same quantitative
-matrix-coordinate issue encountered in the Leavitt/Steinberg atlas.
+control sequences of near-perfect strategies.  Once all three items hold, no
+additional approximate-group-representation decoder is needed: a
+hypothetical hyperlinear quotient has a positive central phase corner, and
+that Connes-embeddable trace directly yields target strategies of value
+tending to one.
 
 Thus the Fu--Mastel--Zhang conversion is useful upstream--it supplies a clean
 synchronous BCS format with perfect completeness--but it does not yet attach
-a solution group whose central element is invisible to all tracial matrix
-models.
+a phase-safe toric quotient.  In particular it proves neither toric
+soundness nor survival of the scalar phase under normal closure.
 
 ## 5. Status of the independent game route
 
-The precise independent target remains:
+The precise independent target is now the weaker statement:
 
 ```text
-one finite LCS game with perfect commuting completeness
-and a uniform gap for finite-dimensional strategies.                  (PBL7)
+one finite two-player torically determined game
+with perfect commuting completeness,
+a uniform gap for finite-dimensional strategies,
+and phase-safe normal closure of its clauses.                         (PBL7)
 ```
 
-Equivalently, one needs a quantitative group-valued linearization of a
-perfect-completeness separated BCS instance.  The affine calculation above
-rules out the direct commuting-ancilla translation; it does not rule out a
-new nonabelian multiplication gadget.
+An LCS game is a sufficient structured specialization, but full LCS syntax is
+not logically necessary.  Equivalently, one needs a quantitative toric
+linearization of a perfect-completeness separated BCS instance together with
+normal phase survival.  The affine calculation above rules out the direct
+commuting-ancilla translation; it does not rule out a new nonabelian
+multiplication gadget.
 
 ## Primary sources
 

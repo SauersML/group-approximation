@@ -728,11 +728,14 @@ The best independent fallback is:
 
 > Start with one fixed finite synchronous BCS/CSP game which has a perfect
 > commuting-operator strategy but a uniform gap for finite-dimensional
-> strategies, and construct a bespoke finite LCS game preserving those two
-> properties.
+> strategies, and construct a bespoke finite two-player torically determined
+> game preserving those two properties and whose scalar phase survives the
+> normal closure of its clauses.
 
 No efficient or uniform compiler is sought.  Only this one source algebra has
-to be linearized.
+to be torically groupified.  A finite LCS game is a sufficient specialization,
+but `TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` proves that full LCS
+syntax is not necessary.
 
 ## Exact target theorem
 
@@ -753,30 +756,37 @@ constant finite-dimensional soundness gap are retained.  Those ingredients
 exist separately in the literature; their exact composition for our chosen
 instance must not be assumed without replaying it.
 
-Construct a finite binary linear constraint system \(L_0\) and constants
-\(c,C>0\) with:
+The broader target is a finite two-player torically determined game `T_0`
+with finite scalar phase group `B`.  In the augmented universal group
+
+```text
+Gtilde=B times G,
+```
+
+let `N` be the normal closure of its toric clauses.  Construct `T_0` and
+constants \(c,C>0\) with:
 
 1. **exact completeness:** every perfect commuting strategy for \(B_0\)
-   induces a perfect commuting strategy for \(L_0\);
-2. **robust soundness:** a finite-dimensional strategy for \(L_0\) of defect
+   induces a perfect commuting strategy for `T_0`;
+2. **robust soundness:** a finite-dimensional strategy for `T_0` of defect
    \(\delta\) induces a finite-dimensional strategy for \(B_0\) of defect at
-   most \(C\delta^c\).
+   most \(C\delta^c\); and
+3. **phase-safe normal closure:** `N intersect B={1}`.
 
 Then
 
 \[
-\omega_{qc}(L_0)=1,
+\omega_{qc}(T_0)=1,
 \qquad
-\omega_{qa}(L_0)<1.
+\omega_{qa}(T_0)<1.
 \tag{HL2}
 \]
 
-The solution group of \(L_0\) has its distinguished central involution
-nontrivial in a commuting representation but trivial in every asymptotic
-matrix representation.  The standard LCS solution-group correspondence then
-produces a nonhyperlinear group.
+The phase-safe toric theorem then makes the finitely presented quotient
+`Gtilde/N` nonhyperlinear.  If `T_0` is an LCS game, this recovers the usual
+solution-group endpoint.
 
-### The final solution-group implication is profile-free
+### The sufficient LCS specialization is profile-free
 
 For completeness, no faithfulness or positive-rank hypothesis is hidden in
 the last sentence.  Let `Gamma(A,b)` be the binary LCS solution group and
@@ -823,9 +833,11 @@ This contradicts `omega_qa<1`.
 
 The corner may have vanishing relative rank in the original matrices; its
 trace is renormalized after compression.  Thus the only unproved issue in
-this lane is the existence of `(HL2a)`, not conversion of such an instance
-to a nonhyperlinear group.  This is also why the `epsilon=0` endpoint in
-Taller--Vidick is exactly the group-theoretic open problem.
+the LCS specialization is the existence of `(HL2a)`, not conversion of such
+an instance to a nonhyperlinear group.  The phase-safe toric theorem proves
+the analogous final implication for the broader target without requiring an
+approximate-representation decoder.  This is also why the `epsilon=0`
+endpoint in Taller--Vidick is exactly the group-theoretic open problem.
 
 ## Why this target is narrower than the published open problem
 
@@ -861,13 +873,15 @@ finite source \(B_0\), together with the two replayable implications in
 `(HL1)`.  Record its projection generators, partition-of-unity relations,
 local commutation relations, and forbidden products.
 
-### Gate 2: exact LCS-algebra embedding test
+### Gate 2: exact toric embedding test
 
-Attempt to encode each source projection by a word in involutions of a finite
-solution group, with the source partition and forbidden-product relations
-holding identically.  This is an exact finite word problem.  The first search
-should allow auxiliary variables and equations freely; efficiency and size do
-not matter.
+Attempt to encode the source determining relations by scalar monomial clauses
+in a finite universal game group, with the source partition and
+forbidden-product relations holding identically.  Simultaneously track the
+normal closure of the clauses and require its intersection with the finite
+phase group to be trivial.  This is an exact finite word problem.  The first
+search should allow auxiliary questions, answers, variables, and equations
+freely; efficiency and size do not matter.
 
 Kill the route immediately if a representation-theoretic invariant of the
 specific \(B_0\) rules out every such encoding.  The generic obstruction is
@@ -875,8 +889,9 @@ not enough.
 
 ### Gate 3: robust reverse decoding
 
-For a candidate exact encoding, prove a normalized-HS decoding estimate from
-near-perfect LCS strategies back to near-perfect \(B_0\) strategies.  Use:
+For a candidate exact encoding, prove a decoding estimate from near-perfect
+finite-dimensional toric strategies back to near-perfect \(B_0\) strategies.
+Use:
 
 * HS stability of projection and involution relations;
 * local commutativity gadgets;
@@ -887,12 +902,12 @@ near-perfect LCS strategies back to near-perfect \(B_0\) strategies.  Use:
 This gate must be dimension independent.  No bounded-dimension scan is a
 substitute.
 
-### Gate 4: solution-group extraction
+### Gate 4: phase-safe quotient extraction
 
-Once `(HL2)` is certified, write down the finite solution-group presentation
-and verify the distinguished central involution is visible in the commuting
-model and uniformly invisible in matrices.  This is the final
-nonhyperlinearity proof.
+Once `(HL2)` and phase survival are certified, write down the finite
+presentation of `Gtilde/N`.  The central phase character corner gives the
+final nonhyperlinearity proof.  No separate uniform invisibility estimate for
+arbitrary matrix representations is required.
 
 ## One-symmetry form of the atlas multiplicity gate
 
