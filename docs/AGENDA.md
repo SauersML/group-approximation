@@ -6,6 +6,25 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: two coarse branch partitions recover the fine PVM
+
+`TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md` proves a
+cardinality-free refinement lemma. If two coarse maps on a fine PVM are
+jointly injective, the fine block-diagonal expectation is the composition of
+the two coarse expectations, and
+
+```text
+D_fine(T) <= D_0(T)+D_1(T)
+```
+
+with constant one. Binary Leavitt relations give
+`R=s_0R direct-sum s_1R`, so the two branch restrictions jointly determine
+fine characters. Comb covariance controls one coarse energy. The live gate
+is now only the complementary coarse energy for the same transported
+carrier, forced by the raw adjacent-root `t_l s_k=delta_lk` packet. The two
+compressor words `u,wu` do not provide independent restrictions, as already
+proved by the centralizer no-go.
+
 ### 2026-08-14: intrinsic transition variance cancels source gauge exactly
 
 `TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md` proves that for
