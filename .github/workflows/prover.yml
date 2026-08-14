@@ -260,7 +260,9 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
 
       - name: Replay the exact P13 source generators
-        run: python3 scripts/check_p13_generated.py
+        run: >-
+          python3 scripts/check_p13_generated.py
+          --temporary-root "$RUNNER_TEMP/p13-generated"
 
       # Source text: forbidden constructs, and the root import closure.  Runs
       # before the build because it is instant, and because the orphan-module

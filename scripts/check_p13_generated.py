@@ -89,8 +89,11 @@ def generated_residual_names() -> list[str]:
     return names
 
 
-def check() -> None:
-    with tempfile.TemporaryDirectory(prefix="p13-generated-") as directory:
+def check(temporary_root: Path) -> None:
+    temporary_root.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(
+        prefix="p13-generated-", dir=temporary_root
+    ) as directory:
         output = Path(directory)
 
         replay_output = output / "LiteralP13HodgeReplay.lean"
@@ -126,8 +129,14 @@ def check() -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.parse_args()
-    check()
+    parser.add_argument(
+        "--temporary-root",
+        type=Path,
+        required=True,
+        help="storage-backed parent for the generated-source replay",
+    )
+    arguments = parser.parse_args()
+    check(arguments.temporary_root.resolve())
 
 
 if __name__ == "__main__":
