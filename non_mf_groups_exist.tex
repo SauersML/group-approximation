@@ -756,25 +756,36 @@ Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
 \subsection*{Group-theoretic inputs}
-The proof of Theorem~\ref{thm:A} uses two external sources: the displayed
-presentation of $\SL_3(\mathbb Z)$ from \cite{CRW}, and \cite{BHV} for both
-property~\textup{(T)} of $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and the
-Kazhdan projection.  Later consequences use
-quasidiagonality of amenable groups \cite{TWW}, Mal'cev residual finiteness
-for finitely generated linear groups, the sofic permanence results of
-Elek--Szab\'o \cite{ElekSzabo}, and their simple sofic embedding theorem
-\cite{ElekSzaboHyper}.  The exact twenty-relator base is
-identified with that affine group in Section~\ref{sec:group}; the Clifford
-witness and finite-dimensional obstruction are proved directly.
+The proof of Theorem~\ref{thm:A} has no external group-theoretic inputs:
+property~\textup{(T)} of the literal base is proved intrinsically, from
+an exact rational spectral certificate through a replayed surjection and
+a fixed-point bridge (Proposition~\ref{prop:literal-base-T}), and the
+Clifford witness and finite-dimensional obstruction are proved directly.
+The classical identification of the base with
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- via the presentation of
+$\SL_3(\mathbb Z)$ from \cite{CRW} and property~\textup{(T)} of the
+affine group from \cite{BHV} --- is quoted as orientation only
+(Remark~\ref{rem:classical-base}).  A few later consequences quote
+literature results where indicated, always outside the formal claims:
+quasidiagonality of amenable groups \cite{TWW} in the sharpness
+discussion of Section~\ref{sec:necessity}, the Elek--Szab\'o extension
+theorem \cite{ElekSzabo} as context for the directly proved split-$\Z$
+case in Theorem~\ref{thm:E}, Mal'cev residual finiteness \cite{Malcev}
+as context for the congruence argument there, and the simple sofic
+embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
+paragraph.
 
 \subsection*{Formal verification}
 Each gray ``formalized in Lean'' tag marks a closed theorem in the accompanying
 Lean~4 development with the same outer proposition as the printed statement.
 The formal track has no theorem inputs: in particular it derives
 property~\textup{(T)} of the literal twenty-relator base from an explicit
-rational spectral certificate rather than importing \cite{CRW} or \cite{BHV}.
-Untagged literature consequences, including the soficity calculation below,
-remain deliberately outside that claim.  The public version of each tag links
+rational spectral certificate rather than importing \cite{CRW} or \cite{BHV},
+and the printed proofs follow the formal dependency routes.
+Untagged literature consequences --- the nonamenability, nonnuclearity,
+exactness, simple-envelope, and amenable-MF-detector paragraphs ---
+remain deliberately outside that claim and are labelled where they occur.
+The public version of each tag links
 to the corresponding declaration on the reviewed source branch.
 
 \subsection*{Relation to prior work}
@@ -989,9 +1000,13 @@ injectivity.
 
 \section{The literal group and its Kazhdan source}\label{sec:group}
 
-We work throughout with the groups defined by the relators below.  The proof
-of property~\textup{(T)} identifies the base with a standard affine matrix
-group; every later relation involving its image in $E$ is used directly from
+We work throughout with the groups defined by the relators below.  The
+proof of property~\textup{(T)} is intrinsic to these presentations: an
+exact rational spectral certificate for an auxiliary Steinberg-type
+presentation, a replayed surjection onto the rotation presentation, and a
+fixed-point bridge from the rotation subgroup to the full base.  No
+identification with a matrix group enters the proof, and every later
+relation involving the base's image in $E$ is used directly from
 the displayed presentation.
 First define the \emph{rotation group}
 \begin{equation}\label{eq:sl3presentation}
@@ -1123,29 +1138,112 @@ the real-orthogonal and complex-unitary formulations.
 \end{proposition}
 
 \begin{proof}
-The eight relations in \eqref{eq:sl3presentation} are the
-Conder--Robertson--Williams presentation of $\SL_3(\mathbb Z)$
-\cite[Theorem~2]{CRW}.  The matrix-labelled form for $x,y,z$ displayed in
-Lemma~\ref{lem:linear} is also recorded in \cite{CLV}.  The remaining
-relations say that $v_1,v_2,v_3$ commute and that $x,y,z$ act on them by the
-columns of those three matrices.  This does more than define a quotient.
-The map from the presentation to $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ sends
-$v_i$ to $(e_i,1)$ and each rotation generator to its labelled matrix.  In
-the other direction, send $(n_1,n_2,n_3,A)$ to
-\[
- v_1^{n_1}v_2^{n_2}v_3^{n_3}\,\overline A,
-\]
-where $A\mapsto\overline A$ is the inverse of the isomorphism from the
-eight-relator rotation group to $\SL_3(\mathbb Z)$.  The nine conjugation
-relations give covariance first for
-$x,y,z$, hence for every $A$; so this second map is a homomorphism.  The two
-maps fix the six displayed generators and are inverse.
+The proof is intrinsic: it imports no presentation theorem and no
+classical property~\textup{(T)} statement, and it never identifies
+$\mathcal B$ with a matrix group.  It has three steps.
 
-Property~\textup{(T)} of
-$\mathbb Z^n\rtimes\SL_n(\mathbb Z)$ for $n\ge3$ is classical
-\cite[Example~1.7.4(i)]{BHV}.  Realification and complexification identify
-the real and complex formulations.
+\emph{Step 1: a certified Steinberg-type presentation.}  Let $P_{13}$ be
+the group on the six generators
+$e_{12},e_{13},e_{21},e_{23},e_{31},e_{32}$ with the thirteen relators
+\[
+\begin{gathered}
+ [e_{12},e_{23}]=e_{13},\qquad [e_{13},e_{32}]=e_{12},\qquad
+ [e_{21},e_{13}]=e_{23},\\
+ [e_{23},e_{31}]=e_{21},\qquad [e_{31},e_{12}]=e_{32},\qquad
+ [e_{32},e_{21}]=e_{31},\\
+ [e_{12},e_{13}]=[e_{12},e_{32}]=[e_{13},e_{23}]
+ =[e_{21},e_{23}]=[e_{21},e_{31}]=[e_{31},e_{32}]=1,\\
+ (e_{12}\,e_{21}^{-1}\,e_{12})^{4}=1,
+\end{gathered}
+\]
+the elementary-matrix relations in rank three.  An exact sum-of-squares
+certificate with integer matrix data, verified by denominator-free
+rational arithmetic, proves the degree-one Hodge estimate for $P_{13}$
+with spectral gap $\tfrac1{500}$; testing it on coboundaries gives, in
+every orthogonal representation, the quadratic gap
+\[
+ \lVert\Delta\xi\rVert^2\ \ge\ \tfrac1{500}\,\langle\Delta\xi,\xi\rangle
+\]
+for the six-generator Laplacian $\Delta$.  The gap places the spectrum of
+$\Delta$ in $\{0\}\cup[\tfrac1{500},\infty)$, and the kernel of $\Delta$
+is exactly the space of invariant vectors; a unit vector almost fixed by
+the six generators has small Laplacian energy and is therefore close to
+an invariant vector.  This yields a Kazhdan pair: $P_{13}$ has
+property~\textup{(T)}.  Certificates of this kind go back to Ozawa's
+algebraic characterization of property~\textup{(T)} \cite{Ozawa} and its
+computer-assisted implementations for $\SL_3(\mathbb Z)$
+\cite{NetzerThom}; the certificate used here is exact and is replayed in
+full inside the formal development.
+
+\emph{Step 2: the replayed surjection onto the rotation presentation.}
+Map the six generators to the words
+\[
+\begin{gathered}
+ e_{12}\mapsto y^{-1}xzy^{-1}x^{-1},\quad
+ e_{13}\mapsto xzy^{-1}x^{-1}y,\quad
+ e_{21}\mapsto y^{-1}xyxz,\\
+ e_{23}\mapsto x^{-1}y^{-1}xzy^{-1},\quad
+ e_{31}\mapsto xy^{-1}xzy^{-1}x,\quad
+ e_{32}\mapsto x^{-1}zy^{-1}x^{-1}y^{-1}x^{-1}
+\end{gathered}
+\]
+in the rotation presentation $\mathcal R$ of \eqref{eq:sl3presentation}.
+A word-by-word replay inside $\mathcal R$, using only its eight displayed
+relators, checks that all thirteen relators of $P_{13}$ map to the
+identity, so the assignment defines a homomorphism
+$P_{13}\to\mathcal R$.  The same replay exhibits explicit words in the
+six images whose values are $z$ and $xy$, and a further replay shows that
+$z$ and $xy$ generate $\mathcal R$; hence the homomorphism is surjective.
+Property~\textup{(T)} passes to quotients, so $\mathcal R$ has
+property~\textup{(T)}.
+
+\emph{Step 3: the fixed-point bridge to the base.}  The rotation
+generators of $\mathcal B$ satisfy the relators of $\mathcal R$, so
+$\mathcal R$ maps to the rotation subgroup of $\mathcal B$, and Step~2
+gives a finite set $S$ of rotation words and a $\kappa>0$ forming a
+Kazhdan pair for it.  Let $\rho$ be an orthogonal representation of
+$\mathcal B$ with a unit vector $x$ displaced by less than $\kappa/64$ by
+every element of the finite control set consisting of $S$ together with
+the translations $v_2,v_3$.  Three estimates produce an invariant vector
+near $x$.
+\begin{enumerate}
+\item Projecting $x$ to the rotation-fixed subspace gives a
+rotation-fixed vector $p$ with $\lVert p-x\rVert<1/64$, by the
+moving-projection estimate for the Kazhdan pair.
+\item Translations move $p$ by a bound independent of the lattice
+vector.  Three explicit words in the rotation generators act on the
+translation lattice as elementary transvections, and consequently every
+lattice element is a product of two rotation-conjugates of basis
+translations --- a two-conjugate normal form proved inside the
+presentation.  A rotation-conjugate $rvr^{-1}$ displaces the
+rotation-fixed vector $p$ exactly as much as $v$ does, and each control
+translation displaces $p$ by less than $3/64$ (transferring its bound at
+$x$ across $\lVert p-x\rVert$).  Hence every translation displaces $p$
+by at most $1/8$.
+\item The orbit of $p$ under the translation subgroup is bounded, so the
+Hilbert-space circumcenter argument applies: the projection $y$ of $p$
+to the translation-fixed subspace satisfies $\lVert y-p\rVert\le1/8$.
+Rotations normalize the translation subgroup and fix $p$, so $y$ is
+also rotation-fixed; translations and rotations generate $\mathcal B$,
+so $y$ is $\mathcal B$-invariant, and
+$\lVert y-x\rVert\le 1/8+1/64<1$ keeps $y$ nonzero.
+\end{enumerate}
+Thus almost-invariant vectors produce invariant vectors and $\mathcal B$
+has property~\textup{(T)} in the real-orthogonal formulation;
+realification and complexification identify it with the complex-unitary
+formulation.
 \end{proof}
+
+\begin{remark}[the classical identification]\label{rem:classical-base}
+Classically, the eight relations \eqref{eq:sl3presentation} present
+$\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW} --- the matrix-labelled form of
+the generators in Lemma~\ref{lem:linear} is also recorded in \cite{CLV}
+--- the base $\mathcal B$ is then the affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and property~\textup{(T)} of that
+affine group is classical \cite[Example~1.7.4(i)]{BHV}.  This
+identification is quoted for orientation only: the proof above does not
+use it, and no statement in this paper depends on it.
+\end{remark}
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
@@ -1906,9 +2004,17 @@ Reassociating the semidirect products gives
  W=\ClLamp(X)\rtimes(T\rtimes\mathbb Z)
    \cong (\ClLamp(X)\rtimes T)\rtimes\mathbb Z.
 \]
-The final group is sofic by permanence under extensions with amenable
-quotient \cite{ElekSzabo}.  Here $\bar\Gamma$ is sofic because its six
-matrices are integral and generate a residually finite linear group.
+The final group is sofic because a split extension of a sofic group by
+$\Z$ is sofic: truncate the integer levels to $\Z/L$, let the shift act
+cyclically, and induce the kernel's sofic approximations over the level
+set; the cocycle identity that makes the finite-quotient case exact now
+fails only on the wrap-around boundary, a fraction of at most $2|k|/L$
+of the levels for a window shifted by $k$, which vanishes as $L$ grows.
+This is the special case of the Elek--Szab\'o amenable-extension theorem
+\cite{ElekSzabo} that the argument needs, proved directly.  Here
+$\bar\Gamma$ is sofic because its six generators are casts of integral
+matrices: the integral subgroup is residually finite through its
+congruence quotients, and casting is an isomorphism onto $\bar\Gamma$.
 
 The map $E\to W$ of Proposition~\ref{prop:witness} is surjective: its image
 contains $V$, the root lamp $c_o$, and hence every lamp by transitivity of
@@ -1935,12 +2041,14 @@ total witness is finitely generated and non-MF.
 \begin{proof}
 The Clifford lamp group is locally finite, hence MF by
 Lemma~\ref{lem:lfmf}.  The group $V$ identifies with the subgroup of
-$\GL_4(\mathbb Q)$ generated by $\bar\Gamma$ and $D$: the direct-limit
-part embeds by injectivity of $\beta$, and the determinant records the
-$\mathbb Z$-coordinate.  It is finitely generated and therefore residually
-finite by Mal'cev's theorem
-\cite{Malcev}.  Thus $V$ is MF by Lemma~\ref{lem:rfmf}, whereas $W$ is not
-MF by the preceding construction.
+$\GL_4(\mathbb Q)$ generated by $\bar\Gamma$ and $D$: the telescope
+levels are $D^{-n}\bar\Gamma D^{n}$, and the determinant records the
+$\mathbb Z$-coordinate.  Its entries are dyadic rationals, so reduction
+modulo odd prime powers separates nontrivial elements, and $V$ is
+residually finite --- the conclusion Mal'cev's theorem \cite{Malcev}
+gives for every finitely generated linear group, obtained here by the
+direct congruence argument.  Thus $V$ is MF by Lemma~\ref{lem:rfmf},
+whereas $W$ is not MF by the preceding construction.
 \end{proof}
 
 \paragraph{An exact stably finite non-MF algebra.}
@@ -1970,7 +2078,9 @@ By Elek--Szab\'o, every countable sofic group embeds in a countable simple
 sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Portability
 sends its nontrivial radical element $\zeta$ to a nontrivial element of the
 MF radical of the simple group.  That radical is normal, so it is the whole
-group.  Every homomorphism to an MF group kills the MF radical.
+group.  Every homomorphism to an MF group kills the MF radical.  (The
+embedding theorem is a literature input; this paragraph is outside the
+formal development.)
 \end{proof}
 
 
@@ -2065,6 +2175,8 @@ solvable.  The Clifford lamp group on its coset space is locally finite, so
 their semidirect product is amenable.  The realized quotient is a subgroup
 of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
 Its marked word is the nontrivial Clifford sign by the calculation above.
+The amenable-implies-MF step is a literature input, outside the formal
+development; the non-LEF statement below is formalized.
 
 This MF detector is necessarily genuinely approximate: neither the literal
 cyclic group nor its realized Clifford quotient is LEF, and the latter is not
@@ -2405,6 +2517,12 @@ N.~Nikolov, J.~Schneider, and A.~Thom,
 J. \'Ec. polytech. Math. \textbf{5} (2018), 239--258,
 \doi{10.5802/jep.69}.
 
+\bibitem[NT]{NetzerThom}
+T.~Netzer and A.~Thom,
+\emph{Kazhdan's property (T) via semidefinite optimization},
+Exp. Math. \textbf{24} (2015), no.~3, 371--374,
+\doi{10.1080/10586458.2014.999149}, \arxiv{1411.2488}.
+
 \bibitem[OAI]{OAI}
 OpenAI,
 \emph{Nonsofic groups exist},
@@ -2416,6 +2534,12 @@ The chapter appeared under the title \emph{A counterexample to the
 soficity conjecture}, Chapter~3, 77--93, in the original version of the
 document, now at
 \url{https://cdn.openai.com/pdf/ten-proofs-oai-original.pdf}.
+
+\bibitem[Oz]{Ozawa}
+N.~Ozawa,
+\emph{Noncommutative real algebraic geometry of Kazhdan's property (T)},
+J. Inst. Math. Jussieu \textbf{15} (2016), no.~1, 85--90,
+\doi{10.1017/S1474748014000309}, \arxiv{1312.5431}.
 
 \bibitem[Sc]{Schafhauser}
 C.~Schafhauser,
