@@ -118,6 +118,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "lem:rfmf": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.isOperatorMF_of_residuallyFinite"),
+    "lem:lfmf": (
+        "Sofic/LocallyFiniteMF",
+        "GroupApproximation.isOperatorMF_of_locallyFinite"),
     "lem:faithfultrace": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness"),
