@@ -238,13 +238,49 @@ The action of \(V\) on \(X\) is transitive, so the root lamp and a finite
 generating set for \(V\) generate \(W\); the central sign is obtained from
 the commutator of two distinct lamp sites. Thus \(W\) is finitely generated.
 
-The group \(V\) is a finitely generated linear group: in the affine
-\(4\times4\) model, the stable letter is represented by
-\(\operatorname{diag}(2,2,2,1)\). Hence \(V\) is residually finite and
-sofic. The Clifford lamp group \(C(X)\) is locally finite, hence amenable.
-Soficity is closed under extensions with amenable kernel, so
+The bare extension
 
 \[
+1\longrightarrow C(X)\longrightarrow W\longrightarrow V\longrightarrow1
+\]
+
+does **not** by itself prove soficity: it has an amenable kernel and a sofic
+quotient, which is the wrong direction for the general amenable-extension
+theorem.  The specific finite-coset tower repairs this.
+
+Put \(X_n=\Gamma/\beta^n(\Gamma)\) and
+\(X_+=\coprod_{n\ge1}X_n\).  Each \(X_n\) has \(8^n\) elements, and
+
+\[
+g\beta^n(\Gamma)\longmapsto
+\beta(g)\beta^{n+1}(\Gamma)
+\]
+
+is an injective, \(\beta\)-equivariant map \(X_n\to X_{n+1}\).  If
+\(Y_m=X_1\amalg\cdots\amalg X_m\), then
+
+\[
+K_m=C(Y_m)\rtimes\Gamma
+\]
+
+is a finite extension of the residually finite group \(\Gamma\), hence is
+sofic.  The increasing union \(K=C(X_+)\rtimes\Gamma\) is sofic.  Extend
+the displayed injection and \(\beta\) to an injective endomorphism of
+\(K\); its automorphic direct limit \(\widetilde K\) is a directed union of
+copies of \(K\), hence is sofic.  Finally
+
+\[
+S=\widetilde K\rtimes\mathbb Z
+\]
+
+is sofic by the valid sofic-kernel/amenable-quotient extension theorem.
+The dilated site set is \(V\)-equivariantly isomorphic to \(V/\Gamma\):
+the telescope height gives transitivity and shows that the stabilizer of the
+level-zero root is exactly \(\Gamma\).  Consequently
+
+\[
+S\cong C(V/\Gamma)\rtimes V=W,
+\qquad
 \boxed{W\text{ is sofic}.}
 \]
 

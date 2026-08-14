@@ -23,7 +23,7 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
-  pdftitle={An explicit finitely presented group that is not MF},
+  pdftitle={Non-MF groups exist},
   pdfauthor={\paperauthor},
   pdfsubject={Explicit finitely presented non-MF groups and matrix coronas},
   pdfkeywords={MF groups, matrix coronas, property (T), asymptotic commutants, Clifford lamps, Kazhdan compression}
@@ -86,7 +86,7 @@
 
 \begin{document}
 
-\title{An explicit finitely presented group that is not MF}
+\title{Non-MF groups exist}
 \author{\paperauthor}
 
 \begin{abstract}
@@ -101,7 +101,10 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
 We give an eight-generator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  The same Clifford sign survives in
+a finitely generated sofic quotient.  Consequently there is a finitely
+generated sofic group which is not MF, and the MF radical differs from both
+the sofic and hyperlinear radicals.
 \end{abstract}
 
 \maketitle
@@ -607,15 +610,22 @@ not an MF algebra.
 The finite projection argument is specific to operator norm.  In a tracial
 ultraproduct, normalized Hilbert--Schmidt-small leakage does not retain the
 coordinate ranks needed for the equal-rank reversal, so the argument below
-does not by itself give a hyperlinear obstruction.
+does not give a hyperlinear obstruction.  This distinction is real rather
+than merely technical: the Clifford detector constructed below is sofic,
+hence hyperlinear, and the same central sign survives in it.  Thus the sign
+is invisible to operator-norm matrix models while remaining visible to
+Hamming and tracial models.
 
 \subsection*{External inputs}
-The human proof uses two group-theoretic inputs: the displayed presentation
+The numbered core uses two group-theoretic inputs: the displayed presentation
 of $\SL_3(\mathbb Z)$ and the classical fact that
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ has property~\textup{(T)}.  The exact
 twenty-relator base is identified with that affine group in
 Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
-obstruction are proved directly.
+obstruction are proved directly.  The unnumbered sofic-detector paragraph
+also uses the standard residual finiteness of finitely generated integral
+linear groups and the permanence of soficity under finite extensions,
+directed unions, and extensions with sofic kernel and amenable quotient.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -1002,6 +1012,73 @@ $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $\zeta\neq1$, and therefore $w\neq1$ in $E$.
 \end{proof}
+
+\paragraph{Sofic Clifford detector.}
+The witness group $W=\ClLamp(X)\rtimes V$ is finitely generated and sofic.
+Moreover the homomorphism just constructed detects $w$, whereas every map
+from $E$ to an operator-MF group kills $w$.  It follows that $W$ is a
+finitely generated sofic non-MF group and that
+\begin{equation}\label{eq:radical-separation}
+ w\in\operatorname{Rad}_{\mathrm{MF}}(E)
+ \setminus\bigl(
+   \operatorname{Rad}_{\mathrm{sof}}(E)\cup
+   \operatorname{Rad}_{\mathrm{hyp}}(E)\bigr).
+\end{equation}
+
+Here is the finite proof of soficity.  Write $\Gamma=\bar\Gamma$ and
+$\beta=\bar\alpha$.  For $n\ge1$ put
+\[
+ X_n=\Gamma/\beta^n(\Gamma),\qquad
+ X_+=\coprod_{n\ge1}X_n.
+\]
+Every $X_n$ is finite: in the affine model its cosets have representatives
+whose translation vectors lie in
+$\{0,\ldots,2^n-1\}^3$.  The formula
+\[
+ F\bigl(g\beta^n(\Gamma)\bigr)
+   =\beta(g)\beta^{n+1}(\Gamma)
+\]
+defines an injective, $\beta$-equivariant map $X_n\to X_{n+1}$.
+For $Y_m=X_1\amalg\cdots\amalg X_m$, the group
+\[
+ K_m=\ClLamp(Y_m)\rtimes\Gamma
+\]
+is a finite extension of the residually finite linear group $\Gamma$, hence
+is sofic.  The increasing union
+$K=\ClLamp(X_+)\rtimes\Gamma$ is therefore sofic.  Equivariance of $F$
+extends $\beta$ to an injective endomorphism of $K$.  Its automorphic direct
+limit $\widetilde K$ is a directed union of copies of $K$, hence is sofic,
+and
+\[
+ S=\widetilde K\rtimes\mathbb Z
+\]
+is sofic by the sofic-by-amenable extension theorem
+\cite{ElekSzaboSofic}.
+
+It remains only to identify this finite-tower group with the witness above.
+The site set in the automorphic dilation is
+$\widetilde X=\bigcup_{r\ge0}T^{-r}X_+$.  For $x\in X_n$, the integer
+$n-r$ attached to $T^{-r}x$ is well defined; the base preserves this level
+and $T$ raises it by one.  If $x_0=\beta(\Gamma)\in X_1$ and
+$o=T^{-1}x_0$, then the mapping-telescope group $V$ acts transitively on
+$\widetilde X$.  Its stabilizer at $o$ is exactly $\Gamma$: a height-zero
+element has the form $T^{-r}\gamma T^r$, and fixing $o$ forces
+$\gamma\in\beta^r(\Gamma)$.  Thus
+\[
+ \widetilde X\cong V/\Gamma,
+ \qquad S\cong\ClLamp(V/\Gamma)\rtimes V=W.
+\]
+The group $W$ is generated by a finite generating set of $V$ and the root
+lamp.  The map $E\to W$ sends $w$ to the nontrivial Clifford sign, so
+Theorem~\ref{thm:A} and portability of the MF radical show that $W$ is not
+MF.  Since every sofic group is hyperlinear \cite{ElekSzabo}, the same map
+excludes $w$ from both the sofic and hyperlinear radicals, proving
+\eqref{eq:radical-separation}.
+
+The exact Lean development proves the detector-to-radical implications in
+\texttt{Sofic/RadicalSeparation.lean}.  The finite-coset-tower proof of the
+specific assertion that $W$ is sofic is the human proof above; unlike the
+numbered results, it is not advertised with an exact-declaration badge.
 
 \paragraph{Scope of the witness.}
 The target uses the infinite group $\ClLamp(X)$ when $X$ is
@@ -1402,7 +1479,19 @@ $\iota(\Lambda)$, asymptotic multiplicativity gives
 \[
  r_n^{-1/2}\lVert(I-H_n)\xi_n\rVert_2\longrightarrow0.
 \]
-The spectral gap below the cut then gives the root-capture estimate
+The normalization is supplied by the elementary energy estimate
+\[
+ 0\le \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle
+ \le \lVert\xi_n\rVert_2\,
+      \lVert(I-H_n)\xi_n\rVert_2=o(r_n).
+\]
+Since the spectrum of $H_n$ on $(1-P_n)K_n$ is at most $\theta$,
+functional calculus gives
+\[
+ (1-\theta)\lVert(1-P_n)\xi_n\rVert_2^2
+ \le \operatorname{Re}\langle\xi_n,(I-H_n)\xi_n\rangle.
+\]
+These two inequalities give the root-capture estimate
 \begin{equation}\label{eq:root-capture}
  r_n^{-1/2}\lVert(1-P_n)\xi_n\rVert_2\longrightarrow0.
 \end{equation}
@@ -1859,14 +1948,21 @@ used in Lemma~\ref{lem:corner}.  More importantly, Hilbert--Schmidt-small
 leakage does not determine finite ranks and does not imply reverse
 operator-norm leakage in \eqref{eq:no-one-sided-growth}.
 
-This identifies a boundary of the method, not a tracial nonapproximation
-theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
+The sofic Clifford detector shows that this failure is mathematically
+necessary for the marked sign: that sign survives in a sofic, hence
+hyperlinear, model.  The coordinate argument therefore cannot transfer
+unchanged to the tracial setting.  Alekseev--Thom ask whether commutants arising in sofic
 approximations of Kazhdan groups can be recovered from finite-dimensional
 coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
 coordinate description is separate from the operator-norm theorem proved
 here.
 
 \begin{thebibliography}{GKEMP}
+
+\bibitem[ES03]{ElekSzaboSofic}
+G.~Elek and E.~Szab\'o,
+\emph{On sofic groups},
+preprint, 2003, \arxiv{math/0305352}.
 
 \bibitem[ES]{ElekSzabo}
 G.~Elek and E.~Szab\'o,
