@@ -1,5 +1,5 @@
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
-import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.ConceptualNonMFProof
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 
 /-!

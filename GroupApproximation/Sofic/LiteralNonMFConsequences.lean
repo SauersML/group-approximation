@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.MFAlgebra
-import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.ConceptualNonMFProof
 
 /-!
 # Exact faithful-target consequence for the literal group

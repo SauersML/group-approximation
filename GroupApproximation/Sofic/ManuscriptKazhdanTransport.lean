@@ -61,11 +61,13 @@ theorem manuscriptKazhdanTransport
         (naturalFiniteModel (d n)) ℂ) * x n *
         (U n s : Matrix (naturalFiniteModel (d n))
           (naturalFiniteModel (d n)) ℂ)ᴴ) (iota γ) := by
-  let B : OpAlmostRepresentation H where
-    model n := naturalFiniteModel (d n)
-    modelNonempty n := by simpa using hd n
+  let B : OpAlmostRepresentation H := {
+    model := fun n ↦ naturalFiniteModel (d n)
+    modelNonempty := fun n ↦ by
+      simpa only [card_naturalFiniteModel] using hd n
     map := U
     asymptoticallyMultiplicative := hU
+  }
   let C : KazhdanCompressionCore Γ H where
     iota := iota
     t := s

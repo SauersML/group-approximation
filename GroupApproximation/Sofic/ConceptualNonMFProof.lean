@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.CompressionDefectSquare
+import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ReducedGroupCStarSeparable
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
@@ -40,7 +41,7 @@ certificate descends through the checked P13 rotation quotient and the
 intrinsic affine bridge. -/
 theorem literalBase_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Base :=
-  LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.1
+  LiteralBaseP13PropertyTBridge.base_hasKazhdanPropertyT
 
 /-- The marked Kazhdan-compression datum with its property-`(T)` premise
 already discharged. -/
@@ -119,6 +120,23 @@ theorem literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
       literalInvolutionSubgroup ≤ rho.ker :=
   literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel_of_hasKazhdanPropertyT
     literalBase_hasKazhdanPropertyT X hX
+
+/-- Every homomorphism into a genuine natural-dimension norm-matrix
+C-star corona kills the literal Clifford sign. -/
+theorem literal_mark_eq_one_in_CStarCorona
+    (d : ℕ → ℕ) (hd : ∀ n, 0 < d n) :
+    letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+      fun n ↦ Fintype.card_pos_iff.mp (by
+        simpa only [card_naturalFiniteModel] using hd n)
+    ∀ rho : MarkedGroup →* unitary (NormMatrixCStarCorona
+        (fun n ↦ naturalFiniteModel (d n))),
+      rho mark = 1 := by
+  intro rho
+  exact MonoidHom.mem_ker.mp
+    (literalInvolutionSubgroup_le_normMatrixCStarCoronaKernel
+      (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
+        simpa only [card_naturalFiniteModel] using hd n)
+      rho mark_mem_literalInvolutionSubgroup)
 
 /-- The equivalent unitary-sequence-corona kernel statement. -/
 theorem literalInvolutionSubgroup_le_normMatrixCoronaKernel
