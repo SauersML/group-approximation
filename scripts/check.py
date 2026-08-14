@@ -208,10 +208,11 @@ def check_forbidden(root: Path, f: Findings) -> None:
                 line = text.count("\n", 0, m.start()) + 1
                 f.add(label, f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
 
-    # Audit scripts are Lean programs too.  They are outside the library import
-    # closure, so scan every remaining Lean source explicitly for compiled
-    # decision shortcuts.  This makes the ban repository-wide rather than an
-    # accidental property of the main module graph.
+    # Standalone audit programs and generated probes are Lean sources too.
+    # Scan every remaining `.lean` file so an unimported script cannot evade
+    # the native-decision ban merely by living outside a library root.  This
+    # makes the ban repository-wide rather than an accidental property of the
+    # main module graph.
     for path in sorted(root.rglob("*.lean")):
         if path in module_paths or ".lake" in path.parts or ".git" in path.parts:
             continue
@@ -391,7 +392,7 @@ PLANTS = {
     "sorry / sorryAx": {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"},
     "hand-declared axiom": {f"{LIB}/Alpha.lean": "axiom alpha : True\n"},
     "native_decide (trusts the compiler, not the kernel)":
-        {f"{LIB}/Alpha.lean": "theorem alpha : True := by native_decide\n"},
+        {"scripts/Standalone.lean": "theorem standalone : True := by native_decide\n"},
     "unsafe / implemented_by / opaque escape hatch":
         {f"{LIB}/Alpha.lean": "opaque alpha : Nat\n"},
     "warningAsError disabled":

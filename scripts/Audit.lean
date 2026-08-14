@@ -8,8 +8,9 @@ import Lean.Util.CollectAxioms
 
 `lake build` establishes that every module elaborates.  It does **not**
 establish what the resulting proof terms depend on: a `sorry` anywhere in the
-library elaborates fine and only shows up as the `sorryAx` axiom in the closure;
-compiled boolean evaluation likewise shows up as `Lean.ofReduceBool`.
+library elaborates fine and only shows up as the `sorryAx` axiom in the closure
+of whatever used it; compiler-backed decision shortcuts show up as
+`Lean.ofReduceBool`.
 
 This file is run by CI with `lake env lean scripts/Audit.lean` after the build.
 It fails, with a nonzero exit code, if either check below fails:
