@@ -1237,23 +1237,32 @@ presentation of `Gtilde/N`.  The central phase character corner gives the
 final nonhyperlinearity proof.  No separate uniform invisibility estimate for
 arbitrary matrix representations is required.
 
-## One-symmetry form of the atlas multiplicity gate
+## Full-packet one-symmetry form of the atlas multiplicity gate
 
-The Pauli multiplicity floor has a smaller finite-coordinate witness than a
-recovered coefficient algebra. Balanced-symmetry averaging gives, in every
-matrix coordinate, one self-adjoint involution `V_n` with
+The archived trivial-intersection certificate for the raw packet `K` and its
+comb conjugate `K'` gives the exact full-algebra expectation
 
 ```text
-[V_n,E_n]=0,
-||[V_n,Phi_(E_n)(F_n)]||_2^2 >= 1/4-o(1).
+E_(C[K])(F)=(1/4)1,
+dist_2(F,C[K])^2=3/16.
 ```
 
-Thus the terminal atlas theorem need not explicitly reconstruct the whole
-multiplicity algebra. It is enough to prove that every recovered
-`E_n`-commuting symmetry asymptotically commutes with the block-diagonal
-transported carrier. The coordinate dependence of `V_n` is the remaining
-gate; it cannot be replaced by a fixed Pauli word. See
-`TRUE_PAULI_MULTIPLICITY_HAS_ONE_SYMMETRY_WITNESS.md`.
+Haar averaging over the coordinate commutant of the exactified copy of `K`
+therefore gives one unitary `V_n` with
+
+```text
+[V_n,Alg(rho_n(K))]=0,
+||[V_n,F_n]||_2^2 >= 3/8-o(1).
+```
+
+A two-by-two dilation makes `V_n` a self-adjoint involution without changing
+the energy. This strictly strengthens the earlier binary-cut witness: the
+chosen symmetry respects every raw Pauli-packet element, not just the parent
+projection. Thus the terminal theorem only has to force the transported
+carrier to commute with all coordinate unitaries in the full raw-packet
+commutant. The coordinate dependence remains the gate and cannot be replaced
+by a fixed group word. See
+`TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md`.
 
 ## Resource allocation
 

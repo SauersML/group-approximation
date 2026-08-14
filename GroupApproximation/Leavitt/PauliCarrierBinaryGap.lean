@@ -138,6 +138,23 @@ theorem one_fourth_le_actualPacketSymmetryWitnessEnergy
   rw [actualPacketSymmetryWitnessEnergy_eq]
   linarith
 
+/-- Haar averaging over the full raw-packet commutant doubles the exact
+`3/16` squared distance from the raw packet algebra. -/
+def actualPacketFullCommutantWitnessEnergy : ℝ :=
+  2 * ((3 : ℝ) / 16)
+
+/-- The full-packet commutant witness has squared commutator energy `3/8`. -/
+@[simp] theorem actualPacketFullCommutantWitnessEnergy_eq :
+    actualPacketFullCommutantWitnessEnergy = (3 : ℝ) / 8 := by
+  norm_num [actualPacketFullCommutantWitnessEnergy]
+
+/-- The full-packet witness retains a strict `1/8` margin over the earlier
+binary-commutant floor `1/4`. -/
+theorem one_fourth_lt_actualPacketFullCommutantWitnessEnergy :
+    (1 : ℝ) / 4 < actualPacketFullCommutantWitnessEnergy := by
+  rw [actualPacketFullCommutantWitnessEnergy_eq]
+  norm_num
+
 /-- Average squared commutator energy forced by an adjoint-channel gap
 `kappa` on the actual packet's centered multiplicity vector. -/
 def actualPacketFixedLibraryAverageEnergy (kappa y : ℝ) : ℝ :=

@@ -6,6 +6,30 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: the full raw-packet commutant has one fixed-energy witness
+
+`TRUE_FULL_RAW_PACKET_COMMUTANT_WITNESS.md` upgrades the binary-cut symmetry
+endpoint using the already certified intersection
+
+```text
+K intersect U* K U={1}.
+```
+
+For the transported trace-`1/4` carrier `F`, Fourier expectation onto the
+entire raw packet algebra is exactly `(1/4)1`.  Hence
+
+```text
+dist_2(F,C[K])^2=3/16.
+```
+
+Haar averaging over the commutant gives a single coordinate unitary
+commuting with all of `K` and having squared commutator at least `3/8-o(1)`
+against `F`; a two-by-two dilation makes it a symmetry.  The scalar endpoint
+is transcribed in `Leavitt/PauliCarrierBinaryGap.lean`.  The live theorem is
+now full-packet bicommutant compatibility: cross-root synchronization must
+force `F_n` to commute with every coordinate unitary in
+`Alg(rho_n(K))'`.  Separate finite-group exactification does not prove this.
+
 ### 2026-08-14: diagonal pairing defects already give spectral invariance
 
 `TRUE_DIAGONAL_PAIRING_DEFECT_SUPPLIES_SPECTRAL_INVARIANCE.md` eliminates the
