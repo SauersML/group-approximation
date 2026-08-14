@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition; paper-only claims state their external inputs and precise mechanization gap.",
+  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition.",
   "claims": [
     {
       "id": "prop:mf-equivalences",
@@ -49,7 +49,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "f39caa79b9c6d8c326e180ac3efa5f1aa7fbe1677836c12d7676adeff7988cba",
+      "statement_sha256": "e491fc6e10d312efa4fe3bbe0253b12a141b5fc500d76344ed0124b84febdb71",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -141,7 +141,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConceptualNonMFProof",
+          "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
           "covers": "the complete printed proposition"
         }
@@ -207,7 +207,7 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ConceptualNonMFProof",
+          "module": "Sofic/LiteralNonMFEndpoint",
           "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
           "covers": "the complete printed proposition"
         }
@@ -279,7 +279,7 @@
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford lamp groups",
-      "statement_sha256": "90e2845cea7d275369f7add80af0d4e982699b36d9349ee4e2cddf2cdf119fec",
+      "statement_sha256": "8aa1b5da150f399055c8ffb7b342a1e4b253c57ce743f1a47c53a3a6495648be",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -340,27 +340,6 @@
           "covers": "the complete printed proposition"
         }
       ]
-    },
-    {
-      "id": "thm:sofic-detector",
-      "environment": "theorem",
-      "title": "sofic Clifford detector",
-      "statement_sha256": "58b7026d17fee3ee1f332f17941259c420490789b454ba608615e597df00596e",
-      "status": "paper-only",
-      "object_identity": "The printed theorem concerns the concrete Clifford target W and the explicit quotient map constructed in Proposition prop:witness.",
-      "dependencies": [
-        "prop:witness",
-        "thm:A"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Malcev residual finiteness for finitely generated characteristic-zero linear groups.",
-        "Sofic groups are closed under directed unions; the split finite stages are sofic by the sofic-by-amenable theorem applied to a finite-index normal core.",
-        "Elek--Szabo: extensions of sofic groups by amenable groups are sofic.",
-        "Elek--Szabo: every sofic group is hyperlinear."
-      ],
-      "coverage_gap": "The abstract radical-separation implications are formalized, but the concrete finite-orbit tower proving that W is sofic has no theorem-level Lean counterpart in this repository.",
-      "lean": []
     },
     {
       "id": "cor:notRFD",

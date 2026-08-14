@@ -23,7 +23,7 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
-  pdftitle={Non-MF groups exist},
+  pdftitle={An explicit finitely presented group that is not MF},
   pdfauthor={\paperauthor},
   pdfsubject={Explicit finitely presented non-MF groups and matrix coronas},
   pdfkeywords={MF groups, matrix coronas, property (T), asymptotic commutants, Clifford lamps, Kazhdan compression}
@@ -86,7 +86,7 @@
 
 \begin{document}
 
-\title{Non-MF groups exist}
+\title{An explicit finitely presented group that is not MF}
 \author{\paperauthor}
 
 \begin{abstract}
@@ -101,10 +101,7 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
 We give an eight-generator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  The same central sign survives in a
-finitely generated sofic quotient.  This yields a finitely generated sofic
-non-MF group and separates the MF radical from the sofic and hyperlinear
-radicals.
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
 \end{abstract}
 
 \maketitle
@@ -237,9 +234,9 @@ coordinate size.  This yields the reusable theorem behind every result below.
 
 \begin{theorem}[Kazhdan transport of asymptotic commutants]
 \label{thm:kazhdan-transport}
-Let $\Gamma$ have property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a
-homomorphism, let $s\in H$, and let $(d_n)$ be a sequence of positive
-integers.  Suppose
+Let $\Gamma$ and $H$ be countable groups, let $\Gamma$ have
+property~\textup{(T)}, let $\iota\colon\Gamma\to H$ be a homomorphism, let
+$s\in H$, and let $(d_n)$ be a sequence of positive integers.  Suppose
 \[
  s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma).
 \]
@@ -275,7 +272,8 @@ spectral-cut argument is given in Section~\ref{sec:conj}.
 The entire non-MF argument is the following two-element consequence.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
-Let $H$ be countable, let $\Gamma$ have property~\textup{(T)}, let
+Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
+property~\textup{(T)}, let
 $\iota\colon\Gamma\to H$ be a homomorphism, and suppose
 \[
  t\iota(\Gamma)t^{-1}\subseteq\iota(\Gamma),
@@ -404,7 +402,8 @@ $sLs^{-1}\subseteq L$, and put
 
 \begin{theorem}[compression radical]
 \label{thm:compression-radical}
-Let $H$ be countable, let $\Gamma$ have property~\textup{(T)}, let
+Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
+property~\textup{(T)}, let
 $\iota\colon\Gamma\to H$ be a homomorphism, and put
 $L=\iota(\Gamma)$.  If $F\trianglelefteq H$ is finite and
 $F\le\mathfrak D(H,L)$, then every homomorphism from $H$ to every norm
@@ -447,7 +446,7 @@ implies $w^2=1$.  Then:
 \end{enumerate}
 In particular $E$ is not MF, and neither the universe-relative algebra
 $\Cmax(E)$ fixed below nor $\Cred(E)$ is an MF $C^*$-algebra.
-\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
+\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
 A completely explicit presentation of $E$ --- eight generators, with
@@ -467,18 +466,12 @@ corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
 the corner identity gives $w=-1$.  This contradiction is the entire analytic
 proof of Theorem~\ref{thm:A}.  Section~\ref{sec:conj} proves the transport
 theorem and its stronger finite-normal form.
-\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
+\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
 representation of $E$ into a semidirect product of a Clifford group by a
 linear group over $\Z[1/2]$ (Section~\ref{sec:witness}); no
 combinatorial theory of HNN extensions is needed.
-
-The witness is not merely algebraic.  Theorem~\ref{thm:sofic-detector}
-shows that its image group is sofic and that the sign survives there.  Thus
-the obstruction distinguishes operator-norm approximation from both Hamming
-and tracial approximation; it is not a generic failure of finite
-approximation.
 
 Two companion results clarify the mechanism.  First, in
 finite dimensions the obstruction is elementary and needs neither
@@ -564,7 +557,7 @@ consequences.  The principal $C^*$-algebraic application is:
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
-\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
+\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
 \subsection*{Operator norm versus tracial approximation}
@@ -578,17 +571,7 @@ The only paper-level rigidity input is the classical fact that
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ has property~\textup{(T)}.  The exact
 twenty-relator base is identified with that affine group in
 Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
-obstruction are proved directly.  The sofic detector additionally uses
-Mal'cev residual finiteness for finitely generated linear groups and the
-standard closure of soficity under directed unions and extensions with
-amenable quotient \cite{ElekSzaboSofic}.
-
-The Lean development verifies the zero-input operator-norm core, the
-all-compressors transport theorem, the intrinsic finite-normal compression
-radical, the literal presentation, and the non-MF endpoint.  The concrete
-finite-coset-tower proof of Theorem~\ref{thm:sofic-detector} is a paper-level
-argument; the formal file \texttt{RadicalSeparation.lean} verifies the
-abstract detector-to-radical implications once such a target is supplied.
+obstruction are proved directly.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -872,8 +855,9 @@ the other direction, send $(n_1,n_2,n_3,A)$ to
 \[
  v_1^{n_1}v_2^{n_2}v_3^{n_3}\,\overline A,
 \]
-where $A\mapsto\overline A$ is the homomorphism supplied by the eight-relator
-presentation.  The nine conjugation relations give covariance first for
+where $A\mapsto\overline A$ is the inverse of the isomorphism from the
+eight-relator rotation group to $\SL_3(\mathbb Z)$.  The nine conjugation
+relations give covariance first for
 $x,y,z$, hence for every $A$; so this second map is a homomorphism.  The two
 maps fix the six displayed generators and are inverse.
 
@@ -888,13 +872,15 @@ the real and complex formulations.
 Clifford signs, shifts, and HNN doubling have appeared together before in
 approximate-representation theory, notably in Slofstra's hyperlinear-profile
 construction \cite[Section~2]{SlofstraProfile}.  The construction below uses
-the Clifford lamp only as an explicit algebraic witness; it makes no
-identification of the literal base with the matrix realization used here.
+the Clifford lamp only as an explicit algebraic witness.  It uses the
+displayed quotient of the literal base and is independent of the semantic
+identification used above to prove property~\textup{(T)}.
 
 \begin{construction}[Clifford lamp groups]\label{con:clifford}
-For a set $X$, form the real Clifford algebra on generators $(c_x)_{x\in X}$
-and let $\ClLamp(X)$ be its subgroup of units generated by $-1$ and the
-$c_x$.  Write $\zeta=-1$.  In this concrete group,
+For a set $X$, use the real Clifford-algebra convention generated by
+$(c_x)_{x\in X}$ with $c_x^2=1$ and $c_xc_y=-c_yc_x$ for $x\ne y$, and let
+$\ClLamp(X)$ be the subgroup of units generated by $-1$ and the $c_x$.
+Write $\zeta=-1$.  In this concrete group,
 \[
  \zeta^2=c_x^2=1,\qquad c_xc_y=\zeta c_yc_x\quad(x\ne y).
 \]
@@ -981,74 +967,6 @@ Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
 $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $\zeta\neq1$, and therefore $w\neq1$ in $E$.
-\end{proof}
-
-The same witness gives a positive separation from permutation and tracial
-approximation.  For a class $\mathcal A$ of groups, write
-$\operatorname{Rad}_{\mathcal A}(G)$ for the intersection of the kernels of
-all homomorphisms from $G$ to groups in $\mathcal A$.
-
-\begin{theorem}[sofic Clifford detector]\label{thm:sofic-detector}
-The group $W=\ClLamp(X)\rtimes V$ above is finitely generated and sofic, and
-the displayed map $E\twoheadrightarrow W$ is surjective.  It satisfies
-\[
- w\longmapsto\zeta\ne1.
-\]
-Consequently $W$ is not MF and
-\[
- w\in\operatorname{Rad}_{\mathrm{MF}}(E),\qquad
- w\notin\operatorname{Rad}_{\mathrm{sof}}(E),\qquad
- w\notin\operatorname{Rad}_{\mathrm{hyp}}(E).
-\]
-In particular, there exists a finitely generated sofic group which is not
-MF.
-\end{theorem}
-
-\begin{proof}
-The group $\bar\Gamma$ is finitely generated and linear over $\mathbb Q$,
-so it is residually finite and hence sofic.  Put
-\[
- \Gamma_k=\tau^{-k}j(\bar\Gamma)\tau^k\qquad(k\ge0),
- \qquad \Gamma_\infty=\bigcup_{k\ge0}\Gamma_k.
-\]
-The inclusion $\bar\alpha(\bar\Gamma)\le\bar\Gamma$ has index $8$: it
-replaces the translation lattice $\mathbb Z^3$ by $2\mathbb Z^3$ and fixes
-the linear factor.  Thus the groups $\Gamma_k$ form an increasing finite-index
-coset tower, each isomorphic to $\bar\Gamma$.  Directed unions preserve
-soficity, hence $\Gamma_\infty$ is sofic.  The mapping-telescope group is
-$V=\Gamma_\infty\rtimes\langle\tau\rangle$; since the quotient is cyclic,
-the sofic-by-amenable extension theorem makes $V$ sofic
-\cite{ElekSzaboSofic}.
-
-For completeness, the Clifford extension can be checked on the same finite
-tower.  A finite subset of
-$N:=\ClLamp(X)\rtimes\Gamma_\infty$ uses finitely many sites and lies in a
-group
-\[
- \ClLamp(Y)\rtimes\Gamma_k,
-\]
-where $Y$ is a finite $\Gamma_k$-invariant union of site orbits.  Such orbits
-are finite: every site is represented at some finite telescope level and its
-stabilizer in $\Gamma_k$ contains a finite-index stage subgroup.  The
-Clifford group $\ClLamp(Y)$ is finite.  The displayed finite-stage group is
-a split finite extension of the sofic group $\Gamma_k$; equivalently, the
-normal core of $\Gamma_k$ has finite index and the remaining quotient is
-finite amenable.  It is therefore sofic by the same extension theorem.
-These finite stages form a directed union, so $N$ is sofic.  Finally
-$W=N\rtimes\langle\tau\rangle$ has cyclic quotient and is sofic.
-
-The action of $V$ on $X=V/j(\bar\Gamma)$ is transitive.  Hence the conjugates
-of the root lamp $c_o$ generate $\ClLamp(X)$, while the six base generators
-and $\tau$ generate $V$.  The map $E\to W$ constructed above is therefore
-surjective, and it detects $w$ by the sign $\zeta$.
-
-Theorem~\ref{thm:A} puts $w$ in every MF kernel.  If $W$ were MF, an
-injective corona representation of $W$, composed with $E\twoheadrightarrow
-W$, would detect $w$, a contradiction.  Thus $W$ is a finitely generated
-sofic non-MF group.  Its detecting quotient proves
-$w\notin\operatorname{Rad}_{\mathrm{sof}}(E)$.  Every sofic group is
-hyperlinear \cite{ElekSzaboHyperlinear}, so the same quotient proves
-$w\notin\operatorname{Rad}_{\mathrm{hyp}}(E)$.
 \end{proof}
 
 \paragraph{Scope of the witness.}
@@ -1813,7 +1731,9 @@ $\opnorm{\Phi_k(g_i)-1}\ge\opnorm{U^{(i)}_{g_i,n_i(k)}-1}
 $\Theta_\infty(g_i)$ stays at least $\varepsilon_i$ from the identity
 and $\Theta_\infty(g)\neq1$.  Hence $\ker\Theta_\infty=R$, proving
 (1), and $\Theta_\infty$ descends to an injective corona
-representation of $G_1/R$, proving (2).  For the final equivalence:
+representation of $G_1/R$; arbitrary positive coordinate dimensions are
+allowed by Proposition~\ref{prop:mf-equivalences}.  This proves (2).  For the
+final equivalence:
 if $G_1$ is MF, an injective corona representation forces
 $R=\{1\}$; if $R=\{1\}$, then (2) says $G_1=G_1/R$ is MF.
 \end{proof}
@@ -1923,7 +1843,9 @@ but is not MF.
 Map the eight free generators onto the eight displayed generators of \(E\).
 The resulting homomorphism is surjective because those generators define the
 literal presentation.  The group \(F_8\) is residually finite and hence
-MF, while Theorem~\ref{thm:A} shows that \(E\) is not.
+MF: the regular representations of a descending family of separating finite
+quotients give an injective norm-corona representation.  Theorem~\ref{thm:A}
+shows that \(E\) is not MF.
 \end{proof}
 
 \section{The cyclic-base comparison}\label{sec:necessity}
@@ -1953,25 +1875,22 @@ realized quotient.  This comparison isolates the precise limitation of the
 finite-dimensional argument: exact finite-dimensional invisibility does not
 itself imply that the marked word is trivial.
 
-\section{The operator-norm/tracial separation}\label{sec:limits}
+\section{The operator-norm boundary}\label{sec:limits}
 
-Theorem~\ref{thm:sofic-detector} turns the apparent limitation into a
-separation theorem.  The very sign that every operator-norm matrix corona
-kills survives in the sofic group $W$, hence in a hyperlinear target.  Thus
-there can be no transfer of the present conclusion to Hamming or normalized
-Hilbert--Schmidt approximation: the conclusion is false there for this
-marked element.
+The proof is genuinely operator-norm in its present form.  If multiplication
+is controlled only in normalized Hilbert--Schmidt norm, the off-diagonal
+blocks cut out by spectral projections need not be small in operator norm.
+The compressed maps therefore need not admit the dimension-free polar repair
+used in Lemma~\ref{lem:corner}.  More importantly, Hilbert--Schmidt-small
+leakage does not determine finite ranks and does not imply reverse
+operator-norm leakage in \eqref{eq:no-one-sided-growth}.
 
-The fault line is precise.  Operator-norm control produces coordinate
-Kazhdan spectral projections whose ranks are exact finite integers.  Equal
-rank reverses one-sided leakage and yields
-\eqref{eq:no-one-sided-growth}.  In a tracial ultraproduct,
-Hilbert--Schmidt-small leakage does not retain those coordinate ranks.  The
-finite coset tower of Theorem~\ref{thm:sofic-detector} exploits exactly that
-freedom and preserves the Clifford sign.  Related questions about recovering
-Kazhdan commutants from finite-dimensional coordinate subalgebras remain
-important \cite[Open Problem~6.2]{AlekseevThom}, but no such recovery can
-erase the detector constructed here.
+This identifies a boundary of the method, not a tracial nonapproximation
+theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
+approximations of Kazhdan groups can be recovered from finite-dimensional
+coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
+coordinate description is separate from the operator-norm theorem proved
+here.
 
 \begin{thebibliography}{GKEMP}
 
@@ -2037,19 +1956,6 @@ M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
 \emph{Stability, cohomology vanishing, and nonapproximable groups},
 Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
 \doi{10.1017/fms.2020.5}.
-
-\bibitem[ES06]{ElekSzaboSofic}
-G.~Elek and E.~Szab\'o,
-\emph{On sofic groups},
-J. Group Theory \textbf{9} (2006), no.~2, 161--171,
-\doi{10.1515/JGT.2006.011}, \arxiv{math/0305352}.
-
-\bibitem[ES05]{ElekSzaboHyperlinear}
-G.~Elek and E.~Szab\'o,
-\emph{Hyperlinearity, essentially free actions and $L^2$-invariants:
-the sofic property},
-Math. Ann. \textbf{332} (2005), no.~2, 421--441,
-\doi{10.1007/s00208-005-0646-8}, \arxiv{math/0408400}.
 
 \bibitem[Fri]{Fritz}
 T.~Fritz,
