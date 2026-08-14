@@ -201,7 +201,9 @@ projection `p_K` by an augmentation-zero projection, naturally the central
 block projection `z_rho` of a higher-dimensional irreducible representation
 of a finite subgroup.  Such signed Hecke corners have positive canonical
 trace, kill every scalar group character, and still realize every predicate
-locally.
+locally.  In fact the local coordinate involutions can remain genuine
+elements of a finite signed-permutation group; only selection and gluing of
+the representation blocks remains global.
 
 ## 6. A finite graph of finite groups cannot supply the gluing
 

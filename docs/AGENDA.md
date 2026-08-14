@@ -76,9 +76,11 @@ corrected target is an augmentation-zero signed Hecke corner
 of a finite subgroup.  Its block projection has positive canonical trace and
 is killed by every scalar group character.  Every Boolean predicate still
 has an exact character-free local model: for `r` allowed assignments, place
-the coordinate signs diagonally in the standard `r`-dimensional block of
-`C[S_(r+1)]`.  The sole remaining gate is global trace-preserving gluing of
-these nontrivial finite types.  See
+the coordinate signs diagonally on `C^R` and adjoin every permutation of the
+assignment basis.  The resulting finite signed-permutation group acts
+irreducibly, and every coordinate sign is an actual group element in its
+selected `M_r` block.  The sole remaining gate is therefore global
+trace-preserving selection and gluing of these nontrivial finite types.  See
 `TRUE_AUGMENTATION_ZERO_HECKE_GATE.md` and
 `TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
 
