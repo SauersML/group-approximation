@@ -479,9 +479,10 @@ The proof has two opposed halves, both centered on $u$:
 For a corona representation that detects $w$, cut to the negative central
 corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
 the corner identity gives $w=-1$.  This contradiction is the analytic core
-of Theorem~\ref{thm:A}.  Section~\ref{sec:conj} proves the finite-normal
-criterion and its coordinate estimates, and Section~\ref{sec:proofA} applies
-them to the literal group.
+of Theorem~\ref{thm:A}: Section~\ref{sec:proofA} deduces the theorem from
+the sign criterion and the witness, and Section~\ref{sec:conj} proves the
+general finite-normal criterion with its ultrafilter-free coordinate
+estimates.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -1830,6 +1831,51 @@ literal kernel theorem sends \(w\) to the identity there; injectivity of
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
 
+\subsection{Permanence and its failure}
+
+\begin{lemma}[subgroups]\label{lem:subgroupMF}
+Every subgroup of an MF group is MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
+\end{lemma}
+
+\begin{proof}
+Restrict an injective corona representation to the subgroup: injectivity
+and the homomorphism law are preserved, and the dimension normalization of
+Proposition~\ref{prop:mf-equivalences} is unaffected.
+\end{proof}
+
+\begin{lemma}[residually finite groups]\label{lem:rfmf}
+Every countable residually finite group is MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
+\end{lemma}
+
+\begin{proof}
+Choose a sequence of finite quotients separating the nonidentity elements
+and intersect kernels, so that the family is descending.  At coordinate
+$n$ take the left regular representation of the $n$th quotient.  Every
+pair of group elements is eventually represented exactly multiplicatively.
+A nonidentity element $g$ eventually survives to the $n$th quotient, where
+left translation by it is a fixed-point-free permutation $\pi_n(g)$; a
+fixed-point-free permutation matrix has an eigenvalue at angle at least
+$2\pi/3$ from $1$, so $\opnorm{\pi_n(g)-1}\ge\sqrt3$.  The induced map to
+the corona is therefore an injective homomorphism.
+\end{proof}
+
+\begin{corollary}[quotients]\label{cor:quotclosure}
+MF groups are not closed under quotients: the free group
+\(F_8\) is MF, and the literal group \(E\) is its quotient
+but is not MF.
+\leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
+\end{corollary}
+
+\begin{proof}
+Map the eight free generators onto the eight displayed generators of \(E\).
+The resulting homomorphism is surjective because those generators define the
+literal presentation.  The group \(F_8\) is residually finite, hence MF by
+Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
+\end{proof}
+
+
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
 \begin{lemma}\label{lem:faithfultrace}
@@ -1878,24 +1924,6 @@ and is stably finite.  It is not an MF algebra by
 Theorem~\ref{thm:A}.
 \end{proof}
 
-\subsection{Failure of quotient permanence}
-
-\begin{corollary}[quotients]\label{cor:quotclosure}
-MF groups are not closed under quotients: the free group
-\(F_8\) is MF, and the literal group \(E\) is its quotient
-but is not MF.
-\leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
-\end{corollary}
-
-\begin{proof}
-Map the eight free generators onto the eight displayed generators of \(E\).
-The resulting homomorphism is surjective because those generators define the
-literal presentation.  The group \(F_8\) is residually finite and hence
-MF: the regular representations of a descending family of separating finite
-quotients give an injective norm-corona representation.  Theorem~\ref{thm:A}
-shows that \(E\) is not MF.
-\end{proof}
-
 \section{The cyclic-base comparison}\label{sec:necessity}
 
 We prove Theorem~\ref{thm:C} for the literal seven-relator presentation.
@@ -1939,6 +1967,18 @@ approximations of Kazhdan groups can be recovered from finite-dimensional
 coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
 coordinate description is separate from the operator-norm theorem proved
 here.
+
+\subsection*{Questions}
+\begin{enumerate}
+\item Is $E/\langle w\rangle$ MF?  By
+Corollary~\ref{cor:exactradical}, a positive answer would compute
+$\operatorname{Rad}_{\mathrm{MF}}(E)=\{1,w\}$ exactly.
+\item Is there a torsion-free finitely presented non-MF group?  The
+mechanism here is torsion-critical: the obstruction lives in a finite
+normal subgroup.
+\item Is $E$ sofic, or hyperlinear?  The equal-rank reversal is specific
+to operator norm, and neither property is decided by the results above.
+\end{enumerate}
 
 
 \appendix
