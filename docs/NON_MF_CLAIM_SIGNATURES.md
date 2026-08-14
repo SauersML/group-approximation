@@ -651,6 +651,15 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
 NonMFImpact.SoficNonMFIsHyperlinearNonMF
 ```
 
+## `GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF`
+
+```lean
+Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
+  IsSofic LiteralNonMFLinearWitness.WitnessGroup ∧
+    IsHyperlinear LiteralNonMFLinearWitness.WitnessGroup ∧
+      ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
+```
+
 ## `GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily`
 
 ```lean
