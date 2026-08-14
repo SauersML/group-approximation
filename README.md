@@ -8,14 +8,12 @@
 > the kernel-level axiom audit, signature pinning, and the fresh-kernel
 > `leanchecker` replay. The repository's Actions history records the most
 > recent successful run.
-> CI rewrites the pin automatically after every green run.  The
-> `verified`
-> branch carries the same guarantee and additionally fast-forwards within
-> about a minute over pushes that leave the Lean verification surface
-> untouched:
+> To inspect that state, check out the exact commit above.  Verification is
+> attached to immutable commit identifiers; the project does not maintain a
+> separate moving verification branch:
 >
 > ```text
-> git clone --branch verified <repository-url>
+> git checkout 37c9f7ee16202c7e8816991b37a19e6f4b579630
 > ```
 
 A research library for finite models of groups and the rigidity,

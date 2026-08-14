@@ -73,11 +73,11 @@ concurrency:
   # Let the running gate finish; do not cancel it for a newer push.  At this
   # repository's push frequency, cancel-in-progress starved the gate: runs
   # were superseded before the fresh kernel replay ended, so hours passed
-  # with no completed verification and the `verified` pointer stalled.  With
-  # cancellation off, GitHub keeps at most one pending run and replaces it
-  # as newer pushes arrive, so the gate still processes the newest snapshot
-  # next while every started run completes and advances the pointer.  The
-  # compiled-project cache is saved before the long replay either way.
+  # with no completed verification.  With cancellation off, GitHub keeps at
+  # most one pending run and replaces it as newer pushes arrive, so the gate
+  # still processes the newest snapshot next while every started run
+  # completes.  The compiled-project cache is saved before the long replay
+  # either way.
   cancel-in-progress: false
 
 permissions:
@@ -388,54 +388,3 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
-
-      # A stable pointer for reviewers: after a fully green run on main --
-      # build, both scans, the counterpart contract, kernel audit, signature
-      # pins, fresh-kernel replay, and the zero-tolerance verdict above --
-      # fast-forward the `verified` branch to this commit.  Reviewers who
-      # want the newest CI-passing state of the formal development check out
-      # `verified` instead of racing a moving `main`.  This step runs under
-      # the default `success()` condition, so any failure upstream,
-      # including the verdict, leaves the pointer untouched.  Pushing
-      # `verified` triggers no workflows: every push trigger in this
-      # repository is filtered to `main`.
-      - name: Advance the verified branch
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
-          if ! git push origin HEAD:refs/heads/verified; then
-            echo "::warning::could not advance the verified branch; the proof and kernel audit still passed."
-          fi
-
-          # Rewrite the pinned verified-state line at the top of the README
-          # so the front page always names the exact commit this run just
-          # certified.  [skip ci] keeps the rewrite from triggering any
-          # workflow, and the retry loop absorbs races with the repository's
-          # push frequency.  A lost race after three attempts is a warning,
-          # not a red run: the verification itself succeeded, and the next
-          # green run rewrites the pin anyway.
-          sha='${{ github.sha }}'
-          short=${sha:0:8}
-          line="> **Verified state:** [\`${short}\`](https://github.com/${{ github.repository }}/tree/${sha})"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          wt="${RUNNER_TEMP}/readme-update"
-          git fetch origin main
-          git worktree add "$wt" origin/main
-          cd "$wt"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            sed -i "s%^> \*\*Verified state:\*\* .*%${line}%" README.md
-            if git diff --quiet -- README.md; then
-              echo "README already names ${short}."
-              exit 0
-            fi
-            git commit -m "ci: pin verified state ${short} [skip ci]" -- README.md
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push raced on attempt ${attempt}; retrying."
-          done
-          echo "::warning::could not update the README verified pin after 3 attempts; the next green run will."

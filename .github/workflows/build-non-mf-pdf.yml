@@ -33,7 +33,6 @@ on:
       - scripts/**
       - .github/workflows/build-non-mf-pdf.yml
       - .github/workflows/prover.yml
-      - .github/workflows/advance-verified.yml
   workflow_dispatch:
 
 permissions:

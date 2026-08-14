@@ -60,7 +60,7 @@ def build_manifest(*, commit: str | None = None,
     files = sorted(
         p for pattern in ("GroupApproximation/**/*.lean", "GroupApproximation.lean",
                           "Superseded/**/*.lean", "Superseded.lean",
-                          "scripts/*", "docs/*", ".github/workflows/*.yml",
+                          "scripts/**/*", "docs/*", ".github/workflows/*.yml",
                           "experiments/sl3-p13-reductions-complete.json",
                           "experiments/sl3-sos-radius0-certificate.json",
                           "experiments/sl3-sos-radius0-certificate.npz",
@@ -73,7 +73,8 @@ def build_manifest(*, commit: str | None = None,
                           "non_mf_groups_exist.tex", "non_mf_groups_exist.pdf",
                           "README.md", "CITATION.cff", "lakefile.toml",
                           "lean-toolchain", "lake-manifest.json")
-        for p in REPO.glob(pattern) if p.is_file()
+        for p in REPO.glob(pattern)
+        if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc"
     )
 
     if pdf is not None:
