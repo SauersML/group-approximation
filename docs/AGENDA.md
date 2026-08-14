@@ -4,6 +4,24 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: normal full-group characters force residual finiteness
+
+`FALSE_NORMAL_FIXED_POINT_CHARACTER_GROUPIFICATION.md` closes the entire
+normal-character repair of the Manzoor/full-group bridge. Fourier
+coefficients of a normal state on `L(Lambda)` vanish at infinity. Since the
+fixed-point character is conjugation invariant, only FC elements can have
+positive-measure fixed sets. Their finite conjugacy orbits generate an
+increasing family of finite-dimensional invariant Cartan algebras;
+W*-generation forces this family to be dense. The full-group action is
+therefore profinite and faithful, so its finite atom actions separate
+`Lambda` and make it residually finite. A normal W*-generating
+representation would then make the relation factor a central summand of the
+CE algebra `L(Lambda)`, impossible for a non-CE relation factor.
+
+Thus infinite stabilizers do not rescue the canonical construction by
+upgrading weak containment to a normal group-factor representation. Any
+Manzoor conversion must be noncanonical at the operator level.
+
 ### 2026-08-14: fixed adjoint-expander binder for the Pauli carrier
 
 `TRUE_FIXED_LIBRARY_EXPANDER_BINDER.md` replaces the moving Haar-selected
