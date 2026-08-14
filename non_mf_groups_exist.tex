@@ -209,9 +209,10 @@ be strictly increasing.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences}
 \end{proposition}
 
-The routine amplification proof, together with the precise
-formulation of the operator-norm local models, is deferred to
-Appendix~\ref{app:equivalences}.
+The proof --- an explicit tensor-power amplification in one direction,
+a weak-MF adapter in the other, and a cumulative-block dimension
+normalization --- is deferred, together with the precise formulation of
+the operator-norm local models, to Appendix~\ref{app:equivalences}.
 
 Hereafter ``MF'' means this equivalent actual-corona/local-operator-norm
 property.  It should not be confused with stronger reduced-norm conventions.
@@ -910,13 +911,12 @@ Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
 
 \begin{proof}
 Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
-$q((x_n))$ is unitary, both
-$\opnorm{x_n^*x_n-1}\to0$ and $\opnorm{x_nx_n^*-1}\to0$.  In particular,
-$x_n^*x_n$ is invertible, and hence $x_n$ is invertible, for all sufficiently
-large $n$.  At those indices put
-$u_n=x_n(x_n^*x_n)^{-1/2}$.  Then $u_n$ is unitary, and, once
-$\opnorm{x_n^*x_n-1}\le\tfrac12$, continuous functional calculus gives the
-quantitative estimate
+$q((x_n))$ is unitary, the one-sided Gram defect satisfies
+$\opnorm{x_n^*x_n-1}\to0$; no condition on $x_nx_n^*$ is needed.  Once
+$\opnorm{x_n^*x_n-1}\le\tfrac12$, the square Gram matrix $x_n^*x_n$ is
+invertible, hence so is $x_n$, and the polar correction
+$u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary; continuous functional calculus
+gives the quantitative estimate
 \[
  \opnorm{u_n-x_n}
  \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
@@ -1337,8 +1337,9 @@ MF radical of $E$ is exactly $\{1,w\}$.
 
 \paragraph{No density hypothesis.}
 No lower bound on the corner ranks $r_n$, or on their density in
-$d_n$, is used anywhere: the central-corner reduction preceding
-Theorem~\ref{thm:sign-criterion} equips each nonzero corner block with its own
+$d_n$, is used anywhere: the coordinate Reynolds corner in the proof of
+Theorem~\ref{thm:criterion} discards zero-rank coordinates and equips
+each retained corner block with its own
 normalized trace.  Thus all subsequent
 Hilbert--Schmidt estimates are relative to that block.  This is
 what makes the operator-norm setting insensitive to small relative ranks,
@@ -1470,73 +1471,73 @@ $\Theta(f)=1$ for all $f\in F$.
 \end{theorem}
 
 \begin{proof}
-Suppose that a corona representation $\Theta$ is nontrivial on $F$.  Form the
-Reynolds projection directly in the quotient,
-\[
- p=\frac1{|F|}\sum_{f\in F}\Theta(f),\qquad q=1-p.
-\]
-The group average satisfies $p^*=p$, because $F$ is closed under
-inversion, and $p^2=p$, because left translation by each $\Theta(f_0)$
-permutes the summands, so that $\Theta(f_0)p=p$; averaging over $f_0\in F$
-gives idempotence, and the same identities show $p$ projects onto the
-vectors fixed by $\Theta(F)$.  Normality of $F$ makes $p$ central relative to
-$\Theta(H)$.  If $q=0$, then $p=1$ and
-$\Theta(f)p=p$ for every $f\in F$, so $\Theta|_F$ is trivial; hence $q\ne0$.
-Since $q$ commutes with $\Theta(H)$, the formula
-\[
-  \Theta_q(g)=q\Theta(g)q
-\]
-defines a homomorphism $H\to\U(q\mathcal Qq)$, with corner unit $q$.  There
-\[
- \sum_{f\in F}\Theta_q(f)
- =q\left(\sum_{f\in F}\Theta(f)\right)q
- =|F|qpq=0
- \tag{\ensuremath{\ast}}
-\]
-exactly.
+The argument has two independent halves.  The first, which uses the
+Kazhdan pattern, is a kill theorem in normalized Hilbert--Schmidt norm;
+the second, which uses only finiteness and normality of $F$, converts
+that tracial invisibility into an exact operator-norm contradiction on a
+coordinate corner.
 
-Choose a sequence of coordinate projections $(q_n)$ representing $q$; this
-is obtained by applying a spectral cut to a self-adjoint lift of $q$.  If
-$J=\{n:q_n\ne0\}$, then $J$ is infinite because $q\ne0$.  Restriction to
-$J$, followed by a relabeling of $J$ by $\N$, identifies the corner with
-\[
- \begin{aligned}
- q\mathcal Qq
- &\cong \prod_{n\in\N}q_nM_{d_n}(\C)q_n\Big/
-          \bigoplus_{n\in\N}q_nM_{d_n}(\C)q_n,\\
- &\cong \prod_{n\in\N}M_{r_n}(\C)\Big/
-          \bigoplus_{n\in\N}M_{r_n}(\C),
- \qquad r_n=\operatorname{rank}q_n>0.
- \end{aligned}
-\]
-Thus zero-rank coordinates are discarded, rather than treated as matrix
-coordinates of size zero.  Since $H$ is countable, choose coordinate lifts
-of all the elements $\Theta_q(g)$.  For each fixed $g$, its two unitary
-defects tend to zero; on a $g$-dependent cofinite tail polar correction gives
-$U_{g,n}\in\U(r_n)$, and at the finitely many remaining indices choose an
-arbitrary unitary.  The homomorphism identity for $\Theta_q$ then makes these
-lifts asymptotically multiplicative.  Put
+\emph{Half one: the defect dies tracially.}  Let $(U_{g,n})$ be
+coordinate unitary lifts of any operator-norm almost representation of
+$H$ (in particular, of a corona representation), and put
 \[
   K_2=\{g\in H:\hsnorm{U_{g,n}-1}\longrightarrow0\}.
 \]
 Unitary invariance and asymptotic multiplicativity make
-$K_2\trianglelefteq H$.  Since $c$ centralizes $\iota(\Lambda)$, its lifts
-belong to the asymptotic commutant of $\iota(\Lambda)$.  Applying
-Theorem~\ref{thm:kazhdan-transport} to $x_n=U_{c,n}$ shows that the lifts of
-$d=tct^{-1}$ do as well, and therefore
+$K_2\trianglelefteq H$.  Since $c$ centralizes $\iota(\Lambda)$, its
+lifts belong to the asymptotic commutant of $\iota(\Lambda)$; applying
+Theorem~\ref{thm:kazhdan-transport} to $x_n=U_{c,n}$ puts the lifts of
+$d=tct^{-1}$ there as well, and therefore
+$[d,\iota(\lambda)]\in K_2$ for every $\lambda\in\Lambda$.  Hence
+$N_{\mathrm{comp}}\subseteq K_2$, and so $F\subseteq K_2$: every element
+of the compression-defect subgroup is Hilbert--Schmidt invisible in
+\emph{every} operator-norm almost representation of $H$.
+
+\emph{Half two: the coordinate Reynolds corner.}  Suppose a corona
+representation $\Theta$ is nontrivial on $F$; choose coordinate unitary
+lifts $(V_{g,n})$ of $\Theta$ and form the coordinate Reynolds averages
 \[
- [d,\iota(\lambda)]\in K_2\qquad(\lambda\in\Lambda).
+ p_n=\frac1{|F|}\sum_{f\in F}V_{f,n}.
 \]
-Hence $N_{\mathrm{comp}}\subseteq K_2$, and therefore $F\subseteq K_2$.
-Because $F$ is finite,
+Because the lifts are asymptotically multiplicative and $F$ is finite,
+$(p_n)$ is asymptotically self-adjoint and idempotent, and normality of
+$F$ makes it asymptotically central for all of $\Theta(H)$.  Spectral
+rounding at $1/2$ of the Hermitian part of $p_n$ produces genuine
+coordinate projections; let $q_n$ be their complements.  Nontriviality of
+$\Theta$ on $F$ forces $q_n\ne0$ along infinitely many coordinates ---
+otherwise the averages converge to $1$ and $\Theta|_F$ is trivial.
+Retain exactly those coordinates, relabel them by $\N$, compress every
+lift to the corner $q_nM_{d_n}(\C)q_n\cong M_{r_n}(\C)$ with
+$r_n=\operatorname{rank}q_n>0$, and polar-correct the compressed
+matrices.  The result is an operator-norm almost representation
+$(W_{g,n})$ of $H$ on the nonzero corner blocks; since the corner is the
+complement of the rounded average, the finite average vanishes there:
 \[
- \sum_{f\in F}U_{f,n}\longrightarrow |F|1
- \quad\text{in normalized Hilbert--Schmidt norm}.
+ \Bigl\lVert\sum_{f\in F}W_{f,n}\Bigr\rVert\longrightarrow0
+ \quad\text{in operator norm.}
+ \tag{\ensuremath{\ast}}
 \]
-On the other hand, the exact quotient identity \((\ast)\) for $\Theta_q$ says that the same
-sum converges to $0$ in operator norm, hence also in normalized
-Hilbert--Schmidt norm.  This contradiction proves the theorem.
+
+\emph{The contradiction.}  Half one applies to the corner almost
+representation $(W_{g,n})$ itself: every $f\in F$ satisfies
+$\hsnorm{W_{f,n}-1}\to0$.  Since $F$ is finite, a diagonal selection of
+coordinates makes this uniform over $F$: passing to stages at which all
+$|F|$ distances are below $1/(n+1)$ gives
+\[
+ \sum_{f\in F}W_{f,n}\longrightarrow |F|1
+ \quad\text{in normalized Hilbert--Schmidt norm},
+\]
+each block carrying its own normalized trace.  This contradicts
+\((\ast)\), because operator-norm convergence dominates normalized
+Hilbert--Schmidt convergence.  Hence no corona representation is
+nontrivial on $F$.
 \end{proof}
+
+The proof of half two used only one property of $N_{\mathrm{comp}}$: every
+element is Hilbert--Schmidt invisible in every operator-norm almost
+representation of $H$.  Any normal subgroup with that tracial-kill
+property therefore obstructs its finite normal subgroups in exactly the
+same way; the compression radical below exploits this factorization.
 
 Theorem~\ref{thm:A}(2), proved in Section~\ref{sec:proofA} from the
 sign criterion, is also the instance \(H=E\), \(\Lambda=\mathcal B\),
@@ -1614,17 +1615,20 @@ matrix corona kills $F$.
 \end{theorem}
 
 \begin{proof}
-Suppose a corona representation is nontrivial on $F$.  Its complementary
-Reynolds corner, constructed in the proof of Theorem~\ref{thm:criterion},
-has positive coordinate ranks and satisfies
-$\sum_{f\in F}U_{f,n}\to0$ in operator norm.  Put
-$K_2=\{h:\hsnorm{U_{h,n}-1}\to0\}$; this is a normal subgroup of $H$.
+By the factorization recorded after Theorem~\ref{thm:criterion}, it
+suffices to prove the tracial half for the larger subgroup: every element
+of $\mathfrak D(H,L)$ is Hilbert--Schmidt invisible in every operator-norm
+almost representation of $H$.  So let $(U_{h,n})$ be coordinate lifts of
+such a representation and put
+$K_2=\{h:\hsnorm{U_{h,n}-1}\to0\}$, a normal subgroup of $H$.
 If $z\in C_H(L)$, then $(U_{z,n})$ lies in the asymptotic commutant, and
 Corollary~\ref{cor:generaltransport} puts $(U_{gzg^{-1},n})$ there for every
-$g\in G_{\rm comp}(L)$.  Thus every displayed generator of
-$\mathfrak D(H,L)$ belongs to $K_2$, so $F\le K_2$.  Finiteness of $F$
-now gives $\sum_{f\in F}U_{f,n}\to |F|1$ in normalized
-Hilbert--Schmidt norm, contradicting its operator-norm convergence to zero.
+$g\in G_{\rm comp}(L)$; hence each commutator $[gzg^{-1},\ell]$,
+$\ell\in L$, belongs to $K_2$.  Thus every displayed generator of
+$\mathfrak D(H,L)$ belongs to $K_2$, and normality of $K_2$ absorbs the
+normal closure, so $\mathfrak D(H,L)\le K_2$.  The coordinate Reynolds
+corner and the finite-sum contradiction of Theorem~\ref{thm:criterion}
+apply verbatim to any finite normal $F\le\mathfrak D(H,L)$.
 \end{proof}
 
 
@@ -1703,11 +1707,17 @@ detects $q$.  Thus the intersection of the kernels of all corona
 representations of the countable group $Q$ is trivial.
 
 Enumerate the nonidentity elements of $Q$ and choose a detecting corona
-representation for each.  Diagonalize these local models directly: at stage
-$k$, impose multiplicativity within $1/k$
-on the first $k$ group elements in the first $k$ representations and retain
-a fixed positive separation for each of the first $k$ marked elements.
-This gives one faithful representation of $Q$ in a norm matrix corona and
+representation for each; pass to coordinate unitary lifts, so that each
+detector becomes a sequential almost representation with its marked
+element separated from $1$.  Diagonalize at the coordinate level: at
+stage $k$, select in each of the first $k$ detectors a coordinate at
+which multiplicativity holds within $1/k$ on the first $k$ group elements
+while the marked separation persists, and take the block sum of the $k$
+selected matrices.  Operator norms of block sums are maxima, so the
+resulting single sequence is an almost representation detecting every
+nonidentity element; its class in the unitary-sequence quotient, composed
+with the polar-correction isomorphism of Lemma~\ref{lem:unitarycorona},
+is a faithful corona representation of $Q$.  This
 proves (2).  Composing it with $G_1\twoheadrightarrow Q$ gives a single
 corona representation of $G_1$ with kernel exactly $R$, proving (1).
 For the final equivalence:
@@ -2151,45 +2161,48 @@ Hence there are $\delta_{g,h}>0$ and arbitrarily large coordinates at which
 \[
  \lVert u_n(g)-u_n(h)\rVert\ge\delta_{g,h}.
 \]
-For each number $\delta_{g,h}$, compactness of
-\[
- \{\lambda\in\mathbb T:|1-\lambda|\ge\delta_{g,h}\}
-\]
-gives an integer $M_{g,h}$ such that every point of this set has a power
-$1\le m\le M_{g,h}$ whose distance from $1$ is greater than $1$.
+Choose an integer $N_{g,h}$ with $8<N_{g,h}\,\delta_{g,h}^2$.  An explicit
+tensor-power estimate then applies: whenever two unitaries are
+$\delta_{g,h}$-separated, some tensor power of exponent $p\le N_{g,h}$
+separates them by more than $1$ --- amplifying a spectral gap of the
+relative unitary until it crosses the unit circle takes at most
+$N_{g,h}$ steps once $8<N_{g,h}\delta_{g,h}^2$.
 The quotient homomorphism law makes all multiplicative defects for pairs in
 $F$ arbitrarily small at every sufficiently large coordinate.  Choose, for
 each $g\ne h$, a coordinate with the displayed separation and with every
-required defect at most $\varepsilon/M_{g,h}$; then choose the corresponding
-power $m\le M_{g,h}$.  The $m$th tensor power separates the designated pair
+required defect at most $\varepsilon/N_{g,h}$; then the $p$th tensor power
+separates the designated pair
 by more than $1$, while the tensor-product telescoping identity bounds each
-new defect by $m\varepsilon/M_{g,h}\le\varepsilon$.  Finally take the block
+new defect by $p\,\varepsilon/N_{g,h}\le\varepsilon$.  Finally take the block
 sum of these finitely many pair-specific models.  Operator norms of block
 diagonal matrices are maxima, so every pair in $F$ is separated by at least
 $1$ and every required product has defect at most $\varepsilon$.  This gives
 the normalized local model.
 
-Conversely, enumerate the countable group and choose increasing finite sets
-$F_n$ exhausting it.  Apply the local condition to $F_n$ with errors tending
-to zero.  For each fixed $g,h$, the resulting unitary maps are eventually
-multiplicative on $g,h$, so their classes define a homomorphism into the
-unitary-sequence quotient.  If $g\ne h$, both eventually lie in $F_n$ and
-their distance is at least $1$; their quotient classes are therefore
-distinct.  The homomorphism is injective.
+Conversely, local models with separation constant $1$ for all finite sets
+and tolerances make the group \emph{weakly} MF: choosing models along an
+exhaustion with errors tending to zero, each fixed pair $g,h$ is
+eventually represented multiplicatively and each fixed pair $g\ne h$
+eventually separated by $1$, so the classes define an injective
+homomorphism into the unitary-sequence quotient with no condition on the
+dimension sequence.  Weak MF in turn makes the norm-MF radical of
+Definition~\ref{def:radical} trivial, and the block-sum diagonalization
+in the proof of Proposition~\ref{prop:univquot}(2) then assembles the
+detecting sequences into a single faithful corona representation.  This
+is the actual dependency route: the weak-to-genuine upgrade is the
+universal-quotient construction, not a separate exhaustion.
 
-It remains only to normalize dimensions.  Given positive dimensions $d_n$,
-choose recursively
-\[
- D_0=d_0+1,\qquad D_{n+1}\ge\max\{d_{n+1}+1,D_n+1\}.
-\]
-Pad every coordinate model by an identity block:
-\[
- u_n(g)\longmapsto u_n(g)\oplus 1_{D_n-d_n}.
-\]
-The dimensions $D_n$ increase strictly.  Products, multiplicative defects,
-and pairwise operator-norm distances are unchanged, because the added block
-is the same identity representation for every group element.  Thus the
-construction preserves and reflects the quotient relation and injectivity.
+It remains only to normalize dimensions.  Given positive dimensions
+$d_n$, replace the $n$th coordinate model by the cumulative block sum on
+$X_0\oplus\cdots\oplus X_n$, where $X_k$ is the $k$th original model
+space: embed the $n$th original model in the newest block and put
+identity blocks in all earlier positions.  The dimensions
+$D_n=d_0+\cdots+d_n$ increase strictly.  Products, multiplicative
+defects, and pairwise operator-norm distances are unchanged, because
+block-diagonal operator norms are maxima and every earlier block is the
+same identity for all group elements; in particular no approximation
+error from earlier coordinates is carried forward.  Thus the construction
+preserves and reflects the quotient relation and injectivity.
 Forgetting strict increase proves the converse.
 \end{proof}
 
