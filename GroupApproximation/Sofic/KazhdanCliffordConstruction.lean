@@ -225,11 +225,11 @@ theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
     Commute (lamp alpha a)
       (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i))) := by
+  classical
   change Commute (quotientMap alpha a rawLamp)
     (quotientMap alpha a
       (rawBase (baseEval (Γ := Γ) (FreeGroup.of i))))
-  apply commutatorElement_eq_one_iff_commute.mp
-  simpa [map_commutatorElement] using quotientMap_relator_eq_one
+  have hrel := quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
     (show ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
         relators alpha a by
@@ -242,6 +242,8 @@ theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
       apply Finset.mem_union.mpr
       right
       exact Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩)
+  rw [map_commutatorElement] at hrel
+  exact commutatorElement_eq_one_iff_commute.mp hrel
 
 /-- The lamp centralizes the whole base. -/
 theorem lamp_commutes (alpha : Γ →* Γ) (a g : Γ) :
@@ -399,9 +401,11 @@ theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
     · obtain ⟨i, -, hr⟩ := Finset.mem_image.mp hcomm
       subst r
       apply MonoidHom.mem_ker.mpr
-      rw [map_commutatorElement]
+      rw [map_commutatorElement, rawRealization_lamp,
+        rawRealization_base]
       exact commutatorElement_eq_one_iff_commute.mpr
-        (MarkedCompression.comm_c alpha hAlpha _)
+        (MarkedCompression.comm_c alpha hAlpha
+          (baseEval (Γ := Γ) (FreeGroup.of i)))
   · simp only [centralRelators, Finset.mem_union, Finset.mem_insert,
       Finset.mem_singleton, Finset.mem_image] at hr
     rcases hr with (rfl | rfl) | ⟨i, -, rfl⟩

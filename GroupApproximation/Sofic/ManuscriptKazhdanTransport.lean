@@ -74,7 +74,7 @@ theorem manuscriptKazhdanTransport
     c := 1
     kazhdan := hasKazhdanPropertyT_iff_textbook.mpr hT
     compresses := hs
-    comm_c γ := one_comm (iota γ)
+    comm_c γ := Commute.one_left (iota γ)
   }
   have hx_sq : IsAsymptoticCommutant B C x := by
     intro γ ε hε
@@ -100,7 +100,8 @@ theorem manuscriptKazhdanTransport
       noncomm_ring [hVVstar]
     change hsNormSq (naturalFiniteModel (d n)) (x n - V * x n * Vᴴ) ≤ ε
     rw [hfactor,
-      hsNormSq_mul_right _ (conjTranspose_mem_unitaryGroup hV)]
+      hsNormSq_mul_right _
+        (MarkedCompressionVectorChain.conjTranspose_mem_unitaryGroup hV)]
     exact hcommSq
   have hbound' : IsUniformlyBounded B x := hbound
   have hy_sq := transport B C x hx_sq hbound'

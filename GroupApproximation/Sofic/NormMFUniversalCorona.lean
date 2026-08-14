@@ -577,7 +577,7 @@ theorem isOperatorMF_iff_normMFResidual_eq_bot [Countable G] :
   ⟨normMFResidual_eq_bot_of_isOperatorMF,
     isOperatorMF_of_normMFResidual_eq_bot⟩
 
-/-- The largest pointwise norm-matrix quotient of a countable group is an MF
+/-- The universal pointwise norm-matrix quotient of a countable group is an MF
 group in the standard cofinite-corona sense. -/
 theorem normMFQuotient_isOperatorMF [Countable G] :
     IsOperatorMF (normMFQuotient G) := by
@@ -607,7 +607,7 @@ theorem exists_normMatrixCoronaRepresentation_ker_eq_normMFResidual
     rw [(QuotientGroup.eq_one_iff g).mpr hg, map_one]
 
 /-- Every homomorphism from `G` to an operator-norm MF group factors uniquely
-through the largest MF quotient. -/
+through the universal MF quotient. -/
 theorem existsUnique_normMFQuotient_factorization_to_isOperatorMF
     [Countable G] {H : Type v} [Group H]
     (f : G →* H) (hH : IsOperatorMF H) :

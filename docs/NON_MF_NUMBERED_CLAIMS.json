@@ -557,7 +557,7 @@
     {
       "id": "prop:univquot",
       "environment": "proposition",
-      "title": "the largest MF quotient",
+      "title": "the universal MF quotient",
       "statement_sha256": "2231209e13d0bc80d5ef44f1d2138e9e365de63e995fb623dbe418003aeb3157",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -573,7 +573,7 @@
         {
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLargestMFQuotient",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient",
           "covers": "the complete printed proposition"
         }
       ]

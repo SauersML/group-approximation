@@ -291,7 +291,7 @@ theorem exists_manuscriptCoronaRepresentation_ker_eq_manuscriptCoronaMFResidual
     simp [rhoNatural, h]
 
 /-- Every map to a countable CDE-MF group factors uniquely through the
-largest literal MF quotient. -/
+universal literal MF quotient. -/
 theorem existsUnique_actualCoronaMFQuotient_factorization_to_isCDEOperatorMF
     [Countable G] {H : Type v} [Group H] [Countable H]
     (f : G →* H) (hH : IsCDEOperatorMF H) :
@@ -318,7 +318,7 @@ theorem existsUnique_actualCoronaMFQuotient_factorization_to_isCDEOperatorMF
     QuotientGroup.mk'_surjective (actualCoronaMFResidual G) q
   exact DFunLike.congr_fun (hc.trans hcomp.symm) g
 
-/-- Literal natural-dimension largest-quotient factorization. -/
+/-- Literal natural-dimension universal-quotient factorization. -/
 theorem existsUnique_manuscriptCoronaMFQuotient_factorization_to_isCDEOperatorMF
     [Countable G] {H : Type v} [Group H] [Countable H]
     (f : G →* H) (hH : IsCDEOperatorMF H) :

@@ -184,6 +184,9 @@ theorem manuscriptUnitaryLifting
         (fun n ↦ naturalFiniteModel (d n))),
       ∃ u : ∀ n, Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ,
         unitarySequenceToCorona (fun n ↦ naturalFiniteModel (d n)) u = x := by
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  dsimp only
   intro x
   obtain ⟨q, hq⟩ := unitaryCoronaToCStarCoronaUnitary_surjective
     (fun n ↦ naturalFiniteModel (d n)) x
@@ -206,6 +209,9 @@ theorem manuscriptUnitaryCoronaEquivalence
         ∀ u : ∀ n, Matrix.unitaryGroup (naturalFiniteModel (d n)) ℂ,
           kappa (QuotientGroup.mk u) = unitarySequenceToCorona
             (fun n ↦ naturalFiniteModel (d n)) u := by
+  letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+    fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+  dsimp only
   exact ⟨normMatrixCoronaUnitaryEquiv
       (fun n ↦ naturalFiniteModel (d n)), rfl,
     unitaryCoronaToCStarCoronaUnitary_mk
@@ -241,7 +247,7 @@ theorem manuscriptFiniteNormalObstructionCriterion
     let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
     letI : ∀ n, Nonempty (X n) :=
       fun n ↦ Fintype.card_pos_iff.mp (by
-        simpa using hd n)
+        simpa [X] using hd n)
     ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
       F ≤ Theta.ker := by
   exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF
@@ -254,7 +260,7 @@ theorem manuscriptCoordinateFiniteNormalCorner
     {H : Type} [Group H] [Countable H]
     (F : Subgroup H) [Finite F] [F.Normal]
     {I : Type} (U : Ultrafilter I) (d : I → ℕ)
-    (hd : ∀ i, 0 < d i)
+    (_hd : ∀ i, 0 < d i)
     (rho : H →* UniversalWeakMF U (fun i ↦ naturalFiniteModel (d i)))
     (hnontrivial : ∃ f : F, rho f ≠ 1) :
     ∃ B : OpAlmostRepresentation H,
@@ -265,7 +271,7 @@ theorem manuscriptCoordinateFiniteNormalCorner
           Matrix (B.model n) (B.model n) ℂ)) := by
   letI : ∀ i, Nonempty (naturalFiniteModel (d i)) := fun i ↦
     Fintype.card_pos_iff.mp (by
-      simpa using hd i)
+      simpa using _hd i)
   obtain ⟨B, hsum⟩ :=
     FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing
       F U (fun i ↦ naturalFiniteModel (d i)) rho hnontrivial
@@ -324,9 +330,11 @@ theorem manuscriptRadicalPortability
     rw [hbot] at himage
     exact hsurvive (Subgroup.mem_bot.mp himage)
 
-/-- All clauses of the largest-MF-quotient proposition, using the literal
-CDE definition at the public boundary. -/
-theorem manuscriptLargestMFQuotient
+/-- All clauses of the universal-MF-quotient proposition, using the literal
+CDE definition at the public boundary.  The faithful corona representation
+is constructed on the quotient first and then composed with the quotient
+map, so no coordinatewise radical-killing diagonal condition is omitted. -/
+theorem manuscriptUniversalMFQuotient
     (G : Type u) [Group G] [Countable G] :
     letI : Countable (G ⧸ manuscriptCoronaMFResidual G) :=
       Function.Surjective.countable

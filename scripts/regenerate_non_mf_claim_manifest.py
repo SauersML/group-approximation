@@ -102,7 +102,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability"),
     "prop:univquot": (
         "Sofic/ManuscriptExactWrappers",
-        "GroupApproximation.ManuscriptExactWrappers.manuscriptLargestMFQuotient"),
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient"),
     "cor:exactradical": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient"),

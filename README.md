@@ -93,7 +93,7 @@ The paper also proves:
   invisibility does not force the marked word to be trivial;
 - a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
 - failure of closure of MF groups under quotients;
-- the MF radical, its single-corona detector, and the largest MF quotient.
+- the MF radical, its single-corona detector, and the universal MF quotient.
 
 The result is specific to operator-norm approximation. It does not decide
 whether the presenting group `E` itself is hyperlinear or sofic, or whether
@@ -163,7 +163,7 @@ Reading path, front door first:
 | `Sofic/AdjointMatrix.lean`, `Sofic/ProjectionRankFlip.lean`, `Sofic/SpectralCapture.lean` | Finite-dimensional operator lemmas |
 | `Sofic/MarkedCompressionGroup.lean`, `Sofic/CliffordLampGroup.lean`, `Algebra/MappingTelescope.lean` | Countable Clifford witness and nontrivial mark |
 | `Sofic/NormMFResidualDetector.lean`, `Sofic/NormMFResidualFunctorial.lean` | Operator-norm MF residual and functoriality |
-| `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and largest MF quotient |
+| `Sofic/NormMFUniversalCorona.lean`, `Sofic/NormMFCoronaRadical.lean` | Equivalence with the unitary-sequence corona radical and universal MF quotient |
 | `Sofic/FiniteNormalCompressionObstruction.lean`, `Sofic/FiniteNormalCoronaObstruction.lean` | Finite-normal obstruction in ultraproduct and unitary-sequence corona language |
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
