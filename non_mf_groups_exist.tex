@@ -180,10 +180,9 @@ Let $E$ be the group on the eight generators
 $v_1,v_2,v_3,x,y,z,t,c$ with the finite list of relators in
 Definition~\ref{def:E}, and put
 \[
-  d=tct^{-1},\qquad u=[d,v_1],\qquad w=u^2.
+ w=[tct^{-1},\,v_1(tct^{-1})v_1^{-1}].
 \]
-Equivalently,
-$w=[d,v_1dv_1^{-1}]$ by Lemma~\ref{lem:square}.  The defining
+The defining
 relations make $w$ central and give $w^2=1$.  Then:
 \begin{enumerate}
   \item $w\neq 1$ in $E$, so $w$ is a central involution;
@@ -204,6 +203,8 @@ A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
 Definition~\ref{def:E}.
 
+For the proof, put $d=tct^{-1}$ and $u=[d,v_1]$.
+Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
 The proof has two opposed halves, both centered on $u$:
 \[
  \boxed{\text{matrix-corona rigidity: }u\sim_2 1}
@@ -587,10 +588,10 @@ generators also give
  t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B),
  \qquad [c,\iota(\mathcal B)]=1.
 \]
-Proposition~\ref{prop:witness} below proves that $w\neq1$.
 \leanverified{Sofic/LiteralNonMFPresentation}{GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation}
 \end{definition}
 
+Proposition~\ref{prop:witness} below proves that $w\neq1$.
 Figure~\ref{fig:compression-pattern} isolates the geometry used later in
 the analytic argument: $d=tct^{-1}$ centralizes the compressed copy, not
 necessarily all of $\iota(\mathcal B)$, and the marked commutator measures
@@ -1639,11 +1640,12 @@ addition $G_1/N$ is MF, then
 \[
  \operatorname{Rad}_{\mathrm{MF}}(G_1)=N.
 \]
-Thus proving that a concrete defect subgroup is invisible and that its
-quotient is MF computes both the entire MF radical and the largest MF
-quotient.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient}
 \end{corollary}
+
+Together with Proposition~\ref{prop:univquot}, this says that proving a
+concrete defect subgroup invisible and its quotient MF computes both the
+entire MF radical and the largest MF quotient.
 
 \begin{proof}
 The containment $N\le\ker\Theta$ gives the unique quotient
