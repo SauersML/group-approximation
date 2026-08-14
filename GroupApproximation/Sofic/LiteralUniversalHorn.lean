@@ -1,4 +1,4 @@
-import GroupApproximation.Sofic.LiteralNonMFLinearWitness
+import GroupApproximation.Sofic.LiteralNonMFEndpoint
 
 /-!
 # The finite universal Horn sentence falsified by the literal presentation
@@ -9,10 +9,10 @@ is the semantic universal Horn sentence associated to a finite list of free
 group relators and one conclusion word.
 
 The canonical tuple in the literal presented group violates the conclusion
-unconditionally, using the exact Clifford realization of its mark.  This
-module deliberately makes no analytic claim that operator-MF groups satisfy
-the sentence: the repository has no proof of property `(T)` for the abstract
-six-generator group printed in the literal presentation.
+unconditionally, using the exact Clifford realization of its mark.  The
+premise-free literal non-MF endpoint proves that every operator-MF group
+satisfies the same quasi-identity.  Thus the obstruction is one finite
+universal Horn sentence, not merely a global non-embedding statement.
 -/
 
 namespace GroupApproximation
@@ -36,6 +36,41 @@ namespace LiteralUniversalHorn
 
 open LiteralNonMFPresentation
 
+/-- Every assignment satisfying the literal relators induces the canonical
+homomorphism from the literal presented group. -/
+noncomputable def assignmentHom {H : Type*} [Group H]
+    (assignment : Generator → H)
+    (hrel : ∀ r ∈ relators, FreeGroup.lift assignment r = 1) :
+    MarkedGroup →* H :=
+  PresentedGroup.toGroup hrel
+
+/-- Evaluation through the induced homomorphism is free evaluation at the
+chosen tuple. -/
+theorem assignmentHom_mk {H : Type*} [Group H]
+    (assignment : Generator → H)
+    (hrel : ∀ r ∈ relators, FreeGroup.lift assignment r = 1)
+    (word : FreeGroup Generator) :
+    assignmentHom assignment hrel
+        (PresentedGroup.mk (relators : Set (FreeGroup Generator)) word) =
+      FreeGroup.lift assignment word := by
+  rfl
+
+/-- **Literal finite universal Horn obstruction.**  In every operator-MF
+group, any eight elements satisfying the forty-one printed relators also
+satisfy the marked conclusion `w = 1`. -/
+theorem isOperatorMF_satisfies_literalQuasiIdentity
+    (H : Type*) [Group H] (hMF : IsOperatorMF H) :
+    SatisfiesQuasiIdentity Generator relators markedWord H := by
+  intro assignment hrel
+  let f : MarkedGroup →* H := assignmentHom assignment hrel
+  obtain ⟨X, hX, rho, hrho⟩ := hMF
+  have hmark : f mark = 1 := by
+    apply hrho
+    simpa only [MonoidHom.comp_apply, map_one] using
+      LiteralNonMFEndpoint.literal_mark_normMFInvisible.toCoronaMFInvisible
+        X hX (rho.comp f)
+  exact (assignmentHom_mk assignment hrel markedWord).symm.trans hmark
+
 /-- The canonical generating tuple of the literal presented group satisfies
 every premise of the quasi-identity. -/
 theorem canonicalAssignment_satisfies_relators :
@@ -54,8 +89,8 @@ theorem canonicalAssignment_markedWord_ne_one :
   rw [freeGroup_lift_presentedGroup_generators]
   exact LiteralNonMFLinearWitness.literal_mark_ne_one
 
-/-- The literal group itself falsifies its finite quasi-identity.  This half
-is unconditional and uses no property-`(T)` or MF input. -/
+/-- The literal group itself falsifies the finite quasi-identity satisfied by
+every operator-MF group. -/
 theorem literalMarkedGroup_not_satisfies_literalQuasiIdentity :
     ¬ SatisfiesQuasiIdentity Generator relators markedWord MarkedGroup := by
   intro h
