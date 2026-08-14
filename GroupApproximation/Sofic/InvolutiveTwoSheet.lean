@@ -176,7 +176,7 @@ theorem twoSheetDiagonal_forwardLeakage (Y : FiniteModel)
     rw [← twoSheetDiagonal_one Y]
     unfold twoSheetDiagonal
     ext i j
-    rcases i with i | i <;> rcases j with j | j <;> simp
+    rcases i with i | i <;> rcases j with j | j <;> simp [Matrix.one_apply]
   rw [hsub, twoSheetDiagonal_mul, twoSheetDiagonal_mul]
 
 /-- Reverse leakage across a doubled cut is likewise diagonal, sheet by
@@ -192,7 +192,7 @@ theorem twoSheetDiagonal_reverseLeakage (Y : FiniteModel)
     rw [← twoSheetDiagonal_one Y]
     unfold twoSheetDiagonal
     ext i j
-    rcases i with i | i <;> rcases j with j | j <;> simp
+    rcases i with i | i <;> rcases j with j | j <;> simp [Matrix.one_apply]
   rw [hsub, twoSheetDiagonal_mul, twoSheetDiagonal_mul]
 
 /-- Consequently the forward leakage mass of a two-sheet transport is the

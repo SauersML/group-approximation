@@ -42,7 +42,8 @@ theorem eq_in_hyperlinearHom_of_hsSqVanishing
       (((S.map n g)⁻¹ * S.map n h : Matrix.unitaryGroup (S.model n) Complex)) < epsilon
     rw [coe_inv_mul,
       hsLengthSq_conjTranspose_mul (S.model n) (S.map n g).2
-        (S.modelNonempty n)]
+        (S.modelNonempty n),
+      KazhdanCompressorCorner.hsDistSq_comm]
     exact lt_of_le_of_lt (hN n hn) (by linarith)
   have heq :
       QuotientGroup.mk (fun n ↦ S.map n g) =
@@ -84,6 +85,8 @@ theorem compressionCentralizerDefect_generator_eq_one_in_hyperlinearHom
         hcof ⁅g * z * g⁻¹, ell⁆ = 1 := by
   let x : ∀ n, Matrix (B.model n) (B.model n) Complex := fun n ↦ B.map n z
   have hbound : IsUniformlyBounded B x := ⟨1, zero_le_one, fun n ↦ by
+    letI : Nonempty (B.model n) :=
+      Fintype.card_pos_iff.mp (B.modelNonempty n)
     exact (CStarRing.norm_of_mem_unitary (B.map n z).2).le⟩
   have hx : IsAsymptoticCommutantOf B iota x :=
     map_mem_asymptoticCommutantOf B iota z hz
@@ -91,7 +94,7 @@ theorem compressionCentralizerDefect_generator_eq_one_in_hyperlinearHom
   let y : E := g * z * g⁻¹
   have hy : IsAsymptoticCommutantOf B iota (fun n ↦
       (B.map n y : Matrix (B.model n) (B.model n) Complex)) := by
-    apply htransport.congr_hs
+    apply IsAsymptoticCommutant.congr_hs htransport
     apply HSSqVanishing.of_opNormVanishing
     simpa [adjointSequence, x, y] using conj_matrix_defect_vanishing B g z
   obtain ⟨gamma, rfl⟩ := hell
@@ -108,14 +111,17 @@ theorem compressionCentralizerDefect_generator_eq_one_in_hyperlinearHom
   have heq : rhoHS y = rhoHS (iota gamma * y * (iota gamma)⁻¹) :=
     eq_in_hyperlinearHom_of_hsSqVanishing B hcof y
       (iota gamma * y * (iota gamma)⁻¹) heqHS
+  have hconj :
+      rhoHS (iota gamma) * rhoHS y * (rhoHS (iota gamma))⁻¹ = rhoHS y := by
+    simpa only [map_mul, map_inv] using heq.symm
   have hcomm : Commute (rhoHS y) (rhoHS (iota gamma)) := by
-    rw [map_mul, map_mul, map_inv] at heq
     apply Commute.symm
+    show rhoHS (iota gamma) * rhoHS y = rhoHS y * rhoHS (iota gamma)
     calc
       rhoHS (iota gamma) * rhoHS y =
           (rhoHS (iota gamma) * rhoHS y * (rhoHS (iota gamma))⁻¹) *
             rhoHS (iota gamma) := by group
-      _ = rhoHS y * rhoHS (iota gamma) := by rw [← heq]
+      _ = rhoHS y * rhoHS (iota gamma) := by rw [hconj]
   rw [map_commutatorElement]
   exact commutatorElement_eq_one_iff_commute.mpr hcomm
 

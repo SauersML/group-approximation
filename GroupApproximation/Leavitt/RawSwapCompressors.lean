@@ -247,12 +247,12 @@ theorem rawInvolutionWord_commutes_firstBranchRow (L : LeavittFamily A)
   · fin_cases r <;> fin_cases c <;>
       simp [transvection, elementaryUnit, rawInvolutionWord_val,
         rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
-        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        Fin.sum_univ_succ, coreIndex, LeavittFamily.p0,
         mul_add, add_mul, mul_assoc]
   · fin_cases r <;> fin_cases c <;>
       simp [transvection, elementaryUnit, rawInvolutionWord_val,
         rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
-        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        Fin.sum_univ_succ, coreIndex, LeavittFamily.p0,
         mul_add, add_mul, mul_assoc]
 
 /-- The incoming complementary branch is fixed exactly: the raw word
@@ -270,12 +270,12 @@ theorem rawInvolutionWord_commutes_firstBranchColumn (L : LeavittFamily A)
   · fin_cases r <;> fin_cases c <;>
       simp [transvection, elementaryUnit, rawInvolutionWord_val,
         rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
-        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        Fin.sum_univ_succ, coreIndex, LeavittFamily.p0,
         mul_add, add_mul, mul_assoc]
   · fin_cases r <;> fin_cases c <;>
       simp [transvection, elementaryUnit, rawInvolutionWord_val,
         rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
-        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        Fin.sum_univ_succ, coreIndex, LeavittFamily.p0,
         mul_add, add_mul, mul_assoc]
 
 /-- The two-word raw compressor set `{u, w·u}`. -/

@@ -28,9 +28,7 @@ namespace GroupApproximation
 
 open Filter
 
-universe u
-
-variable {G : Type u} [Group G]
+variable {G : Type} [Group G]
 
 /-- The precise permutation-ultraproduct centralizer conclusion used from
 Kun--Thom.  It is deliberately a property of the inclusion, rather than a
@@ -60,7 +58,7 @@ witness that was proved nontrivial in `FreeLampReduction`. -/
 theorem not_isSofic_freeLamp_of_centralizerNormalization
     [Countable G] (Γ : Subgroup G)
     (hcentralizer : HasSoficCentralizerNormalization Γ)
-    {K : Type*} [Group K] [Countable K]
+    {K : Type} [Group K] [Countable K]
     {t γ : G} (hγ : γ ∈ Γ) (hesc : t⁻¹ * γ * t ∉ Γ)
     {k : K} (hk : k ≠ 1) :
     ¬ IsSofic (FreeLamp G Γ K) := by
@@ -132,7 +130,7 @@ theorem symmetricDouble_isGroupTheoreticMF_and_not_isSofic
 inhabitant consists only of the exact conclusions consumed by the formal
 argument: Shulman's operator-MF conclusion, Kun--Thom centralizer
 normalization, and one strict witness. -/
-structure KunThomShulmanDoubleData (G : Type u) [Group G]
+structure KunThomShulmanDoubleData (G : Type) [Group G]
     (Γ : Subgroup G) where
   operatorMF : IsGroupTheoreticMF (SymmetricDouble G Γ)
   centralizerNormalization : HasSoficCentralizerNormalization Γ
@@ -156,7 +154,7 @@ theorem conclusion [Countable G] {Γ : Subgroup G}
 been supplied. -/
 theorem exists_groupTheoreticMF_not_sofic [Countable G] {Γ : Subgroup G}
     (D : KunThomShulmanDoubleData G Γ) :
-    ∃ (E : Type u) (_ : Group E), Countable E ∧
+    ∃ (E : Type) (_ : Group E), Countable E ∧
       IsGroupTheoreticMF E ∧ ¬ IsSofic E :=
   ⟨SymmetricDouble G Γ, inferInstance, inferInstance,
     D.conclusion.1, D.conclusion.2⟩
