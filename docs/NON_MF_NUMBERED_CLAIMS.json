@@ -278,7 +278,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "a54f7111443147f72a0f7e928ceab58516b23d203ea1c05a98208d35713feffe",
+      "statement_sha256": "449c7645baf82f225644602df5e449b2243590f662c513c7c8e04a0b90b42fe3",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
