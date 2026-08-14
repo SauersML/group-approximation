@@ -42,11 +42,11 @@ theorem isSofic_of_every_finset_mem_sofic_subgroup
     have hgmem : liftToK g ∈ finiteK := by
       apply Finset.mem_image.mpr
       exact ⟨⟨g, hg⟩, Finset.mem_attach _ _, by
-        simp [liftToK, finiteK, hgK]⟩
+        simp [liftToK, hgK]⟩
     have hkmem : liftToK k ∈ finiteK := by
       apply Finset.mem_image.mpr
       exact ⟨⟨k, hk⟩, Finset.mem_attach _ _, by
-        simp [liftToK, finiteK, hkK]⟩
+        simp [liftToK, hkK]⟩
     have hmul : liftToK (g * k) = liftToK g * liftToK k := by
       apply Subtype.ext
       simp [liftToK, hgK, hkK, K.mul_mem hgK hkK]
@@ -58,14 +58,15 @@ theorem isSofic_of_every_finset_mem_sofic_subgroup
     have hgmem : liftToK g ∈ finiteK := by
       apply Finset.mem_image.mpr
       exact ⟨⟨g, hg⟩, Finset.mem_attach _ _, by
-        simp [liftToK, finiteK, hgK]⟩
+        simp [liftToK, hgK]⟩
     have hkmem : liftToK k ∈ finiteK := by
       apply Finset.mem_image.mpr
       exact ⟨⟨k, hk⟩, Finset.mem_attach _ _, by
-        simp [liftToK, finiteK, hkK]⟩
+        simp [liftToK, hkK]⟩
     apply M.separated _ hgmem _ hkmem
     intro h
-    exact hgk (congrArg Subtype.val h)
+    apply hgk
+    simpa [liftToK, hgK, hkK] using congrArg Subtype.val h
 
 /-- An increasing union of sofic subgroups is sofic.  This sequence form is
 the one used by finite-floor constructions. -/
@@ -75,6 +76,7 @@ theorem isSofic_of_increasing_union
     (hK : ∀ n, IsSofic (K n))
     (hcover : ∀ g : G, ∃ n, g ∈ K n) :
     IsSofic G := by
+  classical
   apply isSofic_of_every_finset_mem_sofic_subgroup
   intro F
   have hfinite : ∀ A : Finset G, ∃ n, ∀ g ∈ A, g ∈ K n := by

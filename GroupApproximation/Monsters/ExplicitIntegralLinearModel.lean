@@ -30,7 +30,8 @@ theorem residuallyFinite_of_mulEquiv {A B : Type*} [Group A] [Group B]
     Group.exists_finiteIndexNormalSubgroup_notMem (e.symm b) hpre
   refine ⟨A ⧸ K.toSubgroup, inferInstance, inferInstance,
     (QuotientGroup.mk' K.toSubgroup).comp e.symm.toMonoidHom, ?_⟩
-  simpa [QuotientGroup.eq] using hK
+  simpa [QuotientGroup.eq,
+    FiniteIndexNormalSubgroup.mem_toSubgroup_iff] using hK
 
 abbrev MatZ := Matrix (Fin 4) (Fin 4) ℤ
 
@@ -81,14 +82,13 @@ def castGL : MatZˣ →* Matˣ :=
 
 macro "verify_cast_generator" : tactic =>
   `(tactic|
-    apply Units.ext
-    ext i j
-    fin_cases i <;> fin_cases j <;>
-      norm_num [castGL, GeneralLinearGroup.map_apply,
-        xUZ, yUZ, zUZ, v1UZ, v2UZ, v3UZ,
-        xMZ, yMZ, zMZ, v1MZ, v2MZ, v3MZ,
-        xU, yU, zU, v1U, v2U, v3U,
-        xM, yM, zM, v1M, v2M, v3M])
+    exact GeneralLinearGroup.ext fun i j ↦ by
+      fin_cases i <;> fin_cases j <;>
+        norm_num [castGL, GeneralLinearGroup.map_apply,
+          xUZ, yUZ, zUZ, v1UZ, v2UZ, v3UZ,
+          xMZ, yMZ, zMZ, v1MZ, v2MZ, v3MZ,
+          xU, yU, zU, v1U, v2U, v3U,
+          xM, yM, zM, v1M, v2M, v3M])
 
 @[simp] theorem castGL_xUZ : castGL xUZ = xU := by verify_cast_generator
 @[simp] theorem castGL_yUZ : castGL yUZ = yU := by verify_cast_generator
@@ -99,17 +99,19 @@ macro "verify_cast_generator" : tactic =>
 
 theorem castGL_injective : Function.Injective castGL := by
   intro a b hab
-  apply Units.ext
-  ext i j
+  apply GeneralLinearGroup.ext
+  intro i j
   have hij := congrArg (fun u : Matˣ => ((u : Mat) i j)) hab
-  exact_mod_cast hij
+  have hcast : ((a : MatZ) i j : ℚ) = ((b : MatZ) i j : ℚ) := by
+    simpa [castGL, GeneralLinearGroup.map_apply] using hij
+  exact Int.cast_injective hcast
 
 /-- Casting carries the integral generated subgroup exactly onto `gammaBar`. -/
 theorem map_gammaInt : Subgroup.map castGL gammaInt = gammaBar := by
   rw [gammaInt, gammaBar, MonoidHom.map_closure]
   congr 1
   ext u
-  simp
+  simp [eq_comm]
 
 /-- The concrete rational affine base is isomorphic to an integral matrix
 subgroup. -/
@@ -128,7 +130,7 @@ theorem gammaBar_residuallyFinite : Group.ResiduallyFinite gammaBar := by
 /-- Closed soficity theorem for the concrete affine base. -/
 theorem gammaBar_isSofic : IsSofic gammaBar := by
   letI : Group.ResiduallyFinite gammaBar := gammaBar_residuallyFinite
-  exact isSofic_of_residuallyFinite
+  exact isSofic_of_isLEF isLEF_of_residuallyFinite
 
 /-- Closed operator-MF theorem for the concrete affine base. -/
 theorem gammaBar_isOperatorMF : IsOperatorMF gammaBar := by
