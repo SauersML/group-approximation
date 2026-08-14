@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralWitnessConsequences
 import GroupApproximation.Sofic.LiteralUniformObstruction
+import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.ScalingFamilyEndpoint
 import GroupApproximation.Sofic.TorsionFreeFiniteNormalLimit
@@ -96,6 +97,15 @@ theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
     ∀ (G : Type) [Group G] [IsMulTorsionFree G]
       (F : Subgroup G) [Finite F], F = ⊥ :=
   finiteSubgroup_eq_bot_of_isMulTorsionFree
+
+/-- The formal "free win": any sofic non-MF group is at once a hyperlinear
+non-MF group.  Applying this closed implication to the concrete witness only
+awaits the closed Lean proof of that witness's soficity. -/
+theorem sofic_nonMF_is_hyperlinear_nonMF :
+    ∀ (G : Type) [Group G], IsSofic G → ¬ IsOperatorMF G →
+      IsHyperlinear G ∧ ¬ IsOperatorMF G := by
+  intro G _ hsofic hnonMF
+  exact ⟨isHyperlinear_of_isSofic hsofic, hnonMF⟩
 
 end NonMFImpact
 end GroupApproximation
