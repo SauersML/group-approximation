@@ -6,6 +6,33 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: diagonal pairing defects already give spectral invariance
+
+`TRUE_DIAGONAL_PAIRING_DEFECT_SUPPLIES_SPECTRAL_INVARIANCE.md` eliminates the
+remaining independent transition hypothesis in the actual contraction-arrow
+pairing formulation.  For contractions `W,R,L`, put
+`eta=||R* W L-W||_2`.  Mass saturation through the two contractions gives
+
+```text
+||W L-R W||_2,
+||W* R-L W*||_2 <=eta+sqrt(2 eta),
+
+||[W*W,L]||_2 <=2 eta+2 sqrt(2 eta).
+```
+
+Thus the two diagonal decoder defects automatically make `W*W` almost
+commute with `L0,L1`.  Choosing the right-factor vertex cover `{L0,L1}` and
+applying coarea gives a trace-`>=1/120`, uniformly conditioned common cut for
+all three terminal products.  The spectral route has no separate
+invariance/synchronization assumption after the three common-coordinate
+pairing defects have been extracted.
+
+The exact transition decomposition is transcribed as
+`pairing_defect_transition_decomposition`; the remaining positive-contraction
+mass-saturation estimate is proved in the note but not yet transcribed.  The
+unresolved theorem is now common-coordinate extraction of the four
+paired-radical contractions with the three diagonal/cross defects.
+
 ### 2026-08-14: only the two left Leavitt arrows need spectral invariance
 
 `TRUE_TWO_LEFT_ARROWS_SUFFICE_FOR_SPECTRAL_LEAVITT.md` closes the

@@ -172,6 +172,14 @@ But once those four intertwining defects vanish, positive density,
 conditioning, a common invariant corner, and two-sided leakage all follow
 formally from `(TGI2)` and spectral coarea.
 
+In the reduced pairing formulation, a separate proof of these transition
+laws is unnecessary even for contraction arrows.  A mass-saturation estimate
+turns the diagonal defect `R* W L-W` into both the forward and reverse
+transition defects with loss `eta+sqrt(2 eta)`.  See
+`TRUE_DIAGONAL_PAIRING_DEFECT_SUPPLIES_SPECTRAL_INVARIANCE.md`.  The live
+work is therefore common-coordinate extraction of the three pairing defects,
+not an additional invariance theorem.
+
 ## 5. Formalization status
 
 The matrix identities and squared estimates `(TGI6)` and `(TGI6c)` have

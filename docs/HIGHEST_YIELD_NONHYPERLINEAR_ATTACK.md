@@ -387,6 +387,24 @@ bijective, and their crossed relation is zero.  Prioritize synchronization
 of `R0,S1`; it unifies the spectral and radical-quotient routes and avoids
 recovering either unused arrow's invariant cut.
 
+For the reduced pairing formulation there is an even better choice: the
+right-factor cover `{L0,L1}`.  No unitary repair is needed.  If `W,R,L` are
+contractions and `eta=||R* W L-W||_2`, contraction mass saturation gives
+
+```text
+||W L-R W||_2,
+||W*R-LW*||_2 <=eta+sqrt(2 eta),
+
+||[W*W,L]||_2 <=2 eta+2 sqrt(2 eta).
+```
+
+Therefore the two diagonal relations already supply the two coarea
+commutators, while `{L0,L1}` covers all three products.  See
+`TRUE_DIAGONAL_PAIRING_DEFECT_SUPPLIES_SPECTRAL_INVARIANCE.md`.  After
+common-coordinate extraction, spectral invariance is not an additional
+gate; the only remaining analytic input is the three pairing defects
+themselves.
+
 ## 2026-08-13 sharp terminal gate: align two `C^4` coefficient algebras
 
 For every raw coefficient character cut `F_epsilon` and every transported cut

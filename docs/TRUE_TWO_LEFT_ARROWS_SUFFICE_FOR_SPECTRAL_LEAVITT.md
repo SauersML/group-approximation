@@ -154,6 +154,13 @@ the two maps whose injectivity/surjectivity drives the finite obstruction.
 Coarea controls both orientations of each cut leakage, so no additional
 argument is needed to use `(TLS8a)`.
 
+For the reduced pairing packet, the right-factor cover `{L0,L1}` is better
+still.  Its two diagonal defects `Ri* W Li-W` automatically control
+`[W*W,Li]` for contraction arrows by mass saturation.  Hence the two
+required coarea commutators are already among the three terminal pairing
+hypotheses.  See
+`TRUE_DIAGONAL_PAIRING_DEFECT_SUPPLIES_SPECTRAL_INVARIANCE.md`.
+
 ## 4. What remains unproved
 
 This note does not extract `(TLS10)` from the atlas microstate.  The target

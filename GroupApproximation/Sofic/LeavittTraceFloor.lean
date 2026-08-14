@@ -306,6 +306,43 @@ theorem hsNormSq_transitionGram_commutator_le_four
     _ = 4 * hsNormSq Y (T * A - B * T) := by
       rfl
 
+/-- A diagonal pairing defect decomposes into the desired forward
+transition and one range-deficiency term.  Positivity of the latter supplies
+the square-root estimate recorded in the accompanying research note. -/
+theorem pairing_defect_transition_decomposition
+    (W L R : Matrix Y Y ℂ) :
+    W * L - R * W =
+      R * (Rᴴ * W * L - W) + (1 - R * Rᴴ) * (W * L) := by
+  noncomm_ring
+
+/-- A diagonal unitary pairing defect already controls the source Gram
+commutator.  Thus spectral invariance is not a separate hypothesis once the
+two diagonal pairing arrows have been repaired to unitaries. -/
+theorem hsNormSq_pairing_defect_controls_sourceGram_commutator
+    (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    (W L R : Matrix Y Y ℂ)
+    (hW : ‖W‖ ≤ 1)
+    (hL : L ∈ Matrix.unitaryGroup Y ℂ)
+    (hR : R ∈ Matrix.unitaryGroup Y ℂ) :
+    hsNormSq Y ((Wᴴ * W) * L - L * (Wᴴ * W)) ≤
+      4 * hsNormSq Y (Rᴴ * W * L - W) := by
+  have hRRstar : R * Rᴴ = 1 := Unitary.mul_star_self_of_mem hR
+  have hfactor :
+      W * L - R * W = R * (Rᴴ * W * L - W) := by
+    rw [Matrix.mul_sub]
+    calc
+      R * (Rᴴ * W * L) - R * W =
+          (R * Rᴴ) * W * L - R * W := by noncomm_ring
+      _ = W * L - R * W := by rw [hRRstar, Matrix.one_mul]
+  have htransition :=
+    hsNormSq_transitionGram_commutator_le_four
+      Y hY W L R hW hL hR
+  calc
+    hsNormSq Y ((Wᴴ * W) * L - L * (Wᴴ * W)) ≤
+        4 * hsNormSq Y (W * L - R * W) := htransition
+    _ = 4 * hsNormSq Y (Rᴴ * W * L - W) := by
+      rw [hfactor, hsNormSq_mul_left Y hR hY]
+
 /-! ## Compression identities for an almost invariant carrier -/
 
 /-- Inserting a carrier projection between two factors costs exactly one
