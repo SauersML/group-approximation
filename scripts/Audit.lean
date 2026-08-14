@@ -600,6 +600,33 @@ def headlineTheorems : List Name :=
    ``binaryLeavittWhiteheadK1_subsingleton,
    ``KunSpectral.no_uniform_spectral_gap]
 
+/-- Advertised closed endpoints.  A declaration on this list must have an
+empty outer telescope.  Universally quantified mathematics belongs inside a
+named `Prop`; the theorem itself may not accept data, typeclass instances, or
+hypotheses from its caller. -/
+def zeroInputEndpoints : List Name :=
+  [``KazhdanCompressionCore.manuscriptCentralSignCriterion,
+   ``KazhdanCliffordConstruction.kazhdanCliffordConstruction,
+   ``LiteralNonMFEndpoint.manuscriptTheoremA,
+   ``LiteralNonMFEndpoint.manuscriptTheoremD,
+   ``NonMFImpact.literal_sixGenerated_finitelyPresented_nonMF,
+   ``NonMFImpact.literal_nonempty_clopen_nonMF_cylinder,
+   ``NonMFImpact.witness_locallyFinite_MF_kernel_nonMF_total,
+   ``NonMFImpact.witness_reducedGroupCStar_stablyFinite_nonMF,
+   ``NonMFImpact.affineBase_residuallyFinite_sofic_MF,
+   ``NonMFImpact.scalingFamily_finitelyPresented_nonMF,
+   ``NonMFImpact.cyclicBase_exactModel_obstruction,
+   ``NonMFImpact.operatorMF_not_closed_under_quotients,
+   ``NonMFImpact.literal_uniform_operatorNorm_obstruction,
+   ``NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups,
+   ``NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF]
+
+/-- Does an elaborated declaration type still expose an outer input? -/
+partial def hasLeadingInput : Expr → Bool
+  | .forallE .. => true
+  | .mdata _ body => hasLeadingInput body
+  | _ => false
+
 /-- Every declaration of this development, taken from the environment rather
 than from a hand-maintained list, so that a new module cannot escape the
 audit by not being mentioned here. -/
@@ -622,6 +649,13 @@ def disallowed (axioms : Array Name) : Array Name :=
 
 run_cmd do
   let env ← getEnv
+
+  for n in zeroInputEndpoints do
+    let some ci := env.find? n
+      | throwError "zero-input endpoint `{n}` does not exist in the environment"
+    if hasLeadingInput ci.type then
+      throwError "advertised endpoint `{n}` has a leading declaration input; \
+route its universal sentence through a named closed proposition"
 
   for n in headlineTheorems do
     unless env.contains n do

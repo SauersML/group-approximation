@@ -26,6 +26,31 @@ open LiteralNonMFPresentation
 open ReducedGroupCStarTrace
 open scoped Matrix.Norms.L2Operator
 
+/-!
+The universally quantified conclusions below are routed through named closed
+propositions.  Every theorem exported from this endpoint module therefore has
+an empty declaration telescope: callers receive a proof of a closed sentence,
+never a headline API that accepts hypotheses.
+-/
+
+/-- Closed proposition asserting the whole scaling family at once. -/
+def ScalingFamilyFinitelyPresentedNonMF : Prop :=
+  ∀ m : ℕ, 2 ≤ m →
+    Group.IsFinitelyPresented (ScalingFamilyPresentation.MarkedGroup m) ∧
+      ¬ IsOperatorMF (ScalingFamilyPresentation.MarkedGroup m)
+
+/-- Closed proposition recording the torsion-free limit of the finite-normal
+obstruction. -/
+def FiniteNormalObstructionTrivialInTorsionFreeGroups : Prop :=
+  ∀ (G : Type) [Group G] [IsMulTorsionFree G]
+    (F : Subgroup G) [Finite F], F = ⊥
+
+/-- Closed universal separation statement: sofic non-MF groups are
+hyperlinear non-MF. -/
+def SoficNonMFIsHyperlinearNonMF : Prop :=
+  ∀ (G : Type) [Group G], IsSofic G → ¬ IsOperatorMF G →
+    IsHyperlinear G ∧ ¬ IsOperatorMF G
+
 /-- The literal group is finitely presented, six-generated, and non-MF. -/
 theorem literal_sixGenerated_finitelyPresented_nonMF :
     Group.rank MarkedGroup ≤ 6 ∧
@@ -81,9 +106,7 @@ theorem affineBase_residuallyFinite_sofic_MF :
 /-- The scaling construction is an unconditional infinite family: every
 factor `m ≥ 2` produces a finitely presented non-MF group. -/
 theorem scalingFamily_finitelyPresented_nonMF :
-    ∀ m : ℕ, 2 ≤ m →
-      Group.IsFinitelyPresented (ScalingFamilyPresentation.MarkedGroup m) ∧
-        ¬ IsOperatorMF (ScalingFamilyPresentation.MarkedGroup m) := by
+    ScalingFamilyFinitelyPresentedNonMF := by
   intro m hm
   exact ⟨inferInstance,
     ScalingFamilyEndpoint.scalingFamily_not_isOperatorMF m hm⟩
@@ -125,16 +148,14 @@ theorem literal_uniform_operatorNorm_obstruction :
 /-- The finite-normal obstruction cannot directly produce a nontrivial
 marked element in a torsion-free group. -/
 theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
-    ∀ (G : Type) [Group G] [IsMulTorsionFree G]
-      (F : Subgroup G) [Finite F], F = ⊥ :=
+    FiniteNormalObstructionTrivialInTorsionFreeGroups :=
   finiteSubgroup_eq_bot_of_isMulTorsionFree
 
 /-- The formal "free win": any sofic non-MF group is at once a hyperlinear
 non-MF group.  Applying this closed implication to the concrete witness only
 awaits the closed Lean proof of that witness's soficity. -/
 theorem sofic_nonMF_is_hyperlinear_nonMF :
-    ∀ (G : Type) [Group G], IsSofic G → ¬ IsOperatorMF G →
-      IsHyperlinear G ∧ ¬ IsOperatorMF G := by
+    SoficNonMFIsHyperlinearNonMF := by
   intro G _ hsofic hnonMF
   exact ⟨isHyperlinear_of_isSofic hsofic, hnonMF⟩
 

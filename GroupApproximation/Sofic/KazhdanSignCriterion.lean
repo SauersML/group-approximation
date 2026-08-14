@@ -23,6 +23,28 @@ universe w
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
+/-- The manuscript's central-sign criterion as one closed proposition.  All
+groups, structure, and hypotheses are quantified inside the sentence, leaving
+the advertised theorem with an empty declaration telescope. -/
+def ManuscriptCentralSignCriterion : Prop :=
+  ∀ {Γ E : Type} [Group Γ] [Group E] [Countable E]
+    (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
+    (iota : Γ →* E) (t c : E)
+    (hcompresses : ∀ γ : Γ, ∃ δ : Γ,
+      t * iota γ * t⁻¹ = iota δ)
+    (hcomm : ∀ γ : Γ, Commute c (iota γ))
+    (a : Γ) (z : E)
+    (hz : z = ⁅t * c * t⁻¹, iota a⁆ ^ 2)
+    (hz_ne : z ≠ 1) (hz_sq : z ^ 2 = 1)
+    (hz_central : ∀ g : E, Commute z g),
+    (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+      letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
+        fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
+      ∀ rho : E →* unitary (NormMatrixCStarCorona
+          (fun n ↦ naturalFiniteModel (d n))),
+        rho z = 1) ∧
+      ¬ IsCDEOperatorMF E
+
 /-- A central involution in the Kazhdan-compression defect is killed by every
 homomorphism to every genuine positive-size norm-matrix C-star corona.  This
 is the element-valued, reader-facing form of the finite-normal obstruction. -/
@@ -101,23 +123,7 @@ then every homomorphism into every positive natural-dimensional genuine
 norm-matrix C-star corona kills it, and the ambient countable group is not
 MF in the literal CDE sense. -/
 theorem manuscriptCentralSignCriterion :
-    ∀ {Γ E : Type} [Group Γ] [Group E] [Countable E]
-    (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
-    (iota : Γ →* E) (t c : E)
-    (hcompresses : ∀ γ : Γ, ∃ δ : Γ,
-      t * iota γ * t⁻¹ = iota δ)
-    (hcomm : ∀ γ : Γ, Commute c (iota γ))
-    (a : Γ) (z : E)
-    (hz : z = ⁅t * c * t⁻¹, iota a⁆ ^ 2)
-    (hz_ne : z ≠ 1) (hz_sq : z ^ 2 = 1)
-    (hz_central : ∀ g : E, Commute z g),
-    (∀ (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
-      letI : ∀ n, Nonempty (naturalFiniteModel (d n)) :=
-        fun n ↦ Fintype.card_pos_iff.mp (by simpa using hd n)
-      ∀ rho : E →* unitary (NormMatrixCStarCorona
-          (fun n ↦ naturalFiniteModel (d n))),
-        rho z = 1) ∧
-      ¬ IsCDEOperatorMF E := by
+    ManuscriptCentralSignCriterion := by
   intro Γ E _ _ _ hT iota t c hcompresses hcomm a z hz hz_ne hz_sq hz_central
   let C : KazhdanCompressionCore Γ E := {
     iota := iota

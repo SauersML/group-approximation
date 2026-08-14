@@ -578,13 +578,11 @@ theorem not_isOperatorMF (ha : a ∉ Set.range alpha) :
   simpa using (inclusionData alpha a hT).not_isOperatorMF
     (mark_ne_one alpha hAlpha a ha)
 
-/-- **Kazhdan--Clifford construction (formal headline theorem).**  A
-finitely presented Kazhdan group with a proper injective self-map produces a
-finitely presented non-MF group.  The distinguished central involution is
-nontrivial in the Clifford model and is killed by every norm-matrix-corona
-representation. -/
-theorem kazhdanCliffordConstruction :
-    ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
+/-- The general Kazhdan--Clifford construction as one closed proposition.
+All construction data and hypotheses are quantified inside the proposition,
+so the printed headline theorem itself has no declaration inputs. -/
+def KazhdanCliffordConstructionStatement : Prop :=
+  ∀ {Γ₀ : Type} [Group Γ₀] [Group.IsFinitelyPresented Γ₀]
     (alpha : Γ₀ →* Γ₀) (hAlpha : Function.Injective alpha) (a : Γ₀)
     (hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ₀)
     (ha : a ∉ Set.range alpha),
@@ -601,7 +599,15 @@ theorem kazhdanCliffordConstruction :
         ∀ rho : Extension alpha a →*
             unitary (NormMatrixCStarCorona (fun n ↦ X n)),
           rho (mark alpha a) = 1) ∧
-      ¬ IsCDEOperatorMF (Extension alpha a) := by
+      ¬ IsCDEOperatorMF (Extension alpha a)
+
+/-- **Kazhdan--Clifford construction (formal headline theorem).**  A
+finitely presented Kazhdan group with a proper injective self-map produces a
+finitely presented non-MF group.  The distinguished central involution is
+nontrivial in the Clifford model and is killed by every norm-matrix-corona
+representation. -/
+theorem kazhdanCliffordConstruction :
+    KazhdanCliffordConstructionStatement := by
   intro Γ₀ _ _ alpha hAlpha a hTTextbook ha
   let hTReal : HasKazhdanPropertyT.{0, 0} Γ₀ :=
     hasKazhdanPropertyT_iff_textbook.mpr hTTextbook
