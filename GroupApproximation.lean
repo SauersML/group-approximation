@@ -23,6 +23,7 @@ import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Monsters.AffineSL3Scaling
 import GroupApproximation.Monsters.ExplicitLinearModel
+import GroupApproximation.Monsters.ExplicitLinearModelScaling
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
