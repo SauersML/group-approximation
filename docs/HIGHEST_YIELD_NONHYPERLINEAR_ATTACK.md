@@ -2,6 +2,39 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 proper compressor paths can be synchronized intrinsically
+
+Finite Fourier twirling works for an arbitrary homomorphism of finite
+abelian groups, not only an automorphism.  If `alpha:F->G`, the twirl
+
+```text
+Q_alpha(X)=(1/|F|) sum_a sigma(alpha(a))* X rho(a)
+```
+
+is the Hilbert--Schmidt orthogonal projection onto the exact `alpha`-
+intertwiners, with the sharp identity
+
+```text
+e_alpha(X)^2=2||X-Q_alpha(X)||_2^2.
+```
+
+These repairs are approximately functorial: for contractions on two
+composable arrows, if the relevant full and restricted RMS covariance
+defects are at most `eta`, the repaired two-edge path is within
+`2 sqrt(2) eta` of the repaired composite.  The constant is independent of
+group orders, subgroup indices, and extension-fiber sizes.  Its spectral
+expansion uses the canonical intermediate character `zeta o beta`, so the
+proper Leavitt compressor does not require a choice of representatives in
+its many-to-one dual fibers.  See
+`TRUE_HOMOMORPHISM_TWIRLING_IS_APPROXIMATELY_FUNCTORIAL.md`.
+
+This removes "dual maps must be permutations" from the live gate.  It does
+not remove exact commutant gauges: an exact gauge is already fixed by the
+twirl.  The remaining theorem is to assemble these intrinsic path blocks
+into the repaired coefficient implementer and identify their four-root path
+discrepancy with its genuine coproduct defect.  After that identification,
+the coproduct gauge-pinning theorem below applies.
+
 ## 2026-08-14 coproduct defects pin commutant gauges
 
 The arbitrary commutant unitary in a finite regular envelope becomes
