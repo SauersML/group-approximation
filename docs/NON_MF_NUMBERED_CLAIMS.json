@@ -342,6 +342,27 @@
       ]
     },
     {
+      "id": "thm:sofic-detector",
+      "environment": "theorem",
+      "title": "sofic Clifford detector",
+      "statement_sha256": "b07e9e7ebe41a423ec58639c8c1dfa4fe343bec2224667d0e4e46284ddbe2931",
+      "status": "paper-only",
+      "object_identity": "The printed theorem concerns the same literal group E, mark w, and Clifford witness W used by Proposition prop:witness.",
+      "dependencies": [
+        "thm:A",
+        "prop:witness"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "residual finiteness of finitely generated integral linear groups",
+        "closure of sofic groups under finite extensions and directed unions",
+        "closure of sofic groups under extensions by amenable quotients",
+        "sofic groups are hyperlinear"
+      ],
+      "coverage_gap": "The concrete finite-coset-tower and sofic permanence argument is proved in the manuscript; Lean formalizes the abstract detector consequences but not this concrete soficity construction.",
+      "lean": []
+    },
+    {
       "id": "cor:notRFD",
       "environment": "corollary",
       "title": "",
