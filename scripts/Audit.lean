@@ -182,12 +182,13 @@ noncomputable example (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
   rfl
 
 example (G : Type u) [Group G] [Countable G] :
-    (∃ X : ℕ → FiniteModel, ∃ hne : ∀ n, Nonempty (X n),
-      letI := hne
-      (∀ n, 0 < Fintype.card (X n)) ∧
-        StrictMono (fun n ↦ Fintype.card (X n)) ∧
-          ∃ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
-            Function.Injective rho) ↔ IsOperatorMF G := by
+    (∃ d : ℕ → ℕ, ∃ hd : ∀ n, 0 < d n,
+      letI : ∀ n, Nonempty (naturalFiniteModel (d n)) := fun n ↦
+        Fintype.card_pos_iff.mp (by simpa using hd n)
+      StrictMono d ∧
+        ∃ rho : G →* unitary (NormMatrixCStarCorona
+          (fun n ↦ naturalFiniteModel (d n))), Function.Injective rho) ↔
+      IsOperatorMF G := by
   simpa only [IsCDEOperatorMF] using isCDEOperatorMF_iff_isOperatorMF G
 
 example {Gamma E : Type} [Group Gamma] [Group E] [Countable E]
