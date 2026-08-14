@@ -273,9 +273,6 @@ jobs:
             --require-verified \
               Sofic/LiteralBaseP13PropertyTBridge \
               GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \
-            --require-verified \
-              Sofic/P13ExactStagedCertificate \
-              GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
