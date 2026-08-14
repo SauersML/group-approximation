@@ -5041,6 +5041,14 @@ commuting involutions cut the joint character cube by affine equations, and
 adding then eliminating commuting ancillas still produces an affine set.
 For instance the three-point satisfying set of two-bit OR is not affine.
 
+Finite nonabelian truth-table gadgets do not repair this.  If `D` is the
+local Boolean subgroup of a finite gadget `F`, `z` is central, and `chi` is
+any character of `D` compatible with `z=-1`, then
+`Ind_(<D,z>)^F(chi)` is a nonzero finite-dimensional negative-sector
+representation whose restriction still contains `chi`.  Thus every
+compatible Boolean atom survives some finite-dimensional representation of
+the gadget.
+
 Therefore this recent compiler does not close Taller--Vidick's explicit
 `epsilon=0` LCS gate.  A successful groupification still needs a nonabelian
 multiplication gadget together with a dimension-independent decoding theorem
