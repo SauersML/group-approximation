@@ -27,7 +27,8 @@ This note proves two dimension-free representation-theoretic facts.
 
    ```text
    dim(theta_a)>=d/3             for every a,
-   sum_a m_a<=3.                                      (ITB3)
+   m_a=1                         for every a,
+   number of constituents<=3.                         (ITB3)
    ```
 
 2. If `theta` is an irreducible finite-dimensional unitary representation
@@ -43,9 +44,10 @@ This note proves two dimension-free representation-theoretic facts.
 
 Thus the high-dimensional escape left by the Iwahori matching reductions
 cannot fragment one modular irreducible into an unbounded number of small
-edge types.  The restriction/induction incidence graph has degree at most
-three in both directions, and dimensions across every edge differ by at
-most a factor of three.
+edge types or hide multiplicity inside a repeated edge type.  The
+restriction/induction incidence graph is simple, has degree at most three
+in both directions, and dimensions across every edge differ by at most a
+factor of three.
 
 This does not yet rule out the full-rank low-energy outlier.  A single pair
 of growing Iwahori irreducibles can still have a one-dimensional space of
@@ -126,15 +128,25 @@ and `(ITB12)` now give
 d>=(d/3)sum_a m_a,                                    (ITB14)
 ```
 
-which proves `sum_a m_a<=3`.
+which first proves `sum_a m_a<=3`.
+
+Section 5 below proves that `Ind_B^K(theta_a)` is multiplicity-free.
+Frobenius reciprocity then gives
+
+```text
+m_a=dim Hom_B(theta_a,pi|B)
+   =dim Hom_K(Ind_B^K(theta_a),pi)<=1.                 (ITB14a)
+```
+
+Thus every nonzero `m_a` is one, and there are at most three distinct
+constituents.
 
 **Theorem 1 (bounded Iwahori restriction).**  Equations
 `(ITB2)--(ITB3)` hold for every finite-dimensional irreducible unitary
 representation of `K`.
 
-The bound counts multiplicity, not merely the number of inequivalent
-constituents.  In particular, restriction cannot hide an unbounded
-multiplicity space inside one growing modular irreducible.
+In particular, restriction cannot hide any repeated multiplicity space
+inside one irreducible modular block.
 
 ## 4. The index-two intersection
 
@@ -238,7 +250,8 @@ negative sequence into irreducibles.  The dimension-tight theorem in
 `TRUE_IWAHORI_MATCHING_FIXED_TYPE_REDUCTION.md` says that positive normalized
 mass must escape through modular irreducibles of unbounded dimension on
 both vertices.  Theorem 1 now says that each such block restricts through
-at most three Iwahori constituents, all of comparable dimension.
+at most three pairwise inequivalent Iwahori constituents, all of comparable
+dimension.
 
 Conversely, Theorem 3 says that any one of those Iwahori constituents can
 belong to at most three inequivalent modular induction branches on either
