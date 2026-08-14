@@ -1,6 +1,11 @@
 import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
+import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Fintype.Order
+import Mathlib.Data.Fintype.Prod
 import Mathlib.Data.Real.Basic
+import Mathlib.Tactic
 
 /-!
 # Finite gluing along a common marginal
@@ -12,6 +17,8 @@ classical transport contexts in the robust paired-quotient program.
 
 namespace GroupApproximation
 namespace FiniteTreeCoupling
+
+noncomputable section
 
 variable {A B C : Type*} [Fintype A] [Fintype B] [Fintype C]
 
@@ -33,6 +40,7 @@ theorem eq_zero_of_nonnegative_sum_eq_zero
   rw [hsum] at hle
   exact le_antisymm hle (hf x)
 
+omit [Fintype A] [Fintype B] [Fintype C] in
 theorem glueAlongFirst_nonnegative
     (μAB : A → B → ℝ) (μAC : A → C → ℝ) (α : A → ℝ)
     (hAB : ∀ a b, 0 ≤ μAB a b)
@@ -46,6 +54,7 @@ theorem glueAlongFirst_nonnegative
     exact div_nonneg (mul_nonneg (hAB a b) (hAC a c)) (hα a)
 
 /-- Summing out `C` recovers the `A-B` law. -/
+omit [Fintype A] [Fintype B] in
 theorem sum_glueAlongFirst_right
     (μAB : A → B → ℝ) (μAC : A → C → ℝ) (α : A → ℝ)
     (hABnonneg : ∀ a b, 0 ≤ μAB a b)
@@ -63,6 +72,7 @@ theorem sum_glueAlongFirst_right
       mul_div_cancel_right₀ _ ha]
 
 /-- Summing out `B` recovers the `A-C` law. -/
+omit [Fintype A] [Fintype C] in
 theorem sum_glueAlongFirst_left
     (μAB : A → B → ℝ) (μAC : A → C → ℝ) (α : A → ℝ)
     (hACnonneg : ∀ a c, 0 ≤ μAC a c)

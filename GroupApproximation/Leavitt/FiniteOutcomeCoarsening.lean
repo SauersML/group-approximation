@@ -1,5 +1,8 @@
 import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Data.Fintype.BigOperators
 import Mathlib.Data.Fintype.Prod
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic
 
 /-!
 # Coarsening finite classical outcomes
@@ -12,6 +15,8 @@ This file records the finite scalar part of that operation.
 
 namespace GroupApproximation
 namespace FiniteOutcomeCoarsening
+
+noncomputable section
 
 variable {X A : Type*} [Fintype X] [Fintype A] [DecidableEq A]
 

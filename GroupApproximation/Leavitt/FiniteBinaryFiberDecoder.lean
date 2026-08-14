@@ -20,6 +20,8 @@ character, without selecting a fixed-rank fiber.
 namespace GroupApproximation
 namespace FiniteBinaryFiberDecoder
 
+noncomputable section
+
 /-- Error mass of the fiberwise majority decoder. -/
 def majorityError (m₀ m₁ : ℝ) : ℝ :=
   if m₁ ≤ m₀ then m₁ else m₀
@@ -36,7 +38,7 @@ def conditionalVariance (m₀ m₁ : ℝ) : ℝ :=
 theorem majorityError_eq_min (m₀ m₁ : ℝ) :
     majorityError m₀ m₁ = min m₀ m₁ := by
   by_cases h : m₁ ≤ m₀
-  · simp [majorityError, h, min_eq_right h]
+  · simp [majorityError, h]
   · have h' : m₀ ≤ m₁ := le_of_not_ge h
     simp [majorityError, h, min_eq_left h']
 
@@ -57,7 +59,7 @@ theorem majorityError_le_pairDisagreementMass
   by_cases hsum : m₀ + m₁ = 0
   · have hm₀ : m₀ = 0 := by nlinarith
     have hm₁ : m₁ = 0 := by nlinarith
-    simp [pairDisagreementMass, hsum, hm₀, hm₁]
+    simp [pairDisagreementMass, hm₀, hm₁]
   · have hpos : 0 < m₀ + m₁ :=
       lt_of_le_of_ne (add_nonneg h₀ h₁) (Ne.symm hsum)
     rw [pairDisagreementMass, if_neg hsum, le_div_iff₀ hpos]
@@ -79,7 +81,7 @@ theorem pairDisagreementMass_le_two_mul_majorityError
   by_cases hsum : m₀ + m₁ = 0
   · have hm₀ : m₀ = 0 := by nlinarith
     have hm₁ : m₁ = 0 := by nlinarith
-    simp [pairDisagreementMass, hsum, hm₀, hm₁]
+    simp [pairDisagreementMass, hm₀, hm₁]
   · have hpos : 0 < m₀ + m₁ :=
       lt_of_le_of_ne (add_nonneg h₀ h₁) (Ne.symm hsum)
     rw [pairDisagreementMass, if_neg hsum, div_le_iff₀ hpos]

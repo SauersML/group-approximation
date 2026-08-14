@@ -139,6 +139,7 @@ def rowSeparationSet (pair : V → W → Prop) [DecidableRel pair]
 
 /-- If two transported row labels collide, every column separating the
 original rows is charged to a mismatch in at least one of those two rows. -/
+omit [Fintype V] [DecidableEq V] in
 theorem rowSeparation_subset_mismatch_union_of_collision
     (pair : V → W → Prop) [DecidableRel pair]
     (R : V → V) (L : W → W) {v v' : V}
@@ -263,15 +264,15 @@ theorem sum_offDiag_pairCost
   have hsplit :
       (∑ p ∈ F.diag, (cost p.1 + cost p.2)) +
           (∑ p ∈ F.offDiag, (cost p.1 + cost p.2)) =
-        ∑ p ∈ F.product F, (cost p.1 + cost p.2) := by
+        ∑ p ∈ F ×ˢ F, (cost p.1 + cost p.2) := by
     rw [← Finset.sum_union (Finset.disjoint_diag_offDiag F),
       Finset.diag_union_offDiag]
   have hdiag :
       ∑ p ∈ F.diag, (cost p.1 + cost p.2) =
         2 * ∑ x ∈ F, cost x := by
-    simp [Finset.sum_diag, Nat.two_mul]
+    simp [Finset.sum_diag, Finset.sum_add_distrib, Nat.two_mul]
   have hproduct :
-      ∑ p ∈ F.product F, (cost p.1 + cost p.2) =
+      ∑ p ∈ F ×ˢ F, (cost p.1 + cost p.2) =
         2 * F.card * ∑ x ∈ F, cost x := by
     rw [Finset.sum_product]
     simp [Finset.sum_add_distrib, Nat.mul_add, Nat.add_mul,
@@ -280,6 +281,7 @@ theorem sum_offDiag_pairCost
   · have hcard : F.card = (F.card - 1) + 1 := by
       omega
     rw [hdiag, hproduct, hcard] at hsplit
+    simp [Nat.add_mul, Nat.mul_add] at hsplit
     omega
   · have : F = ∅ := Finset.not_nonempty_iff_eq_empty.mp hF
     simp [this]
@@ -448,14 +450,14 @@ theorem robust_floor_of_permutation_repairs
     _ = 2 * (oneSet pair R₀ L₁).card +
         2 * (N * (disagreementSet R₀ Rbar₀).card) +
           2 * (N * (disagreementSet L₁ Lbar₁).card) := by
-      simp [Nat.mul_add, Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+      ring
     _ ≤ 2 * (oneSet pair R₀ L₁).card +
         2 * (4 * e₀₀) + 2 * (4 * e₁₁) := by
       exact Nat.add_le_add
         (Nat.add_le_add_left (Nat.mul_le_mul_left 2 hR) _)
         (Nat.mul_le_mul_left 2 hL)
     _ = 2 * (oneSet pair R₀ L₁).card + 8 * e₀₀ + 8 * e₁₁ := by
-      simp [Nat.mul_assoc]
+      ring
 
 /-- Robust floor using the canonical singleton-fiber repairs.  The only
 unresolved hypotheses here are the two global collision-source budgets; no
@@ -481,6 +483,10 @@ theorem robust_floor_of_collision_budgets
 /-- The pairing with its two label spaces exchanged. -/
 def transposePair (pair : V → W → Prop) : W → V → Prop :=
   fun w v ↦ pair v w
+
+instance transposePair_decidableRel (pair : V → W → Prop)
+    [DecidableRel pair] : DecidableRel (transposePair pair) :=
+  fun w v ↦ inferInstanceAs (Decidable (pair v w))
 
 /-- Full deterministic robust paired-quotient floor.  Perfect row separation
 controls collisions of `R₀`; perfect column separation is the same row
@@ -540,6 +546,9 @@ theorem independentKernelOneMass_eq_oneSet_card
   simp_rw [independentKernelOneMass,
     sum_col_of_mem_doublyStochastic hK,
     sum_col_of_mem_doublyStochastic hL]
+  change (∑ x, ∑ y, if pair x y then 1 else 0) =
+    ((oneSet pair id id).card : ℝ)
+  rw [← Fintype.sum_prod_type]
   simp [oneSet]
 
 /-- For a perfect binary pairing, the independent bistochastic crossed mass
@@ -608,8 +617,18 @@ theorem one_fourth_le_weighted_three_error
     (fun _ ↦ (1 : ℝ) / 4)
     (fun ω ↦ e₀₁ ω + 4 * e₀₀ ω + 4 * e₁₁ ω)
     hμnonneg hfloor
-  simpa [weightedRealAverage, hμsum, Finset.mul_sum,
-    Finset.sum_add_distrib, mul_add, mul_assoc] using havg
+  have hconstant : weightedRealAverage μ (fun _ ↦ (1 : ℝ) / 4) =
+      (1 : ℝ) / 4 := by
+    simp [weightedRealAverage, ← Finset.sum_mul, hμsum]
+  rw [hconstant] at havg
+  calc
+    (1 : ℝ) / 4 ≤ weightedRealAverage μ
+        (fun ω ↦ e₀₁ ω + 4 * e₀₀ ω + 4 * e₁₁ ω) := havg
+    _ = weightedRealAverage μ e₀₁ +
+        4 * weightedRealAverage μ e₀₀ +
+          4 * weightedRealAverage μ e₁₁ := by
+      simp [weightedRealAverage, Finset.sum_add_distrib,
+        Finset.mul_sum, mul_add, mul_assoc]
 
 /-- Averaged robust floor for one common classical law on four map-valued
 transports.  This is the precise classicalization endpoint needed from the

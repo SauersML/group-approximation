@@ -19,6 +19,8 @@ paired-quotient floor.
 namespace GroupApproximation
 namespace FiniteNoSignalingPairingBox
 
+noncomputable section
+
 /-- The four labels of the rank-two binary pairing. -/
 abbrev Label := Bool × Bool
 
@@ -40,8 +42,8 @@ def pairingBoxWeight (c : Bool) (x y : Label) : ℝ :=
 
 theorem pairingBoxWeight_nonnegative (c : Bool) (x y : Label) :
     0 ≤ pairingBoxWeight c x y := by
-  simp only [pairingBoxWeight]
-  split <;> split <;> split <;> split <;> norm_num
+  unfold pairingBoxWeight
+  split_ifs <;> norm_num
 
 /-- Every row marginal is zero at the zero label and `1/3` at each nonzero
 label, independently of the requested pairing value. -/
@@ -100,14 +102,16 @@ theorem crossedBox_support (v w x y : Label)
 /-- The diagonal and crossed contexts have exactly the same left marginal. -/
 theorem diagonal_crossed_left_marginal (v w v' w' x : Label) :
     (∑ y, diagonalBox v w x y) = ∑ y, crossedBox v' w' x y := by
-  rw [diagonalBox, crossedBox, pairingBoxWeight_row,
-    pairingBoxWeight_row]
+  change (∑ y, pairingBoxWeight (pairing v w) x y) =
+    ∑ y, pairingBoxWeight false x y
+  rw [pairingBoxWeight_row, pairingBoxWeight_row]
 
 /-- The diagonal and crossed contexts have exactly the same right marginal. -/
 theorem diagonal_crossed_right_marginal (v w v' w' y : Label) :
     (∑ x, diagonalBox v w x y) = ∑ x, crossedBox v' w' x y := by
-  rw [diagonalBox, crossedBox, pairingBoxWeight_column,
-    pairingBoxWeight_column]
+  change (∑ x, pairingBoxWeight (pairing v w) x y) =
+    ∑ x, pairingBoxWeight false x y
+  rw [pairingBoxWeight_column, pairingBoxWeight_column]
 
 /-- The exact rank-two no-signaling countermodel: both diagonal boxes and
 the crossed-zero box are normalized nonnegative laws, their endpoint
