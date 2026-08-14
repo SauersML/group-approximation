@@ -6,6 +6,18 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: intrinsic transition variance cancels source gauge exactly
+
+`TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md` proves that for
+`[C,P]=0`, replacing a compressor `U` by `UC` leaves `UPU*` unchanged and
+conjugates every effect `P U*Q_j U P` by `C` inside the source corner. Total
+idempotence and commutator energy are therefore exactly invariant. The
+single-edge transition route does not require coproduct gauge pinning. Its
+remaining theorem is only the fine-fiber refinement: multiplication must
+separate target characters which have the same restriction along the proper
+coefficient homomorphism. The new matrix identities are transcribed in
+`Sofic/TransitionGaugeInvariance.lean`.
+
 ### 2026-08-14: one group-like gauge cannot kill packet multiplicity
 
 `FALSE_ONE_COPRODUCT_GAUGE_DOES_NOT_SCALARIZE_THE_MULTIPLICITY.md` gives the

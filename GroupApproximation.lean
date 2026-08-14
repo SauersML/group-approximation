@@ -13,6 +13,7 @@ import GroupApproximation.Sofic.ExactInvolutionCut
 import GroupApproximation.Sofic.InvolutiveTwoSheet
 import GroupApproximation.Sofic.PauliBranchTransfer
 import GroupApproximation.Sofic.DoublePauliCoefficient
+import GroupApproximation.Sofic.TransitionGaugeInvariance
 import GroupApproximation.Sofic.CoefficientAlternatingReynolds
 import GroupApproximation.Sofic.MixedCommutatorDihedral
 import GroupApproximation.Sofic.SpectralCapture

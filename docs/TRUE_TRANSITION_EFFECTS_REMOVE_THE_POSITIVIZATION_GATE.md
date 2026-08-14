@@ -191,11 +191,19 @@ intrinsic transition effects P U*Q_j U P
 ```
 
 What remains is not positivity, PVM rounding, or extension-fiber
-representative selection. It is the mixed atlas estimate `(TER16)`. Pure
-root covariance and root-only four-root associativity cannot imply it,
-because they do not detect the compressor commutant gauge. The estimate must
-use the literal compiled compressor word together with a cross-chart
-multiplication relation.
+representative selection. It is the mixed atlas estimate `(TER16)`. Source
+commutant gauge is not an obstruction to this estimate: replacing `U` by
+`UC`, with `[C,P]=0`, leaves `UPU*` unchanged and conjugates every transition
+effect inside `PMP`. See
+`TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md`.
+
+The genuine missing content is fine-fiber resolution. Root covariance sees
+only the restriction of a target character along the proper coefficient
+homomorphism, so it cannot distinguish different target characters in the
+same restriction fiber. A cross-root multiplication relation must kill that
+within-fiber coherence. The literal compiled word may still be needed to
+synchronize several edges, but not to pin a source gauge for this single
+transition variance.
 
 If that fixed mixed estimate is proved, `(TER3)` supplies the exact finite
 transition PVMs required by the whole-map decoder, and the robust `1/36`

@@ -78,6 +78,16 @@ mixed atlas theorem is precisely to force the displayed total commutator
 energy to zero using the literal compiled compressor word and cross-chart
 multiplication relations.
 
+The source commutant gauge cancels from this particular target exactly. If
+`[C,P]=0`, replacing `U` by `UC` leaves `UPU*` fixed and conjugates the
+effects `P U*Q_j U P` inside the source corner. Hence their total variance is
+unchanged. See `TRUE_TRANSITION_VARIANCE_IS_SOURCE_GAUGE_INVARIANT.md`.
+The single-edge gate is therefore only fine-fiber multiplication: coarse
+homomorphism twirling already separates distinct restricted characters, and
+cross-root multiplication must eliminate coherence between extensions with
+the same restriction. Compiled-word gauge pinning is relevant only when
+assembling several edges or whole-map outcomes.
+
 ## 2026-08-14 correction: pure four-root words cannot pin the gauge
 
 The coproduct-identification gate cannot use only root covariance and pure
