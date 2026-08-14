@@ -27,7 +27,7 @@ audit. The paragraphs below describe the current source revision; publication of
 verified pin is blocked until the exact claim manifest, full build, axiom
 audit, fresh-kernel replay, and PDF provenance gate all pass for one commit.
 
-## An explicit finitely presented CDE-MF obstruction
+## An explicit finitely presented group that is not MF
 
 [`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every
 countable group is MF in the Carrión–Dadarlat–Eckhardt sense. Here MF means
@@ -44,9 +44,9 @@ introduced in that release; the release workflow uses a digest-pinned TeX
 Live 2026 image.
 
 The current manuscript draft gives a literal finite presentation on eight
-generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is used as a
-presented group: no unproved identification with a semantic affine matrix
-group is part of the argument. The stable letter doubles the three commuting
+generators `v₁,v₂,v₃,x,y,z,t,c`. Its six-generator, twenty-relator base is
+identified from its displayed presentation with `ℤ³ ⋊ SL₃(ℤ)`. The stable
+letter doubles the three commuting
 translation generators and fixes `x,y,z`; the involution `c` centralizes the
 base. The defining relations make
 
@@ -71,7 +71,7 @@ u = [tct⁻¹,v₁],       w = u².
 ```
 
 The short reader-facing architecture, including the redundant-sign
-presentation and the affine family, is recorded in
+presentation, is recorded in
 [`docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md`](docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md).
 
 The reusable theorem is transport of the entire bounded asymptotic
@@ -94,14 +94,6 @@ The paper also proves:
 - a unital separable stably finite non-MF C*-algebra, namely `C*red(E)`;
 - failure of closure of MF groups under quotients;
 - the MF radical, its single-corona detector, and the largest MF quotient.
-
-The paper additionally proves by a finite-coset-tower argument that the
-Clifford witness is a finitely generated sofic non-MF group.  Thus the same
-marked sign is MF-invisible but visible in both sofic and hyperlinear targets.
-The abstract detector/radical implications are formalized in
-`Sofic/RadicalSeparation.lean`; the concrete tower, finite-extension, and
-sofic-by-amenable permanence proof is currently classified explicitly as a
-paper-only claim in the numbered-claim manifest.
 
 The result is specific to operator-norm approximation. It does not decide
 whether the presenting group `E` itself is hyperlinear or sofic, or whether
