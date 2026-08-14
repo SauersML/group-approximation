@@ -1,24 +1,11 @@
-# Keep the property-(TT)/T manuscript under the same publication gates as the
-# main manuscript: source-to-Lean links, TeX convergence, overflow checks,
-# conservative PDF normalization, full-page rendering, anonymous-build leak
-# detection, and a versioned PDF on main.
+# Publish the property-(TT)/T manuscript only after the complete formal
+# development passes the same source, kernel, and signature gates as the main
+# manuscript, followed by TeX and rendered-page validation.
 name: Build and commit property TT PDF
 
 on:
   push:
     branches: [main]
-    paths:
-      - property_tt_leavitt.tex
-      - docs/PROPERTY_TT_CLAIM_MAP.md
-      - docs/PROPERTY_TT_PROVENANCE.md
-      - GroupApproximation/PropertyTT/**
-      - GroupApproximation/KOne/PaperStatements.lean
-      - GroupApproximation/Endpoint/Audit.lean
-      - lakefile.toml
-      # All publication and source-audit helpers are part of the gate.  Watching
-      # the directory prevents a shared helper change from silently bypassing it.
-      - scripts/**
-      - .github/workflows/build-property-tt-pdf.yml
   workflow_dispatch:
 
 permissions:
@@ -36,7 +23,7 @@ jobs:
   build-pdf:
     name: Build and validate PDF
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 360
 
     steps:
       - name: Check out repository
@@ -44,6 +31,42 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+
+      - name: Assert a clean source checkout
+        run: test -z "$(git status --porcelain)"
+
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore Lake dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Restore compiled project
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-property-tt-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-
+
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
 
       - name: Cache apt package downloads
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
@@ -82,6 +105,32 @@ jobs:
           python3 scripts/check.py --self-test
           python3 scripts/test_claim_map.py
           python3 scripts/check.py
+
+      - name: Build the complete formal development
+        run: lake build
+
+      - name: Build and calibrate the audit library
+        run: |
+          lake build Audit
+          lake env lean scripts/Calibrate.lean
+
+      - name: Kernel audit and endpoint axiom closures
+        run: lake env lean scripts/Audit.lean
+
+      - name: Regenerate and compare exact signatures
+        run: |
+          cp docs/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
+          cp docs/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
+          lake env lean scripts/Signatures.lean
+          cmp -s /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          cmp -s /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
+            docs/NON_MF_CLAIM_SIGNATURES.md
+          mv /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          mv /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
+            docs/NON_MF_CLAIM_SIGNATURES.md
+
+      - name: Fresh kernel replay
+        run: lake env leanchecker --fresh GroupApproximation
 
       - name: Compile, lint, normalize, and validate PDF
         shell: bash
@@ -157,40 +206,26 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          publication_inputs_digest() {
-            git ls-tree -r "$1" -- \
-              "$TEX_FILE" \
-              lakefile.toml \
-              scripts \
-              .github/workflows/build-property-tt-pdf.yml \
-              | sha256sum | awk '{print $1}'
-          }
-
-          built_inputs="$(publication_inputs_digest "$START_SHA")"
-          pdf_holding="${RUNNER_TEMP}/${PDF_FILE}"
-          cp -- "$PDF_FILE" "$pdf_holding"
           git fetch origin main
+          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
+            echo "main advanced during the build; its own run will publish its PDF."
+            exit 0
+          fi
 
-          for attempt in 1 2 3; do
-            remote_main="$(git rev-parse origin/main)"
-            if [[ "$(publication_inputs_digest "$remote_main")" != "$built_inputs" ]]; then
-              echo "main carries newer publication inputs; that push will build its PDF."
-              exit 0
-            fi
-            git reset --hard "$remote_main"
-            cp -- "$pdf_holding" "$PDF_FILE"
-            git add -- "$PDF_FILE"
-            if git diff --cached --quiet -- "$PDF_FILE"; then
-              echo "The committed PDF is already current."
-              exit 0
-            fi
-            git commit -m "build: update property TT PDF [skip ci]"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push rejected on attempt ${attempt}; retrying."
-            git fetch origin main
-          done
-          echo "Could not push the updated PDF after 3 attempts." >&2
+          git add -- "$PDF_FILE"
+          if git diff --cached --quiet -- "$PDF_FILE"; then
+            echo "The committed PDF is already current."
+            exit 0
+          fi
+          git commit -m "build: update property TT PDF [skip ci]"
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+
+          git fetch origin main
+          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
+            echo "main advanced before the push; its own run will publish its PDF."
+            exit 0
+          fi
+          echo "Could not push the updated PDF." >&2
           exit 1
