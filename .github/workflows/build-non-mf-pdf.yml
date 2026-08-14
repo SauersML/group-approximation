@@ -378,3 +378,34 @@ jobs:
             kernel-audit.log \
             signatures.log \
             leanchecker.log
+
+      - name: Commit and push the current tagged PDF
+        env:
+          START_SHA: ${{ env.SOURCE_SHA }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
+            echo "main advanced during publication; its own verified run will publish the current PDF."
+            exit 0
+          fi
+
+          git add -- "$PDF_FILE"
+          if git diff --cached --quiet -- "$PDF_FILE"; then
+            echo "The committed non-MF PDF is already current."
+            exit 0
+          fi
+          git commit -m "build: update non-MF PDF [skip ci]"
+          if git push origin HEAD:main; then
+            exit 0
+          fi
+
+          git fetch origin main
+          if [[ "$(git rev-parse origin/main)" != "$START_SHA" ]]; then
+            echo "main advanced before the push; its own verified run will publish the current PDF."
+            exit 0
+          fi
+          echo "Could not push the updated non-MF PDF." >&2
+          exit 1
