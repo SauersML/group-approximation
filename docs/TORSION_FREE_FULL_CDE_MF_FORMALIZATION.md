@@ -95,7 +95,7 @@ input data.
 ## Relation to the literal eight-generator manuscript group
 
 The distinct literal `E` gap in `non_mf_groups_exist.tex` is now closed.
-`P13ExactStagedCertificate` proves the exact rational property-`(T)` input,
+`LiteralP13HodgeCertificate` proves the exact rational property-`(T)` input,
 `LiteralBaseP13PropertyTBridge` transports it to the raw six-generator base,
 and `LiteralNonMFEndpoint.manuscriptTheoremA` gives the literal MF endpoint
 without a caller premise.

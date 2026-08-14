@@ -93,7 +93,7 @@ the printed proofs.
     e₁,e₂,e₃ — all columns check), six stable-letter relators, lamp
     relators, and marked-word relators; the marked word is
     [tct⁻¹, v₁(tct⁻¹)v₁⁻¹] verbatim.
-  - This finding is now resolved.  `P13ExactStagedCertificate` proves the
+  - This finding is now resolved.  `LiteralP13HodgeCertificate` proves the
     exact rational Hodge certificate by kernel-checked residual blocks,
     `LiteralBaseP13PropertyTBridge` transports property (T) to the literal
     base, and `LiteralNonMFEndpoint.manuscriptTheoremA` closes the displayed

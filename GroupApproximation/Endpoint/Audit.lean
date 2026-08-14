@@ -555,6 +555,10 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.LiteralNonMFEndpoint.literal_not_isOperatorMF
 #print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA
 #print axioms GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD
+#print axioms GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion
+#print axioms GroupApproximation.LiteralP13HodgeCertificate.cleanP13Certificate
+#print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_hodge_gap
+#print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_generatorLaplacian_quadratic_gap
 #print axioms GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_injective
 #print axioms GroupApproximation.LiteralBaseTranslationLattice.latticeToBase_range

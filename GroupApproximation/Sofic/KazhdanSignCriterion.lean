@@ -19,9 +19,9 @@ namespace KazhdanCompressionCore
 
 open scoped commutatorElement
 
-universe u w
+universe w
 
-variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
+variable {Γ E : Type} [Group Γ] [Group E]
 
 /-- A central involution in the Kazhdan-compression defect is killed by every
 homomorphism to every genuine positive-size norm-matrix C-star corona.  This
@@ -118,13 +118,14 @@ theorem manuscriptCentralSignCriterion
           (fun n ↦ naturalFiniteModel (d n))),
         rho z = 1) ∧
       ¬ IsCDEOperatorMF E := by
-  let C : KazhdanCompressionCore Γ E where
+  let C : KazhdanCompressionCore Γ E := {
     iota := iota
     t := t
     c := c
     kazhdan := hasKazhdanPropertyT_iff_textbook.mpr hT
     compresses := hcompresses
     comm_c := hcomm
+  }
   have hzC : z = ⁅C.transported, C.iota a⁆ ^ 2 := by
     simpa [C, KazhdanCompressionCore.transported] using hz
   constructor

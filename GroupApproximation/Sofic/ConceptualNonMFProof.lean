@@ -40,7 +40,7 @@ certificate descends through the checked P13 rotation quotient and the
 intrinsic affine bridge. -/
 theorem literalBase_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Base :=
-  LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT
+  LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.1
 
 /-- The marked Kazhdan-compression datum with its property-`(T)` premise
 already discharged. -/

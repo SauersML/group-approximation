@@ -1,6 +1,6 @@
 import GroupApproximation.Sofic.LiteralBaseP13RotationQuotient
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
-import GroupApproximation.Sofic.P13ExactStagedCertificate
+import GroupApproximation.Sofic.LiteralP13HodgeCertificate
 
 /-!
 # Property (T) transfer from P13 to the literal affine base
@@ -12,6 +12,8 @@ intrinsic affine bridge then promotes it to the literal twenty-relator base.
 
 namespace GroupApproximation
 namespace LiteralBaseP13PropertyTBridge
+
+universe w
 
 open LiteralP13Presentation LiteralBaseP13RotationQuotient
 open LiteralBaseRotationRetract LiteralBasePropertyTBridge
@@ -28,10 +30,19 @@ theorem base_hasKazhdanPropertyT_of_p13
 
 /-- The literal twenty-relator affine base has property `(T)`, with the exact
 P13 certificate and every transfer premise discharged inside the kernel. -/
-theorem manuscriptBaseHasKazhdanPropertyT :
+theorem base_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Base :=
   base_hasKazhdanPropertyT_of_p13
     LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT
+
+/-- The premise-free property-`(T)` conclusion for the literal base, exposed
+both in the small real formulation used internally and in the
+universe-polymorphic textbook complex formulation printed in the manuscript. -/
+theorem manuscriptBaseHasKazhdanPropertyT :
+    HasKazhdanPropertyT.{0, 0} Base ∧
+      HasKazhdanPropertyTComplex.{0, w} Base :=
+  ⟨base_hasKazhdanPropertyT,
+    hasKazhdanPropertyT_iff_textbook.mp base_hasKazhdanPropertyT⟩
 
 end LiteralBaseP13PropertyTBridge
 end GroupApproximation
