@@ -363,6 +363,8 @@ jobs:
         id: non-mf-contract
         continue-on-error: true
         run: |
+          python3 scripts/check_non_mf_zero_input.py \
+            --tex non_mf_groups_exist.tex
           python3 scripts/regenerate_non_mf_claim_manifest.py \
             --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
