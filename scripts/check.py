@@ -38,6 +38,9 @@ LIBS = (LIB,)
 IMPORT_RE = re.compile(r"^import\s+([A-Za-z0-9_.]+)", re.MULTILINE)
 NATIVE_DECIDE_RE = re.compile(
     r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])")
+ADMIT_RE = re.compile(r"(?<![A-Za-z0-9_])admit(?![A-Za-z0-9_])")
+ESCAPE_HATCH_RE = re.compile(
+    r"(?<![A-Za-z0-9_])(?:unsafe|implemented_by|opaque)(?![A-Za-z0-9_])")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import claim_map  # noqa: E402  (path set above)
@@ -50,11 +53,10 @@ import claim_map  # noqa: E402  (path set above)
 # invisible to this one.
 FORBIDDEN = [
     ("sorry / sorryAx", re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])|sorryAx")),
+    ("admit", ADMIT_RE),
     ("hand-declared axiom", re.compile(r"^[ \t]*axiom[ \t]", re.MULTILINE)),
     ("native_decide (trusts the compiler, not the kernel)", NATIVE_DECIDE_RE),
-    ("unsafe / implemented_by / opaque escape hatch",
-     re.compile(r"^[ \t]*unsafe[ \t]|@\[implemented_by|^[ \t]*opaque[ \t]",
-                re.MULTILINE)),
+    ("unsafe / implemented_by / opaque escape hatch", ESCAPE_HATCH_RE),
     ("warningAsError disabled", re.compile(r"warningAsError[ \t]*(:=)?[ \t]*false")),
     # Any value, not just 0: `maxHeartbeats 400000` and `maxHeartbeats 0` differ
     # only in how long the same unfixed proof is allowed to flail.  A timeout is
@@ -105,6 +107,7 @@ FABRICATED = [
 SCAN_TAGS: tuple[str, ...] = (
     "orphan module",
     "sorry / sorryAx",
+    "admit",
     "hand-declared axiom",
     "native_decide (trusts the compiler, not the kernel)",
     "unsafe / implemented_by / opaque escape hatch",
@@ -162,6 +165,14 @@ def all_module_files(root: Path) -> dict[str, Path]:
     return out
 
 
+def lean_source_files(root: Path) -> list[Path]:
+    """Every Lean source physically present under ``root`` and subject to the scan."""
+    return sorted(
+        path for path in root.rglob("*.lean")
+        if ".lake" not in path.parts and ".git" not in path.parts
+    )
+
+
 def import_closure(modules: dict[str, Path], start: str) -> set[str]:
     """Modules reachable from ``start`` by following imports within its library."""
     lib = start.split(".", 1)[0]
@@ -205,17 +216,71 @@ def check_import_closure(root: Path, f: Findings) -> None:
                       f"never compiles it and no audit ever sees it")
 
 
+def _mask_lean_comments(text: str) -> str:
+    """Replace Lean comments by spaces, preserving offsets and newlines.
+
+    `admit`, `unsafe`, `opaque`, and `implemented_by` are ordinary English or
+    audit vocabulary too, so their prohibition is on executable source tokens,
+    not prose.  Lean block comments nest; preserving every character position
+    keeps the source-line reporting below exact.
+    """
+    out = list(text)
+    depth = 0
+    i = 0
+    while i < len(text):
+        # A comment opener inside a string is data, not syntax.  Leave string
+        # contents visible to the conservative token scan, but skip over them
+        # while locating comments so a value such as `"/-"` cannot mask the
+        # executable source that follows it.
+        if depth == 0 and text[i] == '"':
+            i += 1
+            while i < len(text):
+                if text[i] == "\\":
+                    i += min(2, len(text) - i)
+                elif text[i] == '"':
+                    i += 1
+                    break
+                else:
+                    i += 1
+            continue
+        if depth == 0 and text.startswith("--", i):
+            while i < len(text) and text[i] != "\n":
+                out[i] = " "
+                i += 1
+            continue
+        if text.startswith("/-", i):
+            depth += 1
+            out[i] = out[i + 1] = " "
+            i += 2
+            continue
+        if depth > 0 and text.startswith("-/", i):
+            depth -= 1
+            out[i] = out[i + 1] = " "
+            i += 2
+            continue
+        if depth > 0 and text[i] != "\n":
+            out[i] = " "
+        i += 1
+    return "".join(out)
+
+
+CODE_TOKEN_TAGS = {
+    "admit",
+    "unsafe / implemented_by / opaque escape hatch",
+}
+
+
 def check_forbidden(root: Path, f: Findings) -> None:
     # Scan every Lean source, including standalone audits, generated probes,
     # and files outside the import closure.  A clean build cannot certify code
     # it never imports, but the source prohibition still applies there.
-    for path in sorted(root.rglob("*.lean")):
-        if ".lake" in path.parts or ".git" in path.parts:
-            continue
+    for path in lean_source_files(root):
         text = path.read_text(encoding="utf-8", errors="replace")
+        code_text = _mask_lean_comments(text)
         rel = path.relative_to(root)
         for label, pattern in FORBIDDEN:
-            for m in pattern.finditer(text):
+            searched = code_text if label in CODE_TOKEN_TAGS else text
+            for m in pattern.finditer(searched):
                 line = text.count("\n", 0, m.start()) + 1
                 source_line = text.splitlines()[line - 1].strip()
                 key = (label, str(rel), line, source_line)
@@ -376,6 +441,8 @@ CLEAN_TREE = {
     f"{LIB}/Alpha.lean": "theorem alpha : True := trivial\n",
     f"{LIB}/Beta.lean":
         f"import {LIB}.Alpha\n-- an ordinary comment that claims nothing\n"
+        "-- Groups admit models; audit prose may say unsafe, opaque, or implemented_by.\n"
+        "def commentMarker : String := \"/-\"\n"
         "theorem beta : True := trivial\n",
     f"{LIB}/Endpoint/Audit.lean": f"import {LIB}.Alpha\n#print axioms alpha\n",
     _TEX: (
@@ -386,61 +453,74 @@ CLEAN_TREE = {
     ),
 }
 
-PLANTS = {
-    "orphan module": {f"{LIB}/Orphan.lean": "theorem orphan : False := by sorry\n"},
-    "sorry / sorryAx": {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"},
-    "hand-declared axiom":
-        {f"{LIB}/Alpha.lean": "-- declaration below the first line\naxiom alpha : True\n"},
-    "native_decide (trusts the compiler, not the kernel)":
-        {"scripts/Standalone.lean": "theorem standalone : True := by native_decide\n"},
-    "unsafe / implemented_by / opaque escape hatch":
-        {f"{LIB}/Alpha.lean": "-- declaration below the first line\nopaque alpha : Nat\n"},
-    "warningAsError disabled":
-        {f"{LIB}/Alpha.lean": "set_option warningAsError false\n"},
+PLANTS = [
+    ("orphan module", {f"{LIB}/Orphan.lean": "theorem orphan : False := by sorry\n"}),
+    ("sorry / sorryAx", {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"}),
+    ("admit", {f"{LIB}/Alpha.lean": "theorem alpha : True := by admit\n"}),
+    ("admit", {f"{LIB}/Alpha.lean": "theorem alpha : True := by\n  admit\n"}),
+    ("hand-declared axiom",
+     {f"{LIB}/Alpha.lean": "-- declaration below the first line\naxiom alpha : True\n"}),
+    ("native_decide (trusts the compiler, not the kernel)",
+     {"scripts/Standalone.lean": "theorem standalone : True := by native_decide\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean": "unsafe def alpha : Nat := 0\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean":
+      "def commentMarker : String := \"/-\"\nprivate unsafe def alpha : Nat := 0\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean": "opaque alpha : Nat\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean": "private opaque alpha : Nat\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean": "@[implemented_by alphaImpl] def alpha : Nat := 0\n"}),
+    ("unsafe / implemented_by / opaque escape hatch",
+     {f"{LIB}/Alpha.lean": "@[ implemented_by alphaImpl] def alpha : Nat := 0\n"}),
+    ("warningAsError disabled",
+     {f"{LIB}/Alpha.lean": "set_option warningAsError false\n"}),
     # A raise, not `0`: the plant is the case the old `maxHeartbeats 0` regex
     # walked straight past, so it fails against the detector it replaced.
-    "maxHeartbeats budget bump":
-        {f"{LIB}/Alpha.lean":
-         "set_option maxHeartbeats 400000 in\ntheorem a : True := trivial\n"},
-    "maxRecDepth budget bump":
-        {f"{LIB}/Alpha.lean":
-         "set_option maxRecDepth 20000 in\ntheorem a : True := trivial\n"},
+    ("maxHeartbeats budget bump",
+     {f"{LIB}/Alpha.lean":
+      "set_option maxHeartbeats 400000 in\ntheorem a : True := trivial\n"}),
+    ("maxRecDepth budget bump",
+     {f"{LIB}/Alpha.lean":
+      "set_option maxRecDepth 20000 in\ntheorem a : True := trivial\n"}),
     # A result the paper states and never says anything about: the reader
     # cannot distinguish "not formalized" from "nobody wrote the note".
-    "unmapped result":
-        {_TEX: "\\begin{theorem}\\label{thm:silent}%\nA statement.\n\\end{theorem}\n"},
+    ("unmapped result",
+     {_TEX: "\\begin{theorem}\\label{thm:silent}%\nA statement.\n\\end{theorem}\n"}),
     # A note that points at a declaration the library does not have -- what a
     # rename on the Lean side leaves behind.
-    "dangling Lean reference":
-        {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
-                "\\leanverified{\\leanmod{Alpha}{alpha_renamed_away}}%\n"
-                "A statement.\n\\end{lemma}\n")},
+    ("dangling Lean reference",
+     {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
+             "\\leanverified{\\leanmod{Alpha}{alpha_renamed_away}}%\n"
+             "A statement.\n\\end{lemma}\n")}),
     # A note wrapped across lines.  Before brace-balanced parsing this lost
     # every \leanmod after the newline silently, so the reference below went
     # unchecked rather than reported.
-    "dangling Lean reference (wrapped note)":
-        {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
-                "\\leanverified{\\leanmod{Alpha}{alpha}%\n"
-                "\\leanmod{Alpha}{alpha_renamed_away}}%\n"
-                "A statement.\n\\end{lemma}\n")},
+    ("dangling Lean reference (wrapped note)",
+     {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
+             "\\leanverified{\\leanmod{Alpha}{alpha}%\n"
+             "\\leanmod{Alpha}{alpha_renamed_away}}%\n"
+             "A statement.\n\\end{lemma}\n")}),
     # The committed table left behind by an edit to either side.
-    "stale generated claim map":
-        {"docs/CLAIM_MAP.md": "# TeX map\n\nstale contents\n"},
+    ("stale generated claim map",
+     {"docs/CLAIM_MAP.md": "# TeX map\n\nstale contents\n"}),
     # A green badge whose own note admits a prose remainder.
-    "status contract":
-        {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
-                "\\leanverified{\\leanmod{Alpha}{alpha}"
-                "\\leannote{the second half remains prose.}}%\n"
-                "A statement.\n\\end{lemma}\n")},
+    ("status contract",
+     {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
+             "\\leanverified{\\leanmod{Alpha}{alpha}"
+             "\\leannote{the second half remains prose.}}%\n"
+             "A statement.\n\\end{lemma}\n")}),
     # A citation of a module the axiom report never reaches, unpinned.
-    "axiom-report pinning":
-        {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
-                "\\leanverified{\\leanmod{Beta}{beta}}%\n"
-                "A statement.\n\\end{lemma}\n")},
+    ("axiom-report pinning",
+     {_TEX: ("\\begin{lemma}\\label{lem:demo}%\n"
+             "\\leanverified{\\leanmod{Beta}{beta}}%\n"
+             "A statement.\n\\end{lemma}\n")}),
     # The fabricated reference that was purged once and came back in a merge.
-    "fabricated citation (Leiden Declaration)":
-        {"README.md": "In the spirit of the Leiden Declaration (2026).\n"},
-}
+    ("fabricated citation (Leiden Declaration)",
+     {"README.md": "In the spirit of the Leiden Declaration (2026).\n"}),
+]
 
 
 def _materialize(base: Path, tree: dict[str, str]) -> None:
@@ -465,7 +545,7 @@ def self_test() -> int:
     # Direction 2: every planted defect is reported, under its own tag.  The
     # tag matters: a gate that fires under the wrong label can alarm but cannot
     # localize.
-    for tag, plant in PLANTS.items():
+    for tag, plant in PLANTS:
         with tempfile.TemporaryDirectory() as d:
             base = Path(d)
             _materialize(base, CLEAN_TREE)
@@ -491,9 +571,9 @@ def main() -> int:
         return self_test()
     f = run(REPO)
     status = f.report()
-    n = len(all_module_files(REPO))
+    n = len(lean_source_files(REPO))
     verdict = "clean" if status == 0 else "FINDINGS"
-    print(f"source scan: {n} modules, {len(f.rows)} findings, {verdict}")
+    print(f"source scan: {n} Lean sources, {len(f.rows)} findings, {verdict}")
     return status
 
 
