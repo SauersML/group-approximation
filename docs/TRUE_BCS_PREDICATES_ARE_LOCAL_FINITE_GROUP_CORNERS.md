@@ -190,7 +190,33 @@ of `Gamma`: Hecke operators are allowed.  It is also stronger than merely
 mapping the BCS algebra into a quotient of the corner.  Connes embeddability
 passes to von Neumann subalgebras, not backward through arbitrary quotients.
 
-## 6. Relation to the phase-safe toric route
+## 6. A finite graph of finite groups cannot supply the gluing
+
+One natural attempt is to realize the local finite groups and their overlaps
+as the vertex and edge groups of a finite graph of groups, then take its
+Bass--Serre fundamental group.  This entire class is too small.
+
+A fundamental group of a finite graph of finite groups is virtually free.
+It is therefore residually finite, sofic, and hyperlinear.  Its group von
+Neumann algebra and every positive finite-subgroup Hecke corner are Connes
+embeddable.  Such a corner cannot contain a trace-preserving copy of the
+chosen non-CE BCS algebra.
+
+Hence the local construction cannot be completed by ordinary one-dimensional
+Bass--Serre gluing of finite gadgets.  A successful realization must use at
+least one of:
+
+1. genuinely higher-dimensional compatibility relations, such as a
+   developable complex of groups;
+2. an infinite vertex/coefficient group together with a separately proved
+   canonical-trace theorem; or
+3. non-group Hecke data followed by a new groupification theorem.
+
+The first option is the one closest to the existing Steinberg/Leavitt atlas:
+multiplication and two-dimensional holonomy, rather than a tree of finite
+pieces, must carry the non-CE information.
+
+## 7. Relation to the phase-safe toric route
 
 The phase-safe toric theorem uses a central finite-character projection and
 keeps the game generators as genuine group unitaries.  The Hecke route uses
@@ -209,7 +235,7 @@ The two routes meet at one precise requirement: a positive canonical group
 trace corner must carry the non-CE BCS trace *as a subalgebra*, not merely as
 a vector-state quotient.
 
-## 7. Audited endpoint
+## 8. Audited endpoint
 
 The local affine obstruction is not the end of the game-groupification
 program.  Every predicate already has an exact finite group-algebra corner.

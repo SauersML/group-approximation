@@ -71,6 +71,13 @@ trace-preserving copy of one non-CE synchronous BCS algebra.  Hyperlinearity
 of `Gamma` would make this positive corner CE and give the contradiction.
 See `TRUE_BCS_PREDICATES_ARE_LOCAL_FINITE_GROUP_CORNERS.md`.
 
+Ordinary Bass--Serre gluing of these local gadgets is ruled out: the
+fundamental group of a finite graph of finite groups is virtually free and
+hence hyperlinear, so all of its positive finite-subgroup Hecke corners are
+CE.  Any successful corner compiler must introduce genuinely
+higher-dimensional compatibility/holonomy or an infinite coefficient group;
+a tree of finite predicate gadgets cannot carry the non-CE trace.
+
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
 `FALSE_GAME_REPRESENTATION_REGULARIZATION_BY_FELL_ABSORPTION.md` closes the
