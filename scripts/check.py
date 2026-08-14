@@ -39,6 +39,8 @@ LIB = "GroupApproximation"
 LIBS = (LIB, "Superseded")
 
 IMPORT_RE = re.compile(r"^import\s+([A-Za-z0-9_.]+)", re.MULTILINE)
+NATIVE_DECIDE_RE = re.compile(
+    r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import claim_map  # noqa: E402  (path set above)
@@ -52,8 +54,7 @@ import claim_map  # noqa: E402  (path set above)
 FORBIDDEN = [
     ("sorry / sorryAx", re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])|sorryAx")),
     ("hand-declared axiom", re.compile(r"^[ \t]*axiom[ \t]")),
-    ("native_decide (trusts the compiler, not the kernel)",
-     re.compile(r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])")),
+    ("native_decide (trusts the compiler, not the kernel)", NATIVE_DECIDE_RE),
     ("unsafe / implemented_by / opaque escape hatch",
      re.compile(r"^[ \t]*unsafe[ \t]|@\[implemented_by|^[ \t]*opaque[ \t]")),
     ("warningAsError disabled", re.compile(r"warningAsError[ \t]*(:=)?[ \t]*false")),
@@ -198,6 +199,7 @@ def check_import_closure(root: Path, f: Findings) -> None:
 
 
 def check_forbidden(root: Path, f: Findings) -> None:
+    module_paths = set(all_module_files(root).values())
     for name, path in sorted(all_module_files(root).items()):
         text = path.read_text(encoding="utf-8", errors="replace")
         rel = path.relative_to(root)
@@ -205,6 +207,19 @@ def check_forbidden(root: Path, f: Findings) -> None:
             for m in pattern.finditer(text):
                 line = text.count("\n", 0, m.start()) + 1
                 f.add(label, f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
+
+    # Standalone audit programs and generated probes are Lean sources too.
+    # Scan every remaining `.lean` file so an unimported script cannot evade
+    # the native-decision ban merely by living outside a library root.
+    for path in sorted(root.rglob("*.lean")):
+        if path in module_paths or ".lake" in path.parts or ".git" in path.parts:
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        rel = path.relative_to(root)
+        for m in NATIVE_DECIDE_RE.finditer(text):
+            line = text.count("\n", 0, m.start()) + 1
+            f.add("native_decide (trusts the compiler, not the kernel)",
+                  f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
 
 
 # The "stale conditionality disclaimer" scan used to live here.  It moved to
@@ -375,7 +390,7 @@ PLANTS = {
     "sorry / sorryAx": {f"{LIB}/Alpha.lean": "theorem alpha : True := by sorry\n"},
     "hand-declared axiom": {f"{LIB}/Alpha.lean": "axiom alpha : True\n"},
     "native_decide (trusts the compiler, not the kernel)":
-        {f"{LIB}/Alpha.lean": "theorem alpha : True := by native_decide\n"},
+        {"scripts/Standalone.lean": "theorem standalone : True := by native_decide\n"},
     "unsafe / implemented_by / opaque escape hatch":
         {f"{LIB}/Alpha.lean": "opaque alpha : Nat\n"},
     "warningAsError disabled":
