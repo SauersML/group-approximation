@@ -74,23 +74,27 @@ noncomputable instance directLimit_countable [Countable ι]
 
 /-- The canonical homomorphism from one stage into a directed group
 colimit. -/
-def directLimitOf (i : ι) : K i →* DirectLimit K f where
-  toFun g := ⟦⟨i, g⟩⟧
-  map_one' := (DirectLimit.one_def i).symm
-  map_mul' x y := (DirectLimit.mul_def i x y).symm
+def directLimitOf (i : ι) :=
+  letI : Nonempty ι := ⟨i⟩
+  ({ toFun := fun g => ⟦⟨i, g⟩⟧
+     map_one' := (DirectLimit.one_def i).symm
+     map_mul' := fun x y => (DirectLimit.mul_def i x y).symm } :
+    K i →* DirectLimit K f)
 
 /-- If every transition map is injective, every canonical stage map into
 the directed colimit is injective. -/
 theorem directLimitOf_injective
     (hf : ∀ i j (h : i ≤ j), Function.Injective (f i j h)) (i : ι) :
-    Function.Injective (directLimitOf (f := f) i) :=
-  DirectLimit.mk_injective f hf i
+    Function.Injective (directLimitOf (f := f) i) := by
+  letI : Nonempty ι := ⟨i⟩
+  exact DirectLimit.mk_injective f hf i
 
 /-- A directed colimit of ordinarily torsion-free groups is torsion-free.
 No injectivity of the transition maps is needed: an equality to one in the
 colimit already holds at a common later stage. -/
-theorem directLimit (hK : ∀ i, IsPowerTorsionFree (K i)) :
-    IsPowerTorsionFree (DirectLimit K f) := by
+theorem directLimit (i₀ : ι) (hK : ∀ i, IsPowerTorsionFree (K i)) := by
+  letI : Nonempty ι := ⟨i₀⟩
+  show IsPowerTorsionFree (DirectLimit K f)
   intro x n hn hpow
   induction x using DirectLimit.induction with
   | _ i g =>
