@@ -21,7 +21,10 @@ datum is accepted from a caller.
 namespace GroupApproximation
 namespace NonMFImpact
 
+open Matrix
 open LiteralNonMFPresentation
+open ReducedGroupCStarTrace
+open scoped Matrix.Norms.L2Operator
 
 /-- The literal group is finitely presented, six-generated, and non-MF. -/
 theorem literal_sixGenerated_finitelyPresented_nonMF :
