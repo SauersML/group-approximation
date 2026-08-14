@@ -26,6 +26,16 @@ invertible edge intertwiner after only `o(d_n)` padding.  Spectral sparsity
 alone is insufficient because even the scalar line contains invertible
 matrices.
 
+The low-energy projection commutes with the left and right edge commutants.
+It is therefore a bimodule and decomposes exactly into low-energy
+`Hom(theta_j,pi_i)` blocks tensored with the full multiplicity rectangles.
+The identity mass must concentrate on such blocks.  Together with the
+dimension-tight theorem, this reduces a negative sequence to
+high-dimensional pairs of edge irreducibles, each extending through an
+opposite modular vertex, whose mixed gap collapses along a near-unitary
+intertwiner.  Arbitrary sparse operator subspaces are no longer part of the
+gate.
+
 ## 2026-08-14 equivariant whole maps still admit rectangular escape
 
 The whole-map theorem does not identify the source and target paired label

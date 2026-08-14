@@ -5857,6 +5857,14 @@ padding.  An arbitrary sparse operator subspace need not give sparse
 physical rank, so this is still a genuine theorem rather than a dimension
 count.
 
+The spectral outlier is invariant under the left and right edge commutants.
+It decomposes into low-energy `Hom(theta_j,pi_i)` spaces tensored with full
+multiplicity rectangles, and almost all identity mass lies in those blocks.
+Thus the live case is even narrower: high-dimensional edge irreducible pairs
+which extend through opposite modular vertices, have collapsing mixed gap,
+and carry a near-unitary low-energy intertwiner.  Bounded types were already
+removed by the fixed-type and dimension-tight matching theorems.
+
 ### 2026-08-14: equivariant whole maps permit exact rectangular escape
 
 `FALSE_EQUIVARIANT_WHOLE_MAPS_ALLOW_RECTANGULAR_ESCAPE.md` corrects the
