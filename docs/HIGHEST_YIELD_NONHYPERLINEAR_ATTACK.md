@@ -2,6 +2,22 @@
 
 Date: 2026-08-12
 
+## 2026-08-14 closed: additive index cannot produce a fixed finite phase
+
+The naive transducer `KInd |-> (-1)^KInd` is incompatible with amplification.
+Replacing a microstate by `phi tensor I_k` preserves every normalized-HS
+defect, trace, separation, and scalar word value. An additive Fredholm or
+rank index is multiplied by `k`. Doubling therefore kills its parity while
+a marked scalar `-I` remains `-I`; amplification by the order of any finite
+character gives the same no-go. See
+`FALSE_ADDITIVE_INDEX_TO_FINITE_PHASE_IS_NOT_AMPLIFICATION_STABLE.md`.
+
+An integer index contradiction or an index normalized by a canonically
+recovered positive-density spin multiplicity remains possible. What is
+closed is the shortcut that turns microscopic leakage into the marked sign
+using a determinant, parity, or another finite character without such a
+normalization.
+
 ## 2026-08-14 locally finite commutants recover at the wrong scale
 
 The increasing finite unitriangular envelopes do solve elementwise

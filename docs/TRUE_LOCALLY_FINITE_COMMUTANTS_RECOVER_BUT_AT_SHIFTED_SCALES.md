@@ -238,17 +238,20 @@ exhaustion-scale index, not failure of Reynolds averaging.
 
 A theorem sufficient to continue would take one of two forms.
 
-1. **Index-to-phase:** show that the scale defect in `(LFC4)` has a
-   quantized parity equal to the marked Clifford sign, while finite matrix
-   conjugacy has zero total index.
+1. **Normalized/integer index:** recover either a direct nonzero integer
+   index on a square finite-dimensional compression, or an index normalized
+   by a canonical positive-density spin multiplicity.
 2. **Scale synchronization:** use the two Leavitt branches and their
    cross-zero multiplication relation to couple the `m` and `r(m)`
    commutants inside one finite multiplicity corner, producing the three
    contractions already ruled out below `2-sqrt(3)`.
 
-The first is the proposed Fredholm/Bott route; the second is the paired
-finite-envelope route. Separate commutant lifting, including the locally
-finite theorem proved here, is no longer the missing statement.
+The unnormalized parity-to-phase version of the first route is ruled out by
+direct-sum amplification; see
+`FALSE_ADDITIVE_INDEX_TO_FINITE_PHASE_IS_NOT_AMPLIFICATION_STABLE.md`. The
+second is the paired finite-envelope route. Separate commutant lifting,
+including the locally finite theorem proved here, is no longer the missing
+statement.
 
 ## Primary sources and formal support
 
