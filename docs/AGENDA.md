@@ -6,6 +6,27 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: two coproduct defects suffice for classicalization
+
+`TRUE_APPROXIMATE_BICOREPRESENTATION_CLASSICALIZATION.md` removes the exact
+`beta,gamma` hypothesis from the uniform multiplicative-unitary endpoint.
+For any unitary `V in Ahat tensor C tensor A`, let `delta_L,delta_R` be its
+two primal/dual coproduct defects. Comparing the two five-leg expansions and
+cancelling their common outer unitaries gives
+
+```text
+||V_234 V_135-V_135 V_234||_2
+  <=3(delta_L+delta_R).
+```
+
+Parseval converts this to normalized mean coefficient-commutator energy at
+most `9(delta_L+delta_R)^2`, uniformly in the finite quotient size. Thus no
+growing-presentation stability modulus is needed. The live atlas statement
+is now one direct estimate: construct the relative transport `V_n` after
+additive packet exactification and control both complete coproduct defects by
+the fixed cross-root relator defect. The terminal metric inequality is
+formalized source-first; no build was run.
+
 ### 2026-08-14: the multiplication classicalizer is size-uniform
 
 `TRUE_UNIFORM_MULTIPLICATIVE_UNITARY_CLASSICALIZATION.md` quantifies the

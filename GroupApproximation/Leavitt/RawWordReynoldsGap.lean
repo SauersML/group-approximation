@@ -106,6 +106,27 @@ theorem middle_swap_distance_le_nine_mul
     (3 * epsilon) (6 * epsilon) h₁ h₂
   linarith
 
+/-- The asymmetric two-defect specialization used for an approximate
+bi-corepresentation.  The two expansions cost `right + 2*left` and
+`left + 2*right`, so the middle commutator costs
+`3*(left+right)`. -/
+theorem middle_swap_distance_le_three_mul_add
+    {A : Type*} [Monoid A]
+    (d : A → A → ℝ)
+    (triangle : ∀ x y z, d x z ≤ d x y + d y z)
+    (symm : ∀ x y, d x y = d y x)
+    (mul_left : ∀ a x y, d (a * x) (a * y) = d x y)
+    (mul_right : ∀ x y a, d (x * a) (y * a) = d x y)
+    (p x y z t : A) (leftDefect rightDefect : ℝ)
+    (h₁ : d p (x * y * z * t) ≤ rightDefect + 2 * leftDefect)
+    (h₂ : d p (x * z * y * t) ≤ leftDefect + 2 * rightDefect) :
+    d (y * z) (z * y) ≤ 3 * (leftDefect + rightDefect) := by
+  have h := middle_swap_distance_le_of_common_approximation
+    d triangle symm mul_left mul_right p x y z t
+    (rightDefect + 2 * leftDefect)
+    (leftDefect + 2 * rightDefect) h₁ h₂
+  linarith
+
 /-- The exact arithmetic conversion used after the twelve-letter telescope. -/
 theorem raw_word_forces_H_gap {epsilon delta : ℝ}
     (h : Real.sqrt 2 ≤ epsilon + 12 * delta) :

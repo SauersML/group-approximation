@@ -183,6 +183,11 @@ one Fourier-compatible multiplicative-unitary equation between two finite
 table homomorphisms, and its analytic amplification constant is already
 universal.
 
+The exact-homomorphism input can be weakened further.  It is enough to
+construct one unitary which satisfies both coproduct identities
+approximately; the direct bound is `3(delta_L+delta_R)`.  See
+`TRUE_APPROXIMATE_BICOREPRESENTATION_CLASSICALIZATION.md`.
+
 ## Primary source
 
 - P. Kasprzak, P. M. Sołtan, and S. L. Woronowicz,
