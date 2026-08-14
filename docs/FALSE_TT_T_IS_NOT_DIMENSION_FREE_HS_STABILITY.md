@@ -14,7 +14,8 @@ removing invariant vectors.  It is not the same property as Burger--Ozawa--
 Thom's `(TTT)`, and neither statement provides the dimension-uniform
 stability modulus required here.
 
-The relevant conclusion of Burger--Ozawa--Thom, Theorem 5.5, has the form
+The relevant conclusion of Burger--Ozawa--Thom, Theorem 5.5, concerns
+operator-norm `delta`-representations and has the form
 
 ```text
 for every fixed d,
@@ -28,18 +29,28 @@ for every d and epsilon there exists delta(d,epsilon)>0. (TTH2)
 ```
 
 A hyperlinear model has dimensions `d_n -> infinity` and multiplicative
-defects `delta_n -> 0`.  Statement `(TTH2)` gives no comparison between
-`delta_n` and `delta(d_n,epsilon)`.  The thresholds may decay faster than
-the chosen microstate defects.  The dimension is fixed before compactness is
-used in the proof of `(TTH1)`, so that proof cannot be diagonalized into
+defects `eta_n -> 0` only in normalized Hilbert--Schmidt norm.  There are
+therefore two losses.  First, normalized HS control does not imply
+operator-norm control uniformly in the dimension; the elementary estimate is
+
+```text
+||A||_op <= sqrt(d) ||A||_(2,d).                       (TTH2a)
+```
+
+Second, even after paying this factor in a fixed dimension, statement
+`(TTH2)` gives no comparison between the resulting defect and
+`delta(d_n,epsilon)`.  The thresholds may decay faster than the chosen
+microstate defects.  The dimension is fixed before compactness is used in the
+proof of `(TTH1)`, so that proof cannot be diagonalized into
 
 ```text
 there exists delta(epsilon)>0 working for every d.     (TTH3)
 ```
 
-The missing statement `(TTH3)`, or a flexible version with controlled
-padding, is precisely a normalized-HS stability theorem.  It cannot be
-silently inferred from `(TT)/T`.
+The missing statement `(TTH3)`, with normalized-HS defect in its premise, or
+a flexible version with controlled padding, is precisely a normalized-HS
+stability theorem.  It cannot be silently inferred from `(TT)/T` or from the
+operator-norm fixed-dimensional theorem.
 
 There is a useful consistency check.  Becker--Lubotzky prove that an
 infinite hyperlinear property-`(T)` group is not stable with respect to

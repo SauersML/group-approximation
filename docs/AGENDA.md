@@ -11,12 +11,14 @@ kernel-checked, cited from a source, or explicitly conjectural.
 `FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md` audits the strongest
 available Ulam-stability shortcut.  The existing atlas theorem is property
 `(TT)/T`, not property `(TTT)`.  More importantly, even the Burger--Ozawa--
-Thom `(TTT)` conclusion fixes the matrix dimension before taking the defect
-to zero: its modulus may depend on `d`.  Hyperlinear witnesses have
-`d_n -> infinity`, so this does not yield a dimension-free or flexible
-normalized-HS rounding theorem.  Becker--Lubotzky's instability theorem for
-infinite hyperlinear property-`(T)` groups is the consistency check against
-any generic upgrade.
+Thom `(TTT)` conclusion concerns operator-norm almost representations and
+fixes the matrix dimension before taking the defect to zero.  Hyperlinear
+witnesses provide only normalized-HS defects in dimensions `d_n -> infinity`;
+converting to operator norm costs `sqrt(d_n)`, and the stability modulus may
+also depend on `d_n`.  Thus the theorem does not yield a dimension-free or
+flexible normalized-HS rounding theorem.  Becker--Lubotzky's instability
+theorem for infinite hyperlinear property-`(T)` groups is the consistency
+check against any generic upgrade.
 
 The valid target is a uniform estimate for this explicit atlas relator
 packet, not abstract quasi-cocycle rigidity.  Such an estimate is equivalent
