@@ -485,6 +485,7 @@ import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
 import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
 import GroupApproximation.Sofic.SoficInvariantFiniteKernel
 import GroupApproximation.Sofic.FiniteOrbitInvariantKernel
+import GroupApproximation.Sofic.MappingTelescopeFiniteOrbits
 import GroupApproximation.Sofic.SoficIntegerExtension
 import GroupApproximation.Sofic.SoficTelescope
 import GroupApproximation.Monsters.ExplicitIntegralLinearModel
