@@ -60,7 +60,7 @@ structure ManuscriptP13Presentation : Prop where
      (0, true), (2, false), (0, true)]
 
 theorem manuscriptP13Presentation : ManuscriptP13Presentation := by
-  constructor <;> first | rfl | (intro <;> rfl)
+  constructor <;> first | rfl | (intro; rfl)
 
 private def residualBlockL1Numerator : Fin 6 → Fin 6 → ℕ
   | 0, 0 => 11626413589061
@@ -152,13 +152,15 @@ private theorem residual_row_bound (i : Fin 6) :
     ∑ k, ∑ c, |residualCoefficient i k c| ≤
       (11670886519714 / 10000000000000000 : ℚ) := by
   simp_rw [residual_block_l1]
-  fin_cases i <;> norm_num [Fin.sum_univ_succ, residualBlockL1Numerator]
+  fin_cases i <;>
+    norm_num [Fin.sum_univ_succ, Fin.succ, residualBlockL1Numerator]
 
 private theorem residual_column_bound (k : Fin 6) :
     ∑ i, ∑ c, |residualCoefficient i k c| ≤
       (11670886519714 / 10000000000000000 : ℚ) := by
   simp_rw [residual_block_l1]
-  fin_cases k <;> norm_num [Fin.sum_univ_succ, residualBlockL1Numerator]
+  fin_cases k <;>
+    norm_num [Fin.sum_univ_succ, Fin.succ, residualBlockL1Numerator]
 
 private theorem exactCertificate : Certificate LiteralP13HodgeData.D LiteralP13HodgeData.B
     LiteralP13HodgeData.q
