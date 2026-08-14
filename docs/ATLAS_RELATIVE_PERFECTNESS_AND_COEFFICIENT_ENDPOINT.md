@@ -1866,6 +1866,17 @@ contradiction.
 
 ## 20. The correct invariant is a pair of radical quotients
 
+There is now a direct robust alternative to the Fourier formulation below.
+`TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` proves that finite perfect
+binary labels already have a universal `1/36` error floor for the two
+diagonal transports and one crossed-zero transport.  Collision counting
+automatically repairs the relevant diagonal label maps to permutations.
+Consequently the complex Fourier unitary, its two trivial modes, and the
+near-bijectivity estimates are not separate obligations if the microstate
+argument extracts a uniform finite perfect-pairing label model.  The older
+Fourier formulation remains a fallback when only operator blocks, rather
+than labels, can be recovered.
+
 The finite contradiction in this section is independently formalized in
 `GroupApproximation/Leavitt/FinitePairedQuotientObstruction.lean`; see
 `TRUE_FINITE_PAIRED_QUOTIENT_OBSTRUCTION.md`.  The formal statement is

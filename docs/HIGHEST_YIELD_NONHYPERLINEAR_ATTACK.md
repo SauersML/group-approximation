@@ -2,6 +2,35 @@
 
 Date: 2026-08-12
 
+## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
+
+A perfect finite binary pairing turns the two diagonal transport relations
+into an automatic permutation-repair theorem.  If their mismatch rates are
+`eps00,eps11` and the crossed-zero mismatch rate is `eps01`, then
+
+```text
+eps01 + 4 eps00 + 4 eps11 >= (N-1)/(2N),
+max(eps01,eps00,eps11) >= 1/36.
+```
+
+The proof counts collisions in the fibers of the two diagonal maps: two
+distinct rows of a perfect binary pairing differ on exactly half the labels,
+so a diagonal map with error `eps` is within Hamming distance `4 eps` of a
+permutation.  The repaired crossed table has one-density `(N-1)/(2N)`.
+See `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md`.
+
+This removes the post-extraction requirements of a complex Fourier unitary,
+near-bijectivity, deletion of trivial modes, and invariant spectral
+truncation.  The live gate is now only common-coordinate extraction of the
+finite perfect-pairing labels and four bistochastic unitary block-mass
+kernels with vanishing averaged error.  Birkhoff decomposition extends the
+same floor from maps to kernels without choosing a gauge or a permutation.
+
+Do not apply this directly to the four raw `C2^2` cuts.  Their conditioned
+comb transition matrix is the uniform `1/4` kernel, so it is maximally far
+from the required diagonal transports.  The labels must be the deeper
+paired-radical multiplication labels.
+
 ## 2026-08-13 finite paired endpoint is formalized
 
 The paired-radical quotient contradiction now has a basis-free, kernel-checked

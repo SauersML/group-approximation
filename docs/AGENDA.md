@@ -4,6 +4,30 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: perfect paired labels have a universal `1/36` error floor
+
+`TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and
+near-bijectivity subgates from the paired-radical endpoint.  For a nonzero
+finite perfect binary pairing, two approximate diagonal transports and one
+crossed-zero transport satisfy
+
+```text
+eps01 + 4 eps00 + 4 eps11 >= (N-1)/(2N),
+max(eps01,eps00,eps11) >= 1/36.
+```
+
+The diagonal relations themselves force the two relevant label maps within
+`4 eps` of permutations.  By Birkhoff decomposition the same inequality
+holds for arbitrary doubly stochastic unitary block-mass kernels.  Thus the
+remaining analytic theorem only has to extract finite perfect-pairing labels
+and four such kernels with vanishing averaged error from common normalized-HS
+coordinates; Fourier-flatness, trivial-mode removal, and singular-value
+invariance are no longer separate obligations.
+
+The existing four raw coefficient cuts are not those labels: their comb
+kernel is exactly uniform after carrier conditioning.  The required kernels
+must be extracted from the deeper multiplication/radical quotient.
+
 ### 2026-08-13: finite paired-radical endpoint is closed
 
 The exact finite contradiction behind the paired-radical program is now
