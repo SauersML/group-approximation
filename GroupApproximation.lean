@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.MappingTelescope
+import GroupApproximation.Algebra.TwoGeneratedFreeQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
@@ -68,6 +69,7 @@ import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.LocallyFiniteMF
 import GroupApproximation.Sofic.CentralInvolutionFinite
+import GroupApproximation.Sofic.CliffordLampMF
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
