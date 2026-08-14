@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: projective unitary groups reduce cardinality, not trace selection
+
+The shortcut through a separable non-Connes-embeddable factor `M` has now been
+audited in `FALSE_PROJECTIVE_UNITARY_GROUP_SHORTCUT.md`. There is one useful
+exact reduction: if the abstract discrete group `PU(M)` were nonhyperlinear,
+locality would produce a finitely generated nonhyperlinear subgroup. The new
+formal theorem `exists_not_isHyperlinear_iff_exists_fg` records that existence
+of a nonhyperlinear group is equivalent to existence of a finitely generated
+one, without any soficity assumption.
+
+The hoped-for premise does not follow from known unitary rigidity. A tracial
+matrix ultraproduct is generally nonseparable, hence outside Dowerk--Thom's
+Polish-SIN automatic-continuity theorem. Restriction to a countable dense
+subgroup loses the theorem's domain hypothesis. Dye reconstruction needs an
+orthoisomorphism or a sufficiently strong full-unitary-group isomorphism, not a
+raw monomorphism into a larger unitary group. Most decisively, hyperlinearity
+approximates the regular character `delta_e`, whereas the representation that
+recovers `M` uses the natural character `tau_M`. The missing result is again a
+trace-selection theorem, now in a very clean form.
+
 ### 2026-08-14: the ambient Bernoulli group does not Haar-groupify the non-CE IRS
 
 `FALSE_MANZOOR_IRS_AMBIENT_HAAR_GROUPIFICATION.md` closes a hidden version of

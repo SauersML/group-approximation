@@ -122,6 +122,44 @@ theorem isHyperlinear_imp_isSofic_iff_fg :
   · intro hall H _ _ hH
     exact hall H inferInstance hH
 
+/-! ## Universal hyperlinearity is also local
+
+The same argument does not require a sofic conclusion.  If some group of any
+cardinality is not hyperlinear, one of its finitely generated subgroups is
+already not hyperlinear.  This is useful when a proposed source of a
+counterexample is naturally uncountable, such as the abstract projective
+unitary group of a finite factor: cardinality is not the obstruction.  The
+substantive gate is proving that the ambient abstract group is nonhyperlinear
+in the first place.
+-/
+
+/-- **A nonhyperlinear group exists iff a finitely generated one exists.**
+This is the direct contrapositive of locality, with no soficity hypothesis. -/
+theorem exists_not_isHyperlinear_iff_exists_fg :
+    (∃ (H : Type) (_ : Group H), ¬ IsHyperlinear H)
+      ↔ (∃ (H : Type) (_ : Group H), Group.FG H ∧ ¬ IsHyperlinear H) := by
+  constructor
+  · rintro ⟨G, hG, hnG⟩
+    by_contra hno
+    apply hnG
+    refine isHyperlinear_of_local (fun F ↦ ?_)
+    let K : Subgroup G := Subgroup.closure (F : Set G)
+    have hfg : Group.FG K := by
+      rw [Group.fg_iff]
+      refine ⟨((↑) : K → G) ⁻¹' (F : Set G), ?_, ?_⟩
+      · exact Subgroup.closure_closure_coe_preimage
+      · exact Set.Finite.preimage
+          (Set.injOn_of_injective (Subgroup.subtype_injective K)) F.finite_toSet
+    have hK : IsHyperlinear K := by
+      by_contra hnK
+      exact hno ⟨K, inferInstance, hfg, hnK⟩
+    refine ⟨K, inferInstance, K.subtype, Subgroup.subtype_injective K,
+      hK, ?_⟩
+    intro g hg
+    exact ⟨⟨g, Subgroup.subset_closure hg⟩, rfl⟩
+  · rintro ⟨H, hH, _, hnH⟩
+    exact ⟨H, hH, hnH⟩
+
 /-- **A counterexample exists exactly when a finitely generated one does.**  The
 contrapositive of the reduction: a search for a hyperlinear nonsofic group may
 restrict to finitely generated groups without loss. -/
