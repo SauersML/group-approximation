@@ -30,13 +30,12 @@
 }
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\nolinkurl{arXiv:#1}}}
-\newcommand{\leanrepository}{https://github.com/SauersML/group-approximation}
 \newcommand{\leanbadge}[3]{%
   \par\smallskip\noindent
   {\normalfont\scriptsize\color{gray!70!black}%
    #3\par\nobreak\noindent
    \hspace*{1em}%
-   \href{\leanrepository/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}%
+   \nolinkurl{#2}%
   }\par\smallskip}
 % Every displayed record certifies the full printed claim.
 \newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\fbox{\sffamily\bfseries EXACT}}}
@@ -774,22 +773,16 @@ representation-space universe.
 
 The complete certificate is supplementary machine-readable data, rather than
 data printed in this article.  A content-pinned copy is at repository commit
-\href{\leanrepository/tree/4a210700577810996eae94d2912d2ed621b7b359}%
-{\nolinkurl{4a210700577810996eae94d2912d2ed621b7b359}}.  The
+\nolinkurl{4a210700577810996eae94d2912d2ed621b7b359}.  The
 $102\times6\times22$ exact integer table for $Q$ and its denominator are in
-\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedData.lean}%
-{\nolinkurl{P13ExactStagedData.lean}}.  The 22 support words, the 293 product
+\nolinkurl{GroupApproximation/Sofic/P13ExactStagedData.lean}.  The 22 support words, the 293 product
 classes, and their relator proofs are in
-\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedReplay.lean}%
-{\nolinkurl{P13ExactStagedReplay.lean}} and
-\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedPairTable.lean}%
-{\nolinkurl{P13ExactStagedPairTable.lean}}.  The 36 independently checked
+\nolinkurl{GroupApproximation/Sofic/P13ExactStagedReplay.lean} and
+\nolinkurl{GroupApproximation/Sofic/P13ExactStagedPairTable.lean}.  The 36 independently checked
 residual blocks are aggregated by
-\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedResidual.lean}%
-{\nolinkurl{P13ExactStagedResidual.lean}}, and the final certificate theorem is
+\nolinkurl{GroupApproximation/Sofic/P13ExactStagedResidual.lean}, and the final certificate theorem is
 in
-\href{\leanrepository/blob/4a210700577810996eae94d2912d2ed621b7b359/GroupApproximation/Sofic/P13ExactStagedCertificate.lean}%
-{\nolinkurl{P13ExactStagedCertificate.lean}}.
+\nolinkurl{GroupApproximation/Sofic/P13ExactStagedCertificate.lean}.
 
 \begin{proof}
 The relator replay, Fox identity, coefficient decomposition, and rational

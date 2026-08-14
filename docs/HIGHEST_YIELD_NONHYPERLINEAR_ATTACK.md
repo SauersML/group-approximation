@@ -42,6 +42,15 @@ match the shared marginals automatically.  See
 not these whole-map PVMs; producing the latter is the live use of the raw
 compressor and Kazhdan chart restrictions.
 
+The raw swap itself now supplies the complete local branch decoder: it fixes
+the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last
+coordinate, while their Steinberg commutators give the full
+`t_l s_k=delta_lk` table.  See `TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md`.
+Therefore the live theorem is narrower still: synchronize that already
+deterministic branch label with the many-to-one extension fibers of the comb
+compressor.  Searching for another local cross-zero commutator inside the
+finite Pauli packet is dead work.
+
 Do not apply this directly to the four raw `C2^2` cuts.  Their conditioned
 comb transition matrix is the uniform `1/4` kernel, so it is maximally far
 from the required diagonal transports.  The labels must be the deeper

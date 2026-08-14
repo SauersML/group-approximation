@@ -63,6 +63,14 @@ fiber, averaging over a bundle of different ranks preserves the same floor.
 No positive-trace fixed-rank selection lemma is needed; the decoder may be
 fibered by character and rank.
 
+`TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md` identifies the decoder already present
+in the local group packet.  The raw word fixes the `0` branch, moves the `1`
+branch to the last coordinate, and preserves the complete
+`t_l s_k=delta_lk` commutator table.  The only missing decoder datum is now
+global: make this branch label a deterministic function on the comb
+compressor's many-to-one extension fibers.  No further local Pauli or
+cross-zero relation is required.
+
 ### 2026-08-13: finite paired-radical endpoint is closed
 
 The exact finite contradiction behind the paired-radical program is now

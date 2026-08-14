@@ -231,6 +231,53 @@ theorem rawInvolutionWord_mul_lastColumn (L : LeavittFamily A)
         rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
         Fin.sum_univ_succ, coreIndex, lastIndex, mul_add, add_mul]
 
+/-- The complementary branch is fixed exactly: the raw word commutes with
+`x₀ⱼ(s₀a)`.  Matrix-theoretically, its first column acts as the identity on
+the `s₀` summand because `p₀s₀=s₀` and `t₁s₀=0`. -/
+theorem rawInvolutionWord_commutes_firstBranchRow (L : LeavittFamily A)
+    (j : Fin 3) (hj : j ≠ 0) (a : A) :
+    Commute (rawInvolutionWord L)
+      (coreEmbedding (coreTransvection 0 j hj.symm (L.s0 * a))) := by
+  rw [coreEmbedding_coreTransvection]
+  apply Subtype.ext
+  apply Units.ext
+  ext r c
+  fin_cases j
+  · simp at hj
+  · fin_cases r <;> fin_cases c <;>
+      simp [transvection, elementaryUnit, rawInvolutionWord_val,
+        rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
+        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        mul_add, add_mul, mul_assoc]
+  · fin_cases r <;> fin_cases c <;>
+      simp [transvection, elementaryUnit, rawInvolutionWord_val,
+        rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
+        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        mul_add, add_mul, mul_assoc]
+
+/-- The incoming complementary branch is fixed exactly: the raw word
+commutes with `xᵢ₀(at₀)`.  Here `t₀p₀=t₀` and `t₀s₁=0`. -/
+theorem rawInvolutionWord_commutes_firstBranchColumn (L : LeavittFamily A)
+    (i : Fin 3) (hi : i ≠ 0) (a : A) :
+    Commute (rawInvolutionWord L)
+      (coreEmbedding (coreTransvection i 0 hi (a * L.t0))) := by
+  rw [coreEmbedding_coreTransvection]
+  apply Subtype.ext
+  apply Units.ext
+  ext r c
+  fin_cases i
+  · simp at hi
+  · fin_cases r <;> fin_cases c <;>
+      simp [transvection, elementaryUnit, rawInvolutionWord_val,
+        rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
+        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        mul_add, add_mul, mul_assoc]
+  · fin_cases r <;> fin_cases c <;>
+      simp [transvection, elementaryUnit, rawInvolutionWord_val,
+        rawInvolutionMatrix, Matrix.mul_apply, Matrix.one_apply,
+        Fin.sum_univ_succ, coreIndex, lastIndex, LeavittFamily.p0,
+        mul_add, add_mul, mul_assoc]
+
 /-- The two-word raw compressor set `{u, w·u}`. -/
 noncomputable def rawCompressorSet (L : LeavittFamily A) : Finset (Ambient A) := by
   classical

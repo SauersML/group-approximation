@@ -1,6 +1,7 @@
 /.lake/
 /docbuild/.lake/
 /tmp/
+/.pdf-preview/
 /*.aux
 /*.log
 /*.out
