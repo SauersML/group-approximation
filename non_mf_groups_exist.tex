@@ -103,11 +103,10 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
 We give an eight-generator, forty-one-relator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Consequently MF groups are closed
-under neither quotients nor extensions.  Property~\textup{(T)} is necessary:
-over a cyclic base the same marked pattern has a corona-visible sign.  The
-results, including property~\textup{(T)} of the base via an explicit
-spectral certificate, are machine-checked in Lean.
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Consequently MF groups are not
+closed under quotients.  The results, including property~\textup{(T)} of
+the base via an explicit spectral certificate, are machine-checked in
+Lean.
 \end{abstract}
 
 \maketitle
@@ -428,25 +427,11 @@ $sLs^{-1}\subseteq L$, and put
  \right\rangle\!\right\rangle_H.
 \end{equation}
 
-\begin{theorem}[compression radical]
-\label{thm:compression-radical}
-Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
-property~\textup{(T)}, let
-$\iota\colon\Gamma\to H$ be a homomorphism, and put
-$L=\iota(\Gamma)$.  If $F\trianglelefteq H$ is finite and
-$F\le\mathfrak D(H,L)$, then every homomorphism from $H$ to every norm
-matrix corona kills $F$.
-\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical}
-\end{theorem}
-
-Indeed, the equality $P=VPV^*$ makes transport invariant under both a
-compressor and its inverse; iteration therefore handles every
-$g\in G_{\rm comp}(L)$.  Transport makes every displayed generator of
-$\mathfrak D(H,L)$ Hilbert--Schmidt trivial, hence does the same to its normal
-closure.  If a corona representation detected $F$, the complementary
-Reynolds corner would make $\sum_{f\in F}U_f$ converge to zero in operator
-norm, while transport would make it converge to $|F|1$ in normalized
-Hilbert--Schmidt norm.  This is impossible.
+Theorem~\ref{thm:compression-radical} in
+Section~\ref{sec:conj} upgrades the sign criterion to this intrinsic
+defect: in the presence of a property-\textup{(T)} subgroup
+$L=\iota(\Gamma)$, every finite normal subgroup of $H$ contained in
+$\mathfrak D(H,L)$ is killed by every corona representation of $H$.
 
 The same element $a$ drives both halves of the proof.  Analytically,
 $a\in\Gamma$, so fixed-space transport forces the displaced lamp to commute
@@ -476,8 +461,6 @@ implies $w^2=1$.  Then:
 \end{enumerate}
 In particular $E$ is not MF, and neither $\Cmax(E)$ nor $\Cred(E)$ is an
 MF $C^*$-algebra.
-Here $\Cmax(E)$ denotes the universe-relative bounded-product model specified
-in Proposition~\ref{prop:maximal-cstar}.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
@@ -618,8 +601,7 @@ presentation of $\SL_3(\mathbb Z)$ and the classical fact that
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ has property~\textup{(T)}.  The exact
 twenty-relator base is identified with that affine group in
 Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
-obstruction are proved directly.  Section~\ref{sec:necessity} additionally
-uses quasidiagonality of amenable reduced group $C^*$-algebras \cite{TWW}.
+obstruction are proved directly.
 
 Statements carrying a gray tag
 {\normalfont\scriptsize\textcolor{gray!72!black}{[\thinspace
@@ -633,9 +615,7 @@ no literature input.  In particular, property~\textup{(T)} of the literal
 twenty-relator base of Definition~\ref{def:E} is itself machine-checked,
 through an explicit rational spectral-gap certificate for the presentation,
 independently of \cite{CRW,BHV}.  The two printed literature inputs are
-thus conveniences of exposition rather than of trust, and the citation of
-\cite{TWW} in Section~\ref{sec:necessity} is the only use below of an
-unformalized input.
+thus conveniences of exposition rather than of trust.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -711,21 +691,24 @@ such representation.  For broader context see
 \cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
 
 \subsection*{Organization}
-Section~\ref{sec:prelim} fixes notation and states the external inputs.
-Section~\ref{sec:group} constructs $E$ and proves property~\textup{(T)}
-for its literal base.  Section~\ref{sec:witness} proves $w\neq 1$.
+Section~\ref{sec:prelim} fixes notation, proves the corona lifting
+lemmas, and states the conventions.  Section~\ref{sec:group} constructs
+$E$ and proves property~\textup{(T)} for its literal base.
+Section~\ref{sec:witness} proves $w\neq 1$.
+Section~\ref{sec:proofA} proves the defect-square identity and deduces
+Theorem~\ref{thm:A} from the sign criterion.
 Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
-Section~\ref{sec:corona} develops the corona lemmas.
 Section~\ref{sec:conj} defines marked Kazhdan patterns and their
 compression-defect subgroups, proves the finite-normal obstruction
-criterion (Theorem~\ref{thm:criterion}), and develops the coordinate
+criterion (Theorem~\ref{thm:criterion}) and the compression radical
+(Theorem~\ref{thm:compression-radical}), and develops the coordinate
 Reynolds and Kazhdan-compression estimates.
-Section~\ref{sec:proofA} proves the defect-square identity and deduces
-Theorem~\ref{thm:A}.  Section~\ref{sec:consequences} derives
+Section~\ref{sec:consequences} derives
 Theorem~\ref{thm:D} and further consequences.
-Section~\ref{sec:necessity} records the cyclic comparison as a secondary
-exact-dimensional shadow.  Section~\ref{sec:limits} explains the
+Section~\ref{sec:necessity} proves the cyclic-base calibration.
+Section~\ref{sec:limits} explains the
 operator-norm boundary of the argument.
+Appendix~\ref{app:equivalences} proves the MF equivalences.
 
 \section{Notation and external inputs}\label{sec:prelim}
 
@@ -760,6 +743,52 @@ corona}.  We also write
  =\prod_{n\in\N}\U(M_{d_n}(\C))\Big/
  \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
 \]
+Write $q\colon\prod_{n\in\N}^{\ell^\infty}M_{d_n}(\C)\to\mathcal Q$
+for the quotient map of a norm matrix corona.
+
+The following lifting facts are standard perturbation theory; see
+Loring \cite{Loring} for a systematic treatment.
+
+\begin{lemma}[lifting]\label{lem:lift}
+Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting}
+\end{lemma}
+
+\begin{proof}
+Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
+$q((x_n))$ is unitary, both
+$\opnorm{x_n^*x_n-1}\to0$ and $\opnorm{x_nx_n^*-1}\to0$.  In particular,
+$x_n^*x_n$ is invertible, and hence $x_n$ is invertible, for all sufficiently
+large $n$.  At those indices put
+$u_n=x_n(x_n^*x_n)^{-1/2}$.  Then $u_n$ is unitary, and, once
+$\opnorm{x_n^*x_n-1}\le\tfrac12$, continuous functional calculus gives the
+quantitative estimate
+\[
+ \opnorm{u_n-x_n}
+ \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
+\]
+The sequence $(x_n)$ is bounded, so the right-hand side tends to $0$.
+Setting $u_n=1$ at the finitely many remaining indices therefore gives a
+unitary sequence with $\opnorm{u_n-x_n}\to0$.
+\end{proof}
+
+\begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
+For every sequence $(d_n)$, the map
+\[
+ \kappa_{(d_n)}\colon \Ucor((d_n))\longrightarrow\U(\mathcal Q),
+ \qquad [(u_n)]\longmapsto q((u_n)),
+\]
+is a canonical group isomorphism.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence}
+\end{lemma}
+
+\begin{proof}
+The map is well defined, and its kernel consists exactly of the unitary
+sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
+surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
+unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
+\end{proof}
+
 A \emph{corona representation} of a group $E$ is a homomorphism
 $E\to\U(\mathcal Q)$.  Lemma~\ref{lem:unitarycorona} canonically identifies
 it with a homomorphism into $\Ucor((d_n))$, which we call its coordinate
@@ -781,28 +810,26 @@ $\opnorm{U_n(1)-1}\to0$ automatically, since $U_n(1)$ is unitary.
 Coordinate unitary lifts of a corona representation of a countable group
 form exactly such a sequence.
 
-Fix a set-theoretic universe $\mathfrak U$.  For the following construction,
-let $H$ and all representation targets be $\mathfrak U$-small; countability
-is not needed.
-Define $C^*_{\mathrm{max},\mathfrak U}(H)$ as the closed $*$-subalgebra generated by the
-diagonal copy of $H$ in the bounded product of all its nontrivial unitary
-representations on $\mathfrak U$-small unital $C^*$-algebras.  This algebra
-lives in the next universe.  We suppress the subscript $\mathfrak U$ below
-and write $u_h$ for its canonical unitary associated with $h\in H$.
-\begin{proposition}[universe-relative maximal group algebra]
-\label{prop:maximal-cstar}
-The canonical map $h\mapsto u_h$ is injective.  For every $\mathfrak U$-small
-unital $C^*$-algebra $B$ and every homomorphism
-$\rho\colon H\to\U(B)$,
-there is a unique unital $*$-homomorphism $\Cmax(H)\to B$ that maps $u_h$
-to $\rho(h)$ for every $h\in H$.
-\leanverified{Analysis/MaximalGroupCStar}{GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar}
-\end{proposition}
+For a countable discrete group $H$, we write $\Cmax(H)$ for the classical
+maximal group $C^*$-algebra --- the enveloping $C^*$-algebra of
+$\ell^1(H)$ --- with canonical unitaries $u_h$.  It is universal: every
+homomorphism $\rho\colon H\to\U(B)$ into the unitary group of a unital
+$C^*$-algebra extends uniquely to a unital $*$-homomorphism
+$\Cmax(H)\to B$ with $u_h\mapsto\rho(h)$, and $h\mapsto u_h$ is injective
+because it is detected by the left regular representation.
 
-For a nontrivial target, projection to its coordinate gives the extension;
-for a trivial target, the map is unique.  Density of the generated
-$*$-subalgebra gives uniqueness, while the left-regular coordinate proves
-injectivity.
+\begin{remark}[formalized model of the maximal algebra]
+\label{prop:maximal-cstar}
+The formal development realizes the maximal algebra as a universe-relative
+bounded-product model: the closed $*$-subalgebra generated by the diagonal
+copy of $H$ in the bounded product of its nontrivial unitary
+representations on small unital $C^*$-algebras.  The machine-checked
+statement proves exactly the two properties above --- injectivity of
+$h\mapsto u_h$ and the universal extension property for small targets ---
+and every use of $\Cmax$ below consumes only these two properties, so the
+two models are interchangeable for all assertions in this paper.
+\leanverified{Analysis/MaximalGroupCStar}{GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar}
+\end{remark}
 
 \section{The literal group and its Kazhdan source}\label{sec:group}
 
@@ -1056,6 +1083,96 @@ the remaining data are rational matrices.  No normal-form theorem for an HNN
 extension enters: the mapping telescope supplies the required group and the
 range characterization separates the two sites.
 
+\section{The defect square and the proof of Theorem A}\label{sec:proofA}
+
+\begin{lemma}[the marked word is a defect square]\label{lem:square}
+Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
+\[
+  \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
+\]
+\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
+\end{lemma}
+
+\begin{proof}
+Put $b=a_1da_1^{-1}$, so $b^2=a_1d^2a_1^{-1}=1$; thus $b^{-1}=b$ and
+$d^{-1}=d$.  Then $[d,a_1]=da_1d^{-1}a_1^{-1}=d\,(a_1da_1^{-1})=db$,
+and
+\[
+  [d,a_1]^2=(db)^2=db\,db=d\,b\,d^{-1}b^{-1}=[d,b] . \qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
+Part (1) is Proposition~\ref{prop:witness}.  For part (2), let
+$\Theta\colon E\to\Ucor((d_n))$ be given and pass to the corona
+representation $\kappa_{(d_n)}\circ\Theta\colon E\to\U(\mathcal Q)$ of
+Lemma~\ref{lem:unitarycorona}.  Apply the central-sign criterion
+(Theorem~\ref{thm:sign-criterion}) with $\Gamma=\mathcal B$, the canonical
+homomorphism $\iota$, the elements $t,c\in E$, and $a=v_1$.  Its
+hypotheses are exactly the displayed relators:
+Proposition~\ref{prop:literal-base-T} gives property~\textup{(T)} of
+$\mathcal B$; the six stable-letter relators give
+$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$; and the six lamp
+relators give $[c,\iota(\mathcal B)]=1$.  No injectivity of $\iota$ is
+required.  In $E$ we have $d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so
+Lemma~\ref{lem:square} with $a_1=\iota(v_1)$ identifies the marked word as
+the square of the compression defect $u=[d,\iota(v_1)]$:
+\[
+  w=\bigl[\,d,\;\iota(v_1)\,d\,\iota(v_1)^{-1}\bigr]
+  =[\,d,\iota(v_1)\,]^{\,2}=u^2 .
+\]
+Centrality of $w$ is a defining relator; together with $c^2=1$ it forces
+$w^2=1$ by the involution calculation in the proof of
+Theorem~\ref{thm:kazhdan-clifford}; and $w\ne1$ by part (1).  The
+criterion therefore kills $w$ in every corona representation of $E$.
+Since $\kappa_{(d_n)}$ is injective, $\Theta(w)=1$.  This proves part (2).
+
+\medskip
+
+For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
+$E$ would be an injective corona representation, which is impossible
+because every corona representation sends the nontrivial element $w$
+to $1$.  If $\Cred(E)$ were an MF algebra, an injective, possibly nonunital
+$*$-homomorphism $e\colon\Cred(E)\to\mathcal Q$ would give the injective
+unitary homomorphism $u\mapsto e(u)+(1-e(1))$.  Composing it with the
+canonical map $E\to\U(\Cred(E))$, and then with
+$\kappa_{(d_n)}^{-1}$, would exhibit an injective corona representation of
+  $E$: the map $g\mapsto\lambda_g$ is injective.  The canonical map
+  $E\to\U(\Cmax(E))$ is injective as well, because coordinate evaluation at
+  the reduced left-regular representation sends $u_g$ to $\lambda_g$.
+  Thus an MF embedding of $\Cmax(E)$ would again produce an
+  injective corona representation of $E$ after the same
+  $\kappa_{(d_n)}^{-1}$ conversion.
+\end{proof}
+
+\paragraph{The marked radical element.}
+The proof shows more than non-injectivity of each individual
+$\Theta$: the fixed element $w$ lies in the kernel of \emph{every}
+corona representation of $E$, so every corona representation factors
+through $E/\langle w\rangle$ (note $\langle w\rangle=\{1,w\}$ is
+central, hence normal).  In the language of approximation radicals, $w$
+is a nontrivial element of the ``MF radical'' of $E$.
+This terminology is meant in analogy with Slofstra's earlier quotients
+$G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained by killing elements
+invisible to exact and approximate finite-dimensional representations,
+respectively \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
+By Theorem~\ref{thm:criterion} the same holds in every countable
+group with a marked Kazhdan pattern: every finite normal subgroup of
+the compression-defect subgroup lies in the MF radical.
+Section~\ref{sec:consequences} develops the radical systematically;
+we do not know whether $E/\langle w\rangle$ is MF, i.e.\ whether the
+MF radical of $E$ is exactly $\{1,w\}$.
+
+\paragraph{No density hypothesis.}
+No lower bound on the corner ranks $r_n$, or on their density in
+$d_n$, is used anywhere: the central-corner reduction of
+Section~\ref{sec:intro} equips each nonzero corner block with its own
+normalized trace.  Thus all subsequent
+Hilbert--Schmidt estimates are relative to that block.  This is
+what makes the operator-norm setting insensitive to small relative ranks,
+which block the same argument in Hilbert--Schmidt metrics
+(Section~\ref{sec:limits}).
+
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
 We prove Theorem~\ref{thm:B}.  Everything happens inside the
@@ -1136,56 +1253,6 @@ this at finite stages: a uniform spectral cut of the adjoint averages
 captures the almost-fixed vectors.  One-sided compression gives a leakage
 estimate between two equal-rank coordinate projections, and the equal-rank
 flip supplies the reverse estimate.  This is the route used below.
-
-\section{Norm matrix coronas}\label{sec:corona}
-
-Throughout this section $\mathcal Q=\mathcal Q((d_n)_{n\in\N})$ is a
-norm matrix corona,
-$q\colon\prod_{n\in\N}^{\ell^\infty}M_{d_n}(\C)\to\mathcal Q$ the
-quotient map.
-
-The following lifting facts are standard perturbation theory; see
-Loring \cite{Loring} for a systematic treatment.
-
-\begin{lemma}[lifting]\label{lem:lift}
-Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting}
-\end{lemma}
-
-\begin{proof}
-Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
-$q((x_n))$ is unitary, both
-$\opnorm{x_n^*x_n-1}\to0$ and $\opnorm{x_nx_n^*-1}\to0$.  In particular,
-$x_n^*x_n$ is invertible, and hence $x_n$ is invertible, for all sufficiently
-large $n$.  At those indices put
-$u_n=x_n(x_n^*x_n)^{-1/2}$.  Then $u_n$ is unitary, and, once
-$\opnorm{x_n^*x_n-1}\le\tfrac12$, continuous functional calculus gives the
-quantitative estimate
-\[
- \opnorm{u_n-x_n}
- \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
-\]
-The sequence $(x_n)$ is bounded, so the right-hand side tends to $0$.
-Setting $u_n=1$ at the finitely many remaining indices therefore gives a
-unitary sequence with $\opnorm{u_n-x_n}\to0$.
-\end{proof}
-
-\begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
-For every sequence $(d_n)$, the map
-\[
- \kappa_{(d_n)}\colon \Ucor((d_n))\longrightarrow\U(\mathcal Q),
- \qquad [(u_n)]\longmapsto q((u_n)),
-\]
-is a canonical group isomorphism.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence}
-\end{lemma}
-
-\begin{proof}
-The map is well defined, and its kernel consists exactly of the unitary
-sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
-surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
-unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
-\end{proof}
 
 \section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
 
@@ -1285,10 +1352,11 @@ sum converges to $0$ in operator norm, hence also in normalized
 Hilbert--Schmidt norm.  This contradiction proves the theorem.
 \end{proof}
 
-Theorem~\ref{thm:A}(2) is the instance \(H=E\),
-\(\Lambda=\mathcal B\), \(\iota\) the canonical homomorphism, and
-\(F=\{1,w\}\).  The membership \(w\in N_{\mathrm{comp}}\) is the identity
-\(w=[d,\iota(v_1)]^2\) of Lemma~\ref{lem:square}.
+Theorem~\ref{thm:A}(2), proved in Section~\ref{sec:proofA} from the
+sign criterion, is also the instance \(H=E\), \(\Lambda=\mathcal B\),
+\(\iota\) the canonical homomorphism, and \(F=\{1,w\}\) of
+Theorem~\ref{thm:criterion}; the membership \(w\in N_{\mathrm{comp}}\)
+is the identity \(w=[d,\iota(v_1)]^{\,2}\) of Lemma~\ref{lem:square}.
 The following complementary coordinate construction forms the Reynolds
 average at finite stages and repairs its complementary spectral corner
 coordinate by coordinate.
@@ -1299,6 +1367,10 @@ The remainder of this section proves the dimension-free coordinate estimates
 used above.  Spectral cuts and polar correction are performed before taking
 the quotient, and the reverse leakage estimate is obtained from equality of
 finite coordinate ranks.
+
+The first lemma is the ultrafilter-model form of the corner extraction
+performed inside the proof of Theorem~\ref{thm:criterion}; it is the form
+checked by the formal development, and it is recorded here in that role.
 
 \begin{lemma}[coordinate finite-normal corner]\label{lem:corner}
 Let $H$ be a countable group, let $F\trianglelefteq H$ be finite, let
@@ -1565,95 +1637,63 @@ $[d,\iota(\lambda)]$, and identify the identity word with $V_{1,n}$, up to
 an error tending to zero.  This proves the lemma.
 \end{proof}
 
-\section{The defect square and the explicit instance}\label{sec:proofA}
+\subsection{The compression radical}
 
-\begin{lemma}[the marked word is a defect square]\label{lem:square}
-Let $H_1$ be a group and $d,a_1\in H_1$ with $d^2=1$.  Then
+The transport estimate localizes at a single compressor $t$, but nothing
+in it is specific to $t$.  Recall from \eqref{eq:intrinsicdefect} the
+subgroup $G_{\rm comp}(L)$ generated by all one-sided compressors of a
+subgroup $L\le H$ and the intrinsic compression--centralizer defect
+$\mathfrak D(H,L)$.
+
+\begin{corollary}[transport along all compressors]\label{cor:generaltransport}
+Let $(r_n)$ and $V_{g,n}\in\U(r_n)$ be an operator-norm asymptotic
+representation of $H$, let $\Lambda$ have property~\textup{(T)}, let
+$\iota\colon\Lambda\to H$ be a homomorphism, and put $L=\iota(\Lambda)$.
+Then for every $g\in G_{\rm comp}(L)$, every $z\in C_H(L)$, and every
+$\lambda\in\Lambda$,
 \[
-  \bigl[\,d,\;a_1\,d\,a_1^{-1}\bigr]\;=\;[\,d,a_1\,]^{\,2} .
+ \hsnorm{V_{[gzg^{-1},\iota(\lambda)],n}-V_{1,n}}\longrightarrow0 .
 \]
-\leanverified{Sofic/CompressionDefectSquare}{GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one}
-\end{lemma}
+\end{corollary}
 
 \begin{proof}
-Put $b=a_1da_1^{-1}$, so $b^2=a_1d^2a_1^{-1}=1$; thus $b^{-1}=b$ and
-$d^{-1}=d$.  Then $[d,a_1]=da_1d^{-1}a_1^{-1}=d\,(a_1da_1^{-1})=db$,
-and
-\[
-  [d,a_1]^2=(db)^2=db\,db=d\,b\,d^{-1}b^{-1}=[d,b] . \qedhere
-\]
+Two modifications of the proof of Lemma~\ref{lem:compressorcollapse}
+suffice.  First, the estimate
+$\opnorm{P_n-\Ad V_{s,n}P_n\Ad V_{s,n}^{\,*}}\to0$ used only that
+conjugation by $s=t$ carries $L$ into $L$; the identical argument ---
+spectral capture, one-sided leakage, and the equal-rank flip --- applies
+to every element $s$ with $sLs^{-1}\subseteq L$.  Conjugating the estimate
+by the unitary $\Ad V_{s,n}^{\,*}$ reverses it, so the same convergence
+holds for $s^{-1}$, and the multiplicative defects chain it to every word
+in compressors and their inverses, that is, to every
+$g\in G_{\rm comp}(L)$.  Second, the root-capture estimate
+\eqref{eq:root-capture} used only that $c$ centralizes $L$, so it holds
+verbatim with $\xi_n=\operatorname{vec}(V_{z,n})$ for every $z\in C_H(L)$.
+Combining the two as in the last paragraph of the proof of
+Lemma~\ref{lem:compressorcollapse} captures $\Ad V_{g,n}\,\xi_n$ by $P_n$
+and yields the displayed convergence.
 \end{proof}
 
-\begin{proof}[Proof of Theorem~\ref{thm:A}]
-Part (1) is Proposition~\ref{prop:witness}.  For part (2), use the canonical
-homomorphism $\iota\colon\mathcal B\to E$ and put $a=v_1$.  The tuple
-$(\mathcal B,\iota,t,c)$ is a marked Kazhdan pattern in $E$:
-Proposition~\ref{prop:literal-base-T} gives property~\textup{(T)};
-the six stable-letter relators give
-$t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$; and the six
-commutator relators give $[c,\iota(\mathcal B)]=1$.  No injectivity of
-$\iota$ is required.  In $E$ we have
-$d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so
-Lemma~\ref{lem:square} with $a_1=\iota(v_1)$ gives
-\[
-  w=\bigl[\,d,\;\iota(v_1)\,d\,\iota(v_1)^{-1}\bigr]
-  =[\,d,\iota(v_1)\,]^{\,2}\;\in\;N_{\mathrm{comp}} ,
-\]
-since $[\,d,\iota(v_1)\,]$ is one of the defining generators of
-$N_{\mathrm{comp}}$.  The subgroup $F=\{1,w\}=\langle w\rangle$ is
-finite and normal: centrality is a defining relation and $w^2=1$ follows
-from centrality together with $c^2=1$, while
-Proposition~\ref{prop:witness} gives $w\neq1$.  Moreover
-$F\subseteq N_{\mathrm{comp}}$.  Theorem~\ref{thm:criterion}
-therefore kills $w$ after composing any
-$\Theta\colon E\to\Ucor((d_n))$ with the canonical isomorphism
-$\kappa_{(d_n)}$ of Lemma~\ref{lem:unitarycorona}.  Since
-$\kappa_{(d_n)}$ is injective, $\Theta(w)=1$.  This is part (2).
+\begin{theorem}[compression radical]
+\label{thm:compression-radical}
+Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
+property~\textup{(T)}, let
+$\iota\colon\Gamma\to H$ be a homomorphism, and put
+$L=\iota(\Gamma)$.  If $F\trianglelefteq H$ is finite and
+$F\le\mathfrak D(H,L)$, then every homomorphism from $H$ to every norm
+matrix corona kills $F$.
+\leanverified{Sofic/ManuscriptKazhdanTransport}{GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical}
+\end{theorem}
 
-\medskip
-
-For the final assertions of Theorem~\ref{thm:A}: an MF embedding of
-$E$ would be an injective corona representation, which is impossible
-because every corona representation sends the nontrivial element $w$
-to $1$.  If $\Cred(E)$ were an MF algebra, an injective, possibly nonunital
-$*$-homomorphism $e\colon\Cred(E)\to\mathcal Q$ would give the injective
-unitary homomorphism $u\mapsto e(u)+(1-e(1))$.  Composing it with the
-canonical map $E\to\U(\Cred(E))$, and then with
-$\kappa_{(d_n)}^{-1}$, would exhibit an injective corona representation of
-  $E$: the map $g\mapsto\lambda_g$ is injective.  The canonical map
-  $E\to\U(\Cmax(E))$ is injective as well, because coordinate evaluation at
-  the reduced left-regular representation sends $u_g$ to $\lambda_g$.
-  Thus an MF embedding of $\Cmax(E)$ would again produce an
-  injective corona representation of $E$ after the same
-  $\kappa_{(d_n)}^{-1}$ conversion.
+\begin{proof}
+Repeat the proof of Theorem~\ref{thm:criterion} verbatim, with
+Corollary~\ref{cor:generaltransport} in place of
+Lemma~\ref{lem:compressorcollapse}: it places every displayed generator of
+$\mathfrak D(H,L)$ in the normal subgroup $K_2$, hence all of
+$\mathfrak D(H,L)$, and therefore $F$.  The Reynolds contradiction is
+unchanged.
 \end{proof}
 
-\paragraph{The marked radical element.}
-The proof shows more than non-injectivity of each individual
-$\Theta$: the fixed element $w$ lies in the kernel of \emph{every}
-corona representation of $E$, so every corona representation factors
-through $E/\langle w\rangle$ (note $\langle w\rangle=\{1,w\}$ is
-central, hence normal).  In the language of approximation radicals, $w$
-is a nontrivial element of the ``MF radical'' of $E$.
-This terminology is meant in analogy with Slofstra's earlier quotients
-$G^{\mathrm{fin}}$ and $G^{\mathrm{fa}}$, obtained by killing elements
-invisible to exact and approximate finite-dimensional representations,
-respectively \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.
-By Theorem~\ref{thm:criterion} the same holds in every countable
-group with a marked Kazhdan pattern: every finite normal subgroup of
-the compression-defect subgroup lies in the MF radical.
-Section~\ref{sec:consequences} develops the radical systematically;
-we do not know whether $E/\langle w\rangle$ is MF, i.e.\ whether the
-MF radical of $E$ is exactly $\{1,w\}$.
-
-\paragraph{No density hypothesis.}
-No lower bound on the corner ranks $r_n$, or on their density in
-$d_n$, is used anywhere: Lemma~\ref{lem:corner} equips each nonzero
-complementary block with its own normalized trace.  Thus all subsequent
-Hilbert--Schmidt estimates are relative to that block.  This is
-what makes the operator-norm setting insensitive to small relative ranks,
-which block the same argument in Hilbert--Schmidt metrics
-(Section~\ref{sec:limits}).
 
 \section{Consequences}\label{sec:consequences}
 
