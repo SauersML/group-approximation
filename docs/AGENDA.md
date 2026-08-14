@@ -6,6 +6,23 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: `(TT)/T` does not cross the growing-dimension HS gate
+
+`FALSE_TT_T_IS_NOT_DIMENSION_FREE_HS_STABILITY.md` audits the strongest
+available Ulam-stability shortcut.  The existing atlas theorem is property
+`(TT)/T`, not property `(TTT)`.  More importantly, even the Burger--Ozawa--
+Thom `(TTT)` conclusion fixes the matrix dimension before taking the defect
+to zero: its modulus may depend on `d`.  Hyperlinear witnesses have
+`d_n -> infinity`, so this does not yield a dimension-free or flexible
+normalized-HS rounding theorem.  Becker--Lubotzky's instability theorem for
+infinite hyperlinear property-`(T)` groups is the consistency check against
+any generic upgrade.
+
+The valid target is a uniform estimate for this explicit atlas relator
+packet, not abstract quasi-cocycle rigidity.  Such an estimate is equivalent
+in strength to the surviving finite-multiplicity multiplication/leakage
+gate; it has not been proved here.
+
 ### 2026-08-14: the star synchronizer cannot orient leakage
 
 `FALSE_STAR_SYNCHRONIZATION_DOES_NOT_CREATE_LEAKAGE.md` closes the combined
