@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition.",
+  "status_policy": "Every numbered theorem-like environment is recorded. Exact claims have one linked declaration and an independently mapped wrapper with the same literal objects and outer proposition. Paper-only claims have no badge and record every external input and coverage gap.",
   "claims": [
     {
       "id": "prop:mf-equivalences",
@@ -340,6 +340,27 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "thm:sofic-detector",
+      "environment": "theorem",
+      "title": "sofic Clifford detector",
+      "statement_sha256": "5a8d81aba3fc00a0c7aaa4fa112cefdfe61ead050b8af098d70ea4b882b97ade",
+      "status": "paper-only",
+      "object_identity": "The printed theorem concerns the concrete Clifford target W and the explicit quotient map constructed in Proposition prop:witness.",
+      "dependencies": [
+        "prop:witness",
+        "thm:A"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Residual finiteness of the displayed integral affine matrix group.",
+        "Soficity passes to finite extensions and directed unions.",
+        "Elek--Szabo: extensions of sofic groups by amenable quotients are sofic.",
+        "Elek--Szabo: every sofic group is hyperlinear."
+      ],
+      "coverage_gap": "RadicalSeparation.lean formalizes the detector/radical logic; the concrete finite-coset tower and sofic permanence proof are currently verified in the manuscript rather than by one closed Lean declaration.",
+      "lean": []
     },
     {
       "id": "cor:notRFD",
