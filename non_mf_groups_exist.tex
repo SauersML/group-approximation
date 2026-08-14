@@ -676,6 +676,21 @@ marked unformalized paragraphs, quasidiagonality of amenable groups
 identified with that affine group in Section~\ref{sec:group}; the Clifford
 witness and finite-dimensional obstruction are proved directly.
 
+Statements carrying a gray tag
+{\normalfont\scriptsize\textcolor{gray!72!black}{[\thinspace
+Lean: \nolinkurl{\dots}\thinspace]}} have machine-checked counterparts:
+each tag names a declaration in the accompanying Lean~4 development whose
+statement is the faithful translation of the printed one and whose proof
+the Lean kernel accepts with no axioms beyond Lean's three classical
+primitives.  A tag certifies the stated theorem, not the surrounding
+prose; a statement without a tag has no formal counterpart, and the two
+unformalized paragraphs above are marked as such in place.  The formal
+development consumes no literature input at all: in particular it uses
+neither \cite{CRW} nor \cite{BHV}, proving property~\textup{(T)} of the
+twenty-relator base directly from an explicit rational spectral-gap
+certificate for the presentation.  The printed and formal proofs are thus
+two independent routes to the same statements.
+
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
 One-sided compression of a property~\textup{(T)} subgroup and propagation
