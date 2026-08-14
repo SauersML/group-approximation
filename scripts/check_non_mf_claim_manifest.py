@@ -62,6 +62,10 @@ BADGE_RE = re.compile(
     r"\\lean(?P<status>verified)"
     r"\{(?P<module>[^{}]+)\}\{(?P<declaration>[^{}]+)\}"
 )
+ANY_BADGE_RE = re.compile(
+    r"\\lean(?P<status>[A-Za-z]+)"
+    r"\{(?P<module>[^{}]+)\}\{(?P<declaration>[^{}]+)\}"
+)
 COMMENT_RE = re.compile(r"(?<!\\)%[^\n]*")
 
 
@@ -73,6 +77,7 @@ class PrintedClaim:
     line: int
     statement_sha256: str
     badges: tuple[tuple[str, str, str], ...]
+    badge_macros: tuple[str, ...]
 
 
 def _strip_comments(source: str) -> str:
@@ -80,7 +85,7 @@ def _strip_comments(source: str) -> str:
 
 
 def _strip_badges(source: str) -> str:
-    return BADGE_RE.sub("", source)
+    return ANY_BADGE_RE.sub("", source)
 
 
 def _statement_digest(block: str, env: str) -> str:
@@ -125,6 +130,9 @@ def read_printed_claims(tex: Path) -> list[PrintedClaim]:
              b.group("declaration").strip())
             for b in BADGE_RE.finditer(block)
         )
+        badge_macros = tuple(
+            b.group("status") for b in ANY_BADGE_RE.finditer(block)
+        )
         # A few status badges intentionally sit immediately after the theorem
         # environment.  Associate only a consecutive badge run; ordinary prose
         # ends the run, so a later theorem cannot inherit a badge accidentally.
@@ -133,12 +141,15 @@ def read_printed_claims(tex: Path) -> list[PrintedClaim]:
             whitespace = re.match(r"\s*", source[tail_cursor:])
             assert whitespace is not None
             badge_at = tail_cursor + whitespace.end()
-            b = BADGE_RE.match(source, badge_at)
+            b = ANY_BADGE_RE.match(source, badge_at)
             if b is None:
                 break
-            badges += ((BADGE_TO_ROLE[b.group("status")],
-                        b.group("module").strip(),
-                        b.group("declaration").strip()),)
+            status = b.group("status")
+            badge_macros += (status,)
+            if status == "verified":
+                badges += ((BADGE_TO_ROLE[status],
+                            b.group("module").strip(),
+                            b.group("declaration").strip()),)
             tail_cursor = b.end()
         claims.append(PrintedClaim(
             claim_id=claim_id,
@@ -147,6 +158,7 @@ def read_printed_claims(tex: Path) -> list[PrintedClaim]:
             line=line,
             statement_sha256=_statement_digest(block, env),
             badges=badges,
+            badge_macros=badge_macros,
         ))
         cursor = stop
     return claims
@@ -247,6 +259,14 @@ def validate(repo: Path, tex: Path, manifest_path: Path) -> list[str]:
         status = entry.get("status")
         if status not in STATUSES:
             problems.append(f"{prefix}: invalid status `{status}`")
+        forbidden_badges = sorted({
+            badge for badge in claim.badge_macros if badge != "verified"
+        })
+        if forbidden_badges:
+            rendered = ", ".join(f"\\lean{badge}" for badge in forbidden_badges)
+            problems.append(
+                f"{prefix}: forbidden nonexact manuscript badge(s): {rendered}"
+            )
         if len(claim.badges) != 1:
             problems.append(
                 f"{prefix}: exact claim must carry exactly one \\leanverified badge"
@@ -426,6 +446,20 @@ def self_test() -> int:
             if not any("exactly one \\leanverified badge" in p
                        for p in validate(repo, tex, manifest)):
                 print(f"self-test accepted badge {forbidden_badge}", file=sys.stderr)
+                return 1
+        for forbidden_badge in former_badges:
+            tex.write_text(
+                "\\begin{theorem}[Demo]\\label{thm:demo}\nTrue.\n"
+                "\\leanverified{Demo/Exact}{GroupApproximation.demo_exact}\n"
+                f"\\lean{forbidden_badge}{{Demo/Exact}}"
+                "{GroupApproximation.demo_exact}\n"
+                "\\end{theorem}\n", encoding="utf-8")
+            manifest.write_text(json.dumps(base), encoding="utf-8")
+            if not any("forbidden nonexact manuscript badge" in p
+                       for p in validate(repo, tex, manifest)):
+                print(
+                    "self-test accepted coexisting badge "
+                    f"{forbidden_badge}", file=sys.stderr)
                 return 1
         bad = json.loads(json.dumps(base))
         bad["claims"] = []
