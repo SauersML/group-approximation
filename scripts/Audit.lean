@@ -520,6 +520,7 @@ def headlineTheorems : List Name :=
    ``NonMFImpact.operatorMF_not_closed_under_quotients,
    ``NonMFImpact.literal_uniform_operatorNorm_obstruction,
    ``NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups,
+   ``NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF,
    ``ManuscriptExactWrappers.manuscriptRadicalPortability,
    ``KazhdanCliffordConstruction.kazhdanCliffordConstruction,
    ``LiteralNonMFEndpoint.manuscriptTheoremD,

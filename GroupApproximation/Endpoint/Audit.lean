@@ -576,6 +576,7 @@ the entire project namespace and fails on anything beyond classical Lean.
 #print axioms GroupApproximation.NonMFImpact.operatorMF_not_closed_under_quotients
 #print axioms GroupApproximation.NonMFImpact.literal_uniform_operatorNorm_obstruction
 #print axioms GroupApproximation.NonMFImpact.finiteNormal_obstruction_is_trivial_in_torsionFree_groups
+#print axioms GroupApproximation.NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.cleanP13Certificate
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_hodge_gap
 #print axioms GroupApproximation.LiteralP13HodgeCertificate.p13_generatorLaplacian_quadratic_gap

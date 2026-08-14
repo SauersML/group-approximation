@@ -557,7 +557,8 @@ export GroupApproximation.NonMFImpact
     cyclicBase_exactModel_obstruction
     operatorMF_not_closed_under_quotients
     literal_uniform_operatorNorm_obstruction
-    finiteNormal_obstruction_is_trivial_in_torsionFree_groups)
+    finiteNormal_obstruction_is_trivial_in_torsionFree_groups
+    sofic_nonMF_is_hyperlinear_nonMF)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)
