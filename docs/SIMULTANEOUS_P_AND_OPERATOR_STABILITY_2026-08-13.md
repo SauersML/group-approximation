@@ -4,6 +4,19 @@ Date: 2026-08-13
 
 ## Status
 
+This does not introduce a fourth intrinsic approximation class on the level
+of MF, sofic, or hyperlinear groups.  The ``mixed'' class used below is
+literally the union
+
+\[
+\{\text{sofic groups}\}\cup\{\text{operator-MF groups}\}.
+\]
+
+It is a bookkeeping device that lets one application of the
+Fournier--Facio machine control both target families at once.  The new
+phenomenon is the simultaneous separation: a single group can be pointwise
+stable for both metrics while belonging to neither approximation class.
+
 The abstract argument and its concrete mixed seed are now formalized in Lean:
 
 - `GroupApproximation/Stability/MixedApproximation.lean` defines the mixed
