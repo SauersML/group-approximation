@@ -48,6 +48,20 @@ not the stronger containment `F<=E`.  See
 which parent sheet is selected and only force vanishing conditional
 variance.
 
+The archived parent-cell audit sharpens this further.  The raw order-16 cell
+containing `E` has trivial intersection with its comb conjugate containing
+`F`, so `tau(EF)=1/32`.  Hence the binary expectation of `F` is exactly
+`(1/4)1` and
+
+```text
+||F-(1/4)1||_2^2=3/16.
+```
+
+The final Pauli gate is therefore one fixed polynomial collapse: derive
+`F -> (1/4)1` in normalized Hilbert--Schmidt norm from the recovered
+multiplication module.  No overlap parameter, orientation choice, or
+conditional-expectation computation remains at the endpoint.
+
 ## 2026-08-13 robust paired quotient: a direct `1/36` Hamming floor
 
 A perfect finite binary pairing turns the two diagonal transport relations

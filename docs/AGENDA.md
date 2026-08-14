@@ -49,6 +49,20 @@ trace-`1/4` transported carrier, then every `F` has squared distance at least
 See `TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md` and the source-first scalar
 certificate `PauliCarrierBinaryGap.lean`.
 
+The existing exact intersection certificate makes this endpoint scalar.
+The parent order-16 cell containing `E` intersects its comb conjugate
+containing `F` only in the identity, so the canonical trace gives
+`tau(EF)=1/32`.  Consequently `E_(W*(E))(F)=(1/4)1` and
+
+```text
+||F-(1/4)1||_2^2=3/16.
+```
+
+The shortest remaining Pauli statement is now: multiplication-module
+recovery forces the fixed transported-carrier polynomial `F` to converge to
+the scalar `(1/4)1`.  This is recorded in the final section of
+`TRUE_PAULI_CARRIER_BINARY_ALGEBRA_GAP.md`.
+
 ### 2026-08-13: perfect paired labels have a universal `1/36` error floor
 
 `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md` removes the Fourier and

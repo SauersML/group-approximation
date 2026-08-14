@@ -106,3 +106,63 @@ support information that earlier formulations demanded.
 Once the binary-membership gate is proved, `(PCG8)` is the final fixed
 contradiction.  No whole-map PVM, rank selection, or directed containment is
 then needed on this Pauli-carrier route.
+
+## 5. The actual packet has scalar expectation and gap `3/16`
+
+The general lower bound `(PCG8)` does not use the canonical overlap.  That
+overlap is already determined by the exact parent-cell intersection audit.
+Let
+
+```text
+K  = <raw,z_11,z_001>,
+K' = U* K U.                                           (PCG9)
+```
+
+The archived exact certificate in
+`experiments/atlas-pauli-transported-carrier.json` gives
+
+```text
+|K|=16,             K intersect K'={1}.              (PCG10)
+```
+
+The projection `E` belongs to `C[K]` and `F=U*QU` belongs to `C[K']`.
+For group elements `k in K` and `k' in K'`, the canonical group trace of
+`kk'` can be nonzero only when `k=(k')^(-1)`, hence only when both are the
+identity.  Therefore the mixed trace factors:
+
+```text
+tau(EF)=tau(E)tau(F)=(1/8)(1/4)=1/32.                (PCG11)
+```
+
+Substituting `(PCG11)` into `(PCG5)` makes both binary expectation
+coefficients equal to `1/4`:
+
+```text
+E_E(F)=(1/4)1.                                        (PCG12)
+```
+
+The exact residual is consequently
+
+```text
+||F-(1/4)1||_2^2
+ =tau(F)-2(1/4)tau(F)+1/16
+ =3/16.                                               (PCG13)
+```
+
+This value is formalized by
+`binaryResidual_one_thirty_second` in
+`PauliCarrierBinaryGap.lean`.  No new experiment is required: `(PCG10)` is
+the previously archived exact intersection certificate, and
+`(PCG11)--(PCG13)` are group-trace arithmetic.
+
+Thus the shortest live theorem can be stated without conditional-expectation
+notation:
+
+> Cross-root multiplication and raw/comb covariance force the matrix lift
+> of the transported carrier polynomial `F` to converge in normalized
+> Hilbert--Schmidt norm to `(1/4)1`.
+
+That conclusion directly contradicts `(PCG13)`.  It remains unproved, but it
+is a single fixed polynomial-collapse statement.  The parent-sheet choice,
+the overlap parameter, and all conditional-expectation coefficients have
+now disappeared from the terminal formulation.

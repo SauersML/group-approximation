@@ -48,5 +48,20 @@ theorem three_div_twenty_eight_le_binaryResidual
     binaryResidual 0 = (5 : ℝ) / 28 := by
   norm_num [binaryResidual]
 
+/-- In the actual Pauli packet the parent cell and its comb conjugate have
+trivial intersection, giving overlap `x=(1/8)(1/4)=1/32`.  At that overlap
+the binary conditional expectation is scalar and the residual improves to
+`3/16`. -/
+@[simp] theorem binaryResidual_one_thirty_second :
+    binaryResidual ((1 : ℝ) / 32) = (3 : ℝ) / 16 := by
+  norm_num [binaryResidual]
+
+/-- Both coefficients of the binary conditional expectation equal `1/4`
+at the trace-independent overlap `1/32`. -/
+theorem binaryExpectation_coefficients_one_thirty_second :
+    8 * ((1 : ℝ) / 32) = (1 : ℝ) / 4 ∧
+      ((8 : ℝ) / 7) * ((1 : ℝ) / 4 - (1 : ℝ) / 32) = (1 : ℝ) / 4 := by
+  norm_num
+
 end PauliCarrierBinaryGap
 end GroupApproximation
