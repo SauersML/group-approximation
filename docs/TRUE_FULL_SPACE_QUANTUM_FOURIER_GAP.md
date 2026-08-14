@@ -1,13 +1,15 @@
-# The full Fourier space has a quantum unitary gap
+# The full Fourier space has a quantum contraction gap
 
 Date: 2026-08-14
 
 ## 1. Outcome
 
-The paired-quotient endpoint does not need classical response maps once the
-two coefficient transports act unitarily on one common finite packet.
-Working on the **full** Fourier space gives a shorter obstruction than the
-previous reduced-mode/contraction argument.
+The paired-quotient endpoint does not need classical response maps.  In
+fact, the two coefficient transports need not act unitarily on the recovered
+packet.  Operator-norm contractions already have a fixed distance from the
+crossed constant kernel.  Working on the **full** Fourier space therefore
+gives a shorter obstruction than the previous reduced-mode/contraction
+argument.
 
 Let `V,W` be nonzero finite sets of the same cardinality `N`, let
 
@@ -15,38 +17,45 @@ Let `V,W` be nonzero finite sets of the same cardinality `N`, let
 F : l2(W) tensor K -> l2(V) tensor K
 ```
 
-be unitary, and let `R,L` be unitaries on the target and source spaces.  Put
+be unitary, and let `R,L` be contractions on the target and source spaces.
+Put
 
 ```text
 T=R* F L.                                             (QFG1)
 ```
 
-Then `T` is unitary.  If the crossed coefficient relation identifies `T`
-with the constant Fourier kernel
+Then `T` is a contraction.  If the crossed coefficient relation identifies
+`T` with the constant Fourier kernel
 
 ```text
 K_N=N^(-1/2) J_N tensor 1_K,                          (QFG2)
 ```
 
-there is an immediate contradiction for `N>1`: `K_N` has rank only one in
-the label coordinate and is not unitary.
+there is an immediate contradiction for `N>1`: `K_N` has operator norm
+`sqrt(N)`, while `T` has operator norm at most one.
 
-More importantly, this has a dimension-free normalized-Hilbert--Schmidt
-version.  For every finite tracial coefficient algebra `C` and every
-unitary `T in M_N(C)`,
+More importantly, this operator-norm mismatch has a dimension-free
+normalized-Hilbert--Schmidt version.  For every finite tracial coefficient
+algebra `C` and every contraction `T in M_N(C)`,
 
 ```text
-||T-K_N||_2^2 >= 2-2/sqrt(N).                         (QFG3)
+||T-K_N||_2^2 >= (1-1/sqrt(N))^2.                     (QFG3)
 ```
 
 Thus for `N>=2`,
 
 ```text
-||T-K_N||_2^2 >= 2-sqrt(2).                           (QFG4)
+||T-K_N||_2^2 >= 3/2-sqrt(2).                         (QFG4)
 ```
 
 The coefficient dimension and the matrix-coordinate dimension do not enter
-the constant.
+the constant.  If `T` is unitary, the sharper bound
+
+```text
+||T-K_N||_2^2 >= 2-2/sqrt(N) >= 2-sqrt(2)             (QFG4a)
+```
+
+also holds, but it is not needed.
 
 ## 2. Proof of the gap
 
@@ -58,26 +67,31 @@ tau(p)=1/N,
 ||K_N||_2=1.                                         (QFG5)
 ```
 
-For a unitary `T`, traciality gives
+Let `T` be a contraction.  Right multiplication by `p` is the orthogonal
+projection in tracial `L2`, so
 
 ```text
-tau(T* p)=tau(p T* p).                                (QFG6)
+||T-K_N||_2 >= ||(T-K_N)p||_2.                        (QFG6)
 ```
 
-The compression `p T* p` is a contraction in the corner `pM_N(C)p`.
-Therefore
+Moreover,
 
 ```text
-|tau(T* p)|<=tau(p)=1/N,                              (QFG7)
+||Tp||_2<=||T||_infinity ||p||_2<=1/sqrt(N),          (QFG7)
 ```
 
-and hence
+whereas `||sqrt(N)p||_2=1`.  The reverse triangle inequality
+therefore gives
 
 ```text
-|tau(T* K_N)|<=1/sqrt(N).                             (QFG8)
+||(T-K_N)p||_2>=1-1/sqrt(N).                          (QFG8)
 ```
 
-Expanding the squared `L2` distance gives
+Squaring proves `(QFG3)`, and monotonicity in `N>=2` proves `(QFG4)`.
+
+For completeness, if `T` is unitary, traciality and compression to `p` give
+`|tau(T* p)|<=tau(p)=1/N`, hence
+`|tau(T* K_N)|<=1/sqrt(N)`.  Expanding the squared distance then gives
 
 ```text
 ||T-K_N||_2^2
@@ -86,7 +100,8 @@ Expanding the squared `L2` distance gives
 ```
 
 This proof is operator-valued.  It does not assume that the entries of `T`
-commute, are projections, or arise from a classical permutation.
+commute, are projections, or arise from a classical permutation.  The
+contraction version does not even use a trace-overlap estimate.
 
 ## 3. Application to a perfect binary pairing
 
@@ -106,8 +121,8 @@ P_r* F_b P_l.
 
 If `b(rv,lw)=0` for every `v,w`, this matrix is exactly `K_N`.  Equations
 `(QFG3)--(QFG4)` show that the same conclusion is impossible for arbitrary
-operator-valued unitary transports as soon as the crossed relation controls
-the complete Fourier operator in normalized `L2`.
+operator-valued contraction transports as soon as the crossed relation
+controls the complete Fourier operator in normalized `L2`.
 
 The robust statement needed by the atlas is therefore only
 
@@ -115,8 +130,10 @@ The robust statement needed by the atlas is therefore only
 ||R_n* F_(b,n) L_n-K_(N_n)||_2 -> 0,                 (QFG11)
 ```
 
-with `R_n,L_n,F_(b,n)` unitary on one common finite packet and `N_n>=2`.
-This contradicts `(QFG4)` directly.
+with `R_n,L_n` contractions, `F_(b,n)` unitary on one common finite packet,
+and `N_n>=2`.  This contradicts `(QFG4)` directly.  Compressions of ambient
+group unitaries are automatically contractions, so no polar repair is part
+of this endpoint.
 
 ## 4. What this removes
 
@@ -133,7 +150,8 @@ R_0* U L_1 ~= 0.
 That route needed both diagonal identities to prove near-bijectivity,
 invariance of the reduced modes, and the multiplicative `2-sqrt(3)`
 contraction gap.  On the full Fourier space the crossed kernel should not be
-discarded: its failure to be unitary is already the obstruction.
+discarded: its singular value `sqrt(N)` is already incompatible with a
+contraction.
 
 Once `(QFG11)` is available, none of the following is needed at the final
 analytic step:
@@ -143,7 +161,7 @@ analytic step:
 3. multiplication-table quantum classicalization;
 4. the two diagonal transport identities;
 5. deletion or approximate invariance of the two trivial Fourier modes; or
-6. the `2-sqrt(3)` contraction packet.
+6. polar repair, near-bijectivity, or the `2-sqrt(3)` contraction packet.
 
 The recent multiplicative-unitary classicalization results remain correct
 fallback endpoints.  They are strictly stronger than what `(QFG11)` asks
@@ -155,35 +173,38 @@ The shortcut does **not** say that the current local Pauli relations already
 imply `(QFG11)`.  The order-32 Pauli countermodel proves they do not.  What it
 lacks is one common coefficient packet on which:
 
-1. the raw and transported character decompositions have matched finite
-   multiplicity;
+1. the raw and transported character decompositions admit one common finite
+   coefficient packet;
 2. the pairing Fourier operator is defined between those decompositions;
-3. the two relevant group words have negligible leakage from the packet, so
-   their compressions can be replaced by unitaries; and
-4. the cross-root Steinberg relation controls the **complete** operator in
+3. the compressions of the two relevant group words define the contraction
+   factors in `(QFG11)`; and
+4. the cross-root Steinberg relation controls the **complete compressed
+   operator** in
    `(QFG11)`, rather than only separate block-mass marginals.
 
 This is a coherent operator statement, but it is weaker than classicalizing
 the coefficient maps.  In particular, phases and noncommuting multiplicity
-blocks are harmless: they are absorbed into the arbitrary unitary `T` in
-`(QFG3)`.
+blocks are harmless: they are absorbed into the arbitrary contraction `T`
+in `(QFG3)`.
 
 The live endpoint is now:
 
 > **Full-space Fourier packet gate.**  Recover a positive-trace common
-> finite coefficient packet for the two atlas charts, with equal label
-> multiplicities and negligible transport leakage, on which the crossed
-> coefficient relation implies `(QFG11)`.
+> finite coefficient packet for the two atlas charts, with a flat pairing
+> Fourier operator, on which the crossed coefficient relation implies the
+> complete compressed-operator estimate `(QFG11)`.
 
 The analytic contradiction after this recovery is one line and has the
-fixed squared gap `2-sqrt(2)`.
+fixed squared gap `3/2-sqrt(2)`.  Leakage need not be shown to vanish
+separately; any effect it has must only be included in the error in
+`(QFG11)`.
 
 ## 6. Relation to the magic-unitary idea
 
 A magic transition matrix would certainly supply a unitary operator-valued
-matrix, so the gap applies to it.  But projection entries and row/column
-commutativity are irrelevant to `(QFG3)`.  The right target is therefore not
-"extract a quantum permutation" unless the atlas naturally supplies one.
-It is simply "extract the complete unitary block transport on a common
-Fourier packet."  This avoids replacing one classicalization problem by a
-quantum-permutation extraction problem.
+matrix, so the sharper gap applies to it.  But projection entries and
+row/column commutativity are irrelevant to `(QFG3)`.  The right target is
+therefore not "extract a quantum permutation" unless the atlas naturally
+supplies one.  It is simply "extract the complete contracted block transport
+on a common Fourier packet."  This avoids replacing one classicalization problem by a
+quantum-permutation extraction problem or a polar-decomposition problem.

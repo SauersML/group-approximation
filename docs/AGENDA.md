@@ -10,24 +10,25 @@ kernel-checked, cited from a source, or explicitly conjectural.
 
 The constant kernel produced by the crossed-zero pairing relation should not
 be deleted.  In `M_N(C)` with normalized trace, put
-`K_N=N^(-1/2)J_N tensor 1`.  For every unitary `T`, compression to the
-constant-label projection gives
+`K_N=N^(-1/2)J_N tensor 1`.  For every operator-norm contraction `T`,
+compression to the constant-label projection gives
 
 ```text
-||T-K_N||_2^2 >= 2-2/sqrt(N) >= 2-sqrt(2)   (N>=2).
+||T-K_N||_2^2 >= (1-1/sqrt(N))^2 >= 3/2-sqrt(2)   (N>=2).
 ```
 
-This is operator-valued and requires neither commuting coefficients nor a
-classical permutation.  Hence, if the atlas produces one common finite
-Fourier packet with unitary transports `R_n,L_n` and
+This is operator-valued and requires neither unitarity of `T`, commuting
+coefficients, nor a classical permutation.  Hence, if the atlas produces
+one common finite Fourier packet with contracted transports `R_n,L_n` and
 `||R_n*F_(b,n)L_n-K_(N_n)||_2->0`, the hyperlinear contradiction is
 immediate.  The final analytic step no longer needs whole-map PVMs,
 multiplication-table classicalization, the two diagonal identities,
-trivial-mode deletion, or the `2-sqrt(3)` contraction gap.  The remaining
-gate is specifically to recover a positive-trace common coefficient packet
-with equal label multiplicities, negligible transport leakage, and complete
-cross-operator control.  Local Pauli signs and separate block-mass marginals
-do not supply that packet.  See `TRUE_FULL_SPACE_QUANTUM_FOURIER_GAP.md`.
+trivial-mode deletion, polar repair, or the `2-sqrt(3)` contraction gap.  The
+remaining gate is specifically to recover a positive-trace common
+coefficient packet with a flat pairing Fourier operator and complete
+cross-operator control.  Leakage only matters through the error in that
+complete identity.  Local Pauli signs and separate block-mass marginals do
+not supply the packet.  See `TRUE_FULL_SPACE_QUANTUM_FOURIER_GAP.md`.
 
 ### 2026-08-14: two coproduct defects suffice for classicalization
 
