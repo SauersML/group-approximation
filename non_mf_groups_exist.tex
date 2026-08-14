@@ -23,7 +23,7 @@
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
 \newcommand{\paperauthor}{Anonymous}
 \hypersetup{
-  pdftitle={An explicit finitely presented group that is not MF},
+  pdftitle={Non-MF groups exist},
   pdfauthor={\paperauthor},
   pdfsubject={Explicit finitely presented non-MF groups and matrix coronas},
   pdfkeywords={MF groups, matrix coronas, property (T), asymptotic commutants, Clifford lamps, Kazhdan compression}
@@ -87,7 +87,7 @@
 
 \begin{document}
 
-\title{An explicit finitely presented group that is not MF}
+\title{Non-MF groups exist}
 \author{\paperauthor}
 
 \begin{abstract}
@@ -102,7 +102,9 @@ the central sign $u^2$ equal to $-1$, giving the contradiction.
 More generally, every finitely presented property-\textup{(T)} group with a
 proper injective self-embedding produces a finitely presented non-MF group.
 We give an eight-generator instance based on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  The same central sign survives in a
+finitely generated sofic quotient.  This yields a sofic non-MF group and
+separates MF invisibility from sofic and hyperlinear invisibility.
 \end{abstract}
 
 \maketitle
@@ -631,6 +633,16 @@ Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
 obstruction are proved directly.
 
 The Lean development verifies the all-compressors transport theorem, the
+intrinsic finite-normal compression radical, the general Kazhdan--Clifford
+construction, the literal presentation, and the unconditional non-MF
+endpoint.  \texttt{RadicalSeparation.lean} verifies the abstract
+detector-to-radical implications.  The concrete finite-coset-tower proof that
+$W$ is sofic is the unconditional paper proof of
+Theorem~\ref{thm:sofic-detector}; the claim manifest records that external
+permanence argument separately rather than displaying an inaccurate Lean
+badge.
+
+The Lean development verifies the all-compressors transport theorem, the
 general Kazhdan--Clifford construction, the literal presentation, and the
 unconditional non-MF endpoint.  As an independent check of the Kazhdan
 input, it also verifies an exact rational sum-of-squares certificate whose
@@ -1026,6 +1038,87 @@ Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
 $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $\zeta\neq1$, and therefore $w\neq1$ in $E$.
+\end{proof}
+
+For a class $\mathcal A$ of groups, write
+$\operatorname{Rad}_{\mathcal A}(G)$ for the intersection of the kernels of
+all homomorphisms from $G$ to groups in $\mathcal A$.
+
+\begin{theorem}[sofic Clifford detector]\label{thm:sofic-detector}
+The group $W=\ClLamp(X)\rtimes V$ above is finitely generated and sofic, and
+the displayed map $E\twoheadrightarrow W$ is surjective.  Moreover
+\[
+ w\longmapsto\zeta\ne1.
+\]
+Consequently $W$ is not MF and
+\[
+ w\in\operatorname{Rad}_{\mathrm{MF}}(E),\qquad
+ w\notin\operatorname{Rad}_{\mathrm{sof}}(E),\qquad
+ w\notin\operatorname{Rad}_{\mathrm{hyp}}(E).
+\]
+In particular, there exists a finitely generated sofic group which is not
+MF.
+\end{theorem}
+
+\begin{proof}
+Use $\bar\Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and
+$\bar\alpha(v,A)=(2v,A)$.  For $n\ge1$ put
+\[
+ X_n=\bar\Gamma/\bar\alpha^n(\bar\Gamma),\qquad
+ X_+=\coprod_{n\ge1}X_n.
+\]
+Then $|X_n|=8^n$, and
+\[
+ F(g\bar\alpha^n(\bar\Gamma))
+   =\bar\alpha(g)\bar\alpha^{n+1}(\bar\Gamma)
+\]
+defines an injective map $F\colon X_+\to X_+$ satisfying
+$F(\gamma x)=\bar\alpha(\gamma)F(x)$.
+
+Let $Y_m=X_1\amalg\cdots\amalg X_m$ and
+$K_m=\ClLamp(Y_m)\rtimes\bar\Gamma$.  The lamp group is finite, so
+$\bar\Gamma$ has finite index in $K_m$.  The displayed integral matrix model
+makes $\bar\Gamma$ residually finite: reduction modulo a suitable integer
+separates any nonidentity matrix.  Hence $\bar\Gamma$, every $K_m$, and the
+directed union
+\[
+ K=\ClLamp(X_+)\rtimes\bar\Gamma
+\]
+are sofic.  Here we use the standard subgroup, finite-extension, and directed
+union permanence properties of soficity \cite{ElekSzaboSofic}.
+
+The pair $(F,\bar\alpha)$ induces an injective endomorphism of $K$.  Its
+automorphic direct limit $\widetilde K$ is an increasing union of copies of
+$K$ and is therefore sofic.  The group
+\[
+ S=\widetilde K\rtimes\mathbb Z
+\]
+is sofic by the Elek--Szab\'o theorem for a sofic normal subgroup with
+amenable quotient \cite{ElekSzaboSofic}.
+
+It remains to identify $S$.  In the automorphic dilation, map the root
+$g\bar\alpha^n(\bar\Gamma)\in X_n$ to the coset $g\tau^n j(\bar\Gamma)$.
+The covariance of $F$ makes this compatible with the direct limit.  These
+orbits exhaust the dilated site set, and the root corresponding to
+$j(\bar\Gamma)$ has stabilizer exactly $j(\bar\Gamma)$.  Thus the dilated
+site set is $V$-equivariantly isomorphic to $V/j(\bar\Gamma)=X$, whence
+\[
+ S\cong\ClLamp(X)\rtimes V=W.
+\]
+So $W$ is sofic.
+
+The action of $V$ on $X$ is transitive.  The conjugates of $c_o$ therefore
+generate the lamp group (including its Clifford sign), while the six base
+generators and $\tau$ generate $V$.  Hence the displayed map $E\to W$ is
+surjective and detects $w$ by $\zeta$.
+
+Theorem~\ref{thm:A} says every MF representation of $E$ kills $w$.  If $W$
+were MF, an embedding of $W$ into a norm matrix corona composed with
+$E\twoheadrightarrow W$ would detect $w$, a contradiction.  Thus $W$ is
+finitely generated, sofic, and non-MF.  The quotient excludes $w$ from the
+sofic radical; since every sofic group is hyperlinear
+\cite{ElekSzaboHyperlinear}, it excludes $w$ from the hyperlinear radical as
+well.
 \end{proof}
 
 \paragraph{Scope of the witness.}
@@ -1884,12 +1977,14 @@ used in Lemma~\ref{lem:corner}.  More importantly, Hilbert--Schmidt-small
 leakage does not determine finite ranks and does not imply reverse
 operator-norm leakage in \eqref{eq:no-one-sided-growth}.
 
-This identifies a boundary of the method, not a tracial nonapproximation
-theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
-approximations of Kazhdan groups can be recovered from finite-dimensional
-coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
-coordinate description is separate from the operator-norm theorem proved
-here.
+Theorem~\ref{thm:sofic-detector} turns this boundary into a positive
+separation theorem.  The very sign killed by every operator-norm matrix
+corona survives in a sofic, hence hyperlinear, quotient.  Thus the
+operator-norm conclusion is false for Hamming and tracial approximation of
+this marked element; the failure to transfer the proof is forced by the
+example, not merely by missing estimates.  Related questions about recovering
+Kazhdan commutants from finite-dimensional coordinate subalgebras remain open
+\cite[Open Problem~6.2]{AlekseevThom}.
 
 \begin{thebibliography}{GKEMP}
 
@@ -1955,6 +2050,19 @@ M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
 \emph{Stability, cohomology vanishing, and nonapproximable groups},
 Forum Math. Sigma \textbf{8} (2020), Paper No. e18,
 \doi{10.1017/fms.2020.5}.
+
+\bibitem[ES06]{ElekSzaboSofic}
+G.~Elek and E.~Szab\'o,
+\emph{On sofic groups},
+J. Group Theory \textbf{9} (2006), no.~2, 161--171,
+\doi{10.1515/JGT.2006.011}, \arxiv{math/0305352}.
+
+\bibitem[ES05]{ElekSzaboHyperlinear}
+G.~Elek and E.~Szab\'o,
+\emph{Hyperlinearity, essentially free actions and $L^2$-invariants:
+the sofic property},
+Math. Ann. \textbf{332} (2005), no.~2, 421--441,
+\doi{10.1007/s00208-005-0644-8}, \arxiv{math/0408400}.
 
 \bibitem[Fri]{Fritz}
 T.~Fritz,
