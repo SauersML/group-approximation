@@ -86,7 +86,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           python3 scripts/publish_pdf_commit.py self-test
-          python3 scripts/publish_pdf_commit.py publish \
+          python3 scripts/publish_pdf_commit.py publish-draft \
             --source-sha "$GITHUB_SHA" \
+            --source-file "$TEX_FILE" \
             --pdf "$PDF_FILE" \
             --message "build: update non-MF PDF (draft; unattested)"

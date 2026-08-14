@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
-"""Publish one generated PDF without overwriting a concurrent publication.
+"""Publish one generated PDF without overwriting concurrent work.
 
-The source revision has already passed the full Prover workflow.  ``main`` may
-have acquired later human-facing commits while a PDF was building, so the
-publisher accepts only descendants that pass ``advance_verified_branch.py
-compare``.  It then constructs a new commit from the current remote tree with a
-temporary Git index, replacing exactly one tracked PDF.  No branch, checkout,
-worktree, reset, force push, or merge operation is involved.
+For the attested ``publish`` command, the source revision has already passed
+the full Prover workflow.  ``main`` may have acquired later human-facing
+commits while a PDF was building, so that command accepts only descendants
+that pass ``advance_verified_branch.py compare``.  Both publishing modes
+construct a new commit from the current remote tree with a temporary Git index,
+replacing exactly one tracked PDF.  No branch, checkout, worktree, reset, force
+push, or merge operation is involved.
+
+The draft command has a deliberately different boundary: it may cross later
+code commits, but only while the manuscript source blob is unchanged.  Drafts
+therefore stay fresh during proof development without being mistaken for the
+attested publication path.
 """
 
 from __future__ import annotations
@@ -18,7 +24,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
-from typing import Mapping, Sequence
+from typing import Callable, Mapping, Sequence
 
 
 ALLOWED_PDFS = frozenset(
@@ -27,6 +33,7 @@ ALLOWED_PDFS = frozenset(
         "property_tt_leavitt.pdf",
     }
 )
+ALLOWED_DRAFT_SOURCES = frozenset({"non_mf_groups_exist.tex"})
 CLASSIFIER = Path(__file__).with_name("advance_verified_branch.py")
 REMOTE = "origin"
 REMOTE_MAIN = "refs/remotes/origin/main"
@@ -157,6 +164,34 @@ def tracked_blob_entry(root: Path, revision: str, path: str) -> tuple[str, str]:
     return mode, object_id
 
 
+def require_unchanged_source(
+    root: Path, source: str, current_main: str, source_file: str
+) -> None:
+    """Require the draft's source blob to equal the current main blob."""
+    ancestor = git(
+        root,
+        "merge-base",
+        "--is-ancestor",
+        source,
+        current_main,
+        check=False,
+    )
+    if ancestor.returncode == 1:
+        raise PublicationDeferred(
+            f"draft source {source} is not an ancestor of main {current_main}"
+        )
+    if ancestor.returncode != 0:
+        details = ancestor.stderr.strip() or ancestor.stdout.strip()
+        raise RuntimeError(f"could not compare draft ancestry: {details}")
+    source_entry = tracked_blob_entry(root, source, source_file)
+    current_entry = tracked_blob_entry(root, current_main, source_file)
+    if source_entry != current_entry:
+        raise PublicationDeferred(
+            f"{source_file} changed after draft source {source}; "
+            f"current main is {current_main}"
+        )
+
+
 def hash_worktree_file(root: Path, path: str) -> str:
     return git(
         root,
@@ -217,8 +252,13 @@ def validate_pdf(root: Path, pdf: str) -> None:
         raise RuntimeError(f"publication PDF is not a regular file: {path}")
 
 
-def publish_pdf(
-    root: Path, *, source_ref: str, pdf: str, message: str
+def publish_pdf_with_guard(
+    root: Path,
+    *,
+    source_ref: str,
+    pdf: str,
+    message: str,
+    guard: Callable[[Path, str, str], None],
 ) -> tuple[Outcome, str]:
     validate_pdf(root, pdf)
     if not message.strip() or "\n" in message:
@@ -229,7 +269,7 @@ def publish_pdf(
 
     for attempt in range(1, PUSH_ATTEMPTS + 1):
         current_main = fetch_main(root)
-        require_publication_only_descendants(root, source, current_main)
+        guard(root, source, current_main)
         candidate = build_commit(
             root,
             parent=current_main,
@@ -263,7 +303,7 @@ def publish_pdf(
         )
 
     current_main = fetch_main(root)
-    require_publication_only_descendants(root, source, current_main)
+    guard(root, source, current_main)
     _, current_blob = tracked_blob_entry(root, current_main, pdf)
     if current_blob == blob:
         print(f"{pdf} was published concurrently at {current_main}")
@@ -271,6 +311,41 @@ def publish_pdf(
     raise RuntimeError(
         f"could not publish {pdf} after {PUSH_ATTEMPTS} non-force attempts: "
         f"{last_push_error}"
+    )
+
+
+def publish_pdf(
+    root: Path, *, source_ref: str, pdf: str, message: str
+) -> tuple[Outcome, str]:
+    """Publish an attested PDF across publication-only descendants."""
+    return publish_pdf_with_guard(
+        root,
+        source_ref=source_ref,
+        pdf=pdf,
+        message=message,
+        guard=require_publication_only_descendants,
+    )
+
+
+def publish_draft_pdf(
+    root: Path,
+    *,
+    source_ref: str,
+    source_file: str,
+    pdf: str,
+    message: str,
+) -> tuple[Outcome, str]:
+    """Publish a draft while its manuscript source is still current."""
+    if source_file not in ALLOWED_DRAFT_SOURCES:
+        raise RuntimeError(f"refusing non-draft source path: {source_file!r}")
+    return publish_pdf_with_guard(
+        root,
+        source_ref=source_ref,
+        pdf=pdf,
+        message=message,
+        guard=lambda guarded_root, source, current: require_unchanged_source(
+            guarded_root, source, current, source_file
+        ),
     )
 
 
@@ -308,6 +383,9 @@ def self_test() -> None:
         git(test_root, "remote", "add", REMOTE, str(remote))
 
         (test_root / "proof.txt").write_text("proof-v1\n", encoding="utf-8")
+        (test_root / "non_mf_groups_exist.tex").write_text(
+            "manuscript-v1\n", encoding="utf-8"
+        )
         (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-v1\n")
         (test_root / "property_tt_leavitt.pdf").write_bytes(b"property-v1\n")
         git(
@@ -315,6 +393,7 @@ def self_test() -> None:
             "add",
             "--",
             "proof.txt",
+            "non_mf_groups_exist.tex",
             "non_mf_groups_exist.pdf",
             "property_tt_leavitt.pdf",
         )
@@ -382,9 +461,50 @@ def self_test() -> None:
             raise RuntimeError("publisher crossed a verification-relevant commit")
         assert remote_main(test_root) == proof_commit
 
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-draft\n")
+        outcome, draft = publish_draft_pdf(
+            test_root,
+            source_ref=published,
+            source_file="non_mf_groups_exist.tex",
+            pdf="non_mf_groups_exist.pdf",
+            message="publish current draft",
+        )
+        assert outcome is Outcome.PUBLISHED
+        assert resolve(test_root, f"{draft}^") == proof_commit
+        assert remote_main(test_root) == draft
+
+        (test_root / "non_mf_groups_exist.tex").write_text(
+            "manuscript-v2\n", encoding="utf-8"
+        )
+        manuscript_blob = hash_worktree_file(test_root, "non_mf_groups_exist.tex")
+        manuscript_commit = build_commit(
+            test_root,
+            parent=draft,
+            path="non_mf_groups_exist.tex",
+            blob=manuscript_blob,
+            message="new manuscript source",
+        )
+        assert manuscript_commit is not None
+        git(test_root, "push", REMOTE, f"{manuscript_commit}:refs/heads/main")
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"stale-draft\n")
+        try:
+            publish_draft_pdf(
+                test_root,
+                source_ref=draft,
+                source_file="non_mf_groups_exist.tex",
+                pdf="non_mf_groups_exist.pdf",
+                message="must not publish a stale draft",
+            )
+        except PublicationDeferred:
+            pass
+        else:
+            raise RuntimeError("draft publisher crossed a manuscript change")
+        assert remote_main(test_root) == manuscript_commit
+
     print(
         "self-test: temporary-index publication preserved the sibling PDF, "
-        "was idempotent, and refused a proof-changing descendant"
+        "was idempotent, kept attested and draft guards distinct, and refused "
+        "stale sources"
     )
 
 
@@ -395,6 +515,13 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
     publish.add_argument("--source-sha", required=True)
     publish.add_argument("--pdf", required=True, choices=sorted(ALLOWED_PDFS))
     publish.add_argument("--message", required=True)
+    draft = subparsers.add_parser("publish-draft")
+    draft.add_argument("--source-sha", required=True)
+    draft.add_argument(
+        "--source-file", required=True, choices=sorted(ALLOWED_DRAFT_SOURCES)
+    )
+    draft.add_argument("--pdf", required=True, choices=sorted(ALLOWED_PDFS))
+    draft.add_argument("--message", required=True)
     subparsers.add_parser("self-test")
     return parser.parse_args(argv)
 
@@ -408,6 +535,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             publish_pdf(
                 repo_root(),
                 source_ref=args.source_sha,
+                pdf=args.pdf,
+                message=args.message,
+            )
+        elif args.command == "publish-draft":
+            publish_draft_pdf(
+                repo_root(),
+                source_ref=args.source_sha,
+                source_file=args.source_file,
                 pdf=args.pdf,
                 message=args.message,
             )

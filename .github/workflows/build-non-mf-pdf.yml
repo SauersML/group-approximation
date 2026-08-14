@@ -47,6 +47,7 @@ jobs:
        github.event.workflow_run.event == 'push')
     concurrency:
       group: publish-pdfs-main
+      queue: max
       cancel-in-progress: false
     runs-on: ubuntu-latest
     timeout-minutes: 360
@@ -177,7 +178,9 @@ jobs:
         run: python3 -m pip install --disable-pip-version-check --no-deps numpy==2.3.2
 
       - name: Replay the exact P13 source generators
-        run: python3 scripts/check_p13_generated.py
+        run: >-
+          python3 scripts/check_p13_generated.py
+          --temporary-root "$RUNNER_TEMP/p13-generated"
 
       - name: Source scan
         run: |
