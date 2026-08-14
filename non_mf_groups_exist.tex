@@ -270,10 +270,6 @@ $\Cmax(E)$ fixed below nor $\Cred(E)$ is an MF $C^*$-algebra.
 \leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
-The inline label prints the fully qualified declaration name and links to the
-Lean source module containing it.  Similar labels below identify the exact
-counterpart for each numbered claim.
-
 A completely explicit presentation of $E$ --- eight generators, with
 every relation displayed --- appears as \eqref{eq:E} in
 Definition~\ref{def:E}.
@@ -772,24 +768,14 @@ representation-space universe.
 \leanverified{Sofic/P13ExactStagedCertificate}{GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate}
 \end{proposition}
 
-The complete certificate is supplementary machine-readable data, rather than
-data printed in this article.  A content-pinned copy is at repository commit
-\nolinkurl{4a210700577810996eae94d2912d2ed621b7b359}.  All files named below
-are relative to \nolinkurl{GroupApproximation/Sofic}.  The
-$102\times6\times22$ exact integer table for $Q$ and its denominator are in
-\nolinkurl{P13ExactStagedData.lean}.  The 22 support words, the 293 product
-classes, and their relator proofs are in
-\nolinkurl{P13ExactStagedReplay.lean} and
-\nolinkurl{P13ExactStagedPairTable.lean}.  The 36 independently checked
-residual blocks are aggregated by
-\nolinkurl{P13ExactStagedResidual.lean}, and the final certificate theorem is
-in
-\nolinkurl{P13ExactStagedCertificate.lean}.
+The complete certificate is distributed as supplementary machine-readable
+data with the release.  It includes the $102\times6\times22$ exact integer
+table for $Q$, the 22 support words, the 293 product classes and their
+relator replays, and all 36 independently checked residual blocks.
 
 \begin{proof}
 The relator replay, Fox identity, coefficient decomposition, and rational
-row and column bounds are the finite checks recorded in the supplementary
-Lean artifacts just listed.
+row and column bounds are the finite checks recorded in the supplement.
 The 293 coordinates need not be distinct in the abstract group: collecting
 additional collisions can only decrease the true group-ring coefficient
 $\ell^1$-norm, so the checked coordinate sums give valid upper bounds.
@@ -1477,10 +1463,9 @@ Given $\varepsilon>0$, choose the eventual bounds
 \]
 Then the right side of \eqref{eq:vector-chain-budget} is at most
 $\varepsilon/2$, and the added microstate error is at most $\varepsilon/2$.
-This proves the claim with constants independent of $r_n$.  The theorem
-\texttt{compressionDefect\_hsDistSq\_vanishing} in
-\texttt{MarkedCompressionRootCapture.lean} performs this last translation
-with explicit $\varepsilon/128$ and $\varepsilon/64$ allocations.
+This proves the claim with constants independent of $r_n$; the checked
+translation uses the displayed $\varepsilon/128$ and $\varepsilon/64$
+allocations.
 \end{proof}
 
 \section{The defect square and the explicit instance}\label{sec:proofA}
