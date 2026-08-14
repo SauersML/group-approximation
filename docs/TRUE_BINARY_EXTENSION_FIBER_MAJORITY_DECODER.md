@@ -43,9 +43,10 @@ e_y <= d_y <= 2 e_y.                                 (BFD4)
 The inequalities sum over fibers without any common-rank or minimum-mass
 assumption.  They are formalized source-first in
 `GroupApproximation/Leavitt/FiniteBinaryFiberDecoder.lean` as
-`majority_pairDisagreement_sandwich` and its two finite-family summation
-theorems.  This source was not locally or remotely compiled in this
-iteration.
+`majority_pairDisagreement_sandwich`,
+`sum_majorityError_le_two_mul_sum_conditionalVariance`, and the companion
+finite-family summation theorems.  This source was not locally or remotely
+compiled in this iteration.
 
 ## 2. Operator-algebra form
 

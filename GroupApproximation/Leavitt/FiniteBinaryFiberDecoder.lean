@@ -100,6 +100,13 @@ theorem majority_pairDisagreement_sandwich
   ⟨majorityError_le_pairDisagreementMass m₀ m₁ h₀ h₁,
     pairDisagreementMass_le_two_mul_majorityError m₀ m₁ h₀ h₁⟩
 
+/-- Direct conditional-variance form of the decoder bound. -/
+theorem majorityError_le_two_mul_conditionalVariance
+    (m₀ m₁ : ℝ) (h₀ : 0 ≤ m₀) (h₁ : 0 ≤ m₁) :
+    majorityError m₀ m₁ ≤ 2 * conditionalVariance m₀ m₁ := by
+  rw [← pairDisagreementMass_eq_two_mul_conditionalVariance]
+  exact majorityError_le_pairDisagreementMass m₀ m₁ h₀ h₁
+
 section FiberFamily
 
 variable {Y : Type*} [Fintype Y]
@@ -124,6 +131,21 @@ theorem sum_pairDisagreementMass_le_two_mul_sum_majorityError
         pairDisagreementMass_le_two_mul_majorityError
           (m₀ y) (m₁ y) (h₀ y) (h₁ y)
     _ = 2 * ∑ y, majorityError (m₀ y) (m₁ y) := by
+      rw [Finset.mul_sum]
+
+/-- Summed conditional variance directly controls the total majority-decoder
+error, with no lower bound on individual fiber masses. -/
+theorem sum_majorityError_le_two_mul_sum_conditionalVariance
+    (m₀ m₁ : Y → ℝ) (h₀ : ∀ y, 0 ≤ m₀ y) (h₁ : ∀ y, 0 ≤ m₁ y) :
+    ∑ y, majorityError (m₀ y) (m₁ y) ≤
+      2 * ∑ y, conditionalVariance (m₀ y) (m₁ y) := by
+  calc
+    ∑ y, majorityError (m₀ y) (m₁ y) ≤
+        ∑ y, 2 * conditionalVariance (m₀ y) (m₁ y) :=
+      Finset.sum_le_sum fun y _ ↦
+        majorityError_le_two_mul_conditionalVariance
+          (m₀ y) (m₁ y) (h₀ y) (h₁ y)
+    _ = 2 * ∑ y, conditionalVariance (m₀ y) (m₁ y) := by
       rw [Finset.mul_sum]
 
 end FiberFamily
