@@ -1,9 +1,5 @@
 import GroupApproximation.Sofic.LiteralNonMFPresentation
 
-#check @GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one
-open GroupApproximation in
-#check @markedCompressionWord_sq_eq_one_of_c_sq_of_central
-
 /-!
 # The scaling family of eight-generator presentations
 
@@ -241,7 +237,7 @@ theorem mark_eq_markedCompressionWord (m : ℕ) :
 
 theorem mark_sq (m : ℕ) : mark m ^ 2 = 1 := by
   rw [mark_eq_markedCompressionWord]
-  exact _root_.GroupApproximation.markedCompressionWord_sq_eq_one_of_c_sq_of_central
+  exact markedCompressionWord_sq_eq_one_of_c_sq_of_central
     (stable m) (baseMap m (PresentedGroup.of v1Index)) (lamp m) (lamp_sq m)
     (fun g ↦ by
       rw [← mark_eq_markedCompressionWord]
