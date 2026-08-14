@@ -452,7 +452,7 @@ quotients.
 | --- | --- |
 | \(Q\) is nonsofic | Repository Lean endpoint |
 | \(W\) is operator-norm non-MF | Repository Lean theorem `ChosenNonMFTheorem.countableWitness_not_isOperatorMF` |
-| \(W\) is sofic | Derived from linearity of \(V\), local finiteness of \(C(X)\), and standard sofic extension permanence; not needed for the theorem |
+| \(W\) is sofic | Unconditional finite-coset-tower proof: finite Clifford stages, directed automorphic dilation, then a sofic-kernel/amenable-quotient extension; not needed for the theorem |
 | Word problem of \(Q\) | Derived from an effective Leavitt normal form; not packaged in Lean |
 | Word problem of \(W\) | Derived from dyadic vertical coordinates and the twisted finite-support lamp model; not packaged in Lean |
 | Mixed-family nonapproximability of \(A\) | Lean theorem `simultaneousStabilitySeed_not_isMixedApproximable` |

@@ -134,5 +134,7 @@ hyperlinear-visible.
 
 `RadicalSeparation.lean` formalizes the abstract detector consequences.  The
 concrete coset tower and the required sofic permanence construction are an
-unconditional manuscript proof, recorded honestly as `paper-only` in
-`docs/NON_MF_NUMBERED_CLAIMS.json` until that infrastructure is mechanized.
+unconditional manuscript proof.  It is kept outside the numbered exact-claim
+manifest until the corresponding sofic permanence infrastructure is
+mechanized, so no conditional or paper-only declaration is presented as an
+exact Lean endpoint.
