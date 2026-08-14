@@ -160,5 +160,6 @@ theorem kappa_div_four_le_actualPacketFixedLibraryAverageEnergy
   have hproduct : 0 ≤ 4 * kappa * y := by positivity
   linarith
 
+end
 end PauliCarrierBinaryGap
 end GroupApproximation

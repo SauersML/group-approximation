@@ -421,7 +421,9 @@ theorem mark_sq : mark ^ 2 = 1 := by
   rw [mark_eq_markedCompressionWord]
   exact markedCompressionWord_sq_eq_one_of_c_sq_of_central
     stable (baseMap (PresentedGroup.of v1Index)) lamp lamp_sq
-    (fun g ↦ by simpa [← mark_eq_markedCompressionWord] using mark_central g)
+    (fun g ↦ by
+      rw [← mark_eq_markedCompressionWord]
+      exact mark_central g)
 
 /-! ## Exact-realization interface -/
 

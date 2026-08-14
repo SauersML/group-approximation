@@ -24,6 +24,7 @@ variable {X A : Type*} [Fintype X] [Fintype A] [DecidableEq A]
 def pushforwardWeight (μ : X → ℝ) (decode : X → A) (a : A) : ℝ :=
   ∑ x ∈ (Finset.univ : Finset X).filter (fun x ↦ decode x = a), μ x
 
+omit [Fintype A] in
 theorem pushforwardWeight_nonnegative
     (μ : X → ℝ) (decode : X → A) (hμ : ∀ x, 0 ≤ μ x) :
     ∀ a, 0 ≤ pushforwardWeight μ decode a := by
@@ -73,10 +74,10 @@ theorem sum_pushforwardPairWeight
     (μ : X → Y → ℝ) (decodeA : X → A) (decodeB : Y → B) :
     ∑ a, ∑ b, pushforwardPairWeight μ decodeA decodeB a b =
       ∑ x, ∑ y, μ x y := by
-  rw [← Fintype.sum_prod_type, ← Fintype.sum_prod_type]
-  exact sum_pushforwardWeight
+  simpa only [Fintype.sum_prod_type] using
+    (sum_pushforwardWeight
     (fun p : X × Y ↦ μ p.1 p.2)
-    (fun p : X × Y ↦ (decodeA p.1, decodeB p.2))
+    (fun p : X × Y ↦ (decodeA p.1, decodeB p.2)))
 
 /-- A joint probability law remains normalized after applying the two
 deterministic decoders. -/
@@ -89,5 +90,6 @@ theorem pushforwardPairWeight_isProbability
   exact ⟨pushforwardPairWeight_nonnegative μ decodeA decodeB hμnonneg,
     (sum_pushforwardPairWeight μ decodeA decodeB).trans hμsum⟩
 
+end
 end FiniteOutcomeCoarsening
 end GroupApproximation

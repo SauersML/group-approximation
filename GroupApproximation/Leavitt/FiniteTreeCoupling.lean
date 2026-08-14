@@ -53,8 +53,8 @@ theorem glueAlongFirst_nonnegative
   · simp only [glueAlongFirst, if_neg ha]
     exact div_nonneg (mul_nonneg (hAB a b) (hAC a c)) (hα a)
 
+omit [Fintype A] in
 /-- Summing out `C` recovers the `A-B` law. -/
-omit [Fintype A] [Fintype B] in
 theorem sum_glueAlongFirst_right
     (μAB : A → B → ℝ) (μAC : A → C → ℝ) (α : A → ℝ)
     (hABnonneg : ∀ a b, 0 ≤ μAB a b)
@@ -71,8 +71,8 @@ theorem sum_glueAlongFirst_right
     rw [← Finset.sum_div, ← Finset.mul_sum, hACmarginal,
       mul_div_cancel_right₀ _ ha]
 
+omit [Fintype A] in
 /-- Summing out `B` recovers the `A-C` law. -/
-omit [Fintype A] [Fintype C] in
 theorem sum_glueAlongFirst_left
     (μAB : A → B → ℝ) (μAC : A → C → ℝ) (α : A → ℝ)
     (hACnonneg : ∀ a c, 0 ≤ μAC a c)
@@ -174,6 +174,7 @@ theorem sum_innerTransportLaw
       h₀₀row h₀₁row]
   exact h₀₁col b₁
 
+omit [Fintype A₀] [Fintype A₁] [Fintype B₀] [Fintype B₁] in
 /-- The path law is nonnegative whenever its three edge laws and two shared
 marginals are nonnegative. -/
 theorem glueTransportPath_nonnegative
@@ -262,15 +263,16 @@ theorem sum_glueTransportPath_11
     (a₁ : A₁) (b₁ : B₁) :
     ∑ a₀, ∑ b₀, glueTransportPath μ₀₀ μ₀₁ μ₁₁ α₀ β₁ a₀ a₁ b₀ b₁ =
       μ₁₁ a₁ b₁ := by
-  rw [← Fintype.sum_prod_type]
-  exact sum_glueAlongFirst_left
+  simpa only [Fintype.sum_prod_type] using
+    (sum_glueAlongFirst_left
     (innerTransportLaw μ₀₀ μ₀₁ α₀)
     (fun b₁ a₁ ↦ μ₁₁ a₁ b₁) β₁ h₁₁nonneg
     (sum_innerTransportLaw μ₀₀ μ₀₁ α₀ β₁ h₀₁nonneg
       h₀₀row h₀₁row h₀₁col)
-    h₁₁col b₁ a₁
+    h₁₁col b₁ a₁)
 
 end TransportPath
 
+end
 end FiniteTreeCoupling
 end GroupApproximation

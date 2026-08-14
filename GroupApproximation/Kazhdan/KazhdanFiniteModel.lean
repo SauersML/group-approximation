@@ -94,6 +94,7 @@ theorem invariant_iff_constant (σ : G →* Equiv.Perm Y)
     ext y
     exact hconstant _ _
 
+omit [Fintype Y] in
 /-- If an action is transitive inside the fibers of `π`, every invariant
 label is constant on those fibers.  This is the finite-set obstruction to
 using literal group words as an extension-fiber mixer: invariance plus exact

@@ -152,5 +152,6 @@ theorem sum_majorityError_le_two_mul_sum_conditionalVariance
 
 end FiberFamily
 
+end
 end FiniteBinaryFiberDecoder
 end GroupApproximation

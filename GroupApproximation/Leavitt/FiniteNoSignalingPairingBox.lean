@@ -86,7 +86,7 @@ def diagonalBox (v w x y : Label) : ℝ :=
   pairingBoxWeight (pairing v w) x y
 
 /-- The crossed context requests pairing value zero. -/
-def crossedBox (v w x y : Label) : ℝ :=
+def crossedBox (_v _w x y : Label) : ℝ :=
   pairingBoxWeight false x y
 
 theorem diagonalBox_support (v w x y : Label)
@@ -154,5 +154,6 @@ theorem exists_exact_three_context_pairing_box :
   · intro v w v' w' y
     exact (diagonal_crossed_right_marginal v' w' v w y).symm
 
+end
 end FiniteNoSignalingPairingBox
 end GroupApproximation

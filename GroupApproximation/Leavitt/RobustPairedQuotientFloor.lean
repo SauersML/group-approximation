@@ -137,9 +137,9 @@ def rowSeparationSet (pair : V → W → Prop) [DecidableRel pair]
     (v v' : V) : Finset W :=
   Finset.univ.filter fun w ↦ pair v w ≠ pair v' w
 
+omit [Fintype V] [DecidableEq V] in
 /-- If two transported row labels collide, every column separating the
 original rows is charged to a mismatch in at least one of those two rows. -/
-omit [Fintype V] [DecidableEq V] in
 theorem rowSeparation_subset_mismatch_union_of_collision
     (pair : V → W → Prop) [DecidableRel pair]
     (R : V → V) (L : W → W) {v v' : V}
@@ -161,6 +161,7 @@ theorem rowSeparation_subset_mismatch_union_of_collision
     simpa [rowSeparationSet] using hw
   exact hne heq
 
+omit [Fintype V] [DecidableEq V] in
 theorem card_rowSeparation_le_mismatch_add_of_collision
     (pair : V → W → Prop) [DecidableRel pair]
     (R : V → V) (L : W → W) {v v' : V}
@@ -275,10 +276,11 @@ theorem sum_offDiag_pairCost
       ∑ p ∈ F ×ˢ F, (cost p.1 + cost p.2) =
         2 * F.card * ∑ x ∈ F, cost x := by
     rw [Finset.sum_product]
-    simp [Finset.sum_add_distrib, Nat.mul_add, Nat.add_mul,
-      Nat.mul_comm, Nat.mul_left_comm, Nat.mul_assoc]
+    simp only [Finset.sum_add_distrib, Finset.sum_const, Nat.nsmul_eq_mul]
+    ring
   by_cases hF : F.Nonempty
   · have hcard : F.card = (F.card - 1) + 1 := by
+      have hone : 1 ≤ F.card := Finset.one_le_card.mpr hF
       omega
     rw [hdiag, hproduct, hcard] at hsplit
     simp [Nat.add_mul, Nat.mul_add] at hsplit
@@ -546,6 +548,7 @@ theorem independentKernelOneMass_eq_oneSet_card
   simp_rw [independentKernelOneMass,
     sum_col_of_mem_doublyStochastic hK,
     sum_col_of_mem_doublyStochastic hL]
+  simp only [one_mul]
   change (∑ x, ∑ y, if pair x y then 1 else 0) =
     ((oneSet pair id id).card : ℝ)
   rw [← Fintype.sum_prod_type]
@@ -620,6 +623,14 @@ theorem one_fourth_le_weighted_three_error
   have hconstant : weightedRealAverage μ (fun _ ↦ (1 : ℝ) / 4) =
       (1 : ℝ) / 4 := by
     simp [weightedRealAverage, ← Finset.sum_mul, hμsum]
+  have hscale (f : Ω → ℝ) :
+      weightedRealAverage μ (fun ω ↦ 4 * f ω) =
+        4 * weightedRealAverage μ f := by
+    unfold weightedRealAverage
+    rw [Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro ω _
+    ring
   rw [hconstant] at havg
   calc
     (1 : ℝ) / 4 ≤ weightedRealAverage μ
@@ -627,8 +638,12 @@ theorem one_fourth_le_weighted_three_error
     _ = weightedRealAverage μ e₀₁ +
         4 * weightedRealAverage μ e₀₀ +
           4 * weightedRealAverage μ e₁₁ := by
-      simp [weightedRealAverage, Finset.sum_add_distrib,
-        Finset.mul_sum, mul_add, mul_assoc]
+      calc
+        _ = weightedRealAverage μ e₀₁ +
+            weightedRealAverage μ (fun ω ↦ 4 * e₀₀ ω) +
+              weightedRealAverage μ (fun ω ↦ 4 * e₁₁ ω) := by
+          simp only [weightedRealAverage, mul_add, Finset.sum_add_distrib]
+        _ = _ := by rw [hscale e₀₀, hscale e₁₁]
 
 /-- Averaged robust floor for one common classical law on four map-valued
 transports.  This is the precise classicalization endpoint needed from the
@@ -669,8 +684,15 @@ theorem robust_floor_of_common_latent_maps
       8 * totalRowMismatch pair (R₀ ω) (L₀ ω) +
       8 * totalRowMismatch (transposePair pair) (L₁ ω) (R₁ ω))
     hμnonneg hpointwise
-  simpa [weightedNatAverage, hμsum, mul_add, Finset.sum_add_distrib,
-    Nat.cast_add, Nat.cast_mul, mul_comm, mul_left_comm, mul_assoc] using havg
+  have hconstant : weightedNatAverage μ (fun _ ↦ N * (N - 1)) =
+      ((N * (N - 1) : ℕ) : ℝ) := by
+    unfold weightedNatAverage
+    rw [Finset.sum_mul, hμsum]
+    simp
+  rw [hconstant] at havg
+  simpa only [weightedNatAverage, Nat.cast_add, Nat.cast_mul, mul_add,
+    Finset.sum_add_distrib, Finset.mul_sum, mul_comm, mul_left_comm,
+    mul_assoc] using havg
 
 end RobustPairedQuotient
 end GroupApproximation

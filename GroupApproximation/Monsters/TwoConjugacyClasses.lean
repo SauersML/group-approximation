@@ -200,9 +200,9 @@ theorem abs_list_prod_le_of_quasimorphism {q : G → ℝ} {D M : ℝ}
                 congr 1
                 ring
           _ ≤ |q (x * xs.prod) - q x - q xs.prod| + |q x + q xs.prod| :=
-                abs_add _ _
+                abs_add_le _ _
           _ ≤ |q (x * xs.prod) - q x - q xs.prod| + (|q x| + |q xs.prod|) :=
-                add_le_add_left (abs_add _ _) _
+                add_le_add_left (abs_add_le _ _) _
           _ = |q (x * xs.prod) - q x - q xs.prod| + |q x| + |q xs.prod| := by
                 ring
       rw [List.prod_cons]
@@ -253,7 +253,6 @@ theorem signedConjugate_length_unbounded_on_powers
   rw [hprod, hhom, abs_mul, abs_of_nonneg (Nat.cast_nonneg k)] at hbound
   have hupper : (xs.length : ℝ) * (M + D) ≤ (C : ℝ) * (M + D) := by
     gcongr
-    exact_mod_cast hlen
   have hlower : (C : ℝ) * (M + D) < (k : ℝ) * |q g| := by
     rwa [div_lt_iff₀ hqpos] at hk
   linarith
