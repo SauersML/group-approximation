@@ -24,6 +24,13 @@ approximates the regular character `delta_e`, whereas the representation that
 recovers `M` uses the natural character `tau_M`. The missing result is again a
 trace-selection theorem, now in a very clean form.
 
+The quotient boundary is now also formalized exactly. Every group is a
+quotient of a hyperlinear free group, so arbitrary quotient permanence for
+hyperlinearity is equivalent to universal hyperlinearity itself. Dually, a
+nonhyperlinear group exists exactly when a hyperlinear free group has a
+nonhyperlinear quotient. This prevents the non-CE natural representation of
+`PU(M)` from being silently treated as a quotient-closure argument.
+
 ### 2026-08-14: the ambient Bernoulli group does not Haar-groupify the non-CE IRS
 
 `FALSE_MANZOOR_IRS_AMBIENT_HAAR_GROUPIFICATION.md` closes a hidden version of

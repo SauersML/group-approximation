@@ -128,6 +128,23 @@ This is the same boundary encountered in the IRS and full-group routes: group
 relations can provide a desired representation, while hyperlinearity singles
 out the regular representation.
 
+There is a sharp algebraic calibration. Every group is a quotient of the free
+group on its underlying set, and free groups are hyperlinear. Hence
+
+```text
+every group is hyperlinear
+  iff
+hyperlinear groups are closed under arbitrary quotients. (PUG8)
+```
+
+Equivalently, a nonhyperlinear group exists iff some hyperlinear free group
+has a nonhyperlinear quotient. Thus using the natural finite-factor
+representation as though Connes embeddability passed to its quotient is not a
+minor permanence lemma; unrestricted quotient permanence is the entire
+universal-hyperlinearity problem. Both forms are formalized source-first as
+`all_groups_isHyperlinear_iff_quotient_closed` and
+`exists_not_isHyperlinear_iff_exists_hyperlinear_quotient`.
+
 ## 6. Exact live endpoint
 
 The route becomes valid if one proves either of the following genuinely new

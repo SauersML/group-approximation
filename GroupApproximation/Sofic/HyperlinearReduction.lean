@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.Hyperlinear
 import GroupApproximation.Sofic.SoficTransfer
 import GroupApproximation.Sofic.LEFSofic
+import GroupApproximation.Sofic.FreeGroupResiduallyFinite
 
 /-!
 # Question 3.4 reduces to finitely generated groups
@@ -158,6 +159,52 @@ theorem exists_not_isHyperlinear_iff_exists_fg :
     intro g hg
     exact ⟨⟨g, Subgroup.subset_closure hg⟩, rfl⟩
   · rintro ⟨H, hH, _, hnH⟩
+    exact ⟨H, hH, hnH⟩
+
+/-! ## Arbitrary quotient permanence is the whole problem
+
+Every group is a quotient of the free group on its underlying type, and free
+groups are sofic, hence hyperlinear.  Therefore closure of hyperlinearity
+under arbitrary quotients would imply universal hyperlinearity.  The converse
+is tautological.  This explains why a non-Connes-embeddable finite-factor
+representation of a hyperlinear group does not by itself produce a
+nonhyperlinear group: promoting that representation to quotient permanence is
+already equivalent to solving the universal problem positively.
+-/
+
+/-- **Every group is hyperlinear iff hyperlinearity is closed under arbitrary
+surjective homomorphisms.** -/
+theorem all_groups_isHyperlinear_iff_quotient_closed :
+    (∀ (H : Type) (_ : Group H), IsHyperlinear H) ↔
+      (∀ (G H : Type) (_ : Group G) (_ : Group H) (f : G →* H),
+        Function.Surjective f → IsHyperlinear G → IsHyperlinear H) := by
+  constructor
+  · intro hall G H _ hH _ _ _
+    exact hall H hH
+  · intro hquot H hH
+    letI := hH
+    apply hquot (FreeGroup H) H inferInstance inferInstance
+      (FreeGroup.lift (id : H → H))
+    · intro h
+      exact ⟨FreeGroup.of h, by simp⟩
+    · exact isHyperlinear_of_isSofic (isSofic_freeGroup H)
+
+/-- **A nonhyperlinear group exists iff a hyperlinear group has a
+nonhyperlinear quotient.**  In the forward direction the source can be taken
+to be a free group. -/
+theorem exists_not_isHyperlinear_iff_exists_hyperlinear_quotient :
+    (∃ (H : Type) (_ : Group H), ¬ IsHyperlinear H) ↔
+      (∃ (G H : Type) (_ : Group G) (_ : Group H) (f : G →* H),
+        Function.Surjective f ∧ IsHyperlinear G ∧ ¬ IsHyperlinear H) := by
+  constructor
+  · rintro ⟨H, hH, hnH⟩
+    letI := hH
+    refine ⟨FreeGroup H, inferInstance, H, inferInstance,
+      FreeGroup.lift (id : H → H), ?_,
+      isHyperlinear_of_isSofic (isSofic_freeGroup H), hnH⟩
+    intro h
+    exact ⟨FreeGroup.of h, by simp⟩
+  · rintro ⟨_, H, _, hH, _, _, _, hnH⟩
     exact ⟨H, hH, hnH⟩
 
 /-- **A counterexample exists exactly when a finitely generated one does.**  The
