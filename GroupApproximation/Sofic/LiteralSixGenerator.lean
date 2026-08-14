@@ -106,20 +106,25 @@ theorem sixGeneratorHom_surjective : Function.Surjective sixGeneratorHom := by
       · change lamp ∈ sixGeneratorHom.range
         exact hretained 5
 
+/-- The explicit six-letter surjection supplies finite generation of the
+literal group. -/
+instance markedGroup_finitelyGenerated : Group.FG MarkedGroup :=
+  Group.fg_of_surjective sixGeneratorHom_surjective
+
 /-- The literal finitely presented non-MF group has group rank at most six. -/
 theorem literal_rank_le_six : Group.rank MarkedGroup ≤ 6 := by
   classical
   letI : Group.FG (FreeGroup SixGenerator) := inferInstance
-  letI : Group.FG MarkedGroup := Group.fg_of_surjective sixGeneratorHom_surjective
   have hfree : Group.rank (FreeGroup SixGenerator) ≤ 6 := by
     let S : Finset (FreeGroup SixGenerator) :=
       Finset.univ.image FreeGroup.of
     have hS : Subgroup.closure (S : Set (FreeGroup SixGenerator)) = ⊤ := by
-      simpa [S] using FreeGroup.closure_range_of SixGenerator
+      simp [S]
     apply (Group.rank_le hS).trans
-    simpa [S, SixGenerator] using
-      (Finset.card_image_le (s := (Finset.univ : Finset SixGenerator))
-        FreeGroup.of)
+    calc
+      S.card ≤ (Finset.univ : Finset SixGenerator).card := by
+        exact Finset.card_image_le
+      _ = 6 := by simp [SixGenerator]
   exact (Group.rank_le_of_surjective sixGeneratorHom
     sixGeneratorHom_surjective).trans hfree
 
