@@ -41,13 +41,13 @@ theorem coefficientAlternatingReynolds_diagonalization :
         coefficientAlternatingReynoldsEigenvectors =
       coefficientAlternatingReynoldsEigenvectors *
         coefficientAlternatingReynoldsEigenvalues := by
-  native_decide
+  decide
 
 /-- The eigenvector matrix is invertible; hence the five displayed modes
 are the complete spectrum, not merely five checked vectors. -/
 theorem coefficientAlternatingReynolds_eigenvectors_det :
     coefficientAlternatingReynoldsEigenvectors.det = -16 := by
-  native_decide
+  decide
 
 /-- Every non-scalar eigenvalue is strictly below the exact contraction
 factor `19/64`. -/

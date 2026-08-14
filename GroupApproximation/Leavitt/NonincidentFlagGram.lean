@@ -34,25 +34,25 @@ def nonincidenceEntry (p h : Point) : ℕ :=
   if pairing p h = 1 then 1 else 0
 
 theorem card_bitVector4 : Fintype.card BitVector4 = 16 := by
-  native_decide
+  decide
 
 theorem card_point : Fintype.card Point = 15 := by
-  native_decide
+  decide
 
 theorem card_nonincidentFlag : Fintype.card NonincidentFlag = 120 := by
-  native_decide
+  decide
 
 /-- Every point is outside exactly eight hyperplanes. -/
 theorem nonincidence_row_count :
     ∀ p : Point, ∑ h : Point, nonincidenceEntry p h = 8 := by
-  native_decide
+  decide
 
 /-- Two distinct points are simultaneously outside exactly four
 hyperplanes. -/
 theorem nonincidence_common_row_count :
     ∀ p q : Point, p ≠ q →
       ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
-  native_decide
+  decide
 
 /-- Entrywise Gram identity for the nonincidence matrix:
 `B Bᵀ = 4 I + 4 J`. -/
@@ -60,7 +60,7 @@ theorem nonincidence_gram_entry :
     ∀ p q : Point,
       (∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h) =
         if p = q then 8 else 4 := by
-  native_decide
+  decide
 
 end NonincidentFlagGram
 end GroupApproximation
