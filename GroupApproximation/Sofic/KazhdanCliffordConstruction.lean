@@ -82,8 +82,8 @@ noncomputable def rawMark (a : Γ) : Raw Γ :=
 
 noncomputable def stableRelator (alpha : Γ →* Γ)
     (i : Fin (generatorCount Γ)) : Raw Γ :=
-  rawStable * rawBase (baseEval (FreeGroup.of i)) * rawStable⁻¹ *
-    (rawBase (alpha (baseEval (FreeGroup.of i))))⁻¹
+  rawStable * rawBase (baseEval (Γ := Γ) (FreeGroup.of i)) * rawStable⁻¹ *
+    (rawBase (alpha (baseEval (Γ := Γ) (FreeGroup.of i))))⁻¹
 
 noncomputable def stableRelators (alpha : Γ →* Γ) : Finset (Raw Γ) := by
   classical
@@ -93,7 +93,7 @@ noncomputable def lampRelators : Finset (Raw Γ) := by
   classical
   exact {rawLamp ^ 2} ∪ Finset.univ.image
     (fun i : Fin (generatorCount Γ) ↦
-      ⁅rawLamp, rawBase (baseEval (FreeGroup.of i))⁆)
+      ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆)
 
 /-- Centrality relators for the marked word.  There is deliberately no
 `rawMark a ^ 2` relator. -/
@@ -101,7 +101,7 @@ noncomputable def centralRelators (a : Γ) : Finset (Raw Γ) := by
   classical
   exact {⁅rawMark a, rawStable⁆, ⁅rawMark a, rawLamp⁆} ∪
     Finset.univ.image (fun i : Fin (generatorCount Γ) ↦
-      ⁅rawMark a, rawBase (baseEval (FreeGroup.of i))⁆)
+      ⁅rawMark a, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆)
 
 noncomputable def relators (alpha : Γ →* Γ) (a : Γ) : Finset (Raw Γ) := by
   classical
@@ -120,7 +120,6 @@ noncomputable abbrev Extension (alpha : Γ →* Γ) (a : Γ) : Type :=
 instance extension_group (alpha : Γ →* Γ) (a : Γ) :
     Group (Extension alpha a) := inferInstance
 
-omit [Group.IsFinitelyPresented Γ] in
 theorem relations_finitelyNormallyGenerated (alpha : Γ →* Γ) (a : Γ) :
     (relations alpha a).IsFinitelyNormallyGenerated :=
   ⟨(relators alpha a : Set (Raw Γ)), Set.toFinite _, rfl⟩
@@ -148,22 +147,18 @@ noncomputable def displaced (alpha : Γ →* Γ) (a : Γ) : Extension alpha a :=
 noncomputable def mark (alpha : Γ →* Γ) (a : Γ) : Extension alpha a :=
   markedCompressionWord (stable alpha a) (iota alpha a a) (lamp alpha a)
 
-omit [Group.IsFinitelyPresented Γ] in
 theorem quotientMap_relator_eq_one {alpha : Γ →* Γ} {a : Γ}
     {r : Raw Γ} (hr : r ∈ relators alpha a) :
     quotientMap alpha a r = 1 :=
   (QuotientGroup.eq_one_iff r).mpr
     (Subgroup.subset_normalClosure hr)
 
-omit [Group.IsFinitelyPresented Γ] in
 @[simp] theorem quotientMap_rawBase (alpha : Γ →* Γ) (a g : Γ) :
     quotientMap alpha a (rawBase g) = iota alpha a g := rfl
 
-omit [Group.IsFinitelyPresented Γ] in
 @[simp] theorem quotientMap_rawStable (alpha : Γ →* Γ) (a : Γ) :
     quotientMap alpha a rawStable = stable alpha a := rfl
 
-omit [Group.IsFinitelyPresented Γ] in
 @[simp] theorem quotientMap_rawLamp (alpha : Γ →* Γ) (a : Γ) :
     quotientMap alpha a rawLamp = lamp alpha a := rfl
 
@@ -175,9 +170,9 @@ omit [Group.IsFinitelyPresented Γ] in
 
 theorem stable_compresses_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
-    stable alpha a * iota alpha a (baseEval (FreeGroup.of i)) *
+    stable alpha a * iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i)) *
         (stable alpha a)⁻¹ =
-      iota alpha a (alpha (baseEval (FreeGroup.of i))) := by
+      iota alpha a (alpha (baseEval (Γ := Γ) (FreeGroup.of i))) := by
   have h := quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
     (show stableRelator alpha i ∈ relators alpha a by
@@ -196,11 +191,12 @@ theorem stable_compresses (alpha : Γ →* Γ) (a g : Γ) :
   | inv_of i hi =>
       rw [map_inv, map_inv, map_inv]
       calc
-        stable alpha a * (iota alpha a (baseEval (FreeGroup.of i)))⁻¹ *
+        stable alpha a * (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i)))⁻¹ *
               (stable alpha a)⁻¹ =
-            (stable alpha a * iota alpha a (baseEval (FreeGroup.of i)) *
+            (stable alpha a * iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i)) *
               (stable alpha a)⁻¹)⁻¹ := by group
-        _ = (iota alpha a (alpha (baseEval (FreeGroup.of i))))⁻¹ := by rw [hi]
+        _ = (iota alpha a (alpha (baseEval (Γ := Γ) (FreeGroup.of i))))⁻¹ := by
+          rw [hi]
   | mul x y hx hy =>
       rw [map_mul, map_mul, map_mul]
       calc
@@ -213,6 +209,8 @@ theorem stable_compresses (alpha : Γ →* Γ) (a g : Γ) :
               (stable alpha a)⁻¹) := by group
         _ = iota alpha a (alpha (baseEval x)) *
               iota alpha a (alpha (baseEval y)) := by rw [hx, hy]
+        _ = iota alpha a
+              (alpha (baseEval x) * alpha (baseEval y)) := by rw [map_mul]
 
 theorem lamp_sq (alpha : Γ →* Γ) (a : Γ) : lamp alpha a ^ 2 = 1 := by
   simpa using quotientMap_relator_eq_one
@@ -222,11 +220,12 @@ theorem lamp_sq (alpha : Γ →* Γ) (a : Γ) : lamp alpha a ^ 2 = 1 := by
 
 theorem lamp_commutes_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
-    Commute (lamp alpha a) (iota alpha a (baseEval (FreeGroup.of i))) := by
+    Commute (lamp alpha a)
+      (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i))) := by
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
-    (show ⁅rawLamp, rawBase (baseEval (FreeGroup.of i))⁆ ∈
+    (show ⁅rawLamp, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
         relators alpha a by simp [relators, lampRelators])
 
 /-- The lamp centralizes the whole base. -/
@@ -257,11 +256,12 @@ theorem mark_commutes_lamp (alpha : Γ →* Γ) (a : Γ) :
 
 theorem mark_commutes_base_generator (alpha : Γ →* Γ) (a : Γ)
     (i : Fin (generatorCount Γ)) :
-    Commute (mark alpha a) (iota alpha a (baseEval (FreeGroup.of i))) := by
+    Commute (mark alpha a)
+      (iota alpha a (baseEval (Γ := Γ) (FreeGroup.of i))) := by
   apply commutatorElement_eq_one_iff_commute.mp
   simpa [map_commutatorElement] using quotientMap_relator_eq_one
     (alpha := alpha) (a := a)
-    (show ⁅rawMark a, rawBase (baseEval (FreeGroup.of i))⁆ ∈
+    (show ⁅rawMark a, rawBase (baseEval (Γ := Γ) (FreeGroup.of i))⁆ ∈
         relators alpha a by simp [relators, centralRelators])
 
 theorem mark_commutes_base (alpha : Γ →* Γ) (a g : Γ) :
@@ -347,6 +347,7 @@ omit [Group.IsFinitelyPresented Γ] in
       MarkedCompression.cAmbient alpha hAlpha := by
   simp [rawRealization, freeRealization, rawLamp]
 
+omit [Group.IsFinitelyPresented Γ] in
 theorem rawRealization_mark (ha : a ∉ Set.range alpha) :
     rawRealization alpha hAlpha (rawMark a) =
       MarkedCompression.signAmbient alpha hAlpha := by
@@ -359,7 +360,7 @@ theorem relators_le_rawRealization_ker (ha : a ∉ Set.range alpha) :
   apply Subgroup.normalClosure_le_normal
   intro r hr
   change r ∈ relators alpha a at hr
-  simp only [relators] at hr
+  simp only [relators, Finset.mem_union] at hr
   rcases hr with (hr | hr) | hr
   · obtain ⟨i, -, rfl⟩ := Finset.mem_image.mp hr
     apply MonoidHom.mem_ker.mpr
@@ -408,23 +409,23 @@ theorem cliffordHom_mark (ha : a ∉ Set.range alpha) :
   rw [← quotientMap_rawMark, cliffordHom_quotientMap,
     rawRealization_mark alpha hAlpha a ha]
 
+include hAlpha in
 /-- The marked word survives because its Clifford realization is the
 nontrivial central sign. -/
-include hAlpha in
 theorem mark_ne_one (ha : a ∉ Set.range alpha) : mark alpha a ≠ 1 := by
   intro h
   apply MarkedCompression.signAmbient_ne_one alpha hAlpha
   rw [← cliffordHom_mark alpha hAlpha a ha, h, map_one]
 
+include hAlpha in
 /-- The base embeds in the constructed extension; the Clifford map is a left
 inverse after composing with the already faithful telescope embedding. -/
-include hAlpha in
 theorem iota_injective (ha : a ∉ Set.range alpha) :
     Function.Injective (iota alpha a) := by
   intro x y hxy
   apply MarkedCompression.iotaAmbient_injective alpha hAlpha
   have := congrArg (cliffordHom alpha hAlpha a ha) hxy
-  simpa [iota, rawRealization] using this
+  simpa [iota, cliffordHom_quotientMap, rawRealization_base] using this
 
 /-! ## Kazhdan cancellation and the non-MF endpoint -/
 
@@ -460,11 +461,11 @@ noncomputable def inclusionData :
 @[simp] theorem inclusionData_word :
     (inclusionData alpha a hT).word = mark alpha a := rfl
 
+include hT in
 /-- The short negative-corner contradiction for the general conceptual
 construction.  A separated sign cuts to a nonzero corner on which the mark
 tends to `-1`; Kazhdan transport makes its compression-defect square tend to
 `1` in normalized Hilbert--Schmidt norm. -/
-include hT in
 theorem negativeCorner_kazhdanTransport_contradiction
     (A : MarkedOpAlmostRepresentation (Extension alpha a) (mark alpha a)) :
     False := by
@@ -499,9 +500,9 @@ noncomputable local instance raw_countable : Countable (Raw Γ) :=
 noncomputable instance extension_countable : Countable (Extension alpha a) :=
   (QuotientGroup.mk'_surjective (relations alpha a)).countable
 
+include hT in
 /-- Every homomorphism from the construction to a genuine norm-matrix
 C*-corona kills the central Clifford sign. -/
-include hT in
 theorem every_cstar_corona_hom_kills_mark
     (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
     letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
@@ -524,19 +525,19 @@ theorem every_cstar_corona_hom_kills_mark
       (involution_mem_centralInvolutionSubgroup
         (mark alpha a) (mark_sq alpha a)))
 
-/-- The Kazhdan--Clifford extension is unconditionally non-MF. -/
 include hAlpha hT in
+/-- The Kazhdan--Clifford extension is unconditionally non-MF. -/
 theorem not_isOperatorMF (ha : a ∉ Set.range alpha) :
     ¬ IsOperatorMF (Extension alpha a) := by
   simpa using (inclusionData alpha a hT).not_isOperatorMF
     (mark_ne_one alpha hAlpha a ha)
 
+include hAlpha in
 /-- **Kazhdan--Clifford construction (formal headline theorem).**  A
 finitely presented Kazhdan group with a proper injective self-map produces a
 finitely presented non-MF group.  The distinguished central involution is
 nontrivial in the Clifford model and is killed by every norm-matrix-corona
 representation. -/
-include hAlpha in
 theorem kazhdanCliffordConstruction
     (hTTextbook : HasKazhdanPropertyTComplex.{0, w} Γ)
     (ha : a ∉ Set.range alpha) :
@@ -549,7 +550,7 @@ theorem kazhdanCliffordConstruction
         let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
         letI : ∀ n, Nonempty (X n) :=
           fun n ↦ Fintype.card_pos_iff.mp (by
-            simpa only [X, card_naturalFiniteModel] using hd n)
+            simpa only [X, Fintype.card_fin] using hd n)
         ∀ rho : Extension alpha a →*
             unitary (NormMatrixCStarCorona (fun n ↦ X n)),
           rho (mark alpha a) = 1) ∧
@@ -562,7 +563,7 @@ theorem kazhdanCliffordConstruction
   · intro d hd
     exact every_cstar_corona_hom_kills_mark alpha a hTReal
       (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
-        simpa only [card_naturalFiniteModel] using hd n)
+        simpa only [Fintype.card_fin] using hd n)
   · rw [isCDEOperatorMF_iff_isOperatorMF]
     exact not_isOperatorMF alpha hAlpha a hTReal ha
 
