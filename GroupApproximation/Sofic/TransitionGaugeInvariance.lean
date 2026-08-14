@@ -15,7 +15,6 @@ open Matrix
 
 variable {Y : Type*} [Fintype Y] [DecidableEq Y]
 
-omit [DecidableEq Y] in
 /-- A right gauge commuting with `P` does not change the projection transported
 by `U`. -/
 theorem transportedProjection_mul_commutant_eq
@@ -48,7 +47,6 @@ theorem transitionEffect_mul_commutant_eq_conj
       rw [hPCadj, hCP]
     _ = Cᴴ * (P * Uᴴ * Q * U * P) * C := by noncomm_ring
 
-omit [DecidableEq Y] in
 /-- Unitary conjugation carries an idempotence defect to the conjugate of the
 original defect. -/
 theorem conj_idempotenceDefect
