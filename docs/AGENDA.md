@@ -94,6 +94,16 @@ the fixed eight-lamp `M_16`, cannot locally prune a nonlinear Boolean
 predicate.  It can still carry coefficient holonomy, but the selector must
 remember the full nonabelian irreducible type.
 
+The global operator form has also been reduced.  For any projection `q` and
+group unitary `g`, the compression `qgq` is unitary in `qMq` iff `g` commutes
+with `q`.  Hence a compiler in which every BCS variable is one compressed
+group element lies entirely in the stabilizer of the selector.  For a
+finite-support selector this is a finite-normal representation sector, and
+Clifford theory reduces it to a fixed matrix block over a twisted quotient
+group algebra--the existing projective/central-extension gate.  A genuinely
+nonnormal Hecke compiler must instead make at least one variable a linear
+combination of multiple double cosets whose cross terms cancel exactly.
+
 Ordinary Bass--Serre gluing of these local gadgets is ruled out: the
 fundamental group of a finite graph of finite groups is virtually free and
 hence hyperlinear, so all of its positive finite-subgroup Hecke corners are
