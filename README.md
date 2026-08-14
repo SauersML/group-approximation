@@ -110,12 +110,11 @@ Reading path, front door first:
 
 | Module | Role |
 | --- | --- |
-| `Sofic/LiteralNonMFEndpoint.lean` | Literal endpoint assembly; unconditional public surface pending the certificate gate |
-| `Sofic/LiteralP13HodgeCertificate.lean` | Exact rational Hodge certificate under active finite-arithmetic validation |
-| `Sofic/LiteralBaseP13RotationQuotient.lean`, `Sofic/LiteralBaseP13PropertyTBridge.lean` | Checked P13-to-rotation quotient and the conditional literal-base bridge |
-| `Sofic/ManuscriptExactWrappers.lean` | One-to-one outer propositions being validated for all 27 retained claims |
+| `Sofic/LiteralNonMFEndpoint.lean` | Literal endpoint assembly, honestly retaining the property-`(T)` premise |
+| `Sofic/LiteralBasePropertyTBridge.lean` | Checked intrinsic implication from property `(T)` of the rotation presentation to property `(T)` of the literal affine base |
+| `Sofic/LiteralBaseP13RotationQuotient.lean` and replay modules | Partial presentation-only P13-to-rotation route; no Hodge certificate or unconditional property-`(T)` endpoint is present |
 | `Sofic/OperatorMF.lean` | Standard cofinite norm-matrix corona and `IsOperatorMF` |
-| `Sofic/CDEOperatorMF.lean`, `Sofic/ActualCoronaMFRadical.lean` | Literal natural-dimension CDE predicate and genuine-corona radical |
+| `Sofic/CDEOperatorMF.lean`, `Sofic/NormMFCoronaRadical.lean` | Literal natural-dimension CDE predicate and genuine-corona radical |
 | `Sofic/OperatorMFIncreasingDimensions.lean` | Equivalence with the strictly increasing dimension convention |
 | `Sofic/MarkedCompressionSequentialKill.lean` | Universal kill theorem and direct `not_isOperatorMF` / `not_isWeakMF` obstructions |
 | `Sofic/MarkedCompressionInclusionData.lean` | Exact one-sided compression interface; no injectivity or endomorphism hypothesis |
@@ -129,7 +128,7 @@ Reading path, front door first:
 | `Sofic/LiteralNonMFPresentation.lean`, `Sofic/LiteralNonMFLinearWitness.lean` | Literal eight-generator presentation and exact nontrivial mark |
 | `Criterion/FiniteDimensionalKill.lean`, `Sofic/LiteralFiniteDimensionalObstruction.lean` | Finite-dimensional obstruction over an arbitrary field, instantiated for the literal group |
 | `Sofic/NormMFPrintedConsequences.lean`, `Sofic/NormMFResidualExactQuotient.lean` | Uniform invisibility, portability, and exact quotient factorization |
-| `Sofic/OperatorMFPositiveControls.lean`, `Sofic/LiteralOperatorMFQuotientControls.lean` | Positive permanence results and exact `F₈ ↠ E` quotient nonclosure |
+| `Sofic/OperatorMFPositiveControls.lean` | Positive permanence controls for operator-MF groups |
 | `Analysis/FaithfulTracialMatrix.lean`, `Analysis/ProperIsometryFromCompression.lean` | Matrix-amplified faithful traces and the proper-isometry obstruction to stable finiteness |
 | `Analysis/MaximalGroupCStar.lean`, `Analysis/ReducedGroupCStarMFObstruction.lean` | Concrete universe-relative maximal and reduced group C*-algebra consequences |
 

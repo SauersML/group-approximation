@@ -4,6 +4,26 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-13: the classical `SL_3(Z)` shortcut closes only the non-MF paper gate
+
+`SL3_PRESENTATION_PROPERTY_T_AUDIT_2026-08-13.md` verifies that the literal
+rotation presentation is the matrix-labelled CRW presentation of
+`SL_3(Z)`.  Classical property `(T)` and the checked intrinsic affine bridge
+therefore discharge the property-(T) hypothesis in the paper proof of the
+literal non-MF example.  The proposed `P13` Hodge certificate is unnecessary
+for that mathematical argument.  It remains a kernel boundary because Lean
+does not import a published presentation theorem as an axiom.
+
+This does not advance the same marked word toward nonhyperlinearity.  The
+finite coset-tower model in `TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` sends
+that word to `-1` in a Connes-embeddable representation, and Becker--Lubotzky
+show that infinite hyperlinear property-(T) groups such as `SL_3(Z)` are not
+stable in normalized Hilbert--Schmidt metric.  Thus classical property `(T)`
+cannot supply the missing flexible-HS stability input in
+`TRUE_CLIFFORD_HYPERLINEARITY_FORCES_AMBIENT_HS_INSTABILITY.md`.  The live
+hyperlinear gate remains coefficient/multiplicity recovery, not the base
+property-(T) certificate.
+
 ### 2026-08-13: differential audit from non-MF to nonhyperlinearity
 
 `NON_MF_TO_HYPERLINEAR_DIFFERENTIAL_AUDIT.md` records the repository-first

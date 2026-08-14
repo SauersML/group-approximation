@@ -1,4 +1,35 @@
-# Audit of the affine base used in Theorem A — 2026-08-13
+# The classical `SL_3(Z)` presentation closes the paper-level property-(T) gate
+
+## Conclusion
+
+The shortcut is valid at the level of ordinary mathematics:
+
+```text
+Rotation ~= SL_3(Z)
+  => HasKazhdanPropertyT Rotation
+  => HasKazhdanPropertyT Base.
+```
+
+The first implication is the exact matrix-labelled
+Conder--Robertson--Williams presentation recorded by
+Conder--Liversidge--Vsemirnov.  The second is classical property `(T)` of
+`SL_3(Z)`.  The third is the intrinsic affine bridge already proved in
+`LiteralBasePropertyTBridge.lean`.  Thus the rational `P13` Hodge certificate
+is unnecessary for a paper proof of property `(T)` of the literal base.
+
+This conclusion does not turn the cited literature into a kernel theorem.
+The unconditional Lean endpoint still requires an internal proof of the
+rotation presentation theorem/property `(T)`, or a checked certificate.
+
+There is also a separate repository-consistency issue.  On a clean detached
+MSI worktree at commit `390531ff`,
+`python3.12 scripts/check_non_mf_refs.py` reports 44 broken manuscript
+references.  The
+missing `LiteralP13HodgeCertificate.lean` and
+`LiteralBaseP13PropertyTBridge.lean` references are two of them.  Therefore
+the present TeX must not describe the literal endpoint as fully
+kernel-certified even though its paper-level property-(T) hypothesis is now
+discharged.
 
 This note isolates the two external inputs behind the literal affine base in
 `non_mf_groups_exist.tex`: its finite presentation and property (T).  It also
