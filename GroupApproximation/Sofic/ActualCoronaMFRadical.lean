@@ -295,7 +295,7 @@ theorem exists_manuscriptCoronaRepresentation_ker_eq_manuscriptCoronaMFResidual
 /-- Every map to a countable CDE-MF group factors uniquely through the
 universal literal MF quotient. -/
 theorem existsUnique_actualCoronaMFQuotient_factorization_to_isCDEOperatorMF
-    [Countable G] {H : Type v} [Group H] [Countable H]
+    {H : Type v} [Group H] [Countable H]
     (f : G →* H) (hH : IsCDEOperatorMF H) :
     ∃! fBar : (G ⧸ actualCoronaMFResidual G) →* H,
       fBar.comp (QuotientGroup.mk' (actualCoronaMFResidual G)) = f := by
@@ -322,7 +322,7 @@ theorem existsUnique_actualCoronaMFQuotient_factorization_to_isCDEOperatorMF
 
 /-- Literal natural-dimension universal-quotient factorization. -/
 theorem existsUnique_manuscriptCoronaMFQuotient_factorization_to_isCDEOperatorMF
-    [Countable G] {H : Type v} [Group H] [Countable H]
+    {H : Type v} [Group H] [Countable H]
     (f : G →* H) (hH : IsCDEOperatorMF H) :
     ∃! fBar : (G ⧸ manuscriptCoronaMFResidual G) →* H,
       fBar.comp (QuotientGroup.mk' (manuscriptCoronaMFResidual G)) = f := by

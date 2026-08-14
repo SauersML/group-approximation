@@ -155,7 +155,7 @@ conclusion is also formalized.  The theorem
 `AsymptoticUnitaryRepresentation.negOnePhase_detects` proves that a word
 converging to `-1` is nontrivial in the induced tracial matrix ultraproduct,
 and
-`negOnePhase_soficInvisible_yields_hyperlinear_nonsofic` combines this
+`exists_hyperlinear_not_isSofic_of_negOnePhase_soficInvisible` combines this
 with membership in the full sofic residual.  Both are in
 `GroupApproximation/Sofic/AntipodalRadicalCollision.lean`.
 

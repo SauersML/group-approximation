@@ -1073,7 +1073,7 @@ def q : Fin 102 → Fin 6 → RatGroupRing P13 :=
 def qCoefficient (row : Fin 102) (root : Fin 6) (i : Fin 22) : ℚ :=
   (qNumerator row root i : ℚ) / qDenominator
 
-theorem q_eq_coordinateSum (row : Fin 102) (root : Fin 6) :
+@[simp] theorem q_eq_coordinateSum (row : Fin 102) (root : Fin 6) :
     q row root = coordinateSum support (qCoefficient row root) := by
   rfl
 

@@ -217,14 +217,23 @@ def disclaimerPhrases : List String :=
 
 /-- Case-insensitive substring test against `disclaimerPhrases`.  `splitOn`
 rather than a regex because Lean has no regex and this needs none. -/
+def occurrenceCount (text needle : String) : Nat :=
+  (text.splitOn needle).length - 1
+
 def mentionsConditionality (s : String) : Bool :=
   let lower := s.toLower
   disclaimerPhrases.any fun p =>
-    let hits := (lower.splitOn p).length - 1
+    let hits := occurrenceCount lower p
     -- "unconditional(ly)" contains "conditional"; a substring hit inside a
     -- word that asserts the opposite is not a disclaimer.
-    let shielded := (lower.splitOn ("un" ++ p)).length - 1
-    hits > shielded
+    let shielded := occurrenceCount lower ("un" ++ p)
+    -- "Conditional expectation" is a standard operator-algebraic noun, not
+    -- a disclaimer about proof status.  Count it precisely instead of deleting
+    -- the word "conditional" from otherwise useful documentation.
+    let technical := if p == "conditional" then
+      occurrenceCount lower "conditional expectation"
+    else 0
+    hits > shielded + technical
 
 /-! ## Per-declaration shape scans -/
 

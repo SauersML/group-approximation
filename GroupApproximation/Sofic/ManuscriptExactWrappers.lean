@@ -283,7 +283,6 @@ the squared normalized Hilbert--Schmidt distance tends to zero, which is
 equivalent to convergence of the normalized Hilbert--Schmidt norm itself. -/
 theorem manuscriptCompressionDefectsCollapse
     {Gamma H : Type} [Group Gamma] [Group H]
-    [Countable Gamma] [Countable H]
     (C : KazhdanCompressionCore Gamma H)
     (B : OpAlmostRepresentation H) :
     ∀ gamma : Gamma, ∀ epsilon : ℝ, 0 < epsilon →

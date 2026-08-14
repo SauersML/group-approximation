@@ -56,7 +56,9 @@ def mustNotReportUnder : List (String × Name) :=
    -- a `@[simp]` lemma proved by `rfl` is a deliberate API lemma
    ("RFL", ``AuditPlant.plantedSimpRfl),
    -- prose calling a result conditional, on a type that names the condition
-   ("STALE_DISCLAIMER", ``AuditPlant.cleanConditionalOnItsPremise)]
+   ("STALE_DISCLAIMER", ``AuditPlant.cleanConditionalOnItsPremise),
+   -- the operator-algebraic noun "conditional expectation" is not a caveat
+   ("STALE_DISCLAIMER", ``AuditPlant.cleanConditionalExpectation)]
 
 /-- Declarations no scan may report. -/
 def mustNotReport : List Name :=

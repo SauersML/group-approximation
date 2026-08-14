@@ -101,7 +101,7 @@ then every homomorphism into every positive natural-dimensional genuine
 norm-matrix C-star corona kills it, and the ambient countable group is not
 MF in the literal CDE sense. -/
 theorem manuscriptCentralSignCriterion
-    [Countable Γ] [Countable E]
+    [Countable E]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* E) (t c : E)
     (hcompresses : ∀ γ : Γ, ∃ δ : Γ,

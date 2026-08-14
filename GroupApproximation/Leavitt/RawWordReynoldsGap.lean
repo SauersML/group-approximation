@@ -27,16 +27,20 @@ finite group algebra, take `weight i = |c_i|^2` and
 dimension-free estimate
 `min_g ||C-lambda_g||_2 <= ||Delta C-C tensor C||_2`. -/
 theorem exists_scalar_gauge_coefficient_distSq_le_defectSq
-    {ι : Type*} [Fintype ι] [Nonempty ι]
+    {ι : Type*} [Fintype ι]
     (weight realCoeff : ι → ℝ) (defectSq : ℝ)
     (hweight : ∀ i, 0 ≤ weight i)
     (hsum : ∑ i, weight i = 1)
     (hdefect : defectSq = 2 - 2 * ∑ i, weight i * realCoeff i) :
     ∃ i, 2 - 2 * realCoeff i ≤ defectSq := by
   classical
+  have hnonempty : (Finset.univ : Finset ι).Nonempty := by
+    by_contra hempty
+    rw [Finset.not_nonempty_iff_eq_empty.mp hempty, Finset.sum_empty] at hsum
+    norm_num at hsum
   obtain ⟨i, -, hmax⟩ :=
     Finset.exists_max_image (Finset.univ : Finset ι) realCoeff
-      Finset.univ_nonempty
+      hnonempty
   have havg : (∑ j, weight j * realCoeff j) ≤ realCoeff i := by
     calc
       (∑ j, weight j * realCoeff j) ≤

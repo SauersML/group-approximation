@@ -1145,7 +1145,7 @@ of the Clifford route is constructing the almost-`Gamma`-central,
 anticommuting pair; no error-propagation or phase-detection estimate remains.
 The scalar endpoint is now wired to the radical collision as well:
 `negOnePhase_detects` and
-`negOnePhase_soficInvisible_yields_hyperlinear_nonsofic` are checked in
+`exists_hyperlinear_not_isSofic_of_negOnePhase_soficInvisible` are checked in
 `Sofic/AntipodalRadicalCollision.lean`.
 
 ### 2026-08-13: antipodal conjugacy is a quantitative trace certificate

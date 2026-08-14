@@ -110,6 +110,10 @@ findings, every one of them true. -/
 theorem cleanConditionalOnItsPremise (h : (0 : Nat) = 0) : ∃ n : Nat, n = 0 :=
   ⟨0, h⟩
 
+/-- The conditional expectation is scalar.  This uses the technical noun
+"conditional expectation" and makes no claim that the proof is conditional. -/
+theorem cleanConditionalExpectation : ∃ n : Nat, n = 2 := ⟨2, rfl⟩
+
 /-! ## Literature-input plants
 
 The real roster of tagged transcriptions is driver config; the calibration

@@ -88,7 +88,7 @@ theorem AsymptoticUnitaryRepresentation.negOnePhase_detects
 
 /-- **Antipodal radical collision.**  A sofic-residual element with one
 asymptotically antipodal unitary model produces a hyperlinear nonsofic range. -/
-theorem antipodal_soficInvisible_yields_hyperlinear_nonsofic
+theorem exists_hyperlinear_not_isSofic_of_antipodal_soficInvisible
     (A : AsymptoticUnitaryRepresentation G) {x : G}
     (hx : SoficInvisible x)
     (S : ∀ n, Matrix.unitaryGroup (A.model n) ℂ)
@@ -112,7 +112,7 @@ theorem antipodal_soficInvisible_yields_hyperlinear_nonsofic
 /-- **Scalar-phase radical collision.**  A sofic-residual element that tends
 to the scalar `-1` in one asymptotic unitary representation produces a
 hyperlinear nonsofic range. -/
-theorem negOnePhase_soficInvisible_yields_hyperlinear_nonsofic
+theorem exists_hyperlinear_not_isSofic_of_negOnePhase_soficInvisible
     (A : AsymptoticUnitaryRepresentation G) {x : G}
     (hx : SoficInvisible x)
     (hphase : ∀ ε : ℝ, 0 < ε → ∃ N, ∀ n ≥ N,

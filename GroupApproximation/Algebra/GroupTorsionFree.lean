@@ -58,7 +58,7 @@ theorem prod (hG : IsPowerTorsionFree G) (hH : IsPowerTorsionFree H) :
 
 section DirectLimit
 
-variable {ι : Type*} [Preorder ι] [Nonempty ι] [IsDirectedOrder ι]
+variable {ι : Type*} [Preorder ι] [IsDirectedOrder ι]
 variable {K : ι → Type*} [∀ i, Group (K i)]
 variable {T : ∀ ⦃i j : ι⦄, i ≤ j → Type*}
 variable {f : ∀ i j (h : i ≤ j), T h}

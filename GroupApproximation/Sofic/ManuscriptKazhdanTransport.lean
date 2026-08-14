@@ -40,7 +40,7 @@ def NaturalHSCommutatorVanishing
 centralizer datum is an input: the proof internally applies the general
 compression theorem with the harmless root `1`. -/
 theorem manuscriptKazhdanTransport
-    {Γ : Type} [Group Γ] [Countable Γ] [Countable H]
+    {Γ : Type} [Group Γ]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H) (s : H)
     (hs : ∀ γ : Γ, ∃ δ : Γ,
@@ -136,7 +136,7 @@ compression--centralizer defect of a Kazhdan image lies in the literal
 natural-dimension C-star-corona radical.  The second conjunct spells out the
 equivalent kernel statement for every printed norm-matrix corona. -/
 theorem manuscriptCompressionRadical
-    {Γ H : Type} [Group Γ] [Group H] [Countable Γ] [Countable H]
+    {Γ H : Type} [Group Γ] [Group H] [Countable H]
     (hT : HasKazhdanPropertyTComplex.{0, w} Γ)
     (iota : Γ →* H)
     (F : Subgroup H) [Finite F] [F.Normal]
