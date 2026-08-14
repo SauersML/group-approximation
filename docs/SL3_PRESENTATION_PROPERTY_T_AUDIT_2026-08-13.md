@@ -152,7 +152,7 @@ very presentation-completeness theorem at issue.
 These words give a finite, presentation-only route which avoids first proving
 an isomorphism with all of `SL_3(Z)`.  Let `P13` be the six-generator group
 with the thirteen relators used by `experiments/sl3_degree_one_spectrum.py`:
-six Steinberg commutator relations, six orthogonal-root commutator relations,
+six Steinberg commutator relations, six displayed commuting-root commutator relations,
 and `(e12 e21^-1 e12)^4=1`.  It is enough to prove the following three finite
 lemmas, by explicit products of conjugates of defining relators:
 

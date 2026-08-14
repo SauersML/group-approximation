@@ -20,12 +20,7 @@
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
   \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
   \do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9}
-\newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
 \newcommand{\paperauthor}{Anonymous}
-% Pinned repository revision for all verification links; the publication workflow
-% replaces `main` by the exact commit hash at build time so that published
-% links are immutable.
-\newcommand{\leancommit}{main}
 \hypersetup{
   pdftitle={An explicit finitely presented non-MF group},
   pdfauthor={\paperauthor},
@@ -39,7 +34,7 @@
   {\normalfont\scriptsize\color{gray!70!black}%
    #3\par\nobreak\noindent
    \hspace*{1em}%
-   \href{\leanrepo/blob/\leancommit/GroupApproximation/#1.lean}{\nolinkurl{#2}}%
+   \nolinkurl{#2}%
   }\par\smallskip}
 % Every displayed record certifies the full printed claim.
 \newcommand{\leanverified}[2]{\leanbadge{#1}{#2}{\fbox{\sffamily\bfseries EXACT}}}
@@ -676,7 +671,7 @@ Its first six relators are
  [e_{31},e_{12}]e_{32}^{-1},\quad
  [e_{32},e_{21}]e_{31}^{-1};
 \end{align*}
-the next six are the commutators of the orthogonal-root pairs
+the next six are the commutators of the displayed commuting-root pairs
 \[
  (12,13),\ (12,32),\ (13,23),\ (21,23),\ (21,31),\ (31,32),
 \]

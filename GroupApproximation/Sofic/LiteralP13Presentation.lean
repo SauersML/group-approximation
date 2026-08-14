@@ -10,7 +10,7 @@ certificate.  Its order is part of the public data contract:
 * generators `0,…,5` are `e12,e13,e21,e23,e31,e32`;
 * relators `0,…,5` are the ordered Steinberg relations for
   `012,021,102,120,201,210`;
-* relators `6,…,11` are the orthogonal-root commutators
+* relators `6,…,11` are the displayed commuting-root commutators
   `12_13,12_32,13_23,21_23,21_31,31_32`;
 * relator `12` is `(e12 e21⁻¹ e12)⁴`.
 

@@ -1,21 +1,21 @@
 # Group Approximation and Rigidity
 
-> **Verified state:** [`37c9f7ee`](https://github.com/SauersML/group-approximation/tree/37c9f7ee16202c7e8816991b37a19e6f4b579630)
+> **Verified state:** `37c9f7ee16202c7e8816991b37a19e6f4b579630`
 >
 > The pin above is the exact repository state most recently certified by
 > the full Lean Prover CI gate -- `lake build` with warnings as errors, the
 > source and compiled-environment scans, the non-MF counterpart contract,
 > the kernel-level axiom audit, signature pinning, and the fresh-kernel
-> `leanchecker` replay
-> ([most recent successful run](https://github.com/SauersML/group-approximation/actions/workflows/prover.yml?query=branch%3Amain+is%3Asuccess)).
+> `leanchecker` replay. The repository's Actions history records the most
+> recent successful run.
 > CI rewrites the pin automatically after every green run.  The
-> [`verified`](https://github.com/SauersML/group-approximation/tree/verified)
+> `verified`
 > branch carries the same guarantee and additionally fast-forwards within
 > about a minute over pushes that leave the Lean verification surface
 > untouched:
 >
 > ```text
-> git clone --branch verified https://github.com/SauersML/group-approximation.git
+> git clone --branch verified <repository-url>
 > ```
 
 A research library for finite models of groups and the rigidity,
