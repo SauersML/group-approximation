@@ -2,6 +2,9 @@ import GroupApproximation.Sofic.P13ExactStagedCertificate
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.CompressionDefectSquare
+import GroupApproximation.Analysis.FaithfulTracialMatrix
+import GroupApproximation.Analysis.ReducedGroupCStarSeparable
+import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
 
 /-!
 # The conceptual proof of the literal non-MF theorem
@@ -26,6 +29,7 @@ namespace GroupApproximation
 namespace LiteralNonMFEndpoint
 
 open LiteralNonMFPresentation
+open ReducedGroupCStarTrace
 open scoped commutatorElement
 
 noncomputable section
@@ -176,6 +180,26 @@ theorem manuscriptTheoremA :
     literal_not_isOperatorMF,
     literal_maximalGroupCStar_not_isMFAlgebra,
     literal_not_isReducedGroupCStarMF⟩
+
+/-- **Unconditional manuscript Theorem D.**
+
+The concrete reduced group C-star algebra is separable, carries its canonical
+faithful tracial state, is stably finite in the operational sense that every
+isometry in every nonempty finite matrix amplification is unitary, and is not
+an MF C-star algebra. -/
+theorem manuscriptTheoremD :
+    TopologicalSpace.SeparableSpace (ReducedGroupCStar MarkedGroup) ∧
+      Nonempty (FaithfulTracialState (ReducedGroupCStar MarkedGroup)) ∧
+      (∀ (I : Type) [Fintype I] [DecidableEq I], Nonempty I →
+        ∀ v : CStarMatrix I I (ReducedGroupCStar MarkedGroup),
+          star v * v = 1 → v * star v = 1) ∧
+      ¬ IsMFAlgebra (ReducedGroupCStar MarkedGroup) := by
+  refine ⟨reducedGroupCStar_separableSpace MarkedGroup,
+    ⟨canonicalFaithfulTracialState MarkedGroup⟩, ?_,
+    literal_not_isReducedGroupCStarMF⟩
+  intro I _ _ hI v hv
+  exact (canonicalFaithfulTracialState MarkedGroup).matrix_mul_star_eq_one_of_star_mul_eq_one
+    I hI hv
 
 end
 

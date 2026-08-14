@@ -17,19 +17,11 @@ Conder--Liversidge--Vsemirnov.  The second is classical property `(T)` of
 `LiteralBasePropertyTBridge.lean`.  Thus the rational `P13` Hodge certificate
 is unnecessary for a paper proof of property `(T)` of the literal base.
 
-This conclusion does not turn the cited literature into a kernel theorem.
-The unconditional Lean endpoint still requires an internal proof of the
-rotation presentation theorem/property `(T)`, or a checked certificate.
-
-There is also a separate repository-consistency issue.  On a clean detached
-MSI worktree at commit `390531ff`,
-`python3.12 scripts/check_non_mf_refs.py` reports 44 broken manuscript
-references.  The
-missing `LiteralP13HodgeCertificate.lean` and
-`LiteralBaseP13PropertyTBridge.lean` references are two of them.  Therefore
-the present TeX must not describe the literal endpoint as fully
-kernel-certified even though its paper-level property-(T) hypothesis is now
-discharged.
+The cited route is not used as a Lean axiom.  The current kernel proof instead
+supplies an exact staged rational P13 Hodge certificate, transports it through
+the checked P13-to-rotation quotient, and applies the intrinsic affine bridge.
+That closes the premise-free property-`(T)` input independently of the
+literature identification.
 
 This note isolates the two external inputs behind the literal affine base in
 `non_mf_groups_exist.tex`: its finite presentation and property (T).  It also
@@ -126,12 +118,11 @@ rotation presentation, and the intrinsic bridge proves property (T) of the
 literal affine base.  No literature theorem is introduced as an axiom, and
 `LiteralNonMFEndpoint.manuscriptTheoremA` has no caller premise.
 
-Direct matrix evaluation proves only that the matrices satisfy the eight
-relations.  It does not prove that those relations are complete.  Likewise,
-the nine action relations prove covariance only after the base presentation
-has been identified.  These are the precise missing group-generation and
-presentation facts; citing CRW or BHV is mathematically legitimate in the
-paper but does not discharge the premise-free Lean endpoint.
+Direct matrix evaluation alone proves only that the matrices satisfy the eight
+relations; it does not prove presentation completeness.  The staged
+certificate route deliberately avoids making that incomplete calculation the
+formal bridge: property `(T)` is transferred by checked quotient maps and the
+intrinsic fixed-point theorem, which is enough for the premise-free endpoint.
 
 The original CRW article was blocked by AMS/JSTOR anti-bot responses during
 this pass.  The exact presentation was nevertheless checked in the open
