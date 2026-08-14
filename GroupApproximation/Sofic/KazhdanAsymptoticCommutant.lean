@@ -801,12 +801,16 @@ theorem transport_star
     have hTstar : Tᴴ ∈ Matrix.unitaryGroup (B.adjoint.model n) ℂ :=
       conjTranspose_mem_unitaryGroup hT
     have hTstarT : Tᴴ * T = 1 := Unitary.star_mul_self_of_mem hT
+    have hcancel : ∀ Y : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ,
+        Tᴴ * (T * Y) = Y := by
+      intro Y
+      rw [← Matrix.mul_assoc, hTstarT, one_mul]
     have hraw : ‖(1 - T * P * Tᴴ) * P‖ ≤ epsilon := by
       simpa [T, P, movedProjection] using hN n hn
     have hfactor :
         (1 - P) * (Tᴴ * P * T) = Tᴴ * ((1 - T * P * Tᴴ) * P) * T := by
       noncomm_ring
-      rw [← Matrix.mul_assoc, hTstarT, one_mul]
+      rw [hcancel]
     have htarget : ‖(1 - P) * (Tᴴ * P * T)‖ ≤ epsilon := by
       rw [hfactor, CStarRing.norm_mul_mem_unitary _ hT,
         CStarRing.norm_mem_unitary_mul _ hTstar]

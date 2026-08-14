@@ -446,7 +446,7 @@ implies $w^2=1$.  Then:
 \end{enumerate}
 In particular $E$ is not MF, and neither the universe-relative algebra
 $\Cmax(E)$ fixed below nor $\Cred(E)$ is an MF $C^*$-algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
 A completely explicit presentation of $E$ --- eight generators, with
@@ -466,11 +466,12 @@ corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
 the corner identity gives $w=-1$.  This contradiction is the entire analytic
 proof of Theorem~\ref{thm:A}.  Section~\ref{sec:conj} proves the transport
 theorem and its stronger finite-normal form.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
 representation of $E$ into a semidirect product of a Clifford group by a
-linear group over $\Z[1/2]$ (Section~\ref{sec:witness}); no
+mapping-telescope group built from exact affine matrices over $\Z[1/2]$
+(Section~\ref{sec:witness}); no
 combinatorial theory of HNN extensions is needed.
 
 Two companion results clarify the mechanism.  First, in
@@ -557,7 +558,7 @@ consequences.  The principal $C^*$-algebraic application is:
 $\Cred(E)$ is a unital separable $C^*$-algebra which carries a
 faithful tracial state --- and is therefore stably finite --- but is
 not an MF algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
+\leanverified{Sofic/ConceptualNonMFProof}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
 \end{mainthm}
 
 \subsection*{Operator norm versus tracial approximation}
@@ -567,11 +568,25 @@ coordinate ranks needed for the equal-rank reversal, so the argument below
 does not by itself give a hyperlinear obstruction.
 
 \subsection*{External inputs}
-The only paper-level rigidity input is the classical fact that
+The human proof uses two group-theoretic inputs: the displayed presentation
+of $\SL_3(\mathbb Z)$ and the classical fact that
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ has property~\textup{(T)}.  The exact
 twenty-relator base is identified with that affine group in
-Section~\ref{sec:group}.  The Clifford witness and the finite-dimensional
-obstruction are proved directly.
+Section~\ref{sec:group}.  Lean also verifies property~\textup{(T)}
+independently from an exact rational Hodge certificate.  The Clifford witness
+and the finite-dimensional obstruction are proved directly.  The sofic
+detector additionally uses Mal'cev residual finiteness and the standard
+locality, finite-index, and sofic-by-amenable permanence theorems
+\cite{ElekSzaboSofic}.
+
+The Lean development verifies the zero-input operator-norm core, the
+all-compressors transport theorem, the intrinsic finite-normal compression
+radical, the literal presentation, and the non-MF endpoint.  The abstract
+detector-to-radical implications are formalized in
+\texttt{RadicalSeparation.lean}.  The concrete finite-coset-tower proof that
+$W$ is sofic is the paper proof of Theorem~\ref{thm:sofic-detector}; the claim
+manifest records it separately instead of displaying an inaccurate exact
+Lean badge.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -867,6 +882,18 @@ $\mathbb Z^n\rtimes\SL_n(\mathbb Z)$ for $n\ge3$ is classical
 the real and complex formulations.
 \end{proof}
 
+\paragraph{Formal verification note.}
+Independently of this classical proof, the Lean development checks an exact
+rational sum-of-squares certificate for the P13 presentation.  Its public
+form is
+\[
+ \Delta_1=\frac1{250}I+Q^*Q+R,\qquad \lVert R\rVert\le\frac1{500},
+ \qquad\text{hence}\qquad \Delta_1\ge\frac1{500}I.
+\]
+The exact residual numerators and Gram factor remain below this interface;
+neither the certificate nor its constant is used in the human proof.
+\leanverified{Sofic/LiteralP13HodgeCertificate}{GroupApproximation.LiteralP13HodgeCertificate.p13_hodge_gap}
+
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
 
 Clifford signs, shifts, and HNN doubling have appeared together before in
@@ -967,6 +994,98 @@ Since $\zeta$ is central in $W$, the remaining relations $[w,g]=1$ for
 $g\in\{v_1,v_2,v_3,x,y,z,t,c\}$ are also satisfied.  Hence the
 assignment extends to a group homomorphism $E\to W$ sending $w$ to
 $\zeta\neq1$, and therefore $w\neq1$ in $E$.
+\end{proof}
+
+For a class $\mathcal A$ of groups, write
+$\operatorname{Rad}_{\mathcal A}(G)$ for the intersection of the kernels of
+all homomorphisms from $G$ to groups in $\mathcal A$.
+
+\begin{theorem}[sofic Clifford detector]\label{thm:sofic-detector}
+The group $W=\ClLamp(X)\rtimes V$ above is finitely generated and sofic, and
+the displayed map $E\twoheadrightarrow W$ is surjective.  Moreover
+\[
+ w\longmapsto\zeta\ne1.
+\]
+Consequently $W$ is not MF and
+\[
+ w\in\operatorname{Rad}_{\mathrm{MF}}(E),\qquad
+ w\notin\operatorname{Rad}_{\mathrm{sof}}(E),\qquad
+ w\notin\operatorname{Rad}_{\mathrm{hyp}}(E).
+\]
+In particular, there exists a finitely generated sofic group which is not
+MF.
+\end{theorem}
+
+\begin{proof}
+Use the affine description
+$\bar\Gamma=\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ and the dilation
+$\bar\alpha(v,A)=(2v,A)$.  For $n\ge1$ put
+\[
+ X_n=\bar\Gamma/\bar\alpha^n(\bar\Gamma),\qquad
+ X_+=\coprod_{n\ge1}X_n.
+\]
+Each $X_n$ is finite, of cardinality $8^n$.  The formula
+\[
+ F(g\bar\alpha^n(\bar\Gamma))
+   =\bar\alpha(g)\bar\alpha^{n+1}(\bar\Gamma)
+\]
+defines an injective map $F\colon X_+\to X_+$ satisfying
+$F(\gamma x)=\bar\alpha(\gamma)F(x)$.
+
+Let $Y_m=X_1\amalg\cdots\amalg X_m$ and
+\[
+ K_m=\ClLamp(Y_m)\rtimes\bar\Gamma.
+\]
+The Clifford group $\ClLamp(Y_m)$ is finite.  Hence $\bar\Gamma$ is a
+finite-index subgroup of $K_m$.  The group $\bar\Gamma$ is finitely generated
+linear over $\mathbb Q$, so it is residually finite and sofic; finite-index
+overgroups of sofic groups are sofic.  Therefore every $K_m$ is sofic, and
+their increasing union
+\[
+ K=\ClLamp(X_+)\rtimes\bar\Gamma
+\]
+is sofic.
+
+The pair $(F,\bar\alpha)$ induces an injective endomorphism of $K$.  Its
+automorphic direct limit $\widetilde K$ is sofic because it is an increasing
+union of copies of $K$.  The semidirect product
+\[
+ S=\widetilde K\rtimes\mathbb Z
+\]
+is sofic by the Elek--Szab\'o sofic-by-amenable theorem
+\cite{ElekSzaboSofic}.
+
+It remains to identify this finite-tower construction with the witness above.
+The site set in the automorphic dilation is the union of the backward
+translates of $X_+$.  If $x\in X_n$, assign the translate $F^{-m}x$ the
+integer level $n-m$; this is well defined because replacing
+$F^{-m}x$ by $F^{-(m+1)}F(x)$ changes both indices by one.  The dilated base
+preserves levels and the stable letter raises them.  If
+$x_0=\bar\alpha(\bar\Gamma)\in X_1$ and $o=F^{-1}x_0$, the mapping-telescope
+group $V$ acts transitively on the dilated site set, and the stabilizer of
+$o$ is exactly $j(\bar\Gamma)$.  Indeed, level first forces a stabilizer
+element to have stable-letter exponent zero; writing it as
+$\tau^{-m}j(g)\tau^m$, the equality fixing $o$ says
+$\bar\alpha(g)\in\bar\alpha^{m+1}(\bar\Gamma)$, hence
+$g\in\bar\alpha^m(\bar\Gamma)$ and the element already lies in the
+level-zero subgroup.  Thus the dilated site set is $V$-equivariantly
+isomorphic to $V/j(\bar\Gamma)=X$, and consequently
+\[
+ S\cong\ClLamp(X)\rtimes V=W.
+\]
+So $W$ is sofic.
+
+The action of $V$ on $X$ is transitive.  Hence the conjugates of the root
+lamp $c_o$ generate $\ClLamp(X)$, while the six base generators and $\tau$
+generate $V$.  The map $E\to W$ constructed above is therefore surjective
+and detects $w$ by $\zeta$.
+
+Theorem~\ref{thm:A} puts $w$ in every MF kernel.  If $W$ were MF, composing
+$E\twoheadrightarrow W$ with an injective corona representation would detect
+$w$, a contradiction.  Thus $W$ is a finitely generated sofic non-MF group.
+The quotient proves $w\notin\operatorname{Rad}_{\mathrm{sof}}(E)$.  Every
+sofic group is hyperlinear \cite{ElekSzaboHyperlinear}, so it also proves
+$w\notin\operatorname{Rad}_{\mathrm{hyp}}(E)$.
 \end{proof}
 
 \paragraph{Scope of the witness.}
@@ -1875,22 +1994,21 @@ realized quotient.  This comparison isolates the precise limitation of the
 finite-dimensional argument: exact finite-dimensional invisibility does not
 itself imply that the marked word is trivial.
 
-\section{The operator-norm boundary}\label{sec:limits}
+\section{The operator-norm boundary}
+\label{sec:limits}
 
-The proof is genuinely operator-norm in its present form.  If multiplication
-is controlled only in normalized Hilbert--Schmidt norm, the off-diagonal
-blocks cut out by spectral projections need not be small in operator norm.
-The compressed maps therefore need not admit the dimension-free polar repair
-used in Lemma~\ref{lem:corner}.  More importantly, Hilbert--Schmidt-small
-leakage does not determine finite ranks and does not imply reverse
-operator-norm leakage in \eqref{eq:no-one-sided-growth}.
-
-This identifies a boundary of the method, not a tracial nonapproximation
-theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
-approximations of Kazhdan groups can be recovered from finite-dimensional
-coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
-coordinate description is separate from the operator-norm theorem proved
-here.
+The proof is genuinely an operator-norm argument.  Operator-norm control
+produces coordinate Kazhdan spectral projections whose ranks are exact finite
+integers; equal rank reverses one-sided leakage and yields
+\eqref{eq:no-one-sided-growth}.  Normalized Hilbert--Schmidt-small leakage in
+a tracial ultraproduct does not retain that coordinate-rank information.  The
+finite coset tower in Theorem~\ref{thm:sofic-detector} proves more than a
+limitation: the same sign survives in a sofic, hence hyperlinear, quotient.
+Thus the operator-norm conclusion is false for Hamming and tracial
+approximation of this marked element.  Related questions about recovering
+Kazhdan commutants from finite-dimensional coordinate subalgebras remain open
+\cite[Open Problem~6.2]{AlekseevThom}, but the detector gives a positive
+operator-norm/tracial separation.
 
 \begin{thebibliography}{GKEMP}
 

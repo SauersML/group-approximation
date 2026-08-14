@@ -199,7 +199,7 @@ theorem exists_not_isHyperlinear_iff_exists_hyperlinear_quotient :
   constructor
   · rintro ⟨H, hH, hnH⟩
     letI := hH
-    refine ⟨FreeGroup H, inferInstance, H, inferInstance,
+    refine ⟨FreeGroup H, H, inferInstance, inferInstance,
       FreeGroup.lift (id : H → H), ?_,
       isHyperlinear_of_isSofic (isSofic_freeGroup H), hnH⟩
     intro h

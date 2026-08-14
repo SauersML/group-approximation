@@ -41,7 +41,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/KazhdanCliffordConstruction",
         "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction"),
     "thm:A": (
-        "Sofic/LiteralNonMFEndpoint",
+        "Sofic/ConceptualNonMFProof",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA"),
     "thm:B": (
         "Sofic/ManuscriptExactWrappers",
@@ -50,7 +50,7 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Monsters/LiteralCyclicCalibration",
         "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration"),
     "thm:D": (
-        "Sofic/LiteralNonMFEndpoint",
+        "Sofic/ConceptualNonMFProof",
         "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
     "prop:maximal-cstar": (
         "Analysis/MaximalGroupCStar",
@@ -118,6 +118,29 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 }
 
 
+# This theorem is unconditional in the paper, but its finite-coset-tower
+# proof uses standard external permanence theorems not formalized in this
+# repository.  It therefore deliberately carries no Lean badge.
+PAPER_ONLY_CLAIMS: dict[str, dict[str, object]] = {
+    "thm:sofic-detector": {
+        "object_identity": (
+            "The printed theorem concerns the concrete Clifford target W and "
+            "the explicit quotient map constructed in Proposition prop:witness."),
+        "dependencies": ["prop:witness", "thm:A"],
+        "external_inputs": [
+            "Malcev residual finiteness for finitely generated characteristic-zero linear groups.",
+            "Sofic groups are local and pass to finite-index overgroups.",
+            "Elek--Szabo: extensions of sofic groups by amenable quotients are sofic.",
+            "Elek--Szabo: every sofic group is hyperlinear.",
+        ],
+        "coverage_gap": (
+            "The abstract detector/radical implications are formalized in "
+            "RadicalSeparation.lean; the concrete finite-orbit tower proving "
+            "that W is sofic is proved in the manuscript."),
+    },
+}
+
+
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
@@ -135,6 +158,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:literal-base-T": ["def:E"],
     "lem:linear": ["def:E"],
     "prop:witness": ["con:clifford", "lem:linear", "def:E"],
+    "thm:sofic-detector": ["prop:witness", "thm:A"],
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
     "thm:criterion": ["def:pattern", "lem:compressorcollapse"],
@@ -151,7 +175,7 @@ def generate(tex: Path) -> dict:
     entries = []
     claims = read_printed_claims(tex)
     claim_ids = {claim.claim_id for claim in claims}
-    routed_ids = CLAIM_TARGETS.keys()
+    routed_ids = CLAIM_TARGETS.keys() | PAPER_ONLY_CLAIMS.keys()
     missing = sorted(claim_ids - routed_ids)
     stale = sorted(routed_ids - claim_ids)
     if missing:
@@ -159,6 +183,25 @@ def generate(tex: Path) -> dict:
     if stale:
         raise SystemExit(f"formal targets without numbered claims: {', '.join(stale)}")
     for claim in claims:
+        if claim.claim_id in PAPER_ONLY_CLAIMS:
+            if claim.badges:
+                raise SystemExit(
+                    f"{claim.claim_id}: paper-only claims must not display Lean badges")
+            metadata = PAPER_ONLY_CLAIMS[claim.claim_id]
+            entries.append({
+                "id": claim.claim_id,
+                "environment": claim.environment,
+                "title": claim.title,
+                "statement_sha256": claim.statement_sha256,
+                "status": "paper-only",
+                "object_identity": metadata["object_identity"],
+                "dependencies": metadata["dependencies"],
+                "extra_assumptions": [],
+                "external_inputs": metadata["external_inputs"],
+                "coverage_gap": metadata["coverage_gap"],
+                "lean": [],
+            })
+            continue
         module, declaration = CLAIM_TARGETS[claim.claim_id]
         if len(claim.badges) != 1:
             raise SystemExit(
@@ -197,7 +240,8 @@ def generate(tex: Path) -> dict:
         "status_policy": (
             "Every numbered theorem-like environment is recorded. Exact claims "
             "have one linked declaration and an independently mapped wrapper with "
-            "the same literal objects and outer proposition."),
+            "the same literal objects and outer proposition. Paper-only claims "
+            "record their external inputs and precise formal coverage gap."),
         "claims": entries,
     }
 
