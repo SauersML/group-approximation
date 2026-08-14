@@ -451,6 +451,7 @@ import GroupApproximation.Leavitt.LeavittWords
 import GroupApproximation.Leavitt.PrefixCode
 import GroupApproximation.Leavitt.ElementaryGroup
 import GroupApproximation.Leavitt.ElementaryRoots
+import GroupApproximation.Leavitt.OuterRootLeavittRouting
 import GroupApproximation.Leavitt.ElementaryStabilization
 import GroupApproximation.Leavitt.RankFourCompressors
 import GroupApproximation.Leavitt.UniversalLeavitt

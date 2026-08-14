@@ -48,6 +48,32 @@ The remaining audit is now algebraic/geometric: verify such placements and a
 multiplication-coherent decoder, or produce an exact countermodel showing
 that the atlas cannot supply them.
 
+### 2026-08-14: commuting outer roots retain the Leavitt product
+
+The needed distant-root placement is exact. The packets
+
+```text
+x_12(a t_i),   x_34(s_j b)
+```
+
+commute, while the fixed middle root gives
+
+```text
+[x_12(a t_i),[x_23(1),x_34(s_j b)]]
+ =x_14(delta_ij a b).
+```
+
+This is documented in
+`TRUE_COMMUTING_OUTER_ROOTS_RETAIN_LEAVITT_TABLE.md` and stated source-first
+in `Leavitt/OuterRootLeavittRouting.lean`. It removes the local Pauli
+noncommutation from the three path contexts without losing the two
+diagonal-one and two cross-zero identities.
+
+The live theorem is now the common-carrier outer-root decoder: place both
+outer transition PVMs on the same positive-density long-root character cut
+and show that the nested word transfers their labels to the long-root
+character with vanishing total mismatch.
+
 ### 2026-08-14: covariance closes total single-edge transition variance
 
 `TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md` corrects the apparent

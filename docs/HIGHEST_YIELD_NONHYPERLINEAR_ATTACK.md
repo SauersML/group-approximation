@@ -418,6 +418,22 @@ close the analytic compatibility step; the remaining audit is whether the
 raw/four-root routing actually supplies those placements together with the
 correct multiplication decoder.
 
+The required placement exists algebraically. Put the two variable packets
+on the outer roots `x_12(a t_i)` and `x_34(s_j b)`. They commute exactly, but
+the fixed middle root `x_23(1)` gives
+
+```text
+[x_12(a t_i),[x_23(1),x_34(s_j b)]]
+ =x_14(delta_ij a b).
+```
+
+See `TRUE_COMMUTING_OUTER_ROOTS_RETAIN_LEAVITT_TABLE.md` and
+`Leavitt/OuterRootLeavittRouting.lean`. The live compatibility theorem is
+therefore reduced to a common-carrier statement: identify the two outer-root
+transition PVMs on one positive-density long-root character cut and show
+that the nested word decodes their long-root character with vanishing total
+mismatch.
+
 The raw swap itself now supplies the complete local branch decoder: it fixes
 the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last
 coordinate, while their Steinberg commutators give the full
