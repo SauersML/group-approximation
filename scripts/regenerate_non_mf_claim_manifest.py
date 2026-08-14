@@ -121,8 +121,8 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
 # Dependencies are part of the paper's statement-level proof graph.  They are
 # intentionally explicit instead of inferred from prose or Lean imports.
 DEPENDENCIES: dict[str, list[str]] = {
-    "thm:sign-criterion": ["thm:kazhdan-transport", "lem:corner"],
-    "thm:compression-radical": ["thm:kazhdan-transport", "lem:corner"],
+    "thm:sign-criterion": ["thm:kazhdan-transport"],
+    "thm:compression-radical": ["thm:kazhdan-transport"],
     "thm:kazhdan-clifford": ["prop:mf-equivalences", "thm:criterion",
                               "thm:sign-criterion", "thm:kazhdan-transport", "lem:square",
                               "con:clifford"],

@@ -53,8 +53,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:kazhdan-transport",
-        "lem:corner"
+        "thm:kazhdan-transport"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -103,8 +102,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:kazhdan-transport",
-        "lem:corner"
+        "thm:kazhdan-transport"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -122,7 +120,7 @@
       "id": "thm:A",
       "environment": "mainthm",
       "title": "explicit Kazhdan--Clifford group",
-      "statement_sha256": "27615a365d6594ca96de33b90c57e8ed5c65ac42b0d6564356c29c60888a7fd7",
+      "statement_sha256": "e8874983ac1703cc05fbdf919511092067bb6b4714c64083eac6a6310b377194",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -216,8 +214,8 @@
     {
       "id": "prop:maximal-cstar",
       "environment": "proposition",
-      "title": "maximal group algebra",
-      "statement_sha256": "ae7b12825629bb54c755f2a565b6525cfeb40c795196477bfbe2b5652f1be973",
+      "title": "universe-relative maximal group algebra",
+      "statement_sha256": "3441db6e3904ab82ae767122cef32a1e9439ee709b6643bb6f7c78eefd4299cf",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
