@@ -23,12 +23,14 @@ than a list of files that happen to compile.
 
 ## MF terminology and C-star targets
 
-- The manuscript uses **MF** for the
-  weak group property studied here.  It defines strong MF through convergence
-  of reduced group-ring norms and strong PMF by additionally requiring the
-  approximating maps to be homomorphisms.
-- It states the implication chain `strong PMF => strong MF => CDE-MF`, and
-  cites Shulman, Schafhauser, and the 2026 strong-convergence literature.
+- The manuscript uses **MF** for the CDE group property studied here.  It
+  distinguishes this from the stronger reduced-norm convention and from
+  purely MF (PMF), where genuine finite-dimensional representations strongly
+  converge to the left regular representation.  It does not call these
+  mutually equivalent definitions.
+- The formal API records the valid implications from the stronger variants
+  to CDE-MF, and the text cites Shulman, Schafhauser, and the
+  strong-convergence literature with that scope.
 - `IsCDEOperatorMF` includes the countability typeclass and strictly
   increasing positive dimensions.  `IsOperatorMF` remains the unrestricted
   internal coordinate predicate; their equivalence for countable groups is a

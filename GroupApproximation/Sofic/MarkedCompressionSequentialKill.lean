@@ -593,30 +593,29 @@ theorem gammaRowVec_sum (B : OpAlmostRepresentation E)
       ∑ i ∈ s, gammaRowVec B n (X i) := by
   exact matVec_sum s X
 
-/-- The Laplacian displacement of the flattened lamp microstate is the
-flattening of an explicit averaged conjugation defect. -/
-theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
+/-- The Laplacian displacement of an arbitrary flattened matrix is the
+flattening of its explicit averaged conjugation defect.  Unlike the original
+lamp-specialized statement, this is the sequence-valued entry point needed
+for transport of the whole asymptotic commutant. -/
+theorem matrix_laplacian_matVec (B : OpAlmostRepresentation E)
     (C : KazhdanCompressionCore Γ E) (S : Finset Γ) (hone : 1 ∈ S)
-    (n : ℕ) :
-    gammaRowVec B n
-        (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+    (n : ℕ) (X : Matrix (B.model n) (B.model n) ℂ) :
+    gammaRowVec B n X -
       hermitianAverage (gammaAdjoint B C) S n *ᵥ
-        gammaRowVec B n
-          (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) =
+        gammaRowVec B n X =
     gammaRowVec B n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
-      (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+      ((X -
           (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
-            B.map n C.c *
+            X *
             (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
-        ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+        (X -
           (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
-            B.map n C.c *
+            X *
             (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ))))) := by
   classical
   have hcardC : ((S.card : ℂ)) ≠ 0 := by
     exact_mod_cast Finset.card_ne_zero.mpr ⟨1, hone⟩
-  set Vc : Matrix (B.model n) (B.model n) ℂ :=
-    (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) with hVc
+  set Vc : Matrix (B.model n) (B.model n) ℂ := X with hVc
   -- the adjoint microstates act on the flattened lamp by conjugation
   have hdict : ∀ s : Γ,
       ((gammaAdjoint B C).map n s :
@@ -757,6 +756,27 @@ theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
       congr 2
       refine Finset.sum_congr rfl fun s _ ↦ ?_
       abel
+
+/-- The historical lamp identity is the specialization of the arbitrary
+matrix identity to the lamp microstate. -/
+theorem lamp_laplacian_matVec (B : OpAlmostRepresentation E)
+    (C : KazhdanCompressionCore Γ E) (S : Finset Γ) (hone : 1 ∈ S)
+    (n : ℕ) :
+    gammaRowVec B n
+        (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+      hermitianAverage (gammaAdjoint B C) S n *ᵥ
+        gammaRowVec B n
+          (B.map n C.c : Matrix (B.model n) (B.model n) ℂ) =
+    gammaRowVec B n ((2 : ℂ)⁻¹ • ((S.card : ℂ)⁻¹ • ∑ s ∈ S,
+      (((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) *
+            B.map n C.c *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) +
+        ((B.map n C.c : Matrix (B.model n) (B.model n) ℂ) -
+          (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ *
+            B.map n C.c *
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ))))) :=
+  matrix_laplacian_matVec B C S hone n (B.map n C.c)
 
 /-! ## Step 11: the marked commutator collapses in Hilbert–Schmidt distance -/
 
