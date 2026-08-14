@@ -396,3 +396,63 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
+
+  advance-verified:
+    name: Fast-forward verified after the exact Lean gate
+    needs: [gate, prove]
+    if: ${{ needs.prove.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the verified commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Fast-forward the verified branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          target='${{ github.sha }}'
+          git fetch --no-tags origin \
+            '+refs/heads/main:refs/remotes/origin/main' \
+            '+refs/heads/verified:refs/remotes/origin/verified'
+          main=$(git rev-parse refs/remotes/origin/main)
+          current=$(git rev-parse refs/remotes/origin/verified)
+
+          if ! git merge-base --is-ancestor "$target" "$main"; then
+            echo "::error::verified target $target is not on current main $main"
+            exit 1
+          fi
+          if [ "$current" = "$target" ]; then
+            echo "verified already points at $target"
+            exit 0
+          fi
+          if git merge-base --is-ancestor "$target" "$current"; then
+            echo "verified already contains this certified commit at $current"
+            exit 0
+          fi
+          if ! git merge-base --is-ancestor "$current" "$target"; then
+            echo "::error::verified diverged at $current; refusing to overwrite it"
+            exit 1
+          fi
+
+          if git push origin "$target:refs/heads/verified"; then
+            echo "verified fast-forwarded from $current to $target"
+            exit 0
+          fi
+
+          # A newer successful run may have advanced the pointer during the
+          # push.  Accept that race only if the remote now contains target.
+          git fetch --no-tags origin \
+            '+refs/heads/verified:refs/remotes/origin/verified'
+          current=$(git rev-parse refs/remotes/origin/verified)
+          if git merge-base --is-ancestor "$target" "$current"; then
+            echo "verified advanced concurrently to $current"
+            exit 0
+          fi
+          echo "::error::verified did not advance and no longer contains $target"
+          exit 1

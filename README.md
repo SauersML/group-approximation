@@ -1,19 +1,19 @@
 # Group Approximation and Rigidity
 
-> **Verified state:** `37c9f7ee16202c7e8816991b37a19e6f4b579630`
+> **Verified state:** the remote `verified` branch is automatically
+> fast-forwarded after every complete Lean Prover CI success on `main`.
 >
-> The pin above is the exact repository state most recently certified by
+> That branch is the exact repository state most recently certified by
 > the full Lean Prover CI gate -- `lake build` with warnings as errors, the
 > source and compiled-environment scans, the non-MF counterpart contract,
 > the kernel-level axiom audit, signature pinning, and the fresh-kernel
 > `leanchecker` replay. The repository's Actions history records the most
 > recent successful run.
-> To inspect that state, check out the exact commit above.  Verification is
-> commit-pinned; the repository does not maintain a separate moving
-> verification branch:
+> To inspect that state:
 >
 > ```text
-> git checkout 37c9f7ee16202c7e8816991b37a19e6f4b579630
+> git fetch origin verified
+> git checkout --detach origin/verified
 > ```
 
 A research library for finite models of groups and the rigidity,
@@ -22,8 +22,8 @@ them. The root module is `GroupApproximation.lean`; it imports the formal
 library as a whole, while the subject directories provide smaller reading
 paths.
 
-The verified-state pin above describes the last completed public audit.  The
-paragraphs below describe the current source revision; publication of a new
+The `verified` branch described above records the last completed public
+audit. The paragraphs below describe the current source revision; publication of a new
 verified pin is blocked until the exact claim manifest, full build, axiom
 audit, fresh-kernel replay, and PDF provenance gate all pass for one commit.
 
