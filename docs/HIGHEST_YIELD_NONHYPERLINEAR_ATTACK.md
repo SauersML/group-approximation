@@ -88,16 +88,22 @@ cross-root multiplication must eliminate coherence between extensions with
 the same restriction. Compiled-word gauge pinning is relevant only when
 assembling several edges or whole-map outcomes.
 
-This fine-fiber statement itself has a constant-one two-partition reduction.
-For a fine PVM `(Q_x)` and two jointly injective coarse label maps, the fine
-commutator energy is at most the sum of the two coarse energies. In the
-binary Leavitt module, `R=s_0R direct-sum s_1R`, so the two branch
-restrictions jointly determine every fine character. See
+This fine-fiber statement itself has a constant-one finite-partition
+reduction. For a fine PVM `(Q_x)` and jointly injective coarse label maps,
+the fine commutator energy is at most the sum of their coarse energies. The
+actual compression is `a |-> s_0 a t_0`, so the required additive
+decomposition has four corners
+
+```text
+R=direct-sum_(i,j in {0,1}) s_i R t_j.
+```
+
+Their four restrictions jointly determine every fine character. See
 `TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md`. Comb covariance
-controls the first coarse energy. The live assertion is only that the raw
-adjacent-root diagonal-one/cross-zero packet controls the complementary
-coarse energy for the same transported carrier. The words `u` and `wu`
-cannot supply it because they implement the same compression.
+controls the `(0,0)` coarse energy. The live assertion is that the raw
+adjacent-root diagonal-one/cross-zero packet controls the other three corner
+energies for the same transported carrier. The words `u` and `wu` cannot
+supply them because they implement the same compression.
 
 ## 2026-08-14 correction: pure four-root words cannot pin the gauge
 

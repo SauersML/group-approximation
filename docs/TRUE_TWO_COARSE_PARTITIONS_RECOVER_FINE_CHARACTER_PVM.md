@@ -34,6 +34,16 @@ There is no factor depending on the number or size of the character fibers.
 Thus two vanishing coarse commutator energies imply vanishing fine-character
 variance directly.
 
+More generally, for any finite family of coarse maps whose joint label map
+is injective, iteration gives
+
+```text
+D_Q(T) <= sum_i D_i(T).                              (TCP4a)
+```
+
+The actual Leavitt corner compression uses this finite-family form with four
+corner restrictions, not merely the two left-branch restrictions.
+
 ## 2. Exact recovery of the fine atoms
 
 All coarse projections are sums of the same fine PVM, so the two coarse
@@ -95,7 +105,28 @@ sum_j ||[T,S_j]||_2^2
 
 Substituting `(TCP11)` into `(TCP10)` proves `(TCP4)`.
 
-## 4. Binary Leavitt specialization
+## 4. Finite-family iteration
+
+For mutually commuting coarse PVMs obtained from the same fine PVM, all
+block-diagonal expectations commute. If `pi_0,...,pi_(r-1)` are jointly
+injective, their product is the fine expectation:
+
+```text
+E_Q=E_0 E_1 ... E_(r-1).                            (TCP11a)
+```
+
+Apply the orthogonal decomposition `(TCP9)` one expectation at a time.
+Contractivity at every step gives
+
+```text
+||T-E_Q(T)||_2^2
+ <=sum_i ||T-E_i(T)||_2^2.                          (TCP11b)
+```
+
+Together with `(TCP11)`, this proves `(TCP4a)` with constant one, independent
+of both the number of fine atoms and their fiber sizes.
+
+## 5. Binary Leavitt corner specialization
 
 For a binary Leavitt family,
 
@@ -104,7 +135,7 @@ t_i s_j=delta_ij,
 s_0 t_0+s_1 t_1=1.                                  (TCP12)
 ```
 
-Consequently the additive coefficient module splits as
+Consequently the additive coefficient module first splits as
 
 ```text
 R=s_0R direct-sum s_1R.                              (TCP13)
@@ -116,25 +147,43 @@ The inverse sends `a` to `(t_0a,t_1a)`, since
 a=s_0(t_0a)+s_1(t_1a),                              (TCP14)
 ```
 
-and the cross relations in `(TCP12)` prove uniqueness. A character of a
-finite target coefficient window is therefore uniquely determined by its
-restrictions to the two branch images. In the notation above, the two
-restriction maps are jointly injective; in a branch-compatible window they
-are jointly bijective onto their image.
+and the cross relations in `(TCP12)` prove uniqueness.
 
-Hence the fine target-character PVM is generated exactly by the two branch
-restriction PVMs, and `(TCP4)` becomes
+However, the actual compressor endomorphism is the corner map
+
+```text
+alpha(a)=s_0 a t_0,                                  (TCP14a)
+```
+
+not the one-sided embedding `a |-> s_0a`. Expanding the identity on both
+sides gives the four-corner additive decomposition
+
+```text
+R = direct-sum_(i,j in {0,1}) s_i R t_j,
+
+a =sum_(i,j) s_i (t_i a s_j) t_j.                   (TCP14b)
+```
+
+Applying `t_k` on the left and `s_l` on the right recovers the unique
+`(k,l)` coefficient, so the sum is direct. A fine additive character is
+therefore determined by its four corner restrictions. The four restriction
+maps are jointly injective, and `(TCP4a)` gives
 
 ```text
 fine extension-character energy
- <= branch-0 coarse energy + branch-1 coarse energy. (TCP15)
+ <=sum_(i,j in {0,1}) corner-(i,j) coarse energy.    (TCP15)
 ```
 
-## 5. Interaction with the actual compressor packet
+The earlier two-branch statement remains valid for a one-sided coefficient
+window, but it is not sufficient for the full corner-compression extension
+fiber. Equation `(TCP15)`, rather than its two-term specialization, is the
+form needed by the atlas packet.
 
-Homomorphism twirling for the comb compressor controls one of the two coarse
-energies: it makes the transported source character projection block
-diagonal for the restriction along the compressed branch.
+## 6. Interaction with the actual compressor packet
+
+Homomorphism twirling for the comb compressor controls the `(0,0)` coarse
+energy: it makes the transported source character projection block diagonal
+for restriction along the compressed corner.
 
 The second raw compressor `w u` does **not** provide the other restriction.
 As proved in `FALSE_TWO_RAW_COMPRESSORS_DO_NOT_IDENTIFY_FIBERS.md`, both `u`
@@ -142,7 +191,7 @@ and `w u` implement the same compression endomorphism and differ by a unitary
 in the compressed-core centralizer. Their covariance equations therefore
 repeat the same coarse partition.
 
-The complementary restriction must instead come from the adjacent-root
+The other three corner restrictions must instead come from the adjacent-root
 multiplication packet. `TRUE_RAW_SWAP_FULL_BRANCH_ROUTING.md` supplies the
 complete table
 
@@ -151,30 +200,34 @@ t_l s_k=delta_lk,                                    (TCP16)
 ```
 
 including the cross-zero terms. Those are exactly the relations which
-distinguish the two summands in `(TCP13)`.
+distinguish the row and column corner labels in `(TCP14b)`. The existing
+double-Pauli coefficient `C_2^2` is the fixed finite shadow of these two
+binary corner coordinates.
 
-## 6. Corrected smallest live theorem
+## 7. Corrected smallest live theorem
 
 The fine-fiber multiplication gate is now one quantitative assertion:
 
-> **Complementary-coarse-energy gate.** For the same transported carrier
-> projection already controlled by comb covariance on branch 0, use the
-> raw adjacent-root diagonal-one/cross-zero packet to make its total
-> commutator energy against the branch-1 coarse character PVM tend to zero.
+> **Complementary-corner-energy gate.** For the same transported carrier
+> projection already controlled by comb covariance on corner `(0,0)`, use
+> the raw adjacent-root diagonal-one/cross-zero packet to make its total
+> commutator energies against the other three corner-restriction PVMs tend
+> to zero.
 
-Once that holds, `(TCP4)` makes the full fine-character energy tend to zero
+Once that holds, `(TCP4a)` makes the full fine-character energy tend to zero
 with constant one. The intrinsic transition-effect identity then gives a
 nearby PVM without cardinality loss, and the binary majority/whole-map
 decoder can proceed.
 
 This formulation avoids three false requirements:
 
-1. it does not treat `u` and `wu` as independent compressors;
+1. it does not treat `u` and `wu` as independent corner embeddings;
 2. it does not choose representatives in a restriction fiber; and
 3. it does not pin a source commutant gauge, which already cancels from the
    transition variance.
 
-The remaining statement is still matrix-specific. The finite Pauli router
-realizes the local table `(TCP16)` while retaining quantum coherence between
-the coarse partitions. A proof must use the common transported carrier and
-the full adjacent-root packet, rather than the local commutator signs alone.
+The remaining statement is still matrix-specific. The finite double-Pauli
+router realizes the local table `(TCP16)` while retaining quantum coherence
+between the corner partitions. A proof must use the common transported
+carrier and the full adjacent-root packet, rather than the local commutator
+signs alone.

@@ -9,18 +9,18 @@ kernel-checked, cited from a source, or explicitly conjectural.
 ### 2026-08-14: two coarse branch partitions recover the fine PVM
 
 `TRUE_TWO_COARSE_PARTITIONS_RECOVER_FINE_CHARACTER_PVM.md` proves a
-cardinality-free refinement lemma. If two coarse maps on a fine PVM are
-jointly injective, the fine block-diagonal expectation is the composition of
-the two coarse expectations, and
+cardinality-free refinement lemma. If finitely many coarse maps on a fine
+PVM are jointly injective, the fine block-diagonal expectation is the
+composition of their coarse expectations, and
 
 ```text
-D_fine(T) <= D_0(T)+D_1(T)
+D_fine(T) <= sum_i D_i(T)
 ```
 
-with constant one. Binary Leavitt relations give
-`R=s_0R direct-sum s_1R`, so the two branch restrictions jointly determine
-fine characters. Comb covariance controls one coarse energy. The live gate
-is now only the complementary coarse energy for the same transported
+with constant one. Because the compressor is the corner map
+`a |-> s_0 a t_0`, the relevant decomposition is the four-corner sum
+`R=direct-sum_(i,j) s_i R t_j`. Comb covariance controls corner `(0,0)`.
+The live gate is the other three coarse energies for the same transported
 carrier, forced by the raw adjacent-root `t_l s_k=delta_lk` packet. The two
 compressor words `u,wu` do not provide independent restrictions, as already
 proved by the centralizer no-go.
