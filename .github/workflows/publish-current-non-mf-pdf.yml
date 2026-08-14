@@ -1,0 +1,139 @@
+name: Publish current non-MF PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - non_mf_groups_exist.tex
+      - docs/NON_MF_NUMBERED_CLAIMS.json
+      - scripts/check_fig_overlap.py
+      - scripts/check_non_mf_claim_manifest.py
+      - scripts/check_non_mf_refs.py
+      - scripts/publish_pdf_commit.py
+      - scripts/regenerate_non_mf_claim_manifest.py
+      - .github/workflows/publish-current-non-mf-pdf.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-current-non-mf-pdf
+  cancel-in-progress: true
+
+env:
+  TEX_FILE: non_mf_groups_exist.tex
+  PDF_FILE: non_mf_groups_exist.pdf
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
+
+jobs:
+  publish-current-pdf:
+    name: Compile, validate, and publish the current PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out the triggering revision
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Check manuscript custody contracts
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          python3 scripts/check_non_mf_refs.py --self-test
+          python3 scripts/check_non_mf_claim_manifest.py --self-test
+          python3 scripts/regenerate_non_mf_claim_manifest.py \
+            --output build/NON_MF_NUMBERED_CLAIMS.generated.json
+          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+            build/NON_MF_NUMBERED_CLAIMS.generated.json
+          python3 scripts/check_non_mf_refs.py \
+            --tex "$TEX_FILE" \
+            --check-decls \
+            --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json
+          python3 scripts/check_non_mf_claim_manifest.py \
+            --tex "$TEX_FILE" \
+            --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
+            --signature-roster docs/NON_MF_CLAIM_DECLS.txt
+
+      - name: Install PDF validation tools and pinned TeX Live
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          set -euo pipefail
+          retry='-o Acquire::Retries=5 -o Acquire::http::Timeout=30'
+          sudo apt-get $retry update
+          sudo apt-get $retry install --yes --no-install-recommends \
+            poppler-utils qpdf
+          docker pull "$TEXLIVE_IMAGE"
+
+      - name: Check figure geometry
+        run: |
+          python3 scripts/check_fig_overlap.py --tex "$TEX_FILE" \
+            --tex-image "$TEXLIVE_IMAGE"
+
+      - name: Compile with the pinned TeX toolchain
+        run: |
+          set -euo pipefail
+          rm -rf build
+          mkdir -p build
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" \
+            bash -euo pipefail -c '
+              chktex -q -n1 -n2 -n3 -n8 -n9 -n12 -n13 -n24 -n25 -n36 -n38 \
+                "$1"
+              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+                -halt-on-error -file-line-error "$1"
+            ' _ "$TEX_FILE"
+
+      - name: Normalize and validate the PDF
+        run: |
+          set -euo pipefail
+          raw_pdf="build/${TEX_FILE%.tex}.pdf"
+          log_file="build/${TEX_FILE%.tex}.log"
+          temporary_pdf="${PDF_FILE}.tmp"
+          test -s "$raw_pdf"
+          test -s "$log_file"
+          if grep -Eq \
+            'LaTeX Warning: (Citation .* undefined|Reference .* undefined|There were undefined references|Label\(s\) may have changed)|Rerun to get cross-references right' \
+            "$log_file"; then
+            echo "The final LaTeX pass has unresolved references or citations." >&2
+            exit 1
+          fi
+          if grep -Eq \
+            'Overfull \\[hv]box|[Ll]ost marginpar|Marginpar on page [0-9]+ moved' \
+            "$log_file"; then
+            echo "The final LaTeX pass has overflowing or colliding material." >&2
+            grep -E \
+              'Overfull \\[hv]box|[Ll]ost marginpar|Marginpar on page [0-9]+ moved' \
+              "$log_file" >&2
+            exit 1
+          fi
+          qpdf --linearize --object-streams=disable --force-version=2.0 \
+            --deterministic-id "$raw_pdf" "$temporary_pdf"
+          mv -- "$temporary_pdf" "$PDF_FILE"
+          qpdf --check "$PDF_FILE"
+          test "$(head -c 8 "$PDF_FILE")" = '%PDF-2.0'
+          test "$(pdfinfo "$PDF_FILE" | awk -F: '/^Tagged:/ {gsub(/^[[:space:]]+/, "", $2); print $2}')" = yes
+          pdfinfo -meta "$PDF_FILE" > build/pdf-metadata.xml
+          grep -Eq 'xml:lang="en-US"|dc:language[^>]*>en-US<' \
+            build/pdf-metadata.xml
+
+      - name: Commit the current PDF without clobbering newer source
+        env:
+          START_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 scripts/publish_pdf_commit.py self-test
+          python3 scripts/publish_pdf_commit.py publish \
+            --source-sha "$START_SHA" \
+            --pdf "$PDF_FILE" \
+            --message "build: update non-MF PDF"
