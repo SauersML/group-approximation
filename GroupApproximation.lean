@@ -26,6 +26,7 @@ import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Monsters.ExplicitLinearModelScaling
 import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
+import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
