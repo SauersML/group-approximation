@@ -6,30 +6,34 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
-### 2026-08-14: a toric game gap cannot use finite normalized clauses
+### 2026-08-14: a phase-safe toric gap would be enough
 
-`TRUE_TORIC_GAP_REQUIRES_INFINITE_OR_NONNORMAL_CLAUSES.md` audits the
-Watts--Helton--Klep subgroup-membership route.  If the clause subgroup `H` of
-a finite two-player torically determined game is finite, scalar-free, and
-normalized by the universal game group, then
+`TRUE_NORMAL_TORIC_GAP_IMPLIES_NONHYPERLINEAR.md` proves a broader exact
+game-to-group reduction.  For a finite two-player torically determined game,
+adjoin its finite scalar phase group `B` to the universal game group and
+quotient by the normal closure `N` of the clauses.  If
 
 ```text
-p_H=|H|^(-1) sum_(h in H) h
+N intersect B={1}
 ```
 
-is a nonzero central projection of canonical trace `1/|H|`.  Its corner is
-Connes embeddable because the universal game group is residually finite, and
-the normalized corner trace satisfies every clause exactly.  Matrix
-microstates plus left/right multiplication then give finite-dimensional
-tensor strategies approaching value one.  Hence a toric
-`omega_qc=1>omega_qa` gap forces `H` to be infinite or genuinely nonnormal.
+and `omega_qa<1`, then this finitely presented quotient is nonhyperlinear.
+Indeed a hypothetical hyperlinear embedding has a positive central character
+corner for `B`; the normalized corner trace satisfies every clause exactly,
+and matrix microstates plus left/right multiplication give strategies with
+value tending to one.  No approximate-representation stability theorem is
+needed.  Normality of the clause subgroup is a sufficient special case, so
+full LCS syntax is stronger than logically necessary.
 
-This also isolates why the exact toric Nullstellensatz is not already a
-groupification theorem: it proves scalar phase nonmembership in `H`, while a
-marked quotient needs nonmembership in the normal closure of `H`; normal
-closure can kill the phase.  The surviving targets remain a robust
-solution-group quotient (the perfect-LCS lane) or a new infinite-subgroup
-Hecke corner.
+The exact Watts--Helton--Klep criterion only gives scalar nonmembership in the
+clause subgroup, not in its normal closure; an explicit `C_2 times A_5`
+example shows normal closure can kill the phase.  Moreover any toric
+`omega_qc=1>omega_qa` gap must have an infinite clause subgroup whose
+projection to the universal game group has infinite index: finite clauses
+are separated in a finite quotient of the residually finite universal group,
+and finite-index clauses give a finite-dimensional induced strategy.  The
+new live compiler target is therefore a toric gap with phase-safe normal
+closure, not necessarily an LCS game.
 
 ### 2026-08-14: regular tensoring cannot groupify a non-CE game trace
 
