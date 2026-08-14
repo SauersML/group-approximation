@@ -1,4 +1,4 @@
-import GroupApproximation.Analysis.NormMatrixCoronaUnitary
+import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 import GroupApproximation.Sofic.OperatorMFIncreasingDimensions
 
 /-!
@@ -24,12 +24,12 @@ universe u
 group of a genuine norm-matrix C-star corona whose positive matrix dimensions
 are strictly increasing. -/
 def IsCDEOperatorMF (G : Type u) [Group G] [Countable G] : Prop :=
-  ∃ X : ℕ → FiniteModel, ∃ hne : ∀ n, Nonempty (X n),
-    letI := hne
-    (∀ n, 0 < Fintype.card (X n)) ∧
-      StrictMono (fun n ↦ Fintype.card (X n)) ∧
-        ∃ rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
-          Function.Injective rho
+  ∃ d : ℕ → ℕ, ∃ hd : ∀ n, 0 < d n,
+    letI : ∀ n, Nonempty (naturalFiniteModel (d n)) := fun n ↦
+      Fintype.card_pos_iff.mp (by simpa using hd n)
+    StrictMono d ∧
+      ∃ rho : G →* unitary (NormMatrixCStarCorona
+        (fun n ↦ naturalFiniteModel (d n))), Function.Injective rho
 
 /-- The literal CDE C-star-corona definition and the unitary-sequence
 definition are propositionally equivalent. -/
@@ -37,18 +37,26 @@ theorem isCDEOperatorMF_iff_isOperatorMF
     (G : Type u) [Group G] [Countable G] :
     IsCDEOperatorMF G ↔ IsOperatorMF G := by
   constructor
-  · rintro ⟨X, hne, h⟩
-    letI : ∀ n, Nonempty (X n) := hne
-    rcases h with ⟨hX, _hmono, rho, hrho⟩
-    exact ⟨X, hX, (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rho,
+  · rintro ⟨d, hd, _hmono, rho, hrho⟩
+    let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
+    letI : ∀ n, Nonempty (X n) := fun n ↦
+      Fintype.card_pos_iff.mp (by simpa [X] using hd n)
+    exact ⟨X, (by simpa [X] using hd),
+      (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rho,
       (normMatrixCoronaUnitaryEquiv X).symm.injective.comp hrho⟩
   · intro hMF
     rcases isOperatorMFIncreasing_iff.mpr hMF with ⟨X, hX, hmono, rho, hrho⟩
-    let hne : ∀ n, Nonempty (X n) :=
+    letI : ∀ n, Nonempty (X n) :=
       fun n ↦ Fintype.card_pos_iff.mp (hX n)
-    refine ⟨X, hne, ?_⟩
-    letI : ∀ n, Nonempty (X n) := hne
-    exact ⟨hX, hmono, (normMatrixCoronaUnitaryEquiv X).toMonoidHom.comp rho,
-      (normMatrixCoronaUnitaryEquiv X).injective.comp hrho⟩
+    let d : ℕ → ℕ := fun n ↦ Fintype.card (X n)
+    let rhoActual : G →*
+        unitary (NormMatrixCStarCorona (fun n ↦ X n)) :=
+      (normMatrixCoronaUnitaryEquiv X).toMonoidHom.comp rho
+    let rhoNatural : G →* unitary (NormMatrixCStarCorona
+        (fun n ↦ naturalFiniteModel (d n))) :=
+      (actualCoronaNaturalizeEquiv X).toMonoidHom.comp rhoActual
+    exact ⟨d, hX, hmono, rhoNatural,
+      (actualCoronaNaturalizeEquiv X).injective.comp
+        ((normMatrixCoronaUnitaryEquiv X).injective.comp hrho)⟩
 
 end GroupApproximation

@@ -3,6 +3,7 @@ import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.Perm.Fin
 import Mathlib.Algebra.Group.TypeTags.Basic
 import Mathlib.Algebra.Group.PUnit
+import GroupApproximation.Monsters.TwoConjugacyClasses
 
 /-!
 # Verbal completeness and what it forces
@@ -44,6 +45,59 @@ word has a solution. -/
 def IsVerballyComplete (G : Type*) [Group G] : Prop :=
   ∀ (m : ℕ) (v : FreeGroup (Fin m)), v ≠ 1 → ∀ g : G,
     ∃ f : Fin m → G, FreeGroup.lift f v = g
+
+/-- A group contains free groups of every finite rank.  This is the exact
+subgroup-universality fragment needed to turn two conjugacy classes into
+verbal completeness. -/
+def ContainsEveryFiniteRankFreeGroup (G : Type*) [Group G] : Prop :=
+  ∀ m : ℕ, ∃ ι : FreeGroup (Fin m) →* G, Function.Injective ι
+
+/-- Evaluating a free word after conjugating every variable conjugates the
+original value. -/
+theorem lift_conj (m : ℕ) (v : FreeGroup (Fin m)) (f : Fin m → G) (a : G) :
+    FreeGroup.lift (fun i ↦ a * f i * a⁻¹) v =
+      a * FreeGroup.lift f v * a⁻¹ := by
+  let c : G →* G :=
+    { toFun := fun x ↦ a * x * a⁻¹
+      map_one' := by group
+      map_mul' := by intro x y; group }
+  change FreeGroup.lift (fun i ↦ c (f i)) v = c (FreeGroup.lift f v)
+  have hlift : FreeGroup.lift (fun i ↦ c (f i)) = c.comp (FreeGroup.lift f) := by
+    apply FreeGroup.ext_hom
+    intro i
+    simp
+  exact DFunLike.congr_fun hlift v
+
+/-- **Two conjugacy classes plus internal free groups force every nontrivial
+word map to be onto.**  A free subgroup supplies one nonidentity value of the
+word.  Simultaneous conjugation then moves that value to an arbitrary
+nonidentity target; the identity target is obtained by substituting ones. -/
+theorem isVerballyComplete_of_twoConjugacyClasses
+    (hcc : HasTwoConjugacyClasses G)
+    (hfree : ContainsEveryFiniteRankFreeGroup G) :
+    IsVerballyComplete G := by
+  intro m v hv g
+  by_cases hg : g = 1
+  · refine ⟨fun _ ↦ 1, ?_⟩
+    simpa [hg] using
+      DFunLike.congr_fun
+        (FreeGroup.ext_hom (FreeGroup.lift (fun _ : Fin m ↦ (1 : G)))
+          1 (by simp)) v
+  · obtain ⟨ι, hι⟩ := hfree m
+    let f : Fin m → G := fun i ↦ ι (FreeGroup.of i)
+    have hlift : FreeGroup.lift f = ι := by
+      apply FreeGroup.ext_hom
+      intro i
+      simp [f]
+    have hvalue : FreeGroup.lift f v ≠ 1 := by
+      rw [hlift]
+      intro h
+      apply hv
+      apply hι
+      simpa using h
+    obtain ⟨a, ha⟩ := isConj_iff.mp (hcc.2 _ g hvalue hg)
+    refine ⟨fun i ↦ a * f i * a⁻¹, ?_⟩
+    rw [lift_conj, ha]
 
 /-- The definition is satisfiable: the trivial group is verbally complete.
 This is a control on the definition, not an interesting example. -/
@@ -109,6 +163,39 @@ stable commutator length would be computed from: `cl (gⁿ) ≤ 1` for all `n`, 
 `scl g = 0`. -/
 theorem exists_commutatorElement_eq_pow (g : G) (n : ℕ) :
     ∃ x y : G, ⁅x, y⁆ = g ^ n := h.exists_commutatorElement_eq (g ^ n)
+
+/-- In a two-conjugacy-class verbally complete group, every nonidentity
+element is an `n`-th power of a conjugate of itself. -/
+theorem exists_conj_pow_eq
+    (hcc : HasTwoConjugacyClasses G) {n : ℕ} (hn : n ≠ 0)
+    {g : G} (hg : g ≠ 1) :
+    ∃ a : G, (a * g * a⁻¹) ^ n = g := by
+  obtain ⟨x, hx⟩ := h.exists_pow_eq hn g
+  have hx1 : x ≠ 1 := by
+    intro hx1
+    apply hg
+    simpa [hx1] using hx.symm
+  obtain ⟨a, ha⟩ := isConj_iff.mp (hcc.2 g x hg hx1)
+  refine ⟨a, ?_⟩
+  rw [ha, hx]
+
+/-- In a two-conjugacy-class verbally complete group, every nonidentity
+element is a commutator of two conjugates of itself. -/
+theorem exists_commutatorElement_conj_eq
+    (hcc : HasTwoConjugacyClasses G) {g : G} (hg : g ≠ 1) :
+    ∃ a b : G, ⁅a * g * a⁻¹, b * g * b⁻¹⁆ = g := by
+  obtain ⟨x, y, hxy⟩ := h.exists_commutatorElement_eq g
+  have hx : x ≠ 1 := by
+    intro hx
+    apply hg
+    simpa [hx] using hxy.symm
+  have hy : y ≠ 1 := by
+    intro hy
+    apply hg
+    simpa [hy] using hxy.symm
+  obtain ⟨a, ha⟩ := isConj_iff.mp (hcc.2 g x hg hx)
+  obtain ⟨b, hb⟩ := isConj_iff.mp (hcc.2 g y hg hy)
+  exact ⟨a, b, by simpa [ha, hb] using hxy⟩
 
 end IsVerballyComplete
 

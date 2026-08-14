@@ -45,8 +45,7 @@ theorem regular_restriction_balanced :
       (∑ i : Fin 5,
         s4RegularMultiplicity i * restrictionMultiplicity i j) =
           4 * s3RegularMultiplicity j := by
-  native_decide
+  decide
 
 end S3S4BranchingBalance
 end GroupApproximation
-

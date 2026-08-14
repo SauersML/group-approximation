@@ -1,27 +1,58 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Status describes the whole printed environment. A Lean entry may cover only the subclaim named by its covers field. Exact means that the listed declarations jointly cover the full printed proposition with no extra formal premise.",
+  "status_policy": "Every retained numbered theorem-like environment has one exact wrapper with the same outer proposition, no extra formal premise, and no paper-only mathematical input.",
   "claims": [
+    {
+      "id": "prop:mf-equivalences",
+      "environment": "proposition",
+      "title": "equivalent MF formulations",
+      "statement_sha256": "5c8d5bda0df5ba59057a03aee23eaf34c8b81991b96546ed22248fea0442943b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:unitarycorona"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
     {
       "id": "thm:A",
       "environment": "mainthm",
       "title": "non-MF group",
-      "statement_sha256": "4f2128557c876bd0edf4afa054aa44a13258c5df1aba534def564e851b6aae7d",
-      "status": "paper-only",
-      "object_identity": "The printed claim is about the literal eight-generator MarkedGroup and its literal word mark.",
+      "statement_sha256": "546caf80b6ede229947437119691230542a9ead187f39a321cb7ccba3fb78ad6",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:E",
+        "prop:mf-equivalences",
+        "prop:maximal-cstar",
+        "prop:literal-base-T",
         "prop:witness",
         "thm:criterion",
-        "lem:unitarycorona"
+        "lem:unitarycorona",
+        "lem:square"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Property (T) for the literal affine-base presentation"
-      ],
-      "coverage_gap": "No unconditional Lean theorem currently supplies property (T) for the literal Base, so the literal corona-kernel, group-MF, maximal-C-star, and reduced-C-star conclusions are not yet closed.",
-      "lean": []
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:B",
@@ -29,7 +60,7 @@
       "title": "finite-dimensional obstruction",
       "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
       "status": "exact",
-      "object_identity": "The Lean declarations use the same arbitrary field, finite-dimensional space, compression-centralizer hypotheses, marked commutator, and intrinsic defect subgroup.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -37,15 +68,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Criterion/FiniteDimensionalKill",
-          "declaration": "GroupApproximation.map_marked_commutator_eq_one_units",
-          "covers": "the displayed marked-commutator conclusion"
-        },
-        {
-          "role": "exact",
-          "module": "Criterion/CompressionCentralizerDefect",
-          "declaration": "GroupApproximation.compressionCentralizerDefect_le_ker",
-          "covers": "the entire intrinsic compression-centralizer defect"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -53,31 +78,22 @@
       "id": "thm:C",
       "environment": "mainthm",
       "title": "cyclic-base comparison",
-      "statement_sha256": "21fcdc913a3ded49b8a85bd0f7f341fbdfad5468ee7048c11fd31c9d00a8729d",
-      "status": "partial",
-      "object_identity": "The Lean declarations concern the literal three-generator cyclic presentation and its quotient into the concrete Clifford model.",
+      "statement_sha256": "4f7eb9ba53bb223d4a16bfc5ff4a8e64f68c81c0624580858e16a2a8d7b9abee",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:rfmf",
-        "thm:B"
+        "thm:B",
+        "con:clifford"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Amenability of the concrete Clifford extension",
-        "Amenable implies CDE-MF"
-      ],
-      "coverage_gap": "Lean proves marked-word survival in the quotient and finite-dimensional annihilation, but does not combine amenability with the MF implication to produce the printed corona representation.",
+      "external_inputs": [],
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "partial",
+          "role": "exact",
           "module": "Monsters/LiteralCyclicCalibration",
-          "declaration": "GroupApproximation.LiteralCyclicCalibration.quotientMap_mark_ne_one",
-          "covers": "the quotient map and survival of the literal marked word"
-        },
-        {
-          "role": "partial",
-          "module": "Monsters/LiteralCyclicCalibration",
-          "declaration": "GroupApproximation.LiteralCyclicCalibration.finiteDimensional_kill",
-          "covers": "the finite-dimensional obstruction for the literal cyclic presentation"
+          "declaration": "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -86,130 +102,41 @@
       "environment": "mainthm",
       "title": "a stably finite non-MF reduced group algebra",
       "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
-      "status": "partial",
-      "object_identity": "The formal trace is on the concrete reduced group C-star algebra of the same literal MarkedGroup; the non-MF endpoint is not yet unconditional.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:A",
         "lem:faithfultrace"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The faithful trace and matrix stable-finiteness mechanism are formalized, while reduced-C-star non-MF still depends on the missing unconditional literal Theorem A endpoint.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "partial",
-          "module": "Analysis/ReducedGroupCStarTraceFaithful",
-          "declaration": "GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState",
-          "covers": "the canonical faithful tracial state"
-        },
-        {
-          "role": "supporting",
-          "module": "Analysis/UniversalKazhdanCStarConsequences",
-          "declaration": "GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one",
-          "covers": "the matrix stable-finiteness implication"
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
+          "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "thm:E",
-      "environment": "mainthm",
-      "title": "torsion-free full MF radical",
-      "statement_sha256": "6be46caefce8ce4a3e90c345bf623cadcd5974846a684b7c42d636d2c5bd1f71",
-      "status": "paper-only",
-      "object_identity": "The printed existential group Q is supplied by external small-cancellation and acylindrical-hyperbolicity theorems, not constructed in Lean.",
-      "dependencies": [
-        "lem:tf-defect-saturation",
-        "lem:tf-routing",
-        "cor:tf-full-radical-quotients"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Fournier-Facio torsion-free HNN construction",
-        "Hull acylindrical small cancellation",
-        "Osin nonsofic quotient input"
-      ],
-      "coverage_gap": "Lean formalizes deductions from proof-carrying quotient data but not the existence of the printed two-generated finitely presented torsion-free group Q.",
-      "lean": []
-    },
-    {
-      "id": "fact:T",
-      "environment": "fact",
-      "title": "property (T)",
-      "statement_sha256": "2ad912dc52ea40854438b7a69da43c4eef69b4bff8b02cc0ca65b6045eda0705",
-      "status": "paper-only",
-      "object_identity": "The printed literature fact concerns finitely generated groups and the affine group used in the paper.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Kazhdan property (T) permanence and the property (T) of the affine lattice"
-      ],
-      "coverage_gap": "This numbered literature input has no single theorem-level Lean counterpart in the manifest.",
-      "lean": []
-    },
-    {
-      "id": "fact:kazhdan",
-      "environment": "fact",
-      "title": "Kazhdan projection",
-      "statement_sha256": "8d1d272705ccc0fc3847d64de8b230cf3f297be23e562b398f535b81111e0626",
-      "status": "paper-only",
-      "object_identity": "The printed fact is the maximal-group-C-star Kazhdan projection statement for an arbitrary property-(T) group.",
-      "dependencies": [
-        "fact:T"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Existence and functorial fixed-space action of the Kazhdan projection"
-      ],
-      "coverage_gap": "The analytic development uses Kazhdan spectral projections but does not expose this exact maximal-group-C-star statement as one Lean theorem.",
-      "lean": []
-    },
-    {
-      "id": "fact:tww",
-      "environment": "fact",
-      "title": "amenability and quasidiagonality",
-      "statement_sha256": "ee06387678fe20ba3ee9e2d4756410c74ca0d4ce8133d27aceb2c9f19f46d993",
-      "status": "paper-only",
-      "object_identity": "The printed fact is the external Tikuisis-White-Winter quasidiagonality theorem and its group consequence.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Tikuisis-White-Winter quasidiagonality theorem"
-      ],
-      "coverage_gap": "This external operator-algebra theorem is not formalized in Lean.",
-      "lean": []
-    },
-    {
-      "id": "fact:qdcorona",
-      "environment": "fact",
-      "title": "quasidiagonal embedding",
-      "statement_sha256": "0a7dc8f70a2bcc8bb106c13a86aef271072452a69c1dabceb3d892bad5fb6a1f",
-      "status": "paper-only",
-      "object_identity": "The printed fact concerns faithful essential quasidiagonal representations and embeddings of the same C-star algebra into a norm-matrix corona.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Voiculescu-style quasidiagonal embedding theorem"
-      ],
-      "coverage_gap": "The general quasidiagonal-to-corona embedding result is not formalized.",
-      "lean": []
-    },
-    {
-      "id": "lem:alpha",
-      "environment": "lemma",
-      "title": "",
-      "statement_sha256": "0a08ce91dfb84cc2b787acb92b442f5d388651868f1a73e876a039a4aab406a6",
-      "status": "supporting",
-      "object_identity": "The Lean package uses the intended affine semidirect-product model and doubling endomorphism, but not the manuscript's full presentation identification.",
+      "id": "prop:maximal-cstar",
+      "environment": "proposition",
+      "title": "universe-relative maximal model",
+      "statement_sha256": "6086b7ae0483eadeb3cb3065d7a5e9a5ccfceb46b36e052717e906781d2be7c3",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The package verifies the affine doubling data; it is not a wrapper for every clause of the printed lemma.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "supporting",
-          "module": "Monsters/AffineSL3Doubling",
-          "declaration": "GroupApproximation.AffineSL3Doubling.doubling_package",
-          "covers": "the affine doubling homomorphism and distinguished translation data"
+          "role": "exact",
+          "module": "Analysis/MaximalGroupCStar",
+          "declaration": "GroupApproximation.manuscriptUniverseRelativeMaximalGroupCStar",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -217,21 +144,82 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "5efb80c023f6264e39327f3038814641fce47a4a474cdab519707523da173307",
-      "status": "supporting",
-      "object_identity": "LiteralNonMFPresentation encodes the same eight generators, relators, commutator convention, and marked word.",
+      "statement_sha256": "a80374ecaa9e0c5dbc1d765fc75ee94672b256ab16abd84dc8060002b4443aff",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFPresentation",
+          "declaration": "GroupApproximation.LiteralNonMFPresentation.manuscriptLiteralPresentation",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:p13-certificate",
+      "environment": "proposition",
+      "title": "exact rational Hodge certificate",
+      "statement_sha256": "aa10b929a977eefdb3a69e60dca2161f3daaed31f9ae1b52260501a3e888da37",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/P13ExactStagedCertificate",
+          "declaration": "GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:literal-base-T",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "e76626bc366a36426bfe35abd71a9a9ed1d4a3ece629073dfd5bd34b70797065",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:alpha"
+        "def:E",
+        "prop:p13-certificate"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The linked package certifies the literal algebraic relators but does not by itself prove the prose identification of the base presentation with the affine semidirect product.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "supporting",
-          "module": "Sofic/LiteralNonMFPresentation",
-          "declaration": "GroupApproximation.LiteralNonMFPresentation.literal_algebraic_package",
-          "covers": "the literal generators, relators, marked word, centrality, and involution relations"
+          "role": "exact",
+          "module": "Sofic/LiteralBaseP13PropertyTBridge",
+          "declaration": "GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "con:clifford",
+      "environment": "construction",
+      "title": "Clifford lamp groups",
+      "statement_sha256": "90e2845cea7d275369f7add80af0d4e982699b36d9349ee4e2cddf2cdf119fec",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -239,21 +227,21 @@
       "id": "lem:linear",
       "environment": "lemma",
       "title": "linear model",
-      "statement_sha256": "8f32bd28746d9e39e60c9c7fe3979562571a231a6aef7ad1e4d74a01b755aa3d",
-      "status": "supporting",
-      "object_identity": "The formal package is the same affine linear realization used in the printed witness construction.",
+      "statement_sha256": "d64613d28a87f958c2b3ae6c0e6f470a3503065870997f2f33061f5b98cdda75",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:alpha"
+        "def:E"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The package supplies the model data used by the proof but is not an outer-proposition wrapper for every assertion in the printed lemma.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "supporting",
-          "module": "Monsters/ExplicitLinearModel",
-          "declaration": "GroupApproximation.ExplicitLinearModel.doubling_linear_model_package",
-          "covers": "the explicit linear doubling model and coset separation"
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -263,10 +251,11 @@
       "title": "",
       "statement_sha256": "1a168e6eb3a8fb3233666b9fa5211468dedd08adba7dfcdacbb013dbffd59914",
       "status": "exact",
-      "object_identity": "The Lean theorem concerns exactly the mark in the literal eight-generator presented group.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:E",
-        "lem:linear"
+        "con:clifford",
+        "lem:linear",
+        "def:E"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -276,48 +265,30 @@
           "role": "exact",
           "module": "Sofic/LiteralNonMFLinearWitness",
           "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
-          "covers": "the complete proposition w != 1 in literal E"
+          "covers": "the complete printed proposition"
         }
       ]
-    },
-    {
-      "id": "cor:iotainj",
-      "environment": "corollary",
-      "title": "",
-      "statement_sha256": "50e355834d496cf4c73ccee20f4cb7afdde402c4b82a312f932d5abb4f010cb4",
-      "status": "paper-only",
-      "object_identity": "The printed claim identifies the abstract CRW base with the intended affine group before asserting injectivity into G and E.",
-      "dependencies": [
-        "lem:linear",
-        "prop:witness"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Completeness of the CRW presentation for SL_3(Z)"
-      ],
-      "coverage_gap": "Lean has conditional injectivity transfers but no unconditional presentation-completeness/isomorphism theorem for the literal Base.",
-      "lean": []
     },
     {
       "id": "cor:notRFD",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "dbd0dbdced73046d674ae0fd0688f8e9282521543a3bc1ca87987cd60d402d76",
-      "status": "partial",
-      "object_identity": "The linked theorem uses the same literal MarkedGroup and all finite-dimensional representations over arbitrary fields.",
+      "statement_sha256": "754e7536fa06cde28e2b63372445243f01999ad37673ef6751988dc19390f17c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:B",
         "prop:witness"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The linked declaration proves noninjectivity; the printed corollary additionally packages point-separation, MAP, residual finiteness, maximal-C-star RFD, and finite-quotient consequences without one exact wrapper.",
+      "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
           "module": "Sofic/LiteralFiniteDimensionalObstruction",
-          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.literal_finiteDimensional_rep_not_injective",
-          "covers": "the no-injective-finite-dimensional-representation clause"
+          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -325,19 +296,19 @@
       "id": "lem:lift",
       "environment": "lemma",
       "title": "lifting",
-      "statement_sha256": "d38b74f5afba7c9fa904ecb92e7a80cf7106c8eb8d71b14f4e2c7504b3be9179",
-      "status": "supporting",
-      "object_identity": "The formal theorem is the polar-correction surjectivity map from unitary sequences to unitaries of the actual norm-matrix C-star quotient.",
+      "statement_sha256": "721a3d635e21456fb92cb1f55c7480387a6e636dafd15a55eb2ccaad6ad3a5fc",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The formal theorem supplies the lifting conclusion through the canonical map but is not packaged with the exact prose quantifiers and representative language.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "supporting",
-          "module": "Analysis/NormMatrixCoronaUnitary",
-          "declaration": "GroupApproximation.unitaryCoronaToCStarCoronaUnitary_surjective",
-          "covers": "existence of a unitary-sequence lift after polar correction"
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -346,71 +317,40 @@
       "environment": "lemma",
       "title": "unitaries in the quotient",
       "statement_sha256": "a188e2b9a24399f8d205962acae97b0be91608e61458565c5046e2d0e4adf253",
-      "status": "equivalent",
-      "object_identity": "The two sides are exactly the unitary-sequence quotient and the unitary group of the formal norm-matrix C-star corona, indexed by the same finite models.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "lem:lift"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The Lean equivalence is stated for finite index types rather than literally Fin(d_n); cardinal reindexing supplies the printed natural-dimension presentation.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "equivalent",
-          "module": "Analysis/NormMatrixCoronaUnitary",
-          "declaration": "GroupApproximation.normMatrixCoronaUnitaryEquiv",
-          "covers": "the canonical group equivalence between the two corona-unitary models"
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
+          "covers": "the complete printed proposition"
         }
       ]
-    },
-    {
-      "id": "lem:finite",
-      "environment": "lemma",
-      "title": "stable finiteness",
-      "statement_sha256": "9a8fb858c6eb425dc96790c73fa3074d30019d54ca881c3460c4a35c463885e4",
-      "status": "paper-only",
-      "object_identity": "The printed lemma concerns arbitrary C-star subalgebras of the literal norm-matrix quotient and all matrix levels.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "No one theorem-level Lean counterpart is currently recorded for the full coordinatewise stable-finiteness statement.",
-      "lean": []
     },
     {
       "id": "def:pattern",
       "environment": "definition",
       "title": "marked Kazhdan pattern",
-      "statement_sha256": "911a50f94a9cb79ca9c03d3aea3ba0731a219e296c3c18a4479b2bbfd0da1564",
-      "status": "supporting",
-      "object_identity": "KazhdanCompressionCore carries the same group homomorphism, compressor, centralizer element, property-(T) premise, and defect normal closure; the intrinsic defect is a separate formal construction.",
+      "statement_sha256": "a41a3511594348f1a4f4172fd6b4c4030695ed0f7f4fa4bcc9811a1dc10c4243",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The printed definition combines core, orbit, and intrinsic defect notation; Lean distributes these across structures and theorems rather than one definitionally identical wrapper.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "supporting",
-          "module": "Sofic/KazhdanCompressionCore",
-          "declaration": "GroupApproximation.KazhdanCompressionCore",
-          "covers": "the marked Kazhdan compression datum"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/KazhdanCompressionCore",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.defectNormal",
-          "covers": "the compressor defect normal closure"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/IntrinsicCompressionDefect",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.defectNormal_le_orbitDefectNormal",
-          "covers": "the first printed defect inclusion"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/IntrinsicCompressionDefect",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.orbitDefectNormal_le_compressionCentralizerDefect",
-          "covers": "the second printed defect inclusion"
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMarkedKazhdanPattern",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -420,10 +360,11 @@
       "title": "finite-normal obstruction criterion",
       "statement_sha256": "6216ae28058cc33eebb2f558dffeeefa40550748c9a19161019fce019c48931c",
       "status": "exact",
-      "object_identity": "The Lean theorem uses the same Kazhdan compression core, finite normal subgroup contained in its defect normal closure, and unitary group of the actual norm-matrix C-star corona.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:pattern",
-        "lem:unitarycorona"
+        "lem:corner",
+        "lem:compressorcollapse"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -431,19 +372,39 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/FiniteNormalCoronaObstruction",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel",
-          "covers": "the complete finite-normal C-star-corona kernel conclusion"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion",
+          "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "thm:normalkazhdan",
-      "environment": "theorem",
-      "title": "normal-Kazhdan radical criterion",
-      "statement_sha256": "4bb9705f4cd744aceffe59398a375c02c0c5f6ab76d609323c984c0b69a015c5",
+      "id": "lem:corner",
+      "environment": "lemma",
+      "title": "coordinate finite-normal corner",
+      "statement_sha256": "3551a5ada6989e573df34aa78c700d31291f364e1f48a9f5461b46146e72fcaf",
       "status": "exact",
-      "object_identity": "The formal theorem quantifies over the same normal property-(T) subgroup inside the marked compression defect and concludes containment in the operator-MF residual.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCoordinateFiniteNormalCorner",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:compressorcollapse",
+      "environment": "lemma",
+      "title": "compression defects collapse",
+      "statement_sha256": "288a663f68cfd087cf2220da12166a5fce841195411ad56e89a2daa74d1d065b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:pattern"
       ],
@@ -453,123 +414,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormalKazhdanMFRadical",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.normalKazhdan_le_normMFResidual",
-          "covers": "the full radical containment"
-        }
-      ]
-    },
-    {
-      "id": "cor:kazhdanpart",
-      "environment": "corollary",
-      "title": "Kazhdan part and exact radical",
-      "statement_sha256": "b9846ce5b8d04741603b0c47c5c41fe2b00fd96fcd756be6c97aa764412fa956",
-      "status": "exact",
-      "object_identity": "The formal declarations use the same generated Kazhdan part, defect normal subgroup, universal factorization, and MF quotient hypothesis.",
-      "dependencies": [
-        "thm:normalkazhdan",
-        "prop:univquot"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/NormalKazhdanMFRadical",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.normalKazhdanDefectPart_le_normMFResidual",
-          "covers": "containment of the generated Kazhdan part"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormalKazhdanMFRadical",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.existsUnique_defectNormal_factorization_to_normMatrixCorona",
-          "covers": "unique factorization of every corona representation"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormalKazhdanMFRadical",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.normMFResidual_eq_defectNormal",
-          "covers": "exact radical under the MF quotient hypothesis"
-        }
-      ]
-    },
-    {
-      "id": "thm:intrinsicnormalkazhdan",
-      "environment": "theorem",
-      "title": "intrinsic normal-Kazhdan criterion",
-      "statement_sha256": "fd39f86bbe4b35b1aec7c1dd9bf15918a66a3441d2ed5242345a15e511bcfe49",
-      "status": "paper-only",
-      "object_identity": "The printed theorem uses the intrinsic compression-centralizer defect of a subgroup image, not merely the distinguished-compressor defect.",
-      "dependencies": [
-        "thm:normalkazhdan",
-        "prop:univquot"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "Lean formalizes defect inclusions and fixed-space stabilizers but has no exact wrapper for all radical, factorization, equality, and generated-subgroup clauses.",
-      "lean": []
-    },
-    {
-      "id": "thm:tracialtarget",
-      "environment": "theorem",
-      "title": "faithfully tracial targets",
-      "statement_sha256": "15d3f7aa462f8de23f8693426e3d5d1f87e2953abff305e5f0f5bde81369e7d7",
-      "status": "paper-only",
-      "object_identity": "The printed theorem is about arbitrary faithfully tracial unital C-star targets whose maximal tensor product with the opposite algebra is stably finite.",
-      "dependencies": [
-        "fact:kazhdan",
-        "lem:order"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Maximal tensor-product and Kazhdan-projection machinery"
-      ],
-      "coverage_gap": "The manuscript explicitly states that this target theorem has no formal counterpart.",
-      "lean": []
-    },
-    {
-      "id": "lem:corner",
-      "environment": "lemma",
-      "title": "coordinate finite-normal corner",
-      "statement_sha256": "a25a3de3c97c746ceebd5541347fc3425f374c07bceb9f5bc666655c8009ecc4",
-      "status": "supporting",
-      "object_identity": "The formal corner theorem uses the same finite normal subgroup average and complementary finite-dimensional corner mechanism.",
-      "dependencies": [
-        "lem:finite"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "The linked declaration supplies the key finite-sum-vanishing corner but is not a single wrapper for every asymptotic and survival clause of the printed lemma.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/FiniteNormalAverageCorner",
-          "declaration": "GroupApproximation.FiniteNormalAverageCorner.exists_corner_with_finite_sum_vanishing",
-          "covers": "the finite-normal averaging corner used in the proof"
-        }
-      ]
-    },
-    {
-      "id": "lem:compressorcollapse",
-      "environment": "lemma",
-      "title": "compression defects collapse",
-      "statement_sha256": "19b1e33b3ed5277d470d875b86ddaf7066e1e63b1a593b222ff6eaa62e07c062",
-      "status": "exact",
-      "object_identity": "The formal theorem uses the same compression core and proves Hilbert-Schmidt triviality of the complete compression defect in the finite-stage model.",
-      "dependencies": [
-        "def:pattern",
-        "lem:corner"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/FiniteNormalCompressionObstruction",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.compressionDefects_hsTrivial",
-          "covers": "the complete finite-stage compression-defect collapse"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCompressionDefectsCollapse",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -579,7 +426,7 @@
       "title": "the marked word is a defect square",
       "statement_sha256": "36940cc67e41844eab6c4b2ff16efdd49d9b4563df60e3d40ed213e9af11aa0f",
       "status": "exact",
-      "object_identity": "The formal identity uses the same commutator convention, involution hypothesis, and conjugated lamp word.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -589,7 +436,7 @@
           "role": "exact",
           "module": "Sofic/CompressionDefectSquare",
           "declaration": "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one",
-          "covers": "the printed group identity"
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -598,20 +445,18 @@
       "environment": "definition",
       "title": "",
       "statement_sha256": "a1880a409e194646bcd35c283acceed8a9c74df0a0c0e3f1eaebce253d98523e",
-      "status": "equivalent",
-      "object_identity": "The printed radical intersects kernels of cofinite sequence-corona representations; Lean proves equality with its operator-norm residual definition for countable groups.",
-      "dependencies": [
-        "lem:unitarycorona"
-      ],
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The printed definition and the internal residual are propositionally equal rather than definitionally identical.",
+      "coverage_gap": "",
       "lean": [
         {
-          "role": "equivalent",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.coronaMFResidual_eq_normMFResidual",
-          "covers": "equality of the printed corona-kernel intersection and the internal residual"
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -620,21 +465,21 @@
       "environment": "lemma",
       "title": "portability",
       "statement_sha256": "3cd3c8cd3e2d84195ca426ca45130711c5a97d46bc788d41cafd3820fd5f4cfd",
-      "status": "partial",
-      "object_identity": "The formal theorem uses the same homomorphism between countable groups and the same cofinite-corona radical.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:radical",
-        "thm:A"
+        "thm:A",
+        "def:radical"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "The linked theorem proves functoriality exactly. The literal-E consequence additionally needs the still-open unconditional theorem that mark lies in the literal MF radical.",
+      "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.map_coronaMFResidual_le",
-          "covers": "functoriality of the printed MF radical"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -644,9 +489,11 @@
       "title": "the largest MF quotient",
       "statement_sha256": "2231209e13d0bc80d5ef44f1d2138e9e365de63e995fb623dbe418003aeb3157",
       "status": "exact",
-      "object_identity": "The formal theorem uses the same countable group, cofinite-corona residual quotient, MF conclusion, and universal homomorphism factorization.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:radical"
+        "def:radical",
+        "lem:lift",
+        "lem:unitarycorona"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -654,27 +501,9 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.exists_normMatrixCoronaRepresentation_ker_eq_coronaMFResidual",
-          "covers": "realization of the radical as one corona-representation kernel"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.coronaMFQuotient_isOperatorMF",
-          "covers": "MF of the quotient by the radical"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.existsUnique_coronaMFQuotient_factorization_to_isOperatorMF",
-          "covers": "universal factorization of maps to countable MF groups"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFCoronaRadical",
-          "declaration": "GroupApproximation.isOperatorMF_iff_coronaMFResidual_eq_bot",
-          "covers": "MF exactly when the radical is trivial"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptLargestMFQuotient",
+          "covers": "the complete printed proposition"
         }
       ]
     },
@@ -684,10 +513,9 @@
       "title": "exact radical from a candidate quotient",
       "statement_sha256": "f4919dd015c9337422f3b8f2aaf93eb1c4bc289fb8e672bbae76ee501faa650d",
       "status": "exact",
-      "object_identity": "The formal declarations use the same normal subgroup contained in the cofinite-corona radical and the same MF quotient hypothesis.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:radical",
-        "prop:univquot"
+        "def:radical"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -695,48 +523,33 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormMFResidualExactQuotient",
-          "declaration": "GroupApproximation.existsUnique_quotient_factorization_to_normMatrixCorona",
-          "covers": "unique factorization through the candidate quotient"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFResidualExactQuotient",
-          "declaration": "GroupApproximation.coronaMFResidual_eq_of_le_and_quotient_isOperatorMF",
-          "covers": "equality of the radical with the candidate subgroup"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptExactRadicalFromCandidateQuotient",
+          "covers": "the complete printed proposition"
         }
       ]
-    },
-    {
-      "id": "cor:subalg",
-      "environment": "corollary",
-      "title": "subalgebras of coronas",
-      "statement_sha256": "52136234b3c335d158481a98c55ae18b77dfc8c95715def7a9e28e38f5a97cdb",
-      "status": "paper-only",
-      "object_identity": "The printed statement quantifies over possibly nonunital C-star subalgebras of the actual norm-matrix corona and corrects unitary restrictions in the corner p.",
-      "dependencies": [
-        "thm:criterion"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "The general nonunital corner-correction API exists in pieces, but no theorem-level wrapper matches this complete printed corollary.",
-      "lean": []
     },
     {
       "id": "cor:nofaithful",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "e29236799fe65534dc024f28101cd2e4df20430b1cff7d05754e3f80dfd35bf4",
-      "status": "paper-only",
-      "object_identity": "The printed conclusion concerns faithful C-star embeddings of the full and reduced group algebras of the literal E.",
+      "statement_sha256": "6dcfd7d5fa9eacde41f8ff7d24af1e2e62063141c6a835ae9ef13062026ae7d6",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "cor:subalg"
+        "thm:A"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
-      "coverage_gap": "This literal maximal/reduced C-star conclusion awaits the unconditional literal Theorem A endpoint and has no current exact claim-level badge.",
-      "lean": []
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFConsequences",
+          "declaration": "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:faithfultrace",
@@ -744,7 +557,7 @@
       "title": "",
       "statement_sha256": "f052b6478d109bfe035a59e8b903034148762332937f979de80eb2279e5077cb",
       "status": "exact",
-      "object_identity": "The formal theorem is the matrix stable-finiteness implication for a faithful tracial state; the printed lemma also asserts faithfulness of the canonical trace on every reduced group C-star algebra.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -752,590 +565,31 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/ReducedGroupCStarTraceFaithful",
-          "declaration": "GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState",
-          "covers": "faithfulness and traciality of the canonical reduced-group C-star state"
-        },
-        {
-          "role": "exact",
-          "module": "Analysis/FaithfulTracialMatrix",
-          "declaration": "GroupApproximation.FaithfulTracialState.matrix_mul_star_eq_one_of_star_mul_eq_one",
-          "covers": "the matrix-level stable-finiteness clause from a faithful trace"
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness",
+          "covers": "the complete printed proposition"
         }
       ]
-    },
-    {
-      "id": "lem:rfmf",
-      "environment": "lemma",
-      "title": "residually finite groups are MF",
-      "statement_sha256": "3347286acac789060b0552afea2bc2032a92a64444498379c37bd1eb0a5730a7",
-      "status": "exact",
-      "object_identity": "The formal theorem uses the same countable residually finite group and the cofinite operator-norm matrix-corona MF predicate.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/OperatorMFPositiveControls",
-          "declaration": "GroupApproximation.isOperatorMF_of_residuallyFinite",
-          "covers": "the complete residually-finite-implies-MF assertion"
-        }
-      ]
-    },
-    {
-      "id": "lem:order",
-      "environment": "lemma",
-      "title": "order identity",
-      "statement_sha256": "001dbd2c76586af176e7563a3d0a9ed669b487022e952c456289b90a4c24e6c1",
-      "status": "paper-only",
-      "object_identity": "The printed identity is an operator-algebra projection-order calculation for the paper's HNN compression unitaries.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "No exact theorem-level Lean wrapper is currently mapped to this two-part projection identity.",
-      "lean": []
-    },
-    {
-      "id": "prop:ambient",
-      "environment": "proposition",
-      "title": "the ambient group",
-      "statement_sha256": "180c9eb1f74543c93ba8d33d8d9c4dfeefedf4b74389569595d819bd61e7fa1a",
-      "status": "paper-only",
-      "object_identity": "The printed proposition concerns the concrete ambient HNN group G and both its maximal and reduced group C-star algebras.",
-      "dependencies": [
-        "lem:order",
-        "lem:faithfultrace"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "Formal supporting proper-isometry and trace lemmas are not assembled into one proposition about the exact printed ambient group and both C-star completions.",
-      "lean": []
     },
     {
       "id": "cor:quotclosure",
       "environment": "corollary",
       "title": "quotients",
-      "statement_sha256": "61f6554c8e5cb6961cf00f0d5adddbb82a337672be61eb5972fe605861a687dc",
-      "status": "partial",
-      "object_identity": "The formal controls use the literal source and literal quotient map, but do not yet prove the quotient's non-MF conclusion unconditionally.",
-      "dependencies": [
-        "thm:A",
-        "lem:rfmf"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "Lean proves that the source is operator-MF and that the literal quotient map is surjective; the non-MF quotient still depends on literal Base property (T).",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/OperatorMFQuotientNonclosure",
-          "declaration": "GroupApproximation.LiteralOperatorMFQuotientControls.source_isOperatorMF",
-          "covers": "MF of the source group"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/OperatorMFQuotientNonclosure",
-          "declaration": "GroupApproximation.LiteralOperatorMFQuotientControls.quotientMap_surjective",
-          "covers": "surjectivity onto the literal quotient"
-        }
-      ]
-    },
-    {
-      "id": "prop:W",
-      "environment": "proposition",
-      "title": "the witness group is non-MF",
-      "statement_sha256": "89c0b23531bc1bf4457354510dac20a65317322628e45172ce26af9ed4366f1d",
-      "status": "partial",
-      "object_identity": "The formal witness homomorphism is the same explicit affine-Clifford target W and sends literal mark to its central sign.",
-      "dependencies": [
-        "thm:A",
-        "prop:witness"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "The marked homomorphism and its image are formalized, but non-MF of W requires the missing unconditional invisibility of the literal mark.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/LiteralNonMFLinearWitness",
-          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.witnessHom_mark",
-          "covers": "the image of the literal mark in the concrete witness group"
-        }
-      ]
-    },
-    {
-      "id": "prop:CEvisible",
-      "environment": "proposition",
-      "title": "the marked word is tracially visible",
-      "statement_sha256": "4e297b2bea8c0c7ed97bfcb15ecd9549721f7b2a207eb6b055a698d87b865796",
-      "status": "partial",
-      "object_identity": "The abstract detector theorem separates operator-corona invisibility from hyperlinear and sofic visibility; the printed proposition instantiates it with the literal E and explicit Clifford detectors.",
-      "dependencies": [
-        "thm:A",
-        "prop:witness"
-      ],
-      "extra_assumptions": [
-        "A proof-carrying detector homomorphism on which the marked element survives"
-      ],
-      "external_inputs": [
-        "Soficity and Connes embeddability of the concrete Clifford target"
-      ],
-      "coverage_gap": "Lean proves the abstract detector implication, not the complete literal construction and all sofic/Connes-embeddable representation clauses as one endpoint.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/RadicalSeparation",
-          "declaration": "GroupApproximation.coronaMFInvisible_not_hyperlinearInvisible_not_soficInvisible_of_detector",
-          "covers": "the abstract three-radical separation from a supplied detector"
-        }
-      ]
-    },
-    {
-      "id": "cor:soficnonmf",
-      "environment": "corollary",
-      "title": "sofic does not imply MF",
-      "statement_sha256": "154814f625cd4c805e08eb54173fd0136c84d995be254a665a96dab5db3499f5",
-      "status": "partial",
-      "object_identity": "The formal theorem applies to the range of a supplied sofic detector; the printed corollary uses the literal Clifford witness group.",
-      "dependencies": [
-        "prop:CEvisible",
-        "prop:W"
-      ],
-      "extra_assumptions": [
-        "A sofic detector range and survival of the marked word"
-      ],
-      "external_inputs": [
-        "Soficity of the concrete witness group"
-      ],
-      "coverage_gap": "The abstract range theorem is formalized, while the exact finitely generated literal witness instantiation is not packaged as one unconditional endpoint.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/RadicalSeparation",
-          "declaration": "GroupApproximation.sofic_range_not_isOperatorMF_of_coronaMFInvisible",
-          "covers": "non-MF of a supplied sofic detector range"
-        }
-      ]
-    },
-    {
-      "id": "cor:simplesofic",
-      "environment": "corollary",
-      "title": "a simple sofic group with full MF radical",
-      "statement_sha256": "a2236d7a2a4fbac6fd2f69e6677e4b952179701f4fa7450cf0145eed190f6dd3",
-      "status": "partial",
-      "object_identity": "The formal theorem deduces full residual for a supplied simple envelope containing a visible radical element; the printed group comes from an external simple-envelope construction.",
-      "dependencies": [
-        "cor:soficnonmf",
-        "cor:simple"
-      ],
-      "extra_assumptions": [
-        "A proof-carrying simple envelope with the required embedding and soficity"
-      ],
-      "external_inputs": [
-        "Simple sofic embedding theorem"
-      ],
-      "coverage_gap": "Lean formalizes the radical deduction but not existence of the exact simple sofic envelope asserted in the paper.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/RadicalSeparation",
-          "declaration": "GroupApproximation.simple_envelope_full_normMFResidual_of_coronaMFInvisible",
-          "covers": "full MF residual of a supplied simple detector envelope"
-        }
-      ]
-    },
-    {
-      "id": "cor:extclosure",
-      "environment": "corollary",
-      "title": "extensions",
-      "statement_sha256": "a2eadef08e6308fefc8b299744d6160756822f9907072bf40763a2d5aa3b32fe",
-      "status": "paper-only",
-      "object_identity": "The printed examples use the literal non-MF quotient and explicit MF kernel/source groups.",
-      "dependencies": [
-        "thm:A",
-        "cor:quotclosure"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "No exact theorem-level Lean endpoint packages both extension-permanence failures for the literal groups.",
-      "lean": []
-    },
-    {
-      "id": "cor:simple",
-      "environment": "corollary",
-      "title": "a simple envelope",
-      "statement_sha256": "ab8638413cd573a3f0e77d8088dd5919d0c6857bd4ec44e703a4c60ba038f623",
-      "status": "paper-only",
-      "object_identity": "The printed simple group is obtained by embedding the literal E into an externally supplied two-generator simple group.",
-      "dependencies": [
-        "thm:A",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Goryushkin-Schupp two-generator simple embedding theorem"
-      ],
-      "coverage_gap": "The external simple-envelope construction is not formalized in Lean.",
-      "lean": []
-    },
-    {
-      "id": "thm:kazhdanfullradical",
-      "environment": "theorem",
-      "title": "a finitely presented Kazhdan group with full MF radical",
-      "statement_sha256": "34b88f900f0e7f4aab86cf117d3f24203dfd6dd71738bec7a41a2f767f336afb",
-      "status": "supporting",
-      "object_identity": "The formal declarations derive full residual and perfectness from supplied normal-generation data; the printed finitely presented Kazhdan envelope is an external existence construction.",
-      "dependencies": [
-        "thm:A",
-        "lem:portable"
-      ],
-      "extra_assumptions": [
-        "A finitely presented property-(T) envelope normally generated by the embedded marked element"
-      ],
-      "external_inputs": [
-        "Chatterji-Kassabov normally generated Kazhdan envelope theorem"
-      ],
-      "coverage_gap": "Lean does not construct the printed envelope; it proves the radical, homomorphism, and perfectness deductions from proof-carrying input.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.normMFResidual_eq_top_of_mem_normalClosure_eq_top",
-          "covers": "full MF residual from normal generation by an invisible element"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.hom_eq_one_of_residual_eq_top_to_isOperatorMF",
-          "covers": "triviality of homomorphisms into MF groups"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.hom_eq_one_of_map_eq_one_of_normalClosure_eq_top",
-          "covers": "triviality from annihilation of a normal generator"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.isPerfect_of_mem_commutator_normalClosure_eq_top",
-          "covers": "perfectness from a commutator normal generator"
-        }
-      ]
-    },
-    {
-      "id": "thm:universalkazhdanradical",
-      "environment": "theorem",
-      "title": "a universal Kazhdan group with full MF radical",
-      "statement_sha256": "1943072a8105196a37509f19e96383f14f90c678bd0932e5e2e6b6e92b6b8dba",
-      "status": "supporting",
-      "object_identity": "The formal declarations derive full residual and trivial MF-target homomorphisms from a supplied universal normally generated Kazhdan envelope; they do not construct that envelope.",
-      "dependencies": [
-        "thm:kazhdanfullradical"
-      ],
-      "extra_assumptions": [
-        "Proof-carrying effective embeddings and a universal normally generated finitely presented Kazhdan envelope"
-      ],
-      "external_inputs": [
-        "Effective Higman embedding",
-        "Chatterji-Kassabov envelope theorem"
-      ],
-      "coverage_gap": "The recursive enumeration, effective embedding, and envelope existence are paper-level external inputs.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.normMFResidual_eq_top_of_mem_normalClosure_eq_top",
-          "covers": "full MF residual once the universal envelope data are supplied"
-        },
-        {
-          "role": "supporting",
-          "module": "Sofic/NormallyGeneratedMFObstruction",
-          "declaration": "GroupApproximation.hom_eq_one_of_residual_eq_top_to_isOperatorMF",
-          "covers": "triviality of maps to MF groups"
-        }
-      ]
-    },
-    {
-      "id": "cor:universalCstarcontrast",
-      "environment": "corollary",
-      "title": "opposite full and reduced behavior in one group",
-      "statement_sha256": "35ea3497c9df964a8b4c0eaaf3cd496853f59612fcef44dd45cc6fc74764b15d",
-      "status": "supporting",
-      "object_identity": "The formal results cover the concrete reduced trace and abstract embedding consequences, while the printed group is the external universal Kazhdan envelope.",
-      "dependencies": [
-        "thm:universalkazhdanradical",
-        "lem:faithfultrace"
-      ],
-      "extra_assumptions": [
-        "An injective C-star embedding or universal envelope carrying the printed group-theoretic data"
-      ],
-      "external_inputs": [
-        "Existence of the universal Kazhdan envelope"
-      ],
-      "coverage_gap": "No single object-level theorem assembles the full and reduced C-star behavior for the exact externally constructed group.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Analysis/ReducedGroupCStarTraceFaithful",
-          "declaration": "GroupApproximation.ReducedGroupCStarTrace.canonicalFaithfulTracialState",
-          "covers": "faithful canonical trace on the concrete reduced algebra"
-        },
-        {
-          "role": "supporting",
-          "module": "Analysis/ReducedGroupCStarMFObstruction",
-          "declaration": "GroupApproximation.no_faithfulReducedCoronaUnitaryRestriction_of_residual_eq_top",
-          "covers": "reduced unitary-restriction obstruction from full group residual"
-        },
-        {
-          "role": "supporting",
-          "module": "Analysis/UniversalKazhdanCStarConsequences",
-          "declaration": "GroupApproximation.ReducedGroupCStarTrace.reduced_matrix_mul_star_eq_one_of_star_mul_eq_one",
-          "covers": "stable finiteness of the reduced algebra"
-        },
-        {
-          "role": "supporting",
-          "module": "Analysis/UniversalKazhdanCStarConsequences",
-          "declaration": "GroupApproximation.InjectiveCStarEmbedding.properIsometry_spec",
-          "covers": "the proper-isometry consequence in a supplied full-algebra target"
-        },
-        {
-          "role": "supporting",
-          "module": "Analysis/UniversalKazhdanCStarConsequences",
-          "declaration": "GroupApproximation.InjectiveCStarEmbedding.target_not_isStablyFiniteRing",
-          "covers": "failure of stable finiteness for a supplied full-algebra embedding"
-        }
-      ]
-    },
-    {
-      "id": "thm:family",
-      "environment": "theorem",
-      "title": "scaling family",
-      "statement_sha256": "37bcb3a4712bc3fc4703381fe13f1f4a94860b0a8744cf4fa77ef763122ba931",
-      "status": "paper-only",
-      "object_identity": "The printed theorem is the parameterized family of explicit presentations E_m and their literal marked words.",
+      "statement_sha256": "084c7882c0037336aaf924f3c36b48e25a614ff65a2f96b16990fe214cd12ed6",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:A"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Property (T) for each literal affine-base presentation"
-      ],
-      "coverage_gap": "Lean has supporting scaling identities but no exact parameterized E_m definitions and unconditional non-MF endpoints for the full family.",
-      "lean": []
-    },
-    {
-      "id": "lem:subgroupMF",
-      "environment": "lemma",
-      "title": "",
-      "statement_sha256": "f06070812df49918816a7cf3db4ac580a69b7614aad116b2288a38c979406b4b",
-      "status": "exact",
-      "object_identity": "The formal theorem uses the same subgroup inclusion and cofinite operator-norm corona definition.",
-      "dependencies": [],
-      "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/OperatorMFPositiveControls",
-          "declaration": "GroupApproximation.IsOperatorMF.subgroup",
-          "covers": "subgroup inheritance of operator-corona MF"
-        }
-      ]
-    },
-    {
-      "id": "cor:continuum",
-      "environment": "corollary",
-      "title": "multiplicity",
-      "statement_sha256": "3710a34526842be26d83dc02a67ab033ab7e64f4ae8a2de0edf11221c16e3c43",
-      "status": "paper-only",
-      "object_identity": "The printed cardinality assertions concern isomorphism classes of countable and finitely generated groups obtained from the explicit non-MF witness.",
-      "dependencies": [
-        "thm:A",
-        "lem:subgroupMF"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Standard cardinality and subgroup constructions"
-      ],
-      "coverage_gap": "No Lean theorem packages the countable and continuum multiplicity conclusions.",
-      "lean": []
-    },
-    {
-      "id": "thm:mfrecognition",
-      "environment": "theorem",
-      "title": "MF recognition is undecidable",
-      "statement_sha256": "5b23e92e5a670794ed472b8102f800b76546d276fa91447a112fddfd7c515b07",
-      "status": "paper-only",
-      "object_identity": "The printed theorem quantifies over a fixed standard effective coding of finite group presentations and the actual MF property.",
-      "dependencies": [
-        "thm:A",
-        "lem:subgroupMF"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Effective Adian-Rabin test-group transformation"
-      ],
-      "coverage_gap": "The syntactic presentation transformation and its computability/correctness are not constructed in Lean.",
-      "lean": []
-    },
-    {
-      "id": "thm:nonmfre",
-      "environment": "theorem",
-      "title": "negative instances are not recursively enumerable",
-      "statement_sha256": "3780ced626129fb9d83e3f6585e399b18d543e051873028a583d6f16f0874abf",
-      "status": "conditional",
-      "object_identity": "The formal reductions target operator-MF on presentation codes, but the effective coding and Adian-Rabin transformation are supplied as premises.",
-      "dependencies": [
-        "thm:mfrecognition"
-      ],
-      "extra_assumptions": [
-        "A concrete computable presentation coding",
-        "A proof-carrying AdianRabinReduction",
-        "The required source undecidability and enumerability hypotheses"
-      ],
-      "external_inputs": [
-        "Adian-Rabin theorem",
-        "A finitely presented group with undecidable word problem"
-      ],
-      "coverage_gap": "Lean proves the recursion-theoretic consequences conditionally and does not instantiate the effective group-presentation construction.",
-      "lean": [
-        {
-          "role": "conditional",
-          "module": "Computability/MarkovMFConsequences",
-          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable",
-          "covers": "undecidability from supplied reduction data"
-        },
-        {
-          "role": "conditional",
-          "module": "Computability/MarkovMFConsequences",
-          "declaration": "GroupApproximation.MarkovMFConsequences.operatorMF_negative_side_not_re",
-          "covers": "non-r.e. of negative instances from supplied reduction data"
-        }
-      ]
-    },
-    {
-      "id": "thm:uniform",
-      "environment": "theorem",
-      "title": "uniform invisibility",
-      "statement_sha256": "b07ebf752d32c0982e863008a78108bf7b4078116434b4da48ddbd631b4ef814",
-      "status": "exact",
-      "object_identity": "The formal theorem uses the same countable compression core, finite normal subgroup, chosen element, epsilon-delta finite-set quantifiers, and arbitrary positive matrix rank.",
-      "dependencies": [
-        "thm:criterion"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFPrintedConsequences",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility",
-          "covers": "the stronger finite-type formulation underlying the printed statement"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/NormMFPrintedConsequences",
-          "declaration": "GroupApproximation.KazhdanCompressionCore.finiteNormal_uniform_invisibility_positiveModel",
-          "covers": "the printed positive-size finite-matrix formulation"
-        }
-      ]
-    },
-    {
-      "id": "thm:markedclosed",
-      "environment": "theorem",
-      "title": "marked-space closedness and the literal cylinder",
-      "statement_sha256": "897fcfa7f1812de0acb7e3492eead7842a1b844407639d82f847a7af826889d8",
-      "status": "partial",
-      "object_identity": "The linked theorem concerns the general fixed-rank operator-MF locus; the printed second half is the specific eight-generator literal cylinder O_E with radius 34.",
-      "dependencies": [
-        "thm:A",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "General closedness is exact, but the linked theorem does not prove the explicit literal cylinder is contained in the non-MF locus or the radius-34 clause.",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
-          "covers": "closedness of the general operator-MF locus"
-        }
-      ]
-    },
-    {
-      "id": "lem:tf-defect-saturation",
-      "environment": "lemma",
-      "title": "defect saturation",
-      "statement_sha256": "8475803d51aa5cf40274675149017d127ceaa9d39f7611d4a1b34f91ae2c271c",
-      "status": "supporting",
-      "object_identity": "The formal theorem uses proof-carrying Fournier-Facio defect data and proves containment of the supplied simple subgroup in the compression defect.",
-      "dependencies": [
-        "def:pattern"
-      ],
-      "extra_assumptions": [
-        "An inhabitant of FournierFacioDefectData encoding the external construction"
-      ],
-      "external_inputs": [
-        "Fournier-Facio torsion-free HNN construction"
-      ],
-      "coverage_gap": "Lean proves the saturation deduction from supplied construction data, not existence of the printed group and elements.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/TorsionFreeFullMFRadical",
-          "declaration": "GroupApproximation.FournierFacioDefectData.simpleSubgroup_le_defectNormal",
-          "covers": "defect saturation of the supplied simple subgroup"
-        }
-      ]
-    },
-    {
-      "id": "lem:tf-routing",
-      "environment": "lemma",
-      "title": "defect-routing common quotient",
-      "statement_sha256": "1b362c12459bb26737f5e66efd47d456173df2e708e100f2d7930a79411d176b",
-      "status": "paper-only",
-      "object_identity": "The printed lemma is the external common-quotient routing step for the specific torsion-free property-(T) and nonsofic inputs.",
-      "dependencies": [
-        "lem:tf-defect-saturation"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Hull acylindrical small-cancellation common-quotient theorem",
-        "Osin nonsofic quotient input"
-      ],
-      "coverage_gap": "The common quotient and its geometric/group-theoretic properties are not constructed in Lean.",
-      "lean": []
-    },
-    {
-      "id": "cor:tf-full-radical-quotients",
-      "environment": "corollary",
-      "title": "quotient-hereditary failure of MF",
-      "statement_sha256": "4a21e634734b9a16e3918ab33ad8dd6adac3762142274e294e98cbbac0ce7396",
-      "status": "supporting",
-      "object_identity": "The formal theorem applies to proof-carrying defect-routing quotient data; the printed corollary quantifies over the externally constructed Q and all its nontrivial quotients.",
-      "dependencies": [
-        "thm:E",
-        "lem:tf-routing"
-      ],
-      "extra_assumptions": [
-        "An inhabitant of DefectRoutingData for the external quotient construction"
-      ],
-      "external_inputs": [
-        "Existence and simplicity/normal-generation properties of the routed quotient"
-      ],
-      "coverage_gap": "Lean proves failure of CDE-MF for quotients from supplied routing data, not existence of the exact Q or all printed auxiliary properties.",
-      "lean": [
-        {
-          "role": "supporting",
-          "module": "Sofic/TorsionFreeFullMFRadical",
-          "declaration": "GroupApproximation.DefectRoutingData.quotient_not_isCDEOperatorMF",
-          "covers": "non-MF of a supplied nontrivial routed quotient"
+          "module": "Sofic/LiteralMFQuotientControls",
+          "declaration": "GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure",
+          "covers": "the complete printed proposition"
         }
       ]
     }

@@ -12,7 +12,6 @@
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-\newif\ifanonymous\anonymoustrue
 \hypersetup{
   pdftitle={Coordinate-Block Factorization under Single-Sandwich Division and Applications to Property (TT)/T},
   pdfauthor={Anonymous},
@@ -20,17 +19,11 @@
   pdfkeywords={property (TT)/T, quasi-cocycles, elementary groups, Leavitt algebras, bounded generation}
 }
 
-\ifanonymous
-  \newcommand{\leanrepo}{[repository link removed for anonymous review]}
-\else
-  \newcommand{\leanrepo}{https://github.com/SauersML/group-approximation}
-\fi
 \newcommand{\leanverified}[2]{%
   \par\smallskip\noindent
   {\normalfont\footnotesize\color{gray!70!black}%
   Formal counterpart:\par\nobreak\noindent
-  \ifanonymous\nolinkurl{#2}\else
-  \href{\leanrepo/blob/main/GroupApproximation/#1.lean}{\nolinkurl{#2}}\fi.}}
+  \nolinkurl{#2}.}}
 
 \setlist[enumerate]{leftmargin=2.35em}
 \setlist[itemize]{leftmargin=2.1em}
@@ -1421,16 +1414,11 @@ input.
 \appendix
 \section{Guide to the formal companion}\label{app:formal}
 
-\ifanonymous
 The accompanying Lean formalization is included in the supplementary
 material.
-\else
-The accompanying Lean formalization is available in the
-\href{\leanrepo}{project repository}.
-\fi
 Except where indicated, declarations are in the
 \nolinkurl{PropertyTTPaper} namespace.
-Each numbered result carries a visible link to its public declaration.
+Each numbered result carries the name of its public declaration.
 The table below lists the main implementation declarations in the
 order used by the mathematical argument.  It is intended as a reading
 path for users who want to inspect a calculation or reuse a proof

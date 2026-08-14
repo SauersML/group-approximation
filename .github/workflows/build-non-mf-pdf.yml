@@ -10,22 +10,33 @@ on:
     paths:
       - non_mf_groups_exist.tex
       - docs/NON_MF_CLAIM_DECLS.txt
+      - docs/NON_MF_CLAIM_SIGNATURES.md
       - docs/NON_MF_NUMBERED_CLAIMS.json
       # Visible counterpart links range across the library.  Any Lean source
       # change can rename or move a mapped declaration, so the lexical gate
       # must run on the whole source tree rather than one historical module.
       - GroupApproximation/**
+      - GroupApproximation.lean
+      - experiments/sl3-p13-reductions-complete.json
+      - experiments/sl3-sos-radius0-certificate.json
+      - experiments/sl3-sos-radius0-certificate.npz
+      - experiments/sl3_p13_certificate_lean_generator.py
+      - experiments/sl3_p13_hodge_lean_generator.py
+      - experiments/sl3_p13_pair_table_generator.py
+      - experiments/sl3_p13_relator_replay.py
+      - experiments/sl3_p13_replay_lean_generator.py
       - lakefile.toml
+      - lean-toolchain
+      - lake-manifest.json
       # All publication and source-audit helpers are part of the gate.  Watching
       # the directory prevents a shared helper change from silently bypassing it.
       - scripts/**
       - .github/workflows/build-non-mf-pdf.yml
+      - .github/workflows/prover.yml
   workflow_dispatch:
 
 permissions:
   contents: write
-  # Needed to query the prover workflow's run history for the Lean gate.
-  actions: read
   id-token: write
   attestations: write
 
@@ -38,12 +49,16 @@ concurrency:
 env:
   TEX_FILE: non_mf_groups_exist.tex
   PDF_FILE: non_mf_groups_exist.pdf
+  # A complete rolling TeX Live 2026 image, pinned by its linux/amd64 OCI
+  # manifest.  Pinning the image makes the accessibility/tagging toolchain an
+  # immutable part of the release provenance.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:d9bfb267e3e3f5e0820ca86e867ee59ebb133fc29561bb28677d9b5a1a9e84ff
 
 jobs:
   build-pdf:
-    name: Build and validate PDF
+    name: Build, kernel-audit, and validate PDF
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 360
 
     steps:
       - name: Check out repository
@@ -60,102 +75,130 @@ jobs:
             exit 1
           }
 
-      - name: Cache apt package downloads
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
-          path: ~/texdebs
-          key: ${{ runner.os }}-non-mf-texdebs-${{ hashFiles('.github/workflows/build-non-mf-pdf.yml') }}
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
 
-      - name: Install TeX and PDF validation tools
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore Lake dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Restore compiled project
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-release-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-
+
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
+
+      - name: Install PDF validation tools
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
           retry='-o Acquire::Retries=5 -o Acquire::http::Timeout=30'
-          keep='-o APT::Keep-Downloaded-Packages=true'
-          if [ -d "$HOME/texdebs" ]; then
-            sudo cp "$HOME"/texdebs/*.deb /var/cache/apt/archives/ 2>/dev/null || true
-          fi
           sudo apt-get $retry update
-          sudo apt-get $retry $keep install --yes --no-install-recommends \
-            chktex latexmk lmodern poppler-utils qpdf \
-            texlive-fonts-recommended texlive-latex-base texlive-latex-extra \
-            texlive-latex-recommended texlive-science
-          mkdir -p "$HOME/texdebs"
-          sudo cp /var/cache/apt/archives/*.deb "$HOME/texdebs/" 2>/dev/null || true
-          sudo chown -R "$USER" "$HOME/texdebs"
+          sudo apt-get $retry install --yes --no-install-recommends \
+            poppler-utils qpdf
+          docker pull "$TEXLIVE_IMAGE"
 
-      - name: Calibrate and check visible Lean counterpart links
+      - name: Calibrate and check exact declaration links
         run: |
+          mkdir -p build
+          python3 scripts/check.py --self-test
+          python3 scripts/test_claim_map.py
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
-          # Pin the CDE predicate reformulation and the finite-type-indexed
-          # canonical target isomorphism at their honest `equiv` status, and
-          # the finite-normal kernel theorem at `exact`.  The
-          # literal E endpoint is deliberately not required: it is not a Lean
-          # theorem, and the manuscript says so explicitly.
+          python3 scripts/regenerate_non_mf_claim_manifest.py \
+            --output build/NON_MF_NUMBERED_CLAIMS.generated.json
+          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+            build/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex "$TEX_FILE" \
             --check-decls \
             --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
-            --require-status equivalent \
-              Sofic/CDEOperatorMF \
-              GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
-            --require-status equivalent \
-              Analysis/NormMatrixCoronaUnitary \
-              GroupApproximation.normMatrixCoronaUnitaryEquiv \
             --require-verified \
-              Sofic/FiniteNormalCoronaObstruction \
-              GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
+              Sofic/LiteralNonMFEndpoint \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+            --require-verified \
+              Sofic/LiteralBaseP13PropertyTBridge \
+              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \
+            --require-verified \
+              Sofic/P13ExactStagedCertificate \
+              GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex "$TEX_FILE" \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
             --signature-roster docs/NON_MF_CLAIM_DECLS.txt
 
+      - name: Source scan
+        run: python3 scripts/check.py
+
+      - name: Build the complete formal development
+        run: lake build
+
+      - name: Build and calibrate the audit library
+        run: |
+          lake build Audit
+          lake env lean scripts/Calibrate.lean
+
+      - name: Kernel audit and endpoint axiom closures
+        run: lake env lean scripts/Audit.lean | tee kernel-audit.log
+
+      - name: Regenerate and compare exact signatures
+        run: |
+          cp docs/CLAIM_SIGNATURES.md /tmp/CLAIM_SIGNATURES.expected.md
+          cp docs/NON_MF_CLAIM_SIGNATURES.md /tmp/NON_MF_CLAIM_SIGNATURES.expected.md
+          lake env lean scripts/Signatures.lean | tee signatures.log
+          cmp -s /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          cmp -s /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
+            docs/NON_MF_CLAIM_SIGNATURES.md
+          mv /tmp/CLAIM_SIGNATURES.expected.md docs/CLAIM_SIGNATURES.md
+          mv /tmp/NON_MF_CLAIM_SIGNATURES.expected.md \
+            docs/NON_MF_CLAIM_SIGNATURES.md
+
+      - name: Fresh kernel replay
+        run: lake env leanchecker --fresh GroupApproximation | tee leanchecker.log
+
       - name: Check figure text boxes do not overlap
-        run: python3 scripts/check_fig_overlap.py --tex "$TEX_FILE"
-
-      # The repository-wide Lean source audits run in the prover workflow.
-      # The publish step below refuses to push a PDF unless some successful
-      # prover run covers the exact Lean tree this manuscript cites, so a PDF
-      # can no longer publish against a Lean tree that has never passed the
-      # kernel audit.
-      - name: Pin the repository revision into the manuscript links
         run: |
-          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
-          import sys, pathlib
-          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
-          text = path.read_text()
-          pinned = text.replace(
-              r"\newcommand{\leancommit}{main}",
-              r"\newcommand{\leancommit}{%s}" % sha)
-          if pinned == text:
-              raise SystemExit("leancommit macro not found; refusing to build unpinned links")
-          path.write_text(pinned)
-          EOF
+          python3 scripts/check_fig_overlap.py --tex "$TEX_FILE" \
+            --tex-image "$TEXLIVE_IMAGE"
 
-      - name: Write exact release provenance into the manuscript
+      - name: Compile and lint in pinned TeX Live
         run: |
-          python3 - "$TEX_FILE" "$GITHUB_SHA" <<'EOF'
-          import json, pathlib, sys
-          path, sha = pathlib.Path(sys.argv[1]), sys.argv[2]
-          manifest = json.loads(pathlib.Path("lake-manifest.json").read_text())
-          mathlib = next(p["rev"] for p in manifest["packages"] if p["name"] == "mathlib")
-          lean = pathlib.Path("lean-toolchain").read_text().strip()
-          text = path.read_text()
-          replacements = {
-              r"\newcommand{\leanversion}{unbuilt}": rf"\newcommand{{\leanversion}}{{{lean}}}",
-              r"\newcommand{\mathlibcommit}{unbuilt}": rf"\newcommand{{\mathlibcommit}}{{{mathlib}}}",
-              r"\newcommand{\formalizationrevision}{unbuilt}": rf"\newcommand{{\formalizationrevision}}{{{sha}}}",
-          }
-          for old, new in replacements.items():
-              updated = text.replace(old, new)
-              if updated == text:
-                  raise SystemExit(f"provenance macro missing: {old}")
-              text = updated
-          path.write_text(text)
-          EOF
+          rm -rf build
+          mkdir -p build
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" \
+            bash -euo pipefail -c '
+              chktex -q -n1 -n2 -n3 -n8 -n9 -n12 -n13 -n24 -n25 -n36 -n38 \
+                "$1"
+              latexmk -lualatex -outdir=build -interaction=nonstopmode \
+                -halt-on-error -file-line-error "$1"
+            ' _ "$TEX_FILE"
 
-      - name: Compile, lint, normalize, and validate PDF
+      - name: Normalize and validate PDF
         shell: bash
         run: |
           set -euo pipefail
@@ -164,13 +207,9 @@ jobs:
           log_file="build/${base_name}.log"
           temporary_pdf="${PDF_FILE}.tmp"
 
-          rm -rf build pdf-render-check
+          rm -rf pdf-render-check
           rm -f "$temporary_pdf"
-          mkdir -p build pdf-render-check
-
-          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct -- "$TEX_FILE")"
-          export FORCE_SOURCE_DATE=1
-          export TZ=UTC
+          mkdir -p pdf-render-check
 
           # ChkTeX's warnings 9, 12, 13, 25, and 38 are not reliable for this
           # mathematical manuscript: they flag half-open interval notation,
@@ -178,11 +217,6 @@ jobs:
           # TeX-style closing quotes.  Keep ChkTeX as a gate for its remaining
           # diagnostics while leaving compilation, references, overflows,
           # rendering, and PDF integrity to the dedicated checks below.
-          chktex -q -n1 -n2 -n3 -n8 -n9 -n12 -n13 -n24 -n25 -n36 -n38 \
-            "$TEX_FILE"
-          latexmk -pdf -outdir=build -interaction=nonstopmode \
-            -halt-on-error -file-line-error "$TEX_FILE"
-
           test -s "$raw_pdf"
           test -s "$log_file"
           if grep -Eq \
@@ -205,6 +239,7 @@ jobs:
           qpdf --check "$PDF_FILE"
           pdfinfo "$PDF_FILE"
           test "$(head -c 8 "$PDF_FILE")" = '%PDF-2.0'
+          test "$(pdfinfo "$PDF_FILE" | awk -F: '/^Tagged:/ {gsub(/^[[:space:]]+/, "", $2); print $2}')" = 'yes'
 
           pdfinfo -meta "$PDF_FILE" > build/pdf-metadata.xml
           grep -Eq 'xml:lang="en-US"|dc:language[^>]*>en-US<' build/pdf-metadata.xml
@@ -226,37 +261,15 @@ jobs:
             non_mf_groups_exist.pdf
             build/non_mf_groups_exist.log
 
-      - name: Require a successful kernel audit of this exact revision
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          # Poll for a successful prover run whose head SHA is literally this
-          # SHA.  Digest-equivalent but different commits are rejected: the
-          # PDF, source links, signatures, and kernel audit name one revision.
-          for attempt in $(seq 1 12); do
-            run_id="$(gh run list --workflow=prover.yml --commit "$GITHUB_SHA" \
-              --status=success --limit 1 --json databaseId --jq '.[0].databaseId // empty')"
-            if [ -n "$run_id" ]; then
-              echo "$run_id" > build/prover-run-id.txt
-              echo "Exact revision $GITHUB_SHA passed prover run $run_id."
-              break
-            fi
-            echo "No successful prover run for $GITHUB_SHA yet (attempt $attempt); waiting."
-            sleep 120
-          done
-          test -s build/prover-run-id.txt || {
-            echo "No successful Lean kernel audit exists for exact revision $GITHUB_SHA; refusing to publish." >&2
-            exit 1
-          }
-
       - name: Create source and artifact manifest
         run: |
           git archive --format=tar.gz \
             --output="build/non-mf-source-${GITHUB_SHA}.tar.gz" "$GITHUB_SHA"
           python3 scripts/release_manifest.py \
             --commit "$GITHUB_SHA" \
-            --prover-run-id "$(cat build/prover-run-id.txt)" \
+            --kernel-audit-run-id "$GITHUB_RUN_ID" \
+            --publication-run-id "$GITHUB_RUN_ID" \
+            --texlive-image "$TEXLIVE_IMAGE" \
             --source-checkout-clean \
             --pdf "$PDF_FILE" \
             --output build/NON_MF_RELEASE_MANIFEST.json
@@ -278,6 +291,19 @@ jobs:
             build/NON_MF_RELEASE_MANIFEST.json
             build/SHA256SUMS
             build/non_mf_groups_exist.log
+            kernel-audit.log
+            signatures.log
+            leanchecker.log
+
+      - name: Assert generation changed only release artifacts
+        run: |
+          allowed='^( M non_mf_groups_exist\.tex| M non_mf_groups_exist\.pdf|\?\? build/|\?\? leanchecker\.log$|\?\? kernel-audit\.log$|\?\? signatures\.log$|\?\? non_mf_groups_exist\.pdf$|\?\? pdf-render-check/)$'
+          unexpected="$(git status --porcelain | grep -Ev "$allowed" || true)"
+          test -z "$unexpected" || {
+            echo "Unexpected source change during release generation:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          }
 
       - name: Attest the PDF and manifest
         uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
@@ -304,4 +330,7 @@ jobs:
             "build/non-mf-source-${GITHUB_SHA}.tar.gz" \
             build/NON_MF_RELEASE_MANIFEST.json \
             build/SHA256SUMS \
-            build/non_mf_groups_exist.log
+            build/non_mf_groups_exist.log \
+            kernel-audit.log \
+            signatures.log \
+            leanchecker.log

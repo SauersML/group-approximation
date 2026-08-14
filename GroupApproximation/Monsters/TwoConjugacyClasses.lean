@@ -1,6 +1,7 @@
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.GroupTheory.IsPerfect
+import Mathlib.GroupTheory.Subgroup.Centralizer
 import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
@@ -286,6 +287,47 @@ theorem infinite_conjClass [Infinite G] {g : G} (hg : g ≠ 1) :
     · exact fun hx ↦ h.isConj hg hx
   rw [hset]
   exact Set.Finite.infinite_compl (Set.finite_singleton (1 : G))
+
+/-! ### Transporting a universal centralizer -/
+
+/-- If an embedded group has one nontrivial central element, then every
+nonidentity centralizer of a two-conjugacy-class ambient group contains a
+conjugate copy of that entire group. -/
+theorem embeds_into_centralizer
+    {K : Type*} [Group K] (e : K →* G) (he : Function.Injective e)
+    {z : K} (hz : z ∈ Subgroup.center K) (hz1 : z ≠ 1)
+    {g : G} (hg : g ≠ 1) :
+    ∃ f : K →* Subgroup.centralizer ({g} : Set G), Function.Injective f := by
+  have hez : e z ≠ 1 := by
+    intro hez
+    apply hz1
+    apply he
+    simpa using hez
+  obtain ⟨a, ha⟩ := isConj_iff.mp (h.isConj hez hg)
+  let c : K →* G :=
+    { toFun := fun k ↦ a * e k * a⁻¹
+      map_one' := by simp
+      map_mul' := by intro x y; simp only [map_mul]; group }
+  have hc : ∀ k : K, c k ∈ Subgroup.centralizer ({g} : Set G) := by
+    intro k
+    rw [Subgroup.mem_centralizer_singleton_iff]
+    change (a * e k * a⁻¹) * g = g * (a * e k * a⁻¹)
+    rw [← ha]
+    have hzk : k * z = z * k := Subgroup.mem_center_iff.mp hz k
+    have hezk : e k * e z = e z * e k := by
+      simpa only [map_mul] using congrArg e hzk
+    calc
+      (a * e k * a⁻¹) * (a * e z * a⁻¹) =
+          a * (e k * e z) * a⁻¹ := by group
+      _ = a * (e z * e k) * a⁻¹ := by rw [hezk]
+      _ = (a * e z * a⁻¹) * (a * e k * a⁻¹) := by group
+  let f : K →* Subgroup.centralizer ({g} : Set G) := c.codRestrict _ hc
+  refine ⟨f, ?_⟩
+  intro x y hxy
+  apply he
+  have hval := congrArg Subtype.val hxy
+  change a * e x * a⁻¹ = a * e y * a⁻¹ at hval
+  simpa only [mul_left_cancel_iff, mul_right_cancel_iff] using hval
 
 end HasTwoConjugacyClasses
 

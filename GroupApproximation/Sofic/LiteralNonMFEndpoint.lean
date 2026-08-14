@@ -7,14 +7,13 @@ import GroupApproximation.Analysis.MaximalGroupCStar
 /-!
 # The literal eight-generator endpoint assembly
 
-This file assembles the exact group-theoretic and analytic interfaces for the
-eight-generator presentation in `LiteralNonMFPresentation`, retaining the
-single explicit property-`(T)` premise until the proof-carrying rational P13
-Hodge certificate has been fully checked and integrated.
+This file exposes the reusable group-theoretic and analytic assembly for the
+eight-generator presentation, parameterized by a proof that its literal base
+has property `(T)`.  The exact rational P13 certificate discharges that
+parameter in `ConceptualNonMFProof`, whose `manuscriptTheoremA` is the
+hypothesis-free public endpoint.
 
-The suffixed declarations retain the useful abstract interface accepting an
-arbitrary proof of base property `(T)`; the unsuffixed declarations at the end
-instantiate it with the exact certificate and give:
+The reusable assembly gives:
 
 * marked-compression inclusion data for the literal presentation;
 * the explicit finite normal subgroup `{1, mark}` inside the compression
@@ -47,8 +46,8 @@ abbrev naturalMatrixModel (d : ℕ) : FiniteModel where
 
 /-! ## The literal marked-compression data -/
 
-/-- The exact marked-compression datum carried by the literal presentation,
-conditional only on property `(T)` of its literal base. -/
+/-- Assemble the exact marked-compression datum from a property-`(T)` proof
+for its literal base. -/
 noncomputable def inclusionDataOfHasKazhdanPropertyT
     (hT : HasKazhdanPropertyT.{0, 0} Base) :
     MarkedCompressionInclusionData Base MarkedGroup where
@@ -221,8 +220,8 @@ theorem literal_mark_normMFInvisible_of_hasKazhdanPropertyT
     (literalInvolutionSubgroup_le_defectNormal_of_hasKazhdanPropertyT hT)
     mark_mem_literalInvolutionSubgroup
 
-/-- Conditional boundary for the literal operator-MF conclusion.  The
-hypothesis is exactly the one theorem still being discharged upstream. -/
+/-- Reusable operator-MF obstruction once property `(T)` of the base is
+available. -/
 theorem literal_not_isOperatorMF_of_hasKazhdanPropertyT
     (hT : HasKazhdanPropertyT.{0, 0} Base) :
     ¬ IsOperatorMF MarkedGroup :=
@@ -236,8 +235,8 @@ theorem literal_not_isOperatorMF_of_hasKazhdanPropertyT
       rw [inclusionDataOfHasKazhdanPropertyT_word]
       exact LiteralNonMFLinearWitness.literal_mark_ne_one)
 
-/-- The same conditional boundary stated using the literal CDE definition
-with the genuine C-star corona and strictly increasing positive dimensions. -/
+/-- The same reusable obstruction in the literal CDE definition with the
+genuine C-star corona and strictly increasing positive dimensions. -/
 theorem literal_not_isCDEOperatorMF_of_hasKazhdanPropertyT
     (hT : HasKazhdanPropertyT.{0, 0} Base) :
     ¬ IsCDEOperatorMF MarkedGroup := by
@@ -277,29 +276,6 @@ theorem literal_maximalGroupCStar_not_isMFAlgebra_of_hasKazhdanPropertyT
     ¬ IsMFAlgebra (MaximalGroupCStar MarkedGroup) :=
   maximalGroupCStar_not_isMFAlgebra_of_not_isOperatorMF MarkedGroup
     (literal_not_isOperatorMF_of_hasKazhdanPropertyT hT)
-
-/-- Manuscript Theorem A for the literal presentation, still carrying the
-single honest property-`(T)` boundary.  The theorem records the literal
-central involution, the printed unitary-sequence-corona conclusion with
-natural-number matrix dimensions, failure of the group MF property, and the
-object-level maximal and reduced group C-star consequences. -/
-theorem manuscriptTheoremA_of_hasKazhdanPropertyT
-    (hT : HasKazhdanPropertyT.{0, 0} Base) :
-    (mark ≠ 1 ∧ mark ^ 2 = 1 ∧ ∀ g : MarkedGroup, Commute mark g) ∧
-      (∀ (d : ℕ → ℕ), (∀ n, 0 < d n) →
-        ∀ Theta : MarkedGroup →*
-          NormMatrixCoronaUnitary (fun n ↦ naturalMatrixModel (d n)),
-          Theta mark = 1) ∧
-      ¬ IsOperatorMF MarkedGroup ∧
-      ¬ IsMFAlgebra (MaximalGroupCStar MarkedGroup) ∧
-      ¬ IsReducedGroupCStarMF MarkedGroup := by
-  refine ⟨⟨LiteralNonMFLinearWitness.literal_mark_ne_one, mark_sq,
-    mark_central⟩, ?_, literal_not_isOperatorMF_of_hasKazhdanPropertyT hT,
-    literal_maximalGroupCStar_not_isMFAlgebra_of_hasKazhdanPropertyT hT,
-    literal_not_isReducedGroupCStarMF_of_hasKazhdanPropertyT hT⟩
-  intro d hd Theta
-  exact literal_mark_eq_one_in_unitaryCorona_of_hasKazhdanPropertyT
-    hT d hd Theta
 
 end
 

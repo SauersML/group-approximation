@@ -338,6 +338,51 @@ theorem realizedQuotient_finiteDimensional_kill
     pi (quotientMap mark) = 1 := by
   simpa using finiteDimensional_kill (pi.comp quotientMap)
 
+/-- Exact outer-form package for the manuscript's cyclic-base comparison.
+It deliberately stops at the algebraic calibration: finite presentation,
+survival of the marked word in the explicit realized quotient, and its
+annihilation by every finite-dimensional representation over every field. -/
+theorem manuscriptCyclicCalibration :
+    Fintype.card Generator = 3 ∧
+      (gammaIndex = 0 ∧ stableIndex = 1 ∧ lampIndex = 2) ∧
+      stableRelator =
+        stableWord * gammaWord * stableWord⁻¹ * (gammaWord ^ 2)⁻¹ ∧
+      lampSqRelator = lampWord ^ 2 ∧
+      lampGammaRelator =
+        lampWord * gammaWord * lampWord⁻¹ * gammaWord⁻¹ ∧
+      markedSqRelator = markedWord ^ 2 ∧
+      markedGammaRelator =
+        markedWord * gammaWord * markedWord⁻¹ * gammaWord⁻¹ ∧
+      markedStableRelator =
+        markedWord * stableWord * markedWord⁻¹ * stableWord⁻¹ ∧
+      markedLampRelator =
+        markedWord * lampWord * markedWord⁻¹ * lampWord⁻¹ ∧
+      relators =
+        [stableRelator, lampSqRelator, lampGammaRelator, markedSqRelator,
+          markedGammaRelator, markedStableRelator,
+          markedLampRelator].toFinset ∧
+      markedWord =
+        let displaced := stableWord * lampWord * stableWord⁻¹
+        displaced * (gammaWord * displaced * gammaWord⁻¹) * displaced⁻¹ *
+          (gammaWord * displaced * gammaWord⁻¹)⁻¹ ∧
+      Group.IsFinitelyPresented LiteralGroup ∧
+      mark ≠ 1 ∧
+      Function.Surjective quotientMap ∧
+      quotientMap mark ≠ 1 ∧
+      (((quotientMap mark : RealizedQuotient) : CliffordBS) = zBS) ∧
+      (∀ g : RealizedQuotient, Commute (quotientMap mark) g) ∧
+      (∀ {k V : Type*} [Field k] [AddCommGroup V] [Module k V]
+        [FiniteDimensional k V]
+        (pi : LiteralGroup →* (Module.End k V)ˣ), pi mark = 1) := by
+  exact ⟨by decide, ⟨rfl, rfl, rfl⟩,
+    rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    rfl, rfl, inferInstance, mark_ne_one, quotientMap_surjective,
+    quotientMap_mark_ne_one, quotientMap_mark_val,
+    quotientMap_mark_central,
+    by
+      intro k V _ _ _ _ pi
+      exact finiteDimensional_kill pi⟩
+
 end
 end LiteralCyclicCalibration
 end GroupApproximation

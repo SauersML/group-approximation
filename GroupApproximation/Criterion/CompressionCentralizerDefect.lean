@@ -24,7 +24,7 @@ namespace GroupApproximation
 
 open scoped commutatorElement
 
-variable {H k V : Type} [Group H] [Field k] [AddCommGroup V] [Module k V]
+variable {H : Type} {k V : Type*} [Group H] [Field k] [AddCommGroup V] [Module k V]
 
 /-- The set of one-sided compressors of a subgroup `L ≤ H`. -/
 def compressionSet (L : Subgroup H) : Set H :=

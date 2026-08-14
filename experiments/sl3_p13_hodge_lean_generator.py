@@ -63,11 +63,34 @@ def emit_factor(factor, output):
             )
         output.write("\n")
     output.write(
-        "/-- Every numerator of the exact `102 x 6 x 22` Gram factor. -/\n"
+        "/-- Bounded exact tables for the first 96 Gram-factor rows. -/\n"
     )
-    output.write("def qNumerator : Fin 102 → Fin 6 → Fin 22 → ℤ :=\n")
-    output.write("  finiteTable [%s] (by decide)\n" % ", ".join(
-        "qNumeratorRow%d" % row for row in range(factor.shape[0])))
+    for chunk in range(12):
+        first = 8 * chunk
+        rows = ", ".join(
+            "qNumeratorRow%d" % row for row in range(first, first + 8))
+        output.write(
+            "private def qNumeratorChunk%d : Fin 8 → Fin 6 → Fin 22 → ℤ :=\n"
+            "  finiteTable [%s] (by decide)\n" % (chunk, rows)
+        )
+    output.write(
+        "private def qNumeratorFinal : Fin 6 → Fin 6 → Fin 22 → ℤ :=\n"
+        "  finiteTable [%s] (by decide)\n\n" % ", ".join(
+            "qNumeratorRow%d" % row for row in range(96, 102))
+    )
+    output.write(
+        "/-- Bounded-depth access to every exact Gram-factor row. -/\n"
+        "def qNumerator (row : Fin 102) : Fin 6 → Fin 22 → ℤ :=\n"
+    )
+    for chunk in range(12):
+        upper = 8 * (chunk + 1)
+        lower = 8 * chunk
+        index = "row.1" if chunk == 0 else "row.1 - %d" % lower
+        output.write(
+            "  if h%d : row.1 < %d then qNumeratorChunk%d "
+            "⟨%s, by omega⟩ else\n" % (chunk, upper, chunk, index)
+        )
+    output.write("  qNumeratorFinal ⟨row.1 - 96, by omega⟩\n")
     output.write("\n")
     output.write("/-- The exact rational Gram factor `Q_Z / 10^8`. -/\n")
     output.write(

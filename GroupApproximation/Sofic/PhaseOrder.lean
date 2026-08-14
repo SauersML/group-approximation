@@ -135,8 +135,7 @@ theorem re_nonpos_of_pow_three_eq_one {z : ℂ} (h3 : z ^ 3 = 1) (hne : z ≠ 1)
 polynomials cross, `Re z = -(1+√5)/4`, the maximum of the first four real parts
 equals exactly that value.  The crossing is exact -- with `φ` the golden ratio
 and `x = -φ/2`, the identity `4x³ - 2x² - 3x + 1 = 0` follows from
-`φ² = φ + 1` -- which is why the extremum has a closed form.  (Observed by an
-external referee audit, August 2026.) -/
+`φ² = φ + 1` -- which is why the extremum has a closed form. -/
 theorem re_pow_max_sharp :
     ∃ z : ℂ, Complex.normSq z = 1 ∧
       max (max z.re ((z ^ 2).re)) (max ((z ^ 3).re) ((z ^ 4).re))

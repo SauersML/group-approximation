@@ -21,6 +21,7 @@ import GroupApproximation.Monsters.CyclicBaseCalibration
 import GroupApproximation.Monsters.LiteralCyclicCalibration
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.ConceptualNonMFProof
 import GroupApproximation.Sofic.LiteralBaseTranslationLattice
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralBasePropertyTBridge
@@ -459,6 +460,7 @@ import GroupApproximation.Sofic.AuxiliaryClassSeparation
 import GroupApproximation.Sofic.StarGaussian
 import GroupApproximation.Sofic.FermionicOptimality
 import GroupApproximation.Endpoint.MainResults
+import GroupApproximation.Endpoint.SimultaneousStability
 import GroupApproximation.Endpoint.StructuralProfile
 import GroupApproximation.Leavitt.UnitsGLProfile
 import GroupApproximation.KOne.AllRanksElementary
@@ -467,6 +469,10 @@ import GroupApproximation.Monsters.Terminality
 import GroupApproximation.Monsters.TwoConjugacyClasses
 import GroupApproximation.Monsters.VerbalCompleteness
 import GroupApproximation.Monsters.Protection
+import GroupApproximation.Monsters.UniversalMFEventHorizon
+import GroupApproximation.Monsters.UniversalFinitelyPresentedTorsionFreeGroup
+import GroupApproximation.Monsters.TorsionFreeConjugacyExtension
+import GroupApproximation.Monsters.HitchhikerPayload
 import GroupApproximation.Endpoint.Audit
 import GroupApproximation.Endpoint.Public
 import GroupApproximation.Endpoint.ManuscriptStatements

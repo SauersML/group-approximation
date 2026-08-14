@@ -34,25 +34,85 @@ def nonincidenceEntry (p h : Point) : ℕ :=
   if pairing p h = 1 then 1 else 0
 
 theorem card_bitVector4 : Fintype.card BitVector4 = 16 := by
-  native_decide
+  decide
 
 theorem card_point : Fintype.card Point = 15 := by
-  native_decide
-
-theorem card_nonincidentFlag : Fintype.card NonincidentFlag = 120 := by
-  native_decide
+  decide
 
 /-- Every point is outside exactly eight hyperplanes. -/
 theorem nonincidence_row_count :
     ∀ p : Point, ∑ h : Point, nonincidenceEntry p h = 8 := by
-  native_decide
+  intro p
+  fin_cases p <;> decide
+
+theorem card_nonincidentFlag : Fintype.card NonincidentFlag = 120 := by
+  classical
+  have fiber_card (p : Point) :
+      Fintype.card {h : Point // pairing p h = 1} = 8 := by
+    calc
+      Fintype.card {h : Point // pairing p h = 1} =
+          (Finset.univ.filter fun h : Point => pairing p h = 1).card :=
+        Fintype.card_subtype _
+      _ = ∑ h : Point, if pairing p h = 1 then 1 else 0 := by
+        symm
+        simp
+      _ = 8 := by
+        simpa [nonincidenceEntry] using nonincidence_row_count p
+  calc
+    Fintype.card NonincidentFlag =
+        Fintype.card (Σ p : Point, {h : Point // pairing p h = 1}) := by
+      exact Fintype.card_congr
+        (Equiv.subtypeProdEquivSigmaSubtype fun p h : Point => pairing p h = 1)
+    _ = ∑ p : Point, Fintype.card {h : Point // pairing p h = 1} :=
+      Fintype.card_sigma
+    _ = 120 := by simp [fiber_card]
+
+private theorem zmod2_eq_zero_or_one (x : ZMod 2) : x = 0 ∨ x = 1 := by
+  fin_cases x
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+
+private theorem nonincidence_common_row_count_00 :
+  ∀ p q : Point, p.1 0 = 0 → p.1 1 = 0 → p ≠ q →
+      ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
+  intro p q hp0 hp1
+  fin_cases p <;> norm_num at hp0 hp1
+  all_goals fin_cases q <;> decide
+
+private theorem nonincidence_common_row_count_01 :
+  ∀ p q : Point, p.1 0 = 0 → p.1 1 = 1 → p ≠ q →
+      ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
+  intro p q hp0 hp1
+  fin_cases p <;> norm_num at hp0 hp1
+  all_goals fin_cases q <;> decide
+
+private theorem nonincidence_common_row_count_10 :
+  ∀ p q : Point, p.1 0 = 1 → p.1 1 = 0 → p ≠ q →
+      ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
+  intro p q hp0 hp1
+  fin_cases p <;> norm_num at hp0 hp1
+  all_goals fin_cases q <;> decide
+
+private theorem nonincidence_common_row_count_11 :
+  ∀ p q : Point, p.1 0 = 1 → p.1 1 = 1 → p ≠ q →
+      ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
+  intro p q hp0 hp1
+  fin_cases p <;> norm_num at hp0 hp1
+  all_goals fin_cases q <;> decide
 
 /-- Two distinct points are simultaneously outside exactly four
 hyperplanes. -/
 theorem nonincidence_common_row_count :
     ∀ p q : Point, p ≠ q →
       ∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h = 4 := by
-  native_decide
+  intro p q hpq
+  rcases zmod2_eq_zero_or_one (p.1 0) with hp0 | hp0
+  · rcases zmod2_eq_zero_or_one (p.1 1) with hp1 | hp1
+    · exact nonincidence_common_row_count_00 p q hp0 hp1 hpq
+    · exact nonincidence_common_row_count_01 p q hp0 hp1 hpq
+  · rcases zmod2_eq_zero_or_one (p.1 1) with hp1 | hp1
+    · exact nonincidence_common_row_count_10 p q hp0 hp1 hpq
+    · exact nonincidence_common_row_count_11 p q hp0 hp1 hpq
 
 /-- Entrywise Gram identity for the nonincidence matrix:
 `B Bᵀ = 4 I + 4 J`. -/
@@ -60,7 +120,18 @@ theorem nonincidence_gram_entry :
     ∀ p q : Point,
       (∑ h : Point, nonincidenceEntry p h * nonincidenceEntry q h) =
         if p = q then 8 else 4 := by
-  native_decide
+  intro p q
+  by_cases hpq : p = q
+  · subst q
+    rw [if_pos rfl]
+    rw [show (∑ h : Point, nonincidenceEntry p h * nonincidenceEntry p h) =
+        ∑ h : Point, nonincidenceEntry p h by
+      apply Finset.sum_congr rfl
+      intro h _
+      simp [nonincidenceEntry]]
+    exact nonincidence_row_count p
+  · rw [if_neg hpq]
+    exact nonincidence_common_row_count p q hpq
 
 end NonincidentFlagGram
 end GroupApproximation

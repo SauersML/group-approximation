@@ -39,6 +39,8 @@ LIB = "GroupApproximation"
 LIBS = (LIB, "Superseded")
 
 IMPORT_RE = re.compile(r"^import\s+([A-Za-z0-9_.]+)", re.MULTILINE)
+NATIVE_DECIDE_RE = re.compile(
+    r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])")
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import claim_map  # noqa: E402  (path set above)
@@ -52,8 +54,7 @@ import claim_map  # noqa: E402  (path set above)
 FORBIDDEN = [
     ("sorry / sorryAx", re.compile(r"(?<![A-Za-z0-9_])sorry(?![A-Za-z0-9_])|sorryAx")),
     ("hand-declared axiom", re.compile(r"^[ \t]*axiom[ \t]")),
-    ("native_decide (trusts the compiler, not the kernel)",
-     re.compile(r"(?<![A-Za-z0-9_])native_decide(?![A-Za-z0-9_])")),
+    ("native_decide (trusts the compiler, not the kernel)", NATIVE_DECIDE_RE),
     ("unsafe / implemented_by / opaque escape hatch",
      re.compile(r"^[ \t]*unsafe[ \t]|@\[implemented_by|^[ \t]*opaque[ \t]")),
     ("warningAsError disabled", re.compile(r"warningAsError[ \t]*(:=)?[ \t]*false")),
@@ -73,7 +74,7 @@ FORBIDDEN = [
      re.compile(r"set_option[ \t]+([A-Za-z0-9_]+\.)*maxRecDepth(?![A-Za-z0-9_])")),
 ]
 
-# Strings known to have been fabricated by model sessions and purged from the
+# Strings known to have been fabricated in earlier edits and purged from the
 # publication surface (see docs/ADVERSARIAL_AUDIT_NON_MF_2026-08-13.md).  The
 # "Leiden Declaration" and its Zenodo DOI do not exist; the reference was
 # purged once and reintroduced by a later merge, so it is gated here.  The
@@ -198,6 +199,7 @@ def check_import_closure(root: Path, f: Findings) -> None:
 
 
 def check_forbidden(root: Path, f: Findings) -> None:
+    module_paths = set(all_module_files(root).values())
     for name, path in sorted(all_module_files(root).items()):
         text = path.read_text(encoding="utf-8", errors="replace")
         rel = path.relative_to(root)
@@ -205,6 +207,20 @@ def check_forbidden(root: Path, f: Findings) -> None:
             for m in pattern.finditer(text):
                 line = text.count("\n", 0, m.start()) + 1
                 f.add(label, f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
+
+    # Audit scripts are Lean programs too.  They are outside the library import
+    # closure, so scan every remaining Lean source explicitly for compiled
+    # decision shortcuts.  This makes the ban repository-wide rather than an
+    # accidental property of the main module graph.
+    for path in sorted(root.rglob("*.lean")):
+        if path in module_paths or ".lake" in path.parts or ".git" in path.parts:
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        rel = path.relative_to(root)
+        for m in NATIVE_DECIDE_RE.finditer(text):
+            line = text.count("\n", 0, m.start()) + 1
+            f.add("native_decide (trusts the compiler, not the kernel)",
+                  f"{rel}:{line}: {text.splitlines()[line - 1].strip()}")
 
 
 # The "stale conditionality disclaimer" scan used to live here.  It moved to

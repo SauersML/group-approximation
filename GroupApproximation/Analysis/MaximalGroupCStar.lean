@@ -245,7 +245,12 @@ theorem maximalGroupCStar_existsUnique_lift
   rcases subsingleton_or_nontrivial B with hB | hB
   · letI : Subsingleton B := hB
     let f : MaximalGroupCStar G →⋆ₐ[ℂ] B :=
-      { (default : MaximalGroupCStar G →ₐ[ℂ] B) with
+      { toFun := fun _ ↦ 0
+        map_one' := Subsingleton.elim _ _
+        map_mul' := fun _ _ ↦ Subsingleton.elim _ _
+        map_zero' := rfl
+        map_add' := fun _ _ ↦ Subsingleton.elim _ _
+        commutes' := fun _ ↦ Subsingleton.elim _ _
         map_star' := fun _ ↦ Subsingleton.elim _ _ }
     refine ⟨f, fun _ ↦ Subsingleton.elim _ _, ?_⟩
     intro q _
@@ -269,21 +274,34 @@ theorem maximalGroupCStar_existsUnique_lift
     rw [hx']
     exact hq g
 
+/-- Exact public package for the manuscript's universe-relative maximal
+group C-star algebra: the canonical unitary representation is faithful, and
+every unitary representation on a same-universe C-star algebra extends
+uniquely across the canonical generators. -/
+theorem manuscriptUniverseRelativeMaximalGroupCStar :
+    Function.Injective (maximalGroupCStarUnitaryHom G) ∧
+      ∀ (B : Type u) [CStarAlgebra B] (rho : G →* unitary B),
+        ∃! f : MaximalGroupCStar G →⋆ₐ[ℂ] B,
+          ∀ g : G,
+            f (maximalGroupCStarGenerator G g) = (rho g : B) := by
+  exact ⟨maximalGroupCStarUnitaryHom_injective G,
+    fun _ _ rho ↦ maximalGroupCStar_existsUnique_lift G rho⟩
+
 /-- A faithful MF embedding of the maximal group C-star algebra would
-restrict to a faithful operator-MF embedding of the group. -/
+restrict to a faithful MF embedding of the group. -/
 theorem isOperatorMF_of_maximalGroupCStar_hasMFEmbedding [Countable G]
     (h : HasMFEmbedding (MaximalGroupCStar G)) : IsOperatorMF G :=
   h.isOperatorMF (maximalGroupCStarUnitaryHom G)
     (maximalGroupCStarUnitaryHom_injective G)
 
-/-- A non-operator-MF group has a maximal group C-star algebra with no
+/-- A non-MF group has a maximal group C-star algebra with no
 faithful norm-matrix-corona embedding. -/
 theorem maximalGroupCStar_not_hasMFEmbedding_of_not_isOperatorMF
     [Countable G] (h : ¬ IsOperatorMF G) :
     ¬ HasMFEmbedding (MaximalGroupCStar G) :=
   mt (isOperatorMF_of_maximalGroupCStar_hasMFEmbedding G) h
 
-/-- Consequently, the maximal group C-star algebra of a non-operator-MF
+/-- Consequently, the maximal group C-star algebra of a non-MF
 group is not an MF C-star algebra. -/
 theorem maximalGroupCStar_not_isMFAlgebra_of_not_isOperatorMF
     [Countable G] (h : ¬ IsOperatorMF G) :

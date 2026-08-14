@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.PresentedGroupEvaluation
 import GroupApproximation.Sofic.NormMFResidualDetector
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.PresentedGroup
+import Mathlib.Logic.Equiv.Fin.Basic
 import Mathlib.Tactic.Group
 
 /-!
@@ -20,11 +21,9 @@ the marked word is imposed to be a central involution.
 No completeness theorem for the six-generator base presentation is used in
 this file.  This module asserts only the literal finite-presentation algebra;
 the separate exact realization in `LiteralNonMFLinearWitness` proves that its
-marked word is nontrivial.  The Lean library intentionally asserts no
-operator-MF endpoint for this literal group: it neither identifies the
-presented base with `ℤ³ ⋊ SL₃(ℤ)` nor proves property `(T)` for the abstract
-presented base.  The unconditional formal counterexample is the independent
-chosen Shalom-cover witness in `ChosenNonMFTheorem`.
+marked word is nontrivial.  The analytic endpoint is kept in a separate
+module, so this presentation file makes no property-`(T)` or MF claim on its
+own.
 -/
 
 namespace GroupApproximation
@@ -65,6 +64,11 @@ abbrev Generator.stable : Generator := Sum.inr 0
 abbrev Generator.lamp : Generator := Sum.inr 1
 
 theorem generator_card : Fintype.card Generator = 8 := by decide
+
+/-- The printed ordering `v1,v2,v3,x,y,z,t,c` as the standard rank-eight
+alphabet. -/
+def generatorEquivFin8 : Generator ≃ Fin 8 :=
+  finSumFinEquiv.trans (finCongr (by decide))
 
 /-! ## Free words -/
 
@@ -560,6 +564,70 @@ theorem literal_algebraic_package :
       (∀ g : MarkedGroup, Commute mark g) := by
   exact ⟨inferInstance, stable_conjugates_base_into_base,
     lamp_commutes_base, mark_sq, mark_central⟩
+
+/-- Exact object-and-relator package for the manuscript's displayed
+eight-generator presentation.  The first two conjuncts pin the alphabet and
+the presented quotient itself; the remaining conjuncts record the relations
+used immediately after the definition in the manuscript. -/
+theorem manuscriptLiteralPresentation :
+    Fintype.card Generator = 8 ∧
+      (v1Index = 0 ∧ v2Index = 1 ∧ v3Index = 2 ∧
+        xIndex = 3 ∧ yIndex = 4 ∧ zIndex = 5 ∧
+        (Generator.stable : Generator) = Sum.inr 0 ∧
+        (Generator.lamp : Generator) = Sum.inr 1) ∧
+      baseRelators =
+        [bx ^ 3, bY ^ 3, bz ^ 2, (bx * bz) ^ 3, (bY * bz) ^ 3,
+          (bx⁻¹ * bz * bx * bY) ^ 2,
+          (bY⁻¹ * bz * bY * bx) ^ 2, (bx * bY) ^ 6,
+          bv1 * bv2 * bv1⁻¹ * bv2⁻¹,
+          bv1 * bv3 * bv1⁻¹ * bv3⁻¹,
+          bv2 * bv3 * bv2⁻¹ * bv3⁻¹,
+          bx * bv1 * bx⁻¹ * bv3⁻¹,
+          bx * bv2 * bx⁻¹ * bv1⁻¹,
+          bx * bv3 * bx⁻¹ * bv2⁻¹,
+          bY * bv1 * bY⁻¹ * bv1⁻¹,
+          bY * bv2 * bY⁻¹ * (bv2⁻¹ * bv3)⁻¹,
+          bY * bv3 * bY⁻¹ * (bv1 * bv2⁻¹)⁻¹,
+          bz * bv1 * bz⁻¹ * (bv2 * bv3⁻¹)⁻¹,
+          bz * bv2 * bz⁻¹ * (bv1 * bv3⁻¹)⁻¹,
+          bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹].toFinset ∧
+      transportedBaseRelators = baseRelators.image embedBaseWord ∧
+      (compressedBaseWord v1Index = bv1 ^ 2 ∧
+        compressedBaseWord v2Index = bv2 ^ 2 ∧
+        compressedBaseWord v3Index = bv3 ^ 2 ∧
+        compressedBaseWord xIndex = bx ∧
+        compressedBaseWord yIndex = bY ∧
+        compressedBaseWord zIndex = bz) ∧
+      stableRelators = Finset.univ.image (fun i : BaseGenerator ↦
+        stableWord * vertexLetter i * stableWord⁻¹ *
+          (embedBaseWord (compressedBaseWord i))⁻¹) ∧
+      lampRelators =
+        {lampWord ^ 2} ∪ Finset.univ.image (fun i : BaseGenerator ↦
+          lampWord * vertexLetter i * lampWord⁻¹ * (vertexLetter i)⁻¹) ∧
+      markedWord =
+        (let displaced := stableWord * lampWord * stableWord⁻¹
+         displaced * (v1Word * displaced * v1Word⁻¹) * displaced⁻¹ *
+           (v1Word * displaced * v1Word⁻¹)⁻¹) ∧
+      markedRelators =
+        {markedWord ^ 2} ∪ Finset.univ.image (fun i : Generator ↦
+          markedWord * FreeGroup.of i * markedWord⁻¹ *
+            (FreeGroup.of i)⁻¹) ∧
+      relators =
+        transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪
+          markedRelators ∧
+      MarkedGroup =
+        PresentedGroup ((relators : Finset (FreeGroup Generator)) :
+          Set (FreeGroup Generator)) ∧
+      Group.IsFinitelyPresented MarkedGroup ∧
+      (mark ^ 2 = 1 ∧ ∀ g : MarkedGroup, Commute mark g) ∧
+      (∀ g : Base, stable * baseMap g * stable⁻¹ ∈ baseMap.range) ∧
+      (∀ g : Base, Commute lamp (baseMap g)) := by
+  exact ⟨generator_card,
+    ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl,
+    ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl, rfl, rfl, rfl, rfl,
+    inferInstance,
+    ⟨mark_sq, mark_central⟩, stable_conjugates_base_into_base,
+    lamp_commutes_base⟩
 
 end
 

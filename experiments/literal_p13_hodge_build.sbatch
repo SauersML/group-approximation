@@ -6,6 +6,12 @@
 #SBATCH --output=literal-p13-hodge-build-%j.log
 
 set -euo pipefail
-cd /projects/standard/hsiehph/sauer354/nonsofic_existence
-/projects/standard/hsiehph/sauer354/.elan/bin/lake build \
-  GroupApproximation.Sofic.LiteralP13HodgeCertificate
+
+if [ "$#" -ne 2 ]; then
+  echo "usage: sbatch literal_p13_hodge_build.sbatch REPOSITORY_ROOT LAKE_BINARY" >&2
+  exit 2
+fi
+
+cd "$1"
+"$2" build \
+  GroupApproximation.Sofic.P13ExactStagedCertificate

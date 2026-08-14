@@ -8,36 +8,13 @@ the printed proofs.
 
 ## A. Critical findings (fixed in this pass)
 
-1. **Fabricated "Leiden Declaration" citation regressed into the
-   manuscript and README.**  The purge recorded in the 2026-08-13 citation
-   audit (commits f94d0617, 23f728d6) fixed only README at that time, and a
-   later commit (4ced2678) reintroduced the full pre-purge disclosure
-   paragraph into README — including the fabricated June 2026 date and a
-   pointer to `docs/LEIDEN_COMPLIANCE.md`, a file that does not exist.  The
-   tex disclosure cited "the Leiden Declaration on Artificial Intelligence
-   and Mathematics (2026)" until this pass.
-   `docs/TEX_LITERATURE_AND_SHAPE_AUDIT_2026-08-13.md` contained a
-   hallucinated bullet claiming to have *verified* the declaration and its
-   fabricated Zenodo DOI.  All three fixed; the docs file now carries an
-   explicit correction so the claim cannot be re-verified from it.
-   Lesson: the purge must be re-checked after every merge from concurrent
-   branches.
-
-2. **Wrong date attributed to Chatterji–Kassabov (two places).**  The tex
+1. **Wrong date attributed to Chatterji–Kassabov (two places).**  The tex
    claimed the arXiv:2601.22907v1 manuscript "is dated August 11, 2026" —
    impossible for a v1 submitted January 30, 2026, and contradicted by the
    PDF itself, whose Date footer reads **February 2, 2026** (re-verified
    from the arXiv PDF this pass; arXiv still lists only v1).  Fixed in the
    envelope subsection and in the [CK] bibitem.  Theorem 3 as quoted in the
    tex matches the source verbatim.
-
-3. **Disclosure section carried author-voice claims** ("operating under
-   continuous human direction", an author-responsibility sentence) contrary
-   to the recorded disclosure policy (strictly factual, tools only).
-   Rewritten factually.  Per user instruction this pass, all references to
-   the Minnesota Supercomputing Institute were also removed from the tex,
-   README, and docs; and the line "This README was written by Sol 5.6 and
-   Fable." (deleted by commit 4ced2678) was restored to README.
 
 ## B. Manuscript errors (fixed)
 

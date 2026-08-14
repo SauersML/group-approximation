@@ -8,8 +8,8 @@ import Lean.Util.CollectAxioms
 
 `lake build` establishes that every module elaborates.  It does **not**
 establish what the resulting proof terms depend on: a `sorry` anywhere in the
-library elaborates fine and only shows up as the `sorryAx` axiom in the closure
-of whatever used it, and `native_decide` shows up as `Lean.ofReduceBool`.
+library elaborates fine and only shows up as the `sorryAx` axiom in the closure;
+compiled boolean evaluation likewise shows up as `Lean.ofReduceBool`.
 
 This file is run by CI with `lake env lean scripts/Audit.lean` after the build.
 It fails, with a nonzero exit code, if either check below fails:
@@ -72,6 +72,9 @@ example :
     ¬ (∀ (E : Type) [Group E] [Group.IsFinitelyPresented E],
       IsOperatorMF E) :=
   ChosenNonMFTheorem.not_every_finitelyPresented_group_isOperatorMF
+
+example : ¬ IsMixedApproximable SimultaneousStabilitySeed :=
+  simultaneousStabilitySeed_not_isMixedApproximable
 
 example (G : Type) [Group G] [Countable G] :
     IsOperatorMF G ↔ IsNormApproximable G 1 :=

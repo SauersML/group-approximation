@@ -77,5 +77,24 @@ theorem no_finite_quotient_detects_literal_mark :
   rintro ⟨Q, _, _, φ, hφ⟩
   exact hφ (map_literal_mark_eq_one_of_finite φ)
 
+/-- Exact outer-form package for the manuscript's non-RFD corollary. -/
+theorem manuscriptFiniteDimensionalConsequences :
+    (∀ {K : Type u} {W : Type v} [Field K] [AddCommGroup W]
+        [Module K W] [FiniteDimensional K W]
+        (π : MarkedGroup →* (Module.End K W)ˣ),
+          ¬ Function.Injective π) ∧
+      (∀ {K : Type u} {W : Type v} [Field K] [AddCommGroup W]
+        [Module K W] [FiniteDimensional K W]
+        (π : MarkedGroup →* (Module.End K W)ˣ), π mark = 1) ∧
+      (∀ {Q : Type*} [Group Q] [Finite Q] (φ : MarkedGroup →* Q),
+        φ mark = 1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro K W _ _ _ _ π
+    exact literal_finiteDimensional_rep_not_injective π
+  · intro K W _ _ _ _ π
+    exact map_literal_mark_eq_one π
+  · intro Q _ _ φ
+    exact map_literal_mark_eq_one_of_finite φ
+
 end LiteralFiniteDimensionalObstruction
 end GroupApproximation

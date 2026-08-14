@@ -190,10 +190,14 @@ group of an algebra having the bare MF embedding property. -/
 theorem IsCDEOperatorMF.hasMFAlgebraUnitaryEmbedding
     {G : Type u} [Group G] [Countable G]
     (h : IsCDEOperatorMF G) : HasMFAlgebraUnitaryEmbedding G := by
-  rcases h with ⟨X, hne, hX, hmono, rho, hrho⟩
+  rcases h with ⟨d, hd, hmono, rho, hrho⟩
+  let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
+  let hne : ∀ n, Nonempty (X n) := fun n ↦
+    Fintype.card_pos_iff.mp (by simpa [X] using hd n)
   letI : ∀ n, Nonempty (X n) := hne
   refine ⟨NormMatrixCStarCorona (fun n ↦ X n), inferInstance, ?_⟩
-  exact ⟨normMatrixCStarCorona_hasMFEmbedding X hne hX hmono, rho, hrho⟩
+  exact ⟨normMatrixCStarCorona_hasMFEmbedding X hne (by simpa [X] using hd)
+    (by simpa [X] using hmono), rho, hrho⟩
 
 /-- An embedding into the unitary group of an algebra with a bare MF
 embedding composes, using the corner-complement correction above, to give

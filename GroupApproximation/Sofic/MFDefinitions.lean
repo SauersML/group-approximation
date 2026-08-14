@@ -257,7 +257,7 @@ theorem IsStrongMF.isUltraproductMF
   obtain ⟨rho, hrho⟩ := A.toWeakMFApproximation.exists_normUltraproductEmbedding hU
   exact ⟨U, hU, A.model, A.modelNonempty, rho, hrho⟩
 
-/-- Strong MF implies CDE/operator-corona MF for countable groups. -/
+/-- Strong MF implies the standard group-theoretic MF property for countable groups. -/
 theorem IsStrongMF.isGroupTheoreticMF [Countable G]
     (h : IsStrongMF G) : IsGroupTheoreticMF G :=
   h.isUltraproductMF.isGroupTheoreticMF
@@ -366,6 +366,58 @@ theorem not_hasMFEmbedding_reducedGroupCStar_of_not_isGroupTheoreticMF
     [Countable G] (h : ¬ IsGroupTheoreticMF G) :
     ¬ HasMFEmbedding (ReducedGroupCStarTrace.ReducedGroupCStar G) :=
   mt reducedGroupCStar_isGroupTheoreticMF_of_hasMFEmbedding h
+
+/-! ## Simultaneous failure package -/
+
+/-- Simultaneous failure of every equivalent MF formulation and every
+stronger MF variant formalized in this development.  The package deliberately
+excludes soficity and hyperlinearity: neither is definitionally one of these
+MF properties, and no converse implication is asserted here.  It also
+excludes the unrelated modular-by-finite predicate defined below. -/
+structure FailsAllFormalizedMFVariants
+    (G : Type u) [Group G] [Countable G] : Prop where
+  not_isWeakMF : ¬ IsWeakMF G
+  not_isOperatorMF : ¬ IsOperatorMF G
+  not_isOperatorMFIncreasing : ¬ IsOperatorMFIncreasing G
+  not_isGroupTheoreticMF : ¬ IsGroupTheoreticMF G
+  not_isCDEOperatorMF : ¬ IsCDEOperatorMF G
+  not_isUltraproductMF : ¬ IsUltraproductMF G
+  not_isFiniteSetMF : ¬ IsFiniteSetMF G
+  not_hasMFAlgebraUnitaryEmbedding : ¬ HasMFAlgebraUnitaryEmbedding G
+  not_isTracePreservingMF : ¬ IsTracePreservingMF G
+  not_isStrongMF : ¬ IsStrongMF G
+  not_isTraceRegularMF : ¬ IsTraceRegularMF G
+  not_isReducedGroupCStarMF : ¬ IsReducedGroupCStarMF G
+
+/-- Failure of the group-theoretic MF property simultaneously rules out all
+equivalent MF formulations and stronger MF variants formalized above. -/
+theorem failsAllFormalizedMFVariants_of_not_isGroupTheoreticMF
+    [Countable G] (h : ¬ IsGroupTheoreticMF G) :
+    FailsAllFormalizedMFVariants G := by
+  have hOperator : ¬ IsOperatorMF G := by
+    simpa [IsGroupTheoreticMF] using h
+  exact {
+    not_isWeakMF := fun hWeak ↦
+      hOperator (IsWeakMF.isOperatorMF hWeak)
+    not_isOperatorMF := hOperator
+    not_isOperatorMFIncreasing := fun hIncreasing ↦
+      hOperator ((isOperatorMFIncreasing_iff (G := G)).mp hIncreasing)
+    not_isGroupTheoreticMF := h
+    not_isCDEOperatorMF :=
+      not_isCDEOperatorMF_of_not_isGroupTheoreticMF h
+    not_isUltraproductMF :=
+      not_isUltraproductMF_of_not_isGroupTheoreticMF h
+    not_isFiniteSetMF :=
+      not_isFiniteSetMF_of_not_isGroupTheoreticMF h
+    not_hasMFAlgebraUnitaryEmbedding :=
+      not_hasMFAlgebraUnitaryEmbedding_of_not_isGroupTheoreticMF h
+    not_isTracePreservingMF :=
+      not_isTracePreservingMF_of_not_isGroupTheoreticMF h
+    not_isStrongMF := not_isStrongMF_of_not_isGroupTheoreticMF h
+    not_isTraceRegularMF :=
+      not_isTraceRegularMF_of_not_isGroupTheoreticMF h
+    not_isReducedGroupCStarMF :=
+      not_isReducedGroupCStarMF_of_not_isGroupTheoreticMF h }
 
 /-! ## The unrelated modular-by-finite meaning -/
 

@@ -31,6 +31,14 @@ on:
       # therefore has to create an exact-SHA prover run as well.
       - 'non_mf_groups_exist.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
+      - 'experiments/sl3-p13-reductions-complete.json'
+      - 'experiments/sl3-sos-radius0-certificate.json'
+      - 'experiments/sl3-sos-radius0-certificate.npz'
+      - 'experiments/sl3_p13_certificate_lean_generator.py'
+      - 'experiments/sl3_p13_hodge_lean_generator.py'
+      - 'experiments/sl3_p13_pair_table_generator.py'
+      - 'experiments/sl3_p13_relator_replay.py'
+      - 'experiments/sl3_p13_replay_lean_generator.py'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -50,6 +58,14 @@ on:
       - '.github/workflows/prover.yml'
       - 'non_mf_groups_exist.tex'
       - '.github/workflows/build-non-mf-pdf.yml'
+      - 'experiments/sl3-p13-reductions-complete.json'
+      - 'experiments/sl3-sos-radius0-certificate.json'
+      - 'experiments/sl3-sos-radius0-certificate.npz'
+      - 'experiments/sl3_p13_certificate_lean_generator.py'
+      - 'experiments/sl3_p13_hodge_lean_generator.py'
+      - 'experiments/sl3_p13_pair_table_generator.py'
+      - 'experiments/sl3_p13_relator_replay.py'
+      - 'experiments/sl3_p13_replay_lean_generator.py'
   workflow_dispatch:
 
 concurrency:
@@ -57,11 +73,11 @@ concurrency:
   # Let the running gate finish; do not cancel it for a newer push.  At this
   # repository's push frequency, cancel-in-progress starved the gate: runs
   # were superseded before the fresh kernel replay ended, so hours passed
-  # with no completed verification and the `verified` pointer stalled.  With
-  # cancellation off, GitHub keeps at most one pending run and replaces it
-  # as newer pushes arrive, so the gate still processes the newest snapshot
-  # next while every started run completes and advances the pointer.  The
-  # compiled-project cache is saved before the long replay either way.
+  # with no completed verification.  With cancellation off, GitHub keeps at
+  # most one pending run and replaces it as newer pushes arrive, so the gate
+  # still processes the newest snapshot next while every started run
+  # completes.  The compiled-project cache is saved before the long replay
+  # either way.
   cancel-in-progress: false
 
 permissions:
@@ -101,11 +117,6 @@ jobs:
     needs: gate
     if: ${{ github.event_name != 'schedule' || needs.gate.outputs.run == 'true' }}
     runs-on: ubuntu-latest
-    # Write access exists solely for the final step, which advances the
-    # `verified` branch pointer after a fully green run.  Every other step
-    # only reads the repository.
-    permissions:
-      contents: write
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
     # can run for hours; every run saves whatever it compiled (see the
     # cache-save steps), so even a run that hits this ceiling leaves the next
@@ -226,28 +237,32 @@ jobs:
         continue-on-error: true
         run: python3 scripts/check.py
 
-      # The non-MF paper has its own generated roster and verified/conditional
-      # vocabulary.  These requirements pin the CDE predicate reformulation
-      # and finite-type-indexed canonical target isomorphism as `equivalent`,
-      # and reserve `verified` for the exact finite-normal kernel theorem.  No
-      # nonexistent literal-E endpoint is required.
+      # The non-MF paper has its own generated roster and numbered-claim
+      # manifest.  Every visible badge is exact, and the two load-bearing
+      # literal endpoints below are required explicitly: the unconditional
+      # eight-generator counterexample and the unconditional property-(T)
+      # theorem for its literal base presentation.
       - name: Non-MF counterpart contract
         id: non-mf-contract
         continue-on-error: true
         run: |
+          python3 scripts/regenerate_non_mf_claim_manifest.py \
+            --output /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
+          diff -u docs/NON_MF_NUMBERED_CLAIMS.json \
+            /tmp/NON_MF_NUMBERED_CLAIMS.generated.json
           python3 scripts/check_non_mf_refs.py \
             --tex non_mf_groups_exist.tex \
             --check-decls \
             --extra-declarations-from docs/NON_MF_NUMBERED_CLAIMS.json \
-            --require-status equivalent \
-              Sofic/CDEOperatorMF \
-              GroupApproximation.isCDEOperatorMF_iff_isOperatorMF \
-            --require-status equivalent \
-              Analysis/NormMatrixCoronaUnitary \
-              GroupApproximation.normMatrixCoronaUnitaryEquiv \
             --require-verified \
-              Sofic/FiniteNormalCoronaObstruction \
-              GroupApproximation.KazhdanCompressionCore.finiteNormal_le_normMatrixCStarCoronaKernel
+              Sofic/LiteralNonMFEndpoint \
+              GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA \
+            --require-verified \
+              Sofic/LiteralBaseP13PropertyTBridge \
+              GroupApproximation.LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT \
+            --require-verified \
+              Sofic/P13ExactStagedCertificate \
+              GroupApproximation.LiteralP13HodgeCertificate.manuscriptP13HodgeCertificate
           python3 scripts/check_non_mf_claim_manifest.py \
             --tex non_mf_groups_exist.tex \
             --manifest docs/NON_MF_NUMBERED_CLAIMS.json \
@@ -368,54 +383,3 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
-
-      # A stable pointer for reviewers: after a fully green run on main --
-      # build, both scans, the counterpart contract, kernel audit, signature
-      # pins, fresh-kernel replay, and the zero-tolerance verdict above --
-      # fast-forward the `verified` branch to this commit.  Reviewers who
-      # want the newest CI-passing state of the formal development check out
-      # `verified` instead of racing a moving `main`.  This step runs under
-      # the default `success()` condition, so any failure upstream,
-      # including the verdict, leaves the pointer untouched.  Pushing
-      # `verified` triggers no workflows: every push trigger in this
-      # repository is filtered to `main`.
-      - name: Advance the verified branch
-        if: github.ref == 'refs/heads/main'
-        shell: bash
-        run: |
-          set -euo pipefail
-          if ! git push --force origin HEAD:refs/heads/verified; then
-            echo "::warning::could not advance the verified branch; the proof and kernel audit still passed."
-          fi
-
-          # Rewrite the pinned verified-state line at the top of the README
-          # so the front page always names the exact commit this run just
-          # certified.  [skip ci] keeps the rewrite from triggering any
-          # workflow, and the retry loop absorbs races with the repository's
-          # push frequency.  A lost race after three attempts is a warning,
-          # not a red run: the verification itself succeeded, and the next
-          # green run rewrites the pin anyway.
-          sha='${{ github.sha }}'
-          short=${sha:0:8}
-          line="> **Verified state:** [\`${short}\`](https://github.com/${{ github.repository }}/tree/${sha})"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          wt="${RUNNER_TEMP}/readme-update"
-          git fetch origin main
-          git worktree add "$wt" origin/main
-          cd "$wt"
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            sed -i "s%^> \*\*Verified state:\*\* .*%${line}%" README.md
-            if git diff --quiet -- README.md; then
-              echo "README already names ${short}."
-              exit 0
-            fi
-            git commit -m "ci: pin verified state ${short} [skip ci]" -- README.md
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push raced on attempt ${attempt}; retrying."
-          done
-          echo "::warning::could not update the README verified pin after 3 attempts; the next green run will."

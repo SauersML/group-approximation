@@ -17,13 +17,9 @@ open LiteralNonMFPresentation MarkedGroupSpace
 
 noncomputable section
 
-/-- The printed ordering `v1,v2,v3,x,y,z,t,c` as a rank-eight alphabet. -/
-def generatorEquiv : Generator ≃ Fin 8 :=
-  finSumFinEquiv.trans (finCongr (by decide))
-
 /-- Reindex a literal free word as a word on `Fin 8`. -/
 def reindexWord : FreeGroup Generator →* FreeGroup (Fin 8) :=
-  FreeGroup.map generatorEquiv
+  FreeGroup.map generatorEquivFin8
 
 /-- The displayed finite relator set on the standard rank-eight alphabet. -/
 def relators8 : Finset (FreeGroup (Fin 8)) :=
@@ -55,19 +51,19 @@ private theorem lift_generatorEquiv_symm_reindexWord
     (q : FreeGroup Generator) :
     FreeGroup.lift
         (fun i : Fin 8 ↦ wordInMarkedGroup
-          (FreeGroup.of (generatorEquiv.symm i)))
+          (FreeGroup.of (generatorEquivFin8.symm i)))
         (reindexWord q) = wordInMarkedGroup q := by
   change ((FreeGroup.lift _).comp reindexWord) q = wordInMarkedGroup q
   apply freeGroup_hom_eq_on_generators
   intro i
-  simp [reindexWord, generatorEquiv]
+  simp [reindexWord, generatorEquivFin8]
 
 /-- The reindexed marked word is not a relation of the canonical point. -/
 theorem markedWord8_not_mem_literalPoint :
     mark ≠ 1 → markedWord8 ∉ literalPoint.relations := by
   intro hmark hw
   let assignment : Fin 8 → MarkedGroup := fun i ↦
-    wordInMarkedGroup (FreeGroup.of (generatorEquiv.symm i))
+    wordInMarkedGroup (FreeGroup.of (generatorEquivFin8.symm i))
   have hrels : ∀ q ∈ (relators8 : Set (FreeGroup (Fin 8))),
       FreeGroup.lift assignment q = 1 := by
     intro q hq
@@ -94,7 +90,7 @@ theorem literalCylinder_isClopen : IsClopen literalCylinder :=
 /-- The canonical rank-eight marking of an arbitrary marked quotient,
 transported back to the printed alphabet. -/
 def quotientGenerator (N : MarkedGroupSpace 8) (i : Generator) : N.Quotient :=
-  QuotientGroup.mk (FreeGroup.of (generatorEquiv i))
+  QuotientGroup.mk (FreeGroup.of (generatorEquivFin8 i))
 
 private theorem lift_reindexed_quotient_mk
     (N : MarkedGroupSpace 8) (q : FreeGroup Generator) :

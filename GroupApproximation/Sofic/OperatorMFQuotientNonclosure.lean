@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.ChosenNonMFTheorem
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
-import GroupApproximation.Sofic.LiteralNonMFPresentation
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 
 /-!
@@ -41,22 +40,4 @@ theorem operatorMF_not_closed_under_this_quotient :
     chosenFinitelyPresented_not_isOperatorMF.2⟩
 
 end OperatorMFQuotientNonclosure
-
-namespace LiteralOperatorMFQuotientControls
-
-open LiteralNonMFPresentation
-
-/-- The free group on the literal presentation's eight-letter alphabet is
-operator-MF.  This is independent of any analytic claim about its quotient. -/
-theorem source_isOperatorMF : IsOperatorMF (FreeGroup Generator) :=
-  isOperatorMF_of_residuallyFinite
-
-/-- The canonical map from the rank-eight free group onto the literal
-presented group is surjective. -/
-theorem quotientMap_surjective :
-    Function.Surjective
-      (PresentedGroup.mk (relators : Set (FreeGroup Generator))) :=
-  PresentedGroup.mk_surjective (relators : Set (FreeGroup Generator))
-
-end LiteralOperatorMFQuotientControls
 end GroupApproximation
