@@ -4,6 +4,25 @@ Started 2026-08-08. This is my program for Question 3.4 — is every
 hyperlinear group sofic? — maintained across sessions. Doctrine: every
 claim is kernel-checked, cited-from-source, or explicitly conjectural.
 
+### 2026-08-14: fixed adjoint-expander binder for the Pauli carrier
+
+`TRUE_FIXED_LIBRARY_EXPANDER_BINDER.md` replaces the moving Haar-selected
+symmetry by an exact finite-library criterion. If fixed words `V_1,...,V_k`
+commuting with the parent cut have adjoint average `T` and the centered
+carrier `X` satisfies
+
+```text
+Re <X,(1-T)X> >= kappa ||X||_2^2,
+```
+
+then the Pauli multiplicity floor gives average squared commutator energy at
+least `kappa/4`; hence one fixed word witnesses that floor. The remaining
+coordinate theorem is now carrier-specific: show that this one `X_n` has a
+uniformly positive component off the invariant algebra of one fixed finite
+word library. Property (T) alone does not identify that invariant algebra.
+The scalar `kappa/4` endpoint is formalized in
+`Leavitt/PauliCarrierBinaryGap.lean` without running a build.
+
 ### 2026-08-14: finite stabilizers cannot groupify a diffuse relation algebra
 
 `FALSE_FINITE_STABILIZER_FULL_GROUP_GROUPIFICATION.md` closes the finite

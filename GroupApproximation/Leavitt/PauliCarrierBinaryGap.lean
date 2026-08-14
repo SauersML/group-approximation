@@ -135,5 +135,27 @@ theorem one_fourth_le_actualPacketSymmetryWitnessEnergy
   rw [actualPacketSymmetryWitnessEnergy_eq]
   linarith
 
+/-- Average squared commutator energy forced by an adjoint-channel gap
+`kappa` on the actual packet's centered multiplicity vector. -/
+def actualPacketFixedLibraryAverageEnergy (kappa y : ℝ) : ℝ :=
+  2 * kappa * actualPacketMultiplicityResidual y
+
+/-- The fixed-library average energy is `kappa/4 + 4*kappa*y`. -/
+theorem actualPacketFixedLibraryAverageEnergy_eq (kappa y : ℝ) :
+    actualPacketFixedLibraryAverageEnergy kappa y =
+      kappa / 4 + 4 * kappa * y := by
+  unfold actualPacketFixedLibraryAverageEnergy actualPacketMultiplicityResidual
+  ring
+
+/-- A nonnegative adjoint gap `kappa` and positivity of
+`y=τ(EFEF)` force the dimension-free average squared-commutator floor
+`kappa/4` for any fixed library realizing that gap. -/
+theorem kappa_div_four_le_actualPacketFixedLibraryAverageEnergy
+    (kappa y : ℝ) (hkappa : 0 ≤ kappa) (hy : 0 ≤ y) :
+    kappa / 4 ≤ actualPacketFixedLibraryAverageEnergy kappa y := by
+  rw [actualPacketFixedLibraryAverageEnergy_eq]
+  have hproduct : 0 ≤ 4 * kappa * y := by positivity
+  linarith
+
 end PauliCarrierBinaryGap
 end GroupApproximation
