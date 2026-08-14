@@ -3,6 +3,7 @@ import Mathlib.Data.Finset.Prod
 import Mathlib.Logic.Equiv.Fintype
 import Mathlib.Algebra.BigOperators.Group.Finset.Sigma
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Analysis.Convex.DoublyStochasticMatrix
 
 /-!
 # The robust paired-quotient floor after permutation repair
@@ -506,6 +507,115 @@ theorem robust_deterministic_floor
       pair R₀ L₀ N hperfectRows
   · exact collisionSources_mul_le_totalRowMismatch
       (transposePair pair) L₁ R₁ N hperfectColumns
+
+/-! ## Independent bistochastic kernels
+
+Separate doubly stochastic block-mass kernels are stronger than the
+deterministic repair hypotheses: after averaging over the source labels, each
+target label is uniform.  Hence independently sampled left and right targets
+have the exact perfect-pairing one mass.  This observation is useful mainly
+as a guardrail.  A matrix microstate generally supplies a correlated
+four-index transport, not the product of its two block-mass marginals. -/
+
+/-- Unnormalized one mass for independently sampled target labels after
+averaging over all source labels.  The two parenthesized sums are the target
+column masses of the two kernels. -/
+def independentKernelOneMass
+    (pair : V → W → Prop) [DecidableRel pair]
+    (K : Matrix V V ℝ) (L : Matrix W W ℝ) : ℝ :=
+  ∑ x, ∑ y,
+    (∑ v, K v x) * (∑ w, L w y) * if pair x y then 1 else 0
+
+/-- Independent doubly stochastic transports preserve the total one mass of
+the original pairing table exactly. -/
+theorem independentKernelOneMass_eq_oneSet_card
+    (pair : V → W → Prop) [DecidableRel pair]
+    (K : Matrix V V ℝ) (L : Matrix W W ℝ)
+    (hK : K ∈ doublyStochastic ℝ V)
+    (hL : L ∈ doublyStochastic ℝ W) :
+    independentKernelOneMass pair K L =
+      ((oneSet pair id id).card : ℝ) := by
+  simp_rw [independentKernelOneMass,
+    sum_col_of_mem_doublyStochastic hK,
+    sum_col_of_mem_doublyStochastic hL]
+  simp [oneSet]
+
+/-- For a perfect binary pairing, the independent bistochastic crossed mass
+is exactly `N(N-1)/2`; no diagonal repair estimate is needed. -/
+theorem independentKernelOneMass_perfect
+    (pair : V → W → Prop) [DecidableRel pair]
+    (K : Matrix V V ℝ) (L : Matrix W W ℝ) (N : ℕ)
+    (hK : K ∈ doublyStochastic ℝ V)
+    (hL : L ∈ doublyStochastic ℝ W)
+    (hperfectCount : 2 * (oneSet pair id id).card = N * (N - 1)) :
+    2 * independentKernelOneMass pair K L =
+      ((N * (N - 1) : ℕ) : ℝ) := by
+  rw [independentKernelOneMass_eq_oneSet_card pair K L hK hL]
+  exact_mod_cast hperfectCount
+
+/-! ## Averaging over one common classical latent map
+
+The deterministic theorem extends to correlations only when all three
+observed transport pairs come from the same latent map quadruple.  The next
+theorem records that exact sufficient condition without imposing an
+unjustified product factorization on the pairwise couplings. -/
+
+/-- Weighted average of a natural-valued statistic on a finite latent
+probability space. -/
+def weightedNatAverage {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ) (f : Ω → ℕ) : ℝ :=
+  ∑ ω, μ ω * f ω
+
+theorem weightedNatAverage_mono
+    {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ) (f g : Ω → ℕ)
+    (hμ : ∀ ω, 0 ≤ μ ω) (hfg : ∀ ω, f ω ≤ g ω) :
+    weightedNatAverage μ f ≤ weightedNatAverage μ g := by
+  apply Finset.sum_le_sum
+  intro ω _
+  exact mul_le_mul_of_nonneg_left (by exact_mod_cast hfg ω) (hμ ω)
+
+/-- Averaged robust floor for one common classical law on four map-valued
+transports.  This is the precise classicalization endpoint needed from the
+matrix-coordinate extraction: all three errors use the same latent `ω`. -/
+theorem robust_floor_of_common_latent_maps
+    {Ω : Type*} [Fintype Ω]
+    (μ : Ω → ℝ)
+    (pair : V → W → Prop) [DecidableRel pair]
+    (R₀ R₁ : Ω → V → V) (L₀ L₁ : Ω → W → W) (N : ℕ)
+    (hμnonneg : ∀ ω, 0 ≤ μ ω) (hμsum : ∑ ω, μ ω = 1)
+    (hV : Fintype.card V = N) (hW : Fintype.card W = N)
+    (hperfectRows : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet pair x y).card = N)
+    (hperfectColumns : ∀ x y, x ≠ y →
+      2 * (rowSeparationSet (transposePair pair) x y).card = N)
+    (hperfectCount : ∀ ω,
+      2 * (oneSet pair (repairMap (R₀ ω)) (repairMap (L₁ ω))).card =
+        N * (N - 1)) :
+    ((N * (N - 1) : ℕ) : ℝ) ≤
+      2 * weightedNatAverage μ
+        (fun ω ↦ (oneSet pair (R₀ ω) (L₁ ω)).card) +
+      8 * weightedNatAverage μ
+        (fun ω ↦ totalRowMismatch pair (R₀ ω) (L₀ ω)) +
+      8 * weightedNatAverage μ
+        (fun ω ↦ totalRowMismatch (transposePair pair) (L₁ ω) (R₁ ω)) := by
+  have hpointwise : ∀ ω,
+      N * (N - 1) ≤
+        2 * (oneSet pair (R₀ ω) (L₁ ω)).card +
+        8 * totalRowMismatch pair (R₀ ω) (L₀ ω) +
+        8 * totalRowMismatch (transposePair pair) (L₁ ω) (R₁ ω) := by
+    intro ω
+    exact robust_deterministic_floor pair (R₀ ω) (R₁ ω) (L₀ ω) (L₁ ω)
+      N hV hW hperfectRows hperfectColumns (hperfectCount ω)
+  have havg := weightedNatAverage_mono μ
+    (fun _ ↦ N * (N - 1))
+    (fun ω ↦
+      2 * (oneSet pair (R₀ ω) (L₁ ω)).card +
+      8 * totalRowMismatch pair (R₀ ω) (L₀ ω) +
+      8 * totalRowMismatch (transposePair pair) (L₁ ω) (R₁ ω))
+    hμnonneg hpointwise
+  simpa [weightedNatAverage, hμsum, mul_add, Finset.sum_add_distrib,
+    Nat.cast_add, Nat.cast_mul, mul_comm, mul_left_comm, mul_assoc] using havg
 
 end RobustPairedQuotient
 end GroupApproximation

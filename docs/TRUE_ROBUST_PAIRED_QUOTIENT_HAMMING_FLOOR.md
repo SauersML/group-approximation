@@ -110,39 +110,45 @@ a fraction `deltaW` changes at most `deltaV+deltaW` of the whole table.
 Equations `(RPF7)--(RPF8)` give `(RPF2)`, and `(RPF3)` follows because the
 three coefficients in `(RPF2)` sum to nine.
 
-## 4. Convex extension to unitary block-mass kernels
+## 4. Convex extension under a common classical coupling
 
-The same floor holds without choosing deterministic maps.  Let
-
-```text
-KR0,KR1 : V times V -> [0,1],
-KL0,KL1 : W times W -> [0,1]
-```
-
-be doubly stochastic kernels, and define the three errors by independently
-sampling the target labels from the corresponding kernels.  For example,
+The same floor holds after randomizing the deterministic maps on one common
+classical probability space.  Let
 
 ```text
-eps00 = Pr[b(x,y) != b(v,w)],
-x ~ KR0(v,-), y ~ KL0(w,-).                         (RPF9)
+omega -> (R0_omega,R1_omega,L0_omega,L1_omega)
 ```
 
-Every finite doubly stochastic matrix is a convex combination of permutation
-matrices.  Choose independent Birkhoff decompositions of the four kernels.
-For every resulting quadruple of permutations, `(RPF2)` holds.  Averaging
-over the four decompositions gives the identical inequality
+be a probability distribution on map quadruples, and define each
+error by first sampling the same `omega` and then sampling the source labels
+uniformly.  For example,
+
+```text
+eps00 = Pr[b(R0_omega(v),L0_omega(w)) != b(v,w)].    (RPF9)
+```
+
+Then `(RPF2)` holds at every atom of the law.  Averaging gives the identical
+inequality
 
 ```text
 eps01 + 4 eps00 + 4 eps11 >= (N-1)/(2N).            (RPF10)
 ```
 
-This convex form is the one naturally produced by matrix microstates.  If
-two atomic decompositions of a finite Hilbert space have `N` atoms of a
-common rank `m`, the normalized squared Hilbert--Schmidt masses of the blocks
-of any unitary form a doubly stochastic `N by N` matrix: row and column sums
-are one because both families of atomic projections sum to the identity.
-No choice of bases inside the atoms and no rounding to a single permutation
-is required.
+The common-law qualification is essential.  If two atomic decompositions of
+a finite Hilbert space have `N` atoms of a common rank `m`, the normalized
+squared Hilbert--Schmidt block masses of a unitary do form a doubly stochastic
+matrix.  Those marginal matrices alone do not determine the joint coupling
+which measures a two-transport relation.
+
+In fact, if the left and right targets are sampled independently from two
+doubly stochastic kernels, they are jointly uniform after averaging the
+source labels, so the crossed one-density is already exactly
+`(N-1)/(2N)`.  The Lean theorem
+`independentKernelOneMass_perfect` records this stronger elementary fact.
+The reason it does not finish the microstate argument is precisely that
+independence has not been extracted.  See
+`FALSE_INDEPENDENT_BISTOCHASTIC_KERNEL_EXTRACTION.md` for the two-point
+counterexample and the corrected common-latent-permutation gate.
 
 ## 5. Formalization status
 
@@ -191,10 +197,14 @@ The generic double-counting identity is the theorem `sum_offDiag_pairCost`.
 The theorem `robust_deterministic_floor` now combines both diagonal collision
 budgets with the crossed-table estimate.  Its conclusion is the full integer
 form of `(RPF2)` for deterministic transports.  Thus the deterministic finite
-combinatorics has no remaining repair hypothesis.  The genuinely
-research-level gate is the matrix-coordinate extraction of common paired
-labels and bistochastic kernels; the convex/bistochastic formalization is the
-next formal layer.
+combinatorics has no remaining repair hypothesis.  The independent
+bistochastic endpoint is also formalized and is stronger than needed.  The
+common-law averaging theorem is
+`robust_floor_of_common_latent_maps`; it keeps the shared latent variable
+explicit in all three error terms.  The
+genuinely research-level gate is the matrix-coordinate extraction of common
+paired labels together with a common classical coupling of all four
+transports.
 
 ## 6. Gain for the hyperlinear program
 
@@ -207,18 +217,19 @@ model with uniform counting measure has been extracted.
 The strictly smaller live theorem is now:
 
 > From one canonical regular-margin normalized-HS atlas microstate, extract
-> finite binary label spaces with a perfect pairing and four bistochastic
-> block-mass kernels for which the two diagonal mismatch rates and the
-> crossed-zero rate tend to zero.
+> finite binary label spaces with a perfect pairing and a common classical
+> latent-map lift of the four transports for which the two diagonal
+> mismatch rates and the crossed-zero rate tend to zero.
 
 The fixed floor `1/36` then gives the contradiction directly.  Partial maps
 are harmless: extend them arbitrarily on their bad sets, which only adds the
 bad-set density to the three errors.
 
 This still does not prove nonhyperlinearity.  The unresolved step is the
-common-coordinate extraction of the paired labels and kernels.  What has been
-removed is the separate Fourier-flatness, near-bijectivity, and trivial-mode
-analysis after that extraction.
+common-coordinate extraction and classicalization of the three pairwise
+transport couplings.  Four bistochastic marginals do not suffice.  What has
+been removed is the separate Fourier-flatness, near-bijectivity, and
+trivial-mode analysis after a common classical lift has been extracted.
 
 The existing four-cut raw coefficient packet does not itself instantiate
 this theorem.  Its comb transition table is exactly Fourier-flat: after

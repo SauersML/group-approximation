@@ -21,10 +21,19 @@ See `TRUE_ROBUST_PAIRED_QUOTIENT_HAMMING_FLOOR.md`.
 
 This removes the post-extraction requirements of a complex Fourier unitary,
 near-bijectivity, deletion of trivial modes, and invariant spectral
-truncation.  The live gate is now only common-coordinate extraction of the
-finite perfect-pairing labels and four bistochastic unitary block-mass
-kernels with vanishing averaged error.  Birkhoff decomposition extends the
-same floor from maps to kernels without choosing a gauge or a permutation.
+truncation.  The live gate is common-coordinate extraction of the finite
+perfect-pairing labels plus a **common classical latent-map lift** of
+the three observed transport couplings.  Four separate bistochastic
+block-mass marginals do not suffice: multiplying those marginals silently
+assumes independence.  See
+`FALSE_INDEPENDENT_BISTOCHASTIC_KERNEL_EXTRACTION.md`.
+
+The three contexts form the tree `L0--R0--L1--R1`.  Hence compatible
+classical pair-laws on whole maps glue automatically; see
+`TRUE_TREE_GLUE_COMMON_TRANSPORT_LAWS.md`.  The remaining hard step is
+pairwise classicalization of the normalized-HS four-index correlations while
+matching the shared `R0` and `L1` marginals.  It is not a four-way Birkhoff
+synchronization problem.
 
 Do not apply this directly to the four raw `C2^2` cuts.  Their conditioned
 comb transition matrix is the uniform `1/4` kernel, so it is maximally far

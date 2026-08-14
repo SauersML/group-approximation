@@ -17,12 +17,27 @@ max(eps01,eps00,eps11) >= 1/36.
 ```
 
 The diagonal relations themselves force the two relevant label maps within
-`4 eps` of permutations.  By Birkhoff decomposition the same inequality
-holds for arbitrary doubly stochastic unitary block-mass kernels.  Thus the
-remaining analytic theorem only has to extract finite perfect-pairing labels
-and four such kernels with vanishing averaged error from common normalized-HS
-coordinates; Fourier-flatness, trivial-mode removal, and singular-value
-invariance are no longer separate obligations.
+`4 eps` of permutations.  The same inequality averages over a common law on
+permutation quadruples.  Four arbitrary doubly stochastic block-mass
+marginals are not enough: the two-label error is governed by a joint
+four-index coupling, and multiplying the marginals assumes the missing
+independence.  The remaining analytic theorem must extract finite
+perfect-pairing labels and a common classical latent-map lift of the
+three observed couplings from normalized-HS coordinates.  See
+`FALSE_INDEPENDENT_BISTOCHASTIC_KERNEL_EXTRACTION.md`.
+
+The cross-context compatibility part is elementary once pair-laws on whole
+maps exist: the context graph is the tree `L0--R0--L1--R1`, so matching the
+shared marginals gives a global law by finite conditional-product gluing.
+See `TRUE_TREE_GLUE_COMMON_TRANSPORT_LAWS.md`.  The live matrix theorem is
+pairwise classicalization at whole-map level, not four-way synchronization.
+
+The independent-kernel endpoint is nevertheless exact and stronger: after
+averaging source labels, independently sampled bistochastic targets are
+uniform, so their crossed one-density is exactly `(N-1)/(2N)`.  This is
+formalized by `independentKernelOneMass_perfect`.  Fourier-flatness,
+trivial-mode removal, and singular-value invariance are no longer separate
+obligations once the required common classical lift is available.
 
 The existing four raw coefficient cuts are not those labels: their comb
 kernel is exactly uniform after carrier conditioning.  The required kernels

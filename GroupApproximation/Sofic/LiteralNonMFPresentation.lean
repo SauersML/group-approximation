@@ -565,6 +565,14 @@ theorem literal_algebraic_package :
   exact ⟨inferInstance, stable_conjugates_base_into_base,
     lamp_commutes_base, mark_sq, mark_central⟩
 
+/-- The fixed literal object is an eight-generator finitely presented group.
+This compact identity theorem is kept separate from the exact relator package
+and from the mathematical conclusions of Theorem A. -/
+theorem literalEightGeneratorPresentation :
+    Fintype.card Generator = 8 ∧
+      Group.IsFinitelyPresented MarkedGroup :=
+  ⟨generator_card, inferInstance⟩
+
 /-- Exact object-and-relator package for the manuscript's displayed
 eight-generator presentation.  The first two conjuncts pin the alphabet and
 the presented quotient itself; the remaining conjuncts record the relations
