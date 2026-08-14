@@ -511,7 +511,7 @@
       "id": "cor:exactradical",
       "environment": "corollary",
       "title": "exact radical from a candidate quotient",
-      "statement_sha256": "f4919dd015c9337422f3b8f2aaf93eb1c4bc289fb8e672bbae76ee501faa650d",
+      "statement_sha256": "fe6437a7674699aeb1e97aa0a0bd2c808c92aff8d2dfcf4012bfd50a308b9151",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
