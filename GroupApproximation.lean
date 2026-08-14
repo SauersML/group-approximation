@@ -70,7 +70,6 @@ import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.LocallyFiniteMF
 import GroupApproximation.Sofic.CentralInvolutionFinite
-import GroupApproximation.Sofic.CliffordLampMF
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
 import GroupApproximation.Sofic.OperatorMFFreeProductConsequences
 import GroupApproximation.Sofic.MarkedCompressionProperness
@@ -482,6 +481,7 @@ import GroupApproximation.Sofic.SoficDirectedUnion
 import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
 import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
+import GroupApproximation.Monsters.ExplicitIntegralLinearModel
 import GroupApproximation.Sofic.HyperlinearResidualDetector
 import GroupApproximation.Sofic.FiniteLinearHammingGap
 import GroupApproximation.Sofic.RelativeImplementerCentralizer
