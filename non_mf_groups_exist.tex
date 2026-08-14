@@ -1799,9 +1799,8 @@ an exact sequence
  \longrightarrow1
 \]
 whose kernel and quotient are MF, while $W$ is not.
-The locally finite, LEF, sofic, and MF status of the concrete lamp kernel,
-together with finite generation and non-MF-ness of the total witness, is
-verified without hypotheses in Lean.
+The concrete lamp kernel is locally finite, LEF, sofic, and MF, while the
+total witness is finitely generated and non-MF.
 \leanverified{Sofic/LiteralWitnessConsequences}{GroupApproximation.LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF}
 
 \begin{proof}
@@ -1929,8 +1928,7 @@ cyclic group nor its realized Clifford quotient is LEF, and the latter is not
 residually finite.  Indeed, in every finite group the doubling relation makes
 the image of $\langle\gamma_0^2\rangle$ equal to the image of
 $\langle\gamma_0\rangle$; the lamp therefore commutes with the required
-``halved'' element and the marked word collapses.  Lean formalizes this
-finite-window obstruction and its three concrete consequences.
+``halved'' element and the marked word collapses.
 \leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \section{The operator-norm boundary}\label{sec:limits}
