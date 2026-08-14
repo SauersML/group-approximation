@@ -28,6 +28,26 @@ Thus simultaneous PVM rounding is closed. The live gate is to construct the
 whole-map decoder and prove vanishing total commutator energy plus the three
 Leavitt multiplication mismatch rates for its path edges.
 
+### 2026-08-14: commuting target packets synchronize transition PVMs
+
+For one common source projection `P` and two target PVMs `E,F`, the
+transition POVMs `P E_i P` and `P F_j P` satisfy a cardinality-free total
+commutator bound. Its square root is at most
+
+```text
+sqrt(target commutator energy)
+ +sqrt(E leakage/2)+sqrt(F leakage/2).
+```
+
+Individual de la Salle rounding preserves vanishing total commutator energy,
+again without an outcome-count loss. See
+`TRUE_COMMUTING_TARGET_PACKETS_SYNCHRONIZE_TRANSITIONS.md`. Therefore the
+multi-edge analytic gate closes if the raw/four-root packet routes the three
+required pairs to commuting target root packets on common source carriers.
+The remaining audit is now algebraic/geometric: verify such placements and a
+multiplication-coherent decoder, or produce an exact countermodel showing
+that the atlas cannot supply them.
+
 ### 2026-08-14: covariance closes total single-edge transition variance
 
 `TRUE_COVARIANCE_CONTROLS_TOTAL_TRANSITION_VARIANCE.md` corrects the apparent

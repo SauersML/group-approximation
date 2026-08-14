@@ -407,6 +407,17 @@ operator-valued Parseval. See
 therefore the multiplication-coherent decoder together with its three total
 edge energies, not an abstract growing-family PVM rounding theorem.
 
+There is also a sufficient pre-rounding criterion for those edge energies.
+If two transition POVMs are compressions `P E_i P` and `P F_j P` of target
+character PVMs through one common source cut, their total commutator energy
+is bounded by the target-PVM commutator energy plus the two total leakage
+energies. Separate cardinality-free POVM rounding preserves this conclusion.
+See `TRUE_COMMUTING_TARGET_PACKETS_SYNCHRONIZE_TRANSITIONS.md`. Hence a
+commuting distant-root placement for each of the three path contexts would
+close the analytic compatibility step; the remaining audit is whether the
+raw/four-root routing actually supplies those placements together with the
+correct multiplication decoder.
+
 The raw swap itself now supplies the complete local branch decoder: it fixes
 the `s0`/`t0` adjacent roots and routes the `s1`/`t1` roots to the last
 coordinate, while their Steinberg commutators give the full
