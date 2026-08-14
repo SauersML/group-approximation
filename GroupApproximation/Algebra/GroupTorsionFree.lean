@@ -92,7 +92,9 @@ theorem directLimitOf_injective
 /-- A directed colimit of ordinarily torsion-free groups is torsion-free.
 No injectivity of the transition maps is needed: an equality to one in the
 colimit already holds at a common later stage. -/
-theorem directLimit (i₀ : ι) (hK : ∀ i, IsPowerTorsionFree (K i)) := by
+theorem directLimit (i₀ : ι) (hK : ∀ i, IsPowerTorsionFree (K i)) :
+    letI : Nonempty ι := ⟨i₀⟩
+    IsPowerTorsionFree (DirectLimit K f) := by
   letI : Nonempty ι := ⟨i₀⟩
   show IsPowerTorsionFree (DirectLimit K f)
   intro x n hn hpow
