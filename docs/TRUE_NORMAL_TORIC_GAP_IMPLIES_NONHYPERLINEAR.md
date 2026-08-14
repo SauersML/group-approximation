@@ -214,6 +214,27 @@ one finite two-player toric game
 Perfect LCS groupification is one structured way to achieve the last line,
 but it is not the only logically possible one.
 
+### Synchrony does not supply normality for free
+
+For a synchronous game, perfect strategies can be described by tracial states
+on the associated one-player synchronous algebra; see Paddock--Slofstra,
+[Satisfiability problems and algebras of boolean constraint system games](https://arxiv.org/abs/2310.07901).
+It is tempting to argue that a trace vector fixed by the clauses is fixed by
+all their conjugates.  That statement is correct when the clauses themselves
+live in the tracial one-player group algebra.
+
+The Watts--Helton--Klep toric clauses, however, live in the full universal
+game group containing the commuting player copies.  Passing from a perfect
+synchronous strategy to the one-player trace moves the second player's
+operators to an opposite algebra.  This preserves the two-player
+correlations but reverses word order on that copy.  It does not identify the
+normal closure of the original two-player clauses with the trace-kernel ideal
+of the synchronous algebra.
+
+Therefore synchrony alone does not prove `N intersect B={1}`.  A compiler
+must preserve the clauses in a genuine tracial group quotient, or certify
+phase survival separately.
+
 ## 4. A toric gap must have an infinite, infinite-index clause subgroup
 
 There are two further exact restrictions on any possible toric gap.
