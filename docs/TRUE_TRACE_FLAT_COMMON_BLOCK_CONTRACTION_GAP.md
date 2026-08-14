@@ -142,9 +142,10 @@ translation defects into
 ||T-E_Lambda(T)||_2->0.                              (TCB12)
 ```
 
-Thus `(TCB3)` follows once the raw/comb cross-root relations provide the four
-generator defects for the independent row and column translations.  There
-is no Kazhdan constant or growing finite group in this last averaging step.
+Thus `(TCB3)` follows once finite-coordinate recovery provides the four
+row/column translation operators and the raw/comb cross-root relations bound
+their defects.  There is no Kazhdan constant or growing finite group in this
+last averaging step.
 
 This formulation also identifies precisely what the local Pauli
 countermodel omits.  It realizes all local commutator signs and all block
@@ -152,22 +153,48 @@ masses, but it does not force the comb compression to be invariant under
 the independent phase-corrected row and column translations.  Separate
 block-mass marginals cannot replace `(TCB12)`.
 
-## 6. Live group-theoretic target
+## 6. Why the translations cannot be literal group words
 
-The next audit should not search for a whole-map decoder.  It should express
-the four translation defects in `(TCB12)` as fixed group-word defects in the
-raw-swap/full-branch packet and the comb compressor.  Concretely:
+The translations in `(TCB11)` cannot be supplied by a fixed family of group
+words acting on the canonical coefficient atoms.  If printed group
+relations forced literal row/column translations and made `T` invariant,
+the same exact implication would hold in the regular representation.  The
+trace-flat packet exists there, while `(TCB6)` is valid in every finite
+tracial von Neumann algebra.  This would contradict the regular
+representation itself.
+
+This is the same obstruction proved from the conditional-variance viewpoint
+in `FALSE_LITERAL_FIBER_MIXER_SHORTCUT.md`: a fixed-word action which both
+mixes the fibers and preserves the branch statistic would make the statistic
+measurable already in the regular model.
+
+Consequently the next audit should **not** search for four literal
+translation words.  The translations must be recovered from finite matrix
+coordinates.  Equal-rank character blocks admit coordinate-dependent matrix
+units and hence row/column shifts, even when no corresponding operator is a
+group word or survives in the tracial ultraproduct.
+
+## 7. Live matrix-coordinate target
+
+The required theorem can now be stated without a whole-map decoder:
 
 > Find, for each of the two row and two column Pauli generators, a bounded
-> raw/comb word whose normalized-Hilbert--Schmidt defect equals (or bounds)
-> the corresponding phase-corrected translation defect of `T=qU^*q`.
+> finite-coordinate shift between the four equal-rank character blocks.
+> Use the multiplication-module relations to prove that the four shifts have
+> vanishing phase-corrected defect on `T=qU^*q`.
 
-If those four identities are present in the atlas presentation, the exact
-trace-flat masses and `(TCB10)` give a fixed hyperlinear defect floor.  If
-they are absent, the failure is now a finite four-generator holonomy
-question, not an unbounded commutant-recovery or classicalization problem.
+The shifts may depend on the matrix coordinate and need not converge as
+operators.  This is precisely what prevents the argument from applying to
+the regular representation.  Once their four defects vanish, finite
+Reynolds averaging gives `(TCB3)`, and the exact trace-flat masses plus
+`(TCB10)` give the contradiction.
 
-## 7. Scope
+This is still a matrix-specific recovery theorem, but it asks for four
+coordinate shifts on a fixed four-label packet.  It does not ask for an
+unbounded commutant, a classical response-map law, or a growing family of
+projections.
+
+## 8. Scope
 
 This note proves the analytic implication
 
@@ -178,4 +205,5 @@ fixed Pauli packet + trace-flat masses + common-block coherence
 
 It does not claim that the printed atlas relations already imply the
 common-block coherence.  That last implication must be checked at the group
-word level; asserting it from trace flatness alone would be false.
+microstate-coordinate level; asserting it from trace flatness or literal
+fixed-word relations alone would be false.

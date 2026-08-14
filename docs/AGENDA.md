@@ -49,9 +49,13 @@ row/column covariance makes them asymptotically equal to `C_n/2`, then
 leaving the fixed squared gap `3/4-1/sqrt(2)`.  The sole analytic gate is
 therefore a sixteen-block coherence estimate.  It can be phrased as
 Reynolds invariance under the fixed group `C_2^2 times C_2^2`, requiring only
-four translation defects and no growing-outcome rounding.  The next group
-audit should identify those four defects as bounded raw/comb word defects.
-See `TRUE_TRACE_FLAT_COMMON_BLOCK_CONTRACTION_GAP.md`.
+four translation defects and no growing-outcome rounding.  The translations
+cannot be literal group words: that would force the same contradiction in
+the regular representation, as in
+`FALSE_LITERAL_FIBER_MIXER_SHORTCUT.md`.  They must be coordinate-dependent
+shifts recovered from equal-rank finite matrix blocks, with the
+multiplication-module relations controlling their four defects.  See
+`TRUE_TRACE_FLAT_COMMON_BLOCK_CONTRACTION_GAP.md`.
 
 ### 2026-08-14: two coproduct defects suffice for classicalization
 
