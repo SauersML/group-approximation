@@ -174,6 +174,25 @@ def actualPacketHalfStageWitnessEnergy : ℝ :=
   norm_num [actualPacketHalfStageWitnessEnergy,
     actualPacketHalfStageDistance]
 
+/-- In the exact amplification countermodel, a unitary moving a rank-one
+projection in `M_4` to an orthogonal rank-one projection has this squared
+commutator energy. -/
+def rankOneMultiplicityCountermodelEnergy : ℝ :=
+  2 * ((1 : ℝ) / 4)
+
+@[simp] theorem rankOneMultiplicityCountermodelEnergy_eq :
+    rankOneMultiplicityCountermodelEnergy = (1 : ℝ) / 2 := by
+  norm_num [rankOneMultiplicityCountermodelEnergy]
+
+/-- The exact multiplicity countermodel exceeds the general full-commutant
+Haar witness floor `3/8`. -/
+theorem actualPacketFullCommutantWitnessEnergy_lt_rankOneCountermodel :
+    actualPacketFullCommutantWitnessEnergy <
+      rankOneMultiplicityCountermodelEnergy := by
+  rw [actualPacketFullCommutantWitnessEnergy_eq,
+    rankOneMultiplicityCountermodelEnergy_eq]
+  norm_num
+
 /-- Average squared commutator energy forced by an adjoint-channel gap
 `kappa` on the actual packet's centered multiplicity vector. -/
 def actualPacketFixedLibraryAverageEnergy (kappa y : ℝ) : ℝ :=

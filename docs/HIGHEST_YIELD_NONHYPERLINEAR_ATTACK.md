@@ -172,6 +172,36 @@ gauge-covariant Parseval statement: identify the averaged four-root word
 discrepancy with the coproduct defect of the actual repaired implementer.
 Abstract associativity alone still does not provide that identification.
 
+## 2026-08-14 correction: one classified gauge does not scalarize multiplicity
+
+The full-packet right-shift/multiplicity dichotomy does not collapse merely
+because the actual compressor gauge has zero coproduct defect. There is an
+exact amplified countermodel
+
+```text
+A=C[lambda_K(K)] tensor 1,
+C=rho_K(g) tensor 1,
+F=1 tensor p,               rank(p)=1 in M_4.
+```
+
+Here `C` is exactly group-like, `F` commutes with every recovered right
+shift and with `C`, but
+
+```text
+E_A(F)=(1/4)1,
+dist_2(F,A)^2=3/16,
+```
+
+and a pure multiplicity unitary has commutator energy `1/2` against `F`.
+See `FALSE_ONE_COPRODUCT_GAUGE_DOES_NOT_SCALARIZE_THE_MULTIPLICITY.md`.
+
+Therefore the compiled-word theorem must be carrier-coupled: besides
+classifying the gauge, it must make the transported carrier measurable with
+respect to the gauge's coefficient PVM, produce enough independent PVMs to
+generate the relevant multiplicity algebra, or directly kill the centered
+variance of the intrinsic transition effects. Gauge classification by
+itself is not the terminal synchronization theorem.
+
 ## 2026-08-14 one finite envelope removes pairwise root gauges
 
 Every finite coefficient window and all of its positive-root products fit

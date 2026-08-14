@@ -6,6 +6,18 @@ target is an explicit nonhyperlinear group; the radical-collision program is
 the parallel route to a hyperlinear nonsofic group.  Doctrine: every claim is
 kernel-checked, cited from a source, or explicitly conjectural.
 
+### 2026-08-14: one group-like gauge cannot kill packet multiplicity
+
+`FALSE_ONE_COPRODUCT_GAUGE_DOES_NOT_SCALARIZE_THE_MULTIPLICITY.md` gives the
+exact countermodel `A=C[lambda(K)] tensor 1`,
+`C=rho(g) tensor 1`, `F=1 tensor p` with `rank(p)=1` in `M_4`. The gauge is
+perfectly group-like and `F` commutes with all right shifts, yet
+`dist_2(F,A)^2=3/16` and a multiplicity unitary has commutator energy `1/2`.
+Thus coproduct classification of the compressor gauge and right-shift
+synchronization do not close the new dichotomy. The live target must couple
+the transported carrier to the gauge coefficient PVM, or directly force the
+intrinsic transition-effect variance to vanish.
+
 ### 2026-08-14: full-packet gap splits into bounded and multiplicity stages
 
 `TRUE_FULL_PACKET_GAP_SPLITS_INTO_RIGHT_SHIFT_OR_MULTIPLICITY.md` factors the
