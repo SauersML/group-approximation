@@ -17,9 +17,8 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
+  actions: write
 
 jobs:
   build:
@@ -57,17 +56,22 @@ jobs:
           lake build GroupApproximation:docs
           printf '%s\n' "$GITHUB_SHA" > .lake/build/doc/source-revision.txt
 
-      - name: Upload the site
-        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
-        with:
-          path: docbuild/.lake/build/doc
+      # Pages now hosts the Cairn research site at / (cairn-site.yml), which
+      # folds these API docs in under /api/ from the api-docs branch.  A
+      # direct deploy-pages here would replace that whole tree, so publish to
+      # the branch and let cairn-site recompose the combined site.
+      - name: Publish to the api-docs branch
+        run: |
+          cd docbuild/.lake/build/doc
+          git init -q -b api-docs
+          git add -A
+          git -c user.name=github-actions -c user.email=actions@github.com \
+            commit -q -m "API docs for $GITHUB_SHA"
+          git push -q --force \
+            "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" \
+            api-docs
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+      - name: Refresh the combined Pages site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run cairn-site.yml
