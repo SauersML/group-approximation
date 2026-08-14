@@ -103,7 +103,7 @@ even though the proof term is present and reachable by matching `.thmInfo`
 directly.  Every scan that reads a proof term went silent when it trusted
 `value?` -- including the axiom traversal, which stopped descending through
 proofs entirely and would therefore have reported a clean closure for a corpus
-with a `sorry` in it.  `scripts/Calibrate.lean` is what caught this, and it now
+with an admitted proof.  `scripts/Calibrate.lean` caught this, and it now
 asserts the descent explicitly. -/
 def valueOf? : ConstantInfo → Option Expr
   | .thmInfo v => some v.value

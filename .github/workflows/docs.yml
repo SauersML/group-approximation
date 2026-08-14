@@ -1,8 +1,6 @@
-# API documentation.  Deliberately NOT part of the proof gate: this workflow
-# never blocks a merge, and `doc-gen4` breaking must not be able to make the
-# repository look unproved.  The gate is `prover.yml`;
-# `independent-kernel.yml` is supplementary and, by its own design, not a
-# gate either.
+# API documentation.  This workflow does not block a merge, but it publishes
+# only source that passes the repository source gate and compiles under the
+# exact committed documentation dependency graph.
 name: API documentation
 
 on:
@@ -38,19 +36,26 @@ jobs:
 
       - name: Install elan
         run: |
-          curl -sSfL https://github.com/leanprover/elan/releases/latest/download/elan-x86_64-unknown-linux-gnu.tar.gz \
-            | tar xz
-          ./elan-init -y --default-toolchain "$(cat lean-toolchain)"
+          curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf \
+            | sh -s -- -y --default-toolchain "$(cat lean-toolchain)"
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Fetch the Mathlib build cache
-        run: lake exe cache get || true
+        run: lake exe cache get
+
+      - name: Restore pinned documentation dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: docbuild/.lake/packages
+          key: ${{ runner.os }}-docbuild-deps-${{ hashFiles('docbuild/lean-toolchain', 'docbuild/lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-docbuild-deps-
 
       - name: Build the documentation
         working-directory: docbuild
         run: |
-          lake update -R
           lake build GroupApproximation:docs
+          printf '%s\n' "$GITHUB_SHA" > .lake/build/doc/source-revision.txt
 
       - name: Upload the site
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3

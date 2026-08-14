@@ -24,7 +24,7 @@ is indistinguishable from `IsSofic` being unsatisfiable -- a definition
 accidentally so strong that no group at all meets it -- until some group is
 shown to meet it.  Under an unsatisfiable definition every theorem in this
 repository would still be true, every proof would still be kernel-checked, the
-axiom audit would still be clean, and the result would be worth nothing.
+dependency audit would still be clean, and the result would be worth nothing.
 
 The left regular representation proves every finite group sofic.  Cyclic
 quotients give an exact local model of the infinite cyclic group

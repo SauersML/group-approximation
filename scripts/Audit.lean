@@ -7,10 +7,9 @@ import Lean.Util.CollectAxioms
 # Kernel audit of the headline theorems
 
 `lake build` establishes that every module elaborates.  It does **not**
-establish what the resulting proof terms depend on: a `sorry` anywhere in the
-library elaborates fine and only shows up as the `sorryAx` axiom in the closure
-of whatever used it; compiler-backed decision shortcuts show up as
-`Lean.ofReduceBool`.
+establish what the resulting proof terms depend on: an admitted proof
+elaborates and contributes an admission axiom to the closure of anything that
+uses it; compiler-backed decision shortcuts contribute `Lean.ofReduceBool`.
 
 This file is run by CI with `lake env lean scripts/Audit.lean` after the build.
 It fails, with a nonzero exit code, if either check below fails:
@@ -22,7 +21,7 @@ It fails, with a nonzero exit code, if either check below fails:
 2. **Transitive axiom closure.**  Every declaration in the
    `GroupApproximation` namespace is traversed through the *kernel*
    environment, and the accumulated axiom set must be contained in the three
-   axioms of classical Lean.  `sorryAx`, `Lean.ofReduceBool`,
+   axioms of classical Lean.  Admission axioms, `Lean.ofReduceBool`,
    `Lean.trustCompiler` and any hand-declared `axiom` are all rejected here.
 -/
 

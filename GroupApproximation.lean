@@ -547,9 +547,9 @@ the Kazhdan one.
 
 ## Trust surface
 
-`GroupApproximation.Audit` prints the axiom report for the public results on
+`GroupApproximation.Audit` prints the dependency report for the public results on
 an ordinary build.  `scripts/Audit.lean` independently walks the transitive
-axiom closure of the whole namespace and fails on anything beyond `propext`,
+dependency closure of the whole namespace and fails on anything beyond `propext`,
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
