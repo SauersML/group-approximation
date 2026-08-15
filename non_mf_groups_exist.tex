@@ -177,9 +177,9 @@ problems, only the Hilbert--Schmidt case --- hyperlinearity --- remains
 open.
 
 In the language of approximate representations, a countable discrete
-group $E$ is \emph{MF} if, for every finite subset $F\subseteq E$ and
+group $G$ is \emph{MF} if, for every finite subset $F\subseteq G$ and
 every $\varepsilon>0$, there is a unitary matrix model
-$V\colon E\to\U(r)$ that is multiplicative within $\varepsilon$ in
+$V\colon G\to\U(r)$ that is multiplicative within $\varepsilon$ in
 operator norm on $F$ and separates distinct elements of $F$ by
 operator-norm distance at least $1$.  Equivalently --- this is the
 formulation in which the notion was introduced by
@@ -194,9 +194,9 @@ be the associated matrix quotient --- a corona algebra, here called the
 matrices modulo sequences converging to $0$ in operator norm.  Following
 Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
 if it embeds into some algebra of the form \eqref{eq:corona}; the group
-$E$ is MF if there is an injective homomorphism
+$G$ is MF if there is an injective homomorphism
 \[
-  E\longrightarrow\U(\mathcal Q).
+  G\longrightarrow\U(\mathcal Q).
 \]
 The two formulations are equivalent
 (Proposition~\ref{prop:mf-equivalences}).
@@ -213,7 +213,7 @@ isomorphism
  \U(\mathcal Q),
 \end{equation}
 proved in Lemma~\ref{lem:unitarycorona}.  Thus one may equivalently embed
-$E$ into $\Ucor((d_n))$.
+$G$ into $\Ucor((d_n))$.
 \begin{proposition}[equivalent MF formulations]
 \label{prop:mf-equivalences}
 For every countable group, the $C^*$-corona definition above is
@@ -455,7 +455,8 @@ equal-rank flip.
 The mechanism is easiest to see one level up, and this picture is the one
 to keep in mind.  Suppose a corona representation $\Theta$ of $H$ detects
 a central involution $\varepsilon=u^2$, where $u=[tct^{-1},\iota(a)]$ is
-a conjugation defect.  The nonzero projection
+a conjugation defect (data as in Theorem~\ref{thm:sign-criterion}
+below).  The nonzero projection
 $q=(1-\Theta(\varepsilon))/2$, central relative to $\Theta(H)$, cuts
 $\Theta$ to a corner representation with $\Theta_q(\varepsilon)=-q$
 exactly; a spectral cut at $1/2$ of a self-adjoint lift of $q$ produces
@@ -706,7 +707,7 @@ the one-sided conjugation argument, and the central-sign criterion are
 independent of $m$.
 \end{proof}
 
-For the proof, put $d=tct^{-1}$ and $u=[d,v_1]$.
+For the proof of Theorem~\ref{thm:A}, put $d=tct^{-1}$ and $u=[d,v_1]$.
 Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
 The proof has two opposed halves, both centered on $u$:
 \[
@@ -925,8 +926,8 @@ Bachner--Dogon--Lubotzky develop operator-norm rounding, compression, and
 polar-correction procedures in detail
 \cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
 Proposition~1.5]{BDL}.  That local procedure enters the finite-normal corner
-reduction below; the transport step itself is the finite-norm-ultraproduct
-argument of Theorem~\ref{thm:kazhdan-transport}.
+reduction below; the transport step itself is the finite-stage
+spectral-corner argument of Theorem~\ref{thm:kazhdan-transport}.
 
 The analytic passage from operator norm to the Hilbert--Schmidt conjugation
 representation belongs to the $\pi\otimes\bar\pi$ framework of Bekka and
@@ -1073,7 +1074,7 @@ Corona representations, detection, and operator-norm asymptotic
 representations are as defined in Section~\ref{sec:transport}.
 Lemma~\ref{lem:unitarycorona} canonically identifies a corona
 representation with a homomorphism into $\Ucor((d_n))$, which we call
-its coordinate model.  The group $E$ is \emph{MF} if it admits an
+its coordinate model.  A countable group is \emph{MF} if it admits an
 injective corona representation for a strictly increasing dimension
 sequence; by the dimension-amplification equivalence, allowing an
 arbitrary positive dimension sequence gives the same class of groups.
@@ -1217,7 +1218,7 @@ is injective.}
 \label{fig:compression-pattern}
 \end{figure}
 
-In particular the compression argument needs only the one-sided inclusion
+In particular the conjugation argument needs only the one-sided inclusion
 and centralizer relations shown in Figure~\ref{fig:compression-pattern}; it
 never uses injectivity or properness of the base map.  Injectivity for the
 constructed group is established independently by the Clifford realization.
@@ -1296,13 +1297,13 @@ $\mathcal R$ maps to the linear subgroup of $\mathcal B$ they generate,
 and Step~2
 gives a finite set $S$ of words in $x,y,z$ and a $\kappa>0$ forming a
 Kazhdan pair for it.  Let $\rho$ be an orthogonal representation of
-$\mathcal B$ with a unit vector $x$ displaced by less than $\kappa/64$ by
+$\mathcal B$ with a unit vector $\xi$ displaced by less than $\kappa/64$ by
 every element of the finite control set consisting of $S$ together with
 the translations $v_2,v_3$.  Three estimates produce an invariant vector
-near $x$.
+near $\xi$.
 \begin{enumerate}
-\item Projecting $x$ to the subspace of vectors fixed by the linear
-subgroup gives such a fixed vector $p$ with $\lVert p-x\rVert<1/64$, by the
+\item Projecting $\xi$ to the subspace of vectors fixed by the linear
+subgroup gives such a fixed vector $p$ with $\lVert p-\xi\rVert<1/64$, by the
 moving-projection estimate for the Kazhdan pair.
 \item Translations move $p$ by a bound independent of the lattice
 vector.  Three explicit words in $x,y,z$ act on the
@@ -1312,16 +1313,16 @@ translations --- a two-conjugate normal form proved inside the
 presentation.  A conjugate $rvr^{-1}$ with $r$ in the linear subgroup
 displaces the fixed vector $p$ exactly as much as $v$ does, and each control
 translation displaces $p$ by less than $3/64$ (transferring its bound at
-$x$ across $\lVert p-x\rVert$).  Hence every translation displaces $p$
+$\xi$ across $\lVert p-\xi\rVert$).  Hence every translation displaces $p$
 by at most $1/8$.
 \item The orbit of $p$ under the translation subgroup is bounded, so the
-Hilbert-space circumcenter argument applies: the projection $y$ of $p$
-to the translation-fixed subspace satisfies $\lVert y-p\rVert\le1/8$.
+Hilbert-space circumcenter argument applies: the projection $\eta$ of $p$
+to the translation-fixed subspace satisfies $\lVert \eta-p\rVert\le1/8$.
 The linear subgroup normalizes the translation subgroup and fixes $p$,
-so $y$ is fixed by it as well; translations and the linear generators
+so $\eta$ is fixed by it as well; translations and the linear generators
 generate $\mathcal B$,
-so $y$ is $\mathcal B$-invariant, and
-$\lVert y-x\rVert\le 1/8+1/64<1$ keeps $y$ nonzero.
+so $\eta$ is $\mathcal B$-invariant, and
+$\lVert \eta-\xi\rVert\le 1/8+1/64<1$ keeps $\eta$ nonzero.
 \end{enumerate}
 Thus almost-invariant vectors produce invariant vectors and $\mathcal B$
 has property~\textup{(T)} in the real-orthogonal formulation;
@@ -1487,7 +1488,7 @@ $t\iota(\mathcal B)t^{-1}\subseteq\iota(\mathcal B)$; and the six
 $c$-commutation relators give $[c,\iota(\mathcal B)]=1$.  No injectivity of $\iota$ is
 required.  In $E$ we have $d^2=(tct^{-1})^2=tc^2t^{-1}=1$, so
 Lemma~\ref{lem:square} with $a_1=\iota(v_1)$ identifies the marked word as
-the square of the compression defect $u=[d,\iota(v_1)]$:
+the square of the conjugation defect $u=[d,\iota(v_1)]$:
 \[
   w=\bigl[\,d,\;\iota(v_1)\,d\,\iota(v_1)^{-1}\bigr]
   =[\,d,\iota(v_1)\,]^{\,2}=u^2 .
@@ -1629,7 +1630,7 @@ playing the role of an approximate fixed space, and the equal-rank flip
 turns the one-sided compression of that corner into equality --- the
 quantitative shadow of the exact finite-dimensional argument above.
 
-\section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
+\section{The finite-normal obstruction}\label{sec:conj}
 
 This section proves the general finite-normal obstruction that powers
 the central-sign criterion and hence Theorem~\ref{thm:A}.  Its proof
@@ -1738,7 +1739,8 @@ The proof of half two used only one property of $N_{\mathrm{comp}}$: every
 element is Hilbert--Schmidt invisible in every operator-norm almost
 representation of $H$.  Any normal subgroup with that tracial-kill
 property therefore obstructs its finite normal subgroups in exactly the
-same way; the compression radical below exploits this factorization.
+same way; the intrinsic-defect theorem below exploits this
+factorization.
 
 Theorem~\ref{thm:A}(2), proved in Section~\ref{sec:proofA} from the
 sign criterion, is also the instance \(H=E\), \(\Lambda=\mathcal B\),
@@ -1761,7 +1763,7 @@ Let $(r_n)$ and $V_{g,n}\in\U(r_n)$ be an operator-norm asymptotic
 representation of $H$, let $\Lambda$ have property~\textup{(T)}, let
 $\iota\colon\Lambda\to H$ be a homomorphism, and put $L=\iota(\Lambda)$.
 Suppose that $(x_n\in M_{r_n}(\C))$ is uniformly bounded in operator norm
-and belongs to the asymptotic commutant of $L$:
+and belongs to the Hilbert--Schmidt asymptotic commutant of $L$:
 \[
  \hsnorm{x_n-V_{\iota(\lambda),n}x_nV_{\iota(\lambda),n}^*}
  \longrightarrow0
@@ -1781,7 +1783,7 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 \begin{proof}
 For a one-sided conjugator $s$, Theorem~\ref{thm:kazhdan-transport} gives
 forward transport.  Reverse transport is the same assembly run with the
-adjoint compressor: the equal-rank flip in that proof reverses the
+adjoint unitary: the equal-rank flip in that proof reverses the
 one-sided containment of the spectral corners, so conjugating the leakage
 estimate by the implementing unitary bounds the leakage for
 $\Ad U_n(s)^*$ as well, and the displacement and capture steps are
@@ -1840,7 +1842,7 @@ and of the metric-ultraproduct approximation framework of \cite{NST}.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical}
 \end{definition}
 
-\begin{lemma}[portability]\label{lem:portable}
+\begin{lemma}[functoriality]\label{lem:portable}
 For every homomorphism $\varphi\colon G_1\to G_2$ of countable
 groups,
 \[
@@ -2097,11 +2099,11 @@ Reassociating the semidirect products gives
    \cong (\ClLamp(X)\rtimes T)\rtimes\mathbb Z.
 \]
 The final group is sofic because a split extension of a sofic group by
-$\Z$ is sofic: truncate the integer levels to $\Z/L$, let the shift act
+$\Z$ is sofic: truncate the integer levels to $\Z/N$, let the shift act
 cyclically, and induce the kernel's sofic approximations over the level
 set; the cocycle identity that makes the finite-quotient case exact now
-fails only on the wrap-around boundary, a fraction of at most $2|k|/L$
-of the levels for a window shifted by $k$, which vanishes as $L$ grows.
+fails only on the wrap-around boundary, a fraction of at most $2|k|/N$
+of the levels for a window shifted by $k$, which vanishes as $N$ grows.
 This is the special case of the Elek--Szab\'o amenable-extension theorem
 \cite{ElekSzabo} that the argument needs, proved directly.  Here
 $\bar\Gamma$ is sofic because its six generators are casts of integral
@@ -2288,9 +2290,7 @@ operators on the Hilbert--Schmidt spaces need not be close in operator norm.
 The spectral-corner, displacement, and leakage estimates of
 Theorem~\ref{thm:kazhdan-transport} require exactly that operator-norm
 control, so normalized Hilbert--Schmidt control does not supply the
-spectral-subspace transport used there.  This is a description of where
-the printed estimates need their hypotheses, not a theorem that no
-tracial variant can exist.
+spectral-subspace transport used there.
 
 This identifies a boundary of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
@@ -2324,8 +2324,8 @@ must be genuinely non-finite-quotient in flavor.
 \item Is there a torsion-free finitely presented non-MF group?  The
 mechanism here is torsion-critical: the obstruction lives in a finite
 normal subgroup.
-\item Is $E$ sofic, or hyperlinear?  The adjoint Hilbert-ultraproduct
-representation requires operator-norm multiplicative control, and neither
+\item Is $E$ sofic, or hyperlinear?  The adjoint spectral-corner
+estimates require operator-norm multiplicative control, and neither
 property is decided by the results above.
 \item Does MF imply hyperlinearity?  A faithful embedding into a norm
 matrix corona need not make any coordinate trace faithful, so the defining
@@ -2339,8 +2339,8 @@ trace-controlled MF conventions the implication is built into the definition.
 
 \section{Proof of the MF equivalences}\label{app:equivalences}
 
-An \emph{operator-norm local model} for a countable group $E$, a finite
-set $F\subseteq E$, a separation constant $\delta>0$, and a tolerance
+An \emph{operator-norm local model} for a countable group $G$, a finite
+set $F\subseteq G$, a separation constant $\delta>0$, and a tolerance
 $\varepsilon>0$ is a map $V\colon E\to\U(r)$, for some positive
 dimension $r$, such that
 \begin{gather*}

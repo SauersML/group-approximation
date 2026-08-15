@@ -497,7 +497,7 @@
       "id": "cor:generaltransport",
       "environment": "corollary",
       "title": "transport along all one-sided conjugators",
-      "statement_sha256": "798d72ef80e4076aa16ae2f663ed8b2ea2fd70f9b3927a09c0c94dfc1596813c",
+      "statement_sha256": "5e9e62c5aab99f9b949e6f2820d41ff50cacd924f5e9bd6c20ad627d548b7e90",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -560,7 +560,7 @@
     {
       "id": "lem:portable",
       "environment": "lemma",
-      "title": "portability",
+      "title": "functoriality",
       "statement_sha256": "3cd3c8cd3e2d84195ca426ca45130711c5a97d46bc788d41cafd3820fd5f4cfd",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
