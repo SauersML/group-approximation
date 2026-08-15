@@ -1,2 +1,11 @@
 #!/bin/sh
-exec python3 "$(dirname "$0")/../tools/cairn.py" "$@"
+# The cairn CLI lives in the tools/cairn submodule
+# (https://github.com/SauersML/Cairn), pinned like any dependency.
+root="$(cd "$(dirname "$0")/.." && pwd)"
+tool="$root/tools/cairn/cairn.py"
+if [ ! -f "$tool" ]; then
+  echo "cairn submodule missing — run: git submodule update --init tools/cairn" >&2
+  exit 1
+fi
+# Pin the cairn root to this repo so behavior stays cwd-independent.
+CAIRN_ROOT="$root" exec python3 "$tool" "$@"

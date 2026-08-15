@@ -295,7 +295,7 @@ $v_1dv_1^{-1}$ anticommuting involutions and $w$ the central sign.
  \boxed{\text{Clifford model: }w=u^2=-1.}
 \]
 
-The sign is the smallest instance of the mechanism, not its extent.
+The sign is the smallest instance of the mechanism.
 Section~\ref{sec:conj} proves the general forms: any finite normal
 subgroup of the defect obstructs corona representations through a
 Reynolds corner (Theorem~\ref{thm:criterion}); the intrinsic defect
@@ -305,8 +305,7 @@ property-\textup{(T)} subgroups of the defect obstruct through the
 moving spectral subspace, with no finiteness or torsion
 (Theorem~\ref{thm:normal-kazhdan}); and the datum itself can be
 discarded in favor of its one output, Hilbert--Schmidt invisibility
-(Theorem~\ref{thm:abstract-nk}).  In the formal development the
-dependencies run in exactly that direction: the sign criterion is the
+(Theorem~\ref{thm:abstract-nk}).  The sign criterion is the
 two-element case of the finite-normal criterion, and the finite-normal
 criterion is the finite case of the normal-Kazhdan obstruction.
 Section~\ref{subsec:collapse} then turns the obstruction into a
@@ -336,30 +335,14 @@ obstruction.
 
 \subsection*{Inputs and formal verification}
 The proof of Theorem~\ref{thm:A} is self-contained.
-Property~\textup{(T)} of the base is proved from three ingredients: an
-exact rational spectral certificate, an explicit surjection verified
-relator by relator, and a fixed-point bridge
+Property~\textup{(T)} of the base is proved from an exact rational
+spectral certificate, an explicit surjection verified relator by
+relator, and a fixed-point bridge
 (Proposition~\ref{prop:literal-base-T}).  The Clifford witness and the
-finite-dimensional obstruction are proved directly.  The classical
-identification of the base with $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$
-(Remark~\ref{rem:classical-base}) is not used.  Later sections quote
-literature results only where indicated: quasidiagonality of amenable
-groups \cite{TWW} in Section~\ref{sec:necessity}, the Elek--Szab\'o
-extension theorem \cite{ElekSzabo} and Mal'cev residual finiteness
-\cite{Malcev} as context in Theorem~\ref{thm:E}, and the simple sofic
-embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
-paragraph.
+finite-dimensional obstruction are proved directly.
 
 Each gray Lean tag names a theorem in the accompanying Lean~4
-development whose statement matches the displayed claim under the
-conventions of this paper; the formal development has no theorem-level
-inputs.  The formal development follows the finite-stage transport
-proof of Appendix~\ref{app:finite-stage}.  The body proof of
-Theorem~\ref{thm:kazhdan-transport} is the equivalent ultraproduct
-argument.  The paragraphs quoting the literature results above are
-outside the formal development and are labelled where they occur.  In
-the public version each tag links to the corresponding declaration on
-the reviewed source branch.
+development with the same statement.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -374,9 +357,8 @@ In quantitative form this is the equal-rank reversal estimate for
 explicit finite-stage spectral subspaces
 (Appendix~\ref{app:finite-stage}).  The complementary finite-group corner then converts
 that rigidity into a fixed nontrivial element sent to the identity by every
-corona representation.  The Clifford central extension supplies the element
-whose survival is proved independently.
-No theorem in this paper uses \cite{OAI,KT} as an input.
+corona representation.  The Clifford central extension supplies the
+element, whose nontriviality is proved independently.
 
 Slofstra's constructions supply close precedents for the Clifford group,
 distinguished central involution, shift, and HNN doubling map
@@ -479,8 +461,8 @@ we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
 normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
 normalized Hilbert--Schmidt norm
 $\hsnorm{x}=\tr_r(x^*x)^{1/2}$.  For coordinate sequences we write
-$a\sim_2 b$ when $\hsnorm{a_n-b_n}\to0$.  We will use three elementary facts
-without further comment: $\hsnorm{x}\le\opnorm{x}$;
+$a\sim_2 b$ when $\hsnorm{a_n-b_n}\to0$.  We use without comment:
+$\hsnorm{x}\le\opnorm{x}$;
 $|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
 $u,v$.  For a nonempty finite set $Y$, write
 $M_Y(\C)=\C^{Y\times Y}$ for the corresponding indexed matrix algebra.
@@ -513,7 +495,7 @@ Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
 \begin{proof}
 Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
 $q((x_n))$ is unitary, the one-sided Gram defect satisfies
-$\opnorm{x_n^*x_n-1}\to0$; no condition on $x_nx_n^*$ is needed.  Once
+$\opnorm{x_n^*x_n-1}\to0$.  Once
 $\opnorm{x_n^*x_n-1}\le\tfrac12$, the square Gram matrix $x_n^*x_n$ is
 invertible, hence so is $x_n$, and the polar correction
 $u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary.  Continuous functional calculus
@@ -588,9 +570,7 @@ conjugation gives $P\le VPV^*$, and finiteness forces equality.  The
 same argument runs quantitatively at each single coordinate, with an
 almost-fixed spectral subspace in place of the Kazhdan projection and
 the equal-rank reversal estimate in place of finiteness.  That
-finite-stage proof, which the formalization uses, is given in
-Appendix~\ref{app:finite-stage}.  This yields the reusable theorem
-behind every result below.
+finite-stage proof is given in Appendix~\ref{app:finite-stage}.
 
 Recall from Section~\ref{sec:prelim} the notions of corona
 representation, detection, and operator-norm asymptotic representation,
@@ -632,8 +612,8 @@ $K_n=L^2(M_{d_n}(\C),\tr_{d_n})$ and let each group element act on it
 by conjugation, $\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$.
 Operator-norm almost multiplicativity of $U_n$ makes
 $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic representation on
-these Hilbert spaces; this conjugation maneuver is the finite-stage
-form of the $\pi\otimes\bar\pi$ construction.
+these Hilbert spaces; this is the finite-stage form of the
+$\pi\otimes\bar\pi$ construction.
 
 \emph{The ultraproduct.}  Let $K_\omega$ be the Hilbert-space
 ultraproduct of the $K_n$ along $\omega$ and let
@@ -719,16 +699,13 @@ arbitrary, the full sequence converges.
 \end{proof}
 
 \begin{remark}[the finite-stage proof]\label{rem:finite-stage}
-The proof above is not quantitative: the ultrafilter hides the rate.
-Appendix~\ref{app:finite-stage} proves the theorem a second time,
-quantitatively at each single coordinate $n$, with no ultrafilter or
-subsequence.  There, an explicit almost-fixed spectral subspace of the
-averaged adjoint action replaces the Kazhdan projection, and the
+The ultrafilter hides the rate.  Appendix~\ref{app:finite-stage}
+proves the theorem a second time, quantitatively at each single
+coordinate $n$.  There, an explicit almost-fixed spectral subspace of
+the averaged adjoint action replaces the Kazhdan projection, and the
 equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
-proof yields
-an explicit rate in terms of $\kappa$, $|S|$, the uniform bound on
-$(x_n)$, and the multiplicative defects of $U_n$, and the formalization
-uses it.
+proof yields an explicit rate in terms of $\kappa$, $|S|$, the uniform
+bound on $(x_n)$, and the multiplicative defects of $U_n$.
 \end{remark}
 
 The entire non-MF argument is the following consequence of the transport
@@ -811,17 +788,15 @@ injective, and $H$ is not MF.
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
 Given $\Gamma,\alpha,a$ as in the theorem below, the construction admits
-a conceptual presentation with one redundant generator $\varepsilon$:
+a presentation with one redundant generator $\varepsilon$:
 declare it to be a central involution and impose
 \begin{equation}\label{eq:conceptual-sign}
  \boxed{\varepsilon=u^2,\qquad u=[tct^{-1},a].}
 \end{equation}
-This is the conceptual presentation: rigidity forces $u\sim_2 1$, whereas
-the Clifford model makes $u^2=-1$.  The theorem below uses the
-Tietze-eliminated version.  Since $d=tct^{-1}$ is an involution,
-$u^2=[d,ada^{-1}]$; conversely, centrality of $u^2$ forces $(u^2)^2=1$.
-Thus the redundant sign costs one generator and puts the defining
-relation in the boxed form above.
+Rigidity forces $u\sim_2 1$, whereas the Clifford model makes
+$u^2=-1$.  The theorem below uses the Tietze-eliminated version: since
+$d=tct^{-1}$ is an involution, $u^2=[d,ada^{-1}]$, and centrality of
+$u^2$ conversely forces $(u^2)^2=1$.
 
 \begin{theorem}[Kazhdan--Clifford construction]
 \label{thm:kazhdan-clifford}

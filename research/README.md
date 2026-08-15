@@ -3,6 +3,11 @@
 A build system whose build targets are unknown facts: every finding is a
 waymark stacked in unmapped terrain for whoever comes next.
 
+> The framework itself is developed standalone at
+> <https://github.com/SauersML/Cairn> (pip-installable, documented, with a
+> worked example). This repo vendors the CLI at `tools/cairn.py`; resync
+> it with `tools/update-cairn.sh`.
+
 The kernel is deliberately tiny — **two objects, one extra relation**:
 
 $$\boxed{\text{Claim}} \qquad \boxed{\text{Route: Claims}^* \Rightarrow \text{Claim}} \qquad \boxed{\text{established Claim invalidates Routes}}$$
