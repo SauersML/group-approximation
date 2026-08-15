@@ -113,8 +113,7 @@ blindness.** -/
 theorem fdUnitaryResidual_le_coronaMFResidual [Countable G]
     (hstab : IsPointNormMatriciallyStable G) :
     fdUnitaryResidual G ≤ coronaMFResidual G := by
-  intro x hx
-  intro X hX rho
+  intro x hx X hX rho
   by_contra hne
   obtain ⟨A⟩ :=
     exists_markedOpAlmostRepresentation_of_normMatrixCorona_ne_one
