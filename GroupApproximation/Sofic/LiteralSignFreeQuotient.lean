@@ -616,6 +616,147 @@ theorem orbit_commutator_mem (g₁ g₂ : Base) :
   exact commutator_parity (Int.emod_two_eq_zero_or_one _)
     (Int.emod_two_eq_zero_or_one _) (Int.emod_two_eq_zero_or_one _)
 
+/-! ## The involutive witness in the quotient -/
+
+/-- The image of the base in the sign-free quotient. -/
+def Lbar : Subgroup SignFreeQuotient := (proj.comp baseMap).range
+
+theorem Lbar_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} ↥Lbar :=
+  HasKazhdanPropertyT.of_surjective (proj.comp baseMap).rangeRestrict
+    (proj.comp baseMap).rangeRestrict_surjective
+    LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.1
+
+theorem Lbar_compressed : ∀ γ ∈ Lbar,
+    proj stable * γ * (proj stable)⁻¹ ∈ Lbar := by
+  rintro γ ⟨g, rfl⟩
+  obtain ⟨g', hg'⟩ := stable_conjugates_base_into_base g
+  refine ⟨g', ?_⟩
+  show proj (baseMap g') = _
+  rw [hg']
+  simp [map_mul, map_inv, MonoidHom.comp_apply]
+
+theorem witness_dee :
+    InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness Lbar
+      (proj stable) (proj dee) := by
+  refine ⟨?_, ?_, ?_⟩
+  · rw [← map_mul, dee_sq, map_one]
+  · rintro γ ⟨g, rfl⟩
+    have h := (dee_commutes_compressed g).symm
+    have h2 := h.map proj
+    simpa only [map_mul, map_inv, MonoidHom.comp_apply] using h2
+  · rintro γ₁ ⟨g₁, rfl⟩ γ₂ ⟨g₂, rfl⟩
+    have hmem := orbit_commutator_mem g₁ g₂
+    have h1 : proj ⁅baseMap g₁ * dee * (baseMap g₁)⁻¹,
+        baseMap g₂ * dee * (baseMap g₂)⁻¹⁆ = 1 :=
+      (QuotientGroup.eq_one_iff _).mpr hmem
+    rw [map_commutatorElement] at h1
+    have h2 := commutatorElement_eq_one_iff_commute.mp h1
+    simpa only [map_mul, map_inv, MonoidHom.comp_apply] using h2
+
+/-! ## Nontriviality of the collapsed commutator -/
+
+open ExplicitLinearModel in
+theorem commutator_not_mem_markSubgroup :
+    ⁅baseMap (v1 : Base), dee⁆ ∉ markSubgroup := by
+  intro hmem
+  obtain ⟨n, hn⟩ := Subgroup.mem_zpowers_iff.mp hmem
+  have himg := congrArg witnessHom hn
+  rw [map_zpow, witnessHom_mark, map_commutatorElement] at himg
+  have hv1 : witnessHom (baseMap (v1 : Base)) =
+      iotaAmbient alpha conjD_injective v1G := by
+    have := witnessHom_base_generator
+      LiteralNonMFPresentation.v1Index
+    rw [show (v1 : Base) =
+      PresentedGroup.of LiteralNonMFPresentation.v1Index from rfl]
+    rw [this, matrixBaseGenerator_v1]
+  have hdee : witnessHom dee =
+      tAmbient alpha conjD_injective * cAmbient alpha conjD_injective *
+        (tAmbient alpha conjD_injective)⁻¹ := by
+    rw [dee, map_mul, map_mul, map_inv]
+    rw [show witnessHom stable = tAmbient alpha conjD_injective from by
+      rw [witnessHom]; exact realizationHom_stable _]
+    rw [show witnessHom lamp = cAmbient alpha conjD_injective from by
+      rw [witnessHom]; exact realizationHom_lamp _]
+  rw [hv1, hdee] at himg
+  have hlamp := CommutingLampCollapse.commutator_iota_lampConj
+    alpha conjD_injective v1G
+  rw [hlamp] at himg
+  have hx12 : (iotaVertical alpha conjD_injective v1G *
+      tVertical alpha conjD_injective) •
+        rootCoset alpha conjD_injective ≠
+      tVertical alpha conjD_injective •
+        rootCoset alpha conjD_injective :=
+    (CommutingLampCollapse.moved_cosets_ne alpha conjD_injective
+      v1G_not_mem_range).symm
+  have hlampne := CommutingLampCollapse.lamp_mul_lamp_inv_ne
+    (X := Cosets alpha conjD_injective) hx12
+  rcases CommutingLampCollapse.zpow_mem_pair
+      (signAmbient_sq alpha conjD_injective) n with h0 | h0 <;>
+    rw [h0] at himg
+  · have h2 : (inl (lamp (Cosets alpha conjD_injective)
+        ((iotaVertical alpha conjD_injective v1G *
+          tVertical alpha conjD_injective) •
+            rootCoset alpha conjD_injective) *
+        (lamp (Cosets alpha conjD_injective)
+          (tVertical alpha conjD_injective •
+            rootCoset alpha conjD_injective))⁻¹) :
+        Ambient alpha conjD_injective) = inl 1 := by
+      rw [map_one]
+      exact himg
+    exact hlampne.1 (inl_injective h2)
+  · have h2 : (inl (lamp (Cosets alpha conjD_injective)
+        ((iotaVertical alpha conjD_injective v1G *
+          tVertical alpha conjD_injective) •
+            rootCoset alpha conjD_injective) *
+        (lamp (Cosets alpha conjD_injective)
+          (tVertical alpha conjD_injective •
+            rootCoset alpha conjD_injective))⁻¹) :
+        Ambient alpha conjD_injective) =
+        inl (sign (Cosets alpha conjD_injective)) := himg
+    exact hlampne.2 (inl_injective h2)
+
+theorem collapsed_commutator_ne_one :
+    ⁅proj (baseMap (v1 : Base)), proj dee⁆ ≠ 1 := by
+  intro hc
+  rw [← map_commutatorElement] at hc
+  exact commutator_not_mem_markSubgroup
+    ((QuotientGroup.eq_one_iff _).mp hc)
+
+/-! ## Endpoints -/
+
+instance signFreeQuotient_countable : Countable SignFreeQuotient :=
+  Quotient.countable
+
+theorem proj_baseMap_v1_mem : proj (baseMap (v1 : Base)) ∈ Lbar :=
+  ⟨v1, rfl⟩
+
+/-- **The unsquared defect survives and is invisible**: the collapsed
+commutator lies in the MF radical of the sign-free quotient and is
+nontrivial there. -/
+theorem signFree_collapse :
+    ActualCoronaMFInvisible
+      ⁅proj (baseMap (v1 : Base)), proj dee⁆ ∧
+    ⁅proj (baseMap (v1 : Base)), proj dee⁆ ≠ 1 :=
+  ⟨InvolutionCollapseEndpoint.actualCoronaMFInvisible_of_involutiveWitness
+      Lbar_hasKazhdanPropertyT Lbar_compressed witness_dee
+      proj_baseMap_v1_mem,
+    collapsed_commutator_ne_one⟩
+
+/-- **The sign-free quotient of the literal group is not MF.**  Killing
+the central sign does not restore an injective corona representation. -/
+theorem signFreeQuotient_not_isCDEOperatorMF :
+    ¬ IsCDEOperatorMF SignFreeQuotient :=
+  ProjectionCompressionCollapse.not_isCDEOperatorMF_of_involutiveWitness
+    Lbar_hasKazhdanPropertyT Lbar_compressed witness_dee
+    proj_baseMap_v1_mem collapsed_commutator_ne_one
+
+/-- **The sign is not the whole radical**: the unsquared commutator is
+not a power of the marked word, so the subgroup generated by the sign
+is properly contained in what every corona representation must kill. -/
+theorem commutator_not_zpow_mark :
+    ⁅baseMap (v1 : Base), dee⁆ ∉ Subgroup.zpowers mark :=
+  commutator_not_mem_markSubgroup
+
 end
 
 end LiteralSignFreeQuotient
