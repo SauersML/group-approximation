@@ -346,6 +346,7 @@ import GroupApproximation.Leavitt.GeneralScheme
 import GroupApproximation.Leavitt.GeneralCornerTheorem
 import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
+import GroupApproximation.Sofic.FreeProductSignReflection
 import GroupApproximation.Endpoint.QuotientNonclosure
 import GroupApproximation.Leavitt.AryLeavitt
 import GroupApproximation.Leavitt.AryCornerMatrix

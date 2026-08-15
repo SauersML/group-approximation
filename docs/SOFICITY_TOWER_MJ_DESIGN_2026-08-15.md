@@ -96,6 +96,17 @@ quotient.  By `residuallyFinite_of_injective` and the product instance,
 
 > **(M′)** The free product of finitely many copies of `(ℤ/2)⁸` is
 > residually finite.
+>
+> **STATUS: FORMALIZED 2026-08-15**, same-day:
+> `Sofic/FreeProductSignReflection.lean` proves `rho_injective` (the
+> signed-reflection representation on the coordinate module with a
+> basepoint is faithful, by the block-sum invariant
+> `2 + otherSum i₀ v ≤ blockSum i₀ v` at the first index versus
+> `blockSum j v + 2 ≤ otherSum j v` elsewhere, propagated along
+> `CoprodI` reduced words) and `residuallyFinite_coprodI_signGroup`
+> (composition into `GL(Coord, ℤ)` plus
+> `generalLinearGroup_int_residuallyFinite`).  Neither Bass--Serre nor
+> Coxeter theory was needed; sub-routes (i)--(iii) below are obsolete.
 
 Amalgamated products, `PushoutI`, and route (B)'s `K_J` analysis are all
 eliminated from the critical path; only Mathlib's `CoprodI` is needed.
