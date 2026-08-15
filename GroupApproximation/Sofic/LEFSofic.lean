@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.Sofic
 import GroupApproximation.Sofic.LEF
 import Mathlib.GroupTheory.ResiduallyFinite
 import Mathlib.GroupTheory.Index
+import Mathlib.GroupTheory.SemidirectProduct
 
 /-!
 # LEF groups are sofic, and residually finite groups are LEF
@@ -200,6 +201,24 @@ theorem isLEF_of_residuallyFinite [Group.ResiduallyFinite G] : IsLEF G := by
     · intro x _ y _
       rw [map_mul, finitePermForm_mul]
 
+/-- **Residual finiteness pulls back along injective homomorphisms**: a
+group that embeds in a residually finite group is residually finite. -/
+theorem residuallyFinite_of_injective {G' : Type*} [Group G']
+    (f : G →* G') (hf : Function.Injective f)
+    [Group.ResiduallyFinite G'] :
+    Group.ResiduallyFinite G := by
+  apply Group.residuallyFinite_of_forall_exists_finite_monoidHom
+  intro g hg
+  have hfg : f g ≠ 1 := fun h ↦ hg (hf (by simpa using h))
+  obtain ⟨N, hN⟩ := Group.exists_finiteIndexNormalSubgroup_notMem (f g) hfg
+  letI := N.isNormal'
+  letI := N.isFiniteIndex'
+  refine ⟨G' ⧸ N.toSubgroup, inferInstance, inferInstance,
+    (QuotientGroup.mk' N.toSubgroup).comp f, fun hcon ↦ hN ?_⟩
+  have hmk : QuotientGroup.mk' N.toSubgroup (f g) = 1 := by
+    simpa using hcon
+  exact (QuotientGroup.eq_one_iff (f g)).mp (by simpa using hmk)
+
 /-- **Residual finiteness passes to finite-index overgroups**: a group with
 a residually finite subgroup of finite index is residually finite.  In
 particular, with `FreeGroupResiduallyFinite`, virtually free groups are
@@ -225,6 +244,56 @@ theorem residuallyFinite_of_finiteIndex
       have hkeq : k = ⟨g, hgH⟩ := Subtype.ext hkval
       exact hKnot (hkeq ▸ hk)
   · exact ⟨H, ‹_›, hgH⟩
+
+/-- **The site-action kernel trick**: a semidirect product `M ⋊[φ] Γ` of
+residually finite groups is residually finite whenever the action has
+finite range --- for instance, when `Γ` acts by permuting a finite
+generating configuration of `M`.  The kernel of the action has finite
+index in `Γ`, its preimage in the semidirect product is a direct product
+`M × ker φ` of residually finite groups, and residual finiteness passes
+to the finite-index overgroup. -/
+theorem residuallyFinite_semidirectProduct_of_finite_range
+    {M Γ : Type*} [Group M] [Group Γ] (φ : Γ →* MulAut M)
+    [Group.ResiduallyFinite M] [Group.ResiduallyFinite Γ]
+    [Finite φ.range] :
+    Group.ResiduallyFinite (M ⋊[φ] Γ) := by
+  classical
+  set H : Subgroup (M ⋊[φ] Γ) :=
+    Subgroup.comap (SemidirectProduct.rightHom) φ.ker with hHdef
+  haveI : H.FiniteIndex := by
+    constructor
+    rw [hHdef,
+      Subgroup.index_comap_of_surjective _ SemidirectProduct.rightHom_surjective,
+      Subgroup.index_ker φ]
+    exact Nat.card_ne_zero.mpr ⟨⟨⟨1, φ.range.one_mem⟩⟩, ‹_›⟩
+  haveI : Group.ResiduallyFinite H := by
+    have hker : ∀ x : H, (x : M ⋊[φ] Γ).right ∈ φ.ker := fun x ↦
+      Subgroup.mem_comap.mp x.2
+    let χ : H →* M × φ.ker :=
+      { toFun := fun x ↦ ((x : M ⋊[φ] Γ).left,
+          ⟨(x : M ⋊[φ] Γ).right, hker x⟩)
+        map_one' := rfl
+        map_mul' := by
+          intro x y
+          refine Prod.ext ?_ (Subtype.ext ?_)
+          · show ((x : M ⋊[φ] Γ) * y).left
+              = (x : M ⋊[φ] Γ).left * (y : M ⋊[φ] Γ).left
+            rw [SemidirectProduct.mul_left,
+              MonoidHom.mem_ker.mp (hker x)]
+            simp
+          · show ((x : M ⋊[φ] Γ) * y).right
+              = (x : M ⋊[φ] Γ).right * (y : M ⋊[φ] Γ).right
+            exact SemidirectProduct.mul_right _ _ }
+    have hχ : Function.Injective χ := by
+      intro x y hxy
+      have h1 : (x : M ⋊[φ] Γ).left = (y : M ⋊[φ] Γ).left :=
+        congrArg Prod.fst hxy
+      have h2 : (x : M ⋊[φ] Γ).right = (y : M ⋊[φ] Γ).right :=
+        congrArg Subtype.val (congrArg Prod.snd hxy)
+      apply Subtype.ext
+      exact SemidirectProduct.ext h1 h2
+    exact residuallyFinite_of_injective χ hχ
+  exact residuallyFinite_of_finiteIndex H
 
 /-- **Locally residually finite groups are LEF**: if every finitely
 generated subgroup is residually finite, the group is LEF, by the locality
