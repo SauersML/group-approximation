@@ -499,7 +499,10 @@
       "statement_sha256": "967ac9ec52ea36a710977fdc39078e9abc16549b9c2031cbd9bb810db8d79cf8",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:normal-kazhdan",
+        "prop:mf-equivalences"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -519,15 +522,18 @@
       "statement_sha256": "a7a3cb91f6620f631004686a8d626efc159c2073ff0cd415e2225c4714c85620",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:abstract-nk",
+        "thm:compression-radical"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/NormalKazhdanHyperlinearKilled",
-          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical",
           "covers": "the complete printed proposition"
         }
       ]
@@ -651,15 +657,18 @@
       "statement_sha256": "8e8da0badc33b150a7b918ac9f76e400877b4bb01fc24ed04fca29fa88afafc1",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "lem:portable",
+        "def:radical"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/TorsionCompressionCollapse",
-          "declaration": "GroupApproximation.TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient",
           "covers": "the complete printed proposition"
         }
       ]
@@ -713,15 +722,20 @@
       "statement_sha256": "88224a2caa8373a76b004aa03ae12f0b922d8c458200e0185389ef99d96ac5ed",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "def:invwitness",
+        "def:radical",
+        "lem:unitarycorona",
+        "thm:kazhdan-transport"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/InvolutionCollapseEndpoint",
-          "declaration": "GroupApproximation.InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse",
           "covers": "the complete printed proposition"
         }
       ]
@@ -733,7 +747,11 @@
       "statement_sha256": "bb1a2c2130afbac59405578019df8fc1f73dc77ef8a22832f1d6a732d19a9d62",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:collapse",
+        "cor:pullback",
+        "cor:exactradical"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -753,7 +771,12 @@
       "statement_sha256": "43eab2fa31ed26b914c761ab6f90df6970901cdefd177808e177faef89733d3f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:collapse",
+        "lem:portable",
+        "lem:subgroupMF",
+        "prop:univquot"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
