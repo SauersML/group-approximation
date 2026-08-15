@@ -1,7 +1,7 @@
 import Mathlib.Analysis.Convex.Cone.Extension
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
 import Mathlib.Analysis.CStarAlgebra.PositiveLinearMap
-import Mathlib.Data.Complex.Order
+import Mathlib.Analysis.Complex.Order
 
 /-!
 # Positive extension of functionals from unital star subalgebras
@@ -26,9 +26,11 @@ elemental subalgebra) into a state of the full algebra, ready for GNS.
 namespace GroupApproximation
 namespace StateExtension
 
+open scoped ComplexOrder
+
 noncomputable section
 
-variable {A : Type*} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
+variable {A : Type*} [CStarAlgebra A]
 
 private theorem star_real_smul (r : ℝ) (a : A) : star (r • a) = r • star a := by
   rw [← algebraMap_smul ℂ r a, star_smul, ← algebraMap_smul ℂ r (star a)]
@@ -36,6 +38,10 @@ private theorem star_real_smul (r : ℝ) (a : A) : star (r • a) = r • star a
   simp
 
 instance : StarModule ℝ A := ⟨star_real_smul⟩
+
+section PositiveCone
+
+variable [PartialOrder A] [StarOrderedRing A]
 
 /-- Nonnegative real scalars preserve positivity, directly from the
 star-ordered-ring sum-of-squares description. -/
@@ -47,10 +53,11 @@ theorem real_smul_nonneg {c : ℝ} (hc : 0 ≤ c) {a : A} (ha : 0 ≤ a) :
       obtain ⟨s, rfl⟩ := hx
       apply AddSubmonoid.subset_closure
       refine ⟨Real.sqrt c • s, ?_⟩
+      show star (Real.sqrt c • s) * (Real.sqrt c • s) = c • (star s * s)
       rw [star_smul, star_trivial, smul_mul_smul_comm,
         Real.mul_self_sqrt hc]
-  | one => rw [smul_zero]; exact AddSubmonoid.zero_mem _
-  | mul x y _ _ ihx ihy =>
+  | zero => rw [smul_zero]; exact AddSubmonoid.zero_mem _
+  | add x y _ _ ihx ihy =>
       rw [smul_add]; exact AddSubmonoid.add_mem _ ihx ihy
 
 /-- The scalar `r • 1` is positive for `0 ≤ r`. -/
@@ -59,6 +66,7 @@ theorem algebraMap_real_nonneg {r : ℝ} (hr : 0 ≤ r) :
   rw [Algebra.algebraMap_eq_smul_one, StarOrderedRing.nonneg_iff]
   apply AddSubmonoid.subset_closure
   refine ⟨Real.sqrt r • 1, ?_⟩
+  show star (Real.sqrt r • 1) * (Real.sqrt r • 1) = r • (1 : A)
   rw [star_smul, star_trivial, star_one, smul_mul_smul_comm,
     Real.mul_self_sqrt hr, one_mul]
 
@@ -82,8 +90,11 @@ theorem mem_positiveCone {a : selfAdjoint A} :
     a ∈ (positiveCone : PointedCone ℝ (selfAdjoint A)) ↔ 0 ≤ (a : A) :=
   Iff.rfl
 
+end PositiveCone
+
 section Subalgebra
 
+variable [PartialOrder A] [StarOrderedRing A]
 variable (B : StarSubalgebra ℂ A)
 
 /-- The self-adjoint elements of the subalgebra, as the domain of the
@@ -104,6 +115,7 @@ def selfAdjointDomain : Submodule ℝ (selfAdjoint A) where
     rw [← algebraMap_smul ℂ c (a : A)]
     exact B.smul_mem ha _
 
+omit [PartialOrder A] [StarOrderedRing A] in
 theorem mem_selfAdjointDomain {a : selfAdjoint A} :
     a ∈ selfAdjointDomain B ↔ (a : A) ∈ B :=
   Iff.rfl
@@ -128,8 +140,8 @@ theorem phi_real_of_isSelfAdjoint
       have h := hb.neg.le_algebraMap_norm_self
       rwa [norm_neg] at h
     have h2 := add_le_add_right h1 (b : A)
-    rw [neg_add_cancel] at h2
-    rwa [add_comm] at h2
+    rw [add_neg_cancel] at h2
+    exact h2
   have hupos : 0 ≤ ((u : B) : A) := algebraMap_real_nonneg (norm_nonneg _)
   obtain ⟨r₁, _, hr₁⟩ := hφ (b + u) hshift
   obtain ⟨r₂, _, hr₂⟩ := hφ u hupos
@@ -161,12 +173,8 @@ def realPartialFunctional : (selfAdjoint A) →ₗ.[ℝ] ℝ where
               = (c : ℂ) • ((a : selfAdjoint A) : A)
           rw [← algebraMap_smul ℂ c ((a : selfAdjoint A) : A)]
           congr 1
-          simp
         rw [h, map_smul]
-        show ((c : ℂ) • φ _).re = c • (φ _).re
-        rw [smul_eq_mul, Complex.mul_re, Complex.ofReal_re,
-          Complex.ofReal_im, smul_eq_mul]
-        ring
+        simp [smul_eq_mul, Complex.mul_re]
       }
 
 /-- The M. Riesz extension: a real-linear functional on all self-adjoint
@@ -190,7 +198,7 @@ theorem exists_real_extension
       set r : ℝ := ‖(y : A)‖ with hrdef
       have hsa : IsSelfAdjoint (algebraMap ℝ A r) := by
         rw [Algebra.algebraMap_eq_smul_one]
-        exact IsSelfAdjoint.smul (star_trivial r) isSelfAdjoint_one
+        exact IsSelfAdjoint.smul (star_trivial r) (star_one A)
       have hmem : ((⟨algebraMap ℝ A r, hsa⟩ : selfAdjoint A) : A) ∈ B := by
         show algebraMap ℝ A r ∈ B
         rw [IsScalarTower.algebraMap_apply ℝ ℂ A]
@@ -202,7 +210,8 @@ theorem exists_real_extension
         have h := (y.property).neg.le_algebraMap_norm_self
         rwa [norm_neg] at h
       have h2 := add_le_add_right h1 (y : A)
-      rwa [neg_add_cancel] at h2)
+      rw [add_neg_cancel] at h2
+      rwa [add_comm] at h2)
   exact ⟨g, hg1, fun x hx => hg2 x hx⟩
 
 end Subalgebra
@@ -283,10 +292,9 @@ theorem rePart_I_smul (a : A) :
   apply Subtype.ext
   show (2⁻¹ : ℝ) • (Complex.I • a + star (Complex.I • a))
       = -((2⁻¹ : ℝ) • ((-Complex.I) • (a - star a)))
-  rw [star_smul, show star Complex.I = -Complex.I by simp, star_star,
-    ← smul_neg]
+  rw [star_smul, show star Complex.I = -Complex.I by simp, ← smul_neg]
   congr 1
-  rw [smul_sub, smul_sub, neg_smul, neg_smul, neg_sub_neg, neg_smul]
+  simp only [neg_smul, smul_sub]
   abel
 
 theorem imPart_I_smul (a : A) :
@@ -294,14 +302,14 @@ theorem imPart_I_smul (a : A) :
   apply Subtype.ext
   show (2⁻¹ : ℝ) • ((-Complex.I) • (Complex.I • a - star (Complex.I • a)))
       = (2⁻¹ : ℝ) • (a + star a)
-  rw [star_smul, show star Complex.I = -Complex.I by simp, star_star]
+  rw [star_smul, show star Complex.I = -Complex.I by simp]
   congr 1
-  rw [smul_sub, smul_smul, smul_smul, neg_smul, sub_neg_eq_add]
+  rw [smul_sub, smul_smul, smul_smul]
   rw [show (-Complex.I) * Complex.I = (1 : ℂ) by
     rw [neg_mul, Complex.I_mul_I, neg_neg]]
   rw [show (-Complex.I) * -Complex.I = (-1 : ℂ) by
     rw [neg_mul_neg, Complex.I_mul_I]]
-  rw [one_smul, neg_one_smul, ← smul_neg, neg_neg]
+  rw [one_smul, neg_one_smul, sub_neg_eq_add]
 
 variable (g : (selfAdjoint A) →ₗ[ℝ] ℝ)
 
@@ -337,6 +345,8 @@ theorem complexify_apply (a : A) :
       = (g (rePart a) : ℂ) + Complex.I * (g (imPart a) : ℂ) :=
   rfl
 
+variable [PartialOrder A] [StarOrderedRing A]
+
 /-- The reassembled functional is positive when the real functional is
 nonnegative on the positive cone. -/
 theorem complexify_nonneg
@@ -361,6 +371,7 @@ end Reassembly
 
 section Main
 
+variable [PartialOrder A] [StarOrderedRing A]
 variable {B : StarSubalgebra ℂ A} {φ : B →ₗ[ℂ] ℂ}
 
 /-- The reassembled extension agrees with `φ` on the subalgebra. -/
@@ -383,11 +394,13 @@ theorem complexify_extends
   have hgre : (g (rePart (b : A)) : ℂ) = φ bre := by
     have h1 := hg ⟨rePart (b : A), hre_mem⟩
     rw [h1]
-    exact (phi_real_of_isSelfAdjoint B φ hφ (rePart (b : A)).property).symm
+    exact (phi_real_of_isSelfAdjoint B φ hφ
+      (selfAdjoint.mem_iff.mp (rePart (b : A)).property)).symm
   have hgim : (g (imPart (b : A)) : ℂ) = φ bim := by
     have h1 := hg ⟨imPart (b : A), him_mem⟩
     rw [h1]
-    exact (phi_real_of_isSelfAdjoint B φ hφ (imPart (b : A)).property).symm
+    exact (phi_real_of_isSelfAdjoint B φ hφ
+      (selfAdjoint.mem_iff.mp (imPart (b : A)).property)).symm
   have hsum : bre + Complex.I • bim = b := by
     apply Subtype.ext
     show ((rePart (b : A) : selfAdjoint A) : A)
@@ -412,17 +425,19 @@ theorem exists_positiveLinearMap_extension
     (hφ : ∀ b : B, 0 ≤ (b : A) → ∃ r : ℝ, 0 ≤ r ∧ φ b = r) :
     ∃ Φ : A →ₚ[ℂ] ℂ, ∀ b : B, Φ b = φ b := by
   obtain ⟨Φ, hΦ1, hΦ2⟩ := exists_positive_extension hφ
-  refine ⟨⟨Φ, fun a b hab => ?_⟩, hΦ1⟩
-  obtain ⟨r, hr0, hr⟩ := hΦ2 (b - a) (sub_nonneg.mpr hab)
-  rw [map_sub] at hr
-  rw [Complex.le_def]
-  constructor
-  · have h := congrArg Complex.re hr
-    rw [Complex.sub_re, Complex.ofReal_re] at h
-    linarith
-  · have h := congrArg Complex.im hr
-    rw [Complex.sub_im, Complex.ofReal_im] at h
-    linarith
+  have hmono : Monotone Φ := by
+    intro a b hab
+    obtain ⟨r, hr0, hr⟩ := hΦ2 (b - a) (sub_nonneg.mpr hab)
+    rw [map_sub] at hr
+    have hre := congrArg Complex.re hr
+    have him := congrArg Complex.im hr
+    rw [Complex.sub_re, Complex.ofReal_re] at hre
+    rw [Complex.sub_im, Complex.ofReal_im] at him
+    rw [Complex.le_def]
+    constructor
+    · linarith
+    · linarith
+  exact ⟨⟨Φ, hmono⟩, hΦ1⟩
 
 end Main
 

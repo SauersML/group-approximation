@@ -9,6 +9,9 @@ import GroupApproximation.Analysis.MaximalCStarKazhdanAverage
 import GroupApproximation.Analysis.QuasiRegularWitness
 import GroupApproximation.Analysis.StateExtension
 import GroupApproximation.Analysis.SpectralStateWitness
+import GroupApproximation.Analysis.GNSEigenvector
+import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
+import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
