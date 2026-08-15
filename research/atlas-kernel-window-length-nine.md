@@ -48,9 +48,12 @@ are impossible abstractly (index and perfectness arguments), and the
 `A₉` case — the unique `n = 9` case, where every `A₈` subgroup is a point
 stabiliser — was screened exhaustively on MSI: `0` survivors of `362,880`
 pairs, the twenty radius-2 commuting conditions already killing both the
-inner and graph-twisted sectors.  Any finite quotient that could still
-refute the radius-5 window now has order at least `10·20160 = 201,600`
-(remaining candidates `Sp₆(2), A₁₀, GL₅(2), M₂₄`).  A uniform argument
+inner and graph-twisted sectors.  The degree-10 run subsumes it:
+`0` survivors of `3,628,800` (MSI job 15858592, 88 s), covering every
+quotient embeddable in `A₁₀`.  The remaining candidates are exactly the
+quotients not embeddable in `A₁₀` — `Sp₆(2)` (index 72), `GL₅(2)`
+(496), `M₂₄` (12,144) — which need hand-built group data the compute
+nodes lack.  A uniform argument
 closing the whole family was tried and FAILS, recorded so it is not
 retried: the one-sided commuting-partner sets generate subgroups of
 order only up to `168 = |GL₃(F₂)|` — the same rank-three corner that

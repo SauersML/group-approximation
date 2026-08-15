@@ -31,21 +31,32 @@ generation, not `U_Q ≅ St₅(L)`.
 
 ## Attempts
 
-- **Step 2 COMPLETE (2026-08-15, late): `atlas-rank-five-dictionary`.**
-  All 100 rank-five generators are explicit atlas words, machine-verified
-  exactly, via the join code `E = (000,001,010,011,1)` — the
-  uniform-refinement trap blocks chart containment, not factorization,
-  and the shared leaf `γ₃` is the hinge.  Step 3's translation is running:
-  the six-triple smoke run produced 83 verified kernel relators of which
-  11 escape the cartesian subgroup, exactly as
-  `atlas-kernel-window-length-nine` demands of any usable family — the
-  first independent cross-validation of the two halves of this program.
-  **The sole remaining input is completeness**: that the rank-five
-  Steinberg/Cuntz–Krieger relation family presents `St₅(L)` over the
-  finite ring presentation of `L`.  That is a Krstić–McCool-shaped
-  literature import, named and not asserted; with it, centrality of
-  `K₂(5,L)` (already tagged) yields `N̄ ≤ ⟨⟨T_St⟩⟩` and the list is
-  usable.
+- **Steps 2 AND 3 COMPLETE (2026-08-15, night).**  Forward dictionary:
+  `atlas-rank-five-dictionary` (100 generators, machine-verified).
+  Reverse dictionary: `atlas-reverse-dictionary` (the twelve atlas
+  generators as `x`-words, eight of them single generators) — closing a
+  genuine gap the naive program missed: surjectivity of the comparison
+  map `ψ : St₅(L) → P̄/⟨⟨T_St⟩⟩` is NOT automatic and is exactly what the
+  reverse dictionary supplies.  Full translated family emitted and
+  verified: **1,112 distinct nonidentity relators, all in `R̄`**
+  (X-lengths 4–595), plus the twelve reverse-dictionary relators:
+  `|T_St| = 1,124`.  Cross-validation: `132` of the 1,112 escape the
+  cartesian subgroup, as `atlas-kernel-window-length-nine` demands.
+
+  **The usability chain, with its one gap.**  (1) every defining relator
+  of `St₅(L)` dies in `G = P̄/⟨⟨T_St⟩⟩`, so `ψ` exists — *this is the
+  gap*: it needs the emitted family to be a COMPLETE presentation of
+  `St₅(L)` on the `X_kl(b)` over the finite ring presentation of `L`,
+  the [KrM, Theorem 3]-shaped input (pinned verbatim in the artifact:
+  Krstić–McCool, JPAA 141 (1999) 175–183; `n = 5 ≥ 4` safely above the
+  sharp `n = 3` failure of their Corollary 2); (2) `ψ` surjective —
+  proved in-repo (`atlas-reverse-dictionary`); (3) `ker(G ↠ Q) =
+  ψ(K₂(5,L))`; (4) `K₂(5,L)` central at rank ≥ 5 (Kervaire–Steinberg,
+  tagged), and central images under surjections are central; (5) hence
+  `N̄ ≤ ⟨⟨T_St⟩⟩ ≤ R̄` and `T_St` is usable
+  (`atlas-relator-central-sufficiency`).  Nothing about `K₂(5,L)` beyond
+  centrality is used.  Step (1) — completeness — is the ENTIRE remaining
+  gap, and it is a derivation task, not a computation.
 - **Amalgam route (dead).**  `atlas-charts-overlap-trivially`: the charts
   meet trivially, so no relative presentation falls out of overlap
   identifications; every relator must be produced as a genuine
