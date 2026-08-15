@@ -273,6 +273,8 @@ import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.CommutingLampCollapse
 import GroupApproximation.Sofic.FullMFRadicalEndpoint
+import GroupApproximation.Sofic.HereditaryNonsoficDescent
+import GroupApproximation.Sofic.SmallCancellationRouter
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical

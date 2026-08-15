@@ -37,3 +37,12 @@ source.  The candidate minimal source is the bare HNN skeleton already
 recorded in `FournierFacioDefectData` (central witness `c`, Britton
 nontriviality of `[tct^{-1}, gamma]`), decoupled from the simple
 subgroup used for nonsoficity.
+
+## Attempts
+
+The spec-first attack is recorded in
+[[small-cancellation-router-spec-proof]]: the router interface
+(`RoutingLemmaData`), its keystone reduction to `DefectRoutingData`, and
+the word-level Greendlinger consequences are formalized sorry-free in
+`GroupApproximation/Sofic/SmallCancellationRouter.lean`; the single
+remaining input is [[greendlinger-free-product-lemma]].
