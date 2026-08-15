@@ -167,7 +167,16 @@ filter; the first was expected to be one and is not.
   `t Gamma t^(-1) <= Gamma` becomes an equality, so the two marked cosets are
   identified.  The witnesses are therefore necessarily *approximate*
   homomorphisms, and the length must do the separating work that a quotient
-  cannot.
+  cannot.  The set-level shadow of this constraint is now mapped precisely
+  (2026-08-15): the collapse is a conjugacy-closure fact, not a compression
+  fact — compressor cosets stay separated in congruence quotients
+  (`compressor-coset-two-point-exact`), while the marked coset `hΓ` dies in
+  every finite quotient but only with logarithmic latency relative to any
+  window (`congruence-transporter-girth`).  What stands between the
+  congruence models and the two-point necessary condition of this claim is
+  the deletion design of `marked-pair-cut-problem`; an expansion refutation
+  of that problem, run at approximate-model strength, would refute
+  `two-point-orbit-approximation` and close this lane negatively.
 
 A positive answer answers Pestov's Question 3.4.  A negative answer — a
 proof that no Hilbert embeddable witness exists for `W` — would be the first

@@ -460,7 +460,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Frontier holes (open, reachable, undecomposed)
 
-- **hilbert-embeddable-witness-for-kun-thom-wreath** [3 live route(s) need it] [A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath](hilbert-embeddable-witness-for-kun-thom-wreath.md) — 🔒 claimed (334m43s remaining)
+- **hilbert-embeddable-witness-for-kun-thom-wreath** [3 live route(s) need it] [A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath](hilbert-embeddable-witness-for-kun-thom-wreath.md) — 🔒 claimed (333m40s remaining)
 - **infinite-order-central-mark-group** [3 live route(s) need it] [A torsion-free Kazhdan compression group with an infinite-order central mark](infinite-order-central-mark-group.md) — unclaimed
 - **hs-expander-block-decomposition** [2 live route(s) need it] [Normalized-HS analogue of Kun's expander decomposition](hs-expander-block-decomposition.md) — unclaimed
 - **hyperlinear-implies-sofic** [2 live route(s) need it] [Every hyperlinear group is sofic (affirmative answer to Question 3.4)](hyperlinear-implies-sofic.md) — unclaimed
@@ -468,7 +468,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **mf-invariant-corner-visibility** [2 live route(s) need it] [Every MF-visible element is visible in an invariant corner](mf-invariant-corner-visibility.md) — unclaimed
 - **amalgam-edge-compatible-corona-embeddings** [1 live route(s) need it] [Edge-compatible corona embeddings for the literal marked amalgam](amalgam-edge-compatible-corona-embeddings.md) — unclaimed
 - **commutant-projection-extraction** [1 live route(s) need it] [Corner-invisible central unitaries in a matrix corona are trivial](commutant-projection-extraction.md) — unclaimed
-- **commuting-lamp-quotient-mf** [1 live route(s) need it] [MF property of the commuting-lamp witness quotient](commuting-lamp-quotient-mf.md) — 🔒 claimed (9663m25s remaining)
+- **commuting-lamp-quotient-mf** [1 live route(s) need it] [MF property of the commuting-lamp witness quotient](commuting-lamp-quotient-mf.md) — 🔒 claimed (9662m22s remaining)
 - **corona-commuting-torsion-lifts** [1 live route(s) need it] [Exact commuting finite-spectrum lifts of countable commuting torsion families](corona-commuting-torsion-lifts.md) — unclaimed
 - **edge-pair-mixed-gap-collapse** [1 live route(s) need it] [Mixed-gap collapse for high-dimensional edge-irreducible pairs](edge-pair-mixed-gap-collapse.md) — unclaimed
 - **exel-loring-mark-quantization** [1 live route(s) need it] [The Exel--Loring winding number pins the phase of an infinite-order central mark](exel-loring-mark-quantization.md) — unclaimed
@@ -483,7 +483,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - **kl-violating-equation-over-leavitt-unit-group** [1 live route(s) need it] [A Kervaire--Laudenbach-violating equation over the binary Leavitt unit group](kl-violating-equation-over-leavitt-unit-group.md) — unclaimed
 - **kt-centralizer-normalization-hs** [1 live route(s) need it] [Hilbert–Schmidt analogue of Kun–Thom centralizer normalization](kt-centralizer-normalization-hs.md) — unclaimed
 - **kun-thom-wreath-weak-mf** [1 live route(s) need it] [Weak MF status of the Kun--Thom commuting-lamp wreath](kun-thom-wreath-weak-mf.md) — unclaimed
-- **leavitt-steinberg-hs-unstable** [1 live route(s) need it] [The binary Leavitt Steinberg cover is normalized-HS unstable](leavitt-steinberg-hs-unstable.md) — 🔒 claimed (2481m08s remaining)
+- **leavitt-steinberg-hs-unstable** [1 live route(s) need it] [The binary Leavitt Steinberg cover is normalized-HS unstable](leavitt-steinberg-hs-unstable.md) — 🔒 claimed (2480m04s remaining)
 - **pauli-carrier-membership-decoder** [1 live route(s) need it] [Decode the transported Pauli carrier inside the raw binary algebra](pauli-carrier-membership-decoder.md) — unclaimed
 - **quantized-scale-index** [1 live route(s) need it] [Quantized scale index synchronizing the two commutant exhaustion scales](quantized-scale-index.md) — unclaimed
 - **random-complex-linear-cocycle-stability** [1 live route(s) need it] [Linear cocycle stability rate for random 2-dimensional Linial--Meshulam complexes](random-complex-linear-cocycle-stability.md) — unclaimed
@@ -528,6 +528,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-15 · hilbert-embeddable-witness-for-kun-thom-wreath [OPEN] A Hilbert embeddable weak-soficity witness for the Kun--Thom wreath
 - 2026-08-15 · two-point-orbit-approximation [OPEN] The Kun–Thom coset action admits a two-point approximation at the marked pair
 - 2026-08-15 · two-point-via-congruence-cuts [OPEN] Convert a cut certificate into two-point labels on the exact congruence model
 - 2026-08-15 · marked-pair-cut-problem [OPEN] An ε-deletion cuts every kernel-transporter walk in deep congruence models
@@ -535,11 +536,10 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-15 · congruence-transporter-girth [ESTABLISHED] Kernel transporters of the marked pair need logarithmic word length in congruence quotients
 - 2026-08-15 · pair-constraint-graph-criterion-proof [COMPLETE] Components carry the labels, words carry the paths, prefixes carry the counting
 - 2026-08-15 · pair-constraint-graph-criterion [ESTABLISHED] Two-point label data is a component condition, and short kernel transporters forbid it
-- 2026-08-15 · compressor-coset-two-point-exact-proof [COMPLETE] Reduce exponents mod M and read the label off the monomial part
 
 ## Active claims
 
-- 🔒 commuting-lamp-quotient-mf — 9663m25s remaining
-- 🔒 hilbert-embeddable-witness-for-kun-thom-wreath — 334m43s remaining
-- 🔒 leavitt-steinberg-hs-unstable — 2481m08s remaining
-- 🔒 literal-mark-quotient-mf — 9663m25s remaining
+- 🔒 commuting-lamp-quotient-mf — 9662m22s remaining
+- 🔒 hilbert-embeddable-witness-for-kun-thom-wreath — 333m40s remaining
+- 🔒 leavitt-steinberg-hs-unstable — 2480m04s remaining
+- 🔒 literal-mark-quotient-mf — 9662m22s remaining
