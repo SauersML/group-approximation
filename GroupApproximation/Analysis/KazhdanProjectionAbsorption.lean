@@ -158,21 +158,19 @@ theorem continuousOn_gapResolvent {m : A} {c : ℝ} (hc : c < 1)
     (hgap : ∀ μ ∈ spectrum ℝ m, μ ≤ c ∨ μ = 1) :
     ContinuousOn (gapResolvent c) (spectrum ℝ m) := by
   intro x hx
-  have hball : Metric.ball x (1 - c) ∩ spectrum ℝ m
+  have hball : spectrum ℝ m ∩ Metric.ball x (1 - c)
       ∈ nhdsWithin x (spectrum ℝ m) :=
     inter_mem_nhdsWithin _ (Metric.ball_mem_nhds x (by linarith))
   rcases hgap x hx with hxc | hx1
   · have hev : gapResolvent c =ᶠ[nhdsWithin x (spectrum ℝ m)]
         fun y => (1 - y)⁻¹ := by
       refine Filter.eventuallyEq_of_mem hball ?_
-      rintro y ⟨hyb, hys⟩
+      rintro y ⟨hys, hyb⟩
       rcases hgap y hys with hyc | hy1
       · exact if_pos hyc
       · exfalso
         rw [Metric.mem_ball, Real.dist_eq, hy1] at hyb
-        have habs : 1 - x < 1 - c := by
-          calc 1 - x ≤ |1 - x| := le_abs_self _
-            _ < 1 - c := hyb
+        have habs : 1 - x < 1 - c := lt_of_le_of_lt (le_abs_self _) hyb
         linarith
     have hcont : ContinuousWithinAt (fun y : ℝ => (1 - y)⁻¹)
         (spectrum ℝ m) x := by
@@ -187,15 +185,13 @@ theorem continuousOn_gapResolvent {m : A} {c : ℝ} (hc : c < 1)
     have hev : gapResolvent c =ᶠ[nhdsWithin x (spectrum ℝ m)]
         fun _ => (0 : ℝ) := by
       refine Filter.eventuallyEq_of_mem hball ?_
-      rintro y ⟨hyb, hys⟩
+      rintro y ⟨hys, hyb⟩
       rcases hgap y hys with hyc | hy1
       · exfalso
         rw [Metric.mem_ball, Real.dist_eq] at hyb
-        have habs : x - y < 1 - c := by
-          calc x - y ≤ |y - x| := by
-              rw [abs_sub_comm]
-              exact le_abs_self _
-            _ < 1 - c := hyb
+        have h1 : x - y ≤ |x - y| := le_abs_self _
+        rw [abs_sub_comm] at h1
+        have habs : x - y < 1 - c := lt_of_le_of_lt h1 hyb
         linarith
       · rw [hy1]
         exact if_neg (not_le.mpr hc)
@@ -223,14 +219,15 @@ theorem one_sub_spectralProjection_eq (m : A) {c : ℝ}
   rw [h1, h2, ← cfc_mul _ _ m hres (by fun_prop)]
   apply cfc_congr
   intro x hx
+  show 1 - gapIndicator c x = gapResolvent c x * (1 - x)
   rcases hgap x hx with hxc | hx1
-  · rw [gapIndicator_of_le hxc]
-    show (1 : ℝ) - 0 = gapResolvent c x * (1 - x)
-    rw [gapResolvent, if_pos hxc, sub_zero,
+  · rw [gapIndicator_of_le hxc, sub_zero]
+    show (1 : ℝ) = (if x ≤ c then (1 - x)⁻¹ else 0) * (1 - x)
+    rw [if_pos hxc,
       inv_mul_cancel₀ (by linarith : (1 : ℝ) - x ≠ 0)]
   · subst hx1
-    rw [gapIndicator_one hc]
-    show (1 : ℝ) - 1 = gapResolvent c 1 * (1 - 1)
+    rw [gapIndicator_one hc, sub_self]
+    show (0 : ℝ) = gapResolvent c 1 * (1 - 1)
     rw [sub_self, mul_zero]
 
 /-- **Conjugated absorption**: if the conjugated average absorbs `p` on

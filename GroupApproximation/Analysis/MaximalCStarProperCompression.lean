@@ -116,7 +116,7 @@ theorem gap : ∀ μ ∈ spectrum ℝ (avg D), μ ≤ rate D ∨ μ = 1 := by
       D.symm D.eps_le hμℂ hμ1
 
 theorem isSelfAdjoint_proj : IsSelfAdjoint (proj D) :=
-  isSelfAdjoint_spectralProjection (isSelfAdjoint_avg D)
+  isSelfAdjoint_spectralProjection (avg D)
 
 theorem proj_mul_proj : proj D * proj D = proj D :=
   isIdempotentElem_spectralProjection (avg D) (isSelfAdjoint_avg D)

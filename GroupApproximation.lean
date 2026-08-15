@@ -15,6 +15,8 @@ import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
 import GroupApproximation.Analysis.KazhdanProjectionAbsorption
 import GroupApproximation.Analysis.MaximalCStarProperCompression
+import GroupApproximation.Kazhdan.KazhdanUniverseDescent
+import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
@@ -90,6 +92,7 @@ import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralWitnessConsequences
+import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
@@ -270,6 +273,7 @@ import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.TorsionSpectralCollapse
 import GroupApproximation.Sofic.MatricialStabilityRadical
 import GroupApproximation.Sofic.CommutingLampCollapse
+import GroupApproximation.Sofic.FullMFRadicalEndpoint
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical

@@ -129,10 +129,10 @@ variable {G : Type u} [Group G]
 variable {A : Type v} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
   [NonnegSpectrumClass ℝ A]
 
+set_option maxHeartbeats 1000000 in
 /-- **The abstract spectral gap.** Every real spectral value of the
 unitary average of a Kazhdan representation, other than `1`, is at most
 `1 - ε²/(4|S|)`. -/
-set_option maxHeartbeats 1000000 in
 theorem unitaryAverage_spectrum_le
     (ρ : G →* unitary A) {Q : Finset G} {ε : ℝ}
     (hQ : IsKazhdanPair.{u, v} G Q ε)
@@ -154,10 +154,10 @@ theorem unitaryAverage_spectrum_le
   have heigC : Φ.gnsStarAlgHom m ξ = (μ : ℂ) • ξ :=
     gns_eigenvector Φ m hsa μ hΦkill
   letI : InnerProductSpace ℝ Φ.GNS := InnerProductSpace.rclikeToReal ℂ Φ.GNS
+  set ρU : G →* unitary (Φ.GNS →L[ℂ] Φ.GNS) :=
+    (unitaryMap Φ.gnsStarAlgHom).comp ρ with hρU
   set σ : G →* (Φ.GNS ≃ₗᵢ[ℝ] Φ.GNS) :=
-    (realifyIsometryHom).comp
-      ((unitaryIsometryHom).comp ((unitaryMap Φ.gnsStarAlgHom).comp ρ))
-    with hσ
+    (realifyIsometryHom).comp ((unitaryIsometryHom).comp ρU) with hσ
   have hsmulR : ∀ (r : ℝ) (v : Φ.GNS), (r : ℂ) • v = r • v := fun r v => by
     rw [show ((r : ℂ)) = algebraMap ℝ ℂ r by simp, algebraMap_smul]
   have havg : KazhdanProjection.averageOperator S σ ξ = μ • ξ := by

@@ -31,7 +31,7 @@ the isolation of `ξ_k`.
 namespace GroupApproximation
 namespace Shalom
 
-universe u
+universe u w
 
 open KazhdanFiniteModel Ultralimit AlmostMinimal Delorme
 
@@ -91,7 +91,7 @@ eventually, carries a displacement-one vector isolated at radius
 theorem core_contradiction {G : Type u} [Group G] {n : ℕ} (hn : n ≠ 0)
     (β : FreeGroup (Fin n) →* G) (hβ : Function.Surjective β)
     {Q : Finset G} {ε' : ℝ} (hQ : IsKazhdanPair.{u, u} G Q ε')
-    (E : ℕ → Type) (instN : ∀ k, NormedAddCommGroup (E k))
+    (E : ℕ → Type w) (instN : ∀ k, NormedAddCommGroup (E k))
     (instI : ∀ k, @InnerProductSpace ℝ (E k) _
       (instN k).toSeminormedAddCommGroup)
     (σ : ∀ k, FreeGroup (Fin n) →* (E k ≃ₗᵢ[ℝ] E k))
@@ -537,7 +537,7 @@ theorem exists_presented_kazhdan_cover
       (φ : PresentedGroup ((rels : Finset (FreeGroup (Fin n))) :
         Set (FreeGroup (Fin n))) →* G),
       Function.Surjective φ ∧
-        HasKazhdanPropertyT.{0, 0}
+        HasKazhdanPropertyT.{0, w}
           (PresentedGroup ((rels : Finset (FreeGroup (Fin n))) :
             Set (FreeGroup (Fin n)))) := by
   classical
@@ -575,7 +575,7 @@ theorem exists_presented_kazhdan_cover
     set rels : ℕ → Finset (FreeGroup (Fin n)) := fun k ↦
       (Finset.range (k + 1)).image fun j ↦
         ((e j : ↥β.ker) : FreeGroup (Fin n)) with hrels
-    suffices hstage : ∃ k, HasKazhdanPropertyT.{0, 0}
+    suffices hstage : ∃ k, HasKazhdanPropertyT.{0, w}
         (PresentedGroup ((rels k : Finset (FreeGroup (Fin n))) :
           Set (FreeGroup (Fin n)))) by
       obtain ⟨k, hk⟩ := hstage
@@ -609,7 +609,7 @@ theorem exists_presented_kazhdan_cover
       rw [hcompeq w, ← hβdef, hw]
     by_contra hnostage
     push Not at hnostage
-    have hfailpair : ∀ k : ℕ, ¬ IsKazhdanPair.{0, 0}
+    have hfailpair : ∀ k : ℕ, ¬ IsKazhdanPair.{0, w}
         (PresentedGroup ((rels k : Finset (FreeGroup (Fin n))) :
           Set (FreeGroup (Fin n))))
         ((Finset.univ : Finset (Fin n)).image fun i ↦
@@ -617,7 +617,7 @@ theorem exists_presented_kazhdan_cover
         (1 / (4 * ((k : ℝ) + 1))) := by
       intro k hpair
       exact hnostage k ⟨_, _, hpair⟩
-    have hwitness : ∀ k : ℕ, ∃ (E : Type)
+    have hwitness : ∀ k : ℕ, ∃ (E : Type w)
         (_ : NormedAddCommGroup E) (_ : InnerProductSpace ℝ E),
         CompleteSpace E ∧ ∃ (ρ : PresentedGroup
           ((rels k : Finset (FreeGroup (Fin n))) :

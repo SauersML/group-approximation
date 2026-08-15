@@ -2,6 +2,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Algebra.PresentedGroupEvaluation
 import GroupApproximation.Kazhdan.KazhdanFiniteGeneration
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
+import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ExplicitNonMFBase
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import Mathlib.GroupTheory.FinitelyPresentedGroup
@@ -52,7 +53,7 @@ structure CoverData where
     PresentedGroup ((rels : Finset (FreeGroup (Fin n))) :
       Set (FreeGroup (Fin n))) →* Base
   quotient_surjective : Function.Surjective quotient
-  kazhdan : HasKazhdanPropertyT.{0, 0}
+  kazhdan : HasKazhdanPropertyT.{0, 1}
     (PresentedGroup ((rels : Finset (FreeGroup (Fin n))) :
       Set (FreeGroup (Fin n))))
 
@@ -90,9 +91,13 @@ noncomputable abbrev vertexQuotient : Vertex →* Base := coverData.quotient
 theorem vertexQuotient_surjective : Function.Surjective vertexQuotient :=
   coverData.quotient_surjective
 
+theorem vertex_hasKazhdanPropertyT_universeOne :
+    HasKazhdanPropertyT.{0, 1} Vertex :=
+  coverData.kazhdan
+
 theorem vertex_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Vertex :=
-  coverData.kazhdan
+  HasKazhdanPropertyT.of_max (v := 1) coverData.kazhdan
 
 instance vertex_finitelyPresented : Group.IsFinitelyPresented Vertex :=
   inferInstance

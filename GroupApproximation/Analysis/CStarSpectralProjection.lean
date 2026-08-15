@@ -39,22 +39,19 @@ theorem continuousOn_gapIndicator {m : A} {c : ℝ} (hc : c < 1)
     (hgap : ∀ μ ∈ spectrum ℝ m, μ ≤ c ∨ μ = 1) :
     ContinuousOn (gapIndicator c) (spectrum ℝ m) := by
   intro x hx
-  have hball : Metric.ball x (1 - c) ∩ spectrum ℝ m
+  have hball : spectrum ℝ m ∩ Metric.ball x (1 - c)
       ∈ nhdsWithin x (spectrum ℝ m) :=
     inter_mem_nhdsWithin _ (Metric.ball_mem_nhds x (by linarith))
   rcases hgap x hx with hxc | hx1
   · have hev : gapIndicator c =ᶠ[nhdsWithin x (spectrum ℝ m)]
         fun _ => (0 : ℝ) := by
       refine Filter.eventuallyEq_of_mem hball ?_
-      rintro y ⟨hyb, hys⟩
+      rintro y ⟨hys, hyb⟩
       rcases hgap y hys with hyc | hy1
       · exact gapIndicator_of_le hyc
       · exfalso
-        rw [Metric.mem_ball, Real.dist_eq] at hyb
-        rw [hy1] at hyb
-        have habs : 1 - x < 1 - c := by
-          calc 1 - x ≤ |1 - x| := le_abs_self _
-            _ < 1 - c := hyb
+        rw [Metric.mem_ball, Real.dist_eq, hy1] at hyb
+        have habs : 1 - x < 1 - c := lt_of_le_of_lt (le_abs_self _) hyb
         linarith
     exact (continuousWithinAt_const).congr_of_eventuallyEq hev
       (gapIndicator_of_le hxc)
@@ -62,15 +59,13 @@ theorem continuousOn_gapIndicator {m : A} {c : ℝ} (hc : c < 1)
     have hev : gapIndicator c =ᶠ[nhdsWithin x (spectrum ℝ m)]
         fun _ => (1 : ℝ) := by
       refine Filter.eventuallyEq_of_mem hball ?_
-      rintro y ⟨hyb, hys⟩
+      rintro y ⟨hys, hyb⟩
       rcases hgap y hys with hyc | hy1
       · exfalso
         rw [Metric.mem_ball, Real.dist_eq] at hyb
-        have habs : x - y < 1 - c := by
-          calc x - y ≤ |y - x| := by
-              rw [abs_sub_comm]
-              exact le_abs_self _
-            _ < 1 - c := hyb
+        have h1 : x - y ≤ |x - y| := le_abs_self _
+        rw [abs_sub_comm] at h1
+        have habs : x - y < 1 - c := lt_of_le_of_lt h1 hyb
         linarith
       · rw [hy1]
         exact gapIndicator_one hc
@@ -84,7 +79,7 @@ variable (m : A) {c : ℝ}
 /-- The spectral projection above the gap. -/
 def spectralProjection (m : A) (c : ℝ) : A := cfc (gapIndicator c) m
 
-theorem isSelfAdjoint_spectralProjection (hm : IsSelfAdjoint m) :
+theorem isSelfAdjoint_spectralProjection :
     IsSelfAdjoint (spectralProjection m c) :=
   cfc_predicate _ m
 
@@ -95,6 +90,7 @@ theorem isIdempotentElem_spectralProjection (hm : IsSelfAdjoint m)
   rw [IsIdempotentElem, spectralProjection, ← cfc_mul _ _ m hcont hcont]
   apply cfc_congr
   intro x _
+  show gapIndicator c x * gapIndicator c x = gapIndicator c x
   by_cases hx : c < x
   · rw [gapIndicator_of_lt hx, mul_one]
   · rw [gapIndicator_of_le (not_lt.mp hx), mul_zero]
@@ -108,6 +104,7 @@ theorem mul_spectralProjection (hm : IsSelfAdjoint m) (hc : c < 1)
   rw [spectralProjection, ← cfc_mul _ _ m (continuousOn_id' _) hcont]
   apply cfc_congr
   intro x hx
+  show x * gapIndicator c x = gapIndicator c x
   rcases hgap x hx with hxc | hx1
   · rw [gapIndicator_of_le hxc, mul_zero]
   · subst hx1
@@ -122,6 +119,7 @@ theorem spectralProjection_mul (hm : IsSelfAdjoint m) (hc : c < 1)
   rw [spectralProjection, ← cfc_mul _ _ m hcont (continuousOn_id' _)]
   apply cfc_congr
   intro x hx
+  show gapIndicator c x * x = gapIndicator c x
   rcases hgap x hx with hxc | hx1
   · rw [gapIndicator_of_le hxc, zero_mul]
   · subst hx1
@@ -139,7 +137,7 @@ theorem spectralProjection_ne_zero [Nontrivial A]
   rw [spectralProjection] at h0
   rw [h0] at hmap
   have hone : (1 : ℝ) ∈ spectrum ℝ (0 : A) := by
-    rw [← hmap]
+    rw [hmap]
     exact ⟨1, h1, gapIndicator_one hc⟩
   rw [spectrum.zero_eq] at hone
   simp at hone

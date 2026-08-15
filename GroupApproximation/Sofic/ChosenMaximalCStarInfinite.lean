@@ -18,14 +18,11 @@ from `KazhdanFiniteGeneration`, and the on-generators Kazhdan pair of
 `KazhdanGenerators` — the latter at representation universe `1`, where
 the maximal algebra lives.
 
-TEMPORARY DEBT (one `sorry`): the vertex cover's property `(T)` at
-representation universe `1`.  The Shalom cover machinery
-(`Kazhdan/ShalomFinitePresentation`) currently states its conclusion at
-universe `{0, 0}` only; the underlying free-algebra certificate and all
-transfer lemmas are universe-polymorphic, so the discharge is a
-universe-generalization of `Shalom.exists_presented_kazhdan_cover` and
-of the `CoverData.kazhdan` field.  This module is deliberately excluded
-from the library root until the debt is discharged.
+The vertex cover's property `(T)` at representation universe `1` comes
+from the universe-generalized Shalom cover
+(`Shalom.exists_presented_kazhdan_cover` at target universe `w`,
+stored in `CoverData.kazhdan` at `{0, 1}` and descended to `{0, 0}`
+via `HasKazhdanPropertyT.of_max`).
 -/
 
 namespace GroupApproximation
@@ -36,12 +33,11 @@ open MaximalCStarProperCompression
 
 noncomputable section
 
-/-- TEMPORARY DEBT: property `(T)` for the vertex cover at representation
-universe `1`.  Dischargeable by universe-generalizing the Shalom cover
-(see the module docstring). -/
+/-- Property `(T)` for the vertex cover at representation universe `1`,
+straight from the universe-generalized Shalom cover data. -/
 theorem vertex_hasKazhdanPropertyT_universeOne :
-    HasKazhdanPropertyT.{0, 1} Vertex := by
-  sorry
+    HasKazhdanPropertyT.{0, 1} Vertex :=
+  ChosenMarkedPresentation.vertex_hasKazhdanPropertyT_universeOne
 
 /-- The symmetric generating Kazhdan package for the vertex cover, with
 the pair at representation universe `1`. -/
