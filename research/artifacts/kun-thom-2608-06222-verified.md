@@ -227,3 +227,57 @@ They are recorded here so they are not re-imported.
   The flexible-HS-versus-hyperlinearity result is **Dogon**, arXiv:2211.10492
   (*Math. Z.* 2023) — abstract read, theorem statements **not** read, so any
   use of Dogon still needs its own verification pass.
+
+## Source pass 2026-08-15 (late): the previously untranscribed definitions
+
+Fetched the arXiv v1 PDF again and read pages 3–6 and 9–11 directly.  This
+closes the hole flagged by `normal-closure-fixes-gamma-fixed-algebra`: the
+definition of "sofic representation" and of the ambient objects is now
+transcribed.
+
+**Definition 2.1, verbatim.**  *"A homomorphism σ : G → 𝒮_𝒰 is a sofic
+representation if tr(σ(g)) = 0 for every g ≠ 1.  For H ≤ G, let D_𝒰^{σ(H)}
+be the algebra of all f ∈ D_𝒰 satisfying σ(h)fσ(h)^{-1} = f for every
+h ∈ H."*  Here (§2 opening) 𝒮_𝒰 = Π_{n→𝒰} Sym(Y_n) for a sequence of
+finite sets, permutations identified with permutation matrices, tr the
+normalized trace, and D_𝒰 = Π_{n→𝒰}(D_{Y_n}, tr) the diagonal tracial
+ultraproduct.  So "sofic representation" = homomorphism with vanishing
+fixed-point fraction for every nontrivial element — exactly normalized
+Hamming distance 1 to the identity — and D_𝒰^{σ(H)} is the fixed algebra
+as used downstream.
+
+**Definition 2.2, verbatim.**  *"A p.m.p. action G ↷ (X,μ) is sofic if
+there are finite sets Y_n and an embedding
+Θ : L^∞(X) ⋊ G → Π_{n→𝒰} M_{|Y_n|}(ℂ) such that Θ(L^∞(X)) ⊂ D_𝒰 and
+Θ(u_g) ∈ 𝒮_𝒰 for every g ∈ G."*  (Embedding = unital trace-preserving
+*-embedding; the crossed product is the von Neumann crossed product.)
+
+**Lemma 2.3, verbatim.**  *"With the preceding notation,
+D_𝒰^{σ(H)} = Π_{n→𝒰} D(𝒬_n)."*  — for H with property (T), after the
+o_𝒰(|Y_n|) edge edit of the ultrafilter form of Kun's expander
+decomposition ([13, Theorem 1], quoted on p. 4: "if H has property (T),
+then one can change o_𝒰(|Y_n|) edges so that the graphs become disjoint
+unions of graphs with a uniform positive Cheeger constant"), where 𝒬_n is
+the resulting component partition.  The fixed algebra IS the block
+algebra.
+
+**Proposition 3.1, verbatim.**  *"Let Γ be an infranormal subgroup of G,
+and assume that both Γ and G are finitely generated.  Let σ : G → 𝒮_𝒰 be
+a sofic representation.  Assume that the generator graphs of both σ|_Γ
+and σ admit, after o_𝒰(|Y_n|) edge changes, decompositions into
+components with uniform positive Cheeger constants.  Then
+σ(g)D_𝒰^{σ(Γ)}σ(g)^{-1} = D_𝒰^{σ(Γ)} for every g ∈ G."*  For Γ and G
+both Kazhdan the decomposition hypothesis is automatic by the quoted
+ultrafilter form of Kun's theorem, and finite generation follows from
+(T).  Note this gives the **fixed-algebra invariance directly**, one
+level below Theorem 4.1's centralizer normalization: consumers needing
+only invariance of D_𝒰^{σ(Γ)} (e.g. the two-point refutation) may cite
+Proposition 3.1 + [13, Theorem 1] and avoid the doubling bridge entirely.
+
+Consequence for `two-point-data-yields-invariant-projection`: its tensor
+construction produces σ with **zero** fixed points for every g ≠ 1 at
+every ultrafilter-large n, so tr(σ(g)) = 0 holds on the nose and σ is a
+sofic representation verbatim under Definition 2.1.  The "strongest
+standard reading" caveat recorded earlier is now unnecessary — the
+definitional ambiguity is resolved and the construction satisfies the
+paper's actual definition exactly.

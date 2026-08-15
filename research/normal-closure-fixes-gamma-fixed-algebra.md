@@ -37,8 +37,15 @@ unrefereed-preprint surface of 2608.06222 travels with this claim exactly
 as with `kun-thom-nonsofic-wreath`; Theorem 4.1 does **not** require `Γ`
 non-normal, so this claim imports strictly less than Theorem A consumes
 (only 4.1 + Theorem E; Theorems A, B, C, Corollary D and the announced
-results are not used); and the artifact does **not** transcribe KT's
-definition of "sofic representation" or of `S_𝒰` — consumers must target
-the strongest standard reading (injective, `tr∘σ = δ_e`), which
-`two-point-data-yields-invariant-projection` does, making the ambiguity
-non-load-bearing there.  Flagged for the next source pass.
+results are not used); and the definitional hole flagged at landing is now **discharged** (source
+pass 2026-08-15, late; transcriptions in the artifact): Definition 2.1
+says a sofic representation is a homomorphism into `Π_𝒰 Sym(Y_n)` with
+`tr(σ(g)) = 0` for all `g ≠ 1`, exactly what the tensor construction of
+`two-point-data-yields-invariant-projection` produces on the nose, and
+`D_𝒰^{σ(H)}` is defined exactly as used here.  The same pass surfaced
+**Proposition 3.1**, which gives the fixed-algebra invariance (item 1)
+*directly* for finitely generated infranormal `Γ` whenever the generator
+graphs of `σ|_Γ` and `σ` are expander-decomposable — automatic for both
+Kazhdan by the quoted ultrafilter form of Kun's theorem — so the doubling
+bridge in the proof route is one of two valid derivations, not the only
+one.
