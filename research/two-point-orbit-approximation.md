@@ -13,7 +13,10 @@ artifacts:
 ---
 
 Let `Γ < G` be the Kun–Thom Theorem E pair, `X = G/Γ`, and fix the marked pair
-`p = Γ`, `q = tΓ` with `t` a strict compressor, so `p ≠ q`.
+`p = Γ`, `q = hΓ` with `h = e_12((x_1⋯x_d)^{-1})` the marked element — the
+site of the wreath mark `w = a_Γ a_{hΓ}`.  Here `p ≠ q` because every element
+of `Γ = EL_r(R_+)` has entries in `R_+` while `h` has the entry
+`(x_1⋯x_d)^{-1} ∉ R_+`.
 
 **Definition (two-point approximation at `(p,q)`).** For every finite `F ⊆ G`
 and `ε > 0` there exist a finite set `A`, a unital `(F,ε)`-multiplicative
@@ -61,8 +64,12 @@ definition uses.
 
 ## Why it is the live question
 
-`finite-quotient-blindness` shows every **exact** finite quotient of `G`
-identifies `p` and `q`, because the compression `tΓt⁻¹ ≤ Γ` becomes an equality.
+Every **exact** finite quotient of `G` identifies `p` and `q`, and for this
+pair that is a one-line theorem rather than a gloss: `h` is a `G`-conjugate of
+an element of `Γ` (`h = u e_12(x_1) u^{-1}` for a monomial substitution
+`u ∈ SL_d(ℤ)` sending `e_1` to `−(1,…,1)`), and by `finite-quotient-blindness`
+the image of `Γ` is **normal** in every finite quotient, so the image of `h`
+lies in the image of `Γ` and the cosets collapse: `q̄ = p̄` always.
 `lamp-character-orbit-separation` shows that once a model keeps `p` and `q`
 distinct as sites, a generic character orbit separates the mark by an absolute
 constant, with no dilution — so the lamp side costs nothing. What remains
@@ -72,6 +79,21 @@ approximate multiplicativity buys what exact multiplicativity provably does not.
 A **refutation** of this claim would close the weak-soficity route to
 hyperlinearity of `W` and, by `clifford-ce-implies-bernoulli-ce`, the Clifford
 lane with it.
+
+## Pair correction (2026-08-15)
+
+This node previously stated the marked pair as `(Γ, tΓ)` with `t` a strict
+compressor.  That was the wrong pair: for any `t` with nontrivial
+`SL_d(ℤ)`-component — every strict compressor in `SL_d(ℤ)` in particular —
+the coset `tΓ` is **residually visible**, and the two-point approximation at
+`(Γ, tΓ)` holds exactly, with `S = A` and one congruence model serving all
+windows at once (`compressor-coset-two-point-exact`).  Blindness kills the
+compression `tΓt⁻¹ ⊊ Γ`, not the coset `tΓ`.  The pair every finite quotient
+genuinely collapses is `(Γ, hΓ)` above, because `h` — unlike `t` — lies in
+the conjugacy closure of `Γ`.  The route
+`witness-yields-two-point-approximation` always computed at the mark sites
+`(Γ, hΓ)`, so the correction re-aligns this node with the route that feeds
+it; nothing downstream consumed the old pair.
 
 **On the reachability warning.** `bin/cairn check` reports this claim as open
 but unreachable from a root, and that is correct rather than an oversight: it
