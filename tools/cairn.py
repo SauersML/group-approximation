@@ -10,6 +10,9 @@ THE KERNEL (schema rg: 2) is two persistent objects and one relation:
           asserts the implication is valid; the body carries the argument.
           requires: [] asserts a COMPLETE DIRECT PROOF of the target.
   invalidates   an ESTABLISHED claim can invalidate routes (obstructions).
+  goal: true    marks a claim as a TOP-LEVEL HUMAN GOAL. Pure metadata —
+                no effect on compilation — but surfaced everywhere agents
+                look (graph.json, FRONTIER.md, context packets, the site).
 
 Everything else falls out:
   Solved(Q) = OR over routes into Q of AND over their requires.
@@ -67,7 +70,7 @@ KINDS = ("claim", "route")
 EXIT_OK, EXIT_DUP, EXIT_LEASE, EXIT_INVALID = 0, 2, 3, 4
 
 ALLOWED_KEYS = {
-    "claim": {"rg", "id", "kind", "title", "root",
+    "claim": {"rg", "id", "kind", "title", "root", "goal",
               "invalidates", "distinct_from", "artifacts"},
     "route": {"rg", "id", "kind", "title", "target", "requires", "artifacts"},
 }
@@ -280,6 +283,8 @@ def lint_nodes(nodes, errors, repo=REPO):
         if node.kind == "claim":
             if node.meta.get("root") not in (None, True, False):
                 errors.append(("error", f"{node.relpath}: root must be true/false"))
+            if node.meta.get("goal") not in (None, True, False):
+                errors.append(("error", f"{node.relpath}: goal must be true/false"))
             for r in node.get_list("invalidates"):
                 ref(node, "invalidates", r, "route")
             df = node.meta.get("distinct_from")
@@ -397,6 +402,9 @@ class Graph:
 
         # reachability from root claims through non-invalidated routes
         self.roots = [c for c, n in self.claims.items() if n.meta.get("root") is True]
+        # human goals: pure metadata, surfaced to agents, no compile effect
+        self.goals = sorted(c for c, n in self.claims.items()
+                            if n.meta.get("goal") is True)
         stack, seen = list(self.roots), set()
         while stack:
             q = stack.pop()
@@ -463,7 +471,8 @@ class Graph:
                                "status": n.status, "status_reasons": n.status_reasons,
                                "blocked_on": n.blocked_on, "reachable": n.reachable,
                                "meta": n.meta}
-        out["derived"] = {"roots": self.roots, "frontier": self.frontier,
+        out["derived"] = {"roots": self.roots, "goals": self.goals,
+                          "frontier": self.frontier,
                           "internal_open": self.internal_open,
                           "claim_impact": self.claim_impact,
                           "provenance": self.provenance}
@@ -725,6 +734,8 @@ def context_packet(graph, nid, locks, budget_tokens=8000):
     head = [f"=== CONTEXT: {nid} ===",
             f"KIND: {n.kind}   STATUS: {n.status}"
             + (f"   ({'; '.join(n.status_reasons)})" if n.status_reasons else "")]
+    if n.meta.get("goal") is True:
+        head.append("GOAL: this claim is a top-level human goal of the program")
     lock = locks.get(nid)
     if lock:
         head.append(f"LOCK: 🔒 {lock['owner']} ({fmt_remaining(lock)})")
@@ -799,6 +810,12 @@ def generate_frontier_md(graph, locks):
              f"({len(graph.invalidated)} invalidated) · "
              f"{len(graph.frontier)} frontier holes")
     L.append("")
+    if graph.goals:
+        L += ["## Goals (top-level human goals)", ""]
+        for gid in graph.goals:
+            c = graph.claims[gid]
+            L.append(f"- **{gid}** [{c.status}] [{c.title}]({gid}.md)")
+        L.append("")
     for root in graph.roots:
         c = graph.claims[root]
         L += [f"## {root} — {c.title}   [{c.status}]", "", "```text"]
@@ -831,20 +848,23 @@ def generate_frontier_md(graph, locks):
 # Static site (human display is downstream of the kernel)
 # ---------------------------------------------------------------------------
 
-STATUS_COLOR = {"OPEN": "#b58900", "ESTABLISHED": "#2aa198",
-                "COMPLETE": "#2aa198", "INVALIDATED": "#dc322f"}
+STATUS_COLOR = {"OPEN": "#c08a00", "ESTABLISHED": "#178a5e",
+                "COMPLETE": "#178a5e", "INVALIDATED": "#c43c2e"}
+GOAL_COLOR = "#4f46e5"
+SANS = ('-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,'
+        'Helvetica,Arial,sans-serif')
 SITE_CSS = """
-body{font:16px/1.55 Georgia,serif;max-width:60em;margin:2em auto;padding:0 1em;color:#222}
-a{color:#268bd2;text-decoration:none}a:hover{text-decoration:underline}
-code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f0}
-pre{padding:.8em;overflow-x:auto;border:1px solid #ddd}
-.badge{display:inline-block;padding:.05em .5em;border-radius:.6em;color:#fff;font:bold 12px sans-serif}
+body{font:15px/1.55 SANS;max-width:60em;margin:2em auto;padding:0 1em;color:#1c1e1c}
+a{color:#4f46e5;text-decoration:none}a:hover{text-decoration:underline}
+code,pre{font:13px/1.45 Menlo,monospace;background:#f4f4f2}
+pre{padding:.8em;overflow-x:auto;border:1px solid #e5e7e3}
+.badge{display:inline-block;padding:.1em .55em;border-radius:.8em;color:#fff;font:700 11px SANS;letter-spacing:.04em}
 .node{font:13px Menlo,monospace}
-h1{font-size:1.5em}h2{font-size:1.15em;border-bottom:1px solid #ddd;padding-bottom:.2em}
+h1{font-size:1.4em}h2{font-size:1.05em;border-bottom:1px solid #e5e7e3;padding-bottom:.2em}
 ul.rel{list-style:none;padding-left:0}ul.rel li{margin:.25em 0}
-.muted{color:#888}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf7;border:1px solid #ddd;padding:1em;overflow-x:auto}
-table{border-collapse:collapse}td,th{border:1px solid #ddd;padding:.25em .6em;font-size:.9em}
-"""
+.muted{color:#8b9089}.tree{white-space:pre;font:13px/1.5 Menlo,monospace;background:#fafaf8;border:1px solid #e5e7e3;padding:1em;overflow-x:auto}
+table{border-collapse:collapse}td,th{border:1px solid #e5e7e3;padding:.25em .6em;font-size:.9em}
+""".replace("SANS", SANS)
 MATHJAX = ('<script>MathJax={tex:{inlineMath:[["$","$"],["\\\\(","\\\\)"]]}};</script>'
            '<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>')
 
@@ -931,91 +951,114 @@ INDEX_TMPL = """<!doctype html><meta charset="utf-8">
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <style>
-:root{--paper:#fbfaf7;--ink:#22261f;--mut:#8a8f86;--line:#e2e0d8;
---est:#17805a;--open:#c98a00;--dead:#c0392b;--root:#2b6cb0;--edge:#7c8377}
+:root{--bg:#fafaf9;--ink:#1c1e1c;--mut:#8b9089;--line:#e5e7e3;
+--est:#178a5e;--open:#c08a00;--dead:#c43c2e;--goal:#4f46e5;--edge:#9aa096}
 html,body{height:100%;margin:0}
-body{background:var(--paper);color:var(--ink);font:14px/1.5 Georgia,serif}
-header{display:flex;align-items:baseline;gap:1.2em;padding:.55em 1.1em;
+body{background:var(--bg);color:var(--ink);
+font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{display:flex;align-items:center;gap:1.1em;padding:.55em 1.1em;
 border-bottom:1px solid var(--line);background:#fff}
-.wordmark{font:600 19px "Iowan Old Style",Palatino,serif;letter-spacing:.24em}
-.stats{color:var(--mut);font-size:12.5px;font-variant-numeric:tabular-nums}
-header label{margin-left:auto;color:var(--mut);font-size:12.5px;cursor:pointer}
-header a{color:var(--root);text-decoration:none;font-size:12.5px}
-main{display:flex;height:calc(100% - 44px);position:relative}
-#view{flex:1;min-width:0;background:radial-gradient(#edebe4 1px,transparent 1px);
-background-size:24px 24px;cursor:grab}
-aside{width:360px;border-left:1px solid var(--line);background:#fff;
-padding:1em 1.2em;overflow-y:auto}
-aside h2{font:600 16px "Iowan Old Style",Palatino,serif;margin:.3em 0 .5em}
-.chip{display:inline-block;padding:.1em .6em;border-radius:1em;color:#fff;
-font:bold 10.5px Menlo,monospace}
+.wordmark{font-size:12px;font-weight:700;letter-spacing:.3em}
+.stats{color:var(--mut);font-size:12px;font-variant-numeric:tabular-nums}
+header label{margin-left:auto;color:var(--mut);font-size:12px;cursor:pointer;
+user-select:none}
+header button{border:1px solid var(--line);background:#fff;color:var(--ink);
+font:inherit;font-size:12px;padding:.25em .9em;border-radius:2em;cursor:pointer}
+header button:hover{border-color:var(--mut)}
+header a{color:var(--mut);text-decoration:none;font-size:12px}
+header a:hover{color:var(--ink)}
+main{position:relative;height:calc(100% - 42px);overflow:hidden}
+#view{display:block;width:100%;height:100%;cursor:grab}
+aside{position:absolute;top:0;right:0;bottom:0;width:340px;background:#fff;
+border-left:1px solid var(--line);padding:1em 1.2em 2em;overflow-y:auto;
+box-sizing:border-box;transform:translateX(103%);transition:transform .16s ease;
+box-shadow:-8px 0 20px rgba(0,0,0,.05)}
+aside.open{transform:none}
+aside .x{position:absolute;top:.45em;right:.6em;border:0;background:none;
+color:var(--mut);font-size:18px;cursor:pointer;line-height:1}
+aside h2{font-size:15px;font-weight:650;margin:.4em 1.2em .5em 0}
+.chip{display:inline-block;padding:.15em .7em;border-radius:1em;color:#fff;
+font-size:10px;font-weight:700;letter-spacing:.06em}
 .chip.ESTABLISHED{background:var(--est)}.chip.OPEN{background:var(--open)}
-.chip.INVALIDATED{background:var(--dead)}.chip.route{background:#9a9e94}
+.chip.INVALIDATED{background:var(--dead)}.chip.route{background:#9aa096}
+.chip.goal{background:var(--goal)}
 aside code{font:11.5px Menlo,monospace;color:var(--mut)}
-.stmt{font:13px/1.55 Georgia,serif;background:#faf9f5;
-border:1px solid var(--line);padding:.2em .8em;max-height:36vh;overflow-y:auto}
-.stmt code{font:11px Menlo,monospace;background:#f0efe8}
-.stmt pre{font:11px/1.5 Menlo,monospace;background:#f0efe8;padding:.5em;overflow-x:auto}
-.stmt a{color:var(--root);text-decoration:none}
-.fr{list-style:none;padding:0;margin:.4em 0}
-.fr li{padding:.32em 0;border-bottom:1px solid #f0eee7;font-size:13px;cursor:pointer}
-.fr li:hover{color:var(--root)}
+.stmt{font-size:13px;line-height:1.55;background:#fafaf8;
+border:1px solid var(--line);border-radius:4px;padding:.2em .8em;
+max-height:44vh;overflow-y:auto}
+.stmt code{font:11px Menlo,monospace;background:#f0f0ec}
+.stmt pre{font:11px/1.5 Menlo,monospace;background:#f0f0ec;padding:.5em;overflow-x:auto}
+.stmt a{color:var(--goal);text-decoration:none}
+h3.sec{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--mut);
+text-transform:uppercase;margin:1.2em 0 .2em}
+.fr{list-style:none;padding:0;margin:.3em 0}
+.fr li{padding:.35em 0;border-bottom:1px solid #f1f2ef;font-size:13px;cursor:pointer}
+.fr li:hover{color:var(--goal)}
 .fr .imp{color:var(--mut);font:11px Menlo,monospace}
 .hint{color:var(--mut);font-size:12px}
-details summary{cursor:pointer;font:600 14px Georgia,serif;margin:.9em 0 .3em;color:#555}
-svg text{font:10px Menlo,monospace;fill:#5a5f57;pointer-events:none}
-.lk{stroke:var(--edge);stroke-width:1.7}
-.lk.kill{stroke:var(--dead);stroke-dasharray:5 3;stroke-width:1.5}
-.lk.dead{stroke:var(--dead);stroke-dasharray:5 3;stroke-width:1.5}
+details summary{cursor:pointer;font-size:13px;font-weight:650;margin:1.2em 0 .3em;
+color:var(--mut)}
+svg text{font:10px Menlo,monospace;fill:#60655e;pointer-events:none}
+.lk{stroke:var(--edge);stroke-width:1.6}
+.lk.kill,.lk.dead{stroke:var(--dead);stroke-dasharray:5 3;stroke-width:1.4}
 g.deadbit,line.dead{visibility:hidden}
 .showdead g.deadbit,.showdead line.dead{visibility:visible}
 g.orphan{display:none}
-.dim{opacity:.13}
-a.open-page{color:var(--root)}
-#key{position:absolute;left:14px;bottom:12px;background:rgba(255,253,249,.94);
-border:1px solid var(--line);border-radius:3px;padding:.6em .9em;
-font-size:12px;color:#444;display:flex;flex-direction:column;gap:.32em;
-box-shadow:0 1px 4px rgba(0,0,0,.06)}
-#key b{font:600 11px Menlo,monospace;letter-spacing:.08em;color:#888}
-#key svg{vertical-align:-3px;margin-right:.5em}
-#key .foot{color:#999;font-size:11px;max-width:240px}
+.dim{opacity:.12}
+a.open-page{color:var(--goal);text-decoration:none;font-size:13px}
+#key{position:absolute;left:14px;bottom:12px;display:flex;flex-direction:column;
+gap:.28em;font-size:11px;color:var(--mut);pointer-events:none}
+#key svg{vertical-align:-3px;margin-right:.45em}
 </style>
 <body>
 <header><span class="wordmark">CAIRN</span><span class="stats">__STATS__</span>
-<label><input type="checkbox" id="showdead"> show ruled-out space</label>
+<label><input type="checkbox" id="showdead" checked> failed routes</label>
+<button id="frontierbtn">frontier</button>
 <a href="nodes.html">all nodes</a></header>
 <main><svg id="view"></svg>
-<div id="key"><b>KEY</b>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#17805a"/></svg>established claim</span>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="6" fill="#fbedcd" stroke="#c98a00" stroke-width="2.4"/></svg>open claim (unproved)</span>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="6.5" fill="none" stroke="#2b6cb0" stroke-width="1.6"/><circle cx="8" cy="7" r="3.4" fill="#fbedcd" stroke="#c98a00" stroke-width="2"/></svg>program root</span>
-<span><svg width="18" height="14"><rect x="3" y="2" width="10" height="10" fill="#9a9e94"/></svg>&and; join of a multi-premise route</span>
-<span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#7c8377" stroke-width="1.7"/><path d="M19,3.5L25,7L19,10.5z" fill="#7c8377"/></svg>route: premises &#10230; target</span>
-<span><svg width="26" height="14"><line x1="1" y1="7" x2="20" y2="7" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/><path d="M19,3.5L25,7L19,10.5z" fill="#c0392b"/></svg>invalidation (obstruction kills route)</span>
-<span><svg width="18" height="14"><circle cx="8" cy="7" r="5.5" fill="#fff" stroke="#c0392b" stroke-width="1.6" stroke-dasharray="3,2"/></svg>ruled-out route (toggle to show)</span>
-<span class="foot">placement: statements with similar content drift together, even without an explicit edge</span>
+<div id="key">
+<span><svg width="22" height="16"><circle cx="9" cy="8" r="7.6" fill="none" stroke="#4f46e5" stroke-width="1.8"/><circle cx="9" cy="8" r="4.6" fill="#fff" stroke="#c08a00" stroke-width="2"/></svg>goal</span>
+<span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#178a5e"/></svg>established</span>
+<span><svg width="22" height="16"><circle cx="9" cy="8" r="6" fill="#fff" stroke="#c08a00" stroke-width="2.2"/></svg>open</span>
+<span><svg width="22" height="16"><rect x="4" y="3" width="10" height="10" fill="#9aa096"/></svg>&and; multi-premise route</span>
+<span><svg width="27" height="16"><line x1="1" y1="8" x2="20" y2="8" stroke="#9aa096" stroke-width="1.6"/><path d="M19,4.5L25,8L19,11.5z" fill="#9aa096"/></svg>premises &#10230; target</span>
+<span><svg width="27" height="16"><line x1="1" y1="8" x2="20" y2="8" stroke="#c43c2e" stroke-width="1.4" stroke-dasharray="5,3"/><path d="M19,4.5L25,8L19,11.5z" fill="#c43c2e"/></svg>failed / invalidated</span>
 </div>
-<aside id="panel"></aside></main>
+<aside id="panel"><button class="x" id="closepanel">&times;</button><div id="panelbody"></div></aside></main>
 <script>
 const DATA=__DATA__;
 const panel=document.getElementById('panel');
+const pbody=document.getElementById('panelbody');
 const esc=t=>{const d=document.createElement('i');d.textContent=t;return d.innerHTML};
-function sidebarHome(){
- let h='<h2>Frontier</h2><p class="hint">Open, reachable, undecomposed claims - the work surface. Click a node or a row; drag to arrange; scroll to zoom.</p><ul class="fr">';
+const openPanel=()=>panel.classList.add('open');
+const closePanel=()=>panel.classList.remove('open');
+document.getElementById('closepanel').onclick=closePanel;
+function frontierHome(){
+ let h='';
+ const goals=DATA.claims.filter(c=>c.goal);
+ if(goals.length){
+  h+='<h3 class="sec">Goals</h3><ul class="fr">';
+  for(const c of goals)
+   h+=`<li data-id="${c.id}"><span class="chip ${c.status}">${c.status}</span> ${esc(c.title)}<br><span class="imp">${c.id}</span></li>`;
+  h+='</ul>';
+ }
+ h+='<h3 class="sec">Frontier</h3><ul class="fr">';
  for(const c of DATA.claims.filter(c=>c.frontier).sort((a,b)=>b.impact-a.impact))
   h+=`<li data-id="${c.id}">${esc(c.title)}<br><span class="imp">${c.id} &middot; ${c.impact} live route(s)${c.lock?' &middot; locked by '+esc(c.lock):''}</span></li>`;
  h+='</ul>';
  const lib=DATA.claims.filter(c=>c.status==='ESTABLISHED').sort((a,b)=>a.title.localeCompare(b.title));
- h+=`<details><summary>Library &mdash; ${lib.length} established claims</summary><ul class="fr">`;
+ h+=`<details><summary>Library &mdash; ${lib.length} established</summary><ul class="fr">`;
  for(const c of lib)h+=`<li data-id="${c.id}">${esc(c.title)}<br><span class="imp">${c.id}</span></li>`;
  h+='</ul></details>';
- panel.innerHTML=h;
- panel.querySelectorAll('li').forEach(li=>li.onclick=()=>selectById(li.dataset.id));
+ pbody.innerHTML=h;
+ pbody.querySelectorAll('li').forEach(li=>li.onclick=()=>selectById(li.dataset.id));
+ openPanel();
 }
+document.getElementById('frontierbtn').onclick=frontierHome;
 let selectById=id=>{};
 if(typeof d3==='undefined'){
  document.getElementById('view').outerHTML='<div style="padding:2em">d3 CDN unreachable &mdash; use <a href="nodes.html">all nodes</a>.</div>';
- sidebarHome();
+ frontierHome();
 }else{
 const nodes=[],links=[],byId={};
 for(const c of DATA.claims){c.type='claim';nodes.push(c);byId[c.id]=c}
@@ -1049,7 +1092,7 @@ const sim=d3.forceSimulation(nodes)
  .force('charge',d3.forceManyBody().strength(-430))
  .force('x',d3.forceX(W/2).strength(.06))
  .force('y',d3.forceY(H/2).strength(.09))
- .force('collide',d3.forceCollide(d=>d.type==='claim'?38:13));
+ .force('collide',d3.forceCollide(d=>d.type==='claim'?(d.goal?48:38):13));
 const line=g.selectAll('line').data(links.filter(real)).join('line')
  .attr('class',l=>'lk'+(l.kind==='kill'?' kill':'')+(l.dead?' dead':''))
  .attr('marker-end',l=>l.kind==='in'?null:(l.dead||l.kind==='kill'?'url(#mr)':'url(#m)'));
@@ -1060,13 +1103,17 @@ const node=g.selectAll('g.n').data(nodes).join('g')
    .on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.25).restart();d.fx=d.x;d.fy=d.y})
    .on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y})
    .on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null}));
-node.filter(d=>d.type==='claim'&&d.root).append('circle')
- .attr('r',21).attr('fill','none').attr('stroke','var(--root)').attr('stroke-width',1.8);
+node.filter(d=>d.type==='claim'&&d.goal).append('circle')
+ .attr('r',23).attr('fill','none').attr('stroke','var(--goal)').attr('stroke-width',2.2);
 node.filter(d=>d.type==='claim').append('circle')
- .attr('r',d=>d.root?14:10+Math.min(d.impact*1.5,4))
- .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fbedcd')
- .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f5c40':'var(--open)')
- .attr('stroke-width',2.4);
+ .attr('r',d=>d.goal?15:10+Math.min(d.impact*1.5,4))
+ .attr('fill',d=>d.status==='ESTABLISHED'?'var(--est)':'#fff')
+ .attr('stroke',d=>d.status==='ESTABLISHED'?'#0f6b47':'var(--open)')
+ .attr('stroke-width',2.2);
+node.filter(d=>d.type==='claim'&&d.goal).append('text')
+ .attr('text-anchor','middle').attr('dy',-31)
+ .style('fill','var(--goal)').style('font-weight','700')
+ .style('letter-spacing','.2em').text('GOAL');
 node.filter(d=>d.type==='junction').append('rect')
  .attr('x',-6).attr('y',-6).attr('width',12).attr('height',12)
  .attr('fill',d=>d.dead?'var(--dead)':'#9a9e94');
@@ -1084,7 +1131,7 @@ node.filter(d=>d.type==='claim').each(function(d){
  }
  if(l2.length>28)l2=l2.slice(0,27)+'\\u2026';
  const txt=d3.select(this).append('text').attr('text-anchor','middle');
- txt.append('tspan').attr('x',0).attr('dy',d.root?33:27).text(l1);
+ txt.append('tspan').attr('x',0).attr('dy',d.goal?36:27).text(l1);
  if(l2)txt.append('tspan').attr('x',0).attr('dy',11).text(l2);
 });
 node.append('title').text(d=>d.type==='claim'?`${d.id} [${d.status}]`:(d.rtitle||d.route));
@@ -1099,31 +1146,32 @@ node.on('mouseenter',(e,d)=>neighbors(d))
  .on('mouseleave',()=>{node.classed('dim',false);line.classed('dim',false)});
 function show(d){
  if(d.type==='claim'){
-  panel.innerHTML=`<span class="chip ${d.status}">${d.status}</span>
+  pbody.innerHTML=`${d.goal?'<span class="chip goal">GOAL</span> ':''}<span class="chip ${d.status}">${d.status}</span>
    <h2>${esc(d.title)}</h2><code>${d.id}</code>
    ${d.lock?`<p class="hint">locked by ${esc(d.lock)}</p>`:''}
    <div class="stmt">${d.html||'(no statement)'}</div>
    <p><a class="open-page" href="${d.id}.html">open page &#8594;</a></p>`;
  }else{
   const imp=(d.requires&&d.requires.length?d.requires.join(' \\u2227 '):'\\u22a4')+' \\u27f9 '+d.tgt;
-  panel.innerHTML=`<span class="chip route">route${d.dead?' &middot; invalidated':''}</span>
+  pbody.innerHTML=`<span class="chip route">route${d.dead?' &middot; failed':''}</span>
    <h2>${esc(d.rtitle||d.route)}</h2><code>${esc(imp)}</code>
    ${d.killers&&d.killers.length?`<p class="hint">invalidated by ${d.killers.join(', ')}</p>`:''}
    <p><a class="open-page" href="${d.route}.html">open page &#8594;</a></p>`;
  }
- if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([panel]);
+ openPanel();
+ if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([pbody]);
 }
 selectById=id=>{const d=byId[id];if(d){show(d);if(!d.orphan){neighbors(d);
  setTimeout(()=>{node.classed('dim',false);line.classed('dim',false)},1600)}}};
 node.on('click',(e,d)=>{e.stopPropagation();show(d)});
-svg.on('click',sidebarHome);
+svg.on('click',closePanel);
 function refreshVis(){
  const sd=document.getElementById('showdead').checked;
  const deg={};
  links.forEach(l=>{if(real(l)&&(!l.dead||sd)){
   const a=l.source.id||l.source,b=l.target.id||l.target;
   deg[a]=(deg[a]||0)+1;deg[b]=(deg[b]||0)+1}});
- nodes.forEach(d=>{d.orphan=d.type==='claim'&&!d.root&&!d.frontier&&!(deg[d.id]>0)});
+ nodes.forEach(d=>{d.orphan=d.type==='claim'&&!d.root&&!d.goal&&!d.frontier&&!(deg[d.id]>0)});
  node.classed('orphan',d=>d.orphan);
  g.classed('showdead',sd);
  sim.force('charge',d3.forceManyBody().strength(d=>d.orphan?-10:-430));
@@ -1138,7 +1186,6 @@ sim.on('tick',()=>{
  node.attr('transform',d=>`translate(${d.x},${d.y})`);
 });
 refreshVis();
-sidebarHome();
 }
 </script>
 """
@@ -1174,6 +1221,7 @@ def generate_site(graph, locks):
     for cid, c in graph.claims.items():
         data["claims"].append({
             "id": cid, "status": c.status, "root": bool(c.meta.get("root")),
+            "goal": bool(c.meta.get("goal")),
             "title": c.title, "impact": graph.claim_impact.get(cid, 0),
             "frontier": cid in graph.frontier,
             "lock": locks.get(cid, {}).get("owner"),
@@ -1238,8 +1286,7 @@ def generate_site(graph, locks):
             percap[y] = percap.get(y, 0) + 1
     est = sum(1 for c in graph.claims.values() if c.status == "ESTABLISHED")
     stats = (f"{len(graph.claims)} claims · {est} established · "
-             f"{len(graph.routes)} routes · {len(graph.invalidated)} ruled out · "
-             f"{len(graph.frontier)} frontier holes · {time.strftime('%Y-%m-%d %H:%M')}")
+             f"{len(graph.routes)} routes · {len(graph.frontier)} frontier holes")
     idx = (INDEX_TMPL.replace("__DATA__", json.dumps(data))
                      .replace("__STATS__", html.escape(stats)))
     with open(os.path.join(SITE_DIR, "index.html"), "w", encoding="utf-8") as f:
@@ -1254,9 +1301,11 @@ def generate_site(graph, locks):
     with open(os.path.join(SITE_DIR, "nodes.html"), "w", encoding="utf-8") as f:
         f.write(page("Cairn — all nodes", "\n".join(B)))
     for nid, n in graph.nodes.items():
+        goalmark = (f'<span class="badge" style="background:{GOAL_COLOR}">GOAL</span> '
+                    if n.meta.get("goal") else "")
         B = ["<p><a href='index.html'>← index</a></p>",
              f"<h1><span class='node'>{nid}</span> {html.escape(n.title)}</h1>",
-             f"<p>{badge(n.status)} <span class='muted'>{n.kind} · "
+             f"<p>{goalmark}{badge(n.status)} <span class='muted'>{n.kind} · "
              f"<code>{html.escape(n.relpath)}</code></span></p>"]
         if n.status_reasons:
             B.append("<p class='muted'>" + html.escape("; ".join(n.status_reasons)) + "</p>")

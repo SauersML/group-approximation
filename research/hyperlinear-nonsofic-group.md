@@ -6,6 +6,7 @@ title: "Pestov Question 3.4: produce a hyperlinear non-sofic group"
 distinct_from:
   non-hyperlinear-group: that claim denies hyperlinearity outright; this one demands a group that IS hyperlinear yet fails soficity — the Q3.4 separation
 root: true
+goal: true
 ---
 
 The parallel program target: separate hyperlinearity from soficity. Soficity
