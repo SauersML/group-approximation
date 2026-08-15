@@ -68,12 +68,15 @@ theorem literal_nonempty_clopen_nonMF_cylinder :
   LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder
 
 /-- The concrete affine--Clifford witness is finitely generated and non-MF,
-while its canonical lamp kernel is locally finite, LEF, sofic, and MF. -/
+while its canonical lamp kernel is locally finite, LEF, sofic, and MF, and the
+quotient by that kernel is MF as well. -/
 theorem witness_locallyFinite_MF_kernel_nonMF_total :
     IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
       IsLEF LiteralWitnessConsequences.WitnessLampGroup ∧
       IsSofic LiteralWitnessConsequences.WitnessLampGroup ∧
       IsOperatorMF LiteralWitnessConsequences.WitnessLampGroup ∧
+      IsOperatorMF (MarkedCompression.Vertical
+        LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective) ∧
       Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
       ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
   LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF

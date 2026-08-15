@@ -24,7 +24,7 @@ def relatorList : List (FreeGroup Generator) :=
   [stableRelator, lampSqRelator, lampGammaRelator, markedSqRelator,
     markedGammaRelator, markedStableRelator, markedLampRelator]
 
-theorem relatorList_length : relatorList.length = 7 := rfl
+@[simp] theorem relatorList_length : relatorList.length = 7 := rfl
 
 /-- The seven displayed relators are pairwise distinct. -/
 theorem relatorList_nodup : relatorList.Nodup :=

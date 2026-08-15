@@ -619,7 +619,7 @@ def baseRelatorList : List (FreeGroup BaseGenerator) :=
    baseRelYV1, baseRelYV2, baseRelYV3,
    baseRelZV1, baseRelZV2, baseRelZV3]
 
-theorem baseRelatorList_length : baseRelatorList.length = 20 := rfl
+@[simp] theorem baseRelatorList_length : baseRelatorList.length = 20 := rfl
 
 /-- The twenty displayed base relators are pairwise distinct elements of the
 free group on the six base letters. -/
@@ -663,7 +663,7 @@ def relatorList : List (FreeGroup Generator) :=
   transportedBaseRelatorList ++ stableRelatorList ++ lampRelatorList ++
     markedRelatorList
 
-theorem relatorList_length : relatorList.length = 41 := rfl
+@[simp] theorem relatorList_length : relatorList.length = 41 := rfl
 
 /-- The forty-one displayed relators are pairwise distinct elements of the
 free group on the eight letters. -/

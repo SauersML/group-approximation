@@ -1,6 +1,7 @@
 import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.Group.Subgroup.Ker
 import Mathlib.Data.Countable.Basic
+import Mathlib.Tactic.Group
 
 /-!
 # The mapping telescope of an injective group endomorphism
@@ -306,6 +307,143 @@ theorem level_succ_mem_range_level_iff (n : ℕ) (x : Γ) :
 
 instance [Countable Γ] : Countable (Telescope α hα) :=
   Function.Surjective.countable (mk_surjective α hα)
+
+/-! ## The universal property
+
+The telescope is the colimit of `Γ →α Γ →α ⋯`, so a homomorphism out of it is
+the same thing as a compatible family of homomorphisms out of the levels.  The
+special case actually used downstream is `liftConj`: a single homomorphism
+`g : Γ →* H` together with an element `c : H` that implements `α` by
+conjugation determines a homomorphism on the whole telescope, sending the
+level-`n` copy to the `c⁻ⁿ`-conjugate of the image of `g`. -/
+
+section Lift
+
+universe v
+
+variable {H : Type v} [Group H]
+
+/-- Compatibility propagates along iterates. -/
+theorem comp_iterateHom_of_comp_succ
+    (f : ℕ → (Γ →* H)) (hf : ∀ n, (f (n + 1)).comp α = f n) (n k : ℕ) :
+    (f (n + k)).comp (iterateHom α k) = f n := by
+  induction k generalizing n with
+  | zero => ext x; simp
+  | succ k ih =>
+      ext x
+      have hcomm : iterateHom α (k + 1) x = α (iterateHom α k x) := by
+        rw [iterateHom_succ_apply, iterateHom_apply_hom]
+      calc f (n + (k + 1)) (iterateHom α (k + 1) x)
+          = f ((n + k) + 1) (α (iterateHom α k x)) := by
+            rw [hcomm, ← Nat.add_assoc]
+        _ = f (n + k) (iterateHom α k x) :=
+            DFunLike.congr_fun (hf (n + k)) _
+        _ = f n x := DFunLike.congr_fun (ih n) x
+
+include hα in
+/-- **Universal property of the mapping telescope.**  A family of
+homomorphisms out of the levels that is compatible with `α` descends to the
+telescope. -/
+def lift (f : ℕ → (Γ →* H)) (hf : ∀ n, (f (n + 1)).comp α = f n) :
+    Telescope α hα →* H where
+  toFun := Quotient.lift (fun p : ℕ × Γ => f p.1 p.2) (by
+    rintro ⟨n, x⟩ ⟨m, y⟩ (h : iterateHom α m x = iterateHom α n y)
+    calc f n x = f (n + m) (iterateHom α m x) :=
+          (DFunLike.congr_fun (comp_iterateHom_of_comp_succ α f hf n m) x).symm
+      _ = f (n + m) (iterateHom α n y) := by rw [h]
+      _ = f (m + n) (iterateHom α n y) := by rw [Nat.add_comm]
+      _ = f m y := DFunLike.congr_fun (comp_iterateHom_of_comp_succ α f hf m n) y)
+  map_one' := by
+    show f 0 (1 : Γ) = 1
+    simp
+  map_mul' a b := by
+    induction a using Quotient.inductionOn with | h p =>
+    induction b using Quotient.inductionOn with | h q =>
+    obtain ⟨n, x⟩ := p; obtain ⟨m, y⟩ := q
+    show f (n + m) (iterateHom α m x * iterateHom α n y) = f n x * f m y
+    have h1 : f (n + m) (iterateHom α m x) = f n x :=
+      DFunLike.congr_fun (comp_iterateHom_of_comp_succ α f hf n m) x
+    have h2 : f (m + n) (iterateHom α n y) = f m y :=
+      DFunLike.congr_fun (comp_iterateHom_of_comp_succ α f hf m n) y
+    rw [map_mul, h1, show n + m = m + n from Nat.add_comm n m, h2]
+
+include hα in
+@[simp] theorem lift_level (f : ℕ → (Γ →* H))
+    (hf : ∀ n, (f (n + 1)).comp α = f n) (n : ℕ) (x : Γ) :
+    lift α hα f hf (level α hα n x) = f n x := rfl
+
+/-- The conjugation family attached to an element implementing `α`. -/
+private def conjFamily (g : Γ →* H) (c : H) : ℕ → (Γ →* H) := fun n ↦
+  (MulAut.conj (c ^ n)⁻¹).toMonoidHom.comp g
+
+private theorem conjFamily_apply (g : Γ →* H) (c : H) (n : ℕ) (x : Γ) :
+    conjFamily g c n x = (c ^ n)⁻¹ * g x * c ^ n := by
+  simp [conjFamily, MulAut.conj]
+
+include hα in
+/-- **Ascending-HNN lift.**  If `c` implements `α` by conjugation on the image
+of `g`, then `g` extends to the whole telescope, level `n` landing in the
+`c⁻ⁿ`-conjugate. -/
+def liftConj (g : Γ →* H) (c : H) (hc : ∀ x, g (α x) = c * g x * c⁻¹) :
+    Telescope α hα →* H :=
+  lift α hα (conjFamily g c) (by
+    intro n
+    ext x
+    simp only [MonoidHom.comp_apply, conjFamily_apply, hc, pow_succ]
+    group)
+
+include hα in
+@[simp] theorem liftConj_level (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (n : ℕ) (x : Γ) :
+    liftConj α hα g c hc (level α hα n x) = (c ^ n)⁻¹ * g x * c ^ n := by
+  rw [liftConj, lift_level, conjFamily_apply]
+
+include hα in
+theorem liftConj_shift (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (a : Telescope α hα) :
+    liftConj α hα g c hc (shift α hα a) =
+      c * liftConj α hα g c hc a * c⁻¹ := by
+  induction a using Quotient.inductionOn with | h p =>
+  obtain ⟨n, x⟩ := p
+  show liftConj α hα g c hc (level α hα n (α x)) =
+    c * liftConj α hα g c hc (level α hα n x) * c⁻¹
+  rw [liftConj_level, liftConj_level, hc]
+  group
+
+include hα in
+theorem liftConj_shift_symm (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (a : Telescope α hα) :
+    liftConj α hα g c hc ((shift α hα).symm a) =
+      c⁻¹ * liftConj α hα g c hc a * c := by
+  have h := liftConj_shift α hα g c hc ((shift α hα).symm a)
+  rw [MulEquiv.apply_symm_apply] at h
+  rw [h]
+  group
+
+include hα in
+/-- The conjugation lift intertwines every integer power of the shift with the
+corresponding power of `c`. -/
+theorem liftConj_shift_zpow (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (k : ℤ) :
+    ∀ a : Telescope α hα,
+      liftConj α hα g c hc (((shift α hα : MulAut (Telescope α hα)) ^ k) a) =
+        c ^ k * liftConj α hα g c hc a * (c ^ k)⁻¹ := by
+  induction k using Int.induction_on with
+  | zero => intro a; simp
+  | succ k ih =>
+      intro a
+      rw [zpow_add_one, MulAut.mul_apply, ih (shift α hα a), liftConj_shift,
+        zpow_add_one]
+      group
+  | pred k ih =>
+      intro a
+      rw [zpow_sub_one, MulAut.mul_apply]
+      rw [show ((shift α hα : MulAut (Telescope α hα))⁻¹) a
+            = (shift α hα).symm a from rfl]
+      rw [ih ((shift α hα).symm a), liftConj_shift_symm, zpow_sub_one]
+      group
+
+end Lift
 
 end MappingTelescope
 end GroupApproximation

@@ -228,7 +228,7 @@ theorem literal_centralSignCriterion :
           (fun n ↦ naturalFiniteModel (d n))),
         rho mark = 1) ∧
       ¬ IsCDEOperatorMF MarkedGroup :=
-  KazhdanCompressionCore.manuscriptCentralSignCriterion
+  KazhdanCompressionCore.manuscriptCentralSignCriterion.{0}
     (Γ := Base) (E := MarkedGroup)
     LiteralBaseP13PropertyTBridge.manuscriptBaseHasKazhdanPropertyT.2
     baseMap stable lamp inclusionData.compresses lamp_commutes_base

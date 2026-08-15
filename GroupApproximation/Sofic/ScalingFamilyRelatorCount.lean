@@ -86,15 +86,15 @@ def expTriple (w : FreeGroup Generator) : ℤ × ℤ × ℤ :=
 
 /-- The three stable-letter relators at `x`, `y`, `z`: the compressed word is
 the letter itself, so these do not depend on `m`. -/
-theorem stableRelator_x (m : ℕ) :
+@[simp] theorem stableRelator_x (m : ℕ) :
     ScalingFamilyPresentation.stableRelator m xIndex =
       LiteralNonMFPresentation.stableRelator xIndex := rfl
 
-theorem stableRelator_y (m : ℕ) :
+@[simp] theorem stableRelator_y (m : ℕ) :
     ScalingFamilyPresentation.stableRelator m yIndex =
       LiteralNonMFPresentation.stableRelator yIndex := rfl
 
-theorem stableRelator_z (m : ℕ) :
+@[simp] theorem stableRelator_z (m : ℕ) :
     ScalingFamilyPresentation.stableRelator m zIndex =
       LiteralNonMFPresentation.stableRelator zIndex := rfl
 
@@ -109,19 +109,20 @@ def fixedBlock : List (FreeGroup Generator) :=
   fixedStableList ++
     (transportedBaseRelatorList ++ lampRelatorList ++ markedRelatorList)
 
-theorem fixedBlock_length : fixedBlock.length = 38 := rfl
+@[simp] theorem fixedBlock_length : fixedBlock.length = 38 := rfl
 
 theorem fixedBlock_nodup : fixedBlock.Nodup :=
   List.Nodup.of_map FreeGroup.toWord (by decide)
 
-/-- The only lattice-exponent triples realized by the fixed relators. -/
-set_option maxRecDepth 40000 in
+/-- The only lattice-exponent triples realized by the fixed relators.  The
+evaluation is delegated to the kernel: the marked relators are thirty-four
+letters long, which exceeds the elaborator's default recursion budget. -/
 theorem expTriple_mem_of_mem_fixedBlock :
     ∀ w ∈ fixedBlock,
       expTriple w ∈ ([(0, 0, 0), (1, 0, -1), (-1, 1, 0), (0, -1, 1),
         (0, 2, -1), (-1, 1, 1), (1, -1, 1), (0, 0, 2)] :
           List (ℤ × ℤ × ℤ)) := by
-  decide
+  decide +kernel
 
 /-! ## The three relators that move -/
 
@@ -149,7 +150,7 @@ theorem expAt_stableRelator_lattice (m : ℕ) (j i : BaseGenerator)
     compressedGeneratorWord_lattice m i hi]
   simp only [expAt_mul, expAt_inv, expAt_pow, expAt_stableWord,
     expAt_vertexLetter]
-  by_cases hij : i = j <;> simp [hij] <;> ring
+  split_ifs <;> ring
 
 theorem expTriple_stableRelator_v1 (m : ℕ) :
     expTriple (ScalingFamilyPresentation.stableRelator m v1Index) =
@@ -249,7 +250,7 @@ theorem latticeBlock_disjoint_fixedBlock (m : ℕ) (hm : 2 ≤ m) :
 def relatorList (m : ℕ) : List (FreeGroup Generator) :=
   latticeBlock m ++ fixedBlock
 
-theorem relatorList_length (m : ℕ) : (relatorList m).length = 41 := rfl
+@[simp] theorem relatorList_length (m : ℕ) : (relatorList m).length = 41 := rfl
 
 theorem relatorList_nodup (m : ℕ) (hm : 2 ≤ m) : (relatorList m).Nodup :=
   List.Nodup.append (latticeBlock_nodup m hm) fixedBlock_nodup
@@ -261,7 +262,7 @@ def stableRelatorList (m : ℕ) : List (FreeGroup Generator) :=
   baseGeneratorList.map (ScalingFamilyPresentation.stableRelator m)
 
 /-- Splitting that list into the three that move and the three that do not. -/
-theorem stableRelatorList_eq (m : ℕ) :
+@[simp] theorem stableRelatorList_eq (m : ℕ) :
     stableRelatorList m = latticeBlock m ++ fixedStableList := rfl
 
 theorem mem_stableRelators_iff (m : ℕ) (r : FreeGroup Generator) :

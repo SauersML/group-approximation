@@ -323,76 +323,79 @@ Fintype.card LiteralNonMFPresentation.Generator = 8 ∧
             LiteralNonMFPresentation.bz * LiteralNonMFPresentation.bv3 *
                 LiteralNonMFPresentation.bz⁻¹ *
               LiteralNonMFPresentation.bv3⁻¹⁻¹].toFinset ∧
-      LiteralNonMFPresentation.transportedBaseRelators =
-          Finset.image (⇑LiteralNonMFPresentation.embedBaseWord)
-            LiteralNonMFPresentation.baseRelators ∧
-        (LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v1Index =
-              LiteralNonMFPresentation.bv1 ^ 2 ∧
-            LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v2Index =
-                LiteralNonMFPresentation.bv2 ^ 2 ∧
-              LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v3Index =
-                  LiteralNonMFPresentation.bv3 ^ 2 ∧
-                LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.xIndex =
-                    LiteralNonMFPresentation.bx ∧
-                  LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.yIndex =
-                      LiteralNonMFPresentation.bY ∧
+      LiteralNonMFPresentation.baseRelators.card = 20 ∧
+        LiteralNonMFPresentation.transportedBaseRelators =
+            Finset.image (⇑LiteralNonMFPresentation.embedBaseWord)
+              LiteralNonMFPresentation.baseRelators ∧
+          (LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v1Index =
+                LiteralNonMFPresentation.bv1 ^ 2 ∧
+              LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v2Index =
+                  LiteralNonMFPresentation.bv2 ^ 2 ∧
+                LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.v3Index =
+                    LiteralNonMFPresentation.bv3 ^ 2 ∧
+                  LiteralNonMFPresentation.compressedBaseWord LiteralNonMFPresentation.xIndex =
+                      LiteralNonMFPresentation.bx ∧
                     LiteralNonMFPresentation.compressedBaseWord
-                        LiteralNonMFPresentation.zIndex =
-                      LiteralNonMFPresentation.bz) ∧
-          LiteralNonMFPresentation.stableRelators =
-              Finset.image
-                (fun i =>
-                  LiteralNonMFPresentation.stableWord *
-                        LiteralNonMFPresentation.vertexLetter i *
-                      LiteralNonMFPresentation.stableWord⁻¹ *
-                    (LiteralNonMFPresentation.embedBaseWord
-                        (LiteralNonMFPresentation.compressedBaseWord i))⁻¹)
-                Finset.univ ∧
-            LiteralNonMFPresentation.lampRelators =
-                {LiteralNonMFPresentation.lampWord ^ 2} ∪
-                  Finset.image
-                    (fun i =>
-                      LiteralNonMFPresentation.lampWord *
-                            LiteralNonMFPresentation.vertexLetter i *
-                          LiteralNonMFPresentation.lampWord⁻¹ *
-                        (LiteralNonMFPresentation.vertexLetter i)⁻¹)
-                    Finset.univ ∧
-              (LiteralNonMFPresentation.markedWord =
-                  have displaced :=
-                    LiteralNonMFPresentation.stableWord * LiteralNonMFPresentation.lampWord *
-                      LiteralNonMFPresentation.stableWord⁻¹;
-                  displaced *
-                        (LiteralNonMFPresentation.v1Word * displaced *
-                          LiteralNonMFPresentation.v1Word⁻¹) *
-                      displaced⁻¹ *
-                    (LiteralNonMFPresentation.v1Word * displaced *
-                        LiteralNonMFPresentation.v1Word⁻¹)⁻¹) ∧
-                LiteralNonMFPresentation.markedRelators =
+                          LiteralNonMFPresentation.yIndex =
+                        LiteralNonMFPresentation.bY ∧
+                      LiteralNonMFPresentation.compressedBaseWord
+                          LiteralNonMFPresentation.zIndex =
+                        LiteralNonMFPresentation.bz) ∧
+            LiteralNonMFPresentation.stableRelators =
+                Finset.image
+                  (fun i =>
+                    LiteralNonMFPresentation.stableWord *
+                          LiteralNonMFPresentation.vertexLetter i *
+                        LiteralNonMFPresentation.stableWord⁻¹ *
+                      (LiteralNonMFPresentation.embedBaseWord
+                          (LiteralNonMFPresentation.compressedBaseWord i))⁻¹)
+                  Finset.univ ∧
+              LiteralNonMFPresentation.lampRelators =
+                  {LiteralNonMFPresentation.lampWord ^ 2} ∪
                     Finset.image
                       (fun i =>
-                        LiteralNonMFPresentation.markedWord * FreeGroup.of i *
-                            LiteralNonMFPresentation.markedWord⁻¹ *
-                          (FreeGroup.of i)⁻¹)
+                        LiteralNonMFPresentation.lampWord *
+                              LiteralNonMFPresentation.vertexLetter i *
+                            LiteralNonMFPresentation.lampWord⁻¹ *
+                          (LiteralNonMFPresentation.vertexLetter i)⁻¹)
                       Finset.univ ∧
-                  LiteralNonMFPresentation.relators =
-                      LiteralNonMFPresentation.transportedBaseRelators ∪
-                            LiteralNonMFPresentation.stableRelators ∪
-                          LiteralNonMFPresentation.lampRelators ∪
-                        LiteralNonMFPresentation.markedRelators ∧
-                    LiteralNonMFPresentation.MarkedGroup =
-                        PresentedGroup ↑LiteralNonMFPresentation.relators ∧
-                      Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
-                        (LiteralNonMFPresentation.mark ^ 2 = 1 ∧
-                            ∀ (g : LiteralNonMFPresentation.MarkedGroup),
-                              Commute LiteralNonMFPresentation.mark g) ∧
-                          (∀ (g : LiteralNonMFPresentation.Base),
-                              LiteralNonMFPresentation.stable *
-                                    LiteralNonMFPresentation.baseMap g *
-                                  LiteralNonMFPresentation.stable⁻¹ ∈
-                                LiteralNonMFPresentation.baseMap.range) ∧
-                            ∀ (g : LiteralNonMFPresentation.Base),
-                              Commute LiteralNonMFPresentation.lamp
-                                (LiteralNonMFPresentation.baseMap g)
+                (LiteralNonMFPresentation.markedWord =
+                    have displaced :=
+                      LiteralNonMFPresentation.stableWord * LiteralNonMFPresentation.lampWord *
+                        LiteralNonMFPresentation.stableWord⁻¹;
+                    displaced *
+                          (LiteralNonMFPresentation.v1Word * displaced *
+                            LiteralNonMFPresentation.v1Word⁻¹) *
+                        displaced⁻¹ *
+                      (LiteralNonMFPresentation.v1Word * displaced *
+                          LiteralNonMFPresentation.v1Word⁻¹)⁻¹) ∧
+                  LiteralNonMFPresentation.markedRelators =
+                      Finset.image
+                        (fun i =>
+                          LiteralNonMFPresentation.markedWord * FreeGroup.of i *
+                              LiteralNonMFPresentation.markedWord⁻¹ *
+                            (FreeGroup.of i)⁻¹)
+                        Finset.univ ∧
+                    LiteralNonMFPresentation.relators =
+                        LiteralNonMFPresentation.transportedBaseRelators ∪
+                              LiteralNonMFPresentation.stableRelators ∪
+                            LiteralNonMFPresentation.lampRelators ∪
+                          LiteralNonMFPresentation.markedRelators ∧
+                      LiteralNonMFPresentation.relators.card = 41 ∧
+                        LiteralNonMFPresentation.MarkedGroup =
+                            PresentedGroup ↑LiteralNonMFPresentation.relators ∧
+                          Group.IsFinitelyPresented LiteralNonMFPresentation.MarkedGroup ∧
+                            (LiteralNonMFPresentation.mark ^ 2 = 1 ∧
+                                ∀ (g : LiteralNonMFPresentation.MarkedGroup),
+                                  Commute LiteralNonMFPresentation.mark g) ∧
+                              (∀ (g : LiteralNonMFPresentation.Base),
+                                  LiteralNonMFPresentation.stable *
+                                        LiteralNonMFPresentation.baseMap g *
+                                      LiteralNonMFPresentation.stable⁻¹ ∈
+                                    LiteralNonMFPresentation.baseMap.range) ∧
+                                ∀ (g : LiteralNonMFPresentation.Base),
+                                  Commute LiteralNonMFPresentation.lamp
+                                    (LiteralNonMFPresentation.baseMap g)
 ```
 
 ## `GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF`
@@ -436,8 +439,11 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
   IsLEF LiteralWitnessConsequences.WitnessLampGroup ∧
     IsSofic LiteralWitnessConsequences.WitnessLampGroup ∧
       IsOperatorMF LiteralWitnessConsequences.WitnessLampGroup ∧
-        Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
-          ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
+        IsOperatorMF
+            (MarkedCompression.Vertical LiteralNonMFLinearWitness.alpha
+              ExplicitLinearModel.conjD_injective) ∧
+          Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
+            ¬IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup
 ```
 
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction`

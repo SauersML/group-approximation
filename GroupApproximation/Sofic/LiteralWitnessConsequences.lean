@@ -4,6 +4,7 @@ import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.SoficMarkedCompression
 import GroupApproximation.Monsters.ExplicitIntegralLinearModel
+import GroupApproximation.Sofic.WitnessVerticalResiduallyFinite
 
 /-!
 # Operator-MF consequences for the explicit Clifford witness
@@ -116,21 +117,26 @@ theorem literalWitness_finitelyGenerated_nonMF :
     witness_sign_normMFInvisible,
     witnessGroup_not_isOperatorMF⟩
 
-/-- **Closed kernel package for the explicit witness.**  With no hypotheses,
-the kernel of its canonical vertical projection is locally finite, LEF,
-sofic, and operator-MF, whereas the whole witness is finitely generated and
-not operator-MF. -/
+/-- **Closed kernel-and-quotient package for the explicit witness.**  With no
+hypotheses, the kernel of its canonical vertical projection is locally finite,
+LEF, sofic, and operator-MF, the quotient by that kernel is operator-MF as
+well, and yet the whole witness is finitely generated and not operator-MF.
+Operator MF is therefore not closed under extensions, even when the kernel is
+locally finite and the quotient is residually finite. -/
 theorem literalWitness_locallyFiniteKernel_nonMF :
     IsLocallyFiniteGroup WitnessLampGroup ∧
       IsLEF WitnessLampGroup ∧
       IsSofic WitnessLampGroup ∧
       IsOperatorMF WitnessLampGroup ∧
+      IsOperatorMF (MarkedCompression.Vertical
+        LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective) ∧
       Group.FG WitnessGroup ∧
       ¬ IsOperatorMF WitnessGroup :=
   ⟨witnessLamp_isLocallyFiniteGroup,
     witnessLamp_isLEF,
     witnessLamp_isSofic,
     witnessLamp_isOperatorMF,
+    WitnessVertical.vertical_isOperatorMF,
     witnessGroup_finitelyGenerated,
     witnessGroup_not_isOperatorMF⟩
 

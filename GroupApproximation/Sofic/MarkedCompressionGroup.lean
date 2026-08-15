@@ -60,6 +60,10 @@ abbrev Vertical : Type u :=
 instance : Group (Vertical α hα) :=
   inferInstanceAs (Group ((Telescope α hα) ⋊[shiftHom α hα] Multiplicative ℤ))
 
+@[simp] theorem shiftHom_apply (k : Multiplicative ℤ) :
+    shiftHom α hα k =
+      (shift α hα : MulAut (Telescope α hα)) ^ (Multiplicative.toAdd k) := rfl
+
 /-- The copy of `Γ` at telescope level zero. -/
 def iotaVertical : Γ →* Vertical α hα :=
   (inl : Telescope α hα →* Vertical α hα).comp (level α hα 0)
@@ -154,6 +158,59 @@ theorem tVertical_inv_conj_not_mem {a₀ : Γ} (ha₀ : a₀ ∉ Set.range α) :
   have hmem : level α hα (0 + 1) a₀ ∈ (level α hα 0).range := ⟨γ, hlevel⟩
   obtain ⟨y, hy⟩ := (level_succ_mem_range_level_iff α hα 0 a₀).mp hmem
   exact ha₀ ⟨y, hy⟩
+
+/-! ## The universal property of the vertical factor
+
+`Vertical` is the ascending HNN extension of `Γ` along `α`.  Accordingly a
+homomorphism out of it is the same thing as a homomorphism `g : Γ →* H`
+together with an element `c : H` implementing `α` by conjugation.  The
+telescope half is `MappingTelescope.liftConj`; the stable letter goes to `c`.
+This is what turns a family of congruence quotients of `Γ` compatible with
+`α` into a family of finite quotients of `Vertical`. -/
+
+section Lift
+
+universe v
+
+variable {H : Type v} [Group H]
+
+include hα in
+/-- **Universal property of the vertical factor.** -/
+def verticalLift (g : Γ →* H) (c : H) (hc : ∀ x, g (α x) = c * g x * c⁻¹) :
+    Vertical α hα →* H :=
+  SemidirectProduct.lift (MappingTelescope.liftConj α hα g c hc)
+    (zpowersHom H c)
+    (by
+      intro k
+      ext a
+      simp only [MonoidHom.comp_apply, MulEquiv.coe_toMonoidHom,
+        MulAut.conj_apply, zpowersHom_apply, shiftHom_apply]
+      exact MappingTelescope.liftConj_shift_zpow α hα g c hc
+        (Multiplicative.toAdd k) a)
+
+include hα in
+@[simp] theorem verticalLift_inl_level (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (n : ℕ) (x : Γ) :
+    verticalLift α hα g c hc
+        (inl (MappingTelescope.level α hα n x) : Vertical α hα) =
+      (c ^ n)⁻¹ * g x * c ^ n := by
+  rw [verticalLift, SemidirectProduct.lift_inl, MappingTelescope.liftConj_level]
+
+include hα in
+@[simp] theorem verticalLift_iota (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) (x : Γ) :
+    verticalLift α hα g c hc (iotaVertical α hα x) = g x := by
+  rw [iotaVertical, MonoidHom.comp_apply, verticalLift_inl_level]
+  simp
+
+include hα in
+@[simp] theorem verticalLift_t (g : Γ →* H) (c : H)
+    (hc : ∀ x, g (α x) = c * g x * c⁻¹) :
+    verticalLift α hα g c hc (tVertical α hα) = c := by
+  rw [tVertical, verticalLift, SemidirectProduct.lift_inr]
+  simp
+
+end Lift
 
 /-! ## The coset space -/
 

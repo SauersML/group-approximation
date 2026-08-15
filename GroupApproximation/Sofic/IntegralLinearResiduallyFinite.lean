@@ -71,6 +71,59 @@ theorem generalLinearGroup_int_residuallyFinite :
     exact hentrymod.trans (by simp [Matrix.one_apply])
   exact intCast_zmod_natAbs_add_one_ne_zero (z := z) hij hcast
 
+/-! ## Separation by an odd modulus
+
+The witness needs more than residual finiteness of `GL(ℤ)`: the separating
+quotient must also be one in which the compressing matrix `diag(2,2,2,1)`
+becomes invertible, so that conjugation by it descends.  Choosing the modulus
+`2|z|+1` instead of `|z|+1` keeps the separation and makes the modulus odd,
+which is exactly the condition for `2` — hence `det diag(2,2,2,1) = 8` — to be
+a unit. -/
+
+/-- A nonzero integer remains nonzero modulo the odd number `2|z|+1`. -/
+theorem intCast_zmod_two_mul_natAbs_add_one_ne_zero {z : ℤ} (hz : z ≠ 0) :
+    (z : ZMod (2 * z.natAbs + 1)) ≠ 0 := by
+  intro hzero
+  have hdiv : ((2 * z.natAbs + 1 : ℕ) : ℤ) ∣ z :=
+    (CharP.intCast_eq_zero_iff (ZMod (2 * z.natAbs + 1))
+      (2 * z.natAbs + 1) z).mp hzero
+  have hle := Int.natAbs_le_of_dvd_ne_zero hdiv hz
+  have : 2 * z.natAbs + 1 ≤ z.natAbs := by
+    simpa only [Int.natAbs_natCast] using hle
+  omega
+
+/-- **Odd-modulus separation.**  Every nonidentity integral matrix is
+separated by reduction modulo some odd modulus, presented as `2k+1`. -/
+theorem exists_odd_modulus_reduction_ne_one
+    {g : GeneralLinearGroup ι ℤ} (hg : g ≠ 1) :
+    ∃ k : ℕ, integralGLReduction ι (2 * k + 1) g ≠ 1 := by
+  have hentry : ∃ i j, ((g : Matrix ι ι ℤ) i j - (1 : Matrix ι ι ℤ) i j) ≠ 0 := by
+    by_contra h
+    push Not at h
+    apply hg
+    apply Units.ext
+    ext i j
+    exact sub_eq_zero.mp (h i j)
+  obtain ⟨i, j, hij⟩ := hentry
+  let z : ℤ := (g : Matrix ι ι ℤ) i j - (1 : Matrix ι ι ℤ) i j
+  refine ⟨z.natAbs, ?_⟩
+  have hm : NeZero (2 * z.natAbs + 1) := ⟨by omega⟩
+  intro heq
+  have hmatrix := congrArg
+    (fun u : GeneralLinearGroup ι (ZMod (2 * z.natAbs + 1)) ↦
+      ((u : Matrix ι ι (ZMod (2 * z.natAbs + 1))) i j)) heq
+  have hentrymod :
+      ((g : Matrix ι ι ℤ) i j : ZMod (2 * z.natAbs + 1)) =
+        (1 : Matrix ι ι (ZMod (2 * z.natAbs + 1))) i j := by
+    simpa [integralGLReduction, GeneralLinearGroup.map_apply] using hmatrix
+  have hcast : (z : ZMod (2 * z.natAbs + 1)) = 0 := by
+    change
+      ((((g : Matrix ι ι ℤ) i j - (1 : Matrix ι ι ℤ) i j : ℤ) :
+        ZMod (2 * z.natAbs + 1)) = 0)
+    rw [Int.cast_sub, sub_eq_zero]
+    exact hentrymod.trans (by simp [Matrix.one_apply])
+  exact intCast_zmod_two_mul_natAbs_add_one_ne_zero (z := z) hij hcast
+
 /-- Consequently every integral general linear group is LEF. -/
 theorem generalLinearGroup_int_isLEF :
     IsLEF (GeneralLinearGroup ι ℤ) := by
