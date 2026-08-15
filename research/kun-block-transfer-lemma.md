@@ -66,6 +66,26 @@ must show `φ(h)` almost-preserves the fine block partition on most of `A`.
   `finite-quotient-blindness` and KT's own conservation step — would force
   `φ(h)` to almost-permute the fine blocks, which is the missing matching
   control.  The inverse-compressor bookkeeping is the delicate half.
+- **Centralizer mechanism (open, new 2026-08-15, needs `r ≥ 5`).**  The
+  marked element `h = e_12(x^{-m})` **commutes** with the Kazhdan subgroup
+  `E := ⟨e_kl(R_+) : k,l ≥ 3⟩ ≅ EL_{r-2}(R_+)` (disjoint indices), and for
+  `r ≥ 5` — a legitimate choice, Theorem E holds for all `r ≥ 3` and the
+  witness claim's "any one member suffices" note covers it — `E` has
+  property (T).  Multiplicativity then makes `φ(h)` almost-commute with
+  every `E`-letter image, so `φ(h)` carries `E`-almost-invariant sets to
+  `E`-almost-invariant sets, and by the in-block spectral gap it carries
+  each fine `E`-block near a **union** of fine `E`-blocks with preserved
+  mass.  Running the sheet argument with `E`-blocks as surrogate orbits
+  (all `E`-letters fix `p`, so they draw the p-sheet) reduces the missing
+  matching control to: `φ(h)` cannot **permute** the `E`-blocks
+  nontrivially on most mass.  Commuting alone provably cannot force that —
+  the block-swap prover shape (two isomorphic `E`-sets, `φ(h)` the swap)
+  commutes exactly and swaps — so the residual task is to kill
+  block-swapping using the rest of `Γ`, e.g. the mixed conjugates
+  `h e_23(f) h^{-1} = e_13(x^{-m}f)e_23(f)` that interlock the `E`-block
+  structure with the `Γ`-block structure, or the exact theorem's normality
+  input reconstructed through the trap word.  This is now the sharpest
+  known sub-question of the lemma.
 - **Median engine adaptation (open, the KT-native route).**  The
   transcribed argument builds a size observable from fine blocks and
   normalizing medians from coarse blocks, and derives a contradiction
