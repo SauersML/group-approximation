@@ -434,11 +434,38 @@ jobs:
               || { echo "::error::a claim signature snapshot is stale; regenerate with 'lake env lean scripts/Signatures.lean' and commit the diff"; exit 1; }
           fi
 
+      # The fresh kernel re-check certifies the compiled proof tree.  Its
+      # verdict is a function of the Lean-relevant tree only: the sources,
+      # toolchain pin, lock file, and scripts.  When that tree is
+      # byte-identical to the one already certified on `verified`, the
+      # standing verdict applies and replaying it buys nothing; every gate a
+      # manuscript or docs change can affect (source scan, manifest
+      # contract, statement pins, signature snapshots, kernel audit) still
+      # runs above.  A run that changes any Lean-relevant path -- or any
+      # verification control code, which the decide gate forces through a
+      # full run -- always re-checks freshly.
+      - name: Decide fresh kernel re-check scope
+        id: kernel-scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin \
+            '+refs/heads/verified:refs/remotes/origin/verified'
+          if git diff --quiet refs/remotes/origin/verified HEAD -- \
+              GroupApproximation.lean GroupApproximation \
+              lakefile.toml lake-manifest.json lean-toolchain scripts; then
+            echo "Lean-relevant tree identical to verified; the standing fresh kernel verdict applies."
+            echo "fresh=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "fresh=true" >> "$GITHUB_OUTPUT"
+          fi
+
       # The toolchain's built-in checker replays every olean through a fresh
       # kernel environment, so a result that survives it does not rest on the
       # elaborator being correct.  It is shipped with Lean from v4.28 onward;
       # using the pinned toolchain also guarantees olean compatibility.
       - name: Fresh kernel re-check (leanchecker)
+        if: steps.kernel-scope.outputs.fresh == 'true'
         run: lake env leanchecker --fresh GroupApproximation
 
       # THE GATE.  The scan steps above defer their verdict here so that one
