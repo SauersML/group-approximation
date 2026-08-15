@@ -242,8 +242,7 @@ import GroupApproximation.Sofic.InvolutionCollapseProfile
 import GroupApproximation.Sofic.InvolutionCollapseCocycle
 import GroupApproximation.Sofic.InvolutionCollapseCenter
 import GroupApproximation.Sofic.InvolutionCollapseIndexCapture
-import GroupApproximation.Sofic.InvolutionCollapseEndpoint
-import GroupApproximation.Sofic.DefectSaturationPrep
+import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.InvolutionCollapseEndpoint
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.KazhdanSignCriterion
