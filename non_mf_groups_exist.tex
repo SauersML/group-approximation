@@ -2070,9 +2070,9 @@ $\langle\gamma_0\rangle$; the lamp therefore commutes with the required
 
 \section{Consequences}\label{sec:consequences}
 
-This section develops the universal MF radical, the
-reduced-group-$C^*$ consequence, a sofic non-MF example, and the
-failures of quotient and extension permanence.
+This section develops the universal MF radical and the basic
+permanence facts, computes radicals by orbit collapse, constructs a
+sofic non-MF group, and proves the reduced-group-$C^*$ consequence.
 They all come from the same marked element.
 
 \subsection{The MF radical}
@@ -2300,6 +2300,68 @@ By Theorem~\ref{thm:A}(2), \((\widehat j\circ\phi)(w)=1\); injectivity
 of \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 \(w\neq1\), so \(\phi\) cannot be injective.
 \end{proof}
+
+\subsection{Permanence and its failure}
+
+\begin{lemma}[subgroups]\label{lem:subgroupMF}
+Every subgroup of an MF group is MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
+\end{lemma}
+
+\begin{proof}
+Restrict an injective corona representation to the subgroup: injectivity
+and the homomorphism law are preserved.
+\end{proof}
+
+\begin{lemma}[residually finite groups]\label{lem:rfmf}
+Every countable residually finite group is MF.
+\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
+\end{lemma}
+
+\begin{proof}
+Residual finiteness makes the group LEF.  For each finite test set
+$F$, choose a finite quotient injective on $F$.  Composing with its
+left regular permutation action gives an \emph{exact} finite local
+model: every product of elements of $F$ is represented with zero
+multiplicative defect.  Distinct elements of $F$ map to distinct permutations; at a
+point where the two permutations disagree, the difference of the two
+permutation matrices has a column of norm at least $1$, so the model
+separates distinct elements of $F$ by operator norm at least $1$.  These
+exact permutation models are operator-norm local models with separation
+constant $1$, so the group is MF by the local-to-corona direction of
+Proposition~\ref{prop:mf-equivalences}.
+\end{proof}
+
+\begin{lemma}[locally finite groups]\label{lem:lfmf}
+Every countable locally finite group is MF.
+\leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
+\end{lemma}
+
+\begin{proof}
+Given a finite test set $F$, local finiteness supplies one
+finite subgroup $K$ containing it.  Choose any map from the group to
+$K$ that restricts to the identity on the test set.  Applying the left
+regular permutation action of $K$ to it gives an exact finite local
+model on $F$, separating distinct elements by operator norm at least
+$1$ exactly as in Lemma~\ref{lem:rfmf}.  Thus the group is LEF, and it
+is MF by the local-to-corona direction of
+Proposition~\ref{prop:mf-equivalences}.
+\end{proof}
+
+\begin{corollary}[quotients]\label{cor:quotclosure}
+MF groups are not closed under quotients: the free group
+\(F_8\) is MF, and the explicit group \(E\) is its quotient
+but is not MF.
+\leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
+\end{corollary}
+
+\begin{proof}
+Map the eight free generators onto the eight displayed generators of \(E\).
+The resulting homomorphism is surjective because those generators define the
+displayed presentation.  The group \(F_8\) is residually finite, hence MF by
+Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
+\end{proof}
+
 
 \subsection{Orbit collapse and defect saturation}\label{subsec:collapse}
 
@@ -2581,204 +2643,6 @@ Questions preamble of Section~\ref{sec:limits}).  Whether a
 small-cancellation construction produces a finitely presented group
 with saturated collapse or normal-Kazhdan defect is open.
 
-\subsection{Marked-limit closure}
-
-The explicit clopen cylinder constructed in the next subsection is an
-instance of a general phenomenon: at every fixed number of marked
-generators, the MF property is closed under limits of marked groups,
-and its failure always has a finite certificate.
-
-\begin{theorem}[the MF locus is closed]\label{thm:markedclosed}
-Fix $k\ge1$ and consider the space of $k$-marked groups --- quotients
-of the free group $F_k$, topologized so that a basic clopen set fixes
-the truth of finitely many equations among words in the generators.
-\begin{enumerate}
-\item The marked groups with MF quotient form a closed set.
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
-\item Equivalently, the non-MF marked groups form an open set.
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
-\item Every non-MF $k$-marked group admits a finite-radius
-certificate: there is a radius $R$ such that every $k$-marked group
-whose relations agree with it on the reduced words of length at most
-$R$ is non-MF.
-\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-A failure of MF for the quotient is a failure of normalized local
-approximation, and such a failure is witnessed on one finite subset of
-the quotient.  Expressing the finitely many multiplications and
-inequalities of that subset by words in the marked generators produces
-finitely many relation constraints; every marked group agreeing on
-those constraints transports the failed local-model problem verbatim,
-so an entire basic clopen neighborhood fails MF.  Enclosing the
-constraint words in a reduced-word ball gives the radius form.
-\end{proof}
-
-Thus failure of MF is always certified by one finite ball of the
-marked Cayley diagram.  The next subsection computes such a
-certificate explicitly for $E$.
-
-\subsection{A finite universal Horn obstruction}
-
-Theorem~\ref{thm:A} can be read as one first-order fact about all MF
-groups at once: a finite quasi-identity, that is, a single universal
-implication between finitely many equations (a universal Horn
-sentence).  Write $R$ for the forty-one relators of \eqref{eq:E},
-regarded as words in eight variables, and $w$ for the marked word in those
-variables.
-
-\begin{proposition}[finite quasi-identity]\label{prop:horn}
-Every MF group $G$ satisfies the finite universal Horn sentence
-\[
- \forall x_1,\dots,x_8\colon\quad
- \bigwedge_{r\in R}\,r(x_1,\dots,x_8)=1
- \;\Longrightarrow\; w(x_1,\dots,x_8)=1 ,
-\]
-while the canonical generating tuple of $E$ satisfies every relator in $R$
-and has $w\ne1$.
-\leanverified{Sofic/LiteralUniversalHorn}{GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn}
-\end{proposition}
-
-\begin{proof}
-A tuple satisfying the relators induces a homomorphism $E\to G$ sending
-the marked word of $E$ to $w(x_1,\dots,x_8)$.  If $G$ is MF, that image
-is trivial: $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
-Theorem~\ref{thm:A}, and the radical is functorial
-(Lemma~\ref{lem:portable}).
-The canonical tuple of $E$ satisfies $R$ by definition, and its marked
-word is nontrivial by Theorem~\ref{thm:A}(1).
-\end{proof}
-
-\begin{corollary}[a basic clopen set of non-MF marked groups]\label{cor:cylinder}
-In the space of eight-generator marked groups --- quotients of the free
-group $F_8$, topologized so that a basic clopen set fixes the truth of
-finitely many equations among words in the generators --- the marked groups
-satisfying all relators of $R$ and $w\ne1$ form a nonempty clopen set
-consisting entirely of non-MF groups.
-\leanverified{Sofic/LiteralMarkedCylinder}{GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder}
-\end{corollary}
-
-\begin{proof}
-Both conditions constrain finitely many values of the marked
-multiplication, so the set is clopen; it contains the marked group $E$ by
-Theorem~\ref{thm:A}(1), and Proposition~\ref{prop:horn} excludes every MF
-point.
-\end{proof}
-
-Thus the obstruction of Theorem~\ref{thm:A} is finite, local, and
-locally constant on a basic clopen neighborhood in the marked-group
-topology.
-
-\subsection{Permanence and its failure}
-
-\begin{lemma}[subgroups]\label{lem:subgroupMF}
-Every subgroup of an MF group is MF.
-\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
-\end{lemma}
-
-\begin{proof}
-Restrict an injective corona representation to the subgroup: injectivity
-and the homomorphism law are preserved.
-\end{proof}
-
-\begin{lemma}[residually finite groups]\label{lem:rfmf}
-Every countable residually finite group is MF.
-\leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
-\end{lemma}
-
-\begin{proof}
-Residual finiteness makes the group LEF.  For each finite test set
-$F$, choose a finite quotient injective on $F$.  Composing with its
-left regular permutation action gives an \emph{exact} finite local
-model: every product of elements of $F$ is represented with zero
-multiplicative defect.  Distinct elements of $F$ map to distinct permutations; at a
-point where the two permutations disagree, the difference of the two
-permutation matrices has a column of norm at least $1$, so the model
-separates distinct elements of $F$ by operator norm at least $1$.  These
-exact permutation models are operator-norm local models with separation
-constant $1$, so the group is MF by the local-to-corona direction of
-Proposition~\ref{prop:mf-equivalences}.
-\end{proof}
-
-\begin{lemma}[locally finite groups]\label{lem:lfmf}
-Every countable locally finite group is MF.
-\leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
-\end{lemma}
-
-\begin{proof}
-Given a finite test set $F$, local finiteness supplies one
-finite subgroup $K$ containing it.  Choose any map from the group to
-$K$ that restricts to the identity on the test set.  Applying the left
-regular permutation action of $K$ to it gives an exact finite local
-model on $F$, separating distinct elements by operator norm at least
-$1$ exactly as in Lemma~\ref{lem:rfmf}.  Thus the group is LEF, and it
-is MF by the local-to-corona direction of
-Proposition~\ref{prop:mf-equivalences}.
-\end{proof}
-
-\begin{corollary}[quotients]\label{cor:quotclosure}
-MF groups are not closed under quotients: the free group
-\(F_8\) is MF, and the explicit group \(E\) is its quotient
-but is not MF.
-\leanverified{Sofic/LiteralMFQuotientControls}{GroupApproximation.LiteralMFQuotientControls.manuscriptQuotientNonclosure}
-\end{corollary}
-
-\begin{proof}
-Map the eight free generators onto the eight displayed generators of \(E\).
-The resulting homomorphism is surjective because those generators define the
-displayed presentation.  The group \(F_8\) is residually finite, hence MF by
-Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
-\end{proof}
-
-\subsection{Undecidability of MF recognition}
-
-Lemma~\ref{lem:subgroupMF} and Theorem~\ref{thm:A} make MF a Markov
-property of finitely presented groups: the trivial group is MF, and by
-subgroup heredity the finitely presented group $E$ embeds in no MF
-group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
-
-\begin{corollary}[undecidability]\label{cor:undecidable}
-There is no algorithm that decides, from a finite presentation,
-whether the presented group is MF.  In the effective form of the
-Adian--Rabin construction, the set of finite presentations of non-MF
-groups is not even recursively enumerable.
-\end{corollary}
-
-This corollary carries one classical literature input, used only here:
-the Adian--Rabin construction itself \cite{Rabin58}, which we have not
-formalized.  Everything group-theoretic that feeds it is
-machine-checked --- subgroup heredity of MF and the finitely presented
-non-MF group ---
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
-and so is the computability-theoretic pullback: from any computable
-Adian--Rabin reduction, undecidability and the failure of recursive
-enumerability on the negative side follow formally.
-\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
-Theorem~\ref{thm:markedclosed} certifies single non-MF groups by
-finite balls; the corollary says no algorithm classifies the positive
-and negative cases from presentations.
-
-The phenomenon also has infinite multiplicity, in two senses that need
-no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
-finitely presented, pairwise nonisomorphic --- their abelianizations
-have distinct torsion-free ranks --- and non-MF, each containing $E$
-(Lemma~\ref{lem:subgroupMF}).  Beyond finite presentation, pairing $E$
-with the continuum of pairwise nonisomorphic two-generator groups of
-B.~H.~Neumann \cite{Neumann37} yields $2^{\aleph_0}$ pairwise
-nonisomorphic finitely generated non-MF groups: each product
-$E\times N$ is non-MF, and a fixed countable group $X$ satisfies
-$X\cong E\times N$ for at most countably many of the continuum many
-isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
-generated subgroup, a countable group has only countably many finitely
-generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
-map with countable fibres from a continuum-sized family has
-continuum-sized image.  These two paragraphs are elementary group theory on top
-of the machine-checked heredity lemma and are not separately
-formalized.
-
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
 Every MF algebra is stably finite
@@ -2981,6 +2845,143 @@ MF radical of the simple group.  That radical is normal, so it is the whole
 group.  Every homomorphism to an MF group kills the MF radical.
 \end{proof}
 
+
+\subsection{Marked-limit closure}
+
+The explicit clopen cylinder constructed in the next subsection is an
+instance of a general phenomenon: at every fixed number of marked
+generators, the MF property is closed under limits of marked groups,
+and its failure always has a finite certificate.
+
+\begin{theorem}[the MF locus is closed]\label{thm:markedclosed}
+Fix $k\ge1$ and consider the space of $k$-marked groups --- quotients
+of the free group $F_k$, topologized so that a basic clopen set fixes
+the truth of finitely many equations among words in the generators.
+\begin{enumerate}
+\item The marked groups with MF quotient form a closed set.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+\item Equivalently, the non-MF marked groups form an open set.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
+\item Every non-MF $k$-marked group admits a finite-radius
+certificate: there is a radius $R$ such that every $k$-marked group
+whose relations agree with it on the reduced words of length at most
+$R$ is non-MF.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A failure of MF for the quotient is a failure of normalized local
+approximation, and such a failure is witnessed on one finite subset of
+the quotient.  Expressing the finitely many multiplications and
+inequalities of that subset by words in the marked generators produces
+finitely many relation constraints; every marked group agreeing on
+those constraints transports the failed local-model problem verbatim,
+so an entire basic clopen neighborhood fails MF.  Enclosing the
+constraint words in a reduced-word ball gives the radius form.
+\end{proof}
+
+Thus failure of MF is always certified by one finite ball of the
+marked Cayley diagram.  The next subsection computes such a
+certificate explicitly for $E$.
+
+\subsection{A finite universal Horn obstruction}
+
+Theorem~\ref{thm:A} can be read as one first-order fact about all MF
+groups at once: a finite quasi-identity, that is, a single universal
+implication between finitely many equations (a universal Horn
+sentence).  Write $R$ for the forty-one relators of \eqref{eq:E},
+regarded as words in eight variables, and $w$ for the marked word in those
+variables.
+
+\begin{proposition}[finite quasi-identity]\label{prop:horn}
+Every MF group $G$ satisfies the finite universal Horn sentence
+\[
+ \forall x_1,\dots,x_8\colon\quad
+ \bigwedge_{r\in R}\,r(x_1,\dots,x_8)=1
+ \;\Longrightarrow\; w(x_1,\dots,x_8)=1 ,
+\]
+while the canonical generating tuple of $E$ satisfies every relator in $R$
+and has $w\ne1$.
+\leanverified{Sofic/LiteralUniversalHorn}{GroupApproximation.LiteralUniversalHorn.manuscriptLiteralUniversalHorn}
+\end{proposition}
+
+\begin{proof}
+A tuple satisfying the relators induces a homomorphism $E\to G$ sending
+the marked word of $E$ to $w(x_1,\dots,x_8)$.  If $G$ is MF, that image
+is trivial: $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ by
+Theorem~\ref{thm:A}, and the radical is functorial
+(Lemma~\ref{lem:portable}).
+The canonical tuple of $E$ satisfies $R$ by definition, and its marked
+word is nontrivial by Theorem~\ref{thm:A}(1).
+\end{proof}
+
+\begin{corollary}[a basic clopen set of non-MF marked groups]\label{cor:cylinder}
+In the space of eight-generator marked groups --- quotients of the free
+group $F_8$, topologized so that a basic clopen set fixes the truth of
+finitely many equations among words in the generators --- the marked groups
+satisfying all relators of $R$ and $w\ne1$ form a nonempty clopen set
+consisting entirely of non-MF groups.
+\leanverified{Sofic/LiteralMarkedCylinder}{GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder}
+\end{corollary}
+
+\begin{proof}
+Both conditions constrain finitely many values of the marked
+multiplication, so the set is clopen; it contains the marked group $E$ by
+Theorem~\ref{thm:A}(1), and Proposition~\ref{prop:horn} excludes every MF
+point.
+\end{proof}
+
+Thus the obstruction of Theorem~\ref{thm:A} is finite, local, and
+locally constant on a basic clopen neighborhood in the marked-group
+topology.
+
+\subsection{Undecidability of MF recognition}
+
+Lemma~\ref{lem:subgroupMF} and Theorem~\ref{thm:A} make MF a Markov
+property of finitely presented groups: the trivial group is MF, and by
+subgroup heredity the finitely presented group $E$ embeds in no MF
+group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
+
+\begin{corollary}[undecidability]\label{cor:undecidable}
+There is no algorithm that decides, from a finite presentation,
+whether the presented group is MF.  In the effective form of the
+Adian--Rabin construction, the set of finite presentations of non-MF
+groups is not even recursively enumerable.
+\end{corollary}
+
+This corollary carries one classical literature input, used only here:
+the Adian--Rabin construction itself \cite{Rabin58}, which we have not
+formalized.  Everything group-theoretic that feeds it is
+machine-checked --- subgroup heredity of MF and the finitely presented
+non-MF group ---
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
+and so is the computability-theoretic pullback: from any computable
+Adian--Rabin reduction, undecidability and the failure of recursive
+enumerability on the negative side follow formally.
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+Theorem~\ref{thm:markedclosed} certifies single non-MF groups by
+finite balls; the corollary says no algorithm classifies the positive
+and negative cases from presentations.
+
+The phenomenon also has infinite multiplicity, in two senses that need
+no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
+finitely presented, pairwise nonisomorphic --- their abelianizations
+have distinct torsion-free ranks --- and non-MF, each containing $E$
+(Lemma~\ref{lem:subgroupMF}).  Beyond finite presentation, pairing $E$
+with the continuum of pairwise nonisomorphic two-generator groups of
+B.~H.~Neumann \cite{Neumann37} yields $2^{\aleph_0}$ pairwise
+nonisomorphic finitely generated non-MF groups: each product
+$E\times N$ is non-MF, and a fixed countable group $X$ satisfies
+$X\cong E\times N$ for at most countably many of the continuum many
+isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
+generated subgroup, a countable group has only countably many finitely
+generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
+map with countable fibres from a continuum-sized family has
+continuum-sized image.  These two paragraphs are elementary group theory on top
+of the machine-checked heredity lemma and are not separately
+formalized.
 
 \section{Limitations of the operator-norm method}\label{sec:limits}
 
