@@ -171,7 +171,7 @@
     {
       "id": "thm:B",
       "environment": "mainthm",
-      "title": "finite-dimensional shadow",
+      "title": "the exact finite-dimensional analogue",
       "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -191,7 +191,7 @@
     {
       "id": "thm:C",
       "environment": "mainthm",
-      "title": "cyclic-base calibration",
+      "title": "the cyclic comparison",
       "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
