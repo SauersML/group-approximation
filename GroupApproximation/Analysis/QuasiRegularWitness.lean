@@ -1,0 +1,181 @@
+import GroupApproximation.Analysis.MaximalCStarKazhdanAverage
+
+/-!
+# The quasi-regular representation and the strictness witness
+
+The unitary representation of a group on `ℓ²` of a coset space, packaged
+as a coordinate of the universal representation family, together with the
+witness vector for strict compression: the point mass at the base coset
+is fixed by the subgroup and moved by every element outside it.
+
+This is brick (b3) of the strict-Kazhdan-compression program of
+`docs/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: at this coordinate the
+fixed subspace of a subgroup `K` strictly contains the fixed subspace of
+any subgroup with an element outside `K`, which is what separates the
+Kazhdan projection from its conjugate once the spectral-gap brick lands.
+The construction mirrors the left regular representation of
+`ReducedGroupCStarTrace`.
+-/
+
+namespace GroupApproximation
+namespace QuasiRegularWitness
+
+open ReducedGroupCStarTrace
+
+noncomputable section
+
+universe u
+
+variable (G : Type u) [Group G] (K : Subgroup G)
+
+/-- The Hilbert space `ℓ²(G/K)` of the quasi-regular representation. -/
+abbrev CosetHilbert := lp (fun _ : G ⧸ K ↦ ℂ) 2
+
+/-- The quasi-regular unitary on `ℓ²(G/K)`, by reindexing along the left
+coset action. -/
+def quasiRegular (g : G) : CosetHilbert G K ≃ₗᵢ[ℂ] CosetHilbert G K :=
+  lpCongrLeft (MulAction.toPermHom G (G ⧸ K) g)
+
+/-- The quasi-regular unitary as a bounded operator. -/
+def quasiRegularOperator (g : G) :
+    CosetHilbert G K →L[ℂ] CosetHilbert G K :=
+  (quasiRegular G K g).toLinearIsometry.toContinuousLinearMap
+
+theorem quasiRegularOperator_apply (g : G) (f : CosetHilbert G K)
+    (x : G ⧸ K) :
+    quasiRegularOperator G K g f x = f (g⁻¹ • x) :=
+  rfl
+
+theorem quasiRegularOperator_one : quasiRegularOperator G K 1 = 1 := by
+  apply ContinuousLinearMap.ext
+  intro f
+  apply lp.ext
+  funext x
+  rw [quasiRegularOperator_apply]
+  rw [inv_one, one_smul]
+  rfl
+
+theorem quasiRegularOperator_mul (g h : G) :
+    quasiRegularOperator G K g * quasiRegularOperator G K h
+      = quasiRegularOperator G K (g * h) := by
+  apply ContinuousLinearMap.ext
+  intro f
+  apply lp.ext
+  funext x
+  show f (h⁻¹ • (g⁻¹ • x)) = f ((g * h)⁻¹ • x)
+  rw [mul_inv_rev, mul_smul]
+
+theorem star_quasiRegularOperator (g : G) :
+    star (quasiRegularOperator G K g) = quasiRegularOperator G K g⁻¹ := by
+  rw [ContinuousLinearMap.star_eq_adjoint]
+  change ContinuousLinearMap.adjoint
+    (quasiRegular G K g : CosetHilbert G K →L[ℂ] CosetHilbert G K) = _
+  rw [LinearIsometryEquiv.adjoint_eq_symm]
+  apply ContinuousLinearMap.ext
+  intro f
+  apply lp.ext
+  funext x
+  show f (g • x) = f ((g⁻¹)⁻¹ • x)
+  rw [inv_inv]
+
+/-- The quasi-regular unitary inside the full operator algebra. -/
+def quasiRegularUnitary (g : G) :
+    unitary (CosetHilbert G K →L[ℂ] CosetHilbert G K) :=
+  ⟨quasiRegularOperator G K g, by
+    constructor
+    · rw [star_quasiRegularOperator, quasiRegularOperator_mul,
+        inv_mul_cancel, quasiRegularOperator_one]
+    · rw [star_quasiRegularOperator, quasiRegularOperator_mul,
+        mul_inv_cancel, quasiRegularOperator_one]⟩
+
+/-- The quasi-regular unitary representation. -/
+def quasiRegularUnitaryHom :
+    G →* unitary (CosetHilbert G K →L[ℂ] CosetHilbert G K) where
+  toFun := quasiRegularUnitary G K
+  map_one' := Subtype.ext (quasiRegularOperator_one G K)
+  map_mul' g h := Subtype.ext (quasiRegularOperator_mul G K g h).symm
+
+/-- The point mass at the base coset. -/
+def baseVector : CosetHilbert G K := lp.single 2 ((1 : G) : G ⧸ K) 1
+
+theorem baseVector_apply_base :
+    baseVector G K ((1 : G) : G ⧸ K) = 1 :=
+  lp.single_apply_self 2 _ _
+
+theorem baseVector_ne_zero : baseVector G K ≠ 0 := by
+  intro h
+  have := congrArg (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
+  rw [baseVector_apply_base] at this
+  exact one_ne_zero (by simpa using this)
+
+theorem smul_base_eq_base_iff (g : G) :
+    g • ((1 : G) : G ⧸ K) = ((1 : G) : G ⧸ K) ↔ g ∈ K := by
+  have h1 : g • ((1 : G) : G ⧸ K) = ((g : G) : G ⧸ K) := by
+    show g • ((1 : G) : G ⧸ K) = (((g * 1 : G)) : G ⧸ K)
+    rfl
+  rw [h1]
+  exact QuotientGroup.eq_one_iff g
+
+theorem quasiRegularOperator_baseVector_of_mem {k : G} (hk : k ∈ K) :
+    quasiRegularOperator G K k (baseVector G K) = baseVector G K := by
+  apply lp.ext
+  funext x
+  rw [quasiRegularOperator_apply]
+  show baseVector G K (k⁻¹ • x) = baseVector G K x
+  by_cases hx : x = ((1 : G) : G ⧸ K)
+  · subst hx
+    rw [(smul_base_eq_base_iff G K k⁻¹).mpr (inv_mem hk)]
+  · have hne : k⁻¹ • x ≠ ((1 : G) : G ⧸ K) := by
+      intro hc
+      apply hx
+      have := congrArg (fun y => k • y) hc
+      simp only [smul_smul, mul_inv_cancel, one_smul] at this
+      rw [this, (smul_base_eq_base_iff G K k).mpr hk]
+    unfold baseVector
+    rw [lp.single_apply_ne 2 _ _ hne, lp.single_apply_ne 2 _ _ hx]
+
+theorem quasiRegularOperator_baseVector_of_notMem {a : G} (ha : a ∉ K) :
+    quasiRegularOperator G K a (baseVector G K) ≠ baseVector G K := by
+  intro h
+  have happ := congrArg
+    (fun f : CosetHilbert G K => f ((1 : G) : G ⧸ K)) h
+  simp only at happ
+  rw [quasiRegularOperator_apply] at happ
+  have hne : a⁻¹ • ((1 : G) : G ⧸ K) ≠ ((1 : G) : G ⧸ K) := by
+    intro hc
+    exact ha ((Subgroup.inv_mem_iff K).mp
+      ((smul_base_eq_base_iff G K a⁻¹).mp hc))
+  rw [show baseVector G K (a⁻¹ • ((1 : G) : G ⧸ K)) = 0 from
+      lp.single_apply_ne 2 _ _ hne,
+    baseVector_apply_base] at happ
+  exact zero_ne_one happ
+
+/-- **The strictness witness**: for any element outside the subgroup, the
+point mass at the base coset is a nonzero vector fixed by the whole
+subgroup and moved by that element. -/
+theorem exists_baseVector_witness {a : G} (ha : a ∉ K) :
+    ∃ v : CosetHilbert G K, v ≠ 0 ∧
+      (∀ k ∈ K, quasiRegularOperator G K k v = v) ∧
+      quasiRegularOperator G K a v ≠ v :=
+  ⟨baseVector G K, baseVector_ne_zero G K,
+    fun _ hk => quasiRegularOperator_baseVector_of_mem G K hk,
+    quasiRegularOperator_baseVector_of_notMem G K ha⟩
+
+instance : Nontrivial (CosetHilbert G K →L[ℂ] CosetHilbert G K) := by
+  refine ⟨1, 0, fun h => ?_⟩
+  have := congrArg
+    (fun T : CosetHilbert G K →L[ℂ] CosetHilbert G K =>
+      T (baseVector G K)) h
+  simp only [ContinuousLinearMap.one_apply,
+    ContinuousLinearMap.zero_apply] at this
+  exact baseVector_ne_zero G K this
+
+/-- The quasi-regular representation, as a coordinate of the universal
+representation family of the maximal group C-star algebra. -/
+def quasiRegularRepresentation : CStarUnitaryRepresentation G :=
+  CStarUnitaryRepresentation.ofHom G (quasiRegularUnitaryHom G K)
+
+end
+
+end QuasiRegularWitness
+end GroupApproximation

@@ -436,8 +436,9 @@ torsion, and the abstract invisibility form
 Section~\ref{sec:necessity} states and proves the cyclic comparison,
 Theorem~\ref{thm:C}.
 Section~\ref{sec:consequences} states and proves Theorems~\ref{thm:D}
-and~\ref{thm:E}, develops the MF radical, proves the involutive orbit
-collapse with its radical reduction and saturation endpoints
+and~\ref{thm:E}, develops the MF radical and its closure calculus,
+proves the involutive orbit collapse and the projection collapse with
+their radical reduction and saturation endpoints
 (Section~\ref{subsec:collapse}), and establishes the permanence
 failures.
 Section~\ref{sec:limits} records the
@@ -707,6 +708,92 @@ equal-rank reversal estimate replaces finiteness of $B_\omega$.  That
 proof yields an explicit rate in terms of $\kappa$, $|S|$, the uniform
 bound on $(x_n)$, and the multiplicative defects of $U_n$.
 \end{remark}
+
+The transport theorem holds at every Hilbertian scale, not only at the
+dimension normalization.
+
+\begin{theorem}[Kazhdan transport at every scale]\label{thm:scaled-transport}
+Let $\Gamma$, $H$, $\iota$, $s$, and $(U_n)$ be as in
+Theorem~\ref{thm:kazhdan-transport}, and let $(w_n)$ be nonnegative
+weights.  Suppose there is $C$ with
+$\operatorname{Tr}(x_n^*x_n)\le C\,w_n$ for all $n$, and that for every
+$\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
+\[
+ \operatorname{Tr}\,\bigl|x_n-U_n(\iota(\gamma))\,x_n\,
+   U_n(\iota(\gamma))^*\bigr|^2\le\varepsilon\,w_n.
+\]
+Then $U_n(s)\,x_nU_n(s)^*$ and $U_n(s)^*\,x_nU_n(s)$ satisfy both
+conditions as well.
+\leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
+\end{theorem}
+
+\begin{proof}
+Give each coordinate space $M_{d_n}(\C)$ with $w_n>0$ the inner product
+$\langle x,y\rangle=\operatorname{Tr}(y^*x)/w_n$; conjugation by a
+unitary is unitary for every weight, both hypotheses and both
+conclusions concern only these renormalized norms, and an index with
+$w_n=0$ forces $x_n=0$.  The ultraproduct proof of
+Theorem~\ref{thm:kazhdan-transport} applies verbatim: the mass bound
+defines the ultraproduct vector, the adjoint actions remain
+operator-norm almost multiplicative on the weighted Hilbert spaces, and
+finiteness reverses the one-sided compression of the fixed-space
+projection in both directions.  The formal development follows the
+finite-stage route of Appendix~\ref{app:finite-stage} at the weight
+$(w_n)$.
+\end{proof}
+
+The dimension weight $w_n=d_n$ recovers
+Theorem~\ref{thm:kazhdan-transport}, with the uniform operator-norm
+bound relaxed to mass boundedness.  A rank weight normalizes a defect
+at its own scale; the collapse proof of Theorem~\ref{thm:collapse}
+operates at exactly that calibration.
+
+The transported object can also be an intertwiner between two different
+asymptotic representations; the adjoint sector of
+Theorem~\ref{thm:kazhdan-transport} is the diagonal case.
+
+\begin{theorem}[transport of asymptotic intertwiners]\label{thm:intertwiner-transport}
+Let $\Gamma$, $H$, $\iota$, and $s$ be as in
+Theorem~\ref{thm:kazhdan-transport}, and let
+$U^1_n\colon H\to\U(d^1_n)$ and $U^2_n\colon H\to\U(d^2_n)$ be
+operator-norm asymptotic representations.  Let $(x_n)$ be uniformly
+operator-norm bounded $d^1_n\times d^2_n$ matrices with
+\[
+ \frac{\operatorname{Tr}\,\bigl|x_n-U^1_n(\iota(\gamma))\,x_n\,
+   U^2_n(\iota(\gamma))^*\bigr|^2}{d^1_n+d^2_n}\longrightarrow0
+ \qquad(\gamma\in\Gamma).
+\]
+Then $U^1_n(s)\,x_n\,U^2_n(s)^*$ satisfies the same convergence for
+every $\gamma\in\Gamma$.
+\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport}
+\end{theorem}
+
+\begin{proof}
+The block sum $W_n=U^1_n\oplus U^2_n$ is an operator-norm asymptotic
+representation, because block-diagonal operator norms are maxima.  The
+off-diagonal embedding of $x_n$ into the block space has operator norm
+$\opnorm{x_n}$; its commutator with $W_n(\iota(\gamma))$ is the
+off-diagonal embedding of the displayed intertwining defect, whose
+normalized Hilbert--Schmidt norm on the block space carries the
+denominator $d^1_n+d^2_n$; and conjugation by $W_n(s)$ acts on the
+embedded corner by $x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
+Theorem~\ref{thm:kazhdan-transport}, applied to $W_n$, transports the
+embedded sequence.  The same reduction applied to
+Theorem~\ref{thm:scaled-transport} gives the intertwiner transport at
+every weight.
+\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport}
+\end{proof}
+
+Fixed tensors of type $(p,q)$ are Hilbert--Schmidt intertwiners from the
+$q$th to the $p$th tensor power.  Tensor powers of unitaries are exactly
+multiplicative and satisfy
+$\opnorm{A^{\otimes p}-B^{\otimes p}}\le p\,\opnorm{A-B}$, so tensor
+powers of an operator-norm asymptotic representation are again
+operator-norm asymptotic representations, and
+Theorem~\ref{thm:intertwiner-transport} applies to every pair of them:
+one-sided compression of a Kazhdan image creates no asymptotic invariant
+tensors of any fixed type, at any weight.  The tensor-power
+instantiation is not part of the formal development.
 
 The entire non-MF argument is the following consequence of the transport
 theorem, applied to the two-element central subgroup
@@ -1145,6 +1232,32 @@ representation both qualify: finite quotients and finite-dimensional
 linear representations are blind to strict one-sided compression for
 one and the same reason.  The corona argument of Theorem~\ref{thm:A}
 is the analytic counterpart of this principle at infinite dimension.
+\end{remark}
+
+\begin{remark}[chain conditions suffice]\label{rem:chaincondition}
+The separation property of the size can be dropped, at the price of
+concluding only that the invariant is blind.  An order isomorphism of a
+poset with no infinite strictly ascending chain fixes every point that
+it moves weakly upward, and dually with descending chains; consequently
+a conjugation-equivariant monotone invariant with chain-condition values
+takes the same value on $\Gamma$ and on $t\Gamma t^{-1}$.  In
+particular, for every finite-dimensional representation $\sigma$ of $H$
+over every field, the fixed subspaces of the subgroup and of its
+one-sided conjugate coincide.
+\leanverified{Criterion/ChainConditionCompression}{GroupApproximation.manuscriptChainConditionRigidity}
+Applied to the representations induced on tensor constructions ---
+$V^{\otimes p}\otimes\bar V^{\otimes q}$, finite direct sums, duals,
+$\operatorname{Hom}$-spaces --- compression creates no invariant tensors
+of any finite type; the commutant identity \eqref{eq:pinning} is the
+case $\End(V)\cong V\otimes\bar V$.  Taking the invariant to be the
+Zariski closure of the image in $\GL(V)$, whose closed subgroups
+satisfy the descending chain condition, gives
+$\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}$:
+an exact finite-dimensional representation assigns the compressed
+subgroup and the subgroup the same algebraic envelope.  The chain
+condition for algebraic subgroups is classical and outside the formal
+development.  Theorem~\ref{thm:intertwiner-transport} is the asymptotic
+counterpart at fixed tensor type.
 \end{remark}
 
 \paragraph{Why the corona argument is different.}
@@ -2197,6 +2310,74 @@ radical.  Corollary~\ref{cor:pullback} needs no hypothesis on the
 quotient: the corona representation theory of $G_1$ \emph{is} that of
 $G_1/N$, whether or not the latter is MF.
 
+Corollary~\ref{cor:pullback} organizes the radical computations into a
+closure calculus on the normal subgroups of a fixed group.
+
+\begin{proposition}[the MF closure of relations]\label{prop:mfclosure}
+For a countable group $G_1$ and $N\trianglelefteq G_1$ with quotient map
+$q\colon G_1\to G_1/N$, put
+\[
+ \operatorname{cl}_{\mathrm{MF}}(N)
+ =q^{-1}\bigl(\operatorname{Rad}_{\mathrm{MF}}(G_1/N)\bigr).
+\]
+An element belongs to $\operatorname{cl}_{\mathrm{MF}}(N)$ exactly when
+every corona representation of $G_1$ that kills $N$ kills it.
+\leanverified{Sofic/MFRelationClosure}{GroupApproximation.mem_actualCoronaMFClosure_iff}
+The operation $N\mapsto\operatorname{cl}_{\mathrm{MF}}(N)$ is extensive,
+monotone, and idempotent on normal subgroups;
+$G_1/\operatorname{cl}_{\mathrm{MF}}(N)$ is MF; and
+$\operatorname{cl}_{\mathrm{MF}}(N)=N$ exactly when $G_1/N$ is MF.
+\leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptRelationClosure}
+\end{proposition}
+
+\begin{proof}
+Corona representations of $G_1$ killing $N$ correspond to corona
+representations of $G_1/N$, which gives the membership
+characterization; extensivity, monotonicity, and idempotence are read
+off from it.  The quotient clause is Proposition~\ref{prop:univquot}(2)
+transported along the third isomorphism theorem, and the fixed-point
+clause is the final equivalence of Proposition~\ref{prop:univquot}.
+\end{proof}
+
+For a presentation $G=\langle X\mid R\rangle=F/N$, the closure of $N$
+consists of the relations satisfied by every solution of $R$ in every
+MF group, and the group is MF exactly when $N$ is closed.
+Proposition~\ref{prop:horn} displays one finite fragment of this
+closure, and the marked element of Theorem~\ref{thm:A} is an element of
+$\operatorname{cl}_{\mathrm{MF}}(N)\setminus N$ for the forty-one
+relators.
+
+\begin{proposition}[iterated sound rules]\label{prop:sounditeration}
+Consider the normal subgroups of $G_1$ reachable from the trivial
+subgroup by two operations: passing from $N$ to any subgroup of
+$\operatorname{cl}_{\mathrm{MF}}(N)$, and taking unions of families
+already reached.  Every subgroup so reached lies in
+$\operatorname{Rad}_{\mathrm{MF}}(G_1)$; a reached subgroup with MF
+quotient equals $\operatorname{Rad}_{\mathrm{MF}}(G_1)$; and if the
+whole group is reached, every homomorphism from $G_1$ to a countable MF
+group is trivial.
+\leanverified{Sofic/MFRelationClosure}{GroupApproximation.manuscriptSoundIterationClosure}
+\end{proposition}
+
+\begin{proof}
+For $N\le\operatorname{Rad}_{\mathrm{MF}}(G_1)$,
+Corollary~\ref{cor:pullback} gives
+$\operatorname{cl}_{\mathrm{MF}}(N)=\operatorname{Rad}_{\mathrm{MF}}(G_1)$,
+so the first operation stays inside the radical, and unions of
+subgroups of the radical lie in the radical.  The endpoint clauses are
+Corollary~\ref{cor:exactradical} and Proposition~\ref{prop:univquot}.
+\end{proof}
+
+Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
+and~\ref{thm:collapse} are sound rules in this sense: each places a
+subgroup inside the radical of every countable group carrying its data,
+hence inside the radical of every reached quotient.
+Theorem~\ref{thm:saturation} is the case in which a single application
+reaches the whole group.  A rule instance can hold at a later stage
+without holding at an earlier one: modulo the earlier stage an element
+may acquire finite order, an orbit may begin to commute, or a subgroup
+may become normal.
+
 \begin{corollary}\label{cor:nofaithful}
 Let $A$ be a unital $C^*$-algebra admitting an injective, possibly
 nonunital, $*$-homomorphism into a norm matrix corona.  Then the group $E$
@@ -2390,9 +2571,49 @@ sufficiently late coordinate.  The commutation hypothesis (W3) is
 essential: it supplies the joint spectral calculus behind the rank
 identity of Step 2.  Anticommuting Clifford coordinates have no joint
 spectral labels; their collapse mechanism is the central sign of
-Theorem~\ref{thm:A}.  The analogue for witnesses of order larger than
-two would require exact commuting finite-spectrum lifts and is open.
+Theorem~\ref{thm:A}.  At the corona level,
+Theorem~\ref{thm:projection-collapse} below removes the restriction to
+involutions: the spectral projections of a finite-order witness satisfy
+its hypotheses, and their collapse forces the collapse of the witness.
+The spectral-projection reduction is elementary functional calculus and
+is outside the formal development.
 \end{remark}
+
+The witness of Theorem~\ref{thm:collapse} is a group element.  The same
+collapse holds for arbitrary projections of the corona.
+
+\begin{theorem}[projection collapse]\label{thm:projection-collapse}
+Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
+$s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let
+$\Theta\colon H\to\U(\mathcal Q)$ be a corona representation.  Let
+$p\in\mathcal Q$ be a projection such that $p$ commutes with
+$\Theta(s\gamma s^{-1})$ for every $\gamma\in L$ and the projections
+$\Theta(\gamma)\,p\,\Theta(\gamma)^*$, $\gamma\in L$, commute pairwise.
+Then $p$ commutes with $\Theta(L)$.
+\leanverified{Sofic/ProjectionCompressionCollapse}{GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse}
+\end{theorem}
+
+\begin{proof}
+The sign $w=1-2p$ is a self-adjoint unitary of $\mathcal Q$.  The
+subgroup $H'\le\U(\mathcal Q)$ generated by $\Theta(H)$ and $w$ is
+countable.  Inside $H'$, the image $\Theta(L)$ has
+property~\textup{(T)}, $\Theta(s)$ compresses it, $w$ is an involution
+centralizing the compressed copy, and the $\Theta(L)$-conjugates of $w$
+commute because the conjugated projections do.  So $w$ is an involutive
+compression witness in $H'$, and Theorem~\ref{thm:collapse} places
+every commutator $[\Theta(\gamma),w]$, $\gamma\in L$, in
+$\operatorname{Rad}_{\mathrm{MF}}(H')$.  The inclusion
+$H'\to\U(\mathcal Q)$ is itself a corona representation of $H'$, so it
+maps each of these commutators to the identity:
+$[\Theta(\gamma),w]=1$ in $\mathcal Q$, and $w=1-2p$ gives
+$[\Theta(\gamma),p]=0$.
+\end{proof}
+
+No group element carries this witness: the projection is an arbitrary
+element of the corona.  The relative commutant
+$\Theta(sLs^{-1})'\cap\mathcal Q$ therefore cannot exceed
+$\Theta(L)'\cap\mathcal Q$ by a projection with commuting
+$L$-orbit.
 
 \begin{corollary}[collapse computes the radical]\label{cor:collapsequot}
 In the setting of Theorem~\ref{thm:collapse}, write
@@ -2833,6 +3054,13 @@ matrix corona need not make any coordinate trace faithful, so the defining
 MF representation does not immediately supply a hyperlinear model.  This
 question concerns the CDE norm-corona convention fixed above; for stronger
 trace-controlled MF conventions the implication is built into the definition.
+\item By Proposition~\ref{prop:sounditeration}, every family of
+theorems placing subgroups in the MF radical generates, by iteration
+through quotients, a closure contained in
+$\operatorname{Rad}_{\mathrm{MF}}$.  For which groups do the rules of
+Theorems~\ref{thm:criterion}, \ref{thm:normal-kazhdan},
+\ref{thm:collapse}, and~\ref{thm:projection-collapse} compute the
+radical exactly?
 \end{enumerate}
 
 

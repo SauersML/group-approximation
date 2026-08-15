@@ -68,33 +68,38 @@ full image of `L`. -/
 theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
     (L : Subgroup E) (hT : HasKazhdanPropertyT.{0, 0} ↥L)
     {s : E} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L)
-    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-    (pi : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
-    (p : NormMatrixCStarCorona (fun n ↦ X n))
-    (hsa : star p = p) (hproj : p * p = p)
-    (hpcomm : ∀ γ ∈ L,
-      ((pi (s * γ * s⁻¹) : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-          NormMatrixCStarCorona (fun n ↦ X n)) * p =
-        p * ((pi (s * γ * s⁻¹) :
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    ∀ (pi : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
+      (p : NormMatrixCStarCorona (fun n ↦ X n)),
+      star p = p → p * p = p →
+      (∀ γ ∈ L,
+        ((pi (s * γ * s⁻¹) :
             unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-          NormMatrixCStarCorona (fun n ↦ X n)))
-    (horb : ∀ γ₁ ∈ L, ∀ γ₂ ∈ L,
-      Commute
-        (((pi γ₁ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-            NormMatrixCStarCorona (fun n ↦ X n)) * p *
-          star ((pi γ₁ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-            NormMatrixCStarCorona (fun n ↦ X n)))
-        (((pi γ₂ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-            NormMatrixCStarCorona (fun n ↦ X n)) * p *
-          star ((pi γ₂ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-            NormMatrixCStarCorona (fun n ↦ X n)))) :
-    ∀ γ ∈ L,
-      ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-          NormMatrixCStarCorona (fun n ↦ X n)) * p =
-        p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
-          NormMatrixCStarCorona (fun n ↦ X n)) := by
+            NormMatrixCStarCorona (fun n ↦ X n)) * p =
+          p * ((pi (s * γ * s⁻¹) :
+              unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+            NormMatrixCStarCorona (fun n ↦ X n))) →
+      (∀ γ₁ ∈ L, ∀ γ₂ ∈ L,
+        Commute
+          (((pi γ₁ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) * p *
+            star ((pi γ₁ :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)))
+          (((pi γ₂ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)) * p *
+            star ((pi γ₂ :
+                unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+              NormMatrixCStarCorona (fun n ↦ X n)))) →
+      ∀ γ ∈ L,
+        ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+            NormMatrixCStarCorona (fun n ↦ X n)) * p =
+          p * ((pi γ : unitary (NormMatrixCStarCorona (fun n ↦ X n))) :
+            NormMatrixCStarCorona (fun n ↦ X n)) := by
   classical
-  intro γ hγ
+  letI : ∀ n, Nonempty (X n) := fun n ↦ Fintype.card_pos_iff.mp (hX n)
+  intro pi p hsa hproj hpcomm horb γ hγ
   set w : NormMatrixCStarCorona (fun n ↦ X n) := 1 - 2 * p with hw_def
   have hwstar : star w = w := by
     rw [hw_def, star_sub, star_one]
@@ -308,7 +313,6 @@ theorem corona_projection_collapse {E : Type} [Group E] [Countable E]
     exact Subgroup.mem_map.mpr ⟨γ, hγ, rfl⟩
   have hInv :=
     actualCoronaMFInvisible_of_involutiveWitness hT' hcomp' hk hγE
-  have hX : ∀ n, 0 < Fintype.card (X n) := fun n ↦ Fintype.card_pos
   have hone := hInv X hX E'.subtype
   rw [map_commutatorElement] at hone
   have hcommU : Commute

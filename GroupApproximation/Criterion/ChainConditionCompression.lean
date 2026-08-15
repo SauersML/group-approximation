@@ -36,7 +36,7 @@ theorem orderIso_apply_eq_self_of_le_apply {P : Type*} [PartialOrder P]
     induction n with
     | zero => simpa using ha
     | succ n ih =>
-        rw [Function.iterate_succ_apply', Function.iterate_succ_apply']
+        simp only [Function.iterate_succ_apply'] at ih ⊢
         exact e.monotone ih
   obtain ⟨x, ⟨n, rfl⟩, hmax⟩ := hwf.wf.has_min
     (Set.range fun n : ℕ ↦ f^[n] a) (Set.range_nonempty _)
@@ -60,7 +60,7 @@ theorem orderIso_apply_eq_self_of_apply_le {P : Type*} [PartialOrder P]
     induction n with
     | zero => simpa using ha
     | succ n ih =>
-        rw [Function.iterate_succ_apply', Function.iterate_succ_apply']
+        simp only [Function.iterate_succ_apply'] at ih ⊢
         exact e.monotone ih
   obtain ⟨x, ⟨n, rfl⟩, hmin⟩ := hwf.wf.has_min
     (Set.range fun n : ℕ ↦ f^[n] a) (Set.range_nonempty _)

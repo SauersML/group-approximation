@@ -261,6 +261,11 @@ def IsUniformlyBoundedRect (B₁ B₂ : OpAlmostRepresentation E)
     (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ) : Prop :=
   ∃ M : ℝ, 0 ≤ M ∧ ∀ n, ‖x n‖ ≤ M
 
+theorem isUniformlyBoundedRect_zero (B₁ B₂ : OpAlmostRepresentation E) :
+    IsUniformlyBoundedRect B₁ B₂ (fun _ ↦ 0) := by
+  refine ⟨0, le_refl 0, fun n ↦ ?_⟩
+  simp
+
 /-- Intertwiners are exactly the off-diagonal Hilbert--Schmidt asymptotic
 commutants of the block sum. -/
 theorem isAsymptoticCommutantOf_offDiag_iff
@@ -396,6 +401,15 @@ def IsScaledAsymptoticIntertwinerOf (B₁ B₂ : OpAlmostRepresentation E)
 def IsScaledRectMassBounded (B₁ B₂ : OpAlmostRepresentation E)
     (w : ℕ → ℝ) (x : ∀ n, Matrix (B₁.model n) (B₂.model n) ℂ) : Prop :=
   ∃ Cm : ℝ, 0 ≤ Cm ∧ ∀ n, rectMass (x n) ≤ Cm * w n
+
+theorem isScaledRectMassBounded_zero (B₁ B₂ : OpAlmostRepresentation E)
+    (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n) :
+    IsScaledRectMassBounded B₁ B₂ w (fun _ ↦ 0) := by
+  refine ⟨1, zero_le_one, fun n ↦ ?_⟩
+  have h : rectMass (0 : Matrix (B₁.model n) (B₂.model n) ℂ) = 0 := by
+    simp [rectMass]
+  rw [h, one_mul]
+  exact hw n
 
 theorem isScaledAsymptoticCommutantOf_offDiag_iff
     (B₁ B₂ : OpAlmostRepresentation E) (w : ℕ → ℝ) (iota : Γ →* E)

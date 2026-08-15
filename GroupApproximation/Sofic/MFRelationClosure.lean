@@ -141,13 +141,17 @@ theorem actualCoronaMFClosure_eq_self_iff [Countable G] (N : Subgroup G)
     rw [h] at hmap
     have hbot : actualCoronaMFResidual (G ⧸ N) = ⊥ := by
       rw [← hmap]
-      exact Subgroup.map_eq_bot_iff.mpr (QuotientGroup.ker_mk' N).symm.le
+      refine le_antisymm ?_ bot_le
+      rintro _ ⟨x, hx, rfl⟩
+      simpa [Subgroup.mem_bot] using (QuotientGroup.eq_one_iff x).mpr hx
     exact isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mpr hbot
   · intro h
     have hbot : actualCoronaMFResidual (G ⧸ N) = ⊥ :=
       isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp h
     show (actualCoronaMFResidual (G ⧸ N)).comap (QuotientGroup.mk' N) = N
-    rw [hbot, Subgroup.comap_bot, QuotientGroup.ker_mk']
+    rw [hbot]
+    ext x
+    simp
 
 /-- The quotient by any MF closure is MF. -/
 theorem isCDEOperatorMF_quotient_actualCoronaMFClosure [Countable G]

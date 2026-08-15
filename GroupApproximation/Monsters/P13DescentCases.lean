@@ -735,10 +735,10 @@ theorem exist_st_15 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
         vnorm (act (toSL3 (x 5 cp)) u) ∧
       vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 0 (c * cp))) u)) <
         vnorm (act (toSL3 (x 5 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 5 (-cp))) ![u 0, cp * u 2, -(cp * u 1)]) <
+    (vnorm (act (toSL3 (x 5 (-cp))) ![u 0, -(cp * u 2), cp * u 1]) <
         vnorm (act (toSL3 (x 5 cp)) u) ∧
       vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 5 (-cp)))
-          ![u 0, cp * u 2, -(cp * u 1)])) <
+          ![u 0, -(cp * u 2), cp * u 1])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
@@ -793,10 +793,10 @@ theorem exist_st_34 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
         vnorm (act (toSL3 (x 4 cp)) u) ∧
       vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 2 (c * cp))) u)) <
         vnorm (act (toSL3 (x 4 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 4 (-cp))) ![cp * u 2, u 1, -(cp * u 0)]) <
+    (vnorm (act (toSL3 (x 4 (-cp))) ![-(cp * u 2), u 1, cp * u 0]) <
         vnorm (act (toSL3 (x 4 cp)) u) ∧
       vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 4 (-cp)))
-          ![cp * u 2, u 1, -(cp * u 0)])) <
+          ![-(cp * u 2), u 1, cp * u 0])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
@@ -851,10 +851,10 @@ theorem exist_st_52 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
         vnorm (act (toSL3 (x 2 cp)) u) ∧
       vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 4 (c * cp))) u)) <
         vnorm (act (toSL3 (x 2 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 2 (-cp))) ![cp * u 1, -(cp * u 0), u 2]) <
+    (vnorm (act (toSL3 (x 2 (-cp))) ![-(cp * u 1), cp * u 0, u 2]) <
         vnorm (act (toSL3 (x 2 cp)) u) ∧
       vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 2 (-cp)))
-          ![cp * u 1, -(cp * u 0), u 2])) <
+          ![-(cp * u 1), cp * u 0, u 2])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
@@ -873,13 +873,13 @@ theorem exist_st_30 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 3 c)) u) < vnorm (act (toSL3 (x 0 cp)) u) ∧
       vnorm (act (toSL3 (x 0 cp)) (act (toSL3 (x 3 c)) u)) <
         vnorm (act (toSL3 (x 0 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 0 (-cp))) ![cp * u 1, -(cp * u 0), u 2]) <
+    (vnorm (act (toSL3 (x 3 (-c))) ![u 0, c * u 2, -(c * u 1)]) <
         vnorm (act (toSL3 (x 0 cp)) u) ∧
-      vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 0 (-cp)))
-          ![cp * u 1, -(cp * u 0), u 2])) <
+      vnorm (act (toSL3 (x 1 (-(c * cp)))) (act (toSL3 (x 3 (-c)))
+          ![u 0, c * u 2, -(c * u 1)])) <
         vnorm (act (toSL3 (x 0 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x3, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x0, act_x1, act_x3, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
@@ -895,13 +895,13 @@ theorem exist_st_51 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 5 c)) u) < vnorm (act (toSL3 (x 1 cp)) u) ∧
       vnorm (act (toSL3 (x 1 cp)) (act (toSL3 (x 5 c)) u)) <
         vnorm (act (toSL3 (x 1 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 1 (-cp))) ![cp * u 2, u 1, -(cp * u 0)]) <
+    (vnorm (act (toSL3 (x 5 (-c))) ![u 0, -(c * u 2), c * u 1]) <
         vnorm (act (toSL3 (x 1 cp)) u) ∧
-      vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 1 (-cp)))
-          ![cp * u 2, u 1, -(cp * u 0)])) <
+      vnorm (act (toSL3 (x 0 (-(c * cp)))) (act (toSL3 (x 5 (-c)))
+          ![u 0, -(c * u 2), c * u 1])) <
         vnorm (act (toSL3 (x 1 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x0, act_x1, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
@@ -917,13 +917,13 @@ theorem exist_st_12 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 1 c)) u) < vnorm (act (toSL3 (x 2 cp)) u) ∧
       vnorm (act (toSL3 (x 2 cp)) (act (toSL3 (x 1 c)) u)) <
         vnorm (act (toSL3 (x 2 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 2 (-cp))) ![cp * u 1, -(cp * u 0), u 2]) <
+    (vnorm (act (toSL3 (x 1 (-c))) ![c * u 2, u 1, -(c * u 0)]) <
         vnorm (act (toSL3 (x 2 cp)) u) ∧
-      vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 2 (-cp)))
-          ![cp * u 1, -(cp * u 0), u 2])) <
+      vnorm (act (toSL3 (x 3 (-(c * cp)))) (act (toSL3 (x 1 (-c)))
+          ![c * u 2, u 1, -(c * u 0)])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x2, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x1, act_x2, act_x3, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
@@ -939,13 +939,13 @@ theorem exist_st_43 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 4 c)) u) < vnorm (act (toSL3 (x 3 cp)) u) ∧
       vnorm (act (toSL3 (x 3 cp)) (act (toSL3 (x 4 c)) u)) <
         vnorm (act (toSL3 (x 3 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 3 (-cp))) ![u 0, cp * u 2, -(cp * u 1)]) <
+    (vnorm (act (toSL3 (x 4 (-c))) ![-(c * u 2), u 1, c * u 0]) <
         vnorm (act (toSL3 (x 3 cp)) u) ∧
-      vnorm (act (toSL3 (x 4 c)) (act (toSL3 (x 3 (-cp)))
-          ![u 0, cp * u 2, -(cp * u 1)])) <
+      vnorm (act (toSL3 (x 2 (-(c * cp)))) (act (toSL3 (x 4 (-c)))
+          ![-(c * u 2), u 1, c * u 0])) <
         vnorm (act (toSL3 (x 3 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x2, act_x3, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
@@ -961,13 +961,13 @@ theorem exist_st_04 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 0 c)) u) < vnorm (act (toSL3 (x 4 cp)) u) ∧
       vnorm (act (toSL3 (x 4 cp)) (act (toSL3 (x 0 c)) u)) <
         vnorm (act (toSL3 (x 4 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 4 (-cp))) ![cp * u 2, u 1, -(cp * u 0)]) <
+    (vnorm (act (toSL3 (x 0 (-c))) ![c * u 1, -(c * u 0), u 2]) <
         vnorm (act (toSL3 (x 4 cp)) u) ∧
-      vnorm (act (toSL3 (x 0 c)) (act (toSL3 (x 4 (-cp)))
-          ![cp * u 2, u 1, -(cp * u 0)])) <
+      vnorm (act (toSL3 (x 5 (-(c * cp)))) (act (toSL3 (x 0 (-c)))
+          ![c * u 1, -(c * u 0), u 2])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x4, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x0, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
@@ -983,13 +983,13 @@ theorem exist_st_25 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (vnorm (act (toSL3 (x 2 c)) u) < vnorm (act (toSL3 (x 5 cp)) u) ∧
       vnorm (act (toSL3 (x 5 cp)) (act (toSL3 (x 2 c)) u)) <
         vnorm (act (toSL3 (x 5 cp)) u)) ∨
-    (vnorm (act (toSL3 (x 5 (-cp))) ![u 0, cp * u 2, -(cp * u 1)]) <
+    (vnorm (act (toSL3 (x 2 (-c))) ![-(c * u 1), c * u 0, u 2]) <
         vnorm (act (toSL3 (x 5 cp)) u) ∧
-      vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 5 (-cp)))
-          ![u 0, cp * u 2, -(cp * u 1)])) <
+      vnorm (act (toSL3 (x 4 (-(c * cp)))) (act (toSL3 (x 2 (-c)))
+          ![-(c * u 1), c * u 0, u 2])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
+    simp only [act_x2, act_x4, act_x5, vnorm, one_mul, neg_one_mul, neg_neg,
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢ <;>
