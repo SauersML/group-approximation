@@ -3,7 +3,7 @@ rg: 2
 id: involutive-collapse-formalized-proof
 kind: route
 title: The involutive collapse is machine-checked end to end
-target: compression-torsion-collapse
+target: involutive-compression-collapse
 requires: []
 artifacts:
   - GroupApproximation/Sofic/InvolutionCollapseEndpoint.lean
