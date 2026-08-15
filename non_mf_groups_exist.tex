@@ -871,10 +871,9 @@ The Clifford sign is central, so the map respects every defining relation.
 It follows simultaneously that $w\ne1$ and that the canonical map of
 $\Gamma$ is injective.
 
-Finally, $w=u^2$ is a nontrivial central involution.  The central-sign
-criterion therefore says that every corona representation maps $w$ to
-the identity.
-Since $w\ne1$, none is faithful.
+Finally, $w=u^2$ is a nontrivial central involution.  By the
+central-sign criterion, every corona representation maps $w$ to the
+identity.  Since $w\ne1$, none is faithful.
 \end{proof}
 
 The sign argument has a useful generalization.  For a subgroup
@@ -887,12 +886,10 @@ $sLs^{-1}\subseteq L$ --- the \emph{one-sided conjugators} of $L$ --- and put
  \right\rangle\!\right\rangle_H.
 \end{equation}
 
-Theorem~\ref{thm:compression-radical} in
-Section~\ref{sec:conj} upgrades the sign criterion to this intrinsic
-defect: in the presence of a property-\textup{(T)} subgroup
+In the presence of a property-\textup{(T)} subgroup
 $L=\iota(\Gamma)$, every finite normal subgroup of $H$ contained in
 $\mathfrak D(H,L)$ is mapped to the identity by every corona
-representation of $H$.
+representation of $H$ (Theorem~\ref{thm:compression-radical}).
 
 The element $a$ enters both halves of the proof.  Analytically,
 $a\in\Gamma$, so fixed-space transport forces the displaced lamp to commute
@@ -910,10 +907,10 @@ contains a copy of every finitely presented torsion-free group, in
 particular a direct product $P_1\times P_2$ with $P_i\cong P$.  Then
 $\alpha\colon P\xrightarrow{\;\cong\;}P_1\le P$, together with any
 $a\in P_2\setminus\{1\}$, satisfies the hypotheses of
-Theorem~\ref{thm:kazhdan-clifford}.  This realization is not
-formalized, and $E(P,\alpha,a)$ contains involutions whatever the
-base.  The affine base is used for the explicit presentation of
-Theorem~\ref{thm:A} and for Theorems~\ref{thm:D} and~\ref{thm:E}.
+Theorem~\ref{thm:kazhdan-clifford}.  The group $E(P,\alpha,a)$
+contains involutions whatever the base.  The affine base is used for
+the explicit presentation of Theorem~\ref{thm:A} and for
+Theorems~\ref{thm:D} and~\ref{thm:E}.
 \end{remark}
 
 The following theorem is the explicit instance, developed in
@@ -994,10 +991,7 @@ Lemma~\ref{lem:square} gives the identity $w=u^2$.  For a corona
 representation that detects $w$, the negative corner of $w$ gives a
 model in which $w=-1$ exactly.  Kazhdan transport gives $u\sim_2 1$,
 hence $w=u^2\sim_2 1$.  This contradiction is the proof of the sign
-criterion, run at the marked word of $E$.  Section~\ref{sec:proofA}
-deduces the theorem from the sign criterion and the witness, and
-Section~\ref{sec:conj} generalizes the criterion to arbitrary finite
-normal subgroups of the defect.
+criterion, run at the marked word of $E$.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by an explicit representation of $E$
@@ -1029,8 +1023,9 @@ also yields the failures of quotient and extension permanence
 
 The finite-dimensional argument uses only finite dimensionality and
 the one-sided conjugation and centralizer relations --- neither
-property~(T), nor unitarity, nor centrality of $w$ --- and it kills
-the entire intrinsic defect \eqref{eq:intrinsicdefect}:
+property~(T), nor unitarity, nor centrality of $w$ --- and it sends
+the entire intrinsic defect \eqref{eq:intrinsicdefect} to the
+identity:
 
 \begin{mainthm}[the exact finite-dimensional analogue]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a

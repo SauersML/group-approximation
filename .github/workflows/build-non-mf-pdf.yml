@@ -62,6 +62,7 @@ jobs:
           ref: ${{ env.SOURCE_SHA }}
           fetch-depth: 0
           persist-credentials: true
+          submodules: true
 
       - name: Bind publication to the exact successful Prover run
         env:

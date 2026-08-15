@@ -1,6 +1,7 @@
 # Cairn research-graph site.  Rebuilds and republishes the public site
 # whenever the research state or the generator changes.  Fast (seconds,
-# no toolchain): the site is compiled from research/*.md by tools/cairn.py.
+# no toolchain): the site is compiled from research/*.md by the cairn CLI,
+# which lives in the tools/cairn submodule (github.com/SauersML/Cairn).
 #
 # Coexistence with docs.yml (doc-gen4, weekly): Pages serves one tree per
 # repo, so this workflow also folds the latest API docs under /api/ when a
@@ -14,7 +15,9 @@ on:
     branches: [main]
     paths:
       - 'research/**'
-      - 'tools/cairn.py'
+      - 'tools/cairn'
+      - '.gitmodules'
+      - 'bin/cairn'
       - '.github/workflows/cairn-site.yml'
   workflow_dispatch:
 
@@ -34,9 +37,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          submodules: true
 
       - name: Build the site
-        run: python3 tools/cairn.py site
+        run: bin/cairn site
 
       - name: Fold in the latest API docs, if published
         run: |
