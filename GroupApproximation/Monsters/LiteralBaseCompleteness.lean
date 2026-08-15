@@ -39,38 +39,38 @@ private abbrev Base := LiteralNonMFPresentation.Base
 
 /-! ## Torsion of the rotation units -/
 
-private theorem xM_cube : xM * xM * xM = 1 := xM_orderThree'
+theorem xM_cube : xM * xM * xM = 1 := xM_orderThree'
 
-private theorem yM_cube : yM * yM * yM = 1 := yM_orderThree'
+theorem yM_cube : yM * yM * yM = 1 := yM_orderThree'
 
-private theorem xU_cube : xU ^ 3 = 1 := by
+theorem xU_cube : xU ^ 3 = 1 := by
   refine Units.ext ?_
   rw [Units.val_pow_eq_pow_val, Units.val_one, pow_succ, pow_succ, pow_one]
   exact xM_cube
 
-private theorem yU_cube : yU ^ 3 = 1 := by
+theorem yU_cube : yU ^ 3 = 1 := by
   refine Units.ext ?_
   rw [Units.val_pow_eq_pow_val, Units.val_one, pow_succ, pow_succ, pow_one]
   exact yM_cube
 
-private theorem zU_sq : zU ^ 2 = 1 := by
+theorem zU_sq : zU ^ 2 = 1 := by
   refine Units.ext ?_
   rw [Units.val_pow_eq_pow_val, Units.val_one, pow_two]
   exact zM_orderTwo
 
-private theorem xU_inv : xU⁻¹ = xU * xU := by
+theorem xU_inv : xU⁻¹ = xU * xU := by
   apply inv_eq_of_mul_eq_one_left
   have h := xU_cube
   rw [pow_succ, pow_two] at h
   exact h
 
-private theorem yU_inv : yU⁻¹ = yU * yU := by
+theorem yU_inv : yU⁻¹ = yU * yU := by
   apply inv_eq_of_mul_eq_one_left
   have h := yU_cube
   rw [pow_succ, pow_two] at h
   exact h
 
-private theorem zU_inv : zU⁻¹ = zU := by
+theorem zU_inv : zU⁻¹ = zU := by
   apply inv_eq_of_mul_eq_one_left
   have h := zU_sq
   rw [pow_two] at h
@@ -78,10 +78,14 @@ private theorem zU_inv : zU⁻¹ = zU := by
 
 /-! ## The rotation matrix model -/
 
-private def rotUnit : RotationGenerator → Matˣ
+def rotUnit : RotationGenerator → Matˣ
   | 0 => xU
   | 1 => yU
   | 2 => zU
+
+theorem rotUnit_zero : rotUnit 0 = xU := rfl
+theorem rotUnit_one : rotUnit 1 = yU := rfl
+theorem rotUnit_two : rotUnit 2 = zU := rfl
 
 local macro "verify_unit_matrix" : tactic =>
   `(tactic|
@@ -92,40 +96,36 @@ local macro "verify_unit_matrix" : tactic =>
          norm_num [Matrix.mul_apply, Matrix.one_apply, pow_succ,
            Fin.sum_univ_succ, xU, yU, zU, xM, yM, zM]))
 
-private theorem rotUnit_kills :
+private set_option maxHeartbeats 1000000 in
+theorem rotUnit_kills :
     ∀ r ∈ (rotationRelators : Set (FreeGroup RotationGenerator)),
       FreeGroup.lift rotUnit r = 1 := by
   intro r hr
   have hr' : r ∈ rotationRelators := hr
   rw [mem_rotationRelators_iff] at hr'
   rcases hr' with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
-  · show FreeGroup.lift rotUnit relXCube = 1
-    simpa only [relXCube, map_pow, FreeGroup.lift_apply_of] using xU_cube
-  · show FreeGroup.lift rotUnit relYCube = 1
-    simpa only [relYCube, map_pow, FreeGroup.lift_apply_of] using yU_cube
-  · show FreeGroup.lift rotUnit relZSq = 1
-    simpa only [relZSq, map_pow, FreeGroup.lift_apply_of] using zU_sq
-  · show FreeGroup.lift rotUnit relXZCube = 1
-    simp only [relXZCube, map_pow, map_mul, FreeGroup.lift_apply_of]
-    show ((xU * zU) ^ 3 : Matˣ) = 1
+  · simpa only [relXCube, map_pow, FreeGroup.lift_apply_of,
+      rotUnit_zero] using xU_cube
+  · simpa only [relYCube, map_pow, FreeGroup.lift_apply_of,
+      rotUnit_one] using yU_cube
+  · simpa only [relZSq, map_pow, FreeGroup.lift_apply_of,
+      rotUnit_two] using zU_sq
+  · simp only [relXZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
+      rotUnit_zero, rotUnit_one, rotUnit_two]
     verify_unit_matrix
-  · show FreeGroup.lift rotUnit relYZCube = 1
-    simp only [relYZCube, map_pow, map_mul, FreeGroup.lift_apply_of]
-    show ((yU * zU) ^ 3 : Matˣ) = 1
+  · simp only [relYZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
+      rotUnit_zero, rotUnit_one, rotUnit_two]
     verify_unit_matrix
-  · show FreeGroup.lift rotUnit relXInvZXY = 1
-    simp only [relXInvZXY, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of]
-    show ((xU⁻¹ * zU * xU * yU) ^ 2 : Matˣ) = 1
+  · simp only [relXInvZXY, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
+      rotUnit_zero, rotUnit_one, rotUnit_two]
     rw [xU_inv]
     verify_unit_matrix
-  · show FreeGroup.lift rotUnit relYInvZYX = 1
-    simp only [relYInvZYX, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of]
-    show ((yU⁻¹ * zU * yU * xU) ^ 2 : Matˣ) = 1
+  · simp only [relYInvZYX, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
+      rotUnit_zero, rotUnit_one, rotUnit_two]
     rw [yU_inv]
     verify_unit_matrix
-  · show FreeGroup.lift rotUnit relXYSix = 1
-    simp only [relXYSix, map_pow, map_mul, FreeGroup.lift_apply_of]
-    show ((xU * yU) ^ 6 : Matˣ) = 1
+  · simp only [relXYSix, map_pow, map_mul, FreeGroup.lift_apply_of,
+      rotUnit_zero, rotUnit_one, rotUnit_two]
     verify_unit_matrix
 
 /-- The matrix model of the abstract eight-relator rotation group. -/
@@ -141,7 +141,7 @@ def rotationToMat : Rotation →* Matˣ :=
 @[simp] theorem rotationToMat_Z : rotationToMat Z = zU :=
   PresentedGroup.toGroup.of rotUnit_kills
 
-private theorem rotationToMat_word (w : FreeGroup RotationGenerator) :
+theorem rotationToMat_word (w : FreeGroup RotationGenerator) :
     rotationToMat (rotationWord w) = FreeGroup.lift rotUnit w := by
   induction w using FreeGroup.induction_on with
   | C1 => simp
@@ -156,7 +156,7 @@ private theorem rotationToMat_word (w : FreeGroup RotationGenerator) :
 
 /-! ## The block embedding of `SL₃(ℤ)` -/
 
-private def blockMonoid : Matrix (Fin 3) (Fin 3) ℚ →* Mat where
+def blockMonoid : Matrix (Fin 3) (Fin 3) ℚ →* Mat where
   toFun A :=
     (Matrix.fromBlocks A (0 : Matrix (Fin 3) (Fin 1) ℚ)
       (0 : Matrix (Fin 1) (Fin 3) ℚ)
@@ -176,27 +176,29 @@ private def blockMonoid : Matrix (Fin 3) (Fin 3) ℚ →* Mat where
         (0 : Matrix (Fin 1) (Fin 3) ℚ) (1 : Matrix (Fin 1) (Fin 1) ℚ))
       (Matrix.fromBlocks B (0 : Matrix (Fin 3) (Fin 1) ℚ)
         (0 : Matrix (Fin 1) (Fin 3) ℚ) (1 : Matrix (Fin 1) (Fin 1) ℚ))
-      finSumFinEquiv.symm finSumFinEquiv.symm finSumFinEquiv.symm,
+      (finSumFinEquiv (m := 3) (n := 1)).symm
+      (finSumFinEquiv (m := 3) (n := 1)).symm
+      (finSumFinEquiv (m := 3) (n := 1)).symm,
       Matrix.fromBlocks_multiply]
     simp
 
-private def castMat (A : Matrix (Fin 3) (Fin 3) ℤ) :
+def castMat (A : Matrix (Fin 3) (Fin 3) ℤ) :
     Matrix (Fin 3) (Fin 3) ℚ :=
   A.map (Int.cast : ℤ → ℚ)
 
-private theorem castMat_mul (A B : Matrix (Fin 3) (Fin 3) ℤ) :
+theorem castMat_mul (A B : Matrix (Fin 3) (Fin 3) ℤ) :
     castMat (A * B) = castMat A * castMat B := by
   refine Matrix.ext fun i j => ?_
   simp only [castMat, Matrix.map_apply, Matrix.mul_apply]
   push_cast
   rfl
 
-private theorem castMat_one : castMat 1 = 1 := by
+theorem castMat_one : castMat 1 = 1 := by
   refine Matrix.ext fun i j => ?_
   by_cases h : i = j <;>
     simp [castMat, Matrix.map_apply, Matrix.one_apply, h]
 
-private theorem sl3_coe_mul_inv (A : SL3) :
+theorem sl3_coe_mul_inv (A : SL3) :
     (A : Matrix (Fin 3) (Fin 3) ℤ) *
       ((A⁻¹ : SL3) : Matrix (Fin 3) (Fin 3) ℤ) = 1 :=
   calc (A : Matrix (Fin 3) (Fin 3) ℤ) *
@@ -207,7 +209,7 @@ private theorem sl3_coe_mul_inv (A : SL3) :
         rw [mul_inv_cancel]
     _ = 1 := rfl
 
-private theorem sl3_coe_inv_mul (A : SL3) :
+theorem sl3_coe_inv_mul (A : SL3) :
     ((A⁻¹ : SL3) : Matrix (Fin 3) (Fin 3) ℤ) *
       (A : Matrix (Fin 3) (Fin 3) ℤ) = 1 :=
   calc ((A⁻¹ : SL3) : Matrix (Fin 3) (Fin 3) ℤ) *
@@ -241,27 +243,27 @@ def blockEmbed4 : SL3 →* Matˣ where
       Matrix.SpecialLinearGroup.coe_mul A B, castMat_mul, map_mul]
     rfl
 
-private theorem blockEmbed4_val (A : SL3) :
+theorem blockEmbed4_val (A : SL3) :
     (blockEmbed4 A).val =
       blockMonoid (castMat (A : Matrix (Fin 3) (Fin 3) ℤ)) := rfl
 
-private theorem symm_fin0 :
+theorem symm_fin0 :
     (finSumFinEquiv (m := 3) (n := 1)).symm (0 : Fin 4) = Sum.inl (0 : Fin 3) := by
   decide
 
-private theorem symm_fin1 :
+theorem symm_fin1 :
     (finSumFinEquiv (m := 3) (n := 1)).symm (1 : Fin 4) = Sum.inl (1 : Fin 3) := by
   decide
 
-private theorem symm_fin2 :
+theorem symm_fin2 :
     (finSumFinEquiv (m := 3) (n := 1)).symm (2 : Fin 4) = Sum.inl (2 : Fin 3) := by
   decide
 
-private theorem symm_fin3 :
+theorem symm_fin3 :
     (finSumFinEquiv (m := 3) (n := 1)).symm (3 : Fin 4) = Sum.inr (0 : Fin 1) := by
   decide
 
-private theorem blockMonoid_apply (M : Matrix (Fin 3) (Fin 3) ℚ)
+theorem blockMonoid_apply (M : Matrix (Fin 3) (Fin 3) ℚ)
     (i4 j4 : Fin 4) :
     blockMonoid M i4 j4 =
       Matrix.fromBlocks M (0 : Matrix (Fin 3) (Fin 1) ℚ)
@@ -269,8 +271,9 @@ private theorem blockMonoid_apply (M : Matrix (Fin 3) (Fin 3) ℚ)
         (finSumFinEquiv.symm i4) (finSumFinEquiv.symm j4) := by
   simp [blockMonoid, Matrix.submatrix_apply]
 
+set_option linter.unusedSimpArgs false in
 /-- Explicit entries of the block embedding. -/
-private theorem blockEmbed4_val_explicit (A : SL3) :
+theorem blockEmbed4_val_explicit (A : SL3) :
     ((blockEmbed4 A : Matˣ) : Mat) =
       !![((A : Matrix (Fin 3) (Fin 3) ℤ) 0 0 : ℚ),
           ((A : Matrix (Fin 3) (Fin 3) ℤ) 0 1 : ℚ),
@@ -289,7 +292,8 @@ private theorem blockEmbed4_val_explicit (A : SL3) :
       finSumFinEquiv, Fin.addCases, castMat, Matrix.map_apply,
       Matrix.one_apply]
 
-private theorem blockEmbed4_eq_one {A : SL3} (h : blockEmbed4 A = 1) :
+set_option linter.unusedSimpArgs false in
+theorem blockEmbed4_eq_one {A : SL3} (h : blockEmbed4 A = 1) :
     A = 1 := by
   have hval := congrArg (fun u : Matˣ => (u : Mat)) h
   rw [blockEmbed4_val_explicit] at hval
@@ -305,7 +309,7 @@ private theorem blockEmbed4_eq_one {A : SL3} (h : blockEmbed4 A = 1) :
           ((A : Matrix (Fin 3) (Fin 3) ℤ) 2 2 : ℚ), 0;
         0, 0, 0, 1] : Mat) i4 j4 = (1 : Mat) i4 j4 := by
     intro i4 j4
-    rw [hval]
+    rw [hval, Units.val_one]
   ext i j
   match i, j with
   | 0, 0 =>
@@ -349,12 +353,13 @@ private theorem blockEmbed4_eq_one {A : SL3} (h : blockEmbed4 A = 1) :
 
 /-- The affine evaluation composed through the embedded rotations is the
 rotation matrix model, by uniqueness of presented-group lifts. -/
-private theorem affineQuotient_rotationToBase_hom :
+theorem affineQuotient_rotationToBase_hom :
     gammaBar.subtype.comp (affineQuotient.comp rotationToBase) =
       rotationToMat := by
   show gammaBar.subtype.comp (affineQuotient.comp rotationToBase) =
     PresentedGroup.toGroup rotUnit_kills
-  refine (PresentedGroup.toGroup.unique rotUnit_kills _ ?_)
+  refine (PresentedGroup.toGroup.unique rotUnit_kills
+    (gammaBar.subtype.comp (affineQuotient.comp rotationToBase)) ?_)
   intro i
   match i with
   | 0 =>
@@ -388,16 +393,12 @@ private theorem affineQuotient_rotationToBase_hom :
       rw [hgen]
       rfl
 
-private theorem affineQuotient_rotationToBase (r : Rotation) :
+theorem affineQuotient_rotationToBase (r : Rotation) :
     ((affineQuotient (rotationToBase r) : gammaBar) : Matˣ) =
       rotationToMat r :=
   DFunLike.congr_fun affineQuotient_rotationToBase_hom r
 
 /-! ## The six letter evaluations -/
-
-private theorem rotUnit_zero : rotUnit 0 = xU := rfl
-private theorem rotUnit_one : rotUnit 1 = yU := rfl
-private theorem rotUnit_two : rotUnit 2 = zU := rfl
 
 local macro "verify_word_matrix" : tactic =>
   `(tactic|
@@ -407,12 +408,14 @@ local macro "verify_word_matrix" : tactic =>
      exact Matrix.ext fun i j => by
        fin_cases i <;> fin_cases j <;>
          norm_num [Matrix.mul_apply, Fin.sum_univ_succ, elem,
-           xU, yU, zU, xM, yM, zM]))
+           xU, yU, zU, xM, yM, zM, Matrix.cons_val_zero,
+           Matrix.cons_val_one, Matrix.cons_val_two,
+           Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons]))
 
 set_option maxHeartbeats 1000000 in
 /-- The Steinberg letters evaluate through the rotation words to the
 block elementary matrices. -/
-private theorem rotationToMat_p13 (i : P13Generator) :
+theorem rotationToMat_p13 (i : P13Generator) :
     rotationToMat (p13ToRotation (PresentedGroup.of i)) =
       blockEmbed4 (elem i) := by
   match i with
@@ -491,7 +494,7 @@ private theorem rotationToMat_p13 (i : P13Generator) :
 
 /-- The full compatibility square, as an equality of homomorphisms out
 of the Steinberg presentation. -/
-private theorem rotationToMat_comp_p13ToRotation :
+theorem rotationToMat_comp_p13ToRotation :
     rotationToMat.comp p13ToRotation = blockEmbed4.comp toSL3 := by
   apply MonoidHom.ext
   intro p
@@ -525,17 +528,17 @@ theorem rotationToMat_injective : Function.Injective rotationToMat := by
 
 /-! ## The translation units -/
 
-private def transMat (q₁ q₂ q₃ : ℚ) : Mat :=
+def transMat (q₁ q₂ q₃ : ℚ) : Mat :=
   !![1, 0, 0, q₁; 0, 1, 0, q₂; 0, 0, 1, q₃; 0, 0, 0, 1]
 
-private theorem transMat_mul (p₁ p₂ p₃ q₁ q₂ q₃ : ℚ) :
+theorem transMat_mul (p₁ p₂ p₃ q₁ q₂ q₃ : ℚ) :
     transMat p₁ p₂ p₃ * transMat q₁ q₂ q₃ =
       transMat (p₁ + q₁) (p₂ + q₂) (p₃ + q₃) := by
   refine Matrix.ext fun i j => ?_
   fin_cases i <;> fin_cases j <;>
-    (norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ])
+    norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ] <;> ring
 
-private def transUnit (q₁ q₂ q₃ : ℚ) : Matˣ where
+def transUnit (q₁ q₂ q₃ : ℚ) : Matˣ where
   val := transMat q₁ q₂ q₃
   inv := transMat (-q₁) (-q₂) (-q₃)
   val_inv := by
@@ -549,23 +552,24 @@ private def transUnit (q₁ q₂ q₃ : ℚ) : Matˣ where
     fin_cases i <;> fin_cases j <;>
       norm_num [transMat, Matrix.one_apply]
 
-private theorem transUnit_mul (p₁ p₂ p₃ q₁ q₂ q₃ : ℚ) :
+theorem transUnit_mul (p₁ p₂ p₃ q₁ q₂ q₃ : ℚ) :
     transUnit p₁ p₂ p₃ * transUnit q₁ q₂ q₃ =
       transUnit (p₁ + q₁) (p₂ + q₂) (p₃ + q₃) :=
   Units.ext (transMat_mul p₁ p₂ p₃ q₁ q₂ q₃)
 
-private theorem transUnit_inv (q₁ q₂ q₃ : ℚ) :
+theorem transUnit_inv (q₁ q₂ q₃ : ℚ) :
     (transUnit q₁ q₂ q₃)⁻¹ = transUnit (-q₁) (-q₂) (-q₃) :=
   Units.ext rfl
 
-private theorem transUnit_zpow₁ (a : ℤ) :
+theorem transUnit_zpow₁ (a : ℤ) :
     transUnit 1 0 0 ^ a = transUnit (a : ℚ) 0 0 := by
   induction a using Int.induction_on with
   | zero =>
       rw [zpow_zero]
       refine Units.ext ?_
       refine Matrix.ext fun i j => ?_
-      fin_cases i <;> fin_cases j <;> norm_num [transMat, Matrix.one_apply]
+      fin_cases i <;> fin_cases j <;>
+        norm_num [transUnit, transMat, Matrix.one_apply]
   | succ n ih =>
       rw [zpow_add_one, ih, transUnit_mul]
       congr 1 <;> push_cast <;> ring
@@ -573,14 +577,15 @@ private theorem transUnit_zpow₁ (a : ℤ) :
       rw [zpow_sub_one, ih, transUnit_inv, transUnit_mul]
       congr 1 <;> push_cast <;> ring
 
-private theorem transUnit_zpow₂ (b : ℤ) :
+theorem transUnit_zpow₂ (b : ℤ) :
     transUnit 0 1 0 ^ b = transUnit 0 (b : ℚ) 0 := by
   induction b using Int.induction_on with
   | zero =>
       rw [zpow_zero]
       refine Units.ext ?_
       refine Matrix.ext fun i j => ?_
-      fin_cases i <;> fin_cases j <;> norm_num [transMat, Matrix.one_apply]
+      fin_cases i <;> fin_cases j <;>
+        norm_num [transUnit, transMat, Matrix.one_apply]
   | succ n ih =>
       rw [zpow_add_one, ih, transUnit_mul]
       congr 1 <;> push_cast <;> ring
@@ -588,14 +593,15 @@ private theorem transUnit_zpow₂ (b : ℤ) :
       rw [zpow_sub_one, ih, transUnit_inv, transUnit_mul]
       congr 1 <;> push_cast <;> ring
 
-private theorem transUnit_zpow₃ (c : ℤ) :
+theorem transUnit_zpow₃ (c : ℤ) :
     transUnit 0 0 1 ^ c = transUnit 0 0 (c : ℚ) := by
   induction c using Int.induction_on with
   | zero =>
       rw [zpow_zero]
       refine Units.ext ?_
       refine Matrix.ext fun i j => ?_
-      fin_cases i <;> fin_cases j <;> norm_num [transMat, Matrix.one_apply]
+      fin_cases i <;> fin_cases j <;>
+        norm_num [transUnit, transMat, Matrix.one_apply]
   | succ n ih =>
       rw [zpow_add_one, ih, transUnit_mul]
       congr 1 <;> push_cast <;> ring
@@ -603,22 +609,25 @@ private theorem transUnit_zpow₃ (c : ℤ) :
       rw [zpow_sub_one, ih, transUnit_inv, transUnit_mul]
       congr 1 <;> push_cast <;> ring
 
-private theorem v1U_eq_transUnit : v1U = transUnit 1 0 0 := by
+theorem v1U_eq_transUnit : v1U = transUnit 1 0 0 := by
   refine Units.ext ?_
   refine Matrix.ext fun i j => ?_
-  fin_cases i <;> fin_cases j <;> norm_num [v1M, transMat]
+  fin_cases i <;> fin_cases j <;>
+    norm_num [v1U, transUnit, v1M, transMat]
 
-private theorem v2U_eq_transUnit : v2U = transUnit 0 1 0 := by
+theorem v2U_eq_transUnit : v2U = transUnit 0 1 0 := by
   refine Units.ext ?_
   refine Matrix.ext fun i j => ?_
-  fin_cases i <;> fin_cases j <;> norm_num [v2M, transMat]
+  fin_cases i <;> fin_cases j <;>
+    norm_num [v2U, transUnit, v2M, transMat]
 
-private theorem v3U_eq_transUnit : v3U = transUnit 0 0 1 := by
+theorem v3U_eq_transUnit : v3U = transUnit 0 0 1 := by
   refine Units.ext ?_
   refine Matrix.ext fun i j => ?_
-  fin_cases i <;> fin_cases j <;> norm_num [v3M, transMat]
+  fin_cases i <;> fin_cases j <;>
+    norm_num [v3U, transUnit, v3M, transMat]
 
-private theorem vprod_val (a b c : ℤ) :
+theorem vprod_val (a b c : ℤ) :
     ((v1U ^ a * v2U ^ b * v3U ^ c : Matˣ) : Mat) =
       transMat (a : ℚ) (b : ℚ) (c : ℚ) := by
   rw [v1U_eq_transUnit, v2U_eq_transUnit, v3U_eq_transUnit,
@@ -761,47 +770,65 @@ theorem affineQuotient_injective : Function.Injective affineQuotient := by
     | 0, 0 =>
         have hE := congrFun (congrFun hmat 0) 0
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 0, 1 =>
         have hE := congrFun (congrFun hmat 0) 1
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 0, 2 =>
         have hE := congrFun (congrFun hmat 0) 2
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 1, 0 =>
         have hE := congrFun (congrFun hmat 1) 0
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 1, 1 =>
         have hE := congrFun (congrFun hmat 1) 1
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 1, 2 =>
         have hE := congrFun (congrFun hmat 1) 2
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 2, 0 =>
         have hE := congrFun (congrFun hmat 2) 0
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 2, 1 =>
         have hE := congrFun (congrFun hmat 2) 1
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
     | 2, 2 =>
         have hE := congrFun (congrFun hmat 2) 2
         norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-          Matrix.one_apply] at hE ⊢
+          Matrix.one_apply, Matrix.cons_val_zero, Matrix.cons_val_one,
+          Matrix.cons_val_two, Matrix.cons_val_three, Matrix.head_cons,
+          Matrix.tail_cons] at hE ⊢
         exact_mod_cast hE
   have hp1 : p = 1 :=
     (injective_iff_map_eq_one toSL3).mp P13DescentMaster.toSL3_injective
@@ -813,15 +840,21 @@ theorem affineQuotient_injective : Function.Injective affineQuotient := by
     refine ⟨?_, ?_, ?_⟩
     · have hE := congrFun (congrFun hmat 0) 3
       norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one] at hE
+        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one,
+        Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
+        Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons] at hE
       exact_mod_cast hE
     · have hE := congrFun (congrFun hmat 1) 3
       norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one] at hE
+        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one,
+        Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
+        Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons] at hE
       exact_mod_cast hE
     · have hE := congrFun (congrFun hmat 2) 3
       norm_num [transMat, Matrix.mul_apply, Fin.sum_univ_succ,
-        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one] at hE
+        Matrix.one_apply, Matrix.SpecialLinearGroup.coe_one,
+        Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_two,
+        Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons] at hE
       exact_mod_cast hE
   obtain ⟨rfl, rfl, rfl⟩ := habc0
   have hτ1 : g * ρ⁻¹ = 1 := by
