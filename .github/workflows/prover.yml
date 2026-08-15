@@ -52,13 +52,15 @@ on:
   workflow_dispatch:
 
 concurrency:
-  # A reusable-workflow caller can briefly return to the queued state between
-  # its foundation and shard jobs.  Distinct proof revisions therefore use
-  # distinct groups: a newer push must never replace a partially completed
-  # exact-SHA certificate.  Same-SHA duplicates may queue together, while the
-  # fail-closed gate below rejects obsolete proof trees before P13 starts.
-  group: lean-prover-${{ github.sha }}
-  queue: max
+  # GitHub retains at most ONE pending run per concurrency group, and a
+  # reusable-workflow caller flaps back to the queued state between its
+  # foundation and shard jobs.  Two same-SHA runs sharing a group therefore
+  # cancel each other even with cancel-in-progress disabled (observed
+  # 2026-08-15: a scheduled run silently cancelled the same-SHA push run
+  # mid-kernel-re-check, in-progress jobs included).  Groups are unique per
+  # run so GitHub can never cancel a partially completed certificate;
+  # redundant same-SHA work is deduplicated by the fail-closed gate below.
+  group: lean-prover-${{ github.sha }}-${{ github.run_id }}
   cancel-in-progress: false
 
 permissions:
@@ -68,6 +70,10 @@ jobs:
   gate:
     name: Decide whether the exact proof tree needs verification
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Listing in-flight runs for the same-SHA schedule dedupe below.
+      actions: read
     outputs:
       run: ${{ steps.check.outputs.run }}
       lean: ${{ steps.check.outputs.lean }}
@@ -77,6 +83,8 @@ jobs:
           fetch-depth: 0
       - id: check
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           if [ "${{ github.event_name }}" != "push" ] && \
@@ -85,6 +93,26 @@ jobs:
             echo "run=true" >> "$GITHUB_OUTPUT"
             echo "lean=true" >> "$GITHUB_OUTPUT"
             exit 0
+          fi
+
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            # The schedule exists to catch cache eviction and drift, not to
+            # duplicate a certificate another run is already computing.  With
+            # per-run concurrency groups nothing can cancel that run, so
+            # skipping is safe: if it fails, the next push or cron tick
+            # retries this tree.  Fail closed: an API error keeps run=true.
+            inflight=$(gh api \
+              "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?head_sha=${{ github.sha }}&per_page=100" \
+              --jq '[.workflow_runs[]
+                      | select(.id != ${{ github.run_id }})
+                      | select(.status == "queued" or .status == "in_progress")
+                    ] | length' || echo 0)
+            if [ "${inflight:-0}" -gt 0 ]; then
+              echo "Another run is already verifying this exact proof tree."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "lean=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
           fi
 
           git fetch --no-tags origin \
