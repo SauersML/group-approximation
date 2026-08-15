@@ -133,6 +133,7 @@ import GroupApproximation.Kazhdan.AlmostMinimalDisplacement
 import GroupApproximation.Kazhdan.DelormeFixedPoint
 import GroupApproximation.Kazhdan.ShalomFinitePresentation
 import GroupApproximation.Kazhdan.UltralimitGeometry
+import GroupApproximation.Kazhdan.UltralimitGaussianBoundedness
 import GroupApproximation.Kazhdan.GaussianPositiveDefinite
 import GroupApproximation.Kazhdan.HilbertCircumcenter
 import GroupApproximation.Kazhdan.KazhdanFixedSpace
@@ -209,6 +210,8 @@ import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import GroupApproximation.Sofic.InvolutionRankMass
+import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
 import GroupApproximation.Sofic.ManuscriptKazhdanTransport
