@@ -20,6 +20,23 @@ representations while one fixed word stays a positive distance from `1`.
 
 ## Ideas
 
+**The criterion is now a fully explicit finite object (2026-08-15,
+night).**  `atlas-steinberg-rank-five-translation` is ESTABLISHED: the
+usable relator list `T_St` exists concretely — 4,648 machine-verified
+words in the twelve atlas generators, complete presentation proved
+in-repo (`atlas-steinberg-spare-index-independence`), sole remaining
+literature premise Kervaire–Steinberg centrality.  So the canonical
+regular-`A₈` criterion of `docs/EXPLICIT_LEAVITT_ATLAS.md` §9 reads,
+for the first time with every ingredient explicit: `Q` is hyperlinear —
+equivalently THIS claim's branch holds — iff single unitaries
+`U_n ∈ U(20160·k_n)` drive the 4,648 words of `T_St` to `1` in
+normalized Hilbert–Schmidt.  All prior optimization probes
+(`atlas_self_similarity_multirelator_*`) ran on 64-dimensional chart
+truncations; the true criterion at the regular representation has never
+been probed.  The fences below and the branch-balance assessment are
+unchanged by this — what changed is that the attack surface is now
+finite, explicit, and screen-validated.
+
 **The "one witness suffices" reduction is this claim, not a decomposition of
 it.**  Because `U` is minimally almost periodic, the only genuine
 finite-dimensional representation is trivial, so instability is *by
