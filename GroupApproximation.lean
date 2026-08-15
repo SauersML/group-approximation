@@ -40,6 +40,7 @@ import GroupApproximation.Monsters.SL2BraidPresentation
 import GroupApproximation.Monsters.P13SL2Comparison
 import GroupApproximation.Monsters.SL3BlockEmbedding
 import GroupApproximation.Monsters.SL2WeylRelations
+import GroupApproximation.Monsters.MoebiusIrrationalAction
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
