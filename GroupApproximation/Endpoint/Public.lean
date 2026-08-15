@@ -216,14 +216,16 @@ annihilation, and Clifford detection.
 
 ## Closed impact endpoints
 
-`NonMFImpact` collects only premise-free conclusions.  In particular it pins
-the six-generator bound, the nonempty clopen non-MF cylinder, the locally
-finite MF lamp kernel inside the finitely generated non-MF witness, the
-residually finite/sofic/MF affine base, the entire scaling family, the cyclic
-exact-model obstruction, quotient nonclosure, the uniform finite obstruction,
-and the torsion-free limitation of finite-normal methods.  None accepts a
-property-`(T)`, approximation, permanence, or literature premise from a
-caller.
+`NonMFImpact` collects only premise-free conclusions, and this section
+re-exports the closed endpoints from their home modules alongside it: the
+six-generator bound, the nonempty clopen non-MF cylinder, the locally
+finite MF lamp kernel and MF vertical quotient inside the finitely
+generated non-MF witness, the sofic and hyperlinear witness separations,
+the residually finite/sofic/MF affine base, the entire scaling family,
+the cyclic exact-model obstruction, quotient nonclosure, the uniform
+finite obstruction, and the torsion-free limitation of finite-normal
+methods.  None accepts a property-`(T)`, approximation, permanence, or
+literature premise from a caller.
 
 ## Consequences and reusable obstruction APIs
 
@@ -549,20 +551,24 @@ export GroupApproximation.LiteralBaseP13Replay
 export GroupApproximation.LiteralFiniteDimensionalObstruction
   (literal_finiteDimensional_rep_not_injective)
 export GroupApproximation.NonMFImpact
-  (literal_sixGenerated_finitelyPresented_nonMF
-    literal_nonempty_clopen_nonMF_cylinder
-    witness_locallyFinite_MF_kernel_nonMF_total
-    witness_sofic_nonMF
-    witness_hyperlinear_nonMF
+  (witness_hyperlinear_nonMF
     witness_sofic_hyperlinear_nonMF
     witness_reducedGroupCStar_stablyFinite_nonMF
     affineBase_residuallyFinite_sofic_MF
     scalingFamily_finitelyPresented_nonMF
     cyclicBase_exactModel_obstruction
-    operatorMF_not_closed_under_quotients
-    literal_uniform_operatorNorm_obstruction
     finiteNormal_obstruction_is_trivial_in_torsionFree_groups
     sofic_nonMF_is_hyperlinear_nonMF)
+export GroupApproximation.LiteralSixGenerator
+  (literal_sixGenerated_finitelyPresented_nonMF)
+export GroupApproximation.LiteralMarkedCylinder
+  (literal_nonempty_clopen_nonMF_cylinder)
+export GroupApproximation.LiteralWitnessConsequences
+  (literalWitness_locallyFiniteKernel_nonMF literalWitness_sofic_nonMF)
+export GroupApproximation.OperatorMFQuotientNonclosure
+  (operatorMF_not_closed_under_this_quotient)
+export GroupApproximation.LiteralUniformObstruction
+  (literal_uniform_operatorNorm_obstruction)
 export GroupApproximation.CliffordAlgebraLamp
   (cliffordLamp_group_package cliffordLamp_permutation_package)
 export GroupApproximation.ExplicitLinearModel (doubling_linear_model_package)

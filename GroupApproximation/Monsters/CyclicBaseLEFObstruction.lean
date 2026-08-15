@@ -70,10 +70,11 @@ theorem conj_pow_two_pow {H : Type*} [Group H] {t a : H}
         _ = (a ^ 2) ^ (2 ^ j) := by rw [hst]
         _ = a ^ (2 ^ (j + 1)) := by rw [← pow_mul, ← pow_succ']
 
-/-- In a finite group the compressed generator is recovered from its own
-square: the compression relation makes `a` conjugate to `a ^ 2`, and
-iterating around the finite order of `t` returns to `a`. -/
-theorem eq_pow_two_pow_orderOf {H : Type*} [Group H] [Finite H] {t a : H}
+/-- The compressed generator is recovered from its own square: the
+compression relation makes `a` conjugate to `a ^ 2`, and iterating around
+the order of `t` returns to `a` (trivially so when `t` has infinite
+order, since then `orderOf t = 0`). -/
+theorem eq_pow_two_pow_orderOf {H : Type*} [Group H] {t a : H}
     (hst : t * a * t⁻¹ = a ^ 2) :
     a ^ (2 ^ orderOf t) = a := by
   have h := conj_pow_two_pow hst (orderOf t)

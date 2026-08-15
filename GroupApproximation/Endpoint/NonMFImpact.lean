@@ -51,43 +51,6 @@ def SoficNonMFIsHyperlinearNonMF : Prop :=
   ∀ (G : Type) [Group G], IsSofic G → ¬ IsOperatorMF G →
     IsHyperlinear G ∧ ¬ IsOperatorMF G
 
-/-- The literal group is finitely presented, six-generated, and non-MF. -/
-theorem literal_sixGenerated_finitelyPresented_nonMF :
-    Group.rank MarkedGroup ≤ 6 ∧
-      Group.IsFinitelyPresented MarkedGroup ∧
-      ¬ IsOperatorMF MarkedGroup :=
-  LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF
-
-/-- The literal forty-one-relator condition cuts out a nonempty clopen set
-consisting entirely of non-MF marked groups. -/
-theorem literal_nonempty_clopen_nonMF_cylinder :
-    LiteralMarkedCylinder.literalCylinder.Nonempty ∧
-      IsClopen LiteralMarkedCylinder.literalCylinder ∧
-      LiteralMarkedCylinder.literalCylinder ⊆
-        {N : MarkedGroupSpace 8 | ¬ IsOperatorMF N.Quotient} :=
-  LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder
-
-/-- The concrete affine--Clifford witness is finitely generated and non-MF,
-while its canonical lamp kernel is locally finite, LEF, sofic, and MF, and the
-quotient by that kernel is MF as well. -/
-theorem witness_locallyFinite_MF_kernel_nonMF_total :
-    IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
-      IsLEF LiteralWitnessConsequences.WitnessLampGroup ∧
-      IsSofic LiteralWitnessConsequences.WitnessLampGroup ∧
-      IsOperatorMF LiteralWitnessConsequences.WitnessLampGroup ∧
-      IsOperatorMF (MarkedCompression.Vertical
-        LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective) ∧
-      Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
-      ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
-  LiteralWitnessConsequences.literalWitness_locallyFiniteKernel_nonMF
-
-/-- The concrete finitely generated witness is sofic but not operator-MF. -/
-theorem witness_sofic_nonMF :
-    Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
-      IsSofic LiteralNonMFLinearWitness.WitnessGroup ∧
-      ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
-  LiteralWitnessConsequences.literalWitness_sofic_nonMF
-
 /-- The same concrete witness is hyperlinear but not operator-MF. -/
 theorem witness_hyperlinear_nonMF :
     Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
@@ -103,7 +66,8 @@ theorem witness_sofic_hyperlinear_nonMF :
       IsSofic LiteralNonMFLinearWitness.WitnessGroup ∧
       IsHyperlinear LiteralNonMFLinearWitness.WitnessGroup ∧
       ¬ IsOperatorMF LiteralNonMFLinearWitness.WitnessGroup :=
-  ⟨witness_sofic_nonMF.1, witness_sofic_nonMF.2.1,
+  ⟨LiteralWitnessConsequences.literalWitness_sofic_nonMF.1,
+    LiteralWitnessConsequences.literalWitness_sofic_nonMF.2.1,
     witness_hyperlinear_nonMF.2.1, witness_hyperlinear_nonMF.2.2⟩
 
 /-- The concrete witness also gives a separable, faithfully tracial, stably
@@ -151,28 +115,6 @@ theorem cyclicBase_exactModel_obstruction :
       ¬ Group.ResiduallyFinite LiteralCyclicCalibration.RealizedQuotient :=
   CyclicBaseLEFObstruction.cyclicBase_exactModel_package
 
-/-- A concrete operator-MF group has a non-operator-MF quotient. -/
-theorem operatorMF_not_closed_under_quotients :
-    IsOperatorMF (FreeGroup ChosenMarkedPresentation.Generator) ∧
-      Function.Surjective
-        (PresentedGroup.mk
-          (ChosenMarkedPresentation.relators :
-            Set (FreeGroup ChosenMarkedPresentation.Generator))) ∧
-      ¬ IsOperatorMF ChosenMarkedPresentation.MarkedGroup :=
-  OperatorMFQuotientNonclosure.operatorMF_not_closed_under_this_quotient
-
-/-- A single positive defect threshold and finite test set force the literal
-mark uniformly close to the identity in every matrix dimension. -/
-theorem literal_uniform_operatorNorm_obstruction :
-    ∃ (δ : ℝ) (F₀ : Finset MarkedGroup), 0 < δ ∧
-      ∀ (Y : FiniteModel)
-        (φ : MarkedGroup → Matrix.unitaryGroup Y ℂ),
-        (∀ g ∈ F₀, ∀ h ∈ F₀,
-          ‖(φ (g * h) : Matrix Y Y ℂ) -
-            (φ g : Matrix Y Y ℂ) * φ h‖ ≤ δ) →
-        ‖(φ mark : Matrix Y Y ℂ) - 1‖ < 1 :=
-  LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction
-
 /-- The finite-normal obstruction cannot directly produce a nontrivial
 marked element in a torsion-free group. -/
 theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
@@ -180,7 +122,8 @@ theorem finiteNormal_obstruction_is_trivial_in_torsionFree_groups :
   finiteSubgroup_eq_bot_of_isMulTorsionFree
 
 /-- The formal "free win": any sofic non-MF group is at once a hyperlinear
-non-MF group.  `witness_sofic_nonMF` supplies the concrete closed input. -/
+non-MF group.  `LiteralWitnessConsequences.literalWitness_sofic_nonMF`
+supplies the concrete closed input. -/
 theorem sofic_nonMF_is_hyperlinear_nonMF :
     SoficNonMFIsHyperlinearNonMF := by
   intro G _ hsofic hnonMF
