@@ -36,7 +36,7 @@
 \newcommand{\leanverified}[2]{%
   \unskip\quad
   \ifanonymous
-    \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace formalized in Lean\thinspace]}%
+    \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}%
   \else
     \href{\coderepository/blob/verified/GroupApproximation/#1.lean}{%
       \textcolor{gray!72!black}{\normalfont\scriptsize[\thinspace Lean: \nolinkurl{#2}\thinspace]}}%
@@ -125,6 +125,9 @@ soficity nor hyperlinearity implies the MF property.
 \end{abstract}
 
 \maketitle
+
+\setcounter{tocdepth}{1}
+\tableofcontents
 
 \section{Introduction}\label{sec:intro}
 
@@ -694,32 +697,12 @@ multiplicative defects of $U_n$, and it is the route the formal
 development follows.
 \end{remark}
 
-\paragraph{The negative-corner formulation.}
-The following corner formulation of the mechanism motivates the sign
-criterion.  Suppose a corona representation $\Theta$ of $H$ detects
-a central involution $\varepsilon=u^2$, where $u=[tct^{-1},\iota(a)]$ is
-a conjugation defect (data as in Theorem~\ref{thm:sign-criterion}
-below).  The nonzero projection
-$q=(1-\Theta(\varepsilon))/2$, central relative to $\Theta(H)$, cuts
-$\Theta$ to a corner representation with $\Theta_q(\varepsilon)=-q$
-exactly; a spectral cut at $1/2$ of a self-adjoint lift of $q$ produces
-coordinate projections whose nonzero ranks identify the corner
-$q\mathcal Qq$ with a positive-rank norm matrix corona.  On that corner,
-$c$ lies in the Hilbert--Schmidt asymptotic commutant of
-$\iota(\Gamma)$, transport
-(Theorem~\ref{thm:kazhdan-transport}) puts $d=tct^{-1}$ there as well,
-so $u\sim_21$ and hence $\varepsilon=u^2\sim_21$ --- contradicting
-$\varepsilon=-1$ on the corner, whose normalized Hilbert--Schmidt
-distance from $1$ is $2$.  The formal development records this
-contradiction as a stand-alone theorem about marked operator-norm
-asymptotic representations; the printed proofs route instead through the
-finite-normal criterion of Section~\ref{sec:conj}, whose coordinatewise
-Reynolds corner makes the corner identification sketched here rigorous
-without ever forming $q\mathcal Qq$ abstractly.
-
 The entire non-MF argument is the following consequence of the transport
 theorem, applied to the two-element central subgroup
-$\{1,\varepsilon\}$.
+$\{1,\varepsilon\}$.  Its proof cuts a corona representation to the
+corner where the sign $\varepsilon$ is $-1$; Section~\ref{sec:conj}
+generalizes the same cut from the sign subgroup to an arbitrary finite
+normal subgroup.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -740,19 +723,55 @@ $\varepsilon$, and $H$ is not MF.
 \end{theorem}
 
 \begin{proof}
-The data form a Kazhdan conjugation datum in the sense of
-Definition~\ref{def:pattern}: $\Gamma$ has property~\textup{(T)},
-$t$ compresses $\iota(\Gamma)$ into itself, and $c$ centralizes it.  Its
-defect subgroup $N_{\mathrm{comp}}$ --- the normal closure of
-the commutators $[tct^{-1},\iota(\gamma)]$ --- contains
-$u=[d,\iota(a)]$, hence also $\varepsilon=u^2$.  Since $\varepsilon$ is a
-central involution, $F=\{1,\varepsilon\}$ is a finite normal subgroup of
-$H$ contained in $N_{\mathrm{comp}}$.  The finite-normal obstruction
-criterion --- Theorem~\ref{thm:criterion}, proved in
-Section~\ref{sec:conj} from the transport theorem alone, with no result
-in between used in its proof --- therefore kills $\varepsilon$ under
-every corona representation.  Since $\varepsilon\ne1$, no corona
-representation of $H$ is injective, and $H$ is not MF.
+Suppose some corona representation $\Theta\colon H\to\U(\mathcal Q)$
+satisfies $\Theta(\varepsilon)\ne1$; we derive a contradiction.  Choose
+coordinate unitary lifts $(V_{g,n})$ of $\Theta$
+(Lemma~\ref{lem:lift}); they form an operator-norm asymptotic
+representation of $H$.
+
+\emph{The negative corner.}  Form the coordinate averages
+$p_n=\tfrac12(1+V_{\varepsilon,n})$.  Because the lifts are
+asymptotically multiplicative and $\varepsilon$ is a central
+involution, $(p_n)$ is asymptotically self-adjoint and idempotent, and
+asymptotically central for all of $\Theta(H)$.  Spectral rounding at
+$1/2$ of the Hermitian part of $p_n$ produces genuine coordinate
+projections; let $q_n$ be their complements --- the corners where the
+sign is negative.  If $q_n=0$ for all large $n$, the averages converge
+to $1$ and $\Theta(\varepsilon)=1$, contrary to assumption.  Retain an
+infinite set of coordinates with $q_n\ne0$, relabel them by $\N$,
+compress every lift to the corner
+$q_nM_{d_n}(\C)q_n\cong M_{r_n}(\C)$ with
+$r_n=\operatorname{rank}q_n>0$, and polar-correct the compressed
+matrices.  The result is an operator-norm asymptotic representation
+$(W_{g,n})$ of $H$ on nonzero blocks, each block carrying its own
+normalized trace, with
+\[
+ \opnorm{W_{\varepsilon,n}+1}\longrightarrow0:
+\]
+since $p_n=\tfrac12(1+V_{\varepsilon,n})$ and the rounded average
+vanishes on its complementary corner, the compressed sign is
+asymptotically $-1$ in operator norm.
+
+\emph{Transport on the corner.}  The corner lifts $(W_{c,n})$ are
+unitary, hence uniformly bounded, and the relation
+$[c,\iota(\Gamma)]=1$ makes them asymptotically centralize the corner
+lifts of $\iota(\Gamma)$.  Theorem~\ref{thm:kazhdan-transport},
+applied on the corner blocks with $s=t$, places the corner lifts of
+$d=tct^{-1}$ in the same Hilbert--Schmidt asymptotic commutant.  Hence
+$\hsnorm{W_{u,n}-1}\to0$ for the defect $u=[d,\iota(a)]$, and
+asymptotic multiplicativity gives
+$\hsnorm{W_{\varepsilon,n}-1}\to0$ for $\varepsilon=u^2$.
+
+\emph{The contradiction.}  At every retained coordinate,
+\[
+ 2=\hsnorm{2\cdot1}
+ \le\hsnorm{1-W_{\varepsilon,n}}+\hsnorm{W_{\varepsilon,n}+1}
+ \le\hsnorm{W_{\varepsilon,n}-1}+\opnorm{W_{\varepsilon,n}+1}
+ \longrightarrow0,
+\]
+which is absurd.  Hence every corona representation kills
+$\varepsilon$; since $\varepsilon\ne1$, none is injective, and $H$ is
+not MF.
 \end{proof}
 
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
@@ -961,15 +980,14 @@ independent of $m$.
 \end{proof}
 
 For the proof of Theorem~\ref{thm:A}, put $d=tct^{-1}$ and $u=[d,v_1]$.
-Lemma~\ref{lem:square} gives the identity $w=u^2$.  For a corona
-representation that detects $w$, cutting to the negative central corner
-of $w$ gives a model in which $w=-1$ exactly, while Kazhdan transport
-gives $u\sim_2 1$ and hence $w=u^2\sim_2 1$ --- a contradiction, recorded
-in the formal development as a stand-alone theorem about marked
-asymptotic representations.  Section~\ref{sec:proofA} deduces the
-theorem from the sign criterion and the witness, and
-Section~\ref{sec:conj} proves the general finite-normal criterion behind
-the sign criterion.
+Lemma~\ref{lem:square} gives the identity $w=u^2$: for a corona
+representation that detects $w$, the negative corner of $w$ gives a
+model in which $w=-1$ exactly, while Kazhdan transport gives
+$u\sim_2 1$ and hence $w=u^2\sim_2 1$.  This is the proof of the sign
+criterion, run at the marked word of $E$.  Section~\ref{sec:proofA}
+deduces the theorem from the sign criterion and the witness, and
+Section~\ref{sec:conj} generalizes the criterion to arbitrary finite
+normal subgroups of the defect.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -1588,12 +1606,13 @@ finite-dimensional argument above.
 
 \section{The finite-normal obstruction}\label{sec:conj}
 
-This section proves the general finite-normal obstruction that powers
-the central-sign criterion and hence Theorem~\ref{thm:A}.  Its proof
-uses the transport theorem and a coordinatewise operator-norm corner,
-and nothing after Section~\ref{sec:transport}, so the forward reference
-from the sign criterion is not circular.  We fix the data of the
-criterion.
+This section generalizes the central-sign criterion from the
+two-element sign subgroup to an arbitrary finite normal subgroup of
+the defect.  The proof has the same two halves: transport makes the
+defect Hilbert--Schmidt invisible, and a corner cut converts that
+invisibility into an exact operator-norm contradiction --- with the
+negative corner of the sign replaced by the Reynolds corner of the
+finite subgroup.  We first fix the data.
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{Kazhdan conjugation datum} in $H$
@@ -1813,43 +1832,67 @@ property~\textup{(T)} of $K$ supplies the replacement.
 
 Suppose a corona representation $\Theta$ is nontrivial on $K$.  Its
 image $\bar H=\Theta(H)$ is a countable subgroup of $\U(\mathcal Q)$,
-hence MF, and Proposition~\ref{prop:mf-equivalences} provides separated
-local models for $\bar H$: coordinate unitaries, asymptotically
-multiplicative in operator norm, keeping every nontrivial element of
-$\bar H$ at a normalized Hilbert--Schmidt distance bounded below.  The
-datum, the subgroup, and the surviving element all push forward along
-$\Theta$: normality and property~\textup{(T)} pass to homomorphic
-images, and the image of $K$ lies in the defect subgroup of the image
-datum.  So it suffices to derive a contradiction for $\bar H$.
+hence MF.  Proposition~\ref{prop:mf-equivalences} therefore provides,
+for every finite subset of $\bar H$ and every tolerance, a matrix
+model multiplicative within the tolerance that separates distinct
+elements by \emph{operator-norm} distance at least $1$; choosing
+models along an exhaustion of $\bar H$ gives an operator-norm
+asymptotic representation $(V_{g,n})$ of $\bar H$ in which every fixed
+nontrivial element eventually stays at operator-norm distance at least
+$1$ from the identity.  Operator-norm separation is all such models
+provide: at growing dimension it places no lower bound on normalized
+Hilbert--Schmidt distances, and the corner cut below must manufacture
+the missing tracial separation.  The datum, the subgroup, and a
+surviving element push forward along $\Theta$: normality and
+property~\textup{(T)} pass to homomorphic images, and the image
+$\bar K=\Theta(K)$, nontrivial by assumption, lies in the defect
+subgroup of the image datum.  So it suffices to derive a contradiction
+for $\bar H$.
 
-\emph{The Kazhdan corner where $K$ moves.}  Fix a finite symmetric
-generating Kazhdan set $S_K\subseteq K$ with constant $\varepsilon$,
-and at each coordinate let $h_n$ be the Hermitian part of the average
-of the models of $S_K$.  The Kazhdan gap splits the spectrum of $h_n$
-at the cutoff $1-\varepsilon^2/(4|S_K|)$: the top spectral subspace
-consists of almost-$K$-fixed vectors, on which every model of $K$ is
-close to the identity, so the separation of the nontrivial elements of
-$K$ must live below the cutoff --- the moving subspace is eventually
-nonzero, and the models of the generators retain a definite amount of
-normalized trace there.  Normality enters exactly as in half two of
-Theorem~\ref{thm:criterion}: conjugation by an ambient element permutes
-$K$ and carries the $S_K$-average to the average of another generating
-set with the same gap, so the spectral cut is asymptotically central
-for all the ambient models; the off-diagonal blocks vanish
-asymptotically, and compressing every model to the moving corner and
-polar-correcting yields an operator-norm almost representation of all
-of $\bar H$ on nonzero blocks, each block carrying its renormalized
-trace, with some generator of $K$ kept at a definite Hilbert--Schmidt
-distance from $1$.
+\emph{The corner where $\bar K$ moves.}  Fix a finite symmetric
+generating Kazhdan set $S\subseteq\bar K$ with constant
+$\varepsilon_0$, at each coordinate let $h_n$ be the Hermitian part of
+the average of the models of $S$, and cut the spectrum of $h_n$ at
+$\theta=1-\varepsilon_0^2/(4|S|)$.  Let $q_n$ be the spectral
+projection of $h_n$ for $[-1,\theta]$, the \emph{moving corner}.  On
+its complement --- the top spectral subspace --- every model of every
+element of $\bar K$ is close to the identity in operator norm, by the
+Kazhdan-pair displacement estimate.  If $q_n=0$ for all large $n$,
+every element of $\bar K$ would satisfy $\opnorm{V_{k,n}-1}\to0$,
+contradicting the operator-norm separation of any fixed nontrivial
+element of $\bar K$.  So the moving corner is nonzero along an
+infinite set of coordinates, which we retain.
+
+\emph{Tracial survival on the corner.}  Equip each retained corner
+block $q_nM_{d_n}(\C)q_n$ with its renormalized trace.  By the
+definition of the cut, $q_nh_nq_n\le\theta q_n$, so the average over
+$S$ of the real parts of the renormalized traces of the compressed
+models is at most $\theta$.  Hence at every retained coordinate some
+generator in $S$ has compressed model with real renormalized trace at
+most $\theta$, and therefore normalized Hilbert--Schmidt distance at
+least $\sqrt{2(1-\theta)}-o(1)$ from the corner identity after polar
+correction; passing to a subsequence fixes a single such generator
+$s_0$.  The spectral cutoff has converted operator-norm separation
+into a definite tracial deficit on its own corner.
+
+\emph{Compression.}  Normality makes the cut asymptotically central:
+conjugation by an ambient model carries the $S$-average to the average
+of a conjugate generating set of $\bar K$ with the same gap, whose top
+spectral subspace agrees asymptotically with the original --- both
+consist of the almost-$\bar K$-fixed vectors --- so
+$\opnorm{[q_n,V_{g,n}]}\to0$ for every $g\in\bar H$.  Compressing
+every model to the moving corner and polar-correcting yields an
+operator-norm asymptotic representation of all of $\bar H$ on nonzero
+blocks, in which $s_0$ keeps a definite normalized Hilbert--Schmidt
+distance from the identity.
 
 \emph{The contradiction.}  The tracial half applies verbatim to the
-corner almost representation: the image of $K$ lies in the image
-defect subgroup, so every element of $K$ is Hilbert--Schmidt invisible
-on the corner --- contradicting the surviving generator.  The
-coordinate scheduling that keeps the corner nonzero and the surviving
-trace mass uniform plays the role of the stage selection in
-Theorem~\ref{thm:criterion} and is carried out in full in the formal
-development.
+corner representation: $\bar K$ lies in the defect subgroup of the
+image datum, so every element of $\bar K$ --- in particular $s_0$ ---
+is Hilbert--Schmidt invisible on the corner, contradicting the
+surviving tracial deficit.  The uniform coordinate scheduling that
+runs these estimates simultaneously is the stage selection of
+Theorem~\ref{thm:criterion}.
 \end{proof}
 
 
@@ -2398,12 +2441,12 @@ formal development.)
 
 \section{The operator-norm boundary}\label{sec:limits}
 
-The proof is genuinely operator-norm in its present form.  If multiplication
+The proof is specific to the operator norm.  If multiplication
 is controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
 operators on the Hilbert--Schmidt spaces need not be close in operator norm.
 Both transport proofs require exactly that operator-norm control ---
 the ultraproduct representation of the printed proof and the
-spectral-corner, displacement, and leakage estimates of
+spectral-corner, displacement, and off-corner estimates of
 Appendix~\ref{app:finite-stage} alike --- so normalized Hilbert--Schmidt
 control does not supply the spectral-subspace transport used there.
 
@@ -2420,21 +2463,15 @@ subgroup of a torsion-free group is trivial.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 Theorem~\ref{thm:normal-kazhdan} removes that limitation from the
 analytic half: a normal property-\textup{(T)} subgroup of the defect
-subgroup obstructs corona representations without any torsion.  A
-torsion-free example therefore requires a torsion-free finitely
-presented group whose defect subgroup contains a normal subgroup with
-property~\textup{(T)}.  Fournier-Facio removed the analogous torsion
-obstacle for nonsoficity by a small-cancellation construction
-\cite{FFF} and suggested (personal communication, 2026;
-cf.\ Remark~\ref{rem:ff-realization}) that small cancellation should
-serve here as well: applying Hull's small-cancellation theorem for
-acylindrically hyperbolic groups to the group of \cite{FFF}, with the
-target words taken in the normal closure of its simple subgroup, the
-quotient can be arranged to be normally generated by the image of that
-simple subgroup; such a quotient is a torsion-free finitely presented
-Kazhdan group equal to its own defect subgroup, and
-Theorem~\ref{thm:normal-kazhdan} applies to it.  This argument depends
-on results of Hull and Osin that are cited, not formalized, and is not
+subgroup obstructs corona representations without any torsion.  What
+remains for a torsion-free example is group-theoretic: a torsion-free
+finitely presented group whose defect subgroup contains a normal
+subgroup with property~\textup{(T)}.  Fournier-Facio, who removed the
+analogous torsion obstacle for nonsoficity \cite{FFF}, has suggested
+(personal communication, 2026; cf.\
+Remark~\ref{rem:ff-realization}) that a small-cancellation
+construction should produce such a group.  That suggestion depends on
+results of Hull and Osin that are cited, not formalized, and is not
 stated as a theorem here.
 \begin{enumerate}
 \item Is $E/\langle w\rangle$ MF?  By
@@ -2446,13 +2483,13 @@ the image of $u$ survives after quotienting the Clifford witness $W$ by its
 central sign $\zeta$: it becomes the product of the two distinct lamp basis
 elements at $\tau o$ and $j(\bar v_1)\tau o$.  Thus proving
 $W/\langle\zeta\rangle$ MF would already
-show $u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$; any such detecting models
-must be genuinely non-finite-quotient in flavor.
+show $u\notin\operatorname{Rad}_{\mathrm{MF}}(E)$; by
+Theorem~\ref{thm:B}, no such detecting model can factor through
+finite quotients or exact finite-dimensional representations.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is the
-small-cancellation construction described above, which we have not
-formalized.
+small-cancellation construction suggested above.
 \item Is $E$ sofic, or hyperlinear?  The adjoint spectral-corner
 estimates require operator-norm multiplicative control, and neither
 property is decided by the results above.
