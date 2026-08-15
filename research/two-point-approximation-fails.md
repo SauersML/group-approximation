@@ -32,19 +32,34 @@ since below the trap the claim is false
 genuinely-approximate, genuinely-non-parity models, and the live attack is
 `kun-block-transfer-lemma`.
 
-## Attempts
+## Resolution (2026-08-15, same day)
 
-- **Via the transfer lemma (open, primary).**  See
+**ESTABLISHED**, via `two-point-fails-via-fixed-algebra`: the equivariance
+clause hands over exact `Γ`-invariance of the `p`-label for free, a random
+level set converts distinctness into a `Γ`-invariant projection that
+`σ(h)` moves by `1/2`, the tensor-with-a-free-quotient repair makes the
+assembled ultraproduct a genuine sofic representation covering even the
+bounded-`|A|` provers, and Kun--Thom Theorem 4.1 (through
+`normal-closure-fixes-gamma-fixed-algebra`) makes `h ∈ ⟨⟨Γ⟩⟩` act
+trivially on the fixed algebra — contradiction.  Adversarially verified;
+the one hole found in verification (the disjoint-union soficity repair
+fails at bounded `|A|`, exactly where the flip models live) forced the
+tensor repair now in the proof.
+
+The earlier attempt log is retained below as the record of how the answer
+was NOT found: the "why not simply cite Kun--Thom" reasoning was right
+about `coordinate-action-not-sofic` (which localizes to no window) but
+wrong to conclude the KT machinery could not be consumed — Theorem 4.1
+sits upstream of that refutation and applies directly, precisely because
+the two-point definition's own clauses re-derive the strictness input from
+pair labels alone.
+
+## Attempts (historical)
+
+- **Via the transfer lemma (superseded).**  See
   `kun-block-transfer-lemma` and the route
-  `two-point-fails-via-kun-blocks`; its own attack log records where each
-  sub-mechanism stands, including the `Γ^h`-intertwining obstruction that
-  killed the direct attempt.
-- **Why not simply cite Kun--Thom (checked, does not apply).**
-  `coordinate-action-not-sofic` refutes full-window injective equivariant
-  charts; its argument consumes charts on every window element to build
-  the size observable.  The two-point data carries one pair of labels and
-  no injectivity anywhere else; the distinct_from notes of
-  `two-point-orbit-approximation` already record that no implication
-  between the statements is known.  Any use of the KT engine here must
-  re-derive its strictness input from pair labels alone — that is
-  attempt three of the transfer lemma, not a citation.
+  `two-point-fails-via-kun-blocks`; its attack log records the
+  sheet-expansion program, including the `Γ^h`-intertwining obstruction.
+  Superseded for this lane by the fixed-algebra route; retains value only
+  for fixed-window quantitative versions, which the fixed-algebra route
+  does not provide.

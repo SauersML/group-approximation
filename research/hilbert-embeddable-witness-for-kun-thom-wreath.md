@@ -12,6 +12,20 @@ artifacts:
   - docs/NOTEPAD.md
 ---
 
+**REFUTED (2026-08-15).**  The question is decided, negatively:
+`hilbert-embeddable-witness-impossible` is established — no Hilbert
+embeddable weak-soficity witness for `W` exists, and `W ∉ 𝒞_FU`.  The
+chain: any witness would yield two-point approximation data at the marked
+pair (`witness-yields-two-point-approximation`), and
+`two-point-approximation-fails` is established via Kun--Thom Theorem 4.1
+(with the unrefereed-preprint trust surface that entails).  This is the
+outcome the final paragraph below called "a genuine obstruction of a new
+kind": weak soficity and `𝒞_FU` are separated on `W`.  The body below is
+retained as the record of the question as it was posed and of the
+constraints that shaped the search.
+
+---
+
 Show that the weak-soficity witnesses for
 
 ```text

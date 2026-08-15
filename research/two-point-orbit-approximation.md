@@ -33,6 +33,18 @@ for all `g ∈ F`, `s ∈ S` with `φ(g)·s ∈ S`, and `x ∈ {p,q}` with
 
 The claim asserts that such approximations exist.
 
+**REFUTED (2026-08-15).**  The negation claim
+`two-point-approximation-fails` is established: no such approximations
+exist.  Mechanism (`two-point-fails-via-fixed-algebra`): the definition's
+own equivariance clause makes the `p`-label exactly `Γ`-invariant, its
+truth at all windows assembles a sofic representation with a `Γ`-invariant
+projection moved by `σ(h)`, and Kun--Thom Theorem 4.1 forbids that because
+`h` lies in the normal closure of `Γ`.  The refutation is non-constructive
+in the window; the exact-model theorem
+`exact-models-cannot-separate-marked-pair` remains the fixed-window
+quantitative statement.  Everything below is retained as the record of the
+question as it was posed.
+
 ## Why this is not a restatement of the target
 
 The sofic-action definition quantifies the same data over **every** finite

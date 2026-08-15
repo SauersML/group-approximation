@@ -47,10 +47,17 @@ E pairs are; positivity is all the statement needs.
    witness for the wreath must already be non-exact at the level of the
    underlying pair data — a structural fact about the witness search, not
    only about this lane.
-3. The refutation surface of the lane sharpens to a single question: does
-   the sheet-expansion mechanism below survive `(F,ε)`-multiplicativity
-   defects?  If yes, `two-point-orbit-approximation` is false and the
-   Hilbert-embeddable lane closes negatively.
+3. *(Revised 2026-08-15, same day.)*  The lane closed without answering
+   the sheet-expansion question: `two-point-approximation-fails` was
+   established by the window-free fixed-algebra route
+   (`two-point-fails-via-fixed-algebra`), which spends the `∀F ∀ε`
+   quantifier on a sequence so the deleted set vanishes in the
+   ultraproduct and nothing needs to expand.  The two results are
+   complementary, not nested: this theorem is fixed-window with explicit
+   constants but exact-models-only; that one covers all models but is
+   non-constructive in the window.  Whether sheet expansion survives
+   `(F,ε)`-defects remains open and is now only of independent interest
+   (`kun-block-transfer-lemma`, superseded for the lane).
 
 **Mechanism in one paragraph.**  Exactness forces the collapse
 `φ(h) ∈ φ(Γ)` (conjugacy into `Γ` plus normality of the image), so the

@@ -18,6 +18,16 @@ and `F*` the parity-trap window of `parity-trap-window`.
 `|S| > (1−ε₀)|A|` admits two-point label data at `(p,q)` for the window
 `F`.
 
+**SUPERSEDED FOR THE LANE (2026-08-15, same day).**  The consequence this
+lemma was built to deliver, `two-point-approximation-fails`, was
+established the same evening by the window-free fixed-algebra route
+(`two-point-fails-via-fixed-algebra`), which needs no expansion transfer
+at all.  This lemma remains open and is retained because it asks for
+something the fixed-algebra route cannot give: a **fixed-window,
+quantitative** impossibility with explicit `(R, ε₀)`, extending the
+explicit constants of the exact-model theorem to approximate models.
+Attack it only for that payoff.
+
 **The intended proof shape.**  `φ` restricted to `Γ`-letters is a
 `δ(R,ε)`-almost action of the Kazhdan group `Γ`; Kun's expander
 decomposition (the permutation version, applied twice — fine `Γ`-blocks
