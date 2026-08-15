@@ -439,17 +439,20 @@ Section~\ref{sec:witness} proves $w\neq 1$.
 Section~\ref{sec:proofA} proves the defect-square identity and deduces
 Theorem~\ref{thm:A} from the sign criterion.
 Section~\ref{sec:conj} defines Kazhdan conjugation data and their
-defect subgroups and generalizes the sign criterion three ways: the
+defect subgroups and generalizes the sign criterion four ways: the
 finite-normal obstruction criterion (Theorem~\ref{thm:criterion}), the
 intrinsic defect in the MF radical
-(Theorem~\ref{thm:compression-radical}), and the normal-Kazhdan form
+(Theorem~\ref{thm:compression-radical}), the normal-Kazhdan form
 (Theorem~\ref{thm:normal-kazhdan}), which requires no finiteness or
-torsion.
+torsion, and the abstract invisibility form
+(Theorem~\ref{thm:abstract-nk}), which requires no datum at all.
 Section~\ref{sec:necessity} states and proves the cyclic comparison,
 Theorem~\ref{thm:C}.
 Section~\ref{sec:consequences} states and proves Theorems~\ref{thm:D}
-and~\ref{thm:E}, develops the MF radical, and establishes the
-permanence failures.
+and~\ref{thm:E}, develops the MF radical, proves the involutive orbit
+collapse with its radical reduction and saturation endpoints
+(Section~\ref{subsec:collapse}), and establishes the permanence
+failures.
 Section~\ref{sec:limits} records the
 limitations of the operator-norm method.
 Appendix~\ref{app:equivalences} proves the MF equivalences,
@@ -2464,10 +2467,9 @@ $H$ is not MF.
 (1)  By Theorem~\ref{thm:collapse} and Lemma~\ref{lem:portable},
 $f(D_{\mathrm{coll}}(L,s))\le
 f(\operatorname{Rad}_{\mathrm{MF}}(H))\le
-\operatorname{Rad}_{\mathrm{MF}}(f(H))$, and the radical of an MF
-group is trivial by Proposition~\ref{prop:univquot}; the radical of
-the subgroup $f(H)$ of the MF target is trivial because subgroups of
-MF groups are MF.
+\operatorname{Rad}_{\mathrm{MF}}(f(H))$; the subgroup $f(H)$ of the
+MF target is MF (Lemma~\ref{lem:subgroupMF}), so its radical is
+trivial by Proposition~\ref{prop:univquot}.
 (2)  The radical statement is Theorem~\ref{thm:collapse} with
 $D_{\mathrm{coll}}(L,s)=H$; triviality of every homomorphism follows
 from (1); and a nontrivial group with full radical is not MF by
@@ -2853,7 +2855,10 @@ finite quotients or exact finite-dimensional representations.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
 (Theorem~\ref{thm:normal-kazhdan}); the remaining input is the
-small-cancellation construction suggested above.
+small-cancellation construction suggested above.  By
+Theorem~\ref{thm:saturation}, a group whose collapse or normal-Kazhdan
+defect saturates would admit no nontrivial homomorphism to any
+countable MF group at all.
 \item Is $E$ sofic, or hyperlinear?  The adjoint spectral-corner
 estimates require operator-norm multiplicative control, and neither
 property is decided by the results above.

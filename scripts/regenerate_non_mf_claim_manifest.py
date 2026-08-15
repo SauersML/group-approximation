@@ -37,6 +37,27 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:sign-criterion": (
         "Sofic/KazhdanSignCriterion",
         "GroupApproximation.KazhdanCompressionCore.manuscriptCentralSignCriterion"),
+    "thm:abstract-nk": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction"),
+    "cor:intrinsic-nk": (
+        "Sofic/NormalKazhdanHyperlinearKilled",
+        "GroupApproximation.KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect"),
+    "cor:pullback": (
+        "Sofic/TorsionCompressionCollapse",
+        "GroupApproximation.TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient"),
+    "def:invwitness": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern"),
+    "thm:collapse": (
+        "Sofic/InvolutionCollapseEndpoint",
+        "GroupApproximation.InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual"),
+    "cor:collapsequot": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction"),
+    "thm:saturation": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation"),
     "thm:compression-radical": (
         "Sofic/ManuscriptKazhdanTransport",
         "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical"),
@@ -168,6 +189,16 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:criterion": ["def:pattern", "thm:kazhdan-transport"],
     "thm:normal-kazhdan": ["def:pattern", "thm:kazhdan-transport",
                            "prop:mf-equivalences"],
+    "thm:abstract-nk": ["thm:normal-kazhdan", "prop:mf-equivalences"],
+    "cor:intrinsic-nk": ["thm:abstract-nk", "thm:compression-radical"],
+    "cor:pullback": ["lem:portable", "def:radical"],
+    "def:invwitness": [],
+    "thm:collapse": ["def:invwitness", "def:radical", "lem:unitarycorona",
+                     "thm:kazhdan-transport"],
+    "cor:collapsequot": ["thm:collapse", "cor:pullback",
+                         "cor:exactradical"],
+    "thm:saturation": ["thm:collapse", "lem:portable", "lem:subgroupMF",
+                       "prop:univquot"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],
