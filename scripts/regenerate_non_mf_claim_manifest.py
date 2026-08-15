@@ -97,6 +97,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "thm:criterion": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptFiniteNormalObstructionCriterion"),
+    "thm:normal-kazhdan": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction"),
     "lem:square": (
         "Sofic/CompressionDefectSquare",
         "GroupApproximation.commutator_conjugate_eq_commutator_sq_of_sq_eq_one"),
@@ -163,6 +166,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:notRFD": ["thm:B", "prop:witness"],
     "lem:unitarycorona": ["lem:lift"],
     "thm:criterion": ["def:pattern", "thm:kazhdan-transport"],
+    "thm:normal-kazhdan": ["def:pattern", "thm:kazhdan-transport",
+                           "prop:mf-equivalences"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
     "cor:exactradical": ["def:radical"],

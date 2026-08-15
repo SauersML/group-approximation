@@ -14,6 +14,7 @@ import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
+import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 
@@ -259,6 +260,29 @@ theorem manuscriptFiniteNormalObstructionCriterion :
       F ≤ Theta.ker := by
   intro Gamma H _ _ _ _ C F _ _ hF d hd
   exact C.finiteNormal_le_normMatrixCStarCoronaKernel F hF
+    (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
+      simpa using hd n)
+
+/-- Exact natural-dimension form of the normal-Kazhdan obstruction: every
+homomorphism into the unitary group of the genuine norm-matrix C-star
+corona maps a normal property-`(T)` subgroup of the compression defect to
+the identity.  No finiteness, centrality, or torsion hypothesis appears. -/
+theorem manuscriptNormalKazhdanObstruction :
+    ∀ {Gamma H : Type} [Group Gamma] [Group H]
+      [_countableGamma : Countable Gamma] [Countable H]
+      (C : KazhdanCompressionCore Gamma H)
+      (K : Subgroup H) [K.Normal]
+      (hT : HasKazhdanPropertyT.{0, 0} K)
+      (hK : K ≤ C.defectNormal)
+      (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+    let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (by
+        simpa [X] using hd n)
+    ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+      K ≤ Theta.ker := by
+  intro Gamma H _ _ _ _ C K _ hT hK d hd
+  exact C.normalKazhdan_le_normMatrixCStarCoronaKernel K hT hK
     (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
       simpa using hd n)
 

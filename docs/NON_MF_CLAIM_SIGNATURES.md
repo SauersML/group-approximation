@@ -596,6 +596,19 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
             C.defectNormal.Normal
 ```
 
+## `GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction`
+
+```lean
+∀ {Gamma H : Type} [inst : Group Gamma] [inst_1 : Group H] [_countableGamma : Countable Gamma]
+  [Countable H] (C : KazhdanCompressionCore Gamma H) (K : Subgroup H) [K.Normal],
+  HasKazhdanPropertyT ↥K →
+    K ≤ C.defectNormal →
+      ∀ (d : ℕ → ℕ) (hd : ∀ (n : ℕ), 0 < d n),
+        let X := fun n => naturalFiniteModel (d n);
+        ∀ (Theta : H →* ↥(unitary (NormMatrixCStarCorona fun n => (X n).carrier))),
+          K ≤ Theta.ker
+```
+
 ## `GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalPortability`
 
 ```lean

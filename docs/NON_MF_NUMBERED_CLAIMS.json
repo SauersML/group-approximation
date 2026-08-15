@@ -469,6 +469,30 @@
       ]
     },
     {
+      "id": "thm:normal-kazhdan",
+      "environment": "theorem",
+      "title": "normal-Kazhdan obstruction",
+      "statement_sha256": "97e8705b910fc83a4fcae4df5bf68e5863846eadeadc796b081768a945f38b78",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "def:pattern",
+        "thm:kazhdan-transport",
+        "prop:mf-equivalences"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptNormalKazhdanObstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:C",
       "environment": "mainthm",
       "title": "the cyclic comparison",
