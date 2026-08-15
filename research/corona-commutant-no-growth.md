@@ -126,3 +126,19 @@ evidence about this hinge.
   represented shift.  By `corona-hs-radical-is-finite-residual` the growth
   must be carried on corners of vanishing normalized rank, and by
   `marked-quotients-not-lef` no exact finite model does it.
+
+**Full consequence, recorded 2026-08-15.**  Granting the claim for every
+compressor pair of `H`, every corona representation sends each compressed
+centralizer element `Theta(t z t^{-1})`, `z in C_H(iota(Gamma))`, into
+`Theta(iota(Gamma))' cap Q`; so every commutator `[t z t^{-1}, gamma]` with
+`gamma in iota(Gamma)` dies in every corona representation, and the entire
+compression-centralizer defect — not one marked `u` — lies in `Rad_MF(H)`.
+The Hilbert--Schmidt analogue of exactly this consequence is kernel-checked
+in `GroupApproximation/Sofic/IntrinsicCompressionMFRadical.lean`; this claim
+would upgrade it from the 2-norm to the operator norm, deleting the corner
+machinery for ordinary commutant defects in one stroke.  A second
+sufficient meta-principle reaching the same endpoint without deciding this
+hinge is `mf-invariant-corner-visibility`; to fire at `u` it additionally
+needs tracial killing of `u` in every invariant corner, known today only
+for the finite-normal and normal-Kazhdan corners, and its own card records
+that it drifts toward MF-implies-hyperlinear strength.
