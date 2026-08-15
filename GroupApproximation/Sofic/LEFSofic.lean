@@ -200,6 +200,32 @@ theorem isLEF_of_residuallyFinite [Group.ResiduallyFinite G] : IsLEF G := by
     · intro x _ y _
       rw [map_mul, finitePermForm_mul]
 
+/-- **Residual finiteness passes to finite-index overgroups**: a group with
+a residually finite subgroup of finite index is residually finite.  In
+particular, with `FreeGroupResiduallyFinite`, virtually free groups are
+residually finite. -/
+theorem residuallyFinite_of_finiteIndex
+    (H : Subgroup G) [H.FiniteIndex] [Group.ResiduallyFinite H] :
+    Group.ResiduallyFinite G := by
+  rw [Group.residuallyFinite_iff_exists_finiteIndex]
+  intro g hg
+  by_cases hgH : g ∈ H
+  · have hne : (⟨g, hgH⟩ : H) ≠ 1 := by
+      intro hcon
+      exact hg (congrArg Subtype.val hcon)
+    obtain ⟨K, hKfi, hKnot⟩ :=
+      (Group.residuallyFinite_iff_exists_finiteIndex (G := H)).mp
+        inferInstance ⟨g, hgH⟩ hne
+    refine ⟨K.map H.subtype, ⟨?_⟩, ?_⟩
+    · rw [Subgroup.index_map_subtype]
+      exact Nat.mul_ne_zero hKfi.index_ne_zero
+        Subgroup.FiniteIndex.index_ne_zero
+    · intro hmem
+      obtain ⟨k, hk, hkval⟩ := Subgroup.mem_map.mp hmem
+      have hkeq : k = ⟨g, hgH⟩ := Subtype.ext hkval
+      exact hKnot (hkeq ▸ hk)
+  · exact ⟨H, ‹_›, hgH⟩
+
 /-- **Locally residually finite groups are LEF**: if every finitely
 generated subgroup is residually finite, the group is LEF, by the locality
 of LEF and `isLEF_of_residuallyFinite` on each finitely generated
