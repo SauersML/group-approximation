@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
+import GroupApproximation.Sofic.ActualCoronaMFRadical
 
 /-!
 # Normal Kazhdan subgroups of an abstract tracially killed defect
@@ -179,6 +180,38 @@ theorem normalKazhdanPart_le_normMFResidual_of_hyperlinear_killed
   exact normalKazhdan_le_normMFResidual_of_hyperlinear_killed
     D hDkill K hKmem.2.1 hKmem.2.2
 
+/-- Abstract normal-Kazhdan cancellation in the concrete C*-corona-kernel
+form: literal norm matrix C*-corona representations kill every normal
+property-`(T)` subgroup of an abstractly killed defect. -/
+theorem normalKazhdan_le_normMatrixCStarCoronaKernel_of_hyperlinear_killed
+    [Countable E] (D : Subgroup E)
+    (hDkill : ∀ (B : OpAlmostRepresentation E) (U : Ultrafilter ℕ)
+      (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : E), x ∈ D →
+      (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+        hcof x = 1)
+    (K : Subgroup E) [K.Normal]
+    (hT : HasKazhdanPropertyT.{0, 0} K)
+    (hK : K ≤ D)
+    (X : ℕ → FiniteModel) (hX : ∀ n, 0 < Fintype.card (X n)) :
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (hX n)
+    ∀ rho : E →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+      K ≤ rho.ker := by
+  letI : ∀ n, Nonempty (X n) :=
+    fun n ↦ Fintype.card_pos_iff.mp (hX n)
+  intro rho
+  let sigma : E →* NormMatrixCoronaUnitary X :=
+    (normMatrixCoronaUnitaryEquiv X).symm.toMonoidHom.comp rho
+  intro k hk
+  have hres : k ∈ normMFResidual E :=
+    normalKazhdan_le_normMFResidual_of_hyperlinear_killed D hDkill K hT hK hk
+  have hkernel : k ∈ sigma.ker :=
+    NormMFInvisible.toCoronaMFInvisible
+      (mem_normMFResidual_iff.mp hres) X hX sigma
+  apply MonoidHom.mem_ker.mpr
+  apply (normMatrixCoronaUnitaryEquiv X).symm.injective
+  simpa [sigma] using MonoidHom.mem_ker.mp hkernel
+
 /-- **Positive control.**  The single-compressor defect subgroup satisfies
 the abstract kill hypothesis, so the concrete theorem
 `normalKazhdan_le_normMFResidual` is an instance of the abstract one. -/
@@ -232,6 +265,20 @@ theorem not_isWeakMF_of_normalKazhdan_le_compressionCentralizerDefect
     (compressionCentralizerDefect_eq_one_in_hyperlinearHom
       B iota hkazhdan hcof hx)
 
+/-- The intrinsic normal-Kazhdan radical theorem in the manuscript's
+literal MF-radical language. -/
+theorem normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect
+    [Countable E] (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ)
+    (K : Subgroup E) [K.Normal]
+    (hT : HasKazhdanPropertyT.{0, 0} K)
+    (hK : K ≤ compressionCentralizerDefect iota.range) :
+    K ≤ actualCoronaMFResidual E := by
+  rw [actualCoronaMFResidual_eq_coronaMFResidual,
+    coronaMFResidual_eq_normMFResidual]
+  exact normalKazhdan_le_normMFResidual_of_le_compressionCentralizerDefect
+    iota hkazhdan K hT hK
+
 /-- The normal Kazhdan part of the intrinsic compression--centralizer
 defect lies in the norm-MF residual. -/
 theorem normalKazhdanPart_compressionCentralizerDefect_le_normMFResidual
@@ -245,6 +292,18 @@ theorem normalKazhdanPart_compressionCentralizerDefect_le_normMFResidual
   exact MonoidHom.mem_ker.mp
     (compressionCentralizerDefect_eq_one_in_hyperlinearHom
       B iota hkazhdan hcof hx)
+
+/-- The normal Kazhdan part of the intrinsic defect in the manuscript's
+literal MF-radical language. -/
+theorem normalKazhdanPart_compressionCentralizerDefect_le_actualCoronaMFResidual
+    [Countable E] (iota : Γ →* E)
+    (hkazhdan : HasKazhdanPropertyT.{0, 0} Γ) :
+    normalKazhdanPart (compressionCentralizerDefect iota.range) ≤
+      actualCoronaMFResidual E := by
+  rw [actualCoronaMFResidual_eq_coronaMFResidual,
+    coronaMFResidual_eq_normMFResidual]
+  exact normalKazhdanPart_compressionCentralizerDefect_le_normMFResidual
+    iota hkazhdan
 
 end KazhdanAsymptoticCommutant
 

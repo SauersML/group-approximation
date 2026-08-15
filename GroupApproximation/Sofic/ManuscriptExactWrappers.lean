@@ -15,6 +15,7 @@ import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
 import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.LiteralNonMFEndpoint
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
+import GroupApproximation.Sofic.NormalKazhdanHyperlinearKilled
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
 
@@ -449,6 +450,36 @@ theorem manuscriptFaithfulTraceAndStableFiniteness :
   · intro A _ tau k hk v hv
     exact tau.matrix_mul_star_eq_one_of_star_mul_eq_one
       (Fin k) ⟨⟨0, hk⟩⟩ hv
+
+/-! ## The abstract obstruction over an invisible subgroup -/
+
+/-- Exact wrapper for the abstract normal-Kazhdan obstruction: if every
+element of `D` is killed in the tracial ultraproduct attached to every
+operator-norm almost representation, then every normal property-`(T)`
+subgroup of `D` dies in every norm matrix C*-corona representation, for
+literal positive natural matrix dimensions. -/
+theorem manuscriptAbstractNormalKazhdanObstruction :
+    ∀ {H : Type} [Group H] [Countable H]
+      (D : Subgroup H)
+      (hDkill : ∀ (B : OpAlmostRepresentation H) (U : Ultrafilter ℕ)
+        (hcof : (U : Filter ℕ) ≤ Filter.cofinite) (x : H), x ∈ D →
+        (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
+          hcof x = 1)
+      (K : Subgroup H) [K.Normal]
+      (hT : HasKazhdanPropertyT.{0, 0} K)
+      (hK : K ≤ D)
+      (d : ℕ → ℕ) (hd : ∀ n, 0 < d n),
+    let X : ℕ → FiniteModel := fun n ↦ naturalFiniteModel (d n)
+    letI : ∀ n, Nonempty (X n) :=
+      fun n ↦ Fintype.card_pos_iff.mp (by
+        simpa [X] using hd n)
+    ∀ Theta : H →* unitary (NormMatrixCStarCorona (fun n ↦ X n)),
+      K ≤ Theta.ker := by
+  intro H _ _ D hDkill K _ hT hK d hd
+  exact KazhdanCompressionCore.normalKazhdan_le_normMatrixCStarCoronaKernel_of_hyperlinear_killed
+    D hDkill K hT hK
+    (fun n ↦ naturalFiniteModel (d n)) (fun n ↦ by
+      simpa using hd n)
 
 end
 
