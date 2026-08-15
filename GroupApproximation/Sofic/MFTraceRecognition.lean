@@ -416,7 +416,96 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
         gcongr
     _ = C * (C * η + δ₁) + δ₂ + η := by ring
 
+/-- **Exact unitary near the inflation.**  When the corner Gram defect is
+at most `1/2`, polar correction turns the inflated corner into an exact
+unitary at distance at most four times the defect. -/
+open KazhdanCornerMatrices in
+theorem exists_unitary_near_inflate (p A : Matrix Y Y ℂ) {δ : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p) (hδ0 : 0 ≤ δ) (hδhalf : δ ≤ 1 / 2)
+    (hδ : ‖(p * A * p)ᴴ * (p * A * p) - p‖ ≤ δ) :
+    ∃ U ∈ Matrix.unitaryGroup Y ℂ, ‖U - inflate p A‖ ≤ 4 * δ := by
+  have hP : (cornerGram (inflate p A)).IsHermitian :=
+    cornerGram_isHermitian _
+  have hgram : ‖cornerGram (inflate p A) - 1‖ ≤ δ := by
+    rw [cornerGram, inflate_gram p A hp hp2]
+    exact hδ
+  refine ⟨polarCorrect (inflate p A) hP,
+    polarCorrect_mem_unitaryGroup _ hP
+      (cornerGram_eigenvalues_pos_of_norm_sub_one_le _ hP hδhalf hgram),
+    ?_⟩
+  have hCsq : ‖inflate p A‖ * ‖inflate p A‖ ≤ (3 : ℝ) / 2 := by
+    have hgs : (inflate p A)ᴴ * inflate p A =
+        (cornerGram (inflate p A) - 1) + 1 := by
+      rw [cornerGram]; abel
+    have hone : ‖(1 : Matrix Y Y ℂ)‖ ≤ 1 :=
+      norm_proj_le_one Matrix.conjTranspose_one (one_mul 1)
+    calc ‖inflate p A‖ * ‖inflate p A‖
+        = ‖(inflate p A)ᴴ * inflate p A‖ :=
+          (Matrix.l2_opNorm_conjTranspose_mul_self _).symm
+      _ = ‖(cornerGram (inflate p A) - 1) + 1‖ := by rw [← hgs]
+      _ ≤ ‖cornerGram (inflate p A) - 1‖ + ‖(1 : Matrix Y Y ℂ)‖ :=
+          norm_add_le _ _
+      _ ≤ δ + 1 := by gcongr
+      _ ≤ 3 / 2 := by linarith
+  have hCn : ‖inflate p A‖ ≤ 2 := by nlinarith [norm_nonneg (inflate p A)]
+  calc ‖polarCorrect (inflate p A) hP - inflate p A‖
+      ≤ ‖inflate p A‖ * (2 * δ) :=
+        norm_polarCorrect_sub_le_mul _ hP hδ0 hδhalf hgram
+    _ ≤ 2 * (2 * δ) := by
+        have h2δ : (0 : ℝ) ≤ 2 * δ := by linarith
+        exact mul_le_mul_of_nonneg_right hCn h2δ
+    _ = 4 * δ := by ring
+
 end CornerInflation
+
+/-! ## Trace separation
+
+The normalized trace is dominated by the operator norm, so trace-small
+unitaries are operator-norm antipodal: the Hilbert–Schmidt identity puts
+their squared distance near `2`, and the operator norm dominates the
+normalized Hilbert–Schmidt distance. -/
+
+section TraceSeparation
+
+/-- The normalized trace is dominated by the operator norm. -/
+theorem norm_normTrace_le (Y : FiniteModel) (hY : 0 < Fintype.card Y)
+    (M : Matrix Y Y ℂ) : ‖normTrace Y M‖ ≤ ‖M‖ := by
+  have hentry : ∀ i : Y, ‖M i i‖ ≤ ‖M‖ := by
+    intro i
+    have h := normSq_entry_le_sq_l2_opNorm Y M i i
+    have h2 : ‖M i i‖ ^ 2 ≤ ‖M‖ ^ 2 := by
+      rw [← Complex.normSq_eq_norm_sq]
+      exact h
+    nlinarith [norm_nonneg (M i i), norm_nonneg M]
+  have htr : ‖Matrix.trace M‖ ≤ (Fintype.card Y : ℝ) * ‖M‖ := by
+    calc ‖Matrix.trace M‖ = ‖∑ i : Y, M i i‖ := rfl
+      _ ≤ ∑ i : Y, ‖M i i‖ := norm_sum_le _ _
+      _ ≤ ∑ _i : Y, ‖M‖ := Finset.sum_le_sum fun i _ ↦ hentry i
+      _ = (Fintype.card Y : ℝ) * ‖M‖ := by
+          rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
+  have hc : (0 : ℝ) < (Fintype.card Y : ℝ) := by exact_mod_cast hY
+  rw [normTrace, norm_div, Complex.norm_natCast, div_le_iff hc]
+  exact htr.trans_eq (mul_comm _ _)
+
+/-- **Antipodal separation from a small normalized trace.**  Two
+unitaries whose relative normalized trace has modulus at most `1/2` are
+at operator distance at least `1`. -/
+theorem one_le_norm_sub_of_normTrace_small (Y : FiniteModel)
+    {A B : Matrix Y Y ℂ}
+    (hA : A ∈ Matrix.unitaryGroup Y ℂ) (hB : B ∈ Matrix.unitaryGroup Y ℂ)
+    (hY : 0 < Fintype.card Y)
+    (htr : ‖normTrace Y (A * Bᴴ)‖ ≤ 1 / 2) :
+    1 ≤ ‖A - B‖ := by
+  have habs : |(normTrace Y (A * Bᴴ)).re| ≤ 1 / 2 :=
+    le_trans (Complex.abs_re_le_norm _) htr
+  have hd1 : (1 : ℝ) ≤ hsDistSq Y A B := by
+    rw [hsDistSq_of_unitary Y hA hB hY]
+    have := (abs_le.mp habs).2
+    linarith
+  have hop := hsDistSq_le_sq_l2_opNorm Y A B
+  nlinarith [norm_nonneg (A - B)]
+
+end TraceSeparation
 
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
