@@ -20,6 +20,7 @@ import GroupApproximation.Sofic.CoefficientAlternatingReynolds
 import GroupApproximation.Sofic.MixedCommutatorDihedral
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.NegativeCornerModel
+import GroupApproximation.Sofic.BlockCliffordLamp
 import GroupApproximation.Sofic.CliffordLampGroup
 import GroupApproximation.Monsters.AffineSL3Doubling
 import GroupApproximation.Monsters.CliffordAlgebraLamp
@@ -227,13 +228,16 @@ import GroupApproximation.Kun.KunUniformRounding
 import GroupApproximation.Kun.KunUniformDecompositionStep
 import GroupApproximation.Criterion.CompressionSetup
 import GroupApproximation.Criterion.ExactCompression
+import GroupApproximation.Criterion.ChainConditionCompression
 import GroupApproximation.Criterion.CommutantRigidity
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Sofic.NormMFResidualExactQuotient
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.KazhdanAsymptoticCommutant
 import GroupApproximation.Sofic.ScaledKazhdanTransport
+import GroupApproximation.Sofic.IntertwinerKazhdanTransport
 import GroupApproximation.Sofic.TorsionCompressionCollapse
+import GroupApproximation.Sofic.MFRelationClosure
 import GroupApproximation.Sofic.InvolutionRankMass
 import GroupApproximation.Sofic.ExactInvolutionLifts
 import GroupApproximation.Kazhdan.ApproximateCircumcenter
@@ -246,6 +250,7 @@ import GroupApproximation.Sofic.InvolutionCollapseCenter
 import GroupApproximation.Sofic.InvolutionCollapseIndexCapture
 import GroupApproximation.Sofic.InvolutionCollapseEndpointPrep
 import GroupApproximation.Sofic.InvolutionCollapseEndpoint
+import GroupApproximation.Sofic.ProjectionCompressionCollapse
 import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.KazhdanSignCriterion
 import GroupApproximation.Sofic.IntrinsicCompressionMFRadical
