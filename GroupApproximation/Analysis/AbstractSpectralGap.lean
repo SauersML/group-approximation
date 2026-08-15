@@ -175,9 +175,6 @@ theorem unitaryAverage_spectrum_le
       show Φ.gnsStarAlgHom
           (((S.card : ℂ))⁻¹ • ∑ g ∈ S, ((ρ g : unitary A) : A)) ξ = _
       rw [map_smul, map_sum, smul_apply, sum_apply]
-    have hcast : ((S.card : ℂ))⁻¹ = (((S.card : ℝ))⁻¹ : ℂ) := by
-      push_cast
-      ring
     calc ((S.card : ℝ))⁻¹ •
           ∑ g ∈ S, Φ.gnsStarAlgHom ((ρ g : unitary A) : A) ξ
         = ((((S.card : ℝ))⁻¹ : ℝ) : ℂ) •
@@ -185,7 +182,9 @@ theorem unitaryAverage_spectrum_le
           (hsmulR _ _).symm
       _ = ((S.card : ℂ))⁻¹ •
           ∑ g ∈ S, Φ.gnsStarAlgHom ((ρ g : unitary A) : A) ξ := by
-          rw [← hcast]
+          congr 1
+          push_cast
+          ring
       _ = Φ.gnsStarAlgHom m ξ := hπm.symm
       _ = (μ : ℂ) • ξ := heigC
       _ = μ • ξ := hsmulR μ ξ

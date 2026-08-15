@@ -97,7 +97,7 @@ theorem vertex_hasKazhdanPropertyT_universeOne :
 
 theorem vertex_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Vertex :=
-  HasKazhdanPropertyT.of_max (v := 1) coverData.kazhdan
+  HasKazhdanPropertyT.of_max.{0, 1, 0} coverData.kazhdan
 
 instance vertex_finitelyPresented : Group.IsFinitelyPresented Vertex :=
   inferInstance
