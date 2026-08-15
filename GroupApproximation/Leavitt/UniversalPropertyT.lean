@@ -18,7 +18,7 @@ universe v
 /-- The universal-Leavitt rank-three core has property `(T)`, at every
 representation-space universe. -/
 theorem core_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, v} Core :=
-  finiteTypeElementaryThree_hasKazhdanPropertyT (R := CoefficientRing)
+  finiteTypeElementaryThree_hasKazhdanPropertyT.{v} (R := CoefficientRing)
 
 /-- The universal-Leavitt rank-four ambient compression group has property
 `(T)`, at every representation-space universe. -/

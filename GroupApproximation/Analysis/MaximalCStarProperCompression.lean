@@ -291,7 +291,7 @@ theorem conjugate_ne_proj :
       have h2 : avg D = ((D.S.card : ℂ))⁻¹ • ∑ γ ∈ D.S,
           maximalGroupCStarGenerator E (D.iota γ) := rfl
       rw [h2, map_smul, map_sum]
-    rw [h1, ContinuousLinearMap.smul_apply, ContinuousLinearMap.sum_apply]
+    rw [h1, smul_apply, sum_apply]
     have hterm : ∀ γ ∈ D.S,
         evw D (maximalGroupCStarGenerator E (D.iota γ))
           (quasiRegularOperator E (conjLambda D) D.t⁻¹

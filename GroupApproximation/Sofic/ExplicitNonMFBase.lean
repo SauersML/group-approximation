@@ -56,7 +56,7 @@ universe v
 finite-type characteristic-two elementary-group theorem. -/
 theorem base_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, v} Base :=
-  UniversalRankFour.ambient_hasKazhdanPropertyT
+  UniversalRankFour.ambient_hasKazhdanPropertyT.{v}
 
 /-- The exact closed package consumed by the marked non-MF presentation. -/
 theorem base_profile :
