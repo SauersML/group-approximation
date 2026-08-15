@@ -55,6 +55,35 @@ element of `MaximalGroupCStar`, its self-adjointness, the conjugation
 identity, and the `ℓ²(G/K)` strictness witness) are independent of β2
 and can land first.
 
+**Progress log (2026-08-15, evening):** the whole chain is written and
+in the compile pipeline; `QuasiRegularWitness` and `StateExtension` are
+kernel-checked.  Modules, in dependency order:
+`Analysis/QuasiRegularWitness` (b3, GREEN), `Analysis/StateExtension`
+(Krein positive extension via `riesz_extension`, GREEN),
+`Analysis/SpectralStateWitness` (character at a spectral point of the
+elemental algebra), `Analysis/GNSEigenvector` (cyclic eigenvector +
+unitary-to-isometry bridge), `Kazhdan/KazhdanEigenvalueBound`
+(projection-free eigenvalue bound — no limits, project the eigen
+equation onto the invariants), `Analysis/AbstractSpectralGap` (the b1
+keystone: spectral gap for unitary averages of Kazhdan representations
+in ANY unital C*-algebra), `Analysis/CStarSpectralProjection`
+(`p := cfc (gapIndicator c) m` with absorption `m p = p m = p`),
+`Analysis/KazhdanProjectionAbsorption` (b2: second-moment identity
+`u_s p = p`, subgroup-closure upgrade, resolvent factorisation
+`1 - p = cfc h m · (1 - m)` eliminating any cfc naturality),
+`Analysis/MaximalCStarProperCompression` (the endpoint:
+`StrictKazhdanCompression.toProperProjectionCompression :
+ProperProjectionCompression (MaximalGroupCStar E)` with properness at
+the quasi-regular coordinate, plus the not-Dedekind-finite / not stably
+finite / no-faithful-trace corollaries).  Design deviations from the
+plan above: no norm-convergence of averaging powers is used anywhere,
+and no Kazhdan projection limit is taken — the projection is defined
+directly by continuous functional calculus once the gap is known, and
+all absorption identities are algebra-internal.  Instantiation note:
+the Hodge certificate (`ExactHodgeCertificate:854`) is
+universe-polymorphic `IsKazhdanPair.{u, v}`, so the literal `E` can
+supply the pair at `{0, 1}` as the endpoint structure requires.
+
 ## 2. Torsion-free finitely presented non-MF with full MF radical
 
 **Status: analytic half and consequence package fully kernel-checked;
