@@ -96,27 +96,33 @@ directly with their normal tools.** Before committing, run
 
 It provides what a coding agent cannot get by editing Markdown:
 
-Eleven commands, no more:
+Twelve commands, no more:
 
 ```text
-bin/cairn check [--changed]        compile + lint + duplicates; refreshes FRONTIER.md
+bin/cairn check [--changed]        compile + lint + duplicates; refreshes
+                                   FRONTIER.md   alias: build
 bin/cairn preview                  research-state delta of working tree vs HEAD
-bin/cairn frontier                 unresolved claims worth attacking, with locks
+bin/cairn status                   one screen: counts, goals, top frontier, claims
+bin/cairn frontier                 unresolved claims worth attacking, with claims
+bin/cairn why <id>                 derivation if established; why it matters if open
 bin/cairn context <id> --budget N  one bounded packet: statement, derivation,
                                    routes in/out, reusable claims, dead space
-bin/cairn search <q> [--notes]     lexical search over graph (and notes/)
+bin/cairn search <q> [--notes]     lexical search; --similar ranks by similarity
+                                   to an id or text   alias: relevant
 bin/cairn impact <id>              what would change if this claim were established
-bin/cairn lock <id> --ttl 45m      TTL work lock (re-run to extend) · unlock
-bin/cairn next --lock              atomically select + lease a frontier claim
-bin/cairn site                     static HTML site (human display is downstream)
+bin/cairn lock <id> --ttl 45m      advisory TTL claim (identity-free) · unlock
+bin/cairn site [--serve]           static HTML site (human display is downstream)
 bin/cairn telemetry                usage stats — the input for cutting more
 ```
 
 Humans read `FRONTIER.md` (the generated home screen: status trees,
-frontier, locks) rather than running commands.
+frontier, claims) rather than running commands.
 
-Every query command takes `--json`; stable exit categories: `0` ok,
-`2` duplicate candidates, `3` lease conflict, `4` invalid graph.
+Every query command takes `--json` (errors included — a JSON envelope on
+stdout); stable exit categories: `0` ok, `2` duplicate candidates,
+`3` already claimed, `4` invalid graph, `64` usage error, `1` runtime
+error. Unknown ids fail with nearest-id suggestions; lock TTLs require
+an explicit unit.
 
 ## Duplicates
 
@@ -128,27 +134,30 @@ distinct_from:
   outer-pvm-synchronization: that claim demands one joint PVM; this one ...
 ```
 
-## Locks
+## Claims (work locks)
 
-TTL work locks (`owner / acquired_at / expires_at`; re-run `lock` to
-extend) live under `.cairn/` — scheduler state, never committed into mathematical
-history, never a frontmatter key. Filesystem backend today; the interface
-is the contract, so a distributed backend can replace it without touching
-the DSL. `CAIRN_AGENT` sets the default owner.
+Advisory, identity-free TTL claims live under `.cairn/` — scheduler
+state, never committed into mathematical history, never a frontmatter
+key. Everyone is one team: a claim means "someone is on this," each
+worker knows which work is its own, `unlock` always works, and the TTL
+cleans up after crashes. Filesystem backend today; the interface is the
+contract, so a distributed backend can replace it without touching the
+DSL.
 
 ## Telemetry
 
-Every invocation appends one record to `.cairn/telemetry.jsonl` (timestamp,
-agent, command, argv, exit code, duration). `bin/cairn telemetry` summarizes
-it: per-command usage and error rates, per-agent counts, exit-code
-distribution, and commands never used — the empirical input for evolving
-this design. Observability state like locks: never committed, never able to
-affect research state.
+Every invocation appends one record to `.cairn/telemetry.jsonl`
+(timestamp, command, argv, exit code, duration — no attribution).
+`bin/cairn telemetry` summarizes it: per-command usage and error rates,
+exit-code distribution, and commands never used — the empirical input
+for evolving this design. Observability state like claims: never
+committed, never able to affect research state.
 
 ## The agent loop
 
 ```text
-bin/cairn next --lock --json        # find + lease work
+bin/cairn status                    # goals, holes, what's claimed
+bin/cairn lock <id> --ttl 45m       # claim an unclaimed hole
 bin/cairn context <id> --budget 30000
 bin/cairn search "..." / relevant <id>   # search before inventing
    ... do mathematics; write notes/ freely ...
