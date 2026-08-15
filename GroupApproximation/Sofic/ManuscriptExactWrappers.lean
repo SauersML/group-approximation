@@ -5,6 +5,7 @@ import GroupApproximation.Analysis.ReducedGroupCStarSeparable
 import GroupApproximation.Analysis.ReducedGroupCStarTraceFaithful
 import GroupApproximation.Criterion.CompressionCentralizerDefect
 import GroupApproximation.Criterion.FiniteDimensionalKill
+import GroupApproximation.Criterion.FiniteQuotientBlindness
 import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Sofic.CDEOperatorMF
@@ -451,6 +452,75 @@ theorem manuscriptFaithfulTraceAndStableFiniteness :
   · intro A _ tau k hk v hv
     exact tau.matrix_mul_star_eq_one_of_star_mul_eq_one
       (Fin k) ⟨⟨0, hk⟩⟩ hv
+
+/-! ## Closed forms of directly cited declarations
+
+The zero-input gate requires every manuscript-cited declaration to be a
+closed proposition: every binder after the colon.  The declarations
+below restate library theorems whose natural homes carry telescope
+binders. -/
+
+/-- Closed form of the invariant-size principle: a conjugation-invariant
+`ℕ`-valued size on subgroups under which equal-size inclusions are
+equalities admits no strict one-sided compression. -/
+theorem manuscriptInvariantSizePrinciple :
+    ∀ {Q : Type u} [Group Q] (size : Subgroup Q → ℕ),
+      (∀ (g : Q) (K : Subgroup Q),
+        size (K.map (MulAut.conj g).toMonoidHom) = size K) →
+      (∀ K L : Subgroup Q, K ≤ L → size L ≤ size K → K = L) →
+      ∀ (K : Subgroup Q) (g : Q),
+        K.map (MulAut.conj g).toMonoidHom ≤ K →
+        K.map (MulAut.conj g).toMonoidHom = K := by
+  intro Q _ size hconj hsep K g hcomp
+  exact no_strict_compression_of_invariantSize size hconj hsep K g hcomp
+
+/-- Closed form of the involutive collapse theorem: the involutive
+collapse defect of a Kazhdan subgroup with a one-sided compressor lies
+in the literal MF radical. -/
+theorem manuscriptInvolutiveCollapse :
+    ∀ {H : Type} [Group H] [Countable H]
+      (L : Subgroup H), HasKazhdanPropertyT.{0, 0} ↥L →
+      ∀ (s : H), (∀ γ ∈ L, s * γ * s⁻¹ ∈ L) →
+      InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤
+        actualCoronaMFResidual H := by
+  intro H _ _ L hT s hcomp
+  exact InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual
+    hT hcomp
+
+/-- Closed form of the unconditional radical reduction: the literal MF
+radical is the full preimage of the radical of the quotient by any
+normal subgroup contained in it. -/
+theorem manuscriptRadicalReductionToQuotient :
+    ∀ {G : Type u} [Group G] (N : Subgroup G) [N.Normal],
+      N ≤ actualCoronaMFResidual G →
+      actualCoronaMFResidual G =
+        (actualCoronaMFResidual (G ⧸ N)).comap (QuotientGroup.mk' N) := by
+  intro G _ N _ hN
+  exact TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient N hN
+
+/-- Closed form of the intrinsic normal-Kazhdan radical theorem. -/
+theorem manuscriptIntrinsicNormalKazhdanRadical :
+    ∀ {Gamma H : Type} [Group Gamma] [Group H] [Countable H]
+      (iota : Gamma →* H),
+      HasKazhdanPropertyT.{0, 0} Gamma →
+      ∀ (K : Subgroup H) [K.Normal],
+        HasKazhdanPropertyT.{0, 0} K →
+        K ≤ compressionCentralizerDefect iota.range →
+        K ≤ actualCoronaMFResidual H := by
+  intro Gamma H _ _ _ iota hkazhdan K _ hT hK
+  exact KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect
+    iota hkazhdan K hT hK
+
+/-- Closed form of the normal Kazhdan part of the intrinsic defect. -/
+theorem manuscriptIntrinsicNormalKazhdanPart :
+    ∀ {Gamma H : Type} [Group Gamma] [Group H] [Countable H]
+      (iota : Gamma →* H),
+      HasKazhdanPropertyT.{0, 0} Gamma →
+      normalKazhdanPart (compressionCentralizerDefect iota.range) ≤
+        actualCoronaMFResidual H := by
+  intro Gamma H _ _ _ iota hkazhdan
+  exact KazhdanAsymptoticCommutant.normalKazhdanPart_compressionCentralizerDefect_le_actualCoronaMFResidual
+    iota hkazhdan
 
 /-! ## The involutive collapse and defect saturation -/
 

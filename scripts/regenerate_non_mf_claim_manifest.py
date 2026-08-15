@@ -41,17 +41,17 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction"),
     "cor:intrinsic-nk": (
-        "Sofic/NormalKazhdanHyperlinearKilled",
-        "GroupApproximation.KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect"),
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptIntrinsicNormalKazhdanRadical"),
     "cor:pullback": (
-        "Sofic/TorsionCompressionCollapse",
-        "GroupApproximation.TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient"),
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptRadicalReductionToQuotient"),
     "def:invwitness": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern"),
     "thm:collapse": (
-        "Sofic/InvolutionCollapseEndpoint",
-        "GroupApproximation.InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual"),
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapse"),
     "cor:collapsequot": (
         "Sofic/ManuscriptExactWrappers",
         "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction"),

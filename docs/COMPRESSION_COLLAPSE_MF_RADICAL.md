@@ -595,3 +595,22 @@ family's RF quotient (`GL₄(ℤ[1/2])` congruence reductions —
 `IntegralLinearResiduallyFinite` is the ℤ-precedent); (iii) the
 FF-inspired saturation plumbing of §5½ (defect normal closure `= ⊤` plus
 ambient `(T)` ⟹ full MF radical, via `normalKazhdan_le_normMFResidual`).
+
+## 10. Manuscript promotion (2026-08-15)
+
+The involutive branch of this program is now printed in
+`non_mf_groups_exist.tex`: `subsec:collapse` ("Orbit collapse and defect
+saturation") states `def:invwitness`, `thm:collapse` (with a printed
+six-step proof following the formal ladder), `cor:collapsequot`,
+`thm:saturation` (with the Fournier-Facio credit and the explicit
+non-assumption of Hull/Osin), and `cor:pullback` (the unconditional
+radical reduction) in §11.1.  The abstract obstruction over an invisible
+subgroup is `thm:abstract-nk` with the new module
+`Sofic/NormalKazhdanHyperlinearKilled.lean` (the property-(T) companion
+of `finiteNormal_le_normMFResidual_of_hyperlinear_killed`; pushforward
+along range restriction = `OpAlmostRepresentation.comap`), which also
+supplies the previously missing normal-Kazhdan endpoints over the
+intrinsic defect `𝔇(H,L)` (`cor:intrinsic-nk` and its part form).  The
+general `m > 2` collapse remains gated on exact commuting
+finite-spectrum lifts, and the manuscript says so
+(`rem:collapse-finite-stage`).
