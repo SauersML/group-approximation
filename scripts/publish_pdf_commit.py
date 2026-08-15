@@ -164,10 +164,23 @@ def tracked_blob_entry(root: Path, revision: str, path: str) -> tuple[str, str]:
     return mode, object_id
 
 
-def require_unchanged_source(
-    root: Path, source: str, current_main: str, source_file: str
+def require_fresher_draft_source(
+    root: Path, source: str, current_main: str, source_file: str, pdf: str
 ) -> None:
-    """Require the draft's source blob to equal the current main blob."""
+    """Require the draft to be built from a newer source than the committed PDF.
+
+    The old rule required the draft's source blob to equal the blob at the
+    current main head.  Under a steady stream of manuscript pushes that rule
+    never holds by the time a multi-minute build finishes, so publication
+    deferred forever and the committed PDF only aged (observed 2026-08-15:
+    eleven hours stale across several green builds).  The invariant that
+    actually needs protecting is monotonicity -- a build must never replace a
+    PDF that was produced from a newer source.  So: defer only when the last
+    commit that touched the source file at our build's source is already an
+    ancestor of the last commit that touched the committed PDF.  A slightly
+    old draft then still publishes, and the catch-up schedule converges the
+    PDF to the head source within one cycle.
+    """
     ancestor = git(
         root,
         "merge-base",
@@ -183,13 +196,34 @@ def require_unchanged_source(
     if ancestor.returncode != 0:
         details = ancestor.stderr.strip() or ancestor.stdout.strip()
         raise RuntimeError(f"could not compare draft ancestry: {details}")
-    source_entry = tracked_blob_entry(root, source, source_file)
-    current_entry = tracked_blob_entry(root, current_main, source_file)
-    if source_entry != current_entry:
-        raise PublicationDeferred(
-            f"{source_file} changed after draft source {source}; "
-            f"current main is {current_main}"
+    built_from = git(
+        root, "rev-list", "-1", source, "--", source_file
+    ).stdout.strip()
+    if not built_from:
+        raise RuntimeError(
+            f"{source_file} has no history at draft source {source}"
         )
+    pdf_updated = git(
+        root, "rev-list", "-1", current_main, "--", pdf
+    ).stdout.strip()
+    if not pdf_updated:
+        return
+    stale = git(
+        root,
+        "merge-base",
+        "--is-ancestor",
+        built_from,
+        pdf_updated,
+        check=False,
+    )
+    if stale.returncode == 0:
+        raise PublicationDeferred(
+            f"committed {pdf} (last updated at {pdf_updated}) already covers "
+            f"the {source_file} state of draft source {source}"
+        )
+    if stale.returncode != 1:
+        details = stale.stderr.strip() or stale.stdout.strip()
+        raise RuntimeError(f"could not compare draft freshness: {details}")
 
 
 def hash_worktree_file(root: Path, path: str) -> str:
@@ -335,7 +369,7 @@ def publish_draft_pdf(
     pdf: str,
     message: str,
 ) -> tuple[Outcome, str]:
-    """Publish a draft while its manuscript source is still current."""
+    """Publish a draft that is fresher than the committed PDF."""
     if source_file not in ALLOWED_DRAFT_SOURCES:
         raise RuntimeError(f"refusing non-draft source path: {source_file!r}")
     return publish_pdf_with_guard(
@@ -343,8 +377,8 @@ def publish_draft_pdf(
         source_ref=source_ref,
         pdf=pdf,
         message=message,
-        guard=lambda guarded_root, source, current: require_unchanged_source(
-            guarded_root, source, current, source_file
+        guard=lambda guarded_root, source, current: require_fresher_draft_source(
+            guarded_root, source, current, source_file, pdf
         ),
     )
 
@@ -501,10 +535,40 @@ def self_test() -> None:
             raise RuntimeError("draft publisher crossed a manuscript change")
         assert remote_main(test_root) == manuscript_commit
 
+        (test_root / "non_mf_groups_exist.tex").write_text(
+            "manuscript-v3\n", encoding="utf-8"
+        )
+        v3_blob = hash_worktree_file(test_root, "non_mf_groups_exist.tex")
+        v3_commit = build_commit(
+            test_root,
+            parent=manuscript_commit,
+            path="non_mf_groups_exist.tex",
+            blob=v3_blob,
+            message="newer manuscript source",
+        )
+        assert v3_commit is not None
+        git(test_root, "push", REMOTE, f"{v3_commit}:refs/heads/main")
+        (test_root / "non_mf_groups_exist.pdf").write_bytes(b"non-mf-from-v2\n")
+        outcome, fresher = publish_draft_pdf(
+            test_root,
+            source_ref=manuscript_commit,
+            source_file="non_mf_groups_exist.tex",
+            pdf="non_mf_groups_exist.pdf",
+            message="publish fresher draft despite a newer source",
+        )
+        assert outcome is Outcome.PUBLISHED
+        assert resolve(test_root, f"{fresher}^") == v3_commit
+        assert remote_main(test_root) == fresher
+        assert (
+            blob_contents(test_root, fresher, "non_mf_groups_exist.pdf")
+            == b"non-mf-from-v2\n"
+        )
+
     print(
         "self-test: temporary-index publication preserved the sibling PDF, "
-        "was idempotent, kept attested and draft guards distinct, and refused "
-        "stale sources"
+        "was idempotent, kept attested and draft guards distinct, refused "
+        "genuinely stale drafts, and published a fresher draft under a "
+        "moving source"
     )
 
 
