@@ -104,10 +104,13 @@ end LEFMarkedCompression
 
 namespace LiteralLEFExtension
 
-open CliffordLamp MarkedCompression SemidirectProduct
+open CliffordLamp MappingTelescope MarkedCompression SemidirectProduct
 open ExplicitLinearModel LiteralNonMFLinearWitness LiteralWitnessConsequences
 
 noncomputable section
+
+local instance : Countable (Multiplicative ℤ) :=
+  Countable.of_equiv ℤ Multiplicative.toAdd
 
 /-- The projection of the explicit witness onto its integer shift. -/
 def zShiftProjection : WitnessGroup →* Multiplicative ℤ :=
@@ -115,9 +118,6 @@ def zShiftProjection : WitnessGroup →* Multiplicative ℤ :=
       Vertical alpha conjD_injective →* Multiplicative ℤ).comp
     (SemidirectProduct.rightHom :
       WitnessGroup →* Vertical alpha conjD_injective)
-
-theorem zShiftProjection_apply (x : WitnessGroup) :
-    zShiftProjection x = x.right.right := rfl
 
 theorem zShiftProjection_surjective :
     Function.Surjective zShiftProjection := by
