@@ -58,28 +58,41 @@ theorem eval_append (V W : List Letter) :
   unfold eval
   rw [List.map_append, List.prod_append]
 
-/-- Every element of `P13` is the value of a word. -/
-theorem exists_word (g : P13) : ∃ W : List Letter, eval W = g := by
+/-- A word of unit letters: every exponent is `±1`. -/
+def UnitWord (W : List Letter) : Prop :=
+  ∀ l ∈ W, l.2 = 1 ∨ l.2 = -1
+
+/-- Every element of `P13` is the value of a unit word. -/
+theorem exists_word (g : P13) :
+    ∃ W : List Letter, eval W = g ∧ UnitWord W := by
   have hg : g ∈ Subgroup.closure
       (Set.range (PresentedGroup.of (rels := p13Relators))) := by
     rw [PresentedGroup.closure_range_of]
     trivial
   induction hg using Subgroup.closure_induction_left with
-  | one => exact ⟨[], rfl⟩
+  | one => exact ⟨[], rfl, fun l hl => absurd hl (List.not_mem_nil l)⟩
   | mul_left s hs y hy ih =>
-      obtain ⟨W, rfl⟩ := ih
+      obtain ⟨W, rfl, hU⟩ := ih
       rcases hs with ⟨i, rfl⟩
-      exact ⟨(i, 1) :: W, by
-        rw [eval_cons]
+      refine ⟨(i, 1) :: W, ?_, ?_⟩
+      · rw [eval_cons]
         show x i 1 * eval W = PresentedGroup.of i * eval W
-        rw [x_one]⟩
+        rw [x_one]
+      · intro l hl
+        rcases List.mem_cons.mp hl with rfl | hl
+        · exact Or.inl rfl
+        · exact hU l hl
   | inv_mul_cancel s hs y hy ih =>
-      obtain ⟨W, rfl⟩ := ih
+      obtain ⟨W, rfl, hU⟩ := ih
       rcases hs with ⟨i, rfl⟩
-      exact ⟨(i, -1) :: W, by
-        rw [eval_cons]
+      refine ⟨(i, -1) :: W, ?_, ?_⟩
+      · rw [eval_cons]
         show x i (-1) * eval W = (PresentedGroup.of i)⁻¹ * eval W
-        rw [x_neg, x_one]⟩
+        rw [x_neg, x_one]
+      · intro l hl
+        rcases List.mem_cons.mp hl with rfl | hl
+        · exact Or.inr rfl
+        · exact hU l hl
 
 /-! ## Letter conjugation by the signed swaps -/
 

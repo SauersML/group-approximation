@@ -87,15 +87,15 @@ theorem w23_inv_conj_letter (l : Letter) :
         = w23⁻¹ * (w23 * letterVal l' * w23⁻¹) * w23 := by rw [h]
       _ = letterVal l' := by group
   fin_cases i
-  · have := key (1, -a)
+  · have := key (1, a)
     simpa [w23Conj, w23ConjInv] using this
-  · have := key (0, a)
+  · have := key (0, -a)
     simpa [w23Conj, w23ConjInv] using this
-  · have := key (4, -a)
+  · have := key (4, a)
     simpa [w23Conj, w23ConjInv] using this
   · have := key (5, -a)
     simpa [w23Conj, w23ConjInv] using this
-  · have := key (2, a)
+  · have := key (2, -a)
     simpa [w23Conj, w23ConjInv] using this
   · have := key (3, -a)
     simpa [w23Conj, w23ConjInv] using this
@@ -186,13 +186,14 @@ theorem isCorner_of_closure {mon : P13}
 
 /-- **Kernel triviality**, given the descent normal form. -/
 theorem toSL3_ker_eq_bot
-    (descent : ∀ W : List Letter, ∃ (G : List Letter) (mon : P13),
+    (descent : ∀ W : List Letter, UnitWord W →
+      ∃ (G : List Letter) (mon : P13),
       mon ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
       eval W = eval G * mon ∧ Mono G (act (toSL3 mon) e3)) :
     ∀ g : P13, toSL3 g = 1 → g = 1 := by
   intro g hg
-  obtain ⟨W, rfl⟩ := exists_word g
-  obtain ⟨G, mon, hmon, hWG, hmono⟩ := descent W
+  obtain ⟨W, rfl, hUW⟩ := exists_word g
+  obtain ⟨G, mon, hmon, hWG, hmono⟩ := descent W hUW
   set b := act (toSL3 mon) e3 with hb
   have hbc : IsCorner b := isCorner_of_closure hmon
   -- the monotone part has norm-one image of the corner
