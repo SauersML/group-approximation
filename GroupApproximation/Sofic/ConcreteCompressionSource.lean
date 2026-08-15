@@ -19,7 +19,7 @@ with the whole base, so the compressed copy centralizes its transport;
 and for any base element outside the image of `α`, the marked commutator
 is a reduced word of length four in the stable letter, so Britton's
 lemma — available in Mathlib as
-`HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range` — keeps it
+`HNNExtension.NormalWord.ReducedWord.toList_eq_nil_of_mem_of_range` — keeps it
 nontrivial.  No Clifford kernel, no torsion, and no simple subgroup are
 involved; instantiating at the doubling map of `ℤ` gives a completely
 explicit two-relator-flavoured source.
@@ -165,11 +165,12 @@ def baseInl : Γ →* Base Γ := MonoidHom.inl Γ (Multiplicative ℤ)
     baseInl γ = (γ, (1 : Multiplicative ℤ)) := rfl
 
 theorem baseInl_injective :
-    Function.Injective (baseInl (Γ := Γ)) := fun a b h =>
+    Function.Injective (baseInl (Γ := Γ)) := fun _ _ h =>
   congrArg Prod.fst h
 
+include hα in
 theorem baseInlComp_injective :
-    Function.Injective ⇑((baseInl (Γ := Γ)).comp α) := fun a b h =>
+    Function.Injective ⇑((baseInl (Γ := Γ)).comp α) := fun _ _ h =>
   hα (baseInl_injective h)
 
 /-- The unmoved associated subgroup: the base copy of the source. -/
@@ -297,7 +298,7 @@ theorem commute_tct_compressed (γ : Γ) :
 because `cZ` and its inverse are outside the unmoved subgroup and `γ₀`
 is outside the moved subgroup. -/
 def brittonWord {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
-    HNNExtension.ReducedWord (Base Γ) (sourceA (Γ := Γ)) (sourceB α) where
+    HNNExtension.NormalWord.ReducedWord (Base Γ) (sourceA (Γ := Γ)) (sourceB α) where
   head := 1
   toList :=
     [((1 : ℤˣ), cZ), (-1, baseInl γ₀), (1, cZ⁻¹), (-1, (baseInl γ₀)⁻¹)]
@@ -324,7 +325,7 @@ theorem brittonWord_prod {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
   have hval1 : ((1 : ℤˣ) : ℤ) = 1 := rfl
   have hvalm : (((-1 : ℤˣ)) : ℤ) = -1 := rfl
   rw [commutatorElement_def]
-  simp only [brittonWord, HNNExtension.ReducedWord.prod, List.map_cons,
+  simp only [brittonWord, HNNExtension.NormalWord.ReducedWord.prod, List.map_cons,
     List.map_nil, List.prod_cons, List.prod_nil, hval1, hvalm, map_one,
     map_inv]
   group
@@ -339,7 +340,7 @@ theorem commutator_tct_ne_one {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
       (HNNExtension.of.range : Subgroup (SourceGroup α hα)) := by
     rw [brittonWord_prod α hα hγ₀, hone]
     exact ⟨1, map_one _⟩
-  have hnil := HNNExtension.ReducedWord.toList_eq_nil_of_mem_of_range
+  have hnil := HNNExtension.NormalWord.ReducedWord.toList_eq_nil_of_mem_of_range
     (φ := sourceEquiv α hα) (brittonWord α hγ₀) hmem
   rw [brittonWord_toList α hγ₀] at hnil
   exact List.cons_ne_nil _ _ hnil

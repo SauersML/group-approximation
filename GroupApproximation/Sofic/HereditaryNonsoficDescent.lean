@@ -79,7 +79,7 @@ theorem defectNormal_eq_normalClosure_simpleSubgroup :
         D.s * (D.iota p * D.s⁻¹ * (D.iota p)⁻¹) := by
       rw [commutatorElement_def]
       group
-    rw [hsplit]
+    simp only [hsplit]
     exact mul_mem hs hconj
   · refine Subgroup.normalClosure_le_normal ?_
     intro x hx
@@ -204,13 +204,11 @@ noncomputable def descendSetup (C : CompressionSetup G Γ J) (q : G →* H)
         (Finset.mem_image.mp hr).choose_spec.1
     compressedEnd_spec := by
       intro r hr g
-      have hps := (Finset.mem_image.mp hr).choose_spec
-      have happ : q (C.embedΓ (C.compressedEnd
-          (Finset.mem_image.mp hr).choose hps.1 g)) =
-          q ((Finset.mem_image.mp hr).choose * C.embedΓ g *
-            ((Finset.mem_image.mp hr).choose)⁻¹) :=
-        congrArg q (C.compressedEnd_spec _ hps.1 g)
-      rw [map_mul, map_mul, map_inv, hps.2] at happ
+      obtain ⟨hmem, hqr⟩ := (Finset.mem_image.mp hr).choose_spec
+      have happ := congrArg q (C.compressedEnd_spec
+        (Finset.mem_image.mp hr).choose hmem g)
+      rw [map_mul, map_mul, map_inv] at happ
+      rw [← hqr]
       exact happ
     generates := by
       have htop : Subgroup.map q (⊤ : Subgroup G) = ⊤ := by
@@ -277,6 +275,8 @@ structure HereditaryNonsoficData extends
 namespace HereditaryNonsoficData
 
 variable (N : HereditaryNonsoficData R)
+
+include N
 
 /-- The routed group itself is nonsofic. -/
 theorem not_isSofic_routed : ¬ IsSofic R.Quotient :=

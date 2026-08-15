@@ -55,8 +55,12 @@ theorem unitary_coe_inv {A : Type*} [Monoid A] [StarMul A]
     (u : unitary A) :
     ((u⁻¹ : unitary A) : A) = star (u : A) := by
   have hba : ((u⁻¹ : unitary A) : A) * (u : A) = 1 := by
-    have h0 := congrArg (fun z : unitary A ↦ (z : A)) (inv_mul_cancel u)
-    simpa using h0
+    have h0 : (((u⁻¹ * u : unitary A)) : A) = ((1 : unitary A) : A) :=
+      congrArg (fun z : unitary A ↦ (z : A)) (inv_mul_cancel u)
+    calc ((u⁻¹ : unitary A) : A) * (u : A) =
+        (((u⁻¹ * u : unitary A)) : A) := rfl
+      _ = ((1 : unitary A) : A) := h0
+      _ = 1 := rfl
   exact left_inv_eq_right_inv hba u.prop.2
 
 /-! ## The character sum -/
@@ -117,6 +121,7 @@ theorem fourier_pow_mul (hvM : v ^ M = 1) (a b : ZMod M) :
     v ^ ZMod.val a * v ^ ZMod.val b = v ^ ZMod.val (a + b) := by
   rw [← pow_add, pow_eq_pow_of_mod_eq hvM (val_add_mod a b)]
 
+omit [StarRing A] [StarModule ℂ A] in
 theorem fourier_term_mul (hζM : ζ ^ M = 1) (hvM : v ^ M = 1)
     (j t u : ZMod M) :
     (ζ ^ (ZMod.val j * ZMod.val t) • v ^ ZMod.val t) *
@@ -133,6 +138,7 @@ theorem fourier_char_inv (hζM : ζ ^ M = 1) (j t : ZMod M) :
     rw [ZMod.val_zero, Nat.mul_zero]
   rw [h0, pow_zero]
 
+omit [StarRing A] [Algebra ℂ A] [StarModule ℂ A] in
 theorem fourier_pow_inv (hvM : v ^ M = 1) (t : ZMod M) :
     v ^ ZMod.val t * v ^ ZMod.val (-t) = 1 := by
   rw [fourier_pow_mul hvM, add_neg_cancel, ZMod.val_zero, pow_zero]
@@ -180,6 +186,7 @@ theorem star_fourierIdem (hζM : ζ ^ M = 1) (hζnorm : ‖ζ‖ = 1)
   exact Fintype.sum_equiv (Equiv.neg (ZMod M)) _ _
     (fun t ↦ by rw [Equiv.neg_apply])
 
+omit [StarRing A] [StarModule ℂ A] in
 /-- The Fourier idempotents are idempotent. -/
 theorem fourierIdem_mul_self (hζM : ζ ^ M = 1) (hvM : v ^ M = 1)
     (j : ZMod M) :
@@ -201,8 +208,8 @@ theorem fourierIdem_mul_self (hζM : ζ ^ M = 1) (hvM : v ^ M = 1)
   have hM0 : (M : ℂ) ≠ 0 := Nat.cast_ne_zero.mpr (NeZero.ne M)
   field_simp
 
-/-- Everything commuting with `v` commutes with its Fourier idempotents. -/
 omit [StarRing A] [StarModule ℂ A] in
+/-- Everything commuting with `v` commutes with its Fourier idempotents. -/
 theorem commute_fourierIdem {g : A} (hgv : Commute g v) (j : ZMod M) :
     Commute g (fourierIdem ζ M v j) := by
   unfold fourierIdem
@@ -210,8 +217,8 @@ theorem commute_fourierIdem {g : A} (hgv : Commute g v) (j : ZMod M) :
   refine Commute.sum_right _ _ _ fun t _ ↦ ?_
   exact Commute.smul_right (hgv.pow_right _) _
 
-/-- Fourier idempotents of commuting finite-order elements commute. -/
 omit [StarRing A] [StarModule ℂ A] in
+/-- Fourier idempotents of commuting finite-order elements commute. -/
 theorem commute_fourierIdem_fourierIdem {v₁ v₂ : A} (h : Commute v₁ v₂)
     (j j' : ZMod M) :
     Commute (fourierIdem ζ M v₁ j) (fourierIdem ζ M v₂ j') := by
@@ -234,6 +241,7 @@ theorem conj_pow {g v : A} (hg1 : g * star g = 1) (hg2 : star g * g = 1)
         _ = (g * v ^ n * star g) * (g * v * star g) := by noncomm_ring
         _ = (g * v * star g) ^ (n + 1) := by rw [ih, pow_succ]
 
+omit [StarModule ℂ A] in
 /-- Conjugation carries the Fourier idempotents of `v` to the Fourier
 idempotents of the conjugated element. -/
 theorem conj_fourierIdem {g : A} (hg1 : g * star g = 1)
@@ -247,6 +255,7 @@ theorem conj_fourierIdem {g : A} (hg1 : g * star g = 1)
   refine Finset.sum_congr rfl fun t _ ↦ ?_
   rw [mul_smul_comm, smul_mul_assoc, conj_pow hg1 hg2]
 
+omit [StarRing A] [StarModule ℂ A] in
 /-- Fourier reconstruction: the element is recovered from its
 idempotents. -/
 theorem fourierIdem_reconstruct (hζM : ζ ^ M = 1)
