@@ -493,6 +493,46 @@
       ]
     },
     {
+      "id": "thm:abstract-nk",
+      "environment": "theorem",
+      "title": "abstract invisibility obstruction",
+      "statement_sha256": "967ac9ec52ea36a710977fdc39078e9abc16549b9c2031cbd9bb810db8d79cf8",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptAbstractNormalKazhdanObstruction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:intrinsic-nk",
+      "environment": "corollary",
+      "title": "normal-Kazhdan form of the intrinsic radical",
+      "statement_sha256": "a7a3cb91f6620f631004686a8d626efc159c2073ff0cd415e2225c4714c85620",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/NormalKazhdanHyperlinearKilled",
+          "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.normalKazhdan_le_actualCoronaMFResidual_of_le_compressionCentralizerDefect",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:C",
       "environment": "mainthm",
       "title": "the cyclic comparison",
@@ -605,6 +645,26 @@
       ]
     },
     {
+      "id": "cor:pullback",
+      "environment": "corollary",
+      "title": "radical reduction to the quotient",
+      "statement_sha256": "8e8da0badc33b150a7b918ac9f76e400877b4bb01fc24ed04fca29fa88afafc1",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/TorsionCompressionCollapse",
+          "declaration": "GroupApproximation.TorsionCompressionCollapse.actualCoronaMFResidual_eq_comap_quotient",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:nofaithful",
       "environment": "corollary",
       "title": "",
@@ -622,6 +682,86 @@
           "role": "exact",
           "module": "Sofic/LiteralNonMFConsequences",
           "declaration": "GroupApproximation.LiteralNonMFConsequences.literal_no_faithful_corona_subalgebra_target",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "def:invwitness",
+      "environment": "definition",
+      "title": "involutive compression witness",
+      "statement_sha256": "56ae434ae0a91eb2a97624381cd9e74360905f6ee64c104444c08366d51563a8",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptInvolutiveCollapsePattern",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:collapse",
+      "environment": "theorem",
+      "title": "involutive collapse",
+      "statement_sha256": "88224a2caa8373a76b004aa03ae12f0b922d8c458200e0185389ef99d96ac5ed",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/InvolutionCollapseEndpoint",
+          "declaration": "GroupApproximation.InvolutionCollapseEndpoint.involutiveCollapseDefect_le_actualCoronaMFResidual",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:collapsequot",
+      "environment": "corollary",
+      "title": "collapse computes the radical",
+      "statement_sha256": "bb1a2c2130afbac59405578019df8fc1f73dc77ef8a22832f1d6a732d19a9d62",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCollapseRadicalReduction",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:saturation",
+      "environment": "theorem",
+      "title": "defect saturation",
+      "statement_sha256": "43eab2fa31ed26b914c761ab6f90df6970901cdefd177808e177faef89733d3f",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptDefectSaturation",
           "covers": "the complete printed proposition"
         }
       ]
