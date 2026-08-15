@@ -97,9 +97,10 @@ it; nothing downstream consumed the old pair.
 
 **On the reachability warning.** `bin/cairn check` reports this claim as open
 but unreachable from a root, and that is correct rather than an oversight: it
-is a **necessary** condition for a witness, not a prerequisite of one. The only
-route touching it, `witness-yields-two-point-approximation`, runs *into* it from
-the witness claim. Nothing requires it, and nothing should until the converse —
+is a **necessary** condition for a witness, not a prerequisite of one. Both
+routes touching it — `witness-yields-two-point-approximation` from the witness
+claim, and `two-point-via-congruence-cuts` from the congruence cut problem —
+run *into* it. Nothing requires it, and nothing should until the converse —
 the resolution question of that route's final section — is settled. If the
 converse is proved, this claim becomes a genuine prerequisite and the warning
 resolves itself.
