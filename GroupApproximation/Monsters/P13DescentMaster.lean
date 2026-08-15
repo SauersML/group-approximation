@@ -83,7 +83,7 @@ theorem viol_succ_lt {V : List Letter} {b : Fin 3 → ℤ} {v : ℕ}
     (hb1 : vnorm b = 1) (hv : Viol V b v) : v + 1 < V.length := by
   obtain ⟨hlen, hlt⟩ := hv
   by_contra h
-  push_neg at h
+  push Not at h
   have h1 : v + 1 = V.length ∨ V.length < v + 1 := by omega
   have hle : V.length ≤ v + 1 := h
   have hs1 : sigma V b (v + 1) = vnorm b := sigma_of_ge V b hle
@@ -99,11 +99,11 @@ theorem side_le_of_top {V : List Letter} {b : Fin 3 → ℤ}
     sigma V b (topViol V b hex + 2) ≤ sigma V b (topViol V b hex + 1) := by
   obtain ⟨hv, htop⟩ := topViol_spec hex
   by_contra h
-  push_neg at h
+  push Not at h
   have hv1 : Viol V b (topViol V b hex + 1) := by
     refine ⟨?_, h⟩
     by_contra hlen
-    push_neg at hlen
+    push Not at hlen
     have := sigma_of_ge V b hlen
     have h2 : sigma V b (topViol V b hex + 1 + 1) ≤ vnorm b := by
       rw [sigma_of_ge V b (by omega)]
@@ -210,14 +210,14 @@ private theorem unit_mul {c cp : ℤ} (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;> norm_num
 
 private theorem unitWord_nil : UnitWord ([] : List Letter) :=
-  fun l hl => absurd hl (List.not_mem_nil l)
+  fun l hl => absurd hl List.not_mem_nil
 
 private theorem unitWord_single {l₁ : Letter}
     (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) : UnitWord [l₁] := by
   intro l hl
   rcases List.mem_cons.mp hl with rfl | hl
   · exact h₁
-  · exact absurd hl (List.not_mem_nil l)
+  · exact absurd hl List.not_mem_nil
 
 private theorem unitWord_pair {l₁ l₂ : Letter}
     (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) (h₂ : l₂.2 = 1 ∨ l₂.2 = -1) :
@@ -335,6 +335,13 @@ private theorem pi_w13_neg : x 1 (-1) * x 4 1 * x 1 (-1) = w13⁻¹ :=
 private theorem pi_w23_neg : x 3 (-1) * x 5 1 * x 3 (-1) = w23⁻¹ :=
   w23_inv_word.symm
 
+/-- The positive-led braid words are the swaps, definitionally. -/
+private theorem pi_w_pos : x 0 1 * x 2 (-1) * x 0 1 = w := rfl
+
+private theorem pi_w13_pos : x 1 1 * x 4 (-1) * x 1 1 = w13 := rfl
+
+private theorem pi_w23_pos : x 3 1 * x 5 (-1) * x 3 1 = w23 := rfl
+
 /-- The inverted braid relations, from the displayed ones. -/
 private theorem braid_neg :
     x 0 (-1) * x 2 1 * x 0 (-1) = x 2 1 * x 0 (-1) * x 2 1 := by
@@ -386,7 +393,7 @@ private theorem nu_w23_neg : x 5 (-1) * x 3 1 * x 5 (-1) = w23 :=
 
 /-! ## Inverse actions of the signed swaps -/
 
-private theorem act_w_inv (v : Fin 3 → ℤ) :
+private theorem act_winv_vec (v : Fin 3 → ℤ) :
     act (toSL3 w⁻¹) v = ![-(v 1), v 0, v 2] := by
   have h : act (toSL3 w) ![-(v 1), v 0, v 2] = v := by
     rw [act_w]
@@ -397,7 +404,7 @@ private theorem act_w_inv (v : Fin 3 → ℤ) :
     _ = ![-(v 1), v 0, v 2] := by
         rw [← act_mul, ← map_mul, inv_mul_cancel, map_one, act_one]
 
-private theorem act_w13_inv (v : Fin 3 → ℤ) :
+private theorem act_w13inv_vec (v : Fin 3 → ℤ) :
     act (toSL3 w13⁻¹) v = ![-(v 2), v 1, v 0] := by
   have h : act (toSL3 w13) ![-(v 2), v 1, v 0] = v := by
     rw [act_w13]
@@ -408,7 +415,7 @@ private theorem act_w13_inv (v : Fin 3 → ℤ) :
     _ = ![-(v 2), v 1, v 0] := by
         rw [← act_mul, ← map_mul, inv_mul_cancel, map_one, act_one]
 
-private theorem act_w23_inv (v : Fin 3 → ℤ) :
+private theorem act_w23inv_vec (v : Fin 3 → ℤ) :
     act (toSL3 w23⁻¹) v = ![v 0, -(v 2), v 1] := by
   have h : act (toSL3 w23) ![v 0, -(v 2), v 1] = v := by
     rw [act_w23]
@@ -788,6 +795,264 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       exact hcut t ht0 htl
   exact meas_lt_of_splice V b D F
 
+
+/-! ## Full-package route builders
+
+Each route consumes the split data at the topmost worst violation
+together with a replacement-block certificate and produces the
+complete descent package: the new word, the new signed-swap tail,
+closure, unit letters, the evaluation identity, and the measure
+drop. -/
+
+private theorem route_plain (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (P' : List Letter) (hlen : P'.length ≤ 3) (hUP : UnitWord P')
+    (hid : eval P' = letterVal p * letterVal q)
+    (hcut : ∀ t, 0 < t → t < P'.length →
+      vnorm (act (toSL3 (eval (P'.drop t)))
+        (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  obtain ⟨heval, hlt⟩ := step_plain V (act (toSL3 mon) e3) hex A C p q
+    hsplit hAlen P' hlen hid hcut
+  have hUA : UnitWord A := fun l hl => hU l (by
+    rw [hsplit]
+    exact List.mem_append.mpr (Or.inl (List.mem_append.mpr (Or.inl hl))))
+  have hUC : UnitWord C := fun l hl => hU l (by
+    rw [hsplit]
+    exact List.mem_append.mpr (Or.inr hl))
+  exact ⟨A ++ P' ++ C, mon, hmon,
+    unitWord_append (unitWord_append hUA hUP) hUC,
+    by rw [heval], hlt⟩
+
+private theorem route_emit (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (P' : List Letter) (hlen : P'.length ≤ 3) (hUP : UnitWord P')
+    (wv : P13) (hwv : wv ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (f : Letter → Letter)
+    (hf : ∀ l, wv * letterVal l * wv⁻¹ = letterVal (f l))
+    (hfsign : ∀ l : Letter, (f l).2 = l.2 ∨ (f l).2 = -l.2)
+    (hnorm : ∀ z, vnorm (act (toSL3 wv) z) = vnorm z)
+    (hid : eval P' * wv = letterVal p * letterVal q)
+    (hcut : ∀ t, 0 < t → t < P'.length →
+      vnorm (act (toSL3 (eval (P'.drop t)))
+        (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3)))) <
+        lam V (act (toSL3 mon) e3)) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  obtain ⟨heval, hlt⟩ := step_emit V (act (toSL3 mon) e3) hex A C p q
+    hsplit hAlen P' hlen wv f hf hnorm hid hcut
+  have hUA : UnitWord A := fun l hl => hU l (by
+    rw [hsplit]
+    exact List.mem_append.mpr (Or.inl (List.mem_append.mpr (Or.inl hl))))
+  have hUC : UnitWord C := fun l hl => hU l (by
+    rw [hsplit]
+    exact List.mem_append.mpr (Or.inr hl))
+  refine ⟨A ++ P' ++ C.map f, wv * mon,
+    Subgroup.mul_mem _ hwv hmon,
+    unitWord_append (unitWord_append hUA hUP) (unitWord_map hfsign hUC),
+    ?_, ?_⟩
+  · rw [heval, mul_assoc]
+  · have hbase : act (toSL3 (wv * mon)) e3 =
+        act (toSL3 wv) (act (toSL3 mon) e3) := by
+      rw [map_mul, act_mul]
+    rw [hbase]
+    exact hlt
+
+private theorem route_nil (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (hid0 : letterVal p * letterVal q = 1) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  refine route_plain V mon hmon hU hex A C p q hsplit hAlen []
+    (by norm_num) unitWord_nil (by rw [eval_nil, hid0]) ?_
+  intro t _ htl
+  simp only [List.length_nil] at htl
+  omega
+
+private theorem route_pair (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (l₁ l₂ : Letter)
+    (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) (h₂ : l₂.2 = 1 ∨ l₂.2 = -1)
+    (hid2 : letterVal l₁ * letterVal l₂ = letterVal p * letterVal q)
+    (h1 : vnorm (act (toSL3 (letterVal l₂))
+      (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  refine route_plain V mon hmon hU hex A C p q hsplit hAlen [l₁, l₂]
+    (by norm_num) (unitWord_pair h₁ h₂)
+    (by rw [eval_pair']; exact hid2) ?_
+  intro t ht0 htl
+  simp only [List.length_cons, List.length_nil] at htl
+  have ht1 : t = 1 := by omega
+  subst ht1
+  show vnorm (act (toSL3 (eval [l₂]))
+    (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)
+  rw [eval_single]
+  exact h1
+
+private theorem route_triple (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (l₁ l₂ l₃ : Letter)
+    (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) (h₂ : l₂.2 = 1 ∨ l₂.2 = -1)
+    (h₃ : l₃.2 = 1 ∨ l₃.2 = -1)
+    (hid3 : letterVal l₁ * letterVal l₂ * letterVal l₃ =
+      letterVal p * letterVal q)
+    (h1 : vnorm (act (toSL3 (letterVal l₃))
+      (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3))
+    (h2 : vnorm (act (toSL3 (letterVal l₂)) (act (toSL3 (letterVal l₃))
+      (vecOf C (act (toSL3 mon) e3)))) < lam V (act (toSL3 mon) e3)) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  refine route_plain V mon hmon hU hex A C p q hsplit hAlen
+    [l₁, l₂, l₃] (by norm_num) (unitWord_triple h₁ h₂ h₃)
+    (by rw [eval_triple]; exact hid3) ?_
+  intro t ht0 htl
+  simp only [List.length_cons, List.length_nil] at htl
+  have ht : t = 1 ∨ t = 2 := by omega
+  rcases ht with rfl | rfl
+  · show vnorm (act (toSL3 (eval [l₂, l₃]))
+      (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)
+    rw [eval_pair', map_mul, act_mul]
+    exact h2
+  · show vnorm (act (toSL3 (eval [l₃]))
+      (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)
+    rw [eval_single]
+    exact h1
+
+private theorem route_single_emit (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (l₁ : Letter) (h₁ : l₁.2 = 1 ∨ l₁.2 = -1)
+    (wv : P13) (hwv : wv ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (f : Letter → Letter)
+    (hf : ∀ l, wv * letterVal l * wv⁻¹ = letterVal (f l))
+    (hfsign : ∀ l : Letter, (f l).2 = l.2 ∨ (f l).2 = -l.2)
+    (hnorm : ∀ z, vnorm (act (toSL3 wv) z) = vnorm z)
+    (hid1 : letterVal l₁ * wv = letterVal p * letterVal q) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  refine route_emit V mon hmon hU hex A C p q hsplit hAlen [l₁]
+    (by norm_num) (unitWord_single h₁) wv hwv f hf hfsign hnorm
+    (by rw [eval_single]; exact hid1) ?_
+  intro t ht0 htl
+  simp only [List.length_cons, List.length_nil] at htl
+  omega
+
+private theorem route_triple_emit (V : List Letter) (mon : P13)
+    (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (hU : UnitWord V)
+    (hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) = lam V (act (toSL3 mon) e3))
+    (A C : List Letter) (p q : Letter)
+    (hsplit : V = A ++ [p, q] ++ C)
+    (hAlen : A.length = topViol V (act (toSL3 mon) e3) hex)
+    (l₁ l₂ l₃ : Letter)
+    (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) (h₂ : l₂.2 = 1 ∨ l₂.2 = -1)
+    (h₃ : l₃.2 = 1 ∨ l₃.2 = -1)
+    (wv : P13) (hwv : wv ∈ Subgroup.closure ({w13, w23} : Set P13))
+    (f : Letter → Letter)
+    (hf : ∀ l, wv * letterVal l * wv⁻¹ = letterVal (f l))
+    (hfsign : ∀ l : Letter, (f l).2 = l.2 ∨ (f l).2 = -l.2)
+    (hnorm : ∀ z, vnorm (act (toSL3 wv) z) = vnorm z)
+    (hid3 : letterVal l₁ * letterVal l₂ * letterVal l₃ * wv =
+      letterVal p * letterVal q)
+    (h1 : vnorm (act (toSL3 (letterVal l₃))
+      (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3)))) <
+      lam V (act (toSL3 mon) e3))
+    (h2 : vnorm (act (toSL3 (letterVal l₂)) (act (toSL3 (letterVal l₃))
+      (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3))))) <
+      lam V (act (toSL3 mon) e3)) :
+    ∃ (V' : List Letter) (mon' : P13),
+      mon' ∈ Subgroup.closure ({w13, w23} : Set P13) ∧
+      UnitWord V' ∧
+      eval V * mon = eval V' * mon' ∧
+      Prod.Lex (· < ·) (· < ·)
+        (meas V' (act (toSL3 mon') e3))
+        (meas V (act (toSL3 mon) e3)) := by
+  refine route_emit V mon hmon hU hex A C p q hsplit hAlen
+    [l₁, l₂, l₃] (by norm_num) (unitWord_triple h₁ h₂ h₃)
+    wv hwv f hf hfsign hnorm (by rw [eval_triple]; exact hid3) ?_
+  intro t ht0 htl
+  simp only [List.length_cons, List.length_nil] at htl
+  have ht : t = 1 ∨ t = 2 := by omega
+  rcases ht with rfl | rfl
+  · show vnorm (act (toSL3 (eval [l₂, l₃]))
+      (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3)))) <
+      lam V (act (toSL3 mon) e3)
+    rw [eval_pair', map_mul, act_mul]
+    exact h2
+  · show vnorm (act (toSL3 (eval [l₃]))
+      (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3)))) <
+      lam V (act (toSL3 mon) e3)
+    rw [eval_single]
+    exact h1
+
 /-- **One descent step.**  A word with a violation rewrites, up to a
 signed-swap element pushed rightward, into a configuration of strictly
 smaller measure. -/
@@ -802,7 +1067,1075 @@ theorem descent_step (V : List Letter) (mon : P13)
       Prod.Lex (· < ·) (· < ·)
         (meas V' (act (toSL3 mon') e3))
         (meas V (act (toSL3 mon) e3)) := by
-  sorry
+  obtain ⟨j₀, hj₀⟩ := hviol
+  have hex : ∃ j, Viol V (act (toSL3 mon) e3) j ∧
+      sigma V (act (toSL3 mon) e3) (j + 1) =
+        lam V (act (toSL3 mon) e3) := exists_top hj₀
+  have hb1 : vnorm (act (toSL3 mon) e3) = 1 :=
+    vnorm_corner (isCorner_of_closure hmon)
+  obtain ⟨hvTop, htop⟩ := topViol_spec hex
+  set v := topViol V (act (toSL3 mon) e3) hex with hv_def
+  have hvlt : v + 1 < V.length := viol_succ_lt hb1 hvTop
+  have hvlt0 : v < V.length := by omega
+  have hsplit := word_split V v hvlt
+  rcases hpq : V[v] with ⟨i, c⟩
+  rcases hq : V[v + 1] with ⟨ip, cp⟩
+  rw [hpq, hq] at hsplit
+  set A := V.take v with hA_def
+  set C := V.drop (v + 2)
+  have hAlen : A.length = v := by
+    rw [hA_def, List.length_take]
+    exact Nat.min_eq_left (Nat.le_of_lt hvlt0)
+  have hc : c = 1 ∨ c = -1 := by
+    have hm : ((i, c) : Letter) ∈ V := by
+      rw [hsplit]; simp
+    exact hU _ hm
+  have hcp : cp = 1 ∨ cp = -1 := by
+    have hm : ((ip, cp) : Letter) ∈ V := by
+      rw [hsplit]; simp
+    exact hU _ hm
+  obtain ⟨hσ0, hσ1, hσ2⟩ := sigma_pair_coords A C (i, c) (ip, cp)
+    (act (toSL3 mon) e3)
+  rw [← hsplit, hAlen] at hσ0 hσ1 hσ2
+  have hviolC : vnorm (act (toSL3 (x i c)) (act (toSL3 (x ip cp))
+      (vecOf C (act (toSL3 mon) e3)))) <
+      vnorm (act (toSL3 (x ip cp)) (vecOf C (act (toSL3 mon) e3))) := by
+    obtain ⟨-, h⟩ := hvTop
+    rw [hσ0, hσ1] at h
+    exact h
+  have hlamC : vnorm (act (toSL3 (x ip cp))
+      (vecOf C (act (toSL3 mon) e3))) =
+      lam V (act (toSL3 mon) e3) := by
+    have h := htop
+    rw [hσ1] at h
+    exact h
+  have hsideC : vnorm (vecOf C (act (toSL3 mon) e3)) ≤
+      vnorm (act (toSL3 (x ip cp)) (vecOf C (act (toSL3 mon) e3))) := by
+    have h := side_le_of_top hex
+    rw [← hv_def] at h
+    rw [hσ1, hσ2] at h
+    exact h
+  fin_cases i <;> fin_cases ip
+  · -- (0, 0): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_0 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_0 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (0, 1): same write
+    rcases exist_sw_01 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, cp) : Letter) ((0, c) : Letter) hcp hc
+        ((x_commute_12_13 c cp).eq.symm) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand3_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, -(c * cp)) : Letter) ((0, c) : Letter)
+        ((3, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_12_13 c cp).eq.symm))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand5_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, -(c * cp)) : Letter) ((1, cp) : Letter)
+        ((5, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (0, 2): braid pair
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_02 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 2 1 * w = x 0 1 * x 2 (-1) := by
+        calc x 2 1 * w
+            = x 2 1 * (x 2 (-1) * x 0 1 * x 2 (-1)) := by
+              rw [← nu_w_neg]
+          _ = x 2 1 * x 2 (-1) * (x 0 1 * x 2 (-1)) := by
+              group
+          _ = x 0 1 * x 2 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, 1) : Letter) (Or.inl rfl)
+        w w_mem_closure wConj w_conj_letter wConj_sign
+        vnorm_act_w hid1
+    · have hid1 : x 2 (-1) * w⁻¹ = x 0 (-1) * x 2 1 := by
+        calc x 2 (-1) * w⁻¹
+            = x 2 (-1) * (x 2 1 * x 0 (-1) * x 2 1) := by
+              rw [← nu_w_pos]
+          _ = x 2 (-1) * x 2 1 * (x 0 (-1) * x 2 1) := by
+              group
+          _ = x 0 (-1) * x 2 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, -1) : Letter) (Or.inr rfl)
+        w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+        wConjInv_sign vnorm_act_winv hid1
+    · exact (braid_aligned_02 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (0, 3): Steinberg pair, forward
+    rcases exist_st_03 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, c * cp) : Letter) ((3, cp) : Letter)
+        ((0, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_03 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, cp) : Letter) ((1, c * cp) : Letter)
+        ((0, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_03_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, cp) : Letter) ((0, c) : Letter)
+        ((1, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_03_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, 1 * vecOf C (act (toSL3 mon) e3) 2,
+          -(1 * vecOf C (act (toSL3 mon) e3) 1)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 5 1 * x 0 c * x 3 (-1) *
+          (x 3 1 * x 5 (-1) * x 3 1) =
+          x 0 c * x 3 1 := em_03 c 1
+        rw [pi_w23_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((5, 1) : Letter) ((0, c) : Letter)
+          ((3, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -1 * vecOf C (act (toSL3 mon) e3) 2,
+          -(-1 * vecOf C (act (toSL3 mon) e3) 1)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 5 (-1) * x 0 c * x 3 1 *
+          (x 3 (-1) * x 5 1 * x 3 (-1)) =
+          x 0 c * x 3 (-1) := em_03 c (-1)
+        rw [pi_w23_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((5, -1) : Letter) ((0, c) : Letter)
+          ((3, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (0, 4): Steinberg pair, reversed
+    rcases exist_st_04' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, -(cp * c)) : Letter) ((4, cp) : Letter)
+        ((0, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_04 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
+          1 * vecOf C (act (toSL3 mon) e3) 0] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 1 1 * x 0 c * x 4 (-1) *
+          (x 4 1 * x 1 (-1) * x 4 1) =
+          x 0 c * x 4 1 := em_04 c 1
+        rw [nu_w13_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((1, 1) : Letter) ((0, c) : Letter)
+          ((4, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
+          -1 * vecOf C (act (toSL3 mon) e3) 0] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 1 (-1) * x 0 c * x 4 1 *
+          (x 4 (-1) * x 1 1 * x 4 (-1)) =
+          x 0 c * x 4 (-1) := em_04 c (-1)
+        rw [nu_w13_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((1, -1) : Letter) ((0, c) : Letter)
+          ((4, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (0, 5): same read — swap
+    have h1 := exist_sr_05 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((5, cp) : Letter) ((0, c) : Letter) hcp hc
+      ((x_commute_12_32 c cp).eq.symm)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (1, 0): same write
+    rcases exist_sw_10 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, cp) : Letter) ((1, c) : Letter) hcp hc
+        ((x_commute_12_13 cp c).eq) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand5_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, -(c * cp)) : Letter) ((1, c) : Letter)
+        ((5, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_12_13 cp c).eq))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand3_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, -(c * cp)) : Letter) ((0, cp) : Letter)
+        ((3, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (1, 1): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_1 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_1 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (1, 2): Steinberg pair, reversed
+    rcases exist_st_12' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, -(cp * c)) : Letter) ((2, cp) : Letter)
+        ((1, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_12 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 1), 1 * vecOf C (act (toSL3 mon) e3) 0,
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 0 1 * x 1 c * x 2 (-1) *
+          (x 2 1 * x 0 (-1) * x 2 1) =
+          x 1 c * x 2 1 := em_12 c 1
+        rw [nu_w_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((0, 1) : Letter) ((1, c) : Letter)
+          ((2, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+          wConjInv_sign vnorm_act_winv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 1), -1 * vecOf C (act (toSL3 mon) e3) 0,
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 0 (-1) * x 1 c * x 2 1 *
+          (x 2 (-1) * x 0 1 * x 2 (-1)) =
+          x 1 c * x 2 (-1) := em_12 c (-1)
+        rw [nu_w_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((0, -1) : Letter) ((1, c) : Letter)
+          ((2, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (1, 3): same read — swap
+    have h1 := exist_sr_13 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((3, cp) : Letter) ((1, c) : Letter) hcp hc
+      ((x_commute_13_23 c cp).eq.symm)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (1, 4): braid pair
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_14 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 4 1 * w13 = x 1 1 * x 4 (-1) := by
+        calc x 4 1 * w13
+            = x 4 1 * (x 4 (-1) * x 1 1 * x 4 (-1)) := by
+              rw [← nu_w13_neg]
+          _ = x 4 1 * x 4 (-1) * (x 1 1 * x 4 (-1)) := by
+              group
+          _ = x 1 1 * x 4 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, 1) : Letter) (Or.inl rfl)
+        w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+        vnorm_act_w13 hid1
+    · have hid1 : x 4 (-1) * w13⁻¹ = x 1 (-1) * x 4 1 := by
+        calc x 4 (-1) * w13⁻¹
+            = x 4 (-1) * (x 4 1 * x 1 (-1) * x 4 1) := by
+              rw [← nu_w13_pos]
+          _ = x 4 (-1) * x 4 1 * (x 1 (-1) * x 4 1) := by
+              group
+          _ = x 1 (-1) * x 4 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, -1) : Letter) (Or.inr rfl)
+        w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+        w13inv_hf w13ConjInv_sign vnorm_act_w13inv hid1
+    · exact (braid_aligned_14 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (1, 5): Steinberg pair, forward
+    rcases exist_st_15' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, c * cp) : Letter) ((5, cp) : Letter)
+        ((1, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_15 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, cp) : Letter) ((0, c * cp) : Letter)
+        ((1, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_15_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, cp) : Letter) ((1, c) : Letter)
+        ((0, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_15_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(1 * vecOf C (act (toSL3 mon) e3) 2),
+          1 * vecOf C (act (toSL3 mon) e3) 1] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 3 1 * x 1 c * x 5 (-1) *
+          (x 5 1 * x 3 (-1) * x 5 1) =
+          x 1 c * x 5 1 := em_15 c 1
+        rw [nu_w23_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((3, 1) : Letter) ((1, c) : Letter)
+          ((5, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(-1 * vecOf C (act (toSL3 mon) e3) 2),
+          -1 * vecOf C (act (toSL3 mon) e3) 1] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 3 (-1) * x 1 c * x 5 1 *
+          (x 5 (-1) * x 3 1 * x 5 (-1)) =
+          x 1 c * x 5 (-1) := em_15 c (-1)
+        rw [nu_w23_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((3, -1) : Letter) ((1, c) : Letter)
+          ((5, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (2, 0): braid pair, reversed
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_20 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 0 1 * w⁻¹ = x 2 1 * x 0 (-1) := by
+        calc x 0 1 * w⁻¹
+            = x 0 1 * (x 0 (-1) * x 2 1 * x 0 (-1)) := by
+              rw [← pi_w_neg]
+          _ = x 0 1 * x 0 (-1) * (x 2 1 * x 0 (-1)) := by
+              group
+          _ = x 2 1 * x 0 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, 1) : Letter) (Or.inl rfl)
+        w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+        wConjInv_sign vnorm_act_winv hid1
+    · have hid1 : x 0 (-1) * w = x 2 (-1) * x 0 1 := by
+        calc x 0 (-1) * w
+            = x 0 (-1) * (x 0 1 * x 2 (-1) * x 0 1) := by
+              rw [← pi_w_pos]
+          _ = x 0 (-1) * x 0 1 * (x 2 (-1) * x 0 1) := by
+              group
+          _ = x 2 (-1) * x 0 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, -1) : Letter) (Or.inr rfl)
+        w w_mem_closure wConj w_conj_letter wConj_sign
+        vnorm_act_w hid1
+    · exact (braid_aligned_20 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (2, 1): Steinberg pair, forward
+    rcases exist_st_21 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, c * cp) : Letter) ((1, cp) : Letter)
+        ((2, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_21 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, cp) : Letter) ((3, c * cp) : Letter)
+        ((2, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_21_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, cp) : Letter) ((2, c) : Letter)
+        ((3, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_21_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
+          -(1 * vecOf C (act (toSL3 mon) e3) 0)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 4 1 * x 2 c * x 1 (-1) *
+          (x 1 1 * x 4 (-1) * x 1 1) =
+          x 2 c * x 1 1 := em_21 c 1
+        rw [pi_w13_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((4, 1) : Letter) ((2, c) : Letter)
+          ((1, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
+          -(-1 * vecOf C (act (toSL3 mon) e3) 0)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 4 (-1) * x 2 c * x 1 1 *
+          (x 1 (-1) * x 4 1 * x 1 (-1)) =
+          x 2 c * x 1 (-1) := em_21 c (-1)
+        rw [pi_w13_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((4, -1) : Letter) ((2, c) : Letter)
+          ((1, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (2, 2): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_2 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_2 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (2, 3): same write
+    rcases exist_sw_23 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, cp) : Letter) ((2, c) : Letter) hcp hc
+        ((x_commute_21_23 c cp).eq.symm) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand1_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, -(c * cp)) : Letter) ((2, c) : Letter)
+        ((1, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_21_23 c cp).eq.symm))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand4_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, -(c * cp)) : Letter) ((3, cp) : Letter)
+        ((4, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (2, 4): same read — swap
+    have h1 := exist_sr_24 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((4, cp) : Letter) ((2, c) : Letter) hcp hc
+      ((x_commute_21_31 c cp).eq.symm)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (2, 5): Steinberg pair, reversed
+    rcases exist_st_25' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, -(cp * c)) : Letter) ((5, cp) : Letter)
+        ((2, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_25 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(1 * vecOf C (act (toSL3 mon) e3) 2),
+          1 * vecOf C (act (toSL3 mon) e3) 1] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 3 1 * x 2 c * x 5 (-1) *
+          (x 5 1 * x 3 (-1) * x 5 1) =
+          x 2 c * x 5 1 := em_25 c 1
+        rw [nu_w23_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((3, 1) : Letter) ((2, c) : Letter)
+          ((5, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -(-1 * vecOf C (act (toSL3 mon) e3) 2),
+          -1 * vecOf C (act (toSL3 mon) e3) 1] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 3 (-1) * x 2 c * x 5 1 *
+          (x 5 (-1) * x 3 1 * x 5 (-1)) =
+          x 2 c * x 5 (-1) := em_25 c (-1)
+        rw [nu_w23_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((3, -1) : Letter) ((2, c) : Letter)
+          ((5, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (3, 0): Steinberg pair, reversed
+    rcases exist_st_30 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, -(cp * c)) : Letter) ((0, cp) : Letter)
+        ((3, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_30 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 1, -(1 * vecOf C (act (toSL3 mon) e3) 0),
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 2 1 * x 3 c * x 0 (-1) *
+          (x 0 1 * x 2 (-1) * x 0 1) =
+          x 3 c * x 0 1 := em_30 c 1
+        rw [pi_w_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((2, 1) : Letter) ((3, c) : Letter)
+          ((0, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 1, -(-1 * vecOf C (act (toSL3 mon) e3) 0),
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 2 (-1) * x 3 c * x 0 1 *
+          (x 0 (-1) * x 2 1 * x 0 (-1)) =
+          x 3 c * x 0 (-1) := em_30 c (-1)
+        rw [pi_w_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((2, -1) : Letter) ((3, c) : Letter)
+          ((0, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+          wConjInv_sign vnorm_act_winv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (3, 1): same read — swap
+    have h1 := exist_sr_31 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((1, cp) : Letter) ((3, c) : Letter) hcp hc
+      ((x_commute_13_23 cp c).eq)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (3, 2): same write
+    rcases exist_sw_32 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, cp) : Letter) ((3, c) : Letter) hcp hc
+        ((x_commute_21_23 cp c).eq) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand4_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, -(c * cp)) : Letter) ((3, c) : Letter)
+        ((4, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_21_23 cp c).eq))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand1_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, -(c * cp)) : Letter) ((2, cp) : Letter)
+        ((1, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (3, 3): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_3 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_3 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (3, 4): Steinberg pair, forward
+    rcases exist_st_34' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, c * cp) : Letter) ((4, cp) : Letter)
+        ((3, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_34 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, cp) : Letter) ((2, c * cp) : Letter)
+        ((3, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_34_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, cp) : Letter) ((3, c) : Letter)
+        ((2, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_34_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
+          1 * vecOf C (act (toSL3 mon) e3) 0] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 1 1 * x 3 c * x 4 (-1) *
+          (x 4 1 * x 1 (-1) * x 4 1) =
+          x 3 c * x 4 1 := em_34 c 1
+        rw [nu_w13_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((1, 1) : Letter) ((3, c) : Letter)
+          ((4, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 2), vecOf C (act (toSL3 mon) e3) 1,
+          -1 * vecOf C (act (toSL3 mon) e3) 0] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 1 (-1) * x 3 c * x 4 1 *
+          (x 4 (-1) * x 1 1 * x 4 (-1)) =
+          x 3 c * x 4 (-1) := em_34 c (-1)
+        rw [nu_w13_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((1, -1) : Letter) ((3, c) : Letter)
+          ((4, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (3, 5): braid pair
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_35 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 5 1 * w23 = x 3 1 * x 5 (-1) := by
+        calc x 5 1 * w23
+            = x 5 1 * (x 5 (-1) * x 3 1 * x 5 (-1)) := by
+              rw [← nu_w23_neg]
+          _ = x 5 1 * x 5 (-1) * (x 3 1 * x 5 (-1)) := by
+              group
+          _ = x 3 1 * x 5 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, 1) : Letter) (Or.inl rfl)
+        w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+        vnorm_act_w23 hid1
+    · have hid1 : x 5 (-1) * w23⁻¹ = x 3 (-1) * x 5 1 := by
+        calc x 5 (-1) * w23⁻¹
+            = x 5 (-1) * (x 5 1 * x 3 (-1) * x 5 1) := by
+              rw [← nu_w23_pos]
+          _ = x 5 (-1) * x 5 1 * (x 3 (-1) * x 5 1) := by
+              group
+          _ = x 3 (-1) * x 5 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, -1) : Letter) (Or.inr rfl)
+        w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+        w23inv_hf w23ConjInv_sign vnorm_act_w23inv hid1
+    · exact (braid_aligned_35 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (4, 0): Steinberg pair, forward
+    rcases exist_st_40 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, c * cp) : Letter) ((0, cp) : Letter)
+        ((4, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_40 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, cp) : Letter) ((5, c * cp) : Letter)
+        ((4, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_40_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, cp) : Letter) ((4, c) : Letter)
+        ((5, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_40_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 1, -(1 * vecOf C (act (toSL3 mon) e3) 0),
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 2 1 * x 4 c * x 0 (-1) *
+          (x 0 1 * x 2 (-1) * x 0 1) =
+          x 4 c * x 0 1 := em_40 c 1
+        rw [pi_w_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((2, 1) : Letter) ((4, c) : Letter)
+          ((0, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 1, -(-1 * vecOf C (act (toSL3 mon) e3) 0),
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 2 (-1) * x 4 c * x 0 1 *
+          (x 0 (-1) * x 2 1 * x 0 (-1)) =
+          x 4 c * x 0 (-1) := em_40 c (-1)
+        rw [pi_w_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((2, -1) : Letter) ((4, c) : Letter)
+          ((0, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+          wConjInv_sign vnorm_act_winv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (4, 1): braid pair, reversed
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_41 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 1 1 * w13⁻¹ = x 4 1 * x 1 (-1) := by
+        calc x 1 1 * w13⁻¹
+            = x 1 1 * (x 1 (-1) * x 4 1 * x 1 (-1)) := by
+              rw [← pi_w13_neg]
+          _ = x 1 1 * x 1 (-1) * (x 4 1 * x 1 (-1)) := by
+              group
+          _ = x 4 1 * x 1 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, 1) : Letter) (Or.inl rfl)
+        w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+        w13inv_hf w13ConjInv_sign vnorm_act_w13inv hid1
+    · have hid1 : x 1 (-1) * w13 = x 4 (-1) * x 1 1 := by
+        calc x 1 (-1) * w13
+            = x 1 (-1) * (x 1 1 * x 4 (-1) * x 1 1) := by
+              rw [← pi_w13_pos]
+          _ = x 1 (-1) * x 1 1 * (x 4 (-1) * x 1 1) := by
+              group
+          _ = x 4 (-1) * x 1 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((1, -1) : Letter) (Or.inr rfl)
+        w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+        vnorm_act_w13 hid1
+    · exact (braid_aligned_41 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (4, 2): same read — swap
+    have h1 := exist_sr_42 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((2, cp) : Letter) ((4, c) : Letter) hcp hc
+      ((x_commute_21_31 cp c).eq)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (4, 3): Steinberg pair, reversed
+    rcases exist_st_43 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, -(cp * c)) : Letter) ((3, cp) : Letter)
+        ((4, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_43 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, 1 * vecOf C (act (toSL3 mon) e3) 2,
+          -(1 * vecOf C (act (toSL3 mon) e3) 1)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 5 1 * x 4 c * x 3 (-1) *
+          (x 3 1 * x 5 (-1) * x 3 1) =
+          x 4 c * x 3 1 := em_43 c 1
+        rw [pi_w23_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((5, 1) : Letter) ((4, c) : Letter)
+          ((3, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+          vnorm_act_w23 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![vecOf C (act (toSL3 mon) e3) 0, -1 * vecOf C (act (toSL3 mon) e3) 2,
+          -(-1 * vecOf C (act (toSL3 mon) e3) 1)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w23inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 5 (-1) * x 4 c * x 3 1 *
+          (x 3 (-1) * x 5 1 * x 3 (-1)) =
+          x 4 c * x 3 (-1) := em_43 c (-1)
+        rw [pi_w23_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((5, -1) : Letter) ((4, c) : Letter)
+          ((3, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+          w23inv_hf w23ConjInv_sign vnorm_act_w23inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (4, 4): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_4 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_4 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (4, 5): same write
+    rcases exist_sw_45 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((5, cp) : Letter) ((4, c) : Letter) hcp hc
+        ((x_commute_31_32 c cp).eq.symm) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand0_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, -(c * cp)) : Letter) ((4, c) : Letter)
+        ((0, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_31_32 c cp).eq.symm))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand2_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, -(c * cp)) : Letter) ((5, cp) : Letter)
+        ((2, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (5, 0): same read — swap
+    have h1 := exist_sr_50 c cp hc hcp _ hviolC hsideC
+    exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+      ((0, cp) : Letter) ((5, c) : Letter) hcp hc
+      ((x_commute_12_32 cp c).eq)
+      (lt_of_lt_of_eq h1 hlamC)
+  · -- (5, 1): Steinberg pair, reversed
+    rcases exist_st_51 c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, -(cp * c)) : Letter) ((1, cp) : Letter)
+        ((5, c) : Letter)
+        (unit_neg (unit_mul hcp hc)) hcp hc ((stB_51 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
+          -(1 * vecOf C (act (toSL3 mon) e3) 0)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 4 1 * x 5 c * x 1 (-1) *
+          (x 1 1 * x 4 (-1) * x 1 1) =
+          x 5 c * x 1 1 := em_51 c 1
+        rw [pi_w13_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((4, 1) : Letter) ((5, c) : Letter)
+          ((1, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w13 w13_mem_closure w13Conj w13_conj_letter w13Conj_sign
+          vnorm_act_w13 hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-1 * vecOf C (act (toSL3 mon) e3) 2, vecOf C (act (toSL3 mon) e3) 1,
+          -(-1 * vecOf C (act (toSL3 mon) e3) 0)] :
+          Fin 3 → ℤ) =
+          act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w13inv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 4 (-1) * x 5 c * x 1 1 *
+          (x 1 (-1) * x 4 1 * x 1 (-1)) =
+          x 5 c * x 1 (-1) := em_51 c (-1)
+        rw [pi_w13_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((4, -1) : Letter) ((5, c) : Letter)
+          ((1, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w13⁻¹ (Subgroup.inv_mem _ w13_mem_closure) w13ConjInv
+          w13inv_hf w13ConjInv_sign vnorm_act_w13inv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (5, 2): Steinberg pair, forward
+    rcases exist_st_52' c cp hc hcp _ hviolC hsideC with
+      ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, c * cp) : Letter) ((2, cp) : Letter)
+        ((5, c) : Letter)
+        (unit_mul hc hcp) hcp hc ((st_52 c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, cp) : Letter) ((4, c * cp) : Letter)
+        ((5, c) : Letter)
+        hcp (unit_mul hc hcp) hc ((st_52_mid c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, cp) : Letter) ((5, c) : Letter)
+        ((4, c * cp) : Letter)
+        hcp hc (unit_mul hc hcp) ((st_52_last c cp).symm)
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · rcases hcp with rfl | rfl
+      · have hB : (![-(1 * vecOf C (act (toSL3 mon) e3) 1), 1 * vecOf C (act (toSL3 mon) e3) 0,
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_winv_vec]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 0 1 * x 5 c * x 2 (-1) *
+          (x 2 1 * x 0 (-1) * x 2 1) =
+          x 5 c * x 2 1 := em_52 c 1
+        rw [nu_w_pos] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((0, 1) : Letter) ((5, c) : Letter)
+          ((2, -1) : Letter)
+          (Or.inl rfl) hc (Or.inr rfl)
+          w⁻¹ (Subgroup.inv_mem _ w_mem_closure) wConjInv winv_hf
+          wConjInv_sign vnorm_act_winv hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+      · have hB : (![-(-1 * vecOf C (act (toSL3 mon) e3) 1), -1 * vecOf C (act (toSL3 mon) e3) 0,
+          vecOf C (act (toSL3 mon) e3) 2] :
+          Fin 3 → ℤ) =
+          act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
+          rw [act_w]
+          refine vec3_ext ?_ ?_ ?_ <;> simp
+        rw [hB] at h1 h2
+        have hem : x 0 (-1) * x 5 c * x 2 1 *
+          (x 2 (-1) * x 0 1 * x 2 (-1)) =
+          x 5 c * x 2 (-1) := em_52 c (-1)
+        rw [nu_w_neg] at hem
+        exact route_triple_emit V mon hmon hU hex A C _ _ hsplit hAlen
+          ((0, -1) : Letter) ((5, c) : Letter)
+          ((2, 1) : Letter)
+          (Or.inr rfl) hc (Or.inl rfl)
+          w w_mem_closure wConj w_conj_letter wConj_sign
+          vnorm_act_w hem
+          (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (5, 3): braid pair, reversed
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (braid_aligned_53 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · have hid1 : x 3 1 * w23⁻¹ = x 5 1 * x 3 (-1) := by
+        calc x 3 1 * w23⁻¹
+            = x 3 1 * (x 3 (-1) * x 5 1 * x 3 (-1)) := by
+              rw [← pi_w23_neg]
+          _ = x 3 1 * x 3 (-1) * (x 5 1 * x 3 (-1)) := by
+              group
+          _ = x 5 1 * x 3 (-1) := by
+              rw [x_add, show (1 : ℤ) + -1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, 1) : Letter) (Or.inl rfl)
+        w23⁻¹ (Subgroup.inv_mem _ w23_mem_closure) w23ConjInv
+        w23inv_hf w23ConjInv_sign vnorm_act_w23inv hid1
+    · have hid1 : x 3 (-1) * w23 = x 5 (-1) * x 3 1 := by
+        calc x 3 (-1) * w23
+            = x 3 (-1) * (x 3 1 * x 5 (-1) * x 3 1) := by
+              rw [← pi_w23_pos]
+          _ = x 3 (-1) * x 3 1 * (x 5 (-1) * x 3 1) := by
+              group
+          _ = x 5 (-1) * x 3 1 := by
+              rw [x_add, show (-1 : ℤ) + 1 = 0 from by ring, x_zero,
+                one_mul]
+      exact route_single_emit V mon hmon hU hex A C _ _ hsplit hAlen
+        ((3, -1) : Letter) (Or.inr rfl)
+        w23 w23_mem_closure w23Conj w23_conj_letter w23Conj_sign
+        vnorm_act_w23 hid1
+    · exact (braid_aligned_53 (-1) (Or.inr rfl) _ hviolC hsideC).elim
+  · -- (5, 4): same write
+    rcases exist_sw_54 c cp hc hcp _ hviolC hsideC with
+      h1 | ⟨h1, h2⟩ | ⟨h1, h2⟩
+    · exact route_pair V mon hmon hU hex A C _ _ hsplit hAlen
+        ((4, cp) : Letter) ((5, c) : Letter) hcp hc
+        ((x_commute_31_32 cp c).eq) (lt_of_lt_of_eq h1 hlamC)
+    · have hs := sand2_conj (-(c * cp)) c
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * c) = cp := by
+        rcases hc with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((2, -(c * cp)) : Letter) ((5, c) : Letter)
+        ((2, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hc (unit_mul hc hcp)
+        (hs.trans ((x_commute_31_32 cp c).eq))
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+    · have hs := sand0_conj (-(c * cp)) cp
+      rw [neg_neg] at hs
+      have he : -(-(c * cp) * cp) = c := by
+        rcases hcp with rfl | rfl <;> ring
+      rw [he] at hs
+      exact route_triple V mon hmon hU hex A C _ _ hsplit hAlen
+        ((0, -(c * cp)) : Letter) ((4, cp) : Letter)
+        ((0, c * cp) : Letter)
+        (unit_neg (unit_mul hc hcp)) hcp (unit_mul hc hcp)
+        hs
+        (lt_of_lt_of_eq h1 hlamC) (lt_of_lt_of_eq h2 hlamC)
+  · -- (5, 5): same family
+    rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl
+    · exact (same_aligned_5 1 (Or.inl rfl) _ hviolC hsideC).elim
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ 1)
+    · exact route_nil V mon hmon hU hex A C _ _ hsplit hAlen (cancel_pair _ (-1))
+    · exact (same_aligned_5 (-1) (Or.inr rfl) _ hviolC hsideC).elim
 
 /-- **The descent normal form.**  Every word equals a norm-monotone
 word times a signed-swap element. -/
@@ -835,7 +2168,7 @@ theorem descent_normal_form (W : List Letter) (hUW : UnitWord W) :
           IH _ hlt V' mon' hmon' hUV' rfl
         refine ⟨G, mon'', h1, ?_, h3⟩
         rw [← h2, heval]
-      · push_neg at hv
+      · push Not at hv
         exact ⟨V, mon, hmon, rfl,
           (mono_iff_no_viol V _).mpr fun j hj => hv j hj⟩
 

@@ -61,20 +61,13 @@ theorem w13_inv_conj_letter (l : Letter) :
     calc w13⁻¹ * letterVal (w13Conj l') * w13
         = w13⁻¹ * (w13 * letterVal l' * w13⁻¹) * w13 := by rw [h]
       _ = letterVal l' := by group
-  fin_cases i
-  · -- w13Conj (5, a) = (0, a): so (0,a) = w13Conj (5, a)
-    have := key (5, a)
-    simpa [w13Conj, w13ConjInv] using this
-  · have := key (4, -a)
-    simpa [w13Conj, w13ConjInv] using this
-  · have := key (3, a)
-    simpa [w13Conj, w13ConjInv] using this
-  · have := key (2, -a)
-    simpa [w13Conj, w13ConjInv] using this
-  · have := key (1, -a)
-    simpa [w13Conj, w13ConjInv] using this
-  · have := key (0, -a)
-    simpa [w13Conj, w13ConjInv] using this
+  match i with
+  | 0 => simpa [w13Conj, w13ConjInv] using key (5, a)
+  | 1 => simpa [w13Conj, w13ConjInv] using key (4, -a)
+  | 2 => simpa [w13Conj, w13ConjInv] using key (3, a)
+  | 3 => simpa [w13Conj, w13ConjInv] using key (2, -a)
+  | 4 => simpa [w13Conj, w13ConjInv] using key (1, -a)
+  | 5 => simpa [w13Conj, w13ConjInv] using key (0, -a)
 
 theorem w23_inv_conj_letter (l : Letter) :
     w23⁻¹ * letterVal l * w23 = letterVal (w23ConjInv l) := by
@@ -86,19 +79,13 @@ theorem w23_inv_conj_letter (l : Letter) :
     calc w23⁻¹ * letterVal (w23Conj l') * w23
         = w23⁻¹ * (w23 * letterVal l' * w23⁻¹) * w23 := by rw [h]
       _ = letterVal l' := by group
-  fin_cases i
-  · have := key (1, a)
-    simpa [w23Conj, w23ConjInv] using this
-  · have := key (0, -a)
-    simpa [w23Conj, w23ConjInv] using this
-  · have := key (4, a)
-    simpa [w23Conj, w23ConjInv] using this
-  · have := key (5, -a)
-    simpa [w23Conj, w23ConjInv] using this
-  · have := key (2, -a)
-    simpa [w23Conj, w23ConjInv] using this
-  · have := key (3, -a)
-    simpa [w23Conj, w23ConjInv] using this
+  match i with
+  | 0 => simpa [w23Conj, w23ConjInv] using key (1, a)
+  | 1 => simpa [w23Conj, w23ConjInv] using key (0, -a)
+  | 2 => simpa [w23Conj, w23ConjInv] using key (4, a)
+  | 3 => simpa [w23Conj, w23ConjInv] using key (5, -a)
+  | 4 => simpa [w23Conj, w23ConjInv] using key (2, -a)
+  | 5 => simpa [w23Conj, w23ConjInv] using key (3, -a)
 
 /-- Conjugation by the inverse of any signed-swap element carries
 letters to letters. -/

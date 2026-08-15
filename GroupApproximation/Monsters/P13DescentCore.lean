@@ -70,7 +70,7 @@ theorem exists_word (g : P13) :
     rw [PresentedGroup.closure_range_of]
     trivial
   induction hg using Subgroup.closure_induction_left with
-  | one => exact ⟨[], rfl, fun l hl => absurd hl (List.not_mem_nil l)⟩
+  | one => exact ⟨[], rfl, fun l hl => absurd hl List.not_mem_nil⟩
   | mul_left s hs y hy ih =>
       obtain ⟨W, rfl, hU⟩ := ih
       rcases hs with ⟨i, rfl⟩
@@ -228,24 +228,30 @@ theorem corner_fix {v : Fin 3 → ℤ} (hv : IsCorner v) (l : Letter)
         v 1 + (if i = 2 then c * v 0 else if i = 3 then c * v 2 else 0),
         v 2 + (if i = 4 then c * v 0 else if i = 5 then c * v 1 else 0)]
       := by
-    fin_cases i
-    · rw [show letterVal (⟨0, c⟩ : Letter) = x 0 c from rfl, act_x0]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
-    · rw [show letterVal (⟨1, c⟩ : Letter) = x 1 c from rfl, act_x1]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
-    · rw [show letterVal (⟨2, c⟩ : Letter) = x 2 c from rfl, act_x2]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
-    · rw [show letterVal (⟨3, c⟩ : Letter) = x 3 c from rfl, act_x3]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
-    · rw [show letterVal (⟨4, c⟩ : Letter) = x 4 c from rfl, act_x4]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
-    · rw [show letterVal (⟨5, c⟩ : Letter) = x 5 c from rfl, act_x5]
-      refine vec3_ext ?_ ?_ ?_ <;> simp
+    match i with
+    | 0 =>
+        rw [show letterVal ((0 : Fin 6), c) = x 0 c from rfl, act_x0]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
+    | 1 =>
+        rw [show letterVal ((1 : Fin 6), c) = x 1 c from rfl, act_x1]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
+    | 2 =>
+        rw [show letterVal ((2 : Fin 6), c) = x 2 c from rfl, act_x2]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
+    | 3 =>
+        rw [show letterVal ((3 : Fin 6), c) = x 3 c from rfl, act_x3]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
+    | 4 =>
+        rw [show letterVal ((4 : Fin 6), c) = x 4 c from rfl, act_x4]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
+    | 5 =>
+        rw [show letterVal ((5 : Fin 6), c) = x 5 c from rfl, act_x5]
+        refine vec3_ext ?_ ?_ ?_ <;> simp
   rw [hacts] at h ⊢
   rcases hv with ⟨ε, hε, rfl⟩ | ⟨ε, hε, rfl⟩ | ⟨ε, hε, rfl⟩ <;>
     rcases hε with rfl | rfl <;>
     fin_cases i <;>
-      (refine vec3_ext ?_ ?_ ?_ <;> simp_all [vnorm] <;> omega)
+      (refine vec3_ext ?_ ?_ ?_ <;> simp_all [vnorm])
 
 /-! ## Words of stabilizing letters -/
 
@@ -263,26 +269,28 @@ theorem letter_mem_Hpar_of_fix {l : Letter}
       exact Subgroup.zpow_mem _ (Subgroup.subset_closure h1) c
     rcases hi0 with rfl | rfl | rfl | rfl <;>
       exact hof _ (by simp [parGens])
-  fin_cases i
-  · exact hmem 0 (by simp)
-  · -- e₁₃ moves e₃ unless the exponent vanishes
-    have h0 := congrFun h 0
-    rw [show letterVal (⟨1, c⟩ : Letter) = x 1 c from rfl, act_x1] at h0
-    simp [e3] at h0
-    subst h0
-    show x 1 0 ∈ Hpar
-    rw [x_zero]
-    exact Subgroup.one_mem _
-  · exact hmem 2 (by simp)
-  · have h1 := congrFun h 1
-    rw [show letterVal (⟨3, c⟩ : Letter) = x 3 c from rfl, act_x3] at h1
-    simp [e3] at h1
-    subst h1
-    show x 3 0 ∈ Hpar
-    rw [x_zero]
-    exact Subgroup.one_mem _
-  · exact hmem 4 (by simp)
-  · exact hmem 5 (by simp)
+  match i, h with
+  | 0, _ => exact hmem 0 (by simp)
+  | 1, h =>
+      -- e₁₃ moves e₃ unless the exponent vanishes
+      have h0 := congrFun h 0
+      rw [show letterVal ((1 : Fin 6), c) = x 1 c from rfl, act_x1] at h0
+      simp [e3] at h0
+      subst h0
+      show x 1 0 ∈ Hpar
+      rw [x_zero]
+      exact Subgroup.one_mem _
+  | 2, _ => exact hmem 2 (by simp)
+  | 3, h =>
+      have h1 := congrFun h 1
+      rw [show letterVal ((3 : Fin 6), c) = x 3 c from rfl, act_x3] at h1
+      simp [e3] at h1
+      subst h1
+      show x 3 0 ∈ Hpar
+      rw [x_zero]
+      exact Subgroup.one_mem _
+  | 4, _ => exact hmem 4 (by simp)
+  | 5, _ => exact hmem 5 (by simp)
 
 /-- A word all of whose letters fix `e₃` evaluates into the
 parabolic subgroup. -/
@@ -294,7 +302,7 @@ theorem eval_mem_Hpar_of_all_fix {W : List Letter}
   | cons l W ih =>
       rw [eval_cons]
       exact Subgroup.mul_mem _
-        (letter_mem_Hpar_of_fix (h l (List.mem_cons_self l W)))
+        (letter_mem_Hpar_of_fix (h l (List.mem_cons_self)))
         (ih fun l' hl' => h l' (List.mem_cons_of_mem l hl'))
 
 /-! ## The squeeze -/
@@ -303,13 +311,13 @@ theorem eval_mem_Hpar_of_all_fix {W : List Letter}
 theorem eq_zero_of_vnorm_zero {v : Fin 3 → ℤ} (h : vnorm v = 0) :
     v = fun _ => 0 := by
   unfold vnorm at h
-  refine vec3_ext ?_ ?_ ?_ <;> simp <;> omega
+  refine vec3_ext ?_ ?_ ?_ <;> omega
 
 /-- Images of a nonzero column under the matrix model are nonzero. -/
 theorem vnorm_vecOf_pos (W : List Letter) {b : Fin 3 → ℤ}
     (hb1 : vnorm b = 1) : 1 ≤ vnorm (vecOf W b) := by
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have h0 : vnorm (vecOf W b) = 0 := by omega
   have hz : vecOf W b = fun _ => 0 := eq_zero_of_vnorm_zero h0
   have hinv : act ((toSL3 (eval W))⁻¹)
@@ -332,7 +340,7 @@ theorem letters_fix_of_mono {W : List Letter} {b : Fin 3 → ℤ}
     (htop : vnorm (vecOf W b) ≤ 1) :
     vecOf W b = b ∧ ∀ l ∈ W, act (toSL3 (letterVal l)) b = b := by
   induction W with
-  | nil => exact ⟨vecOf_nil b, fun l hl => absurd hl (List.not_mem_nil l)⟩
+  | nil => exact ⟨vecOf_nil b, fun l hl => absurd hl List.not_mem_nil⟩
   | cons l W ih =>
       obtain ⟨hmW, hstep⟩ := hmono
       have htopc : vnorm (vecOf (l :: W) b) ≤ 1 := htop

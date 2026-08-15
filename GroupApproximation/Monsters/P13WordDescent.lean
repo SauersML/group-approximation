@@ -85,7 +85,6 @@ theorem mono_iff_no_viol (W : List Letter) (b : Fin 3 → ℤ) :
                 vnorm (act (toSL3 (letterVal l)) (vecOf W b)) := by
               unfold sigma
               rw [List.drop_zero, ← vecOf_cons]
-              rfl
             rw [h0, sigma_cons_succ] at hlt
             have : sigma W b 0 = vnorm (vecOf W b) := by
               unfold sigma
@@ -101,17 +100,17 @@ theorem mono_iff_no_viol (W : List Letter) (b : Fin 3 → ℤ) :
           exact hnov (j + 1) ⟨by simpa using hj,
             by rwa [sigma_cons_succ, sigma_cons_succ]⟩
         · by_contra hlt
-          push_neg at hlt
+          push Not at hlt
           refine hnov 0 ⟨by simp, ?_⟩
           have h0 : sigma (l :: W) b 0 =
               vnorm (act (toSL3 (letterVal l)) (vecOf W b)) := by
             unfold sigma
             rw [List.drop_zero, ← vecOf_cons]
-            rfl
           have h1 : sigma (l :: W) b 1 = vnorm (vecOf W b) := by
             rw [sigma_cons_succ]
             unfold sigma
             rw [List.drop_zero]
+          have h2 : sigma (l :: W) b (0 + 1) = sigma (l :: W) b 1 := rfl
           omega
 
 /-! ## The measure -/
@@ -171,7 +170,8 @@ theorem topViol_min {W : List Letter} {b : Fin 3 → ℤ}
   Nat.find_min h hj
 
 /-- The lexicographic termination measure. -/
-def meas (W : List Letter) (b : Fin 3 → ℤ) : ℕ × ℕ :=
+open Classical in
+noncomputable def meas (W : List Letter) (b : Fin 3 → ℤ) : ℕ × ℕ :=
   if h : ∃ j, Viol W b j ∧ sigma W b (j + 1) = lam W b then
     (lam W b, W.length - topViol W b h)
   else (0, 0)
@@ -184,7 +184,7 @@ theorem sigma_append_deep (A C : List Letter) (b : Fin 3 → ℤ) (t : ℕ) :
     sigma (A ++ C) b (A.length + t) = sigma C b t := by
   unfold sigma
   have h : (A ++ C).drop (A.length + t) = C.drop t := by
-    rw [Nat.add_comm, ← List.drop_drop, List.drop_left]
+    rw [← List.drop_drop, List.drop_left]
   rw [h]
 
 /-- Trajectory values in the shallow part depend only on the deep
@@ -236,7 +236,8 @@ theorem vnorm_act_inv {m : P13}
     (hm : ∀ u, vnorm (act (toSL3 m) u) = vnorm u) (v : Fin 3 → ℤ) :
     vnorm (act ((toSL3 m)⁻¹) v) = vnorm v := by
   have h := hm (act ((toSL3 m)⁻¹) v)
-  rwa [← act_mul, mul_inv_cancel, act_one] at h
+  rw [← act_mul, mul_inv_cancel, act_one] at h
+  exact h.symm
 
 /-! ## The braid identities
 
@@ -353,9 +354,9 @@ private theorem viol_of_lt {W : List Letter} {b : Fin 3 → ℤ} {j : ℕ}
     (h : sigma W b j < sigma W b (j + 1)) : Viol W b j := by
   refine ⟨?_, h⟩
   by_contra hge
-  push_neg at hge
+  push Not at hge
   have h1 := sigma_of_ge W b hge
-  have h2 := sigma_of_ge W b (le_trans hge (Nat.le_succ j))
+  have h2 := sigma_of_ge W b (le_trans hge (Nat.le_add_right j 1))
   omega
 
 /-- The value below the top violation is bounded by the violated
@@ -366,7 +367,7 @@ private theorem sigma_succ_top_le {W : List Letter} {b : Fin 3 → ℤ}
     sigma W b (topViol W b hex + 1 + 1) ≤ lam W b := by
   obtain ⟨_, htop⟩ := topViol_spec hex
   by_contra hgt
-  push_neg at hgt
+  push Not at hgt
   have hlt : sigma W b (topViol W b hex + 1) <
       sigma W b (topViol W b hex + 1 + 1) := by
     rw [htop]
@@ -388,7 +389,7 @@ private theorem newViol_cases (W : List Letter) (b : Fin 3 → ℤ)
         (D.A ++ D.P' ++ D.C').length - j < W.length - D.A.length) := by
   have hlen' : (D.A ++ D.P' ++ D.C').length =
       D.A.length + D.P'.length + D.C'.length := by
-    simp
+    simp [Nat.add_assoc]
   rcases Nat.lt_or_ge j D.A.length with hsh | hge
   · -- shallow: the old pair survives verbatim
     have hsj : sigma (D.A ++ D.P' ++ D.C') D.b' j = sigma W b j :=
