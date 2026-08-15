@@ -166,6 +166,99 @@ theorem norm_roundedInvolution_sub_hermitianPart_le'
   exact (abs_signed_sub_le_abs_sq_sub_one' _).trans
     (abs_hermitianEigenvalue_sq_sub_one_le H hH i)
 
+/-! ## The unit projection of a trace-correct model -/
+
+section Rounding
+
+variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+
+open ApproxInvolutionCorner
+
+/-- The rounded unit projection of an approximate idempotent. -/
+noncomputable def unitProjection (M1 : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
+  positiveProjection ((2 : ℂ) • M1 - 1)
+
+theorem unitProjection_isOrthogonalProjection (M1 : Matrix Y Y ℂ) :
+    (unitProjection M1)ᴴ = unitProjection M1 ∧
+      unitProjection M1 * unitProjection M1 = unitProjection M1 :=
+  positiveProjection_isOrthogonalProjection _
+
+theorem hermitianPart_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
+    hermitianPart ((2 : ℂ) • M1 - 1) =
+      (2 : ℂ) • hermitianPart M1 - 1 := by
+  unfold hermitianPart
+  rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_smul,
+    Matrix.conjTranspose_one]
+  rw [show ((2 : ℂ)ᴴ) = (2 : ℂ) from by simp]
+  module
+
+theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
+    roundedInvolution ((2 : ℂ) • M1 - 1) =
+      (2 : ℂ) • unitProjection M1 - 1 := by
+  have hsum := positiveProjection_add_negativeProjection
+    ((2 : ℂ) • M1 - 1)
+  rw [roundedInvolution, unitProjection]
+  rw [show negativeProjection ((2 : ℂ) • M1 - 1) =
+      1 - positiveProjection ((2 : ℂ) • M1 - 1) from by
+    rw [← hsum]; abel]
+  module
+
+/-- The rounded projection is within twice the hermitian idempotent
+defect plus half the star defect of the model unit. -/
+theorem norm_unitProjection_sub (M1 : Matrix Y Y ℂ) :
+    ‖unitProjection M1 - M1‖ ≤
+      2 * ‖hermitianPart M1 * hermitianPart M1 - hermitianPart M1‖ +
+        ‖M1 - M1ᴴ‖ / 2 := by
+  have hstep1 : ‖unitProjection M1 - hermitianPart M1‖ ≤
+      2 * ‖hermitianPart M1 * hermitianPart M1 - hermitianPart M1‖ := by
+    have hround := norm_roundedInvolution_sub_hermitianPart_le'
+      ((2 : ℂ) • M1 - 1)
+    rw [roundedInvolution_eq_two_smul_sub_one,
+      hermitianPart_two_smul_sub_one] at hround
+    have hlhs : (2 : ℂ) • unitProjection M1 - 1 -
+        ((2 : ℂ) • hermitianPart M1 - 1) =
+        (2 : ℂ) • (unitProjection M1 - hermitianPart M1) := by
+      module
+    have hrhs : ((2 : ℂ) • hermitianPart M1 - 1) *
+        ((2 : ℂ) • hermitianPart M1 - 1) - 1 =
+        (4 : ℂ) • (hermitianPart M1 * hermitianPart M1 -
+          hermitianPart M1) := by
+      have hcomm : ((2 : ℂ) • hermitianPart M1 - 1) *
+          ((2 : ℂ) • hermitianPart M1 - 1) =
+          (4 : ℂ) • (hermitianPart M1 * hermitianPart M1) -
+            (4 : ℂ) • hermitianPart M1 + 1 := by
+        rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_sub,
+          Matrix.smul_mul, Matrix.mul_smul, Matrix.mul_one,
+          Matrix.one_mul, Matrix.smul_smul]
+        norm_num
+        module
+      rw [hcomm]
+      module
+    rw [hlhs, hrhs] at hround
+    rw [norm_smul, norm_smul] at hround
+    simp only [Complex.norm_ofNat] at hround
+    linarith [hround]
+  have hstep2 : ‖hermitianPart M1 - M1‖ = ‖M1 - M1ᴴ‖ / 2 := by
+    have h1 : hermitianPart M1 - M1 = ((2 : ℂ)⁻¹) • (M1ᴴ - M1) := by
+      unfold hermitianPart
+      module
+    rw [h1, norm_smul]
+    rw [show ‖((2 : ℂ)⁻¹)‖ = 2⁻¹ from by norm_num]
+    rw [show (M1ᴴ - M1 : Matrix Y Y ℂ) = -(M1 - M1ᴴ) from by abel,
+      norm_neg]
+    ring
+  calc ‖unitProjection M1 - M1‖
+      = ‖(unitProjection M1 - hermitianPart M1) +
+          (hermitianPart M1 - M1)‖ := by abel_nf
+    _ ≤ ‖unitProjection M1 - hermitianPart M1‖ +
+          ‖hermitianPart M1 - M1‖ := norm_add_le _ _
+    _ ≤ 2 * ‖hermitianPart M1 * hermitianPart M1 - hermitianPart M1‖ +
+          ‖M1 - M1ᴴ‖ / 2 := by
+        rw [hstep2]
+        linarith [hstep1]
+
+end Rounding
+
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
 any trace-correct model family produces operator-norm local models with
