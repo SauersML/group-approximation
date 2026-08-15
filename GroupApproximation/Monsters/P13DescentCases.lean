@@ -689,6 +689,7 @@ for the reversed pairs the first split order and the emission suffice.
 The emission internals run over the base transported by the block
 Weyl word of the deeper letter's family. -/
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_03 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 c)) (act (toSL3 (x 3 cp)) u)) <
@@ -710,10 +711,12 @@ theorem exist_st_03 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![u 0, cp * u 2, -(cp * u 1)])) <
         vnorm (act (toSL3 (x 3 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x1, act_x3] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x1, act_x3, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_15 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 5 cp)) u)) <
@@ -735,10 +738,12 @@ theorem exist_st_15 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![u 0, cp * u 2, -(cp * u 1)])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x1, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x1, act_x5, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_21 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 1 cp)) u)) <
@@ -760,10 +765,12 @@ theorem exist_st_21 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 2, u 1, -(cp * u 0)])) <
         vnorm (act (toSL3 (x 1 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x2, act_x3] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x1, act_x2, act_x3, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_34 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 4 cp)) u)) <
@@ -785,10 +792,12 @@ theorem exist_st_34 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 2, u 1, -(cp * u 0)])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x3, act_x4] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x2, act_x3, act_x4, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_40 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 c)) (act (toSL3 (x 0 cp)) u)) <
@@ -810,10 +819,12 @@ theorem exist_st_40 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 1, -(cp * u 0), u 2])) <
         vnorm (act (toSL3 (x 0 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x4, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x4, act_x5, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_52 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 2 cp)) u)) <
@@ -835,10 +846,12 @@ theorem exist_st_52 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 1, -(cp * u 0), u 2])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x4, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x2, act_x4, act_x5, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_30 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 0 cp)) u)) <
@@ -853,10 +866,12 @@ theorem exist_st_30 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 1, -(cp * u 0), u 2])) <
         vnorm (act (toSL3 (x 0 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x3] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x3, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_51 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 1 cp)) u)) <
@@ -871,10 +886,12 @@ theorem exist_st_51 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 2, u 1, -(cp * u 0)])) <
         vnorm (act (toSL3 (x 1 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x1, act_x5, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_12 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 2 cp)) u)) <
@@ -889,10 +906,12 @@ theorem exist_st_12 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 1, -(cp * u 0), u 2])) <
         vnorm (act (toSL3 (x 2 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x1, act_x2] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x1, act_x2, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_43 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 c)) (act (toSL3 (x 3 cp)) u)) <
@@ -907,10 +926,12 @@ theorem exist_st_43 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![u 0, cp * u 2, -(cp * u 1)])) <
         vnorm (act (toSL3 (x 3 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x3, act_x4] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x3, act_x4, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_04 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 c)) (act (toSL3 (x 4 cp)) u)) <
@@ -925,10 +946,12 @@ theorem exist_st_04 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![cp * u 2, u 1, -(cp * u 0)])) <
         vnorm (act (toSL3 (x 4 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x0, act_x4] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x0, act_x4, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
+set_option maxHeartbeats 1000000 in
 theorem exist_st_25 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 5 cp)) u)) <
@@ -943,8 +966,9 @@ theorem exist_st_25 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
           ![u 0, cp * u 2, -(cp * u 1)])) <
         vnorm (act (toSL3 (x 5 cp)) u)) := by
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
-    simp only [act_x2, act_x5] at hviol hside ⊢ <;>
-    simp [vnorm] at hviol hside ⊢ <;>
+    simp only [act_x2, act_x5, vnorm, Matrix.cons_val_zero, Matrix.cons_val_one,
+      Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
+      at hviol hside ⊢ <;>
     omega
 
 /-! ## Braid pairs: alignment is impossible at a violation -/

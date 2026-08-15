@@ -193,8 +193,9 @@ theorem toSL3_ker_eq_bot
   obtain ⟨hGfix, hletters⟩ := letters_fix_of_mono hbc hmono htop1
   -- conjugate the monotone part across the tail
   obtain ⟨f, hf⟩ := exists_conj_letter_map hmon
-  have hconj : mon⁻¹ * eval G * mon = eval (G.map f) := by
-    induction G with
+  have hconj : ∀ T : List Letter, mon⁻¹ * eval T * mon = eval (T.map f) := by
+    intro T
+    induction T with
     | nil => simp
     | cons l T ih =>
         rw [eval_cons, List.map_cons, eval_cons, ← ih]
@@ -218,7 +219,7 @@ theorem toSL3_ker_eq_bot
   have hHpar : eval (G.map f) ∈ Hpar := eval_mem_Hpar_of_all_fix hfix'
   -- reassemble: the word is the tail times a parabolic element
   have hsplit : eval W = mon * eval (G.map f) := by
-    rw [hWG, ← hconj]
+    rw [hWG, ← hconj G]
     group
   -- the tail's matrix fixes e₃, so the machine places it in Hpar
   have hmonstab : act (toSL3 mon) e3 = e3 := by
