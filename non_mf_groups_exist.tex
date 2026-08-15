@@ -407,7 +407,7 @@ defect subgroups, proves the finite-normal obstruction
 criterion (Theorem~\ref{thm:criterion}), the MF-invisibility of the
 intrinsic defect (Theorem~\ref{thm:compression-radical}), and the
 normal-Kazhdan form of the obstruction
-(Theorem~\ref{thm:normal-kazhdan}), which needs no finiteness or
+(Theorem~\ref{thm:normal-kazhdan}), which requires no finiteness or
 torsion.
 Section~\ref{sec:necessity} states and proves the cyclic comparison,
 Theorem~\ref{thm:C}.
@@ -861,30 +861,20 @@ with its image in finite-dimensional norm models.  Geometrically,
 $a\notin\alpha(\Gamma)$, so $a$ moves that lamp to a different HNN coset,
 where Clifford anticommutation produces $-1$.
 
-\begin{remark}[small-cancellation realizations, after Fournier-Facio]
+\begin{remark}[a small-cancellation realization]
 \label{rem:ff-realization}
-Fournier-Facio suggested to us (personal communication, 2026) that the
-affine base of Sections~\ref{sec:group}--\ref{sec:proofA} can be replaced
-by a small-cancellation argument analogous to \cite{FFF}, and the
-hypotheses of Theorem~\ref{thm:kazhdan-clifford} make the replacement a
-two-line matter.  His construction produces a finitely presented
-torsion-free property-\textup{(T)} group $P$ containing a copy of every
-finitely presented torsion-free group; in particular $P$ contains an
-internal direct product $P_1\times P_2$ with $P_i\cong P$.  Taking
-$\alpha\colon P\xrightarrow{\;\cong\;}P_1\le P$ and any
-$a\in P_2\setminus\{1\}$ --- so $a\notin P_1=\alpha(P)$, because
-$P_1\cap P_2=1$ --- satisfies the hypotheses verbatim, and
-$E(P,\alpha,a)$ is again a finitely presented non-MF group.  So the
-hypotheses of the construction are plentiful, not special to the affine
-base.  This paragraph rests on the cited small-cancellation construction
-and is outside the formal development; note also that
-$E(P,\alpha,a)$ contains the involution $c$ whatever the base, so this
-realization does not bear on the torsion-free question of
-Section~\ref{sec:limits}.  The paper keeps the affine base because of
-what it buys beyond bare existence: the explicit presentation of
-Theorem~\ref{thm:A}, the premise-free formal endpoint, and the integral
-linear structure used in the soficity analysis of the Clifford witness
-(Theorem~\ref{thm:E}).
+Fournier-Facio has pointed out (personal communication, 2026) that the
+affine base of Sections~\ref{sec:group}--\ref{sec:proofA} can be
+replaced by a small-cancellation construction as in \cite{FFF}: his
+finitely presented torsion-free property-\textup{(T)} group $P$
+contains a copy of every finitely presented torsion-free group, in
+particular a direct product $P_1\times P_2$ with $P_i\cong P$, and
+$\alpha\colon P\xrightarrow{\;\cong\;}P_1\le P$ together with any
+$a\in P_2\setminus\{1\}$ satisfies the hypotheses of
+Theorem~\ref{thm:kazhdan-clifford}.  This realization is not
+formalized, and $E(P,\alpha,a)$ contains involutions whatever the
+base.  The affine base is used for the explicit presentation of
+Theorem~\ref{thm:A} and for Theorems~\ref{thm:D} and~\ref{thm:E}.
 \end{remark}
 
 The following theorem is the fully explicit instance, developed in
@@ -1784,8 +1774,8 @@ fixed-space average of the finite group, and the corner of half two is
 cut where $F$ \emph{moves}.  Replacing the Reynolds average by the
 Kazhdan average of an arbitrary normal property-\textup{(T)} subgroup
 gives the general form of the obstruction, with no finiteness,
-centrality, or torsion hypothesis.  This is the form that the
-torsion-free question of Section~\ref{sec:limits} needs.
+centrality, or torsion hypothesis.  This form is used in
+Section~\ref{sec:limits}.
 
 \begin{theorem}[normal-Kazhdan obstruction]\label{thm:normal-kazhdan}
 Let $H$ be a countable group with a Kazhdan conjugation datum
@@ -1799,8 +1789,9 @@ $k\in K$.
 
 Taking $K=F$ finite recovers Theorem~\ref{thm:criterion}, since finite
 groups have property~\textup{(T)}; the two printed proofs differ in
-which corner they cut, and both routes are formalized.  Conversely,
-$K$ may here be infinite, noncentral, and torsion-free.
+which corner they cut, and both are formalized.  In
+Theorem~\ref{thm:normal-kazhdan}, $K$ may be infinite, noncentral, and
+torsion-free.
 
 \begin{proof}
 The tracial half of Theorem~\ref{thm:criterion} needs no finiteness:
@@ -2417,26 +2408,22 @@ subgroup of a torsion-free group is trivial.
 \leanverified{Sofic/TorsionFreeFiniteNormalLimit}{GroupApproximation.finiteSubgroup_eq_bot_of_isMulTorsionFree}
 Theorem~\ref{thm:normal-kazhdan} removes that limitation from the
 analytic half: a normal property-\textup{(T)} subgroup of the defect
-obstructs corona representations with no torsion anywhere.  What the
-torsion-free question still needs is a torsion-free finitely presented
-group whose defect subgroup contains --- most cheaply, equals --- a
-normal Kazhdan subgroup.  Fournier-Facio removed the analogous torsion
+subgroup obstructs corona representations without any torsion.  A
+torsion-free example therefore requires a torsion-free finitely
+presented group whose defect subgroup contains a normal subgroup with
+property~\textup{(T)}.  Fournier-Facio removed the analogous torsion
 obstacle for nonsoficity by a small-cancellation construction
-\cite{FFF}, and he suggested to us (personal communication, 2026) that
-small cancellation can replace the affine base
-(Remark~\ref{rem:ff-realization}) and should play the same role here.
-We record where the suggestion leads.  Applying Hull's small-cancellation theorem for
+\cite{FFF} and suggested (personal communication, 2026;
+cf.\ Remark~\ref{rem:ff-realization}) that small cancellation should
+serve here as well: applying Hull's small-cancellation theorem for
 acylindrically hyperbolic groups to the group of \cite{FFF}, with the
-small-cancellation target words drawn from the normal closure of its
-simple subgroup, can make the image of that simple subgroup normally
-generate the quotient; the quotient is then a torsion-free finitely
-presented Kazhdan group equal to its own defect subgroup, and
-Theorem~\ref{thm:normal-kazhdan} makes every homomorphism from such a
-group to every norm matrix corona trivial.  The small-cancellation step
-rests on cited theorems of Hull and Osin; it is written out, with
-source-verified statements, in the documentation accompanying the
-formal development, but it is not formalized, and we do not state it as
-a theorem of this paper.
+target words taken in the normal closure of its simple subgroup, the
+quotient can be arranged to be normally generated by the image of that
+simple subgroup; such a quotient is a torsion-free finitely presented
+Kazhdan group equal to its own defect subgroup, and
+Theorem~\ref{thm:normal-kazhdan} applies to it.  This argument depends
+on results of Hull and Osin that are cited, not formalized, and is not
+stated as a theorem here.
 \begin{enumerate}
 \item Is $E/\langle w\rangle$ MF?  By
 Corollary~\ref{cor:exactradical}, a positive answer would compute
