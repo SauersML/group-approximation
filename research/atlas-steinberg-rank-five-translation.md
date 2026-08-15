@@ -29,7 +29,19 @@ that dictionary; validate the output against the finite-quotient screens
 of `K₂(5, L)` in `St₅(L)` — not its vanishing, not its finite
 generation, not `U_Q ≅ St₅(L)`.
 
-## Attempts
+## ESTABLISHED (2026-08-15, night)
+
+The claim is proved: `T_St` exists explicitly — **4,648 verified words**
+(`atlas-steinberg-rank-five-translation-proof`), with the completeness
+of the underlying presentation proved in-repo
+(`atlas-steinberg-spare-index-independence`, adversarially verified) and
+the once-planned Krstić–McCool import fully discharged; the only
+remaining literature premise on the route is Kervaire–Steinberg
+centrality.  The canonical regular-`A₈` one-unitary criterion is now a
+fully explicit finite object.  The attack log below is retained as the
+history of how each obstruction fell.
+
+## Attempts (historical)
 
 - **Steps 2 AND 3 COMPLETE (2026-08-15, night).**  Forward dictionary:
   `atlas-rank-five-dictionary` (100 generators, machine-verified).

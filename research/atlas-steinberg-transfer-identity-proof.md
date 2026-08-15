@@ -2,35 +2,32 @@
 rg: 2
 id: atlas-steinberg-transfer-identity-proof
 kind: route
-title: Four conjugations, with every commutation hypothesis spent exactly once
+title: Two applications of one bracket identity, with the derived object's commutation as output
 target: atlas-steinberg-transfer-identity
 requires: []
 ---
 
-# Four conjugations, with every commutation hypothesis spent exactly once
+# Two applications of one bracket identity, with the derived object's commutation as output
 
-Write `g^h = hgh^{-1}`.  From `U = [X,Y]` we get `UY X = XY`, so
+The complete proof is displayed in the claim body (it is five lines) and
+in full expansion in `research/artifacts/steinberg-spare-index-2026-08-15.md`
+§6, with the two ingredient identities — `[ab,c] = a[b,c]a^{-1}·[a,c]`
+and the `[X,Z] = 1` conjugation step — machine-checked on 4,000 random
+samples each and the assembled statement on 782 samples meeting exactly
+the three hypotheses.  Adversarial verification (2026-08-15, night)
+re-derived both identities by hand, confirmed no hidden same-length
+commutation enters (the length-`t` objects `T` and `[U,Z]` appear only
+as outputs, and the commutation of `V` with `[U,Z]` is derived from
+`[U,V] = [V,Z] = 1`), verified the three root patterns are genuine (St2)
+instances including the load-bearing same-target pair, and confirmed the
+emitted family contains all 120 qualifying root pairs by independent
+count (380 ordered pairs of distinct roots, minus 140 failing the side
+condition, giving 120 unordered: 60 + 30 + 30).
 
-```text
-[U, Z] = U·(Z U^{-1} Z^{-1})
-       = U · Z (Y X^{-1} Y^{-1} X) Z^{-1}.
-```
-
-Use `[X,Z] = 1` to move `Z` past `X^{-1}` and `X`:
-
-```text
-Z Y X^{-1} Y^{-1} X Z^{-1} = (Z Y Z^{-1}) X^{-1} (Z Y^{-1} Z^{-1}) X.
-```
-
-Now `ZYZ^{-1} = Y·Y^{-1}ZYZ^{-1}·... ` — cleaner via `V`: from
-`V = [Y,Z]` we have `ZYZ^{-1}... = V^{-1}Y` read as `YZ = V^{-1}·ZY`,
-i.e. `Z Y Z^{-1} = V^{-Z}·Y`; and `[Y,V] = 1` lets `V`-factors pass `Y`.
-Substituting both occurrences and collecting the four `V`-conjugates,
-the expression reduces — using `T = [X,V]` to swap each `V`-factor past
-`X^{-1}` at the cost of a `T`-factor, and the hypotheses that `T`
-commutes with `X`, `Y`, `V` to slide all `T`-factors to the front —
-to `T` alone.  Full step-by-step expansion, with each of the four
-conjugations displayed and each hypothesis consumed exactly once, is
-§3 of `research/artifacts/atlas-completeness-derivation-2026-08-15.md`;
-the executable cross-check over `Q` is
-`experiments/atlas_relator_transfer_check.py`.
+The history is part of the content: the first landed version of this
+node assumed in addition that `T` commutes with `X`, `Y`, `V` — a
+same-length hypothesis set that manufactured the apparent circularity
+recorded in the derivation artifact's rejected-routes section.  An
+over-strong lemma statement can manufacture an obstruction that is not
+in the problem; the five rejected routes were attempts to supply a
+hypothesis that never needed supplying.

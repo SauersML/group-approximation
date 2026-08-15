@@ -3,6 +3,44 @@
 Date: 2026-08-15 (late).  Working notes, not canonical.  Companion to
 `ATLAS_RANK5_DICTIONARY_2026-08-15.md`.
 
+> ## SUPERSEDED IN PART — read this first
+>
+> **Lemma X (§5) is PROVED**, in `notes/STEINBERG_SPARE_INDEX_2026-08-15.md`
+> §6, as two instances of that note's `(Q′_t)`.  The stall recorded below was
+> only apparent, and the fault is in **my Lemma 3.1: its hypotheses are too
+> strong.**
+>
+> Lemma 3.1 assumes `T = [X,V]` commutes with `X`, `Y`, `V`, and its
+> four-conjugation proof consumes `[T,X]` and `[T,Y]` at steps 2-4.  Those are
+> same-length statements about the object being constructed, and that — not
+> anything structural — is the whole source of the circularity diagnosed in
+> §5.  The correct route uses the identity
+>
+> ```
+> T = [X,V] = U V U^{-1} · [U,Z] · V^{-1}        (needs only [X,Z] = 1)
+> ```
+>
+> then `[U,V] = 1` collapses `U V U^{-1}` to `V`, and `V` commuting with `U`
+> and with `Z` makes it commute with `[U,Z]`, giving `T = [U,Z]`.  The
+> hypothesis set is then `[X,Z] = [U,V] = [Z,V] = 1` — **all (St2) instances
+> between strictly shorter objects at roots other than `(i,j)`**, exactly what
+> my own Lemma 5.1 supplies with no spare-index clash.  `[Y,V] = 1` is not
+> needed either.
+>
+> So the derived object's commutation is a *consequence*, not a hypothesis.
+> The five routes I rejected in §5 were all attempts to supply a hypothesis
+> that does not need supplying — a good illustration of how an over-strong
+> lemma statement can manufacture an obstruction that is not there.
+>
+> What survives unchanged: §2 (bilinearity and context absorption), §4
+> (split independence reduces to spare independence), the machine check of
+> the transfer identity, and the length-two argument.  The one-sentence
+> obstruction in §5 is a correct description of *my* Lemma 3.1's difficulty
+> and an incorrect description of the problem.
+>
+> A separate, genuine gap was found in its place: the emitted family does not
+> imply `x_ij(a)² = 1`, which additivity over `F₂` requires.  See §7 below.
+
 **Target.**  Let `A = {1, e, f, e^*, f^*}` and
 
 ```
@@ -302,3 +340,161 @@ it is not claimed to: an unbounded family of instances cannot be discharged by
 finitely many.  Its value is that if Lemma X turns out to need only bounded
 length — which the absorption argument of §2 makes plausible — the emitted
 relators already cover that range.
+
+
+---
+
+## 7. The involutivity relators (added 2026-08-15, late)
+
+`STEINBERG_SPARE_INDEX_2026-08-15.md` §8 shows the emitted family does **not**
+imply `Ê_ij(a)² = 1`, which is required because `Ê_ij` must be a homomorphism
+`(L,+) → G₀` and `a + a = 0` over `F₂`.  The obstruction is a clean lift: the
+Leavitt path algebra `L_Z(1,2)` satisfies the same five Cuntz–Krieger relations
+(they carry no characteristic assumption) and is a free `Z`-module, so
+`St₅(L_Z)` receives a homomorphism from `G₀` under which `X_ij(1)²` maps to
+`E_ij(2) ≠ 1`.  The lift is legitimate because the canonical two-letter words
+are built by `root_word` as purely multiplicative nested commutators, with no
+additive decomposition anywhere.
+
+**Emitted and verified** (`experiments/atlas_relator_rank5_involutivity.py`):
+
+```
+involutivity relators considered:                      100
+  reduce to the empty word in Pbar (already trivial):   12
+  nontrivial words emitted:                             88
+  verified to lie in Rbar:                        88 of 88
+syllable length: min 8  max 33
+X-length:        min 8  max 184  total 6,460
+relators with nontrivial (p1,p2):                 0 of 88
+```
+
+Two things worth recording.
+
+* The 12 vacuous ones are exactly the single-syllable dictionary words: a
+  chart transvection is an involution in `GL_4(F₂)`, so its square already
+  reduces to the empty word in `P̄` itself.  Those instances of `x_ij(a)² = 1`
+  hold in the source group and need no relator.
+* **None of the 88 escapes the cartesian subgroup.**  This is structural, not
+  a coincidence and not a bug: checked directly, the factor projections
+  `p_1`, `p_2` of every one of the 100 dictionary words have order 1 or 2 in
+  `GL_4(F₂)`, so every square projects to the identity.  Consequently the
+  involutivity family would FAIL screen (D) on its own.  That is expected — it
+  is a supplement, not a candidate list — but it means the screen must be run
+  on the merged `T_St`, never on this block alone, and a future audit that
+  screens blocks separately will get a false alarm here.
+
+**64 of the 88 were already in the family.**  Merging against the emitted
+family reports `4,612 existing + 24 new (64 already present) = 4,636`.  That
+was surprising enough to check rather than trust, and it is real: rebuilding
+the family block by block and matching reduced free-product words shows all 64
+collisions land in the cross-root (St2) `orth` block, e.g.
+
+```
+inv_12_e == orth_12_52_e1        inv_13_1 == orth_13_15_11
+inv_12_f == orth_12_52_f1        inv_13_e == orth_13_15_e1
+```
+
+so `x_12(e)²` and `[x_12(e), x_52(1)]` are literally the same reduced word in
+`A₈ * A₈`.  Note the two facts are consistent and must not be conflated:
+
+* the `L_Z` counterexample is about the **abstract** `G₀` on the `X`
+  generators, where all 100 relators are genuinely independent of (A)+(B)+(C);
+* the coincidence is a phenomenon of the **atlas realisation**, where free
+  reduction in `A₈ * A₈` identifies particular words.  The atlas presentation
+  carries more relations than the abstract scheme, so it can already imply
+  instances the abstract scheme does not.
+
+Net effect on the deliverable: only **24 genuinely new words**, and
+`|T_St| = 4,612 + 24 + 12` reverse-dictionary relators `= 4,648`.
+
+Membership in `R̄` is not taken on trust: each square is evaluated exactly.
+The reason it holds is that `x_ij(a) = 1 + m` with `m = d_{E_i} a d_{E_j}^*`
+and `m² = 0`, because `E_i ≠ E_j` are distinct members of a prefix code so
+`d_{E_j}^* d_{E_i} = 0`; hence `x_ij(a)² = 1 + m² = 1` over `F₂`.
+
+
+### 7.1 Step-4 acceptance on the enlarged list (MSI job 15864167, 28 s)
+
+```
+relators loaded:                                     4,636
+SCREEN (D)  72 of 4,636 escape ker(Pbar ->> A8 x A8)   passes
+SCREEN (A)  0 survivors of 2 x 1,814,400 degree-10 pairs  passes
+```
+
+The (D) count is unchanged at 72 because no involutivity relator escapes; the
+enlarged list passes on the strength of the original family's escapees, which
+is exactly why the block must never be screened on its own.
+
+
+---
+
+## 8. Numerical witness for the (I2) route (MSI job 15865413, 109 s)
+
+`experiments/atlas_relator_i2_route_check.py`.  Requested by the coordinator as
+the one assertion in the corrected lemma lacking its own witness.
+
+### Part A — exhaustive, over `S_4` and `S_5`
+
+Every ordered triple `(X,Y,Z)` is classified by which of the three hypotheses
+hold, and both `(I2)` and the conclusion are tested in every cell.  `S_5`:
+`1,728,000` triples.
+
+```
+[X,Z] [U,V] [Z,V]        triples    (I2) ok   (I2) BAD   T=[U,Z]  T!=[U,Z]
+T  T  T                    24960      24960          0     24960         0
+T  T  .                    29040      29040          0     20640      8400
+T  .  T                     4320       4320          0         0      4320
+T  .  .                    42480      42480          0      8400     34080
+.  T  T                   105600      21000      84600     21000     84600
+.  T  .                   173520      12480     161040     12120    161400
+.  .  T                   124320       3480     120840      2880    121440
+.  .  .                  1223760      47040    1176720     27000   1196760
+```
+
+* **`(I2)` holds in every one of the 100,800 triples with `[X,Z] = 1`**, and
+  fails in 1,543,200 of the 1,627,200 without it.  So `[X,Z] = 1` is exactly
+  the right hypothesis for `(I2)`, and tight in both directions.
+* **The conclusion `T = [U,Z]` holds in all 24,960 triples satisfying all
+  three hypotheses, with zero violations.**
+* **Each hypothesis is load bearing** — dropping one admits counterexamples:
+
+  ```
+  drop [X,Z] : 105,600 triples,  84,600 violate
+  drop [U,V] :   4,320 triples,   4,320 violate   (every single one)
+  drop [Z,V] :  29,040 triples,   8,400 violate
+  ```
+
+* **`[Y,V] = 1` is NOT needed**: 4,200 triples satisfy all three hypotheses
+  while `[Y,V] != 1`, and **zero** of them violate the conclusion.  This is the
+  direct witness for the claim that my Lemma 3.1's extra hypothesis was
+  superfluous.
+
+`S_4` (13,824 triples) shows the same pattern, with 168 `[Y,V]`-free witnesses
+and zero violations.
+
+### Part B — the intended root configuration, in `Q`
+
+All 3,000 ordered index quadruples × coefficient pairs, with
+`X = x_il(a)`, `Y = x_lk(1)`, `Z = x_kj(b)` from the verified dictionary:
+
+```
+[X,Z] = 1   holds in 3000 of 3000
+[U,V] = 1   holds in 3000 of 3000
+[Z,V] = 1   holds in 3000 of 3000
+[Y,V] = 1   holds in 3000 of 3000
+(I2)        holds in 3000 of 3000
+T = [U,Z]   holds in 3000 of 3000
+```
+
+### The methodological point, which matters more than the counts
+
+`[Y,V] = 1` **holds in the atlas configuration too** — 3,000 of 3,000.  So the
+earlier check in `Q` could never have detected that my Lemma 3.1 carried a
+superfluous hypothesis: the superfluous hypothesis is simply true there.  Only
+an abstract test, in a group where the hypotheses can be violated
+independently, separates a necessary hypothesis from an incidental one.
+
+That generalises the trap already recorded: an over-strong lemma manufactures
+a phantom obstruction, **and testing it only in the intended model will not
+reveal that the extra hypothesis was never needed.**  Verification in the
+target model confirms conclusions; it does not audit hypotheses.

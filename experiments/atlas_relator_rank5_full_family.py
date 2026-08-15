@@ -163,7 +163,12 @@ def main():
                 add("orth_%d%d_%d%d_%s%s" % (i, j, k, ell, r, s),
                     commutator(x(i, j, r), x(k, ell, s)))
     n_orth = len(words) - n_root
-    print("(St2) disjoint-root commutation:", n_orth)
+    # NB: this block enumerates ALL pairs of distinct roots meeting the (St2)
+    # side condition -- index-disjoint, same-source ((i,j),(i,l)) and
+    # same-target ((i,j),(k,j)) alike.  The same-target instances are load
+    # bearing: the spare-index derivation's [Z,V] = 1 hypothesis is one.
+    print("(St2) cross-root commutation (disjoint + same-source + "
+          "same-target):", n_orth)
 
     # (St3) for every coefficient pair
     for i, j, k in itertools.permutations(range(1, 6), 3):
