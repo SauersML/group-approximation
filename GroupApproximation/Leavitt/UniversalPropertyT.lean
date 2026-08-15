@@ -13,13 +13,16 @@ Leavitt rank equivalence transfers property `(T)` to rank four.
 namespace GroupApproximation
 namespace UniversalRankFour
 
-/-- The universal-Leavitt rank-three core has property `(T)`. -/
-theorem core_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} Core :=
+universe v
+
+/-- The universal-Leavitt rank-three core has property `(T)`, at every
+representation-space universe. -/
+theorem core_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, v} Core :=
   finiteTypeElementaryThree_hasKazhdanPropertyT
 
 /-- The universal-Leavitt rank-four ambient compression group has property
-`(T)`. -/
-theorem ambient_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} Ambient :=
+`(T)`, at every representation-space universe. -/
+theorem ambient_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, v} Ambient :=
   family.rankFour_propertyT_of_rankThree core_hasKazhdanPropertyT
 
 end UniversalRankFour

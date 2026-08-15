@@ -128,7 +128,8 @@ theorem spectralProjection_mul (hm : IsSelfAdjoint m) (hc : c < 1)
     rw [gapIndicator_one hc, one_mul]
 
 /-- The projection is nonzero exactly when `1` lies in the spectrum. -/
-theorem spectralProjection_ne_zero (hm : IsSelfAdjoint m) (hc : c < 1)
+theorem spectralProjection_ne_zero [Nontrivial A]
+    (hm : IsSelfAdjoint m) (hc : c < 1)
     (hgap : ∀ μ ∈ spectrum ℝ m, μ ≤ c ∨ μ = 1)
     (h1 : (1 : ℝ) ∈ spectrum ℝ m) :
     spectralProjection m c ≠ 0 := by

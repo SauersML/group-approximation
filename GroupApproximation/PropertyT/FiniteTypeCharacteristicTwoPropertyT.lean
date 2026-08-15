@@ -20,10 +20,13 @@ noncomputable section
 variable {R : Type} [Ring R] [Algebra (ZMod 2) R]
   [Algebra.FiniteType (ZMod 2) R]
 
+universe v
+
 /-- The characteristic-two, rank-three case of the
-Ershov--Jaikin-Zapirain theorem needed throughout this development. -/
+Ershov--Jaikin-Zapirain theorem needed throughout this development,
+universe-polymorphic in the representation space. -/
 theorem finiteTypeElementaryThree_hasKazhdanPropertyT :
-    HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin 3) R) := by
+    HasKazhdanPropertyT.{0, v} (elementaryGroup (Fin 3) R) := by
   obtain ⟨X, hX, f, hf⟩ :=
     (Algebra.FiniteType.iff_quotient_freeAlgebra'
       (R := ZMod 2) (A := R)).mp inferInstance

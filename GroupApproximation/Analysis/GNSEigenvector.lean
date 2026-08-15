@@ -60,7 +60,6 @@ theorem gns_eigenvector (m : A) (hm : IsSelfAdjoint m) (μ : ℝ)
   have halg : algebraMap ℝ A μ = (μ : ℂ) • (1 : A) := by
     rw [Algebra.algebraMap_eq_smul_one, ← algebraMap_smul ℂ μ (1 : A)]
     congr 1
-    simp
   have h0 : Φ.gnsStarAlgHom m (gnsCyclic Φ)
       = ((Φ.leftMulMapPreGNS m (Φ.toPreGNS 1) : Φ.PreGNS) : Φ.GNS) :=
     Φ.gnsNonUnitalStarAlgHom_apply_coe

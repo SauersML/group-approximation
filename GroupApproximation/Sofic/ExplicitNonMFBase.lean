@@ -50,9 +50,12 @@ theorem compression_not_surjective : ¬ Function.Surjective compression := by
   intro h
   exact omitted_not_mem_range (h omitted)
 
+universe v
+
 /-- The base group has Kazhdan's property `(T)`, proved internally from the
 finite-type characteristic-two elementary-group theorem. -/
-theorem base_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} Base :=
+theorem base_hasKazhdanPropertyT :
+    HasKazhdanPropertyT.{0, v} Base :=
   UniversalRankFour.ambient_hasKazhdanPropertyT
 
 /-- The exact closed package consumed by the marked non-MF presentation. -/

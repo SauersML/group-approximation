@@ -132,6 +132,7 @@ variable {A : Type v} [CStarAlgebra A] [PartialOrder A] [StarOrderedRing A]
 /-- **The abstract spectral gap.** Every real spectral value of the
 unitary average of a Kazhdan representation, other than `1`, is at most
 `1 - ε²/(4|S|)`. -/
+set_option maxHeartbeats 1000000 in
 theorem unitaryAverage_spectrum_le
     (ρ : G →* unitary A) {Q : Finset G} {ε : ℝ}
     (hQ : IsKazhdanPair.{u, v} G Q ε)
