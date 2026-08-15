@@ -63,6 +63,7 @@ import GroupApproximation.Monsters.P13DescentCases
 import GroupApproximation.Monsters.P13Completeness
 import GroupApproximation.Monsters.P13DescentMaster
 import GroupApproximation.Monsters.LiteralBaseCompleteness
+import GroupApproximation.Monsters.LiteralBaseResiduallyFinite
 import GroupApproximation.Monsters.P13LowerUnipotentInjectivity
 import GroupApproximation.Monsters.SL2BraidPresentation
 import GroupApproximation.Monsters.P13SL2Comparison
