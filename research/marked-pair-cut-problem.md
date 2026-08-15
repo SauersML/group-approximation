@@ -25,6 +25,21 @@ label data on the exact congruence model, so this claim routes directly
 into `two-point-orbit-approximation` (route
 `two-point-via-congruence-cuts`).
 
+## REFUTED (2026-08-15)
+
+This claim is **false**, and in the stronger form covering every exact
+model, not only the regular congruence ones:
+`exact-models-cannot-separate-marked-pair` (established, with proof) shows
+that for the window `F₀ = S_Γ ∪ S_Γ^{-1} ∪ {h}` and any
+`ε < ε₀(κ, |S_Γ|)`, no genuine finite `G`-action admits a deleted set of
+density `ε` separating the marked pair.  The mechanism: exactness forces
+`φ(h) ∈ φ(Γ)`, the `h`-matching then preserves every `Γ`-orbit, and
+property (T) makes the `p`-slot Schreier sheet an expander that an
+ε-density deletion cannot fragment — expansion beats girth.  The route
+`two-point-via-congruence-cuts` is invalidated by that claim.  No route
+should ever require this claim; it is retained as the record of the
+question and of the attack log below.
+
 ## The shape of the problem
 
 With `S = Q_M` the claim is false at every level: `ker π_M ∩ hΓ` is
@@ -55,15 +70,17 @@ refute this claim.
   Hilbert-embeddable witness lane closes — refuting
   `hilbert-embeddable-witness-for-kun-thom-wreath` would then need tools
   finer than the two-point necessary condition.
-- **If refuted:** only the exact-congruence lane closes; the two-point
-  claim survives on other models.  But the refutation would be an
-  expansion argument, and by the approximate-model remark of
-  `pair-constraint-graph-criterion` an expansion argument robust to `k`
-  single-letter Hamming defects refutes `two-point-orbit-approximation`
-  outright — and with it, through
-  `witness-yields-two-point-approximation`, the witness claim itself,
-  resolving the Hilbert-embeddable lane negatively.  A refutation attempt
-  should therefore be run at approximate-model strength from the start.
+- **If refuted:** only the exact-model lane closes; the two-point claim
+  survives on genuinely approximate models.  *Correction (2026-08-15,
+  from the adversarial verification of the actual refutation):* the
+  earlier version of this bullet asserted that any expansion refutation
+  would automatically be robust to Hamming defects and so refute
+  `two-point-orbit-approximation` outright.  That was wrong.  The
+  refutation's load-bearing input is `φ(h) ∈ φ(Γ)` — a strictly
+  exact-model fact with no Hamming-robust analogue: an
+  `(F,ε)`-multiplicative `φ` need not place `φ(h)` near any `φ(γ)`, and
+  the orbit decomposition is then undefined.  Extending to approximate
+  models is a genuinely open problem, not a corollary.
 
 The regular congruence model is the canonical test case, not the general
 one: `two-point-orbit-approximation` admits arbitrary finite models, and

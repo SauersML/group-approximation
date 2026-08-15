@@ -74,7 +74,13 @@ lies in the image of `Γ` and the cosets collapse: `q̄ = p̄` always.
 distinct as sites, a generic character orbit separates the mark by an absolute
 constant, with no dilution — so the lamp side costs nothing. What remains
 between the graph and Question 3.4 on this route is precisely whether
-approximate multiplicativity buys what exact multiplicativity provably does not.
+approximate multiplicativity buys what exact multiplicativity provably does
+not — and "provably" is now quantitative:
+`exact-models-cannot-separate-marked-pair` (2026-08-15) shows no genuine
+finite `G`-action, with any ε-density deleted set at Kazhdan-small ε, admits
+the label data at this pair. Any witness of this claim must therefore carry
+genuine multiplicativity defect; the exact lane, including the congruence
+cut problem, is closed.
 
 A **refutation** of this claim would close the weak-soficity route to
 hyperlinearity of `W` and, by `clifford-ce-implies-bernoulli-ce`, the Clifford
