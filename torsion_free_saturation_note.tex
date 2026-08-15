@@ -175,10 +175,9 @@ Now take the compression core on $G$ given by $\iota$ the inclusion of
 $\Gamma$, $t=t_1$, and any $c\in J\smallsetminus\{1\}$, so
 $d:=t_1ct_1^{-1}\in\pi(S)\smallsetminus\{1\}$.
 
-\begin{lemma}[defect identification; the containment
-$\supseteq$ is machine-checked as
-\texttt{simpleSubgroup\_le\_defectNormal}]\label{lem:defect}
-$D=\ncl{\pi(S)}_G$.
+\begin{lemma}[defect identification]\label{lem:defect}
+$D=\ncl{\pi(S)}_G$.  The containment $\supseteq$ is machine-checked, as
+\textup{\texttt{simpleSubgroup\_le\_defectNormal}}.
 \end{lemma}
 
 \begin{proof}
@@ -382,13 +381,12 @@ outside both the formalized development and the scope of this note.
 
 \section{The certification boundary}\label{sec:boundary}
 
-The accompanying Lean~4 development (repository
-\texttt{nonsofic\_existence}, modules
-\texttt{Sofic/NormalKazhdanMFRadical},
-\texttt{Sofic/TorsionFreeFullMFRadical},
-\texttt{Sofic/TorsionFreeFullMFConsequences},
-\texttt{Criterion/CriterionAssembly}) machine-checks the following, with no
-axioms and no literature-transcription premises:
+The accompanying Lean~4 development machine-checks the following, with no
+axioms and no literature-transcription premises, in the modules
+\begin{center}\ttfamily
+Sofic/NormalKazhdanMFRadical,\quad Sofic/TorsionFreeFullMFRadical,\\
+Sofic/TorsionFreeFullMFConsequences,\quad Criterion/CriterionAssembly:
+\end{center}
 
 \begin{itemize}
 \item Theorem~\ref{thm:radical} (\texttt{normalKazhdan\_le\_normMFResidual},
@@ -405,9 +403,10 @@ axioms and no literature-transcription premises:
   full package of Theorem~\ref{thm:main}(1)--(2) --- including
   $\operatorname{cdeMFResidual}=\top$, failure of the CDE embedding
   property, heredity of the full radical by every quotient, and triviality
-  of every homomorphism to an operator-MF group --- and, given the
-  descended criterion data, Theorem~\ref{thm:main}(3) for the routed
-  quotient (\texttt{NonsoficCriterionData.not\_isSofic}).
+  of every homomorphism to an operator-MF group --- and
+  Theorem~\ref{thm:main}(3) for the routed quotient, via
+  \texttt{NonsoficCriterionData.not\_isSofic} applied to the descended
+  criterion data.
 \end{itemize}
 
 What is \emph{not} formalized, and is asserted here only on the strength of
@@ -421,8 +420,10 @@ suitable-subgroup small cancellation, and we have chosen to represent that
 boundary by structures whose fields are consumed by checked proofs rather
 than by axioms.
 
-A companion document in the repository
-(\texttt{docs/TORSION\_FREE\_NORMAL\_GENERATION\_HULL\_QUOTIENT.md})
+A companion document in the repository,
+\begin{center}
+\texttt{docs/TORSION\_FREE\_NORMAL\_GENERATION\_HULL\_QUOTIENT.md},
+\end{center}
 contains the alternative substitution-based route to
 Lemma~\ref{lem:saturation} together with verbatim source quotations of
 every Hull and Osin statement used above, extracted from the arXiv PDFs on
