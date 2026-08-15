@@ -36,14 +36,20 @@ K₁ ∩ K₂ = 1   in Q.
    statement about finitely many `Q`-orbits of cycles; the shortest
    cycles have syllable length 4 and are the twenty radius-2
    cross-chart commutators.
-3. A warning for the Steinberg translation
-   (`atlas-steinberg-rank-five-translation`): the common refinement
-   `{000,001,010,011,1}` of `D₁, D₂` is NOT a usable prefix code for the
-   rank-5 chart — refinement must be uniform (the `m(α) = m(β)` rank
-   condition of the atlas doc), and it refines `D₁` with multiplicities
-   `(1,1,2,1)`; this is the same fact as `K₁ ∩ K₂ = 1`.  The uniform
-   refinements have `4·2^k` leaves, so a rank-5 chart must be chosen
-   independently of both charts.
+3. What the non-uniformity of the join costs — *corrected 2026-08-15,
+   late; the first version of this consequence overstated it and would
+   have steered the construction away from the code that worked.*  The
+   common refinement `E = {000,001,010,011,1}` of `D₁, D₂` IS a legal
+   complete prefix code (the join), and it is exactly the code the
+   dictionary of `atlas-rank-five-dictionary` runs on, with the shared
+   leaf as its hinge.  Because `E` refines `D₁` with multiplicities
+   `(1,1,2,1)` — non-uniformly, the same fact as `K₁ ∩ K₂ = 1` — the
+   group `GL(E)` contains neither `K₁` nor `K₂`, so no rank-five root
+   element is a *chart element*.  That blocks chart-containment only:
+   the criterion needs the root elements to be *words* in `K₁ ∪ K₂`,
+   which they are.  The `4·2^k`-leaf uniform refinements remain correct
+   for their actual role — the superperfect hosts `G_i ⊇ K_i` of §9 —
+   not as the Steinberg chart.
 
 Reproduction: `python3 experiments/atlas_relator_chart_overlap.py`
 (seconds; exact `F₂`/prefix arithmetic).  Derivation:
