@@ -1129,10 +1129,10 @@ of $w$ in the finite group.
 \end{proof}
 
 \begin{remark}[the invariant-size principle]\label{rem:invariantsize}
-The proof of Theorem~\ref{thm:B} consumed exactly one feature of finite
+The proof of Theorem~\ref{thm:B} used exactly one feature of finite
 dimensionality: a subspace of a finite-dimensional space that contains
-an isomorphic copy of itself equals it.  The formal development
-isolates the abstract form.  Suppose a conjugation-invariant size
+an isomorphic copy of itself equals it.  In abstract form: suppose a
+conjugation-invariant size
 $\sigma$ with values in $\mathbb N$ is defined on the subgroups of a
 group $Q$ and satisfies the separation property that $K\le L$ with
 $\sigma(L)\le\sigma(K)$ forces $K=L$.  If $gKg^{-1}\subseteq K$, then
@@ -1144,12 +1144,10 @@ the fixed space of the adjoint action in a finite-dimensional
 representation both qualify: finite quotients and finite-dimensional
 linear representations are blind to strict one-sided compression for
 one and the same reason.  The corona argument of Theorem~\ref{thm:A}
-is the analytic residue of this principle at infinite dimension.
+is the analytic counterpart of this principle at infinite dimension.
 \end{remark}
 
 \paragraph{Why the corona argument is different.}
-The proof of Theorem~\ref{thm:B} used only that a finite-dimensional
-subspace cannot be properly contained in an isomorphic image of itself.
 An MF model is only asymptotically multiplicative, so its coordinate fixed
 spaces are not literal invariant subspaces.  Operator-norm control keeps
 the coordinate adjoint actions almost multiplicative on the
@@ -1164,13 +1162,12 @@ finite-dimensional steps above.
 We work throughout with the groups defined by the relators below.
 Classically the base is the affine group
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, a familiar Kazhdan group
-(Remark~\ref{rem:classical-base}); the reader should keep that model in
-mind.  The proof of property~\textup{(T)} given here is nevertheless
-intrinsic to the displayed presentations and independent of the
-identification.  It has three ingredients: an exact rational spectral
-certificate for an auxiliary Steinberg-type presentation, an explicit
-surjection onto the linear presentation, and a fixed-point bridge from
-the linear subgroup to the full base.
+(Remark~\ref{rem:classical-base}).  The proof of
+property~\textup{(T)} given here is nevertheless intrinsic to the
+displayed presentations and independent of the identification: an
+exact rational spectral certificate for an auxiliary Steinberg-type
+presentation, an explicit surjection onto the linear presentation, and
+a fixed-point bridge from the linear subgroup to the full base.
 First define the \emph{linear presentation}
 \begin{equation}\label{eq:sl3presentation}
  \mathcal R=\left\langle x,y,z\ \middle|\
@@ -1281,15 +1278,15 @@ $\iota(v_1)$.
 image of the base into itself.  It sends $c$ to $d=tct^{-1}$: the
 relations force $c$ to commute with all of $\iota(\mathcal B)$ and force
 $d$ to commute with the compressed copy, but do not require $d$ to commute
-with $\iota(v_1)$.  The marked word $w$ records that commutation defect.
+with $\iota(v_1)$.  The marked word $w$ is that commutation defect.
 Only the one-sided inclusion is used by the analytic criterion.}
 \label{fig:compression-pattern}
 \end{figure}
 
-In particular the conjugation argument needs only the one-sided inclusion
-and centralizer relations shown in Figure~\ref{fig:compression-pattern}; it
-never uses injectivity or properness of the base map.  Injectivity for the
-constructed group is established independently by the Clifford realization.
+The conjugation argument uses only the one-sided inclusion and
+centralizer relations shown in Figure~\ref{fig:compression-pattern}.
+Injectivity of the base map is established independently by the
+Clifford realization.
 
 \subsection{Property~\textup{(T)} of the base}
 
