@@ -6,7 +6,24 @@ edit.  Companion to `docs/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`
 (structure) and `docs/TRUE_LITERAL_NONMF_MARK_IS_CE_VISIBLE.md` (the
 finite-stage tower template, 2026-08-13).
 
-**Theorem.**  The literal forty-one-relator group `E` of `def:E` in
+**Audit 2026-08-15 (adversarial): SOUND-WITH-FIXABLE-GAPS — and the theorem
+is CONDITIONAL, which this document originally did not state.**  The single
+irreducible conditional input is `B ≅ Γ̄` (equivalently: completeness of the
+eight-relator presentation of `SL₃(ℤ)`, \cite{CRW} Theorem 2 via the
+manuscript's `rem:classical-base`, which the manuscript quarantines as
+unused literature).  It enters at exactly two places: the companion's
+structure theorem (its input (I1), see the corrected header there), and
+Lemma 3.1's residual finiteness of `Λ ≤ Γ_n` below.  Everything else is
+unconditional; in particular `gammaBar_residuallyFinite` (Lean) already gives
+the needed RF for the MATRIX levels, so the gap is precisely `B ≅ Γ̄`, not
+Mal'cev.  Note the resulting trust-surface inversion: "`E` is not MF" is
+unconditional while "`E` is sofic" is conditional — the reverse of the
+manuscript's usual layering.  Per repo doctrine (zero literature inputs in
+Lean; manuscript 1:1 with Lean) this theorem cannot enter the manuscript
+until `B ≅ Γ̄` is formalized or replaced.
+
+**Theorem (conditional on `B ≅ Γ̄`, see audit note above).**  The literal
+forty-one-relator group `E` of `def:E` in
 `non_mf_groups_exist.tex` is sofic.  Consequently `E` is an explicit
 **finitely presented sofic — hence hyperlinear — group that is not MF**, and
 `Rad_sof(E) = 1` while `w ∈ Rad_MF(E) \ {1}`.
@@ -46,10 +63,13 @@ block subgroup".
 
 ## 2.  Inputs
 
-**(S1)** (`literal-telescope-split-normal-form`, ESTABLISHED)
+**(S1)** (`literal-telescope-split-normal-form` — `[audit-fix 2026-08-15]`
+DOWNGRADED from ESTABLISHED to CONDITIONAL)
 `E = N_E ⋊ V` with `V = T ⋊ ⟨τ⟩`, `T = ⋃_{n ≥ 0} Γ_n` the increasing union of
 the telescope levels `Γ_n = τ^{-n} B τ^{n} ≅ ℤ³ ⋊ SL₃(ℤ)`, and
-`V ≅ ⟨Γ̄, D⟩ ≤ GL₄(ℚ)` linear.
+`V ≅ ⟨Γ̄, D⟩ ≤ GL₄(ℚ)` linear.  The identifications `Γ_n ≅ ℤ³ ⋊ SL₃(ℤ)` and
+`V ≅ ⟨Γ̄,D⟩` carry the companion's conditional input (I1) (`B ≅ Γ̄`); the
+split structure over the *presented* telescope is unconditional.
 
 **(S2)** (`literal-lamp-kernel-clifford-block-amalgam`, ESTABLISHED)
 `N_E = ∗_{⟨w⟩, i ∈ I} P_i` with every `P_i ≅ ClLamp(8)` of order 512, the
@@ -76,8 +96,10 @@ the split integer case is Lean `SoficIntegerExtension.lean`).
 
 **(S5)** Standard group theory: a finitely generated group acting on a tree
 with finite vertex stabilisers is virtually free (Karrass--Pietrowski--Solitar);
-a free product of finitely many finite groups amalgamated over a common finite
-subgroup is residually finite (Baumslag); finitely generated linear groups are
+`[audit-fix 2026-08-15: the Baumslag phrasing originally here ("finitely many
+finite groups over a common finite subgroup is RF") overstates the two-factor
+theorem — the route actually used is KPS virtual freeness, which the audit
+verified within its hypotheses]`  finitely generated linear groups are
 residually finite (Mal'cev); products of residually finite groups and
 finite-index overgroups of residually finite groups are residually finite.
 
@@ -101,7 +123,11 @@ in particular residually finite.
 fixing `w`.  That action factors through the finite symmetric group on
 `sites(J)`, so its kernel `Λ` has finite index in `Γ_n` and centralises `M_J`.
 Hence `M_J × Λ` is a subgroup of `M_J ⋊ Γ_n` of index `[Γ_n : Λ] < ∞`.  Now
-`Λ ≤ Γ_n ≅ ℤ³ ⋊ SL₃(ℤ)` is linear, hence residually finite by Mal'cev, so
+`Λ ≤ Γ_n ≅ ℤ³ ⋊ SL₃(ℤ)` is linear, hence residually finite by Mal'cev
+`[audit 2026-08-15: THIS is the conditional step — `Γ_n` is a conjugate of
+`ι(B)` with `B` the PRESENTED twenty-relator group, so linearity/RF of `Γ_n`
+needs `B ≅ Γ̄`; for the matrix group the conclusion is unconditional and
+already formalized as `gammaBar_residuallyFinite`, no Mal'cev needed]`, so
 `M_J × Λ` is residually finite; residual finiteness passes to finite-index
 overgroups, so `M_J ⋊ Γ_n` is residually finite.  Residually finite implies
 LEF implies sofic by (S4). ∎
@@ -522,3 +548,36 @@ instance), the Lean modules `SoficDirectedUnion`, `LEFSofic`, `SoficTransfer`,
 `def:E`, `lem:linear`, `prop:witness`, proof of Theorem E, `lem:rfmf`,
 `lem:lfmf`, `cor:notRFD`.  No prior proof of soficity of `E` was found in any
 of these.
+
+---
+
+## Audit addendum, 2026-08-15 (adversarial audit, minor findings)
+
+The load-bearing conditional gap is recorded in the header; the following
+minor items were also found and stand corrected here rather than inline:
+
+* **LEF ⟹ MF mis-citation** (§4, §5): attributed to `lem:rfmf`/`lem:lfmf`,
+  neither of which states it.  The fact is nonetheless formalized:
+  `isOperatorMF_of_isLEF` (`GroupApproximation/Sofic/LocallyFiniteMF.lean:39`).
+* **Corollary 4.5**: the doc's own method proves only `R ⊆` the finite
+  residual; "exactly `R`" is imported from another agent's artifact and was
+  not verified by this audit.  Not load-bearing for Theorem 5.1.
+* **Notation collision**: `Γ_n = τ⁻ⁿBτⁿ` (increasing levels, §§2–3) versus
+  `B_n = 2ⁿℤ³⋊SL₃(ℤ)` (decreasing, §4a) are both used without a bridging
+  sentence; the companion doc is itself inconsistent on `B_n` vs `B₁`.
+  No mathematical error results.
+* **Lean coverage confirmed by the audit**: `isSofic_int_semidirectProduct`
+  (`SoficIntegerExtension.lean:330`) covers the final ℤ-extension step in
+  full generality (any kernel, any action — not specialized to `W`);
+  `finite_verticalLevel_orbit` / `finite_orbit_on_quotient_of_commensurated`
+  (`MappingTelescopeFiniteOrbits.lean:219,188`) cover the orbit step as-is,
+  because a block is determined by its eight sites, so block orbits reduce to
+  the formalized site orbits with CRW-free hypotheses.
+* **Formalization cost estimate** (from the audit): companion structure
+  theorem ~3–5k lines (Mathlib `Monoid.PushoutI`/`NormalWord` supplies the
+  amalgam normal form); RF of `M_J` (bespoke KPS-free proof for finitely many
+  finite factors over a central ℤ/2) ~1.5–3k lines; RF product/overgroup
+  lemmas ~150–300 lines each; assembly ~500 lines.  The blocking atom
+  `B ≅ Γ̄` (CRW Theorem 2) is the decisive item: without it a Lean-checked
+  "E is sofic" is out of reach, and it cannot be axiom-tagged because
+  `scripts/Audit.lean` pins `literatureInputNames := []`.

@@ -2,9 +2,16 @@
 
 Date: 2026-08-14.  Author: Cairn agent `cairn-literal`.
 Status: complete written argument; no compute, no Lean, no manuscript edit.
-Every external input is either a displayed statement of
-`non_mf_groups_exist.tex` or a standard Bass--Serre / HNN fact cited with its
-source.
+**Audit 2026-08-15 (adversarial, two independent agents): SOUND-WITH-FIXABLE-GAPS.**
+The original status line ("every external input is either a displayed statement
+of the tex or a standard Bass--Serre fact") was FALSE: input (I1) below is a
+LITERATURE premise (CRW Theorem 2 via `rem:classical-base`), misattributed to
+the proof of `prop:literal-base-T`, which explicitly *never* identifies `B`
+with a matrix group.  Consequently §§2--8 are unconditional theorems about
+`E_lin` — the same construction built on the matrix base `Γ̄` — and theorems
+about the literal presented `E` only modulo `B ≅ Γ̄` (base injectivity,
+equivalently completeness of the eight-relator presentation of `SL₃(ℤ)`).
+Corrections from the audit are applied inline below and marked `[audit-fix]`.
 
 This document computes the literal forty-one-relator group `E` of
 Definition 5.2 (`def:E`) of `non_mf_groups_exist.tex` completely: a split
@@ -39,16 +46,30 @@ with `R_stable = {t vᵢ t⁻¹ vᵢ⁻²  (i ≤ 3), [t,x], [t,y], [t,z]}`,
 `w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]`.  The manuscript's relator count `20+6+1+6+8 = 41`
 is exactly this partition.
 
-**Input (I1)** (manuscript, proof of `prop:literal-base-T`).  The twenty
-relators present `B ≅ ℤ³ ⋊ SL₃(ℤ)`, with `vᵢ ↦ (eᵢ,1)` and `x,y,z` the three
-displayed matrices; the inverse map is written down there.  Under this
-isomorphism `α` is `(n,A) ↦ (2n,A)`, i.e. conjugation by
-`D = diag(2,2,2,1)` in the affine model of `lem:linear`.
+**Input (I1)** `[audit-fix 2026-08-15]` (LITERATURE, conditional — NOT a
+manuscript theorem).  The twenty relators present `B ≅ ℤ³ ⋊ SL₃(ℤ)`, with
+`vᵢ ↦ (eᵢ,1)` and `x,y,z` the three displayed matrices.  Source: manuscript
+`rem:classical-base`, which rests on \cite{CRW} Theorem 2 and states verbatim
+that the identification is *not used* by the paper.  The original attribution
+here ("proof of `prop:literal-base-T`, the inverse map is written down there")
+was wrong — that proof states it never identifies `B` with a matrix group.
+Unconditionally available instead: the surjection `B ↠ Γ̄`
+(`affineQuotient_surjective`, Lean), under which `α` corresponds to
+conjugation by `D = diag(2,2,2,1)` in the affine model of `lem:linear`.
+Every use of (I1) below is sound for the matrix-base construction `E_lin`;
+its transfer to the literal `E` is conditional on `B ≅ Γ̄`.
 
-**Input (I2)** (manuscript `lem:linear`, Cairn claim
-`literal-kazhdan-clifford-inputs`, ESTABLISHED).  `α` is injective, fixes
-`x,y,z`, doubles the translations, and `v₁ ∉ range(α)`.  Its image is
-`2ℤ³ ⋊ SL₃(ℤ)`, of index `|ℤ³ : 2ℤ³| = 8`.
+**Input (I2)** `[audit-fix 2026-08-15]` (manuscript `lem:linear`, Cairn claim
+`literal-kazhdan-clifford-inputs` — ESTABLISHED *in the displayed affine
+model*).  `ᾱ = conj(D)` is injective on the MATRIX group `Γ̄`
+(`conjD_injective`, Lean), fixes `x,y,z`, doubles the translations, and
+`v̄₁ ∉ range(ᾱ)` (`v1G_not_mem_range`, Lean).  Its image has index 8.
+Injectivity of the abstract `α : B → B` on the *presented* group is
+equivalent to base injectivity `B ↪ V` and is NOT owned by the repo; it is
+part of the conditional (I1) layer.  (CRW-free and unconditional: the
+translation subgroup `A = ⟨v₁,v₂,v₃⟩` is 3-generated abelian surjecting onto
+`ℤ³`, hence `A ≅ ℤ³`, so `α|_A` is injective with index-8 image — the index
+count needs no identification.)
 
 **Input (I3)** (manuscript, proof of Theorem E).  Write
 `T = lim→(B,α) = ℤ[1/2]³ ⋊ SL₃(ℤ)` and `V = T ⋊ ⟨τ⟩`, where
@@ -198,9 +219,15 @@ block at level `n` corresponding to a site at level `n-1`.
 
 *Proof.*  Apply Proposition 4.1 to `(a,b) = ((1,[0]),(1,[e₁]))`.  The image of
 this ordered pair under `sτ^m` is `((n,[u_s]), (n,[u_s + 2^{m}A_s e₁]))` with
-`n = 1+m`.  As `A_s` runs over `SL₃(ℤ)`, `A_s e₁` runs over all primitive
-vectors of `ℤ³`, whose reductions mod 2 are exactly the seven nonzero classes
-of `(ℤ/2)³`; and `2^{n-1}v mod 2ⁿℤ³` depends only on `v mod 2`.  Hence the
+`n = 1+m`.  `[audit-fix 2026-08-15]` The original argument here let `A_s` run
+over `SL₃(ℤ)` (all primitive vectors), which invokes the conditional (I1).
+CRW-free replacement, verified by direct finite computation with the three
+displayed `lem:linear` matrices reduced mod 2: the orbit of `ē₁` under
+`⟨x̄,ȳ,z̄⟩ ≤ GL₃(𝔽₂)` is all seven nonzero classes of `(ℤ/2)³`
+(`e₁ →x̄ e₃ →z̄ (0,1,1) →x̄ (1,1,0) →ȳ (1,1,1)`, with `x̄`-cycling supplying
+`e₂` and `(1,0,1)`).  Since the linear parts of the level stabiliser realise
+this orbit and `2^{n-1}v mod 2ⁿℤ³` depends only on `v mod 2`, the neighbour
+set below is unconditional.  Hence the
 neighbours of `(n,[u])` are the seven sites `(n,[u + 2^{n-1}ε])`, `ε ≠ 0`;
 these together with `(n,[u])` form one coset of `2^{n-1}ℤ³/2ⁿℤ³`, and any two
 of them are adjacent, so each block is a `K₈` and there are no edges between
@@ -251,9 +278,10 @@ stabiliser of the block of `c`,
     E ≅ ( V × ⟨w⟩ ) ∗_{ B₁ × ⟨w⟩ } ( ClLamp(8) ⋊ B₁ ) ,
 
 where `B₁` acts on the eight Clifford sites through `AGL₃(𝔽₂)` and fixes `ζ`.
-Both vertex groups are residually finite; `E` itself is not (it is not even MF,
-by Theorem A of the manuscript, and residually finite groups are MF by
-`lem:rfmf`).
+Both vertex groups are residually finite; `E` itself is not
+`[audit-fix 2026-08-15: cite `cor:notRFD` — `w ≠ 1` dies in every finite
+quotient — rather than Theorem A, whose application to the literal
+presentation sits on the conditional surface]`.
 
 *Proof.*  `E = N_E ⋊ V` acts on the Bass--Serre tree `𝒯'` of the star-shaped
 graph of groups of Theorem 5.1 (central vertex group `⟨ζ⟩`, leaf vertex groups
@@ -339,8 +367,12 @@ not a technicality.
 **Theorem 7.1.**  Every element of `E` is uniquely `p · g` with `g ∈ V` and
 `p ∈ N_E`, where `g` is a matrix of `⟨Γ̄,D⟩ ≤ GL₄(ℚ)` and `p` has the
 amalgamated normal form `ζ^ε q₁ ⋯ q_k` with `ε ∈ {0,1}`,
-`q_j ∈ P_{i_j} \ ⟨ζ⟩`, `i_j ≠ i_{j+1}`.  The word problem for the literal
-forty-one-relator presentation is solvable.
+`q_j ∈ P_{i_j} \ ⟨ζ⟩`, `i_j ≠ i_{j+1}` — `[audit-fix 2026-08-15]` uniqueness
+of the `q_j` holds only *relative to fixed transversals* of `⟨ζ⟩` in each
+`P_i` (as stated it fails: `(ζq₁)(ζq₂) = q₁q₂` with all four letters outside
+`⟨ζ⟩`); the sequence of blocks `i₁,…,i_k` and the length `k` are absolutely
+unique.  The word problem for the literal forty-one-relator presentation is
+solvable.
 
 *Proof.*  Uniqueness of `p·g` is (3.1); uniqueness of the amalgam normal form
 up to the standard `⟨ζ⟩`-bookkeeping is (I4b) together with Theorem 5.1 (the
@@ -450,11 +482,14 @@ finite of the same cardinality, they are equal), so `B` is not separable in
 
 ## 10.  Provenance
 
-* Manuscript facts used: `def:E` (the 41 relators), proof of
-  `prop:literal-base-T` (`B ≅ ℤ³ ⋊ SL₃(ℤ)`), `lem:linear` (`α` injective,
-  index 8, `v₁ ∉ range α`), the proof of Theorem E (`V = T ⋊ ℤ ≅ ⟨Γ̄,D⟩ ≤
-  GL₄(ℚ)`; surjectivity of `E → W`), `con:clifford`, `lem:square`,
-  `lem:rfmf`, `cor:notRFD`.  Nothing in the manuscript was modified.
+* Manuscript facts used: `def:E` (the 41 relators), `lem:linear` (`ᾱ`
+  injective on `Γ̄`, index 8, `v̄₁ ∉ range ᾱ`), the proof of Theorem E
+  (`V = T ⋊ ℤ ≅ ⟨Γ̄,D⟩ ≤ GL₄(ℚ)`; surjectivity of `E → W`), `con:clifford`,
+  `lem:square`, `lem:rfmf`, `cor:notRFD`.  `[audit-fix 2026-08-15]` The
+  identification `B ≅ ℤ³ ⋊ SL₃(ℤ)` is NOT a manuscript fact — it is
+  `rem:classical-base` = \cite{CRW} Theorem 2, a literature input the
+  manuscript explicitly does not use; see the corrected (I1).  Nothing in the
+  manuscript was modified.
 * Standard inputs: Serre, *Trees* (HNN/amalgam normal forms, structure of
   groups acting on trees), Nielsen--Schreier/Kurosh, Mal'cev.
 * Literature statements quoted, both read at second hand and flagged as such:
