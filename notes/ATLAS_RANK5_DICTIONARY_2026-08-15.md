@@ -318,6 +318,17 @@ relators with nontrivial (p1,p2):         72 of 4,612
 
 With the twelve reverse-dictionary relators, `|T_St| = 4,624`.
 
+**Step-4 validation (MSI job 15860399, 38 s).**  The program's own acceptance
+test -- any list killed by a homomorphism onto a nontrivial finite group is
+wrong -- now applies to `T_St` itself rather than to the enumerated windows.
+Both screens pass:
+
+```
+SCREEN (D)  72 of 4612 escape ker(Pbar ->> A8 x A8)      passes
+SCREEN (A)  0 survivors of 2 * 1814400 degree-10 pairs   passes
+            (stage-1 filter: the 40 shortest relators, syllables 4..8)
+```
+
 The (St3) block also carries the **spare-index well-definedness** content: for
 every root `(i,k)` and every coefficient pair, all three intermediate indices
 `j` are equated to the SAME canonical word `x_ik(rs)`, so the three chains are
@@ -325,6 +336,43 @@ identified by emitted relations rather than by assumption.  That is the half of
 the technical core §2.5 flagged; what remains unproved is the same statement
 for monomials longer than two, which the absorption argument reduces but does
 not by itself settle.
+
+### The one remaining lemma, stated precisely
+
+Everything the completeness argument needs, beyond what is emitted, is this.
+
+> **Lemma (spare-index independence).**  Let `G_0` be the group presented by
+> the generators `X_ij(a)`, `a in A = {1,e,f,e^*,f^*}`, `1 <= i != j <= 5`,
+> subject to the full (St2) and (St3) instantiation on `A` together with the
+> five context-free CK relations.  For a monomial `w = a_1 ... a_t` in `A`
+> define `Ehat_ij(w)` by nesting (St3) through spare indices.  Then
+> `Ehat_ij(w)` is independent of the chain of spare indices used.
+
+Given the lemma, `Ehat_ij` extends additively to all of `L`, satisfies
+(St1)-(St3) by construction, and yields the inverse map
+`St_5(L) -> G_0` to the evident `G_0 -> St_5(L)` -- so `G_0 = St_5(L)` and
+`T_St` is a complete presentation.
+
+Status of the lemma by monomial length:
+
+| `t` | status |
+|---:|:--|
+| 1 | trivial |
+| 2 | **emitted**: for each root `(i,k)` and each pair, all three spare `j` are equated to one canonical right-hand side |
+| >= 3 | **open** -- absorption (above) removes the ring-relation contexts but not the chain choice |
+
+The standard route for `t >= 3` is induction using the Hall--Witt identity plus
+(St2), and it is exactly the technical core of [KrM, Theorem 3].  So the source
+question is now sharp: *does KrM's scheme establish spare-index independence
+for monomials of every length from the length-two instances, at `n >= 4`?*
+
+One practical note that makes this less risky than it sounds.  **Enlarging
+`T_St` is always safe**: any additional word verified to lie in `Rbar` keeps
+`<<T_St>> <= Rbar` and can only help reach `Nbar`.  So if the lemma turns out to
+need chain-difference relators at length three (or four), they can simply be
+emitted and verified the same way -- the construction degrades gracefully
+rather than breaking.  What cannot be repaired by adding words is the
+*converse* direction, and that direction is not used anywhere.
 
 Cost note for the eventual one-unitary optimization: what matters there is
 syllable count, not X-length, since each syllable is one `A8` element evaluated
@@ -380,7 +428,7 @@ peer's compile loop).  Job logs under
 |:--|:--|:--|
 | A9 screen, windows through radius 5 | 15857813 | **0 survivors of 362880**, 76 s |
 | full (St1)-(St3) family + reverse dictionary | 15860125 | 4,612 relators, all in `Rbar`, 22 s |
-| Step-4 screens on the full family | 15860399 | see log |
+| Step-4 screens on the full family | 15860399 | **both pass**, 38 s |
 | rank-five dictionary + relation family | 15857924 | 100 + 1112, all verified, 5.7 s |
 | degree-10 screen, windows through radius 5 | 15858592 | **0 survivors of 3628800**, 88 s |
 

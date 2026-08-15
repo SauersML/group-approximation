@@ -216,7 +216,7 @@ theorem one_sub_spectralProjection_eq (m : A) {c : ℝ}
   have h2 : (1 : A) - m = cfc (fun x : ℝ => 1 - x) m := by
     rw [cfc_sub (fun _ : ℝ => (1 : ℝ)) (fun x : ℝ => x) m
       continuousOn_const (continuousOn_id' _)]
-    conv_lhs => rw [hone, hid]
+    conv_lhs => rw [hid, hone]
   rw [h1, h2, ← cfc_mul _ _ m hres (by fun_prop)]
   apply cfc_congr
   intro x hx
