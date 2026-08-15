@@ -200,6 +200,18 @@ theorem sigma_append_shallow (A C C' : List Letter) (b : Fin 3 → ℤ)
   unfold vecOf
   rw [eval_append, eval_append, hE]
 
+/-! ## Inverse spellings of the remaining swaps -/
+
+theorem w_inv_word : w⁻¹ = x 0 (-1) * x 2 1 * x 0 (-1) := by
+  show (x 0 1 * x 2 (-1) * x 0 1)⁻¹ = x 0 (-1) * x 2 1 * x 0 (-1)
+  simp only [x]
+  group
+
+theorem w13_inv_word : w13⁻¹ = x 1 (-1) * x 4 1 * x 1 (-1) := by
+  show (x 1 1 * x 4 (-1) * x 1 1)⁻¹ = x 1 (-1) * x 4 1 * x 1 (-1)
+  simp only [x]
+  group
+
 /-! ## Norm invariance of the signed swaps -/
 
 theorem vnorm_act_w (v : Fin 3 → ℤ) :
@@ -352,7 +364,7 @@ height. -/
 private theorem sigma_succ_top_le {W : List Letter} {b : Fin 3 → ℤ}
     (hex : ∃ j, Viol W b j ∧ sigma W b (j + 1) = lam W b) :
     sigma W b (topViol W b hex + 1 + 1) ≤ lam W b := by
-  obtain ⟨hv, htop⟩ := topViol_spec hex
+  obtain ⟨_, htop⟩ := topViol_spec hex
   by_contra hgt
   push_neg at hgt
   have hlt : sigma W b (topViol W b hex + 1) <
