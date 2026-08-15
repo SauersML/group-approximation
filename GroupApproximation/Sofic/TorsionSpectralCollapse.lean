@@ -353,7 +353,7 @@ theorem actualCoronaMFInvisible_of_torsionWitness {E : Type} [Group E]
     · rw [hn0, zero_mul] at hZ
       exact hi.ne' (by exact_mod_cast hZ)
     · have habs : 1 ≤ |n| := by
-        rcases hn0.lt_or_lt with h | h
+        rcases lt_or_gt_of_ne hn0 with h | h
         · rw [abs_of_neg h]
           omega
         · rw [abs_of_pos h]

@@ -61,7 +61,8 @@ theorem exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
       IsPowerTorsionFree Q ∧
       HasKazhdanPropertyT.{0, 0} Q ∧
       Nontrivial Q ∧
-      ∀ (H : Type) (_ : Group H) (_ : Nontrivial H) (f : Q →* H),
+      ∀ (H : Type) (_ : Group H) (_ : Countable H) (_ : Nontrivial H)
+        (f : Q →* H),
         Function.Surjective f → ¬ IsCDEOperatorMF H := by
   obtain ⟨R⟩ := h
   letI : Group R.Quotient := R.groupQuotient
@@ -69,8 +70,7 @@ theorem exists_group_with_every_nontrivial_quotient_not_isCDEOperatorMF
   refine ⟨R.Quotient, inferInstance, inferInstance, R.isTwoGenerated,
     R.finitelyPresented, R.torsionFree, R.kazhdan, R.quotientNontrivial,
     ?_⟩
-  intro H _ _ f hf
-  letI : Countable H := hf.countable
+  intro H _ _ _ f hf
   exact R.quotient_not_isCDEOperatorMF f hf
 
 end FullMFRadicalEndpoint

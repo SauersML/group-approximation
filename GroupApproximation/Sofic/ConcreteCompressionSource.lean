@@ -334,7 +334,8 @@ theorem brittonWord_prod {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
 of `α`, the protected commutator of the affine skeleton survives. -/
 theorem commutator_tct_ne_one {γ₀ : Γ} (hγ₀ : γ₀ ∉ Set.range α) :
     ⁅(HNNExtension.t : SourceGroup α hα) * HNNExtension.of cZ *
-      HNNExtension.t⁻¹, HNNExtension.of (baseInl γ₀)⁆ ≠ 1 := by
+      HNNExtension.t⁻¹,
+      (HNNExtension.of (baseInl γ₀) : SourceGroup α hα)⁆ ≠ 1 := by
   intro hone
   have hmem : (brittonWord α hγ₀).prod (sourceEquiv α hα) ∈
       (HNNExtension.of.range : Subgroup (SourceGroup α hα)) := by

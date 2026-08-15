@@ -84,7 +84,6 @@ theorem isConj_mk_rotate (w : List (α × Bool)) (n : ℕ) :
     IsConj (FreeGroup.mk w) (FreeGroup.mk (w.rotate n)) := by
   rcases eq_or_ne w [] with rfl | hw
   · rw [List.rotate_nil]
-    exact IsConj.refl _
   · rw [← List.rotate_mod]
     have hlen : w.length ≠ 0 := fun h => hw (List.length_eq_zero_iff.mp h)
     have hlt : n % w.length < w.length :=
@@ -124,13 +123,17 @@ theorem normalClosure_symmetrization (R : Set (List (α × Bool))) :
     · obtain ⟨c, hc⟩ := isConj_iff.mp hconj
       rw [← hc]
       exact Subgroup.normalClosure_normal.conj_mem _
-        (Subgroup.subset_normalClosure ⟨r, hr, rfl⟩) c
+        (Subgroup.subset_normalClosure
+          (show FreeGroup.mk r ∈ FreeGroup.mk '' R from ⟨r, hr, rfl⟩)) c
     · obtain ⟨c, hc⟩ := isConj_iff.mp hconj
       rw [← hc]
       exact Subgroup.normalClosure_normal.conj_mem _
-        (inv_mem (Subgroup.subset_normalClosure ⟨r, hr, rfl⟩)) c
-  · exact Subgroup.normalClosure_mono
-      (Set.image_subset _ (subset_symmetrization R))
+        (inv_mem (Subgroup.subset_normalClosure
+          (show FreeGroup.mk r ∈ FreeGroup.mk '' R from ⟨r, hr, rfl⟩))) c
+  · apply Subgroup.normalClosure_le_normal
+    rintro _ ⟨r, hr, rfl⟩
+    exact Subgroup.subset_normalClosure
+      ⟨r, subset_symmetrization R hr, rfl⟩
 
 /-- A piece: a common prefix of two distinct members of the symmetrized
 family.  With rotations present, prefixes capture occurrences at every

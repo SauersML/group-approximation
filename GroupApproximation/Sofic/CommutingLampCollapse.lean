@@ -76,7 +76,7 @@ theorem lamp_mul_lamp_inv_ne {X : Type*} {x y : X} (h : x ≠ y) :
     have h1 := congrArg (fun f : X →₀ ZMod 2 ↦ f x) hc
     simp only [Finsupp.add_apply, Finsupp.single_eq_same, Finsupp.coe_zero,
       Pi.zero_apply] at h1
-    rw [Finsupp.single_eq_of_ne (Ne.symm h), add_zero] at h1
+    rw [Finsupp.single_eq_of_ne h, add_zero] at h1
     exact one_ne_zero h1
   constructor
   · intro hc
@@ -246,7 +246,6 @@ theorem commutingLampQuotient_collapse
         ((iotaVertical α hα γ₂ * tVertical α hα) • rootCoset α hα) with
         heq | hne
       · rw [heq]
-        exact Commute.refl _
       · refine commutatorElement_eq_one_iff_commute.mp ?_
         rw [← map_commutatorElement, ← map_commutatorElement,
           commutator_lamp_lamp (Cosets α hα) hne]

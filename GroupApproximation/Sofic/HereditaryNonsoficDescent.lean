@@ -207,8 +207,7 @@ noncomputable def descendSetup (C : CompressionSetup G Γ J) (q : G →* H)
       obtain ⟨hmem, hqr⟩ := (Finset.mem_image.mp hr).choose_spec
       have happ := congrArg q (C.compressedEnd_spec
         (Finset.mem_image.mp hr).choose hmem g)
-      rw [map_mul, map_mul, map_inv] at happ
-      rw [← hqr]
+      rw [map_mul, map_mul, map_inv, hqr] at happ
       exact happ
     generates := by
       have htop : Subgroup.map q (⊤ : Subgroup G) = ⊤ := by
@@ -305,14 +304,14 @@ theorem quotient_not_isSofic {H : Type} [Group H] [Nontrivial H]
 
 /-- The full hereditary package for a nontrivial quotient: full corona
 MF radical, failure of both MF conventions, and nonsoficity. -/
-theorem hereditary_package {H : Type} [Group H] [Nontrivial H]
+theorem hereditary_package {H : Type} [Group H] [Countable H]
+    [Nontrivial H]
     (q : R.Quotient →* H) (hq : Function.Surjective q) :
     coronaMFResidual H = ⊤ ∧
       ¬ IsOperatorMF H ∧
       ¬ IsCDEOperatorMF H ∧
       ¬ IsSofic H := by
   letI : Countable R.Quotient := R.quotientCountable
-  letI : Countable H := hq.countable
   exact ⟨R.quotient_coronaMFResidual_eq_top q hq,
     R.quotient_not_isOperatorMF q hq,
     R.quotient_not_isCDEOperatorMF q hq,
