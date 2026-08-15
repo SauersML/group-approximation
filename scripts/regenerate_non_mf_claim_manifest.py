@@ -134,9 +134,21 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/MFRelationClosure",
         "GroupApproximation.manuscriptSoundIterationClosure",
     ),
-    "thm:intertwiner-transport": (
-        "Sofic/IntertwinerKazhdanTransport",
-        "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
+    "prop:stabradical": (
+        "Sofic/MatricialStabilityRadical",
+        "GroupApproximation.MatricialStabilityRadical.actualCoronaMFResidual_eq_fdUnitaryResidual",
+    ),
+    "thm:commutinglamp": (
+        "Sofic/CommutingLampCollapse",
+        "GroupApproximation.CommutingLampCollapse.literalCommutingLampQuotient_collapse",
+    ),
+    "thm:torsion-collapse": (
+        "Sofic/TorsionSpectralCollapse",
+        "GroupApproximation.TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness",
+    ),
+    "thm:transport-variants": (
+        "Sofic/ScaledKazhdanTransport",
+        "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
     ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",
@@ -146,9 +158,9 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ProjectionCompressionCollapse",
         "GroupApproximation.ProjectionCompressionCollapse.corona_projection_collapse",
     ),
-    "thm:scaled-transport": (
-        "Sofic/ScaledKazhdanTransport",
-        "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
+    "lem:permanence": (
+        "Sofic/OperatorMFPositiveControls",
+        "GroupApproximation.IsOperatorMF.subgroup",
     ),
     "def:pattern": (
         "Sofic/ManuscriptExactWrappers",
@@ -183,13 +195,13 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
     "cor:cylinder": (
         "Sofic/LiteralMarkedCylinder",
         "GroupApproximation.LiteralMarkedCylinder.literal_nonempty_clopen_nonMF_cylinder"),
-    "lem:subgroupMF": (
+    "lem:permanence": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.IsOperatorMF.subgroup"),
-    "lem:rfmf": (
+    "lem:permanence": (
         "Sofic/OperatorMFPositiveControls",
         "GroupApproximation.isOperatorMF_of_residuallyFinite"),
-    "lem:lfmf": (
+    "lem:permanence": (
         "Sofic/LocallyFiniteMF",
         "GroupApproximation.isOperatorMF_of_locallyFinite"),
     "lem:faithfultrace": (
@@ -235,7 +247,7 @@ DEPENDENCIES: dict[str, list[str]] = {
                      "thm:kazhdan-transport"],
     "cor:collapsequot": ["thm:collapse", "cor:pullback",
                          "cor:exactradical"],
-    "thm:saturation": ["thm:collapse", "lem:portable", "lem:subgroupMF",
+    "thm:saturation": ["thm:collapse", "lem:portable", "lem:permanence",
                        "prop:univquot"],
     "lem:portable": ["thm:A", "def:radical"],
     "prop:univquot": ["def:radical", "lem:lift", "lem:unitarycorona"],
@@ -243,7 +255,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:nofaithful": ["thm:A"],
     "prop:horn": ["thm:A", "lem:portable"],
     "cor:cylinder": ["prop:horn", "thm:A"],
-    "cor:quotclosure": ["thm:A", "lem:rfmf"],
+    "cor:quotclosure": ["thm:A", "lem:permanence"],
 }
 
 

@@ -126,14 +126,6 @@ reduced group $C^*$-algebra of $W$ is in addition exact.
 
 \maketitle
 
-\setcounter{tocdepth}{1}
-% The pinned LuaLaTeX tagging chokes on the unnumbered Contents section
-% (unknown structure tag sec/10000, then a fatal \directlua escape), so
-% tagging is suspended for exactly the table of contents.
-\tagstop
-\tableofcontents
-\tagstart
-
 \section{Introduction}\label{sec:intro}
 
 Can every countable discrete group be realized by matrices, if
@@ -441,20 +433,13 @@ Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
 \end{lemma}
 
 \begin{proof}
-Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
-$q((x_n))$ is unitary, the one-sided Gram defect satisfies
-$\opnorm{x_n^*x_n-1}\to0$.  Once
-$\opnorm{x_n^*x_n-1}\le\tfrac12$, the square Gram matrix $x_n^*x_n$ is
-invertible, hence so is $x_n$, and the polar correction
-$u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary.  Continuous functional calculus
-gives the quantitative estimate
-\[
- \opnorm{u_n-x_n}
- \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
-\]
-The sequence $(x_n)$ is bounded, so the right-hand side tends to $0$.
-Setting $u_n=1$ at the finitely many remaining indices therefore gives a
-unitary sequence with $\opnorm{u_n-x_n}\to0$.
+Lift $u$ to a bounded sequence $(x_n)$; unitarity of $q((x_n))$ gives
+$\opnorm{x_n^*x_n-1}\to0$.  Once $\opnorm{x_n^*x_n-1}\le\tfrac12$,
+the matrix $x_n$ is invertible and the polar correction
+$u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary with
+$\opnorm{u_n-x_n}\le2\opnorm{x_n}\opnorm{x_n^*x_n-1}\to0$ by
+continuous functional calculus; set $u_n=1$ at the finitely many
+remaining indices.
 \end{proof}
 
 \begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
@@ -468,10 +453,9 @@ is a canonical group isomorphism.
 \end{lemma}
 
 \begin{proof}
-The map is well defined, and its kernel consists exactly of the unitary
-sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
-surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
-unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
+The kernel consists exactly of the unitary sequences with
+$\opnorm{u_n-1}\to0$, giving injectivity; surjectivity is
+Lemma~\ref{lem:lift}.
 \end{proof}
 
 A \emph{corona representation} of a group $H$ is a homomorphism
@@ -650,50 +634,25 @@ bound on $(x_n)$, and the multiplicative defects of $U_n$.
 The transport theorem holds at every Hilbertian scale, not only at the
 dimension normalization.
 
-\begin{theorem}[Kazhdan transport at every scale]\label{thm:scaled-transport}
-Let $\Gamma$, $H$, $\iota$, $s$, and $(U_n)$ be as in
-Theorem~\ref{thm:kazhdan-transport}, and let $(w_n)$ be nonnegative
-weights.  Suppose there is $C$ with
-$\operatorname{Tr}(x_n^*x_n)\le C\,w_n$ for all $n$, and that for every
-$\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
+\begin{theorem}[transport at every scale, and of intertwiners]
+\label{thm:transport-variants}
+Let $\Gamma$, $H$, $\iota$, and $s$ be as in
+Theorem~\ref{thm:kazhdan-transport}.
+\begin{enumerate}
+\item Let $(U_n)$ be as there, let $(w_n)$ be nonnegative weights,
+and suppose there is $C$ with
+$\operatorname{Tr}(x_n^*x_n)\le C\,w_n$ for all $n$, and that for
+every $\gamma\in\Gamma$ and every $\varepsilon>0$, eventually
 \[
  \operatorname{Tr}\,\bigl|x_n-U_n(\iota(\gamma))\,x_n\,
    U_n(\iota(\gamma))^*\bigr|^2\le\varepsilon\,w_n.
 \]
 Then $U_n(s)\,x_nU_n(s)^*$ and $U_n(s)^*\,x_nU_n(s)$ satisfy both
 conditions as well.
-\leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
-\end{theorem}
-
-\begin{proof}
-Give each coordinate space $M_{d_n}(\C)$ with $w_n>0$ the inner product
-$\langle x,y\rangle=\operatorname{Tr}(y^*x)/w_n$; conjugation by a
-unitary is unitary for every weight, both hypotheses and both
-conclusions concern only these renormalized norms, and an index with
-$w_n=0$ forces $x_n=0$.  The ultraproduct proof of
-Theorem~\ref{thm:kazhdan-transport} applies verbatim: the mass bound
-defines the ultraproduct vector, the adjoint actions remain
-operator-norm almost multiplicative on the weighted Hilbert spaces, and
-finiteness reverses the one-sided compression of the fixed-space
-projection in both directions.
-\end{proof}
-
-The dimension weight $w_n=d_n$ recovers
-Theorem~\ref{thm:kazhdan-transport}, with the uniform operator-norm
-bound relaxed to mass boundedness.  The collapse proof of
-Theorem~\ref{thm:collapse} uses a rank weight, which normalizes a
-defect at its own scale.
-
-The transported object can also be an intertwiner between two different
-asymptotic representations; the adjoint sector of
-Theorem~\ref{thm:kazhdan-transport} is the diagonal case.
-
-\begin{theorem}[transport of asymptotic intertwiners]\label{thm:intertwiner-transport}
-Let $\Gamma$, $H$, $\iota$, and $s$ be as in
-Theorem~\ref{thm:kazhdan-transport}, and let
-$U^1_n\colon H\to\U(d^1_n)$ and $U^2_n\colon H\to\U(d^2_n)$ be
-operator-norm asymptotic representations.  Let $(x_n)$ be uniformly
-operator-norm bounded $d^1_n\times d^2_n$ matrices with
+\item Let $U^1_n\colon H\to\U(d^1_n)$ and
+$U^2_n\colon H\to\U(d^2_n)$ be operator-norm asymptotic
+representations and let $(x_n)$ be uniformly operator-norm bounded
+$d^1_n\times d^2_n$ matrices with
 \[
  \frac{\operatorname{Tr}\,\bigl|x_n-U^1_n(\iota(\gamma))\,x_n\,
    U^2_n(\iota(\gamma))^*\bigr|^2}{d^1_n+d^2_n}\longrightarrow0
@@ -701,24 +660,42 @@ operator-norm bounded $d^1_n\times d^2_n$ matrices with
 \]
 Then $U^1_n(s)\,x_n\,U^2_n(s)^*$ satisfies the same convergence for
 every $\gamma\in\Gamma$.
+\end{enumerate}
+\leanverified{Sofic/ScaledKazhdanTransport}{GroupApproximation.ScaledKazhdanTransport.scaled_transport_both}
 \leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport}
+\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport}
 \end{theorem}
 
 \begin{proof}
-The block sum $W_n=U^1_n\oplus U^2_n$ is an operator-norm asymptotic
-representation, because block-diagonal operator norms are maxima.  The
-off-diagonal embedding of $x_n$ into the block space has operator norm
-$\opnorm{x_n}$; its commutator with $W_n(\iota(\gamma))$ is the
-off-diagonal embedding of the displayed intertwining defect, whose
-normalized Hilbert--Schmidt norm on the block space carries the
-denominator $d^1_n+d^2_n$; and conjugation by $W_n(s)$ acts on the
-embedded corner by $x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
-Theorem~\ref{thm:kazhdan-transport}, applied to $W_n$, transports the
-embedded sequence.  The same reduction applied to
-Theorem~\ref{thm:scaled-transport} gives the intertwiner transport at
-every weight.
-\leanverified{Sofic/IntertwinerKazhdanTransport}{GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport}
+(1)  Give each coordinate space with $w_n>0$ the inner product
+$\langle x,y\rangle=\operatorname{Tr}(y^*x)/w_n$; an index with
+$w_n=0$ forces $x_n=0$.  Conjugation by a unitary is unitary for every
+weight, and both hypotheses and both conclusions concern only the
+renormalized norms, so the ultraproduct proof of
+Theorem~\ref{thm:kazhdan-transport} applies verbatim: the mass bound
+defines the ultraproduct vector, the adjoint actions remain
+operator-norm almost multiplicative, and finiteness reverses the
+one-sided compression in both directions.
+
+(2)  The block sum $W_n=U^1_n\oplus U^2_n$ is an operator-norm
+asymptotic representation, since block-diagonal operator norms are
+maxima.  The off-diagonal embedding of $x_n$ has operator norm
+$\opnorm{x_n}$, its commutator with $W_n(\iota(\gamma))$ is the
+off-diagonal embedding of the intertwining defect --- whose normalized
+Hilbert--Schmidt norm on the block space carries the denominator
+$d^1_n+d^2_n$ --- and conjugation by $W_n(s)$ acts on the embedded
+corner by $x_n\mapsto U^1_n(s)\,x_n\,U^2_n(s)^*$.
+Theorem~\ref{thm:kazhdan-transport} applied to $W_n$ transports the
+embedded sequence, and the same reduction through (1) gives the
+intertwiner transport at every weight.
 \end{proof}
+
+The dimension weight $w_n=d_n$ recovers
+Theorem~\ref{thm:kazhdan-transport} with the uniform operator-norm
+bound relaxed to mass boundedness; the collapse proof of
+Theorem~\ref{thm:collapse} uses a rank weight, which normalizes a
+defect at its own scale; and the adjoint sector of
+Theorem~\ref{thm:kazhdan-transport} is the diagonal case of (2).
 
 Fixed tensors of type $(p,q)$ are Hilbert--Schmidt intertwiners from the
 $q$th to the $p$th tensor power.  Tensor powers of unitaries are exactly
@@ -726,7 +703,7 @@ multiplicative and satisfy
 $\opnorm{A^{\otimes p}-B^{\otimes p}}\le p\,\opnorm{A-B}$, so tensor
 powers of an operator-norm asymptotic representation are again
 operator-norm asymptotic representations, and
-Theorem~\ref{thm:intertwiner-transport} applies to every pair of them:
+Theorem~\ref{thm:transport-variants}(2) applies to every pair of them:
 one-sided compression of a Kazhdan image creates no asymptotic invariant
 tensors of any fixed type, at any weight.  The tensor-power
 instantiation is not part of the formal development.
@@ -1487,7 +1464,7 @@ $\overline{\sigma(t\Gamma t^{-1})}^{\,Z}=\overline{\sigma(\Gamma)}^{\,Z}$:
 an exact finite-dimensional representation assigns the compressed
 subgroup and the subgroup the same algebraic envelope.  The chain
 condition for algebraic subgroups is classical and outside the formal
-development.  Theorem~\ref{thm:intertwiner-transport} is the asymptotic
+development.  Theorem~\ref{thm:transport-variants}(2) is the asymptotic
 counterpart at fixed tensor type.
 \end{remark}
 
@@ -1577,19 +1554,12 @@ $v_1,x,y,z,t,c$.
 \leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
 There is also a Tietze-equivalent presentation on these six generators
 with thirty-two relators.
-In \eqref{eq:E}, eliminate $v_3$ and $v_2$ by the Tietze substitutions
-\[
- v_3=xv_1x^{-1},\qquad v_2=x^2v_1x^{-2}.
-\]
-Delete the two relations used as definitions.  After substitution, the
-remaining $x$-action relation follows from $x^3=1$.  The two stable-letter
-relations for $v_2,v_3$ follow from the one for $v_1$ and $[t,x]=1$; the two
-$c$-commutation relations and two centrality relations for $v_2,v_3$
-similarly follow
-from those for $v_1$ and $x$.  These six redundant relators may therefore be
-deleted.  Starting from forty-one relators, the two Tietze definitions, the
-remaining $x$-action relation, and those six consequences leave thirty-two,
-on the generators $v_1,x,y,z,t,c$.
+In \eqref{eq:E}, eliminate $v_3=xv_1x^{-1}$ and $v_2=x^2v_1x^{-2}$ by
+Tietze substitutions and delete the two defining relations; the
+remaining $x$-action relation follows from $x^3=1$, and the
+stable-letter, $c$-commutation, and centrality relations for $v_2,v_3$
+follow from those for $v_1$ together with $[t,x]=1$ and $x^3=1$.
+Deleting these nine leaves thirty-two relators on $v_1,x,y,z,t,c$.
 
 Figure~\ref{fig:compression-pattern} isolates the geometry used later
 in the analytic argument: the relations force $d=tct^{-1}$ to commute
@@ -2258,40 +2228,28 @@ of \(\widehat j\) gives \(\phi(w)=1\).  Proposition~\ref{prop:witness} has
 
 \subsection{Permanence and its failure}
 
-\begin{lemma}[subgroups]\label{lem:subgroupMF}
-Every subgroup of an MF group is MF.
+\begin{lemma}[permanence]\label{lem:permanence}
+Let all groups be countable.
+\begin{enumerate}
+\item Every subgroup of an MF group is MF.
+\item Every residually finite group is MF.
+\item Every locally finite group is MF.
+\end{enumerate}
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
-\end{lemma}
-
-\begin{proof}
-Restrict an injective corona representation to the subgroup: injectivity
-and the homomorphism law are preserved.
-\end{proof}
-
-\begin{lemma}[residually finite groups]\label{lem:rfmf}
-Every countable residually finite group is MF.
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.isOperatorMF_of_residuallyFinite}
-\end{lemma}
-
-\begin{proof}
-For a finite test set $F$, a finite quotient injective on $F$,
-composed with its left regular permutation action, is an exact local
-model; distinct permutations differ in some column of a permutation
-matrix, giving operator-norm separation at least $1$.  The
-local-to-corona direction of Proposition~\ref{prop:mf-equivalences}
-concludes.
-\end{proof}
-
-\begin{lemma}[locally finite groups]\label{lem:lfmf}
-Every countable locally finite group is MF.
 \leanverified{Sofic/LocallyFiniteMF}{GroupApproximation.isOperatorMF_of_locallyFinite}
 \end{lemma}
 
 \begin{proof}
-A finite test set lies in a finite subgroup $K$; the left regular
-permutation action of $K$ is an exact local model separating as in
-Lemma~\ref{lem:rfmf}, and Proposition~\ref{prop:mf-equivalences}
-concludes.
+(1)  Restrict an injective corona representation.  (2)  For a finite
+test set $F$, a finite quotient injective on $F$, composed with its
+left regular permutation action, is an exact local model; distinct
+permutations differ in some column of a permutation matrix, giving
+operator-norm separation at least $1$, and the local-to-corona
+direction of Proposition~\ref{prop:mf-equivalences} concludes.
+(3)  A finite test set lies in a finite subgroup $K$, and the left
+regular permutation action of $K$ is an exact local model separating
+as in (2).
 \end{proof}
 
 \begin{corollary}[quotients]\label{cor:quotclosure}
@@ -2305,7 +2263,7 @@ but is not MF.
 Map the eight free generators onto the eight displayed generators of \(E\).
 The resulting homomorphism is surjective because those generators define the
 displayed presentation.  The group \(F_8\) is residually finite, hence MF by
-Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
+Lemma~\ref{lem:permanence}(2).  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 \end{proof}
 
 
@@ -2661,7 +2619,7 @@ $H$ is not MF.
  \operatorname{Rad}_{\mathrm{MF}}(f(H)).
 \]
 The subgroup $f(H)$ of the MF target is MF
-(Lemma~\ref{lem:subgroupMF}), so its radical is trivial by
+(Lemma~\ref{lem:permanence}(1)), so its radical is trivial by
 Proposition~\ref{prop:univquot}.
 (2)  The radical statement is Theorem~\ref{thm:collapse} with
 $D_{\mathrm{coll}}(L,s)=H$; triviality of every homomorphism follows
@@ -2839,7 +2797,7 @@ total witness is finitely generated and non-MF.
 
 \begin{proof}
 The Clifford lamp group is locally finite, hence MF by
-Lemma~\ref{lem:lfmf}.  The group $V$ identifies with the subgroup of
+Lemma~\ref{lem:permanence}(3).  The group $V$ identifies with the subgroup of
 $\GL_4(\mathbb Q)$ generated by $\bar\Gamma$ and $D$: the telescope
 levels are $D^{-n}\bar\Gamma D^{n}$, and the determinant gives the
 $\mathbb Z$-coordinate.  It is residually finite.  At every odd
@@ -2847,7 +2805,7 @@ modulus the determinant $8$ of the dilation is invertible, so the
 congruence reduction of the integral affine model descends to
 conjugation by the dilation and extends over the telescope and its
 shift.  These reductions separate any nontrivial element; compare
-Mal'cev's theorem \cite{Malcev} for finitely generated linear groups.  Thus $V$ is MF by Lemma~\ref{lem:rfmf},
+Mal'cev's theorem \cite{Malcev} for finitely generated linear groups.  Thus $V$ is MF by Lemma~\ref{lem:permanence}(2),
 whereas $W$ is not MF by the preceding construction.
 \end{proof}
 
@@ -2986,7 +2944,7 @@ topology.
 
 \subsection{Undecidability of MF recognition}
 
-Lemma~\ref{lem:subgroupMF} and Theorem~\ref{thm:A} make MF a Markov
+Lemma~\ref{lem:permanence}(1) and Theorem~\ref{thm:A} make MF a Markov
 property of finitely presented groups: the trivial group is MF, and by
 subgroup heredity the finitely presented group $E$ embeds in no MF
 group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
@@ -3017,7 +2975,7 @@ The phenomenon also has infinite multiplicity, in two senses that need
 no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
 finitely presented, pairwise nonisomorphic --- their abelianizations
 have distinct torsion-free ranks --- and non-MF, each containing $E$
-(Lemma~\ref{lem:subgroupMF}).  Beyond finite presentation, pairing $E$
+(Lemma~\ref{lem:permanence}(1)).  Beyond finite presentation, pairing $E$
 with the continuum of pairwise nonisomorphic two-generator groups of
 B.~H.~Neumann \cite{Neumann37} yields $2^{\aleph_0}$ pairwise
 nonisomorphic finitely generated non-MF groups: each product

@@ -88,10 +88,10 @@
       ]
     },
     {
-      "id": "thm:scaled-transport",
+      "id": "thm:transport-variants",
       "environment": "theorem",
-      "title": "Kazhdan transport at every scale",
-      "statement_sha256": "160c6569981d2e7abbe9fe317a0a765c669e95d080a2645564b52d63a9a11e2c",
+      "title": "transport at every scale, and of intertwiners",
+      "statement_sha256": "70528198cea81006c553da5364dd9c0c5aa3b0c2ef229bdd87863810bae7e543",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -104,26 +104,18 @@
           "module": "Sofic/ScaledKazhdanTransport",
           "declaration": "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
           "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:intertwiner-transport",
-      "environment": "theorem",
-      "title": "transport of asymptotic intertwiners",
-      "statement_sha256": "e0ffb6bdc318ac3d342db36fe4bf6abce8df2c8cd00f4f9292c73843871bab84",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
+        },
         {
           "role": "exact",
           "module": "Sofic/IntertwinerKazhdanTransport",
           "declaration": "GroupApproximation.IntertwinerKazhdanTransport.manuscriptIntertwinerTransport",
-          "covers": "the complete printed proposition"
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/IntertwinerKazhdanTransport",
+          "declaration": "GroupApproximation.IntertwinerKazhdanTransport.scaled_intertwiner_transport",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -802,10 +794,10 @@
       ]
     },
     {
-      "id": "lem:subgroupMF",
+      "id": "lem:permanence",
       "environment": "lemma",
-      "title": "subgroups",
-      "statement_sha256": "aaa205041621ae99390b71640dbc0b9f72846791febfd68154768facaced3c8b",
+      "title": "permanence",
+      "statement_sha256": "5ec86a47bd0ca09d4184182146d40fd1f21ca3ab44ebddcb3c0b30e1f824a81f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -817,42 +809,14 @@
           "role": "exact",
           "module": "Sofic/OperatorMFPositiveControls",
           "declaration": "GroupApproximation.IsOperatorMF.subgroup",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:rfmf",
-      "environment": "lemma",
-      "title": "residually finite groups",
-      "statement_sha256": "3347286acac789060b0552afea2bc2032a92a64444498379c37bd1eb0a5730a7",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
+          "covers": "a printed conclusion of the proposition"
+        },
         {
           "role": "exact",
           "module": "Sofic/OperatorMFPositiveControls",
           "declaration": "GroupApproximation.isOperatorMF_of_residuallyFinite",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:lfmf",
-      "environment": "lemma",
-      "title": "locally finite groups",
-      "statement_sha256": "a0cc8c415bfafef640741c456dafc54dbd30f5d3f8b256da4f200105b85caac8",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
+          "covers": "a printed conclusion of the proposition"
+        },
         {
           "role": "exact",
           "module": "Sofic/LocallyFiniteMF",
@@ -870,7 +834,7 @@
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:A",
-        "lem:rfmf"
+        "lem:permanence"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -1079,7 +1043,7 @@
       "dependencies": [
         "thm:collapse",
         "lem:portable",
-        "lem:subgroupMF",
+        "lem:permanence",
         "prop:univquot"
       ],
       "extra_assumptions": [],
