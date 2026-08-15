@@ -80,7 +80,15 @@ not — and "provably" is now quantitative:
 finite `G`-action, with any ε-density deleted set at Kazhdan-small ε, admits
 the label data at this pair. Any witness of this claim must therefore carry
 genuine multiplicativity defect; the exact lane, including the congruence
-cut problem, is closed.
+cut problem, is closed. The prover space is bracketed from the other
+degenerate end too: one-bit parity models witness this claim exactly at any
+window where the transport parity extends locally additively
+(`parity-flip-models-satisfy-two-point`), and they die at the explicit
+thirteen-element window of `parity-trap-window`, where the marked element
+is a six-letter Steinberg word in slot-fixing letters. A witness at large
+windows must therefore be genuinely non-exact AND genuinely non-parity; a
+refutation must amplify the six-letter odd cycle by defect-robust
+expansion.
 
 A **refutation** of this claim would close the weak-soficity route to
 hyperlinearity of `W` and, by `clifford-ce-implies-bernoulli-ce`, the Clifford
