@@ -50,8 +50,11 @@ abbrev V (B : I → Type) : Type :=
 /-- The basepoint vector. -/
 def basepoint : V B := fun x => if x = none then 1 else 0
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 @[simp] theorem basepoint_none : (basepoint : V B) none = 1 := rfl
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
+@[simp]
 theorem basepoint_some (p : (i : I) × B i) :
     (basepoint : V B) (some p) = 0 := rfl
 
@@ -59,6 +62,7 @@ theorem basepoint_some (p : (i : I) × B i) :
 def blockSet (i : I) : Finset (Coord B) :=
   (univ : Finset (B i)).image fun b => some ⟨i, b⟩
 
+omit [Fintype I] in
 theorem mem_blockSet_iff {i : I} {x : Coord B} :
     x ∈ blockSet i ↔ ∃ b : B i, x = some ⟨i, b⟩ := by
   constructor
@@ -94,6 +98,7 @@ theorem suppSet_subset_blockSet (i : I) (g : SignGroup B i) :
   obtain ⟨b, _, rfl⟩ := hx
   exact mem_blockSet_iff.mpr ⟨b, rfl⟩
 
+omit [Fintype I] in
 theorem some_mk_mem_suppSet_iff {i : I} {g : SignGroup B i} {b : B i} :
     (some ⟨i, b⟩ : Coord B) ∈ suppSet i g ↔
       Multiplicative.toAdd (g b) = 1 := by
@@ -105,6 +110,7 @@ theorem some_mk_mem_suppSet_iff {i : I} {g : SignGroup B i} {b : B i} :
     exact (mem_filter.mp hb').2
   · exact fun hb => ⟨b, mem_filter.mpr ⟨mem_univ b, hb⟩, rfl⟩
 
+omit [Fintype I] in
 theorem suppSet_one (i : I) : suppSet i (1 : SignGroup B i) = ∅ := by
   rw [suppSet, Finset.image_eq_empty, Finset.filter_eq_empty_iff]
   intro b _
@@ -158,6 +164,7 @@ the basepoint coordinate is not included. -/
 def otherSum (i : I) (v : V B) : ℤ :=
   ∑ j ∈ (univ : Finset I).erase i, blockSum j v
 
+omit [Fintype I] in
 theorem blockSum_add (i : I) (v w : V B) :
     blockSum i (v + w) = blockSum i v + blockSum i w := by
   unfold blockSum
@@ -169,6 +176,7 @@ theorem otherSum_add (i : I) (v w : V B) :
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun j _ => blockSum_add j v w
 
+omit [Fintype I] in
 theorem blockSum_smul (i : I) (c : ℤ) (v : V B) :
     blockSum i (c • v) = c * blockSum i v := by
   unfold blockSum
@@ -346,6 +354,7 @@ theorem single_le_blockSum {i : I} {v : V B} (hv : ∀ x, 0 ≤ v x)
     {b : B i} : v (some ⟨i, b⟩) ≤ blockSum i v :=
   Finset.single_le_sum (fun x _ => hv x) (mem_blockSet_iff.mpr ⟨b, rfl⟩)
 
+omit [Fintype I] in
 theorem blockSum_nonneg {i : I} {v : V B} (hv : ∀ x, 0 ≤ v x) :
     0 ≤ blockSum i v :=
   Finset.sum_nonneg fun x _ => hv x
@@ -538,6 +547,8 @@ theorem listProd_cons (p : (i : I) × SignGroup B i)
     listProd (p :: L) = signHom p.1 p.2 * listProd L := by
   simp [listProd]
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
+@[simp]
 theorem mul_linearEquiv_apply (e f : V B ≃ₗ[ℤ] V B) (v : V B) :
     (e * f) v = e (f v) := rfl
 

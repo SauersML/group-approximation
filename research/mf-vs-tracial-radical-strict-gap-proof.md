@@ -29,3 +29,16 @@ By `infinite-cyclic-compression-lamp-mf`, `W_Z` has a faithful corona
 representation, so `Rad_MF(W_Z) = 1`, while `[g, c] != 1` for
 `g in L \ tLt^{-1}` because the two lamp sites are distinct.  Hence the
 inclusion of the radicals is strict, witnessed by `[g, c]`.
+
+## Formalized layer (2026-08-15)
+
+The MF-side input of this route — faithfulness for `W_Z` — remains
+paper-level, but its locality core is now kernel-checked:
+`GroupApproximation/Sofic/IntegerLampSurvival.lean` proves the
+integer-lamp-by-telescope layer operator-MF
+(`isOperatorMF_integerLampTelescope`; generic criterion
+`isOperatorMF_lampWreath`) whenever the base is residually finite and
+the compression has finite index.  The gap statement itself still
+consumes the full `W_Z` with the shift, i.e. the slow-bump corona
+model of [[infinite-cyclic-compression-lamp-mf]]; formalizing that
+model is the one remaining analytic step on the survival side.

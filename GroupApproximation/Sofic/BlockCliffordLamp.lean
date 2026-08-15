@@ -56,6 +56,7 @@ variable (t : β → G) (hcomm : ∀ a b, Commute (t a) (t b))
 def sset (ε : β → Multiplicative (ZMod 2)) : Finset β :=
   Finset.univ.filter fun b => Multiplicative.toAdd (ε b) = 1
 
+omit [DecidableEq β] in
 theorem sset_one : sset (1 : β → Multiplicative (ZMod 2)) = ∅ := by
   rw [sset, Finset.filter_eq_empty_iff]
   intro b _
@@ -77,16 +78,20 @@ theorem sset_mul (ε ε' : β → Multiplicative (ZMod 2)) :
 def prodOf (s : Finset β) : G :=
   s.noncommProd t fun a _ b _ _ => hcomm a b
 
+omit [Fintype β] [DecidableEq β] in
 theorem prodOf_empty : prodOf t hcomm (∅ : Finset β) = 1 :=
   Finset.noncommProd_empty _ _
 
+omit [Fintype β] [DecidableEq β] in
 theorem prodOf_singleton (b : β) : prodOf t hcomm {b} = t b :=
   Finset.noncommProd_singleton _ _
 
+omit [Fintype β] in
 theorem prodOf_union {s u : Finset β} (h : Disjoint s u) :
     prodOf t hcomm (s ∪ u) = prodOf t hcomm s * prodOf t hcomm u :=
   Finset.noncommProd_union_of_disjoint h _ _
 
+omit [Fintype β] [DecidableEq β] in
 theorem commute_prodOf (g : G) (hg : ∀ b, Commute g (t b))
     (s : Finset β) : Commute g (prodOf t hcomm s) :=
   Finset.noncommProd_commute _ _ _ _ fun b _ => hg b
@@ -161,6 +166,7 @@ def signProdHom (hsq : ∀ b, t b * t b = 1) :
   map_mul' ε ε' := by
     rw [sset_mul, prodOf_symmDiff t hcomm hsq]
 
+@[simp]
 theorem signProdHom_apply (hsq : ∀ b, t b * t b = 1)
     (ε : β → Multiplicative (ZMod 2)) :
     signProdHom t hcomm hsq ε = prodOf t hcomm (sset ε) := rfl
@@ -200,14 +206,17 @@ def sign : BlockClifford I B := PresentedGroup.of (Sum.inl ())
 def lamp (p : (i : I) × B i) : BlockClifford I B :=
   PresentedGroup.of (Sum.inr p)
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem sign_sq : sign I B ^ 2 = 1 := by
   have := PresentedGroup.one_of_mem (IsRelator.sign_sq (I := I) (B := B))
   rwa [map_pow] at this
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem lamp_sq (p : (i : I) × B i) : lamp I B p ^ 2 = 1 := by
   have := PresentedGroup.one_of_mem (IsRelator.lamp_sq (I := I) (B := B) p)
   rwa [map_pow] at this
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem sign_commute_lamp (p : (i : I) × B i) :
     Commute (sign I B) (lamp I B p) := by
   have := PresentedGroup.one_of_mem
@@ -215,6 +224,7 @@ theorem sign_commute_lamp (p : (i : I) × B i) :
   rw [map_commutatorElement] at this
   exact commutatorElement_eq_one_iff_commute.mp this
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem commutator_lamp_lamp {i : I} {b b' : B i} (h : b ≠ b') :
     ⁅lamp I B ⟨i, b⟩, lamp I B ⟨i, b'⟩⁆ = sign I B := by
   have h1 := PresentedGroup.one_of_mem
@@ -250,6 +260,7 @@ missing cross-block anticommutation relations. -/
 def fullGenerator : Gen I B → CliffordLamp.CliffordLamp ((i : I) × B i) :=
   Sum.elim (fun _ => CliffordLamp.sign _) fun p => CliffordLamp.lamp _ p
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem fullGenerator_kills :
     ∀ w ∈ relators I B,
       FreeGroup.lift (fullGenerator I B) w = 1 := by
@@ -291,6 +302,7 @@ def toFull : BlockClifford I B →*
 def coordFlip (i : I) (b : B i) : SignGroup B i :=
   fun b' => if b' = b then Multiplicative.ofAdd 1 else 1
 
+omit [DecidableEq I] [Fintype I] [∀ i, Fintype (B i)] in
 theorem coordFlip_mul_self (i : I) (b : B i) :
     coordFlip I B i b * coordFlip I B i b = 1 := by
   funext b'
@@ -298,6 +310,7 @@ theorem coordFlip_mul_self (i : I) (b : B i) :
     simp only [coordFlip, Pi.mul_apply, Pi.one_apply, hb, if_true, if_false] <;>
     decide
 
+omit [DecidableEq I] [Fintype I] in
 theorem sset_coordFlip (i : I) (b : B i) :
     sset (β := B i) (coordFlip I B i b) = {b} := by
   ext b'
@@ -536,6 +549,7 @@ def blockPermSubgroup : Subgroup (Equiv.Perm ((i : I) × B i)) where
     rw [hp, hq] at h
     exact h.symm
 
+omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 theorem blockPerm_property (π : blockPermSubgroup I B)
     (p q : (i : I) × B i) :
     ((π : Equiv.Perm ((i : I) × B i)) p).1

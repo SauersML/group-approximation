@@ -160,11 +160,13 @@ def kerToLampTelescope :
 theorem kerToLampTelescope_injective :
     Function.Injective kerToLampTelescope := by
   intro x y hxy
-  have h1 : (x : WitnessGroup).left = (y : WitnessGroup).left :=
-    congrArg SemidirectProduct.left hxy
+  have h1 : (x : WitnessGroup).left = (y : WitnessGroup).left := by
+    have h0 := congrArg SemidirectProduct.left hxy
+    exact h0
   have h2 : (x : WitnessGroup).right.left =
-      (y : WitnessGroup).right.left :=
-    congrArg SemidirectProduct.right hxy
+      (y : WitnessGroup).right.left := by
+    have h0 := congrArg SemidirectProduct.right hxy
+    exact h0
   have hx : ((x : WitnessGroup).right).right = 1 :=
     MonoidHom.mem_ker.mp x.2
   have hy : ((y : WitnessGroup).right).right = 1 :=
