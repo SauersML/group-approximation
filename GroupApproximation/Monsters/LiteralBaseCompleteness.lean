@@ -162,7 +162,8 @@ def blockMonoid : Matrix (Fin 3) (Fin 3) ℚ →* Mat where
     (Matrix.fromBlocks A (0 : Matrix (Fin 3) (Fin 1) ℚ)
       (0 : Matrix (Fin 1) (Fin 3) ℚ)
       (1 : Matrix (Fin 1) (Fin 1) ℚ)).submatrix
-      finSumFinEquiv.symm finSumFinEquiv.symm
+      (finSumFinEquiv (m := 3) (n := 1)).symm
+      (finSumFinEquiv (m := 3) (n := 1)).symm
   map_one' := by
     have h1 : Matrix.fromBlocks (1 : Matrix (Fin 3) (Fin 3) ℚ)
         (0 : Matrix (Fin 3) (Fin 1) ℚ) (0 : Matrix (Fin 1) (Fin 3) ℚ)
@@ -273,7 +274,8 @@ theorem blockMonoid_apply (M : Matrix (Fin 3) (Fin 3) ℚ)
     blockMonoid M i4 j4 =
       Matrix.fromBlocks M (0 : Matrix (Fin 3) (Fin 1) ℚ)
         (0 : Matrix (Fin 1) (Fin 3) ℚ) (1 : Matrix (Fin 1) (Fin 1) ℚ)
-        (finSumFinEquiv.symm i4) (finSumFinEquiv.symm j4) := by
+        ((finSumFinEquiv (m := 3) (n := 1)).symm i4)
+        ((finSumFinEquiv (m := 3) (n := 1)).symm j4) := by
   simp [blockMonoid, Matrix.submatrix_apply]
 
 set_option linter.unusedSimpArgs false in
