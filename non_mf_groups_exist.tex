@@ -186,7 +186,7 @@ every $\varepsilon>0$, there is a unitary matrix model
 $V\colon G\to\U(r)$ that is multiplicative within $\varepsilon$ in
 operator norm on $F$ and separates distinct elements of $F$ by
 operator-norm distance at least $1$.  There is an equivalent corona
-formulation, the one in which the notion was introduced by
+formulation, in which the notion was introduced by
 Carri\'on--Dadarlat--Eckhardt and is used by Shulman and
 Bachner--Dogon--Lubotzky \cite{CDE,Shulman,BDL}.  Let $(d_n)_{n\in\N}$
 be a strictly increasing sequence of positive integers and let
@@ -199,9 +199,7 @@ corona algebra a \emph{norm matrix corona}.  Following
 Blackadar--Kirchberg \cite{BK}, a separable $C^*$-algebra is \emph{MF}
 if it embeds into some algebra of the form \eqref{eq:corona}; the group
 $G$ is MF if there is an injective homomorphism
-\[
-  G\longrightarrow\U(\mathcal Q).
-\]
+$G\to\U(\mathcal Q)$.
 The two formulations are equivalent
 (Proposition~\ref{prop:mf-equivalences}).
 We shall use the equivalent coordinate model
@@ -309,7 +307,6 @@ representation identifies the whole conjugation orbit, and the MF
 radical is computed by the quotient by the resulting collapse defect
 (Theorems~\ref{thm:collapse} and~\ref{thm:saturation}).
 
-Two groups play distinct roles.
 The finitely presented group $E$ is the main example: it is not MF,
 and we do not determine whether $E$ itself is sofic or hyperlinear
 (Section~\ref{sec:limits}).  The homomorphism proving $w\ne1$ maps $E$
@@ -611,32 +608,23 @@ vector of $\mathrm{Fix}$ is fixed by each
 $\pi(s\iota(\gamma)s^{-1})$.  On the other hand, $\eta$ is fixed by
 all $\pi(s\iota(\gamma)s^{-1})$ exactly when
 $V^*\eta\in\mathrm{Fix}$.  Hence
-\[
- \operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
- =\operatorname{ran}Q,
- \qquad\text{that is,}\qquad P\le Q.
-\]
+$\operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
+=\operatorname{ran}Q$, that is, $P\le Q$.
 The element $r=V^*Q$ satisfies $r^*r=Q$ and $rr^*=V^*QV=P$.  Since
 $r^*r=Q$, we have $r=rQ$.  Since
 $\operatorname{ran}r=\operatorname{ran}P\subseteq\operatorname{ran}Q$,
 we also have $r=Qr$.  Hence the cross terms in $\sigma^*\sigma$ vanish
 for $\sigma=r+(1-Q)$, and $\sigma^*\sigma=Q+(1-Q)=1$: $\sigma$ is an
 isometry.  Finiteness of $B_\omega$ makes
-$\sigma$ unitary, and $\sigma\sigma^*=P+(1-Q)$ forces
-\[
- Q=P.
-\]
+$\sigma$ unitary, and $\sigma\sigma^*=P+(1-Q)$ forces $Q=P$.
 
 \emph{Conclusion.}  Let $\xi=[\xi_n]_\omega\in K_\omega$, where
 $\xi_n\in K_n$ is the vector of $x_n$; the uniform operator-norm bound
 makes $\xi$ well defined.  By unitary invariance of the normalized
 Hilbert--Schmidt norm, the commutator hypothesis says exactly that each
-$\pi(\iota(\gamma))$ fixes $\xi$.  Thus $\xi\in\mathrm{Fix}$.  Since
-$Q=P$, we obtain
-\[
- V\xi\in V\,\mathrm{Fix}=\operatorname{ran}Q=\operatorname{ran}P
- =\mathrm{Fix}.
-\]
+$\pi(\iota(\gamma))$ fixes $\xi$.  Thus $\xi\in\mathrm{Fix}$.  Since $Q=P$, we obtain
+$V\xi\in V\,\mathrm{Fix}=\operatorname{ran}Q=\operatorname{ran}P
+=\mathrm{Fix}$.
 The vector of $U_n(s)x_nU_n(s)^*$ is $\Ad U_n(s)\,\xi_n$, so, again by
 unitary invariance,
 \[
@@ -1017,22 +1005,18 @@ a corner adapted to $K$; the spectral projection of a Kazhdan average
 provides it.
 
 Suppose a corona representation $\Theta$ is nontrivial on $K$.  Its
-image $\bar H=\Theta(H)$ is a countable subgroup of $\U(\mathcal Q)$,
-hence MF.  Proposition~\ref{prop:mf-equivalences} therefore provides,
-for every finite subset of $\bar H$ and every tolerance, a matrix
-model multiplicative within the tolerance that separates distinct
-elements by \emph{operator-norm} distance at least $1$.  Choosing
-models along an exhaustion of $\bar H$ gives an operator-norm
-asymptotic representation $(V_{g,n})$ of $\bar H$ in which every fixed
-nontrivial element eventually stays at operator-norm distance at least
-$1$ from the identity.  These models bound only operator-norm
-distances; at growing dimension they give no lower bound on normalized
-Hilbert--Schmidt distances, and the corner constructed below provides
-that lower bound.  The datum and the subgroup pass to
-their images under $\Theta$: normality and property~\textup{(T)} are
-preserved, and $\bar K=\Theta(K)$, nontrivial by assumption, lies in
-the defect subgroup of the image datum.  So it suffices to derive a contradiction
-for $\bar H$.
+image $\bar H=\Theta(H)$ is countable, hence MF, and
+Proposition~\ref{prop:mf-equivalences}, applied along an exhaustion of
+$\bar H$, gives an operator-norm asymptotic representation
+$(V_{g,n})$ in which every fixed nontrivial element eventually stays
+at operator-norm distance at least $1$ from the identity.  These
+models bound only operator-norm distances; at growing dimension they
+give no lower bound on normalized Hilbert--Schmidt distances, and the
+corner constructed below provides that lower bound.  The datum and the
+subgroup pass to their $\Theta$-images with normality and
+property~\textup{(T)} preserved, and $\bar K=\Theta(K)$ is nontrivial
+and lies in the defect subgroup of the image datum; it suffices to
+derive a contradiction for $\bar H$.
 
 \emph{The moving spectral subspace.}  Fix a finite symmetric
 generating Kazhdan set $S\subseteq\bar K$ with constant
@@ -1075,9 +1059,8 @@ distance from the identity.
 corner representation: $\bar K$ lies in the defect subgroup of the
 image datum, so every element of $\bar K$ --- in particular $s_0$ ---
 is Hilbert--Schmidt invisible on the corner, contradicting the
-tracial deficit of $s_0$.  The uniform coordinate scheduling that
-runs these estimates simultaneously is the stage selection of
-Theorem~\ref{thm:criterion}.
+tracial deficit of $s_0$.  The coordinates are scheduled as in the
+proof of Theorem~\ref{thm:criterion}.
 \end{proof}
 
 The proofs above use the conjugation datum through one property only:
@@ -1825,11 +1808,8 @@ algebraic mapping telescope of $\bar\alpha$, extend it by its shift
 $\tau$, and call the resulting group $V=T\rtimes\mathbb Z$.  Let
 $j\colon\bar\Gamma\hookrightarrow V$ be the level-zero map.  Put
 $X=V/j(\bar\Gamma)$, with root $o=j(\bar\Gamma)$.  The final assertion of
-Lemma~\ref{lem:linear} states that
-\[
- \tau o\ne j(\bar v_1)\tau o.
-\]
-Thus the Clifford generators at these two sites anticommute.
+Lemma~\ref{lem:linear} states that $\tau o\ne j(\bar v_1)\tau o$;
+the Clifford generators at these two sites therefore anticommute.
 
 \begin{proposition}\label{prop:witness}
 $w\neq1$ in $E$.
