@@ -370,6 +370,44 @@ with the same `G × (K_ab wr G/N)` RF witness.  In particular the sofic and
 MF radical formulas have the same shape — fiberwise abelianized products —
 each over its own class of pairs.
 
+## 5½. Defect saturation (after Fournier-Facio)
+
+Credit note.  Francesco Fournier-Facio suggested (personal communication,
+2026-08-14) that the manuscript's affine Section 5 "can be replaced by a
+suitable small cancellation argument, analogously to what I do here
+[arXiv:2608.02025]".  The program sketched in this subsection is a
+session-side development of that suggestion (GPT-5.6-assisted analysis on
+the user's side; unrefereed; no priority claims): FF's idea is credited
+for the small-cancellation route and for the construction of
+arXiv:2608.02025; the amplification framing below is derived from it.
+
+The principle: *detect a defect analytically; saturate it algebraically.*
+The in-repo theorem `normalKazhdan_le_normMFResidual`
+(`Sofic/NormalKazhdanMFRadical.lean`) already says: a normal Kazhdan
+subgroup inside the compression defect lies in the MF radical.  If a
+Hull/Osin small-cancellation quotient makes the defect **equal to the
+whole group** (FF's torsion-free construction supplies exactly the right
+compression configuration), the ambient (T) then gives the **full MF
+radical**: `Rad_MF(G) = G`, i.e. every homomorphism to an MF group is
+trivial, every nontrivial quotient is non-MF, the profinite and Bohr
+completions are trivial, and (in the mixed form, combining with the
+soficity criterion of arXiv:2608.02025) every nontrivial quotient is
+simultaneously nonsofic and non-MF — an *approximation black hole*.
+
+Lean status of this program: the plumbing is now **machine-checked and
+unconditional** in `Sofic/DefectSaturation.lean` (with the credit note in
+its module docstring): `involutiveCollapseDefect_le_ker_of_isCDEOperatorMF`
+(the defect dies in every map to an operator-MF group — no saturation
+needed), `actualCoronaMFResidual_eq_top_of_saturated` (saturated defect
+⟹ full MF radical), `actualCoronaMFInvisible_of_saturated`,
+`map_eq_one_of_saturated` (the approximation black hole), and
+`not_isCDEOperatorMF_of_saturated`.  The *existence* input (the Hull
+7.1/Osin small-cancellation quotient, acylindrical hyperbolicity,
+suitable subgroups) remains a dedicated formalization program of its own
+— tracked in Cairn (`defect-saturation-full-mf-radical`,
+`mixed-approximation-black-hole`), nothing of it is assumed anywhere on
+the trust surface.
+
 ## 6. What the reduction theorem means
 
 `Rad_MF(W) = q⁻¹(Rad_MF(W/ker q))` upgrades the mechanism from a non-MF
@@ -485,30 +523,75 @@ Kernel-checked, unconditional (this session; modules imported by the root):
   (`torsionCollapseDefect_le_actualCoronaMFResidual`,
   `actualCoronaMFResidual_eq_torsionCollapseDefect`).
 
-Hypothesis-gated in Lean (off the trust surface, per repo doctrine): the
-analytic collapse (Theorem 1) enters only as the explicit `hkill`/
-`hcollapse` hypotheses of the endpoint theorems.
+* **The unconditional involutive collapse (this session's summit).**  The
+  full analytic Theorem 1, for the involutive lamp class `k² = 1`, is now
+  machine-checked end to end with **no hypotheses beyond group theory**:
+
+  - `Sofic/InvolutionRankMass.lean`, `Sofic/ExactInvolutionLifts.lean` —
+    rank/mass calculus (`matMass_sub_eq_four_mul_rank`,
+    `matMass_le_rank_mul_sq_opNorm`, `rank_eq_of_projections_close`) and
+    exact commuting involution lifts
+    (`exists_isExactInvolution_comm_of_unitary`, `δ(ε) = ε`).
+  - `Kazhdan/UltralimitGaussianBoundedness.lean`,
+    `Kazhdan/ApproximateCircumcenter.lean`,
+    `Kazhdan/UltralimitGeometry.lean` — Shalom-style hyperreal
+    standard-part calculus: Gaussian positive-definiteness ⟹ bounded
+    displacement profile (`profile_bounded_of_isKazhdanPair`, consuming
+    the in-repo Delorme theorem), sequence-level circumcenters
+    (`exists_near_center`, `seqNormSq_sub_le_of_near_center`).
+  - `Sofic/InvolutionMicrostateTools.lean`,
+    `Sofic/InvolutionOrbitMicrostates.lean` — flattening isometry, the
+    rigidity of commuting exact involutions (distance `< 2` ⟹ equal),
+    and diagonal extraction of corrected involution microstates
+    (`exists_involutionMicrostates`).
+  - `Sofic/InvolutionCollapse{Metric,Profile,Cocycle,Center,IndexCapture}
+    .lean` — the rank displacement metric `dV`, normalized displacement
+    vectors `bVec` with the exact mass anchor
+    (`sum_normSq_bVec_eq_four`), marked positivity
+    (`eventually_one_le_kNorm_of_marked`), the stagewise coboundary
+    defect (`eventually_coboundary_defect_small`), the Guichardet
+    circumcenter primitive (`exists_approximate_coboundary`), and the
+    per-index spectral capture (`index_capture`).
+  - `Sofic/InvolutionCollapseEndpoint(Prep).lean` — the assembly:
+    `no_marked_model` (no marked almost representation separates the
+    collapse commutator), `actualCoronaMFInvisible_commutator` (every
+    corona representation kills `⁅ι(γ₀), k⁆`), and the **discharged**
+    endpoints for the involutive witness class:
+    `actualCoronaMFInvisible_of_involutiveWitness`,
+    `involutiveCollapseDefect_le_actualCoronaMFResidual` (radical
+    membership, unconditional),
+    `actualCoronaMFResidual_eq_comap_involutive_quotient` (radical
+    reduction, unconditional), and
+    `actualCoronaMFResidual_eq_involutiveCollapseDefect` (exactness; the
+    only remaining hypothesis is the intrinsic one, MF-ness of the defect
+    quotient — the exactness *direction*, not the collapse).
+
+Status of the general-`m` witness class: the endpoints
+(`torsionCollapseDefect_le_actualCoronaMFResidual`,
+`actualCoronaMFResidual_eq_torsionCollapseDefect`) remain reductions
+gated on the collapse hypothesis for `m > 2`; the involutive class
+(`m = 2`, which contains the `K = A₅`-generated applications via the
+involutions of `A₅`) is fully discharged as above.  No `sorry`, no
+axioms, no literature inputs anywhere on this chain: Delorme and Kazhdan
+finite generation are the in-repo theorems.
 
 Inputs of Theorem 1 and their status:
 
-1. Delorme ((T) ⟹ FH): **kernel-checked in-repo**,
-   `Delorme.exists_fixed_point_of_hasKazhdanPropertyT`
-   (`Kazhdan/DelormeFixedPoint.lean`, real complete Hilbert, cocycle
-   form).
-2. Kazhdan finite generation: **kernel-checked in-repo**,
-   `fg_of_hasKazhdanPropertyT` (`Kazhdan/KazhdanFiniteGeneration.lean`).
-3. Commuting lifting of countably many commuting projections from a norm
-   matrix corona (folklore; proof sketch in Step 1; formalizable with the
-   repo's spectral toolkit, not yet done) — the only genuinely
-   unformalized analytic ingredient.
+1. Delorme ((T) ⟹ FH): **kernel-checked in-repo** and now consumed by
+   the collapse chain through `profile_bounded_of_isKazhdanPair`.
+2. Kazhdan finite generation: **kernel-checked in-repo**, consumed
+   through `exists_symmetric_generating_pair`.
+3. Commuting involution lifting from a norm matrix corona:
+   **kernel-checked this session** (`ExactInvolutionLifts` +
+   `InvolutionOrbitMicrostates`); the general finite-order commuting
+   lifting remains open and gates only the `m > 2` class.
 4. Gruenberg's wreath RF criterion — a literature input used **only** for
    infinite `K` in §5; the finite case is self-contained.
 
-Remaining formalization ladder, in order of value: (i) commuting
-projection lifts (Step 1); (ii) the ultraproduct Hilbert space of a
-weight-rescaled matrix sequence and the rank-metric cocycle layer
-(Steps 2–4), feeding the in-repo Delorme theorem — this closes Theorem 1
-end to end with **no classical inputs left**; (iii) the
-`matMass ≤ rank · ‖·‖²_op` interface lemma; (iv) the wreath instantiation
-and the doubling family's RF quotient (`GL₄(ℤ[1/2])` congruence
-reductions — `IntegralLinearResiduallyFinite` is the ℤ-precedent).
+Remaining formalization ladder, in order of value: (i) finite-order
+(`m > 2`) commuting lifts, which would upgrade the general witness class
+to unconditional; (ii) the wreath instantiation and the doubling
+family's RF quotient (`GL₄(ℤ[1/2])` congruence reductions —
+`IntegralLinearResiduallyFinite` is the ℤ-precedent); (iii) the
+FF-inspired saturation plumbing of §5½ (defect normal closure `= ⊤` plus
+ambient `(T)` ⟹ full MF radical, via `normalKazhdan_le_normMFResidual`).

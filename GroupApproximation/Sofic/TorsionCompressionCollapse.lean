@@ -263,7 +263,10 @@ theorem torsionCollapseDefect_le_ker (L : Subgroup E) (s : E)
 representation collapses every torsion compression witness along `L` — the
 conclusion of the analytic compression-collapse theorem for a Kazhdan `L`
 and a one-sided compressor `s` — then the entire torsion-collapse defect
-lies in the literal MF radical. -/
+lies in the literal MF radical.  For the involutive witness subclass the
+collapse hypothesis is discharged unconditionally in
+`Sofic/InvolutionCollapseEndpoint`
+(`involutiveCollapseDefect_le_actualCoronaMFResidual`). -/
 theorem torsionCollapseDefect_le_actualCoronaMFResidual
     (L : Subgroup E) (s : E)
     (hkill : ∀ x ∈ torsionCollapseSet L s, ActualCoronaMFInvisible x) :
@@ -277,7 +280,9 @@ theorem torsionCollapseDefect_le_actualCoronaMFResidual
 corona representation, together with the MF property of the defect
 quotient, computes the literal MF radical exactly.  This is the reduction
 theorem specialized to the torsion-collapse defect: the universal MF
-quotient of `E` is exactly `E ⧸ torsionCollapseDefect L s`. -/
+quotient of `E` is exactly `E ⧸ torsionCollapseDefect L s`.  The
+involutive-witness analogue is unconditional on the collapse side:
+`Sofic/InvolutionCollapseEndpoint`. -/
 theorem actualCoronaMFResidual_eq_torsionCollapseDefect
     [Countable E] (L : Subgroup E) (s : E)
     (hkill : ∀ x ∈ torsionCollapseSet L s, ActualCoronaMFInvisible x)
