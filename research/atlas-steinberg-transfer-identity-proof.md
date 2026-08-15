@@ -11,10 +11,11 @@ requires: []
 
 The complete proof is displayed in the claim body (it is five lines) and
 in full expansion in `research/artifacts/steinberg-spare-index-2026-08-15.md`
-§6, with the two ingredient identities — `[ab,c] = a[b,c]a^{-1}·[a,c]`
-and the `[X,Z] = 1` conjugation step — machine-checked on 4,000 random
-samples each and the assembled statement on 782 samples meeting exactly
-the three hypotheses.  Adversarial verification (2026-08-15, night)
+§4 (the two elementary identities), with the corrected hypothesis set
+assembled in §11.3; the ingredient identities were machine-checked on
+4,000 random samples each, and the assembled statement exhaustively over
+`S₅` and `S₄` with per-hypothesis counterexample cells (see the claim
+body's cross-check paragraph).  Adversarial verification (2026-08-15, night)
 re-derived both identities by hand, confirmed no hidden same-length
 commutation enters (the length-`t` objects `T` and `[U,Z]` appear only
 as outputs, and the commutation of `V` with `[U,Z]` is derived from

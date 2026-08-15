@@ -71,7 +71,9 @@ history of how each obstruction fell.
   subset of the generator instantiation — a NECESSARY set, not a
   candidate presentation.  The **full instantiation** is now emitted and
   verified (MSI job 15860125): 200 root-subgroup commutativity
-  relations, 2,980 disjoint-root commutations, 1,432 Steinberg products
+  relations, 2,980 cross-root commutations (index-disjoint, same-source
+  AND same-target — the same-target instances feed the corrected
+  transfer identity's `[V,Z] = 1` hypothesis), 1,432 Steinberg products
   over all 25 coefficient pairs, on a dictionary extended by 500
   exactly-verified two-letter entries — **4,612 distinct relators, all
   verified in `R̄`**, X-lengths 4–556; with the twelve reverse
@@ -109,10 +111,12 @@ history of how each obstruction fell.
   independence REDUCED to spare independence; spare independence given
   by the proved transfer identity
   (`atlas-steinberg-transfer-identity`, machine-cross-checked) MODULO
-  its commutation hypotheses — which at length ≥ 3 are exactly the open
-  Lemma X, now its own frontier node:
-  `atlas-steinberg-spare-index-independence` (length 2 proved, five
-  rejected routes recorded, the one-sentence obstruction stated).  With
+  its commutation hypotheses — which at length ≥ 3 were, *as of that
+  afternoon pass*, exactly the then-open Lemma X
+  (`atlas-steinberg-spare-index-independence`: length 2 proved, five
+  rejected routes recorded, the one-sentence obstruction stated — ALL
+  CLOSED the same night; the "obstruction" was an artifact of the
+  identity's original over-strong hypotheses, see that node).  With
   Lemma X, `G₀ ≅ St₅(L)` and `T_St` is complete with no import beyond
   Kervaire–Steinberg centrality.  **Risk note:** enlarging `T_St` is
   always safe — any additional word verified in `R̄` keeps

@@ -59,7 +59,10 @@ to emit, not adjudicate.  The 100 squares reduce to 24 genuinely new
 relators in the atlas realisation (12 are freely trivial — chart
 transvections are involutions — and 64 coincide with emitted cross-root
 words, an atlas-realisation phenomenon distinct from the abstract
-independence), all verified in `R̄`; and the length-one relators
+independence; this breakdown is the emission engineer's exact
+computation, block-matched against rebuilt reduced words, and postdates
+the adversarial pass on the proof), all verified in `R̄`; and the
+length-one relators
 propagate to all lengths: `(Q′)` makes `δ = Ê_ij(uv)` central in
 `⟨Ê_im(u), Ê_mj(v)⟩`, and `[Ê_im(u)², Ê_mj(v)] = δ²` closes the
 induction.
