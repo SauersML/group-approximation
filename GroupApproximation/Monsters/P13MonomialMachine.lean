@@ -284,8 +284,8 @@ theorem wpow_mul_exists (j k : Fin 4) :
   · exact ⟨k, by show (1 : P13) * wpow k = wpow k; exact one_mul _⟩
   · fin_cases k
     · exact ⟨1, by show w * 1 = w; exact mul_one w⟩
-    · exact ⟨2, rfl⟩
-    · exact ⟨3, rfl⟩
+    · exact ⟨⟨2, by omega⟩, rfl⟩
+    · exact ⟨⟨3, by omega⟩, rfl⟩
     · exact ⟨0, w4⟩
   · fin_cases k
     · exact ⟨2, by show (w * w) * 1 = w * w; exact mul_one _⟩
@@ -391,7 +391,9 @@ theorem w23_mul_repw (j : Fin 6) :
       _ = ((w * w) * (w13 * w13)) * (w13 * w13) := by rw [w23_sq]
       _ = (w * w) * ((w13 * w13) * (w13 * w13)) := by group
       _ = (w * w) * 1 := by rw [w13sq_sq]
-      _ = 1 * wpow 2 := by group
+      _ = 1 * wpow 2 := by
+          show (w * w) * 1 = 1 * (w * w)
+          group
 
 /-! ## The matrix action of the machine -/
 
