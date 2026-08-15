@@ -53,26 +53,43 @@ generation, not `U_Q ≅ St₅(L)`.
   (`atlas-relator-central-sufficiency`).  Nothing about `K₂(5,L)` beyond
   centrality is used.
 
-  **Step (1) audited and sharpened (2026-08-15, night).**  Auditing the
-  1,112-relator family against the pinned scheme (St1)–(St3) shows it is
-  a strict subset of even the generator instantiation: (St2) was emitted
-  for only 3 of 25 coefficient pairs, root-subgroup commutativity
-  `[x_ij(a), x_ij(b)] = 1` was missing entirely, and (St3) only where
-  the product lands back in the letter set.  So the 1,112 words are a
-  NECESSARY set (their kernel membership and cartesian escape stand),
-  not a candidate presentation; the full generator instantiation, with
-  the dictionary extended to two-letter coefficients so (St3)'s
-  right-hand sides exist, is being emitted and verified.  And (St1)
-  contributes no relator on the generating set — `x_ij(r+s)` is DEFINED
-  as a product — so the true content of completeness is
-  **well-definedness with bounded contexts**: that `x_ij(c)` is
-  independent of how `c ∈ L` is written as a sum of monomials, enforced
-  by finitely many contexts `u·r·v` of each defining ring relation `r`.
-  That bounded-context statement is the actual content of
-  [KrM, Theorem 3] for this program (pinned verbatim in the artifact:
-  Krstić–McCool, JPAA 141 (1999) 175–183; `n = 5 ≥ 4` safely above the
-  sharp `n = 3` failure of their Corollary 2), and it is the derivation
-  now being attempted directly for this particular `L`.
+  **Step (1) audited, sharpened, and partly closed (2026-08-15, night).**
+  The audit against the pinned scheme showed the first emitted family
+  (1,112 relators, mirroring the rank-3 `relation_family()`) is a strict
+  subset of the generator instantiation — a NECESSARY set, not a
+  candidate presentation.  The **full instantiation** is now emitted and
+  verified (MSI job 15860125): 200 root-subgroup commutativity
+  relations, 2,980 disjoint-root commutations, 1,432 Steinberg products
+  over all 25 coefficient pairs, on a dictionary extended by 500
+  exactly-verified two-letter entries — **4,612 distinct relators, all
+  verified in `R̄`**, X-lengths 4–556; with the twelve reverse
+  relators, `|T_St| = 4,624`; `72` escape the cartesian subgroup, as the
+  length-nine wall demands.
+
+  Two pieces of the completeness gap are now CLOSED in-repo, no JPAA
+  needed:
+
+  - **Context absorption.**  `x_ij(uρv) = [x_ik(u), [x_kl(ρ), x_lj(v)]]`
+    shows that killing each defining ring relation `ρ` at a single root
+    kills it in every monomial context — the relations absorb their own
+    contexts, provided enough distinct indices keep every nested root
+    legal.  This is precisely where the `n ≥ 4` threshold of
+    [KrM, Theorem 3] comes from, matching the sharp `n = 3` failure of
+    their Corollary 2; at `n = 5` there is room to spare.  The five
+    context-free ring relations needed are exactly the Cuntz–Krieger
+    relations, all present in the family.
+  - **Length-two well-definedness, by construction.**  The (St3) block
+    emits, for every root and every coefficient pair, the relation for
+    ALL THREE intermediate indices against one canonical right-hand
+    side, so the alternative chains are identified by emitted relations
+    rather than assumed equal.
+
+  **The remaining gap, in full:** well-definedness of `x_ij(c)` for
+  monomials of length greater than two — one specific spare-index
+  statement, materially narrower than "read Krstić–McCool", with the
+  direct derivation at `n = 5` in progress.  Step-4 acceptance (the
+  finite-quotient screens run on `T_St` itself) is also in flight;
+  screen (D) already passes.
 - **Amalgam route (dead).**  `atlas-charts-overlap-trivially`: the charts
   meet trivially, so no relative presentation falls out of overlap
   identifications; every relator must be produced as a genuine
