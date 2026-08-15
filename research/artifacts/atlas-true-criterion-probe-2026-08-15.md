@@ -290,3 +290,28 @@ blocks — from the radius-5 collision window to `atlas-rank5-T_St.json`, and
 replace its Hutchinson trace estimate with the residual estimator of §a.
 That estimator change is not cosmetic: the existing script's loss is a trace
 estimate, and §a explains why that is the wrong statistic near the optimum.
+
+## Stage-1 pilot: first descent data (MSI job 15868462, 32 min)
+
+Implementation: `experiments/atlas_true_criterion_stage1.py` — the
+(I ⊗ V)J ansatz with V ∈ U(15) complex, residual estimator (m = 16),
+per-word backward.  Both built-in gates passed: the control slice was
+EXACTLY zero at V = I (validating the 20160-dimensional coset model
+outright) and the active baseline reproduced the landed 2.0 at 1.9964.
+
+Result: 60 Adam iterations (lr 3e-3) moved the total loss from 1.99643
+to 1.99632 — a decrease of ~1.1e-4 — with active mean defect² pinned at
+~1.9963 throughout and the control never above 4e-4.  The landscape
+adjacent to the tensor flip is locally flat for the index-15 coset
+deformation at k = 1: the cheap ansatz buys back none of the 72
+obstructed relators, consistent with the finite-quotient wall and with
+the design's note that a negative stage-1 outcome is informative — it
+says stage 2 needs a different starting point, not more iterations.
+
+Scope: one seed, 60 iterations, weak-evidence grade; the probe engine
+costs ~31 s/iteration because it propagates 20160-dim probes (the
+general stage-2 engine, used early).  A stage-1b exact engine — the
+(I ⊗ V)J traces decompose into 1,344 blocks of dimension 15, so the
+exact objective should cost milliseconds — is the right next
+implementation and would allow full V-landscape sweeps before any
+stage-2 spend.
