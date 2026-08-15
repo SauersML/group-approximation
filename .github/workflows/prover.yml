@@ -345,8 +345,10 @@ jobs:
         continue-on-error: true
         run: |
           python3 scripts/check.py
+          # cairn check validates the research graph; the regenerated
+          # FRONTIER.md is not diffed because it embeds lock countdowns
+          # and mtime-derived sections that are time-dependent by design.
           bin/cairn check
-          git diff --exit-code -- research/FRONTIER.md
 
       # The non-MF paper has its own generated roster and numbered-claim
       # manifest.  Every visible badge is exact, and the two load-bearing
@@ -645,8 +647,10 @@ jobs:
       - name: Source scan
         run: |
           python3 scripts/check.py
+          # cairn check validates the research graph; the regenerated
+          # FRONTIER.md is not diffed because it embeds lock countdowns
+          # and mtime-derived sections that are time-dependent by design.
           bin/cairn check
-          git diff --exit-code -- research/FRONTIER.md
 
       - name: Non-MF counterpart contract
         run: |

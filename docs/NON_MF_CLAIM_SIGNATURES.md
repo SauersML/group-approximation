@@ -651,12 +651,6 @@ IsLocallyFiniteGroup LiteralWitnessConsequences.WitnessLampGroup ∧
         (IsCDEOperatorMF G ↔ manuscriptCoronaMFResidual G = ⊥)
 ```
 
-## `GroupApproximation.NonMFImpact.sofic_nonMF_is_hyperlinear_nonMF`
-
-```lean
-NonMFImpact.SoficNonMFIsHyperlinearNonMF
-```
-
 ## `GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF`
 
 ```lean
