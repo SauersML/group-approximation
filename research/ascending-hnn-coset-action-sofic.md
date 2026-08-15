@@ -39,4 +39,10 @@ the windows equivariantly.  Should be EASIER than the E-soficity lane
 
 ## Attempts
 
-None yet; the lane-5 window route above is the recorded attack.
+For OUR literal family the group-level statement is now closed without
+any action-soficity input: [[sign-free-quotient-sofic]] proves the
+sign-free quotient W/<zeta> sofic by the telescope-window pipeline, so
+the sofic-and-non-MF headline does not wait on this card.  This card
+remains open for the LEAN skeleton (no lamps in the group, soficity of
+the coset action itself in the Gao--Kunnawalkam Elayavalli--Patchell
+sense); the lane-5 window route above is the recorded attack.
