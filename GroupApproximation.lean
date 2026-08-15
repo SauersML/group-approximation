@@ -44,6 +44,7 @@ import GroupApproximation.Monsters.MoebiusIrrationalAction
 import GroupApproximation.GroupTheory.FiniteCyclicHom
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
+import GroupApproximation.Monsters.P13BlockSL2
 import GroupApproximation.Monsters.CyclicBaseLEFObstruction
 import GroupApproximation.Sofic.ScalingFamilyPresentation
 import GroupApproximation.Sofic.ScalingFamilyRelatorCount
