@@ -39,9 +39,6 @@ open scoped commutatorElement
 
 attribute [local instance] InnerProductSpace.complexToReal
 
-set_option maxHeartbeats 1600000
-set_option maxRecDepth 4096
-
 /-- The flattening isometry is inverse to unflattening. -/
 theorem flatE_unflatE {Y : Type*} [Fintype Y]
     (x : EuclideanSpace ℂ (Y × Y)) : flatE (unflatE x) = x := by
@@ -60,6 +57,507 @@ theorem hyperfilter_eventually_of_exists {P : ℕ → Prop}
     by_contra hge
     exact hn (hN n (le_of_not_gt hge))
   exact hcofin.filter_mono (Filter.hyperfilter_le_cofinite)
+
+
+/-- Pure real arithmetic of the transport constants: with the corner
+tolerance and the primitive tolerance chosen from `ρt`, the transported
+mass bound is at most `(ρt / 2)²`. -/
+theorem numeric_transport_bound {Cw ρt θ τ q : ℝ}
+    (hCwpos : 0 < Cw) (hgap : 0 < 1 - θ)
+    (hqdef : q = ρt / (24 * (Cw + 1)))
+    (hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1))) :
+    18 * q ^ 2 * Cw ^ 2 + 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤
+      (ρt / 2) ^ 2 := by
+  have hq2 : q ^ 2 = ρt ^ 2 / (576 * (Cw + 1) ^ 2) := by
+    rw [hqdef, div_pow]
+    congr 1
+    ring
+  have hA : 18 * q ^ 2 * Cw ^ 2 ≤ ρt ^ 2 / 8 := by
+    have hrw : 18 * q ^ 2 * Cw ^ 2 =
+        18 * ρt ^ 2 * Cw ^ 2 / (576 * (Cw + 1) ^ 2) := by
+      rw [hq2]
+      ring
+    rw [hrw, div_le_div_iff₀ (by nlinarith [hCwpos] :
+      (0 : ℝ) < 576 * (Cw + 1) ^ 2) (by norm_num : (0 : ℝ) < 8)]
+    have hkey : 144 * Cw ^ 2 ≤ 576 * (Cw + 1) ^ 2 := by
+      nlinarith [hCwpos]
+    nlinarith [mul_le_mul_of_nonneg_left hkey (sq_nonneg ρt)]
+  have hBnum : 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤ ρt ^ 2 / 8 := by
+    have hrw : 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) =
+        32 * (Cw + 1) * τ / (1 - θ) := by ring
+    rw [hrw, div_le_div_iff₀ hgap (by norm_num : (0 : ℝ) < 8)]
+    have h256 : (0 : ℝ) < 256 * (Cw + 1) := by nlinarith [hCwpos]
+    have h2 := mul_le_mul_of_nonneg_left hτr (le_of_lt h256)
+    have h3' : 256 * (Cw + 1) * ((1 - θ) * ρt ^ 2 / (256 * (Cw + 1))) =
+        (1 - θ) * ρt ^ 2 := by
+      rw [mul_comm]
+      exact div_mul_cancel₀ _ (ne_of_gt h256)
+    nlinarith [h2, h3']
+  have hq4 : (ρt / 2) ^ 2 = ρt ^ 2 / 4 := by ring
+  rw [hq4]
+  linarith [hA, hBnum]
+
+/-- **Per-generator displacement of the compressed primitive.**  The
+compression of the primitive matrix by a unitary is moved by at most
+`2τ` in Frobenius norm by each generator, given the primitive's own
+displacement bound and the mixed conjugation defect. -/
+theorem stage_conj_displacement {Y : Type*} [Fintype Y] [DecidableEq Y]
+    {Us Ua Ud W : Matrix Y Y ℂ} {wv : EuclideanSpace ℂ (Y × Y)}
+    (hUsmem : Us ∈ Matrix.unitaryGroup Y ℂ)
+    (hUamem : Ua ∈ Matrix.unitaryGroup Y ℂ)
+    (hUdmem : Ud ∈ Matrix.unitaryGroup Y ℂ)
+    (hW : W = unflatE wv) {Cw τ ε₆ : ℝ}
+    (hCwpos : 0 < Cw) (_hτpos : 0 < τ) (hε6pos : 0 < ε₆)
+    (h3 : ‖wv‖ ≤ Cw)
+    (h2 : ‖wv - adFlat Ud wv‖ ≤ τ)
+    (hA12' : ‖Ua * Usᴴ - Usᴴ * Ud‖ ≤ ε₆)
+    (hε6Cw : ε₆ * Cw ≤ τ / 2) :
+    Real.sqrt (ScaledKazhdanTransport.matMass
+      (Usᴴ * W * Us - Ua * (Usᴴ * W * Us) * Uaᴴ)) ≤ 2 * τ := by
+  have hmassWval : ScaledKazhdanTransport.matMass W = ‖wv‖ ^ 2 := by
+    rw [← norm_flatE_sq, hW, flatE_unflatE]
+  have hbridged : ‖wv - adFlat Ud wv‖ ^ 2 =
+      ScaledKazhdanTransport.matMass (W - Ud * W * Udᴴ) := by
+    have hflat : wv - adFlat Ud wv = flatE (W - Ud * W * Udᴴ) := by
+      rw [flatE_sub, hW, flatE_unflatE]
+      rfl
+    rw [hflat, norm_flatE_sq]
+  have hsplit : Usᴴ * W * Us - Ua * (Usᴴ * W * Us) * Uaᴴ =
+      Usᴴ * (W - Ud * W * Udᴴ) * Us +
+        ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
+          (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ) := by
+    simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
+    noncomm_ring
+  have hflatnorm : ∀ Z : Matrix Y Y ℂ,
+      ‖flatE Z‖ = Real.sqrt (ScaledKazhdanTransport.matMass Z) := by
+    intro Z
+    rw [← Real.sqrt_sq (norm_nonneg (flatE Z)), norm_flatE_sq]
+  have hterm1 : Real.sqrt (ScaledKazhdanTransport.matMass
+      (Usᴴ * (W - Ud * W * Udᴴ) * Us)) ≤ τ := by
+    have hconj := ScaledKazhdanTransport.matMass_unitary_conj
+      (conjTranspose_mem_unitaryGroup hUsmem) (W - Ud * W * Udᴴ)
+    rw [Matrix.conjTranspose_conjTranspose] at hconj
+    rw [hconj, ← hbridged, Real.sqrt_sq (norm_nonneg _)]
+    exact h2
+  have hA12 : ‖(Usᴴ * Ud) - (Ua * Usᴴ)‖ ≤ ε₆ := by
+    rw [norm_sub_rev]
+    exact hA12'
+  have hterm2 : Real.sqrt (ScaledKazhdanTransport.matMass
+      ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
+        (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)) ≤ 2 * (ε₆ * Cw) := by
+    set A₁ : Matrix Y Y ℂ := Usᴴ * Ud with hA₁
+    set A₂ : Matrix Y Y ℂ := Ua * Usᴴ with hA₂
+    have hsplit2 : A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ =
+        (A₁ - A₂) * W * A₁ᴴ + A₂ * W * (A₁ - A₂)ᴴ := by
+      simp only [Matrix.conjTranspose_sub]
+      noncomm_ring
+    have hA1norm : ‖A₁ᴴ‖ ≤ 1 := by
+      rw [← Matrix.star_eq_conjTranspose, norm_star]
+      exact norm_le_one_of_mem_unitary
+        (Submonoid.mul_mem _ (conjTranspose_mem_unitaryGroup hUsmem)
+          hUdmem)
+    have hA2norm : ‖A₂‖ ≤ 1 :=
+      norm_le_one_of_mem_unitary
+        (Submonoid.mul_mem _ hUamem
+          (conjTranspose_mem_unitaryGroup hUsmem))
+    have hmw : ScaledKazhdanTransport.matMass W ≤ Cw ^ 2 := by
+      rw [hmassWval]
+      nlinarith [h3, norm_nonneg wv]
+    have hmass1 : ScaledKazhdanTransport.matMass
+        ((A₁ - A₂) * W * A₁ᴴ) ≤ ε₆ ^ 2 * (Cw ^ 2) := by
+      calc
+        ScaledKazhdanTransport.matMass ((A₁ - A₂) * W * A₁ᴴ) ≤
+            ‖A₁ᴴ‖ ^ 2 * ScaledKazhdanTransport.matMass
+              ((A₁ - A₂) * W) :=
+          ScaledKazhdanTransport.matMass_mul_le_right _ _
+        _ ≤ ‖A₁ᴴ‖ ^ 2 * (‖A₁ - A₂‖ ^ 2 *
+            ScaledKazhdanTransport.matMass W) :=
+          mul_le_mul_of_nonneg_left
+            (ScaledKazhdanTransport.matMass_mul_le_left _ _)
+            (sq_nonneg _)
+        _ ≤ ε₆ ^ 2 * (Cw ^ 2) := by
+          have h1' : ‖A₁ - A₂‖ ^ 2 ≤ ε₆ ^ 2 := by
+            nlinarith [norm_nonneg (A₁ - A₂), hA12]
+          have h2' : ‖A₁ᴴ‖ ^ 2 ≤ 1 := by
+            nlinarith [norm_nonneg A₁ᴴ, hA1norm]
+          have hinner : ‖A₁ - A₂‖ ^ 2 *
+              ScaledKazhdanTransport.matMass W ≤ ε₆ ^ 2 * Cw ^ 2 :=
+            mul_le_mul h1' hmw
+              (ScaledKazhdanTransport.matMass_nonneg W) (sq_nonneg ε₆)
+          calc
+            ‖A₁ᴴ‖ ^ 2 * (‖A₁ - A₂‖ ^ 2 *
+                ScaledKazhdanTransport.matMass W) ≤
+                1 * (ε₆ ^ 2 * Cw ^ 2) :=
+              mul_le_mul h2' hinner
+                (mul_nonneg (sq_nonneg _)
+                  (ScaledKazhdanTransport.matMass_nonneg W))
+                one_pos.le
+            _ = ε₆ ^ 2 * (Cw ^ 2) := by ring
+    have hmass2 : ScaledKazhdanTransport.matMass
+        (A₂ * W * (A₁ - A₂)ᴴ) ≤ ε₆ ^ 2 * (Cw ^ 2) := by
+      calc
+        ScaledKazhdanTransport.matMass (A₂ * W * (A₁ - A₂)ᴴ) ≤
+            ‖(A₁ - A₂)ᴴ‖ ^ 2 * ScaledKazhdanTransport.matMass
+              (A₂ * W) :=
+          ScaledKazhdanTransport.matMass_mul_le_right _ _
+        _ ≤ ‖(A₁ - A₂)ᴴ‖ ^ 2 * (‖A₂‖ ^ 2 *
+            ScaledKazhdanTransport.matMass W) :=
+          mul_le_mul_of_nonneg_left
+            (ScaledKazhdanTransport.matMass_mul_le_left _ _)
+            (sq_nonneg _)
+        _ ≤ ε₆ ^ 2 * (Cw ^ 2) := by
+          have hstar : ‖(A₁ - A₂)ᴴ‖ = ‖A₁ - A₂‖ := by
+            rw [← Matrix.star_eq_conjTranspose, norm_star]
+          have h1' : ‖A₁ - A₂‖ ^ 2 ≤ ε₆ ^ 2 := by
+            nlinarith [norm_nonneg (A₁ - A₂), hA12]
+          have h2' : ‖A₂‖ ^ 2 ≤ 1 := by
+            nlinarith [norm_nonneg A₂, hA2norm]
+          have hinner : ‖A₂‖ ^ 2 *
+              ScaledKazhdanTransport.matMass W ≤ 1 * Cw ^ 2 :=
+            mul_le_mul h2' hmw
+              (ScaledKazhdanTransport.matMass_nonneg W) one_pos.le
+          rw [hstar]
+          calc
+            ‖A₁ - A₂‖ ^ 2 * (‖A₂‖ ^ 2 *
+                ScaledKazhdanTransport.matMass W) ≤
+                ε₆ ^ 2 * (1 * Cw ^ 2) :=
+              mul_le_mul h1' hinner
+                (mul_nonneg (sq_nonneg _)
+                  (ScaledKazhdanTransport.matMass_nonneg W))
+                (sq_nonneg ε₆)
+            _ = ε₆ ^ 2 * (Cw ^ 2) := by ring
+    have hsqrt1 : Real.sqrt (ScaledKazhdanTransport.matMass
+        ((A₁ - A₂) * W * A₁ᴴ)) ≤ ε₆ * Cw := by
+      have h := Real.sqrt_le_sqrt hmass1
+      rwa [show ε₆ ^ 2 * Cw ^ 2 = (ε₆ * Cw) ^ 2 by ring,
+        Real.sqrt_sq (mul_nonneg hε6pos.le hCwpos.le)] at h
+    have hsqrt2 : Real.sqrt (ScaledKazhdanTransport.matMass
+        (A₂ * W * (A₁ - A₂)ᴴ)) ≤ ε₆ * Cw := by
+      have h := Real.sqrt_le_sqrt hmass2
+      rwa [show ε₆ ^ 2 * Cw ^ 2 = (ε₆ * Cw) ^ 2 by ring,
+        Real.sqrt_sq (mul_nonneg hε6pos.le hCwpos.le)] at h
+    calc
+      Real.sqrt (ScaledKazhdanTransport.matMass
+          (A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ)) =
+          ‖flatE (A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ)‖ :=
+        (hflatnorm _).symm
+      _ = ‖flatE ((A₁ - A₂) * W * A₁ᴴ) +
+          flatE (A₂ * W * (A₁ - A₂)ᴴ)‖ := by
+        rw [← flatE_add, hsplit2]
+      _ ≤ ‖flatE ((A₁ - A₂) * W * A₁ᴴ)‖ +
+          ‖flatE (A₂ * W * (A₁ - A₂)ᴴ)‖ := norm_add_le _ _
+      _ ≤ 2 * (ε₆ * Cw) := by
+        rw [hflatnorm, hflatnorm]
+        linarith [hsqrt1, hsqrt2]
+  calc
+    Real.sqrt (ScaledKazhdanTransport.matMass
+        (Usᴴ * W * Us - Ua * (Usᴴ * W * Us) * Uaᴴ)) =
+        ‖flatE (Usᴴ * W * Us - Ua * (Usᴴ * W * Us) * Uaᴴ)‖ :=
+      (hflatnorm _).symm
+    _ = ‖flatE (Usᴴ * (W - Ud * W * Udᴴ) * Us) +
+        flatE ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
+          (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)‖ := by
+      rw [← flatE_add, hsplit]
+    _ ≤ ‖flatE (Usᴴ * (W - Ud * W * Udᴴ) * Us)‖ +
+        ‖flatE ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
+          (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)‖ := norm_add_le _ _
+    _ ≤ 2 * τ := by
+      rw [hflatnorm, hflatnorm]
+      have := hterm1
+      have := hterm2
+      linarith [hε6Cw]
+
+
+/-- Boundedness of the coboundary difference of a bounded sequence. -/
+theorem ydiff_bounded {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w) (a : Γ) :
+    IsBoundedSeq (fun n ↦
+      w n - adFlat (B.map n (iota a) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) := by
+  obtain ⟨Cb, hCb⟩ := id hwbdd
+  refine ⟨Cb + Cb, fun n ↦ ?_⟩
+  have h3 : ‖adFlat (B.map n (iota a) :
+      Matrix (B.model n) (B.model n) ℂ) (w n)‖ = ‖w n‖ := by
+    rw [norm_adFlat (B.map n (iota a)).2]
+  calc
+    ‖w n - adFlat (B.map n (iota a) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)‖ ≤
+        ‖w n‖ + ‖adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
+    _ ≤ Cb + Cb := by
+      rw [h3]
+      exact add_le_add (hCb n) (hCb n)
+
+/-- Boundedness of the displacement-minus-coboundary sequence. -/
+theorem xdiff_bounded {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+    (hgen : Subgroup.closure (S : Set Γ) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+    (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w) (a : Γ) :
+    IsBoundedSeq (fun n ↦
+      bVec B V S hgen hsymm n a -
+        (w n - adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))) := by
+  obtain ⟨Ca, hCa⟩ :=
+    id (isBoundedSeq_bVec B V S hgen hsymm hVinv hVcomm a)
+  obtain ⟨Cy, hCy⟩ := id (ydiff_bounded B iota hwbdd a)
+  refine ⟨Ca + Cy, fun n ↦ ?_⟩
+  calc
+    ‖bVec B V S hgen hsymm n a -
+        (w n - adFlat (B.map n (iota a) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))‖ ≤
+        ‖bVec B V S hgen hsymm n a‖ +
+          ‖w n - adFlat (B.map n (iota a) :
+            Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
+    _ ≤ Ca + Cy := add_le_add (hCa n) (hCy n)
+
+/-- **The compressed movers have exact primitives in the limit**: for an
+orbit-fixed mover, the coboundary difference inherits the full
+coboundary bound. -/
+theorem compressed_primitive_limit {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E) (k : E)
+    (V : ∀ n, Γ → Matrix (B.model n) (B.model n) ℂ) (S : Finset Γ)
+    (hgen : Subgroup.closure (S : Set Γ) = ⊤)
+    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
+    (hVinv : ∀ n γ, ExactInvolutionLifts.IsExactInvolution (V n γ))
+    (hVcomm : ∀ n γ₁ γ₂, V n γ₁ * V n γ₂ = V n γ₂ * V n γ₁)
+    (hVconv : ∀ γ, OpNormVanishing B (fun n ↦ V n γ - raw B iota k n γ))
+    {w : ∀ n, EuclideanSpace ℂ (B.model n × B.model n)}
+    (hwbdd : IsBoundedSeq w)
+    {δa : Γ} (hfixed : orbitElement iota k δa = k) {d₀ : ℝ}
+    (hcob : seqNormSq (fun n ↦
+      bVec B V S hgen hsymm n δa -
+        (w n - adFlat (B.map n (iota δa) :
+          Matrix (B.model n) (B.model n) ℂ) (w n))) ≤ d₀) :
+    seqNormSq (fun n ↦
+      w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) ≤ d₀ := by
+  obtain ⟨N, hN⟩ := eventually_bVec_eq_zero_of_orbit_fixed B iota k V S
+    hgen hsymm hVinv hVcomm hVconv hfixed
+  have hbndy := ydiff_bounded B iota hwbdd δa
+  have hbndny : IsBoundedSeq (fun n ↦
+      -(w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n))) := by
+    obtain ⟨Cy, hCy⟩ := id hbndy
+    exact ⟨Cy, fun n ↦ by
+      rw [norm_neg]
+      exact hCy n⟩
+  have heq : ∃ N, ∀ n ≥ N,
+      -(w n - adFlat (B.map n (iota δa) :
+        Matrix (B.model n) (B.model n) ℂ) (w n)) =
+        bVec B V S hgen hsymm n δa -
+          (w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n)) := by
+    refine ⟨N, fun n hn ↦ ?_⟩
+    rw [hN n hn, zero_sub]
+  calc
+    seqNormSq (fun n ↦
+        w n - adFlat (B.map n (iota δa) :
+          Matrix (B.model n) (B.model n) ℂ) (w n)) =
+        seqNormSq (fun n ↦
+          -(w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+      (seqNormSq_neg _).symm
+    _ = seqNormSq (fun n ↦
+        bVec B V S hgen hsymm n δa -
+          (w n - adFlat (B.map n (iota δa) :
+            Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+      seqNormSq_congr_of_eventually_eq hbndny
+        (xdiff_bounded B iota V S hgen hsymm hVinv hVcomm hwbdd δa) heq
+    _ ≤ d₀ := hcob
+
+/-- **Corner capture of the compressed primitive**, assembled from the
+residual bound and the vector capture inequality. -/
+theorem stage_capture {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+    (S : Finset Γ) (hone : 1 ∈ S) {θ : ℝ} (hθ1 : θ < 1) (n₀ : ℕ)
+    (Xu : Matrix (B.model n₀) (B.model n₀) ℂ) {Cw τ : ℝ}
+    (hCwpos : 0 < Cw) (hτpos : 0 < τ)
+    (hmassXu : Real.sqrt (ScaledKazhdanTransport.matMass Xu) ≤ Cw)
+    (hXudisp : ∀ a ∈ S,
+      Real.sqrt (ScaledKazhdanTransport.matMass
+        (Xu - (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ) *
+          Xu * (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ)) ≤ 2 * τ) :
+    MarkedCompressionVectorChain.vecMass
+      ((1 - cornerProjection B C S θ n₀) *ᵥ gammaRowVec B n₀ Xu) ≤
+        ((Cw + 1) * (2 * τ)) / (1 - θ) := by
+  have hres := sqrt_residual_mass_le B C S hone n₀ Xu
+    (by linarith [hτpos] : (0 : ℝ) ≤ 2 * τ) hXudisp
+  exact index_capture B C S hone (θ := θ) hθ1 n₀ Xu
+    hCwpos.le (by linarith [hτpos] : (0 : ℝ) < 2 * τ) hmassXu hres
+
+/-- The final per-generator bound: a displacement close to a small
+coboundary difference is itself small. -/
+theorem stage_generator_bound {H : Type*} [NormedAddCommGroup H]
+    {b y : H} {τ ρt m : ℝ}
+    (h1a : ‖b - y‖ ≤ τ) (hyW : ‖y‖ ^ 2 = m) (hnum : m ≤ (ρt / 2) ^ 2)
+    (hτle : τ ≤ ρt / 2) (hρtpos : 0 < ρt) : ‖b‖ ≤ ρt := by
+  have hyle : ‖y‖ ≤ ρt / 2 := by
+    nlinarith [norm_nonneg y, hyW, hnum, hρtpos.le]
+  calc
+    ‖b‖ = ‖(b - y) + y‖ := by rw [sub_add_cancel]
+    _ ≤ ‖b - y‖ + ‖y‖ := norm_add_le _ _
+    _ ≤ ρt := by linarith [h1a, hyle, hτle]
+
+
+/-- **The anchor contradiction**: a family of at most `1/(√|S|+1)`-small
+values cannot carry total squared mass four. -/
+theorem anchor_contradiction {Γ : Type} {S : Finset Γ} {g : Γ → ℝ}
+    (hgnn : ∀ a ∈ S, 0 ≤ g a) (hganchor : ∑ a ∈ S, g a ^ 2 = 4)
+    {ρt : ℝ} (hρt : ρt = 1 / (Real.sqrt ((S.card : ℝ)) + 1))
+    (hfin : ∀ a ∈ S, g a ≤ ρt) : False := by
+  have hsn := Real.sqrt_nonneg ((S.card : ℝ))
+  have hx1 : (0 : ℝ) < Real.sqrt ((S.card : ℝ)) + 1 := by linarith
+  have hρtpos : 0 < ρt := by
+    rw [hρt]
+    exact one_div_pos.mpr hx1
+  have hsum_le : ∑ a ∈ S, g a ^ 2 ≤ (S.card : ℝ) * ρt ^ 2 := by
+    calc
+      ∑ a ∈ S, g a ^ 2 ≤ ∑ _a ∈ S, ρt ^ 2 :=
+        Finset.sum_le_sum fun a ha ↦ by
+          nlinarith [hgnn a ha, hfin a ha, hρtpos.le]
+      _ = (S.card : ℝ) * ρt ^ 2 := by
+        rw [Finset.sum_const, nsmul_eq_mul]
+  have hlt : (S.card : ℝ) * ρt ^ 2 < 4 := by
+    rw [hρt]
+    have hs : Real.sqrt ((S.card : ℝ)) ^ 2 = (S.card : ℝ) :=
+      Real.sq_sqrt (Nat.cast_nonneg _)
+    have hx2pos : (0 : ℝ) < (Real.sqrt ((S.card : ℝ)) + 1) ^ 2 :=
+      pow_pos hx1 2
+    have hcnn : (0 : ℝ) ≤ (S.card : ℝ) := Nat.cast_nonneg _
+    rw [div_pow, one_pow, mul_one_div, div_lt_iff₀ hx2pos]
+    nlinarith [hs, hsn, hcnn]
+  linarith [hganchor, hsum_le, hlt]
+
+/-- **One-stage corner transport of the primitive.**  Capture of the
+compressed primitive by the Kazhdan corner, together with the corner
+displacement and reverse-corner estimates, bounds the displacement of
+the primitive itself by each generator. -/
+theorem stage_transport_bound {Γ E : Type} [Group Γ] [Group E]
+    (B : OpAlmostRepresentation E) (C : KazhdanCompressionCore Γ E)
+    (S : Finset Γ) (θ : ℝ) (n₀ : ℕ) (a : Γ)
+    {Us W Xu : Matrix (B.model n₀) (B.model n₀) ℂ}
+    (hUs : Us = (B.map n₀ C.t : Matrix (B.model n₀) (B.model n₀) ℂ))
+    (hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ)
+    (hXu : Xu = Usᴴ * W * Us) {q κ Cw : ℝ}
+    (hfix : ‖(((gammaAdjoint B C).map n₀ a :
+        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) - 1) *
+        cornerProjection B C S θ n₀‖ ≤ q)
+    (hrev : ‖((1 : Matrix (B.adjoint.model n₀)
+        (B.adjoint.model n₀) ℂ) - cornerProjection B C S θ n₀) *
+        movedProjection B C S θ n₀‖ ≤ q)
+    (hcap : MarkedCompressionVectorChain.vecMass
+      ((1 - cornerProjection B C S θ n₀) *ᵥ gammaRowVec B n₀ Xu) ≤ κ)
+    (hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2) :
+    ScaledKazhdanTransport.matMass
+      (W - (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
+        W * (B.map n₀ (C.iota a) :
+          Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤
+      18 * q ^ 2 * Cw ^ 2 + 16 * κ := by
+  have hYcard : 0 < Fintype.card (B.adjoint.model n₀) :=
+    B.adjoint.modelNonempty n₀
+  have hP := cornerProjection_isOrthogonalProjection B C S θ n₀
+  have hTmem : (B.adjoint.map n₀ C.t :
+      Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) ∈
+      Matrix.unitaryGroup (B.adjoint.model n₀) ℂ :=
+    (B.adjoint.map n₀ C.t).2
+  have hAmem : ((gammaAdjoint B C).map n₀ a :
+      Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) ∈
+      Matrix.unitaryGroup (B.adjoint.model n₀) ℂ :=
+    ((gammaAdjoint B C).map n₀ a).2
+  have hrev' : ‖((1 : Matrix (B.adjoint.model n₀)
+      (B.adjoint.model n₀) ℂ) - cornerProjection B C S θ n₀) *
+      ((B.adjoint.map n₀ C.t :
+        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *
+        cornerProjection B C S θ n₀ *
+        (B.adjoint.map n₀ C.t :
+          Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ)ᴴ)‖ ≤
+      q := by
+    have h := hrev
+    unfold movedProjection at h
+    exact h
+  have htrans := MarkedCompressionVectorChain.transported_displacement_le
+    hYcard hP hTmem hAmem hfix hrev' hcap
+  have hUsUsH : Us * Usᴴ = 1 := by
+    have h := Matrix.mem_unitaryGroup_iff.mp hUsmem
+    rwa [Matrix.star_eq_conjTranspose] at h
+  have hWrecover : Us * Xu * Usᴴ = W := by
+    rw [hXu]
+    calc
+      Us * (Usᴴ * W * Us) * Usᴴ = (Us * Usᴴ) * W * (Us * Usᴴ) := by
+        noncomm_ring
+      _ = W := by rw [hUsUsH, one_mul, mul_one]
+  have hTx : (B.adjoint.map n₀ C.t :
+      Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *ᵥ
+      gammaRowVec B n₀ Xu = gammaRowVec B n₀ W := by
+    have h := KazhdanAsymptoticCommutant.adjointMatrixSequence_mulVec_gammaRowVec
+      B (fun m ↦ B.map m C.t) n₀ Xu
+    have hid : KazhdanAsymptoticCommutant.adjointMatrixSequence B
+        (fun m ↦ B.map m C.t) n₀ =
+        (B.adjoint.map n₀ C.t :
+          Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) := rfl
+    rw [hid] at h
+    rw [h, ← hUs, hWrecover]
+  have hAx : ((gammaAdjoint B C).map n₀ a :
+      Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *ᵥ
+      gammaRowVec B n₀ W =
+      gammaRowVec B n₀
+        ((B.map n₀ (C.iota a) :
+          Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+          (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) :=
+    gammaAdjoint_mulVec_gammaRowVec B C n₀ a W
+  rw [hTx, hAx] at htrans
+  have hvm : ∀ Z : Matrix (B.model n₀) (B.model n₀) ℂ,
+      MarkedCompressionVectorChain.vecMass (gammaRowVec B n₀ Z) =
+        ScaledKazhdanTransport.matMass Z := by
+    intro Z
+    show (∑ p : B.adjoint.model n₀,
+      Complex.normSq (gammaRowVec B n₀ Z p)) = _
+    rw [sum_normSq_gammaRowVec]
+    rfl
+  have hdiff : gammaRowVec B n₀
+      ((B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+        (B.map n₀ (C.iota a) :
+          Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) -
+      gammaRowVec B n₀ W =
+      gammaRowVec B n₀
+        ((B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+          (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) := rfl
+  rw [hdiff, hvm] at htrans
+  rw [hvm Xu] at htrans
+  have hflip : ScaledKazhdanTransport.matMass
+      (W - (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
+        W * (B.map n₀ (C.iota a) :
+          Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) =
+      ScaledKazhdanTransport.matMass
+        ((B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+          (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) := by
+    rw [show W - (B.map n₀ (C.iota a) :
+        Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+        (B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ =
+        -((B.map n₀ (C.iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
+          (B.map n₀ (C.iota a) :
+            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) by abel,
+      ScaledKazhdanTransport.matMass_neg]
+  rw [hflip]
+  have hq2nn : (0 : ℝ) ≤ q ^ 2 := sq_nonneg q
+  have hmid : (2 * q ^ 2 + 16 * q ^ 2) *
+      ScaledKazhdanTransport.matMass Xu ≤ 18 * q ^ 2 * Cw ^ 2 := by
+    have h := mul_le_mul_of_nonneg_left hXumass
+      (by nlinarith [hq2nn] : (0 : ℝ) ≤ 2 * q ^ 2 + 16 * q ^ 2)
+    nlinarith [h]
+  linarith [htrans, hmid]
 
 variable {Γ E : Type} [Group Γ] [Group E]
 
@@ -146,6 +644,8 @@ theorem no_marked_model [Countable Γ]
   have hτpos : 0 < τ :=
     lt_min (half_pos hρtpos)
       (div_pos (mul_pos hgap (pow_pos hρtpos 2)) (by nlinarith [hCwpos]))
+  have hτle : τ ≤ ρt / 2 := min_le_left _ _
+  have hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1)) := min_le_right _ _
   set q : ℝ := ρt / (24 * (Cw + 1)) with hqdef
   have hqpos : 0 < q := div_pos hρtpos (by nlinarith [hCwpos])
   set d₀ : ℝ := τ ^ 2 / 2 with hd0def
@@ -157,44 +657,20 @@ theorem no_marked_model [Countable Γ]
     exact Real.sqrt_sq hτpos.le
   -- the approximate coboundary primitive
   set T : Finset Γ := S ∪ S.image da with hTdef
+  clear_value da R Cw ρt θ τ q d₀ ε₆ T
   obtain ⟨w, hwbdd, hwnorm, hwcob⟩ :=
     exists_approximate_coboundary B iota kk V S hgen hsymm hVinv hVcomm
       hVconv hmark hR0 hR T hd0pos
   -- boundedness of the coboundary differences
   have hydiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
       w n - adFlat (B.map n (iota a) :
-        Matrix (B.model n) (B.model n) ℂ) (w n)) := by
-    intro a
-    obtain ⟨Cb, hCb⟩ := id hwbdd
-    refine ⟨Cb + Cb, fun n ↦ ?_⟩
-    have h3 : ‖adFlat (B.map n (iota a) :
-        Matrix (B.model n) (B.model n) ℂ) (w n)‖ = ‖w n‖ := by
-      rw [norm_adFlat (B.map n (iota a)).2]
-    calc
-      ‖w n - adFlat (B.map n (iota a) :
-          Matrix (B.model n) (B.model n) ℂ) (w n)‖ ≤
-          ‖w n‖ + ‖adFlat (B.map n (iota a) :
-            Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
-      _ ≤ Cb + Cb := by
-        rw [h3]
-        exact add_le_add (hCb n) (hCb n)
+        Matrix (B.model n) (B.model n) ℂ) (w n)) :=
+    fun a ↦ ydiff_bounded B iota hwbdd a
   have hxdiffbdd : ∀ a : Γ, IsBoundedSeq (fun n ↦
       bVec B V S hgen hsymm n a -
         (w n - adFlat (B.map n (iota a) :
-          Matrix (B.model n) (B.model n) ℂ) (w n))) := by
-    intro a
-    obtain ⟨Ca, hCa⟩ :=
-      id (isBoundedSeq_bVec B V S hgen hsymm hVinv hVcomm a)
-    obtain ⟨Cy, hCy⟩ := id (hydiffbdd a)
-    refine ⟨Ca + Cy, fun n ↦ ?_⟩
-    calc
-      ‖bVec B V S hgen hsymm n a -
-          (w n - adFlat (B.map n (iota a) :
-            Matrix (B.model n) (B.model n) ℂ) (w n))‖ ≤
-          ‖bVec B V S hgen hsymm n a‖ +
-            ‖w n - adFlat (B.map n (iota a) :
-              Matrix (B.model n) (B.model n) ℂ) (w n)‖ := norm_sub_le _ _
-      _ ≤ Ca + Cy := add_le_add (hCa n) (hCy n)
+          Matrix (B.model n) (B.model n) ℂ) (w n))) :=
+    fun a ↦ xdiff_bounded B iota V S hgen hsymm hVinv hVcomm hwbdd a
   -- the compressed movers have exact primitives in the limit
   have hfixda : ∀ a : Γ, orbitElement iota kk (da a) = kk := by
     intro a
@@ -213,39 +689,8 @@ theorem no_marked_model [Countable Γ]
     have hmem : da a ∈ T := by
       rw [hTdef]
       exact Finset.mem_union_right _ (Finset.mem_image_of_mem da haS)
-    have hcob := hwcob (da a) hmem
-    obtain ⟨N, hN⟩ := eventually_bVec_eq_zero_of_orbit_fixed B iota kk V S
-      hgen hsymm hVinv hVcomm hVconv (hfixda a)
-    have hbndy := hydiffbdd (da a)
-    have hbndny : IsBoundedSeq (fun n ↦
-        -(w n - adFlat (B.map n (iota (da a)) :
-          Matrix (B.model n) (B.model n) ℂ) (w n))) := by
-      obtain ⟨Cy, hCy⟩ := id hbndy
-      exact ⟨Cy, fun n ↦ by
-        rw [norm_neg]
-        exact hCy n⟩
-    have heq : ∃ N, ∀ n ≥ N,
-        -(w n - adFlat (B.map n (iota (da a)) :
-          Matrix (B.model n) (B.model n) ℂ) (w n)) =
-          bVec B V S hgen hsymm n (da a) -
-            (w n - adFlat (B.map n (iota (da a)) :
-              Matrix (B.model n) (B.model n) ℂ) (w n)) := by
-      refine ⟨N, fun n hn ↦ ?_⟩
-      rw [hN n hn, zero_sub]
-    calc
-      seqNormSq (fun n ↦
-          w n - adFlat (B.map n (iota (da a)) :
-            Matrix (B.model n) (B.model n) ℂ) (w n)) =
-          seqNormSq (fun n ↦
-            -(w n - adFlat (B.map n (iota (da a)) :
-              Matrix (B.model n) (B.model n) ℂ) (w n))) :=
-        (seqNormSq_neg _).symm
-      _ = seqNormSq (fun n ↦
-          bVec B V S hgen hsymm n (da a) -
-            (w n - adFlat (B.map n (iota (da a)) :
-              Matrix (B.model n) (B.model n) ℂ) (w n))) :=
-        seqNormSq_congr_of_eventually_eq hbndny (hxdiffbdd (da a)) heq
-      _ ≤ d₀ := hcob
+    exact compressed_primitive_limit B iota kk V S hgen hsymm hVinv
+      hVcomm hVconv hwbdd (hfixda a) (hwcob (da a) hmem)
   -- the hyperfilter-large stage set
   have hE1 : ∀ᶠ n in ↑(Filter.hyperfilter ℕ), ∀ a ∈ S,
       ‖bVec B V S hgen hsymm n a -
@@ -303,9 +748,12 @@ theorem no_marked_model [Countable Γ]
   -- the stage-n₀ transport
   set Us : Matrix (B.model n₀) (B.model n₀) ℂ :=
     (B.map n₀ s : Matrix (B.model n₀) (B.model n₀) ℂ) with hUs
-  have hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ := (B.map n₀ s).2
   set W : Matrix (B.model n₀) (B.model n₀) ℂ := unflatE (w n₀) with hW
   set Xu : Matrix (B.model n₀) (B.model n₀) ℂ := Usᴴ * W * Us with hXu
+  clear_value Us W Xu
+  have hUsmem : Us ∈ Matrix.unitaryGroup (B.model n₀) ℂ := by
+    rw [hUs]
+    exact (B.map n₀ s).2
   have hmassWval : ScaledKazhdanTransport.matMass W = ‖w n₀‖ ^ 2 := by
     rw [← norm_flatE_sq, hW, flatE_unflatE]
   have hmassW : Real.sqrt (ScaledKazhdanTransport.matMass W) ≤ Cw := by
@@ -331,196 +779,28 @@ theorem no_marked_model [Countable Γ]
       rfl
     rw [hflat, norm_flatE_sq]
   -- per-generator displacement of the compressed matrix
+  have hε6Cw : ε₆ * Cw ≤ τ / 2 := by
+    rw [hε6def]
+    rw [div_mul_eq_mul_div, div_le_div_iff₀ (by nlinarith [hCwpos] :
+      (0 : ℝ) < 2 * Cw + 2) (by norm_num : (0 : ℝ) < 2)]
+    nlinarith [hτpos.le, hCwpos]
   have hXudisp : ∀ a ∈ S,
       Real.sqrt (ScaledKazhdanTransport.matMass
         (Xu - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
           Xu * (B.map n₀ (iota a) :
             Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ)) ≤ 2 * τ := by
     intro a haS
-    set Ua : Matrix (B.model n₀) (B.model n₀) ℂ :=
-      (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) with hUa
-    set Ud : Matrix (B.model n₀) (B.model n₀) ℂ :=
-      (B.map n₀ (iota (da a)) :
-        Matrix (B.model n₀) (B.model n₀) ℂ) with hUd
-    have hUamem : Ua ∈ Matrix.unitaryGroup (B.model n₀) ℂ :=
-      (B.map n₀ (iota a)).2
-    have hUdmem : Ud ∈ Matrix.unitaryGroup (B.model n₀) ℂ :=
-      (B.map n₀ (iota (da a))).2
-    have hsplit : Xu - Ua * Xu * Uaᴴ =
-        Usᴴ * (W - Ud * W * Udᴴ) * Us +
-          ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
-            (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ) := by
-      rw [hXu]
-      simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose]
-      noncomm_ring
-    have hflatnorm : ∀ Z : Matrix (B.model n₀) (B.model n₀) ℂ,
-        ‖flatE Z‖ = Real.sqrt (ScaledKazhdanTransport.matMass Z) := by
-      intro Z
-      rw [← Real.sqrt_sq (norm_nonneg (flatE Z)), norm_flatE_sq]
-    have hterm1 : Real.sqrt (ScaledKazhdanTransport.matMass
-        (Usᴴ * (W - Ud * W * Udᴴ) * Us)) ≤ τ := by
-      have hconj := ScaledKazhdanTransport.matMass_unitary_conj
-        (conjTranspose_mem_unitaryGroup hUsmem) (W - Ud * W * Udᴴ)
-      rw [Matrix.conjTranspose_conjTranspose] at hconj
-      rw [hconj, ← hbridge Ud, Real.sqrt_sq (norm_nonneg _)]
-      exact h2 a haS
-    have hA12 : ‖(Usᴴ * Ud) - (Ua * Usᴴ)‖ ≤ ε₆ := by
-      rw [norm_sub_rev]
-      exact h7 a haS
-    have hterm2 : Real.sqrt (ScaledKazhdanTransport.matMass
-        ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
-          (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)) ≤ 2 * (ε₆ * Cw) := by
-      set A₁ : Matrix (B.model n₀) (B.model n₀) ℂ := Usᴴ * Ud with hA₁
-      set A₂ : Matrix (B.model n₀) (B.model n₀) ℂ := Ua * Usᴴ with hA₂
-      have hsplit2 : A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ =
-          (A₁ - A₂) * W * A₁ᴴ + A₂ * W * (A₁ - A₂)ᴴ := by
-        simp only [Matrix.conjTranspose_sub]
-        noncomm_ring
-      have hA1norm : ‖A₁ᴴ‖ ≤ 1 := by
-        rw [← Matrix.star_eq_conjTranspose, norm_star]
-        exact norm_le_one_of_mem_unitary
-          (Submonoid.mul_mem _ (conjTranspose_mem_unitaryGroup hUsmem)
-            hUdmem)
-      have hA2norm : ‖A₂‖ ≤ 1 :=
-        norm_le_one_of_mem_unitary
-          (Submonoid.mul_mem _ hUamem
-            (conjTranspose_mem_unitaryGroup hUsmem))
-      have hmass1 : ScaledKazhdanTransport.matMass
-          ((A₁ - A₂) * W * A₁ᴴ) ≤ ε₆ ^ 2 * (Cw ^ 2) := by
-        calc
-          ScaledKazhdanTransport.matMass ((A₁ - A₂) * W * A₁ᴴ) ≤
-              ‖A₁ᴴ‖ ^ 2 * ScaledKazhdanTransport.matMass
-                ((A₁ - A₂) * W) :=
-            ScaledKazhdanTransport.matMass_mul_le_right _ _
-          _ ≤ ‖A₁ᴴ‖ ^ 2 * (‖A₁ - A₂‖ ^ 2 *
-              ScaledKazhdanTransport.matMass W) :=
-            mul_le_mul_of_nonneg_left
-              (ScaledKazhdanTransport.matMass_mul_le_left _ _)
-              (sq_nonneg _)
-          _ ≤ ε₆ ^ 2 * (Cw ^ 2) := by
-            have hmw : ScaledKazhdanTransport.matMass W ≤ Cw ^ 2 := by
-              rw [hmassWval]
-              nlinarith [h3, norm_nonneg (w n₀)]
-            have h1' : ‖A₁ - A₂‖ ^ 2 ≤ ε₆ ^ 2 := by
-              nlinarith [norm_nonneg (A₁ - A₂), hA12]
-            have h2' : ‖A₁ᴴ‖ ^ 2 ≤ 1 := by
-              nlinarith [norm_nonneg A₁ᴴ, hA1norm]
-            have hinner : ‖A₁ - A₂‖ ^ 2 *
-                ScaledKazhdanTransport.matMass W ≤ ε₆ ^ 2 * Cw ^ 2 :=
-              mul_le_mul h1' hmw
-                (ScaledKazhdanTransport.matMass_nonneg W) (sq_nonneg ε₆)
-            calc
-              ‖A₁ᴴ‖ ^ 2 * (‖A₁ - A₂‖ ^ 2 *
-                  ScaledKazhdanTransport.matMass W) ≤
-                  1 * (ε₆ ^ 2 * Cw ^ 2) :=
-                mul_le_mul h2' hinner
-                  (mul_nonneg (sq_nonneg _)
-                    (ScaledKazhdanTransport.matMass_nonneg W))
-                  one_pos.le
-              _ = ε₆ ^ 2 * (Cw ^ 2) := by ring
-      have hmass2 : ScaledKazhdanTransport.matMass
-          (A₂ * W * (A₁ - A₂)ᴴ) ≤ ε₆ ^ 2 * (Cw ^ 2) := by
-        calc
-          ScaledKazhdanTransport.matMass (A₂ * W * (A₁ - A₂)ᴴ) ≤
-              ‖(A₁ - A₂)ᴴ‖ ^ 2 * ScaledKazhdanTransport.matMass
-                (A₂ * W) :=
-            ScaledKazhdanTransport.matMass_mul_le_right _ _
-          _ ≤ ‖(A₁ - A₂)ᴴ‖ ^ 2 * (‖A₂‖ ^ 2 *
-              ScaledKazhdanTransport.matMass W) :=
-            mul_le_mul_of_nonneg_left
-              (ScaledKazhdanTransport.matMass_mul_le_left _ _)
-              (sq_nonneg _)
-          _ ≤ ε₆ ^ 2 * (Cw ^ 2) := by
-            have hstar : ‖(A₁ - A₂)ᴴ‖ = ‖A₁ - A₂‖ := by
-              rw [← Matrix.star_eq_conjTranspose, norm_star]
-            have hmw : ScaledKazhdanTransport.matMass W ≤ Cw ^ 2 := by
-              rw [hmassWval]
-              nlinarith [h3, norm_nonneg (w n₀)]
-            have h1' : ‖A₁ - A₂‖ ^ 2 ≤ ε₆ ^ 2 := by
-              nlinarith [norm_nonneg (A₁ - A₂), hA12]
-            have h2' : ‖A₂‖ ^ 2 ≤ 1 := by
-              nlinarith [norm_nonneg A₂, hA2norm]
-            have hinner : ‖A₂‖ ^ 2 *
-                ScaledKazhdanTransport.matMass W ≤ 1 * Cw ^ 2 :=
-              mul_le_mul h2' hmw
-                (ScaledKazhdanTransport.matMass_nonneg W) one_pos.le
-            rw [hstar]
-            calc
-              ‖A₁ - A₂‖ ^ 2 * (‖A₂‖ ^ 2 *
-                  ScaledKazhdanTransport.matMass W) ≤
-                  ε₆ ^ 2 * (1 * Cw ^ 2) :=
-                mul_le_mul h1' hinner
-                  (mul_nonneg (sq_nonneg _)
-                    (ScaledKazhdanTransport.matMass_nonneg W))
-                  (sq_nonneg ε₆)
-              _ = ε₆ ^ 2 * (Cw ^ 2) := by ring
-      have hsqrt1 : Real.sqrt (ScaledKazhdanTransport.matMass
-          ((A₁ - A₂) * W * A₁ᴴ)) ≤ ε₆ * Cw := by
-        have h := Real.sqrt_le_sqrt hmass1
-        rwa [show ε₆ ^ 2 * Cw ^ 2 = (ε₆ * Cw) ^ 2 by ring,
-          Real.sqrt_sq (mul_nonneg hε6pos.le hCwpos.le)] at h
-      have hsqrt2 : Real.sqrt (ScaledKazhdanTransport.matMass
-          (A₂ * W * (A₁ - A₂)ᴴ)) ≤ ε₆ * Cw := by
-        have h := Real.sqrt_le_sqrt hmass2
-        rwa [show ε₆ ^ 2 * Cw ^ 2 = (ε₆ * Cw) ^ 2 by ring,
-          Real.sqrt_sq (mul_nonneg hε6pos.le hCwpos.le)] at h
-      calc
-        Real.sqrt (ScaledKazhdanTransport.matMass
-            (A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ)) =
-            ‖flatE (A₁ * W * A₁ᴴ - A₂ * W * A₂ᴴ)‖ :=
-          (hflatnorm _).symm
-        _ = ‖flatE ((A₁ - A₂) * W * A₁ᴴ) +
-            flatE (A₂ * W * (A₁ - A₂)ᴴ)‖ := by
-          rw [← flatE_add, hsplit2]
-        _ ≤ ‖flatE ((A₁ - A₂) * W * A₁ᴴ)‖ +
-            ‖flatE (A₂ * W * (A₁ - A₂)ᴴ)‖ := norm_add_le _ _
-        _ ≤ 2 * (ε₆ * Cw) := by
-          rw [hflatnorm, hflatnorm]
-          linarith [hsqrt1, hsqrt2]
-    have hε6Cw : ε₆ * Cw ≤ τ / 2 := by
-      rw [hε6def]
-      rw [div_mul_eq_mul_div, div_le_div_iff₀ (by nlinarith [hCwpos] :
-        (0 : ℝ) < 2 * Cw + 2) (by norm_num : (0 : ℝ) < 2)]
-      nlinarith [hτpos.le, hCwpos]
-    calc
-      Real.sqrt (ScaledKazhdanTransport.matMass
-          (Xu - Ua * Xu * Uaᴴ)) =
-          ‖flatE (Xu - Ua * Xu * Uaᴴ)‖ := (hflatnorm _).symm
-      _ = ‖flatE (Usᴴ * (W - Ud * W * Udᴴ) * Us) +
-          flatE ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
-            (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)‖ := by
-        rw [← flatE_add, hsplit]
-      _ ≤ ‖flatE (Usᴴ * (W - Ud * W * Udᴴ) * Us)‖ +
-          ‖flatE ((Usᴴ * Ud) * W * (Usᴴ * Ud)ᴴ -
-            (Ua * Usᴴ) * W * (Ua * Usᴴ)ᴴ)‖ := norm_add_le _ _
-      _ ≤ 2 * τ := by
-        rw [hflatnorm, hflatnorm]
-        have := hterm1
-        have := hterm2
-        linarith [hε6Cw]
-  -- capture of the compressed matrix by the Kazhdan corner
-  have hres := sqrt_residual_mass_le B C S hone n₀ Xu
-    (by linarith [hτpos] : (0 : ℝ) ≤ 2 * τ) hXudisp
-  have hcap := index_capture B C S hone (θ := θ) hθ1 n₀ Xu
-    hCwpos.le (by linarith [hτpos] : (0 : ℝ) < 2 * τ) hmassXu hres
-  -- transported displacement of the primitive matrix
-  have hvm : ∀ Z : Matrix (B.model n₀) (B.model n₀) ℂ,
-      MarkedCompressionVectorChain.vecMass (gammaRowVec B n₀ Z) =
-        ScaledKazhdanTransport.matMass Z := by
-    intro Z
-    show (∑ p : B.adjoint.model n₀,
-      Complex.normSq (gammaRowVec B n₀ Z p)) = _
-    rw [sum_normSq_gammaRowVec]
-    rfl
-  have hUsUsH : Us * Usᴴ = 1 := by
-    have h := Matrix.mem_unitaryGroup_iff.mp hUsmem
-    rwa [Matrix.star_eq_conjTranspose] at h
-  have hWrecover : Us * Xu * Usᴴ = W := by
     rw [hXu]
-    calc
-      Us * (Usᴴ * W * Us) * Usᴴ = (Us * Usᴴ) * W * (Us * Usᴴ) := by
-        noncomm_ring
-      _ = W := by rw [hUsUsH, one_mul, mul_one]
+    exact stage_conj_displacement hUsmem (B.map n₀ (iota a)).2
+      (B.map n₀ (iota (da a))).2 hW hCwpos hτpos hε6pos h3 (h2 a haS)
+      (h7 a haS) hε6Cw
+  -- capture of the compressed matrix by the Kazhdan corner
+  have hcap := stage_capture B C S hone hθ1 n₀ Xu hCwpos hτpos hmassXu
+    hXudisp
+  -- transported displacement of the primitive matrix
+  have hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2 := by
+    rw [hmassXuW, hmassWval]
+    nlinarith [h3, norm_nonneg (w n₀)]
   have hWdisp : ∀ a ∈ S,
       ScaledKazhdanTransport.matMass
         (W - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
@@ -529,180 +809,23 @@ theorem no_marked_model [Countable Γ]
         18 * q ^ 2 * Cw ^ 2 +
           16 * ((Cw + 1) * (2 * τ) / (1 - θ)) := by
     intro a haS
-    have hYcard : 0 < Fintype.card (B.adjoint.model n₀) :=
-      B.adjoint.modelNonempty n₀
-    have hP := cornerProjection_isOrthogonalProjection B C S θ n₀
-    have hTmem : (B.adjoint.map n₀ C.t :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) ∈
-        Matrix.unitaryGroup (B.adjoint.model n₀) ℂ :=
-      (B.adjoint.map n₀ C.t).2
-    have hAmem : ((gammaAdjoint B C).map n₀ a :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) ∈
-        Matrix.unitaryGroup (B.adjoint.model n₀) ℂ :=
-      ((gammaAdjoint B C).map n₀ a).2
-    have hfix : ‖(((gammaAdjoint B C).map n₀ a :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) - 1) *
-        cornerProjection B C S θ n₀‖ ≤ q := h5 a haS
-    have hrev : ‖((1 : Matrix (B.adjoint.model n₀)
-        (B.adjoint.model n₀) ℂ) - cornerProjection B C S θ n₀) *
-        ((B.adjoint.map n₀ C.t :
-          Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *
-          cornerProjection B C S θ n₀ *
-          (B.adjoint.map n₀ C.t :
-            Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ)ᴴ)‖ ≤
-        q := by
-      have h := h6
-      unfold movedProjection at h
-      exact h
-    have htrans := MarkedCompressionVectorChain.transported_displacement_le
-      hYcard hP hTmem hAmem hfix hrev hcap
-    -- identify the transported vector
-    have hTx : (B.adjoint.map n₀ C.t :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *ᵥ
-        gammaRowVec B n₀ Xu = gammaRowVec B n₀ W := by
-      have h := KazhdanAsymptoticCommutant.adjointMatrixSequence_mulVec_gammaRowVec
-        B (fun m ↦ B.map m s) n₀ Xu
-      have hid : KazhdanAsymptoticCommutant.adjointMatrixSequence B
-          (fun m ↦ B.map m s) n₀ =
-          (B.adjoint.map n₀ C.t :
-            Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) := rfl
-      rw [hid] at h
-      rw [h, ← hUs, hWrecover]
-    have hAx : ((gammaAdjoint B C).map n₀ a :
-        Matrix (B.adjoint.model n₀) (B.adjoint.model n₀) ℂ) *ᵥ
-        gammaRowVec B n₀ W =
-        gammaRowVec B n₀
-          ((B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-            (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) :=
-      gammaAdjoint_mulVec_gammaRowVec B C n₀ a W
-    rw [hTx, hAx] at htrans
-    have hdiff : gammaRowVec B n₀
-        ((B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-          (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) -
-        gammaRowVec B n₀ W =
-        gammaRowVec B n₀
-          ((B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-            (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) := rfl
-    rw [hdiff, hvm] at htrans
-    rw [hvm Xu] at htrans
-    have hXumass : ScaledKazhdanTransport.matMass Xu ≤ Cw ^ 2 := by
-      rw [hmassXuW, hmassWval]
-      nlinarith [h3, norm_nonneg (w n₀)]
-    have hflip : ScaledKazhdanTransport.matMass
-        (W - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-          W * (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) =
-        ScaledKazhdanTransport.matMass
-          ((B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-            (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) := by
-      rw [show W - (B.map n₀ (iota a) :
-          Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-          (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ =
-          -((B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) * W *
-            (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ - W) by abel,
-        ScaledKazhdanTransport.matMass_neg]
-    rw [hflip]
-    have hq2nn : (0 : ℝ) ≤ q ^ 2 := sq_nonneg q
-    have hmid : (2 * q ^ 2 + 16 * q ^ 2) *
-        ScaledKazhdanTransport.matMass Xu ≤ 18 * q ^ 2 * Cw ^ 2 := by
-      have h := mul_le_mul_of_nonneg_left hXumass
-        (by nlinarith [hq2nn] : (0 : ℝ) ≤ 2 * q ^ 2 + 16 * q ^ 2)
-      nlinarith [h]
-    linarith [htrans, hmid]
+    exact stage_transport_bound B C S θ n₀ a hUs hUsmem hXu
+      (h5 a haS) h6 hcap hXumass
   -- the numeric bound: transported mass is at most `(ρt / 2)²`
-  have hq2 : q ^ 2 = ρt ^ 2 / (576 * (Cw + 1) ^ 2) := by
-    rw [hqdef, div_pow]
-    congr 1
-    ring
-  have hA : 18 * q ^ 2 * Cw ^ 2 ≤ ρt ^ 2 / 8 := by
-    have hrw : 18 * q ^ 2 * Cw ^ 2 =
-        18 * ρt ^ 2 * Cw ^ 2 / (576 * (Cw + 1) ^ 2) := by
-      rw [hq2]
-      ring
-    rw [hrw, div_le_div_iff₀ (by nlinarith [hCwpos] :
-      (0 : ℝ) < 576 * (Cw + 1) ^ 2) (by norm_num : (0 : ℝ) < 8)]
-    have hkey : 144 * Cw ^ 2 ≤ 576 * (Cw + 1) ^ 2 := by
-      nlinarith [hCwpos]
-    nlinarith [mul_le_mul_of_nonneg_left hkey (sq_nonneg ρt)]
-  have hBnum : 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) ≤ ρt ^ 2 / 8 := by
-    have hτr : τ ≤ (1 - θ) * ρt ^ 2 / (256 * (Cw + 1)) :=
-      min_le_right _ _
-    have hrw : 16 * ((Cw + 1) * (2 * τ) / (1 - θ)) =
-        32 * (Cw + 1) * τ / (1 - θ) := by ring
-    rw [hrw, div_le_div_iff₀ hgap (by norm_num : (0 : ℝ) < 8)]
-    have h256 : (0 : ℝ) < 256 * (Cw + 1) := by nlinarith [hCwpos]
-    have h2 := mul_le_mul_of_nonneg_left hτr (le_of_lt h256)
-    have h3' : 256 * (Cw + 1) * ((1 - θ) * ρt ^ 2 / (256 * (Cw + 1))) =
-        (1 - θ) * ρt ^ 2 := by
-      rw [mul_comm]
-      exact div_mul_cancel₀ _ (ne_of_gt h256)
-    nlinarith [h2, h3']
+  have hnum0 := numeric_transport_bound hCwpos hgap hqdef hτr
   -- per-generator stage bound
   have hfinal : ∀ a ∈ S, ‖bVec B V S hgen hsymm n₀ a‖ ≤ ρt := by
     intro a haS
-    have h1a := h1 a haS
-    have hyW := hbridge (B.map n₀ (iota a) :
-      Matrix (B.model n₀) (B.model n₀) ℂ)
-    have hWa := hWdisp a haS
-    have hnum : ScaledKazhdanTransport.matMass
-        (W - (B.map n₀ (iota a) : Matrix (B.model n₀) (B.model n₀) ℂ) *
-          W * (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ)ᴴ) ≤ (ρt / 2) ^ 2 := by
-      have : (ρt / 2) ^ 2 = ρt ^ 2 / 4 := by ring
-      rw [this]
-      linarith [hA, hBnum, hWa]
-    have hyle : ‖w n₀ - adFlat (B.map n₀ (iota a) :
-        Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀)‖ ≤ ρt / 2 := by
-      have hnn := norm_nonneg (w n₀ - adFlat (B.map n₀ (iota a) :
-        Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀))
-      nlinarith [hyW, hnum, hρtpos.le]
-    have hτle : τ ≤ ρt / 2 := min_le_left _ _
-    calc
-      ‖bVec B V S hgen hsymm n₀ a‖ =
-          ‖(bVec B V S hgen hsymm n₀ a -
-            (w n₀ - adFlat (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀))) +
-            (w n₀ - adFlat (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀))‖ := by
-        rw [sub_add_cancel]
-      _ ≤ ‖bVec B V S hgen hsymm n₀ a -
-            (w n₀ - adFlat (B.map n₀ (iota a) :
-              Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀))‖ +
-          ‖w n₀ - adFlat (B.map n₀ (iota a) :
-            Matrix (B.model n₀) (B.model n₀) ℂ) (w n₀)‖ :=
-        norm_add_le _ _
-      _ ≤ ρt := by linarith [h1a, hyle, hτle]
+    exact stage_generator_bound (h1 a haS)
+      (hbridge (B.map n₀ (iota a) :
+        Matrix (B.model n₀) (B.model n₀) ℂ))
+      (le_trans (hWdisp a haS) hnum0) hτle hρtpos
   -- the anchor contradiction
   have hkpos : 0 < kNorm B V S n₀ := lt_of_lt_of_le Nat.zero_lt_one h4
   have hanchor := sum_normSq_bVec_eq_four B V S hgen hsymm hVinv hVcomm
     hkpos
-  have hsum_le : ∑ a ∈ S, ‖bVec B V S hgen hsymm n₀ a‖ ^ 2 ≤
-      (S.card : ℝ) * ρt ^ 2 := by
-    calc
-      ∑ a ∈ S, ‖bVec B V S hgen hsymm n₀ a‖ ^ 2 ≤
-          ∑ _a ∈ S, ρt ^ 2 :=
-        Finset.sum_le_sum fun a ha ↦ by
-          have := hfinal a ha
-          nlinarith [norm_nonneg (bVec B V S hgen hsymm n₀ a), hρtpos.le]
-      _ = (S.card : ℝ) * ρt ^ 2 := by
-        rw [Finset.sum_const, nsmul_eq_mul]
-  have hlt : (S.card : ℝ) * ρt ^ 2 < 4 := by
-    rw [hρt]
-    have hs : Real.sqrt ((S.card : ℝ)) ^ 2 = (S.card : ℝ) :=
-      Real.sq_sqrt (Nat.cast_nonneg _)
-    have hsn := Real.sqrt_nonneg ((S.card : ℝ))
-    have hx1 : (0 : ℝ) < Real.sqrt ((S.card : ℝ)) + 1 := by linarith
-    have hx2pos : (0 : ℝ) < (Real.sqrt ((S.card : ℝ)) + 1) ^ 2 :=
-      pow_pos hx1 2
-    rw [div_pow, one_pow, mul_one_div, div_lt_iff₀ hx2pos]
-    nlinarith [hs, hsn, hcardR]
-  linarith [hanchor, hsum_le, hlt]
+  exact anchor_contradiction (fun a _ ↦ norm_nonneg _) hanchor hρt
+    hfinal
 
 /-! ## The corona-level collapse -/
 
