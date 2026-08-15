@@ -5,6 +5,8 @@ kind: route
 title: Lift corona coordinates to genuine representations and pass to the limit
 target: matricial-stability-identifies-radicals
 requires: []
+artifacts:
+  - GroupApproximation/Sofic/MatricialStabilityRadical.lean
 ---
 
 ## Direct proof
@@ -29,3 +31,14 @@ kills `x`, so `x in Rad_MF(G)`.
 
 The `Rad_fd(G) = G` case (minimal almost periodicity) recovers
 `map-matricial-stability-non-mf`.
+
+## Formalized
+
+`GroupApproximation/Sofic/MatricialStabilityRadical.lean`:
+`IsPointNormMatriciallyStable`, `fdUnitaryResidual`,
+`actualCoronaMFResidual_le_fdUnitaryResidual` (no stability needed),
+`fdUnitaryResidual_le_coronaMFResidual` (stability),
+`actualCoronaMFResidual_eq_fdUnitaryResidual`, and
+`not_isCDEOperatorMF_of_stable_of_fdResidual_ne_bot`.  Authored in the
+2026-08-15 generalization wave; the wave's closing validation build
+certifies the kernel check.
