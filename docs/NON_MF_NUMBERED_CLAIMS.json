@@ -449,7 +449,7 @@
     {
       "id": "thm:compression-radical",
       "environment": "theorem",
-      "title": "MF-invisibility of the intrinsic defect",
+      "title": "the intrinsic defect and the MF radical",
       "statement_sha256": "12334b5a1314dbee07650a768a947ede7cbd696af639c0ab27b4f549514aaa3e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -801,7 +801,7 @@
     {
       "id": "thm:E",
       "environment": "mainthm",
-      "title": "sofic and hyperlinear groups that are not MF",
+      "title": "a sofic non-MF group",
       "statement_sha256": "c611f5557033e4814e93e581f19d2c940dcfd42d2a97d7c7534847189373d0a0",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

@@ -112,8 +112,8 @@ if $t\Gamma t^{-1}\subseteq\Gamma$, then in operator-norm matrix models
 conjugation by $t$ preserves the Hilbert--Schmidt asymptotic commutant
 of $\Gamma$.  In $E$ this forces a commutator $u$ to converge to $1$ in
 normalized Hilbert--Schmidt norm, while an explicit Clifford-group
-quotient makes the central involution $w=u^2$ equal to $-1$ on a nonzero
-spectral corner; hence every matrix model of $E$ collapses $w$.  The
+quotient makes the central involution $w=u^2$ equal to $-1$; hence
+every matrix model of $E$ collapses $w$.  The
 construction runs from any finitely presented property-\textup{(T)}
 group with a proper injective self-embedding; $E$ is the instance built
 on $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
@@ -121,7 +121,8 @@ on $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
 The homomorphism proving $w\ne1$ maps $E$ onto a second group $W$, a
 Clifford extension of a linear group, which we prove is finitely
 generated, sofic --- hence hyperlinear --- and not MF; thus neither
-soficity nor hyperlinearity implies the MF property.
+soficity nor hyperlinearity implies the MF property.  The reduced
+group $C^*$-algebra of $W$ is in addition exact.
 \end{abstract}
 
 \maketitle
@@ -152,30 +153,27 @@ $C^*$-algebra fails to be MF \cite{Shulman}.
 
 These questions sit at the endpoint of a program of finitary
 approximation.  In his 2018 ICM address, Thom asked for which Schatten
-$p$-norms there exist non-approximable groups
-\cite[Question~3.11]{Th}: the Frobenius case $p=2$ was settled by
-De~Chiffre--Glebsky--Lubotzky--Thom \cite{DGLT}, the cases $1<p<\infty$
-by Lubotzky--Oppenheim \cite{LuO}, and the case $p=1$ by
-Bachner--Dogon--Lubotzky \cite{BDL}, who describe the three remaining
-metrics --- the Hamming metric (soficity), the Hilbert--Schmidt norm
-(hyperlinearity), and the operator norm (MF) --- as ``the holy-grail of
-the subject.''  The Hamming case was disproved in 2026: the first
-nonsofic group was constructed by OpenAI \cite{OAI}, Fournier-Facio then
-gave a torsion-free example \cite{FFF}, and Kun--Thom developed further
-wreath-product examples \cite{KT}.  One-sided conjugation of a property-\textup{(T)} subgroup into itself,
-the mechanism driving those arguments, is also the starting point of the
-present one.  Soficity concerns permutations in the Hamming metric, while MF concerns
-unitaries in operator norm, so there is no direct metric comparison between
-the two approximation properties.  The operator-norm setting
-requires a different rigidity theorem, proved here by a one-sided
-transport theorem for Kazhdan fixed spaces of the adjoint actions,
-realized quantitatively by finite-stage spectral corners and an
-equal-rank projection flip.  This paper settles the
+$p$-norms there exist non-approximable groups \cite[Question~3.11]{Th}.
+The case $p=2$ was settled by De~Chiffre--Glebsky--Lubotzky--Thom
+\cite{DGLT}, the cases $1<p<\infty$ by Lubotzky--Oppenheim \cite{LuO},
+and the case $p=1$ by Bachner--Dogon--Lubotzky \cite{BDL}, leaving the
+Hamming metric (soficity), the Hilbert--Schmidt norm (hyperlinearity),
+and the operator norm (MF).  The Hamming case was disproved in 2026:
+the first nonsofic group was constructed by OpenAI \cite{OAI},
+Fournier-Facio then gave a torsion-free example \cite{FFF}, and
+Kun--Thom developed further wreath-product examples \cite{KT}.
+One-sided conjugation of a property-\textup{(T)} subgroup into itself,
+the mechanism driving those arguments, is also the starting point of
+the present one.  Soficity concerns permutations in the Hamming
+metric, and MF concerns unitaries in operator norm; the operator-norm
+setting requires a different rigidity theorem, proved here as a
+one-sided transport theorem for Kazhdan fixed spaces of the adjoint
+actions, with a quantitative finite-stage form
+(Appendix~\ref{app:finite-stage}).  This paper settles the
 operator-norm case by one explicit finitely presented group; it also
 proves that soficity does not imply MF and produces an explicit reduced
 group $C^*$-algebra that is stably finite but not MF.  Of the three
-problems, only the Hilbert--Schmidt case --- hyperlinearity --- remains
-open.
+problems, only hyperlinearity remains open.
 
 In the language of approximate representations, a countable discrete
 group $G$ is \emph{MF} if, for every finite subset $F\subseteq G$ and
@@ -233,16 +231,13 @@ the operator-norm local models, to Appendix~\ref{app:equivalences}.
 Hereafter ``MF'' means this property: the operator-norm notion of
 Carri\'on--Dadarlat--Eckhardt, in the form used by Shulman, with no
 additional requirement that matrix models recover the regular
-representation, its norms, or its trace.  Stronger conventions exist and
-should not be confused with it: in \cite{GKEMP} the approximating maps
-must additionally recover both the
-canonical trace and the left-regular norm on every group-ring element,
-and the purely matricial field (PMF) convention of
-\cite[Definition~1.2]{MdlS} requires finite-dimensional
-representations whose group-ring norms converge to the regular norms
-(trace convergence is included in some related conventions but not in
-that definition).  Every assertion below uses only the MF property fixed
-here.
+representation, its norms, or its trace.  Stronger conventions exist:
+in \cite{GKEMP} the approximating maps must also recover the canonical
+trace and the left-regular norm on every group-ring element, and the
+purely matricial field (PMF) convention of \cite[Definition~1.2]{MdlS}
+requires finite-dimensional representations whose group-ring norms
+converge to the regular norms.  Every assertion below uses only the MF
+property fixed here.
 
 Throughout, $[g,h]=ghg^{-1}h^{-1}$ for group elements, while for matrices
 $[x,y]=xy-yx$; the arguments always make the reading unambiguous.
@@ -268,8 +263,8 @@ vectors almost fixed by the adjoint action of that subgroup.
 \item The defining relations give
 $t\,\iota(\mathcal B)\,t^{-1}\subseteq\iota(\mathcal B)$, hence a
 one-sided containment between the corner and its conjugate by $t$.  The
-two projections have equal rank, so an equal-rank flip upgrades the
-containment to equality: conjugation by $t$ preserves the
+two projections have equal rank, so an equal-rank projection flip
+upgrades the containment to equality: conjugation by $t$ preserves the
 Hilbert--Schmidt asymptotic commutant of the base.  (In ultraproduct
 language: the fixed-space projection satisfies $P\le VPV^*$, and
 finiteness of the ambient $C^*$-ultraproduct --- finite in the
@@ -301,11 +296,11 @@ stably finite non-MF example (Theorem~\ref{thm:D}); the reduced algebra
 of $W$ is in addition exact.
 
 \subsection*{Operator norm versus tracial approximation}
-The argument is specific to operator norm: the spectral-corner and
-leakage estimates of the transport theorem require the adjoint actions to
-be controlled in operator norm on the Hilbert--Schmidt spaces.
-Hilbert--Schmidt-small defects alone do not provide
-that operator control, so the proof does not give a hyperlinear obstruction.
+The argument is specific to operator norm: the transport theorem
+requires the adjoint actions to be controlled in operator norm on the
+Hilbert--Schmidt spaces.  Hilbert--Schmidt-small defects alone do not
+provide that control, so the proof does not give a hyperlinear
+obstruction.
 
 \subsection*{Inputs and formal verification}
 The proof of Theorem~\ref{thm:A} is self-contained:
@@ -323,16 +318,16 @@ extension theorem \cite{ElekSzabo} and Mal'cev residual finiteness
 embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
 paragraph.
 
-Each gray ``formalized in Lean'' tag marks a theorem in the
-accompanying Lean~4 development stating exactly the printed claim; the
-formal development has no theorem-level inputs.  The formal development
-follows the finite-stage transport proof of
+Each gray Lean tag names a theorem in the accompanying Lean~4
+development whose statement matches the displayed claim under the
+conventions of this paper; the formal development has no theorem-level
+inputs.  It follows the finite-stage transport proof of
 Appendix~\ref{app:finite-stage}; the body proof of
 Theorem~\ref{thm:kazhdan-transport} is the equivalent ultraproduct
-argument.  The paragraphs quoting
-the literature results above are outside it and are labelled where they
-occur.  The public version of each tag links to the corresponding
-declaration on the reviewed source branch.
+argument.  The paragraphs quoting the literature results above are
+outside the formal development and are labelled where they occur.  In
+the public version each tag links to the corresponding declaration on
+the reviewed source branch.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -413,10 +408,10 @@ Section~\ref{sec:proofA} proves the defect-square identity and deduces
 Theorem~\ref{thm:A} from the sign criterion.
 Section~\ref{sec:findim} states and proves Theorem~\ref{thm:B}.
 Section~\ref{sec:conj} defines Kazhdan conjugation data and their
-defect subgroups, proves the finite-normal obstruction
-criterion (Theorem~\ref{thm:criterion}), the MF-invisibility of the
-intrinsic defect (Theorem~\ref{thm:compression-radical}), and the
-normal-Kazhdan form of the obstruction
+defect subgroups and generalizes the sign criterion three ways: the
+finite-normal obstruction criterion (Theorem~\ref{thm:criterion}), the
+intrinsic defect in the MF radical
+(Theorem~\ref{thm:compression-radical}), and the normal-Kazhdan form
 (Theorem~\ref{thm:normal-kazhdan}), which requires no finiteness or
 torsion.
 Section~\ref{sec:necessity} states and proves the cyclic comparison,
@@ -535,7 +530,7 @@ Appendix~\ref{app:maxcstar}.
 
 \section{One-sided Kazhdan transport}\label{sec:transport}
 
-The proof rests on one elementary principle, which appears in three
+The proof rests on one principle, which appears in three
 finite settings:
 \[
  \begin{array}{c@{\quad}c@{\quad}c}
@@ -777,7 +772,7 @@ not MF.
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
 Given $\Gamma,\alpha,a$ as in the theorem below, the construction admits
-a transparent presentation with one redundant generator $\varepsilon$:
+a conceptual presentation with one redundant generator $\varepsilon$:
 declare it to be a central involution and impose
 \begin{equation}\label{eq:conceptual-sign}
  \boxed{\varepsilon=u^2,\qquad u=[tct^{-1},a].}
@@ -786,8 +781,8 @@ This is the conceptual presentation: rigidity forces $u\sim_2 1$, whereas
 the Clifford model makes $u^2=-1$.  The theorem below uses the
 Tietze-eliminated version.  Since $d=tct^{-1}$ is an involution,
 $u^2=[d,ada^{-1}]$; conversely, centrality of $u^2$ forces $(u^2)^2=1$.
-Thus the redundant sign costs one generator and makes the defining word
-transparent.
+Thus the redundant sign costs one generator and puts the defining
+relation in the boxed form above.
 
 \begin{theorem}[Kazhdan--Clifford construction]
 \label{thm:kazhdan-clifford}
@@ -866,7 +861,7 @@ criterion therefore says that every corona representation kills $w$.
 Since $w\ne1$, none is faithful.
 \end{proof}
 
-The sign argument has a useful Clifford-free strengthening.  For a subgroup
+The sign argument has a useful generalization.  For a subgroup
 $L\le H$, let $G_{\rm comp}(L)$ be generated by the elements $s$ satisfying
 $sLs^{-1}\subseteq L$ --- the \emph{one-sided conjugators} of $L$ --- and put
 \begin{equation}\label{eq:intrinsicdefect}
@@ -904,7 +899,7 @@ base.  The affine base is used for the explicit presentation of
 Theorem~\ref{thm:A} and for Theorems~\ref{thm:D} and~\ref{thm:E}.
 \end{remark}
 
-The following theorem is the fully explicit instance, developed in
+The following theorem is the explicit instance, developed in
 Sections~\ref{sec:group}--\ref{sec:proofA}.
 
 \begin{mainthm}[explicit Kazhdan--Clifford group]\label{thm:A}
@@ -990,11 +985,10 @@ Section~\ref{sec:conj} generalizes the criterion to arbitrary finite
 normal subgroups of the defect.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
-Nontriviality of $w$ is witnessed by a completely explicit
-representation of $E$ into a semidirect product of a Clifford group by a
-mapping-telescope group built from the exact rational affine matrix model
-(Section~\ref{sec:witness}); no
-combinatorial theory of HNN extensions is needed.
+Nontriviality of $w$ is witnessed by an explicit representation of $E$
+into a semidirect product of a Clifford group by a mapping-telescope
+group built from the exact rational affine matrix model
+(Section~\ref{sec:witness}).
 
 \subsection*{Generalizations and consequences}
 Theorem~\ref{thm:A} is an instance of a general finite-normal obstruction
@@ -1026,14 +1020,16 @@ Section~\ref{sec:consequences}.
 
 \section{The explicit presentation and its property-(T) base}\label{sec:group}
 
-We work throughout with the groups defined by the relators below.  The
-proof of property~\textup{(T)} is intrinsic to these presentations: an
-exact rational spectral certificate for an auxiliary Steinberg-type
-presentation, an explicit surjection onto the linear presentation, and a
-fixed-point bridge from the linear subgroup to the full base.  No
-identification with a matrix group enters the proof, and every later
-relation involving the base's image in $E$ is used directly from
-the displayed presentation.
+We work throughout with the groups defined by the relators below.
+Classically the base is the affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, a familiar Kazhdan group
+(Remark~\ref{rem:classical-base}); the reader should keep that model in
+mind.  The proof of property~\textup{(T)} given here is nevertheless
+intrinsic to the displayed presentations --- an exact rational spectral
+certificate for an auxiliary Steinberg-type presentation, an explicit
+surjection onto the linear presentation, and a fixed-point bridge from
+the linear subgroup to the full base --- and is independent of the
+identification.
 First define the \emph{linear presentation}
 \begin{equation}\label{eq:sl3presentation}
  \mathcal R=\left\langle x,y,z\ \middle|\
@@ -1147,11 +1143,7 @@ image of the base into itself.  It sends $c$ to $d=tct^{-1}$: the
 relations force $c$ to commute with all of $\iota(\mathcal B)$ and force
 $d$ to commute with the compressed copy, but do not require $d$ to commute
 with $\iota(v_1)$.  The marked word $w$ records that commutation defect.
-Only the one-sided inclusion is used by the analytic criterion.  (The
-canonical base map in this explicit group is in fact injective, by the
-linear realization of Lemma~\ref{lem:linear} together with the classical
-identification of Remark~\ref{rem:classical-base}; no argument in this
-paper uses that.)}
+Only the one-sided inclusion is used by the analytic criterion.}
 \label{fig:compression-pattern}
 \end{figure}
 
@@ -1169,9 +1161,7 @@ the real-orthogonal and complex-unitary formulations.
 \end{proposition}
 
 \begin{proof}
-The proof is intrinsic: it imports no presentation theorem and no
-classical property~\textup{(T)} statement, and it never identifies
-$\mathcal B$ with a matrix group.  It has three steps.
+The proof has three steps.
 
 \emph{Step 1: a certified Steinberg-type presentation.}  Let $P_{13}$ be
 the group on the six generators
@@ -1274,9 +1264,9 @@ $\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW} --- the matrix-labelled form of
 the generators in Lemma~\ref{lem:linear} is also recorded in \cite{CLV}
 --- the base $\mathcal B$ is then the affine group
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and property~\textup{(T)} of that
-affine group is classical \cite[Example~1.7.4(i)]{BHV}.  This
-identification is not used: the proof above is independent of it, and no
-statement in this paper depends on it.
+affine group is classical \cite[Example~1.7.4(i)]{BHV}.  The proof above is independent of this identification; the one later
+use, in the injectivity paragraph of Section~\ref{sec:consequences}, is
+flagged there as a literature input.
 \end{remark}
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
@@ -1485,9 +1475,9 @@ which block the same argument in Hilbert--Schmidt metrics
 
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
-In finite dimensions the obstruction is elementary and needs neither
-property (T), nor unitarity, nor centrality of $w$; it kills the entire
-intrinsic defect \eqref{eq:intrinsicdefect}:
+In finite dimensions the obstruction needs neither property (T), nor
+unitarity, nor centrality of $w$; it kills the entire intrinsic defect
+\eqref{eq:intrinsicdefect}:
 
 \begin{mainthm}[the exact finite-dimensional analogue]\label{thm:B}
 Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
@@ -1599,10 +1589,10 @@ An MF model is only asymptotically multiplicative, so its coordinate fixed
 spaces are not literal invariant subspaces.  Operator-norm control keeps
 the coordinate adjoint actions almost multiplicative on the
 Hilbert--Schmidt spaces; property~(T) then supplies the spectral corner
-playing the role of an approximate fixed space, and the equal-rank flip
-of Appendix~\ref{app:finite-stage} turns the one-sided compression of
-that corner into equality --- the quantitative shadow of the exact
-finite-dimensional argument above.
+playing the role of an approximate fixed space, and the equal-rank
+projection flip of Appendix~\ref{app:finite-stage} turns the one-sided
+compression of that corner into equality --- the quantitative
+counterpart of the exact finite-dimensional argument above.
 
 \section{The finite-normal obstruction}\label{sec:conj}
 
@@ -1761,14 +1751,14 @@ forward transport.  Reverse transport follows from the same proof: the
 equality $P=VPV^*$ obtained there gives $V^*PV=P$ as well, so the fixed
 subspace is preserved by conjugation in both directions.  (In the
 finite-stage proof of Appendix~\ref{app:finite-stage}, the equal-rank
-flip reverses the one-sided containment of the spectral corners, so the
-same assembly runs with the adjoint unitary; the displacement and
-capture steps are unchanged.)  The elements acting in both
+projection flip reverses the one-sided containment of the spectral
+corners, so the same assembly runs with the adjoint unitary; the
+displacement and concentration steps are unchanged.)  The elements acting in both
 directions form a subgroup of $H$, and hence contain the subgroup generated
 by all one-sided conjugators, namely $G_{\rm comp}(L)$.
 \end{proof}
 
-\begin{theorem}[MF-invisibility of the intrinsic defect]
+\begin{theorem}[the intrinsic defect and the MF radical]
 \label{thm:compression-radical}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
 property~\textup{(T)}, let
@@ -1898,7 +1888,7 @@ Theorem~\ref{thm:criterion}.
 
 \section{The cyclic comparison}\label{sec:necessity}
 
-The elementary finite-dimensional calculation of
+The finite-dimensional calculation of
 Section~\ref{sec:findim} does not by itself determine
 whether its marked word is trivial:
 
@@ -2042,8 +2032,6 @@ $G_1/R$.
 In particular $G_1$ is MF if and only if $R=\{1\}$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient}
 \end{proposition}
-
-We include the short proof.
 
 \begin{proof}
 (3) If $\varphi\colon G_1\to M$ with $M$ MF and
@@ -2207,8 +2195,7 @@ Every countable locally finite group is MF.
 \end{lemma}
 
 \begin{proof}
-The proof is local: no exhaustion, direct limit, or diagonal argument is
-needed.  Given a finite test set $F$, local finiteness supplies one
+Given a finite test set $F$, local finiteness supplies one
 finite subgroup $K$ containing it.  The left regular permutation action
 of $K$, applied to any map from the group to $K$ that restricts to the
 identity on the test set, is an exact
@@ -2320,7 +2307,7 @@ Theorem~\ref{thm:A}.
 
 The witness that proves $w\ne1$ carries the final separation:
 
-\begin{mainthm}[sofic and hyperlinear groups that are not MF]\label{thm:E}
+\begin{mainthm}[a sofic non-MF group]\label{thm:E}
 The Clifford witness $W=\ClLamp(X)\rtimes V$ of
 Proposition~\ref{prop:witness} is a finitely generated sofic group that
 is not MF; since sofic groups are hyperlinear, $W$ is likewise a
@@ -2375,7 +2362,7 @@ the $V$-action on $X$.  Since $E$ is generated by
   $v_1,x,y,z,t,c$ (by the Tietze calculation above), their six
 images generate $W$.  The map sends
 $w\in\operatorname{Rad}_{\mathrm{MF}}(E)$ to the
-nontrivial sign $\zeta$; portability (Lemma~\ref{lem:portable}) makes
+nontrivial sign $\zeta$; functoriality (Lemma~\ref{lem:portable}) makes
 $\zeta\in\operatorname{Rad}_{\mathrm{MF}}(W)$.  Hence $W$ is not MF.
 \end{proof}
 
@@ -2430,8 +2417,8 @@ trivial.
 
 \begin{proof}
 By Elek--Szab\'o, every countable sofic group embeds in a countable simple
-sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Portability
-sends its nontrivial radical element $\zeta$ to a nontrivial element of the
+sofic group \cite[Theorem~1]{ElekSzaboHyper}.  Embed $W$ in such a group.  Functoriality
+of the MF radical sends $\zeta$ to a nontrivial element of the
 MF radical of the simple group.  That radical is normal, so it is the whole
 group.  Every homomorphism to an MF group kills the MF radical.  (The
 embedding theorem is a literature input; this paragraph is outside the
@@ -2610,26 +2597,26 @@ $S$-energy exceeds $\theta$ is almost fixed by each generator, because
 $(S,\kappa)$ is a Kazhdan pair and $\theta$ exceeds
 $1-\kappa^2/(4|S|)$, hence almost fixed by every word in $S$.  The
 corner $P_n$ is the finite-stage substitute for the Kazhdan projection.
-\item[(ii)] \emph{Capture.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
+\item[(ii)] \emph{Concentration.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
 for the vector $x_n$.  The commutator hypothesis says each
 $\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
 $\xi_n-H_n\xi_n$ is Hilbert--Schmidt null; a Cauchy--Schwarz energy
 estimate then bounds the mass of $(1-P_n)\xi_n$ by the residual and the
-uniform bound on $\opnorm{x_n}$, so $\xi_n$ is asymptotically captured
-by the corner.
+uniform bound on $\opnorm{x_n}$, so $\xi_n$ is asymptotically
+concentrated in the corner.
 \end{enumerate}
 
-\emph{Leakage by the equal-rank flip.}  Put
+\emph{Reversal by the equal-rank projection flip.}  Put
 $T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
 $P_n$.  The conjugation relation enters exactly once: for
 $\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
 corner vector under $\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
-almost-fixedness under each $\iota(s')$, $s'\in S$; by the capture
+almost-fixedness under each $\iota(s')$, $s'\in S$; by the concentration
 estimate the pulled-back vector is again almost in the corner.  Thus the
 corner is almost contained in its conjugate,
 $\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
 inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
-\operatorname{rank}Q_n$, the equal-rank flip --- for projections $p,q$ of
+\operatorname{rank}Q_n$, the equal-rank projection flip --- for projections $p,q$ of
 equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
 $\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
 containment:
