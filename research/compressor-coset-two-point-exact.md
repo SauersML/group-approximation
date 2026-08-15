@@ -7,6 +7,8 @@ distinct_from:
   two-point-orbit-approximation: that claim (after the 2026-08-15 pair correction) asks for approximate models separating the marked pair (Γ, hΓ), whose collapse in every finite quotient is provable; this proves the compressor pair (Γ, tΓ) — the pair that node stated before the correction — is separated by exact congruence quotients, so nothing approximate is ever needed there.
   finite-quotient-blindness: that says the image of Γ is normal in every finite quotient, so the compression data tΓt⁻¹ ⊊ Γ dies; this shows normality of the image does not identify the coset tΓ with Γ — the coset, unlike the compression, survives reduction.
   marked-double-coset-infinite-degree: that computes an infinite index in the infinite group G and constrains invariant graphs on G/Γ; this is a statement about finite congruence shadows of G/Γ and computes there exactly.
+artifacts:
+  - GroupApproximation/Sofic/ProfiniteClosure.lean
 ---
 
 Let `Γ = EL_r(R_+) < G = EL_r(R) ⋊ SL_d(ℤ)` be the Kun--Thom Theorem E pair
@@ -61,3 +63,13 @@ The moral for the witness search: the obstruction was never the compression
 semigroup as such — congruence quotients see it — but the marked element's
 membership in the conjugacy closure of `Γ`, which no finite quotient can
 break.
+
+**Kernel-checked surface.**  Both halves of the dichotomy are formalized in
+`GroupApproximation/Sofic/ProfiniteClosure.lean`: `not_mem_profiniteClosure`
+(and its split-pair form `not_mem_profiniteClosure_of_kills`) is the
+criterion behind item 1 — a single separating finite quotient certifies
+`t ∉ Γ*` — and the closure-swallows-normal-closure theorem there is the
+mechanism behind the contrast pair, since `h ∈ ⟨⟨Γ⟩⟩ ≤ Γ*`.  What this node
+adds on top of the formalized criterion is the two-point *model*: the coset
+labeling that turns the separating quotient into exact approximation data,
+and the identification of the label space as `SL_d(ℤ/M)`.
