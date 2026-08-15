@@ -2797,6 +2797,18 @@ Mal'cev's theorem \cite{Malcev} for finitely generated linear groups.  Thus $V$ 
 whereas $W$ is not MF by the preceding construction.
 \end{proof}
 
+\paragraph{Extensions by $\Z$.}
+The failure persists in the sharpest split form.  Composing the two
+canonical projections gives a surjection $W\to\Z$ whose kernel is
+$\ClLamp(X)\rtimes T$, and this kernel is LEF, hence MF: every finite
+subset lies in $L\rtimes\bar\Gamma_n$ for a finite invariant lamp
+subgroup $L$ and one telescope level, and that group is residually
+finite because the level acts on the finite group $L$ through a finite
+quotient.  Thus $W$ is an extension of an LEF group by $\Z$ and is not
+MF, while soficity is preserved by every extension with amenable
+quotient \cite{ElekSzabo}.
+\leanverified{Sofic/LEFMarkedCompression}{GroupApproximation.LiteralLEFExtension.literalWitness_LEFKernel_integerExtension_nonMF}
+
 \paragraph{An exact stably finite non-MF algebra.}
 The same witness gives a concrete separable exact example:
 $\Cred(W)$ is exact, has a faithful tracial state, is stably finite, and is
@@ -2976,6 +2988,20 @@ ultraproduct, and the finite-stage proof of
 Appendix~\ref{app:finite-stage} needs it for the spectral estimates.
 Normalized Hilbert--Schmidt control therefore does not supply the
 transport used here.
+
+The converse dilution is exact.  Padding a model with an identity
+block preserves every operator-norm quantity --- the multiplicative
+defects and the pairwise separations are unchanged --- while the
+normalized Hilbert--Schmidt distances decay with the padding ratio:
+below any prescribed bound, every operator-norm local model can be
+replaced by one all of whose pairwise Hilbert--Schmidt distances are
+smaller than the bound.
+\leanverified{Sofic/NormTraceGap}{GroupApproximation.NormModel.exists_hs_collapse}
+Hilbert--Schmidt invisibility of an element alone therefore can never
+prove a group non-MF: an obstruction must produce an invariant corner
+of macroscopic relative rank and renormalize the trace there, which is
+what the Reynolds corner, the moving spectral subspace, and the
+rank-calibrated collapse all do.
 
 This is a limitation of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
