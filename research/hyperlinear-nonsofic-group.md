@@ -5,12 +5,12 @@ kind: claim
 title: "Pestov Question 3.4: produce a hyperlinear non-sofic group"
 distinct_from:
   non-hyperlinear-group: that claim denies hyperlinearity outright; this one demands a group that IS hyperlinear yet fails soficity — the Q3.4 separation
-root: true
-goal: true
 ---
 
-The parallel program target: separate hyperlinearity from soficity. Soficity
-implies hyperlinearity (sofic-implies-hyperlinear, formalized); the converse is Question 3.4
+The negative (separation) answer to Question 3.4 — one of the two admissible
+routes into the program goal `q3-4-resolved`, alongside its negation
+hyperlinear-implies-sofic. Soficity implies hyperlinearity
+(sofic-implies-hyperlinear, formalized); the converse is Question 3.4
 and is open.
 
 Logical caution (docs/OBSTRUCTIONS.md §5): evidence that a candidate is

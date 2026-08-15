@@ -99,8 +99,9 @@ jobs:
       fail-fast: false
       # Three blocks (twelve large kernel computations) per runner.  Twelve-way
       # bounded parallelism avoids both the old six long serial jobs and a
-      # 36-job fan-out.
-      max-parallel: 12
+      # 36-job fan-out.  Eight at a time keeps the twenty-runner account
+      # pool from saturating when a second pipeline overlaps.
+      max-parallel: 8
       matrix:
         shard:
           - 0

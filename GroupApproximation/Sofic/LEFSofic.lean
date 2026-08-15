@@ -295,6 +295,29 @@ theorem residuallyFinite_semidirectProduct_of_finite_range
     exact residuallyFinite_of_injective χ hχ
   exact residuallyFinite_of_finiteIndex H
 
+/-- Residual finiteness transfers along group isomorphisms. -/
+theorem residuallyFinite_of_mulEquiv {G' : Type*} [Group G']
+    (e : G ≃* G') [Group.ResiduallyFinite G'] :
+    Group.ResiduallyFinite G :=
+  residuallyFinite_of_injective e.toMonoidHom e.injective
+
+/-- **Exhaustion by residually finite subgroups gives LEF**: if every
+finite subset lies in a residually finite subgroup, the group is LEF.
+This is the quantifier order the telescope-core argument consumes: the
+subgroup may depend on the finite subset arbitrarily. -/
+theorem isLEF_of_forall_finset_residuallyFinite
+    (h : ∀ s : Finset G, ∃ H : Subgroup G,
+      (∀ x ∈ s, x ∈ H) ∧ Group.ResiduallyFinite H) : IsLEF G :=
+  isLEF_of_forall_finset_subgroup fun s ↦ by
+    obtain ⟨H, hs, hH⟩ := h s
+    exact ⟨H, hs, letI := hH; isLEF_of_residuallyFinite⟩
+
+/-- Exhaustion by residually finite subgroups gives soficity. -/
+theorem isSofic_of_forall_finset_residuallyFinite
+    (h : ∀ s : Finset G, ∃ H : Subgroup G,
+      (∀ x ∈ s, x ∈ H) ∧ Group.ResiduallyFinite H) : IsSofic G :=
+  isSofic_of_isLEF (isLEF_of_forall_finset_residuallyFinite h)
+
 /-- **Locally residually finite groups are LEF**: if every finitely
 generated subgroup is residually finite, the group is LEF, by the locality
 of LEF and `isLEF_of_residuallyFinite` on each finitely generated

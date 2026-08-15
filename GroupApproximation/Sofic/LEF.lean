@@ -142,18 +142,17 @@ theorem isLEF_of_injective {H G : Type*} [Group H] [Group G]
       exact hmul.map_mul (φ x) (Finset.mem_image_of_mem φ hx)
         (φ y) (Finset.mem_image_of_mem φ hy)
 
-/-- **LEF is a local property**: if every finitely generated subgroup is
-LEF, the group is LEF.  A test set generates a finitely generated subgroup,
-whose local embedding extends to the ambient group by the identity off the
-subgroup. -/
-theorem isLEF_of_forall_fg {J : Type*} [Group J]
-    (h : ∀ H : Subgroup J, H.FG → IsLEF H) : IsLEF J := by
+/-- **LEF is closed under exhaustion by LEF subgroups**: if every finite
+subset is contained in an LEF subgroup, the group is LEF.  The subgroup may
+depend on the finite subset arbitrarily; its local embedding extends to the
+ambient group by the identity off the subgroup. -/
+theorem isLEF_of_forall_finset_subgroup {J : Type*} [Group J]
+    (h : ∀ s : Finset J, ∃ H : Subgroup J,
+      (∀ x ∈ s, x ∈ H) ∧ IsLEF H) : IsLEF J := by
   classical
   intro s
-  set H : Subgroup J := Subgroup.closure (s : Set J) with hH
-  have hmem : ∀ x ∈ s, x ∈ H := fun x hx ↦ Subgroup.subset_closure hx
-  obtain ⟨n, g, hginj, hgmul⟩ :=
-    h H ⟨s, rfl⟩ (s.subtype (· ∈ H))
+  obtain ⟨H, hmem, hH⟩ := h s
+  obtain ⟨n, g, hginj, hgmul⟩ := hH (s.subtype (· ∈ H))
   refine ⟨n, fun x ↦ if hx : x ∈ H then g ⟨x, hx⟩ else 1, ?_, ?_, ?_⟩
   · intro x hx y hy hxy
     have hxH := hmem x (Finset.mem_coe.1 hx)
@@ -177,6 +176,15 @@ theorem isLEF_of_forall_fg {J : Type*} [Group J]
     rw [dif_pos (H.mul_mem hxH hyH), dif_pos hxH, dif_pos hyH]
     exact hgmul.map_mul ⟨x, hxH⟩ (Finset.mem_subtype.2 hx)
       ⟨y, hyH⟩ (Finset.mem_subtype.2 hy)
+
+/-- **LEF is a local property**: if every finitely generated subgroup is
+LEF, the group is LEF, since a test set generates a finitely generated
+subgroup containing it. -/
+theorem isLEF_of_forall_fg {J : Type*} [Group J]
+    (h : ∀ H : Subgroup J, H.FG → IsLEF H) : IsLEF J :=
+  isLEF_of_forall_finset_subgroup fun s ↦
+    ⟨Subgroup.closure (s : Set J),
+      fun _ hx ↦ Subgroup.subset_closure hx, h _ ⟨s, rfl⟩⟩
 
 /-- Every finite group is LEF, via its left regular action transported to a
 standard finite type. -/

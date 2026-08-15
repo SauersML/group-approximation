@@ -72,8 +72,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # Listing in-flight runs for the same-SHA schedule dedupe below.
-      actions: read
+      # Listing in-flight runs for the same-SHA schedule dedupe below, and
+      # self-cancelling superseded push runs in the newest-wins check.
+      actions: write
     outputs:
       run: ${{ steps.check.outputs.run }}
       lean: ${{ steps.check.outputs.lean }}
@@ -122,6 +123,33 @@ jobs:
           target='${{ github.sha }}'
           main=$(git rev-parse refs/remotes/origin/main)
           verified=$(git rev-parse refs/remotes/origin/verified)
+
+          # Newest wins.  A full certificate run costs a dozen runner-hours,
+          # and promotion fast-forwards straight to the newest green head,
+          # so a push that has already been superseded should not start one.
+          # Skip only when the newer head verifiably has its own queued,
+          # running, or green prover run; otherwise fail closed and verify
+          # here (a publication-only or [skip ci] successor triggers no run
+          # of its own).  Self-cancelling makes the run conclude cancelled,
+          # which the promotion workflow already ignores; a run that has
+          # started its expensive jobs is never touched by this check.
+          if [ "${{ github.event_name }}" = "push" ] && [ "$target" != "$main" ]; then
+            newer=$(gh api \
+              "repos/${{ github.repository }}/actions/workflows/prover.yml/runs?head_sha=${main}&per_page=100" \
+              --jq '[.workflow_runs[]
+                      | select(.status == "queued" or .status == "in_progress"
+                               or .conclusion == "success")
+                    ] | length' || echo 0)
+            if [ "${newer:-0}" -gt 0 ]; then
+              echo "Superseded by $main, which has its own prover run; cancelling."
+              echo "run=false" >> "$GITHUB_OUTPUT"
+              echo "lean=false" >> "$GITHUB_OUTPUT"
+              gh api -X POST \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/cancel" \
+                || true
+              exit 0
+            fi
+          fi
 
           # Lane classifier.  The fresh kernel verdict, the compiled tree,
           # and every Lean-side gate are functions of the paths below.  A
@@ -553,6 +581,11 @@ jobs:
     timeout-minutes: 330
     strategy:
       fail-fast: false
+      # Cap the simultaneous shard footprint so one certificate run cannot
+      # saturate the twenty-runner account pool: the draft-PDF build, the
+      # gates, and the site jobs must always find a free runner (observed
+      # 2026-08-15: a saturated pool starved the PDF build for ten hours).
+      max-parallel: 10
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     steps:

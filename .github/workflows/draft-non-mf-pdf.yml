@@ -8,6 +8,18 @@
 # attestation.  The next successful attested run rebuilds and replaces it,
 # restoring full provenance.  The compile itself still refuses undefined
 # references, so a broken tex never replaces a working PDF.
+#
+# Staleness is bounded two ways (added 2026-08-15 after a ten-hour gap):
+#
+#   1. A running build is never cancelled.  Under a push storm,
+#      cancel-in-progress left zero completed builds for hours; now the
+#      in-flight build finishes, and publish_pdf_commit.py's unchanged-source
+#      guard refuses its publish only if the tex has already moved on, so a
+#      stale build can never overwrite a newer PDF.
+#   2. A quarter-hour schedule rebuilds whenever the committed PDF's last
+#      update predates the tex's last change.  Any build lost to a race, a
+#      refused publish, or runner starvation is therefore healed within
+#      about fifteen minutes of runners becoming available.
 name: Draft non-MF PDF
 
 on:
@@ -15,11 +27,14 @@ on:
     branches: [main]
     paths:
       - 'non_mf_groups_exist.tex'
+  schedule:
+    # Catch-up pass: rebuild only if the PDF is older than the tex.
+    - cron: '3,18,33,48 * * * *'
   workflow_dispatch:
 
 concurrency:
   group: draft-non-mf-pdf
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -41,7 +56,26 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
+      - name: Decide whether the PDF is stale
+        id: gate
+        run: |
+          set -euo pipefail
+          tex_commit="$(git rev-list -1 HEAD -- "$TEX_FILE")"
+          pdf_commit="$(git rev-list -1 HEAD -- "$PDF_FILE" || true)"
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            echo "push or dispatch: always build"
+          elif [ -n "$pdf_commit" ] && \
+               git merge-base --is-ancestor "$tex_commit" "$pdf_commit"; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "PDF ($pdf_commit) already includes tex ($tex_commit): fresh"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            echo "PDF ($pdf_commit) predates tex ($tex_commit): stale, rebuild"
+          fi
+
       - name: Install PDF tools
+        if: steps.gate.outputs.build == 'true'
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
@@ -51,6 +85,7 @@ jobs:
           docker pull "$TEXLIVE_IMAGE"
 
       - name: Compile in pinned TeX Live
+        if: steps.gate.outputs.build == 'true'
         run: |
           mkdir -p build
           source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
@@ -63,6 +98,7 @@ jobs:
               -halt-on-error -file-line-error "$TEX_FILE"
 
       - name: Refuse unresolved references
+        if: steps.gate.outputs.build == 'true'
         run: |
           log_file="build/${TEX_FILE%.tex}.log"
           test -s "$log_file"
@@ -74,6 +110,7 @@ jobs:
           fi
 
       - name: Normalize the PDF
+        if: steps.gate.outputs.build == 'true'
         run: |
           qpdf --linearize --object-streams=disable --force-version=2.0 \
             --deterministic-id "build/${TEX_FILE%.tex}.pdf" "${PDF_FILE}.tmp"
@@ -81,13 +118,14 @@ jobs:
           qpdf --check "$PDF_FILE"
 
       - name: Commit and push the draft PDF
+        if: steps.gate.outputs.build == 'true'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           python3 scripts/publish_pdf_commit.py self-test
           python3 scripts/publish_pdf_commit.py publish-draft \
-            --source-sha "$GITHUB_SHA" \
+            --source-sha "$(git rev-parse HEAD)" \
             --source-file "$TEX_FILE" \
             --pdf "$PDF_FILE" \
             --message "build: update non-MF PDF (draft; unattested)"

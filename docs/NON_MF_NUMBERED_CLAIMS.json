@@ -191,7 +191,7 @@
       "id": "cor:scaling-family",
       "environment": "corollary",
       "title": "the scaling family",
-      "statement_sha256": "6a69b28679af50a0f6e66d2191e32b32e19d7551bca3c07b8648dc801eca8f9a",
+      "statement_sha256": "0d2d1d84d3c1949c593ec031cccfc2f849bc34b605035184fdf900dffad46580",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -257,7 +257,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "a186c73504265820b77e054e4070a935d9bb5fc412edaa9aaf150da3a221885b",
+      "statement_sha256": "46c314ad2bcb6bd65b730211450d132de0c0c8dba402acfc4bfa653e1d3b119f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],

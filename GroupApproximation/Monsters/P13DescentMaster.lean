@@ -18,6 +18,34 @@ open P13DescentCore P13WordDescent P13Completeness
 
 noncomputable section
 
+/-- Trajectory values inside a block, in coordinate form: the norm of
+the partial block action on the deep vector. -/
+theorem sigma_block (A P C : List Letter) (b : Fin 3 → ℤ) (t : ℕ)
+    (ht : t ≤ P.length) :
+    sigma (A ++ P ++ C) b (A.length + t) =
+      vnorm (act (toSL3 (eval (P.drop t))) (vecOf C b)) := by
+  unfold sigma
+  have hdrop : (A ++ P ++ C).drop (A.length + t) = P.drop t ++ C := by
+    rw [List.append_assoc, Nat.add_comm, ← List.drop_drop,
+      List.drop_left]
+    exact List.drop_append_of_le_length ht
+  rw [hdrop]
+  unfold vecOf
+  rw [eval_append, map_mul, act_mul]
+
+/-- Splitting a word at a violation position: the two offending
+letters between the shallow and deep parts. -/
+theorem word_split (V : List Letter) (v : ℕ) (hv : v + 1 < V.length) :
+    V = V.take v ++ [V[v], V[v + 1]] ++ V.drop (v + 2) := by
+  have h1 : V.drop v = V[v] :: V.drop (v + 1) :=
+    List.drop_eq_getElem_cons (by omega)
+  have h2 : V.drop (v + 1) = V[v + 1] :: V.drop (v + 2) :=
+    List.drop_eq_getElem_cons hv
+  calc V = V.take v ++ V.drop v := (List.take_append_drop v V).symm
+    _ = V.take v ++ [V[v], V[v + 1]] ++ V.drop (v + 2) := by
+        rw [h1, h2]
+        simp
+
 /-- **One descent step.**  A word with a violation rewrites, up to a
 signed-swap element pushed rightward, into a configuration of strictly
 smaller measure. -/

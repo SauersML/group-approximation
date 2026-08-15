@@ -1,3 +1,4 @@
+import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import Mathlib.Data.Finsupp.Encodable
 import Mathlib.Data.Finsupp.Fintype
@@ -38,6 +39,14 @@ variable {G : Type u} [Group G]
 two halves of this composition live in different files. -/
 theorem isOperatorMF_of_isLEF [Countable G] (hG : IsLEF G) : IsOperatorMF G :=
   (isWeakMF_of_isLEF hG).isOperatorMF
+
+/-- **Exhaustion by residually finite subgroups makes a countable group
+operator-MF**, completing the LEF/sofic/MF conclusion package that the
+telescope-core argument consumes. -/
+theorem isOperatorMF_of_forall_finset_residuallyFinite [Countable G]
+    (h : ∀ s : Finset G, ∃ H : Subgroup G,
+      (∀ x ∈ s, x ∈ H) ∧ Group.ResiduallyFinite H) : IsOperatorMF G :=
+  isOperatorMF_of_isLEF (isLEF_of_forall_finset_residuallyFinite h)
 
 /-! ## The local finiteness predicate -/
 
