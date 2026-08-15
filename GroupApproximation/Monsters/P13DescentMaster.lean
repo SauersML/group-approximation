@@ -28,8 +28,7 @@ theorem sigma_block (A P C : List Letter) (b : Fin 3 → ℤ) (t : ℕ)
       vnorm (act (toSL3 (eval (P.drop t))) (vecOf C b)) := by
   unfold P13WordDescent.sigma
   have hdrop : (A ++ P ++ C).drop (A.length + t) = P.drop t ++ C := by
-    rw [List.append_assoc, Nat.add_comm, ← List.drop_drop,
-      List.drop_left]
+    rw [List.append_assoc, ← List.drop_drop, List.drop_left]
     exact List.drop_append_of_le_length ht
   rw [hdrop]
   unfold vecOf
@@ -744,7 +743,6 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
   have hVlen : V.length = A.length + 2 + C.length := by
     rw [hsplit]
     simp only [List.length_append, List.length_cons, List.length_nil]
-    omega
   have hEpair : eval ([p, q] ++ C) = eval (P' ++ C) := by
     rw [eval_append, eval_append, eval_pair', hid]
   have heval : eval V = eval (A ++ P' ++ C) := by
@@ -753,7 +751,7 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
           rw [List.append_assoc, eval_append]
       _ = eval A * eval (P' ++ C) := by rw [hEpair]
       _ = eval (A ++ P' ++ C) := by
-          rw [List.append_assoc, eval_append]
+          rw [List.append_assoc, eval_append, eval_append, eval_append]
   refine ⟨heval, ?_⟩
   let D : SpliceData V b :=
     ⟨hex, A, P', C, b, by omega, hAlen, hlen, by omega⟩
@@ -813,7 +811,6 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
   have hVlen : V.length = A.length + 2 + C.length := by
     rw [hsplit]
     simp only [List.length_append, List.length_cons, List.length_nil]
-    omega
   have hpush := push_through wv f hf C
   have heval : eval V = eval (A ++ P' ++ C.map f) * wv := by
     calc eval V = eval A * (letterVal p * letterVal q) * eval C := by
