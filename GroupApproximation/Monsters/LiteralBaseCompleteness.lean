@@ -96,7 +96,7 @@ local macro "verify_unit_matrix" : tactic =>
          norm_num [Matrix.mul_apply, Matrix.one_apply, pow_succ,
            Fin.sum_univ_succ, xU, yU, zU, xM, yM, zM]))
 
-private set_option maxHeartbeats 1000000 in
+set_option maxHeartbeats 1000000 in
 theorem rotUnit_kills :
     ∀ r ∈ (rotationRelators : Set (FreeGroup RotationGenerator)),
       FreeGroup.lift rotUnit r = 1 := by
