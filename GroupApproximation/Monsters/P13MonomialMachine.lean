@@ -408,6 +408,40 @@ theorem act_w (v : Fin 3 → ℤ) :
     act (toSL3 w) v = ![v 1, -(v 0), v 2] := by
   refine vec3_ext ?_ ?_ ?_ <;> simp [toSL3_w, act_apply]
 
+/-- Inverse actions of the three signed swaps. -/
+theorem act_w_inv (v : Fin 3 → ℤ) :
+    act ((toSL3 w)⁻¹) v = ![-(v 1), v 0, v 2] := by
+  have h : act (toSL3 w) ![-(v 1), v 0, v 2] = v := by
+    rw [act_w]
+    refine vec3_ext ?_ ?_ ?_ <;> simp
+  calc act ((toSL3 w)⁻¹) v
+      = act ((toSL3 w)⁻¹) (act (toSL3 w) ![-(v 1), v 0, v 2]) := by
+        rw [h]
+    _ = ![-(v 1), v 0, v 2] := by
+        rw [← act_mul, inv_mul_cancel, act_one]
+
+theorem act_w13_inv (v : Fin 3 → ℤ) :
+    act ((toSL3 w13)⁻¹) v = ![-(v 2), v 1, v 0] := by
+  have h : act (toSL3 w13) ![-(v 2), v 1, v 0] = v := by
+    rw [act_w13]
+    refine vec3_ext ?_ ?_ ?_ <;> simp
+  calc act ((toSL3 w13)⁻¹) v
+      = act ((toSL3 w13)⁻¹) (act (toSL3 w13) ![-(v 2), v 1, v 0]) := by
+        rw [h]
+    _ = ![-(v 2), v 1, v 0] := by
+        rw [← act_mul, inv_mul_cancel, act_one]
+
+theorem act_w23_inv (v : Fin 3 → ℤ) :
+    act ((toSL3 w23)⁻¹) v = ![v 0, -(v 2), v 1] := by
+  have h : act (toSL3 w23) ![v 0, -(v 2), v 1] = v := by
+    rw [act_w23]
+    refine vec3_ext ?_ ?_ ?_ <;> simp
+  calc act ((toSL3 w23)⁻¹) v
+      = act ((toSL3 w23)⁻¹) (act (toSL3 w23) ![v 0, -(v 2), v 1]) := by
+        rw [h]
+    _ = ![v 0, -(v 2), v 1] := by
+        rw [← act_mul, inv_mul_cancel, act_one]
+
 theorem act_wpow_e3 (k : Fin 4) : act (toSL3 (wpow k)) e3 = e3 := by
   have hw : act (toSL3 w) e3 = e3 := by
     rw [act_w]
