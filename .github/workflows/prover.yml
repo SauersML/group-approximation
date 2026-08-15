@@ -2,10 +2,12 @@ name: Lean Prover CI
 
 on:
   schedule:
-    # Every six hours: pushes already run the full pipeline, so the schedule
-    # exists to catch cache eviction and environment drift, not to re-verify
-    # commits it has already seen.
-    - cron: '0 */6 * * *'
+    # Hourly, off-minute: pushes already run the full pipeline, so the
+    # schedule exists to catch cache eviction, environment drift, and any
+    # certification gap left by a superseded or red push run.  The same-SHA
+    # dedupe gate makes an already-certified tick cost seconds, so hourly
+    # keeps verified fresh without adding runner contention.
+    - cron: '43 * * * *'
   push:
     branches: [ "main" ]
     # Fail closed like advance_verified_branch.py: every unknown path runs the
