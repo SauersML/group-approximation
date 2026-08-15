@@ -570,7 +570,15 @@ jobs:
 
   kernel:
     name: Fresh kernel re-check (shard ${{ matrix.shard }})
-    needs: [gate, p13]
+    # The shards restore the compiled tree by exact run-keyed cache hit,
+    # which exists only after `prove` saves it.  Running concurrently
+    # they fell back to a stale prefix snapshot and each recompiled the
+    # day's churn on a two-core runner — measured 2026-08-15: shards
+    # whose slice contained freshly-changed modules spent 2h+ in the
+    # combined build-and-replay step while untouched slices finished in
+    # ~43m.  Waiting for `prove` costs its wall time once and turns
+    # every shard into a pure kernel replay.
+    needs: [gate, p13, prove]
     if: needs.gate.outputs.run == 'true' && needs.gate.outputs.lean == 'true'
     runs-on: ubuntu-latest
     # Heavy shards exceed two hours on hosted runners (observed
