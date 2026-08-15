@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.FreeGroup.Basic
+import Mathlib.GroupTheory.Finiteness
 import Mathlib.GroupTheory.Perm.Basic
 import Mathlib.Algebra.Group.TypeTags.Hom
 import Mathlib.Algebra.Group.TypeTags.Finite
@@ -140,6 +141,42 @@ theorem isLEF_of_injective {H G : Type*} [Group H] [Group G]
       rw [map_mul]
       exact hmul.map_mul (φ x) (Finset.mem_image_of_mem φ hx)
         (φ y) (Finset.mem_image_of_mem φ hy)
+
+/-- **LEF is a local property**: if every finitely generated subgroup is
+LEF, the group is LEF.  A test set generates a finitely generated subgroup,
+whose local embedding extends to the ambient group by the identity off the
+subgroup. -/
+theorem isLEF_of_forall_fg {J : Type*} [Group J]
+    (h : ∀ H : Subgroup J, H.FG → IsLEF H) : IsLEF J := by
+  classical
+  intro s
+  set H : Subgroup J := Subgroup.closure (s : Set J) with hH
+  have hmem : ∀ x ∈ s, x ∈ H := fun x hx ↦ Subgroup.subset_closure hx
+  obtain ⟨n, g, hginj, hgmul⟩ :=
+    h H ⟨s, rfl⟩ (s.subtype (· ∈ H))
+  refine ⟨n, fun x ↦ if hx : x ∈ H then g ⟨x, hx⟩ else 1, ?_, ?_, ?_⟩
+  · intro x hx y hy hxy
+    have hxH := hmem x (Finset.mem_coe.1 hx)
+    have hyH := hmem y (Finset.mem_coe.1 hy)
+    dsimp only at hxy
+    rw [dif_pos hxH, dif_pos hyH] at hxy
+    have := hginj
+      (Finset.mem_coe.2 (Finset.mem_subtype.2 (Finset.mem_coe.1 hx)))
+      (Finset.mem_coe.2 (Finset.mem_subtype.2 (Finset.mem_coe.1 hy)))
+      hxy
+    exact congrArg Subtype.val this
+  · show (if hx : (1 : J) ∈ H then g ⟨1, hx⟩ else 1) = 1
+    rw [dif_pos H.one_mem]
+    exact hgmul.map_one
+  · intro x hx y hy
+    have hxH := hmem x hx
+    have hyH := hmem y hy
+    show (if hz : x * y ∈ H then g ⟨x * y, hz⟩ else 1)
+        = (if hz : x ∈ H then g ⟨x, hz⟩ else 1)
+          * (if hz : y ∈ H then g ⟨y, hz⟩ else 1)
+    rw [dif_pos (H.mul_mem hxH hyH), dif_pos hxH, dif_pos hyH]
+    exact hgmul.map_mul ⟨x, hxH⟩ (Finset.mem_subtype.2 hx)
+      ⟨y, hyH⟩ (Finset.mem_subtype.2 hy)
 
 /-- Every finite group is LEF, via its left regular action transported to a
 standard finite type. -/

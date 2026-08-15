@@ -200,4 +200,21 @@ theorem isLEF_of_residuallyFinite [Group.ResiduallyFinite G] : IsLEF G := by
     · intro x _ y _
       rw [map_mul, finitePermForm_mul]
 
+/-- **Locally residually finite groups are LEF**: if every finitely
+generated subgroup is residually finite, the group is LEF, by the locality
+of LEF and `isLEF_of_residuallyFinite` on each finitely generated
+subgroup. -/
+theorem isLEF_of_locallyResiduallyFinite
+    (h : ∀ H : Subgroup G, H.FG → Group.ResiduallyFinite H) : IsLEF G :=
+  isLEF_of_forall_fg fun H hH ↦
+    letI := h H hH
+    isLEF_of_residuallyFinite
+
+/-- **Locally residually finite groups are sofic.**  This is the assembly
+link of the soficity tower: local residual finiteness gives LEF, and LEF
+groups are sofic. -/
+theorem isSofic_of_locallyResiduallyFinite
+    (h : ∀ H : Subgroup G, H.FG → Group.ResiduallyFinite H) : IsSofic G :=
+  isSofic_of_isLEF (isLEF_of_locallyResiduallyFinite h)
+
 end GroupApproximation
