@@ -97,6 +97,7 @@ local macro "verify_unit_matrix" : tactic =>
            Fin.sum_univ_succ, xU, yU, zU, xM, yM, zM]))
 
 set_option maxHeartbeats 1000000 in
+set_option linter.unusedSimpArgs false in
 theorem rotUnit_kills :
     ∀ r ∈ (rotationRelators : Set (FreeGroup RotationGenerator)),
       FreeGroup.lift rotUnit r = 1 := by
@@ -169,7 +170,11 @@ def blockMonoid : Matrix (Fin 3) (Fin 3) ℚ →* Mat where
         (1 : Matrix (Fin 3 ⊕ Fin 1) (Fin 3 ⊕ Fin 1) ℚ) :=
       Matrix.fromBlocks_one
     rw [h1]
-    exact Matrix.submatrix_one_equiv (finSumFinEquiv (m := 3) (n := 1)).symm
+    have h2 : ((1 : Matrix (Fin 3 ⊕ Fin 1) (Fin 3 ⊕ Fin 1) ℚ)).submatrix
+        (finSumFinEquiv (m := 3) (n := 1)).symm
+        (finSumFinEquiv (m := 3) (n := 1)).symm = (1 : Mat) :=
+      Matrix.submatrix_one_equiv _
+    exact h2
   map_mul' A B := by
     rw [Matrix.submatrix_mul_equiv
       (Matrix.fromBlocks A (0 : Matrix (Fin 3) (Fin 1) ℚ)
@@ -356,42 +361,44 @@ rotation matrix model, by uniqueness of presented-group lifts. -/
 theorem affineQuotient_rotationToBase_hom :
     gammaBar.subtype.comp (affineQuotient.comp rotationToBase) =
       rotationToMat := by
-  show gammaBar.subtype.comp (affineQuotient.comp rotationToBase) =
-    PresentedGroup.toGroup rotUnit_kills
-  refine (PresentedGroup.toGroup.unique rotUnit_kills
-    (gammaBar.subtype.comp (affineQuotient.comp rotationToBase)) ?_)
-  intro i
-  match i with
-  | 0 =>
-      show ((affineQuotient (rotationToBase X) : gammaBar) : Matˣ) =
-        rotUnit 0
-      rw [rotationToBase_X]
-      have hgen : affineQuotient (x : Base) = xG := by
-        show affineQuotient
-          (PresentedGroup.of LiteralNonMFPresentation.xIndex) = xG
-        rw [affineQuotient_generator, matrixBaseGenerator_x]
-      rw [hgen]
-      rfl
-  | 1 =>
-      show ((affineQuotient (rotationToBase Y) : gammaBar) : Matˣ) =
-        rotUnit 1
-      rw [rotationToBase_Y]
-      have hgen : affineQuotient (y : Base) = yG := by
-        show affineQuotient
-          (PresentedGroup.of LiteralNonMFPresentation.yIndex) = yG
-        rw [affineQuotient_generator, matrixBaseGenerator_y]
-      rw [hgen]
-      rfl
-  | 2 =>
-      show ((affineQuotient (rotationToBase Z) : gammaBar) : Matˣ) =
-        rotUnit 2
-      rw [rotationToBase_Z]
-      have hgen : affineQuotient (z : Base) = zG := by
-        show affineQuotient
-          (PresentedGroup.of LiteralNonMFPresentation.zIndex) = zG
-        rw [affineQuotient_generator, matrixBaseGenerator_z]
-      rw [hgen]
-      rfl
+  have hgen : ∀ i : RotationGenerator,
+      (gammaBar.subtype.comp (affineQuotient.comp rotationToBase))
+        (PresentedGroup.of i) = rotUnit i := by
+    intro i
+    match i with
+    | 0 =>
+        show ((affineQuotient (rotationToBase X) : gammaBar) : Matˣ) =
+          rotUnit 0
+        rw [rotationToBase_X]
+        have hg : affineQuotient (x : Base) = xG := by
+          show affineQuotient
+            (PresentedGroup.of LiteralNonMFPresentation.xIndex) = xG
+          rw [affineQuotient_generator, matrixBaseGenerator_x]
+        rw [hg]
+        rfl
+    | 1 =>
+        show ((affineQuotient (rotationToBase Y) : gammaBar) : Matˣ) =
+          rotUnit 1
+        rw [rotationToBase_Y]
+        have hg : affineQuotient (y : Base) = yG := by
+          show affineQuotient
+            (PresentedGroup.of LiteralNonMFPresentation.yIndex) = yG
+          rw [affineQuotient_generator, matrixBaseGenerator_y]
+        rw [hg]
+        rfl
+    | 2 =>
+        show ((affineQuotient (rotationToBase Z) : gammaBar) : Matˣ) =
+          rotUnit 2
+        rw [rotationToBase_Z]
+        have hg : affineQuotient (z : Base) = zG := by
+          show affineQuotient
+            (PresentedGroup.of LiteralNonMFPresentation.zIndex) = zG
+          rw [affineQuotient_generator, matrixBaseGenerator_z]
+        rw [hg]
+        rfl
+  exact MonoidHom.ext fun r =>
+    PresentedGroup.toGroup.unique rotUnit_kills
+      (gammaBar.subtype.comp (affineQuotient.comp rotationToBase)) hgen
 
 theorem affineQuotient_rotationToBase (r : Rotation) :
     ((affineQuotient (rotationToBase r) : gammaBar) : Matˣ) =
