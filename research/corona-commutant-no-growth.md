@@ -30,6 +30,27 @@ The claim is that this inclusion is always an equality.  The instances that
 matter are `H = E`, `H = W/<zeta>` and `H = E/<w>`, with
 `Gamma = Gbar`, `t = tau`.
 
+**RESOLVED NEGATIVELY IN GENERAL; THE FORK WAS A FALSE DICHOTOMY
+(2026-08-15).**  The negation of the general statement is established:
+`corona-commutant-growth-witness` builds, over every residually finite
+ambient with a strict finitely generated compression, a faithful
+finite-quotient corona representation and a slow-phase unitary in the
+compressed commutant but not the full commutant.  The instances this card
+called "the single fork" are nevertheless decided — negatively — by a
+different mechanism: the involutive collapse applies directly
+(`commuting-lamp-quotient-not-mf`, `literal-mark-quotient-not-mf`), so
+`unsquared-defect-mf-visible` fails and `u in Rad_MF(E)` without any
+commutant-invariance input.  What survives of the dream is exactly the
+projection-generated part: `corona-projection-collapse` proves the
+relative commutant CANNOT grow by projections with commuting orbits, and
+`spectral-component-motion-bound` shows any growth is confined to
+connected spectral components — the slow wall's arc spectrum is not an
+artifact but a necessity.  The group-element version of the dream is also
+false: `infinite-cyclic-compression-lamp-mf` and
+`mf-vs-tracial-radical-strict-gap`.  This claim can never be established;
+the card is retained as the record of the question and for its
+calibrations.
+
 **This is the single fork.**  Granting it, `Theta(d) = Theta(t c t^{-1})`
 lies in `Theta(t iota(Gamma) t^{-1})' cap Q = C`, hence commutes with
 `Theta(iota(v_1))`, so `Theta(u) = 1` for every corona representation of

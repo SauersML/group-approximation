@@ -73,3 +73,13 @@ operator-norm relative commutant of a corona-represented Kazhdan group can
 grow under a compression implemented inside the represented group.  A proof
 refutes this claim, `literal-mark-quotient-mf` and `kun-thom-wreath-weak-mf`
 at once; a counterexample is very close to proving this one.
+
+**RESOLVED NEGATIVELY (2026-08-15).**  The negation is established:
+`commuting-lamp-quotient-not-mf` — the tau-moved root lamp is an
+involutive compression witness, so the involutive collapse applies
+verbatim and `[v_1, c_{tau o}]` is a nontrivial radical element.  The
+fork was a false dichotomy: `corona-commutant-no-growth` is refuted in
+general (`corona-commutant-growth-witness`) AND this group is non-MF
+anyway.  The "very close" sentence above did not survive: the general
+counterexample needs residual finiteness, which this group lacks.  This
+claim can never be established; retained as the record of the question.

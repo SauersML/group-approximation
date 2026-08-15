@@ -100,3 +100,11 @@ by a single lamp.  So `corona-commutant-no-growth` decides this claim,
 
 **Best next unit.**  `corona-commutant-no-growth`, then, if that fails, the
 edge-compatibility datum of the amalgam route.
+
+**RESOLVED NEGATIVELY (2026-08-15).**  The negation is established:
+`literal-mark-quotient-not-mf` — the image of `d = tct^{-1}` is an
+involutive compression witness inside the level-one `(Z/2)^8` block of
+the block-amalgam structure, so the involutive collapse places the image
+of `u` in the radical.  Consequently `u in Rad_MF(E)`
+(`unsquared-defect-mf-invisible`) and `Rad_MF(E) > {1, w}`.  This claim
+can never be established; retained as the record of the question.

@@ -6,8 +6,11 @@ title: Operator-norm relative commutants do grow under compression in residually
 distinct_from:
   corona-commutant-no-growth: That claim asserts the inclusion of relative commutants is always an equality; this one is its negation for the general statement, witnessed by an explicit slow-wall construction over any residually finite ambient group.
   corona-defect-is-not-uniform: That claim says corona representations only supply pointwise-vanishing defect; this one constructs an explicit element of the compressed commutant outside the full commutant.
+  commutant-no-growth: That established claim proves no-growth for genuine finite-dimensional representations; this one proves growth happens in the norm corona, so the exact statement fails to pass to the asymptotic setting.
+  marked-quotient-mf-forces-commutant-growth: That established claim is the algebraic implication that MF-ness of the marked quotients would force growth; this one exhibits growth unconditionally in a different, residually finite ambient, independent of any MF hypothesis.
+  relative-wall-commutant-growth: That established claim is the target-independent equivalence between relative walls and commutant growth; this one constructs the growth in the specific operator-norm corona target, refuting the no-growth conjecture there.
 artifacts:
-  - notes/2026-08-15-unified-mf-compression-external.md
+  - research/artifacts/unified-mf-compression-external-2026-08-15.md
 ---
 
 Credit: external review session (2026-08-15, GPT-assisted, unrefereed);

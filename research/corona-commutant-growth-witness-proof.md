@@ -6,7 +6,7 @@ title: Slow phase ramps along distorted compressed word length
 target: corona-commutant-growth-witness
 requires: []
 artifacts:
-  - notes/2026-08-15-unified-mf-compression-external.md
+  - research/artifacts/unified-mf-compression-external-2026-08-15.md
 ---
 
 ## Direct proof
