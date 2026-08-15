@@ -185,6 +185,7 @@ theorem unitProjection_isOrthogonalProjection (M1 : Matrix Y Y ℂ) :
       unitProjection M1 * unitProjection M1 = unitProjection M1 :=
   positiveProjection_isOrthogonalProjection _
 
+omit [Fintype Y] in
 theorem hermitianPart_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
     hermitianPart ((2 : ℂ) • M1 - 1) =
       (2 : ℂ) • hermitianPart M1 - 1 := by
@@ -200,10 +201,10 @@ theorem roundedInvolution_eq_two_smul_sub_one (M1 : Matrix Y Y ℂ) :
   have hsum := positiveProjection_add_negativeProjection
     ((2 : ℂ) • M1 - 1)
   rw [roundedInvolution, unitProjection]
-  rw [show negativeProjection ((2 : ℂ) • M1 - 1) =
+  try rw [show negativeProjection ((2 : ℂ) • M1 - 1) =
       1 - positiveProjection ((2 : ℂ) • M1 - 1) from by
-    rw [← hsum]; abel]
-  module
+    rw [← hsum]; try abel]
+  try module
 
 /-- The rounded projection is within twice the hermitian idempotent
 defect plus half the star defect of the model unit. -/
@@ -310,7 +311,7 @@ theorem inflate_gram (p A : Matrix Y Y ℂ)
   rw [inflate, Matrix.conjTranspose_add, hcorner_star,
     Matrix.conjTranspose_sub, Matrix.conjTranspose_one, hp]
   rw [Matrix.add_mul, Matrix.mul_add, Matrix.mul_add]
-  rw [hleft, hright, hcompl, hcorner_star]
+  rw [hleft, hright, hcompl]
   abel
 
 /-- The corner Gram defect from the model defects.  `B₁` plays the role
@@ -334,7 +335,9 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
     rw [hcorner_star]
     have hp3 : p * p * p = p := by rw [hp2, hp2]
     calc p * Aᴴ * p * (p * A * p) - p
-        = p * Aᴴ * ((p - 1) * (A * p)) + p * (Aᴴ * A) * p - p := by
+        = p * Aᴴ * ((p * p) * (A * p)) - p := by noncomm_ring
+      _ = p * Aᴴ * (p * (A * p)) - p := by rw [hp2]
+      _ = p * Aᴴ * ((p - 1) * (A * p)) + p * (Aᴴ * A) * p - p := by
           noncomm_ring
       _ = p * Aᴴ * ((p - 1) * (A * p)) +
             (p * (Aᴴ * A - B₁) * p + p * (B₁ - p) * p) +
@@ -352,7 +355,8 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
             gcongr <;> exact Matrix.l2_opNorm_mul _ _
         _ ≤ ‖p - B₁‖ * ‖A‖ * 1 + δ₁ * 1 := by
             have := Matrix.l2_opNorm_mul (p - B₁) A
-            gcongr
+            have hδ₁0 : (0 : ℝ) ≤ δ₁ := (norm_nonneg _).trans hδ₁
+            gcongr <;> assumption
         _ ≤ η * C + δ₁ := by
             have hmul : ‖p - B₁‖ * ‖A‖ ≤ η * C :=
               mul_le_mul hη hA (norm_nonneg A)
@@ -380,7 +384,8 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
           have hmul : ‖p‖ * ‖Aᴴ * A - B₁‖ ≤ 1 * δ₂ :=
             mul_le_mul hpn hδ₂ (norm_nonneg _) zero_le_one
           have := mul_le_mul hmul hpn (norm_nonneg p)
-            (by positivity : (0 : ℝ) ≤ 1 * δ₂)
+            (by linarith [(norm_nonneg (Aᴴ * A - B₁)).trans hδ₂] :
+              (0 : ℝ) ≤ 1 * δ₂)
           linarith
       _ = δ₂ := by ring
   have h3 : ‖p * (B₁ - p) * p‖ ≤ η := by
@@ -396,7 +401,8 @@ theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
           have hmul : ‖p‖ * ‖B₁ - p‖ ≤ 1 * η :=
             mul_le_mul hpn hswap (norm_nonneg _) zero_le_one
           have := mul_le_mul hmul hpn (norm_nonneg p)
-            (by positivity : (0 : ℝ) ≤ 1 * η)
+            (by linarith [(norm_nonneg (p - B₁)).trans hη] :
+              (0 : ℝ) ≤ 1 * η)
           linarith
       _ = η := by ring
   calc ‖(p * Aᴴ) * ((p - 1) * (A * p)) +
