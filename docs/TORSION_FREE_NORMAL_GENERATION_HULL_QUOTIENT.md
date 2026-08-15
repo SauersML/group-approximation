@@ -459,7 +459,7 @@ to read "non-elementary" in Lemma A the same way Hull does.)
 
 ## 8. Addendum (2026-08-14, later): direct route, validation, heredity
 
-* **Direct route.**  `torsion_free_saturation_note.tex` (repo root) gives a
+* **Direct route.**  `docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md` gives a
   variant of Theorem B that does not re-open Hull's proof of Corollary 7.4:
   apply Theorem 7.1 once, as a black box, to the *published* Fournier-Facio
   group `G`, with suitable subgroup `S_0 = <h_1, h_2>` chosen inside

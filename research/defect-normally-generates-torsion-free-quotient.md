@@ -10,7 +10,7 @@ distinct_from:
   common-quotient-onto-normal-subgroup: that claim is the general small-cancellation tool, stated for any two acylindrically hyperbolic groups and any infinite normal subgroup of one of them; this one is its instance at the Fournier-Facio data, and is the statement the non-MF route consumes.
 artifacts:
   - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
-  - torsion_free_saturation_note.tex
+  - docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md
 ---
 
 In the Fournier-Facio construction (`fournier-facio-torsion-free-skeleton`)
@@ -121,7 +121,8 @@ Dead ends, recorded so they are not re-attempted.
 
 Three developments after the body above was written.
 
-1. **Direct single-application route** (`torsion_free_saturation_note.tex`).
+1. **Direct single-application route**
+   (`docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md`).
    Instead of re-running Hull's proof of Corollary 7.4 with the routing pair
    confined to `<<S>>^E` (the artifact's Theorem B), apply Hull's Theorem
    7.1 **once, as a published black box, to the already-constructed
@@ -149,4 +150,4 @@ Three developments after the body above was written.
    has no proper finite-index subgroup, and its marked presentation plus one
    inequation gives a nonempty clopen set of 2-marked groups all
    simultaneously nonsofic and non-MF.  Written out with proofs in
-   `torsion_free_saturation_note.tex` §5.
+   `docs/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md` §§5-6.
