@@ -164,8 +164,9 @@ the mechanism driving those arguments, is also the starting point of the
 present one.  Soficity concerns permutations in the Hamming metric, while MF concerns
 unitaries in operator norm, so there is no direct metric comparison between
 the two approximation properties.  The operator-norm setting
-requires a different rigidity theorem, proved here by transporting
-finite-stage spectral corners of the adjoint actions through an
+requires a different rigidity theorem, proved here by a one-sided
+transport theorem for Kazhdan fixed spaces of the adjoint actions,
+realized quantitatively by finite-stage spectral corners and an
 equal-rank projection flip.  This paper settles the
 operator-norm case by one explicit finitely presented group; it also
 proves that soficity does not imply MF and produces an explicit reduced
@@ -249,7 +250,8 @@ $v_1,v_2,v_3,x,y,z,t,c$ with forty-one relators, containing a designated
 central involution $w$, such that $w\ne1$ and yet every homomorphism
 from $E$ to the unitary group of a norm matrix corona sends $w$ to $1$.
 In particular no such homomorphism is injective, and $E$ is not MF.  The
-proof has four steps, each quantitative at a fixed matrix dimension.
+proof has four steps, each of which admits a quantitative form at a
+fixed matrix dimension (Appendix~\ref{app:finite-stage}).
 \begin{enumerate}
 \item An operator-norm approximate representation acts by conjugation on
 the Hilbert--Schmidt space of each matrix block, and operator-norm
@@ -320,7 +322,11 @@ paragraph.
 
 Each gray ``formalized in Lean'' tag marks a theorem in the
 accompanying Lean~4 development stating exactly the printed claim; the
-formal development has no theorem-level inputs.  The paragraphs quoting
+formal development has no theorem-level inputs.  The formal development
+follows the finite-stage transport proof of
+Appendix~\ref{app:finite-stage}; the body proof of
+Theorem~\ref{thm:kazhdan-transport} is the equivalent ultraproduct
+argument.  The paragraphs quoting
 the literature results above are outside it and are labelled where they
 occur.  The public version of each tag links to the corresponding
 declaration on the reviewed source branch.
@@ -331,10 +337,11 @@ One-sided conjugation of a property-\textup{(T)} subgroup and propagation
 from its centralizer appear in \cite{OAI,KT}, building on rigidity results of
 Kun and Kun--Thom \cite{Kun16,KT19}; related centralizer rigidity for sofic
 embeddings is proved in \cite{AlekseevThom}.  Those results concern Hamming or
-tracial approximations.  Here the adjoint actions stay on finite-stage
-Hilbert--Schmidt spaces, the Kazhdan projection is replaced by explicit
-spectral corners, and an equal-rank projection flip prevents a one-sided
-compression from enlarging the corner.  The complementary finite-group corner then converts
+tracial approximations.  Here the adjoint actions stay on the
+Hilbert--Schmidt spaces of the matrix blocks, and finiteness prevents a
+one-sided compression of the Kazhdan fixed space from being proper ---
+in quantitative form, an equal-rank projection flip of explicit
+finite-stage spectral corners (Appendix~\ref{app:finite-stage}).  The complementary finite-group corner then converts
 that rigidity into a fixed nontrivial element sent to the identity by every
 corona representation.  The Clifford central extension supplies the element
 whose survival is proved independently.
@@ -416,8 +423,10 @@ and~\ref{thm:E}, develops the MF radical, and establishes the
 permanence failures.
 Section~\ref{sec:limits} explains the
 operator-norm boundary of the argument.
-Appendix~\ref{app:equivalences} proves the MF equivalences, and
-Appendix~\ref{app:maxcstar} records the maximal group $C^*$-algebra.
+Appendix~\ref{app:equivalences} proves the MF equivalences,
+Appendix~\ref{app:finite-stage} gives the finite-stage transport proof,
+and Appendix~\ref{app:maxcstar} records the maximal group
+$C^*$-algebra.
 
 \section{Notation and corona lemmas}\label{sec:prelim}
 
@@ -536,14 +545,18 @@ finite settings:
 \]
 In the right-hand column, $p\sim q$ is Murray--von Neumann equivalence
 and \emph{finite} is meant in the $C^*$-sense: no proper isometries.
-Finite-dimensional representations use the middle implication directly.
-For matrix models, property~\textup{(T)} supplies at every coordinate a
-spectral corner --- a finite-stage Kazhdan projection --- and the same
-middle implication, in the form of an equal-rank projection flip, turns
-the one-sided compression of that corner into a two-sided symmetry.  The
-right-hand implication is the classical ultraproduct shadow of this step
-(Remark~\ref{rem:ultraproduct}).  This yields the reusable theorem behind
-every result below.
+The middle implication is used exactly in Theorem~\ref{thm:B}: the
+commutant of the base is carried into itself by conjugation, and equal
+finite dimension forces equality.  For matrix models, the right-hand
+implication gives the proof printed below: property~\textup{(T)}
+supplies a Kazhdan projection $P$ in a norm ultraproduct, the one-sided
+conjugation gives $P\le VPV^*$, and finiteness forces equality.  The
+same argument runs quantitatively at each single coordinate, with a
+spectral corner in place of the Kazhdan projection and an equal-rank
+projection flip in place of finiteness; that finite-stage proof, which
+the formal development follows, is given in
+Appendix~\ref{app:finite-stage}.  This yields the reusable theorem
+behind every result below.
 
 Recall from Section~\ref{sec:prelim} the notions of corona
 representation, detection, and operator-norm asymptotic representation,
@@ -575,115 +588,110 @@ then the conjugated sequence does as well:
 \end{theorem}
 
 \begin{proof}
-The proof is quantitative at each single coordinate $n$; no ultrafilter
-or subsequence is needed.  Property~\textup{(T)} provides a finite
-symmetric generating set $S\subseteq\Gamma$ with $1\in S$ and a Kazhdan
-constant $\kappa\in(0,1]$ for the pair $(S,\kappa)$.
+Suppose the conclusion fails: there are $\gamma_0\in\Gamma$,
+$\delta>0$, and an infinite set $I\subseteq\N$ with
+$\hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma_0))]}\ge\delta$ for
+$n\in I$.  Fix a free ultrafilter $\omega$ on $\N$ with $I\in\omega$.
 
 \emph{The adjoint model.}  Regard $M_{d_n}(\C)$ as the Hilbert space
-$L^2(M_{d_n}(\C),\tr_{d_n})$ and let each group element act by
-conjugation, $\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$.  Operator-norm
-almost multiplicativity of $U_n$ makes $g\mapsto\Ad U_n(g)$ an
-operator-norm asymptotic representation on these Hilbert spaces; this
-conjugation maneuver is the finite-stage form of the
-$\pi\otimes\bar\pi$ construction.
+$K_n=L^2(M_{d_n}(\C),\tr_{d_n})$ and let each group element act on it
+by conjugation, $\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$.
+Operator-norm almost multiplicativity of $U_n$ makes
+$g\mapsto\Ad U_n(g)$ an operator-norm asymptotic representation on
+these Hilbert spaces; this conjugation maneuver is the finite-stage
+form of the $\pi\otimes\bar\pi$ construction.
 
-\emph{The spectral corner.}  Let $H_n$ be the Hermitian part of the
-average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
+\emph{The ultraproduct.}  Let $K_\omega$ be the Hilbert-space
+ultraproduct of the $K_n$ along $\omega$ and let
+$B_\omega=\prod_\omega B(K_n)$ be the norm ultraproduct, acting on
+$K_\omega$; write $[\,\cdot\,]_\omega$ for classes in either.
+Asymptotic multiplicativity makes
 \[
- \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
+ \pi\colon H\longrightarrow\U(B_\omega),\qquad
+ \pi(g)=[\Ad U_n(g)]_\omega,
 \]
-and let $P_n$ be the spectral projection of $H_n$ for the part of the
-spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
-\begin{enumerate}
-\item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
-$\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$: a vector whose average
-$S$-energy exceeds $\theta$ is almost fixed by each generator, because
-$(S,\kappa)$ is a Kazhdan pair and $\theta$ exceeds
-$1-\kappa^2/(4|S|)$, hence almost fixed by every word in $S$.  The
-corner $P_n$ is the finite-stage substitute for the Kazhdan projection.
-\item[(ii)] \emph{Capture.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
-for the vector $x_n$.  The commutator hypothesis says each
-$\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
-$\xi_n-H_n\xi_n$ is Hilbert--Schmidt null; a Cauchy--Schwarz energy
-estimate then bounds the mass of $(1-P_n)\xi_n$ by the residual and the
-uniform bound on $\opnorm{x_n}$, so $\xi_n$ is asymptotically captured
-by the corner.
-\end{enumerate}
+a homomorphism.  The algebra $B_\omega$ is \emph{finite}: if
+$\sigma=[\sigma_n]_\omega$ satisfies $\sigma^*\sigma=1$, then
+$\opnorm{\sigma_n^*\sigma_n-1}\to0$ along $\omega$, each $\sigma_n$
+acts on a finite-dimensional space, and polar correction replaces
+$\sigma_n$ by a unitary $w_n$ with $\opnorm{\sigma_n-w_n}\to0$; hence
+$\sigma=[w_n]_\omega$ is unitary.
 
-\emph{Leakage by the equal-rank flip.}  Put
-$T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
-$P_n$.  The conjugation relation enters exactly once: for
-$\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
-corner vector under $\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
-almost-fixedness under each $\iota(s')$, $s'\in S$; by the capture
-estimate the pulled-back vector is again almost in the corner.  Thus the
-corner is almost contained in its conjugate,
-$\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
-inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
-\operatorname{rank}Q_n$, the equal-rank flip --- for projections $p,q$ of
-equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
-$\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
-containment:
+\emph{The Kazhdan projection.}  Property~\textup{(T)} provides a finite
+symmetric generating set $S\subseteq\Gamma$ with $1\in S$ and a Kazhdan
+constant $\kappa\in(0,1]$ for the pair $(S,\kappa)$.  Let $h$ be the
+Hermitian part of $\frac1{|S|}\sum_{s'\in S}\pi(\iota(s'))$ and let
+$\mathrm{Fix}\subseteq K_\omega$ be the subspace of vectors fixed by
+every $\pi(\iota(\gamma))$.  Both $\mathrm{Fix}$ and its
+orthocomplement are invariant under each unitary $\pi(\iota(s'))$,
+hence under $h$.  On $\mathrm{Fix}$, $h=1$.  The restriction of
+$\pi\circ\iota$ to $\mathrm{Fix}^\perp$ has no nonzero invariant
+vector, so a unit vector $\xi\in\mathrm{Fix}^\perp$ satisfies
+$\lVert\pi(\iota(s'))\xi-\xi\rVert\ge\kappa$ for some generator; for
+that generator
+$\operatorname{Re}\langle\pi(\iota(s'))\xi,\xi\rangle\le1-\kappa^2/2$,
+every other term is at most $1$, and therefore
+$\langle h\xi,\xi\rangle\le1-\kappa^2/(2|S|)$.  Consequently
 \[
- \boxed{\opnorm{(1-P_n)\,Q_n}\longrightarrow0.}
+ \operatorname{sp}(h)\subseteq
+ \Bigl[-1,\,1-\tfrac{\kappa^2}{2|S|}\Bigr]\cup\{1\},
 \]
-This is the middle implication of the display at the head of the section,
-and it is the finite-dimensional substitute for finiteness of a norm
-ultraproduct: a one-sided compression cannot enlarge the corner.
+and the spectral projection $P$ of $h$ at the isolated point $1$
+belongs to $B_\omega$ by continuous functional calculus and projects
+onto $\mathrm{Fix}$.
 
-\emph{Assembly.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
-$\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
-large $n$ the three estimates hold at tolerance $q$:
+\emph{One-sided compression and finiteness.}  Let $V=\pi(s)$ and
+$Q=VPV^*$.  Since $s\iota(\Gamma)s^{-1}\subseteq\iota(\Gamma)$, every
+vector of $\mathrm{Fix}$ is fixed by each
+$\pi(s\iota(\gamma)s^{-1})$; and $\eta$ is fixed by all
+$\pi(s\iota(\gamma)s^{-1})$ exactly when $V^*\eta\in\mathrm{Fix}$.
+Hence
 \[
- \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
- \opnorm{(1-P_n)Q_n}\le q,\qquad
- \opnorm{(A_n-1)P_n}\le q,
+ \operatorname{ran}P=\mathrm{Fix}\subseteq V\,\mathrm{Fix}
+ =\operatorname{ran}Q,
+ \qquad\text{that is,}\qquad P\le Q.
 \]
-where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
-along the corner:
+The element $r=V^*Q$ satisfies $r^*r=Q$ and $rr^*=V^*QV=P$.  Then
+$\sigma=r+(1-Q)$ is an isometry: $r=rQ$ because $r^*r=Q$, and $r=Qr$
+because $\operatorname{ran}r=\operatorname{ran}P\subseteq
+\operatorname{ran}Q$, so the cross terms in $\sigma^*\sigma$ vanish
+and $\sigma^*\sigma=Q+(1-Q)=1$.  Finiteness of $B_\omega$ makes
+$\sigma$ unitary, and $\sigma\sigma^*=P+(1-Q)$ forces
 \[
- T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
- \;+\;(1-Q_n)\,T_n\xi_n.
+ Q=P.
 \]
-Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
+
+\emph{Conclusion.}  Let $\xi=[\xi_n]_\omega\in K_\omega$, where
+$\xi_n\in K_n$ is the vector of $x_n$; the uniform operator-norm bound
+makes $\xi$ well defined.  By unitary invariance of the normalized
+Hilbert--Schmidt norm, the commutator hypothesis says exactly that each
+$\pi(\iota(\gamma))$ fixes $\xi$, so $\xi\in\mathrm{Fix}$, and
 \[
- \hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
- =\hsnorm{(1-P_n)\xi_n}\le q^{1/2};
+ V\xi\in V\,\mathrm{Fix}=\operatorname{ran}Q=\operatorname{ran}P
+ =\mathrm{Fix}.
 \]
-the middle term obeys
-$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
-\le qM$, and the displacement estimate moves the first term by at most
-$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, of operator norm at most
-$2$, to the last two terms and the displacement bound to the first,
+The vector of $U_n(s)x_nU_n(s)^*$ is $\Ad U_n(s)\,\xi_n$, so, again by
+unitary invariance,
 \[
- \hsnorm{(A_n-1)\,T_n\xi_n}^2
- \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
- \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
+ \hsnorm{[U_n(s)x_nU_n(s)^*,U_n(\iota(\gamma))]}
+ =\bigl\lVert(\Ad U_n(\iota(\gamma))-1)\,\Ad U_n(s)\,\xi_n\bigr\rVert
+ \longrightarrow0
 \]
-Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
-asserted convergence --- with an explicit rate in terms of $\kappa$,
-$|S|$, $M$, and the multiplicative defects of $U_n$ on the finitely many
-group elements involved.
+along $\omega$, for every $\gamma\in\Gamma$ --- for $\gamma=\gamma_0$
+contradicting $I\in\omega$.  Since the failing subsequence was
+arbitrary, the full sequence converges.
 \end{proof}
 
-\begin{remark}[the ultraproduct view]\label{rem:ultraproduct}
-The classical one-paragraph account of the same mechanism, recorded as
-intuition only --- it is not the proof above and not the formalized
-route.  Pass to a subsequence and a free ultrafilter $\omega$, form the
-Hilbert ultraproduct $K_\omega$ of the spaces
-$L^2(M_{d_n}(\C),\tr_{d_n})$ and the norm ultraproduct
-$B_\omega=\prod_\omega B(K_n)$.  The adjoint actions define an honest
-representation $\pi$ of $H$ on $K_\omega$, and $B_\omega$ is finite,
-since polar correction turns any isometry into a unitary along $\omega$.
-For $P$ the image of the Kazhdan projection \cite{BHV} under
-$\pi\circ\iota$ and $V=\pi(s)$, the one-sided compression gives
-$P\le VPV^*$, and finiteness forces $P=VPV^*$: writing $Q=VPV^*$ and
-$r=V^*Q$, one has $r^*r=Q$ and $rr^*=P\le Q$, so $\sigma=r+(1-Q)$ is an
-isometry with $\sigma\sigma^*=P+(1-Q)$, and finiteness makes $\sigma$
-unitary.  The finite-stage proof replaces the ultrafilter by the explicit
-threshold $\theta$ and replaces finiteness of $B_\omega$ by the
-equal-rank flip.
+\begin{remark}[the finite-stage proof]\label{rem:finite-stage}
+The proof above is not quantitative: the ultrafilter hides the rate.
+Appendix~\ref{app:finite-stage} proves the theorem a second time,
+quantitatively at each single coordinate $n$, with no ultrafilter or
+subsequence: an explicit spectral corner of the averaged adjoint action
+replaces the Kazhdan projection, and an equal-rank projection flip
+replaces finiteness of $B_\omega$.  That proof yields an explicit rate
+in terms of $\kappa$, $|S|$, the uniform bound on $(x_n)$, and the
+multiplicative defects of $U_n$, and it is the route the formal
+development follows.
 \end{remark}
 
 \paragraph{The negative-corner formulation.}
@@ -1488,10 +1496,11 @@ $w$, invisible in every finite quotient, makes $E$ a group of
 \emph{Deligne type}; such groups were proposed there as the natural
 candidate counterexamples for all three remaining approximation problems,
 and $E$ realizes that proposal at the operator-norm endpoint.
-Property~\textup{(T)} enters the corona argument through a finite-stage
-spectral corner for the adjoint action at each coordinate, and the
-equal-rank projection flip turns the one-sided compression of that
-corner into equality.
+Property~\textup{(T)} enters the corona argument through the Kazhdan
+fixed-space projection of the adjoint actions --- in quantitative form,
+a finite-stage spectral corner at each coordinate, where the equal-rank
+projection flip of Appendix~\ref{app:finite-stage} plays the role that
+equal dimension plays in the exact argument below.
 
 We prove Theorem~\ref{thm:B}.  Everything happens inside the
 finite-dimensional algebra $\End_k(V)$.
@@ -1573,8 +1582,9 @@ spaces are not literal invariant subspaces.  Operator-norm control keeps
 the coordinate adjoint actions almost multiplicative on the
 Hilbert--Schmidt spaces; property~(T) then supplies the spectral corner
 playing the role of an approximate fixed space, and the equal-rank flip
-turns the one-sided compression of that corner into equality --- the
-quantitative shadow of the exact finite-dimensional argument above.
+of Appendix~\ref{app:finite-stage} turns the one-sided compression of
+that corner into equality --- the quantitative shadow of the exact
+finite-dimensional argument above.
 
 \section{The finite-normal obstruction}\label{sec:conj}
 
@@ -1728,12 +1738,13 @@ satisfy the preceding convergence for every $\lambda\in\Lambda$.
 
 \begin{proof}
 For a one-sided conjugator $s$, Theorem~\ref{thm:kazhdan-transport} gives
-forward transport.  Reverse transport is the same assembly run with the
-adjoint unitary: the equal-rank flip in that proof reverses the
-one-sided containment of the spectral corners, so conjugating the leakage
-estimate by the implementing unitary bounds the leakage for
-$\Ad U_n(s)^*$ as well, and the displacement and capture steps are
-unchanged.  The elements acting in both
+forward transport.  Reverse transport follows from the same proof: the
+equality $P=VPV^*$ obtained there gives $V^*PV=P$ as well, so the fixed
+subspace is preserved by conjugation in both directions.  (In the
+finite-stage proof of Appendix~\ref{app:finite-stage}, the equal-rank
+flip reverses the one-sided containment of the spectral corners, so the
+same assembly runs with the adjoint unitary; the displacement and
+capture steps are unchanged.)  The elements acting in both
 directions form a subgroup of $H$, and hence contain the subgroup generated
 by all one-sided conjugators, namely $G_{\rm comp}(L)$.
 \end{proof}
@@ -2390,10 +2401,11 @@ formal development.)
 The proof is genuinely operator-norm in its present form.  If multiplication
 is controlled only in normalized Hilbert--Schmidt norm, the induced adjoint
 operators on the Hilbert--Schmidt spaces need not be close in operator norm.
-The spectral-corner, displacement, and leakage estimates of
-Theorem~\ref{thm:kazhdan-transport} require exactly that operator-norm
-control, so normalized Hilbert--Schmidt control does not supply the
-spectral-subspace transport used there.
+Both transport proofs require exactly that operator-norm control ---
+the ultraproduct representation of the printed proof and the
+spectral-corner, displacement, and leakage estimates of
+Appendix~\ref{app:finite-stage} alike --- so normalized Hilbert--Schmidt
+control does not supply the spectral-subspace transport used there.
 
 This identifies a boundary of the method, not a tracial nonapproximation
 theorem for $E$.  Alekseev--Thom ask whether commutants arising in sofic
@@ -2527,6 +2539,104 @@ same identity for all group elements; in particular no approximation
 error from earlier coordinates is carried forward.  Thus the construction
 preserves and reflects the quotient relation and injectivity.
 Forgetting strict increase proves the converse.
+\end{proof}
+
+\section{The finite-stage transport proof}\label{app:finite-stage}
+
+This appendix proves Theorem~\ref{thm:kazhdan-transport} a second time,
+quantitatively at each single coordinate $n$; no ultrafilter or
+subsequence is needed.  This is the route the formal development
+follows, and the route referenced by
+Corollary~\ref{cor:generaltransport} and Section~\ref{sec:limits}.
+
+\begin{proof}[Finite-stage proof of Theorem~\ref{thm:kazhdan-transport}]
+Property~\textup{(T)} provides a finite symmetric generating set
+$S\subseteq\Gamma$ with $1\in S$ and a Kazhdan constant
+$\kappa\in(0,1]$ for the pair $(S,\kappa)$.  The adjoint model is that
+of the printed proof: each group element acts by conjugation,
+$\Ad U_n(g)\,\xi=U_n(g)\,\xi\,U_n(g)^*$, on
+$L^2(M_{d_n}(\C),\tr_{d_n})$, and operator-norm almost multiplicativity
+of $U_n$ makes $g\mapsto\Ad U_n(g)$ an operator-norm asymptotic
+representation on these Hilbert spaces.
+
+\emph{The spectral corner.}  Let $H_n$ be the Hermitian part of the
+average $\frac1{|S|}\sum_{s'\in S}\Ad U_n(\iota(s'))$, fix the threshold
+\[
+ \theta=\tfrac12\Bigl(\Bigl(1-\tfrac{\kappa^2}{4|S|}\Bigr)+1\Bigr)<1,
+\]
+and let $P_n$ be the spectral projection of $H_n$ for the part of the
+spectrum above $\theta$.  Two spectral estimates tie $P_n$ to the group.
+\begin{enumerate}
+\item[(i)] \emph{Displacement.}  For every $\gamma\in\Gamma$,
+$\opnorm{(\Ad U_n(\iota(\gamma))-1)\,P_n}\to0$: a vector whose average
+$S$-energy exceeds $\theta$ is almost fixed by each generator, because
+$(S,\kappa)$ is a Kazhdan pair and $\theta$ exceeds
+$1-\kappa^2/(4|S|)$, hence almost fixed by every word in $S$.  The
+corner $P_n$ is the finite-stage substitute for the Kazhdan projection.
+\item[(ii)] \emph{Capture.}  Write $\xi_n\in L^2(M_{d_n}(\C),\tr_{d_n})$
+for the vector $x_n$.  The commutator hypothesis says each
+$\Ad U_n(\iota(s'))$ almost fixes $\xi_n$, so the residual
+$\xi_n-H_n\xi_n$ is Hilbert--Schmidt null; a Cauchy--Schwarz energy
+estimate then bounds the mass of $(1-P_n)\xi_n$ by the residual and the
+uniform bound on $\opnorm{x_n}$, so $\xi_n$ is asymptotically captured
+by the corner.
+\end{enumerate}
+
+\emph{Leakage by the equal-rank flip.}  Put
+$T_n=\Ad U_n(s)$ and $Q_n=T_nP_nT_n^*$, a projection of the same rank as
+$P_n$.  The conjugation relation enters exactly once: for
+$\gamma\in\Gamma$ the element $s^{-1}$ pulls the almost-fixedness of a
+corner vector under $\iota(\Gamma)\supseteq s\iota(\Gamma)s^{-1}$ back to
+almost-fixedness under each $\iota(s')$, $s'\in S$; by the capture
+estimate the pulled-back vector is again almost in the corner.  Thus the
+corner is almost contained in its conjugate,
+$\opnorm{(1-Q_n)P_n}\to0$ --- the finite-stage form of the one-sided
+inclusion $P\le VPV^*$.  Since $\operatorname{rank}P_n=
+\operatorname{rank}Q_n$, the equal-rank flip --- for projections $p,q$ of
+equal finite rank, $\opnorm{(1-q)p}\le\varepsilon<1$ implies
+$\opnorm{(1-p)q}\le\varepsilon/\sqrt{1-\varepsilon^2}$ --- reverses the
+containment:
+\[
+ \boxed{\opnorm{(1-P_n)\,Q_n}\longrightarrow0.}
+\]
+This is the middle implication of the display at the head of
+Section~\ref{sec:transport}, and it is the finite-dimensional
+substitute for finiteness of a norm ultraproduct: a one-sided
+compression cannot enlarge the corner.
+
+\emph{Assembly.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
+$\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
+large $n$ the three estimates hold at tolerance $q$:
+\[
+ \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
+ \opnorm{(1-P_n)Q_n}\le q,\qquad
+ \opnorm{(A_n-1)P_n}\le q,
+\]
+where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
+along the corner:
+\[
+ T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
+ \;+\;(1-Q_n)\,T_n\xi_n.
+\]
+Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
+\[
+ \hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
+ =\hsnorm{(1-P_n)\xi_n}\le q^{1/2};
+\]
+the middle term obeys
+$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
+\le qM$, and the displacement estimate moves the first term by at most
+$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, of operator norm at most
+$2$, to the last two terms and the displacement bound to the first,
+\[
+ \hsnorm{(A_n-1)\,T_n\xi_n}^2
+ \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
+ \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
+\]
+Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
+asserted convergence --- with an explicit rate in terms of $\kappa$,
+$|S|$, $M$, and the multiplicative defects of $U_n$ on the finitely many
+group elements involved.
 \end{proof}
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
