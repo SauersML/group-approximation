@@ -7,6 +7,7 @@ target: infinite-cyclic-compression-lamp-mf
 requires: []
 artifacts:
   - research/artifacts/unified-mf-compression-external-2026-08-15.md
+  - GroupApproximation/Sofic/IntegerLampSurvival.lean
 ---
 
 ## Direct proof
@@ -64,3 +65,24 @@ covariance estimates; the exactness of all wreath relations in the corona
 vanishes in norm); the two-bump disjointness from the `3n`-separation; and
 the two faithfulness estimates.  The lamp images have full-arc spectrum,
 as `spectral-component-motion-bound` requires of surviving witnesses.
+
+## Formalized layer (2026-08-15)
+
+The locality layer of the survival statement is now kernel-checked in
+`GroupApproximation/Sofic/IntegerLampSurvival.lean`: for any
+permutation action, finite windows over residually finite levels with
+finite orbits make the integer-lamp wreath operator-MF
+(`isOperatorMF_lampWreath`, via window subgroups proved residually
+finite by reduction modulo a large integer into the finite window
+wreath), and the telescope instance
+(`isOperatorMF_integerLampTelescope`) gives: with residually finite
+base and finite-index compression, the integer-lamp-by-telescope group
+— the infinite-cyclic analogue of the Clifford lamp kernel — is
+operator-MF.  What remains paper-level is exactly the full `W_Z` with
+the compressing shift adjoined: the shift destroys orbit locality, and
+the slow-bump corona model above is the intended route; no locality
+argument can reach it, since the analogous full Clifford group is
+non-MF.  The formalized layer already witnesses the dichotomy at equal
+footing: the SAME telescope layer carries the kernel-checked collapse
+of order-two lamps (the sign-free quotient theorems), so finite-order
+lamps die and integer lamps survive over one site space.
