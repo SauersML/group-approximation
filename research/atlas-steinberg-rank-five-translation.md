@@ -31,6 +31,21 @@ generation, not `U_Q ≅ St₅(L)`.
 
 ## Attempts
 
+- **Step 2 COMPLETE (2026-08-15, late): `atlas-rank-five-dictionary`.**
+  All 100 rank-five generators are explicit atlas words, machine-verified
+  exactly, via the join code `E = (000,001,010,011,1)` — the
+  uniform-refinement trap blocks chart containment, not factorization,
+  and the shared leaf `γ₃` is the hinge.  Step 3's translation is running:
+  the six-triple smoke run produced 83 verified kernel relators of which
+  11 escape the cartesian subgroup, exactly as
+  `atlas-kernel-window-length-nine` demands of any usable family — the
+  first independent cross-validation of the two halves of this program.
+  **The sole remaining input is completeness**: that the rank-five
+  Steinberg/Cuntz–Krieger relation family presents `St₅(L)` over the
+  finite ring presentation of `L`.  That is a Krstić–McCool-shaped
+  literature import, named and not asserted; with it, centrality of
+  `K₂(5,L)` (already tagged) yields `N̄ ≤ ⟨⟨T_St⟩⟩` and the list is
+  usable.
 - **Amalgam route (dead).**  `atlas-charts-overlap-trivially`: the charts
   meet trivially, so no relative presentation falls out of overlap
   identifications; every relator must be produced as a genuine

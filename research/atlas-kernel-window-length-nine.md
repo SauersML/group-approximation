@@ -42,6 +42,20 @@ the twelve adjacent-transvection generators.
    rigorous small target" — cannot be a relator list, though they remain
    valid necessary constraints for the nonhyperlinearity direction.
 
+**Screens passed (updated 2026-08-15, late).**  The radius-5 window also
+survives the first Goursat-uncovered family: `S₈` and every `n ≤ 8` case
+are impossible abstractly (index and perfectness arguments), and the
+`A₉` case — the unique `n = 9` case, where every `A₈` subgroup is a point
+stabiliser — was screened exhaustively on MSI: `0` survivors of `362,880`
+pairs, the twenty radius-2 commuting conditions already killing both the
+inner and graph-twisted sectors.  Any finite quotient that could still
+refute the radius-5 window now has order at least `10·20160 = 201,600`
+(remaining candidates `Sp₆(2), A₁₀, GL₅(2), M₂₄`).  A uniform argument
+closing the whole family was tried and FAILS, recorded so it is not
+retried: the one-sided commuting-partner sets generate subgroups of
+order only up to `168 = |GL₃(F₂)|` — the same rank-three corner that
+carries the radius-5 boundary — so the screens must be run, not argued.
+
 Two structural notes.  Enumeration alone can never certify a list — it
 produces subgroups of `R̄`, never an upper bound on `N̄` — so a
 certificate must come from the algebra side
