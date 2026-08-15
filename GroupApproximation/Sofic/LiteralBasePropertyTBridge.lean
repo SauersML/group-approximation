@@ -15,8 +15,8 @@ a vector has been projected to the rotation-fixed subspace, every translation
 moves it by a uniformly bounded amount: the two-conjugate normal form from
 `LiteralTranslationOrbit` makes that bound independent of the lattice vector.
 The bounded-orbit fixed-point theorem then projects once more to a vector fixed
-by both subgroups.  Thus the only remaining property-`(T)` input for the
-literal base is the rotation presentation itself.
+by both subgroups.  The exact P13 certificate and checked quotient in the
+endpoint modules supply property `(T)` of the rotation presentation.
 -/
 
 namespace GroupApproximation
@@ -202,9 +202,8 @@ presentation has property `(T)`, then the literal twenty-relator affine base
 has property `(T)`.
 
 No relative-property-`(T)` theorem is assumed: the translation control is
-proved intrinsically from the printed conjugation relations.  Consequently
-the only remaining task for an unconditional property-`(T)` theorem for the
-literal base is property `(T)` of `LiteralBaseRotationRetract.Rotation`. -/
+proved intrinsically from the printed conjugation relations.  The P13 bridge
+supplies this theorem's rotation hypothesis in the premise-free endpoint. -/
 theorem base_hasKazhdanPropertyT_of_rotation
     (hRotation : HasKazhdanPropertyT.{0, 0} Rotation) :
     HasKazhdanPropertyT.{0, 0} Base := by
