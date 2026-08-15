@@ -72,10 +72,6 @@ The conceptual proof is organized around
 u = [tct⁻¹,v₁],       w = u².
 ```
 
-The short reader-facing architecture, including the redundant-sign
-presentation, is recorded in
-[`docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md`](docs/BEAUTIFUL_NON_MF_PROOF_DESIGN_2026-08-14.md).
-
 The reusable theorem is transport of the entire bounded asymptotic
 commutant.  If `s iota(Γ) s⁻¹ <= iota(Γ)`, then property (T) and finiteness
 turn the one-sided inclusion of fixed projections into equality, so every
