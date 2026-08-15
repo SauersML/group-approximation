@@ -6,11 +6,14 @@ title: Fourier idempotents reduce every finite order to the projection collapse
 target: compression-torsion-collapse
 requires:
   - corona-projection-collapse
-distinct_from:
-  compression-torsion-collapse-assembly: That route proves the collapse analytically from scratch (rank cocycle, FH primitive, scaled transport) and is hypothesis-gated on its analytic inputs; this one derives the full finite-order case from the already-established projection collapse by explicit finite Fourier analysis, and is the route that is machine-checked.
 artifacts:
   - GroupApproximation/Sofic/TorsionSpectralCollapse.lean
 ---
+
+## Distinct from
+
+- [[compression-torsion-collapse-assembly]] — That route proves the collapse analytically from scratch (rank cocycle, FH primitive, scaled transport) and is hypothesis-gated on its analytic inputs; this one derives the full finite-order case from the already-established projection collapse by explicit finite Fourier analysis, and is the route that is machine-checked.
+
 
 ## Why sufficient
 

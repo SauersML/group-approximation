@@ -5,11 +5,14 @@ kind: route
 title: Direct ambient-level formalization of the sign-free collapse
 target: commuting-lamp-quotient-not-mf
 requires: []
-distinct_from:
-  commuting-lamp-quotient-not-mf-proof: That route first identifies W/<zeta> with F_2[X] semidirect V via the quotient-structure claim and then runs the involutive collapse in the identified model; this one runs the collapse directly in Ambient/<sign> with no structure identification, and is the route that is machine-checked.
 artifacts:
   - GroupApproximation/Sofic/CommutingLampCollapse.lean
 ---
+
+## Distinct from
+
+- [[commuting-lamp-quotient-not-mf-proof]] — That route first identifies W/<zeta> with F_2[X] semidirect V via the quotient-structure claim and then runs the involutive collapse in the identified model; this one runs the collapse directly in Ambient/<sign> with no structure identification, and is the route that is machine-checked.
+
 
 ## Direct proof, formalized
 
