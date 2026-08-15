@@ -91,7 +91,7 @@
       "id": "thm:sign-criterion",
       "environment": "theorem",
       "title": "central-sign criterion",
-      "statement_sha256": "308df3ecde9a3edc891b5872323a58299743298921f76d704d9ce0a934e85bd5",
+      "statement_sha256": "905b06bff971b19675399a753e992bb4c56e05e697551667fe651410337bea77",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -113,7 +113,7 @@
       "id": "thm:kazhdan-clifford",
       "environment": "theorem",
       "title": "Kazhdan--Clifford construction",
-      "statement_sha256": "08891567db83191ce47122bea5155713407f48cc5bef1d72d09835c59fcd1691",
+      "statement_sha256": "b1db1d8edeada44123cece85c618c2ceed910e9bb3c501ac674dad6bdb47633e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -206,6 +206,49 @@
           "role": "exact",
           "module": "Sofic/ScalingFamilyEndpoint",
           "declaration": "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:B",
+      "environment": "mainthm",
+      "title": "the exact finite-dimensional analogue",
+      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:notRFD",
+      "environment": "corollary",
+      "title": "",
+      "statement_sha256": "754e7536fa06cde28e2b63372445243f01999ad37673ef6751988dc19390f17c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:B",
+        "prop:witness"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralFiniteDimensionalObstruction",
+          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences",
           "covers": "the complete printed proposition"
         }
       ]
@@ -339,49 +382,6 @@
       ]
     },
     {
-      "id": "thm:B",
-      "environment": "mainthm",
-      "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "cor:notRFD",
-      "environment": "corollary",
-      "title": "",
-      "statement_sha256": "754e7536fa06cde28e2b63372445243f01999ad37673ef6751988dc19390f17c",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:B",
-        "prop:witness"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralFiniteDimensionalObstruction",
-          "declaration": "GroupApproximation.LiteralFiniteDimensionalObstruction.manuscriptFiniteDimensionalConsequences",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "def:pattern",
       "environment": "definition",
       "title": "Kazhdan conjugation datum",
@@ -450,7 +450,7 @@
       "id": "thm:compression-radical",
       "environment": "theorem",
       "title": "the intrinsic defect and the MF radical",
-      "statement_sha256": "12334b5a1314dbee07650a768a947ede7cbd696af639c0ab27b4f549514aaa3e",
+      "statement_sha256": "f67e517df44aeb9b7881e5e74735d318bb937a23794e81ed069d8b7ebec476ac",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [

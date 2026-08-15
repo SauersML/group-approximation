@@ -19,6 +19,52 @@ to the normal-Kazhdan compression obstruction.
 -/
 
 namespace GroupApproximation
+
+universe u v
+
+/-- Every finite group has property `(T)`: the whole group together with
+tolerance `1` is a Kazhdan pair, because summing the orbit of an
+almost-invariant unit vector produces a nonzero invariant vector.  This makes
+the finite-normal obstruction literally the finite case of the
+normal-Kazhdan obstruction below. -/
+theorem hasKazhdanPropertyT_of_finite :
+    ∀ (G : Type u) [Group G] [Finite G], HasKazhdanPropertyT.{u, v} G := by
+  intro G _ _
+  classical
+  letI : Fintype G := Fintype.ofFinite G
+  refine ⟨Finset.univ, 1, one_pos, ?_⟩
+  intro E _ _ _ ρ x hx hmove
+  refine ⟨∑ g : G, ρ g x, ?_, ?_⟩
+  · intro hzero
+    have hrw : (∑ g : G, ρ g x) - (Fintype.card G : ℝ) • x
+        = ∑ g : G, (ρ g x - x) := by
+      rw [Finset.sum_sub_distrib]
+      congr 1
+      rw [Finset.sum_const, Finset.card_univ]
+      exact Nat.cast_smul_eq_nsmul ℝ _ x
+    have hbound : ‖(∑ g : G, ρ g x) - (Fintype.card G : ℝ) • x‖
+        < Fintype.card G := by
+      rw [hrw]
+      calc ‖∑ g : G, (ρ g x - x)‖
+          ≤ ∑ g : G, ‖ρ g x - x‖ := norm_sum_le _ _
+        _ < ∑ _g : G, (1 : ℝ) :=
+            Finset.sum_lt_sum_of_nonempty Finset.univ_nonempty
+              (fun g _ ↦ hmove g (Finset.mem_univ g))
+        _ = Fintype.card G := by
+            rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one]
+    rw [hzero, zero_sub, norm_neg, norm_smul, hx] at hbound
+    simp only [Real.norm_natCast, mul_one] at hbound
+    exact absurd hbound (lt_irrefl _)
+  · intro h
+    have happ : ρ h (∑ g : G, ρ g x) = ∑ g : G, ρ (h * g) x := by
+      rw [map_sum]
+      refine Finset.sum_congr rfl fun g _ ↦ ?_
+      have := DFunLike.congr_fun (map_mul ρ h g) x
+      exact this.symm
+    rw [happ]
+    exact Fintype.sum_equiv (Equiv.mulLeft h)
+      (fun g ↦ ρ (h * g) x) (fun g ↦ ρ g x) (fun g ↦ rfl)
+
 namespace KazhdanCompressionCore
 
 variable {Γ E : Type} [Group Γ] [Group E]

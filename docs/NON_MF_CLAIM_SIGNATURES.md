@@ -709,6 +709,12 @@ Group.FG LiteralNonMFLinearWitness.WitnessGroup ∧
 ∀ (G : Type u) [inst : Group G] [IsMulTorsionFree G] (F : Subgroup G) [Finite ↥F], F = ⊥
 ```
 
+## `GroupApproximation.hasKazhdanPropertyT_of_finite`
+
+```lean
+∀ (G : Type u) [inst : Group G] [Finite G], HasKazhdanPropertyT G
+```
+
 ## `GroupApproximation.isOperatorMF_of_locallyFinite`
 
 ```lean
