@@ -528,8 +528,12 @@ def blockPermSubgroup : Subgroup (Equiv.Perm ((i : I) × B i)) where
     rw [hπ (τ p) (τ q), hτ p q]
   inv_mem' := by
     intro π hπ p q
+    have hp : π (π⁻¹ p) = p := by
+      rw [← Equiv.Perm.mul_apply, mul_inv_cancel, Equiv.Perm.one_apply]
+    have hq : π (π⁻¹ q) = q := by
+      rw [← Equiv.Perm.mul_apply, mul_inv_cancel, Equiv.Perm.one_apply]
     have h := hπ (π⁻¹ p) (π⁻¹ q)
-    simp only [Equiv.Perm.apply_inv_self] at h
+    rw [hp, hq] at h
     exact h.symm
 
 theorem blockPerm_property (π : blockPermSubgroup I B)

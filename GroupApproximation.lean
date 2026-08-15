@@ -62,7 +62,6 @@ import GroupApproximation.Monsters.P13WordDescent
 import GroupApproximation.Monsters.P13DescentCases
 import GroupApproximation.Monsters.P13Completeness
 import GroupApproximation.Monsters.P13DescentMaster
-import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Monsters.LiteralBaseResiduallyFinite
 import GroupApproximation.Monsters.P13LowerUnipotentInjectivity
 import GroupApproximation.Monsters.SL2BraidPresentation
@@ -94,7 +93,6 @@ import GroupApproximation.Sofic.LiteralMarkedCylinderTopology
 import GroupApproximation.Sofic.LiteralMarkedCylinder
 import GroupApproximation.Sofic.LiteralSixGenerator
 import GroupApproximation.Sofic.LiteralWitnessConsequences
-import GroupApproximation.Sofic.LEFMarkedCompression
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.CompressionDefectSquare
 import GroupApproximation.Sofic.MarkedCompressionGroup
