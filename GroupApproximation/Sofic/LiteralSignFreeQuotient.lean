@@ -49,7 +49,7 @@ instance markSubgroup_normal : markSubgroup.Normal := by
   intro a ha g
   obtain ⟨n, rfl⟩ := Subgroup.mem_zpowers_iff.mp ha
   have hc : mark ^ n * g = g * mark ^ n :=
-    ((mark_central g).symm.zpow_left n).eq
+    ((mark_central g).zpow_left n).eq
   have h1 : g * mark ^ n * g⁻¹ = mark ^ n := by
     rw [← hc, mul_assoc, mul_inv_cancel, mul_one]
   rw [h1]
@@ -174,7 +174,11 @@ theorem dee_commutes_v3_sq : Commute dee (baseMap v3 ^ 2) := by
 
 /-- The double base: rotations and translation squares. -/
 def doubledBase : Subgroup Base :=
-  Subgroup.closure ({x, y, z, v1 ^ 2, v2 ^ 2, v3 ^ 2} : Set Base)
+  Subgroup.closure
+    ({LiteralBaseRelations.x, LiteralBaseRelations.y,
+      LiteralBaseRelations.z, LiteralBaseRelations.v1 ^ 2,
+      LiteralBaseRelations.v2 ^ 2, LiteralBaseRelations.v3 ^ 2} :
+      Set Base)
 
 theorem dee_commutes_doubledBase {h : Base} (hh : h ∈ doubledBase) :
     Commute dee (baseMap h) := by
