@@ -578,7 +578,7 @@ jobs:
       - name: Restore and seal the P13 build
         run: |
           python3 scripts/p13_build_shards.py restore-all \
-            --from build/p13-prebuild
+            --directory build/p13-prebuild
           python3 scripts/p13_build_shards.py seal
 
       # Deterministic 12-way partition of every module in the library, by
