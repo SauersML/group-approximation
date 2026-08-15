@@ -26,6 +26,48 @@
       ]
     },
     {
+      "id": "lem:lift",
+      "environment": "lemma",
+      "title": "lifting",
+      "statement_sha256": "721a3d635e21456fb92cb1f55c7480387a6e636dafd15a55eb2ccaad6ad3a5fc",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:unitarycorona",
+      "environment": "lemma",
+      "title": "unitaries in the quotient",
+      "statement_sha256": "a188e2b9a24399f8d205962acae97b0be91608e61458565c5046e2d0e4adf253",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:lift"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:kazhdan-transport",
       "environment": "theorem",
       "title": "Kazhdan transport of Hilbert--Schmidt asymptotic commutants",
@@ -169,137 +211,6 @@
       ]
     },
     {
-      "id": "thm:B",
-      "environment": "mainthm",
-      "title": "the exact finite-dimensional analogue",
-      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:C",
-      "environment": "mainthm",
-      "title": "the cyclic comparison",
-      "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:B",
-        "con:clifford"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Monsters/LiteralCyclicCalibration",
-          "declaration": "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:D",
-      "environment": "mainthm",
-      "title": "the reduced group algebra of $E$",
-      "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:A",
-        "lem:faithfultrace"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:E",
-      "environment": "mainthm",
-      "title": "sofic and hyperlinear groups that are not MF",
-      "statement_sha256": "c611f5557033e4814e93e581f19d2c940dcfd42d2a97d7c7534847189373d0a0",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:witness",
-        "lem:portable"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Endpoint/NonMFImpact",
-          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:lift",
-      "environment": "lemma",
-      "title": "lifting",
-      "statement_sha256": "721a3d635e21456fb92cb1f55c7480387a6e636dafd15a55eb2ccaad6ad3a5fc",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:unitarycorona",
-      "environment": "lemma",
-      "title": "unitaries in the quotient",
-      "statement_sha256": "a188e2b9a24399f8d205962acae97b0be91608e61458565c5046e2d0e4adf253",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:lift"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "def:E",
       "environment": "definition",
       "title": "",
@@ -428,6 +339,26 @@
       ]
     },
     {
+      "id": "thm:B",
+      "environment": "mainthm",
+      "title": "the exact finite-dimensional analogue",
+      "statement_sha256": "d6e18099881e7f184c54b8e2ba67e87679fe85854f0cb52feb9e2edebd590aeb",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/ManuscriptExactWrappers",
+          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "cor:notRFD",
       "environment": "corollary",
       "title": "",
@@ -533,6 +464,29 @@
           "role": "exact",
           "module": "Sofic/ManuscriptKazhdanTransport",
           "declaration": "GroupApproximation.KazhdanAsymptoticCommutant.manuscriptCompressionRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:C",
+      "environment": "mainthm",
+      "title": "the cyclic comparison",
+      "statement_sha256": "ee29ee959c43ba8b68b65d6fa5839c177680b6df85e0800025e40c06d02dd4ce",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:B",
+        "con:clifford"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Monsters/LiteralCyclicCalibration",
+          "declaration": "GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration",
           "covers": "the complete printed proposition"
         }
       ]
@@ -778,6 +732,29 @@
       ]
     },
     {
+      "id": "thm:D",
+      "environment": "mainthm",
+      "title": "the reduced group algebra of $E$",
+      "statement_sha256": "39b9906dd0e6be7f724e5abf05cf5486024bda97ee20d33863e62378f5306db8",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:A",
+        "lem:faithfultrace"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "lem:faithfultrace",
       "environment": "lemma",
       "title": "",
@@ -793,6 +770,29 @@
           "role": "exact",
           "module": "Sofic/ManuscriptExactWrappers",
           "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:E",
+      "environment": "mainthm",
+      "title": "sofic and hyperlinear groups that are not MF",
+      "statement_sha256": "c611f5557033e4814e93e581f19d2c940dcfd42d2a97d7c7534847189373d0a0",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:witness",
+        "lem:portable"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Endpoint/NonMFImpact",
+          "declaration": "GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF",
           "covers": "the complete printed proposition"
         }
       ]

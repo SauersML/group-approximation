@@ -299,6 +299,241 @@ $E$.  On the algebra side, the reduced group $C^*$-algebra of $E$ is the
 stably finite non-MF example (Theorem~\ref{thm:D}); the reduced algebra
 of $W$ is in addition exact.
 
+\subsection*{Operator norm versus tracial approximation}
+The argument is specific to operator norm: the spectral-corner and
+leakage estimates of the transport theorem require the adjoint actions to
+be controlled in operator norm on the Hilbert--Schmidt spaces.
+Hilbert--Schmidt-small defects alone do not provide
+that operator control, so the proof does not give a hyperlinear obstruction.
+
+\subsection*{Group-theoretic inputs}
+The proof of Theorem~\ref{thm:A} has no external group-theoretic inputs:
+property~\textup{(T)} of the base is proved intrinsically, from
+an exact rational spectral certificate through a replayed surjection and
+a fixed-point bridge (Proposition~\ref{prop:literal-base-T}), and the
+Clifford witness and finite-dimensional obstruction are proved directly.
+The classical identification of the base with
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- via the presentation of
+$\SL_3(\mathbb Z)$ from \cite{CRW} and property~\textup{(T)} of the
+affine group from \cite{BHV} --- is quoted as orientation only
+(Remark~\ref{rem:classical-base}).  A few later consequences quote
+literature results where indicated, always outside the formal claims:
+quasidiagonality of amenable groups \cite{TWW} in the sharpness
+discussion of Section~\ref{sec:necessity}, the Elek--Szab\'o extension
+theorem \cite{ElekSzabo} as context for the directly proved split-$\Z$
+case in Theorem~\ref{thm:E}, Mal'cev residual finiteness \cite{Malcev}
+as context for the congruence argument there, and the simple sofic
+embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
+paragraph.
+
+\subsection*{Formal verification}
+Each gray ``formalized in Lean'' tag marks a closed theorem in the
+accompanying Lean~4 development stating exactly the printed claim.
+The formal track has no theorem inputs: in particular it derives
+property~\textup{(T)} of the twenty-relator base from an explicit
+rational spectral certificate rather than importing \cite{CRW} or \cite{BHV},
+and the printed proofs follow the formal dependency routes.
+Untagged literature consequences --- the nonamenability, nonnuclearity,
+exactness, simple-envelope, and amenable-MF-detector paragraphs ---
+remain deliberately outside that claim and are labelled where they occur.
+The public version of each tag links
+to the corresponding declaration on the reviewed source branch.
+
+\subsection*{Relation to prior work}
+The closest conceptual analogue is the recent work on nonsofic groups.
+One-sided conjugation of a property-\textup{(T)} subgroup and propagation
+from its centralizer appear in \cite{OAI,KT}, building on rigidity results of
+Kun and Kun--Thom \cite{Kun16,KT19}; related centralizer rigidity for sofic
+embeddings is proved in \cite{AlekseevThom}.  Those results concern Hamming or
+tracial approximations.  Here the adjoint actions stay on finite-stage
+Hilbert--Schmidt spaces, the Kazhdan projection is replaced by explicit
+spectral corners, and an equal-rank projection flip prevents a one-sided
+compression from enlarging the corner.  The complementary finite-group corner then converts
+that rigidity into a fixed nontrivial element sent to the identity by every
+corona representation.  The Clifford central extension supplies the element
+whose survival is proved independently.
+The results of \cite{OAI,KT} provide context only: no theorem in this paper
+uses either one as an input.
+
+Slofstra's constructions supply close precedents for the Clifford group,
+distinguished central involution, shift, and HNN doubling map
+\cite[Section~2 and Remark~3.3]{SlofstraProfile}.  Negative-eigenspace
+compression appears in Slofstra--Vidick
+\cite[proof of Proposition~2.7]{SlofstraVidick}, and
+Bachner--Dogon--Lubotzky develop operator-norm rounding, compression, and
+polar-correction procedures in detail
+\cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
+Proposition~1.5]{BDL}.  That local procedure enters the finite-normal corner
+reduction below; the transport step itself is the finite-stage
+spectral-corner argument of Theorem~\ref{thm:kazhdan-transport}.
+
+The analytic passage from operator norm to the Hilbert--Schmidt conjugation
+representation belongs to the $\pi\otimes\bar\pi$ framework of Bekka and
+Bekka--Valette \cite{BekkaAmenable,BekkaValette}.  Dadarlat uses normalized
+finite-rank projections as almost invariant Hilbert--Schmidt vectors in an
+operator-norm approximation argument
+\cite[Lemma~3.18 and Proposition~3.19]{Dadarlat}.  These are the direct
+analytic precedents for the conjugation step used here.
+
+Slofstra's quotients by elements invisible to exact or approximate
+finite-dimensional representations precede the MF-radical language used
+below \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.  Fritz's marked
+$\mathrm{BS}(2,3)$ example provides additional context for the cyclic
+comparison \cite{Fritz,SlofstraVidick}.
+
+Central extensions and rigidity of approximate representations also drive
+the Frobenius obstruction of De Chiffre--Glebsky--Lubotzky--Thom
+\cite{DGLT}.  In the proof of Proposition~1.6,
+Bachner--Dogon--Lubotzky treat the finite-central case by a
+character-isotypic corner, and reduce the general finite-normal case to it by
+passing to the finite-index centralizer \cite{BDL}.  The finite-normal
+criterion here combines the corresponding coordinate-corner construction
+with the one-sided Kazhdan conjugation and does not assume that the quotient is
+hyperlinear.  Related finite-target approximation and extension results for
+weak soficity appear in
+\cite{GR,Gl19}.
+
+Carri\'on--Dadarlat--Eckhardt provide the group-MF framework used here and,
+through Abels' group, an amenable MF group that is not residually finite
+\cite[Section~2.14 and Corollary~2.18]{CDE}.  The cyclic comparison addresses
+the narrower question of what happens to the marked conjugation
+configuration when
+property~\textup{(T)} is removed.
+
+Finally, failure of the MF property for a group $C^*$-algebra does not by
+itself prevent the group from embedding into a corona: the group property
+requires only a faithful canonical image in some MF quotient of $\Cmax(E)$.
+The result here produces a specific nontrivial element in the kernel of every
+such representation.  For broader context see
+\cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
+
+\subsection*{Organization}
+Section~\ref{sec:prelim} fixes notation, the corona lifting lemmas, and
+the conventions.  Sections~\ref{sec:transport}
+and~\ref{sec:construction} isolate the analytic mechanism and the
+general construction, and state Theorem~\ref{thm:A} with its uniform
+finite corollary and the scaling family.  Section~\ref{sec:group}
+constructs $E$ and proves property~\textup{(T)} for its base.
+Section~\ref{sec:witness} proves $w\neq 1$.
+Section~\ref{sec:proofA} proves the defect-square identity and deduces
+Theorem~\ref{thm:A} from the sign criterion.
+Section~\ref{sec:findim} states and proves Theorem~\ref{thm:B}.
+Section~\ref{sec:conj} defines Kazhdan conjugation data and their
+defect subgroups, proves the finite-normal obstruction
+criterion (Theorem~\ref{thm:criterion}) and the MF-invisibility of the
+intrinsic defect (Theorem~\ref{thm:compression-radical}).
+Section~\ref{sec:necessity} states and proves the cyclic comparison,
+Theorem~\ref{thm:C}.
+Section~\ref{sec:consequences} states and proves Theorems~\ref{thm:D}
+and~\ref{thm:E}, develops the MF radical, and establishes the
+permanence failures.
+Section~\ref{sec:limits} explains the
+operator-norm boundary of the argument.
+Appendix~\ref{app:equivalences} proves the MF equivalences, and
+Appendix~\ref{app:maxcstar} records the maximal group $C^*$-algebra.
+
+\section{Notation and corona lemmas}\label{sec:prelim}
+
+All groups are discrete and countable.  Property~\textup{(T)} is the
+textbook complex-unitary property.  A $C^*$-homomorphism is unital only when
+this is stated.  In particular, an MF embedding may be nonunital, as is
+customary for embedding a unital algebra as a $C^*$-subalgebra.  If
+$e\colon A\to B$ is an injective, possibly nonunital $*$-homomorphism between
+unital $C^*$-algebras, then $u\mapsto e(u)+(1-e(1))$ is an injective
+homomorphism $\U(A)\to\U(B)$; this complement correction is used below.  For
+a unital $C^*$-algebra $A$
+we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
+normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
+normalized Hilbert--Schmidt norm
+$\hsnorm{x}=\tr_r(x^*x)^{1/2}$; for coordinate sequences we write
+$a\sim_2 b$ when $\hsnorm{a_n-b_n}\to0$.  We will use three elementary facts
+without further comment: $\hsnorm{x}\le\opnorm{x}$;
+$|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
+$u,v$.  For a nonempty finite set $Y$, write
+$M_Y(\C)=\C^{Y\times Y}$ for the corresponding indexed matrix algebra.
+
+Given a sequence $(d_n)_{n\in\N}$ of positive integers, we write
+\[
+  \mathcal Q\bigl((d_n)_{n\in\N}\bigr)
+  \;=\;\prod_{n\in\N}^{\ell^\infty} M_{d_n}(\C)
+  \Big/\bigoplus_{n\in\N}^{c_0} M_{d_n}(\C),
+\]
+the quotient of the bounded $C^*$-product by the ideal of sequences with
+$\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
+corona}.  We also write
+\[
+ \Ucor((d_n)_{n\in\N})
+ =\prod_{n\in\N}\U(M_{d_n}(\C))\Big/
+ \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
+\]
+Write $q\colon\prod_{n\in\N}^{\ell^\infty}M_{d_n}(\C)\to\mathcal Q$
+for the quotient map of a norm matrix corona.
+
+The following lifting facts are standard perturbation theory; see
+Loring \cite{Loring} for a systematic treatment.
+
+\begin{lemma}[lifting]\label{lem:lift}
+Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting}
+\end{lemma}
+
+\begin{proof}
+Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
+$q((x_n))$ is unitary, the one-sided Gram defect satisfies
+$\opnorm{x_n^*x_n-1}\to0$; no condition on $x_nx_n^*$ is needed.  Once
+$\opnorm{x_n^*x_n-1}\le\tfrac12$, the square Gram matrix $x_n^*x_n$ is
+invertible, hence so is $x_n$, and the polar correction
+$u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary; continuous functional calculus
+gives the quantitative estimate
+\[
+ \opnorm{u_n-x_n}
+ \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
+\]
+The sequence $(x_n)$ is bounded, so the right-hand side tends to $0$.
+Setting $u_n=1$ at the finitely many remaining indices therefore gives a
+unitary sequence with $\opnorm{u_n-x_n}\to0$.
+\end{proof}
+
+\begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
+For every sequence $(d_n)$, the map
+\[
+ \kappa_{(d_n)}\colon \Ucor((d_n))\longrightarrow\U(\mathcal Q),
+ \qquad [(u_n)]\longmapsto q((u_n)),
+\]
+is a canonical group isomorphism.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence}
+\end{lemma}
+
+\begin{proof}
+The map is well defined, and its kernel consists exactly of the unitary
+sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
+surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
+unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
+\end{proof}
+
+A \emph{corona representation} of a group $H$ is a homomorphism
+$H\to\U(\mathcal Q)$, and it \emph{detects} $g\in H$ --- separates $g$
+from the identity --- when it does not send $g$ to $1$.  An
+\emph{operator-norm asymptotic representation} of $H$ is a sequence of
+maps $U_n\colon H\to\U(d_n)$ such that
+$\opnorm{U_n(g)U_n(h)-U_n(gh)}\to0$ for all $g,h\in H$.
+Lemma~\ref{lem:unitarycorona} canonically identifies a corona
+representation with a homomorphism into $\Ucor((d_n))$, which we call
+its coordinate model.  A countable group is \emph{MF} if it admits an
+injective corona representation for a strictly increasing dimension
+sequence; by the dimension-amplification equivalence, allowing an
+arbitrary positive dimension sequence gives the same class of groups.
+No condition is imposed on an asymptotic representation at the identity:
+taking $g=h=1$ gives $\opnorm{U_n(1)-1}\to0$ automatically, since
+$U_n(1)$ is unitary.  Coordinate unitary lifts of a corona
+representation of a countable group form exactly such a sequence.
+
+The maximal group $C^*$-algebra $\Cmax(H)$ is used only for the final
+assertions of Theorem~\ref{thm:A}; the construction and its universal
+property, stated universe-relatively as the type-theoretic foundations of
+the accompanying formal development require, are recorded in
+Appendix~\ref{app:maxcstar}.
+
 \section{One-sided Kazhdan transport}\label{sec:transport}
 
 The rigidity mechanism is best remembered before the construction.  The
@@ -323,19 +558,10 @@ right-hand implication is the classical ultraproduct shadow of this step
 (Remark~\ref{rem:ultraproduct}).  This yields the reusable theorem behind
 every result below.
 
-We use the following terminology before collecting the remaining notation in
-Section~\ref{sec:prelim}.  A \emph{corona representation} of a group $H$ is a
-homomorphism $H\to\U(\mathcal Q)$, and it \emph{detects} $g\in H$ ---
-separates $g$ from the identity --- when it does not send $g$ to $1$.  An \emph{operator-norm asymptotic representation}
-is a sequence of maps $U_n\colon H\to\U(d_n)$ such that
-\[
- \opnorm{U_n(g)U_n(h)-U_n(gh)}\longrightarrow0
- \qquad(g,h\in H).
-\]
-For coordinate sequences, $a_n\sim_2 b_n$ means
-$\hsnorm{a_n-b_n}\to0$, where
-$\hsnorm{x}=\tr_{d_n}(x^*x)^{1/2}$ is the normalized
-Hilbert--Schmidt norm.
+Recall from Section~\ref{sec:prelim} the notions of corona
+representation, detection, and operator-norm asymptotic representation,
+and the notation $a_n\sim_2 b_n$ for
+$\hsnorm{a_n-b_n}\to0$ in the normalized Hilbert--Schmidt norm.
 
 \begin{theorem}[Kazhdan transport of Hilbert--Schmidt asymptotic commutants]
 \label{thm:kazhdan-transport}
@@ -731,71 +957,6 @@ mapping-telescope group built from the exact rational affine matrix model
 (Section~\ref{sec:witness}); no
 combinatorial theory of HNN extensions is needed.
 
-Two companion results clarify the mechanism.  First, in
-finite dimensions the obstruction is elementary and needs neither
-property (T), nor unitarity, nor centrality of $w$; it kills the entire
-intrinsic defect \eqref{eq:intrinsicdefect}:
-
-\begin{mainthm}[the exact finite-dimensional analogue]\label{thm:B}
-Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
-group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
-with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
-$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
-satisfies
-\[
-  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
-\]
-More generally, every such $\pi$ sends the entire subgroup
-$\mathfrak D(H,\Gamma)$ to the identity.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
-\end{mainthm}
-
-Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
-finite-dimensional representation of $E$ over \emph{every} field sends
-$w$ to the identity: finite-dimensional linear representations do not separate the points
-of $E$, no finite
-quotient can witness $w\neq 1$, and the infinite Clifford witness of
-Section~\ref{sec:witness} cannot be replaced by a finite-dimensional one.
-In the terminology of \cite[Definition~1.2]{BDL}, the central involution
-$w$, invisible in every finite quotient, makes $E$ a group of
-\emph{Deligne type}; such groups were proposed there as the natural
-candidate counterexamples for all three remaining approximation problems,
-and $E$ realizes that proposal at the operator-norm endpoint.
-Property~\textup{(T)} enters the corona argument through a finite-stage
-spectral corner for the adjoint action at each coordinate, and the
-equal-rank projection flip turns the one-sided compression of that
-corner into equality.
-
-Second, the elementary finite-dimensional calculation does not determine
-whether its marked word is trivial:
-
-\begin{mainthm}[the cyclic comparison]\label{thm:C}
-Define the marked presentation
-\[
- E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
- \begin{aligned}
-  &t\gamma_0t^{-1}=\gamma_0^2,\quad c^2=1,\quad[c,\gamma_0]=1,\\
-  &w_{\mathrm{BS}}^2=1,\quad
-    [w_{\mathrm{BS}},\gamma_0]=[w_{\mathrm{BS}},t]
-      =[w_{\mathrm{BS}},c]=1
- \end{aligned}\right\rangle,
-\]
-where
-$w_{\mathrm{BS}}=[tct^{-1},\gamma_0(tct^{-1})\gamma_0^{-1}]$.
-Then $E_{\mathrm{BS}}$ is finitely presented and $w_{\mathrm{BS}}\ne1$.
-There is an explicit surjective homomorphism from $E_{\mathrm{BS}}$ onto its
-realized Clifford quotient that maps $w_{\mathrm{BS}}$ to the nontrivial
-central sign.  Nevertheless every finite-dimensional representation of
-$E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
-\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration}
-\end{mainthm}
-
-The quotient statement makes the comparison at the level actually used by
-the proof: exact finite-dimensional invisibility does not by itself force
-triviality of the marked word.  The MF conclusion in
-Theorem~\ref{thm:A} is the separate uniform assertion supplied by the
-fixed-space argument.
-
 \subsection*{Generalizations and consequences}
 Theorem~\ref{thm:A} is an instance of a general finite-normal obstruction
 (Definition~\ref{def:pattern}).  A Kazhdan conjugation datum consists of a
@@ -816,278 +977,13 @@ $E$, hence a nonempty clopen set of non-MF marked groups
 failures of quotient and extension permanence
 (Corollary~\ref{cor:quotclosure} and Section~\ref{sec:consequences}).
 
-Section~\ref{sec:consequences} develops structural and $C^*$-algebraic
-consequences, including Theorem~\ref{thm:E} and failures
-of quotient and extension permanence.  Every MF algebra is stably finite
-\cite{BK}, so Theorem~\ref{thm:D} exhibits a separable stably finite
-$C^*$-algebra that is not MF.  Abstract examples follow from the failure
-of the Connes embedding problem \cite{FGH}; the point here is
-concreteness: the algebra is the reduced group $C^*$-algebra of an
-explicit finitely presented group.  Even for
-$\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is
-undecided; only the stronger PMF property is known to fail, for
-$\SL_4(\mathbb Z)$ \cite{MdlS}.  Our example has the following properties:
-
-\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
-$\Cred(E)$ is a unital separable $C^*$-algebra which carries a
-faithful tracial state --- and is therefore stably finite --- but is
-not an MF algebra.
-\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
-\end{mainthm}
-
-The canonical homomorphism $\mathcal B\to E$ is injective: composing it
-with the homomorphism $E\to W$ of Proposition~\ref{prop:witness} gives
-$g\mapsto j(\bar g)$, and $\mathcal B\to\bar\Gamma$ is injective by
-Proposition~\ref{prop:literal-base-T} together with
-Lemma~\ref{lem:linear}.  Since the infinite Kazhdan group $\mathcal B$ is
-nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
-\cite{Lance}.  The nuclear form of the
-Blackadar--Kirchberg problem --- whether every stably finite separable
-nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
-Theorem~\ref{thm:D}.  The two classical facts used in this paragraph ---
-nonamenability of infinite Kazhdan groups and nonnuclearity of the
-reduced algebra of a nonamenable group --- are literature results quoted
-for orientation only; they are outside the formal development, and no
-theorem below depends on them.
-
-The witness that proves $w\ne1$ carries the final separation:
-
-\begin{mainthm}[sofic and hyperlinear groups that are not MF]\label{thm:E}
-The Clifford witness $W=\ClLamp(X)\rtimes V$ of
-Proposition~\ref{prop:witness} is a finitely generated sofic group that
-is not MF; since sofic groups are hyperlinear, $W$ is likewise a
-hyperlinear group that is not MF.  In particular, neither soficity nor
-hyperlinearity implies the MF property.
-\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
-\end{mainthm}
-
-\subsection*{Operator norm versus tracial approximation}
-The argument is specific to operator norm: the spectral-corner and
-leakage estimates of the transport theorem require the adjoint actions to
-be controlled in operator norm on the Hilbert--Schmidt spaces.
-Hilbert--Schmidt-small defects alone do not provide
-that operator control, so the proof does not give a hyperlinear obstruction.
-
-\subsection*{Group-theoretic inputs}
-The proof of Theorem~\ref{thm:A} has no external group-theoretic inputs:
-property~\textup{(T)} of the base is proved intrinsically, from
-an exact rational spectral certificate through a replayed surjection and
-a fixed-point bridge (Proposition~\ref{prop:literal-base-T}), and the
-Clifford witness and finite-dimensional obstruction are proved directly.
-The classical identification of the base with
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- via the presentation of
-$\SL_3(\mathbb Z)$ from \cite{CRW} and property~\textup{(T)} of the
-affine group from \cite{BHV} --- is quoted as orientation only
-(Remark~\ref{rem:classical-base}).  A few later consequences quote
-literature results where indicated, always outside the formal claims:
-quasidiagonality of amenable groups \cite{TWW} in the sharpness
-discussion of Section~\ref{sec:necessity}, the Elek--Szab\'o extension
-theorem \cite{ElekSzabo} as context for the directly proved split-$\Z$
-case in Theorem~\ref{thm:E}, Mal'cev residual finiteness \cite{Malcev}
-as context for the congruence argument there, and the simple sofic
-embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
-paragraph.
-
-\subsection*{Formal verification}
-Each gray ``formalized in Lean'' tag marks a closed theorem in the
-accompanying Lean~4 development stating exactly the printed claim.
-The formal track has no theorem inputs: in particular it derives
-property~\textup{(T)} of the twenty-relator base from an explicit
-rational spectral certificate rather than importing \cite{CRW} or \cite{BHV},
-and the printed proofs follow the formal dependency routes.
-Untagged literature consequences --- the nonamenability, nonnuclearity,
-exactness, simple-envelope, and amenable-MF-detector paragraphs ---
-remain deliberately outside that claim and are labelled where they occur.
-The public version of each tag links
-to the corresponding declaration on the reviewed source branch.
-
-\subsection*{Relation to prior work}
-The closest conceptual analogue is the recent work on nonsofic groups.
-One-sided conjugation of a property-\textup{(T)} subgroup and propagation
-from its centralizer appear in \cite{OAI,KT}, building on rigidity results of
-Kun and Kun--Thom \cite{Kun16,KT19}; related centralizer rigidity for sofic
-embeddings is proved in \cite{AlekseevThom}.  Those results concern Hamming or
-tracial approximations.  Here the adjoint actions stay on finite-stage
-Hilbert--Schmidt spaces, the Kazhdan projection is replaced by explicit
-spectral corners, and an equal-rank projection flip prevents a one-sided
-compression from enlarging the corner.  The complementary finite-group corner then converts
-that rigidity into a fixed nontrivial element sent to the identity by every
-corona representation.  The Clifford central extension supplies the element
-whose survival is proved independently.
-The results of \cite{OAI,KT} provide context only: no theorem in this paper
-uses either one as an input.
-
-Slofstra's constructions supply close precedents for the Clifford group,
-distinguished central involution, shift, and HNN doubling map
-\cite[Section~2 and Remark~3.3]{SlofstraProfile}.  Negative-eigenspace
-compression appears in Slofstra--Vidick
-\cite[proof of Proposition~2.7]{SlofstraVidick}, and
-Bachner--Dogon--Lubotzky develop operator-norm rounding, compression, and
-polar-correction procedures in detail
-\cite[Lemmas~2.2--2.3, Proposition~2.4, and the proof of
-Proposition~1.5]{BDL}.  That local procedure enters the finite-normal corner
-reduction below; the transport step itself is the finite-stage
-spectral-corner argument of Theorem~\ref{thm:kazhdan-transport}.
-
-The analytic passage from operator norm to the Hilbert--Schmidt conjugation
-representation belongs to the $\pi\otimes\bar\pi$ framework of Bekka and
-Bekka--Valette \cite{BekkaAmenable,BekkaValette}.  Dadarlat uses normalized
-finite-rank projections as almost invariant Hilbert--Schmidt vectors in an
-operator-norm approximation argument
-\cite[Lemma~3.18 and Proposition~3.19]{Dadarlat}.  These are the direct
-analytic precedents for the conjugation step used here.
-
-Slofstra's quotients by elements invisible to exact or approximate
-finite-dimensional representations precede the MF-radical language used
-below \cite[Definitions~2.5--2.7]{SlofstraCorrelations}.  Fritz's marked
-$\mathrm{BS}(2,3)$ example provides additional context for the cyclic
-comparison \cite{Fritz,SlofstraVidick}.
-
-Central extensions and rigidity of approximate representations also drive
-the Frobenius obstruction of De Chiffre--Glebsky--Lubotzky--Thom
-\cite{DGLT}.  In the proof of Proposition~1.6,
-Bachner--Dogon--Lubotzky treat the finite-central case by a
-character-isotypic corner, and reduce the general finite-normal case to it by
-passing to the finite-index centralizer \cite{BDL}.  The finite-normal
-criterion here combines the corresponding coordinate-corner construction
-with the one-sided Kazhdan conjugation and does not assume that the quotient is
-hyperlinear.  Related finite-target approximation and extension results for
-weak soficity appear in
-\cite{GR,Gl19}.
-
-Carri\'on--Dadarlat--Eckhardt provide the group-MF framework used here and,
-through Abels' group, an amenable MF group that is not residually finite
-\cite[Section~2.14 and Corollary~2.18]{CDE}.  The cyclic comparison addresses
-the narrower question of what happens to the marked conjugation
-configuration when
-property~\textup{(T)} is removed.
-
-Finally, failure of the MF property for a group $C^*$-algebra does not by
-itself prevent the group from embedding into a corona: the group property
-requires only a faithful canonical image in some MF quotient of $\Cmax(E)$.
-The result here produces a specific nontrivial element in the kernel of every
-such representation.  For broader context see
-\cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
-
-\subsection*{Organization}
-Sections~\ref{sec:transport}--\ref{sec:construction} isolate the analytic
-mechanism and the general construction.  Section~\ref{sec:prelim} fixes notation, proves the corona lifting
-lemmas, and states the conventions.  Section~\ref{sec:group} constructs
-$E$ and proves property~\textup{(T)} for its base.
-Section~\ref{sec:witness} proves $w\neq 1$.
-Section~\ref{sec:proofA} proves the defect-square identity and deduces
-Theorem~\ref{thm:A} from the sign criterion.
-Section~\ref{sec:findim} proves Theorem~\ref{thm:B}.
-Section~\ref{sec:conj} defines Kazhdan conjugation data and their
-defect subgroups, proves the finite-normal obstruction
-criterion (Theorem~\ref{thm:criterion}) and the MF-invisibility of the
-intrinsic defect (Theorem~\ref{thm:compression-radical}).
-Section~\ref{sec:consequences} proves Theorem~\ref{thm:D}, constructs a
-sofic non-MF witness, and establishes the permanence failures.
-Section~\ref{sec:necessity} proves the cyclic comparison, which shows
-what survives when the property-\textup{(T)} base is replaced by a
-cyclic one.
-Section~\ref{sec:limits} explains the
-operator-norm boundary of the argument.
-Appendix~\ref{app:equivalences} proves the MF equivalences.
-
-\section{Notation and corona lemmas}\label{sec:prelim}
-
-All groups are discrete and countable.  Property~\textup{(T)} is the
-textbook complex-unitary property.  A $C^*$-homomorphism is unital only when
-this is stated.  In particular, an MF embedding may be nonunital, as is
-customary for embedding a unital algebra as a $C^*$-subalgebra.  If
-$e\colon A\to B$ is an injective, possibly nonunital $*$-homomorphism between
-unital $C^*$-algebras, then $u\mapsto e(u)+(1-e(1))$ is an injective
-homomorphism $\U(A)\to\U(B)$; this complement correction is used below.  For
-a unital $C^*$-algebra $A$
-we write $\U(A)$ for its unitary group.  On $M_r(\C)$ we use the
-normalized trace $\tr_r$, the operator norm $\opnorm{\cdot}$, and the
-normalized Hilbert--Schmidt norm
-$\hsnorm{x}=\tr_r(x^*x)^{1/2}$; for coordinate sequences we write
-$a\sim_2 b$ when $\hsnorm{a_n-b_n}\to0$.  We will use three elementary facts
-without further comment: $\hsnorm{x}\le\opnorm{x}$;
-$|\tr_r(x)|\le\opnorm{x}$; and $\hsnorm{uxv}=\hsnorm{x}$ for unitaries
-$u,v$.  For a nonempty finite set $Y$, write
-$M_Y(\C)=\C^{Y\times Y}$ for the corresponding indexed matrix algebra.
-
-Given a sequence $(d_n)_{n\in\N}$ of positive integers, we write
-\[
-  \mathcal Q\bigl((d_n)_{n\in\N}\bigr)
-  \;=\;\prod_{n\in\N}^{\ell^\infty} M_{d_n}(\C)
-  \Big/\bigoplus_{n\in\N}^{c_0} M_{d_n}(\C),
-\]
-the quotient of the bounded $C^*$-product by the ideal of sequences with
-$\opnorm{x_n}\to0$.  We call any such algebra a \emph{norm matrix
-corona}.  We also write
-\[
- \Ucor((d_n)_{n\in\N})
- =\prod_{n\in\N}\U(M_{d_n}(\C))\Big/
- \bigl\{(u_n):\opnorm{u_n-1}\longrightarrow0\bigr\}.
-\]
-Write $q\colon\prod_{n\in\N}^{\ell^\infty}M_{d_n}(\C)\to\mathcal Q$
-for the quotient map of a norm matrix corona.
-
-The following lifting facts are standard perturbation theory; see
-Loring \cite{Loring} for a systematic treatment.
-
-\begin{lemma}[lifting]\label{lem:lift}
-Every unitary $u\in\mathcal Q$ lifts to a sequence of unitaries.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting}
-\end{lemma}
-
-\begin{proof}
-Lift $u$ to an arbitrary bounded sequence $(x_n)$.  Since
-$q((x_n))$ is unitary, the one-sided Gram defect satisfies
-$\opnorm{x_n^*x_n-1}\to0$; no condition on $x_nx_n^*$ is needed.  Once
-$\opnorm{x_n^*x_n-1}\le\tfrac12$, the square Gram matrix $x_n^*x_n$ is
-invertible, hence so is $x_n$, and the polar correction
-$u_n=x_n(x_n^*x_n)^{-1/2}$ is unitary; continuous functional calculus
-gives the quantitative estimate
-\[
- \opnorm{u_n-x_n}
- \le 2\opnorm{x_n}\,\opnorm{x_n^*x_n-1}.
-\]
-The sequence $(x_n)$ is bounded, so the right-hand side tends to $0$.
-Setting $u_n=1$ at the finitely many remaining indices therefore gives a
-unitary sequence with $\opnorm{u_n-x_n}\to0$.
-\end{proof}
-
-\begin{lemma}[unitaries in the quotient]\label{lem:unitarycorona}
-For every sequence $(d_n)$, the map
-\[
- \kappa_{(d_n)}\colon \Ucor((d_n))\longrightarrow\U(\mathcal Q),
- \qquad [(u_n)]\longmapsto q((u_n)),
-\]
-is a canonical group isomorphism.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence}
-\end{lemma}
-
-\begin{proof}
-The map is well defined, and its kernel consists exactly of the unitary
-sequences satisfying $\opnorm{u_n-1}\to0$, so it is injective.  It is
-surjective by Lemma~\ref{lem:lift}: every unitary in $\mathcal Q$ has a
-unitary lift $(u_n)$, whose class in \eqref{eq:unitary-corona} maps to it.
-\end{proof}
-
-Corona representations, detection, and operator-norm asymptotic
-representations are as defined in Section~\ref{sec:transport}.
-Lemma~\ref{lem:unitarycorona} canonically identifies a corona
-representation with a homomorphism into $\Ucor((d_n))$, which we call
-its coordinate model.  A countable group is \emph{MF} if it admits an
-injective corona representation for a strictly increasing dimension
-sequence; by the dimension-amplification equivalence, allowing an
-arbitrary positive dimension sequence gives the same class of groups.
-No condition is imposed on an asymptotic representation at the identity:
-taking $g=h=1$ gives $\opnorm{U_n(1)-1}\to0$ automatically, since
-$U_n(1)$ is unitary.  Coordinate unitary lifts of a corona
-representation of a countable group form exactly such a sequence.
-
-The maximal group $C^*$-algebra $\Cmax(H)$ is used only for the final
-assertions of Theorem~\ref{thm:A}; the construction and its universal
-property, stated universe-relatively as the type-theoretic foundations of
-the accompanying formal development require, are recorded in
-Appendix~\ref{app:maxcstar}.
+The companion theorems are stated in their home sections:
+Theorem~\ref{thm:B}, the exact finite-dimensional analogue, opens
+Section~\ref{sec:findim}; Theorem~\ref{thm:C}, the cyclic comparison,
+opens Section~\ref{sec:necessity}; and Theorems~\ref{thm:D}
+and~\ref{thm:E}, the reduced-algebra and sofic--hyperlinear
+separations, open the corresponding subsections of
+Section~\ref{sec:consequences}.
 
 \section{The explicit presentation and its property-(T) base}\label{sec:group}
 
@@ -1547,6 +1443,40 @@ which block the same argument in Hilbert--Schmidt metrics
 
 \section{The finite-dimensional obstruction}\label{sec:findim}
 
+In finite dimensions the obstruction is elementary and needs neither
+property (T), nor unitarity, nor centrality of $w$; it kills the entire
+intrinsic defect \eqref{eq:intrinsicdefect}:
+
+\begin{mainthm}[the exact finite-dimensional analogue]\label{thm:B}
+Let $k$ be a field, $V$ a finite-dimensional $k$-vector space, $H$ a
+group, $\Gamma\le H$ a subgroup, and $t,c\in H$, $a\in\Gamma$ elements
+with $t\Gamma t^{-1}\subseteq\Gamma$ and $c\gamma=\gamma c$ for all
+$\gamma\in\Gamma$.  Then every homomorphism $\pi\colon H\to\GL(V)$
+satisfies
+\[
+  \pi\bigl(\bigl[\,tct^{-1},\;a(tct^{-1})a^{-1}\bigr]\bigr)\;=\;1 .
+\]
+More generally, every such $\pi$ sends the entire subgroup
+$\mathfrak D(H,\Gamma)$ to the identity.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB}
+\end{mainthm}
+
+Applied to $H=E$, Theorem~\ref{thm:B} shows that \emph{every}
+finite-dimensional representation of $E$ over \emph{every} field sends
+$w$ to the identity: finite-dimensional linear representations do not separate the points
+of $E$, no finite
+quotient can witness $w\neq 1$, and the infinite Clifford witness of
+Section~\ref{sec:witness} cannot be replaced by a finite-dimensional one.
+In the terminology of \cite[Definition~1.2]{BDL}, the central involution
+$w$, invisible in every finite quotient, makes $E$ a group of
+\emph{Deligne type}; such groups were proposed there as the natural
+candidate counterexamples for all three remaining approximation problems,
+and $E$ realizes that proposal at the operator-norm endpoint.
+Property~\textup{(T)} enters the corona argument through a finite-stage
+spectral corner for the adjoint action at each coordinate, and the
+equal-rank projection flip turns the one-sided compression of that
+corner into equality.
+
 We prove Theorem~\ref{thm:B}.  Everything happens inside the
 finite-dimensional algebra $\End_k(V)$.
 
@@ -1821,6 +1751,95 @@ apply verbatim to any finite normal $F\le\mathfrak D(H,L)$.
 \end{proof}
 
 
+\section{The cyclic comparison}\label{sec:necessity}
+
+The elementary finite-dimensional calculation of
+Section~\ref{sec:findim} does not by itself determine
+whether its marked word is trivial:
+
+\begin{mainthm}[the cyclic comparison]\label{thm:C}
+Define the marked presentation
+\[
+ E_{\mathrm{BS}}=\left\langle\gamma_0,t,c\ \middle|\
+ \begin{aligned}
+  &t\gamma_0t^{-1}=\gamma_0^2,\quad c^2=1,\quad[c,\gamma_0]=1,\\
+  &w_{\mathrm{BS}}^2=1,\quad
+    [w_{\mathrm{BS}},\gamma_0]=[w_{\mathrm{BS}},t]
+      =[w_{\mathrm{BS}},c]=1
+ \end{aligned}\right\rangle,
+\]
+where
+$w_{\mathrm{BS}}=[tct^{-1},\gamma_0(tct^{-1})\gamma_0^{-1}]$.
+Then $E_{\mathrm{BS}}$ is finitely presented and $w_{\mathrm{BS}}\ne1$.
+There is an explicit surjective homomorphism from $E_{\mathrm{BS}}$ onto its
+realized Clifford quotient that maps $w_{\mathrm{BS}}$ to the nontrivial
+central sign.  Nevertheless every finite-dimensional representation of
+$E_{\mathrm{BS}}$ over every field maps $w_{\mathrm{BS}}$ to the identity.
+\leanverified{Monsters/LiteralCyclicCalibration}{GroupApproximation.LiteralCyclicCalibration.manuscriptCyclicCalibration}
+\end{mainthm}
+
+The quotient statement makes the comparison at the level actually used by
+the proof: exact finite-dimensional invisibility does not by itself force
+triviality of the marked word.  The MF conclusion in
+Theorem~\ref{thm:A} is the separate uniform assertion supplied by the
+fixed-space argument.
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:C}]
+As with $w$, the relator $w_{\mathrm{BS}}^2=1$ is redundant
+--- $tct^{-1}$ and $\gamma_0(tct^{-1})\gamma_0^{-1}$ are involutions, so
+centrality forces it by \eqref{eq:involution-reversal} --- and is retained only to display the
+marked pattern.  Deleting it gives a six-relator presentation of the same
+group.
+The stable relation gives
+\(t\langle\gamma_0\rangle t^{-1}\subseteq
+\langle\gamma_0\rangle\), and \(c\) centralizes this cyclic base.
+The same commutant argument as in Theorem~\ref{thm:B} therefore maps
+\(w_{\mathrm{BS}}\) to the identity in every finite-dimensional
+representation over every field.
+
+For nontriviality, use the affine realization of
+\(\mathrm{BS}(1,2)\) and its coset action.  The root site is fixed by the
+cyclic base, while the two sites represented by \(t\) and \(\gamma_0t\)
+are distinct.  Attach Clifford generators to these sites and map \(c\) to
+the root lamp.  All seven relators hold, and
+\[
+ w_{\mathrm{BS}}\longmapsto
+ [c_{t\langle\gamma_0\rangle},
+  c_{\gamma_0t\langle\gamma_0\rangle}]
+ =-1.
+\]
+Thus \(w_{\mathrm{BS}}\ne1\).  Restricting the target to the subgroup
+generated by the three displayed images gives the asserted surjective
+realized quotient.  This comparison isolates the precise limitation of the
+finite-dimensional argument: exact finite-dimensional invisibility does not
+itself imply that the marked word is trivial.
+\end{proof}
+
+\paragraph{Sharpness of the Kazhdan hypothesis.}
+The realized Clifford quotient in Theorem~\ref{thm:C} is amenable, hence MF,
+and its quotient map detects $w_{\mathrm{BS}}$: some corona
+representation of $E_{\mathrm{BS}}$ separates the marked word from the
+identity, so property~\textup{(T)} cannot be omitted from the
+central-sign criterion.  (In the radical language of
+Section~\ref{sec:consequences}:
+$w_{\mathrm{BS}}\notin\operatorname{Rad}_{\mathrm{MF}}(E_{\mathrm{BS}})$.)
+The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
+solvable.  The Clifford lamp group on its coset space is locally finite, so
+their semidirect product is amenable.  The realized quotient is a subgroup
+of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
+Its marked word is the nontrivial Clifford sign by the calculation above.
+The amenable-implies-MF step is a literature input, outside the formal
+development; the non-LEF statement below is formalized.
+
+This MF detector is necessarily approximate: neither the group
+$E_{\mathrm{BS}}$ nor its realized Clifford quotient is LEF, and the latter is not
+residually finite.  Indeed, in every finite group the doubling relation makes
+the image of $\langle\gamma_0^2\rangle$ equal to the image of
+$\langle\gamma_0\rangle$; the lamp therefore commutes with the required
+``halved'' element and the marked word collapses.
+\leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
+
 \section{Consequences}\label{sec:consequences}
 
 We record the universal MF radical, the reduced-group-$C^*$ consequence, a
@@ -2069,7 +2088,100 @@ displayed presentation.  The group \(F_8\) is residually finite, hence MF by
 Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 \end{proof}
 
+\subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
+
+Every MF algebra is stably finite
+\cite{BK}, so Theorem~\ref{thm:D} exhibits a separable stably finite
+$C^*$-algebra that is not MF.  Abstract examples follow from the failure
+of the Connes embedding problem \cite{FGH}; the point here is
+concreteness: the algebra is the reduced group $C^*$-algebra of an
+explicit finitely presented group.  Even for
+$\Cred(\SL_3(\mathbb Z))$ and $\Cred(\SL_4(\mathbb Z))$ the MF property is
+undecided; only the stronger PMF property is known to fail, for
+$\SL_4(\mathbb Z)$ \cite{MdlS}.  Our example has the following properties:
+
+\begin{mainthm}[the reduced group algebra of $E$]\label{thm:D}
+$\Cred(E)$ is a unital separable $C^*$-algebra which carries a
+faithful tracial state --- and is therefore stably finite --- but is
+not an MF algebra.
+\leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD}
+\end{mainthm}
+
+The canonical homomorphism $\mathcal B\to E$ is injective: composing it
+with the homomorphism $E\to W$ of Proposition~\ref{prop:witness} gives
+$g\mapsto j(\bar g)$, and $\mathcal B\to\bar\Gamma$ is injective by
+Proposition~\ref{prop:literal-base-T} together with
+Lemma~\ref{lem:linear}.  Since the infinite Kazhdan group $\mathcal B$ is
+nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
+\cite{Lance}.  The nuclear form of the
+Blackadar--Kirchberg problem --- whether every stably finite separable
+nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
+Theorem~\ref{thm:D}.  The two classical facts used in this paragraph ---
+nonamenability of infinite Kazhdan groups and nonnuclearity of the
+reduced algebra of a nonamenable group --- are literature results quoted
+for orientation only; they are outside the formal development, and no
+theorem below depends on them.
+
+
+\begin{lemma}\label{lem:faithfultrace}
+Let $G_1$ be a countable discrete group.
+\begin{enumerate}
+\item The canonical tracial state $\tau$ on $\Cred(G_1)$ is
+faithful.
+\item Every unital $C^*$-algebra $A$ with a faithful tracial state
+is stably finite: for every nonempty finite index set $I$, every isometry
+in $M_I(A)$ is a unitary.  In particular this holds in $M_k(A)$ for every
+$k\ge1$.
+\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(1) Realize $\Cred(G_1)\subseteq B(\ell^2G_1)$ as the norm closure
+of the span of the left translation unitaries $\lambda_g$, and let
+$\rho_g$ be the right translation unitaries,
+$(\rho_g\xi)(h)=\xi(hg)$; each $\rho_g$ commutes with each
+$\lambda_{g'}$, hence with every element of $\Cred(G_1)$.  The
+canonical trace is $\tau(x)=\langle x\delta_e,\delta_e\rangle$.  If
+$\tau(x^*x)=0$ then $\lVert x\delta_e\rVert=0$, so $x\delta_e=0$,
+and then
+$x\delta_g=x\rho_{g^{-1}}\delta_e=\rho_{g^{-1}}x\delta_e=0$ for
+every $g\in G_1$.  The vectors $\delta_g$ are total in
+$\ell^2G_1$, so $x=0$.
+
+(2) On $M_k(A)$ the functional
+$\tau_k\bigl([x_{ij}]\bigr)=\tfrac1k\sum_i\tau(x_{ii})$ is a state
+with the trace property
+$\tau_k(xy)=\tfrac1k\sum_{i,j}\tau(x_{ij}y_{ji})=\tau_k(yx)$, and it
+is faithful: the $i$-th diagonal entry of $x^*x$ is
+$\sum_jx_{ji}^*x_{ji}$, so $\tau_k(x^*x)=0$ forces
+$\tau(x_{ji}^*x_{ji})=0$, hence $x_{ji}=0$, for all $i,j$.  If
+$v\in M_k(A)$ satisfies $v^*v=1$, then $y:=1-vv^*$ is a projection
+with
+$\tau_k(y)=\tau_k(1)-\tau_k(vv^*)=\tau_k(1)-\tau_k(v^*v)=0$; since
+$y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+$\Cred(E)$ is unital and separable since $E$ is countable; by
+Lemma~\ref{lem:faithfultrace} it carries a faithful tracial state
+and is stably finite.  It is not an MF algebra by
+Theorem~\ref{thm:A}.
+\end{proof}
+
 \subsection{A sofic non-MF group}
+
+The witness that proves $w\ne1$ carries the final separation:
+
+\begin{mainthm}[sofic and hyperlinear groups that are not MF]\label{thm:E}
+The Clifford witness $W=\ClLamp(X)\rtimes V$ of
+Proposition~\ref{prop:witness} is a finitely generated sofic group that
+is not MF; since sofic groups are hyperlinear, $W$ is likewise a
+hyperlinear group that is not MF.  In particular, neither soficity nor
+hyperlinearity implies the MF property.
+\leanverified{Endpoint/NonMFImpact}{GroupApproximation.NonMFImpact.witness_sofic_hyperlinear_nonMF}
+\end{mainthm}
+
 
 The Clifford witness has substantially more structure than was needed to
 prove $w\ne1$.
@@ -2179,108 +2291,6 @@ embedding theorem is a literature input; this paragraph is outside the
 formal development.)
 \end{proof}
 
-
-\subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
-
-\begin{lemma}\label{lem:faithfultrace}
-Let $G_1$ be a countable discrete group.
-\begin{enumerate}
-\item The canonical tracial state $\tau$ on $\Cred(G_1)$ is
-faithful.
-\item Every unital $C^*$-algebra $A$ with a faithful tracial state
-is stably finite: for every nonempty finite index set $I$, every isometry
-in $M_I(A)$ is a unitary.  In particular this holds in $M_k(A)$ for every
-$k\ge1$.
-\leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptFaithfulTraceAndStableFiniteness}
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-(1) Realize $\Cred(G_1)\subseteq B(\ell^2G_1)$ as the norm closure
-of the span of the left translation unitaries $\lambda_g$, and let
-$\rho_g$ be the right translation unitaries,
-$(\rho_g\xi)(h)=\xi(hg)$; each $\rho_g$ commutes with each
-$\lambda_{g'}$, hence with every element of $\Cred(G_1)$.  The
-canonical trace is $\tau(x)=\langle x\delta_e,\delta_e\rangle$.  If
-$\tau(x^*x)=0$ then $\lVert x\delta_e\rVert=0$, so $x\delta_e=0$,
-and then
-$x\delta_g=x\rho_{g^{-1}}\delta_e=\rho_{g^{-1}}x\delta_e=0$ for
-every $g\in G_1$.  The vectors $\delta_g$ are total in
-$\ell^2G_1$, so $x=0$.
-
-(2) On $M_k(A)$ the functional
-$\tau_k\bigl([x_{ij}]\bigr)=\tfrac1k\sum_i\tau(x_{ii})$ is a state
-with the trace property
-$\tau_k(xy)=\tfrac1k\sum_{i,j}\tau(x_{ij}y_{ji})=\tau_k(yx)$, and it
-is faithful: the $i$-th diagonal entry of $x^*x$ is
-$\sum_jx_{ji}^*x_{ji}$, so $\tau_k(x^*x)=0$ forces
-$\tau(x_{ji}^*x_{ji})=0$, hence $x_{ji}=0$, for all $i,j$.  If
-$v\in M_k(A)$ satisfies $v^*v=1$, then $y:=1-vv^*$ is a projection
-with
-$\tau_k(y)=\tau_k(1)-\tau_k(vv^*)=\tau_k(1)-\tau_k(v^*v)=0$; since
-$y=y^*y$, faithfulness gives $y=0$, i.e.\ $vv^*=1$.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:D}]
-$\Cred(E)$ is unital and separable since $E$ is countable; by
-Lemma~\ref{lem:faithfultrace} it carries a faithful tracial state
-and is stably finite.  It is not an MF algebra by
-Theorem~\ref{thm:A}.
-\end{proof}
-
-\section{The cyclic comparison}\label{sec:necessity}
-
-\begin{proof}[Proof of Theorem~\ref{thm:C}]
-As with $w$, the relator $w_{\mathrm{BS}}^2=1$ is redundant
---- $tct^{-1}$ and $\gamma_0(tct^{-1})\gamma_0^{-1}$ are involutions, so
-centrality forces it by \eqref{eq:involution-reversal} --- and is retained only to display the
-marked pattern.  Deleting it gives a six-relator presentation of the same
-group.
-The stable relation gives
-\(t\langle\gamma_0\rangle t^{-1}\subseteq
-\langle\gamma_0\rangle\), and \(c\) centralizes this cyclic base.
-The same commutant argument as in Theorem~\ref{thm:B} therefore maps
-\(w_{\mathrm{BS}}\) to the identity in every finite-dimensional
-representation over every field.
-
-For nontriviality, use the affine realization of
-\(\mathrm{BS}(1,2)\) and its coset action.  The root site is fixed by the
-cyclic base, while the two sites represented by \(t\) and \(\gamma_0t\)
-are distinct.  Attach Clifford generators to these sites and map \(c\) to
-the root lamp.  All seven relators hold, and
-\[
- w_{\mathrm{BS}}\longmapsto
- [c_{t\langle\gamma_0\rangle},
-  c_{\gamma_0t\langle\gamma_0\rangle}]
- =-1.
-\]
-Thus \(w_{\mathrm{BS}}\ne1\).  Restricting the target to the subgroup
-generated by the three displayed images gives the asserted surjective
-realized quotient.  This comparison isolates the precise limitation of the
-finite-dimensional argument: exact finite-dimensional invisibility does not
-itself imply that the marked word is trivial.
-\end{proof}
-
-\paragraph{Sharpness of the Kazhdan hypothesis.}
-The realized Clifford quotient in Theorem~\ref{thm:C} is amenable, hence MF,
-and its quotient map detects $w_{\mathrm{BS}}$.  In particular,
-$w_{\mathrm{BS}}\notin\operatorname{Rad}_{\mathrm{MF}}(E_{\mathrm{BS}})$,
-so property~\textup{(T)} cannot be omitted from the central-sign criterion.
-The affine group $\mathrm{BS}(1,2)\cong\mathbb Z[1/2]\rtimes\mathbb Z$ is
-solvable.  The Clifford lamp group on its coset space is locally finite, so
-their semidirect product is amenable.  The realized quotient is a subgroup
-of this amenable group and is therefore amenable, hence MF by \cite{TWW}.
-Its marked word is the nontrivial Clifford sign by the calculation above.
-The amenable-implies-MF step is a literature input, outside the formal
-development; the non-LEF statement below is formalized.
-
-This MF detector is necessarily approximate: neither the group
-$E_{\mathrm{BS}}$ nor its realized Clifford quotient is LEF, and the latter is not
-residually finite.  Indeed, in every finite group the doubling relation makes
-the image of $\langle\gamma_0^2\rangle$ equal to the image of
-$\langle\gamma_0\rangle$; the lamp therefore commutes with the required
-``halved'' element and the marked word collapses.
-\leanverified{Monsters/CyclicBaseLEFObstruction}{GroupApproximation.CyclicBaseLEFObstruction.cyclicBase_exactModel_package}
 
 \section{The operator-norm boundary}\label{sec:limits}
 
