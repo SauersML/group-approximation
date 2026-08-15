@@ -41,6 +41,8 @@ import GroupApproximation.Monsters.P13WeylFourthPowers
 import GroupApproximation.Monsters.P13SL2ComparisonAll
 import GroupApproximation.Monsters.SL3BlockEmbeddingAll
 import GroupApproximation.Monsters.P13ParabolicKernel
+import GroupApproximation.Monsters.P13ColumnLift
+import GroupApproximation.Monsters.P13KernelFactorization
 import GroupApproximation.Monsters.P13LowerUnipotentInjectivity
 import GroupApproximation.Monsters.SL2BraidPresentation
 import GroupApproximation.Monsters.P13SL2Comparison
