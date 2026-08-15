@@ -544,7 +544,9 @@ private theorem vword_difference (e₁ e₂ e₃ d₁ d₂ d₃ : ℤ) :
   calc (v1 : Base) ^ d₁ * v2 ^ d₂ * v3 ^ d₃
       = v1 ^ (e₁ + (d₁ - e₁)) * v2 ^ (e₂ + (d₂ - e₂)) *
           v3 ^ (e₃ + (d₃ - e₃)) := by
-        congr 1 <;> [skip; ring_nf] <;> congr 1 <;> ring_nf
+        rw [show e₁ + (d₁ - e₁) = d₁ from by ring,
+          show e₂ + (d₂ - e₂) = d₂ from by ring,
+          show e₃ + (d₃ - e₃) = d₃ from by ring]
     _ = (v1 ^ e₁ * v1 ^ (d₁ - e₁)) * (v2 ^ e₂ * v2 ^ (d₂ - e₂)) *
           (v3 ^ e₃ * v3 ^ (d₃ - e₃)) := by
         rw [zpow_add, zpow_add, zpow_add]
