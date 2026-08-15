@@ -9,6 +9,7 @@ import GroupApproximation.Kazhdan.KazhdanUniverse
 import GroupApproximation.Monsters.CliffordAlgebraLamp
 import GroupApproximation.Sofic.CDEOperatorMF
 import GroupApproximation.Sofic.ActualCoronaMFRadical
+import GroupApproximation.Sofic.DefectSaturation
 import GroupApproximation.Sofic.FiniteNormalAverageCorner
 import GroupApproximation.Sofic.FiniteNormalCompressionObstruction
 import GroupApproximation.Sofic.FiniteNormalCoronaObstruction
@@ -450,6 +451,84 @@ theorem manuscriptFaithfulTraceAndStableFiniteness :
   · intro A _ tau k hk v hv
     exact tau.matrix_mul_star_eq_one_of_star_mul_eq_one
       (Fin k) ⟨⟨0, hk⟩⟩ hv
+
+/-! ## The involutive collapse and defect saturation -/
+
+/-- Exact wrapper for the involutive-collapse data: the witness predicate
+is literally the displayed three conditions, and the involutive collapse
+defect is literally the normal closure of the displayed commutator set,
+normal in the ambient group. -/
+theorem manuscriptInvolutiveCollapsePattern :
+    ∀ {H : Type} [Group H] (L : Subgroup H) (s : H),
+    (∀ k : H,
+      InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ↔
+        (k * k = 1 ∧ (∀ γ ∈ L, Commute (s * γ * s⁻¹) k) ∧
+          (∀ γ₁ ∈ L, ∀ γ₂ ∈ L,
+            Commute (γ₁ * k * γ₁⁻¹) (γ₂ * k * γ₂⁻¹)))) ∧
+      InvolutionCollapseEndpoint.involutiveCollapseDefect L s =
+        Subgroup.normalClosure
+          {x | ∃ k : H,
+            InvolutionCollapseEndpoint.IsInvolutiveCompressionWitness L s k ∧
+            ∃ γ ∈ L, x = ⁅γ, k⁆} ∧
+      (InvolutionCollapseEndpoint.involutiveCollapseDefect L s).Normal := by
+  intro H _ L s
+  exact ⟨fun k ↦ Iff.rfl, rfl, inferInstance⟩
+
+/-- Exact wrapper for the collapse radical reduction: unconditionally the
+literal MF radical is the full preimage of the radical of the collapse
+quotient, and it equals the collapse defect exactly when the quotient is
+operator-MF. -/
+theorem manuscriptCollapseRadicalReduction :
+    ∀ {H : Type} [Group H] [Countable H]
+      {L : Subgroup H} (hT : HasKazhdanPropertyT.{0, 0} ↥L)
+      {s : H} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
+    actualCoronaMFResidual H =
+        (actualCoronaMFResidual
+          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s)).comap
+          (QuotientGroup.mk'
+            (InvolutionCollapseEndpoint.involutiveCollapseDefect L s)) ∧
+      (IsCDEOperatorMF
+          (H ⧸ InvolutionCollapseEndpoint.involutiveCollapseDefect L s) →
+        actualCoronaMFResidual H =
+          InvolutionCollapseEndpoint.involutiveCollapseDefect L s) := by
+  intro H _ _ L hT s hcomp
+  exact
+    ⟨InvolutionCollapseEndpoint.actualCoronaMFResidual_eq_comap_involutive_quotient
+        hT hcomp,
+      fun hquot ↦
+        InvolutionCollapseEndpoint.actualCoronaMFResidual_eq_involutiveCollapseDefect
+          hT hcomp hquot⟩
+
+/-- Exact wrapper for defect saturation: the collapse defect dies in every
+homomorphism to a countable operator-MF group, and a saturated defect
+forces the full literal MF radical, trivializes every homomorphism to a
+countable operator-MF group, and rules out operator-MF approximation of a
+nontrivial ambient group. -/
+theorem manuscriptDefectSaturation :
+    ∀ {H : Type} [Group H] [Countable H]
+      {L : Subgroup H} (hT : HasKazhdanPropertyT.{0, 0} ↥L)
+      {s : H} (hcomp : ∀ γ ∈ L, s * γ * s⁻¹ ∈ L),
+    (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
+        IsCDEOperatorMF Q →
+        InvolutionCollapseEndpoint.involutiveCollapseDefect L s ≤ f.ker) ∧
+      (InvolutionCollapseEndpoint.involutiveCollapseDefect L s = ⊤ →
+        actualCoronaMFResidual H = ⊤ ∧
+        (∀ {Q : Type} [Group Q] [Countable Q] (f : H →* Q),
+          IsCDEOperatorMF Q → ∀ x : H, f x = 1) ∧
+        (Nontrivial H → ¬ IsCDEOperatorMF H)) := by
+  intro H _ _ L hT s hcomp
+  constructor
+  · intro Q _ _ f hQ
+    exact DefectSaturation.involutiveCollapseDefect_le_ker_of_isCDEOperatorMF
+      hT hcomp f hQ
+  · intro hsat
+    refine ⟨DefectSaturation.actualCoronaMFResidual_eq_top_of_saturated
+        hT hcomp hsat, ?_, ?_⟩
+    · intro Q _ _ f hQ x
+      exact DefectSaturation.map_eq_one_of_saturated hT hcomp hsat f hQ x
+    · intro hNontrivial
+      letI := hNontrivial
+      exact DefectSaturation.not_isCDEOperatorMF_of_saturated hT hcomp hsat
 
 /-! ## The abstract obstruction over an invisible subgroup -/
 
