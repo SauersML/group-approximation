@@ -113,20 +113,15 @@ conjugation by $t$ preserves the Hilbert--Schmidt asymptotic commutant
 of $\Gamma$.  In $E$ this forces a commutator $u$ to converge to $1$ in
 normalized Hilbert--Schmidt norm, while an explicit Clifford-group
 quotient makes the central involution $w=u^2$ equal to $-1$ on a nonzero
-spectral corner --- a contradiction, so every matrix model of $E$
-collapses $w$.  More generally, every finitely presented
-property-\textup{(T)} group with a proper injective self-embedding
-produces a finitely presented non-MF group; the group $E$, with eight
-generators and forty-one relators, is the instance built on
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
+spectral corner; hence every matrix model of $E$ collapses $w$.  The
+construction runs from any finitely presented property-\textup{(T)}
+group with a proper injective self-embedding; $E$ is the instance built
+on $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.
 
 The homomorphism proving $w\ne1$ maps $E$ onto a second group $W$, a
-Clifford extension of a linear group.  We prove that $W$ is finitely
+Clifford extension of a linear group, which we prove is finitely
 generated, sofic --- hence hyperlinear --- and not MF; thus neither
-soficity nor hyperlinearity implies the MF property.  We do not determine here whether $E$
-itself is sofic or hyperlinear.  MF groups are closed under
-neither quotients nor extensions, and the reduced group $C^*$-algebra of
-$W$ is in addition exact.
+soficity nor hyperlinearity implies the MF property.
 \end{abstract}
 
 \maketitle
@@ -137,8 +132,10 @@ Can every countable discrete group be realized by matrices, if
 multiplication is only required to hold up to operator-norm errors that
 vanish along a sequence of finite dimensions?  Shulman calls the positive
 assertion the \emph{MF conjecture} \cite{Shulman}, and no group was known
-to fail it \cite{Schafhauser,Shulman}.  Residually finite groups satisfy
-it through their finite quotients, as do LEF groups \cite{CDE} and, by
+to fail it \cite{Schafhauser,Shulman}.  We prove that the answer is no:
+there is an explicit finitely presented group, on eight generators and
+forty-one relators, that is not MF.  Residually finite groups satisfy
+the conjecture through their finite quotients, as do LEF groups \cite{CDE} and, by
 quasidiagonality \cite{TWW}, all amenable groups; recent work establishes
 it for many amalgamated free products \cite{Schafhauser,Shulman,GKEMP}.
 The corresponding $C^*$-algebra question is older: Blackadar and
@@ -163,8 +160,8 @@ the subject.''  The Hamming case was disproved in 2026: the first
 nonsofic group was constructed by OpenAI \cite{OAI}, Fournier-Facio then
 gave a torsion-free example \cite{FFF}, and Kun--Thom developed further
 wreath-product examples \cite{KT}.  One-sided conjugation of a property-\textup{(T)} subgroup into itself,
-the mechanism driving those arguments, is also the conceptual ancestor of the present
-one.  Soficity concerns permutations in the Hamming metric, while MF concerns
+the mechanism driving those arguments, is also the starting point of the
+present one.  Soficity concerns permutations in the Hamming metric, while MF concerns
 unitaries in operator norm, so there is no direct metric comparison between
 the two approximation properties.  The operator-norm setting
 requires a different rigidity theorem, proved here by transporting
@@ -276,11 +273,10 @@ $C^*$-sense of having no proper isometries --- forces equality.)
 $d=tct^{-1}$ asymptotically commutes with it as well, and the commutator
 $u=[d,v_1]$ converges to $1$ in normalized Hilbert--Schmidt norm.  If
 some model detected the central involution $w=u^2$, cutting to the
-$-1$-spectral corner of $w$ --- the corner of $q=(1-\Theta(w))/2$ ---
-would give a model in which $w=-1$ exactly, at normalized
-Hilbert--Schmidt distance $2$ from $1$; but $w\ne1$ in $E$, witnessed by
-an explicit Clifford-group quotient in which $d$ and $v_1dv_1^{-1}$
-become anticommuting involutions and $w$ becomes the central sign.
+corner of $q=(1-\Theta(w))/2$ would give a model in which $w=-1$
+exactly, at normalized Hilbert--Schmidt distance $2$ from $1$.  But
+$w\ne1$ in $E$: an explicit Clifford-group quotient makes $d$ and
+$v_1dv_1^{-1}$ anticommuting involutions and $w$ the central sign.
 \end{enumerate}
 \[
  \boxed{\text{rigidity: }u\sim_2 1}
@@ -288,8 +284,8 @@ become anticommuting involutions and $w$ becomes the central sign.
  \boxed{\text{Clifford model: }w=u^2=-1.}
 \]
 
-Two groups play distinct roles throughout, and the distinction matters.
-The finitely presented group $E$ is the headline example: it is not MF,
+Two groups play distinct roles.
+The finitely presented group $E$ is the main example: it is not MF,
 and we do not determine whether $E$ itself is sofic or hyperlinear
 (Section~\ref{sec:limits}).  The homomorphism proving $w\ne1$ maps $E$
 onto a second, finitely generated group $W$, a Clifford extension of a
@@ -306,38 +302,28 @@ be controlled in operator norm on the Hilbert--Schmidt spaces.
 Hilbert--Schmidt-small defects alone do not provide
 that operator control, so the proof does not give a hyperlinear obstruction.
 
-\subsection*{Group-theoretic inputs}
-The proof of Theorem~\ref{thm:A} has no external group-theoretic inputs:
-property~\textup{(T)} of the base is proved intrinsically, from
-an exact rational spectral certificate through a replayed surjection and
-a fixed-point bridge (Proposition~\ref{prop:literal-base-T}), and the
-Clifford witness and finite-dimensional obstruction are proved directly.
-The classical identification of the base with
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- via the presentation of
-$\SL_3(\mathbb Z)$ from \cite{CRW} and property~\textup{(T)} of the
-affine group from \cite{BHV} --- is quoted as orientation only
-(Remark~\ref{rem:classical-base}).  A few later consequences quote
-literature results where indicated, always outside the formal claims:
-quasidiagonality of amenable groups \cite{TWW} in the sharpness
-discussion of Section~\ref{sec:necessity}, the Elek--Szab\'o extension
-theorem \cite{ElekSzabo} as context for the directly proved split-$\Z$
-case in Theorem~\ref{thm:E}, Mal'cev residual finiteness \cite{Malcev}
-as context for the congruence argument there, and the simple sofic
+\subsection*{Inputs and formal verification}
+The proof of Theorem~\ref{thm:A} is self-contained:
+property~\textup{(T)} of the base is proved from an exact rational
+spectral certificate, an explicit surjection verified relator by
+relator, and a fixed-point bridge
+(Proposition~\ref{prop:literal-base-T}), and the Clifford witness and
+finite-dimensional obstruction are proved directly.  The classical
+identification of the base with $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$
+(Remark~\ref{rem:classical-base}) is not used.  Later sections quote
+literature results only where indicated: quasidiagonality of amenable
+groups \cite{TWW} in Section~\ref{sec:necessity}, the Elek--Szab\'o
+extension theorem \cite{ElekSzabo} and Mal'cev residual finiteness
+\cite{Malcev} as context in Theorem~\ref{thm:E}, and the simple sofic
 embedding theorem \cite{ElekSzaboHyper} in the simple-envelope
 paragraph.
 
-\subsection*{Formal verification}
-Each gray ``formalized in Lean'' tag marks a closed theorem in the
-accompanying Lean~4 development stating exactly the printed claim.
-The formal track has no theorem inputs: in particular it derives
-property~\textup{(T)} of the twenty-relator base from an explicit
-rational spectral certificate rather than importing \cite{CRW} or \cite{BHV},
-and the printed proofs follow the formal dependency routes.
-Untagged literature consequences --- the nonamenability, nonnuclearity,
-exactness, simple-envelope, and amenable-MF-detector paragraphs ---
-remain deliberately outside that claim and are labelled where they occur.
-The public version of each tag links
-to the corresponding declaration on the reviewed source branch.
+Each gray ``formalized in Lean'' tag marks a theorem in the
+accompanying Lean~4 development stating exactly the printed claim; the
+formal development has no theorem-level inputs.  The paragraphs quoting
+the literature results above are outside it and are labelled where they
+occur.  The public version of each tag links to the corresponding
+declaration on the reviewed source branch.
 
 \subsection*{Relation to prior work}
 The closest conceptual analogue is the recent work on nonsofic groups.
@@ -352,8 +338,7 @@ compression from enlarging the corner.  The complementary finite-group corner th
 that rigidity into a fixed nontrivial element sent to the identity by every
 corona representation.  The Clifford central extension supplies the element
 whose survival is proved independently.
-The results of \cite{OAI,KT} provide context only: no theorem in this paper
-uses either one as an input.
+No theorem in this paper uses \cite{OAI,KT} as an input.
 
 Slofstra's constructions supply close precedents for the Clifford group,
 distinguished central involution, shift, and HNN doubling map
@@ -404,8 +389,7 @@ Finally, failure of the MF property for a group $C^*$-algebra does not by
 itself prevent the group from embedding into a corona: the group property
 requires only a faithful canonical image in some MF quotient of $\Cmax(E)$.
 The result here produces a specific nontrivial element in the kernel of every
-such representation.  For broader context see
-\cite{DGLT,BDL,OAI,KT,Shulman,Dadarlat,SlofstraCorrelations,SlofstraProfile,SlofstraVidick}.
+such representation.
 
 \subsection*{Organization}
 Section~\ref{sec:prelim} fixes notation, the corona lifting lemmas, and
@@ -536,8 +520,8 @@ Appendix~\ref{app:maxcstar}.
 
 \section{One-sided Kazhdan transport}\label{sec:transport}
 
-The rigidity mechanism is best remembered before the construction.  The
-same elementary principle appears in three finite worlds:
+The proof rests on one elementary principle, which appears in three
+finite settings:
 \[
  \begin{array}{c@{\quad}c@{\quad}c}
  X\subseteq Y,\ |X|=|Y| & V\subseteq W,\ \dim V=\dim W
@@ -645,17 +629,36 @@ This is the middle implication of the display at the head of the section,
 and it is the finite-dimensional substitute for finiteness of a norm
 ultraproduct: a one-sided compression cannot enlarge the corner.
 
-\emph{Assembly.}  Fix $\gamma$ and $\varepsilon>0$, let $M$ bound
+\emph{Assembly.}  Fix $\gamma$ and $\varepsilon>0$, let $M\ge1$ bound
 $\opnorm{x_n}$, and put $q=\min(1,\varepsilon/(40(M^2+1)))$.  For all
-large $n$: capture places $\xi_n$ within $q$-mass of $P_n\xi_n$; hence
-$T_n\xi_n$ lies close to the range of $Q_n$; leakage moves it into the
-range of $P_n$; and displacement makes $\Ad U_n(\iota(\gamma))$ almost
-fix it.  Bookkeeping through these three exchanges bounds the squared
-normalized Hilbert--Schmidt displacement of $T_n\xi_n$ by
-$18q^2M^2+16q\le\varepsilon$.  Since $T_n\xi_n$ is the vector of
-$U_n(s)x_nU_n(s)^*$, this proves the asserted convergence --- with an
-explicit rate in terms of $\kappa$, $|S|$, $M$, and the multiplicative
-defects of $U_n$ on the finitely many group elements involved.
+large $n$ the three estimates hold at tolerance $q$:
+\[
+ \hsnorm{(1-P_n)\xi_n}^2\le q,\qquad
+ \opnorm{(1-P_n)Q_n}\le q,\qquad
+ \opnorm{(A_n-1)P_n}\le q,
+\]
+where $A_n=\Ad U_n(\iota(\gamma))$.  Decompose the transported vector
+along the corner:
+\[
+ T_n\xi_n\;=\;P_nQ_n\,T_n\xi_n\;+\;(1-P_n)Q_n\,T_n\xi_n
+ \;+\;(1-Q_n)\,T_n\xi_n.
+\]
+Since $Q_n=T_nP_nT_n^*$ and $T_n$ is conjugation by a unitary,
+$\hsnorm{(1-Q_n)T_n\xi_n}=\hsnorm{T_n(1-P_n)\xi_n}
+=\hsnorm{(1-P_n)\xi_n}\le q^{1/2}$; the middle term obeys
+$\hsnorm{(1-P_n)Q_n\,T_n\xi_n}\le\opnorm{(1-P_n)Q_n}\hsnorm{\xi_n}
+\le qM$; and the displacement estimate moves the first term by at most
+$q\hsnorm{\xi_n}\le qM$.  Applying $A_n-1$, of operator norm at most
+$2$, to the last two terms and the displacement bound to the first,
+\[
+ \hsnorm{(A_n-1)\,T_n\xi_n}^2
+ \;\le\;\bigl(qM+2qM+2q^{1/2}\bigr)^2
+ \;\le\;18q^2M^2+16q\;\le\;\varepsilon.
+\]
+Since $T_n\xi_n$ is the vector of $U_n(s)x_nU_n(s)^*$, this proves the
+asserted convergence --- with an explicit rate in terms of $\kappa$,
+$|S|$, $M$, and the multiplicative defects of $U_n$ on the finitely many
+group elements involved.
 \end{proof}
 
 \begin{remark}[the ultraproduct view]\label{rem:ultraproduct}
@@ -677,9 +680,9 @@ threshold $\theta$ and replaces finiteness of $B_\omega$ by the
 equal-rank flip.
 \end{remark}
 
-\paragraph{The negative-corner picture.}
-The mechanism is easiest to see one level up, and this picture is the one
-to keep in mind.  Suppose a corona representation $\Theta$ of $H$ detects
+\paragraph{The negative-corner formulation.}
+The following corner formulation of the mechanism motivates the sign
+criterion.  Suppose a corona representation $\Theta$ of $H$ detects
 a central involution $\varepsilon=u^2$, where $u=[tct^{-1},\iota(a)]$ is
 a conjugation defect (data as in Theorem~\ref{thm:sign-criterion}
 below).  The nonzero projection
@@ -738,14 +741,11 @@ every corona representation.  Since $\varepsilon\ne1$, no corona
 representation of $H$ is injective, and $H$ is not MF.
 \end{proof}
 
-The negative-corner picture is the intuition; the finite-normal criterion
-is the engine.
-
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
-Given $\Gamma,\alpha,a$ as in the theorem below, the construction is most
-readable with one redundant generator $\varepsilon$: declare it to be a
-central involution and impose
+Given $\Gamma,\alpha,a$ as in the theorem below, the construction admits
+a transparent presentation with one redundant generator $\varepsilon$:
+declare it to be a central involution and impose
 \begin{equation}\label{eq:conceptual-sign}
  \boxed{\varepsilon=u^2,\qquad u=[tct^{-1},a].}
 \end{equation}
@@ -753,8 +753,8 @@ This is the conceptual presentation: rigidity forces $u\sim_2 1$, whereas
 the Clifford model makes $u^2=-1$.  The theorem below uses the
 Tietze-eliminated version.  Since $d=tct^{-1}$ is an involution,
 $u^2=[d,ada^{-1}]$; conversely, centrality of $u^2$ forces $(u^2)^2=1$.
-Thus the redundant sign costs one generator and saves the reader the only
-opaque word in the construction.
+Thus the redundant sign costs one generator and makes the defining word
+transparent.
 
 \begin{theorem}[Kazhdan--Clifford construction]
 \label{thm:kazhdan-clifford}
@@ -849,13 +849,11 @@ defect: in the presence of a property-\textup{(T)} subgroup
 $L=\iota(\Gamma)$, every finite normal subgroup of $H$ contained in
 $\mathfrak D(H,L)$ is killed by every corona representation of $H$.
 
-The same element $a$ drives both halves of the proof.  Analytically,
+The element $a$ enters both halves of the proof.  Analytically,
 $a\in\Gamma$, so fixed-space transport forces the displaced lamp to commute
 with its image in finite-dimensional norm models.  Geometrically,
 $a\notin\alpha(\Gamma)$, so $a$ moves that lamp to a different HNN coset,
-where Clifford anticommutation produces $-1$.  Thus $a$ lives on the boundary
-of the self-embedding: rigidity cannot detect that boundary, while the
-Clifford representation detects it by a sign.
+where Clifford anticommutation produces $-1$.
 
 The following theorem is the fully explicit instance, developed in
 Sections~\ref{sec:group}--\ref{sec:proofA}.
@@ -880,9 +878,8 @@ MF $C^*$-algebra.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA}
 \end{mainthm}
 
-For the group-approximation reader, the obstruction has an equivalent
-finite, dimension-free form in the usual local-model language, with no
-corona or ultrafilter mentioned:
+In local-model language, the obstruction has an equivalent finite,
+dimension-free form, with no corona or ultrafilter mentioned:
 
 \begin{corollary}[uniform finite operator-norm obstruction]\label{cor:uniform}
 There are a number $\delta>0$ and a finite set $F_0\subset E$ such that,
@@ -934,21 +931,15 @@ independent of $m$.
 \end{proof}
 
 For the proof of Theorem~\ref{thm:A}, put $d=tct^{-1}$ and $u=[d,v_1]$.
-Lemma~\ref{lem:square} gives the useful identity $w=u^2$.
-The proof has two opposed halves, both centered on $u$:
-\[
- \boxed{\text{matrix-corona rigidity: }u\sim_2 1}
- \quad\text{and}\quad
- \boxed{\text{Clifford model: }u^2=-1.}
-\]
-For a corona representation that detects $w$, cut to the negative central
-corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
-the corner identity gives $w=-1$.  This contradiction is the picture
-behind Theorem~\ref{thm:A}, and it is independently formalized as a
-stand-alone theorem about marked asymptotic representations.
-Section~\ref{sec:proofA} deduces the theorem from
-the sign criterion and the witness, and Section~\ref{sec:conj} proves the
-general finite-normal criterion that powers the sign criterion.
+Lemma~\ref{lem:square} gives the identity $w=u^2$.  For a corona
+representation that detects $w$, cutting to the negative central corner
+of $w$ gives a model in which $w=-1$ exactly, while Kazhdan transport
+gives $u\sim_2 1$ and hence $w=u^2\sim_2 1$ --- a contradiction, recorded
+in the formal development as a stand-alone theorem about marked
+asymptotic representations.  Section~\ref{sec:proofA} deduces the
+theorem from the sign criterion and the witness, and
+Section~\ref{sec:conj} proves the general finite-normal criterion behind
+the sign criterion.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -990,7 +981,7 @@ Section~\ref{sec:consequences}.
 We work throughout with the groups defined by the relators below.  The
 proof of property~\textup{(T)} is intrinsic to these presentations: an
 exact rational spectral certificate for an auxiliary Steinberg-type
-presentation, a replayed surjection onto the linear presentation, and a
+presentation, an explicit surjection onto the linear presentation, and a
 fixed-point bridge from the linear subgroup to the full base.  No
 identification with a matrix group enters the proof, and every later
 relation involving the base's image in $E$ is used directly from
@@ -1055,9 +1046,9 @@ generators also give
 The group $E$ is generated by the six elements $v_1,x,y,z,t,c$; in
 particular its minimal number of generators is at most six.
 \leanverified{Sofic/LiteralSixGenerator}{GroupApproximation.LiteralSixGenerator.literal_sixGenerated_finitelyPresented_nonMF}
-There is also a Tietze-equivalent presentation on these six generators with
-thirty-two relators; the routine calculation is printed for orientation,
-and the formal development uses only the six-generation bound above.
+There is also a Tietze-equivalent presentation on these six generators
+with thirty-two relators; the formal development uses only the
+six-generation bound above.
 In \eqref{eq:E}, eliminate $v_3$ and $v_2$ by the Tietze substitutions
 \[
  v_3=xv_1x^{-1},\qquad v_2=x^2v_1x^{-2}.
@@ -1108,9 +1099,11 @@ image of the base into itself.  It sends $c$ to $d=tct^{-1}$: the
 relations force $c$ to commute with all of $\iota(\mathcal B)$ and force
 $d$ to commute with the compressed copy, but do not require $d$ to commute
 with $\iota(v_1)$.  The marked word $w$ records that commutation defect.
-Only the one-sided inclusion is used by the analytic criterion; the separate
-Clifford witness proves that the canonical base map in this explicit group
-is injective.}
+Only the one-sided inclusion is used by the analytic criterion.  (The
+canonical base map in this explicit group is in fact injective, by the
+linear realization of Lemma~\ref{lem:linear} together with the classical
+identification of Remark~\ref{rem:classical-base}; no argument in this
+paper uses that.)}
 \label{fig:compression-pattern}
 \end{figure}
 
@@ -1162,10 +1155,10 @@ an invariant vector.  This yields a Kazhdan pair: $P_{13}$ has
 property~\textup{(T)}.  Certificates of this kind go back to Ozawa's
 algebraic characterization of property~\textup{(T)} \cite{Ozawa} and its
 computer-assisted implementations for $\SL_3(\mathbb Z)$
-\cite{NetzerThom}; the certificate used here is exact and is replayed in
+\cite{NetzerThom}; the certificate used here is exact and is verified in
 full inside the formal development.
 
-\emph{Step 2: the replayed surjection onto the linear presentation.}
+\emph{Step 2: the explicit surjection onto the linear presentation.}
 Map the six generators to the words
 \[
 \begin{gathered}
@@ -1178,12 +1171,13 @@ Map the six generators to the words
 \end{gathered}
 \]
 in the linear presentation $\mathcal R$ of \eqref{eq:sl3presentation}.
-A word-by-word replay inside $\mathcal R$, using only its eight displayed
-relators, checks that all thirteen relators of $P_{13}$ map to the
-identity, so the assignment defines a homomorphism
-$P_{13}\to\mathcal R$.  The same replay exhibits explicit words in the
-six images whose values are $z$ and $xy$, and a further replay shows that
-$z$ and $xy$ generate $\mathcal R$; hence the homomorphism is surjective.
+A word-by-word verification inside $\mathcal R$, using only its eight
+displayed relators, checks that all thirteen relators of $P_{13}$ map to
+the identity, so the assignment defines a homomorphism
+$P_{13}\to\mathcal R$.  The same computation exhibits explicit words in
+the six images whose values are $z$ and $xy$, and a further computation
+shows that $z$ and $xy$ generate $\mathcal R$; hence the homomorphism is
+surjective.
 Property~\textup{(T)} passes to quotients, so $\mathcal R$ has
 property~\textup{(T)}.
 
@@ -1233,8 +1227,8 @@ the generators in Lemma~\ref{lem:linear} is also recorded in \cite{CLV}
 --- the base $\mathcal B$ is then the affine group
 $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and property~\textup{(T)} of that
 affine group is classical \cite[Example~1.7.4(i)]{BHV}.  This
-identification is quoted for orientation only: the proof above does not
-use it, and no statement in this paper depends on it.
+identification is not used: the proof above is independent of it, and no
+statement in this paper depends on it.
 \end{remark}
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
@@ -1603,12 +1597,12 @@ $\Theta(f)=1$ for all $f\in F$.
 
 \begin{proof}
 The argument has two independent halves.  The first, which uses the
-Kazhdan datum, is a kill theorem in normalized Hilbert--Schmidt norm;
+Kazhdan datum, is a vanishing theorem in normalized Hilbert--Schmidt norm;
 the second, which uses only finiteness and normality of $F$, converts
 that tracial invisibility into an exact operator-norm contradiction on a
 coordinate corner.
 
-\emph{Half one: the defect dies tracially.}  Let $(U_{g,n})$ be
+\emph{Half one: tracial vanishing of the defect.}  Let $(U_{g,n})$ be
 coordinate unitary lifts of any operator-norm almost representation of
 $H$ (in particular, of a corona representation), and put
 \[
@@ -1667,7 +1661,7 @@ nontrivial on $F$.
 
 The proof of half two used only one property of $N_{\mathrm{comp}}$: every
 element is Hilbert--Schmidt invisible in every operator-norm almost
-representation of $H$.  Any normal subgroup with that tracial-kill
+representation of $H$.  Any normal subgroup with that tracial-vanishing
 property therefore obstructs its finite normal subgroups in exactly the
 same way; the intrinsic-defect theorem below exploits this
 factorization.
@@ -1898,8 +1892,7 @@ In particular $G_1$ is MF if and only if $R=\{1\}$.
 \leanverified{Sofic/ManuscriptExactWrappers}{GroupApproximation.ManuscriptExactWrappers.manuscriptUniversalMFQuotient}
 \end{proposition}
 
-The statement is presumably folklore once the radical is defined; the
-proof is included for completeness, with no claim of novelty.
+We include the short proof.
 
 \begin{proof}
 (3) If $\varphi\colon G_1\to M$ with $M$ MF and
@@ -2066,8 +2059,8 @@ Every countable locally finite group is MF.
 The proof is local: no exhaustion, direct limit, or diagonal argument is
 needed.  Given a finite test set $F$, local finiteness supplies one
 finite subgroup $K$ containing it.  The left regular permutation action
-of $K$, applied to a retraction of the group onto $K$ that is only
-required to restrict to the identity map on the test set, is an exact
+of $K$, applied to any map from the group to $K$ that restricts to the
+identity on the test set, is an exact
 finite local model on $F$, separating distinct elements by operator norm
 at least $1$ exactly as in Lemma~\ref{lem:rfmf}.  Thus the group is LEF,
 and the same local-to-corona direction of
@@ -2109,18 +2102,21 @@ not an MF algebra.
 
 The canonical homomorphism $\mathcal B\to E$ is injective: composing it
 with the homomorphism $E\to W$ of Proposition~\ref{prop:witness} gives
-$g\mapsto j(\bar g)$, and $\mathcal B\to\bar\Gamma$ is injective by
-Proposition~\ref{prop:literal-base-T} together with
-Lemma~\ref{lem:linear}.  Since the infinite Kazhdan group $\mathcal B$ is
+$g\mapsto j(\bar g)$, where $\bar g$ is the image of $g$ under the
+surjection $\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear}; that
+surjection is an isomorphism by the classical identification of
+Remark~\ref{rem:classical-base} (the twenty relators present the affine
+group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and $\bar\Gamma$ is that
+group in its matrix realization), and the level-zero map $j$ is
+injective.  Since the infinite Kazhdan group $\mathcal B$ is
 nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
 \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
 nuclear $C^*$-algebra is quasidiagonal --- is therefore untouched by
-Theorem~\ref{thm:D}.  The two classical facts used in this paragraph ---
-nonamenability of infinite Kazhdan groups and nonnuclearity of the
-reduced algebra of a nonamenable group --- are literature results quoted
-for orientation only; they are outside the formal development, and no
-theorem below depends on them.
+Theorem~\ref{thm:D}.  The classical facts used in this paragraph --- the presentation
+identification, nonamenability of infinite Kazhdan groups, and
+nonnuclearity of the reduced algebra of a nonamenable group --- are
+literature results used only here.
 
 
 \begin{lemma}\label{lem:faithfultrace}
@@ -2351,7 +2347,7 @@ trace-controlled MF conventions the implication is built into the definition.
 
 An \emph{operator-norm local model} for a countable group $G$, a finite
 set $F\subseteq G$, a separation constant $\delta>0$, and a tolerance
-$\varepsilon>0$ is a map $V\colon E\to\U(r)$, for some positive
+$\varepsilon>0$ is a map $V\colon G\to\U(r)$, for some positive
 dimension $r$, such that
 \begin{gather*}
  \opnorm{V(g)V(h)-V(gh)}\le\varepsilon\quad(g,h\in F),\\
@@ -2424,11 +2420,10 @@ Forgetting strict increase proves the converse.
 
 \section{The maximal group \texorpdfstring{$C^*$}{C*}-algebra}\label{app:maxcstar}
 
-For an ordinary reader, $\Cmax(H)$ is the usual maximal group
-$C^*$-algebra and this appendix says nothing surprising.  The formal
-development, working in type-theoretic foundations, constructs it
-relative to a set-theoretic universe, and the printed statement records
-that form exactly.  Fix a set-theoretic universe $\mathfrak U$.  For a
+This appendix records the maximal group $C^*$-algebra in the form used
+by the formal development, which works in type-theoretic foundations and
+constructs the algebra relative to a set-theoretic universe; the result
+is the usual maximal group $C^*$-algebra.  Fix a set-theoretic universe $\mathfrak U$.  For a
 $\mathfrak U$-small
 group $H$, define $C^{*}_{\max,\mathfrak U}(H)$ to be the closed
 $*$-subalgebra generated by the diagonal copy of $H$ in the bounded product
