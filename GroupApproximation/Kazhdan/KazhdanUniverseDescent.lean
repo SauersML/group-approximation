@@ -37,7 +37,7 @@ noncomputable instance : InnerProductSpace ℝ (ULift.{v} E) where
   conj_inner_symm x y := by
     show (starRingEnd ℝ) ⟪y.down, x.down⟫ = ⟪x.down, y.down⟫
     rw [starRingEnd_apply, star_trivial]
-    exact real_inner_comm y.down x.down
+    exact real_inner_comm x.down y.down
   add_left x y z := inner_add_left x.down y.down z.down
   smul_left x y r := by
     show ⟪r • x.down, y.down⟫ = (starRingEnd ℝ) r * ⟪x.down, y.down⟫

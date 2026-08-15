@@ -35,7 +35,8 @@ universe u v
 
 section UnitaryMap
 
-variable {A : Type*} {B : Type*} [CStarAlgebra A] [CStarAlgebra B]
+variable {A : Type*} {B : Type*} [Semiring A] [Algebra ℂ A] [StarMul A]
+  [Semiring B] [Algebra ℂ B] [StarMul B]
 
 /-- A unital star homomorphism maps unitaries to unitaries. -/
 def unitaryMap (π : A →⋆ₐ[ℂ] B) : unitary A →* unitary B where
