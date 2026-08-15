@@ -176,6 +176,8 @@ jobs:
     name: Build and audit
     needs: [gate, p13]
     if: ${{ needs.gate.outputs.run == 'true' }}
+    outputs:
+      fresh: ${{ steps.kernel-scope.outputs.fresh }}
     runs-on: ubuntu-latest
     # A few hundred modules of analysis on top of Mathlib.  A cold first build
     # can run for hours; every run saves whatever it compiled (see the
@@ -453,20 +455,20 @@ jobs:
             '+refs/heads/verified:refs/remotes/origin/verified'
           if git diff --quiet refs/remotes/origin/verified HEAD -- \
               GroupApproximation.lean GroupApproximation \
-              lakefile.toml lake-manifest.json lean-toolchain scripts; then
+              lakefile.toml lake-manifest.json lean-toolchain scripts \
+              .github; then
             echo "Lean-relevant tree identical to verified; the standing fresh kernel verdict applies."
             echo "fresh=false" >> "$GITHUB_OUTPUT"
           else
             echo "fresh=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # The toolchain's built-in checker replays every olean through a fresh
-      # kernel environment, so a result that survives it does not rest on the
-      # elaborator being correct.  It is shipped with Lean from v4.28 onward;
-      # using the pinned toolchain also guarantees olean compatibility.
-      - name: Fresh kernel re-check (leanchecker)
-        if: steps.kernel-scope.outputs.fresh == 'true'
-        run: lake env leanchecker --fresh GroupApproximation
+      # The fresh kernel re-check itself now runs in the parallel `kernel`
+      # matrix job below, which restores this job's saved build cache and
+      # replays disjoint slices of the module tree through fresh kernel
+      # environments.  Promotion to `verified` requires the WHOLE run to
+      # succeed, so a red shard blocks promotion exactly as the old inline
+      # step did; this job's own verdict below still covers every scan.
 
       # THE GATE.  The scan steps above defer their verdict here so that one
       # run names every finding; this step is what makes that deferral safe.
@@ -502,3 +504,92 @@ jobs:
             exit 1
           fi
           echo "zero tolerance: source scans, counterpart contract, and kernel audit all clean."
+
+  kernel:
+    name: Fresh kernel re-check (shard ${{ matrix.shard }})
+    needs: [gate, prove]
+    if: needs.gate.outputs.run == 'true' && needs.prove.outputs.fresh == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Cache Lean toolchain
+        id: elan-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Add elan to PATH
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore Lake dependencies
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Cache Mathlib olean archives
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/mathlib
+          key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Fetch precompiled Mathlib
+        run: lake exe cache get
+
+      # The `prove` job saved the fully built tree (its own oleans plus the
+      # P13 artifact contents) before this job started; the run-id-suffixed
+      # primary key guarantees the restore below sees exactly that save
+      # through the prefix fallback.
+      - name: Restore compiled project
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-
+
+      # Deterministic 12-way partition of every module in the library, by
+      # sorted index modulo the shard count.  A synthetic root importing the
+      # shard's modules is compiled against the restored build (seconds, and
+      # Lake's hashing rebuilds anything stale rather than trusting it), and
+      # the toolchain's built-in checker then replays that root's full
+      # import closure through a fresh kernel environment.  Every module of
+      # the library lies in some shard's closure, and the shared Mathlib
+      # prefix is re-verified by every shard; the union of the twelve green
+      # shards is therefore at least as strong as the old single
+      # `leanchecker --fresh GroupApproximation` invocation.
+      - name: Fresh kernel re-check (leanchecker)
+        shell: bash
+        run: |
+          set -euo pipefail
+          i=0
+          : > KernelShard.lean
+          while read -r f; do
+            mod="${f%.lean}"
+            mod="${mod//\//.}"
+            if [ $((i % 12)) -eq ${{ matrix.shard }} ]; then
+              echo "import $mod" >> KernelShard.lean
+            fi
+            i=$((i+1))
+          done < <({ find GroupApproximation -name '*.lean' -type f; } | LC_ALL=C sort)
+          if [ "${{ matrix.shard }}" -eq 0 ]; then
+            echo "import GroupApproximation" >> KernelShard.lean
+          fi
+          wc -l KernelShard.lean
+          lake env lean KernelShard.lean -o .lake/build/lib/lean/KernelShard.olean
+          lake env leanchecker --fresh KernelShard
