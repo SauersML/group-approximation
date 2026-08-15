@@ -150,6 +150,10 @@ CLAIM_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/ScaledKazhdanTransport",
         "GroupApproximation.ScaledKazhdanTransport.scaled_transport_both",
     ),
+    "thm:p13-complete": (
+        "Monsters/P13DescentMaster",
+        "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
+    ),
     "thm:markedclosed": (
         "Sofic/MarkedMFClosed",
         "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",

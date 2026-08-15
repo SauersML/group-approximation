@@ -505,6 +505,26 @@
       ]
     },
     {
+      "id": "thm:p13-complete",
+      "environment": "theorem",
+      "title": "completeness of the thirteen-relator presentation",
+      "statement_sha256": "32cf3b27267b128d3d24a79fe0b2150596fb9cc7247c17dc994d3521f544641d",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Monsters/P13DescentMaster",
+          "declaration": "GroupApproximation.P13DescentMaster.p13CompletenessEquiv",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "con:clifford",
       "environment": "construction",
       "title": "Clifford lamp groups",
