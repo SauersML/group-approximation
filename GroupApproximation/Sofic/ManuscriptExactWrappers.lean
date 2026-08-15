@@ -609,11 +609,6 @@ theorem manuscriptDefectSaturation :
 
 /-! ## The abstract obstruction over an invisible subgroup -/
 
-/-- Exact wrapper for the abstract normal-Kazhdan obstruction: if every
-element of `D` is killed in the tracial ultraproduct attached to every
-operator-norm almost representation, then every normal property-`(T)`
-subgroup of `D` dies in every norm matrix C*-corona representation, for
-literal positive natural matrix dimensions. -/
 /-- Manuscript Definition (Hilbert--Schmidt invisibility): the element
 is killed in the tracial ultraproduct attached to every operator-norm
 almost representation, along every ultrafilter refining the cofinite
@@ -625,6 +620,11 @@ def ManuscriptHSInvisible {H : Type} [Group H] (g : H) : Prop :=
     (KazhdanCompressionCore.toAsymptoticUnitaryRepresentation B).toUltraproductHom
       hcof g = 1
 
+/-- Exact wrapper for the abstract normal-Kazhdan obstruction: if every
+element of `D` is killed in the tracial ultraproduct attached to every
+operator-norm almost representation, then every normal property-`(T)`
+subgroup of `D` dies in every norm matrix C*-corona representation, for
+literal positive natural matrix dimensions. -/
 theorem manuscriptAbstractNormalKazhdanObstruction :
     ∀ {H : Type} [Group H] [Countable H]
       (D : Subgroup H)

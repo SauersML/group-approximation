@@ -1702,14 +1702,49 @@ realification and complexification identify it with the complex-unitary
 formulation.
 \end{proof}
 
+The auxiliary presentation of Step 1 presents the group it is modelled
+on.
+
+\begin{theorem}[completeness of the thirteen-relator presentation]
+\label{thm:p13-complete}
+The canonical homomorphism $P_{13}\to\SL_3(\mathbb Z)$, sending each
+generator $e_{ij}$ to the corresponding elementary matrix, is an
+isomorphism.
+\leanverified{Monsters/P13DescentMaster}{GroupApproximation.P13DescentMaster.p13CompletenessEquiv}
+\end{theorem}
+
+\begin{proof}[Proof route]
+Surjectivity is Euclidean elimination.  Injectivity is the unstable
+$K_2(3,\mathbb Z)=\mathbb Z/2$ computation in presentation form: every
+word in unit root letters normalizes, by a descent on the
+lexicographic measure of its trajectory over the third basis column,
+into a norm-monotone word times an element of the signed-swap
+subgroup $\langle w_{13},w_{23}\rangle$.  For a kernel word the
+monotone trajectory is squeezed at norm one, so every letter fixes
+the base column; conjugating through the signed-swap tail lands the
+word in the parabolic subgroup
+$\langle e_{12},e_{21},e_{31},e_{32}\rangle$, whose elements the
+matrix model separates by their semidirect normal form.  The
+signed-swap subgroup itself is governed, over $\mathbb Z$, by a
+six-coset Schreier system whose every Schreier element is a power of
+the block Weyl element; the classical obstruction $\{-1,-1\}=w^{4}$
+is killed by the displayed relator, and with it the kernel.
+\end{proof}
+
 \begin{remark}[the classical identification]\label{rem:classical-base}
-Classically, the eight relations \eqref{eq:sl3presentation} present
-$\SL_3(\mathbb Z)$ \cite[Theorem~2]{CRW}; the matrix-labelled form of
-the generators in Lemma~\ref{lem:linear} is also recorded in
-\cite{CLV}.  The base $\mathcal B$ is then the affine group
-$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$.  Property~\textup{(T)} of that
-affine group is classical \cite[Example~1.7.4(i)]{BHV}.  Thus property~\textup{(T)} of $\mathcal B$ also follows from the
-classical results; the proof above is independent of them.
+The eight relations \eqref{eq:sl3presentation} present
+$\SL_3(\mathbb Z)$: Theorem~\ref{thm:p13-complete} composed with the
+surjection of Step 2 identifies $\mathcal R$ with $\SL_3(\mathbb Z)$,
+and the base $\mathcal B$ is then the affine group
+$\mathbb Z^3\rtimes\SL_3(\mathbb Z)$ --- the surjection
+$\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear} onto the matrix
+realization is an isomorphism.
+\leanverified{Monsters/LiteralBaseCompleteness}{GroupApproximation.LiteralBaseCompleteness.baseAffineEquiv}
+The presentations go back to \cite[Theorem~2]{CRW}, with the
+matrix-labelled generators also recorded in \cite{CLV}, and
+property~\textup{(T)} of the affine group is classical
+\cite[Example~1.7.4(i)]{BHV}; the proofs here are independent of
+these sources, and so is the identification.
 \end{remark}
 
 \section{The witness: \texorpdfstring{$w\neq 1$}{w is nontrivial}}\label{sec:witness}
@@ -2661,18 +2696,15 @@ this, compose it with the homomorphism $E\to W$ of
 Proposition~\ref{prop:witness}; the composite is $g\mapsto j(\bar g)$,
 where $\bar g$ is the image of $g$ under the surjection
 $\mathcal B\to\bar\Gamma$ of Lemma~\ref{lem:linear}.  That surjection
-is an isomorphism by the classical identification of
-Remark~\ref{rem:classical-base}: the twenty relators present the affine
-group $\mathbb Z^3\rtimes\SL_3(\mathbb Z)$, and $\bar\Gamma$ is that
-group in its matrix realization.  The level-zero map $j$ is injective,
+is an isomorphism (Remark~\ref{rem:classical-base}).  The level-zero
+map $j$ is injective,
 so the composite is injective.  Since the infinite Kazhdan group $\mathcal B$ is
 nonamenable, so is $E$.  Hence $\Cred(E)$ is not nuclear
 \cite{Lance}.  The nuclear form of the
 Blackadar--Kirchberg problem --- whether every stably finite separable
-nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.  This paragraph uses three classical literature
-inputs, used only here: the presentation identification,
-nonamenability of infinite Kazhdan groups, and nonnuclearity of the
-reduced algebra of a nonamenable group.
+nuclear $C^*$-algebra is quasidiagonal --- therefore remains open.  This paragraph uses two classical literature
+inputs, used only here: nonamenability of infinite Kazhdan groups and
+nonnuclearity of the reduced algebra of a nonamenable group.
 
 
 \begin{lemma}\label{lem:faithfultrace}
