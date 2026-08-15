@@ -469,7 +469,7 @@ wreath-compression-mf-radical [OPEN] Exact MF radicals of compression wreath pro
 - **mf-invariant-corner-visibility** [2 live route(s) need it] [Every MF-visible element is visible in an invariant corner](mf-invariant-corner-visibility.md) — unclaimed
 - **amalgam-edge-compatible-corona-embeddings** [1 live route(s) need it] [Edge-compatible corona embeddings for the literal marked amalgam](amalgam-edge-compatible-corona-embeddings.md) — unclaimed
 - **commutant-projection-extraction** [1 live route(s) need it] [Corner-invisible central unitaries in a matrix corona are trivial](commutant-projection-extraction.md) — unclaimed
-- **commuting-lamp-quotient-mf** [1 live route(s) need it] [MF property of the commuting-lamp witness quotient](commuting-lamp-quotient-mf.md) — 🔒 `cairn-quotient-mf` (10757m53s remaining)
+- **commuting-lamp-quotient-mf** [1 live route(s) need it] [MF property of the commuting-lamp witness quotient](commuting-lamp-quotient-mf.md) — 🔒 `cairn-quotient-mf` (10579m28s remaining)
 - **corona-commuting-torsion-lifts** [1 live route(s) need it] [Exact commuting finite-spectrum lifts of countable commuting torsion families](corona-commuting-torsion-lifts.md) — unclaimed
 - **edge-pair-mixed-gap-collapse** [1 live route(s) need it] [Mixed-gap collapse for high-dimensional edge-irreducible pairs](edge-pair-mixed-gap-collapse.md) — unclaimed
 - **exel-loring-mark-quantization** [1 live route(s) need it] [The Exel--Loring winding number pins the phase of an infinite-order central mark](exel-loring-mark-quantization.md) — unclaimed
@@ -484,7 +484,7 @@ wreath-compression-mf-radical [OPEN] Exact MF radicals of compression wreath pro
 - **kl-violating-equation-over-leavitt-unit-group** [1 live route(s) need it] [A Kervaire--Laudenbach-violating equation over the binary Leavitt unit group](kl-violating-equation-over-leavitt-unit-group.md) — unclaimed
 - **kt-centralizer-normalization-hs** [1 live route(s) need it] [Hilbert–Schmidt analogue of Kun–Thom centralizer normalization](kt-centralizer-normalization-hs.md) — unclaimed
 - **kun-thom-wreath-weak-mf** [1 live route(s) need it] [Weak MF status of the Kun--Thom commuting-lamp wreath](kun-thom-wreath-weak-mf.md) — unclaimed
-- **leavitt-steinberg-hs-unstable** [1 live route(s) need it] [The binary Leavitt Steinberg cover is normalized-HS unstable](leavitt-steinberg-hs-unstable.md) — 🔒 `cairn-fork` (3575m35s remaining)
+- **leavitt-steinberg-hs-unstable** [1 live route(s) need it] [The binary Leavitt Steinberg cover is normalized-HS unstable](leavitt-steinberg-hs-unstable.md) — 🔒 `cairn-fork` (3397m11s remaining)
 - **pauli-carrier-membership-decoder** [1 live route(s) need it] [Decode the transported Pauli carrier inside the raw binary algebra](pauli-carrier-membership-decoder.md) — unclaimed
 - **quantized-scale-index** [1 live route(s) need it] [Quantized scale index synchronizing the two commutant exhaustion scales](quantized-scale-index.md) — unclaimed
 - **random-complex-linear-cocycle-stability** [1 live route(s) need it] [Linear cocycle stability rate for random 2-dimensional Linial--Meshulam complexes](random-complex-linear-cocycle-stability.md) — unclaimed
@@ -530,10 +530,10 @@ wreath-compression-mf-radical [OPEN] Exact MF radicals of compression wreath pro
 
 ## Recently touched
 
-- 2026-08-14 · common-quotient-onto-normal-subgroup [ESTABLISHED] A common quotient of two acylindrically hyperbolic groups onto a prescribed normal subgroup
+- 2026-08-14 · defect-normally-generates-torsion-free-quotient [ESTABLISHED] The simple factor can be made to normally generate a Kazhdan subgroup of the quotient
 - 2026-08-14 · marked-double-coset-infinite-degree [ESTABLISHED] The marked double coset of the Laurent Kun--Thom pair has infinite degree
 - 2026-08-14 · leavitt-steinberg-hs-unstable [OPEN] The binary Leavitt Steinberg cover is normalized-HS unstable
-- 2026-08-14 · defect-normally-generates-torsion-free-quotient [ESTABLISHED] The simple factor can be made to normally generate a Kazhdan subgroup of the quotient
+- 2026-08-14 · common-quotient-onto-normal-subgroup [ESTABLISHED] A common quotient of two acylindrically hyperbolic groups onto a prescribed normal subgroup
 - 2026-08-14 · wreath-not-sofic [ESTABLISHED] The wreath candidate is not sofic
 - 2026-08-14 · wreath-not-sofic-proof [COMPLETE] Identification of the candidate with Kun–Thom's Theorem E pair
 - 2026-08-14 · wreath-amenable-near-representation [OPEN] The wreath candidate admits an essentially free amenable near representation
@@ -541,7 +541,7 @@ wreath-compression-mf-radical [OPEN] Exact MF radicals of compression wreath pro
 
 ## Active locks
 
-- 🔒 commuting-lamp-quotient-mf — `cairn-quotient-mf`, 10757m53s remaining
-- 🔒 defect-normally-generates-torsion-free-quotient — `cairn-smallcancel`, 10756m50s remaining
-- 🔒 leavitt-steinberg-hs-unstable — `cairn-fork`, 3575m35s remaining
-- 🔒 literal-mark-quotient-mf — `cairn-quotient-mf`, 10757m53s remaining
+- 🔒 commuting-lamp-quotient-mf — `cairn-quotient-mf`, 10579m28s remaining
+- 🔒 defect-normally-generates-torsion-free-quotient — `cairn-smallcancel`, 10578m26s remaining
+- 🔒 leavitt-steinberg-hs-unstable — `cairn-fork`, 3397m11s remaining
+- 🔒 literal-mark-quotient-mf — `cairn-quotient-mf`, 10579m28s remaining

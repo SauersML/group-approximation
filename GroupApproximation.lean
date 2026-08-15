@@ -5,6 +5,7 @@ import GroupApproximation.Analysis.FaithfulTracialMatrix
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Analysis.MaximalGroupCStar
+import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.OperatorMFMarkovWitness
 import GroupApproximation.Computability.CStarRecognitionConsequences
@@ -218,6 +219,8 @@ import GroupApproximation.Sofic.ManuscriptKazhdanTransport
 import GroupApproximation.Sofic.NormalKazhdanCompressionObstruction
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
 import GroupApproximation.Sofic.NormalKazhdanMFRadical
+import GroupApproximation.Sofic.TorsionFreeFullMFRadical
+import GroupApproximation.Sofic.TorsionFreeFullMFConsequences
 import GroupApproximation.Sofic.TensorPowerAmplification
 import GroupApproximation.Sofic.OperatorMFPairAmplification
 import GroupApproximation.Sofic.OperatorMFLocalNormalization
@@ -448,6 +451,7 @@ import GroupApproximation.Sofic.SoficFiniteSemidirect
 import GroupApproximation.Sofic.SymmetricDoubleFlip
 import GroupApproximation.Sofic.LineDouble
 import GroupApproximation.Sofic.DoubleSoficTransfer
+import GroupApproximation.Sofic.MFNonsoficDoubleEndpoint
 import GroupApproximation.Sofic.FreeLampRigidity
 import GroupApproximation.Sofic.ProfiniteClosure
 import GroupApproximation.Sofic.CentralFreeLampCover

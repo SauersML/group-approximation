@@ -1,0 +1,491 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[margin=1.2in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+\newcommand{\N}{\mathbb N}
+\newcommand{\C}{\mathbb C}
+\newcommand{\RadMF}{\operatorname{Rad}_{\mathrm{MF}}}
+\newcommand{\ncl}[1]{\langle\!\langle #1\rangle\!\rangle}
+
+\title[Saturating the compression defect]{Saturating the compression defect:\\
+a torsion-free finitely presented group\\ with no sofic and no MF quotients}
+\author{Draft note for expert review --- not for citation}
+\date{August 14, 2026}
+
+\begin{document}
+
+\begin{abstract}
+We combine the construction of Fournier-Facio's torsion-free non-sofic
+group with one further application of Hull's small-cancellation theorem for
+acylindrically hyperbolic groups, routed so that the embedded simple factor
+normally generates the resulting quotient.  The output is a
+$2$-generated, finitely presented, torsion-free group $Q$ with property
+\textup{(T)}, acylindrically hyperbolic, such that \emph{every} nontrivial
+quotient of $Q$ --- including $Q$ itself --- is non-sofic and has full MF
+radical: every homomorphism from a nontrivial quotient of $Q$ to the unitary
+group of a norm matrix corona is trivial.  The two obstruction halves
+(the norm-corona radical theorem and the nonsoficity criterion) and all
+algebraic packaging are machine-checked in Lean; the geometric
+small-cancellation existence input is cited from Hull, Osin, and
+Fournier-Facio and is exactly the unformalized boundary.  This note isolates
+that boundary for expert scrutiny.
+\end{abstract}
+
+\maketitle
+
+\section{Status and purpose}\label{sec:status}
+
+This note is a request for a sanity check, not an announcement.  It
+assembles a strengthening of the construction in \cite{FFF} from three
+components:
+
+\begin{enumerate}
+\item a machine-checked analytic theorem: a normal property-\textup{(T)}
+  subgroup contained in the \emph{compression defect} of a group lies in its
+  MF radical (\S\ref{sec:obstruction});
+\item a machine-checked algebraic observation: in the Fournier-Facio
+  configuration the compression defect is exactly the normal closure of the
+  embedded simple factor (\S\ref{sec:ff});
+\item a small-cancellation step, assembled entirely from published
+  statements of Hull and Osin: the normal closure of the simple factor can be
+  routed \emph{onto} a further quotient while preserving finite presentation,
+  torsion-freeness, two loxodromic generators, and a protected finite set
+  (\S\ref{sec:saturation}).
+\end{enumerate}
+
+Components (1) and (2), the nonsoficity criterion, and every implication
+downstream of (3) are formalized in Lean~4 in the accompanying repository;
+\S\ref{sec:boundary} states the exact certification boundary.  Component (3)
+is the only part that is not formalized, and it is the part this note asks an
+expert in acylindrical small cancellation to audit.  The main claim is
+Theorem~\ref{thm:main}.
+
+Throughout, \emph{MF group} has the Carri\'on--Dadarlat--Eckhardt meaning
+\cite{CDE}: a countable discrete group $G$ is MF if it embeds in the unitary
+group of a \emph{norm matrix corona}
+$\mathcal Q=\prod_n M_{d_n}(\C)/\bigoplus_n M_{d_n}(\C)$
+(bounded sequences modulo sequences vanishing in operator norm).  The
+\emph{MF radical} $\RadMF(G)$ is the intersection of the kernels of all
+homomorphisms $G\to\mathcal U(\mathcal Q)$ over all coronas; thus $G$ is
+non-MF as soon as $\RadMF(G)\neq1$, and $\RadMF(G)=G$ says that every
+homomorphism from $G$ to the unitary group of any norm matrix corona is
+trivial.
+
+\section{The machine-checked obstructions}\label{sec:obstruction}
+
+\begin{definition}\label{def:core}
+A \emph{compression core} on a countable group $G$ consists of a group
+$\Gamma$ with property \textup{(T)}, a homomorphism
+$\iota\colon\Gamma\to G$, an element $t\in G$ with
+$t\,\iota(\Gamma)\,t^{-1}\subseteq\iota(\Gamma)$, and an element $c\in G$
+commuting with $\iota(\Gamma)$.  Its \emph{defect} is the normal subgroup
+\[
+D \;=\; \ncl{\,[\,t c t^{-1},\ \iota(\gamma)\,]\ :\ \gamma\in\Gamma\,}_G .
+\]
+\end{definition}
+
+If $c$ still commuted with $\iota(\Gamma)$ \emph{after} transport by $t$,
+the defect would vanish; $D$ measures the failure of one-sided Kazhdan
+transport to be implementable by an honest symmetry.
+
+\begin{theorem}[machine-checked; \texttt{normalKazhdan\_le\_normMFResidual}]
+\label{thm:radical}
+Let $G$ be a countable group carrying a compression core with defect $D$,
+and let $K\trianglelefteq G$ be a normal subgroup with property \textup{(T)}
+such that $K\subseteq D$.  Then $K\subseteq\RadMF(G)$: every homomorphism
+from $G$ to the unitary group of a norm matrix corona kills $K$ pointwise.
+No finiteness, centrality, or torsion hypothesis on $K$ is used.
+\end{theorem}
+
+The second obstruction is the compression nonsoficity criterion, in the form
+of \cite[Proposition~1.2]{FFF} (the same mechanism as the criterion driving
+\cite{OAI,KT}): if $\Gamma\leq G$ are infinite groups with property
+\textup{(T)}, $G=\langle\Gamma,t_1,\dots,t_m\rangle$ with
+$t_i\Gamma t_i^{-1}\subseteq\Gamma$, and $J\leq G$ is finitely generated with
+$[\Gamma,J]=1$, $\Gamma\cap J=1$, and $t_1Jt_1^{-1}\subseteq\Gamma$, then
+soficity of $G$ forces $J$ to be LEF.  This criterion is also machine-checked
+in the repository (\texttt{CriterionAssembly.not\_isSofic\_of\_not\_isLEF}
+over the interface \texttt{CompressionSetup}).  Since a finitely presented
+LEF group is residually finite (Vershik--Gordon) and an infinite simple
+group is never residually finite, a finitely presented infinite simple $J$
+is never LEF; this is the use made of it below, exactly as in \cite{FFF}.
+
+\section{The Fournier-Facio configuration and its defect}\label{sec:ff}
+
+We recall the output of \cite[\S2]{FFF}, in the notation of that paper.
+Fournier-Facio constructs, from a universal finitely presented torsion-free
+group $U$, a finitely presented infinite simple torsion-free group $S$
+(Burger--Mozes or Hyde--Lodha), and a torsion-free hyperbolic Kazhdan group
+$H$:
+
+\begin{enumerate}
+\item a finitely presented torsion-free property-\textup{(T)} group $P$
+  containing $P_1\times P_2\times S$ with $P_i\cong P$, via small
+  cancellation over the relatively hyperbolic pair $(U*H,\,U)$
+  \cite[Theorem~2.4]{Osin10};
+\item the double HNN extension $E=\langle P,u_1,u_2\mid u_iPu_i^{-1}=P_i\rangle$,
+  torsion-free, finitely presented, and acylindrically hyperbolic by
+  \cite{MO15};
+\item a common quotient $\pi\colon E\twoheadrightarrow G$ of $E$ and $H$ via
+  \cite[Corollary~7.4]{Hull16}, injective on a prescribed finite set
+  containing some $s\in S\smallsetminus\{1\}$; $G$ is finitely presented,
+  torsion-free by \cite[Theorem~7.1(e)]{Hull16}, and has property
+  \textup{(T)} as a quotient of $H$.
+\end{enumerate}
+
+Write $\Gamma=\pi(P)$, $t_i=\pi(u_i)$, and $J=t_1^{-1}\pi(S)t_1$, so that
+$[\Gamma,J]=1$, $\Gamma\cap J=1$, $t_1Jt_1^{-1}=\pi(S)\subseteq\Gamma$, and
+$\pi|_S$ is injective by simplicity.  (These are the data entering
+\cite[Proposition~1.2]{FFF}; the harmless discrepancy between
+$t_1J t_1^{-1}$ and $t_1^{-1}Jt_1$ conventions is discussed in the companion
+document cited in \S\ref{sec:boundary}.)
+
+\begin{remark}[acylindrical hyperbolicity of $G$]\label{rem:ah}
+The paper \cite{FFF} does not record whether $G$ is acylindrically
+hyperbolic, because nothing there needs it.  We need it, and it is available
+at no cost: since $E$ is finitely generated, the proof of
+\cite[Corollary~7.4]{Hull16} produces the common quotient in the class
+$\mathcal{AH}_0$ (two applications of \cite[Theorem~7.1]{Hull16}, the second
+of which makes the image of the suitable subgroup all of $G$; Hull states
+the $\mathcal{AH}_0$ conclusion explicitly in the finitely generated case).
+We therefore fix once and for all a group $G$ produced by running
+\cite[\S2]{FFF} with this clause of Hull's corollary invoked, so that
+\[
+G\ \text{is finitely presented, torsion-free, has property \textup{(T)},
+and lies in } \mathcal{AH}_0 .
+\]
+This is a reading of the cited corollary, not a modification of the
+construction; it is the first of the two points we would like an expert to
+confirm.
+\end{remark}
+
+Now take the compression core on $G$ given by $\iota$ the inclusion of
+$\Gamma$, $t=t_1$, and any $c\in J\smallsetminus\{1\}$, so
+$d:=t_1ct_1^{-1}\in\pi(S)\smallsetminus\{1\}$.
+
+\begin{lemma}[defect identification; the containment
+$\supseteq$ is machine-checked as
+\texttt{simpleSubgroup\_le\_defectNormal}]\label{lem:defect}
+$D=\ncl{\pi(S)}_G$.
+\end{lemma}
+
+\begin{proof}
+($\subseteq$) Each generator $[d,\iota(\gamma)]=d\,(\gamma d^{-1}\gamma^{-1})$
+is a product of two conjugates of $d^{\pm1}\in\pi(S)$, hence lies in the
+normal subgroup $\ncl{\pi(S)}_G$.
+
+($\supseteq$) $D\cap\pi(S)$ is normal in $\pi(S)$.  Since $S$ is infinite
+simple it is nonabelian with trivial centre, so $d\neq1$ is not central in
+$\pi(S)$: there is $\gamma\in\pi(S)\subseteq\Gamma$ with $[d,\gamma]\neq1$.
+That commutator lies in $D\cap\pi(S)$, which is therefore nontrivial, hence
+equals $\pi(S)$ by simplicity; so $\ncl{\pi(S)}_G\subseteq D$.
+\end{proof}
+
+Thus $G$ itself already has a nonzero defect containing no torsion, and the
+entire question of applying Theorem~\ref{thm:radical} with $K$ as large as
+possible reduces to enlarging $\ncl{\pi(S)}$.  Note that no choice of
+ingredients makes this automatic: $E/\ncl{P}_E$ is free of rank $2$, so
+$\ncl{S}_E$ is never all of $E$, and saturation must be created at a
+quotient stage.
+
+\section{Saturation via Hull's theorem}\label{sec:saturation}
+
+Everything in this section is assembled from the published statements
+\cite[Definition~1.4, Lemma~3.5, Lemma~5.5, Corollary~5.7, Lemma~5.8,
+Theorem~3.12, Theorem~7.1]{Hull16} and \cite[Lemma~7.1]{Osin16}.
+
+\begin{lemma}\label{lem:suitable}
+Let $G\in\mathcal{AH}$ be torsion-free and let $N\neq1$ be a normal subgroup.
+Fix a generating set $A$ with $\Gamma(G,A)$ hyperbolic and the $G$-action
+acylindrical and non-elementary (\cite[Theorem~3.12(4)]{Hull16}).  Then $N$
+is suitable with respect to $A$ in the sense of
+\cite[Definition~1.4]{Hull16}, and $N$ contains non-commensurable loxodromic
+elements $h_1,h_2$ with $E_G(h_i)=\langle h_i\rangle$ such that
+$S_0:=\langle h_1,h_2\rangle\leq N$ is again suitable.
+\end{lemma}
+
+\begin{proof}
+$N$ is nontrivial and torsion-free, hence infinite; being normal it
+satisfies $|N^g\cap N|=\infty$ for all $g$, i.e.\ it is $s$-normal, so it
+acts non-elementarily by \cite[Lemma~7.1]{Osin16}.  Condition (3) of
+suitability ($N$ normalizes no nontrivial finite subgroup) is vacuous in a
+torsion-free group, by \cite[Lemma~5.5]{Hull16}.  Now
+\cite[Corollary~5.7]{Hull16} applied to the suitable subgroup $N$ yields
+$h_1,h_2$ as stated, and \cite[Lemma~5.8]{Hull16} makes
+$\langle h_1,h_2\rangle$ suitable.
+\end{proof}
+
+\begin{lemma}[defect saturation]\label{lem:saturation}
+Let $G\in\mathcal{AH}$ be finitely presented and torsion-free, let
+$N\neq1$ be a normal subgroup, and let $F\subseteq G$ be finite.  Then there
+is a surjection $q\colon G\twoheadrightarrow Q$ such that
+\begin{enumerate}
+\item $Q\in\mathcal{AH}$;
+\item $Q$ is finitely presented and torsion-free;
+\item $q(N)=Q$; indeed $Q=\langle q(h_1),q(h_2)\rangle$ with
+  $h_1,h_2\in N$ the elements of Lemma~\textup{\ref{lem:suitable}}, so $Q$
+  is $2$-generated;
+\item $q|_F$ is injective.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Let $S_0=\langle h_1,h_2\rangle\leq N$ be as in
+Lemma~\ref{lem:suitable}, let $\{t_1,\dots,t_m\}$ be a finite generating set
+of $G$, and choose $M$ with $B_A(M)\supseteq F$ (always possible, as Hull
+notes).  Apply \cite[Theorem~7.1]{Hull16} to $(G,S_0)$ with these $t_i$ and
+this $M$: it returns $q\colon G\twoheadrightarrow Q$ with $Q\in\mathcal{AH}$
+(clause (a)), $q|_{B_A(M)}$ injective (clause (b)), and $q(t_i)\in q(S_0)$
+for all $i$ (clause (c)).  Then
+\[
+Q=\langle q(t_1),\dots,q(t_m)\rangle\subseteq q(S_0)\subseteq q(N)\subseteq Q,
+\]
+so $q(N)=Q=q(S_0)=\langle q(h_1),q(h_2)\rangle$.  Torsion-freeness is clause
+(e).  Finite presentation is read off from the proof of Theorem~7.1 exactly
+as in \cite{FFF}: the case $m=1$ passes to the quotient by the normal
+closure of a single small-cancellation relator
+$W=t^{-1}h_1^{m_1}h_2^{l_1}\cdots h_1^{m_n}h_2^{l_n}$ (the set of cyclic
+shifts of $W^{\pm1}$ has the same normal closure), and the general case is a
+finite induction; so $Q$ is $G$ with $m$ added relators.
+\end{proof}
+
+This is the second point we would like an expert to confirm: that
+\cite[Corollary~5.7]{Hull16} may be applied to the suitable subgroup $N$ of
+Lemma~\ref{lem:suitable} (rather than to $G$ itself) and that the resulting
+$S_0\leq N$ feeds into \cite[Theorem~7.1]{Hull16} exactly as Hull's own
+proof of \cite[Corollary~7.4]{Hull16} feeds its $S=\langle h_1,h_2\rangle$.
+An alternative route with the same output --- re-running Hull's proof of
+Corollary~7.4 with the reservoir of target words taken inside a prescribed
+infinite normal subgroup of one factor --- is written out in the companion
+document (\S\ref{sec:boundary}); the route above has the advantage of using
+Theorem~7.1 as a black box applied to the already-constructed group $G$.
+
+\section{The main theorem}\label{sec:main}
+
+\begin{theorem}\label{thm:main}
+Let $G$ be the Fournier-Facio group of \S\textup{\ref{sec:ff}} (with
+Remark~\textup{\ref{rem:ah}}), and apply Lemma~\textup{\ref{lem:saturation}}
+with $N=\ncl{\pi(S)}_G$ and $F=\{1,\pi(s)\}$, obtaining
+$q\colon G\twoheadrightarrow Q$.  Then:
+\begin{enumerate}
+\item $Q$ is $2$-generated, finitely presented, torsion-free,
+  acylindrically hyperbolic, and has property \textup{(T)};
+\item every nontrivial quotient $L$ of $Q$ --- including $Q$ itself ---
+  satisfies $\RadMF(L)=L$; in particular no nontrivial quotient of $Q$ is
+  MF, and every homomorphism from $Q$ to an MF group is trivial;
+\item every nontrivial quotient of $Q$ is non-sofic.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) All items are Lemma~\ref{lem:saturation} except property \textup{(T)},
+which passes to the quotient $Q$ of $G$.
+
+For (2) and (3), let $r\colon Q\twoheadrightarrow L$ be a nontrivial
+quotient and write $\rho=r\circ q\circ\pi\colon E\twoheadrightarrow L$.
+Since $q(N)=Q$ and images of normal closures are normal closures of images,
+\[
+L=r(Q)=r\bigl(\ncl{q\pi(S)}_Q\bigr)=\ncl{\rho(S)}_L .
+\]
+In particular $\rho(S)\neq1$ (else $L=1$), so $\rho|_S$ is injective by
+simplicity and $\rho(S)\cong S$.
+
+\emph{The configuration descends.}  Put $\Gamma_L=\rho(P)$,
+$t_i^L=\rho(u_i)$, $J_L=(t_1^L)^{-1}\rho(S)\,t_1^L$.  Then
+$L=\langle\Gamma_L,t_1^L,t_2^L\rangle$;
+$t_i^L\Gamma_L(t_i^L)^{-1}\subseteq\Gamma_L$; $[\Gamma_L,J_L]=1$ and
+$t_1^LJ_L(t_1^L)^{-1}=\rho(S)\subseteq\Gamma_L$ (images of the relations in
+$G$); $\Gamma_L$ has property \textup{(T)} as a quotient of $P$ and is
+infinite since it contains $\rho(S)\cong S$; and $\Gamma_L\cap J_L=1$:
+an element $x$ of the intersection lies in $J_L$ and, by
+$[\Gamma_L,J_L]=1$, centralizes $J_L$, hence lies in the centre of
+$J_L\cong S$, which is trivial.  Finally $L$ has property \textup{(T)} as a
+quotient of $Q$.
+
+(2) Take the compression core on $L$ with $\iota$ the inclusion of
+$\Gamma_L$, $t=t_1^L$, $c\in J_L\smallsetminus\{1\}$.  By the proof of
+Lemma~\ref{lem:defect}, run verbatim in $L$ (using that $\rho(S)\cong S$ is
+nonabelian simple with trivial centre), the defect is
+$\ncl{\rho(S)}_L=L$.  Apply Theorem~\ref{thm:radical} with $K=L$:
+$\RadMF(L)=L$.  Since $L\neq1$, $L$ is not MF; and a nontrivial
+homomorphism $Q\to M$ with $M$ MF would make its image a nontrivial MF
+quotient... more precisely, its image is a nontrivial quotient $L$ of $Q$
+embedded in $M$, and subgroups of MF groups are MF, contradicting (2) for
+$L$.
+
+(3) The data of the previous paragraph are exactly the hypotheses of
+\cite[Proposition~1.2]{FFF} for $L$, with $J_L\cong S$ finitely generated.
+If $L$ were sofic, $S$ would be LEF; but $S$ is finitely presented, infinite
+and simple, hence not LEF (\S\ref{sec:obstruction}).
+\end{proof}
+
+\begin{corollary}\label{cor:consequences}
+$Q$ has no nontrivial finite, amenable, residually finite, linear, sofic, or
+MF quotient; $Q$ is perfect; $Q$ has no proper finite-index subgroup; the
+profinite and Bohr compactifications of $Q$ are trivial; and every
+finite-dimensional unitary representation of $Q$ is trivial.
+\end{corollary}
+
+\begin{proof}
+Finite, amenable, residually finite, and linear groups (Mal'cev) are sofic
+(or directly MF), so a nontrivial quotient of any of these kinds would
+contradict Theorem~\ref{thm:main}.  An abelian nontrivial quotient would be
+amenable, so $Q$ is perfect.  A proper finite-index subgroup would yield a
+nontrivial finite quotient of $Q$ (the action on cosets is nontrivial and
+factors through a finite symmetric group, giving a nontrivial finite image).
+The compactification and representation statements follow since compact
+groups are MF-approximable targets in the relevant sense: a nontrivial
+finite-dimensional unitary image would be a nontrivial linear quotient.
+\end{proof}
+
+\begin{corollary}\label{cor:marked}
+Fix a finite presentation $Q=\langle x,y\mid R\rangle$ and a word $v$ with
+$v\neq1$ in $Q$.  The set of $2$-marked groups satisfying the finitely many
+relations $R$ and the single inequation $v\neq1$ is a nonempty clopen subset
+of the space of $2$-marked groups consisting entirely of groups that are
+simultaneously non-sofic and non-MF, each with full MF radical.
+Moreover $F_2\twoheadrightarrow Q$ witnesses that neither soficity nor
+MF-ness passes to quotients, with a residually finite source; two generators
+are optimal, since every $1$-generated group is abelian, hence MF and sofic.
+\end{corollary}
+
+\begin{proof}
+A marked group satisfying $R$ is a marked quotient of $Q$; the inequation
+$v\neq1$ makes it nontrivial; both conditions are clopen.  Apply
+Theorem~\ref{thm:main}.
+\end{proof}
+
+\begin{remark}
+The reduced $C^*$-algebra $C^*_r(Q)$ is stably finite (it has a faithful
+trace) and not MF, and no unital $*$-homomorphism
+$C^*_{\max}(Q)\to A$ with $A$ an MF algebra can be nontrivial on the
+canonical unitaries: it would induce a group homomorphism from $Q$ into
+unitaries liftable to matrix models, factoring through the trivial group by
+Theorem~\ref{thm:main}.  We deliberately do \emph{not} assert simplicity,
+unique trace, or stable rank one of $C^*_r(Q)$ here: those would follow from
+the acylindrical-hyperbolicity literature applied to $Q$ (which is
+torsion-free with trivial finite radical), but the corresponding inputs are
+outside both the formalized development and the scope of this note.
+\end{remark}
+
+\section{The certification boundary}\label{sec:boundary}
+
+The accompanying Lean~4 development (repository
+\texttt{nonsofic\_existence}, modules
+\texttt{Sofic/NormalKazhdanMFRadical},
+\texttt{Sofic/TorsionFreeFullMFRadical},
+\texttt{Sofic/TorsionFreeFullMFConsequences},
+\texttt{Criterion/CriterionAssembly}) machine-checks the following, with no
+axioms and no literature-transcription premises:
+
+\begin{itemize}
+\item Theorem~\ref{thm:radical} (\texttt{normalKazhdan\_le\_normMFResidual},
+  also in literal Carri\'on--Dadarlat--Eckhardt corona form);
+\item the nonsoficity criterion of \S\ref{sec:obstruction}
+  (\texttt{not\_isSofic\_of\_not\_isLEF});
+\item the defect identification of Lemma~\ref{lem:defect} from the abstract
+  Fournier-Facio configuration
+  (\texttt{FournierFacioDefectData.simpleSubgroup\_le\_defectNormal});
+\item all implications downstream of the saturation step: from
+  proof-carrying input data (\texttt{DefectRoutingData}: a surjection with
+  saturated defect, two generators, finite presentation, torsion-freeness in
+  power form, property \textup{(T)}, one protected element) Lean derives the
+  full package of Theorem~\ref{thm:main}(1)--(2) --- including
+  $\operatorname{cdeMFResidual}=\top$, failure of the CDE embedding
+  property, heredity of the full radical by every quotient, and triviality
+  of every homomorphism to an operator-MF group --- and, given the
+  descended criterion data, Theorem~\ref{thm:main}(3) for the routed
+  quotient (\texttt{NonsoficCriterionData.not\_isSofic}).
+\end{itemize}
+
+What is \emph{not} formalized, and is asserted here only on the strength of
+the cited literature, is the existence of the input data:
+Fournier-Facio's construction (\S\ref{sec:ff}), acylindrical hyperbolicity
+and the $\mathcal{AH}_0$ clause (Remark~\ref{rem:ah}), and
+Lemmas~\ref{lem:suitable}--\ref{lem:saturation}.  There is deliberately no
+Lean theorem of the form ``there exists a group $Q$ with these properties'':
+Mathlib has no theory of acylindrically hyperbolic groups or of Hull's
+suitable-subgroup small cancellation, and we have chosen to represent that
+boundary by structures whose fields are consumed by checked proofs rather
+than by axioms.
+
+A companion document in the repository
+(\texttt{docs/TORSION\_FREE\_NORMAL\_GENERATION\_HULL\_QUOTIENT.md})
+contains the alternative substitution-based route to
+Lemma~\ref{lem:saturation} together with verbatim source quotations of
+every Hull and Osin statement used above, extracted from the arXiv PDFs on
+August~14, 2026.
+
+\subsection*{The two questions for the expert reader}
+\begin{enumerate}
+\item Remark~\ref{rem:ah}: is it correct that running
+  \cite[\S2]{FFF} with the finitely-generated clause of
+  \cite[Corollary~7.4]{Hull16} yields $G\in\mathcal{AH}_0$ with all other
+  properties of the construction unchanged?
+\item Lemma~\ref{lem:saturation}: is the direct application of
+  \cite[Corollary~5.7 and Theorem~7.1]{Hull16} to the suitable subgroup
+  $N=\ncl{\pi(S)}_G$ (suitability via \cite[Lemma~7.1]{Osin16} and
+  torsion-freeness) correct as stated, including the finite-presentation
+  and torsion-preservation readings of the proof of Theorem~7.1?
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem[CDE]{CDE}
+J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
+\emph{On groups with quasidiagonal $C^*$-algebras},
+J. Funct. Anal. \textbf{265} (2013), no.~1, 135--152.
+
+\bibitem[FF]{FFF}
+F.~Fournier-Facio,
+\emph{A torsion-free non-sofic group},
+preprint, 2026, \arxiv{2608.02025}.
+
+\bibitem[Hul]{Hull16}
+M.~Hull,
+\emph{Small cancellation in acylindrically hyperbolic groups},
+Groups Geom. Dyn. \textbf{10} (2016), no.~4, 1077--1119,
+\arxiv{1308.4345}.
+
+\bibitem[KT]{KT}
+G.~Kun and A.~Thom,
+\emph{Nonsofic wreath products of residually finite groups},
+preprint, 2026, \arxiv{2608.06222}.
+
+\bibitem[MO]{MO15}
+A.~Minasyan and D.~Osin,
+\emph{Acylindrical hyperbolicity of groups acting on trees},
+Math. Ann. \textbf{362} (2015), no.~3--4, 1055--1105.
+
+\bibitem[OAI]{OAI}
+OpenAI,
+\emph{A nonsofic group}, 2026.
+
+\bibitem[Os10]{Osin10}
+D.~Osin,
+\emph{Small cancellations over relatively hyperbolic groups and embedding
+theorems},
+Ann. of Math. (2) \textbf{172} (2010), no.~1, 1--39,
+\arxiv{math/0411039}.
+
+\bibitem[Os16]{Osin16}
+D.~Osin,
+\emph{Acylindrically hyperbolic groups},
+Trans. Amer. Math. Soc. \textbf{368} (2016), no.~2, 851--888,
+\arxiv{1304.1246}.
+
+\end{thebibliography}
+
+\end{document}

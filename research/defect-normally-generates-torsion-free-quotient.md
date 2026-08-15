@@ -10,6 +10,7 @@ distinct_from:
   common-quotient-onto-normal-subgroup: that claim is the general small-cancellation tool, stated for any two acylindrically hyperbolic groups and any infinite normal subgroup of one of them; this one is its instance at the Fournier-Facio data, and is the statement the non-MF route consumes.
 artifacts:
   - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
+  - torsion_free_saturation_note.tex
 ---
 
 In the Fournier-Facio construction (`fournier-facio-torsion-free-skeleton`)
@@ -115,3 +116,37 @@ Dead ends, recorded so they are not re-attempted.
   means re-verifying the `C'(epsilon, mu, rho)` conditions from scratch.
   Changing *which suitable subgroup Hull's theorem is handed* achieves the
   same effect and leaves every small-cancellation estimate untouched.
+
+## Addendum 2026-08-14: direct route, external validation, heredity
+
+Three developments after the body above was written.
+
+1. **Direct single-application route** (`torsion_free_saturation_note.tex`).
+   Instead of re-running Hull's proof of Corollary 7.4 with the routing pair
+   confined to `<<S>>^E` (the artifact's Theorem B), apply Hull's Theorem
+   7.1 **once, as a published black box, to the already-constructed
+   Fournier-Facio group `G`**: `N = <<pi(S)>>^G` is infinite normal in a
+   torsion-free acylindrically hyperbolic group, hence suitable (s-normality
+   plus Osin TAMS 368 Lemma 7.1); Corollary 5.7 + Lemma 5.8 select the
+   loxodromic pair inside `N`; Theorem 7.1 with a finite generating set of
+   `G` as prescribed elements gives `Q = q(<h_1,h_2>) = q(N)`, 2-generated,
+   finitely presented, torsion-free, in AH.  The one extra input is
+   `G ∈ AH_0`, not stated in FF's paper but supplied by the
+   finitely-generated clause of Hull's Corollary 7.4, which FF already
+   invokes.  Both routes are valid; the direct one asks an expert to check
+   fewer moving parts.
+2. **External validation.**  GitHub issue #1 (closed 2026-08-15) records an
+   independent multi-agent audit of the substitution route — suitability via
+   Osin, pair selection inside the normal subgroup, Lemma 3.5 transfer,
+   two-stage routing — with the repo-side reply confirming each step and
+   endorsing the `DefectRoutingData` certification boundary (do not
+   formalize Hull; kernel-check everything downstream of the routing data).
+3. **Heredity strengthening.**  Since `Q = <<q pi(S)>>^Q`, every nontrivial
+   quotient `L` of `Q` retains an injective copy of `S`, the compression
+   configuration descends (`Gamma_L ∩ J_L = 1` by centrelessness of the
+   simple image), and both machine-checked criteria apply to `L` itself:
+   `Rad_MF(L) = L` **and** `L` is nonsofic.  Consequences: `Q` is perfect,
+   has no proper finite-index subgroup, and its marked presentation plus one
+   inequation gives a nonempty clopen set of 2-marked groups all
+   simultaneously nonsofic and non-MF.  Written out with proofs in
+   `torsion_free_saturation_note.tex` §5.

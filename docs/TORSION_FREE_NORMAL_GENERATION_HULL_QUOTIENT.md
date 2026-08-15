@@ -456,3 +456,31 @@ to read "non-elementary" in Lemma A the same way Hull does.)
   (`normal-kazhdan-defect-non-mf`) is machine-checked; the group theory in
   this document is a written argument resting on the source-verified
   statements of §6.
+
+## 8. Addendum (2026-08-14, later): direct route, validation, heredity
+
+* **Direct route.**  `torsion_free_saturation_note.tex` (repo root) gives a
+  variant of Theorem B that does not re-open Hull's proof of Corollary 7.4:
+  apply Theorem 7.1 once, as a black box, to the *published* Fournier-Facio
+  group `G`, with suitable subgroup `S_0 = <h_1, h_2>` chosen inside
+  `N = <<pi(S)>>^G` by Lemma A + Corollary 5.7 + Lemma 5.8, and with a
+  finite generating set of `G` as the prescribed elements.  The output is
+  `Q = q(S_0) = q(N)`, 2-generated, finitely presented, torsion-free, AH.
+  The single extra input beyond §6 is `G ∈ AH_0`, which the fg clause of
+  [Hul16, Corollary 7.4] (quoted in §6.2) already provides when FF's step 3
+  is run with that clause invoked.
+* **Validation.**  GitHub issue #1 (closed 2026-08-15) records an external
+  multi-agent audit of Theorem B's substitution step — Osin suitability,
+  in-`D` pair selection, Lemma 3.5 transfer, the two-stage sandwich
+  `Q = eta gamma(B) ⊆ eta gamma(T) ⊆ eta gamma(N) ⊆ Q` — and the repo-side
+  confirmation of each step.  It also confirms the certification boundary
+  choice: cite Hull/Osin/FF for existence, kernel-check everything after
+  the routing data (`DefectRoutingData`).
+* **Heredity.**  The note strengthens Theorem 2: *every nontrivial quotient*
+  `L` of `Q` satisfies `Rad_MF(L) = L` and is nonsofic — the configuration
+  descends because `Q = <<q pi(S)>>` forces `q pi(S)` to survive injectively
+  in any nontrivial quotient, and `Gamma_L ∩ J_L = 1` follows from
+  centrelessness of the simple image alone.  Consequently `Q` is perfect and
+  has no proper finite-index subgroup, and its marked presentation with one
+  inequation exhibits a nonempty clopen set of 2-marked groups that are
+  simultaneously nonsofic and non-MF.
