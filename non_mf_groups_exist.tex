@@ -375,23 +375,30 @@ threshold $\theta$ and replaces finiteness of $B_\omega$ by the
 equal-rank flip.
 \end{remark}
 
-\paragraph{Central-corner reduction.}
-Let $\Theta\colon H\to\U(\mathcal Q)$ be a corona representation and let
-$0\ne q\in\mathcal Q$ be a projection commuting with $\Theta(H)$.  Then
-$\Theta_q(g)=q\Theta(g)q$ is a homomorphism into the unitary group of the
-corner $q\mathcal Qq$, whose unit is $q$, and this corner is itself a
-positive-rank norm matrix corona.  Indeed, a spectral cut at $1/2$ of a
-self-adjoint lift of $q$ gives coordinate projections $(q_n)$ representing
-$q$.  Put $r_n=\operatorname{rank}q_n$.  Nonzeroness makes
-$J=\{n:r_n>0\}$ infinite.  Compression identifies
-$q_nM_{d_n}(\C)q_n$ with $M_{r_n}(\C)$ on $J$; the zero coordinates
-contribute nothing, and relabeling $J$ by $\N$ identifies $q\mathcal Qq$
-with a corona of positive matrix ranks.  Compression of $\Theta$ is
-multiplicative because $q$ is central relative to its image, and unitary
-coordinate lifts follow by polar correction.
+\paragraph{The negative-corner picture.}
+The mechanism is easiest to see one level up, and this picture is the one
+to keep in mind.  Suppose a corona representation $\Theta$ of $H$ detects
+a central involution $\varepsilon=u^2$, where $u=[tct^{-1},\iota(a)]$ is
+a compression defect.  The nonzero projection
+$q=(1-\Theta(\varepsilon))/2$, central relative to $\Theta(H)$, cuts
+$\Theta$ to a corner representation with $\Theta_q(\varepsilon)=-q$
+exactly; a spectral cut at $1/2$ of a self-adjoint lift of $q$ produces
+coordinate projections whose nonzero ranks identify the corner
+$q\mathcal Qq$ with a positive-rank norm matrix corona.  On that corner,
+$c$ lies in the asymptotic commutant of $\iota(\Gamma)$, transport
+(Theorem~\ref{thm:kazhdan-transport}) puts $d=tct^{-1}$ there as well,
+so $u\sim_21$ and hence $\varepsilon=u^2\sim_21$ --- contradicting
+$\varepsilon=-1$ on the corner, whose normalized Hilbert--Schmidt
+distance from $1$ is $2$.  The formal development records this
+contradiction as a stand-alone theorem about marked operator-norm
+asymptotic representations; the printed proofs route instead through the
+finite-normal criterion of Section~\ref{sec:conj}, whose coordinatewise
+Reynolds corner makes the corner identification sketched here rigorous
+without ever forming $q\mathcal Qq$ abstractly.
 
-The entire non-MF argument is the following consequence, applied to the
-two-element central subgroup $\{1,\varepsilon\}$.
+The entire non-MF argument is the following consequence of the transport
+theorem, applied to the two-element central subgroup
+$\{1,\varepsilon\}$.
 
 \begin{theorem}[central-sign criterion]\label{thm:sign-criterion}
 Let $H$ and $\Gamma$ be countable groups, let $\Gamma$ have
@@ -412,25 +419,23 @@ $\varepsilon$, and $H$ is not MF.
 \end{theorem}
 
 \begin{proof}
-Suppose a corona representation $\Theta$ detects $\varepsilon$, that is,
-$\Theta(\varepsilon)\ne1$.  The nonzero projection, central relative to
-$\Theta(H)$,
-\[
-q=\frac{1-\Theta(\varepsilon)}{2}
-\]
-cuts it to a representation in which $\Theta(\varepsilon)=-1$.  The
-central-corner reduction above regards this as a representation into a
-positive-rank norm matrix corona.  The element $c$ belongs to the asymptotic
-commutant of $\iota(\Gamma)$, so
-Theorem~\ref{thm:kazhdan-transport} puts $d=tct^{-1}$ there as well.  Hence
-$u=[d,\iota(a)]\sim_2 1$, and therefore $\varepsilon=u^2\sim_2 1$.  On the
-$q$-corner, however, $\varepsilon=-1$, whose normalized Hilbert--Schmidt
-distance from $1$ is $2$.  This contradiction kills $\varepsilon$ in every
-corona representation; since $\varepsilon\ne1$, no such representation is
-faithful.
+The data form a marked Kazhdan pattern in the sense of
+Definition~\ref{def:pattern}: $\Gamma$ has property~\textup{(T)},
+$t$ compresses $\iota(\Gamma)$ into itself, and $c$ centralizes it.  Its
+compression-defect subgroup $N_{\mathrm{comp}}$ --- the normal closure of
+the commutators $[tct^{-1},\iota(\gamma)]$ --- contains
+$u=[d,\iota(a)]$, hence also $\varepsilon=u^2$.  Since $\varepsilon$ is a
+central involution, $F=\{1,\varepsilon\}$ is a finite normal subgroup of
+$H$ contained in $N_{\mathrm{comp}}$.  The finite-normal obstruction
+criterion --- Theorem~\ref{thm:criterion}, proved in
+Section~\ref{sec:conj} from the transport theorem alone, with no result
+in between used in its proof --- therefore kills $\varepsilon$ under
+every corona representation.  Since $\varepsilon\ne1$, no corona
+representation of $H$ is injective, and $H$ is not MF.
 \end{proof}
 
-This is the proof to keep in mind.
+The negative-corner picture is the intuition; the finite-normal criterion
+is the engine.
 
 \section{The Kazhdan--Clifford construction}\label{sec:construction}
 
@@ -606,10 +611,12 @@ The proof has two opposed halves, both centered on $u$:
 \]
 For a corona representation that detects $w$, cut to the negative central
 corner of $w$.  Kazhdan transport gives $u\sim_2 1$, hence $w=u^2\sim_2 1$;
-the corner identity gives $w=-1$.  This contradiction is the analytic core
-of Theorem~\ref{thm:A}: Section~\ref{sec:proofA} deduces the theorem from
+the corner identity gives $w=-1$.  This contradiction is the picture
+behind Theorem~\ref{thm:A}, and it is independently formalized as a
+stand-alone theorem about marked asymptotic representations.
+Section~\ref{sec:proofA} deduces the theorem from
 the sign criterion and the witness, and Section~\ref{sec:conj} proves the
-general finite-normal criterion.
+general finite-normal criterion that powers the sign criterion.
 \leanverified{Sofic/LiteralNonMFEndpoint}{GroupApproximation.LiteralNonMFEndpoint.negativeCorner_kazhdanTransport_contradiction}
 
 Nontriviality of $w$ is witnessed by a completely explicit
@@ -1531,9 +1538,11 @@ quantitative shadow of the exact finite-dimensional argument above.
 
 \section{Kazhdan transport and finite-normal cancellation}\label{sec:conj}
 
-Theorem~\ref{thm:A} is already proved.  This section establishes the
-general finite-normal obstruction behind it, using the transport theorem
-above and an operator-norm corner reduction.  We fix the data of the
+This section proves the general finite-normal obstruction that powers
+the central-sign criterion and hence Theorem~\ref{thm:A}.  Its proof
+uses the transport theorem and a coordinatewise operator-norm corner,
+and nothing after Section~\ref{sec:transport}, so the forward reference
+from the sign criterion is not circular.  We fix the data of the
 criterion.
 
 \begin{definition}[marked Kazhdan pattern]\label{def:pattern}
