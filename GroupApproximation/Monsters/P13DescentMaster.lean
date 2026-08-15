@@ -26,7 +26,7 @@ theorem sigma_block (A P C : List Letter) (b : Fin 3 → ℤ) (t : ℕ)
     (ht : t ≤ P.length) :
     sigma (A ++ P ++ C) b (A.length + t) =
       vnorm (act (toSL3 (eval (P.drop t))) (vecOf C b)) := by
-  unfold sigma
+  unfold P13WordDescent.sigma
   have hdrop : (A ++ P ++ C).drop (A.length + t) = P.drop t ++ C := by
     rw [List.append_assoc, Nat.add_comm, ← List.drop_drop,
       List.drop_left]
@@ -88,7 +88,7 @@ theorem viol_succ_lt {V : List Letter} {b : Fin 3 → ℤ} {v : ℕ}
   have hle : V.length ≤ v + 1 := h
   have hs1 : sigma V b (v + 1) = vnorm b := sigma_of_ge V b hle
   have hs0 : 1 ≤ sigma V b v := by
-    unfold sigma
+    unfold P13WordDescent.sigma
     exact vnorm_vecOf_pos _ hb1
   omega
 
@@ -105,12 +105,13 @@ theorem side_le_of_top {V : List Letter} {b : Fin 3 → ℤ}
     by_contra hlen
     push Not at hlen
     have := sigma_of_ge V b hlen
-    have h2 : sigma V b (topViol V b hex + 1 + 1) ≤ vnorm b := by
+    have h2 : sigma V b (topViol V b hex + 2) ≤ vnorm b := by
       rw [sigma_of_ge V b (by omega)]
     have h3 : vnorm b ≤ sigma V b (topViol V b hex + 1) := by
       rw [← this]
     omega
-  have := le_lam hv1
+  have hlam := le_lam hv1
+  rw [show topViol V b hex + 1 + 1 = topViol V b hex + 2 from rfl] at hlam
   rw [htop] at h
   omega
 
@@ -123,7 +124,7 @@ theorem sigma_shallow_of_actEq (A C₁ C₂ : List Letter)
     (h : act (toSL3 (eval C₁)) b₁ = act (toSL3 (eval C₂)) b₂)
     (j : ℕ) (hj : j ≤ A.length) :
     sigma (A ++ C₁) b₁ j = sigma (A ++ C₂) b₂ j := by
-  unfold sigma
+  unfold P13WordDescent.sigma
   have hdrop : ∀ (D : List Letter),
       (A ++ D).drop j = A.drop j ++ D := fun D =>
     List.drop_append_of_le_length hj
@@ -210,7 +211,7 @@ private theorem unit_mul {c cp : ℤ} (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;> norm_num
 
 private theorem unitWord_nil : UnitWord ([] : List Letter) :=
-  fun l hl => absurd hl List.not_mem_nil
+  fun _l hl => absurd hl List.not_mem_nil
 
 private theorem unitWord_single {l₁ : Letter}
     (h₁ : l₁.2 = 1 ∨ l₁.2 = -1) : UnitWord [l₁] := by
@@ -725,7 +726,7 @@ private theorem drop_map' (f : Letter → Letter) :
       intro l
       cases l with
       | nil => simp
-      | cons a l => simpa using ih l
+      | cons a l => simp
 
 /-- A plain splice at the topmost worst violation: the replacement
 block evaluates identically, and its internals cut the peak. -/
@@ -742,7 +743,8 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
     Prod.Lex (· < ·) (· < ·) (meas (A ++ P' ++ C) b) (meas V b) := by
   have hVlen : V.length = A.length + 2 + C.length := by
     rw [hsplit]
-    simp [List.length_append]
+    simp only [List.length_append, List.length_cons, List.length_nil]
+    omega
   have hEpair : eval ([p, q] ++ C) = eval (P' ++ C) := by
     rw [eval_append, eval_append, eval_pair', hid]
   have heval : eval V = eval (A ++ P' ++ C) := by
@@ -753,7 +755,7 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
       _ = eval (A ++ P' ++ C) := by
           rw [List.append_assoc, eval_append]
   refine ⟨heval, ?_⟩
-  have D : SpliceData V b :=
+  let D : SpliceData V b :=
     ⟨hex, A, P', C, b, by omega, hAlen, hlen, by omega⟩
   have F : SpliceFacts V b D := by
     refine ⟨?_, ?_, ?_⟩
@@ -810,7 +812,8 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       (meas (A ++ P' ++ C.map f) (act (toSL3 wv) b)) (meas V b) := by
   have hVlen : V.length = A.length + 2 + C.length := by
     rw [hsplit]
-    simp [List.length_append]
+    simp only [List.length_append, List.length_cons, List.length_nil]
+    omega
   have hpush := push_through wv f hf C
   have heval : eval V = eval (A ++ P' ++ C.map f) * wv := by
     calc eval V = eval A * (letterVal p * letterVal q) * eval C := by
@@ -831,7 +834,7 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       _ = eval P' * (wv * eval C) := by rw [← hpush]
       _ = (eval P' * wv) * eval C := by group
       _ = letterVal p * letterVal q * eval C := by rw [hid]
-  have D : SpliceData V b :=
+  let D : SpliceData V b :=
     ⟨hex, A, P', C.map f, act (toSL3 wv) b, by omega, hAlen, hlen, by
       rw [List.length_map]; omega⟩
   have F : SpliceFacts V b D := by
@@ -866,7 +869,7 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       rw [List.length_append] at hL
       have hmap : sigma (C.map f) (act (toSL3 wv) b) t =
           sigma C b t := by
-        unfold sigma
+        unfold P13WordDescent.sigma
         rw [drop_map', vecOf_map_conj wv f hf, hnorm]
       have hR := sigma_append_deep (A ++ [p, q]) C b t
       rw [List.length_append] at hR
@@ -1339,7 +1342,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
             act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 2 1 * x 5 (-cp) * x 0 (-1) * w = x 0 1 * x 4 cp := by
@@ -1359,7 +1361,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
             act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_winv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 2 (-1) * x 5 cp * x 0 1 * w⁻¹ = x 0 (-1) * x 4 cp := by
@@ -1429,7 +1430,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             -(vecOf C (act (toSL3 mon) e3) 0)] : Fin 3 → ℤ) =
             act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w13]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 4 1 * x 3 (-cp) * x 1 (-1) * w13 = x 1 1 * x 2 cp := by
@@ -1449,7 +1449,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 0] : Fin 3 → ℤ) =
             act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w13inv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 4 (-1) * x 3 cp * x 1 1 * w13⁻¹ = x 1 (-1) * x 2 cp := by
@@ -1695,7 +1694,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
             act (toSL3 w⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_winv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 0 1 * x 4 (-cp) * x 2 (-1) * w⁻¹ = x 2 1 * x 5 cp := by
@@ -1715,7 +1713,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 2] : Fin 3 → ℤ) =
             act (toSL3 w) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 0 (-1) * x 4 cp * x 2 1 * w = x 2 (-1) * x 5 cp := by
@@ -1745,7 +1742,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             -(vecOf C (act (toSL3 mon) e3) 1)] : Fin 3 → ℤ) =
             act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w23]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 5 1 * x 1 (-cp) * x 3 (-1) * w23 = x 3 1 * x 0 cp := by
@@ -1765,7 +1761,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 1] : Fin 3 → ℤ) =
             act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w23inv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 5 (-1) * x 1 cp * x 3 1 * w23⁻¹ = x 3 (-1) * x 0 cp := by
@@ -2011,7 +2006,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 0] : Fin 3 → ℤ) =
             act (toSL3 w13⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w13inv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 1 1 * x 2 (-cp) * x 4 (-1) * w13⁻¹ = x 4 1 * x 3 cp := by
@@ -2031,7 +2025,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             -(vecOf C (act (toSL3 mon) e3) 0)] : Fin 3 → ℤ) =
             act (toSL3 w13) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w13]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 1 (-1) * x 2 cp * x 4 1 * w13 = x 4 (-1) * x 3 cp := by
@@ -2101,7 +2094,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             vecOf C (act (toSL3 mon) e3) 1] : Fin 3 → ℤ) =
             act (toSL3 w23⁻¹) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w23inv_vec]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [one_mul] at h1 h2
         rw [hB] at h1 h2
         have hem : x 3 1 * x 0 (-cp) * x 5 (-1) * w23⁻¹ = x 5 1 * x 1 cp := by
@@ -2121,7 +2113,6 @@ theorem descent_step (V : List Letter) (mon : P13)
             -(vecOf C (act (toSL3 mon) e3) 1)] : Fin 3 → ℤ) =
             act (toSL3 w23) (vecOf C (act (toSL3 mon) e3)) := by
           rw [act_w23]
-          refine vec3_ext ?_ ?_ ?_ <;> simp
         simp only [neg_one_mul, neg_neg] at h1 h2
         rw [hB] at h1 h2
         have hem : x 3 (-1) * x 0 cp * x 5 1 * w23 = x 5 (-1) * x 1 cp := by
