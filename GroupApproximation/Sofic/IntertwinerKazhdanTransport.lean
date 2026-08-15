@@ -330,12 +330,12 @@ theorem intertwiner_transport (B₁ B₂ : OpAlmostRepresentation E)
     (isUniformlyBounded_offDiag B₁ B₂ hbound)
   have hz : ∀ n : ℕ,
       ((blockSumRep B₁ B₂).map n C.t :
-          Matrix ((blockSumRep B₁ B₂).model n)
-            ((blockSumRep B₁ B₂).model n) ℂ) *
+          Matrix (blockSumModel (B₁.model n) (B₂.model n))
+            (blockSumModel (B₁.model n) (B₂.model n)) ℂ) *
           offDiagBlock (B₁.model n) (B₂.model n) (x n) *
           ((blockSumRep B₁ B₂).map n C.t :
-            Matrix ((blockSumRep B₁ B₂).model n)
-              ((blockSumRep B₁ B₂).model n) ℂ)ᴴ =
+            Matrix (blockSumModel (B₁.model n) (B₂.model n))
+              (blockSumModel (B₁.model n) (B₂.model n)) ℂ)ᴴ =
         offDiagBlock (B₁.model n) (B₂.model n)
           ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
             (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ) := by
@@ -365,12 +365,12 @@ theorem intertwiner_transport_star (B₁ B₂ : OpAlmostRepresentation E)
     (isUniformlyBounded_offDiag B₁ B₂ hbound)
   have hz : ∀ n : ℕ,
       ((blockSumRep B₁ B₂).map n C.t :
-          Matrix ((blockSumRep B₁ B₂).model n)
-            ((blockSumRep B₁ B₂).model n) ℂ)ᴴ *
+          Matrix (blockSumModel (B₁.model n) (B₂.model n))
+            (blockSumModel (B₁.model n) (B₂.model n)) ℂ)ᴴ *
           offDiagBlock (B₁.model n) (B₂.model n) (x n) *
           ((blockSumRep B₁ B₂).map n C.t :
-            Matrix ((blockSumRep B₁ B₂).model n)
-              ((blockSumRep B₁ B₂).model n) ℂ) =
+            Matrix (blockSumModel (B₁.model n) (B₂.model n))
+              (blockSumModel (B₁.model n) (B₂.model n)) ℂ) =
         offDiagBlock (B₁.model n) (B₂.model n)
           ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ)ᴴ * x n *
             (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)) := by
@@ -452,6 +452,7 @@ theorem isScaledMassBounded_offDiag (B₁ B₂ : OpAlmostRepresentation E)
       (fun n ↦ offDiagBlock (B₁.model n) (B₂.model n) (x n)) := by
   obtain ⟨Cm, hCm, hCx⟩ := hx
   refine ⟨Cm, hCm, fun n ↦ ?_⟩
+  show matMass (offDiagBlock (B₁.model n) (B₂.model n) (x n)) ≤ Cm * w n
   rw [matMass_offDiagBlock]
   exact hCx n
 
@@ -473,12 +474,12 @@ theorem scaled_intertwiner_transport (B₁ B₂ : OpAlmostRepresentation E)
     (isScaledMassBounded_offDiag B₁ B₂ w hbound)
   have hz : ∀ n : ℕ,
       ((blockSumRep B₁ B₂).map n C.t :
-          Matrix ((blockSumRep B₁ B₂).model n)
-            ((blockSumRep B₁ B₂).model n) ℂ) *
+          Matrix (blockSumModel (B₁.model n) (B₂.model n))
+            (blockSumModel (B₁.model n) (B₂.model n)) ℂ) *
           offDiagBlock (B₁.model n) (B₂.model n) (x n) *
           ((blockSumRep B₁ B₂).map n C.t :
-            Matrix ((blockSumRep B₁ B₂).model n)
-              ((blockSumRep B₁ B₂).model n) ℂ)ᴴ =
+            Matrix (blockSumModel (B₁.model n) (B₂.model n))
+              (blockSumModel (B₁.model n) (B₂.model n)) ℂ)ᴴ =
         offDiagBlock (B₁.model n) (B₂.model n)
           ((B₁.map n C.t : Matrix (B₁.model n) (B₁.model n) ℂ) * x n *
             (B₂.map n C.t : Matrix (B₂.model n) (B₂.model n) ℂ)ᴴ) := by
