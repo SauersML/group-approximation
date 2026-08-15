@@ -69,3 +69,24 @@ is not nuclear, the quasi-representations that arise are not nuclear maps,
 and no UCT input is available.  So the theorem is a landmark for the
 classifiable world and is inapplicable to this architecture; nothing in this
 graph should be built on it.
+
+## Status: refuted as stated (2026-08-15)
+
+The proposed route is not merely gapped at the finiteness step — the
+target-general statement is false.  Two independent refutations:
+
+1. **Standard-form counterexample.**  For an infinite-dimensional II_1
+   factor `M` in standard form, `JMJ = M'`, so `M ∨ JMJ = Z(M)' = B(L^2 M)`,
+   which is not finite.  The claimed normal surjection
+   `M ⊗̄ M^op → M ∨ JMJ` cannot force finiteness of the right-hand side.
+2. **Constant coordinates `A_n = C*_r(E)`.**  The left regular
+   representation embeds `E` exactly and injectively into the corona of
+   constant faithfully-traced coordinates; `λ_c` centralizes the Kazhdan
+   base while `λ_{tct⁻¹}` does not — the commutator is the nontrivial
+   defect of the manuscript's Theorem A.  Any faithfully-traced-coordinate
+   transport theorem would collapse it.
+
+Consequence: finite-dimensionality of coordinates is load-bearing; the
+manuscript's limitations section now records this (fence-off remark added
+2026-08-15).  This node must NOT be treated as established; any route
+through it needs a genuinely different class than `C_ftr`.

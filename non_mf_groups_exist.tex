@@ -2678,6 +2678,45 @@ Questions preamble of Section~\ref{sec:limits}).  Whether a
 small-cancellation construction produces a finitely presented group
 with saturated collapse or normal-Kazhdan defect is open.
 
+\subsection{Marked-limit closure}
+
+The explicit clopen cylinder constructed in the next subsection is an
+instance of a general phenomenon: at every fixed number of marked
+generators, the MF property is closed under limits of marked groups,
+and its failure always has a finite certificate.
+
+\begin{theorem}[the MF locus is closed]\label{thm:markedclosed}
+Fix $k\ge1$ and consider the space of $k$-marked groups --- quotients
+of the free group $F_k$, topologized so that a basic clopen set fixes
+the truth of finitely many equations among words in the generators.
+\begin{enumerate}
+\item The marked groups with MF quotient form a closed set.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus}
+\item Equivalently, the non-MF marked groups form an open set.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus}
+\item Every non-MF $k$-marked group admits a finite-radius
+certificate: there is a radius $R$ such that every $k$-marked group
+whose relations agree with it on the reduced words of length at most
+$R$ is non-MF.
+\leanverified{Sofic/MarkedMFClosed}{GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+A failure of MF for the quotient is a failure of normalized local
+approximation, and such a failure is witnessed on one finite subset of
+the quotient.  Expressing the finitely many multiplications and
+inequalities of that subset by words in the marked generators produces
+finitely many relation constraints; every marked group agreeing on
+those constraints transports the failed local-model problem verbatim,
+so an entire basic clopen neighborhood fails MF.  Enclosing the
+constraint words in a reduced-word ball gives the radius form.
+\end{proof}
+
+Thus failure of MF is always certified by one finite ball of the
+marked Cayley diagram.  The next subsection computes such a
+certificate explicitly for $E$.
+
 \subsection{A finite universal Horn obstruction}
 
 Theorem~\ref{thm:A} can be read as one first-order fact about all MF
@@ -2789,6 +2828,53 @@ The resulting homomorphism is surjective because those generators define the
 displayed presentation.  The group \(F_8\) is residually finite, hence MF by
 Lemma~\ref{lem:rfmf}.  Theorem~\ref{thm:A} shows that \(E\) is not MF.
 \end{proof}
+
+\subsection{Undecidability of MF recognition}
+
+Lemma~\ref{lem:subgroupMF} and Theorem~\ref{thm:A} make MF a Markov
+property of finitely presented groups: the trivial group is MF, and by
+subgroup heredity the finitely presented group $E$ embeds in no MF
+group.  The Adian--Rabin theorem \cite{Rabin58} therefore applies.
+
+\begin{corollary}[undecidability]\label{cor:undecidable}
+There is no algorithm that decides, from a finite presentation,
+whether the presented group is MF.  In the effective form of the
+Adian--Rabin construction, the set of finite presentations of non-MF
+groups is not even recursively enumerable.
+\end{corollary}
+
+This corollary carries one classical literature input, used only here:
+the Adian--Rabin construction itself \cite{Rabin58}, which we have not
+formalized.  Everything group-theoretic that feeds it is
+machine-checked --- subgroup heredity of MF and the finitely presented
+non-MF group ---
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_subgroup_hereditary}
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.exists_finitelyPresented_nonOperatorMF}
+and so is the computability-theoretic pullback: from any computable
+Adian--Rabin reduction, undecidability and the failure of recursive
+enumerability on the negative side follow formally.
+\leanverified{Computability/MarkovMFConsequences}{GroupApproximation.MarkovMFConsequences.operatorMF_recognition_undecidable}
+Theorem~\ref{thm:markedclosed} certifies single non-MF groups by
+finite balls; the corollary says no algorithm classifies the positive
+and negative cases from presentations.
+
+The phenomenon also has infinite multiplicity, in two senses that need
+no new analysis.  The groups $E\times\mathbb Z^{k}$ for $k\ge0$ are
+finitely presented, pairwise nonisomorphic --- their abelianizations
+have distinct torsion-free ranks --- and non-MF, each containing $E$
+(Lemma~\ref{lem:subgroupMF}).  Beyond finite presentation, pairing $E$
+with the continuum of pairwise nonisomorphic two-generator groups of
+B.~H.~Neumann \cite{Neumann37} yields $2^{\aleph_0}$ pairwise
+nonisomorphic finitely generated non-MF groups: each product
+$E\times N$ is non-MF, and a fixed countable group $X$ satisfies
+$X\cong E\times N$ for at most countably many of the continuum many
+isomorphism types $N$ --- each such $N$ embeds in $X$ as a finitely
+generated subgroup, a countable group has only countably many finitely
+generated subgroups, and the types $N$ are pairwise nonisomorphic.  A
+map with countable fibres from a continuum-sized family has
+continuum-sized image.  These two paragraphs are elementary group theory on top
+of the machine-checked heredity lemma and are not separately
+formalized.
 
 \subsection{The reduced group algebra of \texorpdfstring{$E$}{E}}
 
@@ -3012,6 +3098,23 @@ coordinate subalgebras \cite[Open Problem~6.2]{AlekseevThom}.  Such a
 coordinate description is separate from the operator-norm theorem proved
 here.
 
+Finite dimensionality of the coordinates is load-bearing in a second,
+sharper sense: it cannot be traded for stable finiteness of the
+coordinate algebras together with faithful traces.  In a general
+faithfully traced unital $C^*$-algebra the transport argument would
+act on the trace Hilbert space by the left and right regular actions,
+and the von Neumann algebra these two actions generate can fail every
+finiteness property --- for an infinite-dimensional
+$\mathrm{II}_1$ factor in standard form it is all bounded operators
+on the trace space.  Constant coordinates $A_n=\Cred(E)$ refute any
+such generalization outright: the left regular representation embeds
+$E$ exactly and injectively into the corresponding corona, the
+element $c$ centralizes the Kazhdan base there, and conjugation by
+$t$ produces $tct^{-1}$, whose commutator with the base is precisely
+the nontrivial defect that Theorem~\ref{thm:A} detects.  A
+faithfully-traced coordinate transport theorem would collapse that
+commutator; no such theorem can hold.
+
 \subsection*{Questions}
 The finite-normal criterion has a precise torsion limitation: every finite
 subgroup of a torsion-free group is trivial.
@@ -3041,11 +3144,21 @@ Theorem~\ref{thm:B}, no such detecting model can factor through
 finite quotients or exact finite-dimensional representations.
 \item Is there a torsion-free finitely presented non-MF group?  The
 analytic obstruction no longer requires torsion
-(Theorem~\ref{thm:normal-kazhdan}); the remaining input is the
-small-cancellation construction suggested above.  By
-Theorem~\ref{thm:saturation}, a group whose collapse or normal-Kazhdan
-defect saturates would admit no nontrivial homomorphism to any
-countable MF group at all.
+(Theorem~\ref{thm:normal-kazhdan}); the remaining input is
+group-theoretic.  A construction along the lines suggested above ---
+strengthening Hull's common-quotient technique so that the target
+elements are chosen inside a given infinite normal subgroup of a
+torsion-free acylindrically hyperbolic group, applied to
+Fournier-Facio's skeleton --- has been carried out and internally
+audited at paper level, and yields the stronger conclusion of a
+torsion-free finitely presented group equal to its own MF radical, so
+that every homomorphism to every norm matrix corona is trivial.  That
+argument rests on the Hull--Osin small-cancellation theory and is
+neither formalized nor part of the present development; until it is
+verified independently we record the question as resolved only modulo
+that construction.  By Theorem~\ref{thm:saturation}, a group whose
+collapse or normal-Kazhdan defect saturates admits no nontrivial
+homomorphism to any countable MF group at all.
 \item Is $E$ sofic, or hyperlinear?  The adjoint spectral estimates
 require operator-norm multiplicative control, and neither property is
 decided by the results above.
@@ -3271,6 +3384,45 @@ for a trivial target, the map is unique.  Density of the generated
 $*$-subalgebra gives uniqueness, while the left-regular coordinate proves
 injectivity.
 
+The maximal and reduced algebras separate already at the level of
+finiteness.  The algebraic mechanism is machine-checked in full:
+
+\begin{proposition}[proper compression forbids finiteness]\label{prop:proper-isometry}
+Let $A$ be a unital $C^*$-algebra (a unital star ring suffices)
+containing a projection $p$ and a unitary $u$ such that the conjugate
+$upu^{*}$ absorbs $p$ on both sides and $upu^{*}\ne p$.  Then $A$
+contains an isometry that is not a unitary; consequently $A$ is not
+stably finite and carries no faithful tracial state.
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.isometry_not_isUnit}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.not_isStablyFiniteRing}
+\leanverified{Analysis/ProperIsometryFromCompression}{GroupApproximation.ProperProjectionCompression.no_faithfulTracialState}
+\end{proposition}
+
+\begin{remark}[the maximal algebra under strict Kazhdan compression]
+\label{rem:maxinfinite}
+For a group carrying a strict Kazhdan compression
+$t\Gamma t^{-1}\subsetneq\Gamma$ --- the base of $E$ is the running
+example --- the Kazhdan projection $p_\Gamma$ constructed in
+Section~\ref{sec:transport} exists in the maximal
+algebra, conjugation by $u_t$ dominates it, and the domination is
+strict: at the quasi-regular coordinate $\ell^2(G/t\Gamma t^{-1})$ the
+point mass at the base coset is fixed by the compressed subgroup and
+moved by every element outside it, so the two projections differ
+there.
+\leanverified{Analysis/QuasiRegularWitness}{GroupApproximation.QuasiRegularWitness.baseVector_apply_base}
+By Proposition~\ref{prop:proper-isometry} the maximal algebra of such
+a group is then not stably finite, carries no faithful trace, and in
+particular is neither residually finite-dimensional nor MF.  The
+assembly of the Kazhdan projection with the coordinate spectral gap is
+stated here at paper level; its formalization is in progress, with the
+algebraic endgame and the coordinate witness above already
+kernel-checked.  The contrast with Theorem~\ref{thm:D} is the point of
+this remark: for the reduced algebra of $E$ the canonical trace is
+faithful and the algebra is stably finite, so its failure of MF is not
+a failure of finiteness; for the maximal algebra, infiniteness is
+forced by the strict compression before any MF considerations arise.
+\end{remark}
+
 \begin{thebibliography}{GKEMP}
 
 \bibitem[AT]{AlekseevThom}
@@ -3470,6 +3622,12 @@ N.~Nikolov, J.~Schneider, and A.~Thom,
 J. \'Ec. polytech. Math. \textbf{5} (2018), 239--258,
 \doi{10.5802/jep.69}.
 
+\bibitem[Ne]{Neumann37}
+B.~H.~Neumann,
+\emph{Some remarks on infinite groups},
+J. London Math. Soc. \textbf{12} (1937), 120--127,
+\doi{10.1112/jlms/s1-12.46.120}.
+
 \bibitem[NT]{NetzerThom}
 T.~Netzer and A.~Thom,
 \emph{Kazhdan's property (T) via semidefinite optimization},
@@ -3493,6 +3651,11 @@ N.~Ozawa,
 \emph{Noncommutative real algebraic geometry of Kazhdan's property (T)},
 J. Inst. Math. Jussieu \textbf{15} (2016), no.~1, 85--90,
 \doi{10.1017/S1474748014000309}, \arxiv{1312.5431}.
+
+\bibitem[Ra]{Rabin58}
+M.~O.~Rabin,
+\emph{Recursive unsolvability of group theoretic problems},
+Ann. of Math. (2) \textbf{67} (1958), 172--194.
 
 \bibitem[Sc]{Schafhauser}
 C.~Schafhauser,
