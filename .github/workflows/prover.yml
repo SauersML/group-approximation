@@ -545,7 +545,12 @@ jobs:
     needs: [gate, p13]
     if: needs.gate.outputs.run == 'true' && needs.gate.outputs.lean == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    # Heavy shards exceed two hours on hosted runners (observed
+    # 2026-08-15: the same shard indices timed out at 120 minutes in
+    # consecutive runs while three light shards finished in ~45).  A
+    # kernel re-check must never be killed for slowness: completion is
+    # the certificate.  The hosted-runner ceiling is six hours.
+    timeout-minutes: 330
     strategy:
       fail-fast: false
       matrix:
