@@ -6,6 +6,7 @@ title: A common quotient of two acylindrically hyperbolic groups onto a prescrib
 distinct_from:
   defect-normally-generates-torsion-free-quotient: that claim is about the Fournier-Facio group and its compression defect; this one is a general statement about acylindrically hyperbolic groups and mentions no compression, no defect, and no simple factor.
   torsion-free-higman-embedding: that claim embeds recursively presented torsion-free groups into finitely presented ones; this one is a small-cancellation common-quotient theorem and embeds nothing.
+  finite-infranormal-subgroup-is-normal: that is an established structural theorem about finite infranormal subgroups being normal; this is a small-cancellation construction of common quotients of acylindrically hyperbolic groups — the shared normal-subgroup vocabulary is coincidental.
 artifacts:
   - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
 ---

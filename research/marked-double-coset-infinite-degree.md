@@ -6,6 +6,7 @@ title: The marked double coset of the Laurent Kun--Thom pair has infinite degree
 distinct_from:
   invariant-graph-crossed-product-ce: that asks for Connes embeddability of one member of the invariant-graph family; this is a group-theoretic index computation about the underlying G-set, and it deletes the finite-degree part of that family's search space.
   invariant-graph-clifford-phase: that classifies which invariant graphs keep the marked word alive; this measures the degree of the smallest such graph and finds it infinite.
+  two-point-orbit-approximation: that is an approximation property of the G-set (a two-element-window weakening of a sofic action, with maps into finite symmetric groups); this is an exact index computation, [Gamma : Gamma cap h Gamma h^(-1)] infinite, with no approximation notion in it.
 artifacts:
   - docs/COMMUTING_WREATH_SOFIC_RADICAL.md
 ---

@@ -406,6 +406,26 @@ and it is available because the nesting is demanded exact -- which is
 precisely the hypothesis under which the continuity objection above does not
 apply.
 
+**RETRACTED (2026-08-15).**  (CG25d) is NOT equivalent to the median
+device's conclusion (fork's (8)), and the failure is in the direction that
+matters.  `cairn-fork`'s counterexample, verified and accepted by
+`cairn-wall` in their transcript minutes before the session limit hit
+(the retraction annotation is applied by the coordinator because the agent
+died before writing it): take one coarse block with `k` fine atoms all of
+trace `t`, and a second with two fine atoms of traces `10s` and `s`.  The
+first contributes index `k`, the second `11`, so for `k >= 11` the index
+equals `max_A #A` exactly and the normalized quantity (CG25d) is exactly
+`1` — while the second block has trace ratio `10` and (8) fails badly.
+Taking maxima over coarse blocks discards precisely the per-block
+information the median device is about, and the blockwise repair
+(`index_A/#A`, a mean-over-min) fails too.  Structurally: the index is a
+sup-based functional with no exceptional-set tolerance, while (8) permits
+discarding a vanishing-trace exceptional set — one tiny unbalanced block
+ruins the index invisibly to (8), and one large balanced block masks a
+small unbalanced one in the index's max.  Proposition 4a's FORMULA above
+stands; only the reformulation claim (CG25d) is withdrawn.  Do not
+re-attempt.
+
 **Theorem 4.**  `lambda` satisfies
 
 ```text

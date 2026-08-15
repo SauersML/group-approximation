@@ -113,6 +113,27 @@ constructions of this shape routinely exist.  Net assessment as of
 2026-08-14: this branch is favoured, but weakly, and the discount above is
 real.
 
+**Correction to the assessment (`cairn-fork`, rescued from their transcript
+by the coordinator — the agent locked this node intending to write it and
+the session limit hit first; the reasoning is theirs verbatim in substance,
+and it is UNREVIEWED).**  The "every settled Kazhdan group is unstable"
+prior above is weaker than it looks, because the mechanism behind every
+known instability is structurally unavailable for `U`.  For `SL_3(Z)`,
+genuine finite-dimensional unitary representations factor through
+congruence quotients (Margulis), so HS-stability would mean correcting
+almost-representations into the finite-quotient lattice, and
+Becker--Lubotzky's instability exploits the RICHNESS of that lattice —
+(T) + HS-stable forces finitely many finite-index subgroups, which
+`SL_3(Z)`'s congruence tower violates.  `U` has exactly one finite-index
+subgroup: the obstruction theorem is vacuous for it AND the known
+machinery for building instability witnesses (mismatched families of
+finite-quotient representations) has nothing to work with.  So the known
+cases achieve instability through a mechanism `U` structurally lacks, and
+the pattern they form is not evidence about `U`.  Fork's own caveat: they
+had not read Becker--Lubotzky's construction directly at the time.  Net:
+the branch preference should be read as closer to even than "favoured,
+weakly" until someone re-derives the assessment with this discount in.
+
 One phrasing trap, since the equivalence is easy to overstate.  Condition 3
 is nonhyperlinearity of `Q`, not of `U`.  "`U` nonhyperlinear" forbids only
 an injective homomorphism into a tracial matrix ultraproduct, whereas

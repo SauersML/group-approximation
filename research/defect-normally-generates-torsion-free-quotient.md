@@ -7,6 +7,9 @@ distinct_from:
   fournier-facio-torsion-free-skeleton: that claim is established and records what the published construction already gives; this one is the single additional demand on the small-cancellation step.
   torsion-free-countable-non-mf: that claim is an existence statement about non-MF groups; this one is pure combinatorial group theory about a common quotient and mentions no operator algebra.
   torsion-free-higman-embedding: that claim is about embedding recursively presented torsion-free groups into finitely presented ones; this one is about the normal closure of a prescribed subgroup in a small-cancellation quotient.
+  common-quotient-onto-normal-subgroup: that claim is the general small-cancellation tool, stated for any two acylindrically hyperbolic groups and any infinite normal subgroup of one of them; this one is its instance at the Fournier-Facio data, and is the statement the non-MF route consumes.
+artifacts:
+  - docs/TORSION_FREE_NORMAL_GENERATION_HULL_QUOTIENT.md
 ---
 
 In the Fournier-Facio construction (`fournier-facio-torsion-free-skeleton`)
@@ -31,42 +34,84 @@ small-cancellation fact would serve the primary route and both secondary
 ones.  That is a reason to attack this claim before any of the analytic
 holes.
 
+*(Provenance note: the sections below are `cairn-smallcancel`'s intended
+final body, applied by the coordinator from their transcript after the
+agent's closing Write failed on a concurrent-edit conflict at the moment
+the session limit hit.  The mathematics is theirs; nothing was altered
+beyond preserving the paragraph above, which the failed overwrite would
+have clobbered.)*
+
+## Established form
+
+`K = G`, the extreme case, so no inheritance of (T) is needed at all.  The
+argument is in the artifact; the route is
+`defect-normally-generates-torsion-free-quotient-proof`.
+
+Two facts sharpen the statement.  First, the defect is not merely a
+container: `defectNormal = <<pi(S)>>^G` **exactly**, because
+`t_1 c t_1^{-1}` is a nontrivial element of the non-abelian simple group
+`pi(S)` and `[t_1 c t_1^{-1}, -]` therefore generates `pi(S)` inside any
+normal subgroup meeting it.  So `K = G` makes the defect the whole group and
+the resulting corona statement is the strongest possible: *every*
+homomorphism from `G` to the unitary group of a norm matrix corona is
+trivial.  Second, `G` consequently has **no proper subgroup of finite index**
+— a finite quotient would kill the infinite simple `pi(S)`, hence kill
+`<<pi(S)>> = G`.  That is the expected shape for a non-MF group (residually
+finite implies MF), not an inconsistency.
+
+The general tool extracted from the proof is
+`common-quotient-onto-normal-subgroup`: in Hull's machinery the reservoir of
+small-cancellation target words can be confined to any prescribed infinite
+normal subgroup of a factor.
+
 ## Ideas
 
-Three ways to buy it, in increasing order of strength.
+Verdicts on the three routes originally recorded, plus the routes that were
+tried and abandoned.
 
-- *Finite index.*  The weakest sufficient form, and the one to attack first.
-  Property (T) is inherited by finite-index subgroups, so it is enough that
-  `G / <<pi(S)>>` be finite.  Hull's small cancellation adds finitely many
-  relators to `E * H`; the natural move is to add, alongside the relators
-  producing the common quotient, relators expressing each generator of `G`
-  as a word in conjugates of `s`.  This is the same style of step that
-  Fournier-Facio already uses to embed `U` into `P`, so the machinery is on
-  hand; what must be checked is that the added relators still satisfy the
-  small-cancellation condition and still preserve torsion-freeness
-  (Hull, Theorem 7.1(e)) and finite presentability.
-- *Simplicity.*  If `G` can be taken simple then `K = G` and there is
-  nothing to check.  Beware: this asks for a finitely presented simple group
-  with property (T) and no torsion.  Quotients of Kazhdan groups are
-  Kazhdan, so the (T) is free, but finitely presented plus simple is a
-  serious extra demand — Burger--Mozes and Hyde--Lodha groups are finitely
-  presented, simple and torsion-free but are not Kazhdan, and the standard
-  routes to simple small-cancellation quotients produce direct limits, which
-  are not finitely presented.  Do not assume this is available.
-- *Routed defect.*  The strongest form, and the one the repository already
-  formalized: `defectNormal.map source = top`, the field `defect_surjective`
-  of `RelativeCommonQuotientData` in the development deleted by commit
-  `241440fe`, pinned by revision path — read it with
-  `git show 241440fe^:GroupApproximation/Sofic/TorsionFreeFullMFRadical.lean`.
-  That development derives the whole non-MF package from this field, so a
-  proof of it — for the published Fournier-Facio quotient rather than for
-  hypothetical routing data — closes the root outright.
+- *Finite index* — **superseded, and it was the wrong target.**  The claim
+  originally proposed `G / <<pi(S)>>` finite as the cheapest form.  In fact
+  the construction lands on `<<pi(S)>> = G` directly, and the finite-index
+  version is not actually cheaper: any nontrivial finite quotient of `G`
+  would have to kill `pi(S)` (infinite simple) and hence kill `<<pi(S)>>`,
+  so `G/<<pi(S)>>` finite and nontrivial is possible only if
+  `<<pi(S)>>` is a proper subgroup — which the construction has no way to
+  arrange more cheaply than arranging equality.
+- *Simplicity* — **not needed, and correctly flagged as dangerous.**  `G` is
+  normally generated by `pi(S)` but nothing claims `G` is simple.  No
+  finitely presented simple Kazhdan torsion-free group is used anywhere.
+- *Routed defect* (`defect_surjective`, `defectNormal.map source = top`) —
+  **this is what was proved**, in the form `defectNormal = G`.  The deleted
+  Lean development's field is therefore satisfiable for the concrete group,
+  not only for hypothetical routing data.
+- The warning attached to all three (that `pi|_S` must stay injective) is
+  discharged by Hull's injectivity clause 7.1(b) at both small-cancellation
+  stages plus simplicity of `S`, exactly as the published construction does
+  it; the extra relators change which suitable subgroup is used, not how many
+  elements are protected.
 
-An honest warning about all three: the demand interacts with the rest of the
-construction, because `pi|_S` must stay injective (Fournier-Facio needs it,
-and `fournier-facio-torsion-free-skeleton` needs `S'` to be centreless).
-Adding relators that fold generators into the normal closure of `s` must not
-collapse `S` itself.  Simplicity of `S` gives the usual dichotomy — the
-image of `S` is trivial or faithful — so the real content is keeping it
-nontrivial, which is exactly what Hull's finite-set injectivity clause
-already delivers in the published step.
+Dead ends, recorded so they are not re-attempted.
+
+- **Inheriting normal generation from `E`.**  Impossible: `E/<<P>>^E` is the
+  free group on the two stable letters, and `<<S>>^E <= <<P>>^E`, so
+  `E/<<S>>^E` always surjects onto `F_2`.  No choice of `U`, `S`, `H`, `P`
+  changes this.  The normal generation has to be created by the
+  small-cancellation step.
+- **Adding relators inside `E`.**  Relators lying wholly in the free factor
+  `E` of `E * H` are single syllables of the free product, so killing them is
+  an uncontrolled quotient of `E` outside the small-cancellation regime —
+  torsion-freeness, `pi|_S` injectivity, and acylindrical hyperbolicity are
+  all lost as guarantees.  The relators must interleave `E` and `H`
+  syllables, which is what Hull's `W = t^{-1} h_1^{m_1} h_2^{l_1} ...` already
+  does.
+- **Classical small cancellation over the free product `E * H`.**  Cannot
+  produce a common quotient at all: `C'(1/6)` over a free product *embeds*
+  both factors, so `E ->> G` and `E ,-> G` together would force `G ~= E ~= H`.
+  This is why the acylindrically hyperbolic machinery (where the relators
+  identify a generator with a word in the other factor) is the only route.
+- **Making the added relators express each generator as a word in conjugates
+  of `s` directly**, as the original Ideas section proposed.  This works in
+  spirit but is the wrong place to intervene: writing the relator set by hand
+  means re-verifying the `C'(epsilon, mu, rho)` conditions from scratch.
+  Changing *which suitable subgroup Hull's theorem is handed* achieves the
+  same effect and leaves every small-cancellation estimate untouched.
