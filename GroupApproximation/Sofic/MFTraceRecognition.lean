@@ -259,6 +259,154 @@ theorem norm_unitProjection_sub (M1 : Matrix Y Y ℂ) :
 
 end Rounding
 
+/-! ## Corner inflation
+
+The cornered model image, inflated by the complement of the unit
+projection, is an exact algebraic near-unitary: its Gram defect equals
+the corner Gram defect on the nose, and the latter is controlled by the
+model defects. -/
+
+section CornerInflation
+
+variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+
+/-- An orthogonal projection is a contraction. -/
+theorem norm_proj_le_one {p : Matrix Y Y ℂ}
+    (hp : pᴴ = p) (hp2 : p * p = p) : ‖p‖ ≤ 1 := by
+  rcases eq_or_ne p 0 with rfl | hne
+  · simp
+  · have hsq : ‖p‖ * ‖p‖ = ‖p‖ := by
+      calc ‖p‖ * ‖p‖ = ‖pᴴ * p‖ := (Matrix.l2_opNorm_conjTranspose_mul_self p).symm
+        _ = ‖p‖ := by rw [hp, hp2]
+    have hpos : 0 < ‖p‖ := norm_pos_iff.mpr hne
+    nlinarith
+
+/-- The inflated corner element. -/
+noncomputable def inflate (p A : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
+  p * A * p + (1 - p)
+
+/-- **Exact Gram identity for the inflation**: the Gram defect of the
+inflated element is the corner Gram defect. -/
+theorem inflate_gram (p A : Matrix Y Y ℂ)
+    (hp : pᴴ = p) (hp2 : p * p = p) :
+    (inflate p A)ᴴ * inflate p A - 1 =
+      (p * A * p)ᴴ * (p * A * p) - p := by
+  have hcorner_star : (p * A * p)ᴴ = p * Aᴴ * p := by
+    rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, hp]
+    noncomm_ring
+  have hleft : (p * Aᴴ * p) * (1 - p) = 0 := by
+    rw [Matrix.mul_sub, Matrix.mul_one]
+    rw [show p * Aᴴ * p * p = p * Aᴴ * p from by
+      rw [Matrix.mul_assoc (p * Aᴴ) p p, hp2]]
+    abel
+  have hright : (1 - p) * (p * A * p) = 0 := by
+    rw [Matrix.sub_mul, Matrix.one_mul]
+    rw [show p * (p * A * p) = p * A * p from by
+      rw [show p * (p * A * p) = (p * p) * A * p from by noncomm_ring,
+        hp2]]
+    abel
+  have hcompl : (1 - p) * (1 - p) = 1 - p := by
+    rw [Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_sub, Matrix.one_mul,
+      Matrix.mul_one, hp2]
+    abel
+  rw [inflate, Matrix.conjTranspose_add, hcorner_star,
+    Matrix.conjTranspose_sub, Matrix.conjTranspose_one, hp]
+  rw [Matrix.add_mul, Matrix.mul_add, Matrix.mul_add]
+  rw [hleft, hright, hcompl, hcorner_star]
+  abel
+
+/-- The corner Gram defect from the model defects.  `B₁` plays the role
+of the model image of the identity. -/
+theorem corner_gram_bound {p A B₁ : Matrix Y Y ℂ} {C η δ₁ δ₂ : ℝ}
+    (hp : pᴴ = p) (hp2 : p * p = p)
+    (hA : ‖A‖ ≤ C) (hC : 0 ≤ C)
+    (hη : ‖p - B₁‖ ≤ η)
+    (hδ₁ : ‖B₁ * A - A‖ ≤ δ₁)
+    (hδ₂ : ‖Aᴴ * A - B₁‖ ≤ δ₂) :
+    ‖(p * A * p)ᴴ * (p * A * p) - p‖ ≤
+      C * (C * η + δ₁) + δ₂ + η := by
+  have hpn : ‖p‖ ≤ 1 := norm_proj_le_one hp hp2
+  have hAstar : ‖Aᴴ‖ = ‖A‖ := Matrix.l2_opNorm_conjTranspose A
+  have hcorner_star : (p * A * p)ᴴ = p * Aᴴ * p := by
+    rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, hp]
+    noncomm_ring
+  have hsplit : (p * A * p)ᴴ * (p * A * p) - p =
+      (p * Aᴴ) * ((p - 1) * (A * p)) +
+        ((p * (Aᴴ * A - B₁) * p) + (p * (B₁ - p) * p)) := by
+    rw [hcorner_star]
+    have hp3 : p * p * p = p := by rw [hp2, hp2]
+    calc p * Aᴴ * p * (p * A * p) - p
+        = p * Aᴴ * ((p - 1) * (A * p)) + p * (Aᴴ * A) * p - p := by
+          noncomm_ring
+      _ = p * Aᴴ * ((p - 1) * (A * p)) +
+            (p * (Aᴴ * A - B₁) * p + p * (B₁ - p) * p) +
+            (p * p * p - p) := by noncomm_ring
+      _ = _ := by rw [hp3]; abel
+  rw [hsplit]
+  have h1 : ‖(p * Aᴴ) * ((p - 1) * (A * p))‖ ≤ C * (C * η + δ₁) := by
+    have hin : ‖(p - 1) * (A * p)‖ ≤ C * η + δ₁ := by
+      have hcalc : (p - 1) * (A * p) = ((p - B₁) * A) * p +
+          ((B₁ * A - A) * p) := by noncomm_ring
+      rw [hcalc]
+      calc ‖((p - B₁) * A) * p + (B₁ * A - A) * p‖
+          ≤ ‖((p - B₁) * A) * p‖ + ‖(B₁ * A - A) * p‖ := norm_add_le _ _
+        _ ≤ ‖(p - B₁) * A‖ * ‖p‖ + ‖B₁ * A - A‖ * ‖p‖ := by
+            gcongr <;> exact Matrix.l2_opNorm_mul _ _
+        _ ≤ ‖p - B₁‖ * ‖A‖ * 1 + δ₁ * 1 := by
+            have := Matrix.l2_opNorm_mul (p - B₁) A
+            gcongr
+        _ ≤ η * C + δ₁ := by
+            have h0 : (0 : ℝ) ≤ ‖p - B₁‖ := norm_nonneg _
+            nlinarith [norm_nonneg (p - B₁), norm_nonneg A]
+        _ = C * η + δ₁ := by ring
+    calc ‖(p * Aᴴ) * ((p - 1) * (A * p))‖
+        ≤ ‖p * Aᴴ‖ * ‖(p - 1) * (A * p)‖ := Matrix.l2_opNorm_mul _ _
+      _ ≤ (1 * C) * (C * η + δ₁) := by
+          have hpa : ‖p * Aᴴ‖ ≤ 1 * C := by
+            calc ‖p * Aᴴ‖ ≤ ‖p‖ * ‖Aᴴ‖ := Matrix.l2_opNorm_mul _ _
+              _ ≤ 1 * C := by rw [hAstar]; gcongr
+          have hnn : (0 : ℝ) ≤ C * η + δ₁ := by
+            have := (norm_nonneg ((p - 1) * (A * p))).trans hin
+            linarith [norm_nonneg ((p - 1) * (A * p))]
+          gcongr
+      _ = C * (C * η + δ₁) := by ring
+  have h2 : ‖p * (Aᴴ * A - B₁) * p‖ ≤ δ₂ := by
+    calc ‖p * (Aᴴ * A - B₁) * p‖
+        ≤ ‖p * (Aᴴ * A - B₁)‖ * ‖p‖ := Matrix.l2_opNorm_mul _ _
+      _ ≤ (‖p‖ * ‖Aᴴ * A - B₁‖) * ‖p‖ := by
+          gcongr
+          exact Matrix.l2_opNorm_mul _ _
+      _ ≤ (1 * δ₂) * 1 := by
+          have h0 : (0 : ℝ) ≤ ‖Aᴴ * A - B₁‖ := norm_nonneg _
+          have h0' : (0 : ℝ) ≤ ‖p‖ := norm_nonneg _
+          nlinarith
+      _ = δ₂ := by ring
+  have h3 : ‖p * (B₁ - p) * p‖ ≤ η := by
+    calc ‖p * (B₁ - p) * p‖
+        ≤ ‖p * (B₁ - p)‖ * ‖p‖ := Matrix.l2_opNorm_mul _ _
+      _ ≤ (‖p‖ * ‖B₁ - p‖) * ‖p‖ := by
+          gcongr
+          exact Matrix.l2_opNorm_mul _ _
+      _ ≤ (1 * η) * 1 := by
+          have hswap : ‖B₁ - p‖ = ‖p - B₁‖ := by
+            rw [show B₁ - p = -(p - B₁) from by abel, norm_neg]
+          have h0 : (0 : ℝ) ≤ ‖p‖ := norm_nonneg _
+          have h0' : (0 : ℝ) ≤ ‖B₁ - p‖ := norm_nonneg _
+          nlinarith [hswap ▸ hη]
+      _ = η := by ring
+  calc ‖(p * Aᴴ) * ((p - 1) * (A * p)) +
+      ((p * (Aᴴ * A - B₁) * p) + (p * (B₁ - p) * p))‖
+      ≤ ‖(p * Aᴴ) * ((p - 1) * (A * p))‖ +
+          (‖p * (Aᴴ * A - B₁) * p‖ + ‖p * (B₁ - p) * p‖) := by
+        refine (norm_add_le _ _).trans ?_
+        gcongr
+        exact norm_add_le _ _
+    _ ≤ C * (C * η + δ₁) + (δ₂ + η) := by
+        gcongr
+    _ = C * (C * η + δ₁) + δ₂ + η := by ring
+
+end CornerInflation
+
 /-- **MF-trace recognition.**  If the regular character of a group is an
 MF trace, the group is operator MF: the corner-and-polar correction of
 any trace-correct model family produces operator-norm local models with
